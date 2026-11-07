@@ -133,14 +133,16 @@ pub(super) struct SceneWire {
     pub inside: Option<usize>,
 }
 
-/// Name of a device on its front face.
+/// Name of a device on its front face, or a warning at a point (a cable that is not
+/// drawn: it could not be routed).
 pub(super) struct SceneLabel {
     pub at: V3,
-    /// Direction its front faces.
+    /// Direction its front faces (none for a warning: seen from everywhere).
     pub normal: V3,
     /// Smaller side of the front (mm).
     pub size: f32,
     pub tag: String,
+    pub warning: bool,
 }
 
 /// The content of the 3D view; see the module documentation.
@@ -994,7 +996,7 @@ impl PanelUi {
                     let q = panel::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, it.z + it.d]);
                     (up(q), [n[0], -n[1], n[2]])
                 };
-                s.labels.push(SceneLabel { at: pose.apply(front), normal: pose.turn(normal), size: it.w.min(it.h), tag: it.tag.clone() });
+                s.labels.push(SceneLabel { at: pose.apply(front), normal: pose.turn(normal), size: it.w.min(it.h), tag: it.tag.clone(), warning: false });
             }
         }
         // A wire through the cable passages between the cabinets is one tube, bent there.
@@ -1024,6 +1026,15 @@ impl PanelUi {
             pose.apply([q[0] - pos[k][0], prj.layout.enclosures[k].height - (q[1] - pos[k][1]), q[2] - pos[k][2]])
         };
         let keys: Vec<usize> = shown.iter().map(|s| s.0).collect();
+        // What could not be routed is not drawn: a warning at each of its ends says so.
+        for it in an.routing.items.iter().filter(|i| !i.routed()) {
+            for end in it.ends.iter().filter(|e| e.enclosure.is_some_and(|k| keys.contains(&k))) {
+                if let Some(q) = end.point {
+                    let tag = format!("{} {}\n{}", it.kind.title(), it.label, it.status_text());
+                    s.labels.push(SceneLabel { at: to_view(end.enclosure, q), normal: [0.0; 3], size: 60.0, tag, warning: true });
+                }
+            }
+        }
         for line in self.routing_lines_3d(prj, an, &keys, &to_view, selected_wire) {
             if line.diameter > 0.0 {
                 let (sides, steps) = if matches!(line.target, RouteRef::Wire(_)) { (WIRE_SIDES, 2) } else { (TUBE_SIDES, 4) };

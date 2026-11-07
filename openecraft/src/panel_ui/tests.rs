@@ -864,7 +864,7 @@ fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
     // bend of the cable has not ended yet.
     let way = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 60.0, 0.0], [500.0, 110.0, 0.0]];
     let at = [([495.0, 110.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 110.0, 0.0], [0.0, -1.0, 0.0])];
-    let (keep, tail, cores) = routing_ui::fan_out(&way, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0);
+    let (keep, tail, cores) = routing_ui::fan_out(&way, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0, None);
     // The cable keeps its way up to the corner and ends on the bend round it, as far
     // behind the corner (along y) as it was cut.
     assert_eq!(keep, 1);
@@ -880,19 +880,47 @@ fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
     // Further behind the corner nothing changes: it ends on its straight way.
     let long = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 300.0, 0.0], [500.0, 350.0, 0.0]];
     let at = [([495.0, 350.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 350.0, 0.0], [0.0, -1.0, 0.0])];
-    let (keep, tail, _) = routing_ui::fan_out(&long, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0);
+    let (keep, tail, _) = routing_ui::fan_out(&long, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0, None);
     assert_eq!((keep, tail), (2, vec![[500.0, 290.0, 0.0]]));
 }
 
 #[test]
+fn the_faces_of_the_busbars_point_outward() {
+    // Seen in the view, every face of the bars and their holders points away from the
+    // system (a bar wound inside out shows its far faces, which fight with the holders
+    // behind them); and nothing of a busbar lies in the plane of the plate.
+    let prj = openecraft_core::sample::example("industrial_main_distribution").unwrap();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { enclosure: 0, show_wires: false, ..Default::default() };
+    let shown = ui.shown_3d(&prj, 0);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    let e = &prj.layout.enclosures[0];
+    let mut checked = 0;
+    for bar in e.items.iter().filter(|i| i.kind == ItemKind::Busbar) {
+        let (lo, hi) = panel::item_box(e, bar);
+        let (lo, hi) = ([lo[0], e.height - hi[1], lo[2]], [hi[0], e.height - lo[1], hi[2]]);
+        for f in s.faces.iter().filter(|f| f.item == Some((0, bar.id))) {
+            let n = f.n as usize;
+            let mid = [0, 1, 2].map(|k| f.pts[..n].iter().map(|p| p[k]).sum::<f32>() / n as f32);
+            // A face on the outside of the system's box points out of it.
+            let axis = (0..3).max_by(|&i, &j| f.normal[i].abs().total_cmp(&f.normal[j].abs())).unwrap();
+            let out = if (mid[axis] - hi[axis]).abs() < 0.01 { 1.0 } else if (mid[axis] - lo[axis]).abs() < 0.01 { -1.0 } else { continue };
+            assert!(f.normal[axis] * out > 0.99, "{} face at {mid:?} with normal {:?}", bar.part, f.normal);
+            checked += 1;
+        }
+    }
+    assert!(checked > 50, "{checked}");
+}
+
+#[test]
 fn the_cores_of_a_cable_stay_between_their_ends() {
-    // A cable up along y (z 150 in front of the plate) that turns towards the plate
+    // A cable up along y (z 200 in front of the plate) that turns towards the plate
     // right before its three terminals, 185 apart up the plate at z 90: the cores part
     // in the turn, heading at the plate, and must not swing on past the terminals
     // (into the bars they sit on) before they come up to them.
-    let way = [[0.0, 0.0, 150.0], [0.0, 700.0, 150.0], [0.0, 705.0, 90.0], [0.0, 890.0, 90.0]];
+    let way = [[0.0, 0.0, 200.0], [0.0, 700.0, 200.0], [0.0, 705.0, 90.0], [0.0, 890.0, 90.0]];
     let at = [([0.0, 705.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 890.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 1075.0, 90.0], [0.0, -1.0, 0.0])];
-    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0);
+    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0, None);
     let end = tail[tail.len() - 1];
     for (core, (q, _)) in cores.iter().zip(&at) {
         let start = core[0];
@@ -901,6 +929,39 @@ fn the_cores_of_a_cable_stay_between_their_ends() {
             assert!(p[2] >= start[2].min(q[2]) - 0.01 && p[2] <= start[2].max(q[2]) + 0.01 && p[1] <= q[1] + 0.01, "{core:?}");
         }
     }
+    // The terminal strip's box reaches to z 125: the cable ends clear of it (its
+    // radius and more in front), the cores to the upper two terminals pass the lower
+    // ones in front of the box (a core's radius and more), the core to the first comes
+    // down into it without rising first.
+    let strip = (([-20.0, 680.0, 20.0], [20.0, 1100.0, 125.0]), [0.0, 0.0, 1.0]);
+    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0, Some(strip));
+    assert!(tail.iter().all(|p| p[2] >= 125.0 + 27.5 + 1.0 - 0.01), "{tail:?}");
+    for (k, (core, (q, _))) in cores.iter().zip(&at).enumerate() {
+        let passing: Vec<&[f32; 3]> = core.iter().filter(|p| at[..k].iter().any(|(o, _)| (p[1] - o[1]).abs() < 30.0)).collect();
+        assert!(passing.iter().all(|p| p[2] >= 125.0 + 7.0 + 1.0 - 0.5), "core {k}: {core:?}");
+        assert!(core.iter().all(|p| p[2] <= 250.0 && p[1] <= q[1] + 0.01), "core {k}: {core:?}");
+        if k == 0 {
+            assert!(core.iter().all(|p| p[2] <= core[0][2] + 0.01), "{core:?}");
+        }
+    }
+}
+
+#[test]
+fn a_cable_that_is_not_routed_is_marked_in_the_3d_view() {
+    // The motor cable of the demo with half a metre of clearance: not drawn, a
+    // warning at both of its ends in the cabinet instead.
+    let mut prj = openecraft_core::sample::demo_project();
+    panel::place_accessory(&mut prj, 0, "GEN.GLAND-M25", Face::Bottom, openecraft_core::geom::p(80.0, 100.0)).unwrap();
+    prj.layout.routing.clearance = 500.0;
+    let an = Analysis::build(&prj);
+    assert!(!an.routing.item("-W1").unwrap().routed());
+    let mut ui = PanelUi { enclosure: 0, show_wires: true, ..Default::default() };
+    let shown = ui.shown_3d(&prj, 0);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    let warnings: Vec<&scene3d::SceneLabel> = s.labels.iter().filter(|l| l.warning && l.tag.contains("-W1")).collect();
+    assert_eq!(warnings.len(), 2, "{:?}", s.labels.iter().filter(|l| l.warning).map(|l| &l.tag).collect::<Vec<_>>());
+    assert!(warnings.iter().all(|l| l.tag.contains(&openecraft_i18n::tr("not routed: {}").replace("{}", ""))), "{}", warnings[0].tag);
+    assert!(!s.tube_paths.iter().any(|(_, _, t)| matches!(t, routing_ui::RouteRef::Item(k) if k == "-W1")));
 }
 
 /// Where the segments `a`–`b` and `c`–`d` come nearest to each other: the points on both.
@@ -1014,6 +1075,13 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                     trays.push(seen(bx));
                 }
                 match it.kind {
+                    // A terminal strip across the bars: each terminal a solid of its own,
+                    // so that a core to one of them may not pass through the others.
+                    ItemKind::Device if panel::busbars::terminals_on_bars(prj, it).is_some() => {
+                        for (sub, _, label) in panel::busbars::terminals_on_bars(prj, it).unwrap_or_default() {
+                            solids.push((seen(panel::item_box(e, &sub)), it.id, format!("{}:{label}", name(it))));
+                        }
+                    }
                     ItemKind::Device | ItemKind::Busbar | ItemKind::Rail => solids.push((seen(bx), it.id, name(it))),
                     ItemKind::Accessory => {
                         // Cable glands and the membranes of cable entry flanges.
@@ -1067,10 +1135,12 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
         let room = prj.layout.enclosures[ei].is_room().then(|| (panel::outline(&prj.layout.enclosures[ei]), prj.layout.enclosures[ei].height));
         for (ti, (way, r, what, ends)) in tubes.iter().enumerate() {
             let r = *r;
-            // Solids.
+            // Solids; the item a tube ends at only where it comes up to its end there.
+            let zone = (4.0 * r + 20.0).max(3.0 * prj.layout.routing.grid + r);
+            let at_end = |b: &(V3, V3)| [way.first(), way.last()].into_iter().flatten().any(|q| within_box(*q, grown(*b, zone)));
             for seg in way.windows(2) {
                 for (b, id, name) in &solids {
-                    if ends.contains(id) {
+                    if ends.contains(id) && at_end(b) {
                         continue;
                     }
                     let gap = box_gap(seg[0], seg[1], *b);

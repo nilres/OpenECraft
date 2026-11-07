@@ -57,6 +57,25 @@ fn the_bars_are_drawn_apart() {
 }
 
 #[test]
+fn the_mesh_is_wound_like_a_placed_model() {
+    // In plate coordinates (y down) a placed model is wound inside out: the front faces
+    // of the bars (at the system's depth) point into the plate, like those of a box of
+    // a terminal without a model. The 3D view turns them right side out with its y.
+    let prj = example("industrial_main_distribution").unwrap();
+    let id = bar_with(&prj, "=GRID+HV1-X01");
+    let bar = prj.layout.enclosures.iter().flat_map(|e| &e.items).find(|i| i.id == id).unwrap();
+    let normal = |t: &Tri| crate::parts::vec3::norm(crate::parts::vec3::cross(crate::parts::vec3::sub(t[1], t[0]), crate::parts::vec3::sub(t[2], t[0])));
+    let painted = mesh(&prj, bar);
+    let front: Vec<&Tri> = painted.iter().filter(|t| t.1 == Some(COPPER) && t.0.iter().all(|v| (v[2] - bar.z - bar.d).abs() < 0.01)).map(|t| &t.0).collect();
+    assert_eq!(front.len(), 6);
+    assert!(front.iter().all(|t| normal(t)[2] < -0.99), "{:?}", front.iter().map(|t| normal(t)).collect::<Vec<_>>());
+    let (_, x01) = crate::panel::locate(&prj, "=GRID+HV1-X01").unwrap();
+    let tris = crate::panel::device_mesh(&prj, x01).unwrap();
+    let front: Vec<&Tri> = tris.iter().filter(|t| t.iter().all(|v| (v[2] - x01.z - x01.d).abs() < 0.01)).collect();
+    assert!(!front.is_empty() && front.iter().all(|t| normal(t)[2] < -0.99));
+}
+
+#[test]
 fn the_holders_carry_the_bars() {
     let prj = example("industrial_main_distribution").unwrap();
     let id = bar_with(&prj, "=DIST+HV2-Q21");
@@ -98,6 +117,24 @@ fn the_holders_stand_beside_the_devices_in_the_bars() {
     // Drawn there, and nowhere else.
     let xs: Vec<f32> = mesh(&prj, bar).iter().filter(|t| t.1 == Some(HOLDER)).flat_map(|t| t.0.iter().map(|v| v[0])).collect();
     assert!(xs.iter().all(|x| places.iter().any(|a| (x - (bar.x + a)).abs() <= HOLDER_WIDTH / 2.0 + 0.01)), "{xs:?}");
+}
+
+#[test]
+fn packed_busbar_terminals_are_entered_from_the_front() {
+    // Example 13: feed-in terminals 60 mm apart on the main busbar, 6 mm between them:
+    // the points of the inner terminal facing its neighbours leave to the front; the
+    // outer points keep their way. Example 14: 185 mm apart, every point keeps its way.
+    use crate::parts::Exit;
+    let exits = |key: &str, tag: &str| -> Vec<(String, Exit)> {
+        let prj = example(key).unwrap();
+        let (_, it) = crate::panel::locate(&prj, tag).unwrap();
+        crate::panel::device_points(&prj, it).into_iter().map(|p| (p.terminal, p.exit)).collect()
+    };
+    let x0 = exits("pv_transformer_metering", "=GRID+HV-X0");
+    assert_eq!(x0.iter().filter(|(t, _)| t == "L2").map(|(_, e)| *e).collect::<Vec<_>>(), [Exit::Front, Exit::Front], "{x0:?}");
+    assert!(x0.iter().any(|(t, e)| t == "L1" && *e == Exit::Up) && x0.iter().any(|(t, e)| t == "L3" && *e == Exit::Down), "{x0:?}");
+    let x01 = exits("industrial_main_distribution", "=GRID+HV1-X01");
+    assert!(x01.iter().all(|(_, e)| matches!(e, Exit::Up | Exit::Down)), "{x01:?}");
 }
 
 #[test]

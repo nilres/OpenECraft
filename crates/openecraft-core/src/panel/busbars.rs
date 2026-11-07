@@ -7,7 +7,7 @@ use super::{ItemKind, PanelItem};
 use crate::issue::{Issue, Severity};
 use crate::model::*;
 use crate::netlist::Netlist;
-use crate::parts::vec3::{box_triangles, Tri};
+use crate::parts::vec3::Tri;
 use crate::parts::FnKind;
 use crate::symbols::Func;
 use std::collections::{BTreeMap, BTreeSet};
@@ -157,7 +157,7 @@ pub fn mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
     let at = |a: f32, c: f32, z: f32| if horizontal { [it.x + a, it.y + c, it.z + z] } else { [it.x + c, it.y + a, it.z + z] };
     let block = |a0: f32, a1: f32, c0: f32, c1: f32, z0: f32, z1: f32| {
         let (p, q) = (at(a0, c0, z0), at(a1, c1, z1));
-        box_triangles([p[0].min(q[0]), p[1].min(q[1]), p[2]], [p[0].max(q[0]), p[1].max(q[1]), q[2]])
+        super::plate_box([p[0].min(q[0]), p[1].min(q[1]), p[2]], [p[0].max(q[0]), p[1].max(q[1]), q[2]])
     };
     let mut out = Vec::new();
     for c in &centres {

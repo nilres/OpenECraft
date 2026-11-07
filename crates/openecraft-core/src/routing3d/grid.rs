@@ -24,7 +24,7 @@
 
 use super::{Class, PathKind, ReserveMode, RouteKind, RoutingRules};
 use crate::model::Project;
-use crate::panel::{self, Enclosure, ItemKind, PLATE_Z};
+use crate::panel::{self, Enclosure, ItemKind, PanelItem, PLATE_Z};
 use crate::parts::vec3::{add, dist, scale, sub, V3};
 use std::cell::RefCell;
 use std::cmp::Reverse;
@@ -473,7 +473,7 @@ impl Space {
             }
         }
         for &k in lineup {
-            s.add_enclosure(&encs[k], k, pos[k], rules, prj.layout.duct_fill_limit);
+            s.add_enclosure(&encs[k], k, pos[k], rules, prj.layout.duct_fill_limit, &item_parts(prj, &encs[k]));
             if panel::is_rack(&encs[k]) {
                 s.add_rack_ways(&encs[k], k, pos[k]);
             }
@@ -494,28 +494,35 @@ impl Space {
     }
 
     /// Adds what is in enclosure `k` (at `o`, enclosure coordinates + `o` = grid
-    /// coordinates) to the free space: its items, reservations and routing paths.
+    /// coordinates) to the free space: its items (those of `parts` as their parts,
+    /// each a solid of its own: [`item_parts`]), reservations and routing paths.
     /// Cable ducts are channels on the mounting plate, in a room on every face, filled
     /// up to `limit` percent of their inside.
-    pub(super) fn add_enclosure(&mut self, e: &Enclosure, k: usize, o: V3, rules: &RoutingRules, limit: f32) {
+    pub(super) fn add_enclosure(&mut self, e: &Enclosure, k: usize, o: V3, rules: &RoutingRules, limit: f32, parts: &HashMap<u64, Vec<PanelItem>>) {
         let shift = |(a, b): (V3, V3), m: f32| ([a[0] + o[0] - m, a[1] + o[1] - m, a[2] + o[2] - m], [b[0] + o[0] + m, b[1] + o[1] + m, b[2] + o[2] + m]);
         for it in &e.items {
             let bx = shift(panel::item_box(e, it), 0.0);
             match it.kind {
                 ItemKind::Device | ItemKind::Rail | ItemKind::Busbar | ItemKind::Accessory => {
-                    let around = shift(panel::item_box(e, it), rules.clearance);
-                    for idx in self.cells_in(self.widened(around)) {
-                        if self.block[idx] == 0 {
-                            self.block[idx] = ITEM;
-                            self.owner[idx] = it.id;
+                    let pieces: Vec<(u64, (V3, V3))> = match parts.get(&it.id) {
+                        Some(subs) => subs.iter().enumerate().map(|(n, sub)| (super::part_id(it.id, n), panel::item_box(e, sub))).collect(),
+                        None => vec![(it.id, panel::item_box(e, it))],
+                    };
+                    for (owner, piece) in pieces {
+                        let (bx, around) = (shift(piece, 0.0), shift(piece, rules.clearance));
+                        for idx in self.cells_in(self.widened(around)) {
+                            if self.block[idx] == 0 {
+                                self.block[idx] = ITEM;
+                                self.owner[idx] = owner;
+                            }
                         }
-                    }
-                    for idx in self.cells_in(bx) {
-                        if self.block[idx] == ITEM && self.owner[idx] == it.id {
-                            self.block[idx] = BODY;
+                        for idx in self.cells_in(bx) {
+                            if self.block[idx] == ITEM && self.owner[idx] == owner {
+                                self.block[idx] = BODY;
+                            }
                         }
+                        self.solids.push(Solid::Box { lo: around.0, hi: around.1, owner });
                     }
-                    self.solids.push(Solid::Box { lo: around.0, hi: around.1, owner: it.id });
                 }
                 ItemKind::Duct if it.face == panel::Face::Plate || e.is_room() => {
                     // Its inside: across and as deep as it is, less its walls.
@@ -1936,6 +1943,13 @@ fn dist_to_segment(q: V3, a: V3, b: V3) -> f32 {
 }
 
 /// Removes repeated points and points in the middle of straight stretches.
+/// The items of an enclosure that are solids part by part in the routing space (by
+/// id, with their parts as items): a terminal strip across the bars, each terminal a
+/// part of its own, so that a route to one of them does not pass through the others.
+pub(super) fn item_parts(prj: &Project, e: &Enclosure) -> HashMap<u64, Vec<PanelItem>> {
+    e.items.iter().filter_map(|it| panel::busbars::terminals_on_bars(prj, it).map(|places| (it.id, places.into_iter().map(|(sub, ..)| sub).collect()))).collect()
+}
+
 pub fn simplify(points: Vec<V3>) -> Vec<V3> {
     let mut v: Vec<V3> = Vec::new();
     for q in points {

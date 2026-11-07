@@ -42,7 +42,10 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   drilling positions of the plate but beside the devices that sit in the bars (the
   transformers the bars pass through), never through them
   (`busbars::holder_places`). A busbar terminal strip placed across the bars (`busbars::place_on_bars`)
-  puts each terminal upright on its own bar, one strip per supply cable. Each bar
+  puts each terminal upright on its own bar, one strip per supply cable; in the 3D
+  routing each of those terminals is a solid of its own (a wire to one goes round the
+  others), and terminals closer than 30 mm along the bars are entered from the front.
+  Each bar
   is one conductor: the check `busbars` reports a system whose devices join more
   conductors than it has bars (part data `Bars`) as a short circuit, such as a PEN
   terminal on the bars of the phases or the feeders behind a coupling switch on the
@@ -286,7 +289,9 @@ round them. A wire that finds no such way is not drawn: it is reported as an err
 bends with its radius of … mm*). The usual causes are a conductor too thick for the
 room between its ends (a busbar cross-section drawn as a wire: mount the devices on a
 busbar system instead), connection points that face away from each other, or a
-terminal strip right below a switch.
+terminal strip right below a switch. The messages pane jumps to a connection point of
+the wire or cable, and the 3D view shows a red note with the reason at each of its ends
+in place of the route.
 
 The routing works on a grid (25 mm in a cabinet, 50 mm in a room); a connection point
 lies where it lies. The 3D view draws a route straight out of its connection point:
@@ -298,7 +303,9 @@ otherwise it is not routed. Ways that run together lie side by side on lanes; a 
 changes from lane to lane on a slanting piece of a stretch, never in a step at a
 corner, and a jog too short for the bends of its two corners is drawn as an S-curve of
 the bend radius. A cable ends on the bend of the corner before its cores part where it
-is cut there. Where two routes still cross each other right at a device they both come
+is cut there; the cores part within the box of their ends, and a core to a terminal
+behind others of its strip (one above the other on the bars) passes them in front of
+the device. Where two routes still cross each other right at a device they both come
 up to, the view lifts one over the other more sharply than their bend radius allows.
 
 A cable between two cabinets that stand in no common room is routed in each of them to

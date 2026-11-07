@@ -235,6 +235,10 @@ pub struct End {
     pub point: Option<V3>,
     /// Item the route ends at (device, cable gland).
     pub item: Option<u64>,
+    /// The parts of the item the route (its cores) ends at, where the item has parts a
+    /// route may not pass through (the terminals of a strip across the bars,
+    /// [`part_id`]); empty: the whole item.
+    pub parts: Vec<u64>,
     /// The connection points the cores land on where they part at the end (layout
     /// coordinates; `point` is their middle); empty for one.
     pub cores: Vec<V3>,
@@ -382,6 +386,9 @@ pub enum Level {
 pub struct Problem {
     pub level: Level,
     pub message: String,
+    /// Page and symbol of what the problem is about (a connection point of the cable,
+    /// tube or wire), where known: the messages pane jumps there.
+    pub target: Option<(usize, u64)>,
 }
 
 #[derive(Clone, Debug, Default, PartialEq)]
@@ -581,14 +588,34 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
             let in_layout = |q: V3| add(panel::face_point(e, it.face, q), pos[ei]);
             let direction = |x: V3| sub(in_layout(add(q, x)), in_layout(q));
             // The route leaves the way the cores leave (where they agree), otherwise
-            // away from the face.
-            let out = at.iter().fold([0.0; 3], |s, p| add(s, p.1));
+            // away from the face. Cores that come to packed terminals from the front
+            // (see `panel::points::TIGHT_TERMINALS`) part from a cable that comes
+            // along the strip like the other cores.
+            let along = at.iter().filter(|p| p.1[2].abs() < 0.5).fold([0.0; 3], |s, p| add(s, p.1));
+            let out = if at.len() > 1 && dist(along, [0.0; 3]) >= 0.5 { along } else { at.iter().fold([0.0; 3], |s, p| add(s, p.1)) };
             let leave = if at.is_empty() || dist(out, [0.0; 3]) < 0.5 { direction([0.0, 0.0, 1.0]) } else { direction(out) };
+            // The terminals of a strip across the bars the points lie on: the route may
+            // pass through those, not through the strip's other terminals.
+            let mut parts: Vec<u64> = Vec::new();
+            if let Some(places) = panel::busbars::terminals_on_bars(prj, it) {
+                let inside = |sub: &PanelItem, p: V3| p[0] >= sub.x - 0.01 && p[0] <= sub.x + sub.w + 0.01 && p[1] >= sub.y - 0.01 && p[1] <= sub.y + sub.h + 0.01;
+                for (k, (sub, ..)) in places.iter().enumerate() {
+                    if at.iter().any(|(p, _)| inside(sub, *p)) || (at.is_empty() && inside(sub, q)) {
+                        parts.push(part_id(it.id, k));
+                    }
+                }
+            }
             let (cores, exits) = if at.len() > 1 { at.into_iter().map(|(q, x)| (in_layout(q), sub(in_layout(add(q, x)), in_layout(q)))).unzip() } else { Default::default() };
-            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), cores, exits, nozzle: None, leave: Some(norm(leave)) }
+            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), parts, cores, exits, nozzle: None, leave: Some(norm(leave)) }
         }
         None => End { tag: tag.into(), ..Default::default() },
     }
+}
+
+/// The id of part `k` of the item `item` in the routing space (a terminal of a strip
+/// across the bars): an id of its own, above the ids of the items.
+pub fn part_id(item: u64, k: usize) -> u64 {
+    item | (k as u64 + 1) << 48
 }
 
 /// The nozzles of the device at the end `end` of a tube (layout coordinates: their ends
@@ -686,6 +713,8 @@ struct Job {
     bend: f32,
     /// Length set in the schematic (hoses), mm; 0: not set.
     set_length: f32,
+    /// Page and symbol of a connection point of it, for the messages about it.
+    target: Option<(usize, u64)>,
 }
 
 impl Job {
@@ -704,7 +733,8 @@ impl Job {
 
     /// The items a leg may pass through: the devices at the ends, its cable glands.
     fn ignore(&self, leg: &room::LegPlan) -> Vec<u64> {
-        self.ends.iter().filter_map(|e| e.item).chain(leg.ignore.iter().copied()).collect()
+        let own = |e: &End| if e.parts.is_empty() { e.item.into_iter().collect() } else { e.parts.clone() };
+        self.ends.iter().flat_map(own).chain(leg.ignore.iter().copied()).collect()
     }
 }
 
@@ -900,6 +930,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
     let pos = panel::positions(&prj.layout);
     let mut jobs: Vec<Job> = Vec::new();
     let mut glands = Glands::default();
+    let target = |p: &crate::netlist::PinRef| (p.page, prj.pages[p.page].symbols[p.sym].id);
     // Cables
     let mut cables: Vec<&Cable> = prj.cables.iter().collect();
     cables.sort_by(|a, b| cable_diameter(b).total_cmp(&cable_diameter(a)).then(a.tag.cmp(&b.tag)));
@@ -921,6 +952,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             extra: 2.0 * rules.cable_reserve,
             bend: 0.0,
             set_length: 0.0,
+            target: cores.first().map(|c| target(&c.a)),
         });
     }
     // Hoses, tubes and pipes with their configuration: bend radius, and the insertion
@@ -960,6 +992,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             // Pipes are bent with elbows, the others with the bend radius of the rules.
             bend: if h.config.bend_radius > 0.0 { h.config.bend_radius } else if h.config.line == crate::model::fluid::LineType::Pipe { PIPE_ELBOW * diameter } else { 0.0 },
             set_length: h.length * 1000.0,
+            target: Some(target(&h.a)),
         });
     }
     // Wires: cable cores run in their cable.
@@ -1005,6 +1038,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             extra: if direct { prj.layout.wire_reserve } else { w.length - w.plate_length() },
             bend: 0.0,
             set_length: 0.0,
+            target: conn.map(|c| target(&c.a)),
         });
     }
     // The cables and tubes before the wires within a class, the thickest first within a
@@ -1270,13 +1304,13 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         }
         if rerouted {
             item.status = Status::Rerouted;
-            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Frozen route of {} is no longer possible and was routed again", job.label) });
+            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Frozen route of {} is no longer possible and was routed again", job.label), target: job.target });
         } else if is_frozen && !known {
             item.status = Status::Frozen;
         }
         if ways.is_empty() {
             item.status = Status::Unrouted(tr("no way through the enclosure").to_string());
-            problems.push(Problem { level: Level::Error, message: tr_fmt!("{} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.", job.kind.title(), job.label, format!("{radius:.0}")) });
+            problems.push(Problem { level: Level::Error, message: tr_fmt!("{} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.", job.kind.title(), job.label, format!("{radius:.0}")), target: job.target });
             items.push(item);
             continue;
         }
@@ -1313,12 +1347,12 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         // the ways out of the nozzles count, the lane changes are left out.
         let close_bends = ways.iter().any(|(_, points, ..)| grid::close_bends(points, 2.0 * radius) > 0);
         if close_bends && job.kind != RouteKind::Wire {
-            problems.push(Problem { level: Level::Warning, message: tr_fmt!("{} {}: bends closer than the bend radius ({} mm)", job.kind.title(), job.label, format!("{radius:.0}")) });
+            problems.push(Problem { level: Level::Warning, message: tr_fmt!("{} {}: bends closer than the bend radius ({} mm)", job.kind.title(), job.label, format!("{radius:.0}")), target: job.target });
         }
         // A hose with its length set in the schematic must reach along its route.
         if job.set_length > 0.0 && job.set_length + 0.5 < item.length {
             let (set, routed) = (format!("{:.2}", job.set_length / 1000.0), format!("{:.2}", item.length / 1000.0));
-            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Hose {}: length {} m shorter than its 3D route of {} m", job.label, set, routed) });
+            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Hose {}: length {} m shorter than its 3D route of {} m", job.label, set, routed), target: job.target });
         }
         let step = rules.cut(job.kind).max(1.0);
         item.cut = (item.length / step).ceil() * step;
@@ -1365,7 +1399,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             // Shielded cables are reported with their shield.
             let labels: Vec<&str> = b.items.iter().filter(|&&i| items[i].kind != RouteKind::Wire && !items[i].shielded).map(|&i| items[i].label.as_str()).collect();
             if !labels.is_empty() {
-                problems.push(Problem { level: Level::Warning, message: tr_fmt!("Segregation: {} run together with power conductors over {} mm", labels.join(", "), format!("{:.0}", b.length)) });
+                problems.push(Problem { level: Level::Warning, message: tr_fmt!("Segregation: {} run together with power conductors over {} mm", labels.join(", "), format!("{:.0}", b.length)), target: None });
             }
         }
     }
@@ -1376,7 +1410,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             if p.capacity > 0.0 && p.used > p.capacity {
                 let e = &prj.layout.enclosures[p.enclosure];
                 let name = e.paths.iter().find(|x| x.id == p.id).map(|x| x.name.clone()).unwrap_or_default();
-                problems.push(Problem { level: Level::Warning, message: tr_fmt!("{}: routing path {} is full ({} % of its usable cross-section)", e.name, name, format!("{:.0}", p.used / p.capacity * 100.0)) });
+                problems.push(Problem { level: Level::Warning, message: tr_fmt!("{}: routing path {} is full ({} % of its usable cross-section)", e.name, name, format!("{:.0}", p.used / p.capacity * 100.0)), target: None });
             }
         }
     }
@@ -1384,13 +1418,13 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
     let (shields, shield_problems) = shield::analyse(prj, &items, &bundles);
     problems.extend(shield_problems);
     for it in items.iter().filter(|i| i.kind != RouteKind::Wire && i.ends.iter().any(|e| e.enclosure.is_some() && e.item.is_none())) {
-        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} enters through the bottom: no cable gland in the enclosure", it.kind.title(), it.label) });
+        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} enters through the bottom: no cable gland in the enclosure", it.kind.title(), it.label), target: None });
     }
     for it in items.iter().filter(|i| i.routed() && outside.contains(&i.key)) {
-        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout", it.kind.title(), it.label) });
+        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout", it.kind.title(), it.label), target: None });
     }
     for it in items.iter().filter(|i| roof_entries.contains(&i.key)) {
-        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} enters through the roof: no cable gland on the roof, sides or rear", it.kind.title(), it.label) });
+        problems.push(Problem { level: Level::Info, message: tr_fmt!("{} {} enters through the roof: no cable gland on the roof, sides or rear", it.kind.title(), it.label), target: None });
     }
     let mut changes = Vec::new();
     for f in &prj.layout.frozen {

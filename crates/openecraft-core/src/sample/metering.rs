@@ -288,8 +288,9 @@ fn supply_page(prj: &mut Project, section: u64) {
     }
     core(&mut g, (84.0, 24.0), (84.0, 68.0), "=GRID-W1", "GNYE");
     g.text(96.0, 52.0, "-W1 NYY-J 4 x 120 SM from the house connection box, in from below", 2.5);
+    // The busbar terminals turned: the cable comes to them from below.
     for (i, x) in [60.0, 68.0, 76.0].into_iter().enumerate() {
-        g.sym("term", x, 72.0, 0, "-X0", &format!("L{}", i + 1), "");
+        g.sym("term", x, 72.0, 2, "-X0", &format!("L{}", i + 1), "");
     }
     g.sym("term_pe", 84.0, 72.0, 0, "-X1", "PEN", "");
     for (x, y) in [(60.0, 120.0), (68.0, 128.0), (76.0, 136.0)] {
@@ -799,8 +800,9 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
     for (x, z) in [(30.0, 117.0), (1230.0, 117.0)] {
         panel::place_accessory(prj, hv, "HAG.FZ831", Face::Roof, p(x, z));
     }
-    // Those of the meter cables beside the fuse switch disconnectors.
-    panel::place_accessory(prj, hv, "GEN.GLAND-M63", Face::Bottom, p(40.0, 110.0));
+    // The supply cable in line with its busbar terminals, the meter cables beside the
+    // fuse switch disconnectors.
+    gland_at(prj, hv, "GEN.GLAND-M63", "=GRID+HV-X0", Face::Bottom);
     bottom_gland(prj, hv, "GEN.GLAND-M32", 237.5, 137.5);
     bottom_gland(prj, hv, "GEN.GLAND-M32", 737.5, 212.5);
     // The cable of the fire brigade switch leaves through the roof, those of the

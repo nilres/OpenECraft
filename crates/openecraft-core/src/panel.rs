@@ -472,6 +472,15 @@ pub fn place_triangles(e: &Enclosure, it: &PanelItem, tris: Vec<Tri>) -> Vec<Tri
         .collect()
 }
 
+/// The box between `min` and `max` in plate coordinates, wound like a placed model
+/// ([`place_mesh`]): inside out, as the plate's y points down. The 3D view and the
+/// exports turn such meshes right side out with their y; a box wound outward there
+/// (`box_triangles`) comes out inside out, its far faces drawn instead of its near
+/// ones.
+pub fn plate_box(min: V3, max: V3) -> Vec<Tri> {
+    box_triangles(min, max).into_iter().map(|t| [t[0], t[2], t[1]]).collect()
+}
+
 /// Surface of an item in enclosure coordinates: the part's 3D model, or its box.
 pub fn item_surface(e: &Enclosure, it: &PanelItem, parts: &[crate::parts::Part]) -> Vec<Tri> {
     let mesh = parts.iter().find(|p| it.kind == ItemKind::Device && p.number == it.part).and_then(|p| p.model_3d.as_ref());
@@ -479,7 +488,7 @@ pub fn item_surface(e: &Enclosure, it: &PanelItem, parts: &[crate::parts::Part])
         Some(tris) => place_triangles(e, it, tris),
         None => {
             let (min, max) = item_box(e, it);
-            box_triangles(min, max)
+            plate_box(min, max)
         }
     }
 }
@@ -695,8 +704,10 @@ pub fn item_rotated(it: &PanelItem, part_h: f32) -> bool {
 /// Triangles of a part's 3D model placed into a device on the plate, in plate
 /// coordinates (x right, y down, z = height above the plate). The model is fitted
 /// into the device box; rotated devices turn the model by 90° about the front axis,
-/// a strip of equal models repeats it. On the floor the model stands up. Winding
-/// (outside) is preserved.
+/// a strip of equal models repeats it. On the floor the model stands up. The
+/// winding turns inside out with the model's y (up) becoming the plate's (down):
+/// placed meshes are wound like [`plate_box`], the 3D view and the exports turn them
+/// right side out again with their y.
 pub fn place_mesh(mesh: &crate::parts::Mesh3d, it: &PanelItem) -> Vec<[[f32; 3]; 3]> {
     let [mw, mh, md] = mesh.size();
     if it.face == Face::Bottom {
@@ -882,7 +893,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
             let sub = a.piece_item(it, piece);
             match piece.part.model_3d.as_ref() {
                 Some(mesh) => out.extend(painted(mesh, place_mesh(mesh, &sub))),
-                None => out.extend(box_triangles([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
+                None => out.extend(plate_box([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
             }
         }
         return Some(out);
@@ -893,7 +904,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
         for (sub, number, _) in places {
             match part_by_number(prj, &number).and_then(|p| p.model_3d.as_ref()) {
                 Some(mesh) => out.extend(painted(mesh, place_mesh(mesh, &sub))),
-                None => out.extend(box_triangles([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
+                None => out.extend(plate_box([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
             }
         }
         return Some(out);
@@ -923,7 +934,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
                 } else {
                     ([it.x + c.at, it.y, it.z], [it.x + c.at + c.len, it.y + it.h, it.z + it.d])
                 };
-                out.extend(box_triangles(min, max).into_iter().map(|t| (t, None)));
+                out.extend(plate_box(min, max).into_iter().map(|t| (t, None)));
             }
         }
     }

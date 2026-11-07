@@ -72,6 +72,10 @@ pub fn nozzles(prj: &Project, it: &PanelItem) -> Vec<(String, V3, V3)> {
         .collect()
 }
 
+/// Busbar terminals closer to each other than this (mm) along the bars are entered
+/// from the front: a wire has no way out between them.
+pub const TIGHT_TERMINALS: f32 = 30.0;
+
 /// The connection points of a device item, in the coordinates of its face: those of
 /// each part of its [`super::assembly`] in that part's box. Terminal strips get the
 /// points of their terminal part once per terminal, in strip order.
@@ -121,16 +125,29 @@ pub fn device_points(prj: &Project, it: &PanelItem) -> Vec<PlacedPoint> {
             }
         }
     }
-    // Busbar terminals across the bars: each upright on its bar.
+    // Busbar terminals across the bars: each upright on its bar. Where the next
+    // terminal is closer than a wire's way out, the points facing it leave to the
+    // front instead (the wire comes to the clamp from before it).
     if let Some(places) = super::busbars::terminals_on_bars(prj, it) {
         let mut out = Vec::new();
-        for (sub, number, label) in places {
-            let part = super::part_by_number(prj, &number).unwrap_or(main);
+        let along_y = places.windows(2).all(|w| (w[0].0.x - w[1].0.x).abs() < 0.01);
+        for (k, (sub, number, label)) in places.iter().enumerate() {
+            let part = super::part_by_number(prj, number).unwrap_or(main);
             let size = part.size().unwrap_or([mw, mh, md]);
             let from = out.len();
-            piece_points(&mut out, part, size, &sub, super::item_rotated(&sub, size[1]));
+            piece_points(&mut out, part, size, sub, super::item_rotated(sub, size[1]));
+            let gap_to = |n: &PanelItem| if along_y { (sub.y - n.y - n.h).max(n.y - sub.y - sub.h) } else { (sub.x - n.x - n.w).max(n.x - sub.x - sub.w) };
+            let (before, after) = (k.checked_sub(1).map(|j| &places[j].0), places.get(k + 1).map(|p| &p.0));
             for p in &mut out[from..] {
                 p.terminal = label.clone();
+                let towards = match (p.exit, along_y) {
+                    (Exit::Up, true) | (Exit::Left, false) => before,
+                    (Exit::Down, true) | (Exit::Right, false) => after,
+                    _ => None,
+                };
+                if towards.is_some_and(|n| gap_to(n) < TIGHT_TERMINALS) {
+                    p.exit = Exit::Front;
+                }
             }
         }
         return out;

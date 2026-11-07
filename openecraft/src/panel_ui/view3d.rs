@@ -150,7 +150,13 @@ impl PanelUi {
         for label in &scene.labels {
             if let Some((q, z)) = project_view(label.at) {
                 let size = (label.size * 0.25 * camera.f / z).clamp(0.0, 18.0);
-                if size >= 7.0 && dot(sub(eye, label.at), label.normal) > 0.0 {
+                if label.warning {
+                    // Readable from anywhere: on a pale box, in the colour of errors.
+                    let galley = painter.layout_no_wrap(label.tag.clone(), egui::FontId::proportional(size.max(11.0)), Color32::from_rgb(170, 30, 30));
+                    let rect = egui::Rect::from_center_size(q, galley.size()).expand(4.0);
+                    painter.rect(rect, 3.0, Color32::from_rgba_unmultiplied(255, 245, 240, 230), Stroke::new(1.0, Color32::from_rgb(200, 60, 60)), egui::StrokeKind::Outside);
+                    painter.galley(rect.shrink(4.0).min, galley, Color32::from_rgb(170, 30, 30));
+                } else if size >= 7.0 && dot(sub(eye, label.at), label.normal) > 0.0 {
                     painter.text(q, egui::Align2::CENTER_CENTER, &label.tag, egui::FontId::proportional(size), Color32::from_rgb(20, 30, 50));
                 }
             }

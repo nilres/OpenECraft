@@ -321,6 +321,52 @@ fn cables_take_the_glands_that_fit_them() {
 }
 
 #[test]
+fn a_wire_to_a_busbar_terminal_passes_the_strips_other_terminals_outside() {
+    // The wire from the coupling switch to terminal 2 of =NA+HV1-X31 comes up past
+    // terminal 3 (the lowest on the bars): round it, not through it; the cable of the
+    // supply ends at all three terminals of X01 and may come up through them.
+    let prj = crate::sample::example("industrial_main_distribution").unwrap();
+    let an = Analysis::checked(&prj);
+    let pos = panel::positions(&prj.layout);
+    let (ei, x31) = panel::locate(&prj, "=NA+HV1-X31").unwrap();
+    let e = &prj.layout.enclosures[ei];
+    let places = panel::busbars::terminals_on_bars(&prj, x31).unwrap();
+    let third = places.iter().find(|p| p.2 == "3").map(|p| panel::item_box(e, &p.0)).unwrap();
+    let (lo, hi) = (add(third.0, pos[ei]), add(third.1, pos[ei]));
+    let w = an.routing.items.iter().find(|i| i.kind == RouteKind::Wire && i.label == "=NA+HV1-Q31:3 – =NA+HV1-X31:2").unwrap();
+    assert!(w.routed(), "{:?}", w.status);
+    assert_eq!(w.ends[1].parts, vec![part_id(x31.id, 1)]);
+    let r = w.diameter / 2.0;
+    let gap = |p: V3| (0..3).map(|k| (lo[k] - p[k]).max(p[k] - hi[k]).max(0.0).powi(2)).sum::<f32>().sqrt();
+    for s in w.points.windows(2) {
+        let n = (dist(s[0], s[1]) / 5.0).ceil().max(1.0) as usize;
+        for i in 0..=n {
+            let p = add(s[0], scale(sub(s[1], s[0]), i as f32 / n as f32));
+            assert!(gap(p) >= r - 0.5, "{:?} - {:?} through terminal 3 at {lo:?}..{hi:?}", s[0], s[1]);
+        }
+    }
+    let w1 = an.routing.item("=GRID-W1").unwrap();
+    let (_, x01) = panel::locate(&prj, "=GRID+HV1-X01").unwrap();
+    assert_eq!(w1.ends[0].parts, (0..3).map(|k| part_id(x01.id, k)).collect::<Vec<_>>());
+}
+
+#[test]
+fn an_unroutable_cable_is_reported_at_its_connection_point() {
+    // With half a metre of clearance nothing fits into the cabinet: the error names
+    // the cable and points at a connection point of it, and so does the issue of the
+    // project check.
+    let mut prj = demo_with_gland();
+    prj.layout.routing.clearance = 500.0;
+    let an = Analysis::checked(&prj);
+    assert!(!an.routing.item("-W1").unwrap().routed());
+    let p = an.routing.problems.iter().find(|p| p.level == Level::Error && p.message.contains("-W1")).unwrap_or_else(|| panic!("{:?}", an.routing.problems));
+    let (page, id) = p.target.unwrap();
+    let sym = prj.pages[page].symbols.iter().find(|s| s.id == id).unwrap();
+    assert!(sym.tag == "-M1" || sym.tag == "-X1", "{}", sym.tag);
+    assert!(an.issues.iter().any(|i| i.severity == Severity::Error && i.message() == p.message && i.target == p.target));
+}
+
+#[test]
 fn cables_through_one_entry_flange_go_through_it_side_by_side() {
     let mut prj = Project::default();
     prj.parts.push(crate::parts::Part { number: "FLANGE".into(), subgroup: "Cable entry".into(), tech_data: "Cutout: 220 x 90".into(), ..Default::default() });

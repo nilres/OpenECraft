@@ -43,7 +43,24 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Busbar holders in the 3D view:** drawn at the drilling positions of the plate (a
   holder 25 mm from each end and every 250 mm) instead of every 400 mm, and moved
   beside the devices that sit in the bars (current transformers the bars pass through)
-  instead of through them.
+  instead of through them. The bars, their holders and the boxes of busbar terminals
+  and strip elements without a model were wound inside out: the view showed their
+  far faces, which flickered against the holders behind the bars and the plate.
+- **Messages of the 3D routing:** a message about a cable, hose or wire (not
+  routable, bends too tight, frozen route lost, hose too short) points at a connection
+  point of it: a double click in the messages pane jumps to the schematic. The 3D
+  view marks a cable, tube or wire that could not be routed (and so is not drawn)
+  with a red note at each of its ends, with the reason.
+- **Busbar terminals in the 3D routing:** each terminal of a strip across the bars is
+  a solid of its own: a wire to one of them goes round the others instead of through
+  them (a cable whose cores end at several of them comes up through those). Terminals
+  closer than 30 mm along the bars are entered from the front: their points facing a
+  neighbour leave to the front, as a wire has no way out between them.
+- **Cores at busbar terminals:** a cable ends clear of the device its cores go to,
+  and the cores to terminals one above the other on the bars pass the lower terminals
+  in front of them instead of through them. In example 13 the supply cable comes to
+  its busbar terminals from below, through a gland in line with them, instead of
+  looping round the field to come down onto them.
 - **3D routing, ends:** a route comes into an end against the direction it leaves it
   in also where the way out is a single cell (it could run past the connection point
   and back into it); where the way straight out of an end is barred and the route
