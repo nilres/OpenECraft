@@ -8,6 +8,12 @@
 //! ([`crate::parts::Part::wall_mountable`]); the floor (`Face::Bottom`) carries parts
 //! that stand on it ([`crate::parts::Part::floor_standing`]: pumps, tanks).
 //!
+//! The outside of every wall ([`Face::Outside`], seen from outside) and the top of the
+//! ceiling ([`Face::RoofTop`]) carry what is mounted on the building: lamps, sensors,
+//! cameras on the façade, a weather station on the roof. A cable or pipe of such a
+//! device runs through the wall (or the ceiling) behind it into the room
+//! ([`through_wall`]).
+//!
 //! Room coordinates (the enclosure coordinates of a room): x and z of the floor plan,
 //! y downwards from the ceiling (the floor at `height`).
 
@@ -42,7 +48,7 @@ pub const ENTRY_SILL: f32 = 600.0;
 /// Thickest wall a penetration leads through into the room behind it, mm.
 pub const MAX_WALL_THICKNESS: f32 = 1000.0;
 /// How far in front of a wall penetration a route through it starts, mm.
-const PASS_OUT: f32 = 60.0;
+pub(super) const PASS_OUT: f32 = 60.0;
 
 /// A wall of a room's outline: from corner `a` to corner `b`, `normal` pointing into
 /// the room (plan coordinates x / z).
@@ -140,11 +146,17 @@ pub fn walls(e: &Enclosure) -> Vec<Wall> {
     walls_of(&outline(e))
 }
 
-/// The faces of a room: its walls, both sides of its inner walls, the ceiling and the
-/// floor.
+/// The faces of a room: its walls, both sides of its inner walls, the ceiling, the
+/// floor, the outside of its walls and the top of its ceiling.
 pub fn room_faces(e: &Enclosure) -> Vec<Face> {
+    let n = outline(e).len() as u16;
     let inner = e.inner_walls.iter().flat_map(|w| [Face::Inner(w.id, 0), Face::Inner(w.id, 1)]);
-    (0..outline(e).len() as u16).map(Face::Wall).chain(inner).chain([Face::Roof, Face::Bottom]).collect()
+    (0..n).map(Face::Wall).chain(inner).chain([Face::Roof, Face::Bottom]).chain((0..n).map(Face::Outside)).chain([Face::RoofTop]).collect()
+}
+
+/// The face is outside the room: the outside of a wall or the top of the ceiling.
+pub fn is_outside(face: Face) -> bool {
+    matches!(face, Face::Outside(_) | Face::RoofTop)
 }
 
 fn inner_index(e: &Enclosure, id: u64) -> Option<usize> {
@@ -158,6 +170,7 @@ pub fn room_face_title(e: &Enclosure, face: Face) -> String {
         Face::Inner(id, s) => tr_fmt!("Inner wall {}, side {}", inner_index(e, id).map_or(0, |k| k + 1), if s == 0 { "A" } else { "B" }),
         Face::Roof => tr("Ceiling").to_string(),
         Face::Bottom => tr("Room floor").to_string(),
+        Face::Outside(n) => tr_fmt!("Outside of wall {}", n + 1),
         f => f.title().to_string(),
     }
 }
@@ -170,6 +183,7 @@ pub fn room_face_key(e: &Enclosure, face: Face) -> String {
         Face::Inner(id, s) => format!("inner{}{}", inner_index(e, id).map_or(0, |k| k + 1), if s == 0 { "a" } else { "b" }),
         Face::Roof => "ceiling".into(),
         Face::Bottom => "floor".into(),
+        Face::Outside(n) => format!("outside{}", n + 1),
         f => f.key().into(),
     }
 }
@@ -177,6 +191,12 @@ pub fn room_face_key(e: &Enclosure, face: Face) -> String {
 /// A room face from its key (also `roof`, `bottom`).
 pub fn room_face_from_key(e: &Enclosure, key: &str) -> Option<Face> {
     let k = key.trim().to_lowercase();
+    if k == "rooftop" || k == "roof_top" {
+        return Some(Face::RoofTop);
+    }
+    if let Some(n) = k.strip_prefix("outside") {
+        return n.trim().parse::<u16>().ok().filter(|n| *n >= 1 && (*n as usize) <= outline(e).len()).map(|n| Face::Outside(n - 1));
+    }
     if k == "ceiling" || k == "roof" {
         return Some(Face::Roof);
     }
@@ -208,11 +228,16 @@ pub fn inner_sides(w: &InnerWall) -> [Wall; 2] {
     })
 }
 
-/// The wall surface of a face of a room: a wall of the outline or a side of an inner
-/// wall.
+/// The wall surface of a face of a room: a wall of the outline, a side of an inner
+/// wall, or the outside of a wall (facing away from the room).
 pub fn side(e: &Enclosure, face: Face) -> Option<Wall> {
     match face {
         Face::Wall(n) => walls(e).get(n as usize).copied(),
+        Face::Outside(n) => walls(e).get(n as usize).map(|w| {
+            let t = e.wall();
+            let o = |q: [f32; 2]| [q[0] - w.normal[0] * t, q[1] - w.normal[1] * t];
+            Wall { a: o(w.a), b: o(w.b), normal: [-w.normal[0], -w.normal[1]] }
+        }),
         Face::Inner(id, s) => e.inner_walls.iter().find(|w| w.id == id).map(|w| inner_sides(w)[(s as usize).min(1)]),
         _ => None,
     }
@@ -222,7 +247,7 @@ pub fn side(e: &Enclosure, face: Face) -> Option<Wall> {
 /// extent; nothing for faces the room does not have.
 pub(super) fn face_size(e: &Enclosure, face: Face) -> (f32, f32) {
     match face {
-        Face::Roof | Face::Bottom => {
+        Face::Roof | Face::Bottom | Face::RoofTop => {
             let (lo, hi) = bounds(&outline(e));
             (hi[0] - lo[0], hi[1] - lo[1])
         }
@@ -234,7 +259,7 @@ pub(super) fn face_size(e: &Enclosure, face: Face) -> (f32, f32) {
 pub(super) fn face_room(e: &Enclosure, face: Face) -> f32 {
     let (lo, hi) = bounds(&outline(e));
     match face {
-        Face::Roof | Face::Bottom => e.height,
+        Face::Roof | Face::Bottom | Face::RoofTop => e.height,
         f => match side(e, f) {
             Some(w) if w.normal[0].abs() > 0.5 => hi[0] - lo[0],
             Some(_) => hi[1] - lo[1],
@@ -246,7 +271,7 @@ pub(super) fn face_room(e: &Enclosure, face: Face) -> f32 {
 /// Frame of a face of a room (see `super::face_frame`).
 pub(super) fn frame(e: &Enclosure, face: Face) -> [V3; 4] {
     match face {
-        Face::Wall(_) | Face::Inner(..) => match side(e, face) {
+        Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => match side(e, face) {
             Some(w) => {
                 let (s, r) = (w.start(), w.right());
                 [[s[0], 0.0, s[1]], [r[0], 0.0, r[1]], [0.0, 1.0, 0.0], [w.normal[0], 0.0, w.normal[1]]]
@@ -257,6 +282,11 @@ pub(super) fn frame(e: &Enclosure, face: Face) -> [V3; 4] {
             // The floor seen from above like the floor plan, items standing upwards.
             let (lo, _) = bounds(&outline(e));
             [[lo[0], e.height, lo[1]], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, -1.0, 0.0]]
+        }
+        Face::RoofTop => {
+            // The top of the ceiling like the floor plan, items standing upwards.
+            let (lo, _) = bounds(&outline(e));
+            [[lo[0], -e.wall(), lo[1]], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, -1.0, 0.0]]
         }
         _ => {
             // The ceiling seen from above like the roof of a cabinet, the front at the bottom.
@@ -561,15 +591,18 @@ pub fn mount_ok(prj: &Project, e: &Enclosure, it: &PanelItem) -> bool {
     if it.face == Face::Bottom {
         return part_by_number(prj, &it.part).is_some_and(|p| p.floor_standing());
     }
+    if it.face == Face::RoofTop && part_by_number(prj, &it.part).is_some_and(|p| p.floor_standing()) {
+        return true;
+    }
     let c = it.rail_anchor();
     let on_rail = e.items.iter().any(|r| r.kind == ItemKind::Rail && r.face == it.face && r.rect().contains(c));
     on_rail || part_by_number(prj, &it.part).is_some_and(|p| p.wall_mountable())
 }
 
-/// A device or accessory placed on the floor of a room stands on it: its part's depth
-/// lies along the floor, its height goes upwards.
+/// A device or accessory placed on the floor of a room (or on its roof) stands on it:
+/// its part's depth lies along the floor, its height goes upwards.
 pub fn stand_on_floor(e: &Enclosure, it: &mut PanelItem) {
-    if e.is_room() && it.face == Face::Bottom && matches!(it.kind, ItemKind::Device | ItemKind::Accessory) {
+    if e.is_room() && matches!(it.face, Face::Bottom | Face::RoofTop) && matches!(it.kind, ItemKind::Device | ItemKind::Accessory) {
         std::mem::swap(&mut it.h, &mut it.d);
         it.z = 0.0;
     }
@@ -681,13 +714,27 @@ pub fn door_zone(e: &Enclosure, it: &PanelItem) -> Option<[[f32; 2]; 4]> {
     Some([at(it.x, 0.0), at(it.x + it.w, 0.0), at(it.x + it.w, it.w), at(it.x, it.w)])
 }
 
-/// A way through a wall from one room into another: the wall penetration `item` of
-/// room `from` leading into room `to`.
+/// What a [`WallLink`] goes through.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash)]
+pub enum Via {
+    /// A wall penetration (`item` is its id).
+    #[default]
+    Wall,
+    /// A shaft of a building (`item` is the shaft's id).
+    Shaft,
+    /// A link between two buildings (`item` is the link's id).
+    Site,
+}
+
+/// A way from one room into another: through the wall penetration `item` of room
+/// `from` into room `to` behind its wall, or through a shaft or a link between
+/// buildings ([`Via`]).
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct WallLink {
     pub from: usize,
     pub item: u64,
     pub to: usize,
+    pub via: Via,
     /// In front of the penetration in room `from` and where the way comes into room
     /// `to` (room coordinates of each).
     pub a: V3,
@@ -736,7 +783,7 @@ pub fn penetration_link(prj: &Project, poses: &[SitePose], ri: usize, it: &Panel
                 let dir = poses[k].unturn(out);
                 let b = [l[0] + dir[0] * PASS_OUT, l[1], l[2] + dir[2] * PASS_OUT];
                 let leave = [[n[0], 0.0, n[1]], [dir[0], 0.0, dir[2]]];
-                return Some(WallLink { from: ri, item: it.id, to: k, a: at(PASS_OUT), b, length: d + 2.0 * PASS_OUT, leave });
+                return Some(WallLink { from: ri, item: it.id, to: k, via: Via::Wall, a: at(PASS_OUT), b, length: d + 2.0 * PASS_OUT, leave });
             }
         }
         d += 5.0;
@@ -765,11 +812,62 @@ pub fn entry_direction(e: &Enclosure, it: &PanelItem) -> Option<V3> {
     Some([n[0], 0.0, n[1]])
 }
 
-/// The ways through the walls of the layout: one for every wall penetration that
-/// leads into another room.
+/// The ways between the rooms of the layout: one for every wall penetration that leads
+/// into another room, for every shaft between two rooms it passes and for every link
+/// between two buildings ([`super::buildings`]).
 pub fn wall_links(prj: &Project) -> Vec<WallLink> {
     let poses = site_poses(prj);
-    rooms(&prj.layout).into_iter().flat_map(|ri| prj.layout.enclosures[ri].items.iter().filter_map(|it| penetration_link(prj, &poses, ri, it)).collect::<Vec<_>>()).collect()
+    let walls = rooms(&prj.layout).into_iter().flat_map(|ri| prj.layout.enclosures[ri].items.iter().filter_map(|it| penetration_link(prj, &poses, ri, it)).collect::<Vec<_>>());
+    walls.chain(super::buildings::shaft_links(prj, &poses)).chain(super::buildings::site_ways(prj, &poses)).collect()
+}
+
+/// Where the cable or pipe of an item on the outside of a room ([`is_outside`]) comes
+/// into the room: in front of the inside of the wall (below the ceiling) behind the
+/// item's middle, and the direction into the room (room coordinates).
+pub fn through_wall(e: &Enclosure, it: &PanelItem) -> Option<(V3, V3)> {
+    let c = super::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, 0.0]);
+    let into = match it.face {
+        Face::Outside(n) => {
+            let w = walls(e).get(n as usize).copied()?;
+            [w.normal[0], 0.0, w.normal[1]]
+        }
+        Face::RoofTop => [0.0, 1.0, 0.0],
+        _ => return None,
+    };
+    let d = e.wall() + PASS_OUT;
+    // Within the room's height (an item on the outside may hang above or below it).
+    let y = (c[1] + into[1] * d).clamp(PASS_OUT, (e.height - PASS_OUT).max(PASS_OUT));
+    Some(([c[0] + into[0] * d, y, c[2] + into[2] * d], into))
+}
+
+/// A point (room coordinates of room `ri`) lies inside another room of the layout.
+fn in_other_room(prj: &Project, poses: &[SitePose], ri: usize, q: V3) -> bool {
+    let layout = &prj.layout;
+    let site = poses[ri].apply([q[0], layout.enclosures[ri].height - q[1], q[2]]);
+    rooms(layout).into_iter().filter(|&k| k != ri).any(|k| {
+        let (t, l) = (&layout.enclosures[k], poses[k].local(site));
+        l[1] > 0.0 && l[1] < t.height && inside_outline(&outline(t), [l[0], l[2]])
+    })
+}
+
+/// An item on the outside of room `ri` is outside the building: no other room is behind
+/// the wall (or above the ceiling) it is on, within [`MAX_WALL_THICKNESS`].
+pub fn outside_building(prj: &Project, poses: &[SitePose], ri: usize, it: &PanelItem) -> bool {
+    let e = &prj.layout.enclosures[ri];
+    if !is_outside(it.face) {
+        return true;
+    }
+    let mut d = 5.0;
+    while d <= MAX_WALL_THICKNESS {
+        let c = super::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, d]);
+        // Along the item on a wall (within the room's height), above it on the roof.
+        let ys: Vec<f32> = if it.face == Face::RoofTop { vec![c[1]] } else { [it.y + 1.0, it.y + it.h / 2.0, it.y + it.h - 1.0].into_iter().map(|y| y.clamp(1.0, e.height - 1.0)).collect() };
+        if ys.into_iter().any(|y| in_other_room(prj, poses, ri, [c[0], y, c[2]])) {
+            return false;
+        }
+        d += 25.0;
+    }
+    true
 }
 
 /// Corners of an inner wall's footprint in the floor plan.
@@ -841,7 +939,7 @@ pub fn moved_inner_wall(e: &Enclosure, id: u64, offset: f32, length: Option<f32>
 }
 
 /// Two convex polygons overlap (more than touching).
-fn convex_overlap(a: &[[f32; 2]], b: &[[f32; 2]]) -> bool {
+pub(super) fn convex_overlap(a: &[[f32; 2]], b: &[[f32; 2]]) -> bool {
     for poly in [a, b] {
         for i in 0..poly.len() {
             let (p, q) = (poly[i], poly[(i + 1) % poly.len()]);
@@ -900,6 +998,9 @@ pub fn add_pipe_run(prj: &mut Project, room: usize, face: Face, points: &[P], of
     }
     if !room_faces(e).contains(&face) {
         return Err(tr_fmt!("Unknown face: {}", room_face_key(e, face)));
+    }
+    if is_outside(face) {
+        return Err(tr("Pipe runs go on the walls, the ceiling or the floor inside the room").to_string());
     }
     let mut pts: Vec<P> = Vec::new();
     for q in points.iter().map(|q| crate::geom::p(snap(q.x), snap(q.y))) {
@@ -1045,7 +1146,7 @@ pub(super) fn check(prj: &Project, e: &Enclosure, push: &mut impl FnMut(CheckKin
         }
     }
     let (lo, _) = bounds(&pts);
-    for it in e.items.iter().filter(|i| i.face == Face::Roof) {
+    for it in e.items.iter().filter(|i| matches!(i.face, Face::Roof | Face::RoofTop)) {
         let c = it.center();
         if !inside_outline(&pts, [lo[0] + c.x, lo[1] + c.y]) {
             push(CheckKind::Outside, Severity::Warning, vec![it.id], tr_fmt!("{}: {} outside the mounting plate / enclosure", e.name, item_name(e, it.id)));
@@ -1064,6 +1165,14 @@ pub(super) fn check(prj: &Project, e: &Enclosure, push: &mut impl FnMut(CheckKin
         }
     }
     let poses = site_poses(prj);
+    for it in e.items.iter().filter(|i| is_outside(i.face) && !outside_building(prj, &poses, ri, i)) {
+        let msg = if it.face == Face::RoofTop {
+            tr_fmt!("{}: {} is on the roof of the room, but another room is above it", e.name, item_name(e, it.id))
+        } else {
+            tr_fmt!("{}: {} is on the outside of a wall, but another room is behind it", e.name, item_name(e, it.id))
+        };
+        push(CheckKind::Outside, Severity::Warning, vec![it.id], msg);
+    }
     for it in e.items.iter().filter(|i| i.opening == Opening::Penetration) {
         if penetration_link(prj, &poses, ri, it).is_none() {
             push(CheckKind::Outside, Severity::Warning, vec![it.id], tr_fmt!("{}: {} leads into no room", e.name, item_name(e, it.id)));

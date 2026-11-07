@@ -56,6 +56,7 @@ mod engineering;
 mod field_ui;
 mod form_layout_ui;
 mod forms_ui;
+mod buildings_ui;
 mod harness_ui;
 mod integration_ui;
 mod languages_ui;
@@ -277,6 +278,7 @@ pub struct App {
     forms_ui: forms_ui::FormsUi,
     report_blocks_ui: report_blocks_ui::ReportBlocksUi,
     harness_ui: harness_ui::HarnessUi,
+    buildings_ui: buildings_ui::BuildingsUi,
     field_ui: field_ui::FieldUi,
     plugs_ui: plugs_ui::PlugsUi,
     plc_ui: plc_ui::PlcUi,
@@ -513,6 +515,7 @@ impl App {
             forms_ui: Default::default(),
             report_blocks_ui: Default::default(),
             harness_ui: Default::default(),
+            buildings_ui: Default::default(),
             field_ui: Default::default(),
             plugs_ui: Default::default(),
             plc_ui: Default::default(),
@@ -850,6 +853,7 @@ impl App {
             (&mut self.report_blocks_ui.open, Pane::Tool(T::ReportBlocks)),
             (&mut self.harness_ui.open, Pane::Tool(T::Harnesses)),
             (&mut self.field_ui.open, Pane::Tool(T::FieldWiring)),
+            (&mut self.buildings_ui.open, Pane::Tool(T::Buildings)),
             (&mut self.plugs_ui.open, Pane::Tool(T::Plugs)),
             (&mut self.plc_ui.open, Pane::Tool(T::PlcHardware)),
             (&mut self.integration_ui.open, Pane::Tool(T::Integration)),

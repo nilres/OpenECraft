@@ -17,6 +17,7 @@ mod press;
 mod pump_room;
 mod relay;
 mod room;
+mod site;
 mod star_delta;
 mod workflow;
 
@@ -33,7 +34,7 @@ pub struct Example {
 }
 
 /// The example projects, simple ones first.
-pub const EXAMPLES: [Example; 14] = [
+pub const EXAMPLES: [Example; 15] = [
     Example {
         key: "lamp_circuit",
         level: 1,
@@ -131,6 +132,13 @@ pub const EXAMPLES: [Example; 14] = [
         title: tr_const!("14 · Main low-voltage distribution of an industrial plant"),
         description: tr_const!("Two bayed Hager univers cabinets: two aluminium supplies on busbar terminals for Al, transformer metering isolated by NH strips with solid links, a power analyser for the zero export of the battery storage, feeders on NH fuse switch disconnector strips of a 185 mm busbar system with current transformers clipped in behind them and energy meters on the Tree bus (DC charging station, sub-distributions, air conditioning), heat pumps behind residual current devices of type B, PV inverters and battery storage behind two coupling switches with motor operators, undervoltage releases and auxiliary switches, cable entry flanges for the large cables."),
         build: nshv::project,
+    },
+    Example {
+        key: "plant_buildings",
+        level: 15,
+        title: tr_const!("15 · Plant with buildings, levels and a shaft"),
+        description: tr_const!("The pump room in a plant of two buildings: the main building with the electrical room on its ground level and the control room above, joined by a shaft; the pump house with pump motor 2, linked by a cable trench between the building entries through which its motor cable is routed; façade lights on the outside walls and a weather station on the roof."),
+        build: site::project,
     },
 ];
 

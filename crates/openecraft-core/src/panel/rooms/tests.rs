@@ -30,7 +30,8 @@ fn a_new_room_is_a_rectangle_of_four_walls() {
     let (prj, r, c) = project();
     let room = &prj.layout.enclosures[r];
     assert!(room.is_room() && !prj.layout.enclosures[c].is_room());
-    assert_eq!(room.faces(), vec![Face::Wall(0), Face::Wall(1), Face::Wall(2), Face::Wall(3), Face::Roof, Face::Bottom]);
+    assert_eq!(room.faces()[..6], [Face::Wall(0), Face::Wall(1), Face::Wall(2), Face::Wall(3), Face::Roof, Face::Bottom]);
+    assert_eq!(room.faces()[6..], [Face::Outside(0), Face::Outside(1), Face::Outside(2), Face::Outside(3), Face::RoofTop], "and the outside");
     assert_eq!(room_face_from_key(room, "ceiling"), Some(Face::Roof));
     assert_eq!(room_face_from_key(room, "WALL3"), Some(Face::Wall(2)));
     assert_eq!(room_face_from_key(room, "wall0"), None);
@@ -219,7 +220,7 @@ fn inner_walls_divide_the_room() {
     // Across the room at x = 2000, from the rear wall to 2 m before the front wall.
     let id = add_inner_wall(&mut prj, r, [2000.0, 0.0], [2000.0, 2000.0], 100.0).unwrap();
     let room = &prj.layout.enclosures[r];
-    assert_eq!(room.faces(), vec![Face::Wall(0), Face::Wall(1), Face::Wall(2), Face::Wall(3), Face::Inner(id, 0), Face::Inner(id, 1), Face::Roof, Face::Bottom]);
+    assert_eq!(room.faces()[..8], [Face::Wall(0), Face::Wall(1), Face::Wall(2), Face::Wall(3), Face::Inner(id, 0), Face::Inner(id, 1), Face::Roof, Face::Bottom]);
     assert_eq!(room_face_key(room, Face::Inner(id, 1)), "inner1b");
     assert_eq!(room_face_from_key(room, "INNER1A"), Some(Face::Inner(id, 0)));
     assert_eq!(room_face_from_key(room, "inner2a"), None);

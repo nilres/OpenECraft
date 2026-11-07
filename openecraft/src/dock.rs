@@ -85,6 +85,7 @@ pub enum ToolPane {
     Macros,
     Harnesses,
     FieldWiring,
+    Buildings,
     Revisions,
     Compare,
     ChangeRequests,
@@ -111,7 +112,7 @@ pub enum ToolPane {
 
 impl ToolPane {
     #[cfg(test)]
-    pub const ALL: [ToolPane; 36] = [
+    pub const ALL: [ToolPane; 37] = [
         ToolPane::Start,
         ToolPane::Help,
         ToolPane::Reports,
@@ -126,6 +127,7 @@ impl ToolPane {
         ToolPane::Macros,
         ToolPane::Harnesses,
         ToolPane::FieldWiring,
+        ToolPane::Buildings,
         ToolPane::Revisions,
         ToolPane::Compare,
         ToolPane::ChangeRequests,
@@ -166,7 +168,7 @@ impl ToolPane {
     pub fn window_size(self) -> [f32; 2] {
         use ToolPane as T;
         match self {
-            T::Reports | T::Tables | T::PlcHardware | T::Harnesses | T::FieldWiring | T::Compare | T::Preplanning | T::SingleLine | T::Process | T::Electrical | T::Integration | T::Projects | T::SymbolEditor | T::Forms | T::Parts | T::DataPortal => [960.0, 640.0],
+            T::Reports | T::Tables | T::PlcHardware | T::Harnesses | T::FieldWiring | T::Buildings | T::Compare | T::Preplanning | T::SingleLine | T::Process | T::Electrical | T::Integration | T::Projects | T::SymbolEditor | T::Forms | T::Parts | T::DataPortal => [960.0, 640.0],
             T::Help | T::Potentials | T::Plugs | T::ProjectServer | T::Vault | T::Plugins => [480.0, 560.0],
             _ => [720.0, 500.0],
         }
@@ -252,7 +254,7 @@ pub fn menu_groups() -> Vec<(&'static str, Vec<Pane>)> {
     vec![
         (tr_const!("Navigators"), LeftTab::ALL.map(Pane::Navigator).to_vec()),
         (tr_const!("Page, Insert center and properties"), vec![Pane::Page, Pane::Library, Pane::Properties, Pane::Tool(T::Find)]),
-        (tr_const!("Panel layout"), vec![Pane::LayoutSpaces, Pane::LayoutView, Pane::LayoutProperties]),
+        (tr_const!("Panel layout"), vec![Pane::LayoutSpaces, Pane::LayoutView, Pane::LayoutProperties, Pane::Tool(T::Buildings)]),
         (tr_const!("Wiring and mounting"), vec![Pane::WiringChecklist, Pane::WiringWorkbench]),
         (tr_const!("Devices"), tools(&[T::TerminalStrips, T::Plugs, T::PlcOverview, T::PlcHardware, T::Structure, T::Preplanning, T::SingleLine])),
         (tr_const!("Connections"), tools(&[T::Cables, T::Potentials, T::Harnesses, T::FieldWiring])),

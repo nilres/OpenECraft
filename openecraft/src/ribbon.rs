@@ -265,7 +265,7 @@ pub static TABS: &[Tab] = &[
         key_tip: 'L',
         context: true,
         groups: &[
-            g("enclosures", tr_const!("Enclosures"), &[L(C::NewEnclosure), S(C::NewRoom), S(C::LayoutSpaces), S(C::LayoutProperties)]),
+            g("enclosures", tr_const!("Enclosures"), &[L(C::NewEnclosure), S(C::NewRoom), S(C::Buildings), S(C::LayoutSpaces), S(C::LayoutProperties)]),
             g("place", tr_const!("Insert"), &[L(C::LayoutSelect), S(C::LayoutAccessory), S(C::LayoutRackPart), S(C::LayoutWallPart), S(C::LayoutFloorPart), S(C::Layout3dMacro)]),
             g(
                 "draw",

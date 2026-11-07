@@ -137,13 +137,15 @@ impl SitePose {
 ///
 /// A line-up in a room ([`super::room_of`]) stands at its place in the room's floor
 /// plan, turned with the room; without a place at the rear of the room after the
-/// other line-ups of that room.
+/// other line-ups of that room. A room on a level of a building stands at its place in
+/// the building's floor plan, on the level's floor ([`super::buildings`]).
 pub fn site_poses(prj: &Project) -> Vec<SitePose> {
     let layout = &prj.layout;
     let pos = positions(layout);
     let mut out = vec![SitePose::default(); layout.enclosures.len()];
     let lus = lineups(layout);
     let mut along_rear: HashMap<usize, f32> = HashMap::new();
+    let mut along_level: HashMap<u64, f32> = HashMap::new();
     // Rooms and the line-ups outside rooms first, then those in rooms.
     for in_room in [false, true] {
         for lu in &lus {
@@ -169,10 +171,19 @@ pub fn site_poses(prj: &Project) -> Vec<SitePose> {
                     });
                     SitePose { at: rp.apply([place.x, 0.0, place.z]), angle: rp.angle + place.angle.to_radians() }
                 }
-                None => {
-                    let place = fe.site.or_else(|| plant_place(prj, lu, &local)).unwrap_or(SitePlace { x: pos[first][0], z: 0.0, angle: 0.0 });
-                    SitePose { at: [place.x, 0.0, place.z], angle: place.angle.to_radians() }
-                }
+                None => match fe.is_room().then(|| super::buildings::find_level(layout, fe.level)).flatten() {
+                    // A room on a level of a building: at its place in the building.
+                    Some((bi, li)) => {
+                        let b = &layout.buildings[bi];
+                        let place = fe.site.unwrap_or_else(|| super::buildings::next_place(layout, &mut along_level, first));
+                        let bp = super::buildings::building_pose(b);
+                        SitePose { at: bp.apply([place.x, b.levels[li].elevation, place.z]), angle: bp.angle + place.angle.to_radians() }
+                    }
+                    None => {
+                        let place = fe.site.or_else(|| plant_place(prj, lu, &local)).unwrap_or(SitePlace { x: pos[first][0], z: 0.0, angle: 0.0 });
+                        SitePose { at: [place.x, 0.0, place.z], angle: place.angle.to_radians() }
+                    }
+                },
             };
             for &i in lu {
                 out[i] = SitePose { at: pose.apply(local(i)), angle: pose.angle };

@@ -43,6 +43,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("x", Kind::Num, tr_const!("Rear left corner in the plant, x in mm")),
             optional("z", Kind::Num, tr_const!("Rear left corner in the plant, z (towards the front) in mm")),
             optional("angle", Kind::Num, tr_const!("Turn about the vertical in degrees, counter-clockwise seen from above")),
+            optional("building", Kind::Str, tr_const!("Building whose level the room is on; x and z are then measured in its floor plan")),
+            optional("level", Kind::Str, tr_const!("Level: its name or number (1 = the lowest)")),
         ],
         run: add_room,
     },
@@ -176,7 +178,7 @@ pub static COMMANDS: &[Spec] = &[
 
 const ROOM: &str = tr_const!("Room (location, e.g. +ROOM1)");
 
-const FACE: &str = tr_const!("wall1, wall2, …, inner1a, inner1b, … (as listed by list_rooms), ceiling or floor");
+const FACE: &str = tr_const!("wall1, wall2, …, inner1a, inner1b, … (as listed by list_rooms), ceiling or floor; outside1, outside2, … (the outside of a wall) or rooftop");
 
 fn room_index(prj: &Project, name: &str) -> Result<usize, String> {
     let i = enclosure_index(prj, name)?;
@@ -261,8 +263,11 @@ fn room_json(prj: &Project, ri: usize) -> Value {
             Some(json!({ "id": path.id, "name": path.name, "face": panel::room_face_key(e, face), "points": corners, "offset": offset, "width": path.width }))
         })
         .collect();
+    let level = panel::buildings::find_level(&prj.layout, e.level).map(|(bi, li)| (&prj.layout.buildings[bi].name, &prj.layout.buildings[bi].levels[li].name));
     json!({
         "name": e.name,
+        "building": level.map(|l| l.0),
+        "level": level.map(|l| l.1),
         "size": { "width": e.width, "depth": e.depth, "height": e.height },
         "outline": panel::outline(e),
         "walls": walls,
@@ -312,9 +317,26 @@ fn add_room(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(e) = prj.layout.enclosures.iter().find(|e| e.name == name) {
         return Err(if e.is_room() { tr_fmt!("Room {} exists already", name) } else { tr_fmt!("{} is an enclosure already", name) });
     }
-    let room = panel::new_room(prj, &name, 4000.0, 3000.0, 2800.0);
+    // On a level of a building: as high as the level less its ceiling slab.
+    let level = match a.str("building").filter(|b| !b.trim().is_empty()) {
+        Some(b) => {
+            let bi = panel::buildings::building_index(&prj.layout, b).ok_or_else(|| tr_fmt!("No building named {}", b))?;
+            let bd = &prj.layout.buildings[bi];
+            let li = match a.str("level") {
+                Some(l) => panel::buildings::level_index(bd, l).ok_or_else(|| tr_fmt!("No level {} in {}", l, bd.name))?,
+                None => bd.levels.iter().position(|l| l.elevation.abs() < 0.5).unwrap_or(0),
+            };
+            Some(bd.levels.get(li).map(|l| l.id).ok_or_else(|| tr_fmt!("No level {} in {}", "1", bd.name))?)
+        }
+        None => None,
+    };
+    let height = level.map_or(2800.0, |l| super::buildings::room_height_on(prj, l));
+    let room = panel::new_room(prj, &name, 4000.0, 3000.0, height);
     prj.layout.enclosures.push(room);
     let ri = prj.layout.enclosures.len() - 1;
+    if let Some(l) = level {
+        prj.layout.enclosures[ri].level = l;
+    }
     if let Err(e) = resize(prj, ri, a) {
         prj.layout.enclosures.pop();
         return Err(e);

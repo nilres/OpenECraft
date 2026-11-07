@@ -19,6 +19,7 @@ use crate::parts::{Exit, FnKind};
 use std::collections::{BTreeSet, HashMap, HashSet};
 
 mod assembly;
+pub mod buildings;
 pub mod busbars;
 mod checks;
 mod drives;
@@ -46,11 +47,11 @@ pub use rack::{is_rack, mount_in_rack, rack_units, RACK_SYSTEM, RACK_UNIT, RACK_
 pub use rooms::{
     add_inner_wall, add_opening, add_pipe_run, add_wall_profile, pipe_run_offset, pipe_run_on_face, PIPE_RUN_WIDTH, inner_sides, moved_inner_wall, remove_inner_wall, side, INNER_WALL, door_zone, opening_sill, entries, entry_direction, entry_point, ENTRY_SILL, ENTRY_SIZE, DOOR_SIZE, WINDOW_SILL, WINDOW_SIZE, bounds, cabinet_problems, cabinets_in, check_outline, floor_cells, floor_footprint, floor_problems, footprint, inside_outline, mount_ok, mount_on_wall, moved_wall, new_room, normalize_outline, outline, room_face_from_key, room_face_key, room_face_title, room_faces,
     room_of, room_place, rooms, set_outline, turned_place, set_room, stand_on_floor, stands_inside, wall_length_set, walls, Wall, MIN_WALL, ROOM_WALL,
-    penetration_link, wall_links, WallLink, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP,
+    penetration_link, wall_links, WallLink, Via, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP, is_outside, outside_building, through_wall,
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Opening, PanelItem};
+pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, Shaft, SiteLink};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -94,6 +95,8 @@ impl Face {
             Face::Bottom => tr("Bottom"),
             Face::Wall(_) => tr("Wall"),
             Face::Inner(..) => tr("Inner wall"),
+            Face::Outside(_) => tr("Outside wall"),
+            Face::RoofTop => tr("Roof top"),
         }
     }
 
@@ -110,6 +113,8 @@ impl Face {
             Face::Bottom => "bottom",
             Face::Wall(_) => "wall",
             Face::Inner(..) => "inner",
+            Face::Outside(_) => "outside",
+            Face::RoofTop => "rooftop",
         }
     }
 
@@ -122,7 +127,9 @@ impl Face {
     pub fn order(self) -> u16 {
         match self {
             Face::Wall(n) => Face::ALL.len() as u16 + n,
-            Face::Inner(_, s) => u16::MAX - 1 + s as u16,
+            Face::Inner(_, s) => u16::MAX - 4 + s as u16,
+            Face::Outside(n) => (u16::MAX / 2).saturating_add(n),
+            Face::RoofTop => u16::MAX - 1,
             f => Face::ALL.iter().position(|x| *x == f).unwrap_or(0) as u16,
         }
     }
@@ -291,6 +298,7 @@ impl Default for Enclosure {
             room: 0,
             outline: Vec::new(),
             inner_walls: Vec::new(),
+            level: 0,
         }
     }
 }
@@ -348,9 +356,9 @@ impl Enclosure {
         }
         match face {
             Face::Plate => self.plate_size(),
-            Face::Door | Face::Rear | Face::Wall(_) | Face::Inner(..) => (self.width, self.height),
+            Face::Door | Face::Rear | Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => (self.width, self.height),
             Face::Left | Face::Right => (self.depth, self.height),
-            Face::Roof | Face::Bottom => (self.width, self.depth),
+            Face::Roof | Face::Bottom | Face::RoofTop => (self.width, self.depth),
         }
     }
 
@@ -373,8 +381,8 @@ impl Enclosure {
             Face::Plate => self.depth - PLATE_Z - PLATE_THICKNESS - self.door_clearance,
             Face::Door => self.depth - PLATE_Z,
             Face::Left | Face::Right => self.width - 2.0 * t,
-            Face::Rear | Face::Wall(_) | Face::Inner(..) => PLATE_Z - PLATE_THICKNESS - t,
-            Face::Roof | Face::Bottom => self.height - 2.0 * t,
+            Face::Rear | Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => PLATE_Z - PLATE_THICKNESS - t,
+            Face::Roof | Face::Bottom | Face::RoofTop => self.height - 2.0 * t,
         }
     }
 
@@ -420,9 +428,9 @@ pub fn face_frame(e: &Enclosure, face: Face) -> [V3; 4] {
         Face::Left => [[t, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0], [1.0, 0.0, 0.0]],
         Face::Right => [[w - t, 0.0, d], [0.0, 0.0, -1.0], [0.0, 1.0, 0.0], [-1.0, 0.0, 0.0]],
         Face::Rear => [[w, 0.0, t], [-1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
-        Face::Roof => [[0.0, t, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0]],
+        Face::Roof | Face::RoofTop => [[0.0, t, 0.0], [1.0, 0.0, 0.0], [0.0, 0.0, 1.0], [0.0, 1.0, 0.0]],
         Face::Bottom => [[0.0, h - t, d], [1.0, 0.0, 0.0], [0.0, 0.0, -1.0], [0.0, -1.0, 0.0]],
-        Face::Wall(_) | Face::Inner(..) => [[w, 0.0, t], [-1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
+        Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => [[w, 0.0, t], [-1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
     }
 }
 
@@ -515,6 +523,8 @@ impl Default for Layout {
             frozen: Vec::new(),
             checks: PanelRules::default(),
             manufacturing: Default::default(),
+            buildings: Vec::new(),
+            site_links: Vec::new(),
         }
     }
 }
