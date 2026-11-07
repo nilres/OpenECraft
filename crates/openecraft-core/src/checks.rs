@@ -52,6 +52,7 @@ pub fn builtin() -> Vec<Check> {
         entry("preplanning", tr_const!("Pre-planning"), |prj, an| crate::preplanning::issues(prj, &an.index)),
         entry("integration", tr_const!("Enterprise integration"), |prj, _| crate::integration::problems(prj)),
         entry("field_wiring", tr_const!("Field wiring"), |_, an| an.field.issues.clone()),
+        entry("buildings", tr_const!("Buildings, levels and shafts"), |prj, _| crate::panel::buildings::problems(prj)),
         entry("routing_3d", tr_const!("3D routing"), |_, an| check_routing(&an.routing)),
         entry("structure", tr_const!("Structure identifiers"), |prj, _| {
             crate::structure::problems(prj).into_iter().map(|message| Issue::plain(Severity::Warning, message, None)).collect()

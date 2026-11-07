@@ -114,6 +114,7 @@ pub fn window_panes(layout: &Layout) -> Vec<crate::dock::ToolPane> {
                 "report_blocks" => T::ReportBlocks,
                 "harnesses" => T::Harnesses,
                 "field_wiring" => T::FieldWiring,
+                "buildings" => T::Buildings,
                 "plugs" => T::Plugs,
                 "plc_hardware" => T::PlcHardware,
                 "integration" => T::Integration,

@@ -1410,7 +1410,12 @@ impl Project {
         for e in &self.layout.enclosures {
             max = max.max(e.id);
             max = e.items.iter().map(|i| i.id).fold(max, u64::max);
+            max = e.inner_walls.iter().map(|w| w.id).chain(e.paths.iter().map(|p| p.id)).fold(max, u64::max);
         }
+        for b in &self.layout.buildings {
+            max = [b.id].into_iter().chain(b.levels.iter().map(|l| l.id)).chain(b.shafts.iter().map(|s| s.id)).fold(max, u64::max);
+        }
+        max = self.layout.site_links.iter().map(|l| l.id).fold(max, u64::max);
         max = self.cables.iter().map(|c| c.id).fold(max, u64::max);
         max = self.harnesses.iter().map(|h| h.id).fold(max, u64::max);
         let f = &self.field;

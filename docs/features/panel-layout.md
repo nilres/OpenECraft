@@ -172,6 +172,14 @@ or Enter), walls are dragged to move them or get a length in the room's properti
   front of a wall, 300 mm below the ceiling or 200 mm above the floor unless set
   otherwise: the hoses, tubes and pipes of the schematic are routed along them like
   wires along cable ducts. The floor plan shows them dashed.
+- **The outside of the building:** every wall of a room also has its outside (faces
+  `outside1`, `outside2`, …, seen from outside, *Outside of wall n* in the walls menu)
+  and the ceiling its top (face `rooftop`): façade lights, sensors and cameras go on the
+  outside of an outer wall like on a wall inside (on a rail or, marked *Wall mounting*,
+  directly), a weather station or other parts marked *Floor mounting* stand on the
+  roof. Their cables and pipes run through the wall (or the ceiling) right behind them
+  into the room. The check reports such items where another room is right behind the
+  wall or above the ceiling (within 1 m).
 
 The check reports devices on a wall that are neither, rails or devices over a door or
 window, pipe runs across a door or window, items on the ceiling outside the floor plan,
@@ -183,9 +191,47 @@ have no climate calculation and no NC data.
 
 **Several rooms** stand at their places in the plant (*Rear left corner of the room*
 in its properties, commands `add_room` / `set_room` with `x`, `z` and `angle`). The
-floor plan of a room shows the rooms around it faintly with their names and cabinets;
-a double-click opens one of them. *Layout space › Show › All enclosures* shows every
-room and cabinet at its place in 3D, with the routes between them.
+floor plan of a room shows the rooms around it faintly with their names and cabinets
+(those beside it, not the ones on the levels above and below); a double-click opens one
+of them. *Layout space › Show › All enclosures* shows every room and cabinet at its
+place in 3D, with the routes between them.
+
+## Buildings, levels and shafts
+
+*Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant;
+the pane lists them with their levels, shafts and the links between buildings, and
+draws a site plan of all rooms (one level highlighted), shafts and links.
+
+- A **building** (command `add_building`) has a place in the plant (x, z and a turn)
+  and **levels** on top of each other (`add_level`, `set_level`: name, height of the
+  floor above the building's ground level, height from floor to floor; a negative
+  elevation is a basement). A new building gets one level `L0` at ground level and goes
+  beside what stands in the plant; new levels go on top (`L1`, `L2`, …) or below
+  (`B1`, `B2`, …).
+- **Rooms stand on levels** (room properties › *Building*, the pane's *New room on this
+  level* / *Put a room here*, commands `place_on_level`, `add_room` with `building` and
+  `level`): the room's place is then measured in the building's floor plan, it stands
+  on the level's floor and moves with the building and its level. A new room on a level
+  is as high as the level less its ceiling slab (300 mm) and goes next to the other
+  rooms of the level. The navigator groups the rooms by building and level. Removing a
+  level or a building leaves its rooms where they stand in the plant.
+- **Shafts** (`add_shaft`, `set_shaft`) run through a building from one level up to
+  another, at a place of its floor plan: cables, tubes and pipes are routed through them
+  from a room into the rooms above and below whose floor plans the shaft passes, from
+  below the ceiling of one to above the floor of the next. The floor plan of a room
+  shows the shafts through its level.
+- **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
+  conduit or a cable bridge from a building entry of a room to a building entry of a
+  room in another building, through corners in the plant. Routes pass them like a wall
+  penetration; their length is given or follows the way (down to 800 mm below the
+  ground for a trench or conduit, at the height of the higher entry for a bridge).
+
+The check *Buildings, levels and shafts* reports rooms on levels that are gone, rooms
+higher than their level or overlapping on one level, levels overlapping each other,
+shafts joining no two rooms, cabinets and floor-standing parts standing in a shaft, and
+links whose building entries are gone. Example 15 (`plant_buildings`) shows a main
+building with two levels and a shaft, a pump house linked by a cable trench through
+which a motor cable is routed, façade lights and a weather station on the roof.
 
 ![Floor plan of the electrical_room example: L-shaped room, inner wall, door, window and the two cabinets](../images/room.png)
 
@@ -259,10 +305,11 @@ radii, cable bundles with their branches, shield terminations (shield clamp rail
 pigtail) and their checks; routes can be frozen for production and stay as they are
 until they become invalid.
 
-Between rooms, a route passes the wall penetrations that join them, through as few
-walls as possible: through the first room to a penetration, through the rooms between,
-through the last room to its end (its legs per room and cabinet in the routing list);
-its length includes the ways through the walls. Without such a penetration the route
+Between rooms, a route passes the wall penetrations, shafts and links between
+buildings that join them, through as few of them as possible: through the first room
+to a penetration, through the rooms between, through the last room to its end (its legs
+per room and cabinet in the routing list); its length includes the ways through the
+walls, shafts and links. Without such a penetration the route
 stays unrouted (*no wall penetration leads from room to room*). A route from a device
 of a room to the outside of the building ends at its nearest building entry, also from a
 device in a cabinet standing in the room (through the cabinet's gland and the room); of several

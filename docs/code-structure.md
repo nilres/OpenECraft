@@ -87,6 +87,7 @@ Where the code of each feature lives. [architecture.md](architecture.md) describ
 | `openecraft/src/mounting_ui.rs` | Mounting assistant: checklist in mounting order, current item, 3D view, progress |
 | `crates/openecraft-core/src/panel.rs` | Panel layout model, device sizes, rail snapping, collisions, duct routing |
 | `crates/openecraft-core/src/panel/lineup.rs` | Line-ups: enclosures bayed side by side and the cable passages between them |
+| `crates/openecraft-core/src/panel/buildings.rs` | Buildings: levels and the rooms on them, shafts and the ways through them, links between buildings, their check |
 | `crates/openecraft-core/src/panel/rooms.rs` | Rooms: floor plan outline and its walls, cabinets standing in them, rails, ducts and wall-mounted devices on walls and ceiling, wall penetrations and where they lead, building entries, their checks |
 | `crates/openecraft-core/src/panel/rack.rs` | 19-inch racks: rack units, 19-inch parts snapped onto whole units, their mounting rails and checks |
 | `openecraft/src/panel_ui/plan.rs` | Floor plan of a room: drawing and moving walls, placing cabinets |

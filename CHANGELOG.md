@@ -9,6 +9,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   or get a jog where they cannot. Connection definition points and cable definition
   lines stay on their wires.
 
+- **Buildings:** buildings with levels and shafts in the plant; rooms stand on the
+  levels and move with their building, shafts and links between buildings (cable
+  trench, conduit, cable bridge between building entries) carry routes from room to
+  room; devices go on the outside of the walls and on the roof; a Buildings pane with
+  a site plan, the plugin `buildings` with its commands, a check and example 15.
+
 - Use the DIN-rail clip position from imported mounting data when placing cabinet devices. Matching Beckhoff terminal housings and the EK1100 use the documented 63.8 mm rail datum.
 
 - Snap cabinet devices flush to a nearby neighbor on the mounting plate while placing or moving a single module. The placement preview shows the snapped position.

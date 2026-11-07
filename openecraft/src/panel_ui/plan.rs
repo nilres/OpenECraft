@@ -89,7 +89,7 @@ pub(super) struct Neighbour {
 }
 
 /// The other rooms of the layout as seen in the floor plan of room `ei`, at their
-/// places in the plant.
+/// places in the plant: those beside it, not on the levels above or below.
 pub(super) fn neighbours(prj: &Project, ei: usize) -> Vec<Neighbour> {
     let poses = panel::site_poses(prj);
     let here = poses[ei];
@@ -97,9 +97,11 @@ pub(super) fn neighbours(prj: &Project, ei: usize) -> Vec<Neighbour> {
         let l = here.local(poses[k].apply([q[0], 0.0, q[1]]));
         [l[0], l[2]]
     };
+    let height = |k: usize| prj.layout.enclosures[k].height;
+    let beside = |k: usize| poses[k].at[1] < here.at[1] + height(ei) - 0.5 && here.at[1] < poses[k].at[1] + height(k) - 0.5;
     panel::rooms(&prj.layout)
         .into_iter()
-        .filter(|&k| k != ei)
+        .filter(|&k| k != ei && beside(k))
         .map(|k| {
             let e = &prj.layout.enclosures[k];
             let cells = panel::floor_cells(e).into_iter().map(|(a, b)| [[a[0], a[2]], [b[0], a[2]], [b[0], b[2]], [a[0], b[2]]].map(|q| plan(k, q))).collect();
@@ -118,7 +120,28 @@ pub(super) fn links_in_plan(prj: &Project, ei: usize) -> Vec<([f32; 2], [f32; 2]
         let l = here.local(poses[k].apply([q[0], 0.0, q[2]]));
         [l[0], l[2]]
     };
-    panel::wall_links(prj).into_iter().filter(|l| l.from == ei || l.to == ei).map(|l| (plan(l.from, l.a), plan(l.to, l.b))).collect()
+    panel::wall_links(prj).into_iter().filter(|l| (l.from == ei || l.to == ei) && l.via != panel::Via::Shaft).map(|l| (plan(l.from, l.a), plan(l.to, l.b))).collect()
+}
+
+/// The shafts of the building of room `ei` that pass its level: name and corners in its
+/// plan coordinates.
+pub(super) fn shafts_in_plan(prj: &Project, ei: usize) -> Vec<(String, [[f32; 2]; 4])> {
+    let layout = &prj.layout;
+    let Some((bi, li)) = panel::buildings::find_level(layout, layout.enclosures[ei].level) else { return Vec::new() };
+    let b = &layout.buildings[bi];
+    let here = panel::site_poses(prj)[ei];
+    let at = |id: u64| b.levels.iter().position(|l| l.id == id);
+    b.shafts
+        .iter()
+        .filter(|s| at(s.bottom).zip(at(s.top)).is_some_and(|(lo, hi)| lo.min(hi) <= li && li <= lo.max(hi)))
+        .map(|s| {
+            let corners = panel::buildings::shaft_corners(b, s).map(|[x, z]| {
+                let l = here.local([x, 0.0, z]);
+                [l[0], l[2]]
+            });
+            (s.name.clone(), corners)
+        })
+        .collect()
 }
 
 fn snap(v: f32) -> f32 {
@@ -573,6 +596,15 @@ impl PanelUi {
             for along in [it.x, it.x + it.w] {
                 painter.line_segment([at(along, 0.0), at(along, -t)], Stroke::new(1.5, ink));
             }
+        }
+        // The shafts through the level: an open square with a cross.
+        for (name, corners) in shafts_in_plan(prj, ei) {
+            let pts: Vec<Pos2> = corners.iter().map(|q| to_screen(q[0], q[1])).collect();
+            let stroke = Stroke::new(1.5, PIPE_COLOR);
+            painter.add(Shape::convex_polygon(pts.clone(), PIPE_COLOR.gamma_multiply(0.15), stroke));
+            painter.line_segment([pts[0], pts[2]], Stroke::new(1.0, PIPE_COLOR));
+            painter.line_segment([pts[1], pts[3]], Stroke::new(1.0, PIPE_COLOR));
+            painter.text(pts[0] + vec2(4.0, 2.0), egui::Align2::LEFT_TOP, name, egui::FontId::proportional(12.0), pal.text);
         }
         // The ways through the wall penetrations into the rooms behind the walls.
         for (a, b) in links_in_plan(prj, ei) {
