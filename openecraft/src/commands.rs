@@ -167,6 +167,7 @@ pub enum Cmd {
     Macros,
     Harnesses,
     FieldWiring,
+    Buildings,
     Revisions,
     Compare,
     ChangeRequests,
@@ -612,6 +613,9 @@ pub static ALL: &[Def] = &[
     // ---------------------------------------------------------------- layout space
     d(C::NewEnclosure, "new_enclosure", tr_const!("New enclosure"), I::Enclosure),
     d(C::NewRoom, "new_room", tr_const!("New room"), I::Wall).tip(tr_const!("A room in which cabinets stand; rails, cable ducts and wall-mounted devices go on its walls and ceiling")),
+    d(C::Buildings, "buildings", tr_const!("Buildings"), I::Building)
+        .tool(ToolPane::Buildings)
+        .tip(tr_const!("Buildings of the plant: levels with their rooms, shafts through the levels, links between buildings and the site plan")),
     d(C::LayoutSelect, "layout_select", tr_const!("Select"), I::Select).toggle().tip(tr_const!("Select / move (Esc)")),
     d(C::LayoutRail, "layout_rail", tr_const!("Mounting rail"), I::Rail).toggle().tip(tr_const!("Click start and end point")),
     d(C::LayoutDuct, "layout_duct", tr_const!("Cable duct"), I::Duct).toggle().tip(tr_const!("Click start and end point")),

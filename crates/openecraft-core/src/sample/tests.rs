@@ -204,6 +204,35 @@ fn pump_room_routes_pipes_and_motor_cables() {
 }
 
 #[test]
+fn plant_buildings_route_through_the_trench() {
+    use crate::panel::{self, buildings as bld, Face, Via};
+    let (prj, an) = checked("plant_buildings");
+    let l = &prj.layout;
+    let room = |name: &str| l.enclosures.iter().position(|e| e.name == name).unwrap_or_else(|| panic!("{name}"));
+    let (er, cr, ph) = (room("+ER1"), room("+CR1"), room("+PH1"));
+    assert_eq!(l.buildings.len(), 2);
+    assert_eq!(bld::building_rooms(l, 0), [er, cr]);
+    assert_eq!(bld::building_rooms(l, 1), [ph]);
+    // The control room stands on the level above the electrical room.
+    let poses = panel::site_poses(&prj);
+    assert_eq!((poses[er].at[1], poses[cr].at[1]), (0.0, 3500.0));
+    let links = panel::wall_links(&prj);
+    assert!(links.iter().any(|w| w.via == Via::Shaft && (w.from, w.to) == (er, cr)), "{links:?}");
+    assert!(links.iter().any(|w| w.via == Via::Site && (w.from, w.to) == (er, ph)), "{links:?}");
+    // The motor cable of pump 2 runs from its cabinet through the electrical room, the
+    // trench and the pump house to the motor.
+    let c = an.routing.item("=P2-W1").expect("=P2-W1");
+    assert!(c.routed() && c.enclosures.contains(&er) && c.enclosures.contains(&ph), "{:?} {:?}", c.status, c.enclosures);
+    let trench = bld::site_link_length(&prj, &poses, &l.site_links[0]).unwrap();
+    assert!(c.length > trench, "{} {trench}", c.length);
+    // On the outside of the buildings.
+    let outside = |ri: usize, face: Face| l.enclosures[ri].items.iter().filter(|i| i.face == face).map(|i| i.part.as_str()).collect::<Vec<_>>();
+    assert_eq!(outside(er, Face::Outside(0)), [site::FACADE_LIGHT]);
+    assert_eq!(outside(ph, Face::Outside(2)), [site::FACADE_LIGHT]);
+    assert_eq!(outside(cr, Face::RoofTop), [site::WEATHER]);
+}
+
+#[test]
 fn building_services_route_from_room_to_room() {
     use crate::model::panel::Opening;
     use crate::routing3d::RouteKind;

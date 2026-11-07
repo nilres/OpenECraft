@@ -865,21 +865,42 @@ impl PanelUi {
             }
         });
         let mut remove = None;
-        // Rooms with the line-ups standing in them, then the other line-ups; bayed
+        // Buildings with their levels (the highest first) and the rooms on them, the
+        // rooms with the line-ups standing in them, then the other line-ups; bayed
         // enclosures are indented.
         let lineups = panel::lineups(&prj.layout);
         let room_of = |lu: &Vec<usize>| lu.first().and_then(|&i| panel::room_of(&prj.layout, i));
         let mut rows: Vec<(usize, usize)> = Vec::new();
-        for r in panel::rooms(&prj.layout) {
-            rows.push((0, r));
+        let mut headings: Vec<(usize, usize, String)> = Vec::new();
+        let room_rows = |rows: &mut Vec<(usize, usize)>, r: usize, indent: usize| {
+            rows.push((indent, r));
             for lu in lineups.iter().filter(|lu| room_of(lu) == Some(r)) {
-                rows.extend(lu.iter().enumerate().map(|(k, &i)| (1 + usize::from(k > 0), i)));
+                rows.extend(lu.iter().enumerate().map(|(k, &i)| (indent + 1 + usize::from(k > 0), i)));
             }
+        };
+        for b in &prj.layout.buildings {
+            headings.push((rows.len(), 0, tr_fmt!("{}  building", b.name)));
+            for l in b.levels.iter().rev() {
+                headings.push((rows.len(), 1, tr_fmt!("{}  level, floor at {} m", l.name, format!("{:.2}", l.elevation / 1000.0))));
+                for r in panel::buildings::rooms_on(&prj.layout, l.id) {
+                    room_rows(&mut rows, r, 2);
+                }
+            }
+        }
+        for r in panel::rooms(&prj.layout).into_iter().filter(|&r| panel::buildings::building_of(&prj.layout, r).is_none()) {
+            room_rows(&mut rows, r, 0);
         }
         for lu in lineups.iter().filter(|lu| room_of(lu).is_none() && !lu.first().is_some_and(|&i| prj.layout.enclosures[i].is_room())) {
             rows.extend(lu.iter().enumerate().map(|(k, &i)| (usize::from(k > 0), i)));
         }
-        for (indent, i) in rows {
+        let mut headings = headings.into_iter().peekable();
+        for (row, (indent, i)) in rows.into_iter().enumerate() {
+            while let Some((_, depth, text)) = headings.next_if(|h| h.0 <= row) {
+                ui.horizontal(|ui| {
+                    ui.add_space(14.0 * depth as f32);
+                    ui.label(RichText::new(text).strong());
+                });
+            }
             let e = &prj.layout.enclosures[i];
             ui.horizontal(|ui| {
                 ui.add_space(14.0 * indent as f32);
@@ -904,6 +925,12 @@ impl PanelUi {
                         }
                     });
                 });
+            });
+        }
+        for (_, depth, text) in headings {
+            ui.horizontal(|ui| {
+                ui.add_space(14.0 * depth as f32);
+                ui.label(RichText::new(text).strong());
             });
         }
         if let Some(i) = remove {
@@ -1491,6 +1518,10 @@ impl PanelUi {
     fn room_properties(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, an: &Analysis) {
         let pose = panel::site_poses(prj)[ei];
         let mut site: Option<Option<SitePlace>> = None;
+        // The levels of the buildings ("+B1 › L0") and the one the room is on.
+        let levels: Vec<(u64, String, f32)> = prj.layout.buildings.iter().flat_map(|b| b.levels.iter().map(move |l| (l.id, format!("{} › {}", b.name, l.name), l.height))).collect();
+        let building = panel::buildings::find_level(&prj.layout, prj.layout.enclosures[ei].level).map(|(bi, _)| panel::buildings::building_pose(&prj.layout.buildings[bi]));
+        let mut level: Option<Option<u64>> = None;
         let e = &mut prj.layout.enclosures[ei];
         let size_before = (e.width, e.depth, e.height);
         ui.label(RichText::new(tr("Room")).strong());
@@ -1512,9 +1543,13 @@ impl PanelUi {
             ui.label(tr("Height"));
             ui.add(egui::DragValue::new(&mut e.height).speed(10.0).range(500.0..=20_000.0).suffix(" mm"));
             ui.end_row();
-            ui.label(tr("Place in the plant"));
+            level = Self::level_row(ui, &levels, e);
+            ui.label(if building.is_some() { tr("Place in the building") } else { tr("Place in the plant") });
             let current = e.site;
-            let mut place = current.unwrap_or(SitePlace { x: pose.at[0], z: pose.at[2], angle: pose.angle.to_degrees() });
+            // Shown where it stands: in the building's floor plan when it is on a level.
+            let shown = building.map_or(pose.at, |b| b.local(pose.at));
+            let angle = pose.angle - building.map_or(0.0, |b| b.angle);
+            let mut place = current.unwrap_or(SitePlace { x: shown[0], z: shown[2], angle: angle.to_degrees() });
             ui.horizontal_wrapped(|ui| {
                 let mut by_hand = current.is_some();
                 let mut changed = ui.checkbox(&mut by_hand, tr("by hand")).on_hover_text(tr("Otherwise from the plant layout, or next to the other line-ups")).changed();
@@ -1536,6 +1571,11 @@ impl PanelUi {
         }
         if let Some(place) = site {
             prj.layout.enclosures[ei].site = place;
+        }
+        if let Some(l) = level {
+            if let Err(e) = panel::buildings::set_room_level(prj, ei, l, None) {
+                self.status = e;
+            }
         }
         ui.separator();
         ui.label(RichText::new(tr("Cabinets in the room")).strong());
@@ -1618,6 +1658,35 @@ impl PanelUi {
         ui.weak(tr("Devices on a wall sit on a mounting rail; parts marked for wall mounting go directly on the wall (Layout space › Insert › Wall-mounted part)."));
         let findings = self.findings(prj, an, ei);
         checks_section(ui, prj, ei, &findings);
+    }
+
+    /// The level of a building a room is on (rows of the room's properties): the new one
+    /// when another is chosen (`None`: out of its building).
+    fn level_row(ui: &mut egui::Ui, levels: &[(u64, String, f32)], e: &Enclosure) -> Option<Option<u64>> {
+        let mut level = None;
+        ui.label(tr("Building"));
+        let shown = levels.iter().find(|l| l.0 == e.level).map_or_else(|| tr("none").to_string(), |l| l.1.clone());
+        egui::ComboBox::from_id_salt("roomlevel")
+            .selected_text(shown)
+            .show_ui(ui, |ui| {
+                if ui.selectable_label(e.level == 0, tr("none")).clicked() && e.level != 0 {
+                    level = Some(None);
+                }
+                for (id, name, _) in levels {
+                    if ui.selectable_label(e.level == *id, name.as_str()).clicked() && e.level != *id {
+                        level = Some(Some(*id));
+                    }
+                }
+            })
+            .response
+            .on_hover_text(tr("The level of a building the room is on (Layout space › Buildings); it moves with the building and its level"));
+        ui.end_row();
+        if let Some(h) = levels.iter().find(|l| l.0 == e.level).map(|l| l.2).filter(|h| e.height > *h) {
+            ui.label("");
+            ui.colored_label(crate::style::warning(), tr_fmt!("Higher than its level ({} mm)", format!("{h:.0}")));
+            ui.end_row();
+        }
+        level
     }
 
     /// Inner walls of a room: length, thickness, removing them.

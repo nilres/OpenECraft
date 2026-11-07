@@ -32,6 +32,95 @@ pub struct Layout {
     /// Machines, machining strategy, copper bars, jobs and production feedback.
     #[serde(skip_serializing_if = "super::manufacturing::Manufacturing::is_default")]
     pub manufacturing: super::manufacturing::Manufacturing,
+    /// Buildings of the plant: their levels and shafts; rooms stand on their levels
+    /// (see `crate::panel::buildings`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub buildings: Vec<Building>,
+    /// Ways for cables and pipes between buildings, from a building entry of one to a
+    /// building entry of another.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub site_links: Vec<SiteLink>,
+}
+
+/// A building of the plant: levels on top of each other on which its rooms stand, and
+/// shafts through its levels. Building coordinates: x and z of the floor plan from the
+/// building's place in the plant, y up from its ground level (±0).
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Building {
+    pub id: u64,
+    /// Location designation, e.g. "+B1".
+    pub name: String,
+    pub description: String,
+    /// Place of the building's origin in the plant (mm, like the place of a line-up).
+    pub site: SitePlace,
+    /// The levels from the lowest up.
+    pub levels: Vec<Level>,
+    pub shafts: Vec<Shaft>,
+}
+
+/// A level (storey) of a building.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Level {
+    pub id: u64,
+    /// Name, e.g. "B1", "GF", "L1".
+    pub name: String,
+    /// Height of the top of its floor above the building's ground level, mm (negative
+    /// for basements).
+    pub elevation: f32,
+    /// Height from its floor to the floor of the level above, mm (ceiling slab
+    /// included).
+    pub height: f32,
+}
+
+/// A vertical shaft (riser) through levels of a building: cables, tubes and pipes run
+/// through it from a room on one level into the rooms above and below that it
+/// passes.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Shaft {
+    pub id: u64,
+    pub name: String,
+    /// Rear left corner in the building's floor plan and size, mm.
+    pub x: f32,
+    pub z: f32,
+    pub width: f32,
+    pub depth: f32,
+    /// Ids of its lowest and its highest level.
+    pub bottom: u64,
+    pub top: u64,
+}
+
+/// What carries the cables and pipes between two buildings.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum LinkKind {
+    /// Cable trench, buried in the ground.
+    #[default]
+    Trench,
+    /// Protective conduit or duct bank in the ground.
+    Conduit,
+    /// Cable bridge or tray above the ground.
+    Bridge,
+}
+
+/// A way between two buildings: from building entry `a` (the id of an entry in an
+/// outer wall of a room) to building entry `b` of a room of another building, through
+/// the corners `points` in the plant.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct SiteLink {
+    pub id: u64,
+    pub name: String,
+    pub kind: LinkKind,
+    pub a: u64,
+    pub b: u64,
+    /// Corners between the two entries (x, z in the plant, mm).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub points: Vec<[f32; 2]>,
+    /// Length of the way, mm; 0: along its corners from entry to entry.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub length: f32,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -88,6 +177,10 @@ pub struct Enclosure {
     /// Rooms: walls inside the room.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub inner_walls: Vec<InnerWall>,
+    /// Rooms: id of the level of a building the room is on, 0 for none; `site` is then
+    /// measured in the building's floor plan and the room stands on the level's floor.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub level: u64,
 }
 
 /// What an [`Enclosure`] is.
@@ -297,6 +390,12 @@ pub enum Face {
     Wall(u16),
     /// Side 0 or 1 of the inner wall of a room with this id ([`InnerWall`]).
     Inner(u64, u8),
+    /// The outside of wall `n` of a room's outline (the façade where the wall is an
+    /// outer wall of the building), seen from outside; `z` away from the wall.
+    Outside(u16),
+    /// The top of a room's ceiling (the roof of the building where no room is above),
+    /// seen from above like the ceiling; `z` upwards.
+    RoofTop,
 }
 
 /// A wall inside a room (partition): its centre line from `a` to `b` along x or z, as
