@@ -710,16 +710,18 @@ impl App {
             }
             ui.separator();
             egui::ScrollArea::both().auto_shrink([false, false]).show(ui, |ui| {
-                egui::Grid::new("plcpoints").striped(true).num_columns(6).spacing([10.0, 4.0]).show(ui, |ui| {
-                    for h in [tr("Card"), tr("Address"), tr("Type"), tr("Function text"), tr("Connected to"), tr("Location")] {
+                egui::Grid::new("plcpoints").striped(true).num_columns(8).spacing([10.0, 4.0]).show(ui, |ui| {
+                    for h in [tr("Card"), tr("Channel"), tr("Terminal"), tr("Address"), tr("Type"), tr("Function text"), tr("Connected to"), tr("Location")] {
                         ui.label(RichText::new(h).strong());
                     }
                     ui.end_row();
                     for p in &points {
                         ui.label(&p.card);
+                        ui.label(&p.channel);
+                        ui.label(&p.terminal);
                         let mut addr = p.address.clone();
                         ui.add_sized([60.0, 20.0], egui::TextEdit::singleline(&mut addr));
-                        ui.label(if p.input { "DI" } else { "DO" });
+                        ui.label(p.io_kind());
                         let mut text = p.function_text.clone();
                         ui.add_sized([200.0, 20.0], egui::TextEdit::singleline(&mut text));
                         if addr != p.address || text != p.function_text {

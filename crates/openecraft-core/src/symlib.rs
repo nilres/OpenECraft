@@ -12,6 +12,8 @@ use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 use std::sync::{Arc, Mutex, OnceLock};
 pub use crate::model::symlib::{UserPin, UserSymbol};
+pub mod ema;
+mod front_view;
 
 /// Keys of user symbols start with this prefix.
 pub const PREFIX: &str = "user:";
@@ -22,6 +24,8 @@ impl Default for UserSymbol {
     fn default() -> Self {
         UserSymbol {
             key: String::new(),
+            ema_revision: None,
+            plc_channel: None,
             name: "New symbol".into(),
             library: "User".into(),
             letter: "A".into(),
@@ -81,6 +85,7 @@ pub(crate) fn to_def(u: &UserSymbol) -> SymbolDef {
         library: intern(&u.library),
         letter: intern(&u.letter),
         func: u.func,
+        plc_channel: u.plc_channel.clone(),
         prims: u.prims.clone(),
         pins: u.pins.iter().map(|x| PinDef { pos: x.pos, label: intern(&x.label) }).collect(),
         bridges: u.bridges.iter().copied().filter(|(a, b)| *a < u.pins.len() && *b < u.pins.len()).collect(),
@@ -111,12 +116,19 @@ fn hash_prim(prim: &Prim, h: &mut impl Hasher) {
             }
             (closed, fill).hash(h);
         }
-        Prim::Circle { c, r, fill } => {
+        Prim::Circle { c, r, fill, color } => {
+            color.hash(h);
             hash_point(*c, h);
             r.to_bits().hash(h);
             fill.hash(h);
         }
-        Prim::Text { pos, text, size, anchor } => {
+        Prim::Path {pts,closed,fill,color,width,dashed} => {
+            for point in pts {hash_point(*point,h);}
+            (closed,fill,color,width.to_bits(),dashed).hash(h);
+        }
+        Prim::Text { pos, text, size, anchor, angle, color } => {
+            color.hash(h);
+            angle.map(f32::to_bits).hash(h);
             hash_point(*pos, h);
             text.hash(h);
             size.to_bits().hash(h);
@@ -134,11 +146,38 @@ fn hash_prim(prim: &Prim, h: &mut impl Hasher) {
 /// Fingerprint of a symbol list: changes whenever a symbol is added, removed or
 /// edited (so that a project's symbol table is rebuilt exactly then).
 pub fn fingerprint(list: &[UserSymbol]) -> u64 {
-    let mut h = std::collections::hash_map::DefaultHasher::new();
+    hash_symbols(list, std::collections::hash_map::DefaultHasher::new())
+}
+
+// Reproduce pre-v1 revisions saved on the other supported pointer width.
+pub(super) fn legacy_revision(symbol: &UserSymbol, width: u32) -> u64 {
+    struct LegacyHasher(std::collections::hash_map::DefaultHasher, u32);
+    impl Hasher for LegacyHasher {
+        fn finish(&self) -> u64 { self.0.finish() }
+        fn write(&mut self, bytes: &[u8]) { self.0.write(bytes); }
+        fn write_usize(&mut self, n: usize) {
+            if self.1 == 32 { self.0.write_u32(n as u32); } else { self.0.write_u64(n as u64); }
+        }
+        fn write_isize(&mut self, n: isize) {
+            if self.1 == 32 { self.0.write_i32(n as i32); } else { self.0.write_i64(n as i64); }
+        }
+    }
+    hash_symbols(std::slice::from_ref(symbol), LegacyHasher(Default::default(), width))
+}
+
+fn hash_symbols(list: &[UserSymbol], mut h: impl Hasher) -> u64 {
     list.len().hash(&mut h);
     for u in list {
         (&u.key, &u.name, &u.library, &u.letter, &u.default_label, u.auto_number, u.show_tag, u.show_pin_labels).hash(&mut h);
         format!("{:?}", u.func).hash(&mut h);
+        if let Some(channel) = &u.plc_channel {
+            // Keep revisions of digital definitions imported by earlier versions.
+            (&channel.family, channel.input, channel.index, &channel.designation, &channel.address, &channel.function_text).hash(&mut h);
+            if let Some(pin) = &channel.digital_terminal { pin.hash(&mut h); }
+            if let Some(signal) = &channel.analog {
+                signal.hash(&mut h);
+            }
+        }
         for p in &u.prims {
             hash_prim(p, &mut h);
         }
@@ -157,19 +196,21 @@ type Defs = Arc<HashMap<String, Arc<SymbolDef>>>;
 /// The user symbols of one project by key, rebuilt when the list changes. A
 /// [`Project`] carries one; clones of a project share it until their symbols differ.
 #[derive(Clone, Default)]
-pub struct SymbolCache(Arc<Mutex<Option<(u64, Defs)>>>);
+pub struct SymbolCache(Arc<Mutex<Option<(crate::model::symlib::SymbolList, Defs)>>>, front_view::FrontCache);
 
 impl SymbolCache {
+    pub(crate) fn front_view(&self, part: &openecraft_parts::Part) -> Option<openecraft_parts::Shared<openecraft_parts::Model2d>> {
+        part.model_2d.clone().or_else(|| self.1.get(part))
+    }
     /// The symbols of a project with the user symbols `list`, as a snapshot.
-    pub fn table(&self, list: &[UserSymbol]) -> Symbols {
+    pub fn table(&self, list: &crate::model::symlib::SymbolList) -> Symbols {
         if list.is_empty() {
             return Symbols::default();
         }
-        let fp = fingerprint(list);
         let mut cache = self.0.lock().unwrap_or_else(|e| e.into_inner());
-        if cache.as_ref().is_none_or(|(have, _)| *have != fp) {
+        if cache.as_ref().is_none_or(|(have, _)| !have.same_snapshot(list)) {
             let defs = list.iter().map(|u| (u.key.clone(), Arc::new(to_def(u)))).collect();
-            *cache = Some((fp, Arc::new(defs)));
+            *cache = Some((list.clone(), Arc::new(defs)));
         }
         Symbols { user: cache.as_ref().map(|(_, defs)| defs.clone()) }
     }
@@ -233,10 +274,12 @@ pub fn from_def(def: &SymbolDef, existing: &[UserSymbol]) -> UserSymbol {
     let name = format!("{} (copy)", def.name);
     UserSymbol {
         key: new_key(existing, &name),
+        ema_revision: None,
         name,
         library: "User".into(),
         letter: def.letter.into(),
         func: def.func,
+        plc_channel: def.plc_channel.clone(),
         default_label: def.default_label.into(),
         auto_number: def.auto_number,
         show_tag: def.show_tag,
@@ -307,7 +350,7 @@ pub enum Hit {
 pub fn prim_distance(prim: &Prim, q: P) -> f32 {
     match prim {
         Prim::Line { a, b, .. } => dist_to_segment(q, *a, *b),
-        Prim::Poly { pts, closed, fill } => {
+        Prim::Poly { pts, closed, fill } | Prim::Path {pts,closed,fill,..} => {
             let mut d = pts.windows(2).map(|s| dist_to_segment(q, s[0], s[1])).fold(f32::INFINITY, f32::min);
             if *closed && pts.len() > 2 {
                 d = d.min(dist_to_segment(q, pts[pts.len() - 1], pts[0]));
@@ -317,11 +360,15 @@ pub fn prim_distance(prim: &Prim, q: P) -> f32 {
             }
             d
         }
-        Prim::Circle { c, r, fill } => {
+        Prim::Circle { c, r, fill, .. } => {
             let d = (q.dist(*c) - r).abs();
             if *fill && q.dist(*c) <= *r { 0.0 } else { d }
         }
-        Prim::Text { pos, text, size, anchor } => text_distance(*pos, text, *size, *anchor, q),
+        Prim::Text { pos, text, size, anchor, angle, .. } => {
+            let (s,c) = angle.unwrap_or_default().to_radians().sin_cos();
+            let d = q - *pos;
+            text_distance(*pos,text,*size,*anchor,*pos + p(c*d.x-s*d.y,s*d.x+c*d.y))
+        }
         Prim::Field { pos, size, anchor, kind } => {
             let sample = if *kind == FieldKind::Tag { "-K1" } else { "1" };
             text_distance(*pos, sample, *size, *anchor, q)
@@ -375,7 +422,7 @@ pub fn translate(prim: &mut Prim, d: P) {
             *a = *a + d;
             *b = *b + d;
         }
-        Prim::Poly { pts, .. } => pts.iter_mut().for_each(|q| *q = *q + d),
+        Prim::Poly { pts, .. } | Prim::Path {pts,..} => pts.iter_mut().for_each(|q| *q = *q + d),
         Prim::Circle { c, .. } => *c = *c + d,
         Prim::Text { pos, .. } | Prim::Field { pos, .. } => *pos = *pos + d,
     }

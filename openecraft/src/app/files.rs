@@ -260,7 +260,7 @@ impl App {
                 }
                 Err(e) => self.notify_failure(ctx, tr_fmt!("{} is not an OpenECraft project template.", io::short_name(&loaded.name)), e),
             },
-            Purpose::Parts => self.import_parts(ctx, &loaded.bytes),
+            Purpose::Parts => self.import_parts(ctx, &loaded.name, &loaded.bytes),
             Purpose::Model(kind) => {
                 // STEP, IGES and Parasolid files are tessellated on another thread.
                 let (name, bytes) = (loaded.name.clone(), loaded.bytes.clone());
@@ -270,11 +270,32 @@ impl App {
                     Done::Model { name, model }
                 }));
             }
-            Purpose::Macros => self.import_macros(ctx, &loaded.text()),
             Purpose::PlcTable => match openecraft_core::plc::import_symbol_table(&mut self.session.prj, &loaded.text()) {
                 Ok(n) => self.notify(ctx, tr_fmt!("{} PLC function texts updated", n)),
                 Err(e) => self.notify_error(ctx, tr_fmt!("Symbol table import failed: {}", e)),
             },
+            Purpose::Symbols | Purpose::Macros if openecraft_edz::is_edz(&loaded.bytes) => {
+                self.import_parts(ctx, &loaded.name, &loaded.bytes);
+            }
+            Purpose::Symbols | Purpose::Macros if loaded.name.to_ascii_lowercase().ends_with(".ema") => {
+                match openecraft_core::symlib::ema::decode_with_library(&openecraft_edz::decode_text(&loaded.bytes), &self.session.prj.symbols) {
+                    Ok(variants) => {
+                        let n = openecraft_core::symlib::ema::import_project(&mut self.session.prj, &variants);
+                        for m in variants.iter().filter_map(openecraft_core::macros::eplan_window) {
+                            match self.macro_lib.macros.iter_mut().find(|old| old.name == m.name) {
+                                Some(old) if old.clip.symbol_defs.is_empty() => old.clip.symbol_defs = m.clip.symbol_defs,
+                                None => self.macro_lib.upsert(m),
+                                _ => {}
+                            }
+                        }
+                        let issues = variants.iter().filter(|v| !v.warnings.is_empty()).count();
+                        self.symed.open = true;
+                        self.notify(ctx, tr_fmt!("Added {} symbols. {} variants have unresolved graphics or functions.", n, issues));
+                    }
+                    Err(e) => self.notify_error(ctx, tr_fmt!("Not a symbol library: {}", e)),
+                }
+            }
+            Purpose::Macros => self.import_macros(ctx, &loaded.text()),
             Purpose::Symbols => match openecraft_core::symlib::SymbolLibrary::from_json(&loaded.text()) {
                 Ok(lib) => {
                     let (added, replaced) = openecraft_core::symlib::merge(&mut self.session.prj.symbols, lib);
@@ -385,9 +406,13 @@ impl App {
 
     /// Imports a parts file (CSV, JSON, BMEcat, EPLAN XML or EDZ) into the database; it
     /// is read on another thread.
-    pub(super) fn import_parts(&mut self, ctx: &egui::Context, bytes: &[u8]) {
-        let bytes = bytes.to_vec();
-        self.jobs.push(Job::start(tr("Reading the parts file").to_string(), ctx, move || Done::Parts(openecraft_edz::import(&bytes))));
+    pub(super) fn import_parts(&mut self, ctx: &egui::Context, name: &str, data: &[u8]) {
+        let bytes = data.to_vec();
+        let path = name.to_owned();
+        let mappings: Vec<_> = self.session.prj.symbols.iter().filter(|s| s.key.starts_with("user:eplan-lib:")).cloned().collect();
+        self.jobs.push(Job::start(tr("Reading the parts file").to_string(), ctx, move || {
+            Done::Parts(openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings).map(|package| package.parts))
+        }));
     }
 
     /// Adds the parts read from a parts file to the database.
@@ -396,9 +421,17 @@ impl App {
             Ok(list) => {
                 let n = list.len();
                 for p in list {
+                    if !p.eplan_variants.is_empty() {
+                        if let Some(old) = self.session.prj.parts.iter_mut().find(|old| old.number == p.number) {
+                            old.eplan_variants = p.eplan_variants.clone();
+                            old.mounting_data.rail = p.mounting_data.rail;
+                        }
+                    }
                     self.parts_db.upsert(p);
                 }
                 self.parts_db.sort();
+                parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
+                self.session.prj.refresh_rail_mounts();
                 self.notify(ctx, tr_fmt!("Imported {} parts into the database", n));
             }
             Err(e) => self.notify_error(ctx, tr_fmt!("Parts import failed: {}", e)),

@@ -594,7 +594,7 @@ pub fn mount_ok(prj: &Project, e: &Enclosure, it: &PanelItem) -> bool {
     if it.face == Face::RoofTop && part_by_number(prj, &it.part).is_some_and(|p| p.floor_standing()) {
         return true;
     }
-    let c = it.center();
+    let c = it.rail_anchor();
     let on_rail = e.items.iter().any(|r| r.kind == ItemKind::Rail && r.face == it.face && r.rect().contains(c));
     on_rail || part_by_number(prj, &it.part).is_some_and(|p| p.wall_mountable())
 }

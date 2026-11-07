@@ -17,6 +17,7 @@ pub struct PlaceCtx {
     pub last_strip: Option<String>,
     /// symbol key -> last PLC card
     pub last_plc: HashMap<String, String>,
+    pub plc_article: Option<String>,
     pub last_plug: Option<String>,
 }
 
@@ -32,7 +33,9 @@ impl PlaceCtx {
             }
             Func::Terminal => self.last_strip = Some(s.tag.clone()),
             Func::Plc => {
-                self.last_plc.insert(s.sym.clone(), s.tag.clone());
+                if def.plc_channel.is_none() {
+                    self.last_plc.insert(s.sym.clone(), s.tag.clone());
+                }
             }
             Func::Plug(_) => self.last_plug = Some(s.tag.clone()),
             _ => {}
@@ -236,8 +239,17 @@ pub fn new_symbol(prj: &mut Project, page: usize, ctx: &PlaceCtx, def: &SymbolDe
             s.label = next_plug_pin(prj, &s.tag, kind);
         }
         Func::Plc => {
-            s.tag = ctx.last_plc.get(def.key).cloned().unwrap_or_else(|| prj.next_tag(&structure, def.letter));
-            s.label = next_plc_address(prj, &s.tag, !def.default_label.starts_with('Q'));
+            if let Some(c) = &def.plc_channel {
+                let previous = prj.latest_imported_card(&c.family, ctx.plc_article.as_deref())
+                    .filter(|tag| !prj.channel_placed(tag, &c.family, c.input, c.index));
+                s.tag = ctx.last_plc.get(def.key).map(String::as_str).or(previous).map(str::to_owned)
+                    .unwrap_or_else(|| prj.next_tag(&structure, def.letter));
+                s.label = c.address_for(prj, &s.tag);
+                s.function_text = c.function_text.clone();
+            } else {
+                s.tag = ctx.last_plc.get(def.key).cloned().unwrap_or_else(|| prj.next_tag(&structure, def.letter));
+                s.label = next_plc_address(prj, &s.tag, !def.default_label.starts_with('Q'));
+            }
         }
         Func::Potential | Func::Interruption => {}
     }
@@ -447,6 +459,8 @@ const CLIP_MAGIC: &str = "openecraft-clipboard-v1";
 pub fn copy(page: &Page, sel: &BTreeSet<u64>) -> Clip {
     Clip {
         magic: CLIP_MAGIC.into(),
+        anchor: None,
+        symbol_defs: Default::default(),
         function: page.function.clone(),
         installation: page.installation.clone(),
         location: page.location.clone(),
@@ -536,7 +550,7 @@ impl Clip {
 /// How far [`paste`] moves the items of `clip` for the point `at`: the top left corner
 /// goes to `at`, in steps of the connection point grid.
 pub fn paste_offset(clip: &Clip, at: P) -> P {
-    (at - clip.bounds().min).snap(GRID)
+    (at - clip.anchor.unwrap_or_else(|| clip.bounds().min)).snap(GRID)
 }
 
 /// Pastes the clip so that its top-left corner lands on `at`. Tags move into the
@@ -550,6 +564,25 @@ pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u
     if !b.is_valid() {
         return BTreeSet::new();
     }
+    let mut library_keys = HashMap::new();
+    for definition in clip.symbol_defs.iter() {
+        let mut incoming = definition.clone();
+        let mut suffix = 0;
+        loop {
+            match prj.symbols.iter().find(|s| s.key == incoming.key) {
+                Some(existing) if existing == &incoming => break,
+                Some(_) => {
+                    suffix += 1;
+                    incoming.key = format!("{}_import_{}", definition.key, suffix);
+                }
+                None => {
+                    prj.symbols.push(incoming.clone());
+                    break;
+                }
+            }
+        }
+        library_keys.insert(definition.key.as_str(), incoming.key);
+    }
     let d = paste_offset(clip, at);
     let existing: BTreeSet<String> = prj.all_tags().into_iter().collect();
     let mut rename: HashMap<String, String> = HashMap::new();
@@ -557,6 +590,9 @@ pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u
     let mut symbols_out = Vec::new();
     for s in &clip.symbols {
         let mut s = s.clone();
+        if let Some(key) = library_keys.get(s.sym.as_str()) {
+            s.sym = key.clone();
+        }
         s.id = prj.new_id();
         s.pos = s.pos + d;
         if !s.tag.is_empty() {

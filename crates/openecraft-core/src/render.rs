@@ -410,9 +410,39 @@ pub fn draw_prims(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink) {
                 let v: Vec<P> = pts.iter().map(|q| tf(*q)).collect();
                 d.poly(&v, *closed, SYMBOL_W, ink, *fill);
             }
-            Prim::Circle { c, r, fill } => d.circle(tf(*c), *r, SYMBOL_W, ink, *fill),
-            Prim::Text { pos, text, size, anchor } => {
-                d.text(tf(*pos), text, *size, rotated_anchor(*anchor, s), VAnchor::Middle, text_ink)
+            Prim::Circle { c, r, fill, color } => d.circle(tf(*c), *r, SYMBOL_W, if ink == Ink::Line {color.map(Ink::Color).unwrap_or(ink)} else {ink}, *fill),
+            Prim::Path { pts, closed, fill, width, color, dashed } => {
+                let pen = if ink==Ink::Line {color.map(Ink::Color).unwrap_or(ink)} else {ink};
+                let points: Vec<_> = pts.iter().map(|q| tf(*q)).collect();
+                if *dashed && !*fill {
+                    for pair in points.windows(2) { d.line(pair[0],pair[1],*width,pen,true); }
+                    if *closed && points.len()>2 { d.line(points[points.len()-1],points[0],*width,pen,true); }
+                } else {
+                    d.poly(&points,*closed,*width,pen,*fill);
+                }
+            }
+            Prim::Text { pos, text, size, anchor, angle, color } => {
+                let text_ink = if ink==Ink::Line {color.map(Ink::Color).unwrap_or(text_ink)} else {text_ink};
+                if let Some(angle) = angle {
+                    let mut style = TextStyle::plain(*size, *anchor, VAnchor::Middle);
+                    let direction = (if s.mirror { 180. - angle } else { *angle }) - 90. * s.rot as f32;
+                    style.angle = (direction + 180.).rem_euclid(360.) - 180.;
+                    if style.angle > 90. || style.angle <= -90. {
+                        style.angle += if style.angle > 0. { -180. } else { 180. };
+                        style.h = match anchor {
+                            Anchor::Left => Anchor::Right,
+                            Anchor::Right => Anchor::Left,
+                            Anchor::Center => Anchor::Center,
+                        };
+                    }
+                    let (sin,cos) = angle.to_radians().sin_cos();
+                    for (i,line) in text.lines().enumerate() {
+                        let offset = p(sin,cos) * (i as f32 * size * 1.25);
+                        d.styled_text(tf(*pos + offset),line,&style,text_ink);
+                    }
+                } else {
+                    d.text(tf(*pos), text, *size, rotated_anchor(*anchor, s), VAnchor::Middle, text_ink);
+                }
             }
             Prim::Field { kind, pos, size, anchor } => {
                 let t = match kind {
@@ -1162,7 +1192,7 @@ pub fn draw_enclosure(
             }
             ItemKind::Device => {
                 d.rect(a, b, 0.0, Ink::Fill, true);
-                let model = parts.iter().find(|x| x.number == it.part).and_then(|x| x.model_2d.as_ref());
+                let model = parts.iter().find(|x| x.number == it.part).and_then(|x| prj.symbol_cache.front_view(x));
                 let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
                 let size = (it.w.min(it.h) * 0.22).clamp(3.0, 9.0) * k;
                 let c = tf(it.x + it.w / 2.0, it.y + it.h / 2.0);
@@ -1170,13 +1200,13 @@ pub fn draw_enclosure(
                 let cells = panel::strip_cells(prj, it);
                 let mounted = panel::mounted(prj, it);
                 let on_bars = panel::busbars::terminals_on_bars(prj, it);
-                match model {
+                match model.as_deref() {
                     // Busbar terminals across the bars: each upright on its bar.
                     _ if on_bars.is_some() => {
                         for (sub, number, _) in on_bars.as_ref().unwrap() {
                             let (pa, pb) = (tf(sub.x, sub.y), tf(sub.x + sub.w, sub.y + sub.h));
                             d.rect(pa, pb, 0.0, Ink::Fill, true);
-                            match parts.iter().chain(crate::parts::catalog()).find(|x| &x.number == number).and_then(|x| x.model_2d.as_ref()) {
+                            match parts.iter().chain(crate::parts::catalog()).find(|x| &x.number == number).and_then(|x| prj.symbol_cache.front_view(x)).as_deref() {
                                 Some(m) => draw_model_2d(d, m, sub, &tf, k, ink),
                                 None => d.rect(pa, pb, 0.15, ink, false),
                             }
@@ -1194,7 +1224,7 @@ pub fn draw_enclosure(
                             let sub = a.piece_item(it, piece);
                             let (pa, pb) = (tf(sub.x, sub.y), tf(sub.x + sub.w, sub.y + sub.h));
                             d.rect(pa, pb, 0.0, Ink::Fill, true);
-                            match piece.part.model_2d.as_ref() {
+                            match prj.symbol_cache.front_view(piece.part).as_deref() {
                                 Some(m) => draw_model_2d(d, m, &sub, &tf, k, ink),
                                 None => d.rect(pa, pb, 0.15, ink, false),
                             }
@@ -1296,7 +1326,7 @@ fn draw_model_2d_in(d: &mut dyn Draw, m: &Model2d, it: &PanelItem, tf: &dyn Fn(f
 fn draw_strip_2d(d: &mut dyn Draw, prj: &Project, it: &PanelItem, cells: &[panel::Cell], tf: &dyn Fn(f32, f32) -> P, k: f32, ink: Ink) {
     let rotated = prj.parts.iter().chain(parts::catalog()).find(|x| x.number == it.part).and_then(|x| x.size()).is_some_and(|s| panel::item_rotated(it, s[1]));
     for c in cells {
-        match prj.parts.iter().chain(parts::catalog()).find(|x| x.number == c.part).and_then(|x| x.model_2d.as_ref()) {
+        match prj.parts.iter().chain(parts::catalog()).find(|x| x.number == c.part).and_then(|x| prj.symbol_cache.front_view(x)).as_deref() {
             Some(m) => draw_model_2d_in(d, m, it, tf, k, ink, c.at, c.len),
             None => {
                 let (a, b) = if rotated {
