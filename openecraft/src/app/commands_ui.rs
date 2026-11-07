@@ -269,7 +269,7 @@ impl App {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_rot = (self.editor.place_rot + 1) % 4;
                 } else {
-                    ops::rotate(&self.session.prj.symbol_table(), &mut self.session.prj.pages[page], &self.editor.selection);
+                    routing::rotate(&mut self.session.prj, page, &self.editor.selection);
                 }
             }
             Cmd::Mirror => {
@@ -541,19 +541,17 @@ impl App {
                 });
             }
             Cmd::Align => {
-                let symbols = self.session.prj.symbol_table();
                 for a in Align::ALL {
                     if ui.button(super::arrange_ui::align_title(a)).clicked() {
-                        arrange::align(&symbols, &mut self.session.prj.pages[page], &self.editor.selection, a);
+                        arrange::align(&mut self.session.prj, page, &self.editor.selection, a);
                         ui.close();
                     }
                 }
             }
             Cmd::Distribute => {
-                let symbols = self.session.prj.symbol_table();
                 for (label, horizontal) in [(tr("Horizontally"), true), (tr("Vertically"), false)] {
                     if ui.button(label).clicked() {
-                        arrange::distribute(&symbols, &mut self.session.prj.pages[page], &self.editor.selection, horizontal);
+                        arrange::distribute(&mut self.session.prj, page, &self.editor.selection, horizontal);
                         ui.close();
                     }
                 }

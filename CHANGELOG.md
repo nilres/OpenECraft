@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Editor:** wires attached to moved items stay square: they slide along their rails,
+  or get a jog where they cannot. Connection definition points and cable definition
+  lines stay on their wires.
+
 ## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,

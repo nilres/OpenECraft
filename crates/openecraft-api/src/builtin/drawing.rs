@@ -536,10 +536,7 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
         ops::check_tag(tag)?;
     }
     if !to.same(old) {
-        let page = &mut prj.pages[i];
-        let sel = BTreeSet::from([id]);
-        let attached = ops::attached_wire_ends(&symbols, page, &sel);
-        ops::translate(page, &sel, &attached, to - old);
+        routing::move_selection(prj, i, &BTreeSet::from([id]), to - old);
     }
     let sym = prj.pages[i].symbols.iter_mut().find(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
     if let Some(tag) = a.str("tag") {
@@ -708,14 +705,11 @@ fn update_text(prj: &mut Project, a: &Args) -> Result<Value, String> {
 }
 
 fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let symbols = prj.symbol_table();
     let i = editable(prj, a.req("page"))?;
     let before = prj.pages[i].clone();
-    let page = &mut prj.pages[i];
-    let sel = selection(page, a)?;
+    let sel = selection(&prj.pages[i], a)?;
     let d = snapped(a.num("dx").unwrap_or_default(), a.num("dy").unwrap_or_default());
-    let attached = ops::attached_wire_ends(&symbols, page, &sel);
-    ops::translate(page, &sel, &attached, d);
+    routing::move_selection(prj, i, &sel, d);
     if !inside_page(prj, i) {
         prj.pages[i] = before;
         return Err(tr("The items would leave the page").to_string());
@@ -724,19 +718,17 @@ fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 }
 
 fn align_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let symbols = prj.symbol_table();
     let i = editable(prj, a.req("page"))?;
     let how = Align::from_code(a.req("align")).ok_or_else(|| tr_fmt!("Unknown alignment: {}", a.req("align")))?;
     let sel = selection(&prj.pages[i], a)?;
-    let n = arrange::align(&symbols, &mut prj.pages[i], &sel, how);
+    let n = arrange::align(prj, i, &sel, how);
     Ok(json!({ "moved": n }))
 }
 
 fn distribute_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let symbols = prj.symbol_table();
     let i = editable(prj, a.req("page"))?;
     let sel = selection(&prj.pages[i], a)?;
-    let n = arrange::distribute(&symbols, &mut prj.pages[i], &sel, !a.flag("vertical"));
+    let n = arrange::distribute(prj, i, &sel, !a.flag("vertical"));
     Ok(json!({ "moved": n }))
 }
 
