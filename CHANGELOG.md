@@ -33,7 +33,8 @@ with a command line, an MCP server, a parts server and a project server.
   command search; unsaved changes are kept and asked for on every way out; released
   and locked pages are read only but selectable; crossing selection, zoom commands,
   contextual help (F1) and rebindable keys for every page action; pages and sections
-  are dragged in the Pages navigator with a drop marker and the resulting name shown.
+  are dragged in the Pages navigator with a drop marker and the resulting name shown;
+  wires attached to moved items stay square, their junctions slide along the rails.
 - **Panel layout:** devices at real size in 2D and 3D, virtual wiring with duct fill,
   drilling and NC data, enclosure climate, line-ups, rooms and 3D routing; wiring and
   mounting assistants for the workshop. In a room's floor plan cabinets turn in place,

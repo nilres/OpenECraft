@@ -5,7 +5,7 @@ use openecraft_i18n::{tr, tr_fmt};
 use super::App;
 use openecraft_core::arrange::{self, Align};
 use openecraft_core::geom::p;
-use openecraft_core::ops;
+use openecraft_core::routing;
 
 /// Grid sizes offered (mm).
 pub const GRIDS: [f32; 5] = [1.0, 2.0, 4.0, 8.0, 16.0];
@@ -86,11 +86,8 @@ impl App {
                 });
             });
             if apply && !self.editor.selection.is_empty() && self.page_editable() {
-                let symbols = self.session.prj.symbol_table();
-                let pg = &mut self.session.prj.pages[page];
-                let attached = ops::attached_wire_ends(&symbols, pg, &self.editor.selection);
                 let (dx, dy) = self.arrange_ui.move_by;
-                ops::translate(pg, &self.editor.selection, &attached, p(dx, dy));
+                routing::move_selection(&mut self.session.prj, page, &self.editor.selection, p(dx, dy));
             }
             self.arrange_ui.show_move = open && !apply && !cancel;
         }

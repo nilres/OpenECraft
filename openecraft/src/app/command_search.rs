@@ -215,12 +215,10 @@ impl App {
                 Entry::Cmd(c) => self.run(ctx, c),
                 Entry::Plugin(c) => self.start_plugin_command(c),
                 Entry::Align(a) => {
-                    let symbols = self.session.prj.symbol_table();
-                    openecraft_core::arrange::align(&symbols, &mut self.session.prj.pages[page], &self.editor.selection, a);
+                    openecraft_core::arrange::align(&mut self.session.prj, page, &self.editor.selection, a);
                 }
                 Entry::Distribute(horizontal) => {
-                    let symbols = self.session.prj.symbol_table();
-                    openecraft_core::arrange::distribute(&symbols, &mut self.session.prj.pages[page], &self.editor.selection, horizontal);
+                    openecraft_core::arrange::distribute(&mut self.session.prj, page, &self.editor.selection, horizontal);
                 }
                 Entry::NewPage(kind) => self.add_page(kind),
             }

@@ -1,11 +1,17 @@
 //! Routing of connections: orthogonal paths on the grid around symbols and other
 //! wires, and automatic connections between connection points facing each other.
 
+use crate::cabledef;
+use crate::conndef;
 use crate::geom::{dist_to_segment, on_segment_interior, p, P, R, GRID};
+use crate::ops;
 use crate::symlib::Symbols;
 use crate::model::*;
 use std::cmp::Reverse;
 use std::collections::{BTreeSet, BinaryHeap, HashMap};
+
+/// Points closer than this touch.
+const TOUCH: f32 = 0.01;
 
 /// Connection points of the symbols on a page with their outward direction.
 fn pins(symbols: &Symbols, page: &Page) -> Vec<(u64, P, P)> {
@@ -37,14 +43,15 @@ fn pin_used(page: &Page, all: &[(u64, P, P)], sym: u64, q: P) -> bool {
 
 /// Can a wire run from `a` to `b` without touching anything but its end points?
 fn clear(symbols: &Symbols, page: &Page, all: &[(u64, P, P)], a: P, b: P, ends: [u64; 2]) -> bool {
+    !page.wires.iter().any(|w| on_segment_interior(a, w.a, w.b) || on_segment_interior(b, w.a, w.b)) && unobstructed(symbols, page, all, a, b, &ends)
+}
+
+/// Is the way from `a` to `b` free of connection points, wire ends and symbols other
+/// than `ends`? Its end points may lie on wires.
+fn unobstructed(symbols: &Symbols, page: &Page, all: &[(u64, P, P)], a: P, b: P, ends: &[u64]) -> bool {
     let inner = |q: P| on_segment_interior(q, a, b);
-    if all.iter().any(|(_, q, _)| inner(*q)) {
+    if all.iter().any(|(_, q, _)| inner(*q)) || page.wires.iter().any(|w| inner(w.a) || inner(w.b)) {
         return false;
-    }
-    for w in &page.wires {
-        if inner(w.a) || inner(w.b) || on_segment_interior(a, w.a, w.b) || on_segment_interior(b, w.a, w.b) {
-            return false;
-        }
     }
     for s in page.symbols.iter().filter(|s| !ends.contains(&s.id)) {
         let Some(def) = symbols.get(&s.sym) else { continue };
@@ -104,6 +111,304 @@ pub fn apply_autoconnect(prj: &mut Project, page: usize, sel: &BTreeSet<u64>) ->
         prj.pages[page].wires.push(Wire { id, a: *a, b: *b, ..Default::default() });
     }
     segs.len()
+}
+
+/// A connection definition point on a wire: where it is and how far along the wire,
+/// as a share of its length.
+struct HeldPoint {
+    id: u64,
+    pos: P,
+    wire: u64,
+    along: f32,
+}
+
+/// A cable definition line: its ends, the wires it crosses and how far it reaches
+/// past the first and the last of them.
+struct HeldLine {
+    id: u64,
+    a: P,
+    b: P,
+    wires: Vec<u64>,
+    past: (f32, f32),
+}
+
+/// A page before items move: its wires and the points and lines on them that do not
+/// move by themselves, which stay on their wires.
+pub struct Before {
+    wires: Vec<Wire>,
+    points: Vec<HeldPoint>,
+    lines: Vec<HeldLine>,
+}
+
+impl Before {
+    pub fn of(page: &Page, sel: &BTreeSet<u64>) -> Before {
+        let free = page.conn_defs.iter().filter(|c| !sel.contains(&c.id));
+        let points = free.filter_map(|c| {
+            let w = conndef::wire_at(page, c.pos)?;
+            Some(HeldPoint { id: c.id, pos: c.pos, wire: w.id, along: w.a.dist(c.pos) / w.a.dist(w.b).max(TOUCH) })
+        });
+        let lines = page.cable_defs.iter().filter(|c| !sel.contains(&c.id)).filter_map(|c| {
+            let wires = cabledef::crossed_wires(page, c.a, c.b);
+            let dir = (c.b - c.a) * (1.0 / c.a.dist(c.b).max(TOUCH));
+            let (first, last) = reach(page.wires.iter().filter(|w| wires.contains(&w.id)), c.a, dir)?;
+            Some(HeldLine { id: c.id, a: c.a, b: c.b, wires, past: (first, c.a.dist(c.b) - last) })
+        });
+        Before { lines: lines.collect(), points: points.collect(), wires: page.wires.clone() }
+    }
+}
+
+/// A selection moving step by step (a drag). Each step squares the wires again from
+/// their stretched state, so the result depends on where the selection is, not on
+/// the way it took.
+pub struct Moving {
+    attached: Vec<(u64, bool)>,
+    before: Before,
+    stretched: Vec<Wire>,
+    next_id: u64,
+}
+
+impl Moving {
+    pub fn new(prj: &Project, page: usize, sel: &BTreeSet<u64>) -> Moving {
+        let pg = &prj.pages[page];
+        let attached = ops::attached_wire_ends(&prj.symbol_table(), pg, sel);
+        Moving { attached, before: Before::of(pg, sel), stretched: pg.wires.clone(), next_id: prj.next_id }
+    }
+
+    /// Moves the selection `d` further; attached wires stretch and stay square.
+    pub fn step(&mut self, prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P) {
+        let pg = &mut prj.pages[page];
+        std::mem::swap(&mut pg.wires, &mut self.stretched);
+        ops::translate(pg, sel, &self.attached, d);
+        self.stretched.clone_from(&pg.wires);
+        prj.next_id = self.next_id;
+        square_wires(prj, page, &self.before);
+    }
+}
+
+/// Moves a selection by `d`; attached wires stretch and stay square.
+pub fn move_selection(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P) {
+    Moving::new(prj, page, sel).step(prj, page, sel, d);
+}
+
+/// Rotates a selection by 90 degrees; attached wires stay square.
+pub fn rotate(prj: &mut Project, page: usize, sel: &BTreeSet<u64>) {
+    let before = Before::of(&prj.pages[page], sel);
+    ops::rotate(&prj.symbol_table(), &mut prj.pages[page], sel);
+    square_wires(prj, page, &before);
+}
+
+fn upright(w: &Wire) -> bool {
+    (w.a.x - w.b.x).abs() < TOUCH
+}
+
+fn level(w: &Wire) -> bool {
+    (w.a.y - w.b.y).abs() < TOUCH
+}
+
+/// Runs `f` on the page without the wires `skip` selects.
+fn without<T>(page: &mut Page, skip: impl Fn(&Wire) -> bool, f: impl FnOnce(&Page) -> T) -> T {
+    let all = std::mem::take(&mut page.wires);
+    page.wires = all.iter().filter(|w| !skip(w)).cloned().collect();
+    let out = f(page);
+    page.wires = all;
+    out
+}
+
+/// Nothing to connect to at `q`: neither a connection point nor a wire.
+fn free(page: &Page, all: &[(u64, P, P)], q: P) -> bool {
+    !all.iter().any(|(_, o, _)| o.same(q)) && !page.wires.iter().any(|w| dist_to_segment(q, w.a, w.b) < TOUCH)
+}
+
+/// Can a wire ending at `from` go to `to` along the straight run of wires it is on?
+fn on_run(page: &Page, from: P, to: P) -> bool {
+    let len = from.dist(to);
+    let dir = (to - from) * (1.0 / len);
+    let along = |q: P| (q - from).x * dir.x + (q - from).y * dir.y;
+    let on_line = |q: P| ((q - from).x * dir.y - (q - from).y * dir.x).abs() < TOUCH;
+    let mut reach = 0.0;
+    loop {
+        let wires = page.wires.iter().filter(|w| on_line(w.a) && on_line(w.b));
+        let next = wires.filter(|w| along(w.a).min(along(w.b)) <= reach + TOUCH).map(|w| along(w.a).max(along(w.b))).fold(reach, f32::max);
+        if next >= len - TOUCH {
+            return true;
+        }
+        if next <= reach + TOUCH {
+            return false;
+        }
+        reach = next;
+    }
+}
+
+/// Is the path clear for the connection between symbols `ends`? Its corners must not
+/// touch anything, or they would connect it.
+fn path_clear(symbols: &Symbols, page: &Page, all: &[(u64, P, P)], path: &[P], ends: &[u64]) -> bool {
+    path.windows(2).all(|s| unobstructed(symbols, page, all, s[0], s[1], ends)) && path[1..path.len() - 1].iter().all(|q| free(page, all, *q))
+}
+
+/// Connection from `a` to `b` that leaves both in the direction of the wire it
+/// replaces, with a jog between them.
+fn jog(a: P, b: P, vertical: bool, clear: impl Fn(&[P]) -> bool) -> Option<Vec<P>> {
+    let (from, to) = if vertical { (a.y, b.y) } else { (a.x, b.x) };
+    [1.0 / 2.0, 1.0 / 3.0, 2.0 / 3.0, 1.0 / 4.0, 3.0 / 4.0].into_iter().find_map(|t: f32| {
+        let v = ((from + (to - from) * t) / GRID).round() * GRID;
+        let path = if vertical { [a, p(a.x, v), p(b.x, v), b] } else { [a, p(v, a.y), p(v, b.y), b] };
+        (!path[1].same(a) && !path[2].same(b) && clear(&path)).then(|| path.to_vec())
+    })
+}
+
+/// Point at distance `at` along the line through `pts`.
+fn point_along(pts: &[P], mut at: f32) -> P {
+    for s in pts.windows(2) {
+        let len = s[0].dist(s[1]);
+        if at <= len {
+            return s[0] + (s[1] - s[0]) * (at / len.max(TOUCH));
+        }
+        at -= len;
+    }
+    pts[pts.len() - 1]
+}
+
+/// Keeps the points of `before` on their wires. `bent` holds the wires that were
+/// split, with their course and the wires added; a point that left its wire takes
+/// the same share of its length, or a place near it where no other wire takes it.
+fn place_points(page: &mut Page, before: &Before, bent: &HashMap<u64, (Vec<P>, Vec<u64>)>) {
+    for h in &before.points {
+        let Some(w) = page.wires.iter().find(|w| w.id == h.wire) else { continue };
+        let (line, added) = bent.get(&h.wire).map_or((vec![w.a, w.b], &[][..]), |(l, a)| (l.clone(), &a[..]));
+        let own = |q: P| conndef::wire_at(page, q).is_some_and(|x| x.id == h.wire || added.contains(&x.id));
+        let len: f32 = line.windows(2).map(|s| s[0].dist(s[1])).sum();
+        let at = |steps: f32| point_along(&line, (h.along * len + steps * GRID).clamp(0.0, len));
+        let pos = if own(h.pos) { h.pos } else { [0.0, 1.0, -1.0, 2.0, -2.0].map(at).into_iter().find(|q| own(*q)).unwrap_or_else(|| at(0.0)) };
+        if let Some(c) = page.conn_defs.iter_mut().find(|c| c.id == h.id) {
+            c.pos = pos;
+        }
+    }
+}
+
+/// First and last place, as distances from `at` in direction `dir`, where `wires`
+/// cross the endless line through `at`.
+fn reach<'a>(wires: impl Iterator<Item = &'a Wire>, at: P, dir: P) -> Option<(f32, f32)> {
+    let across = |q: P| (q - at).y * dir.x - (q - at).x * dir.y;
+    let hits = wires.filter_map(|w| {
+        let (from_a, from_b) = (across(w.a), across(w.b));
+        let q = w.a + (w.b - w.a) * (from_a / (from_a - from_b));
+        (from_a * from_b <= 0.0 && from_a != from_b).then(|| (q - at).x * dir.x + (q - at).y * dir.y)
+    });
+    hits.fold(None, |r, t| r.map_or(Some((t, t)), |(lo, hi): (f32, f32)| Some((lo.min(t), hi.max(t)))))
+}
+
+/// Ends of a line that crosses `wires` and nothing else with its direction kept: as
+/// near to where it is as possible, at its old reach past the wires or else closer.
+fn across_wires(page: &Page, h: &HeldLine, wires: &BTreeSet<u64>, split: &HashMap<u64, Vec<u64>>) -> Option<(P, P)> {
+    const MAX_STEPS: i32 = 64;
+    let owner = |id: u64| split.iter().find(|(_, added)| added.contains(&id)).map_or(id, |(wire, _)| *wire);
+    let fits = |a: P, b: P| cabledef::crossed_wires(page, a, b).into_iter().map(owner).collect::<BTreeSet<_>>() == *wires;
+    if fits(h.a, h.b) {
+        return Some((h.a, h.b));
+    }
+    let dir = (h.b - h.a) * (1.0 / h.a.dist(h.b).max(TOUCH));
+    let side = p(-dir.y, dir.x);
+    let own: Vec<&Wire> = page.wires.iter().filter(|w| wires.contains(&owner(w.id))).collect();
+    let steps = (0..=MAX_STEPS).flat_map(|n| [n, -n]);
+    steps.map(|n| h.a + side * (n as f32 * GRID)).find_map(|at| {
+        let met = wires.iter().all(|id| reach(own.iter().copied().filter(|w| owner(w.id) == *id), at, dir).is_some());
+        let (first, last) = reach(own.iter().copied(), at, dir).filter(|_| met)?;
+        let ends = |past: (f32, f32)| (at + dir * (first - past.0), at + dir * (last + past.1));
+        let close = (h.past.0.min(GRID / 4.0), h.past.1.min(GRID / 4.0));
+        [ends(h.past), ends(close)].into_iter().find(|(a, b)| fits(*a, *b))
+    })
+}
+
+/// Keeps the cable definition lines of `before` across their wires; `split` holds the
+/// wires added to a wire. A line that finds no such place stays where it was.
+fn place_lines(page: &mut Page, before: &Before, split: &HashMap<u64, Vec<u64>>) {
+    for h in &before.lines {
+        let wires = h.wires.iter().copied().filter(|id| page.wires.iter().any(|w| w.id == *id)).collect();
+        let (a, b) = across_wires(page, h, &wires, split).unwrap_or((h.a, h.b));
+        if let Some(c) = page.cable_defs.iter_mut().find(|c| c.id == h.id) {
+            (c.a, c.b) = (a, b);
+        }
+    }
+}
+
+/// Squares the wires that a move left diagonal; `before` holds the page as it was.
+/// A wire keeps its direction: its far end slides along the wire at that end when
+/// this connects nothing new (an open end, a corner, or a junction on a run of wires
+/// such as a rail), otherwise the wire gets a jog or a route. One that cannot be
+/// squared without touching other connections stays as it is. Connection definition
+/// points and cable definition lines stay on their wires.
+pub fn square_wires(prj: &mut Project, page_i: usize, before: &Before) {
+    let symbols = prj.symbol_table();
+    let area = crate::frame::of_page(prj, page_i).area();
+    let was = |id: u64| before.wires.iter().find(|o| o.id == id);
+    let mut bent = Vec::new();
+    for w in &prj.pages[page_i].wires {
+        if let Some(o) = was(w.id).filter(|o| upright(o) != level(o) && !upright(w) && !level(w)) {
+            bent.push((w.id, !w.a.same(o.a), upright(o)));
+        }
+    }
+    let mut pending: BTreeSet<u64> = bent.iter().map(|b| b.0).collect();
+    let all = pins(&symbols, &prj.pages[page_i]);
+    let mut split = HashMap::new();
+    for (id, a_moved, vertical) in bent {
+        pending.remove(&id);
+        let page = &mut prj.pages[page_i];
+        let Some(w) = page.wires.iter().find(|w| w.id == id).filter(|w| !upright(w) && !level(w)).cloned() else { continue };
+        let (m, f) = if a_moved { (w.a, w.b) } else { (w.b, w.a) };
+        let to = if vertical { p(m.x, f.y) } else { p(f.x, m.y) };
+        let pin_at_f = all.iter().any(|(_, q, _)| q.same(f));
+        let ends: Vec<u64> = all.iter().filter(|(_, q, _)| q.same(m) || q.same(f)).map(|x| x.0).collect();
+        // The far end is a corner with the only other wire there, running across.
+        let mut at_f = page.wires.iter().filter(|x| x.id != id && dist_to_segment(f, x.a, x.b) < TOUCH);
+        let (first, second) = (at_f.next(), at_f.next());
+        let open = !pin_at_f && first.is_none();
+        let corner = match (first, second) {
+            (Some(n), None) if !pin_at_f && (n.a.same(f) || n.b.same(f)) => {
+                let o = was(n.id).unwrap_or(n);
+                (if vertical { level(o) } else { upright(o) }).then_some(n.id)
+            }
+            _ => None,
+        };
+        let settled = |x: &Wire| x.id == id || pending.contains(&x.id);
+        let leg = |page: &Page, a: P, b: P| unobstructed(&symbols, page, &all, a, b, &ends);
+        let slides = match corner {
+            Some(n) => without(page, |x| settled(x) || x.id == n, |page| leg(page, m, to) && leg(page, f, to) && free(page, &all, to)),
+            None if open => without(page, settled, |page| leg(page, m, to) && free(page, &all, to)),
+            None => !pin_at_f && without(page, settled, |page| leg(page, m, to) && on_run(page, f, to)),
+        };
+        if slides {
+            for x in page.wires.iter_mut().filter(|x| x.id == id || Some(x.id) == corner) {
+                if x.a.same(f) {
+                    x.a = to;
+                } else if x.b.same(f) {
+                    x.b = to;
+                }
+            }
+            continue;
+        }
+        let path = without(page, settled, |page| {
+            jog(m, f, vertical, |path| path_clear(&symbols, page, &all, path, &ends)).or_else(|| search(&symbols, page, area, m, f))
+        });
+        let Some(path) = path else { continue };
+        if let Some(x) = page.wires.iter_mut().find(|x| x.id == id) {
+            (x.a, x.b) = (path[0], path[1]);
+        }
+        let mut added = Vec::new();
+        for seg in path[1..].windows(2) {
+            let nid = prj.new_id();
+            prj.pages[page_i].wires.push(Wire { id: nid, a: seg[0], b: seg[1], ..w.clone() });
+            added.push(nid);
+        }
+        let mut course = path;
+        if !a_moved {
+            course.reverse();
+        }
+        split.insert(id, (course, added));
+    }
+    place_points(&mut prj.pages[page_i], before, &split);
+    ops::cleanup_wires(&mut prj.pages[page_i]);
+    let added = split.into_iter().map(|(id, (_, added))| (id, added)).collect();
+    place_lines(&mut prj.pages[page_i], before, &added);
 }
 
 const DIRS: [(i32, i32); 4] = [(1, 0), (-1, 0), (0, 1), (0, -1)];
