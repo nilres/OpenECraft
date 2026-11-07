@@ -309,3 +309,25 @@ fn text_files_have_no_byte_order_mark() {
     let marked: Vec<String> = files.iter().filter(|f| std::fs::read(f).is_ok_and(|b| b.starts_with(b"\xef\xbb\xbf"))).map(|f| display(f)).collect();
     assert!(marked.is_empty(), "remove the byte order mark of {marked:?}");
 }
+
+/// `mkdir` fails on a directory of the checkout, and a shared one would add its files to
+/// the release.
+#[test]
+fn the_release_workflow_collects_files_in_a_new_directory() {
+    let workflow = std::fs::read_to_string(root().join(".github/workflows/release.yml")).unwrap();
+    let dirs: Vec<&str> = workflow.lines().filter_map(|l| l.trim().strip_prefix("mkdir ")).collect();
+    assert!(!dirs.is_empty(), "no mkdir found in the release workflow");
+    for dir in dirs {
+        assert!(!root().join(dir).exists(), "{dir} is a directory of the checkout");
+    }
+}
+
+/// `snap pack` refuses licenses missing in the list of snapd, which fails the release.
+#[test]
+fn the_snap_names_only_licenses_snapd_knows() {
+    let manifest = std::fs::read_to_string(root().join("installer/linux/snap/snapcraft.yaml")).unwrap();
+    let license = manifest.lines().find(|l| l.starts_with("license:")).expect("license of the snap");
+    for unknown in ["Ubuntu-font-1.0", "Bitstream-Vera"] {
+        assert!(!license.contains(unknown), "snapd does not know {unknown}");
+    }
+}

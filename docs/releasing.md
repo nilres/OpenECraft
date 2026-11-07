@@ -81,7 +81,9 @@ stops the installer build. Add the license only if it allows distribution in clo
 and open programs alike, like the ones listed. The package metadata (`project_license`
 of the metainfo file, `license` of the snap, `License` of the RPM spec, the deb
 `copyright` in `build.sh`) name the licenses of the programs as a whole; keep them in
-step when a font or a library under another kind of license is added.
+step when a font or a library under another kind of license is added. The snap names
+only licenses that snapd knows (`spdx/licenses.go` of snapd): `snap pack` refuses
+`Ubuntu-font-1.0` and `Bitstream-Vera`, so those two are left out there.
 
 ## Code signing
 

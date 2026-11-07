@@ -3,7 +3,9 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
-## [0.1.0] - unreleased
+## [0.1.1] - unreleased
+
+## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,
 with a command line, an MCP server, a parts server and a project server.

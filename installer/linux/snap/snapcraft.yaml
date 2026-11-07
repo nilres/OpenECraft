@@ -11,7 +11,9 @@ description: |
 
   Commands: openecraft (editor), openecraft.parts-manager, openecraft.cli (command
   line and MCP server for AI agents), openecraft.parts-server, openecraft.project-server.
-license: '(MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0 AND Bitstream-Vera AND MPL-2.0'
+# Only licenses of snapd's list (spdx/licenses.go): `snap pack` refuses Ubuntu-font-1.0
+# and Bitstream-Vera of the fonts, their texts are in THIRD-PARTY-LICENSES.html.
+license: '(MIT OR Apache-2.0) AND OFL-1.1 AND MPL-2.0'
 website: https://github.com/nilres/OpenECraft
 source-code: https://github.com/nilres/OpenECraft
 issues: https://github.com/nilres/OpenECraft/issues
