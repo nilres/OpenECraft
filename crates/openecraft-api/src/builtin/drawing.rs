@@ -33,6 +33,12 @@ impl Plugin for Drawing {
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
+        name: "import_ema",
+        help: tr_const!("Imports 2D EPLAN window macro variants into the project symbol library"),
+        params: &[param("xml", Kind::Str, tr_const!("EPLAN window macro XML"))],
+        run: import_ema,
+    },
+    Spec {
         name: "list_symbols",
         help: tr_const!("Lists the symbols that can be placed, with their connection points relative to the insertion point"),
         params: &[
@@ -64,6 +70,7 @@ pub static COMMANDS: &[Spec] = &[
         params: &[
             PAGE,
             param("part", Kind::Str, tr_const!("Part number, e.g. GEN.LMP-GN-24")),
+            optional("variant", Kind::Str, tr_const!("Imported EPLAN symbol key")),
             param("x", Kind::Num, tr_const!("X position in mm")),
             param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
             ROTATION,
@@ -498,8 +505,19 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     apply_symbol_params(&mut sym, a)?;
     let out = symbol_json(&symbols, &sym);
+    let plc_tag = def.plc_channel.as_ref().map(|_| sym.tag.clone());
     prj.pages[i].symbols.push(sym);
+    if let Some(tag) = plc_tag {
+        parts::link_unassigned_plc_parts(prj, &parts::PartsDb { parts: Vec::new() }, Some(&tag));
+    }
     Ok(out)
+}
+
+fn import_ema(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let variants = openecraft_core::symlib::ema::decode_with_library(a.req("xml"), &prj.symbols)?;
+    let added = openecraft_core::symlib::ema::import_project(prj, &variants);
+    let windows: Vec<_> = variants.iter().filter_map(openecraft_core::macros::eplan_window).collect();
+    Ok(json!({"added":added,"variants":variants,"macros":windows}))
 }
 
 fn place_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -507,19 +525,57 @@ fn place_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let db = parts::PartsDb::default();
     let part = parts::lookup(prj, None, &number).or_else(|| parts::catalog().iter().find(|p| p.number == number)).cloned();
     let part = part.ok_or_else(|| tr_fmt!("Unknown part: {}", number))?;
-    let (symbol, pins) = openecraft_core::unplaced::part_symbol(&part).ok_or_else(|| tr_fmt!("Part {} has no function with a symbol", number))?;
     let i = editable(prj, a.req("page"))?;
-    let def = symbol_def(prj, symbol)?;
     let pos = on_page(prj, i, num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default())?;
-    let mut sym = ops::new_symbol(prj, i, &PlaceCtx::default(), &def, pos, rotation(a)?.unwrap_or(0), a.flag("mirror"));
-    if let Some(tag) = a.str("tag").filter(|t| !t.trim().is_empty()) {
+    let key = a.str("variant");
+    let rot = rotation(a)?.unwrap_or(0);
+    let tag = a.str("tag").filter(|t| !t.trim().is_empty());
+    if let Some(tag) = tag {
         ops::check_tag(tag)?;
+    }
+    let selected = part.eplan_variants.iter().find(|v| match key {
+        Some(key) => v["symbol"]["key"].as_str() == Some(key),
+        None => v["function_type"].as_u64() == Some(1),
+    });
+    if let Some(value) = selected.filter(|v| v["devices"].is_array()) {
+        let variant = serde::Deserialize::deserialize(value.as_ref()).map_err(|e: serde_json::Error| e.to_string())?;
+        if let Some(mut m) = openecraft_core::macros::eplan_window(&variant) {
+            if tag.is_some() {
+                return Err(tr("A multi-device window carries its own device tags").into());
+            }
+            let mirror = a.flag("mirror");
+            for s in &mut m.clip.symbols {
+                s.pos = s.pos.transform(rot, mirror);
+                s.rot = rot;
+                s.mirror = mirror;
+            }
+            openecraft_core::symlib::ema::install(&mut prj.symbols, &[variant]);
+            let ids = openecraft_core::macro_boxes::place(prj, i, &m, &Default::default(), pos);
+            return Ok(json!({"part":number,"ids":ids,"macro":m.name}));
+        }
+    }
+    let choice = openecraft_core::symlib::ema::part_symbol_for_card(prj, &part, key, tag);
+    let (symbol, pins) = choice
+        .or_else(|| if key.is_none() { openecraft_core::unplaced::part_symbol(&part) } else { None })
+        .ok_or_else(|| tr_fmt!("Part {} has no function with a symbol", number))?;
+    let def = symbol_def(prj, symbol)?;
+    if let (Some(tag), Some(c)) = (tag, &def.plc_channel) {
+        if prj.channel_placed(tag, &c.family, c.input, c.index) {
+            return Err(tr_fmt!("{} is already placed on PLC card {}", c.designation, tag));
+        }
+    }
+    let mut ctx = PlaceCtx { plc_article: Some(number.clone()), ..Default::default() };
+    if let Some(tag) = tag {
+        ctx.last_plc.insert(def.key.into(), tag.into());
+    }
+    let mut sym = ops::new_symbol(prj, i, &ctx, &def, pos, rot, a.flag("mirror"));
+    if let Some(tag) = tag {
         sym.tag = tag.into();
     }
     if pins.len() == sym.pins.len() {
         sym.pins = pins;
     }
-    parts::add_to_device(prj, &db, &sym.tag, &number, 1);
+    parts::assign_placed_part(prj, &db, &sym.sym, &sym.tag, &number);
     let mut out = symbol_json(&prj.symbol_table(), &sym);
     out["part"] = json!(number);
     prj.pages[i].symbols.push(sym);
