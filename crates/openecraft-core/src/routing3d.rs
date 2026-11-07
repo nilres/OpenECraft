@@ -506,13 +506,46 @@ pub fn entries(prj: &Project, ei: usize) -> Vec<&PanelItem> {
     v
 }
 
-/// The cable glands the cables routed so far go through (by item id).
+/// The cable glands the cables routed so far go through (by item id), and where they
+/// go through them.
 #[derive(Default)]
 struct Glands {
     taken: HashMap<u64, usize>,
+    through: HashMap<u64, Vec<V3>>,
 }
 
 impl Glands {
+    /// Where a cable of `diameter` goes through the entry `g` (`at`: a point of its
+    /// face by the offset from its middle): a cable gland at its middle; a cable entry
+    /// flange at a place of its own along its membrane (part data `Cutout`, the places
+    /// the cable's thickness and a centimetre apart), the free one nearest to where the
+    /// cable heads (`near`), the middle where none is free.
+    fn slot(&mut self, prj: &Project, g: &PanelItem, diameter: f32, at: impl Fn([f32; 2]) -> V3, near: V3) -> V3 {
+        let middle = at([0.0; 2]);
+        let cutout = (part_subgroup(prj, &g.part) == Some("Cable entry")).then(|| panel::part_by_number(prj, &g.part).and_then(|p| p.tech_value("Cutout")).map(panel::busbars::numbers)).flatten().filter(|c| c.len() >= 2);
+        let through = self.through.entry(g.id).or_default();
+        let q = match cutout {
+            Some(c) => {
+                let (long, axis) = if c[0] >= c[1] { (c[0], 0) } else { (c[1], 1) };
+                let pitch = diameter + 10.0;
+                let n = ((long - diameter) / 2.0 / pitch).floor().max(0.0) as i32;
+                let free = |q: &V3| through.iter().all(|t| dist(*t, *q) >= pitch - 1.0);
+                (-n..=n)
+                    .map(|k| {
+                        let mut off = [0.0; 2];
+                        off[axis] = k as f32 * pitch;
+                        at(off)
+                    })
+                    .filter(free)
+                    .min_by(|a, b| manhattan(*a, near).total_cmp(&manhattan(*b, near)))
+                    .unwrap_or(middle)
+            }
+            None => middle,
+        };
+        through.push(q);
+        q
+    }
+
     /// The gland for a cable of `diameter` among the `candidates` (each with how far it
     /// is from where the cable heads), taken: the nearest one whose clamping range the
     /// diameter fits and no cable took before, otherwise the nearest that fits,
@@ -616,13 +649,17 @@ fn pins_at(prj: &Project, cores: &[&Connection], tag: &str) -> Vec<PinRef> {
 }
 
 /// Where a cable or tube from the field enters the enclosure: a cable gland
-/// ([`Glands::pick`]), otherwise the middle of the bottom.
+/// ([`Glands::pick`], through it where [`Glands::slot`] says), otherwise the middle of
+/// the bottom.
 fn entry_end(prj: &Project, pos: &[V3], ei: usize, near: V3, glands: &mut Glands, diameter: f32) -> End {
     let e = &prj.layout.enclosures[ei];
-    let at = |it: &PanelItem, depth: f32| add(panel::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, depth]), pos[ei]);
-    let candidates: Vec<(&PanelItem, f32)> = entries(prj, ei).into_iter().map(|g| (g, manhattan(at(g, 5.0), near))).collect();
+    let at = |it: &PanelItem, off: [f32; 2], depth: f32| add(panel::face_point(e, it.face, [it.x + it.w / 2.0 + off[0], it.y + it.h / 2.0 + off[1], depth]), pos[ei]);
+    let candidates: Vec<(&PanelItem, f32)> = entries(prj, ei).into_iter().map(|g| (g, manhattan(at(g, [0.0; 2], 5.0), near))).collect();
     match glands.pick(prj, candidates, diameter) {
-        Some(g) => End { tag: g.part.clone(), enclosure: Some(ei), point: Some(at(g, 5.0)), item: Some(g.id), leave: Some(norm(sub(at(g, 6.0), at(g, 5.0)))), ..Default::default() },
+        Some(g) => {
+            let point = glands.slot(prj, g, diameter, |off| at(g, off, 5.0), near);
+            End { tag: g.part.clone(), enclosure: Some(ei), point: Some(point), item: Some(g.id), leave: Some(norm(sub(at(g, [0.0; 2], 6.0), at(g, [0.0; 2], 5.0)))), ..Default::default() }
+        }
         None => {
             let q = [e.width / 2.0, e.height - e.wall() - 5.0, (PLATE_Z + e.depth) / 2.0];
             End { tag: tr("Bottom").to_string(), enclosure: Some(ei), point: Some(add(q, pos[ei])), item: None, leave: Some([0.0, -1.0, 0.0]), ..Default::default() }
@@ -1020,6 +1057,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         if let (Some(ei), Some(id)) = (end.enclosure, end.item) {
             if entries(prj, ei).iter().any(|g| g.id == id) {
                 *glands.taken.entry(id).or_default() += 1;
+                glands.through.entry(id).or_default().extend(end.point);
             }
         }
     }

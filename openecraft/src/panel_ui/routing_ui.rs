@@ -67,7 +67,7 @@ pub(super) type Fan = (usize, Vec<[f32; 3]>, Vec<Vec<[f32; 3]>>);
 /// ends a little before the device: the points of `way` it keeps and those it goes on
 /// with to its end, then the way of each core from there, a smooth curve leaving the
 /// cable's end in its direction and coming into the connection point against the
-/// direction the core leaves it in. Where the cable ends closer behind a corner than
+/// direction the core leaves it in, within the box of its two ends. Where the cable ends closer behind a corner than
 /// its bend there (`bends`: the bend radius of each point of `way`) reaches, it ends on
 /// that bend: its last points lie along it, the cores go on round it.
 pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3])], cable: f32, core: f32) -> Fan {
@@ -158,7 +158,10 @@ pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3]
         .map(|(&(q, exit), off)| {
             let start = add(split, off);
             let pull = 0.45 * dist(start, q);
-            let (b, c) = (add(start, scale(dir, pull)), add(q, scale(norm(exit), pull)));
+            // Within the box of its two ends: a core never swings out past them (out of
+            // a corner before the split, into the bars its terminal sits on).
+            let within = |p: [f32; 3]| [0, 1, 2].map(|k| p[k].clamp(start[k].min(q[k]), start[k].max(q[k])));
+            let (b, c) = (within(add(start, scale(dir, pull))), within(add(q, scale(norm(exit), pull))));
             (0..=CORE_STEPS)
                 .map(|i| {
                     let t = i as f32 / CORE_STEPS as f32;

@@ -321,6 +321,30 @@ fn cables_take_the_glands_that_fit_them() {
 }
 
 #[test]
+fn cables_through_one_entry_flange_go_through_it_side_by_side() {
+    let mut prj = Project::default();
+    prj.parts.push(crate::parts::Part { number: "FLANGE".into(), subgroup: "Cable entry".into(), tech_data: "Cutout: 220 x 90".into(), ..Default::default() });
+    let flange = PanelItem { id: 1, kind: ItemKind::Accessory, part: "FLANGE".into(), w: 240.0, h: 110.0, ..Default::default() };
+    let gland = PanelItem { id: 2, kind: ItemKind::Accessory, part: "GEN.GLAND-M32".into(), ..Default::default() };
+    let at = |off: [f32; 2]| [off[0], off[1], 0.0];
+    let mut glands = Glands::default();
+    // Places 35 mm apart along the membrane for 25 mm cables: the first takes the one
+    // nearest to where it heads, the second heading the same way the next one; the
+    // ones beyond the cutout are none. A cable gland takes its middle.
+    let heading = [-200.0, 0.0, 0.0];
+    assert_eq!(glands.slot(&prj, &flange, 25.0, at, heading), [-70.0, 0.0, 0.0]);
+    assert_eq!(glands.slot(&prj, &flange, 25.0, at, heading), [-35.0, 0.0, 0.0]);
+    assert_eq!(glands.slot(&prj, &flange, 25.0, at, [200.0, 0.0, 0.0]), [70.0, 0.0, 0.0]);
+    assert_eq!(glands.slot(&prj, &gland, 20.0, at, heading), [0.0; 3]);
+    assert_eq!(glands.slot(&prj, &gland, 20.0, at, heading), [0.0; 3]);
+    // The two supply cables of example 14 (56 mm thick) come up through one flange side
+    // by side, each below its terminals.
+    let an = Analysis::checked(&crate::sample::example("industrial_main_distribution").unwrap());
+    let through = |key: &str| an.routing.item(key).unwrap().ends.iter().find(|e| e.tag.contains("+HAK")).and_then(|e| e.point).unwrap();
+    assert!(through("=GRID-W1")[0] < 100.0 && through("=GRID-W2")[0] > 200.0, "{:?} {:?}", through("=GRID-W1"), through("=GRID-W2"));
+}
+
+#[test]
 fn duct_runs_take_the_part_of_a_segment_inside_the_duct() {
     let mut e = crate::panel::Enclosure::default();
     e.items.push(PanelItem { id: 3, kind: ItemKind::Duct, x: 100.0, y: 100.0, w: 40.0, h: 400.0, d: 60.0, ..Default::default() });

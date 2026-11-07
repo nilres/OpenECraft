@@ -76,6 +76,31 @@ fn the_holders_carry_the_bars() {
 }
 
 #[test]
+fn the_holders_stand_beside_the_devices_in_the_bars() {
+    let prj = example("industrial_main_distribution").unwrap();
+    let id = bar_with(&prj, "=MS+HV1-T1");
+    let e = prj.layout.enclosures.iter().find(|e| e.items.iter().any(|i| i.id == id)).unwrap();
+    let bar = e.items.iter().find(|i| i.id == id).unwrap();
+    // The transformers of the metering sit in the bars (the strips and the terminals of
+    // the supply cables reach across the whole system: mounted on it, over the
+    // holders) on a drilling position: that holder moves beside them, the others stay
+    // at theirs.
+    let on_bars: Vec<&PanelItem> = e.items.iter().filter(|d| d.kind == ItemKind::Device && d.x < bar.x + bar.w && bar.x < d.x + d.w && d.y < bar.y + bar.h && bar.y < d.y + d.h && d.h < bar.h - 1.0).collect();
+    assert_eq!(on_bars.iter().map(|d| d.tag.as_str()).collect::<Vec<_>>(), ["=MS+HV1-T1"]);
+    let holes = crate::production::line_positions(bar.w, crate::production::BUSBAR_HOLES.0, crate::production::BUSBAR_HOLES.1);
+    let places = holder_places(&prj, bar);
+    assert_eq!(places.len(), holes.len(), "{places:?} for {holes:?}");
+    assert!(places.iter().zip(&holes).any(|(a, t)| (a - t).abs() > 10.0) && places.iter().zip(&holes).any(|(a, t)| (a - t).abs() < 0.01), "{places:?} for {holes:?}");
+    for a in &places {
+        let (x0, x1) = (bar.x + a - HOLDER_WIDTH / 2.0, bar.x + a + HOLDER_WIDTH / 2.0);
+        assert!(on_bars.iter().all(|d| x1 <= d.x + 0.01 || x0 >= d.x + d.w - 0.01), "a holder at {x0}..{x1} under {:?}", on_bars.iter().map(|d| (&d.tag, d.x, d.x + d.w)).collect::<Vec<_>>());
+    }
+    // Drawn there, and nowhere else.
+    let xs: Vec<f32> = mesh(&prj, bar).iter().filter(|t| t.1 == Some(HOLDER)).flat_map(|t| t.0.iter().map(|v| v[0])).collect();
+    assert!(xs.iter().all(|x| places.iter().any(|a| (x - (bar.x + a)).abs() <= HOLDER_WIDTH / 2.0 + 0.01)), "{xs:?}");
+}
+
+#[test]
 fn each_supply_terminal_sits_on_its_bar() {
     let prj = example("industrial_main_distribution").unwrap();
     let id = bar_with(&prj, "=GRID+HV1-X01");

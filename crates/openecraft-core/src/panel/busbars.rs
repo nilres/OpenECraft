@@ -140,7 +140,7 @@ pub const HOLDER: [u8; 3] = [70, 72, 78];
 /// The bars of a busbar system for the 3D view: each bar on edge at the front of the
 /// system, at their centres like in the 2D view (part data `Bars`, `Centre distance`,
 /// `Bar: Cu 30 x 10 mm`), on insulating holders behind them that reach just across the
-/// outer bars.
+/// outer bars ([`holder_places`]).
 pub fn mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
     let section = super::part_by_number(prj, &it.part).and_then(|p| p.tech_value("Bar")).map(numbers).unwrap_or_default();
     let (big, small) = match section.as_slice() {
@@ -165,12 +165,50 @@ pub fn mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
     }
     let (first, last) = (centres.first().copied().unwrap_or(0.0), centres.last().copied().unwrap_or(across));
     let (c0, c1) = ((first - 2.0 * thick).max(0.0), (last + 2.0 * thick).min(across));
-    let holders = ((along / 400.0).ceil() as usize).max(1) + 1;
-    for k in 0..holders {
-        let a = (along - 30.0) * k as f32 / (holders - 1) as f32;
-        out.extend(block(a, a + 30.0, c0, c1, 0.0, it.d - depth).into_iter().map(|t| (t, Some(HOLDER))));
+    for a in holder_places(prj, it) {
+        out.extend(block(a - HOLDER_WIDTH / 2.0, a + HOLDER_WIDTH / 2.0, c0, c1, 0.0, it.d - depth).into_iter().map(|t| (t, Some(HOLDER))));
     }
     out
+}
+
+/// How wide a holder of a busbar system is drawn, along the bars (mm).
+pub const HOLDER_WIDTH: f32 = 30.0;
+
+/// Where the holders of a busbar system stand along it (their middles, mm from its
+/// start): at the drilling positions of the plate ([`crate::production::BUSBAR_HOLES`]),
+/// each moved off the devices that sit in the bars (the transformers the bars pass
+/// through: devices that do not reach across the whole system, unlike the strips and
+/// terminals mounted on it) into the free stretch nearest to it; none where no stretch
+/// is free.
+pub fn holder_places(prj: &Project, it: &PanelItem) -> Vec<f32> {
+    let horizontal = super::bars_along_x(&prj.parts, it);
+    let along = if horizontal { it.w } else { it.h };
+    let e = prj.layout.enclosures.iter().find(|e| e.items.iter().any(|i| i.id == it.id));
+    let in_bars = |d: &&PanelItem| {
+        d.kind == ItemKind::Device && d.face == it.face && d.x < it.x + it.w && it.x < d.x + d.w && d.y < it.y + it.h && it.y < d.y + d.h && if horizontal { d.h < it.h - 1.0 } else { d.w < it.w - 1.0 }
+    };
+    let mut busy: Vec<(f32, f32)> = e.map(|e| e.items.iter().filter(in_bars).map(|d| if horizontal { (d.x - it.x, d.x + d.w - it.x) } else { (d.y - it.y, d.y + d.h - it.y) }).collect()).unwrap_or_default();
+    busy.sort_by(|a, b| a.0.total_cmp(&b.0));
+    let mut free: Vec<(f32, f32)> = Vec::new();
+    let mut at = 0.0;
+    for (b0, b1) in busy {
+        if b0 - at >= HOLDER_WIDTH {
+            free.push((at, b0));
+        }
+        at = at.max(b1);
+    }
+    if along - at >= HOLDER_WIDTH {
+        free.push((at, along));
+    }
+    let half = HOLDER_WIDTH / 2.0;
+    let mut places: Vec<f32> = Vec::new();
+    for t in crate::production::line_positions(along, crate::production::BUSBAR_HOLES.0, crate::production::BUSBAR_HOLES.1) {
+        let Some(a) = free.iter().map(|(f0, f1)| t.clamp(f0 + half, f1 - half)).min_by(|a, b| (a - t).abs().total_cmp(&(b - t).abs())) else { continue };
+        if places.iter().all(|p| (p - a).abs() >= HOLDER_WIDTH) {
+            places.push(a);
+        }
+    }
+    places
 }
 
 /// A terminal strip placed across the bars of a busbar system (the busbar terminals of
@@ -244,7 +282,7 @@ pub fn place_on_bars(prj: &mut Project, enc: usize, tag: &str, bar: u64, at: f32
 }
 
 /// The numbers in a text (`Cu 30 x 10 mm` → 30, 10).
-fn numbers(text: &str) -> Vec<f32> {
+pub(crate) fn numbers(text: &str) -> Vec<f32> {
     text.split(|c: char| !(c.is_ascii_digit() || c == '.')).filter_map(|s| s.parse().ok()).collect()
 }
 

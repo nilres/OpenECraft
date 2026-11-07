@@ -38,8 +38,10 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   (the same part at the same height, their ends no more than 100 mm apart) are one
   system, joined through the side. The bars lie at the part's `Centre distance` (evenly
   spaced without one) along the system, however short a section of it is; the 3D view
-  draws every bar on its own, on insulating holders reaching just
-  across them. A busbar terminal strip placed across the bars (`busbars::place_on_bars`)
+  draws every bar on its own, on insulating holders reaching just across them, at the
+  drilling positions of the plate but beside the devices that sit in the bars (the
+  transformers the bars pass through), never through them
+  (`busbars::holder_places`). A busbar terminal strip placed across the bars (`busbars::place_on_bars`)
   puts each terminal upright on its own bar, one strip per supply cable. Each bar
   is one conductor: the check `busbars` reports a system whose devices join more
   conductors than it has bars (part data `Bars`) as a short circuit, such as a PEN
@@ -301,7 +303,10 @@ up to, the view lifts one over the other more sharply than their bend radius all
 
 A cable between two cabinets that stand in no common room is routed in each of them to
 one of its cable entries (a note tells that the way between them is not part of the
-layout); every cable takes an entry of its own where there are enough that fit it.
+layout); every cable takes an entry of its own where there are enough that fit it. The
+cables through one cable entry flange go through its membrane (part data `Cutout`)
+side by side, each at a place of its own, the cable's thickness and a centimetre
+apart: the free place nearest to where the cable heads, the middle where none is free.
 
 Between rooms, a route passes the wall penetrations that join them, through as few
 walls as possible: through the first room to a penetration, through the rooms between,

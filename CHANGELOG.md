@@ -35,6 +35,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   conductors lie nearest to them and the outer ones go round them. Two wires that
   still cross right at a device are lifted over each other more sharply than their
   radius allows.
+- **Cable entry flanges:** the cables through one flange go through its membrane side
+  by side, each at a place of its own (the cable's thickness and a centimetre apart,
+  the free place nearest to where the cable heads) instead of all through its middle;
+  the cores of a cable part within the box of their ends, so that a core no longer
+  swings out past its terminal into the bars it sits on.
+- **Busbar holders in the 3D view:** drawn at the drilling positions of the plate (a
+  holder 25 mm from each end and every 250 mm) instead of every 400 mm, and moved
+  beside the devices that sit in the bars (current transformers the bars pass through)
+  instead of through them.
 - **3D routing, ends:** a route comes into an end against the direction it leaves it
   in also where the way out is a single cell (it could run past the connection point
   and back into it); where the way straight out of an end is barred and the route

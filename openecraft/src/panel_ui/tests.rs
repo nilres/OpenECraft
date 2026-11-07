@@ -884,6 +884,25 @@ fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
     assert_eq!((keep, tail), (2, vec![[500.0, 290.0, 0.0]]));
 }
 
+#[test]
+fn the_cores_of_a_cable_stay_between_their_ends() {
+    // A cable up along y (z 150 in front of the plate) that turns towards the plate
+    // right before its three terminals, 185 apart up the plate at z 90: the cores part
+    // in the turn, heading at the plate, and must not swing on past the terminals
+    // (into the bars they sit on) before they come up to them.
+    let way = [[0.0, 0.0, 150.0], [0.0, 700.0, 150.0], [0.0, 705.0, 90.0], [0.0, 890.0, 90.0]];
+    let at = [([0.0, 705.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 890.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 1075.0, 90.0], [0.0, -1.0, 0.0])];
+    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0);
+    let end = tail[tail.len() - 1];
+    for (core, (q, _)) in cores.iter().zip(&at) {
+        let start = core[0];
+        assert!(vec3::dist(start, end) < 30.0, "{start:?} off the cable's end {end:?}");
+        for p in core {
+            assert!(p[2] >= start[2].min(q[2]) - 0.01 && p[2] <= start[2].max(q[2]) + 0.01 && p[1] <= q[1] + 0.01, "{core:?}");
+        }
+    }
+}
+
 /// Where the segments `a`–`b` and `c`–`d` come nearest to each other: the points on both.
 fn segment_nearest(a: [f32; 3], b: [f32; 3], c: [f32; 3], d: [f32; 3]) -> ([f32; 3], [f32; 3]) {
     use openecraft_core::parts::vec3::{add, dot, sub};
@@ -1179,10 +1198,11 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                         }
                         // Two tubes ending at one connection point converge there, and
                         // the cores of a cable part at its end item where the wires start
-                        // (told by where the two come nearest to each other).
+                        // (told by where the two come nearest to each other); not for
+                        // long: two cables through one entry lie side by side.
                         let (near, other) = segment_nearest(way[j], way[j + 1], way2[j2], way2[j2 + 1]);
                         let ends_at = |w: &[V3]| [w.first(), w.last()].into_iter().flatten().copied().collect::<Vec<V3>>();
-                        let shared = ends_at(way).iter().any(|e| ends_at(way2).iter().any(|f| vec3::dist(*e, *f) < r + r2 + 1.0) && vec3::dist(*e, near) < 60.0 * (r + r2));
+                        let shared = ends_at(way).iter().any(|e| ends_at(way2).iter().any(|f| vec3::dist(*e, *f) < r + r2 + 1.0) && vec3::dist(*e, near) < (60.0 * (r + r2)).min(300.0));
                         // At a device both end at they converge as far as the routing lets
                         // them: three of its cells from the device at least.
                         let (_, _, _, ends2) = &tubes[i2];
