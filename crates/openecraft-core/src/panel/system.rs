@@ -122,10 +122,10 @@ pub fn wall_box(e: &Enclosure, face: Face) -> (V3, V3) {
     match face {
         Face::Left => ([0.0, 0.0, 0.0], [t, h, d]),
         Face::Right => ([w - t, 0.0, 0.0], [w, h, d]),
-        Face::Roof => ([0.0, 0.0, 0.0], [w, t, d]),
+        Face::Roof | Face::RoofTop => ([0.0, 0.0, 0.0], [w, t, d]),
         Face::Bottom => ([0.0, h - t, 0.0], [w, h, d]),
         Face::Door => ([0.0, 0.0, d], [w, h, d + t]),
-        Face::Rear | Face::Plate | Face::Wall(_) | Face::Inner(..) => ([0.0, 0.0, 0.0], [w, h, t]),
+        Face::Rear | Face::Plate | Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => ([0.0, 0.0, 0.0], [w, h, t]),
     }
 }
 

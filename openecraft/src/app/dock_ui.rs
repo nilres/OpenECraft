@@ -300,6 +300,7 @@ impl App {
             T::Macros => self.macros_pane(ui),
             T::Harnesses => self.harness_pane(ui),
             T::FieldWiring => self.field_pane(ui),
+            T::Buildings => self.buildings_pane(ui),
             T::Revisions => self.revisions_pane(ui),
             T::Compare => self.compare_pane(ui),
             T::ChangeRequests => self.requests_pane(ui),

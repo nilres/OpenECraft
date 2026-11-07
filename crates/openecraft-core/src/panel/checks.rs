@@ -282,8 +282,8 @@ pub fn heights(e: &Enclosure, it: &PanelItem) -> Option<(f32, f32)> {
     let base = floor_height(e)?;
     let top = match it.face {
         Face::Plate => e.height - PLATE_MARGIN,
-        Face::Door | Face::Left | Face::Right | Face::Rear | Face::Wall(_) | Face::Inner(..) => e.height,
-        Face::Roof | Face::Bottom => return None,
+        Face::Door | Face::Left | Face::Right | Face::Rear | Face::Wall(_) | Face::Inner(..) | Face::Outside(_) => e.height,
+        Face::Roof | Face::Bottom | Face::RoofTop => return None,
     };
     Some((base + top - it.y - it.h, base + top - it.y))
 }
