@@ -9,6 +9,25 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   or get a jog where they cannot. Connection definition points and cable definition
   lines stay on their wires.
 
+- Use the DIN-rail clip position from imported mounting data when placing cabinet devices. Matching Beckhoff terminal housings and the EK1100 use the documented 63.8 mm rail datum.
+
+- Snap cabinet devices flush to a nearby neighbor on the mounting plate while placing or moving a single module. The placement preview shows the snapped position.
+
+- Show imported EPLAN artwork on cabinet fronts. An assigned front view takes priority, followed by a mounting representation and then a fitted overview illustration.
+
+- Place successive imported PLC channels from a single card entry in the Insert center; when a card fills up, placement continues on a new device.
+
+- Link PLC channels placed from the symbol library to their uniquely matching catalog article, so the physical card appears once in the cabinet's devices-to-place list. Opening an existing project or reimporting the article also recovers unassigned cards.
+
+- Import Beckhoff analog signal and reference terminals as one PLC channel with a symbolic name such as U1, keeping both wire endpoints and the source data type.
+
+- Import single-channel EPLAN digital I/O representations as native PLC points with editable addresses, physical terminal designations, and one parts-list entry per card.
+
+- Reuse unchanged symbol drawings during part dragging and schematic rendering, including large imported EPLAN libraries.
+
+- Import embedded 2D graphics from EPLAN window macros into the project symbol library. EDZ parts carry their converted variants and per-variant diagnostics through the parts server.
+- Import additional SPECIAL contact forms and verified reciprocal potential transfers. Report unresolved source objects and their terminal designations per representation. Explicit reimport preserves placed wire endpoints and instance pin labels when compatible contacts are added.
+
 ## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,

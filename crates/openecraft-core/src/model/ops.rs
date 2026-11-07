@@ -8,6 +8,9 @@ use serde::{Deserialize, Serialize};
 #[serde(default)]
 pub struct Clip {
     pub magic: String,
+    /// Explicit insertion point for imported window macros.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub anchor: Option<P>,
     /// Structure of the page the clip was copied from.
     pub function: String,
     #[serde(skip_serializing_if = "String::is_empty")]
@@ -16,6 +19,9 @@ pub struct Clip {
     #[serde(skip_serializing_if = "String::is_empty")]
     pub product: String,
     pub symbols: Vec<SymbolInst>,
+    /// Definitions needed when this clip is inserted into another project.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub symbol_defs: super::symlib::SymbolList,
     pub wires: Vec<Wire>,
     pub texts: Vec<TextItem>,
     pub shapes: Vec<Shape>,

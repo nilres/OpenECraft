@@ -166,6 +166,7 @@ fn part_of(el: &Element, variant: Option<&Element>) -> Option<Part> {
     }
     let mut part = Part { number, ..Default::default() };
     part.type_number = text("P_ARTICLE_TYPENR");
+    part.eplan_macro = text("P_ARTICLE_GROUPSYMBOLMACRO");
     part.order_number = text("P_ARTICLE_ORDERNR");
     part.manufacturer = text("P_ARTICLE_MANUFACTURER");
     part.supplier = text("P_ARTICLE_SUPPLIER");
@@ -187,6 +188,8 @@ fn part_of(el: &Element, variant: Option<&Element>) -> Option<Part> {
     part.certificates = text("P_ARTICLE_CERTIFICATE");
     // A number is one of EPLAN's mounting sites, 0 none.
     part.mounting = text("P_ARTICLE_MOUNTINGSITE");
+    part.mounting_data.rail.center_offset = num(get("P_ARTICLE_MIDDLEOFFSET"));
+    part.mounting_data.rail.clip_on = num(get("P_ARTICLE_SNAPHEIGHT"));
     part.accessory = matches!(text("P_ARTICLE_ISACCESSORY").to_ascii_lowercase().as_str(), "1" | "true" | "yes");
     if part.mounting == "0" {
         part.mounting.clear();
@@ -316,6 +319,8 @@ pub fn to_eplan_xml(parts: &[Part]) -> String {
             ("P_ARTICLE_QUANTITYUNIT", p.quantity_unit.clone()),
             ("P_ARTICLE_WIDTH", n(p.width)),
             ("P_ARTICLE_HEIGHT", n(p.height)),
+            ("P_ARTICLE_MIDDLEOFFSET", n(p.effective_rail_mount().center_offset)),
+            ("P_ARTICLE_SNAPHEIGHT", n(p.mounting_data.rail.clip_on)),
             ("P_ARTICLE_DEPTH", n(p.depth)),
             ("P_ARTICLE_WEIGHT", n(p.weight)),
             ("P_ARTICLE_VOLTAGE", p.voltage.clone()),

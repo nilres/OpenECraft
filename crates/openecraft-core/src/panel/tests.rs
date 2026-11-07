@@ -11,6 +11,76 @@ fn duct(id: u64, x: f32, y: f32, w: f32, h: f32) -> PanelItem {
 }
 
 #[test]
+fn devices_snap_flush_on_either_side_only_when_the_space_is_free() {
+    let mut e = Enclosure::default();
+    e.items.push(device(1, 40., 40., 12., 100., 0., 68.));
+    let mut right = device(2, 55., 42., 12., 100., 0., 68.);
+    snap_device(&e, &mut right);
+    assert_eq!((right.x, right.y), (52., 40.));
+    let mut left = device(3, 25., 38., 12., 100., 0., 68.);
+    snap_device(&e, &mut left);
+    assert_eq!((left.x, left.y), (28., 40.));
+    let mut far = device(4, 58., 40., 12., 100., 0., 68.);
+    snap_device(&e, &mut far);
+    assert_eq!(far.x, 58.);
+    e.items.push(right);
+    let mut blocked = device(5, 53., 40., 12., 100., 0., 68.);
+    snap_device(&e, &mut blocked);
+    assert_eq!(blocked.x, 53.);
+    let mut another_row = device(6, 54., 60., 12., 100., 0., 68.);
+    snap_device(&e, &mut another_row);
+    assert_eq!((another_row.x, another_row.y), (54., 60.));
+}
+
+#[test]
+fn rail_datum_controls_preview_snap_and_old_project_recovery() {
+    let mut prj = Project::new_default();
+    let card = crate::parts::Part {
+        number: "BEC.EL3174".into(),
+        width: 12.,
+        height: 100.,
+        depth: 68.,
+        eplan_variants: vec![
+            serde_json::json!({"function_type":4,"symbol":{"pins":(1..=16).map(|n| serde_json::json!({"label":n.to_string()})).collect::<Vec<_>>()}})
+                .into(),
+        ],
+        ..Default::default()
+    };
+    let db = crate::parts::PartsDb { parts: vec![card] };
+    for tag in ["-A1", "-A2"] {
+        crate::parts::add_to_device(&mut prj, &db, tag, "BEC.EL3174", 1);
+    }
+    let mut e = Enclosure::default();
+    e.items.push(PanelItem { kind: ItemKind::Rail, id: 100, x: 0., y: 82.5, w: 200., h: 35., d: 7.5, ..Default::default() });
+    prj.layout.enclosures.push(e);
+    let ghost = device_preview(&prj, &prj.layout.enclosures[0], "-A1", p(40., 50.), Face::Plate);
+    let id = place_device(&mut prj, 0, "-A1", p(40., 50.)).unwrap();
+    let placed = prj.layout.enclosures[0].item(id).unwrap();
+    assert_eq!((placed.x, placed.y, placed.z), (ghost.x, ghost.y, ghost.z));
+    assert!((placed.y - 36.2).abs() < 0.001);
+    assert_eq!(placed.z, 7.5);
+    let next = place_device(&mut prj, 0, "-A2", p(54., 52.)).unwrap();
+    let other = prj.layout.enclosures[0].item(next).unwrap();
+    assert_eq!((other.x, other.rail_anchor().y), (52., 100.));
+    let legacy = prj.layout.enclosures[0].items.iter_mut().find(|s| s.id == id).unwrap();
+    legacy.y = 50.;
+    legacy.rail_mount = Default::default();
+    let reopened = Project::from_json(&prj.to_json()).unwrap();
+    assert!((reopened.layout.enclosures[0].item(id).unwrap().y - 36.2).abs() < 0.001);
+    let e = &mut prj.layout.enclosures[0];
+    for clip in [7.5, 10.0] {
+        let item = e.items.iter_mut().find(|i| i.id == next).unwrap();
+        item.rail_mount.clip_on = clip;
+        assert!(placement::arrange_on_rail(e, 100, &[next], 1.));
+        let item = e.item(next).unwrap();
+        assert!(item.seated_on(e.item(100).unwrap()));
+        assert!((item.y - 36.2).abs() < 0.001);
+        assert_eq!(item.z, 7.5 - clip);
+        assert_eq!(Fastening::resolve(item, None), Fastening::Clip);
+    }
+}
+
+#[test]
 fn device_size_from_parts() {
     let prj = demo_project();
     // Contactor 45 x 74 x 73 plus front auxiliary block (40 deep)

@@ -163,7 +163,7 @@ impl PageScan {
 /// it or the symbol definitions changed (incremental analysis of large projects).
 #[derive(Clone, Default)]
 pub struct Scans {
-    symbols: u64,
+    symbols: crate::model::symlib::SymbolList,
     /// Page id -> (fingerprint of the page, scan)
     pages: HashMap<u64, (u64, Arc<PageScan>)>,
     /// Pages scanned by the last build (not taken from earlier builds).
@@ -283,9 +283,8 @@ impl Netlist {
     /// Like [`Netlist::build`], scanning only the pages that changed since the last
     /// build with the same `scans` (and the same `bridge_terminals`).
     pub fn build_with(prj: &Project, bridge_terminals: bool, scans: &mut Scans) -> Netlist {
-        let symbols = crate::symlib::fingerprint(&prj.symbols);
-        if scans.symbols != symbols {
-            *scans = Scans { symbols, ..Scans::default() };
+        if !scans.symbols.same_snapshot(&prj.symbols) {
+            *scans = Scans { symbols: prj.symbols.clone(), ..Scans::default() };
         }
         scans.scanned = 0;
         let pages: Vec<(usize, Arc<PageScan>)> =
@@ -541,7 +540,7 @@ pub fn pin_designation(prj: &Project, pin: PinRef) -> String {
         Func::Potential => format!("={}", s.label),
         Func::Interruption => format!("»{}", s.label),
         Func::Terminal | Func::Plug(_) => format!("{}:{}", s.tag, s.label),
-        Func::Plc => format!("{}:{}", s.tag, s.label),
+        Func::Plc if def.plc_channel.is_none() => format!("{}:{}", s.tag, s.label),
         _ => {
             let pl = s.pins.get(pin.pin).map(String::as_str).unwrap_or("");
             if pl.is_empty() {

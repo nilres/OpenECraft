@@ -221,6 +221,24 @@ impl PanelItem {
         p(self.x + self.w / 2.0, self.y + self.h / 2.0)
     }
 
+    pub fn rail_anchor(&self) -> P {
+        self.center() + p(0., self.rail_mount.center_offset)
+    }
+
+    pub fn seated_on(&self, rail: &PanelItem) -> bool {
+        let anchor = self.rail_anchor();
+        self.kind == ItemKind::Device && rail.kind == ItemKind::Rail && rail.horizontal()
+            && self.face == rail.face && (rail.x..=rail.x + rail.w).contains(&anchor.x)
+            && (anchor.y - rail.center().y).abs() < 0.01
+            && (self.z + self.rail_mount.clip_on - rail.z - rail.d).abs() < 0.01
+    }
+
+    fn seat_on(&mut self, rail: &PanelItem) {
+        self.y = rail.center().y - self.h / 2.0 - self.rail_mount.center_offset;
+        self.z = rail.z + rail.d - self.rail_mount.clip_on;
+        self.seated_on_rail = true;
+    }
+
     pub fn horizontal(&self) -> bool {
         self.w >= self.h
     }
@@ -637,7 +655,7 @@ pub fn change_profile(prj: &mut Project, ei: usize, id: u64, part: &str) -> bool
     it.d = pd;
     it.part = part.into();
     if old.kind == ItemKind::Rail {
-        let on_rail: Vec<usize> = (0..e.items.len()).filter(|&j| e.items[j].kind == ItemKind::Device && e.items[j].face == old.face && old.rect().contains(e.items[j].center())).collect();
+        let on_rail: Vec<usize> = (0..e.items.len()).filter(|&j| e.items[j].seated_on(&old)).collect();
         for j in on_rail {
             let mut dev = e.items[j].clone();
             snap_to_rail(e, &mut dev);
@@ -1002,6 +1020,16 @@ pub fn place_device(prj: &mut Project, enc: usize, tag: &str, at: P) -> Option<u
 
 /// Places a device on the mounting plate or the door.
 pub fn place_device_on(prj: &mut Project, enc: usize, tag: &str, at: P, face: Face) -> Option<u64> {
+    let e = prj.layout.enclosures.get(enc)?;
+    let mut item = device_preview(prj, e, tag, at, face);
+    let id = prj.new_id();
+    item.id = id;
+    prj.layout.enclosures[enc].items.push(item);
+    Some(id)
+}
+
+/// The mounted position and dimensions used both for the placement ghost and the final drop.
+pub fn device_preview(prj: &Project, e: &Enclosure, tag: &str, at: P, face: Face) -> PanelItem {
     let size = device_size(prj, tag).unwrap_or(DeviceSize {
         tag: tag.into(),
         part: String::new(),
@@ -1010,9 +1038,9 @@ pub fn place_device_on(prj: &mut Project, enc: usize, tag: &str, at: P, face: Fa
         d: DEFAULT_DEVICE.2,
         from_part: false,
     });
-    let id = prj.new_id();
+    let rail_mount = part_by_number(prj, &size.part).map(|p| p.effective_rail_mount()).unwrap_or_default();
     let mut item = PanelItem {
-        id,
+        rail_mount,
         kind: ItemKind::Device,
         tag: tag.into(),
         part: size.part,
@@ -1024,11 +1052,9 @@ pub fn place_device_on(prj: &mut Project, enc: usize, tag: &str, at: P, face: Fa
         face,
         ..Default::default()
     };
-    let e = prj.layout.enclosures.get_mut(enc)?;
     stand_on_floor(e, &mut item);
-    snap_to_rail(e, &mut item);
-    e.items.push(item);
-    Some(id)
+    snap_device(e, &mut item);
+    item
 }
 
 /// Technical value of a part as a number ("Outside: 25" → 25).
@@ -1075,31 +1101,85 @@ pub fn place_accessory(prj: &mut Project, enc: usize, part: &str, face: Face, at
 /// Devices whose centre lies on a horizontal rail are centred on it and mounted on
 /// top of it; otherwise they sit directly on the plate (or a wall of a room).
 pub fn snap_to_rail(e: &Enclosure, item: &mut PanelItem) {
+    item.seated_on_rail = false;
     if rack::snap_into_rack(e, item) {
         return;
     }
     if item.kind != ItemKind::Device || (item.face != Face::Plate && !e.is_room()) {
         return;
     }
-    let c = item.center();
-    let rail = e.items.iter().find(|r| {
-        r.kind == ItemKind::Rail
-            && r.face == item.face
-            && r.horizontal()
-            && c.x >= r.x
-            && c.x <= r.x + r.w
-            && (c.y - r.center().y).abs() <= item.h / 2.0
-    });
+    let c = item.rail_anchor();
+    let rail = e
+        .items
+        .iter()
+        .filter(|r| {
+            r.kind == ItemKind::Rail
+                && r.face == item.face
+                && r.horizontal()
+                && c.x >= r.x
+                && c.x <= r.x + r.w
+                && (c.y - r.center().y).abs() <= item.h / 2.0
+        })
+        .min_by(|a, b| (c.y - a.center().y).abs().total_cmp(&(c.y - b.center().y).abs()));
     match rail {
-        Some(r) => {
-            item.y = r.center().y - item.h / 2.0;
-            item.z = r.z + r.d;
-        }
+        Some(r) => item.seat_on(r),
         // Over a busbar system: mounted onto its bars.
         None => {
             let on = busbars(e, item).next().map_or(0.0, |b| b.z + b.d);
             item.z = on;
         }
+    }
+}
+
+/// Snap a single device to its support and to a nearby free side of another
+/// device in the same row. Use the same result for the ghost, placement and drag.
+pub fn snap_device(e: &Enclosure, item: &mut PanelItem) {
+    snap_to_rail(e, item);
+    if item.kind != ItemKind::Device || item.face != Face::Plate || is_rack(e) || e.is_room() {
+        return;
+    }
+    const REACH: f32 = 4.0;
+    let mut best = None;
+    let mut distance = f32::INFINITY;
+    let area = mounting_area(e, item.face);
+    let support_z = item.z + item.rail_mount.clip_on;
+    let neighbors = || {
+        e.items
+            .iter()
+            .filter(|n| n.kind == ItemKind::Device && n.id != item.id && n.face == item.face && (n.z + n.rail_mount.clip_on - support_z).abs() < 0.01)
+    };
+    for n in neighbors() {
+        let y = n.rail_anchor().y - item.h / 2. - item.rail_mount.center_offset;
+        if (y - item.y).abs() > REACH {
+            continue;
+        }
+        for x in [n.x - item.w, n.x + n.w] {
+            let dx = x - item.x;
+            let dy = y - item.y;
+            let d = dx * dx + dy * dy;
+            if dx.abs() > REACH || d >= distance {
+                continue;
+            }
+            let mut candidate = item.clone();
+            candidate.x = x;
+            candidate.y = y;
+            snap_to_rail(e, &mut candidate);
+            let rect = candidate.rect();
+            if (candidate.y - y).abs() > 0.01 || (candidate.z - item.z).abs() > 0.01 || !area.contains_rect(&rect) {
+                continue;
+            }
+            if neighbors().any(|other| {
+                let r = other.rect();
+                rect.min.x < r.max.x - 0.01 && r.min.x < rect.max.x - 0.01 && rect.min.y < r.max.y - 0.01 && r.min.y < rect.max.y - 0.01
+            }) {
+                continue;
+            }
+            best = Some(candidate);
+            distance = d;
+        }
+    }
+    if let Some(candidate) = best {
+        *item = candidate;
     }
 }
 
