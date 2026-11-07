@@ -34,16 +34,24 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   its cores part from there in smooth curves, each into its connection point from the
   side its wires leave it; through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
-  through one gland side by side. Without cable ducts a wire leaves its connection point
-  in the direction it points, runs round the rows of devices (25 mm clear of them) and
-  never behind a device; a short jumper stays at the height of its connection points.
+  through one gland side by side. In a cabinet without cable ducts on its mounting
+  plate the wires are laid by the 3D routing (see below), from connection point to
+  connection point.
 - Copper **busbar systems** (bars drawn, metres and holders in the BOM) and rectangular
   or round **cutouts** in the mounting plate. A device placed over a busbar system is
   mounted onto its bars; devices on the same busbar system are connected by the bars,
-  not by wires. The bars lie at the part's `Centre distance` (evenly spaced without
-  one); the 3D view draws every bar on its own, on insulating holders reaching just
-  across them. A busbar terminal strip placed across the bars (`busbars::place_on_bars`)
-  puts each terminal upright on its own bar, one strip per supply cable. Each bar
+  not by wires. The busbar systems of bayed enclosures that meet at their common side
+  (the same part at the same height, their ends no more than 100 mm apart) are one
+  system, joined through the side. The bars lie at the part's `Centre distance` (evenly
+  spaced without one) along the system, however short a section of it is; the 3D view
+  draws every bar on its own, on insulating holders reaching just across them, at the
+  drilling positions of the plate but beside the devices that sit in the bars (the
+  transformers the bars pass through), never through them
+  (`busbars::holder_places`). A busbar terminal strip placed across the bars (`busbars::place_on_bars`)
+  puts each terminal upright on its own bar, one strip per supply cable; in the 3D
+  routing each of those terminals is a solid of its own (a wire to one goes round the
+  others), and terminals closer than 30 mm along the bars are entered from the front.
+  Each bar
   is one conductor: the check `busbars` reports a system whose devices join more
   conductors than it has bars (part data `Bars`) as a short circuit, such as a PEN
   terminal on the bars of the phases or the feeders behind a coupling switch on the
@@ -261,18 +269,22 @@ switch disconnector `HAG.LT153`, `HAG.UE31SS400` under the current transformers)
 the device takes the module's footprint and depth and the part sits in front of it.
 The example `pv_transformer_metering` builds such a cabinet field by field after a
 real one: connection point zone and surge arrester, consumption metering with NH1
-isolation, transformer module, voltage paths and load break switch, the NA
-protection, the generation metering below the coupling switch and the busbars of the
-feeders; lifting eyes in the roof, the cables of the consumers through the roof, the
-supply from below; the two meter cabinets of the distribution system operator with
-their test terminal blocks beside it. Cable entry flanges (part subgroup `Cable
-entry`, a membrane taking several large cables, such as the univers FZ402) are ways in
-for the 3D routing like cable glands. The example `industrial_main_distribution`
-bays two univers cabinets into the main distribution of an industrial plant: the
-aluminium supply cables on busbar terminals and through an entry flange in the
-bottom, a 185 mm busbar system through both cabinets with vertical NH fuse switch
-disconnector strips, the current transformers clipped in behind the measured ones,
-the coupling switches of the NA protection below.
+isolation on the busbar, transformer module above it, voltage paths and load break
+switch (power flows upwards through the field: the conductors run from one device
+straight into the next), the NA protection, the generation metering below the coupling
+switch and the busbars of the feeders; lifting eyes in the roof, the cables of the
+consumers through the bottom, the supply from below; the two meter cabinets of the
+distribution system operator with their test terminal blocks beside it. Cable entry
+flanges (part subgroup `Cable entry`, a membrane taking several large cables, such as
+the univers FZ402) are ways in for the 3D routing like cable glands. The example
+`industrial_main_distribution` bays two univers cabinets, open to each other, into the
+main distribution of an industrial plant: the aluminium supply cables on busbar
+terminals and through an entry flange in the bottom, the transformers of the metering
+in the supply busbar, a 185 mm busbar system through both cabinets with vertical NH
+fuse switch disconnector strips, the current transformers clipped in behind the
+measured ones, the coupling switches of the NA protection fed from busbar terminals.
+Neither has cable ducts: every conductor in them is laid by the 3D routing, so the
+high currents run over the bars and only what can be bent with its radius is a wire.
 
 ## 19-inch racks
 
@@ -304,6 +316,56 @@ segregation of the classes power, control, signal and fluid, routing reservation
 radii, cable bundles with their branches, shield terminations (shield clamp rail,
 pigtail) and their checks; routes can be frozen for production and stay as they are
 until they become invalid.
+
+The wires of a cabinet with cable ducts on its mounting plate run through the ducts
+(layout setting *Route wires in 3D* routes them like cables instead). In a cabinet
+without cable ducts, and in a room, there is nothing to lay them in: every wire is
+routed in 3D from connection point to connection point. It leaves each connection
+point straight on in the direction the point gives, as far as its bend radius, and
+comes into the other one against the direction that one gives, never past it and back
+(through
+the box of its own device where the point lies inside it, such as the terminals of a
+switch on its module, never through another device that stands right before the
+point), keeps half its thickness clear of everything, bends with its
+radius only, and keeps apart from every other route; routes come together only where
+they come up to the same device, and there they lie side by side: a route never runs
+across another one it comes together with (it may only on its own way out of a
+connection point, or where it comes up to the device the other one ends at, and goes
+round it there too where that costs little). The straight way out of every connection
+point and cable entry stays free until its own route is laid, so that no other route
+runs across a terminal, and only a route out of a connection point right beside it
+shares it. Of the wires of a cabinet as thick as each other the shortest is routed
+first: between two devices the inner conductors lie nearest to them, the outer ones go
+round them. A wire that finds no such way is not drawn: it is reported as an error
+(*… cannot be routed: no way that keeps half its thickness clear of everything and
+bends with its radius of … mm*). The usual causes are a conductor too thick for the
+room between its ends (a busbar cross-section drawn as a wire: mount the devices on a
+busbar system instead), connection points that face away from each other, or a
+terminal strip right below a switch. The messages pane jumps to a connection point of
+the wire or cable, and the 3D view shows a red note with the reason at each of its ends
+in place of the route.
+
+The routing works on a grid (25 mm in a cabinet, 50 mm in a room); a connection point
+lies where it lies. The 3D view draws a route straight out of its connection point:
+its first corner lies on that line, the stretch after it leans over or comes back onto
+the grid on a slanting piece, short stretches in between are moved along. Where the
+way straight out of a point is barred and the route starts from the cell beside it, it
+needs room there for an S-bend of its radius onto that line (or to lean over to it),
+otherwise it is not routed. Ways that run together lie side by side on lanes; a way
+changes from lane to lane on a slanting piece of a stretch, never in a step at a
+corner, and a jog too short for the bends of its two corners is drawn as an S-curve of
+the bend radius. A cable ends on the bend of the corner before its cores part where it
+is cut there; the cores part within the box of their ends, and a core to a terminal
+behind others of its strip (one above the other on the bars) passes them in front of
+the device. Where two routes still cross each other right at a device they both come
+up to, the view lifts one over the other more sharply than their bend radius allows.
+
+A cable between two cabinets that stand in no common room is routed in each of them to
+one of its cable entries (a note tells that the way between them is not part of the
+layout); every cable takes an entry of its own where there are enough that fit it. The
+cables through one cable entry flange go through its membrane (part data `Cutout`)
+side by side, each at a place of its own, the cable's thickness and a centimetre
+apart: the free place nearest to where the cable heads, the middle where none is free.
 
 Between rooms, a route passes the wall penetrations, shafts and links between
 buildings that join them, through as few of them as possible: through the first room

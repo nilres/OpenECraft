@@ -509,8 +509,20 @@ fn industrial_main_distribution_measures_every_feeder() {
     assert!(hv1.items.iter().any(|i| i.part == "HAG.FZ402" && i.face == crate::panel::Face::Bottom));
     let bom = an.report(&prj, ReportKind::BillOfMaterials).unwrap();
     let qty = |part: &str| bom.rows.iter().find(|r| r[3] == part).map(|r| r[1].clone()).unwrap_or_default();
-    assert_eq!((qty("HAG.LVZW150").as_str(), qty("LOX.100652").as_str(), qty("HAG.KS30C").as_str()), ("12", "4", "10"));
-    for part in ["HAG.LVSG1CPX", "HAG.LVSG3CPX", "HAG.LVSG00RPX", "HAG.HNW401DR", "HAG.HXW042H", "HAG.CDB640E", "JAN.52.16.202", "HAG.LVZVA-V"] {
+    // Busbar terminals: three per supply cable, two for their PEN, two for N and PE of
+    // the charging station, three per coupling switch.
+    assert_eq!((qty("HAG.LVZW150").as_str(), qty("LOX.100652").as_str(), qty("HAG.KS30C").as_str()), ("12", "4", "16"));
+    for part in ["HAG.LVSG1CPX", "HAG.LVSG3CPX", "HAG.LVSG00RPX", "HAG.HNT161GR", "HAG.HXT041H", "HAG.CDB640E", "JAN.52.16.202", "HAG.LVZVA-V"] {
         assert!(!qty(part).is_empty(), "{part} in the bill of materials");
     }
+    // The distribution busbar runs through both cabinets: one system, the strip that
+    // isolates it in +HV1 and the feeders in +HV2 are connected by its bars.
+    let pos = crate::panel::positions(&prj.layout);
+    let system = |tag: &str| crate::panel::locate(&prj, tag).and_then(|(ei, it)| crate::panel::busbar_system(&prj.layout, &pos, ei, it));
+    assert!(system("=MS+HV1-Q10").is_some() && system("=MS+HV1-Q10") == system("=DIST+HV2-Q21"));
+    assert_ne!(system("=MS+HV1-F10"), system("=MS+HV1-Q10"));
+    // The only conductors as thick as that that are no bars: between the two strips.
+    let thick: Vec<&crate::panel::RoutedWire> = an.wiring.iter().filter(|w| crate::harness::outer_diameter(&w.cross_section) > 15.0).collect();
+    assert_eq!(thick.len(), 3, "{:?}", thick.iter().map(|w| (&w.from, &w.to)).collect::<Vec<_>>());
+    assert!(thick.iter().all(|w| w.from.starts_with("=MS+HV1-F10") && w.to.starts_with("=MS+HV1-Q10")));
 }

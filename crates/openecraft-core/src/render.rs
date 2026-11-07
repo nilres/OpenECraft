@@ -1127,6 +1127,7 @@ pub fn draw_enclosure(
                 d.rect(a, b, 0.0, Ink::Plate, true);
                 d.rect(a, b, 0.2, ink, false);
                 // The bars across the system (at their centre distance).
+                let horizontal = crate::panel::bars_along_x(parts, it);
                 let across = if horizontal { it.h } else { it.w };
                 let centres = crate::production::bar_centres(parts, &it.part, across);
                 let pitch = centres.windows(2).map(|w| w[1] - w[0]).fold(across, f32::min);

@@ -194,6 +194,10 @@ pub struct Way<'a> {
     pub steps: usize,
     /// Laid as it is (the cores of a cable where they part): the others keep off it.
     pub held: bool,
+    /// The direction it leaves its first and its last point in, where known (a
+    /// connection point, a cable gland; none: zero): it runs straight out of them. As
+    /// long as the cells of the routing there are wide.
+    pub leave: [V3; 2],
 }
 
 /// The ways drawn apart from those they run together with, with the bend radius of each
@@ -209,8 +213,8 @@ pub struct Way<'a> {
 /// `obstacles` (boxes) a way did not run through before and in the `insides` (boxes,
 /// the cabinets) it ran in: centred on the group, otherwise all to one side of it (or a
 /// corner), otherwise (along a surface) in one stack away from it; where none of them
-/// does, the group stays as it is. At its corners a way steps from lane to lane; its
-/// ends stay where they are, the stretches at its ends run from their lanes to them.
+/// does, the group stays as it is. Its ends stay where they are; from them, and from
+/// lane to lane at its corners, a way runs on slanting pieces ([`lay`]).
 pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Channel], insides: &[(V3, V3)]) -> Vec<(Vec<V3>, Vec<f32>)> {
     let stretches: Vec<(usize, &[V3])> = ways.iter().enumerate().filter(|(_, w)| !w.held).map(|(i, w)| (i, w.points)).collect();
     let (_, chains) = chains(&stretches, cell);
@@ -240,18 +244,7 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
             across.entry(line_of(&(chain[j].min(chain[j + 1]), chain[j].max(chain[j + 1])))).or_insert((u, v));
         }
     }
-    // The straight stretches along an axis: way, stretch, axis, from, to, the point. The
-    // stretches at the ends (from the connection points) too: they run from their lanes
-    // to the end points.
-    let mut runs: Vec<Run> = Vec::new();
-    for (i, way) in ways.iter().enumerate().filter(|(_, w)| !w.held) {
-        for (j, s) in way.points.windows(2).enumerate() {
-            let moving: Vec<usize> = (0..3).filter(|&k| (s[0][k] - s[1][k]).abs() > 1e-3).collect();
-            if let [axis] = moving[..] {
-                runs.push((i, j, axis, s[0][axis].min(s[1][axis]), s[0][axis].max(s[1][axis]), s[0]));
-            }
-        }
-    }
+    let runs = runs_of(ways);
     let groups = groups(ways, &runs);
     // The move of each run onto its lane, across its axis.
     let mut moves: HashMap<(usize, usize), V3> = HashMap::new();
@@ -374,7 +367,7 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
                 return (way.points.to_vec(), way.radii.to_vec());
             }
             let offsets: Vec<V3> = (0..way.points.len().saturating_sub(1)).map(|j| moves.get(&(i, j)).copied().unwrap_or([0.0; 3])).collect();
-            let (points, radii) = lay(way.points, way.radii, &offsets);
+            let (points, radii) = lay(way.points, way.radii, &offsets, way.leave);
             in_ducts(points, radii, way.diameter / 2.0, channels)
         })
         .collect()
@@ -453,27 +446,31 @@ fn in_ducts(points: Vec<V3>, radii: Vec<f32>, half: f32, channels: &[Channel]) -
                         let from_inside = if leaving { dist(cross, p) } else { dist(cross, q) };
                         let beyond_len = (half + 1.0 + radius).max(2.0 * radius - from_inside);
                         let beyond = scale(along, (beyond_len / len).min(0.5));
-                        if !in_band(height(cross)) {
-                            // Without room for that corner between the wall and the corner
-                            // outside, the corner outside itself is held at the height.
-                            let room = beyond_len + from_inside < len;
-                            if leaving {
-                                let h = height(p).clamp(lo, hi);
-                                if let Some(last) = out.last_mut() {
-                                    last.0 = at_height(c, p, h);
-                                }
-                                if room {
-                                    out.push((at_height(c, add(cross, beyond), h), rp));
-                                } else {
-                                    q_held = Some(at_height(c, q, h));
-                                }
+                        // In its band there: the way may still leave or enter another
+                        // channel on this stretch (from one duct into the next at a
+                        // junction), whose band it must keep as well.
+                        if in_band(height(cross)) {
+                            continue;
+                        }
+                        // Without room for that corner between the wall and the corner
+                        // outside, the corner outside itself is held at the height.
+                        let room = beyond_len + from_inside < len;
+                        if leaving {
+                            let h = height(p).clamp(lo, hi);
+                            if let Some(last) = out.last_mut() {
+                                last.0 = at_height(c, p, h);
+                            }
+                            if room {
+                                out.push((at_height(c, add(cross, beyond), h), rp));
                             } else {
-                                let h = height(q).clamp(lo, hi);
-                                if room {
-                                    out.push((at_height(c, sub(cross, beyond), h), r));
-                                } else if let Some(last) = out.last_mut() {
-                                    last.0 = at_height(c, p, h);
-                                }
+                                q_held = Some(at_height(c, q, h));
+                            }
+                        } else {
+                            let h = height(q).clamp(lo, hi);
+                            if room {
+                                out.push((at_height(c, sub(cross, beyond), h), r));
+                            } else if let Some(last) = out.last_mut() {
+                                last.0 = at_height(c, p, h);
                             }
                         }
                         break;
@@ -498,7 +495,6 @@ fn in_ducts(points: Vec<V3>, radii: Vec<f32>, half: f32, channels: &[Channel]) -
     out.into_iter().unzip()
 }
 
-
 /// Least distance between two segments (for the tests).
 #[cfg(test)]
 pub(super) fn segment_gap_for_test(a: V3, b: V3, c: V3, d: V3) -> f32 {
@@ -508,6 +504,32 @@ pub(super) fn segment_gap_for_test(a: V3, b: V3, c: V3, d: V3) -> f32 {
 
 /// A straight stretch of a way along an axis: way, stretch, axis, from, to, a point.
 type Run = (usize, usize, usize, f32, f32, V3);
+
+/// The straight stretches along an axis: way, stretch, axis, from, to, the point. The
+/// stretches at the ends (from the connection points) too: they run from their lanes
+/// to the end points, but where the way leaves its end in a direction of its own
+/// (out of a nozzle, a terminal, a gland): there it stays in line with it.
+fn runs_of(ways: &[Way]) -> Vec<Run> {
+    let mut runs: Vec<Run> = Vec::new();
+    for (i, way) in ways.iter().enumerate().filter(|(_, w)| !w.held) {
+        let n = way.points.len();
+        // (The way out is the stretch at the end, with the one after it where it only
+        // leads from the end point onto the grid of the routing.)
+        let short = |j: usize| dist(way.points[j], way.points[j + 1]) <= DOGLEG && (0..3).filter(|&k| (way.points[j][k] - way.points[j + 1][k]).abs() > 1e-3).count() > 1;
+        let out = usize::from(way.leave[0] != [0.0; 3]) + usize::from(way.leave[0] != [0.0; 3] && n > 2 && short(0));
+        let back = usize::from(way.leave[1] != [0.0; 3]) + usize::from(way.leave[1] != [0.0; 3] && n > 2 && short(n - 2));
+        for (j, s) in way.points.windows(2).enumerate() {
+            if j < out || j + 1 + back >= n {
+                continue;
+            }
+            let moving: Vec<usize> = (0..3).filter(|&k| (s[0][k] - s[1][k]).abs() > 1e-3).collect();
+            if let [axis] = moving[..] {
+                runs.push((i, j, axis, s[0][axis].min(s[1][axis]), s[0][axis].max(s[1][axis]), s[0]));
+            }
+        }
+    }
+    runs
+}
 
 /// Groups of runs that lie inside each other (joined, through the ones in between).
 fn groups(ways: &[Way], runs: &[Run]) -> BTreeMap<usize, Vec<usize>> {
@@ -586,33 +608,264 @@ fn scale(a: V3, f: f32) -> V3 {
     [a[0] * f, a[1] * f, a[2] * f]
 }
 
-/// The polyline with its straight stretches moved by `offsets` (one per stretch), the
-/// ends kept: the corner where the moved stretches meet (it slides along the first one),
-/// where they do not meet the corner on the first one nearest to the second and a step
-/// across onto the second.
-fn lay(points: &[V3], radii: &[f32], offsets: &[V3]) -> (Vec<V3>, Vec<f32>) {
+/// Longest slanting stretch (mm) that only joins the stretches before and after it
+/// ([`lay`]): from an end point onto the grid of the routing (the cells of a room are
+/// 50 mm wide), through a cable gland beside the others in it.
+const DOGLEG: f32 = 90.0;
+
+/// Length (per mm aside) of the slanting piece on which a way comes onto its lane
+/// ([`lay`]): slanting by less than a corner must turn to be bent round
+/// ([`crate::parts::vec3::fillet`]).
+const LANE_CHANGE: f32 = 5.5;
+
+/// How far a stretch may lean over (aside per length) between a corner moved with an
+/// end point and one that is not ([`lay`]).
+const TILT: f32 = 0.25;
+
+/// Corners of a way moved with an end point at most ([`lay`]).
+const MOVED: usize = 3;
+
+/// How far (mm) beside the line of its first stretch an end point may lie to run
+/// straight out along a line of its own ([`lay`]), where the cells of the routing are
+/// not known: within them along that stretch.
+const IN_LINE: f32 = 12.5;
+
+/// The polyline with its straight stretches moved by `offsets` (one per stretch) onto
+/// their lanes, the ends kept. A corner lies where the moved stretches meet, where they
+/// do not meet (moved differently across both) midway between them: never a step at
+/// the corner. From there a way comes onto its lane on a slanting piece
+/// ([`LANE_CHANGE`] times as long as it lies aside, behind the bend of the corner); a
+/// stretch too short for that runs straight from corner to corner, the stretches at the
+/// ends from the end point to their corner (which lies on the lane of the stretch after
+/// it).
+///
+/// A short slanting stretch ([`DOGLEG`]) has no lane: it joins the stretches before and
+/// after it where they end. At an end (from the connection point onto the grid of the
+/// routing) it is no stretch of its own: the way leaves its end straight on in
+/// the direction `leave` (for the first and the last point; unknown: zero, then that of
+/// the stretch after it where that runs on the same way). Its corners from there are
+/// moved with it, as the end point lies beside the grid, up to the first stretch that
+/// takes that up (it comes back onto its lane or leans over by no more than [`TILT`],
+/// the bends of its corners fit on it; [`MOVED`] corners at most); between the corners
+/// moved with one end and those moved with the other the longest stretch runs straight. Where the end point lies
+/// further aside (the way straight out of it was barred, [`IN_LINE`]), the way comes
+/// onto the line of its first stretch as the routing left room for ([`onto_lane`]).
+#[allow(clippy::too_many_lines)]
+fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2]) -> (Vec<V3>, Vec<f32>) {
     let n = points.len();
-    if n < 3 || offsets.iter().all(|o| *o == [0.0; 3]) {
+    let radius = |j: usize| radii.get(j).copied().unwrap_or(0.0);
+    let dir = |j: usize| norm(sub(points[j + 1], points[j]));
+    let axial = |j: usize| (0..3).filter(|&k| (points[j][k] - points[j + 1][k]).abs() > 1e-3).count() == 1;
+    if n < 3 {
         return (points.to_vec(), radii.to_vec());
     }
-    let mut out: Vec<(V3, f32)> = vec![(points[0], 0.0)];
-    for j in 1..n - 1 {
-        let (o1, o2) = (offsets[j - 1], offsets[j]);
-        let (d1, d2) = (norm(sub(points[j], points[j - 1])), norm(sub(points[j + 1], points[j])));
-        let r = radii.get(j).copied().unwrap_or(0.0);
-        let w = cross(d1, d2);
-        let along = if dot(w, w) > 1e-6 { -dot(cross(sub(o1, o2), d2), w) / dot(w, w) } else { dot(sub(o2, o1), d1) };
-        let corner = add(add(points[j], o1), scale(d1, along));
-        let to_second = sub(add(points[j], o2), corner);
-        let step = sub(to_second, scale(d2, dot(to_second, d2)));
-        out.push((corner, r));
-        if dot(step, step) >= 0.25 {
-            out.push((add(corner, step), r));
+    // The slanting stretch `end` at an end (`next`: the stretch after it, where there is
+    // one): the direction the way runs along it (`out`: where known), and whether the
+    // stretch after it is part of that way out of the end.
+    let lead = |end: usize, next: Option<usize>, out: V3| -> Option<(V3, bool)> {
+        if axial(end) || dist(points[end], points[end + 1]) > DOGLEG {
+            return None;
+        }
+        let on = |j: usize, d: V3| axial(j) && dot(dir(j), d) > 0.99;
+        if dot(out, out) > 0.25 {
+            let out = norm(out);
+            return (dot(dir(end), out) > 0.0).then(|| (out, next.is_some_and(|j| on(j, out))));
+        }
+        let j = next.filter(|&j| axial(j) && dot(dir(end), dir(j)) > 0.5 && dist(points[end], points[end + 1]) <= dist(points[j], points[j + 1]))?;
+        Some((dir(j), true))
+    };
+    let start = lead(0, (n > 2).then_some(1), leave[0]);
+    let first = usize::from(start.is_some_and(|l| l.1));
+    let end = lead(n - 2, (n >= 4 + first).then(|| n - 3), scale(leave[1], -1.0));
+    let last = n - 1 - usize::from(end.is_some_and(|l| l.1));
+    if start.is_none() && end.is_none() && offsets.iter().all(|o| *o == [0.0; 3]) {
+        return (points.to_vec(), radii.to_vec());
+    }
+    // The lanes of the stretches: a point on each and its direction; the way out of an
+    // end that is no stretch of its own along the cells of the routing.
+    let mut lanes: Vec<(V3, V3)> = (first..last).map(|j| (add(points[j], offsets.get(j).copied().unwrap_or([0.0; 3])), dir(j))).collect();
+    if let Some((d, false)) = start {
+        lanes[0] = (points[1], d);
+    }
+    if let (Some((d, false)), Some(lane)) = (end, lanes.last_mut()) {
+        *lane = (points[n - 2], d);
+    }
+    let m = lanes.len();
+    let bend = radii.iter().copied().fold(0.0, f32::max);
+    // The stretches that only join their neighbours.
+    let mut loose: Vec<bool> = (first..last).map(|j| !axial(j) && dist(points[j], points[j + 1]) <= DOGLEG).collect();
+    if matches!(start, Some((_, false))) {
+        loose[0] = false;
+    }
+    if matches!(end, Some((_, false))) {
+        loose[m - 1] = false;
+    }
+    let moved = |j: usize| offsets.get(j).copied().unwrap_or([0.0; 3]);
+    // The nodes: the end points and the corners between the lanes.
+    let mut nodes: Vec<(V3, f32)> = vec![(points[0], 0.0)];
+    for (k, pair) in lanes.windows(2).enumerate() {
+        let ((a, d1), (b, d2)) = (pair[0], pair[1]);
+        if loose[k] || loose[k + 1] {
+            let j = first + k + 1;
+            nodes.push((add(points[j], add(moved(j - 1), moved(j))), radius(j)));
+            continue;
+        }
+        let (w, along) = (sub(a, b), dot(d1, d2));
+        let free = 1.0 - along * along;
+        // (Lanes running on nearly the same way meet where the second one begins.)
+        let (p, q) = if free > 0.03 {
+            let (d, e) = (dot(d1, w), dot(d2, w));
+            let (t, s) = ((along * e - d) / free, (e - along * d) / free);
+            (add(a, scale(d1, t)), add(b, scale(d2, s)))
+        } else {
+            (add(a, scale(d1, dot(sub(b, a), d1))), b)
+        };
+        // The stretch at an end takes all of it: the corner lies on the other lane.
+        let share = match (k == 0, k + 2 == m) {
+            (true, false) => 1.0,
+            (false, true) => 0.0,
+            _ => 0.5,
+        };
+        nodes.push((add(scale(p, 1.0 - share), scale(q, share)), radius(first + k + 1)));
+    }
+    nodes.push((points[n - 1], 0.0));
+    // How far the end points lie beside the lines out of them.
+    let beside = |at: V3, (a, d): (V3, V3)| {
+        let off = sub(at, a);
+        sub(off, scale(d, dot(off, d)))
+    };
+    // (In the cells along that line: no further beside it than half a cell.)
+    let in_line = |v: V3, out: V3| {
+        let half = if dot(out, out) > 0.25 { dot(out, out).sqrt() / 2.0 } else { IN_LINE };
+        dot(v, v) > 0.0025 && v.iter().all(|c| c.abs() <= half + 0.01)
+    };
+    let from_start = start.map(|_| beside(points[0], lanes[0])).filter(|v| in_line(*v, leave[0]));
+    let from_end = end.map(|_| beside(points[n - 1], lanes[m - 1])).filter(|v| in_line(*v, leave[1]));
+    // How far the bend of each node reaches along its stretches: its radius at a right
+    // angle, nothing where the way runs straight on.
+    let reach: Vec<f32> = (0..=m)
+        .map(|k| {
+            if k == 0 || k == m {
+                return 0.0;
+            }
+            let turn = dot(lanes[k - 1].1, lanes[k].1).clamp(-1.0, 1.0).acos();
+            nodes[k].1 * (turn / 2.0).tan().min(1.0)
+        })
+        .collect();
+    // The stretch `k` comes onto its lane between its nodes at `from` and `to`.
+    let onto = |lanes: &[(V3, V3)], k: usize, from: V3, to: V3| {
+        let (a, d) = lanes[k];
+        let (t0, t1) = (dot(sub(from, a), d), dot(sub(to, a), d));
+        let aside = |q: V3, t: f32| dist(q, add(a, scale(d, t)));
+        (t0 + reach[k] + LANE_CHANGE * aside(from, t0), t1 - reach[k + 1] - LANE_CHANGE * aside(to, t1))
+    };
+    // The corners moved with the start (up to `with_start`) and with the end (from
+    // `with_end`).
+    // The stretch `k` takes it up that one of its nodes is moved (`from` or `to`: where
+    // they are then): the bends of its corners still fit on it, and it comes onto its
+    // lane between them or leans over by no more than [`TILT`].
+    let takes = |k: usize, from: V3, to: V3| {
+        let length = dist(from, to);
+        let (a, d) = lanes[k];
+        let aside = |q: V3| dist(q, add(a, scale(d, dot(sub(q, a), d))));
+        let (on, off) = onto(&lanes, k, from, to);
+        !loose[k] && length >= reach[k] + reach[k + 1] + 1.0 && (on <= off || (aside(from) - aside(to)).abs() <= TILT * length)
+    };
+    // The corners moved with the start (up to `with_start`) and with the end (from
+    // `with_end`): [`MOVED`] at most.
+    let (mut with_start, mut with_end) = (0, m);
+    if let Some(v) = from_start.filter(|_| m > 1) {
+        with_start = 1;
+        while with_start < (m - 1).min(MOVED) && !takes(with_start, add(nodes[with_start].0, v), nodes[with_start + 1].0) {
+            with_start += 1;
         }
     }
-    out.push((points[n - 1], 0.0));
+    if let Some(v) = from_end.filter(|_| m > 1) {
+        with_end = m - 1;
+        while with_end > 1.max(m.saturating_sub(MOVED)) && !takes(with_end - 1, nodes[with_end - 1].0, add(nodes[with_end].0, v)) {
+            with_end -= 1;
+        }
+    }
+    if with_start >= with_end {
+        // The longest stretch between them (not the way out of an end, where there is
+        // another) runs from the corners of one to the other's.
+        let length = |k: usize| dist(nodes[k].0, nodes[k + 1].0);
+        let between = with_end.saturating_sub(1)..=with_start.min(m - 1);
+        let inner = |k: &usize| *k > 0 && *k + 1 < m;
+        let longest = |it: &mut dyn Iterator<Item = usize>| it.max_by(|&a, &b| length(a).total_cmp(&length(b)));
+        let split = longest(&mut between.clone().filter(inner)).or_else(|| longest(&mut between.clone())).unwrap_or(with_start);
+        (with_start, with_end) = (split, split + 1);
+    }
+    for (k, node) in nodes.iter_mut().enumerate().take(m).skip(1) {
+        if let Some(v) = from_start.filter(|_| k <= with_start) {
+            node.0 = add(node.0, v);
+        } else if let Some(v) = from_end.filter(|_| k >= with_end) {
+            node.0 = add(node.0, v);
+        }
+    }
+    for (k, lane) in lanes.iter_mut().enumerate() {
+        if let Some(v) = from_start.filter(|_| k < with_start) {
+            lane.0 = add(lane.0, v);
+        } else if let Some(v) = from_end.filter(|_| k >= with_end) {
+            lane.0 = add(lane.0, v);
+        }
+    }
+    let mut out: Vec<(V3, f32)> = Vec::with_capacity(3 * nodes.len());
+    for (k, &(a, d)) in lanes.iter().enumerate() {
+        let ((from, r0), (to, r1)) = (nodes[k], nodes[k + 1]);
+        out.push((from, r0));
+        // From an end point beside its line onto it.
+        if k == 0 && start.is_some() && from_start.is_none() {
+            out.extend(onto_lane(from, (a, d), to, bend, r1).map(|q| (q, bend)));
+        }
+        if k + 1 == m && end.is_some() && from_end.is_none() {
+            let [p, q] = onto_lane(to, (a, d), from, bend, r0);
+            out.extend([(q, bend), (p, bend)]);
+        }
+        // Onto its lane behind the bends of its corners (their radius: a right angle);
+        // the stretches at the ends run straight from the end point to their corner.
+        let (on, off) = onto(&lanes, k, from, to);
+        let aside = |q: V3| dist(q, add(a, scale(d, dot(sub(q, a), d))));
+        if on <= off && k > 0 && k + 1 < m && !loose[k] {
+            let r = r0.max(r1);
+            if aside(from) > 0.05 {
+                out.push((add(a, scale(d, on)), r));
+            }
+            if aside(to) > 0.05 {
+                out.push((add(a, scale(d, off)), r));
+            }
+        }
+    }
+    out.push(nodes[nodes.len() - 1]);
     out.dedup_by(|a, b| dot(sub(a.0, b.0), sub(a.0, b.0)) < 0.0025);
     out.into_iter().unzip()
+}
+
+/// The corners of the S-bend on which a way with the bend radius `bend` comes from its
+/// end point `at` onto the line `lane` (a point and its direction) it runs along to
+/// `to`, a corner with a bend of `corner` (0: none): out of the end along the line,
+/// across onto it and on. Where leaning over to the line by [`super::grid::LEAN`] takes
+/// no longer than that, the point it comes onto the line at (twice). Twice `at` (no
+/// corners) where the line passes through it, the way reaches `to` before, or there is
+/// no room for the S-bend before the bend at `to`: the way then runs straight to `to`.
+fn onto_lane(at: V3, lane: (V3, V3), to: V3, bend: f32, corner: f32) -> [V3; 2] {
+    let d = scale(lane.1, dot(sub(to, at), lane.1).signum());
+    let off = sub(lane.0, at);
+    let across = sub(off, scale(d, dot(off, d)));
+    let (aside, length) = (dot(across, across).sqrt(), dot(sub(to, at), d));
+    let (run, lean) = (super::grid::onto_line(aside, bend), aside / super::grid::LEAN);
+    if aside < 0.5 || bend <= 0.0 {
+        return [at; 2];
+    }
+    // Leaning over to it where that takes no longer than the S-bend and its bend.
+    if lean <= run + bend {
+        return if lean < length - 1.0 { [add(add(at, scale(d, lean)), across); 2] } else { [at; 2] };
+    }
+    if run + corner > length + 1.0 {
+        return [at; 2];
+    }
+    let turn = add(at, scale(d, run / 2.0));
+    [turn, add(turn, across)]
 }
 
 fn same(a: V3, b: V3) -> bool {
@@ -640,6 +893,9 @@ pub const STRAND_GAP: f32 = 0.05;
 /// Rounds of [`separate`] at most.
 pub const ROUNDS: usize = 250;
 
+/// How far (mm) the drawn bends of the ways lie inside their arcs at most ([`lay_out`]).
+const ARC_SAG: f32 = 0.25;
+
 /// Overlap (mm) [`separate`] leaves more with every round.
 const SLACK_GROWTH: f32 = 0.002;
 
@@ -660,7 +916,11 @@ pub fn lay_out(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Chan
         .iter()
         .zip(&laid)
         .map(|(w, (points, radii))| {
-            let mut bent = fillet_each(points, radii, w.steps);
+            // Bends fine enough to lie no further than [`ARC_SAG`] inside their arcs: ways
+            // side by side round a corner do not meet where their arcs are drawn.
+            let widest = radii.iter().copied().fold(0.0, f32::max);
+            let steps = if widest > ARC_SAG { (std::f32::consts::FRAC_PI_4 / (1.0 - ARC_SAG / widest).acos()).ceil() as usize } else { 0 };
+            let mut bent = fillet_each(points, radii, steps.clamp(w.steps.max(4), 24));
             // Bent, it comes no nearer to the surface it runs along than its lowest corner.
             if w.rest != [0.0; 3] {
                 let least = points.iter().map(|q| dot(*q, w.rest)).fold(f32::INFINITY, f32::min);
@@ -684,6 +944,53 @@ pub fn lay_out(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Chan
     };
     let strands: Vec<Strand> = ways.iter().zip(&laid).zip(&bent).map(|((w, (points, radii)), bent)| Strand { points: bent, diameter: w.diameter, rest: w.rest, below: w.below, tails: tails(points, radii), held: w.held }).collect();
     separate_with(&strands, obstacles, channels, insides, progress)
+}
+
+/// Where a drawn way bends tighter than with `radius`: the places (the middle of each,
+/// one per bend) and the radius it bends with there. Along no stretch of it does it
+/// turn by more than its length over the radius; ripples smaller than a fiftieth of
+/// the radius (half a millimetre at most) are not counted, nor is what a bend drawn
+/// that roughly may turn in one point.
+pub fn tight_bends(points: &[V3], radius: f32) -> Vec<(V3, f32)> {
+    if radius <= 0.0 {
+        return Vec::new();
+    }
+    let rough = (radius / 50.0).clamp(0.05, 0.5);
+    let pts = straighten(points, rough);
+    if pts.len() < 3 {
+        return Vec::new();
+    }
+    let turn: Vec<f32> = (1..pts.len() - 1).map(|i| dot(norm(sub(pts[i], pts[i - 1])), norm(sub(pts[i + 1], pts[i]))).clamp(-1.0, 1.0).acos()).collect();
+    let allow = 2.2 * (1.0 - rough / radius).acos() + 0.1;
+    let mut out: Vec<(V3, f32)> = Vec::new();
+    let mut i = 0;
+    while i < turn.len() {
+        let (mut turned, mut along, mut worst) = (0.0, 0.0, None::<(usize, f32)>);
+        for j in i..turn.len() {
+            if j > i {
+                along += dist(pts[j], pts[j + 1]);
+            }
+            if along > 3.0 * radius {
+                break;
+            }
+            turned += turn[j];
+            let over = turned - allow;
+            if over > along / (0.9 * radius) + 1e-3 {
+                let r = along / over;
+                if worst.is_none_or(|w| r < w.1) {
+                    worst = Some((j, r));
+                }
+            }
+        }
+        match worst {
+            Some((j, r)) => {
+                out.push((scale(add(pts[i + 1], pts[j + 1]), 0.5), r));
+                i = j + 1;
+            }
+            None => i += 1,
+        }
+    }
+    out
 }
 
 /// The strands pushed apart where they still run inside or through each other: sampled

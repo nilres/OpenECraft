@@ -147,3 +147,25 @@ fn terminals_use_the_points_of_their_own_part() {
     assert!((top.pos[0] - centre).abs() < 0.01, "{} vs {centre}", top.pos[0]);
 }
 
+
+#[test]
+fn the_points_of_repeated_parts_are_told_apart_by_their_number() {
+    // A measured feeder strip: a current transformer behind each of its three poles,
+    // their connection points numbered in the schematic (1S1 ... 3S2).
+    let prj = crate::sample::example("industrial_main_distribution").unwrap();
+    let it = item(&prj, "=DIST+HV2-Q21");
+    let points = device_points(&prj, &it);
+    assert_eq!(points.iter().filter(|p| p.pin == "S1").count(), 3);
+    let symbol = |pin: &str| prj.pages.iter().flat_map(|p| &p.symbols).find(|s| s.tag == "=DIST+HV2-Q21" && s.pins.iter().any(|x| x == pin)).unwrap_or_else(|| panic!("{pin}"));
+    let place = |pin: &str| {
+        let s = symbol(pin);
+        point_of(&prj, &points, s, s.pins.iter().position(|x| x == pin).unwrap()).unwrap_or_else(|| panic!("no point for {pin}")).pos
+    };
+    // Each on its own transformer, along the strip.
+    let (first, second, third) = (place("1S1"), place("2S1"), place("3S1"));
+    assert!(first[1] < second[1] && second[1] < third[1], "{first:?} {second:?} {third:?}");
+    assert_eq!((first[0], first[2]), (second[0], second[2]));
+    assert_ne!(place("1S1"), place("1S2"));
+    // The connection points of the strip itself keep their own.
+    assert_eq!(place("2"), pin(&points, "2").pos);
+}

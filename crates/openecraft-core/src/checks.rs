@@ -168,7 +168,7 @@ fn check_routing(routing: &crate::routing3d::Routing) -> Vec<Issue> {
                 crate::routing3d::Level::Warning => Severity::Warning,
                 crate::routing3d::Level::Info => Severity::Info,
             };
-            Issue::plain(severity, p.message.clone(), None)
+            Issue::plain(severity, p.message.clone(), p.target)
         })
         .collect();
     if !routing.changes.is_empty() {

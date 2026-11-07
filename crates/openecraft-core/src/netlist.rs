@@ -449,10 +449,16 @@ pub struct Connection {
 pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connection> {
     let mut out = Vec::new();
     let assigned = crate::harness::assigned(prj);
+    let pos = crate::panel::positions(&prj.layout);
     for net in open.nets.iter().filter(|n| !n.fluid) {
         let mut pins = chained_pins(prj, net);
+        // Where a device is: its enclosure, on a busbar system the enclosure the system
+        // begins in (a system joined through the sides of bayed enclosures is one).
         let place = |p: &PinRef| match crate::panel::locate(prj, &prj.pages[p.page].symbols[p.sym].tag) {
-            Some((e, it)) => (e, crate::panel::busbar_of(&prj.layout.enclosures[e], it)),
+            Some((e, it)) => match crate::panel::busbar_system(&prj.layout, &pos, e, it) {
+                Some((first, bar)) => (first, Some(bar)),
+                None => (e, None),
+            },
             None => (usize::MAX, None),
         };
         pins.sort_by_key(|p| place(p).0);

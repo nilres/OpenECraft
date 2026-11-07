@@ -72,6 +72,10 @@ pub fn nozzles(prj: &Project, it: &PanelItem) -> Vec<(String, V3, V3)> {
         .collect()
 }
 
+/// Busbar terminals closer to each other than this (mm) along the bars are entered
+/// from the front: a wire has no way out between them.
+pub const TIGHT_TERMINALS: f32 = 30.0;
+
 /// The connection points of a device item, in the coordinates of its face: those of
 /// each part of its [`super::assembly`] in that part's box. Terminal strips get the
 /// points of their terminal part once per terminal, in strip order.
@@ -121,16 +125,29 @@ pub fn device_points(prj: &Project, it: &PanelItem) -> Vec<PlacedPoint> {
             }
         }
     }
-    // Busbar terminals across the bars: each upright on its bar.
+    // Busbar terminals across the bars: each upright on its bar. Where the next
+    // terminal is closer than a wire's way out, the points facing it leave to the
+    // front instead (the wire comes to the clamp from before it).
     if let Some(places) = super::busbars::terminals_on_bars(prj, it) {
         let mut out = Vec::new();
-        for (sub, number, label) in places {
-            let part = super::part_by_number(prj, &number).unwrap_or(main);
+        let along_y = places.windows(2).all(|w| (w[0].0.x - w[1].0.x).abs() < 0.01);
+        for (k, (sub, number, label)) in places.iter().enumerate() {
+            let part = super::part_by_number(prj, number).unwrap_or(main);
             let size = part.size().unwrap_or([mw, mh, md]);
             let from = out.len();
-            piece_points(&mut out, part, size, &sub, super::item_rotated(&sub, size[1]));
+            piece_points(&mut out, part, size, sub, super::item_rotated(sub, size[1]));
+            let gap_to = |n: &PanelItem| if along_y { (sub.y - n.y - n.h).max(n.y - sub.y - sub.h) } else { (sub.x - n.x - n.w).max(n.x - sub.x - sub.w) };
+            let (before, after) = (k.checked_sub(1).map(|j| &places[j].0), places.get(k + 1).map(|p| &p.0));
             for p in &mut out[from..] {
                 p.terminal = label.clone();
+                let towards = match (p.exit, along_y) {
+                    (Exit::Up, true) | (Exit::Left, false) => before,
+                    (Exit::Down, true) | (Exit::Right, false) => after,
+                    _ => None,
+                };
+                if towards.is_some_and(|n| gap_to(n) < TIGHT_TERMINALS) {
+                    p.exit = Exit::Front;
+                }
             }
         }
         return out;
@@ -205,7 +222,10 @@ fn piece_points(out: &mut Vec<PlacedPoint>, part: &Part, [pw, ph, pd]: [f32; 3],
 /// The placed point of connection point `pin` (index) of schematic symbol `s`:
 /// terminals by terminal number and side (the studs of a busbar, such as the negative
 /// busbar of a DC distributor, by their number), PLC points by their address, other
-/// functions by designation (as in `netlist::pin_designation`).
+/// functions by designation (as in `netlist::pin_designation`). A designation with a
+/// leading number that no point has (`2S1`) is the point without it (`S1`) of the part
+/// of that number: of the second of the current transformers behind the poles of a
+/// fuse switch disconnector strip.
 pub fn point_of<'a>(prj: &Project, points: &'a [PlacedPoint], s: &SymbolInst, pin: usize) -> Option<&'a PlacedPoint> {
     let def = prj.symbol(&s.sym)?;
     if def.func == Func::Terminal {
@@ -218,7 +238,12 @@ pub fn point_of<'a>(prj: &Project, points: &'a [PlacedPoint], s: &SymbolInst, pi
         Func::Plug(_) => s.label.as_str(),
         _ => s.pins.get(pin).map(String::as_str).or_else(|| def.pins.get(pin).map(|d| d.label))?,
     };
-    points.iter().find(|p| p.terminal.is_empty() && p.pin == name)
+    let named = |name: &str, n: usize| points.iter().filter(|p| p.terminal.is_empty() && p.pin == name).nth(n);
+    named(name, 0).or_else(|| {
+        let digits = name.chars().take_while(char::is_ascii_digit).count();
+        let n: usize = name[..digits].parse().ok().filter(|n| *n > 0)?;
+        named(&name[digits..], n - 1)
+    })
 }
 
 #[cfg(test)]

@@ -16,12 +16,16 @@ fn each_bar_carries_one_conductor() {
     let supply = uses.iter().find(|u| u.busbar == bar_with(&prj, "=GRID+HV1-X01")).unwrap();
     assert_eq!((supply.bars, supply.nets.len()), (3, 3), "{supply:?}");
     assert!(supply.devices.contains(&"=MS+HV1-F10".to_string()));
+    // The transformers of the metering sit in it: one conductor through each.
+    assert!(supply.devices.contains(&"=MS+HV1-T1".to_string()));
     // The strips behind the coupling switch have a busbar of their own.
     let pv = uses.iter().find(|u| u.busbar == bar_with(&prj, "=PV+HV1-Q41")).unwrap();
-    assert!(!pv.devices.contains(&"=DIST+HV1-Q25".to_string()), "{pv:?}");
-    // The measured strips: the conductors through their transformers.
+    assert!(!pv.devices.contains(&"=MS+HV1-Q10".to_string()), "{pv:?}");
+    // The measured strips and the heat pumps behind the transformers of the power
+    // analyser: the conductors through their transformers.
     let dist = uses.iter().find(|u| u.busbar == bar_with(&prj, "=DIST+HV2-Q21")).unwrap();
-    assert_eq!((dist.devices.len(), dist.nets.len()), (4, 3), "{dist:?}");
+    assert_eq!((dist.devices.len(), dist.nets.len()), (7, 3), "{dist:?}");
+    assert!(dist.devices.contains(&"=EMS+HV2-T5".to_string()));
     assert!(problems(&prj, &nl).is_empty());
 }
 
@@ -53,6 +57,25 @@ fn the_bars_are_drawn_apart() {
 }
 
 #[test]
+fn the_mesh_is_wound_like_a_placed_model() {
+    // In plate coordinates (y down) a placed model is wound inside out: the front faces
+    // of the bars (at the system's depth) point into the plate, like those of a box of
+    // a terminal without a model. The 3D view turns them right side out with its y.
+    let prj = example("industrial_main_distribution").unwrap();
+    let id = bar_with(&prj, "=GRID+HV1-X01");
+    let bar = prj.layout.enclosures.iter().flat_map(|e| &e.items).find(|i| i.id == id).unwrap();
+    let normal = |t: &Tri| crate::parts::vec3::norm(crate::parts::vec3::cross(crate::parts::vec3::sub(t[1], t[0]), crate::parts::vec3::sub(t[2], t[0])));
+    let painted = mesh(&prj, bar);
+    let front: Vec<&Tri> = painted.iter().filter(|t| t.1 == Some(COPPER) && t.0.iter().all(|v| (v[2] - bar.z - bar.d).abs() < 0.01)).map(|t| &t.0).collect();
+    assert_eq!(front.len(), 6);
+    assert!(front.iter().all(|t| normal(t)[2] < -0.99), "{:?}", front.iter().map(|t| normal(t)).collect::<Vec<_>>());
+    let (_, x01) = crate::panel::locate(&prj, "=GRID+HV1-X01").unwrap();
+    let tris = crate::panel::device_mesh(&prj, x01).unwrap();
+    let front: Vec<&Tri> = tris.iter().filter(|t| t.iter().all(|v| (v[2] - x01.z - x01.d).abs() < 0.01)).collect();
+    assert!(!front.is_empty() && front.iter().all(|t| normal(t)[2] < -0.99));
+}
+
+#[test]
 fn the_holders_carry_the_bars() {
     let prj = example("industrial_main_distribution").unwrap();
     let id = bar_with(&prj, "=DIST+HV2-Q21");
@@ -69,6 +92,49 @@ fn the_holders_carry_the_bars() {
     let solids = crate::export3d::enclosure_solids(&prj, e);
     let colour = |name: &str| solids.iter().filter(|s| s.name == name).map(|s| s.color).collect::<std::collections::BTreeSet<_>>();
     assert_eq!((colour("Busbar"), colour("Busbar holder")), ([COPPER].into(), [HOLDER].into()));
+}
+
+#[test]
+fn the_holders_stand_beside_the_devices_in_the_bars() {
+    let prj = example("industrial_main_distribution").unwrap();
+    let id = bar_with(&prj, "=MS+HV1-T1");
+    let e = prj.layout.enclosures.iter().find(|e| e.items.iter().any(|i| i.id == id)).unwrap();
+    let bar = e.items.iter().find(|i| i.id == id).unwrap();
+    // The transformers of the metering sit in the bars (the strips and the terminals of
+    // the supply cables reach across the whole system: mounted on it, over the
+    // holders) on a drilling position: that holder moves beside them, the others stay
+    // at theirs.
+    let on_bars: Vec<&PanelItem> = e.items.iter().filter(|d| d.kind == ItemKind::Device && d.x < bar.x + bar.w && bar.x < d.x + d.w && d.y < bar.y + bar.h && bar.y < d.y + d.h && d.h < bar.h - 1.0).collect();
+    assert_eq!(on_bars.iter().map(|d| d.tag.as_str()).collect::<Vec<_>>(), ["=MS+HV1-T1"]);
+    let holes = crate::production::line_positions(bar.w, crate::production::BUSBAR_HOLES.0, crate::production::BUSBAR_HOLES.1);
+    let places = holder_places(&prj, bar);
+    assert_eq!(places.len(), holes.len(), "{places:?} for {holes:?}");
+    assert!(places.iter().zip(&holes).any(|(a, t)| (a - t).abs() > 10.0) && places.iter().zip(&holes).any(|(a, t)| (a - t).abs() < 0.01), "{places:?} for {holes:?}");
+    for a in &places {
+        let (x0, x1) = (bar.x + a - HOLDER_WIDTH / 2.0, bar.x + a + HOLDER_WIDTH / 2.0);
+        assert!(on_bars.iter().all(|d| x1 <= d.x + 0.01 || x0 >= d.x + d.w - 0.01), "a holder at {x0}..{x1} under {:?}", on_bars.iter().map(|d| (&d.tag, d.x, d.x + d.w)).collect::<Vec<_>>());
+    }
+    // Drawn there, and nowhere else.
+    let xs: Vec<f32> = mesh(&prj, bar).iter().filter(|t| t.1 == Some(HOLDER)).flat_map(|t| t.0.iter().map(|v| v[0])).collect();
+    assert!(xs.iter().all(|x| places.iter().any(|a| (x - (bar.x + a)).abs() <= HOLDER_WIDTH / 2.0 + 0.01)), "{xs:?}");
+}
+
+#[test]
+fn packed_busbar_terminals_are_entered_from_the_front() {
+    // Example 13: feed-in terminals 60 mm apart on the main busbar, 6 mm between them:
+    // the points of the inner terminal facing its neighbours leave to the front; the
+    // outer points keep their way. Example 14: 185 mm apart, every point keeps its way.
+    use crate::parts::Exit;
+    let exits = |key: &str, tag: &str| -> Vec<(String, Exit)> {
+        let prj = example(key).unwrap();
+        let (_, it) = crate::panel::locate(&prj, tag).unwrap();
+        crate::panel::device_points(&prj, it).into_iter().map(|p| (p.terminal, p.exit)).collect()
+    };
+    let x0 = exits("pv_transformer_metering", "=GRID+HV-X0");
+    assert_eq!(x0.iter().filter(|(t, _)| t == "L2").map(|(_, e)| *e).collect::<Vec<_>>(), [Exit::Front, Exit::Front], "{x0:?}");
+    assert!(x0.iter().any(|(t, e)| t == "L1" && *e == Exit::Up) && x0.iter().any(|(t, e)| t == "L3" && *e == Exit::Down), "{x0:?}");
+    let x01 = exits("industrial_main_distribution", "=GRID+HV1-X01");
+    assert!(x01.iter().all(|(_, e)| matches!(e, Exit::Up | Exit::Down)), "{x01:?}");
 }
 
 #[test]

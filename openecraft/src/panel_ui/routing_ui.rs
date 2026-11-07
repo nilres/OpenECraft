@@ -51,28 +51,53 @@ pub(super) struct RouteLine {
     pub target: RouteRef,
     /// Drawn as it is, not laid beside the others (the cores where a cable parts).
     pub as_is: bool,
+    /// The direction the route leaves the first and the last point in, where they are
+    /// its ends and it is known (view coordinates, as long as the cells of the routing
+    /// there are wide; none: zero).
+    pub leave: [[f32; 3]; 2],
 }
+
+/// What [`fan_out`] tells: the points of the cable's way it keeps, those it goes on with
+/// to its end and the way of each core.
+pub(super) type Fan = (usize, Vec<[f32; 3]>, Vec<Vec<[f32; 3]>>);
+
+/// The device a cable's cores go to, for [`fan_out`]: its box (view coordinates) and
+/// the direction out of it, to its front.
+pub(super) type FanDevice = (([f32; 3], [f32; 3]), [f32; 3]);
 
 /// Where the cores of a cable part to their connection points at a device: `way` is the
 /// cable's route up to the device, its last point the middle of the connection points
 /// `at`, each with the direction its core leaves it in (view coordinates). The cable
-/// ends a little before the device: the points of `way` it keeps and its end, then the
-/// way of each core from there, a smooth curve leaving the cable's end in its direction
-/// and coming into the connection point against the direction the core leaves it in.
-pub(super) fn fan_out(way: &[[f32; 3]], at: &[([f32; 3], [f32; 3])], cable: f32, core: f32) -> (usize, [f32; 3], Vec<Vec<[f32; 3]>>) {
+/// ends a little before the device: the points of `way` it keeps and those it goes on
+/// with to its end, then the way of each core from there, a smooth curve leaving the
+/// cable's end in its direction and coming into the connection point against the
+/// direction the core leaves it in, within the box of its two ends. In a cabinet
+/// (`device`: the box of the device and the direction out of it, to its front) the
+/// cable ends clear of the device's box, and a core that passes other connection
+/// points on its way (terminals one above the other on the bars) passes them in front
+/// of the device. Where the cable ends closer behind a corner than
+/// its bend there (`bends`: the bend radius of each point of `way`) reaches, it ends on
+/// that bend: its last points lie along it, the cores go on round it.
+pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3])], cable: f32, core: f32, device: Option<FanDevice>) -> Fan {
     use openecraft_core::parts::vec3::{cross, dot, length, scale};
     // Up to the device, without the middle of the connection points.
     let route = &way[..way.len().saturating_sub(1)];
-    let Some(&approach) = route.last() else { return (0, way.first().copied().unwrap_or_default(), Vec::new()) };
+    let Some(&approach) = route.last() else { return (0, way.first().copied().into_iter().collect(), Vec::new()) };
     let middle = way[way.len() - 1];
     let spread = at.iter().map(|(q, _)| dist(*q, middle)).fold(0.0, f32::max);
     // Back along the route to where it is as far from the connection points as the cores
-    // need to turn to them (at most two fifths of it, the other end may part too).
+    // need to turn to them (at most two fifths of it, the other end may part too) and
+    // the cable is clear of the device.
     let reach = (1.5 * spread).max(3.0 * cable).max(FAN_LEAST);
+    let keep_out = device.map(|((lo, hi), _)| (lo.map(|v| v - cable / 2.0 - 1.0), hi.map(|v| v + cable / 2.0 + 1.0)));
+    let far = |p: [f32; 3]| dist(p, middle) >= reach && keep_out.is_none_or(|(lo, hi)| (0..3).any(|k| p[k] < lo[k] || p[k] > hi[k]));
+    // The direction out of the device and how far out a core passing its other
+    // connection points stays.
+    let front = device.map(|((lo, hi), f)| (f, (0..8).map(|c| dot([[lo[0], hi[0]][c & 1], [lo[1], hi[1]][c >> 1 & 1], [lo[2], hi[2]][c >> 2]], f)).fold(f32::NEG_INFINITY, f32::max) + core / 2.0 + 1.0));
     let mut left = 0.4 * route.windows(2).map(|s| dist(s[0], s[1])).sum::<f32>();
     let (mut keep, mut split, mut dir) = (route.len(), approach, norm(sub(middle, approach)));
     for k in (1..route.len()).rev() {
-        if dist(route[k], middle) >= reach {
+        if far(route[k]) {
             break;
         }
         let step = dist(route[k - 1], route[k]);
@@ -81,20 +106,43 @@ pub(super) fn fan_out(way: &[[f32; 3]], at: &[([f32; 3], [f32; 3])], cable: f32,
         }
         (keep, dir) = (k, scale(sub(route[k], route[k - 1]), 1.0 / step));
         let at = |t: f32| sub(route[k], scale(dir, t));
-        if dist(route[k - 1], middle) < reach && step < left {
+        if !far(route[k - 1]) && step < left {
             (left, split) = (left - step, route[k - 1]);
             continue;
         }
         // Where the segment reaches that far (halving), but no further than is left.
-        let (mut near, mut far) = (0.0, step.min(left));
-        if dist(at(far), middle) >= reach {
+        let (mut near, mut far_t) = (0.0, step.min(left));
+        if far(at(far_t)) {
             for _ in 0..24 {
-                let mid = (near + far) / 2.0;
-                if dist(at(mid), middle) >= reach { far = mid } else { near = mid }
+                let mid = (near + far_t) / 2.0;
+                if far(at(mid)) { far_t = mid } else { near = mid }
             }
         }
-        split = at(far);
+        split = at(far_t);
         break;
+    }
+    // On the bend of the corner before its end.
+    let mut tail = vec![split];
+    if keep >= 2 {
+        let (corner, before) = (route[keep - 1], route[keep - 2]);
+        let (u, behind) = (norm(sub(corner, before)), dist(corner, split));
+        let turn = dot(u, dir).clamp(-1.0, 1.0).acos();
+        let reach = (bends.get(keep - 1).copied().unwrap_or(0.0) * (turn / 2.0).tan()).min(dist(before, corner));
+        if turn > 0.2 && turn < 3.0 && behind < reach {
+            let r = reach / (turn / 2.0).tan();
+            let across = norm(sub(dir, scale(u, turn.cos())));
+            let start = sub(corner, scale(u, reach));
+            // How far round the bend it is as far behind the corner (along the way on).
+            let along = |phi: f32| -reach * turn.cos() + r * phi.sin() * turn.cos() + r * (1.0 - phi.cos()) * turn.sin();
+            let (mut lo, mut hi) = (0.0, turn);
+            for _ in 0..24 {
+                let mid = (lo + hi) / 2.0;
+                if along(mid) < behind { lo = mid } else { hi = mid }
+            }
+            let steps = ((hi / std::f32::consts::FRAC_PI_2 * 8.0).ceil() as usize).max(1);
+            tail = (0..=steps).map(|i| hi * i as f32 / steps as f32).map(|phi| add(start, add(scale(u, r * phi.sin()), scale(across, r * (1.0 - phi.cos()))))).collect();
+            (keep, split, dir) = (keep - 1, tail[tail.len() - 1], add(scale(u, hi.cos()), scale(across, hi.sin())));
+        }
     }
     // Their places in the cable's cross-section: round its axis, in the order they lie
     // across it at the device.
@@ -124,7 +172,38 @@ pub(super) fn fan_out(way: &[[f32; 3]], at: &[([f32; 3], [f32; 3])], cable: f32,
         .map(|(&(q, exit), off)| {
             let start = add(split, off);
             let pull = 0.45 * dist(start, q);
-            let (b, c) = (add(start, scale(dir, pull)), add(q, scale(norm(exit), pull)));
+            let (mut b, mut c) = (add(start, scale(dir, pull)), add(q, scale(norm(exit), pull)));
+            // Past other connection points in line before its own it goes in front of the
+            // device: its control points out there, and as much further as its end lies
+            // behind that, so that it stays out until it comes down to its own.
+            let mut lo = [0, 1, 2].map(|k| start[k].min(q[k]));
+            let mut hi = [0, 1, 2].map(|k| start[k].max(q[k]));
+            if let Some((f, out)) = front {
+                let line = norm(sub(q, start));
+                let passes = at.iter().any(|(o, _)| {
+                    let (t, t_q) = (dot(sub(*o, start), line), dot(sub(q, start), line));
+                    let aside = sub(sub(*o, start), scale(line, t));
+                    let aside = sub(aside, scale(f, dot(aside, f)));
+                    t > 0.0 && t < t_q - core && length(aside) < core
+                });
+                if passes {
+                    let target = 2.0 * out - dot(q, f);
+                    for p in [&mut b, &mut c] {
+                        let lift = target - dot(*p, f);
+                        if lift > 0.0 {
+                            *p = add(*p, scale(f, lift));
+                        }
+                    }
+                    for k in 0..3 {
+                        lo[k] = lo[k].min(b[k]).min(c[k]);
+                        hi[k] = hi[k].max(b[k]).max(c[k]);
+                    }
+                }
+            }
+            // Within the box of its two ends: a core never swings out past them (out of
+            // a corner before the split, into the bars its terminal sits on).
+            let within = |p: [f32; 3]| [0, 1, 2].map(|k| p[k].clamp(lo[k], hi[k]));
+            let (b, c) = (within(b), within(c));
             (0..=CORE_STEPS)
                 .map(|i| {
                     let t = i as f32 / CORE_STEPS as f32;
@@ -134,7 +213,7 @@ pub(super) fn fan_out(way: &[[f32; 3]], at: &[([f32; 3], [f32; 3])], cable: f32,
                 .collect()
         })
         .collect();
-    (keep, split, ways)
+    (keep, tail, ways)
 }
 
 /// Lines passing the same cable gland or wall penetration (`through`: line and the
@@ -176,6 +255,16 @@ fn in_line(p: [f32; 3], c: [f32; 3], g: [f32; 3]) -> [f32; 3] {
     }
     let u = norm(sub(c, p));
     add(g, scale(u, dot(sub(c, g), u)))
+}
+
+/// The box of the item `id` of enclosure `k` in view coordinates (`to_view`: layout to
+/// view), for [`fan_out`].
+fn fan_device(prj: &Project, pos: &[[f32; 3]], k: usize, id: u64, to_view: &dyn Fn([f32; 3]) -> [f32; 3]) -> Option<([f32; 3], [f32; 3])> {
+    let e = &prj.layout.enclosures[k];
+    let item = e.items.iter().find(|i| i.id == id)?;
+    let (lo, hi) = panel::item_box(e, item);
+    let corners: Vec<[f32; 3]> = (0..8).map(|c| to_view(add([[lo[0], hi[0]][c & 1], [lo[1], hi[1]][c >> 1 & 1], [lo[2], hi[2]][c >> 2]], pos[k]))).collect();
+    Some(([0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::INFINITY, f32::min)), [0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::NEG_INFINITY, f32::max))))
 }
 
 /// A direction across `dir`.
@@ -349,7 +438,7 @@ impl PanelUi {
             for path in &e.paths {
                 let selected = self.selected_object == Some(path.id);
                 let color = if path.face.is_some() { PIPE_COLOR } else { PATH_COLOR };
-                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false });
+                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2] });
             }
             for r in &e.reservations {
                 let color = match r.mode {
@@ -373,7 +462,7 @@ impl PanelUi {
                     ((0, 1, 0), (0, 1, 1)),
                     ((1, 1, 0), (1, 1, 1)),
                 ] {
-                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false });
+                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2] });
                 }
             }
         }
@@ -430,6 +519,14 @@ impl PanelUi {
                     Some(q) if !in_room && front.is_finite() => (norm(sub(to_view(leg, [q[0], q[1], q[2] + 1.0]), to_view(leg, *q))), front - it.diameter / 2.0 - PLATE_CLEAR),
                     _ => ([0.0; 3], f32::INFINITY),
                 };
+                // The way out of the ends of the route (not where the cores part there).
+                let mut leave = [[0.0; 3]; 2];
+                for (end, q) in [(0, points.first().filter(|_| s == 0)), (1, points.last().filter(|_| s == last))] {
+                    if let (Some(q), Some(d)) = (q, it.ends[end].leave.filter(|_| it.ends[end].cores.is_empty())) {
+                        let cell = prj.layout.routing.grid.max(if in_room { openecraft_core::routing3d::room::ROOM_GRID } else { 5.0 });
+                        leave[end] = sub(to_view(leg, add(*q, openecraft_core::parts::vec3::scale(d, cell))), to_view(leg, *q));
+                    }
+                }
                 let mut points: Vec<[f32; 3]> = points.iter().map(|q| to_view(leg, *q)).collect();
                 let mut bends = bends.to_vec();
                 bends.resize(points.len(), 0.0);
@@ -447,12 +544,15 @@ impl PanelUi {
                         bends.reverse();
                     }
                     let at: Vec<([f32; 3], [f32; 3])> = it.ends[end].cores.iter().zip(&it.ends[end].exits).map(|(q, x)| (to_view(leg, *q), sub(to_view(leg, add(*q, *x)), to_view(leg, *q)))).collect();
-                    let (keep, split, fan) = fan_out(&points, &at, diameter, core);
+                    // In a cabinet the cable ends clear of the device and the cores pass its
+                    // other terminals in front of it.
+                    let device = it.ends[end].enclosure.zip(it.ends[end].item).filter(|_| rest != [0.0; 3]).and_then(|(k, id)| Some((fan_device(prj, &pos, k, id, &|q| to_view(leg, q))?, rest)));
+                    let (keep, tail, fan) = fan_out(&points, &bends, &at, diameter, core, device);
                     cores.extend(fan);
                     points.truncate(keep);
                     bends.truncate(keep);
-                    points.push(split);
-                    bends.push(0.0);
+                    bends.extend(tail.iter().map(|_| 0.0));
+                    points.extend(tail);
                     if end == 0 {
                         points.reverse();
                         bends.reverse();
@@ -460,7 +560,7 @@ impl PanelUi {
                 }
                 for c in cores {
                     let bends = vec![0.0; c.len()];
-                    out.push(RouteLine { points: c, color, stripe: None, width: width * 0.5, diameter: core, bends, rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true });
+                    out.push(RouteLine { points: c, color, stripe: None, width: width * 0.5, diameter: core, bends, rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2] });
                 }
                 let index = match joined {
                     Some((prev, index)) if prev + 1 == s => {
@@ -488,10 +588,11 @@ impl PanelUi {
                             line.rest = rest;
                         }
                         line.below = line.below.min(below);
+                        line.leave[1] = leave[1];
                         index
                     }
                     _ => {
-                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false });
+                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false, leave });
                         out.len() - 1
                     }
                 };

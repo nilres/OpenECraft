@@ -149,8 +149,14 @@ fn wires_cross_into_the_neighbouring_enclosure() {
     assert_eq!(w.legs.len(), 1);
     assert_ne!(w.enclosure, w.last_enclosure());
     assert!(w.in_enclosure(0) && w.in_enclosure(1));
-    assert_eq!(w.legs[0].passage, passages(&prj.layout, &positions(&prj.layout), 0)[0].at);
-    assert!((w.length - w.plate_length() - prj.layout.wire_reserve) > 0.0);
+    // +CAB2 has no cable ducts: the wire is routed through the space, through the passage.
+    let passage = &passages(&prj.layout, &positions(&prj.layout), 0)[0];
+    let through = w.legs[0].passage;
+    assert_eq!(through[0], passage.at[0]);
+    assert!((through[1] - passage.at[1]).abs() <= passage.half[0] && (through[2] - passage.at[2]).abs() <= passage.half[1], "{through:?} in {passage:?}");
+    // From connection point to connection point: its way and the reserve, nothing for
+    // a way down to the plate.
+    assert!((w.length - w.plate_length() - prj.layout.wire_reserve).abs() < 0.5, "{} of {}", w.length, w.plate_length());
     assert_eq!(w.stretch_passages().iter().map(|s| (s.0, s.2.is_some(), s.3.is_some())).collect::<Vec<_>>(), vec![(w.enclosure, false, true), (w.last_enclosure(), true, false)]);
     // Both stretches end at the plate edge beside the passage and show in both enclosures.
     let pw = prj.layout.enclosures[0].plate_size().0;

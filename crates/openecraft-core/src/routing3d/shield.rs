@@ -86,16 +86,16 @@ pub fn analyse(prj: &Project, items: &[RoutedItem], bundles: &[Bundle]) -> (Vec<
         });
         let bus = c.bus.is_some();
         if bus && !c.shield_ends.is_both() {
-            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shield of bus cable {} is not connected at both ends", c.tag) });
+            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shield of bus cable {} is not connected at both ends", c.tag), target: None });
         }
         for e in &ends {
             if let (true, Termination::Pigtail(_)) = (bus, &e.termination) {
-                problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shield of {} is connected with a pigtail at {}: use a shield clamp", c.tag, e.tag) });
+                problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shield of {} is connected with a pigtail at {}: use a shield clamp", c.tag, e.tag), target: None });
             }
         }
         let power = bundles.iter().filter(|b| b.items.contains(&idx) && b.items.iter().any(|&i| items[i].class == Class::Power)).map(|b| b.length).sum::<f32>();
         if power > 0.0 {
-            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shielded cable {} runs together with power conductors over {} mm", c.tag, format!("{power:.0}")) });
+            problems.push(Problem { level: Level::Warning, message: tr_fmt!("Shielded cable {} runs together with power conductors over {} mm", c.tag, format!("{power:.0}")), target: None });
         }
         infos.push(ShieldInfo { cable: c.tag.clone(), bus, ends });
     }
