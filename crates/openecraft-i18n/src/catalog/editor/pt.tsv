@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Clique para inserir · Esc cancela
 Click to place a comment	Clique para posicionar um comentário
 Click to place the markup text	Clique para posicionar o texto de marcação
 Click to place the text from the field below	Clique para posicionar o texto do campo abaixo
+Click to put new rooms on this level; drop rooms onto it to move them here	Clique para colocar novas salas neste pavimento; solte salas sobre ele para movê-las para cá
 Click to show	Clique para mostrar
 Click to show, right click for more	Clique para mostrar, botão direito para mais
 Click two corners	Clique em dois cantos
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	Lista de furação desta face (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Padrão de furação da face exibida como DXF, DWG ou CSV
 Drop between the pages	Soltar entre as páginas
 Drop between the rows or onto a section	Soltar entre as linhas ou sobre uma seção
+Drop onto a level to put the room on it	Solte sobre um pavimento para colocar a sala nele
 Duct fill	Ocupação da canaleta
 Duct fill limit	Limite de ocupação da canaleta
 Duplicate	Duplicar
@@ -1417,6 +1419,10 @@ Right edges	Bordas direitas
 Right neighbour	Vizinho à direita
 Rights	Direitos
 Room	Sala
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Sala adicionada no pavimento {}: arraste as paredes ou desenhe novas na planta, coloque armários nela pelas propriedades deles
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Sala adicionada: arraste as paredes ou desenhe novas na planta, coloque armários nela pelas propriedades deles
+Room {} now stands on level {}	A sala {} agora fica no pavimento {}
+Room {} taken out of the building; it stays where it stands	Sala {} retirada do edifício; ela fica onde está
 Rotate	Girar
 Rotate (selection or symbol being placed)	Girar (seleção ou símbolo sendo posicionado)
 Round	Redondo
@@ -1655,6 +1661,7 @@ Tag	Identificador
 Tag field	Campo de identificador
 Tag placed by hand	Identificador posicionado manualmente
 Take out a subproject	Retirar um subprojeto
+Take out of the building	Retirar do edifício
 Take out {} pages…	Retirar {} páginas…
 Take over cut lengths	Adotar comprimentos de corte
 Take over selected ({})	Aplicar selecionados ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	Adotar {} alterações
 Take page out of its option	Retirar a página de sua opção
 Take selection out of its option	Retirar a seleção de sua opção
 Take the acceptance back	Desfazer a aceitação
+Take the room out of the building; it stays where it stands	Retirar a sala do edifício; ela fica onde está
 Taken into the drawing: drawn faded	Aplicado no desenho: exibido esmaecido
 Takes the comments as function texts (matched by address)	Aplica os comentários como textos de função (associados pelo endereço)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Aplica as designações dos pontos de conexão de todas as funções deste dispositivo a partir dos modelos de função de suas peças

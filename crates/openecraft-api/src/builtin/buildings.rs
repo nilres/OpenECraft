@@ -7,7 +7,7 @@ use crate::params::{optional, param, Args, Kind};
 use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
-use openecraft_core::panel::buildings::{self as bld, LEVEL_HEIGHT, SHAFT_SIZE};
+use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
 use openecraft_core::panel::{self, LinkKind, Opening, SitePlace};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
@@ -415,11 +415,6 @@ fn set_site_link(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     let link = prj.layout.site_links[k].clone();
     Ok(link_json(prj, &link))
-}
-
-/// Default height of a new room on a level: the level's height less its ceiling slab.
-pub fn room_height_on(prj: &Project, level: u64) -> f32 {
-    bld::level_by_id(&prj.layout, level).map_or(LEVEL_HEIGHT, |l| l.height) - bld::SLAB
 }
 
 #[cfg(test)]

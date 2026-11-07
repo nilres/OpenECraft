@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Kattintás: beszúrás · Esc: mégse
 Click to place a comment	Kattintson egy megjegyzés elhelyezéséhez
 Click to place the markup text	Kattintson a korrektúraszöveg elhelyezéséhez
 Click to place the text from the field below	Kattintson az alábbi mező szövegének elhelyezéséhez
+Click to put new rooms on this level; drop rooms onto it to move them here	Kattintson, hogy az új helyiségek erre a szintre kerüljenek; ejtsen ide helyiségeket, hogy áthelyezze őket
 Click to show	Kattintson a megjelenítéshez
 Click to show, right click for more	Kattintás: megjelenítés, jobb kattintás: továbbiak
 Click two corners	Kattintson két sarokra
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	A felület furatlistája (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	A megjelenített felület furatképe DXF, DWG vagy CSV formátumban
 Drop between the pages	Ejtse az oldalak közé
 Drop between the rows or onto a section	Ejtse a sorok közé vagy egy szakaszra
+Drop onto a level to put the room on it	Ejtse egy szintre, hogy a helyiség arra kerüljön
 Duct fill	Csatornatöltöttség
 Duct fill limit	Csatornatöltöttség határértéke
 Duplicate	Kettőzés
@@ -1417,6 +1419,10 @@ Right edges	Jobb élek
 Right neighbour	Jobb oldali szomszéd
 Rights	Jogosultságok
 Room	Helyiség
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Helyiség hozzáadva a(z) {} szinten: húzza a falait, vagy rajzoljon újakat az alaprajzon, a szekrényeket azok tulajdonságaiban helyezze bele
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Helyiség hozzáadva: húzza a falait, vagy rajzoljon újakat az alaprajzon, a szekrényeket azok tulajdonságaiban helyezze bele
+Room {} now stands on level {}	A(z) {} helyiség most a(z) {} szinten áll
+Room {} taken out of the building; it stays where it stands	A(z) {} helyiség kivéve az épületből; ott marad, ahol áll
 Rotate	Elforgatás
 Rotate (selection or symbol being placed)	Elforgatás (kijelölés vagy az elhelyezés alatt álló szimbólum)
 Round	Kerek
@@ -1655,6 +1661,7 @@ Tag	Azonosító
 Tag field	Azonosítómező
 Tag placed by hand	Kézzel elhelyezett azonosító
 Take out a subproject	Alprojekt kiemelése
+Take out of the building	Kivétel az épületből
 Take out {} pages…	{} oldal kiemelése…
 Take over cut lengths	Vágási hosszak átvétele
 Take over selected ({})	Kijelöltek átvétele ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	{} változás átvétele
 Take page out of its option	Oldal kivétele az opciójából
 Take selection out of its option	Kijelölés kivétele az opciójából
 Take the acceptance back	Az elfogadás visszavonása
+Take the room out of the building; it stays where it stands	A helyiség kivétele az épületből; ott marad, ahol áll
 Taken into the drawing: drawn faded	Átvéve a rajzba: halványan megjelenítve
 Takes the comments as function texts (matched by address)	A megjegyzéseket funkciószövegként veszi át (cím alapján párosítva)
 Takes the connection point designations of all functions of this device from the function templates of its parts	A készülék összes funkciójának csatlakozásmegnevezéseit az alkatrészei funkciósablonjaiból veszi át

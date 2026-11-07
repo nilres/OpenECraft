@@ -210,10 +210,7 @@ fn levels_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi
         bld::remove_level(prj, bi, id)
     } else if let Some(level) = new_room {
         let name = panel::free_name(&prj.layout, "+ROOM");
-        let height = levels.iter().find(|l| l.id == level).map_or(bld::LEVEL_HEIGHT, |l| l.height) - bld::SLAB;
-        let room = panel::new_room(prj, &name, 4000.0, 3000.0, height);
-        prj.layout.enclosures.push(room);
-        bld::set_room_level(prj, prj.layout.enclosures.len() - 1, Some(level), None)
+        bld::add_room(prj, &name, Some(level)).map(|_| ())
     } else if let Some((r, level)) = put {
         bld::set_room_level(prj, r, Some(level), None)
     } else if let Some(r) = take_out {

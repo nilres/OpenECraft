@@ -221,8 +221,12 @@ draws a site plan of all rooms (one level highlighted), shafts and links.
   `level`): the room's place is then measured in the building's floor plan, it stands
   on the level's floor and moves with the building and its level. A new room on a level
   is as high as the level less its ceiling slab (300 mm) and goes next to the other
-  rooms of the level. The navigator groups the rooms by building and level. Removing a
-  level or a building leaves its rooms where they stand in the plant.
+  rooms of the level. The navigator groups the rooms by building and level: a room
+  dragged onto a level (or onto a room of it) is put on that level; a level clicked in
+  it is selected, and *New room* then puts the new room on it (a second click
+  unselects it); the context menu of a level and of its rooms has *New room on this
+  level*, that of a room in a building *Take out of the building*. Removing a level or
+  a building leaves its rooms where they stand in the plant.
 - **Shafts** (`add_shaft`, `set_shaft`) run through a building from one level up to
   another, at a place of its floor plan: cables, tubes and pipes are routed through them
   from a room into the rooms above and below whose floor plans the shaft passes, from

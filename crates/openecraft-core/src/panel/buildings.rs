@@ -306,6 +306,27 @@ pub fn set_room_level(prj: &mut Project, ri: usize, level: Option<u64>, place: O
     Ok(())
 }
 
+/// Default height of a new room on a level: the level's height less its ceiling slab.
+pub fn room_height_on(layout: &Layout, level: u64) -> f32 {
+    level_by_id(layout, level).map_or(LEVEL_HEIGHT, |l| l.height) - SLAB
+}
+
+/// Adds a new room of 4 × 3 m, on a level next to its other rooms (as high as the
+/// level less its slab) or, without one, outside the buildings; its index.
+pub fn add_room(prj: &mut Project, name: &str, level: Option<u64>) -> Result<usize, String> {
+    if let Some(id) = level {
+        find_level(&prj.layout, id).ok_or_else(|| tr("No such level").to_string())?;
+    }
+    let height = level.map_or(2800.0, |l| room_height_on(&prj.layout, l));
+    let room = super::new_room(prj, name, 4000.0, 3000.0, height);
+    prj.layout.enclosures.push(room);
+    let ri = prj.layout.enclosures.len() - 1;
+    if level.is_some() {
+        set_room_level(prj, ri, level, None)?;
+    }
+    Ok(ri)
+}
+
 /// Next free place of a room on a level (building floor plan): right of the rooms that
 /// have places there already, along the rear.
 pub(super) fn next_place(layout: &Layout, along: &mut std::collections::HashMap<u64, f32>, ri: usize) -> SitePlace {

@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Napsauta lisätäksesi · Esc peruuttaa
 Click to place a comment	Napsauta sijoittaaksesi kommentin
 Click to place the markup text	Napsauta sijoittaaksesi korjausmerkinnän tekstin
 Click to place the text from the field below	Napsauta sijoittaaksesi alla olevan kentän tekstin
+Click to put new rooms on this level; drop rooms onto it to move them here	Napsauta, niin uudet tilat tulevat tähän kerrokseen; pudota tiloja tähän siirtääksesi ne tänne
 Click to show	Napsauta näyttääksesi
 Click to show, right click for more	Näytä napsauttamalla, lisää hiiren oikealla painikkeella
 Click two corners	Napsauta kahta kulmaa
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	Tämän pinnan porausluettelo (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Näytetyn pinnan porauskuvio DXF-, DWG- tai CSV-muodossa
 Drop between the pages	Pudota sivujen väliin
 Drop between the rows or onto a section	Pudota rivien väliin tai osion päälle
+Drop onto a level to put the room on it	Pudota kerrokseen sijoittaaksesi tilan siihen
 Duct fill	Kourun täyttö
 Duct fill limit	Johtokourun täyttöraja
 Duplicate	Monista
@@ -1417,6 +1419,10 @@ Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
 Rights	Oikeudet
 Room	Tila
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty kerrokseen {}: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
+Room {} now stands on level {}	Tila {} on nyt kerroksessa {}
+Room {} taken out of the building; it stays where it stands	Tila {} poistettu rakennuksesta; se jää paikalleen
 Rotate	Kierrä
 Rotate (selection or symbol being placed)	Kierrä (valinta tai sijoitettava symboli)
 Round	Pyöreä
@@ -1655,6 +1661,7 @@ Tag	Tunnus
 Tag field	Tunnuskenttä
 Tag placed by hand	Tunnus sijoitettu käsin
 Take out a subproject	Irrota aliprojekti
+Take out of the building	Poista rakennuksesta
 Take out {} pages…	Irrota {} sivua…
 Take over cut lengths	Ota katkaisupituudet käyttöön
 Take over selected ({})	Ota valitut käyttöön ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	Ota käyttöön {} muutosta
 Take page out of its option	Poista sivu vaihtoehdostaan
 Take selection out of its option	Poista valinta vaihtoehdostaan
 Take the acceptance back	Peru hyväksyntä
+Take the room out of the building; it stays where it stands	Poista tila rakennuksesta; se jää paikalleen
 Taken into the drawing: drawn faded	Viety piirustukseen: piirretään haaleana
 Takes the comments as function texts (matched by address)	Ottaa kommentit toimintoteksteiksi (kohdistetaan osoitteen mukaan)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Ottaa tämän laitteen kaikkien toimintojen liitäntäpisteiden merkinnät sen osien toimintomalleista

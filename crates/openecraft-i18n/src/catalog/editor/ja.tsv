@@ -283,6 +283,7 @@ Click to insert · Esc cancel	クリックで挿入 · Esc でキャンセル
 Click to place a comment	クリックしてコメントを配置します
 Click to place the markup text	クリックしてマークアップテキストを配置します
 Click to place the text from the field below	クリックして下のフィールドのテキストを配置します
+Click to put new rooms on this level; drop rooms onto it to move them here	クリックすると新しい部屋をこのフロアに作成します。部屋をここにドロップするとこのフロアに移動します
 Click to show	クリックして表示
 Click to show, right click for more	クリックで表示、右クリックでその他
 Click two corners	2 つのコーナーをクリックします
@@ -527,6 +528,7 @@ Drilling list of this face (CSV)	この面の穴あけリスト (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	表示中の面の穴あけパターンを DXF、DWG、CSV で
 Drop between the pages	ページの間にドロップ
 Drop between the rows or onto a section	行の間またはセクションの上にドロップ
+Drop onto a level to put the room on it	フロアにドロップすると部屋をそのフロアに置きます
 Duct fill	ダクト充填率
 Duct fill limit	ダクト充填率の上限
 Duplicate	複製
@@ -978,6 +980,7 @@ New request	新しい依頼
 New revision	新しいリビジョン
 New revisions start as drafts, are submitted for review and can be released once approved.	新しいリビジョンはドラフトとして開始され、レビューに提出され、承認後にリリースできます。
 New room	新しい部屋
+New room on this level	このフロアに新しい部屋
 New schematic page	新しい回路図ページ
 New scheme	新しいスキーム
 New section	新しいセクション
@@ -1398,6 +1401,10 @@ Right edges	右端
 Right neighbour	右隣
 Rights	権限
 Room	部屋
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	フロア {} に部屋を追加しました: 平面図で壁をドラッグするか新しい壁を描き、キャビネットはそのプロパティで部屋に入れます
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	部屋を追加しました: 平面図で壁をドラッグするか新しい壁を描き、キャビネットはそのプロパティで部屋に入れます
+Room {} now stands on level {}	部屋 {} はフロア {} にあります
+Room {} taken out of the building; it stays where it stands	部屋 {} を建物から外しました。位置はそのままです
 Rotate	回転
 Rotate (selection or symbol being placed)	回転 (選択内容または配置中のシンボル)
 Round	円形
@@ -1634,6 +1641,7 @@ Tag	タグ
 Tag field	タグフィールド
 Tag placed by hand	手動で配置したタグ
 Take out a subproject	サブプロジェクトを切り出し
+Take out of the building	建物から外す
 Take out {} pages…	{} ページを切り出し…
 Take over cut lengths	切断長を反映
 Take over selected ({})	選択した項目を反映 ({})
@@ -1641,6 +1649,7 @@ Take over {} changes	{} 件の変更を反映
 Take page out of its option	ページをオプションから外す
 Take selection out of its option	選択内容をオプションから外す
 Take the acceptance back	承認を取り消す
+Take the room out of the building; it stays where it stands	部屋を建物から外します。位置はそのままです
 Taken into the drawing: drawn faded	図面に反映済み: 薄く表示
 Takes the comments as function texts (matched by address)	コメントを機能テキストとして取り込みます (アドレスで照合)
 Takes the connection point designations of all functions of this device from the function templates of its parts	このデバイスのすべての機能の接続ポイント名称を、部品の機能テンプレートから取り込みます

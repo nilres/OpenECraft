@@ -330,7 +330,7 @@ fn add_room(prj: &mut Project, a: &Args) -> Result<Value, String> {
         }
         None => None,
     };
-    let height = level.map_or(2800.0, |l| super::buildings::room_height_on(prj, l));
+    let height = level.map_or(2800.0, |l| panel::buildings::room_height_on(&prj.layout, l));
     let room = panel::new_room(prj, &name, 4000.0, 3000.0, height);
     prj.layout.enclosures.push(room);
     let ri = prj.layout.enclosures.len() - 1;

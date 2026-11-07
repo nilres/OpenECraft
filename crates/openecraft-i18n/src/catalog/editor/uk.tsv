@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Клацніть, щоб вставити · Esc �
 Click to place a comment	Клацніть, щоб розмістити коментар
 Click to place the markup text	Клацніть, щоб розмістити текст розмітки
 Click to place the text from the field below	Клацніть, щоб розмістити текст із поля нижче
+Click to put new rooms on this level; drop rooms onto it to move them here	Клацніть, щоб нові приміщення створювалися на цьому поверсі; відпустіть тут приміщення, щоб перемістити їх сюди
 Click to show	Клацніть, щоб показати
 Click to show, right click for more	Клацніть, щоб показати, права кнопка — більше
 Click two corners	Клацніть два кути
@@ -532,6 +533,7 @@ Drilling list of this face (CSV)	Перелік отворів цієї гран
 Drilling pattern of the face shown as DXF, DWG or CSV	Схема свердління показаної сторони у DXF, DWG або CSV
 Drop between the pages	Відпустіть між сторінками
 Drop between the rows or onto a section	Відпустіть між рядками або на розділі
+Drop onto a level to put the room on it	Відпустіть на поверсі, щоб поставити на нього приміщення
 Duct fill	Заповнення каналу
 Duct fill limit	Межа заповнення каналу
 Duplicate	Дублювати
@@ -1416,6 +1418,10 @@ Right edges	Праві краї
 Right neighbour	Сусід праворуч
 Rights	Права
 Room	Приміщення
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Приміщення додано на поверсі {}: перетягніть його стіни або намалюйте нові на плані, поставте в нього шафи в їхніх властивостях
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Приміщення додано: перетягніть його стіни або намалюйте нові на плані, поставте в нього шафи в їхніх властивостях
+Room {} now stands on level {}	Приміщення {} тепер стоїть на поверсі {}
+Room {} taken out of the building; it stays where it stands	Приміщення {} виведено з будівлі; воно залишається на своєму місці
 Rotate	Повернути
 Rotate (selection or symbol being placed)	Повернути (вибране або символ, що розміщується)
 Round	Круглий
@@ -1654,6 +1660,7 @@ Tag	Позначення
 Tag field	Поле позначення
 Tag placed by hand	Позначення розміщено вручну
 Take out a subproject	Винести підпроєкт
+Take out of the building	Вивести з будівлі
 Take out {} pages…	Винести сторінки ({})…
 Take over cut lengths	Перенести довжини відрізання
 Take over selected ({})	Перенести вибрані ({})
@@ -1661,6 +1668,7 @@ Take over {} changes	Перенести зміни ({})
 Take page out of its option	Вилучити сторінку з її опції
 Take selection out of its option	Вилучити вибране з його опції
 Take the acceptance back	Скасувати прийняття
+Take the room out of the building; it stays where it stands	Вивести приміщення з будівлі; воно залишається на своєму місці
 Taken into the drawing: drawn faded	Перенесено в креслення: відображається блідо
 Takes the comments as function texts (matched by address)	Бере коментарі як тексти функцій (зіставлення за адресою)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Бере позначення точок підключення всіх функцій цього пристрою із шаблонів функцій його виробів

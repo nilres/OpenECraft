@@ -1,5 +1,54 @@
 use super::*;
+use openecraft_core::panel::buildings as bld;
 use openecraft_core::parts::vec3;
+
+/// A building with two levels and a room outside it.
+fn building_and_room() -> (Project, [u64; 2], usize) {
+    let mut prj = Project::default();
+    let bi = bld::add_building(&mut prj, "+B1").unwrap();
+    bld::add_level(&mut prj, bi, None, None, None).unwrap();
+    let levels = [0, 1].map(|k| prj.layout.buildings[bi].levels[k].id);
+    let free = bld::add_room(&mut prj, "+ROOM1", None).unwrap();
+    (prj, levels, free)
+}
+
+#[test]
+fn new_rooms_go_onto_the_level_selected_in_the_navigator() {
+    let (mut prj, [l0, l1], free) = building_and_room();
+    let mut ui = PanelUi::default();
+    ui.new_room(&mut prj);
+    assert_eq!(bld::building_of(&prj.layout, ui.enclosure), None, "no level selected");
+    ui.nav_action(&mut prj, NavAction::Level(l1));
+    ui.new_room(&mut prj);
+    assert_eq!(bld::rooms_on(&prj.layout, l1), vec![ui.enclosure]);
+    assert_eq!(ui.nav_level, Some(l1), "the level stays selected for more rooms");
+    ui.nav_action(&mut prj, NavAction::Level(l1));
+    assert_eq!(ui.nav_level, None, "a second click unselects it");
+    ui.nav_action(&mut prj, NavAction::NewRoomOn(l0));
+    assert_eq!(bld::rooms_on(&prj.layout, l0), vec![ui.enclosure], "context menu of a level");
+    assert!(bld::rooms_on(&prj.layout, l0).iter().all(|&r| r != free));
+    // A removed level is forgotten.
+    ui.nav_level = Some(999_999);
+    ui.new_room(&mut prj);
+    assert_eq!((ui.nav_level, bld::building_of(&prj.layout, ui.enclosure)), (None, None));
+}
+
+#[test]
+fn rooms_dropped_onto_a_level_stand_on_it() {
+    let (mut prj, [l0, l1], free) = building_and_room();
+    let mut ui = PanelUi::default();
+    ui.nav_action(&mut prj, NavAction::Put(free, l0));
+    assert_eq!(bld::rooms_on(&prj.layout, l0), vec![free]);
+    assert!(!ui.status.is_empty());
+    ui.nav_action(&mut prj, NavAction::Put(free, l1));
+    assert_eq!((bld::rooms_on(&prj.layout, l0), bld::rooms_on(&prj.layout, l1)), (vec![], vec![free]), "moved to another level");
+    ui.nav_action(&mut prj, NavAction::TakeOut(free));
+    assert_eq!(bld::building_of(&prj.layout, free), None);
+    prj.layout.enclosures.push(panel::Enclosure { name: "+CAB1".into(), ..Default::default() });
+    let cabinet = prj.layout.enclosures.len() - 1;
+    ui.nav_action(&mut prj, NavAction::Put(cabinet, l0));
+    assert!(bld::rooms_on(&prj.layout, l0).is_empty(), "only rooms stand on levels: {}", ui.status);
+}
 
 #[test]
 fn fill_colours_follow_the_limit() {

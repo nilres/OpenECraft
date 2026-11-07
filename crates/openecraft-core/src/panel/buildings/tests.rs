@@ -107,6 +107,22 @@ fn rooms_without_a_place_line_up_on_their_level() {
 }
 
 #[test]
+fn new_rooms_go_onto_a_level_or_outside_the_buildings() {
+    let (mut prj, bi, [r0, _]) = building();
+    let l0 = level_ids(&prj, bi)[0];
+    prj.layout.buildings[bi].levels[0].height = 4000.0;
+    let r = add_room(&mut prj, "+R2", Some(l0)).unwrap();
+    assert_eq!(rooms_on(&prj.layout, l0), vec![r0, r]);
+    assert_eq!(prj.layout.enclosures[r].height, 4000.0 - SLAB);
+    assert_eq!(prj.layout.enclosures[r].site, None, "next to the other rooms of the level");
+    let free = add_room(&mut prj, "+R3", None).unwrap();
+    assert_eq!(building_of(&prj.layout, free), None);
+    let n = prj.layout.enclosures.len();
+    assert!(add_room(&mut prj, "+R4", Some(999_999)).is_err());
+    assert_eq!(prj.layout.enclosures.len(), n, "nothing added for a missing level");
+}
+
+#[test]
 fn shafts_join_the_rooms_they_pass() {
     let (mut prj, bi, [r0, r1]) = building();
     let [l0, l1] = level_ids(&prj, bi)[..] else { panic!() };

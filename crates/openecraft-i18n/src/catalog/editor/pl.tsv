@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Kliknij, aby wstawić · Esc anuluje
 Click to place a comment	Kliknij, aby umieścić komentarz
 Click to place the markup text	Kliknij, aby umieścić tekst adnotacji
 Click to place the text from the field below	Kliknij, aby umieścić tekst z pola poniżej
+Click to put new rooms on this level; drop rooms onto it to move them here	Kliknij, aby nowe pomieszczenia trafiały na tę kondygnację; upuść tu pomieszczenia, aby je przenieść
 Click to show	Kliknij, aby wyświetlić
 Click to show, right click for more	Kliknij, aby pokazać, prawy przycisk – więcej
 Click two corners	Kliknij dwa narożniki
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	Lista otworów tej ściany (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Wzór wierceń pokazanej ściany jako DXF, DWG lub CSV
 Drop between the pages	Upuść między stronami
 Drop between the rows or onto a section	Upuść między wierszami lub na sekcji
+Drop onto a level to put the room on it	Upuść na kondygnację, aby umieścić na niej pomieszczenie
 Duct fill	Wypełnienie kanału
 Duct fill limit	Graniczne wypełnienie kanału
 Duplicate	Duplikuj
@@ -1417,6 +1419,10 @@ Right edges	Prawe krawędzie
 Right neighbour	Prawy sąsiad
 Rights	Uprawnienia
 Room	Pomieszczenie
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Dodano pomieszczenie na kondygnacji {}: przeciągnij jego ściany lub narysuj nowe na rzucie, wstaw do niego szafy w ich właściwościach
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Dodano pomieszczenie: przeciągnij jego ściany lub narysuj nowe na rzucie, wstaw do niego szafy w ich właściwościach
+Room {} now stands on level {}	Pomieszczenie {} stoi teraz na kondygnacji {}
+Room {} taken out of the building; it stays where it stands	Pomieszczenie {} wyjęte z budynku; zostaje tam, gdzie stoi
 Rotate	Obróć
 Rotate (selection or symbol being placed)	Obróć (zaznaczenie lub umieszczany symbol)
 Round	Okrągły
@@ -1655,6 +1661,7 @@ Tag	Oznaczenie
 Tag field	Pole oznaczenia
 Tag placed by hand	Oznaczenie umieszczone ręcznie
 Take out a subproject	Wydziel podprojekt
+Take out of the building	Wyjmij z budynku
 Take out {} pages…	Wydziel strony ({})…
 Take over cut lengths	Przejmij długości cięcia
 Take over selected ({})	Przejmij zaznaczone ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	Przejmij zmiany ({})
 Take page out of its option	Wyjmij stronę z jej opcji
 Take selection out of its option	Wyjmij zaznaczenie z jego opcji
 Take the acceptance back	Cofnij akceptację
+Take the room out of the building; it stays where it stands	Wyjmij pomieszczenie z budynku; zostaje tam, gdzie stoi
 Taken into the drawing: drawn faded	Przejęte do rysunku: rysowane jaśniej
 Takes the comments as function texts (matched by address)	Przejmuje komentarze jako teksty funkcji (przyporządkowane według adresu)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Przejmuje oznaczenia punktów połączeń wszystkich funkcji tego urządzenia z szablonów funkcji jego artykułów

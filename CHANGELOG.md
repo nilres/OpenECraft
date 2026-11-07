@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Rooms onto levels in the navigator:** in *Enclosures and rooms* rooms are dragged
+  onto a level of a building to stand on it; a selected level takes the rooms made with
+  *New room*, and the context menu of a level offers *New room on this level*
+  ([panel layout](docs/features/panel-layout.md)).
+
 - **Docker images of the servers:** the parts server and the project server are
   published as `ghcr.io/nilres/openecraft-parts-server` and
   `ghcr.io/nilres/openecraft-project-server` with every release (`<version>`, `latest`)

@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Щелчок – вставить · Esc – от�
 Click to place a comment	Щёлкните, чтобы разместить комментарий
 Click to place the markup text	Щёлкните, чтобы разместить текст пометки
 Click to place the text from the field below	Щёлкните, чтобы разместить текст из поля ниже
+Click to put new rooms on this level; drop rooms onto it to move them here	Щёлкните, чтобы новые помещения создавались на этом уровне; отпустите здесь помещения, чтобы переместить их на него
 Click to show	Щёлкните, чтобы показать
 Click to show, right click for more	Щелчок — показать, правая кнопка — ещё
 Click two corners	Щёлкните два угла
@@ -532,6 +533,7 @@ Drilling list of this face (CSV)	Список сверления этой пов
 Drilling pattern of the face shown as DXF, DWG or CSV	Схема сверления показанной стороны в DXF, DWG или CSV
 Drop between the pages	Отпустите между листами
 Drop between the rows or onto a section	Отпустите между строками или на разделе
+Drop onto a level to put the room on it	Отпустите на уровне, чтобы поставить на него помещение
 Duct fill	Заполнение канала
 Duct fill limit	Предел заполнения канала
 Duplicate	Дублировать
@@ -1416,6 +1418,10 @@ Right edges	По правому краю
 Right neighbour	Сосед справа
 Rights	Права
 Room	Помещение
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Помещение добавлено на уровне {}: перетащите его стены или нарисуйте новые на плане, поставьте в него шкафы в их свойствах
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Помещение добавлено: перетащите его стены или нарисуйте новые на плане, поставьте в него шкафы в их свойствах
+Room {} now stands on level {}	Помещение {} теперь находится на уровне {}
+Room {} taken out of the building; it stays where it stands	Помещение {} выведено из здания; оно остаётся на своём месте
 Rotate	Повернуть
 Rotate (selection or symbol being placed)	Повернуть (выделенное или размещаемый символ)
 Round	Круглый
@@ -1654,6 +1660,7 @@ Tag	Обозначение
 Tag field	Поле обозначения
 Tag placed by hand	Обозначение размещено вручную
 Take out a subproject	Вынести подпроект
+Take out of the building	Вывести из здания
 Take out {} pages…	Вынести листы ({})…
 Take over cut lengths	Принять длины отрезков
 Take over selected ({})	Перенести выбранные ({})
@@ -1661,6 +1668,7 @@ Take over {} changes	Принять изменения ({})
 Take page out of its option	Исключить лист из опции
 Take selection out of its option	Исключить выделенное из опции
 Take the acceptance back	Отменить принятие
+Take the room out of the building; it stays where it stands	Вывести помещение из здания; оно остаётся на своём месте
 Taken into the drawing: drawn faded	Перенесено в чертёж: отображается бледно
 Takes the comments as function texts (matched by address)	Принимает комментарии как тексты функций (сопоставление по адресу)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Принимает обозначения точек подключения всех функций этого устройства из шаблонов функций его изделий

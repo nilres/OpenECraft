@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Klicka för att infoga · Esc avbryter
 Click to place a comment	Klicka för att placera en kommentar
 Click to place the markup text	Klicka för att placera markeringstexten
 Click to place the text from the field below	Klicka för att placera texten från fältet nedan
+Click to put new rooms on this level; drop rooms onto it to move them here	Klicka för att lägga nya rum på denna våning; släpp rum på den för att flytta hit dem
 Click to show	Klicka för att visa
 Click to show, right click for more	Klicka för att visa, högerklicka för mer
 Click two corners	Klicka på två hörn
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	Borrlista för den här ytan (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Borrmönster för den visade sidan som DXF, DWG eller CSV
 Drop between the pages	Släpp mellan sidorna
 Drop between the rows or onto a section	Släpp mellan raderna eller på ett avsnitt
+Drop onto a level to put the room on it	Släpp på en våning för att placera rummet där
 Duct fill	Kanalfyllnad
 Duct fill limit	Gräns för kanalfyllnad
 Duplicate	Duplicera
@@ -1417,6 +1419,10 @@ Right edges	Högerkanter
 Right neighbour	Granne till höger
 Rights	Behörigheter
 Room	Rum
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt på våning {}: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
+Room {} now stands on level {}	Rum {} står nu på våning {}
+Room {} taken out of the building; it stays where it stands	Rum {} har tagits ut ur byggnaden; det står kvar där det står
 Rotate	Rotera
 Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
 Round	Rund
@@ -1655,6 +1661,7 @@ Tag	Beteckning
 Tag field	Beteckningsfält
 Tag placed by hand	Beteckning placerad manuellt
 Take out a subproject	Lyft ut ett delprojekt
+Take out of the building	Ta ut ur byggnaden
 Take out {} pages…	Lyft ut {} sidor…
 Take over cut lengths	Överför kaplängder
 Take over selected ({})	Överför markerade ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	Överför {} ändringar
 Take page out of its option	Ta ut sidan ur dess alternativ
 Take selection out of its option	Ta ut markeringen ur dess alternativ
 Take the acceptance back	Ta tillbaka godkännandet
+Take the room out of the building; it stays where it stands	Ta ut rummet ur byggnaden; det står kvar där det står
 Taken into the drawing: drawn faded	Överförd till ritningen: ritas blekt
 Takes the comments as function texts (matched by address)	Hämtar kommentarerna som funktionstexter (matchas via adress)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Hämtar anslutningspunktsbeteckningarna för alla funktioner i den här apparaten från dess artiklars funktionsmallar

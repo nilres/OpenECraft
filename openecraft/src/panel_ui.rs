@@ -501,6 +501,24 @@ pub struct PanelUi {
     confirm_remove: Option<usize>,
     /// Inner wall selected in the floor plan (its id).
     plan_inner: Option<u64>,
+    /// Level selected in the navigator (its id): new rooms go onto it.
+    nav_level: Option<u64>,
+}
+
+/// A room dragged in the navigator (the drag payload).
+#[derive(Clone, Copy, PartialEq, Debug)]
+struct DraggedRoom(usize);
+
+/// What the navigator does with the levels of the buildings.
+#[derive(Clone, Copy, PartialEq, Debug)]
+enum NavAction {
+    /// Selects the level for new rooms, or unselects it.
+    Level(u64),
+    NewRoomOn(u64),
+    /// Puts a room onto a level.
+    Put(usize, u64),
+    /// Takes a room out of its building.
+    TakeOut(usize),
 }
 
 impl Default for PanelUi {
@@ -564,6 +582,7 @@ impl Default for PanelUi {
             view_size: egui::Vec2::ZERO,
             confirm_remove: None,
             plan_inner: None,
+            nav_level: None,
         }
     }
 }
@@ -864,6 +883,12 @@ impl PanelUi {
                 self.new_room(prj);
             }
         });
+        self.enclosure_tree(ui, prj);
+        self.navigator_devices(ui, prj, db);
+    }
+
+    /// The buildings, rooms and enclosures of the navigator.
+    fn enclosure_tree(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
         let mut remove = None;
         // Buildings with their levels (the highest first) and the rooms on them, the
         // rooms with the line-ups standing in them, then the other line-ups; bayed
@@ -871,7 +896,7 @@ impl PanelUi {
         let lineups = panel::lineups(&prj.layout);
         let room_of = |lu: &Vec<usize>| lu.first().and_then(|&i| panel::room_of(&prj.layout, i));
         let mut rows: Vec<(usize, usize)> = Vec::new();
-        let mut headings: Vec<(usize, usize, String)> = Vec::new();
+        let mut headings: Vec<(usize, usize, String, Option<u64>)> = Vec::new();
         let room_rows = |rows: &mut Vec<(usize, usize)>, r: usize, indent: usize| {
             rows.push((indent, r));
             for lu in lineups.iter().filter(|lu| room_of(lu) == Some(r)) {
@@ -879,9 +904,9 @@ impl PanelUi {
             }
         };
         for b in &prj.layout.buildings {
-            headings.push((rows.len(), 0, tr_fmt!("{}  building", b.name)));
+            headings.push((rows.len(), 0, tr_fmt!("{}  building", b.name), None));
             for l in b.levels.iter().rev() {
-                headings.push((rows.len(), 1, tr_fmt!("{}  level, floor at {} m", l.name, format!("{:.2}", l.elevation / 1000.0))));
+                headings.push((rows.len(), 1, tr_fmt!("{}  level, floor at {} m", l.name, format!("{:.2}", l.elevation / 1000.0)), Some(l.id)));
                 for r in panel::buildings::rooms_on(&prj.layout, l.id) {
                     room_rows(&mut rows, r, 2);
                 }
@@ -893,15 +918,14 @@ impl PanelUi {
         for lu in lineups.iter().filter(|lu| room_of(lu).is_none() && !lu.first().is_some_and(|&i| prj.layout.enclosures[i].is_room())) {
             rows.extend(lu.iter().enumerate().map(|(k, &i)| (usize::from(k > 0), i)));
         }
+        let mut act = None;
         let mut headings = headings.into_iter().peekable();
         for (row, (indent, i)) in rows.into_iter().enumerate() {
-            while let Some((_, depth, text)) = headings.next_if(|h| h.0 <= row) {
-                ui.horizontal(|ui| {
-                    ui.add_space(14.0 * depth as f32);
-                    ui.label(RichText::new(text).strong());
-                });
+            while let Some((_, depth, text, level)) = headings.next_if(|h| h.0 <= row) {
+                act = self.nav_heading(ui, prj, depth, text, level).or(act);
             }
             let e = &prj.layout.enclosures[i];
+            let level = (e.is_room() && panel::buildings::building_of(&prj.layout, i).is_some()).then_some(e.level);
             ui.horizontal(|ui| {
                 ui.add_space(14.0 * indent as f32);
                 let label = if e.is_room() {
@@ -916,22 +940,45 @@ impl PanelUi {
                         remove = Some(i);
                     }
                     ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                        let r = ui.add(egui::Button::selectable(i == self.enclosure, label.as_str()).truncate()).on_hover_text(label.as_str());
+                        let mut r = ui.add(egui::Button::selectable(i == self.enclosure, label.as_str()).truncate()).on_hover_text(label.as_str());
+                        if e.is_room() {
+                            // Rooms are dragged onto the levels of the buildings.
+                            r = r.interact(Sense::drag());
+                            r.dnd_set_drag_payload(DraggedRoom(i));
+                        }
                         if r.clicked() {
                             self.enclosure = i;
+                            self.nav_level = None;
                             self.selection.clear();
                             self.fit_pending = true;
                             self.cam = None;
+                        }
+                        if let Some(l) = level {
+                            // Dropped onto a room of a level: onto its level.
+                            if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
+                                act = Some(NavAction::Put(d.0, l));
+                            }
+                            r.context_menu(|ui| {
+                                if icons::text_button(ui, Icon::Wall, tr("New room on this level")).clicked() {
+                                    act = Some(NavAction::NewRoomOn(l));
+                                    ui.close();
+                                }
+                                if icons::text_button(ui, Icon::Close, tr("Take out of the building")).on_hover_text(tr("Take the room out of the building; it stays where it stands")).clicked() {
+                                    act = Some(NavAction::TakeOut(i));
+                                    ui.close();
+                                }
+                            });
                         }
                     });
                 });
             });
         }
-        for (_, depth, text) in headings {
-            ui.horizontal(|ui| {
-                ui.add_space(14.0 * depth as f32);
-                ui.label(RichText::new(text).strong());
-            });
+        for (_, depth, text, level) in headings {
+            act = self.nav_heading(ui, prj, depth, text, level).or(act);
+        }
+        Self::room_drag_label(ui, prj);
+        if let Some(a) = act {
+            self.nav_action(prj, a);
         }
         if let Some(i) = remove {
             // Asked first when something would go with it.
@@ -944,6 +991,11 @@ impl PanelUi {
             }
         }
         self.confirm_remove_ui(ui.ctx(), prj);
+    }
+
+    /// The devices of the navigator: those to place and those placed in the current
+    /// enclosure.
+    fn navigator_devices(&mut self, ui: &mut egui::Ui, prj: &Project, db: &PartsDb) {
         if prj.layout.enclosures.is_empty() {
             ui.weak(tr("No enclosure yet – create one with New enclosure, or a room for cabinets with New room."));
             return;
@@ -2367,18 +2419,99 @@ impl PanelUi {
     }
 
     /// Adds a room and shows its rear wall.
+    /// A new room, on the level selected in the navigator if there is one.
     pub fn new_room(&mut self, prj: &mut Project) {
         let name = panel::free_name(&prj.layout, "+ROOM");
-        let room = panel::new_room(prj, &name, 4000.0, 3000.0, 2800.0);
-        prj.layout.enclosures.push(room);
-        self.enclosure = prj.layout.enclosures.len() - 1;
+        self.nav_level = self.nav_level.filter(|&l| panel::buildings::level_by_id(&prj.layout, l).is_some());
+        let ri = match panel::buildings::add_room(prj, &name, self.nav_level) {
+            Ok(ri) => ri,
+            Err(e) => {
+                self.status = e;
+                return;
+            }
+        };
+        self.enclosure = ri;
         self.in_room = true;
         self.selection.clear();
         self.show_face(Face::Wall(0), false);
         self.view = View::Plan;
         self.fit_pending = true;
         self.cam = None;
-        self.status = tr("Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties").to_string();
+        self.status = match self.nav_level.and_then(|l| panel::buildings::level_by_id(&prj.layout, l)) {
+            Some(l) => tr_fmt!("Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties", l.name),
+            None => tr("Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties").to_string(),
+        };
+    }
+
+    /// Carries out what was done with a level or a room in the navigator.
+    fn nav_action(&mut self, prj: &mut Project, act: NavAction) {
+        let level_name = |prj: &Project, id: u64| panel::buildings::level_by_id(&prj.layout, id).map(|l| l.name.clone()).unwrap_or_default();
+        match act {
+            NavAction::Level(id) => self.nav_level = if self.nav_level == Some(id) { None } else { Some(id) },
+            NavAction::NewRoomOn(id) => {
+                self.nav_level = Some(id);
+                self.new_room(prj);
+            }
+            NavAction::Put(r, id) => {
+                if prj.layout.enclosures.get(r).is_some_and(|e| e.level == id) {
+                    return;
+                }
+                self.status = match panel::buildings::set_room_level(prj, r, Some(id), None) {
+                    Ok(()) => tr_fmt!("Room {} now stands on level {}", prj.layout.enclosures[r].name, level_name(prj, id)),
+                    Err(e) => e,
+                };
+            }
+            NavAction::TakeOut(r) => {
+                self.status = match panel::buildings::set_room_level(prj, r, None, None) {
+                    Ok(()) => tr_fmt!("Room {} taken out of the building; it stays where it stands", prj.layout.enclosures[r].name),
+                    Err(e) => e,
+                };
+            }
+        }
+    }
+
+    /// A heading of the navigator: a building, or a level (`level`) that is selected for
+    /// new rooms by a click, takes rooms dropped onto it and has a context menu.
+    fn nav_heading(&self, ui: &mut egui::Ui, prj: &Project, depth: usize, text: String, level: Option<u64>) -> Option<NavAction> {
+        ui.horizontal(|ui| {
+            ui.add_space(14.0 * depth as f32);
+            let Some(id) = level else {
+                ui.label(RichText::new(text).strong());
+                return None;
+            };
+            let r = ui.add(egui::Button::selectable(self.nav_level == Some(id), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to put new rooms on this level; drop rooms onto it to move them here"));
+            let mut act = r.clicked().then_some(NavAction::Level(id));
+            r.context_menu(|ui| {
+                if icons::text_button(ui, Icon::Wall, tr("New room on this level")).clicked() {
+                    act = Some(NavAction::NewRoomOn(id));
+                    ui.close();
+                }
+            });
+            let elsewhere = |d: &DraggedRoom| prj.layout.enclosures.get(d.0).is_some_and(|e| e.level != id);
+            if r.dnd_hover_payload::<DraggedRoom>().is_some_and(|d| elsewhere(&d)) {
+                let color = ui.visuals().selection.stroke.color;
+                ui.painter().rect_filled(r.rect, 2.0, ui.visuals().selection.bg_fill.gamma_multiply(0.4));
+                ui.painter().rect_stroke(r.rect, 2.0, Stroke::new(1.5, color), egui::StrokeKind::Inside);
+            }
+            if let Some(d) = r.dnd_release_payload::<DraggedRoom>() {
+                act = Some(NavAction::Put(d.0, id));
+            }
+            act
+        })
+        .inner
+    }
+
+    /// The label at the pointer while a room is dragged in the navigator.
+    fn room_drag_label(ui: &egui::Ui, prj: &Project) {
+        let Some(d) = egui::DragAndDrop::payload::<DraggedRoom>(ui.ctx()) else { return };
+        let (Some(pos), Some(e)) = (ui.ctx().pointer_latest_pos(), prj.layout.enclosures.get(d.0)) else { return };
+        ui.ctx().set_cursor_icon(egui::CursorIcon::Grabbing);
+        egui::Area::new(egui::Id::unique("room_drag_label")).order(egui::Order::Tooltip).fixed_pos(pos + vec2(16.0, 12.0)).interactable(false).show(ui.ctx(), |ui| {
+            egui::Frame::popup(ui.style()).show(ui, |ui| {
+                ui.label(RichText::new(e.name.as_str()).strong());
+                ui.weak(tr("Drop onto a level to put the room on it"));
+            });
+        });
     }
 
     /// Parts that stand on the floor of a room (pumps, tanks, …) of the parts database,

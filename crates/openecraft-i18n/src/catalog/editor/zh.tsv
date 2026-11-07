@@ -283,6 +283,7 @@ Click to insert · Esc cancel	单击以插入 · Esc 取消
 Click to place a comment	单击以放置批注
 Click to place the markup text	单击以放置标记文本
 Click to place the text from the field below	单击以放置下方字段中的文本
+Click to put new rooms on this level; drop rooms onto it to move them here	单击以将新房间放在此层；将房间拖放到此处以将其移到此层
 Click to show	单击以显示
 Click to show, right click for more	单击显示，右键查看更多
 Click two corners	单击两个角点
@@ -527,6 +528,7 @@ Drilling list of this face (CSV)	此面的钻孔列表 (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	所示面的钻孔图，格式为 DXF、DWG 或 CSV
 Drop between the pages	放到页之间
 Drop between the rows or onto a section	放到行之间或分节上
+Drop onto a level to put the room on it	拖放到层上以将房间放在该层
 Duct fill	线槽填充
 Duct fill limit	线槽填充限值
 Duplicate	复制
@@ -978,6 +980,7 @@ New request	新建请求
 New revision	新建修订
 New revisions start as drafts, are submitted for review and can be released once approved.	新修订以草稿开始，提交审阅，获得批准后即可发布。
 New room	新建房间
+New room on this level	在此层新建房间
 New schematic page	新建原理图页
 New scheme	新建方案
 New section	新建分节
@@ -1398,6 +1401,10 @@ Right edges	右边缘
 Right neighbour	右侧相邻机柜
 Rights	权限
 Room	房间
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已在层 {} 添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
+Room {} now stands on level {}	房间 {} 现在位于层 {}
+Room {} taken out of the building; it stays where it stands	房间 {} 已移出建筑物，位置不变
 Rotate	旋转
 Rotate (selection or symbol being placed)	旋转（所选内容或正在放置的符号）
 Round	圆形
@@ -1634,6 +1641,7 @@ Tag	标识符
 Tag field	标识符字段
 Tag placed by hand	手动放置的标识符
 Take out a subproject	移出子项目
+Take out of the building	移出建筑物
 Take out {} pages…	移出 {} 页…
 Take over cut lengths	采用下料长度
 Take over selected ({})	采用所选项（{}）
@@ -1641,6 +1649,7 @@ Take over {} changes	采用 {} 处更改
 Take page out of its option	将页从其选项中移出
 Take selection out of its option	将所选内容从其选项中移出
 Take the acceptance back	撤销接受
+Take the room out of the building; it stays where it stands	将房间移出建筑物，位置不变
 Taken into the drawing: drawn faded	已采用到图纸中：淡化显示
 Takes the comments as function texts (matched by address)	将注释作为功能文本采用（按地址匹配）
 Takes the connection point designations of all functions of this device from the function templates of its parts	从部件的功能模板中采用此设备所有功能的连接点标识

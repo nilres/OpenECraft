@@ -355,6 +355,7 @@ Click to place for device {} · {} rotate · {} mirror · Esc or right click to 
 Click to place the markup text	Klicken, um den Markierungstext zu setzen	Cliquer pour placer le texte d'annotation	Haga clic para colocar el texto de la marca
 Click to place the text from the field below	Klicken Sie, um den Text aus dem Feld unten zu platzieren	Cliquez pour placer le texte du champ ci-dessous	Haz clic para colocar el texto del campo inferior
 Click to place · {} rotate · {} mirror · Esc or right click to finish	Klicken zum Platzieren · {} drehen · {} spiegeln · Esc oder Rechtsklick beendet	Cliquez pour placer · {} pivoter · {} miroir · Échap ou clic droit pour terminer	Clic para colocar · {} girar · {} reflejar · Esc o clic derecho para terminar
+Click to put new rooms on this level; drop rooms onto it to move them here	Klicken, um neue Räume auf diese Ebene zu stellen; Räume hierauf ziehen, um sie auf diese Ebene zu verschieben	Cliquez pour placer les nouvelles salles sur ce niveau ; déposez-y des salles pour les y déplacer	Haga clic para poner las salas nuevas en este nivel; suelte salas sobre él para moverlas aquí
 Click to select, drag to move, drag on empty space for window selection (from right to left: crossing). Drag the tag or a property text of a selected symbol to place it. Right/middle drag pans, wheel zooms.	Klicken zum Auswählen, Ziehen zum Verschieben, Ziehen auf freier Fläche für Fensterauswahl (von rechts nach links: kreuzend). Kennzeichen oder Eigenschaftstext eines markierten Symbols ziehen, um es zu platzieren. Rechts-/Mittelziehen verschiebt die Ansicht, Mausrad zoomt.	Cliquer pour sélectionner, glisser pour déplacer, glisser sur une zone vide pour une sélection par fenêtre (de droite à gauche : sélection par capture). Glisser le repère ou un texte de propriété d'un symbole sélectionné pour le placer. Glisser avec le bouton droit/central pour déplacer la vue, molette pour zoomer.	Haga clic para seleccionar, arrastre para mover, arrastre en un espacio vacío para seleccionar por ventana (de derecha a izquierda: por cruce). Arrastre la identificación o un texto de propiedad de un símbolo seleccionado para colocarlo. Arrastre con el botón derecho/central para desplazar, rueda para hacer zoom.
 Click to show	Klicken zum Anzeigen	Cliquez pour afficher	Haz clic para mostrar
 Click to show, right click for more	Klicken zum Anzeigen, Rechtsklick für mehr	Cliquer pour afficher, clic droit pour plus	Clic para mostrar, clic derecho para más
@@ -623,6 +624,7 @@ Drilling list of this face (CSV)	Bohrliste dieser Fläche (CSV)	Liste de perçag
 Drilling pattern of the face shown as DXF, DWG or CSV	Bohrbild der angezeigten Fläche als DXF, DWG oder CSV	Plan de perçage de la face affichée en DXF, DWG ou CSV	Patrón de taladrado de la cara mostrada como DXF, DWG o CSV
 Drop between the pages	Zwischen den Seiten ablegen	Déposer entre les pages	Soltar entre las páginas
 Drop between the rows or onto a section	Zwischen den Zeilen oder auf einem Abschnitt ablegen	Déposer entre les lignes ou sur une section	Soltar entre las filas o sobre una sección
+Drop onto a level to put the room on it	Auf eine Ebene ziehen, um den Raum darauf zu stellen	Déposez sur un niveau pour y placer la salle	Suelte sobre un nivel para poner la sala en él
 Drops the stored topology	Verwirft die gespeicherte Topologie	Abandonne la topologie enregistrée	Descarta la topología guardada
 Duct fill	Kanalfüllung	Remplissage goulottes	Llenado de canaletas
 Duct fill limit	Grenzwert Kanalfüllung	Limite de remplissage des goulottes	Límite de llenado de canaletas
@@ -1569,7 +1571,10 @@ Right edges	Rechte Kanten	Bords droits	Bordes derechos
 Right neighbour	Rechter Nachbar	Voisine de droite	Vecino derecho
 Rights	Rechte	Droits	Derechos
 Room	Raum	Salle	Sala
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Raum auf Ebene {} hinzugefügt: im Grundriss seine Wände ziehen oder neue zeichnen, Schaltschränke in ihren Eigenschaften hineinstellen	Salle ajoutée au niveau {} : faites glisser ses murs ou dessinez-en de nouveaux dans le plan, placez-y des armoires dans leurs propriétés	Sala añadida en el nivel {}: arrastre sus paredes o dibuje otras nuevas en el plano, coloque armarios en ella desde sus propiedades
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Raum hinzugefügt: im Grundriss seine Wände ziehen oder neue zeichnen, Schaltschränke in ihren Eigenschaften hineinstellen	Salle ajoutée : faites glisser ses murs ou dessinez-en de nouveaux dans le plan, placez-y des armoires dans leurs propriétés	Sala añadida: arrastre sus paredes o dibuje otras nuevas en el plano, coloque armarios en ella desde sus propiedades
+Room {} now stands on level {}	Raum {} steht jetzt auf Ebene {}	La salle {} est maintenant au niveau {}	La sala {} está ahora en el nivel {}
+Room {} taken out of the building; it stays where it stands	Raum {} aus dem Gebäude genommen; er bleibt, wo er steht	Salle {} retirée du bâtiment ; elle reste où elle est	Sala {} sacada del edificio; queda donde está
 Rooms stand on the levels of a building; shafts join rooms on different levels, links join the building entries of different buildings.	Räume stehen auf den Ebenen eines Gebäudes; Schächte verbinden Räume verschiedener Ebenen, Verbindungen die Gebäudeeinführungen verschiedener Gebäude.	Les pièces se trouvent sur les niveaux d'un bâtiment ; les gaines relient les pièces de niveaux différents, les liaisons les entrées de bâtiments différents.	Las salas están en los niveles de un edificio; los patinillos unen salas de distintos niveles, los enlaces las entradas de distintos edificios.
 Rotate	Drehen	Pivoter	Girar
 Rotate (selection or symbol being placed)	Drehen (Auswahl oder zu platzierendes Symbol)	Pivoter (sélection ou symbole en cours de placement)	Girar (selección o símbolo que se coloca)
@@ -1825,6 +1830,7 @@ Tag	Kennzeichen	Repère	Identificador
 Tag field	Kennzeichenfeld	Champ de repère	Campo de designación
 Tag placed by hand	Kennzeichen von Hand platziert	Repère placé manuellement	Identificación colocada a mano
 Take out a subproject	Teilprojekt auslagern	Extraire un sous-projet	Extraer un subproyecto
+Take out of the building	Aus dem Gebäude nehmen	Retirer du bâtiment	Sacar del edificio
 Take out {} pages…	{} Seiten auslagern…	Extraire {} pages…	Extraer {} páginas…
 Take over cut lengths	Schnittlängen übernehmen	Reprendre les longueurs de coupe	Adoptar longitudes de corte
 Take over selected ({})	Ausgewählte übernehmen ({})	Reprendre la sélection ({})	Adoptar seleccionadas ({})

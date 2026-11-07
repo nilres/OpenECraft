@@ -287,6 +287,7 @@ Click to insert · Esc cancel	Klik for at indsætte · Esc annullerer
 Click to place a comment	Klik for at placere en kommentar
 Click to place the markup text	Klik for at placere markeringsteksten
 Click to place the text from the field below	Klik for at placere teksten fra feltet nedenfor
+Click to put new rooms on this level; drop rooms onto it to move them here	Klik for at lægge nye rum på denne etage; slip rum på den for at flytte dem hertil
 Click to show	Klik for at vise
 Click to show, right click for more	Klik for at vise, højreklik for mere
 Click two corners	Klik på to hjørner
@@ -533,6 +534,7 @@ Drilling list of this face (CSV)	Boreliste for denne flade (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	Boremønster for den viste flade som DXF, DWG eller CSV
 Drop between the pages	Slip mellem siderne
 Drop between the rows or onto a section	Slip mellem rækkerne eller på et afsnit
+Drop onto a level to put the room on it	Slip på en etage for at placere rummet der
 Duct fill	Kanalfyldning
 Duct fill limit	Grænse for kanalfyldning
 Duplicate	Dupliker
@@ -1417,6 +1419,10 @@ Right edges	Højre kanter
 Right neighbour	Højre nabo
 Rights	Rettigheder
 Room	Rum
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet på etage {}: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
+Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
+Room {} now stands on level {}	Rum {} står nu på etage {}
+Room {} taken out of the building; it stays where it stands	Rum {} er taget ud af bygningen; det bliver stående, hvor det står
 Rotate	Rotér
 Rotate (selection or symbol being placed)	Rotér (markering eller symbol, der placeres)
 Round	Rund
@@ -1655,6 +1661,7 @@ Tag	Betegnelse
 Tag field	Mærkningsfelt
 Tag placed by hand	Mærkning placeret manuelt
 Take out a subproject	Udtag et delprojekt
+Take out of the building	Tag ud af bygningen
 Take out {} pages…	Udtag {} sider…
 Take over cut lengths	Overtag afkortningslængder
 Take over selected ({})	Overtag valgte ({})
@@ -1662,6 +1669,7 @@ Take over {} changes	Overtag {} ændringer
 Take page out of its option	Tag siden ud af dens option
 Take selection out of its option	Tag markeringen ud af dens option
 Take the acceptance back	Træk accepten tilbage
+Take the room out of the building; it stays where it stands	Tag rummet ud af bygningen; det bliver stående, hvor det står
 Taken into the drawing: drawn faded	Overtaget i tegningen: tegnes nedtonet
 Takes the comments as function texts (matched by address)	Overtager kommentarerne som funktionstekster (tilknyttet via adressen)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Overtager tilslutningsbetegnelserne for alle funktioner i denne enhed fra funktionsskabelonerne for dens artikler
