@@ -5,6 +5,57 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **3D routing in cabinets without cable ducts:** their wires are no longer laid
+  along the mounting plate (through the devices and each other) but routed in 3D from
+  connection point to connection point, like the wires of a room: clear of everything
+  by half their thickness, bent with their radius only, each on a way of its own. A
+  wire that finds no such way is reported as an error instead of being drawn.
+- **3D routing:** a route leaves a connection point that lies inside the box of its
+  device straight through that box, never through another device to the room behind
+  it; its last bend may lie where the straight way into
+  its end begins; the straight way out of every connection point and cable entry stays
+  free until its own route is laid; a cable between two cabinets that stand in no
+  common room is routed to a cable entry in each of them; every cable takes an entry of
+  its own; in the 3D view a cable passing from one cable duct into the next keeps under
+  the cover of the first.
+- **Bend radius in the 3D view:** ways laid side by side change lanes on a slanting
+  piece of a stretch instead of a step at the corner (which was rounded with a radius
+  of a millimetre or two); a route is drawn straight out of its connection points, its
+  first corners moved onto that line, instead of with a kink onto the routing grid; a
+  jog shorter than the bends of its corners is an S-curve of the bend radius also where
+  the stretches before and after it lean; bends are drawn as fine arcs, so that ways
+  round one corner are not pushed apart where only their drawn arcs met; a cable ends
+  on its bend where its cores part right behind a corner.
+- **3D routing, crossings:** routes that come together lie side by side, a route no
+  longer runs across another one (only on its own way out of a connection point, or
+  where it comes up to the device the other one ends at, and there it goes round the
+  other one too where that costs little); the way out of a connection point is shared
+  only by a route out of a point right beside it; of the wires of a cabinet as thick
+  as each other the shortest is routed first, so that between two devices the inner
+  conductors lie nearest to them and the outer ones go round them. Two wires that
+  still cross right at a device are lifted over each other more sharply than their
+  radius allows.
+- **3D routing, ends:** a route comes into an end against the direction it leaves it
+  in also where the way out is a single cell (it could run past the connection point
+  and back into it); where the way straight out of an end is barred and the route
+  starts from the cell beside it, the way out must be long enough for an S-bend of the
+  bend radius onto that line; cable glands of the examples lie in line with the
+  connection points they serve.
+- **Busbar systems:** the systems of bayed enclosures that meet at their common side
+  are one system (devices on it are connected by its bars in either enclosure); a
+  section shorter than the system is wide lies along its bars; the connection points
+  of repeated accessories (a current transformer behind each pole of a strip) are told
+  apart by their number (`2S1`).
+- **Parts:** current transformer sets with their connection points (primaries through
+  from the bottom to the top, secondaries on a terminal block), the leads of the
+  transformers behind NH strips.
+- **Examples 13 and 14** rebuilt so that every conductor can be laid: power flows
+  through the fields from one device into the next, busbar cross-sections run over
+  bars (transformer sets in the busbars, the distribution busbar through both cabinets,
+  coupling switches fed from busbar terminals), taps to small devices have their own
+  cross-sections; the string fuses of the generator junction box of example 11 stand
+  above their terminals.
+
 ## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,

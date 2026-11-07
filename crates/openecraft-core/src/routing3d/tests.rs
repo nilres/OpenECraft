@@ -1,6 +1,7 @@
 use super::*;
 use crate::model::ReportKind;
 use crate::analysis::Analysis;
+use crate::issue::Severity;
 use crate::sample::demo_project;
 
 /// The demo with a cable gland in the bottom of +CAB1, below the terminal strip.
@@ -366,5 +367,108 @@ fn cables_in_the_ducts_of_a_room_count_in_their_fill() {
         // The fullest stretch along the duct, in the coordinates of its face.
         let (lo, hi) = if d.horizontal() { (d.x, d.x + d.w) } else { (d.y, d.y + d.h) };
         assert!(f.from >= lo - 1.0 && f.to <= hi + 1.0 && f.to > f.from, "{f:?} on {lo}..{hi}");
+    }
+}
+
+/// Where the segments `a` and `b` come nearest to each other: the points on both.
+fn nearest(a: (V3, V3), b: (V3, V3)) -> (V3, V3) {
+    use crate::parts::vec3::{add, dot, scale, sub};
+    let (u, v, w) = (sub(a.1, a.0), sub(b.1, b.0), sub(a.0, b.0));
+    let (uu, uv, vv, uw, vw) = (dot(u, u), dot(u, v), dot(v, v), dot(u, w), dot(v, w));
+    let denom = uu * vv - uv * uv;
+    let mut s = if denom > 1e-6 { ((uv * vw - vv * uw) / denom).clamp(0.0, 1.0) } else { 0.0 };
+    let t = if vv > 1e-9 { ((uv * s + vw) / vv).clamp(0.0, 1.0) } else { 0.0 };
+    if uu > 1e-9 {
+        s = ((uv * t - uw) / uu).clamp(0.0, 1.0);
+    }
+    (add(a.0, scale(u, s)), add(b.0, scale(v, t)))
+}
+
+#[test]
+fn wires_of_cabinets_without_cable_ducts_run_from_point_to_point() {
+    for key in ["pv_transformer_metering", "industrial_main_distribution"] {
+        let prj = crate::sample::example(key).unwrap();
+        let an = Analysis::checked(&prj);
+        assert!(an.routing.items.iter().all(|i| i.routed()), "{key}: {:?}", an.routing.items.iter().filter(|i| !i.routed()).map(|i| &i.key).collect::<Vec<_>>());
+        let wires: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind == RouteKind::Wire && an.wiring[i.wire.unwrap()].door == (None, None)).collect();
+        assert!(wires.len() > 50, "{key}");
+        for it in &wires {
+            // Searched through the space like a cable: from the connection point, out of
+            // it the way it leaves, to the connection point at the other end.
+            let w = &an.wiring[it.wire.unwrap()];
+            assert!(between_points(&prj.layout, w) && wire_in_3d(&prj.layout, w), "{key}: {}", it.label);
+            assert_eq!((it.points.first().copied(), it.points.last().copied()), (it.ends[0].point, it.ends[1].point), "{key}: {}", it.label);
+            assert!(it.ends.iter().all(|e| e.leave.is_some()), "{key}: {}", it.label);
+            assert!(it.free > 0.0 && it.length == w.length, "{key}: {}", it.label);
+            // As long as its way and the reserve: nothing added for a way down to the plate.
+            let way = grid::length(&it.points);
+            assert!(it.length <= way + prj.layout.wire_reserve + 0.5 && it.length > way * 0.8, "{key}: {} {} of {way}", it.label, it.length);
+            // Bent with its radius: its corners far enough apart for the arcs of both.
+            assert_eq!(grid::close_bends(&it.points, 2.0 * it.bend_radius), 0, "{key}: {} {:?}", it.label, it.points);
+        }
+        // None runs inside another: only where both come up to one of their ends (the
+        // terminals of one device, a cable parting into its cores) they converge.
+        let rules = &prj.layout.routing;
+        let cell = rules.grid.max(5.0);
+        let zone = |i: &RoutedItem| (3.0 * cell).max(2.0 * i.bend_radius.max(cell / 2.0) + cell) + i.diameter / 2.0 + 2.0 * cell;
+        let ends = |i: &RoutedItem| -> Vec<V3> { i.ends.iter().filter_map(|e| e.point).chain(i.legs.iter().flat_map(|l| [l.points[0], l.points[l.points.len() - 1]])).collect() };
+        let near_end = |i: &RoutedItem, q: V3| ends(i).into_iter().any(|e| dist(e, q) <= zone(i));
+        let routed: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind != RouteKind::Wire || wires.iter().any(|w| w.key == i.key)).collect();
+        // The stretches of a route: no segment joins two of its legs.
+        let segments = |i: &RoutedItem| -> Vec<(V3, V3)> { i.stretches().into_iter().flat_map(|(_, points)| points.windows(2).map(|s| (s[0], s[1])).collect::<Vec<_>>()).collect() };
+        for (n, a) in routed.iter().enumerate() {
+            for b in &routed[n + 1..] {
+                for sa in segments(a) {
+                    for sb in segments(b) {
+                        let (p, q) = nearest(sa, sb);
+                        let inside = dist(p, q) < (a.diameter + b.diameter) / 2.0 - 0.5;
+                        assert!(!inside || (near_end(a, p) && near_end(b, q)), "{key}: {} and {} run inside each other at {p:?}", a.label, b.label);
+                    }
+                }
+            }
+        }
+    }
+    // With cable ducts on the mounting plate the wires run through them.
+    let prj = demo_with_gland();
+    let an = Analysis::checked(&prj);
+    assert!(an.wiring.iter().all(|w| !between_points(&prj.layout, w) && !wire_in_3d(&prj.layout, w)));
+}
+
+#[test]
+fn cables_between_cabinets_in_no_room_run_to_their_entries() {
+    let prj = crate::sample::example("pv_transformer_metering").unwrap();
+    let an = Analysis::checked(&prj);
+    // The cable from the transformers to the test terminal block of the meter cabinet.
+    let it = an.routing.item("=MS1-W2").unwrap();
+    assert!(it.routed(), "{:?}", it.status);
+    assert_eq!(it.legs.len(), 2);
+    let hv = prj.layout.enclosures.iter().position(|e| e.name == "+HV").unwrap();
+    let zs = prj.layout.enclosures.iter().position(|e| e.name == "+ZS1").unwrap();
+    assert_eq!((it.legs[0].enclosure, it.legs[1].enclosure), (hv, zs));
+    // Each stretch ends at a cable entry of its cabinet, in its bottom.
+    let pos = crate::panel::positions(&prj.layout);
+    for (leg, k, end) in [(&it.legs[0], hv, leg_end(&it.legs[0], true)), (&it.legs[1], zs, leg_end(&it.legs[1], false))] {
+        let e = &prj.layout.enclosures[k];
+        assert!((end[1] - pos[k][1] - e.height).abs() < 10.0, "{:?} of {}", leg.points, e.name);
+    }
+    assert!(an.issues.iter().any(|i| i.severity == Severity::Info && i.message().contains("=MS1-W2") && i.message().contains("cable entries")));
+    assert!(!an.issues.iter().any(|i| i.severity <= Severity::Warning));
+    // Every cable through a cable entry of its own.
+    let cables: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind == RouteKind::Cable).collect();
+    let through = |i: &RoutedItem| -> Vec<[i32; 3]> { i.ends.iter().filter(|e| e.tag.contains("GLAND")).filter_map(|e| e.point).chain(i.legs.iter().flat_map(|l| [l.points[0], l.points[l.points.len() - 1]])).map(|q| q.map(|v| v.round() as i32)).collect() };
+    for (n, a) in cables.iter().enumerate() {
+        for b in &cables[n + 1..] {
+            assert!(!through(a).iter().any(|q| through(b).contains(q)), "{} and {} through one cable entry", a.label, b.label);
+        }
+    }
+}
+
+/// The end of a stretch of a route at the side of its cabinet: its last point, or its
+/// first.
+fn leg_end(leg: &RouteLeg, last: bool) -> V3 {
+    if last {
+        leg.points[leg.points.len() - 1]
+    } else {
+        leg.points[0]
     }
 }

@@ -267,12 +267,12 @@ fn enclosures(prj: &mut Project, db: &PartsDb) -> [usize; 6] {
     prj.layout.enclosures.push(acd);
     let acd = prj.layout.enclosures.len() - 1;
     profile(prj, acd, ItemKind::Rail, panel::RAIL_PART, (40.0, 200.0), (680.0, 200.0));
-    profile(prj, acd, ItemKind::Rail, panel::RAIL_PART, (40.0, 480.0), (680.0, 480.0));
+    profile(prj, acd, ItemKind::Rail, panel::RAIL_PART, (40.0, 470.0), (680.0, 470.0));
     on_rail(prj, acd, 200.0, 40.0, &["=ESS+ACD-Q1", "=ESS+ACD-F1", "=ESS+ACD-F2", "=ESS+ACD-F3", "=ESS+ACD-F10", "=ESS+ACD-F11", "=ESS+ACD-F12", "=ESS+ACD-F13"]);
-    on_rail(prj, acd, 480.0, 40.0, &["=ESS+ACD-F21", "=ESS+ACD-F22", "=ESS+ACD-P10", "=ESS+ACD-X11", "=ESS+ACD-X21", "=ESS+ACD-X22"]);
-    on_rail(prj, acd, 480.0, 360.0, &["=ESS+ACD-X0"]);
-    on_rail(prj, acd, 480.0, 460.0, &["=ESS+ACD-X1"]);
-    on_rail(prj, acd, 480.0, 560.0, &["=ESS+ACD-X2"]);
+    on_rail(prj, acd, 470.0, 40.0, &["=ESS+ACD-F21", "=ESS+ACD-F22", "=ESS+ACD-P10", "=ESS+ACD-X11", "=ESS+ACD-X21", "=ESS+ACD-X22"]);
+    on_rail(prj, acd, 470.0, 360.0, &["=ESS+ACD-X0"]);
+    on_rail(prj, acd, 470.0, 460.0, &["=ESS+ACD-X1"]);
+    on_rail(prj, acd, 470.0, 560.0, &["=ESS+ACD-X2"]);
     for tag in ["=ESS+ACD-X0", "=ESS+ACD-X1", "=ESS+ACD-X2"] {
         gland_over(prj, acd, "GEN.GLAND-M32", tag);
     }
@@ -280,8 +280,12 @@ fn enclosures(prj: &mut Project, db: &PartsDb) -> [usize; 6] {
     gak.elevation = Some(1100.0);
     prj.layout.enclosures.push(gak);
     let gak = prj.layout.enclosures.len() - 1;
-    profile(prj, gak, ItemKind::Rail, panel::RAIL_PART, (20.0, 200.0), (340.0, 200.0));
-    on_rail(prj, gak, 200.0, 20.0, &["=PV+GAK-F1", "=PV+GAK-F2", "=PV+GAK-F3", "=PV+GAK-F4", "=PV+GAK-X1"]);
+    // The string fuses under the entry of the strings, their terminals and the surge
+    // arresters on a rail below them: the conductors run down from one to the next.
+    profile(prj, gak, ItemKind::Rail, panel::RAIL_PART, (20.0, 150.0), (340.0, 150.0));
+    on_rail(prj, gak, 150.0, 20.0, &["=PV+GAK-F1", "=PV+GAK-F2"]);
+    profile(prj, gak, ItemKind::Rail, panel::RAIL_PART, (20.0, 360.0), (340.0, 360.0));
+    on_rail(prj, gak, 360.0, 20.0, &["=PV+GAK-X1", "=PV+GAK-F3", "=PV+GAK-F4"]);
     gland_over(prj, gak, "GEN.GLAND-M20", "=PV+GAK-X1");
     for x in [60.0, 120.0] {
         gland(prj, gak, "GEN.GLAND-M20", Face::Bottom, x, 100.0);

@@ -195,6 +195,20 @@ fn a_lane_change_is_an_s_curve() {
         let (u, v) = (norm(sub(s[1], s[0])), norm(sub(s[2], s[1])));
         assert!(dot(u, v) > 0.94, "{s:?}");
     }
+    // The stretches before and after it need not run the same way, nor the jog straight
+    // across them: an S-curve of the radius all the same, from one stretch into the other.
+    let leaning = [[0.0, 0.0, 0.0], [1000.0, 30.0, 4.0], [1010.0, 80.0, 0.0], [2000.0, 60.0, -5.0]];
+    let round = fillet(&leaning, 125.0, 8);
+    assert!(round.len() > 8, "{round:?}");
+    let (u, w) = (norm(sub(leaning[1], leaning[0])), norm(sub(leaning[3], leaning[2])));
+    assert!(dot(norm(sub(round[1], round[0])), u) > 0.9999 && dot(norm(sub(round[round.len() - 1], round[round.len() - 2])), w) > 0.9999);
+    for s in round.windows(3) {
+        // Every point of the curve bends with the radius: the turn at it over the way to
+        // its neighbours.
+        let (d0, d1) = (sub(s[1], s[0]), sub(s[2], s[1]));
+        let (turn, way) = (dot(norm(d0), norm(d1)).clamp(-1.0, 1.0).acos(), length(d0).min(length(d1)));
+        assert!(turn < 1e-3 || way / turn > 0.9 * 125.0 || turn < 0.02, "{turn} over {way}: {round:?}");
+    }
     // A jog wider than two radii is two ordinary bends with a straight bit between.
     let wide = [[0.0, 0.0, 0.0], [1000.0, 0.0, 0.0], [1000.0, 400.0, 0.0], [2000.0, 400.0, 0.0]];
     let round = fillet(&wide, 125.0, 4);

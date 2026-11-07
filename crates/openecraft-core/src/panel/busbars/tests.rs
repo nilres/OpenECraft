@@ -16,12 +16,16 @@ fn each_bar_carries_one_conductor() {
     let supply = uses.iter().find(|u| u.busbar == bar_with(&prj, "=GRID+HV1-X01")).unwrap();
     assert_eq!((supply.bars, supply.nets.len()), (3, 3), "{supply:?}");
     assert!(supply.devices.contains(&"=MS+HV1-F10".to_string()));
+    // The transformers of the metering sit in it: one conductor through each.
+    assert!(supply.devices.contains(&"=MS+HV1-T1".to_string()));
     // The strips behind the coupling switch have a busbar of their own.
     let pv = uses.iter().find(|u| u.busbar == bar_with(&prj, "=PV+HV1-Q41")).unwrap();
-    assert!(!pv.devices.contains(&"=DIST+HV1-Q25".to_string()), "{pv:?}");
-    // The measured strips: the conductors through their transformers.
+    assert!(!pv.devices.contains(&"=MS+HV1-Q10".to_string()), "{pv:?}");
+    // The measured strips and the heat pumps behind the transformers of the power
+    // analyser: the conductors through their transformers.
     let dist = uses.iter().find(|u| u.busbar == bar_with(&prj, "=DIST+HV2-Q21")).unwrap();
-    assert_eq!((dist.devices.len(), dist.nets.len()), (4, 3), "{dist:?}");
+    assert_eq!((dist.devices.len(), dist.nets.len()), (7, 3), "{dist:?}");
+    assert!(dist.devices.contains(&"=EMS+HV2-T5".to_string()));
     assert!(problems(&prj, &nl).is_empty());
 }
 

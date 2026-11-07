@@ -147,7 +147,7 @@ pub fn mesh(prj: &Project, it: &PanelItem) -> Vec<(Tri, Option<[u8; 3]>)> {
         [a, b, ..] => (a.max(*b), a.min(*b)),
         _ => (30.0, 10.0),
     };
-    let horizontal = it.w >= it.h;
+    let horizontal = super::bars_along_x(&prj.parts, it);
     let (along, across) = if horizontal { (it.w, it.h) } else { (it.h, it.w) };
     let centres = crate::production::bar_centres(&prj.parts, &it.part, across);
     let pitch = centres.windows(2).map(|w| w[1] - w[0]).fold(across, f32::min);
@@ -187,7 +187,7 @@ pub fn terminals_on_bars(prj: &Project, it: &PanelItem) -> Option<Vec<(PanelItem
     let bar = e.items.iter().find(|b| {
         b.kind == ItemKind::Busbar && b.face == it.face && it.x < b.x + b.w && b.x < it.x + it.w && it.y < b.y + b.h && b.y < it.y + it.h
     })?;
-    let horizontal = bar.w >= bar.h;
+    let horizontal = super::bars_along_x(&prj.parts, bar);
     let ((start, len), (b0, across), across_bars) =
         if horizontal { ((it.y, it.h), (bar.y, bar.h), it.h > it.w) } else { ((it.x, it.w), (bar.x, bar.w), it.w > it.h) };
     if !across_bars {
@@ -233,8 +233,9 @@ pub fn place_on_bars(prj: &mut Project, enc: usize, tag: &str, bar: u64, at: f32
     let size = super::device_size(prj, tag)?;
     let wide = super::part_by_number(prj, &size.part)?.width;
     let id = super::place_device(prj, enc, tag, crate::geom::p(b.x + at, b.y))?;
+    let along_x = super::bars_along_x(&prj.parts, &b);
     let it = prj.layout.enclosures[enc].items.iter_mut().find(|i| i.id == id)?;
-    if b.w >= b.h {
+    if along_x {
         (it.x, it.y, it.w, it.h) = (b.x + at, b.y, wide, b.h);
     } else {
         (it.x, it.y, it.w, it.h) = (b.x, b.y + at, b.w, wide);

@@ -857,8 +857,35 @@ fn cores_part_from_their_cable_without_lying_in_each_other() {
     }
 }
 
-/// Least distance between the segments `a`–`b` and `c`–`d`.
-fn segment_gap(a: [f32; 3], b: [f32; 3], c: [f32; 3], d: [f32; 3]) -> f32 {
+#[test]
+fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
+    // Along x, round a corner (bend radius 100) and 110 on along y to the middle of two
+    // connection points: the cores part 60 before them, 50 behind the corner, where the
+    // bend of the cable has not ended yet.
+    let way = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 60.0, 0.0], [500.0, 110.0, 0.0]];
+    let at = [([495.0, 110.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 110.0, 0.0], [0.0, -1.0, 0.0])];
+    let (keep, tail, cores) = routing_ui::fan_out(&way, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0);
+    // The cable keeps its way up to the corner and ends on the bend round it, as far
+    // behind the corner (along y) as it was cut.
+    assert_eq!(keep, 1);
+    assert!(vec3::dist(tail[0], [400.0, 0.0, 0.0]) < 0.01 && tail.len() > 3, "{tail:?}");
+    assert!(tail.iter().all(|q| (vec3::dist(*q, [400.0, 100.0, 0.0]) - 100.0).abs() < 0.01), "{tail:?}");
+    let end = tail[tail.len() - 1];
+    assert!((end[1] - 50.0).abs() < 0.01, "{tail:?}");
+    // The cores go on from there the way the bend runs.
+    for core in &cores {
+        let on = vec3::norm(vec3::sub(core[1], core[0]));
+        assert!(vec3::dist(core[0], end) < 10.0 && on[0] > 0.3 && on[1] > 0.7, "{core:?}");
+    }
+    // Further behind the corner nothing changes: it ends on its straight way.
+    let long = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 300.0, 0.0], [500.0, 350.0, 0.0]];
+    let at = [([495.0, 350.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 350.0, 0.0], [0.0, -1.0, 0.0])];
+    let (keep, tail, _) = routing_ui::fan_out(&long, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0);
+    assert_eq!((keep, tail), (2, vec![[500.0, 290.0, 0.0]]));
+}
+
+/// Where the segments `a`–`b` and `c`–`d` come nearest to each other: the points on both.
+fn segment_nearest(a: [f32; 3], b: [f32; 3], c: [f32; 3], d: [f32; 3]) -> ([f32; 3], [f32; 3]) {
     use openecraft_core::parts::vec3::{add, dot, sub};
     let (u, v, w) = (sub(b, a), sub(d, c), sub(a, c));
     let (uu, uv, vv, uw, vw) = (dot(u, u), dot(u, v), dot(v, v), dot(u, w), dot(v, w));
@@ -866,8 +893,7 @@ fn segment_gap(a: [f32; 3], b: [f32; 3], c: [f32; 3], d: [f32; 3]) -> f32 {
     let mut s = if den.abs() < 1e-6 { 0.0 } else { ((uv * vw - vv * uw) / den).clamp(0.0, 1.0) };
     let t = if vv > 1e-9 { (uv * s + vw) / vv } else { 0.0 }.clamp(0.0, 1.0);
     s = if uu > 1e-9 { (uv * t - uw) / uu } else { 0.0 }.clamp(0.0, 1.0);
-    let (p, q) = (add(a, u.map(|x| x * s)), add(c, v.map(|x| x * t)));
-    vec3::dist(p, q)
+    (add(a, u.map(|x| x * s)), add(c, v.map(|x| x * t)))
 }
 
 /// Least distance from the segment `a`–`b` to a box (sampled along the segment).
@@ -971,7 +997,8 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                 match it.kind {
                     ItemKind::Device | ItemKind::Busbar | ItemKind::Rail => solids.push((seen(bx), it.id, name(it))),
                     ItemKind::Accessory => {
-                        if openecraft_core::routing3d::accessories(prj, k, "Cable gland").iter().any(|g| g.id == it.id) {
+                        // Cable glands and the membranes of cable entry flanges.
+                        if openecraft_core::routing3d::entries(prj, k).iter().any(|g| g.id == it.id) {
                             holes.push((seen(bx), e.wall() + 8.0));
                         } else {
                             solids.push((seen(bx), it.id, name(it)));
@@ -1151,11 +1178,16 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                             continue; // the cores of a cable with it and each other
                         }
                         // Two tubes ending at one connection point converge there, and
-                        // the cores of a cable part at its end item where the wires start.
+                        // the cores of a cable part at its end item where the wires start
+                        // (told by where the two come nearest to each other).
+                        let (near, other) = segment_nearest(way[j], way[j + 1], way2[j2], way2[j2 + 1]);
                         let ends_at = |w: &[V3]| [w.first(), w.last()].into_iter().flatten().copied().collect::<Vec<V3>>();
-                        let shared = ends_at(way).iter().any(|e| ends_at(way2).iter().any(|f| vec3::dist(*e, *f) < r + r2 + 1.0) && vec3::dist(*e, way[j]) < 60.0 * (r + r2));
+                        let shared = ends_at(way).iter().any(|e| ends_at(way2).iter().any(|f| vec3::dist(*e, *f) < r + r2 + 1.0) && vec3::dist(*e, near) < 60.0 * (r + r2));
+                        // At a device both end at they converge as far as the routing lets
+                        // them: three of its cells from the device at least.
                         let (_, _, _, ends2) = &tubes[i2];
-                        let same_item = ends.iter().any(|id| ends2.contains(id) && boxes.get(id).is_some_and(|b| within_box(way[j], grown(*b, 4.0 * (r + r2) + 20.0))));
+                        let zone = (4.0 * (r + r2) + 20.0).max(3.0 * prj.layout.routing.grid + r + r2);
+                        let same_item = ends.iter().any(|id| ends2.contains(id) && boxes.get(id).is_some_and(|b| within_box(near, grown(*b, zone))));
                         if shared || same_item {
                             continue;
                         }
@@ -1163,9 +1195,9 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                         // where they are packed.
                         let wires = what.starts_with("wire ") && what2.starts_with("wire ");
                         let left = if wires { 1.5 } else { 2.5 };
-                        let gap = segment_gap(way[j], way[j + 1], way2[j2], way2[j2 + 1]);
+                        let gap = vec3::dist(near, other);
                         if gap < r + r2 - left && reported.insert((i.min(i2), i.max(i2))) {
-                            out.push(format!("{view}: {what} and {what2} by {:.1} mm at ({:.0}, {:.0}, {:.0})", r + r2 - gap, way[j][0], way[j][1], way[j][2]));
+                            out.push(format!("{view}: {what} and {what2} by {:.1} mm at ({:.0}, {:.0}, {:.0})", r + r2 - gap, near[0], near[1], near[2]));
                         }
                     }
                 }
@@ -1177,8 +1209,66 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
 
 #[test]
 fn nothing_drawn_in_3d_clips_anything() {
-    for (name, prj) in [("demo", openecraft_core::sample::demo_project()), ("pump_room", openecraft_core::sample::example("pump_room").unwrap()), ("building_services", openecraft_core::sample::example("building_services").unwrap())] {
+    let example = |key: &str| openecraft_core::sample::example(key).unwrap();
+    let projects = [
+        ("demo", openecraft_core::sample::demo_project()),
+        ("pump_room", example("pump_room")),
+        ("building_services", example("building_services")),
+        ("pv_transformer_metering", example("pv_transformer_metering")),
+        ("industrial_main_distribution", example("industrial_main_distribution")),
+    ];
+    for (name, prj) in projects {
         let clips = clipping_in_3d(&prj);
         assert!(clips.is_empty(), "{name}: {} clips:\n{}", clips.len(), clips.join("\n"));
+    }
+}
+
+/// The tubes drawn in the 3D views of a project and those of them that bend tighter
+/// than their bend radius somewhere ([`bundles::tight_bends`]).
+fn tight_in_3d(prj: &Project) -> (usize, Vec<String>) {
+    use openecraft_core::routing3d::{bundles, RouteKind};
+    let an = Analysis::build(prj);
+    let (mut all, mut tight) = (0, Vec::new());
+    let scenes: Vec<usize> = (0..prj.layout.enclosures.len()).filter(|&k| prj.layout.enclosures[k].is_room() || openecraft_core::panel::lineup_of(&prj.layout, k).first() == Some(&k)).collect();
+    for ei in scenes {
+        let mut ui = PanelUi { enclosure: ei, show_wires: true, ..Default::default() };
+        let shown = ui.shown_3d(prj, ei);
+        let ctx = egui::Context::default();
+        let mut s = ui.scene_3d(&ctx, prj, &an, ei, &shown);
+        while s.waiting.is_some() {
+            std::thread::sleep(std::time::Duration::from_millis(20));
+            s = ui.scene_3d(&ctx, prj, &an, ei, &shown);
+        }
+        for (points, half, target) in &s.tube_paths {
+            let (radius, name) = match target {
+                routing_ui::RouteRef::Wire(wi) => (prj.layout.routing.bend_radius(RouteKind::Wire, 2.0 * half), format!("{} - {}", an.wiring[*wi].from, an.wiring[*wi].to)),
+                routing_ui::RouteRef::Item(key) => match an.routing.item(key) {
+                    // The cores of a cable are as thin as wires.
+                    Some(it) if (2.0 * half - it.diameter).abs() < 0.01 => (it.radii.iter().copied().fold(0.0, f32::max), key.clone()),
+                    _ => continue,
+                },
+                routing_ui::RouteRef::None => continue,
+            };
+            all += 1;
+            if let Some((at, r)) = bundles::tight_bends(points, radius).first() {
+                tight.push(format!("{}: {name} with {r:.0} of {radius:.0} mm at ({:.0}, {:.0}, {:.0})", prj.layout.enclosures[ei].name, at[0], at[1], at[2]));
+            }
+        }
+    }
+    (all, tight)
+}
+
+#[test]
+fn tubes_drawn_in_3d_keep_their_bend_radius_where_they_do_not_cross() {
+    // The cabinets without cable ducts: every conductor is laid by the 3D routing, bent
+    // with its radius, laid on its lane without a step and drawn straight out of its
+    // connection points, and routes cross each other only where they come up to their
+    // ends. There, and where thin wires come onto their lanes a little tighter than
+    // their radius, the view still draws a bend too tight: about one tube in six in
+    // example 13 (three of them on its doors, laid along the plate), one in ten in
+    // example 14; it was more than half of them.
+    for (key, most) in [("pv_transformer_metering", 0.2), ("industrial_main_distribution", 0.12)] {
+        let (all, tight) = tight_in_3d(&openecraft_core::sample::example(key).unwrap());
+        assert!(all > 50 && (tight.len() as f32) <= most * all as f32, "{key}: {} of {all}:\n{}", tight.len(), tight.join("\n"));
     }
 }

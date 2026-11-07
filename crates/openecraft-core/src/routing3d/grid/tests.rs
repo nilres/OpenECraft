@@ -355,7 +355,7 @@ fn cables_keep_apart_in_free_air() {
     let rules = RoutingRules::default();
     let (a, b) = ([300.0, 60.0, 250.0], [300.0, 740.0, 250.0]);
     let first = s.route(a, b, &req(&[]), &rules).unwrap();
-    s.take(&first.points, 3.0, 30.0, &[]);
+    s.take(&first.points, 3.0, 30.0, &[], &[]);
     // The same way again: beside the first, not inside it, but for the ends.
     let second = s.route(a, b, &req(&[]), &rules).unwrap();
     assert!(!s.still_apart(&first.cells, &req(&[])));
@@ -367,7 +367,7 @@ fn cables_keep_apart_in_free_air() {
     // Near the ends both go to, the second converges with the first.
     let mut s = space(&prj);
     let zone = s.end_zone(&req(&[]));
-    s.take(&first.points, 3.0, 30.0, &[(a, zone), (b, zone)]);
+    s.take(&first.points, 3.0, 30.0, &[(a, zone), (b, zone)], &[]);
     let near_a: Vec<usize> = first.cells.iter().copied().filter(|&i| crate::parts::vec3::dist(s.centre(i), a) <= zone / 2.0).collect();
     assert!(!near_a.is_empty() && s.still_apart(&near_a, &Request { at: [a, b], ..req(&[]) }));
     assert!(!s.still_apart(&first.cells, &Request { at: [a, b], ..req(&[]) }));
@@ -406,5 +406,165 @@ fn ducts_are_entered_through_their_walls_and_kept_off_outside() {
     let w = s.route(a, b, &thick, &rules).expect("along the duct");
     for &c in &w.cells {
         assert!(from_box(s.centre(c), lo, hi) >= 40.0 - 0.5, "{:?}", w.points);
+    }
+}
+
+#[test]
+fn the_way_out_of_a_point_inside_its_device_is_open() {
+    // A device from x 125 to 325, y 325 to 625, 150 mm deep, with a connection point
+    // in its middle that leaves upwards (terminals behind a shroud, a switch on its
+    // module): the route runs straight up through the box, nowhere else through it.
+    let mut e = single();
+    e.items.push(PanelItem { id: 7, kind: ItemKind::Device, tag: "-F1".into(), x: 100.0, y: 300.0, w: 200.0, h: 300.0, d: 150.0, ..Default::default() });
+    let prj = project(e);
+    let s = space(&prj);
+    let rules = RoutingRules::default();
+    let (a, b) = ([235.0, 485.0, 110.0], [460.0, 160.0, 110.0]);
+    let r = Request { at: [a, b], leave: [[0.0, -1.0, 0.0], [0.0; 3]], ..req(&[7]) };
+    let w = s.route(a, b, &r, &rules).expect("out through its device");
+    let through: Vec<V3> = w.cells.iter().map(|&c| s.centre(c)).filter(|q| inside(*q, [125.0, 325.0, 20.0], [325.0, 625.0, 170.0])).collect();
+    assert!(through.len() >= 5, "{:?}", w.points);
+    assert!(through.iter().all(|q| (q[0] - a[0]).abs() <= s.cell && (q[2] - a[2]).abs() <= s.cell && q[1] < a[1]), "{through:?}");
+    // Without a direction there is no way out of the middle of the device.
+    assert!(s.route(a, b, &Request { leave: [[0.0; 3]; 2], ..r }, &rules).is_none());
+    // Through another device the way out is not open.
+    let other = Request { at: [a, b], leave: [[0.0, -1.0, 0.0], [0.0; 3]], ..req(&[]) };
+    assert!(s.route(a, b, &other, &rules).is_none());
+}
+
+#[test]
+fn the_last_corner_lies_where_the_way_into_the_end_begins() {
+    // Two devices one above the other with a single row of cells between them (y 375
+    // to 400): a route to a connection point on top of the lower one comes along the
+    // row and turns down into the point there, as it may turn right out of its start.
+    let mut e = single();
+    e.items.push(PanelItem { id: 7, kind: ItemKind::Device, tag: "-K1".into(), x: 100.0, y: 275.0, w: 300.0, h: 70.0, d: 200.0, ..Default::default() });
+    e.items.push(PanelItem { id: 8, kind: ItemKind::Device, tag: "-K2".into(), x: 100.0, y: 375.0, w: 300.0, h: 100.0, d: 200.0, ..Default::default() });
+    let prj = project(e);
+    let s = space(&prj);
+    let rules = RoutingRules::default();
+    let (a, b) = ([510.0, 387.5, 110.0], [310.0, 400.0, 110.0]);
+    let r = Request { at: [a, b], leave: [[0.0; 3], [0.0, -1.0, 0.0]], ..req(&[8]) };
+    let w = s.route(a, b, &r, &rules).expect("along the row and down into the point");
+    assert!(w.cells.iter().all(|&c| (s.centre(c)[1] - 387.5).abs() < 1e-3), "{:?}", w.points);
+    // And the other way round.
+    let back = Request { at: [b, a], leave: [[0.0, -1.0, 0.0], [0.0; 3]], ..req(&[8]) };
+    assert!(s.route(b, a, &back, &rules).is_some());
+}
+
+#[test]
+fn the_way_out_of_an_end_stays_free_for_its_route() {
+    let prj = project(with_block());
+    let mut s = space(&prj);
+    let rules = RoutingRules::default();
+    // A route still to be searched leaves the top of the device upwards.
+    let (c, d) = ([285.0, 325.0, 110.0], [285.0, 100.0, 110.0]);
+    let up = Request { at: [c, d], leave: [[0.0, -1.0, 0.0], [0.0; 3]], ..req(&[7]) };
+    let out = s.cell_of([285.0, 312.5, 110.0]).unwrap();
+    // Another one along the top of the device runs across that way.
+    let (a, b) = ([60.0, 312.5, 110.0], [510.0, 312.5, 110.0]);
+    let across = Request { at: [a, b], ..req(&[]) };
+    assert!(s.route(a, b, &across, &rules).unwrap().cells.contains(&out));
+    // Kept free, it goes round it; the route it is kept for takes it.
+    s.keep_ways_out(c, d, &up);
+    let round = s.route(a, b, &across, &rules).expect("round the way out");
+    assert!(!round.cells.contains(&out), "{:?}", round.points);
+    assert!(s.route(c, d, &up, &rules).unwrap().cells.contains(&out));
+    // A route ending right beside it converges with it there.
+    let beside = [310.0, 325.0, 110.0];
+    let near = Request { at: [beside, a], leave: [[0.0, -1.0, 0.0], [0.0; 3]], ..req(&[7]) };
+    assert!(s.route(beside, a, &near, &rules).is_some());
+}
+
+#[test]
+fn the_way_out_of_an_end_never_runs_through_another_device() {
+    // A connection point on the left side of a device that leaves to the left, another
+    // device 15 mm beside it: there is no way out through that one to the free cells
+    // behind it. With room between the two the route leaves through it.
+    let route = |gap: f32| {
+        let mut e = single();
+        e.items.push(PanelItem { id: 7, kind: ItemKind::Device, tag: "-T1".into(), x: 300.0, y: 300.0, w: 100.0, h: 200.0, d: 150.0, ..Default::default() });
+        e.items.push(PanelItem { id: 8, kind: ItemKind::Device, tag: "-X1".into(), x: 260.0 - gap, y: 250.0, w: 40.0, h: 300.0, d: 150.0, ..Default::default() });
+        let prj = project(e);
+        let s = space(&prj);
+        let (a, b) = ([325.0, 437.5, 110.0], [160.0, 110.0, 110.0]);
+        let r = Request { at: [a, b], leave: [[-1.0, 0.0, 0.0], [0.0; 3]], ..req(&[7]) };
+        s.route(a, b, &r, &RoutingRules::default()).map(|w| w.cells.iter().map(|&c| s.centre(c)).collect::<Vec<V3>>())
+    };
+    assert!(route(15.0).is_none());
+    let way = route(100.0).expect("out between the devices");
+    let (lo, hi) = ([185.0, 275.0, 20.0], [225.0, 575.0, 170.0]);
+    assert!(way.iter().all(|q| !inside(*q, lo, hi)), "{way:?}");
+}
+
+#[test]
+fn a_route_comes_into_its_end_the_way_it_leaves_it() {
+    // A thin wire to a connection point that it leaves upwards (the way out of it is a
+    // single cell), from straight below: it does not run up past the point and back
+    // into it, it turns into the way into the point where that begins.
+    let prj = project(single());
+    let s = space(&prj);
+    let (a, b) = ([310.0, 600.0, 110.0], [310.0, 305.0, 110.0]);
+    let r = Request { at: [a, b], leave: [[0.0; 3], [0.0, -1.0, 0.0]], ..req(&[]) };
+    let w = s.route(a, b, &r, &RoutingRules::default()).expect("round to the way into the point");
+    for p in w.points.windows(3) {
+        let (u, v) = (sub(p[1], p[0]), sub(p[2], p[1]));
+        let along = (u[0] * v[0] + u[1] * v[1] + u[2] * v[2]) / (dist(p[0], p[1]) * dist(p[1], p[2]));
+        assert!(along > -0.5, "turns back at {:?}: {:?}", p[1], w.points);
+    }
+    // Its last cell lies above the point, come to from beside it or from above.
+    let n = w.cells.len();
+    let (last, before) = (s.centre(w.cells[n - 1]), s.centre(w.cells[n - 2]));
+    assert!(last[1] < b[1] && before[1] <= last[1] + 1e-3, "{:?}", w.points);
+}
+
+#[test]
+fn a_way_out_beside_its_end_is_long_enough_to_come_onto_it() {
+    // Onto a line beside the end: an S-bend of the radius, two quarter turns where the
+    // line lies further aside than they reach.
+    assert!((onto_line(10.0, 10.0) - 300f32.sqrt()).abs() < 1e-3);
+    assert_eq!(onto_line(25.0, 10.0), 20.0);
+    assert_eq!(onto_line(0.0, 10.0), 0.0);
+    // A device right above a connection point that leaves upwards bars its way out but
+    // for 20 mm; from the cell beside, the route needs the S-bend onto that line and
+    // its bend (30 mm more than the cell is away), which fits beside the device.
+    let mut e = single();
+    e.items.push(PanelItem { id: 8, kind: ItemKind::Device, tag: "-K2".into(), x: 275.0, y: 200.0, w: 25.0, h: 80.0, d: 200.0, ..Default::default() });
+    let prj = project(e);
+    let s = space(&prj);
+    let (a, b) = ([310.0, 320.0, 110.0], [510.0, 100.0, 110.0]);
+    let r = Request { at: [a, b], leave: [[0.0, -1.0, 0.0], [0.0; 3]], turn: 10.0, half: 1.5, ..req(&[]) };
+    let w = s.route(a, b, &r, &RoutingRules::default()).expect("out beside the device");
+    // Straight on from the cell beside for 40 mm and more before it turns.
+    let first = s.centre(w.cells[0]);
+    assert!((first[0] - a[0]).abs() > 12.5, "{:?}", w.points);
+    let straight = w.cells.iter().take_while(|&&c| (s.centre(c)[0] - first[0]).abs() < 1e-3 && (s.centre(c)[2] - first[2]).abs() < 1e-3).count();
+    assert!(a[1] - s.centre(w.cells[straight - 1])[1] >= 40.0 - 1.0, "{:?}", w.points);
+}
+
+#[test]
+fn routes_do_not_cross_each_other_where_they_come_up_to_a_device() {
+    // Two terminals 30 mm apart on top of a device, two wires to them from the right,
+    // one from above the other: the first, from the terminal nearer the right, runs
+    // along y just above the device; the second may not cross it to get to its
+    // terminal and comes in above it, nor may it run through the way out of the first.
+    let prj = project(with_block());
+    let mut s = space(&prj);
+    let rules = RoutingRules::default();
+    let (a, b) = ([300.0, 320.0, 110.0], [270.0, 320.0, 110.0]);
+    let far = [600.0, 310.0, 110.0];
+    let first = Request { at: [a, far], leave: [[0.0, -1.0, 0.0], [0.0; 3]], turn: 10.0, half: 1.5, ..req(&[7]) };
+    let second = Request { at: [b, far], leave: [[0.0, -1.0, 0.0], [0.0; 3]], turn: 10.0, half: 1.5, ..req(&[7]) };
+    s.keep_ways_out(a, far, &first);
+    s.keep_ways_out(b, far, &second);
+    let w1 = s.route(a, far, &first, &rules).expect("the first");
+    let zone = s.end_zone(&first);
+    s.take(&w1.points, 1.5, 1.5, &[(a, zone), (far, zone)], &[7]);
+    let w2 = s.route(b, far, &second, &rules).expect("the second, round the first");
+    // Nowhere do the two run through one cell along different axes.
+    let along = |w: &Way| -> Vec<(usize, u8)> { w.cells.windows(2).flat_map(|c| { let (p, q) = (s.centre(c[0]), s.centre(c[1])); let axis = (0..3).find(|&k| (p[k] - q[k]).abs() > 1e-3).unwrap_or(0); [(c[0], axis as u8), (c[1], axis as u8)] }).collect() };
+    let (a1, a2) = (along(&w1), along(&w2));
+    for &(c, axis) in &a2 {
+        assert!(a1.iter().all(|&(d, other)| d != c || other == axis || s.near_point(s.centre(c), &second)), "cross at {:?}: {:?} {:?}", s.centre(c), w1.points, w2.points);
     }
 }

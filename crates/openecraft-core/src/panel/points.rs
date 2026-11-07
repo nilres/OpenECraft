@@ -205,7 +205,10 @@ fn piece_points(out: &mut Vec<PlacedPoint>, part: &Part, [pw, ph, pd]: [f32; 3],
 /// The placed point of connection point `pin` (index) of schematic symbol `s`:
 /// terminals by terminal number and side (the studs of a busbar, such as the negative
 /// busbar of a DC distributor, by their number), PLC points by their address, other
-/// functions by designation (as in `netlist::pin_designation`).
+/// functions by designation (as in `netlist::pin_designation`). A designation with a
+/// leading number that no point has (`2S1`) is the point without it (`S1`) of the part
+/// of that number: of the second of the current transformers behind the poles of a
+/// fuse switch disconnector strip.
 pub fn point_of<'a>(prj: &Project, points: &'a [PlacedPoint], s: &SymbolInst, pin: usize) -> Option<&'a PlacedPoint> {
     let def = prj.symbol(&s.sym)?;
     if def.func == Func::Terminal {
@@ -217,7 +220,12 @@ pub fn point_of<'a>(prj: &Project, points: &'a [PlacedPoint], s: &SymbolInst, pi
         Func::Plc | Func::Plug(_) => s.label.as_str(),
         _ => s.pins.get(pin).map(String::as_str).or_else(|| def.pins.get(pin).map(|d| d.label))?,
     };
-    points.iter().find(|p| p.terminal.is_empty() && p.pin == name)
+    let named = |name: &str, n: usize| points.iter().filter(|p| p.terminal.is_empty() && p.pin == name).nth(n);
+    named(name, 0).or_else(|| {
+        let digits = name.chars().take_while(char::is_ascii_digit).count();
+        let n: usize = name[..digits].parse().ok().filter(|n| *n > 0)?;
+        named(&name[digits..], n - 1)
+    })
 }
 
 #[cfg(test)]

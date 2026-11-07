@@ -564,6 +564,19 @@ pub fn new_profile(prj: &mut Project, kind: ItemKind, part: &str, a: P, b: P) ->
     PanelItem { id: prj.new_id(), kind, part: part.into(), x, y, w: w.max(SNAP), h: h.max(SNAP), d: pd, ..Default::default() }
 }
 
+/// The bars of the busbar system `bar` run along x: a system as wide across its bars
+/// as its part lies the way that fits, however short it is (a section of a 185 mm
+/// system shorter than the system is wide); otherwise along its longer side.
+pub fn bars_along_x(parts: &[crate::parts::Part], bar: &PanelItem) -> bool {
+    let (wide, _) = part_profile(ItemKind::Busbar, parts.iter().find(|x| x.number == bar.part));
+    let (across_y, across_x) = ((bar.h - wide).abs() < 0.5, (bar.w - wide).abs() < 0.5);
+    if across_y != across_x {
+        across_y
+    } else {
+        bar.w >= bar.h
+    }
+}
+
 /// Profile width and height of rails / ducts (from the part or the defaults).
 pub fn profile(prj: &Project, kind: ItemKind, part: &str) -> (f32, f32) {
     part_profile(kind, prj.parts.iter().find(|x| x.number == part))
@@ -1119,6 +1132,38 @@ pub fn busbar_of(e: &Enclosure, item: &PanelItem) -> Option<u64> {
         return None;
     }
     busbars(e, item).find(|b| item.z >= b.z + b.d - 0.5).map(|b| b.id)
+}
+
+/// How far apart (mm) the busbar systems of two bayed enclosures may end at their common
+/// side to be joined through it.
+pub const BUSBAR_JOINT: f32 = 100.0;
+
+/// The busbar system a device is mounted on, across a line-up: the enclosure and the
+/// busbar item it begins with on the left. The busbar systems of bayed enclosures that
+/// meet at their common side (the same part at the same height, their ends no more
+/// than [`BUSBAR_JOINT`] mm apart) are one system, joined through the side; the devices
+/// on it are connected by its bars in whichever of the enclosures they are (`pos`:
+/// [`positions`]).
+pub fn busbar_system(layout: &Layout, pos: &[V3], ei: usize, item: &PanelItem) -> Option<(usize, u64)> {
+    let mut at = (ei, busbar_of(layout.enclosures.get(ei)?, item)?);
+    while let Some(left) = joined_on_the_left(layout, pos, at) {
+        at = left;
+    }
+    Some(at)
+}
+
+/// The busbar system in the enclosure bayed on the left that the busbar item `bar` of
+/// an enclosure is joined with.
+fn joined_on_the_left(layout: &Layout, pos: &[V3], (ei, bar): (usize, u64)) -> Option<(usize, u64)> {
+    let left = neighbours(layout, ei).0?;
+    let (e, l) = (&layout.enclosures[ei], &layout.enclosures[left]);
+    let b = e.items.iter().find(|i| i.id == bar)?;
+    let height = |k: usize, it: &PanelItem| pos[k][1] + it.y;
+    let other = l.items.iter().find(|o| {
+        let gap = (b.x + PLATE_MARGIN) + (l.width - (o.x + o.w + PLATE_MARGIN));
+        o.kind == ItemKind::Busbar && o.face == b.face && o.part == b.part && (height(left, o) - height(ei, b)).abs() < 1.0 && (o.h - b.h).abs() < 1.0 && gap <= BUSBAR_JOINT
+    })?;
+    Some((left, other.id))
 }
 
 // ---------------------------------------------------------------------- checks
@@ -1696,7 +1741,7 @@ pub fn virtual_wiring(prj: &Project, conns: &[Connection]) -> (Vec<RoutedWire>, 
             open.push(OpenWire { from, to, net: c.net.clone(), reason: "device not placed" });
             continue;
         };
-        if ea == eb && busbar_of(&prj.layout.enclosures[ea], ia).is_some_and(|bar| busbar_of(&prj.layout.enclosures[eb], ib) == Some(bar)) {
+        if busbar_system(&prj.layout, &pos, ea, ia).is_some_and(|system| busbar_system(&prj.layout, &pos, eb, ib) == Some(system)) {
             continue; // connected by the bars of the busbar system both are mounted on
         }
         let mut end = |ei: usize, it: &PanelItem, s, pin| {
