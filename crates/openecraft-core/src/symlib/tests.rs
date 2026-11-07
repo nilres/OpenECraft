@@ -41,6 +41,22 @@ fn user_symbols_are_looked_up_per_project() {
 }
 
 #[test]
+fn drawing_snapshots_reuse_definitions_until_an_edit() {
+    let mut prj = Project::default();
+    prj.symbols.push(box_symbol("user:drive"));
+    let before = prj.clone();
+    let table = before.symbol_table().user.unwrap();
+    assert!(before.symbols.same_snapshot(&prj.symbols));
+    assert!(Arc::ptr_eq(&table, &prj.symbol_table().user.unwrap()));
+
+    prj.symbols[0].pins[0].label = "X137.13".into();
+    assert!(!before.symbols.same_snapshot(&prj.symbols));
+    assert_eq!(prj.symbol("user:drive").unwrap().pins[0].label, "X137.13");
+    assert_eq!(before.symbol("user:drive").unwrap().pins[0].label, "1");
+    assert_eq!(table["user:drive"].pins[0].label, "1");
+}
+
+#[test]
 fn keys_are_unique_slugs() {
     let mut list = vec![];
     let k = new_key(&list, "Motor starter (3~)");
@@ -85,7 +101,7 @@ fn hit_test_prefers_pins_and_moves_elements() {
     assert_eq!(hit(&u, p(20.0, 20.0), 0.5), None);
     translate(&mut u.prims[1], p(2.0, 0.0));
     assert_eq!(u.prims[1], Prim::Line { a: p(2.0, -8.0), b: p(2.0, -4.0), dashed: false });
-    let text = Prim::Text { pos: p(0.0, 0.0), text: "ABC".into(), size: 2.0, anchor: Anchor::Left };
+    let text = Prim::Text { pos: p(0.0, 0.0), text: "ABC".into(), size: 2.0, anchor: Anchor::Left, angle: None, color:None };
     assert_eq!(prim_distance(&text, p(1.0, 0.0)), 0.0);
     assert!(prim_distance(&text, p(-3.0, 0.0)) > 2.9);
 }
