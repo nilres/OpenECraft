@@ -1,0 +1,8 @@
+# Build context of installer/docker/Dockerfile: the sources without build output.
+.git
+.claude
+.idea
+target
+**/target
+**/dist
+docs/images

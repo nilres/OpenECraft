@@ -20,6 +20,9 @@ cargo run --release -p openecraft-parts-server -- --install-catalogs all
 cargo run --release -p openecraft-parts-server -- --config parts-server.toml
 ```
 
+As a container: `docker run -d -p 127.0.0.1:8090:8090 -e OPENECRAFT_TOKEN=<secret> -v parts:/data
+ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
+
 - Configuration file (`--config <file>` or `OPENECRAFT_PARTS_SERVER_CONFIG`): a TOML
   file with the settings of the command line options under their names (`bind`,
   `storage`, `data`, `token`, `admin_user`, `install_catalogs`, `access`; see

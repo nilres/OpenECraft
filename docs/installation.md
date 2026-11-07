@@ -105,6 +105,43 @@ not in the login keychain) the image is signed and notarized.
 Projects are opened with *File › Open project*; opening them by double-click in the Finder is not
 supported yet. CI builds the image on every push (artifact `openecraft-macos-dmg`).
 
+## Docker images of the servers
+
+The parts server and the project server are also published as Docker images on
+every release and on every push to `master`, built by `installer/docker/Dockerfile`
+(Debian 12, `linux/amd64`, running as the user `openecraft`, data in the volume
+`/data`, licenses in `/usr/share/doc/openecraft/`):
+
+| Image | Port | Tags |
+| --- | --- | --- |
+| `ghcr.io/nilres/openecraft-parts-server` | 8090 | `<version>`, `<major>.<minor>`, `latest` (releases), `edge` (master), `sha-<commit>` |
+| `ghcr.io/nilres/openecraft-project-server` | 8091 | the same |
+
+```bash
+docker run -d --name parts -p 127.0.0.1:8090:8090 -e OPENECRAFT_TOKEN=<secret> -v parts:/data ghcr.io/nilres/openecraft-parts-server
+docker run -d --name projects -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKEN=<secret> -v projects:/data ghcr.io/nilres/openecraft-project-server
+```
+
+The settings of each image are in `/etc/openecraft/parts-server.toml` and
+`project-server.toml` (`bind = "0.0.0.0:<port>"`, `data` in `/data`); mount your own
+file there or add command line options after the image name
+(`… openecraft-parts-server --install-catalogs all`, `--admin-user admin` with the
+password in `OPENECRAFT_ADMIN_PASSWORD` / `OPENECRAFT_PROJECT_ADMIN_PASSWORD`).
+A bind mount instead of a volume must be writable by the user of the image (uid 1000,
+or start the container with `--user`). `installer/docker/compose.yaml` starts both
+servers with Docker Compose. The servers speak plain HTTP: keep them on `127.0.0.1`
+behind a TLS reverse proxy when other machines reach them
+([project server](project-server.md)). Building the images yourself:
+
+```bash
+docker build -f installer/docker/Dockerfile --target parts-server -t openecraft-parts-server .
+docker build -f installer/docker/Dockerfile --target project-server -t openecraft-project-server .
+```
+
+CI builds both images on every push, starts them once and checks that they answer;
+on `master` and for a release tag it pushes them to the GitHub Container Registry
+(job `docker`).
+
 ## Web (WebAssembly)
 
 ```bash

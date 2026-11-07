@@ -26,11 +26,13 @@ jobs of `ci.yml` and creates a draft GitHub release with them.
 The workflow refuses a tag that does not match the version, a version without a
 `<release>` in the metainfo file, a changelog section without a date (`unreleased`)
 and a metainfo date that differs from the changelog's. A tag with a suffix
-(`v0.2.0-rc.1`) becomes a pre-release.
+(`v0.2.0-rc.1`) becomes a pre-release, and its Docker images do not get the tag
+`latest`.
 
 The notes of the release are the changelog section, followed by how to check the
-downloads and, without the signing secrets (see below), that the Windows setup is not
-signed and the macOS apps are not notarized. For a public repository the workflow also
+downloads, the Docker images of the servers and, without the signing secrets (see
+below), that the Windows setup is not signed and the macOS apps are not notarized.
+For a public repository the workflow also
 attests the build provenance of every file (`gh attestation verify <file> --repo
 nilres/OpenECraft`); private repositories need GitHub Enterprise Cloud for that.
 
@@ -41,8 +43,8 @@ date), and the versions of the tools are pinned. Raise them together:
 
 | Tool | Where |
 | --- | --- |
-| Rust | `dtolnay/rust-toolchain@<version>` in `.github/workflows/ci.yml` |
-| cargo-about, trunk | `tool: cargo-about@…`, `trunk@…` in `ci.yml`; the install hints of the installer scripts, `installer/web/` and the docs |
+| Rust | `dtolnay/rust-toolchain@<version>` in `.github/workflows/ci.yml`; `ARG RUST_VERSION` in `installer/docker/Dockerfile` |
+| cargo-about, trunk | `tool: cargo-about@…`, `trunk@…` in `ci.yml`; `cargo install cargo-about@…` in `installer/docker/Dockerfile`; the install hints of the installer scripts, `installer/web/` and the docs |
 | appimagetool, AppImage runtime | versions and SHA-256 at `build_appimage` in `installer/linux/build.sh`; a new runtime needs `installer/linux/appimage/RUNTIME-LICENSES.txt` checked (its components and their versions) |
 
 ## Release files
@@ -55,6 +57,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | `OpenECraft-<version>-macos.dmg` | `installer/macos/build.sh` |
 | `OpenECraft-<version>-web.zip`, `OpenECraft-Parts-Manager-<version>-web.zip` | `trunk build --release` |
 | `THIRD-PARTY-LICENSES.html`, `SHA256SUMS` | the workflow |
+| `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
 
 ## Licenses
 

@@ -1,0 +1,33 @@
+# Both OpenECraft servers with the images CI publishes (docs/installation.md):
+#
+#   OPENECRAFT_TOKEN=<secret> OPENECRAFT_PROJECT_TOKEN=<secret> docker compose -f installer/docker/compose.yaml up -d
+#
+# The servers speak plain HTTP: keep them on 127.0.0.1 behind a TLS reverse proxy when
+# other machines reach them (docs/project-server.md). Set OPENECRAFT_TAG to a version
+# (0.1.0) instead of latest to pin the images.
+services:
+  parts-server:
+    image: ghcr.io/nilres/openecraft-parts-server:${OPENECRAFT_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8090:8090"
+    environment:
+      OPENECRAFT_TOKEN: ${OPENECRAFT_TOKEN:?administrator token of the parts server}
+    volumes:
+      - parts:/data
+    # Installs or updates the bundled manufacturer catalogs at every start:
+    # command: ["--install-catalogs", "all"]
+
+  project-server:
+    image: ghcr.io/nilres/openecraft-project-server:${OPENECRAFT_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8091:8091"
+    environment:
+      OPENECRAFT_PROJECT_TOKEN: ${OPENECRAFT_PROJECT_TOKEN:?access token of the project server}
+    volumes:
+      - projects:/data
+
+volumes:
+  parts:
+  projects:

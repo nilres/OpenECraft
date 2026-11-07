@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Docker images of the servers:** the parts server and the project server are
+  published as `ghcr.io/nilres/openecraft-parts-server` and
+  `ghcr.io/nilres/openecraft-project-server` with every release (`<version>`, `latest`)
+  and every push to master (`edge`); `installer/docker/compose.yaml` starts both
+  ([installation](docs/installation.md)).
 - **Directed T-junctions (target tracing):** *Insert › Connections › T-junction*
   places a junction where three wires meet that names the device the two wires of the
   connection start from and the order of their targets, with four directions and four

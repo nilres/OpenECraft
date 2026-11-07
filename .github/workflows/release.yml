@@ -29,6 +29,9 @@ jobs:
 
   build:
     needs: version
+    permissions:
+      contents: read
+      packages: write
     uses: ./.github/workflows/ci.yml
     secrets: inherit
 
@@ -64,6 +67,15 @@ jobs:
               echo 'Its origin (build provenance of this workflow) with `gh attestation verify <file> --repo ${{ github.repository }}`.'
             fi
             echo 'The licenses of the libraries and fonts the programs contain are in `THIRD-PARTY-LICENSES.html`.'
+            echo
+            echo '### Docker images'
+            echo
+            echo 'The parts server and the project server as containers (`docs/installation.md`):'
+            echo
+            echo '```bash'
+            echo "docker pull ghcr.io/${OWNER,,}/openecraft-parts-server:$version"
+            echo "docker pull ghcr.io/${OWNER,,}/openecraft-project-server:$version"
+            echo '```'
             if [ -z "$WINDOWS_CERTIFICATE" ]; then
               echo
               echo 'The Windows setup is not code signed: SmartScreen asks for confirmation on first start (*More info › Run anyway*).'
@@ -78,6 +90,7 @@ jobs:
           MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
           PRIVATE: ${{ github.event.repository.private }}
+          OWNER: ${{ github.repository_owner }}
       # Attestations of private repositories need GitHub Enterprise Cloud.
       - name: Build provenance
         if: ${{ !github.event.repository.private }}

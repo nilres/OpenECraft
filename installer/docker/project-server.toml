@@ -1,0 +1,6 @@
+# Settings of the project server in its Docker image (OPENECRAFT_PROJECT_SERVER_CONFIG
+# points here). Mount your own file at /etc/openecraft/project-server.toml to replace it;
+# every key is described in project-server/project-server.example.toml. Options on the
+# command line and in the environment (OPENECRAFT_PROJECT_TOKEN) win.
+bind = "0.0.0.0:8091"
+data = "/data"

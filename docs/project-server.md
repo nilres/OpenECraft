@@ -11,6 +11,9 @@ cargo run --release -p openecraft-project-server -- --bind 0.0.0.0:8091 --data p
 cargo run --release -p openecraft-project-server -- --config project-server.toml
 ```
 
+As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKEN=<secret>
+-v projects:/data ghcr.io/nilres/openecraft-project-server` (see [installation](installation.md)).
+
 - Configuration file (`--config <file>` or `OPENECRAFT_PROJECT_SERVER_CONFIG`): the
   settings of the command line options in TOML (`bind`, `data`, `token`, `admin_user`,
   `access`; see

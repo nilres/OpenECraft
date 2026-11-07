@@ -31,6 +31,9 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
   into all four languages; a new version needs a `<release>` in the metainfo)
 - macOS disk image: `bash installer/macos/build.sh` (universal app bundles, output
   `target/installer/`)
+- Docker images of the servers: `docker build -f installer/docker/Dockerfile --target
+  parts-server|project-server .` (their settings in `installer/docker/*.toml`; CI pushes
+  them to ghcr.io on master and for release tags)
 - The installer scripts and `trunk build --release` need cargo-about for the third-party
   licenses (`cargo install cargo-about@0.9.3 --locked --features cli`, configuration
   `installer/about.toml`); the installer scripts take the version from

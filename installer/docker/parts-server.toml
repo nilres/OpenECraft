@@ -1,0 +1,6 @@
+# Settings of the parts server in its Docker image (OPENECRAFT_PARTS_SERVER_CONFIG points
+# here). Mount your own file at /etc/openecraft/parts-server.toml to replace it; every
+# key is described in parts-server/parts-server.example.toml. Options on the command line
+# and in the environment (OPENECRAFT_TOKEN) win.
+bind = "0.0.0.0:8090"
+data = "/data/parts-db.sqlite"
