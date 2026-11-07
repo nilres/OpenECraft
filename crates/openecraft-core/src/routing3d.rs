@@ -521,6 +521,10 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
     match panel::locate(prj, tag) {
         Some((ei, it)) => {
             let e = &prj.layout.enclosures[ei];
+            if let Some((q, into)) = e.is_room().then(|| panel::through_wall(e, it)).flatten() {
+                // On the outside of a room: the way runs through the wall behind it.
+                return End { tag: tag.into(), enclosure: Some(ei), point: Some(add(q, pos[ei])), item: Some(it.id), leave: Some(into), ..Default::default() };
+            }
             let placed = if pins.is_empty() { Vec::new() } else { panel::device_points(prj, it) };
             let mut at: Vec<(V3, V3)> = Vec::new();
             for p in pins.iter().filter_map(|p| panel::point_of(prj, &placed, &prj.pages[p.page].symbols[p.sym], p.pin)) {

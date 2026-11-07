@@ -5,6 +5,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Buildings:** buildings with levels and shafts in the plant; rooms stand on the
+  levels and move with their building, shafts and links between buildings (cable
+  trench, conduit, cable bridge between building entries) carry routes from room to
+  room; devices go on the outside of the walls and on the roof; a Buildings pane with
+  a site plan, the plugin `buildings` with its commands, a check and example 15.
+
 ## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,

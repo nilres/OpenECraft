@@ -312,7 +312,7 @@ fn routes_take_the_rooms_between_and_turned_rooms() {
 
 #[test]
 fn routes_take_the_nearest_of_parallel_wall_penetrations() {
-    let link = |item: u64, z: f32| panel::WallLink { from: 0, item, to: 1, a: [3900.0, 500.0, z], b: [60.0, 500.0, z], length: 320.0, leave: [[-1.0, 0.0, 0.0], [1.0, 0.0, 0.0]] };
+    let link = |item: u64, z: f32| panel::WallLink { from: 0, item, to: 1, via: panel::Via::Wall, a: [3900.0, 500.0, z], b: [60.0, 500.0, z], length: 320.0, leave: [[-1.0, 0.0, 0.0], [1.0, 0.0, 0.0]] };
     let links = [link(1, 500.0), link(2, 2500.0)];
     // From near the second one into the other room.
     let from = [3000.0, 1500.0, 2200.0];
