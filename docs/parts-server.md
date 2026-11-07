@@ -40,14 +40,19 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   `parts`, listed in `openecraft_parts::bundled`, which the example projects use too)
   are curated starter sets of real
   manufacturer parts: `abb` (circuit breakers, RCCB, contactors, manual motor
-  starters), `beckhoff` (EtherCAT coupler and terminals), `dehn` (surge protective devices type 1 - 3, for PV systems and for data lines), `hager` (circuit breakers,
+  starters), `beckhoff` (EtherCAT coupler and terminals), `cosmo` (stainless steel
+  heating circuit manifolds for 2 - 14 circuits and single-room control boxes RTL / TH
+  for underfloor heating), `dehn` (surge protective devices type 1 - 3, for PV systems and for data lines), `gira` (System 55 socket
+  outlets, switch and push button inserts, network outlet Cat.6A with rockers, covers
+  and frames), `hager` (circuit breakers,
   RCCBs, installation contactors, switch disconnectors, NH fuse switch disconnectors
   for 60 mm busbars and fuse switch disconnector strips for 185 mm with clip-in current
   transformers, circuit breakers h3+ with motor operators and releases, the NA
   protection relay EU400, univers cabinets with their component modules, energy
   meters), `janitza` (power analyser UMG 604-PRO), `loxone` (energy meter for
   1 / 5 A current transformers on the Tree bus), `mdt` (KNX actuators, IP
-  interface / router, power supply), `phoenix_contact` (terminal blocks, relay
+  interface / router, power supply, KNX push buttons, glass push button and room
+  temperature controller for flush mounting), `phoenix_contact` (terminal blocks, relay
   modules, power supplies), `pylontech` (19-inch LiFePO4 battery modules), `siemens` (SIRIUS contactors, overload relays, motor
   starter protectors, SENTRON circuit breakers), `victron` (MultiPlus-II inverter /
   charger, Inverter RS Smart Solar, SmartSolar MPPT, Orion-Tr, Cerbo GX, SmartShunt, BMV-712, Lynx

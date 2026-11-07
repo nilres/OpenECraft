@@ -1,7 +1,9 @@
 //! Generated 3D models of devices by what they are: pumps, motors, vessels, heat pumps,
 //! compressors, valves and pipe fittings, air treatment, wall-mounted electronics,
 //! 19-inch devices and batteries, PV modules, boxes, NH fuse switch disconnectors and
-//! fuse bases, earthing busbars and earth electrode lugs, painted in their colours, with x to the right, y up and z towards the front; each
+//! fuse bases, earthing busbars and earth electrode lugs, socket outlets, switches and
+//! the other outlets of a room, heating circuit manifolds and single-room control
+//! boxes, painted in their colours, with x to the right, y up and z towards the front; each
 //! model fills the part's box. Floor-standing ones are drawn standing on the floor
 //! (x width, y depth from the front, z height) and turned upright at the end.
 
@@ -26,6 +28,8 @@ const CERAMIC: [u8; 3] = [228, 222, 206];
 const COPPER: [u8; 3] = [196, 120, 78];
 const GREEN_YELLOW: [u8; 3] = [150, 196, 60];
 const STAINLESS: [u8; 3] = [196, 200, 204];
+/// Cap of a return valve.
+const BLUE_CAP: [u8; 3] = [52, 96, 190];
 /// Segments of round bodies.
 const ROUND: usize = 16;
 
@@ -80,6 +84,32 @@ enum Kind {
     EarthBar,
     /// Connection lug of a foundation earth electrode: out of the wall and upwards.
     EarthLug,
+    /// A flush-mounted outlet or switch of a room: its frame and what is in it.
+    Outlet(Outlet),
+    /// Heating circuit manifold: flow bar with flow meters over the return bar with
+    /// valves, the circuits downwards (this many).
+    HeatingManifold(usize),
+    /// Single-room control box of an underfloor heating: flush box with cover, and a
+    /// thermostat knob.
+    ControlBox { knob: bool },
+}
+
+/// What is in the frame of a room outlet.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Outlet {
+    /// Socket outlets side by side, with hinged lids, with USB ports.
+    Socket { gangs: usize, lid: bool, usb: bool },
+    /// Data outlet with its ports.
+    Data(usize),
+    /// Antenna outlet with its coaxial sockets.
+    Antenna(usize),
+    /// Rockers of a switch or push button.
+    Rockers(usize),
+    Dimmer,
+    /// Glass push button with its sensor areas.
+    Glass,
+    /// Room thermostat with its display.
+    Thermostat,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -133,6 +163,18 @@ fn kind_of(p: &Part) -> Option<Kind> {
         "19-inch device" => Kind::Rack(RackKind::Vents),
         _ if p.manufacturer.starts_with("Victron") && !floor => Kind::WallBox { color: VICTRON, display: matches!(p.subgroup.as_str(), "Inverter / charger" | "Inverter" | "System monitoring" | "Battery monitor") },
         "Inverter / charger" | "Inverter" | "Solar charger" | "Charger" => Kind::WallBox { color: BODY, display: true },
+        "Socket outlet" if p.wall_mountable() => Kind::Outlet(Outlet::Socket { gangs: ((p.width / 75.0).round() as usize).max(1), lid: has("lid"), usb: has("usb") }),
+        "Data outlet" => Kind::Outlet(Outlet::Data(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
+        "Antenna outlet" => Kind::Outlet(Outlet::Antenna(p.functions.iter().flat_map(|f| f.pin_list()).count().clamp(1, 4))),
+        "Switch" | "Push button" | "Blind switch" if p.wall_mountable() => {
+            let rockers = p.tech_value("Rockers").and_then(|v| v.trim().parse().ok()).unwrap_or(if p.subgroup == "Blind switch" { 2 } else { 1 });
+            Kind::Outlet(Outlet::Rockers(rockers))
+        }
+        "Dimmer" if p.wall_mountable() => Kind::Outlet(Outlet::Dimmer),
+        "Glass push button" => Kind::Outlet(Outlet::Glass),
+        "Room thermostat" => Kind::Outlet(Outlet::Thermostat),
+        "Heating circuit manifold" => Kind::HeatingManifold(p.functions.iter().flat_map(|f| f.pin_list()).count().saturating_sub(2) / 2),
+        "Control box" => Kind::ControlBox { knob: has("thermostat") },
         _ => return None,
     })
 }
@@ -626,6 +668,55 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
             prims.push(Prim2d::Rect { min: [0.02 * w, 0.3 * h], max: [0.98 * w, 0.7 * h], fill: false });
             prims.push(Prim2d::Rect { min: [0.08 * w, 0.0], max: [0.2 * w, h], fill: false });
         }
+        Kind::Outlet(kind) => outlet(&mut m, &mut prims, kind, [w, h, d]),
+        Kind::HeatingManifold(n) => {
+            // The flow bar on top with a flow meter per circuit, the return bar below
+            // with its valves, on two brackets; flow and return come in at the left,
+            // each circuit leaves downwards in pairs.
+            let n = n.max(1);
+            let r = (0.05 * h).min(0.22 * d);
+            let zc = 0.55 * d;
+            let (y_flow, y_ret) = (0.78 * h, 0.42 * h);
+            for x in [0.06 * w, 0.9 * w] {
+                m.add_painted_box([x, 0.3 * h, 0.0], [x + 0.04 * w, 0.92 * h, 0.3 * d], DARK);
+            }
+            m.add_cylinder([0.0, y_flow, zc], 0, r, w, ROUND, STAINLESS);
+            m.add_cylinder([0.0, y_ret, zc], 0, r, w, ROUND, STAINLESS);
+            ports.push(([0.0, y_flow, zc], [-1.0, 0.0, 0.0]));
+            ports.push(([0.0, y_ret, zc], [-1.0, 0.0, 0.0]));
+            let pitch = (0.84 * w) / n as f32;
+            for k in 0..n {
+                let x = 0.12 * w + pitch * (k as f32 + 0.5);
+                // Flow meter up from the flow bar, its window red; the valve cap on the return bar.
+                m.add_cylinder([x, y_flow, zc], 1, 0.45 * r, 0.2 * h, ROUND, BOWL);
+                m.add_cylinder([x, y_flow + 0.1 * h, zc], 1, 0.3 * r, 0.06 * h, ROUND, RED);
+                m.add_cylinder([x, y_ret, zc], 2, 0.5 * r, d - zc, ROUND, BLUE_CAP);
+                // The outlets of flow and return downwards, side by side.
+                for (dx, y0) in [(-0.18 * pitch, y_flow), (0.18 * pitch, y_ret)] {
+                    m.add_cylinder([x + dx, 0.0, zc - 1.2 * r], 1, 0.35 * r, y0, ROUND, BRASS);
+                    ports.push(([x + dx, 0.0, zc - 1.2 * r], [0.0, -1.0, 0.0]));
+                }
+                prims.push(Prim2d::Line { a: [x, h - y_flow], b: [x, h] });
+            }
+            // Fill and drain valves and air vents at the right end.
+            for y in [y_flow, y_ret] {
+                m.add_cylinder([w - 0.04 * w, y, zc], 1, 0.4 * r, 0.08 * h, 6, RED);
+            }
+            prims.push(Prim2d::Line { a: [0.0, h - y_flow], b: [w, h - y_flow] });
+            prims.push(Prim2d::Line { a: [0.0, h - y_ret], b: [w, h - y_ret] });
+        }
+        Kind::ControlBox { knob } => {
+            // The cover on the wall, the return temperature limiter or the thermostat
+            // knob in its middle.
+            m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.35 * d], WHITE);
+            m.add_painted_box([0.08 * w, 0.08 * h, 0.35 * d], [0.92 * w, 0.92 * h, 0.45 * d], [222, 224, 226]);
+            let r = 0.18 * w.min(h);
+            m.add_cylinder([w / 2.0, h / 2.0, 0.45 * d], 2, r, if knob { 0.55 * d } else { 0.3 * d }, ROUND, WHITE);
+            if knob {
+                m.add_painted_box([w / 2.0 - 0.1 * r, h / 2.0 + 0.4 * r, 0.9 * d], [w / 2.0 + 0.1 * r, h / 2.0 + 0.9 * r, d], DARK);
+            }
+            circle(&mut prims, [w / 2.0, h / 2.0], r);
+        }
         Kind::EarthLug => {
             // Sealing collar on the wall at the bottom, the round wire straight out of
             // the wall and bent upwards, its green-yellow marking tag.
@@ -663,6 +754,81 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
         Nozzle { pin, at, dir }
     });
     Some((Model2d { width: w, height: h, prims }, m, shaft, nozzles.collect()))
+}
+
+/// A room outlet: the frame flush on the wall and, per gang, what is in it.
+fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32; 3]) {
+    m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.35 * d], WHITE);
+    let gangs = match kind {
+        Outlet::Socket { gangs, .. } => gangs,
+        _ => ((w / h).round() as usize).max(1),
+    };
+    let cell = w / gangs as f32;
+    for g in 0..gangs {
+        let (cx, cy) = (cell * (g as f32 + 0.5), h / 2.0);
+        let s = 0.8 * cell.min(h);
+        let inner = |m: &mut Mesh3d, z0: f32, z1: f32, c: [u8; 3]| m.add_painted_box([cx - s / 2.0, cy - s / 2.0, z0], [cx + s / 2.0, cy + s / 2.0, z1], c);
+        match kind {
+            Outlet::Socket { lid, usb, .. } => {
+                inner(m, 0.35 * d, 0.5 * d, [226, 228, 230]);
+                let r = 0.3 * s;
+                m.add_cylinder([cx, cy, 0.5 * d], 2, r, if lid { 0.2 * d } else { 0.5 * d }, ROUND, [214, 216, 218]);
+                for dx in [-0.35 * r, 0.35 * r] {
+                    m.add_cylinder([cx + dx, cy, 0.5 * d], 2, 0.08 * r, if lid { 0.21 * d } else { 0.51 * d }, 8, BLACK);
+                }
+                if usb {
+                    m.add_painted_box([cx - 0.12 * s, cy - 0.46 * s, 0.5 * d], [cx + 0.12 * s, cy - 0.4 * s, 0.6 * d], BLACK);
+                }
+                if lid {
+                    m.add_painted_box([cx - 0.46 * s, cy - 0.46 * s, 0.7 * d], [cx + 0.46 * s, cy + 0.46 * s, d], [222, 224, 226]);
+                }
+                prims.push(Prim2d::Circle { c: [cx, cy], r, fill: false });
+            }
+            Outlet::Data(ports) => {
+                inner(m, 0.35 * d, d, [226, 228, 230]);
+                for k in 0..ports {
+                    let x = cx + (k as f32 - (ports - 1) as f32 / 2.0) * 0.36 * s;
+                    m.add_painted_box([x - 0.12 * s, cy - 0.1 * s, 0.8 * d], [x + 0.12 * s, cy + 0.1 * s, d], BLACK);
+                    prims.push(Prim2d::Rect { min: [x - 0.12 * s, cy - 0.1 * s], max: [x + 0.12 * s, cy + 0.1 * s], fill: false });
+                }
+            }
+            Outlet::Antenna(n) => {
+                inner(m, 0.35 * d, 0.6 * d, [226, 228, 230]);
+                for k in 0..n {
+                    let x = cx + (k as f32 - (n - 1) as f32 / 2.0) * 0.3 * s;
+                    m.add_cylinder([x, cy, 0.6 * d], 2, 0.08 * s, 0.4 * d, ROUND, STEEL);
+                    prims.push(Prim2d::Circle { c: [x, cy], r: 0.08 * s, fill: false });
+                }
+            }
+            Outlet::Rockers(n) => {
+                // Rockers side by side, in two rows from four on.
+                let (cols, rows) = if n >= 4 { (n.div_ceil(2), 2) } else { (n.max(1), 1) };
+                let (rw, rh) = (s / cols as f32, s / rows as f32);
+                for k in 0..cols * rows {
+                    let (x0, y0) = (cx - s / 2.0 + rw * (k % cols) as f32, cy - s / 2.0 + rh * (k / cols) as f32);
+                    m.add_painted_box([x0 + 0.03 * s, y0 + 0.03 * s, 0.35 * d], [x0 + rw - 0.03 * s, y0 + rh - 0.03 * s, d], [228, 230, 232]);
+                    prims.push(Prim2d::Rect { min: [x0 + 0.03 * s, h - (y0 + rh - 0.03 * s)], max: [x0 + rw - 0.03 * s, h - (y0 + 0.03 * s)], fill: false });
+                }
+            }
+            Outlet::Dimmer => {
+                inner(m, 0.35 * d, 0.5 * d, [226, 228, 230]);
+                m.add_cylinder([cx, cy, 0.5 * d], 2, 0.3 * s, 0.5 * d, ROUND, [220, 222, 224]);
+                prims.push(Prim2d::Circle { c: [cx, cy], r: 0.3 * s, fill: false });
+            }
+            Outlet::Glass => {
+                m.add_painted_box([0.0, 0.0, 0.35 * d], [w, h, d], BLACK);
+                for k in 0..6 {
+                    let (x, y) = (cx + (k % 2) as f32 * 0.4 * s - 0.2 * s, cy + (k / 2) as f32 * 0.3 * s - 0.3 * s);
+                    m.add_cylinder([x, y, d - 0.05 * d], 2, 0.03 * s, 0.06 * d, 8, LED);
+                }
+            }
+            Outlet::Thermostat => {
+                inner(m, 0.35 * d, d, [226, 228, 230]);
+                m.add_painted_box([cx - 0.3 * s, cy, 0.95 * d], [cx + 0.3 * s, cy + 0.3 * s, d], DISPLAY);
+                prims.push(Prim2d::Rect { min: [cx - 0.3 * s, h - cy - 0.3 * s], max: [cx + 0.3 * s, h - cy], fill: false });
+            }
+        }
+    }
 }
 
 /// The nozzles at both ends of a pipe along x (see [`pipe_along_x`]).

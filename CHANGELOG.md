@@ -5,6 +5,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Stairs and roofs of buildings:** stairs from level to level, straight, turned once
+  or twice at quarter landings, with a half landing or spiral, their steps from the
+  difference in height; flat, shed, gable, hip and pyramid roofs with roof windows. A
+  roof lower than the ceilings below it slopes them, also on several levels: rooms get
+  different heights at different places, their walls end under the slope, and the
+  check reports cabinets and wall items above it. *Show › Whole building* shows a
+  building in 3D with its floor slabs, stairs and roofs. Commands `add_stair`,
+  `set_stair`, `add_roof`, `set_roof`, `add_roof_window`, `set_roof_window`
+  ([panel layout](docs/features/panel-layout.md)).
+- **Outlets, switches and heating circuit manifolds in rooms:** *Insert › Outlets,
+  switches, heating* places socket outlets, data and antenna outlets, switches, push
+  buttons and room thermostats at their mounting heights, heating circuit manifolds
+  (2 - 12 circuits) and single-room control boxes; generic parts and the new shipped
+  catalogs `gira` and `cosmo`, more KNX push buttons in `mdt`. Example 16
+  (`office_building`) shows them with a stair and a roof.
+
 - **Rooms onto levels in the navigator:** in *Enclosures and rooms* rooms are dragged
   onto a level of a building to stand on it; a selected level takes the rooms made with
   *New room*, and the context menu of a level offers *New room on this level*

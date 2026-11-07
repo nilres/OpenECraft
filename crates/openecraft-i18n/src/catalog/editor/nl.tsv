@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Uitgeschakel
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Controleert de projectgegevens (ID's, verwijzingen, apparaatgegevens, opties, deelprojecten) samen met de engineeringcontroles.
 Choices	Keuzes
 Choices (separated by commas)	Keuzes (gescheiden door komma's)
+Choose	Kiezen
 Choose a baseline, a revision or a project file to compare the project with.	Kies een baseline, een revisie of een projectbestand om het project mee te vergelijken.
 Choose a room first: floor-standing parts go on its floor.	Kies eerst een ruimte: vloerstaande artikelen komen op de vloer.
 Choose file…	Bestand kiezen…
 Choose pages	Pagina's kiezen
 Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de structuur hiermee begint
 Circle	Cirkel
+Circuits of a generic manifold	Groepen van een generieke verdeler
 Clear	Wissen
 Clearance	Vrije ruimte
 Clearances	Afstanden
@@ -278,6 +280,7 @@ Click into the page to place {}	Klik in de pagina om {} te plaatsen
 Click on a wall	Klik op een wand
 Click on a wire to place the connection definition point	Klik op een draad om het verbindingsdefinitiepunt te plaatsen
 Click on the 4 mm grid	Klik op het raster van 4 mm
+Click on the wall: the part goes there at its mounting height	Klik op de wand: het onderdeel komt daar op zijn montagehoogte
 Click start and end point	Klik op begin- en eindpunt
 Click the corners of a machine or building, double-click to finish	Klik op de hoeken van een machine of gebouw, dubbelklik om te voltooien
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Klik op de uiteinden van de binnenwanden; elke klik begint de volgende, uiteinden bij een wand klikken daarop vast. Esc, Enter of een dubbelklik beëindigt de reeks, nogmaals Esc het gereedschap.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Aderbenamingen, gescheiden door spaties
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Aders 1, 2, 3 … voor de gekruiste draden, plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hoek: twee draden in een rechte hoek; met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden
 Cover sheet, overview, graphics, report, mounting layout or a page template	Voorblad, overzicht, grafiek, rapport, montagelay-out of een paginasjabloon
+Covers	Bedekt
 Covers what is behind the text	Bedekt wat achter de tekst ligt
 Create	Maken
 Create an enclosure in the panel layout first.	Maak eerst een behuizing in de kastlay-out.
@@ -424,10 +428,13 @@ Delete macro	Macro verwijderen
 Delete node	Knooppunt verwijderen
 Delete page	Pagina verwijderen
 Delete request	Verzoek verwijderen
+Delete roof	Dak verwijderen
+Delete roof window	Dakraam verwijderen
 Delete room	Ruimte verwijderen
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Ruimte {} verwijderen met alles aan de wanden? De kasten erin blijven staan, zonder ruimte.
 Delete section	Sectie verwijderen
 Delete shaft	Schacht verwijderen
+Delete stair	Trap verwijderen
 Delete the group	De groep verwijderen
 Delete the layer; its items move to the default layer	De laag verwijderen; de elementen ervan gaan naar de standaardlaag
 Delete the property and all its values	Eigenschap met alle waarden verwijderen
@@ -541,6 +548,7 @@ Duplicate	Dupliceren
 Each example builds on the one before and shows more of the features.	Elk voorbeeld bouwt voort op het vorige en toont meer van de functies.
 Each point-to-point connection can belong to a harness	Elke punt-tot-puntverbinding kan bij een kabelboom horen
 Earthing system	Aardingsstelsel
+Eaves	Dakgoot
 Edge length of the routing grid: smaller is finer and slower	Randlengte van het routeringsraster: kleiner is fijner en langzamer
 Edit	Bewerken
 Edit in table	Bewerken in tabel
@@ -640,6 +648,7 @@ Floor plan with {} walls	Plattegrond met {} wanden
 Floor-standing part	Vloerstaand artikel
 Fluid and process	Fluïdum en proces
 Follows its condition: use Apply conditions	Volgt de voorwaarde: gebruik Voorwaarden toepassen
+Foot	Aantrede begin
 For	Voor
 For parts without Stock length; longer profiles have to be joined	Voor artikelen zonder Stock length; langere profielen moeten worden samengevoegd
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Voor artikelen zonder temperatuurgegevens (Max temperature, Operating temperature); 0: niet gecontroleerd
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Kop (CPU / koppelaar)
 Header row	Koprij
 Heat map	Warmtekaart
 Heating	Verwarming
+Heating circuit manifolds and control boxes	Verdelers voor vloerverwarming en regelboxen
 Height (mm)	Hoogte (mm)
 Height above the floor	Hoogte boven de vloer
 Height above the mounting plate	Hoogte boven de montageplaat
@@ -833,9 +843,9 @@ Layout checks	Lay-outcontroles
 Layout properties	Lay-outeigenschappen
 Layout space	Montageruimte
 Layout spaces	Montageruimten
+Leave out the ceilings of the rooms and the roofs in the 3D view	De plafonds van de ruimtes en de daken weglaten in de 3D-weergave
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In de 3D-weergave de deksels van alle kabelgoten weglaten: de draden erin zijn zichtbaar
 Leave repeated values of the first column blank	Herhaalde waarden van de eerste kolom leeg laten
-Left	Links
 Left edges	Linkerranden
 Legend plates (door devices)	Tekstplaatjes (deurapparaten)
 Length from the node to the device	Lengte van het knooppunt tot het apparaat
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motoren voeden de kortsluiting
 Mounted on	Gemonteerd op
 Mounting assistant: the panel items in mounting order with their place and part	Montageassistent: de elementen van de kastlay-out in montagevolgorde met hun plaats en artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Montageafstand naast elkaar; artikelen voegen hun eigen afstand toe (Clearance left / right)
+Mounting height: {}	Montagehoogte: {}
 Mounting plate: {} holes, {} cutouts	Montageplaat: {} boringen, {} uitsparingen
 Move	Verplaatsen
 Move down	Omlaag
@@ -992,12 +1003,14 @@ New report page	Nieuwe rapportpagina
 New request	Nieuw verzoek
 New revision	Nieuwe revisie
 New revisions start as drafts, are submitted for review and can be released once approved.	Nieuwe revisies beginnen als concept, worden ter review ingediend en kunnen na goedkeuring worden vrijgegeven.
+New roof	Nieuw dak
 New room	Nieuwe ruimte
 New room on this level	Nieuwe ruimte op deze verdieping
 New schematic page	Nieuwe schemapagina
 New scheme	Nieuw schema
 New section	Nieuwe sectie
 New shaft	Nieuwe schacht
+New stair	Nieuwe trap
 New sub-page	Nieuwe subpagina
 New subsection	Nieuwe subsectie
 New tag for {}	Nieuwe aanduiding voor {}
@@ -1134,6 +1147,7 @@ Other values ({})	Overige waarden ({})
 Otherwise from the plant layout, or next to the other line-ups	Anders uit de installatielay-out, of naast de andere kastrijen
 Out since {} (pages locked)	Afgesplitst sinds {} (pagina's vergrendeld)
 Outer diameter (e.g. 8 mm) or DN	Buitendiameter (bijv. 8 mm) of DN
+Outlets, switches, heating	Dozen, schakelaars, verwarming
 Outline	Contour
 Outlines	Contouren
 Output bytes	Uitgangsbytes
@@ -1141,6 +1155,7 @@ Output failed: {}	Uitvoer mislukt: {}
 Output to another project	Uitvoer naar een ander project
 Output to project…	Uitvoeren naar project…
 Outputs	Uitgangen
+Overhang	Overstek
 Own colour	Eigen kleur
 Own drawn form	Zelf getekend formulier
 Own groups	Eigen groepen
@@ -1198,6 +1213,7 @@ Pin-out	Pinbezetting
 Pipe run	Leidingtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Leidingtracé op een wand, het plafond of de vloer van de ruimte, waarlangs slangen, buizen en leidingen worden gelegd: klik de hoekpunten, dubbelklik of druk op Enter om te voltooien
 Pipe run {} mm – double-click or Enter to finish	Leidingtracé {} mm – dubbelklik of druk op Enter om te voltooien
+Pitch	Dakhelling
 Pitch X / Y	Steek X / Y
 Place a comment on the page	Een opmerking op de pagina plaatsen
 Place again at all symbols using it	Opnieuw plaatsen bij alle symbolen die het gebruiken
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revisies, goedkeuring en vrijgave
 Ribbon	Lint
 Ribbon (JSON)	Lint (JSON)
 Ribbon imported	Lint geïmporteerd
-Right	Rechts
 Right click for more	Klik met de rechtermuisknop voor meer
 Right edges	Rechterranden
 Right neighbour	Rechterbuur
 Rights	Rechten
+Risers	Optreden
+Roof window	Dakraam
+Roof windows	Dakramen
+Roofs	Daken
 Room	Ruimte
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Ruimte toegevoegd op verdieping {}: sleep de wanden of teken nieuwe in de plattegrond, plaats kasten erin via hun eigenschappen
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Ruimte toegevoegd: sleep de wanden of teken nieuwe in de plattegrond, plaats kasten erin via hun eigenschappen
 Room {} now stands on level {}	Ruimte {} staat nu op verdieping {}
 Room {} taken out of the building; it stays where it stands	Ruimte {} uit het gebouw gehaald; ze blijft staan waar ze staat
+Rooms under sloped ceilings (lowest – highest ceiling)	Ruimtes onder schuine plafonds (laagste – hoogste plafond)
 Rotate	Draaien
 Rotate (selection or symbol being placed)	Draaien (selectie of symbool dat wordt geplaatst)
 Round	Rond
@@ -1589,6 +1609,7 @@ Slot	Sleuf
 Slots	Slots
 Smallest cross-section of control circuits	Kleinste doorsnede van stuurstroomkringen
 Smallest cross-section of power circuits	Kleinste doorsnede van hoofdstroomkringen
+Socket outlets, data and antenna outlets	Wandcontactdozen, data- en antennedozen
 Some wires have no length: place their devices in the panel layout or set the field length.	Sommige draden hebben geen lengte: plaats hun apparaten in de kastlay-out of stel de veldlengte in.
 Sort by designation	Sorteren op benaming
 Sort order	Sorteervolgorde
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Ruimte die v
 Spare terminals	Reserveklemmen
 Special text	Speciale tekst
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Speciale tekst: project- en pagina-eigenschappen zoals {page} of {prop:Name} worden ingevuld wanneer de pagina wordt getekend
+Stairs	Trappen
 Standard form of the report	Standaardformulier van het rapport
 Standard size	Standaardformaat
 Standard workspaces	Standaardwerkruimten
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	De controle \"{}\" uitschakelen
 Switches the options with a condition by the configurator options	Schakelt de opties met een voorwaarde volgens de configuratoropties
 Switches to this workspace with its panes at their default places	Schakelt naar deze werkruimte met de deelvensters op hun standaardplaats
+Switches, push buttons and room thermostats	Schakelaars, drukknoppen en ruimtethermostaten
 Symbol editor	Symbooleditor
 Symbol table import failed: {}	Symbooltabel importeren mislukt: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symbolen en draden op deze pagina worden getekend maar niet geëvalueerd (geen apparaten, verbindingen of rapporten).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Muiswiel / slepen met rechter- of middelste muiskno
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Muiswiel: zoomen · rechtsklik: annuleren · grafiek springt naar 0,5 mm, aansluitpunten naar het raster van 4 mm
 When it differs from the page	Wanneer deze afwijkt van de pagina
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Waar de draad begint en eindigt: een aansluitpunt uit de artikelgegevens, een aansluitpunt gegenereerd uit de functiesjabloon, of het midden van het apparaat als geen aansluitpunt overeenkomt
+Whole building	Heel gebouw
 Whole words	Hele woorden
+Width / going	Breedte / aantrede
 Width / height (mm)	Breedte / hoogte (mm)
 Width × depth	Breedte × diepte
 Width × height	Breedte × hoogte
@@ -1884,6 +1909,7 @@ all cards	alle kaarten
 all lines	alle regels
 all, or e.g. -X*, -W1	alle, of bijv. -X*, -W1
 all, or e.g. K, Q	alle, of bijv. K, Q
+along z	langs z
 both ends	beide einden
 built-in	ingebouwd
 by hand	handmatig
@@ -1917,6 +1943,7 @@ given	vast
 horizontal	horizontaal
 if	als
 kW	kW
+low side at the rear	lage kant achter
 male	pen
 manual	handmatig
 max. {} °C	max. {} °C
@@ -1926,6 +1953,7 @@ model	model
 name	naam
 no	nee
 no rooms	geen ruimten
+no valid levels	geen geldige verdiepingen
 no wires	geen draden
 none	geen
 not defined	niet gedefinieerd
@@ -1944,6 +1972,8 @@ pin and socket	pen en bus
 placed / provided by the parts	geplaatst / door de artikelen geleverd
 reached: PL {}	bereikt: PL {}
 review round {}	reviewronde {}
+ridge {} m	nok {} m
+sloped ceiling from {} m	schuin plafond vanaf {} m
 some	enkele
 taken over	overgenomen
 the project data (page list, devices, settings)	de projectgegevens (paginalijst, apparaten, instellingen)

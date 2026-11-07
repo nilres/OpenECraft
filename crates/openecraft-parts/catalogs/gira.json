@@ -1,0 +1,213 @@
+{
+  "catalog": {
+    "id": "gira",
+    "name": "Gira",
+    "manufacturer": "Gira",
+    "version": "2026.1",
+    "description": "Flush-mounted socket outlets, rocker switch and push button inserts, network outlet insert Cat.6A with the rockers, covers, central plates and frames of System 55 in pure white glossy. Curated from public data sheets; check against the manufacturer data before ordering."
+  },
+  "parts": [
+    {
+      "number": "GIRA.418803",
+      "type_number": "4188 03",
+      "order_number": "418803",
+      "manufacturer": "Gira",
+      "description": "SCHUKO socket outlet 16 A 250 V, push-in terminals, System 55, pure white glossy",
+      "group": "Installation devices",
+      "subgroup": "Socket outlet",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "SocketOutlet",
+          "pins": "L N PE"
+        }
+      ],
+      "voltage": "250 V AC",
+      "current": "16 A",
+      "width": 81.0,
+      "height": 81.0,
+      "depth": 12.0,
+      "weight": 0.08,
+      "accessories": [
+        "GIRA.021103"
+      ],
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 300 mm\nDesign: System 55\nTerminals: push-in 1.5 - 2.5 mm²\nDimensions: with frame 0211 03"
+    },
+    {
+      "number": "GIRA.445403",
+      "type_number": "4454 03",
+      "order_number": "445403",
+      "manufacturer": "Gira",
+      "description": "SCHUKO socket outlet 16 A 250 V with hinged lid, System 55, pure white glossy",
+      "group": "Installation devices",
+      "subgroup": "Socket outlet",
+      "identifier": "XD",
+      "functions": [
+        {
+          "kind": "SocketOutlet",
+          "pins": "L N PE"
+        }
+      ],
+      "voltage": "250 V AC",
+      "current": "16 A",
+      "width": 81.0,
+      "height": 81.0,
+      "depth": 30.0,
+      "weight": 0.1,
+      "accessories": [
+        "GIRA.021103"
+      ],
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 300 mm\nDesign: System 55\nDimensions: with frame 0211 03"
+    },
+    {
+      "number": "GIRA.310600",
+      "type_number": "3106 00",
+      "order_number": "310600",
+      "manufacturer": "Gira",
+      "description": "Rocker switch insert universal on / off and two-way 10 AX 250 V, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Switch",
+      "identifier": "SF",
+      "functions": [
+        {
+          "kind": "Changeover",
+          "pins": "L 1 2"
+        }
+      ],
+      "voltage": "250 V AC",
+      "current": "10 AX",
+      "width": 81.0,
+      "height": 81.0,
+      "depth": 12.0,
+      "weight": 0.06,
+      "accessories": [
+        "GIRA.029603",
+        "GIRA.021103"
+      ],
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nRockers: 1\nDesign: with rocker 0296 03 and frame 0211 03 (System 55)\nDimensions: with rocker and frame"
+    },
+    {
+      "number": "GIRA.315000",
+      "type_number": "3150 00",
+      "order_number": "315000",
+      "manufacturer": "Gira",
+      "description": "Rocker push button insert NO 10 A 250 V with N terminal, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Push button",
+      "identifier": "SF",
+      "functions": [
+        {
+          "kind": "PushbuttonNo",
+          "pins": "L 1"
+        }
+      ],
+      "voltage": "250 V AC",
+      "current": "10 A",
+      "width": 81.0,
+      "height": 81.0,
+      "depth": 12.0,
+      "weight": 0.06,
+      "accessories": [
+        "GIRA.029603",
+        "GIRA.021103"
+      ],
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nRockers: 1\nDesign: with rocker 0296 03 and frame 0211 03 (System 55)\nDimensions: with rocker and frame"
+    },
+    {
+      "number": "GIRA.245200",
+      "type_number": "2452 00",
+      "order_number": "245200",
+      "manufacturer": "Gira",
+      "description": "Network outlet insert Cat.6A 2-gang, shielded, 2 x RJ45 (8/8), insulation displacement, 45° outlet, up to 10 Gbit Ethernet",
+      "group": "Installation devices",
+      "subgroup": "Data outlet",
+      "identifier": "XF",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "P1 P2"
+        }
+      ],
+      "width": 81.0,
+      "height": 81.0,
+      "depth": 14.0,
+      "weight": 0.07,
+      "accessories": [
+        "GIRA.027003",
+        "GIRA.021103"
+      ],
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 300 mm\nCategory: 6A (IEEE 802.3an)\nDesign: with cover 0270 03 and frame 0211 03 (System 55)\nDimensions: with cover and frame"
+    },
+    {
+      "number": "GIRA.029603",
+      "type_number": "0296 03",
+      "order_number": "029603",
+      "manufacturer": "Gira",
+      "description": "Rocker for switches and push buttons, System 55, pure white glossy",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Accessories",
+      "identifier": "SF",
+      "accessory": true,
+      "accessory_mount": "front"
+    },
+    {
+      "number": "GIRA.021103",
+      "type_number": "0211 03",
+      "order_number": "021103",
+      "manufacturer": "Gira",
+      "description": "Cover frame 1-gang, System 55, pure white glossy",
+      "group": "Installation devices",
+      "subgroup": "Accessories",
+      "identifier": "XD",
+      "accessory": true,
+      "accessory_mount": "front"
+    },
+    {
+      "number": "GIRA.027003",
+      "type_number": "0270 03",
+      "order_number": "027003",
+      "manufacturer": "Gira",
+      "description": "Cover for UAE / IAE and network outlets, System 55, pure white glossy",
+      "group": "Installation devices",
+      "subgroup": "Accessories",
+      "identifier": "XF",
+      "accessory": true,
+      "accessory_mount": "front"
+    },
+    {
+      "number": "GIRA.086903",
+      "type_number": "0869 03",
+      "order_number": "086903",
+      "manufacturer": "Gira",
+      "description": "Central plate for antenna outlets 2 / 3-hole, System 55, pure white glossy",
+      "group": "Installation devices",
+      "subgroup": "Accessories",
+      "identifier": "XF",
+      "accessory": true,
+      "accessory_mount": "front",
+      "fits": [
+        "GEN.TV-SAT-UP"
+      ]
+    }
+  ]
+}

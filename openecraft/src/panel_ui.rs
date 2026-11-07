@@ -1,7 +1,7 @@
 //! Panel layout workspace: enclosure navigator, 2D mounting plate editor, 3D view
 //! and property editor.
 
-use openecraft_i18n::{tr, tr_fmt};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 use crate::editor::{EguiDraw, Palette};
 use openecraft_core::geom::{p, P};
@@ -432,6 +432,9 @@ pub struct PanelUi {
     pub show_lineup: bool,
     /// The 3D view shows all enclosures at their places in the room.
     pub show_site: bool,
+    /// The 3D view of a room in a building shows the whole building: its rooms, floor
+    /// slabs, stairs and roofs.
+    pub show_building: bool,
     /// The 3D view leaves out the walls between the eye and the inside of a room or
     /// enclosure.
     pub hide_front_walls: bool,
@@ -503,6 +506,21 @@ pub struct PanelUi {
     plan_inner: Option<u64>,
     /// Level selected in the navigator (its id): new rooms go onto it.
     nav_level: Option<u64>,
+    /// Circuits of the generic heating circuit manifold chosen in the installation menu.
+    manifold_circuits: usize,
+}
+
+/// The groups of the installation menu: title and the subgroups of their parts.
+const INSTALLATION: [(&str, &[&str]); 3] = [
+    (tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
+    (tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
+    (tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
+];
+
+/// The parts of the catalogs shipped with OpenECraft, read once.
+fn bundled_parts() -> &'static [parts::Part] {
+    static PARTS: std::sync::OnceLock<Vec<parts::Part>> = std::sync::OnceLock::new();
+    PARTS.get_or_init(|| parts::bundled::all().unwrap_or_default().into_iter().flat_map(|b| b.parts).collect())
 }
 
 /// A room dragged in the navigator (the drag payload).
@@ -541,6 +559,7 @@ impl Default for PanelUi {
             show_heat: false,
             show_lineup: true,
             show_site: false,
+            show_building: false,
             hide_front_walls: false,
             hide_ceiling: false,
             open_ducts: false,
@@ -583,6 +602,7 @@ impl Default for PanelUi {
             confirm_remove: None,
             plan_inner: None,
             nav_level: None,
+            manifold_circuits: 6,
         }
     }
 }
@@ -2299,6 +2319,11 @@ impl PanelUi {
         self.cam = None;
     }
 
+    pub fn toggle_building(&mut self) {
+        self.show_building = !self.show_building;
+        self.cam = None;
+    }
+
     pub fn fit(&mut self) {
         self.fit_pending = true;
         self.cam = None;
@@ -2578,6 +2603,64 @@ impl PanelUi {
                 ui.close();
             }
         }
+    }
+
+    /// Outlets and switches of a room and heating circuit manifolds with their control
+    /// boxes, from the parts database, the project, the catalog and the manufacturer
+    /// catalogs shipped with OpenECraft; chosen, a part of a shipped catalog comes into
+    /// the project, then a click on the wall places it at its mounting height.
+    pub fn installation_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, db: &PartsDb) {
+        if !self.in_room {
+            ui.weak(tr("Choose a room first: outlets, switches and heating circuit manifolds go on its walls."));
+            return;
+        }
+        let mut chosen: Option<parts::Part> = None;
+        egui::ScrollArea::vertical().max_height(480.0).show(ui, |ui| {
+            for (title, subgroups) in INSTALLATION {
+                ui.label(RichText::new(tr(title)).strong());
+                let mut list: Vec<&parts::Part> = Vec::new();
+                for p in db.parts.iter().chain(prj.parts.iter()).chain(parts::catalog()).chain(bundled_parts()) {
+                    if p.wall_mountable() && subgroups.contains(&p.subgroup.as_str()) && !list.iter().any(|x| x.number == p.number) {
+                        list.push(p);
+                    }
+                }
+                list.sort_by(|a, b| a.manufacturer.cmp(&b.manufacturer).then(natural_cmp(&a.number, &b.number)));
+                for p in list {
+                    let active = self.tool == Tool::Accessory(p.number.clone());
+                    let tip = p.tech_value("Mounting height").map_or_else(String::new, |h| tr_fmt!("Mounting height: {}", h));
+                    if ui.selectable_label(active, format!("{} – {}", p.number, p.description)).on_hover_text(tip).clicked() {
+                        chosen = Some(p.clone());
+                        ui.close();
+                    }
+                }
+                ui.add_space(4.0);
+            }
+            ui.horizontal(|ui| {
+                ui.label(tr("Circuits of a generic manifold"));
+                ui.add(egui::DragValue::new(&mut self.manifold_circuits).range(2..=12));
+                if ui.button(tr("Choose")).clicked() {
+                    let number = format!("GEN.HCM-{}", self.manifold_circuits);
+                    chosen = parts::catalog().iter().find(|p| p.number == number).cloned();
+                    ui.close();
+                }
+            });
+        });
+        let Some(p) = chosen else { return };
+        let known = |prj: &Project, n: &str| prj.parts.iter().any(|x| x.number == n) || db.get(n).is_some() || parts::catalog().iter().any(|x| x.number == n);
+        if !known(prj, &p.number) {
+            // From a shipped catalog: into the project with its accessories.
+            for a in &p.accessories {
+                if !known(prj, a) {
+                    if let Some(acc) = bundled_parts().iter().find(|x| &x.number == a) {
+                        prj.parts.push(acc.clone());
+                    }
+                }
+            }
+            prj.parts.push(p.clone());
+        }
+        self.view = View::Front;
+        self.set_tool(Tool::Accessory(p.number));
+        self.status = tr("Click on the wall: the part goes there at its mounting height").to_string();
     }
 
     /// 19-inch parts (technical data `Rack units`) of the parts database, the project
@@ -2977,6 +3060,16 @@ impl PanelUi {
                     painter.rect_stroke(r.expand(2.0), 2.0, Stroke::new(2.5, WIRE_HIGHLIGHT), egui::StrokeKind::Outside);
                 }
             }
+        }
+        // A wall under a sloped ceiling: the line where it ends, the part above it shaded.
+        if let Some(line) = panel::roofs::ceiling(prj, ei).and_then(|c| panel::roofs::wall_line(e, &c, self.face)) {
+            let pts: Vec<Pos2> = line.iter().map(|q| to_screen(p(q[0], q[1]))).collect();
+            let top = to_screen(p(0.0, 0.0)).y;
+            for w in pts.windows(2) {
+                let quad = vec![egui::pos2(w[0].x, top), egui::pos2(w[1].x, top), w[1], w[0]];
+                painter.add(egui::Shape::convex_polygon(quad, pal.ghost.gamma_multiply(0.25), Stroke::NONE));
+            }
+            painter.add(egui::Shape::line(pts, Stroke::new(2.0, crate::style::warning())));
         }
         // Connection points of the selected device.
         if let [id] = self.selection.iter().copied().collect::<Vec<_>>()[..] {

@@ -70,6 +70,78 @@ impl AccessoryPart for Part {
     }
 }
 
+/// Flush-mounted outlets and switches of a room, heating circuit manifolds for 2 to 12
+/// circuits and single-room control boxes, all for direct wall mounting; the outlets
+/// and switches with their usual mounting height above the floor.
+fn room_installation(c: &mut C) {
+    use FnKind::*;
+    let inst = "Installation devices";
+    let sw = "Sensors, switches, pushbuttons";
+    let wall = |p: &mut Part, height: f32, extra: &str| {
+        p.mounting = "Wall".into();
+        p.mounting_data.wall_mount = true;
+        p.tech_data = if extra.is_empty() { format!("Mounting height: {height:.0} mm") } else { format!("Mounting height: {height:.0} mm\n{extra}") };
+    };
+    for (number, desc, w, d, extra) in [
+        ("GEN.SOCKET-F-UP", "Socket outlet type F (Schuko) 16 A 250 V, flush-mounted, with child protection, with frame 80 x 80 mm", 80.0, 12.0, ""),
+        ("GEN.SOCKET-F-2X-UP", "Double socket outlet type F (Schuko) 16 A 250 V, flush-mounted, with child protection, with frame 151 x 80 mm", 151.0, 12.0, ""),
+        ("GEN.SOCKET-F-LID-UP", "Socket outlet type F (Schuko) 16 A 250 V with hinged lid, IP44, flush-mounted, with frame 80 x 80 mm", 80.0, 30.0, "Protection: IP44"),
+        ("GEN.SOCKET-F-USB-UP", "Socket outlet type F (Schuko) 16 A 250 V with USB charger A + C 3 A, flush-mounted, with frame 80 x 80 mm", 80.0, 12.0, "USB: A + C, 5 V, 3 A"),
+    ] {
+        let p = c.add(number, desc, inst, "Socket outlet", "XD", 9.5, (w, 80.0, d, 0.08), &[(SocketOutlet, "L N PE")]);
+        p.voltage = "250 V AC".into();
+        p.current = "16 A".into();
+        wall(p, 300.0, extra);
+    }
+    let p = c.add("GEN.DATA-RJ45-2X-UP", "Data outlet 2 x RJ45 Cat 6A, shielded, flush-mounted, with central plate and frame 80 x 80 mm", inst, "Data outlet", "XF", 24.0, (80.0, 80.0, 14.0, 0.07), &[(Generic, "P1 P2")]);
+    wall(p, 300.0, "Category: 6A (10 Gbit Ethernet)");
+    let p = c.add("GEN.TV-SAT-UP", "Antenna outlet TV / radio / SAT, end outlet, flush-mounted, with central plate and frame 80 x 80 mm", inst, "Antenna outlet", "XF", 14.0, (80.0, 80.0, 14.0, 0.07), &[(Generic, "TV R SAT")]);
+    wall(p, 300.0, "Frequency range: 5 - 2400 MHz");
+    for (number, desc, subgroup, function, extra) in [
+        ("GEN.SW-ONOFF-UP", "Light switch on / off 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (SwitchNo, "L 1"), "Rockers: 1"),
+        ("GEN.SW-2WAY-UP", "Two-way switch 10 AX 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Switch", (Changeover, "L 1 2"), "Rockers: 1"),
+        ("GEN.SW-SERIES-UP", "Series switch (two circuits) 10 AX 250 V, flush-mounted, with two rockers and frame 80 x 80 mm", "Switch", (SwitchNo, "L 1"), "Rockers: 2"),
+        ("GEN.PB-NO-UP", "Push button NO 10 A 250 V, flush-mounted, with rocker and frame 80 x 80 mm", "Push button", (PushbuttonNo, "L 1"), "Rockers: 1"),
+        ("GEN.SW-BLIND-UP", "Blind switch up / down 10 A 250 V, interlocked, flush-mounted, with rockers and frame 80 x 80 mm", "Blind switch", (Changeover, "L 1 2"), "Rockers: 2"),
+    ] {
+        let p = c.add(number, desc, sw, subgroup, "SF", 8.5, (80.0, 80.0, 12.0, 0.06), &[function]);
+        if number == "GEN.SW-SERIES-UP" {
+            p.functions.push(FunctionTemplate::new(SwitchNo, "L2 2"));
+        }
+        p.voltage = "250 V AC".into();
+        p.current = "10 A".into();
+        wall(p, 1050.0, extra);
+    }
+    let p = c.add("GEN.DIM-LED-UP", "Rotary dimmer for LED lamps 3 - 100 W, 230 V, phase cut, flush-mounted, with knob and frame 80 x 80 mm", sw, "Dimmer", "PF", 39.0, (80.0, 80.0, 30.0, 0.09), &[(Generic, "L 1")]);
+    p.voltage = "230 V AC".into();
+    p.power = "3 - 100 W".into();
+    wall(p, 1050.0, "");
+    let p = c.add("GEN.RTR-UP", "Room thermostat 230 V for thermal actuators of an underfloor heating, flush-mounted, with display and frame 80 x 80 mm", sw, "Room thermostat", "BT", 49.0, (80.0, 80.0, 20.0, 0.1), &[(Generic, "L N 1")]);
+    p.voltage = "230 V AC".into();
+    wall(p, 1500.0, "Setting range: 5 - 30 °C");
+    // Heating circuit manifolds: flow and return 1", the circuits 3/4" Eurocone at 50 mm.
+    for n in 2..=12usize {
+        // Flow and return in, then each circuit: one function per pair.
+        let pairs: Vec<String> = std::iter::once("F R".to_string()).chain((1..=n).map(|k| format!("F{k} R{k}"))).collect();
+        let number = format!("GEN.HCM-{n}");
+        let desc = format!("Heating circuit manifold stainless steel for {n} circuits, flow bar with flow meters, return bar with valves for actuators, 1\" flow and return, outlets 3/4\" Eurocone, on brackets");
+        let p = c.add(&number, &desc, "Fluid power components", "Heating circuit manifold", "WP", 60.0 + 18.0 * n as f32, (150.0 + 50.0 * n as f32, 420.0, 90.0, 1.0 + 0.4 * n as f32), &[]);
+        p.functions = pairs.iter().map(|pins| FunctionTemplate::new(FluidComponent, pins)).collect();
+        p.mounting = "Wall".into();
+        p.mounting_data.wall_mount = true;
+        p.tech_data = format!("Circuits: {n}\nOutlet spacing: 50 mm\nConnection: 1\" flow and return, outlets 3/4\" Eurocone\nMax. operating pressure: 6 bar\nMax. operating temperature: 60 °C");
+    }
+    for (number, desc, price) in [
+        ("GEN.RTL-BOX", "Single-room control box with return temperature limiter (RTL) 10 - 50 °C for underfloor heating, flush-mounted, 3/4\" Eurocone, with cover", 62.0),
+        ("GEN.RTL-TH-BOX", "Single-room control box with return temperature limiter (RTL) and room thermostat (TH) for underfloor heating, flush-mounted, 3/4\" Eurocone, with cover", 98.0),
+    ] {
+        let p = c.add(number, desc, "Fluid power components", "Control box", "QN", price, (150.0, 150.0, 45.0, 0.9), &[(FluidComponent, "1 2")]);
+        p.mounting = "Wall".into();
+        p.mounting_data.wall_mount = true;
+        p.tech_data = "Mounting height: 250 mm\nConnection: 3/4\" Eurocone\nFor heating circuits up to 20 m²".into();
+    }
+}
+
 /// Generic example catalog with function templates.
 pub fn default_catalog() -> Vec<Part> {
     use FnKind::*;
@@ -465,6 +537,7 @@ Breaking capacity: 100 kA".into();
     let p = c.add("GEN.LIGHT-EM-3W", "Emergency light LED 3 W, 3 h, IP65, for wall mounting", "Installation devices", "Emergency light", "E", 89.0, (350.0, 120.0, 60.0, 0.9), &[(Signal, "L N")]);
     p.voltage = "230 V AC".into();
     p.mounting_data.wall_mount = true;
+    room_installation(&mut c);
     let p = c.add("GEN.HEATER-100W", "Enclosure heater 100 W, 230 V AC, with fan", "Installation devices", "Enclosure heater", "E", 75.0, (70.0, 130.0, 70.0, 0.6), &[(Heater, "1 2")]);
     p.voltage = "230 V AC".into();
     p.power = "100 W".into();

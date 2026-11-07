@@ -608,6 +608,14 @@ pub fn stand_on_floor(e: &Enclosure, it: &mut PanelItem) {
     }
 }
 
+/// An item on a wall of a room with its middle `height` above the floor (the mounting
+/// height of socket outlets, switches and thermostats).
+pub fn at_mounting_height(e: &Enclosure, it: &mut PanelItem, height: f32) {
+    if e.is_room() && matches!(it.face, Face::Wall(_) | Face::Inner(..)) {
+        it.y = super::snap(e.height - height - it.h / 2.0);
+    }
+}
+
 /// Mounts a device (by its tag) or a part (by its number, without a device tag) on a
 /// wall, the ceiling or the floor of a room with its top left corner at `at` (on the
 /// floor: its rear left corner in the floor plan); on a rail there it snaps onto the

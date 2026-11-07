@@ -3,8 +3,8 @@
     "id": "mdt",
     "name": "MDT",
     "manufacturer": "MDT",
-    "version": "2026.1",
-    "description": "KNX switch actuators, IP interface, IP router and KNX power supply. Curated from public data sheets; check against the manufacturer data before ordering."
+    "version": "2026.2",
+    "description": "KNX switch actuators, IP interface, IP router and KNX power supply, KNX push buttons Plus and Smart 55, glass push button II Smart and room temperature controller Smart 55 for flush mounting. Curated from public data sheets; check against the manufacturer data before ordering."
   },
   "parts": [
     {
@@ -322,6 +322,110 @@
       "current": "640 mA",
       "voltage": "230 V AC",
       "tech_data": "Bus: KNX\nOutput current: 640 mA"
+    },
+    {
+      "number": "MDT.BE-TA55P4.01",
+      "type_number": "BE-TA55P4.01",
+      "order_number": "BE-TA55P4.01",
+      "manufacturer": "MDT",
+      "description": "KNX push button Plus 4-fold, 55 mm, pure white matt / glossy, status and orientation LEDs, integrated bus coupler, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Push button",
+      "identifier": "SF",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "KNX+ KNX-"
+        }
+      ],
+      "voltage": "30 V DC (KNX)",
+      "width": 80.0,
+      "height": 80.0,
+      "depth": 14.0,
+      "weight": 0.05,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nRockers: 4\nBus: KNX\nDesign: 55 mm (frames of the 55 mm ranges)\nDimensions: with frame"
+    },
+    {
+      "number": "MDT.BE-TAS55T4.01",
+      "type_number": "BE-TAS55T4.01",
+      "order_number": "BE-TAS55T4.01",
+      "manufacturer": "MDT",
+      "description": "KNX push button Smart 55 4-fold with colour display, temperature and humidity sensor, pure white glossy, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Push button",
+      "identifier": "SF",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "KNX+ KNX-"
+        }
+      ],
+      "voltage": "30 V DC (KNX)",
+      "width": 80.0,
+      "height": 80.0,
+      "depth": 14.0,
+      "weight": 0.06,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nRockers: 4\nBus: KNX\nSensors: temperature, humidity\nDesign: 55 mm (frames of the 55 mm ranges)\nDimensions: with frame"
+    },
+    {
+      "number": "MDT.BE-GT2TW.01",
+      "type_number": "BE-GT2TW.01",
+      "order_number": "BE-GT2TW.01",
+      "manufacturer": "MDT",
+      "description": "KNX glass push button II Smart, 6 sensor areas, display, integrated temperature sensor, white, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Glass push button",
+      "identifier": "SF",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "KNX+ KNX-"
+        }
+      ],
+      "voltage": "30 V DC (KNX)",
+      "width": 89.0,
+      "height": 89.0,
+      "depth": 12.0,
+      "weight": 0.1,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1050 mm\nSensor areas: 6\nBus: KNX\nTemperature measuring range: 0 - 40 °C\nDimensions: approximate"
+    },
+    {
+      "number": "MDT.SCN-RTR55S.01",
+      "type_number": "SCN-RTR55S.01",
+      "order_number": "SCN-RTR55S.01",
+      "manufacturer": "MDT",
+      "description": "KNX room temperature controller Smart 55 with display, pure white glossy, flush-mounted",
+      "group": "Sensors, switches, pushbuttons",
+      "subgroup": "Room thermostat",
+      "identifier": "BT",
+      "functions": [
+        {
+          "kind": "Generic",
+          "pins": "KNX+ KNX-"
+        }
+      ],
+      "voltage": "30 V DC (KNX)",
+      "width": 80.0,
+      "height": 80.0,
+      "depth": 14.0,
+      "weight": 0.06,
+      "mounting": "Wall",
+      "mounting_data": {
+        "wall_mount": true
+      },
+      "tech_data": "Mounting height: 1500 mm\nBus: KNX\nDesign: 55 mm (frames of the 55 mm ranges)\nDimensions: with frame"
     }
   ]
 }

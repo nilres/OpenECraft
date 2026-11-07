@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Verifiche di
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Verifica i dati del progetto (ID, riferimenti, dati dei dispositivi, opzioni, sottoprogetti) insieme alle verifiche di progettazione.
 Choices	Scelte
 Choices (separated by commas)	Scelte (separate da virgole)
+Choose	Scegli
 Choose a baseline, a revision or a project file to compare the project with.	Scegli una baseline, una revisione o un file di progetto con cui confrontare il progetto.
 Choose a room first: floor-standing parts go on its floor.	Scegli prima un locale: gli articoli a pavimento vanno sul suo pavimento.
 Choose file…	Scegli file…
 Choose pages	Scegli pagine
 Chooses the pages whose structure starts with this	Sceglie le pagine la cui struttura inizia con questo
 Circle	Cerchio
+Circuits of a generic manifold	Circuiti di un collettore generico
 Clear	Cancella
 Clearance	Distanza minima
 Clearances	Distanze
@@ -278,6 +280,7 @@ Click into the page to place {}	Fai clic nella pagina per posizionare {}
 Click on a wall	Fare clic su una parete
 Click on a wire to place the connection definition point	Fai clic su un conduttore per posizionare il punto di definizione collegamento
 Click on the 4 mm grid	Fai clic sulla griglia da 4 mm
+Click on the wall: the part goes there at its mounting height	Fai clic sulla parete: il componente va lì alla sua altezza di montaggio
 Click start and end point	Fai clic sul punto iniziale e finale
 Click the corners of a machine or building, double-click to finish	Fai clic sugli angoli di una macchina o di un edificio, doppio clic per terminare
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Fai clic sulle estremità delle pareti interne; ogni clic inizia la successiva, le estremità vicine a una parete vi si agganciano. Esc, Invio o un doppio clic terminano la catena, di nuovo Esc lo strumento.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Designazioni delle anime separate da spazi
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Anime 1, 2, 3 … per i conduttori attraversati, più GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Angolo: due conduttori ad angolo retto; con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati
 Cover sheet, overview, graphics, report, mounting layout or a page template	Copertina, panoramica, grafica, report, layout di montaggio o un modello di pagina
+Covers	Copre
 Covers what is behind the text	Copre ciò che si trova dietro il testo
 Create	Crea
 Create an enclosure in the panel layout first.	Crea prima un armadio nel layout quadro.
@@ -424,10 +428,13 @@ Delete macro	Elimina macro
 Delete node	Elimina nodo
 Delete page	Elimina pagina
 Delete request	Elimina richiesta
+Delete roof	Elimina tetto
+Delete roof window	Elimina finestra da tetto
 Delete room	Elimina locale
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Eliminare il locale {} con tutto ciò che si trova sulle sue pareti? Gli armadi al suo interno restano, senza locale.
 Delete section	Elimina sezione
 Delete shaft	Elimina cavedio
+Delete stair	Elimina scala
 Delete the group	Elimina il gruppo
 Delete the layer; its items move to the default layer	Elimina il livello; i suoi elementi passano al livello predefinito
 Delete the property and all its values	Elimina la proprietà e tutti i suoi valori
@@ -541,6 +548,7 @@ Duplicate	Duplica
 Each example builds on the one before and shows more of the features.	Ogni esempio si basa sul precedente e mostra più funzioni.
 Each point-to-point connection can belong to a harness	Ogni collegamento punto-punto può appartenere a un cablaggio
 Earthing system	Sistema di distribuzione
+Eaves	Gronda
 Edge length of the routing grid: smaller is finer and slower	Lato della griglia di instradamento: più piccolo è più fine e più lento
 Edit	Modifica
 Edit in table	Modifica in tabella
@@ -640,6 +648,7 @@ Floor plan with {} walls	Pianta con {} pareti
 Floor-standing part	Articolo a pavimento
 Fluid and process	Fluidi e processo
 Follows its condition: use Apply conditions	Segue la sua condizione: usa Applica condizioni
+Foot	Partenza
 For	Per
 For parts without Stock length; longer profiles have to be joined	Per articoli senza Stock length; i profili più lunghi devono essere giuntati
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Per articoli senza dati di temperatura (Max temperature, Operating temperature); 0: non verificato
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Testa (CPU / accoppiatore)
 Header row	Riga di intestazione
 Heat map	Mappa termica
 Heating	Riscaldamento
+Heating circuit manifolds and control boxes	Collettori di riscaldamento e scatole di regolazione
 Height (mm)	Altezza (mm)
 Height above the floor	Altezza dal pavimento
 Height above the mounting plate	Altezza sopra la piastra di montaggio
@@ -833,9 +843,9 @@ Layout checks	Verifiche del layout
 Layout properties	Proprietà del layout
 Layout space	Spazio di montaggio
 Layout spaces	Spazi di montaggio
+Leave out the ceilings of the rooms and the roofs in the 3D view	Ometti i soffitti dei locali e i tetti nella vista 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Nella vista 3D omette i coperchi di tutte le canaline: i fili al loro interno sono visibili
 Leave repeated values of the first column blank	Lascia vuoti i valori ripetuti della prima colonna
-Left	Sinistra
 Left edges	Bordi sinistri
 Legend plates (door devices)	Targhette di identificazione (dispositivi sulla porta)
 Length from the node to the device	Lunghezza dal nodo al dispositivo
@@ -931,6 +941,7 @@ Motors feed the short circuit	I motori alimentano il cortocircuito
 Mounted on	Montato su
 Mounting assistant: the panel items in mounting order with their place and part	Assistente di montaggio: gli elementi del layout nell'ordine di montaggio con posizione e articolo
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Distanza di montaggio affiancata; gli articoli aggiungono la propria (Clearance left / right)
+Mounting height: {}	Altezza di montaggio: {}
 Mounting plate: {} holes, {} cutouts	Piastra di montaggio: {} fori, {} aperture
 Move	Sposta
 Move down	Sposta in basso
@@ -992,12 +1003,14 @@ New report page	Nuova pagina di report
 New request	Nuova richiesta
 New revision	Nuova revisione
 New revisions start as drafts, are submitted for review and can be released once approved.	Le nuove revisioni iniziano come bozze, vengono inviate per il riesame e possono essere rilasciate dopo l'approvazione.
+New roof	Nuovo tetto
 New room	Nuovo locale
 New room on this level	Nuovo locale su questo piano
 New schematic page	Nuova pagina di schema
 New scheme	Nuovo schema
 New section	Nuova sezione
 New shaft	Nuovo cavedio
+New stair	Nuova scala
 New sub-page	Nuova sottopagina
 New subsection	Nuova sottosezione
 New tag for {}	Nuova sigla per {}
@@ -1134,6 +1147,7 @@ Other values ({})	Altri valori ({})
 Otherwise from the plant layout, or next to the other line-ups	Altrimenti dal layout dell'impianto o accanto alle altre file di armadi
 Out since {} (pages locked)	Estratto dal {} (pagine bloccate)
 Outer diameter (e.g. 8 mm) or DN	Diametro esterno (ad es. 8 mm) o DN
+Outlets, switches, heating	Prese, interruttori, riscaldamento
 Outline	Contorno
 Outlines	Contorni
 Output bytes	Byte di uscita
@@ -1141,6 +1155,7 @@ Output failed: {}	Emissione non riuscita: {}
 Output to another project	Emetti in un altro progetto
 Output to project…	Emetti nel progetto…
 Outputs	Uscite
+Overhang	Sporgenza
 Own colour	Colore proprio
 Own drawn form	Modulo disegnato personalizzato
 Own groups	Gruppi propri
@@ -1198,6 +1213,7 @@ Pin-out	Piedinatura
 Pipe run	Percorso tubazioni
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Percorso tubazioni su una parete, il soffitto o il pavimento del locale, lungo cui vengono instradati tubi flessibili, tubi e tubazioni: fai clic sugli angoli, doppio clic o Enter per terminare
 Pipe run {} mm – double-click or Enter to finish	Percorso tubazioni {} mm – doppio clic o Enter per terminare
+Pitch	Pendenza
 Pitch X / Y	Passo X / Y
 Place a comment on the page	Inserisci un commento sulla pagina
 Place again at all symbols using it	Posiziona di nuovo su tutti i simboli che lo utilizzano
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revisioni, approvazione e rilascio
 Ribbon	Barra multifunzione
 Ribbon (JSON)	Barra multifunzione (JSON)
 Ribbon imported	Barra multifunzione importata
-Right	Destra
 Right click for more	Clic destro per altre opzioni
 Right edges	Bordi destri
 Right neighbour	Vicino a destra
 Rights	Diritti
+Risers	Alzate
+Roof window	Finestra da tetto
+Roof windows	Finestre da tetto
+Roofs	Tetti
 Room	Locale
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Locale aggiunto al piano {}: trascina le sue pareti o disegnane di nuove nella pianta, inserisci gli armadi nelle loro proprietà
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Locale aggiunto: trascina le sue pareti o disegnane di nuove nella pianta, inserisci gli armadi nelle loro proprietà
 Room {} now stands on level {}	Il locale {} ora si trova al piano {}
 Room {} taken out of the building; it stays where it stands	Locale {} tolto dall'edificio; resta dove si trova
+Rooms under sloped ceilings (lowest – highest ceiling)	Locali sotto soffitti inclinati (soffitto più basso – più alto)
 Rotate	Ruota
 Rotate (selection or symbol being placed)	Ruota (selezione o simbolo in fase di posizionamento)
 Round	Rotondo
@@ -1589,6 +1609,7 @@ Slot	Asola
 Slots	Slot
 Smallest cross-section of control circuits	Sezione minima dei circuiti di comando
 Smallest cross-section of power circuits	Sezione minima dei circuiti di potenza
+Socket outlets, data and antenna outlets	Prese di corrente, dati e antenna
 Some wires have no length: place their devices in the panel layout or set the field length.	Alcuni conduttori non hanno una lunghezza: posiziona i relativi dispositivi nel layout quadro o imposta la lunghezza campo.
 Sort by designation	Ordina per designazione
 Sort order	Ordinamento
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Spazio lasci
 Spare terminals	Morsetti di riserva
 Special text	Testo speciale
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Testo speciale: le proprietà di progetto e di pagina come {page} o {prop:Name} vengono compilate quando la pagina viene disegnata
+Stairs	Scale
 Standard form of the report	Modulo standard del report
 Standard size	Dimensione standard
 Standard workspaces	Aree di lavoro standard
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Disattiva la verifica \"{}\"
 Switches the options with a condition by the configurator options	Commuta le opzioni con una condizione in base alle opzioni del configuratore
 Switches to this workspace with its panes at their default places	Passa a questa area di lavoro con i pannelli nelle posizioni predefinite
+Switches, push buttons and room thermostats	Interruttori, pulsanti e termostati ambiente
 Symbol editor	Editor simboli
 Symbol table import failed: {}	Importazione della tabella dei simboli non riuscita: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Simboli e conduttori di questa pagina vengono disegnati ma non valutati (nessun dispositivo, collegamento o report).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Rotellina / trascinamento con tasto destro o centra
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotellina: zoom · clic destro: annulla · la grafica si aggancia a 0,5 mm, i punti di connessione alla griglia da 4 mm
 When it differs from the page	Se differisce dalla pagina
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Dove il conduttore inizia e finisce: un punto di connessione dai dati dell'articolo, uno generato dal modello di funzione o il centro del dispositivo se nessun punto di connessione corrisponde
+Whole building	Edificio intero
 Whole words	Parole intere
+Width / going	Larghezza / pedata
 Width / height (mm)	Larghezza / altezza (mm)
 Width × depth	Larghezza × profondità
 Width × height	Larghezza × altezza
@@ -1884,6 +1909,7 @@ all cards	tutte le schede
 all lines	tutte le righe
 all, or e.g. -X*, -W1	tutti, oppure ad es. -X*, -W1
 all, or e.g. K, Q	tutte, o ad es. K, Q
+along z	lungo z
 both ends	entrambe le estremità
 built-in	integrato
 by hand	manualmente
@@ -1917,6 +1943,7 @@ given	fissata
 horizontal	orizzontale
 if	se
 kW	kW
+low side at the rear	lato basso dietro
 male	maschio
 manual	manuale
 max. {} °C	max. {} °C
@@ -1926,6 +1953,7 @@ model	modello
 name	nome
 no	no
 no rooms	nessun locale
+no valid levels	nessun piano valido
 no wires	nessun conduttore
 none	nessuno
 not defined	non definito
@@ -1944,6 +1972,8 @@ pin and socket	maschio e femmina
 placed / provided by the parts	posizionati / forniti dagli articoli
 reached: PL {}	raggiunto: PL {}
 review round {}	ciclo di riesame {}
+ridge {} m	colmo {} m
+sloped ceiling from {} m	soffitto inclinato da {} m
 some	alcuni
 taken over	acquisito
 the project data (page list, devices, settings)	i dati del progetto (elenco pagine, dispositivi, impostazioni)

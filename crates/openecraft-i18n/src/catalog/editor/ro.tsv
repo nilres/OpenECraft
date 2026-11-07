@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Verificăril
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Verifică datele proiectului (ID-uri, referințe, date de dispozitiv, opțiuni, subproiecte) împreună cu verificările de inginerie.
 Choices	Opțiuni de alegere
 Choices (separated by commas)	Opțiuni de alegere (separate prin virgule)
+Choose	Alegeți
 Choose a baseline, a revision or a project file to compare the project with.	Alegeți o versiune de referință, o revizie sau un fișier de proiect cu care să comparați proiectul.
 Choose a room first: floor-standing parts go on its floor.	Alegeți mai întâi o încăpere: articolele care stau pe pardoseală se pun pe pardoseala ei.
 Choose file…	Alegere fișier…
 Choose pages	Alegere pagini
 Chooses the pages whose structure starts with this	Alege paginile a căror structură începe cu aceasta
 Circle	Cerc
+Circuits of a generic manifold	Circuitele unui distribuitor generic
 Clear	Golire
 Clearance	Distanță
 Clearances	Distanțe
@@ -278,6 +280,7 @@ Click into the page to place {}	Faceți clic în pagină pentru a plasa {}
 Click on a wall	Faceți clic pe un perete
 Click on a wire to place the connection definition point	Faceți clic pe un conductor pentru a plasa punctul de definire a conexiunii
 Click on the 4 mm grid	Faceți clic pe grila de 4 mm
+Click on the wall: the part goes there at its mounting height	Faceți clic pe perete: piesa se așază acolo la înălțimea ei de montaj
 Click start and end point	Faceți clic pe punctul de start și pe cel final
 Click the corners of a machine or building, double-click to finish	Faceți clic pe colțurile unei mașini sau ale unei clădiri, dublu clic pentru a termina
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Faceți clic pe capetele pereților interiori; fiecare clic îl începe pe următorul, capetele de lângă un perete se lipesc de el. Esc, Enter sau un dublu clic încheie lanțul, încă un Esc instrumentul.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Denumirile firelor, separate prin spații
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Fire 1, 2, 3 … pentru conductoarele intersectate, plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Colț: două fire în unghi drept; cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el
 Cover sheet, overview, graphics, report, mounting layout or a page template	Copertă, prezentare generală, grafică, raport, amplasare de montaj sau un șablon de pagină
+Covers	Acoperă
 Covers what is behind the text	Acoperă ce se află în spatele textului
 Create	Creare
 Create an enclosure in the panel layout first.	Creați mai întâi o carcasă în amplasarea în tablou.
@@ -424,10 +428,13 @@ Delete macro	Ștergere macro
 Delete node	Ștergere nod
 Delete page	Ștergere pagină
 Delete request	Ștergere cerere
+Delete roof	Ștergeți acoperișul
+Delete roof window	Ștergeți fereastra de mansardă
 Delete room	Șterge încăperea
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Ștergeți încăperea {} cu tot ce este pe pereții ei? Dulapurile din ea rămân, fără încăpere.
 Delete section	Șterge secțiunea
 Delete shaft	Șterge puțul
+Delete stair	Ștergeți scara
 Delete the group	Ștergerea grupului
 Delete the layer; its items move to the default layer	Ștergeți stratul; elementele sale se mută pe stratul implicit
 Delete the property and all its values	Ștergerea proprietății și a tuturor valorilor sale
@@ -541,6 +548,7 @@ Duplicate	Duplicare
 Each example builds on the one before and shows more of the features.	Fiecare exemplu se bazează pe cel anterior și arată mai multe funcții.
 Each point-to-point connection can belong to a harness	Fiecare conexiune punct la punct poate aparține unui cablaj
 Earthing system	Sistem de legare la pământ
+Eaves	Streașină
 Edge length of the routing grid: smaller is finer and slower	Lungimea laturii grilei de pozare: mai mică înseamnă mai fină și mai lentă
 Edit	Editare
 Edit in table	Editare în tabel
@@ -640,6 +648,7 @@ Floor plan with {} walls	Plan cu {} pereți
 Floor-standing part	Articol care stă pe pardoseală
 Fluid and process	Fluide și procese
 Follows its condition: use Apply conditions	Urmează condiția sa: utilizați Aplicare condiții
+Foot	Pornire
 For	Pentru
 For parts without Stock length; longer profiles have to be joined	Pentru articole fără Stock length; profilele mai lungi trebuie îmbinate
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Pentru articole fără date de temperatură (Max temperature, Operating temperature); 0: neverificat
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Cap (CPU / cuplor)
 Header row	Rând de antet
 Heat map	Hartă termică
 Heating	Încălzire
+Heating circuit manifolds and control boxes	Distribuitoare de încălzire și cutii de reglare
 Height (mm)	Înălțime (mm)
 Height above the floor	Înălțime deasupra podelei
 Height above the mounting plate	Înălțime deasupra plăcii de montaj
@@ -833,9 +843,9 @@ Layout checks	Verificări de amplasare
 Layout properties	Proprietățile amplasării
 Layout space	Spațiu de montaj
 Layout spaces	Spații de montaj
+Leave out the ceilings of the rooms and the roofs in the 3D view	Omiteți tavanele încăperilor și acoperișurile în vederea 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	În vizualizarea 3D omite capacele tuturor canalelor de cabluri: firele din ele se văd
 Leave repeated values of the first column blank	Lăsare necompletate a valorilor repetate din prima coloană
-Left	Stânga
 Left edges	Marginile din stânga
 Legend plates (door devices)	Plăcuțe de identificare (dispozitive de ușă)
 Length from the node to the device	Lungimea de la nod la dispozitiv
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motoarele alimentează scurtcircuitul
 Mounted on	Montat pe
 Mounting assistant: the panel items in mounting order with their place and part	Asistent de montaj: elementele de tablou în ordinea de montaj, cu locul și articolul lor
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Distanță de montaj alăturată; articolele o adaugă pe a lor (Clearance left / right)
+Mounting height: {}	Înălțime de montaj: {}
 Mounting plate: {} holes, {} cutouts	Placă de montaj: {} găuri, {} decupaje
 Move	Mutare
 Move down	Mută în jos
@@ -992,12 +1003,14 @@ New report page	Pagină de raport nouă
 New request	Cerere nouă
 New revision	Revizie nouă
 New revisions start as drafts, are submitted for review and can be released once approved.	Reviziile noi încep ca ciorne, sunt trimise spre examinare și pot fi aprobate după avizare.
+New roof	Acoperiș nou
 New room	Încăpere nouă
 New room on this level	Încăpere nouă la acest nivel
 New schematic page	Pagină de schemă nouă
 New scheme	Schemă nouă
 New section	Secțiune nouă
 New shaft	Puț nou
+New stair	Scară nouă
 New sub-page	Subpagină nouă
 New subsection	Subsecțiune nouă
 New tag for {}	Identificator nou pentru {}
@@ -1134,6 +1147,7 @@ Other values ({})	Alte valori ({})
 Otherwise from the plant layout, or next to the other line-ups	Altfel din planul de amplasare a instalației sau lângă celelalte rânduri de carcase
 Out since {} (pages locked)	Extras de la {} (pagini blocate)
 Outer diameter (e.g. 8 mm) or DN	Diametru exterior (de ex. 8 mm) sau DN
+Outlets, switches, heating	Prize, întrerupătoare, încălzire
 Outline	Contur
 Outlines	Contururi
 Output bytes	Octeți de ieșire
@@ -1141,6 +1155,7 @@ Output failed: {}	Transmiterea nu a reușit: {}
 Output to another project	Transmitere în alt proiect
 Output to project…	Transmitere în proiect…
 Outputs	Ieșiri
+Overhang	Consolă
 Own colour	Culoare proprie
 Own drawn form	Formular desenat propriu
 Own groups	Grupuri proprii
@@ -1198,6 +1213,7 @@ Pin-out	Configurația pinilor
 Pipe run	Traseu de conducte
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Traseu de conducte pe un perete, tavan sau pardoseala încăperii, de-a lungul căruia se pozează furtunuri, tuburi și conducte: faceți clic pe colțuri, dublu clic sau Enter pentru a termina
 Pipe run {} mm – double-click or Enter to finish	Traseu de conducte {} mm – dublu clic sau Enter pentru a termina
+Pitch	Pantă
 Pitch X / Y	Pas X / Y
 Place a comment on the page	Plasare comentariu pe pagină
 Place again at all symbols using it	Replasare la toate simbolurile care o folosesc
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revizii, avizare și aprobare
 Ribbon	Panglică
 Ribbon (JSON)	Panglică (JSON)
 Ribbon imported	Panglică importată
-Right	Dreapta
 Right click for more	Clic dreapta pentru mai multe
 Right edges	Marginile din dreapta
 Right neighbour	Vecin din dreapta
 Rights	Drepturi
+Risers	Contratrepte
+Roof window	Fereastră de mansardă
+Roof windows	Ferestre de mansardă
+Roofs	Acoperișuri
 Room	Încăpere
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Încăpere adăugată la nivelul {}: trageți pereții sau desenați alții noi în plan, așezați dulapuri în ea din proprietățile lor
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Încăpere adăugată: trageți pereții sau desenați alții noi în plan, așezați dulapuri în ea din proprietățile lor
 Room {} now stands on level {}	Încăperea {} se află acum la nivelul {}
 Room {} taken out of the building; it stays where it stands	Încăperea {} a fost scoasă din clădire; rămâne unde se află
+Rooms under sloped ceilings (lowest – highest ceiling)	Încăperi sub tavane înclinate (cel mai jos – cel mai înalt tavan)
 Rotate	Rotire
 Rotate (selection or symbol being placed)	Rotire (selecția sau simbolul care se plasează)
 Round	Rotund
@@ -1589,6 +1609,7 @@ Slot	Fantă
 Slots	Sloturi
 Smallest cross-section of control circuits	Cea mai mică secțiune a circuitelor de comandă
 Smallest cross-section of power circuits	Cea mai mică secțiune a circuitelor de putere
+Socket outlets, data and antenna outlets	Prize, prize de date și de antenă
 Some wires have no length: place their devices in the panel layout or set the field length.	Unele conductoare nu au lungime: plasați dispozitivele lor în amplasarea în tablou sau setați lungimea câmpului.
 Sort by designation	Sortare după denumire
 Sort order	Ordine de sortare
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Spațiu păs
 Spare terminals	Borne de rezervă
 Special text	Text special
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Text special: proprietățile proiectului și ale paginii, cum ar fi {page} sau {prop:Name}, sunt completate la desenarea paginii
+Stairs	Scări
 Standard form of the report	Formularul standard al raportului
 Standard size	Dimensiune standard
 Standard workspaces	Spații de lucru standard
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Dezactivare verificare \"{}\"
 Switches the options with a condition by the configurator options	Comută opțiunile cu condiție conform opțiunilor configuratorului
 Switches to this workspace with its panes at their default places	Comută la acest spațiu de lucru cu panourile la locurile lor implicite
+Switches, push buttons and room thermostats	Întrerupătoare, butoane și termostate de cameră
 Symbol editor	Editor de simboluri
 Symbol table import failed: {}	Importul tabelului de simboluri nu a reușit: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Simbolurile și conductoarele de pe această pagină sunt desenate, dar nu sunt evaluate (fără dispozitive, conexiuni sau rapoarte).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Rotiță / glisare cu butonul dreapta sau din mijlo
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotiță: zoom · clic dreapta: anulare · grafica se aliniază la 0,5 mm, punctele de conexiune la grila de 4 mm
 When it differs from the page	Când diferă de pagină
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Unde începe și se termină conductorul: un punct de conexiune din datele articolului, unul generat din șablonul de funcție sau centrul dispozitivului dacă niciun punct de conexiune nu corespunde
+Whole building	Întreaga clădire
 Whole words	Cuvinte întregi
+Width / going	Lățime / treaptă
 Width / height (mm)	Lățime / înălțime (mm)
 Width × depth	Lățime × adâncime
 Width × height	Lățime × înălțime
@@ -1884,6 +1909,7 @@ all cards	toate cardurile
 all lines	toate rândurile
 all, or e.g. -X*, -W1	toate, sau de ex. -X*, -W1
 all, or e.g. K, Q	toate sau de ex. K, Q
+along z	de-a lungul z
 both ends	ambele capete
 built-in	integrat
 by hand	manual
@@ -1917,6 +1943,7 @@ given	dată
 horizontal	orizontal
 if	dacă
 kW	kW
+low side at the rear	latura joasă în spate
 male	tată
 manual	manual
 max. {} °C	max. {} °C
@@ -1926,6 +1953,7 @@ model	model
 name	nume
 no	nu
 no rooms	nicio încăpere
+no valid levels	niciun nivel valid
 no wires	fără conductoare
 none	niciuna
 not defined	nedefinit
@@ -1944,6 +1972,8 @@ pin and socket	pin și mufă
 placed / provided by the parts	plasat / furnizat de articole
 reached: PL {}	atins: PL {}
 review round {}	runda de examinare {}
+ridge {} m	coamă {} m
+sloped ceiling from {} m	tavan înclinat de la {} m
 some	unele
 taken over	preluat
 the project data (page list, devices, settings)	datele proiectului (lista de pagini, dispozitive, setări)

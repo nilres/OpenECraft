@@ -437,3 +437,18 @@ fn wall_penetrations_lead_into_the_room_behind_the_wall() {
     assert_eq!(wall_links(&prj).len(), 1);
     assert!(super::super::validate(&prj, &prj.layout.enclosures[r]).is_empty());
 }
+
+#[test]
+fn outlets_and_switches_go_at_their_mounting_height() {
+    let (mut prj, room, _) = project();
+    // A socket outlet of the catalog (300 mm) and a light switch (1050 mm) on the rear wall.
+    let socket = crate::panel::place_accessory(&mut prj, room, "GEN.SOCKET-F-UP", Face::Wall(0), p(1000.0, 100.0)).unwrap();
+    let switch = crate::panel::place_accessory(&mut prj, room, "GEN.SW-ONOFF-UP", Face::Wall(0), p(1200.0, 100.0)).unwrap();
+    let e = &prj.layout.enclosures[room];
+    let middle = |id: u64| e.item(id).map(|it| e.height - it.y - it.h / 2.0).unwrap();
+    assert_eq!((middle(socket), middle(switch)), (300.0, 1050.0));
+    assert_eq!(e.item(socket).unwrap().x, 1000.0, "along the wall where it was put");
+    // Parts without a mounting height stay where they were put.
+    let other = crate::panel::place_accessory(&mut prj, room, "VIC.MPPT", Face::Wall(0), p(2000.0, 100.0)).unwrap();
+    assert_eq!(prj.layout.enclosures[room].item(other).unwrap().y, 100.0);
+}

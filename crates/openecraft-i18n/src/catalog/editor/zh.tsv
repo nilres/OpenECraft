@@ -258,12 +258,14 @@ Checks switched off and message levels as a file for other projects	已关闭的
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	校验项目数据（ID、引用、设备数据、选项、子项目），并同时运行工程检查。
 Choices	选项值
 Choices (separated by commas)	选项值（以逗号分隔）
+Choose	选择
 Choose a baseline, a revision or a project file to compare the project with.	选择要与项目进行比较的基线、修订或项目文件。
 Choose a room first: floor-standing parts go on its floor.	请先选择房间：落地式部件放在其地面上。
 Choose file…	选择文件…
 Choose pages	选择页
 Chooses the pages whose structure starts with this	选择结构以此开头的页
 Circle	圆
+Circuits of a generic manifold	通用分配器的回路数
 Clear	清除
 Clearance	间距
 Clearances	间距
@@ -274,6 +276,7 @@ Click into the page to place {}	在页中单击以放置 {}
 Click on a wall	请点击墙
 Click on a wire to place the connection definition point	单击导线以放置连接定义点
 Click on the 4 mm grid	在 4 mm 栅格上单击
+Click on the wall: the part goes there at its mounting height	单击墙壁：部件以其安装高度放在该处
 Click start and end point	单击起点和终点
 Click the corners of a machine or building, double-click to finish	单击机器或建筑物的各个角点，双击完成
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	单击内墙的端点；每次单击开始下一段，靠近墙的端点会吸附到墙上。Esc、Enter 或双击结束连续绘制，再按 Esc 退出工具。
@@ -283,7 +286,7 @@ Click to insert · Esc cancel	单击以插入 · Esc 取消
 Click to place a comment	单击以放置批注
 Click to place the markup text	单击以放置标记文本
 Click to place the text from the field below	单击以放置下方字段中的文本
-Click to put new rooms on this level; drop rooms onto it to move them here	单击以将新房间放在此层；将房间拖放到此处以将其移到此层
+Click to put new rooms on this level; drop rooms onto it to move them here	单击以将新房间放在此楼层；将房间拖放到此处以将其移到此楼层
 Click to show	单击以显示
 Click to show, right click for more	单击显示，右键查看更多
 Click two corners	单击两个角点
@@ -363,6 +366,7 @@ Core designations separated by blanks	以空格分隔的芯线标识
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	穿过的导线使用芯线 1、2、3 …，另加 GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	拐角：两条直角相交的连接线；开启自动连接时，正对其分支的连接点会接到它上
 Cover sheet, overview, graphics, report, mounting layout or a page template	封面、概览、图形、报表、安装布局或页模板
+Covers	覆盖
 Covers what is behind the text	遮盖文本后面的内容
 Create	创建
 Create an enclosure in the panel layout first.	请先在安装板布局中创建一个机柜。
@@ -419,9 +423,12 @@ Delete macro	删除宏
 Delete node	删除节点
 Delete page	删除页
 Delete request	删除请求
+Delete roof	删除屋顶
+Delete roof window	删除屋顶窗
 Delete room	删除房间
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	删除房间 {} 及其墙上的所有内容？其中的机柜保留，但不再属于任何房间。
 Delete section	删除分节
+Delete stair	删除楼梯
 Delete the group	删除组
 Delete the layer; its items move to the default layer	删除图层；其元素将移到默认图层
 Delete the property and all its values	删除该属性及其所有值
@@ -528,13 +535,14 @@ Drilling list of this face (CSV)	此面的钻孔列表 (CSV)
 Drilling pattern of the face shown as DXF, DWG or CSV	所示面的钻孔图，格式为 DXF、DWG 或 CSV
 Drop between the pages	放到页之间
 Drop between the rows or onto a section	放到行之间或分节上
-Drop onto a level to put the room on it	拖放到层上以将房间放在该层
+Drop onto a level to put the room on it	拖放到楼层上以将房间放在该楼层
 Duct fill	线槽填充
 Duct fill limit	线槽填充限值
 Duplicate	复制
 Each example builds on the one before and shows more of the features.	每个示例都以前一个为起点，并展示更多功能。
 Each point-to-point connection can belong to a harness	每个点对点连接都可以属于一个线束
 Earthing system	接地系统
+Eaves	檐口
 Edge length of the routing grid: smaller is finer and slower	布线栅格的边长：越小越精细，但越慢
 Edit	编辑
 Edit in table	在表格中编辑
@@ -632,6 +640,7 @@ Floor plan with {} walls	有 {} 面墙的平面图
 Floor-standing part	落地式部件
 Fluid and process	流体和过程
 Follows its condition: use Apply conditions	跟随其条件：请使用“应用条件”
+Foot	起步
 For	用于
 For parts without Stock length; longer profiles have to be joined	适用于无 Stock length 的部件；更长的型材必须拼接
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	适用于无温度数据的部件 (Max temperature, Operating temperature)；0：不检查
@@ -697,6 +706,7 @@ Head (CPU / coupler)	头模块（CPU / 耦合器）
 Header row	标题行
 Heat map	热分布图
 Heating	加热
+Heating circuit manifolds and control boxes	供暖分配器和控制盒
 Height (mm)	高度 (mm)
 Height above the floor	离地高度
 Height above the mounting plate	安装板以上高度
@@ -824,9 +834,9 @@ Layout checks	布局检查
 Layout properties	布局属性
 Layout space	布局空间
 Layout spaces	布局空间
+Leave out the ceilings of the rooms and the roofs in the 3D view	在三维视图中省略房间顶棚和屋顶
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	在 3D 视图中省略所有线槽的盖板：可以看到其中的导线
 Leave repeated values of the first column blank	第一列中重复的值留空
-Left	左
 Left edges	左边缘
 Legend plates (door devices)	铭牌（柜门设备）
 Length from the node to the device	节点到设备的长度
@@ -919,6 +929,7 @@ Motors feed the short circuit	电机馈入短路
 Mounted on	安装在
 Mounting assistant: the panel items in mounting order with their place and part	安装助手：按安装顺序列出布局元件及其位置和部件
 Mounting clearance side by side; parts add theirs (Clearance left / right)	并排安装间距；部件可添加各自的间距 (Clearance left / right)
+Mounting height: {}	安装高度：{}
 Mounting plate: {} holes, {} cutouts	安装板：{} 个孔，{} 个开孔
 Move	移动
 Move down	下移
@@ -979,11 +990,13 @@ New report page	新建报表页
 New request	新建请求
 New revision	新建修订
 New revisions start as drafts, are submitted for review and can be released once approved.	新修订以草稿开始，提交审阅，获得批准后即可发布。
+New roof	新建屋顶
 New room	新建房间
-New room on this level	在此层新建房间
+New room on this level	在此楼层新建房间
 New schematic page	新建原理图页
 New scheme	新建方案
 New section	新建分节
+New stair	新建楼梯
 New sub-page	新建子页
 New subsection	新建子分节
 New tag for {}	{} 的新标识符
@@ -1120,6 +1133,7 @@ Other values ({})	其他值 ({})
 Otherwise from the plant layout, or next to the other line-ups	否则根据工厂布局放置，或放在其他柜排旁边
 Out since {} (pages locked)	自 {} 起已移出（页已锁定）
 Outer diameter (e.g. 8 mm) or DN	外径（例如 8 mm）或 DN
+Outlets, switches, heating	插座、开关、供暖
 Outline	轮廓
 Outlines	轮廓
 Output bytes	输出字节
@@ -1127,6 +1141,7 @@ Output failed: {}	输出失败：{}
 Output to another project	输出到另一个项目
 Output to project…	输出到项目…
 Outputs	输出
+Overhang	挑檐
 Own colour	自定义颜色
 Own drawn form	自绘表格
 Own groups	自定义组
@@ -1184,6 +1199,7 @@ Pin-out	引脚分配
 Pipe run	管道走线
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	房间墙面、顶部或地面上的管道走线，软管、管子和管道沿其布线：单击各个角点，双击或按 Enter 完成
 Pipe run {} mm – double-click or Enter to finish	管道走线 {} mm – 双击或按 Enter 完成
+Pitch	坡度
 Pitch X / Y	间距 X / Y
 Place a comment on the page	在页上放置批注
 Place again at all symbols using it	在所有使用它的符号处重新放置
@@ -1395,16 +1411,20 @@ Revisions, approval and release	修订、审批和发布
 Ribbon	功能区
 Ribbon (JSON)	功能区 (JSON)
 Ribbon imported	功能区已导入
-Right	右
 Right click for more	右键单击查看更多
 Right edges	右边缘
 Right neighbour	右侧相邻机柜
 Rights	权限
+Risers	踏步数
+Roof window	屋顶窗
+Roof windows	屋顶窗
+Roofs	屋顶
 Room	房间
-Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已在层 {} 添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
+Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已在楼层 {} 添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
-Room {} now stands on level {}	房间 {} 现在位于层 {}
+Room {} now stands on level {}	房间 {} 现在位于楼层 {}
 Room {} taken out of the building; it stays where it stands	房间 {} 已移出建筑物，位置不变
+Rooms under sloped ceilings (lowest – highest ceiling)	斜顶下的房间（最低 – 最高顶棚）
 Rotate	旋转
 Rotate (selection or symbol being placed)	旋转（所选内容或正在放置的符号）
 Round	圆形
@@ -1569,6 +1589,7 @@ Slot	槽
 Slots	插槽
 Smallest cross-section of control circuits	控制电路的最小截面积
 Smallest cross-section of power circuits	主电路的最小截面积
+Socket outlets, data and antenna outlets	电源插座、数据和天线插座
 Some wires have no length: place their devices in the panel layout or set the field length.	部分导线没有长度：请在安装板布局中放置其设备或设置字段长度。
 Sort by designation	按标识排序
 Sort order	排序顺序
@@ -1579,6 +1600,7 @@ Space kept free of routes, or for one class only: click two corners	不允许布
 Spare terminals	备用端子
 Special text	特殊文本
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	特殊文本：绘制页时将填入项目和页属性，例如 {page} 或 {prop:Name}
+Stairs	楼梯
 Standard form of the report	报表的标准表单
 Standard size	标准尺寸
 Standard workspaces	标准工作区
@@ -1623,6 +1645,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	关闭检查 \"{}\"
 Switches the options with a condition by the configurator options	根据配置器选项切换带条件的选项
 Switches to this workspace with its panes at their default places	切换到此工作区，并将其窗格恢复到默认位置
+Switches, push buttons and room thermostats	开关、按钮和室内温控器
 Symbol editor	符号编辑器
 Symbol table import failed: {}	符号表导入失败：{}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	此页上的符号和导线会被绘制，但不评估（无设备、连接或报表）。
@@ -1805,7 +1828,9 @@ Wheel / right or middle drag	滚轮 / 右键或中键拖动
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	滚轮：缩放 · 右键单击：取消 · 图形捕捉到 0.5 mm，连接点捕捉到 4 mm 栅格
 When it differs from the page	与该页不同时
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	导线的起点和终点：部件数据中的连接点、由功能模板生成的连接点，或在没有匹配的连接点时使用设备中心
+Whole building	整个建筑
 Whole words	全字匹配
+Width / going	宽度 / 踏步
 Width / height (mm)	宽度 / 高度 (mm)
 Width × depth	宽度 × 深度
 Width × height	宽 × 高
@@ -1862,6 +1887,7 @@ all cards	所有卡件
 all lines	所有行
 all, or e.g. -X*, -W1	全部，或例如 -X*、-W1
 all, or e.g. K, Q	全部，或例如 K, Q
+along z	沿 z
 both ends	两端
 built-in	内置
 by hand	手动
@@ -1894,6 +1920,7 @@ from the parts	取自部件
 horizontal	水平
 if	如果
 kW	kW
+low side at the rear	低侧在后
 male	插针
 manual	手动
 max. {} °C	最高 {} °C
@@ -1902,6 +1929,7 @@ missing	缺失
 model	模型
 name	名称
 no	否
+no valid levels	无有效楼层
 no wires	无导线
 not defined	未定义
 not in the P&ID	不在 P&ID 中
@@ -1919,6 +1947,8 @@ pin and socket	插针和插孔
 placed / provided by the parts	已放置 / 由部件提供
 reached: PL {}	已达到：PL {}
 review round {}	第 {} 轮审阅
+ridge {} m	屋脊 {} m
+sloped ceiling from {} m	斜顶自 {} m
 some	部分
 taken over	已采用
 the project data (page list, devices, settings)	项目数据（页列表、设备、设置）

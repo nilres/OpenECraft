@@ -46,7 +46,16 @@ impl PanelUi {
             let poses = panel::site_poses(prj);
             let room = poses[ei];
             let local = |p: SitePose| SitePose { at: room.local(p.at), angle: p.angle - room.angle };
-            return std::iter::once(ei).chain(panel::cabinets_in(&prj.layout, ei)).map(|k| (k, local(poses[k]))).collect();
+            // The whole building: its rooms with the cabinets in them.
+            let rooms = match panel::buildings::building_of(&prj.layout, ei).filter(|_| self.show_building) {
+                Some(bi) => {
+                    let mut v = vec![ei];
+                    v.extend(panel::buildings::building_rooms(&prj.layout, bi).into_iter().filter(|&r| r != ei));
+                    v
+                }
+                None => vec![ei],
+            };
+            return rooms.into_iter().flat_map(|r| std::iter::once(r).chain(panel::cabinets_in(&prj.layout, r))).map(|k| (k, local(poses[k]))).collect();
         }
         let lu = if self.show_lineup { panel::lineup_of(&prj.layout, ei) } else { vec![ei] };
         let pos = panel::positions(&prj.layout);
@@ -59,6 +68,21 @@ impl PanelUi {
                 (k, SitePose { at: [o[0] - base[0], bottom - o[1] - prj.layout.enclosures[k].height, o[2] - base[2]], angle: 0.0 })
             })
             .collect()
+    }
+
+    /// The pose of the room the 3D view is drawn in the coordinates of (the plant
+    /// points `q` are at `local(q)`), `None` when it is drawn in the plant's.
+    pub(super) fn view_frame(&self, prj: &Project, ei: usize) -> Option<SitePose> {
+        (!self.show_site && prj.layout.enclosures.get(ei).is_some_and(|e| e.is_room())).then(|| panel::site_poses(prj)[ei])
+    }
+
+    /// The buildings whose floor slabs, stairs and roofs the 3D view shows: all of them
+    /// with all enclosures, the room's own with its building.
+    pub(super) fn buildings_3d(&self, prj: &Project, ei: usize) -> Vec<usize> {
+        if self.show_site {
+            return (0..prj.layout.buildings.len()).collect();
+        }
+        panel::buildings::building_of(&prj.layout, ei).filter(|_| self.show_building).into_iter().collect()
     }
 
     pub(super) fn view_3d(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize, an: &Analysis) {

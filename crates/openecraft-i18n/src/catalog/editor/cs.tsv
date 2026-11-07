@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Vypnuté kon
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Zkontroluje data projektu (ID, odkazy, data přístrojů, volby, podprojekty) společně s inženýrskými kontrolami.
 Choices	Možnosti výběru
 Choices (separated by commas)	Možnosti výběru (oddělené čárkami)
+Choose	Vybrat
 Choose a baseline, a revision or a project file to compare the project with.	Vyberte základní verzi, revizi nebo soubor projektu, se kterým se projekt porovná.
 Choose a room first: floor-standing parts go on its floor.	Nejprve zvolte místnost: artikly stojící na podlaze patří na její podlahu.
 Choose file…	Vybrat soubor…
 Choose pages	Vybrat stránky
 Chooses the pages whose structure starts with this	Vybere stránky, jejichž struktura tímto začíná
 Circle	Kružnice
+Circuits of a generic manifold	Okruhy obecného rozdělovače
 Clear	Vymazat
 Clearance	Odstup
 Clearances	Odstupy
@@ -278,6 +280,7 @@ Click into the page to place {}	Kliknutím do stránky umístíte {}
 Click on a wall	Klikněte na stěnu
 Click on a wire to place the connection definition point	Kliknutím na vodič umístíte bod definice spojení
 Click on the 4 mm grid	Klikněte na rastr 4 mm
+Click on the wall: the part goes there at its mounting height	Klepněte na stěnu: díl se tam umístí ve své montážní výšce
 Click start and end point	Klikněte na počáteční a koncový bod
 Click the corners of a machine or building, double-click to finish	Klikněte na rohy stroje nebo budovy, poklikáním dokončete
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Klikněte na konce vnitřních stěn; každé kliknutí začne další, konce u stěny se k ní přichytí. Esc, Enter nebo dvojklik ukončí řetěz, další Esc nástroj.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Označení žil oddělená mezerami
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Žíly 1, 2, 3 … pro překřížené vodiče, plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Roh: dva vodiče v pravém úhlu; při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům
 Cover sheet, overview, graphics, report, mounting layout or a page template	Titulní list, přehled, grafika, výkaz, montážní rozvržení nebo šablona stránky
+Covers	Zakrývá
 Covers what is behind the text	Zakryje to, co je za textem
 Create	Vytvořit
 Create an enclosure in the panel layout first.	Nejprve vytvořte skříň v rozvržení rozváděče.
@@ -424,10 +428,13 @@ Delete macro	Odstranit makro
 Delete node	Odstranit uzel
 Delete page	Odstranit stránku
 Delete request	Odstranit požadavek
+Delete roof	Smazat střechu
+Delete roof window	Smazat střešní okno
 Delete room	Smazat místnost
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Smazat místnost {} se vším na jejích stěnách? Rozváděče v ní zůstanou, bez místnosti.
 Delete section	Odstranit oddíl
 Delete shaft	Odstranit šachtu
+Delete stair	Smazat schodiště
 Delete the group	Odstranit skupinu
 Delete the layer; its items move to the default layer	Odstranit vrstvu; její objekty se přesunou do výchozí vrstvy
 Delete the property and all its values	Odstranit vlastnost se všemi hodnotami
@@ -541,6 +548,7 @@ Duplicate	Duplikovat
 Each example builds on the one before and shows more of the features.	Každý příklad navazuje na předchozí a ukazuje více funkcí.
 Each point-to-point connection can belong to a harness	Každé spojení bod–bod může patřit ke kabelovému svazku
 Earthing system	Soustava uzemnění
+Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Délka hrany rastru vedení: menší je jemnější a pomalejší
 Edit	Úpravy
 Edit in table	Upravit v tabulce
@@ -640,6 +648,7 @@ Floor plan with {} walls	Půdorys s {} stěnami
 Floor-standing part	Díl na podlahu
 Fluid and process	Tekutiny a procesní technika
 Follows its condition: use Apply conditions	Řídí se svou podmínkou: použijte Použít podmínky
+Foot	Nástup
 For	Pro
 For parts without Stock length; longer profiles have to be joined	Pro artikly bez Stock length; delší profily se musí nastavovat
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Pro artikly bez teplotních údajů (Max temperature, Operating temperature); 0: nekontroluje se
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Hlavní modul (CPU / sběrnicový modul)
 Header row	Řádek záhlaví
 Heat map	Tepelná mapa
 Heating	Topení
+Heating circuit manifolds and control boxes	Rozdělovače topných okruhů a regulační boxy
 Height (mm)	Výška (mm)
 Height above the floor	Výška nad podlahou
 Height above the mounting plate	Výška nad montážní deskou
@@ -833,9 +843,9 @@ Layout checks	Kontroly rozvržení
 Layout properties	Vlastnosti rozvržení
 Layout space	Montážní prostor
 Layout spaces	Montážní prostory
+Leave out the ceilings of the rooms and the roofs in the 3D view	Vynechat stropy místností a střechy ve 3D zobrazení
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Ve 3D zobrazení vynechá víka všech kabelových kanálů: vodiče v nich jsou vidět
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
-Left	Vlevo
 Left edges	Levé hrany
 Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
 Mounting assistant: the panel items in mounting order with their place and part	Asistent montáže: prvky rozváděče v pořadí montáže s místem a artiklem
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Montážní odstup vedle sebe; artikly přidávají svůj vlastní (Clearance left / right)
+Mounting height: {}	Montážní výška: {}
 Mounting plate: {} holes, {} cutouts	Montážní deska: {} otvorů, {} výřezů
 Move	Posunout
 Move down	Posunout dolů
@@ -992,12 +1003,14 @@ New report page	Nová stránka výkazu
 New request	Nový požadavek
 New revision	Nová revize
 New revisions start as drafts, are submitted for review and can be released once approved.	Nové revize začínají jako koncepty, předkládají se ke kontrole a po schválení je lze uvolnit.
+New roof	Nová střecha
 New room	Nová místnost
 New room on this level	Nová místnost v tomto podlaží
 New schematic page	Nová stránka schématu
 New scheme	Nové schéma
 New section	Nový oddíl
 New shaft	Nová šachta
+New stair	Nové schodiště
 New sub-page	Nová podstránka
 New subsection	Nový pododdíl
 New tag for {}	Nové označení pro {}
@@ -1134,6 +1147,7 @@ Other values ({})	Další hodnoty ({})
 Otherwise from the plant layout, or next to the other line-ups	Jinak z dispozice zařízení nebo vedle ostatních řad skříní
 Out since {} (pages locked)	Vyčleněno od {} (stránky zamčeny)
 Outer diameter (e.g. 8 mm) or DN	Vnější průměr (např. 8 mm) nebo DN
+Outlets, switches, heating	Zásuvky, spínače, topení
 Outline	Obrys
 Outlines	Obrysy
 Output bytes	Výstupní bajty
@@ -1141,6 +1155,7 @@ Output failed: {}	Vydání se nezdařilo: {}
 Output to another project	Vydání do jiného projektu
 Output to project…	Vydat do projektu…
 Outputs	Výstupy
+Overhang	Přesah
 Own colour	Vlastní barva
 Own drawn form	Vlastní kreslený formulář
 Own groups	Vlastní skupiny
@@ -1198,6 +1213,7 @@ Pin-out	Zapojení pinů
 Pipe run	Potrubní trasa
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Potrubní trasa na stěně, stropu nebo podlaze místnosti, podél které se vedou hadice, trubky a potrubí: klikněte na rohy, poklikáním nebo Enter ukončíte
 Pipe run {} mm – double-click or Enter to finish	Potrubní trasa {} mm – poklikáním nebo Enter ukončíte
+Pitch	Sklon
 Pitch X / Y	Rozteč X / Y
 Place a comment on the page	Umístit komentář na stránku
 Place again at all symbols using it	Znovu umístit u všech symbolů, které ho používají
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revize, schválení a uvolnění
 Ribbon	Pás karet
 Ribbon (JSON)	Pás karet (JSON)
 Ribbon imported	Pás karet importován
-Right	Vpravo
 Right click for more	Kliknutím pravým tlačítkem další možnosti
 Right edges	Pravé hrany
 Right neighbour	Pravý soused
 Rights	Práva
+Risers	Podstupnice
+Roof window	Střešní okno
+Roof windows	Střešní okna
+Roofs	Střechy
 Room	Místnost
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Místnost přidána v podlaží {}: přetáhněte její stěny nebo nakreslete nové v půdorysu, rozváděče do ní umístěte v jejich vlastnostech
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Místnost přidána: přetáhněte její stěny nebo nakreslete nové v půdorysu, rozváděče do ní umístěte v jejich vlastnostech
 Room {} now stands on level {}	Místnost {} nyní stojí v podlaží {}
 Room {} taken out of the building; it stays where it stands	Místnost {} vyjmuta z budovy; zůstává, kde stojí
+Rooms under sloped ceilings (lowest – highest ceiling)	Místnosti pod šikmými stropy (nejnižší – nejvyšší strop)
 Rotate	Otočit
 Rotate (selection or symbol being placed)	Otočit (výběr nebo umísťovaný symbol)
 Round	Kruhový
@@ -1589,6 +1609,7 @@ Slot	Drážka
 Slots	Sloty
 Smallest cross-section of control circuits	Nejmenší průřez řídicích obvodů
 Smallest cross-section of power circuits	Nejmenší průřez silových obvodů
+Socket outlets, data and antenna outlets	Zásuvky, datové a anténní zásuvky
 Some wires have no length: place their devices in the panel layout or set the field length.	Některé vodiče nemají délku: umístěte jejich přístroje v rozvržení rozváděče nebo nastavte délku pole.
 Sort by designation	Seřadit podle označení
 Sort order	Řazení
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Prostor bez 
 Spare terminals	Rezervní svorky
 Special text	Speciální text
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Speciální text: vlastnosti projektu a stránky jako {page} nebo {prop:Name} se doplní při vykreslení stránky
+Stairs	Schodiště
 Standard form of the report	Standardní formulář výkazu
 Standard size	Standardní velikost
 Standard workspaces	Standardní pracovní prostory
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Vypnout kontrolu \"{}\"
 Switches the options with a condition by the configurator options	Přepne volby s podmínkou podle voleb konfigurátoru
 Switches to this workspace with its panes at their default places	Přepne do tohoto pracovního prostoru s panely na jejich výchozích místech
+Switches, push buttons and room thermostats	Spínače, tlačítka a prostorové termostaty
 Symbol editor	Editor symbolů
 Symbol table import failed: {}	Import tabulky symbolů se nezdařil: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symboly a vodiče na této stránce se kreslí, ale nevyhodnocují (žádné přístroje, spojení ani výkazy).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Kolečko / tažení pravým nebo prostředním tla�
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Kolečko: zoom · pravé tlačítko: zrušit · grafika se přichytává na 0,5 mm, přípojné body na rastr 4 mm
 When it differs from the page	Pokud se liší od stránky
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Kde vodič začíná a končí: přípojný bod z dat artiklu, bod vygenerovaný ze šablony funkce, nebo střed přístroje, pokud žádný přípojný bod neodpovídá
+Whole building	Celá budova
 Whole words	Celá slova
+Width / going	Šířka / stupeň
 Width / height (mm)	Šířka / výška (mm)
 Width × depth	Šířka × hloubka
 Width × height	Šířka × výška
@@ -1884,6 +1909,7 @@ all cards	všechny karty
 all lines	všechny řádky
 all, or e.g. -X*, -W1	vše, nebo např. -X*, -W1
 all, or e.g. K, Q	všechna, nebo např. K, Q
+along z	podél z
 both ends	oba konce
 built-in	vestavěné
 by hand	ručně
@@ -1917,6 +1943,7 @@ given	zadaná
 horizontal	vodorovně
 if	pokud
 kW	kW
+low side at the rear	nízká strana vzadu
 male	kolík
 manual	ručně
 max. {} °C	max. {} °C
@@ -1926,6 +1953,7 @@ model	model
 name	název
 no	ne
 no rooms	žádné místnosti
+no valid levels	žádná platná podlaží
 no wires	žádné vodiče
 none	žádná
 not defined	nedefinováno
@@ -1944,6 +1972,8 @@ pin and socket	kolík a zdířka
 placed / provided by the parts	umístěno / poskytnuto artikly
 reached: PL {}	dosaženo: PL {}
 review round {}	kolo kontroly {}
+ridge {} m	hřeben {} m
+sloped ceiling from {} m	šikmý strop od {} m
 some	některé
 taken over	převzato
 the project data (page list, devices, settings)	data projektu (seznam stránek, přístroje, nastavení)

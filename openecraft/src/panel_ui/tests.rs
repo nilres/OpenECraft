@@ -1411,3 +1411,56 @@ fn tubes_drawn_in_3d_keep_their_bend_radius_where_they_do_not_cross() {
         assert!(all > 50 && (tight.len() as f32) <= most * all as f32, "{key}: {} of {all}:\n{}", tight.len(), tight.join("\n"));
     }
 }
+
+/// A house: two levels, a room on each, a stair between them and a gable roof low over
+/// the attic with a roof window; the index of the attic.
+fn house() -> (Project, usize) {
+    let mut prj = Project::default();
+    let bi = bld::add_building(&mut prj, "+H1").unwrap();
+    bld::add_level(&mut prj, bi, None, None, None).unwrap();
+    let levels = [0, 1].map(|k| prj.layout.buildings[bi].levels[k].id);
+    let mut rooms = [0; 2];
+    for (k, level) in levels.into_iter().enumerate() {
+        rooms[k] = bld::add_room(&mut prj, &format!("+R{k}"), Some(level)).unwrap();
+        let e = &mut prj.layout.enclosures[rooms[k]];
+        (e.width, e.depth) = (8000.0, 6000.0);
+        e.site = Some(SitePlace::default());
+    }
+    panel::stairs::add_stair(&mut prj, bi, panel::StairKind::QuarterLanding, 1000.0, 5000.0, levels[0], None).unwrap();
+    let roof = panel::roofs::add_roof(&mut prj, bi, panel::RoofShape::Gable).unwrap();
+    let r = prj.layout.buildings[bi].roofs.iter_mut().find(|r| r.id == roof).unwrap();
+    r.eaves = 4000.0;
+    panel::roofs::add_window(&mut prj, bi, 0, None).unwrap();
+    (prj, rooms[1])
+}
+
+#[test]
+fn the_3d_view_shows_the_whole_building_with_stairs_and_roof() {
+    let (prj, attic) = house();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    // The room alone: its walls cut by the slope, the roof window seen from inside.
+    let shown = ui.shown_3d(&prj, attic);
+    assert_eq!(shown.len(), 1);
+    let alone = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    assert!(alone.faces.iter().any(|f| f.decal && f.layer == 1), "the roof window inside");
+    // The whole building: both rooms, the slabs, the stair and the roof above the attic.
+    ui.toggle_building();
+    let shown = ui.shown_3d(&prj, attic);
+    assert_eq!(shown.len(), 2);
+    let all = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    assert!(all.faces.len() > alone.faces.len() + 50, "{} / {}", all.faces.len(), alone.faces.len());
+    let ridge = panel::roofs::ridge_height(&prj.layout.buildings[0].roofs[0]) - 3000.0;
+    assert!(all.bounds.1[1] > ridge, "the roof over the attic: {:?}", all.bounds);
+    assert!(all.bounds.0[1] < -2900.0, "the ground floor below it");
+    // Without ceilings and roofs: no roof faces any more.
+    ui.hide_ceiling = true;
+    let open = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    assert!(open.bounds.1[1] < ridge, "{:?}", open.bounds);
+    // All enclosures of the plant: the building in the plant's coordinates.
+    ui.hide_ceiling = false;
+    ui.show_site = true;
+    let shown = ui.shown_3d(&prj, attic);
+    let site = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    assert!(site.bounds.1[1] > ridge + 3000.0 - 1.0 && site.bounds.0[1] > -400.0, "{:?}", site.bounds);
+}

@@ -526,3 +526,27 @@ fn industrial_main_distribution_measures_every_feeder() {
     assert_eq!(thick.len(), 3, "{:?}", thick.iter().map(|w| (&w.from, &w.to)).collect::<Vec<_>>());
     assert!(thick.iter().all(|w| w.from.starts_with("=MS+HV1-F10") && w.to.starts_with("=MS+HV1-Q10")));
 }
+
+#[test]
+fn office_building_has_its_roof_stair_and_installation() {
+    let (prj, _) = checked("office_building");
+    let b = prj.layout.buildings.iter().find(|b| b.name == "+B3").unwrap();
+    assert_eq!((b.levels.len(), b.stairs.len(), b.roofs.len(), b.roofs[0].windows.len()), (2, 1, 1, 2));
+    let g = crate::panel::stairs::geometry(b, &b.stairs[0]).unwrap();
+    assert!(g.pieces.iter().any(|p| p.landing) && (160.0..=190.0).contains(&g.rise));
+    // The attic's ceiling slopes down to the knee wall, the office's stays flat.
+    let room = |n: &str| prj.layout.enclosures.iter().position(|e| e.name == n).unwrap();
+    let (office, attic) = (room("+OF1"), room("+AT1"));
+    assert!(crate::panel::roofs::ceiling(&prj, office).is_none());
+    let c = crate::panel::roofs::ceiling(&prj, attic).unwrap();
+    let (lo, hi) = c.range(&crate::panel::roofs::floor_polys(&prj.layout.enclosures[attic]));
+    assert!((1000.0..1400.0).contains(&lo) && (hi - 2700.0).abs() < 1.0, "{lo} {hi}");
+    // Outlets and switches at their mounting heights, from the shipped catalogs.
+    let e = &prj.layout.enclosures[office];
+    let middle = |part: &str| e.items.iter().find(|i| i.part == part).map(|i| e.height - i.y - i.h / 2.0).unwrap();
+    assert_eq!((middle("GIRA.418803").round(), middle("GIRA.310600").round()), (300.0, 1050.0));
+    for n in ["GIRA.418803", "GIRA.021103", "COSMO.CVS6", "MDT.BE-TA55P4.01"] {
+        assert!(prj.parts.iter().any(|p| p.number == n), "{n} in the project");
+    }
+    assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.part == "COSMO.CBRTLTH"));
+}

@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Avstängda k
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Kontrollerar projektdata (ID:n, referenser, apparatdata, alternativ, delprojekt) tillsammans med de tekniska kontrollerna.
 Choices	Val
 Choices (separated by commas)	Val (åtskilda med kommatecken)
+Choose	Välj
 Choose a baseline, a revision or a project file to compare the project with.	Välj en baslinje, en revision eller en projektfil att jämföra projektet med.
 Choose a room first: floor-standing parts go on its floor.	Välj först ett rum: golvstående artiklar ställs på dess golv.
 Choose file…	Välj fil…
 Choose pages	Välj sidor
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
+Circuits of a generic manifold	Kretsar för en generisk fördelare
 Clear	Rensa
 Clearance	Frigång
 Clearances	Avstånd
@@ -278,6 +280,7 @@ Click into the page to place {}	Klicka på sidan för att placera {}
 Click on a wall	Klicka på en vägg
 Click on a wire to place the connection definition point	Klicka på en ledning för att placera förbindelsedefinitionspunkten
 Click on the 4 mm grid	Klicka på 4 mm-rutnätet
+Click on the wall: the part goes there at its mounting height	Klicka på väggen: delen hamnar där på sin monteringshöjd
 Click start and end point	Klicka på start- och slutpunkt
 Click the corners of a machine or building, double-click to finish	Klicka på hörnen av en maskin eller byggnad, dubbelklicka för att avsluta
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Klicka på innerväggarnas ändar; varje klick börjar nästa, ändar nära en vägg fäster mot den. Esc, Enter eller dubbelklick avslutar kedjan, Esc igen verktyget.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Ledarbeteckningar åtskilda med blanksteg
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Ledare 1, 2, 3 … för de korsade ledningarna, plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hörn: två ledare i rät vinkel; med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det
 Cover sheet, overview, graphics, report, mounting layout or a page template	Försättsblad, översikt, grafik, rapport, monteringslayout eller en sidmall
+Covers	Täcker
 Covers what is behind the text	Täcker det som ligger bakom texten
 Create	Skapa
 Create an enclosure in the panel layout first.	Skapa först en kapsling i skåplayouten.
@@ -424,10 +428,13 @@ Delete macro	Ta bort makro
 Delete node	Ta bort nod
 Delete page	Ta bort sida
 Delete request	Ta bort begäran
+Delete roof	Ta bort tak
+Delete roof window	Ta bort takfönster
 Delete room	Ta bort rum
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Ta bort rummet {} med allt på dess väggar? Skåpen i det finns kvar, utan rum.
 Delete section	Ta bort avsnitt
 Delete shaft	Ta bort schakt
+Delete stair	Ta bort trappa
 Delete the group	Ta bort gruppen
 Delete the layer; its items move to the default layer	Ta bort lagret; dess objekt flyttas till standardlagret
 Delete the property and all its values	Ta bort egenskapen och alla dess värden
@@ -541,6 +548,7 @@ Duplicate	Duplicera
 Each example builds on the one before and shows more of the features.	Varje exempel bygger på det föregående och visar fler av funktionerna.
 Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-förbindelse kan tillhöra en kabelstam
 Earthing system	Jordningssystem
+Eaves	Takfot
 Edge length of the routing grid: smaller is finer and slower	Kantlängd för dragningsrutnätet: mindre är finare och långsammare
 Edit	Redigera
 Edit in table	Redigera i tabell
@@ -640,6 +648,7 @@ Floor plan with {} walls	Planritning med {} väggar
 Floor-standing part	Golvstående artikel
 Fluid and process	Fluid och process
 Follows its condition: use Apply conditions	Följer sitt villkor: använd Tillämpa villkor
+Foot	Början
 For	För
 For parts without Stock length; longer profiles have to be joined	För artiklar utan Stock length; längre profiler måste skarvas
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	För artiklar utan temperaturdata (Max temperature, Operating temperature); 0: kontrolleras inte
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Huvudenhet (CPU / kopplare)
 Header row	Rubrikrad
 Heat map	Värmekarta
 Heating	Värme
+Heating circuit manifolds and control boxes	Golvvärmefördelare och reglerboxar
 Height (mm)	Höjd (mm)
 Height above the floor	Höjd över golvet
 Height above the mounting plate	Höjd över monteringsplåten
@@ -833,9 +843,9 @@ Layout checks	Layoutkontroller
 Layout properties	Layoutegenskaper
 Layout space	Monteringsutrymme
 Layout spaces	Monteringsutrymmen
+Leave out the ceilings of the rooms and the roofs in the 3D view	Utelämna rummens tak och yttertaken i 3D-vyn
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Utelämna locken på alla kabelkanaler i 3D-vyn: ledarna i dem syns
 Leave repeated values of the first column blank	Lämna upprepade värden i den första kolumnen tomma
-Left	Vänster
 Left edges	Vänsterkanter
 Legend plates (door devices)	Märkskyltar (dörrapparater)
 Length from the node to the device	Längd från noden till apparaten
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motorer matar kortslutningen
 Mounted on	Monterad på
 Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: skåplayoutens objekt i monteringsordning med deras plats och artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Monteringsavstånd sida vid sida; artiklar lägger till sitt eget (Clearance left / right)
+Mounting height: {}	Monteringshöjd: {}
 Mounting plate: {} holes, {} cutouts	Monteringsplåt: {} hål, {} urtag
 Move	Flytta
 Move down	Flytta nedåt
@@ -992,12 +1003,14 @@ New report page	Ny rapportsida
 New request	Ny begäran
 New revision	Ny revision
 New revisions start as drafts, are submitted for review and can be released once approved.	Nya revisioner börjar som utkast, skickas för granskning och kan frisläppas när de har godkänts.
+New roof	Nytt tak
 New room	Nytt rum
 New room on this level	Nytt rum på denna våning
 New schematic page	Ny schemasida
 New scheme	Nytt schema
 New section	Nytt avsnitt
 New shaft	Nytt schakt
+New stair	Ny trappa
 New sub-page	Ny undersida
 New subsection	Nytt underavsnitt
 New tag for {}	Ny beteckning för {}
@@ -1134,6 +1147,7 @@ Other values ({})	Övriga värden ({})
 Otherwise from the plant layout, or next to the other line-ups	Annars från anläggningslayouten, eller bredvid de andra skåpsraderna
 Out since {} (pages locked)	Utlyft sedan {} (sidorna är låsta)
 Outer diameter (e.g. 8 mm) or DN	Ytterdiameter (t.ex. 8 mm) eller DN
+Outlets, switches, heating	Uttag, brytare, värme
 Outline	Kontur
 Outlines	Konturer
 Output bytes	Utgångsbyte
@@ -1141,6 +1155,7 @@ Output failed: {}	Utmatningen misslyckades: {}
 Output to another project	Mata ut till ett annat projekt
 Output to project…	Mata ut till projekt…
 Outputs	Utgångar
+Overhang	Takutsprång
 Own colour	Egen färg
 Own drawn form	Eget ritat formulär
 Own groups	Egna grupper
@@ -1198,6 +1213,7 @@ Pin-out	Stiftbeläggning
 Pipe run	Rörgata
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rörgata på en vägg, i taket eller på golvet i rummet, längs vilken slangar, rör och rörledningar dras: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
 Pipe run {} mm – double-click or Enter to finish	Rörgata {} mm – dubbelklicka eller tryck på Enter för att avsluta
+Pitch	Taklutning
 Pitch X / Y	Delning X / Y
 Place a comment on the page	Placera en kommentar på sidan
 Place again at all symbols using it	Placera igen på alla symboler som använder det
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revisioner, godkännande och frisläppning
 Ribbon	Menyfliksområde
 Ribbon (JSON)	Menyfliksområde (JSON)
 Ribbon imported	Menyfliksområdet importerat
-Right	Höger
 Right click for more	Högerklicka för mer
 Right edges	Högerkanter
 Right neighbour	Granne till höger
 Rights	Behörigheter
+Risers	Sättsteg
+Roof window	Takfönster
+Roof windows	Takfönster
+Roofs	Tak
 Room	Rum
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt på våning {}: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tillagt: dra dess väggar eller rita nya i planritningen, placera skåp i det via deras egenskaper
 Room {} now stands on level {}	Rum {} står nu på våning {}
 Room {} taken out of the building; it stays where it stands	Rum {} har tagits ut ur byggnaden; det står kvar där det står
+Rooms under sloped ceilings (lowest – highest ceiling)	Rum under snedtak (lägsta – högsta tak)
 Rotate	Rotera
 Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
 Round	Rund
@@ -1589,6 +1609,7 @@ Slot	Kortplats
 Slots	Kortplatser
 Smallest cross-section of control circuits	Minsta tvärsnitt för styrkretsar
 Smallest cross-section of power circuits	Minsta tvärsnitt för kraftkretsar
+Socket outlets, data and antenna outlets	Vägguttag, data- och antennuttag
 Some wires have no length: place their devices in the panel layout or set the field length.	Vissa ledningar saknar längd: placera deras apparater i skåplayouten eller ange fältlängden.
 Sort by designation	Sortera efter beteckning
 Sort order	Sorteringsordning
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Utrymme som 
 Spare terminals	Reservplintar
 Special text	Specialtext
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Specialtext: projekt- och sidegenskaper som {page} eller {prop:Name} fylls i när sidan ritas
+Stairs	Trappor
 Standard form of the report	Rapportens standardformulär
 Standard size	Standardstorlek
 Standard workspaces	Standardarbetsytor
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Stäng av kontrollen \"{}\"
 Switches the options with a condition by the configurator options	Kopplar alternativen med villkor enligt konfiguratoralternativen
 Switches to this workspace with its panes at their default places	Växlar till den här arbetsytan med panelerna på sina standardplatser
+Switches, push buttons and room thermostats	Brytare, tryckknappar och rumstermostater
 Symbol editor	Symbolredigerare
 Symbol table import failed: {}	Symboltabellimporten misslyckades: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symboler och ledningar på den här sidan ritas men utvärderas inte (inga apparater, förbindelser eller rapporter).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Hjul / dra med höger- eller mittknappen
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zooma · högerklick: avbryt · grafik fäster mot 0,5 mm, anslutningspunkter mot 4 mm-rutnätet
 When it differs from the page	När den skiljer sig från sidan
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Var ledningen börjar och slutar: en anslutningspunkt från artikeldata, en som genererats från funktionsmallen eller apparatens mitt om ingen anslutningspunkt matchar
+Whole building	Hela byggnaden
 Whole words	Hela ord
+Width / going	Bredd / steg
 Width / height (mm)	Bredd / höjd (mm)
 Width × depth	Bredd × djup
 Width × height	Bredd × höjd
@@ -1884,6 +1909,7 @@ all cards	alla kort
 all lines	alla rader
 all, or e.g. -X*, -W1	alla, eller t.ex. -X*, -W1
 all, or e.g. K, Q	alla, eller t.ex. K, Q
+along z	längs z
 both ends	båda ändarna
 built-in	inbyggd
 by hand	manuellt
@@ -1917,6 +1943,7 @@ given	angiven
 horizontal	horisontell
 if	om
 kW	kW
+low side at the rear	låg sida bak
 male	hane
 manual	manuell
 max. {} °C	max. {} °C
@@ -1926,6 +1953,7 @@ model	modell
 name	namn
 no	nej
 no rooms	inga rum
+no valid levels	inga giltiga våningar
 no wires	inga ledningar
 none	inget
 not defined	inte definierad
@@ -1944,6 +1972,8 @@ pin and socket	stift och hylsa
 placed / provided by the parts	placerade / tillhandahållna av artiklarna
 reached: PL {}	uppnådd: PL {}
 review round {}	granskningsomgång {}
+ridge {} m	nock {} m
+sloped ceiling from {} m	snedtak från {} m
 some	några
 taken over	överförd
 the project data (page list, devices, settings)	projektdata (sidlista, apparater, inställningar)

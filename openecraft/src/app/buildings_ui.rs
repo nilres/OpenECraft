@@ -1,11 +1,12 @@
-//! Buildings pane: the buildings of the plant with their levels, the rooms on them and
-//! their shafts, the links between buildings and a site plan of all of them
-//! ([`openecraft_core::panel::buildings`]).
+//! Buildings pane: the buildings of the plant with their levels, the rooms on them,
+//! their shafts, stairs and roofs (with roof windows), the links between buildings and
+//! a site plan of all of them ([`openecraft_core::panel::buildings`],
+//! [`openecraft_core::panel::stairs`], [`openecraft_core::panel::roofs`]).
 
 use super::App;
 use egui::{pos2, vec2, Color32, Pos2, RichText, Sense, Stroke};
 use openecraft_core::model::Project;
-use openecraft_core::panel::{self, buildings as bld, LinkKind, Opening};
+use openecraft_core::panel::{self, buildings as bld, roofs, stairs, LinkKind, Opening, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 
@@ -20,7 +21,16 @@ pub struct BuildingsUi {
     link: (u64, u64),
     kind: LinkKind,
     status: String,
+    /// Kind of a new stair and shape of a new roof.
+    stair_kind: StairKind,
+    roof_shape: RoofShape,
 }
+
+/// Corners in the floor plan.
+type Outline = Vec<[f32; 2]>;
+
+/// Glass of roof windows in the site plan.
+const GLASS: Color32 = Color32::from_rgba_premultiplied(60, 100, 140, 120);
 
 /// A free name for a new building: `+B1`, `+B2`, …
 fn free_building_name(prj: &Project) -> String {
@@ -96,6 +106,10 @@ impl App {
             levels_section(ui, prj, st, bi);
             ui.separator();
             shafts_section(ui, prj, bi);
+            ui.separator();
+            stairs_section(ui, prj, st, bi);
+            ui.separator();
+            roofs_section(ui, prj, st, bi);
             ui.separator();
             links_section(ui, prj, st);
             ui.separator();
@@ -293,6 +307,203 @@ fn shafts_section(ui: &mut egui::Ui, prj: &mut Project, bi: usize) {
     }
 }
 
+/// A choice of a level of building `bi` by its id.
+fn level_combo(ui: &mut egui::Ui, salt: impl std::hash::Hash + std::fmt::Debug, levels: &[(u64, String)], value: &mut u64) {
+    let name = levels.iter().find(|l| l.0 == *value).map_or_else(String::new, |l| l.1.clone());
+    egui::ComboBox::from_id_salt(salt).selected_text(name).width(60.0).show_ui(ui, |ui| {
+        for (id, n) in levels {
+            ui.selectable_value(value, *id, n.as_str());
+        }
+    });
+}
+
+fn stairs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi: usize) {
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(tr("Stairs")).strong());
+        egui::ComboBox::from_id_salt("bldstairkind").selected_text(tr(st.stair_kind.title())).show_ui(ui, |ui| {
+            for kind in StairKind::ALL {
+                ui.selectable_value(&mut st.stair_kind, kind, tr(kind.title()));
+            }
+        });
+        if icons::text_button(ui, Icon::Plus, tr("New stair")).on_hover_text(tr("From the lowest level up to the next one; move it to its place in the building's floor plan")).clicked() {
+            let bottom = prj.layout.buildings[bi].levels.first().map_or(0, |l| l.id);
+            match stairs::add_stair(prj, bi, st.stair_kind, 0.0, 0.0, bottom, None) {
+                Ok(_) => st.status.clear(),
+                Err(e) => st.status = e,
+            }
+        }
+    });
+    let b = &prj.layout.buildings[bi];
+    if b.stairs.is_empty() {
+        ui.weak(tr("No stair yet: stairs lead from the floor of one level up to the floor of another."));
+        return;
+    }
+    let levels: Vec<(u64, String)> = b.levels.iter().map(|l| (l.id, l.name.clone())).collect();
+    let steps: Vec<String> = b.stairs.iter().map(|s| stairs::geometry(b, s).map_or_else(|| tr("no valid levels").to_string(), |g| tr_fmt!("{} × {} mm", g.risers, format!("{:.0}", g.rise)))).collect();
+    let mut remove = None;
+    let b = &mut prj.layout.buildings[bi];
+    egui::Grid::new("bldstairs").num_columns(7).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
+        for t in [tr("Name"), tr("Kind"), tr("Foot"), tr("Width / going"), tr("Levels"), tr("Risers"), ""] {
+            ui.label(RichText::new(t).weak());
+        }
+        ui.end_row();
+        for (k, s) in b.stairs.iter_mut().enumerate() {
+            ui.add(egui::TextEdit::singleline(&mut s.name).desired_width(40.0));
+            ui.horizontal(|ui| {
+                egui::ComboBox::from_id_salt(("bldstair", k)).selected_text(tr(s.kind.title())).width(120.0).show_ui(ui, |ui| {
+                    for kind in StairKind::ALL {
+                        ui.selectable_value(&mut s.kind, kind, tr(kind.title()));
+                    }
+                });
+                if s.kind != StairKind::Straight {
+                    egui::ComboBox::from_id_salt(("bldstairturn", k)).selected_text(tr(s.turn.title())).width(60.0).show_ui(ui, |ui| {
+                        for turn in [Turn::Left, Turn::Right] {
+                            ui.selectable_value(&mut s.turn, turn, tr(turn.title()));
+                        }
+                    });
+                }
+            });
+            ui.horizontal(|ui| {
+                ui.add(egui::DragValue::new(&mut s.x).speed(10.0).prefix("x ").suffix(" mm"));
+                ui.add(egui::DragValue::new(&mut s.z).speed(10.0).prefix("z ").suffix(" mm"));
+                ui.add(egui::DragValue::new(&mut s.angle).speed(1.0).range(-360.0..=360.0).suffix(" °"));
+            })
+            .response
+            .on_hover_text(tr("Middle of the front edge of the lowest step in the building's floor plan, and the direction of the first flight"));
+            ui.horizontal(|ui| {
+                ui.add(egui::DragValue::new(&mut s.width).speed(10.0).range(500.0..=5000.0));
+                ui.add(egui::DragValue::new(&mut s.tread).speed(1.0).range(150.0..=500.0).suffix(" mm"));
+            });
+            ui.horizontal(|ui| {
+                level_combo(ui, ("bldstairbot", k), &levels, &mut s.bottom);
+                level_combo(ui, ("bldstairtop", k), &levels, &mut s.top);
+            });
+            ui.label(steps[k].as_str());
+            if icons::button(ui, Icon::Delete, tr("Delete stair")).clicked() {
+                remove = Some(k);
+            }
+            ui.end_row();
+        }
+    });
+    if let Some(k) = remove {
+        b.stairs.remove(k);
+    }
+}
+
+fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi: usize) {
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(tr("Roofs")).strong());
+        egui::ComboBox::from_id_salt("bldroofshape").selected_text(tr(st.roof_shape.title())).show_ui(ui, |ui| {
+            for shape in RoofShape::ALL {
+                ui.selectable_value(&mut st.roof_shape, shape, tr(shape.title()));
+            }
+        });
+        if icons::text_button(ui, Icon::Plus, tr("New roof")).on_hover_text(tr("Over the rooms of the building with its eaves on top of the highest level")).clicked() {
+            match roofs::add_roof(prj, bi, st.roof_shape) {
+                Ok(_) => st.status.clear(),
+                Err(e) => st.status = e,
+            }
+        }
+    });
+    if prj.layout.buildings[bi].roofs.is_empty() {
+        ui.weak(tr("No roof yet: a roof lower than the ceilings of the rooms below it slopes their ceilings, also through several levels."));
+        return;
+    }
+    // The rooms of the building under sloped ceilings, with their lowest and highest ceiling.
+    let poses = panel::site_poses(prj);
+    let sloped: Vec<String> = bld::building_rooms(&prj.layout, bi)
+        .into_iter()
+        .filter_map(|ri| {
+            let e = &prj.layout.enclosures[ri];
+            let c = roofs::ceiling_with(prj, &poses, ri)?;
+            let (lo, hi) = c.range(&roofs::floor_polys(e));
+            Some(tr_fmt!("{}: {} – {} m", e.name, format!("{:.2}", lo / 1000.0), format!("{:.2}", hi / 1000.0)))
+        })
+        .collect();
+    let mut remove = None;
+    let mut add_window = None;
+    let b = &mut prj.layout.buildings[bi];
+    for (k, r) in b.roofs.iter_mut().enumerate() {
+        ui.group(|ui| {
+            ui.horizontal_wrapped(|ui| {
+                ui.add(egui::TextEdit::singleline(&mut r.name).desired_width(40.0));
+                egui::ComboBox::from_id_salt(("bldroof", k)).selected_text(tr(r.shape.title())).show_ui(ui, |ui| {
+                    for shape in RoofShape::ALL {
+                        ui.selectable_value(&mut r.shape, shape, tr(shape.title()));
+                    }
+                });
+                if matches!(r.shape, RoofShape::Gable | RoofShape::Shed) {
+                    ui.checkbox(&mut r.along_z, tr("along z")).on_hover_text(tr("The ridge (or the slope of a shed roof) runs along z instead of x"));
+                }
+                if r.shape == RoofShape::Shed {
+                    ui.checkbox(&mut r.flip, tr("low side at the rear")).on_hover_text(tr("The low eaves at the rear or left instead of the front or right"));
+                }
+                ui.label(tr_fmt!("ridge {} m", format!("{:.2}", roofs::ridge_height(r) / 1000.0)));
+                if icons::button(ui, Icon::Delete, tr("Delete roof")).clicked() {
+                    remove = Some(k);
+                }
+            });
+            ui.horizontal_wrapped(|ui| {
+                ui.label(tr("Covers"));
+                ui.add(egui::DragValue::new(&mut r.x).speed(10.0).prefix("x ").suffix(" mm"));
+                ui.add(egui::DragValue::new(&mut r.z).speed(10.0).prefix("z ").suffix(" mm"));
+                ui.add(egui::DragValue::new(&mut r.width).speed(10.0).range(500.0..=200_000.0).prefix("w "));
+                ui.add(egui::DragValue::new(&mut r.depth).speed(10.0).range(500.0..=200_000.0).prefix("d ").suffix(" mm"));
+            })
+            .response
+            .on_hover_text(tr("Rear left corner and size of the rectangle it covers (the outer walls) in the building's floor plan"));
+            ui.horizontal_wrapped(|ui| {
+                ui.label(tr("Eaves"));
+                ui.add(egui::DragValue::new(&mut r.eaves).speed(10.0).suffix(" mm")).on_hover_text(tr("Height of the underside of the roof over the walls above the ground level of the building; below the ceiling of a level it slopes the ceilings of the rooms there"));
+                if r.shape != RoofShape::Flat {
+                    ui.label(tr("Pitch"));
+                    ui.add(egui::DragValue::new(&mut r.pitch).speed(0.5).range(1.0..=75.0).suffix(" °"));
+                }
+                ui.label(tr("Overhang"));
+                ui.add(egui::DragValue::new(&mut r.overhang).speed(10.0).range(0.0..=3000.0).suffix(" mm"));
+                ui.label(tr("Thickness"));
+                ui.add(egui::DragValue::new(&mut r.thickness).speed(5.0).range(50.0..=1000.0).suffix(" mm"));
+            });
+            ui.horizontal_wrapped(|ui| {
+                ui.label(RichText::new(tr("Roof windows")).weak());
+                if icons::text_button(ui, Icon::Plus, tr("Roof window")).on_hover_text(tr("Halfway up the front or right slope; move it to its place")).clicked() {
+                    add_window = Some(k);
+                }
+            });
+            let mut gone = None;
+            for (w_k, w) in r.windows.iter_mut().enumerate() {
+                ui.horizontal(|ui| {
+                    ui.add_space(14.0);
+                    ui.add(egui::DragValue::new(&mut w.x).speed(10.0).prefix("x ").suffix(" mm"));
+                    ui.add(egui::DragValue::new(&mut w.z).speed(10.0).prefix("z ").suffix(" mm"));
+                    ui.add(egui::DragValue::new(&mut w.width).speed(5.0).range(200.0..=5000.0).prefix("w "));
+                    ui.add(egui::DragValue::new(&mut w.length).speed(5.0).range(200.0..=5000.0).prefix("l ").suffix(" mm"))
+                        .on_hover_text(tr("Width along the eaves and length up the slope"));
+                    if icons::button(ui, Icon::Delete, tr("Delete roof window")).clicked() {
+                        gone = Some(w_k);
+                    }
+                });
+            }
+            if let Some(w_k) = gone {
+                r.windows.remove(w_k);
+            }
+        });
+        *r = roofs::checked_roof(r.clone());
+    }
+    if let Some(k) = remove {
+        b.roofs.remove(k);
+    }
+    if let Some(k) = add_window {
+        let _ = roofs::add_window(prj, bi, k, None);
+    }
+    if !sloped.is_empty() {
+        ui.label(RichText::new(tr("Rooms under sloped ceilings (lowest – highest ceiling)")).weak());
+        for line in sloped {
+            ui.label(line);
+        }
+    }
+}
+
 fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
     ui.label(RichText::new(tr("Links between buildings")).strong());
     let choices = entry_choices(prj);
@@ -362,7 +573,8 @@ fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
 }
 
 /// The site plan: the rooms of all buildings seen from above (those of the level shown
-/// highlighted), the shafts and the links between the buildings.
+/// highlighted), the shafts, the stairs reaching the level shown, the roofs with their
+/// windows and the links between the buildings.
 fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
     let layout = &prj.layout;
     let Some(b) = layout.buildings.get(st.sel) else { return };
@@ -393,7 +605,25 @@ fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
         .collect();
     let links: Vec<Vec<[f32; 2]>> = layout.site_links.iter().filter_map(|l| bld::site_link_path(prj, &poses, l)).map(|p| p.into_iter().map(|q| [q[0], q[2]]).collect()).collect();
     let shafts: Vec<[[f32; 2]; 4]> = b.shafts.iter().map(|s| bld::shaft_corners(b, s)).collect();
-    let all: Vec<[f32; 2]> = rooms.iter().flat_map(|r| r.1.iter().copied()).chain(links.iter().flatten().copied()).chain(shafts.iter().flatten().copied()).collect();
+    // The roofs (their slopes and windows) and stairs of every building in the plant.
+    let to_plant = |b: &panel::Building, q: [f32; 2]| {
+        let v = bld::building_pose(b).apply([q[0], 0.0, q[1]]);
+        [v[0], v[2]]
+    };
+    let roof_slopes: Vec<(usize, Vec<[f32; 2]>)> = layout.buildings.iter().enumerate().flat_map(|(bi, b)| b.roofs.iter().flat_map(move |r| roofs::slopes(r).into_iter().map(move |p| (bi, p.into_iter().map(|q| to_plant(b, q)).collect())))).collect();
+    let roof_windows: Vec<Vec<[f32; 2]>> = layout
+        .buildings
+        .iter()
+        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.windows.iter().filter_map(move |w| roofs::window_corners(r, w)).map(move |(c, _)| c.iter().map(|v| to_plant(b, [v[0], v[2]])).collect())))
+        .collect();
+    let stair_lines: Vec<(Vec<Outline>, Outline)> = b
+        .stairs
+        .iter()
+        .filter_map(|s| stairs::geometry(b, s))
+        .filter(|g| st.level == 0 || b.levels.iter().any(|l| l.id == st.level && g.from <= l.elevation + 0.5 && g.to >= l.elevation - 0.5))
+        .map(|g| (g.pieces.iter().map(|p| p.outline.iter().map(|&q| to_plant(b, q)).collect()).collect(), g.walk.iter().map(|&q| to_plant(b, q)).collect()))
+        .collect();
+    let all: Vec<[f32; 2]> = rooms.iter().flat_map(|r| r.1.iter().copied()).chain(links.iter().flatten().copied()).chain(shafts.iter().flatten().copied()).chain(roof_slopes.iter().flat_map(|r| r.1.iter().copied())).collect();
     let (size, _) = ui.allocate_exact_size(vec2(ui.available_width(), 320.0), Sense::hover());
     let painter = ui.painter_at(size);
     let visuals = ui.visuals();
@@ -438,6 +668,30 @@ fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
             }
             labels.push(c);
             painter.text(c, egui::Align2::CENTER_CENTER, e.name.as_str(), egui::FontId::proportional(11.0), line);
+        }
+    }
+    // The roofs: their eaves, ridges and hips dashed, the roof windows.
+    for (bi, slope) in &roof_slopes {
+        let pts: Vec<Pos2> = slope.iter().map(|&q| at(q)).collect();
+        let color = if *bi == st.sel { line.gamma_multiply(0.7) } else { weak };
+        for k in 0..pts.len() {
+            painter.extend(egui::Shape::dashed_line(&[pts[k], pts[(k + 1) % pts.len()]], Stroke::new(1.0, color), 5.0, 3.0));
+        }
+    }
+    for w in &roof_windows {
+        let pts: Vec<Pos2> = w.iter().map(|&q| at(q)).collect();
+        painter.add(egui::Shape::convex_polygon(pts, GLASS, Stroke::new(1.0, line)));
+    }
+    // The stairs reaching the level shown: their steps and the walking line with its arrow.
+    for (pieces, walk) in &stair_lines {
+        for p in pieces {
+            painter.add(egui::Shape::closed_line(p.iter().map(|&q| at(q)).collect(), Stroke::new(1.0, line)));
+        }
+        let pts: Vec<Pos2> = walk.iter().map(|&q| at(q)).collect();
+        painter.add(egui::Shape::line(pts.clone(), Stroke::new(1.5, accent)));
+        if let [.., a, b] = pts.as_slice() {
+            let d = (*b - *a).normalized() * 7.0;
+            painter.add(egui::Shape::convex_polygon(vec![*b, *b - d + d.rot90() * 0.5, *b - d - d.rot90() * 0.5], accent, Stroke::NONE));
         }
     }
     for s in &shafts {

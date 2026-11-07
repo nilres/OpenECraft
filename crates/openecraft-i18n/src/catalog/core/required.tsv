@@ -8,6 +8,7 @@
 13 · Transformer-rated metering with PV and grid protection	13 · Wandlermessung mit PV-Anlage und NA-Schutz	13 · Comptage sur transformateurs avec PV et protection de découplage	13 · Medida indirecta con transformadores, FV y protección de red
 14 · Main low-voltage distribution of an industrial plant	14 · Niederspannungshauptverteilung eines Industriebetriebs	14 · Tableau général basse tension d'un site industriel	14 · Cuadro general de baja tensión de una planta industrial
 15 · Plant with buildings, levels and a shaft	15 · Anlage mit Gebäuden, Ebenen und einem Schacht	15 · Installation avec bâtiments, niveaux et une gaine	15 · Instalación con edificios, niveles y un patinillo
+16 · Office building with roof, stair and installation	16 · Bürogebäude mit Dach, Treppe und Installation	16 · Immeuble de bureaux avec toit, escalier et installation	16 · Edificio de oficinas con cubierta, escalera e instalación
 19-inch mounting rails	19-Zoll-Profilschienen	Montants 19 pouces	Perfiles de montaje de 19 pulgadas
 19-inch rack	19-Zoll-Rack	Baie 19 pouces	Rack de 19 pulgadas
 19-inch rack elevation	19-Zoll-Rackbelegung	Plan d'occupation de baie 19 pouces	Ocupación del rack de 19 pulgadas
@@ -35,6 +36,8 @@ A room needs at least four walls	Ein Raum braucht mindestens vier Wände	Une sal
 A section number consists of letters and digits and does not start with 0	Eine Abschnittsnummer besteht aus Buchstaben und Ziffern und beginnt nicht mit 0	Un numéro de section se compose de lettres et de chiffres et ne commence pas par 0	Un número de sección consta de letras y dígitos y no empieza por 0
 A section number must not be empty or contain a dot	Eine Abschnittsnummer darf nicht leer sein und keinen Punkt enthalten	Un numéro de section ne doit pas être vide ni contenir de point	Un número de sección no puede estar vacío ni contener un punto
 A shaft is at least {} mm wide and deep	Ein Schacht ist mindestens {} mm breit und tief	Une gaine a au moins {} mm de large et de profondeur	Un patinillo tiene al menos {} mm de ancho y de fondo
+A stair leads up: its upper level must be above the one it starts on	Eine Treppe führt hinauf: ihre obere Ebene muss über der liegen, auf der sie beginnt	Un escalier monte : son niveau supérieur doit être au-dessus de celui où il commence	Una escalera sube: su nivel superior debe estar por encima de aquel en el que empieza
+A stair needs a level above the one it starts on	Eine Treppe braucht eine Ebene über der, auf der sie beginnt	Un escalier a besoin d'un niveau au-dessus de celui où il commence	Una escalera necesita un nivel por encima de aquel en el que empieza
 A whole building in two rooms: the supply cable and the water main come in through building entries to the house connection box and the remote controlled valve; main distribution with busbars, Hager NH fuse switch disconnectors of three sizes and energy meters; cables and the water pipe pass a wall penetration into the technical room with PLC and pump cabinets, tanks and booster pumps, a compressor with air receiver and dryers and oilers at the outlets, a heat pump with buffer tank and hot water circulation, temperature, pressure and level sensors, a PV system with generator junction box, Victron MultiPlus-II and Inverter RS on the wall, Cerbo GX and Pylontech batteries in a 19-inch rack.	Ein ganzes Gebäude in zwei Räumen: Versorgungskabel und Wasserleitung kommen durch Hauseinführungen zum Hausanschlusskasten und zum fernbetätigten Ventil; Hauptverteilung mit Sammelschienen, Hager NH-Sicherungs-Lasttrennschaltern in drei Größen und Energiezählern; Kabel und Wasserleitung führen durch einen Wanddurchbruch in den Technikraum mit SPS- und Pumpenschrank, Tanks und Druckerhöhungspumpen, einem Kompressor mit Druckluftbehälter sowie Trocknern und Ölern an den Entnahmestellen, einer Wärmepumpe mit Pufferspeicher und Warmwasserzirkulation, Temperatur-, Druck- und Füllstandssensoren, einer PV-Anlage mit Generatoranschlusskasten, Victron MultiPlus-II und Inverter RS an der Wand, Cerbo GX und Pylontech-Batterien in einem 19-Zoll-Schrank.	Un bâtiment entier en deux salles : le câble d'alimentation et la conduite d'eau entrent par des entrées de bâtiment jusqu'au coffret de branchement et à la vanne télécommandée ; distribution principale avec jeux de barres, interrupteurs-sectionneurs à fusibles NH Hager de trois tailles et compteurs d'énergie ; câbles et conduite d'eau traversent un mur vers la salle technique avec armoires automate et pompes, réservoirs et surpresseurs, un compresseur avec réservoir d'air et sécheurs et lubrificateurs aux prises, une pompe à chaleur avec ballon tampon et bouclage d'eau chaude, des capteurs de température, de pression et de niveau, une installation PV avec boîte de jonction, Victron MultiPlus-II et Inverter RS au mur, Cerbo GX et batteries Pylontech dans une baie 19 pouces.	Un edificio entero en dos salas: el cable de acometida y la tubería de agua entran por entradas al edificio hasta la caja general de protección y la válvula telemandada; cuadro general con embarrados, interruptores-seccionadores con fusibles NH de Hager en tres tamaños y contadores de energía; cables y tubería pasan por un pasamuros a la sala técnica con armarios de PLC y bombas, depósitos y bombas de presión, un compresor con depósito de aire y secadores y lubricadores en las tomas, una bomba de calor con depósito de inercia y recirculación de agua caliente, sensores de temperatura, presión y nivel, una instalación FV con caja de conexión del generador, Victron MultiPlus-II e Inverter RS en la pared, Cerbo GX y baterías Pylontech en un rack de 19 pulgadas.
 A0 landscape	A0 quer	A0 paysage	A0 horizontal
 A1 landscape	A1 quer	A1 paysage	A1 horizontal
@@ -555,6 +558,7 @@ Fitting	Verschraubung	Raccord	Racor
 Fittings	Verschraubungen	Raccords	Racores
 Flame retardant	Flammwidrig	Ignifuge	Retardante de llama
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Flachbandkabel {} hat {} Adern, der Schneidklemmstecker {} hat {} Pins	Le câble plat {} a {} conducteurs, le connecteur IDC {} a {} broches	El cable plano {} tiene {} conductores, el conector IDC {} tiene {} pines
+Flat roof	Flachdach	Toit plat	Cubierta plana
 Float switch NC	Schwimmerschalter Öffner	Interrupteur à flotteur NF	Interruptor de flotador NC
 Float switch NO	Schwimmerschalter Schließer	Interrupteur à flotteur NO	Interruptor de flotador NA
 Float switch NO (NFPA)	Schwimmerschalter Schließer (NFPA)	Interrupteur à flotteur NO (NFPA)	Interruptor de flotador NA (NFPA)
@@ -627,6 +631,7 @@ Fuse, LV HBC, 3-pole	NH-Sicherung 3-polig	Fusible BT HPC, 3 pôles	Fusible BT AP
 GB (GB/T 4728)	GB (GB/T 4728)	GB (GB/T 4728)	GB (GB/T 4728)
 GOST (ESKD)	GOST (ESKD)	GOST (ESKD)	GOST (ESKD)
 GTIN	GTIN	GTIN	GTIN
+Gable roof	Satteldach	Toit à deux pans	Cubierta a dos aguas
 Galvanometer	Galvanometer	Galvanomètre	Galvanómetro
 Gas	Gas	Gaz	Gas
 Gas flow switch NC	Gasströmungsschalter Öffner	Contrôleur de débit de gaz NF	Interruptor de caudal de gas NC
@@ -654,6 +659,7 @@ Grommet	Tülle	Passe-fil	Pasacables
 Grounded conductors must be white or grey (NFPA 79, 13.2.3)	Geerdete Leiter müssen weiß oder grau sein (NFPA 79, 13.2.3)	Les conducteurs mis à la terre doivent être blancs ou gris (NFPA 79, 13.2.3)	Los conductores puestos a tierra deben ser blancos o grises (NFPA 79, 13.2.3)
 HMI	HMI	IHM	HMI
 HTML document for printing	HTML-Dokument zum Drucken	Document HTML pour l'impression	Documento HTML para imprimir
+Half landing (two flights)	Mit Halbpodest (zweiläufig)	À palier intermédiaire (deux volées)	Con descansillo intermedio (dos tramos)
 Hall 1	Halle 1	Hall 1	Nave 1
 Halogen free	Halogenfrei	Sans halogène	Libre de halógenos
 Hand	Hand	Manuel	Manual
@@ -682,6 +688,7 @@ Heating water	Heizungswasser	Eau de chauffage	Agua de calefacción
 Higher-level product (-)	Übergeordnetes Produkt (-)	Produit de niveau supérieur (-)	Producto de nivel superior (-)
 Higher-level product of the page	Übergeordnetes Produkt der Seite	Produit de niveau supérieur de la page	Producto de nivel superior de la página
 Highest (°C)	Höchstens (°C)	Maximum (°C)	Máximo (°C)
+Hip roof	Walmdach	Toit à quatre pans	Cubierta a cuatro aguas
 Hold-up time	Netzausfallüberbrückung	Temps de maintien	Tiempo de mantenimiento
 Holding power	Halteleistung	Puissance de maintien	Potencia de mantenimiento
 Horn (NFPA)	Hupe (NFPA)	Avertisseur (NFPA)	Bocina (NFPA)
@@ -986,6 +993,7 @@ No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproy
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
 No such inner wall	Keine solche Innenwand	Aucun mur intérieur de ce type	No existe esa pared interior
 No such object: {}	Kein solches Objekt: {}	Objet inexistant : {}	No existe el objeto: {}
+No such roof	Kein solches Dach	Toit introuvable	No existe esa cubierta
 No surge protective device at the supply (IEC 60364-4-44)	Kein Überspannungsschutz an der Einspeisung (IEC 60364-4-44)	Pas de parafoudre à l'alimentation (IEC 60364-4-44)	Sin protector contra sobretensiones en la alimentación (IEC 60364-4-44)
 No terminal {}	Keine Klemme {}	Aucune borne {}	No hay borne {}
 No user defined property {}	Keine benutzerdefinierte Eigenschaft {}	Aucune propriété utilisateur {}	No hay propiedad de usuario {}
@@ -1323,6 +1331,7 @@ Push button with key NC, latching	Taster mit Schlüssel Öffner, rastend	Bouton-
 Push button with key NO, latching	Taster mit Schlüssel Schließer, rastend	Bouton-poussoir à clé NO, à accrochage	Pulsador con llave NA, con enclavamiento
 Pushbutton NC	Taster Öffner	Bouton-poussoir NF	Pulsador NC
 Pushbutton NO	Taster Schließer	Bouton-poussoir NO	Pulsador NA
+Pyramid roof	Zeltdach	Toit en pavillon	Cubierta piramidal
 Qty	Menge	Qté	Cant.
 Quick coupling (outlet)	Schnellkupplung (Entnahmestelle)	Raccord rapide (prise)	Acoplamiento rápido (toma)
 RCD {} mA	RCD {} mA	DDR {} mA	DDR {} mA
@@ -1398,6 +1407,7 @@ Roller switch NO	Rollenschalter Schließer	Interrupteur à galet NO	Interruptor 
 Roof	Dach	Toit	Techo
 Roof top	Dach	Toiture	Cubierta
 Room floor	Raumboden	Sol de la salle	Suelo de la sala
+Room {}: the roof comes down to its floor; part of the room lies outside the building	Raum {}: das Dach reicht bis auf seinen Boden; ein Teil des Raums liegt außerhalb des Gebäudes	Salle {} : le toit descend jusqu'à son sol ; une partie de la salle est hors du bâtiment	Sala {}: la cubierta llega hasta su suelo; parte de la sala queda fuera del edificio
 Rotation	Drehung	Rotation	Rotación
 Round punch	Rundstempel	Poinçon rond	Punzón redondo
 Routing cables and pipes in 3D	Kabel und Rohre werden in 3D verlegt	Routage des câbles et tuyaux en 3D	Trazando cables y tuberías en 3D
@@ -1477,6 +1487,7 @@ Setpoint	Sollwert	Consigne	Consigna
 Setting range	Einstellbereich	Plage de réglage	Rango de ajuste
 Sheath colour	Mantelfarbe	Couleur de la gaine	Color de la cubierta
 Sheath material	Mantelmaterial	Matériau de la gaine	Material de la cubierta
+Shed roof	Pultdach	Toit en appentis	Cubierta a un agua
 Sheet number	Blattnummer	Numéro de feuille	Número de hoja
 Sheet steel	Stahlblech	Tôle d'acier	Chapa de acero
 Shield clamp	Schirmklemme	Collier de blindage	Abrazadera de pantalla
@@ -1524,7 +1535,11 @@ Spare	Reserve	Réserve	Reserva
 Spare part	Ersatzteil	Pièce de rechange	Repuesto
 Spare terminal	Reserveklemme	Borne de réserve	Borne de reserva
 Speed	Drehzahl	Vitesse	Velocidad
+Spiral	Wendeltreppe	Hélicoïdal	De caracol
 Stainless steel	Edelstahl	Acier inoxydable	Acero inoxidable
+Stair {} of {}: its levels are missing or its upper level is not above the lower one	Treppe {} von {}: ihre Ebenen fehlen oder ihre obere Ebene liegt nicht über der unteren	Escalier {} de {} : ses niveaux manquent ou son niveau supérieur n'est pas au-dessus de l'inférieur	Escalera {} de {}: faltan sus niveles o su nivel superior no está por encima del inferior
+Stair {} of {}: rise of {} mm per step, aim for 160 - 190 mm	Treppe {} von {}: Steigung von {} mm je Stufe, anzustreben sind 160 - 190 mm	Escalier {} de {} : hauteur de {} mm par marche, visez 160 - 190 mm	Escalera {} de {}: contrahuella de {} mm por peldaño, procure 160 - 190 mm
+Stair {} of {}: twice the rise and the going make {} mm, the step rule asks for 590 - 650 mm	Treppe {} von {}: zweimal Steigung plus Auftritt ergeben {} mm, die Schrittmaßregel verlangt 590 - 650 mm	Escalier {} de {} : deux hauteurs plus le giron font {} mm, la loi de Blondel demande 590 - 650 mm	Escalera {} de {}: dos contrahuellas más la huella suman {} mm, la regla del paso pide 590 - 650 mm
 Standard	Norm	Norme	Norma
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/Stopp-Schaltung mit einem Relais: Spule und Kontakte bilden ein Betriebsmittel mit Querverweisen und Kontaktspiegel, Klemmleiste, Verbindungsnummern, Klemmenplan und Verbindungsliste.	Circuit marche / arrêt avec un relais : bobine et contacts forment un appareil avec renvois et image des contacts, bornier, numéros de fils, plan de bornier et liste des connexions.	Circuito de marcha / paro con un relé: bobina y contactos forman un equipo con referencias cruzadas e imagen de contactos, regleta de bornes, números de cable, diagrama de bornes y lista de conexiones.
 Start date	Startdatum	Date de début	Fecha de inicio
@@ -1539,6 +1554,7 @@ Steam	Dampf	Vapeur	Vapor
 Stock	Bestand	Stock	Existencias
 Stop category	Stoppkategorie	Catégorie d'arrêt	Categoría de parada
 Storage temperature range	Lagertemperaturbereich	Plage de température de stockage	Rango de temperatura de almacenamiento
+Straight	Gerade	Droit	Recta
 Straight through from {} to {}, across from {} to {} and from {} to {}	Geradeaus von {} nach {}, quer von {} nach {} und von {} nach {}	Tout droit de {} à {}, en travers de {} à {} et de {} à {}	En línea recta de {} a {}, transversalmente de {} a {} y de {} a {}
 Strain relief	Zugentlastung	Serre-câble	Alivio de tracción
 Stretched	Gestreckt	Étiré	Estirado
@@ -1642,6 +1658,7 @@ The next free id is already in use	Die nächste freie ID ist bereits vergeben	Le
 The option needs a name	Die Option braucht einen Namen	L'option doit avoir un nom	La opción necesita un nombre
 The page needs a number	Die Seite braucht eine Nummer	La page a besoin d'un numéro	La página necesita un número
 The pages were changed after the submission; submit the revision again	Die Seiten wurden nach dem Einreichen geändert; reichen Sie die Revision erneut ein	Les pages ont été modifiées après la soumission ; soumettez à nouveau la révision	Las páginas se cambiaron tras el envío; envíe la revisión de nuevo
+The plant of level 15 with an office building: the office on the ground level and the attic under a gable roof whose slopes cut its ceiling down to the knee wall, a stair turned at a quarter landing, roof windows in the front slope; Gira socket outlets, a network outlet and a switch, an MDT KNX push button and room temperature controller, a TV outlet at their mounting heights, a COSMO heating circuit manifold and a single-room control box.	Die Anlage von Stufe 15 mit einem Bürogebäude: das Büro auf der Erdgeschossebene und das Dachgeschoss unter einem Satteldach, dessen Dachflächen die Decke bis auf den Kniestock herunter schräg machen, eine an einem Viertelpodest gewinkelte Treppe, Dachfenster in der vorderen Dachfläche; Gira-Steckdosen, eine Netzwerkdose und ein Schalter, ein MDT-KNX-Taster und -Raumtemperaturregler, eine TV-Dose auf ihren Montagehöhen, ein COSMO-Heizkreisverteiler und eine Einzelraum-Regelbox.	L'installation du niveau 15 avec un immeuble de bureaux : le bureau au rez-de-chaussée et les combles sous un toit à deux pans dont les versants rendent le plafond rampant jusqu'à la jambette, un escalier tournant sur un palier d'angle, des fenêtres de toit dans le versant avant ; des prises Gira, une prise réseau et un interrupteur, un bouton-poussoir et un régulateur de température ambiante KNX MDT, une prise TV à leurs hauteurs de pose, un collecteur de chauffage COSMO et un boîtier de régulation pièce par pièce.	La instalación del nivel 15 con un edificio de oficinas: la oficina en la planta baja y el ático bajo una cubierta a dos aguas cuyos faldones inclinan su techo hasta el murete, una escalera girada en un descansillo de esquina, ventanas de tejado en el faldón delantero; tomas de corriente Gira, una toma de red y un interruptor, un pulsador y un regulador de temperatura ambiente KNX de MDT, una toma de TV a sus alturas de montaje, un colector de calefacción COSMO y una caja de regulación individual.
 The project has no harnesses	Das Projekt hat keine Kabelbäume	Le projet n'a aucun faisceau	El proyecto no tiene mazos
 The project has no panel layout	Das Projekt hat keinen Schaltschrankaufbau	Le projet n'a pas d'implantation d'armoire	El proyecto no tiene diseño de armario
 The project has several harnesses: {}	Das Projekt hat mehrere Kabelbäume: {}	Le projet a plusieurs faisceaux : {}	El proyecto tiene varios mazos: {}
@@ -1735,6 +1752,8 @@ Trunking	Kabelkanal	Goulotte	Canaleta
 Tube	Rohr (Schlauch)	Tube	Tubo flexible
 Tubes	Schläuche	Tuyaux	Tubos
 Tubing / piping list	Rohr- / Schlauchmaterialliste	Liste des tubes / tuyauteries	Lista de tubos / tuberías
+Turned once (quarter landing)	Einmal gewinkelt (Viertelpodest)	Tournant une fois (palier d'angle)	Girada una vez (descansillo de esquina)
+Turned twice (two quarter landings)	Zweimal gewinkelt (zwei Viertelpodeste)	Tournant deux fois (deux paliers d'angle)	Girada dos veces (dos descansillos de esquina)
 Two bayed Hager univers cabinets: two aluminium supplies on busbar terminals for Al, transformer metering isolated by NH strips with solid links, a power analyser for the zero export of the battery storage, feeders on NH fuse switch disconnector strips of a 185 mm busbar system with current transformers clipped in behind them and energy meters on the Tree bus (DC charging station, sub-distributions, air conditioning), heat pumps behind residual current devices of type B, PV inverters and battery storage behind two coupling switches with motor operators, undervoltage releases and auxiliary switches, cable entry flanges for the large cables.	Zwei angereihte Hager-univers-Schränke: zwei Aluminium-Zuleitungen auf Sammelschienenklemmen für Al, Wandlermessung mit Freischaltung durch NH-Leisten mit Trennmessern, ein Netzanalysator für die Nulleinspeisung des Batteriespeichers, Abgänge auf NH-Sicherungslastschaltleisten eines 185-mm-Sammelschienensystems mit dahinter eingeklipsten Stromwandlern und Energiezählern am Tree-Bus (DC-Ladestation, Unterverteilungen, Klimaanlage), Wärmepumpen hinter Fehlerstromschutzschaltern Typ B, PV-Wechselrichter und Batteriespeicher hinter zwei Kuppelschaltern mit Motorantrieben, Unterspannungsauslösern und Hilfsschaltern, Kabeleinführungen für die großen Kabel.	Deux armoires Hager univers juxtaposées : deux arrivées en aluminium sur des bornes de jeu de barres pour Al, comptage sur transformateurs sectionné par des réglettes NH à barrettes de sectionnement, un analyseur de réseau pour l'injection zéro du stockage par batteries, départs sur réglettes interrupteurs-sectionneurs à fusibles NH d'un jeu de barres de 185 mm avec transformateurs de courant clipsés derrière et compteurs d'énergie sur le bus Tree (borne de recharge DC, tableaux divisionnaires, climatisation), pompes à chaleur derrière des interrupteurs différentiels de type B, onduleurs PV et stockage par batteries derrière deux disjoncteurs de couplage avec commandes motorisées, déclencheurs à minimum de tension et contacts auxiliaires, entrées de câbles pour les gros câbles.	Dos armarios Hager univers acoplados: dos acometidas de aluminio en bornes de embarrado para Al, medida indirecta seccionada por regletas NH con cuchillas seccionadoras, un analizador de red para la inyección cero del almacenamiento en baterías, salidas en regletas seccionadoras con fusibles NH de un embarrado de 185 mm con transformadores de corriente encajados detrás y contadores de energía en el bus Tree (punto de recarga DC, cuadros secundarios, climatización), bombas de calor tras interruptores diferenciales tipo B, inversores FV y baterías tras dos interruptores de acoplamiento con accionamientos motorizados, bobinas de mínima tensión y contactos auxiliares, entradas de cables para los cables grandes.
 Two connection symbols on page {} lie on the same point	Zwei Verbindungssymbole auf Seite {} liegen auf demselben Punkt	Deux symboles de liaison en page {} se trouvent au même point	Dos símbolos de conexión en la página {} están en el mismo punto
 Two-way switch (installation)	Wechselschalter (Installation)	Va-et-vient (installation)	Conmutador (instalación)
@@ -2000,6 +2019,8 @@ yellow	gelb	jaune	amarillo
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} Jahre liegt unter 3 Jahren	{} : MTTFd de {} ans inférieur à 3 ans	{}: MTTFd de {} años inferior a 3 años
 {}: \"{}\" is not one of {}	{}: \"{}\" ist keiner von {}	{} : \"{}\" ne fait pas partie de {}	{}: \"{}\" no es uno de {}
 {}: a TT system needs a residual current device	{}: ein TT-System braucht eine Fehlerstrom-Schutzeinrichtung	{} : un schéma TT nécessite un dispositif différentiel	{}: un sistema TT necesita un dispositivo diferencial
+{}: a roof window of roof {} lies across a ridge, a hip or the edge of the roof	{}: ein Dachfenster von Dach {} liegt über einem First, einem Grat oder dem Dachrand	{} : une fenêtre du toit {} chevauche un faîtage, une arête ou le bord du toit	{}: una ventana de la cubierta {} cruza una cumbrera, una lima o el borde de la cubierta
+{}: a roof window of roof {} lies outside the roof	{}: ein Dachfenster von Dach {} liegt außerhalb des Dachs	{} : une fenêtre du toit {} se trouve hors du toit	{}: una ventana de la cubierta {} queda fuera de la cubierta
 {}: accessory {} fits none of the device's parts	{}: Zubehör {} passt zu keinem Artikel des Geräts	{} : l'accessoire {} ne convient à aucun article de l'appareil	{}: el accesorio {} no es compatible con ningún artículo del equipo
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: Bedienteil {} liegt {} mm über dem Boden, empfohlen {} … {} mm	{} : l'organe de commande {} est à {} mm au-dessus du sol, recommandé {} … {} mm	{}: el actuador {} está a {} mm sobre el suelo, recomendado {} … {} mm
 {}: auxiliary function(s) without main function	{}: Hilfsfunktion(en) ohne Hauptfunktion	{} : fonction(s) auxiliaire(s) sans fonction principale	{}: función(es) auxiliar(es) sin función principal
@@ -2098,6 +2119,7 @@ yellow	gelb	jaune	amarillo
 {}: {} is closer than {} mm to the edge of the mounting plate	{}: {} ist näher als {} mm am Rand der Montageplatte	{} : {} est à moins de {} mm du bord de la plaque de montage	{}: {} está a menos de {} mm del borde de la placa de montaje
 {}: {} is closer to {} than its mounting clearance of {} mm	{}: {} liegt näher an {} als dessen Montageabstand von {} mm	{} : {} est plus proche de {} que sa distance de montage de {} mm	{}: {} está más cerca de {} que su distancia de montaje de {} mm
 {}: {} is higher than the ceiling	{}: {} ist höher als die Decke	{} : {} est plus haut que le plafond	{}: {} es más alto que el techo
+{}: {} is higher than the sloped ceiling at its place	{}: {} ist höher als die Dachschräge an seinem Platz	{} : {} est plus haut que le plafond rampant à son emplacement	{}: {} es más alto que el techo inclinado en su lugar
 {}: {} is inside the EMC clearance of {} ({} mm)	{}: {} liegt im EMV-Abstand von {} ({} mm)	{} : {} se trouve dans la distance CEM de {} ({} mm)	{}: {} está dentro de la distancia CEM de {} ({} mm)
 {}: {} is inside the ventilation clearance of {}	{}: {} liegt im Lüftungsabstand von {}	{} : {} se trouve dans la distance de ventilation de {}	{}: {} está dentro de la distancia de ventilación de {}
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {} ist für eine Tragschiene gedacht, sitzt aber direkt auf der Platte	{} : {} est prévu pour un rail de montage mais se trouve directement sur la plaque	{}: {} está hecho para un carril de montaje pero está directamente sobre la placa
@@ -2109,6 +2131,7 @@ yellow	gelb	jaune	amarillo
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} liegt {} … {} mm über dem Boden, zulässig {} … {} mm	{} : {} est à {} … {} mm au-dessus du sol, admis {} … {} mm	{}: {} está a {} … {} mm sobre el suelo, admisible {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg auf {} überschreiten die Traglast von {} kg	{} : {} kg sur {} dépassent sa charge de {} kg	{}: {} kg en {} superan su carga de {} kg
 {}: {} leads into no room	{}: {} führt in keinen Raum	{} : {} ne mène à aucune salle	{}: {} no lleva a ninguna sala
+{}: {} lies above the sloped ceiling	{}: {} liegt über der Dachschräge	{} : {} se trouve au-dessus du plafond rampant	{}: {} queda por encima del techo inclinado
 {}: {} modules, the head has {} slots	{}: {} Baugruppen, der Kopf hat {} Steckplätze	{} : {} modules, la tête a {} emplacements	{}: {} módulos, la cabecera tiene {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} mit {} mm ist länger als die Lagerlänge von {} mm und muss gestoßen werden	{} : {} de {} mm dépasse la longueur de stock de {} mm et doit être raboutée	{}: {} de {} mm supera la longitud de stock de {} mm y debe empalmarse
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} mit {} mm ist kürzer als {} mm und schwer abzulängen	{} : {} de {} mm est plus court que {} mm et difficile à couper	{}: {} de {} mm es más corto que {} mm y difícil de cortar

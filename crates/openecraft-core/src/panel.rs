@@ -31,7 +31,9 @@ mod manufacturing;
 mod placement;
 mod points;
 pub mod rack;
+pub mod roofs;
 mod rooms;
+pub mod stairs;
 mod system;
 pub mod thermal;
 pub use assembly::{assembly, mounted, Assembly, Piece};
@@ -46,12 +48,12 @@ pub use points::{device_points, exit_vector, nozzles, point_of, PlacedPoint};
 pub use rack::{is_rack, mount_in_rack, rack_units, RACK_SYSTEM, RACK_UNIT, RACK_WIDTH};
 pub use rooms::{
     add_inner_wall, add_opening, add_pipe_run, add_wall_profile, pipe_run_offset, pipe_run_on_face, PIPE_RUN_WIDTH, inner_sides, moved_inner_wall, remove_inner_wall, side, INNER_WALL, door_zone, opening_sill, entries, entry_direction, entry_point, ENTRY_SILL, ENTRY_SIZE, DOOR_SIZE, WINDOW_SILL, WINDOW_SIZE, bounds, cabinet_problems, cabinets_in, check_outline, floor_cells, floor_footprint, floor_problems, footprint, inside_outline, mount_ok, mount_on_wall, moved_wall, new_room, normalize_outline, outline, room_face_from_key, room_face_key, room_face_title, room_faces,
-    room_of, room_place, rooms, set_outline, turned_place, set_room, stand_on_floor, stands_inside, wall_length_set, walls, Wall, MIN_WALL, ROOM_WALL,
+    room_of, room_place, rooms, set_outline, turned_place, set_room, stand_on_floor, at_mounting_height, stands_inside, wall_length_set, walls, Wall, MIN_WALL, ROOM_WALL,
     penetration_link, wall_links, WallLink, Via, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP, is_outside, outside_building, through_wall,
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, Shaft, SiteLink};
+pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -1122,11 +1124,16 @@ pub fn new_accessory(prj: &mut Project, part: &str, face: Face, at: P) -> PanelI
     PanelItem { id: prj.new_id(), kind: ItemKind::Accessory, part: part.into(), x: snap(at.x), y: snap(at.y), w, h, d, z: -outside, face, ..Default::default() }
 }
 
-/// Places an accessory on a face of an enclosure.
+/// Places an accessory on a face of an enclosure; on the wall of a room a part with a
+/// mounting height (technical data) goes at that height.
 pub fn place_accessory(prj: &mut Project, enc: usize, part: &str, face: Face, at: P) -> Option<u64> {
     prj.layout.enclosures.get(enc)?;
     let mut item = new_accessory(prj, part, face, at);
     stand_on_floor(&prj.layout.enclosures[enc], &mut item);
+    // Outlets and switches go on the walls of a room at their usual height.
+    if let Some(height) = part_by_number(prj, part).and_then(|p| tech_number(p, "Mounting height")) {
+        at_mounting_height(&prj.layout.enclosures[enc], &mut item, height);
+    }
     let id = item.id;
     prj.layout.enclosures[enc].items.push(item);
     Some(id)

@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Kontroller, 
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Kontrollerer projektdataene (id'er, henvisninger, enhedsdata, optioner, delprojekter) sammen med de tekniske kontroller.
 Choices	Valgmuligheder
 Choices (separated by commas)	Valgmuligheder (adskilt af kommaer)
+Choose	Vælg
 Choose a baseline, a revision or a project file to compare the project with.	Vælg en baseline, en revision eller en projektfil, som projektet skal sammenlignes med.
 Choose a room first: floor-standing parts go on its floor.	Vælg først et rum: gulvstående artikler står på dets gulv.
 Choose file…	Vælg fil…
 Choose pages	Vælg sider
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
+Circuits of a generic manifold	Kredse i en generisk fordeler
 Clear	Ryd
 Clearance	Frigang
 Clearances	Afstande
@@ -278,6 +280,7 @@ Click into the page to place {}	Klik på siden for at placere {}
 Click on a wall	Klik på en væg
 Click on a wire to place the connection definition point	Klik på en ledning for at placere forbindelsesdefinitionspunktet
 Click on the 4 mm grid	Klik på 4 mm-gitteret
+Click on the wall: the part goes there at its mounting height	Klik på væggen: delen sidder der i sin monteringshøjde
 Click start and end point	Klik på start- og slutpunkt
 Click the corners of a machine or building, double-click to finish	Klik på hjørnerne af en maskine eller bygning, dobbeltklik for at afslutte
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Klik på indervæggenes ender; hvert klik starter den næste, ender nær en væg fastgøres til den. Esc, Enter eller dobbeltklik afslutter kæden, Esc igen værktøjet.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Lederbetegnelser adskilt af mellemrum
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Ledere 1, 2, 3 … for de krydsede ledninger plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hjørne: to ledere i ret vinkel; med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det
 Cover sheet, overview, graphics, report, mounting layout or a page template	Forside, oversigt, grafik, rapport, monteringslayout eller en sideskabelon
+Covers	Dækker
 Covers what is behind the text	Dækker det, der ligger bag teksten
 Create	Opret
 Create an enclosure in the panel layout first.	Opret først en kapsling i tavlelayoutet.
@@ -424,10 +428,13 @@ Delete macro	Slet makro
 Delete node	Slet knude
 Delete page	Slet side
 Delete request	Slet anmodning
+Delete roof	Slet tag
+Delete roof window	Slet ovenlysvindue
 Delete room	Slet rum
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Slet rummet {} med alt på dets vægge? Skabene i det bliver stående, uden rum.
 Delete section	Slet afsnit
 Delete shaft	Slet skakt
+Delete stair	Slet trappe
 Delete the group	Slet gruppen
 Delete the layer; its items move to the default layer	Slet laget; dets elementer flyttes til standardlaget
 Delete the property and all its values	Slet egenskaben og alle dens værdier
@@ -541,6 +548,7 @@ Duplicate	Dupliker
 Each example builds on the one before and shows more of the features.	Hvert eksempel bygger på det forrige og viser flere af funktionerne.
 Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forbindelse kan høre til et ledningsnet
 Earthing system	Jordingssystem
+Eaves	Tagfod
 Edge length of the routing grid: smaller is finer and slower	Kantlængde for føringsgitteret: mindre er finere og langsommere
 Edit	Rediger
 Edit in table	Rediger i tabel
@@ -640,6 +648,7 @@ Floor plan with {} walls	Plantegning med {} vægge
 Floor-standing part	Gulvstående artikel
 Fluid and process	Fluid og proces
 Follows its condition: use Apply conditions	Følger sin betingelse: brug Anvend betingelser
+Foot	Start
 For	Til
 For parts without Stock length; longer profiles have to be joined	For artikler uden Stock length; længere profiler skal samles
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	For artikler uden temperaturdata (Max temperature, Operating temperature); 0: kontrolleres ikke
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Hoved (CPU / kobler)
 Header row	Overskriftsrække
 Heat map	Varmekort
 Heating	Opvarmning
+Heating circuit manifolds and control boxes	Gulvvarmefordelere og reguleringsbokse
 Height (mm)	Højde (mm)
 Height above the floor	Højde over gulvet
 Height above the mounting plate	Højde over monteringspladen
@@ -833,9 +843,9 @@ Layout checks	Layoutkontroller
 Layout properties	Layoutegenskaber
 Layout space	Monteringsrum
 Layout spaces	Monteringsrum
+Leave out the ceilings of the rooms and the roofs in the 3D view	Udelad rummenes lofter og tagene i 3D-visningen
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Udelad lågene på alle kabelkanaler i 3D-visningen: lederne i dem bliver synlige
 Leave repeated values of the first column blank	Lad gentagne værdier i den første kolonne være tomme
-Left	Venstre
 Left edges	Venstre kanter
 Legend plates (door devices)	Betegnelsesskilte (dørenheder)
 Length from the node to the device	Længde fra knuden til enheden
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motorer føder kortslutningen
 Mounted on	Monteret på
 Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: layoutelementerne i monteringsrækkefølge med deres plads og artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Monteringsafstand side om side; artikler tilføjer deres egen (Clearance left / right)
+Mounting height: {}	Monteringshøjde: {}
 Mounting plate: {} holes, {} cutouts	Monteringsplade: {} huller, {} udskæringer
 Move	Flyt
 Move down	Flyt ned
@@ -992,12 +1003,14 @@ New report page	Ny rapportside
 New request	Ny anmodning
 New revision	Ny revision
 New revisions start as drafts, are submitted for review and can be released once approved.	Nye revisioner starter som kladder, sendes til gennemsyn og kan frigives, når de er godkendt.
+New roof	Nyt tag
 New room	Nyt rum
 New room on this level	Nyt rum på denne etage
 New schematic page	Ny diagramside
 New scheme	Nyt skema
 New section	Nyt afsnit
 New shaft	Nyt skakt
+New stair	Ny trappe
 New sub-page	Ny underside
 New subsection	Nyt underafsnit
 New tag for {}	Ny mærkning for {}
@@ -1134,6 +1147,7 @@ Other values ({})	Andre værdier ({})
 Otherwise from the plant layout, or next to the other line-ups	Ellers fra anlægslayoutet eller ved siden af de andre sammenbygninger
 Out since {} (pages locked)	Udtaget siden {} (sider låst)
 Outer diameter (e.g. 8 mm) or DN	Udvendig diameter (f.eks. 8 mm) eller DN
+Outlets, switches, heating	Udtag, afbrydere, varme
 Outline	Omrids
 Outlines	Omrids
 Output bytes	Udgangsbytes
@@ -1141,6 +1155,7 @@ Output failed: {}	Udskrivningen mislykkedes: {}
 Output to another project	Udskriv til et andet projekt
 Output to project…	Udskriv til projekt…
 Outputs	Udgange
+Overhang	Udhæng
 Own colour	Egen farve
 Own drawn form	Egen tegnet formular
 Own groups	Egne grupper
@@ -1198,6 +1213,7 @@ Pin-out	Benforbindelse
 Pipe run	Rørtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rørtracé på en væg, loftet eller gulvet i rummet, langs hvilket slanger, rør og rørledninger føres: klik på hjørnerne, dobbeltklik eller Enter for at afslutte
 Pipe run {} mm – double-click or Enter to finish	Rørtracé {} mm – dobbeltklik eller tryk på Enter for at afslutte
+Pitch	Taghældning
 Pitch X / Y	Afstand X / Y
 Place a comment on the page	Placer en kommentar på siden
 Place again at all symbols using it	Placer igen ved alle symboler, der bruger det
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revisioner, godkendelse og frigivelse
 Ribbon	Bånd
 Ribbon (JSON)	Bånd (JSON)
 Ribbon imported	Bånd importeret
-Right	Højre
 Right click for more	Højreklik for flere
 Right edges	Højre kanter
 Right neighbour	Højre nabo
 Rights	Rettigheder
+Risers	Stigninger
+Roof window	Ovenlysvindue
+Roof windows	Ovenlysvinduer
+Roofs	Tage
 Room	Rum
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet på etage {}: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
 Room {} now stands on level {}	Rum {} står nu på etage {}
 Room {} taken out of the building; it stays where it stands	Rum {} er taget ud af bygningen; det bliver stående, hvor det står
+Rooms under sloped ceilings (lowest – highest ceiling)	Rum under skråloft (laveste – højeste loft)
 Rotate	Rotér
 Rotate (selection or symbol being placed)	Rotér (markering eller symbol, der placeres)
 Round	Rund
@@ -1589,6 +1609,7 @@ Slot	Slot
 Slots	Slots
 Smallest cross-section of control circuits	Mindste tværsnit for styrekredse
 Smallest cross-section of power circuits	Mindste tværsnit for kraftkredse
+Socket outlets, data and antenna outlets	Stikkontakter, data- og antennestik
 Some wires have no length: place their devices in the panel layout or set the field length.	Nogle ledninger har ingen længde: Placer deres enheder i tavlelayoutet, eller angiv feltlængden.
 Sort by designation	Sortér efter betegnelse
 Sort order	Sorteringsrækkefølge
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Plads, der h
 Spare terminals	Reserveklemmer
 Special text	Specialtekst
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Specialtekst: projekt- og sideegenskaber som {page} eller {prop:Name} udfyldes, når siden tegnes
+Stairs	Trapper
 Standard form of the report	Rapportens standardformular
 Standard size	Standardstørrelse
 Standard workspaces	Standardarbejdsområder
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Slå kontrollen \"{}\" fra
 Switches the options with a condition by the configurator options	Skifter optionerne med en betingelse efter konfiguratorens optioner
 Switches to this workspace with its panes at their default places	Skifter til dette arbejdsområde med panelerne på deres standardpladser
+Switches, push buttons and room thermostats	Afbrydere, trykknapper og rumtermostater
 Symbol editor	Symboleditor
 Symbol table import failed: {}	Importen af symboltabellen mislykkedes: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symboler og ledninger på denne side tegnes, men evalueres ikke (ingen enheder, forbindelser eller rapporter).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Hjul / træk med højre eller midterste knap
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zoom · højreklik: annuller · grafik fastgøres til 0,5 mm, tilslutningspunkter til 4 mm-gitteret
 When it differs from the page	Når den afviger fra siden
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Hvor ledningen starter og slutter: et tilslutningspunkt fra artikeldataene, et genereret fra funktionsskabelonen eller enhedens midte, hvis intet tilslutningspunkt passer
+Whole building	Hele bygningen
 Whole words	Hele ord
+Width / going	Bredde / grund
 Width / height (mm)	Bredde / højde (mm)
 Width × depth	Bredde × dybde
 Width × height	Bredde × højde
@@ -1884,6 +1909,7 @@ all cards	alle kort
 all lines	alle linjer
 all, or e.g. -X*, -W1	alle, eller f.eks. -X*, -W1
 all, or e.g. K, Q	alle, eller f.eks. K, Q
+along z	langs z
 both ends	begge ender
 built-in	indbygget
 by hand	manuelt
@@ -1917,6 +1943,7 @@ given	angivet
 horizontal	vandret
 if	hvis
 kW	kW
+low side at the rear	lav side bagved
 male	han
 manual	manuel
 max. {} °C	maks. {} °C
@@ -1926,6 +1953,7 @@ model	model
 name	navn
 no	nej
 no rooms	ingen rum
+no valid levels	ingen gyldige etager
 no wires	ingen ledninger
 none	ingen
 not defined	ikke defineret
@@ -1944,6 +1972,8 @@ pin and socket	ben og bøsning
 placed / provided by the parts	placeret / leveret af artiklerne
 reached: PL {}	opnået: PL {}
 review round {}	gennemsynsrunde {}
+ridge {} m	kip {} m
+sloped ceiling from {} m	skråloft fra {} m
 some	nogle
 taken over	overtaget
 the project data (page list, devices, settings)	projektdataene (sideliste, enheder, indstillinger)

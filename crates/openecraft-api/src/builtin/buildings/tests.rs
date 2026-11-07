@@ -90,3 +90,45 @@ fn devices_on_the_facade_and_the_roof() {
     assert_eq!(r[0]["problems"], json!([]));
     assert!(run(&mut s, "mount_on_wall", json!({ "room": "+R1", "device": "-K2", "face": "outside9", "x": 0, "y": 0 })).unwrap_err().contains("Unknown face"));
 }
+
+#[test]
+fn stairs_roofs_and_roof_windows() {
+    let mut s = demo_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 30000, "z": 0 })).unwrap();
+    run(&mut s, "add_level", json!({ "building": "+H1" })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 8000, "depth": 6000 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+DG", "building": "+H1", "level": "L1", "x": 0, "z": 0, "width": 8000, "depth": 6000 })).unwrap();
+    // A stair turned once from the ground floor up.
+    let b = run(&mut s, "add_stair", json!({ "building": "+H1", "x": 1000, "z": 5000, "kind": "quarter_landing", "turn": "right" })).unwrap();
+    let st = &b["stairs"][0];
+    assert_eq!((st["name"].as_str(), st["kind"].as_str(), st["turn"].as_str()), (Some("ST1"), Some("quarter_landing"), Some("right")));
+    assert_eq!((st["bottom"].as_str(), st["top"].as_str(), st["risers"].as_u64()), (Some("L0"), Some("L1"), Some(17)));
+    assert!(run(&mut s, "add_stair", json!({ "building": "+H1", "x": 0, "z": 0, "kind": "ladder" })).unwrap_err().contains("ladder"));
+    assert!(run(&mut s, "add_stair", json!({ "building": "+H1", "x": 0, "z": 0, "bottom": "L1" })).is_err(), "nothing above L1");
+    let b = run(&mut s, "set_stair", json!({ "building": "+H1", "stair": "st1", "kind": "spiral", "width": 800 })).unwrap();
+    assert_eq!((b["stairs"][0]["kind"].as_str(), b["stairs"][0]["width"].as_f64()), (Some("spiral"), Some(800.0)));
+    // A gable roof low over the attic slopes its ceiling, not that of the ground floor.
+    let b = run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable", "eaves": 4000, "pitch": 40 })).unwrap();
+    let r = &b["roofs"][0];
+    assert_eq!((r["name"].as_str(), r["shape"].as_str(), r["eaves"].as_f64()), (Some("R1"), Some("gable"), Some(4000.0)));
+    assert!(r["ridge"].as_f64().unwrap() > 6000.0);
+    assert!(b["levels"][0]["rooms"][0].get("ceiling").is_none());
+    let attic = &b["levels"][1]["rooms"][0]["ceiling"];
+    assert!((attic["lowest"].as_f64().unwrap() - 1000.0).abs() < 300.0 && (attic["highest"].as_f64().unwrap() - 2700.0).abs() < 0.5, "{attic}");
+    assert!(run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "dome" })).unwrap_err().contains("dome"));
+    // Roof windows in its slope.
+    let b = run(&mut s, "add_roof_window", json!({ "building": "+H1", "roof": "R1" })).unwrap();
+    let id = b["roofs"][0]["windows"][0]["id"].as_u64().unwrap();
+    let b = run(&mut s, "set_roof_window", json!({ "building": "+H1", "roof": "R1", "window": id, "width": 1140 })).unwrap();
+    assert_eq!(b["roofs"][0]["windows"][0]["width"], 1140.0);
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    let b = run(&mut s, "set_roof_window", json!({ "building": "+H1", "roof": "R1", "window": id, "remove": true })).unwrap();
+    assert_eq!(b["roofs"][0]["windows"], json!([]));
+    let b = run(&mut s, "set_roof", json!({ "building": "+H1", "roof": "R1", "shape": "flat", "eaves": 6000 })).unwrap();
+    assert!(b["levels"][1]["rooms"][0].get("ceiling").is_none(), "a high flat roof leaves the ceiling flat");
+    let b = run(&mut s, "set_roof", json!({ "building": "+H1", "roof": "R1", "remove": true })).unwrap();
+    assert_eq!(b["roofs"], json!([]));
+    let b = run(&mut s, "set_stair", json!({ "building": "+H1", "stair": "ST1", "remove": true })).unwrap();
+    assert_eq!(b["stairs"], json!([]));
+}

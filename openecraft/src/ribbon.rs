@@ -266,7 +266,7 @@ pub static TABS: &[Tab] = &[
         context: true,
         groups: &[
             g("enclosures", tr_const!("Enclosures"), &[L(C::NewEnclosure), S(C::NewRoom), S(C::Buildings), S(C::LayoutSpaces), S(C::LayoutProperties)]),
-            g("place", tr_const!("Insert"), &[L(C::LayoutSelect), S(C::LayoutAccessory), S(C::LayoutRackPart), S(C::LayoutWallPart), S(C::LayoutFloorPart), S(C::Layout3dMacro)]),
+            g("place", tr_const!("Insert"), &[L(C::LayoutSelect), S(C::LayoutAccessory), S(C::LayoutRackPart), S(C::LayoutWallPart), S(C::LayoutInstallation), S(C::LayoutFloorPart), S(C::Layout3dMacro)]),
             g(
                 "draw",
                 tr_const!("Draw"),
@@ -277,7 +277,7 @@ pub static TABS: &[Tab] = &[
                 tr_const!("View"),
                 &[L(C::Layout3d), S(C::LayoutFloorPlan), S(C::LayoutFront), S(C::LayoutDoor), S(C::LayoutDoorInside), S(C::LayoutWalls), S(C::LayoutFit)],
             ),
-            g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutOpenDucts)]),
+            g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutOpenDucts)]),
             g("production", tr_const!("Production"), &[L(C::LayoutNcData), S(C::LayoutReports), S(C::LayoutMountingPage)]),
         ],
     },

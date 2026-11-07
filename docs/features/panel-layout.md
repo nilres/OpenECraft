@@ -157,6 +157,19 @@ or Enter), walls are dragged to move them or get a length in the room's properti
   *Wall mounting* (part editor › Mounting data, a `WALL` badge in the part trees, filter
   *Only parts for direct wall mounting*), then it goes directly on the wall
   (*Insert › Wall-mounted part*, also without a device tag).
+- **Outlets, switches and heating** (*Insert › Outlets, switches, heating*): socket
+  outlets, data and antenna outlets, switches, push buttons, dimmers, room thermostats,
+  heating circuit manifolds and single-room control boxes (RTL / TH). The menu lists
+  the generic parts of the catalog (`GEN.SOCKET-F-UP`, `GEN.SW-2WAY-UP`, …, manifolds
+  `GEN.HCM-2` … `GEN.HCM-12`, the number of circuits chosen in the menu, `GEN.RTL-BOX`)
+  and those of the parts database and of the shipped catalogs `gira` (System 55),
+  `mdt` (KNX push buttons, glass push button, room temperature controller) and `cosmo`
+  (manifolds Standard and Balance, control boxes); a part of a shipped catalog comes
+  into the project when it is chosen. A part with a *Mounting height* in its technical
+  data goes on the wall at that height (its middle above the floor: socket and data
+  outlets 300 mm, switches 1050 mm, thermostats 1500 mm, control boxes 250 mm) where
+  the wall is clicked. The manifolds have a nozzle for flow and return and one pair per
+  circuit, downwards, for the pipe routing.
 - The **floor** (face `floor`) carries the parts marked *Floor mounting* (pumps, tanks,
   compressors; a `FLOOR` badge, filter *Only floor-standing parts*): *Insert ›
   Floor-standing part*, devices to place on the floor's view, command `mount_on_wall`
@@ -207,8 +220,10 @@ place in 3D, with the routes between them.
 ## Buildings, levels and shafts
 
 *Layout space › Buildings* (plugin `buildings`) manages the buildings of the plant;
-the pane lists them with their levels, shafts and the links between buildings, and
-draws a site plan of all rooms (one level highlighted), shafts and links.
+the pane lists them with their levels, shafts, stairs, roofs and the links between
+buildings, and draws a site plan of all rooms (one level highlighted), shafts, the
+stairs reaching the level shown (steps and walking line), the roofs (eaves, ridges and
+hips dashed) with their roof windows, and the links.
 
 - A **building** (command `add_building`) has a place in the plant (x, z and a turn)
   and **levels** on top of each other (`add_level`, `set_level`: name, height of the
@@ -232,6 +247,29 @@ draws a site plan of all rooms (one level highlighted), shafts and links.
   from a room into the rooms above and below whose floor plans the shaft passes, from
   below the ceiling of one to above the floor of the next. The floor plan of a room
   shows the shafts through its level.
+- **Stairs** (*New stair* in the pane, `add_stair`, `set_stair`) lead from the floor
+  of one level up to the floor of another: *straight*, *turned once* at a quarter
+  landing, *turned twice* at two quarter landings, with a *half landing* (two flights
+  side by side) or *spiral* round a newel, turning left or right. Their foot is the
+  middle of the front edge of the lowest step in the building's floor plan, with the
+  direction of the first flight, the width of the flights and the going of a step; the
+  steps follow from the difference in height (risers near 175 mm). The floor plans of
+  the rooms show the stairs on their level (dashed where they come up from below), the
+  3D view their steps and landings and the hole in the floor slab above.
+- **Roofs** (*New roof* in the pane, `add_roof`, `set_roof`): *flat*, *shed*, *gable*,
+  *hip* or *pyramid* over a rectangle of the building's floor plan (a new one covers
+  the rooms of the building), with the height of its eaves, pitch, overhang and
+  thickness; a gable or shed roof runs along x or z. The underside of the roof starts
+  at the eaves over the walls and rises at the pitch. Where it is lower than the
+  ceiling of a room below it, also on several levels at once (eaves a knee wall above
+  the attic floor, or below the ceiling of the level under it), it becomes that room's
+  ceiling: the room is of different heights at different places. Its walls end under
+  the slope in the 3D view, the view of a wall draws the line where it ends, the floor
+  plan shades the parts under the slope with their lowest height, and the pane and
+  `list_buildings` give the lowest and highest ceiling of each such room. **Roof
+  windows** (`add_roof_window`, `set_roof_window`; 780 × 1180 mm unless set otherwise)
+  lie in a slope at their middle in the floor plan, with their width along the eaves
+  and their length up the slope; they are seen from outside and from the room below.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall
@@ -240,10 +278,23 @@ draws a site plan of all rooms (one level highlighted), shafts and links.
 
 The check *Buildings, levels and shafts* reports rooms on levels that are gone, rooms
 higher than their level or overlapping on one level, levels overlapping each other,
-shafts joining no two rooms, cabinets and floor-standing parts standing in a shaft, and
-links whose building entries are gone. Example 15 (`plant_buildings`) shows a main
-building with two levels and a shaft, a pump house linked by a cable trench through
-which a motor cable is routed, façade lights and a weather station on the roof.
+shafts joining no two rooms, cabinets and floor-standing parts standing in a shaft,
+links whose building entries are gone, stairs without valid levels, with a rise outside
+140 - 200 mm or breaking the step rule (twice the rise and the going 590 - 650 mm),
+roof windows off their slope or across a ridge or hip, rooms the roof comes down to the
+floor of, cabinets higher than the sloped ceiling at their place and items on the walls
+or the ceiling above the slope. Example 15 (`plant_buildings`) shows a main building
+with two levels and a shaft, a pump house linked by a cable trench through which a
+motor cable is routed, façade lights and a weather station on the roof; example 16
+(`office_building`) adds an office building with an attic under a gable roof, a stair
+turned at a quarter landing, roof windows, outlets and switches of Gira and MDT and a
+COSMO heating circuit manifold.
+
+**In 3D**, *Layout space › Show › Whole building* shows the building of the room shown
+with all its levels and rooms, their floor slabs, the stairs and the roofs; *All
+enclosures* shows every building of the plant this way. Roofs and gable walls are seen
+from outside like the walls (translucent, or left out with *Hide walls in front*);
+*Hide ceiling* leaves out the ceilings and the roofs to look into the building.
 
 ![Floor plan of the electrical_room example: L-shaped room, inner wall, door, window and the two cabinets](../images/room.png)
 

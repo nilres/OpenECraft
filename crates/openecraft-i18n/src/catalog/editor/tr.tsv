@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Diğer proje
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Proje verilerini (kimlikler, referanslar, cihaz verileri, seçenekler, alt projeler) mühendislik kontrolleriyle birlikte kontrol eder.
 Choices	Seçenekler
 Choices (separated by commas)	Seçenekler (virgülle ayrılmış)
+Choose	Seç
 Choose a baseline, a revision or a project file to compare the project with.	Projeyi karşılaştırmak için bir referans sürüm, bir revizyon veya bir proje dosyası seçin.
 Choose a room first: floor-standing parts go on its floor.	Önce bir oda seçin: zemine konan parçalar onun zeminine yerleştirilir.
 Choose file…	Dosya seç…
 Choose pages	Sayfaları seç
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
 Circle	Daire
+Circuits of a generic manifold	Genel bir kollektörün devreleri
 Clear	Temizle
 Clearance	Açıklık mesafesi
 Clearances	Mesafeler
@@ -278,6 +280,7 @@ Click into the page to place {}	{} öğesini yerleştirmek için sayfaya tıklay
 Click on a wall	Bir duvara tıklayın
 Click on a wire to place the connection definition point	Bağlantı tanım noktasını yerleştirmek için bir tele tıklayın
 Click on the 4 mm grid	4 mm ızgarada tıklayın
+Click on the wall: the part goes there at its mounting height	Duvara tıklayın: parça orada montaj yüksekliğine yerleşir
 Click start and end point	Başlangıç ve bitiş noktasına tıklayın
 Click the corners of a machine or building, double-click to finish	Bir makinenin veya binanın köşelerine tıklayın, bitirmek için çift tıklayın
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	İç duvarların uçlarına tıklayın; her tıklama bir sonrakini başlatır, duvara yakın uçlar duvara yapışır. Esc, Enter veya çift tıklama zinciri, ikinci Esc aracı bitirir.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Boşlukla ayrılmış damar tanımları
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Kesişen teller için 1, 2, 3 … damarları, artı GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Köşe: dik açılı iki tel; otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır
 Cover sheet, overview, graphics, report, mounting layout or a page template	Kapak sayfası, genel bakış, grafik, rapor, montaj yerleşimi veya bir sayfa şablonu
+Covers	Kapsar
 Covers what is behind the text	Metnin arkasında kalanı örter
 Create	Oluştur
 Create an enclosure in the panel layout first.	Önce pano yerleşiminde bir pano oluşturun.
@@ -424,10 +428,13 @@ Delete macro	Makroyu sil
 Delete node	Düğümü sil
 Delete page	Sayfayı sil
 Delete request	Talebi sil
+Delete roof	Çatıyı sil
+Delete roof window	Çatı penceresini sil
 Delete room	Odayı sil
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	{} odası duvarlarındaki her şeyle birlikte silinsin mi? İçindeki panolar odasız kalır.
 Delete section	Bölümü sil
 Delete shaft	Şaftı sil
+Delete stair	Merdiveni sil
 Delete the group	Grubu sil
 Delete the layer; its items move to the default layer	Katmanı sil; öğeleri varsayılan katmana taşınır
 Delete the property and all its values	Özelliği ve tüm değerlerini sil
@@ -541,6 +548,7 @@ Duplicate	Çoğalt
 Each example builds on the one before and shows more of the features.	Her örnek bir öncekinin üzerine kurulur ve özelliklerin daha fazlasını gösterir.
 Each point-to-point connection can belong to a harness	Her noktadan noktaya bağlantı bir kablo demetine ait olabilir
 Earthing system	Topraklama sistemi
+Eaves	Saçak
 Edge length of the routing grid: smaller is finer and slower	Yönlendirme ızgarasının kenar uzunluğu: küçük değer daha hassas ve daha yavaştır
 Edit	Düzen
 Edit in table	Tabloda düzenle
@@ -640,6 +648,7 @@ Floor plan with {} walls	{} duvarlı kat planı
 Floor-standing part	Zemine konan parça
 Fluid and process	Akışkan ve proses
 Follows its condition: use Apply conditions	Koşuluna uyar: Koşulları uygula'yı kullanın
+Foot	Başlangıç
 For	Kullanım
 For parts without Stock length; longer profiles have to be joined	Stock length değeri olmayan parçalar için; daha uzun profillerin eklenmesi gerekir
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Sıcaklık verisi olmayan parçalar için (Max temperature, Operating temperature); 0: kontrol edilmez
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Kafa modülü (CPU / kuplör)
 Header row	Başlık satırı
 Heat map	Isı haritası
 Heating	Isıtma
+Heating circuit manifolds and control boxes	Isıtma devresi kollektörleri ve kontrol kutuları
 Height (mm)	Yükseklik (mm)
 Height above the floor	Zeminden yükseklik
 Height above the mounting plate	Montaj plakası üzerindeki yükseklik
@@ -833,9 +843,9 @@ Layout checks	Yerleşim kontrolleri
 Layout properties	Yerleşim özellikleri
 Layout space	Montaj alanı
 Layout spaces	Montaj alanları
+Leave out the ceilings of the rooms and the roofs in the 3D view	3D görünümde odaların tavanlarını ve çatıları gösterme
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3B görünümde tüm kablo kanallarının kapaklarını gösterme: içlerindeki teller görünür
 Leave repeated values of the first column blank	İlk sütunun yinelenen değerlerini boş bırak
-Left	Sol
 Left edges	Sol kenarlar
 Legend plates (door devices)	Tanıtım plakaları (kapı cihazları)
 Length from the node to the device	Düğümden cihaza uzunluk
@@ -931,6 +941,7 @@ Motors feed the short circuit	Motorlar kısa devreyi besler
 Mounted on	Montaj yeri
 Mounting assistant: the panel items in mounting order with their place and part	Montaj yardımcısı: montaj sırasına göre pano öğeleri, yerleri ve parçalarıyla
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Yan yana montaj mesafesi; parçalar kendi mesafelerini ekler (Clearance left / right)
+Mounting height: {}	Montaj yüksekliği: {}
 Mounting plate: {} holes, {} cutouts	Montaj plakası: {} delik, {} kesim
 Move	Taşı
 Move down	Aşağı taşı
@@ -992,12 +1003,14 @@ New report page	Yeni rapor sayfası
 New request	Yeni talep
 New revision	Yeni revizyon
 New revisions start as drafts, are submitted for review and can be released once approved.	Yeni revizyonlar taslak olarak başlar, incelemeye gönderilir ve onaylandıktan sonra yayımlanabilir.
+New roof	Yeni çatı
 New room	Yeni oda
 New room on this level	Bu katta yeni oda
 New schematic page	Yeni şema sayfası
 New scheme	Yeni şema
 New section	Yeni bölüm
 New shaft	Yeni şaft
+New stair	Yeni merdiven
 New sub-page	Yeni alt sayfa
 New subsection	Yeni alt bölüm
 New tag for {}	{} için yeni etiket
@@ -1134,6 +1147,7 @@ Other values ({})	Diğer değerler ({})
 Otherwise from the plant layout, or next to the other line-ups	Aksi halde tesis yerleşiminden veya diğer pano dizilerinin yanına
 Out since {} (pages locked)	{} tarihinden beri dışarıda (sayfalar kilitli)
 Outer diameter (e.g. 8 mm) or DN	Dış çap (ör. 8 mm) veya DN
+Outlets, switches, heating	Prizler, anahtarlar, ısıtma
 Outline	Dış hat
 Outlines	Dış hatlar
 Output bytes	Çıkış baytları
@@ -1141,6 +1155,7 @@ Output failed: {}	Çıktı başarısız oldu: {}
 Output to another project	Başka bir projeye çıktı
 Output to project…	Projeye çıktı al…
 Outputs	Çıkışlar
+Overhang	Taşma
 Own colour	Özel renk
 Own drawn form	Kendi çizilmiş form
 Own groups	Kendi gruplar
@@ -1198,6 +1213,7 @@ Pin-out	Pin dizilimi
 Pipe run	Boru güzergâhı
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Odanın duvarında, tavanında veya zemininde, hortumların, boruların ve boru hatlarının boyunca döşendiği boru güzergâhı: köşelere tıklayın, bitirmek için çift tıklayın veya Enter'a basın
 Pipe run {} mm – double-click or Enter to finish	Boru güzergâhı {} mm – bitirmek için çift tıklayın veya Enter'a basın
+Pitch	Eğim
 Pitch X / Y	Aralık X / Y
 Place a comment on the page	Sayfaya bir yorum yerleştir
 Place again at all symbols using it	Bunu kullanan tüm sembollere yeniden yerleştir
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revizyonlar, onay ve yayımlama
 Ribbon	Şerit
 Ribbon (JSON)	Şerit (JSON)
 Ribbon imported	Şerit içe aktarıldı
-Right	Sağ
 Right click for more	Daha fazlası için sağ tıklayın
 Right edges	Sağ kenarlar
 Right neighbour	Sağ komşu
 Rights	Haklar
+Risers	Rıhtlar
+Roof window	Çatı penceresi
+Roof windows	Çatı pencereleri
+Roofs	Çatılar
 Room	Oda
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Oda {} katına eklendi: duvarlarını sürükleyin veya kat planında yenilerini çizin, panoları özelliklerinden içine yerleştirin
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Oda eklendi: duvarlarını sürükleyin veya kat planında yenilerini çizin, panoları özelliklerinden içine yerleştirin
 Room {} now stands on level {}	{} odası artık {} katında
 Room {} taken out of the building; it stays where it stands	{} odası binadan çıkarıldı; olduğu yerde kalır
+Rooms under sloped ceilings (lowest – highest ceiling)	Eğimli tavan altındaki odalar (en alçak – en yüksek tavan)
 Rotate	Döndür
 Rotate (selection or symbol being placed)	Döndür (seçim veya yerleştirilen sembol)
 Round	Yuvarlak
@@ -1589,6 +1609,7 @@ Slot	Yuva
 Slots	Slotlar
 Smallest cross-section of control circuits	Kumanda devrelerinin en küçük kesiti
 Smallest cross-section of power circuits	Güç devrelerinin en küçük kesiti
+Socket outlets, data and antenna outlets	Prizler, veri ve anten prizleri
 Some wires have no length: place their devices in the panel layout or set the field length.	Bazı tellerin uzunluğu yok: cihazlarını pano yerleşimine yerleştirin veya alan uzunluğunu ayarlayın.
 Sort by designation	Tanıma göre sırala
 Sort order	Sıralama
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Güzergâhla
 Spare terminals	Yedek klemensler
 Special text	Özel metin
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Özel metin: {page} veya {prop:Name} gibi proje ve sayfa özellikleri sayfa çizilirken doldurulur
+Stairs	Merdivenler
 Standard form of the report	Raporun standart formu
 Standard size	Standart boyut
 Standard workspaces	Standart çalışma alanları
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	\"{}\" kontrolünü kapat
 Switches the options with a condition by the configurator options	Koşullu seçenekleri yapılandırıcı seçeneklerine göre değiştirir
 Switches to this workspace with its panes at their default places	Bu çalışma alanına geçer ve bölmeleri varsayılan yerlerine koyar
+Switches, push buttons and room thermostats	Anahtarlar, butonlar ve oda termostatları
 Symbol editor	Sembol düzenleyici
 Symbol table import failed: {}	Sembol tablosu içe aktarma başarısız oldu: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Bu sayfadaki semboller ve teller çizilir ancak değerlendirilmez (cihaz, bağlantı veya rapor yok).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Tekerlek / sağ veya orta tuşla sürükleme
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Tekerlek: yakınlaştır · sağ tık: iptal · grafikler 0,5 mm'ye, bağlantı noktaları 4 mm ızgaraya yaslanır
 When it differs from the page	Sayfadan farklı olduğunda
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Telin başladığı ve bittiği yer: parça verilerinden bir bağlantı noktası, fonksiyon şablonundan oluşturulan bir nokta veya eşleşen bağlantı noktası yoksa cihaz merkezi
+Whole building	Tüm bina
 Whole words	Tam sözcükler
+Width / going	Genişlik / basamak
 Width / height (mm)	Genişlik / yükseklik (mm)
 Width × depth	Genişlik × derinlik
 Width × height	Genişlik × yükseklik
@@ -1884,6 +1909,7 @@ all cards	tüm kartlar
 all lines	tüm satırlar
 all, or e.g. -X*, -W1	tümü veya ör. -X*, -W1
 all, or e.g. K, Q	tümü veya ör. K, Q
+along z	z boyunca
 both ends	her iki uç
 built-in	yerleşik
 by hand	elle
@@ -1917,6 +1943,7 @@ given	verilmiş
 horizontal	yatay
 if	eğer
 kW	kW
+low side at the rear	alçak taraf arkada
 male	erkek
 manual	manuel
 max. {} °C	maks. {} °C
@@ -1926,6 +1953,7 @@ model	model
 name	ad
 no	hayır
 no rooms	oda yok
+no valid levels	geçerli kat yok
 no wires	tel yok
 none	yok
 not defined	tanımlı değil
@@ -1944,6 +1972,8 @@ pin and socket	pin ve soket
 placed / provided by the parts	yerleştirilen / parçaların sağladığı
 reached: PL {}	ulaşılan: PL {}
 review round {}	inceleme turu {}
+ridge {} m	mahya {} m
+sloped ceiling from {} m	{} m'den itibaren eğimli tavan
 some	bazıları
 taken over	aktarıldı
 the project data (page list, devices, settings)	proje verileri (sayfa listesi, cihazlar, ayarlar)

@@ -1,6 +1,8 @@
-//! Building commands: buildings of the plant with their levels and shafts, rooms on the
-//! levels, and links (cable trenches, conduits, cable bridges) between the building
-//! entries of different buildings ([`openecraft_core::panel::buildings`]).
+//! Building commands: buildings of the plant with their levels, shafts, stairs and
+//! roofs (with roof windows), rooms on the levels, and links (cable trenches,
+//! conduits, cable bridges) between the building entries of different buildings
+//! ([`openecraft_core::panel::buildings`], [`openecraft_core::panel::stairs`],
+//! [`openecraft_core::panel::roofs`]).
 
 use crate::builtin::common::{int_in, num_in, NO_LIMIT, NO_MAX};
 use crate::params::{optional, param, Args, Kind};
@@ -8,7 +10,7 @@ use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
 use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
-use openecraft_core::panel::{self, LinkKind, Opening, SitePlace};
+use openecraft_core::panel::{self, roofs, stairs, LinkKind, Opening, RoofShape, SitePlace, StairKind, Turn};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
@@ -16,7 +18,7 @@ pub struct Buildings;
 
 impl Plugin for Buildings {
     fn info(&self) -> Info {
-        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels and shafts, rooms on the levels and links between buildings"))
+        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels, shafts, stairs and roofs, rooms on the levels and links between buildings"))
     }
 
     fn register(&self, reg: &mut Registry) -> Result<(), String> {
@@ -29,6 +31,21 @@ const LEVEL: &str = tr_const!("Level: its name or number (1 = the lowest)");
 const SHAFT: &str = tr_const!("Shaft: its name");
 const LINK: &str = tr_const!("Link between buildings: its name");
 const KIND: &str = tr_const!("trench, conduit or bridge");
+const STAIR: &str = tr_const!("Stair: its name");
+const STAIR_KIND: &str = tr_const!("straight, quarter_landing, two_quarter_landings, half_landing or spiral");
+const STAIR_TURN: &str = tr_const!("left or right: the side the stair turns to on the way up");
+const STAIR_ANGLE: &str = tr_const!("Direction of the first flight in degrees, counter-clockwise seen from above (0: towards +x)");
+const STAIR_X: &str = tr_const!("Middle of the front edge of the lowest step in the floor plan of the building, x in mm");
+const STAIR_Z: &str = tr_const!("Middle of the front edge of the lowest step in the floor plan of the building, z in mm");
+const ROOF: &str = tr_const!("Roof: its name");
+const ROOF_SHAPE: &str = tr_const!("flat, shed, gable, hip or pyramid");
+const ROOF_X: &str = tr_const!("Rear left corner of the covered rectangle (outer walls) in the floor plan of the building, x in mm");
+const ROOF_Z: &str = tr_const!("Rear left corner of the covered rectangle (outer walls) in the floor plan of the building, z in mm");
+const ROOF_EAVES: &str = tr_const!("Height of the underside of the roof over the walls above the ground level of the building in mm");
+const ROOF_ALONG_Z: &str = tr_const!("The ridge (or the slope of a shed roof) runs along z instead of x");
+const ROOF_FLIP: &str = tr_const!("Shed roof: the low eaves at the rear or left instead of the front or right");
+const WINDOW_X: &str = tr_const!("Middle of the window in the floor plan of the building, x in mm");
+const WINDOW_Z: &str = tr_const!("Middle of the window in the floor plan of the building, z in mm");
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
@@ -133,6 +150,116 @@ pub static COMMANDS: &[Spec] = &[
         run: set_shaft,
     },
     Spec {
+        name: "add_stair",
+        help: tr_const!("Adds a stair to a building from the floor of one level up to the floor of another: straight, turned once or twice at quarter landings, with a half landing or spiral; its steps follow from the difference in height"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("x", Kind::Num, STAIR_X),
+            param("z", Kind::Num, STAIR_Z),
+            optional("kind", Kind::Str, STAIR_KIND),
+            optional("turn", Kind::Str, STAIR_TURN),
+            optional("angle", Kind::Num, STAIR_ANGLE),
+            optional("width", Kind::Num, tr_const!("Width of the flights in mm (default 1000)")),
+            optional("tread", Kind::Num, tr_const!("Going of a step in mm (default 270)")),
+            optional("bottom", Kind::Str, tr_const!("Level it starts on (default the lowest of the building)")),
+            optional("top", Kind::Str, tr_const!("Level it leads up to (default the next one above)")),
+            optional("name", Kind::Str, tr_const!("Name (default ST1, ST2, …)")),
+        ],
+        run: add_stair,
+    },
+    Spec {
+        name: "set_stair",
+        help: tr_const!("Moves, turns or resizes a stair, changes its kind or the levels it joins, renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("stair", Kind::Str, STAIR),
+            optional("x", Kind::Num, STAIR_X),
+            optional("z", Kind::Num, STAIR_Z),
+            optional("kind", Kind::Str, STAIR_KIND),
+            optional("turn", Kind::Str, STAIR_TURN),
+            optional("angle", Kind::Num, STAIR_ANGLE),
+            optional("width", Kind::Num, tr_const!("Width in mm")),
+            optional("tread", Kind::Num, tr_const!("Going of a step in mm")),
+            optional("bottom", Kind::Str, tr_const!("Lowest level")),
+            optional("top", Kind::Str, tr_const!("Highest level")),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the stair")),
+        ],
+        run: set_stair,
+    },
+    Spec {
+        name: "add_roof",
+        help: tr_const!("Adds a roof to a building: flat, shed, gable, hip or pyramid; without a rectangle it covers the rooms of the building with its eaves on top of the highest level. A roof lower than the ceilings of the rooms below it slopes their ceilings"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            optional("shape", Kind::Str, ROOF_SHAPE),
+            optional("x", Kind::Num, ROOF_X),
+            optional("z", Kind::Num, ROOF_Z),
+            optional("width", Kind::Num, tr_const!("Width of the covered rectangle in mm")),
+            optional("depth", Kind::Num, tr_const!("Depth of the covered rectangle in mm")),
+            optional("along_z", Kind::Bool, ROOF_ALONG_Z),
+            optional("flip", Kind::Bool, ROOF_FLIP),
+            optional("eaves", Kind::Num, ROOF_EAVES),
+            optional("pitch", Kind::Num, tr_const!("Pitch of the slopes in degrees")),
+            optional("overhang", Kind::Num, tr_const!("Overhang over the walls in mm (default 400)")),
+            optional("thickness", Kind::Num, tr_const!("Thickness of the roof in mm (default 300)")),
+            optional("name", Kind::Str, tr_const!("Name (default R1, R2, …)")),
+        ],
+        run: add_roof,
+    },
+    Spec {
+        name: "set_roof",
+        help: tr_const!("Changes the shape, the rectangle, the eaves, the pitch, the overhang or the thickness of a roof, renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            optional("shape", Kind::Str, ROOF_SHAPE),
+            optional("x", Kind::Num, ROOF_X),
+            optional("z", Kind::Num, ROOF_Z),
+            optional("width", Kind::Num, tr_const!("Width of the covered rectangle in mm")),
+            optional("depth", Kind::Num, tr_const!("Depth of the covered rectangle in mm")),
+            optional("along_z", Kind::Bool, ROOF_ALONG_Z),
+            optional("flip", Kind::Bool, ROOF_FLIP),
+            optional("eaves", Kind::Num, ROOF_EAVES),
+            optional("pitch", Kind::Num, tr_const!("Pitch of the slopes in degrees")),
+            optional("overhang", Kind::Num, tr_const!("Overhang over the walls in mm")),
+            optional("thickness", Kind::Num, tr_const!("Thickness of the roof in mm")),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the roof")),
+        ],
+        run: set_roof,
+    },
+    Spec {
+        name: "add_roof_window",
+        help: tr_const!("Adds a roof window to a slope of a roof; without x and z halfway up its front or right slope"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            optional("x", Kind::Num, WINDOW_X),
+            optional("z", Kind::Num, WINDOW_Z),
+            optional("width", Kind::Num, tr_const!("Width along the eaves in mm (default 780)")),
+            optional("length", Kind::Num, tr_const!("Length up the slope in mm (default 1180)")),
+            optional("part", Kind::Str, tr_const!("Part number of the window")),
+        ],
+        run: add_roof_window,
+    },
+    Spec {
+        name: "set_roof_window",
+        help: tr_const!("Moves or resizes a roof window, changes its part or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            param("window", Kind::Int, tr_const!("Id of the roof window")),
+            optional("x", Kind::Num, WINDOW_X),
+            optional("z", Kind::Num, WINDOW_Z),
+            optional("width", Kind::Num, tr_const!("Width along the eaves in mm")),
+            optional("length", Kind::Num, tr_const!("Length up the slope in mm")),
+            optional("part", Kind::Str, tr_const!("Part number of the window")),
+            optional("remove", Kind::Bool, tr_const!("Remove the roof window")),
+        ],
+        run: set_roof_window,
+    },
+    Spec {
         name: "add_site_link",
         help: tr_const!("Links a building entry of one room to a building entry of a room in another building: a cable trench, a conduit or a cable bridge, along which cables, tubes and pipes are routed from building to building"),
         params: &[
@@ -202,7 +329,13 @@ fn building_json(prj: &Project, bi: usize) -> Value {
                 .map(|ri| {
                     let e = &layout.enclosures[ri];
                     let p = e.site.unwrap_or_default();
-                    json!({ "room": e.name, "x": p.x, "z": p.z, "angle": p.angle, "height": e.height, "placed": e.site.is_some() })
+                    let mut room = json!({ "room": e.name, "x": p.x, "z": p.z, "angle": p.angle, "height": e.height, "placed": e.site.is_some() });
+                    // Under a roof that slopes its ceiling: its lowest and highest ceiling.
+                    if let Some(c) = roofs::ceiling_with(prj, &poses, ri) {
+                        let (lo, hi) = c.range(&roofs::floor_polys(e));
+                        room["ceiling"] = json!({ "lowest": lo, "highest": hi });
+                    }
+                    room
                 })
                 .collect();
             json!({ "name": l.name, "elevation": l.elevation, "height": l.height, "rooms": rooms })
@@ -216,6 +349,29 @@ fn building_json(prj: &Project, bi: usize) -> Value {
             json!({ "name": s.name, "x": s.x, "z": s.z, "width": s.width, "depth": s.depth, "bottom": level_name(prj, s.bottom), "top": level_name(prj, s.top), "rooms": rooms })
         })
         .collect();
+    let stairs: Vec<Value> = b
+        .stairs
+        .iter()
+        .map(|s| {
+            let g = stairs::geometry(b, s);
+            json!({
+                "name": s.name, "kind": s.kind.key(), "turn": s.turn.key(), "x": s.x, "z": s.z, "angle": s.angle, "width": s.width, "tread": s.tread,
+                "bottom": level_name(prj, s.bottom), "top": level_name(prj, s.top),
+                "risers": g.as_ref().map(|g| g.risers), "rise": g.as_ref().map(|g| g.rise),
+            })
+        })
+        .collect();
+    let roof_list: Vec<Value> = b
+        .roofs
+        .iter()
+        .map(|r| {
+            let windows: Vec<Value> = r.windows.iter().map(|w| json!({ "id": w.id, "x": w.x, "z": w.z, "width": w.width, "length": w.length, "part": w.part })).collect();
+            json!({
+                "name": r.name, "shape": r.shape.key(), "x": r.x, "z": r.z, "width": r.width, "depth": r.depth, "along_z": r.along_z, "flip": r.flip,
+                "eaves": r.eaves, "pitch": r.pitch, "overhang": r.overhang, "thickness": r.thickness, "ridge": roofs::ridge_height(r), "windows": windows,
+            })
+        })
+        .collect();
     json!({
         "name": b.name,
         "description": b.description,
@@ -224,6 +380,8 @@ fn building_json(prj: &Project, bi: usize) -> Value {
         "angle": b.site.angle,
         "levels": levels,
         "shafts": shafts,
+        "stairs": stairs,
+        "roofs": roof_list,
     })
 }
 
@@ -362,6 +520,180 @@ fn set_shaft(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     let s = bld::checked_shaft(&prj.layout.buildings[bi], s)?;
     prj.layout.buildings[bi].shafts[si] = s;
+    Ok(building_json(prj, bi))
+}
+
+fn stair_kind_arg(a: &Args) -> Result<Option<StairKind>, String> {
+    a.str("kind").map(|k| StairKind::from_key(k).ok_or_else(|| tr_fmt!("Unknown kind: {}", k))).transpose()
+}
+
+fn turn_arg(a: &Args) -> Result<Option<Turn>, String> {
+    a.str("turn").map(|k| Turn::from_key(k).ok_or_else(|| tr_fmt!("Unknown turn: {}", k))).transpose()
+}
+
+fn shape_arg(a: &Args) -> Result<Option<RoofShape>, String> {
+    a.str("shape").map(|k| RoofShape::from_key(k).ok_or_else(|| tr_fmt!("Unknown roof shape: {}", k))).transpose()
+}
+
+/// The stair of building `bi` named by `stair`.
+fn stair_arg(prj: &Project, bi: usize, a: &Args) -> Result<usize, String> {
+    let key = a.req("stair").trim();
+    let b = &prj.layout.buildings[bi];
+    b.stairs.iter().position(|s| s.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No stair {} in {}", key, b.name))
+}
+
+/// The roof of building `bi` named by `roof`.
+fn roof_arg(prj: &Project, bi: usize, a: &Args) -> Result<usize, String> {
+    let key = a.req("roof").trim();
+    let b = &prj.layout.buildings[bi];
+    b.roofs.iter().position(|r| r.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No roof {} in {}", key, b.name))
+}
+
+/// Applies the optional arguments of a stair command.
+fn stair_args(prj: &Project, bi: usize, a: &Args, mut s: panel::Stair) -> Result<panel::Stair, String> {
+    s.x = a.num("x").unwrap_or(s.x);
+    s.z = a.num("z").unwrap_or(s.z);
+    s.angle = a.num("angle").unwrap_or(s.angle);
+    s.kind = stair_kind_arg(a)?.unwrap_or(s.kind);
+    s.turn = turn_arg(a)?.unwrap_or(s.turn);
+    s.width = num_in(a, "width", 500.0, 5000.0)?.unwrap_or(s.width);
+    s.tread = num_in(a, "tread", 150.0, 500.0)?.unwrap_or(s.tread);
+    if let Some(l) = a.str("bottom") {
+        s.bottom = level_arg(prj, bi, l)?;
+    }
+    if let Some(l) = a.str("top") {
+        s.top = level_arg(prj, bi, l)?;
+    }
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        s.name = n.into();
+    }
+    stairs::checked_stair(&prj.layout.buildings[bi], s)
+}
+
+fn add_stair(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let bottom = match a.str("bottom") {
+        Some(l) => level_arg(prj, bi, l)?,
+        None => prj.layout.buildings[bi].levels.first().map(|l| l.id).ok_or_else(|| tr("No such level").to_string())?,
+    };
+    let top = a.str("top").map(|l| level_arg(prj, bi, l)).transpose()?;
+    let id = stairs::add_stair(prj, bi, StairKind::Straight, a.num("x").unwrap_or_default(), a.num("z").unwrap_or_default(), bottom, top)?;
+    let k = prj.layout.buildings[bi].stairs.iter().position(|s| s.id == id).unwrap_or_default();
+    let s = stair_args(prj, bi, a, prj.layout.buildings[bi].stairs[k].clone());
+    match s {
+        Ok(s) => prj.layout.buildings[bi].stairs[k] = s,
+        Err(e) => {
+            prj.layout.buildings[bi].stairs.remove(k);
+            return Err(e);
+        }
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_stair(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = stair_arg(prj, bi, a)?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].stairs.remove(k);
+    } else {
+        let s = stair_args(prj, bi, a, prj.layout.buildings[bi].stairs[k].clone())?;
+        prj.layout.buildings[bi].stairs[k] = s;
+    }
+    Ok(building_json(prj, bi))
+}
+
+/// Applies the optional arguments of a roof command.
+fn roof_args(a: &Args, mut r: panel::Roof) -> Result<panel::Roof, String> {
+    r.shape = shape_arg(a)?.unwrap_or(r.shape);
+    r.x = a.num("x").unwrap_or(r.x);
+    r.z = a.num("z").unwrap_or(r.z);
+    r.width = num_in(a, "width", 500.0, NO_MAX)?.unwrap_or(r.width);
+    r.depth = num_in(a, "depth", 500.0, NO_MAX)?.unwrap_or(r.depth);
+    if a.value("along_z").is_some() {
+        r.along_z = a.flag("along_z");
+    }
+    if a.value("flip").is_some() {
+        r.flip = a.flag("flip");
+    }
+    r.eaves = a.num("eaves").unwrap_or(r.eaves);
+    r.pitch = num_in(a, "pitch", 0.0, 75.0)?.unwrap_or(r.pitch);
+    r.overhang = num_in(a, "overhang", 0.0, 3000.0)?.unwrap_or(r.overhang);
+    r.thickness = num_in(a, "thickness", 50.0, 1000.0)?.unwrap_or(r.thickness);
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        r.name = n.into();
+    }
+    Ok(roofs::checked_roof(r))
+}
+
+fn add_roof(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let shape = shape_arg(a)?.unwrap_or_default();
+    let id = roofs::add_roof(prj, bi, shape)?;
+    let k = prj.layout.buildings[bi].roofs.iter().position(|r| r.id == id).unwrap_or_default();
+    match roof_args(a, prj.layout.buildings[bi].roofs[k].clone()) {
+        Ok(r) => prj.layout.buildings[bi].roofs[k] = r,
+        Err(e) => {
+            prj.layout.buildings[bi].roofs.remove(k);
+            return Err(e);
+        }
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_roof(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].roofs.remove(k);
+    } else {
+        let r = roof_args(a, prj.layout.buildings[bi].roofs[k].clone())?;
+        prj.layout.buildings[bi].roofs[k] = r;
+    }
+    Ok(building_json(prj, bi))
+}
+
+/// Applies the optional arguments of a roof window command.
+fn window_args(a: &Args, w: &mut panel::RoofWindow) -> Result<(), String> {
+    w.x = a.num("x").unwrap_or(w.x);
+    w.z = a.num("z").unwrap_or(w.z);
+    w.width = num_in(a, "width", 200.0, 5000.0)?.unwrap_or(w.width);
+    w.length = num_in(a, "length", 200.0, 5000.0)?.unwrap_or(w.length);
+    if let Some(p) = a.str("part") {
+        w.part = p.trim().into();
+    }
+    Ok(())
+}
+
+fn add_roof_window(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    let at = match (a.num("x"), a.num("z")) {
+        (Some(x), Some(z)) => Some([x, z]),
+        _ => None,
+    };
+    let id = roofs::add_window(prj, bi, k, at)?;
+    let windows = &mut prj.layout.buildings[bi].roofs[k].windows;
+    let w = windows.iter_mut().find(|w| w.id == id).ok_or_else(|| tr("No such roof window").to_string())?;
+    if let Err(e) = window_args(a, w) {
+        windows.retain(|w| w.id != id);
+        return Err(e);
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_roof_window(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    let id = int_in(a, "window", 1, NO_LIMIT)?.unwrap_or_default() as u64;
+    let windows = &mut prj.layout.buildings[bi].roofs[k].windows;
+    let i = windows.iter().position(|w| w.id == id).ok_or_else(|| tr("No such roof window").to_string())?;
+    if a.flag("remove") {
+        windows.remove(i);
+    } else {
+        let mut w = windows[i].clone();
+        window_args(a, &mut w)?;
+        windows[i] = w;
+    }
     Ok(building_json(prj, bi))
 }
 

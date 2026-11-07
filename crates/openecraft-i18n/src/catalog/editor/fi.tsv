@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Käytöstä 
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Tarkistaa projektitiedot (tunnukset, viittaukset, laitetiedot, vaihtoehdot, aliprojektit) yhdessä suunnittelutarkistusten kanssa.
 Choices	Valinnat
 Choices (separated by commas)	Valinnat (pilkuin erotettuina)
+Choose	Valitse
 Choose a baseline, a revision or a project file to compare the project with.	Valitse lähtötaso, revisio tai projektitiedosto, johon projektia verrataan.
 Choose a room first: floor-standing parts go on its floor.	Valitse ensin huone: lattialle sijoitettavat osat tulevat sen lattialle.
 Choose file…	Valitse tiedosto…
 Choose pages	Valitse sivut
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
 Circle	Ympyrä
+Circuits of a generic manifold	Yleisen jakotukin piirit
 Clear	Tyhjennä
 Clearance	Vapaa etäisyys
 Clearances	Etäisyydet
@@ -278,6 +280,7 @@ Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
 Click on a wall	Napsauta seinää
 Click on a wire to place the connection definition point	Napsauta johtoa sijoittaaksesi yhteyden määrityspisteen
 Click on the 4 mm grid	Napsauta 4 mm:n ruudukkoon
+Click on the wall: the part goes there at its mounting height	Napsauta seinää: osa tulee siihen asennuskorkeudelleen
 Click start and end point	Napsauta alku- ja loppupistettä
 Click the corners of a machine or building, double-click to finish	Napsauta koneen tai rakennuksen kulmia, lopeta kaksoisnapsauttamalla
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Napsauta väliseinien päitä; jokainen napsautus aloittaa seuraavan, seinän lähellä olevat päät tarttuvat siihen. Esc, Enter tai kaksoisnapsautus päättää ketjun, toinen Esc työkalun.
@@ -367,6 +370,7 @@ Core designations separated by blanks	Johdinmerkinnät välilyönneillä erotett
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Johtimet 1, 2, 3 … ristityille johdoille sekä GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Kulma: kaksi johdinta suorassa kulmassa; automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen
 Cover sheet, overview, graphics, report, mounting layout or a page template	Kansilehti, yleiskuva, grafiikka, raportti, asennuskuva tai sivumalli
+Covers	Kattaa
 Covers what is behind the text	Peittää tekstin takana olevan
 Create	Luo
 Create an enclosure in the panel layout first.	Luo ensin kotelo kaappiasennuksessa.
@@ -424,10 +428,13 @@ Delete macro	Poista makro
 Delete node	Poista solmu
 Delete page	Poista sivu
 Delete request	Poista pyyntö
+Delete roof	Poista katto
+Delete roof window	Poista kattoikkuna
 Delete room	Poista tila
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Poistetaanko tila {} kaikkineen, mitä sen seinillä on? Siinä olevat kaapit jäävät, ilman tilaa.
 Delete section	Poista osio
 Delete shaft	Poista kuilu
+Delete stair	Poista portaat
 Delete the group	Poista ryhmä
 Delete the layer; its items move to the default layer	Poista taso; sen kohteet siirtyvät oletustasolle
 Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
@@ -541,6 +548,7 @@ Duplicate	Monista
 Each example builds on the one before and shows more of the features.	Jokainen esimerkki rakentuu edellisen päälle ja näyttää enemmän toiminnoista.
 Each point-to-point connection can belong to a harness	Jokainen pisteestä pisteeseen -yhteys voi kuulua johtosarjaan
 Earthing system	Maadoitusjärjestelmä
+Eaves	Räystäs
 Edge length of the routing grid: smaller is finer and slower	Reititysruudukon sivun pituus: pienempi on tarkempi ja hitaampi
 Edit	Muokkaa
 Edit in table	Muokkaa taulukossa
@@ -640,6 +648,7 @@ Floor plan with {} walls	Pohjapiirros, {} seinää
 Floor-standing part	Lattialle sijoitettava osa
 Fluid and process	Fluidi ja prosessi
 Follows its condition: use Apply conditions	Noudattaa ehtoaan: käytä toimintoa Käytä ehtoja
+Foot	Alku
 For	Kohteelle
 For parts without Stock length; longer profiles have to be joined	Osille, joilla ei ole arvoa Stock length; pidemmät profiilit on jatkettava
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Osille, joilla ei ole lämpötilatietoja (Max temperature, Operating temperature); 0: ei tarkisteta
@@ -705,6 +714,7 @@ Head (CPU / coupler)	Pääyksikkö (CPU / väyläliitin)
 Header row	Otsikkorivi
 Heat map	Lämpökartta
 Heating	Lämmitys
+Heating circuit manifolds and control boxes	Lattialämmityksen jakotukit ja säätörasiat
 Height (mm)	Korkeus (mm)
 Height above the floor	Korkeus lattiasta
 Height above the mounting plate	Korkeus asennuslevyn yläpuolella
@@ -833,9 +843,9 @@ Layout checks	Asennustarkistukset
 Layout properties	Asennuskuvan ominaisuudet
 Layout space	Asennustila
 Layout spaces	Asennustilat
+Leave out the ceilings of the rooms and the roofs in the 3D view	Jätä tilojen katot ja yläpohjat pois 3D-näkymästä
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Jätä kaikkien johtokanavien kannet pois 3D-näkymästä: niissä olevat johtimet näkyvät
 Leave repeated values of the first column blank	Jätä ensimmäisen sarakkeen toistuvat arvot tyhjiksi
-Left	Vasen
 Left edges	Vasemmat reunat
 Legend plates (door devices)	Nimikilvet (ovilaitteet)
 Length from the node to the device	Pituus solmusta laitteeseen
@@ -931,6 +941,7 @@ Motors feed the short circuit	Moottorit syöttävät oikosulkua
 Mounted on	Asennettu kohteeseen
 Mounting assistant: the panel items in mounting order with their place and part	Asennusavustaja: asennusosat asennusjärjestyksessä paikkoineen ja osineen
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Asennusetäisyys vierekkäin; osat lisäävät omansa (Clearance left / right)
+Mounting height: {}	Asennuskorkeus: {}
 Mounting plate: {} holes, {} cutouts	Asennuslevy: {} reikää, {} aukkoa
 Move	Siirrä
 Move down	Siirrä alaspäin
@@ -992,12 +1003,14 @@ New report page	Uusi raporttisivu
 New request	Uusi pyyntö
 New revision	Uusi revisio
 New revisions start as drafts, are submitted for review and can be released once approved.	Uudet revisiot alkavat luonnoksina, lähetetään katselmointiin ja voidaan vapauttaa, kun ne on hyväksytty.
+New roof	Uusi katto
 New room	Uusi tila
 New room on this level	Uusi tila tähän kerrokseen
 New schematic page	Uusi piirikaaviosivu
 New scheme	Uusi skeema
 New section	Uusi osio
 New shaft	Uusi kuilu
+New stair	Uudet portaat
 New sub-page	Uusi alasivu
 New subsection	Uusi alaosio
 New tag for {}	Uusi tunnus kohteelle {}
@@ -1134,6 +1147,7 @@ Other values ({})	Muut arvot ({})
 Otherwise from the plant layout, or next to the other line-ups	Muuten laitoksen sijoituskuvasta tai muiden kaappirivien viereen
 Out since {} (pages locked)	Irrotettu {} alkaen (sivut lukittu)
 Outer diameter (e.g. 8 mm) or DN	Ulkohalkaisija (esim. 8 mm) tai DN
+Outlets, switches, heating	Rasiat, kytkimet, lämmitys
 Outline	Ääriviiva
 Outlines	Ääriviivat
 Output bytes	Lähtötavut
@@ -1141,6 +1155,7 @@ Output failed: {}	Tulostus epäonnistui: {}
 Output to another project	Tulostus toiseen projektiin
 Output to project…	Tulosta projektiin…
 Outputs	Lähdöt
+Overhang	Räystään ulkonema
 Own colour	Oma väri
 Own drawn form	Oma piirretty lomake
 Own groups	Omat ryhmät
@@ -1198,6 +1213,7 @@ Pin-out	Nastajärjestys
 Pipe run	Putkireitti
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Putkireitti huoneen seinällä, katossa tai lattialla, jota pitkin letkut, putket ja putkistot reititetään: napsauta kulmat, lopeta kaksoisnapsautuksella tai Enterillä
 Pipe run {} mm – double-click or Enter to finish	Putkireitti {} mm – lopeta kaksoisnapsautuksella tai Enterillä
+Pitch	Kattokaltevuus
 Pitch X / Y	Jako X / Y
 Place a comment on the page	Sijoita kommentti sivulle
 Place again at all symbols using it	Sijoita uudelleen kaikkiin sitä käyttäviin symboleihin
@@ -1413,16 +1429,20 @@ Revisions, approval and release	Revisiot, hyväksyntä ja vapautus
 Ribbon	Valintanauha
 Ribbon (JSON)	Valintanauha (JSON)
 Ribbon imported	Valintanauha tuotu
-Right	Oikea
 Right click for more	Lisää toimintoja hiiren oikealla painikkeella
 Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
 Rights	Oikeudet
+Risers	Nousut
+Roof window	Kattoikkuna
+Roof windows	Kattoikkunat
+Roofs	Katot
 Room	Tila
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty kerrokseen {}: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
 Room {} now stands on level {}	Tila {} on nyt kerroksessa {}
 Room {} taken out of the building; it stays where it stands	Tila {} poistettu rakennuksesta; se jää paikalleen
+Rooms under sloped ceilings (lowest – highest ceiling)	Tilat vinon katon alla (matalin – korkein katto)
 Rotate	Kierrä
 Rotate (selection or symbol being placed)	Kierrä (valinta tai sijoitettava symboli)
 Round	Pyöreä
@@ -1589,6 +1609,7 @@ Slot	Ura
 Slots	Korttipaikat
 Smallest cross-section of control circuits	Ohjauspiirien pienin poikkipinta-ala
 Smallest cross-section of power circuits	Tehopiirien pienin poikkipinta-ala
+Socket outlets, data and antenna outlets	Pistorasiat, data- ja antennirasiat
 Some wires have no length: place their devices in the panel layout or set the field length.	Joillakin johdoilla ei ole pituutta: sijoita niiden laitteet kaappiasennukseen tai aseta kentän pituus.
 Sort by designation	Lajittele nimityksen mukaan
 Sort order	Lajittelujärjestys
@@ -1599,6 +1620,7 @@ Space kept free of routes, or for one class only: click two corners	Tila, joka p
 Spare terminals	Varariviliittimet
 Special text	Erikoisteksti
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Erikoisteksti: projektin ja sivun ominaisuudet, kuten {page} tai {prop:Name}, täytetään, kun sivu piirretään
+Stairs	Portaat
 Standard form of the report	Raportin vakiolomake
 Standard size	Vakiokoko
 Standard workspaces	Vakiotyötilat
@@ -1643,6 +1665,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Poista tarkistus \"{}\" käytöstä
 Switches the options with a condition by the configurator options	Kytkee ehdolliset vaihtoehdot konfiguraattorin vaihtoehtojen mukaan
 Switches to this workspace with its panes at their default places	Vaihtaa tähän työtilaan ja palauttaa sen paneelit oletuspaikoilleen
+Switches, push buttons and room thermostats	Kytkimet, painikkeet ja huonetermostaatit
 Symbol editor	Symbolieditori
 Symbol table import failed: {}	Symbolitaulukon tuonti epäonnistui: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Tämän sivun symbolit ja johdot piirretään, mutta niitä ei arvioida (ei laitteita, yhteyksiä tai raportteja).
@@ -1827,7 +1850,9 @@ Wheel / right or middle drag	Rulla / oikean tai keskipainikkeen veto
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
 When it differs from the page	Kun se poikkeaa sivusta
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
+Whole building	Koko rakennus
 Whole words	Kokonaiset sanat
+Width / going	Leveys / etenemä
 Width / height (mm)	Leveys / korkeus (mm)
 Width × depth	Leveys × syvyys
 Width × height	Leveys × korkeus
@@ -1884,6 +1909,7 @@ all cards	kaikki kortit
 all lines	kaikki rivit
 all, or e.g. -X*, -W1	kaikki, tai esim. -X*, -W1
 all, or e.g. K, Q	kaikki tai esim. K, Q
+along z	z:n suuntaan
 both ends	molemmat päät
 built-in	sisäinen
 by hand	käsin
@@ -1917,6 +1943,7 @@ given	annettu
 horizontal	vaakasuora
 if	jos
 kW	kW
+low side at the rear	matala puoli takana
 male	uros
 manual	manuaalinen
 max. {} °C	enint. {} °C
@@ -1926,6 +1953,7 @@ model	malli
 name	nimi
 no	ei
 no rooms	ei tiloja
+no valid levels	ei kelvollisia kerroksia
 no wires	ei johtoja
 none	ei mitään
 not defined	ei määritetty
@@ -1944,6 +1972,8 @@ pin and socket	nasta ja holkki
 placed / provided by the parts	sijoitettu / osien tarjoama
 reached: PL {}	saavutettu: PL {}
 review round {}	katselmointikierros {}
+ridge {} m	harja {} m
+sloped ceiling from {} m	vino katto alkaen {} m
 some	jotkin
 taken over	otettu käyttöön
 the project data (page list, devices, settings)	projektin tiedot (sivuluettelo, laitteet, asetukset)

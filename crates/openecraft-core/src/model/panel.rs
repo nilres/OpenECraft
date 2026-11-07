@@ -57,6 +57,139 @@ pub struct Building {
     /// The levels from the lowest up.
     pub levels: Vec<Level>,
     pub shafts: Vec<Shaft>,
+    /// Stairs from level to level (see `crate::panel::stairs`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub stairs: Vec<Stair>,
+    /// Roofs over the building; they cut the ceilings of the rooms below them (see
+    /// `crate::panel::roofs`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub roofs: Vec<Roof>,
+}
+
+/// How a stair runs from its foot to its head.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum StairKind {
+    /// One straight flight.
+    #[default]
+    Straight,
+    /// Two flights at a right angle with a quarter landing between them.
+    QuarterLanding,
+    /// Three flights, turned twice at a right angle, with two quarter landings.
+    TwoQuarterLandings,
+    /// Two flights side by side running in opposite directions, with a half landing.
+    HalfLanding,
+    /// Winding steps round a newel.
+    Spiral,
+}
+
+/// The side a stair turns to on the way up.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum Turn {
+    #[default]
+    Left,
+    Right,
+}
+
+/// A stair of a building from the floor of one level up to the floor of another.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Stair {
+    pub id: u64,
+    pub name: String,
+    pub kind: StairKind,
+    pub turn: Turn,
+    /// Middle of the front edge of its lowest step in the building's floor plan, mm.
+    pub x: f32,
+    pub z: f32,
+    /// Direction of its first flight, degrees counter-clockwise seen from above: at 0
+    /// it runs up towards +x.
+    pub angle: f32,
+    /// Width of its flights, mm.
+    pub width: f32,
+    /// Going (depth) of a step, mm.
+    pub tread: f32,
+    /// Ids of the level it starts on and of the level it leads up to.
+    pub bottom: u64,
+    pub top: u64,
+}
+
+impl Default for Stair {
+    fn default() -> Self {
+        Stair { id: 0, name: String::new(), kind: StairKind::Straight, turn: Turn::Left, x: 0.0, z: 0.0, angle: 0.0, width: 1000.0, tread: 270.0, bottom: 0, top: 0 }
+    }
+}
+
+/// The form of a roof.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum RoofShape {
+    Flat,
+    /// Mono-pitch (shed) roof: one slope from the low eaves up to the high side.
+    Shed,
+    /// Gable roof: two slopes up to the ridge, gables at the ends.
+    #[default]
+    Gable,
+    /// Hip roof: slopes on all four sides, a ridge along the longer side.
+    Hip,
+    /// Pyramid (tent) roof: four slopes up to one point.
+    Pyramid,
+}
+
+/// A roof over a rectangle of a building's floor plan. The underside of its slopes
+/// starts at the height of the eaves over the edges of the rectangle and rises at the
+/// pitch towards the ridge; it may reach down through several levels.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Roof {
+    pub id: u64,
+    pub name: String,
+    pub shape: RoofShape,
+    /// Rear left corner and size of the rectangle it covers (the outer walls) in the
+    /// building's floor plan, mm.
+    pub x: f32,
+    pub z: f32,
+    pub width: f32,
+    pub depth: f32,
+    /// The ridge (gable, hip) or the slope (shed: it rises across it) runs along z
+    /// instead of x.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub along_z: bool,
+    /// Shed roofs: the low eaves at the rear (or left) instead of the front (or right).
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub flip: bool,
+    /// Height of the underside of the roof over the edges of the rectangle above the
+    /// building's ground level, mm.
+    pub eaves: f32,
+    /// Pitch of the slopes, degrees.
+    pub pitch: f32,
+    /// How far it reaches out over the walls, mm.
+    pub overhang: f32,
+    /// Thickness of the roof (rafters, insulation, covering), mm.
+    pub thickness: f32,
+    /// Roof windows in its slopes.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub windows: Vec<RoofWindow>,
+}
+
+impl Default for Roof {
+    fn default() -> Self {
+        Roof { id: 0, name: String::new(), shape: RoofShape::Gable, x: 0.0, z: 0.0, width: 10_000.0, depth: 8000.0, along_z: false, flip: false, eaves: 3000.0, pitch: 35.0, overhang: 400.0, thickness: 300.0, windows: Vec::new() }
+    }
+}
+
+/// A roof window (skylight) in a slope of a roof.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct RoofWindow {
+    pub id: u64,
+    /// Its middle in the building's floor plan, mm.
+    pub x: f32,
+    pub z: f32,
+    /// Width along the eaves and length up the slope, mm.
+    pub width: f32,
+    pub length: f32,
+    /// Part (a window of the parts database), empty for a generic one.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub part: String,
 }
 
 /// A level (storey) of a building.

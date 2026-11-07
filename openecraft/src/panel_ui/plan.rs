@@ -144,6 +144,33 @@ pub(super) fn shafts_in_plan(prj: &Project, ei: usize) -> Vec<(String, [[f32; 2]
         .collect()
 }
 
+/// A stair reaching the level of a room: its steps and walking line in the room's plan
+/// coordinates, and whether it comes up from below (drawn dashed: the hole in the floor).
+pub(super) struct PlanStair {
+    pub steps: Vec<Vec<[f32; 2]>>,
+    pub walk: Vec<[f32; 2]>,
+    pub from_below: bool,
+}
+
+/// The stairs of the building of room `ei` that start on, arrive at or pass its level.
+pub(super) fn stairs_in_plan(prj: &Project, ei: usize) -> Vec<PlanStair> {
+    let layout = &prj.layout;
+    let e = &layout.enclosures[ei];
+    let Some(level) = panel::buildings::level_by_id(layout, e.level) else { return Vec::new() };
+    let here = panel::site_poses(prj)[ei];
+    panel::stairs::stairs_at_level(prj, e.level)
+        .into_iter()
+        .map(|(bi, _, g)| {
+            let bp = panel::buildings::building_pose(&layout.buildings[bi]);
+            let local = |q: &[f32; 2]| {
+                let v = here.local(bp.apply([q[0], 0.0, q[1]]));
+                [v[0], v[2]]
+            };
+            PlanStair { steps: g.pieces.iter().map(|p| p.outline.iter().map(local).collect()).collect(), walk: g.walk.iter().map(local).collect(), from_below: g.from < level.elevation - 0.5 }
+        })
+        .collect()
+}
+
 fn snap(v: f32) -> f32 {
     (v / MOVE_SNAP).round() * MOVE_SNAP
 }
@@ -605,6 +632,46 @@ impl PanelUi {
             painter.line_segment([pts[0], pts[2]], Stroke::new(1.0, PIPE_COLOR));
             painter.line_segment([pts[1], pts[3]], Stroke::new(1.0, PIPE_COLOR));
             painter.text(pts[0] + vec2(4.0, 2.0), egui::Align2::LEFT_TOP, name, egui::FontId::proportional(12.0), pal.text);
+        }
+        // The stairs on the level: their steps and the walking line up to its arrow;
+        // dashed where they come up from below.
+        for st in stairs_in_plan(prj, ei) {
+            let stroke = Stroke::new(1.2, pal.text);
+            for step in &st.steps {
+                let pts: Vec<Pos2> = step.iter().map(|q| to_screen(q[0], q[1])).collect();
+                if st.from_below {
+                    for k in 0..pts.len() {
+                        painter.extend(Shape::dashed_line(&[pts[k], pts[(k + 1) % pts.len()]], stroke, 4.0, 3.0));
+                    }
+                } else {
+                    painter.add(Shape::closed_line(pts, stroke));
+                }
+            }
+            let walk: Vec<Pos2> = st.walk.iter().map(|q| to_screen(q[0], q[1])).collect();
+            painter.add(Shape::line(walk.clone(), Stroke::new(1.5, pal.highlight)));
+            if let [.., a, b] = walk.as_slice() {
+                let d = (*b - *a).normalized() * 9.0;
+                painter.add(Shape::convex_polygon(vec![*b, *b - d + d.rot90() * 0.5, *b - d - d.rot90() * 0.5], pal.highlight, Stroke::NONE));
+            }
+        }
+        // Under a roof: the parts of the floor below the sloped ceiling shaded, with the
+        // lowest ceiling height there.
+        if let Some(c) = panel::roofs::ceiling(prj, ei) {
+            for cell in panel::roofs::floor_polys(e) {
+                for (poly, lin) in c.pieces(&cell) {
+                    if lin.is_flat() && (lin.c - c.flat).abs() < 0.5 {
+                        continue;
+                    }
+                    let pts: Vec<Pos2> = poly.iter().map(|q| to_screen(q[0], q[1])).collect();
+                    painter.add(Shape::convex_polygon(pts.clone(), pal.highlight.gamma_multiply(0.12), Stroke::NONE));
+                    for k in 0..pts.len() {
+                        painter.extend(Shape::dashed_line(&[pts[k], pts[(k + 1) % pts.len()]], Stroke::new(1.0, pal.highlight), 5.0, 4.0));
+                    }
+                    let low = poly.iter().map(|q| lin.at(*q)).fold(f32::INFINITY, f32::min);
+                    let centre = pts.iter().fold(Pos2::ZERO, |s, p| s + p.to_vec2()) / pts.len() as f32;
+                    painter.text(centre, egui::Align2::CENTER_CENTER, tr_fmt!("sloped ceiling from {} m", format!("{:.2}", low / 1000.0)), egui::FontId::proportional(11.0), pal.text);
+                }
+            }
         }
         // The ways through the wall penetrations into the rooms behind the walls.
         for (a, b) in links_in_plan(prj, ei) {

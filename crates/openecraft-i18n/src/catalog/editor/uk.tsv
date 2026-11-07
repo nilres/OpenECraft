@@ -262,12 +262,14 @@ Checks switched off and message levels as a file for other projects	Вимкне
 Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Перевіряє дані проєкту (ідентифікатори, посилання, дані пристроїв, опції, підпроєкти) разом з інженерними перевірками.
 Choices	Варіанти вибору
 Choices (separated by commas)	Варіанти вибору (через кому)
+Choose	Вибрати
 Choose a baseline, a revision or a project file to compare the project with.	Виберіть базову версію, ревізію або файл проєкту для порівняння з проєктом.
 Choose a room first: floor-standing parts go on its floor.	Спочатку виберіть приміщення: вироби, що стоять на підлозі, ставляться на його підлогу.
 Choose file…	Вибрати файл…
 Choose pages	Вибрати сторінки
 Chooses the pages whose structure starts with this	Вибирає сторінки, структура яких починається з цього
 Circle	Коло
+Circuits of a generic manifold	Контури типового розподільника
 Clear	Очистити
 Clearance	Відступ
 Clearances	Відстані
@@ -278,6 +280,7 @@ Click into the page to place {}	Клацніть на сторінці, щоб �
 Click on a wall	Клацніть по стіні
 Click on a wire to place the connection definition point	Клацніть провід, щоб розмістити точку визначення з’єднання
 Click on the 4 mm grid	Клацніть на сітці 4 мм
+Click on the wall: the part goes there at its mounting height	Клацніть на стіну: виріб стане там на свою висоту монтажу
 Click start and end point	Клацніть початкову й кінцеву точки
 Click the corners of a machine or building, double-click to finish	Клацайте кути машини або будівлі, двічі клацніть для завершення
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Клацайте кінці внутрішніх стін; кожне клацання починає наступну, кінці біля стіни прилипають до неї. Esc, Enter або подвійне клацання завершують ланцюжок, повторний Esc — інструмент.
@@ -366,6 +369,7 @@ Core designations separated by blanks	Позначення жил, розділ�
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Жили 1, 2, 3 … для перетнутих проводів, плюс GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Кут: два проводи під прямим кутом; за ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним
 Cover sheet, overview, graphics, report, mounting layout or a page template	Титульна сторінка, огляд, графіка, звіт, монтажне компонування або шаблон сторінки
+Covers	Накриває
 Covers what is behind the text	Закриває те, що позаду тексту
 Create	Створити
 Create an enclosure in the panel layout first.	Спочатку створіть корпус у компонуванні шафи.
@@ -423,10 +427,13 @@ Delete macro	Видалити макрос
 Delete node	Видалити вузол
 Delete page	Видалити сторінку
 Delete request	Видалити запит
+Delete roof	Видалити дах
+Delete roof window	Видалити мансардне вікно
 Delete room	Видалити приміщення
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Видалити приміщення {} з усім, що на його стінах? Шафи в ньому залишаться, без приміщення.
 Delete section	Видалити розділ
 Delete shaft	Видалити шахту
+Delete stair	Видалити сходи
 Delete the group	Видалити групу
 Delete the layer; its items move to the default layer	Видалити шар; його об’єкти переміщуються на стандартний шар
 Delete the property and all its values	Видалити властивість з усіма значеннями
@@ -540,6 +547,7 @@ Duplicate	Дублювати
 Each example builds on the one before and shows more of the features.	Кожен приклад ґрунтується на попередньому та показує більше функцій.
 Each point-to-point connection can belong to a harness	Кожне з’єднання «точка–точка» може належати до джгута
 Earthing system	Тип системи заземлення
+Eaves	Карниз
 Edge length of the routing grid: smaller is finer and slower	Довжина ребра сітки прокладання: менше – точніше й повільніше
 Edit	Редагувати
 Edit in table	Редагувати в таблиці
@@ -639,6 +647,7 @@ Floor plan with {} walls	План із {} стінами
 Floor-standing part	Виріб на підлогу
 Fluid and process	Гідро-, пневмотехніка та технологія
 Follows its condition: use Apply conditions	Залежить від умови: скористайтеся командою «Застосувати умови»
+Foot	Початок
 For	Для
 For parts without Stock length; longer profiles have to be joined	Для виробів без Stock length; довші профілі потрібно стикувати
 For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Для виробів без даних про температуру (Max temperature, Operating temperature); 0: не перевіряється
@@ -704,6 +713,7 @@ Head (CPU / coupler)	Головний модуль (CPU / з’єднувач)
 Header row	Рядок заголовка
 Heat map	Теплова карта
 Heating	Обігрів
+Heating circuit manifolds and control boxes	Розподільники опалення та регулювальні коробки
 Height (mm)	Висота (мм)
 Height above the floor	Висота над підлогою
 Height above the mounting plate	Висота над монтажною панеллю
@@ -832,9 +842,9 @@ Layout checks	Перевірки компонування
 Layout properties	Властивості компонування
 Layout space	Монтажний простір
 Layout spaces	Монтажні простори
+Leave out the ceilings of the rooms and the roofs in the 3D view	Не показувати стелі приміщень і дахи у 3D-виді
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	У 3D-вигляді не показувати кришки всіх кабельних каналів: дроти в них стає видно
 Leave repeated values of the first column blank	Залишати повторювані значення першого стовпця порожніми
-Left	Ліворуч
 Left edges	Ліві краї
 Legend plates (door devices)	Таблички з написами (пристрої на дверях)
 Length from the node to the device	Довжина від вузла до пристрою
@@ -930,6 +940,7 @@ Motors feed the short circuit	Двигуни підживлюють коротк
 Mounted on	Змонтовано на
 Mounting assistant: the panel items in mounting order with their place and part	Помічник монтажу: елементи компонування в порядку монтажу з місцем і виробом
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Монтажна відстань поруч; вироби додають власну (Clearance left / right)
+Mounting height: {}	Висота монтажу: {}
 Mounting plate: {} holes, {} cutouts	Монтажна панель: отворів – {}, вирізів – {}
 Move	Перемістити
 Move down	Перемістити вниз
@@ -991,12 +1002,14 @@ New report page	Нова сторінка звіту
 New request	Новий запит
 New revision	Нова ревізія
 New revisions start as drafts, are submitted for review and can be released once approved.	Нові ревізії починаються як чернетки, подаються на рецензування й можуть бути затверджені після погодження.
+New roof	Новий дах
 New room	Нове приміщення
 New room on this level	Нове приміщення на цьому поверсі
 New schematic page	Нова сторінка схеми
 New scheme	Нова схема
 New section	Новий розділ
 New shaft	Нова шахта
+New stair	Нові сходи
 New sub-page	Нова підсторінка
 New subsection	Новий підрозділ
 New tag for {}	Нове позначення для {}
@@ -1133,6 +1146,7 @@ Other values ({})	Інші значення ({})
 Otherwise from the plant layout, or next to the other line-ups	Інакше – за планом установки або поруч з іншими рядами
 Out since {} (pages locked)	Винесено з {} (сторінки заблоковано)
 Outer diameter (e.g. 8 mm) or DN	Зовнішній діаметр (напр. 8 мм) або DN
+Outlets, switches, heating	Розетки, вимикачі, опалення
 Outline	Контур
 Outlines	Контури
 Output bytes	Байти виходів
@@ -1140,6 +1154,7 @@ Output failed: {}	Помилка виведення: {}
 Output to another project	Виведення в інший проєкт
 Output to project…	Вивести в проєкт…
 Outputs	Виходи
+Overhang	Звис
 Own colour	Власний колір
 Own drawn form	Власна накреслена форма
 Own groups	Власні групи
@@ -1197,6 +1212,7 @@ Pin-out	Розпіновка
 Pipe run	Траса трубопроводу
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Траса трубопроводу на стіні, стелі або підлозі приміщення, уздовж якої прокладаються шланги, трубки та труби: клацніть кути, подвійне клацання або Enter – завершити
 Pipe run {} mm – double-click or Enter to finish	Траса трубопроводу {} мм – подвійне клацання або Enter – завершити
+Pitch	Нахил
 Pitch X / Y	Крок X / Y
 Place a comment on the page	Розмістити коментар на сторінці
 Place again at all symbols using it	Розмістити знову на всіх символах, що її використовують
@@ -1412,16 +1428,20 @@ Revisions, approval and release	Ревізії, погодження та зат
 Ribbon	Стрічка
 Ribbon (JSON)	Стрічка (JSON)
 Ribbon imported	Стрічку імпортовано
-Right	Праворуч
 Right click for more	Клацніть правою кнопкою для інших дій
 Right edges	Праві краї
 Right neighbour	Сусід праворуч
 Rights	Права
+Risers	Підйоми
+Roof window	Мансардне вікно
+Roof windows	Мансардні вікна
+Roofs	Дахи
 Room	Приміщення
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Приміщення додано на поверсі {}: перетягніть його стіни або намалюйте нові на плані, поставте в нього шафи в їхніх властивостях
 Room added: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Приміщення додано: перетягніть його стіни або намалюйте нові на плані, поставте в нього шафи в їхніх властивостях
 Room {} now stands on level {}	Приміщення {} тепер стоїть на поверсі {}
 Room {} taken out of the building; it stays where it stands	Приміщення {} виведено з будівлі; воно залишається на своєму місці
+Rooms under sloped ceilings (lowest – highest ceiling)	Приміщення під скошеними стелями (найнижча – найвища стеля)
 Rotate	Повернути
 Rotate (selection or symbol being placed)	Повернути (вибране або символ, що розміщується)
 Round	Круглий
@@ -1588,6 +1608,7 @@ Slot	Паз
 Slots	Слоти
 Smallest cross-section of control circuits	Найменший переріз кіл керування
 Smallest cross-section of power circuits	Найменший переріз силових кіл
+Socket outlets, data and antenna outlets	Розетки, інформаційні та антенні розетки
 Some wires have no length: place their devices in the panel layout or set the field length.	Деякі проводи не мають довжини: розмістіть їхні пристрої в компонуванні шафи або задайте довжину поля.
 Sort by designation	Сортувати за позначенням
 Sort order	Порядок сортування
@@ -1598,6 +1619,7 @@ Space kept free of routes, or for one class only: click two corners	Прості
 Spare terminals	Резервні клеми
 Special text	Спеціальний текст
 Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Спеціальний текст: властивості проєкту та сторінки, як-от {page} або {prop:Name}, підставляються під час відображення сторінки
+Stairs	Сходи
 Standard form of the report	Стандартна форма звіту
 Standard size	Стандартний розмір
 Standard workspaces	Стандартні робочі простори
@@ -1642,6 +1664,7 @@ Swing the enclosure door open or shut (door devices and their wires move with it
 Switch off the check \"{}\"	Вимкнути перевірку «{}»
 Switches the options with a condition by the configurator options	Перемикає опції з умовою відповідно до опцій конфігуратора
 Switches to this workspace with its panes at their default places	Перемикає на цей робочий простір із панелями на їхніх типових місцях
+Switches, push buttons and room thermostats	Вимикачі, кнопки та кімнатні термостати
 Symbol editor	Редактор символів
 Symbol table import failed: {}	Помилка імпорту таблиці символів: {}
 Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Символи та проводи на цій сторінці малюються, але не обробляються (без пристроїв, з’єднань і звітів).
@@ -1826,7 +1849,9 @@ Wheel / right or middle drag	Коліщатко / перетягування п�
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Коліщатко: масштаб · правий клік: скасувати · графіка прив’язується до 0,5 мм, точки підключення – до сітки 4 мм
 When it differs from the page	Якщо відрізняється від сторінки
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Де провід починається й закінчується: точка підключення з даних виробу, згенерована із шаблону функцій або центр пристрою, якщо жодна точка підключення не підходить
+Whole building	Уся будівля
 Whole words	Цілі слова
+Width / going	Ширина / проступ
 Width / height (mm)	Ширина / висота (мм)
 Width × depth	Ширина × глибина
 Width × height	Ширина × висота
@@ -1883,6 +1908,7 @@ all cards	усі плати
 all lines	усі рядки
 all, or e.g. -X*, -W1	усі або напр. -X*, -W1
 all, or e.g. K, Q	усі або напр. K, Q
+along z	уздовж z
 both ends	обидва кінці
 built-in	вбудований
 by hand	вручну
@@ -1916,6 +1942,7 @@ given	задана
 horizontal	горизонтально
 if	якщо
 kW	kW
+low side at the rear	низький бік ззаду
 male	штир
 manual	вручну
 max. {} °C	макс. {} °C
@@ -1925,6 +1952,7 @@ model	модель
 name	назва
 no	ні
 no rooms	немає приміщень
+no valid levels	немає дійсних поверхів
 no wires	немає проводів
 none	немає
 not defined	не визначено
@@ -1943,6 +1971,8 @@ pin and socket	штир і гніздо
 placed / provided by the parts	розміщено / надано виробами
 reached: PL {}	досягнуто: PL {}
 review round {}	раунд рецензування {}
+ridge {} m	гребінь {} м
+sloped ceiling from {} m	скошена стеля від {} м
 some	деякі
 taken over	перенесено
 the project data (page list, devices, settings)	дані проєкту (список сторінок, пристрої, параметри)

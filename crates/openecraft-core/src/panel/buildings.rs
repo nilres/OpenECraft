@@ -540,7 +540,8 @@ fn plan_cells(prj: &Project, poses: &[SitePose], ri: usize) -> Vec<[[f32; 2]; 4]
 /// The problems of the buildings: rooms on levels that are gone, higher than their
 /// level or overlapping other rooms of their level; levels overlapping each other;
 /// shafts that join no rooms, and cabinets or floor-standing devices standing in a
-/// shaft; links between buildings whose building entries are gone.
+/// shaft; links between buildings whose building entries are gone; the problems of
+/// their stairs ([`super::stairs::problems`]) and roofs ([`super::roofs::problems`]).
 pub fn problems(prj: &Project) -> Vec<Issue> {
     let layout = &prj.layout;
     let poses = site_poses(prj);
@@ -609,6 +610,8 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
             _ => v.push(crate::issue!(Severity::Warning, None, "Link {}: a building entry it joins no longer exists", link.name)),
         }
     }
+    v.extend(super::stairs::problems(prj));
+    v.extend(super::roofs::problems(prj));
     v
 }
 
