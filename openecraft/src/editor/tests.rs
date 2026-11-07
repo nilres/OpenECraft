@@ -359,6 +359,24 @@ fn read_only_pages_can_be_selected_but_not_changed() {
 }
 
 #[test]
+fn dragged_symbols_keep_their_wires_square() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+    let top = prj.symbol("coil").unwrap().pin_world(0, p(100.0, 100.0), 0, false);
+    prj.pages[0].wires.push(Wire { id: 8, a: p(20.0, 40.0), b: p(300.0, 40.0), ..Default::default() });
+    prj.pages[0].wires.push(Wire { id: 9, a: p(100.0, 40.0), b: top, ..Default::default() });
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    drag(&mut ed, &ctx, &mut prj, 0, p(100.0, 100.0), p(140.0, 108.0));
+    assert_eq!(prj.pages[0].symbols[0].pos, p(140.0, 108.0));
+    let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+    assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 8.0)), "still vertical, still on the rail");
+    assert_eq!(prj.pages[0].wires.len(), 2);
+}
+
+#[test]
 fn dragging_one_of_several_selected_symbols_moves_them_all() {
     let mut prj = Project::default();
     prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));

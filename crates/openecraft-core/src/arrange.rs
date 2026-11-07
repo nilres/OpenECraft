@@ -5,6 +5,7 @@
 use crate::geom::{p, P, R, GRID};
 use crate::model::{Page, Project};
 use crate::ops;
+use crate::routing;
 use crate::symlib::Symbols;
 use std::collections::BTreeSet;
 
@@ -67,8 +68,15 @@ fn shift(symbols: &Symbols, page: &mut Page, id: u64, d: P) {
 }
 
 /// Aligns the selected items to the outermost edge (or the common centre) of the
-/// selection. Returns how many items moved.
-pub fn align(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>, how: Align) -> usize {
+/// selection; attached wires stay square. Returns how many items moved.
+pub fn align(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, how: Align) -> usize {
+    let before = routing::Before::of(&prj.pages[page], sel);
+    let moved = align_items(&prj.symbol_table(), &mut prj.pages[page], sel, how);
+    routing::square_wires(prj, page, &before);
+    moved
+}
+
+fn align_items(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>, how: Align) -> usize {
     let list = items(symbols, page, sel);
     if list.len() < 2 {
         return 0;
@@ -99,8 +107,16 @@ pub fn align(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>, how: Align
 }
 
 /// Distributes the selected items evenly between the first and the last one
-/// (horizontally by their centres, or vertically). Returns how many items moved.
-pub fn distribute(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>, horizontal: bool) -> usize {
+/// (horizontally by their centres, or vertically); attached wires stay square.
+/// Returns how many items moved.
+pub fn distribute(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, horizontal: bool) -> usize {
+    let before = routing::Before::of(&prj.pages[page], sel);
+    let moved = distribute_items(&prj.symbol_table(), &mut prj.pages[page], sel, horizontal);
+    routing::square_wires(prj, page, &before);
+    moved
+}
+
+fn distribute_items(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>, horizontal: bool) -> usize {
     let mut list = items(symbols, page, sel);
     if list.len() < 3 {
         return 0;

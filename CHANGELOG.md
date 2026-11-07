@@ -28,6 +28,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   first. Both follow the connection symbols of EPLAN, can be drawn as a dot and keep
   their routing, and the check reports a connection its symbols wire in a loop. Commands
   `add_crossing` and `add_bridge` ([#96](https://github.com/nilres/OpenECraft/issues/96)).
+- **Editor:** wires attached to moved items stay square: they slide along their rails,
+  or get a jog where they cannot. Connection definition points and cable definition
+  lines stay on their wires.
+
 - **3D routing in cabinets without cable ducts:** their wires are no longer laid
   along the mounting plate (through the devices and each other) but routed in 3D from
   connection point to connection point, like the wires of a room: clear of everything

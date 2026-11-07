@@ -86,7 +86,7 @@ type PropHandle = (u64, Option<usize>);
 
 enum Drag {
     None,
-    Move { start: P, applied: P, attached: Vec<(u64, bool)> },
+    Move { start: P, applied: P, moving: routing::Moving },
     Box { start: Pos2 },
     Prop { handle: PropHandle, start: P, orig: P },
 }
@@ -1299,17 +1299,16 @@ impl Editor {
             self.autoroute = !self.autoroute;
             self.route_cache = None;
         }
-        let symbols = prj.symbol_table();
-        let page = &mut prj.pages[page_i];
         if r {
             if matches!(self.tool, Tool::Place(_)) {
                 self.place_rot = (self.place_rot + 1) % 4;
             } else if matches!(self.tool, Tool::Junction(_)) {
                 self.symbol_proto.turn();
             } else if !self.selection.is_empty() {
-                ops::rotate(&symbols, page, &self.selection);
+                routing::rotate(prj, page_i, &self.selection);
             }
         }
+        let page = &mut prj.pages[page_i];
         if m {
             if matches!(self.tool, Tool::Place(_)) {
                 self.place_mirror = !self.place_mirror;
@@ -1327,13 +1326,11 @@ impl Editor {
         if !self.selection.is_empty() && arrows.iter().any(|(pressed, _)| *pressed) {
             for (pressed, d) in arrows {
                 if pressed {
-                    let att = ops::attached_wire_ends(&symbols, page, &self.selection);
-                    ops::translate(page, &self.selection, &att, d);
+                    routing::move_selection(prj, page_i, &self.selection, d);
                 }
             }
             // Like a drag: facing connection points of moved symbols are connected.
-            ops::cleanup_wires(page);
-            let moved_symbols = page.symbols.iter().any(|s| self.selection.contains(&s.id)) || page.junctions.iter().any(|j| self.selection.contains(&j.id));
+            let moved_symbols = prj.pages[page_i].symbols.iter().any(|s| self.selection.contains(&s.id)) || prj.pages[page_i].junctions.iter().any(|j| self.selection.contains(&j.id));
             if self.autoconnect && moved_symbols {
                 let n = routing::apply_autoconnect(prj, page_i, &self.selection);
                 if n > 0 {
@@ -1689,19 +1686,19 @@ impl Editor {
                     }
                     self.selection.insert(id);
                 }
-                let attached = ops::attached_wire_ends(&prj.symbol_table(), &prj.pages[page_i], &self.selection);
-                self.drag = Drag::Move { start: ow, applied: p(0.0, 0.0), attached };
+                let moving = routing::Moving::new(prj, page_i, &self.selection);
+                self.drag = Drag::Move { start: ow, applied: p(0.0, 0.0), moving };
             } else {
                 self.drag = Drag::Box { start: origin };
             }
         }
         if resp.dragged_by(PointerButton::Primary) {
             match (&mut self.drag, world) {
-                (Drag::Move { start, applied, attached }, Some(w)) => {
+                (Drag::Move { start, applied, moving }, Some(w)) => {
                     let total = (w - *start).snap(self.grid);
                     let delta = total - *applied;
                     if delta.x != 0.0 || delta.y != 0.0 {
-                        ops::translate(&mut prj.pages[page_i], &self.selection, attached, delta);
+                        moving.step(prj, page_i, &self.selection, delta);
                         *applied = total;
                     }
                 }

@@ -43,9 +43,15 @@ into nets across pages. Selecting a wire highlights its whole potential.
 
 ## Editing
 
-Select / window select / move with rubber-band wires, rotate, mirror,
+Select / window select / move with wires that follow and stay square, rotate, mirror,
 copy / cut / paste (via clipboard, devices get new tags), undo / redo, texts, grid
-snapping, pan and zoom. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
+snapping, pan and zoom. A wire attached to something that moves keeps its direction:
+a corner or a junction at its far end slides along the wire there (a junction on a
+rail stays on the rail), otherwise the wire gets a jog or a route around what is in
+the way, and a wire that cannot be squared without touching another connection stays
+diagonal. Connection definition points and cable definition lines stay on their
+wires unless they are moved themselves; a line that cannot stay across exactly its
+wires stays where it is. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
 coordinate field in the tool bar (`x y` absolute or `@dx dy` relative to the last
 point, Enter acts like a click of the current tool); *Home › Align* (edges or
 centres), *Distribute* (evenly, horizontally or vertically), *Move selection by…*
