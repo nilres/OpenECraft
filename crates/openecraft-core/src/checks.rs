@@ -36,6 +36,7 @@ pub fn builtin() -> Vec<Check> {
         entry("duct_fill", tr_const!("Duct fill levels"), |prj, an| check_duct_fill(prj, &an.duct_fill)),
         entry("climate", tr_const!("Enclosure climate"), |prj, _| check_climate(prj)),
         entry("connection_definitions", tr_const!("Connection definitions"), |prj, an| crate::conndef::problems(prj, &an.open)),
+        entry("connection_symbols", tr_const!("Connection symbols"), |prj, an| crate::netlist::junctions::problems(prj, &an.open)),
         entry("cable_definitions", tr_const!("Cable definitions"), |prj, _| crate::cabledef::problems(prj)),
         entry("cable_sizing", tr_const!("Cable sizing"), |prj, an| crate::sizing::problems(prj, &an.netlist, &an.open, &an.connections)),
         entry("short_circuit", tr_const!("Short circuit and disconnection"), |prj, an| crate::shortcircuit::problems(prj, &an.netlist, &an.connections)),

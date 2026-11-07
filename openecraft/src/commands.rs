@@ -70,6 +70,10 @@ pub enum Cmd {
     TextTool,
     ConnDefTool,
     CableDefTool,
+    JunctionTool,
+    CornerTool,
+    CrossingTool,
+    BridgeTool,
     InterruptionPoint,
     PotentialPoint,
     InsertMacro,
@@ -266,6 +270,10 @@ pub fn changes_page(cmd: Cmd) -> bool {
             | Cmd::TextTool
             | Cmd::ConnDefTool
             | Cmd::CableDefTool
+            | Cmd::JunctionTool
+            | Cmd::CornerTool
+            | Cmd::CrossingTool
+            | Cmd::BridgeTool
             | Cmd::InterruptionPoint
             | Cmd::PotentialPoint
             | Cmd::LineTool
@@ -438,6 +446,14 @@ pub static ALL: &[Def] = &[
         .tip(tr_const!("Connection definition point: defines number, colour, cross-section and cable core of a connection")),
     d(C::CableDefTool, "cable_definition", tr_const!("Cable definition"), I::CableDef)
         .tip(tr_const!("Cable definition: draw a line across the wires that are cores of a cable")),
+    d(C::JunctionTool, "t_junction", tr_const!("T-junction"), I::Junction)
+        .tip(tr_const!("Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets")),
+    d(C::CornerTool, "corner", tr_const!("Corner"), I::Corner)
+        .tip(tr_const!("Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it")),
+    d(C::CrossingTool, "crossing", tr_const!("Crossing"), I::Crossing)
+        .tip(tr_const!("Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second")),
+    d(C::BridgeTool, "bridge", tr_const!("Bridge"), I::Bridge)
+        .tip(tr_const!("Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first")),
     d(C::InterruptionPoint, "interruption_point", tr_const!("Interruption point"), I::Interruption),
     d(C::PotentialPoint, "potential_point", tr_const!("Potential"), I::Potential),
     d(C::InsertMacro, "insert_macro", tr_const!("Macro…"), I::Macro),

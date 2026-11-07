@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	ペー�
 Structure	構造
 Connects two connection points with wires routed around symbols and other wires	シンボルや他の電線を回避するルートの電線で 2 つの接続ポイントを接続します
 Connection point TAG:PIN, e.g. -K1:A1	接続ポイント TAG:PIN (例: -K1:A1)
-Draws wires between free connection points of symbols that face each other	向かい合うシンボルの空き接続ポイント間に電線を描画します
-Symbol ids (default: all symbols of the page)	シンボル ID (既定: ページのすべてのシンボル)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	ケーブル定義線を描画します。横切った電線はケーブルの心線になります (ケーブルを指定しない場合は新しいケーブル)
 Start and end point of the line	線の始点と終点
 Cable tag, e.g. -W1	ケーブルタグ (例: -W1)
@@ -6431,3 +6429,67 @@ House connection box	引込盤
 The archive unpacks to more than {} MB	アーカイブの展開後のサイズが {} MB を超えます
 Only web and e-mail addresses (http, https, mailto) are links	リンクにできるのは Web アドレスとメールアドレス（http、https、mailto）だけです
 The plugin program did not answer within {} s and was stopped	プラグインプログラムが {} 秒以内に応答しなかったため停止しました
+T-junction	T分岐
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	方向付きT分岐：3本の接続線が交わる点で、接続の2本の線がどの機器から出るか、および目標の順序を指定します
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1：左 / 上側から直接他方の側へ、次に軸へ · 2：右 / 下側から同様に · 3：軸から左 / 上側へ、次に他方へ · 4：軸からまず右 / 下側へ（既定 3）
+Direction of the stem: left, right, up or down (default: from the wires there)	軸の方向：left、right、up または down（既定：その位置の接続線から）
+Draw the junction as a connection dot; its routing stays	分岐を接続点として描きます。経路は保たれます
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm に3本の接続線が交わっていません：軸の方向を指定してください
+Page name (default: all pages)	ページ名（既定：すべてのページ）
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	3本の接続線が交わる点に方向付きT分岐を置きます。回路図の順序ではなく、接続の2本の線がどの機器から出るか（源）と目標の順序を指定します
+Unknown direction {}: left, right, up or down	不明な方向 {}：left、right、up または down
+Variant {} is not one of 1 to 4	種類 {} は 1 から 4 のいずれでもありません
+Dot	点
+Drawn as a connection dot; the routing stays	接続点として描かれます。経路は保たれます
+Representation	表示
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	ここで3本の接続線が交わる必要があります：1本はその方向に、2本は横方向に。それまでは接続は回路図の順序でつながれます。
+Wires of the connection	接続の電線
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	3本の接続線が交わる点をクリック：T分岐は電線が出る機器と目標の順序を指定します · まだ接続線が交わらない場所では {} で回転 · Esc または右クリックで終了
+Draw the three wires of the T-junction to it: one in its direction and two across	T分岐の3本の接続線をここまで描いてください：1本はその方向に、2本は横方向に
+Source {}, first target {}, second target {}	源{}、第1目標{}、第2目標{}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	ページ {} のT分岐がその接続線と合いません：その方向に1本、横方向に2本の接続線が必要で、その位置に接続点があってはなりません
+on the left	左
+on the right	右
+above	上
+below	下
+Connection symbols	接続シンボル
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	コーナー：直角に交わる2本の接続線。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます
+Draw wires to the connection points facing its free arms	空いている側に向き合う接続点へ接続線を描きます
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	向き合うシンボルの空き接続点の間、およびT分岐とコーナーの空いている側へ接続線を描きます
+Ids of symbols and connection symbols (default: all symbols of the page)	シンボルおよび接続シンボルの id（既定：ページのすべてのシンボル）
+No connection symbol with id {}	id {} の接続シンボルはありません
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	コーナーを置きます。そこで2本の接続線が直角に交わり、その側に向き合う接続点がここへ配線されます
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	コーナーの側は縦方向と横方向の各1つです（例：down left）。{} は無効です
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	コーナーの2つの側、縦と横（例：down left。既定：その位置の接続線から、なければ down right）
+There is a connection symbol at this point already	この点にはすでに接続シンボルがあります
+Arms	側
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	2本の接続線が直角に交わる点、または接続点がコーナーをはさんで向き合う点をクリック：自動接続が有効なときはここへ接続線が描かれます · {} で回転 · Esc または右クリックで終了
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	コーナーの2本の接続線をここまで描くか、自動接続を有効にして空き接続点に向き合う位置に置いてください
+Arms {} and {}	側{}と{}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	ページ {} のコーナーがその接続線と合いません：2つの方向にそれぞれ1本の接続線が必要で、その位置に接続点があってはなりません
+Two connection symbols on page {} lie on the same point	ページ {} の2つの接続シンボルが同じ点にあります
+Crossing	交差
+Bridge	ブリッジ
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	方向付き交差：そこで交わる2本の接続線を接続します。線の各端はまず直進、次に横方向に配線されます
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	ブリッジ：4本の接続線。接続は一方の側から入り、他の3方向へ、まず反対側へ向かいます
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1：線の上 / 左端は横方向に右 / 下の側へ · 2：左 / 上の側へ（既定 2）
+A {} has no {}; it takes {}	{} には {} がありません。使えるのは {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T分岐（方向、種類、表示）、コーナー（側）、交差（線、種類、表示）またはブリッジ（方向、表示）を変更します
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T分岐、コーナー、交差、ブリッジをその経路と接続の電線とともに一覧表示します
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	4本の接続線が交わる点にブリッジを置きます。接続は一方の側から入り、他の3方向へ、まず反対側、次に左 / 上、次に右 / 下へ向かいます
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	2本の接続線が交わる点に方向付き交差を置きます。両者を接続し、線の各端はまず直進、次に横方向の一つの側へ配線されます
+Side the connection comes from: left, right, up or down (default up)	接続が入ってくる側：left、right、up または down（既定 up）
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T分岐：軸の方向。ブリッジ：接続が入ってくる側（left、right、up または down）
+The line of a crossing is vertical or horizontal, not {}	交差の線は vertical または horizontal です。{} は無効です
+The straight line of a crossing: vertical or horizontal (default vertical)	交差の直線：vertical または horizontal（既定 vertical）
+Variant {} is not one of 1 to 2	種類 {} は 1 から 2 のいずれでもありません
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	ここから4方向すべてに接続線が出ている必要があります。それまでは接続は回路図の順序でつながれます。
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	4本の接続線が交わる点をクリック：ブリッジは接続を一方の側から他の3方向へ、まず反対側へ導きます · {} で回転 · Esc または右クリックで終了
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	2本の接続線が交わる点をクリック：交差は両者を接続し、線の各端をまず直進、次に横方向へ導きます · {} で回転 · Esc または右クリックで終了
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	4方向すべてから接続線をここまで描くか、自動接続を有効にして空き接続点に向き合う位置に置いてください
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	ページ {} のブリッジがその接続線と合いません：4方向すべてに接続線が必要で、その位置に接続点があってはなりません
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	ページ {} の交差がその接続線と合いません：4方向すべてに接続線が必要で、その位置に接続点があってはなりません
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	ページ {} の接続シンボルがその接続をループ状に配線しています：接続のシンボルが機器に必要な数より多い電線を与えています
+Source {}, targets {}, {} and {}	源{}、目標{}、{}、{}
+Straight through from {} to {}, across from {} to {} and from {} to {}	直進：{}から{}へ。横方向：{}から{}へ、{}から{}へ

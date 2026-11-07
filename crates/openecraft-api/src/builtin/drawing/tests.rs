@@ -246,3 +246,92 @@ fn parts_are_placed_as_new_devices() {
     assert_eq!(prj.devices[&tag].parts[0].number, "GEN.LMP-GN-24");
     assert!(run(&mut s, "place_part", json!({ "page": "1", "part": "NO.SUCH-PART", "x": 0, "y": 0 })).is_err());
 }
+
+#[test]
+fn t_junctions_route_the_wires_of_a_connection() {
+    let mut s = new_session();
+    for (tag, x, y) in [("-K1", 60, 70), ("-K2", 140, 70), ("-K3", 100, 90)] {
+        run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": x, "y": y, "tag": tag })).unwrap();
+    }
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[60, 66], [60, 60], [140, 60], [140, 66]] })).unwrap();
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[100, 60], [100, 86]] })).unwrap();
+    let err = run(&mut s, "add_t_junction", json!({ "page": "1", "x": 80, "y": 60 })).unwrap_err();
+    assert!(err.contains("No three wires"), "{err}");
+    assert!(run(&mut s, "add_t_junction", json!({ "page": "1", "x": 100, "y": 60, "direction": "sideways" })).is_err());
+    assert!(run(&mut s, "add_t_junction", json!({ "page": "1", "x": 100, "y": 60, "variant": 5 })).is_err());
+    let j = run(&mut s, "add_t_junction", json!({ "page": "1", "x": 100, "y": 60 })).unwrap();
+    assert_eq!((j["direction"].as_str(), j["variant"].as_i64(), j["fits"].as_bool()), (Some("down"), Some(3), Some(true)), "{j}");
+    let wires = |v: &Value| v["wires"].as_array().unwrap().iter().map(|w| format!("{}>{}", w["from"].as_str().unwrap(), w["to"].as_str().unwrap())).collect::<Vec<_>>();
+    assert_eq!(wires(&j), ["-K3:A1>-K1:A1", "-K3:A1>-K2:A1"]);
+    let id = j["id"].clone();
+    let j = run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "variant": 1, "dot": true })).unwrap();
+    assert_eq!(wires(&j), ["-K1:A1>-K2:A1", "-K1:A1>-K3:A1"]);
+    assert_eq!(j["dot"], true);
+    let list = run(&mut s, "list_connection_symbols", json!({})).unwrap();
+    assert_eq!(list.as_array().unwrap().len(), 1);
+    assert_eq!(list[0]["routing"], "Source on the left, first target on the right, second target below");
+    assert!(run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": 999_999, "variant": 2 })).unwrap_err().contains("No connection symbol"));
+    assert!(run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "arms": "down left" })).is_err(), "a T-junction has no arms parameter");
+    let wrong = run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "direction": "up" })).unwrap();
+    assert_eq!(wrong["fits"], false);
+    assert!(issues(&mut s).iter().any(|m| m.contains("does not fit")));
+    run(&mut s, "delete_items", json!({ "page": "1", "ids": [id] })).unwrap();
+    assert!(run(&mut s, "list_connection_symbols", json!({ "page": "1" })).unwrap().as_array().unwrap().is_empty());
+}
+
+#[test]
+fn corners_are_wired_in_by_the_automatic_connections() {
+    let mut s = new_session();
+    // A contact above the corner, a coil to its right: their pins face the corner's arms.
+    run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "no", "x": 60, "y": 40, "tag": "-S1" })).unwrap();
+    run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 120, "y": 80, "rotation": 90, "tag": "-K1" })).unwrap();
+    assert!(run(&mut s, "add_corner", json!({ "page": "1", "x": 60, "y": 80, "arms": "down sideways" })).is_err());
+    assert!(run(&mut s, "add_corner", json!({ "page": "1", "x": 60, "y": 80, "arms": "left right" })).unwrap_err().contains("vertical and one horizontal"));
+    let c = run(&mut s, "add_corner", json!({ "page": "1", "x": 60, "y": 80, "arms": "up right", "autoconnect": true })).unwrap();
+    assert_eq!(c["kind"], "corner");
+    assert_eq!(c["arms"], json!(["up", "right"]));
+    assert_eq!(c["wires_drawn"], 2, "{c}");
+    assert_eq!(c["fits"], true);
+    let wires = c["wires"].as_array().unwrap();
+    assert_eq!(wires.len(), 1, "one connection -S1 – -K1 through the corner: {wires:?}");
+    let id = c["id"].clone();
+    assert!(run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "variant": 2 })).unwrap_err().contains("has no variant"));
+    let turned = run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "arms": "down left" })).unwrap();
+    assert_eq!((turned["arms"].clone(), turned["fits"].as_bool()), (json!(["down", "left"]), Some(false)));
+    assert!(run(&mut s, "add_corner", json!({ "page": "1", "x": 60, "y": 80 })).unwrap_err().contains("already"));
+    assert!(issues(&mut s).iter().any(|m| m.contains("Corner on page 1 does not fit")));
+    // Without arms given the corner takes the two wires at its point.
+    let again = run(&mut s, "add_corner", json!({ "page": "1", "x": 100, "y": 120 })).unwrap_or_else(|e| panic!("{e}"));
+    assert_eq!(again["fits"], false, "no wires at that point, the default arms are used: {again}");
+    assert_eq!(again["arms"], json!(["down", "right"]));
+}
+
+#[test]
+fn crossings_and_bridges_connect_four_wires() {
+    let mut s = new_session();
+    for (tag, x, y, rot) in [("-K1", 100, 36, 0), ("-K2", 100, 84, 0), ("-K3", 76, 60, 90), ("-K4", 124, 60, 90)] {
+        run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": x, "y": y, "tag": tag, "rotation": rot })).unwrap();
+    }
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[100, 40], [100, 80]] })).unwrap();
+    run(&mut s, "add_wire", json!({ "page": "1", "points": [[80, 60], [120, 60]] })).unwrap();
+    let wires = |v: &Value| v["wires"].as_array().unwrap().iter().map(|w| format!("{}>{}", w["from"].as_str().unwrap(), w["to"].as_str().unwrap())).collect::<Vec<_>>();
+    assert!(run(&mut s, "add_crossing", json!({ "page": "1", "x": 100, "y": 60, "line": "diagonal" })).is_err());
+    assert!(run(&mut s, "add_crossing", json!({ "page": "1", "x": 100, "y": 60, "variant": 3 })).is_err());
+    let c = run(&mut s, "add_crossing", json!({ "page": "1", "x": 100, "y": 60 })).unwrap();
+    assert_eq!((c["kind"].as_str(), c["line"].as_str(), c["variant"].as_i64(), c["fits"].as_bool()), (Some("crossing"), Some("vertical"), Some(2), Some(true)), "{c}");
+    assert_eq!(wires(&c), ["-K1:A2>-K2:A1", "-K1:A2>-K3:A1", "-K2:A1>-K4:A2"]);
+    assert_eq!(c["links"], json!([["up", "down"], ["up", "left"], ["down", "right"]]));
+    let id = c["id"].clone();
+    let c = run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "line": "horizontal", "variant": 1, "dot": true })).unwrap();
+    assert_eq!(wires(&c), ["-K3:A1>-K4:A2", "-K3:A1>-K2:A1", "-K4:A2>-K1:A2"]);
+    assert!(run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": id, "direction": "up" })).unwrap_err().contains("has no direction"));
+    run(&mut s, "delete_items", json!({ "page": "1", "ids": [id] })).unwrap();
+    assert!(run(&mut s, "add_bridge", json!({ "page": "1", "x": 100, "y": 60, "direction": "sideways" })).is_err());
+    let b = run(&mut s, "add_bridge", json!({ "page": "1", "x": 100, "y": 60, "direction": "left" })).unwrap();
+    assert_eq!((b["kind"].as_str(), b["direction"].as_str(), b["fits"].as_bool()), (Some("bridge"), Some("left"), Some(true)), "{b}");
+    assert_eq!(wires(&b), ["-K3:A1>-K4:A2", "-K3:A1>-K1:A2", "-K3:A1>-K2:A1"]);
+    assert!(run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": b["id"], "variant": 1 })).unwrap_err().contains("has no variant"));
+    let b = run(&mut s, "update_connection_symbol", json!({ "page": "1", "id": b["id"], "direction": "down", "dot": true })).unwrap();
+    assert_eq!(wires(&b)[0], "-K2:A1>-K1:A2");
+    assert_eq!(run(&mut s, "list_connection_symbols", json!({})).unwrap().as_array().unwrap().len(), 1);
+}

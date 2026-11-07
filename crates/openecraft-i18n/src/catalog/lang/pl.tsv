@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Punkt de
 Structure	Struktura
 Connects two connection points with wires routed around symbols and other wires	Łączy dwa punkty połączeń przewodami prowadzonymi wokół symboli i innych przewodów
 Connection point TAG:PIN, e.g. -K1:A1	Punkt połączenia OZNACZENIE:PIN, np. -K1:A1
-Draws wires between free connection points of symbols that face each other	Rysuje przewody między wolnymi, zwróconymi do siebie punktami połączeń symboli
-Symbol ids (default: all symbols of the page)	Identyfikatory symboli (domyślnie: wszystkie symbole strony)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Rysuje linię definicji kabla; przecinane przez nią przewody stają się żyłami kabla (nowego kabla, jeśli nie podano żadnego)
 Start and end point of the line	Punkt początkowy i końcowy linii
 Cable tag, e.g. -W1	Oznaczenie kabla, np. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Tylko adresy inter
 The plugin program did not answer within {} s and was stopped	Program wtyczki nie odpowiedział w ciągu {} s i został zatrzymany
 Busbar systems	Systemy szyn zbiorczych
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: system szyn zbiorczych z {} szynami łączy {} przewody ({}): zwarcie
+T-junction	Trójnik
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Trójnik kierunkowy: tam, gdzie spotykają się trzy przewody, wskazuje urządzenie, od którego wychodzą dwa przewody połączenia, i kolejność ich celów
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: od lewego / górnego ramienia prosto do drugiego ramienia, potem do trzonu · 2: to samo od prawego / dolnego ramienia · 3: od trzonu do lewego / górnego ramienia, potem do drugiego · 4: od trzonu najpierw do prawego / dolnego ramienia (domyślnie 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Kierunek trzonu: left, right, up lub down (domyślnie: według przewodów w tym miejscu)
+Draw the junction as a connection dot; its routing stays	Rysować trójnik jako punkt połączenia; jego prowadzenie pozostaje
+No three wires meet at {} / {} mm: give the direction of the stem	W {} / {} mm nie spotykają się trzy przewody: podaj kierunek trzonu
+Page name (default: all pages)	Nazwa strony (domyślnie: wszystkie strony)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Umieszcza trójnik kierunkowy tam, gdzie spotykają się trzy przewody: wskazuje urządzenie, od którego wychodzą dwa przewody połączenia (źródło), i kolejność ich celów zamiast kolejności na schemacie
+Unknown direction {}: left, right, up or down	Nieznany kierunek {}: left, right, up lub down
+Variant {} is not one of 1 to 4	Wariant {} nie jest jednym z 1 do 4
+Dot	Punkt
+Drawn as a connection dot; the routing stays	Rysowany jako punkt połączenia; prowadzenie pozostaje
+Representation	Przedstawienie
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tutaj muszą spotkać się trzy przewody: jeden w jego kierunku i dwa poprzeczne. Do tego czasu połączenie jest łączone w kolejności na schemacie.
+Wires of the connection	Przewody połączenia
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kliknij tam, gdzie spotykają się trzy przewody: trójnik wskazuje urządzenie, od którego wychodzą przewody, i kolejność ich celów · {} obraca go tam, gdzie przewody jeszcze się nie spotykają · Esc lub prawy przycisk kończy
+Draw the three wires of the T-junction to it: one in its direction and two across	Narysuj trzy przewody trójnika do niego: jeden w jego kierunku i dwa poprzeczne
+Source {}, first target {}, second target {}	Źródło {}, pierwszy cel {}, drugi cel {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Trójnik na stronie {} nie pasuje do swoich przewodów: potrzebuje jednego przewodu w swoim kierunku, dwóch poprzecznych i braku punktu przyłączenia w tym miejscu
+on the left	po lewej
+on the right	po prawej
+above	u góry
+below	u dołu
+Connection symbols	Symbole połączeń
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Narożnik: dwa przewody pod kątem prostym; przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone
+Draw wires to the connection points facing its free arms	Narysować przewody do punktów przyłączenia naprzeciw jego wolnych ramion
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Rysuje przewody między wolnymi punktami przyłączenia symboli leżącymi naprzeciw siebie oraz do wolnych ramion trójników i narożników
+Ids of symbols and connection symbols (default: all symbols of the page)	Id symboli i symboli połączeń (domyślnie: wszystkie symbole strony)
+No connection symbol with id {}	Brak symbolu połączenia o id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Umieszcza narożnik: spotykają się tam dwa przewody pod kątem prostym, a punkty przyłączenia naprzeciw jego ramion są z nim łączone
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Ramiona narożnika to jeden kierunek pionowy i jeden poziomy, np. down left, nie {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Dwa ramiona narożnika, pionowe i poziome, np. down left (domyślnie: według przewodów w tym miejscu, inaczej down right)
+There is a connection symbol at this point already	W tym punkcie jest już symbol połączenia
+Arms	Ramiona
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tutaj muszą spotkać się dwa przewody pod kątem prostym. Przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kliknij tam, gdzie dwa przewody spotykają się pod kątem prostym, lub gdzie punkty przyłączenia leżą naprzeciw siebie przez narożnik: przy włączonym automatycznym łączeniu rysowane są do niego przewody · {} obraca go · Esc lub prawy przycisk kończy
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Narysuj dwa przewody narożnika do niego lub włącz automatyczne łączenie i umieść go naprzeciw wolnych punktów przyłączenia
+Arms {} and {}	Ramiona {} i {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Narożnik na stronie {} nie pasuje do swoich przewodów: potrzebuje jednego przewodu w każdym ze swoich dwu kierunków i braku punktu przyłączenia w tym miejscu
+Two connection symbols on page {} lie on the same point	Dwa symbole połączeń na stronie {} leżą w tym samym punkcie
+Crossing	Skrzyżowanie
+Bridge	Mostek
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Skrzyżowanie kierunkowe: łączy dwa krzyżujące się tam przewody; każdy koniec jego linii jest łączony najpierw na wprost, a potem poprzecznie
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Mostek: cztery przewody; połączenie wchodzi z jednej strony i idzie do trzech pozostałych, najpierw do przeciwległej
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: górny / lewy koniec linii idzie poprzecznie do prawego / dolnego ramienia · 2: do lewego / górnego ramienia (domyślnie 2)
+A {} has no {}; it takes {}	{} nie ma {}; przyjmuje {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Zmienia trójnik (kierunek, wariant, przedstawienie), narożnik (ramiona), skrzyżowanie (linia, wariant, przedstawienie) lub mostek (kierunek, przedstawienie)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Wyświetla trójniki, narożniki, skrzyżowania i mostki z ich prowadzeniem i przewodami ich połączenia
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Umieszcza mostek tam, gdzie spotykają się cztery przewody: połączenie wchodzi z jednej strony i idzie do trzech pozostałych, najpierw do przeciwległej, potem do lewej / górnej, potem do prawej / dolnej
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Umieszcza skrzyżowanie kierunkowe tam, gdzie krzyżują się dwa przewody: łączy je, a każdy koniec jego linii jest łączony najpierw na wprost, a potem z jednym poprzecznym ramieniem
+Side the connection comes from: left, right, up or down (default up)	Strona, z której wchodzi połączenie: left, right, up lub down (domyślnie up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Trójnik: kierunek trzonu; mostek: strona, z której wchodzi połączenie (left, right, up lub down)
+The line of a crossing is vertical or horizontal, not {}	Linia skrzyżowania to vertical lub horizontal, nie {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Linia prosta skrzyżowania: vertical lub horizontal (domyślnie vertical)
+Variant {} is not one of 1 to 2	Wariant {} nie jest jednym z 1 do 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Stąd muszą wychodzić przewody we wszystkich czterech kierunkach. Do tego czasu połączenie jest łączone w kolejności na schemacie.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Kliknij tam, gdzie spotykają się cztery przewody: mostek prowadzi połączenie z jednej strony do trzech pozostałych, najpierw do przeciwległej · {} obraca go · Esc lub prawy przycisk kończy
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kliknij tam, gdzie krzyżują się dwa przewody: skrzyżowanie łączy je i prowadzi każdy koniec swojej linii najpierw na wprost, potem poprzecznie · {} obraca je · Esc lub prawy przycisk kończy
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Narysuj do niego przewody we wszystkich czterech kierunkach lub włącz automatyczne łączenie i umieść go naprzeciw wolnych punktów przyłączenia
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Mostek na stronie {} nie pasuje do swoich przewodów: potrzebuje przewodu we wszystkich czterech kierunkach i braku punktu przyłączenia w tym miejscu
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Skrzyżowanie na stronie {} nie pasuje do swoich przewodów: potrzebuje przewodu we wszystkich czterech kierunkach i braku punktu przyłączenia w tym miejscu
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Symbol połączenia na stronie {} łączy swoje połączenie w pętlę: symbole połączenia dają mu więcej przewodów, niż potrzebują jego urządzenia
+Source {}, targets {}, {} and {}	Źródło {}, cele {}, {} i {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Na wprost z {} do {}, poprzecznie z {} do {} i z {} do {}

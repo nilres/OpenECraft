@@ -181,8 +181,16 @@ pub fn draw_page(d: &mut dyn Draw, prj: &Project, idx: &Index, an: &Analysis, pa
             _ => d.line(w.a, w.b, WIRE_W, ink, false),
         }
     }
+    // A directed T-junction replaces the dot where it fits its wires.
+    let directed: Vec<P> = page.junctions.iter().filter(|j| !j.dot && !j.is_corner() && netlist::junctions::fits(prj, page, j)).map(|j| j.pos).collect();
     for j in netlist::junctions(prj, page) {
-        d.circle(j, 0.7, 0.0, Ink::Wire, true);
+        if !directed.iter().any(|q| q.same(j)) {
+            d.circle(j, 0.7, 0.0, Ink::Wire, true);
+        }
+    }
+    for j in &page.junctions {
+        let ink = if opts.selected.contains(&j.id) { Ink::Selected } else { Ink::Wire };
+        draw_junction(d, prj, page, j, ink);
     }
     draw_wire_labels(d, prj, an, page_i);
     let structured = !structure::page_structure(page).is_empty();
@@ -339,6 +347,42 @@ pub fn draw_dimension(d: &mut dyn Draw, dm: &Dimension, ink: Ink) {
         None => d.text(g.text_pos, &text, TAG_SIZE, Anchor::Center, VAnchor::Bottom, text_ink),
     }
 }
+
+/// The directional symbol of a T-junction: a diagonal from its source to its second
+/// target (the first target lies straight on); a dot when it is drawn as one. A
+/// corner that fits its wires is the bend of the wires and draws nothing. One that
+/// does not fit its wires is drawn in the error colour with its arms. The selected one
+/// gets a ring.
+pub fn draw_junction(d: &mut dyn Draw, prj: &Project, page: &Page, j: &Junction, ink: Ink) {
+    let fits = netlist::junctions::fits(prj, page, j);
+    let mark = if fits { ink } else { Ink::Error };
+    // The dot of a fitting one is the connection dot the wires get anyway.
+    junction_symbol(d, j, mark, !fits || !(j.dot || j.is_corner()), ink == Ink::Selected || !fits);
+}
+
+/// The symbol of a connection symbol at its position: the diagonal of a T-junction
+/// from its source to its second target, or a dot; the two short arms of a corner;
+/// with `ring` a circle around it.
+pub fn junction_symbol(d: &mut dyn Draw, j: &Junction, ink: Ink, symbol: bool, ring: bool) {
+    if symbol && j.is_corner() {
+        for a in j.arms() {
+            d.line(j.pos, j.pos + a.vector() * JUNCTION_R, WIRE_W, ink, false);
+        }
+    } else if symbol && j.dot {
+        d.circle(j.pos, 0.7, 0.0, ink, true);
+    } else if symbol {
+        // The first target lies straight on, the others get a diagonal.
+        for (a, b) in j.links().into_iter().skip(1) {
+            d.line(j.pos + a.vector() * JUNCTION_R, j.pos + b.vector() * JUNCTION_R, WIRE_W, ink, false);
+        }
+    }
+    if ring {
+        d.circle(j.pos, JUNCTION_R * 0.7, SYMBOL_W, ink, false);
+    }
+}
+
+/// Reach of the diagonal of a T-junction (mm).
+pub const JUNCTION_R: f32 = 2.0;
 
 /// Diamond on the wire and the defined values beside it.
 fn draw_conn_def(d: &mut dyn Draw, page: &Page, cd: &ConnDef, ink: Ink) {

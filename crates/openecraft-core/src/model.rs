@@ -638,6 +638,10 @@ pub struct Page {
     /// Cable definition lines: the wires they cross are cores of the cable.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub cable_defs: Vec<CableDef>,
+    /// Directed T-junctions: where three wires meet, which wires are the targets of
+    /// the connection (`netlist::junctions`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub junctions: Vec<Junction>,
     /// Page property values.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub values: properties::Values,
@@ -684,6 +688,7 @@ impl Page {
             images: Vec::new(),
             conn_defs: Vec::new(),
             cable_defs: Vec::new(),
+            junctions: Vec::new(),
             values: BTreeMap::new(),
             macro_boxes: Vec::new(),
         }
@@ -698,6 +703,7 @@ impl Page {
             && self.images.is_empty()
             && self.conn_defs.is_empty()
             && self.cable_defs.is_empty()
+            && self.junctions.is_empty()
     }
 }
 
@@ -1273,6 +1279,269 @@ pub struct ConnDef {
     pub description: String,
 }
 
+/// Direction the stem of a directed T-junction points to (the bar lies across it).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize, Default)]
+pub enum TeeDir {
+    Left,
+    Right,
+    Up,
+    #[default]
+    Down,
+}
+
+impl TeeDir {
+    pub const ALL: [TeeDir; 4] = [TeeDir::Left, TeeDir::Right, TeeDir::Up, TeeDir::Down];
+
+    /// Unit vector of the direction (y downwards).
+    pub fn vector(self) -> P {
+        match self {
+            TeeDir::Left => p(-1.0, 0.0),
+            TeeDir::Right => p(1.0, 0.0),
+            TeeDir::Up => p(0.0, -1.0),
+            TeeDir::Down => p(0.0, 1.0),
+        }
+    }
+
+    pub fn opposite(self) -> TeeDir {
+        match self {
+            TeeDir::Left => TeeDir::Right,
+            TeeDir::Right => TeeDir::Left,
+            TeeDir::Up => TeeDir::Down,
+            TeeDir::Down => TeeDir::Up,
+        }
+    }
+
+    /// Turned by 90° clockwise.
+    pub fn turned(self) -> TeeDir {
+        match self {
+            TeeDir::Left => TeeDir::Up,
+            TeeDir::Up => TeeDir::Right,
+            TeeDir::Right => TeeDir::Down,
+            TeeDir::Down => TeeDir::Left,
+        }
+    }
+
+    /// Directions of the two arms of the bar across a stem in this direction: the
+    /// first arm is the left or upper one.
+    pub fn arms(self) -> [TeeDir; 2] {
+        match self {
+            TeeDir::Up | TeeDir::Down => [TeeDir::Left, TeeDir::Right],
+            TeeDir::Left | TeeDir::Right => [TeeDir::Up, TeeDir::Down],
+        }
+    }
+
+    /// Name in commands and files: `left`, `right`, `up`, `down`.
+    pub fn name(self) -> &'static str {
+        match self {
+            TeeDir::Left => "left",
+            TeeDir::Right => "right",
+            TeeDir::Up => "up",
+            TeeDir::Down => "down",
+        }
+    }
+
+    pub fn parse(name: &str) -> Option<TeeDir> {
+        TeeDir::ALL.into_iter().find(|d| d.name().eq_ignore_ascii_case(name.trim()))
+    }
+}
+
+/// Kind of a connection symbol ([`Junction`]).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
+pub enum JunctionKind {
+    /// Three wires: a directed T-junction with target tracing.
+    #[default]
+    Tee,
+    /// Two wires at a right angle: a corner that automatic connections wire into.
+    Corner,
+    /// Four wires: two T-junctions joined, the straight line through it is the first
+    /// target of both its ends, the arms across it their second targets.
+    Crossing,
+    /// Four wires: a star from the side the connection comes from to the three others,
+    /// the opposite side first, then the left / upper, then the right / lower.
+    Bridge,
+}
+
+/// Connection symbol: a directed T-junction (target tracing) or a corner.
+///
+/// A T-junction at a point where three wires meet says which of the three devices
+/// the two physical wires start from and the order of their targets. Its three ports
+/// are the stem (in `dir`) and the two arms of the bar across it; `variant` picks the
+/// source port and the order of the two targets (`netlist::junctions`). The semantics
+/// stay when it is drawn as a dot.
+///
+/// A corner has two arms at a right angle: `dir` is its vertical arm (up or down),
+/// `variant` 1 puts the horizontal one to the left, 2 to the right.
+///
+/// A crossing has four arms and connects the wires passing through it: `dir` (up or
+/// left) is the straight line through it, `variant` 1 wires the first end of that
+/// line (`dir`) to the right / lower arm and the other end to the left / upper one,
+/// `variant` 2 the other way round. A bridge has four arms as well: `dir` is the side
+/// the connection comes from, wired to the three others.
+///
+/// Automatic connections draw wires to connection points facing the free arms of
+/// every kind.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
+#[serde(default)]
+pub struct Junction {
+    pub id: u64,
+    pub pos: P,
+    #[serde(skip_serializing_if = "is_zero")]
+    pub kind: JunctionKind,
+    pub dir: TeeDir,
+    /// T-junction: 1: from the first arm straight to the second arm, then to the stem;
+    /// 2: from the second arm straight to the first arm, then to the stem;
+    /// 3: from the stem to the first arm, then to the second arm;
+    /// 4: from the stem to the second arm, then to the first arm.
+    /// The first arm is the left or upper one. Corner: 1 left, 2 right.
+    pub variant: u8,
+    /// Drawn as a connection dot instead of the directional symbol.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub dot: bool,
+}
+
+impl Junction {
+    /// The usual symbol of a kind at `pos`: a T-junction with its stem down and the
+    /// source there, a corner down / right, a crossing with a vertical line, a bridge
+    /// fed from above.
+    pub fn new(kind: JunctionKind, pos: P) -> Junction {
+        let (dir, variant) = match kind {
+            JunctionKind::Tee => (TeeDir::Down, 3),
+            JunctionKind::Corner => (TeeDir::Down, 2),
+            JunctionKind::Crossing => (TeeDir::Up, 2),
+            JunctionKind::Bridge => (TeeDir::Up, 1),
+        };
+        Junction { id: 0, pos, kind, dir, variant, dot: false }
+    }
+
+    /// A corner with the given vertical and horizontal arm.
+    pub fn corner(pos: P, vertical: TeeDir, horizontal: TeeDir) -> Junction {
+        let mut j = Junction { pos, kind: JunctionKind::Corner, ..Default::default() };
+        j.set_corner_arms(vertical, horizontal);
+        j
+    }
+
+    pub fn is_corner(&self) -> bool {
+        self.kind == JunctionKind::Corner
+    }
+
+    /// Connects the wires that pass through its point (crossings and bridges).
+    pub fn connects(&self) -> bool {
+        matches!(self.kind, JunctionKind::Crossing | JunctionKind::Bridge)
+    }
+
+    /// The straight line of a crossing: `Up` (vertical) or `Left` (horizontal).
+    pub fn line(&self) -> TeeDir {
+        match self.dir {
+            TeeDir::Up | TeeDir::Down => TeeDir::Up,
+            TeeDir::Left | TeeDir::Right => TeeDir::Left,
+        }
+    }
+
+    /// The directions its wires leave in: a T-junction's stem and two arms, a
+    /// corner's vertical and horizontal arm, all four of a crossing and a bridge.
+    pub fn arms(&self) -> Vec<TeeDir> {
+        match self.kind {
+            JunctionKind::Tee => vec![self.dir, self.dir.arms()[0], self.dir.arms()[1]],
+            JunctionKind::Corner => {
+                let vertical = if matches!(self.dir, TeeDir::Up | TeeDir::Down) { self.dir } else { TeeDir::Down };
+                vec![vertical, if self.variant == 1 { TeeDir::Left } else { TeeDir::Right }]
+            }
+            JunctionKind::Crossing | JunctionKind::Bridge => TeeDir::ALL.to_vec(),
+        }
+    }
+
+    /// The wires through the symbol as pairs of arms, in the order of their targets.
+    pub fn links(&self) -> Vec<(TeeDir, TeeDir)> {
+        match self.kind {
+            JunctionKind::Tee => {
+                let [a, b] = self.dir.arms();
+                match self.variant {
+                    1 => vec![(a, b), (a, self.dir)],
+                    2 => vec![(b, a), (b, self.dir)],
+                    4 => vec![(self.dir, b), (self.dir, a)],
+                    _ => vec![(self.dir, a), (self.dir, b)],
+                }
+            }
+            JunctionKind::Corner => {
+                let arms = self.arms();
+                vec![(arms[0], arms[1])]
+            }
+            JunctionKind::Crossing => {
+                let line = self.line();
+                let [s1, s2] = line.arms();
+                if self.variant == 1 {
+                    vec![(line, line.opposite()), (line, s2), (line.opposite(), s1)]
+                } else {
+                    vec![(line, line.opposite()), (line, s1), (line.opposite(), s2)]
+                }
+            }
+            JunctionKind::Bridge => {
+                let [a, b] = self.dir.arms();
+                vec![(self.dir, self.dir.opposite()), (self.dir, a), (self.dir, b)]
+            }
+        }
+    }
+
+    fn set_corner_arms(&mut self, vertical: TeeDir, horizontal: TeeDir) {
+        self.dir = if matches!(vertical, TeeDir::Up | TeeDir::Down) { vertical } else { TeeDir::Down };
+        self.variant = if horizontal == TeeDir::Left { 1 } else { 2 };
+    }
+
+    /// The ports keep their wires when the directions change by `map`: the stem
+    /// follows, and the arms of a T-junction swap when the first one is no longer the
+    /// left or upper.
+    fn remap(&mut self, map: impl Fn(TeeDir) -> TeeDir) {
+        match self.kind {
+            JunctionKind::Corner => {
+                let arms: Vec<TeeDir> = self.arms().into_iter().map(map).collect();
+                let vertical = arms.iter().copied().find(|d| matches!(d, TeeDir::Up | TeeDir::Down)).unwrap_or(TeeDir::Down);
+                let horizontal = arms.iter().copied().find(|d| matches!(d, TeeDir::Left | TeeDir::Right)).unwrap_or(TeeDir::Right);
+                self.set_corner_arms(vertical, horizontal);
+                return;
+            }
+            JunctionKind::Bridge => {
+                self.dir = map(self.dir);
+                return;
+            }
+            JunctionKind::Crossing => {
+                // The line and the end of it wired to the left / upper arm.
+                let links: Vec<(TeeDir, TeeDir)> = self.links().into_iter().map(|(a, b)| (map(a), map(b))).collect();
+                let line = links[0].0;
+                self.dir = if matches!(line, TeeDir::Up | TeeDir::Down) { TeeDir::Up } else { TeeDir::Left };
+                let first_side = self.dir.arms()[0];
+                let to_first = links[1..].iter().find(|(_, s)| *s == first_side).map(|(end, _)| *end);
+                self.variant = if to_first == Some(self.dir) { 2 } else { 1 };
+                return;
+            }
+            JunctionKind::Tee => {}
+        }
+        let first = map(self.dir.arms()[0]);
+        self.dir = map(self.dir);
+        if self.dir.arms()[0] != first {
+            self.variant = match self.variant {
+                1 => 2,
+                2 => 1,
+                3 => 4,
+                4 => 3,
+                v => v,
+            };
+        }
+    }
+
+    /// Turned by 90° clockwise with its wires: the same devices stay source and targets.
+    pub fn turn(&mut self) {
+        self.remap(TeeDir::turned);
+    }
+
+    /// Mirrored at a vertical axis with its wires.
+    pub fn mirror(&mut self) {
+        self.remap(|d| match d {
+            TeeDir::Left | TeeDir::Right => d.opposite(),
+            d => d,
+        });
+    }
+}
+
 /// Cable definition line from `a` to `b`.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
 #[serde(default)]
@@ -1405,6 +1674,7 @@ impl Project {
             max = pg.images.iter().map(|s| s.id).fold(max, u64::max);
             max = pg.conn_defs.iter().map(|s| s.id).fold(max, u64::max);
             max = pg.cable_defs.iter().map(|s| s.id).fold(max, u64::max);
+            max = pg.junctions.iter().map(|s| s.id).fold(max, u64::max);
         }
         for e in &self.layout.enclosures {
             max = max.max(e.id);

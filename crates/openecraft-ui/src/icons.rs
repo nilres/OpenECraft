@@ -53,6 +53,10 @@ pub enum Icon {
     InsertCenter,
     Wire,
     ConnDef,
+    Junction,
+    Corner,
+    Crossing,
+    Bridge,
     CableDef,
     Interruption,
     Potential,
@@ -162,12 +166,12 @@ pub enum Icon {
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 145] = [
+    pub const ALL: [Icon; 149] = [
         Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
         Icon::SelectAll, Icon::PageProperties, Icon::Renumber, Icon::Previous, Icon::Next, Icon::Report, Icon::Table, Icon::Symbol,
-        Icon::Device, Icon::InsertCenter, Icon::Wire, Icon::ConnDef, Icon::CableDef, Icon::Interruption, Icon::Potential, Icon::Macro,
+        Icon::Device, Icon::InsertCenter, Icon::Wire, Icon::ConnDef, Icon::Junction, Icon::Corner, Icon::Crossing, Icon::Bridge, Icon::CableDef, Icon::Interruption, Icon::Potential, Icon::Macro,
         Icon::Text, Icon::PathText, Icon::SpecialText, Icon::Line, Icon::Rect, Icon::Circle, Icon::Ellipse, Icon::Arc, Icon::Polyline,
         Icon::Polygon, Icon::Image, Icon::Dimension, Icon::Comment, Icon::Markup, Icon::AutoConnect, Icon::Route, Icon::Join, Icon::Layer,
         Icon::Properties, Icon::Fit, Icon::Grid, Icon::Pins, Icon::RevisionMarks, Icon::MacroBoxes, Icon::WireColours, Icon::Panes,
@@ -226,6 +230,10 @@ impl Icon {
             Icon::InsertCenter => "R 1.5 1.5 5 5 ; R 9.5 1.5 5 5 ; R 1.5 9.5 5 5 ; M 12 9.5 12 14.5 ; M 9.5 12 14.5 12",
             Icon::Wire => "M 2 13 2 8 14 8 14 3 ; D 2 13 1.3 ; D 14 3 1.3",
             Icon::ConnDef => "M 1.5 8 14.5 8 ; P 8 4.5 11.5 8 8 11.5 4.5 8",
+            Icon::Junction => "M 1.5 5 14.5 5 ; M 8 5 8 14.5 ; M 11.5 5 8 8.5",
+            Icon::Corner => "M 4 1.5 4 12 14.5 12",
+            Icon::Crossing => "M 8 1.5 8 14.5 ; M 1.5 8 14.5 8 ; M 8 4.5 4.5 8 ; M 8 11.5 11.5 8",
+            Icon::Bridge => "M 8 1.5 8 14.5 ; M 1.5 8 14.5 8 ; M 8 4.5 4.5 8 ; M 8 4.5 11.5 8",
             Icon::CableDef => "M 4 2 4 14 ; M 8 2 8 14 ; M 12 2 12 14 ; M 1.5 12.5 14.5 3.5",
             Icon::Interruption => "M 1.5 8 9 8 ; F 9 4.5 14.5 8 9 11.5",
             Icon::Potential => "M 2 4 14 4 ; M 2 8 14 8 ; M 2 12 14 12 ; D 5 4 1 ; D 8 8 1 ; D 11 12 1",

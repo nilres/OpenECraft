@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Bod defi
 Structure	Struktura
 Connects two connection points with wires routed around symbols and other wires	Propojí dva přípojné body vodiči vedenými kolem symbolů a jiných vodičů
 Connection point TAG:PIN, e.g. -K1:A1	Přípojný bod TAG:PIN, např. -K1:A1
-Draws wires between free connection points of symbols that face each other	Nakreslí vodiče mezi volnými protilehlými přípojnými body symbolů
-Symbol ids (default: all symbols of the page)	ID symbolů (výchozí: všechny symboly stránky)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Nakreslí čáru definice kabelu; překřížené vodiče se stanou žílami kabelu (bez zadání nového kabelu)
 Start and end point of the line	Počáteční a koncový bod čáry
 Cable tag, e.g. -W1	Označení kabelu, např. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Odkazy jsou pouze 
 The plugin program did not answer within {} s and was stopped	Program pluginu neodpověděl do {} s a byl ukončen
 Busbar systems	Přípojnicové systémy
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: přípojnicový systém s {} přípojnicemi spojuje {} vodiče ({}): zkrat
+T-junction	T-kus
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Směrovaný T-kus: kde se stýkají tři vodiče, určuje přístroj, od něhož vycházejí dva vodiče spojení, a pořadí jejich cílů
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: z levého / horního ramene rovně k druhému rameni, pak ke stopce · 2: totéž z pravého / dolního ramene · 3: od stopky k levému / hornímu rameni, pak k druhému · 4: od stopky nejprve k pravému / dolnímu rameni (výchozí 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Směr stopky: left, right, up nebo down (výchozí: podle vodičů v místě)
+Draw the junction as a connection dot; its routing stays	Kreslit T-kus jako spojovací bod; jeho vedení zůstává
+No three wires meet at {} / {} mm: give the direction of the stem	V {} / {} mm se nestýkají tři vodiče: zadejte směr stopky
+Page name (default: all pages)	Název strany (výchozí: všechny strany)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Umístí směrovaný T-kus, kde se stýkají tři vodiče: určuje přístroj, od něhož vycházejí dva vodiče spojení (zdroj), a pořadí jejich cílů namísto pořadí ve schématu
+Unknown direction {}: left, right, up or down	Neznámý směr {}: left, right, up nebo down
+Variant {} is not one of 1 to 4	Varianta {} není jednou z 1 až 4
+Dot	Bod
+Drawn as a connection dot; the routing stays	Kreslen jako spojovací bod; vedení zůstává
+Representation	Zobrazení
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Zde se musí stýkat tři vodiče: jeden v jeho směru a dva napříč. Do té doby je spojení řetězeno v pořadí ve schématu.
+Wires of the connection	Vodiče spojení
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klepněte, kde se stýkají tři vodiče: T-kus určuje přístroj, od něhož vodiče vycházejí, a pořadí jejich cílů · {} jej otočí, kde se vodiče ještě nestýkají · Esc nebo pravé tlačítko ukončí
+Draw the three wires of the T-junction to it: one in its direction and two across	Nakreslete k T-kusu jeho tři vodiče: jeden v jeho směru a dva napříč
+Source {}, first target {}, second target {}	Zdroj {}, první cíl {}, druhý cíl {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-kus na straně {} neodpovídá svým vodičům: potřebuje jeden vodič ve svém směru, dva napříč a žádný připojovací bod v místě
+on the left	vlevo
+on the right	vpravo
+above	nahoře
+below	dole
+Connection symbols	Symboly spojení
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Roh: dva vodiče v pravém úhlu; při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům
+Draw wires to the connection points facing its free arms	Nakreslit vodiče k připojovacím bodům naproti jeho volným ramenům
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Kreslí vodiče mezi volnými připojovacími body symbolů ležícími naproti sobě a k volným ramenům T-kusů a rohů
+Ids of symbols and connection symbols (default: all symbols of the page)	Id symbolů a symbolů spojení (výchozí: všechny symboly strany)
+No connection symbol with id {}	Žádný symbol spojení s id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Umístí roh: stýkají se tam dva vodiče v pravém úhlu a připojovací body naproti jeho ramenům se k němu připojí
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Ramena rohu jsou jeden svislý a jeden vodorovný směr, např. down left, nikoli {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Dvě ramena rohu, svislé a vodorovné, např. down left (výchozí: podle vodičů v místě, jinak down right)
+There is a connection symbol at this point already	V tomto bodě už symbol spojení je
+Arms	Ramena
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají dva vodiče v pravém úhlu, nebo kde připojovací body leží naproti sobě přes roh: při zapnutém automatickém spojování se k němu nakreslí vodiče · {} jej otočí · Esc nebo pravé tlačítko ukončí
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Nakreslete k rohu jeho dva vodiče, nebo zapněte automatické spojování a umístěte ho naproti volným připojovacím bodům
+Arms {} and {}	Ramena {} a {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Roh na straně {} neodpovídá svým vodičům: potřebuje jeden vodič v každém ze svých dvou směrů a žádný připojovací bod v místě
+Two connection symbols on page {} lie on the same point	Dva symboly spojení na straně {} leží v tomtéž bodě
+Crossing	Křížení
+Bridge	Most
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Směrované křížení: spojuje dva vodiče, které se tam kříží; každý konec jeho čáry je zapojen nejprve rovně a pak napříč
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Most: čtyři vodiče; spojení přichází z jedné strany a jde ke třem ostatním, nejprve k protilehlé
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: horní / levý konec čáry jde napříč k pravému / dolnímu rameni · 2: k levému / hornímu rameni (výchozí 2)
+A {} has no {}; it takes {}	{} nemá {}; přijímá {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Změní T-kus (směr, variantu, zobrazení), roh (ramena), křížení (čáru, variantu, zobrazení) nebo most (směr, zobrazení)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Vypíše T-kusy, rohy, křížení a mosty s jejich vedením a vodiči jejich spojení
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Umístí most, kde se stýkají čtyři vodiče: spojení přichází z jedné strany a jde ke třem ostatním, nejprve k protilehlé, pak k levé / horní, pak k pravé / dolní
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Umístí směrované křížení, kde se kříží dva vodiče: spojí je a každý konec jeho čáry je zapojen nejprve rovně a pak k jednomu rameni napříč
+Side the connection comes from: left, right, up or down (default up)	Strana, odkud spojení přichází: left, right, up nebo down (výchozí up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-kus: směr stopky; most: strana, odkud spojení přichází (left, right, up nebo down)
+The line of a crossing is vertical or horizontal, not {}	Čára křížení je vertical nebo horizontal, nikoli {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Přímá čára křížení: vertical nebo horizontal (výchozí vertical)
+Variant {} is not one of 1 to 2	Varianta {} není jednou z 1 až 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Odtud musí vycházet vodiče ve všech čtyřech směrech. Do té doby je spojení řetězeno v pořadí ve schématu.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají čtyři vodiče: most vede spojení z jedné strany ke třem ostatním, nejprve k protilehlé · {} jej otočí · Esc nebo pravé tlačítko ukončí
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klepněte, kde se kříží dva vodiče: křížení je spojí a vede každý konec své čáry nejprve rovně, pak napříč · {} jej otočí · Esc nebo pravé tlačítko ukončí
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Nakreslete k němu vodiče ve všech čtyřech směrech, nebo zapněte automatické spojování a umístěte ho naproti volným připojovacím bodům
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Most na straně {} neodpovídá svým vodičům: potřebuje vodič ve všech čtyřech směrech a žádný připojovací bod v místě
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Křížení na straně {} neodpovídá svým vodičům: potřebuje vodič ve všech čtyřech směrech a žádný připojovací bod v místě
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Symbol spojení na straně {} zapojuje své spojení ve smyčce: symboly spojení mu dávají více vodičů, než jeho přístroje potřebují
+Source {}, targets {}, {} and {}	Zdroj {}, cíle {}, {} a {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Rovně z {} do {}, napříč z {} do {} a z {} do {}

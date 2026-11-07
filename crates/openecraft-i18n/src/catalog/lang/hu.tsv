@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	A(z) {}.
 Structure	Struktúra
 Connects two connection points with wires routed around symbols and other wires	Két csatlakozási pontot köt össze szimbólumokat és más vezetékeket kikerülő vezetékekkel
 Connection point TAG:PIN, e.g. -K1:A1	Csatlakozási pont AZONOSÍTÓ:TŰ, pl. -K1:A1
-Draws wires between free connection points of symbols that face each other	Vezetékeket rajzol a szimbólumok egymással szemközti szabad csatlakozási pontjai között
-Symbol ids (default: all symbols of the page)	Szimbólumazonosítók (alapértelmezés: az oldal összes szimbóluma)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Kábeldefiníciós vonalat rajzol; a keresztezett vezetékek a kábel erei lesznek (ha nincs megadva, új kábel jön létre)
 Start and end point of the line	A vonal kezdő- és végpontja
 Cable tag, e.g. -W1	Kábelazonosító, pl. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Csak webes és e-m
 The plugin program did not answer within {} s and was stopped	A bővítményprogram nem válaszolt {} mp alatt, ezért leállt
 Busbar systems	Gyűjtősín-rendszerek
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: a(z) {} sínes gyűjtősín-rendszer {} vezetőt köt össze ({}): rövidzárlat
+T-junction	T-elem
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Irányított T-elem: ahol három vezeték találkozik, megadja, melyik készülékből indul a kapcsolat két vezetéke, és a céljaik sorrendjét
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: a bal / felső ágból egyenesen a másik ágba, majd a szárba · 2: ugyanez a jobb / alsó ágból · 3: a szárból a bal / felső ágba, majd a másikba · 4: a szárból először a jobb / alsó ágba (alapértelmezés 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	A szár iránya: left, right, up vagy down (alapértelmezés: az ottani vezetékek szerint)
+Draw the junction as a connection dot; its routing stays	A T-elemet csatlakozási pontként rajzolja; az útvonala megmarad
+No three wires meet at {} / {} mm: give the direction of the stem	A(z) {} / {} mm pontban nem találkozik három vezeték: adja meg a szár irányát
+Page name (default: all pages)	Lapnév (alapértelmezés: minden lap)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Irányított T-elemet helyez el, ahol három vezeték találkozik: megadja, melyik készülékből indul a kapcsolat két vezetéke (a forrás), és a céljaik sorrendjét a kapcsolási rajz sorrendje helyett
+Unknown direction {}: left, right, up or down	Ismeretlen irány {}: left, right, up vagy down
+Variant {} is not one of 1 to 4	A(z) {} változat nem 1 és 4 közötti
+Dot	Pont
+Drawn as a connection dot; the routing stays	Csatlakozási pontként rajzolva; az útvonal megmarad
+Representation	Ábrázolás
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Itt három vezetéknek kell találkoznia: egynek az irányában és kettőnek keresztben. Addig a kapcsolat a kapcsolási rajz sorrendjében fűződik.
+Wires of the connection	A kapcsolat vezetékei
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kattintson oda, ahol három vezeték találkozik: a T-elem megadja, melyik készülékből indulnak a vezetékek, és a céljaik sorrendjét · {} elforgatja, ahol még nem találkoznak vezetékek · Esc vagy jobb kattintás befejezi
+Draw the three wires of the T-junction to it: one in its direction and two across	Rajzolja a T-elem három vezetékét hozzá: egyet az irányában és kettőt keresztben
+Source {}, first target {}, second target {}	Forrás {}, első cél {}, második cél {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A(z) {}. lapon lévő T-elem nem illik a vezetékeihez: egy vezeték kell az irányában, kettő keresztben, és nem lehet ott csatlakozási pont
+on the left	balra
+on the right	jobbra
+above	fent
+below	lent
+Connection symbols	Kapcsolati szimbólumok
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Sarok: két vezeték derékszögben; bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek
+Draw wires to the connection points facing its free arms	Vezetékek rajzolása a szabad karjaival szemközti csatlakozási pontokhoz
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Vezetékeket rajzol egymással szemközti szimbólumok szabad csatlakozási pontjai között, valamint a T-elemek és sarkok szabad karjaihoz
+Ids of symbols and connection symbols (default: all symbols of the page)	Szimbólumok és kapcsolati szimbólumok azonosítói (alapértelmezés: a lap minden szimbóluma)
+No connection symbol with id {}	Nincs {} azonosítójú kapcsolati szimbólum
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Sarkot helyez el: ott két vezeték derékszögben találkozik, és a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	A sarok karjai egy függőleges és egy vízszintes irány, pl. down left, nem {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	A sarok két karja, függőleges és vízszintes, pl. down left (alapértelmezés: az ottani vezetékek szerint, különben down right)
+There is a connection symbol at this point already	Ezen a ponton már van kapcsolati szimbólum
+Arms	Karok
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték derékszögben találkozik, vagy ahol csatlakozási pontok a sarkon át szemben állnak: bekapcsolt automatikus csatlakoztatással vezetékek rajzolódnak hozzá · {} elforgatja · Esc vagy jobb kattintás befejezi
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Rajzolja a sarok két vezetékét hozzá, vagy kapcsolja be az automatikus csatlakoztatást, és helyezze szabad csatlakozási pontokkal szembe
+Arms {} and {}	Karok {} és {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	A(z) {}. lapon lévő sarok nem illik a vezetékeihez: mindkét irányában egy vezeték kell, és nem lehet ott csatlakozási pont
+Two connection symbols on page {} lie on the same point	A(z) {}. lapon két kapcsolati szimbólum ugyanazon a ponton fekszik
+Crossing	Kereszteződés
+Bridge	Híd
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Irányított kereszteződés: összeköti az ott keresztező két vezetéket; vonalának mindkét vége először egyenesen, majd keresztben vezetékeződik
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Híd: négy vezeték; a kapcsolat egy oldalon érkezik, és a három másikhoz megy, először a szemköztihez
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: a vonal felső / bal vége keresztben a jobb / alsó ágba megy · 2: a bal / felső ágba (alapértelmezés 2)
+A {} has no {}; it takes {}	{}: nincs {}; a következőt fogadja: {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Megváltoztat egy T-elemet (irány, változat, ábrázolás), egy sarkot (karok), egy kereszteződést (vonal, változat, ábrázolás) vagy egy hidat (irány, ábrázolás)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Felsorolja a T-elemeket, sarkokat, kereszteződéseket és hidakat az útvonalukkal és a kapcsolatuk vezetékeivel
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Hidat helyez el, ahol négy vezeték találkozik: a kapcsolat egy oldalon érkezik, és a három másikhoz megy, először a szemköztihez, majd a balhoz / felsőhöz, majd a jobbhoz / alsóhoz
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Irányított kereszteződést helyez el, ahol két vezeték keresztezi egymást: összeköti őket, és vonalának mindkét vége először egyenesen, majd egy keresztágba vezetékeződik
+Side the connection comes from: left, right, up or down (default up)	Az oldal, ahonnan a kapcsolat érkezik: left, right, up vagy down (alapértelmezés up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-elem: a szár iránya; híd: az oldal, ahonnan a kapcsolat érkezik (left, right, up vagy down)
+The line of a crossing is vertical or horizontal, not {}	A kereszteződés vonala vertical vagy horizontal, nem {}
+The straight line of a crossing: vertical or horizontal (default vertical)	A kereszteződés egyenes vonala: vertical vagy horizontal (alapértelmezés vertical)
+Variant {} is not one of 1 to 2	A(z) {} változat nem 1 és 2 közötti
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Innen mind a négy irányban vezetéknek kell indulnia. Addig a kapcsolat a kapcsolási rajz sorrendjében fűződik.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Kattintson oda, ahol négy vezeték találkozik: a híd a kapcsolatot egy oldalról a három másikhoz vezeti, először a szemköztihez · {} elforgatja · Esc vagy jobb kattintás befejezi
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték keresztezi egymást: a kereszteződés összeköti őket, és vonalának mindkét végét először egyenesen, majd keresztben vezeti · {} elforgatja · Esc vagy jobb kattintás befejezi
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Rajzoljon hozzá vezetékeket mind a négy irányban, vagy kapcsolja be az automatikus csatlakoztatást, és helyezze szabad csatlakozási pontokkal szembe
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő híd nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő kereszteződés nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	A(z) {}. lapon lévő kapcsolati szimbólum hurokban vezetékezi a kapcsolatát: a kapcsolat szimbólumai több vezetéket adnak neki, mint amennyire a készülékeinek szüksége van
+Source {}, targets {}, {} and {}	Forrás {}, célok {}, {} és {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Egyenesen {} – {}, keresztben {} – {} és {} – {}

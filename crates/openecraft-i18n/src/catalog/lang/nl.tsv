@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Verbindi
 Structure	Structuur
 Connects two connection points with wires routed around symbols and other wires	Verbindt twee aansluitpunten met draden die om symbolen en andere draden heen worden gerouteerd
 Connection point TAG:PIN, e.g. -K1:A1	Aansluitpunt AANDUIDING:PIN, bijv. -K1:A1
-Draws wires between free connection points of symbols that face each other	Tekent draden tussen vrije aansluitpunten van symbolen die tegenover elkaar liggen
-Symbol ids (default: all symbols of the page)	Symbool-id's (standaard: alle symbolen van de pagina)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Tekent een kabeldefinitielijn; de draden die deze kruist worden aders van de kabel (een nieuwe kabel als er geen is opgegeven)
 Start and end point of the line	Begin- en eindpunt van de lijn
 Cable tag, e.g. -W1	Kabelaanduiding, bijv. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Alleen web- en e-m
 The plugin program did not answer within {} s and was stopped	Het pluginprogramma heeft niet binnen {} s geantwoord en is gestopt
 Busbar systems	Railsystemen
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: het railsysteem met {} rails verbindt {} geleiders ({}): kortsluiting
+T-junction	T-stuk
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Gericht T-stuk: waar drie draden samenkomen, benoemt het het apparaat waar de twee draden van de verbinding beginnen en de volgorde van hun doelen
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: van de linker / bovenste arm recht naar de andere arm, dan naar de steel · 2: hetzelfde vanaf de rechter / onderste arm · 3: van de steel naar de linker / bovenste arm, dan naar de andere · 4: van de steel eerst naar de rechter / onderste arm (standaard 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Richting van de steel: left, right, up of down (standaard: volgens de draden daar)
+Draw the junction as a connection dot; its routing stays	Het T-stuk als verbindingspunt tekenen; de routering blijft
+No three wires meet at {} / {} mm: give the direction of the stem	Op {} / {} mm komen geen drie draden samen: geef de richting van de steel op
+Page name (default: all pages)	Paginanaam (standaard: alle pagina's)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Plaatst een gericht T-stuk waar drie draden samenkomen: het benoemt het apparaat waar de twee draden van de verbinding beginnen (de bron) en de volgorde van hun doelen, in plaats van de schemavolgorde
+Unknown direction {}: left, right, up or down	Onbekende richting {}: left, right, up of down
+Variant {} is not one of 1 to 4	Variant {} is geen van 1 tot 4
+Dot	Punt
+Drawn as a connection dot; the routing stays	Getekend als verbindingspunt; de routering blijft
+Representation	Weergave
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Hier moeten drie draden samenkomen: één in zijn richting en twee dwars. Tot dan wordt de verbinding in schemavolgorde geketend.
+Wires of the connection	Draden van de verbinding
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik waar drie draden samenkomen: het T-stuk benoemt het apparaat waar de draden beginnen en de volgorde van hun doelen · {} draait het waar nog geen draden samenkomen · Esc of rechtsklik om te beëindigen
+Draw the three wires of the T-junction to it: one in its direction and two across	Teken de drie draden van het T-stuk ernaartoe: één in zijn richting en twee dwars
+Source {}, first target {}, second target {}	Bron {}, eerste doel {}, tweede doel {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Het T-stuk op pagina {} past niet bij zijn draden: het heeft één draad in zijn richting, twee dwars en geen aansluitpunt daar nodig
+on the left	links
+on the right	rechts
+above	boven
+below	onder
+Connection symbols	Verbindingssymbolen
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hoek: twee draden in een rechte hoek; met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden
+Draw wires to the connection points facing its free arms	Draden tekenen naar de aansluitpunten tegenover zijn vrije armen
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Tekent draden tussen vrije aansluitpunten van symbolen die tegenover elkaar liggen en naar de vrije armen van T-stukken en hoeken
+Ids of symbols and connection symbols (default: all symbols of the page)	Ids van symbolen en verbindingssymbolen (standaard: alle symbolen van de pagina)
+No connection symbol with id {}	Geen verbindingssymbool met id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Plaatst een hoek: daar komen twee draden in een rechte hoek samen, en aansluitpunten tegenover zijn armen worden ermee verbonden
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	De armen van een hoek zijn een verticale en een horizontale richting, bv. down left, niet {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	De twee armen van een hoek, verticaal en horizontaal, bv. down left (standaard: volgens de draden daar, anders down right)
+There is a connection symbol at this point already	Op dit punt is al een verbindingssymbool
+Arms	Armen
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klik waar twee draden in een rechte hoek samenkomen, of waar aansluitpunten over de hoek tegenover elkaar liggen: met Auto-connect aan worden er draden naartoe getekend · {} draait hem · Esc of rechtsklik om te beëindigen
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Teken de twee draden van de hoek ernaartoe, of zet Auto-connect aan en plaats hem tegenover vrije aansluitpunten
+Arms {} and {}	Armen {} en {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	De hoek op pagina {} past niet bij zijn draden: hij heeft één draad in elk van zijn twee richtingen en geen aansluitpunt daar nodig
+Two connection symbols on page {} lie on the same point	Twee verbindingssymbolen op pagina {} liggen op hetzelfde punt
+Crossing	Kruising
+Bridge	Brug
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Gerichte kruising: verbindt de twee draden die er kruisen; elk uiteinde van zijn lijn wordt eerst rechtdoor en dan dwars bedraad
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: het bovenste / linker uiteinde van de lijn gaat dwars naar de rechter / onderste arm · 2: naar de linker / bovenste arm (standaard 2)
+A {} has no {}; it takes {}	{} heeft geen {}; het neemt {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Wijzigt een T-stuk (richting, variant, weergave), een hoek (armen), een kruising (lijn, variant, weergave) of een brug (richting, weergave)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Toont de T-stukken, hoeken, kruisingen en bruggen met hun routering en de draden van hun verbinding
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Plaatst een brug waar vier draden samenkomen: de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende, dan de linker / bovenste, dan de rechter / onderste
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Plaatst een gerichte kruising waar twee draden kruisen: hij verbindt ze, en elk uiteinde van zijn lijn wordt eerst rechtdoor en dan naar een dwarse arm bedraad
+Side the connection comes from: left, right, up or down (default up)	Zijde waar de verbinding vandaan komt: left, right, up of down (standaard up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stuk: richting van de steel; brug: zijde waar de verbinding vandaan komt (left, right, up of down)
+The line of a crossing is vertical or horizontal, not {}	De lijn van een kruising is vertical of horizontal, niet {}
+The straight line of a crossing: vertical or horizontal (default vertical)	De rechte lijn van een kruising: vertical of horizontal (standaard vertical)
+Variant {} is not one of 1 to 2	Variant {} is geen van 1 tot 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Hier moeten draden in alle vier richtingen vertrekken. Tot dan wordt de verbinding in schemavolgorde geketend.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klik waar vier draden samenkomen: de brug leidt de verbinding van één zijde naar de drie andere, eerst de tegenoverliggende · {} draait hem · Esc of rechtsklik om te beëindigen
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik waar twee draden kruisen: de kruising verbindt ze en leidt elk uiteinde van zijn lijn eerst rechtdoor, dan dwars · {} draait hem · Esc of rechtsklik om te beëindigen
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Teken draden in alle vier richtingen ernaartoe, of zet Auto-connect aan en plaats het tegenover vrije aansluitpunten
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	De brug op pagina {} past niet bij zijn draden: hij heeft een draad in alle vier richtingen en geen aansluitpunt daar nodig
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	De kruising op pagina {} past niet bij zijn draden: hij heeft een draad in alle vier richtingen en geen aansluitpunt daar nodig
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Het verbindingssymbool op pagina {} bedraadt zijn verbinding in een lus: de symbolen van de verbinding geven haar meer draden dan haar apparaten nodig hebben
+Source {}, targets {}, {} and {}	Bron {}, doelen {}, {} en {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Rechtdoor van {} naar {}, dwars van {} naar {} en van {} naar {}

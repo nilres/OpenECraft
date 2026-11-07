@@ -9,7 +9,7 @@
 
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use crate::geom::{p, P};
-use crate::model::{natural_cmp, CableDef, ConnDef, Dimension, ImageItem, Page, Project, Shape, SymbolInst, TextItem, Wire};
+use crate::model::{natural_cmp, CableDef, ConnDef, Dimension, ImageItem, Junction, Page, Project, Shape, SymbolInst, TextItem, Wire};
 use std::sync::Arc;
 pub use crate::model::revision::{Revision, Snapshot, State, Workflow};
 
@@ -270,6 +270,8 @@ pub fn compare(old: &[Page], new: &[Page]) -> Vec<PageChanges> {
                 diff(&o.conn_defs, &n.conn_defs, &conn, &mut changes);
                 let cable = Kind { what: "Cable definition", id: &|c: &CableDef| c.id, describe: &|c: &CableDef| (c.cable.clone(), mid(c.a, c.b)), details: &no_details };
                 diff(&o.cable_defs, &n.cable_defs, &cable, &mut changes);
+                let tee = Kind { what: "T-junction", id: &|j: &Junction| j.id, describe: &|j: &Junction| (String::new(), j.pos), details: &no_details };
+                diff(&o.junctions, &n.junctions, &tee, &mut changes);
             }
         }
         if !changes.is_empty() {

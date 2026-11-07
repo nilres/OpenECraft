@@ -53,4 +53,5 @@ pub enum Item {
     Image(ImageItem),
     ConnDef(ConnDef),
     CableDef(CableDef),
+    Junction(Junction),
 }

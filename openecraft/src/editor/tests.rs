@@ -476,3 +476,85 @@ fn black_is_black_on_paper_and_the_line_colour_on_a_dark_canvas() {
     assert_eq!(dark.ink(black), dark.line, "visible on a dark canvas");
     assert_eq!(dark.ink(Ink::Color([200, 0, 0])), Color32::from_rgb(200, 0, 0), "other colours stay");
 }
+
+#[test]
+fn the_junction_tool_takes_its_direction_from_the_wires() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire { id: 5, a: p(40.0, 60.0), b: p(200.0, 60.0), ..Default::default() });
+    prj.pages[0].wires.push(Wire { id: 6, a: p(100.0, 60.0), b: p(100.0, 20.0), ..Default::default() });
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.set_tool(Tool::Junction(JunctionKind::Tee));
+    // Where the three wires meet the stem is found; elsewhere the tool's direction
+    // (turned by R) is used.
+    ed.typed = Some(p(100.0, 60.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![]);
+    ed.symbol_proto.turn();
+    ed.typed = Some(p(160.0, 100.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![]);
+    let js = &prj.pages[0].junctions;
+    assert_eq!(js.len(), 2);
+    assert_eq!((js[0].pos, js[0].dir, js[0].variant), (p(100.0, 60.0), TeeDir::Up, 3));
+    assert_eq!((js[1].pos, js[1].dir), (p(160.0, 100.0), TeeDir::Left));
+    assert_eq!(ed.tool, Tool::Junction(JunctionKind::Tee), "the tool stays for the next junction");
+    assert_eq!(ed.selection, BTreeSet::from([js[1].id]));
+    // The same point takes no second junction.
+    ed.typed = Some(p(100.0, 60.0));
+    let out = frame(&mut ed, &ctx, &mut prj, 0, vec![]);
+    assert_eq!(prj.pages[0].junctions.len(), 2);
+    assert!(out.message.is_some());
+    // The select tool picks it.
+    ed.set_tool(Tool::Select);
+    assert_eq!(ed.hit(&prj, 0, p(100.4, 60.0)), Some(prj.pages[0].junctions[0].id));
+}
+
+#[test]
+fn the_corner_tool_wires_facing_pins_in_with_autoconnect() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(SymbolInst { id: 1, sym: "no".into(), pos: p(60.0, 40.0), ..Default::default() });
+    prj.pages[0].symbols.push(SymbolInst { id: 2, sym: "coil".into(), pos: p(120.0, 80.0), rot: 1, ..Default::default() });
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.set_tool(Tool::Junction(JunctionKind::Corner));
+    // R turns the corner: down / right becomes down / left, then up / left.
+    assert_eq!(ed.symbol_proto.arms(), [TeeDir::Down, TeeDir::Right]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::Key { key: Key::R, physical_key: None, pressed: true, repeat: false, modifiers: Modifiers::default() }]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::Key { key: Key::R, physical_key: None, pressed: true, repeat: false, modifiers: Modifiers::default() }]);
+    assert_eq!(ed.symbol_proto.arms(), [TeeDir::Up, TeeDir::Left]);
+    ed.symbol_proto = Junction::corner(P::default(), TeeDir::Up, TeeDir::Right);
+    ed.typed = Some(p(60.0, 80.0));
+    let out = frame(&mut ed, &ctx, &mut prj, 0, vec![]);
+    assert_eq!(prj.pages[0].junctions.len(), 1);
+    assert!(prj.pages[0].junctions[0].is_corner());
+    assert_eq!(prj.pages[0].wires.len(), 2, "both facing pins are wired to the corner");
+    assert_eq!(out.message.as_deref(), Some("2 connections drawn automatically"));
+    assert_eq!(ed.tool, Tool::Junction(JunctionKind::Corner));
+}
+
+#[test]
+fn the_crossing_tool_connects_crossing_wires_and_turns_with_r() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire { id: 5, a: p(100.0, 40.0), b: p(100.0, 80.0), ..Default::default() });
+    prj.pages[0].wires.push(Wire { id: 6, a: p(80.0, 60.0), b: p(120.0, 60.0), ..Default::default() });
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.set_tool(Tool::Junction(JunctionKind::Crossing));
+    assert_eq!((ed.symbol_proto.kind, ed.symbol_proto.dir), (JunctionKind::Crossing, TeeDir::Up));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::Key { key: Key::R, physical_key: None, pressed: true, repeat: false, modifiers: Modifiers::default() }]);
+    assert_eq!(ed.symbol_proto.dir, TeeDir::Left, "R turns the line");
+    ed.typed = Some(p(100.0, 60.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![]);
+    let j = &prj.pages[0].junctions[0];
+    assert_eq!((j.kind, j.dir, j.pos), (JunctionKind::Crossing, TeeDir::Left, p(100.0, 60.0)));
+    let nl = openecraft_core::netlist::Netlist::build(&prj, true);
+    assert_eq!(nl.wire_net[&5], nl.wire_net[&6], "the crossing connects the wires");
+    // The bridge tool starts from its own prototype.
+    ed.set_tool(Tool::Junction(JunctionKind::Bridge));
+    assert_eq!((ed.symbol_proto.kind, ed.symbol_proto.dir), (JunctionKind::Bridge, TeeDir::Up));
+}

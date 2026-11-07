@@ -7,9 +7,11 @@ use crate::model::*;
 use std::cmp::Reverse;
 use std::collections::{BTreeSet, BinaryHeap, HashMap};
 
-/// Connection points of the symbols on a page with their outward direction.
+/// Connection points of the symbols on a page with their outward direction, and the
+/// free arms of its connection symbols (T-junctions, corners) as points facing their
+/// direction.
 fn pins(symbols: &Symbols, page: &Page) -> Vec<(u64, P, P)> {
-    let mut v = Vec::new();
+    let mut v: Vec<(u64, P, P)> = crate::netlist::junctions::free_arms(page).into_iter().map(|(id, q, d)| (id, q, d.vector())).collect();
     for s in &page.symbols {
         let Some(def) = symbols.get(&s.sym) else { continue };
         let c = def.world_bounds(s.pos, s.rot, s.mirror).center();
@@ -29,8 +31,16 @@ fn pins(symbols: &Symbols, page: &Page) -> Vec<(u64, P, P)> {
     v
 }
 
-/// A connection point is in use when a wire ends there or another pin touches it.
-fn pin_used(page: &Page, all: &[(u64, P, P)], sym: u64, q: P) -> bool {
+/// A connection point is in use when a wire ends there or another pin touches it. The
+/// arm of a connection symbol is in use when a wire leaves it in its direction.
+fn pin_used(page: &Page, all: &[(u64, P, P)], sym: u64, q: P, dir: P) -> bool {
+    if page.junctions.iter().any(|j| j.id == sym) {
+        return page.wires.iter().any(|w| {
+            let other = if w.a.same(q) { Some(w.b) } else if w.b.same(q) { Some(w.a) } else { None };
+            let parallel = |d: P| (d.x * dir.y - d.y * dir.x).abs() < 0.01;
+            other.is_some_and(|o| parallel(o - q) && (o.x - q.x) * dir.x + (o.y - q.y) * dir.y > 0.0) || (on_segment_interior(q, w.a, w.b) && parallel(w.b - w.a))
+        }) || all.iter().any(|(id, o, _)| *id != sym && o.same(q));
+    }
     page.wires.iter().any(|w| w.a.same(q) || w.b.same(q) || on_segment_interior(q, w.a, w.b))
         || all.iter().any(|(id, o, _)| *id != sym && o.same(q))
 }
@@ -60,19 +70,22 @@ fn clear(symbols: &Symbols, page: &Page, all: &[(u64, P, P)], a: P, b: P, ends: 
     true
 }
 
-/// Wires that connect free connection points of the selected symbols with free
-/// connection points of other symbols lying straight ahead and facing them.
+/// Wires that connect free connection points of the selected symbols (and free arms
+/// of the selected connection symbols) with free connection points or arms lying
+/// straight ahead and facing them.
 pub fn autoconnect(symbols: &Symbols, page: &Page, sel: &BTreeSet<u64>, max_len: f32) -> Vec<(P, P)> {
     let all = pins(symbols, page);
     let mut out: Vec<(P, P)> = Vec::new();
-    let mut taken: Vec<P> = Vec::new();
+    // (position, direction) of the points wired already.
+    let mut taken: Vec<(P, P)> = Vec::new();
+    let is_taken = |taken: &[(P, P)], q: P, dir: P| taken.iter().any(|(t, td)| t.same(q) && (*td == dir || td.len() == 0.0));
     for (sym, q, dir) in all.iter().filter(|(id, _, _)| sel.contains(id)) {
-        if dir.len() == 0.0 || taken.iter().any(|t| t.same(*q)) || pin_used(page, &all, *sym, *q) {
+        if dir.len() == 0.0 || is_taken(&taken, *q, *dir) || pin_used(page, &all, *sym, *q, *dir) {
             continue;
         }
-        let mut best: Option<(f32, u64, P)> = None;
+        let mut best: Option<(f32, u64, P, P)> = None;
         for (osym, o, odir) in &all {
-            if osym == sym || !(odir.x == -dir.x && odir.y == -dir.y) || taken.iter().any(|t| t.same(*o)) {
+            if osym == sym || !(odir.x == -dir.x && odir.y == -dir.y) || is_taken(&taken, *o, *odir) {
                 continue;
             }
             let d = *o - *q;
@@ -81,16 +94,20 @@ pub fn autoconnect(symbols: &Symbols, page: &Page, sel: &BTreeSet<u64>, max_len:
             if across > 0.01 || along <= 0.01 || along > max_len || best.is_some_and(|b| b.0 <= along) {
                 continue;
             }
-            if pin_used(page, &all, *osym, *o) {
+            if pin_used(page, &all, *osym, *o, *odir) {
                 continue;
             }
-            best = Some((along, *osym, *o));
+            best = Some((along, *osym, *o, *odir));
         }
-        let Some((_, osym, o)) = best else { continue };
-        if clear(symbols, page, &all, *q, o, [*sym, osym]) && !out.iter().any(|(a, b)| dist_to_segment(*q, *a, *b) < 0.01) {
+        let Some((_, osym, o, odir)) = best else { continue };
+        let is_arm = |id: u64| page.junctions.iter().any(|j| j.id == id);
+        // A pin gets one wire; the arms of a connection symbol share its point.
+        if clear(symbols, page, &all, *q, o, [*sym, osym]) && (is_arm(*sym) || !out.iter().any(|(a, b)| dist_to_segment(*q, *a, *b) < 0.01)) {
             out.push((*q, o));
-            taken.push(*q);
-            taken.push(o);
+            // A symbol's pin is taken as a whole, an arm only in its direction.
+            let whole = |id: u64, d: P| if is_arm(id) { d } else { p(0.0, 0.0) };
+            taken.push((*q, whole(*sym, *dir)));
+            taken.push((o, whole(osym, odir)));
         }
     }
     out

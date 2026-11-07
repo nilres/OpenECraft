@@ -2447,8 +2447,6 @@ Connection definition point on page {} is not applied to its connection	Точк
 Structure	Структура
 Connects two connection points with wires routed around symbols and other wires	Соединяет две точки подключения проводами в обход символов и других проводов
 Connection point TAG:PIN, e.g. -K1:A1	Точка подключения TAG:PIN, например -K1:A1
-Draws wires between free connection points of symbols that face each other	Рисует провода между свободными точками подключения символов, обращёнными друг к другу
-Symbol ids (default: all symbols of the page)	ID символов (по умолчанию: все символы листа)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Рисует линию определения кабеля; пересекаемые ею провода становятся жилами кабеля (новый кабель, если кабель не указан)
 Start and end point of the line	Начальная и конечная точки линии
 Cable tag, e.g. -W1	Обозначение кабеля, например -W1
@@ -6445,3 +6443,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Ссылками �
 The plugin program did not answer within {} s and was stopped	Программа плагина не ответила за {} с и была остановлена
 Busbar systems	Системы сборных шин
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
+T-junction	Т-образный узел
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Направленный Т-образный узел: где сходятся три провода, задаёт устройство, от которого идут два провода соединения, и порядок их целей
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: от левого / верхнего плеча прямо к другому плечу, затем к ножке · 2: то же от правого / нижнего плеча · 3: от ножки к левому / верхнему плечу, затем к другому · 4: от ножки сначала к правому / нижнему плечу (по умолчанию 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Направление ножки: left, right, up или down (по умолчанию: по проводам в этой точке)
+Draw the junction as a connection dot; its routing stays	Рисовать узел как точку соединения; его маршрут сохраняется
+No three wires meet at {} / {} mm: give the direction of the stem	В точке {} / {} мм не сходятся три провода: укажите направление ножки
+Page name (default: all pages)	Имя страницы (по умолчанию: все страницы)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Ставит направленный Т-образный узел, где сходятся три провода: он задаёт устройство, от которого идут два провода соединения (источник), и порядок их целей вместо порядка на схеме
+Unknown direction {}: left, right, up or down	Неизвестное направление {}: left, right, up или down
+Variant {} is not one of 1 to 4	Вариант {} не входит в диапазон от 1 до 4
+Dot	Точка
+Drawn as a connection dot; the routing stays	Рисуется как точка соединения; маршрут сохраняется
+Representation	Изображение
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Здесь должны сходиться три провода: один в его направлении и два поперёк. До тех пор соединение выстраивается в порядке схемы.
+Wires of the connection	Провода соединения
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Щёлкните, где сходятся три провода: Т-образный узел задаёт устройство, от которого идут провода, и порядок их целей · {} поворачивает его, где провода ещё не сходятся · Esc или правая кнопка завершает
+Draw the three wires of the T-junction to it: one in its direction and two across	Проведите к Т-образному узлу его три провода: один в его направлении и два поперёк
+Source {}, first target {}, second target {}	Источник {}, первая цель {}, вторая цель {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Т-образный узел на странице {} не соответствует своим проводам: нужен один провод в его направлении, два поперёк и никакой точки подключения там
+on the left	слева
+on the right	справа
+above	сверху
+below	снизу
+Connection symbols	Символы соединений
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Угол: два провода под прямым углом; при включённом автосоединении точки подключения напротив его плеч соединяются с ним
+Draw wires to the connection points facing its free arms	Провести провода к точкам подключения напротив его свободных плеч
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Проводит провода между свободными точками подключения символов, расположенными напротив друг друга, и к свободным плечам Т-образных узлов и углов
+Ids of symbols and connection symbols (default: all symbols of the page)	Id символов и символов соединений (по умолчанию: все символы страницы)
+No connection symbol with id {}	Нет символа соединения с id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Ставит угол: там сходятся два провода под прямым углом, и точки подключения напротив его плеч соединяются с ним
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Плечи угла – одно вертикальное и одно горизонтальное направление, например down left, а не {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плеча угла, вертикальное и горизонтальное, например down left (по умолчанию: по проводам в этой точке, иначе down right)
+There is a connection symbol at this point already	В этой точке уже есть символ соединения
+Arms	Плечи
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Щёлкните, где два провода сходятся под прямым углом, или где точки подключения расположены напротив друг друга через угол: при включённом автосоединении к нему проводятся провода · {} поворачивает его · Esc или правая кнопка завершает
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Проведите к углу его два провода или включите автосоединение и поставьте его напротив свободных точек подключения
+Arms {} and {}	Плечи {} и {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Угол на странице {} не соответствует своим проводам: нужен один провод в каждом из его двух направлений и никакой точки подключения там
+Two connection symbols on page {} lie on the same point	Два символа соединений на странице {} лежат в одной точке
+Crossing	Пересечение
+Bridge	Мост
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Направленное пересечение: соединяет два пересекающихся там провода; каждый конец его линии соединяется сначала прямо, затем поперёк
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Мост: четыре провода; соединение приходит с одной стороны и идёт к трём другим, сначала к противоположной
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: верхний / левый конец линии идёт поперёк к правому / нижнему плечу · 2: к левому / верхнему плечу (по умолчанию 2)
+A {} has no {}; it takes {}	{} не имеет {}; принимает {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Изменяет Т-образный узел (направление, вариант, изображение), угол (плечи), пересечение (линия, вариант, изображение) или мост (направление, изображение)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Перечисляет Т-образные узлы, углы, пересечения и мосты с их маршрутом и проводами их соединения
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Ставит мост, где сходятся четыре провода: соединение приходит с одной стороны и идёт к трём другим, сначала к противоположной, затем к левой / верхней, затем к правой / нижней
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Ставит направленное пересечение, где пересекаются два провода: оно соединяет их, и каждый конец его линии соединяется сначала прямо, затем с одним плечом поперёк
+Side the connection comes from: left, right, up or down (default up)	Сторона, с которой приходит соединение: left, right, up или down (по умолчанию up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Т-образный узел: направление ножки; мост: сторона, с которой приходит соединение (left, right, up или down)
+The line of a crossing is vertical or horizontal, not {}	Линия пересечения – vertical или horizontal, а не {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Прямая линия пересечения: vertical или horizontal (по умолчанию vertical)
+Variant {} is not one of 1 to 2	Вариант {} не входит в диапазон от 1 до 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Отсюда должны выходить провода во всех четырёх направлениях. До тех пор соединение выстраивается в порядке схемы.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Щёлкните, где сходятся четыре провода: мост ведёт соединение с одной стороны к трём другим, сначала к противоположной · {} поворачивает его · Esc или правая кнопка завершает
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Щёлкните, где пересекаются два провода: пересечение соединяет их и ведёт каждый конец своей линии сначала прямо, затем поперёк · {} поворачивает его · Esc или правая кнопка завершает
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Проведите к нему провода во всех четырёх направлениях или включите автосоединение и поставьте его напротив свободных точек подключения
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Мост на странице {} не соответствует своим проводам: нужен провод во всех четырёх направлениях и никакой точки подключения там
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Пересечение на странице {} не соответствует своим проводам: нужен провод во всех четырёх направлениях и никакой точки подключения там
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Символ соединения на странице {} соединяет своё соединение в петлю: символы соединения дают ему больше проводов, чем нужно его устройствам
+Source {}, targets {}, {} and {}	Источник {}, цели {}, {} и {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Прямо от {} к {}, поперёк от {} к {} и от {} к {}

@@ -2445,8 +2445,6 @@ Connection definition point on page {} is not applied to its connection	페이�
 Structure	구조
 Connects two connection points with wires routed around symbols and other wires	심볼과 다른 전선을 우회하는 경로의 전선으로 두 연결 지점을 연결합니다
 Connection point TAG:PIN, e.g. -K1:A1	연결 지점 TAG:PIN(예: -K1:A1)
-Draws wires between free connection points of symbols that face each other	서로 마주 보는 심볼의 빈 연결 지점 사이에 전선을 그립니다
-Symbol ids (default: all symbols of the page)	심볼 ID(기본값: 페이지의 모든 심볼)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	케이블 정의선을 그립니다. 교차하는 전선이 케이블의 심선이 됩니다(지정하지 않으면 새 케이블)
 Start and end point of the line	선의 시작점과 끝점
 Cable tag, e.g. -W1	케이블 태그(예: -W1)
@@ -6425,3 +6423,67 @@ House connection box	인입함
 The archive unpacks to more than {} MB	압축을 풀면 {} MB보다 큰 압축 파일입니다
 Only web and e-mail addresses (http, https, mailto) are links	웹 주소와 이메일 주소(http, https, mailto)만 링크가 될 수 있습니다
 The plugin program did not answer within {} s and was stopped	플러그인 프로그램이 {}초 안에 응답하지 않아 중지되었습니다
+T-junction	T분기점
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	방향 T분기점: 세 연결선이 만나는 지점에서 연결의 두 전선이 출발하는 장치와 대상의 순서를 지정합니다
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: 왼쪽 / 위쪽에서 바로 다른 쪽으로, 그 다음 줄기로 · 2: 오른쪽 / 아래쪽에서 같은 방식 · 3: 줄기에서 왼쪽 / 위쪽으로, 그 다음 다른 쪽으로 · 4: 줄기에서 먼저 오른쪽 / 아래쪽으로 (기본 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	줄기의 방향: left, right, up 또는 down (기본: 해당 지점의 연결선에 따라)
+Draw the junction as a connection dot; its routing stays	분기점을 연결점으로 그립니다. 경로는 유지됩니다
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm 지점에서 세 연결선이 만나지 않습니다: 줄기의 방향을 지정하십시오
+Page name (default: all pages)	페이지 이름 (기본: 모든 페이지)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	세 연결선이 만나는 지점에 방향 T분기점을 배치합니다. 회로도 순서 대신 연결의 두 전선이 출발하는 장치(원점)와 대상의 순서를 지정합니다
+Unknown direction {}: left, right, up or down	알 수 없는 방향 {}: left, right, up 또는 down
+Variant {} is not one of 1 to 4	변형 {}은(는) 1에서 4 중 하나가 아닙니다
+Dot	점
+Drawn as a connection dot; the routing stays	연결점으로 그려집니다. 경로는 유지됩니다
+Representation	표시
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	여기에서 세 연결선이 만나야 합니다: 하나는 그 방향으로, 둘은 가로로. 그때까지 연결은 회로도 순서로 연결됩니다.
+Wires of the connection	연결의 전선
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	세 연결선이 만나는 지점을 클릭: T분기점은 전선이 출발하는 장치와 대상의 순서를 지정합니다 · 아직 연결선이 만나지 않는 곳에서는 {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
+Draw the three wires of the T-junction to it: one in its direction and two across	T분기점의 세 연결선을 여기까지 그리십시오: 하나는 그 방향으로, 둘은 가로로
+Source {}, first target {}, second target {}	원점 {}, 첫째 대상 {}, 둘째 대상 {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	페이지 {}의 T분기점이 연결선과 맞지 않습니다: 그 방향으로 하나, 가로로 둘의 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
+on the left	왼쪽
+on the right	오른쪽
+above	위쪽
+below	아래쪽
+Connection symbols	연결 기호
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	모서리: 직각으로 만나는 두 연결선. 자동 연결이 켜져 있으면 그 쪽을 마주하는 접속점이 여기에 배선됩니다
+Draw wires to the connection points facing its free arms	비어 있는 가지를 마주하는 접속점까지 연결선을 그립니다
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	서로 마주하는 기호의 빈 접속점 사이와 T분기점 및 모서리의 빈 가지까지 연결선을 그립니다
+Ids of symbols and connection symbols (default: all symbols of the page)	기호와 연결 기호의 id (기본: 페이지의 모든 기호)
+No connection symbol with id {}	id {}인 연결 기호가 없습니다
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	모서리를 배치합니다. 그곳에서 두 연결선이 직각으로 만나고, 그 가지를 마주하는 접속점이 여기에 배선됩니다
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	모서리의 가지은 세로 방향 하나와 가로 방향 하나입니다, 예: down left. {}은(는) 아닙니다
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	모서리의 두 가지, 세로와 가로, 예: down left (기본: 해당 지점의 연결선에 따라, 없으면 down right)
+There is a connection symbol at this point already	이 지점에는 이미 연결 기호가 있습니다
+Arms	가지
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	두 연결선이 직각으로 만나는 지점 또는 접속점이 모서리를 사이에 두고 마주하는 지점을 클릭: 자동 연결이 켜져 있으면 여기까지 연결선이 그려집니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	모서리의 두 연결선을 여기까지 그리거나, 자동 연결을 켜고 빈 접속점을 마주하는 위치에 배치하십시오
+Arms {} and {}	가지 {}과(와) {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	페이지 {}의 모서리가 연결선과 맞지 않습니다: 두 방향에 각각 하나의 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
+Two connection symbols on page {} lie on the same point	페이지 {}의 두 연결 기호가 같은 지점에 있습니다
+Crossing	교차
+Bridge	브리지
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	방향 교차: 그곳에서 교차하는 두 연결선을 연결합니다. 선의 각 끝은 먼저 직진으로, 다음에 가로로 배선됩니다
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	브리지: 네 연결선. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽으로 갑니다
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: 선의 위 / 왼쪽 끝이 가로로 오른쪽 / 아래쪽 가지로 · 2: 왼쪽 / 위쪽 가지로 (기본 2)
+A {} has no {}; it takes {}	{}에는 {}이(가) 없습니다. 사용 가능: {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T분기점(방향, 변형, 표시), 모서리(가지), 교차(선, 변형, 표시) 또는 브리지(방향, 표시)를 변경합니다
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T분기점, 모서리, 교차, 브리지를 경로와 연결의 전선과 함께 나열합니다
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	네 연결선이 만나는 지점에 브리지를 배치합니다. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽, 다음 왼쪽 / 위쪽, 다음 오른쪽 / 아래쪽으로 갑니다
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	두 연결선이 교차하는 지점에 방향 교차를 배치합니다. 둘을 연결하고, 선의 각 끝은 먼저 직진으로, 다음에 가로 가지 하나로 배선됩니다
+Side the connection comes from: left, right, up or down (default up)	연결이 들어오는 쪽: left, right, up 또는 down (기본 up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T분기점: 줄기의 방향. 브리지: 연결이 들어오는 쪽 (left, right, up 또는 down)
+The line of a crossing is vertical or horizontal, not {}	교차의 선은 vertical 또는 horizontal입니다. {}은(는) 아닙니다
+The straight line of a crossing: vertical or horizontal (default vertical)	교차의 직선: vertical 또는 horizontal (기본 vertical)
+Variant {} is not one of 1 to 2	변형 {}은(는) 1에서 2 중 하나가 아닙니다
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	여기에서 네 방향 모두로 연결선이 나가야 합니다. 그때까지 연결은 회로도 순서로 연결됩니다.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	네 연결선이 만나는 지점을 클릭: 브리지는 연결을 한쪽에서 다른 세 쪽으로, 먼저 반대쪽으로 이끕니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	두 연결선이 교차하는 지점을 클릭: 교차는 둘을 연결하고 선의 각 끝을 먼저 직진으로, 다음에 가로로 이끕니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	네 방향 모두에서 연결선을 여기까지 그리거나, 자동 연결을 켜고 빈 접속점을 마주하는 위치에 배치하십시오
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	페이지 {}의 브리지가 연결선과 맞지 않습니다: 네 방향 모두에 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	페이지 {}의 교차가 연결선과 맞지 않습니다: 네 방향 모두에 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	페이지 {}의 연결 기호가 연결을 고리 모양으로 배선합니다: 연결의 기호가 장치에 필요한 것보다 많은 전선을 만듭니다
+Source {}, targets {}, {} and {}	원점 {}, 대상 {}, {} 및 {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	직진: {}에서 {}로. 가로: {}에서 {}로, {}에서 {}로

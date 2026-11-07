@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	{} sayfa
 Structure	Yapı
 Connects two connection points with wires routed around symbols and other wires	İki bağlantı noktasını sembollerin ve diğer tellerin etrafından yönlendirilen tellerle bağlar
 Connection point TAG:PIN, e.g. -K1:A1	Bağlantı noktası ETİKET:PIN, ör. -K1:A1
-Draws wires between free connection points of symbols that face each other	Sembollerin karşılıklı duran boş bağlantı noktaları arasına tel çizer
-Symbol ids (default: all symbols of the page)	Sembol kimlikleri (varsayılan: sayfanın tüm sembolleri)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Bir kablo tanımı çizgisi çizer; kestiği teller kablonun damarları olur (kablo verilmezse yeni bir kablo)
 Start and end point of the line	Çizginin başlangıç ve bitiş noktası
 Cable tag, e.g. -W1	Kablo etiketi, ör. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Yalnızca web ve e
 The plugin program did not answer within {} s and was stopped	Eklenti programı {} sn içinde yanıt vermedi ve durduruldu
 Busbar systems	Bara sistemleri
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: {} baralı bara sistemi {} iletkeni birleştiriyor ({}): kısa devre
+T-junction	T parçası
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Yönlü T parçası: üç telin birleştiği yerde bağlantının iki telinin çıktığı cihazı ve hedeflerinin sırasını belirler
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: sol / üst koldan düz olarak diğer kola, sonra gövdeye · 2: aynısı sağ / alt koldan · 3: gövdeden sol / üst kola, sonra diğerine · 4: gövdeden önce sağ / alt kola (varsayılan 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Gövdenin yönü: left, right, up veya down (varsayılan: oradaki tellere göre)
+Draw the junction as a connection dot; its routing stays	Parçayı bağlantı noktası olarak çiz; yönlendirmesi kalır
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm'de üç tel birleşmiyor: gövdenin yönünü belirtin
+Page name (default: all pages)	Sayfa adı (varsayılan: tüm sayfalar)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Üç telin birleştiği yere yönlü bir T parçası yerleştirir: şema sırası yerine bağlantının iki telinin çıktığı cihazı (kaynak) ve hedeflerinin sırasını belirler
+Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
+Variant {} is not one of 1 to 4	{} varyantı 1 ile 4 arasında değil
+Dot	Nokta
+Drawn as a connection dot; the routing stays	Bağlantı noktası olarak çizilir; yönlendirme kalır
+Representation	Gösterim
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Burada üç tel birleşmeli: biri yönünde, ikisi enine. O zamana kadar bağlantı şema sırasında zincirlenir.
+Wires of the connection	Bağlantının telleri
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Üç telin birleştiği yere tıklayın: T parçası tellerin çıktığı cihazı ve hedeflerinin sırasını belirler · {} henüz tel birleşmeyen yerde döndürür · Bitirmek için Esc veya sağ tık
+Draw the three wires of the T-junction to it: one in its direction and two across	T parçasının üç telini ona çizin: biri yönünde, ikisi enine
+Source {}, first target {}, second target {}	Kaynak {}, birinci hedef {}, ikinci hedef {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Sayfa {} üzerindeki T parçası tellerine uymuyor: yönünde bir tel, enine iki tel gerekir ve orada bağlantı noktası olmamalı
+on the left	solda
+on the right	sağda
+above	üstte
+below	altta
+Connection symbols	Bağlantı sembolleri
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Köşe: dik açılı iki tel; otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır
+Draw wires to the connection points facing its free arms	Boş kollarına bakan bağlantı noktalarına tel çiz
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Birbirine bakan sembollerin boş bağlantı noktaları arasına ve T parçalarıyla köşelerin boş kollarına tel çizer
+Ids of symbols and connection symbols (default: all symbols of the page)	Sembol ve bağlantı sembolü kimlikleri (varsayılan: sayfanın tüm sembolleri)
+No connection symbol with id {}	{} kimlikli bağlantı sembolü yok
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Bir köşe yerleştirir: orada iki tel dik açıyla birleşir ve kollarına bakan bağlantı noktaları ona bağlanır
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Bir köşenin kolları bir dikey ve bir yatay yöndür, örn. down left, {} değil
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Bir köşenin dikey ve yatay iki kolu, örn. down left (varsayılan: oradaki tellere göre, yoksa down right)
+There is a connection symbol at this point already	Bu noktada zaten bir bağlantı sembolü var
+Arms	Kollar
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	İki telin dik açıyla birleştiği veya bağlantı noktalarının köşe üzerinden birbirine baktığı yere tıklayın: otomatik bağlama açıkken ona teller çizilir · {} döndürür · Bitirmek için Esc veya sağ tık
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Köşenin iki telini ona çizin ya da otomatik bağlamayı açıp onu boş bağlantı noktalarına bakacak şekilde yerleştirin
+Arms {} and {}	Kollar {} ve {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Sayfa {} üzerindeki köşe tellerine uymuyor: iki yönünün her birinde bir tel gerekir ve orada bağlantı noktası olmamalı
+Two connection symbols on page {} lie on the same point	Sayfa {} üzerinde iki bağlantı sembolü aynı noktada
+Crossing	Kesişme
+Bridge	Köprü
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Yönlü kesişme: orada kesişen iki teli bağlar; çizgisinin her ucu önce düz, sonra enine bağlanır
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Köprü: dört tel; bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: çizginin üst / sol ucu enine sağ / alt kola gider · 2: sol / üst kola (varsayılan 2)
+A {} has no {}; it takes {}	{} için {} yok; şunları alır: {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Bir T parçasını (yön, varyant, gösterim), bir köşeyi (kollar), bir kesişmeyi (çizgi, varyant, gösterim) veya bir köprüyü (yön, gösterim) değiştirir
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T parçalarını, köşeleri, kesişmeleri ve köprüleri yönlendirmeleri ve bağlantılarının telleriyle listeler
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Dört telin birleştiği yere bir köprü yerleştirir: bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa, sonra sol / üst, sonra sağ / alt tarafa
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	İki telin kesiştiği yere yönlü bir kesişme yerleştirir: onları bağlar ve çizgisinin her ucu önce düz, sonra enine bir kola bağlanır
+Side the connection comes from: left, right, up or down (default up)	Bağlantının geldiği taraf: left, right, up veya down (varsayılan up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T parçası: gövdenin yönü; köprü: bağlantının geldiği taraf (left, right, up veya down)
+The line of a crossing is vertical or horizontal, not {}	Bir kesişmenin çizgisi vertical veya horizontal olur, {} değil
+The straight line of a crossing: vertical or horizontal (default vertical)	Bir kesişmenin düz çizgisi: vertical veya horizontal (varsayılan vertical)
+Variant {} is not one of 1 to 2	{} varyantı 1 ile 2 arasında değil
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Buradan dört yöne de tel çıkmalı. O zamana kadar bağlantı şema sırasında zincirlenir.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Dört telin birleştiği yere tıklayın: köprü bağlantıyı bir taraftan diğer üçüne götürür, önce karşı tarafa · {} döndürür · Bitirmek için Esc veya sağ tık
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	İki telin kesiştiği yere tıklayın: kesişme onları bağlar ve çizgisinin her ucunu önce düz, sonra enine götürür · {} döndürür · Bitirmek için Esc veya sağ tık
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Ona dört yönden de tel çizin ya da otomatik bağlamayı açıp onu boş bağlantı noktalarına bakacak şekilde yerleştirin
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sayfa {} üzerindeki köprü tellerine uymuyor: dört yönde de tel gerekir ve orada bağlantı noktası olmamalı
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sayfa {} üzerindeki kesişme tellerine uymuyor: dört yönde de tel gerekir ve orada bağlantı noktası olmamalı
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Sayfa {} üzerindeki bağlantı sembolü bağlantısını döngü halinde bağlıyor: bağlantının sembolleri ona cihazlarının gerektirdiğinden fazla tel veriyor
+Source {}, targets {}, {} and {}	Kaynak {}, hedefler {}, {} ve {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Düz {} ile {} arasında, enine {} ile {} ve {} ile {} arasında

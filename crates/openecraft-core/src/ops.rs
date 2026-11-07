@@ -1,7 +1,7 @@
 //! Editing operations on a page: placement defaults, move, rotate, delete, copy/paste.
 
 use openecraft_i18n::{tr, tr_const, tr_fmt};
-use crate::geom::{P, R, GRID};
+use crate::geom::{on_segment_interior, P, R, GRID};
 use crate::model::*;
 use crate::sections;
 use crate::symlib::Symbols;
@@ -273,6 +273,9 @@ pub fn item_bounds(symbols: &Symbols, page: &Page, id: u64) -> Option<R> {
     if let Some(c) = page.conn_defs.iter().find(|c| c.id == id) {
         return Some(R::from_points(c.pos, c.pos).expand(1.0));
     }
+    if let Some(j) = page.junctions.iter().find(|j| j.id == id) {
+        return Some(R::from_points(j.pos, j.pos).expand(1.0));
+    }
     page.cable_defs.iter().find(|c| c.id == id).map(|c| R::from_points(c.a, c.b))
 }
 
@@ -287,6 +290,7 @@ pub fn all_ids(page: &Page) -> Vec<u64> {
         .chain(page.images.iter().map(|s| s.id))
         .chain(page.conn_defs.iter().map(|s| s.id))
         .chain(page.cable_defs.iter().map(|s| s.id))
+        .chain(page.junctions.iter().map(|s| s.id))
         .collect()
 }
 
@@ -314,6 +318,9 @@ fn map_items(page: &mut Page, sel: &BTreeSet<u64>, f: impl Fn(P) -> P) {
     for c in page.cable_defs.iter_mut().filter(|c| sel.contains(&c.id)) {
         c.a = f(c.a);
         c.b = f(c.b);
+    }
+    for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
+        j.pos = f(j.pos);
     }
 }
 
@@ -352,6 +359,23 @@ pub fn attached_wire_ends(symbols: &Symbols, page: &Page, sel: &BTreeSet<u64>) -
 }
 
 pub fn translate(page: &mut Page, sel: &BTreeSet<u64>, attached: &[(u64, bool)], d: P) {
+    // A T-junction that is not selected follows the point where its wires meet when
+    // every wire there moves (the whole wire or that end).
+    let moving_end = |w: &Wire, is_a: bool| sel.contains(&w.id) || attached.contains(&(w.id, is_a));
+    let follow: Vec<u64> = page
+        .junctions
+        .iter()
+        .filter(|j| !sel.contains(&j.id))
+        .filter(|j| {
+            let touching: Vec<&Wire> = page.wires.iter().filter(|w| w.a.same(j.pos) || w.b.same(j.pos) || on_segment_interior(j.pos, w.a, w.b)).collect();
+            !touching.is_empty()
+                && touching.iter().all(|w| if w.a.same(j.pos) { moving_end(w, true) } else if w.b.same(j.pos) { moving_end(w, false) } else { sel.contains(&w.id) })
+        })
+        .map(|j| j.id)
+        .collect();
+    for j in page.junctions.iter_mut().filter(|j| follow.contains(&j.id)) {
+        j.pos = j.pos + d;
+    }
     for s in page.symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
         s.pos = s.pos + d;
     }
@@ -402,6 +426,9 @@ pub fn rotate(symbols: &Symbols, page: &mut Page, sel: &BTreeSet<u64>) {
     for t in page.texts.iter_mut().filter(|t| sel.contains(&t.id)) {
         t.angle = (t.angle - 90.0).rem_euclid(360.0);
     }
+    for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
+        j.turn();
+    }
     map_items(page, sel, rot);
     // Attached wire ends follow their connection point.
     for (id, is_a) in attached {
@@ -418,6 +445,9 @@ pub fn mirror(page: &mut Page, sel: &BTreeSet<u64>) {
     for s in page.symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
         s.mirror = !s.mirror;
     }
+    for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
+        j.mirror();
+    }
 }
 
 pub fn delete(page: &mut Page, sel: &BTreeSet<u64>) {
@@ -429,6 +459,7 @@ pub fn delete(page: &mut Page, sel: &BTreeSet<u64>) {
     page.images.retain(|s| !sel.contains(&s.id));
     page.conn_defs.retain(|s| !sel.contains(&s.id));
     page.cable_defs.retain(|s| !sel.contains(&s.id));
+    page.junctions.retain(|s| !sel.contains(&s.id));
 }
 
 /// Removes zero length wires and merges exact duplicates.
@@ -459,6 +490,7 @@ pub fn copy(page: &Page, sel: &BTreeSet<u64>) -> Clip {
         images: page.images.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         conn_defs: page.conn_defs.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         cable_defs: page.cable_defs.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
+        junctions: page.junctions.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
     }
 }
 
@@ -497,6 +529,7 @@ impl Clip {
             && self.images.is_empty()
             && self.conn_defs.is_empty()
             && self.cable_defs.is_empty()
+            && self.junctions.is_empty()
     }
 
     pub fn bounds(&self) -> R {
@@ -528,6 +561,9 @@ impl Clip {
         for c in &self.cable_defs {
             r.extend(c.a);
             r.extend(c.b);
+        }
+        for j in &self.junctions {
+            r.extend(j.pos);
         }
         r
     }
@@ -651,6 +687,13 @@ pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u
         x.b = x.b + d;
         new_ids.insert(x.id);
         prj.pages[page_i].cable_defs.push(x);
+    }
+    for x in &clip.junctions {
+        let mut x = x.clone();
+        x.id = prj.new_id();
+        x.pos = x.pos + d;
+        new_ids.insert(x.id);
+        prj.pages[page_i].junctions.push(x);
     }
     new_ids
 }

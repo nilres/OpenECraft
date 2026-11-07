@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Forbinde
 Structure	Struktur
 Connects two connection points with wires routed around symbols and other wires	Forbinder to tilslutningspunkter med ledninger, der føres uden om symboler og andre ledninger
 Connection point TAG:PIN, e.g. -K1:A1	Tilslutningspunkt TAG:PIN, f.eks. -K1:A1
-Draws wires between free connection points of symbols that face each other	Tegner ledninger mellem ledige tilslutningspunkter på symboler, der vender mod hinanden
-Symbol ids (default: all symbols of the page)	Symbol-id'er (standard: alle symboler på siden)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Tegner en kabeldefinitionslinje; de ledninger, den krydser, bliver ledere i kablet (et nyt kabel, når der ikke er angivet et)
 Start and end point of the line	Linjens start- og slutpunkt
 Cable tag, e.g. -W1	Kabelmærkning, f.eks. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Kun web- og e-mail
 The plugin program did not answer within {} s and was stopped	Plugin-programmet svarede ikke inden for {} s og blev stoppet
 Busbar systems	Skinnesystemer
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skinnesystemet med {} skinner forbinder {} ledere ({}): kortslutning
+T-junction	T-stykke
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Rettet T-stykke: hvor tre ledere mødes, angiver det den enhed, forbindelsens to ledere udgår fra, og rækkefølgen af deres mål
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: fra venstre / øverste arm lige til den anden arm, derefter til stammen · 2: det samme fra højre / nederste arm · 3: fra stammen til venstre / øverste arm, derefter til den anden · 4: fra stammen først til højre / nederste arm (standard 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Stammens retning: left, right, up eller down (standard: efter lederne der)
+Draw the junction as a connection dot; its routing stays	Tegn T-stykket som et forbindelsespunkt; dets føring bevares
+No three wires meet at {} / {} mm: give the direction of the stem	Ingen tre ledere mødes ved {} / {} mm: angiv stammens retning
+Page name (default: all pages)	Sidenavn (standard: alle sider)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Placerer et rettet T-stykke, hvor tre ledere mødes: det angiver den enhed, forbindelsens to ledere udgår fra (kilden), og rækkefølgen af deres mål i stedet for diagrammets rækkefølge
+Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
+Variant {} is not one of 1 to 4	Variant {} er ikke en af 1 til 4
+Dot	Punkt
+Drawn as a connection dot; the routing stays	Tegnes som et forbindelsespunkt; føringen bevares
+Representation	Fremstilling
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Her skal tre ledere mødes: en i dets retning og to på tværs. Indtil da kædes forbindelsen i diagrammets rækkefølge.
+Wires of the connection	Forbindelsens ledere
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik hvor tre ledere mødes: T-stykket angiver den enhed, lederne udgår fra, og rækkefølgen af deres mål · {} drejer det, hvor ingen ledere mødes endnu · Esc eller højreklik afslutter
+Draw the three wires of the T-junction to it: one in its direction and two across	Tegn T-stykkets tre ledere til det: en i dets retning og to på tværs
+Source {}, first target {}, second target {}	Kilde {}, første mål {}, andet mål {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-stykket på side {} passer ikke til sine ledere: det kræver en leder i dets retning, to på tværs og intet tilslutningspunkt der
+on the left	til venstre
+on the right	til højre
+above	oven
+below	neden
+Connection symbols	Forbindelsessymboler
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hjørne: to ledere i ret vinkel; med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det
+Draw wires to the connection points facing its free arms	Tegn ledere til tilslutningspunkterne over for dets frie arme
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Tegner ledere mellem frie tilslutningspunkter på symboler, der vender mod hinanden, og til de frie arme på T-stykker og hjørner
+Ids of symbols and connection symbols (default: all symbols of the page)	Id'er for symboler og forbindelsessymboler (standard: alle symboler på siden)
+No connection symbol with id {}	Intet forbindelsessymbol med id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Placerer et hjørne: der mødes to ledere i ret vinkel, og tilslutningspunkter over for dets arme forbindes med det
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Et hjørnes arme er en lodret og en vandret retning, f.eks. down left, ikke {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Et hjørnes to arme, lodret og vandret, f.eks. down left (standard: efter lederne der, ellers down right)
+There is a connection symbol at this point already	Der er allerede et forbindelsessymbol i dette punkt
+Arms	Arme
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klik hvor to ledere mødes i ret vinkel, eller hvor tilslutningspunkter vender mod hinanden over hjørnet: med automatisk forbindelse slået til tegnes ledere til det · {} drejer det · Esc eller højreklik afslutter
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Tegn hjørnets to ledere til det, eller slå automatisk forbindelse til og placer det over for frie tilslutningspunkter
+Arms {} and {}	Arme {} og {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Hjørnet på side {} passer ikke til sine ledere: det kræver en leder i hver af dets to retninger og intet tilslutningspunkt der
+Two connection symbols on page {} lie on the same point	To forbindelsessymboler på side {} ligger i samme punkt
+Crossing	Krydsning
+Bridge	Bro
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Rettet krydsning: forbinder de to ledere, der krydser hinanden der; hver ende af dens linje forbindes først ligeud og derefter på tværs
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Bro: fire ledere; forbindelsen kommer ind på én side og går til de tre andre, den modsatte side først
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: linjens øverste / venstre ende går på tværs til højre / nederste arm · 2: til venstre / øverste arm (standard 2)
+A {} has no {}; it takes {}	{} har ingen {}; den tager {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Ændrer et T-stykke (retning, variant, fremstilling), et hjørne (arme), en krydsning (linje, variant, fremstilling) eller en bro (retning, fremstilling)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Viser T-stykker, hjørner, krydsninger og broer med deres føring og forbindelsens ledere
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Placerer en bro, hvor fire ledere mødes: forbindelsen kommer ind på én side og går til de tre andre, den modsatte først, derefter venstre / øverste, derefter højre / nederste
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Placerer en rettet krydsning, hvor to ledere krydser hinanden: den forbinder dem, og hver ende af dens linje forbindes først ligeud og derefter til en arm på tværs
+Side the connection comes from: left, right, up or down (default up)	Siden forbindelsen kommer fra: left, right, up eller down (standard up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stykke: stammens retning; bro: siden forbindelsen kommer fra (left, right, up eller down)
+The line of a crossing is vertical or horizontal, not {}	En krydsnings linje er vertical eller horizontal, ikke {}
+The straight line of a crossing: vertical or horizontal (default vertical)	En krydsnings lige linje: vertical eller horizontal (standard vertical)
+Variant {} is not one of 1 to 2	Variant {} er ikke en af 1 til 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Ledere skal udgå herfra i alle fire retninger. Indtil da kædes forbindelsen i diagrammets rækkefølge.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klik hvor fire ledere mødes: broen fører forbindelsen fra én side til de tre andre, den modsatte først · {} drejer den · Esc eller højreklik afslutter
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik hvor to ledere krydser hinanden: krydsningen forbinder dem og fører hver ende af sin linje først ligeud, derefter på tværs · {} drejer den · Esc eller højreklik afslutter
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Tegn ledere i alle fire retninger til den, eller slå automatisk forbindelse til og placer den over for frie tilslutningspunkter
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Broen på side {} passer ikke til sine ledere: den kræver en leder i alle fire retninger og intet tilslutningspunkt der
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Krydsningen på side {} passer ikke til sine ledere: den kræver en leder i alle fire retninger og intet tilslutningspunkt der
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Forbindelsessymbolet på side {} forbinder sin forbindelse i en løkke: forbindelsens symboler giver den flere ledere, end dens enheder behøver
+Source {}, targets {}, {} and {}	Kilde {}, mål {}, {} og {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Ligeud fra {} til {}, på tværs fra {} til {} og fra {} til {}

@@ -2447,8 +2447,6 @@ Connection definition point on page {} is not applied to its connection	Точк
 Structure	Структура
 Connects two connection points with wires routed around symbols and other wires	З’єднує дві точки підключення проводами, прокладеними в обхід символів та інших проводів
 Connection point TAG:PIN, e.g. -K1:A1	Точка підключення TAG:PIN, напр. -K1:A1
-Draws wires between free connection points of symbols that face each other	Малює проводи між вільними протилежними точками підключення символів
-Symbol ids (default: all symbols of the page)	Ідентифікатори символів (за замовчуванням: усі символи сторінки)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Малює лінію визначення кабелю; перетнуті нею проводи стають жилами кабелю (новий кабель, якщо кабель не вказано)
 Start and end point of the line	Початкова й кінцева точки лінії
 Cable tag, e.g. -W1	Позначення кабелю, напр. -W1
@@ -6445,3 +6443,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Посилання
 The plugin program did not answer within {} s and was stopped	Програма плагіна не відповіла за {} с і була зупинена
 Busbar systems	Системи збірних шин
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система збірних шин з {} шинами з'єднує {} провідники ({}): коротке замикання
+T-junction	Т-подібний вузол
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Спрямований Т-подібний вузол: де сходяться три проводи, задає пристрій, від якого йдуть два проводи з'єднання, і порядок їхніх цілей
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: від лівого / верхнього плеча прямо до іншого плеча, потім до ніжки · 2: те саме від правого / нижнього плеча · 3: від ніжки до лівого / верхнього плеча, потім до іншого · 4: від ніжки спочатку до правого / нижнього плеча (типово 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Напрямок ніжки: left, right, up або down (типово: за проводами в цій точці)
+Draw the junction as a connection dot; its routing stays	Малювати вузол як точку з'єднання; його маршрут зберігається
+No three wires meet at {} / {} mm: give the direction of the stem	У точці {} / {} мм не сходяться три проводи: вкажіть напрямок ніжки
+Page name (default: all pages)	Назва сторінки (типово: усі сторінки)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Ставить спрямований Т-подібний вузол, де сходяться три проводи: він задає пристрій, від якого йдуть два проводи з'єднання (джерело), і порядок їхніх цілей замість порядку на схемі
+Unknown direction {}: left, right, up or down	Невідомий напрямок {}: left, right, up або down
+Variant {} is not one of 1 to 4	Варіант {} не входить у діапазон від 1 до 4
+Dot	Точка
+Drawn as a connection dot; the routing stays	Малюється як точка з'єднання; маршрут зберігається
+Representation	Зображення
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Тут мають сходитися три проводи: один у його напрямку і два впоперек. До того з'єднання вибудовується в порядку схеми.
+Wires of the connection	Проводи з'єднання
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Клацніть, де сходяться три проводи: Т-подібний вузол задає пристрій, від якого йдуть проводи, і порядок їхніх цілей · {} повертає його, де проводи ще не сходяться · Esc або права кнопка завершує
+Draw the three wires of the T-junction to it: one in its direction and two across	Проведіть до Т-подібного вузла його три проводи: один у його напрямку і два впоперек
+Source {}, first target {}, second target {}	Джерело {}, перша ціль {}, друга ціль {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Т-подібний вузол на сторінці {} не відповідає своїм проводам: потрібен один провід у його напрямку, два впоперек і жодної точки підключення там
+on the left	ліворуч
+on the right	праворуч
+above	зверху
+below	знизу
+Connection symbols	Символи з'єднань
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Кут: два проводи під прямим кутом; за ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним
+Draw wires to the connection points facing its free arms	Провести проводи до точок підключення навпроти його вільних плечей
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Проводить проводи між вільними точками підключення символів, розташованими навпроти, і до вільних плечей Т-подібних вузлів і кутів
+Ids of symbols and connection symbols (default: all symbols of the page)	Id символів і символів з'єднань (типово: усі символи сторінки)
+No connection symbol with id {}	Немає символу з'єднання з id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Ставить кут: там сходяться два проводи під прямим кутом, і точки підключення навпроти його плечей з'єднуються з ним
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Плечі кута – один вертикальний і один горизонтальний напрямок, наприклад down left, а не {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плечі кута, вертикальне й горизонтальне, наприклад down left (типово: за проводами в цій точці, інакше down right)
+There is a connection symbol at this point already	У цій точці вже є символ з'єднання
+Arms	Плечі
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Тут мають сходитися два проводи під прямим кутом. За ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Клацніть, де два проводи сходяться під прямим кутом, або де точки підключення розташовані навпроти через кут: за ввімкненого автоз'єднання до нього проводяться проводи · {} повертає його · Esc або права кнопка завершує
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Проведіть до кута його два проводи або ввімкніть автоз'єднання і поставте його навпроти вільних точок підключення
+Arms {} and {}	Плечі {} і {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Кут на сторінці {} не відповідає своїм проводам: потрібен один провід у кожному з його двох напрямків і жодної точки підключення там
+Two connection symbols on page {} lie on the same point	Два символи з'єднань на сторінці {} лежать в одній точці
+Crossing	Перехрестя
+Bridge	Міст
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Спрямоване перехрестя: з'єднує два проводи, що там перехрещуються; кожен кінець його лінії з'єднується спочатку прямо, потім упоперек
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Міст: чотири проводи; з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: верхній / лівий кінець лінії йде впоперек до правого / нижнього плеча · 2: до лівого / верхнього плеча (типово 2)
+A {} has no {}; it takes {}	{} не має {}; приймає {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Змінює Т-подібний вузол (напрямок, варіант, зображення), кут (плечі), перехрестя (лінія, варіант, зображення) або міст (напрямок, зображення)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Перелічує Т-подібні вузли, кути, перехрестя та мости з їхнім маршрутом і проводами їхнього з'єднання
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Ставить міст, де сходяться чотири проводи: з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного, потім до лівого / верхнього, потім до правого / нижнього
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Ставить спрямоване перехрестя, де перехрещуються два проводи: воно з'єднує їх, і кожен кінець його лінії з'єднується спочатку прямо, потім з одним плечем упоперек
+Side the connection comes from: left, right, up or down (default up)	Бік, з якого надходить з'єднання: left, right, up або down (типово up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Т-подібний вузол: напрямок ніжки; міст: бік, з якого надходить з'єднання (left, right, up або down)
+The line of a crossing is vertical or horizontal, not {}	Лінія перехрестя – vertical або horizontal, а не {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Пряма лінія перехрестя: vertical або horizontal (типово vertical)
+Variant {} is not one of 1 to 2	Варіант {} не входить у діапазон від 1 до 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Звідси мають виходити проводи в усіх чотирьох напрямках. До того з'єднання вибудовується в порядку схеми.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Клацніть, де сходяться чотири проводи: міст веде з'єднання з одного боку до трьох інших, спочатку до протилежного · {} повертає його · Esc або права кнопка завершує
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Клацніть, де перехрещуються два проводи: перехрестя з'єднує їх і веде кожен кінець своєї лінії спочатку прямо, потім упоперек · {} повертає його · Esc або права кнопка завершує
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Проведіть до нього проводи в усіх чотирьох напрямках або ввімкніть автоз'єднання і поставте його навпроти вільних точок підключення
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Міст на сторінці {} не відповідає своїм проводам: потрібен провід у всіх чотирьох напрямках і жодної точки підключення там
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Перехрестя на сторінці {} не відповідає своїм проводам: потрібен провід у всіх чотирьох напрямках і жодної точки підключення там
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Символ з'єднання на сторінці {} з'єднує своє з'єднання в петлю: символи з'єднання дають йому більше проводів, ніж потрібно його пристроям
+Source {}, targets {}, {} and {}	Джерело {}, цілі {}, {} і {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Прямо від {} до {}, упоперек від {} до {} і від {} до {}

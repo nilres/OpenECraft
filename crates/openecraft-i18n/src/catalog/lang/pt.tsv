@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	O ponto 
 Structure	Estrutura
 Connects two connection points with wires routed around symbols and other wires	Conecta dois pontos de conexão com fios roteados em torno de símbolos e outros fios
 Connection point TAG:PIN, e.g. -K1:A1	Ponto de conexão TAG:PIN, por exemplo, -K1:A1
-Draws wires between free connection points of symbols that face each other	Desenha fios entre pontos de conexão livres de símbolos que estão frente a frente
-Symbol ids (default: all symbols of the page)	IDs dos símbolos (padrão: todos os símbolos da página)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Desenha uma linha de definição de cabo; os fios que ela atravessa tornam-se veias do cabo (um novo cabo quando nenhum é informado)
 Start and end point of the line	Ponto inicial e final da linha
 Cable tag, e.g. -W1	Identificador do cabo, por exemplo, -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Somente endereços
 The plugin program did not answer within {} s and was stopped	O programa do plug-in não respondeu em {} s e foi interrompido
 Busbar systems	Sistemas de barramentos
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: o sistema de barramentos com {} barras une {} condutores ({}): curto-circuito
+T-junction	Peça em T
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Peça em T direcionada: onde três fios se encontram, indica o dispositivo de onde partem os dois fios da conexão e a ordem dos seus destinos
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: do braço esquerdo / superior em linha reta ao outro braço, depois à haste · 2: o mesmo a partir do braço direito / inferior · 3: da haste ao braço esquerdo / superior, depois ao outro · 4: da haste ao braço direito / inferior primeiro (padrão 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Direção da haste: left, right, up ou down (padrão: conforme os fios no local)
+Draw the junction as a connection dot; its routing stays	Desenhar a peça em T como ponto de conexão; o seu encaminhamento permanece
+No three wires meet at {} / {} mm: give the direction of the stem	Em {} / {} mm não se encontram três fios: indique a direção da haste
+Page name (default: all pages)	Nome da página (padrão: todas as páginas)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Coloca uma peça em T direcionada onde três fios se encontram: indica o dispositivo de onde partem os dois fios da conexão (a origem) e a ordem dos seus destinos, em vez da ordem do esquema
+Unknown direction {}: left, right, up or down	Direção desconhecida {}: left, right, up ou down
+Variant {} is not one of 1 to 4	A variante {} não está entre 1 e 4
+Dot	Ponto
+Drawn as a connection dot; the routing stays	Desenhada como ponto de conexão; o encaminhamento permanece
+Representation	Representação
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Aqui devem encontrar-se três fios: um na sua direção e dois transversais. Até então a conexão é encadeada na ordem do esquema.
+Wires of the connection	Fios da conexão
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Clique onde três fios se encontram: a peça em T indica o dispositivo de onde partem os fios e a ordem dos seus destinos · {} gira-a onde ainda não se encontram fios · Esc ou clique direito para terminar
+Draw the three wires of the T-junction to it: one in its direction and two across	Desenhe os três fios da peça em T até ela: um na sua direção e dois transversais
+Source {}, first target {}, second target {}	Origem {}, primeiro destino {}, segundo destino {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A peça em T na página {} não corresponde aos seus fios: precisa de um fio na sua direção, dois transversais e nenhum ponto de conexão ali
+on the left	à esquerda
+on the right	à direita
+above	em cima
+below	em baixo
+Connection symbols	Símbolos de conexão
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Canto: dois fios em ângulo reto; com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele
+Draw wires to the connection points facing its free arms	Desenhar fios até os pontos de conexão voltados para os seus braços livres
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Desenha fios entre pontos de conexão livres de símbolos voltados uns para os outros e até os braços livres de peças em T e cantos
+Ids of symbols and connection symbols (default: all symbols of the page)	Ids de símbolos e símbolos de conexão (padrão: todos os símbolos da página)
+No connection symbol with id {}	Nenhum símbolo de conexão com id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Coloca um canto: ali dois fios se encontram em ângulo reto, e os pontos de conexão voltados para os seus braços são ligados a ele
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Os braços de um canto são uma direção vertical e uma horizontal, p. ex. down left, não {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Os dois braços de um canto, vertical e horizontal, p. ex. down left (padrão: conforme os fios no local, senão down right)
+There is a connection symbol at this point already	Já existe um símbolo de conexão neste ponto
+Arms	Braços
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aqui devem encontrar-se dois fios em ângulo reto. Com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Clique onde dois fios se encontram em ângulo reto, ou onde pontos de conexão se defrontam através do canto: com a autoconexão ativa, desenham-se fios até ele · {} gira-o · Esc ou clique direito para terminar
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Desenhe os dois fios do canto até ele, ou ative a autoconexão e coloque-o voltado para pontos de conexão livres
+Arms {} and {}	Braços {} e {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	O canto na página {} não corresponde aos seus fios: precisa de um fio em cada uma das suas duas direções e nenhum ponto de conexão ali
+Two connection symbols on page {} lie on the same point	Dois símbolos de conexão na página {} estão no mesmo ponto
+Crossing	Cruzamento
+Bridge	Ponte
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Cruzamento direcionado: liga os dois fios que ali se cruzam; cada extremidade da sua linha é cablada primeiro em linha reta e depois transversalmente
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quatro fios; a conexão entra por um lado e vai para os outros três, primeiro para o lado oposto
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: a extremidade superior / esquerda da linha vai transversalmente para o braço direito / inferior · 2: para o braço esquerdo / superior (padrão 2)
+A {} has no {}; it takes {}	{} não tem {}; aceita {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Altera uma peça em T (direção, variante, representação), um canto (braços), um cruzamento (linha, variante, representação) ou uma ponte (direção, representação)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Lista as peças em T, cantos, cruzamentos e pontes com o seu encaminhamento e os fios da sua conexão
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Coloca uma ponte onde quatro fios se encontram: a conexão entra por um lado e vai para os outros três, primeiro para o oposto, depois para o esquerdo / superior, depois para o direito / inferior
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Coloca um cruzamento direcionado onde dois fios se cruzam: liga-os, e cada extremidade da sua linha é cablada primeiro em linha reta e depois a um braço transversal
+Side the connection comes from: left, right, up or down (default up)	Lado de onde vem a conexão: left, right, up ou down (padrão up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Peça em T: direção da haste; ponte: lado de onde vem a conexão (left, right, up ou down)
+The line of a crossing is vertical or horizontal, not {}	A linha de um cruzamento é vertical ou horizontal, não {}
+The straight line of a crossing: vertical or horizontal (default vertical)	A linha reta de um cruzamento: vertical ou horizontal (padrão vertical)
+Variant {} is not one of 1 to 2	A variante {} não está entre 1 e 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Aqui devem sair fios nas quatro direções. Até então a conexão é encadeada na ordem do esquema.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Clique onde quatro fios se encontram: a ponte leva a conexão de um lado para os outros três, primeiro para o oposto · {} gira-a · Esc ou clique direito para terminar
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Clique onde dois fios se cruzam: o cruzamento liga-os e leva cada extremidade da sua linha primeiro em linha reta e depois transversalmente · {} gira-o · Esc ou clique direito para terminar
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Desenhe fios nas quatro direções até ele, ou ative a autoconexão e coloque-o voltado para pontos de conexão livres
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A ponte na página {} não corresponde aos seus fios: precisa de um fio nas quatro direções e nenhum ponto de conexão ali
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	O cruzamento na página {} não corresponde aos seus fios: precisa de um fio nas quatro direções e nenhum ponto de conexão ali
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	O símbolo de conexão na página {} cabla a sua conexão em laço: os símbolos da conexão dão-lhe mais fios do que os seus dispositivos precisam
+Source {}, targets {}, {} and {}	Origem {}, destinos {}, {} e {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Em linha reta de {} a {}, transversalmente de {} a {} e de {} a {}

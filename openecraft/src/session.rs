@@ -318,7 +318,7 @@ impl Session {
     /// an empty page is deleted without asking.
     pub fn page_items(&self, page: usize) -> usize {
         let Some(p) = self.prj.pages.get(page) else { return 0 };
-        p.symbols.len() + p.wires.len() + p.texts.len() + p.shapes.len() + p.dimensions.len() + p.images.len() + p.conn_defs.len() + p.cable_defs.len() + p.macro_boxes.len() + usize::from(p.document.is_some())
+        p.symbols.len() + p.wires.len() + p.texts.len() + p.shapes.len() + p.dimensions.len() + p.images.len() + p.conn_defs.len() + p.cable_defs.len() + p.junctions.len() + p.macro_boxes.len() + usize::from(p.document.is_some())
     }
 }
 

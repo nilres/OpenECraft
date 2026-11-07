@@ -156,7 +156,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("model", &["geom", "symbols", "symlib"]),
     // 4 evaluation of the model
     ("index", &["frame", "geom", "model", "structure", "symbols"]),
-    ("netlist", &["geom", "harness", "model", "panel", "potentials", "strips", "symbols", "symlib", "wirenum"]),
+    ("netlist", &["geom", "harness", "issue", "model", "panel", "potentials", "strips", "symbols", "symlib", "wirenum"]),
     ("structure", &["model", "ops"]),
     ("sections", &["model"]),
     ("frame", &["geom", "model"]),
@@ -179,7 +179,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("panel", &["climate", "electrofluid", "geom", "harness", "issue", "model", "netlist", "parts", "production", "strips", "symbols"]),
     ("climate", &["model", "panel", "parts"]),
     ("manufacturing", &["geom", "model", "panel", "parts", "production"]),
-    ("routing", &["geom", "model", "symbols", "symlib"]),
+    ("routing", &["geom", "model", "netlist", "symbols", "symlib"]),
     ("routing3d", &["fluid", "geom", "harness", "model", "netlist", "panel", "parallel", "parts", "plc_hw", "potentials"]),
     ("field", &["geom", "issue", "model", "netlist", "panel", "parts", "production", "render", "routing3d", "structure", "svg", "symbols"]),
     ("strips", &["frame", "model", "netlist", "parts", "symbols", "text"]),
