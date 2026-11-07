@@ -1,0 +1,953 @@
+# English<TAB>日本語 – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1：左 / 上側から直接他方の側へ、次に軸へ · 2：右 / 下側から同様に · 3：軸から左 / 上側へ、次に他方へ · 4：軸からまず右 / 下側へ（既定 3）
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1：線の上 / 左端は横方向に右 / 下の側へ · 2：左 / 上の側へ（既定 2）
+A cable definition needs a start and an end point	ケーブル定義には始点と終点が必要です
+A copper bar needs at least one segment	銅バーには 1 つ以上の区間が必要です
+A segment cannot be moved below itself	セグメントをそれ自身の下に移動することはできません
+A segment needs two different nodes	区間には異なる 2 つのノードが必要です
+A wire needs at least two points	電線には少なくとも 2 つの点が必要です
+A {} has no {}; it takes {}	{} には {} がありません。使えるのは {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0、A1、A2、A3、A4、Letter、Legal、Tabloid、または custom
+Accepts a message as checked, so that it is no longer counted until it changes	メッセージを確認済みとして承認し、メッセージが変わるまでカウントしないようにします
+Accessory part number, e.g. GEN.GLAND-M25	付属品の部品番号 (例: GEN.GLAND-M25)
+Activates (shows) or deactivates (hides) the content of a project option	プロジェクトオプションの内容を有効化 (表示) または無効化 (非表示) します
+Additional power loss in W	追加の損失電力 (W)
+Address scheme: siemens, iec or rockwell	アドレス方式: siemens、iec、または rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	曲げと穴あけを施した銅バーを追加します (またはエンクロージャー内の同名の銅バーを置き換えます)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	右隣へのケーブル貫通口を追加します: 両側板に向かい合う円形の切り欠き。エンクロージャー間の電線はここを通ります
+Adds a configurator rule: insert a page macro when the condition holds	コンフィギュレータールールを追加します: 条件が満たされたときにページマクロを挿入
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	フィールドルートネットワークのノード (分岐点、貫通部、エンクロージャーまたはデバイスへの到達点) を追加します
+Adds a planned device to a segment or changes it	セグメントに計画済みデバイスを追加または変更します
+Adds a project option or changes its description and condition	プロジェクトオプションを追加するか、その説明と条件を変更します
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	取付板上に、ルートが優先的に使用する配線経路 (ケーブルトレイ、チューブガイド) を追加します
+Adds a segment below another one (or at the top)	別のセグメントの下 (または最上位) にセグメントを追加します
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	2 つのノード間にフィールドルートネットワークの区間 (ケーブルトレイ、ラダー、配線ダクト、電線管、ケーブルキャリア、地中埋設、フリー敷設) を追加します
+Adds a text to a page	ページにテキストを追加します
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	プロジェクトテキストのすべての行を辞書に追加し、必要に応じて使用されなくなったエントリを削除します
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	ケーブル端に付属品 (グランド、EMC グランド、コネクター、ストレインリリーフ、シールドクランプ、保護ホース、棒端子、マーカー) を追加します
+Adds an accessory to a device; it must fit one of the device's parts	機器にアクセサリを追加します。機器のいずれかの部品に適合する必要があります
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	エンクロージャーを追加します: システムのいずれかのサイズ (またはカスタムサイズ)、またはエンクロージャー部品から
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	2 つのボンディング点 (主接地端子、エンクロージャー、導電性の輪郭、金属製支持材) の間に等電位ボンディング導体を追加します
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	プロジェクトのラベリングスキームを追加、変更、または削除するか、マーキングのエクスポートに使用するスキームを選択します
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	プロジェクトの機械を追加または変更 (同じ ID の組み込み機械は置き換えられます)、または削除します
+Adds the devices of a template to a segment	テンプレートのデバイスをセグメントに追加します
+Adds the outline of a machine, building or area to the plant layout	機械、建物、またはエリアの輪郭をプラントレイアウトに追加します
+Adds, replaces or removes a profile: a connector with the column names the other system uses	プロファイル (相手システムで使用される列名を持つコネクター) を追加、置換、または削除します
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	アイテムの整列、均等配置、レール上へのデバイスの整列、パターンでのアイテムのコピーを行います
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	シンボル、テキスト、グラフィックを共通の端または中央に揃えます。接続された電線の端も追従します
+Allow renaming onto an identifier in use: both become one	使用中の識別子への名前変更を許可: 両方が 1 つになります
+Allowed classes, comma separated: power, control, signal, fluid (default all)	許可するクラス (カンマ区切り): power、control、signal、fluid (既定: すべて)
+Allowed values separated by commas (empty: any value)	許可される値 (カンマ区切り、空: 任意の値)
+Also create a bus cable for every connection without cable	ケーブルのない接続ごとにバスケーブルも作成する
+Also properties without a value	値のないプロパティも含める
+Also remove entries the project no longer uses	プロジェクトで使用されなくなったエントリも削除する
+Also renumber terminal strips, plugs and PLC cards	端子台、プラグ、PLC カードも再番号付けする
+Also renumber wires with a fixed number	固定番号の電線も番号を振り直す
+Altitude of the site in m	設置場所の標高 (m)
+Ambient temperature of the conductors in °C	導体の周囲温度 (°C)
+An outline needs {} points at least	輪郭には {} 点以上が必要です
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	軸方向のアンカー: free、start:<mm>、center:<mm>、end:<mm>、または stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	アスペクト (カンマ区切り、例: function,location)
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	配置済みのシンボルに機能定義を割り当てます (名称とスキームが引き継がれます)
+Asynchronous motors add to the short-circuit current	誘導電動機が短絡電流に寄与する
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	自動ハードウェア構成: CPU とバスカプラーのステーション、バスシステム、カードのステーションへの割り当て、スロット、開始アドレス、ポイントアドレス、IP アドレス、ライントポロジー
+Back to the default rules first	先に既定のルールに戻す
+Back to the default strategy first	先に既定の加工方針に戻す
+Back-up protection up to this short-circuit current in kA (0: not given)	この短絡電流 (kA) までバックアップ保護 (0: 指定なし)
+Bar id	バー ID
+Bar thickness, mm (default 5)	バーの厚さ (mm) (既定 5)
+Bar width, mm (default 20)	バーの幅 (mm) (既定 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	エンクロージャーを別のエンクロージャーの右側に連結します (列盤)。right_of を指定しない場合は列盤から外れます
+Bend radius in drag chains as a multiple of the cable diameter	ケーブルキャリア内の曲げ半径 (ケーブル径の倍数)
+Bend radius of a drag chain in mm	ケーブルキャリアの曲げ半径 (mm)
+Bend radius of cables as a multiple of the diameter	ケーブルの曲げ半径 (直径の倍数)
+Bend radius of tubes as a multiple of the diameter	チューブの曲げ半径 (直径の倍数)
+Bend radius of wires as a multiple of the diameter	電線の曲げ半径 (直径の倍数)
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	区間間の曲げ: 角度、エッジワイズは e、r<半径> (例: 90; -90 e; 45 r10)
+Between page and column (default .)	ページと列の間 (既定 .)
+Bonding point	ボンディング点
+Border around the text	テキストの外枠
+Both classes are needed	両方のクラスが必要です
+Bus system name	バスシステム名
+Bus system name, e.g. PN/IE_1	バスシステム名 (例: PN/IE_1)
+Busbar machine program (CSV)	ブスバー加工機プログラム (CSV)
+CNC operations	CNC 工程
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	ドリル・フライス・パンチングマシン用 CNC プログラム、銅バーの曲げ加工、エンクロージャーコンフィギュレーター、製造への引き渡し、製造フィードバック
+Cable tag, e.g. -W1	ケーブルタグ (例: -W1)
+Cable tag, e.g. -W20	ケーブルのタグ、例: -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	製造フィードバックの実績時間から機械の時間見積もりを補正します
+Cannot read the plugin folder {}	プラグインフォルダー {} を読み取れません
+Cannot start {}: {}	{} を起動できません: {}
+Card tag, e.g. -A1	カードのタグ (例: -A1)
+Category, e.g. coils, contacts, terminals, plc	カテゴリ (例: coils、contacts、terminals、plc)
+Centre from the rear wall in mm	背板からの中心位置 (mm)
+Centre from the top of the enclosure in mm	エンクロージャー上端からの中心位置 (mm)
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T分岐（方向、種類、表示）、コーナー（側）、交差（線、種類、表示）またはブリッジ（方向、表示）を変更します
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	表のセルを変更します: デバイスタグ、機能テキスト、説明、部品。電線番号、色、断面積、ケーブル、心線。端子台、端子
+Changes a placed symbol; when it moves, connected wire ends follow	配置済みのシンボルを変更します。移動すると、接続された電線端が追従します
+Changes a text (only the given properties)	テキストを変更します (指定したプロパティのみ)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	生産終了予定または生産終了の部品を使用しているデバイスを後継部品に切り替えます (後継品はプロジェクト部品である必要があります)
+Changes name, description or structure of a page	ページの名前、説明、または構造を変更します
+Changes name, description, function, location or parent of a segment	セグメントの名前、説明、機能、取付場所、または親を変更します
+Changes position, face, fastening or anchors of a panel item	盤アイテムの位置、面、固定方法、アンカーを変更します
+Changes the device, connection and terminal tables	デバイス、接続、端子のテーブルを変更します
+Changes the level of a kind of message (code as shown by check)	メッセージの種類のレベルを変更します (コードは check の表示どおり)
+Changes the properties of a wire	電線のプロパティを変更します
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	エンクロージャーのシステム、サイズ、構成部品 (台座、連結側、グランドプレート) を変更します。アンカー付きのアイテムは追従します
+Check {} failed: {}	チェック {} が失敗しました: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	盤レイアウトをチェックします: 干渉、クリアランス (取付、換気、EMC)、サービススペース、床面からの高さ、干渉クラス、温度、製造性
+Chosen value	選択した値
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	盤レイアウトのクリアランス、サービススペース、高さ、干渉クラス、熱シミュレーション、製造性
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	エンクロージャーの温度管理 (IEC/TR 60890): 損失電力、内部温度、必要なファンまたはクーラーとヒーター。必要に応じてエンクロージャーの設定を変更します
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	干渉クラス: power、drive、control、signal、terminal、rail、duct、busbar、cutout、accessory、独自のクラス、またはすべての場合は *
+Column and row strips	列と行の区域帯
+Column mapping {field code: column name}	列マッピング {フィールドコード: 列名}
+Column name, e.g. Description	列名 (例: Description)
+Columns of the pattern	パターンの列数
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	列 (カンマ区切り): Material、Category、Text、Count、Enclosure、Group、No
+Conductive frame that needs equipotential bonding	等電位ボンディングが必要な導電性フレーム
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	エンクロージャーメーカーのコンフィギュレーター用のエンクロージャー構成: システム、サイズ、コンポーネント、付属品、加工
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	コンフィギュレーターの条件 (例: HEATER=yes) (空欄: 手動で切り替え)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	ホース / チューブ / 配管を構成します: ラインタイプ、部品、端部継手、定格圧力、曲げ半径、媒体、サイズ、色、長さ
+Connection point TAG:PIN, e.g. -K1:A1	接続ポイント TAG:PIN (例: -K1:A1)
+Connection point designations separated by commas or blanks	接続ポイントの名称 (カンマまたはスペース区切り)
+Connection point designations, comma separated, e.g. 13,14	接続ポイントの名称 (カンマ区切り、例: 13,14)
+Connector id (required unless removing)	コネクター ID (削除時以外は必須)
+Connects two connection points with wires routed around symbols and other wires	シンボルや他の電線を回避するルートの電線で 2 つの接続ポイントを接続します
+Connects two ports of stations with a network cable; connections already on these ports are replaced	ステーションの 2 つのポートをネットワークケーブルで接続します。これらのポートの既存の接続は置き換えられます
+Copies function texts between the single-line diagram and the schematic where one side is empty	単線結線図と回路図の間で、一方が空の機能テキストをコピーします
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	アイテムを一定の間隔で複数回コピーします。デバイスには新しいタグ、端子には新しい番号が付きます
+Copper bar cutting list	銅バー切断リスト
+Copper bars	銅バー
+Corner points in metres	頂点 (m)
+Corner points on the mounting plate in mm	取付板上のコーナー点 (mm)
+Correction of the time estimate	時間見積もりの補正
+Cost of free air against ducts and routing paths	ダクトと配線経路に対する空中のコスト
+Counting step (default 1)	カウンターの増分 (既定 1)
+Creates a bus cable for the connection (without cable tag)	接続用のバスケーブルを作成します (ケーブルタグなし)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	ケーブルのないバス接続ごとに、バスタイプのケーブル (タイプ、心線、断面積) を作成します
+Creates or changes a PCT loop of the pre-planning	事前計画の計装ループを作成または変更します
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	PLC ステーション (コントローラー、リモート I/O、ドライブ、HMI) を作成または変更します。アドレス方式を変更すると、そのポイントのアドレスが変換されます
+Creates or changes a bus system (PROFINET, EtherCAT, …)	バスシステム (PROFINET、EtherCAT、…) を作成または変更します
+Creates or changes a configurator option	コンフィギュレーターオプションを作成または変更します
+Creates or changes a fluid device group	流体デバイスグループを作成または変更します
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	プロジェクトの図枠を作成または変更します (組み込みの図枠は新しい名前でコピーされます)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	電位定義を作成または変更します。電線に設定がない限り、その電線は色と断面積を引き継ぎます
+Creates or changes a work area: only the pages and devices of its structure are shown	作業領域を作成または変更します: その構造のページとデバイスのみが表示されます
+Cross section, e.g. 0.75 mm²	断面積 (例: 0.75 mm²)
+Cross section, e.g. 1.5 mm²	断面積 (例: 1.5 mm²)
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	断面積 (例: 1.5 mm²、空 = 電位定義から)
+Cross-section in mm²	断面積 (mm²)
+Cross-section, e.g. 1.5 mm²	断面積 (例: 1.5 mm²)
+Current device tag	現在のデバイスタグ
+Customer rule set to add or replace (by name), as exported	追加または置換する顧客ルールセット (名前で指定、エクスポート形式)
+Cut lengths of cables rounded up to this step in mm	ケーブルの切断長をこの刻み (mm) に切り上げ
+Cut lengths of tubes rounded up to this step in mm	チューブの切断長をこの刻み (mm) に切り上げ
+Cut lengths of wires rounded up to this step in mm	電線の切断長をこの刻み (mm) に切り上げ
+Cut lengths rounded up to this step in metres	切断長をこの刻み (m) で切り上げ
+Cut threads on the machine	ねじ加工を機械で行う
+Cutting allowance per tube end in mm	チューブ端部ごとの切断余長 (mm)
+Date (YYYY-MM-DD)	日付 (YYYY-MM-DD)
+Date of the acceptance	承認日
+Default property values	プロパティの既定値
+Default symbol key	既定シンボルのキー
+Define the identifiers in use (default: true)	使用中の識別子を定義する (既定: true)
+Defines a reusable project function definition or changes it	再利用可能なプロジェクト機能定義を定義または変更します
+Defines a structure identifier or changes its description	構造識別子を定義するか、その説明を変更します
+Defines a user property or changes it	ユーザープロパティを定義または変更します
+Defines all identifiers in use and / or removes the definitions nobody uses	使用中のすべての識別子を定義するか、どこでも使用されていない定義を削除します (または両方)
+Definition to start from	元にする定義
+Deletes a PCT loop of the pre-planning	事前計画の計装ループを削除します
+Deletes a configurator option	コンフィギュレーターオプションを削除します
+Deletes a configurator rule	コンフィギュレータールールを削除します
+Deletes a fluid device group	流体デバイスグループを削除します
+Deletes a page	ページを削除します
+Deletes a page template of the project	プロジェクトのページテンプレートを削除します
+Deletes a plot frame of the project that no page uses	どのページでも使用されていないプロジェクトの図枠を削除します
+Deletes a potential definition	電位定義を削除します
+Deletes a work area	作業領域を削除します
+Deletes symbols, wires, texts and shapes	シンボル、電線、テキスト、図形を削除します
+Depth in mm	奥行き (mm)
+Device description id (empty: from the parts)	デバイス記述 ID (空: 部品から)
+Device description id of the head (list_device_descriptions)	ヘッドのデバイス記述 ID (list_device_descriptions)
+Device group {} already exists	デバイスグループ {} は既に存在します
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	デバイスリスト、部品表、端子図、プラグ図、ケーブル図、接続図、PLC、電位、盤、流体、電気、フィールドのレポート
+Device number on the bus	バス上のデバイス番号
+Device tag of the CPU / bus coupler, e.g. -A0	CPU / バスカプラーのデバイスタグ (例: -A0)
+Device tag of the end (both ends if missing)	端のデバイスタグ (省略時は両端)
+Device tag of the fluid device, e.g. -QM1	流体デバイスのデバイスタグ (例: -QM1)
+Device tag of the group, e.g. -KH1	グループのデバイスタグ (例: -KH1)
+Device tag within the segment, e.g. -M1	セグメント内のデバイスタグ (例: -M1)
+Device tag, e.g. -K1	デバイスタグ (例: -K1)
+Device tag: the accessories that can still be added to its parts	機器記号: その部品にまだ追加できるアクセサリ
+Device tags (text)	デバイスタグ (テキスト)
+Device tags of the members in slot order, separated by commas or blanks	メンバーのデバイスタグ (位置順、カンマまたはスペース区切り)
+Devices with parts that are phased out or discontinued, and their change to the successors	生産終了予定または生産終了の部品を使用しているデバイスと、その後継品への切り替え
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	デバイス、電線、電位、ケーブル、端子台、PLC、盤、流体、電気計算、構造、翻訳
+Diameter in mm	直径 (mm)
+Diameter of a hole at both ends (0: none)	両端の穴の直径 (0: なし)
+Direction of the stem: left, right, up or down (default: from the wires there)	軸の方向：left、right、up または down（既定：その位置の接続線から）
+Distance between power and signal or fluid in mm	動力と信号または流体の間の距離 (mm)
+Distance from devices, rails and busbars in mm	デバイス、レール、ブスバーからの距離 (mm)
+Distance from the face in mm (rails: standoff height)	面からの距離 (mm、レール: スタンドオフの高さ)
+Distance in X (mm)	X 方向の距離 (mm)
+Distance in Y (mm)	Y 方向の距離 (mm)
+Distance of devices to cable ducts	デバイスから配線ダクトまでの距離
+Distance of devices to the plate edge	デバイスから取付板の端までの距離
+Distance of the border from the paper edge in mm	用紙の端から枠までの距離 (mm)
+Distribute vertically (default horizontally)	垂直方向に均等配置 (既定は水平方向)
+Distributes symbols, texts and graphics evenly between the first and the last one	シンボル、テキスト、グラフィックを最初と最後の間に均等に配置します
+Diversity factor of the loads (0: IEC 61439-1, table 101)	負荷の分散率 (0: IEC 61439-1、表 101)
+Draw the contact image below coils (default true)	コイルの下に接点イメージを描画 (既定 true)
+Draw the junction as a connection dot; its routing stays	分岐を接続点として描きます。経路は保たれます
+Draw wires in their colour	電線を色付きで描画
+Draw wires to the connection points facing its free arms	空いている側に向き合う接続点へ接続線を描きます
+Drawing	図面
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	ケーブル定義線を描画します。横切った電線はケーブルの心線になります (ケーブルを指定しない場合は新しいケーブル)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	2 つの接続ポイント間に電線を描画します。例: -K1:A1 から -S1:14 へ (あいまいな場合は #id:pin、電位の場合は名前、名称のない点の場合は 1、2…)
+Draws a wire through two or more points	2 つ以上の点を通る電線を描画します
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	回路図ページと PDF / SVG エクスポートで電線を色付きまたは黒で描画します
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	向き合うシンボルの空き接続点の間、およびT分岐とコーナーの空いている側へ接続線を描きます
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	ケーブルの EMC クラス (ドライブ出力、アナログ、動力、信号、シールド) と EMC の問題
+Edge length of the routing grid in mm	配線グリッドの辺の長さ (mm)
+Electrical device tags separated by commas or blanks (empty = remove the links)	電気デバイスのタグ (カンマまたはスペース区切り、空 = リンクを削除)
+Electrical engineering	電気工学
+Enclosure (location, e.g. +CAB1)	エンクロージャー (取付場所、例: +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	設定を変更するエンクロージャー (取付場所、例: +CAB1)
+Enclosure climate and electrical sizing	盤内温度と電気的サイジング
+Enclosure it stands right of; empty to take it out of its line-up	右側に設置する基準のエンクロージャー。空の場合は列盤から外します
+Enclosure name (all if missing)	エンクロージャー名 (省略時はすべて)
+Enclosure part number	エンクロージャーの部品番号
+Enclosure system (default: the enclosure's)	エンクロージャーシステム (既定: そのエンクロージャーのシステム)
+Enclosure {} exists already	エンクロージャー {} は既に存在します
+Enclosures, panel items, accessories and panel macros	エンクロージャー、盤アイテム、付属品、盤マクロ
+End brackets and end plates from the tech data of the terminal parts	端子部品の技術データに基づくエンドクランプとエンドカバー
+End holes from the bar end as a multiple of the width	バー端からの端部穴位置 (幅に対する倍率)
+End: device tag and connection point, e.g. -S1:14	終点: デバイスタグと接続ポイント (例: -S1:14)
+Engineering	エンジニアリング
+Face: plate, door, left, right, rear, roof or bottom	面: plate、door、left、right、rear、roof または bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	フィールド計画: ノード、区間、輪郭、ルート、ボンディング、付属品
+Figure	指標
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	すべての (フィルター処理された) 行の列内のテキストを検索して置換します。検索テキストがない場合、列は置換テキストで埋められます
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	プロジェクト全体でテキストを検索します: ページ、デバイスタグ、機能テキスト、フリーテキスト、電線番号、端子、ケーブル、部品、説明
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	レイアウトが収まるエンクロージャーシステムの最小標準サイズを検索して適用します
+Fingerprint of the message as shown by check	check で表示されるメッセージのフィンガープリント
+First address of the subnet, e.g. 192.168.0.0	サブネットの先頭アドレス (例: 192.168.0.0)
+First byte of the inputs (and outputs)	入力 (および出力) の先頭バイト
+First byte of the outputs if it differs; -1 removes it	出力の先頭バイト (異なる場合)。-1 で削除
+First counter value (default 1)	カウンターの開始値 (既定 1)
+First page number (default 1)	最初のページ番号 (既定 1)
+First port as station:port, e.g. PLC1:X1 P2	1 つ目のポート (ステーション:ポート、例: PLC1:X1 P2)
+First row with the column names	最初の行に列名を含める
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	デバイス名の書式: {letter}、{n} (カウンター)、{page}、{column}、{row}。既定は {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	スキーム format の書式: {n} (カウンター)、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	新しい図枠の場合の元になる図枠 (既定: A3 landscape)
+Free space in front of every device on the plate	取付板上の各デバイスの前面の空きスペース
+Freezes routes for production (kept by the recalculation while possible) or releases them	製造用にルートを固定するか (再計算でも可能な限り維持)、固定を解除します
+Frequency in Hz	周波数 (Hz)
+Function (= without the sign; empty: the parent's)	機能 (= 記号なし。空欄: 親の機能)
+Function aspect (=) of the page; the devices on the page move along	ページの機能アスペクト (=)。ページ上のデバイスも一緒に移動します
+Function definition key	機能定義のキー
+Function filter (= A1, A*; empty = any)	機能フィルター (= A1、A*。空 = すべて)
+Further device tags of the loop, separated by commas or blanks	ループのその他のデバイスタグ (カンマまたはスペース区切り)
+Gap between devices side by side	横に並んだデバイス間の間隔
+Gap between the devices on the rail in mm	レール上のデバイス間の間隔 (mm)
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	単線結線図がまだない回路図の動力デバイスについて、指定ページの後の新しい概要ページに単線結線図を生成します
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	面の CNC プログラムをその機械用に生成します (ISO G コード、Heidenhain、パンチングコード、または CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	ページの単線シンボルに対する複線回路図 (動力シンボル、導体、電磁接触器コイル) をその後の新しいページに生成します
+Generates the program of the busbar machine: cuts, punched holes and bends	ブスバー加工機のプログラム (切断、パンチ穴、曲げ) を生成します
+Give a device tag or a part number	機器記号または部品番号を指定してください
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	アイテムをアセンブリにグループ化し、まとめて選択、移動できるようにします。名前を指定しない場合、アイテムはアセンブリから外れます
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	エンクロージャーのプログラムをジョブとして製造に引き渡します: すべての面と銅バーのマニフェストとプログラム
+Has a divider between power and signal cables	動力ケーブルと信号ケーブルの間にセパレーターあり
+Height above the floor in metres	床面からの高さ (m)
+Height above the mounting plate in mm (default 50)	取付板からの高さ (mm、既定値 50)
+Height in mm	高さ (mm)
+Height in mm without plinth; negative: unknown (wall mounted)	台座を除く高さ (mm)。負の値: 不明 (壁掛け)
+Higher-level product aspect (-) of the page; the devices on the page move along	ページの上位製品アスペクト (-)。ページ上のデバイスも一緒に移動します
+Highest actuator on the door above the floor (0: not checked)	床面からの扉の操作部の最高高さ (0: チェックしない)
+Highest air temperature at devices without data (0: not checked)	データのないデバイス周囲の最高空気温度 (0: チェックしない)
+Highest ambient temperature in °C	最高周囲温度 (°C)
+Highest device above the floor (0: not checked)	床面からの最高デバイス高さ (0: チェックしない)
+Highest inside temperature in °C	最高内部温度 (°C)
+Highest three-phase short-circuit current at the supply in kA	電源供給点での最大三相短絡電流 (kA)
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	穴: 区間:距離:直径 (例: 0:20:9; 2:30:11)
+Horizontal alignment: left, center or right	水平方向の配置: left、center または right
+Horizontal pitch of the pattern in mm	パターンの水平ピッチ (mm)
+Hose colour	ホースの色
+Hose number or fluid net (F1)	ホース番号または流体ネット (F1)
+Hose number prefix, e.g. H	ホース番号のプレフィックス (例: H)
+Hoses / pipes: length in m	ホース / 配管: 長さ (m)
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	ホース / 配管: 媒体 (compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam、product。空 = プロジェクトの既定値)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	ホース、流体ネットと流体グループ、電気-流体リンク、計装ループ
+Hyperlink (URL)	ハイパーリンク (URL)
+IP address or bus address	IP アドレスまたはバスアドレス
+IT system with distributed neutral	中性線を配線した IT 系統
+Id of the panel item (from mounting_list)	盤アイテムの ID (mounting_list から)
+Id of the path or reservation	経路または予約領域の ID
+Id of the text	テキストの ID
+Identifier, e.g. A1 or CAB1	識別子 (例: A1 または CAB1)
+Ids of page items	ページアイテムの ID
+Ids of symbols and connection symbols (default: all symbols of the page)	シンボルおよび接続シンボルの id（既定：ページのすべてのシンボル）
+In front of the page name (default /)	ページ名の前 (既定 /)
+Inner height in mm (0 = no limit)	内高 (mm) (0 = 制限なし)
+Inner radius as a multiple of the thickness	板厚に対する内側半径の倍率
+Inner width in mm (0 = no limit)	内幅 (mm) (0 = 制限なし)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	3D マクロをアセンブリとして挿入します: アンカー付きのアイテムは所定の位置に、その他は面上の x / y を基準に配置
+Installation site aspect (++) of the page; the devices on the page move along	ページの設置場所アスペクト (++)。ページ上のデバイスも一緒に移動します
+Installation site filter (++)	設置場所フィルター (++)
+Integration profiles and status	統合プロファイルとステータス
+Interruption points refer to: all (default), star or pairs	中断ポイントの参照先: all (既定)、star または pairs
+Invalid answer of the plugin: {}	プラグインの応答が無効です: {}
+Invalid segment name: {}	無効なセグメント名: {}
+Item id	アイテム ID
+Item ids	アイテム ID
+Jumper number	ジャンパー番号
+Jumper number (terminals with the same number are bridged); 0 removes it	ジャンパー番号 (同じ番号の端子が橋絡されます)。0 で削除
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保護等級を維持: フィルターファンの代わりに熱交換器またはクーラー
+Key figures of the project and a list of its device tags	プロジェクトの主要指標とデバイスタグの一覧
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	プロジェクトの主要指標: ページ、シンボル、電線、デバイス、部品、ケーブル、チェック結果
+Key, e.g. user.coupling_relay	キー (例: user.coupling_relay)
+Key, e.g. user.customer_code	キー (例: user.customer_code)
+Keys of the routes, comma separated (all if missing)	ルートのキー (カンマ区切り、省略時はすべて)
+Kind: machining, punching or busbar	種類: machining、punching または busbar
+Label: terminal number, PLC address or potential name	ラベル: 端子番号、PLC アドレス、または電位名
+Landscape (true) or portrait (false)	横 (true) または縦 (false)
+Language the project texts are written in, e.g. en	プロジェクトテキストの記述言語 (例: en)
+Larger round holes are milled, mm	これより大きい丸穴はフライス加工 (mm)
+Largest difference between hole and tool, mm	穴と工具の最大差 (mm)
+Left edge on the face in mm	面上の左端の位置 (mm)
+Left edge on the mounting plate in mm	取付板上の左端の位置 (mm)
+Left side bayed (no side panel)	左側を連結 (側板なし)
+Length added at each cable end in metres	各ケーブル端に加算する長さ (m)
+Length added to each cable end in mm	各ケーブル端に加算する長さ (mm)
+Length from the node to the device in metres	ノードからデバイスまでの長さ (m)
+Length in metres	長さ (m)
+Length in metres (default from the node positions)	長さ (m) (既定はノード位置から算出)
+Length inside an enclosure per end in metres	端ごとのエンクロージャー内の長さ (m)
+Length of a shield pigtail in mm	シールドピグテールの長さ (mm)
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	多段端子の段 (1 = 最下段)。上の段は前の端子のブロックに載ります
+Library id or customer rule set name to no longer verify against	検証に使用しなくするライブラリ ID または顧客ルールセット名
+Library id or customer rule set name to verify against	検証に使用するライブラリ ID または顧客ルールセット名
+Line in the source language	ソース言語の行
+Line-to-line voltage in V	線間電圧 (V)
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	流体デバイスを、それを操作または監視する電気デバイスとリンクします (リンクを置き換えます)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	電磁弁を同じ番号のコイル (-QM3 › -MB3) とリンクし、リンクされたデバイス間で機能テキストをコピーします
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	割り当てられた部品の PLC チャンネルと機能のうち、まだ配置されていないものを、place_symbol 用のシンボル、タグ、ラベル、ピンとともに一覧表示します
+Lists and renames devices, adds accessories to their parts	機器の一覧表示と名前変更、部品へのアクセサリ追加
+Lists the 3D macros: the project's own and the built-in ones	3D マクロを一覧表示します: プロジェクト独自のものと組み込みのもの
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	3D 配線を一覧表示します: 長さと状態付きの配線済みの電線、ケーブル、チューブ、束、分岐、シールド、配線経路、変更、問題
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	CNC 機械 (組み込みおよびプロジェクト) をその工具および各面の機械とともに一覧表示します
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	事前計画と P&ID 計器の計装ループを、デバイスと設計状況と共に一覧表示します
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T分岐、コーナー、交差、ブリッジをその経路と接続の電線とともに一覧表示します
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	部品または機器の部品に適合するアクセサリと、アクセサリが適合する部品を一覧表示します（プロジェクト部品、内蔵および同梱カタログ）
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	展開した銅バーを一覧表示します: 長さ、順序どおりの曲げ、穴、問題、定尺材からの切断
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	PLC ハードウェアのデバイス記述を一覧表示します: インポートしたもの、プロジェクト部品からのもの、組み込みの汎用のもの
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	単線結線図のデバイスと回路図の動力デバイスを状態 (計画済み、設計済み、単線結線図にない、一致しない) とともに一覧表示します
+Lists the devices with cross references and assigned parts	相互参照と割り当てられた部品を含むデバイスを一覧表示します
+Lists the enclosures with their system, components (assembly), items per face and assemblies	エンクロージャーを、システム、構成部品 (アセンブリ)、面ごとのアイテム、アセンブリと共に一覧表示します
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	流体デバイスグループ (バルブターミナル、エアサービスユニット、マニホールド) を、位置順のデバイスと共に一覧表示します
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	ソレノイドまたはリンクを持つ流体デバイスと、それにリンクされた電気デバイスを一覧表示します
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	流体ネットリストを一覧表示します: 各ホースラインとそのライン種類 (圧力、作動、戻り、パイロット …)、媒体、サイズ、機能付きのポート
+Lists the function definitions with category, function template kind, letter, default symbol and usage	機能定義をカテゴリ、機能テンプレートの種類、識別文字、既定シンボル、使用状況とともに一覧表示します
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	ホースと配管 (流体ポート間の接続) を媒体、呼び径、色、長さと共に一覧表示します
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	盤レイアウトのアイテムを取付順に位置、サイズ、部品、取付状況とともに一覧表示します
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	マーキングプログラム用のラベリングスキーム (組み込みおよびプロジェクト) と選択中のスキームを一覧表示します
+Lists the page templates (built-in and the project's own)	ページテンプレート (組み込みとプロジェクト独自のもの) を一覧表示します
+Lists the pages of the project	プロジェクトのページを一覧表示します
+Lists the placement schemes with their properties and the number of symbols using them	配置スキームをそのプロパティおよび使用しているシンボルの数とともに一覧表示します
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	図枠 (用紙サイズ、向き、列と行) とプロジェクトの既定値を一覧表示します
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	使用ピン数、部品のピン数、部品と共にプラグを一覧表示します
+Lists the potential definitions and the wire default of nets without a defined potential	電位定義と、電位が定義されていないネットの電線の既定値を一覧表示します
+Lists the project options that show or hide model content	モデルの内容を表示または非表示にするプロジェクトオプションを一覧表示します
+Lists the properties of an object with their values and where they come from	オブジェクトのプロパティを値とその由来とともに一覧表示します
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	プロパティ定義 (組み込みおよびユーザー定義) をオブジェクトクラス、グループ、型、単位とともに一覧表示します
+Lists the report blocks with their report, scheme, groups and generated pages	レポートブロックを、レポート、スキーム、グループ、生成されたページと共に一覧表示します
+Lists the report schemes (named report forms) with their settings	レポートスキーム (名前付きレポートフォーム) をその設定と共に一覧表示します
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	盤レイアウトの配線ルートが設定された電線を、端末処理、状態、進捗付きの配線チェックリストとして一覧表示します
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	セグメントをツリー順に、構造、計画電力、および回路図での状態付きの計画済みデバイスとともに一覧表示します
+Lists the source and target languages of the project texts with the number of untranslated lines	プロジェクトテキストのソース言語とターゲット言語を、未翻訳の行数と共に一覧表示します
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	構造管理を一覧表示します: ページのアスペクト、定義済みおよび使用中の識別子、作業領域
+Lists the subprojects taken out of the project, or the project it was taken from	プロジェクトから切り出されたサブプロジェクト、または切り出し元のプロジェクトを一覧表示します
+Lists the symbols that can be placed, with their connection points relative to the insertion point	配置可能なシンボルを、挿入点からの相対位置で表した接続ポイントと共に一覧表示します
+Lists the terminal strips with their number of terminals and length on the rail	端子台を端子数とレール上の長さとともに一覧表示します
+Lists the translation dictionary of the project texts (source line and translations)	プロジェクトテキストの翻訳辞書 (ソース行と翻訳) を一覧表示します
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	ページに配置されたウィンドウマクロ (マクロボックス) を、マクロ、バリアント、プレースホルダー値、アイテム数とともに一覧表示します
+Load losses of the transformer in W (0: typical)	変圧器の負荷損 (W) (0: 標準値)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	電源系統の負荷、各保護機器の負荷、分散率を考慮した需要、相バランス、電源装置の負荷バジェット
+Loads the potential definitions of a standard (replaces those of the same name)	規格の電位定義を読み込みます (同じ名前の定義を置換します)
+Location (+ without the sign; empty: the parent's)	取付場所 (+ 記号なし。空欄: 親の取付場所)
+Location aspect (+) of the page; the devices on the page move along	ページの取付場所アスペクト (+)。ページ上のデバイスも一緒に移動します
+Location filter (+)	取付場所フィルター (+)
+Location or device tag	取付場所またはデバイスタグ
+Loop number	ループ番号
+Loop number, e.g. 101	ループ番号 (例: 101)
+Lowest actuator on the door above the floor	床面からの扉の操作部の最低高さ
+Lowest ambient temperature in °C	最低周囲温度 (°C)
+Lowest device above the floor	床面からの最低デバイス高さ
+Lowest inside temperature in °C	最低内部温度 (°C)
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	電源供給点での最小地絡電流 (kA、0: ik_max から算出)
+Lowest terminal above the floor	床面からの最低端子高さ
+Machine id (default: the busbar machine)	機械 ID (既定: ブスバー加工機)
+Machine id (default: the machine of the face)	機械 ID (既定: その面の機械)
+Machine id (snake_case)	機械 ID (snake_case)
+Machine id {} is not snake_case	機械 ID {} は snake_case ではありません
+Machine of that face (empty: the sheet machine)	その面の機械 (空欄: 板金用の機械)
+Machine of the copper bars	銅バーの機械
+Machine of the sheet metal faces	板金面の機械
+Machine {} is in use	機械 {} は使用中です
+Macro name	マクロ名
+Makes pages or page items content of a project option	ページまたはページアイテムをプロジェクトオプションの内容にします
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	プラグのピンの電線をフラットケーブルの心線にします: IDC コネクタと同様にピン n に心線 n
+Manufacturing package (CNC programs, JSON)	製造パッケージ (CNC プログラム、JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	マーカー (カンマ区切り): device、terminal、wire、cable (空欄: すべて)
+Marks a panel item as mounted or as a problem, or as open again	盤アイテムを取付済み、問題あり、または未完了としてマークします
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	配線ルートが設定された電線を配線済み、問題あり、または再び未完了としてマークします。電線はその両端で指定します
+Maximum fill of a carrier in percent	支持材の最大占有率 (%)
+Maximum operating pressure in bar	最大使用圧力 (bar)
+Measuring range or set point	測定範囲または設定値
+Message code, e.g. wires.3f9a1c	メッセージコード (例: wires.3f9a1c)
+Milling feed, mm/min	フライス送り速度 (mm/min)
+Mirror the symbol	シンボルを反転
+Moves symbols, wires and texts; connected wire ends follow	シンボル、電線、テキストを移動します。接続された電線端が追従します
+Moves the page before this page of its section (or of the section given)	ページをそのセクション（または指定したセクション）のこのページの前に移動します
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	セクションをその親（または指定した親）のこのセクションの前に移動します。番号は順に続きます
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	ハーネスの布線板レイアウト: 共通ノードからコネクターまでの分岐 (長さ、方向、束径、ピン) と図面の縮尺
+Name of the assembly	アセンブリの名前
+Name of the bar, e.g. L1 -Q1	バーの名前 (例: L1 -Q1)
+Name of the check	チェックの名前
+Name of the customer rule set to remove	削除する顧客ルールセットの名前
+Name of the frame	図枠の名前
+Name of the machine	機械の名前
+Name of the main earthing terminal	主接地端子の名前
+Name of the safety function to remove	削除する安全機能の名前
+Name of the segment	セグメントの名前
+Name of the template	テンプレートの名前
+Name of the work area	作業領域の名前
+Name or id; the tag for places	名前または ID (配置の場合はタグ)
+Name, e.g. the location +M1	名前 (例: 取付場所 +M1)
+New device tag	新しいデバイスタグ
+New identifier	新しい識別子
+New page name	新しいページ名
+New parent segment (empty: top level)	新しい親セグメント (空欄: 最上位)
+New value	新しい値
+No PCT loop {}	計装ループ {} はありません
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{} という名前の組み込みチェックはありません: 設定は同じ名前のプラグインのチェックに適用されます (list_checks)
+No bus system {}	バスシステム {} はありません
+No connection point {} on this page	このページに接続ポイント {} はありません
+No connection symbol with id {}	id {} の接続シンボルはありません
+No copper bar {}	銅バー {} がありません
+No device description {}	デバイス記述 {} はありません
+No device group {}	デバイスグループ {} はありません
+No enclosure named {}	{} という名前のエンクロージャーはありません
+No entry for {} and {}	{} と {} のエントリがありません
+No hose {}	ホース {} はありません
+No identifier {} in the project	プロジェクトに識別子 {} はありません
+No item with id {}	ID {} のアイテムはありません
+No item {}	アイテム {} はありません
+No items to save in {}	{} に保存するアイテムがありません
+No macro named {}	{} という名前のマクロはありません
+No panel item with id {}	ID {} の盤アイテムがありません
+No planned device {}	計画済みデバイス {} がありません
+No potential definition {}	電位定義 {} はありません
+No project function definition {}	プロジェクト機能定義 {} がありません
+No routed item {}	配線済みのアイテム {} はありません
+No routed wire {} – {}	配線ルートが設定された電線 {} – {} はありません
+No routing path or reservation {}	配線経路または予約領域 {} はありません
+No rule for {} and {}	{} と {} のルールがありません
+No rule library or rule set {}	ルールライブラリまたはルールセット {} はありません
+No rule {}	ルール {} はありません
+No safety function {}	安全機能 {} はありません
+No standard size of {} holds the layout of {}	{} の標準サイズには {} のレイアウトが収まりません
+No terminal strip {}	端子台 {} がありません
+No terminal {} on strip {}	端子台 {1} に端子 {0} がありません
+No text with id {}	ID {} のテキストがありません
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm に3本の接続線が交わっていません：軸の方向を指定してください
+No transformer: set {} first	変圧器がありません: 先に {} を設定してください
+No wire at {} / {} mm	{} / {} mm に電線はありません
+No wire with id {}	ID {} の電線はありません
+No work area named {}	{} という名前の作業領域はありません
+Node name or id	ノード名または ID
+Node {} exists already	ノード {} はすでに存在します
+Nodes to pass in this order, comma separated	この順序で通過するノード (カンマ区切り)
+Nominal size, e.g. 8 mm or DN25	呼び径 (例: 8 mm または DN25)
+Not a cross-section: {} (e.g. 1.5 mm²)	断面積ではありません: {} (例: 1.5 mm²)
+Not a valid safety function: {}	有効な安全機能ではありません: {}
+Note, e.g. what the problem is	注記 (例: 問題の内容)
+Nothing to remove: {} {}	削除する対象がありません: {} {}
+Number of columns	列数
+Number of copies (default 1)	コピー数 (既定 1)
+Number of equal bars	同一バーの数
+Number of indexed values (0 = a single value)	インデックス付きの値の数 (0 = 単一値)
+Number of rows	行数
+Numbers the pages with a start value and step; released pages keep their name	開始値と増分でページに番号を付けます。リリース済みのページは名前を維持します
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	端子台の端子に端子台の順序で 1 … n の番号を付けます。PE などの数字以外の名称はそのまま残ります
+Numbers the wires by the numbering scheme of the project	プロジェクトの番号付けスキームで電線に番号を付けます
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=値、OPTION!=値、OPTION=a|b を & で連結 (空: 常に)
+Offset from the symbol position in mm (default: below the symbol)	シンボル位置からのオフセット (mm) (既定: シンボルの下)
+One end, e.g. -K1:A1	一方の端 (例: -K1:A1)
+One row per printed label instead of a count	数量の代わりに印刷するラベルごとに 1 行
+Only devices on these pages (names separated by commas)	これらのページのデバイスのみ (名前をカンマ区切りで指定)
+Only lines without a translation into this language	この言語への翻訳がない行のみ
+Only list the new tags, change nothing	新しいタグを一覧表示するだけで何も変更しない
+Only shows the package, no job is recorded	パッケージを表示するだけで、ジョブは記録しません
+Only shows what would change	変更内容の表示のみ
+Only the pages of this work area (list_structure)	この作業領域のページのみ (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	これらの識別文字のみ (カンマ区切り、例: K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	これらの種類のみ (カンマ区切り): page、device、function_text、text、wire_number、terminal、cable、part、description
+Only these kinds, separated by commas: page, function_text, text, description	これらの種類のみ (カンマ区切り): page、function_text、text、description
+Only these pages (names separated by commas)	これらのページのみ (名前をカンマ区切りで指定)
+Only this part number	この部品番号のみ
+Only wire, cable or tube	wire、cable、または tube のみ
+Only wires with this state: open, wired, changed or problem	この状態の電線のみ: open、wired、changed、または problem
+Opaque background in the paper colour	用紙色の不透明な背景
+Openings: auto (punch of the size, else contour) or contour	開口部: auto (サイズに合うパンチ、なければ輪郭) または contour
+Operating pressure in bar (0 = hose ratings are not checked)	使用圧力 (bar、0 = ホースの定格をチェックしない)
+Operations	工程
+Option name	オプション名
+Option name, e.g. STARTER	オプション名 (例: STARTER)
+Options and rules of the configurator	コンフィギュレーターのオプションとルール
+Other end, e.g. -X1:3	もう一方の端 (例: -X1:3)
+Outer diameter in mm, 0 = estimated	外径 (mm、0 = 推定)
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	直線区間の外寸 (mm) (例: 200, 150, 300)
+Overlap of nibbling hits (0 … 0.9)	ニブリングのヒットの重なり (0 … 0.9)
+PCT loop {} already exists	計装ループ {} は既に存在します
+PLC hardware: stations, cards, bus systems and port connections	PLC ハードウェア: ステーション、カード、バスシステム、ポート接続
+Page macro name	ページマクロ名
+Page macro that generates its schematic	回路図を生成するページマクロ
+Page name (default: all pages)	ページ名（既定：すべてのページ）
+Page {} is generated and cannot be edited	ページ {} は生成されたページのため編集できません
+Page {} is out in subproject {}: insert or discard the subproject first	ページ {} はサブプロジェクト {} に取り出されています: 先にサブプロジェクトを戻すか破棄してください
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	サフィックス付きのページ (3.a) は前のページのサブページのままにする (既定 true)
+Panel layout checks	盤レイアウトチェック
+Panel manufacturing	盤製造
+Paper height in mm (custom paper)	用紙の高さ (mm、カスタム用紙)
+Paper width in mm (custom paper)	用紙の幅 (mm、カスタム用紙)
+Part lifecycle	部品のライフサイクル
+Part number of the accessory	アクセサリの部品番号
+Part number of the base	ベースの部品番号
+Part number of the carrier (per metre)	支持材の部品番号 (1 m あたり)
+Part number of the conductor (per metre)	導体の部品番号 (1 m あたり)
+Part number of the downstream device	下位デバイスの部品番号
+Part number of the hose / tube / pipe	ホース / チューブ / 配管の部品番号
+Part number of the upstream device	上位デバイスの部品番号
+Part number, e.g. GEN.LMP-GN-24	部品番号 (例: GEN.LMP-GN-24)
+Part of the key or name	キーまたは名前の一部
+Part {} has no function with a symbol	部品 {} にはシンボル付きの機能がありません
+Parts phased out or discontinued	生産終了予定または生産終了の部品
+Pass ids or pages	ID またはページを指定してください
+Path function text: function text of the functions in its column that have none	パス機能テキスト: その列にある、機能テキストを持たない機能の機能テキスト
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	プレースホルダーの値 KEY=値; KEY2=値 ({OPTION} を使用可能)
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	PLC カード (I/O モジュール) をステーションに装着します: ラック、スロット、開始アドレス、デバイス記述。ポイントのアドレスを再設定します
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	4本の接続線が交わる点にブリッジを置きます。接続は一方の側から入り、他の3方向へ、まず反対側、次に左 / 上、次に右 / 下へ向かいます
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	電線に接続定義ポイントを配置します。接続はその番号、色、断面積を引き継ぎます
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	コーナーを置きます。そこで2本の接続線が直角に交わり、その側に向き合う接続点がここへ配線されます
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	3本の接続線が交わる点に方向付きT分岐を置きます。回路図の順序ではなく、接続の2本の線がどの機器から出るか（源）と目標の順序を指定します
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	2本の接続線が交わる点に方向付き交差を置きます。両者を接続し、線の各端はまず直進、次に横方向の一つの側へ配線されます
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	ページに部品を配置します: 主機能のシンボルを接続ポイント名付きで、部品を割り当てた新しいデバイスとして配置します (プロジェクト部品とサンプルカタログ)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	ページにシンボルを配置します。タグを指定しない場合は次の空きタグが使用されます。補助接点にはそのデバイスの次の空き接点番号が付きます
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	エンクロージャー (+CAB1)、デバイス (-M1)、または機械の取付場所 (+M1) をフィールドルートネットワークのノードに配置します
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	エンクロージャーの付属品 (ファン、フィルター、ケーブルグランド、照明、ハンドル、PE バー) を面に配置します
+Places of the group (0 = not limited)	グループの位置数 (0 = 制限なし)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	エンクロージャーの列盤を室内に配置します (すべてのエンクロージャーの 3D ビュー)。x と z を省略した場合は、プラントレイアウトに従って、または他の列盤の隣に配置されます
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	スキームのプロパティをシンボルに配置します。ID を指定しない場合は、使用しているすべてのシンボルに再配置します
+Planned part number	計画部品番号
+Planned power in kW	計画電力 (kW)
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	ルートネットワークを通るフィールドケーブル (経路、長さ、区間の占有率、ボンディング点、問題) を計画し、必要に応じて切断長を反映します
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	面の加工 (工程: 穴あけ、タップ加工、フライス加工、パンチング、ニブリング)、工具、経路、時間、および機械で加工できないものを計画します
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	回路図作成前の、計画済みデバイスを含むプラントセグメント: テンプレート、電力収支、回路図との比較状態、CSV / Excel での交換
+Plinth height in mm, 0 without plinth	台座の高さ (mm、0 は台座なし)
+Plot frame (list_frames); empty = the project default	図枠 (list_frames)。空 = プロジェクトの既定値
+Plot frames and page templates of the project	プロジェクトの図枠とページテンプレート
+Plug tag, e.g. -X10	プラグタグ (例: -X10)
+Plugin id '{}' is not snake_case	プラグイン ID「{}」は snake_case ではありません
+Plugin {} is loaded twice	プラグイン {} が 2 回読み込まれています
+Plugin {} needs a newer OpenECraft (API {})	プラグイン {} には新しい OpenECraft (API {}) が必要です
+Plugin {}: the name '{}' is invalid or already taken	プラグイン {}: 名前「{}」は無効か、すでに使用されています
+Plugin {}: {}	プラグイン {}: {}
+Plugs and their pins	プラグとそのピン
+Points in between: [[x, y], …]	中間点: [[x, y], …]
+Points in mm: [[x, y], …]	点 (mm): [[x, y], …]
+Port as station:port	ポート (ステーション:ポート)
+Port must be given as station:port: {}	ポートは ステーション:ポート の形式で指定する必要があります: {}
+Port {} is not connected	ポート {} は接続されていません
+Position down in metres	下方向の位置 (m)
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	中立軸の位置 (0 … 1、0: DIN 6935)
+Position right in metres	右方向の位置 (m)
+Position {} / {} mm lies outside the page ({} x {} mm)	位置 {} / {} mm はページの外です ({} x {} mm)
+Potential definitions, wire defaults and wire colours	電位定義、電線の既定値、電線の色
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	接続に番号を付けない電位の種類 (カンマ区切り: l、n、pe、dc_plus、dc_minus、signal)
+Potential name, e.g. L1 or +24V	電位名 (例: L1 または +24V)
+Potential {} already exists	電位 {} は既に存在します
+Pre-planning (CSV)	事前計画 (CSV)
+Pre-planning (Excel)	事前計画 (Excel)
+Problems	問題
+Product filter (-)	製品フィルター (-)
+Production status	製造状況
+Profile name, e.g. SAP	プロファイル名 (例: SAP)
+Program format: iso, heidenhain, punch or csv	プログラム形式: iso、heidenhain、punch または csv
+Programs	プログラム
+Progress (%)	進捗 (%)
+Project checks	プロジェクトチェック
+Project exports	プロジェクトのエクスポート
+Project languages, dictionary and translations	プロジェクト言語、辞書、翻訳
+Project reports	プロジェクトレポート
+Project statistics	プロジェクトの統計
+Property and function definitions, property values and placement schemes	プロパティ定義と機能定義、プロパティ値、配置スキーム
+Property key	プロパティキー
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	プロパティのキーと値 (例: {\"device.rated_power\": \"5.5\"})
+Put in front of the numbers, e.g. W	番号の前に付ける文字 (例: W)
+Quantity per end (default 1)	端ごとの数量 (既定 1)
+R/X ratio of the supply impedance	電源インピーダンスの R/X 比
+Rack number	ラック番号
+Rail id (action rail)	レール ID (アクション rail)
+Rapid traverse, mm/min	早送り (mm/min)
+Rated current of the supply in A (0: not limited)	電源供給の定格電流 (A、0: 制限なし)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	電源を供給する変圧器の定格容量 (kVA) (0: なし、短絡電流を指定)
+Rear left corner of the line-up in mm, to the right	列盤の左後隅 (mm、右方向)
+Rear left corner of the line-up in mm, towards the front	列盤の左後隅 (mm、前方向)
+Relative humidity of the ambient air in % (0: no condensation check)	周囲空気の相対湿度 (%) (0: 結露チェックなし)
+Release instead of freeze	固定ではなく解除する
+Released pages keep their names: {}	リリース済みのページは名前を保持します: {}
+Remote I/O: station of the controller	リモート I/O: コントローラーのステーション
+Remove the entry of upstream and downstream	upstream と downstream のエントリを削除
+Remove the profile	プロファイルを削除
+Remove the scheme from the project	スキームをプロジェクトから削除
+Remove unused definitions (default: false)	未使用の定義を削除する (既定: false)
+Removes a copper bar	銅バーを削除します
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	ノード (区間と配置を含む)、区間、配置、輪郭、ボンディング導体、または付属品を削除します
+Removes a planned device from a segment	計画済みデバイスをセグメントから削除します
+Removes a project function definition; its symbols go back to their built-in one	プロジェクト機能定義を削除します。そのシンボルは組み込みの定義に戻ります
+Removes a project option; its content stays in the project	プロジェクトオプションを削除します。その内容はプロジェクトに残ります
+Removes a report block; the pages it generated stay	レポートブロックを削除します。生成されたページは残ります
+Removes a routing path or reservation	配線経路または予約領域を削除します
+Removes a segment with everything below it	セグメントをその下位のすべてとともに削除します
+Removes a station; its cards stay unassigned, its bus connections are removed	ステーションを削除します。そのカードは未割り当てのまま残り、バス接続は削除されます
+Removes a user property with all its values and placements	ユーザープロパティをそのすべての値と配置とともに削除します
+Removes the bus connection of a port	ポートのバス接続を削除します
+Removes the bus system with its connections	バスシステムをその接続と共に削除します
+Removes the definition of a structure identifier (pages and devices keep it)	構造識別子の定義を削除します (ページとデバイスは識別子を保持します)
+Removes the machine from the project	機械をプロジェクトから削除します
+Removes the rule	ルールを削除します
+Removes the wiring marks of wires that no longer exist	存在しなくなった電線の配線マークを削除します
+Renames a device with all its functions	デバイスの名前をすべての機能と共に変更します
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	プロジェクト全体で構造識別子の名前を変更します: ページ、デバイス、ケーブル、定義、作業領域
+Renames the station	ステーションの名前を変更します
+Repair the repairable findings	修復可能な検出事項を修復
+Replacement	置換テキスト
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	プロジェクト全体のフリーテキスト、機能テキスト、ページ・デバイス・ケーブルの説明でテキストを置換します。リリース済みのページは変更されません
+Report blocks and report schemes	レポートブロックとレポートスキーム
+Reserves space over the mounting plate: kept free of routes, or for one class only	取付板上の空間を予約します: ルートを通さない、または 1 つのクラス専用
+Rest (mm)	残り (mm)
+Right side bayed (no side panel)	右側を連結 (側板なし)
+Room {} exists already	部屋 {} は既に存在します
+Rotation in degrees clockwise: 0, 90, 180 or 270	時計回りの回転角度 (度): 0、90、180、270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	回転角度 (度、反時計回り。90 で下から上に読む向き)
+Route the wires in 3D as well (otherwise through the cable ducts)	電線も 3D で配線する (それ以外は配線ダクト経由)
+Routing rules, paths, reservations, frozen routes and cable shields	配線ルールとルート、予約、固定されたルート、ケーブルシールド
+Row key (from table_get)	行キー (table_get から)
+Rows of the pattern	パターンの行数
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	規格のルールライブラリと顧客ルールセット、および適用中の制限値。有効化、無効化、追加、削除を行います
+Rule number, from 1	ルール番号 (1 から)
+Run the check	チェックを実行
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	ページの SVG、HTML、PDF、DXF、DWG、製造リストと PLC リスト、ハーネスと PLC の交換ファイル、盤レイアウト 3D、翻訳辞書
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	追加または置換する安全機能 (名前で指定): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	達成されたパフォーマンスレベル付きの安全機能 (ISO 13849-1)。安全機能を追加、置換、または削除します
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	ページ (タイプ、図枠、表題欄、構造、説明、内容) をページテンプレートとして保存します
+Saves items of an enclosure as a 3D macro of the project	エンクロージャーのアイテムをプロジェクトの 3D マクロとして保存します
+Saves the planned devices of a segment as a template	セグメントの計画済みデバイスをテンプレートとして保存します
+Saves the properties placed at a symbol as a placement scheme	シンボルに配置されたプロパティを配置スキームとして保存します
+Saw cut	鋸の切り代
+Second port as station:port	2 つ目のポート (ステーション:ポート)
+Segment path, e.g. Plant/Area 1	セグメントパス (例: Plant/Area 1)
+Segment {} already exists	セグメント {} はすでに存在します
+Segments not to use, comma separated	使用しない区間 (カンマ区切り)
+Selective up to this short-circuit current in kA (0: not given)	この短絡電流 (kA) まで選択遮断 (0: 指定なし)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	メーカーの表に基づくデバイスペアの選択遮断とバックアップ保護 (部品番号ごと)。エントリを追加、置換、または削除します
+Separator: semicolon, comma or tab	区切り文字: semicolon、comma または tab
+Sets how cross references are shown (only the given settings) and shows the settings	相互参照の表示方法を設定 (指定した設定のみ) し、設定を表示します
+Sets how the terminals of a jumper are bridged	ジャンパーの端子の橋絡方法を設定します
+Sets property values of an object; an empty value removes it	オブジェクトのプロパティ値を設定します。空の値を指定すると削除されます
+Sets the aspects the pages use	ページで使用するアスペクトを設定します
+Sets the collision class of a panel item (empty: automatic)	盤アイテムの干渉クラスを設定します (空欄: 自動)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	独自の値を設定していないホースの既定値と、ホース番号のプレフィックスを設定します
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	2 つの干渉クラス間の距離を設定するか、重なりを許可します。同じクラスのルールは置き換えられます
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	ケーブルのフィールドルート定義 (通過必須のノードと使用禁止の区間) を設定します
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	床面からのエンクロージャー下端の高さを設定します (デバイス、端子、操作部の高さがチェックされます)
+Sets the level (multi-level terminals) or jumper number of a terminal	端子の段 (多段端子) またはジャンパー番号を設定します
+Sets the numbering scheme of the wires (only the given settings) and shows it	電線の番号付けスキームを設定 (指定した設定のみ) して表示します
+Sets the plot frame of all pages that do not choose one	図枠を選択していないすべてのページの図枠を設定します
+Sets the shield and the outer diameter of a cable	ケーブルのシールドと外径を設定します
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	プロジェクトテキストのソース言語とターゲット言語 (ISO 639-1 コード) を設定します
+Sets the spare terminals of a strip and whether its accessories are added automatically	端子台の予備端子と、付属品を自動的に追加するかどうかを設定します
+Sets the translation of a line of the project texts (empty removes it)	プロジェクトテキストの行の翻訳を設定します (空の場合は削除)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	電位が定義されていないネットの電線色と断面積を設定します (空 = なし)
+Share of the capacity kept free in percent	空けておく容量の割合 (%)
+Sheets	シート
+Shield connected at: both, first, second or none	シールドの接続先: both、first、second、または none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	短絡、負荷、EMC、安全の計算、ルールセット、プロジェクト検証
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	短絡電流、遮断容量、遮断時間、ケーブルの短絡耐量、保護機器の選択遮断
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	変圧器の上位系統の短絡容量 (MVA) (0: 無限大)
+Short-circuit voltage of the transformer in %	変圧器の短絡インピーダンス電圧 (%)
+Shortest path between the hits of a tool	工具のヒット間の最短経路
+Shortest rail, duct or busbar	最短のレール、ダクト、またはブスバー
+Shortest straight length next to a bend	曲げ部に隣接する最短直線長
+Show as \"Name: value\"	「名前: 値」として表示
+Show the content	内容を表示
+Shows a property as a text beside a symbol	プロパティをシンボルの横にテキストとして表示します
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	端子台を表示します: 端子台の順序の端子 (段、ジャンパー、接続先を含む)、レール上のブロック、ジャンパー
+Shows or changes the machining strategy and which machine makes which face	加工方針と、どの面をどの機械で加工するかを表示または変更します
+Shows or changes the rules of copper bars; lengths in mm	銅バーのルールを表示または変更します。長さは mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	盤レイアウトチェックのルールを表示または変更します。値は mm (温度は °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	PLC ハードウェア構成を表示します: ラック、スロット、モジュール、アドレス範囲を含むステーション、バスシステム、ポート接続、検出された問題
+Shows the content of a page: symbols with their connection point positions, wires and texts	ページの内容を表示します: 接続ポイントの位置を含むシンボル、電線、テキスト
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	プロジェクトに保存されている他システムのデータ (部品リンク、ドキュメント) と交換ログを表示します
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	プラグの嵌合面を表示します: 部品のピン配置、各ピンの位置 (mm、ピン側から見た図)、両側の電位、電線の色、ケーブル心線
+Shows the options and rules of the configurator	コンフィギュレーターのオプションとルールを表示します
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	プラグのピンをプラグの順序で表示します: ソケット側とピン側の接続先、電位、未使用ピン
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	3D 配線のルールを表示し、指定されたものを変更します: グリッド、クリアランス、空中係数、離隔、曲げ半径、切断長、余長
+Shows the rules of the field cable planning and changes those given	フィールドケーブル計画のルールを表示し、指定されたルールを変更します
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	プロジェクトチェックの設定 (オフにしたチェック、変更したメッセージレベル、承認したメッセージ) を表示します
+Side of the plug the cable leaves: socket or pin (default: socket)	ケーブルが出るプラグの側: socket または pin (既定: socket)
+Side the connection comes from: left, right, up or down (default up)	接続が入ってくる側：left、right、up または down（既定 up）
+Single-line diagrams	単線結線図
+Single-line pages and their multi-line counterparts	単線ページと対応する複線ページ
+Slot number	スロット番号
+Smallest bend radius in mm	最小曲げ半径 (mm)
+Smallest distance in mm	最小距離 (mm)
+Smallest distance of holes from the sheet edge	穴から板端までの最小距離
+Smallest inner radius as a multiple of the thickness	板厚に対する最小内側半径の倍率
+Smallest web at cutouts	切り欠きの最小残し幅
+Smallest web between holes	穴間の最小残し幅
+Spare terminals at the end of the strip	端子台の末尾の予備端子
+Springback in percent of the angle	角度に対するスプリングバック (%)
+Start again on every page whose structure differs from the page before	構造が前のページと異なるページごとに番号をリセットする
+Start and end are the same connection point	始点と終点が同じ接続ポイントです
+Start and end point of the line	線の始点と終点
+Start: device tag and connection point, e.g. -K1:A1	始点: デバイスタグと接続ポイント (例: -K1:A1)
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	製造に引き渡したジョブの状況: 進捗、失敗、手直し、引き渡し後に変更されたプログラム
+Station name (empty: unassigned)	ステーション名 (空: 未割り当て)
+Station name, e.g. PLC1	ステーション名 (例: PLC1)
+Station {} exists already	ステーション {} は既に存在します
+Stock bar	定尺バー
+Stock length of rails, ducts and busbars	レール、ダクト、ブスバーの定尺長
+Stock length of the bars	バーの定尺長
+Stores the calibrated factors	補正係数を保存
+Structure identifiers, aspects and work areas	構造識別子、アスペクト、作業領域
+Structure of the target page: different (default), always or never	参照先ページの構造: different (既定)、always または never
+Subprojects, model options and the project data check	サブプロジェクト、モデルオプション、プロジェクトデータのチェック
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	電源供給 (電圧、系統接地方式、短絡電流) と導体の布設条件。指定された値を変更します
+Switch checks off, change message levels, accept messages as checked	チェックのオフ、メッセージレベルの変更、メッセージの確認済み承認
+Switches a check on or off (names as shown by list_checks)	チェックをオンまたはオフにします (名前は list_checks の表示どおり)
+Switches the project options with a condition by the configurator options	条件付きのプロジェクトオプションをコンフィギュレーターのオプションに従って切り替えます
+Symbol id	シンボル ID
+Symbol ids	シンボル ID
+Symbol key from list_symbols	list_symbols のシンボルキー
+Symbols, wires, texts, cable and connection definitions on schematic pages	回路図ページ上のシンボル、電線、テキスト、ケーブル定義と接続定義
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T分岐：軸の方向。ブリッジ：接続が入ってくる側（left、right、up または down）
+Tag of the terminal strip, e.g. -X1	端子台のタグ (例: -X1)
+Take the cut lengths over as cable lengths	切断長をケーブル長として反映
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	エンクロージャーメーカーのコンフィギュレーターで構成したエンクロージャー (JSON) を取り込みます: システム、サイズ、コンポーネント、付属品、切り欠き
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	製造からのフィードバック (CSV または JSON) を取り込みます: ジョブ、プログラム、工程、アイテム、ステータス、偏差、時間、メッセージ
+Takes pages or page items out of their project option (hidden content is shown again)	ページまたはページアイテムをプロジェクトオプションから外します (非表示の内容が再表示されます)
+Target language code	ターゲット言語コード
+Target languages separated by commas or blanks, e.g. de, fr	ターゲット言語 (カンマまたはスペース区切り、例: de, fr)
+Temperature rise at the roof against the middle (1 … 2)	中央部に対する天井部の温度上昇 (1 … 2)
+Terminal designation	端子の名称
+Terminal designations in strip order, separated by commas	端子台の順序の端子の名称 (カンマ区切り)
+Terminal order, levels, jumpers, spare terminals and accessories	端子の順序、段、ジャンパー、予備端子、付属品
+Text height in mm	テキストの高さ (mm)
+Text height in mm (default 3.5)	テキストの高さ (mm、既定値 3.5)
+Text in id, name or order number	ID、名前、または注文番号内のテキスト
+Text in the key or name	キーまたは名前内のテキスト
+Text in the line or a translation	行または翻訳内のテキスト
+Text to find; empty: fill	検索するテキスト。空: 入力
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	テキスト。{page} や {prop:Name} などのプレースホルダーは描画時に埋め込まれます
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	コーナーの側は縦方向と横方向の各1つです（例：down left）。{} は無効です
+The cable definition line crosses no wire	ケーブル定義線がどの電線とも交差していません
+The cable definition line has no length	ケーブル定義線に長さがありません
+The cable has an overall shield	ケーブルに一括シールドがある
+The classes may overlap (no collision)	クラスの重なりを許可 (干渉なし)
+The configuration (JSON)	構成 (JSON)
+The copies would leave the page	コピーがページの外に出てしまいます
+The counting step must be at least 1	カウントの増分は 1 以上である必要があります
+The devices do not fit onto rail {}	デバイスがレール {} に収まりません
+The feedback (CSV with header or JSON)	フィードバック (ヘッダー付き CSV または JSON)
+The first page number must not be negative	最初のページ番号に負の値は指定できません
+The items would leave the page	要素がページの外に出てしまいます
+The length must not be negative	長さに負の値は指定できません
+The line of a crossing is vertical or horizontal, not {}	交差の線は vertical または horizontal です。{} は無効です
+The message text, kept for the list of accepted messages	承認済みメッセージの一覧用に保持するメッセージテキスト
+The name must not be empty	名前は空にできません
+The number of copies must be between 1 and 100	コピー数は 1 から 100 の範囲である必要があります
+The plinth height must not be negative	台座の高さに負の値は指定できません
+The plot frame {} is in use	図枠 {} は使用中です
+The plugin program did not answer within {} s and was stopped	プラグインプログラムが {} 秒以内に応答しなかったため停止しました
+The plugin program failed: {}	プラグインプログラムが失敗しました: {}
+The rotation must be 0, 90, 180 or 270	回転は 0、90、180、270 のいずれかである必要があります
+The straight line of a crossing: vertical or horizontal (default vertical)	交差の直線：vertical または horizontal（既定 vertical）
+The text height must be at least 0.5 mm	文字の高さは 0.5 mm 以上である必要があります
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	コーナーの2つの側、縦と横（例：down left。既定：その位置の接続線から、なければ down right）
+The wire has no length	接続に長さがありません
+The wrap width must not be negative	折り返し幅に負の値は指定できません
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	取付板の熱シミュレーション: 空気温度、ホットスポット、熱源、各デバイスの温度
+Thickest sheet or bar, mm	最大の板厚またはバー厚 (mm)
+Time per drilling, punching or bending operation, s	穴あけ、パンチング、曲げ 1 回あたりの時間 (s)
+Time per tool change, s	工具交換 1 回あたりの時間 (s)
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	工具 (例: D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120)
+Top edge on the face in mm	面上の上端の位置 (mm)
+Top edge on the mounting plate in mm	取付板上の上端の位置 (mm)
+Translated line	翻訳された行
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	鉛直軸まわりの回転角度 (度、上から見て反時計回り、90: 正面が右向き)
+Unit, e.g. kW	単位 (例: kW)
+Unknown accessory kind: {}	不明な付属品の種類: {}
+Unknown action: {}	不明なアクション: {}
+Unknown address scheme: {}	不明なアドレス方式: {}
+Unknown alignment: {}	不明な配置: {}
+Unknown anchor: {}	不明なアンカー: {}
+Unknown aspect: {}	不明なアスペクト: {}
+Unknown bonding kind: {}	不明なボンディングの種類: {}
+Unknown bonding point: {}	不明なボンディング点: {}
+Unknown bus system: {}	不明なバスシステム: {}
+Unknown cable: {}	不明なケーブル: {}
+Unknown check: {}	不明なチェック: {}
+Unknown class: {}	不明なクラス: {}
+Unknown data type: {}	不明なデータ型: {}
+Unknown direction {}: left, right, up or down	不明な方向 {}：left、right、up または down
+Unknown earthing system: {}	不明な系統接地方式: {}
+Unknown face {}	不明な面 {}
+Unknown fastening: {}	不明な固定方法: {}
+Unknown field object: {}	不明なフィールドオブジェクト: {}
+Unknown field: {}	不明なフィールド: {}
+Unknown group kind: {}	不明なグループの種類: {}
+Unknown installation: {}	不明な設置方法: {}
+Unknown insulation: {}	不明な絶縁: {}
+Unknown jumper kind: {}	不明なジャンパーの種類: {}
+Unknown kind: {}	不明な種類: {}
+Unknown labels: {}	不明なラベル: {}
+Unknown level: {}	不明なレベル: {}
+Unknown line type: {}	不明なラインタイプ: {}
+Unknown machine kind {}	不明な機械の種類 {}
+Unknown marker category: {}	不明なマーカーの種類: {}
+Unknown material: {}	不明な材質: {}
+Unknown medium: {}	不明な媒体: {}
+Unknown method {}	不明な方法 {}
+Unknown node: {}	不明なノード: {}
+Unknown numbering scheme: {}	不明な番号付けスキーム: {}
+Unknown object class: {}	不明なオブジェクトクラス: {}
+Unknown order: {}	不明な順序: {}
+Unknown paper format: {}	不明な用紙サイズ: {}
+Unknown path kind: {}	不明な経路の種類: {}
+Unknown placeholder {}: possible are {}	不明なプレースホルダー {}: 使用できるのは {}
+Unknown potential kind: {}	不明な電位の種類: {}
+Unknown preset: {}	不明なプリセット: {}
+Unknown program format {}	不明なプログラム形式 {}
+Unknown report: {}	不明なレポート: {}
+Unknown segment kind: {}	不明な区間の種類: {}
+Unknown segment: {}	不明な区間: {}
+Unknown separator: {}	不明な区切り文字: {}
+Unknown setting: {}	不明な設定: {}
+Unknown shield ends: {}	不明なシールド端: {}
+Unknown side {} (socket or pin)	不明な側 {} (socket または pin)
+Unknown state: {}	不明な状態: {}
+Unknown station kind: {}	不明なステーションの種類: {}
+Unknown symbol: {}	不明なシンボル: {}
+Unknown table: {}	不明な表: {}
+Unknown vertical anchor: {}	不明な垂直アンカー: {}
+Unknown wire colour {} (IEC 60757: {})	不明な電線色 {} (IEC 60757: {})
+Use this scheme for the marking export	このスキームをマーキングのエクスポートに使用
+Used (mm)	使用量 (mm)
+Value while none is set	未設定時の値
+Values of a selection list separated by commas	カンマ区切りの選択リストの値
+Variant (empty: the first)	バリアント (空: 最初のバリアント)
+Variant {} is not one of 1 to 2	種類 {} は 1 から 2 のいずれでもありません
+Variant {} is not one of 1 to 4	種類 {} は 1 から 4 のいずれでもありません
+Verifies the project against the enabled rule libraries and customer rule sets	有効なルールライブラリと顧客ルールセットに対してプロジェクトを検証します
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	プロジェクトデータ (ID、参照、オプション、サブプロジェクト) を検証してチェックを実行し、必要に応じて修復可能なものを修復します
+Vertical pitch of the pattern in mm	パターンの垂直ピッチ (mm)
+Voltage, e.g. 400 V AC	電圧 (例: 400 V AC)
+What it is: motor, valve, sensor, …	種類: モーター、バルブ、センサー、…
+Which line the position is on: top (first), middle or bottom (last)	位置に合わせる行: top (先頭行)、middle または bottom (最終行)
+Who accepted it	承認者
+Whole words only	単語単位のみ
+Why the message is accepted	メッセージを承認する理由
+Width in mm	幅 (mm)
+Width of the path in mm (default 50)	経路の幅 (mm、既定値 50)
+Width, depth and height of a room are at least {} mm	部屋の幅、奥行き、高さは {} mm 以上です
+Width, height and depth of an enclosure are at least {} mm	エンクロージャーの幅、高さ、奥行きは {} mm 以上です
+Wire colour (IEC 60757), e.g. BK	電線色 (IEC 60757、例: BK)
+Wire colour, e.g. BU	電線色 (例: BU)
+Wire colour, e.g. BU (empty = from the potential definition)	電線色 (例: BU、空 = 電位定義から)
+Wire number (kept when renumbering)	電線番号 (番号の振り直し時も保持されます)
+Wire numbering and wiring marks	電線番号付けと配線マーク
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	保護機器に対して細すぎる電線とケーブルの電圧降下 (IEC 60204-1)
+Working area in x, mm	X 方向の加工範囲 (mm)
+Working area in y, mm	Y 方向の加工範囲 (mm)
+Wrap width in mm (0: no wrapping)	折り返し幅 (mm) (0: 折り返しなし)
+X position in mm	X 位置 (mm)
+Y position in mm (downwards)	Y 位置 (mm、下向き)
+any, wires, cables or tubes	any、wires、cables、または tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip、または adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam、または product
+controller, io_device, drive, hmi or other	controller、io_device、drive、hmi、または other
+copper or aluminium	copper または aluminium
+device (default), position, cross_section or number	device (既定)、position、cross_section、または number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages または parts
+error, warning, info, off, or default to take the change back	error、warning、info、off、または変更を取り消す場合は default
+false takes the acceptance back (default true)	false で承認を取り消します (既定 true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted、または middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+)、または product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland、emc_gland、connector、strain_relief、shield_clamp、protective_hose、end_sleeve、marker または other
+hose, tube or pipe	hose、tube、または pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (機械、相導体 BK) または iec60445 (相導体 BN、BK、GY)
+keepout (default), power, control, signal or fluid	keepout (既定)、power、control、signal、または fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l、n、pe、dc_plus、dc_minus、signal、または other
+left, center, right, top, middle or bottom	left、center、right、top、middle または bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left、center_x、right、top、center_y、bottom、distribute_x、distribute_y、rail、または pattern
+main (default), supplementary or functional	main (既定)、supplementary または functional
+mounted, problem or open	mounted、problem または open
+node, segment, place, outline, bond or accessory	node、segment、place、outline、bond または accessory
+numbers or letters	numbers または letters
+plate, door, left, right, rear, roof or bottom	plate、door、left、right、rear、roof、または bottom
+plug_in, saddle or wire	plug_in、saddle または wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet、ethercat、ethernet_ip、profibus_dp、modbus_tcp、または canopen
+project, page, device, function, terminal, plc or cable	project、page、device、function、terminal、plc または cable
+project, page, device, function, terminal, plc, cable or part	project、page、device、function、terminal、plc、cable または part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project、page:<名前>、device:<タグ>、function:<シンボル ID>、cable:<タグ> または part:<番号>
+pvc or xlpe	pvc または xlpe
+sequential, page_column, potential or format	sequential、page_column、potential または format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel、stainless_steel、aluminium、または plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text、multiline、integer、number、bool、choice、date または link (既定は text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s、tn_c、tn_c_s、tt、または it
+too long	長すぎます
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (既定)、ladder、trunking、conduit、drag_chain、buried または free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal、service_unit、manifold、power_unit、または other
+wired, problem or open	wired、problem、または open
+{} and {} are both ends of one function: the wire would short-circuit it	{} と {} は同じ機能の両端です: この電線はそれを短絡させます
+{} and {} are needed together	{} と {} は同時に指定する必要があります
+{} cannot be bayed to itself	{} は自分自身に連結できません
+{} cannot be mounted on the {}	{} は {} に取り付けできません
+{} exists already: pass merge to make both one identifier	{} は既に存在します: 両方を 1 つの識別子にまとめるには merge を指定してください
+{} has no enclosure bayed to its right side	{} の右側に連結されたエンクロージャーはありません
+{} has no enclosure system; give one	{} にはエンクロージャーシステムがありません。指定してください
+{} is a built-in frame; give the frame a new name	{} は組み込みの図枠です。図枠に新しい名前を付けてください
+{} is a room already	{} は既に部屋です
+{} is ambiguous: use #id:pin	{} があいまいです: #id:pin を使用してください
+{} is an enclosure already	{} は既にエンクロージャーです
+{} is not a connection point (TAG:PIN)	{} は接続ポイントではありません (TAG:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} は check が表示するメッセージコードではありません (例: wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} は check が表示するメッセージのフィンガープリントではありません (code:hash:item)
+{} is not defined	{} は定義されていません
+{} is not in that section	{} はそのセクションにありません
+{} is the source language	{} はソース言語です
+{} must be at least {}	{} は {} 以上である必要があります
+{} must be between {} and {}	{} は {} から {} の範囲である必要があります
+{} must not be negative	{} に負の値は指定できません
+{} of job {} changed since the hand-off	ジョブ {1} の {0} は引き渡し後に変更されました
+{} segments need {} bends	{} 区間には {} 箇所の曲げが必要です
+{} would stand outside the room {}	{} は部屋 {} の外に置かれてしまいます
+{}: part {} is being phased out	{}: 部品 {} は生産終了予定です
+{}: part {} is being phased out, successor {}	{}: 部品 {} は生産終了予定です。後継品 {}
+{}: part {} is discontinued	{}: 部品 {} は生産終了です
+{}: part {} is discontinued, successor {}	{}: 部品 {} は生産終了です。後継品 {}
+{}: the program to run is missing	{}: 実行するプログラムがありません

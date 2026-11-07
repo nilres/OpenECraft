@@ -128,7 +128,7 @@ fn ui_texts_are_translated() {
     }
     assert!(
         violations.is_empty(),
-        "texts shown in the UI must be translated: wrap them in `tr(\"…\")` / `tr_fmt!(…)` and add them to crates/openecraft-i18n/src/catalog/extra.tsv (English, German, French, Spanish):\n{}",
+        "texts shown in the UI must be translated: wrap them in `tr(\"…\")` / `tr_fmt!(…)` and add them to crates/openecraft-i18n/src/catalog/<area>/required.tsv (English, German, French, Spanish; `cargo run -p openecraft-i18n --example tidy` places and sorts them):\n{}",
         violations.join("\n")
     );
 }

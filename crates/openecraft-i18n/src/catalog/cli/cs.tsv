@@ -1,0 +1,286 @@
+# English<TAB>Čeština – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(jen server MCP)
+(optional)	(volitelné)
+Access token for changes	Přístupový token pro změny
+Access token of a Vault session or an Autodesk account instead of user and password	Přístupový token relace Vault nebo účtu Autodesk místo uživatele a hesla
+Address of the Vault server, e.g. https://vault.example.com	Adresa serveru Vault, např. https://vault.example.com
+Adds a page	Přidá stránku
+Adds the definitions and schemes of a property library file to the project	Přidá do projektu definice a schémata ze souboru knihovny vlastností
+All project files of a folder	Všechny projektové soubory složky
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Vrátit také fasety: hodnoty skupin, výrobců, katalogů, životního cyklu a technických údajů s jejich počty
+Also save the project in this local file	Uložit projekt také do tohoto místního souboru
+Also take over values changed on both sides since the last export	Převzít také hodnoty, které se od posledního exportu změnily na obou stranách
+Also verify each project (slower)	Také ověřit každý projekt (pomalejší)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Použije CSV exportované pomocí table_get (a změněné v tabulkovém procesoru): nastaví se změněné buňky
+Applies a structure template: the aspects of the pages and its identifiers	Použije šablonu struktury: aspekty stránek a její identifikátory
+Archive file (.oecz)	Soubor archivu (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Přiřadí artikl k přístroji (z projektu, vestavěného katalogu nebo serveru artiklů)
+Author of comments without one (default: the user name)	Autor komentářů bez autora (výchozí: uživatelské jméno)
+AutomationML content instead of a file	Obsah AutomationML místo souboru
+AutomationML file	Soubor AutomationML
+CSV content instead of a file	Obsah CSV místo souboru
+CSV file	Soubor CSV
+CSV or Excel file	Soubor CSV nebo Excel
+CSV or JSON file	Soubor CSV nebo JSON
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	Soubor CSV, JSON, BMEcat, EPLAN XML nebo EDZ
+Cannot write {}: {}	Nelze zapsat {}: {}
+Catalog data; without id it is derived from the name	Data katalogu; bez ID se odvodí z názvu
+Changes project properties	Změní vlastnosti projektu
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Změní vlastnosti projektu v mnoha projektových souborech najednou (pole name, description, company, creator, date, revision nebo vlastnosti projektu)
+Changes the number of a part on the parts server	Změní číslo artiklu na serveru artiklů
+Check scheme file (JSON)	Soubor schématu kontroly (JSON)
+Check-in comment	Komentář k vrácení se změnami
+Checks the project (errors, warnings, hints)	Zkontroluje projekt (chyby, upozornění, tipy)
+Column mapping {field code: column name} (added to the profile's)	Mapování sloupců {kód pole: název sloupce} (přidá se k mapování profilu)
+Comment stored in the archive	Komentář uložený v archivu
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Porovná artikly projektu se serverem artiklů: novější verze, dobíhající, s ukončenou výrobou a odebrané artikly
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Místo toho export konektoru: erp, pdm, plm, ecad, mcad, procurement, wiring_machine nebo exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Připojí se k Autodesk Vault (Vault Data API, Vault Professional 2025.2 nebo novější): přihlásí se účtem Vault nebo použije přístupový token a zobrazí připojení
+Converts a project file or archive of an older version to the current file format	Převede projektový soubor nebo archiv starší verze do aktuálního formátu souboru
+Creates a new project (optionally the demo project) and saves it if a path is given	Vytvoří nový projekt (volitelně ukázkový projekt) a uloží jej, je-li zadána cesta
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Vytvoří nebo změní katalog na serveru artiklů (ID, název, výrobce, verze, popis)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Vytvoří nebo změní blok výkazů (stránky výkazů vytvářené společně, např. jedno schéma svorkovnice na každou svorkovnici)
+Creates or changes a user of the parts server (administrators only)	Vytvoří nebo změní uživatele serveru artiklů (pouze správci)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Vytvoří nebo nahradí artikl na serveru artiklů (stejný JSON jako parts_get; chybějící pole jsou prázdná)
+Creates or replaces a report scheme	Vytvoří nebo nahradí schéma výkazu
+Creator	Autor
+DWG file	Soubor DWG
+DXF file	Soubor DXF
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro nebo Other (výchozí: podle názvu souboru)
+Date for the exchange log	Datum pro protokol výměny
+Defines, changes or deletes a role of the parts server (administrators only)	Definuje, změní nebo odstraní roli serveru artiklů (pouze správci)
+Delete the role	Odstranit roli
+Deletes a catalog without parts from the parts server	Odstraní katalog bez artiklů ze serveru artiklů
+Deletes a part from the parts server	Odstraní artikl ze serveru artiklů
+Deletes a user of the parts server (administrators only)	Odstraní uživatele serveru artiklů (pouze správci)
+Descending order	Sestupné pořadí
+Discard unsaved changes of the open project	Zahodit neuložené změny otevřeného projektu
+Downloads a file of a part from the parts server	Stáhne soubor artiklu ze serveru artiklů
+Downloads a file version from the vault	Stáhne verzi souboru z trezoru
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Vloží soubor (PDF, dokument Office, obrázek …) jako stránku dokumentu; export do PDF jej připojí ke stránce
+Error: {}	Chyba: {}
+Export name as shown by list_exports	Název exportu, jak jej zobrazuje list_exports
+Export name as shown by list_exports, e.g. pdf or step	Název exportu, jak jej zobrazuje list_exports, např. pdf nebo step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Exportuje všechny artikly serveru artiklů jako CSV nebo XML artiklů EPLAN
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Exportuje projekt pro jiný systém pomocí konektoru nebo jako neutrální výměnný soubor (konektor exchange); pozdější importy tohoto konektoru zjistí konflikty vůči tomuto exportu
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Exportuje projekt ve formátu z list_exports; binární formáty (dwg, jt) vyžadují výstupní soubor
+Field or property whose value is searched ('*' for all)	Pole nebo vlastnost, jejíž hodnota se prohledává ('*' pro všechny)
+File content instead of a file	Obsah souboru místo souboru
+File id (see the attachments of parts_get)	ID souboru (viz attachments z parts_get)
+File name in the vault	Název souboru v trezoru Vault
+File to embed	Soubor k vložení
+File to save the project to (.oec)	Soubor, do kterého se projekt uloží (.oec)
+File to upload	Soubor k nahrání
+File to write	Soubor k zápisu
+File to write (xlsx)	Soubor k zápisu (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Vyhledá projekty v databázi projektů nebo ve složce: výrazy oddělené ';', každý klíč=hodnota, klíč~text nebo prostý text
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Najde položky Vault artiklů projektu (podle čísla položky nebo vlastnosti Part Number) a vypíše změny ID položky, revize a stavu životního cyklu; s apply se převezmou
+Folder id (default root)	ID složky (výchozí root)
+Folder with project files	Složka s projektovými soubory
+Folder with project files (instead of a database; default: the current folder)	Složka s projektovými soubory (místo databáze; výchozí: aktuální složka)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Formulář: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (schémata svorek a kabelů jako výkresy)
+Function (=) of the generated pages	Funkce (=) vytvořených stránek
+Further parameters of the export as name=value, separated by commas	Další parametry exportu jako název=hodnota, oddělené čárkami
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Další parametry exportu jako název=hodnota, oddělené čárkou (viz list_exports), např. harness=-WH1
+GSDML or ESI file	Soubor GSDML nebo ESI
+Generates a report as table	Vytvoří výkaz jako tabulku
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Vygeneruje stránku schématu pro každý plánovaný přístroj, který má makro stránky a ještě není ve schématu
+Generates the pages of the report blocks again (replacing the pages they generated before)	Znovu vytvoří stránky bloků výkazů (nahradí stránky, které vytvořily dříve)
+Give either template or path	Zadejte buď template, nebo path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Přidělí uživateli nebo skupině roli pro výrobce (rozsah) na serveru artiklů, s deny odebere její práva, s revoke odebere přidělení (pouze správci)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Skupiny k vytvoření, zástupné znaky povoleny (-X*, -W1); prázdné: všechny
+Id of a file (file_id of vault_browse) that gets a new version	ID souboru (file_id z vault_browse), který dostane novou verzi
+Id of the file version (version_id of vault_browse)	ID verze souboru (version_id z vault_browse)
+Id of the knowledge vault (taken from the session if not given)	ID trezoru (pokud není zadáno, převezme se z relace)
+Id of the plugin to disable	ID pluginu, který se má zakázat
+Id of the plugin to enable	ID pluginu, který se má povolit
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Importuje výkres DWG (AutoCAD R12 … 2018) jako grafiku (čáry, oblouky, texty, bloky) na novou stránku schématu
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Importuje výkres DXF jako grafiku (čáry, oblouky, texty, bloky) na novou stránku schématu
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Importuje hardwarovou konfiguraci PLC z AutomationML (např. exportovanou z TIA Portal): stanice, moduly, adresy, podsítě, spojení portů a komentáře proměnných
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Importuje soubor artiklů na server artiklů; obrázky a makra souboru EDZ se uloží u příslušných artiklů
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importuje popisy zařízení ze souboru GSDML (PROFINET) nebo ESI (EtherCAT) do projektu
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importuje segmenty předběžného plánování a plánované přístroje z CSV nebo Excelu (sloupce Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importuje komentáře, které kontrolor vytvořil v exportu PDF projektu (poznámky, textová pole, zvýraznění, tvary, odpovědi), do vrstvy komentářů; dříve importované komentáře se přeskočí
+Insert after this page (default: at the end)	Vložit za tuto stránku (výchozí: na konec)
+Inserts an edited subproject: its pages replace the pages taken out	Vloží upravený podprojekt: jeho stránky nahradí vyčleněné stránky
+Invalid form: {}	Neplatný formulář: {}
+Keep the file checked out after the check-in	Ponechat soubor po vrácení se změnami rezervovaný
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Druh serveru: OpenECraft (server artiklů) nebo Eplan (EPLAN Data Portal: pouze vyhledávání a čtení, token je osobní přístupový token účtu EPLAN)
+Language of the export (a project language)	Jazyk exportu (jazyk projektu)
+Language of the project texts and reports (a project language, default the source language)	Jazyk textů projektu a výkazů (jazyk projektu, výchozí je zdrojový jazyk)
+Library file	Soubor knihovny
+Lifecycle: Active, PhaseOut or Discontinued	Životní cyklus: Active, PhaseOut nebo Discontinued
+Lists the built-in structure templates	Vypíše vestavěné šablony struktury
+Lists the catalogs of the parts server with their number of parts	Vypíše katalogy serveru artiklů s počtem jejich artiklů
+Lists the checks of the project check (built-in and of plugins) and whether they run	Vypíše kontroly kontroly projektu (vestavěné a z pluginů) a zda se spouštějí
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Vypíše konektory integrační vrstvy (ERP, PDM, PLM, ECAD, MCAD, nákup, automat na zpracování vodičů) s vyměňovanými poli a profily projektu
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Vypíše systémy skříní se standardními velikostmi, tloušťkou stěny, soklem a informací, zda je lze spojovat do řad
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Vypíše ukázkové projekty od prvního obvodu po celé zařízení s funkcemi, které každý ukazuje
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Vypíše exporty (vestavěné a z pluginů): název pro export, titulek, příponu souboru a parametry
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Vypíše složky a soubory složky Vault nebo prohledá vlastnosti souborů pod ní (nebo v celém trezoru)
+Lists the reports (built-in and of plugins): name for report and title	Vypíše výkazy (vestavěné a z pluginů): název pro report a titulek
+Lists the users of the parts server (administrators only)	Vypíše uživatele serveru artiklů (pouze správci)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Načtené pluginy (vestavěné a ze složek pluginů z --plugins / OPENECRAFT_PLUGINS) s jejich příkazy, kontrolami, výkazy a exporty; povolí nebo zakáže jeden pro tuto relaci
+Local file to put into the vault	Místní soubor k uložení do trezoru Vault
+Local groups of the user, separated by commas	Místní skupiny uživatele, oddělené čárkami
+Location (+) of the generated pages	Umístění (+) vytvořených stránek
+Macro library file (JSON, exported by the editor)	Soubor knihovny maker (JSON, exportovaný editorem)
+Manufacturer (wildcards); default * (everything)	Výrobce (zástupné znaky); výchozí * (vše)
+Manufacturer whose parts a manufacturer user maintains	Výrobce, jehož artikly spravuje uživatel s rolí výrobce
+Maximum number of hits (default 50)	Maximální počet výsledků (výchozí 50)
+Name of a built-in template (list_structure_templates)	Název vestavěné šablony (list_structure_templates)
+Name of the knowledge vault (default Vault)	Název trezoru (výchozí Vault)
+New file name (save as)	Nový název souboru (uložit jako)
+New pages for every value of the group column (default true)	Nové stránky pro každou hodnotu sloupce seskupení (výchozí true)
+New part number	Nové číslo artiklu
+New report block {} needs a kind	Nový blok výkazů {} vyžaduje druh výkazu (kind)
+No grant of {} found	Nenalezeno žádné přidělení pro {}
+No profile named {}	Žádný profil s názvem {}
+No project is open: use open_project or new_project first	Není otevřen žádný projekt: nejprve použijte open_project nebo new_project
+No role {} defined	Není definována žádná role {}
+Not a valid catalog: {}	Není platný katalog: {}
+Not a valid part: {}	Neplatný artikl: {}
+Not connected to a vault: use vault_connect first	Není připojeno k Vault: nejprve použijte vault_connect
+Nothing to change: pass set, remove, replace or rename	Není co měnit: zadejte set, remove, replace nebo rename
+Number of hits to skip	Počet výsledků, které se mají přeskočit
+Only show the changes, write nothing	Pouze zobrazit změny, nic nezapisovat
+Only the pages of this report block; default all report pages	Jen stránky tohoto bloku výkazů; výchozí všechny stránky výkazů
+Only the projects that match these search terms	Pouze projekty odpovídající těmto hledaným výrazům
+Only this block	Jen tento blok
+Opens a project file or archive (files of older versions are converted)	Otevře projektový soubor nebo archiv (soubory starších verzí se převedou)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Otevře projektový soubor nebo archiv z trezoru Vault; vault_upload bez cíle vrátí jeho novou verzi se změnami
+Option {} needs the form name=value	Volba {} vyžaduje tvar název=hodnota
+Order: Number, Manufacturer, Description, Price or Modified	Pořadí: Number, Manufacturer, Description, Price nebo Modified
+Output file	Výstupní soubor
+Output file (JSON)	Výstupní soubor (JSON)
+Output file; without it the content is returned	Výstupní soubor; bez něj se obsah vrátí
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Vydá stránky výkazů jako pevné stránky do jiného souboru projektu; stránky dříve vydané z tohoto projektu se nahradí
+PDF file with comments	Soubor PDF s komentáři
+Page (svg: required, dxf, dwg: default all pages)	Stránka (svg: povinné, dxf, dwg: výchozí všechny stránky)
+Page name (default: next number)	Název stránky (výchozí: další číslo)
+Page of the export	Stránka exportu
+Page template (list_page_templates) instead of kind	Šablona stránky (list_page_templates) místo kind
+Page {} has no embedded document	Stránka {} nemá vložený dokument
+Pages whose structure starts with this, e.g. =A1+CAB1	Stránky, jejichž struktura tímto začíná, např. =A1+CAB1
+Part number to add	Číslo artiklu k přidání
+Part number to remove	Číslo artiklu k odebrání
+Part {} has no version {}	Artikl {} nemá verzi {}
+Pass files or a folder	Zadejte soubory nebo složku
+Password (needed for new users; empty keeps the current one)	Heslo (nutné pro nové uživatele; prázdné ponechá stávající)
+Password of the Vault user	Heslo uživatele Vault
+Password of the user	Heslo uživatele
+Plot frame (list_frames); default: the project's	Rámeček výkresu (list_frames); výchozí: rámeček projektu
+Product top group: Electrical, Fluid, Mechanics or Process	Hlavní skupina produktů: Electrical, Fluid, Mechanics nebo Process
+Profile whose column mapping is used	Profil, jehož mapování sloupců se použije
+Project database file (JSON)	Soubor databáze projektů (JSON)
+Project database file (JSON) to update	Soubor databáze projektů (JSON), který se má aktualizovat
+Project file (.oec) or archive (.oecz)	Projektový soubor (.oec) nebo archiv (.oecz)
+Project file that gets the pages	Soubor projektu, který stránky obdrží
+Project file to write (default: the file itself; archives: next to it as .oec)	Projektový soubor k zápisu (výchozí: samotný soubor; archivy: vedle něj jako .oec)
+Project files, separated by ';'	Projektové soubory oddělené ';'
+Properties to remove, separated by ','	Vlastnosti k odebrání oddělené ','
+Properties to rename (old name: new name)	Vlastnosti k přejmenování (starý název: nový název)
+Property {} needs a text or a number	Vlastnost {} vyžaduje text nebo číslo
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Uloží projekt, export, export konektoru nebo místní soubor do trezoru Vault; soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor nebo Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Načte soubor jiného systému (CSV nebo JSON) pomocí konektoru a vypíše změny; s apply se převezmou (konflikty jen s overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Načte projektové soubory a archivy složky (a jejích podsložek) do databáze projektů
+Reads translations from CSV: first column the source line, one column per language code	Načte překlady z CSV: první sloupec zdrojový řádek, jeden sloupec na kód jazyka
+Redoes the last undone change	Znovu provede poslední vrácenou změnu
+Remove the grants of the user or group (only of this role and scope, if given)	Odebrat přidělení uživatele nebo skupiny (pouze této role a rozsahu, jsou-li zadány)
+Remove the parts assigned so far	Odebrat dosud přiřazené artikly
+Removes a file from a part on the parts server	Odebere soubor z artiklu na serveru artiklů
+Replace the file at path if it exists	Nahradit soubor v path, pokud existuje
+Replace the project parts by their newer server versions	Nahradit artikly projektu jejich novějšími verzemi ze serveru
+Replacement text	Náhradní text
+Replaces the content of the macro boxes whose macro changed in a macro library file	Nahradí obsah rámečků maker, jejichž makro se změnilo v souboru knihovny maker
+Replaces the pages generated before by the page macros of the rules whose condition holds	Nahradí dříve vytvořené stránky makry stránek z pravidel, jejichž podmínka je splněna
+Report name as shown by list_reports	Název výkazu, jak jej zobrazuje list_reports
+Report scheme: its filter, sort order and columns	Schéma výkazu: jeho filtr, řazení a sloupce
+Report scheme; empty: the form of the report	Schéma výkazu; prázdné: formulář výkazu
+Report the scheme belongs to	Výkaz, ke kterému schéma patří
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Výkaz, např. terminal_diagram, terminal_lineup, cable_connections (povinné pro nový blok)
+Return all part data instead of a summary	Vrátit všechna data artiklu místo souhrnu
+Revision of the change; returns the part as it was	Revize změny; vrátí artikl v tomto stavu
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Práva oddělená čárkami: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Název role
+Role of requests without sign-in; none: sign-in needed for reading	Role požadavků bez přihlášení; none: pro čtení je nutné přihlášení
+Role: reader, manufacturer, editor, admin or a defined role	Role: reader, manufacturer, editor, admin nebo definovaná role
+Saves the project to its file or to a new path	Uloží projekt do jeho souboru nebo do nové cesty
+Scale drawings down that do not fit on the page (default: true)	Zmenšit výkresy, které se nevejdou na stránku (výchozí: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Hledané výrazy, např. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Prohledá položky trezoru (číslo, název, revize, stav životního cyklu, číslo artiklu)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Vyhledá artikly na serveru artiklů (datový portál) podle textu, skupin, katalogu, životního cyklu a technických údajů
+Segment path (default: all segments)	Cesta segmentu (výchozí: všechny segmenty)
+Server URL, e.g. http://127.0.0.1:8090	Adresa URL serveru, např. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Nastaví server artiklů (URL a přístupový token nebo uživatele a heslo) a zobrazí jeho stav
+Settings scheme file (JSON)	Soubor schématu nastavení (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Zobrazí tabulku (přístroje, spojení, svorky, kabely, konektory, PLC, stránky nebo artikly) s jejími řádky; řádek se mění pomocí jeho klíče
+Shows all data of a part	Zobrazí všechna data artiklu
+Shows the changes of a part on the parts server, or the part as of one change	Zobrazí změny artiklu na serveru artiklů nebo artikl ve stavu jedné změny
+Shows the favorites of the signed in user, optionally adding or removing a part	Zobrazí oblíbené položky přihlášeného uživatele, volitelně přidá nebo odebere artikl
+Shows the manifest of a project archive	Zobrazí manifest archivu projektu
+Shows the project properties, file, number of pages and devices and the check result	Zobrazí vlastnosti projektu, soubor, počet stránek a přístrojů a výsledek kontroly
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Zobrazí role, přidělení a adresářové služby serveru artiklů, volitelně nastaví roli anonymních požadavků (pouze správci)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Začít ze šablony projektu: vestavěné (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) nebo projektového souboru
+Start from an example project (names: list_examples)	Začít z ukázkového projektu (názvy: list_examples)
+Start from the demo project	Začít z ukázkového projektu
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Uloží soubor (katalogový list, obrázek, model, makro …) k artiklu na serveru artiklů
+Subproject file (.oec)	Soubor podprojektu (.oec)
+Subproject file to write (.oec)	Soubor podprojektu k zápisu (.oec)
+Take the changes over (otherwise only a preview)	Převzít změny (jinak pouze náhled)
+Take the rights of the role away instead	Místo toho odebrat práva role
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Vyčlení stránky jako soubor podprojektu; zůstanou zde zamčené, dokud se podprojekt znovu nevloží
+Takes the checks switched off and the message levels of a check scheme file	Převezme vypnuté kontroly a úrovně hlášení ze souboru schématu kontroly
+Takes the settings a settings scheme file carries	Převezme nastavení obsažená v souboru schématu nastavení
+Target folder id (root for the top folder); default the folder the project was opened from	ID cílové složky (root pro nejvyšší složku); výchozí je složka, ze které byl projekt otevřen
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Technické údaje, které se musí shodovat, např. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Soubor šablony zapsaný pomocí export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Text v čísle, typu, výrobci, popisu, skupinách nebo katalogu; každé slovo se musí vyskytovat
+Text to replace	Text k nahrazení
+Text to search for	Hledaný text
+The catalog needs a name	Katalog potřebuje název
+The format xlsx needs a path	Formát xlsx vyžaduje cestu
+The open project has unsaved changes: save it first or pass discard	Otevřený projekt obsahuje neuložené změny: nejprve jej uložte nebo zadejte discard
+The part number must not be empty	Číslo artiklu nesmí být prázdné
+The project has no file yet: pass a path	Projekt zatím nemá soubor: zadejte cestu
+This command needs a project: --project <file>	Tento příkaz vyžaduje projekt: --project <soubor>
+This format needs an output file (path)	Tento formát vyžaduje výstupní soubor (path)
+Undoes the last change	Vrátí zpět poslední změnu
+Unexpected argument: {}	Neočekávaný argument: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Neznámý příkaz: {}. Seznam zobrazí openecraft-cli help.
+Unknown example {}: see list_examples	Neznámý příklad {}: viz list_examples
+Unknown language: {}	Neznámý jazyk: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Neznámý typ stránky: {} (schematic, overview, graphic, cover nebo výkaz z list_reports)
+Unknown part {} (parts server: {})	Neznámý artikl {} (server artiklů: {})
+Unknown plugin: {}	Neznámý plugin: {}
+Unknown report scheme: {}	Neznámé schéma výkazu: {}
+Unknown structure template: {}	Neznámá šablona struktury: {}
+Unknown template {}: give a built-in one ({}) or a project file	Neznámá šablona {}: zadejte vestavěnou ({}) nebo projektový soubor
+Unknown {}: {} (possible: {})	Neznámá hodnota pro {}: {} (možné: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Použití: openecraft-cli [--project <soubor>] [--server <url>] [--token <token>] [--lang <kód>] [--plugins <složka>] <příkaz> [--<parametr> <hodnota>]…\n\nopenecraft-cli mcp        spustí server Model Context Protocol na stdin / stdout\nopenecraft-cli <příkaz> --help   zobrazí parametry příkazu\n\nPříkazy:\n
+User defined properties (name: value; an empty value removes it)	Uživatelské vlastnosti (název: hodnota; prázdná hodnota vlastnost odebere)
+User name to sign in with	Uživatelské jméno pro přihlášení
+User or group name (wildcards; directory groups as directory:group)	Název uživatele nebo skupiny (zástupné znaky; skupiny adresářové služby jako adresář:skupina)
+Values to set (name: value; an empty value removes a property)	Hodnoty k nastavení (název: hodnota; prázdná hodnota odebere vlastnost)
+Vault user name (signs in)	Uživatelské jméno Vault (přihlásí se)
+Write the table as CSV to this file	Zapsat tabulku jako CSV do tohoto souboru
+Writes the check scheme of the project (checks switched off, message levels) to a file	Zapíše schéma kontroly projektu (vypnuté kontroly, úrovně hlášení) do souboru
+Writes the embedded file of a document page	Zapíše vložený soubor stránky dokumentu
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Zapíše projekt do archivu (.oecz: projekt, manifest, vložené soubory, volitelně PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Zapíše definice vlastností, definice funkcí a schémata projektu jako soubor knihovny
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Zapíše nastavení projektu (číslování vodičů, potenciály, výchozí hodnoty a barvy vodičů, popisování, výchozí hodnoty hadic, křížové odkazy, schéma kontroly) do souboru
+Writes the structure management (aspects, identifiers, work areas) as a template file	Zapíše správu struktury (aspekty, identifikátory, pracovní oblasti) jako soubor šablony
+csv (default) or eplan_xml	csv (výchozí) nebo eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement nebo wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine nebo exchange
+json (default), csv or xlsx (Excel, needs path)	json (výchozí), csv nebo xlsx (Excel, vyžaduje path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nSpustí server Model Context Protocol na stdin / stdout: nástroje tohoto seznamu pro agenty AI, s projektem v paměti (save_project jej zapíše, undo / redo vrátí jednotlivá volání). OPENECRAFT_MCP_TOOLS omezuje nabízené nástroje.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nZobrazí verzi příkazového řádku (také --version nebo -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover nebo výkaz: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo a redo fungují jen v relaci MCP: příkazový řádek otevírá projekt pro každý příkaz znovu
+user or group	user nebo group
+{} exists already: pass overwrite to replace it	{} již existuje: pro nahrazení zadejte overwrite
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} je archiv a zůstává beze změny: uložte projekt jako projektový soubor (save_project --path <file>.oec) nebo archiv převeďte (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} je archiv: zadejte cestu pro uložení projektu jako projektového souboru
+{} is not a language of the project	{} není jazykem projektu

@@ -373,7 +373,7 @@ From `AGENTS.md`, applied to the shell:
 - **Languages.** Every tab, group, command title, pane title, tooltip, status segment
   and key tip is a catalog entry in all four languages; the command titles use
   `tr_const!` in the table and `tr` where drawn. Expect 300 to 500 new lines in
-  `extra.tsv`; add them to the 16 further catalogs in package 10 and run the font
+  `catalog/editor/required.tsv`; add them to the 16 further catalogs in package 10 and run the font
   subset script for the CJK catalogs.
 - **Tests layout.** `src/<module>/tests.rs` for every new module; the conventions test
   gets the completeness rules of section 3.3.

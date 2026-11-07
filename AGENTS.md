@@ -118,16 +118,17 @@ not done until it is available in all of them.
 
 It is also available in 16 further languages (`Lang::ALL`): Portuguese (Brazil), Italian,
 Dutch, Polish, Czech, Russian, Ukrainian, Turkish, Swedish, Danish, Finnish, Hungarian,
-Romanian, Chinese (Simplified), Japanese and Korean. Each has its own catalog,
-`crates/openecraft-i18n/src/catalog/lang/<code>.tsv` (`English<TAB>translation`); a
-text without a line there is shown in English. Add the new texts of a feature to them
-too when you can (same placeholders and leading / trailing spaces; the tests check
-this). Chinese, Japanese and Korean use the bundled fonts of `openecraft-fonts`: after
-a translation into one of them gained characters, run `crates/openecraft-fonts/subset.py`
-(see its header) or `openecraft/src/glyphs/tests.rs` fails. A new language is a `Lang`
-variant, a catalog file in `catalog.rs` and, for a script the bundled fonts lack, a font
-in `openecraft-fonts`. Scripts written right to left or needing complex shaping (Arabic,
-Hebrew, Indic scripts, Thai) cannot be drawn by egui.
+Romanian, Chinese (Simplified), Japanese and Korean. Each has a catalog file in every
+area folder, `crates/openecraft-i18n/src/catalog/<area>/<code>.tsv`
+(`English<TAB>translation`); a text without a line there is shown in English. Add the
+new texts of a feature to them too when you can (same placeholders and leading /
+trailing spaces; the tests check this). Chinese, Japanese and Korean use the bundled
+fonts of `openecraft-fonts`: after a translation into one of them gained characters,
+run `crates/openecraft-fonts/subset.py` (see its header) or
+`openecraft/src/glyphs/tests.rs` fails. A new language is a `Lang` variant, a
+`<code>.tsv` in every area folder listed in `catalog.rs` and, for a script the bundled
+fonts lack, a font in `openecraft-fonts`. Scripts written right to left or needing
+complex shaping (Arabic, Hebrew, Indic scripts, Thai) cannot be drawn by egui.
 
 - Write texts in English in the code and pass them through `openecraft_i18n`:
   `tr("Open")` for plain texts, `tr_fmt!("Saved {}", name)` for texts with `{}`
@@ -138,13 +139,19 @@ Hebrew, Indic scripts, Thai) cannot be drawn by egui.
   translates where the issue is shown; plugin and generated texts use `Issue::plain`).
   Never build sentences from translated fragments (`"Macro " + tr("saved")`); translate
   the whole sentence, one catalog entry per variant.
-- Every English text needs a line in `crates/openecraft-i18n/src/catalog/extra.tsv`
+- Every English text needs a line in `crates/openecraft-i18n/src/catalog/<area>/required.tsv`
   (`English<TAB>Deutsch<TAB>Français<TAB>Español`; `\n` and `\"` as in Rust source;
-  `{}` placeholders must appear in every translation). `translations.tsv` holds the
-  initial set. The catalog is checked by `cargo test`: all four languages present,
-  placeholders equal, every literal passed to `tr` / `tr_fmt!` / `tr_const!` / `issue!`
-  and every built-in symbol name is in the catalog, and all translated characters exist
-  in the bundled fonts.
+  `{}` placeholders must appear in every translation). The catalog is split by area,
+  the crate group that shows the text (`editor`, `core`, `plugins`, `cli`, `ui`, `parts`;
+  `common` for texts shown by several, see `openecraft_i18n::scan`), and every file is
+  sorted by its English text, so that branches seldom change the same lines. Do not
+  place or sort by hand: add the lines to any catalog file and run
+  `cargo run -p openecraft-i18n --example tidy`, which moves each text to the file of
+  its area and sorts the files (also the way to resolve a merge conflict in them). The
+  catalog is checked by `cargo test`: all four languages present, placeholders equal,
+  files sorted and texts in the file of their area, every literal passed to `tr` /
+  `tr_fmt!` / `tr_const!` / `issue!` and every built-in symbol name is in the catalog,
+  and all translated characters exist in the bundled fonts.
 - `openecraft/src/conventions/tests.rs` fails for plain string literals passed to widgets
   (`ui.button("…")`, `.label("…")`, `.on_hover_text("…")`, `Window::new("…")`, …).
 - Translate at the point where the text is shown, so that switching the language in

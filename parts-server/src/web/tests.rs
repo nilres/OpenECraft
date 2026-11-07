@@ -36,7 +36,7 @@ fn names_and_titles_are_in_the_catalog() {
     names.extend(openecraft_parts::AccessoryMount::ALL.map(|m| m.title()));
     names.extend([UpdateKind::Changed, UpdateKind::PhaseOut, UpdateKind::Discontinued, UpdateKind::Removed].map(|u| u.title()));
     let missing: Vec<&str> = names.into_iter().filter(|n| !known.contains(n)).collect();
-    assert!(missing.is_empty(), "add to crates/openecraft-i18n/src/catalog/extra.tsv: {missing:?}");
+    assert!(missing.is_empty(), "add to crates/openecraft-i18n/src/catalog/parts/required.tsv: {missing:?}");
 }
 
 /// Every text the page shows through `t("…")` / `tf("…")` / `data-t` is in [`TEXTS`].

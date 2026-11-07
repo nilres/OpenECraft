@@ -1,0 +1,286 @@
+# English<TAB>Русский – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(только сервер MCP)
+(optional)	(необязательно)
+Access token for changes	Маркер доступа для изменений
+Access token of a Vault session or an Autodesk account instead of user and password	Маркер доступа сеанса Vault или учётной записи Autodesk вместо пользователя и пароля
+Address of the Vault server, e.g. https://vault.example.com	Адрес сервера Vault, например https://vault.example.com
+Adds a page	Добавляет лист
+Adds the definitions and schemes of a property library file to the project	Добавляет в проект определения и схемы из файла библиотеки свойств
+All project files of a folder	Все файлы проектов папки
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Также вернуть фасеты: значения групп, производителей, каталогов, жизненного цикла и технических данных с их количеством
+Also save the project in this local file	Также сохранить проект в этот локальный файл
+Also take over values changed on both sides since the last export	Также принимать значения, изменённые с обеих сторон после последнего экспорта
+Also verify each project (slower)	Также проверять каждый проект (медленнее)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Применяет CSV, экспортированный с помощью table_get (и изменённый в электронной таблице): изменённые ячейки записываются
+Applies a structure template: the aspects of the pages and its identifiers	Применяет шаблон структуры: аспекты листов и его идентификаторы
+Archive file (.oecz)	Файл архива (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Назначает изделие устройству (из проекта, встроенного каталога или сервера изделий)
+Author of comments without one (default: the user name)	Автор комментариев без автора (по умолчанию: имя пользователя)
+AutomationML content instead of a file	Содержимое AutomationML вместо файла
+AutomationML file	Файл AutomationML
+CSV content instead of a file	Содержимое CSV вместо файла
+CSV file	Файл CSV
+CSV or Excel file	Файл CSV или Excel
+CSV or JSON file	Файл CSV или JSON
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	Файл CSV, JSON, BMEcat, EPLAN XML или EDZ
+Cannot write {}: {}	Не удаётся записать {}: {}
+Catalog data; without id it is derived from the name	Данные каталога; без ID он формируется из имени
+Changes project properties	Изменяет свойства проекта
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Изменяет свойства проекта сразу во многих файлах проектов (поля name, description, company, creator, date, revision или свойства проекта)
+Changes the number of a part on the parts server	Изменяет номер изделия на сервере изделий
+Check scheme file (JSON)	Файл схемы проверки (JSON)
+Check-in comment	Комментарий при возврате
+Checks the project (errors, warnings, hints)	Проверяет проект (ошибки, предупреждения, подсказки)
+Column mapping {field code: column name} (added to the profile's)	Сопоставление столбцов {код поля: имя столбца} (дополняет сопоставление профиля)
+Comment stored in the archive	Комментарий, сохраняемый в архиве
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Сравнивает изделия проекта с сервером изделий: более новые версии, снимаемые, снятые с производства и удалённые изделия
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Вместо этого экспорт коннектора: erp, pdm, plm, ecad, mcad, procurement, wiring_machine или exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Подключается к Autodesk Vault (Vault Data API, Vault Professional 2025.2 или новее): выполняет вход с учётной записью Vault или использует маркер доступа и показывает подключение
+Converts a project file or archive of an older version to the current file format	Преобразует файл проекта или архив старой версии в текущий формат файла
+Creates a new project (optionally the demo project) and saves it if a path is given	Создаёт новый проект (при желании – демонстрационный) и сохраняет его, если указан путь
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Создаёт или изменяет каталог на сервере изделий (ID, имя, производитель, версия, описание)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Создаёт или изменяет блок отчёта (листы отчёта, создаваемые вместе, например одна схема клемм на колодку)
+Creates or changes a user of the parts server (administrators only)	Создаёт или изменяет пользователя сервера изделий (только администраторы)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Создаёт или заменяет изделие на сервере изделий (тот же JSON, что и в parts_get; отсутствующие поля пусты)
+Creates or replaces a report scheme	Создаёт или заменяет схему отчёта
+Creator	Создатель
+DWG file	Файл DWG
+DXF file	Файл DXF
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro или Other (по умолчанию: по имени файла)
+Date for the exchange log	Дата для журнала обмена
+Defines, changes or deletes a role of the parts server (administrators only)	Определяет, изменяет или удаляет роль сервера изделий (только администраторы)
+Delete the role	Удалить роль
+Deletes a catalog without parts from the parts server	Удаляет каталог без изделий с сервера изделий
+Deletes a part from the parts server	Удаляет изделие с сервера изделий
+Deletes a user of the parts server (administrators only)	Удаляет пользователя сервера изделий (только администраторы)
+Descending order	По убыванию
+Discard unsaved changes of the open project	Отменить несохранённые изменения открытого проекта
+Downloads a file of a part from the parts server	Скачивает файл изделия с сервера изделий
+Downloads a file version from the vault	Скачивает версию файла из хранилища
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Встраивает файл (PDF, документ Office, изображение …) как лист документа; при экспорте в PDF он прикрепляется к листу
+Error: {}	Ошибка: {}
+Export name as shown by list_exports	Имя экспорта, как показывает list_exports
+Export name as shown by list_exports, e.g. pdf or step	Имя экспорта, как показывает list_exports, например pdf или step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Экспортирует все изделия сервера изделий в CSV или XML изделий EPLAN
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Экспортирует проект с помощью коннектора для другой системы или как нейтральный файл обмена (коннектор exchange); последующие импорты этого коннектора выявляют конфликты относительно этого экспорта
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Экспортирует проект в формат из list_exports; для двоичных форматов (dwg, jt) требуется выходной файл
+Field or property whose value is searched ('*' for all)	Поле или свойство, в значении которого выполняется поиск ('*' – все)
+File content instead of a file	Содержимое файла вместо файла
+File id (see the attachments of parts_get)	ID файла (см. attachments в parts_get)
+File name in the vault	Имя файла в хранилище
+File to embed	Файл для встраивания
+File to save the project to (.oec)	Файл для сохранения проекта (.oec)
+File to upload	Выгружаемый файл
+File to write	Записываемый файл
+File to write (xlsx)	Записываемый файл (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Ищет проекты в базе данных проектов или папке: условия через ';', каждое в виде ключ=значение, ключ~текст или простой текст
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Ищет элементы Vault для изделий проекта (по номеру элемента или свойству Part Number) и выводит изменения ID позиции, ревизии и состояния жизненного цикла; с apply они принимаются
+Folder id (default root)	ID папки (по умолчанию root)
+Folder with project files	Папка с файлами проектов
+Folder with project files (instead of a database; default: the current folder)	Папка с файлами проектов (вместо базы данных; по умолчанию: текущая папка)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Форма: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (схемы клемм и кабелей в виде чертежей)
+Function (=) of the generated pages	Функциональное назначение (=) создаваемых листов
+Further parameters of the export as name=value, separated by commas	Дополнительные параметры экспорта в виде имя=значение через запятую
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Дополнительные параметры экспорта в виде имя=значение через запятую (см. list_exports), например harness=-WH1
+GSDML or ESI file	Файл GSDML или ESI
+Generates a report as table	Создаёт отчёт в виде таблицы
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Создаёт лист схемы для каждого запланированного устройства, у которого есть макрос листа и которого ещё нет на схеме
+Generates the pages of the report blocks again (replacing the pages they generated before)	Заново создаёт листы блоков отчётов (заменяя ранее созданные ими листы)
+Give either template or path	Укажите либо template, либо path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Назначает пользователю или группе роль для производителя (области) сервера изделий, с deny отнимает её права, с revoke удаляет назначения (только администраторы)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Создаваемые группы, подстановочные знаки разрешены (-X*, -W1); пусто: все
+Id of a file (file_id of vault_browse) that gets a new version	ID файла (file_id из vault_browse), который получает новую версию
+Id of the file version (version_id of vault_browse)	ID версии файла (version_id из vault_browse)
+Id of the knowledge vault (taken from the session if not given)	ID хранилища (если не указан, берётся из сеанса)
+Id of the plugin to disable	Идентификатор отключаемого плагина
+Id of the plugin to enable	Идентификатор включаемого плагина
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Импортирует чертёж DWG (AutoCAD R12 … 2018) как графику (линии, дуги, тексты, блоки) на новый лист схемы
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Импортирует чертёж DXF как графику (линии, дуги, тексты, блоки) на новый лист схемы
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Импортирует аппаратную конфигурацию ПЛК из AutomationML (например, экспортированную из TIA Portal): станции, модули, адреса, подсети, соединения портов и комментарии тегов
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Импортирует файл изделий на сервер изделий; изображения и макросы файла EDZ сохраняются вместе с их изделиями
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Импортирует описания устройств из файла GSDML (PROFINET) или ESI (EtherCAT) в проект
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Импортирует сегменты предварительного планирования и запланированные устройства из CSV или Excel (столбцы Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Импортирует комментарии рецензента в PDF-экспорте проекта (заметки, текстовые поля, выделения, фигуры, ответы) в слой рецензирования; ранее импортированные комментарии пропускаются
+Insert after this page (default: at the end)	Вставить после этого листа (по умолчанию: в конец)
+Inserts an edited subproject: its pages replace the pages taken out	Вставляет отредактированный подпроект: его листы заменяют вынесенные
+Invalid form: {}	Недопустимая форма: {}
+Keep the file checked out after the check-in	Оставить файл извлечённым после возврата
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Тип сервера: OpenECraft (сервер изделий) или Eplan (EPLAN Data Portal: только поиск и чтение, маркер – персональный маркер доступа учётной записи EPLAN)
+Language of the export (a project language)	Язык экспорта (язык проекта)
+Language of the project texts and reports (a project language, default the source language)	Язык текстов проекта и отчётов (язык проекта, по умолчанию исходный язык)
+Library file	Файл библиотеки
+Lifecycle: Active, PhaseOut or Discontinued	Жизненный цикл: Active, PhaseOut или Discontinued
+Lists the built-in structure templates	Выводит список встроенных шаблонов структуры
+Lists the catalogs of the parts server with their number of parts	Выводит список каталогов сервера изделий с числом изделий в них
+Lists the checks of the project check (built-in and of plugins) and whether they run	Выводит список проверок проекта (встроенных и из плагинов) и сведения о том, выполняются ли они
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Выводит список коннекторов уровня интеграции (ERP, PDM, PLM, ECAD, MCAD, закупки, автомат обработки проводов) с передаваемыми полями, а также профили проекта
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Выводит список систем корпусов со стандартными размерами, толщиной стенок, цоколем и возможностью установки в ряд
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Выводит примеры проектов от первой цепи до целой установки с функциями, которые показывает каждый
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Выводит список экспортов (встроенных и из плагинов): имя для export, заголовок, расширение файла и параметры
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Выводит список папок и файлов папки Vault или ищет по свойствам файлов в ней (или во всём хранилище)
+Lists the reports (built-in and of plugins): name for report and title	Выводит список отчётов (встроенных и из плагинов): имя для report и заголовок
+Lists the users of the parts server (administrators only)	Выводит список пользователей сервера изделий (только администраторы)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Загруженные плагины (встроенные и из папок плагинов --plugins / OPENECRAFT_PLUGINS) с их командами, проверками, отчётами и экспортами; включает или отключает плагин для этого сеанса
+Local file to put into the vault	Локальный файл для помещения в хранилище
+Local groups of the user, separated by commas	Локальные группы пользователя через запятую
+Location (+) of the generated pages	Место установки (+) создаваемых листов
+Macro library file (JSON, exported by the editor)	Файл библиотеки макросов (JSON, экспортированный редактором)
+Manufacturer (wildcards); default * (everything)	Производитель (подстановочные знаки); по умолчанию * (всё)
+Manufacturer whose parts a manufacturer user maintains	Производитель, изделия которого ведёт пользователь-производитель
+Maximum number of hits (default 50)	Максимальное число результатов (по умолчанию 50)
+Name of a built-in template (list_structure_templates)	Имя встроенного шаблона (list_structure_templates)
+Name of the knowledge vault (default Vault)	Имя хранилища (по умолчанию Vault)
+New file name (save as)	Новое имя файла (сохранить как)
+New pages for every value of the group column (default true)	Новые листы для каждого значения столбца группировки (по умолчанию true)
+New part number	Новый номер изделия
+New report block {} needs a kind	Новому блоку отчёта {} нужен вид отчёта (kind)
+No grant of {} found	Назначение для {} не найдено
+No profile named {}	Нет профиля с именем {}
+No project is open: use open_project or new_project first	Проект не открыт: сначала используйте open_project или new_project
+No role {} defined	Роль {} не определена
+Not a valid catalog: {}	Недопустимый каталог: {}
+Not a valid part: {}	Недопустимое изделие: {}
+Not connected to a vault: use vault_connect first	Нет подключения к хранилищу Vault: сначала используйте vault_connect
+Nothing to change: pass set, remove, replace or rename	Нечего изменять: укажите set, remove, replace или rename
+Number of hits to skip	Число пропускаемых результатов
+Only show the changes, write nothing	Только показать изменения, ничего не записывать
+Only the pages of this report block; default all report pages	Только листы этого блока отчёта; по умолчанию все листы отчётов
+Only the projects that match these search terms	Только проекты, соответствующие этим условиям поиска
+Only this block	Только этот блок
+Opens a project file or archive (files of older versions are converted)	Открывает файл проекта или архив (файлы старых версий преобразуются)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Открывает файл проекта или архив из хранилища; vault_upload без цели возвращает его новую версию
+Option {} needs the form name=value	Параметр {} должен иметь вид имя=значение
+Order: Number, Manufacturer, Description, Price or Modified	Порядок: Number, Manufacturer, Description, Price или Modified
+Output file	Выходной файл
+Output file (JSON)	Выходной файл (JSON)
+Output file; without it the content is returned	Выходной файл; без него возвращается содержимое
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Выводит листы отчётов как постоянные листы в другой файл проекта; листы, ранее выведенные из этого проекта, заменяются
+PDF file with comments	Файл PDF с комментариями
+Page (svg: required, dxf, dwg: default all pages)	Лист (svg: обязательно, dxf, dwg: по умолчанию все листы)
+Page name (default: next number)	Имя листа (по умолчанию: следующий номер)
+Page of the export	Лист экспорта
+Page template (list_page_templates) instead of kind	Шаблон листа (list_page_templates) вместо kind
+Page {} has no embedded document	У листа {} нет встроенного документа
+Pages whose structure starts with this, e.g. =A1+CAB1	Листы, структура которых начинается с этого, например =A1+CAB1
+Part number to add	Добавляемый номер изделия
+Part number to remove	Удаляемый номер изделия
+Part {} has no version {}	У изделия {} нет версии {}
+Pass files or a folder	Укажите файлы или папку
+Password (needed for new users; empty keeps the current one)	Пароль (обязателен для новых пользователей; пусто – сохранить текущий)
+Password of the Vault user	Пароль пользователя Vault
+Password of the user	Пароль пользователя
+Plot frame (list_frames); default: the project's	Рамка листа (list_frames); по умолчанию: рамка проекта
+Product top group: Electrical, Fluid, Mechanics or Process	Основная группа продуктов: Electrical, Fluid, Mechanics или Process
+Profile whose column mapping is used	Профиль, сопоставление столбцов которого используется
+Project database file (JSON)	Файл базы данных проектов (JSON)
+Project database file (JSON) to update	Обновляемый файл базы данных проектов (JSON)
+Project file (.oec) or archive (.oecz)	Файл проекта (.oec) или архив (.oecz)
+Project file that gets the pages	Файл проекта, который получает листы
+Project file to write (default: the file itself; archives: next to it as .oec)	Записываемый файл проекта (по умолчанию: сам файл; архивы: рядом с ним как .oec)
+Project files, separated by ';'	Файлы проектов через ';'
+Properties to remove, separated by ','	Удаляемые свойства через ','
+Properties to rename (old name: new name)	Переименовываемые свойства (старое имя: новое имя)
+Property {} needs a text or a number	Свойству {} нужен текст или число
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Помещает проект, экспорт, экспорт коннектора или локальный файл в хранилище; одноимённый файл в папке получает новую версию (извлекается и возвращается), иначе файл добавляется
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor или Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Считывает файл другой системы (CSV или JSON) с помощью коннектора и выводит список изменений; с apply они принимаются (конфликты – только с overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Считывает файлы проектов и архивы папки (и её вложенных папок) в базу данных проектов
+Reads translations from CSV: first column the source line, one column per language code	Считывает переводы из CSV: первый столбец – исходная строка, по одному столбцу на код языка
+Redoes the last undone change	Повторяет последнее отменённое изменение
+Remove the grants of the user or group (only of this role and scope, if given)	Удалить назначения пользователя или группы (только для этой роли и области, если указаны)
+Remove the parts assigned so far	Удалить ранее назначенные изделия
+Removes a file from a part on the parts server	Удаляет файл изделия на сервере изделий
+Replace the file at path if it exists	Заменить файл path, если он существует
+Replace the project parts by their newer server versions	Заменить изделия проекта их более новыми версиями с сервера
+Replacement text	Текст замены
+Replaces the content of the macro boxes whose macro changed in a macro library file	Заменяет содержимое рамок макросов, макрос которых изменился в файле библиотеки макросов
+Replaces the pages generated before by the page macros of the rules whose condition holds	Заменяет ранее созданные листы макросами листов тех правил, условие которых выполнено
+Report name as shown by list_reports	Имя отчёта, как показывает list_reports
+Report scheme: its filter, sort order and columns	Схема отчёта: её фильтр, порядок сортировки и столбцы
+Report scheme; empty: the form of the report	Схема отчёта; пусто: форма отчёта
+Report the scheme belongs to	Отчёт, к которому относится схема
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Отчёт, например terminal_diagram, terminal_lineup, cable_connections (обязателен для нового блока)
+Return all part data instead of a summary	Возвращать все данные изделия вместо сводки
+Revision of the change; returns the part as it was	Ревизия изменения; возвращает изделие в том состоянии
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Права через запятую: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Имя роли
+Role of requests without sign-in; none: sign-in needed for reading	Роль запросов без входа; none: для чтения требуется вход
+Role: reader, manufacturer, editor, admin or a defined role	Роль: reader, manufacturer, editor, admin или определённая роль
+Saves the project to its file or to a new path	Сохраняет проект в его файл или по новому пути
+Scale drawings down that do not fit on the page (default: true)	Уменьшать чертежи, которые не помещаются на лист (по умолчанию: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Условия поиска, например company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Ищет элементы хранилища (номер, название, ревизия, состояние жизненного цикла, номер изделия)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Ищет изделия на сервере изделий (портал данных) по тексту, группам, каталогу, жизненному циклу и техническим данным
+Segment path (default: all segments)	Путь сегмента (по умолчанию: все сегменты)
+Server URL, e.g. http://127.0.0.1:8090	URL сервера, например http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Задаёт сервер изделий (URL и маркер доступа или пользователь и пароль) и показывает его состояние
+Settings scheme file (JSON)	Файл схемы настроек (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Показывает таблицу (устройства, соединения, клеммы, кабели, штекеры, ПЛК, листы или изделия) с её строками; ключ строки служит для её изменения
+Shows all data of a part	Показывает все данные изделия
+Shows the changes of a part on the parts server, or the part as of one change	Показывает изменения изделия на сервере изделий или изделие в состоянии на момент изменения
+Shows the favorites of the signed in user, optionally adding or removing a part	Показывает избранное вошедшего пользователя и при необходимости добавляет или удаляет изделие
+Shows the manifest of a project archive	Показывает манифест архива проекта
+Shows the project properties, file, number of pages and devices and the check result	Показывает свойства проекта, файл, число листов и устройств, а также результат проверки
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Показывает роли, назначения и службы каталогов сервера изделий и при необходимости задаёт роль анонимных запросов (только администраторы)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Начать с шаблона проекта: встроенного (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) или файла проекта
+Start from an example project (names: list_examples)	Начать с примера проекта (имена: list_examples)
+Start from the demo project	Начать с демонстрационного проекта
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Сохраняет файл (техническое описание, изображение, модель, макрос …) с изделием на сервере изделий
+Subproject file (.oec)	Файл подпроекта (.oec)
+Subproject file to write (.oec)	Записываемый файл подпроекта (.oec)
+Take the changes over (otherwise only a preview)	Принять изменения (иначе только предварительный просмотр)
+Take the rights of the role away instead	Вместо этого отнять права роли
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Выносит листы в файл подпроекта; здесь они остаются заблокированными, пока подпроект не будет вставлен обратно
+Takes the checks switched off and the message levels of a check scheme file	Принимает отключённые проверки и уровни сообщений из файла схемы проверки
+Takes the settings a settings scheme file carries	Принимает настройки из файла схемы настроек
+Target folder id (root for the top folder); default the folder the project was opened from	ID целевой папки (root для верхней папки); по умолчанию папка, из которой был открыт проект
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Технические данные, которые должны совпадать, например {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Файл шаблона, записанный export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Текст в номере, типе, производителе, описании, группах или каталоге; должно встречаться каждое слово
+Text to replace	Заменяемый текст
+Text to search for	Искомый текст
+The catalog needs a name	Для каталога требуется имя
+The format xlsx needs a path	Для формата xlsx требуется путь
+The open project has unsaved changes: save it first or pass discard	В открытом проекте есть несохранённые изменения: сначала сохраните его или укажите discard
+The part number must not be empty	Номер изделия не может быть пустым
+The project has no file yet: pass a path	У проекта ещё нет файла: укажите путь
+This command needs a project: --project <file>	Этой команде нужен проект: --project <файл>
+This format needs an output file (path)	Для этого формата нужен выходной файл (path)
+Undoes the last change	Отменяет последнее изменение
+Unexpected argument: {}	Непредвиденный аргумент: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Неизвестная команда: {}. Список команд: openecraft-cli help.
+Unknown example {}: see list_examples	Неизвестный пример {}: см. list_examples
+Unknown language: {}	Неизвестный язык: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Неизвестный тип листа: {} (schematic, overview, graphic, cover или отчёт из list_reports)
+Unknown part {} (parts server: {})	Неизвестное изделие {} (сервер изделий: {})
+Unknown plugin: {}	Неизвестный плагин: {}
+Unknown report scheme: {}	Неизвестная схема отчёта: {}
+Unknown structure template: {}	Неизвестный шаблон структуры: {}
+Unknown template {}: give a built-in one ({}) or a project file	Неизвестный шаблон {}: укажите встроенный ({}) или файл проекта
+Unknown {}: {} (possible: {})	Неизвестное значение {}: {} (допустимо: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Использование: openecraft-cli [--project <файл>] [--server <url>] [--token <маркер>] [--lang <код>] [--plugins <папка>] <команда> [--<параметр> <значение>]…\n\nopenecraft-cli mcp        запускает сервер Model Context Protocol на stdin / stdout\nopenecraft-cli <команда> --help   показывает параметры команды\n\nКоманды:\n
+User defined properties (name: value; an empty value removes it)	Пользовательские свойства (имя: значение; пустое значение удаляет свойство)
+User name to sign in with	Имя пользователя для входа
+User or group name (wildcards; directory groups as directory:group)	Имя пользователя или группы (подстановочные знаки; группы службы каталогов в виде каталог:группа)
+Values to set (name: value; an empty value removes a property)	Задаваемые значения (имя: значение; пустое значение удаляет свойство)
+Vault user name (signs in)	Имя пользователя Vault (выполняет вход)
+Write the table as CSV to this file	Записать таблицу в этот файл в формате CSV
+Writes the check scheme of the project (checks switched off, message levels) to a file	Записывает схему проверки проекта (отключённые проверки, уровни сообщений) в файл
+Writes the embedded file of a document page	Записывает встроенный файл листа документа
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Записывает проект в архив (.oecz: проект, манифест, внедрённые файлы, при необходимости PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Записывает определения свойств, определения функций и схемы проекта в файл библиотеки
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Записывает настройки проекта (нумерация проводов, потенциалы, параметры и цвета проводов по умолчанию, маркировка, параметры шлангов по умолчанию, перекрёстные ссылки, схема проверки) в файл
+Writes the structure management (aspects, identifiers, work areas) as a template file	Записывает управление структурой (аспекты, идентификаторы, рабочие области) в файл шаблона
+csv (default) or eplan_xml	csv (по умолчанию) или eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement или wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine или exchange
+json (default), csv or xlsx (Excel, needs path)	json (по умолчанию), csv или xlsx (Excel, требуется path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nЗапускает сервер Model Context Protocol на stdin / stdout: инструменты этого списка для ИИ-агентов, проект хранится в памяти (save_project записывает его, undo / redo отменяют отдельные вызовы). OPENECRAFT_MCP_TOOLS ограничивает предлагаемые инструменты.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказывает версию командной строки (также --version или -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover или отчёт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo и redo работают только в сеансе MCP: командная строка открывает проект заново для каждой команды
+user or group	user или group
+{} exists already: pass overwrite to replace it	{} уже существует: укажите overwrite, чтобы заменить
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} — это архив, он не изменяется: сохраните проект как файл проекта (save_project --path <file>.oec) или преобразуйте архив (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} — это архив: укажите путь, чтобы сохранить проект как файл проекта
+{} is not a language of the project	{} не является языком проекта

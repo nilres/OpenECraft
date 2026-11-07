@@ -1,0 +1,953 @@
+# English<TAB>Dansk – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: fra venstre / øverste arm lige til den anden arm, derefter til stammen · 2: det samme fra højre / nederste arm · 3: fra stammen til venstre / øverste arm, derefter til den anden · 4: fra stammen først til højre / nederste arm (standard 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: linjens øverste / venstre ende går på tværs til højre / nederste arm · 2: til venstre / øverste arm (standard 2)
+A cable definition needs a start and an end point	En kabeldefinition kræver et start- og et slutpunkt
+A copper bar needs at least one segment	En kobberskinne skal have mindst ét afsnit
+A segment cannot be moved below itself	Et segment kan ikke flyttes ind under sig selv
+A segment needs two different nodes	Et afsnit skal have to forskellige knuder
+A wire needs at least two points	En ledning skal have mindst to punkter
+A {} has no {}; it takes {}	{} har ingen {}; den tager {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid eller custom
+Accepts a message as checked, so that it is no longer counted until it changes	Accepterer en meddelelse som kontrolleret, så den ikke længere tælles med, før den ændres
+Accessory part number, e.g. GEN.GLAND-M25	Tilbehørets artikelnummer, f.eks. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Aktiverer (viser) eller deaktiverer (skjuler) indholdet af en projektoption
+Additional power loss in W	Yderligere effekttab i W
+Address scheme: siemens, iec or rockwell	Adresseskema: siemens, iec eller rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Tilføjer en bukket og boret kobberskinne (eller erstatter den med samme navn i kapslingen)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Tilføjer en kabelgennemføring til højre nabo: runde udskæringer over for hinanden i begge sidevægge; ledninger mellem kapslingerne føres igennem den
+Adds a configurator rule: insert a page macro when the condition holds	Tilføjer en konfiguratorregel: Indsæt en sidemakro, når betingelsen er opfyldt
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Tilføjer en knude i føringsnettet (forgrening, gennemføring, hvor en kapsling eller en enhed nås)
+Adds a planned device to a segment or changes it	Føjer en planlagt enhed til et segment eller ændrer den
+Adds a project option or changes its description and condition	Tilføjer en projektoption eller ændrer dens beskrivelse og betingelse
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Tilføjer en føringsvej (kabelbakke, slangeføring) over monteringspladen, som føringer foretrækker
+Adds a segment below another one (or at the top)	Tilføjer et segment under et andet (eller øverst)
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	Tilføjer et afsnit i føringsnettet mellem to knuder: kabelbakke, kabelstige, kabelkanal, installationsrør, slæbekæde, nedgravet eller fri føring
+Adds a text to a page	Tilføjer en tekst til en side
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Føjer alle linjer i projektteksterne til ordbogen og fjerner eventuelt poster, der ikke længere bruges
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Tilføjer tilbehør til en kabelende: forskruning, EMC-forskruning, stikforbinder, trækaflastning, skærmklemme, beskyttelsesslange, terminalrør, mærkat
+Adds an accessory to a device; it must fit one of the device's parts	Tilføjer et tilbehør til en enhed; det skal passe til en af enhedens artikler
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Tilføjer en kapsling: fra et system i en af dets størrelser (eller en brugerdefineret størrelse) eller fra en kapslingsartikel
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Tilføjer en udligningsleder mellem to udligningspunkter (hovedjordskinne, kapslinger, ledende omrids, metalliske kabelbærere)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Tilføjer eller ændrer et mærkningsskema i projektet, fjerner det eller vælger det skema, der bruges til mærkningseksporten
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Tilføjer eller ændrer en maskine i projektet (en indbygget maskine med samme id erstattes) eller fjerner den
+Adds the devices of a template to a segment	Føjer enhederne fra en skabelon til et segment
+Adds the outline of a machine, building or area to the plant layout	Tilføjer omridset af en maskine, en bygning eller et område til anlægslayoutet
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Tilføjer, erstatter eller fjerner en profil: en connector med de kolonnenavne, det andet system bruger
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerer elementer, fordeler dem jævnt, stiller enheder op på en skinne eller kopierer elementer i et mønster
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerer symboler, tekster og grafik efter en fælles kant eller midte; tilsluttede ledningsender følger med
+Allow renaming onto an identifier in use: both become one	Tillad omdøbning til en betegnelse i brug: begge bliver én
+Allowed classes, comma separated: power, control, signal, fluid (default all)	Tilladte klasser, kommasepareret: power, control, signal, fluid (standard alle)
+Allowed values separated by commas (empty: any value)	Tilladte værdier adskilt af kommaer (tom: enhver værdi)
+Also create a bus cable for every connection without cable	Opret også et buskabel til hver forbindelse uden kabel
+Also properties without a value	Også egenskaber uden en værdi
+Also remove entries the project no longer uses	Fjern også poster, som projektet ikke længere bruger
+Also renumber terminal strips, plugs and PLC cards	Omnummerér også klemrækker, stik og PLC-kort
+Also renumber wires with a fixed number	Omnummerér også ledninger med et fast nummer
+Altitude of the site in m	Opstillingsstedets højde i m
+Ambient temperature of the conductors in °C	Ledernes omgivelsestemperatur i °C
+An outline needs {} points at least	Et omrids skal have mindst {} punkter
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Anker langs aksen: free, start:<mm>, center:<mm>, end:<mm> eller stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Aspekter adskilt af kommaer, f.eks. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Tildeler en funktionsdefinition til et placeret symbol (betegnelser og skema overtages)
+Asynchronous motors add to the short-circuit current	Asynkronmotorer bidrager til kortslutningsstrømmen
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatisk hardwarekonfiguration: stationer for CPU'er og buskoblere, bussystemer, kort til stationer, slots, startadresser, punktadresser, IP-adresser og en linjetopologi
+Back to the default rules first	Nulstil først til standardreglerne
+Back to the default strategy first	Nulstil først til standardstrategien
+Back-up protection up to this short-circuit current in kA (0: not given)	Backupbeskyttelse op til denne kortslutningsstrøm i kA (0: ikke angivet)
+Bar id	Skinne-id
+Bar thickness, mm (default 5)	Skinnetykkelse, mm (standard 5)
+Bar width, mm (default 20)	Skinnebredde, mm (standard 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Sammenbygger en kapsling side om side til højre for en anden (sammenbygning); uden right_of forlader den sin sammenbygning
+Bend radius in drag chains as a multiple of the cable diameter	Bøjningsradius i slæbekæder som et multiplum af kabeldiameteren
+Bend radius of a drag chain in mm	Bøjningsradius for en slæbekæde i mm
+Bend radius of cables as a multiple of the diameter	Bøjningsradius for kabler som et multiplum af diameteren
+Bend radius of tubes as a multiple of the diameter	Bøjningsradius for slanger som et multiplum af diameteren
+Bend radius of wires as a multiple of the diameter	Bøjningsradius for ledninger som et multiplum af diameteren
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Bukninger mellem afsnittene: vinkel, e for på højkant, r<radius>, f.eks. 90; -90 e; 45 r10
+Between page and column (default .)	Mellem side og kolonne (standard .)
+Bonding point	Udligningspunkt
+Border around the text	Kant omkring teksten
+Both classes are needed	Begge klasser er påkrævet
+Bus system name	Bussystemets navn
+Bus system name, e.g. PN/IE_1	Bussystemets navn, f.eks. PN/IE_1
+Busbar machine program (CSV)	Program til skinnebearbejdningsmaskine (CSV)
+CNC operations	CNC-operationer
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-programmer til bore-, fræse- og stansemaskiner, bukning af kobberskinner, kapslingskonfigurator, overdragelse til produktionen og tilbagemelding fra produktionen
+Cable tag, e.g. -W1	Kabelmærkning, f.eks. -W1
+Cable tag, e.g. -W20	Kabelbetegnelse, f.eks. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibrerer maskinernes tidsestimat ud fra de faktiske tider i tilbagemeldingen fra produktionen
+Cannot read the plugin folder {}	Kan ikke læse plugin-mappen {}
+Cannot start {}: {}	Kan ikke starte {}: {}
+Card tag, e.g. -A1	Kortets mærkning, f.eks. -A1
+Category, e.g. coils, contacts, terminals, plc	Kategori, f.eks. coils, contacts, terminals, plc
+Centre from the rear wall in mm	Centrum fra bagvæggen i mm
+Centre from the top of the enclosure in mm	Centrum fra kapslingens top i mm
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Ændrer et T-stykke (retning, variant, fremstilling), et hjørne (arme), en krydsning (linje, variant, fremstilling) eller en bro (retning, fremstilling)
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Ændrer en celle i en tabel: enhedsmærkning, funktionstekst, beskrivelse, artikel; ledningsnummer, farve, tværsnit, kabel, leder; klemrække, klemme
+Changes a placed symbol; when it moves, connected wire ends follow	Ændrer et placeret symbol; når det flyttes, følger tilsluttede ledningsender med
+Changes a text (only the given properties)	Ændrer en tekst (kun de angivne egenskaber)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Skifter enheder med udfasede eller udgåede artikler til efterfølgerartiklerne (efterfølgerne skal være projektartikler)
+Changes name, description or structure of a page	Ændrer navn, beskrivelse eller struktur for en side
+Changes name, description, function, location or parent of a segment	Ændrer et segments navn, beskrivelse, funktion, placering eller overordnede segment
+Changes position, face, fastening or anchors of a panel item	Ændrer position, flade, fastgørelse eller ankre for et layoutelement
+Changes the device, connection and terminal tables	Ændrer tabellerne over enheder, forbindelser og klemmer
+Changes the level of a kind of message (code as shown by check)	Ændrer niveauet for en type meddelelse (kode som vist af check)
+Changes the properties of a wire	Ændrer egenskaberne for en ledning
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Ændrer system, størrelse og komponenter for en kapsling (sokkel, sammenbyggede sider, flangeplade); forankrede elementer følger med
+Check {} failed: {}	Kontrol {} mislykkedes: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Kontrollerer tavlelayoutet: kollisioner, afstande (montering, ventilation, EMC), serviceområde, højder over gulvet, kollisionsklasser, temperaturer og producerbarhed
+Chosen value	Valgt værdi
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Afstande, serviceområde, højder, kollisionsklasser, termisk simulering og producerbarhed af tavlelayoutet
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Klimatisering af kapslingerne (IEC/TR 60890): effekttab, indvendig temperatur, nødvendig ventilator eller køleaggregat og opvarmning; ændrer eventuelt indstillingerne for en af dem
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Kollisionsklasse: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, en egen klasse eller * for alle
+Column and row strips	Kolonne- og rækkelister
+Column mapping {field code: column name}	Kolonnetilknytning {feltkode: kolonnenavn}
+Column name, e.g. Description	Kolonnenavn, f.eks. Description
+Columns of the pattern	Mønstrets kolonner
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Kolonner, kommasepareret: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Ledende ramme, der kræver potentialudligning
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Konfiguration af en kapsling til kapslingsproducentens konfigurator: system, størrelse, komponenter, tilbehør og bearbejdning
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Konfiguratorbetingelse, f.eks. HEATER=yes (tom: skiftes manuelt)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Konfigurerer en slange / et rør / en rørledning: ledningstype, artikel, endefittings, trykklasse, bøjningsradius, medie, størrelse, farve og længde
+Connection point TAG:PIN, e.g. -K1:A1	Tilslutningspunkt TAG:PIN, f.eks. -K1:A1
+Connection point designations separated by commas or blanks	Tilslutningsbetegnelser adskilt af kommaer eller mellemrum
+Connection point designations, comma separated, e.g. 13,14	Tilslutningsbetegnelser, kommasepareret, f.eks. 13,14
+Connector id (required unless removing)	Connector-id (påkrævet, undtagen ved fjernelse)
+Connects two connection points with wires routed around symbols and other wires	Forbinder to tilslutningspunkter med ledninger, der føres uden om symboler og andre ledninger
+Connects two ports of stations with a network cable; connections already on these ports are replaced	Forbinder to porte på stationer med et netværkskabel; eksisterende forbindelser på disse porte erstattes
+Copies function texts between the single-line diagram and the schematic where one side is empty	Kopierer funktionstekster mellem enstregsdiagrammet og diagrammet, hvor den ene side er tom
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopierer elementer flere gange med en fast afstand; enheder får nye betegnelser, klemmer nye numre
+Copper bar cutting list	Tilskæringsliste for kobberskinner
+Copper bars	Kobberskinner
+Corner points in metres	Hjørnepunkter i meter
+Corner points on the mounting plate in mm	Hjørnepunkter på monteringspladen i mm
+Correction of the time estimate	Korrektion af tidsestimatet
+Cost of free air against ducts and routing paths	Omkostning for fri luft i forhold til kanaler og føringsveje
+Counting step (default 1)	Tællertrin (standard 1)
+Creates a bus cable for the connection (without cable tag)	Opretter et buskabel til forbindelsen (uden kabelmærkning)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Opretter et kabel af bustypen (type, ledere, tværsnit) til hver busforbindelse uden kabel
+Creates or changes a PCT loop of the pre-planning	Opretter eller ændrer en PCT-sløjfe i forplanlægningen
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Opretter eller ændrer en PLC-station (controller, decentral I/O, drev, HMI). Ændring af adresseskemaet konverterer adresserne på dens punkter
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Opretter eller ændrer et bussystem (PROFINET, EtherCAT, …)
+Creates or changes a configurator option	Opretter eller ændrer en konfiguratorindstilling
+Creates or changes a fluid device group	Opretter eller ændrer en fluidenhedsgruppe
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Opretter eller ændrer en plotramme i projektet (indbyggede rammer kopieres under et nyt navn)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Opretter eller ændrer en potentialedefinition; dens ledninger overtager farve og tværsnit, medmindre de er angivet på ledningen
+Creates or changes a work area: only the pages and devices of its structure are shown	Opretter eller ændrer et arbejdsområde: Kun siderne og enhederne i dets struktur vises
+Cross section, e.g. 0.75 mm²	Tværsnit, f.eks. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Tværsnit, f.eks. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Tværsnit, f.eks. 1.5 mm² (tom = fra potentialedefinitionen)
+Cross-section in mm²	Tværsnit i mm²
+Cross-section, e.g. 1.5 mm²	Tværsnit, f.eks. 1.5 mm²
+Current device tag	Aktuel enhedsmærkning
+Customer rule set to add or replace (by name), as exported	Kunderegelsæt, der skal tilføjes eller erstattes (efter navn), som eksporteret
+Cut lengths of cables rounded up to this step in mm	Afkortningslængder for kabler rundet op til dette trin i mm
+Cut lengths of tubes rounded up to this step in mm	Afkortningslængder for slanger rundet op til dette trin i mm
+Cut lengths of wires rounded up to this step in mm	Afkortningslængder for ledninger rundet op til dette trin i mm
+Cut lengths rounded up to this step in metres	Afkortningslængder rundet op til dette trin i meter
+Cut threads on the machine	Skær gevind på maskinen
+Cutting allowance per tube end in mm	Skæretillæg pr. rørende i mm
+Date (YYYY-MM-DD)	Dato (ÅÅÅÅ-MM-DD)
+Date of the acceptance	Dato for accepten
+Default property values	Standardværdier for egenskaber
+Default symbol key	Nøgle for standardsymbol
+Define the identifiers in use (default: true)	Definer de brugte betegnelser (standard: true)
+Defines a reusable project function definition or changes it	Definerer en genanvendelig funktionsdefinition i projektet eller ændrer den
+Defines a structure identifier or changes its description	Definerer en strukturbetegnelse eller ændrer dens beskrivelse
+Defines a user property or changes it	Definerer en brugeregenskab eller ændrer den
+Defines all identifiers in use and / or removes the definitions nobody uses	Definerer alle brugte betegnelser og / eller fjerner de definitioner, som ingen bruger
+Definition to start from	Definition, der tages udgangspunkt i
+Deletes a PCT loop of the pre-planning	Sletter en PCT-sløjfe i forplanlægningen
+Deletes a configurator option	Sletter en konfiguratorindstilling
+Deletes a configurator rule	Sletter en konfiguratorregel
+Deletes a fluid device group	Sletter en fluidenhedsgruppe
+Deletes a page	Sletter en side
+Deletes a page template of the project	Sletter en sideskabelon i projektet
+Deletes a plot frame of the project that no page uses	Sletter en plotramme i projektet, som ingen side bruger
+Deletes a potential definition	Sletter en potentialedefinition
+Deletes a work area	Sletter et arbejdsområde
+Deletes symbols, wires, texts and shapes	Sletter symboler, ledninger, tekster og figurer
+Depth in mm	Dybde i mm
+Device description id (empty: from the parts)	Id for enhedsbeskrivelse (tom: fra artiklerne)
+Device description id of the head (list_device_descriptions)	Id for hovedets enhedsbeskrivelse (list_device_descriptions)
+Device group {} already exists	Enhedsgruppen {} findes allerede
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Enhedsliste, stykliste, klemme-, stik-, kabel- og forbindelsesdiagrammer, PLC, potentialer, tavle, fluid, elektriske rapporter og feltrapporter
+Device number on the bus	Enhedsnummer på bussen
+Device tag of the CPU / bus coupler, e.g. -A0	Enhedsmærkning for CPU'en / buskobleren, f.eks. -A0
+Device tag of the end (both ends if missing)	Endens enhedsmærkning (begge ender, hvis den mangler)
+Device tag of the fluid device, e.g. -QM1	Fluidenhedens enhedsmærkning, f.eks. -QM1
+Device tag of the group, e.g. -KH1	Gruppens enhedsmærkning, f.eks. -KH1
+Device tag within the segment, e.g. -M1	Enhedsmærkning inden for segmentet, f.eks. -M1
+Device tag, e.g. -K1	Enhedsmærkning, f.eks. -K1
+Device tag: the accessories that can still be added to its parts	Enhedsbetegnelse: tilbehør, der stadig kan tilføjes dens artikler
+Device tags (text)	Enhedsmærkninger (tekst)
+Device tags of the members in slot order, separated by commas or blanks	Medlemmernes enhedsmærkninger i pladsrækkefølge, adskilt af kommaer eller mellemrum
+Devices with parts that are phased out or discontinued, and their change to the successors	Enheder med artikler, der udfases eller er udgået, og deres skift til efterfølgerne
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Enheder, ledninger, potentialer, kabler, klemrækker, PLC, tavle, fluid, elektriske beregninger, struktur og oversættelser
+Diameter in mm	Diameter i mm
+Diameter of a hole at both ends (0: none)	Diameter af et hul i begge ender (0: intet)
+Direction of the stem: left, right, up or down (default: from the wires there)	Stammens retning: left, right, up eller down (standard: efter lederne der)
+Distance between power and signal or fluid in mm	Afstand mellem kraft og signal eller fluid i mm
+Distance from devices, rails and busbars in mm	Afstand fra enheder, skinner og samleskinner i mm
+Distance from the face in mm (rails: standoff height)	Afstand fra fladen i mm (skinner: afstandshøjde)
+Distance in X (mm)	Afstand i X (mm)
+Distance in Y (mm)	Afstand i Y (mm)
+Distance of devices to cable ducts	Enhedernes afstand til kabelkanaler
+Distance of devices to the plate edge	Enhedernes afstand til pladekanten
+Distance of the border from the paper edge in mm	Rammens afstand fra papirkanten i mm
+Distribute vertically (default horizontally)	Fordel lodret (standard vandret)
+Distributes symbols, texts and graphics evenly between the first and the last one	Fordeler symboler, tekster og grafik jævnt mellem det første og det sidste
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Belastningernes samtidighedsfaktor (0: IEC 61439-1, tabel 101)
+Draw the contact image below coils (default true)	Tegn kontaktspejlet under spoler (standard true)
+Draw the junction as a connection dot; its routing stays	Tegn T-stykket som et forbindelsespunkt; dets føring bevares
+Draw wires in their colour	Tegn ledninger i deres farve
+Draw wires to the connection points facing its free arms	Tegn ledere til tilslutningspunkterne over for dets frie arme
+Drawing	Tegning
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Tegner en kabeldefinitionslinje; de ledninger, den krydser, bliver ledere i kablet (et nyt kabel, når der ikke er angivet et)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Tegner en ledning mellem to tilslutningspunkter, f.eks. -K1:A1 til -S1:14 (#id:pin for tvetydige, navnet for potentialer, 1, 2… for punkter uden betegnelse)
+Draws a wire through two or more points	Tegner en ledning gennem to eller flere punkter
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Tegner ledningerne i deres farve på diagramsiderne og i PDF- / SVG-eksport eller i sort
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Tegner ledere mellem frie tilslutningspunkter på symboler, der vender mod hinanden, og til de frie arme på T-stykker og hjørner
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	EMC-klasser for kablerne (drevudgang, analog, kraft, signal, skærm) og EMC-problemerne
+Edge length of the routing grid in mm	Kantlængde for føringsgitteret i mm
+Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriske enhedsmærkninger adskilt af kommaer eller mellemrum (tom = fjern tilknytningerne)
+Electrical engineering	Elektroteknik
+Enclosure (location, e.g. +CAB1)	Kapsling (placering, f.eks. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Kapsling (placering, f.eks. +CAB1), hvis indstillinger ændres
+Enclosure climate and electrical sizing	Kapslingsklima og elektrisk dimensionering
+Enclosure it stands right of; empty to take it out of its line-up	Kapsling, som den står til højre for; tom for at tage den ud af sammenbygningen
+Enclosure name (all if missing)	Kapslingsnavn (alle, hvis det mangler)
+Enclosure part number	Kapslingens artikelnummer
+Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
+Enclosure {} exists already	Kapslingen {} findes allerede
+Enclosures, panel items, accessories and panel macros	Kapslinger, layoutelementer, tilbehør og tavlemakroer
+End brackets and end plates from the tech data of the terminal parts	Endestop og endeplader ud fra klemmeartiklernes tekniske data
+End holes from the bar end as a multiple of the width	Endehuller fra skinneenden som et multiplum af bredden
+End: device tag and connection point, e.g. -S1:14	Slut: enhedsmærkning og tilslutningspunkt, f.eks. -S1:14
+Engineering	Engineering
+Face: plate, door, left, right, rear, roof or bottom	Flade: plate, door, left, right, rear, roof eller bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Feltplan: knuder, afsnit, omrids, føringer, udligning og tilbehør
+Figure	Nøgletal
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Søger og erstatter tekst i en kolonne i alle (filtrerede) rækker; uden søgetekst udfyldes kolonnen med erstatningen
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Finder tekst i hele projektet: sider, enhedsmærkninger, funktionstekster, frie tekster, ledningsnumre, klemmer, kabler, artikler, beskrivelser
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Finder den mindste standardstørrelse i et kapslingssystem, der kan rumme layoutet, og anvender den
+Fingerprint of the message as shown by check	Meddelelsens fingeraftryk som vist af check
+First address of the subnet, e.g. 192.168.0.0	Første adresse i undernettet, f.eks. 192.168.0.0
+First byte of the inputs (and outputs)	Første byte for indgangene (og udgangene)
+First byte of the outputs if it differs; -1 removes it	Første byte for udgangene, hvis den afviger; -1 fjerner den
+First counter value (default 1)	Første tællerværdi (standard 1)
+First page number (default 1)	Første sidenummer (standard 1)
+First port as station:port, e.g. PLC1:X1 P2	Første port som station:port, f.eks. PLC1:X1 P2
+First row with the column names	Første række med kolonnenavnene
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format for enhedsnavnet: {letter}, {n} (tæller), {page}, {column}, {row}; standard {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format for skemaet format: {n} (tæller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Ramme, der tages udgangspunkt i, når rammen er ny (standard: A3 landscape)
+Free space in front of every device on the plate	Fri plads foran hver enhed på pladen
+Freezes routes for production (kept by the recalculation while possible) or releases them	Fastlåser føringer til produktion (bevares af genberegningen, så længe det er muligt) eller frigiver dem
+Frequency in Hz	Frekvens i Hz
+Function (= without the sign; empty: the parent's)	Funktion (= uden tegnet; tom: det overordnede segments)
+Function aspect (=) of the page; the devices on the page move along	Funktionsaspekt (=) for siden; enhederne på siden flytter med
+Function definition key	Nøgle for funktionsdefinition
+Function filter (= A1, A*; empty = any)	Funktionsfilter (= A1, A*; tom = alle)
+Further device tags of the loop, separated by commas or blanks	Yderligere enhedsmærkninger for sløjfen, adskilt af kommaer eller mellemrum
+Gap between devices side by side	Afstand mellem enheder side om side
+Gap between the devices on the rail in mm	Mellemrum mellem enhederne på skinnen i mm
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Genererer et enstregsdiagram over diagrammets effektenheder, der endnu ikke har et, på en ny oversigtsside efter en side
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Genererer CNC-programmet for en flade til dens maskine (ISO G-kode, Heidenhain, stansekode eller CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genererer det flerstregede diagram (effektsymboler, ledere, kontaktorspoler) for de enstregede symboler på en side på en ny side efter den
+Generates the program of the busbar machine: cuts, punched holes and bends	Genererer programmet til skinnebearbejdningsmaskinen: snit, stansede huller og bukninger
+Give a device tag or a part number	Angiv en enhedsbetegnelse eller et artikelnummer
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperer elementer i en samling, der markeres og flyttes samlet; uden navn forlader elementerne deres samlinger
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Overdrager en kapslings programmer til produktionen som en ordre: manifest og programmer for alle dens flader og kobberskinner
+Has a divider between power and signal cables	Har en skillevæg mellem effekt- og signalkabler
+Height above the floor in metres	Højde over gulvet i meter
+Height above the mounting plate in mm (default 50)	Højde over monteringspladen i mm (standard 50)
+Height in mm	Højde i mm
+Height in mm without plinth; negative: unknown (wall mounted)	Højde i mm uden sokkel; negativ: ukendt (vægmonteret)
+Higher-level product aspect (-) of the page; the devices on the page move along	Aspektet overordnet produkt (-) for siden; enhederne på siden flytter med
+Highest actuator on the door above the floor (0: not checked)	Højeste betjeningselement på døren over gulvet (0: kontrolleres ikke)
+Highest air temperature at devices without data (0: not checked)	Højeste lufttemperatur ved enheder uden data (0: kontrolleres ikke)
+Highest ambient temperature in °C	Højeste omgivelsestemperatur i °C
+Highest device above the floor (0: not checked)	Højeste enhed over gulvet (0: kontrolleres ikke)
+Highest inside temperature in °C	Højeste indvendige temperatur i °C
+Highest three-phase short-circuit current at the supply in kA	Højeste trefasede kortslutningsstrøm ved forsyningen i kA
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Huller: afsnit:afstand:diameter, f.eks. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Vandret justering: left, center eller right
+Horizontal pitch of the pattern in mm	Mønstrets vandrette afstand i mm
+Hose colour	Slangefarve
+Hose number or fluid net (F1)	Slangenummer eller fluidnet (F1)
+Hose number prefix, e.g. H	Præfiks for slangenumre, f.eks. H
+Hoses / pipes: length in m	Slanger / rør: længde i m
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Slanger / rør: medie (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; tom = projektstandard)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Slanger, fluidnet og -grupper, el-fluid-links og PCT-sløjfer
+Hyperlink (URL)	Hyperlink (URL)
+IP address or bus address	IP-adresse eller busadresse
+IT system with distributed neutral	IT-system med fremført nulleder
+Id of the panel item (from mounting_list)	Layoutelementets id (fra mounting_list)
+Id of the path or reservation	Id for vejen eller reservationen
+Id of the text	Tekstens id
+Identifier, e.g. A1 or CAB1	Betegnelse, f.eks. A1 eller CAB1
+Ids of page items	Id'er for sideelementer
+Ids of symbols and connection symbols (default: all symbols of the page)	Id'er for symboler og forbindelsessymboler (standard: alle symboler på siden)
+In front of the page name (default /)	Foran sidenavnet (standard /)
+Inner height in mm (0 = no limit)	Indvendig højde i mm (0 = ingen grænse)
+Inner radius as a multiple of the thickness	Indvendig radius som et multiplum af tykkelsen
+Inner width in mm (0 = no limit)	Indvendig bredde i mm (0 = ingen grænse)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Indsætter en 3D-makro som en samling: forankrede elementer på deres plads, de andre i forhold til x / y på fladen
+Installation site aspect (++) of the page; the devices on the page move along	Aspektet opstillingssted (++) for siden; enhederne på siden flytter med
+Installation site filter (++)	Filter for opstillingssted (++)
+Integration profiles and status	Integrationsprofiler og -status
+Interruption points refer to: all (default), star or pairs	Afbrydelsespunkter henviser til: all (standard), star eller pairs
+Invalid answer of the plugin: {}	Ugyldigt svar fra plugin: {}
+Invalid segment name: {}	Ugyldigt segmentnavn: {}
+Item id	Element-id
+Item ids	Element-id'er
+Jumper number	Bronummer
+Jumper number (terminals with the same number are bridged); 0 removes it	Bronummer (klemmer med samme nummer brokobles); 0 fjerner det
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Bevar kapslingsklassen: varmeveksler eller køleenhed i stedet for filterventilatorer
+Key figures of the project and a list of its device tags	Projektets nøgletal og en liste over dets enhedsmærkninger
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektets nøgletal: sider, symboler, forbindelser, enheder, artikler, kabler og kontrolresultater
+Key, e.g. user.coupling_relay	Nøgle, f.eks. user.coupling_relay
+Key, e.g. user.customer_code	Nøgle, f.eks. user.customer_code
+Keys of the routes, comma separated (all if missing)	Nøgler for føringerne, kommasepareret (alle, hvis de mangler)
+Kind: machining, punching or busbar	Type: machining, punching eller busbar
+Label: terminal number, PLC address or potential name	Etiket: klemnummer, PLC-adresse eller potentialenavn
+Landscape (true) or portrait (false)	Liggende (true) eller stående (false)
+Language the project texts are written in, e.g. en	Sprog, som projektteksterne er skrevet på, f.eks. en
+Larger round holes are milled, mm	Større runde huller fræses, mm
+Largest difference between hole and tool, mm	Største forskel mellem hul og værktøj, mm
+Left edge on the face in mm	Venstre kant på fladen i mm
+Left edge on the mounting plate in mm	Venstre kant på monteringspladen i mm
+Left side bayed (no side panel)	Venstre side sammenbygget (ingen sideplade)
+Length added at each cable end in metres	Længdetillæg ved hver kabelende i meter
+Length added to each cable end in mm	Længde, der lægges til hver kabelende, i mm
+Length from the node to the device in metres	Længde fra knuden til enheden i meter
+Length in metres	Længde i meter
+Length in metres (default from the node positions)	Længde i meter (standard ud fra knudernes positioner)
+Length inside an enclosure per end in metres	Længde inde i en kapsling pr. ende i meter
+Length of a shield pigtail in mm	Længde af en skærmpigtail i mm
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Etage for en etageklemme (1 = nederst); øvre etager sidder på blokken for klemmen foran
+Library id or customer rule set name to no longer verify against	Biblioteks-id eller navn på kunderegelsæt, der ikke længere skal verificeres op imod
+Library id or customer rule set name to verify against	Biblioteks-id eller navn på kunderegelsæt, der skal verificeres op imod
+Line in the source language	Linje på kildesproget
+Line-to-line voltage in V	Spænding mellem faser i V
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Tilknytter en fluidenhed til de elektriske enheder, der aktiverer eller overvåger den (erstatter tilknytningerne)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Tilknytter magnetventiler til spolen med samme nummer (-QM3 › -MB3) og kopierer funktionstekster mellem tilknyttede enheder
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Viser PLC-kanaler og funktioner for de tildelte artikler, der endnu ikke er placeret, med symbol, betegnelse, etiket og ben til place_symbol
+Lists and renames devices, adds accessories to their parts	Viser og omdøber enheder, tilføjer tilbehør til deres artikler
+Lists the 3D macros: the project's own and the built-in ones	Viser 3D-makroerne: projektets egne og de indbyggede
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	Viser 3D-føringen: førte ledninger, kabler og slanger med længder og status, bundter, forgreninger, skærme, føringsveje, ændringer og problemer
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	Viser CNC-maskinerne (indbyggede og projektets) med deres værktøjer og maskinen for hver flade
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Viser PCT-sløjferne i forplanlægningen og P&ID-instrumenterne med deres enheder og projekteringsstatus
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Viser T-stykker, hjørner, krydsninger og broer med deres føring og forbindelsens ledere
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Viser tilbehør, der passer til en artikel eller en enheds artikler, og de artikler, et tilbehør passer til (projektartikler, indbyggede og medfølgende kataloger)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Viser kobberskinnerne udfoldet: længde, bukninger i rækkefølge, huller, problemer og tilskæringen fra lagerlængder
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	Viser enhedsbeskrivelserne for PLC-hardware: importerede, fra projektets artikler og de indbyggede generiske
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Viser enhederne i enstregsdiagrammet og diagrammets effektenheder med deres status: planlagt, projekteret, ikke i enstregsdiagrammet eller passer ikke
+Lists the devices with cross references and assigned parts	Viser enhederne med krydsreferencer og tildelte artikler
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Viser kapslingerne med deres system, komponenter (samling), elementer pr. flade og samlinger
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Viser fluidenhedsgrupperne (ventiløer, behandlingsenheder, fordelerblokke) med deres enheder i pladsrækkefølge
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Viser fluidenhederne med magnetspoler eller tilknytninger og de elektriske enheder, der er tilknyttet dem
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Viser fluidnetlisten: hver slangeledning med dens ledningstype (tryk, arbejds, retur, styre …), medie, størrelse og portene med deres funktion
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Viser funktionsdefinitionerne med kategori, type af funktionsskabelon, kendebogstav, standardsymbol og anvendelse
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Viser slanger og rør (forbindelser mellem fluidporte) med medie, nominel størrelse, farve og længde
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Viser elementerne i tavlelayoutet i monteringsrækkefølge med plads, størrelse, artikel og monteringsstatus
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Viser mærkningsskemaerne til mærkningsprogrammer (indbyggede og projektets) og det valgte
+Lists the page templates (built-in and the project's own)	Viser sideskabelonerne (indbyggede og projektets egne)
+Lists the pages of the project	Viser projektets sider
+Lists the placement schemes with their properties and the number of symbols using them	Viser placeringsskemaerne med deres egenskaber og antallet af symboler, der bruger dem
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Viser plotrammerne (papirformat, retning, kolonner og rækker) og projektstandarden
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Viser stikkene med antallet af benyttede ben, antallet af ben i deres artikler og artiklerne
+Lists the potential definitions and the wire default of nets without a defined potential	Viser potentialedefinitionerne og ledningsstandarden for net uden defineret potentiale
+Lists the project options that show or hide model content	Viser de projektoptioner, der viser eller skjuler modelindhold
+Lists the properties of an object with their values and where they come from	Viser et objekts egenskaber med deres værdier og deres oprindelse
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Viser egenskabsdefinitionerne (indbyggede og brugerdefinerede) med objektklasse, gruppe, type og enhed
+Lists the report blocks with their report, scheme, groups and generated pages	Viser rapportblokkene med deres rapport, skema, grupper og genererede sider
+Lists the report schemes (named report forms) with their settings	Viser rapportskemaerne (navngivne rapportformularer) med deres indstillinger
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Viser de førte ledninger i tavlelayoutet som en tjekliste til ledningsføring med endebehandling, tilstand og fremdrift
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Viser segmenterne i trærækkefølge med struktur, planlagt effekt og de planlagte enheder med deres status i diagrammet
+Lists the source and target languages of the project texts with the number of untranslated lines	Viser projektteksternes kilde- og målsprog med antallet af ikke-oversatte linjer
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Viser strukturstyringen: sidernes aspekter, definerede og brugte betegnelser, arbejdsområder
+Lists the subprojects taken out of the project, or the project it was taken from	Viser de delprojekter, der er udtaget fra projektet, eller det projekt, det er udtaget fra
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Viser de symboler, der kan placeres, med deres tilslutningspunkter i forhold til indsættelsespunktet
+Lists the terminal strips with their number of terminals and length on the rail	Viser klemrækkerne med deres antal klemmer og længde på skinnen
+Lists the translation dictionary of the project texts (source line and translations)	Viser oversættelsesordbogen for projektteksterne (kildelinje og oversættelser)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Viser de vinduesmakroer, der er placeret på siderne (makrobokse), med makro, variant, pladsholderværdier og antal elementer
+Load losses of the transformer in W (0: typical)	Transformerens belastningstab i W (0: typisk)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Forsyningsnettets belastninger, belastningen af hver beskyttelsesenhed, behov med samtidighedsfaktoren, fasebalance og belastningsbudgetter for strømforsyninger
+Loads the potential definitions of a standard (replaces those of the same name)	Indlæser potentialedefinitionerne fra en standard (erstatter dem med samme navn)
+Location (+ without the sign; empty: the parent's)	Placering (+ uden tegnet; tom: det overordnede segments)
+Location aspect (+) of the page; the devices on the page move along	Placeringsaspekt (+) for siden; enhederne på siden flytter med
+Location filter (+)	Filter for placering (+)
+Location or device tag	Placering eller enhedsmærkning
+Loop number	Sløjfenummer
+Loop number, e.g. 101	Sløjfenummer, f.eks. 101
+Lowest actuator on the door above the floor	Laveste betjeningselement på døren over gulvet
+Lowest ambient temperature in °C	Laveste omgivelsestemperatur i °C
+Lowest device above the floor	Laveste enhed over gulvet
+Lowest inside temperature in °C	Laveste indvendige temperatur i °C
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	Laveste fejlstrøm mellem fase og jord ved forsyningen i kA (0: fra ik_max)
+Lowest terminal above the floor	Laveste klemme over gulvet
+Machine id (default: the busbar machine)	Maskine-id (standard: skinnebearbejdningsmaskinen)
+Machine id (default: the machine of the face)	Maskine-id (standard: fladens maskine)
+Machine id (snake_case)	Maskine-id (snake_case)
+Machine id {} is not snake_case	Maskine-id {} er ikke snake_case
+Machine of that face (empty: the sheet machine)	Maskine til denne flade (tom: pladmaskinen)
+Machine of the copper bars	Maskine til kobberskinnerne
+Machine of the sheet metal faces	Maskine til pladefladerne
+Machine {} is in use	Maskine {} er i brug
+Macro name	Makronavn
+Makes pages or page items content of a project option	Gør sider eller sideelementer til indhold i en projektoption
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Gør lederne ved et stiks ben til ledere i et fladkabel: ben n får leder n, som på IDC-stik
+Manufacturing package (CNC programs, JSON)	Produktionspakke (CNC-programmer, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	Mærkater, kommasepareret: device, terminal, wire, cable (tom: alle)
+Marks a panel item as mounted or as a problem, or as open again	Markerer et layoutelement som monteret, som et problem eller som åbent igen
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markerer en ført ledning som trukket eller som et problem eller som åben igen; ledningen angives ved dens to ender
+Maximum fill of a carrier in percent	Maksimal fyldning af en kabelbærer i procent
+Maximum operating pressure in bar	Maksimalt driftstryk i bar
+Measuring range or set point	Måleområde eller sætpunkt
+Message code, e.g. wires.3f9a1c	Meddelelseskode, f.eks. wires.3f9a1c
+Milling feed, mm/min	Fræsetilspænding, mm/min
+Mirror the symbol	Spejl symbolet
+Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
+Moves the page before this page of its section (or of the section given)	Flytter siden foran denne side i dens afsnit (eller i det angivne afsnit)
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Flytter afsnittet foran dette afsnit i dets overordnede afsnit (eller i det angivne); numrene tæller fortsat i rækkefølge
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Sømbrætlayout af et ledningsnet: grenene fra den fælles knude til stikkene med længde, retning, bundtdiameter og ben samt tegningens målestok
+Name of the assembly	Samlingens navn
+Name of the bar, e.g. L1 -Q1	Skinnens navn, f.eks. L1 -Q1
+Name of the check	Kontrollens navn
+Name of the customer rule set to remove	Navn på det kunderegelsæt, der skal fjernes
+Name of the frame	Rammens navn
+Name of the machine	Maskinens navn
+Name of the main earthing terminal	Navn på hovedjordskinnen
+Name of the safety function to remove	Navn på den sikkerhedsfunktion, der skal fjernes
+Name of the segment	Segmentets navn
+Name of the template	Skabelonens navn
+Name of the work area	Arbejdsområdets navn
+Name or id; the tag for places	Navn eller id; betegnelsen for placeringer
+Name, e.g. the location +M1	Navn, f.eks. placeringen +M1
+New device tag	Ny enhedsmærkning
+New identifier	Ny betegnelse
+New page name	Nyt sidenavn
+New parent segment (empty: top level)	Nyt overordnet segment (tom: øverste niveau)
+New value	Ny værdi
+No PCT loop {}	Ingen PCT-sløjfe {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Ingen indbygget kontrol hedder {}: indstillingen gælder en kontrol i et plugin med det navn (list_checks)
+No bus system {}	Intet bussystem {}
+No connection point {} on this page	Intet tilslutningspunkt {} på denne side
+No connection symbol with id {}	Intet forbindelsessymbol med id {}
+No copper bar {}	Ingen kobberskinne {}
+No device description {}	Ingen enhedsbeskrivelse {}
+No device group {}	Ingen enhedsgruppe {}
+No enclosure named {}	Ingen kapsling med navnet {}
+No entry for {} and {}	Ingen post for {} og {}
+No hose {}	Ingen slange {}
+No identifier {} in the project	Ingen betegnelse {} i projektet
+No item with id {}	Intet element med id {}
+No item {}	Intet element {}
+No items to save in {}	Ingen elementer at gemme i {}
+No macro named {}	Ingen makro med navnet {}
+No panel item with id {}	Intet layoutelement med id {}
+No planned device {}	Ingen planlagt enhed {}
+No potential definition {}	Ingen potentialedefinition {}
+No project function definition {}	Ingen funktionsdefinition {} i projektet
+No routed item {}	Intet ført element {}
+No routed wire {} – {}	Ingen ført ledning {} – {}
+No routing path or reservation {}	Ingen føringsvej eller reservation {}
+No rule for {} and {}	Ingen regel for {} og {}
+No rule library or rule set {}	Intet regelbibliotek eller regelsæt {}
+No rule {}	Ingen regel {}
+No safety function {}	Ingen sikkerhedsfunktion {}
+No standard size of {} holds the layout of {}	Ingen standardstørrelse af {} kan rumme layoutet af {}
+No terminal strip {}	Ingen klemrække {}
+No terminal {} on strip {}	Ingen klemme {} på klemrække {}
+No text with id {}	Ingen tekst med id {}
+No three wires meet at {} / {} mm: give the direction of the stem	Ingen tre ledere mødes ved {} / {} mm: angiv stammens retning
+No transformer: set {} first	Ingen transformer: angiv først {}
+No wire at {} / {} mm	Ingen ledning ved {} / {} mm
+No wire with id {}	Ingen ledning med id {}
+No work area named {}	Intet arbejdsområde med navnet {}
+Node name or id	Knudenavn eller id
+Node {} exists already	Knude {} findes allerede
+Nodes to pass in this order, comma separated	Knuder, der skal passeres i denne rækkefølge, kommasepareret
+Nominal size, e.g. 8 mm or DN25	Nominel størrelse, f.eks. 8 mm eller DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Ikke et tværsnit: {} (f.eks. 1.5 mm²)
+Not a valid safety function: {}	Ikke en gyldig sikkerhedsfunktion: {}
+Note, e.g. what the problem is	Bemærkning, f.eks. hvad problemet er
+Nothing to remove: {} {}	Intet at fjerne: {} {}
+Number of columns	Antal kolonner
+Number of copies (default 1)	Antal kopier (standard 1)
+Number of equal bars	Antal ens skinner
+Number of indexed values (0 = a single value)	Antal indekserede værdier (0 = én enkelt værdi)
+Number of rows	Antal rækker
+Numbers the pages with a start value and step; released pages keep their name	Nummererer siderne med en startværdi og et trin; frigivne sider beholder deres navn
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Nummererer klemmerne i en klemrække 1 … n i rækkefølge; ikke-numeriske betegnelser som PE bevares
+Numbers the wires by the numbering scheme of the project	Nummererer ledningerne efter projektets nummereringsskema
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=værdi, OPTION!=værdi, OPTION=a|b forbundet med & (tom: altid)
+Offset from the symbol position in mm (default: below the symbol)	Forskydning fra symbolets position i mm (standard: under symbolet)
+One end, e.g. -K1:A1	Den ene ende, f.eks. -K1:A1
+One row per printed label instead of a count	Én række pr. udskrevet mærkat i stedet for et antal
+Only devices on these pages (names separated by commas)	Kun enheder på disse sider (navne adskilt af kommaer)
+Only lines without a translation into this language	Kun linjer uden oversættelse til dette sprog
+Only list the new tags, change nothing	Vis kun de nye betegnelser, ændr intet
+Only shows the package, no job is recorded	Viser kun pakken, der registreres ingen ordre
+Only shows what would change	Viser kun, hvad der ville blive ændret
+Only the pages of this work area (list_structure)	Kun siderne i dette arbejdsområde (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Kun disse kendebogstaver (adskilt af kommaer, f.eks. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Kun disse typer, adskilt af kommaer: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Kun disse typer, adskilt af kommaer: page, function_text, text, description
+Only these pages (names separated by commas)	Kun disse sider (navne adskilt af kommaer)
+Only this part number	Kun dette artikelnummer
+Only wire, cable or tube	Kun wire, cable eller tube
+Only wires with this state: open, wired, changed or problem	Kun ledninger med denne tilstand: open, wired, changed eller problem
+Opaque background in the paper colour	Uigennemsigtig baggrund i papirfarven
+Openings: auto (punch of the size, else contour) or contour	Åbninger: auto (stempel i størrelsen, ellers kontur) eller contour
+Operating pressure in bar (0 = hose ratings are not checked)	Driftstryk i bar (0 = slangernes trykklasser kontrolleres ikke)
+Operations	Operationer
+Option name	Indstillingsnavn
+Option name, e.g. STARTER	Indstillingsnavn, f.eks. STARTER
+Options and rules of the configurator	Konfiguratorens optioner og regler
+Other end, e.g. -X1:3	Den anden ende, f.eks. -X1:3
+Outer diameter in mm, 0 = estimated	Udvendig diameter i mm, 0 = anslået
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Udvendige længder af de lige afsnit, mm, f.eks. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Overlapning af niblingsslag (0 … 0.9)
+PCT loop {} already exists	PCT-sløjfen {} findes allerede
+PLC hardware: stations, cards, bus systems and port connections	PLC-hardware: stationer, kort, bussystemer og portforbindelser
+Page macro name	Navn på sidemakro
+Page macro that generates its schematic	Sidemakro, der genererer dens diagram
+Page name (default: all pages)	Sidenavn (standard: alle sider)
+Page {} is generated and cannot be edited	Side {} genereres og kan ikke redigeres
+Page {} is out in subproject {}: insert or discard the subproject first	Side {} er udtaget i delprojektet {}: indsæt eller kassér delprojektet først
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sider med suffiks (3.a) forbliver undersider af den forrige side (standard true)
+Panel layout checks	Kontroller af tavlelayout
+Panel manufacturing	Tavleproduktion
+Paper height in mm (custom paper)	Papirhøjde i mm (brugerdefineret papir)
+Paper width in mm (custom paper)	Papirbredde i mm (brugerdefineret papir)
+Part lifecycle	Artiklens livscyklus
+Part number of the accessory	Tilbehørets artikelnummer
+Part number of the base	Artikelnummer for basen
+Part number of the carrier (per metre)	Kabelbærerens artikelnummer (pr. meter)
+Part number of the conductor (per metre)	Lederens artikelnummer (pr. meter)
+Part number of the downstream device	Artikelnummer for den efterkoblede enhed
+Part number of the hose / tube / pipe	Artikelnummer for slangen / røret / rørledningen
+Part number of the upstream device	Artikelnummer for den forankoblede enhed
+Part number, e.g. GEN.LMP-GN-24	Artikelnummer, f.eks. GEN.LMP-GN-24
+Part of the key or name	Del af nøglen eller navnet
+Part {} has no function with a symbol	Artiklen {} har ingen funktion med symbol
+Parts phased out or discontinued	Artikler, der udfases eller er udgået
+Pass ids or pages	Angiv id'er eller sider
+Path function text: function text of the functions in its column that have none	Strømvejsfunktionstekst: funktionstekst for de funktioner i dens kolonne, der ikke har nogen
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Pladsholderværdier KEY=værdi; KEY2=værdi (kan bruge {OPTION})
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Placerer et PLC-kort (I/O-modul) i en station: rack, slot, startadresser og enhedsbeskrivelse; genadresserer dets punkter
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Placerer en bro, hvor fire ledere mødes: forbindelsen kommer ind på én side og går til de tre andre, den modsatte først, derefter venstre / øverste, derefter højre / nederste
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Placerer et forbindelsesdefinitionspunkt på en ledning; forbindelsen overtager dets nummer, farve og tværsnit
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Placerer et hjørne: der mødes to ledere i ret vinkel, og tilslutningspunkter over for dets arme forbindes med det
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Placerer et rettet T-stykke, hvor tre ledere mødes: det angiver den enhed, forbindelsens to ledere udgår fra (kilden), og rækkefølgen af deres mål i stedet for diagrammets rækkefølge
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Placerer en rettet krydsning, hvor to ledere krydser hinanden: den forbinder dem, og hver ende af dens linje forbindes først ligeud og derefter til en arm på tværs
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Placerer en artikel på en side: symbolet for dens hovedfunktion med tilslutningsbetegnelserne, som en ny enhed, artiklen tildeles (projektartikler og eksempelkataloget)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Placerer et symbol på en side. Uden mærkning bruges den næste ledige; hjælpekontakter får de næste ledige kontaktnumre for deres enhed
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Placerer en kapsling (+CAB1), en enhed (-M1) eller en maskinplacering (+M1) ved en knude i føringsnettet
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Placerer kapslingstilbehør (ventilator, filter, kabelforskruning, lys, greb, PE-skinne) på en flade
+Places of the group (0 = not limited)	Gruppens pladser (0 = ubegrænset)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerer en kapslings sammenbygning i rummet (3D-visning af alle kapslinger); uden x og z placeres den ud fra anlægslayoutet eller ved siden af de andre sammenbygninger
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerer et skemas egenskaber ved symboler; uden id'er placeres det igen ved alle symboler, der bruger det
+Planned part number	Planlagt artikelnummer
+Planned power in kW	Planlagt effekt i kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Planlægger feltkablerne gennem føringsnettet: veje, længder, afsnittenes fyldning, udligningspunkter og problemer; overtager eventuelt afkortningslængderne
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Planlægger bearbejdningen af en flade: operationer (boring, gevindskæring, fræsning, stansning, nibling), værktøjer, bane, tid, og hvad maskinen ikke kan fremstille
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Anlægssegmenter med planlagte enheder før diagrammet: skabeloner, effektbudget, status i forhold til diagrammet, udveksling som CSV / Excel
+Plinth height in mm, 0 without plinth	Sokkelhøjde i mm, 0 uden sokkel
+Plot frame (list_frames); empty = the project default	Plotramme (list_frames); tom = projektstandarden
+Plot frames and page templates of the project	Tegningsrammer og sideskabeloner i projektet
+Plug tag, e.g. -X10	Stikmærkning, f.eks. -X10
+Plugin id '{}' is not snake_case	Plugin-id '{}' er ikke snake_case
+Plugin {} is loaded twice	Plugin {} er indlæst to gange
+Plugin {} needs a newer OpenECraft (API {})	Plugin {} kræver en nyere OpenECraft (API {})
+Plugin {}: the name '{}' is invalid or already taken	Plugin {}: navnet '{}' er ugyldigt eller allerede i brug
+Plugin {}: {}	Plugin {}: {}
+Plugs and their pins	Stik og deres ben
+Points in between: [[x, y], …]	Mellemliggende punkter: [[x, y], …]
+Points in mm: [[x, y], …]	Punkter i mm: [[x, y], …]
+Port as station:port	Port som station:port
+Port must be given as station:port: {}	Porten skal angives som station:port: {}
+Port {} is not connected	Porten {} er ikke forbundet
+Position down in metres	Position nedad i meter
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Den neutrale akses placering (0 … 1, 0: DIN 6935)
+Position right in metres	Position mod højre i meter
+Position {} / {} mm lies outside the page ({} x {} mm)	Positionen {} / {} mm ligger uden for siden ({} x {} mm)
+Potential definitions, wire defaults and wire colours	Potentialdefinitioner, standarder for forbindelser og ledningsfarver
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Potentialtyper, hvis forbindelser ikke får et nummer, adskilt af kommaer (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Potentialenavn, f.eks. L1 eller +24V
+Potential {} already exists	Potentialet {} findes allerede
+Pre-planning (CSV)	Forprojektering (CSV)
+Pre-planning (Excel)	Forprojektering (Excel)
+Problems	Problemer
+Product filter (-)	Filter for produkt (-)
+Production status	Produktionsstatus
+Profile name, e.g. SAP	Profilnavn, f.eks. SAP
+Program format: iso, heidenhain, punch or csv	Programformat: iso, heidenhain, punch eller csv
+Programs	Programmer
+Progress (%)	Fremskridt (%)
+Project checks	Projektkontroller
+Project exports	Projekteksporter
+Project languages, dictionary and translations	Projektsprog, ordbog og oversættelser
+Project reports	Projektrapporter
+Project statistics	Projektstatistik
+Property and function definitions, property values and placement schemes	Egenskabs- og funktionsdefinitioner, egenskabsværdier og placeringsskemaer
+Property key	Egenskabsnøgle
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Egenskabsnøgler og værdier, f.eks. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Sættes foran numrene, f.eks. W
+Quantity per end (default 1)	Antal pr. ende (standard 1)
+R/X ratio of the supply impedance	R/X-forhold for netimpedansen
+Rack number	Racknummer
+Rail id (action rail)	Skinne-id (handlingen rail)
+Rapid traverse, mm/min	Ilgang, mm/min
+Rated current of the supply in A (0: not limited)	Forsyningens mærkestrøm i A (0: ubegrænset)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Mærkeeffekt for den transformer, der forsyner nettet, i kVA (0: ingen, kortslutningsstrømmene er angivet)
+Rear left corner of the line-up in mm, to the right	Sammenbygningens bageste venstre hjørne i mm, mod højre
+Rear left corner of the line-up in mm, towards the front	Sammenbygningens bageste venstre hjørne i mm, fremad
+Relative humidity of the ambient air in % (0: no condensation check)	Omgivelsesluftens relative luftfugtighed i % (0: ingen kontrol af kondensation)
+Release instead of freeze	Frigiv i stedet for at fastlåse
+Released pages keep their names: {}	Frigivne sider beholder deres navne: {}
+Remote I/O: station of the controller	Decentral I/O: controllerens station
+Remove the entry of upstream and downstream	Fjern posten for upstream og downstream
+Remove the profile	Fjern profilen
+Remove the scheme from the project	Fjern skemaet fra projektet
+Remove unused definitions (default: false)	Fjern ubrugte definitioner (standard: false)
+Removes a copper bar	Fjerner en kobberskinne
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Fjerner en knude (med dens afsnit og placeringer), et afsnit, en placering, et omrids, en udligningsleder eller tilbehør
+Removes a planned device from a segment	Fjerner en planlagt enhed fra et segment
+Removes a project function definition; its symbols go back to their built-in one	Fjerner en funktionsdefinition i projektet; dens symboler får igen den indbyggede
+Removes a project option; its content stays in the project	Fjerner en projektoption; dens indhold forbliver i projektet
+Removes a report block; the pages it generated stay	Fjerner en rapportblok; de sider, den har genereret, bevares
+Removes a routing path or reservation	Fjerner en føringsvej eller reservation
+Removes a segment with everything below it	Fjerner et segment med alt under det
+Removes a station; its cards stay unassigned, its bus connections are removed	Fjerner en station; dens kort forbliver utildelte, dens busforbindelser fjernes
+Removes a user property with all its values and placements	Fjerner en brugeregenskab med alle dens værdier og placeringer
+Removes the bus connection of a port	Fjerner busforbindelsen for en port
+Removes the bus system with its connections	Fjerner bussystemet med dets forbindelser
+Removes the definition of a structure identifier (pages and devices keep it)	Fjerner definitionen af en strukturbetegnelse (sider og enheder beholder den)
+Removes the machine from the project	Fjerner maskinen fra projektet
+Removes the rule	Fjerner reglen
+Removes the wiring marks of wires that no longer exist	Fjerner ledningsføringsmarkeringer for ledninger, der ikke længere findes
+Renames a device with all its functions	Omdøber en enhed med alle dens funktioner
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Omdøber en strukturbetegnelse i hele projektet: sider, enheder, kabler, definition og arbejdsområder
+Renames the station	Omdøber stationen
+Repair the repairable findings	Reparér de fund, der kan repareres
+Replacement	Erstatning
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Erstatter tekst i frie tekster, funktionstekster, side-, enheds- og kabelbeskrivelser i hele projektet; frigivne sider bevares
+Report blocks and report schemes	Rapportblokke og rapportskemaer
+Reserves space over the mounting plate: kept free of routes, or for one class only	Reserverer plads over monteringspladen: holdt fri for føringer eller kun til én klasse
+Rest (mm)	Rest (mm)
+Right side bayed (no side panel)	Højre side sammenbygget (ingen sideplade)
+Room {} exists already	Rummet {} findes allerede
+Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader med uret: 0, 90, 180 eller 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotation i grader, mod uret (90 læses nedefra og op)
+Route the wires in 3D as well (otherwise through the cable ducts)	Før også ledningerne i 3D (ellers gennem kabelkanalerne)
+Routing rules, paths, reservations, frozen routes and cable shields	Føringsregler, føringsveje, reservationer, fastlåste føringer og kabelskærme
+Row key (from table_get)	Rækkenøgle (fra table_get)
+Rows of the pattern	Mønstrets rækker
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Regelbiblioteker for standarder og kunderegelsæt med de gældende grænser; aktiverer, deaktiverer, tilføjer eller fjerner dem
+Rule number, from 1	Regelnummer, fra 1
+Run the check	Kør kontrollen
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	SVG, HTML, PDF, DXF og DWG af siderne, produktions- og PLC-lister, udvekslingsfiler for ledningsnet og PLC, tavlelayoutet i 3D og oversættelsesordbogen
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Sikkerhedsfunktion, der skal tilføjes eller erstattes (efter navn): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Sikkerhedsfunktioner (ISO 13849-1) med det opnåede Performance Level; tilføjer, erstatter eller fjerner en
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Gemmer en side (type, plotramme, tegningshoved, struktur, beskrivelse, indhold) som en sideskabelon
+Saves items of an enclosure as a 3D macro of the project	Gemmer elementer fra en kapsling som en 3D-makro i projektet
+Saves the planned devices of a segment as a template	Gemmer et segments planlagte enheder som en skabelon
+Saves the properties placed at a symbol as a placement scheme	Gemmer de egenskaber, der er placeret ved et symbol, som et placeringsskema
+Saw cut	Savsnit
+Second port as station:port	Anden port som station:port
+Segment path, e.g. Plant/Area 1	Segmentsti, f.eks. Plant/Area 1
+Segment {} already exists	Segment {} findes allerede
+Segments not to use, comma separated	Afsnit, der ikke må bruges, kommasepareret
+Selective up to this short-circuit current in kA (0: not given)	Selektiv op til denne kortslutningsstrøm i kA (0: ikke angivet)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Selektivitet og backupbeskyttelse af enhedspar fra producenternes tabeller efter artikelnummer; tilføjer, erstatter eller fjerner en post
+Separator: semicolon, comma or tab	Separator: semicolon, comma eller tab
+Sets how cross references are shown (only the given settings) and shows the settings	Angiver, hvordan krydsreferencer vises (kun de angivne indstillinger), og viser indstillingerne
+Sets how the terminals of a jumper are bridged	Angiver, hvordan klemmerne i en bro brokobles
+Sets property values of an object; an empty value removes it	Angiver egenskabsværdier for et objekt; en tom værdi fjerner den
+Sets the aspects the pages use	Angiver de aspekter, som siderne bruger
+Sets the collision class of a panel item (empty: automatic)	Angiver kollisionsklassen for et layoutelement (tom: automatisk)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Angiver standardværdierne for slanger, der ikke angiver deres egne værdier, og præfikset for slangenumre
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	Angiver afstanden mellem to kollisionsklasser eller lader dem overlappe; erstatter reglen for de samme klasser
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Angiver definitionen af et kabels føring: knuder, det skal passere, og afsnit, det ikke må bruge
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Angiver højden af kapslingens underkant over gulvet (højder af enheder, klemmer og betjeningselementer kontrolleres)
+Sets the level (multi-level terminals) or jumper number of a terminal	Angiver etagen (etageklemmer) eller bronummeret for en klemme
+Sets the numbering scheme of the wires (only the given settings) and shows it	Angiver nummereringsskemaet for forbindelserne (kun de angivne indstillinger) og viser det
+Sets the plot frame of all pages that do not choose one	Angiver plotrammen for alle sider, der ikke vælger en
+Sets the shield and the outer diameter of a cable	Angiver skærmen og den udvendige diameter for et kabel
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Angiver projektteksternes kildesprog og målsprogene (ISO 639-1-koder)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Angiver en klemrækkes reserveklemmer, og om dens tilbehør tilføjes automatisk
+Sets the translation of a line of the project texts (empty removes it)	Angiver oversættelsen af en linje i projektteksterne (tom fjerner den)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Angiver ledningsfarve og tværsnit for net uden defineret potentiale (tom = ingen)
+Share of the capacity kept free in percent	Andel af kapaciteten, der holdes fri, i procent
+Sheets	Ark
+Shield connected at: both, first, second or none	Skærm tilsluttet ved: both, first, second eller none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Kortslutnings-, belastnings-, EMC- og sikkerhedsberegninger, regelsæt og projektverificering
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Kortslutningsstrømme, brydeevner, udkoblingstider, kablernes kortslutningsstyrke og beskyttelsesenhedernes selektivitet
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Kortslutningseffekt for nettet før transformeren i MVA (0: uendelig)
+Short-circuit voltage of the transformer in %	Transformerens kortslutningsspænding i %
+Shortest path between the hits of a tool	Korteste vej mellem et værktøjs slag
+Shortest rail, duct or busbar	Korteste skinne, kanal eller samleskinne
+Shortest straight length next to a bend	Korteste lige længde ved siden af en bukning
+Show as \"Name: value\"	Vis som \"Navn: værdi\"
+Show the content	Vis indholdet
+Shows a property as a text beside a symbol	Viser en egenskab som tekst ved siden af et symbol
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Viser en klemrække: klemmer i rækkefølge med etage, bro og mål, blokkene på skinnen og broerne
+Shows or changes the machining strategy and which machine makes which face	Viser eller ændrer bearbejdningsstrategien, og hvilken maskine der fremstiller hvilken flade
+Shows or changes the rules of copper bars; lengths in mm	Viser eller ændrer reglerne for kobberskinner; længder i mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Viser eller ændrer reglerne for kontrollerne af tavlelayoutet; værdier i mm (temperatur i °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	Viser PLC-hardwarekonfigurationen: stationer med racks, slots, moduler og adresseområder, bussystemer, portforbindelser og de fundne problemer
+Shows the content of a page: symbols with their connection point positions, wires and texts	Viser indholdet af en side: symboler med positionerne af deres tilslutningspunkter, ledninger og tekster
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Viser de data fra de andre systemer, der er gemt i projektet (artikellinks, dokumenter), og udvekslingsloggen
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Viser et stiks stikside: artiklens benplacering, hvert bens position (mm, set mod bensiden) med potential, lederfarve og kabelleder på begge sider
+Shows the options and rules of the configurator	Viser konfiguratorens indstillinger og regler
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Viser benene i et stik i stikrækkefølge: hvad der er tilsluttet på bøsningssiden og på bensiden, potentiale, ubrugte ben
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Viser reglerne for 3D-føringen og ændrer de angivne: gitter, frigang, faktor for fri luft, adskillelse, bøjningsradier, afkortningslængder, reserver
+Shows the rules of the field cable planning and changes those given	Viser reglerne for planlægningen af feltkabler og ændrer de angivne
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Viser indstillingerne for projektkontrollen: kontroller, der er slået fra, ændrede meddelelsesniveauer og accepterede meddelelser
+Side of the plug the cable leaves: socket or pin (default: socket)	Stikkets side, hvor kablet går ud: socket eller pin (standard: socket)
+Side the connection comes from: left, right, up or down (default up)	Siden forbindelsen kommer fra: left, right, up eller down (standard up)
+Single-line diagrams	Enstregsdiagrammer
+Single-line pages and their multi-line counterparts	Enstregede sider og deres flerstregede modstykker
+Slot number	Slotnummer
+Smallest bend radius in mm	Mindste bøjningsradius i mm
+Smallest distance in mm	Mindste afstand i mm
+Smallest distance of holes from the sheet edge	Mindste afstand fra huller til pladekanten
+Smallest inner radius as a multiple of the thickness	Mindste indvendige radius som et multiplum af tykkelsen
+Smallest web at cutouts	Mindste materiale ved udskæringer
+Smallest web between holes	Mindste materiale mellem huller
+Spare terminals at the end of the strip	Reserveklemmer i enden af klemrækken
+Springback in percent of the angle	Tilbagefjedring i procent af vinklen
+Start again on every page whose structure differs from the page before	Start forfra på hver side, hvis struktur afviger fra den forrige side
+Start and end are the same connection point	Start og slut er det samme tilslutningspunkt
+Start and end point of the line	Linjens start- og slutpunkt
+Start: device tag and connection point, e.g. -K1:A1	Start: enhedsmærkning og tilslutningspunkt, f.eks. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Status for de ordrer, der er overdraget til produktionen: fremskridt, fejl, efterbearbejdning, programmer ændret siden overdragelsen
+Station name (empty: unassigned)	Stationsnavn (tom: utildelt)
+Station name, e.g. PLC1	Stationsnavn, f.eks. PLC1
+Station {} exists already	Stationen {} findes allerede
+Stock bar	Lagerstang
+Stock length of rails, ducts and busbars	Lagerlængde for skinner, kanaler og samleskinner
+Stock length of the bars	Skinnernes lagerlængde
+Stores the calibrated factors	Gemmer de kalibrerede faktorer
+Structure identifiers, aspects and work areas	Strukturbetegnelser, aspekter og arbejdsområder
+Structure of the target page: different (default), always or never	Målsidens struktur: different (standard), always eller never
+Subprojects, model options and the project data check	Delprojekter, modeloptioner og kontrollen af projektdataene
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Forsyning (spænding, jordingssystem, kortslutningsstrømme) og installationsforhold for lederne; ændrer de angivne værdier
+Switch checks off, change message levels, accept messages as checked	Slå kontroller fra, ændr meddelelsesniveauer, accepter meddelelser som kontrolleret
+Switches a check on or off (names as shown by list_checks)	Slår en kontrol til eller fra (navne som vist af list_checks)
+Switches the project options with a condition by the configurator options	Skifter projektoptionerne med en betingelse efter konfiguratorens optioner
+Symbol id	Symbol-id
+Symbol ids	Symbol-id'er
+Symbol key from list_symbols	Symbolnøgle fra list_symbols
+Symbols, wires, texts, cable and connection definitions on schematic pages	Symboler, forbindelser, tekster, kabel- og forbindelsesdefinitioner på diagramsider
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stykke: stammens retning; bro: siden forbindelsen kommer fra (left, right, up eller down)
+Tag of the terminal strip, e.g. -X1	Klemrækkens betegnelse, f.eks. -X1
+Take the cut lengths over as cable lengths	Overtag afkortningslængderne som kabellængder
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Overtager en kapsling, der er konfigureret i kapslingsproducentens konfigurator (JSON): system, størrelse, komponenter, tilbehør og udskæringer
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Overtager tilbagemelding fra produktionen (CSV eller JSON): ordre, program, operation, element, status, afvigelser, tid, meddelelse
+Takes pages or page items out of their project option (hidden content is shown again)	Tager sider eller sideelementer ud af deres projektoption (skjult indhold vises igen)
+Target language code	Målsprogskode
+Target languages separated by commas or blanks, e.g. de, fr	Målsprog adskilt af kommaer eller mellemrum, f.eks. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Temperaturstigning ved taget i forhold til midten (1 … 2)
+Terminal designation	Klemmebetegnelse
+Terminal designations in strip order, separated by commas	Klemmebetegnelser i rækkefølge, adskilt af kommaer
+Terminal order, levels, jumpers, spare terminals and accessories	Klemmerækkefølge, etager, broer, reserveklemmer og tilbehør
+Text height in mm	Teksthøjde i mm
+Text height in mm (default 3.5)	Teksthøjde i mm (standard 3.5)
+Text in id, name or order number	Tekst i id, navn eller bestillingsnummer
+Text in the key or name	Tekst i nøglen eller navnet
+Text in the line or a translation	Tekst i linjen eller en oversættelse
+Text to find; empty: fill	Tekst, der skal søges efter; tom: udfyld
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Tekst; pladsholdere som {page} eller {prop:Name} udfyldes ved tegning
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Et hjørnes arme er en lodret og en vandret retning, f.eks. down left, ikke {}
+The cable definition line crosses no wire	Kabeldefinitionslinjen krydser ingen ledning
+The cable definition line has no length	Kabeldefinitionslinjen har ingen længde
+The cable has an overall shield	Kablet har en samlet skærm
+The classes may overlap (no collision)	Klasserne må overlappe (ingen kollision)
+The configuration (JSON)	Konfigurationen (JSON)
+The copies would leave the page	Kopierne ville komme uden for siden
+The counting step must be at least 1	Tællesteget skal være mindst 1
+The devices do not fit onto rail {}	Enhederne passer ikke på skinnen {}
+The feedback (CSV with header or JSON)	Tilbagemeldingen (CSV med overskriftsrække eller JSON)
+The first page number must not be negative	Første sidenummer må ikke være negativt
+The items would leave the page	Elementerne ville komme uden for siden
+The length must not be negative	Længden må ikke være negativ
+The line of a crossing is vertical or horizontal, not {}	En krydsnings linje er vertical eller horizontal, ikke {}
+The message text, kept for the list of accepted messages	Meddelelsesteksten, der gemmes til listen over accepterede meddelelser
+The name must not be empty	Navnet må ikke være tomt
+The number of copies must be between 1 and 100	Antallet af kopier skal ligge mellem 1 og 100
+The plinth height must not be negative	Sokkelhøjden må ikke være negativ
+The plot frame {} is in use	Plotrammen {} er i brug
+The plugin program did not answer within {} s and was stopped	Plugin-programmet svarede ikke inden for {} s og blev stoppet
+The plugin program failed: {}	Plugin-programmet mislykkedes: {}
+The rotation must be 0, 90, 180 or 270	Rotationen skal være 0, 90, 180 eller 270
+The straight line of a crossing: vertical or horizontal (default vertical)	En krydsnings lige linje: vertical eller horizontal (standard vertical)
+The text height must be at least 0.5 mm	Teksthøjden skal være mindst 0,5 mm
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Et hjørnes to arme, lodret og vandret, f.eks. down left (standard: efter lederne der, ellers down right)
+The wire has no length	Forbindelsen har ingen længde
+The wrap width must not be negative	Ombrydningsbredden må ikke være negativ
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Termisk simulering af monteringspladen: lufttemperaturer, varmepunkt, varmekilder og temperaturen ved hver enhed
+Thickest sheet or bar, mm	Tykkeste plade eller skinne, mm
+Time per drilling, punching or bending operation, s	Tid pr. bore-, stanse- eller bukkeoperation, s
+Time per tool change, s	Tid pr. værktøjsskift, s
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Værktøjer, f.eks. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	Øverste kant på fladen i mm
+Top edge on the mounting plate in mm	Øverste kant på monteringspladen i mm
+Translated line	Oversat linje
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Drejning om lodret akse i grader, mod uret set ovenfra (90: fronterne vender mod højre)
+Unit, e.g. kW	Enhed, f.eks. kW
+Unknown accessory kind: {}	Ukendt type tilbehør: {}
+Unknown action: {}	Ukendt handling: {}
+Unknown address scheme: {}	Ukendt adresseskema: {}
+Unknown alignment: {}	Ukendt justering: {}
+Unknown anchor: {}	Ukendt anker: {}
+Unknown aspect: {}	Ukendt aspekt: {}
+Unknown bonding kind: {}	Ukendt type udligning: {}
+Unknown bonding point: {}	Ukendt udligningspunkt: {}
+Unknown bus system: {}	Ukendt bussystem: {}
+Unknown cable: {}	Ukendt kabel: {}
+Unknown check: {}	Ukendt kontrol: {}
+Unknown class: {}	Ukendt klasse: {}
+Unknown data type: {}	Ukendt datatype: {}
+Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
+Unknown earthing system: {}	Ukendt jordingssystem: {}
+Unknown face {}	Ukendt flade {}
+Unknown fastening: {}	Ukendt fastgørelse: {}
+Unknown field object: {}	Ukendt feltobjekt: {}
+Unknown field: {}	Ukendt felt: {}
+Unknown group kind: {}	Ukendt gruppetype: {}
+Unknown installation: {}	Ukendt opstilling: {}
+Unknown insulation: {}	Ukendt isolering: {}
+Unknown jumper kind: {}	Ukendt type bro: {}
+Unknown kind: {}	Ukendt type: {}
+Unknown labels: {}	Ukendte etiketter: {}
+Unknown level: {}	Ukendt niveau: {}
+Unknown line type: {}	Ukendt ledningstype: {}
+Unknown machine kind {}	Ukendt maskintype {}
+Unknown marker category: {}	Ukendt mærkatkategori: {}
+Unknown material: {}	Ukendt materiale: {}
+Unknown medium: {}	Ukendt medie: {}
+Unknown method {}	Ukendt metode {}
+Unknown node: {}	Ukendt knude: {}
+Unknown numbering scheme: {}	Ukendt nummereringsskema: {}
+Unknown object class: {}	Ukendt objektklasse: {}
+Unknown order: {}	Ukendt rækkefølge: {}
+Unknown paper format: {}	Ukendt papirformat: {}
+Unknown path kind: {}	Ukendt vejtype: {}
+Unknown placeholder {}: possible are {}	Ukendt pladsholder {}: mulige er {}
+Unknown potential kind: {}	Ukendt potentialetype: {}
+Unknown preset: {}	Ukendt forudindstilling: {}
+Unknown program format {}	Ukendt programformat {}
+Unknown report: {}	Ukendt rapport: {}
+Unknown segment kind: {}	Ukendt type afsnit: {}
+Unknown segment: {}	Ukendt afsnit: {}
+Unknown separator: {}	Ukendt separator: {}
+Unknown setting: {}	Ukendt indstilling: {}
+Unknown shield ends: {}	Ukendte skærmender: {}
+Unknown side {} (socket or pin)	Ukendt side {} (socket eller pin)
+Unknown state: {}	Ukendt tilstand: {}
+Unknown station kind: {}	Ukendt stationstype: {}
+Unknown symbol: {}	Ukendt symbol: {}
+Unknown table: {}	Ukendt tabel: {}
+Unknown vertical anchor: {}	Ukendt lodret anker: {}
+Unknown wire colour {} (IEC 60757: {})	Ukendt ledningsfarve {} (IEC 60757: {})
+Use this scheme for the marking export	Brug dette skema til mærkningseksporten
+Used (mm)	Brugt (mm)
+Value while none is set	Værdi, så længe ingen er angivet
+Values of a selection list separated by commas	Værdier for en valgliste adskilt af kommaer
+Variant (empty: the first)	Variant (tom: den første)
+Variant {} is not one of 1 to 2	Variant {} er ikke en af 1 til 2
+Variant {} is not one of 1 to 4	Variant {} er ikke en af 1 til 4
+Verifies the project against the enabled rule libraries and customer rule sets	Verificerer projektet op imod de aktiverede regelbiblioteker og kunderegelsæt
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Verificerer projektdataene (id'er, henvisninger, optioner, delprojekter) og kører kontrollerne; reparerer eventuelt det, der kan repareres
+Vertical pitch of the pattern in mm	Mønstrets lodrette afstand i mm
+Voltage, e.g. 400 V AC	Spænding, f.eks. 400 V AC
+What it is: motor, valve, sensor, …	Hvad det er: motor, ventil, sensor, …
+Which line the position is on: top (first), middle or bottom (last)	Hvilken linje positionen er på: top (første), middle eller bottom (sidste)
+Who accepted it	Hvem der har accepteret den
+Whole words only	Kun hele ord
+Why the message is accepted	Hvorfor meddelelsen er accepteret
+Width in mm	Bredde i mm
+Width of the path in mm (default 50)	Vejens bredde i mm (standard 50)
+Width, depth and height of a room are at least {} mm	Bredde, dybde og højde for et rum er mindst {} mm
+Width, height and depth of an enclosure are at least {} mm	Bredde, højde og dybde for en kapsling er mindst {} mm
+Wire colour (IEC 60757), e.g. BK	Ledningsfarve (IEC 60757), f.eks. BK
+Wire colour, e.g. BU	Ledningsfarve, f.eks. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Ledningsfarve, f.eks. BU (tom = fra potentialedefinitionen)
+Wire number (kept when renumbering)	Ledningsnummer (bevares ved omnummerering)
+Wire numbering and wiring marks	Ledningsnummerering og ledningsmarkeringer
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Ledninger, der er for tynde til deres beskyttelsesudstyr, og kablernes spændingsfald (IEC 60204-1)
+Working area in x, mm	Arbejdsområde i x, mm
+Working area in y, mm	Arbejdsområde i y, mm
+Wrap width in mm (0: no wrapping)	Ombrydningsbredde i mm (0: ingen ombrydning)
+X position in mm	X-position i mm
+Y position in mm (downwards)	Y-position i mm (nedad)
+any, wires, cables or tubes	any, wires, cables eller tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip eller adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam eller product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi eller other
+copper or aluminium	copper eller aluminium
+device (default), position, cross_section or number	device (standard), position, cross_section eller number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages eller parts
+error, warning, info, off, or default to take the change back	error, warning, info, off eller default for at fortryde ændringen
+false takes the acceptance back (default true)	false trækker accepten tilbage (standard true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted eller middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) eller product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker eller other
+hose, tube or pipe	hose, tube eller pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (maskiner, faseledere BK) eller iec60445 (faseledere BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (standard), power, control, signal eller fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal eller other
+left, center, right, top, middle or bottom	left, center, right, top, middle eller bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail eller pattern
+main (default), supplementary or functional	main (standard), supplementary eller functional
+mounted, problem or open	mounted, problem eller open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond eller accessory
+numbers or letters	numbers eller letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof eller bottom
+plug_in, saddle or wire	plug_in, saddle eller wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp eller canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc eller cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable eller part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<navn>, device:<betegnelse>, function:<symbol-id>, cable:<betegnelse> eller part:<nummer>
+pvc or xlpe	pvc eller xlpe
+sequential, page_column, potential or format	sequential, page_column, potential eller format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium eller plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date eller link (standard text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt eller it
+too long	for lang
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (standard), ladder, trunking, conduit, drag_chain, buried eller free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit eller other
+wired, problem or open	wired, problem eller open
+{} and {} are both ends of one function: the wire would short-circuit it	{} og {} er begge ender af én funktion: ledningen ville kortslutte den
+{} and {} are needed together	{} og {} skal angives sammen
+{} cannot be bayed to itself	{} kan ikke sammenbygges med sig selv
+{} cannot be mounted on the {}	{} kan ikke monteres på {}
+{} exists already: pass merge to make both one identifier	{} findes allerede: angiv merge for at samle begge til én betegnelse
+{} has no enclosure bayed to its right side	{} har ingen kapsling sammenbygget på sin højre side
+{} has no enclosure system; give one	{} har intet kapslingssystem; angiv et
+{} is a built-in frame; give the frame a new name	{} er en indbygget ramme; giv rammen et nyt navn
+{} is a room already	{} er allerede et rum
+{} is ambiguous: use #id:pin	{} er tvetydig: Brug #id:pin
+{} is an enclosure already	{} er allerede en kapsling
+{} is not a connection point (TAG:PIN)	{} er ikke et tilslutningspunkt (TAG:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} er ikke en meddelelseskode, som check viser den (f.eks. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} er ikke et meddelelsesfingeraftryk, som check viser det (code:hash:item)
+{} is not defined	{} er ikke defineret
+{} is not in that section	{} er ikke i det afsnit
+{} is the source language	{} er kildesproget
+{} must be at least {}	{} skal være mindst {}
+{} must be between {} and {}	{} skal ligge mellem {} og {}
+{} must not be negative	{} må ikke være negativ
+{} of job {} changed since the hand-off	{} i ordre {} er ændret siden overdragelsen
+{} segments need {} bends	{} afsnit kræver {} bukninger
+{} would stand outside the room {}	{} ville stå uden for rummet {}
+{}: part {} is being phased out	{}: artikel {} er ved at blive udfaset
+{}: part {} is being phased out, successor {}	{}: artikel {} er ved at blive udfaset, efterfølger {}
+{}: part {} is discontinued	{}: artikel {} er udgået
+{}: part {} is discontinued, successor {}	{}: artikel {} er udgået, efterfølger {}
+{}: the program to run is missing	{}: programmet, der skal køres, mangler

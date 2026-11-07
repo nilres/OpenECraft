@@ -1,0 +1,953 @@
+# English<TAB>Українська – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: від лівого / верхнього плеча прямо до іншого плеча, потім до ніжки · 2: те саме від правого / нижнього плеча · 3: від ніжки до лівого / верхнього плеча, потім до іншого · 4: від ніжки спочатку до правого / нижнього плеча (типово 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: верхній / лівий кінець лінії йде впоперек до правого / нижнього плеча · 2: до лівого / верхнього плеча (типово 2)
+A cable definition needs a start and an end point	Визначення кабелю потребує початкової та кінцевої точки
+A copper bar needs at least one segment	Мідній шині потрібна щонайменше одна ділянка
+A segment cannot be moved below itself	Сегмент не можна перемістити під самого себе
+A segment needs two different nodes	Ділянці потрібні два різні вузли
+A wire needs at least two points	Провід потребує щонайменше двох точок
+A {} has no {}; it takes {}	{} не має {}; приймає {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid або custom
+Accepts a message as checked, so that it is no longer counted until it changes	Приймає повідомлення як перевірене, щоб воно більше не враховувалося, доки не зміниться
+Accessory part number, e.g. GEN.GLAND-M25	Номер виробу аксесуара, напр. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Активує (показує) або деактивує (приховує) вміст опції проєкту
+Additional power loss in W	Додаткові втрати потужності у W
+Address scheme: siemens, iec or rockwell	Схема адресації: siemens, iec або rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Додає зігнуту й просвердлену мідну шину (або замінює однойменну в корпусі)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Додає кабельний прохід до сусіда праворуч: круглі вирізи один навпроти одного в обох бічних стінках; проводи між корпусами проходять крізь нього
+Adds a configurator rule: insert a page macro when the condition holds	Додає правило конфігуратора: вставити макрос сторінки, коли умова виконується
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Додає вузол мережі трас (відгалуження, прохід, точка підходу до шафи чи пристрою)
+Adds a planned device to a segment or changes it	Додає запланований пристрій до сегмента або змінює його
+Adds a project option or changes its description and condition	Додає опцію проєкту або змінює її опис і умову
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Додає над монтажною панеллю трасу прокладання (кабельний лоток, напрямна шлангів), якій траси надають перевагу
+Adds a segment below another one (or at the top)	Додає сегмент під іншим (або на верхньому рівні)
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	Додає ділянку мережі трас між двома вузлами: кабельний лоток, драбина, короб, труба, кабельний ланцюг, у землі або вільне прокладання
+Adds a text to a page	Додає текст на сторінку
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Додає всі рядки текстів проєкту до словника, за бажанням вилучаючи записи, які більше не використовуються
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Додає аксесуар до кінця кабелю: ввід, ввід ЕМС, роз’єм, розвантаження від натягу, затискач екрана, захисний рукав, кінцеву втулку, маркер
+Adds an accessory to a device; it must fit one of the device's parts	Додає приладдя до пристрою; воно має підходити до одного з виробів пристрою
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Додає корпус: системи в одному з її розмірів (або довільного розміру) чи з виробу корпусу
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Додає провідник вирівнювання потенціалів між двома точками підключення (головна заземлювальна шина, шафи, струмопровідні контури, металеві кабельні конструкції)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Додає або змінює схему маркування проєкту, вилучає її або вибирає схему для експорту маркування
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Додає або змінює верстат проєкту (вбудований верстат з тим самим ідентифікатором замінюється) або вилучає його
+Adds the devices of a template to a segment	Додає пристрої шаблону до сегмента
+Adds the outline of a machine, building or area to the plant layout	Додає контур машини, будівлі або зони до плану установки
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Додає, замінює або вилучає профіль: конектор із назвами стовпців, які використовує інша система
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Вирівнює елементи, розподіляє їх рівномірно, шикує пристрої на рейці або копіює елементи масивом
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Вирівнює символи, тексти й графіку за спільним краєм або центром; під’єднані кінці проводів переміщуються разом
+Allow renaming onto an identifier in use: both become one	Дозволити перейменування на використовуване позначення: обидва стануть одним
+Allowed classes, comma separated: power, control, signal, fluid (default all)	Дозволені класи через кому: power, control, signal, fluid (за замовчуванням всі)
+Allowed values separated by commas (empty: any value)	Допустимі значення через кому (порожньо: будь-яке значення)
+Also create a bus cable for every connection without cable	Також створити шинний кабель для кожного з’єднання без кабелю
+Also properties without a value	Також властивості без значення
+Also remove entries the project no longer uses	Також вилучити записи, які проєкт більше не використовує
+Also renumber terminal strips, plugs and PLC cards	Також перенумерувати клемні колодки, штекери та плати ПЛК
+Also renumber wires with a fixed number	Також перенумерувати проводи з фіксованим номером
+Altitude of the site in m	Висота місця встановлення в м
+Ambient temperature of the conductors in °C	Температура навколишнього середовища провідників у °C
+An outline needs {} points at least	Контуру потрібно щонайменше {} точок
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Прив’язка вздовж осі: free, start:<mm>, center:<mm>, end:<mm> або stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Аспекти через кому, напр. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Призначає визначення функції розміщеному символу (позначення та схема переносяться)
+Asynchronous motors add to the short-circuit current	Асинхронні двигуни збільшують струм короткого замикання
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Автоматична апаратна конфігурація: станції для CPU і шинних з’єднувачів, шинні системи, плати до станцій, слоти, початкові адреси, адреси точок, IP-адреси та лінійна топологія
+Back to the default rules first	Спочатку повернутися до стандартних правил
+Back to the default strategy first	Спочатку повернутися до стандартної стратегії
+Back-up protection up to this short-circuit current in kA (0: not given)	Резервний захист до цього струму короткого замикання в kA (0: не задано)
+Bar id	Ідентифікатор шини
+Bar thickness, mm (default 5)	Товщина шини, мм (за замовчуванням 5)
+Bar width, mm (default 20)	Ширина шини, мм (за замовчуванням 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Приєднує корпус праворуч від іншого (з’єднання в ряд); без right_of корпус виходить зі свого ряду
+Bend radius in drag chains as a multiple of the cable diameter	Радіус згину в кабельних ланцюгах як кратне діаметра кабелю
+Bend radius of a drag chain in mm	Радіус згину кабельного ланцюга в мм
+Bend radius of cables as a multiple of the diameter	Радіус згину кабелів як кратне діаметра
+Bend radius of tubes as a multiple of the diameter	Радіус згину шлангів як кратне діаметра
+Bend radius of wires as a multiple of the diameter	Радіус згину проводів як кратне діаметра
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Згини між ділянками: кут, e – на ребро, r<радіус>, напр. 90; -90 e; 45 r10
+Between page and column (default .)	Між сторінкою і стовпцем (за замовчуванням .)
+Bonding point	Точка підключення вирівнювання потенціалів
+Border around the text	Обрамлення навколо тексту
+Both classes are needed	Потрібні обидва класи
+Bus system name	Назва шинної системи
+Bus system name, e.g. PN/IE_1	Назва шинної системи, напр. PN/IE_1
+Busbar machine program (CSV)	Програма верстата для обробки шин (CSV)
+CNC operations	Операції ЧПК
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Програми ЧПК для свердлильних, фрезерних і пробивних верстатів, згинання мідних шин, конфігуратор корпусів, передача у виробництво та зворотний зв’язок виробництва
+Cable tag, e.g. -W1	Позначення кабелю, напр. -W1
+Cable tag, e.g. -W20	Позначення кабелю, напр. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Калібрує оцінку часу верстатів за фактичним часом зі зворотного зв’язку виробництва
+Cannot read the plugin folder {}	Не вдається прочитати папку плагінів {}
+Cannot start {}: {}	Не вдається запустити {}: {}
+Card tag, e.g. -A1	Позначення плати, напр. -A1
+Category, e.g. coils, contacts, terminals, plc	Категорія, напр. coils, contacts, terminals, plc
+Centre from the rear wall in mm	Центр від задньої стінки в мм
+Centre from the top of the enclosure in mm	Центр від верхнього краю корпусу в мм
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Змінює Т-подібний вузол (напрямок, варіант, зображення), кут (плечі), перехрестя (лінія, варіант, зображення) або міст (напрямок, зображення)
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Змінює клітинку таблиці: позначення пристрою, текст функції, опис, виріб; номер проводу, колір, переріз, кабель, жила; колодка, клема
+Changes a placed symbol; when it moves, connected wire ends follow	Змінює розміщений символ; коли він переміщується, кінці підключених проводів слідують за ним
+Changes a text (only the given properties)	Змінює текст (лише задані властивості)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Переводить пристрої з виробами, що знімаються або зняті з виробництва, на вироби-наступники (наступники мають бути виробами проєкту)
+Changes name, description or structure of a page	Змінює назву, опис або структуру сторінки
+Changes name, description, function, location or parent of a segment	Змінює назву, опис, функцію, місце або батьківський сегмент сегмента
+Changes position, face, fastening or anchors of a panel item	Змінює положення, грань, кріплення або прив’язки елемента компонування
+Changes the device, connection and terminal tables	Змінює таблиці пристроїв, з’єднань і клем
+Changes the level of a kind of message (code as shown by check)	Змінює рівень типу повідомлення (код, як його показує check)
+Changes the properties of a wire	Змінює властивості проводу
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Змінює систему, розмір і компоненти корпусу (цоколь, приєднані сторони, фланцева панель); прив’язані елементи слідують за ними
+Check {} failed: {}	Помилка перевірки {}: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Перевіряє компонування шафи: колізії, відстані (монтажні, для вентиляції, ЕМС), простір для обслуговування, висоти над підлогою, класи колізій, температури та технологічність
+Chosen value	Вибране значення
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Відстані, простір для обслуговування, висоти, класи колізій, теплове моделювання та технологічність компонування шафи
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Тепловий режим корпусів (IEC/TR 60890): втрати потужності, внутрішня температура, потрібний вентилятор або холодильний агрегат і обігрів; за бажанням змінює параметри одного корпусу
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Клас колізій: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, власний клас або * для будь-якого
+Column and row strips	Смуги стовпців і рядків
+Column mapping {field code: column name}	Зіставлення стовпців {код поля: назва стовпця}
+Column name, e.g. Description	Назва стовпця, напр. Description
+Columns of the pattern	Стовпці масиву
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Стовпці через кому: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Струмопровідна рама, яку потрібно включити у вирівнювання потенціалів
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Конфігурація корпусу для конфігуратора виробника корпусів: система, розмір, компоненти, аксесуари й обробка
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Умова конфігуратора, напр. HEATER=yes (порожньо: перемикається вручну)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Налаштовує шланг / трубку / трубопровід: тип лінії, виріб, кінцеві фітинги, номінальний тиск, радіус згину, середовище, розмір, колір і довжину
+Connection point TAG:PIN, e.g. -K1:A1	Точка підключення TAG:PIN, напр. -K1:A1
+Connection point designations separated by commas or blanks	Позначення точок підключення, розділені комами або пробілами
+Connection point designations, comma separated, e.g. 13,14	Позначення точок підключення через кому, напр. 13,14
+Connector id (required unless removing)	Ідентифікатор конектора (обов’язковий, крім вилучення)
+Connects two connection points with wires routed around symbols and other wires	З’єднує дві точки підключення проводами, прокладеними в обхід символів та інших проводів
+Connects two ports of stations with a network cable; connections already on these ports are replaced	З’єднує два порти станцій мережевим кабелем; наявні з’єднання на цих портах замінюються
+Copies function texts between the single-line diagram and the schematic where one side is empty	Копіює тексти функцій між однолінійною схемою та схемою там, де одна сторона порожня
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Копіює елементи кілька разів із фіксованою відстанню; пристрої отримують нові позначення, клеми – нові номери
+Copper bar cutting list	Карта розкрою мідних шин
+Copper bars	Мідні шини
+Corner points in metres	Кутові точки в метрах
+Corner points on the mounting plate in mm	Кутові точки на монтажній панелі в мм
+Correction of the time estimate	Корекція оцінки часу
+Cost of free air against ducts and routing paths	Вартість вільного прокладання порівняно з каналами та трасами прокладання
+Counting step (default 1)	Крок лічби (за замовчуванням 1)
+Creates a bus cable for the connection (without cable tag)	Створює шинний кабель для з’єднання (без позначення кабелю)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Створює кабель шинного типу (тип, жили, переріз) для кожного шинного з’єднання без кабелю
+Creates or changes a PCT loop of the pre-planning	Створює або змінює контур КВПіА попереднього планування
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Створює або змінює станцію ПЛК (контролер, розподілений ввід/вивід, привод, HMI). Зміна схеми адресації перетворює адреси її точок
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Створює або змінює шинну систему (PROFINET, EtherCAT, …)
+Creates or changes a configurator option	Створює або змінює параметр конфігуратора
+Creates or changes a fluid device group	Створює або змінює групу гідропневматичних пристроїв
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Створює або змінює рамку аркуша проєкту (вбудовані рамки копіюються під новою назвою)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Створює або змінює визначення потенціалу; його проводи беруть колір і переріз, якщо їх не задано на проводі
+Creates or changes a work area: only the pages and devices of its structure are shown	Створює або змінює робочу область: показуються лише сторінки й пристрої її структури
+Cross section, e.g. 0.75 mm²	Переріз, напр. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Переріз, напр. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Переріз, напр. 1.5 mm² (порожньо = з визначення потенціалу)
+Cross-section in mm²	Переріз у мм²
+Cross-section, e.g. 1.5 mm²	Переріз, напр. 1.5 mm²
+Current device tag	Поточне позначення пристрою
+Customer rule set to add or replace (by name), as exported	Набір правил замовника для додавання або заміни (за назвою), у форматі експорту
+Cut lengths of cables rounded up to this step in mm	Довжини відрізання кабелів округлюються вгору до цього кроку в мм
+Cut lengths of tubes rounded up to this step in mm	Довжини відрізання шлангів округлюються вгору до цього кроку в мм
+Cut lengths of wires rounded up to this step in mm	Довжини відрізання проводів округлюються вгору до цього кроку в мм
+Cut lengths rounded up to this step in metres	Довжини відрізання округлюються вгору до цього кроку в метрах
+Cut threads on the machine	Нарізати різьбу на верстаті
+Cutting allowance per tube end in mm	Припуск на відрізання на кінець трубки в мм
+Date (YYYY-MM-DD)	Дата (РРРР-ММ-ДД)
+Date of the acceptance	Дата прийняття
+Default property values	Значення властивостей за замовчуванням
+Default symbol key	Ключ символу за замовчуванням
+Define the identifiers in use (default: true)	Визначити використані позначення (за замовчуванням: true)
+Defines a reusable project function definition or changes it	Задає визначення функції проєкту для повторного використання або змінює його
+Defines a structure identifier or changes its description	Визначає структурне позначення або змінює його опис
+Defines a user property or changes it	Задає властивість користувача або змінює її
+Defines all identifiers in use and / or removes the definitions nobody uses	Визначає всі використані позначення та / або вилучає визначення, які ніхто не використовує
+Definition to start from	Вихідне визначення
+Deletes a PCT loop of the pre-planning	Видаляє контур КВПіА попереднього планування
+Deletes a configurator option	Видаляє параметр конфігуратора
+Deletes a configurator rule	Видаляє правило конфігуратора
+Deletes a fluid device group	Видаляє групу гідропневматичних пристроїв
+Deletes a page	Видаляє сторінку
+Deletes a page template of the project	Видаляє шаблон сторінки проєкту
+Deletes a plot frame of the project that no page uses	Видаляє рамку аркуша проєкту, яку не використовує жодна сторінка
+Deletes a potential definition	Видаляє визначення потенціалу
+Deletes a work area	Видаляє робочу область
+Deletes symbols, wires, texts and shapes	Видаляє символи, проводи, тексти та фігури
+Depth in mm	Глибина в мм
+Device description id (empty: from the parts)	Ідентифікатор опису пристрою (порожньо: з виробів)
+Device description id of the head (list_device_descriptions)	Ідентифікатор опису пристрою головного модуля (list_device_descriptions)
+Device group {} already exists	Група пристроїв {} вже існує
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Перелік пристроїв, специфікація, схеми клем, штекерів, кабелів і з’єднань, ПЛК, потенціали, шафа, гідропневматика, електричні та польові звіти
+Device number on the bus	Номер пристрою на шині
+Device tag of the CPU / bus coupler, e.g. -A0	Позначення пристрою CPU / шинного з’єднувача, напр. -A0
+Device tag of the end (both ends if missing)	Позначення пристрою на кінці (якщо не вказано – обидва кінці)
+Device tag of the fluid device, e.g. -QM1	Позначення гідропневматичного пристрою, напр. -QM1
+Device tag of the group, e.g. -KH1	Позначення пристрою групи, напр. -KH1
+Device tag within the segment, e.g. -M1	Позначення пристрою в сегменті, напр. -M1
+Device tag, e.g. -K1	Позначення пристрою, напр. -K1
+Device tag: the accessories that can still be added to its parts	Позначення пристрою: приладдя, яке ще можна додати до його виробів
+Device tags (text)	Позначення пристроїв (текст)
+Device tags of the members in slot order, separated by commas or blanks	Позначення пристроїв членів у порядку місць, розділені комами або пробілами
+Devices with parts that are phased out or discontinued, and their change to the successors	Пристрої з виробами, що знімаються або зняті з виробництва, і їх переведення на наступників
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Пристрої, проводи, потенціали, кабелі, клемні колодки, ПЛК, шафа, гідропневматика, електричні розрахунки, структура та переклади
+Diameter in mm	Діаметр у мм
+Diameter of a hole at both ends (0: none)	Діаметр отвору на обох кінцях (0: немає)
+Direction of the stem: left, right, up or down (default: from the wires there)	Напрямок ніжки: left, right, up або down (типово: за проводами в цій точці)
+Distance between power and signal or fluid in mm	Відстань між силовими та сигнальними або гідропневматичними лініями в мм
+Distance from devices, rails and busbars in mm	Відстань від пристроїв, рейок і збірних шин у мм
+Distance from the face in mm (rails: standoff height)	Відстань від грані в мм (рейки: висота дистанційних стійок)
+Distance in X (mm)	Відстань по X (мм)
+Distance in Y (mm)	Відстань по Y (мм)
+Distance of devices to cable ducts	Відстань від пристроїв до кабельних каналів
+Distance of devices to the plate edge	Відстань від пристроїв до краю панелі
+Distance of the border from the paper edge in mm	Відстань рамки від краю паперу в мм
+Distribute vertically (default horizontally)	Розподілити по вертикалі (за замовчуванням по горизонталі)
+Distributes symbols, texts and graphics evenly between the first and the last one	Рівномірно розподіляє символи, тексти й графіку між першим і останнім
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Коефіцієнт одночасності навантажень (0: IEC 61439-1, таблиця 101)
+Draw the contact image below coils (default true)	Відображати контакти під котушками (за замовчуванням true)
+Draw the junction as a connection dot; its routing stays	Малювати вузол як точку з'єднання; його маршрут зберігається
+Draw wires in their colour	Малювати проводи їхнім кольором
+Draw wires to the connection points facing its free arms	Провести проводи до точок підключення навпроти його вільних плечей
+Drawing	Креслення
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Малює лінію визначення кабелю; перетнуті нею проводи стають жилами кабелю (новий кабель, якщо кабель не вказано)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Малює провід між двома точками підключення, напр. -K1:A1 до -S1:14 (#id:pin для неоднозначних, назва для потенціалів, 1, 2… для точок без позначення)
+Draws a wire through two or more points	Малює провід через дві або більше точок
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Малює проводи на сторінках схем і в експорті PDF / SVG їхнім кольором або чорним
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Проводить проводи між вільними точками підключення символів, розташованими навпроти, і до вільних плечей Т-подібних вузлів і кутів
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Класи ЕМС кабелів (вихід приводу, аналогові, силові, сигнальні, екран) і проблеми ЕМС
+Edge length of the routing grid in mm	Довжина ребра сітки прокладання в мм
+Electrical device tags separated by commas or blanks (empty = remove the links)	Позначення електричних пристроїв, розділені комами або пробілами (порожньо = вилучити зв’язки)
+Electrical engineering	Електротехніка
+Enclosure (location, e.g. +CAB1)	Корпус (розташування, напр. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Корпус (розташування, напр. +CAB1), параметри якого змінюються
+Enclosure climate and electrical sizing	Клімат шафи та електричні розрахунки
+Enclosure it stands right of; empty to take it out of its line-up	Корпус, праворуч від якого він стоїть; порожньо – вивести його з ряду
+Enclosure name (all if missing)	Назва корпусу (усі, якщо не вказано)
+Enclosure part number	Номер виробу корпусу
+Enclosure system (default: the enclosure's)	Система корпусів (за замовчуванням: система корпусу)
+Enclosure {} exists already	Корпус {} вже існує
+Enclosures, panel items, accessories and panel macros	Шафи, елементи компонування, аксесуари та макроси компонування
+End brackets and end plates from the tech data of the terminal parts	Кінцеві фіксатори та кінцеві кришки з технічних даних виробів клем
+End holes from the bar end as a multiple of the width	Кінцеві отвори від кінця шини як кратне ширини
+End: device tag and connection point, e.g. -S1:14	Кінець: позначення пристрою та точка підключення, напр. -S1:14
+Engineering	Проєктування
+Face: plate, door, left, right, rear, roof or bottom	Грань: plate, door, left, right, rear, roof або bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Польовий план: вузли, ділянки, контури, траси, вирівнювання потенціалів і аксесуари
+Figure	Показник
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Знаходить і замінює текст у стовпці всіх (відфільтрованих) рядків; без тексту пошуку стовпець заповнюється заміною
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Шукає текст в усьому проєкті: сторінки, позначення пристроїв, тексти функцій, вільні тексти, номери проводів, клеми, кабелі, вироби, описи
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Знаходить найменший стандартний розмір системи корпусів, що вміщує компонування, і застосовує його
+Fingerprint of the message as shown by check	Відбиток повідомлення, як його показує check
+First address of the subnet, e.g. 192.168.0.0	Перша адреса підмережі, напр. 192.168.0.0
+First byte of the inputs (and outputs)	Перший байт входів (і виходів)
+First byte of the outputs if it differs; -1 removes it	Перший байт виходів, якщо відрізняється; -1 вилучає його
+First counter value (default 1)	Перше значення лічильника (за замовчуванням 1)
+First page number (default 1)	Номер першої сторінки (за замовчуванням 1)
+First port as station:port, e.g. PLC1:X1 P2	Перший порт у форматі станція:порт, напр. PLC1:X1 P2
+First row with the column names	Перший рядок із назвами стовпців
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат назви пристрою: {letter}, {n} (лічильник), {page}, {column}, {row}; за замовчуванням {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схеми format: {n} (лічильник), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Вихідна рамка для нової рамки (за замовчуванням: A3 landscape)
+Free space in front of every device on the plate	Вільний простір перед кожним пристроєм на панелі
+Freezes routes for production (kept by the recalculation while possible) or releases them	Фіксує траси для виробництва (зберігаються під час перерахунку, доки це можливо) або розблоковує їх
+Frequency in Hz	Частота в Hz
+Function (= without the sign; empty: the parent's)	Функція (= без знака; порожньо: функція батьківського сегмента)
+Function aspect (=) of the page; the devices on the page move along	Аспект функції (=) сторінки; пристрої сторінки переміщуються разом із нею
+Function definition key	Ключ визначення функції
+Function filter (= A1, A*; empty = any)	Фільтр функції (= A1, A*; порожньо = будь-яка)
+Further device tags of the loop, separated by commas or blanks	Інші позначення пристроїв контуру, розділені комами або пробілами
+Gap between devices side by side	Проміжок між пристроями, розташованими поруч
+Gap between the devices on the rail in mm	Проміжок між пристроями на рейці в мм
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Генерує однолінійну схему для силових пристроїв схеми, які її ще не мають, на новій оглядовій сторінці після вказаної сторінки
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Генерує програму ЧПК грані для її верстата (ISO G-код, Heidenhain, код пробивання або CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Генерує багатолінійну схему (силові символи, провідники, котушки контакторів) для однолінійних символів сторінки на новій сторінці після неї
+Generates the program of the busbar machine: cuts, punched holes and bends	Генерує програму верстата для обробки шин: різи, пробиті отвори та згини
+Give a device tag or a part number	Вкажіть позначення пристрою або номер виробу
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Групує елементи у збірку, яка вибирається й переміщується разом; без назви елементи виходять зі своїх збірок
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передає програми корпусу у виробництво як завдання: маніфест і програми всіх його граней і мідних шин
+Has a divider between power and signal cables	Має розділювальну перегородку між силовими та сигнальними кабелями
+Height above the floor in metres	Висота над підлогою в метрах
+Height above the mounting plate in mm (default 50)	Висота над монтажною панеллю в мм (за замовчуванням 50)
+Height in mm	Висота в мм
+Height in mm without plinth; negative: unknown (wall mounted)	Висота в мм без цоколя; від’ємне значення: невідомо (настінний монтаж)
+Higher-level product aspect (-) of the page; the devices on the page move along	Аспект виробу вищого рівня (-) сторінки; пристрої сторінки переміщуються разом із нею
+Highest actuator on the door above the floor (0: not checked)	Найвищий орган керування на дверцятах над підлогою (0: не перевіряється)
+Highest air temperature at devices without data (0: not checked)	Найвища температура повітря біля пристроїв без даних (0: не перевіряється)
+Highest ambient temperature in °C	Максимальна температура навколишнього середовища в °C
+Highest device above the floor (0: not checked)	Найвищий пристрій над підлогою (0: не перевіряється)
+Highest inside temperature in °C	Максимальна внутрішня температура в °C
+Highest three-phase short-circuit current at the supply in kA	Найбільший трифазний струм короткого замикання на вводі живлення в kA
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Отвори: ділянка:відстань:діаметр, напр. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Горизонтальне вирівнювання: left, center або right
+Horizontal pitch of the pattern in mm	Горизонтальний крок масиву в мм
+Hose colour	Колір шланга
+Hose number or fluid net (F1)	Номер шланга або гідропневматична мережа (F1)
+Hose number prefix, e.g. H	Префікс номерів шлангів, напр. H
+Hoses / pipes: length in m	Шланги / трубопроводи: довжина в м
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Шланги / трубопроводи: середовище (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; порожньо = стандарт проєкту)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Шланги, гідропневматичні мережі та групи, електрогідропневматичні зв’язки та контури PCT
+Hyperlink (URL)	Гіперпосилання (URL)
+IP address or bus address	IP-адреса або адреса на шині
+IT system with distributed neutral	IT-система з розподіленим нейтральним провідником
+Id of the panel item (from mounting_list)	Ідентифікатор елемента компонування (з mounting_list)
+Id of the path or reservation	Ідентифікатор траси або резервування
+Id of the text	Ідентифікатор тексту
+Identifier, e.g. A1 or CAB1	Позначення, напр. A1 або CAB1
+Ids of page items	Ідентифікатори елементів сторінок
+Ids of symbols and connection symbols (default: all symbols of the page)	Id символів і символів з'єднань (типово: усі символи сторінки)
+In front of the page name (default /)	Перед назвою сторінки (за замовчуванням /)
+Inner height in mm (0 = no limit)	Внутрішня висота в мм (0 = без обмежень)
+Inner radius as a multiple of the thickness	Внутрішній радіус як кратне товщини
+Inner width in mm (0 = no limit)	Внутрішня ширина в мм (0 = без обмежень)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Вставляє 3D-макрос як збірку: прив’язані елементи – на їхнє місце, інші – відносно x / y на грані
+Installation site aspect (++) of the page; the devices on the page move along	Аспект місця встановлення (++) сторінки; пристрої сторінки переміщуються разом із нею
+Installation site filter (++)	Фільтр місця встановлення (++)
+Integration profiles and status	Профілі та стан інтеграції
+Interruption points refer to: all (default), star or pairs	Точки розриву посилаються на: all (за замовчуванням), star або pairs
+Invalid answer of the plugin: {}	Недійсна відповідь плагіна: {}
+Invalid segment name: {}	Недійсна назва сегмента: {}
+Item id	Ідентифікатор елемента
+Item ids	Ідентифікатори елементів
+Jumper number	Номер перемички
+Jumper number (terminals with the same number are bridged); 0 removes it	Номер перемички (клеми з однаковим номером з’єднано перемичкою); 0 вилучає її
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Зберігати ступінь захисту: теплообмінник або холодильний агрегат замість фільтрувальних вентиляторів
+Key figures of the project and a list of its device tags	Ключові показники проєкту та список позначень його пристроїв
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Ключові показники проєкту: сторінки, символи, проводи, пристрої, вироби, кабелі та результати перевірок
+Key, e.g. user.coupling_relay	Ключ, напр. user.coupling_relay
+Key, e.g. user.customer_code	Ключ, напр. user.customer_code
+Keys of the routes, comma separated (all if missing)	Ключі трас через кому (усі, якщо не вказано)
+Kind: machining, punching or busbar	Тип: machining, punching або busbar
+Label: terminal number, PLC address or potential name	Мітка: номер клеми, адреса ПЛК або назва потенціалу
+Landscape (true) or portrait (false)	Альбомна (true) або книжкова (false)
+Language the project texts are written in, e.g. en	Мова, якою написано тексти проєкту, напр. en
+Larger round holes are milled, mm	Більші круглі отвори фрезеруються, мм
+Largest difference between hole and tool, mm	Найбільша різниця між отвором та інструментом, мм
+Left edge on the face in mm	Лівий край на грані в мм
+Left edge on the mounting plate in mm	Лівий край на монтажній панелі в мм
+Left side bayed (no side panel)	Ліва сторона приєднана (без бічної стінки)
+Length added at each cable end in metres	Запас на кожному кінці кабелю в метрах
+Length added to each cable end in mm	Довжина, що додається до кожного кінця кабелю, у мм
+Length from the node to the device in metres	Довжина від вузла до пристрою в метрах
+Length in metres	Довжина в метрах
+Length in metres (default from the node positions)	Довжина в метрах (за замовчуванням – за позиціями вузлів)
+Length inside an enclosure per end in metres	Довжина всередині шафи на кожен кінець у метрах
+Length of a shield pigtail in mm	Довжина косички екрана в мм
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Ярус багатоярусної клеми (1 = нижній); верхні яруси розташовуються на блоці попередньої клеми
+Library id or customer rule set name to no longer verify against	Ідентифікатор бібліотеки або назва набору правил замовника, за яким більше не виконується перевірка
+Library id or customer rule set name to verify against	Ідентифікатор бібліотеки або назва набору правил замовника, за яким виконується перевірка
+Line in the source language	Рядок мовою оригіналу
+Line-to-line voltage in V	Лінійна напруга у V
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Пов’язує гідропневматичний пристрій з електричними пристроями, які приводять його в дію або контролюють (замінює зв’язки)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Пов’язує електромагнітні клапани з котушкою з тим самим номером (-QM3 › -MB3) і копіює тексти функцій між пов’язаними пристроями
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Перелічує канали ПЛК і функції призначених виробів, які ще не розміщено, із символом, позначенням, написом і контактами для place_symbol
+Lists and renames devices, adds accessories to their parts	Виводить і перейменовує пристрої, додає приладдя до їхніх виробів
+Lists the 3D macros: the project's own and the built-in ones	Перелічує 3D-макроси: власні макроси проєкту та вбудовані
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	Показує 3D-прокладання: прокладені проводи, кабелі та шланги з довжинами й станом, пучки, відгалуження, екрани, траси прокладання, зміни та проблеми
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	Перелічує верстати з ЧПК (вбудовані та проєкту) з їхніми інструментами та верстат для кожної грані
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Перелічує контури КВПіА попереднього планування та приладів P&ID з їхніми пристроями і станом проєктування
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Перелічує Т-подібні вузли, кути, перехрестя та мости з їхнім маршрутом і проводами їхнього з'єднання
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Виводить приладдя, що підходить до виробу або виробів пристрою, і вироби, до яких підходить приладдя (вироби проєкту, вбудовані та постачені каталоги)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Перелічує розгортки мідних шин: довжина, згини в порядку виконання, отвори, проблеми та розкрій зі складських довжин
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	Перелічує описи пристроїв апаратного забезпечення ПЛК: імпортовані, з виробів проєкту та вбудовані універсальні
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Перелічує пристрої однолінійної схеми та силові пристрої схеми з їхнім станом: заплановано, спроєктовано, немає в однолінійній схемі або не відповідає
+Lists the devices with cross references and assigned parts	Перелічує пристрої з перехресними посиланнями та призначеними виробами
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Перелічує корпуси з їхньою системою, компонентами (збірка), елементами на кожній грані та збірками
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Перелічує групи гідропневматичних пристроїв (клапанні острови, блоки підготовки повітря, розподільні плити) з їхніми пристроями в порядку місць
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Перелічує гідропневматичні пристрої з котушками або зв’язками та пов’язані з ними електричні пристрої
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Показує список гідропневматичних мереж: кожна лінія шланга з видом лінії (напірна, робоча, злив, керування …), середовищем, розміром і портами з їхньою функцією
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Перелічує визначення функцій із категорією, видом шаблону функцій, літерним кодом, символом за замовчуванням і використанням
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Перелічує шланги й трубопроводи (з’єднання між портами гідро-/пневмотехніки) із середовищем, номінальним розміром, кольором і довжиною
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Перелічує елементи компонування шафи в порядку монтажу з місцем, розміром, виробом і станом монтажу
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Перелічує схеми маркування для програм маркування (вбудовані та проєкту) і вибрану схему
+Lists the page templates (built-in and the project's own)	Перелічує шаблони сторінок (вбудовані та власні шаблони проєкту)
+Lists the pages of the project	Перелічує сторінки проєкту
+Lists the placement schemes with their properties and the number of symbols using them	Перелічує схеми розміщення з їхніми властивостями та кількістю символів, що їх використовують
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Перелічує рамки аркушів (формат паперу, орієнтація, стовпці та рядки) і стандарт проєкту
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Перелічує штекери з кількістю зайнятих штирів, кількістю полюсів їхніх виробів і виробами
+Lists the potential definitions and the wire default of nets without a defined potential	Перелічує визначення потенціалів і параметри проводів за замовчуванням для мереж без визначеного потенціалу
+Lists the project options that show or hide model content	Перелічує опції проєкту, що показують або приховують вміст моделі
+Lists the properties of an object with their values and where they come from	Перелічує властивості об’єкта з їхніми значеннями та походженням
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Перелічує визначення властивостей (вбудовані й користувацькі) з класом об’єкта, групою, типом і одиницею
+Lists the report blocks with their report, scheme, groups and generated pages	Перелічує блоки звітів з їхнім звітом, схемою, групами та згенерованими сторінками
+Lists the report schemes (named report forms) with their settings	Перелічує схеми звітів (іменовані форми звітів) з їхніми параметрами
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Перелічує прокладені проводи компонування шафи як контрольний список монтажу з обробкою кінців, станом і ходом виконання
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Перелічує сегменти в порядку дерева зі структурою, запланованою потужністю та запланованими пристроями з їхнім станом на схемі
+Lists the source and target languages of the project texts with the number of untranslated lines	Перелічує мову оригіналу та цільові мови текстів проєкту з кількістю неперекладених рядків
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Показує керування структурою: аспекти сторінок, визначені та використані позначення, робочі області
+Lists the subprojects taken out of the project, or the project it was taken from	Перелічує підпроєкти, винесені з проєкту, або проєкт, з якого його винесено
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Перелічує символи, які можна розмістити, з їхніми точками підключення відносно точки вставлення
+Lists the terminal strips with their number of terminals and length on the rail	Перелічує клемні колодки з кількістю клем і довжиною на рейці
+Lists the translation dictionary of the project texts (source line and translations)	Перелічує словник перекладів текстів проєкту (рядок оригіналу та переклади)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Перелічує віконні макроси, розміщені на сторінках (рамки макросів), з макросом, варіантом, значеннями заповнювачів і кількістю елементів
+Load losses of the transformer in W (0: typical)	Втрати короткого замикання трансформатора у W (0: типові)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Навантаження мережі, навантаження кожного захисного пристрою, потреба з коефіцієнтом одночасності, баланс фаз і баланс навантаження блоків живлення
+Loads the potential definitions of a standard (replaces those of the same name)	Завантажує визначення потенціалів стандарту (замінює однойменні)
+Location (+ without the sign; empty: the parent's)	Місце (+ без знака; порожньо: місце батьківського сегмента)
+Location aspect (+) of the page; the devices on the page move along	Аспект розташування (+) сторінки; пристрої сторінки переміщуються разом із нею
+Location filter (+)	Фільтр розташування (+)
+Location or device tag	Розташування або позначення пристрою
+Loop number	Номер контуру
+Loop number, e.g. 101	Номер контуру, напр. 101
+Lowest actuator on the door above the floor	Найнижчий орган керування на дверцятах над підлогою
+Lowest ambient temperature in °C	Мінімальна температура навколишнього середовища в °C
+Lowest device above the floor	Найнижчий пристрій над підлогою
+Lowest inside temperature in °C	Мінімальна внутрішня температура в °C
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	Найменший струм замикання фаза–земля на вводі живлення в kA (0: з ik_max)
+Lowest terminal above the floor	Найнижча клема над підлогою
+Machine id (default: the busbar machine)	Ідентифікатор верстата (за замовчуванням: верстат для обробки шин)
+Machine id (default: the machine of the face)	Ідентифікатор верстата (за замовчуванням: верстат грані)
+Machine id (snake_case)	Ідентифікатор верстата (snake_case)
+Machine id {} is not snake_case	Ідентифікатор верстата {} не у форматі snake_case
+Machine of that face (empty: the sheet machine)	Верстат для цієї грані (порожньо: верстат для листа)
+Machine of the copper bars	Верстат для мідних шин
+Machine of the sheet metal faces	Верстат для граней з листового металу
+Machine {} is in use	Верстат {} використовується
+Macro name	Назва макросу
+Makes pages or page items content of a project option	Робить сторінки або елементи сторінок вмістом опції проєкту
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Робить проводи на контактах роз'єму жилами плоского кабелю (шлейфу): контакт n отримує жилу n, як у роз'ємів IDC
+Manufacturing package (CNC programs, JSON)	Виробничий пакет (програми ЧПК, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	Маркери через кому: device, terminal, wire, cable (порожньо: усі)
+Marks a panel item as mounted or as a problem, or as open again	Позначає елемент компонування як встановлений, як проблемний або знову як відкритий
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Позначає прокладений провід як змонтований, як проблему або знову як відкритий; провід задається двома кінцями
+Maximum fill of a carrier in percent	Максимальне заповнення кабельної конструкції у відсотках
+Maximum operating pressure in bar	Максимальний робочий тиск у bar
+Measuring range or set point	Діапазон вимірювання або уставка
+Message code, e.g. wires.3f9a1c	Код повідомлення, напр. wires.3f9a1c
+Milling feed, mm/min	Подача фрезерування, мм/хв
+Mirror the symbol	Віддзеркалити символ
+Moves symbols, wires and texts; connected wire ends follow	Переміщує символи, проводи й тексти; кінці підключених проводів слідують за ними
+Moves the page before this page of its section (or of the section given)	Переміщує сторінку перед цією сторінкою її розділу (або вказаного розділу)
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Переміщує розділ перед цим розділом його батьківського розділу (або вказаного); номери йдуть по порядку
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Компонування шаблону джгута: відгалуження від спільного вузла до роз’ємів із довжиною, напрямком, діаметром джгута й штирями, а також масштаб креслення
+Name of the assembly	Назва збірки
+Name of the bar, e.g. L1 -Q1	Назва шини, напр. L1 -Q1
+Name of the check	Назва перевірки
+Name of the customer rule set to remove	Назва набору правил замовника для вилучення
+Name of the frame	Назва рамки
+Name of the machine	Назва верстата
+Name of the main earthing terminal	Назва головної заземлювальної шини
+Name of the safety function to remove	Назва функції безпеки для вилучення
+Name of the segment	Назва сегмента
+Name of the template	Назва шаблону
+Name of the work area	Назва робочої області
+Name or id; the tag for places	Назва або ідентифікатор; для розміщень – позначення
+Name, e.g. the location +M1	Назва, напр. розташування +M1
+New device tag	Нове позначення пристрою
+New identifier	Нове позначення
+New page name	Нова назва сторінки
+New parent segment (empty: top level)	Новий батьківський сегмент (порожньо: верхній рівень)
+New value	Нове значення
+No PCT loop {}	Немає контуру КВПіА {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Вбудованої перевірки з назвою {} немає: налаштування стосується перевірки плагіна з цією назвою (list_checks)
+No bus system {}	Немає шинної системи {}
+No connection point {} on this page	На цій сторінці немає точки підключення {}
+No connection symbol with id {}	Немає символу з'єднання з id {}
+No copper bar {}	Немає мідної шини {}
+No device description {}	Немає опису пристрою {}
+No device group {}	Немає групи пристроїв {}
+No enclosure named {}	Немає корпусу з назвою {}
+No entry for {} and {}	Немає запису для {} і {}
+No hose {}	Немає шланга {}
+No identifier {} in the project	У проєкті немає позначення {}
+No item with id {}	Немає елемента з ідентифікатором {}
+No item {}	Немає елемента {}
+No items to save in {}	Немає елементів для збереження в {}
+No macro named {}	Немає макросу з назвою {}
+No panel item with id {}	Немає елемента компонування з ідентифікатором {}
+No planned device {}	Немає запланованого пристрою {}
+No potential definition {}	Немає визначення потенціалу {}
+No project function definition {}	Немає визначення функції проєкту {}
+No routed item {}	Немає прокладеного елемента {}
+No routed wire {} – {}	Немає прокладеного проводу {} – {}
+No routing path or reservation {}	Немає траси прокладання або резервування {}
+No rule for {} and {}	Немає правила для {} і {}
+No rule library or rule set {}	Немає бібліотеки правил або набору правил {}
+No rule {}	Немає правила {}
+No safety function {}	Немає функції безпеки {}
+No standard size of {} holds the layout of {}	Жоден стандартний розмір {} не вміщує компонування {}
+No terminal strip {}	Немає клемної колодки {}
+No terminal {} on strip {}	Немає клеми {} на колодці {}
+No text with id {}	Немає тексту з ідентифікатором {}
+No three wires meet at {} / {} mm: give the direction of the stem	У точці {} / {} мм не сходяться три проводи: вкажіть напрямок ніжки
+No transformer: set {} first	Немає трансформатора: спочатку задайте {}
+No wire at {} / {} mm	У точці {} / {} мм немає проводу
+No wire with id {}	Немає проводу з ідентифікатором {}
+No work area named {}	Немає робочої області з назвою {}
+Node name or id	Назва або ідентифікатор вузла
+Node {} exists already	Вузол {} уже існує
+Nodes to pass in this order, comma separated	Вузли для проходження в цьому порядку, через кому
+Nominal size, e.g. 8 mm or DN25	Номінальний розмір, напр. 8 мм або DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Не є перерізом: {} (напр. 1.5 mm²)
+Not a valid safety function: {}	Недійсна функція безпеки: {}
+Note, e.g. what the problem is	Примітка, напр. у чому полягає проблема
+Nothing to remove: {} {}	Нічого вилучати: {} {}
+Number of columns	Кількість стовпців
+Number of copies (default 1)	Кількість копій (за замовчуванням 1)
+Number of equal bars	Кількість однакових шин
+Number of indexed values (0 = a single value)	Кількість індексованих значень (0 = одне значення)
+Number of rows	Кількість рядків
+Numbers the pages with a start value and step; released pages keep their name	Нумерує сторінки з початковим значенням і кроком; затверджені сторінки зберігають назву
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Нумерує клеми колодки 1 … n у порядку колодки; нечислові позначення, як-от PE, зберігаються
+Numbers the wires by the numbering scheme of the project	Нумерує проводи за схемою нумерації проєкту
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=значення, OPTION!=значення, OPTION=a|b, об’єднані через & (порожньо: завжди)
+Offset from the symbol position in mm (default: below the symbol)	Зміщення від позиції символу в мм (за замовчуванням: під символом)
+One end, e.g. -K1:A1	Один кінець, напр. -K1:A1
+One row per printed label instead of a count	Один рядок на кожну надруковану мітку замість кількості
+Only devices on these pages (names separated by commas)	Лише пристрої на цих сторінках (назви через кому)
+Only lines without a translation into this language	Лише рядки без перекладу цією мовою
+Only list the new tags, change nothing	Лише перелічити нові позначення, нічого не змінювати
+Only shows the package, no job is recorded	Лише показує пакет, завдання не реєструється
+Only shows what would change	Лише показує, що буде змінено
+Only the pages of this work area (list_structure)	Лише сторінки цієї робочої області (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Лише ці літерні коди (через кому, напр. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Лише ці типи через кому: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Лише ці типи через кому: page, function_text, text, description
+Only these pages (names separated by commas)	Лише ці сторінки (назви через кому)
+Only this part number	Лише цей номер виробу
+Only wire, cable or tube	Лише wire, cable або tube
+Only wires with this state: open, wired, changed or problem	Лише проводи з цим станом: open, wired, changed або problem
+Opaque background in the paper colour	Непрозорий фон кольору паперу
+Openings: auto (punch of the size, else contour) or contour	Вирізи: auto (пуансон відповідного розміру, інакше контур) або contour
+Operating pressure in bar (0 = hose ratings are not checked)	Робочий тиск у bar (0 = номінальний тиск шлангів не перевіряється)
+Operations	Операції
+Option name	Назва параметра
+Option name, e.g. STARTER	Назва параметра, напр. STARTER
+Options and rules of the configurator	Опції та правила конфігуратора
+Other end, e.g. -X1:3	Інший кінець, напр. -X1:3
+Outer diameter in mm, 0 = estimated	Зовнішній діаметр у мм, 0 = оцінюється
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Зовнішні довжини прямих ділянок, мм, напр. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Перекриття ударів висічки (0 … 0.9)
+PCT loop {} already exists	Контур КВПіА {} вже існує
+PLC hardware: stations, cards, bus systems and port connections	Апаратне забезпечення ПЛК: станції, плати, шинні системи та з’єднання портів
+Page macro name	Назва макросу сторінки
+Page macro that generates its schematic	Макрос сторінки, що генерує його схему
+Page name (default: all pages)	Назва сторінки (типово: усі сторінки)
+Page {} is generated and cannot be edited	Сторінка {} генерується, її не можна редагувати
+Page {} is out in subproject {}: insert or discard the subproject first	Сторінку {} винесено в підпроєкт {}: спочатку вставте підпроєкт назад або відкиньте його
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Сторінки із суфіксом (3.a) залишаються підсторінками попередньої сторінки (за замовчуванням true)
+Panel layout checks	Перевірки компонування шафи
+Panel manufacturing	Виготовлення шаф
+Paper height in mm (custom paper)	Висота паперу в мм (власний формат)
+Paper width in mm (custom paper)	Ширина паперу в мм (власний формат)
+Part lifecycle	Життєвий цикл виробу
+Part number of the accessory	Номер виробу приладдя
+Part number of the base	Номер виробу основи
+Part number of the carrier (per metre)	Номер виробу кабельної конструкції (на метр)
+Part number of the conductor (per metre)	Номер виробу провідника (на метр)
+Part number of the downstream device	Номер виробу наступного пристрою
+Part number of the hose / tube / pipe	Номер виробу шланга / трубки / трубопроводу
+Part number of the upstream device	Номер виробу попереднього пристрою
+Part number, e.g. GEN.LMP-GN-24	Номер виробу, наприклад GEN.LMP-GN-24
+Part of the key or name	Частина ключа або назви
+Part {} has no function with a symbol	Виріб {} не має функції із символом
+Parts phased out or discontinued	Вироби, що знімаються або зняті з виробництва
+Pass ids or pages	Укажіть ідентифікатори або сторінки
+Path function text: function text of the functions in its column that have none	Текст функції шляху: текст функції для функцій у його стовпці, які не мають власного
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Значення заповнювачів KEY=значення; KEY2=значення (можна використовувати {OPTION})
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Встановлює плату ПЛК (модуль вводу/виводу) у станцію: монтажний каркас, слот, початкові адреси та опис пристрою; переадресовує її точки
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Ставить міст, де сходяться чотири проводи: з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного, потім до лівого / верхнього, потім до правого / нижнього
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Розміщує точку визначення з’єднання на проводі; з’єднання бере її номер, колір і переріз
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Ставить кут: там сходяться два проводи під прямим кутом, і точки підключення навпроти його плечей з'єднуються з ним
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Ставить спрямований Т-подібний вузол, де сходяться три проводи: він задає пристрій, від якого йдуть два проводи з'єднання (джерело), і порядок їхніх цілей замість порядку на схемі
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Ставить спрямоване перехрестя, де перехрещуються два проводи: воно з'єднує їх, і кожен кінець його лінії з'єднується спочатку прямо, потім з одним плечем упоперек
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Розміщує виріб на сторінці: символ його основної функції з позначеннями точок підключення, як новий пристрій, якому призначено виріб (вироби проєкту та приклад каталогу)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Розміщує символ на сторінці. Без позначення використовується наступне вільне; допоміжні контакти отримують наступні вільні номери контактів свого пристрою
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Розміщує шафу (+CAB1), пристрій (-M1) або місце на машині (+M1) у вузлі мережі трас
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Розміщує аксесуар корпусу (вентилятор, фільтр, кабельний ввід, світильник, ручку, шину PE) на грані
+Places of the group (0 = not limited)	Місця групи (0 = без обмеження)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Розміщує ряд корпусу в приміщенні (3D-вигляд усіх корпусів); без x і z ряд розміщується за планом установки або поруч з іншими рядами
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Розміщує властивості схеми на символах; без ідентифікаторів розміщує її знову на всіх символах, що її використовують
+Planned part number	Запланований номер виробу
+Planned power in kW	Запланована потужність у kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Планує польові кабелі через мережу трас: шляхи, довжини, заповнення ділянок, вирівнювання потенціалів і проблеми; за потреби переносить довжини відрізання
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Планує обробку грані: операції (свердління, нарізання різьби, фрезерування, пробивання, висічка), інструменти, шлях, час і те, чого верстат не може виготовити
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Сегменти установки із запланованими пристроями до створення схеми: шаблони, баланс потужності, стан відносно схеми, обмін у CSV / Excel
+Plinth height in mm, 0 without plinth	Висота цоколя в мм, 0 – без цоколя
+Plot frame (list_frames); empty = the project default	Рамка аркуша (list_frames); порожньо = стандарт проєкту
+Plot frames and page templates of the project	Рамки креслень і шаблони сторінок проєкту
+Plug tag, e.g. -X10	Позначення штекера, напр. -X10
+Plugin id '{}' is not snake_case	Ідентифікатор плагіна '{}' не у форматі snake_case
+Plugin {} is loaded twice	Плагін {} завантажено двічі
+Plugin {} needs a newer OpenECraft (API {})	Плагіну {} потрібна новіша версія OpenECraft (API {})
+Plugin {}: the name '{}' is invalid or already taken	Плагін {}: назва '{}' недійсна або вже зайнята
+Plugin {}: {}	Плагін {}: {}
+Plugs and their pins	Штекери та їхні контакти
+Points in between: [[x, y], …]	Проміжні точки: [[x, y], …]
+Points in mm: [[x, y], …]	Точки в мм: [[x, y], …]
+Port as station:port	Порт у форматі станція:порт
+Port must be given as station:port: {}	Порт слід вказати у форматі станція:порт: {}
+Port {} is not connected	Порт {} не підключено
+Position down in metres	Позиція донизу в метрах
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Положення нейтрального шару (0 … 1, 0: DIN 6935)
+Position right in metres	Позиція праворуч у метрах
+Position {} / {} mm lies outside the page ({} x {} mm)	Позиція {} / {} мм поза сторінкою ({} x {} мм)
+Potential definitions, wire defaults and wire colours	Визначення потенціалів, параметри проводів за замовчуванням і кольори проводів
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Типи потенціалів, з’єднання яких не отримують номера, через кому (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Назва потенціалу, напр. L1 або +24V
+Potential {} already exists	Потенціал {} вже існує
+Pre-planning (CSV)	Попереднє планування (CSV)
+Pre-planning (Excel)	Попереднє планування (Excel)
+Problems	Проблеми
+Product filter (-)	Фільтр виробу (-)
+Production status	Стан виробництва
+Profile name, e.g. SAP	Назва профілю, напр. SAP
+Program format: iso, heidenhain, punch or csv	Формат програми: iso, heidenhain, punch або csv
+Programs	Програми
+Progress (%)	Хід виконання (%)
+Project checks	Перевірки проєкту
+Project exports	Експорти проєкту
+Project languages, dictionary and translations	Мови проєкту, словник і переклади
+Project reports	Звіти проєкту
+Project statistics	Статистика проєкту
+Property and function definitions, property values and placement schemes	Визначення властивостей і функцій, значення властивостей і схеми розміщення
+Property key	Ключ властивості
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Ключі та значення властивостей, напр. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Додається перед номерами, напр. W
+Quantity per end (default 1)	Кількість на кінець (за замовчуванням 1)
+R/X ratio of the supply impedance	Співвідношення R/X опору мережі
+Rack number	Номер монтажного каркаса
+Rail id (action rail)	Ідентифікатор рейки (дія rail)
+Rapid traverse, mm/min	Прискорене переміщення, мм/хв
+Rated current of the supply in A (0: not limited)	Номінальний струм живлення в A (0: без обмеження)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Номінальна потужність живильного трансформатора в kVA (0: немає, струми короткого замикання задано)
+Rear left corner of the line-up in mm, to the right	Задній лівий кут ряду в мм, праворуч
+Rear left corner of the line-up in mm, towards the front	Задній лівий кут ряду в мм, вперед
+Relative humidity of the ambient air in % (0: no condensation check)	Відносна вологість навколишнього повітря в % (0: без перевірки конденсації)
+Release instead of freeze	Розблокувати замість фіксації
+Released pages keep their names: {}	Затверджені сторінки зберігають свої назви: {}
+Remote I/O: station of the controller	Розподілений ввід/вивід: станція контролера
+Remove the entry of upstream and downstream	Вилучити запис для upstream і downstream
+Remove the profile	Вилучити профіль
+Remove the scheme from the project	Вилучити схему з проєкту
+Remove unused definitions (default: false)	Вилучити невикористані визначення (за замовчуванням: false)
+Removes a copper bar	Вилучає мідну шину
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Вилучає вузол (з його ділянками та розміщеннями), ділянку, розміщення, контур, провідник вирівнювання потенціалів або аксесуар
+Removes a planned device from a segment	Вилучає запланований пристрій із сегмента
+Removes a project function definition; its symbols go back to their built-in one	Вилучає визначення функції проєкту; її символи знову отримують вбудоване визначення
+Removes a project option; its content stays in the project	Вилучає опцію проєкту; її вміст залишається в проєкті
+Removes a report block; the pages it generated stay	Вилучає блок звітів; згенеровані ним сторінки залишаються
+Removes a routing path or reservation	Вилучає трасу прокладання або резервування
+Removes a segment with everything below it	Вилучає сегмент з усім, що під ним
+Removes a station; its cards stay unassigned, its bus connections are removed	Вилучає станцію; її плати залишаються непризначеними, її шинні з’єднання вилучаються
+Removes a user property with all its values and placements	Вилучає властивість користувача з усіма значеннями та розміщеннями
+Removes the bus connection of a port	Вилучає шинне з’єднання порту
+Removes the bus system with its connections	Вилучає шинну систему з її з’єднаннями
+Removes the definition of a structure identifier (pages and devices keep it)	Вилучає визначення структурного позначення (сторінки та пристрої зберігають його)
+Removes the machine from the project	Вилучає верстат із проєкту
+Removes the rule	Вилучає правило
+Removes the wiring marks of wires that no longer exist	Вилучає позначки монтажу проводів, яких більше не існує
+Renames a device with all its functions	Перейменовує пристрій з усіма його функціями
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Перейменовує структурне позначення в усьому проєкті: сторінки, пристрої, кабелі, визначення та робочі області
+Renames the station	Перейменовує станцію
+Repair the repairable findings	Виправити виправні результати
+Replacement	Заміна
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Замінює текст у вільних текстах, текстах функцій, описах сторінок, пристроїв і кабелів усього проєкту; затверджені сторінки не змінюються
+Report blocks and report schemes	Блоки звітів і схеми звітів
+Reserves space over the mounting plate: kept free of routes, or for one class only	Резервує простір над монтажною панеллю: вільний від трас або лише для одного класу
+Rest (mm)	Залишок (мм)
+Right side bayed (no side panel)	Права сторона приєднана (без бічної стінки)
+Room {} exists already	Приміщення {} вже існує
+Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот у градусах за годинниковою стрілкою: 0, 90, 180 або 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот у градусах проти годинникової стрілки (90 – читається знизу вгору)
+Route the wires in 3D as well (otherwise through the cable ducts)	Також прокладати проводи в 3D (інакше кабельними каналами)
+Routing rules, paths, reservations, frozen routes and cable shields	Правила прокладання, шляхи, резервування, зафіксовані трасування та екрани кабелів
+Row key (from table_get)	Ключ рядка (з table_get)
+Rows of the pattern	Рядки масиву
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Бібліотеки правил стандартів і набори правил замовників з чинними граничними значеннями; вмикає, вимикає, додає або вилучає їх
+Rule number, from 1	Номер правила, від 1
+Run the check	Виконувати перевірку
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	SVG, HTML, PDF, DXF і DWG сторінок, виробничі списки та списки ПЛК, файли обміну для джгутів і ПЛК, компонування шафи в 3D і словник перекладів
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Функція безпеки для додавання або заміни (за назвою): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Функції безпеки (ISO 13849-1) з досягнутим рівнем ефективності; додає, замінює або вилучає функцію
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Зберігає сторінку (тип, рамку аркуша, основний напис, структуру, опис, вміст) як шаблон сторінки
+Saves items of an enclosure as a 3D macro of the project	Зберігає елементи корпусу як 3D-макрос проєкту
+Saves the planned devices of a segment as a template	Зберігає заплановані пристрої сегмента як шаблон
+Saves the properties placed at a symbol as a placement scheme	Зберігає властивості, розміщені на символі, як схему розміщення
+Saw cut	Пропил
+Second port as station:port	Другий порт у форматі станція:порт
+Segment path, e.g. Plant/Area 1	Шлях сегмента, напр. Plant/Area 1
+Segment {} already exists	Сегмент {} уже існує
+Segments not to use, comma separated	Ділянки, яких слід уникати, через кому
+Selective up to this short-circuit current in kA (0: not given)	Селективний до цього струму короткого замикання в kA (0: не задано)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Селективність і резервний захист пар пристроїв із таблиць виробників за номером виробу; додає, замінює або вилучає запис
+Separator: semicolon, comma or tab	Роздільник: semicolon, comma або tab
+Sets how cross references are shown (only the given settings) and shows the settings	Задає спосіб показу перехресних посилань (лише задані параметри) і показує параметри
+Sets how the terminals of a jumper are bridged	Задає спосіб з’єднання клем перемички
+Sets property values of an object; an empty value removes it	Задає значення властивостей об’єкта; порожнє значення вилучає його
+Sets the aspects the pages use	Задає аспекти, які використовують сторінки
+Sets the collision class of a panel item (empty: automatic)	Задає клас колізій елемента компонування (порожньо: автоматично)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Задає параметри за замовчуванням для шлангів, які не мають власних значень, і префікс номерів шлангів
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	Задає відстань між двома класами колізій або дозволяє їм перекриватися; замінює правило для тих самих класів
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Задає трасу кабелю: вузли, через які він має пройти, і ділянки, яких слід уникати
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Задає висоту нижнього краю корпусу над підлогою (перевіряються висоти пристроїв, клем і органів керування)
+Sets the level (multi-level terminals) or jumper number of a terminal	Задає ярус (багатоярусні клеми) або номер перемички клеми
+Sets the numbering scheme of the wires (only the given settings) and shows it	Задає схему нумерації проводів (лише задані параметри) і показує її
+Sets the plot frame of all pages that do not choose one	Задає рамку аркуша для всіх сторінок, які не вибирають власну
+Sets the shield and the outer diameter of a cable	Задає екран і зовнішній діаметр кабелю
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Задає мову оригіналу текстів проєкту та цільові мови (коди ISO 639-1)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Задає резервні клеми колодки та те, чи додаються її аксесуари автоматично
+Sets the translation of a line of the project texts (empty removes it)	Задає переклад рядка текстів проєкту (порожнє значення вилучає його)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Задає колір проводу й переріз для мереж без визначеного потенціалу (порожньо = немає)
+Share of the capacity kept free in percent	Частка місткості, що залишається вільною, у відсотках
+Sheets	Аркуші
+Shield connected at: both, first, second or none	Екран підключено на: both, first, second або none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Розрахунки короткого замикання, навантаження, ЕМС і безпеки, набори правил і перевірка проєкту
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Струми короткого замикання, відключна здатність, час вимкнення, стійкість кабелів до короткого замикання та селективність захисних пристроїв
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Потужність короткого замикання мережі перед трансформатором у MVA (0: нескінченна)
+Short-circuit voltage of the transformer in %	Напруга короткого замикання трансформатора в %
+Shortest path between the hits of a tool	Найкоротший шлях між ударами інструмента
+Shortest rail, duct or busbar	Найкоротша рейка, канал або збірна шина
+Shortest straight length next to a bend	Найкоротша пряма довжина біля згину
+Show as \"Name: value\"	Показувати як «Назва: значення»
+Show the content	Показати вміст
+Shows a property as a text beside a symbol	Показує властивість як текст поруч із символом
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Показує клемну колодку: клеми в порядку колодки з ярусом, перемичкою й цілями, блоки на рейці та перемички
+Shows or changes the machining strategy and which machine makes which face	Показує або змінює стратегію обробки та те, який верстат обробляє яку грань
+Shows or changes the rules of copper bars; lengths in mm	Показує або змінює правила для мідних шин; довжини в мм
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Показує або змінює правила перевірок компонування; значення в мм (температура в °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	Показує апаратну конфігурацію ПЛК: станції з монтажними каркасами, слотами, модулями та діапазонами адрес, шинні системи, з’єднання портів і знайдені проблеми
+Shows the content of a page: symbols with their connection point positions, wires and texts	Показує вміст сторінки: символи з положеннями їхніх точок підключення, проводи й тексти
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Показує збережені в проєкті дані інших систем (зв’язки виробів, документи) і журнал обміну
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Показує бік з'єднання роз'єму: розташування контактів виробу, положення кожного контакту (мм, вигляд з боку штирів) з потенціалом, кольором проводу і жилою кабелю з обох боків
+Shows the options and rules of the configurator	Показує параметри та правила конфігуратора
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Показує штирі штекера в порядку штекера: що підключено на стороні гнізд і на стороні штирів, потенціал, вільні штирі
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Показує правила 3D-прокладання та змінює вказані: сітка, відступ, коефіцієнт вільного прокладання, розділення, радіуси згину, довжини відрізання, запаси
+Shows the rules of the field cable planning and changes those given	Показує правила планування польових кабелів і змінює задані
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Показує параметри перевірки проєкту: вимкнені перевірки, змінені рівні повідомлень і прийняті повідомлення
+Side of the plug the cable leaves: socket or pin (default: socket)	Бік роз'єму, з якого виходить кабель: socket або pin (типово: socket)
+Side the connection comes from: left, right, up or down (default up)	Бік, з якого надходить з'єднання: left, right, up або down (типово up)
+Single-line diagrams	Однолінійні схеми
+Single-line pages and their multi-line counterparts	Однолінійні сторінки та їхні багатолінійні відповідники
+Slot number	Номер слота
+Smallest bend radius in mm	Найменший радіус згину в мм
+Smallest distance in mm	Найменша відстань у мм
+Smallest distance of holes from the sheet edge	Найменша відстань від отворів до краю листа
+Smallest inner radius as a multiple of the thickness	Найменший внутрішній радіус як кратне товщини
+Smallest web at cutouts	Найменша перемичка біля вирізів
+Smallest web between holes	Найменша перемичка між отворами
+Spare terminals at the end of the strip	Резервні клеми в кінці колодки
+Springback in percent of the angle	Пружинення у відсотках від кута
+Start again on every page whose structure differs from the page before	Починати знову на кожній сторінці, структура якої відрізняється від попередньої
+Start and end are the same connection point	Початок і кінець – одна й та сама точка підключення
+Start and end point of the line	Початкова й кінцева точки лінії
+Start: device tag and connection point, e.g. -K1:A1	Початок: позначення пристрою та точка підключення, напр. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Стан завдань, переданих у виробництво: хід виконання, збої, доопрацювання, програми, змінені після передачі
+Station name (empty: unassigned)	Назва станції (порожньо: без призначення)
+Station name, e.g. PLC1	Назва станції, напр. PLC1
+Station {} exists already	Станція {} вже існує
+Stock bar	Складський пруток
+Stock length of rails, ducts and busbars	Складська довжина рейок, каналів і збірних шин
+Stock length of the bars	Складська довжина шин
+Stores the calibrated factors	Зберігає відкалібровані коефіцієнти
+Structure identifiers, aspects and work areas	Ідентифікатори структури, аспекти та робочі області
+Structure of the target page: different (default), always or never	Структура цільової сторінки: different (за замовчуванням), always або never
+Subprojects, model options and the project data check	Підпроєкти, опції моделі та перевірка даних проєкту
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Живлення (напруга, тип системи заземлення, струми короткого замикання) та умови прокладання провідників; змінює вказані значення
+Switch checks off, change message levels, accept messages as checked	Вимикати перевірки, змінювати рівні повідомлень, приймати повідомлення як перевірені
+Switches a check on or off (names as shown by list_checks)	Вмикає або вимикає перевірку (назви, як їх показує list_checks)
+Switches the project options with a condition by the configurator options	Перемикає опції проєкту з умовою відповідно до опцій конфігуратора
+Symbol id	Ідентифікатор символу
+Symbol ids	Ідентифікатори символів
+Symbol key from list_symbols	Ключ символу з list_symbols
+Symbols, wires, texts, cable and connection definitions on schematic pages	Символи, проводи, тексти, визначення кабелів і з’єднань на сторінках схем
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Т-подібний вузол: напрямок ніжки; міст: бік, з якого надходить з'єднання (left, right, up або down)
+Tag of the terminal strip, e.g. -X1	Позначення клемної колодки, напр. -X1
+Take the cut lengths over as cable lengths	Перенести довжини відрізання як довжини кабелів
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Переносить корпус, налаштований у конфігураторі виробника корпусів (JSON): система, розмір, компоненти, аксесуари й вирізи
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Переносить зворотний зв’язок виробництва (CSV або JSON): завдання, програма, операція, елемент, стан, відхилення, час, повідомлення
+Takes pages or page items out of their project option (hidden content is shown again)	Вилучає сторінки або елементи сторінок з їхньої опції проєкту (прихований вміст знову показується)
+Target language code	Код цільової мови
+Target languages separated by commas or blanks, e.g. de, fr	Цільові мови, розділені комами або пробілами, напр. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Підвищення температури під дахом відносно середини (1 … 2)
+Terminal designation	Позначення клеми
+Terminal designations in strip order, separated by commas	Позначення клем у порядку колодки через кому
+Terminal order, levels, jumpers, spare terminals and accessories	Порядок клем, яруси, перемички, резервні клеми та аксесуари
+Text height in mm	Висота тексту в мм
+Text height in mm (default 3.5)	Висота тексту в мм (за замовчуванням 3.5)
+Text in id, name or order number	Текст в ідентифікаторі, назві або номері для замовлення
+Text in the key or name	Текст у ключі або назві
+Text in the line or a translation	Текст у рядку або перекладі
+Text to find; empty: fill	Текст для пошуку; порожньо: заповнити
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Текст; заповнювачі, як-от {page} або {prop:Name}, підставляються під час відображення
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Плечі кута – один вертикальний і один горизонтальний напрямок, наприклад down left, а не {}
+The cable definition line crosses no wire	Лінія визначення кабелю не перетинає жодного проводу
+The cable definition line has no length	Лінія визначення кабелю не має довжини
+The cable has an overall shield	Кабель має загальний екран
+The classes may overlap (no collision)	Класи можуть перекриватися (без колізії)
+The configuration (JSON)	Конфігурація (JSON)
+The copies would leave the page	Копії вийшли б за межі сторінки
+The counting step must be at least 1	Крок лічби має бути щонайменше 1
+The devices do not fit onto rail {}	Пристрої не вміщуються на рейці {}
+The feedback (CSV with header or JSON)	Зворотний зв’язок (CSV із заголовком або JSON)
+The first page number must not be negative	Перший номер сторінки не може бути від'ємним
+The items would leave the page	Елементи вийшли б за межі сторінки
+The length must not be negative	Довжина не може бути від'ємною
+The line of a crossing is vertical or horizontal, not {}	Лінія перехрестя – vertical або horizontal, а не {}
+The message text, kept for the list of accepted messages	Текст повідомлення, що зберігається для списку прийнятих повідомлень
+The name must not be empty	Назва не може бути порожньою
+The number of copies must be between 1 and 100	Кількість копій має бути від 1 до 100
+The plinth height must not be negative	Висота цоколя не може бути від'ємною
+The plot frame {} is in use	Рамка аркуша {} використовується
+The plugin program did not answer within {} s and was stopped	Програма плагіна не відповіла за {} с і була зупинена
+The plugin program failed: {}	Помилка програми плагіна: {}
+The rotation must be 0, 90, 180 or 270	Поворот має бути 0, 90, 180 або 270
+The straight line of a crossing: vertical or horizontal (default vertical)	Пряма лінія перехрестя: vertical або horizontal (типово vertical)
+The text height must be at least 0.5 mm	Висота тексту має бути щонайменше 0,5 мм
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плечі кута, вертикальне й горизонтальне, наприклад down left (типово: за проводами в цій точці, інакше down right)
+The wire has no length	З'єднання не має довжини
+The wrap width must not be negative	Ширина перенесення не може бути від'ємною
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Теплове моделювання монтажної панелі: температури повітря, гаряча точка, джерела тепла й температура біля кожного пристрою
+Thickest sheet or bar, mm	Найбільша товщина листа або шини, мм
+Time per drilling, punching or bending operation, s	Час на одну операцію свердління, пробивання чи згинання, с
+Time per tool change, s	Час на зміну інструмента, с
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Інструменти, напр. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	Верхній край на грані в мм
+Top edge on the mounting plate in mm	Верхній край на монтажній панелі в мм
+Translated line	Перекладений рядок
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Поворот навколо вертикалі в градусах проти годинникової стрілки, якщо дивитися згори (90: фронти повернуті праворуч)
+Unit, e.g. kW	Одиниця, напр. kW
+Unknown accessory kind: {}	Невідомий тип аксесуара: {}
+Unknown action: {}	Невідома дія: {}
+Unknown address scheme: {}	Невідома схема адресації: {}
+Unknown alignment: {}	Невідоме вирівнювання: {}
+Unknown anchor: {}	Невідома прив’язка: {}
+Unknown aspect: {}	Невідомий аспект: {}
+Unknown bonding kind: {}	Невідомий тип вирівнювання потенціалів: {}
+Unknown bonding point: {}	Невідома точка підключення вирівнювання потенціалів: {}
+Unknown bus system: {}	Невідома шинна система: {}
+Unknown cable: {}	Невідомий кабель: {}
+Unknown check: {}	Невідома перевірка: {}
+Unknown class: {}	Невідомий клас: {}
+Unknown data type: {}	Невідомий тип даних: {}
+Unknown direction {}: left, right, up or down	Невідомий напрямок {}: left, right, up або down
+Unknown earthing system: {}	Невідомий тип системи заземлення: {}
+Unknown face {}	Невідома грань {}
+Unknown fastening: {}	Невідоме кріплення: {}
+Unknown field object: {}	Невідомий польовий об’єкт: {}
+Unknown field: {}	Невідоме поле: {}
+Unknown group kind: {}	Невідомий вид групи: {}
+Unknown installation: {}	Невідоме встановлення: {}
+Unknown insulation: {}	Невідома ізоляція: {}
+Unknown jumper kind: {}	Невідомий тип перемички: {}
+Unknown kind: {}	Невідомий тип: {}
+Unknown labels: {}	Невідомі позначення: {}
+Unknown level: {}	Невідомий рівень: {}
+Unknown line type: {}	Невідомий тип лінії: {}
+Unknown machine kind {}	Невідомий тип верстата {}
+Unknown marker category: {}	Невідома категорія маркера: {}
+Unknown material: {}	Невідомий матеріал: {}
+Unknown medium: {}	Невідоме середовище: {}
+Unknown method {}	Невідомий метод {}
+Unknown node: {}	Невідомий вузол: {}
+Unknown numbering scheme: {}	Невідома схема нумерації: {}
+Unknown object class: {}	Невідомий клас об’єкта: {}
+Unknown order: {}	Невідомий порядок: {}
+Unknown paper format: {}	Невідомий формат паперу: {}
+Unknown path kind: {}	Невідомий вид траси: {}
+Unknown placeholder {}: possible are {}	Невідомий заповнювач {}: можливі {}
+Unknown potential kind: {}	Невідомий вид потенціалу: {}
+Unknown preset: {}	Невідомий шаблон: {}
+Unknown program format {}	Невідомий формат програми {}
+Unknown report: {}	Невідомий звіт: {}
+Unknown segment kind: {}	Невідомий тип ділянки: {}
+Unknown segment: {}	Невідома ділянка: {}
+Unknown separator: {}	Невідомий роздільник: {}
+Unknown setting: {}	Невідомий параметр: {}
+Unknown shield ends: {}	Невідомі кінці екрана: {}
+Unknown side {} (socket or pin)	Невідомий бік {} (socket або pin)
+Unknown state: {}	Невідомий стан: {}
+Unknown station kind: {}	Невідомий вид станції: {}
+Unknown symbol: {}	Невідомий символ: {}
+Unknown table: {}	Невідома таблиця: {}
+Unknown vertical anchor: {}	Невідома вертикальна прив’язка: {}
+Unknown wire colour {} (IEC 60757: {})	Невідомий колір проводу {} (IEC 60757: {})
+Use this scheme for the marking export	Використовувати цю схему для експорту маркування
+Used (mm)	Використано (мм)
+Value while none is set	Значення, поки інше не задано
+Values of a selection list separated by commas	Значення списку вибору через кому
+Variant (empty: the first)	Варіант (порожньо: перший)
+Variant {} is not one of 1 to 2	Варіант {} не входить у діапазон від 1 до 2
+Variant {} is not one of 1 to 4	Варіант {} не входить у діапазон від 1 до 4
+Verifies the project against the enabled rule libraries and customer rule sets	Перевіряє проєкт за ввімкненими бібліотеками правил і наборами правил замовників
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Перевіряє дані проєкту (ідентифікатори, посилання, опції, підпроєкти) і виконує перевірки; за потреби виправляє те, що можна виправити
+Vertical pitch of the pattern in mm	Вертикальний крок масиву в мм
+Voltage, e.g. 400 V AC	Напруга, напр. 400 V AC
+What it is: motor, valve, sensor, …	Що це: двигун, клапан, датчик, …
+Which line the position is on: top (first), middle or bottom (last)	На якому рядку розташована позиція: top (перший), middle або bottom (останній)
+Who accepted it	Хто його прийняв
+Whole words only	Лише цілі слова
+Why the message is accepted	Чому повідомлення прийнято
+Width in mm	Ширина в мм
+Width of the path in mm (default 50)	Ширина траси в мм (за замовчуванням 50)
+Width, depth and height of a room are at least {} mm	Ширина, глибина та висота приміщення — щонайменше {} мм
+Width, height and depth of an enclosure are at least {} mm	Ширина, висота та глибина корпусу — щонайменше {} мм
+Wire colour (IEC 60757), e.g. BK	Колір проводу (IEC 60757), напр. BK
+Wire colour, e.g. BU	Колір проводу, напр. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Колір проводу, напр. BU (порожньо = з визначення потенціалу)
+Wire number (kept when renumbering)	Номер проводу (зберігається під час перенумерації)
+Wire numbering and wiring marks	Нумерація проводів і позначки монтажу проводів
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Проводи, затонкі для свого захисного пристрою, і спад напруги кабелів (IEC 60204-1)
+Working area in x, mm	Робоча зона за x, мм
+Working area in y, mm	Робоча зона за y, мм
+Wrap width in mm (0: no wrapping)	Ширина перенесення в мм (0: без перенесення)
+X position in mm	Положення X у мм
+Y position in mm (downwards)	Положення Y у мм (донизу)
+any, wires, cables or tubes	any, wires, cables або tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip або adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam або product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi або other
+copper or aluminium	copper або aluminium
+device (default), position, cross_section or number	device (за замовчуванням), position, cross_section або number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages або parts
+error, warning, info, off, or default to take the change back	error, warning, info, off або default, щоб скасувати зміну
+false takes the acceptance back (default true)	false скасовує прийняття (за замовчуванням true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted або middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) або product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker або other
+hose, tube or pipe	hose, tube або pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (машини, фази BK) або iec60445 (фази BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (за замовчуванням), power, control, signal або fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal або other
+left, center, right, top, middle or bottom	left, center, right, top, middle або bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail або pattern
+main (default), supplementary or functional	main (за замовчуванням), supplementary або functional
+mounted, problem or open	mounted, problem або open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond або accessory
+numbers or letters	numbers або letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof або bottom
+plug_in, saddle or wire	plug_in, saddle або wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp або canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc або cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable або part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<назва>, device:<позначення>, function:<ідентифікатор символу>, cable:<позначення> або part:<номер>
+pvc or xlpe	pvc або xlpe
+sequential, page_column, potential or format	sequential, page_column, potential або format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium або plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date або link (за замовчуванням text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt або it
+too long	задовга
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (за замовчуванням), ladder, trunking, conduit, drag_chain, buried або free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit або other
+wired, problem or open	wired, problem або open
+{} and {} are both ends of one function: the wire would short-circuit it	{} і {} — обидва кінці однієї функції: провід замкнув би її накоротко
+{} and {} are needed together	{} і {} потрібні разом
+{} cannot be bayed to itself	{} не можна приєднати до самого себе
+{} cannot be mounted on the {}	{} не можна змонтувати на {}
+{} exists already: pass merge to make both one identifier	{} вже існує: вкажіть merge, щоб об’єднати обидва в одне позначення
+{} has no enclosure bayed to its right side	До {} праворуч не приєднано жодного корпусу
+{} has no enclosure system; give one	{} не має системи корпусів; укажіть її
+{} is a built-in frame; give the frame a new name	{} – вбудована рамка; дайте рамці нову назву
+{} is a room already	{} уже є приміщенням
+{} is ambiguous: use #id:pin	{} неоднозначне: використайте #id:pin
+{} is an enclosure already	{} уже є корпусом
+{} is not a connection point (TAG:PIN)	{} не є точкою підключення (TAG:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} не є кодом повідомлення, як його показує check (напр. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} не є відбитком повідомлення, як його показує check (code:hash:item)
+{} is not defined	{} не визначено
+{} is not in that section	{} не входить до цього розділу
+{} is the source language	{} – мова оригіналу
+{} must be at least {}	{} має бути щонайменше {}
+{} must be between {} and {}	{} має бути від {} до {}
+{} must not be negative	{} не може бути від'ємним
+{} of job {} changed since the hand-off	{} завдання {} змінено після передачі
+{} segments need {} bends	Для {} ділянок потрібно {} згинів
+{} would stand outside the room {}	{} опинився б за межами приміщення {}
+{}: part {} is being phased out	{}: виріб {} знімається з виробництва
+{}: part {} is being phased out, successor {}	{}: виріб {} знімається з виробництва, наступник {}
+{}: part {} is discontinued	{}: виріб {} знято з виробництва
+{}: part {} is discontinued, successor {}	{}: виріб {} знято з виробництва, наступник {}
+{}: the program to run is missing	{}: відсутня програма для запуску

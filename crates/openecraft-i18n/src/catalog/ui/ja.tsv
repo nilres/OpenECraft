@@ -1,0 +1,147 @@
+# English<TAB>日本語 – openecraft-ui: shared widgets and dialogs (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(no manufacturer)	(メーカーなし)
+(no product group)	(製品グループなし)
+(no supplier)	(仕入先なし)
+2D front view	2D 正面図
+2D front view (SVG)	2D 正面図 (SVG)
+3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D モデル (STL、OBJ、STEP、IGES、Parasolid、IFC、JT)
+Accessories of this part	この部品のアクセサリ
+Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	アクセサリは適合する部品と組み合わせた場合にのみ機能します。部品はそのアクセサリを、アクセサリは適合する部品を示します。どちらか一方だけで足ります。
+Accessory, mounted: {}	アクセサリ、取付: {}
+Add connection point	接続ポイントを追加
+Add function	機能を追加
+Add marked parts to the parts database ({})	マークした部品を部品データベースに追加 ({})
+Add to the parts database	部品データベースに追加
+Adds the macros of the file to the macro library	ファイル内のマクロをマクロライブラリに追加します
+All parts are up to date	すべての部品は最新です
+Already in the parts database	部品データベースに登録済み
+Apply {} updates	{} 件の更新を適用
+Check the parts database for updates	部品データベースの更新を確認
+Checking for part updates…	部品の更新を確認しています…
+Clearance front	前のクリアランス
+Clearance left	左のクリアランス
+Clearance right	右のクリアランス
+Compared with {} parts of the server	サーバーの部品 {} 個と比較しました
+Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	ローカルの部品を部品サーバーと比較します: 新しいバージョン、生産終了予定、生産終了、削除された部品
+Connect to a parts server and search.	部品サーバーに接続して検索してください。
+Connected: {} {} – {} parts, revision {}, {}	接続済み: {} {} – 部品 {} 個、リビジョン {}、{}
+Connection designations	接続名称
+Datasheet (URL)	データシート (URL)
+Deleted catalog {}	カタログ {} を削除しました
+Deleted part {}	部品 {} を削除しました
+Deleted user {}	ユーザー {} を削除しました
+Deleting {}…	{} を削除中…
+Dimensions	寸法
+Downloaded {} ({} bytes)	{} をダウンロードしました ({} バイト)
+Downloading parts…	部品をダウンロード中…
+Drag it onto a schematic page to place it	回路図ページにドラッグして配置
+EPLAN numbers	EPLAN 番号
+EPLAN product groups	EPLAN 製品グループ
+FLOOR	床
+Faces	面
+Filter (number, type, manufacturer, text …)	フィルター (番号、タイプ、メーカー、テキスト …)
+Filter criteria	フィルター条件
+Fits these parts	これらの部品に適合
+Floor mounting	床置き
+Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	部品が提供する機能。デバイスの選択、接点イメージ (予備接点)、プロジェクトチェック、接続名称の割り当てに使用されます。名称はシンボルの接続順にスペース区切りで記載します。
+Generate from function template	機能テンプレートから生成
+Group by	グループ化
+Identifying letter of devices using this part (K, Q, S …)	この部品を使用するデバイスの識別文字 (K、Q、S …)
+Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT をインポート…
+Import SVG…	SVG をインポート…
+Internal values of the EPLAN part exchange (0: undefined)	EPLAN 部品交換の内部値 (0: 未定義)
+It only works attached to one of the parts it fits; the project check reports it on a device without such a part	適合する部品のいずれかに取り付けた場合にのみ機能します。そのような部品のない機器ではプロジェクトチェックが報告します
+Loaded {} parts (revision {})	{} 個の部品を読み込みました (リビジョン {})
+Loading catalogs…	カタログを読み込んでいます…
+Loading favorites…	お気に入りを読み込んでいます…
+Loading the history…	履歴を読み込んでいます…
+Loading users…	ユーザーを読み込んでいます…
+Mark for adding to the parts database	部品データベースへの追加対象としてマーク
+Mounted directly on the wall or ceiling of a room	部屋の壁または天井に直接取り付け
+Moves lines such as Power loss: 3 W into the typed fields	Power loss: 3 W のような行を型付きフィールドに移動します
+No own connection points – the generated ones are shown.	独自の接続ポイントはありません – 生成された接続ポイントを表示しています。
+No part of the database comes from the EPLAN Data Portal	データベースに EPLAN Data Portal 由来の部品はありません
+No parts found.	部品が見つかりません。
+Only floor-standing parts	床置き部品のみ
+Only parts for direct wall mounting	直接壁取付できる部品のみ
+Open datasheet	データシートを開く
+Open in the browser	ブラウザーで開く
+Outside the face	面の外側
+Parts server: {}	部品サーバー: {}
+Parts this part is assembled from; the bill of materials lists them under it	この部品を構成する部品。部品表ではその下に表示されます
+Personal access token	個人用アクセストークン
+Place by clicking into the view	ビュー内をクリックして配置
+Prices / other	価格 / その他
+Remove all	すべて削除
+Removing the file…	ファイルを削除しています…
+Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC の規則で接続ポイントを置き換えます: 奇数の名称を上、偶数の名称を下に配置
+Reset filter	フィルターをリセット
+Rotate 90°:	90° 回転:
+Save the file	ファイルを保存
+Saved catalog {}	カタログ {} を保存しました
+Saved part {}	部品 {} を保存しました
+Saved user {}	ユーザー {} を保存しました
+Saving favorites…	お気に入りを保存しています…
+Saving {}…	{} を保存中…
+Scale ×	尺度 ×
+Select a part to see its details.	詳細を表示するには部品を選択してください。
+Select a row, then click into the view to place it.	行を選択し、ビュー内をクリックして配置してください。
+Server revision	サーバーのリビジョン
+Signed out	サインアウトしました
+Signing out…	サインアウトしています…
+Stands on the floor of a room	部屋の床に設置
+Stands on the floor of a room, like pumps, tanks and compressors	ポンプ、タンク、コンプレッサーなど、部屋の床に設置
+Successor {}	後継品 {}
+Take {} values from the technical data	技術データから {} 個の値を取り込む
+The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 正面図は盤の正面図と取付図ページで、3D モデルは盤の 3D ビューで使用されます。どちらも取付データ (幅 × 高さ × 奥行き) に合わせられます。
+The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	モデル ({} × {} × {}) が取付データ ({} × {} × {}) と異なります。モデルは取付データに合わせて伸縮されます。
+The price refers to this many units	価格はこの数量に対するものです
+The successor is not in this parts list	後継品がこの部品リストにありません
+This part is an accessory	この部品はアクセサリです
+Top group	トップグループ
+Top group {}, product group {}, subgroup {}	トップグループ {}、製品グループ {}、サブグループ {}
+Turn the model so that its front faces the viewer (+Z) and its top is +Y	モデルの前面が視点側 (+Z)、上面が +Y を向くように回転させます
+Uploaded {} parts, server revision {}	{} 個の部品をアップロードしました (サーバーリビジョン {})
+Uploading parts file…	部品ファイルをアップロード中…
+Uploading {} parts…	{} 個の部品をアップロード中…
+Use generated connection points again	生成された接続ポイントを再び使用
+Use macros	マクロを使用
+Use model size as mounting data	モデルサイズを取付データとして使用
+Voltage / current	電圧 / 電流
+WALL	壁
+Wall mounting	壁取付
+Where the accessory sits on the part it fits, in the panel layout and the 3D view	適合する部品上でのアクセサリの位置（盤レイアウトと 3D ビュー）
+Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	盤レイアウトで電線が接続される場所: 機能テンプレートと同じ名称、正面図での位置 (x は左から、y は上から、z は取付面からの高さ)、電線が出る方向。独自の接続ポイントを持たない部品は、機能テンプレートから接続ポイントを取得します。
+Wire leaves	電線の出る方向
+changes with token	トークンで変更可能
+created in your EPLAN account (ePulse)	EPLAN アカウント (ePulse) で作成
+down	下
+e.g. 25.4 for models in inch, 1000 for models in metres	例: インチ単位のモデルは 25.4、メートル単位のモデルは 1000
+no 2D model	2D モデルなし
+no mounting data	取付データなし
+none – a box of the mounting dimensions is drawn	なし – 取付寸法の直方体が描画されます
+none – a plain rectangle is drawn	なし – 単純な四角形が描画されます
+only needed for uploads	アップロードにのみ必要
+pcs	個
+read-only	読み取り専用
+signed in as {} ({})	{} ({}) としてサインイン中
+to the front	前
+up	上
+{} (changed {})	{} ({} に変更)
+{} catalogs	カタログ {} 個
+{} changes of part {}	部品 {1} の変更 {0} 件
+{} connection points	{} 個の接続ポイント
+{} favorites	お気に入り {} 件
+{} of {} parts	{} / {} 個の部品
+{} parts found	{} 個の部品が見つかりました
+{} users	ユーザー {} 人
+{} × {} mm, {} elements	{} × {} mm、{} 個の要素
+{} × {} × {} mm	{} × {} × {} mm
+{} × {} × {} mm, {} triangles	{} × {} × {} mm、{} 個の三角形
+{}: 2D front view with {} elements assigned to {}	{0}: {1} 個の要素を持つ 2D 正面図を {2} に割り当てました
+{}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{0}: {1} 個の三角形 ({2} × {3} × {4} mm) を持つ 3D モデルを {5} に割り当てました
+★ Favorites	★ お気に入り
+★ Remove from favorites	★ お気に入りから削除
+☆ Add to favorites	☆ お気に入りに追加
+➕ Add component	➕ 構成部品を追加
+➕ Add part	➕ 部品を追加

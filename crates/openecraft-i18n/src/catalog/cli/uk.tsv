@@ -1,0 +1,286 @@
+# English<TAB>Українська – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(лише сервер MCP)
+(optional)	(необов’язково)
+Access token for changes	Токен доступу для змін
+Access token of a Vault session or an Autodesk account instead of user and password	Маркер доступу сеансу Vault або облікового запису Autodesk замість користувача й пароля
+Address of the Vault server, e.g. https://vault.example.com	Адреса сервера Vault, напр. https://vault.example.com
+Adds a page	Додає сторінку
+Adds the definitions and schemes of a property library file to the project	Додає до проєкту визначення та схеми з файлу бібліотеки властивостей
+All project files of a folder	Усі файли проєктів із папки
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Також повертати фасети: значення груп, виробників, каталогів, життєвого циклу й технічних даних з їхньою кількістю
+Also save the project in this local file	Також зберегти проєкт у цьому локальному файлі
+Also take over values changed on both sides since the last export	Також переносити значення, змінені з обох сторін після останнього експорту
+Also verify each project (slower)	Також перевіряти кожен проєкт (повільніше)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Застосовує CSV, експортований за допомогою table_get (і змінений в електронній таблиці): змінені клітинки встановлюються
+Applies a structure template: the aspects of the pages and its identifiers	Застосовує шаблон структури: аспекти сторінок і його позначення
+Archive file (.oecz)	Файл архіву (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Призначає виріб пристрою (із проєкту, вбудованого каталогу або сервера виробів)
+Author of comments without one (default: the user name)	Автор коментарів без автора (за замовчуванням: ім’я користувача)
+AutomationML content instead of a file	Вміст AutomationML замість файлу
+AutomationML file	Файл AutomationML
+CSV content instead of a file	Вміст CSV замість файлу
+CSV file	Файл CSV
+CSV or Excel file	Файл CSV або Excel
+CSV or JSON file	Файл CSV або JSON
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	Файл CSV, JSON, BMEcat, EPLAN XML або EDZ
+Cannot write {}: {}	Не вдалося записати {}: {}
+Catalog data; without id it is derived from the name	Дані каталогу; без ідентифікатора його буде утворено з назви
+Changes project properties	Змінює властивості проєкту
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Змінює властивості проєкту в багатьох файлах проєктів одночасно (поля name, description, company, creator, date, revision або властивості проєкту)
+Changes the number of a part on the parts server	Змінює номер виробу на сервері виробів
+Check scheme file (JSON)	Файл схеми перевірки (JSON)
+Check-in comment	Коментар до повернення
+Checks the project (errors, warnings, hints)	Перевіряє проєкт (помилки, попередження, підказки)
+Column mapping {field code: column name} (added to the profile's)	Зіставлення стовпців {код поля: назва стовпця} (додається до зіставлення профілю)
+Comment stored in the archive	Коментар, що зберігається в архіві
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Порівнює вироби проєкту із сервером виробів: новіші версії, вироби, що знімаються, зняті з виробництва та вилучені
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Натомість експорт конектора: erp, pdm, plm, ecad, mcad, procurement, wiring_machine або exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Підключається до Autodesk Vault (Vault Data API, Vault Professional 2025.2 або новіший): входить з обліковим записом Vault або використовує маркер доступу й показує підключення
+Converts a project file or archive of an older version to the current file format	Перетворює файл або архів проєкту старішої версії на поточний формат файлу
+Creates a new project (optionally the demo project) and saves it if a path is given	Створює новий проєкт (за бажанням демонстраційний проєкт) і зберігає його, якщо вказано шлях
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Створює або змінює каталог на сервері виробів (ідентифікатор, назва, виробник, версія, опис)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Створює або змінює блок звітів (сторінки звітів, що генеруються разом, напр. одна схема клем на колодку)
+Creates or changes a user of the parts server (administrators only)	Створює або змінює користувача сервера виробів (лише адміністратори)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Створює або замінює виріб на сервері виробів (той самий JSON, що й parts_get; відсутні поля порожні)
+Creates or replaces a report scheme	Створює або замінює схему звіту
+Creator	Автор
+DWG file	Файл DWG
+DXF file	Файл DXF
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro або Other (за замовчуванням: за назвою файлу)
+Date for the exchange log	Дата для журналу обміну
+Defines, changes or deletes a role of the parts server (administrators only)	Визначає, змінює або видаляє роль сервера виробів (лише адміністратори)
+Delete the role	Видалити роль
+Deletes a catalog without parts from the parts server	Видаляє каталог без виробів із сервера виробів
+Deletes a part from the parts server	Видаляє виріб із сервера виробів
+Deletes a user of the parts server (administrators only)	Видаляє користувача сервера виробів (лише адміністратори)
+Descending order	У порядку спадання
+Discard unsaved changes of the open project	Відхилити незбережені зміни відкритого проєкту
+Downloads a file of a part from the parts server	Завантажує файл виробу із сервера виробів
+Downloads a file version from the vault	Завантажує версію файлу зі сховища
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Вбудовує файл (PDF, документ Office, зображення …) як сторінку документа; експорт PDF долучає його до сторінки
+Error: {}	Помилка: {}
+Export name as shown by list_exports	Назва експорту, як її показує list_exports
+Export name as shown by list_exports, e.g. pdf or step	Назва експорту, як її показує list_exports, напр. pdf або step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Експортує всі вироби сервера виробів як CSV або XML виробів EPLAN
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Експортує проєкт для іншої системи за допомогою конектора або як нейтральний файл обміну (конектор exchange); подальші імпорти цього конектора виявляють конфлікти щодо цього експорту
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Експортує проєкт в одному з форматів list_exports; для двійкових форматів (dwg, jt) потрібен вихідний файл
+Field or property whose value is searched ('*' for all)	Поле або властивість, у значенні якої шукати ('*' для всіх)
+File content instead of a file	Вміст файлу замість файлу
+File id (see the attachments of parts_get)	Ідентифікатор файлу (див. attachments у parts_get)
+File name in the vault	Назва файлу у сховищі
+File to embed	Файл для вбудовування
+File to save the project to (.oec)	Файл, у який зберігається проєкт (.oec)
+File to upload	Файл для передавання
+File to write	Файл для запису
+File to write (xlsx)	Файл для запису (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Шукає проєкти в базі даних проєктів або в папці: умови через ';', кожна у вигляді ключ=значення, ключ~текст або простий текст
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Знаходить елементи Vault для виробів проєкту (за номером елемента або властивістю Part Number) і перелічує зміни ідентифікатора позиції, ревізії та стану життєвого циклу; з apply їх буде перенесено
+Folder id (default root)	Ідентифікатор папки (за замовчуванням root)
+Folder with project files	Папка з файлами проєктів
+Folder with project files (instead of a database; default: the current folder)	Папка з файлами проєктів (замість бази даних; типово: поточна папка)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Форма: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (схеми клем і кабелів як креслення)
+Function (=) of the generated pages	Функція (=) згенерованих сторінок
+Further parameters of the export as name=value, separated by commas	Додаткові параметри експорту у вигляді назва=значення через кому
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Додаткові параметри експорту у вигляді назва=значення через кому (див. list_exports), напр. harness=-WH1
+GSDML or ESI file	Файл GSDML або ESI
+Generates a report as table	Створює звіт у вигляді таблиці
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Генерує сторінку схеми для кожного запланованого пристрою, що має макрос сторінки й ще не є на схемі
+Generates the pages of the report blocks again (replacing the pages they generated before)	Повторно генерує сторінки блоків звітів (замінюючи раніше згенеровані ними сторінки)
+Give either template or path	Вкажіть або template, або path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Надає користувачу або групі роль для виробника (області) сервера виробів, з deny позбавляє її прав, з revoke вилучає призначення (лише адміністратори)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Групи для генерування, символи підстановки дозволено (-X*, -W1); порожньо: усі
+Id of a file (file_id of vault_browse) that gets a new version	Ідентифікатор файлу (file_id з vault_browse), що отримає нову версію
+Id of the file version (version_id of vault_browse)	Ідентифікатор версії файлу (version_id з vault_browse)
+Id of the knowledge vault (taken from the session if not given)	Ідентифікатор сховища (якщо не задано, береться із сеансу)
+Id of the plugin to disable	Ідентифікатор плагіна, який потрібно вимкнути
+Id of the plugin to enable	Ідентифікатор плагіна, який потрібно ввімкнути
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Імпортує креслення DWG (AutoCAD R12 … 2018) як графіку (лінії, дуги, тексти, блоки) на нову сторінку схеми
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Імпортує креслення DXF як графіку (лінії, дуги, тексти, блоки) на нову сторінку схеми
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Імпортує апаратну конфігурацію ПЛК з AutomationML (напр. експортовану з TIA Portal): станції, модулі, адреси, підмережі, з’єднання портів і коментарі змінних
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Імпортує файл виробів на сервер виробів; зображення та макроси файлу EDZ зберігаються з їхніми виробами
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Імпортує описи пристроїв із файлу GSDML (PROFINET) або ESI (EtherCAT) у проєкт
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Імпортує сегменти попереднього планування та заплановані пристрої з CSV або Excel (стовпці Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Імпортує коментарі, які рецензент зробив в експорті проєкту у PDF (нотатки, текстові поля, виділення, фігури, відповіді), у шар рецензування; раніше імпортовані коментарі пропускаються
+Insert after this page (default: at the end)	Вставити після цієї сторінки (за замовчуванням: у кінці)
+Inserts an edited subproject: its pages replace the pages taken out	Вставляє відредагований підпроєкт: його сторінки замінюють винесені сторінки
+Invalid form: {}	Недійсна форма: {}
+Keep the file checked out after the check-in	Залишити файл отриманим для редагування після повернення
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Тип сервера: OpenECraft (сервер виробів) або Eplan (EPLAN Data Portal: лише пошук і читання, маркер – персональний маркер доступу облікового запису EPLAN)
+Language of the export (a project language)	Мова експорту (одна з мов проєкту)
+Language of the project texts and reports (a project language, default the source language)	Мова текстів проєкту та звітів (одна з мов проєкту, за замовчуванням вихідна мова)
+Library file	Файл бібліотеки
+Lifecycle: Active, PhaseOut or Discontinued	Життєвий цикл: Active, PhaseOut або Discontinued
+Lists the built-in structure templates	Перелічує вбудовані шаблони структури
+Lists the catalogs of the parts server with their number of parts	Перелічує каталоги сервера виробів із кількістю виробів
+Lists the checks of the project check (built-in and of plugins) and whether they run	Перелічує перевірки, що входять до перевірки проєкту (вбудовані та з плагінів), і те, чи вони виконуються
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Перелічує конектори рівня інтеграції (ERP, PDM, PLM, ECAD, MCAD, закупівлі, автомат обробки проводів) з полями, якими вони обмінюються, і профілі проєкту
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Перелічує системи корпусів зі стандартними розмірами, товщиною стінок, цоколем і можливістю з’єднання в ряд
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Виводить приклади проєктів від першого кола до цілої установки з функціями, які показує кожен
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Перелічує експорти (вбудовані та з плагінів): назва для export, заголовок, розширення файлу та параметри
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Перелічує папки й файли папки Vault або шукає у властивостях файлів під нею (або в усьому сховищі)
+Lists the reports (built-in and of plugins): name for report and title	Перелічує звіти (вбудовані та з плагінів): назва для report і заголовок
+Lists the users of the parts server (administrators only)	Перелічує користувачів сервера виробів (лише адміністратори)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Завантажені плагіни (вбудовані та з папок плагінів --plugins / OPENECRAFT_PLUGINS) з їхніми командами, перевірками, звітами та експортами; вмикає або вимикає один із них для цього сеансу
+Local file to put into the vault	Локальний файл для поміщення у сховище
+Local groups of the user, separated by commas	Локальні групи користувача через кому
+Location (+) of the generated pages	Розташування (+) згенерованих сторінок
+Macro library file (JSON, exported by the editor)	Файл бібліотеки макросів (JSON, експортований редактором)
+Manufacturer (wildcards); default * (everything)	Виробник (символи узагальнення); за замовчуванням * (усе)
+Manufacturer whose parts a manufacturer user maintains	Виробник, вироби якого веде користувач-виробник
+Maximum number of hits (default 50)	Максимальна кількість результатів (за замовчуванням 50)
+Name of a built-in template (list_structure_templates)	Назва вбудованого шаблону (list_structure_templates)
+Name of the knowledge vault (default Vault)	Назва сховища (за замовчуванням Vault)
+New file name (save as)	Нове ім’я файлу (зберегти як)
+New pages for every value of the group column (default true)	Нові сторінки для кожного значення стовпця групування (за замовчуванням true)
+New part number	Новий номер виробу
+New report block {} needs a kind	Новий блок звітів {} потребує звіту (kind)
+No grant of {} found	Не знайдено призначень для {}
+No profile named {}	Немає профілю з назвою {}
+No project is open: use open_project or new_project first	Жоден проєкт не відкрито: спочатку використайте open_project або new_project
+No role {} defined	Роль {} не визначено
+Not a valid catalog: {}	Недійсний каталог: {}
+Not a valid part: {}	Недійсний виріб: {}
+Not connected to a vault: use vault_connect first	Немає підключення до сховища Vault: спочатку скористайтеся vault_connect
+Nothing to change: pass set, remove, replace or rename	Нічого змінювати: укажіть set, remove, replace або rename
+Number of hits to skip	Кількість результатів, які слід пропустити
+Only show the changes, write nothing	Лише показати зміни, нічого не записувати
+Only the pages of this report block; default all report pages	Лише сторінки цього блоку звітів; за замовчуванням всі сторінки звітів
+Only the projects that match these search terms	Лише проєкти, що відповідають цим умовам пошуку
+Only this block	Лише цей блок
+Opens a project file or archive (files of older versions are converted)	Відкриває файл або архів проєкту (файли старіших версій перетворюються)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Відкриває файл або архів проєкту зі сховища; vault_upload без цілі повертає його нову версію
+Option {} needs the form name=value	Для опції {} потрібна форма назва=значення
+Order: Number, Manufacturer, Description, Price or Modified	Порядок: Number, Manufacturer, Description, Price або Modified
+Output file	Вихідний файл
+Output file (JSON)	Вихідний файл (JSON)
+Output file; without it the content is returned	Вихідний файл; без нього повертається вміст
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Виводить сторінки звітів як фіксовані сторінки в інший файл проєкту; сторінки, раніше виведені з цього проєкту, замінюються
+PDF file with comments	Файл PDF з коментарями
+Page (svg: required, dxf, dwg: default all pages)	Сторінка (svg: обов’язково, dxf, dwg: за замовчуванням всі сторінки)
+Page name (default: next number)	Назва сторінки (за замовчуванням: наступний номер)
+Page of the export	Сторінка експорту
+Page template (list_page_templates) instead of kind	Шаблон сторінки (list_page_templates) замість kind
+Page {} has no embedded document	Сторінка {} не має вбудованого документа
+Pages whose structure starts with this, e.g. =A1+CAB1	Сторінки, структура яких починається з цього, напр. =A1+CAB1
+Part number to add	Номер виробу для додавання
+Part number to remove	Номер виробу для вилучення
+Part {} has no version {}	Виріб {} не має версії {}
+Pass files or a folder	Укажіть файли або папку
+Password (needed for new users; empty keeps the current one)	Пароль (потрібен для нових користувачів; якщо порожньо, поточний зберігається)
+Password of the Vault user	Пароль користувача Vault
+Password of the user	Пароль користувача
+Plot frame (list_frames); default: the project's	Рамка аркуша (list_frames); за замовчуванням: рамка проєкту
+Product top group: Electrical, Fluid, Mechanics or Process	Основна група продуктів: Electrical, Fluid, Mechanics або Process
+Profile whose column mapping is used	Профіль, зіставлення стовпців якого використовується
+Project database file (JSON)	Файл бази даних проєктів (JSON)
+Project database file (JSON) to update	Файл бази даних проєктів (JSON) для оновлення
+Project file (.oec) or archive (.oecz)	Файл проєкту (.oec) або архів (.oecz)
+Project file that gets the pages	Файл проєкту, який отримує сторінки
+Project file to write (default: the file itself; archives: next to it as .oec)	Файл проєкту для запису (за замовчуванням: сам файл; для архівів: поруч як .oec)
+Project files, separated by ';'	Файли проєктів через ';'
+Properties to remove, separated by ','	Властивості для вилучення через ','
+Properties to rename (old name: new name)	Властивості для перейменування (стара назва: нова назва)
+Property {} needs a text or a number	Властивості {} потрібен текст або число
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Поміщає проєкт, експорт, експорт конектора або локальний файл у сховище; однойменний файл у папці отримує нову версію (отримання для редагування й повернення), інакше файл додається
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor або Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Зчитує файл іншої системи (CSV або JSON) за допомогою конектора й перелічує зміни; з apply їх буде перенесено (конфлікти – лише з overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Зчитує файли й архіви проєктів із папки (та її вкладених папок) у базу даних проєктів
+Reads translations from CSV: first column the source line, one column per language code	Зчитує переклади з CSV: перший стовпець – рядок оригіналу, по одному стовпцю на код мови
+Redoes the last undone change	Повторює останню скасовану зміну
+Remove the grants of the user or group (only of this role and scope, if given)	Вилучити призначення користувача або групи (лише для цієї ролі та області, якщо їх задано)
+Remove the parts assigned so far	Вилучити досі призначені вироби
+Removes a file from a part on the parts server	Вилучає файл виробу на сервері виробів
+Replace the file at path if it exists	Замінити файл path, якщо він існує
+Replace the project parts by their newer server versions	Замінити вироби проєкту їхніми новішими версіями із сервера
+Replacement text	Текст заміни
+Replaces the content of the macro boxes whose macro changed in a macro library file	Замінює вміст рамок макросів, макрос яких змінився у файлі бібліотеки макросів
+Replaces the pages generated before by the page macros of the rules whose condition holds	Замінює раніше згенеровані сторінки макросами сторінок тих правил, умова яких виконується
+Report name as shown by list_reports	Назва звіту, як її показує list_reports
+Report scheme: its filter, sort order and columns	Схема звіту: її фільтр, порядок сортування та стовпці
+Report scheme; empty: the form of the report	Схема звіту; порожньо: форма звіту
+Report the scheme belongs to	Звіт, до якого належить схема
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Звіт, напр. terminal_diagram, terminal_lineup, cable_connections (обов’язково для нового блоку)
+Return all part data instead of a summary	Повертати всі дані виробу замість зведення
+Revision of the change; returns the part as it was	Ревізія зміни; повертає виріб у тому стані
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Права через кому: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Назва ролі
+Role of requests without sign-in; none: sign-in needed for reading	Роль запитів без входу; none: для читання потрібен вхід
+Role: reader, manufacturer, editor, admin or a defined role	Роль: reader, manufacturer, editor, admin або визначена роль
+Saves the project to its file or to a new path	Зберігає проєкт у його файл або за новим шляхом
+Scale drawings down that do not fit on the page (default: true)	Зменшувати креслення, які не вміщуються на сторінці (за замовчуванням: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Умови пошуку, напр. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Шукає елементи сховища (номер, назва, ревізія, стан життєвого циклу, номер виробу)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Шукає вироби на сервері виробів (портал даних) за текстом, групами, каталогом, життєвим циклом і технічними даними
+Segment path (default: all segments)	Шлях сегмента (за замовчуванням: усі сегменти)
+Server URL, e.g. http://127.0.0.1:8090	URL-адреса сервера, напр. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Задає сервер виробів (URL і маркер доступу або користувача й пароль) і показує його стан
+Settings scheme file (JSON)	Файл схеми параметрів (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Показує таблицю (пристрої, з’єднання, клеми, кабелі, штекери, ПЛК, сторінки або вироби) з її рядками; ключ рядка слугує для його зміни
+Shows all data of a part	Показує всі дані виробу
+Shows the changes of a part on the parts server, or the part as of one change	Показує зміни виробу на сервері виробів або виріб у стані певної зміни
+Shows the favorites of the signed in user, optionally adding or removing a part	Показує вибране користувача, що ввійшов, і за потреби додає або вилучає виріб
+Shows the manifest of a project archive	Показує маніфест архіву проєкту
+Shows the project properties, file, number of pages and devices and the check result	Показує властивості проєкту, файл, кількість сторінок і пристроїв та результат перевірки
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Показує ролі, призначення та служби каталогів сервера виробів і за потреби задає роль анонімних запитів (лише адміністратори)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Почати із шаблону проєкту: вбудованого (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) або файлу проєкту
+Start from an example project (names: list_examples)	Почати з прикладу проєкту (імена: list_examples)
+Start from the demo project	Почати з демонстраційного проєкту
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Зберігає файл (технічний паспорт, зображення, модель, макрос …) з виробом на сервері виробів
+Subproject file (.oec)	Файл підпроєкту (.oec)
+Subproject file to write (.oec)	Файл підпроєкту для запису (.oec)
+Take the changes over (otherwise only a preview)	Перенести зміни (інакше лише попередній перегляд)
+Take the rights of the role away instead	Натомість позбавити прав ролі
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Виносить сторінки у файл підпроєкту; тут вони залишаються заблокованими, доки підпроєкт не буде вставлено знову
+Takes the checks switched off and the message levels of a check scheme file	Переносить вимкнені перевірки та рівні повідомлень із файлу схеми перевірки
+Takes the settings a settings scheme file carries	Переносить параметри з файлу схеми параметрів
+Target folder id (root for the top folder); default the folder the project was opened from	Ідентифікатор цільової папки (root для верхньої папки); за замовчуванням – папка, з якої відкрито проєкт
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Технічні дані, які мають збігатися, напр. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Файл шаблону, записаний export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Текст у номері, типі, виробнику, описі, групах або каталозі; має траплятися кожне слово
+Text to replace	Текст для заміни
+Text to search for	Текст для пошуку
+The catalog needs a name	Каталогу потрібна назва
+The format xlsx needs a path	Для формату xlsx потрібен шлях
+The open project has unsaved changes: save it first or pass discard	Відкритий проєкт має незбережені зміни: спочатку збережіть його або передайте discard
+The part number must not be empty	Номер виробу не може бути порожнім
+The project has no file yet: pass a path	Проєкт ще не має файлу: передайте шлях
+This command needs a project: --project <file>	Ця команда потребує проєкту: --project <файл>
+This format needs an output file (path)	Цей формат потребує вихідного файлу (path)
+Undoes the last change	Скасовує останню зміну
+Unexpected argument: {}	Неочікуваний аргумент: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Невідома команда: {}. Список показує openecraft-cli help.
+Unknown example {}: see list_examples	Невідомий приклад {}: див. list_examples
+Unknown language: {}	Невідома мова: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Невідомий тип сторінки: {} (schematic, overview, graphic, cover або звіт із list_reports)
+Unknown part {} (parts server: {})	Невідомий виріб {} (сервер виробів: {})
+Unknown plugin: {}	Невідомий плагін: {}
+Unknown report scheme: {}	Невідома схема звіту: {}
+Unknown structure template: {}	Невідомий шаблон структури: {}
+Unknown template {}: give a built-in one ({}) or a project file	Невідомий шаблон {}: вкажіть вбудований ({}) або файл проєкту
+Unknown {}: {} (possible: {})	Невідоме значення {}: {} (можливі: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Використання: openecraft-cli [--project <файл>] [--server <url>] [--token <токен>] [--lang <код>] [--plugins <папка>] <команда> [--<параметр> <значення>]…\n\nopenecraft-cli mcp        запускає сервер Model Context Protocol на stdin / stdout\nopenecraft-cli <команда> --help   показує параметри команди\n\nКоманди:\n
+User defined properties (name: value; an empty value removes it)	Користувацькі властивості (назва: значення; порожнє значення вилучає властивість)
+User name to sign in with	Ім’я користувача для входу
+User or group name (wildcards; directory groups as directory:group)	Ім’я користувача або назва групи (символи узагальнення; групи служби каталогів у вигляді каталог:група)
+Values to set (name: value; an empty value removes a property)	Значення для встановлення (назва: значення; порожнє значення вилучає властивість)
+Vault user name (signs in)	Ім’я користувача Vault (для входу)
+Write the table as CSV to this file	Записати таблицю як CSV у цей файл
+Writes the check scheme of the project (checks switched off, message levels) to a file	Записує схему перевірки проєкту (вимкнені перевірки, рівні повідомлень) у файл
+Writes the embedded file of a document page	Записує вбудований файл сторінки документа
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Записує проєкт в архів (.oecz: проєкт, маніфест, вбудовані файли, за потреби PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Записує визначення властивостей, визначення функцій і схеми проєкту у файл бібліотеки
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Записує параметри проєкту (нумерація проводів, потенціали, параметри й кольори проводів за замовчуванням, маркування, параметри шлангів за замовчуванням, перехресні посилання, схема перевірки) у файл
+Writes the structure management (aspects, identifiers, work areas) as a template file	Записує керування структурою (аспекти, позначення, робочі області) як файл шаблону
+csv (default) or eplan_xml	csv (за замовчуванням) або eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement або wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine або exchange
+json (default), csv or xlsx (Excel, needs path)	json (за замовчуванням), csv або xlsx (Excel, потрібен path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nЗапускає сервер Model Context Protocol на stdin / stdout: інструменти цього списку для ШІ-агентів, проєкт зберігається в пам’яті (save_project записує його, undo / redo скасовують окремі виклики). OPENECRAFT_MCP_TOOLS обмежує запропоновані інструменти.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nПоказує версію командного рядка (також --version або -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover або звіт: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo і redo працюють лише в сеансі MCP: командний рядок відкриває проєкт заново для кожної команди
+user or group	user або group
+{} exists already: pass overwrite to replace it	{} вже існує: вкажіть overwrite, щоб замінити
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} — це архів, він не змінюється: збережіть проєкт як файл проєкту (save_project --path <file>.oec) або перетворіть архів (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} — це архів: вкажіть шлях, щоб зберегти проєкт як файл проєкту
+{} is not a language of the project	{} не є мовою проєкту

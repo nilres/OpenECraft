@@ -2,3 +2,7 @@
 installer/linux/** text eol=lf
 installer/macos/** text eol=lf
 installer/web/*.sh text eol=lf
+
+# The catalog files are sorted lists of independent lines: a merge keeps both sides
+# (the catalog tests catch a text added twice).
+crates/openecraft-i18n/src/catalog/**/*.tsv merge=union

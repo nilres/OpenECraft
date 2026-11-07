@@ -1,0 +1,147 @@
+# English<TAB>Русский – openecraft-ui: shared widgets and dialogs (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(no manufacturer)	(без производителя)
+(no product group)	(без группы продуктов)
+(no supplier)	(без поставщика)
+2D front view	Вид спереди 2D
+2D front view (SVG)	Вид спереди 2D (SVG)
+3D model (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)	3D-модель (STL, OBJ, STEP, IGES, Parasolid, IFC, JT)
+Accessories of this part	Принадлежности этого изделия
+Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Принадлежности работают только вместе с изделиями, к которым они подходят. Изделие перечисляет свои принадлежности, принадлежность — изделия, к которым подходит; достаточно одной стороны.
+Accessory, mounted: {}	Принадлежность, монтаж: {}
+Add connection point	Добавить точку подключения
+Add function	Добавить функцию
+Add marked parts to the parts database ({})	Добавить отмеченные изделия в базу данных изделий ({})
+Add to the parts database	Добавить в базу данных изделий
+Adds the macros of the file to the macro library	Добавляет макросы файла в библиотеку макросов
+All parts are up to date	Все изделия актуальны
+Already in the parts database	Уже есть в базе данных изделий
+Apply {} updates	Применить обновления ({})
+Check the parts database for updates	Проверить базу данных изделий на наличие обновлений
+Checking for part updates…	Проверка обновлений изделий…
+Clearance front	Зазор спереди
+Clearance left	Зазор слева
+Clearance right	Зазор справа
+Compared with {} parts of the server	Сравнено с изделиями сервера: {}
+Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	Сравнивает локальные изделия с сервером изделий: более новые версии, снимаемые, снятые с производства и удалённые изделия
+Connect to a parts server and search.	Подключитесь к серверу изделий и выполните поиск.
+Connected: {} {} – {} parts, revision {}, {}	Подключено: {} {} – изделий: {}, ревизия {}, {}
+Connection designations	Обозначения соединений
+Datasheet (URL)	Технический паспорт (URL)
+Deleted catalog {}	Каталог {} удалён
+Deleted part {}	Изделие {} удалено
+Deleted user {}	Пользователь {} удалён
+Deleting {}…	Удаление {}…
+Dimensions	Размеры
+Downloaded {} ({} bytes)	{} скачан ({} байт)
+Downloading parts…	Скачивание изделий…
+Drag it onto a schematic page to place it	Перетащите на страницу схемы, чтобы разместить
+EPLAN numbers	Номера EPLAN
+EPLAN product groups	Группы продуктов EPLAN
+FLOOR	ПОЛ
+Faces	Поверхности
+Filter (number, type, manufacturer, text …)	Фильтр (номер, тип, производитель, текст …)
+Filter criteria	Критерии фильтра
+Fits these parts	Подходит к этим изделиям
+Floor mounting	Напольный монтаж
+Functions the part provides. Used for device selection, the contact image (reserve contacts), the project check and to assign connection designations. Designations are listed in symbol connection order, separated by blanks.	Функции, которые предоставляет изделие. Используются для выбора устройства, зеркала контактов (резервные контакты), проверки проекта и назначения обозначений подключений. Обозначения перечисляются в порядке подключений символа через пробел.
+Generate from function template	Создать из шаблона функций
+Group by	Группировать по
+Identifying letter of devices using this part (K, Q, S …)	Буквенный код устройств с этим изделием (K, Q, S …)
+Import STL / OBJ / STEP / IGES / IFC / JT…	Импортировать STL / OBJ / STEP / IGES / IFC / JT…
+Import SVG…	Импортировать SVG…
+Internal values of the EPLAN part exchange (0: undefined)	Внутренние значения обмена изделиями EPLAN (0: не определено)
+It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Работает только на одном из изделий, к которым подходит; проверка проекта сообщает о нём в устройстве без такого изделия
+Loaded {} parts (revision {})	Загружено изделий: {} (ревизия {})
+Loading catalogs…	Загрузка каталогов…
+Loading favorites…	Загрузка избранного…
+Loading the history…	Загрузка истории…
+Loading users…	Загрузка пользователей…
+Mark for adding to the parts database	Отметить для добавления в базу данных изделий
+Mounted directly on the wall or ceiling of a room	Монтируется непосредственно на стену или потолок помещения
+Moves lines such as Power loss: 3 W into the typed fields	Переносит строки вида Power loss: 3 W в типизированные поля
+No own connection points – the generated ones are shown.	Собственных точек подключения нет – показаны созданные автоматически.
+No part of the database comes from the EPLAN Data Portal	Ни одно изделие базы данных не получено из EPLAN Data Portal
+No parts found.	Изделия не найдены.
+Only floor-standing parts	Только напольные изделия
+Only parts for direct wall mounting	Только изделия для прямого настенного монтажа
+Open datasheet	Открыть технический паспорт
+Open in the browser	Открыть в браузере
+Outside the face	За пределами поверхности
+Parts server: {}	Сервер изделий: {}
+Parts this part is assembled from; the bill of materials lists them under it	Изделия, из которых собрано это изделие; спецификация перечисляет их под ним
+Personal access token	Персональный маркер доступа
+Place by clicking into the view	Разместите щелчком в виде
+Prices / other	Цены / прочее
+Remove all	Удалить все
+Removing the file…	Удаление файла…
+Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Заменяет точки подключения по правилу IEC: нечётные обозначения сверху, чётные снизу
+Reset filter	Сбросить фильтр
+Rotate 90°:	Повернуть на 90°:
+Save the file	Сохранить файл
+Saved catalog {}	Каталог {} сохранён
+Saved part {}	Изделие {} сохранено
+Saved user {}	Пользователь {} сохранён
+Saving favorites…	Сохранение избранного…
+Saving {}…	Сохранение {}…
+Scale ×	Масштаб ×
+Select a part to see its details.	Выберите изделие, чтобы просмотреть сведения о нем.
+Select a row, then click into the view to place it.	Выберите строку, затем щёлкните в виде, чтобы разместить её.
+Server revision	Ревизия сервера
+Signed out	Выход выполнен
+Signing out…	Выход…
+Stands on the floor of a room	Стоит на полу помещения
+Stands on the floor of a room, like pumps, tanks and compressors	Стоит на полу помещения, как насосы, баки и компрессоры
+Successor {}	Преемник {}
+Take {} values from the technical data	Взять значения из технических данных ({})
+The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	Вид спереди 2D используется в виде спереди шкафа и на листах монтажного плана, 3D-модель – в 3D-виде шкафа. Оба подгоняются под монтажные данные (ширина × высота × глубина).
+The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	Модель ({} × {} × {}) отличается от монтажных данных ({} × {} × {}); она растягивается до монтажных данных.
+The price refers to this many units	Цена относится к этому количеству единиц
+The successor is not in this parts list	Преемника нет в этом списке изделий
+This part is an accessory	Это изделие — принадлежность
+Top group	Основная группа
+Top group {}, product group {}, subgroup {}	Основная группа {}, группа продуктов {}, подгруппа {}
+Turn the model so that its front faces the viewer (+Z) and its top is +Y	Поверните модель так, чтобы её передняя сторона была обращена к наблюдателю (+Z), а верх был +Y
+Uploaded {} parts, server revision {}	Выгружено изделий: {}, ревизия сервера {}
+Uploading parts file…	Выгрузка файла изделий…
+Uploading {} parts…	Выгрузка изделий ({})…
+Use generated connection points again	Снова использовать созданные точки подключения
+Use macros	Добавить макросы
+Use model size as mounting data	Принять размер модели как монтажные данные
+Voltage / current	Напряжение / ток
+WALL	СТЕНА
+Wall mounting	Настенный монтаж
+Where the accessory sits on the part it fits, in the panel layout and the 3D view	Где принадлежность располагается на подходящем изделии, в компоновке шкафа и в 3D-виде
+Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Где провода подключаются в компоновке шкафа: обозначение как в шаблоне функций, положение на виде спереди (x слева, y сверху, z над монтажной поверхностью) и направление выхода провода. Изделия без собственных точек подключения получают их из шаблона функций.
+Wire leaves	Выход провода
+changes with token	изменения с маркером
+created in your EPLAN account (ePulse)	создаётся в вашей учётной записи EPLAN (ePulse)
+down	вниз
+e.g. 25.4 for models in inch, 1000 for models in metres	например, 25,4 для моделей в дюймах, 1000 для моделей в метрах
+no 2D model	нет 2D-модели
+no mounting data	нет монтажных данных
+none – a box of the mounting dimensions is drawn	нет – рисуется параллелепипед по монтажным размерам
+none – a plain rectangle is drawn	нет – рисуется простой прямоугольник
+only needed for uploads	нужен только для выгрузки
+pcs	шт.
+read-only	только чтение
+signed in as {} ({})	вход выполнен как {} ({})
+to the front	вперёд
+up	вверх
+{} (changed {})	{} (изменено {})
+{} catalogs	Каталогов: {}
+{} changes of part {}	Изменений изделия {1}: {0}
+{} connection points	Точек подключения: {}
+{} favorites	В избранном: {}
+{} of {} parts	{} из {} изделий
+{} parts found	Найдено изделий: {}
+{} users	Пользователей: {}
+{} × {} mm, {} elements	{} × {} мм, элементов: {}
+{} × {} × {} mm	{} × {} × {} мм
+{} × {} × {} mm, {} triangles	{} × {} × {} мм, треугольников: {}
+{}: 2D front view with {} elements assigned to {}	{}: вид спереди 2D с элементами ({}) назначен {}
+{}: 3D model with {} triangles ({} × {} × {} mm) assigned to {}	{}: 3D-модель с треугольниками ({}) ({} × {} × {} мм) назначена {}
+★ Favorites	★ Избранное
+★ Remove from favorites	★ Удалить из избранного
+☆ Add to favorites	☆ Добавить в избранное
+➕ Add component	➕ Добавить компонент
+➕ Add part	➕ Добавить изделие

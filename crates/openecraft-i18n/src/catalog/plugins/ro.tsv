@@ -1,0 +1,953 @@
+# English<TAB>Română – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: de la brațul stâng / superior drept la celălalt braț, apoi la tijă · 2: la fel de la brațul drept / inferior · 3: de la tijă la brațul stâng / superior, apoi la celălalt · 4: de la tijă întâi la brațul drept / inferior (implicit 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: capătul superior / stâng al liniei merge transversal spre brațul drept / inferior · 2: spre brațul stâng / superior (implicit 2)
+A cable definition needs a start and an end point	O definire de cablu necesită un punct de start și unul final
+A copper bar needs at least one segment	O bară de cupru necesită cel puțin un segment
+A segment cannot be moved below itself	Un segment nu poate fi mutat sub el însuși
+A segment needs two different nodes	Un segment necesită două noduri diferite
+A wire needs at least two points	Un conductor necesită cel puțin două puncte
+A {} has no {}; it takes {}	{} nu are {}; acceptă {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid sau custom
+Accepts a message as checked, so that it is no longer counted until it changes	Acceptă un mesaj ca verificat, astfel încât să nu mai fie numărat până când se modifică
+Accessory part number, e.g. GEN.GLAND-M25	Numărul de articol al accesoriului, de ex. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Activează (afișează) sau dezactivează (ascunde) conținutul unei opțiuni de proiect
+Additional power loss in W	Putere disipată suplimentară în W
+Address scheme: siemens, iec or rockwell	Schemă de adresare: siemens, iec sau rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Adaugă o bară de cupru îndoită și găurită (sau o înlocuiește pe cea cu același nume din carcasă)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adaugă o trecere de cabluri spre vecinul din dreapta: decupaje rotunde față în față în ambii pereți laterali; conductoarele dintre carcase trec prin ea
+Adds a configurator rule: insert a page macro when the condition holds	Adaugă o regulă de configurator: inserează un macro de pagină când condiția este îndeplinită
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Adaugă un nod al rețelei de trasee (ramificație, trecere, punctul în care se ajunge la o carcasă sau un dispozitiv)
+Adds a planned device to a segment or changes it	Adaugă un dispozitiv planificat într-un segment sau îl modifică
+Adds a project option or changes its description and condition	Adaugă o opțiune de proiect sau îi modifică descrierea și condiția
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Adaugă deasupra plăcii de montaj o cale de pozare (jgheab de cabluri, ghidaj de tuburi) pe care traseele o preferă
+Adds a segment below another one (or at the top)	Adaugă un segment sub altul (sau la nivelul superior)
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	Adaugă un segment al rețelei de trasee între două noduri: jgheab de cabluri, scară, canal de cablu, tub de protecție, lanț portcablu, îngropat sau pozare liberă
+Adds a text to a page	Adaugă un text pe o pagină
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Adaugă în dicționar toate rândurile textelor proiectului, opțional eliminând intrările care nu mai sunt folosite
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Adaugă un accesoriu la un capăt de cablu: presetupă, presetupă CEM, conector, detensionare, clemă de ecran, tub flexibil de protecție, manșon de capăt, marcaj
+Adds an accessory to a device; it must fit one of the device's parts	Adaugă un accesoriu la un aparat; trebuie să se potrivească cu unul dintre articolele aparatului
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Adaugă o carcasă: dintr-un sistem, într-una dintre dimensiunile sale (sau o dimensiune personalizată), sau dintr-un articol de carcasă
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Adaugă un conductor de legătură echipotențială între două puncte de legătură echipotențială (bornă principală de împământare, carcase, contururi conductoare, suporturi metalice)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Adaugă sau modifică o schemă de marcare a proiectului, o elimină sau selectează schema folosită pentru exportul de marcare
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Adaugă sau modifică o mașină a proiectului (o mașină integrată cu același ID este înlocuită) sau o elimină
+Adds the devices of a template to a segment	Adaugă dispozitivele unui șablon într-un segment
+Adds the outline of a machine, building or area to the plant layout	Adaugă conturul unei mașini, al unei clădiri sau al unei zone în planul de amplasare a instalației
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Adaugă, înlocuiește sau elimină un profil: un conector cu numele de coloane folosite de celălalt sistem
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Aliniază elemente, le distanțează uniform, aliniază dispozitive pe o șină sau copiază elemente după un model
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Aliniază simbolurile, textele și grafica la o margine sau un centru comun; capetele conectate ale conductoarelor urmează
+Allow renaming onto an identifier in use: both become one	Permite redenumirea într-un identificator folosit: ambele devin unul
+Allowed classes, comma separated: power, control, signal, fluid (default all)	Clase permise, separate prin virgulă: power, control, signal, fluid (implicit toate)
+Allowed values separated by commas (empty: any value)	Valori permise, separate prin virgule (gol: orice valoare)
+Also create a bus cable for every connection without cable	Creează și un cablu de magistrală pentru fiecare conexiune fără cablu
+Also properties without a value	Inclusiv proprietățile fără valoare
+Also remove entries the project no longer uses	Elimină și intrările pe care proiectul nu le mai folosește
+Also renumber terminal strips, plugs and PLC cards	Renumerotează și șirurile de borne, conectorii și cardurile PLC
+Also renumber wires with a fixed number	Renumerotează și conductoarele cu număr fix
+Altitude of the site in m	Altitudinea amplasamentului în m
+Ambient temperature of the conductors in °C	Temperatura ambiantă a conductoarelor în °C
+An outline needs {} points at least	Un contur necesită cel puțin {} puncte
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Ancorare de-a lungul axei: free, start:<mm>, center:<mm>, end:<mm> sau stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Aspecte separate prin virgule, de ex. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Atribuie o definiție de funcție unui simbol plasat (denumirile și schema sunt preluate)
+Asynchronous motors add to the short-circuit current	Motoarele asincrone contribuie la curentul de scurtcircuit
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Configurare hardware automată: stații pentru CPU-uri și cuploare de magistrală, sisteme de magistrală, carduri la stații, sloturi, adrese de start, adrese de puncte, adrese IP și o topologie liniară
+Back to the default rules first	Mai întâi revenire la regulile implicite
+Back to the default strategy first	Mai întâi revenire la strategia implicită
+Back-up protection up to this short-circuit current in kA (0: not given)	Protecție de rezervă până la acest curent de scurtcircuit în kA (0: neindicat)
+Bar id	ID bară
+Bar thickness, mm (default 5)	Grosimea barei, mm (implicit 5)
+Bar width, mm (default 20)	Lățimea barei, mm (implicit 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Alătură o carcasă în dreapta alteia (rând de carcase); fără right_of, aceasta părăsește rândul
+Bend radius in drag chains as a multiple of the cable diameter	Raza de curbură în lanțurile portcablu ca multiplu al diametrului cablului
+Bend radius of a drag chain in mm	Raza de curbură a unui lanț portcablu în mm
+Bend radius of cables as a multiple of the diameter	Raza de curbură a cablurilor ca multiplu al diametrului
+Bend radius of tubes as a multiple of the diameter	Raza de curbură a tuburilor ca multiplu al diametrului
+Bend radius of wires as a multiple of the diameter	Raza de curbură a conductoarelor ca multiplu al diametrului
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Îndoiri între segmente: unghi, e pentru pe muchie, r<rază>, de ex. 90; -90 e; 45 r10
+Between page and column (default .)	Între pagină și coloană (implicit .)
+Bonding point	Punct de legătură echipotențială
+Border around the text	Bordură în jurul textului
+Both classes are needed	Sunt necesare ambele clase
+Bus system name	Nume sistem de magistrală
+Bus system name, e.g. PN/IE_1	Nume sistem de magistrală, de ex. PN/IE_1
+Busbar machine program (CSV)	Programul mașinii de prelucrare a barelor (CSV)
+CNC operations	Operații CNC
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programe CNC pentru mașini de găurit, frezat și poansonat, îndoirea barelor de cupru, configurator de carcase, predarea către producție și confirmarea producției
+Cable tag, e.g. -W1	Identificator cablu, de ex. -W1
+Cable tag, e.g. -W20	Identificatorul cablului, de ex. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Calibrează estimarea de timp a mașinilor pe baza timpilor reali din confirmările producției
+Cannot read the plugin folder {}	Folderul de pluginuri {} nu poate fi citit
+Cannot start {}: {}	{} nu poate fi pornit: {}
+Card tag, e.g. -A1	Identificator card, de ex. -A1
+Category, e.g. coils, contacts, terminals, plc	Categorie, de ex. coils, contacts, terminals, plc
+Centre from the rear wall in mm	Centrul de la peretele din spate în mm
+Centre from the top of the enclosure in mm	Centrul de la partea de sus a carcasei în mm
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifică o piesă T (direcție, variantă, reprezentare), un colț (brațe), o încrucișare (linie, variantă, reprezentare) sau o punte (direcție, reprezentare)
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Modifică o celulă a unui tabel: identificator de dispozitiv, text de funcție, descriere, articol; număr de conductor, culoare, secțiune, cablu, fir; șir, bornă
+Changes a placed symbol; when it moves, connected wire ends follow	Modifică un simbol plasat; când acesta se mută, capetele conductoarelor conectate îl urmează
+Changes a text (only the given properties)	Modifică un text (numai proprietățile indicate)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Trece dispozitivele cu articole în curs de retragere sau scoase din fabricație la articolele succesoare (succesorii trebuie să fie articole ale proiectului)
+Changes name, description or structure of a page	Modifică numele, descrierea sau structura unei pagini
+Changes name, description, function, location or parent of a segment	Modifică numele, descrierea, funcția, locul de montare sau segmentul părinte al unui segment
+Changes position, face, fastening or anchors of a panel item	Modifică poziția, fața, fixarea sau ancorele unui element de tablou
+Changes the device, connection and terminal tables	Modifică tabelele de dispozitive, conexiuni și borne
+Changes the level of a kind of message (code as shown by check)	Modifică nivelul unui tip de mesaj (cod așa cum este afișat de check)
+Changes the properties of a wire	Modifică proprietățile unui conductor
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Modifică sistemul, dimensiunea și componentele unei carcase (soclu, părți alăturate, placă pentru presetupe); elementele ancorate urmează
+Check {} failed: {}	Verificarea {} a eșuat: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Verifică amplasarea în tablou: coliziuni, distanțe (montaj, ventilație, CEM), spațiu de service, înălțimi deasupra podelei, clase de coliziune, temperaturi și fabricabilitate
+Chosen value	Valoare aleasă
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Distanțe, spațiu de service, înălțimi, clase de coliziune, simulare termică și fabricabilitatea amplasării în tablou
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Climatizarea carcaselor (IEC/TR 60890): putere disipată, temperatură interioară, ventilator sau unitate de răcire și încălzire necesare; opțional modifică setările uneia dintre ele
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Clasă de coliziune: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, o clasă proprie sau * pentru oricare
+Column and row strips	Benzi de coloane și rânduri
+Column mapping {field code: column name}	Maparea coloanelor {cod câmp: nume coloană}
+Column name, e.g. Description	Nume coloană, de ex. Description
+Columns of the pattern	Coloanele modelului
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Coloane, separate prin virgulă: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Cadru conductor care necesită legătură echipotențială
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Configurația unei carcase pentru configuratorul producătorului de carcase: sistem, mărime, componente, accesorii și prelucrare
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Condiție de configurator, de ex. ÎNCĂLZIRE=da (gol: comutată manual)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Configurează un furtun / tub / conductă: tip de conductă, articol, racorduri de capăt, presiune nominală, rază de curbură, mediu, dimensiune, culoare și lungime
+Connection point TAG:PIN, e.g. -K1:A1	Punct de conexiune IDENTIFICATOR:PIN, de ex. -K1:A1
+Connection point designations separated by commas or blanks	Denumiri ale punctelor de conexiune separate prin virgule sau spații
+Connection point designations, comma separated, e.g. 13,14	Denumiri ale punctelor de conexiune, separate prin virgulă, de ex. 13,14
+Connector id (required unless removing)	ID conector (obligatoriu, cu excepția eliminării)
+Connects two connection points with wires routed around symbols and other wires	Conectează două puncte de conexiune cu conductoare care ocolesc simbolurile și alte conductoare
+Connects two ports of stations with a network cable; connections already on these ports are replaced	Conectează două porturi ale unor stații cu un cablu de rețea; conexiunile existente pe aceste porturi sunt înlocuite
+Copies function texts between the single-line diagram and the schematic where one side is empty	Copiază textele de funcție între schema monofilară și schema multifilară acolo unde una dintre ele este goală
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Copiază elementele de mai multe ori la o distanță fixă; dispozitivele primesc identificatori noi, bornele numere noi
+Copper bar cutting list	Listă de debitare a barelor de cupru
+Copper bars	Bare de cupru
+Corner points in metres	Puncte de colț în metri
+Corner points on the mounting plate in mm	Colțuri pe placa de montaj în mm
+Correction of the time estimate	Corecția estimării de timp
+Cost of free air against ducts and routing paths	Costul pozării libere față de canale și căi de pozare
+Counting step (default 1)	Pas de numărare (implicit 1)
+Creates a bus cable for the connection (without cable tag)	Creează un cablu de magistrală pentru conexiune (fără identificator de cablu)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Creează un cablu de tipul magistralei (tip, fire, secțiune) pentru fiecare conexiune de magistrală fără cablu
+Creates or changes a PCT loop of the pre-planning	Creează sau modifică o buclă AMC a preplanificării
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Creează sau modifică o stație PLC (controler, I/O descentralizate, acționare, HMI). Schimbarea schemei de adresare convertește adresele punctelor sale
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Creează sau modifică un sistem de magistrală (PROFINET, EtherCAT, …)
+Creates or changes a configurator option	Creează sau modifică o opțiune de configurator
+Creates or changes a fluid device group	Creează sau modifică un grup de dispozitive de fluid
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Creează sau modifică un chenar al proiectului (chenarele integrate se copiază sub un nume nou)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Creează sau modifică o definiție de potențial; conductoarele sale preiau culoarea și secțiunea, dacă nu sunt setate pe conductor
+Creates or changes a work area: only the pages and devices of its structure are shown	Creează sau modifică o zonă de lucru: se afișează doar paginile și dispozitivele structurii sale
+Cross section, e.g. 0.75 mm²	Secțiune, de ex. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Secțiune, de ex. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Secțiune, de ex. 1.5 mm² (gol = din definiția potențialului)
+Cross-section in mm²	Secțiune în mm²
+Cross-section, e.g. 1.5 mm²	Secțiune, de ex. 1.5 mm²
+Current device tag	Identificator de dispozitiv actual
+Customer rule set to add or replace (by name), as exported	Setul de reguli al clientului de adăugat sau înlocuit (după nume), așa cum a fost exportat
+Cut lengths of cables rounded up to this step in mm	Lungimile de tăiere ale cablurilor rotunjite în sus la acest pas în mm
+Cut lengths of tubes rounded up to this step in mm	Lungimile de tăiere ale tuburilor rotunjite în sus la acest pas în mm
+Cut lengths of wires rounded up to this step in mm	Lungimile de tăiere ale conductoarelor rotunjite în sus la acest pas în mm
+Cut lengths rounded up to this step in metres	Lungimi de tăiere rotunjite în sus la acest pas în metri
+Cut threads on the machine	Executarea filetelor pe mașină
+Cutting allowance per tube end in mm	Adaos de tăiere pe capăt de tub în mm
+Date (YYYY-MM-DD)	Data (AAAA-LL-ZZ)
+Date of the acceptance	Data acceptării
+Default property values	Valori implicite ale proprietăților
+Default symbol key	Cheia simbolului implicit
+Define the identifiers in use (default: true)	Definire identificatori utilizați (implicit: true)
+Defines a reusable project function definition or changes it	Definește o definiție de funcție reutilizabilă a proiectului sau o modifică
+Defines a structure identifier or changes its description	Definește un identificator de structură sau îi modifică descrierea
+Defines a user property or changes it	Definește o proprietate de utilizator sau o modifică
+Defines all identifiers in use and / or removes the definitions nobody uses	Definește toți identificatorii utilizați și / sau elimină definițiile pe care nu le folosește nimeni
+Definition to start from	Definiția de pornire
+Deletes a PCT loop of the pre-planning	Șterge o buclă AMC a preplanificării
+Deletes a configurator option	Șterge o opțiune de configurator
+Deletes a configurator rule	Șterge o regulă de configurator
+Deletes a fluid device group	Șterge un grup de dispozitive de fluid
+Deletes a page	Șterge o pagină
+Deletes a page template of the project	Șterge un șablon de pagină al proiectului
+Deletes a plot frame of the project that no page uses	Șterge un chenar al proiectului pe care nu îl folosește nicio pagină
+Deletes a potential definition	Șterge o definiție de potențial
+Deletes a work area	Șterge o zonă de lucru
+Deletes symbols, wires, texts and shapes	Șterge simboluri, conductoare, texte și forme
+Depth in mm	Adâncime în mm
+Device description id (empty: from the parts)	ID descriere de dispozitiv (gol: din articole)
+Device description id of the head (list_device_descriptions)	ID-ul descrierii de dispozitiv a capului (list_device_descriptions)
+Device group {} already exists	Grupul de dispozitive {} există deja
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Listă de dispozitive, listă de materiale, scheme de borne, de conectori, de cabluri și de conexiuni, PLC, potențiale, tablou, tehnică fluidică, rapoarte electrice și de câmp
+Device number on the bus	Număr dispozitiv pe magistrală
+Device tag of the CPU / bus coupler, e.g. -A0	Identificatorul de dispozitiv al CPU-ului / cuplorului de magistrală, de ex. -A0
+Device tag of the end (both ends if missing)	Identificatorul de dispozitiv al capătului (ambele capete dacă lipsește)
+Device tag of the fluid device, e.g. -QM1	Identificatorul de dispozitiv al dispozitivului de fluid, de ex. -QM1
+Device tag of the group, e.g. -KH1	Identificatorul de dispozitiv al grupului, de ex. -KH1
+Device tag within the segment, e.g. -M1	Identificatorul de dispozitiv în cadrul segmentului, de ex. -M1
+Device tag, e.g. -K1	Identificator de dispozitiv, de ex. -K1
+Device tag: the accessories that can still be added to its parts	Identificarea aparatului: accesoriile care se mai pot adăuga articolelor sale
+Device tags (text)	Identificatori de dispozitiv (text)
+Device tags of the members in slot order, separated by commas or blanks	Identificatorii de dispozitiv ai membrilor în ordinea locurilor, separați prin virgule sau spații
+Devices with parts that are phased out or discontinued, and their change to the successors	Dispozitive cu articole în curs de retragere sau scoase din fabricație și trecerea lor la succesori
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Dispozitive, conductoare, potențiale, cabluri, șiruri de borne, PLC, tablou, tehnică fluidică, calcule electrice, structură și traduceri
+Diameter in mm	Diametru în mm
+Diameter of a hole at both ends (0: none)	Diametrul unei găuri la ambele capete (0: niciuna)
+Direction of the stem: left, right, up or down (default: from the wires there)	Direcția tijei: left, right, up sau down (implicit: după firele de acolo)
+Distance between power and signal or fluid in mm	Distanța dintre putere și semnal sau fluid în mm
+Distance from devices, rails and busbars in mm	Distanța față de dispozitive, șine și bare colectoare în mm
+Distance from the face in mm (rails: standoff height)	Distanța de la față în mm (șine: înălțimea distanțierului)
+Distance in X (mm)	Distanță pe X (mm)
+Distance in Y (mm)	Distanță pe Y (mm)
+Distance of devices to cable ducts	Distanța dispozitivelor față de canalele de cablu
+Distance of devices to the plate edge	Distanța dispozitivelor față de marginea plăcii
+Distance of the border from the paper edge in mm	Distanța chenarului față de marginea hârtiei în mm
+Distribute vertically (default horizontally)	Distribuire verticală (implicit orizontală)
+Distributes symbols, texts and graphics evenly between the first and the last one	Distribuie simbolurile, textele și grafica uniform între primul și ultimul
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Factorul de simultaneitate al consumatorilor (0: IEC 61439-1, tabelul 101)
+Draw the contact image below coils (default true)	Desenarea imaginii contactelor sub bobine (implicit true)
+Draw the junction as a connection dot; its routing stays	Desenează piesa T ca punct de conexiune; traseul ei rămâne
+Draw wires in their colour	Desenare conductoare în culoarea lor
+Draw wires to the connection points facing its free arms	Desenează fire către punctele de conexiune aflate în fața brațelor sale libere
+Drawing	Desen
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Desenează o linie de definire a cablului; conductoarele pe care le intersectează devin fire ale cablului (un cablu nou dacă nu se indică niciunul)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Desenează un conductor între două puncte de conexiune, de ex. -K1:A1 la -S1:14 (#id:pin pentru cele ambigue, numele pentru potențiale, 1, 2… pentru punctele fără denumire)
+Draws a wire through two or more points	Desenează un conductor prin două sau mai multe puncte
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Desenează conductoarele pe paginile de schemă și în exportul PDF / SVG în culoarea lor sau în negru
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Desenează fire între punctele de conexiune libere ale simbolurilor aflate față în față și către brațele libere ale pieselor T și colțurilor
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Clasele CEM ale cablurilor (ieșire de acționare, analogic, putere, semnal, ecran) și problemele CEM
+Edge length of the routing grid in mm	Lungimea laturii grilei de pozare în mm
+Electrical device tags separated by commas or blanks (empty = remove the links)	Identificatorii dispozitivelor electrice separați prin virgule sau spații (gol = eliminare legături)
+Electrical engineering	Electrotehnică
+Enclosure (location, e.g. +CAB1)	Carcasă (loc de montare, de ex. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Carcasa (loc de montare, de ex. +CAB1) ale cărei setări se modifică
+Enclosure climate and electrical sizing	Climatul carcasei și dimensionarea electrică
+Enclosure it stands right of; empty to take it out of its line-up	Carcasa în dreapta căreia stă; gol pentru a o scoate din rând
+Enclosure name (all if missing)	Nume carcasă (toate, dacă lipsește)
+Enclosure part number	Numărul de articol al carcasei
+Enclosure system (default: the enclosure's)	Sistem de carcase (implicit: cel al carcasei)
+Enclosure {} exists already	Carcasa {} există deja
+Enclosures, panel items, accessories and panel macros	Carcase, elemente de tablou, accesorii și macro-uri de tablou
+End brackets and end plates from the tech data of the terminal parts	Opritoare de capăt și plăci de capăt din datele tehnice ale articolelor de bornă
+End holes from the bar end as a multiple of the width	Găurile de capăt de la capătul barei ca multiplu al lățimii
+End: device tag and connection point, e.g. -S1:14	Sfârșit: identificator de dispozitiv și punct de conexiune, de ex. -S1:14
+Engineering	Inginerie
+Face: plate, door, left, right, rear, roof or bottom	Față: plate, door, left, right, rear, roof sau bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Plan de câmp: noduri, segmente, contururi, trasee, legături echipotențiale și accesorii
+Figure	Indicator
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Caută și înlocuiește text într-o coloană a tuturor rândurilor (filtrate); fără text de căutat, coloana se completează cu textul de înlocuire
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Caută text în întregul proiect: pagini, identificatori de dispozitiv, texte de funcție, texte libere, numere de conductor, borne, cabluri, articole, descrieri
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Găsește cea mai mică mărime standard a unui sistem de carcase care cuprinde amplasarea și o aplică
+Fingerprint of the message as shown by check	Amprenta mesajului, așa cum este afișată de check
+First address of the subnet, e.g. 192.168.0.0	Prima adresă a subrețelei, de ex. 192.168.0.0
+First byte of the inputs (and outputs)	Primul octet al intrărilor (și ieșirilor)
+First byte of the outputs if it differs; -1 removes it	Primul octet al ieșirilor, dacă diferă; -1 îl elimină
+First counter value (default 1)	Prima valoare a contorului (implicit 1)
+First page number (default 1)	Numărul primei pagini (implicit 1)
+First port as station:port, e.g. PLC1:X1 P2	Primul port ca stație:port, de ex. PLC1:X1 P2
+First row with the column names	Primul rând cu numele coloanelor
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formatul numelui dispozitivului: {letter}, {n} (contor), {page}, {column}, {row}; implicit {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formatul schemei format: {n} (contor), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Chenarul de pornire când chenarul este nou (implicit: A3 landscape)
+Free space in front of every device on the plate	Spațiu liber în fața fiecărui dispozitiv de pe placă
+Freezes routes for production (kept by the recalculation while possible) or releases them	Fixează traseele pentru producție (păstrate de recalculare cât timp este posibil) sau le eliberează
+Frequency in Hz	Frecvența în Hz
+Function (= without the sign; empty: the parent's)	Funcție (= fără semn; gol: cea a părintelui)
+Function aspect (=) of the page; the devices on the page move along	Aspectul de funcție (=) al paginii; dispozitivele de pe pagină se mută odată cu ea
+Function definition key	Cheia definiției de funcție
+Function filter (= A1, A*; empty = any)	Filtru de funcție (= A1, A*; gol = oricare)
+Further device tags of the loop, separated by commas or blanks	Alți identificatori de dispozitiv ai buclei, separați prin virgule sau spații
+Gap between devices side by side	Distanță între dispozitive alăturate
+Gap between the devices on the rail in mm	Distanța dintre dispozitivele de pe șină în mm
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Generează o schemă monofilară a dispozitivelor de putere din schemă care nu au încă una, pe o pagină de ansamblu nouă după o pagină
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Generează programul CNC al unei fețe pentru mașina sa (cod G ISO, Heidenhain, cod de poansonare sau CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Generează schema multifilară (simboluri de putere, conductoare, bobine de contactor) pentru simbolurile monofilare ale unei pagini, pe o pagină nouă după aceasta
+Generates the program of the busbar machine: cuts, punched holes and bends	Generează programul mașinii de prelucrare a barelor: tăieri, găuri poansonate și îndoiri
+Give a device tag or a part number	Indicați o identificare de aparat sau un număr de articol
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupează elemente într-un ansamblu care se selectează și se mută împreună; fără nume, elementele își părăsesc ansamblurile
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Predă programele unei carcase către producție ca o comandă de lucru: manifestul și programele tuturor fețelor și barelor de cupru
+Has a divider between power and signal cables	Are un separator între cablurile de putere și cele de semnal
+Height above the floor in metres	Înălțime deasupra podelei în metri
+Height above the mounting plate in mm (default 50)	Înălțime deasupra plăcii de montaj în mm (implicit 50)
+Height in mm	Înălțime în mm
+Height in mm without plinth; negative: unknown (wall mounted)	Înălțime în mm fără soclu; negativ: necunoscută (montaj pe perete)
+Higher-level product aspect (-) of the page; the devices on the page move along	Aspectul de produs de nivel superior (-) al paginii; dispozitivele de pe pagină se mută odată cu ea
+Highest actuator on the door above the floor (0: not checked)	Cel mai înalt element de acționare pe ușă deasupra podelei (0: neverificat)
+Highest air temperature at devices without data (0: not checked)	Cea mai ridicată temperatură a aerului la dispozitive fără date (0: neverificat)
+Highest ambient temperature in °C	Temperatura ambiantă maximă în °C
+Highest device above the floor (0: not checked)	Cel mai înalt dispozitiv deasupra podelei (0: neverificat)
+Highest inside temperature in °C	Temperatura interioară maximă în °C
+Highest three-phase short-circuit current at the supply in kA	Cel mai mare curent de scurtcircuit trifazat la alimentare în kA
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Găuri: segment:distanță:diametru, de ex. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Aliniere orizontală: left, center sau right
+Horizontal pitch of the pattern in mm	Pasul orizontal al modelului în mm
+Hose colour	Culoare furtun
+Hose number or fluid net (F1)	Număr furtun sau rețea de fluid (F1)
+Hose number prefix, e.g. H	Prefixul numerelor de furtun, de ex. H
+Hoses / pipes: length in m	Furtunuri / conducte: lungime în m
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Furtunuri / conducte: mediu (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; gol = implicit proiect)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Furtunuri, rețele și grupuri fluidice, legături electro-fluidice și bucle PCT
+Hyperlink (URL)	Hyperlink (URL)
+IP address or bus address	Adresă IP sau adresă de magistrală
+IT system with distributed neutral	Sistem IT cu neutru distribuit
+Id of the panel item (from mounting_list)	ID-ul elementului de tablou (din mounting_list)
+Id of the path or reservation	ID-ul căii sau al rezervării
+Id of the text	ID-ul textului
+Identifier, e.g. A1 or CAB1	Identificator, de ex. A1 sau CAB1
+Ids of page items	ID-uri ale elementelor de pagină
+Ids of symbols and connection symbols (default: all symbols of the page)	Id-urile simbolurilor și ale simbolurilor de conexiune (implicit: toate simbolurile paginii)
+In front of the page name (default /)	În fața numelui paginii (implicit /)
+Inner height in mm (0 = no limit)	Înălțime interioară în mm (0 = fără limită)
+Inner radius as a multiple of the thickness	Raza interioară ca multiplu al grosimii
+Inner width in mm (0 = no limit)	Lățime interioară în mm (0 = fără limită)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Inserează un macro 3D ca ansamblu: elementele ancorate la locul lor, celelalte relativ la x / y pe față
+Installation site aspect (++) of the page; the devices on the page move along	Aspectul de amplasament (++) al paginii; dispozitivele de pe pagină se mută odată cu ea
+Installation site filter (++)	Filtru de amplasament (++)
+Integration profiles and status	Profiluri de integrare și stare
+Interruption points refer to: all (default), star or pairs	Punctele de întrerupere fac referire la: all (implicit), star sau pairs
+Invalid answer of the plugin: {}	Răspuns nevalid al pluginului: {}
+Invalid segment name: {}	Nume de segment nevalid: {}
+Item id	ID element
+Item ids	ID-uri elemente
+Jumper number	Număr de punte
+Jumper number (terminals with the same number are bridged); 0 removes it	Numărul de punte (bornele cu același număr sunt puntate); 0 îl elimină
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Menținerea gradului de protecție: schimbător de căldură sau agregat de răcire în locul ventilatoarelor cu filtru
+Key figures of the project and a list of its device tags	Indicatorii proiectului și o listă a identificatorilor săi de dispozitiv
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicatorii proiectului: pagini, simboluri, conductoare, dispozitive, articole, cabluri și rezultatele verificărilor
+Key, e.g. user.coupling_relay	Cheie, de ex. user.coupling_relay
+Key, e.g. user.customer_code	Cheie, de ex. user.customer_code
+Keys of the routes, comma separated (all if missing)	Cheile traseelor, separate prin virgulă (toate, dacă lipsesc)
+Kind: machining, punching or busbar	Tip: machining, punching sau busbar
+Label: terminal number, PLC address or potential name	Etichetă: număr de bornă, adresă PLC sau nume de potențial
+Landscape (true) or portrait (false)	Vedere (true) sau portret (false)
+Language the project texts are written in, e.g. en	Limba în care sunt scrise textele proiectului, de ex. en
+Larger round holes are milled, mm	Găurile rotunde mai mari sunt frezate, mm
+Largest difference between hole and tool, mm	Cea mai mare diferență între gaură și sculă, mm
+Left edge on the face in mm	Marginea stângă pe față în mm
+Left edge on the mounting plate in mm	Marginea stângă pe placa de montaj în mm
+Left side bayed (no side panel)	Partea stângă alăturată (fără perete lateral)
+Length added at each cable end in metres	Lungime adăugată la fiecare capăt de cablu în metri
+Length added to each cable end in mm	Lungimea adăugată la fiecare capăt de cablu în mm
+Length from the node to the device in metres	Lungimea de la nod la dispozitiv în metri
+Length in metres	Lungime în metri
+Length in metres (default from the node positions)	Lungime în metri (implicit din pozițiile nodurilor)
+Length inside an enclosure per end in metres	Lungime în interiorul unei carcase pe capăt în metri
+Length of a shield pigtail in mm	Lungimea unui pigtail de ecran în mm
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Nivelul unei borne multinivel (1 = jos); nivelurile superioare se află pe blocul bornei anterioare
+Library id or customer rule set name to no longer verify against	ID-ul bibliotecii sau numele setului de reguli al clientului față de care nu se mai verifică
+Library id or customer rule set name to verify against	ID-ul bibliotecii sau numele setului de reguli al clientului față de care se verifică
+Line in the source language	Rând în limba sursă
+Line-to-line voltage in V	Tensiunea între faze în V
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Leagă un dispozitiv de fluid de dispozitivele electrice care îl acționează sau îl monitorizează (înlocuiește legăturile)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Leagă electrovalvele de bobina cu același număr (-QM3 › -MB3) și copiază textele de funcție între dispozitivele legate
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Listează canalele PLC și funcțiile articolelor atribuite care nu sunt încă plasate, cu simbolul, identificatorul, eticheta și pinii pentru place_symbol
+Lists and renames devices, adds accessories to their parts	Listează și redenumește aparatele, adaugă accesorii la articolele lor
+Lists the 3D macros: the project's own and the built-in ones	Listează macro-urile 3D: cele proprii ale proiectului și cele integrate
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	Listează pozarea 3D: conductoare, cabluri și tuburi pozate cu lungimi și stare, mănunchiuri, ramificații, ecrane, căi de pozare, modificări și probleme
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	Listează mașinile CNC (integrate și ale proiectului) cu sculele lor și mașina fiecărei fețe
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Listează buclele AMC ale preplanificării și ale instrumentelor din P&ID cu dispozitivele lor și starea proiectării
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Listează piesele T, colțurile, încrucișările și punțile cu traseul lor și firele conexiunii lor
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Listează accesoriile care se potrivesc cu un articol sau cu articolele unui aparat și articolele cu care se potrivește un accesoriu (articole ale proiectului, cataloage integrate și incluse)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Listează barele de cupru desfășurate: lungime, îndoiri în ordinea lor, găuri, probleme și debitarea din lungimile de stoc
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	Listează descrierile de dispozitiv ale hardware-ului PLC: cele importate, cele din articolele proiectului și cele generice integrate
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Listează dispozitivele schemei monofilare și dispozitivele de putere ale schemei cu starea lor: planificat, proiectat, nu este în schema monofilară sau nu corespunde
+Lists the devices with cross references and assigned parts	Listează dispozitivele cu referințe încrucișate și articolele atribuite
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Listează carcasele cu sistemul, componentele (ansamblu), elementele pe fiecare față și ansamblurile
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Listează grupurile de dispozitive de fluid (insule de ventile, unități de preparare a aerului, blocuri distribuitoare) cu dispozitivele lor în ordinea locurilor
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Listează dispozitivele de fluid cu bobine sau legături și dispozitivele electrice legate de ele
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Listează rețelele de fluid: fiecare conductă cu tipul ei (presiune, lucru, retur, pilotare …), mediul, dimensiunea și porturile cu funcția lor
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Listează definițiile de funcție cu categoria, tipul de șablon de funcție, litera, simbolul implicit și utilizarea
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Listează furtunurile și conductele (conexiuni între porturi de fluid) cu mediul, diametrul nominal, culoarea și lungimea
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Listează elementele amplasării în tablou în ordinea de montaj, cu locul, dimensiunea, articolul și stadiul montajului
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Listează schemele de marcare pentru programele de marcare (integrate și ale proiectului) și pe cea selectată
+Lists the page templates (built-in and the project's own)	Listează șabloanele de pagină (cele integrate și cele proprii ale proiectului)
+Lists the pages of the project	Listează paginile proiectului
+Lists the placement schemes with their properties and the number of symbols using them	Listează schemele de plasare cu proprietățile lor și numărul de simboluri care le folosesc
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Listează chenarele (format de hârtie, orientare, coloane și rânduri) și valoarea implicită a proiectului
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Listează conectorii cu numărul de pini utilizați, numărul de pini ai articolelor lor și articolele
+Lists the potential definitions and the wire default of nets without a defined potential	Listează definițiile de potențial și valoarea implicită a conductoarelor pentru rețelele fără potențial definit
+Lists the project options that show or hide model content	Listează opțiunile de proiect care afișează sau ascund conținut al modelului
+Lists the properties of an object with their values and where they come from	Listează proprietățile unui obiect cu valorile lor și proveniența acestora
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Listează definițiile de proprietăți (integrate și definite de utilizator) cu clasa de obiect, grupul, tipul și unitatea
+Lists the report blocks with their report, scheme, groups and generated pages	Listează blocurile de raport cu raportul, schema, grupele și paginile generate
+Lists the report schemes (named report forms) with their settings	Listează schemele de raport (formulare de raport denumite) cu setările lor
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Listează conductoarele pozate din amplasarea în tablou ca listă de verificare a cablării, cu tratarea capetelor, starea și progresul
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Listează segmentele în ordinea arborelui, cu structura, puterea planificată și dispozitivele planificate cu starea lor în schemă
+Lists the source and target languages of the project texts with the number of untranslated lines	Listează limbile sursă și țintă ale textelor proiectului cu numărul de rânduri netraduse
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Listează gestionarea structurii: aspectele paginilor, identificatorii definiți și utilizați, zonele de lucru
+Lists the subprojects taken out of the project, or the project it was taken from	Listează subproiectele extrase din proiect sau proiectul din care a fost extras
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Listează simbolurile care pot fi plasate, cu punctele lor de conexiune relativ la punctul de inserare
+Lists the terminal strips with their number of terminals and length on the rail	Listează șirurile de borne cu numărul de borne și lungimea pe șină
+Lists the translation dictionary of the project texts (source line and translations)	Listează dicționarul de traduceri al textelor proiectului (rândul sursă și traducerile)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Listează macro-urile de fereastră plasate pe pagini (casete macro) cu macro-ul, varianta, valorile substituenților și numărul de elemente
+Load losses of the transformer in W (0: typical)	Pierderile în sarcină ale transformatorului în W (0: tipice)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Consumatorii rețelei, sarcina fiecărui dispozitiv de protecție, necesarul cu factorul de simultaneitate, echilibrul fazelor și bilanțurile surselor de alimentare
+Loads the potential definitions of a standard (replaces those of the same name)	Încarcă definițiile de potențial ale unui standard (le înlocuiește pe cele cu același nume)
+Location (+ without the sign; empty: the parent's)	Loc de montare (+ fără semn; gol: cel al părintelui)
+Location aspect (+) of the page; the devices on the page move along	Aspectul de loc de montare (+) al paginii; dispozitivele de pe pagină se mută odată cu ea
+Location filter (+)	Filtru de loc de montare (+)
+Location or device tag	Loc de montare sau identificator de dispozitiv
+Loop number	Număr buclă
+Loop number, e.g. 101	Număr buclă, de ex. 101
+Lowest actuator on the door above the floor	Cel mai jos element de acționare pe ușă deasupra podelei
+Lowest ambient temperature in °C	Temperatura ambiantă minimă în °C
+Lowest device above the floor	Cel mai jos dispozitiv deasupra podelei
+Lowest inside temperature in °C	Temperatura interioară minimă în °C
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	Cel mai mic curent de defect fază–pământ la alimentare în kA (0: din ik_max)
+Lowest terminal above the floor	Cea mai joasă bornă deasupra podelei
+Machine id (default: the busbar machine)	ID mașină (implicit: mașina de prelucrare a barelor)
+Machine id (default: the machine of the face)	ID mașină (implicit: mașina feței)
+Machine id (snake_case)	ID mașină (snake_case)
+Machine id {} is not snake_case	ID-ul mașinii {} nu este snake_case
+Machine of that face (empty: the sheet machine)	Mașina acelei fețe (gol: mașina pentru tablă)
+Machine of the copper bars	Mașina pentru barele de cupru
+Machine of the sheet metal faces	Mașina pentru fețele din tablă
+Machine {} is in use	Mașina {} este în uz
+Macro name	Nume macro
+Makes pages or page items content of a project option	Face din pagini sau elemente de pagină conținutul unei opțiuni de proiect
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Face din firele de la pinii unui conector conductorii unui cablu plat (panglică): pinul n primește conductorul n, ca la conectorii IDC
+Manufacturing package (CNC programs, JSON)	Pachet de fabricație (programe CNC, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	Marcaje, separate prin virgulă: device, terminal, wire, cable (gol: toate)
+Marks a panel item as mounted or as a problem, or as open again	Marchează un element de tablou ca montat, ca problemă sau din nou ca deschis
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Marchează un conductor pozat ca cablat sau ca problemă, ori din nou ca deschis; conductorul este dat prin cele două capete ale sale
+Maximum fill of a carrier in percent	Grad maxim de umplere a unui suport de cabluri în procente
+Maximum operating pressure in bar	Presiunea de lucru maximă în bar
+Measuring range or set point	Domeniu de măsură sau valoare prescrisă
+Message code, e.g. wires.3f9a1c	Cod de mesaj, de ex. wires.3f9a1c
+Milling feed, mm/min	Avans de frezare, mm/min
+Mirror the symbol	Oglindire simbol
+Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
+Moves the page before this page of its section (or of the section given)	Mută pagina înaintea acestei pagini din secțiunea ei (sau din secțiunea dată)
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Mută secțiunea înaintea acestei secțiuni a părintelui ei (sau a părintelui dat); numerele continuă în ordine
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Amplasarea pe planșetă a unui cablaj: ramificațiile de la nodul comun la conectori, cu lungime, direcție, diametrul fasciculului și pini, precum și scara desenului
+Name of the assembly	Numele ansamblului
+Name of the bar, e.g. L1 -Q1	Numele barei, de ex. L1 -Q1
+Name of the check	Numele verificării
+Name of the customer rule set to remove	Numele setului de reguli al clientului de eliminat
+Name of the frame	Numele chenarului
+Name of the machine	Numele mașinii
+Name of the main earthing terminal	Numele bornei principale de împământare
+Name of the safety function to remove	Numele funcției de securitate de eliminat
+Name of the segment	Numele segmentului
+Name of the template	Numele șablonului
+Name of the work area	Numele zonei de lucru
+Name or id; the tag for places	Nume sau ID; pentru plasări, identificatorul
+Name, e.g. the location +M1	Nume, de ex. locul de montare +M1
+New device tag	Identificator de dispozitiv nou
+New identifier	Identificator nou
+New page name	Nume de pagină nou
+New parent segment (empty: top level)	Segment părinte nou (gol: nivelul superior)
+New value	Valoare nouă
+No PCT loop {}	Nicio buclă AMC {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Nicio verificare integrată nu se numește {}: setarea se aplică unei verificări a unui plugin cu acest nume (list_checks)
+No bus system {}	Niciun sistem de magistrală {}
+No connection point {} on this page	Niciun punct de conexiune {} pe această pagină
+No connection symbol with id {}	Niciun simbol de conexiune cu id {}
+No copper bar {}	Nu există bara de cupru {}
+No device description {}	Nicio descriere de dispozitiv {}
+No device group {}	Niciun grup de dispozitive {}
+No enclosure named {}	Nicio carcasă cu numele {}
+No entry for {} and {}	Nicio intrare pentru {} și {}
+No hose {}	Niciun furtun {}
+No identifier {} in the project	Niciun identificator {} în proiect
+No item with id {}	Niciun element cu ID-ul {}
+No item {}	Niciun element {}
+No items to save in {}	Niciun element de salvat în {}
+No macro named {}	Niciun macro cu numele {}
+No panel item with id {}	Niciun element de tablou cu ID-ul {}
+No planned device {}	Nu există dispozitivul planificat {}
+No potential definition {}	Nicio definiție de potențial {}
+No project function definition {}	Nu există definiția de funcție a proiectului {}
+No routed item {}	Niciun element pozat {}
+No routed wire {} – {}	Niciun conductor pozat {} – {}
+No routing path or reservation {}	Nicio cale de pozare sau rezervare {}
+No rule for {} and {}	Nicio regulă pentru {} și {}
+No rule library or rule set {}	Nicio bibliotecă de reguli sau set de reguli {}
+No rule {}	Nicio regulă {}
+No safety function {}	Nicio funcție de securitate {}
+No standard size of {} holds the layout of {}	Nicio mărime standard a {} nu cuprinde amplasarea din {}
+No terminal strip {}	Nu există șirul de borne {}
+No terminal {} on strip {}	Nu există borna {} pe șirul {}
+No text with id {}	Niciun text cu ID-ul {}
+No three wires meet at {} / {} mm: give the direction of the stem	La {} / {} mm nu se întâlnesc trei fire: indicați direcția tijei
+No transformer: set {} first	Niciun transformator: setați mai întâi {}
+No wire at {} / {} mm	Niciun conductor la {} / {} mm
+No wire with id {}	Niciun conductor cu ID-ul {}
+No work area named {}	Nicio zonă de lucru cu numele {}
+Node name or id	Nume sau ID nod
+Node {} exists already	Nodul {} există deja
+Nodes to pass in this order, comma separated	Noduri de parcurs în această ordine, separate prin virgule
+Nominal size, e.g. 8 mm or DN25	Diametru nominal, de ex. 8 mm sau DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Nu este o secțiune: {} (de ex. 1.5 mm²)
+Not a valid safety function: {}	Nu este o funcție de securitate validă: {}
+Note, e.g. what the problem is	Notă, de ex. care este problema
+Nothing to remove: {} {}	Nimic de eliminat: {} {}
+Number of columns	Număr de coloane
+Number of copies (default 1)	Număr de copii (implicit 1)
+Number of equal bars	Număr de bare identice
+Number of indexed values (0 = a single value)	Număr de valori indexate (0 = o singură valoare)
+Number of rows	Număr de rânduri
+Numbers the pages with a start value and step; released pages keep their name	Numerotează paginile cu o valoare de start și un pas; paginile aprobate își păstrează numele
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numerotează bornele unui șir 1 … n în ordinea din șir; denumirile nenumerice, precum PE, rămân
+Numbers the wires by the numbering scheme of the project	Numerotează conductoarele după schema de numerotare a proiectului
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=valoare, OPTION!=valoare, OPTION=a|b legate prin & (gol: întotdeauna)
+Offset from the symbol position in mm (default: below the symbol)	Decalaj față de poziția simbolului în mm (implicit: sub simbol)
+One end, e.g. -K1:A1	Un capăt, de ex. -K1:A1
+One row per printed label instead of a count	Un rând per etichetă tipărită în locul unui număr
+Only devices on these pages (names separated by commas)	Numai dispozitivele de pe aceste pagini (nume separate prin virgule)
+Only lines without a translation into this language	Doar rândurile fără traducere în această limbă
+Only list the new tags, change nothing	Numai listează noii identificatori, nu modifică nimic
+Only shows the package, no job is recorded	Afișează numai pachetul, nu se înregistrează nicio comandă de lucru
+Only shows what would change	Afișează numai ce s-ar modifica
+Only the pages of this work area (list_structure)	Doar paginile acestei zone de lucru (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Numai aceste litere de identificare (separate prin virgule, de ex. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Numai aceste tipuri, separate prin virgule: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Numai aceste tipuri, separate prin virgule: page, function_text, text, description
+Only these pages (names separated by commas)	Numai aceste pagini (nume separate prin virgule)
+Only this part number	Numai acest număr de articol
+Only wire, cable or tube	Doar wire, cable sau tube
+Only wires with this state: open, wired, changed or problem	Doar conductoarele cu această stare: open, wired, changed sau problem
+Opaque background in the paper colour	Fundal opac în culoarea hârtiei
+Openings: auto (punch of the size, else contour) or contour	Decupaje: auto (poanson de mărimea respectivă, altfel contur) sau contour
+Operating pressure in bar (0 = hose ratings are not checked)	Presiune de lucru în bar (0 = presiunile nominale ale furtunurilor nu se verifică)
+Operations	Operații
+Option name	Nume opțiune
+Option name, e.g. STARTER	Nume opțiune, de ex. STARTER
+Options and rules of the configurator	Opțiunile și regulile configuratorului
+Other end, e.g. -X1:3	Celălalt capăt, de ex. -X1:3
+Outer diameter in mm, 0 = estimated	Diametru exterior în mm, 0 = estimat
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Lungimile exterioare ale segmentelor drepte, mm, de ex. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Suprapunerea loviturilor de nibelare (0 … 0.9)
+PCT loop {} already exists	Bucla AMC {} există deja
+PLC hardware: stations, cards, bus systems and port connections	Hardware PLC: stații, carduri, sisteme de magistrală și conexiuni de port
+Page macro name	Nume macro de pagină
+Page macro that generates its schematic	Macro de pagină care generează schema sa
+Page name (default: all pages)	Numele paginii (implicit: toate paginile)
+Page {} is generated and cannot be edited	Pagina {} este generată și nu poate fi editată
+Page {} is out in subproject {}: insert or discard the subproject first	Pagina {} este scoasă în subproiectul {}: mai întâi reinserați subproiectul sau renunțați la el
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Paginile cu sufix (3.a) rămân subpagini ale paginii anterioare (implicit true)
+Panel layout checks	Verificări ale amplasării în tablou
+Panel manufacturing	Fabricarea tablourilor
+Paper height in mm (custom paper)	Înălțimea hârtiei în mm (format personalizat)
+Paper width in mm (custom paper)	Lățimea hârtiei în mm (format personalizat)
+Part lifecycle	Ciclul de viață al articolului
+Part number of the accessory	Numărul de articol al accesoriului
+Part number of the base	Numărul de articol al bazei
+Part number of the carrier (per metre)	Numărul de articol al suportului de cabluri (pe metru)
+Part number of the conductor (per metre)	Numărul de articol al conductorului (pe metru)
+Part number of the downstream device	Numărul de articol al dispozitivului din aval
+Part number of the hose / tube / pipe	Numărul de articol al furtunului / tubului / conductei
+Part number of the upstream device	Numărul de articol al dispozitivului din amonte
+Part number, e.g. GEN.LMP-GN-24	Număr articol, de ex. GEN.LMP-GN-24
+Part of the key or name	Parte din cheie sau din nume
+Part {} has no function with a symbol	Articolul {} nu are nicio funcție cu simbol
+Parts phased out or discontinued	Articole în curs de retragere sau scoase din fabricație
+Pass ids or pages	Indicați ID-uri sau pagini
+Path function text: function text of the functions in its column that have none	Text de funcție de cale: textul de funcție al funcțiilor din coloana sa care nu au unul
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Valori de substituenți KEY=valoare; KEY2=valoare (poate folosi {OPTION})
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Plasează un card PLC (modul I/O) într-o stație: rack, slot, adrese de start și descriere de dispozitiv; readresează punctele sale
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Plasează o punte unde se întâlnesc patru fire: conexiunea intră pe o latură și merge spre celelalte trei, întâi spre cea opusă, apoi spre cea stângă / superioară, apoi spre cea dreaptă / inferioară
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Plasează un punct de definire a conexiunii pe un conductor; conexiunea preia numărul, culoarea și secțiunea acestuia
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Plasează un colț: acolo două fire se întâlnesc în unghi drept, iar punctele de conexiune aflate în fața brațelor sale sunt cablate la el
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Plasează o piesă T direcționată unde se întâlnesc trei fire: indică aparatul de la care pornesc cele două fire ale conexiunii (sursa) și ordinea țintelor lor, în locul ordinii din schemă
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Plasează o încrucișare direcționată unde două fire se încrucișează: le leagă, iar fiecare capăt al liniei sale este cablat întâi drept înainte, apoi spre un braț transversal
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Plasează un articol pe o pagină: simbolul funcției sale principale cu denumirile punctelor de conexiune, ca dispozitiv nou căruia i se atribuie articolul (articolele proiectului și catalogul exemplu)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Plasează un simbol pe o pagină. Fără identificator se folosește următorul liber; contactele auxiliare primesc următoarele numere de contact libere ale dispozitivului lor
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Plasează o carcasă (+CAB1), un dispozitiv (-M1) sau un loc al mașinii (+M1) la un nod al rețelei de trasee
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Plasează un accesoriu de carcasă (ventilator, filtru, presetupă, lampă, mâner, bară PE) pe o față
+Places of the group (0 = not limited)	Locurile grupului (0 = nelimitat)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plasează rândul de carcase al unei carcase în încăpere (vedere 3D a tuturor carcaselor); fără x și z, este plasat conform planului de amplasare a instalației sau lângă celelalte rânduri de carcase
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plasează proprietățile unei scheme la simboluri; fără ID-uri, este replasată la toate simbolurile care o folosesc
+Planned part number	Număr de articol planificat
+Planned power in kW	Putere planificată în kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Planifică cablurile de câmp prin rețeaua de trasee: trasee, lungimi, gradul de umplere al segmentelor, puncte de legătură echipotențială și probleme; opțional preia lungimile de tăiere
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Planifică prelucrarea unei fețe: operații (găurire, filetare, frezare, poansonare, nibelare), scule, traseu, timp și ce nu poate realiza mașina
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Segmente de instalație cu dispozitive planificate înainte de schemă: șabloane, bilanț de putere, stare față de schemă, schimb ca CSV / Excel
+Plinth height in mm, 0 without plinth	Înălțimea soclului în mm, 0 fără soclu
+Plot frame (list_frames); empty = the project default	Chenar (list_frames); gol = implicit proiect
+Plot frames and page templates of the project	Chenarele și șabloanele de pagină ale proiectului
+Plug tag, e.g. -X10	Identificator de conector, de ex. -X10
+Plugin id '{}' is not snake_case	ID-ul pluginului '{}' nu este snake_case
+Plugin {} is loaded twice	Pluginul {} este încărcat de două ori
+Plugin {} needs a newer OpenECraft (API {})	Pluginul {} necesită un OpenECraft mai nou (API {})
+Plugin {}: the name '{}' is invalid or already taken	Pluginul {}: numele '{}' este nevalid sau deja folosit
+Plugin {}: {}	Plugin {}: {}
+Plugs and their pins	Conectori și pinii lor
+Points in between: [[x, y], …]	Puncte intermediare: [[x, y], …]
+Points in mm: [[x, y], …]	Puncte în mm: [[x, y], …]
+Port as station:port	Port ca stație:port
+Port must be given as station:port: {}	Portul trebuie indicat ca stație:port: {}
+Port {} is not connected	Portul {} nu este conectat
+Position down in metres	Poziție în jos în metri
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Poziția fibrei neutre (0 … 1, 0: DIN 6935)
+Position right in metres	Poziție spre dreapta în metri
+Position {} / {} mm lies outside the page ({} x {} mm)	Poziția {} / {} mm este în afara paginii ({} x {} mm)
+Potential definitions, wire defaults and wire colours	Definiții de potențial, valori implicite și culori ale conductoarelor
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Tipuri de potențial ale căror conexiuni nu primesc număr, separate prin virgule (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Nume potențial, de ex. L1 sau +24V
+Potential {} already exists	Potențialul {} există deja
+Pre-planning (CSV)	Preplanificare (CSV)
+Pre-planning (Excel)	Preplanificare (Excel)
+Problems	Probleme
+Product filter (-)	Filtru de produs (-)
+Production status	Stadiul producției
+Profile name, e.g. SAP	Nume profil, de ex. SAP
+Program format: iso, heidenhain, punch or csv	Format program: iso, heidenhain, punch sau csv
+Programs	Programe
+Progress (%)	Progres (%)
+Project checks	Verificări de proiect
+Project exports	Exporturi de proiect
+Project languages, dictionary and translations	Limbile proiectului, dicționar și traduceri
+Project reports	Rapoarte de proiect
+Project statistics	Statistici proiect
+Property and function definitions, property values and placement schemes	Definiții de proprietăți și de funcții, valori de proprietăți și scheme de plasare
+Property key	Cheie de proprietate
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Chei și valori de proprietăți, de ex. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Plasat în fața numerelor, de ex. W
+Quantity per end (default 1)	Cantitate pe capăt (implicit 1)
+R/X ratio of the supply impedance	Raportul R/X al impedanței rețelei de alimentare
+Rack number	Număr rack
+Rail id (action rail)	ID șină (acțiunea rail)
+Rapid traverse, mm/min	Avans rapid, mm/min
+Rated current of the supply in A (0: not limited)	Curentul nominal al alimentării în A (0: nelimitat)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Puterea nominală a transformatorului care alimentează rețeaua, în kVA (0: niciunul, curenții de scurtcircuit sunt indicați)
+Rear left corner of the line-up in mm, to the right	Colțul din stânga spate al rândului de carcase în mm, spre dreapta
+Rear left corner of the line-up in mm, towards the front	Colțul din stânga spate al rândului de carcase în mm, spre față
+Relative humidity of the ambient air in % (0: no condensation check)	Umiditatea relativă a aerului ambiant în % (0: fără verificarea condensului)
+Release instead of freeze	Eliberare în loc de fixare
+Released pages keep their names: {}	Paginile aprobate își păstrează numele: {}
+Remote I/O: station of the controller	I/O descentralizate: stația controlerului
+Remove the entry of upstream and downstream	Eliminarea intrării pentru upstream și downstream
+Remove the profile	Eliminarea profilului
+Remove the scheme from the project	Eliminarea schemei din proiect
+Remove unused definitions (default: false)	Eliminare definiții neutilizate (implicit: false)
+Removes a copper bar	Elimină o bară de cupru
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Elimină un nod (cu segmentele și plasările sale), un segment, o plasare, un contur, un conductor de legătură echipotențială sau un accesoriu
+Removes a planned device from a segment	Elimină un dispozitiv planificat dintr-un segment
+Removes a project function definition; its symbols go back to their built-in one	Elimină o definiție de funcție a proiectului; simbolurile sale revin la cea integrată
+Removes a project option; its content stays in the project	Elimină o opțiune de proiect; conținutul său rămâne în proiect
+Removes a report block; the pages it generated stay	Elimină un bloc de raport; paginile generate de acesta rămân
+Removes a routing path or reservation	Elimină o cale de pozare sau o rezervare
+Removes a segment with everything below it	Elimină un segment cu tot ce se află sub el
+Removes a station; its cards stay unassigned, its bus connections are removed	Elimină o stație; cardurile sale rămân neatribuite, conexiunile sale de magistrală sunt eliminate
+Removes a user property with all its values and placements	Elimină o proprietate de utilizator cu toate valorile și plasările sale
+Removes the bus connection of a port	Elimină conexiunea de magistrală a unui port
+Removes the bus system with its connections	Elimină sistemul de magistrală cu conexiunile sale
+Removes the definition of a structure identifier (pages and devices keep it)	Elimină definiția unui identificator de structură (paginile și dispozitivele îl păstrează)
+Removes the machine from the project	Elimină mașina din proiect
+Removes the rule	Elimină regula
+Removes the wiring marks of wires that no longer exist	Elimină marcajele de cablare ale conductoarelor care nu mai există
+Renames a device with all its functions	Redenumește un dispozitiv cu toate funcțiile sale
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Redenumește un identificator de structură în tot proiectul: pagini, dispozitive, cabluri, definiție și zone de lucru
+Renames the station	Redenumește stația
+Repair the repairable findings	Repararea constatărilor reparabile
+Replacement	Înlocuitor
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Înlocuiește textul în textele libere, textele de funcție, descrierile paginilor, dispozitivelor și cablurilor din întregul proiect; paginile aprobate rămân neschimbate
+Report blocks and report schemes	Blocuri de raport și scheme de raport
+Reserves space over the mounting plate: kept free of routes, or for one class only	Rezervă spațiu deasupra plăcii de montaj: păstrat liber de trasee sau doar pentru o clasă
+Rest (mm)	Rest (mm)
+Right side bayed (no side panel)	Partea dreaptă alăturată (fără perete lateral)
+Room {} exists already	Încăperea {} există deja
+Rotation in degrees clockwise: 0, 90, 180 or 270	Rotație în grade, în sensul acelor de ceasornic: 0, 90, 180 sau 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotire în grade, în sens antiorar (90 se citește de jos în sus)
+Route the wires in 3D as well (otherwise through the cable ducts)	Pozează și conductoarele în 3D (altfel prin canalele de cablu)
+Routing rules, paths, reservations, frozen routes and cable shields	Reguli de pozare, trasee, rezervări, trasee înghețate și ecrane de cablu
+Row key (from table_get)	Cheie de rând (din table_get)
+Rows of the pattern	Rândurile modelului
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Biblioteci de reguli ale standardelor și seturi de reguli ale clienților cu limitele în vigoare; le activează, dezactivează, adaugă sau elimină
+Rule number, from 1	Număr regulă, de la 1
+Run the check	Rulează verificarea
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	SVG, HTML, PDF, DXF și DWG ale paginilor, liste de producție și PLC, fișiere de schimb pentru cablaje și PLC, amplasarea în tablou în 3D și dicționarul de traduceri
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Funcția de securitate de adăugat sau înlocuit (după nume): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Funcții de securitate (ISO 13849-1) cu nivelul de performanță atins; adaugă, înlocuiește sau elimină una
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Salvează o pagină (tip, chenar, cartuș, structură, descriere, conținut) ca șablon de pagină
+Saves items of an enclosure as a 3D macro of the project	Salvează elemente ale unei carcase ca macro 3D al proiectului
+Saves the planned devices of a segment as a template	Salvează dispozitivele planificate ale unui segment ca șablon
+Saves the properties placed at a symbol as a placement scheme	Salvează proprietățile plasate la un simbol ca schemă de plasare
+Saw cut	Tăietură de ferăstrău
+Second port as station:port	Al doilea port ca stație:port
+Segment path, e.g. Plant/Area 1	Calea segmentului, de ex. Plant/Area 1
+Segment {} already exists	Segmentul {} există deja
+Segments not to use, comma separated	Segmente care nu trebuie folosite, separate prin virgule
+Selective up to this short-circuit current in kA (0: not given)	Selectiv până la acest curent de scurtcircuit în kA (0: neindicat)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Selectivitatea și protecția de rezervă a perechilor de dispozitive din tabelele producătorilor, după numărul de articol; adaugă, înlocuiește sau elimină o intrare
+Separator: semicolon, comma or tab	Separator: semicolon, comma sau tab
+Sets how cross references are shown (only the given settings) and shows the settings	Setează modul de afișare a referințelor încrucișate (numai setările indicate) și afișează setările
+Sets how the terminals of a jumper are bridged	Setează modul în care sunt puntate bornele unei punți
+Sets property values of an object; an empty value removes it	Setează valorile proprietăților unui obiect; o valoare goală o elimină
+Sets the aspects the pages use	Setează aspectele pe care le folosesc paginile
+Sets the collision class of a panel item (empty: automatic)	Setează clasa de coliziune a unui element de tablou (gol: automat)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Setează valorile implicite ale furtunurilor care nu au valori proprii și prefixul numerelor de furtun
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	Setează distanța dintre două clase de coliziune sau permite suprapunerea lor; înlocuiește regula acelorași clase
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Setează definiția traseului de câmp al unui cablu: nodurile prin care trebuie să treacă și segmentele pe care nu trebuie să le folosească
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Setează înălțimea părții inferioare a carcasei deasupra podelei (sunt verificate înălțimile dispozitivelor, bornelor și elementelor de acționare)
+Sets the level (multi-level terminals) or jumper number of a terminal	Setează nivelul (borne multinivel) sau numărul de punte al unei borne
+Sets the numbering scheme of the wires (only the given settings) and shows it	Setează schema de numerotare a conductoarelor (numai setările indicate) și o afișează
+Sets the plot frame of all pages that do not choose one	Setează chenarul tuturor paginilor care nu își aleg unul propriu
+Sets the shield and the outer diameter of a cable	Setează ecranul și diametrul exterior al unui cablu
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Setează limba sursă a textelor proiectului și limbile țintă (coduri ISO 639-1)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Setează bornele de rezervă ale unui șir și dacă accesoriile sale sunt adăugate automat
+Sets the translation of a line of the project texts (empty removes it)	Setează traducerea unui rând al textelor proiectului (gol o elimină)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Setează culoarea și secțiunea conductoarelor pentru rețelele fără potențial definit (gol = niciuna)
+Share of the capacity kept free in percent	Cota din capacitate păstrată liberă, în procente
+Sheets	Foi
+Shield connected at: both, first, second or none	Ecran conectat la: both, first, second sau none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Calcule de scurtcircuit, sarcină, CEM și siguranță, seturi de reguli și validarea proiectului
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Curenți de scurtcircuit, capacități de rupere, timpi de deconectare, rezistența la scurtcircuit a cablurilor și selectivitatea dispozitivelor de protecție
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Puterea de scurtcircuit a rețelei din amonte de transformator în MVA (0: infinită)
+Short-circuit voltage of the transformer in %	Tensiunea de scurtcircuit a transformatorului în %
+Shortest path between the hits of a tool	Cel mai scurt traseu între loviturile unei scule
+Shortest rail, duct or busbar	Cea mai scurtă șină, cel mai scurt canal sau cea mai scurtă bară colectoare
+Shortest straight length next to a bend	Cea mai scurtă lungime dreaptă lângă o îndoire
+Show as \"Name: value\"	Afișare ca \"Nume: valoare\"
+Show the content	Afișare conținut
+Shows a property as a text beside a symbol	Afișează o proprietate ca text lângă un simbol
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Afișează un șir de borne: bornele în ordinea din șir, cu nivel, punte și destinații, blocurile de pe șină și punțile
+Shows or changes the machining strategy and which machine makes which face	Afișează sau modifică strategia de prelucrare și ce mașină prelucrează fiecare față
+Shows or changes the rules of copper bars; lengths in mm	Afișează sau modifică regulile pentru barele de cupru; lungimi în mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Afișează sau modifică regulile verificărilor de amplasare; valori în mm (temperatură în °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	Afișează configurația hardware PLC: stații cu rack-uri, sloturi, module și domenii de adrese, sisteme de magistrală, conexiuni de porturi și problemele găsite
+Shows the content of a page: symbols with their connection point positions, wires and texts	Afișează conținutul unei pagini: simboluri cu pozițiile punctelor lor de conexiune, conductoare și texte
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Afișează datele celorlalte sisteme stocate în proiect (legături de articole, documente) și jurnalul de schimb
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Afișează fața de cuplare a unui conector: dispunerea pinilor piesei, poziția fiecărui pin (mm, văzut din partea pinilor) cu potențialul, culoarea firului și conductorul de cablu de pe ambele părți
+Shows the options and rules of the configurator	Afișează opțiunile și regulile configuratorului
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Afișează pinii unui conector în ordinea conectorului: ce este conectat pe partea mufei și pe partea pinului, potențialul, pinii neutilizați
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Afișează regulile pozării 3D și le modifică pe cele indicate: grilă, distanță, factor de pozare liberă, separare, raze de curbură, lungimi de tăiere, rezerve
+Shows the rules of the field cable planning and changes those given	Afișează regulile planificării cablurilor de câmp și le modifică pe cele indicate
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Afișează setările verificării proiectului: verificări dezactivate, niveluri de mesaj modificate și mesaje acceptate
+Side of the plug the cable leaves: socket or pin (default: socket)	Partea conectorului din care pleacă cablul: socket sau pin (implicit: socket)
+Side the connection comes from: left, right, up or down (default up)	Latura de pe care vine conexiunea: left, right, up sau down (implicit up)
+Single-line diagrams	Scheme monofilare
+Single-line pages and their multi-line counterparts	Pagini monofilare și corespondentele lor multifilare
+Slot number	Număr slot
+Smallest bend radius in mm	Raza de curbură minimă în mm
+Smallest distance in mm	Cea mai mică distanță în mm
+Smallest distance of holes from the sheet edge	Cea mai mică distanță a găurilor față de marginea tablei
+Smallest inner radius as a multiple of the thickness	Cea mai mică rază interioară ca multiplu al grosimii
+Smallest web at cutouts	Cea mai mică punte de material la decupaje
+Smallest web between holes	Cea mai mică punte de material între găuri
+Spare terminals at the end of the strip	Borne de rezervă la capătul șirului
+Springback in percent of the angle	Revenirea elastică în procente din unghi
+Start again on every page whose structure differs from the page before	Reîncepe la fiecare pagină a cărei structură diferă de pagina anterioară
+Start and end are the same connection point	Începutul și sfârșitul sunt același punct de conexiune
+Start and end point of the line	Punctul de start și cel final al liniei
+Start: device tag and connection point, e.g. -K1:A1	Început: identificator de dispozitiv și punct de conexiune, de ex. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Starea comenzilor de lucru predate producției: progres, defecte, remanieri, programe modificate de la predare
+Station name (empty: unassigned)	Nume stație (gol: neatribuit)
+Station name, e.g. PLC1	Nume stație, de ex. PLC1
+Station {} exists already	Stația {} există deja
+Stock bar	Bară de stoc
+Stock length of rails, ducts and busbars	Lungimea de stoc a șinelor, canalelor și barelor colectoare
+Stock length of the bars	Lungimea de stoc a barelor
+Stores the calibrated factors	Salvează factorii calibrați
+Structure identifiers, aspects and work areas	Identificatori de structură, aspecte și zone de lucru
+Structure of the target page: different (default), always or never	Structura paginii țintă: different (implicit), always sau never
+Subprojects, model options and the project data check	Subproiecte, opțiuni de model și verificarea datelor proiectului
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Alimentarea (tensiune, sistem de legare la pământ, curenți de scurtcircuit) și condițiile de pozare ale conductoarelor; modifică valorile indicate
+Switch checks off, change message levels, accept messages as checked	Dezactivați verificări, modificați nivelurile mesajelor, acceptați mesaje ca verificate
+Switches a check on or off (names as shown by list_checks)	Activează sau dezactivează o verificare (nume așa cum sunt afișate de list_checks)
+Switches the project options with a condition by the configurator options	Comută opțiunile de proiect cu condiție conform opțiunilor configuratorului
+Symbol id	ID simbol
+Symbol ids	ID-uri simbol
+Symbol key from list_symbols	Cheie de simbol din list_symbols
+Symbols, wires, texts, cable and connection definitions on schematic pages	Simboluri, conductoare, texte, definiții de cablu și de conexiune pe paginile de schemă
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Piesă T: direcția tijei; punte: latura de pe care vine conexiunea (left, right, up sau down)
+Tag of the terminal strip, e.g. -X1	Identificatorul șirului de borne, de ex. -X1
+Take the cut lengths over as cable lengths	Preluare lungimi de tăiere ca lungimi de cablu
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Preia o carcasă configurată în configuratorul producătorului de carcase (JSON): sistem, mărime, componente, accesorii și decupaje
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Preia confirmările producției (CSV sau JSON): comandă de lucru, program, operație, element, stare, abateri, timp, mesaj
+Takes pages or page items out of their project option (hidden content is shown again)	Scoate pagini sau elemente de pagină din opțiunea lor de proiect (conținutul ascuns este afișat din nou)
+Target language code	Cod limbă țintă
+Target languages separated by commas or blanks, e.g. de, fr	Limbi țintă separate prin virgule sau spații, de ex. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Creșterea temperaturii la plafon față de mijloc (1 … 2)
+Terminal designation	Denumire bornă
+Terminal designations in strip order, separated by commas	Denumirile bornelor în ordinea din șir, separate prin virgule
+Terminal order, levels, jumpers, spare terminals and accessories	Ordinea bornelor, niveluri, punți, borne de rezervă și accesorii
+Text height in mm	Înălțimea textului în mm
+Text height in mm (default 3.5)	Înălțimea textului în mm (implicit 3.5)
+Text in id, name or order number	Text în ID, nume sau număr de comandă
+Text in the key or name	Text în cheie sau nume
+Text in the line or a translation	Text în rând sau într-o traducere
+Text to find; empty: fill	Text de căutat; gol: completare
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Text; substituenții precum {page} sau {prop:Name} sunt completați la desenare
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Brațele unui colț sunt o direcție verticală și una orizontală, de ex. down left, nu {}
+The cable definition line crosses no wire	Linia de definire a cablului nu intersectează niciun conductor
+The cable definition line has no length	Linia de definire a cablului nu are lungime
+The cable has an overall shield	Cablul are un ecran general
+The classes may overlap (no collision)	Clasele se pot suprapune (fără coliziune)
+The configuration (JSON)	Configurația (JSON)
+The copies would leave the page	Copiile ar ieși din pagină
+The counting step must be at least 1	Pasul de numărare trebuie să fie cel puțin 1
+The devices do not fit onto rail {}	Dispozitivele nu încap pe șina {}
+The feedback (CSV with header or JSON)	Confirmarea (CSV cu antet sau JSON)
+The first page number must not be negative	Primul număr de pagină nu trebuie să fie negativ
+The items would leave the page	Elementele ar ieși din pagină
+The length must not be negative	Lungimea nu trebuie să fie negativă
+The line of a crossing is vertical or horizontal, not {}	Linia unei încrucișări este vertical sau horizontal, nu {}
+The message text, kept for the list of accepted messages	Textul mesajului, păstrat pentru lista mesajelor acceptate
+The name must not be empty	Numele nu poate fi gol
+The number of copies must be between 1 and 100	Numărul de copii trebuie să fie între 1 și 100
+The plinth height must not be negative	Înălțimea soclului nu trebuie să fie negativă
+The plot frame {} is in use	Chenarul {} este în uz
+The plugin program did not answer within {} s and was stopped	Programul pluginului nu a răspuns în {} s și a fost oprit
+The plugin program failed: {}	Programul pluginului a eșuat: {}
+The rotation must be 0, 90, 180 or 270	Rotația trebuie să fie 0, 90, 180 sau 270
+The straight line of a crossing: vertical or horizontal (default vertical)	Linia dreaptă a unei încrucișări: vertical sau horizontal (implicit vertical)
+The text height must be at least 0.5 mm	Înălțimea textului trebuie să fie de cel puțin 0,5 mm
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Cele două brațe ale unui colț, vertical și orizontal, de ex. down left (implicit: după firele de acolo, altfel down right)
+The wire has no length	Conexiunea nu are lungime
+The wrap width must not be negative	Lățimea de încadrare nu trebuie să fie negativă
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulare termică a plăcii de montaj: temperaturile aerului, punct fierbinte, surse de căldură și temperatura la fiecare dispozitiv
+Thickest sheet or bar, mm	Cea mai groasă tablă sau bară, mm
+Time per drilling, punching or bending operation, s	Timp per operație de găurire, poansonare sau îndoire, s
+Time per tool change, s	Timp per schimbare de sculă, s
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Scule, de ex. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	Marginea de sus pe față în mm
+Top edge on the mounting plate in mm	Marginea de sus pe placa de montaj în mm
+Translated line	Rând tradus
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotire în jurul verticalei în grade, în sens antiorar văzut de sus (90: fețele frontale sunt orientate spre dreapta)
+Unit, e.g. kW	Unitate, de ex. kW
+Unknown accessory kind: {}	Tip de accesoriu necunoscut: {}
+Unknown action: {}	Acțiune necunoscută: {}
+Unknown address scheme: {}	Schemă de adresare necunoscută: {}
+Unknown alignment: {}	Aliniere necunoscută: {}
+Unknown anchor: {}	Ancoră necunoscută: {}
+Unknown aspect: {}	Aspect necunoscut: {}
+Unknown bonding kind: {}	Tip de legătură echipotențială necunoscut: {}
+Unknown bonding point: {}	Punct de legătură echipotențială necunoscut: {}
+Unknown bus system: {}	Sistem de magistrală necunoscut: {}
+Unknown cable: {}	Cablu necunoscut: {}
+Unknown check: {}	Verificare necunoscută: {}
+Unknown class: {}	Clasă necunoscută: {}
+Unknown data type: {}	Tip de date necunoscut: {}
+Unknown direction {}: left, right, up or down	Direcție necunoscută {}: left, right, up sau down
+Unknown earthing system: {}	Sistem de legare la pământ necunoscut: {}
+Unknown face {}	Față necunoscută {}
+Unknown fastening: {}	Fixare necunoscută: {}
+Unknown field object: {}	Obiect de câmp necunoscut: {}
+Unknown field: {}	Câmp necunoscut: {}
+Unknown group kind: {}	Tip de grup necunoscut: {}
+Unknown installation: {}	Instalare necunoscută: {}
+Unknown insulation: {}	Izolație necunoscută: {}
+Unknown jumper kind: {}	Tip de punte necunoscut: {}
+Unknown kind: {}	Tip necunoscut: {}
+Unknown labels: {}	Etichete necunoscute: {}
+Unknown level: {}	Nivel necunoscut: {}
+Unknown line type: {}	Tip de conductă necunoscut: {}
+Unknown machine kind {}	Tip de mașină necunoscut {}
+Unknown marker category: {}	Categorie de marcaj necunoscută: {}
+Unknown material: {}	Material necunoscut: {}
+Unknown medium: {}	Mediu necunoscut: {}
+Unknown method {}	Metodă necunoscută {}
+Unknown node: {}	Nod necunoscut: {}
+Unknown numbering scheme: {}	Schemă de numerotare necunoscută: {}
+Unknown object class: {}	Clasă de obiect necunoscută: {}
+Unknown order: {}	Ordine necunoscută: {}
+Unknown paper format: {}	Format de hârtie necunoscut: {}
+Unknown path kind: {}	Tip de cale necunoscut: {}
+Unknown placeholder {}: possible are {}	Substituent necunoscut {}: posibile sunt {}
+Unknown potential kind: {}	Tip de potențial necunoscut: {}
+Unknown preset: {}	Presetare necunoscută: {}
+Unknown program format {}	Format de program necunoscut {}
+Unknown report: {}	Raport necunoscut: {}
+Unknown segment kind: {}	Tip de segment necunoscut: {}
+Unknown segment: {}	Segment necunoscut: {}
+Unknown separator: {}	Separator necunoscut: {}
+Unknown setting: {}	Setare necunoscută: {}
+Unknown shield ends: {}	Capete de ecran necunoscute: {}
+Unknown side {} (socket or pin)	Parte necunoscută {} (socket sau pin)
+Unknown state: {}	Stare necunoscută: {}
+Unknown station kind: {}	Tip de stație necunoscut: {}
+Unknown symbol: {}	Simbol necunoscut: {}
+Unknown table: {}	Tabel necunoscut: {}
+Unknown vertical anchor: {}	Ancoră verticală necunoscută: {}
+Unknown wire colour {} (IEC 60757: {})	Culoare de conductor necunoscută {} (IEC 60757: {})
+Use this scheme for the marking export	Utilizarea acestei scheme pentru exportul de marcare
+Used (mm)	Folosit (mm)
+Value while none is set	Valoare cât timp nu este setată niciuna
+Values of a selection list separated by commas	Valorile unei liste de selecție, separate prin virgule
+Variant (empty: the first)	Variantă (gol: prima)
+Variant {} is not one of 1 to 2	Varianta {} nu este una dintre 1 și 2
+Variant {} is not one of 1 to 4	Varianta {} nu este una dintre 1 și 4
+Verifies the project against the enabled rule libraries and customer rule sets	Verifică proiectul față de bibliotecile de reguli și seturile de reguli ale clienților activate
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Validează datele proiectului (ID-uri, referințe, opțiuni, subproiecte) și rulează verificările; opțional repară ce se poate repara
+Vertical pitch of the pattern in mm	Pasul vertical al modelului în mm
+Voltage, e.g. 400 V AC	Tensiune, de ex. 400 V AC
+What it is: motor, valve, sensor, …	Ce este: motor, supapă, senzor, …
+Which line the position is on: top (first), middle or bottom (last)	Rândul pe care se află poziția: top (primul), middle sau bottom (ultimul)
+Who accepted it	Cine l-a acceptat
+Whole words only	Numai cuvinte întregi
+Why the message is accepted	De ce este acceptat mesajul
+Width in mm	Lățime în mm
+Width of the path in mm (default 50)	Lățimea căii în mm (implicit 50)
+Width, depth and height of a room are at least {} mm	Lățimea, adâncimea și înălțimea unei încăperi sunt de cel puțin {} mm
+Width, height and depth of an enclosure are at least {} mm	Lățimea, înălțimea și adâncimea unei carcase sunt de cel puțin {} mm
+Wire colour (IEC 60757), e.g. BK	Culoare conductor (IEC 60757), de ex. BK
+Wire colour, e.g. BU	Culoare conductor, de ex. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Culoare conductor, de ex. BU (gol = din definiția potențialului)
+Wire number (kept when renumbering)	Număr de conductor (se păstrează la renumerotare)
+Wire numbering and wiring marks	Numerotarea conductoarelor și marcaje de cablare
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Conductoare prea subțiri pentru dispozitivul lor de protecție și căderea de tensiune a cablurilor (IEC 60204-1)
+Working area in x, mm	Zonă de lucru pe x, mm
+Working area in y, mm	Zonă de lucru pe y, mm
+Wrap width in mm (0: no wrapping)	Lățime de rupere a rândurilor în mm (0: fără rupere a rândurilor)
+X position in mm	Poziția X în mm
+Y position in mm (downwards)	Poziția Y în mm (în jos)
+any, wires, cables or tubes	any, wires, cables sau tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip sau adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam sau product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi sau other
+copper or aluminium	copper sau aluminium
+device (default), position, cross_section or number	device (implicit), position, cross_section sau number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages sau parts
+error, warning, info, off, or default to take the change back	error, warning, info, off sau default pentru a anula modificarea
+false takes the acceptance back (default true)	false anulează acceptarea (implicit true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted sau middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) sau product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker sau other
+hose, tube or pipe	hose, tube sau pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (mașini, faze BK) sau iec60445 (faze BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (implicit), power, control, signal sau fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal sau other
+left, center, right, top, middle or bottom	left, center, right, top, middle sau bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail sau pattern
+main (default), supplementary or functional	main (implicit), supplementary sau functional
+mounted, problem or open	mounted, problem sau open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond sau accessory
+numbers or letters	numbers sau letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof sau bottom
+plug_in, saddle or wire	plug_in, saddle sau wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp sau canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc sau cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable sau part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<nume>, device:<identificator>, function:<ID simbol>, cable:<identificator> sau part:<număr>
+pvc or xlpe	pvc sau xlpe
+sequential, page_column, potential or format	sequential, page_column, potential sau format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium sau plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date sau link (implicit text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt sau it
+too long	prea lung
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (implicit), ladder, trunking, conduit, drag_chain, buried sau free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit sau other
+wired, problem or open	wired, problem sau open
+{} and {} are both ends of one function: the wire would short-circuit it	{} și {} sunt ambele capete ale unei funcții: conductorul ar scurtcircuita-o
+{} and {} are needed together	{} și {} sunt necesare împreună
+{} cannot be bayed to itself	{} nu poate fi alăturat lui însuși
+{} cannot be mounted on the {}	{} nu poate fi montat pe {}
+{} exists already: pass merge to make both one identifier	{} există deja: indicați merge pentru a le uni într-un singur identificator
+{} has no enclosure bayed to its right side	{} nu are nicio carcasă alăturată în partea dreaptă
+{} has no enclosure system; give one	{} nu are sistem de carcase; indicați unul
+{} is a built-in frame; give the frame a new name	{} este un chenar integrat; dați chenarului un nume nou
+{} is a room already	{} este deja o încăpere
+{} is ambiguous: use #id:pin	{} este ambiguu: folosiți #id:pin
+{} is an enclosure already	{} este deja o carcasă
+{} is not a connection point (TAG:PIN)	{} nu este un punct de conexiune (IDENTIFICATOR:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} nu este un cod de mesaj așa cum îl afișează check (de ex. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} nu este o amprentă de mesaj așa cum o afișează check (code:hash:item)
+{} is not defined	{} nu este definit
+{} is not in that section	{} nu se află în acea secțiune
+{} is the source language	{} este limba sursă
+{} must be at least {}	{} trebuie să fie cel puțin {}
+{} must be between {} and {}	{} trebuie să fie între {} și {}
+{} must not be negative	{} nu trebuie să fie negativ
+{} of job {} changed since the hand-off	{} din comanda de lucru {} s-a modificat de la predare
+{} segments need {} bends	{} segmente necesită {} îndoiri
+{} would stand outside the room {}	{} ar sta în afara încăperii {}
+{}: part {} is being phased out	{}: articolul {} este în curs de retragere
+{}: part {} is being phased out, successor {}	{}: articolul {} este în curs de retragere, succesor {}
+{}: part {} is discontinued	{}: articolul {} este scos din fabricație
+{}: part {} is discontinued, successor {}	{}: articolul {} este scos din fabricație, succesor {}
+{}: the program to run is missing	{}: lipsește programul de executat

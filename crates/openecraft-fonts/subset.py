@@ -8,6 +8,7 @@ a translation gained characters (`openecraft/src/glyphs/tests.rs` fails then):
     pip install fonttools
     python subset.py <folder with NotoSansSC[wght].ttf, NotoSansJP[wght].ttf, NotoSansKR[wght].ttf>
 """
+import glob
 import os
 import sys
 
@@ -16,7 +17,7 @@ from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CATALOG = os.path.join(HERE, '..', 'openecraft-i18n', 'src', 'catalog', 'lang')
+CATALOG = os.path.join(HERE, '..', 'openecraft-i18n', 'src', 'catalog')
 
 # (language, source font, bundled font, language name as shown in the language menu)
 FONTS = [
@@ -31,10 +32,11 @@ EXTRA = '、。，．：；？！「」『』（）【】《》〈〉・ー～�
 
 def characters(lang, name):
     chars = set(name) | set(EXTRA)
-    with open(os.path.join(CATALOG, lang + '.tsv'), encoding='utf-8') as f:
-        for line in f:
-            if not line.startswith('#'):
-                chars.update(line.rstrip('\r\n').split('\t', 1)[-1])
+    for path in sorted(glob.glob(os.path.join(CATALOG, '*', lang + '.tsv'))):
+        with open(path, encoding='utf-8') as f:
+            for line in f:
+                if not line.startswith('#'):
+                    chars.update(line.rstrip('\r\n').split('\t', 1)[-1])
     return sorted(c for c in chars if ord(c) > 0x7F and not c.isspace())
 
 

@@ -1,0 +1,286 @@
+# English<TAB>Dansk – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(kun MCP-server)
+(optional)	(valgfri)
+Access token for changes	Adgangstoken til ændringer
+Access token of a Vault session or an Autodesk account instead of user and password	Adgangstoken for en Vault-session eller en Autodesk-konto i stedet for bruger og adgangskode
+Address of the Vault server, e.g. https://vault.example.com	Adressen på Vault-serveren, f.eks. https://vault.example.com
+Adds a page	Tilføjer en side
+Adds the definitions and schemes of a property library file to the project	Føjer definitionerne og skemaerne fra en egenskabsbiblioteksfil til projektet
+All project files of a folder	Alle projektfiler i en mappe
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Returnér også facetterne: værdier for grupper, producenter, kataloger, livscyklus og tekniske data med deres antal
+Also save the project in this local file	Gem også projektet i denne lokale fil
+Also take over values changed on both sides since the last export	Overtag også værdier, der er ændret på begge sider siden den seneste eksport
+Also verify each project (slower)	Verificér også hvert projekt (langsommere)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Anvender en CSV, der er eksporteret med table_get (og ændret i et regneark): De ændrede celler angives
+Applies a structure template: the aspects of the pages and its identifiers	Anvender en strukturskabelon: sidernes aspekter og dens betegnelser
+Archive file (.oecz)	Arkivfil (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Tildeler en artikel til en enhed (fra projektet, det indbyggede katalog eller artikelserveren)
+Author of comments without one (default: the user name)	Forfatter til kommentarer uden forfatter (standard: brugernavnet)
+AutomationML content instead of a file	AutomationML-indhold i stedet for en fil
+AutomationML file	AutomationML-fil
+CSV content instead of a file	CSV-indhold i stedet for en fil
+CSV file	CSV-fil
+CSV or Excel file	CSV- eller Excel-fil
+CSV or JSON file	CSV- eller JSON-fil
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- eller EDZ-fil
+Cannot write {}: {}	{} kan ikke skrives: {}
+Catalog data; without id it is derived from the name	Katalogdata; uden id dannes det ud fra navnet
+Changes project properties	Ændrer projektegenskaber
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Ændrer projektegenskaber i mange projektfiler på én gang (felterne name, description, company, creator, date, revision eller projektegenskaber)
+Changes the number of a part on the parts server	Ændrer nummeret på en artikel på artikelserveren
+Check scheme file (JSON)	Kontrolskemafil (JSON)
+Check-in comment	Kommentar til indtjekning
+Checks the project (errors, warnings, hints)	Kontrollerer projektet (fejl, advarsler, tip)
+Column mapping {field code: column name} (added to the profile's)	Kolonnetilknytning {feltkode: kolonnenavn} (føjes til profilens)
+Comment stored in the archive	Kommentar, der gemmes i arkivet
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Sammenligner projektartiklerne med artikelserveren: nyere versioner, udfasede, udgåede og fjernede artikler
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	I stedet connector-eksport: erp, pdm, plm, ecad, mcad, procurement, wiring_machine eller exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Opretter forbindelse til Autodesk Vault (Vault Data API, Vault Professional 2025.2 eller nyere): logger på med en Vault-konto eller bruger et adgangstoken og viser forbindelsen
+Converts a project file or archive of an older version to the current file format	Konverterer en projektfil eller et arkiv fra en ældre version til det aktuelle filformat
+Creates a new project (optionally the demo project) and saves it if a path is given	Opretter et nyt projekt (eventuelt demoprojektet) og gemmer det, hvis der er angivet en sti
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Opretter eller ændrer et katalog på artikelserveren (id, navn, producent, version, beskrivelse)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Opretter eller ændrer en rapportblok (rapportsider, der genereres samlet, f.eks. ét klemdiagram pr. klemrække)
+Creates or changes a user of the parts server (administrators only)	Opretter eller ændrer en bruger af artikelserveren (kun administratorer)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Opretter eller erstatter en artikel på artikelserveren (samme JSON som parts_get; manglende felter er tomme)
+Creates or replaces a report scheme	Opretter eller erstatter et rapportskema
+Creator	Opretter
+DWG file	DWG-fil
+DXF file	DXF-fil
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro eller Other (standard: efter filnavn)
+Date for the exchange log	Dato til udvekslingsloggen
+Defines, changes or deletes a role of the parts server (administrators only)	Definerer, ændrer eller sletter en rolle på artikelserveren (kun administratorer)
+Delete the role	Slet rollen
+Deletes a catalog without parts from the parts server	Sletter et katalog uden artikler fra artikelserveren
+Deletes a part from the parts server	Sletter en artikel fra artikelserveren
+Deletes a user of the parts server (administrators only)	Sletter en bruger af artikelserveren (kun administratorer)
+Descending order	Faldende rækkefølge
+Discard unsaved changes of the open project	Kassér ikke-gemte ændringer i det åbne projekt
+Downloads a file of a part from the parts server	Downloader en fil for en artikel fra artikelserveren
+Downloads a file version from the vault	Downloader en filversion fra vaulten
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Integrerer en fil (PDF, Office-dokument, billede …) som en dokumentside; PDF-eksporten vedhæfter den til siden
+Error: {}	Fejl: {}
+Export name as shown by list_exports	Eksportnavn som vist af list_exports
+Export name as shown by list_exports, e.g. pdf or step	Eksportnavn som vist af list_exports, f.eks. pdf eller step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Eksporterer alle artikler på artikelserveren som CSV eller EPLAN-artikel-XML
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Eksporterer projektet til et andet system med en connector eller som den neutrale udvekslingsfil (connector exchange); senere importer fra denne connector registrerer konflikter i forhold til denne eksport
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Eksporterer projektet i et format fra list_exports; binære formater (dwg, jt) kræver en outputfil
+Field or property whose value is searched ('*' for all)	Felt eller egenskab, hvis værdi gennemsøges ('*' for alle)
+File content instead of a file	Filindhold i stedet for en fil
+File id (see the attachments of parts_get)	Fil-id (se attachments i parts_get)
+File name in the vault	Filnavn i vaulten
+File to embed	Fil, der skal integreres
+File to save the project to (.oec)	Fil, som projektet gemmes i (.oec)
+File to upload	Fil, der skal uploades
+File to write	Fil, der skal skrives
+File to write (xlsx)	Fil, der skal skrives (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Finder projekter i projektdatabasen eller en mappe: termer adskilt af ';', hver nøgle=værdi, nøgle~tekst eller almindelig tekst
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Finder Vault-elementerne for projektartiklerne (via varenummer eller egenskaben Part Number) og viser ændringerne af vare-id, revision og livscyklusstatus; med apply overtages de
+Folder id (default root)	Mappe-id (standard root)
+Folder with project files	Mappe med projektfiler
+Folder with project files (instead of a database; default: the current folder)	Mappe med projektfiler (i stedet for en database; standard: den aktuelle mappe)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Formular: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (klemme- og kabeldiagrammer som tegninger)
+Function (=) of the generated pages	Funktion (=) for de genererede sider
+Further parameters of the export as name=value, separated by commas	Yderligere parametre for eksporten som navn=værdi, adskilt af kommaer
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Yderligere parametre for eksporten som navn=værdi, adskilt af kommaer (se list_exports), f.eks. harness=-WH1
+GSDML or ESI file	GSDML- eller ESI-fil
+Generates a report as table	Genererer en rapport som tabel
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Genererer en diagramside pr. planlagt enhed, der har en sidemakro og endnu ikke er i diagrammet
+Generates the pages of the report blocks again (replacing the pages they generated before)	Genererer siderne for rapportblokkene igen (erstatter de sider, de tidligere har genereret)
+Give either template or path	Angiv enten template eller path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Giver en bruger eller gruppe en rolle for en producent (område) på artikelserveren, fratager med deny dens rettigheder, fjerner med revoke tildelinger (kun administratorer)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Grupper, der skal genereres, jokertegn tilladt (-X*, -W1); tom: alle
+Id of a file (file_id of vault_browse) that gets a new version	Id for en fil (file_id fra vault_browse), der får en ny version
+Id of the file version (version_id of vault_browse)	Filversionens id (version_id fra vault_browse)
+Id of the knowledge vault (taken from the session if not given)	Vaultens id (hentes fra sessionen, hvis det ikke er angivet)
+Id of the plugin to disable	Id for det plugin, der skal deaktiveres
+Id of the plugin to enable	Id for det plugin, der skal aktiveres
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Importerer en DWG-tegning (AutoCAD R12 … 2018) som grafik (linjer, buer, tekster, blokke) på en ny diagramside
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Importerer en DXF-tegning som grafik (linjer, buer, tekster, blokke) på en ny diagramside
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Importerer en PLC-hardwarekonfiguration fra AutomationML (f.eks. eksporteret fra TIA Portal): stationer, moduler, adresser, undernet, portforbindelser og variabelkommentarer
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Importerer en artikelfil til artikelserveren; billeder og makroer i en EDZ-fil gemmes sammen med deres artikler
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importerer enhedsbeskrivelser fra en GSDML-fil (PROFINET) eller ESI-fil (EtherCAT) til projektet
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importerer forprojekteringssegmenter og planlagte enheder fra CSV eller Excel (kolonnerne Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importerer de kommentarer, som en korrekturlæser har lavet i en PDF-eksport af projektet (noter, tekstfelter, fremhævninger, figurer, svar), i gennemsynslaget; tidligere importerede kommentarer springes over
+Insert after this page (default: at the end)	Indsæt efter denne side (standard: til sidst)
+Inserts an edited subproject: its pages replace the pages taken out	Indsætter et redigeret delprojekt: dets sider erstatter de udtagne sider
+Invalid form: {}	Ugyldig formular: {}
+Keep the file checked out after the check-in	Behold filen tjekket ud efter indtjekningen
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Servertype: OpenECraft (artikelserver) eller Eplan (EPLAN Data Portal: kun søgning og læsning, tokenet er EPLAN-kontoens personlige adgangstoken)
+Language of the export (a project language)	Eksportens sprog (et projektsprog)
+Language of the project texts and reports (a project language, default the source language)	Sprog for projekttekster og rapporter (et projektsprog, standard er kildesproget)
+Library file	Biblioteksfil
+Lifecycle: Active, PhaseOut or Discontinued	Livscyklus: Active, PhaseOut eller Discontinued
+Lists the built-in structure templates	Viser de indbyggede strukturskabeloner
+Lists the catalogs of the parts server with their number of parts	Viser artikelserverens kataloger med deres antal artikler
+Lists the checks of the project check (built-in and of plugins) and whether they run	Viser projektkontrollens kontroller (indbyggede og fra plugins), og om de køres
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Viser integrationslagets connectorer (ERP, PDM, PLM, ECAD, MCAD, indkøb, ledningsbearbejdningsmaskine) med de felter, de udveksler, samt projektets profiler
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Viser kapslingssystemerne med deres standardstørrelser, vægtykkelse, sokkel og om de kan sammenbygges
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Viser eksempelprojekterne, fra en første kreds til et helt anlæg, med de funktioner hvert enkelt viser
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Viser eksporterne (indbyggede og fra plugins): navn til export, titel, filtypenavn og parametre
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Viser mapperne og filerne i en Vault-mappe eller søger i filegenskaberne under den (eller i hele vaulten)
+Lists the reports (built-in and of plugins): name for report and title	Viser rapporterne (indbyggede og fra plugins): navn til report og titel
+Lists the users of the parts server (administrators only)	Viser artikelserverens brugere (kun administratorer)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Indlæste plugins (indbyggede og fra plugin-mapperne i --plugins / OPENECRAFT_PLUGINS) med deres kommandoer, kontroller, rapporter og eksporter; aktiverer eller deaktiverer et for denne session
+Local file to put into the vault	Lokal fil, der skal lægges i vaulten
+Local groups of the user, separated by commas	Brugerens lokale grupper, adskilt af kommaer
+Location (+) of the generated pages	Placering (+) for de genererede sider
+Macro library file (JSON, exported by the editor)	Makrobiblioteksfil (JSON, eksporteret af editoren)
+Manufacturer (wildcards); default * (everything)	Producent (jokertegn); standard * (alt)
+Manufacturer whose parts a manufacturer user maintains	Producent, hvis artikler en producentbruger vedligeholder
+Maximum number of hits (default 50)	Maksimalt antal resultater (standard 50)
+Name of a built-in template (list_structure_templates)	Navn på en indbygget skabelon (list_structure_templates)
+Name of the knowledge vault (default Vault)	Navnet på vaulten (standard Vault)
+New file name (save as)	Nyt filnavn (gem som)
+New pages for every value of the group column (default true)	Nye sider for hver værdi i grupperingskolonnen (standard true)
+New part number	Nyt artikelnummer
+New report block {} needs a kind	Den nye rapportblok {} kræver en kind
+No grant of {} found	Ingen tildeling for {} fundet
+No profile named {}	Ingen profil med navnet {}
+No project is open: use open_project or new_project first	Intet projekt er åbent: Brug først open_project eller new_project
+No role {} defined	Ingen rolle {} defineret
+Not a valid catalog: {}	Ikke et gyldigt katalog: {}
+Not a valid part: {}	Ikke en gyldig artikel: {}
+Not connected to a vault: use vault_connect first	Ikke forbundet til en vault: brug først vault_connect
+Nothing to change: pass set, remove, replace or rename	Intet at ændre: angiv set, remove, replace eller rename
+Number of hits to skip	Antal resultater, der skal springes over
+Only show the changes, write nothing	Vis kun ændringerne, skriv intet
+Only the pages of this report block; default all report pages	Kun siderne i denne rapportblok; standard alle rapportsider
+Only the projects that match these search terms	Kun de projekter, der matcher disse søgetermer
+Only this block	Kun denne blok
+Opens a project file or archive (files of older versions are converted)	Åbner en projektfil eller et arkiv (filer fra ældre versioner konverteres)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Åbner en projektfil eller et arkiv fra vaulten; vault_upload uden mål tjekker en ny version af den ind
+Option {} needs the form name=value	Option {} skal have formen navn=værdi
+Order: Number, Manufacturer, Description, Price or Modified	Rækkefølge: Number, Manufacturer, Description, Price eller Modified
+Output file	Outputfil
+Output file (JSON)	Outputfil (JSON)
+Output file; without it the content is returned	Outputfil; uden den returneres indholdet
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Udskriver rapportsider som faste sider til en anden projektfil; sider, der tidligere er udskrevet fra dette projekt, erstattes
+PDF file with comments	PDF-fil med kommentarer
+Page (svg: required, dxf, dwg: default all pages)	Side (svg: påkrævet, dxf, dwg: standard alle sider)
+Page name (default: next number)	Sidenavn (standard: næste nummer)
+Page of the export	Eksportens side
+Page template (list_page_templates) instead of kind	Sideskabelon (list_page_templates) i stedet for kind
+Page {} has no embedded document	Side {} har intet integreret dokument
+Pages whose structure starts with this, e.g. =A1+CAB1	Sider, hvis struktur begynder med dette, f.eks. =A1+CAB1
+Part number to add	Artikelnummer, der skal tilføjes
+Part number to remove	Artikelnummer, der skal fjernes
+Part {} has no version {}	Artikel {} har ingen version {}
+Pass files or a folder	Angiv filer eller en mappe
+Password (needed for new users; empty keeps the current one)	Adgangskode (påkrævet for nye brugere; tom bevarer den nuværende)
+Password of the Vault user	Vault-brugerens adgangskode
+Password of the user	Brugerens adgangskode
+Plot frame (list_frames); default: the project's	Plotramme (list_frames); standard: projektets
+Product top group: Electrical, Fluid, Mechanics or Process	Produkthovedgruppe: Electrical, Fluid, Mechanics eller Process
+Profile whose column mapping is used	Profil, hvis kolonnetilknytning bruges
+Project database file (JSON)	Projektdatabasefil (JSON)
+Project database file (JSON) to update	Projektdatabasefil (JSON), der skal opdateres
+Project file (.oec) or archive (.oecz)	Projektfil (.oec) eller arkiv (.oecz)
+Project file that gets the pages	Projektfil, der får siderne
+Project file to write (default: the file itself; archives: next to it as .oec)	Projektfil, der skal skrives (standard: selve filen; arkiver: ved siden af som .oec)
+Project files, separated by ';'	Projektfiler adskilt af ';'
+Properties to remove, separated by ','	Egenskaber, der skal fjernes, adskilt af ','
+Properties to rename (old name: new name)	Egenskaber, der skal omdøbes (gammelt navn: nyt navn)
+Property {} needs a text or a number	Egenskaben {} kræver en tekst eller et tal
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Lægger projektet, en eksport, en connector-eksport eller en lokal fil i vaulten; en fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor eller Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Læser en fil fra et andet system (CSV eller JSON) med en connector og viser ændringerne; med apply overtages de (konflikter kun med overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Indlæser projektfilerne og arkiverne i en mappe (og dens undermapper) i projektdatabasen
+Reads translations from CSV: first column the source line, one column per language code	Læser oversættelser fra CSV: første kolonne kildelinjen, én kolonne pr. sprogkode
+Redoes the last undone change	Gentager den sidst fortrudte ændring
+Remove the grants of the user or group (only of this role and scope, if given)	Fjern brugerens eller gruppens tildelinger (kun for denne rolle og dette område, hvis angivet)
+Remove the parts assigned so far	Fjern de hidtil tildelte artikler
+Removes a file from a part on the parts server	Fjerner en fil fra en artikel på artikelserveren
+Replace the file at path if it exists	Erstat filen på path, hvis den findes
+Replace the project parts by their newer server versions	Erstat projektartiklerne med deres nyere serverversioner
+Replacement text	Erstatningstekst
+Replaces the content of the macro boxes whose macro changed in a macro library file	Erstatter indholdet af de makrobokse, hvis makro er ændret i en makrobiblioteksfil
+Replaces the pages generated before by the page macros of the rules whose condition holds	Erstatter de tidligere genererede sider med sidemakroerne fra de regler, hvis betingelse er opfyldt
+Report name as shown by list_reports	Rapportnavn som vist af list_reports
+Report scheme: its filter, sort order and columns	Rapportskema: dets filter, sorteringsrækkefølge og kolonner
+Report scheme; empty: the form of the report	Rapportskema; tom: rapportens formular
+Report the scheme belongs to	Rapport, som skemaet hører til
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Rapport, f.eks. terminal_diagram, terminal_lineup, cable_connections (påkrævet for en ny blok)
+Return all part data instead of a summary	Returner alle artikeldata i stedet for et resumé
+Revision of the change; returns the part as it was	Ændringens revision; returnerer artiklen, som den var
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Rettigheder adskilt af kommaer: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Rollenavn
+Role of requests without sign-in; none: sign-in needed for reading	Rolle for anmodninger uden logon; none: logon kræves for at læse
+Role: reader, manufacturer, editor, admin or a defined role	Rolle: reader, manufacturer, editor, admin eller en defineret rolle
+Saves the project to its file or to a new path	Gemmer projektet i dets fil eller under en ny sti
+Scale drawings down that do not fit on the page (default: true)	Formindsk tegninger, der ikke passer på siden (standard: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Søgetermer, f.eks. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Søger i vaultens elementer (nummer, titel, revision, livscyklusstatus, artikelnummer)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Søger efter artikler på artikelserveren (dataportal) efter tekst, grupper, katalog, livscyklus og tekniske data
+Segment path (default: all segments)	Segmentsti (standard: alle segmenter)
+Server URL, e.g. http://127.0.0.1:8090	Server-URL, f.eks. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Angiver artikelserveren (URL og adgangstoken eller bruger og adgangskode) og viser dens tilstand
+Settings scheme file (JSON)	Indstillingsskemafil (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Viser en tabel (enheder, forbindelser, klemmer, kabler, stik, PLC, sider eller artikler) med dens rækker; en rækkes nøgle bruges til at ændre den
+Shows all data of a part	Viser alle data for en artikel
+Shows the changes of a part on the parts server, or the part as of one change	Viser ændringerne af en artikel på artikelserveren eller artiklen, som den var ved en ændring
+Shows the favorites of the signed in user, optionally adding or removing a part	Viser den påloggede brugers favoritter og tilføjer eller fjerner eventuelt en artikel
+Shows the manifest of a project archive	Viser manifestet for et projektarkiv
+Shows the project properties, file, number of pages and devices and the check result	Viser projektegenskaber, fil, antal sider og enheder samt kontrolresultatet
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Viser artikelserverens roller, tildelinger og katalogtjenester og angiver eventuelt rollen for anonyme anmodninger (kun administratorer)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Start fra en projektskabelon: en indbygget (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) eller en projektfil
+Start from an example project (names: list_examples)	Start fra et eksempelprojekt (navne: list_examples)
+Start from the demo project	Start fra demoprojektet
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Gemmer en fil (datablad, billede, model, makro …) med en artikel på artikelserveren
+Subproject file (.oec)	Delprojektfil (.oec)
+Subproject file to write (.oec)	Delprojektfil, der skal skrives (.oec)
+Take the changes over (otherwise only a preview)	Overtag ændringerne (ellers kun en forhåndsvisning)
+Take the rights of the role away instead	Fratag i stedet rollens rettigheder
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Udtager sider som en delprojektfil; de forbliver låst her, indtil delprojektet indsættes igen
+Takes the checks switched off and the message levels of a check scheme file	Overtager de kontroller, der er slået fra, og meddelelsesniveauerne fra en kontrolskemafil
+Takes the settings a settings scheme file carries	Overtager de indstillinger, som en indstillingsskemafil indeholder
+Target folder id (root for the top folder); default the folder the project was opened from	Målmappens id (root for den øverste mappe); standard er den mappe, projektet blev åbnet fra
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Tekniske data, der skal passe, f.eks. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Skabelonfil skrevet af export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Tekst i nummer, type, producent, beskrivelse, grupper eller katalog; hvert ord skal forekomme
+Text to replace	Tekst, der skal erstattes
+Text to search for	Tekst, der skal søges efter
+The catalog needs a name	Kataloget skal have et navn
+The format xlsx needs a path	Formatet xlsx kræver en sti
+The open project has unsaved changes: save it first or pass discard	Det åbne projekt har ikke-gemte ændringer: Gem det først, eller angiv discard
+The part number must not be empty	Artikelnummeret må ikke være tomt
+The project has no file yet: pass a path	Projektet har endnu ingen fil: Angiv en sti
+This command needs a project: --project <file>	Denne kommando kræver et projekt: --project <fil>
+This format needs an output file (path)	Dette format kræver en outputfil (path)
+Undoes the last change	Fortryder den seneste ændring
+Unexpected argument: {}	Uventet argument: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Ukendt kommando: {}. Kør openecraft-cli help for at få en liste.
+Unknown example {}: see list_examples	Ukendt eksempel {}: se list_examples
+Unknown language: {}	Ukendt sprog: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Ukendt sidetype: {} (schematic, overview, graphic, cover eller en rapport fra list_reports)
+Unknown part {} (parts server: {})	Ukendt artikel {} (artikelserver: {})
+Unknown plugin: {}	Ukendt plugin: {}
+Unknown report scheme: {}	Ukendt rapportskema: {}
+Unknown structure template: {}	Ukendt strukturskabelon: {}
+Unknown template {}: give a built-in one ({}) or a project file	Ukendt skabelon {}: angiv en indbygget ({}) eller en projektfil
+Unknown {}: {} (possible: {})	Ukendt {}: {} (mulige: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Brug: openecraft-cli [--project <fil>] [--server <url>] [--token <token>] [--lang <kode>] [--plugins <mappe>] <kommando> [--<parameter> <værdi>]…\n\nopenecraft-cli mcp        kører en Model Context Protocol-server på stdin / stdout\nopenecraft-cli <kommando> --help   viser parametrene for en kommando\n\nKommandoer:\n
+User defined properties (name: value; an empty value removes it)	Brugerdefinerede egenskaber (navn: værdi; en tom værdi fjerner den)
+User name to sign in with	Brugernavn til logon
+User or group name (wildcards; directory groups as directory:group)	Bruger- eller gruppenavn (jokertegn; grupper fra en katalogtjeneste som katalogtjeneste:gruppe)
+Values to set (name: value; an empty value removes a property)	Værdier, der skal angives (navn: værdi; en tom værdi fjerner en egenskab)
+Vault user name (signs in)	Vault-brugernavn (logger på)
+Write the table as CSV to this file	Skriv tabellen som CSV til denne fil
+Writes the check scheme of the project (checks switched off, message levels) to a file	Skriver projektets kontrolskema (kontroller, der er slået fra, meddelelsesniveauer) til en fil
+Writes the embedded file of a document page	Skriver den integrerede fil fra en dokumentside
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Skriver projektet til et arkiv (.oecz: projekt, manifest, indlejrede filer, eventuelt en PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Skriver projektets egenskabsdefinitioner, funktionsdefinitioner og skemaer som en biblioteksfil
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Skriver projektets indstillinger (ledningsnummerering, potentialer, ledningsstandarder og -farver, mærkning, slangestandarder, krydsreferencer, kontrolskema) til en fil
+Writes the structure management (aspects, identifiers, work areas) as a template file	Skriver strukturstyringen (aspekter, betegnelser, arbejdsområder) som en skabelonfil
+csv (default) or eplan_xml	csv (standard) eller eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement eller wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine eller exchange
+json (default), csv or xlsx (Excel, needs path)	json (standard), csv eller xlsx (Excel, kræver path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nKører en Model Context Protocol-server på stdin / stdout: værktøjerne i listen til AI-agenter, med projektet i hukommelsen (save_project skriver det, undo / redo fortryder enkelte kald). OPENECRAFT_MCP_TOOLS begrænser de tilbudte værktøjer.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nViser kommandolinjens version (også --version eller -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover eller en rapport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo og redo virker kun i en MCP-session: kommandolinjen åbner projektet på ny for hver kommando
+user or group	user eller group
+{} exists already: pass overwrite to replace it	{} findes allerede: angiv overwrite for at erstatte den
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} er et arkiv og forbliver uændret: gem projektet som projektfil (save_project --path <file>.oec), eller konvertér arkivet (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} er et arkiv: angiv en sti for at gemme projektet som projektfil
+{} is not a language of the project	{} er ikke et sprog i projektet

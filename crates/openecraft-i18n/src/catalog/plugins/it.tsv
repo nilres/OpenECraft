@@ -1,0 +1,953 @@
+# English<TAB>Italiano – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: dal braccio sinistro / superiore dritto all'altro braccio, poi al gambo · 2: lo stesso dal braccio destro / inferiore · 3: dal gambo al braccio sinistro / superiore, poi all'altro · 4: dal gambo prima al braccio destro / inferiore (predefinito 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: l'estremità superiore / sinistra della linea va trasversalmente al braccio destro / inferiore · 2: al braccio sinistro / superiore (predefinito 2)
+A cable definition needs a start and an end point	Una definizione cavo richiede un punto iniziale e un punto finale
+A copper bar needs at least one segment	Una barra di rame richiede almeno un tratto
+A segment cannot be moved below itself	Un segmento non può essere spostato sotto se stesso
+A segment needs two different nodes	Un tratto richiede due nodi diversi
+A wire needs at least two points	Un conduttore richiede almeno due punti
+A {} has no {}; it takes {}	{} non ha {}; accetta {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid o custom
+Accepts a message as checked, so that it is no longer counted until it changes	Accetta un messaggio come verificato, in modo che non venga più conteggiato finché non cambia
+Accessory part number, e.g. GEN.GLAND-M25	Codice articolo dell'accessorio, ad es. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Attiva (mostra) o disattiva (nasconde) il contenuto di un'opzione di progetto
+Additional power loss in W	Potenza dissipata aggiuntiva in W
+Address scheme: siemens, iec or rockwell	Schema di indirizzamento: siemens, iec o rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Aggiunge una barra di rame piegata e forata (o sostituisce quella con lo stesso nome nell'armadio)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Aggiunge un passaggio cavi verso il vicino a destra: aperture rotonde affacciate in entrambe le pareti laterali; i conduttori tra gli armadi passano attraverso di esso
+Adds a configurator rule: insert a page macro when the condition holds	Aggiunge una regola del configuratore: inserisce una macro di pagina quando la condizione è soddisfatta
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Aggiunge un nodo della rete dei percorsi cavi (diramazione, attraversamento, punto in cui si raggiunge un armadio o un dispositivo)
+Adds a planned device to a segment or changes it	Aggiunge un dispositivo pianificato a un segmento o lo modifica
+Adds a project option or changes its description and condition	Aggiunge un'opzione di progetto o ne modifica la descrizione e la condizione
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Aggiunge sopra la piastra di montaggio un percorso di instradamento (passerella portacavi, guida tubi) preferito dai percorsi
+Adds a segment below another one (or at the top)	Aggiunge un segmento sotto un altro (o al livello superiore)
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	Aggiunge un tratto della rete dei percorsi cavi tra due nodi: passerella portacavi, passerella a scala, canalina, tubo protettivo, catena portacavi, interrato o posa libera
+Adds a text to a page	Aggiunge un testo a una pagina
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Aggiunge al dizionario tutte le righe dei testi del progetto, rimuovendo facoltativamente le voci non più utilizzate
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Aggiunge un accessorio a un'estremità del cavo: pressacavo, pressacavo EMC, connettore, fermacavo, morsetto di schermatura, guaina protettiva, manicotto terminale, marcatore
+Adds an accessory to a device; it must fit one of the device's parts	Aggiunge un accessorio a un dispositivo; deve essere compatibile con uno degli articoli del dispositivo
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Aggiunge un armadio: di un sistema in una delle sue dimensioni (o in una dimensione personalizzata) oppure da un articolo armadio
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Aggiunge un conduttore equipotenziale tra due punti di collegamento equipotenziale (collettore principale di terra, armadi, contorni conduttivi, supporti portacavi metallici)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Aggiunge o modifica uno schema di marcatura del progetto, lo rimuove o seleziona lo schema usato per l'esportazione della marcatura
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Aggiunge o modifica una macchina del progetto (una macchina predefinita con lo stesso ID viene sostituita) o la rimuove
+Adds the devices of a template to a segment	Aggiunge i dispositivi di un modello a un segmento
+Adds the outline of a machine, building or area to the plant layout	Aggiunge il contorno di una macchina, di un edificio o di un'area al layout dell'impianto
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Aggiunge, sostituisce o rimuove un profilo: un connettore con i nomi delle colonne usati dall'altro sistema
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Allinea gli elementi, li distribuisce uniformemente, allinea i dispositivi su una guida o copia gli elementi in una matrice
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Allinea simboli, testi e grafica a un bordo o centro comune; le estremità dei conduttori collegati seguono
+Allow renaming onto an identifier in use: both become one	Consenti di rinominare in un identificatore in uso: i due diventano uno
+Allowed classes, comma separated: power, control, signal, fluid (default all)	Classi consentite, separate da virgole: power, control, signal, fluid (predefinito tutte)
+Allowed values separated by commas (empty: any value)	Valori consentiti separati da virgole (vuoto: qualsiasi valore)
+Also create a bus cable for every connection without cable	Crea anche un cavo bus per ogni collegamento senza cavo
+Also properties without a value	Anche le proprietà senza valore
+Also remove entries the project no longer uses	Rimuovi anche le voci non più utilizzate dal progetto
+Also renumber terminal strips, plugs and PLC cards	Rinumera anche morsettiere, connettori e schede PLC
+Also renumber wires with a fixed number	Rinumera anche i conduttori con numero fisso
+Altitude of the site in m	Altitudine del sito in m
+Ambient temperature of the conductors in °C	Temperatura ambiente dei conduttori in °C
+An outline needs {} points at least	Un contorno richiede almeno {} punti
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Ancoraggio lungo l'asse: free, start:<mm>, center:<mm>, end:<mm> o stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Aspetti separati da virgole, ad es. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Assegna una definizione di funzione a un simbolo posizionato (designazioni e schema vengono acquisiti)
+Asynchronous motors add to the short-circuit current	I motori asincroni contribuiscono alla corrente di cortocircuito
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Configurazione hardware automatica: stazioni per CPU e accoppiatori bus, sistemi bus, schede alle stazioni, slot, indirizzi iniziali, indirizzi dei punti, indirizzi IP e una topologia in linea
+Back to the default rules first	Ripristina prima le regole predefinite
+Back to the default strategy first	Ripristina prima la strategia predefinita
+Back-up protection up to this short-circuit current in kA (0: not given)	Protezione di back-up fino a questa corrente di cortocircuito in kA (0: non indicata)
+Bar id	ID barra
+Bar thickness, mm (default 5)	Spessore della barra, mm (predefinito 5)
+Bar width, mm (default 20)	Larghezza della barra, mm (predefinito 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Affianca un armadio a destra di un altro (affiancamento); senza right_of esce dal suo affiancamento
+Bend radius in drag chains as a multiple of the cable diameter	Raggio di curvatura nelle catene portacavi come multiplo del diametro del cavo
+Bend radius of a drag chain in mm	Raggio di curvatura di una catena portacavi in mm
+Bend radius of cables as a multiple of the diameter	Raggio di curvatura dei cavi come multiplo del diametro
+Bend radius of tubes as a multiple of the diameter	Raggio di curvatura dei tubi come multiplo del diametro
+Bend radius of wires as a multiple of the diameter	Raggio di curvatura dei conduttori come multiplo del diametro
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Piegature tra i tratti: angolo, e per piegatura di taglio, r<raggio>, ad es. 90; -90 e; 45 r10
+Between page and column (default .)	Tra pagina e colonna (predefinito .)
+Bonding point	Punto di collegamento equipotenziale
+Border around the text	Bordo attorno al testo
+Both classes are needed	Sono richieste entrambe le classi
+Bus system name	Nome del sistema bus
+Bus system name, e.g. PN/IE_1	Nome del sistema bus, ad es. PN/IE_1
+Busbar machine program (CSV)	Programma della macchina per la lavorazione delle barre (CSV)
+CNC operations	Operazioni CNC
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Programmi CNC per macchine di foratura, fresatura e punzonatura, piegatura di barre di rame, configuratore di armadi, consegna alla produzione e riscontro della produzione
+Cable tag, e.g. -W1	Sigla cavo, ad es. -W1
+Cable tag, e.g. -W20	Sigla del cavo, ad es. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Calibra la stima dei tempi delle macchine in base ai tempi effettivi del riscontro della produzione
+Cannot read the plugin folder {}	Impossibile leggere la cartella dei plugin {}
+Cannot start {}: {}	Impossibile avviare {}: {}
+Card tag, e.g. -A1	Sigla della scheda, ad es. -A1
+Category, e.g. coils, contacts, terminals, plc	Categoria, ad es. coils, contacts, terminals, plc
+Centre from the rear wall in mm	Centro dalla parete posteriore in mm
+Centre from the top of the enclosure in mm	Centro dal bordo superiore dell'armadio in mm
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifica un pezzo a T (direzione, variante, rappresentazione), un angolo (bracci), un incrocio (linea, variante, rappresentazione) o un ponte (direzione, rappresentazione)
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Modifica una cella di una tabella: sigla dispositivo, testo funzione, descrizione, articolo; numero conduttore, colore, sezione, cavo, anima; morsettiera, morsetto
+Changes a placed symbol; when it moves, connected wire ends follow	Modifica un simbolo posizionato; quando viene spostato, le estremità dei conduttori collegati lo seguono
+Changes a text (only the given properties)	Modifica un testo (solo le proprietà indicate)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Converte i dispositivi con articoli in dismissione o fuori produzione agli articoli successori (i successori devono essere articoli del progetto)
+Changes name, description or structure of a page	Modifica nome, descrizione o struttura di una pagina
+Changes name, description, function, location or parent of a segment	Modifica nome, descrizione, funzione, luogo o segmento superiore di un segmento
+Changes position, face, fastening or anchors of a panel item	Modifica posizione, faccia, fissaggio o ancoraggi di un elemento del layout
+Changes the device, connection and terminal tables	Modifica le tabelle di dispositivi, collegamenti e morsetti
+Changes the level of a kind of message (code as shown by check)	Modifica il livello di un tipo di messaggio (codice come mostrato da check)
+Changes the properties of a wire	Modifica le proprietà di un conduttore
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Modifica sistema, dimensioni e componenti di un armadio (zoccolo, lati affiancati, piastra passacavi); gli elementi ancorati lo seguono
+Check {} failed: {}	Verifica {} non riuscita: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Verifica il layout del quadro: collisioni, distanze (montaggio, ventilazione, EMC), spazio di servizio, altezze dal pavimento, classi di collisione, temperature e producibilità
+Chosen value	Valore scelto
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Distanze, spazio di servizio, altezze, classi di collisione, simulazione termica e producibilità del layout del quadro
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Climatizzazione degli armadi (IEC/TR 60890): potenza dissipata, temperatura interna, ventilatore o condizionatore e riscaldamento necessari; facoltativamente modifica le impostazioni di un armadio
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Classe di collisione: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, una classe propria o * per qualsiasi
+Column and row strips	Bande di colonne e righe
+Column mapping {field code: column name}	Mappatura delle colonne {codice campo: nome colonna}
+Column name, e.g. Description	Nome colonna, ad es. Description
+Columns of the pattern	Colonne della matrice
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Colonne, separate da virgola: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Telaio conduttivo che deve essere incluso nel collegamento equipotenziale
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Configurazione di un armadio per il configuratore del produttore dell'armadio: sistema, grandezza, componenti, accessori e lavorazione
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Condizione del configuratore, ad es. HEATER=yes (vuoto: commutata manualmente)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Configura un tubo flessibile / tubo / tubazione: tipo di linea, articolo, raccordi terminali, pressione nominale, raggio di curvatura, fluido, diametro, colore e lunghezza
+Connection point TAG:PIN, e.g. -K1:A1	Punto di connessione SIGLA:PIN, ad es. -K1:A1
+Connection point designations separated by commas or blanks	Designazioni dei punti di connessione separate da virgole o spazi
+Connection point designations, comma separated, e.g. 13,14	Designazioni dei punti di connessione, separate da virgole, ad es. 13,14
+Connector id (required unless removing)	ID del connettore (obbligatorio tranne che per la rimozione)
+Connects two connection points with wires routed around symbols and other wires	Collega due punti di connessione con conduttori instradati attorno ai simboli e agli altri conduttori
+Connects two ports of stations with a network cable; connections already on these ports are replaced	Collega due porte di stazioni con un cavo di rete; i collegamenti già presenti su queste porte vengono sostituiti
+Copies function texts between the single-line diagram and the schematic where one side is empty	Copia i testi di funzione tra lo schema unifilare e lo schema dove un lato è vuoto
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Copia elementi più volte a una distanza fissa; i dispositivi ricevono nuove sigle, i morsetti nuovi numeri
+Copper bar cutting list	Lista di taglio delle barre di rame
+Copper bars	Barre di rame
+Corner points in metres	Vertici in metri
+Corner points on the mounting plate in mm	Punti d'angolo sulla piastra di montaggio in mm
+Correction of the time estimate	Correzione della stima dei tempi
+Cost of free air against ducts and routing paths	Costo dell'aria libera rispetto a canaline e percorsi di instradamento
+Counting step (default 1)	Passo di conteggio (predefinito 1)
+Creates a bus cable for the connection (without cable tag)	Crea un cavo bus per il collegamento (senza sigla cavo)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Crea un cavo del tipo di bus (tipo, anime, sezione) per ogni collegamento bus senza cavo
+Creates or changes a PCT loop of the pre-planning	Crea o modifica un loop PCT della preprogettazione
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Crea o modifica una stazione PLC (controllore, I/O decentrati, azionamento, HMI). La modifica dello schema di indirizzamento converte gli indirizzi dei suoi punti
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Crea o modifica un sistema bus (PROFINET, EtherCAT, …)
+Creates or changes a configurator option	Crea o modifica un'opzione del configuratore
+Creates or changes a fluid device group	Crea o modifica un gruppo di dispositivi fluidici
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Crea o modifica una cornice di stampa del progetto (le cornici integrate vengono copiate con un nuovo nome)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Crea o modifica una definizione di potenziale; i suoi conduttori ne prendono colore e sezione, se non impostati sul conduttore
+Creates or changes a work area: only the pages and devices of its structure are shown	Crea o modifica un'area di lavoro: vengono mostrati solo le pagine e i dispositivi della sua struttura
+Cross section, e.g. 0.75 mm²	Sezione, ad es. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Sezione, ad es. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Sezione, ad es. 1.5 mm² (vuoto = dalla definizione del potenziale)
+Cross-section in mm²	Sezione in mm²
+Cross-section, e.g. 1.5 mm²	Sezione, ad es. 1.5 mm²
+Current device tag	Sigla dispositivo attuale
+Customer rule set to add or replace (by name), as exported	Set di regole del cliente da aggiungere o sostituire (per nome), come esportato
+Cut lengths of cables rounded up to this step in mm	Lunghezze di taglio dei cavi arrotondate per eccesso a questo passo in mm
+Cut lengths of tubes rounded up to this step in mm	Lunghezze di taglio dei tubi arrotondate per eccesso a questo passo in mm
+Cut lengths of wires rounded up to this step in mm	Lunghezze di taglio dei conduttori arrotondate per eccesso a questo passo in mm
+Cut lengths rounded up to this step in metres	Lunghezze di taglio arrotondate per eccesso a questo passo in metri
+Cut threads on the machine	Esegui le filettature sulla macchina
+Cutting allowance per tube end in mm	Maggiorazione di taglio per estremità del tubo in mm
+Date (YYYY-MM-DD)	Data (AAAA-MM-GG)
+Date of the acceptance	Data dell'accettazione
+Default property values	Valori predefiniti delle proprietà
+Default symbol key	Chiave del simbolo predefinito
+Define the identifiers in use (default: true)	Definisci gli identificatori in uso (predefinito: true)
+Defines a reusable project function definition or changes it	Definisce una definizione di funzione di progetto riutilizzabile o la modifica
+Defines a structure identifier or changes its description	Definisce un identificatore di struttura o ne modifica la descrizione
+Defines a user property or changes it	Definisce una proprietà utente o la modifica
+Defines all identifiers in use and / or removes the definitions nobody uses	Definisce tutti gli identificatori in uso e / o rimuove le definizioni non utilizzate
+Definition to start from	Definizione di partenza
+Deletes a PCT loop of the pre-planning	Elimina un loop PCT della preprogettazione
+Deletes a configurator option	Elimina un'opzione del configuratore
+Deletes a configurator rule	Elimina una regola del configuratore
+Deletes a fluid device group	Elimina un gruppo di dispositivi fluidici
+Deletes a page	Elimina una pagina
+Deletes a page template of the project	Elimina un modello di pagina del progetto
+Deletes a plot frame of the project that no page uses	Elimina una cornice di stampa del progetto non utilizzata da alcuna pagina
+Deletes a potential definition	Elimina una definizione di potenziale
+Deletes a work area	Elimina un'area di lavoro
+Deletes symbols, wires, texts and shapes	Elimina simboli, conduttori, testi e forme
+Depth in mm	Profondità in mm
+Device description id (empty: from the parts)	ID della descrizione dispositivo (vuoto: dagli articoli)
+Device description id of the head (list_device_descriptions)	ID della descrizione dispositivo della testa (list_device_descriptions)
+Device group {} already exists	Il gruppo di dispositivi {} esiste già
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Elenco dispositivi, distinta base, schemi di morsettiere, connettori, cavi e collegamenti, PLC, potenziali, quadro, fluidica, report elettrici e di campo
+Device number on the bus	Numero dispositivo sul bus
+Device tag of the CPU / bus coupler, e.g. -A0	Sigla dispositivo della CPU / dell'accoppiatore bus, ad es. -A0
+Device tag of the end (both ends if missing)	Sigla dispositivo dell'estremità (entrambe le estremità se mancante)
+Device tag of the fluid device, e.g. -QM1	Sigla del dispositivo fluidico, ad es. -QM1
+Device tag of the group, e.g. -KH1	Sigla dispositivo del gruppo, ad es. -KH1
+Device tag within the segment, e.g. -M1	Sigla dispositivo all'interno del segmento, ad es. -M1
+Device tag, e.g. -K1	Sigla dispositivo, ad es. -K1
+Device tag: the accessories that can still be added to its parts	Sigla del dispositivo: gli accessori che si possono ancora aggiungere ai suoi articoli
+Device tags (text)	Sigle dispositivo (testo)
+Device tags of the members in slot order, separated by commas or blanks	Sigle dispositivo dei membri nell'ordine dei posti, separate da virgole o spazi
+Devices with parts that are phased out or discontinued, and their change to the successors	Dispositivi con articoli in dismissione o fuori produzione e la loro conversione ai successori
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Dispositivi, conduttori, potenziali, cavi, morsettiere, PLC, quadro, fluidica, calcoli elettrici, struttura e traduzioni
+Diameter in mm	Diametro in mm
+Diameter of a hole at both ends (0: none)	Diametro di un foro a entrambe le estremità (0: nessuno)
+Direction of the stem: left, right, up or down (default: from the wires there)	Direzione del gambo: left, right, up o down (predefinito: dai conduttori presenti)
+Distance between power and signal or fluid in mm	Distanza tra potenza e segnale o fluido in mm
+Distance from devices, rails and busbars in mm	Distanza da dispositivi, guide e sbarre in mm
+Distance from the face in mm (rails: standoff height)	Distanza dalla faccia in mm (guide: altezza distanziali)
+Distance in X (mm)	Distanza in X (mm)
+Distance in Y (mm)	Distanza in Y (mm)
+Distance of devices to cable ducts	Distanza dei dispositivi dalle canaline
+Distance of devices to the plate edge	Distanza dei dispositivi dal bordo della piastra
+Distance of the border from the paper edge in mm	Distanza della cornice dal bordo del foglio in mm
+Distribute vertically (default horizontally)	Distribuisci verticalmente (predefinito orizzontalmente)
+Distributes symbols, texts and graphics evenly between the first and the last one	Distribuisce simboli, testi e grafica in modo uniforme tra il primo e l'ultimo
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Fattore di contemporaneità delle utenze (0: IEC 61439-1, tabella 101)
+Draw the contact image below coils (default true)	Disegna l'immagine dei contatti sotto le bobine (predefinito true)
+Draw the junction as a connection dot; its routing stays	Disegnare il pezzo a T come punto di collegamento; il suo instradamento resta
+Draw wires in their colour	Disegna i conduttori nel loro colore
+Draw wires to the connection points facing its free arms	Disegnare conduttori verso i punti di collegamento rivolti ai suoi bracci liberi
+Drawing	Disegno
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Traccia una linea di definizione cavo; i conduttori che attraversa diventano anime del cavo (un nuovo cavo se non ne viene indicato uno)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Disegna un conduttore tra due punti di connessione, ad es. da -K1:A1 a -S1:14 (#id:pin per quelli ambigui, il nome per i potenziali, 1, 2… per i punti senza designazione)
+Draws a wire through two or more points	Disegna un conduttore attraverso due o più punti
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Disegna i conduttori nel loro colore sulle pagine di schema e nell'esportazione PDF / SVG, oppure in nero
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Disegna conduttori tra punti di collegamento liberi di simboli che si fronteggiano e verso i bracci liberi di pezzi a T e angoli
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Classi EMC dei cavi (uscita azionamento, analogico, potenza, segnale, schermo) e problemi EMC
+Edge length of the routing grid in mm	Lato della griglia di instradamento in mm
+Electrical device tags separated by commas or blanks (empty = remove the links)	Sigle dei dispositivi elettrici separate da virgole o spazi (vuoto = rimuovi i collegamenti)
+Electrical engineering	Elettrotecnica
+Enclosure (location, e.g. +CAB1)	Armadio (luogo, ad es. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Armadio (luogo, ad es. +CAB1) di cui modificare le impostazioni
+Enclosure climate and electrical sizing	Climatizzazione dell'armadio e dimensionamento elettrico
+Enclosure it stands right of; empty to take it out of its line-up	Armadio alla cui destra si trova; vuoto per toglierlo dall'affiancamento
+Enclosure name (all if missing)	Nome armadio (tutti se omesso)
+Enclosure part number	Codice articolo dell'armadio
+Enclosure system (default: the enclosure's)	Sistema di armadi (predefinito: quello dell'armadio)
+Enclosure {} exists already	L'armadio {} esiste già
+Enclosures, panel items, accessories and panel macros	Armadi, elementi del layout, accessori e macro di layout
+End brackets and end plates from the tech data of the terminal parts	Fermi terminali e piastre terminali dai dati tecnici degli articoli dei morsetti
+End holes from the bar end as a multiple of the width	Fori di estremità dall'estremità della barra come multiplo della larghezza
+End: device tag and connection point, e.g. -S1:14	Fine: sigla dispositivo e punto di connessione, ad es. -S1:14
+Engineering	Progettazione
+Face: plate, door, left, right, rear, roof or bottom	Faccia: plate, door, left, right, rear, roof o bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Piano di campo: nodi, tratti, contorni, percorsi, collegamenti equipotenziali e accessori
+Figure	Indicatore
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Trova e sostituisce il testo in una colonna di tutte le righe (filtrate); senza testo da trovare la colonna viene compilata con il testo sostitutivo
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Cerca testo in tutto il progetto: pagine, sigle dispositivo, testi di funzione, testi liberi, numeri conduttore, morsetti, cavi, articoli, descrizioni
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Cerca la grandezza standard più piccola di un sistema di armadi che contiene il layout e la applica
+Fingerprint of the message as shown by check	Impronta del messaggio come mostrata da check
+First address of the subnet, e.g. 192.168.0.0	Primo indirizzo della sottorete, ad es. 192.168.0.0
+First byte of the inputs (and outputs)	Primo byte degli ingressi (e delle uscite)
+First byte of the outputs if it differs; -1 removes it	Primo byte delle uscite, se diverso; -1 lo rimuove
+First counter value (default 1)	Primo valore del contatore (predefinito 1)
+First page number (default 1)	Primo numero di pagina (predefinito 1)
+First port as station:port, e.g. PLC1:X1 P2	Prima porta come stazione:porta, ad es. PLC1:X1 P2
+First row with the column names	Prima riga con i nomi delle colonne
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato del nome del dispositivo: {letter}, {n} (contatore), {page}, {column}, {row}; predefinito {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato dello schema format: {n} (contatore), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Cornice di partenza quando la cornice è nuova (predefinito: A3 landscape)
+Free space in front of every device on the plate	Spazio libero davanti a ogni dispositivo sulla piastra
+Freezes routes for production (kept by the recalculation while possible) or releases them	Congela i percorsi per la produzione (mantenuti dal ricalcolo finché possibile) o li sblocca
+Frequency in Hz	Frequenza in Hz
+Function (= without the sign; empty: the parent's)	Funzione (= senza il segno; vuoto: quella del segmento superiore)
+Function aspect (=) of the page; the devices on the page move along	Aspetto funzione (=) della pagina; i dispositivi della pagina lo seguono
+Function definition key	Chiave della definizione di funzione
+Function filter (= A1, A*; empty = any)	Filtro funzione (= A1, A*; vuoto = qualsiasi)
+Further device tags of the loop, separated by commas or blanks	Altre sigle dispositivo del loop, separate da virgole o spazi
+Gap between devices side by side	Distanza tra dispositivi affiancati
+Gap between the devices on the rail in mm	Distanza tra i dispositivi sulla guida in mm
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Genera uno schema unifilare dei dispositivi di potenza dello schema che non ne hanno ancora uno, su una nuova pagina panoramica dopo una pagina
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Genera il programma CNC di una faccia per la sua macchina (codice G ISO, Heidenhain, codice di punzonatura o CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genera lo schema multifilare (simboli di potenza, conduttori, bobine dei contattori) per i simboli unifilari di una pagina su una nuova pagina successiva
+Generates the program of the busbar machine: cuts, punched holes and bends	Genera il programma della macchina per la lavorazione delle barre: tagli, fori punzonati e piegature
+Give a device tag or a part number	Indicare una sigla del dispositivo o un codice articolo
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Raggruppa gli elementi in un assieme che viene selezionato e spostato insieme; senza nome gli elementi escono dai loro assiemi
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Consegna i programmi di un armadio alla produzione come commessa: manifest e programmi di tutte le sue facce e barre di rame
+Has a divider between power and signal cables	Ha un setto separatore tra cavi di potenza e di segnale
+Height above the floor in metres	Altezza dal pavimento in metri
+Height above the mounting plate in mm (default 50)	Altezza sopra la piastra di montaggio in mm (predefinito 50)
+Height in mm	Altezza in mm
+Height in mm without plinth; negative: unknown (wall mounted)	Altezza in mm senza zoccolo; negativa: sconosciuta (montaggio a parete)
+Higher-level product aspect (-) of the page; the devices on the page move along	Aspetto prodotto di livello superiore (-) della pagina; i dispositivi della pagina lo seguono
+Highest actuator on the door above the floor (0: not checked)	Attuatore più alto sulla porta dal pavimento (0: non verificato)
+Highest air temperature at devices without data (0: not checked)	Temperatura dell'aria massima sui dispositivi senza dati (0: non verificato)
+Highest ambient temperature in °C	Temperatura ambiente massima in °C
+Highest device above the floor (0: not checked)	Dispositivo più alto dal pavimento (0: non verificato)
+Highest inside temperature in °C	Temperatura interna massima in °C
+Highest three-phase short-circuit current at the supply in kA	Corrente di cortocircuito trifase massima all'alimentazione in kA
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Fori: tratto:distanza:diametro, ad es. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Allineamento orizzontale: left, center o right
+Horizontal pitch of the pattern in mm	Passo orizzontale della matrice in mm
+Hose colour	Colore tubo flessibile
+Hose number or fluid net (F1)	Numero tubo flessibile o rete fluidica (F1)
+Hose number prefix, e.g. H	Prefisso dei numeri tubo flessibile, ad es. H
+Hoses / pipes: length in m	Tubi flessibili / tubazioni: lunghezza in m
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Tubi flessibili / tubazioni: fluido (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; vuoto = predefinito del progetto)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Tubi flessibili, reti e gruppi fluidici, collegamenti elettro-fluidici e circuiti PCT
+Hyperlink (URL)	Collegamento ipertestuale (URL)
+IP address or bus address	Indirizzo IP o indirizzo bus
+IT system with distributed neutral	Sistema IT con neutro distribuito
+Id of the panel item (from mounting_list)	ID dell'elemento del layout (da mounting_list)
+Id of the path or reservation	ID del percorso o dello spazio riservato
+Id of the text	ID del testo
+Identifier, e.g. A1 or CAB1	Identificatore, ad es. A1 o CAB1
+Ids of page items	ID degli elementi di pagina
+Ids of symbols and connection symbols (default: all symbols of the page)	Id di simboli e simboli di collegamento (predefinito: tutti i simboli della pagina)
+In front of the page name (default /)	Prima del nome della pagina (predefinito /)
+Inner height in mm (0 = no limit)	Altezza interna in mm (0 = nessun limite)
+Inner radius as a multiple of the thickness	Raggio interno come multiplo dello spessore
+Inner width in mm (0 = no limit)	Larghezza interna in mm (0 = nessun limite)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Inserisce una macro 3D come assieme: gli elementi ancorati al loro posto, gli altri rispetto a x / y sulla faccia
+Installation site aspect (++) of the page; the devices on the page move along	Aspetto sito di installazione (++) della pagina; i dispositivi della pagina lo seguono
+Installation site filter (++)	Filtro sito di installazione (++)
+Integration profiles and status	Profili e stato dell'integrazione
+Interruption points refer to: all (default), star or pairs	I punti di interruzione rimandano a: all (predefinito), star o pairs
+Invalid answer of the plugin: {}	Risposta del plugin non valida: {}
+Invalid segment name: {}	Nome del segmento non valido: {}
+Item id	ID elemento
+Item ids	ID elementi
+Jumper number	Numero di ponticello
+Jumper number (terminals with the same number are bridged); 0 removes it	Numero di ponticello (i morsetti con lo stesso numero sono ponticellati); 0 lo rimuove
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Mantieni il grado di protezione: scambiatore di calore o condizionatore invece di ventilatori con filtro
+Key figures of the project and a list of its device tags	Indicatori del progetto e un elenco delle sue sigle dispositivo
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicatori del progetto: pagine, simboli, conduttori, dispositivi, articoli, cavi e risultati delle verifiche
+Key, e.g. user.coupling_relay	Chiave, ad es. user.coupling_relay
+Key, e.g. user.customer_code	Chiave, ad es. user.customer_code
+Keys of the routes, comma separated (all if missing)	Chiavi dei percorsi, separate da virgole (tutti se omesse)
+Kind: machining, punching or busbar	Tipo: machining, punching o busbar
+Label: terminal number, PLC address or potential name	Etichetta: numero morsetto, indirizzo PLC o nome potenziale
+Landscape (true) or portrait (false)	Orizzontale (true) o verticale (false)
+Language the project texts are written in, e.g. en	Lingua in cui sono scritti i testi del progetto, ad es. en
+Larger round holes are milled, mm	I fori tondi più grandi vengono fresati, mm
+Largest difference between hole and tool, mm	Differenza massima tra foro e utensile, mm
+Left edge on the face in mm	Bordo sinistro sulla faccia in mm
+Left edge on the mounting plate in mm	Bordo sinistro sulla piastra di montaggio in mm
+Left side bayed (no side panel)	Lato sinistro affiancato (senza parete laterale)
+Length added at each cable end in metres	Lunghezza aggiunta a ogni estremità del cavo in metri
+Length added to each cable end in mm	Lunghezza aggiunta a ogni estremità del cavo in mm
+Length from the node to the device in metres	Lunghezza dal nodo al dispositivo in metri
+Length in metres	Lunghezza in metri
+Length in metres (default from the node positions)	Lunghezza in metri (predefinita dalle posizioni dei nodi)
+Length inside an enclosure per end in metres	Lunghezza all'interno di un armadio per estremità in metri
+Length of a shield pigtail in mm	Lunghezza di un pigtail dello schermo in mm
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Livello di un morsetto multilivello (1 = in basso); i livelli superiori si trovano sul blocco del morsetto precedente
+Library id or customer rule set name to no longer verify against	ID della libreria o nome del set di regole del cliente rispetto a cui non verificare più
+Library id or customer rule set name to verify against	ID della libreria o nome del set di regole del cliente rispetto a cui verificare
+Line in the source language	Riga nella lingua di origine
+Line-to-line voltage in V	Tensione concatenata in V
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Collega un dispositivo fluidico ai dispositivi elettrici che lo azionano o monitorano (sostituisce i collegamenti)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Collega le elettrovalvole alla bobina con lo stesso numero (-QM3 › -MB3) e copia i testi funzione tra i dispositivi collegati
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Elenca i canali PLC e le funzioni degli articoli assegnati non ancora posizionati, con simbolo, sigla, etichetta e pin per place_symbol
+Lists and renames devices, adds accessories to their parts	Elenca e rinomina i dispositivi, aggiunge accessori ai loro articoli
+Lists the 3D macros: the project's own and the built-in ones	Elenca le macro 3D: quelle del progetto e quelle integrate
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	Elenca l'instradamento 3D: conduttori, cavi e tubi instradati con lunghezze e stato, fasci, derivazioni, schermi, percorsi di instradamento, modifiche e problemi
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	Elenca le macchine CNC (predefinite e del progetto) con i relativi utensili e la macchina di ogni faccia
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Elenca i loop PCT della preprogettazione e degli strumenti P&ID con i loro dispositivi e lo stato di progettazione
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Elenca i pezzi a T, angoli, incroci e ponti con il loro instradamento e i fili del loro collegamento
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Elenca gli accessori compatibili con un articolo o con gli articoli di un dispositivo e gli articoli con cui è compatibile un accessorio (articoli del progetto, cataloghi integrati e inclusi)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Elenca le barre di rame sviluppate in piano: lunghezza, piegature nel loro ordine, fori, problemi e il taglio dalle lunghezze di magazzino
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	Elenca le descrizioni dispositivo dell'hardware PLC: quelle importate, quelle dagli articoli del progetto e quelle generiche integrate
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Elenca i dispositivi dello schema unifilare e i dispositivi di potenza dello schema con il loro stato: pianificato, progettato, non nello schema unifilare o non corrispondente
+Lists the devices with cross references and assigned parts	Elenca i dispositivi con i riferimenti incrociati e gli articoli assegnati
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Elenca gli armadi con sistema, componenti (assieme), elementi per faccia e assiemi
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Elenca i gruppi di dispositivi fluidici (isole di valvole, gruppi trattamento aria, collettori) con i loro dispositivi nell'ordine dei posti
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Elenca i dispositivi fluidici con bobine o collegamenti e i dispositivi elettrici a essi collegati
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Elenca la netlist fluidica: ogni linea con il suo tipo (pressione, lavoro, ritorno, pilotaggio …), fluido, diametro e gli attacchi con la loro funzione
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Elenca le definizioni di funzione con categoria, tipo di modello di funzione, lettera, simbolo predefinito e utilizzo
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Elenca i tubi flessibili e le tubazioni (collegamenti tra attacchi fluidici) con fluido, diametro nominale, colore e lunghezza
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Elenca gli elementi del layout del quadro nell'ordine di montaggio con posizione, dimensioni, articolo e stato di montaggio
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Elenca gli schemi di marcatura per i programmi di marcatura (predefiniti e del progetto) e quello selezionato
+Lists the page templates (built-in and the project's own)	Elenca i modelli di pagina (integrati e quelli del progetto)
+Lists the pages of the project	Elenca le pagine del progetto
+Lists the placement schemes with their properties and the number of symbols using them	Elenca gli schemi di posizionamento con le relative proprietà e il numero di simboli che li utilizzano
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Elenca le cornici di stampa (formato carta, orientamento, colonne e righe) e il predefinito del progetto
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Elenca i connettori con il numero di pin utilizzati, il numero di poli dei loro articoli e gli articoli
+Lists the potential definitions and the wire default of nets without a defined potential	Elenca le definizioni di potenziale e il valore predefinito dei conduttori per le reti senza potenziale definito
+Lists the project options that show or hide model content	Elenca le opzioni di progetto che mostrano o nascondono il contenuto del modello
+Lists the properties of an object with their values and where they come from	Elenca le proprietà di un oggetto con i relativi valori e la loro provenienza
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Elenca le definizioni delle proprietà (predefinite e definite dall'utente) con classe di oggetto, gruppo, tipo e unità
+Lists the report blocks with their report, scheme, groups and generated pages	Elenca i blocchi di report con report, schema, gruppi e pagine generate
+Lists the report schemes (named report forms) with their settings	Elenca gli schemi di report (moduli di report con nome) con le loro impostazioni
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Elenca i conduttori instradati del layout quadro come elenco di controllo della cablatura con trattamento estremità, stato e avanzamento
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Elenca i segmenti nell'ordine dell'albero con struttura, potenza pianificata e i dispositivi pianificati con il loro stato nello schema
+Lists the source and target languages of the project texts with the number of untranslated lines	Elenca le lingue di origine e di destinazione dei testi del progetto con il numero di righe non tradotte
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Elenca la gestione strutture: aspetti delle pagine, identificatori definiti e utilizzati, aree di lavoro
+Lists the subprojects taken out of the project, or the project it was taken from	Elenca i sottoprogetti estratti dal progetto o il progetto da cui è stato estratto
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Elenca i simboli posizionabili, con i loro punti di connessione relativi al punto di inserimento
+Lists the terminal strips with their number of terminals and length on the rail	Elenca le morsettiere con il numero di morsetti e la lunghezza sulla guida
+Lists the translation dictionary of the project texts (source line and translations)	Elenca il dizionario di traduzione dei testi del progetto (riga di origine e traduzioni)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Elenca le macro finestra posizionate sulle pagine (riquadri macro) con macro, variante, valori dei segnaposto e numero di elementi
+Load losses of the transformer in W (0: typical)	Perdite a carico del trasformatore in W (0: tipiche)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Utenze della rete, carico di ogni dispositivo di protezione, fabbisogno con il fattore di contemporaneità, bilanciamento delle fasi e bilanci dei carichi degli alimentatori
+Loads the potential definitions of a standard (replaces those of the same name)	Carica le definizioni di potenziale di una norma (sostituisce quelle con lo stesso nome)
+Location (+ without the sign; empty: the parent's)	Luogo (+ senza il segno; vuoto: quello del segmento superiore)
+Location aspect (+) of the page; the devices on the page move along	Aspetto luogo (+) della pagina; i dispositivi della pagina lo seguono
+Location filter (+)	Filtro luogo (+)
+Location or device tag	Luogo o sigla dispositivo
+Loop number	Numero loop
+Loop number, e.g. 101	Numero loop, ad es. 101
+Lowest actuator on the door above the floor	Attuatore più basso sulla porta dal pavimento
+Lowest ambient temperature in °C	Temperatura ambiente minima in °C
+Lowest device above the floor	Dispositivo più basso dal pavimento
+Lowest inside temperature in °C	Temperatura interna minima in °C
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	Corrente di guasto fase-terra minima all'alimentazione in kA (0: da ik_max)
+Lowest terminal above the floor	Morsetto più basso dal pavimento
+Machine id (default: the busbar machine)	ID macchina (predefinito: la macchina per la lavorazione delle barre)
+Machine id (default: the machine of the face)	ID macchina (predefinito: la macchina della faccia)
+Machine id (snake_case)	ID macchina (snake_case)
+Machine id {} is not snake_case	L'ID macchina {} non è in snake_case
+Machine of that face (empty: the sheet machine)	Macchina di quella faccia (vuoto: la macchina per lamiere)
+Machine of the copper bars	Macchina delle barre di rame
+Machine of the sheet metal faces	Macchina delle facce in lamiera
+Machine {} is in use	La macchina {} è in uso
+Macro name	Nome macro
+Makes pages or page items content of a project option	Rende pagine o elementi di pagina contenuto di un'opzione di progetto
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Rende i fili ai pin di un connettore conduttori di un cavo piatto: il pin n riceve il conduttore n, come sui connettori IDC
+Manufacturing package (CNC programs, JSON)	Pacchetto di produzione (programmi CNC, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	Marcatori, separati da virgola: device, terminal, wire, cable (vuoto: tutti)
+Marks a panel item as mounted or as a problem, or as open again	Contrassegna un elemento del layout come montato, come problema o di nuovo come aperto
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Segna un conduttore instradato come cablato, come problema o di nuovo come aperto; il conduttore viene indicato dalle sue due estremità
+Maximum fill of a carrier in percent	Riempimento massimo di un supporto portacavi in percentuale
+Maximum operating pressure in bar	Pressione di esercizio massima in bar
+Measuring range or set point	Campo di misura o valore di riferimento
+Message code, e.g. wires.3f9a1c	Codice del messaggio, ad es. wires.3f9a1c
+Milling feed, mm/min	Avanzamento di fresatura, mm/min
+Mirror the symbol	Specchia il simbolo
+Moves symbols, wires and texts; connected wire ends follow	Sposta simboli, conduttori e testi; le estremità dei conduttori collegati li seguono
+Moves the page before this page of its section (or of the section given)	Sposta la pagina prima di questa pagina della sua sezione (o della sezione indicata)
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Sposta la sezione prima di questa sezione del suo padre (o del padre indicato); i numeri continuano in ordine
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Layout della tavola chiodata di un cablaggio: le diramazioni dal nodo comune ai connettori con lunghezza, direzione, diametro del fascio e pin, e la scala del disegno
+Name of the assembly	Nome dell'assieme
+Name of the bar, e.g. L1 -Q1	Nome della barra, ad es. L1 -Q1
+Name of the check	Nome della verifica
+Name of the customer rule set to remove	Nome del set di regole del cliente da rimuovere
+Name of the frame	Nome della cornice
+Name of the machine	Nome della macchina
+Name of the main earthing terminal	Nome del collettore principale di terra
+Name of the safety function to remove	Nome della funzione di sicurezza da rimuovere
+Name of the segment	Nome del segmento
+Name of the template	Nome del modello
+Name of the work area	Nome dell'area di lavoro
+Name or id; the tag for places	Nome o ID; per i posizionamenti la sigla
+Name, e.g. the location +M1	Nome, ad es. il luogo +M1
+New device tag	Nuova sigla dispositivo
+New identifier	Nuovo identificatore
+New page name	Nuovo nome pagina
+New parent segment (empty: top level)	Nuovo segmento superiore (vuoto: livello superiore)
+New value	Nuovo valore
+No PCT loop {}	Nessun loop PCT {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Nessuna verifica integrata si chiama {}: l'impostazione vale per una verifica di un plugin con questo nome (list_checks)
+No bus system {}	Nessun sistema bus {}
+No connection point {} on this page	Nessun punto di connessione {} in questa pagina
+No connection symbol with id {}	Nessun simbolo di collegamento con id {}
+No copper bar {}	Nessuna barra di rame {}
+No device description {}	Nessuna descrizione dispositivo {}
+No device group {}	Nessun gruppo di dispositivi {}
+No enclosure named {}	Nessun armadio denominato {}
+No entry for {} and {}	Nessuna voce per {} e {}
+No hose {}	Nessun tubo flessibile {}
+No identifier {} in the project	Nessun identificatore {} nel progetto
+No item with id {}	Nessun elemento con ID {}
+No item {}	Nessun elemento {}
+No items to save in {}	Nessun elemento da salvare in {}
+No macro named {}	Nessuna macro denominata {}
+No panel item with id {}	Nessun elemento del layout con ID {}
+No planned device {}	Nessun dispositivo pianificato {}
+No potential definition {}	Nessuna definizione di potenziale {}
+No project function definition {}	Nessuna definizione di funzione di progetto {}
+No routed item {}	Nessun elemento instradato {}
+No routed wire {} – {}	Nessun conduttore instradato {} – {}
+No routing path or reservation {}	Nessun percorso di instradamento o spazio riservato {}
+No rule for {} and {}	Nessuna regola per {} e {}
+No rule library or rule set {}	Nessuna libreria di regole o set di regole {}
+No rule {}	Nessuna regola {}
+No safety function {}	Nessuna funzione di sicurezza {}
+No standard size of {} holds the layout of {}	Nessuna grandezza standard di {} contiene il layout di {}
+No terminal strip {}	Nessuna morsettiera {}
+No terminal {} on strip {}	Nessun morsetto {} sulla morsettiera {}
+No text with id {}	Nessun testo con ID {}
+No three wires meet at {} / {} mm: give the direction of the stem	In {} / {} mm non si incontrano tre conduttori: indicare la direzione del gambo
+No transformer: set {} first	Nessun trasformatore: imposta prima {}
+No wire at {} / {} mm	Nessun conduttore a {} / {} mm
+No wire with id {}	Nessun conduttore con ID {}
+No work area named {}	Nessuna area di lavoro denominata {}
+Node name or id	Nome o ID del nodo
+Node {} exists already	Il nodo {} esiste già
+Nodes to pass in this order, comma separated	Nodi da attraversare in questo ordine, separati da virgola
+Nominal size, e.g. 8 mm or DN25	Diametro nominale, ad es. 8 mm o DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Non è una sezione: {} (ad es. 1.5 mm²)
+Not a valid safety function: {}	Funzione di sicurezza non valida: {}
+Note, e.g. what the problem is	Nota, ad es. in cosa consiste il problema
+Nothing to remove: {} {}	Niente da rimuovere: {} {}
+Number of columns	Numero di colonne
+Number of copies (default 1)	Numero di copie (predefinito 1)
+Number of equal bars	Numero di barre uguali
+Number of indexed values (0 = a single value)	Numero di valori indicizzati (0 = un singolo valore)
+Number of rows	Numero di righe
+Numbers the pages with a start value and step; released pages keep their name	Numera le pagine con un valore iniziale e un passo; le pagine rilasciate mantengono il loro nome
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numera i morsetti di una morsettiera da 1 a n nell'ordine della morsettiera; le designazioni non numeriche come PE restano invariate
+Numbers the wires by the numbering scheme of the project	Numera i conduttori secondo lo schema di numerazione del progetto
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=valore, OPTION!=valore, OPTION=a|b uniti con & (vuoto: sempre)
+Offset from the symbol position in mm (default: below the symbol)	Distanza dalla posizione del simbolo in mm (predefinito: sotto il simbolo)
+One end, e.g. -K1:A1	Un'estremità, ad es. -K1:A1
+One row per printed label instead of a count	Una riga per ogni etichetta stampata invece di un conteggio
+Only devices on these pages (names separated by commas)	Solo i dispositivi su queste pagine (nomi separati da virgole)
+Only lines without a translation into this language	Solo righe senza traduzione in questa lingua
+Only list the new tags, change nothing	Elenca solo le nuove sigle, non modificare nulla
+Only shows the package, no job is recorded	Mostra solo il pacchetto, nessuna commessa viene registrata
+Only shows what would change	Mostra solo cosa cambierebbe
+Only the pages of this work area (list_structure)	Solo le pagine di questa area di lavoro (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Solo queste lettere identificative (separate da virgole, ad es. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Solo questi tipi, separati da virgole: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Solo questi tipi, separati da virgole: page, function_text, text, description
+Only these pages (names separated by commas)	Solo queste pagine (nomi separati da virgole)
+Only this part number	Solo questo codice articolo
+Only wire, cable or tube	Solo wire, cable o tube
+Only wires with this state: open, wired, changed or problem	Solo conduttori con questo stato: open, wired, changed o problem
+Opaque background in the paper colour	Sfondo opaco nel colore della carta
+Openings: auto (punch of the size, else contour) or contour	Aperture: auto (punzone della dimensione, altrimenti contorno) o contour
+Operating pressure in bar (0 = hose ratings are not checked)	Pressione di esercizio in bar (0 = le pressioni nominali dei tubi flessibili non vengono verificate)
+Operations	Operazioni
+Option name	Nome opzione
+Option name, e.g. STARTER	Nome opzione, ad es. STARTER
+Options and rules of the configurator	Opzioni e regole del configuratore
+Other end, e.g. -X1:3	Altra estremità, ad es. -X1:3
+Outer diameter in mm, 0 = estimated	Diametro esterno in mm, 0 = stimato
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Lunghezze esterne dei tratti dritti, mm, ad es. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Sovrapposizione dei colpi di roditura (0 … 0.9)
+PCT loop {} already exists	Il loop PCT {} esiste già
+PLC hardware: stations, cards, bus systems and port connections	Hardware PLC: stazioni, schede, sistemi bus e collegamenti delle porte
+Page macro name	Nome macro di pagina
+Page macro that generates its schematic	Macro di pagina che genera il suo schema
+Page name (default: all pages)	Nome della pagina (predefinito: tutte le pagine)
+Page {} is generated and cannot be edited	La pagina {} è generata e non può essere modificata
+Page {} is out in subproject {}: insert or discard the subproject first	La pagina {} è fuori nel sottoprogetto {}: reinserisci o scarta prima il sottoprogetto
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Le pagine con un suffisso (3.a) restano sottopagine della pagina precedente (predefinito true)
+Panel layout checks	Verifiche del layout del quadro
+Panel manufacturing	Produzione quadri
+Paper height in mm (custom paper)	Altezza del foglio in mm (formato personalizzato)
+Paper width in mm (custom paper)	Larghezza del foglio in mm (formato personalizzato)
+Part lifecycle	Ciclo di vita degli articoli
+Part number of the accessory	Codice articolo dell'accessorio
+Part number of the base	Codice articolo della base
+Part number of the carrier (per metre)	Codice articolo del supporto portacavi (al metro)
+Part number of the conductor (per metre)	Codice articolo del conduttore (al metro)
+Part number of the downstream device	Codice articolo del dispositivo a valle
+Part number of the hose / tube / pipe	Codice articolo del tubo flessibile / tubo / tubazione
+Part number of the upstream device	Codice articolo del dispositivo a monte
+Part number, e.g. GEN.LMP-GN-24	Codice articolo, ad es. GEN.LMP-GN-24
+Part of the key or name	Parte della chiave o del nome
+Part {} has no function with a symbol	L'articolo {} non ha funzioni con simbolo
+Parts phased out or discontinued	Articoli in dismissione o fuori produzione
+Pass ids or pages	Indica ID o pagine
+Path function text: function text of the functions in its column that have none	Testo di funzione del percorso: testo di funzione delle funzioni nella sua colonna che non ne hanno uno
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Valori dei segnaposto KEY=valore; KEY2=valore (può usare {OPTION})
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Inserisce una scheda PLC (modulo I/O) in una stazione: rack, slot, indirizzi iniziali e descrizione dispositivo; reindirizza i suoi punti
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Colloca un ponte dove si incontrano quattro conduttori: il collegamento entra da un lato e va agli altri tre, prima all'opposto, poi al sinistro / superiore, poi al destro / inferiore
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Posiziona un punto di definizione collegamento su un conduttore; il collegamento ne assume numero, colore e sezione
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Colloca un angolo: lì due conduttori si incontrano ad angolo retto e i punti di collegamento rivolti ai suoi bracci vi vengono cablati
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Colloca un pezzo a T direzionato dove si incontrano tre conduttori: indica il dispositivo da cui partono i due fili del collegamento (la sorgente) e l'ordine dei loro obiettivi, invece dell'ordine dello schema
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Colloca un incrocio direzionato dove due conduttori si incrociano: li collega, e ciascuna estremità della sua linea è cablata prima dritta e poi a un braccio trasversale
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Posiziona un articolo su una pagina: il simbolo della sua funzione principale con le designazioni dei punti di connessione, come nuovo dispositivo a cui l'articolo viene assegnato (articoli del progetto e catalogo di esempio)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Posiziona un simbolo su una pagina. Senza sigla viene usata la prossima libera; i contatti ausiliari ricevono i prossimi numeri di contatto liberi del loro dispositivo
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Posiziona un armadio (+CAB1), un dispositivo (-M1) o un luogo macchina (+M1) su un nodo della rete dei percorsi cavi
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Posiziona un accessorio dell'armadio (ventilatore, filtro, pressacavo, lampada, maniglia, barra PE) su una faccia
+Places of the group (0 = not limited)	Posti del gruppo (0 = illimitato)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Posiziona la fila di armadi di un armadio nella stanza (vista 3D di tutti gli armadi); senza x e z viene posizionata in base al layout dell'impianto o accanto alle altre file di armadi
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Posiziona le proprietà di uno schema sui simboli; senza ID viene posizionato di nuovo su tutti i simboli che lo utilizzano
+Planned part number	Codice articolo pianificato
+Planned power in kW	Potenza pianificata in kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Pianifica i cavi di campo attraverso la rete dei percorsi cavi: percorsi, lunghezze, riempimento dei tratti, punti di collegamento equipotenziale e problemi; facoltativamente applica le lunghezze di taglio
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Pianifica la lavorazione di una faccia: operazioni (foratura, filettatura, fresatura, punzonatura, roditura), utensili, percorso, tempo e ciò che la macchina non può produrre
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Segmenti dell'impianto con dispositivi pianificati prima dello schema: modelli, bilancio di potenza, stato rispetto allo schema, scambio come CSV / Excel
+Plinth height in mm, 0 without plinth	Altezza dello zoccolo in mm, 0 senza zoccolo
+Plot frame (list_frames); empty = the project default	Cornice di stampa (list_frames); vuoto = predefinito del progetto
+Plot frames and page templates of the project	Cornici di stampa e modelli di pagina del progetto
+Plug tag, e.g. -X10	Sigla connettore, ad es. -X10
+Plugin id '{}' is not snake_case	L'ID del plugin '{}' non è in snake_case
+Plugin {} is loaded twice	Il plugin {} è caricato due volte
+Plugin {} needs a newer OpenECraft (API {})	Il plugin {} richiede una versione più recente di OpenECraft (API {})
+Plugin {}: the name '{}' is invalid or already taken	Plugin {}: il nome '{}' non è valido o è già in uso
+Plugin {}: {}	Plugin {}: {}
+Plugs and their pins	Connettori e relativi pin
+Points in between: [[x, y], …]	Punti intermedi: [[x, y], …]
+Points in mm: [[x, y], …]	Punti in mm: [[x, y], …]
+Port as station:port	Porta come stazione:porta
+Port must be given as station:port: {}	La porta deve essere indicata come stazione:porta: {}
+Port {} is not connected	La porta {} non è collegata
+Position down in metres	Posizione verso il basso in metri
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Posizione della fibra neutra (0 … 1, 0: DIN 6935)
+Position right in metres	Posizione verso destra in metri
+Position {} / {} mm lies outside the page ({} x {} mm)	La posizione {} / {} mm è fuori dalla pagina ({} x {} mm)
+Potential definitions, wire defaults and wire colours	Definizioni di potenziale, valori predefiniti e colori dei conduttori
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Tipi di potenziale i cui collegamenti non ricevono un numero, separati da virgole (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Nome potenziale, ad es. L1 o +24V
+Potential {} already exists	Il potenziale {} esiste già
+Pre-planning (CSV)	Preprogettazione (CSV)
+Pre-planning (Excel)	Preprogettazione (Excel)
+Problems	Problemi
+Product filter (-)	Filtro prodotto (-)
+Production status	Stato della produzione
+Profile name, e.g. SAP	Nome del profilo, ad es. SAP
+Program format: iso, heidenhain, punch or csv	Formato del programma: iso, heidenhain, punch o csv
+Programs	Programmi
+Progress (%)	Avanzamento (%)
+Project checks	Verifiche del progetto
+Project exports	Esportazioni del progetto
+Project languages, dictionary and translations	Lingue del progetto, dizionario e traduzioni
+Project reports	Report del progetto
+Project statistics	Statistiche del progetto
+Property and function definitions, property values and placement schemes	Definizioni delle proprietà e di funzione, valori delle proprietà e schemi di posizionamento
+Property key	Chiave di proprietà
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Chiavi e valori delle proprietà, ad es. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Anteposto ai numeri, ad es. W
+Quantity per end (default 1)	Quantità per estremità (predefinito 1)
+R/X ratio of the supply impedance	Rapporto R/X dell'impedenza di rete
+Rack number	Numero rack
+Rail id (action rail)	ID guida (azione rail)
+Rapid traverse, mm/min	Avanzamento rapido, mm/min
+Rated current of the supply in A (0: not limited)	Corrente nominale dell'alimentazione in A (0: illimitata)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Potenza nominale del trasformatore che alimenta la rete in kVA (0: nessuno, le correnti di cortocircuito sono indicate)
+Rear left corner of the line-up in mm, to the right	Angolo posteriore sinistro della fila di armadi in mm, verso destra
+Rear left corner of the line-up in mm, towards the front	Angolo posteriore sinistro della fila di armadi in mm, verso il fronte
+Relative humidity of the ambient air in % (0: no condensation check)	Umidità relativa dell'aria ambiente in % (0: nessuna verifica della condensa)
+Release instead of freeze	Sblocca invece di congelare
+Released pages keep their names: {}	Le pagine rilasciate mantengono il loro nome: {}
+Remote I/O: station of the controller	I/O decentrati: stazione del controllore
+Remove the entry of upstream and downstream	Rimuovi la voce di upstream e downstream
+Remove the profile	Rimuovi il profilo
+Remove the scheme from the project	Rimuovi lo schema dal progetto
+Remove unused definitions (default: false)	Rimuovi le definizioni non utilizzate (predefinito: false)
+Removes a copper bar	Rimuove una barra di rame
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Rimuove un nodo (con i suoi tratti e posizionamenti), un tratto, un posizionamento, un contorno, un conduttore equipotenziale o un accessorio
+Removes a planned device from a segment	Rimuove un dispositivo pianificato da un segmento
+Removes a project function definition; its symbols go back to their built-in one	Rimuove una definizione di funzione di progetto; i suoi simboli tornano a quella predefinita
+Removes a project option; its content stays in the project	Rimuove un'opzione di progetto; il suo contenuto resta nel progetto
+Removes a report block; the pages it generated stay	Rimuove un blocco di report; le pagine generate restano
+Removes a routing path or reservation	Rimuove un percorso di instradamento o uno spazio riservato
+Removes a segment with everything below it	Rimuove un segmento con tutto ciò che si trova al di sotto
+Removes a station; its cards stay unassigned, its bus connections are removed	Rimuove una stazione; le sue schede restano non assegnate, i suoi collegamenti bus vengono rimossi
+Removes a user property with all its values and placements	Rimuove una proprietà utente con tutti i suoi valori e posizionamenti
+Removes the bus connection of a port	Rimuove il collegamento bus di una porta
+Removes the bus system with its connections	Rimuove il sistema bus con i suoi collegamenti
+Removes the definition of a structure identifier (pages and devices keep it)	Rimuove la definizione di un identificatore di struttura (pagine e dispositivi lo mantengono)
+Removes the machine from the project	Rimuove la macchina dal progetto
+Removes the rule	Rimuove la regola
+Removes the wiring marks of wires that no longer exist	Rimuove i contrassegni di cablatura dei conduttori che non esistono più
+Renames a device with all its functions	Rinomina un dispositivo con tutte le sue funzioni
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Rinomina un identificatore di struttura in tutto il progetto: pagine, dispositivi, cavi, definizione e aree di lavoro
+Renames the station	Rinomina la stazione
+Repair the repairable findings	Ripara i risultati riparabili
+Replacement	Testo sostitutivo
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Sostituisce testo in testi liberi, testi di funzione, descrizioni di pagine, dispositivi e cavi dell'intero progetto; le pagine rilasciate restano invariate
+Report blocks and report schemes	Blocchi di report e schemi di report
+Reserves space over the mounting plate: kept free of routes, or for one class only	Riserva spazio sopra la piastra di montaggio: libero da percorsi o per una sola classe
+Rest (mm)	Resto (mm)
+Right side bayed (no side panel)	Lato destro affiancato (senza parete laterale)
+Room {} exists already	Il locale {} esiste già
+Rotation in degrees clockwise: 0, 90, 180 or 270	Rotazione in gradi in senso orario: 0, 90, 180 o 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotazione in gradi, in senso antiorario (90 si legge dal basso verso l'alto)
+Route the wires in 3D as well (otherwise through the cable ducts)	Instrada anche i conduttori in 3D (altrimenti attraverso le canaline)
+Routing rules, paths, reservations, frozen routes and cable shields	Regole di instradamento, percorsi, prenotazioni, instradamenti congelati e schermature dei cavi
+Row key (from table_get)	Chiave della riga (da table_get)
+Rows of the pattern	Righe della matrice
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Librerie di regole delle norme e set di regole del cliente con i limiti in vigore; li attiva, disattiva, aggiunge o rimuove
+Rule number, from 1	Numero regola, da 1
+Run the check	Esegui la verifica
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	SVG, HTML, PDF, DXF e DWG delle pagine, liste di produzione e PLC, file di scambio per cablaggi e PLC, il layout del quadro in 3D e il dizionario di traduzione
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Funzione di sicurezza da aggiungere o sostituire (per nome): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Funzioni di sicurezza (ISO 13849-1) con il Performance Level raggiunto; ne aggiunge, sostituisce o rimuove una
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Salva una pagina (tipo, cornice di stampa, cartiglio, struttura, descrizione, contenuto) come modello di pagina
+Saves items of an enclosure as a 3D macro of the project	Salva elementi di un armadio come macro 3D del progetto
+Saves the planned devices of a segment as a template	Salva i dispositivi pianificati di un segmento come modello
+Saves the properties placed at a symbol as a placement scheme	Salva le proprietà posizionate su un simbolo come schema di posizionamento
+Saw cut	Taglio della sega
+Second port as station:port	Seconda porta come stazione:porta
+Segment path, e.g. Plant/Area 1	Percorso del segmento, ad es. Plant/Area 1
+Segment {} already exists	Il segmento {} esiste già
+Segments not to use, comma separated	Tratti da non utilizzare, separati da virgola
+Selective up to this short-circuit current in kA (0: not given)	Selettivo fino a questa corrente di cortocircuito in kA (0: non indicata)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Selettività e protezione di back-up di coppie di dispositivi dalle tabelle dei produttori, per codice articolo; aggiunge, sostituisce o rimuove una voce
+Separator: semicolon, comma or tab	Separatore: semicolon, comma o tab
+Sets how cross references are shown (only the given settings) and shows the settings	Imposta come vengono mostrati i riferimenti incrociati (solo le impostazioni indicate) e mostra le impostazioni
+Sets how the terminals of a jumper are bridged	Imposta come vengono ponticellati i morsetti di un ponticello
+Sets property values of an object; an empty value removes it	Imposta i valori delle proprietà di un oggetto; un valore vuoto lo rimuove
+Sets the aspects the pages use	Imposta gli aspetti usati dalle pagine
+Sets the collision class of a panel item (empty: automatic)	Imposta la classe di collisione di un elemento del layout (vuoto: automatico)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Imposta i valori predefiniti dei tubi flessibili che non hanno valori propri e il prefisso dei numeri tubo flessibile
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	Imposta la distanza tra due classi di collisione o consente loro di sovrapporsi; sostituisce la regola delle stesse classi
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Imposta la definizione del percorso di campo di un cavo: nodi da attraversare e tratti da non utilizzare
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Imposta l'altezza del bordo inferiore dell'armadio dal pavimento (vengono verificate le altezze di dispositivi, morsetti e attuatori)
+Sets the level (multi-level terminals) or jumper number of a terminal	Imposta il livello (morsetti multilivello) o il numero di ponticello di un morsetto
+Sets the numbering scheme of the wires (only the given settings) and shows it	Imposta lo schema di numerazione dei conduttori (solo le impostazioni indicate) e lo mostra
+Sets the plot frame of all pages that do not choose one	Imposta la cornice di stampa di tutte le pagine che non ne scelgono una
+Sets the shield and the outer diameter of a cable	Imposta lo schermo e il diametro esterno di un cavo
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Imposta la lingua di origine dei testi del progetto e le lingue di destinazione (codici ISO 639-1)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Imposta i morsetti di riserva di una morsettiera e se i suoi accessori vengono aggiunti automaticamente
+Sets the translation of a line of the project texts (empty removes it)	Imposta la traduzione di una riga dei testi del progetto (vuoto la rimuove)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Imposta colore e sezione dei conduttori per le reti senza potenziale definito (vuoto = nessuno)
+Share of the capacity kept free in percent	Quota della capacità lasciata libera in percentuale
+Sheets	Fogli
+Shield connected at: both, first, second or none	Schermo collegato a: both, first, second o none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Calcoli di cortocircuito, carico, EMC e sicurezza, set di regole e verifica del progetto
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Correnti di cortocircuito, poteri di interruzione, tempi di interruzione, tenuta al cortocircuito dei cavi e selettività dei dispositivi di protezione
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Potenza di cortocircuito della rete a monte del trasformatore in MVA (0: infinita)
+Short-circuit voltage of the transformer in %	Tensione di cortocircuito del trasformatore in %
+Shortest path between the hits of a tool	Percorso più breve tra i colpi di un utensile
+Shortest rail, duct or busbar	Guida, canalina o sbarra più corta
+Shortest straight length next to a bend	Lunghezza dritta minima accanto a una piegatura
+Show as \"Name: value\"	Visualizza come \"Nome: valore\"
+Show the content	Mostra il contenuto
+Shows a property as a text beside a symbol	Visualizza una proprietà come testo accanto a un simbolo
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Mostra una morsettiera: morsetti nell'ordine della morsettiera con livello, ponticello e destinazioni, i blocchi sulla guida e i ponticelli
+Shows or changes the machining strategy and which machine makes which face	Mostra o modifica la strategia di lavorazione e quale macchina produce quale faccia
+Shows or changes the rules of copper bars; lengths in mm	Mostra o modifica le regole delle barre di rame; lunghezze in mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Mostra o modifica le regole delle verifiche del layout del quadro; valori in mm (temperatura in °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	Mostra la configurazione hardware PLC: stazioni con rack, slot, moduli e intervalli di indirizzi, sistemi bus, collegamenti delle porte e problemi rilevati
+Shows the content of a page: symbols with their connection point positions, wires and texts	Mostra il contenuto di una pagina: simboli con le posizioni dei loro punti di connessione, conduttori e testi
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Mostra i dati degli altri sistemi salvati nel progetto (collegamenti degli articoli, documenti) e il registro di scambio
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Mostra la faccia di accoppiamento di un connettore: disposizione dei pin del suo articolo, posizione di ogni pin (mm, vista lato pin) con potenziale, colore del filo e conduttore del cavo di entrambi i lati
+Shows the options and rules of the configurator	Mostra le opzioni e le regole del configuratore
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Mostra i pin di un connettore nell'ordine del connettore: cosa è collegato sul lato femmina e sul lato maschio, potenziale, pin non utilizzati
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Mostra le regole dell'instradamento 3D e modifica quelle indicate: griglia, distanza minima, fattore aria libera, separazione, raggi di curvatura, lunghezze di taglio, riserve
+Shows the rules of the field cable planning and changes those given	Mostra le regole della pianificazione dei cavi di campo e modifica quelle indicate
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Mostra le impostazioni della verifica del progetto: verifiche disattivate, livelli dei messaggi modificati e messaggi accettati
+Side of the plug the cable leaves: socket or pin (default: socket)	Lato del connettore da cui esce il cavo: socket o pin (predefinito: socket)
+Side the connection comes from: left, right, up or down (default up)	Lato da cui arriva il collegamento: left, right, up o down (predefinito up)
+Single-line diagrams	Schemi unifilari
+Single-line pages and their multi-line counterparts	Pagine unifilari e le loro controparti multifilari
+Slot number	Numero slot
+Smallest bend radius in mm	Raggio di curvatura minimo in mm
+Smallest distance in mm	Distanza minima in mm
+Smallest distance of holes from the sheet edge	Distanza minima dei fori dal bordo della lamiera
+Smallest inner radius as a multiple of the thickness	Raggio interno minimo come multiplo dello spessore
+Smallest web at cutouts	Nervatura minima alle forature
+Smallest web between holes	Nervatura minima tra i fori
+Spare terminals at the end of the strip	Morsetti di riserva alla fine della morsettiera
+Springback in percent of the angle	Ritorno elastico in percentuale dell'angolo
+Start again on every page whose structure differs from the page before	Ricomincia a ogni pagina la cui struttura differisce dalla pagina precedente
+Start and end are the same connection point	Inizio e fine sono lo stesso punto di connessione
+Start and end point of the line	Punto iniziale e finale della linea
+Start: device tag and connection point, e.g. -K1:A1	Inizio: sigla dispositivo e punto di connessione, ad es. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Stato delle commesse consegnate alla produzione: avanzamento, errori, rilavorazioni, programmi modificati dalla consegna
+Station name (empty: unassigned)	Nome stazione (vuoto: non assegnata)
+Station name, e.g. PLC1	Nome stazione, ad es. PLC1
+Station {} exists already	La stazione {} esiste già
+Stock bar	Barra di magazzino
+Stock length of rails, ducts and busbars	Lunghezza di magazzino di guide, canaline e sbarre
+Stock length of the bars	Lunghezza di magazzino delle barre
+Stores the calibrated factors	Salva i fattori calibrati
+Structure identifiers, aspects and work areas	Identificativi di struttura, aspetti e aree di lavoro
+Structure of the target page: different (default), always or never	Struttura della pagina di destinazione: different (predefinito), always o never
+Subprojects, model options and the project data check	Sottoprogetti, opzioni del modello e verifica dei dati del progetto
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Alimentazione (tensione, sistema di distribuzione, correnti di cortocircuito) e condizioni di posa dei conduttori; modifica i valori indicati
+Switch checks off, change message levels, accept messages as checked	Disattiva verifiche, modifica i livelli dei messaggi, accetta i messaggi come verificati
+Switches a check on or off (names as shown by list_checks)	Attiva o disattiva una verifica (nomi come mostrati da list_checks)
+Switches the project options with a condition by the configurator options	Commuta le opzioni di progetto con una condizione in base alle opzioni del configuratore
+Symbol id	ID simbolo
+Symbol ids	ID simboli
+Symbol key from list_symbols	Chiave del simbolo da list_symbols
+Symbols, wires, texts, cable and connection definitions on schematic pages	Simboli, conduttori, testi, definizioni di cavo e di collegamento sulle pagine di schema
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Pezzo a T: direzione del gambo; ponte: lato da cui arriva il collegamento (left, right, up o down)
+Tag of the terminal strip, e.g. -X1	Sigla della morsettiera, ad es. -X1
+Take the cut lengths over as cable lengths	Applica le lunghezze di taglio come lunghezze dei cavi
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Applica un armadio configurato nel configuratore del produttore dell'armadio (JSON): sistema, grandezza, componenti, accessori e forature
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Applica il riscontro della produzione (CSV o JSON): commessa, programma, operazione, elemento, stato, scostamenti, tempo, messaggio
+Takes pages or page items out of their project option (hidden content is shown again)	Toglie pagine o elementi di pagina dalla loro opzione di progetto (il contenuto nascosto viene mostrato di nuovo)
+Target language code	Codice della lingua di destinazione
+Target languages separated by commas or blanks, e.g. de, fr	Lingue di destinazione separate da virgole o spazi, ad es. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Aumento di temperatura sul tetto rispetto al centro (1 … 2)
+Terminal designation	Designazione del morsetto
+Terminal designations in strip order, separated by commas	Designazioni dei morsetti nell'ordine della morsettiera, separate da virgole
+Terminal order, levels, jumpers, spare terminals and accessories	Ordine dei morsetti, livelli, ponticelli, morsetti di riserva e accessori
+Text height in mm	Altezza del testo in mm
+Text height in mm (default 3.5)	Altezza del testo in mm (predefinito 3.5)
+Text in id, name or order number	Testo in ID, nome o codice d'ordine
+Text in the key or name	Testo nella chiave o nel nome
+Text in the line or a translation	Testo nella riga o in una traduzione
+Text to find; empty: fill	Testo da trovare; vuoto: compila
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Testo; i segnaposto come {page} o {prop:Name} vengono compilati al momento del disegno
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	I bracci di un angolo sono una direzione verticale e una orizzontale, ad es. down left, non {}
+The cable definition line crosses no wire	La linea di definizione cavo non incrocia alcun conduttore
+The cable definition line has no length	La linea di definizione cavo non ha lunghezza
+The cable has an overall shield	Il cavo ha uno schermo complessivo
+The classes may overlap (no collision)	Le classi possono sovrapporsi (nessuna collisione)
+The configuration (JSON)	La configurazione (JSON)
+The copies would leave the page	Le copie uscirebbero dalla pagina
+The counting step must be at least 1	Il passo di conteggio deve essere almeno 1
+The devices do not fit onto rail {}	I dispositivi non entrano sulla guida {}
+The feedback (CSV with header or JSON)	Il riscontro (CSV con intestazione o JSON)
+The first page number must not be negative	Il primo numero di pagina non deve essere negativo
+The items would leave the page	Gli elementi uscirebbero dalla pagina
+The length must not be negative	La lunghezza non deve essere negativa
+The line of a crossing is vertical or horizontal, not {}	La linea di un incrocio è vertical o horizontal, non {}
+The message text, kept for the list of accepted messages	Il testo del messaggio, conservato per l'elenco dei messaggi accettati
+The name must not be empty	Il nome non può essere vuoto
+The number of copies must be between 1 and 100	Il numero di copie deve essere compreso tra 1 e 100
+The plinth height must not be negative	L'altezza dello zoccolo non deve essere negativa
+The plot frame {} is in use	La cornice di stampa {} è in uso
+The plugin program did not answer within {} s and was stopped	Il programma del plugin non ha risposto entro {} s ed è stato interrotto
+The plugin program failed: {}	Il programma del plugin non è riuscito: {}
+The rotation must be 0, 90, 180 or 270	La rotazione deve essere 0, 90, 180 o 270
+The straight line of a crossing: vertical or horizontal (default vertical)	La linea dritta di un incrocio: vertical o horizontal (predefinito vertical)
+The text height must be at least 0.5 mm	L'altezza del testo deve essere di almeno 0,5 mm
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	I due bracci di un angolo, verticale e orizzontale, ad es. down left (predefinito: dai conduttori presenti, altrimenti down right)
+The wire has no length	Il collegamento non ha lunghezza
+The wrap width must not be negative	La larghezza di a capo non deve essere negativa
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulazione termica della piastra di montaggio: temperature dell'aria, punto caldo, sorgenti di calore e temperatura su ogni dispositivo
+Thickest sheet or bar, mm	Lamiera o barra più spessa, mm
+Time per drilling, punching or bending operation, s	Tempo per operazione di foratura, punzonatura o piegatura, s
+Time per tool change, s	Tempo per cambio utensile, s
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Utensili, ad es. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	Bordo superiore sulla faccia in mm
+Top edge on the mounting plate in mm	Bordo superiore sulla piastra di montaggio in mm
+Translated line	Riga tradotta
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotazione attorno all'asse verticale in gradi, in senso antiorario visto dall'alto (90: i fronti sono rivolti a destra)
+Unit, e.g. kW	Unità, ad es. kW
+Unknown accessory kind: {}	Tipo di accessorio sconosciuto: {}
+Unknown action: {}	Azione sconosciuta: {}
+Unknown address scheme: {}	Schema di indirizzamento sconosciuto: {}
+Unknown alignment: {}	Allineamento sconosciuto: {}
+Unknown anchor: {}	Ancoraggio sconosciuto: {}
+Unknown aspect: {}	Aspetto sconosciuto: {}
+Unknown bonding kind: {}	Tipo di collegamento equipotenziale sconosciuto: {}
+Unknown bonding point: {}	Punto di collegamento equipotenziale sconosciuto: {}
+Unknown bus system: {}	Sistema bus sconosciuto: {}
+Unknown cable: {}	Cavo sconosciuto: {}
+Unknown check: {}	Verifica sconosciuta: {}
+Unknown class: {}	Classe sconosciuta: {}
+Unknown data type: {}	Tipo di dati sconosciuto: {}
+Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
+Unknown earthing system: {}	Sistema di distribuzione sconosciuto: {}
+Unknown face {}	Faccia sconosciuta {}
+Unknown fastening: {}	Fissaggio sconosciuto: {}
+Unknown field object: {}	Oggetto di campo sconosciuto: {}
+Unknown field: {}	Campo sconosciuto: {}
+Unknown group kind: {}	Tipo di gruppo sconosciuto: {}
+Unknown installation: {}	Installazione sconosciuta: {}
+Unknown insulation: {}	Isolamento sconosciuto: {}
+Unknown jumper kind: {}	Tipo di ponticello sconosciuto: {}
+Unknown kind: {}	Tipo sconosciuto: {}
+Unknown labels: {}	Etichette sconosciute: {}
+Unknown level: {}	Livello sconosciuto: {}
+Unknown line type: {}	Tipo di linea sconosciuto: {}
+Unknown machine kind {}	Tipo di macchina sconosciuto {}
+Unknown marker category: {}	Categoria di marcatori sconosciuta: {}
+Unknown material: {}	Materiale sconosciuto: {}
+Unknown medium: {}	Fluido sconosciuto: {}
+Unknown method {}	Metodo sconosciuto {}
+Unknown node: {}	Nodo sconosciuto: {}
+Unknown numbering scheme: {}	Schema di numerazione sconosciuto: {}
+Unknown object class: {}	Classe di oggetto sconosciuta: {}
+Unknown order: {}	Ordine sconosciuto: {}
+Unknown paper format: {}	Formato carta sconosciuto: {}
+Unknown path kind: {}	Tipo di percorso sconosciuto: {}
+Unknown placeholder {}: possible are {}	Segnaposto sconosciuto {}: possibili sono {}
+Unknown potential kind: {}	Tipo di potenziale sconosciuto: {}
+Unknown preset: {}	Preimpostazione sconosciuta: {}
+Unknown program format {}	Formato di programma sconosciuto {}
+Unknown report: {}	Report sconosciuto: {}
+Unknown segment kind: {}	Tipo di tratto sconosciuto: {}
+Unknown segment: {}	Tratto sconosciuto: {}
+Unknown separator: {}	Separatore sconosciuto: {}
+Unknown setting: {}	Impostazione sconosciuta: {}
+Unknown shield ends: {}	Estremità dello schermo sconosciute: {}
+Unknown side {} (socket or pin)	Lato sconosciuto {} (socket o pin)
+Unknown state: {}	Stato sconosciuto: {}
+Unknown station kind: {}	Tipo di stazione sconosciuto: {}
+Unknown symbol: {}	Simbolo sconosciuto: {}
+Unknown table: {}	Tabella sconosciuta: {}
+Unknown vertical anchor: {}	Ancoraggio verticale sconosciuto: {}
+Unknown wire colour {} (IEC 60757: {})	Colore del conduttore sconosciuto {} (IEC 60757: {})
+Use this scheme for the marking export	Usa questo schema per l'esportazione della marcatura
+Used (mm)	Utilizzato (mm)
+Value while none is set	Valore finché non ne è impostato nessuno
+Values of a selection list separated by commas	Valori di un elenco di selezione separati da virgole
+Variant (empty: the first)	Variante (vuoto: la prima)
+Variant {} is not one of 1 to 2	La variante {} non è tra 1 e 2
+Variant {} is not one of 1 to 4	La variante {} non è tra 1 e 4
+Verifies the project against the enabled rule libraries and customer rule sets	Verifica il progetto rispetto alle librerie di regole e ai set di regole del cliente attivati
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Verifica i dati del progetto (ID, riferimenti, opzioni, sottoprogetti) ed esegue le verifiche; facoltativamente ripara ciò che è riparabile
+Vertical pitch of the pattern in mm	Passo verticale della matrice in mm
+Voltage, e.g. 400 V AC	Tensione, ad es. 400 V AC
+What it is: motor, valve, sensor, …	Che cos'è: motore, valvola, sensore, …
+Which line the position is on: top (first), middle or bottom (last)	Riga su cui si trova la posizione: top (prima), middle o bottom (ultima)
+Who accepted it	Chi lo ha accettato
+Whole words only	Solo parole intere
+Why the message is accepted	Perché il messaggio viene accettato
+Width in mm	Larghezza in mm
+Width of the path in mm (default 50)	Larghezza del percorso in mm (predefinito 50)
+Width, depth and height of a room are at least {} mm	Larghezza, profondità e altezza di un locale sono di almeno {} mm
+Width, height and depth of an enclosure are at least {} mm	Larghezza, altezza e profondità di un armadio sono di almeno {} mm
+Wire colour (IEC 60757), e.g. BK	Colore del conduttore (IEC 60757), ad es. BK
+Wire colour, e.g. BU	Colore del conduttore, ad es. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Colore del conduttore, ad es. BU (vuoto = dalla definizione del potenziale)
+Wire number (kept when renumbering)	Numero conduttore (mantenuto durante la rinumerazione)
+Wire numbering and wiring marks	Numerazione conduttori e contrassegni di cablatura
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Conduttori troppo sottili per il loro dispositivo di protezione e caduta di tensione dei cavi (IEC 60204-1)
+Working area in x, mm	Area di lavoro in x, mm
+Working area in y, mm	Area di lavoro in y, mm
+Wrap width in mm (0: no wrapping)	Larghezza di a capo in mm (0: nessun a capo)
+X position in mm	Posizione X in mm
+Y position in mm (downwards)	Posizione Y in mm (verso il basso)
+any, wires, cables or tubes	any, wires, cables o tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip o adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam o product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi o other
+copper or aluminium	copper o aluminium
+device (default), position, cross_section or number	device (predefinito), position, cross_section o number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages o parts
+error, warning, info, off, or default to take the change back	error, warning, info, off o default per annullare la modifica
+false takes the acceptance back (default true)	false annulla l'accettazione (predefinito true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted o middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) o product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker o other
+hose, tube or pipe	hose, tube o pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (macchine, fasi BK) o iec60445 (fasi BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (predefinito), power, control, signal o fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal o other
+left, center, right, top, middle or bottom	left, center, right, top, middle o bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail o pattern
+main (default), supplementary or functional	main (predefinito), supplementary o functional
+mounted, problem or open	mounted, problem o open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond o accessory
+numbers or letters	numbers o letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof o bottom
+plug_in, saddle or wire	plug_in, saddle o wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp o canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc o cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable o part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<nome>, device:<sigla>, function:<ID simbolo>, cable:<sigla> o part:<numero>
+pvc or xlpe	pvc o xlpe
+sequential, page_column, potential or format	sequential, page_column, potential o format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium o plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date o link (predefinito text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt o it
+too long	troppo lungo
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (predefinito), ladder, trunking, conduit, drag_chain, buried o free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit o other
+wired, problem or open	wired, problem o open
+{} and {} are both ends of one function: the wire would short-circuit it	{} e {} sono le due estremità di una funzione: il conduttore la cortocircuiterebbe
+{} and {} are needed together	{} e {} sono richiesti insieme
+{} cannot be bayed to itself	{} non può essere affiancato a se stesso
+{} cannot be mounted on the {}	{} non può essere montato su {}
+{} exists already: pass merge to make both one identifier	{} esiste già: indica merge per unire i due in un solo identificatore
+{} has no enclosure bayed to its right side	{} non ha alcun armadio affiancato sul lato destro
+{} has no enclosure system; give one	{} non ha un sistema di armadi; indicane uno
+{} is a built-in frame; give the frame a new name	{} è una cornice integrata; assegna alla cornice un nuovo nome
+{} is a room already	{} è già un locale
+{} is ambiguous: use #id:pin	{} è ambiguo: usa #id:pin
+{} is an enclosure already	{} è già un armadio
+{} is not a connection point (TAG:PIN)	{} non è un punto di connessione (SIGLA:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} non è un codice messaggio come mostrato da check (ad es. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} non è un'impronta di messaggio come mostrata da check (code:hash:item)
+{} is not defined	{} non è definito
+{} is not in that section	{} non è in quella sezione
+{} is the source language	{} è la lingua di origine
+{} must be at least {}	{} deve essere almeno {}
+{} must be between {} and {}	{} deve essere compreso tra {} e {}
+{} must not be negative	{} non deve essere negativo
+{} of job {} changed since the hand-off	{} della commessa {} è cambiato dalla consegna
+{} segments need {} bends	{} tratti richiedono {} piegature
+{} would stand outside the room {}	{} si troverebbe fuori dal locale {}
+{}: part {} is being phased out	{}: l'articolo {} è in dismissione
+{}: part {} is being phased out, successor {}	{}: l'articolo {} è in dismissione, successore {}
+{}: part {} is discontinued	{}: l'articolo {} è fuori produzione
+{}: part {} is discontinued, successor {}	{}: l'articolo {} è fuori produzione, successore {}
+{}: the program to run is missing	{}: manca il programma da eseguire

@@ -1,0 +1,286 @@
+# English<TAB>Italiano – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(solo server MCP)
+(optional)	(facoltativo)
+Access token for changes	Token di accesso per le modifiche
+Access token of a Vault session or an Autodesk account instead of user and password	Token di accesso di una sessione Vault o di un account Autodesk invece di utente e password
+Address of the Vault server, e.g. https://vault.example.com	Indirizzo del server Vault, ad es. https://vault.example.com
+Adds a page	Aggiunge una pagina
+Adds the definitions and schemes of a property library file to the project	Aggiunge al progetto le definizioni e gli schemi di un file di libreria di proprietà
+All project files of a folder	Tutti i file di progetto di una cartella
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Restituisci anche i facet: valori di gruppi, produttori, cataloghi, ciclo di vita e dati tecnici con il relativo conteggio
+Also save the project in this local file	Salva il progetto anche in questo file locale
+Also take over values changed on both sides since the last export	Applica anche i valori modificati su entrambi i lati dall'ultima esportazione
+Also verify each project (slower)	Verifica anche ogni progetto (più lento)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Applica un CSV esportato con table_get (e modificato in un foglio di calcolo): vengono impostate le celle modificate
+Applies a structure template: the aspects of the pages and its identifiers	Applica un modello di struttura: gli aspetti delle pagine e i suoi identificatori
+Archive file (.oecz)	File di archivio (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Assegna un articolo a un dispositivo (dal progetto, dal catalogo integrato o dal server articoli)
+Author of comments without one (default: the user name)	Autore dei commenti senza autore (predefinito: il nome utente)
+AutomationML content instead of a file	Contenuto AutomationML invece di un file
+AutomationML file	File AutomationML
+CSV content instead of a file	Contenuto CSV invece di un file
+CSV file	File CSV
+CSV or Excel file	File CSV o Excel
+CSV or JSON file	File CSV o JSON
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	File CSV, JSON, BMEcat, EPLAN XML o EDZ
+Cannot write {}: {}	Impossibile scrivere {}: {}
+Catalog data; without id it is derived from the name	Dati del catalogo; senza ID viene derivato dal nome
+Changes project properties	Modifica le proprietà del progetto
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Modifica le proprietà di progetto in molti file di progetto contemporaneamente (campi name, description, company, creator, date, revision o proprietà di progetto)
+Changes the number of a part on the parts server	Modifica il codice di un articolo sul server articoli
+Check scheme file (JSON)	File dello schema di verifica (JSON)
+Check-in comment	Commento del check-in
+Checks the project (errors, warnings, hints)	Verifica il progetto (errori, avvisi, suggerimenti)
+Column mapping {field code: column name} (added to the profile's)	Mappatura delle colonne {codice campo: nome colonna} (aggiunta a quella del profilo)
+Comment stored in the archive	Commento salvato nell'archivio
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Confronta gli articoli del progetto con il server articoli: versioni più recenti, articoli in dismissione, fuori produzione e rimossi
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Esportazione tramite connettore invece: erp, pdm, plm, ecad, mcad, procurement, wiring_machine o exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Si connette ad Autodesk Vault (Vault Data API, Vault Professional 2025.2 o successivo): accede con un account Vault o usa un token di accesso e mostra la connessione
+Converts a project file or archive of an older version to the current file format	Converte un file di progetto o un archivio di una versione precedente nel formato di file attuale
+Creates a new project (optionally the demo project) and saves it if a path is given	Crea un nuovo progetto (facoltativamente il progetto demo) e lo salva se viene indicato un percorso
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Crea o modifica un catalogo sul server articoli (ID, nome, produttore, versione, descrizione)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Crea o modifica un blocco di report (pagine di report generate insieme, ad es. uno schema morsetti per morsettiera)
+Creates or changes a user of the parts server (administrators only)	Crea o modifica un utente del server articoli (solo amministratori)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Crea o sostituisce un articolo sul server articoli (stesso JSON di parts_get; i campi mancanti sono vuoti)
+Creates or replaces a report scheme	Crea o sostituisce uno schema di report
+Creator	Creatore
+DWG file	File DWG
+DXF file	File DXF
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro o Other (predefinito: per nome file)
+Date for the exchange log	Data per il registro di scambio
+Defines, changes or deletes a role of the parts server (administrators only)	Definisce, modifica o elimina un ruolo del server articoli (solo amministratori)
+Delete the role	Elimina il ruolo
+Deletes a catalog without parts from the parts server	Elimina un catalogo senza articoli dal server articoli
+Deletes a part from the parts server	Elimina un articolo dal server articoli
+Deletes a user of the parts server (administrators only)	Elimina un utente del server articoli (solo amministratori)
+Descending order	Ordine decrescente
+Discard unsaved changes of the open project	Ignora le modifiche non salvate del progetto aperto
+Downloads a file of a part from the parts server	Scarica un file di un articolo dal server articoli
+Downloads a file version from the vault	Scarica una versione di file dal vault
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Incorpora un file (PDF, documento Office, immagine …) come pagina documento; l'esportazione PDF lo allega alla pagina
+Error: {}	Errore: {}
+Export name as shown by list_exports	Nome dell'esportazione come mostrato da list_exports
+Export name as shown by list_exports, e.g. pdf or step	Nome dell'esportazione come mostrato da list_exports, ad es. pdf o step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Esporta tutti gli articoli del server articoli come CSV o XML articoli EPLAN
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Esporta il progetto per un altro sistema con un connettore, o come file di scambio neutro (connettore exchange); le importazioni successive di quel connettore rilevano i conflitti rispetto a questa esportazione
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Esporta il progetto in un formato di list_exports; i formati binari (dwg, jt) richiedono un file di output
+Field or property whose value is searched ('*' for all)	Campo o proprietà il cui valore viene cercato ('*' per tutti)
+File content instead of a file	Contenuto del file invece di un file
+File id (see the attachments of parts_get)	ID file (vedi gli attachments di parts_get)
+File name in the vault	Nome del file nel vault
+File to embed	File da incorporare
+File to save the project to (.oec)	File in cui salvare il progetto (.oec)
+File to upload	File da caricare
+File to write	File da scrivere
+File to write (xlsx)	File da scrivere (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Cerca progetti nel database dei progetti o in una cartella: termini separati da ';', ciascuno chiave=valore, chiave~testo o testo semplice
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Cerca gli elementi di Vault degli articoli del progetto (tramite il numero dell'elemento o la proprietà Part Number) ed elenca le modifiche di ID elemento, revisione e stato del ciclo di vita; con apply vengono applicate
+Folder id (default root)	ID cartella (predefinito root)
+Folder with project files	Cartella con i file di progetto
+Folder with project files (instead of a database; default: the current folder)	Cartella con i file di progetto (invece di un database; predefinita: la cartella corrente)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Modulo: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (schemi di morsettiere e cavi come disegni)
+Function (=) of the generated pages	Funzione (=) delle pagine generate
+Further parameters of the export as name=value, separated by commas	Altri parametri dell'esportazione come nome=valore, separati da virgole
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Altri parametri dell'esportazione come nome=valore, separati da virgola (vedi list_exports), ad es. harness=-WH1
+GSDML or ESI file	File GSDML o ESI
+Generates a report as table	Genera un report come tabella
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Genera una pagina di schema per ogni dispositivo pianificato che ha una macro di pagina e non è ancora nello schema
+Generates the pages of the report blocks again (replacing the pages they generated before)	Rigenera le pagine dei blocchi di report (sostituendo le pagine generate in precedenza)
+Give either template or path	Indica template oppure path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Assegna a un utente o gruppo un ruolo su un produttore (ambito) del server articoli, con deny ne revoca i diritti, con revoke rimuove le assegnazioni (solo amministratori)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Gruppi da generare, caratteri jolly consentiti (-X*, -W1); vuoto: tutti
+Id of a file (file_id of vault_browse) that gets a new version	ID di un file (file_id di vault_browse) che riceve una nuova versione
+Id of the file version (version_id of vault_browse)	ID della versione del file (version_id di vault_browse)
+Id of the knowledge vault (taken from the session if not given)	ID del vault (preso dalla sessione se non indicato)
+Id of the plugin to disable	ID del plugin da disattivare
+Id of the plugin to enable	ID del plugin da attivare
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Importa un disegno DWG (AutoCAD R12 … 2018) come grafica (linee, archi, testi, blocchi) su una nuova pagina di schema
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Importa un disegno DXF come grafica (linee, archi, testi, blocchi) su una nuova pagina di schema
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Importa una configurazione hardware PLC da AutomationML (ad es. esportata da TIA Portal): stazioni, moduli, indirizzi, sottoreti, collegamenti delle porte e commenti delle variabili
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Importa un file articoli nel server articoli; le immagini e le macro di un file EDZ vengono salvate con i relativi articoli
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importa nel progetto descrizioni dispositivo da un file GSDML (PROFINET) o ESI (EtherCAT)
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importa segmenti di preprogettazione e dispositivi pianificati da CSV o Excel (colonne Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importa nel livello di riesame i commenti che un revisore ha inserito in un'esportazione PDF del progetto (note, caselle di testo, evidenziazioni, forme, risposte); i commenti già importati vengono ignorati
+Insert after this page (default: at the end)	Inserisci dopo questa pagina (predefinito: alla fine)
+Inserts an edited subproject: its pages replace the pages taken out	Inserisce un sottoprogetto modificato: le sue pagine sostituiscono le pagine estratte
+Invalid form: {}	Modulo non valido: {}
+Keep the file checked out after the check-in	Mantieni il check-out del file dopo il check-in
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Tipo di server: OpenECraft (server articoli) o Eplan (EPLAN Data Portal: solo ricerca e lettura, il token è il token di accesso personale dell'account EPLAN)
+Language of the export (a project language)	Lingua dell'esportazione (una lingua del progetto)
+Language of the project texts and reports (a project language, default the source language)	Lingua dei testi del progetto e dei report (una lingua del progetto, predefinita la lingua di origine)
+Library file	File di libreria
+Lifecycle: Active, PhaseOut or Discontinued	Ciclo di vita: Active, PhaseOut o Discontinued
+Lists the built-in structure templates	Elenca i modelli di struttura integrati
+Lists the catalogs of the parts server with their number of parts	Elenca i cataloghi del server articoli con il relativo numero di articoli
+Lists the checks of the project check (built-in and of plugins) and whether they run	Elenca le verifiche della verifica del progetto (predefinite e dei plugin) e se vengono eseguite
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Elenca i connettori del livello di integrazione (ERP, PDM, PLM, ECAD, MCAD, acquisti, macchina per la lavorazione dei conduttori) con i campi che scambiano, e i profili del progetto
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Elenca i sistemi di armadi con le dimensioni standard, lo spessore delle pareti, lo zoccolo e se sono affiancabili
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Elenca i progetti di esempio, dal primo circuito a un intero impianto, con le funzioni che ognuno mostra
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Elenca le esportazioni (predefinite e dei plugin): nome per export, titolo, estensione del file e parametri
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Elenca le cartelle e i file di una cartella Vault o cerca nelle proprietà dei file al di sotto di essa (o nell'intero vault)
+Lists the reports (built-in and of plugins): name for report and title	Elenca i report (predefiniti e dei plugin): nome per report e titolo
+Lists the users of the parts server (administrators only)	Elenca gli utenti del server articoli (solo amministratori)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Plugin caricati (predefiniti e dalle cartelle dei plugin di --plugins / OPENECRAFT_PLUGINS) con i relativi comandi, verifiche, report ed esportazioni; ne attiva o disattiva uno per questa sessione
+Local file to put into the vault	File locale da inserire nel vault
+Local groups of the user, separated by commas	Gruppi locali dell'utente, separati da virgole
+Location (+) of the generated pages	Luogo (+) delle pagine generate
+Macro library file (JSON, exported by the editor)	File di libreria macro (JSON, esportato dall'editor)
+Manufacturer (wildcards); default * (everything)	Produttore (caratteri jolly); predefinito * (tutto)
+Manufacturer whose parts a manufacturer user maintains	Produttore i cui articoli sono gestiti da un utente produttore
+Maximum number of hits (default 50)	Numero massimo di risultati (predefinito 50)
+Name of a built-in template (list_structure_templates)	Nome di un modello integrato (list_structure_templates)
+Name of the knowledge vault (default Vault)	Nome del vault (predefinito Vault)
+New file name (save as)	Nuovo nome file (salva con nome)
+New pages for every value of the group column (default true)	Nuove pagine per ogni valore della colonna di raggruppamento (predefinito true)
+New part number	Nuovo codice articolo
+New report block {} needs a kind	Il nuovo blocco di report {} richiede un tipo (kind)
+No grant of {} found	Nessuna assegnazione di {} trovata
+No profile named {}	Nessun profilo denominato {}
+No project is open: use open_project or new_project first	Nessun progetto aperto: usa prima open_project o new_project
+No role {} defined	Nessun ruolo {} definito
+Not a valid catalog: {}	Non è un catalogo valido: {}
+Not a valid part: {}	Articolo non valido: {}
+Not connected to a vault: use vault_connect first	Non connesso a un vault: usa prima vault_connect
+Nothing to change: pass set, remove, replace or rename	Niente da modificare: indica set, remove, replace o rename
+Number of hits to skip	Numero di risultati da ignorare
+Only show the changes, write nothing	Mostra solo le modifiche, non scrivere nulla
+Only the pages of this report block; default all report pages	Solo le pagine di questo blocco di report; predefinito tutte le pagine di report
+Only the projects that match these search terms	Solo i progetti che corrispondono a questi termini di ricerca
+Only this block	Solo questo blocco
+Opens a project file or archive (files of older versions are converted)	Apre un file di progetto o un archivio (i file di versioni precedenti vengono convertiti)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Apre un file di progetto o un archivio dal vault; vault_upload senza destinazione ne esegue il check-in di una nuova versione
+Option {} needs the form name=value	L'opzione {} richiede la forma nome=valore
+Order: Number, Manufacturer, Description, Price or Modified	Ordine: Number, Manufacturer, Description, Price o Modified
+Output file	File di output
+Output file (JSON)	File di output (JSON)
+Output file; without it the content is returned	File di output; se omesso, viene restituito il contenuto
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Emette le pagine di report come pagine fisse in un altro file di progetto; le pagine emesse in precedenza da questo progetto vengono sostituite
+PDF file with comments	File PDF con commenti
+Page (svg: required, dxf, dwg: default all pages)	Pagina (svg: obbligatoria, dxf, dwg: predefinito tutte le pagine)
+Page name (default: next number)	Nome pagina (predefinito: numero successivo)
+Page of the export	Pagina dell'esportazione
+Page template (list_page_templates) instead of kind	Modello di pagina (list_page_templates) invece di kind
+Page {} has no embedded document	La pagina {} non ha un documento incorporato
+Pages whose structure starts with this, e.g. =A1+CAB1	Pagine la cui struttura inizia con questo, ad es. =A1+CAB1
+Part number to add	Codice articolo da aggiungere
+Part number to remove	Codice articolo da rimuovere
+Part {} has no version {}	L'articolo {} non ha la versione {}
+Pass files or a folder	Indica file o una cartella
+Password (needed for new users; empty keeps the current one)	Password (necessaria per i nuovi utenti; se vuota resta quella attuale)
+Password of the Vault user	Password dell'utente Vault
+Password of the user	Password dell'utente
+Plot frame (list_frames); default: the project's	Cornice di stampa (list_frames); predefinito: quella del progetto
+Product top group: Electrical, Fluid, Mechanics or Process	Gruppo principale di prodotti: Electrical, Fluid, Mechanics o Process
+Profile whose column mapping is used	Profilo di cui viene usata la mappatura delle colonne
+Project database file (JSON)	File del database dei progetti (JSON)
+Project database file (JSON) to update	File del database dei progetti (JSON) da aggiornare
+Project file (.oec) or archive (.oecz)	File di progetto (.oec) o archivio (.oecz)
+Project file that gets the pages	File di progetto che riceve le pagine
+Project file to write (default: the file itself; archives: next to it as .oec)	File di progetto da scrivere (predefinito: il file stesso; archivi: accanto come .oec)
+Project files, separated by ';'	File di progetto, separati da ';'
+Properties to remove, separated by ','	Proprietà da rimuovere, separate da ','
+Properties to rename (old name: new name)	Proprietà da rinominare (vecchio nome: nuovo nome)
+Property {} needs a text or a number	La proprietà {} richiede un testo o un numero
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Inserisce nel vault il progetto, un'esportazione, un'esportazione tramite connettore o un file locale; un file con lo stesso nome nella cartella riceve una nuova versione (check-out e check-in), altrimenti il file viene aggiunto
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor o Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Legge un file di un altro sistema (CSV o JSON) con un connettore ed elenca le modifiche; con apply vengono applicate (i conflitti solo con overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Legge i file di progetto e gli archivi di una cartella (e delle sue sottocartelle) nel database dei progetti
+Reads translations from CSV: first column the source line, one column per language code	Legge le traduzioni da CSV: prima colonna la riga di origine, una colonna per codice lingua
+Redoes the last undone change	Ripete l'ultima modifica annullata
+Remove the grants of the user or group (only of this role and scope, if given)	Rimuovi le assegnazioni dell'utente o del gruppo (solo di questo ruolo e ambito, se indicati)
+Remove the parts assigned so far	Rimuovi gli articoli assegnati finora
+Removes a file from a part on the parts server	Rimuove un file da un articolo sul server articoli
+Replace the file at path if it exists	Sostituire il file in path se esiste
+Replace the project parts by their newer server versions	Sostituisci gli articoli del progetto con le loro versioni più recenti del server
+Replacement text	Testo sostitutivo
+Replaces the content of the macro boxes whose macro changed in a macro library file	Sostituisce il contenuto dei riquadri macro la cui macro è cambiata in un file di libreria delle macro
+Replaces the pages generated before by the page macros of the rules whose condition holds	Sostituisce le pagine generate in precedenza con le macro di pagina delle regole la cui condizione è soddisfatta
+Report name as shown by list_reports	Nome del report come mostrato da list_reports
+Report scheme: its filter, sort order and columns	Schema di report: filtro, ordinamento e colonne
+Report scheme; empty: the form of the report	Schema di report; vuoto: il modulo del report
+Report the scheme belongs to	Report a cui appartiene lo schema
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Report, ad es. terminal_diagram, terminal_lineup, cable_connections (obbligatorio per un nuovo blocco)
+Return all part data instead of a summary	Restituisci tutti i dati dell'articolo invece di un riepilogo
+Revision of the change; returns the part as it was	Revisione della modifica; restituisce l'articolo com'era
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Diritti separati da virgole: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Nome del ruolo
+Role of requests without sign-in; none: sign-in needed for reading	Ruolo delle richieste senza accesso; none: accesso necessario per la lettura
+Role: reader, manufacturer, editor, admin or a defined role	Ruolo: reader, manufacturer, editor, admin o un ruolo definito
+Saves the project to its file or to a new path	Salva il progetto nel suo file o in un nuovo percorso
+Scale drawings down that do not fit on the page (default: true)	Riduci i disegni che non entrano nella pagina (predefinito: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Termini di ricerca, ad es. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Cerca negli elementi del vault (numero, titolo, revisione, stato del ciclo di vita, codice articolo)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Cerca articoli sul server articoli (Data Portal) per testo, gruppi, catalogo, ciclo di vita e dati tecnici
+Segment path (default: all segments)	Percorso del segmento (predefinito: tutti i segmenti)
+Server URL, e.g. http://127.0.0.1:8090	URL del server, ad es. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Imposta il server articoli (URL e token di accesso, o utente e password) e ne mostra lo stato
+Settings scheme file (JSON)	File dello schema delle impostazioni (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Mostra una tabella (dispositivi, collegamenti, morsetti, cavi, connettori, PLC, pagine o articoli) con le sue righe; la chiave di una riga serve a modificarla
+Shows all data of a part	Mostra tutti i dati di un articolo
+Shows the changes of a part on the parts server, or the part as of one change	Mostra le modifiche di un articolo sul server articoli o l'articolo allo stato di una modifica
+Shows the favorites of the signed in user, optionally adding or removing a part	Mostra i preferiti dell'utente connesso, aggiungendo o rimuovendo facoltativamente un articolo
+Shows the manifest of a project archive	Mostra il manifest di un archivio di progetto
+Shows the project properties, file, number of pages and devices and the check result	Mostra le proprietà del progetto, il file, il numero di pagine e di dispositivi e il risultato della verifica
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Mostra i ruoli, le assegnazioni e i servizi di directory del server articoli, impostando facoltativamente il ruolo delle richieste anonime (solo amministratori)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Inizia da un modello di progetto: uno predefinito (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) o un file di progetto
+Start from an example project (names: list_examples)	Partire da un progetto di esempio (nomi: list_examples)
+Start from the demo project	Parti dal progetto demo
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Salva un file (scheda tecnica, immagine, modello, macro …) con un articolo sul server articoli
+Subproject file (.oec)	File di sottoprogetto (.oec)
+Subproject file to write (.oec)	File di sottoprogetto da scrivere (.oec)
+Take the changes over (otherwise only a preview)	Applica le modifiche (altrimenti solo un'anteprima)
+Take the rights of the role away instead	Revoca invece i diritti del ruolo
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Estrae pagine come file di sottoprogetto; restano bloccate qui finché il sottoprogetto non viene reinserito
+Takes the checks switched off and the message levels of a check scheme file	Applica le verifiche disattivate e i livelli dei messaggi di un file di schema di verifica
+Takes the settings a settings scheme file carries	Applica le impostazioni contenute in un file di schema delle impostazioni
+Target folder id (root for the top folder); default the folder the project was opened from	ID della cartella di destinazione (root per la cartella principale); predefinita la cartella da cui è stato aperto il progetto
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Dati tecnici che devono corrispondere, ad es. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	File di modello scritto da export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Testo in numero, tipo, produttore, descrizione, gruppi o catalogo; ogni parola deve essere presente
+Text to replace	Testo da sostituire
+Text to search for	Testo da cercare
+The catalog needs a name	Il catalogo richiede un nome
+The format xlsx needs a path	Il formato xlsx richiede un percorso
+The open project has unsaved changes: save it first or pass discard	Il progetto aperto contiene modifiche non salvate: salvalo prima o indica discard
+The part number must not be empty	Il codice articolo non può essere vuoto
+The project has no file yet: pass a path	Il progetto non ha ancora un file: indica un percorso
+This command needs a project: --project <file>	Questo comando richiede un progetto: --project <file>
+This format needs an output file (path)	Questo formato richiede un file di output (path)
+Undoes the last change	Annulla l'ultima modifica
+Unexpected argument: {}	Argomento imprevisto: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Comando sconosciuto: {}. Esegui openecraft-cli help per un elenco.
+Unknown example {}: see list_examples	Esempio sconosciuto {}: vedere list_examples
+Unknown language: {}	Lingua sconosciuta: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Tipo di pagina sconosciuto: {} (schematic, overview, graphic, cover o un report di list_reports)
+Unknown part {} (parts server: {})	Articolo sconosciuto {} (server articoli: {})
+Unknown plugin: {}	Plugin sconosciuto: {}
+Unknown report scheme: {}	Schema di report sconosciuto: {}
+Unknown structure template: {}	Modello di struttura sconosciuto: {}
+Unknown template {}: give a built-in one ({}) or a project file	Modello sconosciuto {}: indica uno integrato ({}) o un file di progetto
+Unknown {}: {} (possible: {})	{} sconosciuto: {} (possibili: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Uso: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <codice>] [--plugins <cartella>] <comando> [--<parametro> <valore>]…\n\nopenecraft-cli mcp        avvia un server Model Context Protocol su stdin / stdout\nopenecraft-cli <comando> --help   mostra i parametri di un comando\n\nComandi:\n
+User defined properties (name: value; an empty value removes it)	Proprietà definite dall'utente (nome: valore; un valore vuoto la rimuove)
+User name to sign in with	Nome utente per l'accesso
+User or group name (wildcards; directory groups as directory:group)	Nome utente o gruppo (caratteri jolly; gruppi di directory come directory:gruppo)
+Values to set (name: value; an empty value removes a property)	Valori da impostare (nome: valore; un valore vuoto rimuove una proprietà)
+Vault user name (signs in)	Nome utente Vault (esegue l'accesso)
+Write the table as CSV to this file	Scrivi la tabella come CSV in questo file
+Writes the check scheme of the project (checks switched off, message levels) to a file	Scrive lo schema di verifica del progetto (verifiche disattivate, livelli dei messaggi) in un file
+Writes the embedded file of a document page	Scrive il file incorporato di una pagina documento
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Scrive il progetto in un archivio (.oecz: progetto, manifest, file incorporati, facoltativamente un PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Scrive le definizioni delle proprietà, le definizioni di funzione e gli schemi del progetto come file di libreria
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Scrive le impostazioni del progetto (numerazione conduttori, potenziali, valori predefiniti e colori dei conduttori, marcatura, valori predefiniti dei tubi flessibili, riferimenti incrociati, schema di verifica) in un file
+Writes the structure management (aspects, identifiers, work areas) as a template file	Scrive la gestione strutture (aspetti, identificatori, aree di lavoro) come file di modello
+csv (default) or eplan_xml	csv (predefinito) o eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement o wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine o exchange
+json (default), csv or xlsx (Excel, needs path)	json (predefinito), csv o xlsx (Excel, richiede path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nAvvia un server Model Context Protocol su stdin / stdout: gli strumenti di questo elenco per gli agenti di IA, con il progetto in memoria (save_project lo scrive, undo / redo annullano singole chiamate). OPENECRAFT_MCP_TOOLS limita gli strumenti offerti.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMostra la versione della riga di comando (anche --version o -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover o un report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo e redo funzionano solo in una sessione MCP: la riga di comando riapre il progetto a ogni comando
+user or group	user o group
+{} exists already: pass overwrite to replace it	{} esiste già: passare overwrite per sostituirlo
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} è un archivio e resta invariato: salva il progetto come file di progetto (save_project --path <file>.oec) o converti l'archivio (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} è un archivio: indica un percorso per salvare il progetto come file di progetto
+{} is not a language of the project	{} non è una lingua del progetto

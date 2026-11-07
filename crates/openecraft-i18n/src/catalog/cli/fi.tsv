@@ -1,0 +1,286 @@
+# English<TAB>Suomi – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(vain MCP-palvelin)
+(optional)	(valinnainen)
+Access token for changes	Käyttöoikeustokeni muutoksia varten
+Access token of a Vault session or an Autodesk account instead of user and password	Vault-istunnon tai Autodesk-tilin käyttöoikeustokeni käyttäjän ja salasanan sijaan
+Address of the Vault server, e.g. https://vault.example.com	Vault-palvelimen osoite, esim. https://vault.example.com
+Adds a page	Lisää sivun
+Adds the definitions and schemes of a property library file to the project	Lisää ominaisuuskirjastotiedoston määrittelyt ja skeemat projektiin
+All project files of a folder	Kansion kaikki projektitiedostot
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Palauta myös fasetit: ryhmien, valmistajien, luetteloiden, elinkaaren ja teknisten tietojen arvot lukumäärineen
+Also save the project in this local file	Tallenna projekti myös tähän paikalliseen tiedostoon
+Also take over values changed on both sides since the last export	Ota käyttöön myös arvot, joita on muutettu molemmilla puolilla edellisen viennin jälkeen
+Also verify each project (slower)	Validoi myös jokainen projekti (hitaampi)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Ottaa käyttöön table_get-komennolla viedyn (ja taulukkolaskennassa muutetun) CSV:n: muutetut solut asetetaan
+Applies a structure template: the aspects of the pages and its identifiers	Käyttää rakennemallia: sivujen aspektit ja sen tunnukset
+Archive file (.oecz)	Arkistotiedosto (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Määrittää osan laitteelle (projektista, sisäisestä luettelosta tai osapalvelimelta)
+Author of comments without one (default: the user name)	Niiden kommenttien tekijä, joilta tekijä puuttuu (oletus: käyttäjänimi)
+AutomationML content instead of a file	AutomationML-sisältö tiedoston sijaan
+AutomationML file	AutomationML-tiedosto
+CSV content instead of a file	CSV-sisältö tiedoston sijaan
+CSV file	CSV-tiedosto
+CSV or Excel file	CSV- tai Excel-tiedosto
+CSV or JSON file	CSV- tai JSON-tiedosto
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- tai EDZ-tiedosto
+Cannot write {}: {}	Ei voi kirjoittaa kohdetta {}: {}
+Catalog data; without id it is derived from the name	Luettelon tiedot; ilman ID:tä se muodostetaan nimestä
+Changes project properties	Muuttaa projektin ominaisuuksia
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Muuttaa projektin ominaisuuksia monessa projektitiedostossa kerralla (kentät name, description, company, creator, date, revision tai projektiominaisuudet)
+Changes the number of a part on the parts server	Muuttaa osan numeron osapalvelimella
+Check scheme file (JSON)	Tarkistusskeematiedosto (JSON)
+Check-in comment	Sisäänkirjauksen kommentti
+Checks the project (errors, warnings, hints)	Tarkistaa projektin (virheet, varoitukset, vihjeet)
+Column mapping {field code: column name} (added to the profile's)	Sarakemääritys {kenttäkoodi: sarakkeen nimi} (lisätään profiilin määritykseen)
+Comment stored in the archive	Arkistoon tallennettava kommentti
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Vertaa projektin osia osapalvelimeen: uudemmat versiot, poistumassa olevat, valikoimasta poistuneet ja poistetut osat
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Konnektorivienti sen sijaan: erp, pdm, plm, ecad, mcad, procurement, wiring_machine tai exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Muodostaa yhteyden Autodesk Vaultiin (Vault Data API, Vault Professional 2025.2 tai uudempi): kirjautuu Vault-tilillä tai käyttää käyttöoikeustokenia ja näyttää yhteyden
+Converts a project file or archive of an older version to the current file format	Muuntaa vanhemman version projektitiedoston tai arkiston nykyiseen tiedostomuotoon
+Creates a new project (optionally the demo project) and saves it if a path is given	Luo uuden projektin (valinnaisesti esittelyprojektin) ja tallentaa sen, jos polku on annettu
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Luo tai muuttaa luettelon osapalvelimella (ID, nimi, valmistaja, versio, kuvaus)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Luo tai muuttaa raporttilohkon (yhdessä luodut raporttisivut, esim. yksi riviliitinkaavio rimaa kohden)
+Creates or changes a user of the parts server (administrators only)	Luo tai muuttaa osapalvelimen käyttäjän (vain järjestelmänvalvojat)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Luo tai korvaa osan osapalvelimella (sama JSON kuin parts_get; puuttuvat kentät ovat tyhjiä)
+Creates or replaces a report scheme	Luo tai korvaa raporttimallin
+Creator	Laatija
+DWG file	DWG-tiedosto
+DXF file	DXF-tiedosto
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro tai Other (oletus: tiedostonimen mukaan)
+Date for the exchange log	Päivämäärä siirtolokia varten
+Defines, changes or deletes a role of the parts server (administrators only)	Määrittää, muuttaa tai poistaa osapalvelimen roolin (vain järjestelmänvalvojat)
+Delete the role	Poista rooli
+Deletes a catalog without parts from the parts server	Poistaa osattoman luettelon osapalvelimelta
+Deletes a part from the parts server	Poistaa osan osapalvelimelta
+Deletes a user of the parts server (administrators only)	Poistaa osapalvelimen käyttäjän (vain järjestelmänvalvojat)
+Descending order	Laskeva järjestys
+Discard unsaved changes of the open project	Hylkää avoimen projektin tallentamattomat muutokset
+Downloads a file of a part from the parts server	Lataa osan tiedoston osapalvelimelta
+Downloads a file version from the vault	Lataa tiedostoversion Vaultista
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Upottaa tiedoston (PDF, Office-dokumentti, kuva …) dokumenttisivuksi; PDF-vienti liittää sen sivuun
+Error: {}	Virhe: {}
+Export name as shown by list_exports	Viennin nimi sellaisena kuin list_exports sen näyttää
+Export name as shown by list_exports, e.g. pdf or step	Viennin nimi sellaisena kuin list_exports sen näyttää, esim. pdf tai step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Vie kaikki osapalvelimen osat CSV- tai EPLAN-osa-XML-muodossa
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Vie projektin toiseen järjestelmään konnektorilla tai neutraalina siirtotiedostona (konnektori exchange); saman konnektorin myöhemmät tuonnit havaitsevat ristiriidat tätä vientiä vasten
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Vie projektin jossakin list_exports-komennon muodossa; binäärimuodot (dwg, jt) tarvitsevat tulostetiedoston
+Field or property whose value is searched ('*' for all)	Kenttä tai ominaisuus, jonka arvosta haetaan ('*' kaikille)
+File content instead of a file	Tiedoston sisältö tiedoston sijaan
+File id (see the attachments of parts_get)	Tiedoston ID (katso parts_get-komennon attachments)
+File name in the vault	Tiedostonimi Vaultissa
+File to embed	Upotettava tiedosto
+File to save the project to (.oec)	Tiedosto, johon projekti tallennetaan (.oec)
+File to upload	Palvelimelle ladattava tiedosto
+File to write	Kirjoitettava tiedosto
+File to write (xlsx)	Kirjoitettava tiedosto (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Etsii projekteja projektitietokannasta tai kansiosta: ehdot erotetaan merkillä ';', kukin muodossa avain=arvo, avain~teksti tai pelkkä teksti
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Etsii projektin osien Vault-nimikkeet (nimikenumeron tai ominaisuuden Part Number perusteella) ja luettelee nimikkeen ID:n, revision ja elinkaaren tilan muutokset; valinnalla apply ne otetaan käyttöön
+Folder id (default root)	Kansion ID (oletus root)
+Folder with project files	Projektitiedostojen kansio
+Folder with project files (instead of a database; default: the current folder)	Projektitiedostojen kansio (tietokannan sijaan; oletus: nykyinen kansio)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Lomake: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (riviliitin- ja kaapelikaaviot piirroksina)
+Function (=) of the generated pages	Luotujen sivujen toiminto (=)
+Further parameters of the export as name=value, separated by commas	Viennin muut parametrit muodossa nimi=arvo pilkuilla erotettuina
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Viennin muut parametrit muodossa nimi=arvo pilkuilla erotettuina (katso list_exports), esim. harness=-WH1
+GSDML or ESI file	GSDML- tai ESI-tiedosto
+Generates a report as table	Luo raportin taulukkona
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Luo piirikaaviosivun jokaiselle suunnitellulle laitteelle, jolla on sivumakro ja joka ei vielä ole piirikaaviossa
+Generates the pages of the report blocks again (replacing the pages they generated before)	Luo raporttilohkojen sivut uudelleen (korvaa niiden aiemmin luomat sivut)
+Give either template or path	Anna joko template tai path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Antaa käyttäjälle tai ryhmälle roolin osapalvelimen valmistajaan (laajuus), valinnalla deny poistaa sen oikeudet, valinnalla revoke poistaa myönnöt (vain järjestelmänvalvojat)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Luotavat ryhmät, jokerimerkit sallittu (-X*, -W1); tyhjä: kaikki
+Id of a file (file_id of vault_browse) that gets a new version	Sen tiedoston ID (vault_browse-komennon file_id), joka saa uuden version
+Id of the file version (version_id of vault_browse)	Tiedostoversion ID (vault_browse-komennon version_id)
+Id of the knowledge vault (taken from the session if not given)	Vaultin ID (otetaan istunnosta, jos ei annettu)
+Id of the plugin to disable	Poistettavan laajennuksen ID
+Id of the plugin to enable	Otettavan laajennuksen ID
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Tuo DWG-piirustuksen (AutoCAD R12 … 2018) grafiikkana (viivat, kaaret, tekstit, lohkot) uudelle piirikaaviosivulle
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Tuo DXF-piirustuksen grafiikkana (viivat, kaaret, tekstit, lohkot) uudelle piirikaaviosivulle
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Tuo PLC-laitteistokokoonpanon AutomationML-muodosta (esim. TIA Portalista viety): asemat, moduulit, osoitteet, aliverkot, porttiyhteydet ja muuttujien kommentit
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Tuo osatiedoston osapalvelimeen; EDZ-tiedoston kuvat ja makrot tallennetaan osiensa yhteyteen
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Tuo laitekuvauksia GSDML- (PROFINET) tai ESI-tiedostosta (EtherCAT) projektiin
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Tuo esisuunnittelun segmentit ja suunnitellut laitteet CSV- tai Excel-tiedostosta (sarakkeet Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Tuo tarkastajan projektin PDF-vientiin tekemät kommentit (huomautukset, tekstiruudut, korostukset, muodot, vastaukset) tarkastustasolle; aiemmin tuodut kommentit ohitetaan
+Insert after this page (default: at the end)	Lisää tämän sivun jälkeen (oletus: loppuun)
+Inserts an edited subproject: its pages replace the pages taken out	Liittää muokatun aliprojektin takaisin: sen sivut korvaavat irrotetut sivut
+Invalid form: {}	Virheellinen lomake: {}
+Keep the file checked out after the check-in	Pidä tiedosto uloskirjattuna sisäänkirjauksen jälkeen
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Palvelimen laji: OpenECraft (osapalvelin) tai Eplan (EPLAN Data Portal: vain haku ja lukeminen, tokeni on EPLAN-tilin henkilökohtainen käyttöoikeustokeni)
+Language of the export (a project language)	Viennin kieli (projektin kieli)
+Language of the project texts and reports (a project language, default the source language)	Projektin tekstien ja raporttien kieli (projektin kieli, oletus lähdekieli)
+Library file	Kirjastotiedosto
+Lifecycle: Active, PhaseOut or Discontinued	Elinkaari: Active, PhaseOut tai Discontinued
+Lists the built-in structure templates	Luettelee sisäiset rakennemallit
+Lists the catalogs of the parts server with their number of parts	Luettelee osapalvelimen luettelot ja niiden osien määrän
+Lists the checks of the project check (built-in and of plugins) and whether they run	Luettelee projektin tarkistuksen tarkistukset (sisäiset ja laajennusten) ja sen, suoritetaanko ne
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Luettelee integraatiokerroksen konnektorit (ERP, PDM, PLM, ECAD, MCAD, hankinta, johdinkäsittelykone) niiden vaihtamine kenttineen sekä projektin profiilit
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Luettelee kotelojärjestelmät vakiokokoineen, seinämänpaksuuksineen ja sokkeleineen sekä sen, voiko ne rivittää
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Luettelee esimerkkiprojektit ensimmäisestä piiristä kokonaiseen laitokseen ja niiden näyttämät toiminnot
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Luettelee viennit (sisäiset ja laajennusten): nimi komennolle export, otsikko, tiedostopääte ja parametrit
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Luettelee Vault-kansion kansiot ja tiedostot tai hakee tiedostojen ominaisuuksista sen alta (tai koko Vaultista)
+Lists the reports (built-in and of plugins): name for report and title	Luettelee raportit (sisäiset ja laajennusten): nimi komennolle report ja otsikko
+Lists the users of the parts server (administrators only)	Luettelee osapalvelimen käyttäjät (vain järjestelmänvalvojat)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Ladatut laajennukset (sisäiset ja valitsimen --plugins / muuttujan OPENECRAFT_PLUGINS laajennuskansioista) komentoineen, tarkistuksineen, raportteineen ja vienteineen; ottaa yhden käyttöön tai poistaa sen käytöstä tämän istunnon ajaksi
+Local file to put into the vault	Vaultiin tallennettava paikallinen tiedosto
+Local groups of the user, separated by commas	Käyttäjän paikalliset ryhmät pilkuilla erotettuina
+Location (+) of the generated pages	Luotujen sivujen sijainti (+)
+Macro library file (JSON, exported by the editor)	Makrokirjastotiedosto (JSON, editorin viemä)
+Manufacturer (wildcards); default * (everything)	Valmistaja (yleismerkit); oletus * (kaikki)
+Manufacturer whose parts a manufacturer user maintains	Valmistaja, jonka osia valmistajakäyttäjä ylläpitää
+Maximum number of hits (default 50)	Osumien enimmäismäärä (oletus 50)
+Name of a built-in template (list_structure_templates)	Sisäisen mallin nimi (list_structure_templates)
+Name of the knowledge vault (default Vault)	Vaultin nimi (oletus Vault)
+New file name (save as)	Uusi tiedostonimi (tallenna nimellä)
+New pages for every value of the group column (default true)	Uudet sivut jokaiselle ryhmittelysarakkeen arvolle (oletus true)
+New part number	Uusi osanumero
+New report block {} needs a kind	Uusi raporttilohko {} tarvitsee raportin (kind)
+No grant of {} found	Kohteelle {} ei löytynyt myöntöä
+No profile named {}	Profiilia nimeltä {} ei ole
+No project is open: use open_project or new_project first	Projektia ei ole avattu: käytä ensin komentoa open_project tai new_project
+No role {} defined	Roolia {} ei ole määritetty
+Not a valid catalog: {}	Ei kelvollinen luettelo: {}
+Not a valid part: {}	Ei kelvollinen osa: {}
+Not connected to a vault: use vault_connect first	Ei yhteyttä Vaultiin: käytä ensin komentoa vault_connect
+Nothing to change: pass set, remove, replace or rename	Ei muutettavaa: anna set, remove, replace tai rename
+Number of hits to skip	Ohitettavien osumien määrä
+Only show the changes, write nothing	Näytä vain muutokset, älä kirjoita mitään
+Only the pages of this report block; default all report pages	Vain tämän raporttilohkon sivut; oletuksena kaikki raporttisivut
+Only the projects that match these search terms	Vain näitä hakuehtoja vastaavat projektit
+Only this block	Vain tämä lohko
+Opens a project file or archive (files of older versions are converted)	Avaa projektitiedoston tai arkiston (vanhempien versioiden tiedostot muunnetaan)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Avaa projektitiedoston tai arkiston Vaultista; vault_upload ilman kohdetta kirjaa siitä sisään uuden version
+Option {} needs the form name=value	Valitsin {} vaatii muodon nimi=arvo
+Order: Number, Manufacturer, Description, Price or Modified	Järjestys: Number, Manufacturer, Description, Price tai Modified
+Output file	Tulostiedosto
+Output file (JSON)	Tulostetiedosto (JSON)
+Output file; without it the content is returned	Tulostiedosto; ilman sitä sisältö palautetaan
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Tulostaa raporttisivut kiinteinä sivuina toiseen projektitiedostoon; tästä projektista aiemmin tulostetut sivut korvataan
+PDF file with comments	PDF-tiedosto kommentteineen
+Page (svg: required, dxf, dwg: default all pages)	Sivu (svg: pakollinen, dxf, dwg: oletuksena kaikki sivut)
+Page name (default: next number)	Sivun nimi (oletus: seuraava numero)
+Page of the export	Viennin sivu
+Page template (list_page_templates) instead of kind	Sivumalli (list_page_templates) kind-arvon sijaan
+Page {} has no embedded document	Sivulla {} ei ole upotettua dokumenttia
+Pages whose structure starts with this, e.g. =A1+CAB1	Sivut, joiden rakenne alkaa tällä, esim. =A1+CAB1
+Part number to add	Lisättävä osanumero
+Part number to remove	Poistettava osanumero
+Part {} has no version {}	Osalla {} ei ole versiota {}
+Pass files or a folder	Anna tiedostot tai kansio
+Password (needed for new users; empty keeps the current one)	Salasana (pakollinen uusille käyttäjille; tyhjä säilyttää nykyisen)
+Password of the Vault user	Vault-käyttäjän salasana
+Password of the user	Käyttäjän salasana
+Plot frame (list_frames); default: the project's	Piirustuskehys (list_frames); oletus: projektin kehys
+Product top group: Electrical, Fluid, Mechanics or Process	Tuotteen pääryhmä: Electrical, Fluid, Mechanics tai Process
+Profile whose column mapping is used	Profiili, jonka sarakemääritystä käytetään
+Project database file (JSON)	Projektitietokantatiedosto (JSON)
+Project database file (JSON) to update	Päivitettävä projektitietokantatiedosto (JSON)
+Project file (.oec) or archive (.oecz)	Projektitiedosto (.oec) tai arkisto (.oecz)
+Project file that gets the pages	Projektitiedosto, joka saa sivut
+Project file to write (default: the file itself; archives: next to it as .oec)	Kirjoitettava projektitiedosto (oletus: tiedosto itse; arkistot: sen viereen .oec-tiedostona)
+Project files, separated by ';'	Projektitiedostot merkillä ';' erotettuina
+Properties to remove, separated by ','	Poistettavat ominaisuudet merkillä ',' erotettuina
+Properties to rename (old name: new name)	Uudelleennimettävät ominaisuudet (vanha nimi: uusi nimi)
+Property {} needs a text or a number	Ominaisuus {} vaatii tekstin tai luvun
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Tallentaa projektin, viennin, konnektoriviennin tai paikallisen tiedoston Vaultiin; kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor tai Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Lukee toisen järjestelmän tiedoston (CSV tai JSON) konnektorilla ja luettelee muutokset; valinnalla apply ne otetaan käyttöön (ristiriidat vain valinnalla overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Lukee kansion (ja sen alikansioiden) projektitiedostot ja arkistot projektitietokantaan
+Reads translations from CSV: first column the source line, one column per language code	Lukee käännökset CSV:stä: ensimmäinen sarake on lähderivi, yksi sarake kielikoodia kohden
+Redoes the last undone change	Tekee uudelleen viimeksi kumotun muutoksen
+Remove the grants of the user or group (only of this role and scope, if given)	Poista käyttäjän tai ryhmän myönnöt (vain tämän roolin ja laajuuden, jos annettu)
+Remove the parts assigned so far	Poista tähän mennessä määritetyt osat
+Removes a file from a part on the parts server	Poistaa tiedoston osasta osapalvelimella
+Replace the file at path if it exists	Korvaa path-tiedosto, jos se on olemassa
+Replace the project parts by their newer server versions	Korvaa projektin osat niiden uudemmilla palvelinversioilla
+Replacement text	Korvaava teksti
+Replaces the content of the macro boxes whose macro changed in a macro library file	Korvaa niiden makrolaatikoiden sisällön, joiden makro on muuttunut makrokirjastotiedostossa
+Replaces the pages generated before by the page macros of the rules whose condition holds	Korvaa aiemmin luodut sivut niiden sääntöjen sivumakroilla, joiden ehto täyttyy
+Report name as shown by list_reports	Raportin nimi sellaisena kuin list_reports sen näyttää
+Report scheme: its filter, sort order and columns	Raporttimalli: sen suodatin, lajittelujärjestys ja sarakkeet
+Report scheme; empty: the form of the report	Raporttimalli; tyhjä: raportin lomake
+Report the scheme belongs to	Raportti, johon malli kuuluu
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Raportti, esim. terminal_diagram, terminal_lineup, cable_connections (pakollinen uudelle lohkolle)
+Return all part data instead of a summary	Palauta kaikki osan tiedot yhteenvedon sijaan
+Revision of the change; returns the part as it was	Muutoksen revisio; palauttaa osan sellaisena kuin se oli
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Oikeudet pilkuilla erotettuina: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Roolin nimi
+Role of requests without sign-in; none: sign-in needed for reading	Pyyntöjen rooli ilman kirjautumista; none: lukeminen vaatii kirjautumisen
+Role: reader, manufacturer, editor, admin or a defined role	Rooli: reader, manufacturer, editor, admin tai määritetty rooli
+Saves the project to its file or to a new path	Tallentaa projektin sen tiedostoon tai uuteen polkuun
+Scale drawings down that do not fit on the page (default: true)	Pienennä piirustukset, jotka eivät mahdu sivulle (oletus: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Hakuehdot, esim. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Hakee Vaultin nimikkeitä (numero, otsikko, revisio, elinkaaren tila, osanumero)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Hakee osia osapalvelimelta (dataportaali) tekstin, ryhmien, luettelon, elinkaaren ja teknisten tietojen mukaan
+Segment path (default: all segments)	Segmentin polku (oletus: kaikki segmentit)
+Server URL, e.g. http://127.0.0.1:8090	Palvelimen URL, esim. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Asettaa osapalvelimen (URL ja käyttöoikeustokeni tai käyttäjä ja salasana) ja näyttää sen tilan
+Settings scheme file (JSON)	Asetusskeematiedosto (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Näyttää taulukon (laitteet, yhteydet, riviliittimet, kaapelit, pistoliittimet, PLC, sivut tai osat) riveineen; rivin avainta käytetään sen muuttamiseen
+Shows all data of a part	Näyttää osan kaikki tiedot
+Shows the changes of a part on the parts server, or the part as of one change	Näyttää osan muutokset osapalvelimella tai osan tietyn muutoksen mukaisena
+Shows the favorites of the signed in user, optionally adding or removing a part	Näyttää kirjautuneen käyttäjän suosikit ja valinnaisesti lisää tai poistaa osan
+Shows the manifest of a project archive	Näyttää projektiarkiston manifestin
+Shows the project properties, file, number of pages and devices and the check result	Näyttää projektin ominaisuudet, tiedoston, sivujen ja laitteiden määrän sekä tarkistuksen tuloksen
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Näyttää osapalvelimen roolit, myönnöt ja hakemistopalvelut ja valinnaisesti asettaa anonyymien pyyntöjen roolin (vain järjestelmänvalvojat)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Aloita projektimallista: sisäisestä (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) tai projektitiedostosta
+Start from an example project (names: list_examples)	Aloita esimerkkiprojektista (nimet: list_examples)
+Start from the demo project	Aloita esittelyprojektista
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Tallentaa tiedoston (tietolehti, kuva, malli, makro …) osan yhteyteen osapalvelimelle
+Subproject file (.oec)	Aliprojektitiedosto (.oec)
+Subproject file to write (.oec)	Kirjoitettava aliprojektitiedosto (.oec)
+Take the changes over (otherwise only a preview)	Ota muutokset käyttöön (muuten vain esikatselu)
+Take the rights of the role away instead	Poista sen sijaan roolin oikeudet
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Irrottaa sivuja aliprojektitiedostoksi; ne pysyvät tässä lukittuina, kunnes aliprojekti liitetään takaisin
+Takes the checks switched off and the message levels of a check scheme file	Ottaa käyttöön tarkistusskeematiedoston käytöstä poistetut tarkistukset ja ilmoitustasot
+Takes the settings a settings scheme file carries	Ottaa käyttöön asetusskeematiedoston sisältämät asetukset
+Target folder id (root for the top folder); default the folder the project was opened from	Kohdekansion ID (root ylimmälle kansiolle); oletus on kansio, josta projekti avattiin
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Tekniset tiedot, joiden on vastattava, esim. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Mallitiedosto, jonka export_structure_template on kirjoittanut
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Teksti numerossa, tyypissä, valmistajassa, kuvauksessa, ryhmissä tai luettelossa; jokaisen sanan on esiinnyttävä
+Text to replace	Korvattava teksti
+Text to search for	Haettava teksti
+The catalog needs a name	Luettelo tarvitsee nimen
+The format xlsx needs a path	Muoto xlsx vaatii polun
+The open project has unsaved changes: save it first or pass discard	Avoimessa projektissa on tallentamattomia muutoksia: tallenna se ensin tai anna discard
+The part number must not be empty	Osanumero ei saa olla tyhjä
+The project has no file yet: pass a path	Projektilla ei ole vielä tiedostoa: anna polku
+This command needs a project: --project <file>	Tämä komento vaatii projektin: --project <tiedosto>
+This format needs an output file (path)	Tämä muoto vaatii tulostiedoston (path)
+Undoes the last change	Kumoaa viimeisimmän muutoksen
+Unexpected argument: {}	Odottamaton argumentti: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Tuntematon komento: {}. Saat luettelon komennolla openecraft-cli help.
+Unknown example {}: see list_examples	Tuntematon esimerkki {}: katso list_examples
+Unknown language: {}	Tuntematon kieli: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Tuntematon sivutyyppi: {} (schematic, overview, graphic, cover tai list_reports-raportti)
+Unknown part {} (parts server: {})	Tuntematon osa {} (osapalvelin: {})
+Unknown plugin: {}	Tuntematon laajennus: {}
+Unknown report scheme: {}	Tuntematon raporttimalli: {}
+Unknown structure template: {}	Tuntematon rakennemalli: {}
+Unknown template {}: give a built-in one ({}) or a project file	Tuntematon malli {}: anna sisäänrakennettu malli ({}) tai projektitiedosto
+Unknown {}: {} (possible: {})	Tuntematon {}: {} (mahdolliset: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Käyttö: openecraft-cli [--project <tiedosto>] [--server <url>] [--token <tokeni>] [--lang <koodi>] [--plugins <kansio>] <komento> [--<parametri> <arvo>]…\n\nopenecraft-cli mcp        käynnistää Model Context Protocol -palvelimen (stdin / stdout)\nopenecraft-cli <komento> --help   näyttää komennon parametrit\n\nKomennot:\n
+User defined properties (name: value; an empty value removes it)	Käyttäjän määrittämät ominaisuudet (nimi: arvo; tyhjä arvo poistaa sen)
+User name to sign in with	Kirjautumisessa käytettävä käyttäjänimi
+User or group name (wildcards; directory groups as directory:group)	Käyttäjän tai ryhmän nimi (yleismerkit; hakemistopalvelun ryhmät muodossa hakemisto:ryhmä)
+Values to set (name: value; an empty value removes a property)	Asetettavat arvot (nimi: arvo; tyhjä arvo poistaa ominaisuuden)
+Vault user name (signs in)	Vault-käyttäjänimi (kirjautuu sisään)
+Write the table as CSV to this file	Kirjoita taulukko CSV-muodossa tähän tiedostoon
+Writes the check scheme of the project (checks switched off, message levels) to a file	Kirjoittaa projektin tarkistusskeeman (käytöstä poistetut tarkistukset, ilmoitustasot) tiedostoon
+Writes the embedded file of a document page	Kirjoittaa dokumenttisivun upotetun tiedoston
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Kirjoittaa projektin arkistoon (.oecz: projekti, manifesti, upotetut tiedostot, valinnaisesti PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Kirjoittaa projektin ominaisuusmäärittelyt, toimintomäärittelyt ja skeemat kirjastotiedostoksi
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Kirjoittaa projektin asetukset (johtojen numerointi, potentiaalit, johtojen oletukset ja värit, merkinnät, letkujen oletukset, ristiviittaukset, tarkistusskeema) tiedostoon
+Writes the structure management (aspects, identifiers, work areas) as a template file	Kirjoittaa rakennetunnusten hallinnan (aspektit, tunnukset, työalueet) mallitiedostoksi
+csv (default) or eplan_xml	csv (oletus) tai eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement tai wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine tai exchange
+json (default), csv or xlsx (Excel, needs path)	json (oletus), csv tai xlsx (Excel, vaatii arvon path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nKäynnistää Model Context Protocol -palvelimen stdin / stdout -virroissa: tämän luettelon työkalut tekoälyagenteille, projekti muistissa (save_project tallentaa sen, undo / redo perua yksittäisiä kutsuja). OPENECRAFT_MCP_TOOLS rajaa tarjotut työkalut.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nNäyttää komentorivin version (myös --version tai -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover tai raportti: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo ja redo toimivat vain MCP-istunnossa: komentorivi avaa projektin uudelleen jokaista komentoa varten
+user or group	user tai group
+{} exists already: pass overwrite to replace it	{} on jo olemassa: korvaa antamalla overwrite
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} on arkisto eikä muutu: tallenna projekti projektitiedostona (save_project --path <file>.oec) tai muunna arkisto (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} on arkisto: anna polku tallentaaksesi projektin projektitiedostona
+{} is not a language of the project	{} ei ole projektin kieli

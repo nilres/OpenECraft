@@ -1,0 +1,2016 @@
+# English<TAB>Magyar – openecraft-core: project model, checks, reports, exports (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(any)	(bármely)
+// branch not to scale	// az elágazás nem méretarányos
+1 · First circuit: push buttons and lamps	1 · Első áramkör: nyomógombok és jelzőlámpák
+10 · Pump room	10 · Szivattyúhelyiség
+12 · Connectors, pin-outs and ribbon cables	12 · Csatlakozók, lábkiosztások és szalagkábelek
+13 · Transformer-rated metering with PV and grid protection	13 · Áramváltós mérés napelemmel és hálózatvédelemmel
+14 · Main low-voltage distribution of an industrial plant	14 · Ipari üzem kisfeszültségű főelosztója
+15 · Plant with buildings, levels and a shaft	15 · Létesítmény épületekkel, szintekkel és aknával
+2 · Relay with self-holding contact	2 · Öntartó relé
+3 · Star-delta motor starter	3 · Csillag-delta indító
+3/2 directional valve	3/2-es útszelep
+4 · Conveyor with PLC and control cabinet	4 · Szállítószalag PLC-vel és kapcsolószekrénnyel
+4/2 directional valve	4/2-es útszelep
+5 · Electro-pneumatic press	5 · Elektropneumatikus prés
+5/2 directional valve	5/2-es útszelep
+6 · Pump station with structure identifiers	6 · Szivattyútelep struktúraazonosítókkal
+7 · Revisions, review and change requests	7 · Revíziók, ellenőrzés és módosítási kérelmek
+8 · Control cabinets in a line-up	8 · Sorolt kapcsolószekrények
+9 · Electrical room	9 · Villamos helyiség
+A device tag must not be empty	Az eszközazonosító nem lehet üres
+A pipe run turns at right angles	A csővezeték-nyomvonal derékszögben fordul
+A port cannot be connected to itself	Egy port nem köthető össze önmagával
+A room needs at least four walls	Egy helyiségnek legalább négy fal kell
+A section number consists of letters and digits and does not start with 0	A szakaszszám betűkből és számjegyekből áll, és nem kezdődik 0-val
+A section number must not be empty or contain a dot	A szakaszszám nem lehet üres, és nem tartalmazhat pontot
+A0 landscape	A0 fekvő
+A1 landscape	A1 fekvő
+A2 landscape	A2 fekvő
+A3 landscape	A3 fekvő
+A3 portrait	A3 álló
+A4 landscape	A4 fekvő
+A4 portrait	A4 álló
+Accessory {} refers to the unknown cable {}	A(z) {} tartozék az ismeretlen {} kábelre hivatkozik
+Accumulator	Hidraulikus tároló
+Accuracy	Pontosság
+Accuracy class	Pontossági osztály
+Activate option {} first: it hides content of these pages	Először aktiválja a(z) {} opciót: az elrejti ezeknek az oldalaknak a tartalmát
+Activate option {} in the subproject first	Először aktiválja a(z) {} opciót az alprojektben
+Actuated by	Működteti
+Actuation	Működtetés
+Actuator type	Működtető típusa
+Additional page description	További oldalleírás
+Address ranges of {} and {} overlap	A(z) {} és {} címtartománya átfedi egymást
+Address {} is used by {} and {}	A(z) {} címet {} és {} is használja
+Adhesive	Ragasztás
+Adjustable output voltage	Állítható kimeneti feszültség
+Administer the server	A szerver felügyelete
+Administrator	Rendszergazda
+Alarm limit H	H riasztási határ
+Alarm limit HH	HH riasztási határ
+Alarm limit L	L riasztási határ
+Alarm limit LL	LL riasztási határ
+Align bottom	Igazítás alulra
+Align left	Igazítás balra
+Align right	Igazítás jobbra
+Align top	Igazítás felülre
+All aspects (with product)	Minden aspektus (termékkel)
+All devices of page {} are in the schematic already	A(z) {} oldal összes készüléke már szerepel a kapcsolási rajzon
+Aluminium	Alumínium
+Ammeter	Árammérő
+Ammeter, reactive current	Árammérő, meddő áram
+Ampere-hour meter	Amperóra-számláló
+An option cannot hide all pages	Egy opció nem rejtheti el az összes oldalt
+Analog input module	Analóg bemeneti modul
+Analog output module	Analóg kimeneti modul
+Analysis	Analízis
+Another section here has this number	Egy másik szakasznak itt már ez a száma
+Apparent power (kVA)	Látszólagos teljesítmény (kVA)
+Applied directives	Alkalmazott irányelvek
+Approval date	Jóváhagyás dátuma
+Approvals	Engedélyek
+Approved by	Jóváhagyta
+Arms {} and {}	Karok {} és {}
+Asset number	Eszköznyilvántartási szám
+Author of the last revision	Az utolsó revízió szerzője
+Automatic	Automatikus
+Autotransformer 1-phase	Takarékkapcsolású transzformátor, egyfázisú
+Autotransformer 1-phase, adjustable	Takarékkapcsolású transzformátor, egyfázisú, állítható
+Autotransformer 3-phase	Takarékkapcsolású transzformátor, háromfázisú
+Autotransformer 3-phase, star connection	Takarékkapcsolású transzformátor, háromfázisú, csillagkapcsolású
+Aux. functions	Segédfunkciók
+Auxiliary function: NC contact	Segédfunkció: nyitóérintkező
+Auxiliary function: NC contact, off-delay	Segédfunkció: nyitóérintkező, elejtéskésleltetett
+Auxiliary function: NC contact, on-delay	Segédfunkció: nyitóérintkező, meghúzáskésleltetett
+Auxiliary function: NO contact	Segédfunkció: záróérintkező
+Auxiliary function: NO contact, off-delay	Segédfunkció: záróérintkező, elejtéskésleltetett
+Auxiliary function: NO contact, on-delay	Segédfunkció: záróérintkező, meghúzáskésleltetett
+Auxiliary function: changeover	Segédfunkció: váltóérintkező
+Auxiliary function: main contact	Segédfunkció: főérintkező
+Auxiliary relay coil R (JIS)	Segédrelé tekercse R (JIS)
+B10d	B10d
+Ball valve	Golyóscsap
+Basis	Alap
+Battery	Akkumulátor
+Battery capacity	Akkumulátor-kapacitás
+Baud rate	Átviteli sebesség (baud)
+Baying kit	Sorolókészlet
+Beacon, rotating	Forgófényes jelzőlámpa
+Belongs to	Hozzátartozik
+Bends	Hajlítások
+Bill of materials	Anyagjegyzék
+Bimetal switch NC	Bimetál kapcsoló, nyitóérintkező
+Bimetal switch NO	Bimetál kapcsoló, záróérintkező
+Black box	Fekete doboz
+Black box 2 + 2 connections	Fekete doboz 2 + 2 csatlakozással
+Black box 4 + 4 connections	Fekete doboz 4 + 4 csatlakozással
+Black boxes	Fekete dobozok
+Black boxes / PLC boxes	Fekete dobozok / PLC-dobozok
+Bonding conductor {} refers to the unknown bonding point {}	A(z) {} potenciálkiegyenlítő vezető az ismeretlen {} potenciálkiegyenlítési pontra hivatkozik
+Bonding conductor {} – {} has no cross-section	A(z) {} – {} potenciálkiegyenlítő vezetőnek nincs keresztmetszete
+Bonding conductor {} – {} has {} mm², at least {} mm² are required	A(z) {} – {} potenciálkiegyenlítő vezető {} mm², legalább {} mm² szükséges
+Both ends	Mindkét vég
+Brake	Fék
+Brake (electromagnetic)	Fék (elektromágneses)
+Brake torque	Fékezőnyomaték
+Brake voltage	Fékfeszültség
+Braking chopper	Fékchopper
+Braking resistor	Fékellenállás
+Branches	Elágazások
+Breaking capacity (kA)	Megszakítóképesség (kA)
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő híd nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
+Bridge rectifier	Hídegyenirányító
+Bridge rectifier block	Hídegyenirányító (blokk)
+Bridge rectifier, form B	Hídegyenirányító, B forma
+Bridge rectifier, form C	Hídegyenirányító, C forma
+Bridge rectifier, form D	Hídegyenirányító, D forma
+Buildings, levels and shafts	Épületek, szintek és aknák
+Bundle	Köteg
+Bundle list	Kötegek listája
+Bundle Ø {} mm	Köteg-Ø {} mm
+Buried	Földbe fektetett
+Bus address	Buszcím
+Bus connection to {}: the station does not exist	Buszkapcsolat ehhez: {}: az állomás nem létezik
+Bus connection {} - {}: cable {} does not exist	{} - {} buszkapcsolat: a(z) {} kábel nem létezik
+Bus coupler	Buszcsatoló
+Busbar machine	Sínmegmunkáló gép
+Busbar system	Gyűjtősínrendszer
+Busbar systems	Gyűjtősín-rendszerek
+Buzzer	Zümmer
+Buzzer BZ (JIS)	Zümmer BZ (JIS)
+By cross-section (thickest first)	Keresztmetszet szerint (először a legvastagabb)
+By device	Készülék szerint
+By position (top left first)	Pozíció szerint (először bal felül)
+By wire number	Vezetékszám szerint
+CPU	CPU
+Cable bridge	Kábelhíd
+Cable connection diagram	Kábelbekötési terv
+Cable definition on page {} refers to the unknown cable {}	A(z) {}. oldalon lévő kábeldefiníció az ismeretlen {} kábelre hivatkozik
+Cable definition {} on page {} crosses no wire	A(z) {0} kábeldefiníció a(z) {1}. oldalon nem keresztez vezetéket
+Cable definitions	Kábeldefiníciók
+Cable diagram	Kábelterv
+Cable entry 5 x M25	Kábelbevezetés 5 x M25
+Cable gland	Kábeltömszelence
+Cable ladder	Kábellétra
+Cable marker	Kábeljelölő
+Cable route	Kábelnyomvonal
+Cable sizing	Kábelméretezés
+Cable sizing (voltage drop)	Kábelméretezés (feszültségesés)
+Cable tray	Kábeltálca
+Cable trench	Kábelárok
+Cable type	Kábeltípus
+Cable weight	Kábeltömeg
+Cable without tag	Azonosító nélküli kábel
+Cable {}	{} kábel
+Cable {} ({} mm) does not fit the clamping range of {} ({}–{} mm)	A(z) {} kábel ({} mm) nem illik a(z) {} szorítási tartományába ({}–{} mm)
+Cable {} already exists	A(z) {} kábel már létezik
+Cable {} carries analogue signals of {} and must be shielded	A(z) {} kábel {} analóg jeleit viszi, ezért árnyékoltnak kell lennie
+Cable {} carries power and signal conductors together	A(z) {} kábel együtt viszi az erősáramú és a jelvezetőket
+Cable {} defined {} times	A(z) {} kábel {}-szor van definiálva
+Cable {} is a {} cable on a {} connection	A(z) {} kábel {}-kábel egy {}-kapcsolaton
+Cable {} is used for {} bus connections	A(z) {} kábelt {} buszkapcsolathoz használják
+Cable {} needs a bend radius of {} mm, drag chain {} has {} mm	A(z) {} kábelhez {} mm hajlítási sugár szükséges, a(z) {} energialáncé {} mm
+Cables and wire numbers	Kábelek és vezetékszámok
+Cam profile switch NC	Vezérlőpályás kapcsoló, nyitóérintkező
+Cam profile switch NO	Vezérlőpályás kapcsoló, záróérintkező
+Cam switch NC	Bütykös kapcsoló, nyitóérintkező
+Cam switch NO	Bütykös kapcsoló, záróérintkező
+Cannot read the DWG file: {}	A DWG-fájl nem olvasható: {}
+Capacitive sensor, 2-wire	Kapacitív érzékelő, 2 vezetékes
+Capacitive sensor, 3-wire	Kapacitív érzékelő, 3 vezetékes
+Capacitor	Kondenzátor
+Capacitor, polarized	Kondenzátor, polarizált
+Ceiling	Mennyezet
+Centre horizontally	Vízszintes középre igazítás
+Centre vertically	Függőleges középre igazítás
+Centrifugal pump	Centrifugálszivattyú
+Change	Változás
+Changed since mounted	Módosult a szerelés óta
+Changed since wired	Módosult a bekötés óta
+Changeover contact	Váltóérintkező
+Changeover contact, make before break	Váltóérintkező, megszakítás nélküli
+Changeover contact, off-delay	Váltóérintkező, elengedéskésleltetett
+Changeover contact, on- and off-delay	Váltóérintkező, meghúzás- és elengedéskésleltetett
+Changeover contact, on-delay	Váltóérintkező, meghúzáskésleltetett
+Changeover contact, passing make	Váltóérintkező impulzuszárással
+Changeover switch, cam operated	Átkapcsoló, bütyökműködtetésű
+Changeover switch, cam profile operated	Átkapcsoló, vezérlőpálya-működtetésű
+Changeover switch, roller operated	Átkapcsoló, görgőműködtetésű
+Check valve	Visszacsapószelep
+Checked	Ellenőrizve
+Checked by	Ellenőrizte
+Choose the pages of the subproject	Válassza ki az alprojekt oldalait
+Circuit breaker (single-line)	Megszakító (egyvonalas)
+Circuit breaker 1-pole	Kismegszakító, 1 pólusú
+Circuit breaker 1-pole (NFPA)	Kismegszakító, 1 pólusú (NFPA)
+Circuit breaker 1-pole MCCB (JIS)	Kismegszakító, 1 pólusú MCCB (JIS)
+Circuit breaker 1-pole QF (GB)	Kismegszakító, 1 pólusú QF (GB)
+Circuit breaker 1-pole QF (GOST)	Kismegszakító, 1 pólusú QF (GOST)
+Circuit breaker 1-pole, thermal-magnetic	Megszakító, 1 pólusú, termikus-mágneses
+Circuit breaker 2-pole	Megszakító, 2 pólusú
+Circuit breaker 2-pole, thermal-magnetic	Megszakító, 2 pólusú, termikus-mágneses
+Circuit breaker 3-pole	Megszakító, 3 pólusú
+Circuit breaker 3-pole (NFPA)	Megszakító, 3 pólusú (NFPA)
+Circuit breaker 3-pole MCCB (JIS)	Megszakító, 3 pólusú MCCB (JIS)
+Circuit breaker 3-pole QF (GB)	Megszakító, 3 pólusú QF (GB)
+Circuit breaker 3-pole QF (GOST)	Megszakító, 3 pólusú QF (GOST)
+Circuit breaker 3-pole, thermal-magnetic	Megszakító, 3 pólusú, termikus-mágneses
+Circuit breaker 4-pole	Megszakító, 4 pólusú
+Circular milling	Körkörös marás
+Clip / snap-on	Bepattintás
+Cloud	Felhő
+Clutch (electromagnetic)	Tengelykapcsoló (elektromágneses)
+Coil and timing	Tekercs és időzítés
+Coil voltage type	Tekercsfeszültség fajtája
+Coils / Relays	Tekercsek / relék
+Collision	Ütközés
+Column Segment is missing	Hiányzik a Segment oszlop
+Column {} cannot be changed	A(z) {} oszlop nem módosítható
+Commissioning date	Üzembe helyezés dátuma
+Communication	Kommunikáció
+Communication module	Kommunikációs modul
+Compact enclosure (wall-mounted)	Kompakt szekrény (falra szerelt)
+Completed	Befejezve
+Components must be UL listed or recognized (UL 508A, 29)	Az alkatrészeknek UL listed vagy recognized minősítésűnek kell lenniük (UL 508A, 29)
+Compressed air	Sűrített levegő
+Compressed air supply	Sűrítettlevegő-ellátás
+Compressor	Kompresszor
+Condition '{}' needs OPTION=value	A(z) '{}' feltételhez OPTION=érték szükséges
+Conductor class	Vezetőosztály
+Conduit	Védőcső
+Connected	Foglalt
+Connection definition point on page {} is not applied to its connection	A(z) {}. oldalon lévő összeköttetés-definíciós pont nincs alkalmazva az összeköttetésére
+Connection definition point on page {} is not on a wire	A(z) {}. oldalon lévő összeköttetés-definíciós pont nincs vezetéken
+Connection definitions	Összeköttetés-definíciók
+Connection list	Összeköttetéslista
+Connection point	Csatlakozási pont
+Connection point descriptions	Csatlakozási pontok leírásai
+Connection point {} is not on the {} mm grid.	A(z) {} csatlakozási pont nincs a(z) {} mm-es rácson.
+Connection point {} lies on another one.	A(z) {} csatlakozási pont egy másikon fekszik.
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	A(z) {}. lapon lévő kapcsolati szimbólum hurokban vezetékezi a kapcsolatát: a kapcsolat szimbólumai több vezetéket adnak neki, mint amennyire a készülékeinek szüksége van
+Connection symbols	Kapcsolati szimbólumok
+Connection type	Csatlakozás típusa
+Connection {} has contradicting connection definition points	A(z) {} összeköttetésnek ellentmondó összeköttetés-definíciós pontjai vannak
+Connector pin-outs and flat cables	Csatlakozók lábkiosztása és szalagkábelek
+Connector pin-outs: mating faces and pin tables (SVG)	Csatlakozók lábkiosztása: csatlakozó felületek és lábtáblázatok (SVG)
+Contact material	Érintkezőanyag
+Contactor (single-line)	Mágneskapcsoló (egyvonalas)
+Contactor coil KM (GB)	Mágneskapcsoló tekercse KM (GB)
+Contactor coil KM (GOST)	Mágneskapcsoló tekercse KM (GOST)
+Contactor main contacts KM (GB)	Mágneskapcsoló főérintkezői KM (GB)
+Contactor main contacts KM (GOST)	Mágneskapcsoló főérintkezői KM (GOST)
+Contactor main contacts MC (JIS)	Mágneskapcsoló főérintkezői MC (JIS)
+Contacts	Érintkezők
+Contents	Tartalom
+Continued on the next page	Folytatás a következő oldalon
+Contour milling	Kontúrmarás
+Contractor	Vállalkozó
+Control	Vezérlés
+Control cabinet	Kapcsolószekrény
+Control mode	Szabályozási mód
+Control transformer	Vezérlőtranszformátor
+Control transformer (NFPA)	Vezérlőtranszformátor (NFPA)
+Control transformer T (GOST)	Vezérlőtranszformátor T (GOST)
+Control transformer T (JIS)	Vezérlőtranszformátor T (JIS)
+Control transformer TC (GB)	Vezérlőtranszformátor TC (GB)
+Control valve	Szabályozószelep
+Control voltage	Vezérlőfeszültség
+Control voltage type	Vezérlőfeszültség fajtája
+Converted from file format {} to {}: {}	Átalakítva a(z) {} fájlformátumról erre: {}: {}
+Coolant	Hűtőközeg
+Cooler	Hűtő
+Cooling method	Hűtési mód
+Copper	Réz
+Copper bar {}: bend {} has a radius of {} mm, at least {} mm	{} rézsín: a(z) {} hajlítás sugara {} mm, legalább {} mm szükséges
+Copper bar {}: hole Ø{} at {} mm is outside the bar	{0} rézsín: a(z) {2} mm-nél lévő Ø{1} furat kívül esik a sínen
+Copper bar {}: hole Ø{} at {} mm is too close to bend {}	{0} rézsín: a(z) {2} mm-nél lévő Ø{1} furat túl közel van a(z) {3} hajlításhoz
+Copper bar {}: hole Ø{} is too large for a {} mm wide bar	{} rézsín: a Ø{} furat túl nagy egy {} mm széles sínhez
+Copper bar {}: no punch Ø{} on {}, drill by hand	{} rézsín: nincs Ø{} lyukasztó ezen: {}, kézzel kell fúrni
+Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bending	{} rézsín: a(z) {} szakasz {} mm hosszan egyenes, a hajlításhoz legalább {} mm szükséges
+Copper bar {}: {} mm are longer than the stock length of {} mm	{} rézsín: {} mm hosszabb a(z) {} mm-es szálhossznál
+Copper bar {}: {} mm are too thick for {}	{} rézsín: {} mm túl vastag ehhez: {}
+Copper bar {}: {} segments need {} bends	{} rézsín: {} szakaszhoz {} hajlítás szükséges
+Cores used	Felhasznált erek
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	A(z) {}. lapon lévő sarok nem illik a vezetékeihez: mindkét irányában egy vezeték kell, és nem lehet ott csatlakozási pont
+Counter contact NC	Számlálóérintkező, nyitó
+Counter contact NC, cam operated	Számlálóérintkező, nyitó, bütyökműködtetésű
+Counter contact NO	Számlálóérintkező, záró
+Counter contact NO, cam operated	Számlálóérintkező, záró, bütyökműködtetésű
+Counter switch NC	Számlálókapcsoló, nyitóérintkező
+Counter switch NO	Számlálókapcsoló, záróérintkező
+Country of origin	Származási ország
+Cover	Fedlap
+Cover sheet	Fedlap
+Cover sheet, single-line overview, schematic pages, bill of materials, enclosure climate and short circuit reports	Fedlap, egyvonalas áttekintés, kapcsolásirajz-oldalak, anyagjegyzék, szekrényklíma- és zárlati kimutatások
+Cover sheet, table of contents, schematic pages with function and location, device list, bill of materials, terminal and cable diagrams	Fedlap, tartalomjegyzék, kapcsolásirajz-oldalak funkcióval és szerelési hellyel, készüléklista, anyagjegyzék, sorkapocs- és kábeltervek
+Create projects	Projektek létrehozása
+Creation date	Létrehozás dátuma
+Cross-section {} carries {} A, less than the {} A of {}	A(z) {} keresztmetszet {} A-t visel el, kevesebbet, mint a(z) {} A ({})
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	A(z) {}. lapon lévő kereszteződés nem illik a vezetékeihez: mind a négy irányban vezeték kell, és nem lehet ott csatlakozási pont
+Currency	Pénznem
+Current (A)	Áram (A)
+Current capacity (A)	Áramterhelhetőség (A)
+Current consumption	Áramfelvétel
+Current range	Áramtartomány
+Current setting	Árambeállítás
+Current transformer	Áramváltó
+Current transformer, 2 cores	Áramváltó, 2 maggal
+Current transformer, 2 secondary windings	Áramváltó, 2 szekunder tekercseléssel
+Custom	Egyéni
+Customer	Ügyfél
+Customer address	Ügyfél címe
+Customer and plant	Ügyfél és létesítmény
+Customer contact	Kapcsolattartó az ügyfélnél
+Customer e-mail	Ügyfél e-mail-címe
+Customer number	Ügyfélszám
+Customer phone	Ügyfél telefonszáma
+Customs tariff number	Vámtarifaszám
+Cut length (m)	Vágási hossz (m)
+Cut length (mm)	Vágási hossz (mm)
+Cutouts	Kivágások
+Cylinder	Henger
+Cylinder, double-acting	Henger, kettős működésű
+Cylinder, single-acting	Henger, egyszeres működésű
+DC +	DC +
+DC -	DC -
+DC control circuits should be blue (IEC 60204-1, 13.2.4)	A DC vezérlőáramköröknek kéknek kell lenniük (IEC 60204-1, 13.2.4)
+DC control circuits should be blue (NFPA 79, 13.2.4)	A DC vezérlőáramköröknek kéknek kell lenniük (NFPA 79, 13.2.4)
+DC/DC converter	DC/DC átalakító
+DWG export failed: {}	A DWG-exportálás sikertelen: {}
+Data sheet	Adatlap
+Data type	Adattípus
+Date of the last revision	Az utolsó revízió dátuma
+Degree of protection	Védettségi fokozat
+Delete projects	Projektek törlése
+Delivery date	Szállítási határidő
+Demand (diversity factor {})	Igény (egyidejűségi tényező: {})
+Demand {} A above the usable {} A of the supply	A(z) {} A igény meghaladja a betáplálás használható {} A-ét
+Density	Sűrűség
+Description (since last revision)	Leírás (az utolsó revízió óta)
+Description and part	Leírás és alkatrész
+Description of the last revision	Az utolsó revízió leírása
+Description of the page's function (structure management)	Az oldal funkciójának leírása (struktúrakezelés)
+Description of the page's location (structure management)	Az oldal szerelési helyének leírása (struktúrakezelés)
+Designer	Tervező
+Device connection diagram	Készülékbekötési terv
+Device data of {} without symbol or panel item	{} készülékadatai szimbólum vagy elrendezési elem nélkül
+Device description file	Eszközleíró fájl
+Device group {} defined twice	A(z) {} készülékcsoport kétszer van definiálva
+Device group {}: {} devices on {} places	{} készülékcsoport: {} készülék {} helyen
+Device group {}: {} is not a fluid device	{} készülékcsoport: {} nem fluidkészülék
+Device group {}: {} is not a valve	{} készülékcsoport: {} nem szelep
+Device group {}: {} is not in the schematic	{} készülékcsoport: {} nincs a kapcsolási rajzon
+Device list	Készüléklista
+Device marker	Készülékjelölő
+Device tag {} must not contain blanks or the separators ; | ,	A(z) {} azonosító nem tartalmazhat szóközt és ; | , elválasztót
+Device tag {} must start with -, = or +	A(z) {} azonosítónak -, = vagy + jellel kell kezdődnie
+Device {} already exists	A(z) {} készülék már létezik
+Device {} does not exist	A(z) {} készülék nem létezik
+Devices and connection points	Készülékek és csatlakozási pontok
+Devices should have a part (IEC 60204-1, 17.2: parts list)	A készülékekhez alkatrész tartozzon (IEC 60204-1, 17.2: alkatrészjegyzék)
+Devices without power loss	Veszteségi teljesítmény nélküli készülékek
+Dew point (°C)	Harmatpont (°C)
+Diagnostic coverage (DC)	Diagnosztikai lefedettség (DC)
+Diagnostics	Diagnosztika
+Diameter (mm)	Átmérő (mm)
+Different wire numbers in one connection: {}	Eltérő vezetékszámok egy összeköttetésben: {}
+Digital input / output module	Digitális be-/kimeneti modul
+Digital input module	Digitális bemeneti modul
+Digital output module	Digitális kimeneti modul
+Dimmer (installation)	Fényerő-szabályozó (installációs)
+Diode	Dióda
+Directional valve	Útszelep
+Disconnect switch 3-pole (NFPA)	Szakaszolókapcsoló, 3 pólusú (NFPA)
+Disconnect terminal	Bontható sorkapocs
+Disconnection (s)	Lekapcsolás (s)
+Disconnector 1-pole	Szakaszoló, 1 pólusú
+Disconnector 1-pole, lockable	Szakaszoló, 1 pólusú, lezárható
+Disconnector 2-pole	Szakaszoló, 2 pólusú
+Disconnector 2-pole, lockable	Szakaszoló, 2 pólusú, lezárható
+Disconnector 3-pole	Szakaszoló, 3 pólusú
+Disconnector 3-pole DS (JIS)	Szakaszoló, 3 pólusú DS (JIS)
+Disconnector 3-pole QS (GB)	Szakaszoló, 3 pólusú QS (GB)
+Disconnector 3-pole QS (GOST)	Szakaszoló, 3 pólusú QS (GOST)
+Disconnector 3-pole, lockable	Szakaszoló, 3 pólusú, lezárható
+Displacement	Lökettérfogat
+Distribution board	Elosztó
+Distribution board (IEC 61439)	Elosztó (IEC 61439)
+Document	Dokumentum
+Document (embedded file)	Dokumentum (beágyazott fájl)
+Document A4 portrait	Dokumentum, A4 álló
+Document number	Dokumentumszám
+Document reference	Dokumentumhivatkozás
+Documentation	Dokumentáció
+Documentation language	Dokumentáció nyelve
+Does not match	Nem egyezik
+Door (front view)	Ajtó (elölnézet)
+Door and walls	Ajtó és falak
+Door handle and document holder	Ajtófogantyú és dokumentumtartó
+Double socket outlet with PE	Kettős dugaszolóaljzat védőérintkezővel
+Downstream	Utána kapcsolt
+Drag chain	Energialánc
+Drawing number	Rajzszám
+Drill	Fúró
+Drilling	Fúrás
+Drilling and milling centre	Fúró-maró megmunkálóközpont
+Drive	Hajtás
+Drive type	Hajtás típusa
+Driven by	Meghajtja
+Drives	Hajtások
+Drop-out time	Elengedési idő
+Duct fill levels	Kábelcsatornák töltöttsége
+Duct frame with rails	Csatornakeret sínekkel
+Duty type	Üzemtípus
+ECAD (PCB)	ECAD (NYÁK)
+ECAD components and netlist (JSON)	ECAD-alkatrészek és hálózati lista (JSON)
+ECLASS class	ECLASS-osztály
+EMC	EMC
+EMC cable gland	EMC-kábeltömszelence
+EMC environment	EMC-környezet
+ERP	ERP
+ERP item master and bill of materials (CSV)	ERP-cikktörzs és anyagjegyzék (CSV)
+ERP number	ERP-szám
+ETIM class	ETIM-osztály
+Earth electrode	Földelő
+Edit pages	Oldalak szerkesztése
+Edit project data	Projektadatok szerkesztése
+Editor	Szerkesztő
+Efficiency	Hatásfok
+Efficiency class	Hatásfokosztály
+Electrical data	Villamos adatok
+Electrical device	Villamos készülék
+Electrical endurance (operating cycles)	Villamos élettartam (kapcsolási ciklusok)
+Electrical equipment of machines: voltage drop, disconnection, cross-sections, conductor colours	Gépek villamos szerelvényei: feszültségesés, lekapcsolás, keresztmetszetek, vezetőszínek
+Electromagnetic compatibility: shielded drive and analogue cables, surge protection	Elektromágneses összeférhetőség: árnyékolt hajtás- és analóg kábelek, túlfeszültség-védelem
+Electromagnetic contactor coil MC (JIS)	Elektromágneses mágneskapcsoló tekercse MC (JIS)
+Electronic (LSI)	Elektronikus (LSI)
+Element	Elem
+Embedded document: attached to this page in the PDF export	Beágyazott dokumentum: a PDF-exportban ehhez az oldalhoz csatolva
+Emergency stop	Vészleállítás
+Emergency stop NC	Vészleállító, nyitóérintkező
+Emergency stop NC, key reset	Vészleállító, nyitóérintkező, kulccsal oldható
+Emergency stop NC, pull to reset	Vészleállító, nyitóérintkező, kihúzással oldható
+Emergency stop NC, turn to reset	Vészleállító, nyitóérintkező, elforgatással oldható
+Emergency stop NO	Vészleállító, záróérintkező
+Emergency stop NO, key reset	Vészleállító, záróérintkező, kulccsal oldható
+Emergency stop NO, pull to reset	Vészleállító, záróérintkező, kihúzással oldható
+Emergency stop NO, turn to reset	Vészleállító, záróérintkező, elforgatással oldható
+Emergency stop PBS (JIS)	Vészleállító PBS (JIS)
+Emergency stop SB (GB)	Vészleállító SB (GB)
+Emergency stop SB (GOST)	Vészleállító SB (GOST)
+Emergency stop devices need a B10d value (ISO 13849-1, annex C)	A vészleállító készülékekhez B10d-érték szükséges (ISO 13849-1, C melléklet)
+Emergency stop, mushroom head (NFPA)	Vészleállító, gombafejes (NFPA)
+Empty (IEC 60204-1)	Üres (IEC 60204-1)
+Enclosure body	Szekrénytest
+Enclosure climate	Szekrényklimatizálás
+Enclosure light	Szekrényvilágítás
+Enclosure not found - choose another one in the page properties	A szekrény nem található – válasszon másikat az oldaltulajdonságokban
+Encoder	Jeladó
+End bracket	Végbak
+End customer	Végügyfél
+End mill	Ujjmaró
+End of a suite, free-standing	Sor vége, szabadon álló
+End of a suite, wall mounted	Sor vége, falra szerelt
+End plate	Zárófedél
+End sleeve	Kábelvéghüvely
+End treatment	Végkezelés
+Energy limitation class	Energiakorlátozási osztály
+Engineered	Megtervezve
+Engineering unit	Fizikai egység
+Environment	Környezet
+Equipment grounding conductors must be green (NFPA 79, 13.2.2)	A berendezés-földelővezetőknek zöldnek kell lenniük (NFPA 79, 13.2.2)
+Excel workbook	Excel-munkafüzet
+Exhaust {} open to the atmosphere (no silencer)	A(z) {} kipufogó nyitott a légkör felé (nincs hangtompító)
+Explosion protection marking	Robbanásvédelmi jelölés
+Exports the bill of materials with the item master data; imports ERP numbers, prices, stock and lead times	Exportálja az anyagjegyzéket a cikktörzsadatokkal; importálja az ERP-számokat, árakat, készleteket és szállítási időket
+Exports the devices and point-to-point connections for PCB design; imports part assignments and descriptions of the components	Exportálja a készülékeket és a pont-pont összeköttetéseket NYÁK-tervezéshez; importálja az alkatrész-hozzárendeléseket és az alkatrészek leírását
+Exports the engineering BOM (locations, devices, parts); imports item IDs, revisions and lifecycle states	Exportálja a tervezési anyagjegyzéket (szerelési helyek, készülékek, alkatrészek); importálja a tételazonosítókat, revíziókat és életciklus-állapotokat
+Exports the order list per supplier (required quantity less stock, rounded to packs); imports order confirmations	Exportálja a rendelési listát szállítónként (szükséges mennyiség mínusz készlet, csomagolási egységre kerekítve); importálja a rendelésvisszaigazolásokat
+Exports the positions and sizes of the devices in the panel layout; imports positions changed in the MCAD system	Exportálja a készülékek pozícióit és méreteit a szekrényelrendezésben; importálja az MCAD-rendszerben módosított pozíciókat
+Exports the project and page metadata with the revisions; imports document numbers, revisions and states	Exportálja a projekt és az oldalak metaadatait a revíziókkal; importálja a dokumentumszámokat, revíziókat és állapotokat
+Exports the wires with cut length, stripping and ferrules for wire processing machines; imports the processing feedback as wiring marks	Exportálja a vezetékeket vágási hosszal, csupaszítással és érvéghüvelyekkel huzalfeldolgozó gépekhez; a feldolgozási visszajelzést huzalozási jelölésként importálja
+External	Külső
+External target	Külső cél
+Fail-safe	Hibabiztos
+Fan 1-phase	Ventilátor, egyfázisú
+Fan 3-phase	Ventilátor, háromfázisú
+Fan 3-phase, 6 terminals	Ventilátor, háromfázisú, 6 csatlakozós
+Ferrule	Érvéghüvely
+Ferrule from	Érvéghüvely kezdet
+Ferrule part	Érvéghüvely-alkatrész
+Ferrule to	Érvéghüvely vég
+Field cable routing	Terepi kábelek nyomvonaltervezése
+Field cable {} cannot be routed from {} to {}	{} terepi kábel nem vezethető el {} és {} között
+Field cable {}: {} is not placed in the plant layout	{} terepi kábel: {} nincs elhelyezve a létesítmény-elrendezésben
+Field devices	Terepi készülékek
+Field route definition refers to the unknown cable {}	A terepi nyomvonal-definíció az ismeretlen {} kábelre hivatkozik
+Field route of {} runs via the missing node {}	{} terepi nyomvonala a hiányzó {} csomóponton halad át
+Field segment {} carries power together with signal cables without a divider	A(z) {} nyomvonalszakaszban teljesítmény- és jelkábelek futnak elválasztó nélkül
+Field segment {} is filled to {} % (allowed {} %)	A(z) {} nyomvonalszakasz {} %-ig telített (megengedett: {} %)
+Field segment {} refers to the missing node {}	A(z) {} nyomvonalszakasz a hiányzó {} csomópontra hivatkozik
+Fieldbus	Terepi busz
+File name written into the file header	A fájlfejlécbe írt fájlnév
+Fill level (%)	Töltöttség (%)
+Filter fan with outlet filter	Szűrős ventilátor kilépő szűrővel
+Filter rating	Szűrési finomság
+Firmware version	Firmware-verzió
+First end only	Csak az első vég
+Fitting	Csatlakozószerelvény
+Fittings	Csatlakozószerelvények
+Flame retardant	Lángterjedésgátló
+Flat cable {} has {} cores, the IDC connector {} has {} pins	A(z) {} szalagkábelnek {} ere van, a(z) {} IDC csatlakozónak {} lába
+Float switch NC	Úszókapcsoló, nyitóérintkező
+Float switch NO	Úszókapcsoló, záróérintkező
+Float switch NO (NFPA)	Úszókapcsoló, záróérintkező (NFPA)
+Floor-standing baying system	Álló sorolható szekrényrendszer
+Flow	Áramlás
+Flow control valve, adjustable	Fojtószelep, állítható
+Flow rate	Térfogatáram
+Flow switch NC	Áramláskapcsoló, nyitóérintkező
+Flow switch NO	Áramláskapcsoló, záróérintkező
+Flow switch NO (NFPA)	Áramláskapcsoló, záróérintkező (NFPA)
+Fluid	Fluid
+Fluid component	Fluidkomponens
+Fluid port connected to an electrical connection point: {}	Fluidcsatlakozás elektromos csatlakozási ponttal összekötve: {}
+Fluid power	Fluidtechnika
+Fluid power (ISO 1219)	Fluidtechnika (ISO 1219)
+Fluid power and electrics in one project: pneumatic circuit with service unit, valve terminal, 5/2 valves, flow control valves and cylinders; solenoid coils and position switches are linked to the valves and cylinders.	Folyadék- és gáztechnika és villamosság egy projektben: pneumatikus kapcsolás tápegységgel, szelepszigettel, 5/2-es szelepekkel, fojtó-visszacsapó szelepekkel és hengerekkel; a mágnestekercsek és a helyzetkapcsolók a szelepekhez és hengerekhez kapcsolódnak.
+Fluid power and process	Fluidtechnika és folyamattechnika
+Fluid power settings	Fluidtechnikai beállítások
+Foot switch NC	Lábkapcsoló, nyitóérintkező
+Foot switch NO	Lábkapcsoló, záróérintkező
+Foot switch NO (NFPA)	Lábkapcsoló, záróérintkező (NFPA)
+Force	Erő
+Format (placeholders)	Formátum (helyőrzők)
+Frame size	Építési méret
+Free	Szabad
+Free air (mm)	Szabad vezetés (mm)
+Free run	Szabad fektetés
+Frequency converter	Frekvenciaváltó
+Frequency meter	Frekvenciamérő
+From end	A végétől
+From start	Az elejétől
+Frozen route of {} is no longer possible and was routed again	{} rögzített nyomvonala már nem lehetséges, ezért újra lett fektetve
+Full page name	Teljes oldalnév
+Full page name (=A1+CAB1/3)	Teljes oldalnév (=A1+CAB1/3)
+Fullest stretch (mm)	Legtelibb szakasz (mm)
+Function and location	Funkció és szerelési hely
+Function category	Funkciókategória
+Function of the page	Az oldal funkciója
+Function, installation site and location	Funkció, telepítési hely és szerelési hely
+Functional bonding	Funkcionális potenciálkiegyenlítés
+Fuse	Biztosító
+Fuse (NFPA)	Biztosító (NFPA)
+Fuse (single-line)	Biztosító (egyvonalas)
+Fuse 2-pole	Biztosító, 2 pólusú
+Fuse 3-pole	Biztosító, 3 pólusú
+Fuse F (JIS)	Biztosító F (JIS)
+Fuse FU (GB)	Biztosító FU (GB)
+Fuse FU (GOST)	Biztosító FU (GOST)
+Fuse disconnector 1-pole	Biztosítós szakaszoló, 1 pólusú
+Fuse disconnector 2-pole	Biztosítós szakaszoló, 2 pólusú
+Fuse disconnector 3-pole	Biztosítós szakaszoló, 3 pólusú
+Fuse disconnector with motor circuit breaker 1-pole	Biztosítós szakaszoló motorvédő kapcsolóval, 1 pólusú
+Fuse disconnector with motor circuit breaker 2-pole	Biztosítós szakaszoló motorvédő kapcsolóval, 2 pólusú
+Fuse disconnector with motor circuit breaker 3-pole	Biztosítós szakaszoló motorvédő kapcsolóval, 3 pólusú
+Fuse rated current	Biztosító névleges árama
+Fuse ratio 1.6	Biztosítóarány 1,6
+Fuse size	Biztosítóméret
+Fuse switch 1-pole	Biztosítós kapcsoló, 1 pólusú
+Fuse switch 2-pole	Biztosítós kapcsoló, 2 pólusú
+Fuse switch 3-pole	Biztosítós kapcsoló, 3 pólusú
+Fuse switch-disconnector 1-pole	Biztosítós terheléskapcsoló, 1 pólusú
+Fuse switch-disconnector 2-pole	Biztosítós terheléskapcsoló, 2 pólusú
+Fuse switch-disconnector 3-pole	Biztosítós terheléskapcsoló, 3 pólusú
+Fuse terminal	Biztosítós sorkapocs
+Fuse, LV HBC, 1-pole	Késes biztosító (NH), 1 pólusú
+Fuse, LV HBC, 2-pole	Késes biztosító (NH), 2 pólusú
+Fuse, LV HBC, 3-pole	Késes biztosító (NH), 3 pólusú
+GB (GB/T 4728)	GB (GB/T 4728)
+GOST (ESKD)	GOST (ESKD)
+GTIN	GTIN
+Galvanometer	Galvanométer
+Gas	Gáz
+Gas flow switch NC	Gázáramlás-kapcsoló, nyitóérintkező
+Gas flow switch NO	Gázáramlás-kapcsoló, záróérintkező
+Gateway	Átjáró
+Gear ratio	Áttétel
+Generated page {} is released	A(z) {} generált oldal ki van adva
+Generic EtherCAT bus coupler	Általános EtherCAT-buszcsatoló
+Generic PLC CPU with EtherCAT master	Általános PLC-CPU EtherCAT-masterrel
+Generic PLC CPU with PROFINET interface	Általános PLC-CPU PROFINET-interfésszel
+Generic PROFINET interface module	Általános PROFINET-interfészmodul
+Generic analog input module 4 channels	Általános analóg bemeneti modul, 4 csatorna
+Generic analog output module 4 channels	Általános analóg kimeneti modul, 4 csatorna
+Generic digital input module 16 channels	Általános digitális bemeneti modul, 16 csatorna
+Generic digital input module 8 channels	Általános digitális bemeneti modul, 8 csatorna
+Generic digital module 8 inputs / 8 outputs	Általános digitális modul, 8 bemenet / 8 kimenet
+Generic digital output module 16 channels	Általános digitális kimeneti modul, 16 csatorna
+Generic digital output module 8 channels	Általános digitális kimeneti modul, 8 csatorna
+Generic function	Általános funkció
+Graphics A4 portrait	Grafika, A4 álló
+Greenline	Greenline
+Grid and system protection relay (voltage and frequency)	Hálózat- és rendszervédelmi relé (feszültség és frekvencia)
+Grounded conductors must be white or grey (NFPA 79, 13.2.3)	A földelt vezetőknek fehérnek vagy szürkének kell lenniük (NFPA 79, 13.2.3)
+HMI	HMI
+HTML document for printing	HTML-dokumentum nyomtatáshoz
+Hall 1	1. csarnok
+Halogen free	Halogénmentes
+Hand	Kézi
+Hardware version	Hardververzió
+Harness nailboard drawing to scale (SVG)	Kábelköteg szögestábla-rajza méretarányosan (SVG)
+Harness {}: connection {} – {} does not exist in the schematic	{} kábelköteg: a(z) {} – {} összeköttetés nem létezik a kapcsolási rajzon
+Hazardous area zone	Robbanásveszélyes zóna
+Heat exchanger	Hőcserélő
+Heating (W)	Fűtés (W)
+Heating element	Fűtőelem
+Higher-level product (-)	Felettes termék (-)
+Higher-level product of the page	Az oldal felettes terméke
+Highest (°C)	Legfeljebb (°C)
+Hold-up time	Áthidalási idő
+Holding power	Tartóteljesítmény
+Horn (NFPA)	Kürt (NFPA)
+Horn / buzzer	Kürt / berregő
+Horn / buzzer HA (GB)	Kürt / zümmer HA (GB)
+Horn / buzzer HA (GOST)	Kürt / zümmer HA (GOST)
+Hose	Tömlő
+Hose configuration	Tömlőkonfiguráció
+Hose defaults	Tömlő-alapértékek
+Hose list	Tömlőlista
+Hose {} – {} without length	{} – {} tömlő hossz nélkül
+Hose {} – {}: length {} m shorter than the routed {} m	{} – {} tömlő: a(z) {} m hossz rövidebb a fektetett {} m-nél
+Hose {}: different media on its wires ({})	{} tömlő: különböző közegek a vezetékein ({})
+Hose {}: different nominal sizes on its wires ({})	{} tömlő: különböző névleges méretek a vezetékein ({})
+Hose {}: length {} m shorter than its 3D route of {} m	{} tömlő: a(z) {} m hossz rövidebb a(z) {} m-es 3D nyomvonalánál
+Hose {}: pressure line {} connected to return / exhaust {}	{} tömlő: a(z) {} nyomóvezeték a(z) {} visszafolyóval / kipufogóval van összekötve
+Hose {}: rated for {} bar, operating pressure {} bar	{} tömlő: {} bar névleges nyomásra méretezve, üzemi nyomás {} bar
+Hour meter	Üzemóra-számláló
+House connection box	Csatlakozószekrény
+Housing colour	Ház színe
+Housing material	Ház anyaga
+Hydraulic motor	Hidromotor
+Hydraulic oil	Hidraulikaolaj
+Hydraulic power unit	Hidraulikus tápegység
+Hydraulic pump	Hidraulikaszivattyú
+Hysteresis	Hiszterézis
+IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (gépek: fázisvezetők BK, DC-vezérlés BU)
+IEC 60445 (phases BN, BK, GY)	IEC 60445 (fázisvezetők BN, BK, GY)
+IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
+IP address	IP-cím
+Id {} is used more than once	A(z) {} azonosító többször szerepel
+Ik max (A)	Ik max (A)
+Ik max (kA)	Ik max (kA)
+Ik1 min (A)	Ik1 min (A)
+Impact protection (IK)	Ütésállóság (IK)
+In engineering	Tervezés alatt
+In production	Gyártás alatt
+Incoming supply	Betáp
+Indicator lamp	Jelzőlámpa
+Indicator lamp HL (GB)	Jelzőlámpa HL (GB)
+Indicator lamp HL (GOST)	Jelzőlámpa HL (GOST)
+Indicator lamp with transformer	Jelzőlámpa transzformátorral
+Indicator lamp, flashing	Jelzőlámpa, villogó
+Inductive sensor, 2-wire	Induktív érzékelő, 2 vezetékes
+Inductive sensor, 3-wire	Induktív érzékelő, 3 vezetékes
+Inductor	Induktivitás
+Industrial control panels for North America: listed components, AWG cross-sections, conductor colours	Ipari vezérlőpanelek Észak-Amerikába: listázott alkatrészek, AWG-keresztmetszetek, vezetőszínek
+Info	Tájékoztatás
+Initial value	Kezdőérték
+Inner wall	Belső fal
+Inner wall {}, side {}	{}. belső fal, {} oldal
+Input delay	Bemeneti késleltetés
+Input voltage	Bemeneti feszültség
+Inputs from	Bemenetek innen
+Inrush current	Bekapcsolási áram
+Inside (°C)	Belül (°C)
+Installation altitude	Telepítési magasság
+Installation date	Beépítés dátuma
+Installation devices	Installációs készülékek
+Installation method	Fektetési mód
+Installation plan (IEC 60617-11)	Installációs terv (IEC 60617-11)
+Installation site	Telepítési hely
+Installation site (++)	Telepítési hely (++)
+Installation site and location	Telepítési hely és szerelési hely
+Installation site of the page	Az oldal telepítési helye
+Installation switch	Installációs kapcsoló
+Installed	Beépített
+Instrument (PCT loop)	Műszer (PCT-kör)
+Instrument {}: label '{}' has no function letters and loop number (e.g. TIC 101)	{} műszer: a(z) '{}' felirat nem tartalmaz funkcióbetűket és körszámot (pl. TIC 101)
+Insulation class	Szigetelési osztály
+Integer	Egész szám
+Integrated EMC filter	Beépített EMC-szűrő
+Intermediate relay coil KA (GB)	Segédrelé tekercse KA (GB)
+Internal	Belső
+Internal target	Belső cél
+Interruption point '{}' has no counterpart	A(z) '{}' megszakítási pontnak nincs párja
+Invalid bend {}	Érvénytelen hajlítás: {}
+Invalid configuration: {}	Érvénytelen konfiguráció: {}
+Invalid feedback: {}	Érvénytelen visszajelzés: {}
+Invalid hole {}	Érvénytelen furat: {}
+Invalid length {}	Érvénytelen hossz: {}
+Invalid property key: {}	Érvénytelen tulajdonságkulcs: {}
+Inverter / charger	Inverter / töltő
+Inverter DC/AC	Inverter DC/AC
+Item	Elem
+Item ID	Tételazonosító
+Items	Elemek
+JIS (JIS C 0617)	JIS (JIS C 0617)
+Jumpers	Áthidalások
+Junction box	Kötődoboz
+Keep free	Szabadon tartás
+Key switch NC	Kulcsos kapcsoló, nyitóérintkező
+Key switch NC, latching	Kulcsos kapcsoló, nyitóérintkező, reteszelő
+Key switch NO	Kulcsos kapcsoló, záróérintkező
+Key switch NO, latching	Kulcsos kapcsoló, záróérintkező, reteszelő
+Keywords	Kulcsszavak
+LED	LED
+Labeling scheme (default: the scheme selected in the project)	Feliratozási séma (alapértelmezés: a projektben kiválasztott séma)
+Lamp voltage	Lámpafeszültség
+Languages and dictionary	Nyelvek és szótár
+Last edited by	Utoljára szerkesztette
+Last inspection	Utolsó felülvizsgálat
+Last revision	Utolsó revízió
+Latching	Reteszelő
+Lead time (days)	Szállítási idő (nap)
+Leakage current	Szivárgási áram
+Leakage line	Szivárgóolaj-vezeték
+Left side	Bal oldal
+Left side panel	Bal oldalfal
+Legend plate text	Jelölőtábla szövege
+Length (m)	Hossz (m)
+Length (mm)	Hossz (mm)
+Letter landscape	Letter fekvő
+Letters (A, B, C)	Betűk (A, B, C)
+Level switch	Szintkapcsoló
+Lifecycle state	Életciklus-állapot
+Light source	Fényforrás
+Lighting outlet	Lámpakivezetés
+Limit (%)	Határérték (%)
+Limit switch NC (NFPA)	Végálláskapcsoló, nyitóérintkező (NFPA)
+Limit switch NO (NFPA)	Végálláskapcsoló, záróérintkező (NFPA)
+Line reactor	Hálózati fojtó
+Linear motor 3-phase	Lineáris motor, háromfázisú
+Literal braces	Kapcsos zárójelek (szó szerint)
+Load	Fogyasztó
+Load calculation	Terhelésszámítás
+Loads and power supplies	Fogyasztók és tápellátás
+Loads behind it: {}	Utána kapcsolt fogyasztók: {}
+Location of the page	Az oldal szerelési helye
+Low-voltage switchgear assemblies: rated diversity, temperature rise, documentation	Kisfeszültségű kapcsoló- és vezérlőberendezések: névleges egyidejűségi tényező, melegedés, dokumentáció
+Lubricant	Kenőanyag
+Luminaire, fluorescent	Fénycsöves lámpatest
+MAC address	MAC-cím
+MCAD	MCAD
+MCAD device placement (CSV)	MCAD készülékelhelyezés (CSV)
+MOSFET N-channel	N-csatornás MOSFET
+MTTFd	MTTFd
+Machine (example identifiers)	Gép (példaazonosítók)
+Machine frame	Gépváz
+Machine number	Gépszám
+Macro	Makró
+Magnetic sensor	Mágneses érzékelő
+Magnetic trip current	Mágneses kioldóáram
+Main bonding	Védő-potenciálkiegyenlítés
+Main contact 1-pole	Főérintkező, 1 pólusú
+Main contacts 3-pole	Főérintkezők, 3 pólusú
+Main contacts 3-pole (NFPA)	Főérintkezők, 3 pólusú (NFPA)
+Main contacts 3-pole NC	Főérintkezők, 3 pólusú, nyitó
+Main contacts 3-pole, automatic tripping	Főérintkezők, 3 pólusú, automatikus kioldással
+Main contacts 4-pole	Főérintkezők, 4 pólusú
+Main function	Főfunkció
+Main function with contact image	Főfunkció érintkezőtükörrel
+Main switch 1-pole	Főkapcsoló, 1 pólusú
+Main switch 2-pole	Főkapcsoló, 2 pólusú
+Main switch 3-pole	Főkapcsoló, 3 pólusú
+Mains frequency	Hálózati frekvencia
+Mains voltage	Hálózati feszültség
+Maintenance	Karbantartás
+Maintenance interval	Karbantartási időköz
+Manage project access	Projekthozzáférés kezelése
+Manifold	Elosztóblokk
+Manual	Kézikönyv
+Manual switch NC	Kézi kapcsoló, nyitóérintkező
+Manual switch NC, latching	Kézi kapcsoló, nyitóérintkező, reteszelő
+Manual switch NO	Kézi kapcsoló, záróérintkező
+Manual switch NO, latching	Kézi kapcsoló, záróérintkező, reteszelő
+Manual work	Kézi munka
+Manufacturer's table	Gyártói táblázat
+Manufacturers	Gyártók
+Marking (CSV)	Feliratozás (CSV)
+Marking (Excel)	Feliratozás (Excel)
+Mating faces	Csatlakozó felületek
+Max. pressure (bar)	Max. nyomás (bar)
+Maximum ambient temperature	Maximális környezeti hőmérséklet
+Maximum conductor cross-section	Maximális vezető-keresztmetszet
+Maximum installation altitude	Maximális telepítési magasság
+Maximum operating temperature	Maximális üzemi hőmérséklet
+Maximum pressure	Maximális nyomás
+Measured variable	Mért jellemző
+Measuring instrument	Mérőműszer
+Measuring instruments	Mérőműszerek
+Measuring point	Mérési pont
+Measuring range	Méréstartomány
+Measuring range end	Méréstartomány vége
+Measuring range start	Méréstartomány kezdete
+Measuring transducer	Mérőátalakító
+Mechanical data	Mechanikai adatok
+Mechanical endurance (operating cycles)	Mechanikai élettartam (kapcsolási ciklusok)
+Medium temperature range	Közeg hőmérséklet-tartománya
+Message levels	Üzenetszintek
+Metal cable carrier	Fém kábeltartó
+Minimum ambient temperature	Minimális környezeti hőmérséklet
+Minimum bending radius	Minimális hajlítási sugár
+Minimum clearance	Minimális távolság
+Minimum conductor cross-section	Minimális vezető-keresztmetszet
+Minimum operating temperature	Minimális üzemi hőmérséklet
+Mirror contacts	Tükörérintkezők
+Mirrored	Tükrözött
+Mission time	Használati idő
+Moisture	Nedvesség
+Moment of inertia	Tehetetlenségi nyomaték
+Motion detector	Mozgásérzékelő
+Motor	Motor
+Motor (NFPA)	Motor (NFPA)
+Motor (single-line)	Motor (egyvonalas)
+Motor 1-phase	Motor, 1 fázisú
+Motor 1-phase with auxiliary winding	Motor, egyfázisú, segédtekercseléssel
+Motor 1-phase, 2 terminals	Motor, egyfázisú, 2 csatlakozós
+Motor 1-phase, series-wound (universal)	Motor, egyfázisú, soros gerjesztésű (univerzális)
+Motor 3-phase	Motor, 3 fázisú
+Motor 3-phase M (GB)	Motor, háromfázisú M (GB)
+Motor 3-phase M (GOST)	Motor, háromfázisú M (GOST)
+Motor 3-phase M (JIS)	Motor, háromfázisú M (JIS)
+Motor 3-phase, 6 terminals	Motor, háromfázisú, 6 csatlakozós
+Motor 3-phase, series-wound	Motor, háromfázisú, soros gerjesztésű
+Motor 3-phase, slip-ring rotor	Motor, háromfázisú, csúszógyűrűs forgórészű
+Motor DC	Egyenáramú motor
+Motor DC, shunt-wound	Egyenáramú motor, párhuzamos gerjesztésű
+Motor cable {} of frequency converter {} must be shielded	A(z) {1} frekvenciaváltó {0} motorkábelének árnyékoltnak kell lennie
+Motor data	Motoradatok
+Motor operator of a circuit breaker	Megszakító motoros hajtása
+Motor protection (class 10)	Motorvédelem (10. osztály)
+Motor protection switch	Motorvédő kapcsoló
+Motor protection switch (single-line)	Motorvédő kapcsoló (egyvonalas)
+Motor protection switch 1-pole	Motorvédő kapcsoló, 1 pólusú
+Motor protection switch 2-pole	Motorvédő kapcsoló, 2 pólusú
+Motor, electronically commutated (brushless DC)	Motor, elektronikus kommutációjú (kefe nélküli DC)
+Motors	Motorok
+Motors / Loads	Motorok / terhelések
+Mounting arrangement	Építési forma
+Mounting clearance	Szerelési szabad tér
+Mounting diameter	Beépítési átmérő
+Mounting layout	Szerelési terv
+Mounting layout pages	Szerelési terv oldalai
+Mounting marks	Szerelési jelölések
+Mounting position	Beépítési helyzet
+Mounting rails go on the walls and the ceiling	A szerelősínek a falakra és a mennyezetre kerülnek
+Mounting site	Beépítés helye
+Mounting type	Rögzítés módja
+Multi-line text	Többsoros szöveg
+N terminal	N-sorkapocs
+NC contact	Nyitóérintkező
+NC contact (NFPA)	Nyitóérintkező (NFPA)
+NC contact K (GOST)	Nyitóérintkező K (GOST)
+NC contact KA (GB)	Nyitóérintkező KA (GB)
+NC contact R (JIS)	Nyitóérintkező R (JIS)
+NC contact, early opening	Nyitóérintkező, korábban nyitó
+NC contact, late opening	Nyitóérintkező, később nyitó
+NC contact, off-delay	Nyitóérintkező, elejtéskésleltetett
+NC contact, on- and off-delay	Nyitóérintkező, meghúzás- és elengedéskésleltetett
+NC contact, on-delay	Nyitóérintkező, meghúzáskésleltetett
+NC contact, on-delay KT (GB)	Nyitóérintkező, meghúzáskésleltetett KT (GB)
+NC contact, on-delay KT (GOST)	Nyitóérintkező, meghúzáskésleltetett KT (GOST)
+NC contact, on-delay TLR (JIS)	Nyitóérintkező, meghúzáskésleltetett TLR (JIS)
+NC contact, timed opening (NFPA)	Nyitóérintkező, késleltetett nyitás (NFPA)
+NFPA / JIC	NFPA / JIC
+NO contact	Záróérintkező
+NO contact (NFPA)	Záróérintkező (NFPA)
+NO contact K (GOST)	Záróérintkező K (GOST)
+NO contact KA (GB)	Záróérintkező KA (GB)
+NO contact R (JIS)	Záróérintkező R (JIS)
+NO contact, early closing	Záróérintkező, korábban záró
+NO contact, late closing	Záróérintkező, később záró
+NO contact, off-delay	Záróérintkező, elejtéskésleltetett
+NO contact, on- and off-delay	Záróérintkező, meghúzás- és elengedéskésleltetett
+NO contact, on-delay	Záróérintkező, meghúzáskésleltetett
+NO contact, on-delay KT (GB)	Záróérintkező, meghúzáskésleltetett KT (GB)
+NO contact, on-delay KT (GOST)	Záróérintkező, meghúzáskésleltetett KT (GOST)
+NO contact, on-delay TLR (JIS)	Záróérintkező, meghúzáskésleltetett TLR (JIS)
+NO contact, timed closing (NFPA)	Záróérintkező, késleltetett zárás (NFPA)
+Nailboard {}	Szögestábla: {}
+Network (m)	Hálózat (m)
+Neutral (N)	Nullavezető (N)
+Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	A nullavezetőknek világoskéknek kell lenniük (IEC 60204-1, 13.2.3)
+Next inspection	Következő felülvizsgálat
+Nibbling	Nibbelés
+No connection point {}	Nincs {} csatlakozási pont
+No connection {}	Nincs {} összeköttetés
+No devices to add to the single-line diagram	Nincs az egyvonalas rajzhoz hozzáadandó készülék
+No document embedded - choose a file in the page properties	Nincs beágyazott dokumentum – válasszon fájlt az oldaltulajdonságokban
+No identifying letter for the device tag.	Nincs kódbetű a készülékazonosítóhoz.
+No known column in the header row	A fejlécsorban nincs ismert oszlop
+No option {}	Nincs ilyen opció: {}
+No page or page item with id {}	Nincs {} azonosítójú oldal vagy oldalelem
+No page with id {}	Nincs {} azonosítójú oldal
+No part {}	Nincs {} alkatrész
+No plugs	Nincsenek csatlakozók
+No report block {}	Nincs {} kimutatásblokk
+No segment template named {}	Nincs ilyen nevű szegmenssablon: {}
+No subproject {}	Nincs ilyen alprojekt: {}
+No such object: {}	Nincs ilyen objektum: {}
+No surge protective device at the supply (IEC 60364-4-44)	Nincs túlfeszültség-védelmi eszköz a betáplálásnál (IEC 60364-4-44)
+No terminal {}	Nincs {} sorkapocs
+No user defined property {}	Nincs ilyen felhasználói tulajdonság: {}
+No wires at the pins of {}	Nincs vezeték a(z) {} lábain
+Nominal discharge current	Névleges levezetési áram
+Non-return valve	Visszacsapó szelep
+Not OK	Nem OK
+Not a DWG file	Nem DWG-fájl
+Not a DXF file	Nem DXF-fájl
+Not a DXF file (binary DXF is not supported)	Nem DXF-fájl (a bináris DXF nem támogatott)
+Not a PDF file	Nem PDF-fájl
+Not a change request file: the column \"Number\" is missing	Nem módosításikérelem-fájl: hiányzik a \"Number\" oszlop
+Not a change request file: {}	Nem módosításikérelem-fájl: {}
+Not a check scheme: {}	Nem ellenőrzési séma: {}
+Not a number: {}	Nem szám: {}
+Not a packed project	Nem csomagolt projekt
+Not a project database: {}	Nem projektadatbázis: {}
+Not a settings scheme: {}	Nem beállításséma: {}
+Not a structure template: {}	Nem struktúrasablon: {}
+Not a symbol id: {}	Nem szimbólumazonosító: {}
+Not a valid JSON file: {}	Nem érvényes JSON-fájl: {}
+Not a valid project file: {}	Nem érvényes projektfájl: {}
+Not a valid property library: {}	Nem érvényes tulajdonságkönyvtár: {}
+Not an Excel workbook (.xlsx)	Nem Excel-munkafüzet (.xlsx)
+Not connected	Nincs bekötve
+Not in the single-line diagram	Nincs az egyvonalas rajzon
+Number of NC contacts	Nyitóérintkezők száma
+Number of NO contacts	Záróérintkezők száma
+Number of cables	Kábelek száma
+Number of changeover contacts	Váltóérintkezők száma
+Number of cores	Erek száma
+Number of devices	Készülékek száma
+Number of functions	Funkciók száma
+Number of motor poles	Motor pólusszáma
+Number of pages	Oldalak száma
+Number of parts	Alkatrészek száma
+Number of phases	Fázisok száma
+Number of poles	Pólusszám
+Number of sheets	Lapok száma
+Number of switch positions	Kapcsolóállások száma
+Number of symbols	Szimbólumok száma
+Numbers (1, 2, 3)	Számok (1, 2, 3)
+OK	OK
+Ohmmeter	Ellenállásmérő
+Oil resistant	Olajálló
+One schematic page with +24V / 0V potentials, push buttons, a selector switch, lamps and a fuse; parts and the bill of materials.	Egy kapcsolási rajz oldal +24V / 0V potenciálokkal, nyomógombokkal, választókapcsolóval, jelzőlámpákkal és biztosítóval; alkatrészek és anyagjegyzék.
+One schematic page, the potentials of IEC 60204-1	Egy kapcsolásirajz-oldal, az IEC 60204-1 szerinti potenciálok
+One-way flow control valve	Egyirányú fojtószelep
+Only revisions that are not released can be submitted	Csak a ki nem adott revíziók küldhetők be
+Only {}	Csak {}
+Open	Nyitott
+Open connection point {} ({})	Nyitott csatlakozási pont: {} ({})
+OpenDocument file	OpenDocument-fájl
+OpenECraft	OpenECraft
+Operating hours	Üzemórák
+Operating range of the coil	A tekercs működési tartománya
+Operator desk	Kezelőpult
+Option {} is inactive: its content is hidden	A(z) {} opció inaktív: a tartalma rejtve van
+Option {}: {}	{} opció: {}
+Option {}: {} assigned objects no longer exist	{} opció: {} hozzárendelt objektum már nem létezik
+Optocoupler	Optocsatoló
+Order numbers	Rendelési számok
+Order status	Rendelés állapota
+Ordered	Megrendelve
+Other	Egyéb
+Other bus device	Egyéb buszrésztvevő
+Other module	Egyéb modul
+Other properties	Egyéb tulajdonságok
+Outdoor area	Kültéri terület
+Outgoing circuits	Leágazások
+Output current	Kimeneti áram
+Output frequency range	Kimeneti frekvenciatartomány
+Output from project {}	Kiadva a(z) {} projektből
+Output function	Kimeneti funkció
+Output power	Kimeneti teljesítmény
+Output signal	Kimeneti jel
+Output voltage	Kimeneti feszültség
+Outputs to	Kimenetek ide
+Outside	Kívül
+Outside of wall {}	{}. fal külső oldala
+Outside wall	Külső fal
+Overload aux contact NC	Túlterhelés-segédérintkező, nyitó
+Overload auxiliary contact	Túlterhelésrelé segédérintkezője
+Overload capacity	Túlterhelhetőség
+Overload contact NC (NFPA)	Túlterhelési érintkező, nyitó (NFPA)
+Overload heater (NFPA)	Túlterhelési fűtőelem (NFPA)
+Overload relay	Túlterhelésrelé
+Overload relay (single-line)	Túlterhelésrelé (egyvonalas)
+Overload relay 1-pole, thermal and magnetic	Túlterhelésrelé, 1 pólusú, termikus és mágneses
+Overload relay 2-pole, thermal and magnetic	Túlterhelésrelé, 2 pólusú, termikus és mágneses
+Overload relay 3-pole, thermal and magnetic	Túlterhelésrelé, 3 pólusú, termikus és mágneses
+Overview	Áttekintés
+Overview (not evaluated)	Áttekintés (nincs kiértékelés)
+Overview / single-line	Áttekintés / egyvonalas
+Overvoltage category	Túlfeszültség-kategória
+Overvoltage relay	Túlfeszültség-relé
+P&ID / process (ISO 10628)	P&ID / folyamattechnika (ISO 10628)
+P&ID number	P&ID-szám
+PCT loop {} has no instrument in the P&ID	A(z) {} PCT-körnek nincs műszere a P&ID-ben
+PCT loop {} is in the P&ID but not in the pre-planning	A(z) {} PCT-kör szerepel a P&ID-ben, de az előtervezésben nem
+PCT loop {}: devices not in the schematic yet: {}	{} PCT-kör: még nem a kapcsolási rajzon lévő készülékek: {}
+PCT loops	PCT-körök
+PDF document	PDF-dokumentum
+PDF document (bookmarks, linked cross references)	PDF-dokumentum (könyvjelzők, csatolt kereszthivatkozások)
+PDM	PDM
+PDM documents and metadata (JSON)	PDM-dokumentumok és metaadatok (JSON)
+PE	PE
+PE terminal	PE-sorkapocs
+PFHd	PFHd
+PFHd (1/h)	PFHd (1/h)
+PLC address {} used on several cards: {}	A(z) {} PLC-cím több kártyán is használatban van: {}
+PLC analog input	PLC analóg bemenet
+PLC analog output	PLC analóg kimenet
+PLC assignment list	PLC-hozzárendelési lista
+PLC card 8 digital inputs	PLC-kártya, 8 digitális bemenet
+PLC card 8 digital outputs	PLC-kártya, 8 digitális kimenet
+PLC card data of {} without PLC points	{} PLC-kártyaadatai PLC-pontok nélkül
+PLC card {} is not assigned to a station	A(z) {} PLC-kártya nincs állomáshoz rendelve
+PLC card {}: station {} does not exist	{} PLC-kártya: a(z) {} állomás nem létezik
+PLC connection point	PLC-csatlakozási pont
+PLC data	PLC-adatok
+PLC device comments for Mitsubishi GX Works (CSV)	PLC-operandusmegjegyzések a Mitsubishi GX Workshöz (CSV)
+PLC digital input	PLC digitális bemenet
+PLC digital output	PLC digitális kimenet
+PLC global variable list for Beckhoff TwinCAT 3 (TcGVL)	Globális PLC-változólista a Beckhoff TwinCAT 3-hoz (TcGVL)
+PLC global variables (IEC 61131-3)	Globális PLC-változók (IEC 61131-3)
+PLC hardware	PLC-hardver
+PLC hardware (AutomationML)	PLC-hardver (AutomationML)
+PLC symbol table (CSV)	PLC-szimbólumtábla (CSV)
+PLC symbol table for Siemens STEP 7 classic (SDF)	PLC-szimbólumtábla a Siemens STEP 7 classic programhoz (SDF)
+PLC tag table for Siemens TIA Portal (Excel)	PLC-változótábla a Siemens TIA Portalhoz (Excel)
+PLC tags for Rockwell Studio 5000 (CSV)	PLC-tagek a Rockwell Studio 5000-hez (CSV)
+PLC variables for Schneider Control Expert (XSY)	PLC-változók a Schneider Control Experthez (XSY)
+PLM	PLM
+PLM engineering BOM (JSON)	PLM tervezési anyagjegyzék (JSON)
+PVC (70 °C)	PVC (70 °C)
+Page / column (3.4.1)	Oldal / oszlop (3.4.1)
+Page name	Oldalnév
+Page name as shown by list_pages (default: all pages)	Oldalnév, ahogy a list_pages megjeleníti (alapértelmezés: minden oldal)
+Page name {} is used more than once: cross references are ambiguous	A(z) {} oldalnév többször szerepel: a kereszthivatkozások nem egyértelműek
+Page number	Oldalszám
+Page order	Oldalsorrend
+Page property of the property database (by key)	Oldal tulajdonsága a tulajdonság-adatbázisból (kulcs alapján)
+Page structure (=A1+CAB1)	Oldalstruktúra (=A1+CAB1)
+Page {}	Oldal {}
+Page {} has no single-line symbols	A(z) {} oldalon nincsenek egyvonalas szimbólumok
+Page {} shows an enclosure that no longer exists	A(z) {} oldal már nem létező szekrényt jelenít meg
+Page {}: its enclosure no longer exists	{}. oldal: a szekrénye már nem létezik
+Page {}: mounting layout pages stay in the main project	{} oldal: a szerelési terv oldalai a főprojektben maradnak
+Page {}: unknown symbol {}	{} oldal: ismeretlen szimbólum: {}
+Pages of subproject {} cannot be taken out again	A(z) {} alprojekt oldalai nem emelhetők ki újra
+Pages: names and ranges, e.g. 1-3, 5 (default: all pages)	Oldalak: nevek és tartományok, pl. 1-3, 5 (alapértelmezés: minden oldal)
+Panel layout in 3D (IFC)	Szekrényelrendezés 3D-ben (IFC)
+Panel layout in 3D (IGES)	Szekrényelrendezés 3D-ben (IGES)
+Panel layout in 3D (JT)	Szekrényelrendezés 3D-ben (JT)
+Panel layout in 3D (Parasolid XT)	Szekrényelrendezés 3D-ben (Parasolid XT)
+Panel layout in 3D (STEP)	Szekrényelrendezés 3D-ben (STEP)
+Panel layout in 3D (glTF)	Szekrényelrendezés 3D-ben (glTF)
+Panel layout settings	Szekrényelrendezés beállításai
+Panel legend	Szekrényjelmagyarázat
+Part accessories	Cikktartozékok
+Part data is maintained in the parts management	Az alkatrészadatok karbantartása az alkatrészkezelésben történik
+Part description	Alkatrészleírás
+Part differs	Eltérő alkatrész
+Part note	Alkatrész-megjegyzés
+Part numbers	Cikkszámok
+Part {} is {} in the PLM system (used by {})	A(z) {} alkatrész állapota a PLM-rendszerben: {} (használja: {})
+Partial	Részleges
+Parts need power-loss data for the temperature-rise verification (IEC 61439-1, 10.10)	A melegedés igazolásához az alkatrészeknek veszteségi teljesítmény adatokra van szükségük (IEC 61439-1, 10.10)
+Passing NO contact, both directions	Impulzus-záróérintkező, mindkét irányban
+Passing NO contact, on actuation	Impulzus-záróérintkező, működtetéskor
+Passing NO contact, on release	Impulzus-záróérintkező, elengedéskor
+Passive components	Passzív alkatelemek
+Performance level (PL)	Teljesítményszint (PL)
+Permitted (s)	Megengedett (s)
+Phase (L)	Fázisvezető (L)
+Phase meter	Fázisszögmérő
+Phase unbalance {} % above {} %	A(z) {} % fázisaszimmetria meghaladja a(z) {} %-ot
+Phase {}	{} fázis
+Phases	Fázisok
+Photodiode	Fotodióda
+Photoelectric sensor, diffuse, 3-wire	Optikai érzékelő, diffúz, 3 vezetékes
+Photoelectric sensor, diffuse, 4-wire	Optikai érzékelő, diffúz, 4 vezetékes
+Photoelectric sensor, retro-reflective, 3-wire	Optikai érzékelő, reflexiós, 3 vezetékes
+Photoelectric sensor, retro-reflective, 4-wire	Optikai érzékelő, reflexiós, 4 vezetékes
+Photoresistor (LDR)	Fotoellenállás (LDR)
+Pick-up power	Meghúzási teljesítmény
+Pick-up time	Meghúzási idő
+Pilot lamp PL (JIS)	Jelzőlámpa PL (JIS)
+Pilot light (NFPA)	Jelzőlámpa (NFPA)
+Pilot line	Vezérlővezeték
+Pin connection diagram	Csatlakozódugó-bekötési terv
+Pin side (male)	Tüske oldal (apa)
+Pipe	Csővezeték
+Piston diameter	Dugattyúátmérő
+Piston rod diameter	Dugattyúrúd-átmérő
+Placement	Elhelyezés
+Planned	Tervezett
+Plant	Létesítmény
+Plant number	Létesítményszám
+Plant structure after IEC 81346 (functions and locations), page sections, single-line diagram, a pump direct on line and one with frequency converter, PLC cards with digital and analog channels, a sensor plug and the PLC assignment.	Létesítményszerkezet az IEC 81346 szerint (funkciók és helyek), oldalszakaszok, egyvonalas rajz, egy közvetlen indítású és egy frekvenciaváltós szivattyú, PLC-kártyák digitális és analóg csatornákkal, egy érzékelőcsatlakozó és a PLC-kiosztás.
+Plastic	Műanyag
+Plastic enclosure	Műanyag szekrény
+Plug connectors with their parts: a sensor on M12 and a valve on M8, a fan and its thermostat on GX16 and GX12 aviation connectors, a buzzer on a D-sub 9 and an operator panel on a ribbon cable between two IDC sockets; the plugs window shows the pin-out of each plug on its mating faces with the wire and core colours.	Csatlakozók az alkatrészeikkel: egy érzékelő M12-n és egy szelep M8-on, egy ventilátor és termosztátja GX16 és GX12 csatlakozókon, egy berregő D-sub 9-en és egy kezelőpanel szalagkábelen két IDC aljzat között; a csatlakozók ablaka minden csatlakozó lábkiosztását mutatja a csatlakozó felületein a vezetékek és erek színeivel.
+Plug data of {} without pins	{} csatlakozódugó-adatai érintkezőtűk nélkül
+Plug female socket	Csatlakozódugó-hüvely
+Plug male pin	Csatlakozódugó-tű
+Plug pin and socket	Csatlakozódugó tűvel és hüvellyel
+Plug tag, e.g. -X10 (default: all plugs)	Csatlakozó jelölése, pl. -X10 (alapértelmezés: minden csatlakozó)
+Plug-in jumper	Dugaszolható áthidaló
+Plug: female socket	Csatlakozódugó: hüvely
+Plug: male pin	Csatlakozódugó: tű
+Plug: pin and socket	Csatlakozódugó: tű és hüvely
+Pollution degree	Szennyezettségi fok
+Port size	Csatlakozóméret
+Port {} has more than {} cables	A(z) {} portnak több mint {} kábele van
+Port {} is connected more than once	A(z) {} port többször van csatlakoztatva
+Pos	Poz.
+Position (mm)	Pozíció (mm)
+Position of the main function	A főfunkció pozíciója
+Position switch NC	Helyzetkapcsoló, nyitóérintkező
+Position switch NC LS (JIS)	Helyzetkapcsoló, nyitóérintkező LS (JIS)
+Position switch NC SQ (GB)	Helyzetkapcsoló, nyitóérintkező SQ (GB)
+Position switch NC SQ (GOST)	Helyzetkapcsoló, nyitóérintkező SQ (GOST)
+Position switch NO	Helyzetkapcsoló, záróérintkező
+Position switch NO LS (JIS)	Helyzetkapcsoló, záróérintkező LS (JIS)
+Position switch NO SQ (GB)	Helyzetkapcsoló, záróérintkező SQ (GB)
+Position switch NO SQ (GOST)	Helyzetkapcsoló, záróérintkező SQ (GOST)
+Positively driven contacts	Kényszervezetett érintkezők
+Potential (custom)	Potenciál (egyéni)
+Potential +24V	+24V potenciál
+Potential 0V	0V potenciál
+Potential L1	L1 potenciál
+Potential L2	L2 potenciál
+Potential L3	L3 potenciál
+Potential N	N potenciál
+Potential PE	PE potenciál
+Potential definitions	Potenciáldefiníciók
+Potential name (L1, +24V, otherwise counted)	Potenciálnév (L1, +24V, egyébként sorszámozott)
+Potential {} defined {} times	A(z) {} potenciál {}-szor van definiálva
+Potentials / Connectors	Potenciálok / csatlakozók
+Potentials, interruption points	Potenciálok, megszakítási pontok
+Potentiometer	Potenciométer
+Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Fő- és vezérlőáramkör több oldalon: főkapcsoló, motorvédelem, három mágneskapcsoló reteszeléssel, meghúzáskésleltetett időrelé, megszakítási pontok, potenciálok érszínekkel, motorkábel és kábelkimutatások.
+Power factor	Teljesítménytényező
+Power factor meter	Teljesítménytényező-mérő
+Power loss (W)	Veszteségi teljesítmény (W)
+Power module	Tápmodul
+Power supplies, transformers	Tápegységek, transzformátorok
+Power supply	Betáplálás
+Power supply AC/DC	Tápegység AC/DC
+Power supply and transformers	Tápellátás és transzformátorok
+Power supply load budget	Tápegységek terhelési mérlege
+PowerPoint presentation	PowerPoint-bemutató
+Pre-arcing energy	Olvadási energia
+Preset counter, 1 stage	Előválasztó számláló, 1 fokozatú
+Preset counter, 2 stages	Előválasztó számláló, 2 fokozatú
+Pressure	Nyomás
+Pressure gauge	Nyomásmérő
+Pressure line	Nyomóvezeték
+Pressure regulator	Nyomásszabályozó szelep
+Pressure relief valve	Nyomáshatároló szelep
+Pressure switch	Nyomáskapcsoló
+Pressure switch NC	Nyomáskapcsoló, nyitóérintkező
+Pressure switch NO	Nyomáskapcsoló, záróérintkező
+Pressure switch NO (NFPA)	Nyomáskapcsoló, záróérintkező (NFPA)
+Primary voltage	Primer feszültség
+Problem	Probléma
+Process component	Folyamatkomponens
+Process connection	Folyamatcsatlakozás
+Process function	Folyamatfunkció
+Process line	Folyamatvezeték
+Process plant (example identifiers)	Folyamattechnikai létesítmény (példaazonosítók)
+Process pump	Folyamatszivattyú
+Process range end	Folyamattartomány vége
+Process range start	Folyamattartomány kezdete
+Procurement	Beszerzés
+Procurement order list (CSV)	Beszerzési rendelési lista (CSV)
+Product	Termék
+Production of {}{} failed: {}	{}{} gyártása sikertelen: {}
+Production wire list (CSV)	Gyártási vezetéklista (CSV)
+Project description	Projektleírás
+Project manager	Projektvezető
+Project number	Projektszám
+Project property of the property database (by key)	Projekt tulajdonsága a tulajdonság-adatbázisból (kulcs alapján)
+Project revision	Projektrevízió
+Project symbols	Projektszimbólumok
+Proof test interval	Ellenőrző vizsgálat időköze
+Prospective short-circuit current	Várható zárlati áram
+Protection class	Érintésvédelmi osztály
+Protection setting	Védelmi beállítás
+Protective conductor {} with wire colour {} (must be GNYE)	A(z) {} védővezető érszíne {} (GNYE kell legyen)
+Protective conductors must be green-yellow (IEC 60204-1, 13.2.2)	A védővezetőknek zöld-sárgának kell lenniük (IEC 60204-1, 13.2.2)
+Protective device	Védőkészülék
+Protective devices	Védőkészülékek
+Protective earth	Védőföldelés
+Protective earth (PE)	Védővezető (PE)
+Protective hose	Védőtömlő
+Proximity sensor	Közelítéskapcsoló
+Proximity sensor NO	Közelítéskapcsoló, záróérintkező
+Proximity switch NO (NFPA)	Közelítéskapcsoló, záróérintkező (NFPA)
+Pull button NC	Húzógomb, nyitóérintkező
+Pull button NC, latching	Húzógomb, nyitóérintkező, reteszelő
+Pull button NO	Húzógomb, záróérintkező
+Pull button NO, latching	Húzógomb, záróérintkező, reteszelő
+Pulse counter	Impulzusszámláló
+Pulse counter, electrical reset	Impulzusszámláló, villamos nullázás
+Pulse counter, manual reset	Impulzusszámláló, kézi nullázás
+Pulse frequency	Impulzusfrekvencia
+Pump	Szivattyú
+Pumps	Szivattyúk
+Punching	Lyukasztás
+Punching machine	Lyukasztógép
+Push button (installation)	Nyomógomb (installációs)
+Push button NC	Nyomógomb, nyitóérintkező
+Push button NC (NFPA)	Nyomógomb, nyitóérintkező (NFPA)
+Push button NC PBS (JIS)	Nyomógomb, nyitóérintkező PBS (JIS)
+Push button NC SB (GB)	Nyomógomb, nyitóérintkező SB (GB)
+Push button NC SB (GOST)	Nyomógomb, nyitóérintkező SB (GOST)
+Push button NC, latching	Nyomógomb, nyitóérintkező, reteszelő
+Push button NO	Nyomógomb, záróérintkező
+Push button NO (NFPA)	Nyomógomb, záróérintkező (NFPA)
+Push button NO PBS (JIS)	Nyomógomb, záróérintkező PBS (JIS)
+Push button NO SB (GB)	Nyomógomb, záróérintkező SB (GB)
+Push button NO SB (GOST)	Nyomógomb, záróérintkező SB (GOST)
+Push button NO, latching	Nyomógomb, záróérintkező, reteszelő
+Push button with key NC, latching	Kulcsos nyomógomb, nyitóérintkező, reteszelő
+Push button with key NO, latching	Kulcsos nyomógomb, záróérintkező, reteszelő
+Pushbutton NC	Nyomógomb, nyitóérintkező
+Pushbutton NO	Nyomógomb, záróérintkező
+Qty	Menny.
+RCD {} mA	RCD {} mA
+Radiation	Sugárzás
+Rails, ducts and busbars	Sínek, csatornák és gyűjtősínek
+Ramp-down time	Lefutási idő
+Ramp-up time	Felfutási idő
+Rated apparent power	Névleges látszólagos teljesítmény
+Rated burden	Névleges terhelés
+Rated conditional short-circuit current	Névleges feltételes zárlati áram
+Rated cross-section	Névleges keresztmetszet
+Rated current (A)	Névleges áram (A)
+Rated current of the assembly	A kapcsolóberendezés névleges árama
+Rated current of the auxiliary contacts	A segédérintkezők névleges árama
+Rated diversity factor	Névleges egyidejűségi tényező
+Rated frequency	Névleges frekvencia
+Rated impulse withstand voltage	Névleges lökőfeszültség-állóság
+Rated insulation voltage	Névleges szigetelési feszültség
+Rated residual current	Névleges különbözeti áram
+Rated short-circuit breaking capacity	Névleges zárlati megszakítóképesség
+Rated short-time withstand current	Névleges rövid idejű áramállóság
+Rated speed	Névleges fordulatszám
+Rated torque	Névleges nyomaték
+Rated voltage	Névleges feszültség
+Rear wall	Hátfal
+Rectangular punch	Négyszögletes lyukasztó
+Rectifier / inverter AC/DC, bidirectional	Egyenirányító / inverter AC/DC, kétirányú
+Redline	Redline
+Redundancy	Redundancia
+Relay / contactor coil	Relé- / mágneskapcsoló-tekercs
+Relay coil (NFPA)	Relétekercs (NFPA)
+Relay coil K (GOST)	Relétekercs K (GOST)
+Relay coil with LED	Relétekercs LED-del
+Relay coil with indicator	Relétekercs kijelzővel
+Relay coil with suppressor diode	Relétekercs szabadonfutó diódával
+Relay coil, AC	Relétekercs, váltakozó áramú
+Relay coil, AC resistant	Relétekercs, váltakozó áramnak ellenálló
+Relay coil, flashing	Relétekercs, villogó
+Relay coil, high-speed	Relétekercs, gyors működésű
+Relay coil, latching	Relétekercs, impulzusrelé
+Relay coil, mechanically latched	Relétekercs, mechanikusan reteszelt
+Relay coil, polarized	Relétekercs, polarizált
+Relay coil, remanent	Relétekercs, remanens
+Relay coil, resonant	Relétekercs, rezonáns
+Relay coil, thermal	Relétekercs, termikus
+Relays, contactors	Relék, mágneskapcsolók
+Released	Kiadva
+Released pages cannot be deleted	A kiadott oldalak nem törölhetők
+Remote I/O	Decentralizált periféria
+Remote I/O {} has no controller	A(z) {} decentralizált perifériának nincs vezérlője
+Replace needs the text to find	A cseréhez meg kell adni a keresendő szöveget
+Replacement part number	Helyettesítő cikkszám
+Residual current device	Áram-védőkapcsoló
+Residual current device 1-pole	Áram-védőkapcsoló, 1 pólusú
+Residual current device 2-pole	Áram-védőkapcsoló, 2 pólusú
+Residual current device 3-pole	Áram-védőkapcsoló, 3 pólusú
+Residual current device 4-pole	Áram-védőkapcsoló, 4 pólusú
+Residual current type	Hibaáram-típus
+Resistor	Ellenállás
+Resolution	Felbontás
+Response time	Reakcióidő
+Result	Eredmény
+Return / exhaust line	Visszafolyó / kipufogó vezeték
+Reviewer	Véleményező
+Revision overview (changes)	Revízió-áttekintés (változások)
+Right side	Jobb oldal
+Right side panel	Jobb oldalfal
+Rivet nut	Szegecsanya
+RoHS compliant	RoHS-megfelelő
+Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
+Roller switch NC	Görgős kapcsoló, nyitóérintkező
+Roller switch NO	Görgős kapcsoló, záróérintkező
+Roof	Tető
+Roof top	Tető
+Room floor	Helyiség padlója
+Rotation	Elforgatás
+Round punch	Kerek lyukasztó
+Routing list (3D)	Nyomvonallista (3D)
+Row {} not found	A(z) {} sor nem található
+Row {}: no job	{}. sor: nincs megbízás
+Row {}: unknown status {}	{}. sor: ismeretlen állapot: {}
+Rule set verification	Ellenőrzés szabálykészletek alapján
+Rule {}: no macro {}	{}. szabály: nincs {} makró
+Rule {}: {}	{}. szabály: {}
+Rule {}: {} has no variant {}	{}. szabály: a(z) {} makrónak nincs {} változata
+Rule {}: {} is no page macro	{}. szabály: a(z) {} nem oldalmakró
+SVG image (one page)	SVG-kép (egy oldal)
+Saddle jumper	Dugaszolható áthidaló
+Safe torque off (STO)	Biztonságos nyomatékkikapcsolás (STO)
+Safety	Biztonság
+Safety category	Biztonsági kategória
+Safety function {} has no subsystems	A(z) {} biztonsági funkciónak nincsenek alrendszerei
+Safety function {} reaches PL {}, PL {} is required	A(z) {} biztonsági funkció PL {} szintet ér el, PL {} szükséges
+Safety function {}: {}	{} biztonsági funkció: {}
+Safety functions	Biztonsági funkciók
+Safety functions (ISO 13849-1)	Biztonsági funkciók (ISO 13849-1)
+Safety integrity level (SIL)	Biztonsági integritási szint (SIL)
+Safety relay	Biztonsági relé
+Safety relays need their performance level (ISO 13849-1, 6.3)	A biztonsági reléknél meg kell adni a teljesítményszintet (PL) (ISO 13849-1, 6.3)
+Safety relevant	Biztonsági szempontból releváns
+Safety-related parts of control systems: reliability data of the safety devices	Vezérlések biztonsági vonatkozású részei: a biztonsági készülékek megbízhatósági adatai
+Salinity meter	Sótartalommérő
+Save reviews	Véleményezések mentése
+Scale 1:{}	Méretarány 1:{}
+Scaling maximum	Skálázási maximum
+Scaling minimum	Skálázási minimum
+Schematic (multi-line)	Kapcsolási rajz (többvonalas)
+Schematic A4 portrait	Kapcsolási rajz, A4 álló
+Second end only	Csak a második vég
+Secondary voltage	Szekunder feszültség
+Segregation: {} run together with power conductors over {} mm	Elkülönítés: {} {} mm hosszon erősáramú vezetőkkel együtt halad
+Selection list	Választéklista
+Selective up to (A)	Szelektív eddig (A)
+Selectivity	Szelektivitás
+Selector switch (NFPA)	Választókapcsoló (NFPA)
+Selector switch 3 positions NC, latching	Választókapcsoló, 3 állású, nyitóérintkező, reteszelő
+Selector switch 3 positions NC, latching, middle off	Választókapcsoló, 3 állású, nyitóérintkező, reteszelő, közép: ki
+Selector switch 3 positions NC, return to off, latching	Választókapcsoló, 3 állású, nyitóérintkező, ki állásba visszarugózó, reteszelő
+Selector switch 3 positions NC, spring return to middle, middle off	Választókapcsoló, 3 állású, nyitóérintkező, középre visszarugózó, közép: ki
+Selector switch 3 positions NC, spring return, middle latching	Választókapcsoló, 3 állású, nyitóérintkező, visszarugózó, közép: reteszelő
+Selector switch 3 positions NC, spring return, two positions latching	Választókapcsoló, 3 állású, nyitóérintkező, visszarugózó, két állás reteszelő
+Selector switch 3 positions NO, latching	Választókapcsoló, 3 állású, záróérintkező, reteszelő
+Selector switch 3 positions NO, latching, middle off	Választókapcsoló, 3 állású, záróérintkező, reteszelő, közép: ki
+Selector switch 3 positions NO, return to off, latching	Választókapcsoló, 3 állású, záróérintkező, ki állásba visszarugózó, reteszelő
+Selector switch 3 positions NO, spring return to middle, middle off	Választókapcsoló, 3 állású, záróérintkező, középre visszarugózó, közép: ki
+Selector switch 3 positions NO, spring return, middle latching	Választókapcsoló, 3 állású, záróérintkező, visszarugózó, közép: reteszelő
+Selector switch 3 positions NO, spring return, two positions latching	Választókapcsoló, 3 állású, záróérintkező, visszarugózó, két állás reteszelő
+Selector switch COS (JIS)	Választókapcsoló COS (JIS)
+Selector switch NC	Választókapcsoló, nyitóérintkező
+Selector switch NC, latching	Választókapcsoló, nyitóérintkező, reteszelő
+Selector switch NC, latching, with position diagram	Választókapcsoló, nyitóérintkező, reteszelő, kapcsolási diagrammal
+Selector switch NC, position diagram A	Választókapcsoló, nyitóérintkező, A kapcsolási diagram
+Selector switch NC, position diagram B	Választókapcsoló, nyitóérintkező, B kapcsolási diagram
+Selector switch NO	Választókapcsoló, záróérintkező
+Selector switch NO, latching	Választókapcsoló, záróérintkező, reteszelő
+Selector switch NO, latching, with position diagram	Választókapcsoló, záróérintkező, reteszelő, kapcsolási diagrammal
+Selector switch NO, position diagram A	Választókapcsoló, záróérintkező, A kapcsolási diagram
+Selector switch NO, position diagram B	Választókapcsoló, záróérintkező, B kapcsolási diagram
+Selector switch SA (GB)	Választókapcsoló SA (GB)
+Selector switch SA (GOST)	Választókapcsoló SA (GOST)
+Semiconductor contactor 3-pole	Félvezetős mágneskapcsoló, 3 pólusú
+Sensing distance	Kapcsolási távolság
+Sensing principle	Érzékelési elv
+Sensor and measurement	Érzékelés és mérés
+Sensors	Érzékelők
+Sequential (1, 2, 3 …)	Folyamatos (1, 2, 3 …)
+Serial number	Sorozatszám
+Service unit	Levegő-előkészítő egység
+Service unit (filter, regulator, lubricator)	Levegő-előkészítő egység (szűrő, szabályozó, olajozó)
+Setpoint	Alapjel
+Setting range	Beállítási tartomány
+Sheath colour	Köpeny színe
+Sheath material	Köpeny anyaga
+Sheet number	Lapszám
+Sheet steel	Acéllemez
+Shield clamp	Árnyékolásbilincs
+Shield of bus cable {} is not connected at both ends	A(z) {} buszkábel árnyékolása nincs mindkét végén bekötve
+Shield of motor cable {} must be connected at both ends	A(z) {} motorkábel árnyékolását mindkét végén be kell kötni
+Shield of {} is connected with a pigtail at {}: use a shield clamp	{0} árnyékolása {1} helyen pigtaillel van bekötve: használjon árnyékolásbilincset
+Shielded cable {} has no EMC gland, shield clamp or connector at {}	A(z) {} árnyékolt kábelnél nincs EMC-tömszelence, árnyékolásbilincs vagy csatlakozó itt: {}
+Shielded cable {} runs together with power conductors over {} mm	A(z) {} árnyékolt kábel {} mm hosszon erősáramú vezetőkkel együtt halad
+Shock resistance	Lökésállóság
+Short circuit and disconnection	Zárlat és lekapcsolás
+Short circuit between potentials {}	Rövidzárlat a következő potenciálok között: {}
+Shut-off valve	Elzárószelep
+Siemens (I0.0 / Q0.0)	Siemens (I0.0 / Q0.0)
+Signal	Jel
+Signal and operating devices	Jelző- és kezelőkészülékek
+Signal devices	Jelzőkészülékek
+Signal name	Jelnév
+Signal range	Jeltartomány
+Signal type	Jeltípus
+Silencer	Hangtompító
+Single, free-standing	Egyedi, szabadon álló
+Single, wall mounted	Egyedi, falra szerelt
+Single-line / overview	Egyvonalas / áttekintés
+Single-line diagram	Egyvonalas rajz
+Siren	Sziréna
+Site address	Telephely címe
+Size (mm)	Méret (mm)
+Skipped	Kihagyva
+Socket outlet	Csatlakozóaljzat
+Socket side (female)	Hüvely oldal (anya)
+Soft starter	Lágyindító
+Solar charge controller	Napelemes töltésszabályozó
+Solenoid (NFPA)	Mágnestekercs (NFPA)
+Solenoid actuator	Emelőmágnes
+Solenoid valve coil	Mágnesszelep-tekercs
+Solenoid valve coil SV (JIS)	Mágnesszelep tekercse SV (JIS)
+Solenoid valve coil YA (GOST)	Mágnesszelep tekercse YA (GOST)
+Solenoid valve coil YV (GB)	Mágnesszelep tekercse YV (GB)
+Sort code	Rendezési kód
+Sound level	Zajszint
+Source {}, first target {}, second target {}	Forrás {}, első cél {}, második cél {}
+Source {}, targets {}, {} and {}	Forrás {}, célok {}, {} és {}
+Spare	Tartalék
+Spare part	Pótalkatrész
+Spare terminal	Tartalék sorkapocs
+Speed	Fordulatszám
+Stainless steel	Rozsdamentes acél
+Standard	Szabvány
+Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start / stop áramkör relével: a tekercs és az érintkezők egy eszközt alkotnak kereszthivatkozásokkal és érintkezőképpel; sorkapocs, vezetékszámok, sorkapocsrajz és kapcsolatlista.
+Start date	Kezdés dátuma
+Started	Elkezdve
+Starting current ratio	Indítási áramviszony
+Starting torque	Indítónyomaték
+Station name (PROFINET)	Állomásnév (PROFINET)
+Station name {} is used {} times	A(z) {} állomásnév {}-szor van használva
+Station {} is not connected to bus {}	A(z) {} állomás nincs csatlakoztatva a(z) {} buszhoz
+Station {}: bus system {} does not exist	{} állomás: a(z) {} buszrendszer nem létezik
+Steam	Gőz
+Stock	Készlet
+Stop category	Leállítási kategória
+Storage temperature range	Tárolási hőmérséklet-tartomány
+Straight through from {} to {}, across from {} to {} and from {} to {}	Egyenesen {} – {}, keresztben {} – {} és {} – {}
+Strain relief	Húzásmentesítő
+Stretched	Nyújtott
+Strip (mm)	Csupaszolás (mm)
+Stripping from (mm)	Csupaszítás kezdete (mm)
+Stripping to (mm)	Csupaszítás vége (mm)
+Stroke	Löket
+Structure identifier {} is not defined in the structure management	A(z) {} struktúraazonosító nincs definiálva a struktúrakezelésben
+Structure identifier {} must not contain blanks or the signs = + - / :	A(z) {} struktúraazonosító nem tartalmazhat szóközt és = + - / : jeleket
+Structure identifiers	Struktúraazonosítók
+Subnet mask	Alhálózati maszk
+Subproject {} is already out	A(z) {} alprojekt már ki van emelve
+Subproject {} is being edited outside (since {})	A(z) {} alprojektet külsőleg szerkesztik ({} óta)
+Subproject {} was not taken out of this project	A(z) {} alprojektet nem ebből a projektből emelték ki
+Subproject {}: {} of its pages no longer exist	{} alprojekt: {} oldala már nem létezik
+Substitute value	Helyettesítő érték
+Subsystem {} has no devices	A(z) {} alrendszernek nincsenek készülékei
+Suction line	Szívóvezeték
+Suitable for drag chains	Energialáncba alkalmas
+Sum	Összeg
+Supplementary bonding	Kiegészítő védő-potenciálkiegyenlítés
+Supplementary field	Kiegészítő mező
+Supplementary fields	Kiegészítő mezők
+Suppliers	Szállítók
+Supply network	Hálózattípus
+Supply voltage	Tápfeszültség
+Surface (m²)	Felület (m²)
+Surge protection type	Túlfeszültség-védelem típusa
+Surge protective device	Túlfeszültség-védelmi eszköz
+Surge suppressor	Túlfeszültség-korlátozó
+Switch, 1-pole (installation)	Kapcsoló, egypólusú (installációs)
+Switch-disconnector (single-line)	Terheléskapcsoló (egyvonalas)
+Switch-disconnector 1-pole	Terheléskapcsoló, 1 pólusú
+Switch-disconnector 1-pole, automatic tripping	Terheléskapcsoló, 1 pólusú, automatikus kioldással
+Switch-disconnector 2-pole	Terheléskapcsoló, 2 pólusú
+Switch-disconnector 2-pole, automatic tripping	Terheléskapcsoló, 2 pólusú, automatikus kioldással
+Switch-disconnector 3-pole	Terheléskapcsoló, 3 pólusú
+Switch-disconnector 3-pole, automatic tripping	Terheléskapcsoló, 3 pólusú, automatikus kioldással
+Switches / Sensors	Kapcsolók / érzékelők
+Switches, pushbuttons	Kapcsolók, nyomógombok
+Switching frequency	Kapcsolási gyakoriság
+Switching output	Kapcsolókimenet
+Symbol key	Szimbólumkulcs
+Symbolic address	Szimbolikus cím
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A(z) {}. lapon lévő T-elem nem illik a vezetékeihez: egy vezeték kell az irányában, kettő keresztben, és nem lehet ott csatlakozási pont
+Table of contents	Tartalomjegyzék
+Tabloid landscape	Tabloid fekvő
+Tachometer	Fordulatszámmérő
+Tank	Tartály
+Tanks	Tartályok
+Tap	Menetfúró
+Tapped hole	Menetes furat
+Tapping	Menetfúrás
+Target	Cél
+Technical characteristics	Műszaki jellemzők
+Temperature	Hőmérséklet
+Temperature controller	Hőmérséklet-szabályozó
+Temperature range	Hőmérséklet-tartomány
+Temperature switch	Hőmérséklet-kapcsoló
+Temperature switch NC	Hőmérséklet-kapcsoló, nyitóérintkező
+Temperature switch NO (NFPA)	Hőmérséklet-kapcsoló, záróérintkező (NFPA)
+Terminal XT (GB)	Sorkapocs XT (GB)
+Terminal XT (GOST)	Sorkapocs XT (GOST)
+Terminal block TB (JIS)	Sorkapocsléc TB (JIS)
+Terminal box	Kapocsdoboz
+Terminal connection diagram	Sorkapocs-bekötési terv
+Terminal data	Sorkapocsadatok
+Terminal description	Sorkapocsleírás
+Terminal diagram	Sorkapocsterv
+Terminal line-up	Sorkapocs-sorrend
+Terminal marker	Sorkapocsjelölő
+Terminal strip data of {} without terminals	{} sorkapocsléc-adatai sorkapcsok nélkül
+Terminal strip overview	Sorkapocsléc-áttekintés
+Terminal strips and PLC addresses	Sorkapocslécek és PLC-címek
+Text file	Szövegfájl
+The DXF file contains nothing that can be imported	A DXF-fájl nem tartalmaz importálható elemet
+The PDF has no pages that can be read	A PDF-ben nincsenek olvasható oldalak
+The archive contains no project	Az archívum nem tartalmaz projektet
+The archive has no manifest	Az archívumnak nincs manifestje
+The archive is damaged	Az archívum sérült
+The archive unpacks to more than {} MB	Az archívum kicsomagolva több mint {} MB
+The assembly manufacturer must be named (IEC 61439-1, 6.1)	A berendezés gyártóját meg kell nevezni (IEC 61439-1, 6.1)
+The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	A szekrénysor a helyiségében: L alakú alaprajz, belső fal, ajtó és ablak, a szekrénysor a helyén, egy sín dugaszolóaljzattal a falon, falra szerelt vészvilágító lámpa és kábeltálca a mennyezet alatt.
+The configuration is not a JSON object	A konfiguráció nem JSON-objektum
+The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	A szállítószalag az első kiadás után: kiadott és zárolt revízió, az azóta jelölt változások, ellenőrzési megjegyzések piros jelölésekkel, egy módosítási kérelem, a B revízió a jóváhagyási folyamatban és egy összehasonlítási alapállapot.
+The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	A bemutató projekt: PLC be- és kimenetek, a szekrény elrendezése sínekkel, kábelcsatornákkal és ajtókészülékekkel, ajtókábelköteg és motorkábel.
+The embedded document {} is damaged	A(z) {} beágyazott dokumentum sérült
+The file is empty	A fájl üres
+The file was written by a newer version (format {}): data this version does not know is lost when saving	A fájlt egy újabb verzió írta ({} formátum): az ebben a verzióban ismeretlen adatok mentéskor elvesznek
+The first column must be Key	Az első oszlopnak Key-nek kell lennie
+The function definition needs a key and a name	A funkciódefinícióhoz kulcs és név szükséges
+The last page cannot be deleted	Az utolsó oldal nem törölhető
+The macro box has no items left	A makródoboznak nem maradt eleme
+The next free id is already in use	A következő szabad azonosító már foglalt
+The option needs a name	Az opcióhoz név szükséges
+The page needs a number	Az oldalhoz szám szükséges
+The pages were changed after the submission; submit the revision again	Az oldalak a beküldés után módosultak; küldje be újra a revíziót
+The project has no panel layout	A projektnek nincs szekrényelrendezése
+The property needs a name	A tulajdonsághoz név szükséges
+The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	A szivattyútelep két sorolt álló szekrényben: gyűjtősín-rendszer, sínek és kábelcsatornák, ajtókészülékek és fogantyúk, szűrős ventilátor, lámpa, PE-sín, kábeltömszelencék, kábelátvezetés, klimatizálási számítás, csatornatöltöttség és 3D-útvonaltervezés.
+The revision is already released	A revízió már ki van adva
+The revision is not approved	A revízió nincs jóváhagyva
+The revision is not in review	A revízió nincs véleményezés alatt
+The room of the line-up with its pumps: pump motors fed through cable glands in the roofs of the cabinets, a pump and a vessel standing on the floor, ball valves and a gauge on the wall, and the DN25 pipes of the water circuit routed in 3D along a pipe run on the wall.	A szekrénysor helyisége a szivattyúival: a szivattyúmotorok a szekrénytetők kábeltömszelencéin át kapnak tápot, egy szivattyú és egy tartály a padlón, golyóscsapok és egy nyomásmérő a falon, a vízkör DN25-ös csövei pedig 3D-ben egy fali csővezeték-nyomvonal mentén haladnak.
+The row lies on a released page	A sor kiadott oldalon van
+The scheme needs a name	A sémához név szükséges
+The subproject needs a name	Az alprojekthez név szükséges
+The symbol has no connection points.	A szimbólumnak nincsenek csatlakozási pontjai.
+The symbol has no name.	A szimbólumnak nincs neve.
+The workbook has no sheet	A munkafüzetben nincs munkalap
+Thermal overload relay	Hőkioldós túlterhelésrelé
+Thermal overload relay 1-pole	Termikus túlterhelésrelé, 1 pólusú
+Thermal overload relay 2-pole	Termikus túlterhelésrelé, 2 pólusú
+Thermal protection	Hővédelem
+Thermal relay FR (GB)	Hőrelé FR (GB)
+Thermal relay KK (GOST)	Hőrelé KK (GOST)
+Thermal relay NC contact FR (GB)	Hőrelé nyitóérintkezője FR (GB)
+Thermal relay NC contact KK (GOST)	Hőrelé nyitóérintkezője KK (GOST)
+Thermal relay NC contact THR (JIS)	Hőrelé nyitóérintkezője THR (JIS)
+Thermal relay THR (JIS)	Hőrelé THR (JIS)
+Thermistor (PTC)	Termisztor (PTC)
+Thermistor NTC	NTC termisztor
+Thermistor PTC	Termisztor, PTC
+Thermometer / pyrometer	Hőmérő / pirométer
+This format needs a page	Ehhez a formátumhoz oldal szükséges
+This is subproject {} of {}	Ez a(z) {} alprojekt, szülőprojekt: {}
+This project is not a subproject	Ez a projekt nem alprojekt
+Through hole with nut	Átmenő furat anyával
+Through-beam receiver, 3-wire	Egyutas fénysorompó vevője, 3 vezetékes
+Through-beam receiver, 4-wire	Egyutas fénysorompó vevője, 4 vezetékes
+Through-beam sensor, 3-wire	Egyutas fénysorompó, 3 vezetékes
+Through-beam sensor, 4-wire	Egyutas fénysorompó, 4 vezetékes
+Through-beam transmitter	Egyutas fénysorompó adója
+Thyristor	Tirisztor
+Tightening torque	Meghúzási nyomaték
+Time function	Időfunkció
+Time range	Időtartomány
+Time relay coil KT (GB)	Időrelé tekercse KT (GB)
+Time relay coil KT (GOST)	Időrelé tekercse KT (GOST)
+Time setting	Időbeállítás
+Time switch (electronic)	Kapcsolóóra (elektronikus)
+Time switch contact NC	Kapcsolóóra-érintkező, nyitó
+Time switch contact NO	Kapcsolóóra-érintkező, záró
+Time-current curves	Idő-áram jelleggörbék
+Time-lag relay coil TLR (JIS)	Időrelé tekercse TLR (JIS)
+Timer coil (NFPA)	Időrelé tekercse (NFPA)
+Timer coil, off-delay	Időrelé-tekercs, elejtéskésleltetett
+Timer coil, on- and off-delay	Időrelé tekercse, meghúzás- és elengedéskésleltetett
+Timer coil, on-delay	Időrelé-tekercs, meghúzáskésleltetett
+Timer relay coil, off-delay	Időrelé tekercse, elengedéskésleltetett
+Timer relay coil, on-delay	Időrelé tekercse, meghúzáskésleltetett
+Title blocks and report forms	Szövegmezők és kimutatás-űrlapok
+To order	Rendelendő
+Total	Összesen
+Total length (m)	Teljes hossz (m)
+Total price	Összár
+Total weight	Össztömeg
+Touch sensor, 2-wire	Érintésérzékelő, 2 vezetékes
+Touch sensor, 3-wire	Érintésérzékelő, 3 vezetékes
+Transformation ratio	Áttételi arány
+Transformer (single-line)	Transzformátor (egyvonalas)
+Transformer 1-phase with screen	Transzformátor, egyfázisú, árnyékolással
+Transformer 1-phase, centre tap	Transzformátor, egyfázisú, középleágazással
+Transformer 1-phase, multiple taps	Transzformátor, egyfázisú, több leágazással
+Transformer 1-phase, variable coupling	Transzformátor, egyfázisú, változtatható csatolású
+Transformer 3-phase	Transzformátor, háromfázisú
+Transformer 3-phase, delta / delta	Transzformátor, háromfázisú, delta / delta
+Transformer 3-phase, delta / star	Transzformátor, háromfázisú, delta / csillag
+Transformer 3-phase, multiple taps	Transzformátor, háromfázisú, több leágazással
+Transformer 3-phase, star / delta	Transzformátor, háromfázisú, csillag / delta
+Transformer 3-phase, star / star	Transzformátor, háromfázisú, csillag / csillag
+Transformer 3-phase, star / star / delta	Transzformátor, háromfázisú, csillag / csillag / delta
+Transformer 3-phase, star / zigzag	Transzformátor, háromfázisú, csillag / zegzug
+Transformer bank of three 1-phase transformers	Transzformátorbank három egyfázisú transzformátorból
+Transformer, 3 windings	Transzformátor, 3 tekercselésű
+Transformers / power supplies	Transzformátorok / tápegységek
+Transistor	Tranzisztor
+Transistor NPN	NPN tranzisztor
+Transistor PNP	PNP tranzisztor
+Translation dictionary (CSV)	Fordítási szótár (CSV)
+Triac	Triac
+Trip class	Kioldási osztály
+Tripping characteristic	Kioldási jelleggörbe
+Trunking	Kábelcsatorna
+Tube	Cső
+Tubes	Csövek
+Tubing / piping list	Cső- / tömlőanyag-lista
+Two connection symbols on page {} lie on the same point	A(z) {}. lapon két kapcsolati szimbólum ugyanazon a ponton fekszik
+Two-way switch (installation)	Váltókapcsoló (installációs)
+Type numbers	Típusszámok
+UL listed	UL-listás
+UV resistant	UV-álló
+Unbalance {} %	Aszimmetria: {} %
+Undervoltage relay	Feszültségcsökkenési relé
+Unit of measurement	Mértékegység
+Unit price	Egységár
+Unknown cable {}	Ismeretlen kábel: {}
+Unknown device: {}	Ismeretlen készülék: {}
+Unknown job {}	Ismeretlen megbízás: {}
+Unknown macro	Ismeretlen makró
+Unknown macro box	Ismeretlen makródoboz
+Unknown object: {}	Ismeretlen objektum: {}
+Unknown revision	Ismeretlen revízió
+Unknown symbol '{}'	Ismeretlen szimbólum: '{}'
+Unknown tool {}	Ismeretlen szerszám: {}
+Upstream	Előtte kapcsolt
+User defined	Felhasználó által definiált
+User symbols	Felhasználói szimbólumok
+Utilisation (%)	Kihasználtság (%)
+Utilization category	Alkalmazási kategória
+Vacuum	Vákuum
+Valve function	Szelepfunkció
+Valve terminal	Szelepsziget
+Var-hour meter	Meddőenergia-mérő
+Varistor	Varisztor
+Varmeter	Meddőteljesítmény-mérő
+Vector group	Kapcsolási csoport
+Ventilation clearance	Szellőzési szabad tér
+Vessel	Tartály
+Vibration	Rezgés
+Vibration resistance	Rezgésállóság
+View projects	Projektek megtekintése
+Viewer	Megtekintő
+Violations	Megsértések
+Voltage (V)	Feszültség (V)
+Voltage drop (%)	Feszültségesés (%)
+Voltage drop (V)	Feszültségesés (V)
+Voltage protection level	Feszültségvédelmi szint
+Voltage range	Feszültségtartomány
+Voltage type	Feszültségnem
+Voltmeter	Feszültségmérő
+Voltmeter, differential	Feszültségmérő, különbségi
+Wall	Fal
+Wall {}	{}. fal
+Wall {} is not at a right angle	A(z) {}. fal nem derékszögű
+Wall {} is shorter than {} mm	A(z) {}. fal rövidebb {} mm-nél
+Walls {} and {} cross	A(z) {}. és {}. fal keresztezi egymást
+Warranty until	Garancia lejárata
+Water	Víz
+Watt-hour meter	Hatásosenergia-mérő
+Watt-hour meter with maximum demand indicator	Hatásosenergia-mérő maximumjelzővel
+Watt-hour meter with maximum demand recorder	Hatásosenergia-mérő maximumíróval
+Watt-hour meter with transmitter	Hatásosenergia-mérő impulzusadóval
+Watt-hour meter, energy from and to the busbar	Hatásosenergia-mérő, energia a gyűjtősínről és a gyűjtősínre
+Watt-hour meter, energy from the busbar	Hatásosenergia-mérő, energia a gyűjtősínről
+Watt-hour meter, energy to the busbar	Hatásosenergia-mérő, energia a gyűjtősínre
+Watt-hour meter, excess energy	Hatásosenergia-mérő, többletenergia
+Watt-hour meter, multi-rate	Hatásosenergia-mérő, többtarifás
+Watt-hour meter, one direction	Hatásosenergia-mérő, egy energiairány
+Watt-hour meter, slave (repeater)	Hatásosenergia-mérő, almérő (ismétlő)
+Watt-hour meter, slave with printer	Hatásosenergia-mérő, almérő nyomtatóval
+Wattmeter	Teljesítménymérő
+Wattmeter and varmeter, recording	Hatásos és meddő teljesítményíró
+Wattmeter, recording	Teljesítményíró
+Wavemeter	Hullámhosszmérő
+Wearing part	Kopóalkatrész
+Weld stud	Hegesztőcsap
+Wetted material	Közeggel érintkező anyag
+Width (mm)	Szélesség (mm)
+Winding connection	Tekercskapcsolás
+Wire assigned to unknown cable {}	A vezeték ismeretlen kábelhez van rendelve: {}
+Wire colour GNYE is reserved for protective conductors ({})	A GNYE érszín a védővezetők számára van fenntartva ({})
+Wire colours and cross-sections	Érszínek és keresztmetszetek
+Wire defaults	Vezeték-alapértékek
+Wire jumper	Huzaláthidaló
+Wire list (panel routing)	Vezetéklista (szekrényen belüli nyomvonal)
+Wire marker	Vezetékjelölő
+Wire no.	Vezetékszám
+Wire number {} is used for {} different potentials	A(z) {} vezetékszámot {} különböző potenciálhoz használják
+Wire {} – {} changed after it was wired	A(z) {} – {} vezeték a bekötése után módosult
+Wires, cables and tubes	Vezetékek, kábelek és csövek
+Wiring machine	Huzalfeldolgozó automata
+Wiring machine job list (CSV)	Huzalfeldolgozó automata feladatlistája (CSV)
+Wiring marks	Huzalozási jelölések
+Wiring problem {} – {}: {}	Huzalozási probléma {} – {}: {}
+Within a suite, free-standing	Sor belsejében, szabadon álló
+Within a suite, wall mounted	Sor belsejében, falra szerelt
+Within a suite, wall mounted, roof covered	Sor belsejében, falra szerelt, tetővel fedett
+Word document	Word-dokumentum
+Working line	Munkavezeték
+XLPE / EPR (90 °C)	XLPE / EPR (90 °C)
+Year of construction	Gyártási év
+Yes / no	Igen / nem
+Zener diode	Zener-dióda
+above	fent
+accepted	elfogadva
+added	hozzáadva
+auto: {} (potential {})	auto: {} ({} potenciál)
+auto: {} (project default)	auto: {} (projekt alapértelmezése)
+back-up {}	tartalékvédelem: {}
+bayed (open)	sorolt (nyitott)
+below	lent
+black	fekete
+blue	kék
+break off at {}	letörés itt: {}
+brown	barna
+changed	módosítva
+closed	lezárva
+coding key	kódoló kulcs
+contains	tartalmazza
+cooling unit {} W	hűtőegység {} W
+cut from {} to {} poles	rövidítve {} pólusról {} pólusra
+direct (no ducts)	közvetlen (csatornák nélkül)
+does not contain	nem tartalmazza
+does not equal	nem egyenlő
+draft	piszkozat
+enclosures not bayed	a szekrények nincsenek sorolva
+equals	egyenlő
+exhaust	kipufogó
+file format version added	fájlformátum-verzió hozzáadva
+filter fan {} m³/h	szűrős ventilátor {} m³/h
+frozen	rögzítve
+gold	arany
+green	zöld
+green-yellow	zöld-sárga
+grey	szürke
+heat exchanger {} W/K	hőcserélő {} W/K
+high	magas
+implemented	megvalósítva
+in progress	folyamatban
+in review	véleményezés alatt
+in the cable ducts	a kábelcsatornákban
+in the field	a terepen
+in work	munka alatt
+in {}	itt: {}
+in-line	átmenő
+incl.	beleértve
+ip (kA)	ip (kA)
+is	egyenlő
+is at least	legalább
+is at most	legfeljebb
+is empty	üres
+is none of	egyike sem ezeknek
+is not	nem egyenlő
+is not empty	nem üres
+is one of	ezek egyike
+landscape	fekvő
+leakage	szivárgó
+low	alacsony
+measuring	mérő
+new	új
+no header	nincs fejléc
+no list	nincs lista
+no path through the route network	nincs útvonal a nyomvonalhálózaton át
+no way through the enclosure	nincs út a szekrényen át
+not in the panel layout	nincs a szekrényelrendezésben
+not in the same line-up or room	nem ugyanabban a szekrénysorban vagy helyiségben
+not reached	nem teljesül
+not routed: {}	nincs fektetve: {}
+on the door	az ajtón
+on the left	balra
+on the right	jobbra
+orange	narancs
+over the door hinge, direct	az ajtózsanéron át, közvetlenül
+over the door hinge, via cable ducts	az ajtózsanéron át, kábelcsatornákon keresztül
+page properties	oldaltulajdonságok
+pigtail {} mm	pigtail {} mm
+pilot	vezérlő
+pink	rózsaszín
+portrait	álló
+pressure	nyomás
+red	piros
+released	kiadva
+removed	eltávolítva
+rerouted (frozen route no longer possible)	újrafektetve (a rögzített nyomvonal már nem lehetséges)
+resolved	megoldva
+return	visszafolyó
+routed	fektetve
+shield clamp ({} mm away)	árnyékolásbilincs ({} mm-re)
+silver	ezüst
+starts with	ezzel kezdődik
+strip {} mm	csupaszolás {} mm
+strip {} mm, ferrule {} mm² {}	csupaszolás {} mm, érvéghüvely {} mm² {}
+suction	szívó
+supply	táp
+terminals {} – {}	sorkapcsok: {} – {}
+through cable passages into the neighbouring enclosure	kábelátvezetéseken át a szomszédos szekrénybe
+turquoise	türkiz
+used: colour of the wire or core	foglalt: a vezeték vagy ér színe
+via cable ducts	kábelcsatornákon át
+violet	ibolya
+white	fehér
+working	munka
+yellow	sárga
+{} (multi-line)	{} (többvonalas)
+{} (routed)	{} (fektetve)
+{} (set on another wire of this connection)	{} (az összeköttetés egy másik vezetékén beállítva)
+{} ({}) is not connected to the equipotential bonding	{} ({}) nincs bekötve a potenciálkiegyenlítésbe
+{} and {} are not selective	{} és {} nem szelektív
+{} cannot be changed	{} nem módosítható
+{} cannot be removed	{} nem távolítható el
+{} cannot be renamed	{} nem nevezhető át
+{} differences taken over	{} különbség átvéve
+{} duplicate ids renumbered	{} ismétlődő azonosító újraszámozva
+{} fits none of the parts of {}	{0} nem illeszkedik a(z) {1} egyik cikkéhez sem
+{} frozen routes changed their length	{} rögzített nyomvonal hossza megváltozott
+{} has no MTTFd, B10d, PL or PFHd	{} esetén nincs MTTFd, B10d, PL vagy PFHd
+{} has nothing to manufacture	{} esetén nincs mit gyártani
+{} is a built-in function definition	{} beépített funkciódefiníció
+{} is a built-in property	{} beépített tulajdonság
+{} is a built-in scheme	{} beépített séma
+{} is a busbar machine and makes no sheets	{} sínmegmunkáló gép, lemezeket nem gyárt
+{} is not a busbar machine	{} nem sínmegmunkáló gép
+{} is not a property of {}	{} nem tulajdonsága ennek: {}
+{} is not an approver of this project	{} nem jóváhagyója ennek a projektnek
+{} is not placed in the plant layout	{} nincs elhelyezve a létesítmény-elrendezésben
+{} is on page {}, which is released: renaming it would change the page	A(z) {} a kiadott {} oldalon van: az átnevezés megváltoztatná az oldalt
+{} is placed at the missing node {}	{} a hiányzó {} csomóponton van elhelyezve
+{} is planned twice ({} and {})	{} kétszer van tervezve ({} és {})
+{} is selective to {} only up to {} A (short-circuit current {} A)	{0} csak {2} A-ig szelektív ehhez képest: {1} (zárlati áram {3} A)
+{} lies outside page {}	{} a(z) {} oldalon kívül esik
+{} min {} s	{} perc {} mp
+{} mounting marks belong to items that no longer exist	{} szerelési jelölés már nem létező elemekhez tartozik
+{} option assignments of deleted objects removed	{} törölt objektumokhoz tartozó opció-hozzárendelés eltávolítva
+{} placed properties converted to property keys	{} elhelyezett tulajdonság tulajdonságkulccsá alakítva
+{} planned devices are not in the schematic yet	{} tervezett készülék még nem szerepel a kapcsolási rajzon
+{} poles	{} pólus
+{} protective devices of the mains have no breaking capacity data	A hálózat {} védőkészülékének nincs megszakítóképesség-adata
+{} report references converted to report names	{} kimutatáshivatkozás kimutatásnévvé alakítva
+{} s	{} mp
+{} single part assignments converted to part lists	{} egyedi alkatrész-hozzárendelés alkatrészlistává alakítva
+{} symbols, {} wires, {} texts / graphics	{} szimbólum, {} vezeték, {} szöveg / grafika
+{} texts are not translated into {}	{0} szöveg nincs lefordítva erre: {1}
+{} unused device data records removed	{} nem használt készülékadatrekord eltávolítva
+{} wiring marks belong to wires that no longer exist	{} huzalozási jelölés már nem létező vezetékekhez tartozik
+{} without device tag on page {}	{0} készülékazonosító nélkül a(z) {1}. oldalon
+{} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nem fektethető: nincs út, amely fél vastagságnyira marad mindentől és {} mm sugárral hajlik. Helyezze át a végeket vagy csináljon helyet.
+{} {} enters through the bottom: no cable gland in the enclosure	{} {} a fenéken keresztül lép be: nincs kábeltömszelence a szekrényben
+{} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} a tetőn keresztül lép be: nincs kábeltömszelence a tetőn, az oldalakon vagy a hátfalon
+{} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} a szekrényei kábelbevezetéseiig van vezetve: nem állnak közös helyiségben, a köztük lévő út nem része az elrendezésnek
+{} {}: bends closer than the bend radius ({} mm)	{} {}: a hajlítások szűkebbek a hajlítási sugárnál ({} mm)
+{} – {}: connected in the single-line diagram but not in the schematic	{} – {}: az egyvonalas rajzon összekötve, a kapcsolási rajzon nem
+{}: MTTFd {} years is below 3 years	{}: az MTTFd {} év, ami kevesebb 3 évnél
+{}: \"{}\" is not one of {}	{}: \"{}\" nem szerepel ezek között: {}
+{}: a TT system needs a residual current device	{}: a TT-rendszerhez áram-védőkapcsoló szükséges
+{}: accessory {} fits none of the device's parts	{}: a(z) {} tartozék a készülék egyik cikkéhez sem illeszkedik
+{}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: a(z) {} kezelőelem {} mm-rel van a padló felett, ajánlott {} … {} mm
+{}: auxiliary function(s) without main function	{}: segédfunkció(k) főfunkció nélkül
+{}: breaking capacity {} kA below the short-circuit current {} kA	{}: a(z) {} kA megszakítóképesség kisebb a(z) {} kA zárlati áramnál
+{}: cable duct at {} mm filled {} % (limit {} %)	{}: a kábelcsatorna {} mm-nél {} %-ban telített (határérték: {} %)
+{}: cable duct at {} mm too small: its {} wires cannot be routed side by side	{}: a kábelcsatorna {} mm-nél túl kicsi: {} vezetéke nem fektethető egymás mellé
+{}: category 1 needs a high MTTFd	{}: az 1. kategóriához magas MTTFd szükséges
+{}: category 4 needs a high DCavg and MTTFd	{}: a 4. kategóriához magas DCavg és MTTFd szükséges
+{}: category {} needs a DCavg of at least 60 %	{}: a(z) {} kategóriához legalább 60 %-os DCavg szükséges
+{}: category {} needs measures against common cause failure	{}: a(z) {} kategóriához közös okú meghibásodás elleni intézkedések szükségesek
+{}: compression method not supported	{}: a tömörítési módszer nem támogatott
+{}: core {} is not a core of the cable ({})	{}: a(z) {} ér nem a kábel ere ({})
+{}: core {} of flat cable {} lands on pin {}	{}: a(z) {} ér a(z) {} szalagkábelből a(z) {} lábra kerül
+{}: core {} used for {} connections	{}: a(z) {} ér {} összeköttetéshez van használva
+{}: cross-section {} below the {} mm² of control circuits	{}: a(z) {} keresztmetszet kisebb a vezérlőáramkörök {} mm²-énél
+{}: cross-section {} below the {} mm² of power circuits	{}: a(z) {} keresztmetszet kisebb az erősáramú áramkörök {} mm²-énél
+{}: cross-section {} differs from the potential definition ({})	{}: a(z) {} keresztmetszet eltér a potenciáldefiníciótól ({})
+{}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: {} kivágása ezen: {} {} mm-re van a széltől, legalább {} mm szükséges
+{}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: {} és {} kivágásai ezen: {} túl közel vannak ({} mm anyaghíd, legalább {} mm)
+{}: designation '{}' used more than once	{}: a(z) '{}' megnevezés többször szerepel
+{}: device tag without device name	{}: készülékazonosító készüléknév nélkül
+{}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a(z) {} A hibaáram a(z) {} helyen nem kapcsol le {} s-on belül ({} A szükséges)
+{}: function texts differ in the single-line diagram and the schematic	{}: a funkciószövegek eltérnek az egyvonalas rajzon és a kapcsolási rajzon
+{}: hole of {} is too close to the cutout of {} on the {}	{}: {} furata túl közel van {} kivágásához ezen: {}
+{}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2} Ø{1} furata ezen: {3} {4} mm-re van a széltől, legalább {5} mm szükséges
+{}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: {} és {} furatai ezen: {} túl közel vannak ({} mm anyaghíd, legalább {} mm)
+{}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: kb. {} °C-os forró pont a szerelőlap x = {} mm, y = {} mm pontjában (belső hőmérséklet legfeljebb {} °C)
+{}: invalid value \"{}\" ({})	{}: érvénytelen érték: \"{}\" ({})
+{}: jumper {} connects terminals of different parts	{}: a(z) {} áthidalás különböző alkatrészek sorkapcsait köti össze
+{}: jumper {} connects terminals on different levels; use a wire jumper	{}: a(z) {} áthidalás különböző szinteken lévő sorkapcsokat köt össze; használjon huzaláthidalót
+{}: jumper {} crosses an end plate or end bracket	{}: a(z) {} áthidalás zárófedélen vagy végbakon halad át
+{}: jumper {} includes a PE terminal	{}: a(z) {} áthidalás PE-sorkapcsot is tartalmaz
+{}: jumper {} needs {} poles, the longest jumper part has {}	{}: a(z) {} áthidaláshoz {} pólus szükséges, a leghosszabb áthidaló-alkatrész {} pólusú
+{}: jumper {} on terminal {}, which is not placed	{}: {} áthidalás a(z) {} sorkapcson, amely nincs elhelyezve
+{}: lets through {} A²s, cable {} withstands {} A²s	{}: {} A²s-ot enged át, a(z) {} kábel {} A²s-ot bír ki
+{}: linked electrical device {} is not in the schematic	{}: a kapcsolt {} villamos készülék nincs a kapcsolási rajzon
+{}: linked fluid device is not in the schematic	{}: a kapcsolt fluidkészülék nincs a kapcsolási rajzon
+{}: linked to several fluid devices ({})	{}: több fluidkészülékhez kapcsolva ({})
+{}: load {} A above the usable {} A	{}: a(z) {} A terhelés meghaladja a használható {} A-t
+{}: load {} A above the usable {} A of the power supply	{}: a(z) {} A terhelés meghaladja a tápegység használható {} A-ét
+{}: main function placed {} times	{}: a főfunkció {}-szor van elhelyezve
+{}: making capacity {} kA below the peak short-circuit current {} kA	{}: a(z) {} kA bekapcsolóképesség kisebb a(z) {} kA zárlati csúcsáramnál
+{}: member of several device groups ({})	{}: több készülékcsoport tagja ({})
+{}: mounting problem {}: {}	{}: {} szerelési probléma: {}
+{}: no consumption data for {}	{}: nincs fogyasztási adat ehhez: {}
+{}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: nincs áthidaló-alkatrész a(z) {} áthidaláshoz (a sorkapocs-alkatrész Jumper műszaki adata)
+{}: no part assigned	{}: nincs hozzárendelt alkatrész
+{}: no service space of {} mm in front of {} (the door is too close)	{}: nincs {} mm szervizterület a(z) {} előtt (az ajtó túl közel van)
+{}: not in the single-line diagram	{}: nincs az egyvonalas rajzon
+{}: not placed in the panel layout	{}: nincs elhelyezve a szekrényelrendezésben
+{}: operations per year needed for the B10d of {}	{}: a(z) {} B10d-értékéhez szükséges az évenkénti kapcsolási szám
+{}: part {} is not in the project parts	{}: a(z) {} alkatrész nem szerepel a projekt alkatrészei között
+{}: part {} is not in the project parts (Parts management › synchronize)	{}: a(z) {} alkatrész nincs a projekt alkatrészei között (Alkatrészkezelés › szinkronizálás)
+{}: pin {} is not a pin of the part {}	{}: a(z) {} láb nem a(z) {} alkatrész lába
+{}: pin {} placed {} times	{}: a(z) {} érintkezőtű {}-szor van elhelyezve
+{}: pipe run {} crosses an opening ({})	{}: a(z) {} csővezeték-nyomvonal egy nyílást keresztez ({})
+{}: planned in the single-line diagram, not in the schematic yet	{}: az egyvonalas rajzon tervezve, a kapcsolási rajzon még nincs
+{}: planned with part {}, the schematic uses another part	{}: a(z) {} alkatrésszel tervezve, a kapcsolási rajz másik alkatrészt használ
+{}: port {} is not a {} port	{}: a(z) {} port nem {}-port
+{}: ports with different media ({})	{}: különböző közegű csatlakozások ({})
+{}: replace {} after {} years (T10d)	{}: a(z) {} cseréje {} év után (T10d)
+{}: routing path {} is full ({} % of its usable cross-section)	{}: a(z) {} fektetési út megtelt (hasznos keresztmetszetének {} %-a)
+{}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a(z) {} A második hibaáram itt: {} nem kapcsol le {} s-on belül ({} A szükséges)
+{}: single-line symbol '{}' does not match the schematic ('{}')	{}: az egyvonalas szimbólum ('{}') nem egyezik a kapcsolási rajzzal ('{}')
+{}: slot {} of rack {} is used by {} and {}	{0}: a(z) {2} modultartó {1}. slotját {3} és {4} is foglalja
+{}: solenoid coil not linked to a valve	{}: a mágnestekercs nincs szelephez kapcsolva
+{}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: mágnesszelep kapcsolt mágnestekercs nélkül (Fluid- és folyamattechnika › Szinkronizálás)
+{}: terminal {} is on level {}, but no terminal block is before it	{}: a(z) {} sorkapocs a(z) {}. szinten van, de nincs előtte sorkapocsblokk
+{}: terminal {} uses {} levels, its part {} has {}	{}: a(z) {} sorkapocs {} szintet használ, a(z) {} alkatrésze {} szintes
+{}: terminals {} are {} mm above the floor, at least {} mm required	{}: a(z) {} sorkapcsok {} mm-rel vannak a padló felett, legalább {} mm szükséges
+{}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: a(z) {} sínes gyűjtősín-rendszer {} vezetőt köt össze ({}): rövidzárlat
+{}: the station has no port {}	{}: az állomásnak nincs {} portja
+{}: the {} ({} x {} mm) is larger than the working area of {}	{}: a(z) {} ({} x {} mm) nagyobb a(z) {} munkaterületénél
+{}: the {} is {} mm thick, {} takes at most {} mm	{}: a(z) {} {} mm vastag, {} legfeljebb {} mm-t fogad
+{}: voltage drop {} V ({} %) above {} %	{}: feszültségesés {} V ({} %), több mint {} %
+{}: wire colour {} differs from the potential definition ({})	{}: a(z) {} érszín eltér a potenciáldefiníciótól ({})
+{}: wire without core designation	{}: vezeték érmegnevezés nélkül
+{}: {} ({})	{}: {} ({})
+{}: {} ({}) and {} ({}) are {} mm apart, at least {} mm required	{}: {} ({}) és {} ({}) távolsága {} mm, legalább {} mm szükséges
+{}: {} W power loss heat the enclosure to {} °C (highest {} °C): {} needed	{}: {} W veszteségi teljesítmény {} °C-ra melegíti a szekrényt (legfeljebb {} °C): {} szükséges
+{}: {} blocks the service space in front of {}	{}: {} elzárja a szervizterületet a(z) {} előtt
+{}: {} cannot be made on {}	{}: {} nem készíthető el ezen: {}
+{}: {} carries {} A, the load {} needs {} A	{}: a(z) {} {} A-t visel el, a(z) {} fogyasztónak {} A szükséges
+{}: {} changed after it was mounted	{}: {} módosult a felszerelése után
+{}: {} collides with {}	{}: {} ütközik ezzel: {}
+{}: {} inputs used, the module has {}	{}: {} bemenet használatban, a modulnak {} van
+{}: {} is a fluid device, not an electrical one	{}: {} fluidkészülék, nem villamos
+{}: {} is closer than {} mm to a cable duct	{}: {} egy kábelcsatornához {} mm-nél közelebb van
+{}: {} is closer than {} mm to the edge of the mounting plate	{}: {} a szerelőlap széléhez {} mm-nél közelebb van
+{}: {} is closer to {} than its mounting clearance of {} mm	{}: {} közelebb van ehhez: {}, mint annak {} mm-es szerelési szabad tere
+{}: {} is higher than the ceiling	{}: {} magasabb a mennyezetnél
+{}: {} is inside the EMC clearance of {} ({} mm)	{}: {} a(z) {} EMC-távolságán belül van ({} mm)
+{}: {} is inside the ventilation clearance of {}	{}: {} a(z) {} szellőzési szabad terében van
+{}: {} is made for a mounting rail but sits directly on the plate	{}: {} szerelősínre készült, de közvetlenül a lapon ül
+{}: {} is not made for wall mounting, mount it on a rail	{}: {} nem falra szerelésre készült, szerelje sínre
+{}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} {} … {} mm-rel van a padló felett, megengedett {} … {} mm
+{}: {} kg on the {} exceed its load of {} kg	{}: {} kg ezen: {} meghaladja a(z) {} kg-os teherbírást
+{}: {} modules, the head has {} slots	{}: {} modul, a fejegységnek {} slotja van
+{}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) hosszabb a(z) {} mm-es szálhossznál, ezért toldani kell
+{}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} ({} mm) rövidebb, mint {} mm, és nehezen vágható
+{}: {} outputs used, the module has {}	{}: {} kimenet használatban, a modulnak {} van
+{}: {} outside the mounting plate / enclosure	{}: {} a szerelőlapon / szekrényen kívül
+{}: {} overhangs the end of its mounting rail	{}: {} túlnyúlik a szerelősíne végén
+{}: {} pins used, the plug parts have {}	{}: {} érintkezőtű foglalt, a csatlakozódugó-alkatrészeknek {} van
+{}: {} reaches about {} °C at its place, allowed {} °C	{}: {} a helyén kb. {} °C-ot ér el, megengedett {} °C
+{}: {} solenoid coils linked, the valve has {}	{}: {} mágnestekercs kapcsolva, a szelepnek {} van
+{}: {} stands in an inner wall	{}: {} egy belső falban áll
+{}: {} stands in the swing of the door in wall {}	{}: {} a(z) {}. fal ajtajának nyitási területén áll
+{}: {} stands outside the room	{}: {} a helyiségen kívül áll
+{}: {} stands where {} stands	{}: {} ott áll, ahol {}
+{}: {} threads on the {} are cut by hand	{}: {} menetet ezen: {} kézzel kell vágni
+{}: {} values of undefined properties	{}: {} nem definiált tulajdonság értéke
+{}: {}× {} placed, assigned parts provide {}	{}: {}× {} elhelyezve, a hozzárendelt alkatrészek ennyit biztosítanak: {}
+{}{} has to be reworked: {}	{}{} utómunkát igényel: {}
+{}{} is {} mm off its position (tolerance {} mm)	{}{} {} mm-rel eltér a pozíciójától (tűrés {} mm)
+~ length assumed: no wire of the connector has a length	~ feltételezett hossz: a csatlakozó egyik erének sincs hossza
+… {} more rows – see Reports window / CSV export	… további {} sor – lásd a Kimutatások ablakot / CSV-exportot

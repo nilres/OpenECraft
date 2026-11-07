@@ -1,0 +1,2149 @@
+# English<TAB>Suomi – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+   |  Potential {}	   |  Potentiaali {}
+  (built-in)	  (sisäinen)
+(choose a part)	(valitse osa)
+(choose)	(valitse)
+(custom size)	(mukautettu koko)
+(default)	(oletus)
+(empty)	(tyhjä)
+(included)	(sisältyy)
+(no cable highlighted)	(ei korostettua kaapelia)
+(no structure)	(ei rakennetta)
+(none)	(ei mitään)
+(project default)	(projektin oletus)
+(repairable)	(korjattavissa)
+(several)	(useita)
+(standard columns)	(vakiosarakkeet)
+(top level)	(ylin taso)
+(whole project)	(koko projekti)
+* (all)	* (kaikki)
++CAB1 / -M1	+CAB1 / -M1
+0 = a single value; otherwise values [1] … [n]	0 = yksittäinen arvo; muuten arvot [1] … [n]
+0 = all approvers	0 = kaikki hyväksyjät
+0 = estimated from cores and cross-section	0 = arvioitu johtimista ja poikkipinta-alasta
+0 = fitted to the rows per page	0 = sovitettu sivun rivimäärään
+0 = from the DC of the devices ({} %)	0 = laitteiden DC-arvosta ({} %)
+0 = from the devices	0 = laitteista
+0 = from the node positions	0 = solmujen sijainneista
+0 = infinite	0 = ääretön
+0 = no jumper	0 = ei siltaa
+0 = not given	0 = ei annettu
+0 = not limited	0 = ei rajoitettu
+0 = rated diversity factor of IEC 61439-1, table 101	0 = IEC 61439-1:n taulukon 101 mitoituskuormituskerroin
+0 = typical value of the rated power	0 = mitoitustehon tyypillinen arvo
+0: no wrapping	0: ei rivitystä
+1 cable duct	1 johtokouru
+1 device	1 laite
+1 door	1 ovi
+1 project on the server	1 projekti palvelimella
+1 rail	1 kisko
+1 window	1 ikkuna
+3D macro	3D-makro
+3D macro {} inserted	3D-makro {} lisätty
+3D macro {} saved	3D-makro {} tallennettu
+3D view	3D-näkymä
+=A1+CAB1	=A1+CAB1
+? = not in the schematic yet	? = ei vielä piirikaaviossa
+A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Lähtötaso tallentaa koko projektin (sivut, laitteet, osat, asetukset). Revision vapauttaminen tallentaa lähtötason.
+A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
+A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
+A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
+A new project	Uusi projekti
+A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Numeroitu osio, joka sisältää sivuja kuin kansio; sivujen nimet alkavat sen numerolla (2.3.1)
+A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profiili yhdistää neutraalit kentät tietyn järjestelmän sarakkeiden nimiin (esim. MATNR ERP-numerolle SAP:ssa). Ilman määritystä tunnistetaan yleiset englannin- ja saksankieliset nimet.
+A project definition based on this one, with its own defaults and scheme	Tähän perustuva projektimäärittely omine oletusarvoineen ja skeemoineen
+A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Raporttilohko luo raportin sivut, esim. yhden riviliitinkaavion rimaa kohden, ja päivittää ne.
+A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Piirikaaviosivu 3.1, 3.2, … nykyisen sivun jälkeen, säilyy alasivuna uudelleennumeroinnissa
+A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Piirikaaviosivu jokaiselle sivumakrolliselle suunnitellulle laitteelle, joka ei vielä ole piirikaaviossa (valittu segmentti, muuten kaikki)
+A template of this name is replaced.	Tämänniminen malli korvataan.
+A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	Malli asettaa uuden sivun sivutyypin, piirustuskehyksen, nimiön, rakenteen ja kuvauksen sekä sijoittaa sen sisällön.
+A way through free air costs this many times the way in a duct or routing path	Reitti vapaan tilan kautta maksaa tämän verran kertaa enemmän kuin reitti kourussa tai reitityspolulla
+A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Työalue rajaa navigaattorin sivut ja laitteet osaan projektia. Suodattimet: tyhjä = mikä tahansa, * = mitkä tahansa merkit; A1 kattaa myös A1.2:n.
+About OpenECraft	Tietoja OpenECraftista
+Above the floor	Lattian yläpuolella
+Accept as checked	Hyväksy tarkistetuksi
+Accepted messages ({})	Hyväksytyt ilmoitukset ({})
+Active	Aktiivinen
+Actuators on the door	Oven käyttöelimet
+Add	Lisää
+Add a command	Lisää komento
+Add a target language to translate the project texts.	Lisää kohdekieli kääntääksesi projektin tekstit.
+Add filter	Lisää suodatin
+Add folder…	Lisää kansio…
+Add group	Lisää ryhmä
+Add missing parts of the example catalog	Lisää esimerkkiluettelosta puuttuvat osat
+Add part…	Lisää osa…
+Add profile for this connector	Lisää profiili tälle konnektorille
+Add rule	Lisää sääntö
+Add sort key	Lisää lajitteluavain
+Add the facing cutout in {}	Lisää vastakkainen aukko kohteeseen {}
+Add to device	Lisää laitteeseen
+Add to selection	Lisää valintaan
+Add to the pre-planning	Lisää esisuunnitteluun
+Add user	Lisää käyttäjä
+Added to both ends of the length for the cut length (insertion depth)	Lisätään pituuden molempiin päihin katkaisupituutta varten (työntösyvyys)
+Added to each cable end in the enclosure	Lisätään jokaiseen kaapelin päähän kotelossa
+Added {} to Vault	{} lisättiin Vaultiin
+Additional power loss	Lisähäviöteho
+Address scheme	Osoitemalli
+Addresses and sign-in of the servers are set in their panes:	Palvelinten osoitteet ja kirjautuminen asetetaan omissa ruuduissaan:
+Adds / replaces all parts of the local database on the server	Lisää / korvaa kaikki paikallisen tietokannan osat palvelimella
+Adds all lines of the project texts to the dictionary	Lisää kaikki projektin tekstien rivit sanakirjaan
+Adds new parts and updates existing ones in the local parts database	Lisää uudet osat ja päivittää olemassa olevat paikallisessa osatietokannassa
+Adds parts that only exist in the project to the database	Lisää vain projektissa olevat osat tietokantaan
+Adds the identifiers used on pages and in device tags	Lisää sivuilla ja laitetunnuksissa käytetyt tunnukset
+Adds the project files and archives of a folder and its subfolders	Lisää kansion ja sen alikansioiden projektitiedostot ja arkistot
+Adds user defined properties, function definitions and schemes of a property library file	Lisää ominaisuuskirjastotiedoston käyttäjän määrittämät ominaisuudet, toimintomäärittelyt ja skeemat
+Affected pages ({})	Kohdesivut ({})
+Air at devices at most	Ilma laitteiden luona enintään
+Air temperature	Ilman lämpötila
+Air temperature at the devices	Ilman lämpötila laitteiden luona
+Air temperature {} … {} °C	Ilman lämpötila {} … {} °C
+Align	Tasaa
+Aligned	Kohdistettu
+Alignment	Tasaus
+All	Kaikki
+All connections take the values of their connection definition points	Kaikki yhteydet saavat yhteyden määrityspisteidensä arvot
+All devices are numbered already.	Kaikki laitteet on jo numeroitu.
+All devices between these heights (11.2.1); 0 … 0 switches the check off	Kaikki laitteet näiden korkeuksien välillä (11.2.1); 0 … 0 poistaa tarkistuksen käytöstä
+All devices with mounting data are placed.	Kaikki laitteet, joilla on asennustiedot, on sijoitettu.
+All enclosures	Kaikki kotelot
+All groups	Kaikki ryhmät
+All levels	Kaikki kerrokset
+All objects	Kaikki objektit
+All other points of the name	Kaikkiin muihin samannimisiin kohtiin
+All pages	Kaikki sivut
+All report pages	Kaikki raporttisivut
+All user symbols as library file	Kaikki käyttäjän symbolit kirjastotiedostona
+All wires of this potential are highlighted.	Kaikki tämän potentiaalin johdot on korostettu.
+Also the groups that do not fit the function definition	Myös ryhmät, jotka eivät sovi toimintomäärittelyyn
+Altitude	Korkeus merenpinnasta
+Always	Aina
+Ambient temperature	Ympäristön lämpötila
+An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Arkisto (.oecz) on ZIP-tiedosto, joka sisältää projektin, manifestin sekä upotetut asiakirjat ja kuvat omina tiedostoinaan.
+An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Vanha piirustus grafiikkana uudella piirikaaviosivulla (viivat, kaaret, tekstit, lohkot)
+An open electrical CAE editor in the spirit of EPLAN Electric P8.	Avoin sähkösuunnittelun CAE-editori EPLAN Electric P8:n hengessä.
+Another variant of an existing macro with this name (e.g. B), chosen when inserting	Toinen muunnelma olemassa olevasta samannimisestä makrosta (esim. B), valitaan lisättäessä
+Any project file: its settings, forms, structure, potentials and pages start the new project	Mikä tahansa projektitiedosto: sen asetukset, lomakkeet, rakenne, potentiaalit ja sivut aloittavat uuden projektin
+Appearance	Ulkoasu
+Applies to all wires of this connection; automatic numbering keeps manual numbers	Koskee kaikkia tämän yhteyden johtoja; automaattinen numerointi säilyttää manuaaliset numerot
+Applies to report pages, the PDF and the print export.	Koskee raporttisivuja, PDF:ää ja tulostusvientiä.
+Apply conditions	Käytä ehtoja
+Apply connection definitions	Käytä yhteyksien määrityksiä
+Apply designations	Käytä nimityksiä
+Apply structure	Käytä rakennetta
+Apply template	Käytä mallia
+Apply to the connection	Käytä yhteyteen
+Apply to {} projects	Käytä {} projektiin
+Approval workflow	Hyväksyntätyönkulku
+Approvals needed	Tarvittavat hyväksynnät
+Approve	Hyväksy
+Approving needs an approver; you are \"{}\".	Hyväksyminen edellyttää hyväksyjää; olet \"{}\".
+Arc	Kaari
+Archive and version	Arkisto ja versio
+Archive project…	Arkistoi projekti…
+Arms	Haarat
+As defined by the check	Tarkistuksen määrittämä
+Aspects of the pages	Sivujen aspektit
+Aspects, identifiers and work areas as a file for other projects	Aspektit, tunnukset ja työalueet tiedostona muita projekteja varten
+Assembly {}	Kokoonpano {}
+Assembly: {}	Kokoonpano: {}
+Assign connections: select the wires between two devices in the schematic › Assign to harness.	Määritä yhteydet: valitse piirikaaviosta kahden laitteen väliset johdot › Määritä johtosarjaan.
+Assign crossed wires	Määritä ristityt johdot
+Assign page	Määritä sivu
+Assign selection	Määritä valinta
+Assign to cable	Määritä kaapeliin
+Assign to existing device	Määritä olemassa olevaan laitteeseen
+Assign to harness	Määritä johtosarjaan
+Assign wires: select them in the schematic › Assign to cable.	Määritä johdot: valitse ne piirikaaviosta › Määritä kaapeliin.
+Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Verkkoon liitetyt epätahtimoottorit lisäävät suurinta oikosulkuvirtaa (IEC 60909-0)
+At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Korkeimmassa ympäristön lämpötilassa; lämmitin pitää kastepisteen. 0 = ei huomioida
+At the supply point: Ik3 max {} kA, Ik1 min {} kA	Syöttöpisteessä: Ik3 max {} kA, Ik1 min {} kA
+At the top level	Ylimmällä tasolla
+Author	Tekijä
+Auto-connect	Automaattiyhdistys
+Auto-connect selection	Yhdistä valinta automaattisesti
+Autodesk Vault	Autodesk Vault
+Automatic (from the potential definition)	Automaattinen (potentiaalin määrityksestä)
+Automatic ({})	Automaattinen ({})
+Automatic accessories	Automaattiset tarvikkeet
+Automatic configuration	Automaattinen kokoonpano
+Automation	Automaatio
+Aux	Apu
+Avoid:	Vältä:
+Back	Takaisin
+Back to the project (Esc)	Takaisin projektiin (Esc)
+Back-up up to (kA)	Varasuojaus asti (kA)
+Background	Tausta
+Baseline {}	Lähtötaso {}
+Baseline {} created	Lähtötaso {} luotu
+Baseline {} {}	Lähtötaso {} {}
+Baselines ({})	Lähtötasot ({})
+Basement	Kellari
+Bayed	Rivitetty
+Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Rivitetty viereiseen koteloon: ei sivuseinää, vaan rivitysliitin
+Bayed to the right of	Rivitetty oikealle kohteesta
+Becomes section {}	Muuttuu osioksi {}
+Bend radius	Taivutussäde
+Bend radius cables	Taivutussäde kaapelit
+Bend radius in drag chains	Taivutussäde kaapelinvetoketjuissa
+Bend radius tubes	Taivutussäde putket
+Bend radius wires	Taivutussäde johdot
+Block {}	Lohko {}
+Bonding conductor	Potentiaalintasausjohdin
+Bonding points	Potentiaalintasauksen liitäntäpisteet
+Border	Reunus
+Border distance (mm)	Reunaetäisyys (mm)
+Both sides are open: the wires need no cutout	Molemmat puolet ovat avoimia: johdot eivät tarvitse aukkoa
+Bottom edges	Alareunat
+Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kotelon alareuna (ilman sokkelia) lattiasta; korkeudet tarkistetaan, kun se tiedetään tai kotelo on sokkelin päällä
+Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
+Building	Rakennus
+Built-in frames cannot be changed; copy one to adapt it.	Sisäisiä kehyksiä ei voi muuttaa; kopioi kehys mukauttaaksesi sitä.
+Built-in scheme: copy it to change it.	Sisäinen skeema: kopioi se muuttaaksesi sitä.
+Built-in title blocks are read only – use “Copy as new” to make your own.	Sisäiset nimiöt ovat vain luku -tilassa – tee oma käyttämällä toimintoa ”Kopioi uutena”.
+Bundle Ø	Nipun Ø
+Bus	Väylä
+Bus system	Väyläjärjestelmä
+Bus systems	Väyläjärjestelmät
+Bus topology	Väylätopologia
+Byte order mark	Tavujärjestysmerkki
+CCF	CCF
+CSV or Excel	CSV tai Excel
+CSV or JSON from another system; known numbers are updated	CSV tai JSON toisesta järjestelmästä; tunnetut numerot päivitetään
+Cabinets in the room	Kaapit tilassa
+Cable accessories	Kaapelitarvikkeet
+Cable definition	Kaapelimääritys
+Cable definition on page {}	Kaapelimääritys sivulla {}
+Cable definition: draw a line across the wires that are cores of a cable	Kaapelimääritys: piirrä viiva niiden johtojen poikki, jotka ovat kaapelin johtimia
+Cable end reserve	Kaapelin päävara
+Cable markers	Kaapelimerkit
+Cable passage to {}	Kaapelin läpivientiaukko kohteeseen {}
+Cable {}: {} cores assigned	Kaapeli {}: {} johdinta määritetty
+Cables and pipes are routed again in the background; until then the 3D view shows their earlier routes.	Kaapelit ja putket reititetään uudelleen taustalla; siihen asti 3D-näkymä näyttää niiden aiemmat reitit.
+Cables and tubes	Kaapelit ja putket
+Cables…	Kaapelit…
+Calculations	Laskelmat
+Cancel / select tool / clear selection	Peruuta / valitse työkalu / tyhjennä valinta
+Card	Kortti
+Cards without station: {}	Kortit ilman asemaa: {}
+Centre	Keskikohta
+Change project properties of the selected projects	Muuta valittujen projektien ominaisuuksia
+Change request	Muutospyyntö
+Change requests	Muutospyynnöt
+Change requests (CSV, JSON)	Muutospyynnöt (CSV, JSON)
+Changed against the frozen routes:	Muuttunut lukittuihin reitteihin verrattuna:
+Changed by another user in the meantime, your change was replaced: {}	Toinen käyttäjä muutti tätä sillä välin, muutoksesi korvattiin: {}
+Changed cells of a CSV or Excel file exported here (rows by their key)	Täältä viedyn CSV- tai Excel-tiedoston muutetut solut (rivit avaimensa mukaan)
+Changed message levels ({})	Muutetut ilmoitustasot ({})
+Changed since mounted: was at X {} mm, Y {} mm with part {}	Muuttunut asennuksen jälkeen: oli kohdassa X {} mm, Y {} mm osalla {}
+Changed since wired: was {} · {} · {}	Muuttunut johdotuksen jälkeen: oli {} · {} · {}
+Changes	Muutokset
+Changes since revision {}	Muutokset revision {} jälkeen
+Changes the page order; the name stays	Muuttaa sivujärjestystä; nimi säilyy
+Changes the tag of all functions of this device	Muuttaa tämän laitteen kaikkien toimintojen tunnuksen
+Check	Tarkistus
+Check all	Valitse kaikki
+Check in project as new version of {}	Kirjaa projekti sisään tiedoston {} uutena versiona
+Check in to Vault	Kirjaa sisään Vaultiin
+Check in {} to Vault	Kirjaa {} sisään Vaultiin
+Check none	Poista kaikki valinnat
+Check scheme (JSON)	Tarkistusskeema (JSON)
+Check scheme taken over	Tarkistusskeema otettiin käyttöön
+Check settings: checks, message levels, accepted messages	Tarkistusasetukset: tarkistukset, ilmoitustasot, hyväksytyt ilmoitukset
+Check settings…	Tarkistusasetukset…
+Checked in {} as version {}	{} kirjattiin sisään versiona {}
+Checked out	Uloskirjattu
+Checklist	Tarkistuslista
+Checklist with the mounting state	Tarkistuslista asennustiloineen
+Checklist with the wiring state	Tarkistuslista johdotuksen tilan kanssa
+Checks switched off and message levels as a file for other projects	Käytöstä poistetut tarkistukset ja ilmoitustasot tiedostona muita projekteja varten
+Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Tarkistaa projektitiedot (tunnukset, viittaukset, laitetiedot, vaihtoehdot, aliprojektit) yhdessä suunnittelutarkistusten kanssa.
+Choices	Valinnat
+Choices (separated by commas)	Valinnat (pilkuin erotettuina)
+Choose a baseline, a revision or a project file to compare the project with.	Valitse lähtötaso, revisio tai projektitiedosto, johon projektia verrataan.
+Choose a room first: floor-standing parts go on its floor.	Valitse ensin huone: lattialle sijoitettavat osat tulevat sen lattialle.
+Choose file…	Valitse tiedosto…
+Choose pages	Valitse sivut
+Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
+Circle	Ympyrä
+Clear	Tyhjennä
+Clearance	Vapaa etäisyys
+Clearances	Etäisyydet
+Click an element in the drawing to edit it.	Napsauta piirustuksen elementtiä muokataksesi sitä.
+Click centre, then a point on the circle	Napsauta keskipistettä ja sitten ympyrän pistettä
+Click into the page to place the image	Napsauta sivua sijoittaaksesi kuvan
+Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
+Click on a wall	Napsauta seinää
+Click on a wire to place the connection definition point	Napsauta johtoa sijoittaaksesi yhteyden määrityspisteen
+Click on the 4 mm grid	Napsauta 4 mm:n ruudukkoon
+Click start and end point	Napsauta alku- ja loppupistettä
+Click the corners of a machine or building, double-click to finish	Napsauta koneen tai rakennuksen kulmia, lopeta kaksoisnapsauttamalla
+Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Napsauta väliseinien päitä; jokainen napsautus aloittaa seuraavan, seinän lähellä olevat päät tarttuvat siihen. Esc, Enter tai kaksoisnapsautus päättää ketjun, toinen Esc työkalun.
+Click to add a node of the route network	Lisää reittiverkon solmu napsauttamalla
+Click to add to the selected text.	Napsauta lisätäksesi valittuun tekstiin.
+Click to insert · Esc cancel	Napsauta lisätäksesi · Esc peruuttaa
+Click to place a comment	Napsauta sijoittaaksesi kommentin
+Click to place the markup text	Napsauta sijoittaaksesi korjausmerkinnän tekstin
+Click to place the text from the field below	Napsauta sijoittaaksesi alla olevan kentän tekstin
+Click to show	Napsauta näyttääksesi
+Click to show, right click for more	Näytä napsauttamalla, lisää hiiren oikealla painikkeella
+Click two corners	Napsauta kahta kulmaa
+Click two nodes to connect them	Yhdistä kaksi solmua napsauttamalla niitä
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa neljä johdinta kohtaa: silta vie liitoksen yhdeltä sivulta kolmelle muulle, ensin vastakkaiselle · {} kääntää sen · Esc tai oikea painike lopettaa
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta kohtaa suorassa kulmassa, tai jossa liitäntäpisteet ovat vastakkain kulman yli: automaattisen kytkennän ollessa päällä siihen piirretään johtimet · {} kääntää sen · Esc tai oikea painike lopettaa
+Click, or drag it into the page	Napsauta tai vedä sivulle
+Climate (IEC 60890)	Ilmastointi (IEC 60890)
+Clipboard	Leikepöytä
+Close	Sulje
+Close door	Sulje ovi
+Close page tab	Sulje sivuvälilehti
+Close shared project	Sulje jaettu projekti
+Close the start page	Sulje aloitussivu
+Closed / filled	Suljettu / täytetty
+Closed {} on the project server	{} suljettu projektipalvelimella
+Collaboration	Yhteistyö
+Collect texts from the project	Kerää tekstit projektista
+Collision classes	Törmäysluokat
+Colour / cross-section	Väri / poikkipinta-ala
+Colour of the items without their own	Niiden kohteiden väri, joilla ei ole omaa väriä
+Colour the cable ducts by their fill level	Väritä johtokourut täyttöasteen mukaan
+Column	Sarake
+Column / row strips	Sarake- / rivinauhat
+Column labels	Sarakkeiden merkinnät
+Column {}  Row {}	Sarake {}  Rivi {}
+Columns	Sarakkeet
+Columns / rows	Sarakkeet / rivit
+Columns × rows	Sarakkeet × rivit
+Columns, filter, sort order and rows of the report pages	Raporttisivujen sarakkeet, suodatin, lajittelujärjestys ja rivit
+Columns: {}	Sarakkeet: {}
+Comma	Pilkku
+Comment #{} – {} {}	Kommentti #{} – {} {}
+Comment on the current page	Kommentti nykyiselle sivulle
+Comments ({} open)	Kommentit ({} avoinna)
+Comments ({})	Kommentit ({})
+Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Tarkastajan projektin PDF-vientiin tekemät kommentit (Acrobat tai muu PDF-katseluohjelma)
+Comments and markup	Kommentit ja merkinnät
+Compare and baselines	Vertailu ja lähtötasot
+Compare with	Vertaa kohteeseen
+Compare with a baseline, a revision or another project file and take differences over	Vertaa lähtötasoon, revisioon tai toiseen projektitiedostoon ja ota erot käyttöön
+Complete tag: {}\nAspects missing here are taken from the page (=function +location).	Täydellinen tunnus: {}\nTästä puuttuvat aspektit otetaan sivulta (=toiminto +sijainti).
+Condition	Ehto
+Condition (OPTION=value & …)	Ehto (OPTION=arvo & …)
+Conductive frame	Johtava runko
+Conflicts	Ristiriidat
+Connected devices	Liitetyt laitteet
+Connected to:	Yhdistetty kohteeseen:
+Connection definition point	Yhteyden määrityspiste
+Connection definition point: defines number, colour, cross-section and cable core of a connection	Yhteyden määrityspiste: määrittää yhteyden numeron, värin, poikkipinta-alan ja kaapelin johtimen
+Connection point {}	Liitäntäpiste {}
+Connection points 1 and 2 are connected inside	Liitäntäpisteet 1 ja 2 on yhdistetty sisäisesti
+Connection:	Yhteys:
+Connections ({})	Yhteydet ({})
+Connections / harness	Yhteydet / johtosarja
+Connections whose two ends are both on selected wires	Yhteydet, joiden molemmat päät ovat valituissa johdoissa
+Connections without a defined potential	Yhteydet ilman määritettyä potentiaalia
+Connectors	Liittimet
+Connects free connection points of the selected symbols with facing ones	Yhdistää valittujen symbolien vapaat liitäntäpisteet vastakkaisiin
+Consecutive addresses from the start byte, in schematic order	Peräkkäiset osoitteet aloitustavusta alkaen piirikaavion järjestyksessä
+Contact image below coils	Kosketinkuvio kelojen alla
+Content	Sisältö
+Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Ei-aktiivisen vaihtoehdon sisältö on piilotettu: sitä ei piirretä, arvioida, raportoida eikä viedä.
+Copies	Kopiot
+Copies function texts between both representations where one is empty	Kopioi toimintotekstit esitystapojen välillä, kun toinen on tyhjä
+Copies in rows and columns	Kopiot riveihin ja sarakkeisiin
+Copies the report pages as fixed pages into another project file; pages output from this project before are replaced	Kopioi raporttisivut kiinteinä sivuina toiseen projektitiedostoon; tästä projektista aiemmin tulostetut sivut korvataan
+Copies the selection several times; devices get new tags, terminals new numbers.	Kopioi valinnan useita kertoja; laitteet saavat uudet tunnukset, riviliittimet uudet numerot.
+Copper busbar system: click start and end point	Kuparinen kokoojakiskojärjestelmä: napsauta alku- ja loppupistettä
+Copy	Kopioi
+Copy / cut / paste (devices get new tags)	Kopioi / leikkaa / liitä (laitteet saavat uudet tunnukset)
+Copy as new	Kopioi uutena
+Copy built-in…	Kopioi sisäinen…
+Core designations separated by blanks	Johdinmerkinnät välilyönneillä erotettuina
+Cores 1, 2, 3 … for the wires crossed, plus GNYE	Johtimet 1, 2, 3 … ristityille johdoille sekä GNYE
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Kulma: kaksi johdinta suorassa kulmassa; automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen
+Cover sheet, overview, graphics, report, mounting layout or a page template	Kansilehti, yleiskuva, grafiikka, raportti, asennuskuva tai sivumalli
+Covers what is behind the text	Peittää tekstin takana olevan
+Create	Luo
+Create an enclosure in the panel layout first.	Luo ensin kotelo kaappiasennuksessa.
+Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Aloita asennuskuva luomalla kotelo tai tila (Asennustila › Uusi kotelo, Uusi tila).
+Create baseline	Luo lähtötaso
+Create bus cables	Luo väyläkaapelit
+Create draft	Luo luonnos
+Create revision	Luo revisio
+Cross references…	Ristiviittaukset…
+Crossed wires	Ristityt johdot
+Ctrl + click on the text opens it as well	Ctrl + napsautus tekstiin avaa sen myös
+Ctrl+A	Ctrl+A
+Current-carrying capacity: {} × IEC 60204-1, table 6	Virrankestoisuus: {} × IEC 60204-1, taulukko 6
+Customer rule sets	Asiakkaiden sääntökokoelmat
+Customer, plant or standard	Asiakas, laitos tai standardi
+Customize the ribbon…	Mukauta valintanauhaa…
+Cut	Leikkaa
+Cut length	Katkaisupituus
+Cut length step	Katkaisupituuden askel
+Cut length step cables	Katkaisupituuden askel kaapelit
+Cut length step tubes	Katkaisupituuden askel putket
+Cut length step wires	Katkaisupituuden askel johdot
+Cutout {} × {} mm	Aukko {} × {} mm
+Cutting allowance per end	Katkaisuvara päätä kohden
+DWG import failed: {}	DWG-tuonti epäonnistui: {}
+DWG imported as page {}: {} lines, {} texts	DWG tuotiin sivuksi {}: {} viivaa, {} tekstiä
+DWG imported as page {}: {} lines, {} texts (not imported: {})	DWG tuotiin sivuksi {}: {} viivaa, {} tekstiä (ei tuotu: {})
+DXF import failed: {}	DXF-tuonti epäonnistui: {}
+DXF imported as page {}: {} lines, {} texts	DXF tuotu sivuksi {}: {} viivaa, {} tekstiä
+DXF imported as page {}: {} lines, {} texts (not imported: {})	DXF tuotu sivuksi {}: {} viivaa, {} tekstiä (ei tuotu: {})
+Dashed	Katkoviiva
+Decimals	Desimaalit
+Default	Oletus
+Default (part data or definition)	Oletus (osan tiedot tai määrittely)
+Default label	Oletusnimitys
+Default medium	Oletusväliaine
+Default rules	Oletussäännöt
+Default values	Oletusarvot
+Define	Määritä
+Define all used	Määritä kaikki käytetyt
+Defined potentials	Määritetyt potentiaalit
+Del	Del
+Delete	Poista
+Delete cable (its wires are removed from it)	Poista kaapeli (sen johdot poistetaan siitä)
+Delete comment	Poista kommentti
+Delete connection point	Poista liitäntäpiste
+Delete element	Poista elementti
+Delete enclosure	Poista kotelo
+Delete enclosure {} with everything placed in it?	Poistetaanko kotelo {} kaikkineen, mitä siihen on sijoitettu?
+Delete group	Poista ryhmä
+Delete harness (its wires are removed from it)	Poista johtosarja (sen johdot poistetaan siitä)
+Delete link	Poista yhteys
+Delete loop	Poista piiri
+Delete macro	Poista makro
+Delete node	Poista solmu
+Delete page	Poista sivu
+Delete request	Poista pyyntö
+Delete room	Poista tila
+Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Poistetaanko tila {} kaikkineen, mitä sen seinillä on? Siinä olevat kaapit jäävät, ilman tilaa.
+Delete section	Poista osio
+Delete shaft	Poista kuilu
+Delete the group	Poista ryhmä
+Delete the layer; its items move to the default layer	Poista taso; sen kohteet siirtyvät oletustasolle
+Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
+Delete this workspace	Poista tämä työtila
+Delete variant	Poista muunnelma
+Deny	Estä
+Depth / mounted at	Syvyys / asennettu kohtaan
+Depth from / to	Syvyys mistä / mihin
+Derive project definition	Johda projektin määrittely
+Descriptions	Kuvaukset
+Deselect	Poista valinta
+Designations separated by blanks; empty: those of the symbol	Tunnukset välilyönnein erotettuina; tyhjä: symbolin tunnukset
+Destination: each end shows the connection point at the other end	Kohde: kumpikin pää näyttää toisen pään liitäntäpisteen
+Device description (GSDML, ESI)	Laitekuvaus (GSDML, ESI)
+Device descriptions	Laitekuvaukset
+Device descriptions of PROFINET (GSDML) and EtherCAT (ESI) devices	PROFINET- (GSDML) ja EtherCAT-laitteiden (ESI) laitekuvaukset
+Device groups	Laiteryhmät
+Device markers	Laitekilvet
+Device number	Laitenumero
+Device numbering	Laitteiden numerointi
+Device numbering…	Laitteiden numerointi…
+Device properties	Laitteen ominaisuudet
+Device selection	Laitevalinta
+Device tags, separated by commas	Laitetunnukset pilkuin erotettuina
+Device, terminal, wire and cable markers for marking software	Laite-, riviliitin-, johto- ja kaapelimerkit merkintäohjelmistoille
+Devices ({})	Laitteet ({})
+Devices are not copied: a device is placed once.	Laitteita ei kopioida: laite sijoitetaan kerran.
+Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Laitteet suunnitellaan yksinapaisilla symboleilla ja toteutetaan moninapaisessa piirikaaviossa; molemmilla on sama laitetunnus.
+Devices of a channel	Kanavan laitteet
+Devices of the second channel; empty = like the first	Toisen kanavan laitteet; tyhjä = kuten ensimmäinen
+Devices placed on the page get its structure; their tags are shown without it.	Sivulle sijoitetut laitteet saavat sen rakenteen; niiden tunnukset näytetään ilman sitä.
+Devices to place	Sijoitettavat laitteet
+Devices, connections and terminals: filter, fill, find and replace, CSV	Laitteet, yhteydet ja riviliittimet: suodata, täytä, etsi ja korvaa, CSV
+Dew point	Kastepiste
+Diameter	Halkaisija
+Diameter / bends	Halkaisija / taivutukset
+Dictionary for translators: one column per language	Sanakirja kääntäjille: yksi sarake kieltä kohden
+Digits	Numeroita
+Dimension	Mitoitus
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Suunnattu T-haara: kohdassa, jossa kolme johdinta kohtaa, se määrää laitteen, josta liitoksen kaksi johdinta lähtevät, ja kohteiden järjestyksen
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Suunnattu risteys: yhdistää siinä risteävät kaksi johdinta; linjan kumpikin pää johdotetaan ensin suoraan ja sitten poikittain
+Discard changes	Hylkää muutokset
+Discard draft	Hylkää luonnos
+Disconnection of distribution circuits	Jakelupiirien poiskytkentä
+Disconnection of final circuits	Ryhmäjohtojen poiskytkentä
+Distance	Etäisyys
+Distance from devices, rails and busbars	Etäisyys laitteista, kiskoista ja kokoojakiskoista
+Distance of signals and fluids from power	Signaalien ja fluidien etäisyys teholinjoista
+Distance of the opening from the left end of the wall, seen from inside the room	Aukon etäisyys seinän vasemmasta päästä tilan sisältä katsottuna
+Distance to cable ducts	Etäisyys johtokouruihin
+Distance to the plate edge	Etäisyys levyn reunaan
+Distances between classes of items, or classes that may overlap	Etäisyydet kohdeluokkien välillä tai luokat, jotka saavat olla päällekkäin
+Distribute	Jaa tasaisesti
+Distribute horizontally	Jaa tasaisesti vaakasuunnassa
+Distribute vertically	Jaa tasaisesti pystysuunnassa
+Distributed neutral	Jaettu nollajohdin
+Diversity factor	Samanaikaisuuskerroin
+Divider	Erotin
+Dock	Telakoi
+Document {} embedded ({})	Dokumentti {} upotettu ({})
+Documents	Dokumentit
+Done ones too	Myös valmiit
+Done.	Valmis.
+Door (front)	Ovi (edestä)
+Door (inside)	Ovi (sisäpuoli)
+Door NC data (DWG)	Oven NC-tiedot (DWG)
+Door NC data (DXF)	Oven NC-tiedot (DXF)
+Door clearance	Oven vapaa tila
+Door cutouts (CSV)	Oviaukot (CSV)
+Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
+Dot	Piste
+Double-click (3D view)	Kaksoisnapsautus (3D-näkymä)
+Download into database	Lataa tietokantaan
+Download project	Lataa projekti
+Downloaded {} (version {})	{} ladattiin (versio {})
+Downloaded {} parts (revision {}): {} new, {} updated	Ladattu {} osaa (revisio {}): {} uutta, {} päivitetty
+Downstream part	Jälkimmäinen osa
+Draft of revision {} created	Revision {} luonnos luotu
+Draft of revision {} discarded	Revision {} luonnos hylätty
+Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
+Drag the tag of the selected symbol to place it.	Vedä valitun symbolin tunnusta sijoittaaksesi sen.
+Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Veto: kierrä · oikean/keskipainikkeen tai Vaihto-näppäimen veto: panoroi · rulla: zoomaa osoittimen kohdalle · kaksoisnapsautus: katso sinne · W A S D / nuolet, Q E: liiku · napsautus: valitse
+Draw	Piirrä
+Draw a line across the wires that are cores of this cable	Piirrä viiva niiden johtojen poikki, jotka ovat tämän kaapelin johtimia
+Draw another line for this cable	Piirrä toinen viiva tälle kaapelille
+Draw cable definition	Piirrä kaapelimääritys
+Draw connections	Piirrä yhteyksiä
+Draw connections between facing connection points when symbols are placed or moved	Piirrä yhteydet vastakkaisten liitäntäpisteiden välille, kun symboleja sijoitetaan tai siirretään
+Draw inner walls	Piirrä väliseinät
+Draw the page yourself: graphics for every page and a row drawing repeated for every row; texts take the columns as placeholders	Piirrä sivu itse: grafiikka jokaiselle sivulle ja rivipiirros, joka toistetaan jokaiselle riville; tekstit käyttävät sarakkeita paikkamerkkeinä
+Draw the three wires of the T-junction to it: one in its direction and two across	Piirrä T-haaran kolme johdinta siihen: yksi sen suunnassa ja kaksi poikittain
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Piirrä kulman kaksi johdinta siihen tai kytke automaattinen kytkentä päälle ja sijoita se vapaita liitäntäpisteitä vastapäätä
+Draw walls	Piirrä seinät
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Piirrä siihen johtimet kaikista neljästä suunnasta tai kytke automaattinen kytkentä päälle ja sijoita se vapaita liitäntäpisteitä vastapäätä
+Draw wires in their colour (also in PDF and SVG); saved with the project	Piirrä johdot niiden värillä (myös PDF- ja SVG-muodossa); tallennetaan projektin mukana
+Drawing (DXF, DWG)	Piirustus (DXF, DWG)
+Drawing area {} x {} mm, column width {} mm	Piirustusalue {} x {} mm, sarakkeen leveys {} mm
+Drawing as new page	Piirustus uutena sivuna
+Drawn as a connection dot; the routing stays	Piirretään liitospisteenä; reititys säilyy
+Drawn form	Piirretty lomake
+Draws the strip with its terminals and jumpers, or the cables with their cores, instead of a table; the columns of the form are not used	Piirtää riman riviliittimineen ja siltoineen tai kaapelit johtimineen taulukon sijaan; lomakkeen sarakkeita ei käytetä
+Drilling list (CSV)	Porausluettelo (CSV)
+Drilling list of this face (CSV)	Tämän pinnan porausluettelo (CSV)
+Drilling pattern of the face shown as DXF, DWG or CSV	Näytetyn pinnan porauskuvio DXF-, DWG- tai CSV-muodossa
+Drop between the pages	Pudota sivujen väliin
+Drop between the rows or onto a section	Pudota rivien väliin tai osion päälle
+Duct fill	Kourun täyttö
+Duct fill limit	Johtokourun täyttöraja
+Duplicate	Monista
+Each example builds on the one before and shows more of the features.	Jokainen esimerkki rakentuu edellisen päälle ja näyttää enemmän toiminnoista.
+Each point-to-point connection can belong to a harness	Jokainen pisteestä pisteeseen -yhteys voi kuulua johtosarjaan
+Earthing system	Maadoitusjärjestelmä
+Edge length of the routing grid: smaller is finer and slower	Reititysruudukon sivun pituus: pienempi on tarkempi ja hitaampi
+Edit	Muokkaa
+Edit in table	Muokkaa taulukossa
+Edit in table…	Muokkaa taulukossa…
+Editable copy of this plot frame	Tämän piirustuskehyksen muokattava kopio
+Editable copy of this title block	Tämän nimiön muokattava kopio
+Effective surface	Tehollinen pinta-ala
+Electrical calculations	Sähkölaskelmat
+Electrical devices	Sähkölaitteet
+Electrical devices that actuate or monitor a fluid device (solenoid coils, position and pressure switches); both schematics show cross references to each other.	Sähkölaitteet, jotka ohjaavat tai valvovat fluidilaitetta (magneettikelat, raja- ja painekytkimet); molemmat kaaviot näyttävät ristiviittaukset toisiinsa.
+Electro-fluid	Sähkö-fluidi
+Ellipse	Ellipsi
+Embed as document page	Upota asiakirjasivuksi
+Embeds a file (PDF, Word, Excel, image …) as a page	Upottaa tiedoston (PDF, Word, Excel, kuva …) sivuksi
+Embeds the file in the project (replaces the current one)	Upottaa tiedoston projektiin (korvaa nykyisen)
+Enclosure system	Kotelojärjestelmä
+Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Kotelot (+CAB1), laitteet (-M1) ja koneiden sijainnit (+M1) solmuissa
+Enclosures and rooms	Kotelot ja tilat
+Enclosures, devices to place and placed devices	Kaapit, sijoitettavat ja sijoitetut laitteet
+End	Loppu
+End brackets and end plates from the tech data of the terminal parts (End bracket, End plate)	Päätypidikkeet ja päätylevyt riviliitinosien teknisistä tiedoista (End bracket, End plate)
+Enter a user name: other users see it on your locks.	Kirjoita käyttäjänimi: muut käyttäjät näkevät sen lukituksissasi.
+Entry	Merkintä
+Esc	Esc
+Estimated air temperature in front of the mounting plate (power loss of the devices, climate)	Arvioitu ilman lämpötila asennuslevyn edessä (laitteiden tehohäviö, ilmasto)
+Every command of the editor and of the plugins by name	Editorin ja laajennusten kaikki komennot nimen mukaan
+Every connection gets one number for all its wires; the two sides of a terminal are separate connections.	Jokainen yhteys saa yhden numeron kaikille johdoilleen; riviliittimen kaksi puolta ovat erillisiä yhteyksiä.
+Every item of the scope that meets the conditions must meet the requirement.	Jokaisen alueen kohteen, joka täyttää ehdot, on täytettävä vaatimus.
+Every tool is a pane: drag its tab beside the page, into the navigators or out as a window.	Jokainen työkalu on ruutu: vedä sen välilehti sivun viereen, navigaattoreihin tai ulos ikkunaksi.
+Example projects	Esimerkkiprojektit
+Example: {}	Esimerkki: {}
+Exchange log	Siirtoloki
+Exchange parts with a global parts database (openecraft-parts-server) or read the EPLAN Data Portal	Vaihda osia globaalin osatietokannan (openecraft-parts-server) kanssa tai lue EPLAN Data Portalia
+Exchange with ERP, PDM, PLM, ECAD, MCAD, procurement and wiring machines	Tiedonsiirto ERP-, PDM-, PLM-, ECAD- ja MCAD-järjestelmien, hankinnan ja johdinkäsittelykoneiden kanssa
+Export	Vienti
+Export AutomationML…	Vie AutomationML…
+Export CSV	Vie CSV
+Export CSV…	Vie CSV…
+Export Excel	Vie Exceliin
+Export Excel…	Vie Excel…
+Export IEC 61131-3 variables…	Vie IEC 61131-3 -muuttujat…
+Export JSON	Vie JSON
+Export SVG…	Vie SVG…
+Export all pages as PDF in {}	Vie kaikki sivut PDF-muodossa kielellä {}
+Export as EPLAN parts XML…	Vie EPLAN-osa-XML-muodossa…
+Export as PDF in language	Vie PDF-muodossa kielellä
+Export check scheme…	Vie tarkistusskeema…
+Export favorites…	Vie suosikit…
+Export library…	Vie kirjasto…
+Export macros (JSON)…	Vie makrot (JSON)…
+Export marking (CSV)…	Vie merkinnät (CSV)…
+Export marking (Excel)…	Vie merkinnät (Excel)…
+Export settings…	Vie asetukset…
+Export symbol table (CSV)…	Vie symbolitaulukko (CSV)…
+Export the messages as CSV	Vie ilmoitukset CSV-muodossa
+Exported {}	Viety {}
+Exporting {}	Viedään {}
+Export…	Vie…
+Extras	Lisätoiminnot
+Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Tuulettimet, suodattimet, kaapeliläpiviennit, valaisimet, kahvat: valitse yksi ja napsauta sitten sen paikkaa
+Fastening hardware in the bill of materials	Kiinnitystarvikkeet osaluettelossa
+Favorite	Suosikki
+Favorites (JSON)	Suosikit (JSON)
+Ferrule {} ({})	Pääteholkki {} ({})
+Field	Kenttä
+Field (name, description, company, creator, date, revision) or project property	Kenttä (name, description, company, creator, date, revision) tai projektiominaisuus
+Field cables	Kenttäkaapelit
+Field length	Kentän pituus
+Field; tech:<name> for tech data of parts, prop:<name> for project properties	Kenttä; tech:<name> osien teknisille tiedoille, prop:<name> projektin ominaisuuksille
+File format version {}. Files of older versions are converted when they are opened.	Tiedostomuodon versio {}. Vanhempien versioiden tiedostot muunnetaan avattaessa.
+File name	Tiedostonimi
+File of another system (connector)	Toisen järjestelmän tiedosto (konnektori)
+File {}	Tiedosto {}
+Files of other systems (CSV, JSON)	Muiden järjestelmien tiedostot (CSV, JSON)
+Fill	Täytä
+Fill level	Täyttöaste
+Filled	Täytetty
+Filter connections…	Suodata yhteyksiä…
+Filter devices…	Suodata laitteita…
+Filter…	Suodatin…
+Find	Etsi
+Find a command	Etsi komento
+Find a command ({})	Etsi komento ({})
+Find a command…	Etsi komento…
+Find and replace in the whole project	Etsi ja korvaa koko projektissa
+Find results	Hakutulokset
+Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Etsii projektin osien Vault-nimikkeet nimikenumeron tai ominaisuuden Part Number perusteella ja näyttää nimikkeen ID:n, revision ja elinkaaren tilan muutokset tarkistettaviksi
+Find…	Etsi…
+First row	Ensimmäinen rivi
+Fit	Sovita
+Fit page	Sovita sivu
+Fits {}	Sopii osaan {}
+Float	Irrota
+Floor above ground	Lattia maan yläpuolella
+Floor plan	Pohjapiirros
+Floor plan with {} walls	Pohjapiirros, {} seinää
+Floor-standing part	Lattialle sijoitettava osa
+Fluid and process	Fluidi ja prosessi
+Follows its condition: use Apply conditions	Noudattaa ehtoaan: käytä toimintoa Käytä ehtoja
+For	Kohteelle
+For parts without Stock length; longer profiles have to be joined	Osille, joilla ei ole arvoa Stock length; pidemmät profiilit on jatkettava
+For parts without temperature data (Max temperature, Operating temperature); 0: not checked	Osille, joilla ei ole lämpötilatietoja (Max temperature, Operating temperature); 0: ei tarkisteta
+For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	Tuontiin EPLANin osien hallintaan (P_ARTICLE_*-attribuutit, tekstit kielellä en_US)
+Format	Muoto
+Format of cross references, structure of the target page, interruption points, contact images	Ristiviittausten muoto, kohdesivun rakenne, katkoskohdat, kosketinkuviot
+Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Johtosarjan naulalautapiirustus mittakaavassa haarojen pituuksineen ja liittimien nastataulukoineen
+Forms	Lomakkeet
+Form…	Lomake…
+Frame	Kehys
+Frame of all pages that do not choose one	Kaikkien niiden sivujen kehys, jotka eivät valitse omaa
+Free air	Vapaa reititys
+Free air factor	Vapaan reitityksen kerroin
+Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Vapaa tila jokaisen levyllä olevan laitteen edessä oveen asti; osat lisäävät omansa (Service space)
+Freeze all routes	Lukitse kaikki reitit
+Freeze route	Lukitse reitti
+Frequency	Taajuus
+From / to	Mistä / mihin
+From a template file…	Mallitiedostosta…
+From the function definition	Toimintomäärittelystä
+From the left end	Vasemmasta päästä
+Fullest stretch	Eniten täytetty osuus
+Function definitions	Toimintomäärittelyt
+Function properties	Toiminnon ominaisuudet
+Function text of the functions in this column that have none of their own (device list, terminal, plug and PLC diagrams)	Tämän sarakkeen niiden toimintojen toimintoteksti, joilla ei ole omaa (laiteluettelo, riviliitin-, pistoliitin- ja PLC-kaaviot)
+Function texts	Toimintotekstit
+Functions of the parts	Osien toiminnot
+Functions of the project data not placed yet	Projektitietojen toiminnot, joita ei ole vielä sijoitettu
+Further devices	Muut laitteet
+Further project settings	Muut projektin asetukset
+Gap	Väli
+Gap between devices	Laitteiden välinen rako
+Generate	Luo
+Generate all	Luo kaikki
+Generate pages	Luo sivut
+Generate pages from page macros by options and rules	Luo sivuja sivumakroista vaihtoehtojen ja sääntöjen mukaan
+Generate report pages per strip, plug, cable or device	Luo raporttisivut rimaa, pistoliitintä, kaapelia tai laitetta kohden
+Generate schematic from this page	Luo piirikaavio tästä sivusta
+Generate single-line diagram	Luo yksinapainen kaavio
+Generated by the configurator	Konfiguraattorin luoma
+Generated page – edit via page properties	Luotu sivu – muokkaa sivun ominaisuuksien kautta
+Generates the pages of all report blocks again	Luo kaikkien raporttilohkojen sivut uudelleen
+Generates {} pages	Luo {} sivua
+Generation failed: {}	Luonti epäonnistui: {}
+Generic	Yleinen
+Getting started	Aloitus
+Global variable list with direct addresses for CODESYS, TwinCAT and others	Globaalien muuttujien luettelo suorilla osoitteilla CODESYSille, TwinCATille ja muille
+Go to page	Siirry sivulle
+Graphic line	Grafiikkaviiva
+Graphic rectangle	Grafiikkasuorakulmio
+Graphical form	Graafinen lomake
+Grid	Ruudukko
+Grid size	Ruudukon koko
+Grid {} mm	Ruudukko {} mm
+Group as assembly	Ryhmitä kokoonpanoksi
+Group column	Ryhmittelysarake
+Group in the symbol list, e.g. your company	Ryhmä symboliluettelossa, esim. yrityksesi
+Group the pages by structure	Ryhmittele sivut rakenteen mukaan
+Groups shown	Näytettävät ryhmät
+HEATER=yes	LÄMMITIN=kyllä
+Hardware configuration and PLC tags for TIA Portal and other PLC tools	Laitteistokokoonpano ja PLC-muuttujat TIA Portalia ja muita PLC-työkaluja varten
+Head (CPU / coupler)	Pääyksikkö (CPU / väyläliitin)
+Header row	Otsikkorivi
+Heat map	Lämpökartta
+Heating	Lämmitys
+Height (mm)	Korkeus (mm)
+Height above the floor	Korkeus lattiasta
+Height above the mounting plate	Korkeus asennuslevyn yläpuolella
+Height above the plate	Korkeus levyn yläpuolella
+Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
+Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
+Help	Ohje
+Hide the groups you do not need and put the commands you use most into own groups.	Piilota ryhmät, joita et tarvitse, ja kokoa useimmin käyttämäsi komennot omiin ryhmiin.
+Highest phase unbalance	Suurin vaiheiden epäsymmetria
+Highest short-circuit current	Suurin oikosulkuvirta
+Hole to sheet edge	Reiän etäisyys levyn reunasta
+Home	Aloitus
+Horizontal	Vaakasuora
+Horizontal (mm)	Vaakasuunnassa (mm)
+Horizontal centres	Vaakasuuntaiset keskikohdat
+Horizontal position	Vaakasijainti
+Horizontally	Vaakasuunnassa
+Hose / pipe {}	Letku / putki {}
+Hose / tube / pipe, sold by the metre	Letku / putki / putkisto, metritavara
+Hose defaults and PCT loops of the pre-planning	Letkujen oletusarvot ja esisuunnittelun instrumentointipiirit
+Hose number	Letkun numero
+Hoses and pipes	Letkut ja putket
+Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
+IP / bus address	IP- / väyläosoite
+ISO 639-1 language code	ISO 639-1 -kielikoodi
+Identifiers	Tunnukset
+Identifiers in use that are not defined are reported by the check.	Tarkistus ilmoittaa käytössä olevista tunnuksista, joita ei ole määritetty.
+Identifiers of the structure management	Rakennetunnusten hallinnan tunnukset
+Identifying letters	Tunnuskirjaimet
+Images (PNG, JPEG)	Kuvat (PNG, JPEG)
+Image…	Kuva…
+Import	Tuonti
+Import AutomationML…	Tuo AutomationML…
+Import CSV / Excel…	Tuo CSV / Excel…
+Import CSV…	Tuo CSV…
+Import DXF / DWG as page…	Tuo DXF / DWG sivuksi…
+Import GSDML / ESI…	Tuo GSDML / ESI…
+Import PDF comments…	Tuo PDF-kommentit…
+Import a file of another system to see what it changes in the project.	Tuo toisen järjestelmän tiedosto nähdäksesi, mitä se muuttaa projektissa.
+Import changes	Tuonnin muutokset
+Import check scheme…	Tuo tarkistusskeema…
+Import failed: {}	Tuonti epäonnistui: {}
+Import favorites…	Tuo suosikit…
+Import into the parts database	Tuo osatietokantaan
+Import library…	Tuo kirjasto…
+Import macros…	Tuo makroja…
+Import page templates…	Tuo sivumalleja…
+Import parts (CSV / JSON)…	Tuo osia (CSV / JSON)…
+Import parts…	Tuo osia…
+Import settings…	Tuo asetukset…
+Import symbol library…	Tuo symbolikirjasto…
+Import symbol table…	Tuo symbolitaulukko…
+Imported	Tuotu
+Imported {} entries of the property library	Ominaisuuskirjastosta tuotiin {} merkintää
+Imported {} macros	Tuotu {} makroa
+Imported {} page templates	Tuotu {} sivumallia
+Imported {} parts into the database	Tuotu {} osaa tietokantaan
+Imported {} rule sets	Tuotu {} sääntökokoelmaa
+Imported {} stations, {} modules, {} bus systems, {} connections; {} addresses and {} texts changed	Tuotu {} asemaa, {} moduulia, {} väyläjärjestelmää, {} yhteyttä; {} osoitetta ja {} tekstiä muutettu
+Imported {} title blocks and {} report schemes	Tuotu {} nimiötä ja {} raporttimallia
+Importing {} from the parts server…	Tuodaan {} osapalvelimelta…
+Import…	Tuo…
+In every section counting starts again after the section number (2.3.1).	Jokaisessa osiossa laskenta alkaa alusta osion numeron jälkeen (2.3.1).
+In strip order; PE and other non-numeric terminals keep their designation	Rimajärjestyksessä; PE ja muut ei-numeeriset riviliittimet säilyttävät nimityksensä
+In the filtered rows	Suodatetuissa riveissä
+In the middle of the first wire	Ensimmäisen johdon keskelle
+In the project	Projektissa
+In the structure of the current page	Nykyisen sivun rakenteessa
+Include manually set numbers	Sisällytä manuaalisesti asetetut numerot
+Index	Indeksi
+Indices	Indeksit
+Inner walls	Väliseinät
+Input bytes	Tulotavut
+Inputs	Tulot
+Insert	Lisää
+Insert a group of items (anchored items go to their place, the others where you click)	Lisää kohderyhmä (ankkuroidut kohteet paikoilleen, muut napsautuskohtaan)
+Insert as report page	Lisää raporttisivuna
+Insert center	Lisäyskeskus
+Insert edited subproject…	Liitä muokattu aliprojekti…
+Insert mounting layout page	Lisää asennuskuvasivu
+Insert page	Lisää sivu
+Insert placeholder…	Lisää paikkamerkki…
+Insert with	Lisää käyttäen
+Inserted {}	Liitetty {}
+Inside temperature	Sisälämpötila
+Inside without cooling	Sisällä ilman jäähdytystä
+Installation	Sijoitus
+Installation conditions of the conductors	Johtimien asennusolosuhteet
+Installed plugins	Asennetut laajennukset
+Instead of user name and password	Käyttäjänimen ja salasanan sijaan
+Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	PI-kaavion instrumenttien merkinnässä on tunnuskirjaimet ja piirin numero (TIC 101); niiden laitetunnus yhdistää ne piirikaavioon.
+Insulation	Eristys
+Interruption points refer to	Katkoskohdat viittaavat
+Introduction	Johdanto
+Invalid value	Virheellinen arvo
+Isometric	Isometrinen
+Items on the layer	Tason kohteet
+Items with an anchor keep it; the others are inserted relative to the click.	Ankkuroidut kohteet säilyttävät ankkurinsa; muut lisätään suhteessa napsautukseen.
+Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Nimikkeet, laitteet, sijoittelut, yhteydet, johdot ja asiakirjat yhdessä JSON-tiedostossa järjestelmille, joilla ei ole konnektoria
+Its pages and subsections go to the section above	Sen sivut ja alaosiot siirtyvät yläosioon
+Its pages replace the pages taken out	Sen sivut korvaavat irrotetut sivut
+Join collinear wires	Yhdistä samalla suoralla olevat johdot
+Joins	Yhdistää
+Joins wire pieces in a line where nothing else connects (current page)	Yhdistää johdonpalat linjassa, jossa mitään muuta ei liity (nykyinen sivu)
+Jumper {}	Silta {}
+K, Q, MM …	K, Q, MM …
+Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
+Keep the degree of protection	Säilytä kotelointiluokka
+Keep this route when recalculating, as long as it is still possible	Säilytä tämä reitti uudelleenlaskennassa niin kauan kuin se on mahdollista
+Key tips of the ribbon	Valintanauhan pikanäppäimet
+Key: {}	Avain: {}
+Keyboard shortcuts	Pikanäppäimet
+Keyboard shortcuts…	Pikanäppäimet…
+Label	Merkintä
+Label (grey)	Merkintä (harmaa)
+Label field	Merkintäkenttä
+Labeling scheme	Merkintäskeema
+Landscape	Vaakasuunta
+Larger texts and buttons for a touch screen at the workbench	Suuremmat tekstit ja painikkeet työpenkin kosketusnäytölle
+Layer	Taso
+Layer {}	Taso {}
+Layer: {}	Taso: {}
+Layers of graphics, texts, dimensions and images	Grafiikan, tekstien, mitoitusten ja kuvien tasot
+Laying out the wires, cables and tubes…	Johtoja, kaapeleita ja putkia asetellaan…
+Layout checks	Asennustarkistukset
+Layout properties	Asennuskuvan ominaisuudet
+Layout space	Asennustila
+Layout spaces	Asennustilat
+Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Jätä kaikkien johtokanavien kannet pois 3D-näkymästä: niissä olevat johtimet näkyvät
+Leave repeated values of the first column blank	Jätä ensimmäisen sarakkeen toistuvat arvot tyhjiksi
+Left	Vasen
+Left edges	Vasemmat reunat
+Legend plates (door devices)	Nimikilvet (ovilaitteet)
+Length from the node to the device	Pituus solmusta laitteeseen
+Length inside an enclosure	Pituus kotelon sisällä
+Length of a shield pigtail where there is no shield clamp	Suojavaipan punoksen pituus, jos suojavaipan kiinnitintä ei ole
+Length of wires that are not routed in the panel layout	Niiden johtojen pituus, joita ei ole reititetty kaappiasennuksessa
+Length {} mm	Pituus {} mm
+Letters, digits, space, - _ . (up to 64 characters)	Kirjaimet, numerot, välilyönti, - _ . (enintään 64 merkkiä)
+Level of a multi-level terminal: upper levels sit on the block of the terminal before	Kerrosriviliittimen kerros: ylemmät kerrokset ovat edellisen riviliittimen lohkon päällä
+Level of this kind of message	Tämän ilmoituslajin taso
+Level on top	Kerros päälle
+Levels	Kerrokset
+Library	Kirjasto
+Limits	Raja-arvot
+Limits in effect	Voimassa olevat raja-arvot
+Line to PE at the supply point; 0 = from the highest short-circuit current	Vaihe–PE syöttöpisteessä; 0 = suurimmasta oikosulkuvirrasta
+Line up on the rail	Rivitä kiskolle
+Line width	Viivan paksuus
+Line-up	Rivitys
+Line-up and cable passages	Rivitys ja kaapelin läpivientiaukot
+Linked data	Linkitetyt tiedot
+Linked to this request	Linkitetty tähän pyyntöön
+Links between buildings	Rakennusten väliset yhteydet
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts	Linkittää magneettiventtiilit samanumeroiseen kelaan (-QM3 › -MB3) ja kopioi toimintotekstit
+List projects	Luettele projektit
+Load losses	Kuormitushäviöt
+Load preset	Lataa esiasetus
+Load reserve	Kuormitusvara
+Load template…	Lataa malli…
+Loading changes…	Ladataan muutoksia…
+Loading the project access…	Ladataan projektin käyttöoikeuksia…
+Loads	Kuormat
+Lock all	Lukitse kaikki
+Lock all pages	Lukitse kaikki sivut
+Lock current page	Lukitse nykyinen sivu
+Lock page	Lukitse sivu
+Lock project data	Lukitse projektin tiedot
+Locked	Lukittu
+Locked by other users	Muiden käyttäjien lukitsemat
+Locked by {} on the project server – read only	{} on lukinnut projektipalvelimella – vain luku
+Locked by {} – read only	Lukinnut {} – vain luku
+Locking…	Lukitaan…
+Logic	Logiikka
+Longer values are drawn smaller (0 = no limit)	Pidemmät arvot piirretään pienempinä (0 = ei rajaa)
+Look at the point clicked, closer	Katso napsautettua kohtaa läheltä
+Loop	Piiri
+Lowest fault current	Pienin vikavirta
+Macro boxes	Makrolaatikot
+Macro boxes ({})	Makrolaatikot ({})
+Macro saved to the library	Makro tallennettiin kirjastoon
+Macro {} saved	Makro {} tallennettu
+Macros	Makrot
+Macros ({})	Makrot ({})
+Macro…	Makro…
+Main	Pää
+Make the selected elements of this project equal to the compared ones	Tee tämän projektin valituista elementeistä samanlaiset kuin vertailtavat
+Makes the current page content of the option	Tekee nykyisestä sivusta vaihtoehdon sisältöä
+Manage plugins	Hallitse laajennuksia
+Management	Hallinta
+Manufacturer's coordination tables	Valmistajan koordinaatiotaulukot
+Mark as mounted	Merkitse asennetuksi
+Mark as not mountable; describe the problem in the note	Merkitse ei-asennettavaksi; kuvaa ongelma huomautuksessa
+Mark as not wirable; describe the problem in the note	Merkitse ei johdotettavaksi; kuvaa ongelma huomautuksessa
+Mark as open	Merkitse avoimeksi
+Mark as wired	Merkitse johdotetuksi
+Marker material	Merkintämateriaali
+Markers	Merkinnät
+Marking…	Merkinnät…
+Marks of items that no longer exist	Merkinnät kohteista, joita ei enää ole
+Marks of wires that no longer exist	Merkinnät johdoista, joita ei enää ole
+Markup	Merkinnät
+Markup on this page	Korjausmerkinnät tällä sivulla
+Markup text	Korjausmerkinnän teksti
+Master data	Perustiedot
+Max. pressure	Enimmäispaine
+Max. width	Enimmäisleveys
+Maximum fill of a carrier	Kannattimen suurin täyttöaste
+Measured	Mitattu
+Measures against common cause failure (at least 65 points)	Toimenpiteet yhteisvikoja vastaan (vähintään 65 pistettä)
+Merge a symbol library file	Yhdistä symbolikirjastotiedosto
+Message	Viesti
+Messages	Viestit
+Messages ({})	Viestit ({})
+Messages of this session	Tämän istunnon viestit
+Middle	Keskellä
+Min. bend radius	Pienin taivutussäde
+Minimize the ribbon	Pienennä valintanauha
+Mirror	Peilaa
+Mirror (selection or symbol being placed)	Peilaa (valinta tai sijoitettava symboli)
+Mode	Tila
+Model of a part (2D / 3D)	Osan malli (2D / 3D)
+Motors feed the short circuit	Moottorit syöttävät oikosulkua
+Mounted on	Asennettu kohteeseen
+Mounting assistant: the panel items in mounting order with their place and part	Asennusavustaja: asennusosat asennusjärjestyksessä paikkoineen ja osineen
+Mounting clearance side by side; parts add theirs (Clearance left / right)	Asennusetäisyys vierekkäin; osat lisäävät omansa (Clearance left / right)
+Mounting plate: {} holes, {} cutouts	Asennuslevy: {} reikää, {} aukkoa
+Move	Siirrä
+Move down	Siirrä alaspäin
+Move left	Siirrä vasemmalle
+Move page down	Siirrä sivua alaspäin
+Move page up	Siirrä sivua ylöspäin
+Move selection by	Siirrä valintaa
+Move selection by…	Siirrä valintaa…
+Move the devices of this page into the new structure	Siirrä tämän sivun laitteet uuteen rakenteeseen
+Move through the 3D view (Shift: faster)	Liiku 3D-näkymässä (Vaihto: nopeammin)
+Move to section	Siirrä osioon
+Move up	Siirrä ylöspäin
+Moves to the top level as page {}	Siirtyy ylimmälle tasolle sivuksi {}
+Moves to {} as page {}	Siirtyy osioon {} sivuksi {}
+Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Moninapaiset tehopiirin symbolit ja johtimet nykyisen sivun yksinapaisille symboleille uudelle sivulle
+Multiple copy	Monikopiointi
+Multiple copy…	Monikopiointi…
+Must be connected to the equipotential bonding	On liitettävä potentiaalintasaukseen
+My locks	Omat lukitukset
+My page	Oma sivu
+NC data	NC-tiedot
+NC data (DWG)	NC-tiedot (DWG)
+NC data (DXF)	NC-tiedot (DXF)
+NC data of this face (DWG)	Tämän pinnan NC-tiedot (DWG)
+NC data of this face (DXF)	Tämän pinnan NC-tiedot (DXF)
+Nailboard (SVG)…	Naulalauta (SVG)…
+Name on the server	Nimi palvelimella
+Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
+Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
+Navigators	Navigaattorit
+Neutral exchange file…	Neutraali siirtotiedosto…
+Never	Ei koskaan
+New	Uusi
+New block	Uusi lohko
+New building	Uusi rakennus
+New cable	Uusi kaapeli
+New change request	Uusi muutospyyntö
+New cover sheet	Uusi kansilehti
+New document page…	Uusi dokumenttisivu…
+New empty	Uusi tyhjä
+New enclosure	Uusi kotelo
+New graphics page	Uusi grafiikkasivu
+New group	Uusi ryhmä
+New harness	Uusi johtosarja
+New items go onto this layer	Uudet kohteet tulevat tälle tasolle
+New mounting layout page	Uusi asennuskuvasivu
+New option	Uusi vaihtoehto
+New overview page	Uusi yleiskatsaussivu
+New page	Uusi sivu
+New page after the current one	Uusi sivu nykyisen jälkeen
+New page from template	Uusi sivu mallista
+New page in this section	Uusi sivu tähän osioon
+New pages for every group (strip, plug, cable, device …)	Uudet sivut jokaiselle ryhmälle (rima, pistoliitin, kaapeli, laite …)
+New potential	Uusi potentiaali
+New project	Uusi projekti
+New project from template	Uusi projekti mallista
+New project scheme from the selected one	Uusi projektiskeema valitusta
+New report page	Uusi raporttisivu
+New request	Uusi pyyntö
+New revision	Uusi revisio
+New revisions start as drafts, are submitted for review and can be released once approved.	Uudet revisiot alkavat luonnoksina, lähetetään katselmointiin ja voidaan vapauttaa, kun ne on hyväksytty.
+New room	Uusi tila
+New room on this level	Uusi tila tähän kerrokseen
+New schematic page	Uusi piirikaaviosivu
+New scheme	Uusi skeema
+New section	Uusi osio
+New shaft	Uusi kuilu
+New sub-page	Uusi alasivu
+New subsection	Uusi alaosio
+New tag for {}	Uusi tunnus kohteelle {}
+New, empty placement scheme	Uusi, tyhjä sijoitteluskeema
+Next free contact numbers on this device	Laitteen seuraavat vapaat kosketinnumerot
+Next item	Seuraava kohde
+Next page	Seuraava sivu
+Next page tab	Seuraava sivuvälilehti
+Next pane	Seuraava ruutu
+Next row	Seuraava rivi
+Next wire	Seuraava johto
+No PLC cards in the project.	Projektissa ei ole PLC-kortteja.
+No PLC inputs / outputs placed.	PLC-tuloja / -lähtöjä ei ole sijoitettu.
+No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Ei tarvikkeita: läpiviennit, liittimet, suojavaippapuristimet … menevät osaluetteloon ja tarkistetaan kaapelia vasten.
+No bus systems.	Ei väyläjärjestelmiä.
+No cable passage to {}: wires to it are not routed	Ei kaapelin läpivientiaukkoa kohteeseen {}: sinne meneviä johtoja ei reititetä
+No cables defined.	Kaapeleita ei ole määritetty.
+No cables yet. Draw a cable definition across wires or add a cable.	Ei vielä kaapeleita. Piirrä kaapelimääritys johtojen poikki tai lisää kaapeli.
+No change requests yet.	Ei vielä muutospyyntöjä.
+No changes since the last revision.	Ei muutoksia viimeisimmän revision jälkeen.
+No data of other systems imported yet.	Muiden järjestelmien tietoja ei ole vielä tuotu.
+No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Millään laitteella ei vielä ole asennustietoja: liitä laitteisiin osat, joilla on mitat (Ominaisuudet › Osat).
+No differences to {}.	Ei eroja kohteeseen {}.
+No document embedded	Dokumenttia ei ole upotettu
+No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
+No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
+No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
+No harnesses defined.	Johtosarjoja ei ole määritetty.
+No longer reported	Ei enää ilmoiteta
+No macros yet. Select items in a schematic and save them as a macro.	Ei vielä makroja. Valitse kohteita piirikaaviossa ja tallenna ne makrona.
+No modules: plug in PLC cards of the schematic.	Ei moduuleja: asenna piirikaavion PLC-kortteja.
+No numbers for	Ei numeroita kohteille
+No panel items: place the devices in the panel layout.	Ei asennusosia: sijoita laitteet kaappiasennukseen.
+No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Lattia-asennukseen merkittyjä osia ei vielä ole. Merkitse osa osien hallinnassa: osaeditori › Asennustiedot › Lattia-asennus.
+No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Seinäasennukseen merkittyjä osia ei vielä ole. Merkitse osa osien hallinnassa: osaeditori › Asennustiedot › Seinäasennus.
+No parts of the product group Cables in the parts database.	Osatietokannassa ei ole tuoteryhmän Kaapelit osia.
+No parts of the product group Marking in the parts database.	Osatietokannassa ei ole tuoteryhmän Marking osia.
+No parts: assign the housings in the properties of a pin (parts with the function Plug pin give the pin count).	Ei osia: määritä rungot nastan ominaisuuksissa (osat, joilla on toiminto Pistoliittimen nasta, määräävät nastamäärän).
+No pin layout in the technical data of the part: the pins are shown in a row (Pin layout: circle 4, circle 7+1, row 8, zigzag 10, grid 2x8+PE, dsub 9).	Osan teknisissä tiedoissa ei ole nastajärjestystä: nastat näytetään rivissä (Pin layout: circle 4, circle 7+1, row 8, zigzag 10, grid 2x8+PE, dsub 9).
+No plugs: place plug pins (symbol group Plugs) in a schematic first.	Ei pistoliittimiä: sijoita ensin pistoliittimen nastoja (symboliryhmä Pistoliittimet) piirikaavioon.
+No problems found	Ongelmia ei löytynyt
+No projects. Add a folder with project files.	Ei projekteja. Lisää projektitiedostoja sisältävä kansio.
+No report pages to output	Ei tulostettavia raporttisivuja
+No revision yet. Changes are tracked from the first revision on.	Ei vielä revisiota. Muutoksia seurataan ensimmäisestä revisiosta alkaen.
+No routed wires: place the devices in the panel layout.	Ei reititettyjä johtoja: sijoita laitteet kaappiasennukseen.
+No saved workspaces yet.	Ei vielä tallennettuja työtiloja.
+No segments yet: add one, or import a CSV / Excel file.	Ei vielä segmenttejä: lisää segmentti tai tuo CSV- / Excel-tiedosto.
+No segments yet: draw them in the plant layout.	Ei vielä osuuksia: piirrä ne laitoksen sijoituskuvaan.
+No shortcut	Ei pikanäppäintä
+No single-line symbols and no power devices in the schematic.	Ei yksinapaisia symboleita eikä tehopiirin laitteita piirikaaviossa.
+No stations: add one or use the automatic configuration.	Ei asemia: lisää asema tai käytä automaattista kokoonpanoa.
+No subprojects were taken out of this project.	Tästä projektista ei ole irrotettu aliprojekteja.
+No terminal strips: place terminals in a schematic first.	Ei riviliitinrimoja: sijoita ensin riviliittimiä piirikaavioon.
+No user symbols yet. Create one or copy a built-in symbol.	Ei vielä käyttäjän symboleja. Luo symboli tai kopioi sisäinen symboli.
+Node	Solmu
+None	Ei mitään
+None – draw it with the redline / greenline tools of the toolbar.	Ei mitään – piirrä ne työkalurivin redline- / greenline-työkaluilla.
+None – editing a page or the project data locks it.	Ei mitään – sivun tai projektin tietojen muokkaaminen lukitsee ne.
+Not a page template file: {}	Ei sivumallitiedosto: {}
+Not a point: type x y or @dx dy	Ei piste: kirjoita x y tai @dx dy
+Not a symbol library: {}	Ei symbolikirjasto: {}
+Not a title block file: {}	Ei nimiötiedosto: {}
+Not changed: {}	Ei muutettu: {}
+Not found: {}	Ei löytynyt: {}
+Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
+Not on a wire	Ei johdolla
+Not saved, locked or changed by another user: {}	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}
+Nothing exchanged yet.	Mitään ei ole vielä siirretty.
+Nothing left in this list.	Tässä luettelossa ei ole enää mitään.
+Nothing to show	Ei näytettävää
+Nothing to show.	Ei näytettävää.
+Number contacts automatically (13/14, 21/22 …)	Numeroi koskettimet automaattisesti (13/14, 21/22 …)
+Number cores	Numeroi johtimet
+Number devices	Numeroi laitteet
+Number prefix	Numeron etuliite
+Number wires	Numeroi johdot
+Numbering	Numerointi
+Numbers removed from {} wires	Numerot poistettu {} johdosta
+Object	Objekti
+Of the outer diameter, as laid fixed	Ulkohalkaisijasta, kiinteästi asennettuna
+Of the outer diameter; pipes are bent with elbows of one and a half diameters	Ulkohalkaisijasta; putket taivutetaan puolentoista halkaisijan käyrillä
+Off	Pois
+Offset from one row to the next: downwards for lists, sideways for rows side by side	Siirtymä rivistä seuraavaan: alaspäin luetteloille, sivuttain vierekkäisille riveille
+One row per label	Yksi rivi merkintäkilpeä kohden
+Only devices on the current page	Vain nykyisen sivun laitteet
+Only frames no page uses can be deleted	Vain kehykset, joita mikään sivu ei käytä, voi poistaa
+Only messages of the current page	Vain nykyisen sivun ilmoitukset
+Only parts whose function template provides the device's main function	Vain osat, joiden toimintomalli tarjoaa laitteen päätoiminnon
+Only rows that pass all filters are shown	Vain rivit, jotka läpäisevät kaikki suodattimet, näytetään
+Only web and e-mail addresses (http, https, mailto) are links	Vain verkko- ja sähköpostiosoitteet (http, https, mailto) ovat linkkejä
+Open and save shared projects, lock pages	Avaa ja tallenna jaettuja projekteja, lukitse sivuja
+Open archive…	Avaa arkisto…
+Open as project	Avaa projektina
+Open cable ducts	Avaa johtokanavat
+Open demo project	Avaa esittelyprojekti
+Open door	Avaa ovi
+Open in a new page tab	Avaa uudessa sivuvälilehdessä
+Open link	Avaa linkki
+Open project	Avaa projekti
+Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Avaa projekteja ja tiedostoja Autodesk Vaultista, tallenna projekti, viennit ja 3D-mallit Vaultiin
+Open the project	Avaa projekti
+Open to {}: wires cross beside the mounting plates	Avoin kohteeseen {}: johdot kulkevat asennuslevyjen vierestä
+Open, save, import, export, print and the settings	Avaa, tallenna, tuo, vie, tulosta ja asetukset
+OpenECraft page templates	OpenECraft-sivumallit
+OpenECraft page templates (JSON)	OpenECraft-sivumallit (JSON)
+OpenECraft project	OpenECraft-projekti
+OpenECraft project archive	OpenECraft-projektiarkisto
+OpenECraft project or archive	OpenECraft-projekti tai -arkisto
+OpenECraft project template	OpenECraft-projektimalli
+OpenECraft property library	OpenECraft-ominaisuuskirjasto
+OpenECraft property library (JSON)	OpenECraft-ominaisuuskirjasto (JSON)
+OpenECraft rule sets	OpenECraft-sääntökokoelmat
+OpenECraft rule sets (JSON)	OpenECraft-sääntökokoelmat (JSON)
+OpenECraft structure template	OpenECraft-rakennemalli
+OpenECraft structure template (JSON)	OpenECraft-rakennemalli (JSON)
+OpenECraft symbol library	OpenECraft-symbolikirjasto
+OpenECraft title blocks	OpenECraft-nimiöt
+OpenECraft title blocks and report schemes (JSON)	OpenECraft-nimiöt ja -raporttimallit (JSON)
+Opened {}	Avattu {}
+Opened {} from Vault (version {})	{} avattiin Vaultista (versio {})
+Opened {} from the project server	{} avattu projektipalvelimelta
+Opening	Aukko
+Opening in the mounting plate / door: click two corners (round: in the properties)	Aukko asennuslevyyn / oveen: napsauta kahta kulmaa (pyöreä: ominaisuuksissa)
+Opening {}…	Avataan {}…
+Opens the pages for printing in the browser with its print dialog	Avaa sivut tulostettaviksi selaimessa sen tulostusikkunalla
+Open…	Avaa…
+Operations / year	Kytkentäkerrat / vuosi
+Option	Vaihtoehto
+Options	Vaihtoehdot
+Ordinary cable	Tavallinen kaapeli
+Orientation	Suunta
+Origin	Alkuperä
+Other values ({})	Muut arvot ({})
+Otherwise from the plant layout, or next to the other line-ups	Muuten laitoksen sijoituskuvasta tai muiden kaappirivien viereen
+Out since {} (pages locked)	Irrotettu {} alkaen (sivut lukittu)
+Outer diameter (e.g. 8 mm) or DN	Ulkohalkaisija (esim. 8 mm) tai DN
+Outline	Ääriviiva
+Outlines	Ääriviivat
+Output bytes	Lähtötavut
+Output failed: {}	Tulostus epäonnistui: {}
+Output to another project	Tulostus toiseen projektiin
+Output to project…	Tulosta projektiin…
+Outputs	Lähdöt
+Own colour	Oma väri
+Own drawn form	Oma piirretty lomake
+Own groups	Omat ryhmät
+PCT loops (pre-planning)	Instrumentointipiirit (esisuunnittelu)
+PDF with comments	PDF kommentteineen
+PDF {}	PDF {}
+PLC channels	PLC-kanavat
+PLC hardware and bus topology	PLC-laitteisto ja väylätopologia
+PLC overview	PLC-yleiskatsaus
+PNG or JPEG bitmap, e.g. a logo or a photo	PNG- tai JPEG-bittikarttakuva, esim. logo tai valokuva
+Page graphics	Sivun grafiikka
+Page heading	Sivun otsikko
+Page list, devices, parts, panel layout and settings	Sivuluettelo, laitteet, osat, kaappiasennus ja asetukset
+Page macro	Sivumakro
+Page macro {} inserted as page {}	Sivumakro {} lisätty sivuksi {}
+Page macro: {}	Sivumakro: {}
+Page name / number	Sivun nimi / numero
+Page properties…	Sivun ominaisuudet…
+Page template {} saved	Sivumalli {} tallennettu
+Page templates (JSON) from another project	Sivumallit (JSON) toisesta projektista
+Page {} (deleted)	Sivu {} (poistettu)
+Page {} ({})	Sivu {} ({})
+Page {} is now page {}	Sivu {} on nyt sivu {}
+Page {} locked	Sivu {} lukittu
+Page {} – {}	Sivu {} – {}
+Page {}: {}	Sivu {}: {}
+Pages and templates using the frame follow	Kehystä käyttävät sivut ja mallit seuraavat
+Pages of revision {}	Revision {} sivut
+Pages of the selected block	Valitun lohkon sivut
+Pages using it get the project default	Sitä käyttävät sivut saavat projektin oletuksen
+Pairs in schematic order (1-2, 3-4 …)	Parit piirikaavion järjestyksessä (1-2, 3-4 …)
+Pane menu	Ruudun valikko
+Panel wiring report	Kaapin johdotusraportti
+Panes	Ruudut
+Paper	Paperi
+Parent section	Yläosio
+Part of the profile: generic types or parts from the parts store	Profiilin osa: yleiset tyypit tai osarekisterin osat
+Part selection from the parts database	Osan valinta osatietokannasta
+Part selection – {}	Osan valinta – {}
+Part selection…	Osan valinta…
+Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Osia voi pudottaa vain muokattaville sivuille; tämä on julkaistu, lukittu tai luotu
+Parts management	Osien hallinta
+Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Lattia-asennukseen merkityt osat (pumput, säiliöt, kompressorit): valitse yksi ja napsauta kohtaa huoneen lattialla
+Parts of the product group PLC give descriptions as well (technical data: Inputs, Outputs, Slots, Bus, Ports).	Myös tuoteryhmän PLC osat antavat kuvauksia (tekniset tiedot: Inputs, Outputs, Slots, Bus, Ports).
+Parts of {}	Osat: {}
+Parts store	Osarekisteri
+Parts with functions: the device gets the part, its first function is placed.	Osat toimintoineen: laite saa osan, sen ensimmäinen toiminto sijoitetaan.
+Parts: {}	Osat: {}
+Paste	Liitä
+Path for cables, tubes or wires over the plate: click the corners, double-click or Enter to finish	Polku kaapeleille, putkille tai johdoille levyn yllä: napsauta kulmia, lopeta kaksoisnapsautuksella tai Enterillä
+Path function text	Polun toimintoteksti
+Pattern	Kuvio
+Pattern…	Kuvio…
+Pin-out	Nastajärjestys
+Pipe run	Putkireitti
+Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Putkireitti huoneen seinällä, katossa tai lattialla, jota pitkin letkut, putket ja putkistot reititetään: napsauta kulmat, lopeta kaksoisnapsautuksella tai Enterillä
+Pipe run {} mm – double-click or Enter to finish	Putkireitti {} mm – lopeta kaksoisnapsautuksella tai Enterillä
+Pitch X / Y	Jako X / Y
+Place a comment on the page	Sijoita kommentti sivulle
+Place again at all symbols using it	Sijoita uudelleen kaikkiin sitä käyttäviin symboleihin
+Place an enclosure, device or machine location at this node	Sijoita kotelo, laite tai koneen sijainti tähän solmuun
+Place connection definition point	Sijoita yhteyden määrityspiste
+Place functions of this device	Sijoita tämän laitteen toiminnot
+Place in schematic	Sijoita piirikaavioon
+Place in the building	Paikka rakennuksessa
+Place in the plant	Paikka laitoksessa
+Place in the room	Paikka huoneessa
+Place text	Sijoita teksti
+Placed	Sijoitettu
+Placed here: {}	Sijoitettu tähän: {}
+Placed {}× in the project	Sijoitettu {}× projektissa
+Placeholders	Paikkamerkit
+Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Paikkamerkit, kuten {MOTOR}, tunnuksissa, teksteissä ja toimintoteksteissä täytetään lisättäessä.
+Placeholders: {letter} identifying letter, {n} counter, {page} page, {column} / {row} where the main function stands	Paikkamerkit: {letter} tunnuskirjain, {n} laskuri, {page} sivu, {column} / {row} päätoiminnon sijainti
+Placeholders: {n} counter (counted per value of the rest), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}. Without {n}, connections with the same text share the number.	Paikkamerkit: {n} laskuri (lasketaan muun tekstin kunkin arvon mukaan), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}. Ilman merkkiä {n} saman tekstin yhteydet jakavat saman numeron.
+Placement schemes	Sijoitteluskeemat
+Places	Paikat
+Placing symbols	Symbolien sijoittaminen
+Placing {}	Sijoitetaan {}
+Plan devices in the single-line diagram, generate the schematic and keep both in sync	Suunnittele laitteet yksinapaisessa kaaviossa, luo piirikaavio ja pidä molemmat synkronoituina
+Plant layout	Laitoksen sijoituskuva
+Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Laitoksen sijoituskuva, reittiverkko, kenttäkaapelisuunnittelu, potentiaalintasaus ja kaapelitarvikkeet
+Plant segments with planned devices before the schematic	Laitoksen segmentit suunniteltuine laitteineen ennen piirikaaviota
+Plate outline, holes per diameter, cutouts	Levyn ääriviiva, reiät halkaisijoittain, aukot
+Plot frames	Piirustuskehykset
+Plug in card	Asenna kortti
+Plugin commands	Laajennusten komennot
+Plugins	Laajennukset
+Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Laajennukset lisäävät komentoja, tarkistuksia, raportteja ja vientejä. Ulkoiset laajennukset ladataan ympäristömuuttujan {} kansioista (yksi alikansio, jossa plugin.json, kutakin laajennusta kohden).
+Points	Pisteet
+Polygon	Monikulmio
+Polyline	Murtoviiva
+Polyline / rectangle	Murtoviiva / suorakulmio
+Port A	Portti A
+Port B	Portti B
+Portrait	Pystysuunta
+Position X {} mm, Y {} mm	Sijainti X {} mm, Y {} mm
+Position of the cursor	Kohdistimen sijainti
+Position of the device tag (instead of the tag block)	Laitetunnuksen paikka (tunnuslohkon sijaan)
+Position of the label (terminal number, address …)	Merkinnän paikka (riviliittimen numero, osoite …)
+Positions are relative to the lower right corner of the symbol.	Sijainnit ovat suhteessa symbolin oikeaan alakulmaan.
+Potential {}	Potentiaali {}
+Potential: {}	Potentiaali: {}
+Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Verkon kuormien (moottorit, käytöt, lämmittimet, virtalähteet, muuntajat) teho ja virta, kunkin suojalaitteen kuorma, tarve samanaikaisuuskertoimella ja virtalähteiden kuormitustase.
+Power loss not covered by the parts (tech data Power loss: 7.5 W)	Häviöteho, jota osat eivät kata (tekninen tieto Power loss: 7.5 W)
+Pre-planning (CSV, Excel)	Esisuunnittelu (CSV, Excel)
+Prefix	Etuliite
+Press a key…	Paina näppäintä…
+Previous item	Edellinen kohde
+Previous page	Edellinen sivu
+Previous page tab	Edellinen sivuvälilehti
+Previous pane	Edellinen ruutu
+Previous wire	Edellinen johto
+Print	Tulosta
+Print all pages…	Tulosta kaikki sivut…
+Print current page…	Tulosta nykyinen sivu…
+Printing and export	Tulostus ja vienti
+Printing failed: {}	Tulostus epäonnistui: {}
+Priority	Prioriteetti
+Production	Tuotanto
+Production wire list and bill of materials	Tuotannon johtoluettelo ja osaluettelo
+Profile name	Profiilin nimi
+Profiles	Profiilit
+Project access	Projektin käyttöoikeudet
+Project and user settings in one dialog	Projektin ja käyttäjän asetukset yhdessä valintaikkunassa
+Project data	Projektitiedot
+Project database	Projektitietokanta
+Project database, batch changes of project properties, subprojects, options, archives and verification	Projektitietokanta, projektin ominaisuuksien joukkomuutokset, aliprojektit, vaihtoehdot, arkistot ja validointi
+Project default: {}	Projektin oletus: {}
+Project default; pages can choose their own in the page properties	Projektin oletus; sivut voivat valita oman sivun ominaisuuksissa
+Project file	Projektitiedosto
+Project file…	Projektitiedosto…
+Project information	Projektin tiedot
+Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projektin osat ovat tähän projektiin tallennettuja kopioita; niitä käytetään osaluetteloon ja projektin tarkistukseen.
+Project properties changed in {} projects	Projektin ominaisuuksia muutettiin {} projektissa
+Project properties…	Projektin ominaisuudet…
+Project server	Projektipalvelin
+Project server: {}	Projektipalvelin: {}
+Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projektin tekstit (toimintotekstit, sivujen kuvaukset, vapaat tekstit, kuvaukset) kirjoitetaan lähdekielellä; sanakirja kääntää ne rivi riviltä. Raportit ja nimiöt noudattavat tulostekieltä.
+Project: {}	Projekti: {}
+Projects from a first circuit to a whole plant, each showing more of the features	Projekteja ensimmäisestä piiristä kokonaiseen laitokseen, kukin näyttää enemmän toiminnoista
+Properties…	Ominaisuudet…
+Property database	Ominaisuustietokanta
+Property definitions	Ominaisuusmäärittelyt
+Property definitions, function definitions, placement schemes and the values of all objects	Ominaisuusmäärittelyt, toimintomäärittelyt, sijoitteluskeemat ja kaikkien objektien arvot
+Property groups	Ominaisuusryhmät
+Property placement	Ominaisuuksien sijoittelu
+Property removed with {} values	Ominaisuus ja sen {} arvoa poistettiin
+Put a room here	Sijoita tila tähän
+Put into the vault	Tallenna Vaultiin
+Put the pane back into the workspace	Palauta ruutu työtilaan
+Puts the project into the folder it was opened from	Tallentaa projektin kansioon, josta se avattiin
+Quick guide	Pikaopas
+Quit	Lopeta
+R/X of the supply	Syötön R/X
+Radius	Säde
+Rail raised on standoffs above the plate (devices on it move up)	Asennuskisko korotettu välikkeillä levyn yläpuolelle (sen päällä olevat laitteet nousevat mukana)
+Rails, ducts and busbars shorter than this are hard to cut	Tätä lyhyempiä kiskoja, kouruja ja kokoojakiskoja on vaikea katkaista
+Rated current of the supply	Syötön mitoitusvirta
+Read a file of the other system (CSV or JSON) and review the changes	Lue toisen järjestelmän tiedosto (CSV tai JSON) ja tarkista muutokset
+Readdress card	Osoita kortti uudelleen
+Reading the folder…	Luetaan kansiota…
+Reading the parts file	Luetaan osatiedostoa
+Reading {}	Luetaan {}
+Real length per millimetre on the page, e.g. 10 for a 1:10 drawing	Todellinen pituus sivun millimetriä kohden, esim. 10 piirustukselle 1:10
+Rear	Takaa
+Rear left corner of the line-up on the floor, as in the 3D view with all enclosures	Kaappirivin vasen takakulma lattialla, kuten kaikkien koteloiden 3D-näkymässä
+Recent projects	Viimeisimmät projektit
+Recently used	Viimeksi käytetyt
+Recommended height of manual actuators (10.1.2)	Käsikäyttöisten käyttöelinten suositeltu korkeus (10.1.2)
+Record	Tallenna näppäin
+Rectangular	Suorakulmainen
+Redline: to be changed · Greenline: changed as built	Redline: muutettava · Greenline: muutettu toteutuksen mukaan
+Redo	Tee uudelleen
+Refresh	Päivitä
+Refresh example catalog parts (GEN.*)	Päivitä esimerkkiluettelon osat (GEN.*)
+Reject	Hylkää
+Rejected and closed ones too	Myös hylätyt ja suljetut
+Relative column width	Suhteellinen sarakeleveys
+Release	Vapauta
+Release all	Vapauta kaikki
+Release route	Vapauta reitti
+Release without saving	Vapauta tallentamatta
+Release: lock all pages	Vapauta: lukitse kaikki sivut
+Released page – read only	Vapautettu sivu – vain luku
+Released pages in it keep their names	Sen vapautetut sivut säilyttävät nimensä
+Released pages keep their name.	Vapautetut sivut säilyttävät nimensä.
+Releases all locks; the project stays open as a local copy	Vapauttaa kaikki lukitukset; projekti pysyy avoinna paikallisena kopiona
+Releasing…	Vapautetaan…
+Remove from cable	Poista kaapelista
+Remove from harness	Poista johtosarjasta
+Remove from the group	Poista ryhmästä
+Remove from the harness	Poista johtosarjasta
+Remove from the list	Poista luettelosta
+Remove from the station	Poista asemasta
+Remove numbers	Poista numerot
+Remove part	Poista osa
+Remove profile	Poista profiili
+Remove property	Poista ominaisuus
+Remove segment	Poista segmentti
+Remove station	Poista asema
+Remove the definition (pages and devices keep the identifier)	Poista määritys (sivut ja laitteet säilyttävät tunnuksen)
+Remove the folder from the database	Poista kansio tietokannasta
+Remove the language (its translations stay in the dictionary)	Poista kieli (sen käännökset jäävät sanakirjaan)
+Remove the macro box (its items stay)	Poista makrolaatikko (sen kohteet säilyvät)
+Remove the value	Poista arvo
+Remove the {} messages no longer reported	Poista {} ilmoitusta, joita ei enää ilmoiteta
+Remove unused	Poista käyttämättömät
+Remove unused entries	Poista käyttämättömät merkinnät
+Remove unused project parts	Poista käyttämättömät projektin osat
+Remove {} old marks	Poista {} vanhaa merkintää
+Removes the definitions no page or device uses	Poistaa määritykset, joita mikään sivu tai laite ei käytä
+Removes the option; its content stays in the project	Poistaa vaihtoehdon; sen sisältö jää projektiin
+Rename	Nimeä uudelleen
+Rename device	Nimeä laite uudelleen
+Rename device…	Nimeä laite uudelleen…
+Rename in the whole project	Nimeä uudelleen koko projektissa
+Rename property	Nimeä ominaisuus uudelleen
+Renames the devices (all their functions, also on other pages)	Nimeää laitteet uudelleen (kaikki niiden toiminnot, myös muilla sivuilla)
+Renames the identifier on all pages and in all device tags	Nimeää tunnuksen uudelleen kaikilla sivuilla ja kaikissa laitetunnuksissa
+Rename…	Nimeä uudelleen…
+Renumber 1 … n	Numeroi uudelleen 1 … n
+Renumber contact	Numeroi kosketin uudelleen
+Renumber pages	Numeroi sivut uudelleen
+Renumber pages…	Numeroi sivut uudelleen…
+Repair {} findings	Korjaa {} havaintoa
+Replace	Korvaa
+Replace all	Korvaa kaikki
+Replace text	Korvaa teksti
+Replace with	Korvaa tekstillä
+Replaced when the configurator generates again; switch off to keep the page	Korvataan, kun konfiguraattori luo uudelleen; poista käytöstä säilyttääksesi sivun
+Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Korvaa vapaissa teksteissä, toimintoteksteissä sekä sivujen, laitteiden ja kaapelien kuvauksissa; vapautetut sivut säilyvät ennallaan
+Replaces the GEN.* parts in the database with the current example catalog (including models)	Korvaa tietokannan GEN.*-osat nykyisellä esimerkkiluettelolla (mallit mukaan lukien)
+Replaces the content of the macro boxes whose macro changed in the library	Korvaa niiden makrolaatikoiden sisällön, joiden makro on muuttunut kirjastossa
+Replaces the pages of this block	Korvaa tämän lohkon sivut
+Reply	Vastaa
+Reply…	Vastaa…
+Report block {}: {} pages generated	Raporttilohko {}: {} sivua luotu
+Report blocks start new pages for every value of this column	Raporttilohkot aloittavat uudet sivut tämän sarakkeen jokaiselle arvolle
+Report blocks updated: {} pages	Raporttilohkot päivitetty: {} sivua
+Report blocks…	Raporttilohkot…
+Report forms	Raporttilomakkeet
+Report name (page heading)	Raportin nimi (sivun otsikko)
+Report with all harness wires	Raportti kaikista johtosarjan johdoista
+Reports	Raportit
+Representation	Esitystapa
+Requester	Pyytäjä
+Reservation	Varaus
+Reservations	Varaukset
+Reserve per cable end	Varapituus kaapelin päätä kohden
+Reset	Nollaa
+Reset all to the defaults	Palauta kaikki oletuksiin
+Reset pane layout	Palauta paneelien asettelu
+Reset the ribbon	Palauta valintanauha
+Reset to standard	Palauta vakioasetukset
+Resulting: {} · {} · {} · {} m	Tulos: {} · {} · {} · {} m
+Results of the project check	Projektin tarkistuksen tulokset
+Review	Kommentit
+Review ({})	Kommentit ({})
+Revision marks	Revisiomerkinnät
+Revision overview	Revisioiden yleiskatsaus
+Revision {} approved by {}	{1} hyväksyi revision {0}
+Revision {} created	Revisio {} luotu
+Revision {} rejected by {}	{1} hylkäsi revision {0}
+Revision {} released	Revisio {} vapautettu
+Revision {} submitted for review	Revisio {} lähetetty katselmointiin
+Revision {} withdrawn	Revisio {} peruttu
+Revisions	Revisiot
+Revisions, approval and release	Revisiot, hyväksyntä ja vapautus
+Ribbon	Valintanauha
+Ribbon (JSON)	Valintanauha (JSON)
+Ribbon imported	Valintanauha tuotu
+Right	Oikea
+Right click for more	Lisää toimintoja hiiren oikealla painikkeella
+Right edges	Oikeat reunat
+Right neighbour	Oikea naapuri
+Rights	Oikeudet
+Room	Tila
+Rotate	Kierrä
+Rotate (selection or symbol being placed)	Kierrä (valinta tai sijoitettava symboli)
+Round	Pyöreä
+Round cutouts facing each other in both side walls	Pyöreät aukot vastakkain molemmissa sivuseinissä
+Route definition of {}	Kaapelin {} reitin määrittely
+Route network	Reittiverkko
+Route wires in 3D	Reititä johdot 3D:nä
+Routed in {}: {} m, {} bends	Reititetty kohteessa {}: {} m, {} taivutusta
+Routing around symbols	Reititys symbolien ympäri
+Routing path	Reitityspolku
+Routing path {} mm – double-click or Enter to finish	Reitityspolku {} mm – lopeta kaksoisnapsautuksella tai Enterillä
+Routing paths	Reitityspolut
+Routing rules	Reitityssäännöt
+Row	Rivi
+Row drawing	Rivipiirros
+Row labels	Rivien merkinnät
+Rows on released pages cannot be changed. A line break in a text is written as \\n.	Vapautettujen sivujen rivejä ei voi muuttaa. Rivinvaihto tekstissä kirjoitetaan muodossa \\n.
+Rows per page	Rivejä sivulla
+Rule libraries	Sääntökirjastot
+Rule set {}	Sääntökokoelma {}
+Rule sets and verification	Sääntökokoelmat ja validointi
+Rules	Säännöt
+Rules insert page macros when their condition holds. Generating replaces the pages generated before; option values fill {OPTION} placeholders.	Säännöt lisäävät sivumakroja, kun niiden ehto täyttyy. Luonti korvaa aiemmin luodut sivut; vaihtoehtojen arvot täyttävät {OPTION}-paikkamerkit.
+Run	Suorita
+SVG drawing	SVG-piirustus
+Safety functions of ISO 13849-1: each subsystem (input, logic, output) with the devices of a channel, its category, diagnostic coverage and operations per year. Devices count with PL / PFHd, MTTFd or B10d of their parts.	ISO 13849-1:n turvatoiminnot: jokainen osajärjestelmä (tulo, logiikka, lähtö) kanavan laitteineen, luokkineen, diagnostiikan kattavuuksineen ja vuotuisine kytkentäkertoineen. Laitteet lasketaan niiden osien PL / PFHd-, MTTFd- tai B10d-arvoilla.
+Save	Tallenna
+Save a selection under this name with another variant to add one.	Lisää muunnelma tallentamalla valinta tällä nimellä toisena muunnelmana.
+Save access	Tallenna käyttöoikeudet
+Save and release	Tallenna ja vapauta
+Save and release all locks	Tallenna ja vapauta kaikki lukitukset
+Save and release page	Tallenna ja vapauta sivu
+Save as 3D macro	Tallenna 3D-makrona
+Save as 3D macro…	Tallenna 3D-makrona…
+Save as local file	Tallenna paikallisena tiedostona
+Save as macro	Tallenna makrona
+Save as project template…	Tallenna projektimallina…
+Save as scheme	Tallenna skeemana
+Save as template	Tallenna mallina
+Save as template…	Tallenna mallina…
+Save as…	Tallenna nimellä…
+Save current page as template…	Tallenna nykyinen sivu mallina…
+Save current…	Tallenna nykyinen…
+Save file…	Tallenna tiedosto…
+Save page as macro…	Tallenna sivu makrona…
+Save page as template	Tallenna sivu mallina
+Save page as template…	Tallenna sivu mallina…
+Save selection as macro…	Tallenna valinta makrona…
+Save the box content as the macro in the library	Tallenna laatikon sisältö makrona kirjastoon
+Save to project server	Tallenna projektipalvelimelle
+Save workspace	Tallenna työtila
+Save workspace…	Tallenna työtila…
+Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
+Saved workspaces	Tallennetut työtilat
+Saves the placed properties as a placement scheme of the project	Tallentaa sijoitetut ominaisuudet projektin sijoitteluskeemaksi
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Tallentaa projektin ilman revisioita, vertailutiloja, tarkastusta ja johdotusmerkintöjä mallina uusia projekteja varten
+Saves the project's own properties, function definitions and schemes for other projects	Tallentaa projektin omat ominaisuudet, toimintomäärittelyt ja skeemat muita projekteja varten
+Saves the workspace, the arrangement of the panels and the open windows	Tallentaa työtilan, paneelien järjestyksen ja avoimet ikkunat
+Saving failed: {}	Tallennus epäonnistui: {}
+Saving the project access…	Tallennetaan projektin käyttöoikeuksia…
+Saving to the project server…	Tallennetaan projektipalvelimelle…
+Scheme	Malli
+Scheme name	Mallin nimi
+Scheme placed again at {} symbols	Skeema sijoitettiin uudelleen {} symboliin
+Scheme {}	Malli {}
+Screws, nuts, washers and rivet nuts of the fixing points	Kiinnityspisteiden ruuvit, mutterit, aluslevyt ja niittimutterit
+Search (* and ? as placeholders)…	Hae (* ja ? jokerimerkkeinä)…
+Search below this folder	Hae tämän kansion alta
+Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
+Second channel	Toinen kanava
+Section properties	Osion ominaisuudet
+Section properties…	Osion ominaisuudet…
+Section {} is now section {}	Osio {} on nyt osio {}
+Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Nähtynä liitinpinnoilta; värit ovat nastojen johtimien ja kaapelijohtimien värit.
+Segment {}	Segmentti {}
+Segments	Osuudet
+Segregation	Erottelu
+Segregation factor	Erottelukerroin
+Select	Valitse
+Select / move (Esc)	Valitse / siirrä (Esc)
+Select a file to import it	Valitse tuotava tiedosto
+Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Valitse toimintomäärittely. Projektin määrittelyjä (lihavoitu) voi muuttaa, ja ne tallennetaan ominaisuuskirjastoihin.
+Select a macro.	Valitse makro.
+Select a part. Double click adds it to the device.	Valitse osa. Kaksoisnapsautus lisää sen laitteeseen.
+Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Valitse sijoitteluskeema. Skeema sijoittaa ominaisuuksia symbolien viereen; sitä käyttävät symbolit päivittyvät, kun skeema muuttuu.
+Select a report block.	Valitse raporttilohko.
+Select a request.	Valitse pyyntö.
+Select a segment.	Valitse segmentti.
+Select a wire in the list or in the 3D view.	Valitse johto luettelosta tai 3D-näkymästä.
+Select all	Valitse kaikki
+Select an element in the list or the drawing.	Valitse elementti luettelosta tai piirustuksesta.
+Select an item in the list or in the 3D view.	Valitse kohde luettelosta tai 3D-näkymästä.
+Select and drag elements; Del deletes	Valitse ja vedä elementtejä; Del poistaa
+Select and drag nodes; drag the background to pan, scroll to zoom	Valitse ja vedä solmuja; vedä taustaa panoroidaksesi, vieritä zoomataksesi
+Select assembly	Valitse kokoonpano
+Select device	Valitse laite
+Select none	Poista valinnat
+Select on this page	Valitse tällä sivulla
+Select wire	Valitse johdin
+Select wires on this page	Valitse johdot tällä sivulla
+Selective up to (kA)	Selektiivinen asti (kA)
+Selectivity and back-up protection of device pairs as tested by the manufacturer, by part number. They replace the estimate from the time-current curves.	Laiteparien selektiivisyys ja varasuojaus valmistajan testaamina osanumeron mukaan. Ne korvaavat aika-virtakäyristä tehdyn arvion.
+Semicolon	Puolipiste
+Separator	Erotin
+Server URL	Palvelimen URL
+Server type	Palvelimen tyyppi
+Servers	Palvelimet
+Service space in front	Huoltotila edessä
+Set the cable lengths to the planned cut lengths	Aseta kaapelien pituuksiksi suunnitellut katkaisupituudet
+Set value	Aseta arvo
+Sets the aspects of the pages and adds the template's identifiers	Asettaa sivujen aspektit ja lisää mallin tunnukset
+Sets the column of all filtered rows to the replacement	Asettaa kaikkien suodatettujen rivien sarakkeen korvaavaksi tekstiksi
+Settings scheme	Asetusskeema
+Settings scheme (JSON)	Asetusskeema (JSON)
+Settings taken over: {}	Asetukset otettiin käyttöön: {}
+Settings…	Asetukset…
+Shafts	Kuilut
+Shape	Muoto
+Share of the capacity kept free for later additions	Kapasiteetin osuus, joka jätetään vapaaksi myöhempiä lisäyksiä varten
+Shared project {} – revision {}, user {}	Jaettu projekti {} – revisio {}, käyttäjä {}
+Shield	Suojavaippa
+Shield pigtail	Suojavaipan punos
+Shielded	Suojavaipallinen
+Shielded analogue cables	Suojavaipalliset analogiakaapelit
+Shielded drive cables	Suojavaipalliset käyttökaapelit
+Shift + click / drag	Vaihto + napsautus / veto
+Short circuit and selectivity	Oikosulku ja selektiivisyys
+Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Oikosulku, selektiivisyys, kuormat, EMC, toiminnallinen turvallisuus ja validointi sääntökokoelmia vasten
+Short-circuit currents	Oikosulkuvirrat
+Short-circuit power of the network	Verkon oikosulkuteho
+Shortest profile	Lyhyin profiili
+Show	Näytä
+Show all enclosures side by side at their places in the room	Näytä kaikki kotelot vierekkäin paikoillaan huoneessa
+Show as list	Näytä luettelona
+Show as tiles	Näytä ruutuina
+Show connection point designations	Näytä liitäntäpisteiden merkinnät
+Show connectors	Näytä liittimet
+Show device tag and cross references	Näytä laitetunnus ja ristiviittaukset
+Show everything (Home)	Näytä kaikki (Home)
+Show in panel layout ({})	Näytä kaappiasennuksessa ({})
+Show in schematic	Näytä piirikaaviossa
+Show in the schematic	Näytä piirikaaviossa
+Show on the pages	Näytä sivuilla
+Show or hide panes; drag a tab to dock it elsewhere	Näytä tai piilota ruutuja; vedä välilehteä telakoidaksesi sen muualle
+Show the enclosures bayed to this one as well	Näytä myös tähän rivitetyt kotelot
+Show the messages accepted as checked	Näytä tarkistetuiksi hyväksytyt ilmoitukset
+Show the other wires	Näytä muut johdot
+Show the pane as a window	Näytä ruutu ikkunana
+Show the ribbon	Näytä valintanauha
+Show this wire	Näytä tämä johto
+Show who may use the project	Näytä, kuka saa käyttää projektia
+Shown as \"Name: value\"	Näytetään muodossa \"Nimi: arvo\"
+Shown in title blocks with {prop:Name}	Näytetään nimiöissä merkinnällä {prop:Name}
+Shown instead of the measured value	Näytetään mitatun arvon sijaan
+Shows	Näyttää
+Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sivuseinät, takaseinä, katto ja pohja ulkoa katsottuna: tuulettimet, kaapeliläpiviennit, aukot
+Signed in to {} as {}	Kirjautunut kohteeseen {} käyttäjänä {}
+Signed out of Vault	Kirjauduttu ulos Vaultista
+Single-line	Yksinapainen
+Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Yksinapaiset symbolit niille piirikaavion tehopiirin laitteille, joilla niitä ei vielä ole, uudelle yleiskuvasivulle
+Site plan	Asemapiirros
+Size {} × {} mm	Koko {} × {} mm
+Slot	Ura
+Slots	Korttipaikat
+Smallest cross-section of control circuits	Ohjauspiirien pienin poikkipinta-ala
+Smallest cross-section of power circuits	Tehopiirien pienin poikkipinta-ala
+Some wires have no length: place their devices in the panel layout or set the field length.	Joillakin johdoilla ei ole pituutta: sijoita niiden laitteet kaappiasennukseen tai aseta kentän pituus.
+Sort by designation	Lajittele nimityksen mukaan
+Sort order	Lajittelujärjestys
+Source language	Lähdekieli
+Space	Välilyönti
+Space behind the door that devices must keep free (door-mounted devices, handles)	Oven takana oleva tila, joka laitteiden on pidettävä vapaana (oveen asennettavat laitteet, kahvat)
+Space kept free of routes, or for one class only: click two corners	Tila, joka pidetään vapaana reiteistä tai vain yhdelle luokalle: napsauta kahta kulmaa
+Spare terminals	Varariviliittimet
+Special text	Erikoisteksti
+Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Erikoisteksti: projektin ja sivun ominaisuudet, kuten {page} tai {prop:Name}, täytetään, kun sivu piirretään
+Standard form of the report	Raportin vakiolomake
+Standard size	Vakiokoko
+Standard workspaces	Vakiotyötilat
+Standoff height	Välikekorkeus
+Star a command in Plugin commands to pin it here	Kiinnitä komento tähän tähdellä kohdassa Laajennusten komennot
+Star: the first point refers to all, the others to it	Tähti: ensimmäinen kohta viittaa kaikkiin, muut siihen
+Start	Aloitus
+Start again when the page structure changes	Aloita alusta, kun sivun rakenne muuttuu
+Start at	Aloita kohdasta
+Start byte	Aloitustavu
+Start page	Aloitussivu
+Station	Asema
+Stations and racks	Asemat ja telineet
+Stations for CPUs and bus couplers, bus systems, slots, start addresses, point addresses, IP addresses and a line topology	Asemat CPU:ille ja väyläliittimille, väyläjärjestelmät, korttipaikat, aloitusosoitteet, pisteiden osoitteet, IP-osoitteet ja linjatopologia
+Stations, modules, addresses, subnets and tag comments from a PLC tool	Asemat, moduulit, osoitteet, aliverkot ja muuttujien kommentit PLC-työkalusta
+Stations, racks, modules, bus systems, AutomationML exchange with PLC tools	Asemat, telineet, moduulit, väyläjärjestelmät, AutomationML-tiedonsiirto PLC-työkalujen kanssa
+Step	Askel
+Still reported	Ilmoitetaan edelleen
+Stock length	Varastopituus
+Stop placing for this device	Lopeta tämän laitteen sijoittaminen
+Stratification (factor c)	Kerrostuminen (kerroin c)
+Strip on the rail	Rima asennuskiskolla
+Strip {} mm	Kuori {} mm
+Strips / plugs	Rimat / pistoliittimet
+Structure (IEC 81346)	Rakenne (IEC 81346)
+Structure (function / location)…	Rakenne (toiminto / sijainti)…
+Structure identifiers (IEC 81346), templates and work areas	Rakennetunnukset (IEC 81346), mallit ja työalueet
+Structure management	Rakennetunnusten hallinta
+Structure of the target page	Kohdesivun rakenne
+Style	Tyyli
+Sub-segment	Alisegmentti
+Submit again	Lähetä uudelleen
+Submit for review	Lähetä katselmointiin
+Subnet	Aliverkko
+Subproject saved as {}: its pages are locked until it is inserted	Aliprojekti tallennettiin nimellä {}: sen sivut ovat lukittuina, kunnes se liitetään
+Subproject {} inserted: {} pages replaced by {}	Aliprojekti {} liitettiin: {} sivua korvattiin {} sivulla
+Subprojects	Aliprojektit
+Subsystem {}	Osajärjestelmä {}
+Supply and conditions	Syöttö ja olosuhteet
+Surge protection	Ylijännitesuojaus
+Swing the enclosure door open or shut (door devices and their wires move with it)	Avaa tai sulje kotelon ovi (ovilaitteet ja niiden johdot liikkuvat mukana)
+Switch off the check \"{}\"	Poista tarkistus \"{}\" käytöstä
+Switches the options with a condition by the configurator options	Kytkee ehdolliset vaihtoehdot konfiguraattorin vaihtoehtojen mukaan
+Switches to this workspace with its panes at their default places	Vaihtaa tähän työtilaan ja palauttaa sen paneelit oletuspaikoilleen
+Symbol editor	Symbolieditori
+Symbol table import failed: {}	Symbolitaulukon tuonti epäonnistui: {}
+Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Tämän sivun symbolit ja johdot piirretään, mutta niitä ei arvioida (ei laitteita, yhteyksiä tai raportteja).
+Symbols placed next get this device tag (contacts are numbered on)	Seuraavaksi sijoitettavat symbolit saavat tämän laitetunnuksen (koskettimien numerointi jatkuu)
+Symbols using it go back to their built-in definition	Sitä käyttävät symbolit palaavat sisäiseen määrittelyynsä
+Symbols using it keep their placed properties	Sitä käyttävät symbolit säilyttävät sijoitetut ominaisuutensa
+Symbols, macros, devices and unplaced functions: search, favorites, recently used	Symbolit, makrot, laitteet ja sijoittamattomat toiminnot: haku, suosikit, viimeksi käytetyt
+Synchronize	Synkronoi
+Synchronize function texts	Synkronoi toimintotekstit
+Synchronize project parts from database	Synkronoi projektin osat tietokannasta
+T Text	T Teksti
+Tab	Sarkain
+Table import failed: {}	Taulukon tuonti epäonnistui: {}
+Tablet mode	Tablettitila
+Tag	Tunnus
+Tag field	Tunnuskenttä
+Tag placed by hand	Tunnus sijoitettu käsin
+Take out a subproject	Irrota aliprojekti
+Take out {} pages…	Irrota {} sivua…
+Take over cut lengths	Ota katkaisupituudet käyttöön
+Take over selected ({})	Ota valitut käyttöön ({})
+Take over {} changes	Ota käyttöön {} muutosta
+Take page out of its option	Poista sivu vaihtoehdostaan
+Take selection out of its option	Poista valinta vaihtoehdostaan
+Take the acceptance back	Peru hyväksyntä
+Taken into the drawing: drawn faded	Viety piirustukseen: piirretään haaleana
+Takes the comments as function texts (matched by address)	Ottaa kommentit toimintoteksteiksi (kohdistetaan osoitteen mukaan)
+Takes the connection point designations of all functions of this device from the function templates of its parts	Ottaa tämän laitteen kaikkien toimintojen liitäntäpisteiden merkinnät sen osien toimintomalleista
+Takes the rights of the role away, whatever other grants give	Poistaa roolin oikeudet riippumatta siitä, mitä muut myönnöt antavat
+Target languages	Kohdekielet
+Temperature rise at the roof against the middle (IEC/TR 60890)	Lämpötilan nousu katossa keskikohtaan verrattuna (IEC/TR 60890)
+Template	Malli
+Templates	Mallit
+Terminal markers	Riviliitinmerkit
+Terminal number, PLC address, potential name …	Riviliittimen numero, PLC-osoite, potentiaalin nimi …
+Terminal strips, plugs and PLC cards keep their tags	Riviliitinrimat, pistoliittimet ja PLC-kortit säilyttävät tunnuksensa
+Terminals and pins	Riviliittimet ja nastat
+Terminals at least	Riviliittimet vähintään
+Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Riviliittimet, joilla on sama siltanumero, on silloitettu (sama potentiaali). Varariviliittimet lasketaan mukaan osaluetteloon.
+Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Ehdot merkillä ';' erotettuina: avain=arvo (yhtä kuin), avain~teksti (sisältää) tai teksti missä tahansa
+Test connection	Testaa yhteys
+Text size	Tekstin koko
+Texts	Tekstit
+The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal tarjoaa vain osien haun ja lukemisen: avaa dataportaalin ikkuna lisätäksesi sen osia.
+The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	Lisäyskeskus löytää symbolit, makrot, laitteet ja sijoittamattomat toiminnot; suosikit ja viimeksi käytetyt tulevat ensin.
+The accessory fits none of the device's parts	Lisävaruste ei sovi mihinkään laitteen osaan
+The aspect ratio is kept.	Kuvasuhde säilytetään.
+The check warns about cable ducts filled above this level	Tarkistus varoittaa johtokouruista, joiden täyttö ylittää tämän tason
+The checks keep the distances between classes and let classes overlap as set in Layout checks	Tarkistukset pitävät luokkien väliset etäisyydet ja sallivat luokkien päällekkäisyyden kohdassa Asennustarkistukset asetetulla tavalla
+The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Kaikkien laajennusten komennot laajennuksittain, haulla; tähti kiinnittää komennon Laajennukset-välilehdelle
+The crossed wires get free cores of the cable in order	Ristityt johdot saavat kaapelin vapaat johtimet järjestyksessä
+The current page belongs to option {}.	Nykyinen sivu kuuluu vaihtoehtoon {}.
+The devices do not fit onto the rail	Laitteet eivät mahdu kiskolle
+The dictionary is empty: collect the texts from the project.	Sanakirja on tyhjä: kerää tekstit projektista.
+The door seen from the front: door devices and cutouts	Ovi edestä katsottuna: ovilaitteet ja aukot
+The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ovi sisältä katsottuna (saranat oikealla): johtokourut ja johdotus oven takana
+The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
+The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
+The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
+The names of its pages follow	Sen sivujen nimet muuttuvat mukana
+The page name gets the section number	Sivun nimi saa osion numeron
+The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
+The pages it generated stay	Sen luomat sivut jäävät
+The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Osatietokanta on kaikkien projektien yhteinen. Osat kopioidaan projektiin, kun ne määritetään laitteelle.
+The project changed since the search.	Projekti on muuttunut haun jälkeen.
+The project check	Projektin tarkistus
+The project database needs the desktop version: the browser cannot search folders.	Projektitietokanta vaatii työpöytäversion: selain ei voi hakea kansioista.
+The project's own page templates as a file	Projektin omat sivumallit tiedostona
+The project's own title blocks	Projektin omat nimiöt
+The project's own title blocks and report schemes	Projektin omat nimiöt ja raporttimallit
+The properties of the selection in a window beside the page	Valinnan ominaisuudet ikkunassa sivun vieressä
+The recalculation keeps frozen routes as long as they are still possible	Uudelleenlaskenta säilyttää lukitut reitit niin kauan kuin ne ovat mahdollisia
+The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Valintanauha Tiedosto-välilehtineen korvaa valikot; Ctrl+Shift+P löytää minkä tahansa komennon.
+The second fault is checked at the line-to-earth voltage	Toinen vika tarkistetaan vaihe–maa-jännitteellä
+The selected devices side by side on the selected rail, from its left end	Valitut laitteet vierekkäin valitulla kiskolla sen vasemmasta päästä alkaen
+The side of {} is open	Kohteen {} puoli on avoin
+The symbol is placed in the project	Symbolia käytetään projektissa
+The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Riviliitinosissa ei ole mainittu päätypidikkeitä tai päätylevyjä (tekniset tiedot End bracket, End plate).
+The wire tool routes around symbols and other wires	Johtotyökalu reitittää symbolien ja muiden johtojen ympäri
+The wires get the free cores of the cable in order (left to right)	Johdot saavat kaapelin vapaat johtimet järjestyksessä (vasemmalta oikealle)
+The wires of the connection take these values again	Yhteyden johdot saavat nämä arvot uudelleen
+Theme	Teema
+These settings are edited in their panes:	Näitä asetuksia muokataan omissa ruuduissaan:
+Thickness	Paksuus
+Thinner air needs more air flow	Ohuempi ilma vaatii suuremman ilmavirran
+This page	Tämä sivu
+This page contains schematic content which is not evaluated on non-schematic pages.	Tämä sivu sisältää piirikaaviosisältöä, jota ei arvioida muilla kuin piirikaaviosivuilla.
+This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tämä projekti on projektin {1} aliprojekti {0} (irrotettu {2}). Tallenna se ja liitä se pääprojektiin, kun työ on valmis.
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tässä on kohdattava kolme johdinta: yksi sen suunnassa ja kaksi poikittain. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
+Three-phase short-circuit current at the supply point	Kolmivaiheinen oikosulkuvirta syöttöpisteessä
+Title	Otsikko
+Title blocks	Nimiöt
+Title blocks, plot frames and page templates	Nimiöt, piirustuskehykset ja sivumallit
+To do	Tekemättä
+Toggle corner direction while drawing wires	Vaihda kulman suuntaa johtoja piirrettäessä
+Toggle routing around symbols (wire tool)	Symbolien kiertävä reititys päälle / pois (johtotyökalu)
+Top	Ylhäällä
+Top edges	Yläreunat
+Total selectivity	Täydellinen selektiivisyys
+Transfer project parts to database	Siirrä projektin osat tietokantaan
+Translate the project texts; documentation per language	Käännä projektin tekstit; dokumentaatio kielittäin
+Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Kierto pystyakselin ympäri, ylhäältä katsottuna vastapäivään (90 °: etupuolet osoittavat oikealle)
+Tutorial	Opetusohjelma
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
+Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
+UI scale	Käyttöliittymän koko
+Undo	Kumoa
+Undo brings it back.	Kumoa palauttaa sen.
+Undo list	Kumoamisluettelo
+Undo {} steps	Kumoa vaiheita: {}
+Ungroup	Pura ryhmittely
+Unlock all	Avaa kaikkien lukitus
+Unplaced	Sijoittamattomat
+Unplaced ({})	Sijoittamattomat ({})
+Update	Päivitä
+Update all	Päivitä kaikki
+Update part links from Vault items	Päivitä osalinkit Vault-nimikkeistä
+Update report blocks	Päivitä raporttilohkot
+Update {} changed macros	Päivitä {} muuttunutta makroa
+Updates the project parts with the current database data	Päivittää projektin osat tietokannan nykyisillä tiedoilla
+Updating the 3D routing	Päivitetään 3D-reititystä
+Upload	Lataa palvelimelle
+Upload database ({})	Lataa tietokanta palvelimelle ({})
+Upload selected part	Lataa valittu osa palvelimelle
+Upload the current project as a new shared project:	Lataa nykyinen projekti palvelimelle uutena jaettuna projektina:
+Upload to {}	Lataa kohteeseen {}
+Upstream part	Edeltävä osa
+Use as project default	Käytä projektin oletuksena
+Use for all pages	Käytä kaikille sivuille
+Used	Käytetty
+Used by {} pages	Käytössä {} sivulla
+Used on {} of {} pages	Käytössä {} sivulla {} sivusta
+User	Käyttäjä
+User / group	Käyttäjä / ryhmä
+User defined property	Käyttäjän määrittämä ominaisuus
+User names, separated by commas	Käyttäjänimet pilkuin erotettuina
+Value	Arvo
+Value set	Arvojoukko
+Value sets	Arvojoukot
+Values	Arvot
+Values (KEY=value; …)	Arvot (KEY=arvo; …)
+Values separated by commas	Arvot pilkuilla erotettuina
+Values without a property definition (free project properties, removed definitions)	Arvot ilman ominaisuusmäärittelyä (vapaat projektiominaisuudet, poistetut määrittelyt)
+Valve terminals, service units and manifolds: their fluid devices in slot order, separated by blanks.	Venttiiliterminaalit, huoltoyksiköt ja jakotukit: niiden fluidilaitteet paikkajärjestyksessä välilyönneillä erotettuina.
+Variant	Muunnelma
+Variant {} of macro {} replaced	Makron {1} muunnelma {0} korvattu
+Variant {} of macro {} saved	Makron {1} muunnelma {0} tallennettu
+Vault	Vault
+Vault Professional 2025.2 or newer (Vault Data API)	Vault Professional 2025.2 tai uudempi (Vault Data API)
+Vault: the session names no vault	Vault: istunto ei nimeä Vaultia
+Vault: {}	Vault: {}
+Verification	Validointi
+Verify project	Validoi projekti
+Verify selected	Validoi valitut
+Verify the project against it	Validoi projekti sitä vasten
+Verify while reading	Validoi luettaessa
+Version {}	Versio {}
+Vertical	Pystysuora
+Vertical (mm, downwards)	Pystysuunnassa (mm, alaspäin)
+Vertical centres	Pystysuuntaiset keskikohdat
+Vertical position	Pystysijainti
+Vertically	Pystysuunnassa
+Via:	Kautta:
+View	Näytä
+Visible	Näkyvä
+Voltage (line to line)	Jännite (pääjännite)
+Voltage drop	Jännitteenalenema
+W A S D / arrows, Q / E	W A S D / nuolet, Q / E
+Wall {}, {} m: drag to move it, a double-click shows it to equip it	Seinä {}, {} m: siirrä vetämällä, kaksoisnapsautus näyttää sen varustettavaksi
+Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Seinä {}, {} m: seinänäkymässä näkyvä seinä (korostettu); siirrä vetämällä
+Wall-mounted part	Seinäasennettava osa
+Walls	Seinät
+Walls and ceiling	Seinät ja katto
+Web at cutouts	Kannas aukkojen kohdalla
+Web between holes	Kannas reikien välissä
+Welcome to OpenECraft	Tervetuloa OpenECraftiin
+What is new	Uutta
+What should be checked or changed?	Mitä pitäisi tarkistaa tai muuttaa?
+Wheel / right or middle drag	Rulla / oikean tai keskipainikkeen veto
+Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
+When it differs from the page	Kun se poikkeaa sivusta
+Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
+Whole words	Kokonaiset sanat
+Width / height (mm)	Leveys / korkeus (mm)
+Width × depth	Leveys × syvyys
+Width × height	Leveys × korkeus
+Width × height (mm)	Leveys × korkeus (mm)
+Width × height × depth	Leveys × korkeus × syvyys
+Window macro: {}	Ikkunamakro: {}
+Window macros inserted from now on are recorded as macro boxes.	Tästä lähtien lisätyt ikkunamakrot tallennetaan makrolaatikoina.
+Window macros placed on the pages (not printed)	Sivuille sijoitetut ikkunamakrot (ei tulosteta)
+Wire colour	Johtimen väri
+Wire ends	Johtojen päät
+Wire ends with ferrules	Johtojen päät pääteholkeilla
+Wire markers	Johtomerkit
+Wire no. {}	Johtonro {}
+Wire number on both ends	Johtonumero molemmissa päissä
+Wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references and the check scheme as one file	Johtojen numerointi, potentiaalit, johtojen oletukset ja värit, merkinnät, letkujen oletukset, ristiviittaukset ja tarkistusskeema yhtenä tiedostona
+Wire numbering…	Johtojen numerointi…
+Wire numbers	Johtonumerot
+Wire reserve per connection	Johtovara yhteyttä kohden
+Wire {} – {}  ({} of {} here, click again for the next)	Johto {} – {}  ({}/{} tässä, napsauta uudelleen seuraavaa varten)
+Wire {} – {}  {} mm	Johto {} – {}  {} mm
+Wires and potentials	Johtimet ja potentiaalit
+Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Fluidivoima- ja PI-symbolien porttien väliset johdot ovat letkuja / putkia: omat verkkonsa, numeroidaan johtojen numeroinnilla, luetellaan letkuluettelossa.
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Tästä on lähdettävä johtimia kaikkiin neljään suuntaan. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
+Wires of the connection	Liitoksen johtimet
+Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Myös johdot käyttävät esteet huomioivia 3D-reittejä pelkkien levyn johtokourujen sijaan
+Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Johdot, joilla ei ole omaa väriä tai poikkipinta-alaa, saavat ne yhteytensä potentiaalista; kaapelin johtimet säilyttävät kaapelin arvot.
+Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Johdotusavustaja: johtojen tarkistuslista 3D-näkymällä ja edistymisellä (tabletti: avaa verkkosovellus osoitteella #wiring)
+Wiring space between devices and ducts	Johdotustila laitteiden ja kourujen välissä
+With a user account of the server; replaces the access token	Palvelimen käyttäjätilillä; korvaa käyttöoikeustokenin
+With everything below it	Kaikkine alla olevineen
+With the current pages; the approvals so far become void	Nykyisillä sivuilla; tähänastiset hyväksynnät mitätöityvät
+With values only	Vain arvolliset
+Withdraw	Peru
+Without approvers a new revision is released directly.	Ilman hyväksyjiä uusi revisio vapautetaan suoraan.
+Without bus system	Ilman väyläjärjestelmää
+Without power loss data: {}	Ilman häviötehotietoja: {}
+Work area	Työalue
+Work area {}	Työalue {}
+Work areas	Työalueet
+Workbench	Työpenkki
+Workspaces	Työtilat
+Workspaces for the schematic, the panel layout, the wiring and mounting assistants, the review and the pre-planning.	Työtilat kaaviolle, kaappiasennukselle, johdotus- ja asennusavustajille, kommentoinnille ja esisuunnittelulle.
+Wrap width (mm)	Rivitysleveys (mm)
+Write the file for the other system; later imports detect conflicts against this export	Kirjoita tiedosto toista järjestelmää varten; myöhemmät tuonnit havaitsevat ristiriidat tätä vientiä vasten
+X {}  Y {} mm · {}	X {}  Y {} mm · {}
+YYYY-MM-DD	VVVV-KK-PP
+You may only view this project.	Voit vain katsella tätä projektia.
+You may review this project: comments, markup and approvals, no other changes.	Voit tarkastaa tämän projektin: kommentit, merkinnät ja hyväksynnät, ei muita muutoksia.
+Your unsaved changes of it are taken back	Siihen tekemäsi tallentamattomat muutokset perutaan
+Zoom	Zoomaus
+Zoom / pan	Zoomaa / panoroi
+all	kaikki
+all cards	kaikki kortit
+all lines	kaikki rivit
+all, or e.g. -X*, -W1	kaikki, tai esim. -X*, -W1
+all, or e.g. K, Q	kaikki tai esim. K, Q
+both ends	molemmat päät
+built-in	sisäinen
+by hand	käsin
+changed in the library	muuttunut kirjastossa
+computed	laskettu
+connection point	liitäntäpiste
+connection point (generated)	liitäntäpiste (luotu)
+current	ajan tasalla
+device centre	laitteen keskikohta
+different: taking over replaces it	erilainen: käyttöönotto korvaa sen
+e.g. 1.5 mm²	esim. 1,5 mm²
+e.g. 400 V AC	esim. 400 V AC
+e.g. A1, PUMP.2	esim. A1, PUMP.2
+e.g. BU, BK, GNYE	esim. BU, BK, GNYE
+e.g. CAB1, FIELD	esim. CAB1, FIELD
+e.g. HALL1, PLANT2	esim. HALL1, PLANT2
+e.g. Motors	esim. Moottorit
+e.g. NAME=Pump; POWER={POWER}	esim. NAME=Pumppu; POWER={POWER}
+e.g. STARTER=DOL	esim. STARTER=DOL
+e.g. U1, U1-A2	esim. U1, U1-A2
+e.g. W	esim. W
+e.g. corp:Engineering	esim. corp:Engineering
+e.g. customer, ERP, PLM	esim. asiakas, ERP, PLM
+e.g. cutout too small, part missing	esim. aukko liian pieni, osa puuttuu
+e.g. de, fr, it	esim. de, fr, it
+e.g. wire too short, terminal missing	esim. johto liian lyhyt, riviliitin puuttuu
+empty	tyhjä
+female	naaras
+from the parts	osista
+given	annettu
+horizontal	vaakasuora
+if	jos
+kW	kW
+male	uros
+manual	manuaalinen
+max. {} °C	enint. {} °C
+may overlap	saavat olla päällekkäin
+missing	puuttuu
+model	malli
+name	nimi
+no	ei
+no rooms	ei tiloja
+no wires	ei johtoja
+none	ei mitään
+not defined	ei määritetty
+not in the P&ID	ei PI-kaaviossa
+not in the library	ei kirjastossa
+not in the schematic	ei piirikaaviossa
+not numbered	ei numeroitu
+not translated into {}	ei käännetty kielelle {}
+only here: taking over removes it	vain täällä: käyttöönotto poistaa sen
+only there: taking over adds it	vain siellä: käyttöönotto lisää sen
+own class	oma luokka
+page {}	sivu {}
+part number	osanumero
+part {} not found	osaa {} ei löytynyt
+pin and socket	nasta ja holkki
+placed / provided by the parts	sijoitettu / osien tarjoama
+reached: PL {}	saavutettu: PL {}
+review round {}	katselmointikierros {}
+some	jotkin
+taken over	otettu käyttöön
+the project data (page list, devices, settings)	projektin tiedot (sivuluettelo, laitteet, asetukset)
+then	niin
+unknown	tuntematon
+unsaved	tallentamaton
+value set…	arvojoukko…
+vertical	pystysuora
+with bus cables	väyläkaapeleineen
+x y	x y
+{}  (door)	{}  (ovi)
+{}  (free)	{}  (vapaa)
+{}  (used)	{}  (käytetty)
+{}  ({} placed, {} free)	{}  ({} sijoitettu, {} vapaana)
+{}  building	{}  rakennus
+{}  level, floor at {} m	{}  kerros, lattia {} m
+{}  room {} × {} × {}	{}  tila {} × {} × {}
+{}  x {} mm, z {} mm, turned {} °	{}  x {} mm, z {} mm, käännetty {} °
+{}  ›  page {}	{}  ›  sivu {}
+{} % (limit {} %)	{} % (raja {} %)
+{} (and {} more)	{} (ja {} muuta)
+{} (archive)	{} (arkisto)
+{} (built-in)	{} (sisäinen)
+{} (class {})	{} (luokka {})
+{} (copy)	{} (kopio)
+{} (default)	{} (oletus)
+{} (first column)	{} (ensimmäinen sarake)
+{} (locked by {})	{} (lukinnut {})
+{} (project server, revision {})	{} (projektipalvelin, revisio {})
+{} (spare)	{} (vara)
+{} (subproject of {})	{} (projektin {} aliprojekti)
+{} (unused)	{} (käyttämätön)
+{} ({} open)	{} ({} avoinna)
+{} / {} mm  (column {})	{} / {} mm  (sarake {})
+{} PLC function texts updated	{} PLC-toimintotekstiä päivitetty
+{} Vault items found for the project parts	Projektin osille löytyi {} Vault-nimikettä
+{} Vault items found: review the changes in the integration window	{} Vault-nimikettä löytyi: tarkista muutokset integraatioikkunassa
+{} addresses changed	{} osoitetta muutettu
+{} bundles, {} branch points	{} nippua, {} haarautumispistettä
+{} bus cables created	{} väyläkaapelia luotu
+{} bus connections	{} väyläyhteyttä
+{} cable ducts	{} johtokourua
+{} cable lengths taken over	{} kaapelin pituutta otettiin käyttöön
+{} cable passages to {}	{} kaapelin läpivientiaukkoa kohteeseen {}
+{} cables	{} kaapelia
+{} cables, {} %	{} kaapelia, {} %
+{} catalog parts added	{} luettelo-osaa lisätty
+{} cells changed	{} solua muutettu
+{} cells changed, {} problems: {}	{} solua muutettu, {} ongelmaa: {}
+{} change requests added, {} updated	{} muutospyyntöä lisätty, {} päivitetty
+{} changed since mounted · {} problems	{} muuttunut asennuksen jälkeen · {} ongelmaa
+{} changed since wired · {} problems	{} muuttunut johdotuksen jälkeen · {} ongelmaa
+{} checks	{} tarkistusta
+{} commands, {} checks, {} reports, {} exports	{} komentoa, {} tarkistusta, {} raporttia, {} vientiä
+{} comments are on pages the project does not have	{} kommenttia on sivuilla, joita projektissa ei ole
+{} comments were imported before	{} kommenttia on tuotu aiemmin
+{} comments, {} replies and {} markups imported	{} kommenttia, {} vastausta ja {} merkintää tuotiin
+{} connections	{} yhteyttä
+{} connections assigned to {}	{} yhteyttä määritetty kohteeseen {}
+{} connections drawn automatically	{} yhteyttä piirretty automaattisesti
+{} connections numbered	{} yhteyttä numeroitu
+{} connections removed from their harness	{} yhteyttä poistettu johtosarjastaan
+{} copies placed	{} kopiota sijoitettu
+{} corner points	{} kulmapistettä
+{} corners	{} kulmaa
+{} details	{} tiedot
+{} device descriptions imported	{} laitekuvausta tuotu
+{} devices	{} laitetta
+{} devices added	{} laitetta lisättiin
+{} devices get a new tag	{} laitetta saa uuden tunnuksen
+{} devices placed, {} wires routed ({} m)	{} laitetta sijoitettu, {} johtoa reititetty ({} m)
+{} devices renamed	{} laitetta nimettiin uudelleen
+{} differences to {}	{} eroa kohteeseen {}
+{} doors	{} ovea
+{} entries in {}	{} merkintää kohteessa {}
+{} errors	Virheitä: {}
+{} errors, {} warnings	{} virhettä, {} varoitusta
+{} errors, {} warnings, {} notes in the project data; engineering check: {} errors, {} warnings	{} virhettä, {} varoitusta, {} huomautusta projektitiedoissa; suunnittelutarkistus: {} virhettä, {} varoitusta
+{} example catalog parts refreshed	{} esimerkkiluettelon osaa päivitetty
+{} favorites added	Suosikkeja lisätty: {}
+{} field wiring problems (see Check)	{} kenttäjohdotuksen ongelmaa (katso Tarkistus)
+{} found	{} löytyi
+{} function texts copied	{} toimintotekstiä kopioitiin
+{} generated pages in the project (changes on them are replaced)	{} luotua sivua projektissa (niihin tehdyt muutokset korvataan)
+{} grants on the project	{} myöntöä projektiin
+{} has no function with a symbol; assign it to a device in its properties	Osalla {} ei ole symbolillista toimintoa; liitä se laitteeseen laitteen ominaisuuksissa
+{} has unsaved changes. Discard them?	Kohteessa {} on tallentamattomia muutoksia. Hylätäänkö ne?
+{} imported into the parts database and placed as {}	{} tuotiin osatietokantaan ja sijoitettiin nimellä {}
+{} is neither in the parts database nor on the parts server	{} ei ole osatietokannassa eikä osapalvelimella
+{} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva
+{} is not made for wall mounting: place it on a mounting rail	{} ei ole tarkoitettu seinäasennukseen: aseta se asennuskiskoon
+{} is used by: {}	Kohdetta {} käyttää: {}
+{} items copied	{} kohdetta kopioitiin
+{} items selected	{} kohdetta valittu
+{} items, {} %	{} kohdetta, {} %
+{} links created, {} function texts copied	{} linkkiä luotu, {} toimintotekstiä kopioitu
+{} m of {} m wired	{} m / {} m johdotettu
+{} macro boxes updated	{} makrolaatikkoa päivitettiin
+{} markers	{} merkkiä
+{} mm	{} mm
+{} mm (cut {} mm)	{} mm (katkaistu {} mm)
+{} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm levyllä + {} mm varaa; loput on matka liitäntäpisteistä levylle.
+{} mm, now {} mm	{} mm, nyt {} mm
+{} mm, removed	{} mm, poistettu
+{} new texts in the dictionary	{} uutta tekstiä sanakirjassa
+{} notes	Huomautuksia: {}
+{} objects pasted	{} objektia liitetty
+{} objects selected	{} objektia valittu
+{} objects, {} pages	{} objektia, {} sivua
+{} of {} approvals	{}/{} hyväksyntää
+{} of {} connections numbered	{}/{} yhteyttä numeroitu
+{} of {} entries shown: search to narrow the list	{} / {} merkintää näytetään: rajaa luetteloa hakemalla
+{} of {} items	{} / {} kohdetta
+{} of {} pages locked	{}/{} sivua lukittu
+{} of {} pins used	{}/{} nastaa käytössä
+{} of {} rows	{}/{} riviä
+{} of {} wires	{}/{} johtoa
+{} of {} wires assigned to cores of {}	{}/{} johtoa määritetty kaapelin {} johtimille
+{} on released pages were left as they are	{} vapautetuilla sivuilla jätettiin ennalleen
+{} options switched	{} vaihtoehtoa kytketty
+{} pages generated	{} sivua luotiin
+{} pages generated; page macros not found: {}	{} sivua luotiin; sivumakroja ei löytynyt: {}
+{} pages get a new name	{} sivua saa uuden nimen
+{} pages removed, {} pages generated	{} sivua poistettu, {} sivua luotu
+{} pages renamed	{} sivua nimettiin uudelleen
+{} pages; their names start with {}	{} sivua; niiden nimet alkavat {}
+{} parts added to the database	{} osaa lisätty tietokantaan
+{} parts of the database updated – synchronize the project parts in parts management	Tietokannan {} osaa päivitettiin – synkronoi projektin osat osien hallinnassa
+{} parts of the network	{} verkon osaa
+{} pieces	{} kpl
+{} pins used	{} nastaa käytössä
+{} placed as {}	{} sijoitettiin nimellä {}
+{} placement problems (red) – see Check	{} sijoitteluongelmaa (punainen) – katso Tarkistus
+{} problems	{} ongelmaa
+{} project parts updated	{} projektin osaa päivitetty
+{} projects on the server	{} projektia palvelimella
+{} projects selected	{} projektia valittu
+{} property definitions with {} values including the indexed ones	{} ominaisuusmäärittelyä ja {} arvoa indeksoidut mukaan lukien
+{} rails	{} kiskoa
+{} records, {} changes, {} conflicts, {} not found in the project	{} tietuetta, {} muutosta, {} ristiriitaa, {} ei löytynyt projektista
+{} renamed: {} pages and devices	{} nimetty uudelleen: {} sivua ja laitetta
+{} report pages output to {}	{} raporttisivua tulostettu kohteeseen {}
+{} routes frozen	{} reittiä lukittu
+{} segments created, {} devices added, {} updated	{} segmenttiä luotiin, {} laitetta lisättiin, {} päivitettiin
+{} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} asemaa, {} väyläjärjestelmää, {} korttia määritetty, {} osoitetta muutettu, {} yhteyttä, {} kaapelia
+{} stopped with an error: {}	{} keskeytyi virheeseen: {}
+{} structure identifiers added	{} rakennetunnusta lisätty
+{} symbols	Symboleja: {}
+{} symbols added, {} replaced	{} symbolia lisätty, {} korvattu
+{} symbols and {} wires generated on page {}	Sivulle {2} luotiin {0} symbolia ja {1} johtoa
+{} texts changed	{} tekstiä muutettiin
+{} translations imported	{} käännöstä tuotu
+{} unused entries removed	{} käyttämätöntä merkintää poistettu
+{} unused project parts removed	{} käyttämätöntä projektin osaa poistettu
+{} unused structure identifiers removed	{} käyttämätöntä rakennetunnusta poistettu
+{} values taken over	{} arvoa otettiin käyttöön
+{} warnings	Varoituksia: {}
+{} was imported into the parts database; its page no longer exists	{} tuotiin osatietokantaan; sen sivua ei enää ole
+{} windows	{} ikkunaa
+{} wire pieces joined	{} johdonpalaa yhdistetty
+{} wires are cores of the cable	{} johtoa on kaapelin johtimia
+{} wires changed	{} johtoa muutettu
+{} wires, {} cables and {} tubes routed	{} johtoa, {} kaapelia ja {} putkea reititetty
+{} wires, {} – {} mm	{} johtoa, {} – {} mm
+{} °C (max. {} °C)	{} °C (enint. {} °C)
+{} °C (max.)	{} °C (enint.)
+{} × {} pixels, {}	{} × {} pikseliä, {}
+{} – {} ({} pages)	{} – {} ({} sivua)
+{}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa
+{}: drag to move it, a double-click shows the floor	{}: siirrä vetämällä, kaksoisnapsautus näyttää lattian
+{}: nothing to change	{}: ei muutettavaa
+{}: pin {}	{}: nasta {}
+{}: {} addresses changed	{}: {} osoitetta muutettu
+{}: {} changes in the open project (not saved yet)	{}: {} muutosta avoimessa projektissa (ei vielä tallennettu)
+{}: {} changes saved	{}: {} muutosta tallennettu
+{}: {} holes, {} cutouts	{}: {} reikää, {} aukkoa
+{}: {} is on	{}: {} on päällä
+{}: {} slots, ports {}	{}: {} korttipaikkaa, portit {}
+{}: {} terminals renumbered	{}: {} riviliitintä numeroitu uudelleen
+{}: {} wires, {} m wire in total	{}: {} johtoa, yhteensä {} m johtoa
+— Line	— Viiva
+• Connection point	• Liitäntäpiste
+○ Circle	○ Ympyrä
+☐ Rect	☐ Suorakulmio
+⚠ Conflicts: changed in the project and in the other system since the last export; checked conflicts are overwritten	⚠ Ristiriidat: muutettu sekä projektissa että toisessa järjestelmässä edellisen viennin jälkeen; valitut ristiriidat korvataan
+⚠ Problem	⚠ Ongelma
+⚠ conflict	⚠ ristiriita
+✔ All items are mounted.	✔ Kaikki kohteet on asennettu.
+✔ All wires are wired.	✔ Kaikki johdot on johdotettu.
+✔ Mounted	✔ Asennettu
+✔ No problems found.	✔ Ongelmia ei löytynyt.
+✔ The project data is consistent.	✔ Projektitiedot ovat johdonmukaiset.
+✔ Wired	✔ Johdotettu
+➕ Default value	➕ Oletusarvo
+➕ Insert (click into the page)	➕ Lisää (napsauta sivua)
+➕ Insert as new page	➕ Lisää uutena sivuna
+➕ Label	➕ Merkintä
+➕ Line	➕ Viiva
+➕ Place property	➕ Sijoita ominaisuus
+➕ Property	➕ Ominaisuus
+➕ Rectangle	➕ Suorakulmio
+➕ Text	➕ Teksti
+⬉ Select	⬉ Valitse
+🌐 Parts server	🌐 Osapalvelin
+📁 Project parts ({})	📁 Projektin osat ({})
+📊 Fluid netlist	📊 Fluidiverkkoluettelo
+📊 Hose configuration	📊 Letkukokoonpano
+📊 Hose list	📊 Letkuluettelo
+📊 Tubing / piping list	📊 Putki- / putkistoluettelo
+🔎 Data portal	🔎 Dataportaali
+🗄 Parts database	🗄 Osatietokanta

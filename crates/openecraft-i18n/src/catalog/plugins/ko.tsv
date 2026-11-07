@@ -1,0 +1,953 @@
+# English<TAB>한국어 – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: 왼쪽 / 위쪽에서 바로 다른 쪽으로, 그 다음 줄기로 · 2: 오른쪽 / 아래쪽에서 같은 방식 · 3: 줄기에서 왼쪽 / 위쪽으로, 그 다음 다른 쪽으로 · 4: 줄기에서 먼저 오른쪽 / 아래쪽으로 (기본 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: 선의 위 / 왼쪽 끝이 가로로 오른쪽 / 아래쪽 가지로 · 2: 왼쪽 / 위쪽 가지로 (기본 2)
+A cable definition needs a start and an end point	케이블 정의에는 시작점과 끝점이 필요합니다
+A copper bar needs at least one segment	동바에는 구간이 하나 이상 필요합니다
+A segment cannot be moved below itself	세그먼트를 자기 자신 아래로 이동할 수 없습니다
+A segment needs two different nodes	구간에는 서로 다른 두 노드가 필요합니다
+A wire needs at least two points	전선에는 점이 두 개 이상 필요합니다
+A {} has no {}; it takes {}	{}에는 {}이(가) 없습니다. 사용 가능: {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid 또는 custom
+Accepts a message as checked, so that it is no longer counted until it changes	메시지를 확인됨으로 승인하여 메시지가 변경될 때까지 더 이상 집계하지 않습니다
+Accessory part number, e.g. GEN.GLAND-M25	부속품 부품 번호(예: GEN.GLAND-M25)
+Activates (shows) or deactivates (hides) the content of a project option	프로젝트 옵션의 내용을 활성화(표시)하거나 비활성화(숨기기)합니다
+Additional power loss in W	추가 전력 손실(W)
+Address scheme: siemens, iec or rockwell	주소 체계: siemens, iec 또는 rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	굽힘 및 드릴 가공된 동바를 추가합니다(또는 외함에서 같은 이름의 동바를 대체합니다)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	오른쪽 인접 외함으로의 케이블 통로를 추가합니다: 양쪽 측벽에 서로 마주 보는 원형 컷아웃. 외함 사이의 전선이 이를 통과합니다
+Adds a configurator rule: insert a page macro when the condition holds	컨피규레이터 규칙을 추가합니다: 조건이 충족되면 페이지 매크로 삽입
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	필드 경로 네트워크의 노드(분기점, 관통부, 외함 또는 장치 도달 지점)를 추가합니다
+Adds a planned device to a segment or changes it	세그먼트에 계획된 장치를 추가하거나 변경합니다
+Adds a project option or changes its description and condition	프로젝트 옵션을 추가하거나 설명과 조건을 변경합니다
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	장착 플레이트 위에 경로가 우선 사용하는 배선 경로(케이블 트레이, 튜브 가이드)를 추가합니다
+Adds a segment below another one (or at the top)	다른 세그먼트 아래(또는 최상위)에 세그먼트를 추가합니다
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	두 노드 사이에 필드 경로 네트워크의 구간(케이블 트레이, 래더, 덕트, 전선관, 케이블 체인, 지중 매설 또는 자유 포설)을 추가합니다
+Adds a text to a page	페이지에 텍스트를 추가합니다
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	프로젝트 텍스트의 모든 줄을 사전에 추가하고, 선택적으로 더 이상 사용하지 않는 항목을 제거합니다
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	케이블 끝에 부속품(글랜드, EMC 글랜드, 커넥터, 장력 완화, 차폐 클램프, 보호 호스, 엔드 슬리브, 마커)을 추가합니다
+Adds an accessory to a device; it must fit one of the device's parts	장치에 액세서리를 추가합니다. 장치의 부품 중 하나에 맞아야 합니다
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	외함을 추가합니다: 시스템의 크기(또는 사용자 지정 크기) 중 하나 또는 외함 부품에서
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	두 본딩 지점(주 접지 단자, 외함, 도전성 외곽선, 금속 케이블 지지대) 사이에 등전위 본딩 도체를 추가합니다
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	프로젝트의 라벨링 스키마를 추가, 변경 또는 제거하거나 마킹 내보내기에 사용할 스키마를 선택합니다
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	프로젝트의 기계를 추가 또는 변경하거나(ID가 같은 기본 제공 기계는 대체됨) 제거합니다
+Adds the devices of a template to a segment	템플릿의 장치를 세그먼트에 추가합니다
+Adds the outline of a machine, building or area to the plant layout	플랜트 레이아웃에 기계, 건물 또는 구역의 외곽선을 추가합니다
+Adds, replaces or removes a profile: a connector with the column names the other system uses	프로필(다른 시스템에서 사용하는 열 이름을 가진 커넥터)을 추가, 대체 또는 제거합니다
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	항목을 정렬하거나, 균등 간격으로 배치하거나, 레일에 장치를 정렬하거나, 패턴으로 항목을 복사합니다
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	심볼, 텍스트 및 그래픽을 공통 가장자리 또는 가운데에 맞춥니다. 연결된 전선 끝이 따라 움직입니다
+Allow renaming onto an identifier in use: both become one	사용 중인 식별자로 이름 바꾸기 허용: 둘이 하나가 됩니다
+Allowed classes, comma separated: power, control, signal, fluid (default all)	쉼표로 구분된 허용 클래스: power, control, signal, fluid(기본값 모두)
+Allowed values separated by commas (empty: any value)	쉼표로 구분된 허용 값(비우면 모든 값)
+Also create a bus cable for every connection without cable	케이블이 없는 모든 연결에 버스 케이블도 만들기
+Also properties without a value	값이 없는 속성도 포함
+Also remove entries the project no longer uses	프로젝트에서 더 이상 사용하지 않는 항목도 제거
+Also renumber terminal strips, plugs and PLC cards	단자대, 플러그 및 PLC 카드의 번호도 다시 매기기
+Also renumber wires with a fixed number	고정 번호가 있는 전선도 번호 다시 지정
+Altitude of the site in m	설치 장소의 고도(m)
+Ambient temperature of the conductors in °C	도체의 주위 온도(°C)
+An outline needs {} points at least	외곽선에는 최소 {}개의 점이 필요합니다
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	축 방향 앵커: free, start:<mm>, center:<mm>, end:<mm> 또는 stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	쉼표로 구분된 측면(예: function,location)
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	배치된 심볼에 기능 정의를 지정합니다(명칭과 스키마를 가져옴)
+Asynchronous motors add to the short-circuit current	비동기 모터가 단락 전류에 기여함
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	자동 하드웨어 구성: CPU와 버스 커플러용 스테이션, 버스 시스템, 스테이션에 카드 지정, 슬롯, 시작 주소, 점 주소, IP 주소 및 라인 토폴로지
+Back to the default rules first	먼저 기본 규칙으로 되돌리기
+Back to the default strategy first	먼저 기본 전략으로 되돌리기
+Back-up protection up to this short-circuit current in kA (0: not given)	이 단락 전류(kA)까지 백업 보호(0: 지정 안 됨)
+Bar id	바 ID
+Bar thickness, mm (default 5)	바 두께(mm, 기본값 5)
+Bar width, mm (default 20)	바 폭(mm, 기본값 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	외함을 다른 외함의 오른쪽에 나란히 결합합니다(열 배치). right_of가 없으면 열 배치에서 빠집니다
+Bend radius in drag chains as a multiple of the cable diameter	케이블 직경의 배수로 나타낸 케이블 체인 내 굽힘 반경
+Bend radius of a drag chain in mm	케이블 체인의 굽힘 반경(mm)
+Bend radius of cables as a multiple of the diameter	직경의 배수로 나타낸 케이블 굽힘 반경
+Bend radius of tubes as a multiple of the diameter	직경의 배수로 나타낸 튜브 굽힘 반경
+Bend radius of wires as a multiple of the diameter	직경의 배수로 나타낸 전선 굽힘 반경
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	구간 사이의 굽힘: 각도, e는 에지와이즈, r<반경>(예: 90; -90 e; 45 r10)
+Between page and column (default .)	페이지와 열 사이(기본값 .)
+Bonding point	본딩 지점
+Border around the text	텍스트 주위 테두리
+Both classes are needed	두 클래스가 모두 필요합니다
+Bus system name	버스 시스템 이름
+Bus system name, e.g. PN/IE_1	버스 시스템 이름(예: PN/IE_1)
+Busbar machine program (CSV)	부스바 가공기 프로그램(CSV)
+CNC operations	CNC 작업
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	드릴링, 밀링 및 펀칭기용 CNC 프로그램, 동바 굽힘, 외함 컨피규레이터, 생산 인계 및 생산 피드백
+Cable tag, e.g. -W1	케이블 태그(예: -W1)
+Cable tag, e.g. -W20	케이블 태그, 예: -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	생산 피드백의 실제 시간으로 기계의 시간 추정을 보정합니다
+Cannot read the plugin folder {}	플러그인 폴더 {}을(를) 읽을 수 없습니다
+Cannot start {}: {}	{}을(를) 시작할 수 없습니다: {}
+Card tag, e.g. -A1	카드 태그(예: -A1)
+Category, e.g. coils, contacts, terminals, plc	범주(예: coils, contacts, terminals, plc)
+Centre from the rear wall in mm	후면벽부터 중심까지(mm)
+Centre from the top of the enclosure in mm	외함 위쪽부터 중심까지(mm)
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T분기점(방향, 변형, 표시), 모서리(가지), 교차(선, 변형, 표시) 또는 브리지(방향, 표시)를 변경합니다
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	표의 셀을 변경합니다: 장치 태그, 기능 텍스트, 설명, 부품, 전선 번호, 색상, 단면적, 케이블, 심선, 단자대, 단자
+Changes a placed symbol; when it moves, connected wire ends follow	배치된 심볼을 변경합니다. 심볼을 이동하면 연결된 전선 끝이 따라갑니다
+Changes a text (only the given properties)	텍스트를 변경합니다(지정한 속성만)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	단종 예정 또는 단종된 부품을 사용하는 장치를 후속 부품으로 전환합니다(후속 부품은 프로젝트 부품이어야 함)
+Changes name, description or structure of a page	페이지의 이름, 설명 또는 구조를 변경합니다
+Changes name, description, function, location or parent of a segment	세그먼트의 이름, 설명, 기능, 위치 또는 상위 세그먼트를 변경합니다
+Changes position, face, fastening or anchors of a panel item	패널 항목의 위치, 면, 고정 방식 또는 앵커를 변경합니다
+Changes the device, connection and terminal tables	장치, 연결 및 단자 테이블을 변경합니다
+Changes the level of a kind of message (code as shown by check)	메시지 종류의 수준을 변경합니다(check에 표시되는 코드)
+Changes the properties of a wire	전선의 속성을 변경합니다
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	외함의 시스템, 크기 및 구성 요소(받침대, 결합된 측면, 글랜드 플레이트)를 변경합니다. 앵커가 있는 항목이 따라갑니다
+Check {} failed: {}	검사 {} 실패: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	패널 레이아웃을 검사합니다(충돌, 이격 거리(장착, 환기, EMC), 서비스 공간, 바닥으로부터의 높이, 충돌 클래스, 온도 및 제조 가능성)
+Chosen value	선택한 값
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	패널 레이아웃의 이격 거리, 서비스 공간, 높이, 충돌 클래스, 열 시뮬레이션 및 제조 가능성
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	외함의 온도 관리(IEC/TR 60890): 전력 손실, 내부 온도, 필요한 팬 또는 냉각 장치와 히터. 선택적으로 한 외함의 설정을 변경합니다
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	충돌 클래스: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, 자체 클래스 또는 모두는 *
+Column and row strips	열 및 행 눈금
+Column mapping {field code: column name}	열 매핑 {필드 코드: 열 이름}
+Column name, e.g. Description	열 이름(예: Description)
+Columns of the pattern	패턴의 열
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	열(쉼표로 구분): Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	등전위 본딩이 필요한 도전성 프레임
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	외함 제조업체 컨피규레이터용 외함 구성: 시스템, 크기, 구성 요소, 부속품 및 가공
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	컨피규레이터 조건(예: HEATER=yes, 비워 두면 수동 전환)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	호스 / 튜브 / 배관을 구성합니다: 라인 유형, 부품, 끝단 피팅, 정격 압력, 굽힘 반경, 매체, 크기, 색상 및 길이
+Connection point TAG:PIN, e.g. -K1:A1	연결 지점 TAG:PIN(예: -K1:A1)
+Connection point designations separated by commas or blanks	쉼표나 공백으로 구분된 연결 지점 명칭
+Connection point designations, comma separated, e.g. 13,14	쉼표로 구분된 연결 지점 명칭(예: 13,14)
+Connector id (required unless removing)	커넥터 ID(제거하는 경우 외에는 필수)
+Connects two connection points with wires routed around symbols and other wires	심볼과 다른 전선을 우회하는 경로의 전선으로 두 연결 지점을 연결합니다
+Connects two ports of stations with a network cable; connections already on these ports are replaced	스테이션의 두 포트를 네트워크 케이블로 연결합니다. 이 포트에 이미 있는 연결은 교체됩니다
+Copies function texts between the single-line diagram and the schematic where one side is empty	한쪽이 비어 있는 경우 단선도와 회로도 간에 기능 텍스트를 복사합니다
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	항목을 일정한 간격으로 여러 번 복사합니다. 장치에는 새 태그가, 단자에는 새 번호가 지정됩니다
+Copper bar cutting list	동바 절단 목록
+Copper bars	동바
+Corner points in metres	꼭짓점(m)
+Corner points on the mounting plate in mm	장착 플레이트 위의 꺾임점(mm)
+Correction of the time estimate	시간 추정 보정
+Cost of free air against ducts and routing paths	덕트 및 배선 경로 대비 자유 공간의 비용
+Counting step (default 1)	카운트 간격(기본값 1)
+Creates a bus cable for the connection (without cable tag)	연결에 대한 버스 케이블을 만듭니다(케이블 태그 없음)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	케이블이 없는 모든 버스 연결에 버스 유형의 케이블(유형, 심선, 단면적)을 만듭니다
+Creates or changes a PCT loop of the pre-planning	사전 계획의 PCT 루프를 만들거나 변경합니다
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	PLC 스테이션(컨트롤러, 원격 I/O, 드라이브, HMI)을 만들거나 변경합니다. 주소 체계를 변경하면 해당 점의 주소가 변환됩니다
+Creates or changes a bus system (PROFINET, EtherCAT, …)	버스 시스템(PROFINET, EtherCAT, …)을 만들거나 변경합니다
+Creates or changes a configurator option	컨피규레이터 옵션을 만들거나 변경합니다
+Creates or changes a fluid device group	유체 장치 그룹을 만들거나 변경합니다
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	프로젝트의 플롯 프레임을 만들거나 변경합니다(기본 제공 프레임은 새 이름으로 복사됨)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	전위 정의를 만들거나 변경합니다. 전선에 설정되지 않은 경우 해당 전선이 색상과 단면적을 상속합니다
+Creates or changes a work area: only the pages and devices of its structure are shown	작업 영역을 만들거나 변경합니다: 해당 구조의 페이지와 장치만 표시됩니다
+Cross section, e.g. 0.75 mm²	단면적(예: 0.75 mm²)
+Cross section, e.g. 1.5 mm²	단면적(예: 1.5 mm²)
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	단면적(예: 1.5 mm², 비우면 전위 정의에서 가져옴)
+Cross-section in mm²	단면적(mm²)
+Cross-section, e.g. 1.5 mm²	단면적(예: 1.5 mm²)
+Current device tag	현재 장치 태그
+Customer rule set to add or replace (by name), as exported	추가하거나 교체할 고객 규칙 세트(이름 기준, 내보낸 형식)
+Cut lengths of cables rounded up to this step in mm	이 단위(mm)로 올림한 케이블 절단 길이
+Cut lengths of tubes rounded up to this step in mm	이 단위(mm)로 올림한 튜브 절단 길이
+Cut lengths of wires rounded up to this step in mm	이 단위(mm)로 올림한 전선 절단 길이
+Cut lengths rounded up to this step in metres	이 단위(m)로 올림한 절단 길이
+Cut threads on the machine	기계에서 나사 가공
+Cutting allowance per tube end in mm	튜브 끝당 절단 여유(mm)
+Date (YYYY-MM-DD)	날짜(YYYY-MM-DD)
+Date of the acceptance	승인 날짜
+Default property values	속성 기본값
+Default symbol key	기본 심볼 키
+Define the identifiers in use (default: true)	사용 중인 식별자 정의(기본값: true)
+Defines a reusable project function definition or changes it	재사용 가능한 프로젝트 기능 정의를 정의하거나 변경합니다
+Defines a structure identifier or changes its description	구조 식별자를 정의하거나 설명을 변경합니다
+Defines a user property or changes it	사용자 속성을 정의하거나 변경합니다
+Defines all identifiers in use and / or removes the definitions nobody uses	사용 중인 모든 식별자를 정의하거나 아무도 사용하지 않는 정의를 제거합니다
+Definition to start from	시작 정의
+Deletes a PCT loop of the pre-planning	사전 계획의 PCT 루프를 삭제합니다
+Deletes a configurator option	컨피규레이터 옵션을 삭제합니다
+Deletes a configurator rule	컨피규레이터 규칙을 삭제합니다
+Deletes a fluid device group	유체 장치 그룹을 삭제합니다
+Deletes a page	페이지를 삭제합니다
+Deletes a page template of the project	프로젝트의 페이지 템플릿을 삭제합니다
+Deletes a plot frame of the project that no page uses	어떤 페이지도 사용하지 않는 프로젝트의 플롯 프레임을 삭제합니다
+Deletes a potential definition	전위 정의를 삭제합니다
+Deletes a work area	작업 영역을 삭제합니다
+Deletes symbols, wires, texts and shapes	심볼, 전선, 텍스트 및 도형을 삭제합니다
+Depth in mm	깊이(mm)
+Device description id (empty: from the parts)	장치 설명 ID(비우면 부품에서)
+Device description id of the head (list_device_descriptions)	헤드의 장치 설명 ID(list_device_descriptions)
+Device group {} already exists	장치 그룹 {}이(가) 이미 있습니다
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	장치 목록, 부품 목록, 단자, 플러그, 케이블 및 연결 다이어그램, PLC, 전위, 패널, 유체, 전기 및 필드 보고서
+Device number on the bus	버스상의 장치 번호
+Device tag of the CPU / bus coupler, e.g. -A0	CPU / 버스 커플러의 장치 태그(예: -A0)
+Device tag of the end (both ends if missing)	끝의 장치 태그(없으면 양쪽 끝)
+Device tag of the fluid device, e.g. -QM1	유체 장치의 장치 태그(예: -QM1)
+Device tag of the group, e.g. -KH1	그룹의 장치 태그(예: -KH1)
+Device tag within the segment, e.g. -M1	세그먼트 내 장치 태그(예: -M1)
+Device tag, e.g. -K1	장치 태그(예: -K1)
+Device tag: the accessories that can still be added to its parts	장치 태그: 부품에 아직 추가할 수 있는 액세서리
+Device tags (text)	장치 태그(텍스트)
+Device tags of the members in slot order, separated by commas or blanks	쉼표나 공백으로 구분된 구성원의 장치 태그(자리 순서)
+Devices with parts that are phased out or discontinued, and their change to the successors	단종 예정 또는 단종된 부품을 사용하는 장치 및 후속 부품으로의 전환
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	장치, 전선, 전위, 케이블, 단자대, PLC, 패널, 유체, 전기 계산, 구조 및 번역
+Diameter in mm	직경(mm)
+Diameter of a hole at both ends (0: none)	양쪽 끝 구멍의 직경(0: 없음)
+Direction of the stem: left, right, up or down (default: from the wires there)	줄기의 방향: left, right, up 또는 down (기본: 해당 지점의 연결선에 따라)
+Distance between power and signal or fluid in mm	전력과 신호 또는 유체 간의 거리(mm)
+Distance from devices, rails and busbars in mm	장치, 레일 및 부스바와의 거리(mm)
+Distance from the face in mm (rails: standoff height)	면으로부터의 거리(mm, 레일: 스탠드오프 높이)
+Distance in X (mm)	X 거리(mm)
+Distance in Y (mm)	Y 거리(mm)
+Distance of devices to cable ducts	장치와 케이블 덕트 간 거리
+Distance of devices to the plate edge	장치와 플레이트 가장자리 간 거리
+Distance of the border from the paper edge in mm	용지 가장자리에서 테두리까지의 거리(mm)
+Distribute vertically (default horizontally)	세로로 분포(기본값 가로)
+Distributes symbols, texts and graphics evenly between the first and the last one	심볼, 텍스트 및 그래픽을 첫 번째와 마지막 항목 사이에 균등하게 분포합니다
+Diversity factor of the loads (0: IEC 61439-1, table 101)	부하의 부등률(0: IEC 61439-1, 표 101)
+Draw the contact image below coils (default true)	코일 아래에 접점 이미지 그리기(기본값 true)
+Draw the junction as a connection dot; its routing stays	분기점을 연결점으로 그립니다. 경로는 유지됩니다
+Draw wires in their colour	전선을 해당 색상으로 그리기
+Draw wires to the connection points facing its free arms	비어 있는 가지를 마주하는 접속점까지 연결선을 그립니다
+Drawing	도면
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	케이블 정의선을 그립니다. 교차하는 전선이 케이블의 심선이 됩니다(지정하지 않으면 새 케이블)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	두 연결 지점 사이에 전선을 그립니다(예: -K1:A1에서 -S1:14로). 모호한 경우 #id:pin, 전위는 이름, 명칭 없는 지점은 1, 2…
+Draws a wire through two or more points	두 개 이상의 점을 지나는 전선을 그립니다
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	회로도 페이지와 PDF / SVG 내보내기에서 전선을 해당 색상 또는 검정으로 그립니다
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	서로 마주하는 기호의 빈 접속점 사이와 T분기점 및 모서리의 빈 가지까지 연결선을 그립니다
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	케이블의 EMC 클래스(드라이브 출력, 아날로그, 전력, 신호, 차폐) 및 EMC 문제
+Edge length of the routing grid in mm	배선 경로 그리드의 모서리 길이(mm)
+Electrical device tags separated by commas or blanks (empty = remove the links)	쉼표나 공백으로 구분된 전기 장치 태그(비우면 연결 제거)
+Electrical engineering	전기 공학
+Enclosure (location, e.g. +CAB1)	외함(위치, 예: +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	설정을 변경할 외함(위치, 예: +CAB1)
+Enclosure climate and electrical sizing	외함 공조 및 전기 사이징
+Enclosure it stands right of; empty to take it out of its line-up	이 외함이 오른쪽에 위치할 기준 외함. 비우면 열 배치에서 제외
+Enclosure name (all if missing)	외함 이름(없으면 모두)
+Enclosure part number	외함 부품 번호
+Enclosure system (default: the enclosure's)	외함 시스템(기본값: 해당 외함의 시스템)
+Enclosure {} exists already	외함 {}이(가) 이미 있습니다
+Enclosures, panel items, accessories and panel macros	외함, 패널 항목, 부속품 및 패널 매크로
+End brackets and end plates from the tech data of the terminal parts	단자 부품의 기술 데이터에 따른 엔드 브래킷 및 엔드 플레이트
+End holes from the bar end as a multiple of the width	바 끝에서 끝 구멍까지의 거리(폭의 배수)
+End: device tag and connection point, e.g. -S1:14	끝: 장치 태그 및 연결 지점(예: -S1:14)
+Engineering	엔지니어링
+Face: plate, door, left, right, rear, roof or bottom	면: plate, door, left, right, rear, roof 또는 bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	필드 계획: 노드, 구간, 외곽선, 경로, 본딩 및 부속품
+Figure	지표
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	모든 (필터링된) 행의 열에서 텍스트를 찾아 바꿉니다. 찾을 텍스트가 없으면 열을 바꿀 텍스트로 채웁니다
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	프로젝트 전체에서 텍스트를 찾습니다: 페이지, 장치 태그, 기능 텍스트, 자유 텍스트, 전선 번호, 단자, 케이블, 부품, 설명
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	레이아웃을 수용하는 외함 시스템의 가장 작은 표준 크기를 찾아 적용합니다
+Fingerprint of the message as shown by check	check에 표시되는 메시지의 지문
+First address of the subnet, e.g. 192.168.0.0	서브넷의 첫 번째 주소(예: 192.168.0.0)
+First byte of the inputs (and outputs)	입력(및 출력)의 첫 번째 바이트
+First byte of the outputs if it differs; -1 removes it	출력의 첫 번째 바이트(다른 경우). -1이면 제거
+First counter value (default 1)	첫 카운터 값(기본값 1)
+First page number (default 1)	첫 페이지 번호(기본값 1)
+First port as station:port, e.g. PLC1:X1 P2	station:port 형식의 첫 번째 포트(예: PLC1:X1 P2)
+First row with the column names	열 이름이 있는 첫 행
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	장치 이름 형식: {letter}, {n}(카운터), {page}, {column}, {row}. 기본값 {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 체계의 형식: {n}(카운터), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	프레임이 새것일 때 시작할 프레임(기본값: A3 landscape)
+Free space in front of every device on the plate	플레이트의 각 장치 앞 여유 공간
+Freezes routes for production (kept by the recalculation while possible) or releases them	생산을 위해 경로를 고정하거나(가능한 한 다시 계산 시 유지) 고정을 해제합니다
+Frequency in Hz	주파수(Hz)
+Function (= without the sign; empty: the parent's)	기능(= 기호 제외, 비워 두면 상위 세그먼트의 기능)
+Function aspect (=) of the page; the devices on the page move along	페이지의 기능 측면(=). 페이지의 장치가 함께 이동합니다
+Function definition key	기능 정의 키
+Function filter (= A1, A*; empty = any)	기능 필터(= A1, A*, 비우면 모두)
+Further device tags of the loop, separated by commas or blanks	쉼표나 공백으로 구분된 루프의 추가 장치 태그
+Gap between devices side by side	나란히 배치된 장치 간 간격
+Gap between the devices on the rail in mm	레일 위 장치 간 간격(mm)
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	아직 단선도가 없는 회로도의 전력 장치에 대해 지정한 페이지 다음의 새 개요 페이지에 단선도를 생성합니다
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	면의 기계용 CNC 프로그램(ISO G 코드, Heidenhain, 펀칭 코드 또는 CSV)을 생성합니다
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	페이지의 단선 심볼에 대해 그 다음의 새 페이지에 복선 회로도(전력 심볼, 도체, 접촉기 코일)를 생성합니다
+Generates the program of the busbar machine: cuts, punched holes and bends	부스바 가공기 프로그램(절단, 펀칭 구멍 및 굽힘)을 생성합니다
+Give a device tag or a part number	장치 태그 또는 부품 번호를 입력하십시오
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	항목을 함께 선택되고 이동되는 어셈블리로 그룹화합니다. 이름이 없으면 항목이 어셈블리에서 해제됩니다
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	외함의 프로그램을 작업으로 생산에 인계합니다: 모든 면과 동바의 매니페스트 및 프로그램
+Has a divider between power and signal cables	전력 케이블과 신호 케이블 사이에 구분판이 있음
+Height above the floor in metres	바닥으로부터의 높이(m)
+Height above the mounting plate in mm (default 50)	장착 플레이트 위 높이(mm, 기본값 50)
+Height in mm	높이(mm)
+Height in mm without plinth; negative: unknown (wall mounted)	받침대를 제외한 높이(mm). 음수: 알 수 없음(벽 장착)
+Higher-level product aspect (-) of the page; the devices on the page move along	페이지의 상위 제품 측면(-). 페이지의 장치가 함께 이동합니다
+Highest actuator on the door above the floor (0: not checked)	바닥으로부터 도어의 가장 높은 조작부 높이(0: 검사 안 함)
+Highest air temperature at devices without data (0: not checked)	데이터가 없는 장치 주변의 최고 공기 온도(0: 검사 안 함)
+Highest ambient temperature in °C	최고 주위 온도(°C)
+Highest device above the floor (0: not checked)	바닥으로부터 가장 높은 장치 높이(0: 검사 안 함)
+Highest inside temperature in °C	최고 내부 온도(°C)
+Highest three-phase short-circuit current at the supply in kA	전원 공급부의 최대 3상 단락 전류(kA)
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	구멍: 구간:거리:직경(예: 0:20:9; 2:30:11)
+Horizontal alignment: left, center or right	가로 맞춤: left, center 또는 right
+Horizontal pitch of the pattern in mm	패턴의 가로 간격(mm)
+Hose colour	호스 색상
+Hose number or fluid net (F1)	호스 번호 또는 유체 네트(F1)
+Hose number prefix, e.g. H	호스 번호 접두사(예: H)
+Hoses / pipes: length in m	호스 / 배관: 길이(m)
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	호스 / 배관: 매체(compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product, 비우면 프로젝트 기본값)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	호스, 유체 네트 및 그룹, 전기-유체 링크 및 PCT 루프
+Hyperlink (URL)	하이퍼링크(URL)
+IP address or bus address	IP 주소 또는 버스 주소
+IT system with distributed neutral	중성선이 배선된 IT 계통
+Id of the panel item (from mounting_list)	패널 항목의 ID(mounting_list에서)
+Id of the path or reservation	경로 또는 예약의 ID
+Id of the text	텍스트의 ID
+Identifier, e.g. A1 or CAB1	식별자(예: A1 또는 CAB1)
+Ids of page items	페이지 항목의 ID
+Ids of symbols and connection symbols (default: all symbols of the page)	기호와 연결 기호의 id (기본: 페이지의 모든 기호)
+In front of the page name (default /)	페이지 이름 앞(기본값 /)
+Inner height in mm (0 = no limit)	내부 높이(mm, 0 = 제한 없음)
+Inner radius as a multiple of the thickness	두께의 배수로 나타낸 내측 반경
+Inner width in mm (0 = no limit)	내부 폭(mm, 0 = 제한 없음)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	3D 매크로를 어셈블리로 삽입합니다: 앵커가 있는 항목은 제자리에, 나머지는 면의 x / y를 기준으로
+Installation site aspect (++) of the page; the devices on the page move along	페이지의 설치 장소 측면(++). 페이지의 장치가 함께 이동합니다
+Installation site filter (++)	설치 장소 필터(++)
+Integration profiles and status	통합 프로필 및 상태
+Interruption points refer to: all (default), star or pairs	중단점의 참조 대상: all(기본값), star 또는 pairs
+Invalid answer of the plugin: {}	플러그인의 응답이 잘못되었습니다: {}
+Invalid segment name: {}	잘못된 세그먼트 이름: {}
+Item id	항목 ID
+Item ids	항목 ID
+Jumper number	점퍼 번호
+Jumper number (terminals with the same number are bridged); 0 removes it	점퍼 번호(번호가 같은 단자는 서로 연결됨). 0이면 제거
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	보호 등급 유지: 필터 팬 대신 열교환기 또는 냉각 장치
+Key figures of the project and a list of its device tags	프로젝트의 주요 지표 및 장치 태그 목록
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	프로젝트의 주요 지표: 페이지, 심볼, 전선, 장치, 부품, 케이블 및 검사 결과
+Key, e.g. user.coupling_relay	키(예: user.coupling_relay)
+Key, e.g. user.customer_code	키(예: user.customer_code)
+Keys of the routes, comma separated (all if missing)	쉼표로 구분된 경로 키(없으면 모두)
+Kind: machining, punching or busbar	종류: machining, punching 또는 busbar
+Label: terminal number, PLC address or potential name	레이블: 단자 번호, PLC 주소 또는 전위 이름
+Landscape (true) or portrait (false)	가로(true) 또는 세로(false)
+Language the project texts are written in, e.g. en	프로젝트 텍스트가 작성된 언어(예: en)
+Larger round holes are milled, mm	이보다 큰 원형 구멍은 밀링 가공(mm)
+Largest difference between hole and tool, mm	구멍과 공구 간 최대 차이(mm)
+Left edge on the face in mm	면에서의 왼쪽 가장자리(mm)
+Left edge on the mounting plate in mm	장착 플레이트 위의 왼쪽 가장자리(mm)
+Left side bayed (no side panel)	왼쪽 측면 결합(측면 패널 없음)
+Length added at each cable end in metres	각 케이블 끝에 추가되는 길이(m)
+Length added to each cable end in mm	각 케이블 끝에 더해지는 길이(mm)
+Length from the node to the device in metres	노드에서 장치까지의 길이(m)
+Length in metres	길이(m)
+Length in metres (default from the node positions)	길이(m, 기본값: 노드 위치에서 계산)
+Length inside an enclosure per end in metres	끝당 외함 내부 길이(m)
+Length of a shield pigtail in mm	차폐 피그테일 길이(mm)
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	다단 단자의 단(1 = 아래). 위쪽 단은 앞 단자의 블록 위에 놓입니다
+Library id or customer rule set name to no longer verify against	더 이상 검증 기준으로 사용하지 않을 라이브러리 ID 또는 고객 규칙 세트 이름
+Library id or customer rule set name to verify against	검증 기준으로 사용할 라이브러리 ID 또는 고객 규칙 세트 이름
+Line in the source language	원본 언어의 줄
+Line-to-line voltage in V	선간 전압(V)
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	유체 장치를 이를 작동하거나 감시하는 전기 장치와 연결합니다(연결을 교체)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	솔레노이드 밸브를 번호가 같은 코일과 연결하고(-QM3 › -MB3) 연결된 장치 간에 기능 텍스트를 복사합니다
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	아직 배치되지 않은 할당된 부품의 PLC 채널 및 기능을 place_symbol용 심볼, 태그, 레이블 및 핀과 함께 나열합니다
+Lists and renames devices, adds accessories to their parts	장치를 나열하고 이름을 바꾸며 부품에 액세서리를 추가합니다
+Lists the 3D macros: the project's own and the built-in ones	3D 매크로를 나열합니다: 프로젝트 고유 매크로와 기본 제공 매크로
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	3D 배선 경로를 나열합니다: 길이와 상태가 포함된 배선 경로가 지정된 전선, 케이블 및 튜브, 번들, 분기, 차폐, 배선 경로, 변경 내용 및 문제
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	CNC 기계(기본 제공 및 프로젝트)를 공구 및 각 면의 기계와 함께 나열합니다
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	사전 계획과 P&ID 계기의 PCT 루프를 장치 및 설계 상태와 함께 나열합니다
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T분기점, 모서리, 교차, 브리지를 경로와 연결의 전선과 함께 나열합니다
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	부품 또는 장치의 부품에 맞는 액세서리와 액세서리가 맞는 부품을 나열합니다(프로젝트 부품, 내장 및 번들 카탈로그)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	펼친 동바를 나열합니다: 길이, 순서대로의 굽힘, 구멍, 문제 및 재고 길이에서의 절단
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	PLC 하드웨어의 장치 설명을 나열합니다: 가져온 설명, 프로젝트 부품의 설명 및 기본 제공 일반 설명
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	단선도의 장치와 회로도의 전력 장치를 상태(계획됨, 설계됨, 단선도에 없음, 일치하지 않음)와 함께 나열합니다
+Lists the devices with cross references and assigned parts	상호 참조 및 지정된 부품과 함께 장치를 나열합니다
+Lists the enclosures with their system, components (assembly), items per face and assemblies	시스템, 구성 요소(어셈블리), 면별 항목 및 어셈블리와 함께 외함을 나열합니다
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	유체 장치 그룹(밸브 터미널, 서비스 유닛, 매니폴드)을 자리 순서대로 장치와 함께 나열합니다
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	솔레노이드 또는 연결이 있는 유체 장치와 이에 연결된 전기 장치를 나열합니다
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	유체 네트 목록을 나열합니다: 각 호스 라인과 라인 종류(압력, 작동, 리턴, 파일럿 …), 매체, 크기 및 포트와 그 기능
+Lists the function definitions with category, function template kind, letter, default symbol and usage	범주, 기능 템플릿 종류, 문자, 기본 심볼 및 사용 현황과 함께 기능 정의를 나열합니다
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	매체, 호칭경, 색상 및 길이와 함께 호스와 배관(유체 포트 간 연결)을 나열합니다
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	패널 레이아웃의 항목을 장착 순서대로 위치, 크기, 부품 및 장착 상태와 함께 나열합니다
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	마킹 프로그램용 라벨링 스키마(기본 제공 및 프로젝트)와 선택한 스키마를 나열합니다
+Lists the page templates (built-in and the project's own)	페이지 템플릿을 나열합니다(기본 제공 및 프로젝트 고유)
+Lists the pages of the project	프로젝트의 페이지를 나열합니다
+Lists the placement schemes with their properties and the number of symbols using them	배치 스키마를 해당 속성 및 이를 사용하는 심볼 수와 함께 나열합니다
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	플롯 프레임(용지 형식, 방향, 열 및 행)과 프로젝트 기본값을 나열합니다
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	사용된 핀 수, 부품의 핀 수 및 부품과 함께 플러그를 나열합니다
+Lists the potential definitions and the wire default of nets without a defined potential	전위 정의와 정의된 전위가 없는 네트의 전선 기본값을 나열합니다
+Lists the project options that show or hide model content	모델 내용을 표시하거나 숨기는 프로젝트 옵션을 나열합니다
+Lists the properties of an object with their values and where they come from	개체의 속성을 값 및 출처와 함께 나열합니다
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	속성 정의(기본 제공 및 사용자 정의)를 개체 클래스, 그룹, 유형 및 단위와 함께 나열합니다
+Lists the report blocks with their report, scheme, groups and generated pages	보고서, 스키마, 그룹 및 생성된 페이지와 함께 보고서 블록을 나열합니다
+Lists the report schemes (named report forms) with their settings	설정과 함께 보고서 스키마(이름이 지정된 보고서 양식)를 나열합니다
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	패널 레이아웃의 배선 경로가 지정된 전선을 끝단 처리, 상태 및 진행률이 포함된 배선 작업 체크리스트로 나열합니다
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	세그먼트를 트리 순서대로 구조, 계획된 전력 및 계획된 장치(회로도 내 상태 포함)와 함께 나열합니다
+Lists the source and target languages of the project texts with the number of untranslated lines	미번역 줄 수와 함께 프로젝트 텍스트의 원본 언어와 대상 언어를 나열합니다
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	구조 관리를 나열합니다: 페이지의 측면, 정의된 식별자와 사용된 식별자, 작업 영역
+Lists the subprojects taken out of the project, or the project it was taken from	프로젝트에서 반출된 하위 프로젝트 또는 이 프로젝트를 반출한 원본 프로젝트를 나열합니다
+Lists the symbols that can be placed, with their connection points relative to the insertion point	삽입점을 기준으로 한 연결 지점과 함께 배치 가능한 심볼을 나열합니다
+Lists the terminal strips with their number of terminals and length on the rail	단자대를 단자 수 및 레일 위 길이와 함께 나열합니다
+Lists the translation dictionary of the project texts (source line and translations)	프로젝트 텍스트의 번역 사전(원본 줄 및 번역)을 나열합니다
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	페이지에 배치된 창 매크로(매크로 박스)를 매크로, 변형, 자리 표시자 값 및 항목 수와 함께 나열합니다
+Load losses of the transformer in W (0: typical)	변압기의 부하 손실(W, 0: 일반값)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	전원의 부하, 각 보호 장치의 부하, 부등률을 적용한 수요, 상 평형 및 전원 공급 장치 부하 예산
+Loads the potential definitions of a standard (replaces those of the same name)	표준의 전위 정의를 로드합니다(같은 이름의 정의를 교체)
+Location (+ without the sign; empty: the parent's)	위치(+ 기호 제외, 비워 두면 상위 세그먼트의 위치)
+Location aspect (+) of the page; the devices on the page move along	페이지의 위치 측면(+). 페이지의 장치가 함께 이동합니다
+Location filter (+)	위치 필터(+)
+Location or device tag	위치 또는 장치 태그
+Loop number	루프 번호
+Loop number, e.g. 101	루프 번호(예: 101)
+Lowest actuator on the door above the floor	바닥으로부터 도어의 가장 낮은 조작부 높이
+Lowest ambient temperature in °C	최저 주위 온도(°C)
+Lowest device above the floor	바닥으로부터 가장 낮은 장치 높이
+Lowest inside temperature in °C	최저 내부 온도(°C)
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	전원 공급부의 최소 선-대지 고장 전류(kA, 0: ik_max에서)
+Lowest terminal above the floor	바닥으로부터 가장 낮은 단자 높이
+Machine id (default: the busbar machine)	기계 ID(기본값: 부스바 가공기)
+Machine id (default: the machine of the face)	기계 ID(기본값: 해당 면의 기계)
+Machine id (snake_case)	기계 ID(snake_case)
+Machine id {} is not snake_case	기계 ID {}이(가) snake_case가 아닙니다
+Machine of that face (empty: the sheet machine)	해당 면의 기계(비워 두면 판금 기계)
+Machine of the copper bars	동바의 기계
+Machine of the sheet metal faces	판금 면의 기계
+Machine {} is in use	기계 {}이(가) 사용 중입니다
+Macro name	매크로 이름
+Makes pages or page items content of a project option	페이지 또는 페이지 항목을 프로젝트 옵션의 내용으로 지정합니다
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	플러그 핀의 전선을 리본 케이블의 심선으로 만듭니다: IDC 커넥터처럼 핀 n에 심선 n
+Manufacturing package (CNC programs, JSON)	제조 패키지(CNC 프로그램, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	마커(쉼표로 구분): device, terminal, wire, cable(비워 두면 모두)
+Marks a panel item as mounted or as a problem, or as open again	패널 항목을 장착됨, 문제 또는 다시 미완료로 표시합니다
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	배선 경로가 지정된 전선을 배선 완료, 문제 또는 다시 미완료로 표시합니다. 전선은 양쪽 끝으로 지정합니다
+Maximum fill of a carrier in percent	케이블 지지대의 최대 충전율(%)
+Maximum operating pressure in bar	최대 작동 압력(bar)
+Measuring range or set point	측정 범위 또는 설정값
+Message code, e.g. wires.3f9a1c	메시지 코드(예: wires.3f9a1c)
+Milling feed, mm/min	밀링 이송(mm/min)
+Mirror the symbol	심볼 대칭
+Moves symbols, wires and texts; connected wire ends follow	심볼, 전선 및 텍스트를 이동합니다. 연결된 전선 끝이 따라갑니다
+Moves the page before this page of its section (or of the section given)	페이지를 해당 구역(또는 지정한 구역)의 이 페이지 앞으로 이동합니다
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	구역을 상위 구역(또는 지정한 상위 구역)의 이 구역 앞으로 이동합니다. 번호는 순서대로 이어집니다
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	하네스의 네일보드 레이아웃: 공통 노드에서 커넥터까지의 분기(길이, 방향, 번들 직경 및 핀 포함)와 도면 축척
+Name of the assembly	어셈블리 이름
+Name of the bar, e.g. L1 -Q1	바 이름(예: L1 -Q1)
+Name of the check	검사 이름
+Name of the customer rule set to remove	제거할 고객 규칙 세트 이름
+Name of the frame	프레임 이름
+Name of the machine	기계 이름
+Name of the main earthing terminal	주 접지 단자의 이름
+Name of the safety function to remove	제거할 안전 기능 이름
+Name of the segment	세그먼트 이름
+Name of the template	템플릿 이름
+Name of the work area	작업 영역 이름
+Name or id; the tag for places	이름 또는 ID, 배치의 경우 태그
+Name, e.g. the location +M1	이름(예: 위치 +M1)
+New device tag	새 장치 태그
+New identifier	새 식별자
+New page name	새 페이지 이름
+New parent segment (empty: top level)	새 상위 세그먼트(비워 두면 최상위 수준)
+New value	새 값
+No PCT loop {}	PCT 루프 {} 없음
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{}(이)라는 기본 제공 검사가 없습니다: 이 설정은 같은 이름의 플러그인 검사에 적용됩니다(list_checks)
+No bus system {}	버스 시스템 {} 없음
+No connection point {} on this page	이 페이지에 연결 지점 {}이(가) 없습니다
+No connection symbol with id {}	id {}인 연결 기호가 없습니다
+No copper bar {}	동바 {}이(가) 없습니다
+No device description {}	장치 설명 {} 없음
+No device group {}	장치 그룹 {} 없음
+No enclosure named {}	이름이 {}인 외함 없음
+No entry for {} and {}	{}과(와) {}에 대한 항목이 없습니다
+No hose {}	호스 {} 없음
+No identifier {} in the project	프로젝트에 식별자 {}이(가) 없습니다
+No item with id {}	ID가 {}인 항목 없음
+No item {}	항목 {} 없음
+No items to save in {}	{}에 저장할 항목이 없습니다
+No macro named {}	이름이 {}인 매크로 없음
+No panel item with id {}	ID가 {}인 패널 항목이 없습니다
+No planned device {}	계획된 장치 {}이(가) 없습니다
+No potential definition {}	전위 정의 {} 없음
+No project function definition {}	프로젝트 기능 정의 {}이(가) 없습니다
+No routed item {}	배선 경로가 지정된 항목 {} 없음
+No routed wire {} – {}	배선 경로가 지정된 전선 {} – {} 없음
+No routing path or reservation {}	배선 경로 또는 예약 {} 없음
+No rule for {} and {}	{}과(와) {}에 대한 규칙이 없습니다
+No rule library or rule set {}	규칙 라이브러리 또는 규칙 세트 {} 없음
+No rule {}	규칙 {} 없음
+No safety function {}	안전 기능 {} 없음
+No standard size of {} holds the layout of {}	{}의 표준 크기 중 {}의 레이아웃을 수용하는 크기가 없습니다
+No terminal strip {}	단자대 {}이(가) 없습니다
+No terminal {} on strip {}	단자대 {1}에 단자 {0}이(가) 없습니다
+No text with id {}	ID가 {}인 텍스트가 없습니다
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm 지점에서 세 연결선이 만나지 않습니다: 줄기의 방향을 지정하십시오
+No transformer: set {} first	변압기가 없습니다. 먼저 {}을(를) 설정하세요
+No wire at {} / {} mm	{} / {} mm 위치에 전선이 없습니다
+No wire with id {}	ID가 {}인 전선 없음
+No work area named {}	이름이 {}인 작업 영역 없음
+Node name or id	노드 이름 또는 ID
+Node {} exists already	노드 {}이(가) 이미 있습니다
+Nodes to pass in this order, comma separated	이 순서로 통과할 노드(쉼표로 구분)
+Nominal size, e.g. 8 mm or DN25	호칭경(예: 8 mm 또는 DN25)
+Not a cross-section: {} (e.g. 1.5 mm²)	단면적이 아닙니다: {}(예: 1.5 mm²)
+Not a valid safety function: {}	유효한 안전 기능이 아님: {}
+Note, e.g. what the problem is	메모(예: 문제 내용)
+Nothing to remove: {} {}	제거할 항목이 없습니다: {} {}
+Number of columns	열 수
+Number of copies (default 1)	복사본 수(기본값 1)
+Number of equal bars	동일한 바의 수
+Number of indexed values (0 = a single value)	인덱스 값의 수(0 = 단일 값)
+Number of rows	행 수
+Numbers the pages with a start value and step; released pages keep their name	시작 값과 간격으로 페이지 번호를 매깁니다. 릴리스된 페이지는 이름을 유지합니다
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	단자대 순서에 따라 단자 번호를 1 … n으로 매깁니다. PE 같은 숫자가 아닌 명칭은 유지됩니다
+Numbers the wires by the numbering scheme of the project	프로젝트의 번호 지정 체계에 따라 전선 번호를 지정합니다
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=값, OPTION!=값, OPTION=a|b를 &로 결합(비우면 항상)
+Offset from the symbol position in mm (default: below the symbol)	심볼 위치로부터의 오프셋(mm, 기본값: 심볼 아래)
+One end, e.g. -K1:A1	한쪽 끝(예: -K1:A1)
+One row per printed label instead of a count	개수 대신 인쇄된 라벨당 한 행
+Only devices on these pages (names separated by commas)	이 페이지의 장치만(이름은 쉼표로 구분)
+Only lines without a translation into this language	이 언어로 번역되지 않은 줄만
+Only list the new tags, change nothing	새 태그만 나열하고 아무것도 변경하지 않음
+Only shows the package, no job is recorded	패키지만 표시하고 작업은 기록하지 않음
+Only shows what would change	변경될 내용만 표시
+Only the pages of this work area (list_structure)	이 작업 영역의 페이지만(list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	이 식별 문자만(쉼표로 구분, 예: K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	이 종류만(쉼표로 구분): page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	이 종류만(쉼표로 구분): page, function_text, text, description
+Only these pages (names separated by commas)	이 페이지만(이름은 쉼표로 구분)
+Only this part number	이 부품 번호만
+Only wire, cable or tube	wire, cable 또는 tube만
+Only wires with this state: open, wired, changed or problem	이 상태의 전선만: open, wired, changed 또는 problem
+Opaque background in the paper colour	용지 색상의 불투명 배경
+Openings: auto (punch of the size, else contour) or contour	개구부: auto(크기에 맞는 펀치, 없으면 윤곽) 또는 contour
+Operating pressure in bar (0 = hose ratings are not checked)	작동 압력(bar, 0 = 호스 정격을 검사하지 않음)
+Operations	작업
+Option name	옵션 이름
+Option name, e.g. STARTER	옵션 이름(예: STARTER)
+Options and rules of the configurator	컨피규레이터의 옵션 및 규칙
+Other end, e.g. -X1:3	다른 쪽 끝(예: -X1:3)
+Outer diameter in mm, 0 = estimated	외경(mm), 0 = 추정
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	직선 구간의 외부 길이(mm, 예: 200, 150, 300)
+Overlap of nibbling hits (0 … 0.9)	니블링 타격 겹침(0 … 0.9)
+PCT loop {} already exists	PCT 루프 {}이(가) 이미 있습니다
+PLC hardware: stations, cards, bus systems and port connections	PLC 하드웨어: 스테이션, 카드, 버스 시스템 및 포트 연결
+Page macro name	페이지 매크로 이름
+Page macro that generates its schematic	회로도를 생성하는 페이지 매크로
+Page name (default: all pages)	페이지 이름 (기본: 모든 페이지)
+Page {} is generated and cannot be edited	페이지 {}은(는) 생성된 페이지이므로 편집할 수 없습니다
+Page {} is out in subproject {}: insert or discard the subproject first	페이지 {}이(가) 하위 프로젝트 {}(으)로 분리되어 있습니다: 먼저 하위 프로젝트를 다시 삽입하거나 취소하십시오
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	접미사(3.a)가 있는 페이지는 이전 페이지의 하위 페이지로 유지(기본값 true)
+Panel layout checks	패널 레이아웃 검사
+Panel manufacturing	패널 제조
+Paper height in mm (custom paper)	용지 높이(mm, 사용자 지정 용지)
+Paper width in mm (custom paper)	용지 너비(mm, 사용자 지정 용지)
+Part lifecycle	부품 수명 주기
+Part number of the accessory	액세서리의 부품 번호
+Part number of the base	베이스의 부품 번호
+Part number of the carrier (per metre)	케이블 지지대의 부품 번호(미터당)
+Part number of the conductor (per metre)	도체의 부품 번호(미터당)
+Part number of the downstream device	하위 장치의 부품 번호
+Part number of the hose / tube / pipe	호스 / 튜브 / 배관의 부품 번호
+Part number of the upstream device	상위 장치의 부품 번호
+Part number, e.g. GEN.LMP-GN-24	부품 번호, 예: GEN.LMP-GN-24
+Part of the key or name	키 또는 이름의 일부
+Part {} has no function with a symbol	부품 {}에는 기호가 있는 기능이 없습니다
+Parts phased out or discontinued	단종 예정 또는 단종된 부품
+Pass ids or pages	ID 또는 페이지를 지정하세요
+Path function text: function text of the functions in its column that have none	경로 기능 텍스트: 해당 열에서 기능 텍스트가 없는 기능의 기능 텍스트
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	자리 표시자 값 KEY=값; KEY2=값({OPTION} 사용 가능)
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	스테이션에 PLC 카드(I/O 모듈)를 장착합니다: 랙, 슬롯, 시작 주소 및 장치 설명. 해당 점의 주소를 다시 지정합니다
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	네 연결선이 만나는 지점에 브리지를 배치합니다. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽, 다음 왼쪽 / 위쪽, 다음 오른쪽 / 아래쪽으로 갑니다
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	전선에 연결 정의점을 배치합니다. 연결이 해당 번호, 색상 및 단면적을 받습니다
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	모서리를 배치합니다. 그곳에서 두 연결선이 직각으로 만나고, 그 가지를 마주하는 접속점이 여기에 배선됩니다
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	세 연결선이 만나는 지점에 방향 T분기점을 배치합니다. 회로도 순서 대신 연결의 두 전선이 출발하는 장치(원점)와 대상의 순서를 지정합니다
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	두 연결선이 교차하는 지점에 방향 교차를 배치합니다. 둘을 연결하고, 선의 각 끝은 먼저 직진으로, 다음에 가로 가지 하나로 배선됩니다
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	페이지에 부품을 배치합니다: 주 기능의 기호를 연결점 지정과 함께, 부품이 할당된 새 장치로 배치합니다(프로젝트 부품 및 예제 카탈로그)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	페이지에 심볼을 배치합니다. 태그가 없으면 다음 빈 태그가 사용되며, 보조 접점은 해당 장치의 다음 빈 접점 번호를 받습니다
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	필드 경로 네트워크의 노드에 외함(+CAB1), 장치(-M1) 또는 기계 위치(+M1)를 배치합니다
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	면에 외함 부속품(팬, 필터, 케이블 글랜드, 조명, 손잡이, PE 바)을 배치합니다
+Places of the group (0 = not limited)	그룹의 자리(0 = 제한 없음)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	외함의 열 배치를 공간에 배치합니다(모든 외함의 3D 보기). x와 z가 없으면 플랜트 레이아웃에 따라 또는 다른 열 배치 옆에 배치됩니다
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	스키마의 속성을 심볼에 배치합니다. ID가 없으면 이를 사용하는 모든 심볼에 다시 배치합니다
+Planned part number	계획된 부품 번호
+Planned power in kW	계획된 전력(kW)
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	경로 네트워크를 통해 필드 케이블을 계획합니다(경로, 길이, 구간 충전율, 본딩 지점 및 문제). 선택적으로 절단 길이를 적용합니다
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	면의 가공을 계획합니다: 작업(드릴링, 탭핑, 밀링, 펀칭, 니블링), 공구, 경로, 시간 및 기계가 가공할 수 없는 항목
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	회로도 작성 전 계획된 장치가 포함된 플랜트 세그먼트: 템플릿, 전력 수지, 회로도 대비 상태, CSV / Excel로 교환
+Plinth height in mm, 0 without plinth	받침대 높이(mm), 0이면 받침대 없음
+Plot frame (list_frames); empty = the project default	플롯 프레임(list_frames). 비우면 프로젝트 기본값
+Plot frames and page templates of the project	프로젝트의 플롯 프레임 및 페이지 템플릿
+Plug tag, e.g. -X10	플러그 태그(예: -X10)
+Plugin id '{}' is not snake_case	플러그인 ID '{}'이(가) snake_case가 아닙니다
+Plugin {} is loaded twice	플러그인 {}이(가) 두 번 로드되었습니다
+Plugin {} needs a newer OpenECraft (API {})	플러그인 {}에는 최신 OpenECraft(API {})가 필요합니다
+Plugin {}: the name '{}' is invalid or already taken	플러그인 {}: 이름 '{}'이(가) 잘못되었거나 이미 사용 중입니다
+Plugin {}: {}	플러그인 {}: {}
+Plugs and their pins	플러그 및 해당 핀
+Points in between: [[x, y], …]	중간 점: [[x, y], …]
+Points in mm: [[x, y], …]	점(mm): [[x, y], …]
+Port as station:port	station:port 형식의 포트
+Port must be given as station:port: {}	포트는 station:port 형식으로 지정해야 합니다: {}
+Port {} is not connected	포트 {}이(가) 연결되어 있지 않습니다
+Position down in metres	아래쪽 방향 위치(m)
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	중립축 위치(0 … 1, 0: DIN 6935)
+Position right in metres	오른쪽 방향 위치(m)
+Position {} / {} mm lies outside the page ({} x {} mm)	위치 {} / {} mm가 페이지 밖에 있습니다 ({} x {} mm)
+Potential definitions, wire defaults and wire colours	전위 정의, 전선 기본값 및 전선 색상
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	연결에 번호를 붙이지 않을 전위 종류(쉼표로 구분: l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	전위 이름(예: L1 또는 +24V)
+Potential {} already exists	전위 {}이(가) 이미 있습니다
+Pre-planning (CSV)	사전 계획(CSV)
+Pre-planning (Excel)	사전 계획(Excel)
+Problems	문제
+Product filter (-)	제품 필터(-)
+Production status	생산 상태
+Profile name, e.g. SAP	프로필 이름(예: SAP)
+Program format: iso, heidenhain, punch or csv	프로그램 형식: iso, heidenhain, punch 또는 csv
+Programs	프로그램
+Progress (%)	진행률(%)
+Project checks	프로젝트 검사
+Project exports	프로젝트 내보내기
+Project languages, dictionary and translations	프로젝트 언어, 사전 및 번역
+Project reports	프로젝트 보고서
+Project statistics	프로젝트 통계
+Property and function definitions, property values and placement schemes	속성 및 기능 정의, 속성 값 및 배치 스키마
+Property key	속성 키
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	속성 키와 값(예: {\"device.rated_power\": \"5.5\"})
+Put in front of the numbers, e.g. W	번호 앞에 붙는 문자(예: W)
+Quantity per end (default 1)	끝당 수량(기본값 1)
+R/X ratio of the supply impedance	전원 임피던스의 R/X 비
+Rack number	랙 번호
+Rail id (action rail)	레일 ID(작업 rail)
+Rapid traverse, mm/min	급속 이송(mm/min)
+Rated current of the supply in A (0: not limited)	전원 공급의 정격 전류(A, 0: 제한 없음)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	전원을 공급하는 변압기의 정격 용량(kVA, 0: 없음, 단락 전류가 지정됨)
+Rear left corner of the line-up in mm, to the right	열 배치의 왼쪽 뒤 모서리(mm), 오른쪽 방향
+Rear left corner of the line-up in mm, towards the front	열 배치의 왼쪽 뒤 모서리(mm), 앞쪽 방향
+Relative humidity of the ambient air in % (0: no condensation check)	주위 공기의 상대 습도(%, 0: 결로 검사 안 함)
+Release instead of freeze	고정 대신 고정 해제
+Released pages keep their names: {}	릴리스된 페이지는 이름을 유지합니다: {}
+Remote I/O: station of the controller	원격 I/O: 컨트롤러의 스테이션
+Remove the entry of upstream and downstream	upstream 및 downstream 항목 제거
+Remove the profile	프로필 제거
+Remove the scheme from the project	프로젝트에서 스키마 제거
+Remove unused definitions (default: false)	사용하지 않는 정의 제거(기본값: false)
+Removes a copper bar	동바를 제거합니다
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	노드(해당 구간 및 배치 포함), 구간, 배치, 외곽선, 본딩 도체 또는 부속품을 제거합니다
+Removes a planned device from a segment	세그먼트에서 계획된 장치를 제거합니다
+Removes a project function definition; its symbols go back to their built-in one	프로젝트 기능 정의를 제거합니다. 해당 심볼은 기본 제공 정의로 되돌아갑니다
+Removes a project option; its content stays in the project	프로젝트 옵션을 제거합니다. 해당 내용은 프로젝트에 남습니다
+Removes a report block; the pages it generated stay	보고서 블록을 제거합니다. 생성된 페이지는 유지됩니다
+Removes a routing path or reservation	배선 경로 또는 예약을 제거합니다
+Removes a segment with everything below it	세그먼트와 그 아래의 모든 항목을 제거합니다
+Removes a station; its cards stay unassigned, its bus connections are removed	스테이션을 제거합니다. 해당 카드는 지정되지 않은 상태로 남고 버스 연결은 제거됩니다
+Removes a user property with all its values and placements	사용자 속성을 모든 값 및 배치와 함께 제거합니다
+Removes the bus connection of a port	포트의 버스 연결을 제거합니다
+Removes the bus system with its connections	버스 시스템을 해당 연결과 함께 제거합니다
+Removes the definition of a structure identifier (pages and devices keep it)	구조 식별자의 정의를 제거합니다(페이지와 장치는 식별자를 유지함)
+Removes the machine from the project	프로젝트에서 기계를 제거합니다
+Removes the rule	규칙을 제거합니다
+Removes the wiring marks of wires that no longer exist	더 이상 없는 전선의 배선 작업 표시를 제거합니다
+Renames a device with all its functions	장치의 이름을 모든 기능과 함께 변경합니다
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	전체 프로젝트에서 구조 식별자의 이름을 바꿉니다: 페이지, 장치, 케이블, 정의 및 작업 영역
+Renames the station	스테이션 이름을 바꿉니다
+Repair the repairable findings	복구 가능한 결과 복구
+Replacement	바꿀 내용
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	프로젝트 전체의 자유 텍스트, 기능 텍스트, 페이지, 장치 및 케이블 설명에서 텍스트를 바꿉니다. 릴리스된 페이지는 그대로 유지됩니다
+Report blocks and report schemes	보고서 블록 및 보고서 스키마
+Reserves space over the mounting plate: kept free of routes, or for one class only	장착 플레이트 위에 공간을 예약합니다: 경로가 지나지 않도록 비워 두거나 한 클래스 전용
+Rest (mm)	잔량(mm)
+Right side bayed (no side panel)	오른쪽 측면 결합(측면 패널 없음)
+Room {} exists already	방 {}이(가) 이미 있습니다
+Rotation in degrees clockwise: 0, 90, 180 or 270	시계 방향 회전 각도: 0, 90, 180 또는 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	회전 각도(도), 시계 반대 방향(90이면 아래에서 위로 읽음)
+Route the wires in 3D as well (otherwise through the cable ducts)	전선도 3D로 배선 경로 지정(그렇지 않으면 케이블 덕트를 통해)
+Routing rules, paths, reservations, frozen routes and cable shields	경로 설정 규칙, 경로, 예약, 고정된 경로 및 케이블 차폐
+Row key (from table_get)	행 키(table_get에서)
+Rows of the pattern	패턴의 행
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	적용되는 한계값과 함께 표준의 규칙 라이브러리와 고객 규칙 세트를 표시합니다. 이를 활성화, 비활성화, 추가 또는 제거합니다
+Rule number, from 1	규칙 번호(1부터)
+Run the check	검사 실행
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	페이지의 SVG, HTML, PDF, DXF 및 DWG, 생산 및 PLC 목록, 하네스 및 PLC 교환 파일, 3D 패널 레이아웃 및 번역 사전
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	추가하거나 교체할 안전 기능(이름 기준): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	달성된 성능 수준과 함께 안전 기능(ISO 13849-1)을 표시합니다. 안전 기능을 추가, 교체 또는 제거합니다
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	페이지(유형, 플롯 프레임, 표제란, 구조, 설명, 내용)를 페이지 템플릿으로 저장합니다
+Saves items of an enclosure as a 3D macro of the project	외함의 항목을 프로젝트의 3D 매크로로 저장합니다
+Saves the planned devices of a segment as a template	세그먼트의 계획된 장치를 템플릿으로 저장합니다
+Saves the properties placed at a symbol as a placement scheme	심볼에 배치된 속성을 배치 스키마로 저장합니다
+Saw cut	톱 절단폭
+Second port as station:port	station:port 형식의 두 번째 포트
+Segment path, e.g. Plant/Area 1	세그먼트 경로(예: Plant/Area 1)
+Segment {} already exists	세그먼트 {}이(가) 이미 있습니다
+Segments not to use, comma separated	사용하지 않을 구간(쉼표로 구분)
+Selective up to this short-circuit current in kA (0: not given)	이 단락 전류(kA)까지 선택 차단(0: 지정 안 됨)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	부품 번호별 제조업체 표에 따른 장치 쌍의 선택 차단 및 백업 보호. 항목을 추가, 대체 또는 제거합니다
+Separator: semicolon, comma or tab	구분 기호: semicolon, comma 또는 tab
+Sets how cross references are shown (only the given settings) and shows the settings	상호 참조 표시 방식을 설정하고(지정한 설정만) 설정을 표시합니다
+Sets how the terminals of a jumper are bridged	점퍼의 단자를 연결하는 방식을 설정합니다
+Sets property values of an object; an empty value removes it	개체의 속성 값을 설정합니다. 값이 비어 있으면 제거됩니다
+Sets the aspects the pages use	페이지에 사용할 측면을 설정합니다
+Sets the collision class of a panel item (empty: automatic)	패널 항목의 충돌 클래스를 설정합니다(비워 두면 자동)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	고유 값을 설정하지 않은 호스의 기본값과 호스 번호 접두사를 설정합니다
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	두 충돌 클래스 간 거리를 설정하거나 겹침을 허용합니다. 같은 클래스의 규칙을 대체합니다
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	케이블의 필드 경로 정의(통과해야 하는 노드 및 사용하지 않을 구간)를 설정합니다
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	바닥으로부터 외함 하단까지의 높이를 설정합니다(장치, 단자 및 조작부의 높이가 검사됨)
+Sets the level (multi-level terminals) or jumper number of a terminal	단자의 단(다단 단자) 또는 점퍼 번호를 설정합니다
+Sets the numbering scheme of the wires (only the given settings) and shows it	전선 번호 지정 체계를 설정하고(지정한 설정만) 표시합니다
+Sets the plot frame of all pages that do not choose one	프레임을 선택하지 않은 모든 페이지의 플롯 프레임을 설정합니다
+Sets the shield and the outer diameter of a cable	케이블의 차폐와 외경을 설정합니다
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	프로젝트 텍스트의 원본 언어와 대상 언어(ISO 639-1 코드)를 설정합니다
+Sets the spare terminals of a strip and whether its accessories are added automatically	단자대의 예비 단자와 부속품의 자동 추가 여부를 설정합니다
+Sets the translation of a line of the project texts (empty removes it)	프로젝트 텍스트 줄의 번역을 설정합니다(비우면 제거)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	정의된 전위가 없는 네트의 전선 색상과 단면적을 설정합니다(비우면 없음)
+Share of the capacity kept free in percent	비워 두는 용량 비율(%)
+Sheets	시트
+Shield connected at: both, first, second or none	차폐 연결 위치: both, first, second 또는 none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	단락, 부하, EMC 및 안전 계산, 규칙 세트 및 프로젝트 검증
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	단락 전류, 차단 용량, 차단 시간, 케이블의 단락 내량 및 보호 장치의 선택 차단
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	변압기 상위 계통의 단락 용량(MVA, 0: 무한대)
+Short-circuit voltage of the transformer in %	변압기의 단락 전압(%)
+Shortest path between the hits of a tool	공구 타격 간 최단 경로
+Shortest rail, duct or busbar	가장 짧은 레일, 덕트 또는 부스바
+Shortest straight length next to a bend	굽힘 옆의 최소 직선 길이
+Show as \"Name: value\"	\"이름: 값\"으로 표시
+Show the content	내용 표시
+Shows a property as a text beside a symbol	속성을 심볼 옆에 텍스트로 표시합니다
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	단자대를 표시합니다: 단자대 순서에 따른 단자(단, 점퍼 및 대상 포함), 레일 위의 블록 및 점퍼
+Shows or changes the machining strategy and which machine makes which face	가공 전략과 어떤 기계가 어떤 면을 가공하는지 표시하거나 변경합니다
+Shows or changes the rules of copper bars; lengths in mm	동바 규칙을 표시하거나 변경합니다. 길이는 mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	패널 레이아웃 검사 규칙을 표시하거나 변경합니다. 값은 mm(온도는 °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	PLC 하드웨어 구성을 표시합니다: 랙, 슬롯, 모듈 및 주소 범위가 포함된 스테이션, 버스 시스템, 포트 연결 및 발견된 문제
+Shows the content of a page: symbols with their connection point positions, wires and texts	페이지의 내용을 표시합니다: 연결 지점 위치가 포함된 심볼, 전선 및 텍스트
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	프로젝트에 저장된 다른 시스템의 데이터(부품 링크, 문서)와 교환 로그를 표시합니다
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	플러그의 결합면을 표시합니다: 부품의 핀 배치, 각 핀의 위치(mm, 핀 측에서 본 모습)와 양측의 전위, 전선 색상, 케이블 심선
+Shows the options and rules of the configurator	컨피규레이터의 옵션과 규칙을 표시합니다
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	플러그의 핀을 플러그 순서대로 표시합니다: 소켓 측과 핀 측에 연결된 대상, 전위, 사용하지 않는 핀
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	3D 배선 경로 규칙을 표시하고 지정된 규칙을 변경합니다: 그리드, 이격 거리, 자유 공간 계수, 분리, 굽힘 반경, 절단 길이, 여유 길이
+Shows the rules of the field cable planning and changes those given	필드 케이블 계획 규칙을 표시하고 지정된 규칙을 변경합니다
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	프로젝트 검사 설정(꺼진 검사, 변경된 메시지 수준 및 승인된 메시지)을 표시합니다
+Side of the plug the cable leaves: socket or pin (default: socket)	케이블이 나가는 플러그 측: socket 또는 pin (기본값: socket)
+Side the connection comes from: left, right, up or down (default up)	연결이 들어오는 쪽: left, right, up 또는 down (기본 up)
+Single-line diagrams	단선도
+Single-line pages and their multi-line counterparts	단선 페이지 및 해당 복선 페이지
+Slot number	슬롯 번호
+Smallest bend radius in mm	최소 굽힘 반경(mm)
+Smallest distance in mm	최소 거리(mm)
+Smallest distance of holes from the sheet edge	구멍과 판금 가장자리 간 최소 거리
+Smallest inner radius as a multiple of the thickness	두께의 배수로 나타낸 최소 내측 반경
+Smallest web at cutouts	컷아웃의 최소 웹
+Smallest web between holes	구멍 사이 최소 웹
+Spare terminals at the end of the strip	단자대 끝의 예비 단자
+Springback in percent of the angle	각도 대비 스프링백(%)
+Start again on every page whose structure differs from the page before	구조가 이전 페이지와 다른 페이지마다 다시 시작
+Start and end are the same connection point	시작과 끝이 같은 연결 지점입니다
+Start and end point of the line	선의 시작점과 끝점
+Start: device tag and connection point, e.g. -K1:A1	시작: 장치 태그 및 연결 지점(예: -K1:A1)
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	생산에 인계된 작업의 상태: 진행률, 실패, 재작업, 인계 이후 변경된 프로그램
+Station name (empty: unassigned)	스테이션 이름(비우면 지정 안 됨)
+Station name, e.g. PLC1	스테이션 이름(예: PLC1)
+Station {} exists already	스테이션 {}이(가) 이미 있습니다
+Stock bar	원자재 바
+Stock length of rails, ducts and busbars	레일, 덕트 및 부스바의 재고 길이
+Stock length of the bars	바의 재고 길이
+Stores the calibrated factors	보정된 계수를 저장합니다
+Structure identifiers, aspects and work areas	구조 식별자, 측면 및 작업 영역
+Structure of the target page: different (default), always or never	대상 페이지의 구조: different(기본값), always 또는 never
+Subprojects, model options and the project data check	하위 프로젝트, 모델 옵션 및 프로젝트 데이터 검사
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	전원 공급(전압, 접지 계통, 단락 전류) 및 도체의 설치 조건. 지정된 값을 변경합니다
+Switch checks off, change message levels, accept messages as checked	검사 끄기, 메시지 수준 변경, 메시지를 확인됨으로 승인
+Switches a check on or off (names as shown by list_checks)	검사를 켜거나 끕니다(list_checks에 표시되는 이름)
+Switches the project options with a condition by the configurator options	조건이 있는 프로젝트 옵션을 컨피규레이터 옵션에 따라 전환합니다
+Symbol id	심볼 ID
+Symbol ids	심볼 ID
+Symbol key from list_symbols	list_symbols의 심볼 키
+Symbols, wires, texts, cable and connection definitions on schematic pages	회로도 페이지의 심볼, 전선, 텍스트, 케이블 및 연결 정의
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T분기점: 줄기의 방향. 브리지: 연결이 들어오는 쪽 (left, right, up 또는 down)
+Tag of the terminal strip, e.g. -X1	단자대의 태그(예: -X1)
+Take the cut lengths over as cable lengths	절단 길이를 케이블 길이로 적용
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	외함 제조업체 컨피규레이터에서 구성한 외함(JSON)을 적용합니다: 시스템, 크기, 구성 요소, 부속품 및 컷아웃
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	생산 피드백(CSV 또는 JSON)을 적용합니다: 작업, 프로그램, 공정, 항목, 상태, 편차, 시간, 메시지
+Takes pages or page items out of their project option (hidden content is shown again)	페이지 또는 페이지 항목을 프로젝트 옵션에서 제외합니다(숨겨진 내용이 다시 표시됨)
+Target language code	대상 언어 코드
+Target languages separated by commas or blanks, e.g. de, fr	쉼표나 공백으로 구분된 대상 언어(예: de, fr)
+Temperature rise at the roof against the middle (1 … 2)	중앙 대비 천장부 온도 상승(1 … 2)
+Terminal designation	단자 명칭
+Terminal designations in strip order, separated by commas	단자대 순서에 따른 단자 명칭(쉼표로 구분)
+Terminal order, levels, jumpers, spare terminals and accessories	단자 순서, 단, 점퍼, 예비 단자 및 부속품
+Text height in mm	텍스트 높이(mm)
+Text height in mm (default 3.5)	텍스트 높이(mm, 기본값 3.5)
+Text in id, name or order number	ID, 이름 또는 주문 번호의 텍스트
+Text in the key or name	키 또는 이름의 텍스트
+Text in the line or a translation	줄 또는 번역의 텍스트
+Text to find; empty: fill	찾을 텍스트(비우면 채우기)
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	텍스트. {page} 또는 {prop:Name} 같은 자리 표시자는 그릴 때 채워집니다
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	모서리의 가지은 세로 방향 하나와 가로 방향 하나입니다, 예: down left. {}은(는) 아닙니다
+The cable definition line crosses no wire	케이블 정의 선이 어떤 전선과도 교차하지 않습니다
+The cable definition line has no length	케이블 정의 선의 길이가 없습니다
+The cable has an overall shield	케이블에 전체 차폐가 있음
+The classes may overlap (no collision)	클래스가 겹칠 수 있음(충돌 아님)
+The configuration (JSON)	구성(JSON)
+The copies would leave the page	복사본이 페이지 밖으로 나갑니다
+The counting step must be at least 1	번호 증가 단계는 1 이상이어야 합니다
+The devices do not fit onto rail {}	장치가 레일 {}에 맞지 않습니다
+The feedback (CSV with header or JSON)	피드백(머리글이 있는 CSV 또는 JSON)
+The first page number must not be negative	첫 페이지 번호는 음수일 수 없습니다
+The items would leave the page	항목이 페이지 밖으로 나갑니다
+The length must not be negative	길이는 음수일 수 없습니다
+The line of a crossing is vertical or horizontal, not {}	교차의 선은 vertical 또는 horizontal입니다. {}은(는) 아닙니다
+The message text, kept for the list of accepted messages	승인된 메시지 목록에 보관되는 메시지 텍스트
+The name must not be empty	이름은 비워 둘 수 없습니다
+The number of copies must be between 1 and 100	복사본 수는 1에서 100 사이여야 합니다
+The plinth height must not be negative	받침대 높이는 음수일 수 없습니다
+The plot frame {} is in use	플롯 프레임 {}이(가) 사용 중입니다
+The plugin program did not answer within {} s and was stopped	플러그인 프로그램이 {}초 안에 응답하지 않아 중지되었습니다
+The plugin program failed: {}	플러그인 프로그램이 실패했습니다: {}
+The rotation must be 0, 90, 180 or 270	회전은 0, 90, 180 또는 270이어야 합니다
+The straight line of a crossing: vertical or horizontal (default vertical)	교차의 직선: vertical 또는 horizontal (기본 vertical)
+The text height must be at least 0.5 mm	텍스트 높이는 0.5 mm 이상이어야 합니다
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	모서리의 두 가지, 세로와 가로, 예: down left (기본: 해당 지점의 연결선에 따라, 없으면 down right)
+The wire has no length	연결의 길이가 없습니다
+The wrap width must not be negative	줄 바꿈 너비는 음수일 수 없습니다
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	장착 플레이트의 열 시뮬레이션: 공기 온도, 핫스팟, 열원 및 각 장치의 온도
+Thickest sheet or bar, mm	최대 판금 또는 바 두께(mm)
+Time per drilling, punching or bending operation, s	드릴링, 펀칭 또는 굽힘 작업당 시간(s)
+Time per tool change, s	공구 교환당 시간(s)
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	공구(예: D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120)
+Top edge on the face in mm	면에서의 위쪽 가장자리(mm)
+Top edge on the mounting plate in mm	장착 플레이트 위의 위쪽 가장자리(mm)
+Translated line	번역된 줄
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	수직축 기준 회전 각도(도), 위에서 볼 때 시계 반대 방향(90: 전면이 오른쪽을 향함)
+Unit, e.g. kW	단위(예: kW)
+Unknown accessory kind: {}	알 수 없는 부속품 종류: {}
+Unknown action: {}	알 수 없는 작업: {}
+Unknown address scheme: {}	알 수 없는 주소 체계: {}
+Unknown alignment: {}	알 수 없는 맞춤: {}
+Unknown anchor: {}	알 수 없는 앵커: {}
+Unknown aspect: {}	알 수 없는 측면: {}
+Unknown bonding kind: {}	알 수 없는 본딩 종류: {}
+Unknown bonding point: {}	알 수 없는 본딩 지점: {}
+Unknown bus system: {}	알 수 없는 버스 시스템: {}
+Unknown cable: {}	알 수 없는 케이블: {}
+Unknown check: {}	알 수 없는 검사: {}
+Unknown class: {}	알 수 없는 클래스: {}
+Unknown data type: {}	알 수 없는 데이터 유형: {}
+Unknown direction {}: left, right, up or down	알 수 없는 방향 {}: left, right, up 또는 down
+Unknown earthing system: {}	알 수 없는 접지 계통: {}
+Unknown face {}	알 수 없는 면 {}
+Unknown fastening: {}	알 수 없는 고정 방식: {}
+Unknown field object: {}	알 수 없는 필드 개체: {}
+Unknown field: {}	알 수 없는 필드: {}
+Unknown group kind: {}	알 수 없는 그룹 종류: {}
+Unknown installation: {}	알 수 없는 설치 방식: {}
+Unknown insulation: {}	알 수 없는 절연: {}
+Unknown jumper kind: {}	알 수 없는 점퍼 종류: {}
+Unknown kind: {}	알 수 없는 종류: {}
+Unknown labels: {}	알 수 없는 레이블: {}
+Unknown level: {}	알 수 없는 수준: {}
+Unknown line type: {}	알 수 없는 라인 유형: {}
+Unknown machine kind {}	알 수 없는 기계 종류 {}
+Unknown marker category: {}	알 수 없는 마커 범주: {}
+Unknown material: {}	알 수 없는 재질: {}
+Unknown medium: {}	알 수 없는 매체: {}
+Unknown method {}	알 수 없는 방법 {}
+Unknown node: {}	알 수 없는 노드: {}
+Unknown numbering scheme: {}	알 수 없는 번호 지정 체계: {}
+Unknown object class: {}	알 수 없는 개체 클래스: {}
+Unknown order: {}	알 수 없는 순서: {}
+Unknown paper format: {}	알 수 없는 용지 형식: {}
+Unknown path kind: {}	알 수 없는 경로 종류: {}
+Unknown placeholder {}: possible are {}	알 수 없는 자리 표시자 {}: 가능한 값은 {}
+Unknown potential kind: {}	알 수 없는 전위 종류: {}
+Unknown preset: {}	알 수 없는 사전 설정: {}
+Unknown program format {}	알 수 없는 프로그램 형식 {}
+Unknown report: {}	알 수 없는 보고서: {}
+Unknown segment kind: {}	알 수 없는 구간 종류: {}
+Unknown segment: {}	알 수 없는 구간: {}
+Unknown separator: {}	알 수 없는 구분 기호: {}
+Unknown setting: {}	알 수 없는 설정: {}
+Unknown shield ends: {}	알 수 없는 차폐 끝: {}
+Unknown side {} (socket or pin)	알 수 없는 측 {} (socket 또는 pin)
+Unknown state: {}	알 수 없는 상태: {}
+Unknown station kind: {}	알 수 없는 스테이션 종류: {}
+Unknown symbol: {}	알 수 없는 심볼: {}
+Unknown table: {}	알 수 없는 표: {}
+Unknown vertical anchor: {}	알 수 없는 세로 앵커: {}
+Unknown wire colour {} (IEC 60757: {})	알 수 없는 전선 색상 {}(IEC 60757: {})
+Use this scheme for the marking export	마킹 내보내기에 이 스키마 사용
+Used (mm)	사용(mm)
+Value while none is set	설정된 값이 없을 때의 값
+Values of a selection list separated by commas	쉼표로 구분된 선택 목록 값
+Variant (empty: the first)	변형(비우면 첫 번째)
+Variant {} is not one of 1 to 2	변형 {}은(는) 1에서 2 중 하나가 아닙니다
+Variant {} is not one of 1 to 4	변형 {}은(는) 1에서 4 중 하나가 아닙니다
+Verifies the project against the enabled rule libraries and customer rule sets	활성화된 규칙 라이브러리와 고객 규칙 세트에 대해 프로젝트를 검증합니다
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	프로젝트 데이터(ID, 참조, 옵션, 하위 프로젝트)를 검증하고 검사를 실행합니다. 선택적으로 복구 가능한 항목을 복구합니다
+Vertical pitch of the pattern in mm	패턴의 세로 간격(mm)
+Voltage, e.g. 400 V AC	전압(예: 400 V AC)
+What it is: motor, valve, sensor, …	장치 종류: 모터, 밸브, 센서, …
+Which line the position is on: top (first), middle or bottom (last)	위치가 놓이는 줄: top(첫 줄), middle 또는 bottom(마지막 줄)
+Who accepted it	승인한 사람
+Whole words only	단어 단위로만
+Why the message is accepted	메시지를 승인한 이유
+Width in mm	너비(mm)
+Width of the path in mm (default 50)	경로 너비(mm, 기본값 50)
+Width, depth and height of a room are at least {} mm	방의 너비, 깊이, 높이는 최소 {} mm입니다
+Width, height and depth of an enclosure are at least {} mm	외함의 너비, 높이, 깊이는 최소 {} mm입니다
+Wire colour (IEC 60757), e.g. BK	전선 색상(IEC 60757, 예: BK)
+Wire colour, e.g. BU	전선 색상(예: BU)
+Wire colour, e.g. BU (empty = from the potential definition)	전선 색상(예: BU, 비우면 전위 정의에서 가져옴)
+Wire number (kept when renumbering)	전선 번호(번호 다시 지정 시 유지됨)
+Wire numbering and wiring marks	전선 번호 지정 및 배선 표시
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	보호 장치에 비해 너무 가는 전선과 케이블의 전압 강하(IEC 60204-1)
+Working area in x, mm	x 방향 작업 영역(mm)
+Working area in y, mm	y 방향 작업 영역(mm)
+Wrap width in mm (0: no wrapping)	줄 바꿈 너비(mm, 0: 줄 바꿈 없음)
+X position in mm	X 위치(mm)
+Y position in mm (downwards)	Y 위치(mm, 아래쪽 방향)
+any, wires, cables or tubes	any, wires, cables 또는 tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip 또는 adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam 또는 product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi 또는 other
+copper or aluminium	copper 또는 aluminium
+device (default), position, cross_section or number	device(기본값), position, cross_section 또는 number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 또는 parts
+error, warning, info, off, or default to take the change back	error, warning, info, off 또는 변경을 되돌리려면 default
+false takes the acceptance back (default true)	false이면 승인을 취소합니다(기본값 true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted 또는 middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function(=), installation(++), location(+) 또는 product(-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 또는 other
+hose, tube or pipe	hose, tube 또는 pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204(기계, 선도체 BK) 또는 iec60445(선도체 BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout(기본값), power, control, signal 또는 fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal 또는 other
+left, center, right, top, middle or bottom	left, center, right, top, middle 또는 bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail 또는 pattern
+main (default), supplementary or functional	main(기본값), supplementary 또는 functional
+mounted, problem or open	mounted, problem 또는 open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond 또는 accessory
+numbers or letters	numbers 또는 letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof 또는 bottom
+plug_in, saddle or wire	plug_in, saddle 또는 wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp 또는 canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc 또는 cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable 또는 part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<이름>, device:<태그>, function:<심볼 ID>, cable:<태그> 또는 part:<번호>
+pvc or xlpe	pvc 또는 xlpe
+sequential, page_column, potential or format	sequential, page_column, potential 또는 format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium 또는 plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date 또는 link(기본값 text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt 또는 it
+too long	너무 김
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray(기본값), ladder, trunking, conduit, drag_chain, buried 또는 free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit 또는 other
+wired, problem or open	wired, problem 또는 open
+{} and {} are both ends of one function: the wire would short-circuit it	{}과(와) {}은(는) 한 기능의 양 끝입니다: 이 전선은 그 기능을 단락시킵니다
+{} and {} are needed together	{}과(와) {}은(는) 함께 필요합니다
+{} cannot be bayed to itself	{}은(는) 자신에게 결합할 수 없습니다
+{} cannot be mounted on the {}	{0}은(는) {1}에 장착할 수 없습니다
+{} exists already: pass merge to make both one identifier	{}이(가) 이미 있습니다: 둘을 하나의 식별자로 합치려면 merge를 지정하십시오
+{} has no enclosure bayed to its right side	{}의 오른쪽 측면에 결합된 외함이 없습니다
+{} has no enclosure system; give one	{}에 외함 시스템이 없습니다. 하나를 지정하세요
+{} is a built-in frame; give the frame a new name	{}은(는) 기본 제공 프레임입니다. 프레임에 새 이름을 지정하세요
+{} is a room already	{}은(는) 이미 방입니다
+{} is ambiguous: use #id:pin	{}이(가) 모호합니다. #id:pin을 사용하세요
+{} is an enclosure already	{}은(는) 이미 외함입니다
+{} is not a connection point (TAG:PIN)	{}은(는) 연결 지점(TAG:PIN)이 아닙니다
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{}은(는) check가 표시하는 메시지 코드가 아닙니다(예: wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{}은(는) check가 표시하는 메시지 지문이 아닙니다(code:hash:item)
+{} is not defined	{}이(가) 정의되어 있지 않습니다
+{} is not in that section	{}은(는) 그 구역에 없습니다
+{} is the source language	{}은(는) 원본 언어입니다
+{} must be at least {}	{}은(는) {} 이상이어야 합니다
+{} must be between {} and {}	{}은(는) {}에서 {} 사이여야 합니다
+{} must not be negative	{}은(는) 음수일 수 없습니다
+{} of job {} changed since the hand-off	작업 {1}의 {0}이(가) 인계 이후 변경되었습니다
+{} segments need {} bends	구간 {}개에는 굽힘 {}개가 필요합니다
+{} would stand outside the room {}	{}이(가) 방 {} 밖에 놓이게 됩니다
+{}: part {} is being phased out	{}: 부품 {}이(가) 단종 예정입니다
+{}: part {} is being phased out, successor {}	{}: 부품 {}이(가) 단종 예정입니다. 후속 제품 {}
+{}: part {} is discontinued	{}: 부품 {}이(가) 단종되었습니다
+{}: part {} is discontinued, successor {}	{}: 부품 {}이(가) 단종되었습니다. 후속 제품 {}
+{}: the program to run is missing	{}: 실행할 프로그램이 없습니다

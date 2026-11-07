@@ -1,0 +1,953 @@
+# English<TAB>Suomi – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: vasemmasta / ylemmästä haarasta suoraan toiseen haaraan, sitten runkoon · 2: sama oikeasta / alemmasta haarasta · 3: rungosta vasempaan / ylempään haaraan, sitten toiseen · 4: rungosta ensin oikeaan / alempaan haaraan (oletus 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: linjan ylempi / vasen pää jatkuu poikittain oikeaan / alempaan haaraan · 2: vasempaan / ylempään haaraan (oletus 2)
+A cable definition needs a start and an end point	Kaapelimääritys tarvitsee alku- ja loppupisteen
+A copper bar needs at least one segment	Kuparikisko tarvitsee vähintään yhden osuuden
+A segment cannot be moved below itself	Segmenttiä ei voi siirtää itsensä alle
+A segment needs two different nodes	Osuus tarvitsee kaksi eri solmua
+A wire needs at least two points	Johto tarvitsee vähintään kaksi pistettä
+A {} has no {}; it takes {}	{}: ei ole {}; käyttää {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid tai custom
+Accepts a message as checked, so that it is no longer counted until it changes	Hyväksyy ilmoituksen tarkistetuksi, jolloin sitä ei enää lasketa ennen kuin se muuttuu
+Accessory part number, e.g. GEN.GLAND-M25	Tarvikkeen osanumero, esim. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Aktivoi (näyttää) tai poistaa käytöstä (piilottaa) projektivaihtoehdon sisällön
+Additional power loss in W	Lisähäviöteho W:na
+Address scheme: siemens, iec or rockwell	Osoitemalli: siemens, iec tai rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lisää taivutetun ja poratun kuparikiskon (tai korvaa samannimisen kiskon kotelossa)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lisää kaapelin läpivientiaukon oikeaan naapuriin: pyöreät aukot vastakkain molemmissa sivuseinissä; kotelojen väliset johdot kulkevat sen läpi
+Adds a configurator rule: insert a page macro when the condition holds	Lisää konfiguraattorin säännön: lisää sivumakro, kun ehto täyttyy
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Lisää reittiverkon solmun (haaroitus, läpivienti, kohta jossa saavutetaan kotelo tai laite)
+Adds a planned device to a segment or changes it	Lisää suunnitellun laitteen segmenttiin tai muuttaa sitä
+Adds a project option or changes its description and condition	Lisää projektivaihtoehdon tai muuttaa sen kuvausta ja ehtoa
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Lisää asennuslevyn ylle reitityspolun (kaapelihylly, putkiohjain), jota reitit suosivat
+Adds a segment below another one (or at the top)	Lisää segmentin toisen alle (tai ylimmälle tasolle)
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	Lisää reittiverkon osuuden kahden solmun välille: kaapelihylly, kaapelitikas, johtokouru, asennusputki, kaapelinvetoketju, maahan asennettu tai vapaa asennus
+Adds a text to a page	Lisää tekstin sivulle
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Lisää kaikki projektin tekstien rivit sanakirjaan ja poistaa valinnaisesti merkinnät, joita ei enää käytetä
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Lisää tarvikkeen kaapelin päähän: läpivienti, EMC-läpivienti, liitin, vedonpoisto, suojavaippapuristin, suojaletku, pääteholkki, merkki
+Adds an accessory to a device; it must fit one of the device's parts	Lisää laitteeseen lisävarusteen; sen on sovittava johonkin laitteen osaan
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Lisää kotelon: järjestelmästä jossakin sen koossa (tai mukautetussa koossa) tai kotelo-osasta
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Lisää potentiaalintasausjohtimen kahden liitäntäpisteen välille (päämaadoituskisko, kotelot, johtavat ääriviivat, metalliset kannattimet)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Lisää tai muuttaa projektin merkintäskeeman, poistaa sen tai valitsee merkintöjen viennissä käytettävän skeeman
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Lisää tai muuttaa projektin koneen (samalla ID:llä oleva sisäinen kone korvataan) tai poistaa sen
+Adds the devices of a template to a segment	Lisää mallin laitteet segmenttiin
+Adds the outline of a machine, building or area to the plant layout	Lisää koneen, rakennuksen tai alueen ääriviivan laitoksen sijoituskuvaan
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Lisää, korvaa tai poistaa profiilin: konnektori, jossa on toisen järjestelmän käyttämät sarakkeiden nimet
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Tasaa kohteet, jakaa ne tasaisesti, rivittää laitteet kiskolle tai kopioi kohteet kuvioksi
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Tasaa symbolit, tekstit ja grafiikan yhteiseen reunaan tai keskikohtaan; liitetyt johtojen päät seuraavat
+Allow renaming onto an identifier in use: both become one	Salli uudelleennimeäminen käytössä olevaksi tunnukseksi: molemmista tulee yksi
+Allowed classes, comma separated: power, control, signal, fluid (default all)	Sallitut luokat pilkuin erotettuina: power, control, signal, fluid (oletus kaikki)
+Allowed values separated by commas (empty: any value)	Sallitut arvot pilkuin erotettuina (tyhjä: mikä tahansa arvo)
+Also create a bus cable for every connection without cable	Luo myös väyläkaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
+Also properties without a value	Myös ominaisuudet ilman arvoa
+Also remove entries the project no longer uses	Poista myös merkinnät, joita projekti ei enää käytä
+Also renumber terminal strips, plugs and PLC cards	Numeroi uudelleen myös riviliitinrimat, pistoliittimet ja PLC-kortit
+Also renumber wires with a fixed number	Numeroi uudelleen myös johdot, joilla on kiinteä numero
+Altitude of the site in m	Asennuspaikan korkeus merenpinnasta m
+Ambient temperature of the conductors in °C	Johtimien ympäristön lämpötila °C:na
+An outline needs {} points at least	Ääriviiva tarvitsee vähintään {} pistettä
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Ankkuri akselin suuntaisesti: free, start:<mm>, center:<mm>, end:<mm> tai stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Aspektit pilkuin erotettuina, esim. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Määrittää toimintomäärittelyn sijoitetulle symbolille (nimitykset ja skeema otetaan käyttöön)
+Asynchronous motors add to the short-circuit current	Epätahtimoottorit lisäävät oikosulkuvirtaa
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automaattinen laitteistokokoonpano: asemat CPU:ille ja väyläliittimille, väyläjärjestelmät, kortit asemiin, korttipaikat, aloitusosoitteet, pisteiden osoitteet, IP-osoitteet ja linjatopologia
+Back to the default rules first	Palauta ensin oletussäännöt
+Back to the default strategy first	Palauta ensin oletusstrategia
+Back-up protection up to this short-circuit current in kA (0: not given)	Varasuojaus tähän oikosulkuvirtaan asti kA (0: ei annettu)
+Bar id	Kiskon ID
+Bar thickness, mm (default 5)	Kiskon paksuus, mm (oletus 5)
+Bar width, mm (default 20)	Kiskon leveys, mm (oletus 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Rivittää kotelon toisen kotelon oikealle puolelle (rivitys); ilman right_of-arvoa se poistuu rivityksestään
+Bend radius in drag chains as a multiple of the cable diameter	Taivutussäde kaapelinvetoketjuissa kaapelin halkaisijan monikertana
+Bend radius of a drag chain in mm	Kaapelinvetoketjun taivutussäde mm
+Bend radius of cables as a multiple of the diameter	Kaapelien taivutussäde halkaisijan monikertana
+Bend radius of tubes as a multiple of the diameter	Putkien taivutussäde halkaisijan monikertana
+Bend radius of wires as a multiple of the diameter	Johtojen taivutussäde halkaisijan monikertana
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Taivutukset osuuksien välillä: kulma, e syrjälleen, r<säde>, esim. 90; -90 e; 45 r10
+Between page and column (default .)	Sivun ja sarakkeen välissä (oletus .)
+Bonding point	Potentiaalintasauksen liitäntäpiste
+Border around the text	Reunus tekstin ympärillä
+Both classes are needed	Molemmat luokat tarvitaan
+Bus system name	Väyläjärjestelmän nimi
+Bus system name, e.g. PN/IE_1	Väyläjärjestelmän nimi, esim. PN/IE_1
+Busbar machine program (CSV)	Kiskontyöstökoneen ohjelma (CSV)
+CNC operations	CNC-työvaiheet
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	CNC-ohjelmat pora-, jyrsin- ja lävistyskoneille, kuparikiskojen taivutus, kotelokonfiguraattori, luovutus tuotantoon ja tuotannon palaute
+Cable tag, e.g. -W1	Kaapelin tunnus, esim. -W1
+Cable tag, e.g. -W20	Kaapelin tunnus, esim. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Kalibroi koneiden aika-arvion tuotannon palautteen toteutuneista ajoista
+Cannot read the plugin folder {}	Laajennuskansiota {} ei voi lukea
+Cannot start {}: {}	Kohdetta {} ei voi käynnistää: {}
+Card tag, e.g. -A1	Kortin tunnus, esim. -A1
+Category, e.g. coils, contacts, terminals, plc	Luokka, esim. coils, contacts, terminals, plc
+Centre from the rear wall in mm	Keskikohta takaseinästä millimetreinä
+Centre from the top of the enclosure in mm	Keskikohta kotelon yläreunasta millimetreinä
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Muuttaa T-haaraa (suunta, variantti, esitystapa), kulmaa (haarat), risteystä (linja, variantti, esitystapa) tai siltaa (suunta, esitystapa)
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Muuttaa taulukon solua: laitetunnus, toimintoteksti, kuvaus, osa; johtonumero, väri, poikkipinta-ala, kaapeli, johdin; rima, riviliitin
+Changes a placed symbol; when it moves, connected wire ends follow	Muuttaa sijoitettua symbolia; kun se siirtyy, liitettyjen johtojen päät seuraavat
+Changes a text (only the given properties)	Muuttaa tekstiä (vain annetut ominaisuudet)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Vaihtaa poistumassa olevia tai valikoimasta poistuneita osia käyttävät laitteet seuraajaosiin (seuraajien on oltava projektin osia)
+Changes name, description or structure of a page	Muuttaa sivun nimeä, kuvausta tai rakennetta
+Changes name, description, function, location or parent of a segment	Muuttaa segmentin nimeä, kuvausta, toimintoa, sijaintia tai ylätasoa
+Changes position, face, fastening or anchors of a panel item	Muuttaa asennusosan sijaintia, pintaa, kiinnitystä tai ankkureita
+Changes the device, connection and terminal tables	Muuttaa laite-, yhteys- ja riviliitintaulukoita
+Changes the level of a kind of message (code as shown by check)	Muuttaa ilmoituslajin tason (koodi sellaisena kuin check sen näyttää)
+Changes the properties of a wire	Muuttaa johdon ominaisuuksia
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Muuttaa kotelon järjestelmää, kokoa ja komponentteja (sokkeli, rivitetyt sivut, läpivientilevy); ankkuroidut kohteet seuraavat
+Check {} failed: {}	Tarkistus {} epäonnistui: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Tarkistaa kaappiasennuksen: törmäykset, etäisyydet (asennus, tuuletus, EMC), huoltotilan, korkeudet lattiasta, törmäysluokat, lämpötilat ja valmistettavuuden
+Chosen value	Valittu arvo
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Kaappiasennuksen etäisyydet, huoltotila, korkeudet, törmäysluokat, lämpösimulaatio ja valmistettavuus
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Kotelojen ilmastointi (IEC/TR 60890): häviöteho, sisälämpötila, tarvittava tuuletin tai jäähdytyslaite ja lämmitys; muuttaa valinnaisesti yhden kotelon asetuksia
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Törmäysluokka: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, oma luokka tai * mille tahansa
+Column and row strips	Sarake- ja rivinauhat
+Column mapping {field code: column name}	Sarakemääritys {kenttäkoodi: sarakkeen nimi}
+Column name, e.g. Description	Sarakkeen nimi, esim. Description
+Columns of the pattern	Kuvion sarakkeet
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Sarakkeet pilkuilla erotettuina: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Johtava runko, joka on liitettävä potentiaalintasaukseen
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Kotelon konfiguraatio kotelovalmistajan konfiguraattoria varten: järjestelmä, koko, komponentit, tarvikkeet ja työstö
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Konfiguraattorin ehto, esim. HEATER=yes (tyhjä: kytketään käsin)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Määrittää letkun / putken / putkiston: linjatyyppi, osa, pääteputkiliittimet, painemitoitus, taivutussäde, väliaine, koko, väri ja pituus
+Connection point TAG:PIN, e.g. -K1:A1	Liitäntäpiste TUNNUS:NASTA, esim. -K1:A1
+Connection point designations separated by commas or blanks	Liitäntäpisteiden merkinnät pilkuilla tai välilyönneillä erotettuina
+Connection point designations, comma separated, e.g. 13,14	Liitäntäpisteiden merkinnät pilkuin erotettuina, esim. 13,14
+Connector id (required unless removing)	Konnektorin ID (pakollinen, paitsi poistettaessa)
+Connects two connection points with wires routed around symbols and other wires	Yhdistää kaksi liitäntäpistettä johdoilla, jotka reititetään symbolien ja muiden johtojen ympäri
+Connects two ports of stations with a network cable; connections already on these ports are replaced	Yhdistää asemien kaksi porttia verkkokaapelilla; näiden porttien olemassa olevat yhteydet korvataan
+Copies function texts between the single-line diagram and the schematic where one side is empty	Kopioi toimintotekstit yksinapaisen kaavion ja piirikaavion välillä, kun toinen puoli on tyhjä
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopioi kohteita useita kertoja kiinteällä etäisyydellä; laitteet saavat uudet tunnukset, riviliittimet uudet numerot
+Copper bar cutting list	Kuparikiskojen leikkuuluettelo
+Copper bars	Kuparikiskot
+Corner points in metres	Kulmapisteet metreinä
+Corner points on the mounting plate in mm	Kulmapisteet asennuslevyllä millimetreinä
+Correction of the time estimate	Aika-arvion korjaus
+Cost of free air against ducts and routing paths	Vapaan reitityksen kustannus suhteessa kouruihin ja reitityspolkuihin
+Counting step (default 1)	Laskennan askel (oletus 1)
+Creates a bus cable for the connection (without cable tag)	Luo väyläkaapelin yhteydelle (ilman kaapelitunnusta)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Luo väylätyypin kaapelin (tyyppi, johtimet, poikkipinta-ala) jokaiselle väyläyhteydelle, jolla ei ole kaapelia
+Creates or changes a PCT loop of the pre-planning	Luo tai muuttaa esisuunnittelun instrumentointipiirin
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Luo tai muuttaa PLC-aseman (ohjain, hajautettu I/O, käyttö, HMI). Osoitemallin muuttaminen muuntaa sen pisteiden osoitteet
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Luo tai muuttaa väyläjärjestelmän (PROFINET, EtherCAT, …)
+Creates or changes a configurator option	Luo tai muuttaa konfiguraattorin vaihtoehdon
+Creates or changes a fluid device group	Luo tai muuttaa fluidilaiteryhmän
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Luo tai muuttaa projektin piirustuskehyksen (sisäiset kehykset kopioidaan uudella nimellä)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Luo tai muuttaa potentiaalin määrityksen; sen johdot saavat värin ja poikkipinta-alan, ellei niitä ole asetettu johtoon
+Creates or changes a work area: only the pages and devices of its structure are shown	Luo tai muuttaa työalueen: vain sen rakenteen sivut ja laitteet näytetään
+Cross section, e.g. 0.75 mm²	Poikkipinta-ala, esim. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Poikkipinta-ala, esim. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Poikkipinta-ala, esim. 1.5 mm² (tyhjä = potentiaalin määrityksestä)
+Cross-section in mm²	Poikkipinta-ala mm²
+Cross-section, e.g. 1.5 mm²	Poikkipinta-ala, esim. 1.5 mm²
+Current device tag	Nykyinen laitetunnus
+Customer rule set to add or replace (by name), as exported	Lisättävä tai korvattava asiakkaan sääntökokoelma (nimen mukaan) vietynä
+Cut lengths of cables rounded up to this step in mm	Kaapelien katkaisupituudet pyöristetään ylöspäin tähän askeleeseen millimetreinä
+Cut lengths of tubes rounded up to this step in mm	Putkien katkaisupituudet pyöristetään ylöspäin tähän askeleeseen millimetreinä
+Cut lengths of wires rounded up to this step in mm	Johtojen katkaisupituudet pyöristetään ylöspäin tähän askeleeseen millimetreinä
+Cut lengths rounded up to this step in metres	Katkaisupituudet pyöristetään ylöspäin tähän askeleeseen metreinä
+Cut threads on the machine	Tee kierteet koneella
+Cutting allowance per tube end in mm	Katkaisuvara putken päätä kohden millimetreinä
+Date (YYYY-MM-DD)	Päivämäärä (VVVV-KK-PP)
+Date of the acceptance	Hyväksynnän päivämäärä
+Default property values	Ominaisuuksien oletusarvot
+Default symbol key	Oletussymbolin avain
+Define the identifiers in use (default: true)	Määritä käytössä olevat tunnukset (oletus: true)
+Defines a reusable project function definition or changes it	Määrittää uudelleenkäytettävän projektin toimintomäärittelyn tai muuttaa sitä
+Defines a structure identifier or changes its description	Määrittää rakennetunnuksen tai muuttaa sen kuvausta
+Defines a user property or changes it	Määrittää käyttäjän ominaisuuden tai muuttaa sitä
+Defines all identifiers in use and / or removes the definitions nobody uses	Määrittää kaikki käytössä olevat tunnukset ja / tai poistaa määritykset, joita kukaan ei käytä
+Definition to start from	Lähtömäärittely
+Deletes a PCT loop of the pre-planning	Poistaa esisuunnittelun instrumentointipiirin
+Deletes a configurator option	Poistaa konfiguraattorin vaihtoehdon
+Deletes a configurator rule	Poistaa konfiguraattorin säännön
+Deletes a fluid device group	Poistaa fluidilaiteryhmän
+Deletes a page	Poistaa sivun
+Deletes a page template of the project	Poistaa projektin sivumallin
+Deletes a plot frame of the project that no page uses	Poistaa projektin piirustuskehyksen, jota mikään sivu ei käytä
+Deletes a potential definition	Poistaa potentiaalin määrityksen
+Deletes a work area	Poistaa työalueen
+Deletes symbols, wires, texts and shapes	Poistaa symboleja, johtoja, tekstejä ja muotoja
+Depth in mm	Syvyys millimetreinä
+Device description id (empty: from the parts)	Laitekuvauksen tunniste (tyhjä: osista)
+Device description id of the head (list_device_descriptions)	Pääyksikön laitekuvauksen tunniste (list_device_descriptions)
+Device group {} already exists	Laiteryhmä {} on jo olemassa
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Laiteluettelo, osaluettelo, riviliitin-, pistoliitin-, kaapeli- ja yhteyskaaviot, PLC, potentiaalit, kaappi, fluidi, sähkö- ja kenttäraportit
+Device number on the bus	Laitenumero väylässä
+Device tag of the CPU / bus coupler, e.g. -A0	CPU:n / väyläliittimen laitetunnus, esim. -A0
+Device tag of the end (both ends if missing)	Pään laitetunnus (puuttuessa molemmat päät)
+Device tag of the fluid device, e.g. -QM1	Fluidilaitteen laitetunnus, esim. -QM1
+Device tag of the group, e.g. -KH1	Ryhmän laitetunnus, esim. -KH1
+Device tag within the segment, e.g. -M1	Laitetunnus segmentissä, esim. -M1
+Device tag, e.g. -K1	Laitetunnus, esim. -K1
+Device tag: the accessories that can still be added to its parts	Laitetunnus: lisävarusteet, jotka voi vielä lisätä sen osiin
+Device tags (text)	Laitetunnukset (teksti)
+Device tags of the members in slot order, separated by commas or blanks	Jäsenten laitetunnukset paikkajärjestyksessä pilkuilla tai välilyönneillä erotettuina
+Devices with parts that are phased out or discontinued, and their change to the successors	Laitteet, joiden osat ovat poistumassa tai poistuneet valikoimasta, ja niiden vaihto seuraajiin
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Laitteet, johdot, potentiaalit, kaapelit, riviliitinrimat, PLC, kaappi, fluidi, sähkölaskelmat, rakenne ja käännökset
+Diameter in mm	Halkaisija millimetreinä
+Diameter of a hole at both ends (0: none)	Reiän halkaisija molemmissa päissä (0: ei reikää)
+Direction of the stem: left, right, up or down (default: from the wires there)	Rungon suunta: left, right, up tai down (oletus: paikan johtimien mukaan)
+Distance between power and signal or fluid in mm	Tehon ja signaalin tai fluidin välinen etäisyys millimetreinä
+Distance from devices, rails and busbars in mm	Etäisyys laitteista, kiskoista ja kokoojakiskoista millimetreinä
+Distance from the face in mm (rails: standoff height)	Etäisyys pinnasta millimetreinä (kiskot: välikekorkeus)
+Distance in X (mm)	Etäisyys X-suunnassa (mm)
+Distance in Y (mm)	Etäisyys Y-suunnassa (mm)
+Distance of devices to cable ducts	Laitteiden etäisyys johtokouruihin
+Distance of devices to the plate edge	Laitteiden etäisyys levyn reunaan
+Distance of the border from the paper edge in mm	Kehyksen etäisyys paperin reunasta millimetreinä
+Distribute vertically (default horizontally)	Jaa pystysuunnassa (oletus vaakasuunnassa)
+Distributes symbols, texts and graphics evenly between the first and the last one	Jakaa symbolit, tekstit ja grafiikan tasaisesti ensimmäisen ja viimeisen välille
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Kuormien samanaikaisuuskerroin (0: IEC 61439-1, taulukko 101)
+Draw the contact image below coils (default true)	Piirrä kosketinkuvio kelojen alle (oletus true)
+Draw the junction as a connection dot; its routing stays	Piirrä T-haara liitospisteenä; sen reititys säilyy
+Draw wires in their colour	Piirrä johdot niiden värillä
+Draw wires to the connection points facing its free arms	Piirrä johtimet sen vapaita haaroja vastapäätä oleviin liitäntäpisteisiin
+Drawing	Piirustus
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Piirtää kaapelimääritysviivan; sen ristimistä johdoista tulee kaapelin johtimia (uusi kaapeli, jos kaapelia ei anneta)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	Piirtää johdon kahden liitäntäpisteen välille, esim. -K1:A1 kohteeseen -S1:14 (#id:pin moniselitteisille, nimi potentiaaleille, 1, 2… pisteille ilman merkintää)
+Draws a wire through two or more points	Piirtää johdon kahden tai useamman pisteen kautta
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Piirtää johdot piirikaaviosivuilla ja PDF- / SVG-viennissä niiden värillä tai mustana
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Piirtää johtimet toisiaan vastapäätä olevien symbolien vapaiden liitäntäpisteiden välille sekä T-haarojen ja kulmien vapaisiin haaroihin
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Kaapelien EMC-luokat (käytön lähtö, analoginen, teho, signaali, suojavaippa) ja EMC-ongelmat
+Edge length of the routing grid in mm	Reititysruudukon sivun pituus millimetreinä
+Electrical device tags separated by commas or blanks (empty = remove the links)	Sähkölaitteiden tunnukset pilkuilla tai välilyönneillä erotettuina (tyhjä = poista linkit)
+Electrical engineering	Sähkötekniikka
+Enclosure (location, e.g. +CAB1)	Kotelo (sijainti, esim. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Kotelo (sijainti, esim. +CAB1), jonka asetukset muuttuvat
+Enclosure climate and electrical sizing	Kaapin ilmasto ja sähköinen mitoitus
+Enclosure it stands right of; empty to take it out of its line-up	Kotelo, jonka oikealla puolella se on; tyhjä poistaa sen rivityksestä
+Enclosure name (all if missing)	Kotelon nimi (kaikki, jos puuttuu)
+Enclosure part number	Kotelon osanumero
+Enclosure system (default: the enclosure's)	Kotelojärjestelmä (oletus: kotelon järjestelmä)
+Enclosure {} exists already	Kotelo {} on jo olemassa
+Enclosures, panel items, accessories and panel macros	Kotelot, asennusosat, tarvikkeet ja kaappiasennuksen makrot
+End brackets and end plates from the tech data of the terminal parts	Päätytuet ja päätylevyt riviliitinosien teknisistä tiedoista
+End holes from the bar end as a multiple of the width	Päätyreiät kiskon päästä leveyden monikertana
+End: device tag and connection point, e.g. -S1:14	Loppu: laitetunnus ja liitäntäpiste, esim. -S1:14
+Engineering	Suunnittelu
+Face: plate, door, left, right, rear, roof or bottom	Pinta: plate, door, left, right, rear, roof tai bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Kenttäsuunnitelma: solmut, osuudet, ääriviivat, reitit, potentiaalintasaukset ja tarvikkeet
+Figure	Tunnusluku
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Etsii ja korvaa tekstiä kaikkien (suodatettujen) rivien sarakkeessa; ilman hakutekstiä sarake täytetään korvaavalla tekstillä
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Etsii tekstiä koko projektista: sivut, laitetunnukset, toimintotekstit, vapaat tekstit, johtonumerot, riviliittimet, kaapelit, osat, kuvaukset
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Etsii kotelojärjestelmän pienimmän vakiokoon, johon asennus mahtuu, ja käyttää sitä
+Fingerprint of the message as shown by check	Ilmoituksen sormenjälki sellaisena kuin check sen näyttää
+First address of the subnet, e.g. 192.168.0.0	Aliverkon ensimmäinen osoite, esim. 192.168.0.0
+First byte of the inputs (and outputs)	Tulojen (ja lähtöjen) ensimmäinen tavu
+First byte of the outputs if it differs; -1 removes it	Lähtöjen ensimmäinen tavu, jos se poikkeaa; -1 poistaa sen
+First counter value (default 1)	Laskurin ensimmäinen arvo (oletus 1)
+First page number (default 1)	Ensimmäinen sivunumero (oletus 1)
+First port as station:port, e.g. PLC1:X1 P2	Ensimmäinen portti muodossa asema:portti, esim. PLC1:X1 P2
+First row with the column names	Ensimmäinen rivi sarakkeiden nimillä
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Laitteen nimen muoto: {letter}, {n} (laskuri), {page}, {column}, {row}; oletus {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Skeeman format muoto: {n} (laskuri), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Kehys, josta aloitetaan, kun kehys on uusi (oletus: A3 landscape)
+Free space in front of every device on the plate	Vapaa tila jokaisen levyllä olevan laitteen edessä
+Freezes routes for production (kept by the recalculation while possible) or releases them	Lukitsee reitit tuotantoa varten (uudelleenlaskenta säilyttää ne, kun mahdollista) tai vapauttaa ne
+Frequency in Hz	Taajuus hertseinä
+Function (= without the sign; empty: the parent's)	Toiminto (= ilman merkkiä; tyhjä: ylätason toiminto)
+Function aspect (=) of the page; the devices on the page move along	Sivun toiminta-aspekti (=); sivun laitteet siirtyvät mukana
+Function definition key	Toimintomäärittelyn avain
+Function filter (= A1, A*; empty = any)	Toimintosuodatin (= A1, A*; tyhjä = mikä tahansa)
+Further device tags of the loop, separated by commas or blanks	Piirin muut laitetunnukset pilkuilla tai välilyönneillä erotettuina
+Gap between devices side by side	Vierekkäisten laitteiden välinen rako
+Gap between the devices on the rail in mm	Laitteiden väli kiskolla millimetreinä
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Luo yksinapaisen kaavion niistä piirikaavion tehopiirin laitteista, joilla sitä ei vielä ole, uudelle yleiskuvasivulle annetun sivun jälkeen
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Luo pinnan CNC-ohjelman sen koneelle (ISO G-koodi, Heidenhain, lävistyskoodi tai CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Luo moninapaisen piirikaavion (tehopiirin symbolit, johtimet, kontaktorien kelat) sivun yksinapaisille symboleille uudelle sivulle sen jälkeen
+Generates the program of the busbar machine: cuts, punched holes and bends	Luo kiskontyöstökoneen ohjelman: leikkaukset, lävistetyt reiät ja taivutukset
+Give a device tag or a part number	Anna laitetunnus tai osanumero
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Ryhmittää kohteet kokoonpanoksi, joka valitaan ja siirretään yhdessä; ilman nimeä kohteet poistuvat kokoonpanoistaan
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Luovuttaa kotelon ohjelmat tuotantoon työnä: kaikkien sen pintojen ja kuparikiskojen manifesti ja ohjelmat
+Has a divider between power and signal cables	Teho- ja signaalikaapelien välissä on erotin
+Height above the floor in metres	Korkeus lattiasta metreinä
+Height above the mounting plate in mm (default 50)	Korkeus asennuslevyn yläpuolella millimetreinä (oletus 50)
+Height in mm	Korkeus millimetreinä
+Height in mm without plinth; negative: unknown (wall mounted)	Korkeus mm ilman sokkelia; negatiivinen: tuntematon (seinäasennus)
+Higher-level product aspect (-) of the page; the devices on the page move along	Sivun ylemmän tason tuote -aspekti (-); sivun laitteet siirtyvät mukana
+Highest actuator on the door above the floor (0: not checked)	Oven ylin käyttöelin lattiasta (0: ei tarkisteta)
+Highest air temperature at devices without data (0: not checked)	Korkein ilman lämpötila laitteilla, joilla ei ole tietoja (0: ei tarkisteta)
+Highest ambient temperature in °C	Ympäristön korkein lämpötila °C:na
+Highest device above the floor (0: not checked)	Ylin laite lattiasta (0: ei tarkisteta)
+Highest inside temperature in °C	Korkein sisälämpötila °C:na
+Highest three-phase short-circuit current at the supply in kA	Suurin kolmivaiheinen oikosulkuvirta syötössä kA:na
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Reiät: osuus:etäisyys:halkaisija, esim. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Vaakatasaus: left, center tai right
+Horizontal pitch of the pattern in mm	Kuvion vaakajako millimetreinä
+Hose colour	Letkun väri
+Hose number or fluid net (F1)	Letkun numero tai fluidiverkko (F1)
+Hose number prefix, e.g. H	Letkunumeroiden etuliite, esim. H
+Hoses / pipes: length in m	Letkut / putket: pituus metreinä
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Letkut / putket: väliaine (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; tyhjä = projektin oletus)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Letkut, fluidiverkot ja -ryhmät, sähkö-fluidilinkit ja PCT-piirit
+Hyperlink (URL)	Hyperlinkki (URL)
+IP address or bus address	IP-osoite tai väyläosoite
+IT system with distributed neutral	IT-järjestelmä jaetulla nollajohtimella
+Id of the panel item (from mounting_list)	Asennusosan ID (komennosta mounting_list)
+Id of the path or reservation	Polun tai varauksen tunniste
+Id of the text	Tekstin ID
+Identifier, e.g. A1 or CAB1	Tunnus, esim. A1 tai CAB1
+Ids of page items	Sivun kohteiden tunnukset
+Ids of symbols and connection symbols (default: all symbols of the page)	Symbolien ja liitossymbolien tunnukset (oletus: sivun kaikki symbolit)
+In front of the page name (default /)	Sivun nimen edessä (oletus /)
+Inner height in mm (0 = no limit)	Sisäkorkeus mm (0 = ei rajaa)
+Inner radius as a multiple of the thickness	Sisäsäde paksuuden monikertana
+Inner width in mm (0 = no limit)	Sisäleveys mm (0 = ei rajaa)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Lisää 3D-makron kokoonpanona: ankkuroidut kohteet paikoilleen, muut suhteessa pinnan x / y -koordinaatteihin
+Installation site aspect (++) of the page; the devices on the page move along	Sivun asennuspaikka-aspekti (++); sivun laitteet siirtyvät mukana
+Installation site filter (++)	Asennuspaikkasuodatin (++)
+Integration profiles and status	Integraatioprofiilit ja -tila
+Interruption points refer to: all (default), star or pairs	Katkoskohdat viittaavat: all (oletus), star tai pairs
+Invalid answer of the plugin: {}	Laajennuksen virheellinen vastaus: {}
+Invalid segment name: {}	Virheellinen segmentin nimi: {}
+Item id	Kohteen tunniste
+Item ids	Kohteiden tunnisteet
+Jumper number	Siltanumero
+Jumper number (terminals with the same number are bridged); 0 removes it	Siltanumero (samanumeroiset riviliittimet on silloitettu); 0 poistaa sen
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Säilytä kotelointiluokka: lämmönsiirrin tai jäähdytyslaite suodatinpuhaltimien sijaan
+Key figures of the project and a list of its device tags	Projektin tunnusluvut ja luettelo sen laitetunnuksista
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektin tunnusluvut: sivut, symbolit, johdot, laitteet, osat, kaapelit ja tarkistusten tulokset
+Key, e.g. user.coupling_relay	Avain, esim. user.coupling_relay
+Key, e.g. user.customer_code	Avain, esim. user.customer_code
+Keys of the routes, comma separated (all if missing)	Reittien avaimet pilkuin erotettuina (kaikki, jos puuttuu)
+Kind: machining, punching or busbar	Laji: machining, punching tai busbar
+Label: terminal number, PLC address or potential name	Merkintä: riviliittimen numero, PLC-osoite tai potentiaalin nimi
+Landscape (true) or portrait (false)	Vaakasuunta (true) tai pystysuunta (false)
+Language the project texts are written in, e.g. en	Kieli, jolla projektin tekstit on kirjoitettu, esim. en
+Larger round holes are milled, mm	Suuremmat pyöreät reiät jyrsitään, mm
+Largest difference between hole and tool, mm	Suurin ero reiän ja työkalun välillä, mm
+Left edge on the face in mm	Vasen reuna pinnalla millimetreinä
+Left edge on the mounting plate in mm	Vasen reuna asennuslevyllä millimetreinä
+Left side bayed (no side panel)	Vasen puoli rivitetty (ei sivuseinää)
+Length added at each cable end in metres	Kuhunkin kaapelin päähän lisättävä pituus metreinä
+Length added to each cable end in mm	Jokaiseen kaapelin päähän lisättävä pituus millimetreinä
+Length from the node to the device in metres	Pituus solmusta laitteeseen metreinä
+Length in metres	Pituus metreinä
+Length in metres (default from the node positions)	Pituus metreinä (oletus solmujen sijainneista)
+Length inside an enclosure per end in metres	Pituus kotelon sisällä päätä kohden metreinä
+Length of a shield pigtail in mm	Suojavaipan punoksen pituus millimetreinä
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Kerrosriviliittimen kerros (1 = alin); ylemmät kerrokset ovat edellisen riviliittimen lohkon päällä
+Library id or customer rule set name to no longer verify against	Kirjaston tunniste tai asiakkaan sääntökokoelman nimi, jota vasten ei enää validoida
+Library id or customer rule set name to verify against	Kirjaston tunniste tai asiakkaan sääntökokoelman nimi, jota vasten validoidaan
+Line in the source language	Rivi lähdekielellä
+Line-to-line voltage in V	Pääjännite volteissa
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Linkittää fluidilaitteen sähkölaitteisiin, jotka ohjaavat tai valvovat sitä (korvaa linkit)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Linkittää magneettiventtiilit samanumeroiseen kelaan (-QM3 › -MB3) ja kopioi toimintotekstit linkitettyjen laitteiden välillä
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Luettelee määritettyjen osien PLC-kanavat ja toiminnot, joita ei ole vielä sijoitettu, sekä symbolin, tunnuksen, merkinnän ja nastat komentoa place_symbol varten
+Lists and renames devices, adds accessories to their parts	Luettelee ja nimeää laitteet uudelleen, lisää lisävarusteita niiden osiin
+Lists the 3D macros: the project's own and the built-in ones	Luettelee 3D-makrot: projektin omat ja sisäiset
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	Luettelee 3D-reitityksen: reititetyt johdot, kaapelit ja putket pituuksineen ja tiloineen, niput, haarat, suojavaipat, reitityspolut, muutokset ja ongelmat
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	Luettelee CNC-koneet (sisäiset ja projektin) työkaluineen sekä kunkin pinnan koneen
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Luettelee esisuunnittelun ja PI-kaavion instrumenttien instrumentointipiirit laitteineen ja suunnittelun tiloineen
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Luettelee T-haarat, kulmat, risteykset ja sillat reitityksineen ja niiden liitoksen johtimet
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Luettelee lisävarusteet, jotka sopivat osaan tai laitteen osiin, ja osat, joihin lisävaruste sopii (projektin osat, sisäänrakennetut ja mukana toimitetut luettelot)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Luettelee kuparikiskot oikaistuina: pituus, taivutukset järjestyksessä, reiät, ongelmat sekä leikkaus varastopituuksista
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	Luettelee PLC-laitteiston laitekuvaukset: tuodut, projektin osista saadut ja sisäiset yleiset
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Luettelee yksinapaisen kaavion laitteet ja piirikaavion tehopiirin laitteet tiloineen: suunniteltu, toteutettu, ei yksinapaisessa kaaviossa tai ei vastaa
+Lists the devices with cross references and assigned parts	Luettelee laitteet ristiviittauksineen ja määritettyine osineen
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Luettelee kotelot järjestelmineen, komponentteineen (kokoonpano), pintakohtaisine kohteineen ja kokoonpanoineen
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Luettelee fluidilaiteryhmät (venttiiliterminaalit, huoltoyksiköt, jakotukit) laitteineen paikkajärjestyksessä
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Luettelee fluidilaitteet, joilla on magneettikeloja tai linkkejä, sekä niihin linkitetyt sähkölaitteet
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Luettelee fluidiverkkoluettelon: jokainen letkulinja linjatyyppeineen (paine, työ, paluu, ohjaus …), väliaineineen, kokoineen ja portteineen toimintoineen
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Luettelee toimintomäärittelyt sekä niiden luokan, toimintomallin lajin, tunnuskirjaimen, oletussymbolin ja käytön
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Luettelee letkut ja putket (fluidiporttien väliset yhteydet) väliaineineen, nimelliskokoineen, väreineen ja pituuksineen
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Luettelee kaappiasennuksen kohteet asennusjärjestyksessä paikan, koon, osan ja asennustilan kanssa
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Luettelee merkintäohjelmien merkintäskeemat (sisäiset ja projektin) ja valitun skeeman
+Lists the page templates (built-in and the project's own)	Luettelee sivumallit (sisäiset ja projektin omat)
+Lists the pages of the project	Luettelee projektin sivut
+Lists the placement schemes with their properties and the number of symbols using them	Luettelee sijoitteluskeemat ominaisuuksineen sekä niitä käyttävien symbolien määrän
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Luettelee piirustuskehykset (paperikoko, suunta, sarakkeet ja rivit) ja projektin oletuksen
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Luettelee pistoliittimet käytettyjen nastojen määrän, niiden osien nastamäärän ja osien kanssa
+Lists the potential definitions and the wire default of nets without a defined potential	Luettelee potentiaalien määritykset ja johtojen oletuksen verkoille, joilla ei ole määritettyä potentiaalia
+Lists the project options that show or hide model content	Luettelee projektivaihtoehdot, jotka näyttävät tai piilottavat mallin sisältöä
+Lists the properties of an object with their values and where they come from	Luettelee objektin ominaisuudet sekä niiden arvot ja alkuperän
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Luettelee ominaisuusmäärittelyt (sisäiset ja käyttäjän määrittämät) sekä niiden objektiluokan, ryhmän, tyypin ja yksikön
+Lists the report blocks with their report, scheme, groups and generated pages	Luettelee raporttilohkot raportteineen, malleineen, ryhmineen ja luotuine sivuineen
+Lists the report schemes (named report forms) with their settings	Luettelee raporttimallit (nimetyt raporttilomakkeet) asetuksineen
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Luettelee kaappiasennuksen reititetyt johdot johdotuksen tarkistuslistana pään käsittelyineen, tiloineen ja edistymisineen
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Luettelee segmentit puujärjestyksessä rakenteen, suunnitellun tehon ja suunniteltujen laitteiden kanssa sekä niiden tilan piirikaaviossa
+Lists the source and target languages of the project texts with the number of untranslated lines	Luettelee projektin tekstien lähde- ja kohdekielet sekä kääntämättömien rivien määrän
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Luettelee rakennetunnusten hallinnan: sivujen aspektit, määritetyt ja käytetyt tunnukset, työalueet
+Lists the subprojects taken out of the project, or the project it was taken from	Luettelee projektista irrotetut aliprojektit tai projektin, josta se on irrotettu
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Luettelee sijoitettavat symbolit liitäntäpisteineen suhteessa lisäyspisteeseen
+Lists the terminal strips with their number of terminals and length on the rail	Luettelee riviliitinrimat sekä niiden riviliittimien määrän ja pituuden kiskolla
+Lists the translation dictionary of the project texts (source line and translations)	Luettelee projektin tekstien käännössanakirjan (lähderivi ja käännökset)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Luettelee sivuille sijoitetut ikkunamakrot (makrolaatikot) makron, variantin, paikkamerkkien arvojen ja kohteiden määrän kanssa
+Load losses of the transformer in W (0: typical)	Muuntajan kuormitushäviöt W (0: tyypillinen)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Verkon kuormat, kunkin suojalaitteen kuorma, tarve samanaikaisuuskertoimella, vaiheiden tasapaino ja virtalähteiden kuormitustaseet
+Loads the potential definitions of a standard (replaces those of the same name)	Lataa standardin potentiaalimääritykset (korvaa samannimiset)
+Location (+ without the sign; empty: the parent's)	Sijainti (+ ilman merkkiä; tyhjä: ylätason sijainti)
+Location aspect (+) of the page; the devices on the page move along	Sivun sijaintiaspekti (+); sivun laitteet siirtyvät mukana
+Location filter (+)	Sijaintisuodatin (+)
+Location or device tag	Sijainti- tai laitetunnus
+Loop number	Piirin numero
+Loop number, e.g. 101	Piirin numero, esim. 101
+Lowest actuator on the door above the floor	Oven alin käyttöelin lattiasta
+Lowest ambient temperature in °C	Ympäristön alin lämpötila °C:na
+Lowest device above the floor	Alin laite lattiasta
+Lowest inside temperature in °C	Alin sisälämpötila °C:na
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	Pienin vaihe–maa-vikavirta syötössä kA:na (0: ik_max-arvosta)
+Lowest terminal above the floor	Alin riviliitin lattiasta
+Machine id (default: the busbar machine)	Koneen ID (oletus: kiskontyöstökone)
+Machine id (default: the machine of the face)	Koneen ID (oletus: pinnan kone)
+Machine id (snake_case)	Koneen ID (snake_case)
+Machine id {} is not snake_case	Koneen ID {} ei ole snake_case-muotoinen
+Machine of that face (empty: the sheet machine)	Kyseisen pinnan kone (tyhjä: levykone)
+Machine of the copper bars	Kuparikiskojen kone
+Machine of the sheet metal faces	Levypintojen kone
+Machine {} is in use	Kone {} on käytössä
+Macro name	Makron nimi
+Makes pages or page items content of a project option	Tekee sivuista tai sivun kohteista projektivaihtoehdon sisältöä
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Tekee liittimen nastojen johtimista lattakaapelin johtimia: nasta n saa johtimen n, kuten IDC-liittimissä
+Manufacturing package (CNC programs, JSON)	Valmistuspaketti (CNC-ohjelmat, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	Merkinnät pilkuilla erotettuina: device, terminal, wire, cable (tyhjä: kaikki)
+Marks a panel item as mounted or as a problem, or as open again	Merkitsee asennusosan asennetuksi tai ongelmaksi tai jälleen avoimeksi
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Merkitsee reititetyn johdon johdotetuksi tai ongelmaksi tai jälleen avoimeksi; johto annetaan sen kahden pään avulla
+Maximum fill of a carrier in percent	Kannattimen suurin täyttöaste prosentteina
+Maximum operating pressure in bar	Suurin käyttöpaine bareina
+Measuring range or set point	Mittausalue tai asetusarvo
+Message code, e.g. wires.3f9a1c	Ilmoituskoodi, esim. wires.3f9a1c
+Milling feed, mm/min	Jyrsintäsyöttö, mm/min
+Mirror the symbol	Peilaa symboli
+Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
+Moves the page before this page of its section (or of the section given)	Siirtää sivun osionsa (tai annetun osion) tämän sivun eteen
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Siirtää osion yläosionsa (tai annetun) tämän osion eteen; numerot jatkuvat järjestyksessä
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Johtosarjan naulalautaesitys: haarat yhteisestä solmusta liittimiin pituuksineen, suuntineen, nipun halkaisijoineen ja nastoineen sekä piirustuksen mittakaava
+Name of the assembly	Kokoonpanon nimi
+Name of the bar, e.g. L1 -Q1	Kiskon nimi, esim. L1 -Q1
+Name of the check	Tarkistuksen nimi
+Name of the customer rule set to remove	Poistettavan asiakkaan sääntökokoelman nimi
+Name of the frame	Kehyksen nimi
+Name of the machine	Koneen nimi
+Name of the main earthing terminal	Päämaadoituskiskon nimi
+Name of the safety function to remove	Poistettavan turvatoiminnon nimi
+Name of the segment	Segmentin nimi
+Name of the template	Mallin nimi
+Name of the work area	Työalueen nimi
+Name or id; the tag for places	Nimi tai ID; sijoituksille tunnus
+Name, e.g. the location +M1	Nimi, esim. sijainti +M1
+New device tag	Uusi laitetunnus
+New identifier	Uusi tunnus
+New page name	Uusi sivun nimi
+New parent segment (empty: top level)	Uusi ylätason segmentti (tyhjä: ylin taso)
+New value	Uusi arvo
+No PCT loop {}	Ei instrumentointipiiriä {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Sisäänrakennettua tarkistusta nimeltä {} ei ole: asetus koskee samannimistä laajennuksen tarkistusta (list_checks)
+No bus system {}	Ei väyläjärjestelmää {}
+No connection point {} on this page	Tällä sivulla ei ole liitäntäpistettä {}
+No connection symbol with id {}	Ei liitossymbolia tunnuksella {}
+No copper bar {}	Kuparikiskoa {} ei ole
+No device description {}	Ei laitekuvausta {}
+No device group {}	Ei laiteryhmää {}
+No enclosure named {}	Ei koteloa nimeltä {}
+No entry for {} and {}	Ei merkintää kohteille {} ja {}
+No hose {}	Ei letkua {}
+No identifier {} in the project	Projektissa ei ole tunnusta {}
+No item with id {}	Ei kohdetta tunnisteella {}
+No item {}	Ei kohdetta {}
+No items to save in {}	Ei tallennettavia kohteita kohteessa {}
+No macro named {}	Ei makroa nimeltä {}
+No panel item with id {}	Asennusosaa tunnuksella {} ei ole
+No planned device {}	Suunniteltua laitetta {} ei ole
+No potential definition {}	Ei potentiaalin määritystä {}
+No project function definition {}	Projektin toimintomäärittelyä {} ei ole
+No routed item {}	Ei reititettyä kohdetta {}
+No routed wire {} – {}	Ei reititettyä johtoa {} – {}
+No routing path or reservation {}	Ei reitityspolkua tai varausta {}
+No rule for {} and {}	Ei sääntöä luokille {} ja {}
+No rule library or rule set {}	Ei sääntökirjastoa tai sääntökokoelmaa {}
+No rule {}	Ei sääntöä {}
+No safety function {}	Ei turvatoimintoa {}
+No standard size of {} holds the layout of {}	Mikään kohteen {} vakiokoko ei riitä kohteen {} asennukselle
+No terminal strip {}	Riviliitinrimaa {} ei ole
+No terminal {} on strip {}	Riviliitintä {} ei ole rimassa {}
+No text with id {}	Tekstiä tunnuksella {} ei ole
+No three wires meet at {} / {} mm: give the direction of the stem	Kohdassa {} / {} mm ei kohtaa kolmea johdinta: anna rungon suunta
+No transformer: set {} first	Ei muuntajaa: aseta ensin {}
+No wire at {} / {} mm	Kohdassa {} / {} mm ei ole johdinta
+No wire with id {}	Ei johtoa tunnisteella {}
+No work area named {}	Ei työaluetta nimeltä {}
+Node name or id	Solmun nimi tai ID
+Node {} exists already	Solmu {} on jo olemassa
+Nodes to pass in this order, comma separated	Läpikuljettavat solmut tässä järjestyksessä pilkuilla erotettuina
+Nominal size, e.g. 8 mm or DN25	Nimelliskoko, esim. 8 mm tai DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Ei poikkipinta-ala: {} (esim. 1.5 mm²)
+Not a valid safety function: {}	Ei kelvollinen turvatoiminto: {}
+Note, e.g. what the problem is	Huomautus, esim. mikä ongelma on
+Nothing to remove: {} {}	Ei poistettavaa: {} {}
+Number of columns	Sarakkeiden määrä
+Number of copies (default 1)	Kopioiden määrä (oletus 1)
+Number of equal bars	Samanlaisten kiskojen määrä
+Number of indexed values (0 = a single value)	Indeksoitujen arvojen määrä (0 = yksi arvo)
+Number of rows	Rivien määrä
+Numbers the pages with a start value and step; released pages keep their name	Numeroi sivut alkuarvolla ja askeleella; vapautetut sivut säilyttävät nimensä
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Numeroi riman riviliittimet 1 … n riman järjestyksessä; muut kuin numeeriset nimitykset, kuten PE, säilyvät
+Numbers the wires by the numbering scheme of the project	Numeroi johdot projektin numerointimallin mukaan
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=arvo, OPTION!=arvo, OPTION=a|b yhdistettynä merkillä & (tyhjä: aina)
+Offset from the symbol position in mm (default: below the symbol)	Siirtymä symbolin sijainnista mm:nä (oletus: symbolin alapuolella)
+One end, e.g. -K1:A1	Ensimmäinen pää, esim. -K1:A1
+One row per printed label instead of a count	Yksi rivi tulostettua merkintäkilpeä kohden määrän sijaan
+Only devices on these pages (names separated by commas)	Vain näiden sivujen laitteet (nimet pilkuilla erotettuina)
+Only lines without a translation into this language	Vain rivit, joilla ei ole käännöstä tälle kielelle
+Only list the new tags, change nothing	Luettele vain uudet tunnukset, älä muuta mitään
+Only shows the package, no job is recorded	Näyttää vain paketin, työtä ei kirjata
+Only shows what would change	Näyttää vain, mikä muuttuisi
+Only the pages of this work area (list_structure)	Vain tämän työalueen sivut (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Vain nämä tunnuskirjaimet (pilkuilla erotettuina, esim. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Vain nämä lajit pilkuilla erotettuina: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Vain nämä lajit pilkuilla erotettuina: page, function_text, text, description
+Only these pages (names separated by commas)	Vain nämä sivut (nimet pilkuilla erotettuina)
+Only this part number	Vain tämä osanumero
+Only wire, cable or tube	Vain wire, cable tai tube
+Only wires with this state: open, wired, changed or problem	Vain johdot, joilla on tämä tila: open, wired, changed tai problem
+Opaque background in the paper colour	Peittävä tausta paperin värillä
+Openings: auto (punch of the size, else contour) or contour	Aukot: auto (koon mukainen lävistin, muuten muoto) tai contour
+Operating pressure in bar (0 = hose ratings are not checked)	Käyttöpaine bareina (0 = letkujen painemitoitusta ei tarkisteta)
+Operations	Työvaiheet
+Option name	Vaihtoehdon nimi
+Option name, e.g. STARTER	Vaihtoehdon nimi, esim. STARTER
+Options and rules of the configurator	Konfiguraattorin vaihtoehdot ja säännöt
+Other end, e.g. -X1:3	Toinen pää, esim. -X1:3
+Outer diameter in mm, 0 = estimated	Ulkohalkaisija millimetreinä, 0 = arvioitu
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Suorien osuuksien ulkomitat, mm, esim. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Nakerrusiskujen limitys (0 … 0.9)
+PCT loop {} already exists	Instrumentointipiiri {} on jo olemassa
+PLC hardware: stations, cards, bus systems and port connections	PLC-laitteisto: asemat, kortit, väyläjärjestelmät ja porttiyhteydet
+Page macro name	Sivumakron nimi
+Page macro that generates its schematic	Sivumakro, joka luo sen piirikaavion
+Page name (default: all pages)	Sivun nimi (oletus: kaikki sivut)
+Page {} is generated and cannot be edited	Sivu {} on luotu automaattisesti, eikä sitä voi muokata
+Page {} is out in subproject {}: insert or discard the subproject first	Sivu {} on irrotettu aliprojektiin {}: lisää aliprojekti ensin takaisin tai hylkää se
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Sivut, joilla on pääte (3.a), pysyvät edellisen sivun alasivuina (oletus true)
+Panel layout checks	Kaappiasennuksen tarkistukset
+Panel manufacturing	Kaappivalmistus
+Paper height in mm (custom paper)	Paperin korkeus millimetreinä (mukautettu paperi)
+Paper width in mm (custom paper)	Paperin leveys millimetreinä (mukautettu paperi)
+Part lifecycle	Osan elinkaari
+Part number of the accessory	Lisävarusteen osanumero
+Part number of the base	Pohjalevyn osanumero
+Part number of the carrier (per metre)	Kannattimen osanumero (metriä kohden)
+Part number of the conductor (per metre)	Johtimen osanumero (metriä kohden)
+Part number of the downstream device	Jälkimmäisen laitteen osanumero
+Part number of the hose / tube / pipe	Letkun / putken / putkiston osanumero
+Part number of the upstream device	Edeltävän laitteen osanumero
+Part number, e.g. GEN.LMP-GN-24	Osanumero, esim. GEN.LMP-GN-24
+Part of the key or name	Osa avaimesta tai nimestä
+Part {} has no function with a symbol	Osalla {} ei ole symbolillista toimintoa
+Parts phased out or discontinued	Poistumassa olevat tai valikoimasta poistuneet osat
+Pass ids or pages	Anna tunnukset tai sivut
+Path function text: function text of the functions in its column that have none	Polun toimintoteksti: sarakkeensa niiden toimintojen toimintoteksti, joilla ei ole omaa
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Paikkamerkkien arvot KEY=arvo; KEY2=arvo (voi käyttää {OPTION})
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Sijoittaa PLC-kortin (I/O-moduuli) asemaan: teline, korttipaikka, aloitusosoitteet ja laitekuvaus; osoittaa sen pisteet uudelleen
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Sijoittaa sillan kohtaan, jossa neljä johdinta kohtaa: liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle, sitten vasemmalle / ylemmälle, sitten oikealle / alemmalle
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Sijoittaa yhteyden määrityspisteen johdolle; yhteys saa sen numeron, värin ja poikkipinta-alan
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Sijoittaa kulman: siinä kaksi johdinta kohtaa suorassa kulmassa, ja sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Sijoittaa suunnatun T-haaran kohtaan, jossa kolme johdinta kohtaa: se määrää laitteen, josta liitoksen kaksi johdinta lähtevät (lähde), ja kohteiden järjestyksen kaavion järjestyksen sijaan
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Sijoittaa suunnatun risteyksen kohtaan, jossa kaksi johdinta risteää: se yhdistää ne, ja linjan kumpikin pää johdotetaan ensin suoraan ja sitten yhteen poikittaiseen haaraan
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Sijoittaa osan sivulle: sen päätoiminnon symbolin liitäntäpisteiden tunnuksineen uutena laitteena, johon osa liitetään (projektin osat ja esimerkkiluettelo)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Sijoittaa symbolin sivulle. Ilman tunnusta käytetään seuraavaa vapaata; apukoskettimet saavat laitteensa seuraavat vapaat kosketinnumerot
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Sijoittaa kotelon (+CAB1), laitteen (-M1) tai koneen sijainnin (+M1) reittiverkon solmuun
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Sijoittaa kotelon tarvikkeen (tuuletin, suodatin, kaapeliläpivienti, valaisin, kahva, PE-kisko) pinnalle
+Places of the group (0 = not limited)	Ryhmän paikat (0 = ei rajoitettu)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Sijoittaa kotelon kaappirivin huoneeseen (kaikkien koteloiden 3D-näkymä); ilman x- ja z-arvoa se sijoitetaan laitoksen sijoituskuvan mukaan tai muiden kaappirivien viereen
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Sijoittaa skeeman ominaisuudet symboleihin; ilman tunnuksia se sijoitetaan uudelleen kaikkiin sitä käyttäviin symboleihin
+Planned part number	Suunniteltu osanumero
+Planned power in kW	Suunniteltu teho kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Suunnittelee kenttäkaapelit reittiverkon kautta: reitit, pituudet, osuuksien täyttöasteet, potentiaalintasauksen liitäntäpisteet ja ongelmat; ottaa valinnaisesti katkaisupituudet käyttöön
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Suunnittelee pinnan työstön: työvaiheet (poraus, kierteitys, jyrsintä, lävistys, nakerrus), työkalut, reitti, aika ja mitä kone ei voi valmistaa
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Laitoksen segmentit suunniteltuine laitteineen ennen piirikaaviota: mallit, tehotase, tila piirikaavioon verrattuna, siirto CSV- / Excel-muodossa
+Plinth height in mm, 0 without plinth	Sokkelin korkeus millimetreinä, 0 ilman sokkelia
+Plot frame (list_frames); empty = the project default	Piirustuskehys (list_frames); tyhjä = projektin oletus
+Plot frames and page templates of the project	Projektin piirustuskehykset ja sivumallit
+Plug tag, e.g. -X10	Pistoliittimen tunnus, esim. -X10
+Plugin id '{}' is not snake_case	Laajennuksen ID '{}' ei ole snake_case-muotoinen
+Plugin {} is loaded twice	Laajennus {} on ladattu kahdesti
+Plugin {} needs a newer OpenECraft (API {})	Laajennus {} vaatii uudemman OpenECraftin (API {})
+Plugin {}: the name '{}' is invalid or already taken	Laajennus {}: nimi '{}' on virheellinen tai jo käytössä
+Plugin {}: {}	Laajennus {}: {}
+Plugs and their pins	Pistoliittimet ja niiden nastat
+Points in between: [[x, y], …]	Välipisteet: [[x, y], …]
+Points in mm: [[x, y], …]	Pisteet millimetreinä: [[x, y], …]
+Port as station:port	Portti muodossa asema:portti
+Port must be given as station:port: {}	Portti on annettava muodossa asema:portti: {}
+Port {} is not connected	Porttia {} ei ole yhdistetty
+Position down in metres	Sijainti alaspäin metreinä
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Neutraaliakselin sijainti (0 … 1, 0: DIN 6935)
+Position right in metres	Sijainti oikealle metreinä
+Position {} / {} mm lies outside the page ({} x {} mm)	Sijainti {} / {} mm on sivun ulkopuolella ({} x {} mm)
+Potential definitions, wire defaults and wire colours	Potentiaalimäärittelyt, johtojen oletukset ja johtojen värit
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Potentiaalilajit, joiden yhteydet eivät saa numeroa, pilkuilla erotettuina (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Potentiaalin nimi, esim. L1 tai +24V
+Potential {} already exists	Potentiaali {} on jo olemassa
+Pre-planning (CSV)	Esisuunnittelu (CSV)
+Pre-planning (Excel)	Esisuunnittelu (Excel)
+Problems	Ongelmat
+Product filter (-)	Tuotesuodatin (-)
+Production status	Tuotannon tila
+Profile name, e.g. SAP	Profiilin nimi, esim. SAP
+Program format: iso, heidenhain, punch or csv	Ohjelmamuoto: iso, heidenhain, punch tai csv
+Programs	Ohjelmat
+Progress (%)	Edistyminen (%)
+Project checks	Projektin tarkistukset
+Project exports	Projektin viennit
+Project languages, dictionary and translations	Projektin kielet, sanasto ja käännökset
+Project reports	Projektin raportit
+Project statistics	Projektin tilastot
+Property and function definitions, property values and placement schemes	Ominaisuus- ja toimintomäärittelyt, ominaisuusarvot ja sijoitteluskeemat
+Property key	Ominaisuusavain
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Ominaisuusavaimet ja arvot, esim. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Lisätään numeroiden eteen, esim. W
+Quantity per end (default 1)	Määrä päätä kohden (oletus 1)
+R/X ratio of the supply impedance	Syöttöimpedanssin R/X-suhde
+Rack number	Telineen numero
+Rail id (action rail)	Kiskon tunniste (toiminto rail)
+Rapid traverse, mm/min	Pikaliike, mm/min
+Rated current of the supply in A (0: not limited)	Syötön mitoitusvirta ampeereina (0: ei rajoitettu)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Syöttävän muuntajan mitoitusteho kVA (0: ei muuntajaa, oikosulkuvirrat on annettu)
+Rear left corner of the line-up in mm, to the right	Kaappirivin vasen takakulma mm, oikealle
+Rear left corner of the line-up in mm, towards the front	Kaappirivin vasen takakulma mm, eteenpäin
+Relative humidity of the ambient air in % (0: no condensation check)	Ympäröivän ilman suhteellinen kosteus % (0: ei kondensaatiotarkistusta)
+Release instead of freeze	Vapauta lukitsemisen sijaan
+Released pages keep their names: {}	Vapautetut sivut säilyttävät nimensä: {}
+Remote I/O: station of the controller	Hajautettu I/O: ohjaimen asema
+Remove the entry of upstream and downstream	Poista arvojen upstream ja downstream merkintä
+Remove the profile	Poista profiili
+Remove the scheme from the project	Poista skeema projektista
+Remove unused definitions (default: false)	Poista käyttämättömät määritykset (oletus: false)
+Removes a copper bar	Poistaa kuparikiskon
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Poistaa solmun (osuuksineen ja sijoituksineen), osuuden, sijoituksen, ääriviivan, potentiaalintasausjohtimen tai tarvikkeen
+Removes a planned device from a segment	Poistaa suunnitellun laitteen segmentistä
+Removes a project function definition; its symbols go back to their built-in one	Poistaa projektin toimintomäärittelyn; sen symbolit palaavat sisäiseen määrittelyynsä
+Removes a project option; its content stays in the project	Poistaa projektivaihtoehdon; sen sisältö jää projektiin
+Removes a report block; the pages it generated stay	Poistaa raporttilohkon; sen luomat sivut jäävät
+Removes a routing path or reservation	Poistaa reitityspolun tai varauksen
+Removes a segment with everything below it	Poistaa segmentin ja kaiken sen alla olevan
+Removes a station; its cards stay unassigned, its bus connections are removed	Poistaa aseman; sen kortit jäävät määrittämättä, sen väyläyhteydet poistetaan
+Removes a user property with all its values and placements	Poistaa käyttäjän ominaisuuden kaikkine arvoineen ja sijoitteluineen
+Removes the bus connection of a port	Poistaa portin väyläyhteyden
+Removes the bus system with its connections	Poistaa väyläjärjestelmän yhteyksineen
+Removes the definition of a structure identifier (pages and devices keep it)	Poistaa rakennetunnuksen määrityksen (sivut ja laitteet säilyttävät sen)
+Removes the machine from the project	Poistaa koneen projektista
+Removes the rule	Poistaa säännön
+Removes the wiring marks of wires that no longer exist	Poistaa johdotusmerkinnät johdoista, joita ei enää ole
+Renames a device with all its functions	Nimeää laitteen uudelleen kaikkine toimintoineen
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Nimeää rakennetunnuksen uudelleen koko projektissa: sivut, laitteet, kaapelit, määritys ja työalueet
+Renames the station	Nimeää aseman uudelleen
+Repair the repairable findings	Korjaa korjattavissa olevat havainnot
+Replacement	Korvaava teksti
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Korvaa tekstiä koko projektin vapaissa teksteissä, toimintoteksteissä sekä sivujen, laitteiden ja kaapelien kuvauksissa; vapautetut sivut säilyvät ennallaan
+Report blocks and report schemes	Raporttilohkot ja raporttimallit
+Reserves space over the mounting plate: kept free of routes, or for one class only	Varaa tilaa asennuslevyn yltä: pidetään vapaana reiteistä tai vain yhdelle luokalle
+Rest (mm)	Jäännös (mm)
+Right side bayed (no side panel)	Oikea puoli rivitetty (ei sivuseinää)
+Room {} exists already	Tila {} on jo olemassa
+Rotation in degrees clockwise: 0, 90, 180 or 270	Kierto asteina myötäpäivään: 0, 90, 180 tai 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Kierto asteina vastapäivään (90 luetaan alhaalta ylöspäin)
+Route the wires in 3D as well (otherwise through the cable ducts)	Reititä myös johdot 3D:nä (muuten johtokourujen kautta)
+Routing rules, paths, reservations, frozen routes and cable shields	Reitityssäännöt, reitit, varaukset, jäädytetyt reititykset ja kaapelien suojavaipat
+Row key (from table_get)	Rivin avain (table_get-komennosta)
+Rows of the pattern	Kuvion rivit
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Standardien sääntökirjastot ja asiakkaiden sääntökokoelmat voimassa olevine raja-arvoineen; ottaa käyttöön, poistaa käytöstä, lisää tai poistaa niitä
+Rule number, from 1	Säännön numero, alkaen 1:stä
+Run the check	Suorita tarkistus
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	Sivujen SVG, HTML, PDF, DXF ja DWG, tuotanto- ja PLC-luettelot, johtosarjojen ja PLC:n siirtotiedostot, kaappiasennus 3D-muodossa ja käännössanasto
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Lisättävä tai korvattava turvatoiminto (nimen mukaan): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Turvatoiminnot (ISO 13849-1) saavutettuine suorituskykytasoineen; lisää, korvaa tai poistaa turvatoiminnon
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Tallentaa sivun (tyyppi, piirustuskehys, nimiö, rakenne, kuvaus, sisältö) sivumallina
+Saves items of an enclosure as a 3D macro of the project	Tallentaa kotelon kohteita projektin 3D-makrona
+Saves the planned devices of a segment as a template	Tallentaa segmentin suunnitellut laitteet mallina
+Saves the properties placed at a symbol as a placement scheme	Tallentaa symboliin sijoitetut ominaisuudet sijoitteluskeemaksi
+Saw cut	Sahausrako
+Second port as station:port	Toinen portti muodossa asema:portti
+Segment path, e.g. Plant/Area 1	Segmentin polku, esim. Plant/Area 1
+Segment {} already exists	Segmentti {} on jo olemassa
+Segments not to use, comma separated	Käyttämättä jätettävät osuudet pilkuilla erotettuina
+Selective up to this short-circuit current in kA (0: not given)	Selektiivinen tähän oikosulkuvirtaan asti kA (0: ei annettu)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Laiteparien selektiivisyys ja varasuojaus valmistajien taulukoista osanumeron mukaan; lisää, korvaa tai poistaa merkinnän
+Separator: semicolon, comma or tab	Erotin: semicolon, comma tai tab
+Sets how cross references are shown (only the given settings) and shows the settings	Määrittää, miten ristiviittaukset näytetään (vain annetut asetukset), ja näyttää asetukset
+Sets how the terminals of a jumper are bridged	Määrittää, miten sillan riviliittimet silloitetaan
+Sets property values of an object; an empty value removes it	Asettaa objektin ominaisuusarvot; tyhjä arvo poistaa sen
+Sets the aspects the pages use	Asettaa sivujen käyttämät aspektit
+Sets the collision class of a panel item (empty: automatic)	Asettaa asennusosan törmäysluokan (tyhjä: automaattinen)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Asettaa niiden letkujen oletusarvot, joilla ei ole omia arvoja, sekä letkunumeroiden etuliitteen
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	Asettaa kahden törmäysluokan välisen etäisyyden tai sallii niiden päällekkäisyyden; korvaa samojen luokkien säännön
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Asettaa kaapelin kenttäreitin määrittelyn: solmut, joiden kautta sen on kuljettava, ja osuudet, joita se ei saa käyttää
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Asettaa kotelon alareunan korkeuden lattiasta (laitteiden, riviliittimien ja käyttöelinten korkeudet tarkistetaan)
+Sets the level (multi-level terminals) or jumper number of a terminal	Asettaa riviliittimen kerroksen (kerrosriviliittimet) tai siltanumeron
+Sets the numbering scheme of the wires (only the given settings) and shows it	Asettaa johtojen numerointiskeeman (vain annetut asetukset) ja näyttää sen
+Sets the plot frame of all pages that do not choose one	Asettaa piirustuskehyksen kaikille sivuille, jotka eivät valitse omaa
+Sets the shield and the outer diameter of a cable	Asettaa kaapelin suojavaipan ja ulkohalkaisijan
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Asettaa projektin tekstien lähdekielen ja kohdekielet (ISO 639-1 -koodit)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Asettaa riman varariviliittimet ja sen, lisätäänkö sen tarvikkeet automaattisesti
+Sets the translation of a line of the project texts (empty removes it)	Asettaa projektin tekstien rivin käännöksen (tyhjä poistaa sen)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Asettaa johtovärin ja poikkipinta-alan verkoille, joilla ei ole määritettyä potentiaalia (tyhjä = ei mitään)
+Share of the capacity kept free in percent	Vapaaksi jätettävä kapasiteetin osuus prosentteina
+Sheets	Arkit
+Shield connected at: both, first, second or none	Suojavaippa kytketty: both, first, second tai none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Oikosulku-, kuorma-, EMC- ja turvallisuuslaskelmat, sääntökokoelmat ja projektin validointi
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Oikosulkuvirrat, katkaisukyvyt, poiskytkentäajat, kaapelien oikosulkukestoisuus ja suojalaitteiden selektiivisyys
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Muuntajaa edeltävän verkon oikosulkuteho MVA (0: ääretön)
+Short-circuit voltage of the transformer in %	Muuntajan oikosulkujännite %
+Shortest path between the hits of a tool	Lyhyin reitti työkalun iskujen välillä
+Shortest rail, duct or busbar	Lyhyin kisko, kouru tai kokoojakisko
+Shortest straight length next to a bend	Lyhyin suora pituus taivutuksen vieressä
+Show as \"Name: value\"	Näytä muodossa \"Nimi: arvo\"
+Show the content	Näytä sisältö
+Shows a property as a text beside a symbol	Näyttää ominaisuuden tekstinä symbolin vieressä
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Näyttää riviliitinriman: riviliittimet riman järjestyksessä kerroksineen, siltoineen ja kohteineen, lohkot kiskolla ja sillat
+Shows or changes the machining strategy and which machine makes which face	Näyttää tai muuttaa työstöstrategian ja sen, mikä kone valmistaa minkin pinnan
+Shows or changes the rules of copper bars; lengths in mm	Näyttää tai muuttaa kuparikiskojen säännöt; pituudet mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Näyttää tai muuttaa kaappiasennuksen tarkistusten säännöt; arvot mm (lämpötila °C)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	Näyttää PLC-laitteistokokoonpanon: asemat telineineen, korttipaikkoineen, moduuleineen ja osoitealueineen, väyläjärjestelmät, porttiyhteydet ja löydetyt ongelmat
+Shows the content of a page: symbols with their connection point positions, wires and texts	Näyttää sivun sisällön: symbolit liitäntäpisteidensä sijainteineen, johdot ja tekstit
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Näyttää projektiin tallennetut muiden järjestelmien tiedot (osalinkit, asiakirjat) ja siirtolokin
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Näyttää liittimen liitinpinnan: osan nastajärjestys, kunkin nastan sijainti (mm, nastapuolelta katsottuna) sekä molempien puolten potentiaali, johtimen väri ja kaapelijohdin
+Shows the options and rules of the configurator	Näyttää konfiguraattorin vaihtoehdot ja säännöt
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Näyttää pistoliittimen nastat pistoliittimen järjestyksessä: mitä on liitetty holkkipuolelle ja nastapuolelle, potentiaali, käyttämättömät nastat
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	Näyttää 3D-reitityksen säännöt ja muuttaa annetut: ruudukko, vapaa etäisyys, vapaan reitityksen kerroin, erottelu, taivutussäteet, katkaisupituudet, varat
+Shows the rules of the field cable planning and changes those given	Näyttää kenttäkaapelisuunnittelun säännöt ja muuttaa annetut
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Näyttää projektin tarkistuksen asetukset: käytöstä poistetut tarkistukset, muutetut ilmoitustasot ja hyväksytyt ilmoitukset
+Side of the plug the cable leaves: socket or pin (default: socket)	Liittimen puoli, josta kaapeli lähtee: socket tai pin (oletus: socket)
+Side the connection comes from: left, right, up or down (default up)	Sivu, jolta liitos tulee: left, right, up tai down (oletus up)
+Single-line diagrams	Yksinapaiset kaaviot
+Single-line pages and their multi-line counterparts	Yksinapaiset sivut ja niiden moninapaiset vastineet
+Slot number	Korttipaikan numero
+Smallest bend radius in mm	Pienin taivutussäde millimetreinä
+Smallest distance in mm	Pienin etäisyys mm
+Smallest distance of holes from the sheet edge	Reikien pienin etäisyys levyn reunasta
+Smallest inner radius as a multiple of the thickness	Pienin sisäsäde paksuuden monikertana
+Smallest web at cutouts	Pienin kannas aukkojen kohdalla
+Smallest web between holes	Pienin kannas reikien välissä
+Spare terminals at the end of the strip	Varariviliittimet riman lopussa
+Springback in percent of the angle	Takaisinjousto prosentteina kulmasta
+Start again on every page whose structure differs from the page before	Aloita alusta jokaisella sivulla, jonka rakenne poikkeaa edellisestä sivusta
+Start and end are the same connection point	Alku ja loppu ovat sama liitäntäpiste
+Start and end point of the line	Viivan alku- ja loppupiste
+Start: device tag and connection point, e.g. -K1:A1	Alku: laitetunnus ja liitäntäpiste, esim. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Tuotantoon luovutettujen töiden tila: edistyminen, virheet, jälkityö, luovutuksen jälkeen muuttuneet ohjelmat
+Station name (empty: unassigned)	Aseman nimi (tyhjä: määrittämätön)
+Station name, e.g. PLC1	Aseman nimi, esim. PLC1
+Station {} exists already	Asema {} on jo olemassa
+Stock bar	Varastotanko
+Stock length of rails, ducts and busbars	Kiskojen, kourujen ja kokoojakiskojen varastopituus
+Stock length of the bars	Kiskojen varastopituus
+Stores the calibrated factors	Tallentaa kalibroidut kertoimet
+Structure identifiers, aspects and work areas	Rakennetunnukset, näkökulmat ja työalueet
+Structure of the target page: different (default), always or never	Kohdesivun rakenne: different (oletus), always tai never
+Subprojects, model options and the project data check	Aliprojektit, mallin vaihtoehdot ja projektitietojen tarkistus
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Syöttö (jännite, maadoitusjärjestelmä, oikosulkuvirrat) ja johtimien asennusolosuhteet; muuttaa annetut arvot
+Switch checks off, change message levels, accept messages as checked	Poista tarkistuksia käytöstä, muuta ilmoitusten tasoja, hyväksy ilmoituksia tarkistetuiksi
+Switches a check on or off (names as shown by list_checks)	Ottaa tarkistuksen käyttöön tai poistaa sen käytöstä (nimet sellaisina kuin list_checks ne näyttää)
+Switches the project options with a condition by the configurator options	Kytkee ehdolliset projektivaihtoehdot konfiguraattorin vaihtoehtojen mukaan
+Symbol id	Symbolin ID
+Symbol ids	Symbolien ID:t
+Symbol key from list_symbols	Symbolin avain list_symbols-luettelosta
+Symbols, wires, texts, cable and connection definitions on schematic pages	Symbolit, johdot, tekstit, kaapeli- ja yhteysmäärittelyt piirikaaviosivuilla
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-haara: rungon suunta; silta: sivu, jolta liitos tulee (left, right, up tai down)
+Tag of the terminal strip, e.g. -X1	Riviliitinriman tunnus, esim. -X1
+Take the cut lengths over as cable lengths	Ota katkaisupituudet käyttöön kaapelien pituuksina
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Ottaa käyttöön kotelovalmistajan konfiguraattorissa konfiguroidun kotelon (JSON): järjestelmä, koko, komponentit, tarvikkeet ja aukot
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Ottaa käyttöön tuotannon palautteen (CSV tai JSON): työ, ohjelma, työvaihe, kohde, tila, poikkeamat, aika, viesti
+Takes pages or page items out of their project option (hidden content is shown again)	Poistaa sivut tai sivun kohteet projektivaihtoehdostaan (piilotettu sisältö näytetään taas)
+Target language code	Kohdekielen koodi
+Target languages separated by commas or blanks, e.g. de, fr	Kohdekielet pilkuilla tai välilyönneillä erotettuina, esim. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Lämpötilan nousu katossa keskikohtaan verrattuna (1 … 2)
+Terminal designation	Riviliittimen nimitys
+Terminal designations in strip order, separated by commas	Riviliittimien nimitykset riman järjestyksessä pilkuilla erotettuina
+Terminal order, levels, jumpers, spare terminals and accessories	Riviliittimien järjestys, kerrokset, sillat, varariviliittimet ja tarvikkeet
+Text height in mm	Tekstin korkeus (mm)
+Text height in mm (default 3.5)	Tekstin korkeus millimetreinä (oletus 3.5)
+Text in id, name or order number	Teksti tunnisteessa, nimessä tai tilausnumerossa
+Text in the key or name	Teksti avaimessa tai nimessä
+Text in the line or a translation	Teksti rivillä tai käännöksessä
+Text to find; empty: fill	Etsittävä teksti; tyhjä: täytä
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Teksti; paikkamerkit, kuten {page} tai {prop:Name}, täytetään piirrettäessä
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Kulman haarat ovat yksi pysty- ja yksi vaakasuunta, esim. down left, ei {}
+The cable definition line crosses no wire	Kaapelimäärittelyviiva ei leikkaa yhtään johdinta
+The cable definition line has no length	Kaapelimäärittelyviivalla ei ole pituutta
+The cable has an overall shield	Kaapelissa on kokonaissuojavaippa
+The classes may overlap (no collision)	Luokat saavat olla päällekkäin (ei törmäystä)
+The configuration (JSON)	Konfiguraatio (JSON)
+The copies would leave the page	Kopiot joutuisivat sivun ulkopuolelle
+The counting step must be at least 1	Laskennan askeleen on oltava vähintään 1
+The devices do not fit onto rail {}	Laitteet eivät mahdu kiskolle {}
+The feedback (CSV with header or JSON)	Palaute (CSV otsikkorivillä tai JSON)
+The first page number must not be negative	Ensimmäinen sivunumero ei saa olla negatiivinen
+The items would leave the page	Kohteet joutuisivat sivun ulkopuolelle
+The length must not be negative	Pituus ei saa olla negatiivinen
+The line of a crossing is vertical or horizontal, not {}	Risteyksen linja on vertical tai horizontal, ei {}
+The message text, kept for the list of accepted messages	Ilmoituksen teksti, säilytetään hyväksyttyjen ilmoitusten luetteloa varten
+The name must not be empty	Nimi ei saa olla tyhjä
+The number of copies must be between 1 and 100	Kopioiden määrän on oltava välillä 1 ja 100
+The plinth height must not be negative	Sokkelin korkeus ei saa olla negatiivinen
+The plot frame {} is in use	Piirustuskehys {} on käytössä
+The plugin program did not answer within {} s and was stopped	Laajennusohjelma ei vastannut {} sekunnissa, ja se pysäytettiin
+The plugin program failed: {}	Laajennusohjelma epäonnistui: {}
+The rotation must be 0, 90, 180 or 270	Kierron on oltava 0, 90, 180 tai 270
+The straight line of a crossing: vertical or horizontal (default vertical)	Risteyksen suora linja: vertical tai horizontal (oletus vertical)
+The text height must be at least 0.5 mm	Tekstin korkeuden on oltava vähintään 0,5 mm
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Kulman kaksi haaraa, pysty ja vaaka, esim. down left (oletus: paikan johtimien mukaan, muuten down right)
+The wire has no length	Yhteydellä ei ole pituutta
+The wrap width must not be negative	Rivityksen leveys ei saa olla negatiivinen
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Asennuslevyn lämpösimulaatio: ilman lämpötilat, kuuma kohta, lämmönlähteet ja lämpötila jokaisen laitteen kohdalla
+Thickest sheet or bar, mm	Paksuin levy tai kisko, mm
+Time per drilling, punching or bending operation, s	Aika poraus-, lävistys- tai taivutustoimenpidettä kohden, s
+Time per tool change, s	Aika työkalunvaihtoa kohden, s
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Työkalut, esim. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	Yläreuna pinnalla millimetreinä
+Top edge on the mounting plate in mm	Yläreuna asennuslevyllä millimetreinä
+Translated line	Käännetty rivi
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Kierto pystyakselin ympäri asteina, ylhäältä katsottuna vastapäivään (90: etupuolet osoittavat oikealle)
+Unit, e.g. kW	Yksikkö, esim. kW
+Unknown accessory kind: {}	Tuntematon tarvikkeen laji: {}
+Unknown action: {}	Tuntematon toiminto: {}
+Unknown address scheme: {}	Tuntematon osoitemalli: {}
+Unknown alignment: {}	Tuntematon tasaus: {}
+Unknown anchor: {}	Tuntematon ankkuri: {}
+Unknown aspect: {}	Tuntematon aspekti: {}
+Unknown bonding kind: {}	Tuntematon potentiaalintasauksen laji: {}
+Unknown bonding point: {}	Tuntematon potentiaalintasauksen liitäntäpiste: {}
+Unknown bus system: {}	Tuntematon väyläjärjestelmä: {}
+Unknown cable: {}	Tuntematon kaapeli: {}
+Unknown check: {}	Tuntematon tarkistus: {}
+Unknown class: {}	Tuntematon luokka: {}
+Unknown data type: {}	Tuntematon tietotyyppi: {}
+Unknown direction {}: left, right, up or down	Tuntematon suunta {}: left, right, up tai down
+Unknown earthing system: {}	Tuntematon maadoitusjärjestelmä: {}
+Unknown face {}	Tuntematon pinta {}
+Unknown fastening: {}	Tuntematon kiinnitys: {}
+Unknown field object: {}	Tuntematon kenttäobjekti: {}
+Unknown field: {}	Tuntematon kenttä: {}
+Unknown group kind: {}	Tuntematon ryhmän laji: {}
+Unknown installation: {}	Tuntematon sijoitus: {}
+Unknown insulation: {}	Tuntematon eristys: {}
+Unknown jumper kind: {}	Tuntematon siltalaji: {}
+Unknown kind: {}	Tuntematon laji: {}
+Unknown labels: {}	Tuntemattomat merkinnät: {}
+Unknown level: {}	Tuntematon taso: {}
+Unknown line type: {}	Tuntematon linjatyyppi: {}
+Unknown machine kind {}	Tuntematon konetyyppi {}
+Unknown marker category: {}	Tuntematon merkintäluokka: {}
+Unknown material: {}	Tuntematon materiaali: {}
+Unknown medium: {}	Tuntematon väliaine: {}
+Unknown method {}	Tuntematon menetelmä {}
+Unknown node: {}	Tuntematon solmu: {}
+Unknown numbering scheme: {}	Tuntematon numerointiskeema: {}
+Unknown object class: {}	Tuntematon objektiluokka: {}
+Unknown order: {}	Tuntematon järjestys: {}
+Unknown paper format: {}	Tuntematon paperikoko: {}
+Unknown path kind: {}	Tuntematon polun laji: {}
+Unknown placeholder {}: possible are {}	Tuntematon paikkamerkki {}: mahdollisia ovat {}
+Unknown potential kind: {}	Tuntematon potentiaalin laji: {}
+Unknown preset: {}	Tuntematon esiasetus: {}
+Unknown program format {}	Tuntematon ohjelmamuoto {}
+Unknown report: {}	Tuntematon raportti: {}
+Unknown segment kind: {}	Tuntematon osuuden laji: {}
+Unknown segment: {}	Tuntematon osuus: {}
+Unknown separator: {}	Tuntematon erotin: {}
+Unknown setting: {}	Tuntematon asetus: {}
+Unknown shield ends: {}	Tuntemattomat suojavaipan päät: {}
+Unknown side {} (socket or pin)	Tuntematon puoli {} (socket tai pin)
+Unknown state: {}	Tuntematon tila: {}
+Unknown station kind: {}	Tuntematon asematyyppi: {}
+Unknown symbol: {}	Tuntematon symboli: {}
+Unknown table: {}	Tuntematon taulukko: {}
+Unknown vertical anchor: {}	Tuntematon pystyankkuri: {}
+Unknown wire colour {} (IEC 60757: {})	Tuntematon johtoväri {} (IEC 60757: {})
+Use this scheme for the marking export	Käytä tätä skeemaa merkintöjen viennissä
+Used (mm)	Käytetty (mm)
+Value while none is set	Arvo, kun mitään ei ole asetettu
+Values of a selection list separated by commas	Valintaluettelon arvot pilkuilla erotettuina
+Variant (empty: the first)	Muunnelma (tyhjä: ensimmäinen)
+Variant {} is not one of 1 to 2	Variantti {} ei ole 1–2
+Variant {} is not one of 1 to 4	Variantti {} ei ole 1–4
+Verifies the project against the enabled rule libraries and customer rule sets	Validoi projektin käytössä olevia sääntökirjastoja ja asiakkaiden sääntökokoelmia vasten
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Validoi projektitiedot (tunnukset, viittaukset, vaihtoehdot, aliprojektit) ja suorittaa tarkistukset; korjaa valinnaisesti korjattavissa olevat
+Vertical pitch of the pattern in mm	Kuvion pystyjako millimetreinä
+Voltage, e.g. 400 V AC	Jännite, esim. 400 V AC
+What it is: motor, valve, sensor, …	Mikä se on: moottori, venttiili, anturi, …
+Which line the position is on: top (first), middle or bottom (last)	Millä rivillä sijainti on: top (ensimmäinen), middle tai bottom (viimeinen)
+Who accepted it	Kuka sen hyväksyi
+Whole words only	Vain kokonaiset sanat
+Why the message is accepted	Miksi ilmoitus on hyväksytty
+Width in mm	Leveys millimetreinä
+Width of the path in mm (default 50)	Polun leveys millimetreinä (oletus 50)
+Width, depth and height of a room are at least {} mm	Tilan leveys, syvyys ja korkeus ovat vähintään {} mm
+Width, height and depth of an enclosure are at least {} mm	Kotelon leveys, korkeus ja syvyys ovat vähintään {} mm
+Wire colour (IEC 60757), e.g. BK	Johtoväri (IEC 60757), esim. BK
+Wire colour, e.g. BU	Johtoväri, esim. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Johtoväri, esim. BU (tyhjä = potentiaalin määrityksestä)
+Wire number (kept when renumbering)	Johtonumero (säilyy uudelleennumeroinnissa)
+Wire numbering and wiring marks	Johtojen numerointi ja johdotusmerkinnät
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Suojalaitteelleen liian ohuet johdot ja kaapelien jännitteenalenema (IEC 60204-1)
+Working area in x, mm	Työalue x-suunnassa, mm
+Working area in y, mm	Työalue y-suunnassa, mm
+Wrap width in mm (0: no wrapping)	Rivitysleveys mm (0: ei rivitystä)
+X position in mm	X-sijainti millimetreinä
+Y position in mm (downwards)	Y-sijainti millimetreinä (alaspäin)
+any, wires, cables or tubes	any, wires, cables tai tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip tai adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam tai product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi tai other
+copper or aluminium	copper tai aluminium
+device (default), position, cross_section or number	device (oletus), position, cross_section tai number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages tai parts
+error, warning, info, off, or default to take the change back	error, warning, info, off tai default muutoksen perumiseksi
+false takes the acceptance back (default true)	false peruu hyväksynnän (oletus true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted tai middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) tai product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker tai other
+hose, tube or pipe	hose, tube tai pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (koneet, vaiheet BK) tai iec60445 (vaiheet BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (oletus), power, control, signal tai fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal tai other
+left, center, right, top, middle or bottom	left, center, right, top, middle tai bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail tai pattern
+main (default), supplementary or functional	main (oletus), supplementary tai functional
+mounted, problem or open	mounted, problem tai open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond tai accessory
+numbers or letters	numbers tai letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof tai bottom
+plug_in, saddle or wire	plug_in, saddle tai wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp tai canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc tai cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable tai part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<nimi>, device:<tunnus>, function:<symbolin ID>, cable:<tunnus> tai part:<numero>
+pvc or xlpe	pvc tai xlpe
+sequential, page_column, potential or format	sequential, page_column, potential tai format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium tai plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date tai link (oletus text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt tai it
+too long	liian pitkä
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (oletus), ladder, trunking, conduit, drag_chain, buried tai free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit tai other
+wired, problem or open	wired, problem tai open
+{} and {} are both ends of one function: the wire would short-circuit it	{} ja {} ovat saman toiminnon molemmat päät: johdin oikosulkisi sen
+{} and {} are needed together	{} ja {} tarvitaan yhdessä
+{} cannot be bayed to itself	Kohdetta {} ei voi rivittää itseensä
+{} cannot be mounted on the {}	Kohdetta {} ei voi asentaa pintaan {}
+{} exists already: pass merge to make both one identifier	{} on jo olemassa: yhdistä molemmat yhdeksi tunnukseksi antamalla merge
+{} has no enclosure bayed to its right side	Kohteen {} oikealle puolelle ei ole rivitetty koteloa
+{} has no enclosure system; give one	Kohteella {} ei ole kotelojärjestelmää; anna sellainen
+{} is a built-in frame; give the frame a new name	{} on sisäinen kehys; anna kehykselle uusi nimi
+{} is a room already	{} on jo tila
+{} is ambiguous: use #id:pin	{} on moniselitteinen: käytä muotoa #id:pin
+{} is an enclosure already	{} on jo kotelo
+{} is not a connection point (TAG:PIN)	{} ei ole liitäntäpiste (TUNNUS:NASTA)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} ei ole check-komennon näyttämä ilmoituskoodi (esim. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{} ei ole check-komennon näyttämä ilmoituksen sormenjälki (code:hash:item)
+{} is not defined	{} ei ole määritetty
+{} is not in that section	{} ei ole siinä osiossa
+{} is the source language	{} on lähdekieli
+{} must be at least {}	{} on oltava vähintään {}
+{} must be between {} and {}	{} on oltava välillä {} ja {}
+{} must not be negative	{} ei saa olla negatiivinen
+{} of job {} changed since the hand-off	Työn {1} {0} on muuttunut luovutuksen jälkeen
+{} segments need {} bends	{} osuutta tarvitsee {} taivutusta
+{} would stand outside the room {}	{} jäisi tilan {} ulkopuolelle
+{}: part {} is being phased out	{}: osa {} on poistumassa
+{}: part {} is being phased out, successor {}	{}: osa {} on poistumassa, seuraaja {}
+{}: part {} is discontinued	{}: osa {} on poistunut valikoimasta
+{}: part {} is discontinued, successor {}	{}: osa {} on poistunut valikoimasta, seuraaja {}
+{}: the program to run is missing	{}: suoritettava ohjelma puuttuu

@@ -1,0 +1,286 @@
+# English<TAB>Română – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(doar serverul MCP)
+(optional)	(opțional)
+Access token for changes	Token de acces pentru modificări
+Access token of a Vault session or an Autodesk account instead of user and password	Tokenul de acces al unei sesiuni Vault sau al unui cont Autodesk în locul utilizatorului și parolei
+Address of the Vault server, e.g. https://vault.example.com	Adresa serverului Vault, de ex. https://vault.example.com
+Adds a page	Adaugă o pagină
+Adds the definitions and schemes of a property library file to the project	Adaugă în proiect definițiile și schemele unui fișier de bibliotecă de proprietăți
+All project files of a folder	Toate fișierele de proiect ale unui folder
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Returnează și fațetele: valorile grupelor, producătorilor, cataloagelor, ciclului de viață și datelor tehnice cu numărul lor
+Also save the project in this local file	Salvează proiectul și în acest fișier local
+Also take over values changed on both sides since the last export	Preia și valorile modificate pe ambele părți de la ultimul export
+Also verify each project (slower)	Validează și fiecare proiect (mai lent)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Aplică un CSV exportat cu table_get (și modificat într-o foaie de calcul): se setează celulele modificate
+Applies a structure template: the aspects of the pages and its identifiers	Aplică un șablon de structură: aspectele paginilor și identificatorii săi
+Archive file (.oecz)	Fișier arhivă (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Atribuie un articol unui dispozitiv (din proiect, din catalogul integrat sau de pe serverul de articole)
+Author of comments without one (default: the user name)	Autorul comentariilor fără autor (implicit: numele de utilizator)
+AutomationML content instead of a file	Conținut AutomationML în locul unui fișier
+AutomationML file	Fișier AutomationML
+CSV content instead of a file	Conținut CSV în locul unui fișier
+CSV file	Fișier CSV
+CSV or Excel file	Fișier CSV sau Excel
+CSV or JSON file	Fișier CSV sau JSON
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	Fișier CSV, JSON, BMEcat, XML EPLAN sau EDZ
+Cannot write {}: {}	{} nu poate fi scris: {}
+Catalog data; without id it is derived from the name	Date de catalog; fără ID, acesta este derivat din nume
+Changes project properties	Modifică proprietățile proiectului
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Modifică proprietățile de proiect în mai multe fișiere de proiect simultan (câmpurile name, description, company, creator, date, revision sau proprietăți de proiect)
+Changes the number of a part on the parts server	Modifică numărul unui articol pe serverul de articole
+Check scheme file (JSON)	Fișier de schemă de verificare (JSON)
+Check-in comment	Comentariu de check-in
+Checks the project (errors, warnings, hints)	Verifică proiectul (erori, avertismente, indicații)
+Column mapping {field code: column name} (added to the profile's)	Maparea coloanelor {cod câmp: nume coloană} (adăugată la cea a profilului)
+Comment stored in the archive	Comentariu stocat în arhivă
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Compară articolele proiectului cu serverul de articole: versiuni mai noi, articole în curs de retragere, scoase din fabricație și eliminate
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Export de conector în schimb: erp, pdm, plm, ecad, mcad, procurement, wiring_machine sau exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Se conectează la Autodesk Vault (Vault Data API, Vault Professional 2025.2 sau mai nou): se autentifică cu un cont Vault sau folosește un token de acces și afișează conexiunea
+Converts a project file or archive of an older version to the current file format	Convertește un fișier de proiect sau o arhivă dintr-o versiune mai veche în formatul de fișier curent
+Creates a new project (optionally the demo project) and saves it if a path is given	Creează un proiect nou (opțional proiectul demonstrativ) și îl salvează dacă se indică o cale
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Creează sau modifică un catalog pe serverul de articole (ID, nume, producător, versiune, descriere)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Creează sau modifică un bloc de raport (pagini de raport generate împreună, de ex. o schemă de borne pentru fiecare șir)
+Creates or changes a user of the parts server (administrators only)	Creează sau modifică un utilizator al serverului de articole (numai administratori)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Creează sau înlocuiește un articol pe serverul de articole (același JSON ca parts_get; câmpurile lipsă sunt goale)
+Creates or replaces a report scheme	Creează sau înlocuiește o schemă de raport
+Creator	Creator
+DWG file	Fișier DWG
+DXF file	Fișier DXF
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro sau Other (implicit: după numele fișierului)
+Date for the exchange log	Data pentru jurnalul de schimb
+Defines, changes or deletes a role of the parts server (administrators only)	Definește, modifică sau șterge un rol al serverului de articole (numai administratori)
+Delete the role	Ștergerea rolului
+Deletes a catalog without parts from the parts server	Șterge de pe serverul de articole un catalog fără articole
+Deletes a part from the parts server	Șterge un articol de pe serverul de articole
+Deletes a user of the parts server (administrators only)	Șterge un utilizator al serverului de articole (numai administratori)
+Descending order	Ordine descrescătoare
+Discard unsaved changes of the open project	Renunță la modificările nesalvate ale proiectului deschis
+Downloads a file of a part from the parts server	Descarcă un fișier al unui articol de pe serverul de articole
+Downloads a file version from the vault	Descarcă o versiune de fișier din vault
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Încorporează un fișier (PDF, document Office, imagine …) ca pagină de document; exportul PDF îl atașează paginii
+Error: {}	Eroare: {}
+Export name as shown by list_exports	Numele exportului, așa cum este afișat de list_exports
+Export name as shown by list_exports, e.g. pdf or step	Numele exportului, așa cum este afișat de list_exports, de ex. pdf sau step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Exportă toate articolele serverului de articole ca CSV sau XML de articole EPLAN
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Exportă proiectul pentru un alt sistem cu un conector sau ca fișier de schimb neutru (conectorul exchange); importurile ulterioare ale acelui conector detectează conflictele față de acest export
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Exportă proiectul într-un format din list_exports; formatele binare (dwg, jt) necesită un fișier de ieșire
+Field or property whose value is searched ('*' for all)	Câmpul sau proprietatea a cărei valoare este căutată ('*' pentru toate)
+File content instead of a file	Conținutul fișierului în locul unui fișier
+File id (see the attachments of parts_get)	ID fișier (vezi attachments din parts_get)
+File name in the vault	Numele fișierului în vault
+File to embed	Fișier de încorporat
+File to save the project to (.oec)	Fișierul în care se salvează proiectul (.oec)
+File to upload	Fișierul de încărcat
+File to write	Fișierul de scris
+File to write (xlsx)	Fișierul de scris (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Găsește proiecte în baza de date de proiecte sau într-un folder: termeni separați prin ';', fiecare cheie=valoare, cheie~text sau text simplu
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Găsește elementele Vault ale articolelor proiectului (după numărul elementului sau proprietatea Part Number) și listează modificările ID-ului de articol, reviziei și stării ciclului de viață; cu apply sunt preluate
+Folder id (default root)	ID folder (implicit root)
+Folder with project files	Folder cu fișiere de proiect
+Folder with project files (instead of a database; default: the current folder)	Folder cu fișiere de proiect (în locul unei baze de date; implicit: folderul curent)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Formular: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (scheme de borne și de cabluri ca desene)
+Function (=) of the generated pages	Funcția (=) paginilor generate
+Further parameters of the export as name=value, separated by commas	Alți parametri ai exportului ca nume=valoare, separați prin virgule
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Alți parametri ai exportului ca nume=valoare, separați prin virgulă (vezi list_exports), de ex. harness=-WH1
+GSDML or ESI file	Fișier GSDML sau ESI
+Generates a report as table	Generează un raport sub formă de tabel
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Generează o pagină de schemă pentru fiecare dispozitiv planificat care are un macro de pagină și nu este încă în schemă
+Generates the pages of the report blocks again (replacing the pages they generated before)	Generează din nou paginile blocurilor de raport (înlocuind paginile generate anterior de acestea)
+Give either template or path	Indicați fie template, fie path
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Acordă unui utilizator sau grup un rol pentru un producător (domeniu) al serverului de articole, cu deny îi retrage drepturile, cu revoke elimină atribuiri (numai administratori)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Grupe de generat, caractere joker permise (-X*, -W1); gol: toate
+Id of a file (file_id of vault_browse) that gets a new version	ID-ul unui fișier (file_id din vault_browse) care primește o versiune nouă
+Id of the file version (version_id of vault_browse)	ID-ul versiunii de fișier (version_id din vault_browse)
+Id of the knowledge vault (taken from the session if not given)	ID-ul seifului de cunoștințe (preluat din sesiune dacă nu este indicat)
+Id of the plugin to disable	ID-ul pluginului de dezactivat
+Id of the plugin to enable	ID-ul pluginului de activat
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Importă un desen DWG (AutoCAD R12 … 2018) ca grafică (linii, arce, texte, blocuri) pe o pagină de schemă nouă
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Importă un desen DXF ca grafică (linii, arce, texte, blocuri) pe o pagină de schemă nouă
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	Importă o configurație hardware PLC din AutomationML (de ex. exportată din TIA Portal): stații, module, adrese, subrețele, conexiuni de porturi și comentarii ale variabilelor
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Importă un fișier de articole în serverul de articole; imaginile și macro-urile unui fișier EDZ se stochează împreună cu articolele lor
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Importă descrieri de dispozitiv dintr-un fișier GSDML (PROFINET) sau ESI (EtherCAT) în proiect
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Importă segmente de preplanificare și dispozitive planificate din CSV sau Excel (coloanele Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Importă comentariile făcute de un examinator într-un export PDF al proiectului (note, casete de text, evidențieri, forme, răspunsuri) în stratul de examinare; comentariile importate anterior sunt omise
+Insert after this page (default: at the end)	Inserare după această pagină (implicit: la sfârșit)
+Inserts an edited subproject: its pages replace the pages taken out	Inserează un subproiect editat: paginile sale înlocuiesc paginile extrase
+Invalid form: {}	Formular nevalid: {}
+Keep the file checked out after the check-in	Păstrarea fișierului în check-out după check-in
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Tipul serverului: OpenECraft (server de articole) sau Eplan (EPLAN Data Portal: numai căutare și citire, tokenul este tokenul de acces personal al contului EPLAN)
+Language of the export (a project language)	Limba exportului (o limbă a proiectului)
+Language of the project texts and reports (a project language, default the source language)	Limba textelor și rapoartelor proiectului (o limbă a proiectului, implicit limba sursă)
+Library file	Fișier bibliotecă
+Lifecycle: Active, PhaseOut or Discontinued	Ciclu de viață: Active, PhaseOut sau Discontinued
+Lists the built-in structure templates	Listează șabloanele de structură integrate
+Lists the catalogs of the parts server with their number of parts	Listează cataloagele serverului de articole cu numărul lor de articole
+Lists the checks of the project check (built-in and of plugins) and whether they run	Listează verificările din verificarea proiectului (integrate și ale pluginurilor) și dacă rulează
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Listează conectorii stratului de integrare (ERP, PDM, PLM, ECAD, MCAD, achiziții, automat de prelucrare a conductoarelor) cu câmpurile pe care le schimbă, precum și profilurile proiectului
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Listează sistemele de carcase cu dimensiunile standard, grosimea peretelui, soclul și dacă pot fi alăturate
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Listează proiectele exemplu, de la un prim circuit la o instalație întreagă, cu funcțiile pe care le arată fiecare
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Listează exporturile (integrate și ale pluginurilor): numele pentru export, titlul, extensia de fișier și parametrii
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Listează folderele și fișierele unui folder Vault sau caută în proprietățile fișierelor de sub acesta (sau în întregul vault)
+Lists the reports (built-in and of plugins): name for report and title	Listează rapoartele (integrate și ale pluginurilor): numele pentru report și titlul
+Lists the users of the parts server (administrators only)	Listează utilizatorii serverului de articole (numai administratori)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Pluginuri încărcate (integrate și din folderele de pluginuri din --plugins / OPENECRAFT_PLUGINS) cu comenzile, verificările, rapoartele și exporturile lor; activează sau dezactivează unul pentru această sesiune
+Local file to put into the vault	Fișierul local de plasat în vault
+Local groups of the user, separated by commas	Grupurile locale ale utilizatorului, separate prin virgule
+Location (+) of the generated pages	Locul de montare (+) al paginilor generate
+Macro library file (JSON, exported by the editor)	Fișier de bibliotecă de macro-uri (JSON, exportat de editor)
+Manufacturer (wildcards); default * (everything)	Producător (metacaractere); implicit * (tot)
+Manufacturer whose parts a manufacturer user maintains	Producătorul ale cărui articole sunt întreținute de un utilizator producător
+Maximum number of hits (default 50)	Număr maxim de rezultate (implicit 50)
+Name of a built-in template (list_structure_templates)	Numele unui șablon integrat (list_structure_templates)
+Name of the knowledge vault (default Vault)	Numele seifului de cunoștințe (implicit Vault)
+New file name (save as)	Nume de fișier nou (salvare ca)
+New pages for every value of the group column (default true)	Pagini noi pentru fiecare valoare a coloanei de grupare (implicit true)
+New part number	Număr de articol nou
+New report block {} needs a kind	Blocul de raport nou {} necesită un tip (kind)
+No grant of {} found	Nu s-a găsit nicio atribuire pentru {}
+No profile named {}	Niciun profil cu numele {}
+No project is open: use open_project or new_project first	Niciun proiect deschis: folosiți mai întâi open_project sau new_project
+No role {} defined	Nu este definit niciun rol {}
+Not a valid catalog: {}	Nu este un catalog valid: {}
+Not a valid part: {}	Nu este un articol valid: {}
+Not connected to a vault: use vault_connect first	Nu există conexiune la un vault: folosiți mai întâi vault_connect
+Nothing to change: pass set, remove, replace or rename	Nimic de modificat: indicați set, remove, replace sau rename
+Number of hits to skip	Număr de rezultate de omis
+Only show the changes, write nothing	Numai afișează modificările, nu scrie nimic
+Only the pages of this report block; default all report pages	Doar paginile acestui bloc de raport; implicit toate paginile de raport
+Only the projects that match these search terms	Numai proiectele care corespund acestor termeni de căutare
+Only this block	Doar acest bloc
+Opens a project file or archive (files of older versions are converted)	Deschide un fișier de proiect sau o arhivă (fișierele versiunilor mai vechi sunt convertite)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Deschide un fișier de proiect sau o arhivă din vault; vault_upload fără țintă înregistrează (check-in) o versiune nouă a acestuia
+Option {} needs the form name=value	Opțiunea {} necesită forma nume=valoare
+Order: Number, Manufacturer, Description, Price or Modified	Ordine: Number, Manufacturer, Description, Price sau Modified
+Output file	Fișier de ieșire
+Output file (JSON)	Fișier de ieșire (JSON)
+Output file; without it the content is returned	Fișier de ieșire; fără el, conținutul este returnat
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Transmite paginile de raport ca pagini fixe într-un alt fișier de proiect; paginile transmise anterior din acest proiect sunt înlocuite
+PDF file with comments	Fișier PDF cu comentarii
+Page (svg: required, dxf, dwg: default all pages)	Pagină (svg: obligatoriu, dxf, dwg: implicit toate paginile)
+Page name (default: next number)	Nume pagină (implicit: următorul număr)
+Page of the export	Pagina exportului
+Page template (list_page_templates) instead of kind	Șablon de pagină (list_page_templates) în locul lui kind
+Page {} has no embedded document	Pagina {} nu are document încorporat
+Pages whose structure starts with this, e.g. =A1+CAB1	Paginile a căror structură începe cu aceasta, de ex. =A1+CAB1
+Part number to add	Numărul articolului de adăugat
+Part number to remove	Numărul articolului de eliminat
+Part {} has no version {}	Articolul {} nu are versiunea {}
+Pass files or a folder	Indicați fișiere sau un folder
+Password (needed for new users; empty keeps the current one)	Parolă (necesară pentru utilizatorii noi; goală păstrează parola actuală)
+Password of the Vault user	Parola utilizatorului Vault
+Password of the user	Parola utilizatorului
+Plot frame (list_frames); default: the project's	Chenar (list_frames); implicit: cel al proiectului
+Product top group: Electrical, Fluid, Mechanics or Process	Grupă principală de produse: Electrical, Fluid, Mechanics sau Process
+Profile whose column mapping is used	Profilul a cărui mapare a coloanelor este folosită
+Project database file (JSON)	Fișierul bazei de date de proiecte (JSON)
+Project database file (JSON) to update	Fișierul bazei de date de proiecte (JSON) de actualizat
+Project file (.oec) or archive (.oecz)	Fișier de proiect (.oec) sau arhivă (.oecz)
+Project file that gets the pages	Fișierul de proiect care primește paginile
+Project file to write (default: the file itself; archives: next to it as .oec)	Fișierul de proiect de scris (implicit: fișierul însuși; arhive: alături, ca .oec)
+Project files, separated by ';'	Fișiere de proiect, separate prin ';'
+Properties to remove, separated by ','	Proprietăți de eliminat, separate prin ','
+Properties to rename (old name: new name)	Proprietăți de redenumit (nume vechi: nume nou)
+Property {} needs a text or a number	Proprietatea {} necesită un text sau un număr
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Plasează în vault proiectul, un export, un export de conector sau un fișier local; un fișier cu același nume din folder primește o versiune nouă (check-out și check-in), altfel fișierul este adăugat
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor sau Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Citește un fișier al unui alt sistem (CSV sau JSON) cu un conector și listează modificările; cu apply sunt preluate (conflictele numai cu overwrite)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Citește fișierele de proiect și arhivele unui folder (și ale subfolderelor sale) în baza de date de proiecte
+Reads translations from CSV: first column the source line, one column per language code	Citește traduceri din CSV: prima coloană este rândul sursă, câte o coloană pentru fiecare cod de limbă
+Redoes the last undone change	Reface ultima modificare anulată
+Remove the grants of the user or group (only of this role and scope, if given)	Eliminarea atribuirilor utilizatorului sau grupului (numai pentru acest rol și domeniu, dacă sunt indicate)
+Remove the parts assigned so far	Eliminare articole atribuite până acum
+Removes a file from a part on the parts server	Elimină un fișier al unui articol de pe serverul de articole
+Replace the file at path if it exists	Înlocuiește fișierul din path dacă există
+Replace the project parts by their newer server versions	Înlocuirea articolelor proiectului cu versiunile lor mai noi de pe server
+Replacement text	Text de înlocuire
+Replaces the content of the macro boxes whose macro changed in a macro library file	Înlocuiește conținutul casetelor macro al căror macro s-a modificat într-un fișier de bibliotecă de macro-uri
+Replaces the pages generated before by the page macros of the rules whose condition holds	Înlocuiește paginile generate anterior cu macro-urile de pagină ale regulilor a căror condiție este îndeplinită
+Report name as shown by list_reports	Numele raportului, așa cum este afișat de list_reports
+Report scheme: its filter, sort order and columns	Schemă de raport: filtrul, ordinea de sortare și coloanele sale
+Report scheme; empty: the form of the report	Schemă de raport; gol: formularul raportului
+Report the scheme belongs to	Raportul căruia îi aparține schema
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Raport, de ex. terminal_diagram, terminal_lineup, cable_connections (obligatoriu pentru un bloc nou)
+Return all part data instead of a summary	Returnează toate datele articolului în locul unui rezumat
+Revision of the change; returns the part as it was	Revizia modificării; returnează articolul așa cum era atunci
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Drepturi separate prin virgule: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Nume rol
+Role of requests without sign-in; none: sign-in needed for reading	Rolul cererilor fără conectare; none: citirea necesită conectare
+Role: reader, manufacturer, editor, admin or a defined role	Rol: reader, manufacturer, editor, admin sau un rol definit
+Saves the project to its file or to a new path	Salvează proiectul în fișierul său sau într-o cale nouă
+Scale drawings down that do not fit on the page (default: true)	Micșorează desenele care nu încap pe pagină (implicit: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Termeni de căutare, de ex. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Caută elementele din vault (număr, titlu, revizie, stare ciclu de viață, număr de articol)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Caută articole pe serverul de articole (portal de date) după text, grupe, catalog, ciclu de viață și date tehnice
+Segment path (default: all segments)	Calea segmentului (implicit: toate segmentele)
+Server URL, e.g. http://127.0.0.1:8090	URL server, de ex. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Setează serverul de articole (URL și token de acces sau utilizator și parolă) și afișează starea acestuia
+Settings scheme file (JSON)	Fișier de schemă de setări (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Afișează un tabel (dispozitive, conexiuni, borne, cabluri, conectori, PLC, pagini sau articole) cu rândurile lui; cheia unui rând servește la modificarea lui
+Shows all data of a part	Afișează toate datele unui articol
+Shows the changes of a part on the parts server, or the part as of one change	Afișează modificările unui articol pe serverul de articole sau articolul în starea de la o modificare
+Shows the favorites of the signed in user, optionally adding or removing a part	Afișează favoritele utilizatorului conectat, cu opțiunea de a adăuga sau elimina un articol
+Shows the manifest of a project archive	Afișează manifestul unei arhive de proiect
+Shows the project properties, file, number of pages and devices and the check result	Afișează proprietățile proiectului, fișierul, numărul de pagini și de dispozitive și rezultatul verificării
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Afișează rolurile, atribuirile și serviciile de director ale serverului de articole și, opțional, setează rolul cererilor anonime (numai administratori)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Pornire de la un șablon de proiect: unul integrat (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) sau un fișier de proiect
+Start from an example project (names: list_examples)	Pornește de la un proiect exemplu (nume: list_examples)
+Start from the demo project	Pornire de la proiectul demonstrativ
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Stochează un fișier (fișă tehnică, imagine, model, macro …) împreună cu un articol pe serverul de articole
+Subproject file (.oec)	Fișier de subproiect (.oec)
+Subproject file to write (.oec)	Fișierul de subproiect de scris (.oec)
+Take the changes over (otherwise only a preview)	Preluarea modificărilor (altfel doar previzualizare)
+Take the rights of the role away instead	Retragerea drepturilor rolului în schimb
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Extrage pagini ca fișier de subproiect; acestea rămân blocate aici până când subproiectul este inserat din nou
+Takes the checks switched off and the message levels of a check scheme file	Preia verificările dezactivate și nivelurile de mesaj dintr-un fișier de schemă de verificare
+Takes the settings a settings scheme file carries	Preia setările conținute într-un fișier de schemă de setări
+Target folder id (root for the top folder); default the folder the project was opened from	ID-ul folderului țintă (root pentru folderul de nivel superior); implicit folderul din care a fost deschis proiectul
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Date tehnice care trebuie să corespundă, de ex. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Fișier de șablon scris de export_structure_template
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Text în număr, tip, producător, descriere, grupe sau catalog; fiecare cuvânt trebuie să apară
+Text to replace	Text de înlocuit
+Text to search for	Text de căutat
+The catalog needs a name	Catalogul necesită un nume
+The format xlsx needs a path	Formatul xlsx necesită o cale
+The open project has unsaved changes: save it first or pass discard	Proiectul deschis are modificări nesalvate: salvați-l mai întâi sau transmiteți discard
+The part number must not be empty	Numărul de articol nu poate fi gol
+The project has no file yet: pass a path	Proiectul nu are încă un fișier: indicați o cale
+This command needs a project: --project <file>	Această comandă necesită un proiect: --project <fișier>
+This format needs an output file (path)	Acest format necesită un fișier de ieșire (path)
+Undoes the last change	Anulează ultima modificare
+Unexpected argument: {}	Argument neașteptat: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Comandă necunoscută: {}. Rulați openecraft-cli help pentru o listă.
+Unknown example {}: see list_examples	Exemplu necunoscut {}: vezi list_examples
+Unknown language: {}	Limbă necunoscută: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Tip de pagină necunoscut: {} (schematic, overview, graphic, cover sau un raport din list_reports)
+Unknown part {} (parts server: {})	Articol necunoscut {} (server de articole: {})
+Unknown plugin: {}	Plugin necunoscut: {}
+Unknown report scheme: {}	Schemă de raport necunoscută: {}
+Unknown structure template: {}	Șablon de structură necunoscut: {}
+Unknown template {}: give a built-in one ({}) or a project file	Șablon necunoscut {}: indicați unul integrat ({}) sau un fișier de proiect
+Unknown {}: {} (possible: {})	{} necunoscut: {} (posibil: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Utilizare: openecraft-cli [--project <fișier>] [--server <url>] [--token <token>] [--lang <cod>] [--plugins <folder>] <comandă> [--<parametru> <valoare>]…\n\nopenecraft-cli mcp        rulează un server Model Context Protocol pe stdin / stdout\nopenecraft-cli <comandă> --help   afișează parametrii unei comenzi\n\nComenzi:\n
+User defined properties (name: value; an empty value removes it)	Proprietăți definite de utilizator (nume: valoare; o valoare goală o elimină)
+User name to sign in with	Numele de utilizator pentru conectare
+User or group name (wildcards; directory groups as directory:group)	Nume de utilizator sau de grup (metacaractere; grupurile unui serviciu de director ca director:grup)
+Values to set (name: value; an empty value removes a property)	Valori de setat (nume: valoare; o valoare goală elimină o proprietate)
+Vault user name (signs in)	Nume de utilizator Vault (pentru conectare)
+Write the table as CSV to this file	Scriere tabel ca CSV în acest fișier
+Writes the check scheme of the project (checks switched off, message levels) to a file	Scrie schema de verificare a proiectului (verificări dezactivate, niveluri de mesaj) într-un fișier
+Writes the embedded file of a document page	Scrie fișierul încorporat al unei pagini de document
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Scrie proiectul într-o arhivă (.oecz: proiect, manifest, fișiere încorporate, opțional un PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Scrie definițiile de proprietăți, definițiile de funcție și schemele proiectului ca fișier bibliotecă
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Scrie setările proiectului (numerotarea conductoarelor, potențiale, valori implicite și culori ale conductoarelor, marcare, valori implicite ale furtunurilor, referințe încrucișate, schemă de verificare) într-un fișier
+Writes the structure management (aspects, identifiers, work areas) as a template file	Scrie gestionarea structurii (aspecte, identificatori, zone de lucru) ca fișier de șablon
+csv (default) or eplan_xml	csv (implicit) sau eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement sau wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine sau exchange
+json (default), csv or xlsx (Excel, needs path)	json (implicit), csv sau xlsx (Excel, necesită path)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nPornește un server Model Context Protocol pe stdin / stdout: instrumentele acestei liste pentru agenți AI, cu proiectul păstrat în memorie (save_project îl scrie, undo / redo anulează apeluri individuale). OPENECRAFT_MCP_TOOLS limitează instrumentele oferite.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nAfișează versiunea liniei de comandă (și --version sau -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover sau un raport: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo și redo funcționează doar într-o sesiune MCP: linia de comandă redeschide proiectul pentru fiecare comandă
+user or group	user sau group
+{} exists already: pass overwrite to replace it	{} există deja: indicați overwrite pentru a-l înlocui
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} este o arhivă și rămâne neschimbată: salvați proiectul ca fișier de proiect (save_project --path <file>.oec) sau convertiți arhiva (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} este o arhivă: indicați o cale pentru a salva proiectul ca fișier de proiect
+{} is not a language of the project	{} nu este o limbă a proiectului

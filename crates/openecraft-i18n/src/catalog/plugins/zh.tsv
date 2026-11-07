@@ -1,0 +1,953 @@
+# English<TAB>简体中文 – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1：从左 / 上分支直接到另一分支，再到主干 · 2：同样，从右 / 下分支出发 · 3：从主干到左 / 上分支，再到另一分支 · 4：从主干先到右 / 下分支（默认 3）
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1：直线的上 / 左端横向通往右 / 下分支 · 2：通往左 / 上分支（默认 2）
+A cable definition needs a start and an end point	电缆定义需要起点和终点
+A copper bar needs at least one segment	铜排至少需要一个段
+A segment cannot be moved below itself	规划段不能移动到其自身下方
+A segment needs two different nodes	布线段需要两个不同的节点
+A wire needs at least two points	导线至少需要两个点
+A {} has no {}; it takes {}	{}没有 {}；可用：{}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0、A1、A2、A3、A4、Letter、Legal、Tabloid 或 custom
+Accepts a message as checked, so that it is no longer counted until it changes	将消息接受为已检查，使其在发生变化之前不再计数
+Accessory part number, e.g. GEN.GLAND-M25	附件部件编号，例如 GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	激活（显示）或停用（隐藏）项目选项的内容
+Additional power loss in W	附加功率损耗 (W)
+Address scheme: siemens, iec or rockwell	地址方案：siemens、iec 或 rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	添加折弯并钻孔的铜排（或替换机柜中同名的铜排）
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	添加到右侧相邻机柜的电缆过孔：两侧板上相对的圆形开孔；机柜之间的导线从中穿过
+Adds a configurator rule: insert a page macro when the condition holds	添加配置器规则：在条件成立时插入页宏
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	添加布线网络的节点（分支点、穿墙点、到达机柜或设备的点）
+Adds a planned device to a segment or changes it	向规划段添加或更改已规划设备
+Adds a project option or changes its description and condition	添加项目选项或更改其描述和条件
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	在安装板上方添加布线优先采用的布线路径（电缆桥架、管子导向）
+Adds a segment below another one (or at the top)	在另一个规划段下方（或顶层）添加规划段
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	在两个节点之间添加布线网络的布线段：电缆托盘、梯架、线槽、导管、拖链、直埋或自由敷设
+Adds a text to a page	向页添加文本
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	将项目文本的所有行添加到词典，并可选择移除不再使用的条目
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	向电缆端添加附件：密封接头、EMC 密封接头、连接器、拉力释放、屏蔽夹、保护软管、冷压端子、标记
+Adds an accessory to a device; it must fit one of the device's parts	向设备添加附件；它必须适配设备的某个部件
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	添加机柜：某一系统的某个尺寸（或自定义尺寸），或来自机柜部件
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	在两个联结点之间添加等电位联结导体（总接地端子、机柜、导电轮廓、金属电缆桥架）
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	添加、更改或删除项目的标记方案，或选择用于标记导出的方案
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	添加或更改项目的机器（替换相同 ID 的内置机器）或将其删除
+Adds the devices of a template to a segment	将模板中的设备添加到规划段
+Adds the outline of a machine, building or area to the plant layout	向工厂布局添加机器、建筑物或区域的轮廓
+Adds, replaces or removes a profile: a connector with the column names the other system uses	添加、替换或删除配置文件：使用其他系统列名的接口
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	对齐元素、均匀分布元素、在导轨上排列设备或按阵列复制元素
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	将符号、文本和图形对齐到共同的边缘或中心；连接的导线端点随之移动
+Allow renaming onto an identifier in use: both become one	允许重命名为已使用的标识符：两者合而为一
+Allowed classes, comma separated: power, control, signal, fluid (default all)	允许的类别，以逗号分隔：power、control、signal、fluid（默认全部）
+Allowed values separated by commas (empty: any value)	允许的值，以逗号分隔（空：任意值）
+Also create a bus cable for every connection without cable	同时为每个没有电缆的连接创建总线电缆
+Also properties without a value	包括没有值的属性
+Also remove entries the project no longer uses	同时移除项目不再使用的条目
+Also renumber terminal strips, plugs and PLC cards	同时重新编号端子排、插头和 PLC 卡件
+Also renumber wires with a fixed number	同时为具有固定编号的导线重新编号
+Altitude of the site in m	安装地点海拔，单位 m
+Ambient temperature of the conductors in °C	导体的环境温度 (°C)
+An outline needs {} points at least	轮廓至少需要 {} 个点
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	沿轴的锚定：free、start:<mm>、center:<mm>、end:<mm> 或 stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	方面，以逗号分隔，例如 function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	将功能定义分配给已放置的符号（采用标识和方案）
+Asynchronous motors add to the short-circuit current	异步电机会增大短路电流
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	自动硬件组态：CPU 和总线耦合器的站、总线系统、卡件到站的分配、插槽、起始地址、点地址、IP 地址和线形拓扑
+Back to the default rules first	先恢复为默认规则
+Back to the default strategy first	先恢复为默认策略
+Back-up protection up to this short-circuit current in kA (0: not given)	在此短路电流（kA）以下具有后备保护（0：未给定）
+Bar id	铜排 ID
+Bar thickness, mm (default 5)	铜排厚度，mm（默认 5）
+Bar width, mm (default 20)	铜排宽度，mm（默认 20）
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	将一个机柜并排放置在另一个机柜的右侧（并柜排列）；不指定 right_of 时，它将脱离其并柜排列
+Bend radius in drag chains as a multiple of the cable diameter	拖链中的弯曲半径，为电缆直径的倍数
+Bend radius of a drag chain in mm	拖链的弯曲半径，单位 mm
+Bend radius of cables as a multiple of the diameter	电缆弯曲半径，为直径的倍数
+Bend radius of tubes as a multiple of the diameter	管子弯曲半径，为直径的倍数
+Bend radius of wires as a multiple of the diameter	导线弯曲半径，为直径的倍数
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	段之间的折弯：角度，e 表示立弯，r<半径>，例如 90; -90 e; 45 r10
+Between page and column (default .)	页与列之间（默认 .）
+Bonding point	联结点
+Border around the text	文本周围的边框
+Both classes are needed	需要两个类别
+Bus system name	总线系统名称
+Bus system name, e.g. PN/IE_1	总线系统名称，例如 PN/IE_1
+Busbar machine program (CSV)	母线加工机程序 (CSV)
+CNC operations	CNC 工序
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	用于钻孔、铣削和冲压机的 CNC 程序、铜排折弯、机柜配置器、移交生产以及生产反馈
+Cable tag, e.g. -W1	电缆标识符，例如 -W1
+Cable tag, e.g. -W20	电缆标识，例如 -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	根据生产反馈的实际时间校准机器的时间估算
+Cannot read the plugin folder {}	无法读取插件文件夹 {}
+Cannot start {}: {}	无法启动 {}：{}
+Card tag, e.g. -A1	卡件标识符，例如 -A1
+Category, e.g. coils, contacts, terminals, plc	类别，例如 coils、contacts、terminals、plc
+Centre from the rear wall in mm	距后板的中心距离 (mm)
+Centre from the top of the enclosure in mm	距机柜顶部的中心距离 (mm)
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	更改T型节点（方向、变体、表示方式）、拐角（分支）、交叉（直线、变体、表示方式）或桥接（方向、表示方式）
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	更改表格的单元格：设备标识符、功能文本、描述、部件；线号、颜色、截面积、电缆、芯线；端子排、端子
+Changes a placed symbol; when it moves, connected wire ends follow	更改已放置的符号；移动符号时，所连接的导线端会跟随移动
+Changes a text (only the given properties)	更改文本（仅更改给定的属性）
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	将使用即将停产或已停产部件的设备切换为后续部件（后续部件必须是项目部件）
+Changes name, description or structure of a page	更改页的名称、描述或结构
+Changes name, description, function, location or parent of a segment	更改规划段的名称、描述、功能、位置或上级规划段
+Changes position, face, fastening or anchors of a panel item	更改布局元件的位置、面、紧固方式或锚定
+Changes the device, connection and terminal tables	更改设备表、连接表和端子表
+Changes the level of a kind of message (code as shown by check)	更改某类消息的级别（代码如 check 所示）
+Changes the properties of a wire	更改导线的属性
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	更改机柜的系统、尺寸和构件（底座、并柜侧、法兰板）；锚定的元素随之调整
+Check {} failed: {}	检查 {} 失败：{}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	检查安装板布局：碰撞、间距（安装、通风、EMC）、维护空间、离地高度、碰撞类别、温度和可制造性
+Chosen value	所选值
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	安装板布局的间距、维护空间、高度、碰撞类别、热仿真和可制造性
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	机柜温控 (IEC/TR 60890)：功率损耗、内部温度、所需的风扇或冷却装置以及加热；也可更改某一机柜的设置
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	碰撞类别：power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory、自有类别或 * 表示任意
+Column and row strips	列和行条
+Column mapping {field code: column name}	列映射 {字段代码: 列名}
+Column name, e.g. Description	列名，例如 Description
+Columns of the pattern	阵列的列数
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	列，以逗号分隔：Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	需要等电位联结的导电框架
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	用于机柜制造商配置器的机柜配置：系统、尺寸、组件、附件和加工
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	配置器条件，例如 HEATER=yes（留空：手动切换）
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	配置软管 / 管子 / 管道：管路类型、部件、端部接头、额定压力、弯曲半径、介质、尺寸、颜色和长度
+Connection point TAG:PIN, e.g. -K1:A1	连接点 TAG:PIN，例如 -K1:A1
+Connection point designations separated by commas or blanks	以逗号或空格分隔的连接点标识
+Connection point designations, comma separated, e.g. 13,14	连接点标识，以逗号分隔，例如 13,14
+Connector id (required unless removing)	接口 ID（除删除外必填）
+Connects two connection points with wires routed around symbols and other wires	用绕开符号和其他导线的导线连接两个连接点
+Connects two ports of stations with a network cable; connections already on these ports are replaced	用网线连接两个站的端口；这些端口上已有的连接将被替换
+Copies function texts between the single-line diagram and the schematic where one side is empty	在单线图和原理图之间复制功能文本（仅当一侧为空时）
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	以固定距离多次复制元素；设备获得新标识符，端子获得新编号
+Copper bar cutting list	铜排下料清单
+Copper bars	铜排
+Corner points in metres	角点，单位为米
+Corner points on the mounting plate in mm	安装板上的拐点 (mm)
+Correction of the time estimate	时间估算修正
+Cost of free air against ducts and routing paths	自由布线相对于线槽和布线路径的成本
+Counting step (default 1)	计数步长（默认 1）
+Creates a bus cable for the connection (without cable tag)	为该连接创建总线电缆（无电缆标识符）
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	为每个没有电缆的总线连接创建总线类型的电缆（类型、芯线、截面积）
+Creates or changes a PCT loop of the pre-planning	创建或更改预规划的 PCT 回路
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	创建或更改 PLC 站（控制器、分布式 I/O、驱动器、HMI）。更改地址方案会转换其点的地址
+Creates or changes a bus system (PROFINET, EtherCAT, …)	创建或更改总线系统（PROFINET、EtherCAT、…）
+Creates or changes a configurator option	创建或更改配置器选项
+Creates or changes a fluid device group	创建或更改流体设备组
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	创建或更改项目的图框（内置图框以新名称复制）
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	创建或更改电位定义；除非在导线上另行设置，其导线将采用该颜色和截面积
+Creates or changes a work area: only the pages and devices of its structure are shown	创建或更改工作区：只显示其结构中的页和设备
+Cross section, e.g. 0.75 mm²	截面积，例如 0.75 mm²
+Cross section, e.g. 1.5 mm²	截面积，例如 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	截面积，例如 1.5 mm²（空 = 取自电位定义）
+Cross-section in mm²	截面积，单位 mm²
+Cross-section, e.g. 1.5 mm²	截面积，例如 1.5 mm²
+Current device tag	当前设备标识符
+Customer rule set to add or replace (by name), as exported	要添加或替换的客户规则集（按名称），格式与导出时相同
+Cut lengths of cables rounded up to this step in mm	电缆下料长度向上取整到此步长 (mm)
+Cut lengths of tubes rounded up to this step in mm	管子下料长度向上取整到此步长 (mm)
+Cut lengths of wires rounded up to this step in mm	导线下料长度向上取整到此步长 (mm)
+Cut lengths rounded up to this step in metres	下料长度按此步长向上取整，单位为米
+Cut threads on the machine	在机器上攻丝
+Cutting allowance per tube end in mm	每个管端的下料余量 (mm)
+Date (YYYY-MM-DD)	日期 (YYYY-MM-DD)
+Date of the acceptance	接受日期
+Default property values	属性的默认值
+Default symbol key	默认符号键
+Define the identifiers in use (default: true)	定义已使用的标识符（默认：true）
+Defines a reusable project function definition or changes it	定义或更改可重用的项目功能定义
+Defines a structure identifier or changes its description	定义结构标识符或更改其描述
+Defines a user property or changes it	定义或更改用户属性
+Defines all identifiers in use and / or removes the definitions nobody uses	定义所有已使用的标识符和 / 或移除无人使用的定义
+Definition to start from	起始定义
+Deletes a PCT loop of the pre-planning	删除预规划的 PCT 回路
+Deletes a configurator option	删除配置器选项
+Deletes a configurator rule	删除配置器规则
+Deletes a fluid device group	删除流体设备组
+Deletes a page	删除页
+Deletes a page template of the project	删除项目的页模板
+Deletes a plot frame of the project that no page uses	删除项目中没有页使用的图框
+Deletes a potential definition	删除电位定义
+Deletes a work area	删除工作区
+Deletes symbols, wires, texts and shapes	删除符号、导线、文本和形状
+Depth in mm	深度 (mm)
+Device description id (empty: from the parts)	设备描述 ID（空：取自部件）
+Device description id of the head (list_device_descriptions)	头模块的设备描述 ID (list_device_descriptions)
+Device group {} already exists	设备组 {} 已存在
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	设备列表、物料清单、端子图、插头图、电缆图和连接图、PLC、电位、机柜、流体、电气和现场报表
+Device number on the bus	总线上的设备编号
+Device tag of the CPU / bus coupler, e.g. -A0	CPU / 总线耦合器的设备标识符，例如 -A0
+Device tag of the end (both ends if missing)	端部的设备标识符（缺省时为两端）
+Device tag of the fluid device, e.g. -QM1	流体设备的设备标识符，例如 -QM1
+Device tag of the group, e.g. -KH1	组的设备标识符，例如 -KH1
+Device tag within the segment, e.g. -M1	规划段内的设备标识符，例如 -M1
+Device tag, e.g. -K1	设备标识符，例如 -K1
+Device tag: the accessories that can still be added to its parts	设备标识：仍可添加到其部件的附件
+Device tags (text)	设备标识符（文本）
+Device tags of the members in slot order, separated by commas or blanks	成员的设备标识符，按位置顺序，以逗号或空格分隔
+Devices with parts that are phased out or discontinued, and their change to the successors	使用即将停产或已停产部件的设备，以及其切换为后续部件的情况
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	设备、导线、电位、电缆、端子排、PLC、机柜、流体、电气计算、结构和翻译
+Diameter in mm	直径 (mm)
+Diameter of a hole at both ends (0: none)	两端孔的直径（0：无）
+Direction of the stem: left, right, up or down (default: from the wires there)	主干方向：left、right、up 或 down（默认：按该处的连接线）
+Distance between power and signal or fluid in mm	动力与信号或流体之间的距离 (mm)
+Distance from devices, rails and busbars in mm	与设备、导轨和母线的距离 (mm)
+Distance from the face in mm (rails: standoff height)	距面的距离 (mm)（导轨：支撑高度）
+Distance in X (mm)	X 方向距离 (mm)
+Distance in Y (mm)	Y 方向距离 (mm)
+Distance of devices to cable ducts	设备与线槽的距离
+Distance of devices to the plate edge	设备与安装板边缘的距离
+Distance of the border from the paper edge in mm	边框到纸张边缘的距离 (mm)
+Distribute vertically (default horizontally)	垂直分布（默认水平）
+Distributes symbols, texts and graphics evenly between the first and the last one	在第一个和最后一个之间均匀分布符号、文本和图形
+Diversity factor of the loads (0: IEC 61439-1, table 101)	负载的同时系数（0：IEC 61439-1，表 101）
+Draw the contact image below coils (default true)	在线圈下方绘制触点映像（默认 true）
+Draw the junction as a connection dot; its routing stays	将节点绘制为连接点；其走向保持不变
+Draw wires in their colour	按导线颜色绘制导线
+Draw wires to the connection points facing its free arms	向正对其空闲分支的连接点绘制连接线
+Drawing	图纸
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	绘制电缆定义线；其穿过的导线成为电缆的芯线（未指定电缆时新建电缆）
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	在两个连接点之间绘制导线，例如从 -K1:A1 到 -S1:14（不明确的使用 #id:pin，电位使用名称，无标识的连接点使用 1、2…）
+Draws a wire through two or more points	绘制经过两个或多个点的导线
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	在原理图页和 PDF / SVG 导出中按导线颜色绘制导线，或以黑色绘制
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	在相对的符号空闲连接点之间以及到T型节点和拐角的空闲分支绘制连接线
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	电缆的 EMC 类别（驱动输出、模拟量、动力、信号、屏蔽）以及 EMC 问题
+Edge length of the routing grid in mm	布线栅格的边长 (mm)
+Electrical device tags separated by commas or blanks (empty = remove the links)	电气设备标识符，以逗号或空格分隔（空 = 移除关联）
+Electrical engineering	电气工程
+Enclosure (location, e.g. +CAB1)	机柜（位置，例如 +CAB1）
+Enclosure (location, e.g. +CAB1) whose settings change	要更改设置的机柜（位置，例如 +CAB1）
+Enclosure climate and electrical sizing	机柜温控和电气选型
+Enclosure it stands right of; empty to take it out of its line-up	其左侧相邻的机柜；空表示将其移出并柜排列
+Enclosure name (all if missing)	机柜名称（未指定时为全部）
+Enclosure part number	机柜部件编号
+Enclosure system (default: the enclosure's)	机柜系统（默认：该机柜的系统）
+Enclosure {} exists already	机柜 {} 已存在
+Enclosures, panel items, accessories and panel macros	机柜、布局元件、附件和布局宏
+End brackets and end plates from the tech data of the terminal parts	根据端子部件的技术数据添加终端固定件和终端盖板
+End holes from the bar end as a multiple of the width	端孔距铜排端部的距离，为宽度的倍数
+End: device tag and connection point, e.g. -S1:14	终点：设备标识符和连接点，例如 -S1:14
+Engineering	工程
+Face: plate, door, left, right, rear, roof or bottom	面：plate, door, left, right, rear, roof 或 bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	现场规划：节点、布线段、轮廓、路径、等电位联结和附件
+Figure	指标
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	在所有（已筛选）行的某一列中查找并替换文本；不指定查找内容时，用替换内容填充该列
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	在整个项目中查找文本：页、设备标识符、功能文本、自由文本、线号、端子、电缆、部件、描述
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	查找可容纳布局的机柜系统最小标准尺寸并应用
+Fingerprint of the message as shown by check	消息的指纹（如 check 所示）
+First address of the subnet, e.g. 192.168.0.0	子网的第一个地址，例如 192.168.0.0
+First byte of the inputs (and outputs)	输入（及输出）的第一个字节
+First byte of the outputs if it differs; -1 removes it	输出的第一个字节（如有不同）；-1 将其移除
+First counter value (default 1)	计数器起始值（默认 1）
+First page number (default 1)	起始页号（默认 1）
+First port as station:port, e.g. PLC1:X1 P2	第一个端口，格式为 station:port，例如 PLC1:X1 P2
+First row with the column names	包含列名的第一行
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	设备名称格式：{letter}、{n}（计数器）、{page}、{column}、{row}；默认 {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 方案的格式：{n}（计数器）、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	新建图框时的起始图框（默认：A3 landscape）
+Free space in front of every device on the plate	安装板上每个设备前方的空闲空间
+Freezes routes for production (kept by the recalculation while possible) or releases them	为生产冻结布线（只要可行，重新计算时保留）或将其释放
+Frequency in Hz	频率 (Hz)
+Function (= without the sign; empty: the parent's)	功能（不含 = 号；留空：使用上级规划段的功能）
+Function aspect (=) of the page; the devices on the page move along	页的功能面 (=)；页上的设备随之移动
+Function definition key	功能定义键
+Function filter (= A1, A*; empty = any)	功能筛选（= A1、A*；空 = 任意）
+Further device tags of the loop, separated by commas or blanks	回路的其他设备标识符，以逗号或空格分隔
+Gap between devices side by side	并排设备之间的间距
+Gap between the devices on the rail in mm	导轨上设备之间的间隙 (mm)
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	为原理图中尚无单线表示的动力设备生成单线图，放在指定页之后的新概览页上
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	为面的机器生成其 CNC 程序（ISO G 代码、Heidenhain、冲压代码或 CSV）
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	为某页的单线符号生成多线原理图（动力符号、导线、接触器线圈），放在该页之后的新页上
+Generates the program of the busbar machine: cuts, punched holes and bends	生成母线加工机的程序：切割、冲孔和折弯
+Give a device tag or a part number	请给出设备标识或部件号
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	将元素组合为可一起选择和移动的组件；不指定名称时，元素将脱离其组件
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	将机柜的程序作为作业移交生产：所有面和铜排的清单和程序
+Has a divider between power and signal cables	动力电缆与信号电缆之间有隔板
+Height above the floor in metres	离地高度，单位为米
+Height above the mounting plate in mm (default 50)	安装板以上高度 (mm)（默认 50）
+Height in mm	高度 (mm)
+Height in mm without plinth; negative: unknown (wall mounted)	高度，单位 mm，不含底座；负值：未知（壁挂安装）
+Higher-level product aspect (-) of the page; the devices on the page move along	页的上级产品方面 (-)；页上的设备随之移动
+Highest actuator on the door above the floor (0: not checked)	柜门上操作元件的最高离地高度（0：不检查）
+Highest air temperature at devices without data (0: not checked)	无数据设备处的最高空气温度（0：不检查）
+Highest ambient temperature in °C	最高环境温度 (°C)
+Highest device above the floor (0: not checked)	设备最高离地高度（0：不检查）
+Highest inside temperature in °C	最高内部温度 (°C)
+Highest three-phase short-circuit current at the supply in kA	电源进线处的最大三相短路电流 (kA)
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	孔：段:距离:直径，例如 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	水平对齐：left, center 或 right
+Horizontal pitch of the pattern in mm	阵列的水平间距 (mm)
+Hose colour	软管颜色
+Hose number or fluid net (F1)	软管编号或流体网络 (F1)
+Hose number prefix, e.g. H	软管编号前缀，例如 H
+Hoses / pipes: length in m	软管 / 管道：长度 (m)
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	软管 / 管道：介质（compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam、product；空 = 项目默认值）
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	软管、流体网络和组、电气-流体链接以及 PCT 回路
+Hyperlink (URL)	超链接 (URL)
+IP address or bus address	IP 地址或总线地址
+IT system with distributed neutral	带中性线的 IT 系统
+Id of the panel item (from mounting_list)	布局元件的 ID（来自 mounting_list）
+Id of the path or reservation	路径或预留的 ID
+Id of the text	文本的 ID
+Identifier, e.g. A1 or CAB1	标识符，例如 A1 或 CAB1
+Ids of page items	页元素的 ID
+Ids of symbols and connection symbols (default: all symbols of the page)	符号和连接符号的 id（默认：页面上的所有符号）
+In front of the page name (default /)	页名前面（默认 /）
+Inner height in mm (0 = no limit)	内高，单位 mm（0 = 无限制）
+Inner radius as a multiple of the thickness	内半径为厚度的倍数
+Inner width in mm (0 = no limit)	内宽，单位 mm（0 = 无限制）
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	将 3D 宏作为组件插入：锚定元素放到其位置，其他元素相对于面上的 x / y 放置
+Installation site aspect (++) of the page; the devices on the page move along	页的安装地点方面 (++)；页上的设备随之移动
+Installation site filter (++)	安装地点筛选 (++)
+Integration profiles and status	集成配置文件和状态
+Interruption points refer to: all (default), star or pairs	中断点引用：all（默认）、star 或 pairs
+Invalid answer of the plugin: {}	插件的应答无效：{}
+Invalid segment name: {}	无效的规划段名称：{}
+Item id	元素 ID
+Item ids	元素 ID
+Jumper number	跳线编号
+Jumper number (terminals with the same number are bridged); 0 removes it	跳线编号（编号相同的端子相互桥接）；0 表示删除
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保持防护等级：使用换热器或冷却装置代替过滤风扇
+Key figures of the project and a list of its device tags	项目的关键指标及其设备标识符列表
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	项目的关键指标：页、符号、导线、设备、部件、电缆和检查结果
+Key, e.g. user.coupling_relay	键，例如 user.coupling_relay
+Key, e.g. user.customer_code	键，例如 user.customer_code
+Keys of the routes, comma separated (all if missing)	布线的键，以逗号分隔（未指定时为全部）
+Kind: machining, punching or busbar	类型：machining, punching 或 busbar
+Label: terminal number, PLC address or potential name	标签：端子号、PLC 地址或电位名称
+Landscape (true) or portrait (false)	横向 (true) 或纵向 (false)
+Language the project texts are written in, e.g. en	编写项目文本所用的语言，例如 en
+Larger round holes are milled, mm	大于此值的圆孔将被铣削，mm
+Largest difference between hole and tool, mm	孔与刀具之间的最大差值，mm
+Left edge on the face in mm	面上的左边缘 (mm)
+Left edge on the mounting plate in mm	安装板上的左边缘 (mm)
+Left side bayed (no side panel)	左侧并柜（无侧板）
+Length added at each cable end in metres	每个电缆端的附加长度，单位为米
+Length added to each cable end in mm	加到每个电缆端的长度 (mm)
+Length from the node to the device in metres	节点到设备的长度，单位为米
+Length in metres	长度，单位为米
+Length in metres (default from the node positions)	长度，单位为米（默认根据节点位置计算）
+Length inside an enclosure per end in metres	每端在机柜内的长度，单位为米
+Length of a shield pigtail in mm	屏蔽辫线的长度 (mm)
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	多层端子的层（1 = 底层）；上层位于前一个端子的端子块上
+Library id or customer rule set name to no longer verify against	不再据以验证的库 ID 或客户规则集名称
+Library id or customer rule set name to verify against	要据以验证的库 ID 或客户规则集名称
+Line in the source language	源语言中的行
+Line-to-line voltage in V	线电压 (V)
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	将流体设备与驱动或监视它的电气设备关联（替换已有关联）
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	将电磁阀与编号相同的线圈关联 (-QM3 › -MB3)，并在关联的设备之间复制功能文本
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	列出已分配部件中尚未放置的 PLC 通道和功能，包括用于 place_symbol 的符号、标识符、标签和插针
+Lists and renames devices, adds accessories to their parts	列出并重命名设备，为其部件添加附件
+Lists the 3D macros: the project's own and the built-in ones	列出 3D 宏：项目自己的和内置的
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	列出 3D 布线：已布线的导线、电缆和管子及其长度和状态、线缆束、分支、屏蔽、布线路径、更改和问题
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	列出 CNC 机器（内置和项目中的）及其刀具，以及每个面的机器
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	列出预规划和 P&ID 仪表的 PCT 回路及其设备和设计状态
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	列出T型节点、拐角、交叉和桥接及其走向和所属连接的导线
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	列出适配某部件或某设备部件的附件，以及某附件适配的部件（项目部件、内置和随附目录）
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	列出展开的铜排：长度、按顺序排列的折弯、孔、问题以及从库存长度下料
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	列出 PLC 硬件的设备描述：导入的、来自项目部件的以及内置的通用设备描述
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	列出单线图中的设备和原理图中的动力设备及其状态：已规划、已设计、不在单线图中或不匹配
+Lists the devices with cross references and assigned parts	列出带有交叉引用和已分配部件的设备
+Lists the enclosures with their system, components (assembly), items per face and assemblies	列出机柜及其系统、构件（组件）、每个面的元素和组件
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	列出流体设备组（阀岛、气源处理单元、汇流板）及其按位置顺序排列的设备
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	列出带电磁线圈或关联的流体设备以及与其关联的电气设备
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	列出流体网络表：每条软管管路及其管路类型（压力、工作、回流、先导 …）、介质、尺寸以及接口及其功能
+Lists the function definitions with category, function template kind, letter, default symbol and usage	列出功能定义及其类别、功能模板类型、字母代码、默认符号和使用情况
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	列出软管和管道（流体接口之间的连接）及其介质、公称尺寸、颜色和长度
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	按安装顺序列出安装板布局的元件，包括位置、尺寸、部件和安装状态
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	列出用于标记程序的标记方案（内置和项目中的）以及所选方案
+Lists the page templates (built-in and the project's own)	列出页模板（内置的和项目自己的）
+Lists the pages of the project	列出项目的页
+Lists the placement schemes with their properties and the number of symbols using them	列出放置方案及其属性和使用它们的符号数
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	列出图框（纸张格式、方向、列和行）以及项目默认值
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	列出插头及其已使用的插针数、其部件的针数以及部件
+Lists the potential definitions and the wire default of nets without a defined potential	列出电位定义以及没有定义电位的网络的导线默认值
+Lists the project options that show or hide model content	列出显示或隐藏模型内容的项目选项
+Lists the properties of an object with their values and where they come from	列出对象的属性及其值和来源
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	列出属性定义（内置和用户定义）及其对象类别、组、类型和单位
+Lists the report blocks with their report, scheme, groups and generated pages	列出报表块及其报表、方案、组和生成的页
+Lists the report schemes (named report forms) with their settings	列出报表方案（命名的报表表单）及其设置
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	以接线检查清单的形式列出安装板布局中已布线的导线，包括线端处理、状态和进度
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	按树形顺序列出规划段及其结构、规划功率，以及已规划设备及其在原理图中的状态
+Lists the source and target languages of the project texts with the number of untranslated lines	列出项目文本的源语言和目标语言以及未翻译的行数
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	列出结构标识符管理：页的方面、已定义和已使用的标识符、工作区
+Lists the subprojects taken out of the project, or the project it was taken from	列出从项目中移出的子项目，或其来源项目
+Lists the symbols that can be placed, with their connection points relative to the insertion point	列出可放置的符号及其相对于插入点的连接点
+Lists the terminal strips with their number of terminals and length on the rail	列出端子排及其端子数量和在导轨上的长度
+Lists the translation dictionary of the project texts (source line and translations)	列出项目文本的翻译词典（源行和翻译）
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	列出页上放置的窗口宏（宏边框）及其宏、变体、占位符值和元素数量
+Load losses of the transformer in W (0: typical)	变压器负载损耗，单位 W（0：典型值）
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	电网的负载、每个保护设备的负载、按同时系数计算的需求、相平衡以及电源装置的负载预算
+Loads the potential definitions of a standard (replaces those of the same name)	加载某一标准的电位定义（替换同名定义）
+Location (+ without the sign; empty: the parent's)	位置（不含 + 号；留空：使用上级规划段的位置）
+Location aspect (+) of the page; the devices on the page move along	页的位置面 (+)；页上的设备随之移动
+Location filter (+)	位置筛选 (+)
+Location or device tag	位置或设备标识符
+Loop number	回路编号
+Loop number, e.g. 101	回路编号，例如 101
+Lowest actuator on the door above the floor	柜门上操作元件的最低离地高度
+Lowest ambient temperature in °C	最低环境温度 (°C)
+Lowest device above the floor	设备最低离地高度
+Lowest inside temperature in °C	最低内部温度 (°C)
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	电源进线处的最小相对地故障电流 (kA)（0：根据 ik_max 计算）
+Lowest terminal above the floor	端子最低离地高度
+Machine id (default: the busbar machine)	机器 ID（默认：母线加工机）
+Machine id (default: the machine of the face)	机器 ID（默认：该面的机器）
+Machine id (snake_case)	机器 ID (snake_case)
+Machine id {} is not snake_case	机器 ID {} 不是 snake_case
+Machine of that face (empty: the sheet machine)	该面的机器（留空：钣金机器）
+Machine of the copper bars	铜排的机器
+Machine of the sheet metal faces	钣金面的机器
+Machine {} is in use	机器 {} 正在使用中
+Macro name	宏名称
+Makes pages or page items content of a project option	将页或页元素设为项目选项的内容
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	将插头引脚上的导线设为扁平电缆（排线）的芯线：引脚 n 对应芯线 n，与 IDC 连接器相同
+Manufacturing package (CNC programs, JSON)	制造包（CNC 程序，JSON）
+Markers, comma separated: device, terminal, wire, cable (empty: all)	标记，以逗号分隔：device, terminal, wire, cable（留空：全部）
+Marks a panel item as mounted or as a problem, or as open again	将布局元件标记为已安装、有问题或重新标记为未完成
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	将已布线的导线标记为已接线、有问题或重新标记为待完成；导线由其两端指定
+Maximum fill of a carrier in percent	电缆桥架的最大填充率，单位为百分比
+Maximum operating pressure in bar	最大工作压力 (bar)
+Measuring range or set point	测量范围或设定值
+Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
+Milling feed, mm/min	铣削进给，mm/min
+Mirror the symbol	镜像符号
+Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
+Moves the page before this page of its section (or of the section given)	将页移到其分节（或指定分节）中此页之前
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	将分节移到其上级分节（或指定上级）中此分节之前；编号按顺序继续
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	线束的钉板布局：从公共节点到各连接器的分支（含长度、方向、线束直径和插针）以及图纸比例
+Name of the assembly	组件名称
+Name of the bar, e.g. L1 -Q1	铜排名称，例如 L1 -Q1
+Name of the check	检查的名称
+Name of the customer rule set to remove	要移除的客户规则集的名称
+Name of the frame	图框名称
+Name of the machine	机器名称
+Name of the main earthing terminal	总接地端子的名称
+Name of the safety function to remove	要移除的安全功能的名称
+Name of the segment	规划段名称
+Name of the template	模板名称
+Name of the work area	工作区名称
+Name or id; the tag for places	名称或 ID；放置则为标识符
+Name, e.g. the location +M1	名称，例如位置 +M1
+New device tag	新设备标识符
+New identifier	新标识符
+New page name	新页名
+New parent segment (empty: top level)	新的上级规划段（留空：顶层）
+New value	新值
+No PCT loop {}	没有 PCT 回路 {}
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	没有名为 {} 的内置检查：该设置适用于同名插件的检查 (list_checks)
+No bus system {}	没有总线系统 {}
+No connection point {} on this page	此页上没有连接点 {}
+No connection symbol with id {}	没有 id 为 {} 的连接符号
+No copper bar {}	铜排 {} 不存在
+No device description {}	没有设备描述 {}
+No device group {}	没有设备组 {}
+No enclosure named {}	没有名为 {} 的机柜
+No entry for {} and {}	没有 {} 和 {} 的条目
+No hose {}	没有软管 {}
+No identifier {} in the project	项目中没有标识符 {}
+No item with id {}	没有 ID 为 {} 的元素
+No item {}	没有元素 {}
+No items to save in {}	{} 中没有要保存的元素
+No macro named {}	没有名为 {} 的宏
+No panel item with id {}	不存在 ID 为 {} 的布局元件
+No planned device {}	已规划设备 {} 不存在
+No potential definition {}	没有电位定义 {}
+No project function definition {}	项目功能定义 {} 不存在
+No routed item {}	没有已布线的元素 {}
+No routed wire {} – {}	没有已布线的导线 {} – {}
+No routing path or reservation {}	没有布线路径或预留 {}
+No rule for {} and {}	没有 {} 和 {} 的规则
+No rule library or rule set {}	没有规则库或规则集 {}
+No rule {}	没有规则 {}
+No safety function {}	没有安全功能 {}
+No standard size of {} holds the layout of {}	{} 的任何标准尺寸都无法容纳 {} 的布局
+No terminal strip {}	端子排 {} 不存在
+No terminal {} on strip {}	端子排 {1} 上不存在端子 {0}
+No text with id {}	不存在 ID 为 {} 的文本
+No three wires meet at {} / {} mm: give the direction of the stem	在 {} / {} mm 处没有三条连接线相交：请给出主干方向
+No transformer: set {} first	无变压器：请先设置 {}
+No wire at {} / {} mm	{} / {} mm 处没有导线
+No wire with id {}	没有 ID 为 {} 的导线
+No work area named {}	没有名为 {} 的工作区
+Node name or id	节点名称或 ID
+Node {} exists already	节点 {} 已存在
+Nodes to pass in this order, comma separated	按此顺序经过的节点，以逗号分隔
+Nominal size, e.g. 8 mm or DN25	公称尺寸，例如 8 mm 或 DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	不是截面积：{}（例如 1.5 mm²）
+Not a valid safety function: {}	不是有效的安全功能：{}
+Note, e.g. what the problem is	注释，例如问题是什么
+Nothing to remove: {} {}	没有可删除的内容：{} {}
+Number of columns	列数
+Number of copies (default 1)	副本数（默认 1）
+Number of equal bars	相同铜排的数量
+Number of indexed values (0 = a single value)	索引值数量（0 = 单个值）
+Number of rows	行数
+Numbers the pages with a start value and step; released pages keep their name	以起始值和步长对页编号；已发布页保留其名称
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	按端子排顺序将端子编号为 1 … n；PE 等非数字代号保持不变
+Numbers the wires by the numbering scheme of the project	按项目的编号方案为导线编号
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=值、OPTION!=值、OPTION=a|b，用 & 连接（空：始终）
+Offset from the symbol position in mm (default: below the symbol)	相对符号位置的偏移，单位 mm（默认：符号下方）
+One end, e.g. -K1:A1	一端，例如 -K1:A1
+One row per printed label instead of a count	每个打印的标签一行，而不是数量
+Only devices on these pages (names separated by commas)	仅限这些页上的设备（名称以逗号分隔）
+Only lines without a translation into this language	仅限未翻译为此语言的行
+Only list the new tags, change nothing	仅列出新标识符，不做任何更改
+Only shows the package, no job is recorded	仅显示包，不记录作业
+Only shows what would change	仅显示将要更改的内容
+Only the pages of this work area (list_structure)	仅限此工作区的页 (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	仅限这些标识字母（以逗号分隔，例如 K,Q）
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	仅限这些类型，以逗号分隔：page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	仅限这些类型，以逗号分隔：page, function_text, text, description
+Only these pages (names separated by commas)	仅限这些页（名称以逗号分隔）
+Only this part number	仅限此部件编号
+Only wire, cable or tube	仅 wire、cable 或 tube
+Only wires with this state: open, wired, changed or problem	仅限具有此状态的导线：open、wired、changed 或 problem
+Opaque background in the paper colour	纸张颜色的不透明背景
+Openings: auto (punch of the size, else contour) or contour	开口：auto（使用相应尺寸的冲头，否则轮廓加工）或 contour
+Operating pressure in bar (0 = hose ratings are not checked)	工作压力 (bar)（0 = 不检查软管的额定压力）
+Operations	工序
+Option name	选项名称
+Option name, e.g. STARTER	选项名称，例如 STARTER
+Options and rules of the configurator	配置器的选项和规则
+Other end, e.g. -X1:3	另一端，例如 -X1:3
+Outer diameter in mm, 0 = estimated	外径 (mm)，0 = 估算
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	直线段的外部长度，mm，例如 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	步冲冲程的重叠率 (0 … 0.9)
+PCT loop {} already exists	PCT 回路 {} 已存在
+PLC hardware: stations, cards, bus systems and port connections	PLC 硬件：站、卡件、总线系统和端口连接
+Page macro name	页宏名称
+Page macro that generates its schematic	生成其原理图的页宏
+Page name (default: all pages)	页面名称（默认：所有页面）
+Page {} is generated and cannot be edited	页 {} 是生成的页，无法编辑
+Page {} is out in subproject {}: insert or discard the subproject first	页 {} 已提取到子项目 {}：请先插回或放弃该子项目
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	带后缀的页 (3.a) 保持为前一页的子页（默认 true）
+Panel layout checks	安装板布局检查
+Panel manufacturing	机柜制造
+Paper height in mm (custom paper)	纸张高度 (mm)（自定义纸张）
+Paper width in mm (custom paper)	纸张宽度 (mm)（自定义纸张）
+Part lifecycle	部件生命周期
+Part number of the accessory	附件的部件号
+Part number of the base	底板的部件编号
+Part number of the carrier (per metre)	电缆桥架的部件编号（每米）
+Part number of the conductor (per metre)	导体的部件编号（每米）
+Part number of the downstream device	下级设备的部件编号
+Part number of the hose / tube / pipe	软管 / 管子 / 管道的部件编号
+Part number of the upstream device	上级设备的部件编号
+Part number, e.g. GEN.LMP-GN-24	部件编号，例如 GEN.LMP-GN-24
+Part of the key or name	键或名称的一部分
+Part {} has no function with a symbol	部件 {} 没有带符号的功能
+Parts phased out or discontinued	即将停产或已停产的部件
+Pass ids or pages	请指定 ID 或页
+Path function text: function text of the functions in its column that have none	路径功能文本：其所在列中没有功能文本的功能所使用的功能文本
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	占位符值 KEY=值; KEY2=值（可使用 {OPTION}）
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	将 PLC 卡件（I/O 模块）插入站：机架、插槽、起始地址和设备描述；为其点重新分配地址
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	在四条连接线相交处放置桥接：连接从一侧进入并通往另外三侧，先到对侧，再到左 / 上侧，再到右 / 下侧
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	在导线上放置连接定义点；连接采用其编号、颜色和截面积
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	放置拐角：两条连接线在此直角相交，正对其分支的连接点会接到它上
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	在三条连接线相交处放置有向T型节点：它指定连接的两条导线从哪个设备出发（源）以及目标的顺序，而不是按原理图顺序
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	在两条连接线交叉处放置有向交叉：它连接二者，其直线的每一端先直通再横向接到一个分支
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	在页面上放置部件：以其主功能的符号及连接点标识作为新设备放置，并为其分配该部件（项目部件和示例目录）
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	在页上放置符号。不指定标识符时使用下一个空闲标识符；辅助触点获得其设备的下一个空闲触点编号
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	将机柜 (+CAB1)、设备 (-M1) 或机器位置 (+M1) 放置在布线网络的节点上
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	在某个面上放置机柜附件（风扇、过滤器、电缆密封接头、照明灯、把手、PE 排）
+Places of the group (0 = not limited)	组的位置数（0 = 不限）
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	将机柜的柜排放置在房间中（所有机柜的 3D 视图）；未指定 x 和 z 时，根据工厂布局放置或放在其他柜排旁边
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	将方案的属性放置到符号处；未指定 ID 时，在所有使用它的符号处重新放置
+Planned part number	规划的部件编号
+Planned power in kW	规划功率，单位 kW
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	通过布线网络规划现场电缆：路径、长度、布线段填充率、联结点和问题；可选择采用下料长度
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	规划面的加工：工序（钻孔、攻丝、铣削、冲孔、步冲）、刀具、路径、时间以及机器无法加工的内容
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	在原理图之前包含已规划设备的工厂规划段：模板、功率预算、与原理图的状态对比、以 CSV / Excel 交换
+Plinth height in mm, 0 without plinth	底座高度 (mm)，0 表示无底座
+Plot frame (list_frames); empty = the project default	图框 (list_frames)；空 = 项目默认值
+Plot frames and page templates of the project	项目的图框和页模板
+Plug tag, e.g. -X10	插头标识符，例如 -X10
+Plugin id '{}' is not snake_case	插件 ID '{}' 不是 snake_case
+Plugin {} is loaded twice	插件 {} 被加载了两次
+Plugin {} needs a newer OpenECraft (API {})	插件 {} 需要更新版本的 OpenECraft (API {})
+Plugin {}: the name '{}' is invalid or already taken	插件 {}：名称 '{}' 无效或已被占用
+Plugin {}: {}	插件 {}：{}
+Plugs and their pins	插头及其插针
+Points in between: [[x, y], …]	中间点：[[x, y], …]
+Points in mm: [[x, y], …]	点 (mm)：[[x, y], …]
+Port as station:port	端口，格式为 station:port
+Port must be given as station:port: {}	端口必须以 station:port 格式指定：{}
+Port {} is not connected	端口 {} 未连接
+Position down in metres	向下的位置，单位为米
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	中性层位置（0 … 1，0：DIN 6935）
+Position right in metres	向右的位置，单位为米
+Position {} / {} mm lies outside the page ({} x {} mm)	位置 {} / {} mm 位于页面之外 ({} x {} mm)
+Potential definitions, wire defaults and wire colours	电位定义、导线默认值和导线颜色
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	其连接不编号的电位类型，以逗号分隔（l, n, pe, dc_plus, dc_minus, signal）
+Potential name, e.g. L1 or +24V	电位名称，例如 L1 或 +24V
+Potential {} already exists	电位 {} 已存在
+Pre-planning (CSV)	预规划 (CSV)
+Pre-planning (Excel)	预规划 (Excel)
+Problems	问题
+Product filter (-)	产品筛选 (-)
+Production status	生产状态
+Profile name, e.g. SAP	配置文件名称，例如 SAP
+Program format: iso, heidenhain, punch or csv	程序格式：iso, heidenhain, punch 或 csv
+Programs	程序
+Progress (%)	进度 (%)
+Project checks	项目检查
+Project exports	项目导出
+Project languages, dictionary and translations	项目语言、词典和翻译
+Project reports	项目报表
+Project statistics	项目统计
+Property and function definitions, property values and placement schemes	属性定义和功能定义、属性值和放置方案
+Property key	属性键
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	属性键和值，例如 {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	放在编号前面，例如 W
+Quantity per end (default 1)	每端数量（默认 1）
+R/X ratio of the supply impedance	电源阻抗的 R/X 比
+Rack number	机架编号
+Rail id (action rail)	导轨 ID（操作 rail）
+Rapid traverse, mm/min	快速移动，mm/min
+Rated current of the supply in A (0: not limited)	电源进线的额定电流 (A)（0：不限）
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	供电变压器的额定功率，单位 kVA（0：无，短路电流已给定）
+Rear left corner of the line-up in mm, to the right	柜排左后角，单位 mm，向右
+Rear left corner of the line-up in mm, towards the front	柜排左后角，单位 mm，向前
+Relative humidity of the ambient air in % (0: no condensation check)	环境空气相对湿度，单位 %（0：不检查凝露）
+Release instead of freeze	释放而不是冻结
+Released pages keep their names: {}	已发布页保留其名称：{}
+Remote I/O: station of the controller	分布式 I/O：控制器所在的站
+Remove the entry of upstream and downstream	删除 upstream 和 downstream 的条目
+Remove the profile	删除配置文件
+Remove the scheme from the project	从项目中删除该方案
+Remove unused definitions (default: false)	移除未使用的定义（默认：false）
+Removes a copper bar	删除铜排
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	删除节点（连同其布线段和放置）、布线段、放置、轮廓、等电位联结导体或附件
+Removes a planned device from a segment	从规划段中删除已规划设备
+Removes a project function definition; its symbols go back to their built-in one	删除项目功能定义；其符号恢复为内置定义
+Removes a project option; its content stays in the project	删除项目选项；其内容保留在项目中
+Removes a report block; the pages it generated stay	移除报表块；其生成的页保留
+Removes a routing path or reservation	移除布线路径或预留
+Removes a segment with everything below it	删除规划段及其下的所有内容
+Removes a station; its cards stay unassigned, its bus connections are removed	移除站；其卡件保持未分配，其总线连接将被移除
+Removes a user property with all its values and placements	删除用户属性及其所有值和放置
+Removes the bus connection of a port	移除端口的总线连接
+Removes the bus system with its connections	移除总线系统及其连接
+Removes the definition of a structure identifier (pages and devices keep it)	移除结构标识符的定义（页和设备保留该标识符）
+Removes the machine from the project	从项目中删除该机器
+Removes the rule	删除该规则
+Removes the wiring marks of wires that no longer exist	移除已不存在的导线的接线标记
+Renames a device with all its functions	重命名设备及其所有功能
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	在整个项目中重命名结构标识符：页、设备、电缆、定义和工作区
+Renames the station	重命名站
+Repair the repairable findings	修复可修复的问题
+Replacement	替换内容
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	在整个项目的自由文本、功能文本、页描述、设备描述和电缆描述中替换文本；已发布页保持不变
+Report blocks and report schemes	报表块和报表方案
+Reserves space over the mounting plate: kept free of routes, or for one class only	在安装板上方预留空间：不允许布线或仅供一个类别使用
+Rest (mm)	剩余 (mm)
+Right side bayed (no side panel)	右侧并柜（无侧板）
+Room {} exists already	房间 {} 已存在
+Rotation in degrees clockwise: 0, 90, 180 or 270	顺时针旋转角度：0、90、180 或 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	旋转角度（度），逆时针（90 表示从下往上读）
+Route the wires in 3D as well (otherwise through the cable ducts)	同时以 3D 方式布置导线（否则经由线槽）
+Routing rules, paths, reservations, frozen routes and cable shields	布线规则、路径、预留、冻结的布线和电缆屏蔽
+Row key (from table_get)	行键（来自 table_get）
+Rows of the pattern	阵列的行数
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	标准的规则库和客户规则集及其生效的限值；启用、禁用、添加或移除它们
+Rule number, from 1	规则编号，从 1 开始
+Run the check	运行检查
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	页的 SVG、HTML、PDF、DXF 和 DWG，生产和 PLC 列表，线束和 PLC 交换文件，3D 安装板布局和翻译词典
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	要添加或替换的安全功能（按名称）：{name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	安全功能 (ISO 13849-1) 及其达到的性能等级；添加、替换或移除安全功能
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	将页（类型、图框、标题栏、结构、描述、内容）另存为页模板
+Saves items of an enclosure as a 3D macro of the project	将机柜的元素另存为项目的 3D 宏
+Saves the planned devices of a segment as a template	将规划段的已规划设备另存为模板
+Saves the properties placed at a symbol as a placement scheme	将放置在符号处的属性保存为放置方案
+Saw cut	锯切
+Second port as station:port	第二个端口，格式为 station:port
+Segment path, e.g. Plant/Area 1	规划段路径，例如 Plant/Area 1
+Segment {} already exists	规划段 {} 已存在
+Segments not to use, comma separated	不得使用的布线段，以逗号分隔
+Selective up to this short-circuit current in kA (0: not given)	在此短路电流（kA）以下具有选择性（0：未给定）
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	按部件编号查询制造商表中设备对的选择性和后备保护；添加、替换或删除条目
+Separator: semicolon, comma or tab	分隔符：semicolon, comma 或 tab
+Sets how cross references are shown (only the given settings) and shows the settings	设置交叉引用的显示方式（仅设置给定的项）并显示设置
+Sets how the terminals of a jumper are bridged	设置跳线的端子桥接方式
+Sets property values of an object; an empty value removes it	设置对象的属性值；值为空时删除该值
+Sets the aspects the pages use	设置页使用的方面
+Sets the collision class of a panel item (empty: automatic)	设置布局元件的碰撞类别（留空：自动）
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	设置未设定自身值的软管的默认值以及软管编号前缀
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	设置两个碰撞类别之间的距离或允许它们重叠；替换相同类别的规则
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	设置电缆的现场路径定义：必须经过的节点和不得使用的布线段
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	设置机柜底部的离地高度（将检查设备、端子和操作元件的高度）
+Sets the level (multi-level terminals) or jumper number of a terminal	设置端子的层（多层端子）或跳线编号
+Sets the numbering scheme of the wires (only the given settings) and shows it	设置导线的编号方案（仅设置给定的项）并显示
+Sets the plot frame of all pages that do not choose one	设置所有未选择图框的页的图框
+Sets the shield and the outer diameter of a cable	设置电缆的屏蔽和外径
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	设置项目文本的源语言和目标语言（ISO 639-1 代码）
+Sets the spare terminals of a strip and whether its accessories are added automatically	设置端子排的备用端子以及是否自动添加其附件
+Sets the translation of a line of the project texts (empty removes it)	设置项目文本某一行的翻译（空则将其移除）
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	设置没有定义电位的网络的导线颜色和截面积（空 = 无）
+Share of the capacity kept free in percent	保留的容量比例（百分比）
+Sheets	图纸
+Shield connected at: both, first, second or none	屏蔽连接位置：both、first、second 或 none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	短路、负载、EMC 和安全计算、规则集和项目校验
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	短路电流、分断能力、切断时间、电缆的短路耐受能力以及保护设备的选择性
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	变压器上游电网的短路容量，单位 MVA（0：无穷大）
+Short-circuit voltage of the transformer in %	变压器短路电压，单位 %
+Shortest path between the hits of a tool	刀具各冲程之间的最短路径
+Shortest rail, duct or busbar	最短的导轨、线槽或母线
+Shortest straight length next to a bend	折弯旁的最短直线长度
+Show as \"Name: value\"	以 \"名称：值\" 形式显示
+Show the content	显示内容
+Shows a property as a text beside a symbol	将属性以文本形式显示在符号旁
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	显示端子排：按端子排顺序列出端子（含层、跳线和目标）、导轨上的端子块和跳线
+Shows or changes the machining strategy and which machine makes which face	显示或更改加工策略以及哪台机器加工哪个面
+Shows or changes the rules of copper bars; lengths in mm	显示或更改铜排规则；长度单位为 mm
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	显示或更改安装板布局检查的规则；值以 mm 为单位（温度以 °C 为单位）
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	显示 PLC 硬件组态：带机架、插槽、模块和地址范围的站、总线系统、端口连接以及发现的问题
+Shows the content of a page: symbols with their connection point positions, wires and texts	显示页的内容：符号及其连接点位置、导线和文本
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	显示项目中存储的其他系统数据（部件链接、文档）和交换日志
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	显示插头的插合面：部件的引脚布局、每个引脚的位置（mm，从插针侧看）以及两侧的电位、导线颜色和电缆芯线
+Shows the options and rules of the configurator	显示配置器的选项和规则
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	按插头顺序显示插头的插针：插孔侧和插针侧连接的内容、电位、未使用的插针
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	显示 3D 布线的规则并更改指定的规则：栅格、间距、自由布线系数、隔离、弯曲半径、下料长度、余量
+Shows the rules of the field cable planning and changes those given	显示现场电缆规划规则并更改给定的规则
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	显示项目检查的设置：已关闭的检查、已更改的消息级别和已接受的消息
+Side of the plug the cable leaves: socket or pin (default: socket)	电缆引出的插头侧：socket 或 pin（默认：socket）
+Side the connection comes from: left, right, up or down (default up)	连接进入的一侧：left、right、up 或 down（默认 up）
+Single-line diagrams	单线图
+Single-line pages and their multi-line counterparts	单线页及其对应的多线页
+Slot number	插槽编号
+Smallest bend radius in mm	最小弯曲半径 (mm)
+Smallest distance in mm	最小距离，单位 mm
+Smallest distance of holes from the sheet edge	孔到板边的最小距离
+Smallest inner radius as a multiple of the thickness	最小内半径为厚度的倍数
+Smallest web at cutouts	开孔处最小筋宽
+Smallest web between holes	孔间最小筋宽
+Spare terminals at the end of the strip	端子排末端的备用端子
+Springback in percent of the angle	回弹量，以角度的百分比表示
+Start again on every page whose structure differs from the page before	在结构与前一页不同的每一页重新开始
+Start and end are the same connection point	起点和终点是同一个连接点
+Start and end point of the line	线的起点和终点
+Start: device tag and connection point, e.g. -K1:A1	起点：设备标识符和连接点，例如 -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	已移交生产的作业状态：进度、故障、返工、自移交以来更改的程序
+Station name (empty: unassigned)	站名（空：未分配）
+Station name, e.g. PLC1	站名，例如 PLC1
+Station {} exists already	站 {} 已存在
+Stock bar	原料铜排
+Stock length of rails, ducts and busbars	导轨、线槽和母线的库存长度
+Stock length of the bars	铜排的库存长度
+Stores the calibrated factors	存储校准系数
+Structure identifiers, aspects and work areas	结构标识符、方面和工作区域
+Structure of the target page: different (default), always or never	目标页的结构：different（默认）、always 或 never
+Subprojects, model options and the project data check	子项目、模型选项和项目数据检查
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	电源进线（电压、接地系统、短路电流）和导体的敷设条件；更改指定的值
+Switch checks off, change message levels, accept messages as checked	关闭检查、更改消息级别、将消息接受为已检查
+Switches a check on or off (names as shown by list_checks)	打开或关闭检查（名称如 list_checks 所示）
+Switches the project options with a condition by the configurator options	根据配置器选项切换带条件的项目选项
+Symbol id	符号 ID
+Symbol ids	符号 ID
+Symbol key from list_symbols	来自 list_symbols 的符号键
+Symbols, wires, texts, cable and connection definitions on schematic pages	原理图页上的符号、导线、文本、电缆定义和连接定义
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T型节点：主干方向；桥接：连接进入的一侧（left、right、up 或 down）
+Tag of the terminal strip, e.g. -X1	端子排的标识符，例如 -X1
+Take the cut lengths over as cable lengths	将下料长度采用为电缆长度
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	采用在机柜制造商配置器中配置的机柜 (JSON)：系统、尺寸、组件、附件和开孔
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	采用生产反馈（CSV 或 JSON）：作业、程序、工序、元素、状态、偏差、时间、消息
+Takes pages or page items out of their project option (hidden content is shown again)	将页或页元素从其项目选项中移出（隐藏的内容将重新显示）
+Target language code	目标语言代码
+Target languages separated by commas or blanks, e.g. de, fr	目标语言，以逗号或空格分隔，例如 de, fr
+Temperature rise at the roof against the middle (1 … 2)	柜顶相对于中部的温升 (1 … 2)
+Terminal designation	端子代号
+Terminal designations in strip order, separated by commas	按端子排顺序排列的端子代号，以逗号分隔
+Terminal order, levels, jumpers, spare terminals and accessories	端子顺序、层、跳线、备用端子和附件
+Text height in mm	文本高度 (mm)
+Text height in mm (default 3.5)	文本高度 (mm)（默认 3.5）
+Text in id, name or order number	ID、名称或订货号中的文本
+Text in the key or name	键或名称中的文本
+Text in the line or a translation	行或翻译中的文本
+Text to find; empty: fill	要查找的文本；空：填充
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	文本；绘制时将填入占位符，例如 {page} 或 {prop:Name}
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	拐角的分支是一个垂直方向和一个水平方向，例如 down left，而不是 {}
+The cable definition line crosses no wire	电缆定义线未穿过任何导线
+The cable definition line has no length	电缆定义线没有长度
+The cable has an overall shield	电缆有总屏蔽
+The classes may overlap (no collision)	这些类别允许重叠（无碰撞）
+The configuration (JSON)	配置 (JSON)
+The copies would leave the page	副本将移出页面
+The counting step must be at least 1	计数步长必须至少为 1
+The devices do not fit onto rail {}	设备无法放入导轨 {}
+The feedback (CSV with header or JSON)	反馈（带标题行的 CSV 或 JSON）
+The first page number must not be negative	起始页码不能为负数
+The items would leave the page	这些元素将移出页面
+The length must not be negative	长度不能为负数
+The line of a crossing is vertical or horizontal, not {}	交叉的直线为 vertical 或 horizontal，而不是 {}
+The message text, kept for the list of accepted messages	消息文本，保留用于已接受消息列表
+The name must not be empty	名称不能为空
+The number of copies must be between 1 and 100	副本数必须介于 1 和 100 之间
+The plinth height must not be negative	底座高度不能为负数
+The plot frame {} is in use	图框 {} 正在使用中
+The plugin program did not answer within {} s and was stopped	插件程序在 {} 秒内没有响应，已被停止
+The plugin program failed: {}	插件程序失败：{}
+The rotation must be 0, 90, 180 or 270	旋转角度必须为 0、90、180 或 270
+The straight line of a crossing: vertical or horizontal (default vertical)	交叉的直线：vertical 或 horizontal（默认 vertical）
+The text height must be at least 0.5 mm	文字高度必须至少为 0.5 mm
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	拐角的两个分支，垂直和水平，例如 down left（默认：按该处的连接线，否则 down right）
+The wire has no length	连接没有长度
+The wrap width must not be negative	换行宽度不能为负数
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	安装板热仿真：空气温度、热点、热源以及每个设备处的温度
+Thickest sheet or bar, mm	最厚板材或铜排，mm
+Time per drilling, punching or bending operation, s	每次钻孔、冲孔或折弯操作的时间，s
+Time per tool change, s	每次换刀时间，s
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	刀具，例如 D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	面上的上边缘 (mm)
+Top edge on the mounting plate in mm	安装板上的上边缘 (mm)
+Translated line	翻译后的行
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	绕垂直轴旋转的角度（度），从上方看为逆时针（90：正面朝右）
+Unit, e.g. kW	单位，例如 kW
+Unknown accessory kind: {}	未知附件类型：{}
+Unknown action: {}	未知操作：{}
+Unknown address scheme: {}	未知地址方案：{}
+Unknown alignment: {}	未知对齐方式：{}
+Unknown anchor: {}	未知锚定：{}
+Unknown aspect: {}	未知方面：{}
+Unknown bonding kind: {}	未知等电位联结类型：{}
+Unknown bonding point: {}	未知联结点：{}
+Unknown bus system: {}	未知总线系统：{}
+Unknown cable: {}	未知电缆：{}
+Unknown check: {}	未知检查：{}
+Unknown class: {}	未知类别：{}
+Unknown data type: {}	未知数据类型：{}
+Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
+Unknown earthing system: {}	未知接地系统：{}
+Unknown face {}	未知面 {}
+Unknown fastening: {}	未知紧固方式：{}
+Unknown field object: {}	未知现场对象：{}
+Unknown field: {}	未知字段：{}
+Unknown group kind: {}	未知组类型：{}
+Unknown installation: {}	未知安装方式：{}
+Unknown insulation: {}	未知绝缘：{}
+Unknown jumper kind: {}	未知跳线类型：{}
+Unknown kind: {}	未知类型：{}
+Unknown labels: {}	未知标签：{}
+Unknown level: {}	未知级别：{}
+Unknown line type: {}	未知管路类型：{}
+Unknown machine kind {}	未知机器类型 {}
+Unknown marker category: {}	未知标记类别：{}
+Unknown material: {}	未知材料：{}
+Unknown medium: {}	未知介质：{}
+Unknown method {}	未知方法 {}
+Unknown node: {}	未知节点：{}
+Unknown numbering scheme: {}	未知编号方案：{}
+Unknown object class: {}	未知对象类别：{}
+Unknown order: {}	未知顺序：{}
+Unknown paper format: {}	未知纸张格式：{}
+Unknown path kind: {}	未知路径类型：{}
+Unknown placeholder {}: possible are {}	未知占位符 {}：可用的有 {}
+Unknown potential kind: {}	未知电位类型：{}
+Unknown preset: {}	未知预设：{}
+Unknown program format {}	未知程序格式 {}
+Unknown report: {}	未知报表：{}
+Unknown segment kind: {}	未知布线段类型：{}
+Unknown segment: {}	未知布线段：{}
+Unknown separator: {}	未知分隔符：{}
+Unknown setting: {}	未知设置：{}
+Unknown shield ends: {}	未知屏蔽端：{}
+Unknown side {} (socket or pin)	未知的侧 {}（socket 或 pin）
+Unknown state: {}	未知状态：{}
+Unknown station kind: {}	未知站类型：{}
+Unknown symbol: {}	未知符号：{}
+Unknown table: {}	未知表格：{}
+Unknown vertical anchor: {}	未知垂直锚点：{}
+Unknown wire colour {} (IEC 60757: {})	未知导线颜色 {}（IEC 60757：{}）
+Use this scheme for the marking export	将此方案用于标记导出
+Used (mm)	已用 (mm)
+Value while none is set	未设置时的值
+Values of a selection list separated by commas	选择列表的值，以逗号分隔
+Variant (empty: the first)	变体（空：第一个）
+Variant {} is not one of 1 to 2	变体 {} 不在 1 到 2 之间
+Variant {} is not one of 1 to 4	变体 {} 不在 1 到 4 之间
+Verifies the project against the enabled rule libraries and customer rule sets	根据已启用的规则库和客户规则集验证项目
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	校验项目数据（ID、引用、选项、子项目）并运行检查；可选择修复可修复的问题
+Vertical pitch of the pattern in mm	阵列的垂直间距 (mm)
+Voltage, e.g. 400 V AC	电压，例如 400 V AC
+What it is: motor, valve, sensor, …	设备类型：电机、阀、传感器 …
+Which line the position is on: top (first), middle or bottom (last)	位置所在的行：top（第一行）、middle 或 bottom（最后一行）
+Who accepted it	接受者
+Whole words only	仅全字匹配
+Why the message is accepted	接受该消息的原因
+Width in mm	宽度 (mm)
+Width of the path in mm (default 50)	路径宽度 (mm)（默认 50）
+Width, depth and height of a room are at least {} mm	房间的宽度、深度和高度至少为 {} mm
+Width, height and depth of an enclosure are at least {} mm	机柜的宽度、高度和深度至少为 {} mm
+Wire colour (IEC 60757), e.g. BK	导线颜色 (IEC 60757)，例如 BK
+Wire colour, e.g. BU	导线颜色，例如 BU
+Wire colour, e.g. BU (empty = from the potential definition)	导线颜色，例如 BU（空 = 取自电位定义）
+Wire number (kept when renumbering)	线号（重新编号时保留）
+Wire numbering and wiring marks	导线编号和接线标记
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	对其保护设备而言过细的导线以及电缆的电压降 (IEC 60204-1)
+Working area in x, mm	x 方向加工区域，mm
+Working area in y, mm	y 方向加工区域，mm
+Wrap width in mm (0: no wrapping)	换行宽度，单位 mm（0：不换行）
+X position in mm	X 位置 (mm)
+Y position in mm (downwards)	Y 位置 (mm)（向下）
+any, wires, cables or tubes	any、wires、cables 或 tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip 或 adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam 或 product
+controller, io_device, drive, hmi or other	controller、io_device、drive、hmi 或 other
+copper or aluminium	copper 或 aluminium
+device (default), position, cross_section or number	device（默认）、position、cross_section 或 number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 或 parts
+error, warning, info, off, or default to take the change back	error, warning, info, off，或 default 以撤销更改
+false takes the acceptance back (default true)	false 撤销接受（默认 true）
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted 或 middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+) 或 product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 或 other
+hose, tube or pipe	hose、tube 或 pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204（机械，相线 BK）或 iec60445（相线 BN、BK、GY）
+keepout (default), power, control, signal or fluid	keepout（默认）、power、control、signal 或 fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l、n、pe、dc_plus、dc_minus、signal 或 other
+left, center, right, top, middle or bottom	left, center, right, top, middle 或 bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left、center_x、right、top、center_y、bottom、distribute_x、distribute_y、rail 或 pattern
+main (default), supplementary or functional	main（默认）, supplementary 或 functional
+mounted, problem or open	mounted, problem 或 open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond 或 accessory
+numbers or letters	numbers 或 letters
+plate, door, left, right, rear, roof or bottom	plate、door、left、right、rear、roof 或 bottom
+plug_in, saddle or wire	plug_in, saddle 或 wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet、ethercat、ethernet_ip、profibus_dp、modbus_tcp 或 canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc 或 cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable 或 part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<名称>, device:<标识符>, function:<符号 ID>, cable:<标识符> 或 part:<编号>
+pvc or xlpe	pvc 或 xlpe
+sequential, page_column, potential or format	sequential, page_column, potential 或 format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel、stainless_steel、aluminium 或 plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date 或 link（默认 text）
+tn_s, tn_c, tn_c_s, tt or it	tn_s、tn_c、tn_c_s、tt 或 it
+too long	过长
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray（默认）, ladder, trunking, conduit, drag_chain, buried 或 free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal、service_unit、manifold、power_unit 或 other
+wired, problem or open	wired、problem 或 open
+{} and {} are both ends of one function: the wire would short-circuit it	{} 和 {} 是同一功能的两端：该导线会使其短路
+{} and {} are needed together	{} 和 {} 需要同时指定
+{} cannot be bayed to itself	{} 不能与自身并柜
+{} cannot be mounted on the {}	{} 无法安装在 {} 上
+{} exists already: pass merge to make both one identifier	{} 已存在：指定 merge 可将两者合并为一个标识符
+{} has no enclosure bayed to its right side	{} 的右侧没有并柜的机柜
+{} has no enclosure system; give one	{} 没有机柜系统；请指定一个
+{} is a built-in frame; give the frame a new name	{} 是内置图框；请为图框指定新名称
+{} is a room already	{} 已经是房间
+{} is ambiguous: use #id:pin	{} 不明确：请使用 #id:pin
+{} is an enclosure already	{} 已经是机柜
+{} is not a connection point (TAG:PIN)	{} 不是连接点 (TAG:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{} 不是 check 显示的消息代码（例如 wires.3f9a1c）
+{} is not a message fingerprint as shown by check (code:hash:item)	{} 不是 check 显示的消息指纹（code:hash:item）
+{} is not defined	{} 未定义
+{} is not in that section	{} 不在该分节中
+{} is the source language	{} 是源语言
+{} must be at least {}	{} 必须至少为 {}
+{} must be between {} and {}	{} 必须介于 {} 和 {} 之间
+{} must not be negative	{} 不能为负数
+{} of job {} changed since the hand-off	自移交以来，作业 {1} 的 {0} 已更改
+{} segments need {} bends	{} 个段需要 {} 个折弯
+{} would stand outside the room {}	{} 将位于房间 {} 之外
+{}: part {} is being phased out	{}：部件 {} 即将停产
+{}: part {} is being phased out, successor {}	{}：部件 {} 即将停产，后续产品 {}
+{}: part {} is discontinued	{}：部件 {} 已停产
+{}: part {} is discontinued, successor {}	{}：部件 {} 已停产，后续产品 {}
+{}: the program to run is missing	{}：缺少要运行的程序

@@ -1,0 +1,286 @@
+# English<TAB>简体中文 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	（仅限 MCP 服务器）
+(optional)	（可选）
+Access token for changes	用于更改的访问令牌
+Access token of a Vault session or an Autodesk account instead of user and password	Vault 会话或 Autodesk 帐户的访问令牌，代替用户和密码
+Address of the Vault server, e.g. https://vault.example.com	Vault 服务器地址，例如 https://vault.example.com
+Adds a page	添加页
+Adds the definitions and schemes of a property library file to the project	将属性库文件的定义和方案添加到项目中
+All project files of a folder	文件夹中的所有项目文件
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	同时返回分面：组、制造商、目录、生命周期和技术数据的值及其数量
+Also save the project in this local file	同时将项目保存到此本地文件
+Also take over values changed on both sides since the last export	同时采用自上次导出以来双方都已更改的值
+Also verify each project (slower)	同时校验每个项目（较慢）
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	应用通过 table_get 导出（并在电子表格中更改）的 CSV：设置已更改的单元格
+Applies a structure template: the aspects of the pages and its identifiers	应用结构模板：页的方面及其标识符
+Archive file (.oecz)	归档文件 (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	将部件分配给设备（来自项目、内置目录或部件服务器）
+Author of comments without one (default: the user name)	无作者批注的作者（默认：用户名）
+AutomationML content instead of a file	AutomationML 内容（代替文件）
+AutomationML file	AutomationML 文件
+CSV content instead of a file	CSV 内容（代替文件）
+CSV file	CSV 文件
+CSV or Excel file	CSV 或 Excel 文件
+CSV or JSON file	CSV 或 JSON 文件
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV、JSON、BMEcat、EPLAN XML 或 EDZ 文件
+Cannot write {}: {}	无法写入 {}：{}
+Catalog data; without id it is derived from the name	目录数据；未指定 ID 时根据名称生成
+Changes project properties	更改项目属性
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	一次更改多个项目文件中的项目属性（字段 name、description、company、creator、date、revision 或项目属性）
+Changes the number of a part on the parts server	更改部件服务器上部件的编号
+Check scheme file (JSON)	检查方案文件 (JSON)
+Check-in comment	签入注释
+Checks the project (errors, warnings, hints)	检查项目（错误、警告、提示）
+Column mapping {field code: column name} (added to the profile's)	列映射 {字段代码: 列名}（添加到配置文件的映射中）
+Comment stored in the archive	存储在归档中的注释
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	将项目部件与部件服务器进行比较：更新版本、即将停产、已停产和已删除的部件
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	改为接口导出：erp, pdm, plm, ecad, mcad, procurement, wiring_machine 或 exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	连接到 Autodesk Vault（Vault Data API，Vault Professional 2025.2 或更高版本）：使用 Vault 帐户登录或使用访问令牌，并显示连接
+Converts a project file or archive of an older version to the current file format	将旧版本的项目文件或归档转换为当前文件格式
+Creates a new project (optionally the demo project) and saves it if a path is given	新建项目（也可以是演示项目），如果指定了路径则保存
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	在部件服务器上创建或更改目录（ID、名称、制造商、版本、描述）
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	创建或更改报表块（一起生成的报表页，例如每个端子排一个端子图）
+Creates or changes a user of the parts server (administrators only)	创建或更改部件服务器的用户（仅限管理员）
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	在部件服务器上创建或替换部件（JSON 与 parts_get 相同；缺少的字段为空）
+Creates or replaces a report scheme	创建或替换报表方案
+Creator	创建者
+DWG file	DWG 文件
+DXF file	DXF 文件
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro 或 Other（默认：按文件名）
+Date for the exchange log	交换日志的日期
+Defines, changes or deletes a role of the parts server (administrators only)	定义、更改或删除部件服务器的角色（仅限管理员）
+Delete the role	删除该角色
+Deletes a catalog without parts from the parts server	从部件服务器删除不含部件的目录
+Deletes a part from the parts server	从部件服务器删除部件
+Deletes a user of the parts server (administrators only)	删除部件服务器的用户（仅限管理员）
+Descending order	降序
+Discard unsaved changes of the open project	放弃已打开项目中未保存的更改
+Downloads a file of a part from the parts server	从部件服务器下载部件的文件
+Downloads a file version from the vault	从 Vault 下载文件版本
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	将文件（PDF、Office 文档、图像 …）作为文档页嵌入；PDF 导出会将其附加到该页
+Error: {}	错误：{}
+Export name as shown by list_exports	list_exports 显示的导出名称
+Export name as shown by list_exports, e.g. pdf or step	list_exports 显示的导出名称，例如 pdf 或 step
+Exports all parts of the parts server as CSV or EPLAN parts XML	将部件服务器的所有部件导出为 CSV 或 EPLAN 部件 XML
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	使用接口为其他系统导出项目，或导出为中性交换文件（接口 exchange）；该接口之后的导入将检测与此导出的冲突
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	以 list_exports 中的格式导出项目；二进制格式（dwg、jt）需要输出文件
+Field or property whose value is searched ('*' for all)	要搜索其值的字段或属性（'*' 表示全部）
+File content instead of a file	文件内容（代替文件）
+File id (see the attachments of parts_get)	文件 ID（参见 parts_get 的 attachments）
+File name in the vault	Vault 中的文件名
+File to embed	要嵌入的文件
+File to save the project to (.oec)	用于保存项目的文件 (.oec)
+File to upload	要上传的文件
+File to write	要写入的文件
+File to write (xlsx)	要写入的文件 (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	在项目数据库或文件夹中查找项目：各条件以 ';' 分隔，每个条件为 键=值、键~文本 或纯文本
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	查找项目部件对应的 Vault 项（按项编号或 Part Number 属性），并列出物料 ID、修订和生命周期状态的更改；使用 apply 时采用这些更改
+Folder id (default root)	文件夹 ID（默认 root）
+Folder with project files	包含项目文件的文件夹
+Folder with project files (instead of a database; default: the current folder)	包含项目文件的文件夹（代替数据库；默认：当前文件夹）
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	表格：title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic（以图形方式绘制的端子图和电缆图）
+Function (=) of the generated pages	生成页的功能 (=)
+Further parameters of the export as name=value, separated by commas	导出的其他参数，格式为 name=value，以逗号分隔
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	导出的其他参数，格式为 name=value，以逗号分隔（参见 list_exports），例如 harness=-WH1
+GSDML or ESI file	GSDML 或 ESI 文件
+Generates a report as table	以表格形式生成报表
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	为每个具有页宏且尚未在原理图中的已规划设备生成一个原理图页
+Generates the pages of the report blocks again (replacing the pages they generated before)	重新生成报表块的页（替换之前生成的页）
+Give either template or path	请指定 template 或 path 之一
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	为用户或组授予部件服务器某制造商（范围）上的角色，使用 deny 时收回其权限，使用 revoke 时删除授权（仅限管理员）
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	要生成的组，允许使用通配符（-X*、-W1）；空：全部
+Id of a file (file_id of vault_browse) that gets a new version	要获得新版本的文件的 ID（vault_browse 的 file_id）
+Id of the file version (version_id of vault_browse)	文件版本的 ID（vault_browse 的 version_id）
+Id of the knowledge vault (taken from the session if not given)	知识库 ID（未指定时从会话中获取）
+Id of the plugin to disable	要禁用的插件 ID
+Id of the plugin to enable	要启用的插件 ID
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	将 DWG 图纸（AutoCAD R12 … 2018）作为图形（直线、圆弧、文本、块）导入到新的原理图页
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	将 DXF 图纸作为图形（线、圆弧、文本、块）导入到新的原理图页上
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	从 AutomationML（例如从 TIA Portal 导出）导入 PLC 硬件组态：站、模块、地址、子网、端口连接和变量注释
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	将部件文件导入部件服务器；EDZ 文件中的图片和宏随其部件一起存储
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	从 GSDML (PROFINET) 或 ESI (EtherCAT) 文件将设备描述导入项目
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	从 CSV 或 Excel 导入预规划段和已规划设备（列 Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro）
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	将审阅者在项目 PDF 导出中添加的批注（注释、文本框、突出显示、形状、回复）导入审阅层；跳过之前已导入的批注
+Insert after this page (default: at the end)	在此页之后插入（默认：在末尾）
+Inserts an edited subproject: its pages replace the pages taken out	插入已编辑的子项目：其页替换已移出的页
+Invalid form: {}	无效表单：{}
+Keep the file checked out after the check-in	签入后保持文件签出
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	服务器类型：OpenECraft（部件服务器）或 Eplan（EPLAN Data Portal：仅搜索和读取，令牌为 EPLAN 帐户的个人访问令牌）
+Language of the export (a project language)	导出的语言（项目语言之一）
+Language of the project texts and reports (a project language, default the source language)	项目文本和报表的语言（项目语言之一，默认为源语言）
+Library file	库文件
+Lifecycle: Active, PhaseOut or Discontinued	生命周期：Active, PhaseOut 或 Discontinued
+Lists the built-in structure templates	列出内置结构模板
+Lists the catalogs of the parts server with their number of parts	列出部件服务器的目录及其部件数量
+Lists the checks of the project check (built-in and of plugins) and whether they run	列出项目检查的各项检查（内置和插件的）及其是否运行
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	列出集成层的接口（ERP、PDM、PLM、ECAD、MCAD、采购、导线加工机）及其交换的字段，以及项目的配置文件
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	列出机柜系统及其标准尺寸、壁厚、底座以及是否可并柜
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	列出从第一个电路到整个工厂的示例项目以及每个项目展示的功能
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	列出导出（内置和插件的）：用于 export 的名称、标题、文件扩展名和参数
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	列出 Vault 文件夹中的文件夹和文件，或搜索其下（或整个 Vault）的文件属性
+Lists the reports (built-in and of plugins): name for report and title	列出报表（内置和插件的）：用于 report 的名称和标题
+Lists the users of the parts server (administrators only)	列出部件服务器的用户（仅限管理员）
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	已加载的插件（内置插件以及来自 --plugins / OPENECRAFT_PLUGINS 插件文件夹的插件）及其命令、检查、报表和导出；为本会话启用或禁用插件
+Local file to put into the vault	要放入 Vault 的本地文件
+Local groups of the user, separated by commas	用户的本地组，以逗号分隔
+Location (+) of the generated pages	生成页的位置 (+)
+Macro library file (JSON, exported by the editor)	宏库文件（JSON，由编辑器导出）
+Manufacturer (wildcards); default * (everything)	制造商（可用通配符）；默认 *（全部）
+Manufacturer whose parts a manufacturer user maintains	制造商用户所维护部件的制造商
+Maximum number of hits (default 50)	最大命中数（默认 50）
+Name of a built-in template (list_structure_templates)	内置模板的名称 (list_structure_templates)
+Name of the knowledge vault (default Vault)	知识库名称（默认 Vault）
+New file name (save as)	新文件名（另存为）
+New pages for every value of the group column (default true)	为分组列的每个值新建页（默认 true）
+New part number	新部件编号
+New report block {} needs a kind	新报表块 {} 需要指定报表 (kind)
+No grant of {} found	未找到 {} 的授权
+No profile named {}	没有名为 {} 的配置文件
+No project is open: use open_project or new_project first	未打开项目：请先使用 open_project 或 new_project
+No role {} defined	未定义角色 {}
+Not a valid catalog: {}	不是有效的目录：{}
+Not a valid part: {}	不是有效的部件：{}
+Not connected to a vault: use vault_connect first	未连接到 Vault：请先使用 vault_connect
+Nothing to change: pass set, remove, replace or rename	无需更改：请指定 set、remove、replace 或 rename
+Number of hits to skip	要跳过的命中数
+Only show the changes, write nothing	仅显示更改，不写入
+Only the pages of this report block; default all report pages	仅限此报表块的页；默认为所有报表页
+Only the projects that match these search terms	仅限与这些搜索条件匹配的项目
+Only this block	仅此块
+Opens a project file or archive (files of older versions are converted)	打开项目文件或归档（旧版本的文件将被转换）
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	从 Vault 打开项目文件或归档；不带目标的 vault_upload 会签入其新版本
+Option {} needs the form name=value	选项 {} 需要 name=value 形式
+Order: Number, Manufacturer, Description, Price or Modified	排序：Number, Manufacturer, Description, Price 或 Modified
+Output file	输出文件
+Output file (JSON)	输出文件 (JSON)
+Output file; without it the content is returned	输出文件；如果不指定，则返回内容
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	将报表页作为固定页输出到另一个项目文件中；之前从此项目输出的页将被替换
+PDF file with comments	带批注的 PDF 文件
+Page (svg: required, dxf, dwg: default all pages)	页（svg：必需；dxf、dwg：默认所有页）
+Page name (default: next number)	页名（默认：下一个编号）
+Page of the export	导出的页
+Page template (list_page_templates) instead of kind	页模板 (list_page_templates)，代替 kind
+Page {} has no embedded document	页 {} 没有嵌入的文档
+Pages whose structure starts with this, e.g. =A1+CAB1	结构以此开头的页，例如 =A1+CAB1
+Part number to add	要添加的部件编号
+Part number to remove	要删除的部件编号
+Part {} has no version {}	部件 {} 没有版本 {}
+Pass files or a folder	请指定文件或文件夹
+Password (needed for new users; empty keeps the current one)	密码（新用户必填；留空则保留当前密码）
+Password of the Vault user	Vault 用户的密码
+Password of the user	用户的密码
+Plot frame (list_frames); default: the project's	图框 (list_frames)；默认：项目的图框
+Product top group: Electrical, Fluid, Mechanics or Process	产品主组：Electrical, Fluid, Mechanics 或 Process
+Profile whose column mapping is used	使用其列映射的配置文件
+Project database file (JSON)	项目数据库文件 (JSON)
+Project database file (JSON) to update	要更新的项目数据库文件 (JSON)
+Project file (.oec) or archive (.oecz)	项目文件 (.oec) 或归档 (.oecz)
+Project file that gets the pages	接收这些页的项目文件
+Project file to write (default: the file itself; archives: next to it as .oec)	要写入的项目文件（默认：文件本身；归档：在其旁边另存为 .oec）
+Project files, separated by ';'	项目文件，以 ';' 分隔
+Properties to remove, separated by ','	要删除的属性，以 ',' 分隔
+Properties to rename (old name: new name)	要重命名的属性（旧名称: 新名称）
+Property {} needs a text or a number	属性 {} 需要文本或数字
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	将项目、导出、接口导出或本地文件放入 Vault；文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor 或 Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	使用接口读取其他系统的文件（CSV 或 JSON）并列出更改；使用 apply 时采用更改（冲突仅在使用 overwrite 时采用）
+Reads the project files and archives of a folder (and its subfolders) into the project database	将文件夹（及其子文件夹）中的项目文件和归档读入项目数据库
+Reads translations from CSV: first column the source line, one column per language code	从 CSV 读取翻译：第一列为源行，每个语言代码一列
+Redoes the last undone change	恢复上次撤消的更改
+Remove the grants of the user or group (only of this role and scope, if given)	删除用户或组的授权（如已指定，则仅删除该角色和范围的授权）
+Remove the parts assigned so far	移除迄今已分配的部件
+Removes a file from a part on the parts server	从部件服务器上的部件中删除文件
+Replace the file at path if it exists	如果 path 处的文件已存在则替换
+Replace the project parts by their newer server versions	用服务器上的更新版本替换项目部件
+Replacement text	替换文本
+Replaces the content of the macro boxes whose macro changed in a macro library file	替换其宏在宏库文件中已更改的宏边框的内容
+Replaces the pages generated before by the page macros of the rules whose condition holds	用条件成立的规则的页宏替换之前生成的页
+Report name as shown by list_reports	list_reports 显示的报表名称
+Report scheme: its filter, sort order and columns	报表方案：其筛选、排序顺序和列
+Report scheme; empty: the form of the report	报表方案；空：报表的表单
+Report the scheme belongs to	方案所属的报表
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	报表，例如 terminal_diagram、terminal_lineup、cable_connections（新块必需）
+Return all part data instead of a summary	返回全部部件数据而不是摘要
+Revision of the change; returns the part as it was	更改的修订；返回该部件当时的状态
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	权限，以逗号分隔：read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	角色名称
+Role of requests without sign-in; none: sign-in needed for reading	未登录请求的角色；none：读取需要登录
+Role: reader, manufacturer, editor, admin or a defined role	角色：reader, manufacturer, editor, admin 或已定义的角色
+Saves the project to its file or to a new path	将项目保存到其文件或新路径
+Scale drawings down that do not fit on the page (default: true)	缩小不适合页面的图纸（默认：true）
+Search terms, e.g. company=ACME; customer~plant; conveyor	搜索条件，例如 company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	搜索 Vault 中的项（编号、标题、修订、生命周期状态、部件编号）
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	按文本、组、目录、生命周期和技术数据搜索部件服务器（数据门户）上的部件
+Segment path (default: all segments)	规划段路径（默认：所有规划段）
+Server URL, e.g. http://127.0.0.1:8090	服务器 URL，例如 http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	设置部件服务器（URL 和访问令牌，或用户和密码）并显示其状态
+Settings scheme file (JSON)	设置方案文件 (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	显示表格（设备、连接、端子、电缆、插头、PLC、页或部件）及其各行；通过行的键对其进行更改
+Shows all data of a part	显示部件的所有数据
+Shows the changes of a part on the parts server, or the part as of one change	显示部件服务器上部件的更改，或某次更改时的部件
+Shows the favorites of the signed in user, optionally adding or removing a part	显示已登录用户的收藏夹，可选择添加或删除部件
+Shows the manifest of a project archive	显示项目归档的清单
+Shows the project properties, file, number of pages and devices and the check result	显示项目属性、文件、页数和设备数以及检查结果
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	显示部件服务器的角色、授权和目录服务，可选择设置匿名请求的角色（仅限管理员）
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	从项目模板开始：内置模板（Machine、Distribution board (IEC 61439)、Empty (IEC 60204-1)）或项目文件
+Start from an example project (names: list_examples)	从示例项目开始（名称：list_examples）
+Start from the demo project	从演示项目开始
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	在部件服务器上为部件存储文件（数据手册、图像、模型、宏 …）
+Subproject file (.oec)	子项目文件 (.oec)
+Subproject file to write (.oec)	要写入的子项目文件 (.oec)
+Take the changes over (otherwise only a preview)	采用更改（否则仅预览）
+Take the rights of the role away instead	改为收回该角色的权限
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	将页移出为子项目文件；在重新插入子项目之前，这些页在此处保持锁定
+Takes the checks switched off and the message levels of a check scheme file	采用检查方案文件中已关闭的检查和消息级别
+Takes the settings a settings scheme file carries	采用设置方案文件中包含的设置
+Target folder id (root for the top folder); default the folder the project was opened from	目标文件夹 ID（root 表示顶层文件夹）；默认为打开项目时所在的文件夹
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	必须匹配的技术数据，例如 {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	由 export_structure_template 写入的模板文件
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	编号、类型、制造商、描述、组或目录中的文本；每个词都必须出现
+Text to replace	要替换的文本
+Text to search for	要搜索的文本
+The catalog needs a name	目录需要名称
+The format xlsx needs a path	xlsx 格式需要路径
+The open project has unsaved changes: save it first or pass discard	已打开的项目有未保存的更改：请先保存或传递 discard
+The part number must not be empty	部件编号不能为空
+The project has no file yet: pass a path	项目尚无文件：请传递路径
+This command needs a project: --project <file>	此命令需要一个项目：--project <文件>
+This format needs an output file (path)	此格式需要输出文件 (path)
+Undoes the last change	撤消上次更改
+Unexpected argument: {}	意外的参数：{}
+Unknown command: {}. Run openecraft-cli help for a list.	未知命令：{}。运行 openecraft-cli help 查看列表。
+Unknown example {}: see list_examples	未知示例 {}：请参阅 list_examples
+Unknown language: {}	未知语言：{}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	未知页面类型：{}（schematic、overview、graphic、cover 或 list_reports 中的报表）
+Unknown part {} (parts server: {})	未知部件 {}（部件服务器：{}）
+Unknown plugin: {}	未知插件：{}
+Unknown report scheme: {}	未知报表方案：{}
+Unknown structure template: {}	未知结构模板：{}
+Unknown template {}: give a built-in one ({}) or a project file	未知模板 {}：请指定内置模板（{}）或项目文件
+Unknown {}: {} (possible: {})	未知的 {}：{}（可能的值：{}）
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	用法：openecraft-cli [--project <文件>] [--server <url>] [--token <令牌>] [--lang <代码>] [--plugins <文件夹>] <命令> [--<参数> <值>]…\n\nopenecraft-cli mcp        在 stdin / stdout 上运行 Model Context Protocol 服务器\nopenecraft-cli <命令> --help   显示命令的参数\n\n命令：\n
+User defined properties (name: value; an empty value removes it)	用户定义的属性（名称: 值；值为空时将其移除）
+User name to sign in with	用于登录的用户名
+User or group name (wildcards; directory groups as directory:group)	用户名或组名（可用通配符；目录服务组写作 directory:group）
+Values to set (name: value; an empty value removes a property)	要设置的值（名称: 值；值为空时删除属性）
+Vault user name (signs in)	Vault 用户名（用于登录）
+Write the table as CSV to this file	将表格以 CSV 格式写入此文件
+Writes the check scheme of the project (checks switched off, message levels) to a file	将项目的检查方案（已关闭的检查、消息级别）写入文件
+Writes the embedded file of a document page	写出文档页的嵌入文件
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	将项目写入归档（.oecz：项目、清单、嵌入文件，可选 PDF）
+Writes the project's property definitions, function definitions and schemes as a library file	将项目的属性定义、功能定义和方案写入库文件
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	将项目的设置（导线编号、电位、导线默认值和颜色、标记、软管默认值、交叉引用、检查方案）写入文件
+Writes the structure management (aspects, identifiers, work areas) as a template file	将结构标识符管理（方面、标识符、工作区）写入模板文件
+csv (default) or eplan_xml	csv（默认）或 eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement 或 wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine 或 exchange
+json (default), csv or xlsx (Excel, needs path)	json（默认）、csv 或 xlsx（Excel，需要 path）
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\n在 stdin / stdout 上运行 Model Context Protocol 服务器：为 AI 代理提供此列表中的工具，项目保留在内存中（save_project 写入项目，undo / redo 撤销单个调用）。OPENECRAFT_MCP_TOOLS 限制提供的工具。\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\n显示命令行的版本（也可用 --version 或 -V）\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover 或报表：table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo 和 redo 仅在 MCP 会话中有效：命令行会为每个命令重新打开项目
+user or group	user 或 group
+{} exists already: pass overwrite to replace it	{} 已存在：传入 overwrite 以替换
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} 是归档文件，保持不变：请将项目另存为项目文件 (save_project --path <file>.oec) 或转换归档 (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} 是归档文件：请指定路径以将项目另存为项目文件
+{} is not a language of the project	{} 不是项目语言

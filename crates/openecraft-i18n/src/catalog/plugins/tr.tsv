@@ -1,0 +1,953 @@
+# English<TAB>Türkçe – openecraft-api: the built-in plugins and their commands (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: sol / üst koldan düz olarak diğer kola, sonra gövdeye · 2: aynısı sağ / alt koldan · 3: gövdeden sol / üst kola, sonra diğerine · 4: gövdeden önce sağ / alt kola (varsayılan 3)
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: çizginin üst / sol ucu enine sağ / alt kola gider · 2: sol / üst kola (varsayılan 2)
+A cable definition needs a start and an end point	Kablo tanımı bir başlangıç ve bir bitiş noktası gerektirir
+A copper bar needs at least one segment	Bir bakır bara için en az bir segment gerekli
+A segment cannot be moved below itself	Bir segment kendi altına taşınamaz
+A segment needs two different nodes	Bir segment için iki farklı düğüm gerekli
+A wire needs at least two points	Bir tel en az iki nokta gerektirir
+A {} has no {}; it takes {}	{} için {} yok; şunları alır: {}
+A0, A1, A2, A3, A4, Letter, Legal, Tabloid or custom	A0, A1, A2, A3, A4, Letter, Legal, Tabloid veya custom
+Accepts a message as checked, so that it is no longer counted until it changes	Bir mesajı kontrol edildi olarak kabul eder, böylece değişene kadar artık sayılmaz
+Accessory part number, e.g. GEN.GLAND-M25	Aksesuar parça numarası, ör. GEN.GLAND-M25
+Activates (shows) or deactivates (hides) the content of a project option	Bir proje seçeneğinin içeriğini etkinleştirir (gösterir) veya devre dışı bırakır (gizler)
+Additional power loss in W	W cinsinden ek güç kaybı
+Address scheme: siemens, iec or rockwell	Adres şeması: siemens, iec veya rockwell
+Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Bükülmüş ve delinmiş bir bakır bara ekler (veya panodaki aynı adlı barayı değiştirir)
+Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Sağ komşuya bir kablo geçişi ekler: her iki yan duvarda karşılıklı yuvarlak kesimler; panolar arasındaki teller buradan geçer
+Adds a configurator rule: insert a page macro when the condition holds	Bir yapılandırıcı kuralı ekler: koşul sağlandığında bir sayfa makrosu ekle
+Adds a node of the field route network (junction, penetration, where an enclosure or device is reached)	Saha güzergâh ağına bir düğüm ekler (kavşak, geçiş, bir panoya veya cihaza ulaşılan nokta)
+Adds a planned device to a segment or changes it	Bir segmente planlanmış bir cihaz ekler veya değiştirir
+Adds a project option or changes its description and condition	Bir proje seçeneği ekler veya açıklamasını ve koşulunu değiştirir
+Adds a routing path (cable tray, tube guide) over the mounting plate that routes prefer	Montaj plakasının üzerine, güzergâhların tercih ettiği bir yönlendirme yolu (kablo tavası, tüp kılavuzu) ekler
+Adds a segment below another one (or at the top)	Başka bir segmentin altına (veya en üste) bir segment ekler
+Adds a segment of the field route network between two nodes: cable tray, ladder, trunking, conduit, drag chain, buried or free run	İki düğüm arasında saha güzergâh ağının bir segmentini ekler: kablo tavası, merdiven, kanal, boru, enerji zinciri, gömülü veya serbest döşeme
+Adds a text to a page	Bir sayfaya metin ekler
+Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Proje metinlerinin tüm satırlarını sözlüğe ekler, isteğe bağlı olarak artık kullanılmayan girdileri kaldırır
+Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Bir kablo ucuna aksesuar ekler: rakor, EMC rakoru, konnektör, çekme kuvveti giderici, ekran kelepçesi, koruma hortumu, kablo yüksüğü, işaretleyici
+Adds an accessory to a device; it must fit one of the device's parts	Bir cihaza aksesuar ekler; cihazın parçalarından birine uymalıdır
+Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Bir pano ekler: bir sistemden, boyutlarından birinde (veya özel boyutta) ya da bir pano parçasından
+Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	İki kuşaklama noktası arasına bir eş potansiyel kuşaklama iletkeni ekler (ana topraklama barası, panolar, iletken dış hatlar, metal taşıyıcılar)
+Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Projenin bir etiketleme şemasını ekler veya değiştirir, kaldırır ya da etiketleme dışa aktarımı için kullanılacak şemayı seçer
+Adds or changes a machine of the project (a built-in machine of the same id is replaced) or removes it	Projeye bir makine ekler veya değiştirir (aynı kimliğe sahip yerleşik bir makine değiştirilir) ya da kaldırır
+Adds the devices of a template to a segment	Bir şablonun cihazlarını bir segmente ekler
+Adds the outline of a machine, building or area to the plant layout	Tesis yerleşimine bir makinenin, binanın veya alanın dış hatlarını ekler
+Adds, replaces or removes a profile: a connector with the column names the other system uses	Bir profil ekler, değiştirir veya kaldırır: diğer sistemin kullandığı sütun adlarına sahip bir bağlayıcı
+Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Öğeleri hizalar, eşit aralıklarla dağıtır, cihazları bir ray üzerinde sıralar veya öğeleri bir desen halinde kopyalar
+Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Sembolleri, metinleri ve grafikleri ortak bir kenara veya merkeze hizalar; bağlı tel uçları takip eder
+Allow renaming onto an identifier in use: both become one	Kullanımdaki bir tanımlayıcıya yeniden adlandırmaya izin ver: ikisi bir olur
+Allowed classes, comma separated: power, control, signal, fluid (default all)	İzin verilen sınıflar, virgülle ayrılmış: power, control, signal, fluid (varsayılan tümü)
+Allowed values separated by commas (empty: any value)	Virgülle ayrılmış izin verilen değerler (boş: herhangi bir değer)
+Also create a bus cable for every connection without cable	Kablosu olmayan her bağlantı için bir bus kablosu da oluştur
+Also properties without a value	Değeri olmayan özellikler de
+Also remove entries the project no longer uses	Projenin artık kullanmadığı girdileri de kaldır
+Also renumber terminal strips, plugs and PLC cards	Klemens şeritlerini, fişleri ve PLC kartlarını da yeniden numaralandır
+Also renumber wires with a fixed number	Sabit numaralı telleri de yeniden numaralandır
+Altitude of the site in m	m cinsinden kurulum yeri rakımı
+Ambient temperature of the conductors in °C	°C cinsinden iletkenlerin ortam sıcaklığı
+An outline needs {} points at least	Bir dış hat için en az {} nokta gerekli
+Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Eksen boyunca ankraj: free, start:<mm>, center:<mm>, end:<mm> veya stretch:<mm>,<mm>
+Aspects separated by commas, e.g. function,location	Virgülle ayrılmış yönler, ör. function,location
+Assigns a function definition to a placed symbol (designations and scheme are taken over)	Yerleştirilmiş bir sembole fonksiyon tanımı atar (tanımlar ve şema alınır)
+Asynchronous motors add to the short-circuit current	Asenkron motorlar kısa devre akımına katkıda bulunur
+Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Otomatik donanım yapılandırması: CPU'lar ve bus kuplörleri için istasyonlar, bus sistemleri, kartların istasyonlara atanması, slotlar, başlangıç adresleri, nokta adresleri, IP adresleri ve hat topolojisi
+Back to the default rules first	Önce varsayılan kurallara dön
+Back to the default strategy first	Önce varsayılan stratejiye dön
+Back-up protection up to this short-circuit current in kA (0: not given)	kA cinsinden bu kısa devre akımına kadar yedek koruma (0: verilmemiş)
+Bar id	Bara kimliği
+Bar thickness, mm (default 5)	Bara kalınlığı, mm (varsayılan 5)
+Bar width, mm (default 20)	Bara genişliği, mm (varsayılan 20)
+Bays an enclosure side by side to the right of another one (line-up); without right_of it leaves its line-up	Bir panoyu başka bir panonun sağına yan yana bağlar (yan yana dizilim); right_of verilmezse pano dizilimden çıkar
+Bend radius in drag chains as a multiple of the cable diameter	Enerji zincirlerinde kablo çapının katı olarak bükülme yarıçapı
+Bend radius of a drag chain in mm	mm cinsinden enerji zinciri bükülme yarıçapı
+Bend radius of cables as a multiple of the diameter	Çapın katı olarak kabloların bükme yarıçapı
+Bend radius of tubes as a multiple of the diameter	Çapın katı olarak tüplerin bükme yarıçapı
+Bend radius of wires as a multiple of the diameter	Çapın katı olarak tellerin bükme yarıçapı
+Bends between the segments: angle, e for edgewise, r<radius>, e.g. 90; -90 e; 45 r10	Segmentler arasındaki bükümler: açı, dik büküm için e, r<yarıçap>, ör. 90; -90 e; 45 r10
+Between page and column (default .)	Sayfa ile sütun arasında (varsayılan .)
+Bonding point	Kuşaklama noktası
+Border around the text	Metnin etrafında kenarlık
+Both classes are needed	Her iki sınıf da gerekli
+Bus system name	Bus sistemi adı
+Bus system name, e.g. PN/IE_1	Bus sistemi adı, ör. PN/IE_1
+Busbar machine program (CSV)	Bara işleme makinesi programı (CSV)
+CNC operations	CNC işlemleri
+CNC programs for drilling, milling and punching machines, copper bar bending, enclosure configurator, hand-off to production and production feedback	Delme, frezeleme ve zımbalama makineleri için CNC programları, bakır bara bükme, pano yapılandırıcısı, üretime teslim ve üretim geri bildirimi
+Cable tag, e.g. -W1	Kablo etiketi, ör. -W1
+Cable tag, e.g. -W20	Kablo etiketi, ör. -W20
+Calibrates the time estimate of the machines from the actual times of the production feedback	Makinelerin süre tahminini üretim geri bildirimindeki gerçek sürelerle kalibre eder
+Cannot read the plugin folder {}	{} eklenti klasörü okunamıyor
+Cannot start {}: {}	{} başlatılamıyor: {}
+Card tag, e.g. -A1	Kart etiketi, ör. -A1
+Category, e.g. coils, contacts, terminals, plc	Kategori, ör. coils, contacts, terminals, plc
+Centre from the rear wall in mm	mm cinsinden arka duvardan merkez
+Centre from the top of the enclosure in mm	mm cinsinden panonun üstünden merkez
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Bir T parçasını (yön, varyant, gösterim), bir köşeyi (kollar), bir kesişmeyi (çizgi, varyant, gösterim) veya bir köprüyü (yön, gösterim) değiştirir
+Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Bir tablonun hücresini değiştirir: cihaz etiketi, fonksiyon metni, açıklama, parça; tel numarası, renk, kesit, kablo, damar; şerit, klemens
+Changes a placed symbol; when it moves, connected wire ends follow	Yerleştirilmiş bir sembolü değiştirir; sembol taşındığında bağlı tel uçları onu izler
+Changes a text (only the given properties)	Bir metni değiştirir (yalnızca verilen özellikleri)
+Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Üretimden kalkan veya üretimi durdurulan parçalara sahip cihazları halef parçalara geçirir (halefler proje parçası olmalıdır)
+Changes name, description or structure of a page	Bir sayfanın adını, açıklamasını veya yapısını değiştirir
+Changes name, description, function, location or parent of a segment	Bir segmentin adını, açıklamasını, fonksiyonunu, konumunu veya üst segmentini değiştirir
+Changes position, face, fastening or anchors of a panel item	Bir pano öğesinin konumunu, yüzeyini, sabitlemesini veya ankrajlarını değiştirir
+Changes the device, connection and terminal tables	Cihaz, bağlantı ve klemens tablolarını değiştirir
+Changes the level of a kind of message (code as shown by check)	Bir mesaj türünün seviyesini değiştirir (kod check tarafından gösterildiği gibi)
+Changes the properties of a wire	Bir telin özelliklerini değiştirir
+Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Bir panonun sistemini, boyutunu ve bileşenlerini (kaide, yan yana bağlı taraflar, rakor plakası) değiştirir; ankrajlı öğeler izler
+Check {} failed: {}	{} kontrolü başarısız oldu: {}
+Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Pano yerleşimini kontrol eder: çakışmalar, mesafeler (montaj, havalandırma, EMC), servis alanı, zeminden yükseklikler, çakışma sınıfları, sıcaklıklar ve üretilebilirlik
+Chosen value	Seçilen değer
+Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Pano yerleşiminin mesafeleri, servis alanı, yükseklikleri, çakışma sınıfları, termik simülasyonu ve üretilebilirliği
+Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Panoların iklimlendirmesi (IEC/TR 60890): güç kaybı, iç sıcaklık, gereken fan veya soğutma ünitesi ve ısıtma; isteğe bağlı olarak bir panonun ayarlarını değiştirir
+Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Çakışma sınıfı: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, kendi sınıfınız veya herhangi biri için *
+Column and row strips	Sütun ve satır şeritleri
+Column mapping {field code: column name}	Sütun eşlemesi {alan kodu: sütun adı}
+Column name, e.g. Description	Sütun adı, ör. Description
+Columns of the pattern	Desenin sütunları
+Columns, comma separated: Material, Category, Text, Count, Enclosure, Group, No	Sütunlar, virgülle ayrılmış: Material, Category, Text, Count, Enclosure, Group, No
+Conductive frame that needs equipotential bonding	Eş potansiyel kuşaklama gerektiren iletken şasi
+Configuration of an enclosure for the configurator of the enclosure maker: system, size, components, accessories and machining	Pano üreticisinin yapılandırıcısı için bir pano yapılandırması: sistem, boyut, bileşenler, aksesuarlar ve işleme
+Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Yapılandırıcı koşulu, ör. HEATER=yes (boş: elle değiştirilir)
+Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Bir hortumu / tüpü / boruyu yapılandırır: hat tipi, parça, uç rakorları, basınç sınıfı, bükme yarıçapı, ortam, boyut, renk ve uzunluk
+Connection point TAG:PIN, e.g. -K1:A1	Bağlantı noktası ETİKET:PIN, ör. -K1:A1
+Connection point designations separated by commas or blanks	Virgül veya boşlukla ayrılmış bağlantı noktası tanımları
+Connection point designations, comma separated, e.g. 13,14	Bağlantı noktası tanımları, virgülle ayrılmış, ör. 13,14
+Connector id (required unless removing)	Bağlayıcı kimliği (kaldırma dışında gerekli)
+Connects two connection points with wires routed around symbols and other wires	İki bağlantı noktasını sembollerin ve diğer tellerin etrafından yönlendirilen tellerle bağlar
+Connects two ports of stations with a network cable; connections already on these ports are replaced	İstasyonların iki portunu bir ağ kablosuyla bağlar; bu portlardaki mevcut bağlantılar değiştirilir
+Copies function texts between the single-line diagram and the schematic where one side is empty	Bir tarafın boş olduğu yerlerde fonksiyon metinlerini tek hat şeması ile şema arasında kopyalar
+Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Öğeleri sabit aralıkla birkaç kez kopyalar; cihazlar yeni etiketler, klemensler yeni numaralar alır
+Copper bar cutting list	Bakır bara kesim listesi
+Copper bars	Bakır baralar
+Corner points in metres	Metre cinsinden köşe noktaları
+Corner points on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki köşe noktaları
+Correction of the time estimate	Süre tahmini düzeltmesi
+Cost of free air against ducts and routing paths	Kanallara ve yönlendirme yollarına göre serbest havanın maliyeti
+Counting step (default 1)	Sayma adımı (varsayılan 1)
+Creates a bus cable for the connection (without cable tag)	Bağlantı için bir bus kablosu oluşturur (kablo etiketi olmadan)
+Creates a cable of the bus type (type, cores, cross-section) for every bus connection without cable	Kablosu olmayan her bus bağlantısı için bus tipinde (tip, damarlar, kesit) bir kablo oluşturur
+Creates or changes a PCT loop of the pre-planning	Ön planlamanın bir PCT döngüsünü oluşturur veya değiştirir
+Creates or changes a PLC station (controller, remote I/O, drive, HMI). Changing the address scheme converts the addresses of its points	Bir PLC istasyonu (kontrolör, uzak I/O, sürücü, HMI) oluşturur veya değiştirir. Adres şemasının değiştirilmesi noktalarının adreslerini dönüştürür
+Creates or changes a bus system (PROFINET, EtherCAT, …)	Bir bus sistemi (PROFINET, EtherCAT, …) oluşturur veya değiştirir
+Creates or changes a configurator option	Bir yapılandırıcı seçeneği oluşturur veya değiştirir
+Creates or changes a fluid device group	Bir akışkan cihaz grubu oluşturur veya değiştirir
+Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Projenin bir çizim çerçevesini oluşturur veya değiştirir (yerleşik çerçeveler yeni bir adla kopyalanır)
+Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Bir potansiyel tanımı oluşturur veya değiştirir; telde ayarlanmadıkça telleri rengi ve kesiti bu tanımdan alır
+Creates or changes a work area: only the pages and devices of its structure are shown	Bir çalışma alanı oluşturur veya değiştirir: yalnızca yapısına ait sayfalar ve cihazlar gösterilir
+Cross section, e.g. 0.75 mm²	Kesit, ör. 0.75 mm²
+Cross section, e.g. 1.5 mm²	Kesit, ör. 1.5 mm²
+Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Kesit, ör. 1.5 mm² (boş = potansiyel tanımından)
+Cross-section in mm²	mm² cinsinden kesit
+Cross-section, e.g. 1.5 mm²	Kesit, ör. 1.5 mm²
+Current device tag	Geçerli cihaz etiketi
+Customer rule set to add or replace (by name), as exported	Eklenecek veya değiştirilecek müşteri kural seti (ada göre), dışa aktarıldığı biçimde
+Cut lengths of cables rounded up to this step in mm	Kabloların kesim uzunlukları mm cinsinden bu adıma yuvarlanır
+Cut lengths of tubes rounded up to this step in mm	Tüplerin kesim uzunlukları mm cinsinden bu adıma yuvarlanır
+Cut lengths of wires rounded up to this step in mm	Tellerin kesim uzunlukları mm cinsinden bu adıma yuvarlanır
+Cut lengths rounded up to this step in metres	Kesim uzunlukları metre cinsinden bu adıma yukarı yuvarlanır
+Cut threads on the machine	Dişleri makinede aç
+Cutting allowance per tube end in mm	mm cinsinden tüp ucu başına kesme payı
+Date (YYYY-MM-DD)	Tarih (YYYY-AA-GG)
+Date of the acceptance	Kabul tarihi
+Default property values	Varsayılan özellik değerleri
+Default symbol key	Varsayılan sembol anahtarı
+Define the identifiers in use (default: true)	Kullanılan tanımlayıcıları tanımla (varsayılan: true)
+Defines a reusable project function definition or changes it	Yeniden kullanılabilir bir proje fonksiyon tanımı tanımlar veya değiştirir
+Defines a structure identifier or changes its description	Bir yapı tanımlayıcısı tanımlar veya açıklamasını değiştirir
+Defines a user property or changes it	Bir kullanıcı özelliği tanımlar veya değiştirir
+Defines all identifiers in use and / or removes the definitions nobody uses	Kullanılan tüm tanımlayıcıları tanımlar ve / veya kimsenin kullanmadığı tanımları kaldırır
+Definition to start from	Başlangıç tanımı
+Deletes a PCT loop of the pre-planning	Ön planlamanın bir PCT döngüsünü siler
+Deletes a configurator option	Bir yapılandırıcı seçeneğini siler
+Deletes a configurator rule	Bir yapılandırıcı kuralını siler
+Deletes a fluid device group	Bir akışkan cihaz grubunu siler
+Deletes a page	Bir sayfayı siler
+Deletes a page template of the project	Projenin bir sayfa şablonunu siler
+Deletes a plot frame of the project that no page uses	Projenin hiçbir sayfanın kullanmadığı bir çizim çerçevesini siler
+Deletes a potential definition	Bir potansiyel tanımını siler
+Deletes a work area	Bir çalışma alanını siler
+Deletes symbols, wires, texts and shapes	Sembolleri, telleri, metinleri ve şekilleri siler
+Depth in mm	mm cinsinden derinlik
+Device description id (empty: from the parts)	Cihaz tanımı kimliği (boş: parçalardan)
+Device description id of the head (list_device_descriptions)	Kafa modülünün cihaz tanımı kimliği (list_device_descriptions)
+Device group {} already exists	Cihaz grubu {} zaten var
+Device list, bill of materials, terminal, plug, cable and connection diagrams, PLC, potentials, panel, fluid, electrical and field reports	Cihaz listesi, malzeme listesi, klemens, fiş, kablo ve bağlantı şemaları, PLC, potansiyeller, pano, akışkan, elektriksel ve saha raporları
+Device number on the bus	Bus üzerindeki cihaz numarası
+Device tag of the CPU / bus coupler, e.g. -A0	CPU'nun / bus kuplörünün cihaz etiketi, ör. -A0
+Device tag of the end (both ends if missing)	Ucun cihaz etiketi (belirtilmezse her iki uç)
+Device tag of the fluid device, e.g. -QM1	Akışkan cihazının cihaz etiketi, ör. -QM1
+Device tag of the group, e.g. -KH1	Grubun cihaz etiketi, ör. -KH1
+Device tag within the segment, e.g. -M1	Segment içindeki cihaz etiketi, ör. -M1
+Device tag, e.g. -K1	Cihaz etiketi, ör. -K1
+Device tag: the accessories that can still be added to its parts	Cihaz etiketi: parçalarına hâlâ eklenebilecek aksesuarlar
+Device tags (text)	Cihaz etiketleri (metin)
+Device tags of the members in slot order, separated by commas or blanks	Yer sırasına göre, virgül veya boşlukla ayrılmış üyelerin cihaz etiketleri
+Devices with parts that are phased out or discontinued, and their change to the successors	Üretimden kalkan veya üretimi durdurulan parçalara sahip cihazlar ve bunların haleflere geçişi
+Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Cihazlar, teller, potansiyeller, kablolar, klemens şeritleri, PLC, pano, akışkan, elektriksel hesaplamalar, yapı ve çeviriler
+Diameter in mm	mm cinsinden çap
+Diameter of a hole at both ends (0: none)	Her iki uçtaki deliğin çapı (0: yok)
+Direction of the stem: left, right, up or down (default: from the wires there)	Gövdenin yönü: left, right, up veya down (varsayılan: oradaki tellere göre)
+Distance between power and signal or fluid in mm	mm cinsinden güç ile sinyal veya akışkan arasındaki mesafe
+Distance from devices, rails and busbars in mm	mm cinsinden cihazlara, raylara ve baralara olan mesafe
+Distance from the face in mm (rails: standoff height)	mm cinsinden yüzeyden uzaklık (raylar: mesafe tutucu yüksekliği)
+Distance in X (mm)	X yönünde mesafe (mm)
+Distance in Y (mm)	Y yönünde mesafe (mm)
+Distance of devices to cable ducts	Cihazların kablo kanallarına mesafesi
+Distance of devices to the plate edge	Cihazların plaka kenarına mesafesi
+Distance of the border from the paper edge in mm	mm cinsinden çerçevenin kâğıt kenarına uzaklığı
+Distribute vertically (default horizontally)	Dikey dağıt (varsayılan yatay)
+Distributes symbols, texts and graphics evenly between the first and the last one	Sembolleri, metinleri ve grafikleri ilk ve son öğe arasında eşit olarak dağıtır
+Diversity factor of the loads (0: IEC 61439-1, table 101)	Yüklerin eş zamanlılık faktörü (0: IEC 61439-1, tablo 101)
+Draw the contact image below coils (default true)	Kontak görüntüsünü bobinlerin altına çiz (varsayılan true)
+Draw the junction as a connection dot; its routing stays	Parçayı bağlantı noktası olarak çiz; yönlendirmesi kalır
+Draw wires in their colour	Telleri kendi renklerinde çiz
+Draw wires to the connection points facing its free arms	Boş kollarına bakan bağlantı noktalarına tel çiz
+Drawing	Çizim
+Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Bir kablo tanımı çizgisi çizer; kestiği teller kablonun damarları olur (kablo verilmezse yeni bir kablo)
+Draws a wire between two connection points, e.g. -K1:A1 to -S1:14 (#id:pin for ambiguous ones, the name for potentials, 1, 2… for points without designation)	İki bağlantı noktası arasına tel çizer, ör. -K1:A1 ile -S1:14 arası (belirsiz olanlar için #id:pin, potansiyeller için ad, tanımı olmayan noktalar için 1, 2…)
+Draws a wire through two or more points	İki veya daha fazla noktadan geçen bir tel çizer
+Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Telleri şema sayfalarında ve PDF / SVG dışa aktarımında kendi renklerinde veya siyah çizer
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Birbirine bakan sembollerin boş bağlantı noktaları arasına ve T parçalarıyla köşelerin boş kollarına tel çizer
+EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Kabloların EMC sınıfları (sürücü çıkışı, analog, güç, sinyal, ekran) ve EMC sorunları
+Edge length of the routing grid in mm	mm cinsinden yönlendirme ızgarasının kenar uzunluğu
+Electrical device tags separated by commas or blanks (empty = remove the links)	Virgül veya boşlukla ayrılmış elektrik cihazı etiketleri (boş = ilişkileri kaldır)
+Electrical engineering	Elektrik mühendisliği
+Enclosure (location, e.g. +CAB1)	Pano (konum, ör. +CAB1)
+Enclosure (location, e.g. +CAB1) whose settings change	Ayarları değişecek pano (konum, ör. +CAB1)
+Enclosure climate and electrical sizing	Pano iklimlendirmesi ve elektriksel boyutlandırma
+Enclosure it stands right of; empty to take it out of its line-up	Sağında durduğu pano; dizilimden çıkarmak için boş
+Enclosure name (all if missing)	Pano adı (verilmezse tümü)
+Enclosure part number	Pano parça numarası
+Enclosure system (default: the enclosure's)	Pano sistemi (varsayılan: panonunki)
+Enclosure {} exists already	Pano {} zaten var
+Enclosures, panel items, accessories and panel macros	Panolar, pano öğeleri, aksesuarlar ve pano makroları
+End brackets and end plates from the tech data of the terminal parts	Klemens parçalarının teknik verilerinden uç tutucular ve kapak plakaları
+End holes from the bar end as a multiple of the width	Genişliğin katı olarak bara ucundan uç delikleri
+End: device tag and connection point, e.g. -S1:14	Bitiş: cihaz etiketi ve bağlantı noktası, ör. -S1:14
+Engineering	Mühendislik
+Face: plate, door, left, right, rear, roof or bottom	Yüzey: plate, door, left, right, rear, roof veya bottom
+Field plan: nodes, segments, outlines, routes, bonds and accessories	Saha planı: düğümler, segmentler, dış hatlar, güzergâhlar, kuşaklamalar ve aksesuarlar
+Figure	Gösterge
+Finds and replaces text in a column of all (filtered) rows; without find the column is filled with the replacement	Tüm (filtrelenmiş) satırların bir sütunundaki metni bulur ve değiştirir; aranan metin yoksa sütun yeni değerle doldurulur
+Finds text in the whole project: pages, device tags, function texts, free texts, wire numbers, terminals, cables, parts, descriptions	Tüm projede metin arar: sayfalar, cihaz etiketleri, fonksiyon metinleri, serbest metinler, tel numaraları, klemensler, kablolar, parçalar, açıklamalar
+Finds the smallest standard size of an enclosure system that holds the layout and applies it	Bir pano sisteminin yerleşimi alan en küçük standart boyutunu bulur ve uygular
+Fingerprint of the message as shown by check	check tarafından gösterildiği gibi mesajın parmak izi
+First address of the subnet, e.g. 192.168.0.0	Alt ağın ilk adresi, ör. 192.168.0.0
+First byte of the inputs (and outputs)	Girişlerin (ve çıkışların) ilk baytı
+First byte of the outputs if it differs; -1 removes it	Farklıysa çıkışların ilk baytı; -1 kaldırır
+First counter value (default 1)	İlk sayaç değeri (varsayılan 1)
+First page number (default 1)	İlk sayfa numarası (varsayılan 1)
+First port as station:port, e.g. PLC1:X1 P2	istasyon:port biçiminde ilk port, ör. PLC1:X1 P2
+First row with the column names	Sütun adlarını içeren ilk satır
+Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Cihaz adının formatı: {letter}, {n} (sayaç), {page}, {column}, {row}; varsayılan {letter}{n}
+Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format şemasının formatı: {n} (sayaç), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Frame to start from when the frame is new (default: A3 landscape)	Çerçeve yeniyse başlangıç alınacak çerçeve (varsayılan: A3 landscape)
+Free space in front of every device on the plate	Plakadaki her cihazın önündeki boş alan
+Freezes routes for production (kept by the recalculation while possible) or releases them	Güzergâhları üretim için dondurur (yeniden hesaplama mümkün olduğu sürece korur) veya serbest bırakır
+Frequency in Hz	Hz cinsinden frekans
+Function (= without the sign; empty: the parent's)	Fonksiyon (= işareti olmadan; boş: üst segmentinki)
+Function aspect (=) of the page; the devices on the page move along	Sayfanın fonksiyon yönü (=); sayfadaki cihazlar da birlikte taşınır
+Function definition key	Fonksiyon tanımı anahtarı
+Function filter (= A1, A*; empty = any)	Fonksiyon filtresi (= A1, A*; boş = herhangi)
+Further device tags of the loop, separated by commas or blanks	Döngünün diğer cihaz etiketleri, virgül veya boşlukla ayrılmış
+Gap between devices side by side	Yan yana cihazlar arası mesafe
+Gap between the devices on the rail in mm	mm cinsinden ray üzerindeki cihazlar arasındaki boşluk
+Generates a single-line diagram of the schematic's power devices that have none yet on a new overview page after a page	Şemada henüz tek hat şeması olmayan güç cihazları için bir sayfanın ardından yeni bir genel bakış sayfasında tek hat şeması oluşturur
+Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, punching code or CSV)	Bir yüzeyin CNC programını makinesi için oluşturur (ISO G kodu, Heidenhain, zımbalama kodu veya CSV)
+Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Bir sayfanın tek hatlı sembolleri için çok hatlı şemayı (güç sembolleri, iletkenler, kontaktör bobinleri) ardından gelen yeni bir sayfada oluşturur
+Generates the program of the busbar machine: cuts, punched holes and bends	Bara işleme makinesinin programını oluşturur: kesimler, zımbalanmış delikler ve bükümler
+Give a device tag or a part number	Bir cihaz etiketi veya parça numarası girin
+Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Öğeleri birlikte seçilen ve taşınan bir montaj grubunda toplar; ad verilmezse öğeler montaj gruplarından çıkar
+Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Bir panonun programlarını iş emri olarak üretime teslim eder: tüm yüzeylerinin ve bakır baralarının manifestosu ve programları
+Has a divider between power and signal cables	Güç ve sinyal kabloları arasında ayırıcı var
+Height above the floor in metres	Metre cinsinden zeminden yükseklik
+Height above the mounting plate in mm (default 50)	mm cinsinden montaj plakası üzerindeki yükseklik (varsayılan 50)
+Height in mm	mm cinsinden yükseklik
+Height in mm without plinth; negative: unknown (wall mounted)	Kaide hariç mm cinsinden yükseklik; negatif: bilinmiyor (duvara monte)
+Higher-level product aspect (-) of the page; the devices on the page move along	Sayfanın üst düzey ürün yönü (-); sayfadaki cihazlar da birlikte taşınır
+Highest actuator on the door above the floor (0: not checked)	Kapıdaki en yüksek kumanda elemanının zeminden yüksekliği (0: kontrol edilmez)
+Highest air temperature at devices without data (0: not checked)	Verisi olmayan cihazlarda en yüksek hava sıcaklığı (0: kontrol edilmez)
+Highest ambient temperature in °C	°C cinsinden en yüksek ortam sıcaklığı
+Highest device above the floor (0: not checked)	Zeminden en yüksek cihaz (0: kontrol edilmez)
+Highest inside temperature in °C	°C cinsinden en yüksek iç sıcaklık
+Highest three-phase short-circuit current at the supply in kA	kA cinsinden beslemedeki en yüksek üç fazlı kısa devre akımı
+Holes: segment:distance:diameter, e.g. 0:20:9; 2:30:11	Delikler: segment:mesafe:çap, ör. 0:20:9; 2:30:11
+Horizontal alignment: left, center or right	Yatay hizalama: left, center veya right
+Horizontal pitch of the pattern in mm	mm cinsinden desenin yatay aralığı
+Hose colour	Hortum rengi
+Hose number or fluid net (F1)	Hortum numarası veya akışkan ağı (F1)
+Hose number prefix, e.g. H	Hortum numarası öneki, ör. H
+Hoses / pipes: length in m	Hortumlar / borular: m cinsinden uzunluk
+Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)	Hortumlar / borular: ortam (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; boş = proje varsayılanı)
+Hoses, fluid nets and groups, electro-fluid links and PCT loops	Hortumlar, akışkan ağları ve grupları, elektro-akışkan bağlantıları ve PCT döngüleri
+Hyperlink (URL)	Köprü (URL)
+IP address or bus address	IP adresi veya bus adresi
+IT system with distributed neutral	Nötrü dağıtılmış IT sistemi
+Id of the panel item (from mounting_list)	Pano öğesinin kimliği (mounting_list çıktısından)
+Id of the path or reservation	Yolun veya ayrılmış alanın kimliği
+Id of the text	Metnin kimliği
+Identifier, e.g. A1 or CAB1	Tanımlayıcı, ör. A1 veya CAB1
+Ids of page items	Sayfa öğelerinin kimlikleri
+Ids of symbols and connection symbols (default: all symbols of the page)	Sembol ve bağlantı sembolü kimlikleri (varsayılan: sayfanın tüm sembolleri)
+In front of the page name (default /)	Sayfa adının önünde (varsayılan /)
+Inner height in mm (0 = no limit)	mm cinsinden iç yükseklik (0 = sınırsız)
+Inner radius as a multiple of the thickness	Kalınlığın katı olarak iç yarıçap
+Inner width in mm (0 = no limit)	mm cinsinden iç genişlik (0 = sınırsız)
+Inserts a 3D macro as an assembly: anchored items at their place, the others relative to x / y on the face	Bir 3D makroyu montaj grubu olarak ekler: ankrajlı öğeler yerlerine, diğerleri yüzeydeki x / y konumuna göre
+Installation site aspect (++) of the page; the devices on the page move along	Sayfanın kurulum yeri yönü (++); sayfadaki cihazlar da birlikte taşınır
+Installation site filter (++)	Kurulum yeri filtresi (++)
+Integration profiles and status	Entegrasyon profilleri ve durumu
+Interruption points refer to: all (default), star or pairs	Kesme noktalarının referansı: all (varsayılan), star veya pairs
+Invalid answer of the plugin: {}	Eklentiden geçersiz yanıt: {}
+Invalid segment name: {}	Geçersiz segment adı: {}
+Item id	Öğe kimliği
+Item ids	Öğe kimlikleri
+Jumper number	Köprü numarası
+Jumper number (terminals with the same number are bridged); 0 removes it	Köprü numarası (aynı numaralı klemensler köprülenir); 0 kaldırır
+Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Koruma derecesini koru: filtreli fanlar yerine ısı eşanjörü veya soğutma ünitesi
+Key figures of the project and a list of its device tags	Projenin temel göstergeleri ve cihaz etiketlerinin listesi
+Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projenin temel göstergeleri: sayfalar, semboller, teller, cihazlar, parçalar, kablolar ve kontrol sonuçları
+Key, e.g. user.coupling_relay	Anahtar, ör. user.coupling_relay
+Key, e.g. user.customer_code	Anahtar, ör. user.customer_code
+Keys of the routes, comma separated (all if missing)	Güzergâhların anahtarları, virgülle ayrılmış (verilmezse tümü)
+Kind: machining, punching or busbar	Tür: machining, punching veya busbar
+Label: terminal number, PLC address or potential name	Yazı: klemens numarası, PLC adresi veya potansiyel adı
+Landscape (true) or portrait (false)	Yatay (true) veya dikey (false)
+Language the project texts are written in, e.g. en	Proje metinlerinin yazıldığı dil, ör. en
+Larger round holes are milled, mm	Daha büyük yuvarlak delikler frezelenir, mm
+Largest difference between hole and tool, mm	Delik ile takım arasındaki en büyük fark, mm
+Left edge on the face in mm	mm cinsinden yüzey üzerindeki sol kenar
+Left edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki sol kenar
+Left side bayed (no side panel)	Sol taraf yan yana bağlı (yan panel yok)
+Length added at each cable end in metres	Metre cinsinden her kablo ucuna eklenen uzunluk
+Length added to each cable end in mm	mm cinsinden her kablo ucuna eklenen uzunluk
+Length from the node to the device in metres	Metre cinsinden düğümden cihaza uzunluk
+Length in metres	Metre cinsinden uzunluk
+Length in metres (default from the node positions)	Metre cinsinden uzunluk (varsayılan: düğüm konumlarından)
+Length inside an enclosure per end in metres	Metre cinsinden uç başına pano içi uzunluk
+Length of a shield pigtail in mm	mm cinsinden ekran pigtail uzunluğu
+Level of a multi-level terminal (1 = bottom); upper levels sit on the block of the terminal before	Katlı klemensin katı (1 = alt); üst katlar önceki klemensin bloğu üzerinde durur
+Library id or customer rule set name to no longer verify against	Artık doğrulama yapılmayacak kütüphane kimliği veya müşteri kural seti adı
+Library id or customer rule set name to verify against	Doğrulama yapılacak kütüphane kimliği veya müşteri kural seti adı
+Line in the source language	Kaynak dildeki satır
+Line-to-line voltage in V	V cinsinden fazlar arası gerilim
+Links a fluid device with the electrical devices that actuate or monitor it (replaces the links)	Bir akışkan cihazını, onu tahrik eden veya izleyen elektrik cihazlarıyla ilişkilendirir (ilişkileri değiştirir)
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts between linked devices	Solenoid valfleri aynı numaralı bobinle (-QM3 › -MB3) ilişkilendirir ve ilişkili cihazlar arasında fonksiyon metinlerini kopyalar
+Lists PLC channels and functions of the assigned parts that are not placed yet, with the symbol, tag, label and pins for place_symbol	Atanmış parçaların henüz yerleştirilmemiş PLC kanallarını ve fonksiyonlarını place_symbol için sembol, etiket, yazı ve pinlerle birlikte listeler
+Lists and renames devices, adds accessories to their parts	Cihazları listeler ve yeniden adlandırır, parçalarına aksesuar ekler
+Lists the 3D macros: the project's own and the built-in ones	3D makroları listeler: projenin kendi makroları ve yerleşik olanlar
+Lists the 3D routing: routed wires, cables and tubes with lengths and status, bundles, branches, shields, routing paths, changes and problems	3D yönlendirmeyi listeler: uzunlukları ve durumlarıyla yönlendirilmiş teller, kablolar ve tüpler, demetler, dallar, ekranlar, yönlendirme yolları, değişiklikler ve sorunlar
+Lists the CNC machines (built-in and of the project) with their tools and the machine of every face	CNC makinelerini (yerleşik ve projeye ait) takımlarıyla ve her yüzeyin makinesiyle birlikte listeler
+Lists the PCT loops of the pre-planning and of the P&ID instruments with their devices and engineering status	Ön planlamanın ve P&ID enstrümanlarının PCT döngülerini cihazları ve projelendirme durumlarıyla listeler
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	T parçalarını, köşeleri, kesişmeleri ve köprüleri yönlendirmeleri ve bağlantılarının telleriyle listeler
+Lists the accessories that fit a part or the parts of a device, and the parts an accessory fits (project parts, built-in and bundled catalogs)	Bir parçaya veya bir cihazın parçalarına uyan aksesuarları ve bir aksesuarın uyduğu parçaları listeler (proje parçaları, yerleşik ve birlikte gelen kataloglar)
+Lists the copper bars developed flat: length, bends in their order, holes, problems, and the cutting from stock lengths	Açınımı yapılmış bakır baraları listeler: uzunluk, sırasıyla bükümler, delikler, sorunlar ve stok uzunluklarından kesim
+Lists the device descriptions of PLC hardware: imported ones, from the project parts and the built-in generic ones	PLC donanımının cihaz tanımlarını listeler: içe aktarılanlar, proje parçalarından gelenler ve yerleşik genel tanımlar
+Lists the devices of the single-line diagram and the power devices of the schematic with their status: planned, engineered, not in the single-line diagram or not matching	Tek hat şemasının cihazlarını ve şemanın güç cihazlarını durumlarıyla birlikte listeler: planlandı, projelendirildi, tek hat şemasında yok veya eşleşmiyor
+Lists the devices with cross references and assigned parts	Cihazları çapraz referansları ve atanmış parçalarıyla listeler
+Lists the enclosures with their system, components (assembly), items per face and assemblies	Panoları sistemi, bileşenleri (montaj grubu), yüzey başına öğeleri ve montaj gruplarıyla listeler
+Lists the fluid device groups (valve terminals, service units, manifolds) with their devices in slot order	Akışkan cihaz gruplarını (valf adaları, şartlandırıcılar, manifoldlar) yer sırasına göre cihazlarıyla listeler
+Lists the fluid devices with solenoids or links and the electrical devices linked to them	Solenoidli veya ilişkili akışkan cihazlarını ve bunlarla ilişkilendirilmiş elektrik cihazlarını listeler
+Lists the fluid netlist: each hose line with its line kind (pressure, working, return, pilot …), medium, size and the ports with their function	Akışkan ağ listesini listeler: hat türü (basınç, çalışma, dönüş, pilot …), ortam, boyut ve fonksiyonlarıyla portlar ile her hortum hattı
+Lists the function definitions with category, function template kind, letter, default symbol and usage	Fonksiyon tanımlarını kategori, fonksiyon şablonu türü, kod harfi, varsayılan sembol ve kullanımla birlikte listeler
+Lists the hoses and pipes (connections between fluid ports) with medium, nominal size, colour and length	Hortumları ve boruları (akışkan portları arasındaki bağlantılar) ortam, nominal çap, renk ve uzunlukla listeler
+Lists the items of the panel layout in mounting order with place, size, part and mounting state	Pano yerleşimindeki öğeleri montaj sırasına göre yer, boyut, parça ve montaj durumuyla birlikte listeler
+Lists the labeling schemes for marking programs (built-in and of the project) and the selected one	Etiketleme programları için etiketleme şemalarını (yerleşik ve projeye ait) ve seçili olanı listeler
+Lists the page templates (built-in and the project's own)	Sayfa şablonlarını listeler (yerleşik ve projenin kendi şablonları)
+Lists the pages of the project	Projenin sayfalarını listeler
+Lists the placement schemes with their properties and the number of symbols using them	Yerleştirme şemalarını özellikleri ve bunları kullanan sembol sayısıyla birlikte listeler
+Lists the plot frames (paper format, orientation, columns and rows) and the project default	Çizim çerçevelerini (kâğıt biçimi, yön, sütunlar ve satırlar) ve proje varsayılanını listeler
+Lists the plugs with the number of pins used, the pin count of their parts and the parts	Fişleri kullanılan pin sayısı, parçalarının pin sayısı ve parçalarıyla listeler
+Lists the potential definitions and the wire default of nets without a defined potential	Potansiyel tanımlarını ve tanımlı potansiyeli olmayan ağlar için tel varsayılanını listeler
+Lists the project options that show or hide model content	Model içeriğini gösteren veya gizleyen proje seçeneklerini listeler
+Lists the properties of an object with their values and where they come from	Bir nesnenin özelliklerini değerleri ve kaynaklarıyla birlikte listeler
+Lists the property definitions (built-in and user defined) with object class, group, type and unit	Özellik tanımlarını (yerleşik ve kullanıcı tanımlı) nesne sınıfı, grup, tür ve birimle birlikte listeler
+Lists the report blocks with their report, scheme, groups and generated pages	Rapor bloklarını raporu, düzeni, grupları ve oluşturulan sayfalarıyla listeler
+Lists the report schemes (named report forms) with their settings	Rapor düzenlerini (adlandırılmış rapor formları) ayarlarıyla listeler
+Lists the routed wires of the panel layout as a wiring checklist with end treatment, state and progress	Pano yerleşiminin yönlendirilmiş tellerini uç işlemi, durum ve ilerleme ile bir kablolama kontrol listesi olarak listeler
+Lists the segments in tree order with structure, planned power and the planned devices with their state in the schematic	Segmentleri ağaç sırasına göre yapı, planlanan güç ve planlanmış cihazlarla birlikte şemadaki durumlarıyla listeler
+Lists the source and target languages of the project texts with the number of untranslated lines	Proje metinlerinin kaynak ve hedef dillerini çevrilmemiş satır sayısıyla listeler
+Lists the structure management: aspects of the pages, defined and used identifiers, work areas	Yapı yönetimini listeler: sayfaların yönleri, tanımlı ve kullanılan tanımlayıcılar, çalışma alanları
+Lists the subprojects taken out of the project, or the project it was taken from	Projeden dışarı alınan alt projeleri veya alındığı projeyi listeler
+Lists the symbols that can be placed, with their connection points relative to the insertion point	Yerleştirilebilen sembolleri, ekleme noktasına göre bağlantı noktalarıyla birlikte listeler
+Lists the terminal strips with their number of terminals and length on the rail	Klemens şeritlerini klemens sayıları ve ray üzerindeki uzunluklarıyla birlikte listeler
+Lists the translation dictionary of the project texts (source line and translations)	Proje metinlerinin çeviri sözlüğünü listeler (kaynak satır ve çeviriler)
+Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Sayfalara yerleştirilen pencere makrolarını (makro kutuları) makro, varyant, yer tutucu değerleri ve öğe sayısıyla birlikte listeler
+Load losses of the transformer in W (0: typical)	Transformatörün W cinsinden yük kayıpları (0: tipik)
+Loads of the mains, load of each protective device, demand with the diversity factor, phase balance and power supply budgets	Şebekenin yükleri, her koruma cihazının yükü, eş zamanlılık faktörüyle talep, faz dengesi ve güç kaynağı bilançoları
+Loads the potential definitions of a standard (replaces those of the same name)	Bir standardın potansiyel tanımlarını yükler (aynı adlı olanları değiştirir)
+Location (+ without the sign; empty: the parent's)	Konum (+ işareti olmadan; boş: üst segmentinki)
+Location aspect (+) of the page; the devices on the page move along	Sayfanın konum yönü (+); sayfadaki cihazlar da birlikte taşınır
+Location filter (+)	Konum filtresi (+)
+Location or device tag	Konum veya cihaz etiketi
+Loop number	Döngü numarası
+Loop number, e.g. 101	Döngü numarası, ör. 101
+Lowest actuator on the door above the floor	Kapıdaki en alçak kumanda elemanının zeminden yüksekliği
+Lowest ambient temperature in °C	°C cinsinden en düşük ortam sıcaklığı
+Lowest device above the floor	Zeminden en alçak cihaz
+Lowest inside temperature in °C	°C cinsinden en düşük iç sıcaklık
+Lowest line-to-earth fault current at the supply in kA (0: from ik_max)	kA cinsinden beslemedeki en düşük faz-toprak arıza akımı (0: ik_max değerinden)
+Lowest terminal above the floor	Zeminden en alçak klemens
+Machine id (default: the busbar machine)	Makine kimliği (varsayılan: bara işleme makinesi)
+Machine id (default: the machine of the face)	Makine kimliği (varsayılan: yüzeyin makinesi)
+Machine id (snake_case)	Makine kimliği (snake_case)
+Machine id {} is not snake_case	{} makine kimliği snake_case değil
+Machine of that face (empty: the sheet machine)	Bu yüzeyin makinesi (boş: sac makinesi)
+Machine of the copper bars	Bakır baraların makinesi
+Machine of the sheet metal faces	Sac yüzeylerin makinesi
+Machine {} is in use	{} makinesi kullanımda
+Macro name	Makro adı
+Makes pages or page items content of a project option	Sayfaları veya sayfa öğelerini bir proje seçeneğinin içeriği yapar
+Makes the wires at the pins of a plug cores of a flat (ribbon) cable: pin n takes core n, as on IDC connectors	Bir konnektörün pinlerindeki telleri yassı (şerit) kablonun damarları yapar: IDC konnektörlerdeki gibi pin n, damar n'yi alır
+Manufacturing package (CNC programs, JSON)	Üretim paketi (CNC programları, JSON)
+Markers, comma separated: device, terminal, wire, cable (empty: all)	İşaretleyiciler, virgülle ayrılmış: device, terminal, wire, cable (boş: tümü)
+Marks a panel item as mounted or as a problem, or as open again	Bir pano öğesini monte edildi veya sorunlu ya da yeniden açık olarak işaretler
+Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Yönlendirilmiş bir teli kablolandı, sorunlu veya yeniden açık olarak işaretler; tel iki ucuyla belirtilir
+Maximum fill of a carrier in percent	Yüzde cinsinden bir taşıyıcının maksimum doluluğu
+Maximum operating pressure in bar	bar cinsinden maksimum çalışma basıncı
+Measuring range or set point	Ölçüm aralığı veya ayar noktası
+Message code, e.g. wires.3f9a1c	Mesaj kodu, ör. wires.3f9a1c
+Milling feed, mm/min	Frezeleme ilerlemesi, mm/dk
+Mirror the symbol	Sembolü yansıt
+Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
+Moves the page before this page of its section (or of the section given)	Sayfayı bölümünün (veya verilen bölümün) bu sayfasının önüne taşır
+Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Bölümü üst bölümünün (veya verilen üst bölümün) bu bölümünün önüne taşır; numaralar sırayla devam eder
+Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Bir kablo demetinin çivili tahta yerleşimi: ortak düğümden konnektörlere uzunluk, yön, demet çapı ve pinlerle dallar ve çizim ölçeği
+Name of the assembly	Montaj grubunun adı
+Name of the bar, e.g. L1 -Q1	Baranın adı, ör. L1 -Q1
+Name of the check	Kontrolün adı
+Name of the customer rule set to remove	Kaldırılacak müşteri kural setinin adı
+Name of the frame	Çerçevenin adı
+Name of the machine	Makinenin adı
+Name of the main earthing terminal	Ana topraklama barasının adı
+Name of the safety function to remove	Kaldırılacak güvenlik fonksiyonunun adı
+Name of the segment	Segmentin adı
+Name of the template	Şablonun adı
+Name of the work area	Çalışma alanının adı
+Name or id; the tag for places	Ad veya kimlik; yerleşimler için etiket
+Name, e.g. the location +M1	Ad, ör. +M1 konumu
+New device tag	Yeni cihaz etiketi
+New identifier	Yeni tanımlayıcı
+New page name	Yeni sayfa adı
+New parent segment (empty: top level)	Yeni üst segment (boş: en üst düzey)
+New value	Yeni değer
+No PCT loop {}	{} PCT döngüsü yok
+No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{} adlı yerleşik bir kontrol yok: ayar, bu adı taşıyan bir eklenti kontrolü için geçerlidir (list_checks)
+No bus system {}	{} bus sistemi yok
+No connection point {} on this page	Bu sayfada {} bağlantı noktası yok
+No connection symbol with id {}	{} kimlikli bağlantı sembolü yok
+No copper bar {}	{} bakır barası yok
+No device description {}	{} cihaz tanımı yok
+No device group {}	{} cihaz grubu yok
+No enclosure named {}	{} adlı pano yok
+No entry for {} and {}	{} ve {} için giriş yok
+No hose {}	{} hortumu yok
+No identifier {} in the project	Projede {} tanımlayıcısı yok
+No item with id {}	{} kimlikli öğe yok
+No item {}	{} öğesi yok
+No items to save in {}	{} içinde kaydedilecek öğe yok
+No macro named {}	{} adlı makro yok
+No panel item with id {}	{} kimlikli pano öğesi yok
+No planned device {}	{} planlanmış cihazı yok
+No potential definition {}	{} potansiyel tanımı yok
+No project function definition {}	{} proje fonksiyon tanımı yok
+No routed item {}	{} yönlendirilmiş öğesi yok
+No routed wire {} – {}	Yönlendirilmiş tel yok {} – {}
+No routing path or reservation {}	{} yönlendirme yolu veya ayrılmış alanı yok
+No rule for {} and {}	{} ve {} için kural yok
+No rule library or rule set {}	{} kural kütüphanesi veya kural seti yok
+No rule {}	{} kuralı yok
+No safety function {}	{} güvenlik fonksiyonu yok
+No standard size of {} holds the layout of {}	{0} standart boyutlarından hiçbiri {1} yerleşimini almıyor
+No terminal strip {}	{} klemens şeridi yok
+No terminal {} on strip {}	{1} şeridinde {0} klemensi yok
+No text with id {}	{} kimlikli metin yok
+No three wires meet at {} / {} mm: give the direction of the stem	{} / {} mm'de üç tel birleşmiyor: gövdenin yönünü belirtin
+No transformer: set {} first	Transformatör yok: önce {} ayarlayın
+No wire at {} / {} mm	{} / {} mm konumunda tel yok
+No wire with id {}	{} kimlikli tel yok
+No work area named {}	{} adlı çalışma alanı yok
+Node name or id	Düğüm adı veya kimliği
+Node {} exists already	{} düğümü zaten var
+Nodes to pass in this order, comma separated	Bu sırayla geçilecek düğümler, virgülle ayrılmış
+Nominal size, e.g. 8 mm or DN25	Nominal çap, ör. 8 mm veya DN25
+Not a cross-section: {} (e.g. 1.5 mm²)	Kesit değil: {} (ör. 1.5 mm²)
+Not a valid safety function: {}	Geçerli bir güvenlik fonksiyonu değil: {}
+Note, e.g. what the problem is	Not, ör. sorunun ne olduğu
+Nothing to remove: {} {}	Kaldırılacak bir şey yok: {} {}
+Number of columns	Sütun sayısı
+Number of copies (default 1)	Kopya sayısı (varsayılan 1)
+Number of equal bars	Aynı baraların sayısı
+Number of indexed values (0 = a single value)	İndeksli değer sayısı (0 = tek bir değer)
+Number of rows	Satır sayısı
+Numbers the pages with a start value and step; released pages keep their name	Sayfaları başlangıç değeri ve adımla numaralandırır; yayımlanmış sayfalar adlarını korur
+Numbers the terminals of a strip 1 … n in strip order; non-numeric designations such as PE stay	Bir şeridin klemenslerini şerit sırasına göre 1 … n olarak numaralandırır; PE gibi sayısal olmayan tanımlar kalır
+Numbers the wires by the numbering scheme of the project	Telleri projenin numaralandırma şemasına göre numaralandırır
+OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=değer, OPTION!=değer, OPTION=a|b, & ile birleştirilir (boş: her zaman)
+Offset from the symbol position in mm (default: below the symbol)	Sembol konumundan mm cinsinden uzaklık (varsayılan: sembolün altı)
+One end, e.g. -K1:A1	Bir uç, ör. -K1:A1
+One row per printed label instead of a count	Sayı yerine yazdırılan her etiket için bir satır
+Only devices on these pages (names separated by commas)	Yalnızca bu sayfalardaki cihazlar (adlar virgülle ayrılmış)
+Only lines without a translation into this language	Yalnızca bu dile çevirisi olmayan satırlar
+Only list the new tags, change nothing	Yalnızca yeni etiketleri listele, hiçbir şeyi değiştirme
+Only shows the package, no job is recorded	Yalnızca paketi gösterir, iş emri kaydedilmez
+Only shows what would change	Yalnızca nelerin değişeceğini gösterir
+Only the pages of this work area (list_structure)	Yalnızca bu çalışma alanının sayfaları (list_structure)
+Only these identifying letters (separated by commas, e.g. K,Q)	Yalnızca bu tanıtıcı harfler (virgülle ayrılmış, ör. K,Q)
+Only these kinds, separated by commas: page, device, function_text, text, wire_number, terminal, cable, part, description	Yalnızca bu türler, virgülle ayrılmış: page, device, function_text, text, wire_number, terminal, cable, part, description
+Only these kinds, separated by commas: page, function_text, text, description	Yalnızca bu türler, virgülle ayrılmış: page, function_text, text, description
+Only these pages (names separated by commas)	Yalnızca bu sayfalar (adlar virgülle ayrılmış)
+Only this part number	Yalnızca bu parça numarası
+Only wire, cable or tube	Yalnızca wire, cable veya tube
+Only wires with this state: open, wired, changed or problem	Yalnızca bu durumdaki teller: open, wired, changed veya problem
+Opaque background in the paper colour	Kağıt renginde opak arka plan
+Openings: auto (punch of the size, else contour) or contour	Açıklıklar: auto (boyuta uygun zımba, yoksa kontur) veya contour
+Operating pressure in bar (0 = hose ratings are not checked)	bar cinsinden çalışma basıncı (0 = hortum basınç sınıfları kontrol edilmez)
+Operations	İşlemler
+Option name	Seçenek adı
+Option name, e.g. STARTER	Seçenek adı, ör. STARTER
+Options and rules of the configurator	Yapılandırıcının seçenekleri ve kuralları
+Other end, e.g. -X1:3	Diğer uç, ör. -X1:3
+Outer diameter in mm, 0 = estimated	mm cinsinden dış çap, 0 = tahmin edilir
+Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Düz segmentlerin dış uzunlukları, mm, ör. 200, 150, 300
+Overlap of nibbling hits (0 … 0.9)	Nibbling vuruşlarının bindirmesi (0 … 0.9)
+PCT loop {} already exists	PCT döngüsü {} zaten var
+PLC hardware: stations, cards, bus systems and port connections	PLC donanımı: istasyonlar, kartlar, bus sistemleri ve port bağlantıları
+Page macro name	Sayfa makrosu adı
+Page macro that generates its schematic	Şemasını oluşturan sayfa makrosu
+Page name (default: all pages)	Sayfa adı (varsayılan: tüm sayfalar)
+Page {} is generated and cannot be edited	Sayfa {} otomatik oluşturulur ve düzenlenemez
+Page {} is out in subproject {}: insert or discard the subproject first	Sayfa {}, {} alt projesine çıkarıldı: önce alt projeyi geri ekleyin veya vazgeçin
+Pages with a suffix (3.a) stay sub-pages of the page before (default true)	Ekli sayfalar (3.a) önceki sayfanın alt sayfaları olarak kalır (varsayılan true)
+Panel layout checks	Pano yerleşimi kontrolleri
+Panel manufacturing	Pano üretimi
+Paper height in mm (custom paper)	mm cinsinden kâğıt yüksekliği (özel kâğıt)
+Paper width in mm (custom paper)	mm cinsinden kâğıt genişliği (özel kâğıt)
+Part lifecycle	Parça yaşam döngüsü
+Part number of the accessory	Aksesuarın parça numarası
+Part number of the base	Taban plakasının parça numarası
+Part number of the carrier (per metre)	Taşıyıcının parça numarası (metre başına)
+Part number of the conductor (per metre)	İletkenin parça numarası (metre başına)
+Part number of the downstream device	Alt taraftaki cihazın parça numarası
+Part number of the hose / tube / pipe	Hortumun / tüpün / borunun parça numarası
+Part number of the upstream device	Üst taraftaki cihazın parça numarası
+Part number, e.g. GEN.LMP-GN-24	Parça numarası, ör. GEN.LMP-GN-24
+Part of the key or name	Anahtarın veya adın bir kısmı
+Part {} has no function with a symbol	{} parçasının sembollü işlevi yok
+Parts phased out or discontinued	Üretimden kalkan veya üretimi durdurulan parçalar
+Pass ids or pages	Kimlikler veya sayfalar belirtin
+Path function text: function text of the functions in its column that have none	Yol fonksiyon metni: sütunundaki fonksiyon metni olmayan fonksiyonların fonksiyon metni
+Placeholder values KEY=value; KEY2=value (may use {OPTION})	Yer tutucu değerleri KEY=değer; KEY2=değer ({OPTION} kullanılabilir)
+Places a PLC card (I/O module) in a station: rack, slot, start addresses and device description; readdresses its points	Bir PLC kartını (I/O modülü) bir istasyona yerleştirir: raf, slot, başlangıç adresleri ve cihaz tanımı; noktalarını yeniden adresler
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Dört telin birleştiği yere bir köprü yerleştirir: bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa, sonra sol / üst, sonra sağ / alt tarafa
+Places a connection definition point on a wire; the connection takes its number, colour and cross-section	Bir tele bağlantı tanım noktası yerleştirir; bağlantı onun numarasını, rengini ve kesitini alır
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Bir köşe yerleştirir: orada iki tel dik açıyla birleşir ve kollarına bakan bağlantı noktaları ona bağlanır
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Üç telin birleştiği yere yönlü bir T parçası yerleştirir: şema sırası yerine bağlantının iki telinin çıktığı cihazı (kaynak) ve hedeflerinin sırasını belirler
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	İki telin kesiştiği yere yönlü bir kesişme yerleştirir: onları bağlar ve çizgisinin her ucu önce düz, sonra enine bir kola bağlanır
+Places a part on a page: the symbol of its main function with its connection point designations, as a new device the part is assigned to (project parts and the example catalog)	Bir parçayı sayfaya yerleştirir: ana işlevinin sembolü bağlantı noktası tanımlarıyla, parçanın atandığı yeni bir cihaz olarak (proje parçaları ve örnek katalog)
+Places a symbol on a page. Without a tag the next free one is used; auxiliary contacts get the next free contact numbers of their device	Bir sayfaya sembol yerleştirir. Etiket verilmezse sonraki boş etiket kullanılır; yardımcı kontaklar cihazlarının sonraki boş kontak numaralarını alır
+Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Saha güzergâh ağının bir düğümüne bir pano (+CAB1), bir cihaz (-M1) veya bir makine konumu (+M1) yerleştirir
+Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Bir yüzeye pano aksesuarı (fan, filtre, kablo rakoru, lamba, kol, PE barası) yerleştirir
+Places of the group (0 = not limited)	Grubun yerleri (0 = sınırsız)
+Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Bir panonun dizisini odaya yerleştirir (tüm panoların 3D görünümü); x ve z verilmezse tesis yerleşimine göre veya diğer dizilerin yanına yerleştirilir
+Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Bir şemanın özelliklerini sembollere yerleştirir; kimlik verilmezse bunu kullanan tüm sembollere yeniden yerleştirilir
+Planned part number	Planlanan parça numarası
+Planned power in kW	kW cinsinden planlanan güç
+Plans the field cables through the route network: routes, lengths, segment fill, bonding points and problems; optionally takes the cut lengths over	Saha kablolarını güzergâh ağı üzerinden planlar: güzergâhlar, uzunluklar, segment doluluğu, kuşaklama noktaları ve sorunlar; isteğe bağlı olarak kesim uzunluklarını devralır
+Plans the machining of a face: operations (drilling, tapping, milling, punching, nibbling), tools, path, time and what the machine cannot make	Bir yüzeyin işlenmesini planlar: işlemler (delme, kılavuz çekme, frezeleme, zımbalama, nibbling), takımlar, yol, süre ve makinenin üretemedikleri
+Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Şemadan önce planlanmış cihazlarla tesis segmentleri: şablonlar, güç bütçesi, şemaya göre durum, CSV / Excel olarak değişim
+Plinth height in mm, 0 without plinth	mm cinsinden kaide yüksekliği, kaide yoksa 0
+Plot frame (list_frames); empty = the project default	Çizim çerçevesi (list_frames); boş = proje varsayılanı
+Plot frames and page templates of the project	Projenin çizim çerçeveleri ve sayfa şablonları
+Plug tag, e.g. -X10	Fiş etiketi, ör. -X10
+Plugin id '{}' is not snake_case	'{}' eklenti kimliği snake_case değil
+Plugin {} is loaded twice	{} eklentisi iki kez yüklendi
+Plugin {} needs a newer OpenECraft (API {})	{} eklentisi daha yeni bir OpenECraft gerektiriyor (API {})
+Plugin {}: the name '{}' is invalid or already taken	{} eklentisi: '{}' adı geçersiz veya zaten kullanılıyor
+Plugin {}: {}	{} eklentisi: {}
+Plugs and their pins	Fişler ve pinleri
+Points in between: [[x, y], …]	Aradaki noktalar: [[x, y], …]
+Points in mm: [[x, y], …]	mm cinsinden noktalar: [[x, y], …]
+Port as station:port	istasyon:port biçiminde port
+Port must be given as station:port: {}	Port istasyon:port biçiminde verilmelidir: {}
+Port {} is not connected	Port {} bağlı değil
+Position down in metres	Metre cinsinden aşağı konum
+Position of the neutral fibre (0 … 1, 0: DIN 6935)	Nötr eksenin konumu (0 … 1, 0: DIN 6935)
+Position right in metres	Metre cinsinden sağa konum
+Position {} / {} mm lies outside the page ({} x {} mm)	{} / {} mm konumu sayfanın dışında ({} x {} mm)
+Potential definitions, wire defaults and wire colours	Potansiyel tanımları, tel varsayılanları ve tel renkleri
+Potential kinds whose connections get no number, separated by commas (l, n, pe, dc_plus, dc_minus, signal)	Bağlantıları numara almayan potansiyel türleri, virgülle ayrılmış (l, n, pe, dc_plus, dc_minus, signal)
+Potential name, e.g. L1 or +24V	Potansiyel adı, ör. L1 veya +24V
+Potential {} already exists	Potansiyel {} zaten var
+Pre-planning (CSV)	Ön planlama (CSV)
+Pre-planning (Excel)	Ön planlama (Excel)
+Problems	Sorunlar
+Product filter (-)	Ürün filtresi (-)
+Production status	Üretim durumu
+Profile name, e.g. SAP	Profil adı, ör. SAP
+Program format: iso, heidenhain, punch or csv	Program formatı: iso, heidenhain, punch veya csv
+Programs	Programlar
+Progress (%)	İlerleme (%)
+Project checks	Proje kontrolleri
+Project exports	Proje dışa aktarımları
+Project languages, dictionary and translations	Proje dilleri, sözlük ve çeviriler
+Project reports	Proje raporları
+Project statistics	Proje istatistikleri
+Property and function definitions, property values and placement schemes	Özellik ve fonksiyon tanımları, özellik değerleri ve yerleştirme şemaları
+Property key	Özellik anahtarı
+Property keys and values, e.g. {\"device.rated_power\": \"5.5\"}	Özellik anahtarları ve değerleri, ör. {\"device.rated_power\": \"5.5\"}
+Put in front of the numbers, e.g. W	Numaraların önüne konur, ör. W
+Quantity per end (default 1)	Uç başına miktar (varsayılan 1)
+R/X ratio of the supply impedance	Besleme empedansının R/X oranı
+Rack number	Raf numarası
+Rail id (action rail)	Ray kimliği (rail eylemi)
+Rapid traverse, mm/min	Hızlı hareket, mm/dk
+Rated current of the supply in A (0: not limited)	A cinsinden beslemenin anma akımı (0: sınırsız)
+Rated power of the transformer feeding the supply in kVA (0: none, the short-circuit currents are given)	Beslemeyi sağlayan transformatörün kVA cinsinden anma gücü (0: yok, kısa devre akımları verilmiştir)
+Rear left corner of the line-up in mm, to the right	Pano dizisinin mm cinsinden arka sol köşesi, sağa doğru
+Rear left corner of the line-up in mm, towards the front	Pano dizisinin mm cinsinden arka sol köşesi, öne doğru
+Relative humidity of the ambient air in % (0: no condensation check)	% cinsinden ortam havasının bağıl nemi (0: yoğuşma kontrolü yok)
+Release instead of freeze	Dondurmak yerine serbest bırak
+Released pages keep their names: {}	Yayımlanmış sayfalar adlarını korur: {}
+Remote I/O: station of the controller	Uzak I/O: kontrolörün istasyonu
+Remove the entry of upstream and downstream	upstream ve downstream girişini kaldır
+Remove the profile	Profili kaldır
+Remove the scheme from the project	Şemayı projeden kaldır
+Remove unused definitions (default: false)	Kullanılmayan tanımları kaldır (varsayılan: false)
+Removes a copper bar	Bir bakır barayı kaldırır
+Removes a node (with its segments and places), segment, place, outline, bonding conductor or accessory	Bir düğümü (segmentleri ve yerleşimleriyle birlikte), segmenti, yerleşimi, dış hattı, kuşaklama iletkenini veya aksesuarı kaldırır
+Removes a planned device from a segment	Bir segmentten planlanmış bir cihazı kaldırır
+Removes a project function definition; its symbols go back to their built-in one	Bir proje fonksiyon tanımını kaldırır; sembolleri yeniden yerleşik tanımlarına döner
+Removes a project option; its content stays in the project	Bir proje seçeneğini kaldırır; içeriği projede kalır
+Removes a report block; the pages it generated stay	Bir rapor bloğunu kaldırır; oluşturduğu sayfalar kalır
+Removes a routing path or reservation	Bir yönlendirme yolunu veya ayrılmış alanı kaldırır
+Removes a segment with everything below it	Bir segmenti altındaki her şeyle birlikte kaldırır
+Removes a station; its cards stay unassigned, its bus connections are removed	Bir istasyonu kaldırır; kartları atanmamış kalır, bus bağlantıları kaldırılır
+Removes a user property with all its values and placements	Bir kullanıcı özelliğini tüm değerleri ve yerleştirmeleriyle birlikte kaldırır
+Removes the bus connection of a port	Bir portun bus bağlantısını kaldırır
+Removes the bus system with its connections	Bus sistemini bağlantılarıyla birlikte kaldırır
+Removes the definition of a structure identifier (pages and devices keep it)	Bir yapı tanımlayıcısının tanımını kaldırır (sayfalar ve cihazlar tanımlayıcıyı korur)
+Removes the machine from the project	Makineyi projeden kaldırır
+Removes the rule	Kuralı kaldırır
+Removes the wiring marks of wires that no longer exist	Artık var olmayan tellerin kablolama işaretlerini kaldırır
+Renames a device with all its functions	Bir cihazı tüm fonksiyonlarıyla birlikte yeniden adlandırır
+Renames a structure identifier in the whole project: pages, devices, cables, definition and work areas	Bir yapı tanımlayıcısını tüm projede yeniden adlandırır: sayfalar, cihazlar, kablolar, tanım ve çalışma alanları
+Renames the station	İstasyonu yeniden adlandırır
+Repair the repairable findings	Onarılabilir bulguları onar
+Replacement	Yeni değer
+Replaces text in free texts, function texts, page, device and cable descriptions of the whole project; released pages stay	Tüm projenin serbest metinlerinde, fonksiyon metinlerinde, sayfa, cihaz ve kablo açıklamalarında metni değiştirir; yayımlanmış sayfalar olduğu gibi kalır
+Report blocks and report schemes	Rapor blokları ve rapor düzenleri
+Reserves space over the mounting plate: kept free of routes, or for one class only	Montaj plakasının üzerinde alan ayırır: güzergâhlardan boş tutulur veya yalnızca bir sınıf için
+Rest (mm)	Kalan (mm)
+Right side bayed (no side panel)	Sağ taraf yan yana bağlı (yan panel yok)
+Room {} exists already	Oda {} zaten var
+Rotation in degrees clockwise: 0, 90, 180 or 270	Saat yönünde derece cinsinden döndürme: 0, 90, 180 veya 270
+Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Derece cinsinden dönüş, saat yönünün tersine (90 aşağıdan yukarıya okunur)
+Route the wires in 3D as well (otherwise through the cable ducts)	Telleri de 3D olarak yönlendir (aksi halde kablo kanallarından)
+Routing rules, paths, reservations, frozen routes and cable shields	Güzergâh kuralları, yollar, rezervasyonlar, dondurulmuş güzergâhlar ve kablo ekranları
+Row key (from table_get)	Satır anahtarı (table_get çıktısından)
+Rows of the pattern	Desenin satırları
+Rule libraries of standards and customer rule sets with the limits in effect; enables, disables, adds or removes them	Geçerli sınırlarla standartların kural kütüphaneleri ve müşteri kural setleri; bunları etkinleştirir, devre dışı bırakır, ekler veya kaldırır
+Rule number, from 1	Kural numarası, 1'den başlar
+Run the check	Kontrolü çalıştır
+SVG, HTML, PDF, DXF and DWG of the pages, production and PLC lists, harness and PLC exchange files, the panel layout in 3D and the translation dictionary	Sayfaların SVG, HTML, PDF, DXF ve DWG çıktıları, üretim ve PLC listeleri, kablo demeti ve PLC değişim dosyaları, 3D pano yerleşimi ve çeviri sözlüğü
+Safety function to add or replace (by name): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}	Eklenecek veya değiştirilecek güvenlik fonksiyonu (ada göre): {name, description, required: A…E, subsystems: [{name, devices, channel2, category: B|One|Two|Three|Four, dc, operations, mttfd, ccf}]}
+Safety functions (ISO 13849-1) with the performance level reached; adds, replaces or removes one	Ulaşılan performans seviyesiyle güvenlik fonksiyonları (ISO 13849-1); bir tane ekler, değiştirir veya kaldırır
+Saves a page (type, plot frame, title block, structure, description, content) as a page template	Bir sayfayı (tip, çizim çerçevesi, antet, yapı, açıklama, içerik) sayfa şablonu olarak kaydeder
+Saves items of an enclosure as a 3D macro of the project	Bir panonun öğelerini projenin 3D makrosu olarak kaydeder
+Saves the planned devices of a segment as a template	Bir segmentin planlanmış cihazlarını şablon olarak kaydeder
+Saves the properties placed at a symbol as a placement scheme	Bir sembole yerleştirilen özellikleri yerleştirme şeması olarak kaydeder
+Saw cut	Testere kesimi
+Second port as station:port	istasyon:port biçiminde ikinci port
+Segment path, e.g. Plant/Area 1	Segment yolu, ör. Plant/Area 1
+Segment {} already exists	{} segmenti zaten var
+Segments not to use, comma separated	Kullanılmayacak segmentler, virgülle ayrılmış
+Selective up to this short-circuit current in kA (0: not given)	kA cinsinden bu kısa devre akımına kadar seçici (0: verilmemiş)
+Selectivity and back-up protection of device pairs from the manufacturers' tables, by part number; adds, replaces or removes an entry	Üretici tablolarından cihaz çiftlerinin seçicilik ve yedek koruması, parça numarasına göre; bir giriş ekler, değiştirir veya kaldırır
+Separator: semicolon, comma or tab	Ayırıcı: semicolon, comma veya tab
+Sets how cross references are shown (only the given settings) and shows the settings	Çapraz referansların nasıl gösterileceğini ayarlar (yalnızca verilen ayarlar) ve ayarları gösterir
+Sets how the terminals of a jumper are bridged	Bir köprünün klemenslerinin nasıl köprüleneceğini ayarlar
+Sets property values of an object; an empty value removes it	Bir nesnenin özellik değerlerini ayarlar; boş değer onu kaldırır
+Sets the aspects the pages use	Sayfaların kullandığı yönleri ayarlar
+Sets the collision class of a panel item (empty: automatic)	Bir pano öğesinin çakışma sınıfını ayarlar (boş: otomatik)
+Sets the defaults of hoses that do not set their own values, and the hose number prefix	Kendi değerlerini ayarlamayan hortumların varsayılanlarını ve hortum numarası önekini ayarlar
+Sets the distance between two collision classes or lets them overlap; replaces the rule of the same classes	İki çakışma sınıfı arasındaki mesafeyi ayarlar veya üst üste binmelerine izin verir; aynı sınıfların kuralının yerini alır
+Sets the field route definition of a cable: nodes it must pass and segments it must not use	Bir kablonun saha güzergâhı tanımını ayarlar: geçmesi gereken düğümler ve kullanmaması gereken segmentler
+Sets the height of the enclosure's bottom above the floor (heights of devices, terminals and actuators are checked)	Pano alt kenarının zeminden yüksekliğini ayarlar (cihazların, klemenslerin ve kumanda elemanlarının yükseklikleri kontrol edilir)
+Sets the level (multi-level terminals) or jumper number of a terminal	Bir klemensin katını (katlı klemensler) veya köprü numarasını ayarlar
+Sets the numbering scheme of the wires (only the given settings) and shows it	Tellerin numaralandırma şemasını ayarlar (yalnızca verilen ayarlar) ve gösterir
+Sets the plot frame of all pages that do not choose one	Kendi çerçevesini seçmeyen tüm sayfaların çizim çerçevesini ayarlar
+Sets the shield and the outer diameter of a cable	Bir kablonun ekranını ve dış çapını ayarlar
+Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Proje metinlerinin kaynak dilini ve hedef dillerini ayarlar (ISO 639-1 kodları)
+Sets the spare terminals of a strip and whether its accessories are added automatically	Bir şeridin yedek klemenslerini ve aksesuarlarının otomatik eklenip eklenmeyeceğini ayarlar
+Sets the translation of a line of the project texts (empty removes it)	Proje metinlerinin bir satırının çevirisini ayarlar (boş değer çeviriyi kaldırır)
+Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Tanımlı potansiyeli olmayan ağların tel rengini ve kesitini ayarlar (boş = yok)
+Share of the capacity kept free in percent	Yüzde olarak boş tutulan kapasite oranı
+Sheets	Paftalar
+Shield connected at: both, first, second or none	Ekranın bağlandığı yer: both, first, second veya none
+Short circuit, load, EMC and safety calculations, rule sets and project verification	Kısa devre, yük, EMC ve güvenlik hesaplamaları, kural setleri ve proje doğrulaması
+Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Kısa devre akımları, kesme kapasiteleri, açma süreleri, kabloların kısa devre dayanımı ve koruma cihazlarının seçiciliği
+Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Transformatörün üst tarafındaki şebekenin MVA cinsinden kısa devre gücü (0: sonsuz)
+Short-circuit voltage of the transformer in %	Transformatörün % cinsinden kısa devre gerilimi
+Shortest path between the hits of a tool	Bir takımın vuruşları arasındaki en kısa yol
+Shortest rail, duct or busbar	En kısa ray, kanal veya bara
+Shortest straight length next to a bend	Bir bükümün yanındaki en kısa düz uzunluk
+Show as \"Name: value\"	\"Ad: değer\" olarak göster
+Show the content	İçeriği göster
+Shows a property as a text beside a symbol	Bir özelliği sembolün yanında metin olarak gösterir
+Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Bir klemens şeridini gösterir: şerit sırasına göre klemensler kat, köprü ve hedefleriyle, ray üzerindeki bloklar ve köprüler
+Shows or changes the machining strategy and which machine makes which face	İşleme stratejisini ve hangi makinenin hangi yüzeyi ürettiğini gösterir veya değiştirir
+Shows or changes the rules of copper bars; lengths in mm	Bakır bara kurallarını gösterir veya değiştirir; uzunluklar mm cinsinden
+Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Pano yerleşimi kontrollerinin kurallarını gösterir veya değiştirir; değerler mm cinsinden (sıcaklık °C cinsinden)
+Shows the PLC hardware configuration: stations with racks, slots, modules and address ranges, bus systems, port connections and the problems found	PLC donanım yapılandırmasını gösterir: raflar, slotlar, modüller ve adres aralıklarıyla istasyonlar, bus sistemleri, port bağlantıları ve bulunan sorunlar
+Shows the content of a page: symbols with their connection point positions, wires and texts	Bir sayfanın içeriğini gösterir: bağlantı noktası konumlarıyla semboller, teller ve metinler
+Shows the data of the other systems stored in the project (part links, documents) and the exchange log	Projede saklanan diğer sistemlere ait verileri (parça bağlantıları, belgeler) ve değişim günlüğünü gösterir
+Shows the mating face of a plug: pin layout of its part, the position of each pin on the face (mm, seen on the pin side) with potential, wire colour and cable core of both sides	Bir konnektörün eşleşme yüzünü gösterir: parçasının pin düzeni, her pinin konumu (mm, pin tarafından görünüm), iki tarafın potansiyeli, tel rengi ve kablo damarı
+Shows the options and rules of the configurator	Yapılandırıcının seçeneklerini ve kurallarını gösterir
+Shows the pins of a plug in plug order: what is connected on the socket side and on the pin side, potential, unused pins	Bir fişin pinlerini fiş sırasına göre gösterir: soket tarafında ve pin tarafında neyin bağlı olduğu, potansiyel, kullanılmayan pinler
+Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves	3D yönlendirme kurallarını gösterir ve verilenleri değiştirir: ızgara, açıklık mesafesi, serbest hava faktörü, ayırma, bükme yarıçapları, kesim uzunlukları, paylar
+Shows the rules of the field cable planning and changes those given	Saha kablosu planlamasının kurallarını gösterir ve verilenleri değiştirir
+Shows the settings of the project check: checks switched off, changed message levels and accepted messages	Proje kontrolünün ayarlarını gösterir: kapatılan kontroller, değiştirilen mesaj seviyeleri ve kabul edilen mesajlar
+Side of the plug the cable leaves: socket or pin (default: socket)	Kablonun çıktığı konnektör tarafı: socket veya pin (varsayılan: socket)
+Side the connection comes from: left, right, up or down (default up)	Bağlantının geldiği taraf: left, right, up veya down (varsayılan up)
+Single-line diagrams	Tek hat şemaları
+Single-line pages and their multi-line counterparts	Tek hat sayfaları ve bunların çok hatlı karşılıkları
+Slot number	Slot numarası
+Smallest bend radius in mm	mm cinsinden en küçük bükme yarıçapı
+Smallest distance in mm	mm cinsinden en küçük mesafe
+Smallest distance of holes from the sheet edge	Deliklerin sac kenarına en küçük mesafesi
+Smallest inner radius as a multiple of the thickness	Kalınlığın katı olarak en küçük iç yarıçap
+Smallest web at cutouts	Kesimlerdeki en küçük ara
+Smallest web between holes	Delikler arası en küçük ara
+Spare terminals at the end of the strip	Şeridin sonundaki yedek klemensler
+Springback in percent of the angle	Açının yüzdesi olarak geri esneme
+Start again on every page whose structure differs from the page before	Yapısı önceki sayfadan farklı olan her sayfada yeniden başla
+Start and end are the same connection point	Başlangıç ve bitiş aynı bağlantı noktası
+Start and end point of the line	Çizginin başlangıç ve bitiş noktası
+Start: device tag and connection point, e.g. -K1:A1	Başlangıç: cihaz etiketi ve bağlantı noktası, ör. -K1:A1
+State of the jobs handed off to production: progress, failures, rework, programs changed since the hand-off	Üretime teslim edilen iş emirlerinin durumu: ilerleme, hatalar, yeniden işleme, teslimden bu yana değişen programlar
+Station name (empty: unassigned)	İstasyon adı (boş: atanmamış)
+Station name, e.g. PLC1	İstasyon adı, ör. PLC1
+Station {} exists already	İstasyon {} zaten var
+Stock bar	Stok bara
+Stock length of rails, ducts and busbars	Rayların, kanalların ve baraların stok uzunluğu
+Stock length of the bars	Baraların stok uzunluğu
+Stores the calibrated factors	Kalibre edilmiş faktörleri saklar
+Structure identifiers, aspects and work areas	Yapı tanımlayıcıları, görünüşler ve çalışma alanları
+Structure of the target page: different (default), always or never	Hedef sayfanın yapısı: different (varsayılan), always veya never
+Subprojects, model options and the project data check	Alt projeler, model seçenekleri ve proje verisi kontrolü
+Supply (voltage, earthing system, short-circuit currents) and installation conditions of the conductors; changes the given values	Besleme (gerilim, topraklama sistemi, kısa devre akımları) ve iletkenlerin kurulum koşulları; verilen değerleri değiştirir
+Switch checks off, change message levels, accept messages as checked	Kontrolleri kapatın, mesaj seviyelerini değiştirin, mesajları kontrol edildi olarak kabul edin
+Switches a check on or off (names as shown by list_checks)	Bir kontrolü açar veya kapatır (adlar list_checks tarafından gösterildiği gibi)
+Switches the project options with a condition by the configurator options	Koşullu proje seçeneklerini yapılandırıcı seçeneklerine göre değiştirir
+Symbol id	Sembol kimliği
+Symbol ids	Sembol kimlikleri
+Symbol key from list_symbols	list_symbols listesinden sembol anahtarı
+Symbols, wires, texts, cable and connection definitions on schematic pages	Şema sayfalarındaki semboller, teller, metinler, kablo ve bağlantı tanımları
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T parçası: gövdenin yönü; köprü: bağlantının geldiği taraf (left, right, up veya down)
+Tag of the terminal strip, e.g. -X1	Klemens şeridinin etiketi, ör. -X1
+Take the cut lengths over as cable lengths	Kesim uzunluklarını kablo uzunlukları olarak devral
+Takes over an enclosure configured in the configurator of the enclosure maker (JSON): system, size, components, accessories and cutouts	Pano üreticisinin yapılandırıcısında yapılandırılmış bir panoyu devralır (JSON): sistem, boyut, bileşenler, aksesuarlar ve kesimler
+Takes over feedback of the production (CSV or JSON): job, program, operation, item, status, deviations, time, message	Üretimden gelen geri bildirimi devralır (CSV veya JSON): iş emri, program, işlem, öğe, durum, sapmalar, süre, mesaj
+Takes pages or page items out of their project option (hidden content is shown again)	Sayfaları veya sayfa öğelerini proje seçeneklerinden çıkarır (gizli içerik yeniden gösterilir)
+Target language code	Hedef dil kodu
+Target languages separated by commas or blanks, e.g. de, fr	Virgül veya boşlukla ayrılmış hedef diller, ör. de, fr
+Temperature rise at the roof against the middle (1 … 2)	Tavandaki sıcaklık artışı, ortaya göre (1 … 2)
+Terminal designation	Klemens tanımı
+Terminal designations in strip order, separated by commas	Şerit sırasına göre klemens tanımları, virgülle ayrılmış
+Terminal order, levels, jumpers, spare terminals and accessories	Klemens sırası, katlar, köprüler, yedek klemensler ve aksesuarlar
+Text height in mm	mm cinsinden metin yüksekliği
+Text height in mm (default 3.5)	mm cinsinden metin yüksekliği (varsayılan 3.5)
+Text in id, name or order number	Kimlik, ad veya sipariş numarasındaki metin
+Text in the key or name	Anahtar veya addaki metin
+Text in the line or a translation	Satırdaki veya bir çevirideki metin
+Text to find; empty: fill	Aranacak metin; boş: doldur
+Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Metin; {page} veya {prop:Name} gibi yer tutucular çizilirken doldurulur
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Bir köşenin kolları bir dikey ve bir yatay yöndür, örn. down left, {} değil
+The cable definition line crosses no wire	Kablo tanımlama çizgisi hiçbir teli kesmiyor
+The cable definition line has no length	Kablo tanımlama çizgisinin uzunluğu yok
+The cable has an overall shield	Kablonun genel ekranı var
+The classes may overlap (no collision)	Sınıflar üst üste binebilir (çakışma yok)
+The configuration (JSON)	Yapılandırma (JSON)
+The copies would leave the page	Kopyalar sayfanın dışına çıkar
+The counting step must be at least 1	Sayma adımı en az 1 olmalıdır
+The devices do not fit onto rail {}	Cihazlar {} rayına sığmıyor
+The feedback (CSV with header or JSON)	Geri bildirim (başlıklı CSV veya JSON)
+The first page number must not be negative	İlk sayfa numarası negatif olamaz
+The items would leave the page	Öğeler sayfanın dışına çıkar
+The length must not be negative	Uzunluk negatif olamaz
+The line of a crossing is vertical or horizontal, not {}	Bir kesişmenin çizgisi vertical veya horizontal olur, {} değil
+The message text, kept for the list of accepted messages	Kabul edilen mesajlar listesi için saklanan mesaj metni
+The name must not be empty	Ad boş olamaz
+The number of copies must be between 1 and 100	Kopya sayısı 1 ile 100 arasında olmalıdır
+The plinth height must not be negative	Kaide yüksekliği negatif olamaz
+The plot frame {} is in use	Çizim çerçevesi {} kullanımda
+The plugin program did not answer within {} s and was stopped	Eklenti programı {} sn içinde yanıt vermedi ve durduruldu
+The plugin program failed: {}	Eklenti programı başarısız oldu: {}
+The rotation must be 0, 90, 180 or 270	Döndürme 0, 90, 180 veya 270 olmalıdır
+The straight line of a crossing: vertical or horizontal (default vertical)	Bir kesişmenin düz çizgisi: vertical veya horizontal (varsayılan vertical)
+The text height must be at least 0.5 mm	Metin yüksekliği en az 0,5 mm olmalıdır
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Bir köşenin dikey ve yatay iki kolu, örn. down left (varsayılan: oradaki tellere göre, yoksa down right)
+The wire has no length	Bağlantının uzunluğu yok
+The wrap width must not be negative	Kaydırma genişliği negatif olamaz
+Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Montaj plakasının termik simülasyonu: hava sıcaklıkları, sıcak nokta, ısı kaynakları ve her cihazdaki sıcaklık
+Thickest sheet or bar, mm	En kalın sac veya bara, mm
+Time per drilling, punching or bending operation, s	Delme, zımbalama veya bükme işlemi başına süre, sn
+Time per tool change, s	Takım değişimi başına süre, sn
+Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Takımlar, ör. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge on the face in mm	mm cinsinden yüzey üzerindeki üst kenar
+Top edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki üst kenar
+Translated line	Çevrilmiş satır
+Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Derece cinsinden dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90: ön yüzler sağa bakar)
+Unit, e.g. kW	Birim, ör. kW
+Unknown accessory kind: {}	Bilinmeyen aksesuar türü: {}
+Unknown action: {}	Bilinmeyen eylem: {}
+Unknown address scheme: {}	Bilinmeyen adres şeması: {}
+Unknown alignment: {}	Bilinmeyen hizalama: {}
+Unknown anchor: {}	Bilinmeyen ankraj: {}
+Unknown aspect: {}	Bilinmeyen yön: {}
+Unknown bonding kind: {}	Bilinmeyen kuşaklama türü: {}
+Unknown bonding point: {}	Bilinmeyen kuşaklama noktası: {}
+Unknown bus system: {}	Bilinmeyen bus sistemi: {}
+Unknown cable: {}	Bilinmeyen kablo: {}
+Unknown check: {}	Bilinmeyen kontrol: {}
+Unknown class: {}	Bilinmeyen sınıf: {}
+Unknown data type: {}	Bilinmeyen veri türü: {}
+Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
+Unknown earthing system: {}	Bilinmeyen topraklama sistemi: {}
+Unknown face {}	Bilinmeyen yüzey {}
+Unknown fastening: {}	Bilinmeyen sabitleme: {}
+Unknown field object: {}	Bilinmeyen saha nesnesi: {}
+Unknown field: {}	Bilinmeyen alan: {}
+Unknown group kind: {}	Bilinmeyen grup türü: {}
+Unknown installation: {}	Bilinmeyen kurulum tipi: {}
+Unknown insulation: {}	Bilinmeyen yalıtım: {}
+Unknown jumper kind: {}	Bilinmeyen köprü türü: {}
+Unknown kind: {}	Bilinmeyen tür: {}
+Unknown labels: {}	Bilinmeyen yazı türü: {}
+Unknown level: {}	Bilinmeyen seviye: {}
+Unknown line type: {}	Bilinmeyen hat tipi: {}
+Unknown machine kind {}	Bilinmeyen makine türü {}
+Unknown marker category: {}	Bilinmeyen işaretleyici kategorisi: {}
+Unknown material: {}	Bilinmeyen malzeme: {}
+Unknown medium: {}	Bilinmeyen ortam: {}
+Unknown method {}	Bilinmeyen yöntem {}
+Unknown node: {}	Bilinmeyen düğüm: {}
+Unknown numbering scheme: {}	Bilinmeyen numaralandırma şeması: {}
+Unknown object class: {}	Bilinmeyen nesne sınıfı: {}
+Unknown order: {}	Bilinmeyen sıralama: {}
+Unknown paper format: {}	Bilinmeyen kâğıt biçimi: {}
+Unknown path kind: {}	Bilinmeyen yol türü: {}
+Unknown placeholder {}: possible are {}	Bilinmeyen yer tutucu {}: olası olanlar {}
+Unknown potential kind: {}	Bilinmeyen potansiyel türü: {}
+Unknown preset: {}	Bilinmeyen ön ayar: {}
+Unknown program format {}	Bilinmeyen program formatı {}
+Unknown report: {}	Bilinmeyen rapor: {}
+Unknown segment kind: {}	Bilinmeyen segment türü: {}
+Unknown segment: {}	Bilinmeyen segment: {}
+Unknown separator: {}	Bilinmeyen ayırıcı: {}
+Unknown setting: {}	Bilinmeyen ayar: {}
+Unknown shield ends: {}	Bilinmeyen ekran uçları: {}
+Unknown side {} (socket or pin)	Bilinmeyen taraf {} (socket veya pin)
+Unknown state: {}	Bilinmeyen durum: {}
+Unknown station kind: {}	Bilinmeyen istasyon türü: {}
+Unknown symbol: {}	Bilinmeyen sembol: {}
+Unknown table: {}	Bilinmeyen tablo: {}
+Unknown vertical anchor: {}	Bilinmeyen dikey bağlama noktası: {}
+Unknown wire colour {} (IEC 60757: {})	Bilinmeyen tel rengi {} (IEC 60757: {})
+Use this scheme for the marking export	Etiketleme dışa aktarımı için bu şemayı kullan
+Used (mm)	Kullanılan (mm)
+Value while none is set	Hiçbiri ayarlanmamışken geçerli değer
+Values of a selection list separated by commas	Virgülle ayrılmış seçim listesi değerleri
+Variant (empty: the first)	Varyant (boş: ilki)
+Variant {} is not one of 1 to 2	{} varyantı 1 ile 2 arasında değil
+Variant {} is not one of 1 to 4	{} varyantı 1 ile 4 arasında değil
+Verifies the project against the enabled rule libraries and customer rule sets	Projeyi etkin kural kütüphanelerine ve müşteri kural setlerine göre doğrular
+Verifies the project data (ids, references, options, subprojects) and runs the checks; optionally repairs what can be repaired	Proje verilerini (kimlikler, referanslar, seçenekler, alt projeler) doğrular ve kontrolleri çalıştırır; isteğe bağlı olarak onarılabilenleri onarır
+Vertical pitch of the pattern in mm	mm cinsinden desenin dikey aralığı
+Voltage, e.g. 400 V AC	Gerilim, ör. 400 V AC
+What it is: motor, valve, sensor, …	Ne olduğu: motor, valf, sensör, …
+Which line the position is on: top (first), middle or bottom (last)	Konumun hangi satırda olduğu: top (ilk), middle veya bottom (son)
+Who accepted it	Kabul eden kişi
+Whole words only	Yalnızca tam sözcükler
+Why the message is accepted	Mesajın neden kabul edildiği
+Width in mm	mm cinsinden genişlik
+Width of the path in mm (default 50)	mm cinsinden yolun genişliği (varsayılan 50)
+Width, depth and height of a room are at least {} mm	Bir odanın genişliği, derinliği ve yüksekliği en az {} mm'dir
+Width, height and depth of an enclosure are at least {} mm	Bir panonun genişliği, yüksekliği ve derinliği en az {} mm'dir
+Wire colour (IEC 60757), e.g. BK	Tel rengi (IEC 60757), ör. BK
+Wire colour, e.g. BU	Tel rengi, ör. BU
+Wire colour, e.g. BU (empty = from the potential definition)	Tel rengi, ör. BU (boş = potansiyel tanımından)
+Wire number (kept when renumbering)	Tel numarası (yeniden numaralandırmada korunur)
+Wire numbering and wiring marks	Tel numaralandırma ve kablolama işaretleri
+Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Koruma cihazlarına göre fazla ince teller ve kabloların gerilim düşümü (IEC 60204-1)
+Working area in x, mm	x yönünde çalışma alanı, mm
+Working area in y, mm	y yönünde çalışma alanı, mm
+Wrap width in mm (0: no wrapping)	mm cinsinden kaydırma genişliği (0: kaydırma yok)
+X position in mm	mm cinsinden X konumu
+Y position in mm (downwards)	mm cinsinden Y konumu (aşağı doğru)
+any, wires, cables or tubes	any, wires, cables veya tubes
+auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip veya adhesive
+compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam veya product
+controller, io_device, drive, hmi or other	controller, io_device, drive, hmi veya other
+copper or aluminium	copper veya aluminium
+device (default), position, cross_section or number	device (varsayılan), position, cross_section veya number
+devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages veya parts
+error, warning, info, off, or default to take the change back	error, warning, info, off veya değişikliği geri almak için default
+false takes the acceptance back (default true)	false kabulü geri alır (varsayılan true)
+free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted veya middle_wall_mounted_covered
+function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) veya product (-)
+gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker veya other
+hose, tube or pipe	hose, tube veya pipe
+iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (makineler, fazlar BK) veya iec60445 (fazlar BN, BK, GY)
+keepout (default), power, control, signal or fluid	keepout (varsayılan), power, control, signal veya fluid
+l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal veya other
+left, center, right, top, middle or bottom	left, center, right, top, middle veya bottom
+left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail veya pattern
+main (default), supplementary or functional	main (varsayılan), supplementary veya functional
+mounted, problem or open	mounted, problem veya open
+node, segment, place, outline, bond or accessory	node, segment, place, outline, bond veya accessory
+numbers or letters	numbers veya letters
+plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof veya bottom
+plug_in, saddle or wire	plug_in, saddle veya wire
+profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp veya canopen
+project, page, device, function, terminal, plc or cable	project, page, device, function, terminal, plc veya cable
+project, page, device, function, terminal, plc, cable or part	project, page, device, function, terminal, plc, cable veya part
+project, page:<name>, device:<tag>, function:<symbol id>, cable:<tag> or part:<number>	project, page:<ad>, device:<etiket>, function:<sembol kimliği>, cable:<etiket> veya part:<numara>
+pvc or xlpe	pvc veya xlpe
+sequential, page_column, potential or format	sequential, page_column, potential veya format
+sheet_steel, stainless_steel, aluminium or plastic	sheet_steel, stainless_steel, aluminium veya plastic
+text, multiline, integer, number, bool, choice, date or link (default text)	text, multiline, integer, number, bool, choice, date veya link (varsayılan text)
+tn_s, tn_c, tn_c_s, tt or it	tn_s, tn_c, tn_c_s, tt veya it
+too long	çok uzun
+tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (varsayılan), ladder, trunking, conduit, drag_chain, buried veya free
+valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit veya other
+wired, problem or open	wired, problem veya open
+{} and {} are both ends of one function: the wire would short-circuit it	{} ve {} aynı işlevin iki ucu: tel onu kısa devre yapar
+{} and {} are needed together	{} ve {} birlikte gerekli
+{} cannot be bayed to itself	{} kendisine yan yana bağlanamaz
+{} cannot be mounted on the {}	{}, {} üzerine monte edilemez
+{} exists already: pass merge to make both one identifier	{} zaten var: ikisini tek tanımlayıcıda birleştirmek için merge belirtin
+{} has no enclosure bayed to its right side	{} panosunun sağ tarafına yan yana bağlı pano yok
+{} has no enclosure system; give one	{} için pano sistemi yok; bir tane belirtin
+{} is a built-in frame; give the frame a new name	{} yerleşik bir çerçevedir; çerçeveye yeni bir ad verin
+{} is a room already	{} zaten bir oda
+{} is ambiguous: use #id:pin	{} belirsiz: #id:pin kullanın
+{} is an enclosure already	{} zaten bir pano
+{} is not a connection point (TAG:PIN)	{} bir bağlantı noktası değil (ETİKET:PIN)
+{} is not a message code as shown by check (e.g. wires.3f9a1c)	{}, check tarafından gösterilen bir mesaj kodu değil (ör. wires.3f9a1c)
+{} is not a message fingerprint as shown by check (code:hash:item)	{}, check tarafından gösterilen bir mesaj parmak izi değil (code:hash:item)
+{} is not defined	{} tanımlı değil
+{} is not in that section	{} o bölümde değil
+{} is the source language	{} kaynak dildir
+{} must be at least {}	{} en az {} olmalıdır
+{} must be between {} and {}	{}, {} ile {} arasında olmalıdır
+{} must not be negative	{} negatif olamaz
+{} of job {} changed since the hand-off	{1} iş emrinin {0} öğesi teslimden bu yana değişti
+{} segments need {} bends	{} segment için {} büküm gerekli
+{} would stand outside the room {}	{}, {} odasının dışında kalır
+{}: part {} is being phased out	{}: {} parçası üretimden kalkıyor
+{}: part {} is being phased out, successor {}	{}: {} parçası üretimden kalkıyor, halefi {}
+{}: part {} is discontinued	{}: {} parçasının üretimi durduruldu
+{}: part {} is discontinued, successor {}	{}: {} parçasının üretimi durduruldu, halefi {}
+{}: the program to run is missing	{}: çalıştırılacak program eksik

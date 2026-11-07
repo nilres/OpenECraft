@@ -1,0 +1,286 @@
+# English<TAB>Magyar – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(csak MCP-kiszolgáló)
+(optional)	(nem kötelező)
+Access token for changes	Hozzáférési token a módosításokhoz
+Access token of a Vault session or an Autodesk account instead of user and password	Vault-munkamenet vagy Autodesk-fiók hozzáférési tokenje a felhasználó és jelszó helyett
+Address of the Vault server, e.g. https://vault.example.com	A Vault-szerver címe, pl. https://vault.example.com
+Adds a page	Oldalt ad hozzá
+Adds the definitions and schemes of a property library file to the project	Egy tulajdonságkönyvtár-fájl definícióit és sémáit hozzáadja a projekthez
+All project files of a folder	Egy mappa összes projektfájlja
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	A facetták visszaadása is: csoportok, gyártók, katalógusok, életciklus és műszaki adatok értékei a darabszámukkal
+Also save the project in this local file	A projekt mentése ebbe a helyi fájlba is
+Also take over values changed on both sides since the last export	A legutóbbi export óta mindkét oldalon módosított értékek átvétele is
+Also verify each project (slower)	Minden projekt ellenőrzése is (lassabb)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	Alkalmaz egy table_get paranccsal exportált (és táblázatkezelőben módosított) CSV-t: a módosított cellák beállításra kerülnek
+Applies a structure template: the aspects of the pages and its identifiers	Struktúrasablont alkalmaz: az oldalak aspektusait és a sablon azonosítóit
+Archive file (.oecz)	Archívumfájl (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Alkatrészt rendel egy készülékhez (a projektből, a beépített katalógusból vagy az alkatrészszerverről)
+Author of comments without one (default: the user name)	A szerző nélküli megjegyzések szerzője (alapértelmezés: a felhasználónév)
+AutomationML content instead of a file	AutomationML-tartalom fájl helyett
+AutomationML file	AutomationML-fájl
+CSV content instead of a file	CSV-tartalom fájl helyett
+CSV file	CSV-fájl
+CSV or Excel file	CSV- vagy Excel-fájl
+CSV or JSON file	CSV- vagy JSON-fájl
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV-, JSON-, BMEcat-, EPLAN XML- vagy EDZ-fájl
+Cannot write {}: {}	{} nem írható: {}
+Catalog data; without id it is derived from the name	Katalógusadatok; azonosító nélkül a névből képződik
+Changes project properties	Módosítja a projekttulajdonságokat
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Egyszerre sok projektfájlban módosítja a projekttulajdonságokat (name, description, company, creator, date, revision mezők vagy projekttulajdonságok)
+Changes the number of a part on the parts server	Módosítja egy alkatrész számát az alkatrészszerveren
+Check scheme file (JSON)	Ellenőrzésiséma-fájl (JSON)
+Check-in comment	Beadási megjegyzés
+Checks the project (errors, warnings, hints)	Ellenőrzi a projektet (hibák, figyelmeztetések, tájékoztatások)
+Column mapping {field code: column name} (added to the profile's)	Oszlop-hozzárendelés {mezőkód: oszlopnév} (kiegészíti a profilét)
+Comment stored in the archive	Az archívumban tárolt megjegyzés
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Összehasonlítja a projektalkatrészeket az alkatrészszerverrel: újabb verziók, kifutó, megszűnt és eltávolított alkatrészek
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Ehelyett összekötő-export: erp, pdm, plm, ecad, mcad, procurement, wiring_machine vagy exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Csatlakozik az Autodesk Vaulthoz (Vault Data API, Vault Professional 2025.2 vagy újabb): bejelentkezik egy Vault-fiókkal vagy hozzáférési tokent használ, és megjeleníti a kapcsolatot
+Converts a project file or archive of an older version to the current file format	Egy régebbi verziójú projektfájlt vagy archívumot az aktuális fájlformátumra alakít át
+Creates a new project (optionally the demo project) and saves it if a path is given	Új projektet hoz létre (igény szerint a bemutatóprojektet), és ha meg van adva elérési út, menti
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Katalógust hoz létre vagy módosít az alkatrészszerveren (azonosító, név, gyártó, verzió, leírás)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Kimutatásblokkot (együtt generált kimutatásoldalak, pl. lécenként egy sorkapocsterv) hoz létre vagy módosít
+Creates or changes a user of the parts server (administrators only)	Az alkatrészszerver felhasználóját hozza létre vagy módosítja (csak rendszergazdák)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Alkatrészt hoz létre vagy cserél le az alkatrészszerveren (ugyanaz a JSON, mint a parts_get esetén; a hiányzó mezők üresek)
+Creates or replaces a report scheme	Kimutatássémát hoz létre vagy cserél le
+Creator	Létrehozó
+DWG file	DWG-fájl
+DXF file	DXF-fájl
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro vagy Other (alapértelmezés: fájlnév szerint)
+Date for the exchange log	Dátum a csereprotokollhoz
+Defines, changes or deletes a role of the parts server (administrators only)	Definiálja, módosítja vagy törli az alkatrészszerver egy szerepkörét (csak rendszergazdák)
+Delete the role	A szerepkör törlése
+Deletes a catalog without parts from the parts server	Alkatrész nélküli katalógust töröl az alkatrészszerverről
+Deletes a part from the parts server	Töröl egy alkatrészt az alkatrészszerverről
+Deletes a user of the parts server (administrators only)	Az alkatrészszerver egy felhasználóját törli (csak rendszergazdák)
+Descending order	Csökkenő sorrend
+Discard unsaved changes of the open project	A megnyitott projekt nem mentett változtatásainak elvetése
+Downloads a file of a part from the parts server	Letölti egy alkatrész fájlját az alkatrészszerverről
+Downloads a file version from the vault	Letölt egy fájlverziót a vaultból
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Fájlt (PDF, Office-dokumentum, kép …) ágyaz be dokumentumoldalként; a PDF-export csatolja az oldalhoz
+Error: {}	Hiba: {}
+Export name as shown by list_exports	Az export neve, ahogy a list_exports megjeleníti
+Export name as shown by list_exports, e.g. pdf or step	Az export neve, ahogy a list_exports megjeleníti, pl. pdf vagy step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Az alkatrészszerver összes alkatrészét exportálja CSV vagy EPLAN-alkatrész-XML formátumban
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Exportálja a projektet egy összekötővel egy másik rendszer számára, vagy semleges cserefájlként (exchange összekötő); az összekötő későbbi importjai ehhez az exporthoz képest észlelik az ütközéseket
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	A projektet a list_exports egyik formátumában exportálja; a bináris formátumokhoz (dwg, jt) kimeneti fájl szükséges
+Field or property whose value is searched ('*' for all)	Mező vagy tulajdonság, amelynek értékében keres ('*' = mind)
+File content instead of a file	Fájltartalom fájl helyett
+File id (see the attachments of parts_get)	Fájlazonosító (lásd a parts_get attachments mezőjét)
+File name in the vault	Fájlnév a vaultban
+File to embed	Beágyazandó fájl
+File to save the project to (.oec)	A fájl, amelybe a projekt mentésre kerül (.oec)
+File to upload	Feltöltendő fájl
+File to write	Írandó fájl
+File to write (xlsx)	Írandó fájl (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Projekteket keres a projektadatbázisban vagy egy mappában: a kifejezéseket ';' választja el, mindegyik kulcs=érték, kulcs~szöveg vagy egyszerű szöveg
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Megkeresi a projektalkatrészek Vault-elemeit (elemszám vagy Part Number tulajdonság alapján), és felsorolja a tételazonosító, a revízió és az életciklus-állapot változásait; apply esetén átveszi őket
+Folder id (default root)	Mappaazonosító (alapértelmezés: root)
+Folder with project files	Projektfájlokat tartalmazó mappa
+Folder with project files (instead of a database; default: the current folder)	Projektfájlokat tartalmazó mappa (adatbázis helyett; alapértelmezés: az aktuális mappa)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Űrlap: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (sorkapocs- és kábeltervek rajzként)
+Function (=) of the generated pages	A generált oldalak funkciója (=)
+Further parameters of the export as name=value, separated by commas	Az export további paraméterei név=érték formában, vesszővel elválasztva
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Az export további paraméterei név=érték formában, vesszővel elválasztva (lásd list_exports), pl. harness=-WH1
+GSDML or ESI file	GSDML- vagy ESI-fájl
+Generates a report as table	Kimutatást készít táblázatként
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Oldalmakróval rendelkező, a kapcsolási rajzon még nem szereplő tervezett készülékenként generál egy kapcsolásirajz-oldalt
+Generates the pages of the report blocks again (replacing the pages they generated before)	Újragenerálja a kimutatásblokkok oldalait (lecseréli a korábban generált oldalakat)
+Give either template or path	Adja meg vagy a template, vagy a path paramétert
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Szerepkört ad egy felhasználónak vagy csoportnak az alkatrészszerver egy gyártójára (hatókörére), deny esetén visszavonja a jogosultságait, revoke esetén eltávolítja a hozzárendeléseket (csak rendszergazdák)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Generálandó csoportok, helyettesítő karakterek megengedettek (-X*, -W1); üres: az összes
+Id of a file (file_id of vault_browse) that gets a new version	Az új verziót kapó fájl azonosítója (a vault_browse file_id mezője)
+Id of the file version (version_id of vault_browse)	A fájlverzió azonosítója (a vault_browse version_id mezője)
+Id of the knowledge vault (taken from the session if not given)	A vault azonosítója (ha nincs megadva, a munkamenetből)
+Id of the plugin to disable	A letiltandó bővítmény azonosítója
+Id of the plugin to enable	Az engedélyezendő bővítmény azonosítója
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	DWG-rajzot (AutoCAD R12 … 2018) importál grafikaként (vonalak, ívek, szövegek, blokkok) egy új kapcsolásirajz-oldalra
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	DXF-rajzot importál grafikaként (vonalak, ívek, szövegek, blokkok) egy új kapcsolásirajz-oldalra
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	PLC-hardverkonfigurációt importál AutomationML-ből (pl. a TIA Portalból exportálva): állomások, modulok, címek, alhálózatok, portkapcsolatok és változómegjegyzések
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Alkatrészfájlt importál az alkatrészszerverre; az EDZ-fájl képei és makrói az alkatrészeikkel együtt tárolódnak
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Eszközleírásokat importál GSDML- (PROFINET) vagy ESI- (EtherCAT) fájlból a projektbe
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Előtervezési szegmenseket és tervezett készülékeket importál CSV-ből vagy Excelből (Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro oszlopok)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	A véleményezési rétegbe importálja azokat a megjegyzéseket, amelyeket egy véleményező a projekt PDF-exportjában készített (jegyzetek, szövegdobozok, kiemelések, alakzatok, válaszok); a korábban importált megjegyzéseket kihagyja
+Insert after this page (default: at the end)	Beszúrás ezen oldal után (alapértelmezés: a végére)
+Inserts an edited subproject: its pages replace the pages taken out	Beilleszt egy szerkesztett alprojektet: oldalai felváltják a kiemelt oldalakat
+Invalid form: {}	Érvénytelen űrlap: {}
+Keep the file checked out after the check-in	A fájl a beadás után is kivett állapotban marad
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	A szerver típusa: OpenECraft (alkatrészszerver) vagy Eplan (EPLAN Data Portal: csak keresés és olvasás, a token az EPLAN-fiók személyes hozzáférési tokenje)
+Language of the export (a project language)	Az export nyelve (egy projektnyelv)
+Language of the project texts and reports (a project language, default the source language)	A projektszövegek és kimutatások nyelve (egy projektnyelv, alapértelmezés: a forrásnyelv)
+Library file	Könyvtárfájl
+Lifecycle: Active, PhaseOut or Discontinued	Életciklus: Active, PhaseOut vagy Discontinued
+Lists the built-in structure templates	Felsorolja a beépített struktúrasablonokat
+Lists the catalogs of the parts server with their number of parts	Felsorolja az alkatrészszerver katalógusait az alkatrészeik számával
+Lists the checks of the project check (built-in and of plugins) and whether they run	Felsorolja a projektellenőrzés ellenőrzéseit (beépítetteket és a bővítményekét), és hogy futnak-e
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Felsorolja az integrációs réteg összekötőit (ERP, PDM, PLM, ECAD, MCAD, beszerzés, huzalfeldolgozó automata) a cserélt mezőkkel, valamint a projekt profiljait
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Felsorolja a szekrényrendszereket a szabványos méreteikkel, falvastagságukkal, lábazatukkal, és azzal, hogy sorolhatók-e
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	Felsorolja a mintaprojekteket az első áramkörtől a teljes létesítményig, az általuk bemutatott funkciókkal
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Felsorolja az exportokat (beépítetteket és a bővítményekét): név az export számára, cím, fájlkiterjesztés és paraméterek
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Felsorolja egy Vault-mappa mappáit és fájljait, vagy keres az alatta lévő (vagy a teljes vaultban lévő) fájltulajdonságokban
+Lists the reports (built-in and of plugins): name for report and title	Felsorolja a kimutatásokat (beépítetteket és a bővítményekét): név a report számára és cím
+Lists the users of the parts server (administrators only)	Felsorolja az alkatrészszerver felhasználóit (csak rendszergazdák)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Betöltött bővítmények (beépítettek és a --plugins / OPENECRAFT_PLUGINS bővítménymappáiból származók) a parancsaikkal, ellenőrzéseikkel, kimutatásaikkal és exportjaikkal; egyet engedélyez vagy letilt ebben a munkamenetben
+Local file to put into the vault	A vaultba helyezendő helyi fájl
+Local groups of the user, separated by commas	A felhasználó helyi csoportjai, vesszővel elválasztva
+Location (+) of the generated pages	A generált oldalak szerelési helye (+)
+Macro library file (JSON, exported by the editor)	Makrókönyvtár-fájl (JSON, a szerkesztő exportálta)
+Manufacturer (wildcards); default * (everything)	Gyártó (helyettesítő karakterek); alapértelmezés: * (minden)
+Manufacturer whose parts a manufacturer user maintains	Gyártó, amelynek alkatrészeit egy gyártói felhasználó kezeli
+Maximum number of hits (default 50)	Találatok maximális száma (alapértelmezés: 50)
+Name of a built-in template (list_structure_templates)	Egy beépített sablon neve (list_structure_templates)
+Name of the knowledge vault (default Vault)	A vault neve (alapértelmezés: Vault)
+New file name (save as)	Új fájlnév (mentés másként)
+New pages for every value of the group column (default true)	Új oldalak a csoportosító oszlop minden értékéhez (alapértelmezés: true)
+New part number	Új cikkszám
+New report block {} needs a kind	Az új {} kimutatásblokkhoz kimutatás (kind) szükséges
+No grant of {} found	Nem található hozzárendelés ehhez: {}
+No profile named {}	Nincs ilyen nevű profil: {}
+No project is open: use open_project or new_project first	Nincs megnyitott projekt: először használja az open_project vagy a new_project parancsot
+No role {} defined	Nincs definiálva {} szerepkör
+Not a valid catalog: {}	Nem érvényes katalógus: {}
+Not a valid part: {}	Nem érvényes alkatrész: {}
+Not connected to a vault: use vault_connect first	Nincs kapcsolat vaulttal: előbb használja a vault_connect parancsot
+Nothing to change: pass set, remove, replace or rename	Nincs mit módosítani: adja meg a set, remove, replace vagy rename paramétert
+Number of hits to skip	Kihagyandó találatok száma
+Only show the changes, write nothing	Csak a változások megjelenítése, semmi nem íródik ki
+Only the pages of this report block; default all report pages	Csak ennek a kimutatásblokknak az oldalai; alapértelmezés: az összes kimutatásoldal
+Only the projects that match these search terms	Csak az ezeknek a keresési kifejezéseknek megfelelő projektek
+Only this block	Csak ez a blokk
+Opens a project file or archive (files of older versions are converted)	Megnyit egy projektfájlt vagy archívumot (a régebbi verziók fájljai átalakításra kerülnek)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Megnyit egy projektfájlt vagy archívumot a vaultból; a cél nélküli vault_upload ennek új verzióját adja be
+Option {} needs the form name=value	A(z) {} opcióhoz név=érték forma szükséges
+Order: Number, Manufacturer, Description, Price or Modified	Sorrend: Number, Manufacturer, Description, Price vagy Modified
+Output file	Kimeneti fájl
+Output file (JSON)	Kimeneti fájl (JSON)
+Output file; without it the content is returned	Kimeneti fájl; nélküle a tartalom visszaadásra kerül
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Rögzített oldalakként egy másik projektfájlba adja ki a kimutatásoldalakat; az ebből a projektből korábban kiadott oldalak lecserélődnek
+PDF file with comments	PDF-fájl megjegyzésekkel
+Page (svg: required, dxf, dwg: default all pages)	Oldal (svg: kötelező, dxf, dwg: alapértelmezés az összes oldal)
+Page name (default: next number)	Oldalnév (alapértelmezés: következő szám)
+Page of the export	Az export oldala
+Page template (list_page_templates) instead of kind	Oldalsablon (list_page_templates) a kind helyett
+Page {} has no embedded document	A(z) {} oldalnak nincs beágyazott dokumentuma
+Pages whose structure starts with this, e.g. =A1+CAB1	Oldalak, amelyek struktúrája ezzel kezdődik, pl. =A1+CAB1
+Part number to add	Hozzáadandó cikkszám
+Part number to remove	Eltávolítandó cikkszám
+Part {} has no version {}	A(z) {} alkatrésznek nincs {} verziója
+Pass files or a folder	Adjon meg fájlokat vagy egy mappát
+Password (needed for new users; empty keeps the current one)	Jelszó (új felhasználóknál kötelező; üresen hagyva a jelenlegi marad)
+Password of the Vault user	A Vault-felhasználó jelszava
+Password of the user	A felhasználó jelszava
+Plot frame (list_frames); default: the project's	Rajzkeret (list_frames); alapértelmezés: a projekté
+Product top group: Electrical, Fluid, Mechanics or Process	Termék-főcsoport: Electrical, Fluid, Mechanics vagy Process
+Profile whose column mapping is used	Profil, amelynek oszlop-hozzárendelése használatos
+Project database file (JSON)	Projektadatbázis-fájl (JSON)
+Project database file (JSON) to update	Frissítendő projektadatbázis-fájl (JSON)
+Project file (.oec) or archive (.oecz)	Projektfájl (.oec) vagy archívum (.oecz)
+Project file that gets the pages	Az oldalakat fogadó projektfájl
+Project file to write (default: the file itself; archives: next to it as .oec)	Írandó projektfájl (alapértelmezés: maga a fájl; archívumok: mellé .oec néven)
+Project files, separated by ';'	Projektfájlok, ';' karakterrel elválasztva
+Properties to remove, separated by ','	Eltávolítandó tulajdonságok, ',' karakterrel elválasztva
+Properties to rename (old name: new name)	Átnevezendő tulajdonságok (régi név: új név)
+Property {} needs a text or a number	A(z) {} tulajdonsághoz szöveg vagy szám kell
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A projektet, egy exportot, egy összekötő-exportot vagy egy helyi fájlt helyez a vaultba; a mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor vagy Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Beolvassa egy másik rendszer fájlját (CSV vagy JSON) egy összekötővel, és felsorolja a változásokat; apply esetén átveszi őket (ütközéseket csak overwrite esetén)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Beolvassa egy mappa (és almappái) projektfájljait és archívumait a projektadatbázisba
+Reads translations from CSV: first column the source line, one column per language code	Fordításokat olvas be CSV-ből: az első oszlop a forrássor, nyelvkódonként egy oszlop
+Redoes the last undone change	Újra végrehajtja az utoljára visszavont módosítást
+Remove the grants of the user or group (only of this role and scope, if given)	A felhasználó vagy csoport hozzárendeléseinek eltávolítása (ha meg van adva, csak ennek a szerepkörnek és hatókörnek a hozzárendeléseié)
+Remove the parts assigned so far	Az eddig hozzárendelt alkatrészek eltávolítása
+Removes a file from a part on the parts server	Eltávolít egy fájlt egy alkatrészből az alkatrészszerveren
+Replace the file at path if it exists	A path helyén lévő fájl cseréje, ha létezik
+Replace the project parts by their newer server versions	A projektalkatrészek lecserélése újabb szerververzióikra
+Replacement text	Csereszöveg
+Replaces the content of the macro boxes whose macro changed in a macro library file	Lecseréli azoknak a makródobozoknak a tartalmát, amelyek makrója megváltozott egy makrókönyvtár-fájlban
+Replaces the pages generated before by the page macros of the rules whose condition holds	A korábban generált oldalakat azon szabályok oldalmakróira cseréli, amelyek feltétele teljesül
+Report name as shown by list_reports	A kimutatás neve, ahogy a list_reports megjeleníti
+Report scheme: its filter, sort order and columns	Kimutatásséma: annak szűrője, rendezése és oszlopai
+Report scheme; empty: the form of the report	Kimutatásséma; üres: a kimutatás űrlapja
+Report the scheme belongs to	A kimutatás, amelyhez a séma tartozik
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Kimutatás, pl. terminal_diagram, terminal_lineup, cable_connections (új blokkhoz kötelező)
+Return all part data instead of a summary	Az összes alkatrészadat visszaadása összefoglaló helyett
+Revision of the change; returns the part as it was	A módosítás revíziója; az alkatrészt az akkori állapotában adja vissza
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Jogosultságok vesszővel elválasztva: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Szerepkör neve
+Role of requests without sign-in; none: sign-in needed for reading	A bejelentkezés nélküli kérések szerepköre; none: az olvasáshoz bejelentkezés szükséges
+Role: reader, manufacturer, editor, admin or a defined role	Szerepkör: reader, manufacturer, editor, admin vagy egy definiált szerepkör
+Saves the project to its file or to a new path	A projektet a saját fájljába vagy új elérési útra menti
+Scale drawings down that do not fit on the page (default: true)	Az oldalra el nem férő rajzok kicsinyítése (alapértelmezés: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Keresési kifejezések, pl. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Keres a vault elemei között (szám, cím, revízió, életciklus-állapot, cikkszám)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Alkatrészeket keres az alkatrészszerveren (adatportál) szöveg, csoportok, katalógus, életciklus és műszaki adatok szerint
+Segment path (default: all segments)	Szegmens elérési útja (alapértelmezés: minden szegmens)
+Server URL, e.g. http://127.0.0.1:8090	Szerver URL-címe, pl. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Beállítja az alkatrészszervert (URL és hozzáférési token, vagy felhasználó és jelszó), és megjeleníti az állapotát
+Settings scheme file (JSON)	Beállításséma-fájl (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Megjelenít egy táblázatot (készülékek, összeköttetések, sorkapcsok, kábelek, dugók, PLC, oldalak vagy alkatrészek) a soraival; egy sor a kulcsa alapján módosítható
+Shows all data of a part	Megjeleníti egy alkatrész összes adatát
+Shows the changes of a part on the parts server, or the part as of one change	Megjeleníti egy alkatrész módosításait az alkatrészszerveren, vagy az alkatrészt egy adott módosításkori állapotában
+Shows the favorites of the signed in user, optionally adding or removing a part	Megjeleníti a bejelentkezett felhasználó kedvenceit, és igény szerint hozzáad vagy eltávolít egy alkatrészt
+Shows the manifest of a project archive	Megjeleníti egy projektarchívum manifestjét
+Shows the project properties, file, number of pages and devices and the check result	Megjeleníti a projekttulajdonságokat, a fájlt, az oldalak és készülékek számát, valamint az ellenőrzés eredményét
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Megjeleníti az alkatrészszerver szerepköreit, hozzárendeléseit és címtárait, és igény szerint beállítja a névtelen kérések szerepkörét (csak rendszergazdák)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Indítás projektsablonból: beépítettből (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) vagy projektfájlból
+Start from an example project (names: list_examples)	Indulás egy mintaprojektből (nevek: list_examples)
+Start from the demo project	Kezdés a bemutatóprojektből
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Fájlt (adatlap, kép, modell, makró …) tárol egy alkatrészhez az alkatrészszerveren
+Subproject file (.oec)	Alprojektfájl (.oec)
+Subproject file to write (.oec)	Írandó alprojektfájl (.oec)
+Take the changes over (otherwise only a preview)	A változások átvétele (különben csak előnézet)
+Take the rights of the role away instead	Ehelyett a szerepkör jogosultságainak visszavonása
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Oldalakat emel ki alprojektfájlként; ezek itt zárolva maradnak, amíg az alprojektet vissza nem illesztik
+Takes the checks switched off and the message levels of a check scheme file	Átveszi egy ellenőrzésiséma-fájl kikapcsolt ellenőrzéseit és üzenetszintjeit
+Takes the settings a settings scheme file carries	Átveszi egy beállításséma-fájl beállításait
+Target folder id (root for the top folder); default the folder the project was opened from	A célmappa azonosítója (root a legfelső mappához); alapértelmezés: az a mappa, amelyből a projektet megnyitották
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Műszaki adatok, amelyeknek egyezniük kell, pl. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	Az export_structure_template által írt sablonfájl
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Szöveg a számban, típusban, gyártóban, leírásban, csoportokban vagy katalógusban; minden szónak elő kell fordulnia
+Text to replace	Cserélendő szöveg
+Text to search for	Keresendő szöveg
+The catalog needs a name	A katalógushoz név szükséges
+The format xlsx needs a path	Az xlsx formátumhoz elérési út szükséges
+The open project has unsaved changes: save it first or pass discard	A megnyitott projektnek nem mentett változtatásai vannak: előbb mentse, vagy adja meg a discard paramétert
+The part number must not be empty	A cikkszám nem lehet üres
+The project has no file yet: pass a path	A projektnek még nincs fájlja: adjon meg elérési utat
+This command needs a project: --project <file>	Ehhez a parancshoz projekt szükséges: --project <fájl>
+This format needs an output file (path)	Ehhez a formátumhoz kimeneti fájl szükséges (path)
+Undoes the last change	Visszavonja az utolsó módosítást
+Unexpected argument: {}	Váratlan argumentum: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Ismeretlen parancs: {}. A listát az openecraft-cli help parancs jeleníti meg.
+Unknown example {}: see list_examples	Ismeretlen példa: {}; lásd list_examples
+Unknown language: {}	Ismeretlen nyelv: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Ismeretlen oldaltípus: {} (schematic, overview, graphic, cover vagy egy list_reports szerinti kimutatás)
+Unknown part {} (parts server: {})	Ismeretlen alkatrész: {} (alkatrészszerver: {})
+Unknown plugin: {}	Ismeretlen bővítmény: {}
+Unknown report scheme: {}	Ismeretlen kimutatásséma: {}
+Unknown structure template: {}	Ismeretlen struktúrasablon: {}
+Unknown template {}: give a built-in one ({}) or a project file	Ismeretlen sablon: {}; adjon meg egy beépítettet ({}) vagy egy projektfájlt
+Unknown {}: {} (possible: {})	Ismeretlen {}: {} (lehetséges: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Használat: openecraft-cli [--project <fájl>] [--server <url>] [--token <token>] [--lang <kód>] [--plugins <mappa>] <parancs> [--<paraméter> <érték>]…\n\nopenecraft-cli mcp        Model Context Protocol szervert futtat az stdin / stdout csatornán\nopenecraft-cli <parancs> --help   megjeleníti egy parancs paramétereit\n\nParancsok:\n
+User defined properties (name: value; an empty value removes it)	Felhasználó által definiált tulajdonságok (név: érték; üres érték eltávolítja)
+User name to sign in with	Bejelentkezési felhasználónév
+User or group name (wildcards; directory groups as directory:group)	Felhasználó- vagy csoportnév (helyettesítő karakterek; címtárcsoportok címtár:csoport formában)
+Values to set (name: value; an empty value removes a property)	Beállítandó értékek (név: érték; az üres érték eltávolítja a tulajdonságot)
+Vault user name (signs in)	Vault-felhasználónév (bejelentkezik)
+Write the table as CSV to this file	A táblázat írása CSV-ként ebbe a fájlba
+Writes the check scheme of the project (checks switched off, message levels) to a file	Fájlba írja a projekt ellenőrzési sémáját (kikapcsolt ellenőrzések, üzenetszintek)
+Writes the embedded file of a document page	Kiírja egy dokumentumoldal beágyazott fájlját
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Archívumba írja a projektet (.oecz: projekt, manifest, beágyazott fájlok, opcionálisan egy PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	A projekt tulajdonságdefinícióit, funkciódefinícióit és sémáit könyvtárfájlba írja
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Fájlba írja a projekt beállításait (vezetékszámozás, potenciálok, vezeték-alapértékek és -színek, feliratozás, tömlő-alapértékek, kereszthivatkozások, ellenőrzési séma)
+Writes the structure management (aspects, identifiers, work areas) as a template file	A struktúrakezelés adatait (aspektusok, azonosítók, munkaterületek) sablonfájlba írja
+csv (default) or eplan_xml	csv (alapértelmezett) vagy eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement vagy wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine vagy exchange
+json (default), csv or xlsx (Excel, needs path)	json (alapértelmezett), csv vagy xlsx (Excel, path szükséges)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nModel Context Protocol-kiszolgálót futtat a stdin / stdout csatornán: a lista eszközei MI-ügynököknek, a projekt a memóriában marad (a save_project kiírja, az undo / redo egyes hívásokat von vissza). Az OPENECRAFT_MCP_TOOLS korlátozza a felkínált eszközöket.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nMegjeleníti a parancssor verzióját (--version vagy -V is)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover vagy egy kimutatás: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	Az undo és a redo csak MCP-munkamenetben működik: a parancssor minden parancshoz újra megnyitja a projektet
+user or group	user vagy group
+{} exists already: pass overwrite to replace it	{} már létezik: a cseréhez adja meg az overwrite paramétert
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	A(z) {} archívum, és nem változik: mentse a projektet projektfájlként (save_project --path <file>.oec), vagy alakítsa át az archívumot (convert_project)
+{} is an archive: pass a path to save the project as a project file	A(z) {} archívum: adjon meg egy elérési utat a projekt projektfájlként való mentéséhez
+{} is not a language of the project	{} nem a projekt nyelve

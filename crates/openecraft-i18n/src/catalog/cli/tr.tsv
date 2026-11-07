@@ -1,0 +1,286 @@
+# English<TAB>Türkçe – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(yalnızca MCP sunucusu)
+(optional)	(isteğe bağlı)
+Access token for changes	Değişiklikler için erişim belirteci
+Access token of a Vault session or an Autodesk account instead of user and password	Kullanıcı ve parola yerine bir Vault oturumunun veya Autodesk hesabının erişim belirteci
+Address of the Vault server, e.g. https://vault.example.com	Vault sunucusunun adresi, ör. https://vault.example.com
+Adds a page	Bir sayfa ekler
+Adds the definitions and schemes of a property library file to the project	Bir özellik kütüphanesi dosyasının tanımlarını ve şemalarını projeye ekler
+All project files of a folder	Bir klasörün tüm proje dosyaları
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	Fasetleri de döndür: grupların, üreticilerin, katalogların, yaşam döngüsünün ve teknik verilerin değerleri ile sayıları
+Also save the project in this local file	Projeyi ayrıca bu yerel dosyaya kaydet
+Also take over values changed on both sides since the last export	Son dışa aktarımdan bu yana her iki tarafta değiştirilen değerleri de devral
+Also verify each project (slower)	Her projeyi ayrıca doğrula (daha yavaş)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	table_get ile dışa aktarılan (ve bir elektronik tabloda değiştirilen) bir CSV'yi uygular: değiştirilen hücreler ayarlanır
+Applies a structure template: the aspects of the pages and its identifiers	Bir yapı şablonunu uygular: sayfaların yönleri ve şablonun tanımlayıcıları
+Archive file (.oecz)	Arşiv dosyası (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	Bir cihaza parça atar (projeden, yerleşik katalogdan veya parça sunucusundan)
+Author of comments without one (default: the user name)	Yazarı olmayan yorumların yazarı (varsayılan: kullanıcı adı)
+AutomationML content instead of a file	Dosya yerine AutomationML içeriği
+AutomationML file	AutomationML dosyası
+CSV content instead of a file	Dosya yerine CSV içeriği
+CSV file	CSV dosyası
+CSV or Excel file	CSV veya Excel dosyası
+CSV or JSON file	CSV veya JSON dosyası
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV, JSON, BMEcat, EPLAN XML veya EDZ dosyası
+Cannot write {}: {}	{} yazılamıyor: {}
+Catalog data; without id it is derived from the name	Katalog verileri; kimlik verilmezse addan türetilir
+Changes project properties	Proje özelliklerini değiştirir
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Birçok proje dosyasındaki proje özelliklerini tek seferde değiştirir (name, description, company, creator, date, revision alanları veya proje özellikleri)
+Changes the number of a part on the parts server	Parça sunucusundaki bir parçanın numarasını değiştirir
+Check scheme file (JSON)	Kontrol şeması dosyası (JSON)
+Check-in comment	İade açıklaması
+Checks the project (errors, warnings, hints)	Projeyi kontrol eder (hatalar, uyarılar, ipuçları)
+Column mapping {field code: column name} (added to the profile's)	Sütun eşlemesi {alan kodu: sütun adı} (profilinkine eklenir)
+Comment stored in the archive	Arşivde saklanan yorum
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Proje parçalarını parça sunucusuyla karşılaştırır: daha yeni sürümler, üretimden kalkan, üretimi durdurulan ve kaldırılan parçalar
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Bunun yerine bağlayıcı dışa aktarımı: erp, pdm, plm, ecad, mcad, procurement, wiring_machine veya exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Autodesk Vault'a bağlanır (Vault Data API, Vault Professional 2025.2 veya daha yeni): bir Vault hesabıyla oturum açar veya bir erişim belirteci kullanır ve bağlantıyı gösterir
+Converts a project file or archive of an older version to the current file format	Eski bir sürümün proje dosyasını veya arşivini güncel dosya formatına dönüştürür
+Creates a new project (optionally the demo project) and saves it if a path is given	Yeni bir proje oluşturur (isteğe bağlı olarak demo projeyi) ve bir yol verilmişse kaydeder
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Parça sunucusunda bir katalog oluşturur veya değiştirir (kimlik, ad, üretici, sürüm, açıklama)
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Bir rapor bloğu (birlikte oluşturulan rapor sayfaları, ör. şerit başına bir klemens şeması) oluşturur veya değiştirir
+Creates or changes a user of the parts server (administrators only)	Parça sunucusunun bir kullanıcısını oluşturur veya değiştirir (yalnızca yöneticiler)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	Parça sunucusunda bir parça oluşturur veya değiştirir (parts_get ile aynı JSON; eksik alanlar boş kalır)
+Creates or replaces a report scheme	Bir rapor düzeni oluşturur veya değiştirir
+Creator	Oluşturan
+DWG file	DWG dosyası
+DXF file	DXF dosyası
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro veya Other (varsayılan: dosya adına göre)
+Date for the exchange log	Değişim günlüğü için tarih
+Defines, changes or deletes a role of the parts server (administrators only)	Parça sunucusunun bir rolünü tanımlar, değiştirir veya siler (yalnızca yöneticiler)
+Delete the role	Rolü sil
+Deletes a catalog without parts from the parts server	Parça içermeyen bir kataloğu parça sunucusundan siler
+Deletes a part from the parts server	Parça sunucusundan bir parçayı siler
+Deletes a user of the parts server (administrators only)	Parça sunucusunun bir kullanıcısını siler (yalnızca yöneticiler)
+Descending order	Azalan sıra
+Discard unsaved changes of the open project	Açık projenin kaydedilmemiş değişikliklerini at
+Downloads a file of a part from the parts server	Bir parçanın dosyasını parça sunucusundan indirir
+Downloads a file version from the vault	Kasadan bir dosya sürümünü indirir
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	Bir dosyayı (PDF, Office belgesi, görüntü …) belge sayfası olarak gömer; PDF dışa aktarımı dosyayı sayfaya ekler
+Error: {}	Hata: {}
+Export name as shown by list_exports	list_exports tarafından gösterilen dışa aktarım adı
+Export name as shown by list_exports, e.g. pdf or step	list_exports tarafından gösterilen dışa aktarım adı, ör. pdf veya step
+Exports all parts of the parts server as CSV or EPLAN parts XML	Parça sunucusunun tüm parçalarını CSV veya EPLAN parça XML'i olarak dışa aktarır
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	Projeyi bir bağlayıcıyla başka bir sistem için veya nötr değişim dosyası olarak (exchange bağlayıcısı) dışa aktarır; bu bağlayıcının sonraki içe aktarımları bu dışa aktarıma göre çakışmaları algılar
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	Projeyi list_exports formatlarından birinde dışa aktarır; ikili formatlar (dwg, jt) için çıktı dosyası gerekir
+Field or property whose value is searched ('*' for all)	Değeri aranan alan veya özellik (tümü için '*')
+File content instead of a file	Dosya yerine dosya içeriği
+File id (see the attachments of parts_get)	Dosya kimliği (parts_get attachments öğelerine bakın)
+File name in the vault	Kasadaki dosya adı
+File to embed	Gömülecek dosya
+File to save the project to (.oec)	Projenin kaydedileceği dosya (.oec)
+File to upload	Karşıya yüklenecek dosya
+File to write	Yazılacak dosya
+File to write (xlsx)	Yazılacak dosya (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	Proje veritabanında veya bir klasörde proje arar: terimler ';' ile ayrılır, her biri anahtar=değer, anahtar~metin veya düz metin
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	Proje parçalarının Vault öğelerini bulur (öğe numarasına veya Part Number özelliğine göre) ve öğe kimliği, revizyon ve yaşam döngüsü durumundaki değişiklikleri listeler; apply ile devralınır
+Folder id (default root)	Klasör kimliği (varsayılan root)
+Folder with project files	Proje dosyalarını içeren klasör
+Folder with project files (instead of a database; default: the current folder)	Proje dosyalarını içeren klasör (veritabanı yerine; varsayılan: geçerli klasör)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (çizim olarak klemens ve kablo şemaları)
+Function (=) of the generated pages	Oluşturulan sayfaların fonksiyonu (=)
+Further parameters of the export as name=value, separated by commas	Dışa aktarımın ek parametreleri ad=değer biçiminde, virgülle ayrılmış
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	Dışa aktarımın ek parametreleri ad=değer biçiminde, virgülle ayrılmış (bkz. list_exports), ör. harness=-WH1
+GSDML or ESI file	GSDML veya ESI dosyası
+Generates a report as table	Tablo olarak bir rapor oluşturur
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	Sayfa makrosu olan ve henüz şemada bulunmayan her planlanmış cihaz için bir şema sayfası oluşturur
+Generates the pages of the report blocks again (replacing the pages they generated before)	Rapor bloklarının sayfalarını yeniden oluşturur (daha önce oluşturdukları sayfaları değiştirerek)
+Give either template or path	template veya path parametrelerinden birini verin
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	Bir kullanıcıya veya gruba parça sunucusunun bir üreticisi (kapsam) için bir rol verir, deny ile haklarını geri alır, revoke ile yetki atamalarını kaldırır (yalnızca yöneticiler)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	Oluşturulacak gruplar, joker karakterlere izin verilir (-X*, -W1); boş: tümü
+Id of a file (file_id of vault_browse) that gets a new version	Yeni sürüm alan bir dosyanın kimliği (vault_browse çıktısındaki file_id)
+Id of the file version (version_id of vault_browse)	Dosya sürümünün kimliği (vault_browse çıktısındaki version_id)
+Id of the knowledge vault (taken from the session if not given)	Bilgi kasasının kimliği (verilmezse oturumdan alınır)
+Id of the plugin to disable	Devre dışı bırakılacak eklentinin kimliği
+Id of the plugin to enable	Etkinleştirilecek eklentinin kimliği
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	Bir DWG çizimini (AutoCAD R12 … 2018) grafik (çizgiler, yaylar, metinler, bloklar) olarak yeni bir şema sayfasına içe aktarır
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	Bir DXF çizimini yeni bir şema sayfasına grafik olarak (çizgiler, yaylar, metinler, bloklar) içe aktarır
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	AutomationML'den (ör. TIA Portal'dan dışa aktarılmış) bir PLC donanım yapılandırmasını içe aktarır: istasyonlar, modüller, adresler, alt ağlar, port bağlantıları ve değişken açıklamaları
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	Bir parça dosyasını parça sunucusuna aktarır; bir EDZ dosyasının resimleri ve makroları parçalarıyla birlikte saklanır
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	Bir GSDML (PROFINET) veya ESI (EtherCAT) dosyasından cihaz tanımlarını projeye aktarır
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	Ön planlama segmentlerini ve planlanmış cihazları CSV veya Excel'den içe aktarır (Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro sütunları)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	Bir incelemecinin projenin PDF dışa aktarımına eklediği yorumları (notlar, metin kutuları, vurgular, şekiller, yanıtlar) inceleme katmanına içe aktarır; daha önce içe aktarılmış yorumlar atlanır
+Insert after this page (default: at the end)	Bu sayfadan sonra ekle (varsayılan: sona)
+Inserts an edited subproject: its pages replace the pages taken out	Düzenlenmiş bir alt projeyi ekler: sayfaları dışarı alınan sayfaların yerini alır
+Invalid form: {}	Geçersiz form: {}
+Keep the file checked out after the check-in	İadeden sonra dosyayı kullanımda tut
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	Sunucu türü: OpenECraft (parça sunucusu) veya Eplan (EPLAN Data Portal: yalnızca arama ve okuma, belirteç EPLAN hesabının kişisel erişim belirtecidir)
+Language of the export (a project language)	Dışa aktarımın dili (bir proje dili)
+Language of the project texts and reports (a project language, default the source language)	Proje metinlerinin ve raporların dili (bir proje dili, varsayılan kaynak dil)
+Library file	Kütüphane dosyası
+Lifecycle: Active, PhaseOut or Discontinued	Yaşam döngüsü: Active, PhaseOut veya Discontinued
+Lists the built-in structure templates	Yerleşik yapı şablonlarını listeler
+Lists the catalogs of the parts server with their number of parts	Parça sunucusunun kataloglarını parça sayılarıyla birlikte listeler
+Lists the checks of the project check (built-in and of plugins) and whether they run	Proje kontrolünün kontrollerini (yerleşik ve eklentilere ait) ve çalışıp çalışmadıklarını listeler
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	Entegrasyon katmanının bağlayıcılarını (ERP, PDM, PLM, ECAD, MCAD, satın alma, kablo işleme makinesi) değiştirdikleri alanlarla birlikte ve projenin profillerini listeler
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	Pano sistemlerini standart boyutları, duvar kalınlığı, kaidesi ve yan yana bağlanıp bağlanamadıklarıyla listeler
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	İlk devreden tüm tesise kadar örnek projeleri, her birinin gösterdiği özelliklerle listeler
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	Dışa aktarımları listeler (yerleşik ve eklentilere ait): export için ad, başlık, dosya uzantısı ve parametreler
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Bir Vault klasörünün klasörlerini ve dosyalarını listeler veya altındaki dosya özelliklerinde (ya da tüm kasada) arama yapar
+Lists the reports (built-in and of plugins): name for report and title	Raporları listeler (yerleşik ve eklentilere ait): report için ad ve başlık
+Lists the users of the parts server (administrators only)	Parça sunucusunun kullanıcılarını listeler (yalnızca yöneticiler)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	Yüklenen eklentiler (yerleşik olanlar ve --plugins / OPENECRAFT_PLUGINS eklenti klasörlerinden gelenler), komutları, kontrolleri, raporları ve dışa aktarımlarıyla; bu oturum için birini etkinleştirir veya devre dışı bırakır
+Local file to put into the vault	Kasaya konacak yerel dosya
+Local groups of the user, separated by commas	Kullanıcının yerel grupları, virgülle ayrılmış
+Location (+) of the generated pages	Oluşturulan sayfaların konumu (+)
+Macro library file (JSON, exported by the editor)	Makro kütüphanesi dosyası (JSON, düzenleyici tarafından dışa aktarılmış)
+Manufacturer (wildcards); default * (everything)	Üretici (joker karakterler); varsayılan * (tümü)
+Manufacturer whose parts a manufacturer user maintains	Üretici kullanıcısının parçalarını yönettiği üretici
+Maximum number of hits (default 50)	En fazla isabet sayısı (varsayılan 50)
+Name of a built-in template (list_structure_templates)	Yerleşik bir şablonun adı (list_structure_templates)
+Name of the knowledge vault (default Vault)	Bilgi kasasının adı (varsayılan Vault)
+New file name (save as)	Yeni dosya adı (farklı kaydet)
+New pages for every value of the group column (default true)	Gruplama sütununun her değeri için yeni sayfalar (varsayılan true)
+New part number	Yeni parça numarası
+New report block {} needs a kind	Yeni rapor bloğu {} bir rapor türü (kind) gerektirir
+No grant of {} found	{} için yetki ataması bulunamadı
+No profile named {}	{} adlı profil yok
+No project is open: use open_project or new_project first	Açık proje yok: önce open_project veya new_project kullanın
+No role {} defined	{} rolü tanımlanmamış
+Not a valid catalog: {}	Geçerli bir katalog değil: {}
+Not a valid part: {}	Geçerli bir parça değil: {}
+Not connected to a vault: use vault_connect first	Bir kasaya bağlı değil: önce vault_connect kullanın
+Nothing to change: pass set, remove, replace or rename	Değiştirilecek bir şey yok: set, remove, replace veya rename belirtin
+Number of hits to skip	Atlanacak isabet sayısı
+Only show the changes, write nothing	Yalnızca değişiklikleri göster, hiçbir şey yazma
+Only the pages of this report block; default all report pages	Yalnızca bu rapor bloğunun sayfaları; varsayılan tüm rapor sayfaları
+Only the projects that match these search terms	Yalnızca bu arama terimleriyle eşleşen projeler
+Only this block	Yalnızca bu blok
+Opens a project file or archive (files of older versions are converted)	Bir proje dosyasını veya arşivini açar (eski sürümlerin dosyaları dönüştürülür)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Kasadan bir proje dosyası veya arşiv açar; hedefsiz vault_upload, bunun yeni bir sürümünü iade eder
+Option {} needs the form name=value	{} seçeneği ad=değer biçiminde olmalı
+Order: Number, Manufacturer, Description, Price or Modified	Sıralama: Number, Manufacturer, Description, Price veya Modified
+Output file	Çıktı dosyası
+Output file (JSON)	Çıktı dosyası (JSON)
+Output file; without it the content is returned	Çıktı dosyası; verilmezse içerik döndürülür
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	Rapor sayfalarını sabit sayfalar olarak başka bir proje dosyasına çıktı olarak verir; bu projeden daha önce çıktısı alınan sayfalar değiştirilir
+PDF file with comments	Yorumlu PDF dosyası
+Page (svg: required, dxf, dwg: default all pages)	Sayfa (svg: zorunlu, dxf, dwg: varsayılan tüm sayfalar)
+Page name (default: next number)	Sayfa adı (varsayılan: sonraki numara)
+Page of the export	Dışa aktarımın sayfası
+Page template (list_page_templates) instead of kind	kind yerine sayfa şablonu (list_page_templates)
+Page {} has no embedded document	Sayfa {} içinde gömülü belge yok
+Pages whose structure starts with this, e.g. =A1+CAB1	Yapısı bununla başlayan sayfalar, ör. =A1+CAB1
+Part number to add	Eklenecek parça numarası
+Part number to remove	Kaldırılacak parça numarası
+Part {} has no version {}	{} parçasının {} sürümü yok
+Pass files or a folder	Dosyalar veya bir klasör belirtin
+Password (needed for new users; empty keeps the current one)	Parola (yeni kullanıcılar için gerekli; boş bırakılırsa mevcut parola korunur)
+Password of the Vault user	Vault kullanıcısının parolası
+Password of the user	Kullanıcının parolası
+Plot frame (list_frames); default: the project's	Çizim çerçevesi (list_frames); varsayılan: projeninki
+Product top group: Electrical, Fluid, Mechanics or Process	Ürün ana grubu: Electrical, Fluid, Mechanics veya Process
+Profile whose column mapping is used	Sütun eşlemesi kullanılan profil
+Project database file (JSON)	Proje veritabanı dosyası (JSON)
+Project database file (JSON) to update	Güncellenecek proje veritabanı dosyası (JSON)
+Project file (.oec) or archive (.oecz)	Proje dosyası (.oec) veya arşiv (.oecz)
+Project file that gets the pages	Sayfaları alacak proje dosyası
+Project file to write (default: the file itself; archives: next to it as .oec)	Yazılacak proje dosyası (varsayılan: dosyanın kendisi; arşivler: yanına .oec olarak)
+Project files, separated by ';'	';' ile ayrılmış proje dosyaları
+Properties to remove, separated by ','	Kaldırılacak özellikler, ',' ile ayrılmış
+Properties to rename (old name: new name)	Yeniden adlandırılacak özellikler (eski ad: yeni ad)
+Property {} needs a text or a number	{} özelliği bir metin veya sayı gerektirir
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Projeyi, bir dışa aktarımı, bir bağlayıcı dışa aktarımını veya yerel bir dosyayı kasaya koyar; klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
+Reader, Manufacturer, Editor or Admin	Reader, Manufacturer, Editor veya Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	Başka bir sistemin dosyasını (CSV veya JSON) bir bağlayıcıyla okur ve değişiklikleri listeler; apply ile devralınır (çakışmalar yalnızca overwrite ile)
+Reads the project files and archives of a folder (and its subfolders) into the project database	Bir klasörün (ve alt klasörlerinin) proje dosyalarını ve arşivlerini proje veritabanına okur
+Reads translations from CSV: first column the source line, one column per language code	Çevirileri CSV'den okur: ilk sütun kaynak satır, dil kodu başına bir sütun
+Redoes the last undone change	Son geri alınan değişikliği yineler
+Remove the grants of the user or group (only of this role and scope, if given)	Kullanıcının veya grubun yetki atamalarını kaldır (belirtilmişse yalnızca bu rol ve kapsama ait olanları)
+Remove the parts assigned so far	Şimdiye kadar atanan parçaları kaldır
+Removes a file from a part on the parts server	Parça sunucusundaki bir parçadan dosyayı kaldırır
+Replace the file at path if it exists	path konumundaki dosya varsa değiştir
+Replace the project parts by their newer server versions	Proje parçalarını daha yeni sunucu sürümleriyle değiştir
+Replacement text	Yeni metin
+Replaces the content of the macro boxes whose macro changed in a macro library file	Makrosu bir makro kütüphanesi dosyasında değişen makro kutularının içeriğini değiştirir
+Replaces the pages generated before by the page macros of the rules whose condition holds	Daha önce oluşturulan sayfaları, koşulu sağlanan kuralların sayfa makrolarıyla değiştirir
+Report name as shown by list_reports	list_reports tarafından gösterilen rapor adı
+Report scheme: its filter, sort order and columns	Rapor düzeni: filtresi, sıralaması ve sütunları
+Report scheme; empty: the form of the report	Rapor düzeni; boş: raporun formu
+Report the scheme belongs to	Düzenin ait olduğu rapor
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	Rapor, ör. terminal_diagram, terminal_lineup, cable_connections (yeni bir blok için gerekli)
+Return all part data instead of a summary	Özet yerine tüm parça verilerini döndür
+Revision of the change; returns the part as it was	Değişikliğin revizyonu; parçayı o andaki haliyle döndürür
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	Virgülle ayrılmış haklar: read, edit_parts, delete_parts, edit_catalogs, administer
+Role name	Rol adı
+Role of requests without sign-in; none: sign-in needed for reading	Oturum açılmadan yapılan isteklerin rolü; none: okumak için oturum açmak gerekir
+Role: reader, manufacturer, editor, admin or a defined role	Rol: reader, manufacturer, editor, admin veya tanımlanmış bir rol
+Saves the project to its file or to a new path	Projeyi kendi dosyasına veya yeni bir yola kaydeder
+Scale drawings down that do not fit on the page (default: true)	Sayfaya sığmayan çizimleri küçült (varsayılan: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	Arama terimleri, ör. company=ACME; customer~plant; conveyor
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Kasadaki öğelerde arama yapar (numara, başlık, revizyon, yaşam döngüsü durumu, parça numarası)
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	Parça sunucusunda (veri portalı) metin, gruplar, katalog, yaşam döngüsü ve teknik verilere göre parça arar
+Segment path (default: all segments)	Segment yolu (varsayılan: tüm segmentler)
+Server URL, e.g. http://127.0.0.1:8090	Sunucu URL'si, ör. http://127.0.0.1:8090
+Sets the parts server (URL and access token, or user and password) and shows its state	Parça sunucusunu ayarlar (URL ve erişim belirteci ya da kullanıcı ve parola) ve durumunu gösterir
+Settings scheme file (JSON)	Ayar şeması dosyası (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	Bir tabloyu (cihazlar, bağlantılar, klemensler, kablolar, fişler, PLC, sayfalar veya parçalar) satırlarıyla gösterir; bir satırın anahtarı onu değiştirmek için kullanılır
+Shows all data of a part	Bir parçanın tüm verilerini gösterir
+Shows the changes of a part on the parts server, or the part as of one change	Parça sunucusundaki bir parçanın değişikliklerini veya parçayı bir değişiklik anındaki haliyle gösterir
+Shows the favorites of the signed in user, optionally adding or removing a part	Oturum açmış kullanıcının sık kullanılanlarını gösterir, isteğe bağlı olarak bir parça ekler veya kaldırır
+Shows the manifest of a project archive	Bir proje arşivinin manifestosunu gösterir
+Shows the project properties, file, number of pages and devices and the check result	Proje özelliklerini, dosyayı, sayfa ve cihaz sayısını ve kontrol sonucunu gösterir
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	Parça sunucusunun rollerini, yetki atamalarını ve dizin hizmetlerini gösterir, isteğe bağlı olarak anonim isteklerin rolünü ayarlar (yalnızca yöneticiler)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	Bir proje şablonuyla başlayın: yerleşik bir şablon (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) veya bir proje dosyası
+Start from an example project (names: list_examples)	Bir örnek projeden başla (adlar: list_examples)
+Start from the demo project	Demo projeyle başla
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	Parça sunucusunda bir parçayla birlikte bir dosya (veri sayfası, görüntü, model, makro …) saklar
+Subproject file (.oec)	Alt proje dosyası (.oec)
+Subproject file to write (.oec)	Yazılacak alt proje dosyası (.oec)
+Take the changes over (otherwise only a preview)	Değişiklikleri devral (aksi halde yalnızca önizleme)
+Take the rights of the role away instead	Bunun yerine rolün haklarını geri al
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	Sayfaları alt proje dosyası olarak dışarı alır; alt proje yeniden eklenene kadar burada kilitli kalırlar
+Takes the checks switched off and the message levels of a check scheme file	Bir kontrol şeması dosyasındaki kapatılan kontrolleri ve mesaj seviyelerini devralır
+Takes the settings a settings scheme file carries	Bir ayar şeması dosyasının içerdiği ayarları devralır
+Target folder id (root for the top folder); default the folder the project was opened from	Hedef klasör kimliği (en üst klasör için root); varsayılan, projenin açıldığı klasör
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	Eşleşmesi gereken teknik veriler, ör. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}
+Template file written by export_structure_template	export_structure_template tarafından yazılan şablon dosyası
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	Numara, tip, üretici, açıklama, gruplar veya katalogdaki metin; her sözcük geçmelidir
+Text to replace	Değiştirilecek metin
+Text to search for	Aranacak metin
+The catalog needs a name	Katalog için bir ad gerekli
+The format xlsx needs a path	xlsx formatı için bir yol gerekli
+The open project has unsaved changes: save it first or pass discard	Açık projede kaydedilmemiş değişiklikler var: önce kaydedin veya discard verin
+The part number must not be empty	Parça numarası boş olamaz
+The project has no file yet: pass a path	Projenin henüz dosyası yok: bir yol verin
+This command needs a project: --project <file>	Bu komut bir proje gerektirir: --project <dosya>
+This format needs an output file (path)	Bu biçim bir çıktı dosyası (path) gerektirir
+Undoes the last change	Son değişikliği geri alır
+Unexpected argument: {}	Beklenmeyen bağımsız değişken: {}
+Unknown command: {}. Run openecraft-cli help for a list.	Bilinmeyen komut: {}. Liste için openecraft-cli help komutunu çalıştırın.
+Unknown example {}: see list_examples	Bilinmeyen örnek {}: bkz. list_examples
+Unknown language: {}	Bilinmeyen dil: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Bilinmeyen sayfa türü: {} (schematic, overview, graphic, cover veya list_reports içinden bir rapor)
+Unknown part {} (parts server: {})	Bilinmeyen parça {} (parça sunucusu: {})
+Unknown plugin: {}	Bilinmeyen eklenti: {}
+Unknown report scheme: {}	Bilinmeyen rapor düzeni: {}
+Unknown structure template: {}	Bilinmeyen yapı şablonu: {}
+Unknown template {}: give a built-in one ({}) or a project file	Bilinmeyen şablon {}: yerleşik bir şablon ({}) veya bir proje dosyası belirtin
+Unknown {}: {} (possible: {})	Bilinmeyen {}: {} (olası: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	Kullanım: openecraft-cli [--project <dosya>] [--server <url>] [--token <belirteç>] [--lang <kod>] [--plugins <klasör>] <komut> [--<parametre> <değer>]…\n\nopenecraft-cli mcp        stdin / stdout üzerinde bir Model Context Protocol sunucusu çalıştırır\nopenecraft-cli <komut> --help   bir komutun parametrelerini gösterir\n\nKomutlar:\n
+User defined properties (name: value; an empty value removes it)	Kullanıcı tanımlı özellikler (ad: değer; boş değer özelliği kaldırır)
+User name to sign in with	Oturum açmak için kullanıcı adı
+User or group name (wildcards; directory groups as directory:group)	Kullanıcı veya grup adı (joker karakterler; dizin hizmeti grupları dizin:grup olarak)
+Values to set (name: value; an empty value removes a property)	Ayarlanacak değerler (ad: değer; boş değer bir özelliği kaldırır)
+Vault user name (signs in)	Vault kullanıcı adı (oturum açar)
+Write the table as CSV to this file	Tabloyu CSV olarak bu dosyaya yaz
+Writes the check scheme of the project (checks switched off, message levels) to a file	Projenin kontrol şemasını (kapatılan kontroller, mesaj seviyeleri) bir dosyaya yazar
+Writes the embedded file of a document page	Bir belge sayfasının gömülü dosyasını yazar
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	Projeyi bir arşive yazar (.oecz: proje, manifesto, gömülü dosyalar, isteğe bağlı olarak bir PDF)
+Writes the project's property definitions, function definitions and schemes as a library file	Projenin özellik tanımlarını, fonksiyon tanımlarını ve şemalarını kütüphane dosyası olarak yazar
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	Projenin ayarlarını (tel numaralandırma, potansiyeller, tel varsayılanları ve renkleri, etiketleme, hortum varsayılanları, çapraz referanslar, kontrol şeması) bir dosyaya yazar
+Writes the structure management (aspects, identifiers, work areas) as a template file	Yapı yönetimini (yönler, tanımlayıcılar, çalışma alanları) şablon dosyası olarak yazar
+csv (default) or eplan_xml	csv (varsayılan) veya eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp, pdm, plm, ecad, mcad, procurement veya wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp, pdm, plm, ecad, mcad, procurement, wiring_machine veya exchange
+json (default), csv or xlsx (Excel, needs path)	json (varsayılan), csv veya xlsx (Excel, path gerekir)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nstdin / stdout üzerinde bir Model Context Protocol sunucusu çalıştırır: bu listedeki araçlar yapay zekâ ajanları için, proje bellekte tutulur (save_project yazar, undo / redo tek tek çağrıları geri alır). OPENECRAFT_MCP_TOOLS sunulan araçları sınırlar.\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nKomut satırının sürümünü gösterir (ayrıca --version veya -V)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic, overview, graphic, cover veya bir rapor: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo ve redo yalnızca bir MCP oturumunda çalışır: komut satırı projeyi her komut için yeniden açar
+user or group	user veya group
+{} exists already: pass overwrite to replace it	{} zaten var: değiştirmek için overwrite verin
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} bir arşiv ve değişmeden kalır: projeyi proje dosyası olarak kaydedin (save_project --path <file>.oec) veya arşivi dönüştürün (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} bir arşiv: projeyi proje dosyası olarak kaydetmek için bir yol belirtin
+{} is not a language of the project	{} projenin bir dili değil

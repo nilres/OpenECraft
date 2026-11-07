@@ -1,0 +1,286 @@
+# English<TAB>日本語 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+(MCP server only)	(MCP サーバーのみ)
+(optional)	(省略可能)
+Access token for changes	変更用のアクセストークン
+Access token of a Vault session or an Autodesk account instead of user and password	ユーザーとパスワードの代わりに使用する、Vault セッションまたは Autodesk アカウントのアクセストークン
+Address of the Vault server, e.g. https://vault.example.com	Vault サーバーのアドレス (例: https://vault.example.com)
+Adds a page	ページを追加します
+Adds the definitions and schemes of a property library file to the project	プロパティライブラリファイルの定義とスキームをプロジェクトに追加します
+All project files of a folder	フォルダー内のすべてのプロジェクトファイル
+Also return the facets: values of groups, manufacturers, catalogs, lifecycle and technical data with their counts	ファセット (グループ、メーカー、カタログ、ライフサイクル、技術データの値とその件数) も返す
+Also save the project in this local file	プロジェクトをこのローカルファイルにも保存
+Also take over values changed on both sides since the last export	前回のエクスポート以降に両側で変更された値も反映
+Also verify each project (slower)	各プロジェクトも検証する (低速)
+Applies a CSV exported with table_get (and changed in a spreadsheet): the changed cells are set	table_get でエクスポートし (スプレッドシートで変更した) CSV を適用します: 変更されたセルが設定されます
+Applies a structure template: the aspects of the pages and its identifiers	構造テンプレートを適用します: ページのアスペクトとテンプレートの識別子
+Archive file (.oecz)	アーカイブファイル (.oecz)
+Assigns a part to a device (from the project, the built-in catalog or the parts server)	デバイスに部品を割り当てます (プロジェクト、組み込みカタログ、または部品サーバーから)
+Author of comments without one (default: the user name)	作成者のないコメントの作成者 (既定: ユーザー名)
+AutomationML content instead of a file	ファイルの代わりの AutomationML の内容
+AutomationML file	AutomationML ファイル
+CSV content instead of a file	ファイルの代わりの CSV の内容
+CSV file	CSV ファイル
+CSV or Excel file	CSV または Excel ファイル
+CSV or JSON file	CSV または JSON ファイル
+CSV, JSON, BMEcat, EPLAN XML or EDZ file	CSV、JSON、BMEcat、EPLAN XML または EDZ ファイル
+Cannot write {}: {}	{} に書き込めません: {}
+Catalog data; without id it is derived from the name	カタログデータ。ID を省略すると名前から生成されます
+Changes project properties	プロジェクトプロパティを変更します
+Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	多数のプロジェクトファイルのプロジェクトプロパティを一括で変更します (フィールド name、description、company、creator、date、revision またはプロジェクトプロパティ)
+Changes the number of a part on the parts server	部品サーバー上の部品の番号を変更します
+Check scheme file (JSON)	チェックスキームファイル (JSON)
+Check-in comment	チェックインのコメント
+Checks the project (errors, warnings, hints)	プロジェクトをチェックします (エラー、警告、ヒント)
+Column mapping {field code: column name} (added to the profile's)	列マッピング {フィールドコード: 列名} (プロファイルのマッピングに追加)
+Comment stored in the archive	アーカイブに保存するコメント
+Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	プロジェクト部品を部品サーバーと比較します: 新しいバージョン、生産終了予定、生産終了、削除された部品
+Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	代わりにコネクターのエクスポートを使用: erp、pdm、plm、ecad、mcad、procurement、wiring_machine または exchange
+Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Autodesk Vault (Vault Data API、Vault Professional 2025.2 以降) に接続します: Vault アカウントでサインインするかアクセストークンを使用し、接続を表示します
+Converts a project file or archive of an older version to the current file format	旧バージョンのプロジェクトファイルまたはアーカイブを現在のファイル形式に変換します
+Creates a new project (optionally the demo project) and saves it if a path is given	新しいプロジェクト (またはデモプロジェクト) を作成し、パスが指定されている場合は保存します
+Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	部品サーバー上のカタログ (ID、名前、メーカー、バージョン、説明) を作成または変更します
+Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	レポートブロック (まとめて生成されるレポートページ、例: 端子台ごとに 1 つの端子図) を作成または変更します
+Creates or changes a user of the parts server (administrators only)	部品サーバーのユーザーを作成または変更します (管理者のみ)
+Creates or replaces a part on the parts server (same JSON as parts_get; missing fields are empty)	部品サーバー上の部品を作成または置換します (parts_get と同じ JSON。不足しているフィールドは空になります)
+Creates or replaces a report scheme	レポートスキームを作成または置換します
+Creator	作成者
+DWG file	DWG ファイル
+DXF file	DXF ファイル
+Datasheet, Image, Manual, Certificate, Drawing, Model3d, Macro or Other (default: by file name)	Datasheet、Image、Manual、Certificate、Drawing、Model3d、Macro または Other (既定: ファイル名から判断)
+Date for the exchange log	交換ログの日付
+Defines, changes or deletes a role of the parts server (administrators only)	部品サーバーのロールを定義、変更、または削除します (管理者のみ)
+Delete the role	ロールを削除
+Deletes a catalog without parts from the parts server	部品のないカタログを部品サーバーから削除します
+Deletes a part from the parts server	部品サーバーから部品を削除します
+Deletes a user of the parts server (administrators only)	部品サーバーのユーザーを削除します (管理者のみ)
+Descending order	降順
+Discard unsaved changes of the open project	開いているプロジェクトの未保存の変更を破棄
+Downloads a file of a part from the parts server	部品のファイルを部品サーバーからダウンロードします
+Downloads a file version from the vault	ファイルバージョンを Vault からダウンロードします
+Embeds a file (PDF, Office document, image …) as a document page; the PDF export attaches it to the page	ファイル (PDF、Office ドキュメント、画像 …) をドキュメントページとして埋め込みます。PDF エクスポートでページに添付されます
+Error: {}	エラー: {}
+Export name as shown by list_exports	list_exports で表示されるエクスポート名
+Export name as shown by list_exports, e.g. pdf or step	list_exports で表示されるエクスポート名 (例: pdf、step)
+Exports all parts of the parts server as CSV or EPLAN parts XML	部品サーバーのすべての部品を CSV または EPLAN 部品 XML としてエクスポートします
+Exports the project for another system with a connector, or as the neutral exchange file (connector exchange); later imports of that connector detect conflicts against this export	コネクターを使用して別のシステム向けに、またはニュートラル交換ファイル (コネクター exchange) としてプロジェクトをエクスポートします。そのコネクターの以降のインポートでは、このエクスポートとの競合が検出されます
+Exports the project in a format of list_exports; binary formats (dwg, jt) need an output file	list_exports の形式でプロジェクトをエクスポートします。バイナリ形式 (dwg、jt) には出力ファイルが必要です
+Field or property whose value is searched ('*' for all)	値を検索するフィールドまたはプロパティ (すべての場合は '*')
+File content instead of a file	ファイルの代わりのファイル内容
+File id (see the attachments of parts_get)	ファイル ID (parts_get の attachments を参照)
+File name in the vault	Vault 内のファイル名
+File to embed	埋め込むファイル
+File to save the project to (.oec)	プロジェクトの保存先ファイル (.oec)
+File to upload	アップロードするファイル
+File to write	書き込むファイル
+File to write (xlsx)	書き込むファイル (xlsx)
+Finds projects in the project database or a folder: terms separated by ';', each key=value, key~text or plain text	プロジェクトデータベースまたはフォルダー内のプロジェクトを検索します。条件は ';' で区切り、それぞれ キー=値、キー~テキスト、または単純なテキストで指定します
+Finds the Vault items of the project parts (by item number or Part Number property) and lists the changes of item ID, revision and lifecycle state; with apply they are taken over	プロジェクト部品の Vault アイテムを (アイテム番号または Part Number プロパティで) 検索し、アイテム ID、リビジョン、ライフサイクル状態の変更を一覧表示します。apply を指定すると反映されます
+Folder id (default root)	フォルダー ID (既定 root)
+Folder with project files	プロジェクトファイルのあるフォルダー
+Folder with project files (instead of a database; default: the current folder)	プロジェクトファイルのあるフォルダー (データベースの代わり、既定: 現在のフォルダー)
+Form: title, columns, rows, filters [{column, op, value}], sort [{column, descending}], group, blank_repeats, widths, text_size, graphic (terminal and cable diagrams as drawings)	フォーム: title、columns、rows、filters [{column, op, value}]、sort [{column, descending}]、group、blank_repeats、widths、text_size、graphic (端子図とケーブル図を図面として出力)
+Function (=) of the generated pages	生成されるページの機能 (=)
+Further parameters of the export as name=value, separated by commas	エクスポートの追加パラメーター (名前=値、カンマ区切り)
+Further parameters of the export as name=value, separated by commas (see list_exports), e.g. harness=-WH1	エクスポートの追加パラメーター (名前=値、カンマ区切り、list_exports を参照) (例: harness=-WH1)
+GSDML or ESI file	GSDML または ESI ファイル
+Generates a report as table	レポートを表として生成します
+Generates a schematic page per planned device that has a page macro and is not in the schematic yet	ページマクロを持ち、まだ回路図にない計画済みデバイスごとに回路図ページを生成します
+Generates the pages of the report blocks again (replacing the pages they generated before)	レポートブロックのページを再生成します (以前に生成されたページを置き換えます)
+Give either template or path	template または path のいずれかを指定してください
+Gives a user or group a role on a manufacturer (scope) of the parts server, with deny takes its rights away, with revoke removes grants (administrators only)	ユーザーまたはグループに部品サーバーのメーカー (スコープ) に対するロールを付与します。deny で権限を取り消し、revoke で付与を削除します (管理者のみ)
+Groups to generate, wildcards allowed (-X*, -W1); empty: all	生成するグループ。ワイルドカード使用可 (-X*、-W1)。空: すべて
+Id of a file (file_id of vault_browse) that gets a new version	新しいバージョンにするファイルの ID (vault_browse の file_id)
+Id of the file version (version_id of vault_browse)	ファイルバージョンの ID (vault_browse の version_id)
+Id of the knowledge vault (taken from the session if not given)	ナレッジ Vault の ID (省略時はセッションから取得)
+Id of the plugin to disable	無効にするプラグインの ID
+Id of the plugin to enable	有効にするプラグインの ID
+Imports a DWG drawing (AutoCAD R12 … 2018) as graphics (lines, arcs, texts, blocks) on a new schematic page	DWG 図面 (AutoCAD R12 … 2018) をグラフィック (線、円弧、テキスト、ブロック) として新しい回路図ページにインポートします
+Imports a DXF drawing as graphics (lines, arcs, texts, blocks) on a new schematic page	DXF 図面を図形 (線、円弧、テキスト、ブロック) として新しい回路図ページにインポートします
+Imports a PLC hardware configuration from AutomationML (e.g. exported from TIA Portal): stations, modules, addresses, subnets, port connections and tag comments	AutomationML (例: TIA Portal からエクスポートしたもの) から PLC ハードウェア構成をインポートします: ステーション、モジュール、アドレス、サブネット、ポート接続、タグコメント
+Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts	部品ファイルを部品サーバーにインポートします。EDZ ファイルの画像とマクロは各部品と共に保存されます
+Imports device descriptions from a GSDML (PROFINET) or ESI (EtherCAT) file into the project	GSDML (PROFINET) または ESI (EtherCAT) ファイルからデバイス記述をプロジェクトにインポートします
+Imports pre-planning segments and planned devices from CSV or Excel (columns Segment, Tag, Kind, Description, Power (kW), Voltage, Part, Macro)	事前計画のセグメントと計画済みデバイスを CSV または Excel からインポートします (列 Segment、Tag、Kind、Description、Power (kW)、Voltage、Part、Macro)
+Imports the comments a reviewer made in a PDF export of the project (notes, text boxes, highlights, shapes, replies) into the review layer; comments imported before are skipped	レビュー担当者がプロジェクトの PDF エクスポートに付けたコメント (注釈、テキストボックス、ハイライト、図形、返信) をレビューレイヤーにインポートします。インポート済みのコメントはスキップされます
+Insert after this page (default: at the end)	このページの後に挿入 (既定: 末尾)
+Inserts an edited subproject: its pages replace the pages taken out	編集済みのサブプロジェクトを挿入します。そのページで切り出されたページが置き換えられます
+Invalid form: {}	無効なフォーム: {}
+Keep the file checked out after the check-in	チェックイン後もファイルをチェックアウトしたままにする
+Kind of server: OpenECraft (parts server) or Eplan (EPLAN Data Portal: searching and reading only, the token is the personal access token of the EPLAN account)	サーバーの種類: OpenECraft (部品サーバー) または Eplan (EPLAN Data Portal: 検索と読み取りのみ。トークンは EPLAN アカウントの個人用アクセストークン)
+Language of the export (a project language)	エクスポートの言語 (プロジェクト言語のいずれか)
+Language of the project texts and reports (a project language, default the source language)	プロジェクトテキストとレポートの言語 (プロジェクト言語のいずれか、既定はソース言語)
+Library file	ライブラリファイル
+Lifecycle: Active, PhaseOut or Discontinued	ライフサイクル: Active、PhaseOut または Discontinued
+Lists the built-in structure templates	組み込みの構造テンプレートを一覧表示します
+Lists the catalogs of the parts server with their number of parts	部品サーバーのカタログを部品数とともに一覧表示します
+Lists the checks of the project check (built-in and of plugins) and whether they run	プロジェクトチェックのチェック (組み込みおよびプラグイン) と、その実行有無を一覧表示します
+Lists the connectors of the integration layer (ERP, PDM, PLM, ECAD, MCAD, procurement, wiring machine) with the fields they exchange, and the profiles of the project	統合レイヤーのコネクター (ERP、PDM、PLM、ECAD、MCAD、調達、電線加工機) を交換するフィールドとともに一覧表示し、プロジェクトのプロファイルも表示します
+Lists the enclosure systems with their standard sizes, wall thickness, plinth and whether they can be bayed	エンクロージャーシステムを、標準サイズ、壁厚、台座、連結可否と共に一覧表示します
+Lists the example projects, from a first circuit to a whole plant, with the features each one shows	最初の回路からプラント全体までのサンプルプロジェクトを、それぞれが示す機能とともに一覧表示します
+Lists the exports (built-in and of plugins): name for export, title, file extension and parameters	エクスポート (組み込みおよびプラグイン) を一覧表示します: export 用の名前、タイトル、ファイル拡張子、パラメーター
+Lists the folders and files of a Vault folder, or searches the file properties below it (or in the whole vault)	Vault フォルダーのフォルダーとファイルを一覧表示するか、その下 (または Vault 全体) のファイルプロパティを検索します
+Lists the reports (built-in and of plugins): name for report and title	レポート (組み込みおよびプラグイン) を一覧表示します: report 用の名前とタイトル
+Lists the users of the parts server (administrators only)	部品サーバーのユーザーを一覧表示します (管理者のみ)
+Loaded plugins (built-in and from the plugin folders of --plugins / OPENECRAFT_PLUGINS) with their commands, checks, reports and exports; enables or disables one for this session	読み込まれたプラグイン (組み込み、および --plugins / OPENECRAFT_PLUGINS のプラグインフォルダーから) とそのコマンド、チェック、レポート、エクスポート。このセッションでプラグインを有効化または無効化します
+Local file to put into the vault	Vault に格納するローカルファイル
+Local groups of the user, separated by commas	ユーザーのローカルグループ (カンマ区切り)
+Location (+) of the generated pages	生成されるページの取付場所 (+)
+Macro library file (JSON, exported by the editor)	マクロライブラリファイル (JSON、エディターでエクスポート)
+Manufacturer (wildcards); default * (everything)	メーカー (ワイルドカード可)。既定は * (すべて)
+Manufacturer whose parts a manufacturer user maintains	メーカーユーザーが部品を管理するメーカー
+Maximum number of hits (default 50)	最大ヒット数 (既定値 50)
+Name of a built-in template (list_structure_templates)	組み込みテンプレートの名前 (list_structure_templates)
+Name of the knowledge vault (default Vault)	ナレッジ Vault の名前 (既定 Vault)
+New file name (save as)	新しいファイル名 (名前を付けて保存)
+New pages for every value of the group column (default true)	グループ列の値ごとに新しいページ (既定値 true)
+New part number	新しい部品番号
+New report block {} needs a kind	新しいレポートブロック {} には kind が必要です
+No grant of {} found	{} の付与が見つかりません
+No profile named {}	{} という名前のプロファイルはありません
+No project is open: use open_project or new_project first	プロジェクトが開かれていません: 最初に open_project または new_project を使用してください
+No role {} defined	ロール {} は定義されていません
+Not a valid catalog: {}	有効なカタログではありません: {}
+Not a valid part: {}	有効な部品ではありません: {}
+Not connected to a vault: use vault_connect first	Vault に接続されていません: 先に vault_connect を使用してください
+Nothing to change: pass set, remove, replace or rename	変更する内容がありません。set、remove、replace または rename を指定してください
+Number of hits to skip	スキップするヒット数
+Only show the changes, write nothing	変更内容を表示するだけで書き込まない
+Only the pages of this report block; default all report pages	このレポートブロックのページのみ。既定はすべてのレポートページ
+Only the projects that match these search terms	これらの検索条件に一致するプロジェクトのみ
+Only this block	このブロックのみ
+Opens a project file or archive (files of older versions are converted)	プロジェクトファイルまたはアーカイブを開きます (旧バージョンのファイルは変換されます)
+Opens a project file or archive from the vault; vault_upload without a target checks in a new version of it	Vault からプロジェクトファイルまたはアーカイブを開きます。ターゲットを指定しない vault_upload では、その新しいバージョンがチェックインされます
+Option {} needs the form name=value	オプション {} は 名前=値 の形式で指定する必要があります
+Order: Number, Manufacturer, Description, Price or Modified	並び順: Number、Manufacturer、Description、Price または Modified
+Output file	出力ファイル
+Output file (JSON)	出力ファイル (JSON)
+Output file; without it the content is returned	出力ファイル。指定しない場合は内容が返されます
+Outputs report pages as fixed pages into another project file; pages output from this project before are replaced	レポートページを固定ページとして別のプロジェクトファイルに出力します。以前にこのプロジェクトから出力したページは置き換えられます
+PDF file with comments	コメント付き PDF ファイル
+Page (svg: required, dxf, dwg: default all pages)	ページ (svg: 必須、dxf、dwg: 既定はすべてのページ)
+Page name (default: next number)	ページ名 (既定: 次の番号)
+Page of the export	エクスポートのページ
+Page template (list_page_templates) instead of kind	kind の代わりのページテンプレート (list_page_templates)
+Page {} has no embedded document	ページ {} に埋め込みドキュメントがありません
+Pages whose structure starts with this, e.g. =A1+CAB1	構造がこれで始まるページ (例: =A1+CAB1)
+Part number to add	追加する部品番号
+Part number to remove	削除する部品番号
+Part {} has no version {}	部品 {} にバージョン {} はありません
+Pass files or a folder	ファイルまたはフォルダーを指定してください
+Password (needed for new users; empty keeps the current one)	パスワード (新規ユーザーには必須。空欄の場合は現在のパスワードを維持)
+Password of the Vault user	Vault ユーザーのパスワード
+Password of the user	ユーザーのパスワード
+Plot frame (list_frames); default: the project's	図枠 (list_frames)。既定: プロジェクトの図枠
+Product top group: Electrical, Fluid, Mechanics or Process	製品トップグループ: Electrical、Fluid、Mechanics または Process
+Profile whose column mapping is used	列マッピングを使用するプロファイル
+Project database file (JSON)	プロジェクトデータベースファイル (JSON)
+Project database file (JSON) to update	更新するプロジェクトデータベースファイル (JSON)
+Project file (.oec) or archive (.oecz)	プロジェクトファイル (.oec) またはアーカイブ (.oecz)
+Project file that gets the pages	ページを受け取るプロジェクトファイル
+Project file to write (default: the file itself; archives: next to it as .oec)	書き込むプロジェクトファイル (既定: ファイル自体。アーカイブの場合: 隣に .oec として)
+Project files, separated by ';'	プロジェクトファイル (';' 区切り)
+Properties to remove, separated by ','	削除するプロパティ (',' 区切り)
+Properties to rename (old name: new name)	名前を変更するプロパティ (旧名: 新名)
+Property {} needs a text or a number	プロパティ {} にはテキストまたは数値が必要です
+Puts the project, an export, a connector export or a local file into the vault; a file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	プロジェクト、エクスポート、コネクターのエクスポート、またはローカルファイルを Vault に格納します。フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
+Reader, Manufacturer, Editor or Admin	Reader、Manufacturer、Editor または Admin
+Reads a file of another system (CSV or JSON) with a connector and lists the changes; with apply they are taken over (conflicts only with overwrite)	別のシステムのファイル (CSV または JSON) をコネクターで読み込み、変更を一覧表示します。apply を指定すると変更が反映されます (競合は overwrite 指定時のみ)
+Reads the project files and archives of a folder (and its subfolders) into the project database	フォルダー (およびサブフォルダー) のプロジェクトファイルとアーカイブをプロジェクトデータベースに読み込みます
+Reads translations from CSV: first column the source line, one column per language code	CSV から翻訳を読み込みます: 最初の列はソース行、言語コードごとに 1 列
+Redoes the last undone change	最後に元に戻した変更をやり直します
+Remove the grants of the user or group (only of this role and scope, if given)	ユーザーまたはグループの付与を削除 (指定した場合はこのロールとスコープのみ)
+Remove the parts assigned so far	これまでに割り当てた部品を削除
+Removes a file from a part on the parts server	部品サーバー上の部品からファイルを削除します
+Replace the file at path if it exists	path のファイルが存在する場合は置き換える
+Replace the project parts by their newer server versions	プロジェクト部品をサーバーの新しいバージョンに置き換える
+Replacement text	置換後のテキスト
+Replaces the content of the macro boxes whose macro changed in a macro library file	マクロライブラリファイル内でマクロが変更されたマクロボックスの内容を置き換えます
+Replaces the pages generated before by the page macros of the rules whose condition holds	以前に生成されたページを、条件が満たされたルールのページマクロで置き換えます
+Report name as shown by list_reports	list_reports で表示されるレポート名
+Report scheme: its filter, sort order and columns	レポートスキーム: そのフィルター、並べ替え順、列
+Report scheme; empty: the form of the report	レポートスキーム。空: レポートのフォーム
+Report the scheme belongs to	スキームが属するレポート
+Report, e.g. terminal_diagram, terminal_lineup, cable_connections (required for a new block)	レポート (例: terminal_diagram、terminal_lineup、cable_connections。新しいブロックには必須)
+Return all part data instead of a summary	概要ではなくすべての部品データを返す
+Revision of the change; returns the part as it was	変更のリビジョン。その時点の部品を返します
+Rights separated by commas: read, edit_parts, delete_parts, edit_catalogs, administer	権限 (カンマ区切り): read、edit_parts、delete_parts、edit_catalogs、administer
+Role name	ロール名
+Role of requests without sign-in; none: sign-in needed for reading	サインインなしのリクエストのロール。none: 読み取りにはサインインが必要
+Role: reader, manufacturer, editor, admin or a defined role	ロール: reader、manufacturer、editor、admin または定義済みのロール
+Saves the project to its file or to a new path	プロジェクトを既存のファイルまたは新しいパスに保存します
+Scale drawings down that do not fit on the page (default: true)	ページに収まらない図面を縮小する (既定: true)
+Search terms, e.g. company=ACME; customer~plant; conveyor	検索条件 (例: company=ACME; customer~plant; conveyor)
+Searches the items of the vault (number, title, revision, lifecycle state, part number)	Vault のアイテム (番号、タイトル、リビジョン、ライフサイクル状態、部品番号) を検索します
+Searches the parts on the parts server (data portal) by text, groups, catalog, lifecycle and technical data	テキスト、グループ、カタログ、ライフサイクル、技術データで部品サーバー (データポータル) の部品を検索します
+Segment path (default: all segments)	セグメントパス (既定: すべてのセグメント)
+Server URL, e.g. http://127.0.0.1:8090	サーバー URL (例: http://127.0.0.1:8090)
+Sets the parts server (URL and access token, or user and password) and shows its state	部品サーバー (URL とアクセストークン、またはユーザーとパスワード) を設定し、その状態を表示します
+Settings scheme file (JSON)	設定スキームファイル (JSON)
+Shows a table (devices, connections, terminals, cables, plugs, PLC, pages or parts) with its rows; the key of a row is used to change it	表 (デバイス、接続、端子、ケーブル、プラグ、PLC、ページ、部品) を行とともに表示します。行のキーで変更します
+Shows all data of a part	部品のすべてのデータを表示します
+Shows the changes of a part on the parts server, or the part as of one change	部品サーバー上の部品の変更履歴、またはある変更時点の部品を表示します
+Shows the favorites of the signed in user, optionally adding or removing a part	サインインしているユーザーのお気に入りを表示し、必要に応じて部品を追加または削除します
+Shows the manifest of a project archive	プロジェクトアーカイブのマニフェストを表示します
+Shows the project properties, file, number of pages and devices and the check result	プロジェクトプロパティ、ファイル、ページ数、デバイス数、チェック結果を表示します
+Shows the roles, grants and directories of the parts server, optionally setting the role of anonymous requests (administrators only)	部品サーバーのロール、付与、ディレクトリを表示し、必要に応じて匿名リクエストのロールを設定します (管理者のみ)
+Start from a project template: a built-in one (Machine, Distribution board (IEC 61439), Empty (IEC 60204-1)) or a project file	プロジェクトテンプレートから開始します: 組み込みテンプレート (Machine、Distribution board (IEC 61439)、Empty (IEC 60204-1)) またはプロジェクトファイル
+Start from an example project (names: list_examples)	サンプルプロジェクトから開始（名前：list_examples）
+Start from the demo project	デモプロジェクトから開始
+Stores a file (datasheet, image, model, macro …) with a part on the parts server	ファイル (データシート、画像、モデル、マクロ …) を部品サーバー上の部品とともに保存します
+Subproject file (.oec)	サブプロジェクトファイル (.oec)
+Subproject file to write (.oec)	書き込むサブプロジェクトファイル (.oec)
+Take the changes over (otherwise only a preview)	変更を反映 (指定しない場合はプレビューのみ)
+Take the rights of the role away instead	代わりにロールの権限を取り消す
+Takes pages out as a subproject file; they stay locked here until the subproject is inserted again	ページをサブプロジェクトファイルとして切り出します。サブプロジェクトが再度挿入されるまで、ページはここでロックされます
+Takes the checks switched off and the message levels of a check scheme file	チェックスキームファイルから、オフにしたチェックとメッセージレベルを取り込みます
+Takes the settings a settings scheme file carries	設定スキームファイルに含まれる設定を取り込みます
+Target folder id (root for the top folder); default the folder the project was opened from	ターゲットフォルダーの ID (最上位フォルダーは root)。既定はプロジェクトを開いたフォルダー
+Technical data that must match, e.g. {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"}	一致する必要がある技術データ (例: {\"Voltage\": \"24 V DC\", \"Poles\": \"3\"})
+Template file written by export_structure_template	export_structure_template で書き出したテンプレートファイル
+Text in number, type, manufacturer, description, groups or catalog; every word must occur	番号、型式、メーカー、説明、グループ、またはカタログ内のテキスト。すべての単語が含まれている必要があります
+Text to replace	置換するテキスト
+Text to search for	検索するテキスト
+The catalog needs a name	カタログには名前が必要です
+The format xlsx needs a path	形式 xlsx にはパスが必要です
+The open project has unsaved changes: save it first or pass discard	開いているプロジェクトに未保存の変更があります: 先に保存するか、discard を指定してください
+The part number must not be empty	部品番号は空にできません
+The project has no file yet: pass a path	プロジェクトにはまだファイルがありません: パスを指定してください
+This command needs a project: --project <file>	このコマンドにはプロジェクトが必要です: --project <ファイル>
+This format needs an output file (path)	この形式には出力ファイル (path) が必要です
+Undoes the last change	最後の変更を元に戻します
+Unexpected argument: {}	予期しない引数: {}
+Unknown command: {}. Run openecraft-cli help for a list.	不明なコマンド: {}。一覧は openecraft-cli help で表示できます。
+Unknown example {}: see list_examples	不明なサンプル {}：list_examples を参照
+Unknown language: {}	不明な言語: {}
+Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	不明なページの種類: {} (schematic、overview、graphic、cover、または list_reports のレポート)
+Unknown part {} (parts server: {})	不明な部品 {} (部品サーバー: {})
+Unknown plugin: {}	不明なプラグイン: {}
+Unknown report scheme: {}	不明なレポートスキーム: {}
+Unknown structure template: {}	不明な構造テンプレート: {}
+Unknown template {}: give a built-in one ({}) or a project file	不明なテンプレート {}: 組み込みのもの ({}) かプロジェクトファイルを指定してください
+Unknown {}: {} (possible: {})	不明な {}: {} (使用可能: {})
+Usage: openecraft-cli [--project <file>] [--server <url>] [--token <token>] [--lang <code>] [--plugins <folder>] <command> [--<parameter> <value>]…\n\nopenecraft-cli mcp        runs a Model Context Protocol server on stdin / stdout\nopenecraft-cli <command> --help   shows the parameters of a command\n\nCommands:\n	使い方: openecraft-cli [--project <ファイル>] [--server <URL>] [--token <トークン>] [--lang <コード>] [--plugins <フォルダー>] <コマンド> [--<パラメーター> <値>]…\n\nopenecraft-cli mcp        stdin / stdout で Model Context Protocol サーバーを実行します\nopenecraft-cli <コマンド> --help   コマンドのパラメーターを表示します\n\nコマンド:\n
+User defined properties (name: value; an empty value removes it)	ユーザー定義プロパティ (名前: 値。空の値を指定すると削除されます)
+User name to sign in with	サインインに使用するユーザー名
+User or group name (wildcards; directory groups as directory:group)	ユーザー名またはグループ名 (ワイルドカード可。ディレクトリのグループは ディレクトリ:グループ)
+Values to set (name: value; an empty value removes a property)	設定する値 (名前: 値。空の値を指定するとプロパティが削除されます)
+Vault user name (signs in)	Vault のユーザー名 (サインイン)
+Write the table as CSV to this file	表を CSV としてこのファイルに書き込む
+Writes the check scheme of the project (checks switched off, message levels) to a file	プロジェクトのチェックスキーム (オフにしたチェック、メッセージレベル) をファイルに書き込みます
+Writes the embedded file of a document page	ドキュメントページの埋め込みファイルを書き出します
+Writes the project into an archive (.oecz: project, manifest, embedded files, optionally a PDF)	プロジェクトをアーカイブ (.oecz: プロジェクト、マニフェスト、埋め込みファイル、オプションで PDF) に書き込みます
+Writes the project's property definitions, function definitions and schemes as a library file	プロジェクトのプロパティ定義、機能定義、スキームをライブラリファイルとして書き出します
+Writes the settings of the project (wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references, check scheme) to a file	プロジェクトの設定 (電線番号付け、電位、電線の既定値と色、マーキング、ホースの既定値、相互参照、チェックスキーム) をファイルに書き込みます
+Writes the structure management (aspects, identifiers, work areas) as a template file	構造管理 (アスペクト、識別子、作業領域) をテンプレートファイルとして書き出します
+csv (default) or eplan_xml	csv (既定) または eplan_xml
+erp, pdm, plm, ecad, mcad, procurement or wiring_machine	erp、pdm、plm、ecad、mcad、procurement または wiring_machine
+erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	erp、pdm、plm、ecad、mcad、procurement、wiring_machine または exchange
+json (default), csv or xlsx (Excel, needs path)	json (既定)、csv または xlsx (Excel、path が必要)
+openecraft-cli mcp\n\nRuns a Model Context Protocol server on stdin / stdout: the tools of this list for AI agents, with the project kept in memory (save_project writes it, undo / redo revert single tool calls). OPENECRAFT_MCP_TOOLS limits the tools offered.\n	openecraft-cli mcp\n\nstdin / stdout で Model Context Protocol サーバーを実行します: AI エージェント向けにこの一覧のツールを提供し、プロジェクトはメモリーに保持されます (save_project で書き込み、undo / redo で個々の呼び出しを元に戻します)。OPENECRAFT_MCP_TOOLS で提供するツールを制限します。\n
+openecraft-cli version\n\nShows the version of the command line (also --version or -V)\n	openecraft-cli version\n\nコマンドラインのバージョンを表示します (--version または -V でも可)\n
+schematic, overview, graphic, cover or a report: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid	schematic、overview、graphic、cover、またはレポート: table_of_contents, device_list, bill_of_materials, terminal_diagram, terminal_lineup, terminal_strip_overview, terminal_connections, plug_diagram, pin_connections, connection_list, device_connections, plc_assignment, potential_list, panel_wiring, cable_overview, cable_diagram, cable_connections, cable_sizing, revision_overview, harness_data, duct_fill, panel_legend, climate, marking, hose_list, pct_loops, fluid_netlist, hose_configuration, tubing_list, fluid_device_groups, electro_fluid
+undo and redo work in an MCP session only: the command line opens the project anew for every command	undo と redo は MCP セッションでのみ機能します: コマンドラインはコマンドごとにプロジェクトを開き直します
+user or group	user または group
+{} exists already: pass overwrite to replace it	{} は既に存在します。置き換えるには overwrite を指定してください
+{} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} はアーカイブのため変更されません: プロジェクトをプロジェクトファイルとして保存する (save_project --path <file>.oec) か、アーカイブを変換してください (convert_project)
+{} is an archive: pass a path to save the project as a project file	{} はアーカイブです: プロジェクトをプロジェクトファイルとして保存するにはパスを指定してください
+{} is not a language of the project	{} はプロジェクトの言語ではありません

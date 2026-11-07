@@ -1,0 +1,2149 @@
+# English<TAB>Svenska – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+   |  Potential {}	   |  Potential {}
+  (built-in)	  (inbyggd)
+(choose a part)	(välj en artikel)
+(choose)	(välj)
+(custom size)	(anpassad storlek)
+(default)	(standard)
+(empty)	(tom)
+(included)	(ingår)
+(no cable highlighted)	(ingen kabel markerad)
+(no structure)	(ingen struktur)
+(none)	(ingen)
+(project default)	(projektstandard)
+(repairable)	(reparerbar)
+(several)	(flera)
+(standard columns)	(standardkolumner)
+(top level)	(översta nivån)
+(whole project)	(hela projektet)
+* (all)	* (alla)
++CAB1 / -M1	+CAB1 / -M1
+0 = a single value; otherwise values [1] … [n]	0 = ett enda värde; annars värden [1] … [n]
+0 = all approvers	0 = alla godkännare
+0 = estimated from cores and cross-section	0 = uppskattad från ledare och tvärsnitt
+0 = fitted to the rows per page	0 = anpassat till raderna per sida
+0 = from the DC of the devices ({} %)	0 = från apparaternas DC ({} %)
+0 = from the devices	0 = från apparaterna
+0 = from the node positions	0 = från nodpositionerna
+0 = infinite	0 = oändlig
+0 = no jumper	0 = ingen bygel
+0 = not given	0 = inte angivet
+0 = not limited	0 = obegränsat
+0 = rated diversity factor of IEC 61439-1, table 101	0 = märklastfaktor enligt IEC 61439-1, tabell 101
+0 = typical value of the rated power	0 = typiskt värde för märkeffekten
+0: no wrapping	0: ingen radbrytning
+1 cable duct	1 kabelkanal
+1 device	1 enhet
+1 door	1 dörr
+1 project on the server	1 projekt på servern
+1 rail	1 skena
+1 window	1 fönster
+3D macro	3D-makro
+3D macro {} inserted	3D-makro {} infogat
+3D macro {} saved	3D-makro {} sparat
+3D view	3D-vy
+=A1+CAB1	=A1+CAB1
+? = not in the schematic yet	? = inte i schemat ännu
+A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
+A cable of the bus type for every connection without cable	En kabel av busstypen för varje anslutning utan kabel
+A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
+A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
+A new project	Ett nytt projekt
+A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Ett numrerat avsnitt som innehåller sidor som en mapp; sidnamnen börjar med dess nummer (2.3.1)
+A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	En profil mappar de neutrala fälten till kolumnnamnen i ett visst system (t.ex. MATNR för ERP-numret i SAP). Utan mappning identifieras vanliga engelska och tyska namn.
+A project definition based on this one, with its own defaults and scheme	En projektdefinition baserad på den här, med egna standardvärden och schema
+A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Ett rapportblock genererar sidorna i en rapport, t.ex. ett plintschema per plintrad, och uppdaterar dem.
+A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	En schemasida 3.1, 3.2, … efter den aktuella sidan, som förblir undersida vid omnumrering
+A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	En schemasida för varje planerad apparat med ett sidmakro som ännu inte finns i kretsschemat (markerat segment, annars alla)
+A template of this name is replaced.	En mall med det här namnet ersätts.
+A template sets the page type, plot frame, title block, structure and description of a new page and places its content.	En mall anger sidtyp, ritningsram, namnruta, struktur och beskrivning för en ny sida och placerar dess innehåll.
+A way through free air costs this many times the way in a duct or routing path	En väg genom fri luft kostar så här många gånger vägen i en kanal eller dragningsväg
+A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Ett arbetsområde begränsar sidorna och apparaterna i navigatorn till en del av projektet. Filter: tomt = valfritt, * = valfria tecken; A1 omfattar även A1.2.
+About OpenECraft	Om OpenECraft
+Above the floor	Över golvet
+Accept as checked	Godkänn som kontrollerat
+Accepted messages ({})	Godkända meddelanden ({})
+Active	Aktiv
+Actuators on the door	Manöverdon i dörren
+Add	Lägg till
+Add a command	Lägg till ett kommando
+Add a target language to translate the project texts.	Lägg till ett målspråk för att översätta projekttexterna.
+Add filter	Lägg till filter
+Add folder…	Lägg till mapp…
+Add group	Lägg till grupp
+Add missing parts of the example catalog	Lägg till saknade artiklar från exempelkatalogen
+Add part…	Lägg till artikel…
+Add profile for this connector	Lägg till profil för den här anslutningen
+Add rule	Lägg till regel
+Add sort key	Lägg till sorteringsnyckel
+Add the facing cutout in {}	Lägg till motstående urtag i {}
+Add to device	Lägg till i apparat
+Add to selection	Lägg till i markering
+Add to the pre-planning	Lägg till i förprojekteringen
+Add user	Lägg till användare
+Added to both ends of the length for the cut length (insertion depth)	Läggs till i båda ändar av längden för kaplängden (insticksdjup)
+Added to each cable end in the enclosure	Läggs till varje kabelände i kapslingen
+Added {} to Vault	{} tillagd i Vault
+Additional power loss	Ytterligare effektförlust
+Address scheme	Adresschema
+Addresses and sign-in of the servers are set in their panes:	Servrarnas adresser och inloggning ställs in i sina paneler:
+Adds / replaces all parts of the local database on the server	Lägger till / ersätter alla artiklar från den lokala databasen på servern
+Adds all lines of the project texts to the dictionary	Lägger till alla rader i projekttexterna i ordlistan
+Adds new parts and updates existing ones in the local parts database	Lägger till nya artiklar och uppdaterar befintliga i den lokala artikeldatabasen
+Adds parts that only exist in the project to the database	Lägger till artiklar som bara finns i projektet i databasen
+Adds the identifiers used on pages and in device tags	Lägger till de beteckningar som används på sidor och i apparatbeteckningar
+Adds the project files and archives of a folder and its subfolders	Lägger till projektfilerna och arkiven i en mapp och dess undermappar
+Adds user defined properties, function definitions and schemes of a property library file	Lägger till användardefinierade egenskaper, funktionsdefinitioner och scheman från en egenskapsbiblioteksfil
+Affected pages ({})	Berörda sidor ({})
+Air at devices at most	Luft vid apparater högst
+Air temperature	Lufttemperatur
+Air temperature at the devices	Lufttemperatur vid apparaterna
+Air temperature {} … {} °C	Lufttemperatur {} … {} °C
+Align	Justera
+Aligned	Justerad
+Alignment	Justering
+All	Alla
+All connections take the values of their connection definition points	Alla förbindelser får värdena från sina förbindelsedefinitionspunkter
+All devices are numbered already.	Alla apparater är redan numrerade.
+All devices between these heights (11.2.1); 0 … 0 switches the check off	Alla apparater mellan de här höjderna (11.2.1); 0 … 0 stänger av kontrollen
+All devices with mounting data are placed.	Alla apparater med monteringsdata är placerade.
+All enclosures	Alla kapslingar
+All groups	Alla grupper
+All levels	Alla våningar
+All objects	Alla objekt
+All other points of the name	Alla andra punkter med samma namn
+All pages	Alla sidor
+All report pages	Alla rapportsidor
+All user symbols as library file	Alla användarsymboler som biblioteksfil
+All wires of this potential are highlighted.	Alla ledningar med den här potentialen är markerade.
+Also the groups that do not fit the function definition	Även de grupper som inte passar funktionsdefinitionen
+Altitude	Höjd över havet
+Always	Alltid
+Ambient temperature	Omgivningstemperatur
+An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Ett arkiv (.oecz) är en ZIP-fil med projektet, ett manifest och de inbäddade dokumenten och bilderna som egna filer.
+An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	En gammal ritning som grafik på en ny schemasida (linjer, bågar, texter, block)
+An open electrical CAE editor in the spirit of EPLAN Electric P8.	En öppen el-CAE-redigerare i EPLAN Electric P8:s anda.
+Another variant of an existing macro with this name (e.g. B), chosen when inserting	Ytterligare en variant av ett befintligt makro med det här namnet (t.ex. B), väljs vid infogning
+Any project file: its settings, forms, structure, potentials and pages start the new project	Valfri projektfil: dess inställningar, formulär, struktur, potentialer och sidor blir början på det nya projektet
+Appearance	Utseende
+Applies to all wires of this connection; automatic numbering keeps manual numbers	Gäller alla ledningar i den här förbindelsen; automatisk numrering behåller manuella nummer
+Applies to report pages, the PDF and the print export.	Gäller rapportsidor, PDF:en och utskriftsexporten.
+Apply conditions	Tillämpa villkor
+Apply connection definitions	Tillämpa förbindelsedefinitioner
+Apply designations	Verkställ beteckningar
+Apply structure	Verkställ struktur
+Apply template	Använd mall
+Apply to the connection	Tillämpa på förbindelsen
+Apply to {} projects	Tillämpa på {} projekt
+Approval workflow	Godkännandeflöde
+Approvals needed	Godkännanden som krävs
+Approve	Godkänn
+Approving needs an approver; you are \"{}\".	Godkännande kräver en godkännare; du är \"{}\".
+Arc	Båge
+Archive and version	Arkiv och version
+Archive project…	Arkivera projekt…
+Arms	Armar
+As defined by the check	Som kontrollen definierar
+Aspects of the pages	Sidornas aspekter
+Aspects, identifiers and work areas as a file for other projects	Aspekter, beteckningar och arbetsområden som en fil för andra projekt
+Assembly {}	Byggrupp {}
+Assembly: {}	Byggrupp: {}
+Assign connections: select the wires between two devices in the schematic › Assign to harness.	Tilldela förbindelser: välj ledningarna mellan två apparater i schemat › Tilldela kabelstam.
+Assign crossed wires	Tilldela korsade ledningar
+Assign page	Tilldela sida
+Assign selection	Tilldela markering
+Assign to cable	Tilldela kabel
+Assign to existing device	Tilldela befintlig apparat
+Assign to harness	Tilldela kabelstam
+Assign wires: select them in the schematic › Assign to cable.	Tilldela ledningar: välj dem i schemat › Tilldela kabel.
+Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynkronmotorer på nätet ökar den högsta kortslutningsströmmen (IEC 60909-0)
+At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Vid den högsta omgivningstemperaturen; värmaren håller daggpunkten. 0 = beaktas inte
+At the supply point: Ik3 max {} kA, Ik1 min {} kA	Vid matningspunkten: Ik3 max {} kA, Ik1 min {} kA
+At the top level	På översta nivån
+Author	Författare
+Auto-connect	Autoanslut
+Auto-connect selection	Autoanslut markering
+Autodesk Vault	Autodesk Vault
+Automatic (from the potential definition)	Automatisk (från potentialdefinitionen)
+Automatic ({})	Automatisk ({})
+Automatic accessories	Automatiska tillbehör
+Automatic configuration	Automatisk konfiguration
+Automation	Automatisering
+Aux	Hjälp
+Avoid:	Undvik:
+Back	Tillbaka
+Back to the project (Esc)	Tillbaka till projektet (Esc)
+Back-up up to (kA)	Back-up upp till (kA)
+Background	Bakgrund
+Baseline {}	Baslinje {}
+Baseline {} created	Baslinje {} skapad
+Baseline {} {}	Baslinje {} {}
+Baselines ({})	Baslinjer ({})
+Basement	Källare
+Bayed	Sammanbyggd
+Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Sammanbyggd med grannkapslingen: ingen sidovägg, i stället en sammanbyggnadssats
+Bayed to the right of	Sammanbyggd till höger om
+Becomes section {}	Blir avsnitt {}
+Bend radius	Böjradie
+Bend radius cables	Böjradie kablar
+Bend radius in drag chains	Böjradie i släpkedjor
+Bend radius tubes	Böjradie slangar
+Bend radius wires	Böjradie ledningar
+Block {}	Block {}
+Bonding conductor	Potentialutjämningsledare
+Bonding points	Anslutningspunkter för potentialutjämning
+Border	Kantlinje
+Border distance (mm)	Kantavstånd (mm)
+Both sides are open: the wires need no cutout	Båda sidorna är öppna: ledningarna behöver inget urtag
+Bottom edges	Underkanter
+Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (utan sockel) över golvet; höjderna kontrolleras när den är känd eller när kapslingen står på en sockel
+Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
+Building	Byggnad
+Built-in frames cannot be changed; copy one to adapt it.	Inbyggda ramar kan inte ändras; kopiera en för att anpassa den.
+Built-in scheme: copy it to change it.	Inbyggt schema: kopiera det för att ändra det.
+Built-in title blocks are read only – use “Copy as new” to make your own.	Inbyggda namnrutor är skrivskyddade – använd ”Kopiera som ny” för att skapa en egen.
+Bundle Ø	Knippe-Ø
+Bus	Buss
+Bus system	Bussystem
+Bus systems	Bussystem
+Bus topology	Busstopologi
+Byte order mark	Byteordningsmarkering (BOM)
+CCF	CCF
+CSV or Excel	CSV eller Excel
+CSV or JSON from another system; known numbers are updated	CSV eller JSON från ett annat system; kända nummer uppdateras
+Cabinets in the room	Skåp i rummet
+Cable accessories	Kabeltillbehör
+Cable definition	Kabeldefinition
+Cable definition on page {}	Kabeldefinition på sida {}
+Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: rita en linje tvärs över de ledningar som är ledare i en kabel
+Cable end reserve	Reserv per kabelände
+Cable markers	Kabelmärkningar
+Cable passage to {}	Kabelgenomföring till {}
+Cable {}: {} cores assigned	Kabel {}: {} ledare tilldelade
+Cables and pipes are routed again in the background; until then the 3D view shows their earlier routes.	Kablar och rör dras om i bakgrunden; tills dess visar 3D-vyn deras tidigare dragningar.
+Cables and tubes	Kablar och slangar
+Cables…	Kablar…
+Calculations	Beräkningar
+Cancel / select tool / clear selection	Avbryt / välj verktyg / rensa markering
+Card	Kort
+Cards without station: {}	Kort utan station: {}
+Centre	Mitten
+Change project properties of the selected projects	Ändra projektegenskaper för de markerade projekten
+Change request	Ändringsbegäran
+Change requests	Ändringsbegäranden
+Change requests (CSV, JSON)	Ändringsbegäranden (CSV, JSON)
+Changed against the frozen routes:	Ändrat jämfört med de frysta dragningarna:
+Changed by another user in the meantime, your change was replaced: {}	Ändrad av en annan användare under tiden, din ändring ersattes: {}
+Changed cells of a CSV or Excel file exported here (rows by their key)	Ändrade celler i en CSV- eller Excel-fil som exporterats härifrån (rader via deras nyckel)
+Changed message levels ({})	Ändrade meddelandenivåer ({})
+Changed since mounted: was at X {} mm, Y {} mm with part {}	Ändrad sedan monteringen: var vid X {} mm, Y {} mm med artikel {}
+Changed since wired: was {} · {} · {}	Ändrad sedan inkoppling: var {} · {} · {}
+Changes	Ändringar
+Changes since revision {}	Ändringar sedan revision {}
+Changes the page order; the name stays	Ändrar sidordningen; namnet består
+Changes the tag of all functions of this device	Ändrar beteckningen för alla funktioner i den här apparaten
+Check	Kontroll
+Check all	Markera alla
+Check in project as new version of {}	Checka in projektet som ny version av {}
+Check in to Vault	Checka in i Vault
+Check in {} to Vault	Checka in {} i Vault
+Check none	Avmarkera alla
+Check scheme (JSON)	Kontrollschema (JSON)
+Check scheme taken over	Kontrollschemat överfört
+Check settings: checks, message levels, accepted messages	Kontrollinställningar: kontroller, meddelandenivåer, godkända meddelanden
+Check settings…	Kontrollinställningar…
+Checked in {} as version {}	{} incheckad som version {}
+Checked out	Utcheckad
+Checklist	Checklista
+Checklist with the mounting state	Checklista med monteringsstatus
+Checklist with the wiring state	Checklista med inkopplingsstatus
+Checks switched off and message levels as a file for other projects	Avstängda kontroller och meddelandenivåer som en fil för andra projekt
+Checks the project data (ids, references, device data, options, subprojects) together with the engineering checks.	Kontrollerar projektdata (ID:n, referenser, apparatdata, alternativ, delprojekt) tillsammans med de tekniska kontrollerna.
+Choices	Val
+Choices (separated by commas)	Val (åtskilda med kommatecken)
+Choose a baseline, a revision or a project file to compare the project with.	Välj en baslinje, en revision eller en projektfil att jämföra projektet med.
+Choose a room first: floor-standing parts go on its floor.	Välj först ett rum: golvstående artiklar ställs på dess golv.
+Choose file…	Välj fil…
+Choose pages	Välj sidor
+Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
+Circle	Cirkel
+Clear	Rensa
+Clearance	Frigång
+Clearances	Avstånd
+Click an element in the drawing to edit it.	Klicka på ett element i ritningen för att redigera det.
+Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en punkt på cirkeln
+Click into the page to place the image	Klicka på sidan för att placera bilden
+Click into the page to place {}	Klicka på sidan för att placera {}
+Click on a wall	Klicka på en vägg
+Click on a wire to place the connection definition point	Klicka på en ledning för att placera förbindelsedefinitionspunkten
+Click on the 4 mm grid	Klicka på 4 mm-rutnätet
+Click start and end point	Klicka på start- och slutpunkt
+Click the corners of a machine or building, double-click to finish	Klicka på hörnen av en maskin eller byggnad, dubbelklicka för att avsluta
+Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Klicka på innerväggarnas ändar; varje klick börjar nästa, ändar nära en vägg fäster mot den. Esc, Enter eller dubbelklick avslutar kedjan, Esc igen verktyget.
+Click to add a node of the route network	Klicka för att lägga till en nod i kabelvägsnätet
+Click to add to the selected text.	Klicka för att lägga till i den markerade texten.
+Click to insert · Esc cancel	Klicka för att infoga · Esc avbryter
+Click to place a comment	Klicka för att placera en kommentar
+Click to place the markup text	Klicka för att placera markeringstexten
+Click to place the text from the field below	Klicka för att placera texten från fältet nedan
+Click to show	Klicka för att visa
+Click to show, right click for more	Klicka för att visa, högerklicka för mer
+Click two corners	Klicka på två hörn
+Click two nodes to connect them	Klicka på två noder för att förbinda dem
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klicka där fyra ledare möts: bryggan leder förbindelsen från en sida till de tre andra, den motsatta först · {} vrider den · Esc eller högerklick avslutar
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicka där tre ledare möts: T-stycket anger den apparat som ledarna utgår från och ordningen på deras mål · {} vrider det där inga ledare möts ännu · Esc eller högerklick avslutar
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicka där två ledare korsar varandra: korsningen förbinder dem och leder varje ände av sin linje först rakt fram, sedan tvärs över · {} vrider den · Esc eller högerklick avslutar
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klicka där två ledare möts i rät vinkel, eller där anslutningspunkter är vända mot varandra över hörnet: med automatisk anslutning på ritas ledare till det · {} vrider det · Esc eller högerklick avslutar
+Click, or drag it into the page	Klicka, eller dra den till sidan
+Climate (IEC 60890)	Klimat (IEC 60890)
+Clipboard	Urklipp
+Close	Stäng
+Close door	Stäng dörren
+Close page tab	Stäng sidflik
+Close shared project	Stäng delat projekt
+Close the start page	Stäng startsidan
+Closed / filled	Sluten / fylld
+Closed {} on the project server	{} stängd på projektservern
+Collaboration	Samarbete
+Collect texts from the project	Samla in texter från projektet
+Collision classes	Kollisionsklasser
+Colour / cross-section	Färg / tvärsnitt
+Colour of the items without their own	Färg för objekt utan egen färg
+Colour the cable ducts by their fill level	Färglägg kabelkanalerna efter fyllnadsgrad
+Column	Kolumn
+Column / row strips	Kolumn- / radlister
+Column labels	Kolumnetiketter
+Column {}  Row {}	Kolumn {}  Rad {}
+Columns	Kolumner
+Columns / rows	Kolumner / rader
+Columns × rows	Kolumner × rader
+Columns, filter, sort order and rows of the report pages	Kolumner, filter, sorteringsordning och rader på rapportsidorna
+Columns: {}	Kolumner: {}
+Comma	Kommatecken
+Comment #{} – {} {}	Kommentar #{} – {} {}
+Comment on the current page	Kommentera aktuell sida
+Comments ({} open)	Kommentarer ({} öppna)
+Comments ({})	Kommentarer ({})
+Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Kommentarer som en granskare gjort i en PDF-export av projektet (Acrobat eller ett annat PDF-visningsprogram)
+Comments and markup	Kommentarer och markeringar
+Compare and baselines	Jämför och baslinjer
+Compare with	Jämför med
+Compare with a baseline, a revision or another project file and take differences over	Jämför med en baslinje, en revision eller en annan projektfil och överför skillnader
+Complete tag: {}\nAspects missing here are taken from the page (=function +location).	Fullständig beteckning: {}\nAspekter som saknas här hämtas från sidan (=funktion +placering).
+Condition	Villkor
+Condition (OPTION=value & …)	Villkor (OPTION=värde & …)
+Conductive frame	Ledande stativ
+Conflicts	Konflikter
+Connected devices	Anslutna apparater
+Connected to:	Ansluten till:
+Connection definition point	Förbindelsedefinitionspunkt
+Connection definition point: defines number, colour, cross-section and cable core of a connection	Förbindelsedefinitionspunkt: definierar nummer, färg, tvärsnitt och kabelledare för en förbindelse
+Connection point {}	Anslutningspunkt {}
+Connection points 1 and 2 are connected inside	Anslutningspunkt 1 och 2 är internt förbundna
+Connection:	Förbindelse:
+Connections ({})	Förbindelser ({})
+Connections / harness	Förbindelser / kabelstam
+Connections whose two ends are both on selected wires	Förbindelser vars båda ändar ligger på markerade ledningar
+Connections without a defined potential	Förbindelser utan definierad potential
+Connectors	Kontaktdon
+Connects free connection points of the selected symbols with facing ones	Ansluter lediga anslutningspunkter för de markerade symbolerna med motstående
+Consecutive addresses from the start byte, in schematic order	Löpande adresser från startbyten, i schemaordning
+Contact image below coils	Kontaktavbildning under spolar
+Content	Innehåll
+Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Innehåll i ett inaktivt alternativ är dolt: det ritas inte, utvärderas inte, rapporteras inte och exporteras inte.
+Copies	Kopior
+Copies function texts between both representations where one is empty	Kopierar funktionstexter mellan de båda representationerna där den ena är tom
+Copies in rows and columns	Kopior i rader och kolumner
+Copies the report pages as fixed pages into another project file; pages output from this project before are replaced	Kopierar rapportsidorna som fasta sidor till en annan projektfil; sidor som tidigare matats ut från det här projektet ersätts
+Copies the selection several times; devices get new tags, terminals new numbers.	Kopierar markeringen flera gånger; apparater får nya beteckningar, plintar nya nummer.
+Copper busbar system: click start and end point	Samlingsskenesystem av koppar: klicka på start- och slutpunkt
+Copy	Kopiera
+Copy / cut / paste (devices get new tags)	Kopiera / klipp ut / klistra in (apparater får nya beteckningar)
+Copy as new	Kopiera som ny
+Copy built-in…	Kopiera inbyggd…
+Core designations separated by blanks	Ledarbeteckningar åtskilda med blanksteg
+Cores 1, 2, 3 … for the wires crossed, plus GNYE	Ledare 1, 2, 3 … för de korsade ledningarna, plus GNYE
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Hörn: två ledare i rät vinkel; med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det
+Cover sheet, overview, graphics, report, mounting layout or a page template	Försättsblad, översikt, grafik, rapport, monteringslayout eller en sidmall
+Covers what is behind the text	Täcker det som ligger bakom texten
+Create	Skapa
+Create an enclosure in the panel layout first.	Skapa först en kapsling i skåplayouten.
+Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Skapa en kapsling eller ett rum (Monteringsutrymme › Ny kapsling, Nytt rum) för att börja montagelayouten.
+Create baseline	Skapa baslinje
+Create bus cables	Skapa busskablar
+Create draft	Skapa utkast
+Create revision	Skapa revision
+Cross references…	Korsreferenser…
+Crossed wires	Korsade ledningar
+Ctrl + click on the text opens it as well	Ctrl + klick på texten öppnar den också
+Ctrl+A	Ctrl+A
+Current-carrying capacity: {} × IEC 60204-1, table 6	Strömbelastningsförmåga: {} × IEC 60204-1, tabell 6
+Customer rule sets	Kundregelverk
+Customer, plant or standard	Kund, anläggning eller standard
+Customize the ribbon…	Anpassa menyfliksområdet…
+Cut	Klipp ut
+Cut length	Kaplängd
+Cut length step	Steg för kaplängd
+Cut length step cables	Kaplängdssteg kablar
+Cut length step tubes	Kaplängdssteg slangar
+Cut length step wires	Kaplängdssteg ledningar
+Cutout {} × {} mm	Urtag {} × {} mm
+Cutting allowance per end	Kaptillägg per ände
+DWG import failed: {}	DWG-importen misslyckades: {}
+DWG imported as page {}: {} lines, {} texts	DWG importerad som sida {}: {} linjer, {} texter
+DWG imported as page {}: {} lines, {} texts (not imported: {})	DWG importerad som sida {}: {} linjer, {} texter (inte importerat: {})
+DXF import failed: {}	DXF-importen misslyckades: {}
+DXF imported as page {}: {} lines, {} texts	DXF importerad som sida {}: {} linjer, {} texter
+DXF imported as page {}: {} lines, {} texts (not imported: {})	DXF importerad som sida {}: {} linjer, {} texter (inte importerat: {})
+Dashed	Streckad
+Decimals	Decimaler
+Default	Standard
+Default (part data or definition)	Standard (artikeldata eller definition)
+Default label	Standardetikett
+Default medium	Standardmedium
+Default rules	Standardregler
+Default values	Standardvärden
+Define	Definiera
+Define all used	Definiera alla använda
+Defined potentials	Definierade potentialer
+Del	Del
+Delete	Ta bort
+Delete cable (its wires are removed from it)	Ta bort kabel (dess ledningar tas bort från den)
+Delete comment	Ta bort kommentar
+Delete connection point	Ta bort anslutningspunkt
+Delete element	Ta bort element
+Delete enclosure	Ta bort kapsling
+Delete enclosure {} with everything placed in it?	Ta bort kapslingen {} med allt som är placerat i den?
+Delete group	Ta bort grupp
+Delete harness (its wires are removed from it)	Ta bort kabelstam (dess ledningar tas bort från den)
+Delete link	Ta bort förbindelse
+Delete loop	Ta bort slinga
+Delete macro	Ta bort makro
+Delete node	Ta bort nod
+Delete page	Ta bort sida
+Delete request	Ta bort begäran
+Delete room	Ta bort rum
+Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	Ta bort rummet {} med allt på dess väggar? Skåpen i det finns kvar, utan rum.
+Delete section	Ta bort avsnitt
+Delete shaft	Ta bort schakt
+Delete the group	Ta bort gruppen
+Delete the layer; its items move to the default layer	Ta bort lagret; dess objekt flyttas till standardlagret
+Delete the property and all its values	Ta bort egenskapen och alla dess värden
+Delete this workspace	Ta bort den här arbetsytan
+Delete variant	Ta bort variant
+Deny	Neka
+Depth / mounted at	Djup / monterad vid
+Depth from / to	Djup från / till
+Derive project definition	Härled projektdefinition
+Descriptions	Beskrivningar
+Deselect	Avmarkera
+Designations separated by blanks; empty: those of the symbol	Beteckningar åtskilda med blanksteg; tomt: symbolens beteckningar
+Destination: each end shows the connection point at the other end	Destination: varje ände visar anslutningspunkten i den andra änden
+Device description (GSDML, ESI)	Enhetsbeskrivning (GSDML, ESI)
+Device descriptions	Enhetsbeskrivningar
+Device descriptions of PROFINET (GSDML) and EtherCAT (ESI) devices	Enhetsbeskrivningar för PROFINET-enheter (GSDML) och EtherCAT-enheter (ESI)
+Device groups	Apparatgrupper
+Device markers	Apparatskyltar
+Device number	Enhetsnummer
+Device numbering	Apparatnumrering
+Device numbering…	Apparatnumrering…
+Device properties	Apparategenskaper
+Device selection	Apparatval
+Device tags, separated by commas	Apparatbeteckningar, åtskilda med kommatecken
+Device, terminal, wire and cable markers for marking software	Apparat-, plint-, lednings- och kabelmärkningar för märkningsprogram
+Devices ({})	Apparater ({})
+Devices are not copied: a device is placed once.	Apparater kopieras inte: en apparat placeras en gång.
+Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Apparater planeras med enlinjesymboler och projekteras i flerlinjeschemat; båda delar apparatbeteckningen.
+Devices of a channel	Apparater i en kanal
+Devices of the second channel; empty = like the first	Apparater i den andra kanalen; tomt = som den första
+Devices placed on the page get its structure; their tags are shown without it.	Apparater som placeras på sidan får dess struktur; deras beteckningar visas utan den.
+Devices to place	Apparater att placera
+Devices, connections and terminals: filter, fill, find and replace, CSV	Apparater, förbindelser och plintar: filtrera, fyll, sök och ersätt, CSV
+Dew point	Daggpunkt
+Diameter	Diameter
+Diameter / bends	Diameter / böjar
+Dictionary for translators: one column per language	Ordlista för översättare: en kolumn per språk
+Digits	Siffror
+Dimension	Måttsättning
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Riktat T-stycke: där tre ledare möts anger det den apparat som förbindelsens två ledare utgår från och ordningen på deras mål
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Riktad korsning: förbinder de två ledare som korsar varandra där; varje ände av dess linje kopplas först rakt fram och sedan tvärs över
+Discard changes	Släng ändringarna
+Discard draft	Ignorera utkast
+Disconnection of distribution circuits	Frånkoppling av fördelningsledningar
+Disconnection of final circuits	Frånkoppling av gruppledningar
+Distance	Avstånd
+Distance from devices, rails and busbars	Avstånd från apparater, skenor och samlingsskenor
+Distance of signals and fluids from power	Avstånd för signaler och fluider från kraft
+Distance of the opening from the left end of the wall, seen from inside the room	Öppningens avstånd från väggens vänstra ände, sett inifrån rummet
+Distance to cable ducts	Avstånd till kabelkanaler
+Distance to the plate edge	Avstånd till plåtkanten
+Distances between classes of items, or classes that may overlap	Avstånd mellan klasser av objekt, eller klasser som får överlappa
+Distribute	Fördela
+Distribute horizontally	Fördela horisontellt
+Distribute vertically	Fördela vertikalt
+Distributed neutral	Distribuerad neutralledare
+Diversity factor	Sammanlagringsfaktor
+Divider	Skiljevägg
+Dock	Docka
+Document {} embedded ({})	Dokument {} inbäddat ({})
+Documents	Dokument
+Done ones too	Även klara
+Done.	Klart.
+Door (front)	Dörr (framsida)
+Door (inside)	Dörr (insida)
+Door NC data (DWG)	NC-data för dörr (DWG)
+Door NC data (DXF)	NC-data för dörr (DXF)
+Door clearance	Dörrfrigång
+Door cutouts (CSV)	Dörrurtag (CSV)
+Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
+Dot	Punkt
+Double-click (3D view)	Dubbelklick (3D-vy)
+Download into database	Ladda ned till databasen
+Download project	Ladda ned projekt
+Downloaded {} (version {})	{} nedladdad (version {})
+Downloaded {} parts (revision {}): {} new, {} updated	{} artiklar nedladdade (revision {}): {} nya, {} uppdaterade
+Downstream part	Underordnad artikel
+Draft of revision {} created	Utkast till revision {} skapat
+Draft of revision {} discarded	Utkast till revision {} ignorerat
+Drag an entry into the page, or click it and then click into the page.	Dra en post till sidan, eller klicka på den och klicka sedan på sidan.
+Drag the tag of the selected symbol to place it.	Dra beteckningen för den markerade symbolen för att placera den.
+Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Dra: rotera · dra med höger-/mittknappen eller Skift: panorera · hjul: zooma vid pekaren · dubbelklick: titta dit · W A S D / pilar, Q E: förflytta · klick: markera
+Draw	Rita
+Draw a line across the wires that are cores of this cable	Rita en linje tvärs över de ledningar som är ledare i den här kabeln
+Draw another line for this cable	Rita en till linje för den här kabeln
+Draw cable definition	Rita kabeldefinition
+Draw connections	Rita förbindelser
+Draw connections between facing connection points when symbols are placed or moved	Rita förbindelser mellan motstående anslutningspunkter när symboler placeras eller flyttas
+Draw inner walls	Rita innerväggar
+Draw the page yourself: graphics for every page and a row drawing repeated for every row; texts take the columns as placeholders	Rita sidan själv: grafik för varje sida och en radritning som upprepas för varje rad; texter använder kolumnerna som platshållare
+Draw the three wires of the T-junction to it: one in its direction and two across	Rita T-styckets tre ledare till det: en i dess riktning och två tvärs över
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Rita hörnets två ledare till det, eller slå på automatisk anslutning och placera det vänt mot fria anslutningspunkter
+Draw walls	Rita väggar
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Rita ledare i alla fyra riktningar till den, eller slå på automatisk anslutning och placera den vänd mot fria anslutningspunkter
+Draw wires in their colour (also in PDF and SVG); saved with the project	Rita ledningar i deras färg (även i PDF och SVG); sparas med projektet
+Drawing (DXF, DWG)	Ritning (DXF, DWG)
+Drawing area {} x {} mm, column width {} mm	Ritområde {} x {} mm, kolumnbredd {} mm
+Drawing as new page	Ritning som ny sida
+Drawn as a connection dot; the routing stays	Ritas som en förbindelsepunkt; dragningen behålls
+Drawn form	Ritat formulär
+Draws the strip with its terminals and jumpers, or the cables with their cores, instead of a table; the columns of the form are not used	Ritar plintraden med dess plintar och byglar, eller kablarna med deras ledare, i stället för en tabell; formulärets kolumner används inte
+Drilling list (CSV)	Borrlista (CSV)
+Drilling list of this face (CSV)	Borrlista för den här ytan (CSV)
+Drilling pattern of the face shown as DXF, DWG or CSV	Borrmönster för den visade sidan som DXF, DWG eller CSV
+Drop between the pages	Släpp mellan sidorna
+Drop between the rows or onto a section	Släpp mellan raderna eller på ett avsnitt
+Duct fill	Kanalfyllnad
+Duct fill limit	Gräns för kanalfyllnad
+Duplicate	Duplicera
+Each example builds on the one before and shows more of the features.	Varje exempel bygger på det föregående och visar fler av funktionerna.
+Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-förbindelse kan tillhöra en kabelstam
+Earthing system	Jordningssystem
+Edge length of the routing grid: smaller is finer and slower	Kantlängd för dragningsrutnätet: mindre är finare och långsammare
+Edit	Redigera
+Edit in table	Redigera i tabell
+Edit in table…	Redigera i tabell…
+Editable copy of this plot frame	Redigerbar kopia av den här ritningsramen
+Editable copy of this title block	Redigerbar kopia av den här namnrutan
+Effective surface	Effektiv yta
+Electrical calculations	Elektriska beräkningar
+Electrical devices	Elektriska apparater
+Electrical devices that actuate or monitor a fluid device (solenoid coils, position and pressure switches); both schematics show cross references to each other.	Elektriska apparater som manövrerar eller övervakar en fluidapparat (magnetspolar, gränslägesbrytare och tryckvakter); båda scheman visar korsreferenser till varandra.
+Electro-fluid	Elektro-fluid
+Ellipse	Ellips
+Embed as document page	Bädda in som dokumentsida
+Embeds a file (PDF, Word, Excel, image …) as a page	Bäddar in en fil (PDF, Word, Excel, bild …) som en sida
+Embeds the file in the project (replaces the current one)	Bäddar in filen i projektet (ersätter den aktuella)
+Enclosure system	Kapslingssystem
+Enclosures (+CAB1), devices (-M1) and machine locations (+M1) at the nodes	Kapslingar (+CAB1), apparater (-M1) och maskinplaceringar (+M1) vid noderna
+Enclosures and rooms	Kapslingar och rum
+Enclosures, devices to place and placed devices	Skåp, apparater att placera och placerade apparater
+End	Slut
+End brackets and end plates from the tech data of the terminal parts (End bracket, End plate)	Ändstopp och gavelplattor från plintartiklarnas tekniska data (End bracket, End plate)
+Enter a user name: other users see it on your locks.	Ange ett användarnamn: andra användare ser det på dina lås.
+Entry	Post
+Esc	Esc
+Estimated air temperature in front of the mounting plate (power loss of the devices, climate)	Uppskattad lufttemperatur framför monteringsplåten (apparaternas effektförlust, klimat)
+Every command of the editor and of the plugins by name	Alla kommandon i redigeraren och i plugins efter namn
+Every connection gets one number for all its wires; the two sides of a terminal are separate connections.	Varje förbindelse får ett nummer för alla sina ledningar; plintens två sidor är separata förbindelser.
+Every item of the scope that meets the conditions must meet the requirement.	Varje objekt i omfattningen som uppfyller villkoren måste uppfylla kravet.
+Every tool is a pane: drag its tab beside the page, into the navigators or out as a window.	Varje verktyg är en panel: dra dess flik bredvid sidan, till navigatorerna eller ut som ett fönster.
+Example projects	Exempelprojekt
+Example: {}	Exempel: {}
+Exchange log	Utbyteslogg
+Exchange parts with a global parts database (openecraft-parts-server) or read the EPLAN Data Portal	Utbyt artiklar med en global artikeldatabas (openecraft-parts-server) eller läs EPLAN Data Portal
+Exchange with ERP, PDM, PLM, ECAD, MCAD, procurement and wiring machines	Utbyte med ERP, PDM, PLM, ECAD, MCAD, inköp och kabelbearbetningsmaskiner
+Export	Export
+Export AutomationML…	Exportera AutomationML…
+Export CSV	Exportera CSV
+Export CSV…	Exportera CSV…
+Export Excel	Exportera Excel
+Export Excel…	Exportera Excel…
+Export IEC 61131-3 variables…	Exportera IEC 61131-3-variabler…
+Export JSON	Exportera JSON
+Export SVG…	Exportera SVG…
+Export all pages as PDF in {}	Exportera alla sidor som PDF på {}
+Export as EPLAN parts XML…	Exportera som EPLAN-artikel-XML…
+Export as PDF in language	Exportera som PDF på språk
+Export check scheme…	Exportera kontrollschema…
+Export favorites…	Exportera favoriter…
+Export library…	Exportera bibliotek…
+Export macros (JSON)…	Exportera makron (JSON)…
+Export marking (CSV)…	Exportera märkning (CSV)…
+Export marking (Excel)…	Exportera märkning (Excel)…
+Export settings…	Exportera inställningar…
+Export symbol table (CSV)…	Exportera symboltabell (CSV)…
+Export the messages as CSV	Exportera meddelandena som CSV
+Exported {}	{} exporterad
+Exporting {}	Exporterar {}
+Export…	Exportera…
+Extras	Extra
+Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Fläktar, filter, kabelförskruvningar, belysning, handtag: välj ett och klicka sedan där det ska sitta
+Fastening hardware in the bill of materials	Fästelement i stycklistan
+Favorite	Favorit
+Favorites (JSON)	Favoriter (JSON)
+Ferrule {} ({})	Ändhylsa {} ({})
+Field	Fält
+Field (name, description, company, creator, date, revision) or project property	Fält (name, description, company, creator, date, revision) eller projektegenskap
+Field cables	Fältkablar
+Field length	Fältlängd
+Field; tech:<name> for tech data of parts, prop:<name> for project properties	Fält; tech:<name> för tekniska data för artiklar, prop:<name> för projektegenskaper
+File format version {}. Files of older versions are converted when they are opened.	Filformatsversion {}. Filer från äldre versioner konverteras när de öppnas.
+File name	Filnamn
+File of another system (connector)	Fil från ett annat system (anslutning)
+File {}	Fil {}
+Files of other systems (CSV, JSON)	Filer från andra system (CSV, JSON)
+Fill	Fyll
+Fill level	Fyllnadsgrad
+Filled	Fylld
+Filter connections…	Filtrera förbindelser…
+Filter devices…	Filtrera apparater…
+Filter…	Filtrera…
+Find	Sök
+Find a command	Sök ett kommando
+Find a command ({})	Sök ett kommando ({})
+Find a command…	Sök ett kommando…
+Find and replace in the whole project	Sök och ersätt i hela projektet
+Find results	Sökresultat
+Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Söker Vault-objekten för projektartiklarna via objektnummer eller egenskapen Part Number och visar ändringarna av artikel-ID, revision och livscykelstatus för granskning
+Find…	Sök…
+First row	Första raden
+Fit	Anpassa
+Fit page	Anpassa sida
+Fits {}	Passar till {}
+Float	Lossa
+Floor above ground	Golv över mark
+Floor plan	Planritning
+Floor plan with {} walls	Planritning med {} väggar
+Floor-standing part	Golvstående artikel
+Fluid and process	Fluid och process
+Follows its condition: use Apply conditions	Följer sitt villkor: använd Tillämpa villkor
+For	För
+For parts without Stock length; longer profiles have to be joined	För artiklar utan Stock length; längre profiler måste skarvas
+For parts without temperature data (Max temperature, Operating temperature); 0: not checked	För artiklar utan temperaturdata (Max temperature, Operating temperature); 0: kontrolleras inte
+For the import into EPLAN parts management (P_ARTICLE_* attributes, texts in en_US)	För import i EPLAN-artikelhanteringen (P_ARTICLE_*-attribut, texter på en_US)
+Format	Format
+Format of cross references, structure of the target page, interruption points, contact images	Format för korsreferenser, målsidans struktur, avbrottspunkter, kontaktavbildningar
+Formboard drawing of the harness to scale with branch lengths and the pin tables of the connectors	Spikbräderitning av kabelstammen i skala med grenlängder och stifttabellerna för kontaktdonen
+Forms	Formulär
+Form…	Formulär…
+Frame	Ram
+Frame of all pages that do not choose one	Ram för alla sidor som inte väljer någon
+Free air	Fri förläggning
+Free air factor	Faktor för fri förläggning
+Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Fritt utrymme framför varje apparat på plåten fram till dörren; artiklar lägger till sitt eget (Service space)
+Freeze all routes	Frys alla dragningar
+Freeze route	Frys dragning
+Frequency	Frekvens
+From / to	Från / till
+From a template file…	Från en mallfil…
+From the function definition	Från funktionsdefinitionen
+From the left end	Från vänster ände
+Fullest stretch	Fullaste sträcka
+Function definitions	Funktionsdefinitioner
+Function properties	Funktionsegenskaper
+Function text of the functions in this column that have none of their own (device list, terminal, plug and PLC diagrams)	Funktionstext för de funktioner i den här kolumnen som saknar egen (apparatlista, plint-, kontaktdons- och PLC-scheman)
+Function texts	Funktionstexter
+Functions of the parts	Artiklarnas funktioner
+Functions of the project data not placed yet	Funktioner i projektdata som inte är placerade än
+Further devices	Ytterligare apparater
+Further project settings	Övriga projektinställningar
+Gap	Mellanrum
+Gap between devices	Avstånd mellan apparater
+Generate	Generera
+Generate all	Generera alla
+Generate pages	Generera sidor
+Generate pages from page macros by options and rules	Generera sidor från sidmakron utifrån alternativ och regler
+Generate report pages per strip, plug, cable or device	Generera rapportsidor per plintrad, kontaktdon, kabel eller apparat
+Generate schematic from this page	Generera kretsschema från den här sidan
+Generate single-line diagram	Generera enlinjeschema
+Generated by the configurator	Genererad av konfiguratorn
+Generated page – edit via page properties	Genererad sida – redigera via sidegenskaperna
+Generates the pages of all report blocks again	Genererar sidorna för alla rapportblock på nytt
+Generates {} pages	Genererar {} sidor
+Generation failed: {}	Genereringen misslyckades: {}
+Generic	Generisk
+Getting started	Kom igång
+Global variable list with direct addresses for CODESYS, TwinCAT and others	Global variabellista med direkta adresser för CODESYS, TwinCAT och andra
+Go to page	Gå till sidan
+Graphic line	Grafisk linje
+Graphic rectangle	Grafisk rektangel
+Graphical form	Grafiskt formulär
+Grid	Rutnät
+Grid size	Rutnätsstorlek
+Grid {} mm	Rutnät {} mm
+Group as assembly	Gruppera som byggrupp
+Group column	Grupperingskolumn
+Group in the symbol list, e.g. your company	Grupp i symbollistan, t.ex. ditt företag
+Group the pages by structure	Gruppera sidorna efter struktur
+Groups shown	Visade grupper
+HEATER=yes	VÄRMARE=ja
+Hardware configuration and PLC tags for TIA Portal and other PLC tools	Hårdvarukonfiguration och PLC-variabler för TIA Portal och andra PLC-verktyg
+Head (CPU / coupler)	Huvudenhet (CPU / kopplare)
+Header row	Rubrikrad
+Heat map	Värmekarta
+Heating	Värme
+Height (mm)	Höjd (mm)
+Height above the floor	Höjd över golvet
+Height above the mounting plate	Höjd över monteringsplåten
+Height above the plate	Höjd över plåten
+Height of the plinth, 0 without plinth	Sockelns höjd, 0 utan sockel
+Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
+Help	Hjälp
+Hide the groups you do not need and put the commands you use most into own groups.	Dölj de grupper du inte behöver och lägg de mest använda kommandona i egna grupper.
+Highest phase unbalance	Högsta fasobalans
+Highest short-circuit current	Högsta kortslutningsström
+Hole to sheet edge	Hål till plåtkant
+Home	Start
+Horizontal	Horisontell
+Horizontal (mm)	Vågrätt (mm)
+Horizontal centres	Vågräta mittlinjer
+Horizontal position	Horisontell position
+Horizontally	Vågrätt
+Hose / pipe {}	Slang / rör {}
+Hose / tube / pipe, sold by the metre	Slang / rör / rörledning, säljs per meter
+Hose defaults and PCT loops of the pre-planning	Standardvärden för slangar och instrumentslingor i förprojekteringen
+Hose number	Slangnummer
+Hoses and pipes	Slangar och rör
+Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
+IP / bus address	IP- / bussadress
+ISO 639-1 language code	Språkkod enligt ISO 639-1
+Identifiers	Beteckningar
+Identifiers in use that are not defined are reported by the check.	Använda beteckningar som inte är definierade rapporteras av kontrollen.
+Identifiers of the structure management	Strukturhanteringens beteckningar
+Identifying letters	Kodbokstäver
+Images (PNG, JPEG)	Bilder (PNG, JPEG)
+Image…	Bild…
+Import	Import
+Import AutomationML…	Importera AutomationML…
+Import CSV / Excel…	Importera CSV / Excel…
+Import CSV…	Importera CSV…
+Import DXF / DWG as page…	Importera DXF / DWG som sida…
+Import GSDML / ESI…	Importera GSDML / ESI…
+Import PDF comments…	Importera PDF-kommentarer…
+Import a file of another system to see what it changes in the project.	Importera en fil från ett annat system för att se vad den ändrar i projektet.
+Import changes	Importändringar
+Import check scheme…	Importera kontrollschema…
+Import failed: {}	Importen misslyckades: {}
+Import favorites…	Importera favoriter…
+Import into the parts database	Importera till artikeldatabasen
+Import library…	Importera bibliotek…
+Import macros…	Importera makron…
+Import page templates…	Importera sidmallar…
+Import parts (CSV / JSON)…	Importera artiklar (CSV / JSON)…
+Import parts…	Importera artiklar…
+Import settings…	Importera inställningar…
+Import symbol library…	Importera symbolbibliotek…
+Import symbol table…	Importera symboltabell…
+Imported	Importerat
+Imported {} entries of the property library	{} poster i egenskapsbiblioteket importerade
+Imported {} macros	{} makron importerade
+Imported {} page templates	{} sidmallar importerade
+Imported {} parts into the database	{} artiklar importerade till databasen
+Imported {} rule sets	{} regelverk importerade
+Imported {} stations, {} modules, {} bus systems, {} connections; {} addresses and {} texts changed	{} stationer, {} moduler, {} bussystem, {} anslutningar importerade; {} adresser och {} texter ändrade
+Imported {} title blocks and {} report schemes	{} namnrutor och {} rapportscheman importerade
+Importing {} from the parts server…	Importerar {} från artikelservern…
+Import…	Importera…
+In every section counting starts again after the section number (2.3.1).	I varje avsnitt börjar räkningen om efter avsnittsnumret (2.3.1).
+In strip order; PE and other non-numeric terminals keep their designation	I plintradsordning; PE och andra icke-numeriska plintar behåller sin beteckning
+In the filtered rows	I de filtrerade raderna
+In the middle of the first wire	I mitten av den första ledningen
+In the project	I projektet
+In the structure of the current page	I den aktuella sidans struktur
+Include manually set numbers	Inkludera manuellt angivna nummer
+Index	Index
+Indices	Index
+Inner walls	Innerväggar
+Input bytes	Ingångsbyte
+Inputs	Ingångar
+Insert	Infoga
+Insert a group of items (anchored items go to their place, the others where you click)	Infoga en grupp av objekt (förankrade objekt hamnar på sin plats, de övriga där du klickar)
+Insert as report page	Infoga som rapportsida
+Insert center	Infogningscenter
+Insert edited subproject…	Infoga redigerat delprojekt…
+Insert mounting layout page	Infoga monteringslayoutsida
+Insert page	Infoga sida
+Insert placeholder…	Infoga platshållare…
+Insert with	Infoga med
+Inserted {}	Infogat {}
+Inside temperature	Innertemperatur
+Inside without cooling	Inne utan kylning
+Installation	Uppställning
+Installation conditions of the conductors	Förläggningsförhållanden för ledarna
+Installed plugins	Installerade plugins
+Instead of user name and password	I stället för användarnamn och lösenord
+Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Instrument i P&ID har funktionsbokstäver och slingnummer i sin etikett (TIC 101); deras apparatbeteckning länkar dem till schemat.
+Insulation	Isolering
+Interruption points refer to	Avbrottspunkter hänvisar till
+Introduction	Inledning
+Invalid value	Ogiltigt värde
+Isometric	Isometrisk
+Items on the layer	Objekt på lagret
+Items with an anchor keep it; the others are inserted relative to the click.	Objekt med förankring behåller den; de övriga infogas relativt klicket.
+Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Artiklar, apparater, placeringar, förbindelser, ledningar och dokument i en JSON-fil för system utan anslutning
+Its pages and subsections go to the section above	Dess sidor och underavsnitt flyttas till avsnittet ovanför
+Its pages replace the pages taken out	Dess sidor ersätter de utlyfta sidorna
+Join collinear wires	Slå ihop kolinjära ledningar
+Joins	Förbinder
+Joins wire pieces in a line where nothing else connects (current page)	Slår ihop ledningsdelar i en linje där inget annat ansluter (aktuell sida)
+Jumper {}	Bygel {}
+K, Q, MM …	K, Q, MM …
+Keep sub-pages (3.a, 3.1) with the page before	Behåll undersidor (3.a, 3.1) med föregående sida
+Keep the degree of protection	Behåll kapslingsklassen
+Keep this route when recalculating, as long as it is still possible	Behåll den här dragningen vid omberäkning, så länge den fortfarande är möjlig
+Key tips of the ribbon	Menyfliksområdets snabbtangenter
+Key: {}	Nyckel: {}
+Keyboard shortcuts	Kortkommandon
+Keyboard shortcuts…	Kortkommandon…
+Label	Etikett
+Label (grey)	Etikett (grå)
+Label field	Etikettfält
+Labeling scheme	Märkningsschema
+Landscape	Liggande
+Larger texts and buttons for a touch screen at the workbench	Större texter och knappar för en pekskärm vid arbetsbänken
+Layer	Lager
+Layer {}	Lager {}
+Layer: {}	Lager: {}
+Layers of graphics, texts, dimensions and images	Lager för grafik, texter, måttsättningar och bilder
+Laying out the wires, cables and tubes…	Ledningar, kablar och slangar läggs ut…
+Layout checks	Layoutkontroller
+Layout properties	Layoutegenskaper
+Layout space	Monteringsutrymme
+Layout spaces	Monteringsutrymmen
+Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Utelämna locken på alla kabelkanaler i 3D-vyn: ledarna i dem syns
+Leave repeated values of the first column blank	Lämna upprepade värden i den första kolumnen tomma
+Left	Vänster
+Left edges	Vänsterkanter
+Legend plates (door devices)	Märkskyltar (dörrapparater)
+Length from the node to the device	Längd från noden till apparaten
+Length inside an enclosure	Längd inne i en kapsling
+Length of a shield pigtail where there is no shield clamp	Längd på en skärm-pigtail där det inte finns någon skärmklämma
+Length of wires that are not routed in the panel layout	Längd på ledningar som inte är dragna i skåplayouten
+Length {} mm	Längd {} mm
+Letters, digits, space, - _ . (up to 64 characters)	Bokstäver, siffror, blanksteg, - _ . (upp till 64 tecken)
+Level of a multi-level terminal: upper levels sit on the block of the terminal before	Våning för en våningsplint: övre våningar sitter på blocket för föregående plint
+Level of this kind of message	Nivå för den här meddelandetypen
+Level on top	Våning överst
+Levels	Våningar
+Library	Bibliotek
+Limits	Gränsvärden
+Limits in effect	Gällande gränsvärden
+Line to PE at the supply point; 0 = from the highest short-circuit current	Fas mot PE vid matningspunkten; 0 = från den högsta kortslutningsströmmen
+Line up on the rail	Rada upp på skenan
+Line width	Linjebredd
+Line-up	Skåprad
+Line-up and cable passages	Skåprad och kabelgenomföringar
+Linked data	Länkade data
+Linked to this request	Länkad till den här begäran
+Links between buildings	Förbindelser mellan byggnader
+Links solenoid valves with the coil of the same number (-QM3 › -MB3) and copies function texts	Länkar magnetventiler med spolen med samma nummer (-QM3 › -MB3) och kopierar funktionstexter
+List projects	Lista projekt
+Load losses	Belastningsförluster
+Load preset	Läs in förinställning
+Load reserve	Lastreserv
+Load template…	Läs in mall…
+Loading changes…	Läser in ändringar…
+Loading the project access…	Läser in projektåtkomsten…
+Loads	Laster
+Lock all	Lås alla
+Lock all pages	Lås alla sidor
+Lock current page	Lås aktuell sida
+Lock page	Lås sida
+Lock project data	Lås projektdata
+Locked	Låst
+Locked by other users	Låst av andra användare
+Locked by {} on the project server – read only	Låst av {} på projektservern – skrivskyddad
+Locked by {} – read only	Låst av {} – skrivskyddad
+Locking…	Låser…
+Logic	Logik
+Longer values are drawn smaller (0 = no limit)	Längre värden ritas mindre (0 = ingen gräns)
+Look at the point clicked, closer	Titta på den klickade punkten, närmare
+Loop	Slinga
+Lowest fault current	Lägsta felström
+Macro boxes	Makrorutor
+Macro boxes ({})	Makrorutor ({})
+Macro saved to the library	Makrot sparat i biblioteket
+Macro {} saved	Makro {} sparat
+Macros	Makron
+Macros ({})	Makron ({})
+Macro…	Makro…
+Main	Huvud
+Make the selected elements of this project equal to the compared ones	Gör de markerade elementen i det här projektet lika med de jämförda
+Makes the current page content of the option	Gör den aktuella sidan till innehåll i alternativet
+Manage plugins	Hantera plugins
+Management	Hantering
+Manufacturer's coordination tables	Tillverkarnas koordinationstabeller
+Mark as mounted	Markera som monterad
+Mark as not mountable; describe the problem in the note	Markera som inte monterbar; beskriv problemet i anteckningen
+Mark as not wirable; describe the problem in the note	Markera som ej inkopplingsbar; beskriv problemet i anteckningen
+Mark as open	Markera som öppen
+Mark as wired	Markera som inkopplad
+Marker material	Märkmaterial
+Markers	Märkningar
+Marking…	Märkning…
+Marks of items that no longer exist	Markeringar för objekt som inte längre finns
+Marks of wires that no longer exist	Markeringar för ledningar som inte längre finns
+Markup	Markering
+Markup on this page	Markeringar på den här sidan
+Markup text	Markeringstext
+Master data	Grunddata
+Max. pressure	Max. tryck
+Max. width	Max. bredd
+Maximum fill of a carrier	Högsta fyllnadsgrad för en kabelbärare
+Measured	Uppmätt
+Measures against common cause failure (at least 65 points)	Åtgärder mot fel med gemensam orsak (minst 65 poäng)
+Merge a symbol library file	Sammanfoga en symbolbiblioteksfil
+Message	Meddelande
+Messages	Meddelanden
+Messages ({})	Meddelanden ({})
+Messages of this session	Meddelanden från denna session
+Middle	Mitten
+Min. bend radius	Min. böjradie
+Minimize the ribbon	Minimera menyfliksområdet
+Mirror	Spegelvänd
+Mirror (selection or symbol being placed)	Spegla (markering eller symbol som placeras)
+Mode	Läge
+Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
+Motors feed the short circuit	Motorer matar kortslutningen
+Mounted on	Monterad på
+Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: skåplayoutens objekt i monteringsordning med deras plats och artikel
+Mounting clearance side by side; parts add theirs (Clearance left / right)	Monteringsavstånd sida vid sida; artiklar lägger till sitt eget (Clearance left / right)
+Mounting plate: {} holes, {} cutouts	Monteringsplåt: {} hål, {} urtag
+Move	Flytta
+Move down	Flytta nedåt
+Move left	Flytta åt vänster
+Move page down	Flytta sidan nedåt
+Move page up	Flytta sidan uppåt
+Move selection by	Flytta markeringen med
+Move selection by…	Flytta markeringen med…
+Move the devices of this page into the new structure	Flytta sidans apparater till den nya strukturen
+Move through the 3D view (Shift: faster)	Förflytta sig i 3D-vyn (Skift: snabbare)
+Move to section	Flytta till avsnitt
+Move up	Flytta uppåt
+Moves to the top level as page {}	Flyttas till översta nivån som sida {}
+Moves to {} as page {}	Flyttas till {} som sida {}
+Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Kraftsymboler och ledare i flerlinjeutförande för enlinjesymbolerna på den aktuella sidan, på en ny sida
+Multiple copy	Multipelkopiera
+Multiple copy…	Multipelkopiera…
+Must be connected to the equipotential bonding	Måste anslutas till potentialutjämningen
+My locks	Mina lås
+My page	Min sida
+NC data	NC-data
+NC data (DWG)	NC-data (DWG)
+NC data (DXF)	NC-data (DXF)
+NC data of this face (DWG)	NC-data för den här ytan (DWG)
+NC data of this face (DXF)	NC-data för den här ytan (DXF)
+Nailboard (SVG)…	Spikbräde (SVG)…
+Name on the server	Namn på servern
+Name; Data Type; Logical Address; Comment – for PLC programming tools	Namn; datatyp; logisk adress; kommentar – för PLC-programmeringsverktyg
+Named copy of this form, for report blocks	Namngiven kopia av det här formuläret, för rapportblock
+Navigators	Navigatorer
+Neutral exchange file…	Neutral utbytesfil…
+Never	Aldrig
+New	Ny
+New block	Nytt block
+New building	Ny byggnad
+New cable	Ny kabel
+New change request	Ny ändringsbegäran
+New cover sheet	Nytt försättsblad
+New document page…	Ny dokumentsida…
+New empty	Ny, tom
+New enclosure	Ny kapsling
+New graphics page	Ny grafiksida
+New group	Ny grupp
+New harness	Ny kabelstam
+New items go onto this layer	Nya objekt hamnar på det här lagret
+New mounting layout page	Ny monteringslayoutsida
+New option	Nytt alternativ
+New overview page	Ny översiktssida
+New page	Ny sida
+New page after the current one	Ny sida efter den aktuella
+New page from template	Ny sida från mall
+New page in this section	Ny sida i detta avsnitt
+New pages for every group (strip, plug, cable, device …)	Nya sidor för varje grupp (plintrad, kontaktdon, kabel, apparat …)
+New potential	Ny potential
+New project	Nytt projekt
+New project from template	Nytt projekt från mall
+New project scheme from the selected one	Nytt projektschema från det markerade
+New report page	Ny rapportsida
+New request	Ny begäran
+New revision	Ny revision
+New revisions start as drafts, are submitted for review and can be released once approved.	Nya revisioner börjar som utkast, skickas för granskning och kan frisläppas när de har godkänts.
+New room	Nytt rum
+New room on this level	Nytt rum på denna våning
+New schematic page	Ny schemasida
+New scheme	Nytt schema
+New section	Nytt avsnitt
+New shaft	Nytt schakt
+New sub-page	Ny undersida
+New subsection	Nytt underavsnitt
+New tag for {}	Ny beteckning för {}
+New, empty placement scheme	Nytt, tomt placeringsschema
+Next free contact numbers on this device	Nästa lediga kontaktnummer på den här apparaten
+Next item	Nästa objekt
+Next page	Nästa sida
+Next page tab	Nästa sidflik
+Next pane	Nästa panel
+Next row	Nästa rad
+Next wire	Nästa ledning
+No PLC cards in the project.	Inga PLC-kort i projektet.
+No PLC inputs / outputs placed.	Inga PLC-ingångar / -utgångar placerade.
+No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Inga tillbehör: förskruvningar, kontaktdon, skärmklämmor … ingår i stycklistan och kontrolleras mot kabeln.
+No bus systems.	Inga bussystem.
+No cable passage to {}: wires to it are not routed	Ingen kabelgenomföring till {}: ledningar dit dras inte
+No cables defined.	Inga kablar definierade.
+No cables yet. Draw a cable definition across wires or add a cable.	Inga kablar ännu. Rita en kabeldefinition tvärs över ledningar eller lägg till en kabel.
+No change requests yet.	Inga ändringsbegäranden ännu.
+No changes since the last revision.	Inga ändringar sedan den senaste revisionen.
+No data of other systems imported yet.	Inga data från andra system har importerats ännu.
+No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Ingen apparat har monteringsdata ännu: tilldela apparaterna artiklar med mått (Egenskaper › Artiklar).
+No differences to {}.	Inga skillnader mot {}.
+No document embedded	Inget dokument inbäddat
+No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling ännu – skapa en med Ny kapsling, eller ett rum för skåp med Nytt rum.
+No field cables: place the enclosures and field devices at nodes of the route network.	Inga fältkablar: placera kapslingarna och fältapparaterna vid noder i kabelvägsnätet.
+No filter fans: an air/air heat exchanger or a cooling unit	Inga filterfläktar: en luft/luft-värmeväxlare eller ett kylaggregat
+No harnesses defined.	Inga kabelstammar definierade.
+No longer reported	Rapporteras inte längre
+No macros yet. Select items in a schematic and save them as a macro.	Inga makron ännu. Markera objekt i ett schema och spara dem som ett makro.
+No modules: plug in PLC cards of the schematic.	Inga moduler: sätt i PLC-kort från schemat.
+No numbers for	Inga nummer för
+No panel items: place the devices in the panel layout.	Inga layoutobjekt: placera apparaterna i skåplayouten.
+No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Inga artiklar är märkta för golvmontage ännu. Märk en i artikelhanteringen: artikelredigeraren › Monteringsdata › Golvmontage.
+No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Inga artiklar är märkta för väggmontage ännu. Märk en i artikelhanteringen: artikelredigeraren › Monteringsdata › Väggmontage.
+No parts of the product group Cables in the parts database.	Inga artiklar i produktgruppen Kablar i artikeldatabasen.
+No parts of the product group Marking in the parts database.	Inga artiklar i produktgruppen Marking i artikeldatabasen.
+No parts: assign the housings in the properties of a pin (parts with the function Plug pin give the pin count).	Inga artiklar: tilldela husen i egenskaperna för ett stift (artiklar med funktionen Kontaktdonsstift anger antalet stift).
+No pin layout in the technical data of the part: the pins are shown in a row (Pin layout: circle 4, circle 7+1, row 8, zigzag 10, grid 2x8+PE, dsub 9).	Ingen stiftlayout i artikelns tekniska data: stiften visas på en rad (Pin layout: circle 4, circle 7+1, row 8, zigzag 10, grid 2x8+PE, dsub 9).
+No plugs: place plug pins (symbol group Plugs) in a schematic first.	Inga kontaktdon: placera först kontaktdonsstift (symbolgruppen Kontaktdon) i ett schema.
+No problems found	Inga problem hittades
+No projects. Add a folder with project files.	Inga projekt. Lägg till en mapp med projektfiler.
+No report pages to output	Inga rapportsidor att mata ut
+No revision yet. Changes are tracked from the first revision on.	Ingen revision ännu. Ändringar spåras från och med den första revisionen.
+No routed wires: place the devices in the panel layout.	Inga dragna ledningar: placera apparaterna i skåplayouten.
+No saved workspaces yet.	Inga sparade arbetsytor ännu.
+No segments yet: add one, or import a CSV / Excel file.	Inga segment ännu: lägg till ett eller importera en CSV- / Excel-fil.
+No segments yet: draw them in the plant layout.	Inga avsnitt ännu: rita dem i anläggningslayouten.
+No shortcut	Inget kortkommando
+No single-line symbols and no power devices in the schematic.	Inga enlinjesymboler och inga kraftapparater i kretsschemat.
+No stations: add one or use the automatic configuration.	Inga stationer: lägg till en eller använd den automatiska konfigurationen.
+No subprojects were taken out of this project.	Inga delprojekt har lyfts ut ur det här projektet.
+No terminal strips: place terminals in a schematic first.	Inga plintrader: placera först plintar i ett schema.
+No user symbols yet. Create one or copy a built-in symbol.	Inga användarsymboler ännu. Skapa en eller kopiera en inbyggd symbol.
+Node	Nod
+None	Inga
+None – draw it with the redline / greenline tools of the toolbar.	Inga – rita dem med redline- / greenline-verktygen i verktygsfältet.
+None – editing a page or the project data locks it.	Inga – när du redigerar en sida eller projektdata låses den.
+Not a page template file: {}	Inte en sidmallsfil: {}
+Not a point: type x y or @dx dy	Ingen punkt: skriv x y eller @dx dy
+Not a symbol library: {}	Inte ett symbolbibliotek: {}
+Not a title block file: {}	Inte en namnrutefil: {}
+Not changed: {}	Inte ändrad: {}
+Not found: {}	Hittades inte: {}
+Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
+Not on a wire	Inte på en ledning
+Not saved, locked or changed by another user: {}	Inte sparat, låst eller ändrat av en annan användare: {}
+Nothing exchanged yet.	Inget har utbytts ännu.
+Nothing left in this list.	Inget kvar i den här listan.
+Nothing to show	Inget att visa
+Nothing to show.	Inget att visa.
+Number contacts automatically (13/14, 21/22 …)	Numrera kontakter automatiskt (13/14, 21/22 …)
+Number cores	Numrera ledare
+Number devices	Numrera apparater
+Number prefix	Nummerprefix
+Number wires	Numrera ledningar
+Numbering	Numrering
+Numbers removed from {} wires	Nummer borttagna från {} ledningar
+Object	Objekt
+Of the outer diameter, as laid fixed	Av ytterdiametern, fast förlagd
+Of the outer diameter; pipes are bent with elbows of one and a half diameters	Av ytterdiametern; rör böjs med böjar på en och en halv diameter
+Off	Av
+Offset from one row to the next: downwards for lists, sideways for rows side by side	Förskjutning från en rad till nästa: nedåt för listor, åt sidan för rader bredvid varandra
+One row per label	En rad per etikett
+Only devices on the current page	Endast apparater på den aktuella sidan
+Only frames no page uses can be deleted	Endast ramar som ingen sida använder kan tas bort
+Only messages of the current page	Endast meddelanden för den aktuella sidan
+Only parts whose function template provides the device's main function	Endast artiklar vars funktionsmall tillhandahåller apparatens huvudfunktion
+Only rows that pass all filters are shown	Endast rader som klarar alla filter visas
+Only web and e-mail addresses (http, https, mailto) are links	Endast webb- och e-postadresser (http, https, mailto) är länkar
+Open and save shared projects, lock pages	Öppna och spara delade projekt, lås sidor
+Open archive…	Öppna arkiv…
+Open as project	Öppna som projekt
+Open cable ducts	Öppna kabelkanaler
+Open demo project	Öppna demoprojekt
+Open door	Öppna dörren
+Open in a new page tab	Öppna i en ny sidflik
+Open link	Öppna länk
+Open project	Öppna projekt
+Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Öppna projekt och filer från Autodesk Vault, lägg projektet, exporter och 3D-modeller i valvet
+Open the project	Öppna projektet
+Open to {}: wires cross beside the mounting plates	Öppen mot {}: ledningar går över bredvid monteringsplåtarna
+Open, save, import, export, print and the settings	Öppna, spara, importera, exportera, skriva ut och inställningarna
+OpenECraft page templates	OpenECraft-sidmallar
+OpenECraft page templates (JSON)	OpenECraft-sidmallar (JSON)
+OpenECraft project	OpenECraft-projekt
+OpenECraft project archive	OpenECraft-projektarkiv
+OpenECraft project or archive	OpenECraft-projekt eller -arkiv
+OpenECraft project template	OpenECraft-projektmall
+OpenECraft property library	OpenECraft-egenskapsbibliotek
+OpenECraft property library (JSON)	OpenECraft-egenskapsbibliotek (JSON)
+OpenECraft rule sets	OpenECraft-regelverk
+OpenECraft rule sets (JSON)	OpenECraft-regelverk (JSON)
+OpenECraft structure template	OpenECraft-strukturmall
+OpenECraft structure template (JSON)	OpenECraft-strukturmall (JSON)
+OpenECraft symbol library	OpenECraft-symbolbibliotek
+OpenECraft title blocks	OpenECraft-namnrutor
+OpenECraft title blocks and report schemes (JSON)	OpenECraft-namnrutor och rapportscheman (JSON)
+Opened {}	{} öppnad
+Opened {} from Vault (version {})	{} öppnad från Vault (version {})
+Opened {} from the project server	{} öppnad från projektservern
+Opening	Öppning
+Opening in the mounting plate / door: click two corners (round: in the properties)	Öppning i monteringsplåten / dörren: klicka på två hörn (rund: i egenskaperna)
+Opening {}…	Öppnar {}…
+Opens the pages for printing in the browser with its print dialog	Öppnar sidorna för utskrift i webbläsaren med dess utskriftsdialog
+Open…	Öppna…
+Operations / year	Manövrer / år
+Option	Alternativ
+Options	Alternativ
+Ordinary cable	Vanlig kabel
+Orientation	Orientering
+Origin	Ursprung
+Other values ({})	Övriga värden ({})
+Otherwise from the plant layout, or next to the other line-ups	Annars från anläggningslayouten, eller bredvid de andra skåpsraderna
+Out since {} (pages locked)	Utlyft sedan {} (sidorna är låsta)
+Outer diameter (e.g. 8 mm) or DN	Ytterdiameter (t.ex. 8 mm) eller DN
+Outline	Kontur
+Outlines	Konturer
+Output bytes	Utgångsbyte
+Output failed: {}	Utmatningen misslyckades: {}
+Output to another project	Mata ut till ett annat projekt
+Output to project…	Mata ut till projekt…
+Outputs	Utgångar
+Own colour	Egen färg
+Own drawn form	Eget ritat formulär
+Own groups	Egna grupper
+PCT loops (pre-planning)	Instrumentslingor (förprojektering)
+PDF with comments	PDF med kommentarer
+PDF {}	PDF {}
+PLC channels	PLC-kanaler
+PLC hardware and bus topology	PLC-hårdvara och busstopologi
+PLC overview	PLC-översikt
+PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmapp, t.ex. en logotyp eller ett foto
+Page graphics	Sidgrafik
+Page heading	Sidrubrik
+Page list, devices, parts, panel layout and settings	Sidlista, apparater, artiklar, skåplayout och inställningar
+Page macro	Sidmakro
+Page macro {} inserted as page {}	Sidmakro {} infogat som sida {}
+Page macro: {}	Sidmakro: {}
+Page name / number	Sidnamn / -nummer
+Page properties…	Sidegenskaper…
+Page template {} saved	Sidmall {} sparad
+Page templates (JSON) from another project	Sidmallar (JSON) från ett annat projekt
+Page {} (deleted)	Sida {} (borttagen)
+Page {} ({})	Sida {} ({})
+Page {} is now page {}	Sida {} är nu sida {}
+Page {} locked	Sida {} låst
+Page {} – {}	Sida {} – {}
+Page {}: {}	Sida {}: {}
+Pages and templates using the frame follow	Sidor och mallar som använder ramen följer med
+Pages of revision {}	Sidor i revision {}
+Pages of the selected block	Sidor i det markerade blocket
+Pages using it get the project default	Sidor som använder den får projektstandarden
+Pairs in schematic order (1-2, 3-4 …)	Par i schemaordning (1-2, 3-4 …)
+Pane menu	Panelmeny
+Panel wiring report	Rapport skåpinkoppling
+Panes	Paneler
+Paper	Papper
+Parent section	Överordnat avsnitt
+Part of the profile: generic types or parts from the parts store	Profilens artikel: generiska typer eller artiklar från artikellagret
+Part selection from the parts database	Artikelval från artikeldatabasen
+Part selection – {}	Artikelval – {}
+Part selection…	Artikelval…
+Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artiklar kan bara släppas på sidor som kan ändras; den här är frisläppt, låst eller genererad
+Parts management	Artikelhantering
+Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artiklar märkta för golvmontage (pumpar, tankar, kompressorer): välj en och klicka där den ska stå på rummets golv
+Parts of the product group PLC give descriptions as well (technical data: Inputs, Outputs, Slots, Bus, Ports).	Artiklar i produktgruppen PLC ger också beskrivningar (tekniska data: Inputs, Outputs, Slots, Bus, Ports).
+Parts of {}	Artiklar för {}
+Parts store	Artikellager
+Parts with functions: the device gets the part, its first function is placed.	Artiklar med funktioner: apparaten får artikeln, dess första funktion placeras.
+Parts: {}	Artiklar: {}
+Paste	Klistra in
+Path for cables, tubes or wires over the plate: click the corners, double-click or Enter to finish	Väg för kablar, slangar eller ledningar över plåten: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
+Path function text	Strömvägens funktionstext
+Pattern	Mönster
+Pattern…	Mönster…
+Pin-out	Stiftbeläggning
+Pipe run	Rörgata
+Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rörgata på en vägg, i taket eller på golvet i rummet, längs vilken slangar, rör och rörledningar dras: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
+Pipe run {} mm – double-click or Enter to finish	Rörgata {} mm – dubbelklicka eller tryck på Enter för att avsluta
+Pitch X / Y	Delning X / Y
+Place a comment on the page	Placera en kommentar på sidan
+Place again at all symbols using it	Placera igen på alla symboler som använder det
+Place an enclosure, device or machine location at this node	Placera en kapsling, apparat eller maskinplacering vid den här noden
+Place connection definition point	Placera förbindelsedefinitionspunkt
+Place functions of this device	Placera funktioner för den här apparaten
+Place in schematic	Placera i schemat
+Place in the building	Plats i byggnaden
+Place in the plant	Plats i anläggningen
+Place in the room	Plats i rummet
+Place text	Placera text
+Placed	Placerad
+Placed here: {}	Placerat här: {}
+Placed {}× in the project	Placerad {}× i projektet
+Placeholders	Platshållare
+Placeholders like {MOTOR} in tags, texts and function texts are filled in when inserting.	Platshållare som {MOTOR} i beteckningar, texter och funktionstexter fylls i vid infogning.
+Placeholders: {letter} identifying letter, {n} counter, {page} page, {column} / {row} where the main function stands	Platshållare: {letter} kodbokstav, {n} räknare, {page} sida, {column} / {row} där huvudfunktionen står
+Placeholders: {n} counter (counted per value of the rest), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}. Without {n}, connections with the same text share the number.	Platshållare: {n} räknare (räknas per värde av resten), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}. Utan {n} delar förbindelser med samma text på numret.
+Placement schemes	Placeringsscheman
+Places	Platser
+Placing symbols	Placera symboler
+Placing {}	Placerar {}
+Plan devices in the single-line diagram, generate the schematic and keep both in sync	Planera apparater i enlinjeschemat, generera kretsschemat och håll båda synkroniserade
+Plant layout	Anläggningslayout
+Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Anläggningslayout, kabelvägsnät, fältkabelplanering, potentialutjämning och kabeltillbehör
+Plant segments with planned devices before the schematic	Anläggningssegment med planerade apparater före kretsschemat
+Plate outline, holes per diameter, cutouts	Plåtkontur, hål per diameter, urtag
+Plot frames	Ritningsramar
+Plug in card	Sätt i kort
+Plugin commands	Plugin-kommandon
+Plugins	Plugins
+Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins lägger till kommandon, kontroller, rapporter och exporter. Externa plugins läses in från mapparna i miljövariabeln {} (en undermapp med en plugin.json per plugin).
+Points	Punkter
+Polygon	Polygon
+Polyline	Polylinje
+Polyline / rectangle	Polylinje / rektangel
+Port A	Port A
+Port B	Port B
+Portrait	Stående
+Position X {} mm, Y {} mm	Position X {} mm, Y {} mm
+Position of the cursor	Markörens position
+Position of the device tag (instead of the tag block)	Position för apparatbeteckningen (i stället för beteckningsblocket)
+Position of the label (terminal number, address …)	Position för etiketten (plintnummer, adress …)
+Positions are relative to the lower right corner of the symbol.	Positionerna är relativa till symbolens nedre högra hörn.
+Potential {}	Potential {}
+Potential: {}	Potential: {}
+Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Effekt och ström för nätets laster (motorer, drivsystem, värmare, nätaggregat, transformatorer), lasten för varje skyddsdon, behovet med sammanlagringsfaktor och lastbudgeten för nätaggregaten.
+Power loss not covered by the parts (tech data Power loss: 7.5 W)	Effektförlust som inte täcks av artiklarna (tekniska data Power loss: 7.5 W)
+Pre-planning (CSV, Excel)	Förplanering (CSV, Excel)
+Prefix	Prefix
+Press a key…	Tryck på en tangent…
+Previous item	Föregående objekt
+Previous page	Föregående sida
+Previous page tab	Föregående sidflik
+Previous pane	Föregående panel
+Previous wire	Föregående ledning
+Print	Skriv ut
+Print all pages…	Skriv ut alla sidor…
+Print current page…	Skriv ut aktuell sida…
+Printing and export	Utskrift och export
+Printing failed: {}	Utskriften misslyckades: {}
+Priority	Prioritet
+Production	Tillverkning
+Production wire list and bill of materials	Tillverkningsledningslista och stycklista
+Profile name	Profilnamn
+Profiles	Profiler
+Project access	Projektåtkomst
+Project and user settings in one dialog	Projekt- och användarinställningar i en dialogruta
+Project data	Projektdata
+Project database	Projektdatabas
+Project database, batch changes of project properties, subprojects, options, archives and verification	Projektdatabas, massändringar av projektegenskaper, delprojekt, alternativ, arkiv och verifiering
+Project default: {}	Projektstandard: {}
+Project default; pages can choose their own in the page properties	Projektstandard; sidor kan välja sin egen i sidegenskaperna
+Project file	Projektfil
+Project file…	Projektfil…
+Project information	Projektinformation
+Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projektartiklar är de kopior som lagras i det här projektet; de används för stycklistan och projektkontrollen.
+Project properties changed in {} projects	Projektegenskaper ändrade i {} projekt
+Project properties…	Projektegenskaper…
+Project server	Projektserver
+Project server: {}	Projektserver: {}
+Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projekttexter (funktionstexter, sidbeskrivningar, fria texter, beskrivningar) skrivs på källspråket; ordlistan översätter dem rad för rad. Rapporter och namnrutor följer utdataspråket.
+Project: {}	Projekt: {}
+Projects from a first circuit to a whole plant, each showing more of the features	Projekt från en första krets till en hel anläggning, vart och ett visar fler av funktionerna
+Properties…	Egenskaper…
+Property database	Egenskapsdatabas
+Property definitions	Egenskapsdefinitioner
+Property definitions, function definitions, placement schemes and the values of all objects	Egenskapsdefinitioner, funktionsdefinitioner, placeringsscheman och värdena för alla objekt
+Property groups	Egenskapsgrupper
+Property placement	Egenskapsplacering
+Property removed with {} values	Egenskapen med {} värden borttagen
+Put a room here	Placera ett rum här
+Put into the vault	Lägg i valvet
+Put the pane back into the workspace	Lägg tillbaka panelen i arbetsytan
+Puts the project into the folder it was opened from	Lägger projektet i mappen som det öppnades från
+Quick guide	Snabbguide
+Quit	Avsluta
+R/X of the supply	Matningens R/X
+Radius	Radie
+Rail raised on standoffs above the plate (devices on it move up)	Skena upphöjd på distanser ovanför plåten (apparater på den flyttas upp)
+Rails, ducts and busbars shorter than this are hard to cut	Skenor, kanaler och samlingsskenor som är kortare än så är svåra att kapa
+Rated current of the supply	Matningens märkström
+Read a file of the other system (CSV or JSON) and review the changes	Läs en fil från det andra systemet (CSV eller JSON) och granska ändringarna
+Readdress card	Adressera om kort
+Reading the folder…	Läser mappen…
+Reading the parts file	Läser artikelfilen
+Reading {}	Läser {}
+Real length per millimetre on the page, e.g. 10 for a 1:10 drawing	Verklig längd per millimeter på sidan, t.ex. 10 för en ritning i 1:10
+Rear	Bak
+Rear left corner of the line-up on the floor, as in the 3D view with all enclosures	Skåpsradens bakre vänstra hörn på golvet, som i 3D-vyn med alla kapslingar
+Recent projects	Senaste projekt
+Recently used	Senast använda
+Recommended height of manual actuators (10.1.2)	Rekommenderad höjd för manuella manöverdon (10.1.2)
+Record	Spela in
+Rectangular	Rektangulär
+Redline: to be changed · Greenline: changed as built	Redline: ska ändras · Greenline: ändrat enligt utförande
+Redo	Gör om
+Refresh	Uppdatera
+Refresh example catalog parts (GEN.*)	Uppdatera exempelkatalogens artiklar (GEN.*)
+Reject	Avvisa
+Rejected and closed ones too	Även avvisade och stängda
+Relative column width	Relativ kolumnbredd
+Release	Frisläpp
+Release all	Frigör alla
+Release route	Frigör dragning
+Release without saving	Lås upp utan att spara
+Release: lock all pages	Frisläpp: lås alla sidor
+Released page – read only	Frisläppt sida – skrivskyddad
+Released pages in it keep their names	Frisläppta sidor i det behåller sina namn
+Released pages keep their name.	Frisläppta sidor behåller sitt namn.
+Releases all locks; the project stays open as a local copy	Släpper alla lås; projektet förblir öppet som en lokal kopia
+Releasing…	Låser upp…
+Remove from cable	Ta bort från kabel
+Remove from harness	Ta bort från kabelstam
+Remove from the group	Ta bort från gruppen
+Remove from the harness	Ta bort från kabelstammen
+Remove from the list	Ta bort från listan
+Remove from the station	Ta bort från stationen
+Remove numbers	Ta bort nummer
+Remove part	Ta bort artikel
+Remove profile	Ta bort profil
+Remove property	Ta bort egenskap
+Remove segment	Ta bort segment
+Remove station	Ta bort station
+Remove the definition (pages and devices keep the identifier)	Ta bort definitionen (sidor och apparater behåller beteckningen)
+Remove the folder from the database	Ta bort mappen från databasen
+Remove the language (its translations stay in the dictionary)	Ta bort språket (dess översättningar finns kvar i ordlistan)
+Remove the macro box (its items stay)	Ta bort makrorutan (dess objekt behålls)
+Remove the value	Ta bort värdet
+Remove the {} messages no longer reported	Ta bort de {} meddelanden som inte längre rapporteras
+Remove unused	Ta bort oanvända
+Remove unused entries	Ta bort oanvända poster
+Remove unused project parts	Ta bort oanvända projektartiklar
+Remove {} old marks	Ta bort {} gamla markeringar
+Removes the definitions no page or device uses	Tar bort de definitioner som ingen sida eller apparat använder
+Removes the option; its content stays in the project	Tar bort alternativet; dess innehåll stannar i projektet
+Rename	Byt namn
+Rename device	Byt namn på apparat
+Rename device…	Byt namn på apparat…
+Rename in the whole project	Byt namn i hela projektet
+Rename property	Byt namn på egenskap
+Renames the devices (all their functions, also on other pages)	Byter namn på apparaterna (alla deras funktioner, även på andra sidor)
+Renames the identifier on all pages and in all device tags	Byter namn på beteckningen på alla sidor och i alla apparatbeteckningar
+Rename…	Byt namn…
+Renumber 1 … n	Numrera om 1 … n
+Renumber contact	Numrera om kontakt
+Renumber pages	Numrera om sidor
+Renumber pages…	Numrera om sidor…
+Repair {} findings	Reparera {} avvikelser
+Replace	Ersätt
+Replace all	Ersätt alla
+Replace text	Ersätt text
+Replace with	Ersätt med
+Replaced when the configurator generates again; switch off to keep the page	Ersätts när konfiguratorn genererar igen; stäng av för att behålla sidan
+Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Ersätter i fria texter, funktionstexter, sid-, apparat- och kabelbeskrivningar; frisläppta sidor lämnas orörda
+Replaces the GEN.* parts in the database with the current example catalog (including models)	Ersätter GEN.*-artiklarna i databasen med den aktuella exempelkatalogen (inklusive modeller)
+Replaces the content of the macro boxes whose macro changed in the library	Ersätter innehållet i de makrorutor vars makro har ändrats i biblioteket
+Replaces the pages of this block	Ersätter sidorna i det här blocket
+Reply	Svara
+Reply…	Svara…
+Report block {}: {} pages generated	Rapportblock {}: {} sidor genererade
+Report blocks start new pages for every value of this column	Rapportblock börjar nya sidor för varje värde i den här kolumnen
+Report blocks updated: {} pages	Rapportblock uppdaterade: {} sidor
+Report blocks…	Rapportblock…
+Report forms	Rapportformulär
+Report name (page heading)	Rapportnamn (sidrubrik)
+Report with all harness wires	Rapport med alla kabelstamsledningar
+Reports	Rapporter
+Representation	Framställning
+Requester	Beställare
+Reservation	Reservation
+Reservations	Reservationer
+Reserve per cable end	Tillägg per kabelände
+Reset	Återställ
+Reset all to the defaults	Återställ alla till standardvärdena
+Reset pane layout	Återställ panellayout
+Reset the ribbon	Återställ menyfliksområdet
+Reset to standard	Återställ till standard
+Resulting: {} · {} · {} · {} m	Resultat: {} · {} · {} · {} m
+Results of the project check	Resultat av projektkontrollen
+Review	Granskning
+Review ({})	Granskning ({})
+Revision marks	Revisionsmarkeringar
+Revision overview	Revisionsöversikt
+Revision {} approved by {}	Revision {} godkänd av {}
+Revision {} created	Revision {} skapad
+Revision {} rejected by {}	Revision {} avvisad av {}
+Revision {} released	Revision {} frisläppt
+Revision {} submitted for review	Revision {} skickad för granskning
+Revision {} withdrawn	Revision {} tillbakadragen
+Revisions	Revisioner
+Revisions, approval and release	Revisioner, godkännande och frisläppning
+Ribbon	Menyfliksområde
+Ribbon (JSON)	Menyfliksområde (JSON)
+Ribbon imported	Menyfliksområdet importerat
+Right	Höger
+Right click for more	Högerklicka för mer
+Right edges	Högerkanter
+Right neighbour	Granne till höger
+Rights	Behörigheter
+Room	Rum
+Rotate	Rotera
+Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
+Round	Rund
+Round cutouts facing each other in both side walls	Runda urtag mitt emot varandra i båda sidoväggarna
+Route definition of {}	Kabelvägsdefinition för {}
+Route network	Kabelvägsnät
+Route wires in 3D	Dra ledningar i 3D
+Routed in {}: {} m, {} bends	Dragen i {}: {} m, {} böjar
+Routing around symbols	Dragning runt symboler
+Routing path	Dragningsväg
+Routing path {} mm – double-click or Enter to finish	Dragningsväg {} mm – dubbelklicka eller tryck på Enter för att avsluta
+Routing paths	Dragningsvägar
+Routing rules	Dragningsregler
+Row	Rad
+Row drawing	Radritning
+Row labels	Radetiketter
+Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rader på frisläppta sidor kan inte ändras. En radbrytning i en text skrivs som \\n.
+Rows per page	Rader per sida
+Rule libraries	Regelbibliotek
+Rule set {}	Regelverk {}
+Rule sets and verification	Regelverk och verifiering
+Rules	Regler
+Rules insert page macros when their condition holds. Generating replaces the pages generated before; option values fill {OPTION} placeholders.	Regler infogar sidmakron när deras villkor är uppfyllt. Generering ersätter de tidigare genererade sidorna; alternativvärden fyller i {OPTION}-platshållare.
+Run	Kör
+SVG drawing	SVG-ritning
+Safety functions of ISO 13849-1: each subsystem (input, logic, output) with the devices of a channel, its category, diagnostic coverage and operations per year. Devices count with PL / PFHd, MTTFd or B10d of their parts.	Säkerhetsfunktioner enligt ISO 13849-1: varje delsystem (ingång, logik, utgång) med apparaterna i en kanal, dess kategori, diagnostisk täckning och antal manövrer per år. Apparater räknas med PL / PFHd, MTTFd eller B10d för sina artiklar.
+Save	Spara
+Save a selection under this name with another variant to add one.	Spara en markering under det här namnet med en annan variant för att lägga till en.
+Save access	Spara åtkomst
+Save and release	Spara och lås upp
+Save and release all locks	Spara och släpp alla lås
+Save and release page	Spara och lås upp sidan
+Save as 3D macro	Spara som 3D-makro
+Save as 3D macro…	Spara som 3D-makro…
+Save as local file	Spara som lokal fil
+Save as macro	Spara som makro
+Save as project template…	Spara som projektmall…
+Save as scheme	Spara som schema
+Save as template	Spara som mall
+Save as template…	Spara som mall…
+Save as…	Spara som…
+Save current page as template…	Spara aktuell sida som mall…
+Save current…	Spara aktuell…
+Save file…	Spara fil…
+Save page as macro…	Spara sida som makro…
+Save page as template	Spara sida som mall
+Save page as template…	Spara sida som mall…
+Save selection as macro…	Spara markering som makro…
+Save the box content as the macro in the library	Spara rutans innehåll som makrot i biblioteket
+Save to project server	Spara på projektservern
+Save workspace	Spara arbetsyta
+Save workspace…	Spara arbetsyta…
+Saved to the project server (revision {})	Sparat på projektservern (revision {})
+Saved workspaces	Sparade arbetsytor
+Saves the placed properties as a placement scheme of the project	Sparar de placerade egenskaperna som ett placeringsschema i projektet
+Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Sparar projektet utan revisioner, baslinjer, granskning och inkopplingsmarkeringar som en mall för nya projekt
+Saves the project's own properties, function definitions and schemes for other projects	Sparar projektets egna egenskaper, funktionsdefinitioner och scheman för andra projekt
+Saves the workspace, the arrangement of the panels and the open windows	Sparar arbetsytan, panelernas placering och de öppna fönstren
+Saving failed: {}	Det gick inte att spara: {}
+Saving the project access…	Sparar projektåtkomsten…
+Saving to the project server…	Sparar på projektservern…
+Scheme	Schema
+Scheme name	Schemanamn
+Scheme placed again at {} symbols	Schemat placerat igen på {} symboler
+Scheme {}	Schema {}
+Screws, nuts, washers and rivet nuts of the fixing points	Skruvar, muttrar, brickor och nitmuttrar för fästpunkterna
+Search (* and ? as placeholders)…	Sök (* och ? som jokertecken)…
+Search below this folder	Sök under den här mappen
+Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Sök på artikelservern efter katalog, produktgrupp och tekniska data, lägg till artiklar och kontrollera om databasen har uppdateringar
+Second channel	Andra kanalen
+Section properties	Avsnittsegenskaper
+Section properties…	Avsnittsegenskaper…
+Section {} is now section {}	Avsnitt {} är nu avsnitt {}
+Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Sett mot anslutningssidorna; färgerna är ledarnas och kabelledarnas vid stiften.
+Segment {}	Segment {}
+Segments	Avsnitt
+Segregation	Separation
+Segregation factor	Separationsfaktor
+Select	Markera
+Select / move (Esc)	Markera / flytta (Esc)
+Select a file to import it	Välj en fil för att importera den
+Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Välj en funktionsdefinition. Projektdefinitioner (fetstil) kan ändras och sparas i egenskapsbibliotek.
+Select a macro.	Välj ett makro.
+Select a part. Double click adds it to the device.	Välj en artikel. Dubbelklick lägger till den i apparaten.
+Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Välj ett placeringsschema. Ett schema placerar egenskaper bredvid symboler; symboler som använder det uppdateras när det ändras.
+Select a report block.	Välj ett rapportblock.
+Select a request.	Välj en begäran.
+Select a segment.	Välj ett segment.
+Select a wire in the list or in the 3D view.	Välj en ledning i listan eller i 3D-vyn.
+Select all	Markera alla
+Select an element in the list or the drawing.	Välj ett element i listan eller i ritningen.
+Select an item in the list or in the 3D view.	Välj ett objekt i listan eller i 3D-vyn.
+Select and drag elements; Del deletes	Markera och dra element; Del tar bort
+Select and drag nodes; drag the background to pan, scroll to zoom	Markera och dra noder; dra i bakgrunden för att panorera, rulla för att zooma
+Select assembly	Välj byggrupp
+Select device	Välj apparat
+Select none	Markera ingen
+Select on this page	Markera på den här sidan
+Select wire	Välj ledare
+Select wires on this page	Markera ledningar på den här sidan
+Selective up to (kA)	Selektiv upp till (kA)
+Selectivity and back-up protection of device pairs as tested by the manufacturer, by part number. They replace the estimate from the time-current curves.	Selektivitet och back-up-skydd för apparatpar enligt tillverkarens provning, efter artikelnummer. De ersätter uppskattningen från tid-strömkurvorna.
+Semicolon	Semikolon
+Separator	Avskiljare
+Server URL	Server-URL
+Server type	Servertyp
+Servers	Servrar
+Service space in front	Serviceutrymme framför
+Set the cable lengths to the planned cut lengths	Ställ in kabellängderna på de planerade kaplängderna
+Set value	Ange värde
+Sets the aspects of the pages and adds the template's identifiers	Anger sidornas aspekter och lägger till mallens beteckningar
+Sets the column of all filtered rows to the replacement	Anger kolumnen för alla filtrerade rader till ersättningen
+Settings scheme	Inställningsschema
+Settings scheme (JSON)	Inställningsschema (JSON)
+Settings taken over: {}	Inställningar överförda: {}
+Settings…	Inställningar…
+Shafts	Schakt
+Shape	Form
+Share of the capacity kept free for later additions	Andel av kapaciteten som hålls ledig för senare tillägg
+Shared project {} – revision {}, user {}	Delat projekt {} – revision {}, användare {}
+Shield	Skärm
+Shield pigtail	Skärm-pigtail
+Shielded	Skärmad
+Shielded analogue cables	Skärmade analogkablar
+Shielded drive cables	Skärmade drivkablar
+Shift + click / drag	Skift + klick / dra
+Short circuit and selectivity	Kortslutning och selektivitet
+Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortslutning, selektivitet, laster, EMC, funktionssäkerhet och kontroll mot regelverk
+Short-circuit currents	Kortslutningsströmmar
+Short-circuit power of the network	Nätets kortslutningseffekt
+Shortest profile	Kortaste profil
+Show	Visa
+Show all enclosures side by side at their places in the room	Visa alla kapslingar sida vid sida på sina platser i rummet
+Show as list	Visa som lista
+Show as tiles	Visa som rutor
+Show connection point designations	Visa anslutningspunktsbeteckningar
+Show connectors	Visa kontaktdon
+Show device tag and cross references	Visa apparatbeteckning och korsreferenser
+Show everything (Home)	Visa allt (Home)
+Show in panel layout ({})	Visa i skåplayouten ({})
+Show in schematic	Visa i schemat
+Show in the schematic	Visa i schemat
+Show on the pages	Visa på sidorna
+Show or hide panes; drag a tab to dock it elsewhere	Visa eller dölj paneler; dra en flik för att docka den på annat ställe
+Show the enclosures bayed to this one as well	Visa även de kapslingar som är sammanbyggda med den här
+Show the messages accepted as checked	Visa de meddelanden som godkänts som kontrollerade
+Show the other wires	Visa de andra ledningarna
+Show the pane as a window	Visa panelen som ett fönster
+Show the ribbon	Visa menyfliksområdet
+Show this wire	Visa den här ledningen
+Show who may use the project	Visa vem som får använda projektet
+Shown as \"Name: value\"	Visas som \"Namn: värde\"
+Shown in title blocks with {prop:Name}	Visas i namnrutor med {prop:Name}
+Shown instead of the measured value	Visas i stället för det uppmätta värdet
+Shows	Visar
+Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidoväggar, bakvägg, tak och botten sedda utifrån: fläktar, kabelförskruvningar, urtag
+Signed in to {} as {}	Inloggad på {} som {}
+Signed out of Vault	Utloggad från Vault
+Single-line	Enlinje
+Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Enlinjesymboler för de kraftapparater i kretsschemat som ännu saknar sådana, på en ny översiktssida
+Site plan	Situationsplan
+Size {} × {} mm	Storlek {} × {} mm
+Slot	Kortplats
+Slots	Kortplatser
+Smallest cross-section of control circuits	Minsta tvärsnitt för styrkretsar
+Smallest cross-section of power circuits	Minsta tvärsnitt för kraftkretsar
+Some wires have no length: place their devices in the panel layout or set the field length.	Vissa ledningar saknar längd: placera deras apparater i skåplayouten eller ange fältlängden.
+Sort by designation	Sortera efter beteckning
+Sort order	Sorteringsordning
+Source language	Källspråk
+Space	Blanksteg
+Space behind the door that devices must keep free (door-mounted devices, handles)	Utrymme bakom dörren som apparater måste hålla fritt (dörrmonterade apparater, handtag)
+Space kept free of routes, or for one class only: click two corners	Utrymme som hålls fritt från dragningar, eller endast för en klass: klicka på två hörn
+Spare terminals	Reservplintar
+Special text	Specialtext
+Special text: project and page properties such as {page} or {prop:Name} are filled in when the page is drawn	Specialtext: projekt- och sidegenskaper som {page} eller {prop:Name} fylls i när sidan ritas
+Standard form of the report	Rapportens standardformulär
+Standard size	Standardstorlek
+Standard workspaces	Standardarbetsytor
+Standoff height	Distanshöjd
+Star a command in Plugin commands to pin it here	Markera ett kommando med stjärnan i Plugin-kommandon för att fästa det här
+Star: the first point refers to all, the others to it	Stjärna: den första punkten hänvisar till alla, de andra till den
+Start	Start
+Start again when the page structure changes	Börja om när sidstrukturen ändras
+Start at	Börja vid
+Start byte	Startbyte
+Start page	Startsida
+Station	Station
+Stations and racks	Stationer och rack
+Stations for CPUs and bus couplers, bus systems, slots, start addresses, point addresses, IP addresses and a line topology	Stationer för CPU:er och busskopplare, bussystem, kortplatser, startadresser, punktadresser, IP-adresser och en linjetopologi
+Stations, modules, addresses, subnets and tag comments from a PLC tool	Stationer, moduler, adresser, subnät och variabelkommentarer från ett PLC-verktyg
+Stations, racks, modules, bus systems, AutomationML exchange with PLC tools	Stationer, rack, moduler, bussystem, AutomationML-utbyte med PLC-verktyg
+Step	Steg
+Still reported	Rapporteras fortfarande
+Stock length	Lagerlängd
+Stop placing for this device	Sluta placera för den här apparaten
+Stratification (factor c)	Skiktning (faktor c)
+Strip on the rail	Plintrad på skenan
+Strip {} mm	Skala av {} mm
+Strips / plugs	Plintrader / kontaktdon
+Structure (IEC 81346)	Struktur (IEC 81346)
+Structure (function / location)…	Struktur (funktion / placering)…
+Structure identifiers (IEC 81346), templates and work areas	Strukturbeteckningar (IEC 81346), mallar och arbetsområden
+Structure management	Strukturhantering
+Structure of the target page	Målsidans struktur
+Style	Stil
+Sub-segment	Undersegment
+Submit again	Skicka igen
+Submit for review	Skicka för granskning
+Subnet	Subnät
+Subproject saved as {}: its pages are locked until it is inserted	Delprojektet sparat som {}: dess sidor är låsta tills det infogas
+Subproject {} inserted: {} pages replaced by {}	Delprojekt {} infogat: {} sidor ersatta av {}
+Subprojects	Delprojekt
+Subsystem {}	Delsystem {}
+Supply and conditions	Matning och förhållanden
+Surge protection	Överspänningsskydd
+Swing the enclosure door open or shut (door devices and their wires move with it)	Sväng upp eller stäng kapslingsdörren (dörrapparater och deras ledningar följer med)
+Switch off the check \"{}\"	Stäng av kontrollen \"{}\"
+Switches the options with a condition by the configurator options	Kopplar alternativen med villkor enligt konfiguratoralternativen
+Switches to this workspace with its panes at their default places	Växlar till den här arbetsytan med panelerna på sina standardplatser
+Symbol editor	Symbolredigerare
+Symbol table import failed: {}	Symboltabellimporten misslyckades: {}
+Symbols and wires on this page are drawn but not evaluated (no devices, connections or reports).	Symboler och ledningar på den här sidan ritas men utvärderas inte (inga apparater, förbindelser eller rapporter).
+Symbols placed next get this device tag (contacts are numbered on)	Symboler som placeras härnäst får den här apparatbeteckningen (kontakter numreras vidare)
+Symbols using it go back to their built-in definition	Symboler som använder den får tillbaka sin inbyggda definition
+Symbols using it keep their placed properties	Symboler som använder det behåller sina placerade egenskaper
+Symbols, macros, devices and unplaced functions: search, favorites, recently used	Symboler, makron, apparater och oplacerade funktioner: sökning, favoriter, senast använda
+Synchronize	Synkronisera
+Synchronize function texts	Synkronisera funktionstexter
+Synchronize project parts from database	Synkronisera projektartiklar från databasen
+T Text	T Text
+Tab	Tabb
+Table import failed: {}	Tabellimporten misslyckades: {}
+Tablet mode	Surfplatteläge
+Tag	Beteckning
+Tag field	Beteckningsfält
+Tag placed by hand	Beteckning placerad manuellt
+Take out a subproject	Lyft ut ett delprojekt
+Take out {} pages…	Lyft ut {} sidor…
+Take over cut lengths	Överför kaplängder
+Take over selected ({})	Överför markerade ({})
+Take over {} changes	Överför {} ändringar
+Take page out of its option	Ta ut sidan ur dess alternativ
+Take selection out of its option	Ta ut markeringen ur dess alternativ
+Take the acceptance back	Ta tillbaka godkännandet
+Taken into the drawing: drawn faded	Överförd till ritningen: ritas blekt
+Takes the comments as function texts (matched by address)	Hämtar kommentarerna som funktionstexter (matchas via adress)
+Takes the connection point designations of all functions of this device from the function templates of its parts	Hämtar anslutningspunktsbeteckningarna för alla funktioner i den här apparaten från dess artiklars funktionsmallar
+Takes the rights of the role away, whatever other grants give	Tar bort rollens behörigheter, oavsett vad andra tilldelningar ger
+Target languages	Målspråk
+Temperature rise at the roof against the middle (IEC/TR 60890)	Temperaturhöjning vid taket jämfört med mitten (IEC/TR 60890)
+Template	Mall
+Templates	Mallar
+Terminal markers	Plintmärkningar
+Terminal number, PLC address, potential name …	Plintnummer, PLC-adress, potentialnamn …
+Terminal strips, plugs and PLC cards keep their tags	Plintrader, kontaktdon och PLC-kort behåller sina beteckningar
+Terminals and pins	Plintar och stift
+Terminals at least	Plintar minst
+Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Plintar med samma bygelnummer är byglade (samma potential). Reservplintar räknas i stycklistan.
+Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termer åtskilda med ';': nyckel=värde (lika med), nyckel~text (innehåller) eller text var som helst
+Test connection	Testa anslutning
+Text size	Textstorlek
+Texts	Texter
+The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal erbjuder endast sökning och läsning av artiklar: öppna dataportalfönstret för att lägga till dess artiklar.
+The Insert center finds symbols, macros, devices and unplaced functions; favorites and recently used ones come first.	Infogningscentret hittar symboler, makron, apparater och oplacerade funktioner; favoriter och senast använda kommer först.
+The accessory fits none of the device's parts	Tillbehöret passar inte till någon av enhetens artiklar
+The aspect ratio is kept.	Proportionerna behålls.
+The check warns about cable ducts filled above this level	Kontrollen varnar för kabelkanaler som är fyllda över den här nivån
+The checks keep the distances between classes and let classes overlap as set in Layout checks	Kontrollerna håller avstånden mellan klasser och låter klasser överlappa enligt inställningarna i Layoutkontroller
+The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Kommandona för alla plugins per plugin, med sökning; stjärnan fäster ett kommando på fliken Plugins
+The crossed wires get free cores of the cable in order	De korsade ledningarna får kabelns lediga ledare i ordning
+The current page belongs to option {}.	Den aktuella sidan hör till alternativ {}.
+The devices do not fit onto the rail	Apparaterna får inte plats på skenan
+The dictionary is empty: collect the texts from the project.	Ordlistan är tom: samla in texterna från projektet.
+The door seen from the front: door devices and cutouts	Dörren sedd framifrån: dörrapparater och urtag
+The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Dörren sedd inifrån (gångjärn till höger): kabelkanaler och ledningarna bakom dörren
+The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin vänstra sida mot den valdas högra sida; ledningar går mellan dem genom kabelgenomföringar
+The items are selected and moved together	Objekten markeras och flyttas tillsammans
+The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har inga sidmakron (Makron › Spara sida som makro…).
+The names of its pages follow	Namnen på dess sidor följer med
+The page name gets the section number	Sidnamnet får avsnittsnumret
+The page type, plot frame, title block, structure, description and the whole content are saved.	Sidtyp, ritningsram, namnruta, struktur, beskrivning och hela innehållet sparas.
+The pages it generated stay	De sidor det genererade finns kvar
+The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Artikeldatabasen delas av alla projekt. Artiklar kopieras till ett projekt när de tilldelas en apparat.
+The project changed since the search.	Projektet har ändrats sedan sökningen.
+The project check	Projektkontrollen
+The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kräver skrivbordsversionen: webbläsaren kan inte söka i mappar.
+The project's own page templates as a file	Projektets egna sidmallar som en fil
+The project's own title blocks	Projektets egna namnrutor
+The project's own title blocks and report schemes	Projektets egna namnrutor och rapportscheman
+The properties of the selection in a window beside the page	Markeringens egenskaper i ett fönster bredvid sidan
+The recalculation keeps frozen routes as long as they are still possible	Omberäkningen behåller frysta dragningar så länge de fortfarande är möjliga
+The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Menyfliksområdet med fliken Arkiv ersätter menyerna; Ctrl+Shift+P hittar alla kommandon.
+The second fault is checked at the line-to-earth voltage	Dubbelfelet kontrolleras vid spänningen fas–jord
+The selected devices side by side on the selected rail, from its left end	De markerade apparaterna sida vid sida på den markerade skenan, från dess vänstra ände
+The side of {} is open	Sidan av {} är öppen
+The symbol is placed in the project	Symbolen är placerad i projektet
+The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Plintartiklarna anger inga ändstopp eller gavelplattor (tekniska data End bracket, End plate).
+The wire tool routes around symbols and other wires	Ledningsverktyget drar runt symboler och andra ledningar
+The wires get the free cores of the cable in order (left to right)	Ledningarna får kabelns lediga ledare i ordning (från vänster till höger)
+The wires of the connection take these values again	Förbindelsens ledningar får de här värdena igen
+Theme	Tema
+These settings are edited in their panes:	Dessa inställningar redigeras i sina paneler:
+Thickness	Tjocklek
+Thinner air needs more air flow	Tunnare luft kräver större luftflöde
+This page	Den här sidan
+This page contains schematic content which is not evaluated on non-schematic pages.	Den här sidan innehåller schemainnehåll som inte utvärderas på sidor som inte är schemasidor.
+This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Det här projektet är delprojekt {} av {} (utlyft {}). Spara det och infoga det i huvudprojektet när arbetet är klart.
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Här måste tre ledare mötas: en i dess riktning och två tvärs över. Till dess kedjas förbindelsen i schemats ordning.
+Three-phase short-circuit current at the supply point	Trefasig kortslutningsström vid matningspunkten
+Title	Rubrik
+Title blocks	Namnrutor
+Title blocks, plot frames and page templates	Namnrutor, ritningsramar och sidmallar
+To do	Att göra
+Toggle corner direction while drawing wires	Växla hörnriktning när ledningar ritas
+Toggle routing around symbols (wire tool)	Växla dragning runt symboler (ledningsverktyg)
+Top	Överkant
+Top edges	Överkanter
+Total selectivity	Total selektivitet
+Transfer project parts to database	Överför projektartiklar till databasen
+Translate the project texts; documentation per language	Översätt projekttexterna; dokumentation per språk
+Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Vridning kring lodlinjen, moturs sett ovanifrån (90 °: fronterna pekar åt höger)
+Tutorial	Handledning
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
+Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
+UI scale	Gränssnittets skala
+Undo	Ångra
+Undo brings it back.	Ångra tar tillbaka det.
+Undo list	Ångralista
+Undo {} steps	Ångra {} steg
+Ungroup	Dela upp grupp
+Unlock all	Lås upp alla
+Unplaced	Oplacerade
+Unplaced ({})	Oplacerade ({})
+Update	Uppdatera
+Update all	Uppdatera alla
+Update part links from Vault items	Uppdatera artikellänkar från Vault-objekt
+Update report blocks	Uppdatera rapportblock
+Update {} changed macros	Uppdatera {} ändrade makron
+Updates the project parts with the current database data	Uppdaterar projektartiklarna med aktuella databasdata
+Updating the 3D routing	Uppdaterar 3D-dragningen
+Upload	Ladda upp
+Upload database ({})	Ladda upp databas ({})
+Upload selected part	Ladda upp markerad artikel
+Upload the current project as a new shared project:	Ladda upp det aktuella projektet som ett nytt delat projekt:
+Upload to {}	Ladda upp till {}
+Upstream part	Överordnad artikel
+Use as project default	Använd som projektstandard
+Use for all pages	Använd för alla sidor
+Used	Används
+Used by {} pages	Används av {} sidor
+Used on {} of {} pages	Används på {} av {} sidor
+User	Användare
+User / group	Användare / grupp
+User defined property	Användardefinierad egenskap
+User names, separated by commas	Användarnamn, åtskilda med kommatecken
+Value	Värde
+Value set	Värdeuppsättning
+Value sets	Värdeuppsättningar
+Values	Värden
+Values (KEY=value; …)	Värden (KEY=värde; …)
+Values separated by commas	Värden åtskilda med kommatecken
+Values without a property definition (free project properties, removed definitions)	Värden utan egenskapsdefinition (fria projektegenskaper, borttagna definitioner)
+Valve terminals, service units and manifolds: their fluid devices in slot order, separated by blanks.	Ventilterminaler, luftberedningsaggregat och fördelarblock: deras fluidapparater i platsordning, åtskilda med blanksteg.
+Variant	Variant
+Variant {} of macro {} replaced	Variant {} av makro {} ersatt
+Variant {} of macro {} saved	Variant {} av makro {} sparad
+Vault	Vault
+Vault Professional 2025.2 or newer (Vault Data API)	Vault Professional 2025.2 eller senare (Vault Data API)
+Vault: the session names no vault	Vault: sessionen anger inget valv
+Vault: {}	Vault: {}
+Verification	Verifiering
+Verify project	Verifiera projekt
+Verify selected	Verifiera markerade
+Verify the project against it	Kontrollera projektet mot det
+Verify while reading	Verifiera vid inläsning
+Version {}	Version {}
+Vertical	Vertikal
+Vertical (mm, downwards)	Lodrätt (mm, nedåt)
+Vertical centres	Lodräta mittlinjer
+Vertical position	Vertikal position
+Vertically	Lodrätt
+Via:	Via:
+View	Visa
+Visible	Synligt
+Voltage (line to line)	Spänning (huvudspänning)
+Voltage drop	Spänningsfall
+W A S D / arrows, Q / E	W A S D / pilar, Q / E
+Wall {}, {} m: drag to move it, a double-click shows it to equip it	Vägg {}, {} m: dra för att flytta, dubbelklick visar den för att utrusta den
+Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Vägg {}, {} m: väggen som visas i väggvyn (markerad); dra för att flytta den
+Wall-mounted part	Väggmonterad artikel
+Walls	Väggar
+Walls and ceiling	Väggar och tak
+Web at cutouts	Material vid urtag
+Web between holes	Material mellan hål
+Welcome to OpenECraft	Välkommen till OpenECraft
+What is new	Nyheter
+What should be checked or changed?	Vad ska kontrolleras eller ändras?
+Wheel / right or middle drag	Hjul / dra med höger- eller mittknappen
+Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zooma · högerklick: avbryt · grafik fäster mot 0,5 mm, anslutningspunkter mot 4 mm-rutnätet
+When it differs from the page	När den skiljer sig från sidan
+Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Var ledningen börjar och slutar: en anslutningspunkt från artikeldata, en som genererats från funktionsmallen eller apparatens mitt om ingen anslutningspunkt matchar
+Whole words	Hela ord
+Width / height (mm)	Bredd / höjd (mm)
+Width × depth	Bredd × djup
+Width × height	Bredd × höjd
+Width × height (mm)	Bredd × höjd (mm)
+Width × height × depth	Bredd × höjd × djup
+Window macro: {}	Fönstermakro: {}
+Window macros inserted from now on are recorded as macro boxes.	Fönstermakron som infogas från och med nu registreras som makrorutor.
+Window macros placed on the pages (not printed)	Fönstermakron som placerats på sidorna (skrivs inte ut)
+Wire colour	Ledarfärg
+Wire ends	Ledningsändar
+Wire ends with ferrules	Ledningsändar med ändhylsor
+Wire markers	Ledningsmärkningar
+Wire no. {}	Ledn.nr {}
+Wire number on both ends	Ledningsnummer i båda ändar
+Wire numbering, potentials, wire defaults and colours, marking, hose defaults, cross references and the check scheme as one file	Ledningsnumrering, potentialer, standardvärden och färger för ledningar, märkning, standardvärden för slangar, korsreferenser och kontrollschemat som en fil
+Wire numbering…	Ledningsnumrering…
+Wire numbers	Ledningsnummer
+Wire reserve per connection	Ledningsreserv per förbindelse
+Wire {} – {}  ({} of {} here, click again for the next)	Ledning {} – {}  ({} av {} här, klicka igen för nästa)
+Wire {} – {}  {} mm	Ledning {} – {}  {} mm
+Wires and potentials	Ledningar och potentialer
+Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Ledningar mellan portarna på fluidteknik- och P&ID-symboler är slangar / rör: egna nät, numrerade med ledningsnumreringen, listade i slanglistan.
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Ledare måste utgå härifrån i alla fyra riktningar. Till dess kedjas förbindelsen i schemats ordning.
+Wires of the connection	Förbindelsens ledare
+Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Ledningar tar också de 3D-vägar som tar hänsyn till hinder, i stället för bara kabelkanalerna på plåten
+Wires without their own colour or cross-section take them from the potential of their connection; cable cores keep the values of the cable.	Ledningar utan egen färg eller eget tvärsnitt hämtar dem från potentialen för sin förbindelse; kabelledare behåller kabelns värden.
+Wiring assistant: checklist of the wires with 3D view and progress (tablet: open the web app with #wiring)	Inkopplingsassistent: checklista över ledningarna med 3D-vy och förlopp (surfplatta: öppna webbappen med #wiring)
+Wiring space between devices and ducts	Kopplingsutrymme mellan apparater och kanaler
+With a user account of the server; replaces the access token	Med ett användarkonto på servern; ersätter åtkomsttoken
+With everything below it	Med allt under det
+With the current pages; the approvals so far become void	Med de aktuella sidorna; de hittillsvarande godkännandena blir ogiltiga
+With values only	Endast med värden
+Withdraw	Dra tillbaka
+Without approvers a new revision is released directly.	Utan godkännare frisläpps en ny revision direkt.
+Without bus system	Utan bussystem
+Without power loss data: {}	Utan data om effektförlust: {}
+Work area	Arbetsområde
+Work area {}	Arbetsområde {}
+Work areas	Arbetsområden
+Workbench	Arbetsbänk
+Workspaces	Arbetsytor
+Workspaces for the schematic, the panel layout, the wiring and mounting assistants, the review and the pre-planning.	Arbetsytor för schemat, skåplayouten, inkopplings- och monteringsassistenterna, granskningen och förplaneringen.
+Wrap width (mm)	Radbrytningsbredd (mm)
+Write the file for the other system; later imports detect conflicts against this export	Skriv filen för det andra systemet; senare importer upptäcker konflikter mot den här exporten
+X {}  Y {} mm · {}	X {}  Y {} mm · {}
+YYYY-MM-DD	ÅÅÅÅ-MM-DD
+You may only view this project.	Du får endast visa det här projektet.
+You may review this project: comments, markup and approvals, no other changes.	Du får granska det här projektet: kommentarer, markeringar och godkännanden, inga andra ändringar.
+Your unsaved changes of it are taken back	Dina osparade ändringar i den tas tillbaka
+Zoom	Zooma
+Zoom / pan	Zooma / panorera
+all	alla
+all cards	alla kort
+all lines	alla rader
+all, or e.g. -X*, -W1	alla, eller t.ex. -X*, -W1
+all, or e.g. K, Q	alla, eller t.ex. K, Q
+both ends	båda ändarna
+built-in	inbyggd
+by hand	manuellt
+changed in the library	ändrat i biblioteket
+computed	beräknad
+connection point	anslutningspunkt
+connection point (generated)	anslutningspunkt (genererad)
+current	aktuellt
+device centre	apparatens mitt
+different: taking over replaces it	olika: överföring ersätter det
+e.g. 1.5 mm²	t.ex. 1.5 mm²
+e.g. 400 V AC	t.ex. 400 V AC
+e.g. A1, PUMP.2	t.ex. A1, PUMP.2
+e.g. BU, BK, GNYE	t.ex. BU, BK, GNYE
+e.g. CAB1, FIELD	t.ex. CAB1, FIELD
+e.g. HALL1, PLANT2	t.ex. HALL1, PLANT2
+e.g. Motors	t.ex. Motorer
+e.g. NAME=Pump; POWER={POWER}	t.ex. NAME=Pump; POWER={POWER}
+e.g. STARTER=DOL	t.ex. STARTER=DOL
+e.g. U1, U1-A2	t.ex. U1, U1-A2
+e.g. W	t.ex. W
+e.g. corp:Engineering	t.ex. corp:Konstruktion
+e.g. customer, ERP, PLM	t.ex. kund, ERP, PLM
+e.g. cutout too small, part missing	t.ex. urtaget för litet, artikel saknas
+e.g. de, fr, it	t.ex. de, fr, it
+e.g. wire too short, terminal missing	t.ex. ledningen för kort, plint saknas
+empty	tom
+female	hona
+from the parts	från artiklarna
+given	angiven
+horizontal	horisontell
+if	om
+kW	kW
+male	hane
+manual	manuell
+max. {} °C	max. {} °C
+may overlap	får överlappa
+missing	saknas
+model	modell
+name	namn
+no	nej
+no rooms	inga rum
+no wires	inga ledningar
+none	inget
+not defined	inte definierad
+not in the P&ID	inte i P&ID
+not in the library	inte i biblioteket
+not in the schematic	inte i schemat
+not numbered	inte numrerad
+not translated into {}	inte översatt till {}
+only here: taking over removes it	bara här: överföring tar bort det
+only there: taking over adds it	bara där: överföring lägger till det
+own class	egen klass
+page {}	sida {}
+part number	artikelnummer
+part {} not found	artikel {} hittades inte
+pin and socket	stift och hylsa
+placed / provided by the parts	placerade / tillhandahållna av artiklarna
+reached: PL {}	uppnådd: PL {}
+review round {}	granskningsomgång {}
+some	några
+taken over	överförd
+the project data (page list, devices, settings)	projektdata (sidlista, apparater, inställningar)
+then	så
+unknown	okänd
+unsaved	inte sparat
+value set…	värdeuppsättning…
+vertical	vertikal
+with bus cables	med busskablar
+x y	x y
+{}  (door)	{}  (dörr)
+{}  (free)	{}  (ledig)
+{}  (used)	{}  (används)
+{}  ({} placed, {} free)	{}  ({} placerade, {} lediga)
+{}  building	{}  byggnad
+{}  level, floor at {} m	{}  våning, golv på {} m
+{}  room {} × {} × {}	{}  rum {} × {} × {}
+{}  x {} mm, z {} mm, turned {} °	{}  x {} mm, z {} mm, vriden {} °
+{}  ›  page {}	{}  ›  sida {}
+{} % (limit {} %)	{} % (gräns {} %)
+{} (and {} more)	{} (och {} till)
+{} (archive)	{} (arkiv)
+{} (built-in)	{} (inbyggd)
+{} (class {})	{} (klass {})
+{} (copy)	{} (kopia)
+{} (default)	{} (standard)
+{} (first column)	{} (första kolumnen)
+{} (locked by {})	{} (låst av {})
+{} (project server, revision {})	{} (projektserver, revision {})
+{} (spare)	{} (reserv)
+{} (subproject of {})	{} (delprojekt av {})
+{} (unused)	{} (oanvänd)
+{} ({} open)	{} ({} öppna)
+{} / {} mm  (column {})	{} / {} mm  (kolumn {})
+{} PLC function texts updated	{} PLC-funktionstexter uppdaterade
+{} Vault items found for the project parts	{} Vault-objekt hittades för projektartiklarna
+{} Vault items found: review the changes in the integration window	{} Vault-objekt hittades: granska ändringarna i integrationsfönstret
+{} addresses changed	{} adresser ändrade
+{} bundles, {} branch points	{} knippen, {} förgreningspunkter
+{} bus cables created	{} busskablar skapade
+{} bus connections	{} bussanslutningar
+{} cable ducts	{} kabelkanaler
+{} cable lengths taken over	{} kabellängder överförda
+{} cable passages to {}	{} kabelgenomföringar till {}
+{} cables	{} kablar
+{} cables, {} %	{} kablar, {} %
+{} catalog parts added	{} katalogartiklar tillagda
+{} cells changed	{} celler ändrade
+{} cells changed, {} problems: {}	{} celler ändrade, {} problem: {}
+{} change requests added, {} updated	{} ändringsbegäranden tillagda, {} uppdaterade
+{} changed since mounted · {} problems	{} ändrade sedan monteringen · {} problem
+{} changed since wired · {} problems	{} ändrade sedan inkoppling · {} problem
+{} checks	{} kontroller
+{} commands, {} checks, {} reports, {} exports	{} kommandon, {} kontroller, {} rapporter, {} exporter
+{} comments are on pages the project does not have	{} kommentarer finns på sidor som projektet inte har
+{} comments were imported before	{} kommentarer har importerats tidigare
+{} comments, {} replies and {} markups imported	{} kommentarer, {} svar och {} markeringar importerade
+{} connections	{} förbindelser
+{} connections assigned to {}	{} förbindelser tilldelade {}
+{} connections drawn automatically	{} förbindelser ritade automatiskt
+{} connections numbered	{} förbindelser numrerade
+{} connections removed from their harness	{} förbindelser borttagna från sin kabelstam
+{} copies placed	{} kopior placerade
+{} corner points	{} hörnpunkter
+{} corners	{} hörn
+{} details	{} detaljer
+{} device descriptions imported	{} enhetsbeskrivningar importerade
+{} devices	{} enheter
+{} devices added	{} apparater tillagda
+{} devices get a new tag	{} apparater får en ny beteckning
+{} devices placed, {} wires routed ({} m)	{} apparater placerade, {} ledningar dragna ({} m)
+{} devices renamed	{} apparater har bytt namn
+{} differences to {}	{} skillnader mot {}
+{} doors	{} dörrar
+{} entries in {}	{} poster i {}
+{} errors	{} fel
+{} errors, {} warnings	{} fel, {} varningar
+{} errors, {} warnings, {} notes in the project data; engineering check: {} errors, {} warnings	{} fel, {} varningar, {} anmärkningar i projektdata; teknisk kontroll: {} fel, {} varningar
+{} example catalog parts refreshed	{} artiklar i exempelkatalogen uppdaterade
+{} favorites added	{} favoriter tillagda
+{} field wiring problems (see Check)	{} problem i fältkablaget (se Kontroll)
+{} found	{} hittades
+{} function texts copied	{} funktionstexter kopierade
+{} generated pages in the project (changes on them are replaced)	{} genererade sidor i projektet (ändringar på dem ersätts)
+{} grants on the project	{} tilldelningar för projektet
+{} has no function with a symbol; assign it to a device in its properties	{} har ingen funktion med symbol; tilldela den till en apparat i apparatens egenskaper
+{} has unsaved changes. Discard them?	{} har osparade ändringar. Släng dem?
+{} imported into the parts database and placed as {}	{} importerad till artikeldatabasen och placerad som {}
+{} is neither in the parts database nor on the parts server	{} finns varken i artikeldatabasen eller på artikelservern
+{} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
+{} is not made for wall mounting: place it on a mounting rail	{} är inte avsedd för väggmontage: placera den på en skena
+{} is used by: {}	{} används av: {}
+{} items copied	{} objekt kopierade
+{} items selected	{} objekt markerade
+{} items, {} %	{} objekt, {} %
+{} links created, {} function texts copied	{} länkar skapade, {} funktionstexter kopierade
+{} m of {} m wired	{} m av {} m inkopplade
+{} macro boxes updated	{} makrorutor uppdaterade
+{} markers	{} märkningar
+{} mm	{} mm
+{} mm (cut {} mm)	{} mm (kapad {} mm)
+{} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm på plåten + {} mm reserv; resten är vägen från anslutningspunkterna till plåten.
+{} mm, now {} mm	{} mm, nu {} mm
+{} mm, removed	{} mm, borttagen
+{} new texts in the dictionary	{} nya texter i ordlistan
+{} notes	{} anmärkningar
+{} objects pasted	{} objekt inklistrade
+{} objects selected	{} objekt markerade
+{} objects, {} pages	{} objekt, {} sidor
+{} of {} approvals	{} av {} godkännanden
+{} of {} connections numbered	{} av {} förbindelser numrerade
+{} of {} entries shown: search to narrow the list	{} av {} poster visas: sök för att begränsa listan
+{} of {} items	{} av {} objekt
+{} of {} pages locked	{} av {} sidor låsta
+{} of {} pins used	{} av {} stift använda
+{} of {} rows	{} av {} rader
+{} of {} wires	{} av {} ledningar
+{} of {} wires assigned to cores of {}	{} av {} ledningar tilldelade ledare i {}
+{} on released pages were left as they are	{} på frisläppta sidor lämnades oförändrade
+{} options switched	{} alternativ växlade
+{} pages generated	{} sidor genererade
+{} pages generated; page macros not found: {}	{} sidor genererade; sidmakron som inte hittades: {}
+{} pages get a new name	{} sidor får ett nytt namn
+{} pages removed, {} pages generated	{} sidor borttagna, {} sidor genererade
+{} pages renamed	{} sidor har bytt namn
+{} pages; their names start with {}	{} sidor; deras namn börjar med {}
+{} parts added to the database	{} artiklar tillagda i databasen
+{} parts of the database updated – synchronize the project parts in parts management	{} artiklar i databasen uppdaterade – synkronisera projektartiklarna i artikelhanteringen
+{} parts of the network	{} delnät
+{} pieces	{} st.
+{} pins used	{} stift använda
+{} placed as {}	{} placerad som {}
+{} placement problems (red) – see Check	{} placeringsproblem (röda) – se Kontroll
+{} problems	{} problem
+{} project parts updated	{} projektartiklar uppdaterade
+{} projects on the server	{} projekt på servern
+{} projects selected	{} projekt markerade
+{} property definitions with {} values including the indexed ones	{} egenskapsdefinitioner med {} värden inklusive de indexerade
+{} rails	{} skenor
+{} records, {} changes, {} conflicts, {} not found in the project	{} poster, {} ändringar, {} konflikter, {} hittades inte i projektet
+{} renamed: {} pages and devices	{} har bytt namn: {} sidor och apparater
+{} report pages output to {}	{} rapportsidor utmatade till {}
+{} routes frozen	{} dragningar frysta
+{} segments created, {} devices added, {} updated	{} segment skapade, {} apparater tillagda, {} uppdaterade
+{} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stationer, {} bussystem, {} kort tilldelade, {} adresser ändrade, {} anslutningar, {} kablar
+{} stopped with an error: {}	{} avbröts med ett fel: {}
+{} structure identifiers added	{} strukturbeteckningar tillagda
+{} symbols	{} symboler
+{} symbols added, {} replaced	{} symboler tillagda, {} ersatta
+{} symbols and {} wires generated on page {}	{} symboler och {} ledningar genererade på sidan {}
+{} texts changed	{} texter ändrade
+{} translations imported	{} översättningar importerade
+{} unused entries removed	{} oanvända poster borttagna
+{} unused project parts removed	{} oanvända projektartiklar borttagna
+{} unused structure identifiers removed	{} oanvända strukturbeteckningar borttagna
+{} values taken over	{} värden överförda
+{} warnings	{} varningar
+{} was imported into the parts database; its page no longer exists	{} importerades till artikeldatabasen; dess sida finns inte längre
+{} windows	{} fönster
+{} wire pieces joined	{} ledningsdelar sammanslagna
+{} wires are cores of the cable	{} ledningar är ledare i kabeln
+{} wires changed	{} ledningar ändrade
+{} wires, {} cables and {} tubes routed	{} ledningar, {} kablar och {} slangar dragna
+{} wires, {} – {} mm	{} ledningar, {} – {} mm
+{} °C (max. {} °C)	{} °C (max. {} °C)
+{} °C (max.)	{} °C (max.)
+{} × {} pixels, {}	{} × {} bildpunkter, {}
+{} – {} ({} pages)	{} – {} ({} sidor)
+{}: drag to move it, R turns it, a double-click opens it	{}: dra för att flytta, R vrider, dubbelklick öppnar
+{}: drag to move it, a double-click shows the floor	{}: dra för att flytta, dubbelklick visar golvet
+{}: nothing to change	{}: inget att ändra
+{}: pin {}	{}: stift {}
+{}: {} addresses changed	{}: {} adresser ändrade
+{}: {} changes in the open project (not saved yet)	{}: {} ändringar i det öppna projektet (inte sparade ännu)
+{}: {} changes saved	{}: {} ändringar sparade
+{}: {} holes, {} cutouts	{}: {} hål, {} urtag
+{}: {} is on	{}: {} är på
+{}: {} slots, ports {}	{}: {} kortplatser, portar {}
+{}: {} terminals renumbered	{}: {} plintar omnumrerade
+{}: {} wires, {} m wire in total	{}: {} ledningar, totalt {} m ledning
+— Line	— Linje
+• Connection point	• Anslutningspunkt
+○ Circle	○ Cirkel
+☐ Rect	☐ Rektangel
+⚠ Conflicts: changed in the project and in the other system since the last export; checked conflicts are overwritten	⚠ Konflikter: ändrade i projektet och i det andra systemet sedan den senaste exporten; markerade konflikter skrivs över
+⚠ Problem	⚠ Problem
+⚠ conflict	⚠ konflikt
+✔ All items are mounted.	✔ Alla objekt är monterade.
+✔ All wires are wired.	✔ Alla ledningar är inkopplade.
+✔ Mounted	✔ Monterad
+✔ No problems found.	✔ Inga problem hittades.
+✔ The project data is consistent.	✔ Projektdata är konsekventa.
+✔ Wired	✔ Inkopplad
+➕ Default value	➕ Standardvärde
+➕ Insert (click into the page)	➕ Infoga (klicka på sidan)
+➕ Insert as new page	➕ Infoga som ny sida
+➕ Label	➕ Etikett
+➕ Line	➕ Linje
+➕ Place property	➕ Placera egenskap
+➕ Property	➕ Egenskap
+➕ Rectangle	➕ Rektangel
+➕ Text	➕ Text
+⬉ Select	⬉ Markera
+🌐 Parts server	🌐 Artikelserver
+📁 Project parts ({})	📁 Projektartiklar ({})
+📊 Fluid netlist	📊 Fluidnätlista
+📊 Hose configuration	📊 Slangkonfiguration
+📊 Hose list	📊 Slanglista
+📊 Tubing / piping list	📊 Rör- / slanglista
+🔎 Data portal	🔎 Dataportal
+🗄 Parts database	🗄 Artikeldatabas
