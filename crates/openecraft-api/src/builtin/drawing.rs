@@ -14,6 +14,7 @@ use openecraft_core::parts;
 use openecraft_core::symbols::{self, Anchor, Func, SymbolRef};
 use openecraft_core::symlib::Symbols;
 use openecraft_core::arrange::{self, Align};
+use openecraft_core::netlist::junctions;
 use openecraft_core::{cabledef, conndef, routing};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
@@ -226,8 +227,8 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "autoconnect",
-        help: tr_const!("Draws wires between free connection points of symbols that face each other"),
-        params: &[PAGE, optional("ids", Kind::Ids, tr_const!("Symbol ids (default: all symbols of the page)"))],
+        help: tr_const!("Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners"),
+        params: &[PAGE, optional("ids", Kind::Ids, tr_const!("Ids of symbols and connection symbols (default: all symbols of the page)"))],
         run: autoconnect,
     },
     Spec {
@@ -253,7 +254,94 @@ pub static COMMANDS: &[Spec] = &[
         ],
         run: add_connection_definition,
     },
+    Spec {
+        name: "add_t_junction",
+        help: tr_const!("Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order"),
+        params: &[
+            PAGE,
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+            optional("direction", Kind::Str, tr_const!("Direction of the stem: left, right, up or down (default: from the wires there)")),
+            VARIANT,
+            DOT,
+            AUTOCONNECT,
+        ],
+        run: add_t_junction,
+    },
+    Spec {
+        name: "add_corner",
+        help: tr_const!("Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it"),
+        params: &[
+            PAGE,
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+            ARMS,
+            AUTOCONNECT,
+        ],
+        run: add_corner,
+    },
+    Spec {
+        name: "add_crossing",
+        help: tr_const!("Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second"),
+        params: &[
+            PAGE,
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+            LINE,
+            optional("variant", Kind::Int, tr_const!("1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)")),
+            DOT,
+            AUTOCONNECT,
+        ],
+        run: add_crossing,
+    },
+    Spec {
+        name: "add_bridge",
+        help: tr_const!("Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower"),
+        params: &[
+            PAGE,
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+            optional("direction", Kind::Str, tr_const!("Side the connection comes from: left, right, up or down (default up)")),
+            DOT,
+            AUTOCONNECT,
+        ],
+        run: add_bridge,
+    },
+    Spec {
+        name: "update_connection_symbol",
+        help: tr_const!("Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)"),
+        params: &[
+            PAGE,
+            param("id", Kind::Int, tr_const!("Item id")),
+            optional("direction", Kind::Str, tr_const!("T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)")),
+            VARIANT,
+            DOT,
+            ARMS,
+            LINE,
+        ],
+        run: update_connection_symbol,
+    },
+    Spec {
+        name: "list_connection_symbols",
+        help: tr_const!("Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection"),
+        params: &[optional("page", Kind::Str, tr_const!("Page name (default: all pages)"))],
+        run: list_connection_symbols,
+    },
 ];
+
+const ARMS: Param = optional("arms", Kind::Str, tr_const!("The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)"));
+
+const AUTOCONNECT: Param = optional("autoconnect", Kind::Bool, tr_const!("Draw wires to the connection points facing its free arms"));
+
+const LINE: Param = optional("line", Kind::Str, tr_const!("The straight line of a crossing: vertical or horizontal (default vertical)"));
+
+const VARIANT: Param = optional(
+    "variant",
+    Kind::Int,
+    tr_const!("1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)"),
+);
+
+const DOT: Param = optional("dot", Kind::Bool, tr_const!("Draw the junction as a connection dot; its routing stays"));
 
 const ROTATION: Param = optional("rotation", Kind::Int, tr_const!("Rotation in degrees clockwise: 0, 90, 180 or 270"));
 
@@ -830,6 +918,197 @@ fn add_connection_definition(prj: &mut Project, a: &Args) -> Result<Value, Strin
     prj.pages[i].conn_defs.push(cd);
     let changed = conndef::apply(prj, &open, i, id);
     Ok(json!({ "id": id, "wires_changed": changed }))
+}
+
+/// A connection symbol with its routing and the wires of its connection.
+fn tee_json(prj: &Project, page: usize, j: &Junction) -> Value {
+    let nl = openecraft_core::netlist::Netlist::build(prj, true);
+    let open = openecraft_core::netlist::Netlist::build(prj, false);
+    let conns = openecraft_core::netlist::connections(prj, &nl, &open);
+    let pin = |p| openecraft_core::netlist::pin_designation(prj, p);
+    let wires: Vec<Value> = junctions::connections_of(prj, &open, &conns, page, j).into_iter().map(|i| json!({ "from": pin(conns[i].a), "to": pin(conns[i].b) })).collect();
+    let kind = match j.kind {
+        JunctionKind::Tee => "t_junction",
+        JunctionKind::Corner => "corner",
+        JunctionKind::Crossing => "crossing",
+        JunctionKind::Bridge => "bridge",
+    };
+    let mut v = json!({
+        "id": j.id,
+        "page": prj.pages[page].name,
+        "x": j.pos.x,
+        "y": j.pos.y,
+        "kind": kind,
+        "fits": junctions::fits(prj, &prj.pages[page], j),
+        "routing": junctions::describe(j),
+        "links": j.links().iter().map(|(a, b)| json!([a.name(), b.name()])).collect::<Vec<_>>(),
+        "wires": wires,
+    });
+    match j.kind {
+        JunctionKind::Corner => v["arms"] = json!(j.arms().iter().map(|d| d.name()).collect::<Vec<_>>()),
+        JunctionKind::Crossing => {
+            v["line"] = json!(if j.line() == TeeDir::Up { "vertical" } else { "horizontal" });
+            v["variant"] = json!(j.variant);
+            v["dot"] = json!(j.dot);
+        }
+        JunctionKind::Bridge => {
+            v["direction"] = json!(j.dir.name());
+            v["dot"] = json!(j.dot);
+        }
+        JunctionKind::Tee => {
+            v["direction"] = json!(j.dir.name());
+            v["variant"] = json!(j.variant);
+            v["dot"] = json!(j.dot);
+        }
+    }
+    v
+}
+
+/// The line of a crossing as given.
+fn crossing_line(a: &Args) -> Result<Option<TeeDir>, String> {
+    match a.str("line").map(|s| s.trim().to_ascii_lowercase()) {
+        None => Ok(None),
+        Some(s) if s == "vertical" => Ok(Some(TeeDir::Up)),
+        Some(s) if s == "horizontal" => Ok(Some(TeeDir::Left)),
+        Some(s) => Err(tr_fmt!("The line of a crossing is vertical or horizontal, not {}", s)),
+    }
+}
+
+fn add_crossing(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let (x, y) = (num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default());
+    let pos = on_page(prj, i, x, y)?;
+    let variant = match a.int("variant") {
+        None => 2,
+        Some(v @ 1..=2) => v as u8,
+        Some(v) => return Err(tr_fmt!("Variant {} is not one of 1 to 2", v)),
+    };
+    let j = Junction { dir: crossing_line(a)?.unwrap_or(TeeDir::Up), variant, dot: a.flag("dot"), ..Junction::new(JunctionKind::Crossing, pos) };
+    add_symbol(prj, a, i, j)
+}
+
+fn add_bridge(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let (x, y) = (num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default());
+    let pos = on_page(prj, i, x, y)?;
+    let j = Junction { dir: tee_direction(a)?.unwrap_or(TeeDir::Up), dot: a.flag("dot"), ..Junction::new(JunctionKind::Bridge, pos) };
+    add_symbol(prj, a, i, j)
+}
+
+/// The arms of a corner as given: a vertical and a horizontal direction.
+fn corner_arms(a: &Args) -> Result<Option<(TeeDir, TeeDir)>, String> {
+    let Some(text) = a.str("arms") else { return Ok(None) };
+    let dirs: Vec<TeeDir> = text.split(|c: char| c == ',' || c.is_whitespace()).filter(|s| !s.is_empty()).map(|s| TeeDir::parse(s).ok_or_else(|| tr_fmt!("Unknown direction {}: left, right, up or down", s))).collect::<Result<_, _>>()?;
+    junctions::corner_of(&dirs).map(Some).ok_or_else(|| tr_fmt!("The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}", text))
+}
+
+/// Adds a connection symbol and, when asked, the automatic connections to its arms.
+fn add_symbol(prj: &mut Project, a: &Args, page: usize, mut j: Junction) -> Result<Value, String> {
+    if prj.pages[page].junctions.iter().any(|o| o.pos.same(j.pos)) {
+        return Err(tr("There is a connection symbol at this point already").to_string());
+    }
+    j.id = prj.new_id();
+    let id = j.id;
+    prj.pages[page].junctions.push(j.clone());
+    let drawn = if a.flag("autoconnect") { routing::apply_autoconnect(prj, page, &BTreeSet::from([id])) } else { 0 };
+    let mut v = tee_json(prj, page, &j);
+    v["wires_drawn"] = json!(drawn);
+    Ok(v)
+}
+
+fn add_corner(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let (x, y) = (num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default());
+    let pos = on_page(prj, i, x, y)?;
+    let (v, h) = match corner_arms(a)? {
+        Some(arms) => arms,
+        None => junctions::arms(&prj.pages[i], pos).as_deref().and_then(junctions::corner_of).unwrap_or((TeeDir::Down, TeeDir::Right)),
+    };
+    add_symbol(prj, a, i, Junction::corner(pos, v, h))
+}
+
+fn tee_direction(a: &Args) -> Result<Option<TeeDir>, String> {
+    match a.str("direction") {
+        None => Ok(None),
+        Some(d) => TeeDir::parse(d).map(Some).ok_or_else(|| tr_fmt!("Unknown direction {}: left, right, up or down", d)),
+    }
+}
+
+fn tee_variant(a: &Args) -> Result<Option<u8>, String> {
+    match a.int("variant") {
+        None => Ok(None),
+        Some(v @ 1..=4) => Ok(Some(v as u8)),
+        Some(v) => Err(tr_fmt!("Variant {} is not one of 1 to 4", v)),
+    }
+}
+
+fn add_t_junction(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let (x, y) = (num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default());
+    let pos = on_page(prj, i, x, y)?;
+    let dir = match tee_direction(a)? {
+        Some(d) => d,
+        None => junctions::arms(&prj.pages[i], pos)
+            .as_deref()
+            .and_then(junctions::stem_of)
+            .ok_or_else(|| tr_fmt!("No three wires meet at {} / {} mm: give the direction of the stem", mm(x), mm(y)))?,
+    };
+    let j = Junction { pos, dir, variant: tee_variant(a)?.unwrap_or(3), dot: a.flag("dot"), ..Default::default() };
+    add_symbol(prj, a, i, j)
+}
+
+fn update_connection_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let (dir, arms, line) = (tee_direction(a)?, corner_arms(a)?, crossing_line(a)?);
+    let dot = a.value("dot").and_then(Value::as_bool);
+    let Some(j) = prj.pages[i].junctions.iter_mut().find(|j| j.id == id) else { return Err(tr_fmt!("No connection symbol with id {}", id)) };
+    // The parameters a kind has: the others are refused.
+    let allowed: &[&str] = match j.kind {
+        JunctionKind::Tee => &["direction", "variant", "dot"],
+        JunctionKind::Corner => &["arms"],
+        JunctionKind::Crossing => &["line", "variant", "dot"],
+        JunctionKind::Bridge => &["direction", "dot"],
+    };
+    for name in ["direction", "variant", "dot", "arms", "line"] {
+        if a.value(name).is_some() && !allowed.contains(&name) {
+            return Err(tr_fmt!("A {} has no {}; it takes {}", junctions::kind_name(j.kind), name, allowed.join(", ")));
+        }
+    }
+    let variant = match (j.kind, a.int("variant")) {
+        (_, None) => None,
+        (JunctionKind::Crossing, Some(v @ 1..=2)) => Some(v as u8),
+        (JunctionKind::Crossing, Some(v)) => return Err(tr_fmt!("Variant {} is not one of 1 to 2", v)),
+        _ => tee_variant(a)?,
+    };
+    if let Some((v, h)) = arms {
+        *j = Junction::corner(j.pos, v, h);
+        j.id = id;
+    }
+    if let Some(d) = dir.or(line) {
+        j.dir = d;
+    }
+    if let Some(v) = variant {
+        j.variant = v;
+    }
+    if let Some(d) = dot {
+        j.dot = d;
+    }
+    let j = j.clone();
+    Ok(tee_json(prj, i, &j))
+}
+
+fn list_connection_symbols(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let page = a.str("page").map(|name| page_index(prj, name)).transpose()?;
+    let list: Vec<Value> = prj
+        .pages
+        .iter()
+        .enumerate()
+        .filter(|(i, _)| page.is_none_or(|p| p == *i))
+        .flat_map(|(i, pg)| pg.junctions.iter().map(move |j| (i, j)))
+        .map(|(i, j)| tee_json(prj, i, j))
+        .collect();
+    Ok(Value::Array(list))
 }
 
 #[cfg(test)]

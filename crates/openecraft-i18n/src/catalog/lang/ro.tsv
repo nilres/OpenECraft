@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Punctul 
 Structure	Structură
 Connects two connection points with wires routed around symbols and other wires	Conectează două puncte de conexiune cu conductoare care ocolesc simbolurile și alte conductoare
 Connection point TAG:PIN, e.g. -K1:A1	Punct de conexiune IDENTIFICATOR:PIN, de ex. -K1:A1
-Draws wires between free connection points of symbols that face each other	Desenează conductoare între punctele de conexiune libere ale simbolurilor aflate față în față
-Symbol ids (default: all symbols of the page)	ID-uri de simbol (implicit: toate simbolurile paginii)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Desenează o linie de definire a cablului; conductoarele pe care le intersectează devin fire ale cablului (un cablu nou dacă nu se indică niciunul)
 Start and end point of the line	Punctul de start și cel final al liniei
 Cable tag, e.g. -W1	Identificator cablu, de ex. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Doar adresele web 
 The plugin program did not answer within {} s and was stopped	Programul pluginului nu a răspuns în {} s și a fost oprit
 Busbar systems	Sisteme de bare colectoare
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
+T-junction	Piesă T
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Piesă T direcționată: unde se întâlnesc trei fire, indică aparatul de la care pornesc cele două fire ale conexiunii și ordinea țintelor lor
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: de la brațul stâng / superior drept la celălalt braț, apoi la tijă · 2: la fel de la brațul drept / inferior · 3: de la tijă la brațul stâng / superior, apoi la celălalt · 4: de la tijă întâi la brațul drept / inferior (implicit 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Direcția tijei: left, right, up sau down (implicit: după firele de acolo)
+Draw the junction as a connection dot; its routing stays	Desenează piesa T ca punct de conexiune; traseul ei rămâne
+No three wires meet at {} / {} mm: give the direction of the stem	La {} / {} mm nu se întâlnesc trei fire: indicați direcția tijei
+Page name (default: all pages)	Numele paginii (implicit: toate paginile)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Plasează o piesă T direcționată unde se întâlnesc trei fire: indică aparatul de la care pornesc cele două fire ale conexiunii (sursa) și ordinea țintelor lor, în locul ordinii din schemă
+Unknown direction {}: left, right, up or down	Direcție necunoscută {}: left, right, up sau down
+Variant {} is not one of 1 to 4	Varianta {} nu este una dintre 1 și 4
+Dot	Punct
+Drawn as a connection dot; the routing stays	Desenată ca punct de conexiune; traseul rămâne
+Representation	Reprezentare
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Aici trebuie să se întâlnească trei fire: unul în direcția ei și două transversal. Până atunci conexiunea este înlănțuită în ordinea din schemă.
+Wires of the connection	Firele conexiunii
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Faceți clic unde se întâlnesc trei fire: piesa T indică aparatul de la care pornesc firele și ordinea țintelor lor · {} o rotește unde încă nu se întâlnesc fire · Esc sau clic dreapta pentru a termina
+Draw the three wires of the T-junction to it: one in its direction and two across	Desenați cele trei fire ale piesei T până la ea: unul în direcția ei și două transversal
+Source {}, first target {}, second target {}	Sursă {}, prima țintă {}, a doua țintă {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Piesa T de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în direcția ei, două transversal și niciun punct de conexiune acolo
+on the left	la stânga
+on the right	la dreapta
+above	sus
+below	jos
+Connection symbols	Simboluri de conexiune
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Colț: două fire în unghi drept; cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el
+Draw wires to the connection points facing its free arms	Desenează fire către punctele de conexiune aflate în fața brațelor sale libere
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Desenează fire între punctele de conexiune libere ale simbolurilor aflate față în față și către brațele libere ale pieselor T și colțurilor
+Ids of symbols and connection symbols (default: all symbols of the page)	Id-urile simbolurilor și ale simbolurilor de conexiune (implicit: toate simbolurile paginii)
+No connection symbol with id {}	Niciun simbol de conexiune cu id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Plasează un colț: acolo două fire se întâlnesc în unghi drept, iar punctele de conexiune aflate în fața brațelor sale sunt cablate la el
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Brațele unui colț sunt o direcție verticală și una orizontală, de ex. down left, nu {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Cele două brațe ale unui colț, vertical și orizontal, de ex. down left (implicit: după firele de acolo, altfel down right)
+There is a connection symbol at this point already	Există deja un simbol de conexiune în acest punct
+Arms	Brațe
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Faceți clic unde două fire se întâlnesc în unghi drept, sau unde puncte de conexiune se află față în față peste colț: cu conectarea automată activă se desenează fire către el · {} îl rotește · Esc sau clic dreapta pentru a termina
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Desenați cele două fire ale colțului până la el, sau activați conectarea automată și plasați-l în fața unor puncte de conexiune libere
+Arms {} and {}	Brațe {} și {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Colțul de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în fiecare dintre cele două direcții și niciun punct de conexiune acolo
+Two connection symbols on page {} lie on the same point	Două simboluri de conexiune de pe pagina {} se află în același punct
+Crossing	Încrucișare
+Bridge	Punte
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Încrucișare direcționată: leagă cele două fire care se încrucișează acolo; fiecare capăt al liniei sale este cablat întâi drept înainte, apoi transversal
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: capătul superior / stâng al liniei merge transversal spre brațul drept / inferior · 2: spre brațul stâng / superior (implicit 2)
+A {} has no {}; it takes {}	{} nu are {}; acceptă {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifică o piesă T (direcție, variantă, reprezentare), un colț (brațe), o încrucișare (linie, variantă, reprezentare) sau o punte (direcție, reprezentare)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Listează piesele T, colțurile, încrucișările și punțile cu traseul lor și firele conexiunii lor
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Plasează o punte unde se întâlnesc patru fire: conexiunea intră pe o latură și merge spre celelalte trei, întâi spre cea opusă, apoi spre cea stângă / superioară, apoi spre cea dreaptă / inferioară
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Plasează o încrucișare direcționată unde două fire se încrucișează: le leagă, iar fiecare capăt al liniei sale este cablat întâi drept înainte, apoi spre un braț transversal
+Side the connection comes from: left, right, up or down (default up)	Latura de pe care vine conexiunea: left, right, up sau down (implicit up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Piesă T: direcția tijei; punte: latura de pe care vine conexiunea (left, right, up sau down)
+The line of a crossing is vertical or horizontal, not {}	Linia unei încrucișări este vertical sau horizontal, nu {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Linia dreaptă a unei încrucișări: vertical sau horizontal (implicit vertical)
+Variant {} is not one of 1 to 2	Varianta {} nu este una dintre 1 și 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	De aici trebuie să plece fire în toate cele patru direcții. Până atunci conexiunea este înlănțuită în ordinea din schemă.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Faceți clic unde se întâlnesc patru fire: puntea duce conexiunea de pe o latură spre celelalte trei, întâi spre cea opusă · {} o rotește · Esc sau clic dreapta pentru a termina
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Faceți clic unde două fire se încrucișează: încrucișarea le leagă și duce fiecare capăt al liniei sale întâi drept înainte, apoi transversal · {} o rotește · Esc sau clic dreapta pentru a termina
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Desenați fire în toate cele patru direcții până la ea, sau activați conectarea automată și plasați-o în fața unor puncte de conexiune libere
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Puntea de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în toate cele patru direcții și niciun punct de conexiune acolo
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Încrucișarea de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în toate cele patru direcții și niciun punct de conexiune acolo
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Simbolul de conexiune de pe pagina {} cablează conexiunea sa în buclă: simbolurile conexiunii îi dau mai multe fire decât au nevoie aparatele sale
+Source {}, targets {}, {} and {}	Sursă {}, ținte {}, {} și {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Drept înainte de la {} la {}, transversal de la {} la {} și de la {} la {}

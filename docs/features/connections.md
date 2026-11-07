@@ -34,6 +34,72 @@ cable definition line drawn across wires makes them cores of a cable (new cable 
 numbered cores, or a chosen one). The check reports points beside wires, contradicting
 or not applied points, and lines of unknown cables.
 
+## Connection symbols: T-junctions, corners, crossings and bridges
+
+Three devices on one potential can be wired as A–B and A–C or as A–B and B–C; the
+netlist alone cannot tell them apart. A **T-junction** (*Insert › Connections ›
+T-junction*, placed where three wires meet) stores this choice with the project, in the
+spirit of the connection symbols of EPLAN: its three ports are the stem (the direction
+of the junction: left, right, up or down) and the two arms of the bar across it. Four
+variants per direction name the *source* port and the order of the two *targets*:
+
+| Variant | Source | First target | Second target |
+| --- | --- | --- | --- |
+| 1 | left / upper arm | the other arm (straight on) | the stem |
+| 2 | right / lower arm | the other arm (straight on) | the stem |
+| 3 | stem | left / upper arm | right / lower arm |
+| 4 | stem | right / lower arm | left / upper arm |
+
+The two physical wires of the connection run from the device at the source to the
+device at the first target and to the device at the second target. The device of a
+port is the first connection point along its wire, also across interruption points;
+where the wire reaches another T-junction it hands on its targets (when the wire comes
+in at its source) or its source. The connection list, the connection diagrams, the
+panel wiring, the harnesses and every other consumer of the connections use this
+result. Connections without a T-junction keep the schematic order as before, and a
+junction that does not fit its wires (not three wires, not one in its direction, a
+connection point on the spot) is ignored and reported by the check *Connection
+symbols*, as are two symbols on one point and a connection whose symbols wire it in a
+loop (more wires than its devices need, e.g. the sources of two T-junctions facing each
+other across a wire).
+
+The symbol is a short diagonal from the source to the second target (the first target
+lies straight on); *Representation › Dot* draws the usual connection dot instead and
+keeps the routing. The properties pane shows the four variants as previews with the
+targets numbered, the direction, and the wires of the connection. Rotating or mirroring
+the drawing turns the junction with its wires; a moved device stretches its wire and
+leaves the junction where the wires meet, and when the whole node moves the junction
+follows.
+
+A **corner** (*Insert › Connections › Corner*) is the second connection symbol: two
+wires meeting at a right angle, with four orientations (R turns it while placing). It
+changes no routing; its use is automatic wiring: with *Auto-connect* on, placing a
+corner (or a T-junction) draws wires from connection points that face its free arms
+straight on, and a symbol placed or moved so that a connection point faces a free arm
+is wired to it. So a corner at the meeting point of two connections wires both of them
+in. A corner that fits its wires is drawn as nothing but the bend; one without its two
+wires shows its arms in the error colour and is reported by the check.
+
+A **crossing** (*Insert › Connections › Crossing*) connects the two wires crossing at
+its point, which stay unconnected without one. It is two T-junctions joined: each end of
+its straight line (vertical or horizontal) is wired straight on to the other end first
+and across to one arm second; the two variants decide which end takes the left / upper
+arm. In EPLAN's example, a vertical crossing of variant 2 leads a connection from above
+to the bottom first and to the left second, and one from below to the top first and to
+the right second. A **bridge** (*Insert › Connections › Bridge*) has four wires as well
+and is a star from the side the connection comes from to the three others: the opposite
+side first, then the left or upper, then the right or lower. Both can be drawn as a
+dot, keep their routing then, and turn with the drawing. Every symbol is a list of
+links between its arms; where a wire reaches another symbol, that symbol hands on the
+devices of the arms linked with the one the wire comes in at.
+
+Commands: `add_t_junction` (direction from the wires there when not given), `add_corner`
+(arms from the wires there, e.g. `down left`), `add_crossing` (`line` vertical or
+horizontal, `variant` 1 or 2), `add_bridge` (`direction` the connection comes from), all
+with `autoconnect` to draw the wires to facing connection points, `update_connection_symbol`,
+`list_connection_symbols` (kind, routing, links and the wires of each). `autoconnect`
+takes the ids of connection symbols too.
+
 ## Wire numbers
 
 One number per connection (all its wire segments; the two sides of a

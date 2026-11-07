@@ -9,10 +9,59 @@ use crate::editor::Tool;
 use openecraft_core::graphics::{self, Layer};
 use crate::io::Loaded;
 use openecraft_core::model::*;
-use openecraft_core::netlist::pin_designation;
+use openecraft_core::netlist::{junctions, pin_designation};
 use openecraft_core::symbols::Anchor;
+use openecraft_core::render::{self, Draw, Ink};
 use openecraft_core::{cabledef, conndef, forms, ops, properties, props, structure, wirenum};
 use egui::RichText;
+
+/// A small T with the diagonal of a variant and the targets numbered as in the
+/// connection symbols of EPLAN (the source port has no number).
+fn junction_preview(ui: &mut egui::Ui, j: &Junction, selected: bool) -> egui::Response {
+    use openecraft_core::geom::{p, P};
+    let size = egui::vec2(44.0, 44.0);
+    let (resp, painter) = ui.allocate_painter(size, egui::Sense::click());
+    let rect = resp.rect;
+    let stroke = if selected { ui.visuals().selection.stroke } else { ui.visuals().widgets.inactive.fg_stroke };
+    painter.rect_stroke(rect, 3.0, stroke, egui::StrokeKind::Inside);
+    let c = rect.center();
+    let k = 1.6;
+    let at = |q: P| egui::pos2(c.x + q.x * k, c.y + q.y * k);
+    struct Painter<'a>(&'a egui::Painter, &'a dyn Fn(P) -> egui::Pos2, egui::Color32);
+    impl Draw for Painter<'_> {
+        fn line(&mut self, a: P, b: P, width: f32, _ink: Ink, _dashed: bool) {
+            self.0.line_segment([(self.1)(a), (self.1)(b)], egui::Stroke::new(width * 4.0, self.2));
+        }
+        fn poly(&mut self, _pts: &[P], _closed: bool, _width: f32, _ink: Ink, _fill: bool) {}
+        fn circle(&mut self, c: P, r: f32, _width: f32, _ink: Ink, _fill: bool) {
+            self.0.circle_filled((self.1)(c), r * 1.6, self.2);
+        }
+        fn text(&mut self, pos: P, text: &str, size: f32, _h: openecraft_core::symbols::Anchor, _v: openecraft_core::render::VAnchor, _ink: Ink) {
+            self.0.text((self.1)(pos), egui::Align2::CENTER_CENTER, text, egui::FontId::proportional(size * 3.0), self.2);
+        }
+    }
+    let color = stroke.color;
+    let mut d = Painter(&painter, &at, color);
+    let reach = render::JUNCTION_R * 4.0;
+    for a in j.arms() {
+        d.line(P::default(), a.vector() * reach, render::WIRE_W, Ink::Wire, false);
+    }
+    if j.is_corner() {
+        return resp;
+    }
+    let flat = Junction { pos: p(0.0, 0.0), dot: false, ..j.clone() };
+    render::junction_symbol(&mut d, &flat, Ink::Wire, true, false);
+    // The targets numbered: of a T-junction and a bridge from their source; a crossing
+    // has none, every end is a source.
+    if j.kind != JunctionKind::Crossing {
+        for (i, (_, target)) in j.links().into_iter().enumerate() {
+            let v = target.vector();
+            let side = p(-v.y, v.x) * 2.6;
+            d.text(v * (reach - 2.0) + side, &(i + 1).to_string(), 2.2, openecraft_core::symbols::Anchor::Center, openecraft_core::render::VAnchor::Middle, Ink::Text);
+        }
+    }
+    resp
+}
 
 /// Selection of the layer of an item ("" is the default layer).
 fn layer_combo(ui: &mut egui::Ui, salt: &str, layer: &mut String, names: &[String]) {
@@ -281,7 +330,96 @@ impl App {
             self.cable_def_properties(ui, id, &cables);
             return true;
         }
+        if pg.junctions.iter().any(|j| j.id == id) {
+            self.junction_properties(ui, id);
+            return true;
+        }
         false
+    }
+
+    /// Direction, variant (with a preview of each) and representation of a T-junction,
+    /// the orientation of a corner, and the wires of their connection.
+    fn junction_properties(&mut self, ui: &mut egui::Ui, id: u64) {
+        let pi = self.session.page;
+        let pg = &self.session.prj.pages[pi];
+        let Some(before) = pg.junctions.iter().find(|j| j.id == id).cloned() else { return };
+        ui.label(RichText::new(junctions::kind_name(before.kind)).strong());
+        let fits = junctions::fits(&self.session.prj, pg, &before);
+        let mut j = before.clone();
+        // The orientations of a corner, crossing or bridge as previews to pick from.
+        let choices: Vec<Junction> = match j.kind {
+            JunctionKind::Corner => [(TeeDir::Down, TeeDir::Right), (TeeDir::Down, TeeDir::Left), (TeeDir::Up, TeeDir::Right), (TeeDir::Up, TeeDir::Left)].into_iter().map(|(v, h)| Junction::corner(j.pos, v, h)).collect(),
+            JunctionKind::Crossing => [(TeeDir::Up, 1), (TeeDir::Up, 2), (TeeDir::Left, 1), (TeeDir::Left, 2)].into_iter().map(|(dir, variant)| Junction { dir, variant, ..j.clone() }).collect(),
+            JunctionKind::Bridge => TeeDir::ALL.into_iter().map(|dir| Junction { dir, ..j.clone() }).collect(),
+            JunctionKind::Tee => Vec::new(),
+        };
+        if !choices.is_empty() {
+            ui.label(if j.is_corner() { tr("Arms") } else { tr("Routing") });
+            ui.horizontal(|ui| {
+                for preview in choices {
+                    let same = preview.links() == j.links();
+                    if junction_preview(ui, &preview, same).on_hover_text(junctions::describe(&preview)).clicked() {
+                        j = Junction { id: j.id, pos: j.pos, dot: j.dot, ..preview };
+                    }
+                }
+            });
+            if j.connects() {
+                ui.checkbox(&mut j.dot, tr("Dot")).on_hover_text(tr("Drawn as a connection dot; the routing stays"));
+            }
+            ui.weak(junctions::describe(&j));
+            if !fits {
+                ui.colored_label(
+                    crate::style::warning(),
+                    if j.is_corner() {
+                        tr("Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.")
+                    } else {
+                        tr("Wires must leave here in all four directions. Until then the connection is chained in schematic order.")
+                    },
+                );
+            }
+        } else {
+            egui::Grid::new("tjprops").num_columns(2).show(ui, |ui| {
+                ui.label(tr("Direction"));
+                egui::ComboBox::from_id_salt("tjdir").selected_text(junctions::side(j.dir)).show_ui(ui, |ui| {
+                    for d in TeeDir::ALL {
+                        ui.selectable_value(&mut j.dir, d, junctions::side(d));
+                    }
+                });
+                ui.end_row();
+                ui.label(tr("Representation"));
+                ui.checkbox(&mut j.dot, tr("Dot")).on_hover_text(tr("Drawn as a connection dot; the routing stays"));
+                ui.end_row();
+            });
+            ui.label(tr("Routing"));
+            ui.horizontal(|ui| {
+                for v in junctions::VARIANTS {
+                    let preview = Junction { variant: v, ..j.clone() };
+                    let r = junction_preview(ui, &preview, j.variant == v).on_hover_text(junctions::describe(&preview));
+                    if r.clicked() {
+                        j.variant = v;
+                    }
+                }
+            });
+            ui.weak(junctions::describe(&j));
+            if !fits {
+                ui.colored_label(crate::style::warning(), tr("Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order."));
+            }
+        }
+        if j != before {
+            if let Some(x) = self.session.prj.pages[pi].junctions.iter_mut().find(|x| x.id == id) {
+                *x = j.clone();
+            }
+        }
+        let an = &self.session.analysis;
+        let conns = junctions::connections_of(&self.session.prj, &an.open, &an.connections, pi, &before);
+        if !conns.is_empty() {
+            ui.separator();
+            ui.label(tr("Wires of the connection"));
+            for i in conns {
+                let c = &an.connections[i];
+                ui.label(RichText::new(format!("{} – {}", pin_designation(&self.session.prj, c.a), pin_designation(&self.session.prj, c.b))).monospace());
+            }
+        }
     }
 
     fn conn_def_properties(&mut self, ui: &mut egui::Ui, id: u64, cables: &[(String, Vec<String>)]) {

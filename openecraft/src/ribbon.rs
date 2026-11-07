@@ -100,7 +100,7 @@ pub static TABS: &[Tab] = &[
             g(
                 "connections",
                 tr_const!("Connections"),
-                &[L(C::WireTool), S(C::ConnDefTool), S(C::CableDefTool), S(C::InterruptionPoint), S(C::PotentialPoint)],
+                &[L(C::WireTool), S(C::JunctionTool), S(C::CornerTool), S(C::CrossingTool), S(C::BridgeTool), S(C::ConnDefTool), S(C::CableDefTool), S(C::InterruptionPoint), S(C::PotentialPoint)],
             ),
             g("macros", tr_const!("Macros"), &[L(C::InsertMacro), S(C::SaveSelectionAsMacro), S(C::SavePageAsMacro)]),
             g("text", tr_const!("Text"), &[L(C::TextTool), S(C::PathFunctionText), S(C::SpecialText)]),

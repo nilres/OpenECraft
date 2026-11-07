@@ -3,6 +3,8 @@
 //! between the ports of fluid power and process symbols form fluid nets (hoses,
 //! pipes) that are kept apart from the electrical ones.
 
+pub mod junctions;
+
 use crate::geom::{on_segment_interior, P};
 use crate::model::{Page, PageKind, Project};
 use crate::symbols::Func;
@@ -95,7 +97,11 @@ impl PageScan {
         let mut pins = Vec::new();
         let mut wires = Vec::new();
         let mut scan = PageScan::default();
-        let ends = wire_ends(page);
+        let mut ends = wire_ends(page);
+        // Crossings and bridges connect the wires passing through their point.
+        for j in page.junctions.iter().filter(|j| j.connects()) {
+            ends.entry(j.pos.key()).or_insert((j.pos, 0)).1 += 1;
+        }
         for w in &page.wires {
             let na = point(&mut uf, w.a);
             let nb = point(&mut uf, w.b);
@@ -196,6 +202,9 @@ fn page_fingerprint(page: &Page) -> u64 {
     for s in &page.symbols {
         (s.id, &s.sym, s.pos.key(), s.rot, s.mirror, &s.tag, &s.label).hash(&mut h);
     }
+    for j in page.junctions.iter().filter(|j| j.connects()) {
+        j.pos.key().hash(&mut h);
+    }
     h.finish()
 }
 
@@ -210,7 +219,8 @@ fn wire_ends(page: &Page) -> HashMap<(i64, i64), (P, usize)> {
     ends
 }
 
-/// Positions where a connection dot must be drawn (three or more connections).
+/// Positions where a connection dot must be drawn (three or more connections; the
+/// point of a crossing or bridge counts as one).
 pub fn junctions(prj: &Project, page: &Page) -> Vec<P> {
     end_counts(prj, page).into_values().filter(|(_, n)| *n >= 3).map(|(q, _)| q).collect()
 }
@@ -231,7 +241,10 @@ pub fn open_wire_ends(prj: &Project, page: &Page) -> Vec<(u64, P)> {
 
 /// Wire ends with the number of connections there: wires ending or passing, pins.
 fn end_counts(prj: &Project, page: &Page) -> HashMap<(i64, i64), (P, usize)> {
-    let ends = wire_ends(page);
+    let mut ends = wire_ends(page);
+    for j in page.junctions.iter().filter(|j| j.connects()) {
+        ends.entry(j.pos.key()).or_insert((j.pos, 0)).1 += 1;
+    }
     let mut count: HashMap<(i64, i64), (P, usize)> = ends.clone();
     // Ends by their x and y key: a horizontal or vertical wire (the usual case) only
     // passes through ends in its own row or column (±1 key for the 0.01 mm tolerance
@@ -445,32 +458,21 @@ pub struct Connection {
 /// chained first, so the wiring stays inside the cabinet and one wire leaves for the
 /// devices outside, those on the same busbar system one after the other after the
 /// first of the others (its bars connect them, see [`crate::panel::virtual_wiring`]); connections assigned to a harness stay as they are
-/// ([`crate::harness::keep_assigned`]). Potential names come from `nl`. Fluid nets are left out (see
-/// [`crate::fluid::hoses`]).
+/// ([`crate::harness::keep_assigned`]). A connection with directed T-junctions takes
+/// its wires from them instead ([`junctions::trace`]). Potential names come from `nl`.
+/// Fluid nets are left out (see [`crate::fluid::hoses`]).
 pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connection> {
     let mut out = Vec::new();
     let assigned = crate::harness::assigned(prj);
+    let tees = junctions::Tees::new(prj);
     for net in open.nets.iter().filter(|n| !n.fluid) {
-        let mut pins = chained_pins(prj, net);
-        let place = |p: &PinRef| match crate::panel::locate(prj, &prj.pages[p.page].symbols[p.sym].tag) {
-            Some((e, it)) => (e, crate::panel::busbar_of(&prj.layout.enclosures[e], it)),
-            None => (usize::MAX, None),
+        let on = tees.on_net(prj, net);
+        let pairs: Vec<[PinRef; 2]> = if on.is_empty() {
+            chained_order(prj, &assigned, net).windows(2).map(|w| [w[0], w[1]]).collect()
+        } else {
+            junctions::trace(prj, net, &on).pairs
         };
-        pins.sort_by_key(|p| place(p).0);
-        // In an enclosure the devices on a busbar system one after the other, after the
-        // first of the others.
-        let mut start = 0;
-        while start < pins.len() {
-            let e = place(&pins[start]).0;
-            let end = (start..pins.len()).find(|&j| place(&pins[j]).0 != e).unwrap_or(pins.len());
-            let (mut on_bars, others): (Vec<PinRef>, Vec<PinRef>) = pins[start..end].iter().partition(|p| place(p).1.is_some());
-            on_bars.sort_by_key(|p| place(p).1);
-            let order: Vec<PinRef> = others.iter().take(1).chain(&on_bars).chain(others.iter().skip(1)).copied().collect();
-            pins[start..end].copy_from_slice(&order);
-            start = end;
-        }
-        let pins = crate::harness::keep_assigned(prj, &assigned, pins);
-        if pins.len() < 2 {
+        if pairs.is_empty() {
             continue;
         }
         let wires = crate::wirenum::wires_of(prj, net);
@@ -486,13 +488,13 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
         };
         let (cable, core) = wires.iter().find(|w| !w.cable.is_empty()).map(|w| (w.cable.clone(), w.core.clone())).unwrap_or_default();
         let number = crate::wirenum::number_of(prj, net);
-        let first = pins[0];
+        let first = pairs[0][0];
         let potential = nl
             .pin_net
             .get(&(prj.pages[first.page].symbols[first.sym].id, first.pin))
             .map(|&n| nl.nets[n].name.clone())
             .unwrap_or_else(|| net.name.clone());
-        for pair in pins.windows(2) {
+        for pair in &pairs {
             let harness = crate::harness::of(prj, &pin_designation(prj, pair[0]), &pin_designation(prj, pair[1]));
             out.push(Connection {
                 net: potential.clone(),
@@ -508,6 +510,31 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
         }
     }
     out
+}
+
+/// The device connection points of a net in the order they are chained: schematic
+/// order, devices of one enclosure together with those on a busbar system one after
+/// the other, harness connections kept.
+fn chained_order(prj: &Project, assigned: &std::collections::HashSet<[String; 2]>, net: &Net) -> Vec<PinRef> {
+    let mut pins = chained_pins(prj, net);
+    let place = |p: &PinRef| match crate::panel::locate(prj, &prj.pages[p.page].symbols[p.sym].tag) {
+        Some((e, it)) => (e, crate::panel::busbar_of(&prj.layout.enclosures[e], it)),
+        None => (usize::MAX, None),
+    };
+    pins.sort_by_key(|p| place(p).0);
+    // In an enclosure the devices on a busbar system one after the other, after the
+    // first of the others.
+    let mut start = 0;
+    while start < pins.len() {
+        let e = place(&pins[start]).0;
+        let end = (start..pins.len()).find(|&j| place(&pins[j]).0 != e).unwrap_or(pins.len());
+        let (mut on_bars, others): (Vec<PinRef>, Vec<PinRef>) = pins[start..end].iter().partition(|p| place(p).1.is_some());
+        on_bars.sort_by_key(|p| place(p).1);
+        let order: Vec<PinRef> = others.iter().take(1).chain(&on_bars).chain(others.iter().skip(1)).copied().collect();
+        pins[start..end].copy_from_slice(&order);
+        start = end;
+    }
+    crate::harness::keep_assigned(prj, assigned, pins)
 }
 
 /// Connection points of the devices in a net in schematic order (page, then left to

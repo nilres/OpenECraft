@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Yhteyden
 Structure	Rakenne
 Connects two connection points with wires routed around symbols and other wires	Yhdistää kaksi liitäntäpistettä johdoilla, jotka reititetään symbolien ja muiden johtojen ympäri
 Connection point TAG:PIN, e.g. -K1:A1	Liitäntäpiste TUNNUS:NASTA, esim. -K1:A1
-Draws wires between free connection points of symbols that face each other	Piirtää johdot toisiaan vastapäätä olevien symbolien vapaiden liitäntäpisteiden välille
-Symbol ids (default: all symbols of the page)	Symbolien tunnisteet (oletus: sivun kaikki symbolit)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Piirtää kaapelimääritysviivan; sen ristimistä johdoista tulee kaapelin johtimia (uusi kaapeli, jos kaapelia ei anneta)
 Start and end point of the line	Viivan alku- ja loppupiste
 Cable tag, e.g. -W1	Kaapelin tunnus, esim. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Vain verkko- ja s�
 The plugin program did not answer within {} s and was stopped	Laajennusohjelma ei vastannut {} sekunnissa, ja se pysäytettiin
 Busbar systems	Kiskojärjestelmät
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: kiskojärjestelmä, jossa on {} kiskoa, yhdistää {} johdinta ({}): oikosulku
+T-junction	T-haara
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Suunnattu T-haara: kohdassa, jossa kolme johdinta kohtaa, se määrää laitteen, josta liitoksen kaksi johdinta lähtevät, ja kohteiden järjestyksen
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: vasemmasta / ylemmästä haarasta suoraan toiseen haaraan, sitten runkoon · 2: sama oikeasta / alemmasta haarasta · 3: rungosta vasempaan / ylempään haaraan, sitten toiseen · 4: rungosta ensin oikeaan / alempaan haaraan (oletus 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Rungon suunta: left, right, up tai down (oletus: paikan johtimien mukaan)
+Draw the junction as a connection dot; its routing stays	Piirrä T-haara liitospisteenä; sen reititys säilyy
+No three wires meet at {} / {} mm: give the direction of the stem	Kohdassa {} / {} mm ei kohtaa kolmea johdinta: anna rungon suunta
+Page name (default: all pages)	Sivun nimi (oletus: kaikki sivut)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Sijoittaa suunnatun T-haaran kohtaan, jossa kolme johdinta kohtaa: se määrää laitteen, josta liitoksen kaksi johdinta lähtevät (lähde), ja kohteiden järjestyksen kaavion järjestyksen sijaan
+Unknown direction {}: left, right, up or down	Tuntematon suunta {}: left, right, up tai down
+Variant {} is not one of 1 to 4	Variantti {} ei ole 1–4
+Dot	Piste
+Drawn as a connection dot; the routing stays	Piirretään liitospisteenä; reititys säilyy
+Representation	Esitystapa
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tässä on kohdattava kolme johdinta: yksi sen suunnassa ja kaksi poikittain. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
+Wires of the connection	Liitoksen johtimet
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
+Draw the three wires of the T-junction to it: one in its direction and two across	Piirrä T-haaran kolme johdinta siihen: yksi sen suunnassa ja kaksi poikittain
+Source {}, first target {}, second target {}	Lähde {}, ensimmäinen kohde {}, toinen kohde {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Sivun {} T-haara ei sovi johtimiinsa: se tarvitsee yhden johtimen suunnassaan, kaksi poikittain eikä liitäntäpistettä siinä
+on the left	vasemmalla
+on the right	oikealla
+above	ylhäällä
+below	alhaalla
+Connection symbols	Liitossymbolit
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Kulma: kaksi johdinta suorassa kulmassa; automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen
+Draw wires to the connection points facing its free arms	Piirrä johtimet sen vapaita haaroja vastapäätä oleviin liitäntäpisteisiin
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Piirtää johtimet toisiaan vastapäätä olevien symbolien vapaiden liitäntäpisteiden välille sekä T-haarojen ja kulmien vapaisiin haaroihin
+Ids of symbols and connection symbols (default: all symbols of the page)	Symbolien ja liitossymbolien tunnukset (oletus: sivun kaikki symbolit)
+No connection symbol with id {}	Ei liitossymbolia tunnuksella {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Sijoittaa kulman: siinä kaksi johdinta kohtaa suorassa kulmassa, ja sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	Kulman haarat ovat yksi pysty- ja yksi vaakasuunta, esim. down left, ei {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Kulman kaksi haaraa, pysty ja vaaka, esim. down left (oletus: paikan johtimien mukaan, muuten down right)
+There is a connection symbol at this point already	Tässä pisteessä on jo liitossymboli
+Arms	Haarat
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta kohtaa suorassa kulmassa, tai jossa liitäntäpisteet ovat vastakkain kulman yli: automaattisen kytkennän ollessa päällä siihen piirretään johtimet · {} kääntää sen · Esc tai oikea painike lopettaa
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Piirrä kulman kaksi johdinta siihen tai kytke automaattinen kytkentä päälle ja sijoita se vapaita liitäntäpisteitä vastapäätä
+Arms {} and {}	Haarat {} ja {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Sivun {} kulma ei sovi johtimiinsa: se tarvitsee yhden johtimen kumpaankin suuntaansa eikä liitäntäpistettä siinä
+Two connection symbols on page {} lie on the same point	Sivun {} kaksi liitossymbolia ovat samassa pisteessä
+Crossing	Risteys
+Bridge	Silta
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Suunnattu risteys: yhdistää siinä risteävät kaksi johdinta; linjan kumpikin pää johdotetaan ensin suoraan ja sitten poikittain
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: linjan ylempi / vasen pää jatkuu poikittain oikeaan / alempaan haaraan · 2: vasempaan / ylempään haaraan (oletus 2)
+A {} has no {}; it takes {}	{}: ei ole {}; käyttää {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Muuttaa T-haaraa (suunta, variantti, esitystapa), kulmaa (haarat), risteystä (linja, variantti, esitystapa) tai siltaa (suunta, esitystapa)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Luettelee T-haarat, kulmat, risteykset ja sillat reitityksineen ja niiden liitoksen johtimet
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Sijoittaa sillan kohtaan, jossa neljä johdinta kohtaa: liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle, sitten vasemmalle / ylemmälle, sitten oikealle / alemmalle
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Sijoittaa suunnatun risteyksen kohtaan, jossa kaksi johdinta risteää: se yhdistää ne, ja linjan kumpikin pää johdotetaan ensin suoraan ja sitten yhteen poikittaiseen haaraan
+Side the connection comes from: left, right, up or down (default up)	Sivu, jolta liitos tulee: left, right, up tai down (oletus up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-haara: rungon suunta; silta: sivu, jolta liitos tulee (left, right, up tai down)
+The line of a crossing is vertical or horizontal, not {}	Risteyksen linja on vertical tai horizontal, ei {}
+The straight line of a crossing: vertical or horizontal (default vertical)	Risteyksen suora linja: vertical tai horizontal (oletus vertical)
+Variant {} is not one of 1 to 2	Variantti {} ei ole 1–2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Tästä on lähdettävä johtimia kaikkiin neljään suuntaan. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa neljä johdinta kohtaa: silta vie liitoksen yhdeltä sivulta kolmelle muulle, ensin vastakkaiselle · {} kääntää sen · Esc tai oikea painike lopettaa
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Piirrä siihen johtimet kaikista neljästä suunnasta tai kytke automaattinen kytkentä päälle ja sijoita se vapaita liitäntäpisteitä vastapäätä
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sivun {} silta ei sovi johtimiinsa: se tarvitsee johtimen kaikkiin neljään suuntaan eikä liitäntäpistettä siinä
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Sivun {} risteys ei sovi johtimiinsa: se tarvitsee johtimen kaikkiin neljään suuntaan eikä liitäntäpistettä siinä
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Sivun {} liitossymboli johdottaa liitoksensa silmukaksi: liitoksen symbolit antavat sille enemmän johtimia kuin sen laitteet tarvitsevat
+Source {}, targets {}, {} and {}	Lähde {}, kohteet {}, {} ja {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Suoraan {} – {}, poikittain {} – {} ja {} – {}

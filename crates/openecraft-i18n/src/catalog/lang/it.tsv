@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	Il punto
 Structure	Struttura
 Connects two connection points with wires routed around symbols and other wires	Collega due punti di connessione con conduttori instradati attorno ai simboli e agli altri conduttori
 Connection point TAG:PIN, e.g. -K1:A1	Punto di connessione SIGLA:PIN, ad es. -K1:A1
-Draws wires between free connection points of symbols that face each other	Disegna conduttori tra punti di connessione liberi di simboli affacciati
-Symbol ids (default: all symbols of the page)	ID dei simboli (predefinito: tutti i simboli della pagina)
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	Traccia una linea di definizione cavo; i conduttori che attraversa diventano anime del cavo (un nuovo cavo se non ne viene indicato uno)
 Start and end point of the line	Punto iniziale e finale della linea
 Cable tag, e.g. -W1	Sigla cavo, ad es. -W1
@@ -6446,3 +6444,67 @@ Only web and e-mail addresses (http, https, mailto) are links	Solo gli indirizzi
 The plugin program did not answer within {} s and was stopped	Il programma del plugin non ha risposto entro {} s ed è stato interrotto
 Busbar systems	Sistemi di sbarre
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: il sistema di sbarre con {} barre unisce {} conduttori ({}): cortocircuito
+T-junction	Pezzo a T
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Pezzo a T direzionato: dove si incontrano tre conduttori, indica il dispositivo da cui partono i due fili del collegamento e l'ordine dei loro obiettivi
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1: dal braccio sinistro / superiore dritto all'altro braccio, poi al gambo · 2: lo stesso dal braccio destro / inferiore · 3: dal gambo al braccio sinistro / superiore, poi all'altro · 4: dal gambo prima al braccio destro / inferiore (predefinito 3)
+Direction of the stem: left, right, up or down (default: from the wires there)	Direzione del gambo: left, right, up o down (predefinito: dai conduttori presenti)
+Draw the junction as a connection dot; its routing stays	Disegnare il pezzo a T come punto di collegamento; il suo instradamento resta
+No three wires meet at {} / {} mm: give the direction of the stem	In {} / {} mm non si incontrano tre conduttori: indicare la direzione del gambo
+Page name (default: all pages)	Nome della pagina (predefinito: tutte le pagine)
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	Colloca un pezzo a T direzionato dove si incontrano tre conduttori: indica il dispositivo da cui partono i due fili del collegamento (la sorgente) e l'ordine dei loro obiettivi, invece dell'ordine dello schema
+Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
+Variant {} is not one of 1 to 4	La variante {} non è tra 1 e 4
+Dot	Punto
+Drawn as a connection dot; the routing stays	Disegnato come punto di collegamento; l'instradamento resta
+Representation	Rappresentazione
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Qui devono incontrarsi tre conduttori: uno nella sua direzione e due trasversali. Fino ad allora il collegamento è concatenato nell'ordine dello schema.
+Wires of the connection	Fili del collegamento
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Fai clic dove si incontrano tre conduttori: il pezzo a T indica il dispositivo da cui partono i fili e l'ordine dei loro obiettivi · {} lo ruota dove non si incontrano ancora conduttori · Esc o clic destro per terminare
+Draw the three wires of the T-junction to it: one in its direction and two across	Disegna i tre conduttori del pezzo a T fino a esso: uno nella sua direzione e due trasversali
+Source {}, first target {}, second target {}	Sorgente {}, primo obiettivo {}, secondo obiettivo {}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Il pezzo a T a pagina {} non corrisponde ai suoi conduttori: serve un conduttore nella sua direzione, due trasversali e nessun punto di collegamento lì
+on the left	a sinistra
+on the right	a destra
+above	sopra
+below	sotto
+Connection symbols	Simboli di collegamento
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Angolo: due conduttori ad angolo retto; con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati
+Draw wires to the connection points facing its free arms	Disegnare conduttori verso i punti di collegamento rivolti ai suoi bracci liberi
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Disegna conduttori tra punti di collegamento liberi di simboli che si fronteggiano e verso i bracci liberi di pezzi a T e angoli
+Ids of symbols and connection symbols (default: all symbols of the page)	Id di simboli e simboli di collegamento (predefinito: tutti i simboli della pagina)
+No connection symbol with id {}	Nessun simbolo di collegamento con id {}
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	Colloca un angolo: lì due conduttori si incontrano ad angolo retto e i punti di collegamento rivolti ai suoi bracci vi vengono cablati
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	I bracci di un angolo sono una direzione verticale e una orizzontale, ad es. down left, non {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	I due bracci di un angolo, verticale e orizzontale, ad es. down left (predefinito: dai conduttori presenti, altrimenti down right)
+There is a connection symbol at this point already	C'è già un simbolo di collegamento in questo punto
+Arms	Bracci
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Qui devono incontrarsi due conduttori ad angolo retto. Con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati.
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Fai clic dove due conduttori si incontrano ad angolo retto, o dove punti di collegamento si fronteggiano attraverso l'angolo: con la connessione automatica attiva vi vengono disegnati conduttori · {} lo ruota · Esc o clic destro per terminare
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Disegna i due conduttori dell'angolo fino a esso, oppure attiva la connessione automatica e collocalo di fronte a punti di collegamento liberi
+Arms {} and {}	Bracci {} e {}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	L'angolo a pagina {} non corrisponde ai suoi conduttori: serve un conduttore in ciascuna delle sue due direzioni e nessun punto di collegamento lì
+Two connection symbols on page {} lie on the same point	Due simboli di collegamento a pagina {} si trovano nello stesso punto
+Crossing	Incrocio
+Bridge	Ponte
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Incrocio direzionato: collega i due conduttori che vi si incrociano; ciascuna estremità della sua linea è cablata prima dritta e poi trasversalmente
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quattro conduttori; il collegamento entra da un lato e va agli altri tre, prima al lato opposto
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1: l'estremità superiore / sinistra della linea va trasversalmente al braccio destro / inferiore · 2: al braccio sinistro / superiore (predefinito 2)
+A {} has no {}; it takes {}	{} non ha {}; accetta {}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifica un pezzo a T (direzione, variante, rappresentazione), un angolo (bracci), un incrocio (linea, variante, rappresentazione) o un ponte (direzione, rappresentazione)
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	Elenca i pezzi a T, angoli, incroci e ponti con il loro instradamento e i fili del loro collegamento
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	Colloca un ponte dove si incontrano quattro conduttori: il collegamento entra da un lato e va agli altri tre, prima all'opposto, poi al sinistro / superiore, poi al destro / inferiore
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	Colloca un incrocio direzionato dove due conduttori si incrociano: li collega, e ciascuna estremità della sua linea è cablata prima dritta e poi a un braccio trasversale
+Side the connection comes from: left, right, up or down (default up)	Lato da cui arriva il collegamento: left, right, up o down (predefinito up)
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Pezzo a T: direzione del gambo; ponte: lato da cui arriva il collegamento (left, right, up o down)
+The line of a crossing is vertical or horizontal, not {}	La linea di un incrocio è vertical o horizontal, non {}
+The straight line of a crossing: vertical or horizontal (default vertical)	La linea dritta di un incrocio: vertical o horizontal (predefinito vertical)
+Variant {} is not one of 1 to 2	La variante {} non è tra 1 e 2
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Da qui devono partire conduttori in tutte e quattro le direzioni. Fino ad allora il collegamento è concatenato nell'ordine dello schema.
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Fai clic dove si incontrano quattro conduttori: il ponte porta il collegamento da un lato agli altri tre, prima all'opposto · {} lo ruota · Esc o clic destro per terminare
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Fai clic dove due conduttori si incrociano: l'incrocio li collega e porta ciascuna estremità della sua linea prima dritta e poi trasversalmente · {} lo ruota · Esc o clic destro per terminare
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	Disegna conduttori nelle quattro direzioni fino a esso, oppure attiva la connessione automatica e collocalo di fronte a punti di collegamento liberi
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	Il ponte a pagina {} non corrisponde ai suoi conduttori: serve un conduttore nelle quattro direzioni e nessun punto di collegamento lì
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	L'incrocio a pagina {} non corrisponde ai suoi conduttori: serve un conduttore nelle quattro direzioni e nessun punto di collegamento lì
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	Il simbolo di collegamento a pagina {} cabla il suo collegamento ad anello: i simboli del collegamento gli danno più fili di quanti ne servano ai suoi dispositivi
+Source {}, targets {}, {} and {}	Sorgente {}, obiettivi {}, {} e {}
+Straight through from {} to {}, across from {} to {} and from {} to {}	Dritto da {} a {}, trasversalmente da {} a {} e da {} a {}

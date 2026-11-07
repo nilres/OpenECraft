@@ -18,6 +18,7 @@ use openecraft_core::analysis::Analysis;
 use openecraft_core::review::{Hit, MarkupKind, Pen};
 use openecraft_core::symlib::Symbols;
 use openecraft_core::symbols::{Anchor};
+use openecraft_core::netlist::junctions;
 use openecraft_core::{cabledef, conndef, graphics, routing};
 use egui::{pos2, vec2, Align2, Color32, FontId, Key, Painter, PointerButton, Pos2, Rect, Sense, Shape as EShape, Stroke, Vec2};
 use std::collections::{BTreeSet, HashMap, HashSet};
@@ -40,6 +41,8 @@ pub enum Tool {
     ConnDef,
     /// Cable definition line across wires.
     CableDef,
+    /// Connection symbol: a directed T-junction where three wires meet, or a corner.
+    Junction(JunctionKind),
     /// Place the items of `Editor::insert` (macro, image).
     Insert,
     /// Place a review comment.
@@ -399,6 +402,9 @@ pub struct Editor {
     pub selection: BTreeSet<u64>,
     pub place_rot: u8,
     pub place_mirror: bool,
+    /// The connection symbol the junction tools place where the wires do not decide
+    /// it (R turns it).
+    pub symbol_proto: Junction,
     pub show_grid: bool,
     /// Snap and drawing grid in mm (EPLAN grid sizes; connection points are on 4 mm).
     pub grid: f32,
@@ -474,6 +480,7 @@ impl Default for Editor {
             selection: BTreeSet::new(),
             place_rot: 0,
             place_mirror: false,
+            symbol_proto: Junction::new(JunctionKind::Tee, P::default()),
             show_grid: true,
             grid: GRID,
             typed: None,
@@ -592,6 +599,11 @@ impl Editor {
         if !matches!(tool, Tool::Place(_)) {
             self.place_tag = None;
         }
+        if let Tool::Junction(kind) = tool {
+            if self.symbol_proto.kind != kind {
+                self.symbol_proto = Junction::new(kind, P::default());
+            }
+        }
         self.tool = tool;
         self.wire_start = None;
         self.text_proto = None;
@@ -635,6 +647,22 @@ impl Editor {
             Tool::Polyline | Tool::Polygon => tr_fmt!("Click the corner points · double click, {} or right click ends the shape · Esc to finish", self.key(finish)),
             Tool::Dimension(_) => tr("Click the two points to measure, then the position of the dimension line · Esc or right click to finish").to_string(),
             Tool::ConnDef => tr("Click on a wire: the point defines number, colour, cross-section and cable core of the connection · Esc or right click to finish").to_string(),
+            Tool::Junction(JunctionKind::Tee) => tr_fmt!(
+                "Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish",
+                self.cmd_key(Cmd::Rotate)
+            ),
+            Tool::Junction(JunctionKind::Corner) => tr_fmt!(
+                "Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish",
+                self.cmd_key(Cmd::Rotate)
+            ),
+            Tool::Junction(JunctionKind::Crossing) => tr_fmt!(
+                "Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish",
+                self.cmd_key(Cmd::Rotate)
+            ),
+            Tool::Junction(JunctionKind::Bridge) => tr_fmt!(
+                "Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish",
+                self.cmd_key(Cmd::Rotate)
+            ),
             Tool::CableDef if self.cable_target.is_empty() => tr("Draw a line across the wires that are cores of a new cable · Esc or right click to finish").to_string(),
             Tool::CableDef => tr_fmt!("Draw a line across the wires that are cores of cable {} · Esc or right click to finish", self.cable_target),
             Tool::Insert => tr("Click to insert · Esc cancel").to_string(),
@@ -716,6 +744,9 @@ impl Editor {
         if let Some(c) = page.conn_defs.iter().rev().find(|c| c.pos.dist(q) <= tol.max(1.2)) {
             return Some(c.id);
         }
+        if let Some(j) = page.junctions.iter().rev().find(|j| j.pos.dist(q) <= tol.max(1.2)) {
+            return Some(j.id);
+        }
         for w in page.wires.iter().rev() {
             if dist_to_segment(q, w.a, w.b) <= tol {
                 return Some(w.id);
@@ -750,14 +781,34 @@ impl Editor {
         None
     }
 
-    /// Does `q` touch a connection point or an existing wire (to end a wire there)?
+    /// Does `q` touch a connection point, an existing wire or a T-junction (to end a
+    /// wire there)?
     fn is_connection(symbols: &Symbols, page: &Page, q: P) -> bool {
         let pin = page.symbols.iter().any(|s| {
             symbols.get(&s.sym)
                 .map(|d| (0..d.pins.len()).any(|i| d.pin_world(i, s.pos, s.rot, s.mirror).same(q)))
                 .unwrap_or(false)
         });
-        pin || page.wires.iter().any(|w| dist_to_segment(q, w.a, w.b) < 0.01)
+        pin || page.wires.iter().any(|w| dist_to_segment(q, w.a, w.b) < 0.01) || page.junctions.iter().any(|j| j.pos.same(q))
+    }
+
+    /// The connection symbol the tool would place at `q`: a T-junction with its stem
+    /// after the wires meeting there, a corner with the arms of the two wires there,
+    /// else in the tool's direction.
+    fn junction_at(&self, page: &Page, q: P, kind: JunctionKind) -> Junction {
+        let arms = junctions::arms(page, q);
+        let proto = if self.symbol_proto.kind == kind { self.symbol_proto.clone() } else { Junction::new(kind, q) };
+        match kind {
+            JunctionKind::Tee => match arms.as_deref().and_then(junctions::stem_of) {
+                Some(dir) => Junction { pos: q, dir, variant: 3, ..proto },
+                None => Junction { pos: q, ..proto },
+            },
+            JunctionKind::Corner => match arms.as_deref().and_then(junctions::corner_of) {
+                Some((v, h)) => Junction::corner(q, v, h),
+                None => Junction { pos: q, ..proto },
+            },
+            JunctionKind::Crossing | JunctionKind::Bridge => Junction { pos: q, ..proto },
+        }
     }
 
     fn wire_path(&mut self, prj: &Project, page: &Page, a: P, b: P) -> Vec<P> {
@@ -1128,6 +1179,16 @@ impl Editor {
                     g.poly(&[q + p(0.0, -r), q + p(r, 0.0), q + p(0.0, r), q + p(-r, 0.0)], true, render::SYMBOL_W, Ink::Ghost, true);
                 }
             }
+            Tool::Junction(kind) => {
+                let j = self.junction_at(page, sn, kind);
+                // The arms themselves where no wires are there yet.
+                if junctions::arms(page, sn).is_none_or(|a| a.is_empty()) {
+                    for a in j.arms() {
+                        g.line(sn, sn + a.vector() * (render::JUNCTION_R * 2.0), render::WIRE_W, Ink::Ghost, false);
+                    }
+                }
+                render::junction_symbol(g, &j, Ink::Ghost, !j.is_corner(), true);
+            }
             Tool::Comment | Tool::Markup(..) => {}
             Tool::Insert => {
                 if let Some(clip) = &self.insert {
@@ -1243,6 +1304,8 @@ impl Editor {
         if r {
             if matches!(self.tool, Tool::Place(_)) {
                 self.place_rot = (self.place_rot + 1) % 4;
+            } else if matches!(self.tool, Tool::Junction(_)) {
+                self.symbol_proto.turn();
             } else if !self.selection.is_empty() {
                 ops::rotate(&symbols, page, &self.selection);
             }
@@ -1270,7 +1333,7 @@ impl Editor {
             }
             // Like a drag: facing connection points of moved symbols are connected.
             ops::cleanup_wires(page);
-            let moved_symbols = page.symbols.iter().any(|s| self.selection.contains(&s.id));
+            let moved_symbols = page.symbols.iter().any(|s| self.selection.contains(&s.id)) || page.junctions.iter().any(|j| self.selection.contains(&j.id));
             if self.autoconnect && moved_symbols {
                 let n = routing::apply_autoconnect(prj, page_i, &self.selection);
                 if n > 0 {
@@ -1407,6 +1470,35 @@ impl Editor {
         }
     }
 
+    /// Places a connection symbol at `sn` and, with Auto-connect on, the wires to the
+    /// connection points facing its arms; the message says what is still missing.
+    fn place_junction(&mut self, prj: &mut Project, page_i: usize, sn: P, kind: JunctionKind, out: &mut CanvasOutput) {
+        if prj.pages[page_i].junctions.iter().any(|j| j.pos.same(sn)) {
+            out.message = Some(tr("There is a connection symbol at this point already").to_string());
+            return;
+        }
+        let mut j = self.junction_at(&prj.pages[page_i], sn, kind);
+        j.id = prj.new_id();
+        let id = j.id;
+        prj.pages[page_i].junctions.push(j);
+        let drawn = if self.autoconnect { routing::apply_autoconnect(prj, page_i, &BTreeSet::from([id])) } else { 0 };
+        let j = prj.pages[page_i].junctions.last().cloned().unwrap_or_default();
+        out.message = Some(if drawn > 0 {
+            if drawn == 1 { tr("1 connection drawn automatically").to_string() } else { tr_fmt!("{} connections drawn automatically", drawn) }
+        } else if junctions::fits(prj, &prj.pages[page_i], &j) {
+            String::new()
+        } else {
+            match kind {
+                JunctionKind::Corner => tr("Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points").to_string(),
+                JunctionKind::Tee => tr("Draw the three wires of the T-junction to it: one in its direction and two across").to_string(),
+                JunctionKind::Crossing | JunctionKind::Bridge => tr("Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points").to_string(),
+            }
+        })
+        .filter(|m| !m.is_empty());
+        self.selection = BTreeSet::from([id]);
+        out.open_properties = true;
+    }
+
     #[allow(clippy::too_many_arguments)]
     fn mouse(
         &mut self,
@@ -1539,6 +1631,11 @@ impl Editor {
                     self.finish_poly(prj, page_i);
                 }
             }
+            Tool::Junction(kind) => {
+                if let Some(sn) = click {
+                    self.place_junction(prj, page_i, sn, kind, out);
+                }
+            }
             tool => {
                 let Some(needed) = tool.points() else { return };
                 if let Some(sn) = click {
@@ -1637,7 +1734,8 @@ impl Editor {
                 }
                 Drag::Move { applied, .. } => {
                     ops::cleanup_wires(&mut prj.pages[page_i]);
-                    let moved_symbols = prj.pages[page_i].symbols.iter().any(|s| self.selection.contains(&s.id));
+                    let pg = &prj.pages[page_i];
+                    let moved_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
                     if self.autoconnect && moved_symbols && (applied.x != 0.0 || applied.y != 0.0) {
                         let n = routing::apply_autoconnect(prj, page_i, &self.selection);
                         if n > 0 {

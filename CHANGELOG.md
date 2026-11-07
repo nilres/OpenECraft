@@ -5,6 +5,30 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Directed T-junctions (target tracing):** *Insert › Connections › T-junction*
+  places a junction where three wires meet that names the device the two wires of the
+  connection start from and the order of their targets, with four directions and four
+  variants each as in the connection symbols of EPLAN; the connection list, diagrams,
+  panel wiring and harnesses follow it, connections without one keep the schematic
+  order. The junction can be drawn as a dot without losing its routing, turns and
+  mirrors with the drawing, is kept in the project file and the undo history, and is
+  checked against its wires (*Connection symbols* check). Commands `add_t_junction`,
+  `update_connection_symbol` and `list_connection_symbols` for the command line and the
+  MCP server ([#96](https://github.com/nilres/OpenECraft/issues/96)).
+- **Corners for automatic wiring:** *Insert › Connections › Corner* places a connection
+  symbol with two arms at a right angle; with *Auto-connect* on, connection points that
+  face the free arms of a corner or a T-junction are wired to it when the symbol or the
+  device is placed or moved, so a corner at the meeting point of two connections wires
+  both of them in. Command `add_corner` (with `autoconnect`), and `autoconnect` takes
+  connection symbols too ([#96](https://github.com/nilres/OpenECraft/issues/96)).
+- **Directed crossings and bridges:** *Insert › Connections › Crossing* connects the two
+  wires crossing at its point (unconnected without one) and leads each end of its
+  vertical or horizontal line straight on first and across second, in two variants;
+  *Bridge* leads a connection from one side to the three others, the opposite side
+  first. Both follow the connection symbols of EPLAN, can be drawn as a dot and keep
+  their routing, and the check reports a connection its symbols wire in a loop. Commands
+  `add_crossing` and `add_bridge` ([#96](https://github.com/nilres/OpenECraft/issues/96)).
+
 ## [0.1.0] - 2026-11-04
 
 The first release: an electrical CAE editor for Windows, Linux, macOS and the browser,

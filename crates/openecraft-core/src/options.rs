@@ -27,6 +27,7 @@ impl Item {
             Item::Image(x) => x.id,
             Item::ConnDef(x) => x.id,
             Item::CableDef(x) => x.id,
+            Item::Junction(x) => x.id,
         }
     }
 }
@@ -74,6 +75,7 @@ fn page_max_id(pg: &Page) -> u64 {
     ids.extend(pg.images.iter().map(|x| x.id));
     ids.extend(pg.conn_defs.iter().map(|x| x.id));
     ids.extend(pg.cable_defs.iter().map(|x| x.id));
+    ids.extend(pg.junctions.iter().map(|x| x.id));
     ids.into_iter().max().unwrap_or(0)
 }
 
@@ -87,6 +89,7 @@ pub fn item_ids(pg: &Page) -> Vec<u64> {
     ids.extend(pg.images.iter().map(|x| x.id));
     ids.extend(pg.conn_defs.iter().map(|x| x.id));
     ids.extend(pg.cable_defs.iter().map(|x| x.id));
+    ids.extend(pg.junctions.iter().map(|x| x.id));
     ids
 }
 
@@ -329,6 +332,7 @@ fn take(prj: &mut Project, ids: &BTreeSet<u64>) -> Vec<Parked> {
         take_list!(images, Image, std::convert::identity);
         take_list!(conn_defs, ConnDef, std::convert::identity);
         take_list!(cable_defs, CableDef, std::convert::identity);
+        take_list!(junctions, Junction, std::convert::identity);
     }
     out
 }
@@ -359,6 +363,7 @@ fn put_back(prj: &mut Project, parked: Vec<Parked>) {
             Item::Image(x) => put(&mut pg.images, p.index, x),
             Item::ConnDef(x) => put(&mut pg.conn_defs, p.index, x),
             Item::CableDef(x) => put(&mut pg.cable_defs, p.index, x),
+            Item::Junction(x) => put(&mut pg.junctions, p.index, x),
         }
     }
     park_inactive(prj);

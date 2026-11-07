@@ -2448,8 +2448,6 @@ Connection definition point on page {} is not applied to its connection	页 {} �
 Structure	结构
 Connects two connection points with wires routed around symbols and other wires	用绕开符号和其他导线的导线连接两个连接点
 Connection point TAG:PIN, e.g. -K1:A1	连接点 TAG:PIN，例如 -K1:A1
-Draws wires between free connection points of symbols that face each other	在符号相对的空闲连接点之间绘制导线
-Symbol ids (default: all symbols of the page)	符号 ID（默认：页上所有符号）
 Draws a cable definition line; the wires it crosses become cores of the cable (a new cable when none is given)	绘制电缆定义线；其穿过的导线成为电缆的芯线（未指定电缆时新建电缆）
 Start and end point of the line	线的起点和终点
 Cable tag, e.g. -W1	电缆标识符，例如 -W1
@@ -6427,3 +6425,67 @@ House connection box	进户箱
 The archive unpacks to more than {} MB	压缩包解压后超过 {} MB
 Only web and e-mail addresses (http, https, mailto) are links	只有网址和电子邮件地址（http、https、mailto）可作为链接
 The plugin program did not answer within {} s and was stopped	插件程序在 {} 秒内没有响应，已被停止
+T-junction	T型节点
+Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	有向T型节点：在三条连接线相交处指定连接的两条导线从哪个设备出发以及目标的顺序
+1: from the left / upper arm straight to the other arm, then to the stem · 2: the same from the right / lower arm · 3: from the stem to the left / upper arm, then to the other · 4: from the stem to the right / lower arm first (default 3)	1：从左 / 上分支直接到另一分支，再到主干 · 2：同样，从右 / 下分支出发 · 3：从主干到左 / 上分支，再到另一分支 · 4：从主干先到右 / 下分支（默认 3）
+Direction of the stem: left, right, up or down (default: from the wires there)	主干方向：left、right、up 或 down（默认：按该处的连接线）
+Draw the junction as a connection dot; its routing stays	将节点绘制为连接点；其走向保持不变
+No three wires meet at {} / {} mm: give the direction of the stem	在 {} / {} mm 处没有三条连接线相交：请给出主干方向
+Page name (default: all pages)	页面名称（默认：所有页面）
+Places a directed T-junction where three wires meet: it names the device the two wires of the connection start from (the source) and the order of their targets, instead of the schematic order	在三条连接线相交处放置有向T型节点：它指定连接的两条导线从哪个设备出发（源）以及目标的顺序，而不是按原理图顺序
+Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
+Variant {} is not one of 1 to 4	变体 {} 不在 1 到 4 之间
+Dot	点
+Drawn as a connection dot; the routing stays	绘制为连接点；走向保持不变
+Representation	表示方式
+Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	此处必须有三条连接线相交：一条沿其方向，两条横向。在此之前连接按原理图顺序串接。
+Wires of the connection	连接的导线
+Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	在三条连接线相交处单击：T型节点指定导线出发的设备以及目标的顺序 · 在尚无连接线相交处 {} 可旋转 · Esc 或右键结束
+Draw the three wires of the T-junction to it: one in its direction and two across	将T型节点的三条连接线画到此处：一条沿其方向，两条横向
+Source {}, first target {}, second target {}	源{}，第一目标{}，第二目标{}
+T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	第 {} 页上的T型节点与其连接线不匹配：需要一条沿其方向的连接线、两条横向连接线，且该处不能有连接点
+on the left	左侧
+on the right	右侧
+above	上方
+below	下方
+Connection symbols	连接符号
+Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	拐角：两条直角相交的连接线；开启自动连接时，正对其分支的连接点会接到它上
+Draw wires to the connection points facing its free arms	向正对其空闲分支的连接点绘制连接线
+Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	在相对的符号空闲连接点之间以及到T型节点和拐角的空闲分支绘制连接线
+Ids of symbols and connection symbols (default: all symbols of the page)	符号和连接符号的 id（默认：页面上的所有符号）
+No connection symbol with id {}	没有 id 为 {} 的连接符号
+Places a corner: two wires meet there at a right angle, and connection points facing its arms are wired to it	放置拐角：两条连接线在此直角相交，正对其分支的连接点会接到它上
+The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	拐角的分支是一个垂直方向和一个水平方向，例如 down left，而不是 {}
+The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	拐角的两个分支，垂直和水平，例如 down left（默认：按该处的连接线，否则 down right）
+There is a connection symbol at this point already	此处已有连接符号
+Arms	分支
+Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
+Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	在两条连接线直角相交处或连接点隔着拐角相对处单击：开启自动连接时会向它绘制连接线 · {} 可旋转 · Esc 或右键结束
+Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	将拐角的两条连接线画到此处，或开启自动连接并将其放在正对空闲连接点的位置
+Arms {} and {}	分支{}和{}
+Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	第 {} 页上的拐角与其连接线不匹配：需要两个方向各一条连接线，且该处不能有连接点
+Two connection symbols on page {} lie on the same point	第 {} 页上有两个连接符号位于同一点
+Crossing	交叉
+Bridge	桥接
+Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	有向交叉：连接在此交叉的两条连接线；其直线的每一端先直通再横向接线
+Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	桥接：四条连接线；连接从一侧进入并通往另外三侧，先到对侧
+1: the upper / left end of the line goes across to the right / lower arm · 2: to the left / upper arm (default 2)	1：直线的上 / 左端横向通往右 / 下分支 · 2：通往左 / 上分支（默认 2）
+A {} has no {}; it takes {}	{}没有 {}；可用：{}
+Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	更改T型节点（方向、变体、表示方式）、拐角（分支）、交叉（直线、变体、表示方式）或桥接（方向、表示方式）
+Lists the T-junctions, corners, crossings and bridges with their routing and the wires of their connection	列出T型节点、拐角、交叉和桥接及其走向和所属连接的导线
+Places a bridge where four wires meet: the connection comes in at one side and goes to the three others, the opposite side first, then the left / upper, then the right / lower	在四条连接线相交处放置桥接：连接从一侧进入并通往另外三侧，先到对侧，再到左 / 上侧，再到右 / 下侧
+Places a directed crossing where two wires cross: it connects them, and each end of its line is wired straight on first and to one arm across second	在两条连接线交叉处放置有向交叉：它连接二者，其直线的每一端先直通再横向接到一个分支
+Side the connection comes from: left, right, up or down (default up)	连接进入的一侧：left、right、up 或 down（默认 up）
+T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T型节点：主干方向；桥接：连接进入的一侧（left、right、up 或 down）
+The line of a crossing is vertical or horizontal, not {}	交叉的直线为 vertical 或 horizontal，而不是 {}
+The straight line of a crossing: vertical or horizontal (default vertical)	交叉的直线：vertical 或 horizontal（默认 vertical）
+Variant {} is not one of 1 to 2	变体 {} 不在 1 到 2 之间
+Wires must leave here in all four directions. Until then the connection is chained in schematic order.	此处必须有连接线通往四个方向。在此之前连接按原理图顺序串接。
+Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	在四条连接线相交处单击：桥接将连接从一侧引向另外三侧，先到对侧 · {} 可旋转 · Esc 或右键结束
+Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	在两条连接线交叉处单击：交叉连接二者，并将其直线的每一端先直通再横向引出 · {} 可旋转 · Esc 或右键结束
+Draw wires in all four directions to it, or switch on Auto-connect and place it facing free connection points	向四个方向画连接线到此处，或开启自动连接并将其放在正对空闲连接点的位置
+Bridge on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	第 {} 页上的桥接与其连接线不匹配：需要四个方向都有连接线，且该处不能有连接点
+Crossing on page {} does not fit its wires: it needs a wire in all four directions and no connection point there	第 {} 页上的交叉与其连接线不匹配：需要四个方向都有连接线，且该处不能有连接点
+Connection symbol on page {} wires its connection in a loop: the symbols of the connection give it more wires than its devices need	第 {} 页上的连接符号将其连接接成了环路：连接的符号给出的导线多于其设备所需
+Source {}, targets {}, {} and {}	源{}，目标{}、{}和{}
+Straight through from {} to {}, across from {} to {} and from {} to {}	直通：从{}到{}；横向：从{}到{}以及从{}到{}
