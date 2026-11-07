@@ -498,6 +498,15 @@ pub fn place_triangles(e: &Enclosure, it: &PanelItem, tris: Vec<Tri>) -> Vec<Tri
         .collect()
 }
 
+/// The box between `min` and `max` in plate coordinates, wound like a placed model
+/// ([`place_mesh`]): inside out, as the plate's y points down. The 3D view and the
+/// exports turn such meshes right side out with their y; a box wound outward there
+/// (`box_triangles`) comes out inside out, its far faces drawn instead of its near
+/// ones.
+pub fn plate_box(min: V3, max: V3) -> Vec<Tri> {
+    box_triangles(min, max).into_iter().map(|t| [t[0], t[2], t[1]]).collect()
+}
+
 /// Surface of an item in enclosure coordinates: the part's 3D model, or its box.
 pub fn item_surface(e: &Enclosure, it: &PanelItem, parts: &[crate::parts::Part]) -> Vec<Tri> {
     let mesh = parts.iter().find(|p| it.kind == ItemKind::Device && p.number == it.part).and_then(|p| p.model_3d.as_ref());
@@ -505,7 +514,7 @@ pub fn item_surface(e: &Enclosure, it: &PanelItem, parts: &[crate::parts::Part])
         Some(tris) => place_triangles(e, it, tris),
         None => {
             let (min, max) = item_box(e, it);
-            box_triangles(min, max)
+            plate_box(min, max)
         }
     }
 }
@@ -590,6 +599,19 @@ pub fn new_profile(prj: &mut Project, kind: ItemKind, part: &str, a: P, b: P) ->
         (a.x - pw / 2.0, a.y.min(b.y), pw, (b.y - a.y).abs())
     };
     PanelItem { id: prj.new_id(), kind, part: part.into(), x, y, w: w.max(SNAP), h: h.max(SNAP), d: pd, ..Default::default() }
+}
+
+/// The bars of the busbar system `bar` run along x: a system as wide across its bars
+/// as its part lies the way that fits, however short it is (a section of a 185 mm
+/// system shorter than the system is wide); otherwise along its longer side.
+pub fn bars_along_x(parts: &[crate::parts::Part], bar: &PanelItem) -> bool {
+    let (wide, _) = part_profile(ItemKind::Busbar, parts.iter().find(|x| x.number == bar.part));
+    let (across_y, across_x) = ((bar.h - wide).abs() < 0.5, (bar.w - wide).abs() < 0.5);
+    if across_y != across_x {
+        across_y
+    } else {
+        bar.w >= bar.h
+    }
 }
 
 /// Profile width and height of rails / ducts (from the part or the defaults).
@@ -710,8 +732,10 @@ pub fn item_rotated(it: &PanelItem, part_h: f32) -> bool {
 /// Triangles of a part's 3D model placed into a device on the plate, in plate
 /// coordinates (x right, y down, z = height above the plate). The model is fitted
 /// into the device box; rotated devices turn the model by 90° about the front axis,
-/// a strip of equal models repeats it. On the floor the model stands up. Winding
-/// (outside) is preserved.
+/// a strip of equal models repeats it. On the floor the model stands up. The
+/// winding turns inside out with the model's y (up) becoming the plate's (down):
+/// placed meshes are wound like [`plate_box`], the 3D view and the exports turn them
+/// right side out again with their y.
 pub fn place_mesh(mesh: &crate::parts::Mesh3d, it: &PanelItem) -> Vec<[[f32; 3]; 3]> {
     let [mw, mh, md] = mesh.size();
     if it.face == Face::Bottom {
@@ -897,7 +921,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
             let sub = a.piece_item(it, piece);
             match piece.part.model_3d.as_ref() {
                 Some(mesh) => out.extend(painted(mesh, place_mesh(mesh, &sub))),
-                None => out.extend(box_triangles([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
+                None => out.extend(plate_box([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
             }
         }
         return Some(out);
@@ -908,7 +932,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
         for (sub, number, _) in places {
             match part_by_number(prj, &number).and_then(|p| p.model_3d.as_ref()) {
                 Some(mesh) => out.extend(painted(mesh, place_mesh(mesh, &sub))),
-                None => out.extend(box_triangles([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
+                None => out.extend(plate_box([sub.x, sub.y, sub.z], [sub.x + sub.w, sub.y + sub.h, sub.z + sub.d]).into_iter().map(|t| (t, None))),
             }
         }
         return Some(out);
@@ -938,7 +962,7 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
                 } else {
                     ([it.x + c.at, it.y, it.z], [it.x + c.at + c.len, it.y + it.h, it.z + it.d])
                 };
-                out.extend(box_triangles(min, max).into_iter().map(|t| (t, None)));
+                out.extend(plate_box(min, max).into_iter().map(|t| (t, None)));
             }
         }
     }
@@ -1209,6 +1233,38 @@ pub fn busbar_of(e: &Enclosure, item: &PanelItem) -> Option<u64> {
         return None;
     }
     busbars(e, item).find(|b| item.z >= b.z + b.d - 0.5).map(|b| b.id)
+}
+
+/// How far apart (mm) the busbar systems of two bayed enclosures may end at their common
+/// side to be joined through it.
+pub const BUSBAR_JOINT: f32 = 100.0;
+
+/// The busbar system a device is mounted on, across a line-up: the enclosure and the
+/// busbar item it begins with on the left. The busbar systems of bayed enclosures that
+/// meet at their common side (the same part at the same height, their ends no more
+/// than [`BUSBAR_JOINT`] mm apart) are one system, joined through the side; the devices
+/// on it are connected by its bars in whichever of the enclosures they are (`pos`:
+/// [`positions`]).
+pub fn busbar_system(layout: &Layout, pos: &[V3], ei: usize, item: &PanelItem) -> Option<(usize, u64)> {
+    let mut at = (ei, busbar_of(layout.enclosures.get(ei)?, item)?);
+    while let Some(left) = joined_on_the_left(layout, pos, at) {
+        at = left;
+    }
+    Some(at)
+}
+
+/// The busbar system in the enclosure bayed on the left that the busbar item `bar` of
+/// an enclosure is joined with.
+fn joined_on_the_left(layout: &Layout, pos: &[V3], (ei, bar): (usize, u64)) -> Option<(usize, u64)> {
+    let left = neighbours(layout, ei).0?;
+    let (e, l) = (&layout.enclosures[ei], &layout.enclosures[left]);
+    let b = e.items.iter().find(|i| i.id == bar)?;
+    let height = |k: usize, it: &PanelItem| pos[k][1] + it.y;
+    let other = l.items.iter().find(|o| {
+        let gap = (b.x + PLATE_MARGIN) + (l.width - (o.x + o.w + PLATE_MARGIN));
+        o.kind == ItemKind::Busbar && o.face == b.face && o.part == b.part && (height(left, o) - height(ei, b)).abs() < 1.0 && (o.h - b.h).abs() < 1.0 && gap <= BUSBAR_JOINT
+    })?;
+    Some((left, other.id))
 }
 
 // ---------------------------------------------------------------------- checks
@@ -1786,7 +1842,7 @@ pub fn virtual_wiring(prj: &Project, conns: &[Connection]) -> (Vec<RoutedWire>, 
             open.push(OpenWire { from, to, net: c.net.clone(), reason: "device not placed" });
             continue;
         };
-        if ea == eb && busbar_of(&prj.layout.enclosures[ea], ia).is_some_and(|bar| busbar_of(&prj.layout.enclosures[eb], ib) == Some(bar)) {
+        if busbar_system(&prj.layout, &pos, ea, ia).is_some_and(|system| busbar_system(&prj.layout, &pos, eb, ib) == Some(system)) {
             continue; // connected by the bars of the busbar system both are mounted on
         }
         let mut end = |ei: usize, it: &PanelItem, s, pin| {

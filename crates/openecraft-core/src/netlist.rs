@@ -464,10 +464,11 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
     let mut out = Vec::new();
     let assigned = crate::harness::assigned(prj);
     let tees = junctions::Tees::new(prj);
+    let pos = crate::panel::positions(&prj.layout);
     for net in open.nets.iter().filter(|n| !n.fluid) {
         let on = tees.on_net(prj, net);
         let pairs: Vec<[PinRef; 2]> = if on.is_empty() {
-            chained_order(prj, &assigned, net).windows(2).map(|w| [w[0], w[1]]).collect()
+            chained_order(prj, &assigned, &pos, net).windows(2).map(|w| [w[0], w[1]]).collect()
         } else {
             junctions::trace(prj, net, &on).pairs
         };
@@ -514,10 +515,15 @@ pub fn connections(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Connectio
 /// The device connection points of a net in the order they are chained: schematic
 /// order, devices of one enclosure together with those on a busbar system one after
 /// the other, harness connections kept.
-fn chained_order(prj: &Project, assigned: &std::collections::HashSet<[String; 2]>, net: &Net) -> Vec<PinRef> {
+fn chained_order(prj: &Project, assigned: &std::collections::HashSet<[String; 2]>, pos: &[[f32; 3]], net: &Net) -> Vec<PinRef> {
     let mut pins = chained_pins(prj, net);
+    // Where a device is: its enclosure, on a busbar system the enclosure the system
+    // begins in (a system joined through the sides of bayed enclosures is one).
     let place = |p: &PinRef| match crate::panel::locate(prj, &prj.pages[p.page].symbols[p.sym].tag) {
-        Some((e, it)) => (e, crate::panel::busbar_of(&prj.layout.enclosures[e], it)),
+        Some((e, it)) => match crate::panel::busbar_system(&prj.layout, pos, e, it) {
+            Some((first, bar)) => (first, Some(bar)),
+            None => (e, None),
+        },
         None => (usize::MAX, None),
     };
     pins.sort_by_key(|p| place(p).0);

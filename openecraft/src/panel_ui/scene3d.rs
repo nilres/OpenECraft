@@ -55,6 +55,8 @@ struct TubeWay {
     below: f32,
     /// Drawn as it is, not laid beside the others.
     as_is: bool,
+    /// The direction it leaves its ends in (see [`Way`]).
+    leave: [V3; 2],
 }
 
 /// A flat face of the view: a triangle of a model or a side of a box.
@@ -131,14 +133,16 @@ pub(super) struct SceneWire {
     pub inside: Option<usize>,
 }
 
-/// Name of a device on its front face.
+/// Name of a device on its front face, or a warning at a point (a cable that is not
+/// drawn: it could not be routed).
 pub(super) struct SceneLabel {
     pub at: V3,
-    /// Direction its front faces.
+    /// Direction its front faces (none for a warning: seen from everywhere).
     pub normal: V3,
     /// Smaller side of the front (mm).
     pub size: f32,
     pub tag: String,
+    pub warning: bool,
 }
 
 /// The content of the 3D view; see the module documentation.
@@ -196,6 +200,7 @@ struct LayoutWay {
     below: f32,
     steps: usize,
     held: bool,
+    leave: [V3; 2],
 }
 
 impl LayoutInput {
@@ -204,7 +209,7 @@ impl LayoutInput {
         let mut h = std::collections::hash_map::DefaultHasher::new();
         for w in &self.ways {
             (w.points.len(), w.bends.len(), w.steps, w.held).hash(&mut h);
-            w.points.iter().flatten().chain(&w.bends).chain(&w.rest).chain([&w.diameter, &w.below]).for_each(|v| v.to_bits().hash(&mut h));
+            w.points.iter().chain(&w.leave).flatten().chain(&w.bends).chain(&w.rest).chain([&w.diameter, &w.below]).for_each(|v| v.to_bits().hash(&mut h));
         }
         (self.obstacles.len(), self.insides.len(), self.channels.len()).hash(&mut h);
         let boxes = self.obstacles.iter().chain(&self.insides).chain(self.channels.iter().map(|c| &c.inside));
@@ -214,7 +219,7 @@ impl LayoutInput {
 
     /// The ways laid out; `None` when `progress` (rounds done, of all) answers false.
     fn lay_out(&self, progress: &dyn Fn(usize, usize) -> bool) -> Option<Vec<Vec<V3>>> {
-        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held }).collect();
+        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held, leave: w.leave }).collect();
         bundles::lay_out(&ways, LANE_CELL, &self.obstacles, &self.channels, &self.insides, progress)
     }
 }
@@ -960,7 +965,7 @@ impl PanelUi {
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2] }));
                         continue;
                     }
                     for seg in path.windows(2) {
@@ -991,7 +996,7 @@ impl PanelUi {
                     let q = panel::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, it.z + it.d]);
                     (up(q), [n[0], -n[1], n[2]])
                 };
-                s.labels.push(SceneLabel { at: pose.apply(front), normal: pose.turn(normal), size: it.w.min(it.h), tag: it.tag.clone() });
+                s.labels.push(SceneLabel { at: pose.apply(front), normal: pose.turn(normal), size: it.w.min(it.h), tag: it.tag.clone(), warning: false });
             }
         }
         // A wire through the cable passages between the cabinets is one tube, bent there.
@@ -1004,6 +1009,7 @@ impl PanelUi {
                     prev.points.extend(t.points.into_iter().skip(1));
                     prev.bends.extend(t.bends.into_iter().skip(1));
                     prev.below = prev.below.min(t.below);
+                    prev.leave[1] = t.leave[1];
                 }
                 _ => pending.push(t),
             }
@@ -1020,10 +1026,19 @@ impl PanelUi {
             pose.apply([q[0] - pos[k][0], prj.layout.enclosures[k].height - (q[1] - pos[k][1]), q[2] - pos[k][2]])
         };
         let keys: Vec<usize> = shown.iter().map(|s| s.0).collect();
+        // What could not be routed is not drawn: a warning at each of its ends says so.
+        for it in an.routing.items.iter().filter(|i| !i.routed()) {
+            for end in it.ends.iter().filter(|e| e.enclosure.is_some_and(|k| keys.contains(&k))) {
+                if let Some(q) = end.point {
+                    let tag = format!("{} {}\n{}", it.kind.title(), it.label, it.status_text());
+                    s.labels.push(SceneLabel { at: to_view(end.enclosure, q), normal: [0.0; 3], size: 60.0, tag, warning: true });
+                }
+            }
+        }
         for line in self.routing_lines_3d(prj, an, &keys, &to_view, selected_wire) {
             if line.diameter > 0.0 {
                 let (sides, steps) = if matches!(line.target, RouteRef::Wire(_)) { (WIRE_SIDES, 2) } else { (TUBE_SIDES, 4) };
-                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is });
+                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave });
                 continue;
             }
             for seg in line.points.windows(2) {
@@ -1059,7 +1074,7 @@ impl PanelUi {
                 insides.push(([0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::INFINITY, f32::min)), [0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::NEG_INFINITY, f32::max))));
             }
         }
-        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is }).collect();
+        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is, leave: t.leave }).collect();
         let laid = match lay_out(LayoutInput { ways, obstacles, channels, insides }) {
             Ok(ways) => ways,
             Err(key) => {

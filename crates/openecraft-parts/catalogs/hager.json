@@ -1253,6 +1253,12 @@
           "pins": "P1 P2 S1 S2"
         }
       ],
+      "connection_points": [
+        { "pin": "P1", "pos": [35, 40, 60], "exit": "Front" },
+        { "pin": "P2", "pos": [55, 40, 60], "exit": "Front" },
+        { "pin": "S1", "pos": [10, 0, 30], "exit": "Up" },
+        { "pin": "S2", "pos": [80, 0, 30], "exit": "Up" }
+      ],
       "current": "150 / 5 A",
       "tech_data": "Accuracy class: 1\nPower loss: 1 W",
       "accessory": true,

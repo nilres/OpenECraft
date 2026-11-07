@@ -28,6 +28,82 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   first. Both follow the connection symbols of EPLAN, can be drawn as a dot and keep
   their routing, and the check reports a connection its symbols wire in a loop. Commands
   `add_crossing` and `add_bridge` ([#96](https://github.com/nilres/OpenECraft/issues/96)).
+- **3D routing in cabinets without cable ducts:** their wires are no longer laid
+  along the mounting plate (through the devices and each other) but routed in 3D from
+  connection point to connection point, like the wires of a room: clear of everything
+  by half their thickness, bent with their radius only, each on a way of its own. A
+  wire that finds no such way is reported as an error instead of being drawn.
+- **3D routing:** a route leaves a connection point that lies inside the box of its
+  device straight through that box, never through another device to the room behind
+  it; its last bend may lie where the straight way into
+  its end begins; the straight way out of every connection point and cable entry stays
+  free until its own route is laid; a cable between two cabinets that stand in no
+  common room is routed to a cable entry in each of them; every cable takes an entry of
+  its own; in the 3D view a cable passing from one cable duct into the next keeps under
+  the cover of the first.
+- **Bend radius in the 3D view:** ways laid side by side change lanes on a slanting
+  piece of a stretch instead of a step at the corner (which was rounded with a radius
+  of a millimetre or two); a route is drawn straight out of its connection points, its
+  first corners moved onto that line, instead of with a kink onto the routing grid; a
+  jog shorter than the bends of its corners is an S-curve of the bend radius also where
+  the stretches before and after it lean; bends are drawn as fine arcs, so that ways
+  round one corner are not pushed apart where only their drawn arcs met; a cable ends
+  on its bend where its cores part right behind a corner.
+- **3D routing, crossings:** routes that come together lie side by side, a route no
+  longer runs across another one (only on its own way out of a connection point, or
+  where it comes up to the device the other one ends at, and there it goes round the
+  other one too where that costs little); the way out of a connection point is shared
+  only by a route out of a point right beside it; of the wires of a cabinet as thick
+  as each other the shortest is routed first, so that between two devices the inner
+  conductors lie nearest to them and the outer ones go round them. Two wires that
+  still cross right at a device are lifted over each other more sharply than their
+  radius allows.
+- **Cable entry flanges:** the cables through one flange go through its membrane side
+  by side, each at a place of its own (the cable's thickness and a centimetre apart,
+  the free place nearest to where the cable heads) instead of all through its middle;
+  the cores of a cable part within the box of their ends, so that a core no longer
+  swings out past its terminal into the bars it sits on.
+- **Busbar holders in the 3D view:** drawn at the drilling positions of the plate (a
+  holder 25 mm from each end and every 250 mm) instead of every 400 mm, and moved
+  beside the devices that sit in the bars (current transformers the bars pass through)
+  instead of through them. The bars, their holders and the boxes of busbar terminals
+  and strip elements without a model were wound inside out: the view showed their
+  far faces, which flickered against the holders behind the bars and the plate.
+- **Messages of the 3D routing:** a message about a cable, hose or wire (not
+  routable, bends too tight, frozen route lost, hose too short) points at a connection
+  point of it: a double click in the messages pane jumps to the schematic. The 3D
+  view marks a cable, tube or wire that could not be routed (and so is not drawn)
+  with a red note at each of its ends, with the reason.
+- **Busbar terminals in the 3D routing:** each terminal of a strip across the bars is
+  a solid of its own: a wire to one of them goes round the others instead of through
+  them (a cable whose cores end at several of them comes up through those). Terminals
+  closer than 30 mm along the bars are entered from the front: their points facing a
+  neighbour leave to the front, as a wire has no way out between them.
+- **Cores at busbar terminals:** a cable ends clear of the device its cores go to,
+  and the cores to terminals one above the other on the bars pass the lower terminals
+  in front of them instead of through them. In example 13 the supply cable comes to
+  its busbar terminals from below, through a gland in line with them, instead of
+  looping round the field to come down onto them.
+- **3D routing, ends:** a route comes into an end against the direction it leaves it
+  in also where the way out is a single cell (it could run past the connection point
+  and back into it); where the way straight out of an end is barred and the route
+  starts from the cell beside it, the way out must be long enough for an S-bend of the
+  bend radius onto that line; cable glands of the examples lie in line with the
+  connection points they serve.
+- **Busbar systems:** the systems of bayed enclosures that meet at their common side
+  are one system (devices on it are connected by its bars in either enclosure); a
+  section shorter than the system is wide lies along its bars; the connection points
+  of repeated accessories (a current transformer behind each pole of a strip) are told
+  apart by their number (`2S1`).
+- **Parts:** current transformer sets with their connection points (primaries through
+  from the bottom to the top, secondaries on a terminal block), the leads of the
+  transformers behind NH strips.
+- **Examples 13 and 14** rebuilt so that every conductor can be laid: power flows
+  through the fields from one device into the next, busbar cross-sections run over
+  bars (transformer sets in the busbars, the distribution busbar through both cabinets,
+  coupling switches fed from busbar terminals), taps to small devices have their own
+  cross-sections; the string fuses of the generator junction box of example 11 stand
+  above their terminals.
 - **Buildings:** buildings with levels and shafts in the plant; rooms stand on the
   levels and move with their building, shafts and links between buildings (cable
   trench, conduit, cable bridge between building entries) carry routes from room to

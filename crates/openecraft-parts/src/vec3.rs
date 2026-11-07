@@ -250,10 +250,11 @@ pub fn length(a: V3) -> f32 {
 /// quarter turn; the radius is the least the way may bend with. Where the arcs of two
 /// corners do not both fit on the stretch between them, or the arc of a corner on an
 /// end stretch, they are drawn with the largest radius that fits (the corners share
-/// the stretch): the way never leaves the corners of the polyline. A jog shorter than
-/// two radii between two right-angled corners that lead back into the direction before
-/// them (a lane change) is an S-curve of two arcs of the radius. A corner turning by a
-/// few degrees only (a dog-leg onto the grid, a lane shift) stays as it is.
+/// the stretch): the way never leaves the corners of the polyline. A jog too short for
+/// the arcs of its two corners, which lead back into (nearly) the direction before them
+/// (a lane change), is an S-curve of two arcs of the radius where there is room for it
+/// before and after the jog. A corner turning by a few degrees only (a dog-leg onto the
+/// grid, a lane shift) stays as it is.
 pub fn fillet(points: &[V3], radius: f32, steps: usize) -> Vec<V3> {
     fillet_each(points, &vec![radius; points.len()], steps)
 }
@@ -313,9 +314,9 @@ pub fn fillet_each(points: &[V3], radii: &[f32], steps: usize) -> Vec<V3> {
             i += 1;
             continue;
         }
-        // A lane change: two right-angled corners back into the direction before them,
-        // closer than two radii, with room for the S-curve on both sides.
-        if i + 2 < n && turn[i + 1] > 0.0 {
+        // A lane change: two corners back into the direction before them, too close
+        // for their arcs, with room for the S-curve on both sides.
+        if i + 2 < n && turn[i + 1] > 0.0 && want[i] + want[i + 1] > len(i) + 1e-6 {
             let r = radii[i].min(radii[i + 1]);
             let (before, after) = (len(i - 1) - tangent[i - 1], len(i + 1) - tangent[i + 2]);
             if let Some(s) = s_curve(&points[i - 1..=i + 2], r, before, after, steps) {
@@ -345,30 +346,43 @@ fn arc(p: V3, u: V3, w: V3, r: f32, t: f32, steps: usize) -> Vec<V3> {
 }
 
 /// A lane change (`points`: the corner before the jog, its two corners and the one
-/// after; across for less than two radii between two right-angled turns, then on as
-/// before) as two arcs of radius `r`, where they fit into the room `before` the jog
-/// and `after` it.
+/// after; across, then on within some 20 degrees of the direction before) as two arcs of
+/// radius `r` that touch each other: the first leaves the stretch before the jog, the
+/// second comes into the stretch after it, each as far from the jog, where that is no
+/// further than the room `before` the jog and `after` it.
 fn s_curve(points: &[V3], r: f32, before: f32, after: f32, steps: usize) -> Option<Vec<V3>> {
     let [a, p, b, c] = [points[0], points[1], points[2], points[3]];
-    let (u, v, w) = (norm(sub(p, a)), norm(sub(b, p)), norm(sub(c, b)));
-    let lb = length(sub(b, p));
-    if lb >= 2.0 * r || dot(u, v).abs() > 1e-3 || dot(u, w) < 0.999 {
+    let (u, w) = (norm(sub(p, a)), norm(sub(c, b)));
+    let jog = sub(b, p);
+    // Across each stretch towards the other one.
+    let (to, back) = (sub(jog, scale(u, dot(jog, u))), sub(scale(w, dot(jog, w)), jog));
+    if dot(u, w) < 0.94 || length(to) < 1e-3 || length(back) < 1e-3 {
         return None;
     }
-    // Arcs of angle θ: across 2 r (1 − cos θ) = lb, along r sin θ on each side.
-    let theta = (1.0 - lb / (2.0 * r)).acos();
-    let h = r * theta.sin();
-    if h > before + 1e-3 || h > after + 1e-3 {
+    let (n1, n2) = (norm(to), norm(back));
+    // The centres of the arcs that begin and end `x` from the jog, and how far they
+    // are from touching.
+    let centres = |x: f32| (add(sub(p, scale(u, x)), scale(n1, r)), add(add(b, scale(w, x)), scale(n2, r)));
+    let gap = |x: f32| {
+        let (c1, c2) = centres(x);
+        length(sub(c2, c1)) - 2.0 * r
+    };
+    let most = before.min(after);
+    if gap(0.0) >= 0.0 || most <= 0.0 || gap(most + 1e-3) < 0.0 {
         return None;
     }
-    let start = sub(p, scale(u, h));
-    let c1 = add(start, scale(v, r));
-    let middle = add(p, scale(v, lb / 2.0));
-    let k = ((theta / std::f32::consts::FRAC_PI_2 * steps as f32).ceil() as usize).max(2);
-    let arc: Vec<V3> = (0..=k).map(|j| theta * j as f32 / k as f32).map(|phi| add(c1, add(scale(v, -r * phi.cos()), scale(u, r * phi.sin())))).collect();
-    let mut out = arc.clone();
-    // The second arc is the first turned round the middle of the jog.
-    out.extend(arc.iter().rev().skip(1).map(|q| sub(scale(middle, 2.0), *q)));
+    let (mut lo, mut hi) = (0.0, most + 1e-3);
+    for _ in 0..40 {
+        let mid = (lo + hi) / 2.0;
+        if gap(mid) < 0.0 { lo = mid } else { hi = mid }
+    }
+    let (c1, c2) = centres(hi);
+    let touch = scale(add(c1, c2), 0.5);
+    let (t1, t2) = (sub(touch, c1), sub(touch, c2));
+    let (first, second) = (dot(t1, u).atan2(-dot(t1, n1)), (-dot(t2, w)).atan2(-dot(t2, n2)));
+    let count = |turn: f32| ((turn / std::f32::consts::FRAC_PI_2 * steps as f32).ceil() as usize).max(2);
+    let mut out: Vec<V3> = (0..=count(first)).map(|j| first * j as f32 / count(first) as f32).map(|phi| add(c1, add(scale(n1, -r * phi.cos()), scale(u, r * phi.sin())))).collect();
+    out.extend((0..count(second)).rev().map(|j| second * j as f32 / count(second) as f32).map(|phi| add(c2, add(scale(n2, -r * phi.cos()), scale(w, -r * phi.sin())))));
     Some(out)
 }
 

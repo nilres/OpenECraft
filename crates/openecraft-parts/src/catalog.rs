@@ -340,6 +340,7 @@ Breaking capacity: 100 kA".into();
     p.current = "250 / 5 A".into();
     p.mounting = "Busbar".into();
     p.tech_data = "Accuracy class: 0.5S\nRated burden: 5 VA\nPower loss: 3 W".into();
+    p.connection_points = transformer_set_points(210.0, 100.0, 80.0);
     let p = c.add(
         "GEN.CT-SET-400-5A",
         "Current transformer set 3 x 400/5 A, class 0.5S, 5 VA, for busbars up to 40 x 10 mm",
@@ -353,6 +354,7 @@ Breaking capacity: 100 kA".into();
     p.current = "400 / 5 A".into();
     p.mounting = "Busbar".into();
     p.tech_data = "Accuracy class: 0.5S\nRated burden: 5 VA\nPower loss: 3 W".into();
+    p.connection_points = transformer_set_points(240.0, 110.0, 80.0);
     let p = c.add(
         "GEN.METER-3PT-CT",
         "Energy meter 3-phase, transformer-operated x/5 A, two directions, for 3-point mounting (provided by the distribution system operator)",
@@ -1486,6 +1488,22 @@ fn rectangular_connectors(c: &mut C) {
             c.connector(format!("GEN.CON-{key}-{suffix}"), format!("{name} {what}, {n} contacts, {gender}"), "Data connector", 1.5, numbered(n), tech);
         }
     }
+}
+
+/// Connection points of a current transformer set of `w` x `h` x `d` mm: the primary
+/// conductors pass through it from the bottom (P1) to the top (P2), the secondaries end
+/// on a terminal block on its left side.
+fn transformer_set_points(w: f32, h: f32, d: f32) -> Vec<crate::ConnectionPoint> {
+    let mut points = Vec::new();
+    for k in 0..3 {
+        let (n, x) = (k + 1, w * (k as f32 + 0.5) / 3.0);
+        points.push(crate::ConnectionPoint { pin: format!("{n}P1"), pos: [x, h, d / 2.0], exit: crate::Exit::Down });
+        points.push(crate::ConnectionPoint { pin: format!("{n}P2"), pos: [x, 0.0, d / 2.0], exit: crate::Exit::Up });
+        for (j, s) in ["S1", "S2"].into_iter().enumerate() {
+            points.push(crate::ConnectionPoint { pin: format!("{n}{s}"), pos: [0.0, h * ((2 * k + j) as f32 + 0.5) / 6.0, d * 0.75], exit: crate::Exit::Left });
+        }
+    }
+    points
 }
 
 #[cfg(test)]

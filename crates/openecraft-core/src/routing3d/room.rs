@@ -141,7 +141,7 @@ pub fn room_space(prj: &Project, ri: usize, pos: &[V3], poses: &[SitePose], rule
             s.block_box(shift(b));
         }
     }
-    s.add_enclosure(e, ri, o, rules, prj.layout.duct_fill_limit);
+    s.add_enclosure(e, ri, o, rules, prj.layout.duct_fill_limit, &super::grid::item_parts(prj, e));
     s.add_room(pts, o, e.height);
     s.mark_open(KEEP_TO_SURFACES);
     s.measure();

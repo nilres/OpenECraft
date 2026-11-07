@@ -757,3 +757,53 @@ fn wires_without_ducts_run_round_the_devices() {
     // Without directions as before: straight across.
     assert_eq!(route_ends(&e, WireEnd::at(p(10.0, 10.0)), WireEnd::at(p(50.0, 40.0))).points, vec![p(10.0, 10.0), p(50.0, 10.0), p(50.0, 40.0)]);
 }
+
+#[test]
+fn busbar_systems_of_bayed_enclosures_are_joined_through_their_side() {
+    // Two enclosures 600 wide, in each a busbar system that runs up to their common
+    // side, a device on each.
+    let mut prj = Project::default();
+    for (name, x) in [("+A", 300.0), ("+B", 0.0)] {
+        let mut e = new_enclosure(&mut prj, "", name);
+        e.items.push(PanelItem { id: prj.new_id(), kind: ItemKind::Busbar, x, y: 100.0, w: 250.0, h: 90.0, d: 40.0, ..Default::default() });
+        let mut q = device(prj.new_id(), x + 50.0, 80.0, 50.0, 200.0, 0.0, 100.0);
+        snap_to_rail(&e, &mut q);
+        e.items.push(q);
+        prj.layout.enclosures.push(e);
+    }
+    let system = |prj: &Project, ei: usize| {
+        let pos = positions(&prj.layout);
+        let e = &prj.layout.enclosures[ei];
+        busbar_system(&prj.layout, &pos, ei, e.items.last().unwrap())
+    };
+    // Standing apart, each system is its own.
+    assert!(system(&prj, 0).is_some() && system(&prj, 0) != system(&prj, 1));
+    // Bayed, the bars run through: one system, named after its beginning on the left.
+    bay_right_of(&mut prj, 1, 0);
+    assert_eq!(system(&prj, 0), system(&prj, 1));
+    assert_eq!(system(&prj, 1).map(|s| s.0), Some(0));
+    // Not at the same height, or ending far from the side: not joined.
+    prj.layout.enclosures[1].items[0].y += 50.0;
+    assert_ne!(system(&prj, 0), system(&prj, 1));
+    prj.layout.enclosures[1].items[0].y -= 50.0;
+    prj.layout.enclosures[0].items[0].w = 100.0;
+    assert_ne!(system(&prj, 0), system(&prj, 1));
+}
+
+#[test]
+fn a_short_section_of_a_wide_busbar_system_lies_along_its_bars() {
+    let prj = crate::sample::example("industrial_main_distribution").unwrap();
+    // The section the coupling switches are fed from: 215 mm of a system 400 mm wide.
+    let (ei, x30) = locate(&prj, "=NA+HV1-X30").unwrap();
+    let e = &prj.layout.enclosures[ei];
+    let bar = e.items.iter().find(|b| b.id == busbar_of(e, x30).unwrap()).unwrap();
+    assert!(bar.w < bar.h && bars_along_x(&prj.parts, bar));
+    // The terminals stand upright on its bars, one on each.
+    assert!(x30.h > x30.w);
+    let places = busbars::terminals_on_bars(&prj, x30).expect("across the bars");
+    assert_eq!(places.len(), 3);
+    assert!(places.windows(2).all(|w| w[1].0.y > w[0].0.y + 100.0 && w[1].0.x == w[0].0.x));
+    // Without the part's data the longer side tells.
+    let plain = PanelItem { kind: ItemKind::Busbar, w: 100.0, h: 300.0, ..Default::default() };
+    assert!(!bars_along_x(&prj.parts, &plain));
+}

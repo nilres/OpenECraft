@@ -176,6 +176,13 @@ const CABLES: &[(&str, &str, f32, &str)] = &[
 
 /// Cross-section of the bars of the busbars (Cu 30 x 10 mm).
 const BUSBAR: &str = "300 mm²";
+/// Cross-section of the conductors between the devices behind the 125 A fuses.
+pub(super) const LINK: &str = "50 mm²";
+/// Cross-section of the short-circuit proof taps to the small devices.
+pub(super) const TAP: &str = "2.5 mm²";
+/// Connection points of a three-pole switch fed at its lower connection points (the
+/// even ones, at the top of the symbol): power flows upwards through it.
+pub(super) const TURNED: [&str; 6] = ["2", "4", "6", "1", "3", "5"];
 
 /// A page of a section with its structure; the name starts with the section number.
 pub(super) fn page(prj: &mut Project, section: u64, n: &str, desc: &str, kind: PageKind, function: &str, location: &str) -> usize {
@@ -252,9 +259,9 @@ fn single_line(prj: &mut Project, section: u64) {
     g.w(220.0, 116.0, 220.0, 124.0);
     g.sym("sl_cb", 220.0, 132.0, 0, "=NA+HV-Q30", "", "Coupling switch 4P 160 A");
     g.w(220.0, 140.0, 220.0, 148.0);
-    g.sym("sl_fuse_switch", 220.0, 156.0, 0, "=MS2+HV-F40", "", "NH1 3 x 125 A");
+    g.sym("sl_meter", 220.0, 156.0, 0, "=MS2+ZS2-P2", "", "Generation");
     g.w(220.0, 164.0, 220.0, 172.0);
-    g.sym("sl_meter", 220.0, 180.0, 0, "=MS2+ZS2-P2", "", "Generation");
+    g.sym("sl_fuse_switch", 220.0, 180.0, 0, "=MS2+HV-F40", "", "NH1 3 x 125 A");
     g.w(220.0, 188.0, 220.0, 196.0).w(200.0, 196.0, 320.0, 196.0);
     g.text(330.0, 197.0, "Busbar of the inverters, PV 88 kWp", 2.5);
     for (x, tag) in [(240.0, "=PV+HV-Q41"), (280.0, "=PV+HV-Q42")] {
@@ -281,8 +288,9 @@ fn supply_page(prj: &mut Project, section: u64) {
     }
     core(&mut g, (84.0, 24.0), (84.0, 68.0), "=GRID-W1", "GNYE");
     g.text(96.0, 52.0, "-W1 NYY-J 4 x 120 SM from the house connection box, in from below", 2.5);
+    // The busbar terminals turned: the cable comes to them from below.
     for (i, x) in [60.0, 68.0, 76.0].into_iter().enumerate() {
-        g.sym("term", x, 72.0, 0, "-X0", &format!("L{}", i + 1), "");
+        g.sym("term", x, 72.0, 2, "-X0", &format!("L{}", i + 1), "");
     }
     g.sym("term_pe", 84.0, 72.0, 0, "-X1", "PEN", "");
     for (x, y) in [(60.0, 120.0), (68.0, 128.0), (76.0, 136.0)] {
@@ -308,7 +316,9 @@ fn supply_page(prj: &mut Project, section: u64) {
     g.w(172.0, 152.0, 172.0, 192.0);
     cross_section(&mut g, "16 mm²");
     // Connection point zone (APZ) and room for additional equipment (RfZ), sealed.
-    g.sym("cb1", 220.0, 180.0, 0, "-F2", "", "APZ / RfZ").w(220.0, 120.0, 220.0, 176.0).w(220.0, 184.0, 220.0, 196.0);
+    g.sym("cb1", 220.0, 180.0, 0, "-F2", "", "APZ / RfZ").w(220.0, 120.0, 220.0, 176.0);
+    cross_section(&mut g, TAP);
+    g.w(220.0, 184.0, 220.0, 196.0);
     g.sym("socket", 220.0, 200.0, 0, "-X2", "", "Supply of the APZ");
     g.w(228.0, 144.0, 228.0, 196.0).w(236.0, 152.0, 236.0, 196.0);
     g.text(248.0, 216.0, "Connection point zone and room for additional equipment: sealed area before the meter", 2.5);
@@ -326,12 +336,17 @@ pub(super) struct Metering {
     pub input: &'static str,
     /// Interruption points of N and PE on the right and of L1 … L3 at the bottom.
     pub output: &'static str,
+    /// Fuse switch disconnector before the transformers; empty: none (the transformers
+    /// sit in the busbar).
     pub fuse: &'static str,
     pub fuse_text: &'static str,
+    /// Its connection points: those at the top of the symbol first.
+    pub fuse_pins: [&'static str; 6],
     pub ct: &'static str,
     /// Ratio of the transformers.
     pub ratio: &'static str,
-    /// Cross-section of the primary conductors through the transformers; empty: sized.
+    /// Cross-section of the conductors through the transformers and on from the switch
+    /// after them.
     pub primary: &'static str,
     pub taps: &'static str,
     pub meter: &'static str,
@@ -346,6 +361,8 @@ pub(super) struct Metering {
     pub switch_symbol: &'static str,
     /// Text of the switch.
     pub switch_text: &'static str,
+    /// Its connection points: those at the top of the symbol first.
+    pub switch_pins: [&'static str; 6],
 }
 
 const CONSUMPTION: Metering = Metering {
@@ -357,9 +374,10 @@ const CONSUMPTION: Metering = Metering {
     output: "DB",
     fuse: "-F10",
     fuse_text: "Isolation before the meter\nNH1 3 x 125 A gG",
+    fuse_pins: TURNED,
     ct: "-T1",
     ratio: "250/5 A",
-    primary: "",
+    primary: LINK,
     taps: "-F11",
     meter: "+ZS1-P1",
     meter_text: "Meter of the DSO, two directions",
@@ -369,6 +387,7 @@ const CONSUMPTION: Metering = Metering {
     switch: Some("-Q10"),
     switch_symbol: "disc3",
     switch_text: "Isolation after the meter\n3 x 250 A",
+    switch_pins: TURNED,
 };
 
 const GENERATION: Metering = Metering {
@@ -376,13 +395,15 @@ const GENERATION: Metering = Metering {
     location: "HV",
     n: "1",
     desc: "Generation metering",
-    input: "PV",
-    output: "PVB",
+    // From the busbar of the inverters up to the coupling switch.
+    input: "PVB",
+    output: "PV",
     fuse: "-F40",
     fuse_text: "Isolation before the meter\nNH1 3 x 125 A gG",
+    fuse_pins: TURNED,
     ct: "-T2",
     ratio: "250/5 A",
-    primary: "",
+    primary: LINK,
     taps: "-F41",
     meter: "+ZS2-P2",
     meter_text: "Generation meter of the DSO",
@@ -392,27 +413,34 @@ const GENERATION: Metering = Metering {
     switch: None,
     switch_symbol: "disc3",
     switch_text: "",
+    switch_pins: TURNED,
 };
 
 pub(super) fn metering(prj: &mut Project, section: u64, m: &Metering) {
     let i = page(prj, section, m.n, m.desc, PageKind::Schematic, m.function, m.location);
     let mut g = Pg { prj, page: i };
     rails(&mut g, m.input, [120.0, 128.0, 136.0, 0.0, 0.0], Some(m.output));
-    g.sym("fuse_swdisc3", 120.0, 72.0, 0, m.fuse, "", m.fuse_text);
-    g.w(120.0, 24.0, 120.0, 68.0).w(128.0, 32.0, 128.0, 68.0).w(136.0, 40.0, 136.0, 68.0);
-    // The phases spread to the transformers on the transformer module.
-    g.w(120.0, 76.0, 120.0, 112.0);
-    g.path(&[(128.0, 76.0), (128.0, 80.0), (152.0, 80.0), (152.0, 136.0)]);
-    g.path(&[(136.0, 76.0), (136.0, 84.0), (184.0, 84.0), (184.0, 160.0)]);
+    // The phases spread to the transformers: from a fuse switch disconnector before
+    // them, or straight from the bars the transformers sit in.
+    let fused = !m.fuse.is_empty();
+    if fused {
+        g.sym("fuse_swdisc3", 120.0, 72.0, 0, m.fuse, "", m.fuse_text).pins(&m.fuse_pins);
+        g.w(120.0, 24.0, 120.0, 68.0).w(128.0, 32.0, 128.0, 68.0).w(136.0, 40.0, 136.0, 68.0);
+    }
+    let from = |rail: f32| if fused { 76.0 } else { rail };
+    g.w(120.0, from(24.0), 120.0, 112.0);
+    g.path(&[(128.0, from(32.0)), (128.0, 80.0), (152.0, 80.0), (152.0, 136.0)]);
+    g.path(&[(136.0, from(40.0)), (136.0, 84.0), (184.0, 84.0), (184.0, 160.0)]);
     for (i, (x, y)) in [(120.0, 120.0), (152.0, 144.0), (184.0, 168.0)].into_iter().enumerate() {
         let n = i + 1;
         let pins = [format!("{n}P1"), format!("{n}P2"), format!("{n}S1"), format!("{n}S2")];
         g.sym("ct", x, y, 0, m.ct, "", if i == 0 { m.ratio } else { "" }).pins(&pins.each_ref().map(String::as_str));
     }
     // Voltage paths through the NEOZED fuses, before the transformers.
-    g.path(&[(120.0, 96.0), (300.0, 96.0), (300.0, 116.0)]);
-    g.path(&[(152.0, 100.0), (308.0, 100.0), (308.0, 116.0)]);
-    g.path(&[(184.0, 104.0), (316.0, 104.0), (316.0, 116.0)]);
+    for (x, y, to) in [(120.0, 96.0, 300.0), (152.0, 100.0, 308.0), (184.0, 104.0, 316.0)] {
+        g.path(&[(x, y), (to, y), (to, 116.0)]);
+        cross_section(&mut g, TAP);
+    }
     g.sym("fuse_swdisc3", 300.0, 120.0, 0, m.taps, "", "Voltage paths\nD01 3 x 10 A");
     // Cable to the meter cabinet: secondaries, voltages and N on the test terminals.
     let mut n = 0;
@@ -447,11 +475,14 @@ pub(super) fn metering(prj: &mut Project, section: u64, m: &Metering) {
             g.w(120.0, 128.0, 120.0, 196.0);
             g.path(&[(152.0, 152.0), (152.0, 188.0), (128.0, 188.0), (128.0, 196.0)]);
             g.path(&[(184.0, 176.0), (184.0, 192.0), (136.0, 192.0), (136.0, 196.0)]);
-            g.sym(m.switch_symbol, 120.0, 200.0, 0, q, "", m.switch_text);
+            g.sym(m.switch_symbol, 120.0, 200.0, 0, q, "", m.switch_text).pins(&m.switch_pins);
             // Spread apart so that the names of the interruption points stay readable.
             g.w(120.0, 204.0, 120.0, 236.0);
+            cross_section(&mut g, m.primary);
             g.path(&[(128.0, 204.0), (128.0, 212.0), (160.0, 212.0), (160.0, 236.0)]);
+            cross_section(&mut g, m.primary);
             g.path(&[(136.0, 204.0), (136.0, 208.0), (200.0, 208.0), (200.0, 236.0)]);
+            cross_section(&mut g, m.primary);
             for (i, x) in [120.0, 160.0, 200.0].into_iter().enumerate() {
                 link(&mut g, x, 236.0, &format!("{}-L{}", m.output, i + 1));
             }
@@ -459,12 +490,13 @@ pub(super) fn metering(prj: &mut Project, section: u64, m: &Metering) {
         None => {
             for (i, (x, y)) in ends.into_iter().enumerate() {
                 g.w(x, y, x, 236.0);
+                cross_section(&mut g, m.primary);
                 link(&mut g, x, 236.0, &format!("{}-L{}", m.output, i + 1));
             }
         }
     }
-    // The primary conductors from the isolation through the transformers.
-    if !m.primary.is_empty() {
+    // The conductors through the transformers.
+    {
         let inside = |v: f32, lo: f32, hi: f32| v >= lo && v <= hi;
         for w in g.prj.pages[g.page].wires.iter_mut() {
             if [w.a, w.b].iter().all(|q| inside(q.x, 120.0, 184.0) && inside(q.y, 76.0, 196.0)) {
@@ -529,7 +561,11 @@ fn coupling_switch(prj: &mut Project, section: u64) {
     }
     g.sym("cb4", 60.0, 80.0, 0, "-Q30", "", "Coupling switch\n4P 160 A").pins(&["1", "3", "5", "N", "2", "4", "6", "N'"]);
     for (i, (x, y)) in [(60.0, 24.0), (68.0, 32.0), (76.0, 40.0), (84.0, 48.0)].into_iter().enumerate() {
-        g.w(x, y, x, 76.0).w(x, 84.0, x, 236.0);
+        let cs = if i < 3 { LINK } else { "16 mm²" };
+        g.w(x, y, x, 76.0);
+        cross_section(&mut g, cs);
+        g.w(x, 84.0, x, 236.0);
+        cross_section(&mut g, cs);
         link(&mut g, x, 236.0, &format!("PV-{}", ["L1", "L2", "L3", "N"][i]));
     }
     g.w(92.0, 56.0, 92.0, 236.0);
@@ -537,21 +573,28 @@ fn coupling_switch(prj: &mut Project, section: u64) {
     g.text(100.0, 200.0, "To the generation metering", 2.5);
     // Voltage and frequency relay at the grid side of the coupling switch.
     g.sym("cb3", 140.0, 80.0, 0, "-F31", "", "Measuring");
-    g.w(140.0, 24.0, 140.0, 76.0).w(148.0, 32.0, 148.0, 76.0).w(156.0, 40.0, 156.0, 76.0);
+    for (x, y) in [(140.0, 24.0), (148.0, 32.0), (156.0, 40.0)] {
+        g.w(x, y, x, 76.0);
+        cross_section(&mut g, TAP);
+    }
     for x in [140.0, 148.0, 156.0] {
         g.w(x, 84.0, x, 116.0);
     }
     g.w(164.0, 48.0, 164.0, 116.0);
     g.sym("relay_grid_protection", 140.0, 120.0, 0, "-K31", "", "NA protection\nVDE-AR-N 4105");
     // Buffered 24 V supply of the protection circuit.
-    g.sym("cb1", 220.0, 80.0, 0, "-F32", "", "24 V supply").w(220.0, 24.0, 220.0, 76.0).w(220.0, 84.0, 220.0, 116.0);
+    g.sym("cb1", 220.0, 80.0, 0, "-F32", "", "24 V supply").w(220.0, 24.0, 220.0, 76.0);
+    cross_section(&mut g, TAP);
+    g.w(220.0, 84.0, 220.0, 116.0);
     g.w(228.0, 48.0, 228.0, 116.0).w(236.0, 56.0, 236.0, 116.0);
     g.sym("psu", 220.0, 120.0, 0, "-T31", "", "24 V DC buffered");
     g.w(220.0, 136.0, 220.0, 236.0).w(228.0, 136.0, 228.0, 236.0);
     link(&mut g, 220.0, 236.0, "+24V");
     link(&mut g, 228.0, 236.0, "0V");
     // Supply of the motor operator and the signal lamp.
-    g.sym("cb1", 280.0, 80.0, 0, "-F33", "", "Motor operator").w(280.0, 24.0, 280.0, 76.0).w(280.0, 84.0, 280.0, 236.0);
+    g.sym("cb1", 280.0, 80.0, 0, "-F33", "", "Motor operator").w(280.0, 24.0, 280.0, 76.0);
+    cross_section(&mut g, TAP);
+    g.w(280.0, 84.0, 280.0, 236.0);
     g.w(288.0, 48.0, 288.0, 236.0);
     link(&mut g, 280.0, 236.0, "NA-L");
     link(&mut g, 288.0, 236.0, "NA-N");
@@ -660,15 +703,32 @@ pub(super) fn on_rail(prj: &mut Project, enc: usize, rail_y: f32, x: f32, tags: 
 }
 
 /// A cable gland in the roof or the bottom (`face`) in line with a device, its middle
-/// in the routing cell of the device's front: the cables go straight up or down.
+/// in the routing cell of the device's connection points that face it (of its front
+/// where it has none): the cables go straight up or down.
 pub(super) fn gland_at(prj: &mut Project, enc: usize, part: &str, tag: &str, face: Face) {
     let e = &prj.layout.enclosures[enc];
     let Some(it) = e.items.iter().find(|i| i.tag == tag) else { return };
-    let c = panel::face_point(e, it.face, [it.x + it.w / 2.0, it.y + it.h / 2.0, it.z + it.d]);
+    let towards = if face == Face::Roof { crate::parts::Exit::Up } else { crate::parts::Exit::Down };
+    let points: Vec<crate::parts::vec3::V3> = panel::device_points(prj, it).into_iter().filter(|q| q.exit == towards).map(|q| q.pos).collect();
+    let at = match points.len() {
+        0 => [it.x + it.w / 2.0, it.y + it.h / 2.0, it.z + it.d],
+        n => [0, 1, 2].map(|k| points.iter().map(|q| q[k]).sum::<f32>() / n as f32),
+    };
+    let c = panel::face_point(e, it.face, at);
     let w = prj.parts.iter().find(|q| q.number == part).map_or(30.0, |q| q.width);
     let cell = prj.layout.routing.grid.max(5.0);
-    let mid = |v: f32| ((v / cell).floor() + 0.5) * cell - w / 2.0;
-    panel::place_accessory(prj, enc, part, face, p(mid(c[0]), mid(c[2])));
+    let mid = |v: f32| ((v / cell).floor() + 0.5) * cell;
+    // The bottom is measured from the front.
+    let across = if face == Face::Bottom { e.depth - mid(c[2]) } else { mid(c[2]) };
+    panel::place_accessory(prj, enc, part, face, p(mid(c[0]) - w / 2.0, across - w / 2.0));
+}
+
+/// A cable gland in the bottom with its middle `x` mm from the left and `z` mm in
+/// front of the rear wall.
+pub(super) fn bottom_gland(prj: &mut Project, enc: usize, part: &str, x: f32, z: f32) {
+    let w = prj.parts.iter().find(|q| q.number == part).map_or(30.0, |q| q.width);
+    let depth = prj.layout.enclosures[enc].depth;
+    panel::place_accessory(prj, enc, part, Face::Bottom, p(x - w / 2.0, depth - z - w / 2.0));
 }
 
 pub(super) fn push(prj: &mut Project, e: Enclosure) -> usize {
@@ -691,57 +751,65 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
     panel::place_accessory(prj, hv, "HAG.UD21APZ", Face::Plate, p(0.0, 0.0));
     rail(prj, 10.0, 240.0, 420.0);
     on_rail(prj, hv, 420.0, 15.0, &["=GRID+HV-F1", "=GRID+HV-F2", "=GRID+HV-X2"]);
-    rail(prj, 10.0, 240.0, 1450.0);
-    on_rail(prj, hv, 1450.0, 15.0, &["=GRID+HV-X1"]);
-    // The main busbar, a feed-in terminal on each of its bars.
-    let main = profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10-60", (20.0, 1670.0), (480.0, 1670.0));
+    rail(prj, 10.0, 240.0, 1330.0);
+    on_rail(prj, hv, 1330.0, 15.0, &["=GRID+HV-X1"]);
+    // The main busbar, a feed-in terminal on each of its bars; high enough for the fuse
+    // switch disconnector on it to be operated.
+    let main = profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10-60", (20.0, 1500.0), (480.0, 1500.0));
     panel::busbars::place_on_bars(prj, hv, "=GRID+HV-X0", main, 30.0);
     panel::place_accessory(prj, hv, "GEN.PE-BAR-10", Face::Plate, p(20.0, 1765.0));
-    // Field 2: consumption metering, power flowing up from the busbar.
+    // Field 2: consumption metering, power flowing up from the busbar: the fuse switch
+    // disconnector on the bars, the transformers above it, the switch at the top.
     panel::place_device(prj, hv, "=MS1+HV-Q10", p(300.0, 150.0));
-    rail(prj, 260.0, 490.0, 420.0);
-    on_rail(prj, hv, 420.0, 330.0, &["=MS1+HV-F11"]);
-    panel::place_device(prj, hv, "=MS1+HV-T1", p(250.0, 520.0));
-    panel::place_device(prj, hv, "=MS1+HV-F10", p(250.0, 1050.0));
+    rail(prj, 260.0, 490.0, 445.0);
+    on_rail(prj, hv, 445.0, 330.0, &["=MS1+HV-F11"]);
+    panel::place_device(prj, hv, "=MS1+HV-T1", p(250.0, 675.0));
+    panel::place_device(prj, hv, "=MS1+HV-F10", p(250.0, 1175.0));
     // Field 3: NA protection, distribution busbar with its feeders.
     rail(prj, 510.0, 740.0, 420.0);
     on_rail(prj, hv, 420.0, 515.0, &["=NA+HV-K31", "=NA+HV-T31", "=NA+HV-K32"]);
-    rail(prj, 510.0, 740.0, 560.0);
-    on_rail(prj, hv, 560.0, 515.0, &["=NA+HV-F31", "=NA+HV-F32", "=NA+HV-F33", "=NA+HV-P30", "=NA+HV-P31"]);
+    // The rows far enough apart for the wires between them to cross each other.
+    rail(prj, 510.0, 740.0, 620.0);
+    on_rail(prj, hv, 620.0, 515.0, &["=NA+HV-F31", "=NA+HV-F32", "=NA+HV-F33", "=NA+HV-P30", "=NA+HV-P31"]);
     panel::place_device_on(prj, hv, "=NA+HV-P32", p(600.0, 900.0), Face::Door);
-    rail(prj, 510.0, 740.0, 700.0);
-    on_rail(prj, hv, 700.0, 690.0, &["=NA+HV-X30"]);
+    rail(prj, 510.0, 740.0, 820.0);
+    on_rail(prj, hv, 820.0, 690.0, &["=NA+HV-X30"]);
+    // The terminals far enough below the feeders for the bends of their conductors.
     rail(prj, 510.0, 740.0, 1700.0);
     on_rail(prj, hv, 1700.0, 515.0, &["=DIST+HV-X21", "=DIST+HV-X22"]);
-    profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10", (510.0, 1520.0), (740.0, 1520.0));
+    profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10", (510.0, 1420.0), (740.0, 1420.0));
     for (tag, x) in [("=DIST+HV-Q21", 515.0), ("=DIST+HV-Q22", 630.0)] {
-        panel::place_device(prj, hv, tag, p(x, 1415.0));
+        panel::place_device(prj, hv, tag, p(x, 1315.0));
     }
-    // Field 4: coupling switch and generation metering.
+    // Field 4: generation metering, power flowing up from the busbar of the inverters
+    // to the coupling switch at the top.
     panel::place_device(prj, hv, "=NA+HV-Q30", p(805.0, 150.0));
-    rail(prj, 760.0, 990.0, 420.0);
-    on_rail(prj, hv, 420.0, 830.0, &["=MS2+HV-F41"]);
-    panel::place_device(prj, hv, "=MS2+HV-T2", p(750.0, 520.0));
-    panel::place_device(prj, hv, "=MS2+HV-F40", p(750.0, 1050.0));
-    // Field 5: busbar of the inverters with their feeders.
+    rail(prj, 760.0, 990.0, 445.0);
+    on_rail(prj, hv, 445.0, 830.0, &["=MS2+HV-F41"]);
+    panel::place_device(prj, hv, "=MS2+HV-T2", p(750.0, 675.0));
+    // Field 5: busbar of the inverters with their feeders; it reaches into field 4 for
+    // the fuse switch disconnector of the generation metering.
     rail(prj, 1010.0, 1240.0, 1700.0);
     on_rail(prj, hv, 1700.0, 1015.0, &["=PV+HV-X41", "=PV+HV-X42"]);
-    profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10", (1010.0, 1520.0), (1240.0, 1520.0));
+    profile(prj, hv, ItemKind::Busbar, "GEN.BB-3X30X10", (760.0, 1420.0), (1240.0, 1420.0));
+    panel::place_device(prj, hv, "=MS2+HV-F40", p(750.0, 1175.0));
     for (tag, x) in [("=PV+HV-Q41", 1015.0), ("=PV+HV-Q42", 1130.0)] {
-        panel::place_device(prj, hv, tag, p(x, 1415.0));
+        panel::place_device(prj, hv, tag, p(x, 1315.0));
     }
     // Lifting eyes in the roof for the crane, the cables in from below.
     for (x, z) in [(30.0, 117.0), (1230.0, 117.0)] {
         panel::place_accessory(prj, hv, "HAG.FZ831", Face::Roof, p(x, z));
     }
-    for (part, x) in [("GEN.GLAND-M63", 40.0), ("GEN.GLAND-M32", 300.0), ("GEN.GLAND-M32", 800.0)] {
-        panel::place_accessory(prj, hv, part, Face::Bottom, p(x, 110.0));
-    }
+    // The supply cable in line with its busbar terminals, the meter cables beside the
+    // fuse switch disconnectors.
+    gland_at(prj, hv, "GEN.GLAND-M63", "=GRID+HV-X0", Face::Bottom);
+    bottom_gland(prj, hv, "GEN.GLAND-M32", 237.5, 137.5);
+    bottom_gland(prj, hv, "GEN.GLAND-M32", 737.5, 212.5);
     // The cable of the fire brigade switch leaves through the roof, those of the
     // consumers through the bottom below their terminals.
     gland_at(prj, hv, "GEN.GLAND-M20", "=NA+HV-X30", Face::Roof);
-    for tag in ["=DIST+HV-X21", "=DIST+HV-X22", "=PV+HV-X41", "=PV+HV-X42"] {
-        gland_at(prj, hv, "GEN.GLAND-M40", tag, Face::Bottom);
+    for (tag, part) in [("=DIST+HV-X21", "GEN.GLAND-M32"), ("=DIST+HV-X22", "GEN.GLAND-M40"), ("=PV+HV-X41", "GEN.GLAND-M40"), ("=PV+HV-X42", "GEN.GLAND-M40")] {
+        gland_at(prj, hv, part, tag, Face::Bottom);
     }
     // The meter cabinets beside it, each with its test terminal block.
     for (name, strip) in [("+ZS1", "=MS1+ZS1-X1"), ("+ZS2", "=MS2+ZS2-X1")] {
