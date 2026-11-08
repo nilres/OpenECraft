@@ -633,6 +633,17 @@ impl PanelUi {
             painter.line_segment([pts[1], pts[3]], Stroke::new(1.0, PIPE_COLOR));
             painter.text(pts[0] + vec2(4.0, 2.0), egui::Align2::LEFT_TOP, name, egui::FontId::proportional(12.0), pal.text);
         }
+        // The installation zone in the floor along the walls, see-through.
+        if self.show_zones {
+            for band in openecraft_core::routing3d::flush::bands(prj, ei, &prj.layout.routing) {
+                let kind = prj.layout.routing.zones[band.zone].kind;
+                if kind != openecraft_core::routing3d::ZoneKind::Floor {
+                    continue;
+                }
+                let pts: Vec<Pos2> = band.corners.iter().map(|q| to_screen(q[0], q[2])).collect();
+                painter.add(Shape::convex_polygon(pts, super::scene3d::zone_color(kind).gamma_multiply(0.25), Stroke::NONE));
+            }
+        }
         // The stairs on the level: their steps and the walking line up to its arrow;
         // dashed where they come up from below.
         for st in stairs_in_plan(prj, ei) {

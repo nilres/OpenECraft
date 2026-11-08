@@ -1,6 +1,7 @@
 //! 3D routing commands: routing rules, routing paths and reservations, the routed wires,
-//! cables and tubes with their bundles, branches and shields, and freezing routes
-//! for production.
+//! cables and tubes with their bundles, branches and shields, freezing routes for
+//! production, and how they are laid in rooms (surface- or flush-mounted, the
+//! installation zones).
 
 use crate::builtin::common::{enclosure_index, num_in, NO_MAX};
 use crate::params::{optional, param, Args, Kind};
@@ -9,7 +10,7 @@ use super::{add_commands, info, Spec};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::{PLATE_MARGIN, PLATE_Z};
-use openecraft_core::routing3d::{self, Class, PathKind, ReserveMode, Reservation, RoutingPath, ShieldEnds};
+use openecraft_core::routing3d::{self, Class, InstallationZone, Laying, PathKind, ReserveMode, Reservation, RoutingPath, ShieldEnds, ZoneKind};
 use openecraft_i18n::{tr_const, tr_fmt};
 use serde_json::{json, Value};
 
@@ -28,7 +29,7 @@ impl Plugin for Routing {
 pub static COMMANDS: &[Spec] = &[
     Spec {
         name: "routing_rules",
-        help: tr_const!("Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves"),
+        help: tr_const!("Shows the rules of the 3D routing and changes those given: grid, clearance, free air factor, segregation, bend radii, cut lengths, reserves, how lines are laid in rooms and the depth of slots and of lines in the floor"),
         params: &[
             optional("wires_3d", Kind::Bool, tr_const!("Route the wires in 3D as well (otherwise through the cable ducts)")),
             optional("grid", Kind::Num, tr_const!("Edge length of the routing grid in mm")),
@@ -44,8 +45,34 @@ pub static COMMANDS: &[Spec] = &[
             optional("cut_tube", Kind::Num, tr_const!("Cut lengths of tubes rounded up to this step in mm")),
             optional("cable_reserve", Kind::Num, tr_const!("Length added to each cable end in mm")),
             optional("pigtail", Kind::Num, tr_const!("Length of a shield pigtail in mm")),
+            optional("laying", Kind::Str, LAYING),
+            optional("slot_depth", Kind::Num, tr_const!("Depth of the slots in the walls for flush-mounted lines in mm")),
+            optional("floor_depth", Kind::Num, tr_const!("Depth of the lines in the floor below its surface in mm")),
         ],
         run: routing_rules,
+    },
+    Spec {
+        name: "set_laying",
+        help: tr_const!("Sets how a cable, wire or tube is laid in rooms: surface-mounted, flush-mounted in the walls along the installation zones, or in the floor; default: as the routing rules say"),
+        params: &[
+            param("item", Kind::Str, tr_const!("Key of the routed item: the cable tag, hose:from|to of a tube, from|to of a wire")),
+            param("laying", Kind::Str, tr_const!("surface, wall, floor or default")),
+        ],
+        run: set_laying,
+    },
+    Spec {
+        name: "installation_zones",
+        help: tr_const!("Lists the installation zones flush-mounted lines run in, changes, adds or removes one, or resets them to those of DIN 18015-3"),
+        params: &[
+            optional("name", Kind::Str, tr_const!("Name of the zone to change or add, e.g. ZW-m")),
+            optional("kind", Kind::Str, tr_const!("above_floor, below_ceiling, beside_corners, beside_doors, beside_windows, floor or ceiling")),
+            optional("from", Kind::Num, tr_const!("Start of the band in mm (above the floor, below the ceiling, beside the edge or away from the walls)")),
+            optional("to", Kind::Num, tr_const!("End of the band in mm")),
+            optional("on", Kind::Bool, tr_const!("Lines run in the zone")),
+            optional("remove", Kind::Bool, tr_const!("Remove the zone")),
+            optional("reset", Kind::Bool, tr_const!("Reset all zones to those of DIN 18015-3")),
+        ],
+        run: installation_zones,
     },
     Spec {
         name: "add_routing_path",
@@ -111,6 +138,7 @@ pub static COMMANDS: &[Spec] = &[
 ];
 
 const ENCLOSURE: &str = tr_const!("Enclosure (location, e.g. +CAB1)");
+const LAYING: &str = tr_const!("How lines are laid in rooms: surface, wall (flush-mounted in the walls) or floor");
 
 fn rules_json(r: &routing3d::RoutingRules) -> Value {
     serde_json::to_value(r).unwrap_or(Value::Null)
@@ -140,8 +168,72 @@ fn routing_rules(prj: &mut Project, a: &Args) -> Result<Value, String> {
             *field = v;
         }
     }
+    for (name, field, max) in [("slot_depth", &mut r.slot_depth, 200.0), ("floor_depth", &mut r.floor_depth, 300.0)] {
+        if let Some(v) = num_in(a, name, 1.0, max)? {
+            *field = v;
+        }
+    }
+    if let Some(l) = a.str("laying") {
+        r.laying = Laying::from_key(l).ok_or_else(|| tr_fmt!("Unknown laying: {}", l))?;
+    }
     r.grid = r.grid.max(5.0);
     Ok(rules_json(r))
+}
+
+fn set_laying(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let key = a.req("item").trim().to_string();
+    if key.is_empty() {
+        return Err(tr_fmt!("Unknown item: {}", key));
+    }
+    match a.req("laying").trim() {
+        k if k.eq_ignore_ascii_case("default") => {
+            prj.layout.laying.remove(&key);
+        }
+        k => {
+            let l = Laying::from_key(k).ok_or_else(|| tr_fmt!("Unknown laying: {}", k))?;
+            prj.layout.laying.insert(key, l);
+        }
+    }
+    Ok(json!({ "default": prj.layout.routing.laying.key(), "items": prj.layout.laying.iter().map(|(k, l)| (k.clone(), json!(l.key()))).collect::<serde_json::Map<_, _>>() }))
+}
+
+fn zones_json(zones: &[InstallationZone]) -> Value {
+    json!(zones.iter().map(|z| json!({ "name": z.name, "kind": z.kind.key(), "from": z.from, "to": z.to, "on": z.on })).collect::<Vec<_>>())
+}
+
+fn installation_zones(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let zones = &mut prj.layout.routing.zones;
+    if a.flag("reset") {
+        *zones = routing3d::german_zones();
+    }
+    if let Some(name) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        let k = match zones.iter().position(|z| z.name.eq_ignore_ascii_case(name)) {
+            Some(k) => k,
+            None if a.flag("remove") => return Err(tr_fmt!("No installation zone {}", name)),
+            None => {
+                zones.push(InstallationZone { name: name.into(), on: true, ..Default::default() });
+                zones.len() - 1
+            }
+        };
+        if a.flag("remove") {
+            zones.remove(k);
+            return Ok(zones_json(zones));
+        }
+        let mut z = zones[k].clone();
+        if let Some(kind) = a.str("kind") {
+            z.kind = ZoneKind::from_key(kind).ok_or_else(|| tr_fmt!("Unknown zone kind: {}", kind))?;
+        }
+        z.from = num_in(a, "from", 0.0, NO_MAX)?.unwrap_or(z.from);
+        z.to = num_in(a, "to", 0.0, NO_MAX)?.unwrap_or(z.to);
+        if let Some(on) = a.value("on").and_then(Value::as_bool) {
+            z.on = on;
+        }
+        if z.to <= z.from {
+            return Err(tr_fmt!("The zone {} ends before it starts", z.name));
+        }
+        zones[k] = z;
+    }
+    Ok(zones_json(zones))
 }
 
 fn classes_arg(a: &Args) -> Result<Vec<Class>, String> {

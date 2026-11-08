@@ -143,6 +143,7 @@ Archive and version	아카이브 및 버전
 Archive project…	프로젝트 아카이브…
 Arms	가지
 As defined by the check	검사에서 정의한 대로
+As the rules say ({})	규칙에 따름 ({})
 Aspects of the pages	페이지의 측면
 Aspects, identifiers and work areas as a file for other projects	다른 프로젝트용 파일로 저장한 측면, 식별자 및 작업 영역
 Assembly {}	어셈블리 {}
@@ -432,9 +433,11 @@ Delete the layer; its items move to the default layer	레이어 삭제. 레이�
 Delete the property and all its values	속성 및 모든 값 삭제
 Delete this workspace	이 작업 공간 삭제
 Delete variant	변형 삭제
+Delete zone	구역 삭제
 Deny	거부
 Depth / mounted at	깊이 / 장착 위치
 Depth from / to	깊이 시작 / 끝
+Depth in the floor	바닥 안 깊이
 Derive project definition	프로젝트 정의 파생
 Descriptions	설명
 Deselect	선택 해제
@@ -659,6 +662,7 @@ From / to	시작 / 끝
 From a template file…	템플릿 파일에서…
 From the function definition	기능 정의에서
 From the left end	왼쪽 끝에서
+From – to	시작 – 끝
 Fullest stretch	가장 많이 찬 구간
 Function definitions	기능 정의
 Function properties	기능 속성
@@ -683,6 +687,7 @@ Generates the pages of all report blocks again	모든 보고서 블록의 페이
 Generates {} pages	페이지 {}개 생성
 Generation failed: {}	생성 실패: {}
 Generic	일반
+German zones (DIN 18015-3)	독일 구역 (DIN 18015-3)
 Getting started	시작하기
 Global variable list with direct addresses for CODESYS, TwinCAT and others	CODESYS, TwinCAT 등을 위한 직접 주소가 포함된 전역 변수 목록
 Go to page	페이지로 이동
@@ -792,6 +797,7 @@ Inside temperature	내부 온도
 Inside without cooling	냉각 없는 내부
 Installation	설치 방식
 Installation conditions of the conductors	도체의 설치 조건
+Installation zones	설치 구역
 Installed plugins	설치된 플러그인
 Instead of user name and password	사용자 이름 및 암호 대신
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID의 계기는 레이블에 기능 문자와 루프 번호를 포함합니다(TIC 101). 장치 태그로 회로도와 연결됩니다.
@@ -826,6 +832,7 @@ Layer	레이어
 Layer {}	레이어 {}
 Layer: {}	레이어: {}
 Layers of graphics, texts, dimensions and images	그래픽, 텍스트, 치수 및 이미지의 레이어
+Laying in rooms	방 안 배선 방법
 Laying out the wires, cables and tubes…	전선, 케이블 및 튜브 배치 중…
 Layout checks	레이아웃 검사
 Layout properties	레이아웃 속성
@@ -997,6 +1004,7 @@ New stair	새 계단
 New sub-page	새 하위 페이지
 New subsection	새 하위 구역
 New tag for {}	{}의 새 태그
+New zone	새 구역
 New, empty placement scheme	새 빈 배치 스키마
 Next free contact numbers on this device	이 장치의 다음 빈 접점 번호
 Next item	다음 항목
@@ -1096,6 +1104,7 @@ Open project	프로젝트 열기
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault에서 프로젝트와 파일을 열고, 프로젝트, 내보내기 및 3D 모델을 Vault에 넣습니다
 Open the project	프로젝트 열기
 Open to {}: wires cross beside the mounting plates	{}(으)로 개방됨: 전선이 장착 플레이트 옆으로 지나감
+Open walls and floors	벽과 바닥 열기
 Open, save, import, export, print and the settings	열기, 저장, 가져오기, 내보내기, 인쇄 및 설정
 OpenECraft page templates	OpenECraft 페이지 템플릿
 OpenECraft page templates (JSON)	OpenECraft 페이지 템플릿(JSON)
@@ -1582,6 +1591,7 @@ Single-line	단선
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	아직 단선 심볼이 없는 회로도 전력 장치의 단선 심볼(새 개요 페이지에 생성)
 Size {} × {} mm	크기 {} × {} mm
 Slot	슬롯
+Slot depth	홈 깊이
 Slots	슬롯
 Smallest cross-section of control circuits	제어 회로의 최소 단면적
 Smallest cross-section of power circuits	전력 회로의 최소 단면적
@@ -1823,6 +1833,7 @@ What should be checked or changed?	무엇을 검사하거나 변경해야 합니
 Wheel / right or middle drag	휠 / 오른쪽 또는 가운데 버튼 끌기
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	휠: 확대/축소 · 오른쪽 클릭: 취소 · 그래픽은 0.5mm, 연결 지점은 4mm 그리드에 맞춰짐
 When it differs from the page	페이지와 다를 때
+Where	위치
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	전선이 시작하고 끝나는 곳: 부품 데이터의 연결 지점, 기능 템플릿에서 생성된 연결 지점 또는 일치하는 연결 지점이 없으면 장치 중심
 Whole building	건물 전체
 Whole words	단어 단위로

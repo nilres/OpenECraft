@@ -17,17 +17,18 @@ use crate::model::{Cable, Project};
 use crate::netlist::{Connection, Netlist, PinRef};
 use crate::panel::{self, Face, ItemKind, Layout, PanelItem, RoutedWire, DUCT_PROFILE, PLATE_MARGIN, PLATE_Z};
 use crate::parts::vec3::{add, dist, dot, manhattan, norm, scale, sub, V3};
-use openecraft_i18n::{tr, tr_fmt};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use std::collections::{BTreeMap, HashMap};
 
 pub mod bundles;
+pub mod flush;
 pub mod grid;
 pub mod room;
 pub mod shield;
 pub use bundles::{Branch, Bundle};
 pub use shield::{is_shielded, ShieldEnd, ShieldInfo, Termination};
 pub use crate::model::routing3d::ShieldEnds;
-pub use crate::model::routing3d::{Class, FrozenLeg, FrozenRoute, PathKind, Reservation, ReserveMode, RouteKind, RoutingPath, RoutingRules};
+pub use crate::model::routing3d::{Class, FrozenLeg, FrozenRoute, InstallationZone, Laying, PathKind, Reservation, ReserveMode, RouteKind, RoutingPath, RoutingRules, ZoneKind};
 
 // ---------------------------------------------------------------------- rules
 
@@ -191,6 +192,87 @@ impl Default for RoutingRules {
             cut_tube: 50.0,
             cable_reserve: 300.0,
             pigtail: 50.0,
+            laying: Laying::Surface,
+            slot_depth: 30.0,
+            floor_depth: 60.0,
+            zones: german_zones(),
+        }
+    }
+}
+
+/// The installation zones of DIN 18015-3:2016 for the walls (horizontal 15 - 45 cm above
+/// the floor and below the ceiling, the middle one 100 - 130 cm above the floor for
+/// rooms with worktops, switched off; vertical 10 - 30 cm beside doors, windows and
+/// corners) and the ceiling (20 - 50 cm from the walls), and a zone in the floor like
+/// the one of the ceiling (the standard has none in the floor).
+pub fn german_zones() -> Vec<InstallationZone> {
+    let z = |name: &str, kind: ZoneKind, from: f32, to: f32, on: bool| InstallationZone { name: name.into(), kind, from, to, on };
+    vec![
+        z("ZW-o", ZoneKind::BelowCeiling, 150.0, 450.0, true),
+        z("ZW-m", ZoneKind::AboveFloor, 1000.0, 1300.0, false),
+        z("ZW-u", ZoneKind::AboveFloor, 150.0, 450.0, true),
+        z("ZS-t", ZoneKind::BesideDoors, 100.0, 300.0, true),
+        z("ZS-f", ZoneKind::BesideWindows, 100.0, 300.0, true),
+        z("ZS-e", ZoneKind::BesideCorners, 100.0, 300.0, true),
+        z("ZD-r", ZoneKind::Ceiling, 200.0, 500.0, true),
+        z("ZF", ZoneKind::Floor, 200.0, 500.0, true),
+    ]
+}
+
+impl Laying {
+    pub const ALL: [Laying; 3] = [Laying::Surface, Laying::Wall, Laying::Floor];
+
+    pub fn key(&self) -> &'static str {
+        match self {
+            Laying::Surface => "surface",
+            Laying::Wall => "wall",
+            Laying::Floor => "floor",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<Laying> {
+        Self::ALL.into_iter().find(|l| l.key().eq_ignore_ascii_case(key.trim()))
+    }
+
+    /// Untranslated title (`tr` where shown).
+    pub fn title(&self) -> &'static str {
+        match self {
+            Laying::Surface => tr_const!("Surface-mounted"),
+            Laying::Wall => tr_const!("Flush-mounted in the wall"),
+            Laying::Floor => tr_const!("Flush-mounted in the floor"),
+        }
+    }
+}
+
+impl ZoneKind {
+    pub const ALL: [ZoneKind; 7] = [ZoneKind::AboveFloor, ZoneKind::BelowCeiling, ZoneKind::BesideCorners, ZoneKind::BesideDoors, ZoneKind::BesideWindows, ZoneKind::Floor, ZoneKind::Ceiling];
+
+    pub fn key(&self) -> &'static str {
+        match self {
+            ZoneKind::AboveFloor => "above_floor",
+            ZoneKind::BelowCeiling => "below_ceiling",
+            ZoneKind::BesideCorners => "beside_corners",
+            ZoneKind::BesideDoors => "beside_doors",
+            ZoneKind::BesideWindows => "beside_windows",
+            ZoneKind::Floor => "floor",
+            ZoneKind::Ceiling => "ceiling",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<ZoneKind> {
+        Self::ALL.into_iter().find(|k| k.key().eq_ignore_ascii_case(key.trim()))
+    }
+
+    /// Untranslated title (`tr` where shown).
+    pub fn title(&self) -> &'static str {
+        match self {
+            ZoneKind::AboveFloor => tr_const!("Horizontal, above the floor"),
+            ZoneKind::BelowCeiling => tr_const!("Horizontal, below the ceiling"),
+            ZoneKind::BesideCorners => tr_const!("Vertical, beside the corners"),
+            ZoneKind::BesideDoors => tr_const!("Vertical, beside the doors"),
+            ZoneKind::BesideWindows => tr_const!("Vertical, beside the windows"),
+            ZoneKind::Floor => tr_const!("In the floor, along the walls"),
+            ZoneKind::Ceiling => tr_const!("In the ceiling, along the walls"),
         }
     }
 }
@@ -298,6 +380,9 @@ pub struct RoutedItem {
     pub status: Status,
     /// Index into the routed wires (wires only).
     pub wire: Option<usize>,
+    /// How it is laid in rooms (its stretches through rooms run in the walls or the
+    /// floor where flush-mounted).
+    pub laying: Laying,
 }
 
 /// A stretch of a route in one line-up or room.
@@ -719,6 +804,8 @@ struct Job {
     set_length: f32,
     /// Page and symbol of a connection point of it, for the messages about it.
     target: Option<(usize, u64)>,
+    /// How it is laid in rooms.
+    laying: Laying,
 }
 
 impl Job {
@@ -957,6 +1044,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             bend: 0.0,
             set_length: 0.0,
             target: cores.first().map(|c| target(&c.a)),
+            laying: Laying::Surface,
         });
     }
     // Hoses, tubes and pipes with their configuration: bend radius, and the insertion
@@ -997,6 +1085,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             bend: if h.config.bend_radius > 0.0 { h.config.bend_radius } else if h.config.line == crate::model::fluid::LineType::Pipe { PIPE_ELBOW * diameter } else { 0.0 },
             set_length: h.length * 1000.0,
             target: Some(target(&h.a)),
+            laying: Laying::Surface,
         });
     }
     // Wires: cable cores run in their cable.
@@ -1043,6 +1132,7 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
             bend: 0.0,
             set_length: 0.0,
             target: conn.map(|c| target(&c.a)),
+            laying: Laying::Surface,
         });
     }
     // The cables and tubes before the wires within a class, the thickest first within a
@@ -1060,6 +1150,10 @@ fn jobs(prj: &Project, wiring: &[RoutedWire], conns: &[Connection], open: &Netli
         (Some(a), Some(b)) if !in_room(&j.ends[0]) && !in_room(&j.ends[1]) => dist(a, b),
         _ => f32::INFINITY,
     };
+    // Flush-mounted or on the surface in rooms: as set for it, otherwise as the rules say.
+    for j in &mut jobs {
+        j.laying = prj.layout.laying.get(&j.key).copied().unwrap_or(prj.layout.routing.laying);
+    }
     jobs.sort_by(|a, b| a.class.cmp(&b.class).then(order(a.kind).cmp(&order(b.kind))).then(b.diameter.total_cmp(&a.diameter)).then(span(a).total_cmp(&span(b))).then(a.key.cmp(&b.key)));
     jobs
 }
@@ -1076,6 +1170,8 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
     // The room an end is in: the room itself, or the room its cabinet stands in.
     let room_of_end = |ei: usize| if prj.layout.enclosures[ei].is_room() { Some(ei) } else { panel::room_of(&prj.layout, ei) };
     let is_room = |lu: usize| lineups[lu].len() == 1 && prj.layout.enclosures[lineups[lu][0]].is_room();
+    // A leg through a room of a flush-mounted route runs in its walls or floor.
+    let flush_leg = |job: &Job, leg: &room::LegPlan| job.laying != Laying::Surface && job.fixed.is_none() && is_room(leg.lineup);
     let links = panel::wall_links(prj);
     let mut spaces: HashMap<usize, grid::Space> = HashMap::new();
     // The class each space's segregation zones were last computed for.
@@ -1191,7 +1287,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
     // end there, whichever is searched first.
     for (job, plan) in jobs.iter().zip(&plans) {
         let (None, Ok((legs, ..))) = (&job.fixed, plan) else { continue };
-        for leg in legs {
+        for leg in legs.iter().filter(|leg| !flush_leg(job, leg)) {
             let space = spaces.entry(leg.lineup).or_insert_with(|| make_space(leg.lineup));
             let ignore = job.ignore(leg);
             let req = job.request(leg, space, &ignore, rules);
@@ -1213,7 +1309,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             for k in (n..batch_end).filter(|&k| jobs[k].fixed.is_none()) {
                 let Ok((legs, ..)) = &plans[k] else { continue };
                 let frozen_legs = thawed(&jobs[k], legs);
-                for (i, leg) in legs.iter().enumerate() {
+                for (i, leg) in legs.iter().enumerate().filter(|(_, leg)| !flush_leg(&jobs[k], leg)) {
                     let space = &spaces[&leg.lineup];
                     let ignore = jobs[k].ignore(leg);
                     if !frozen_legs.get(i).is_some_and(|p| thawed_ok(p, leg, space, &jobs[k].request(leg, space, &ignore, rules))) {
@@ -1242,6 +1338,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             shielded: job.shielded,
             status: Status::Routed,
             wire: job.wire,
+            laying: job.laying,
         };
         // Wires through the cable ducts are routed already (also those on the door).
         let known = job.fixed.is_some();
@@ -1263,7 +1360,26 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
         let thawed = thawed(job, legs);
         let mut ways: Vec<(usize, Vec<V3>, f32, Vec<f32>)> = Vec::new();
         let mut rerouted = false;
+        let mut no_zone = false;
         for (i, leg) in legs.iter().enumerate() {
+            // Flush-mounted through a room: along its installation zones, in its walls or
+            // floor (apart from the routes through the room's air).
+            if flush_leg(job, leg) {
+                let ri = lineups[leg.lineup][0];
+                match flush::route(prj, ri, sub(leg.a, pos[ri]), sub(leg.b, pos[ri]), job.laying, job.diameter, rules) {
+                    Some(points) => {
+                        let points: Vec<V3> = points.into_iter().map(|q| add(q, pos[ri])).collect();
+                        let radii = grid::corner_radii(&points, radius);
+                        ways.push((leg.lineup, points, 0.0, radii));
+                        continue;
+                    }
+                    None => {
+                        no_zone = true;
+                        ways.clear();
+                        break;
+                    }
+                }
+            }
             let space = spaces.entry(leg.lineup).or_insert_with(|| make_space(leg.lineup));
             // Classes that come later keep apart from those routed before them.
             if zoned.get(&leg.lineup) != Some(&job.class) {
@@ -1311,6 +1427,12 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
             problems.push(Problem { level: Level::Warning, message: tr_fmt!("Frozen route of {} is no longer possible and was routed again", job.label), target: job.target });
         } else if is_frozen && !known {
             item.status = Status::Frozen;
+        }
+        if ways.is_empty() && no_zone {
+            item.status = Status::Unrouted(tr("no way through the installation zones").to_string());
+            problems.push(Problem { level: Level::Error, message: tr_fmt!("{} {} cannot be laid flush-mounted: the installation zones of the room do not join its ends", job.kind.title(), job.label), target: job.target });
+            items.push(item);
+            continue;
         }
         if ways.is_empty() {
             item.status = Status::Unrouted(tr("no way through the enclosure").to_string());

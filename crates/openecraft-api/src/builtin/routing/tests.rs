@@ -50,3 +50,27 @@ fn routing_list_freezing_and_shields() {
     assert_eq!(shield["ends"][1]["termination"], "not connected");
     assert!(run(&mut s, "set_cable_shield", json!({ "cable": "-W1", "ends": "middle" })).unwrap_err().contains("Unknown shield ends"));
 }
+
+#[test]
+fn laying_and_installation_zones() {
+    let mut s = demo();
+    let r = run(&mut s, "routing_rules", json!({ "laying": "wall", "slot_depth": 40 })).unwrap();
+    assert_eq!((r["laying"].as_str(), r["slot_depth"].as_f64(), r["floor_depth"].as_f64()), (Some("Wall"), Some(40.0), Some(60.0)));
+    assert!(run(&mut s, "routing_rules", json!({ "laying": "air" })).unwrap_err().contains("air"));
+    // One cable in the floor, back to the default.
+    let l = run(&mut s, "set_laying", json!({ "item": "-W1", "laying": "floor" })).unwrap();
+    assert_eq!((l["default"].as_str(), l["items"]["-W1"].as_str()), (Some("wall"), Some("floor")));
+    let l = run(&mut s, "set_laying", json!({ "item": "-W1", "laying": "default" })).unwrap();
+    assert_eq!(l["items"], json!({}));
+    // The zones of DIN 18015-3; the middle one switched on, a zone of its own, reset.
+    let z = run(&mut s, "installation_zones", json!({})).unwrap();
+    let names: Vec<&str> = z.as_array().unwrap().iter().map(|z| z["name"].as_str().unwrap()).collect();
+    assert_eq!(names, ["ZW-o", "ZW-m", "ZW-u", "ZS-t", "ZS-f", "ZS-e", "ZD-r", "ZF"]);
+    let z = run(&mut s, "installation_zones", json!({ "name": "zw-m", "on": true })).unwrap();
+    assert_eq!(z[1]["on"], true);
+    let z = run(&mut s, "installation_zones", json!({ "name": "ZX", "kind": "above_floor", "from": 600, "to": 800 })).unwrap();
+    assert_eq!((z[8]["kind"].as_str(), z[8]["to"].as_f64()), (Some("above_floor"), Some(800.0)));
+    assert!(run(&mut s, "installation_zones", json!({ "name": "ZX", "from": 900 })).unwrap_err().contains("ZX"));
+    let z = run(&mut s, "installation_zones", json!({ "reset": true })).unwrap();
+    assert_eq!((z.as_array().unwrap().len(), z[1]["on"].as_bool()), (8, Some(false)));
+}

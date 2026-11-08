@@ -25,6 +25,10 @@ pub struct Layout {
     /// Routes frozen for production.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub frozen: Vec<super::routing3d::FrozenRoute>,
+    /// How single cables, wires and tubes are laid in rooms (by the key of their route),
+    /// where not as the routing rules say ([`super::routing3d::RoutingRules::laying`]).
+    #[serde(skip_serializing_if = "std::collections::BTreeMap::is_empty")]
+    pub laying: std::collections::BTreeMap<String, super::routing3d::Laying>,
     /// Rules of the layout checks: clearances, collision classes, heights, thermal
     /// and manufacturing limits.
     #[serde(skip_serializing_if = "PanelRules::is_default")]

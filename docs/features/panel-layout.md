@@ -447,6 +447,31 @@ one through the middle of the roof, which is reported), then through the room. A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.
+
+**Flush-mounted in rooms.** Every cable, wire and tube is laid in rooms *surface-mounted*
+(as above), *flush-mounted in the wall* or *flush-mounted in the floor*: as the routing
+rules say (*Laying in rooms*, command `routing_rules` with `laying`) or as set for it
+(route properties › *Laying in rooms*, command `set_laying` with its key). Flush-mounted
+it runs through the room in slots in its walls, *Slot depth* (30 mm unless set
+otherwise, `slot_depth`) behind their surface less half its thickness, along the middle
+lines of the **installation zones** (routing rules › *Installation zones*, command
+`installation_zones`): horizontal zones above the floor and below the ceiling, cut where
+doors and windows are and joined round the corners of the room, vertical ones beside
+the corners, doors and windows. A device on a wall is fed straight up or down from the
+nearest horizontal zone (or sideways from a vertical zone it lies in); a free end (a
+cable gland on top of a cabinet) goes to the nearest wall first. In the floor the line
+goes straight down the wall (or, low above the floor, straight down) and *Depth in the
+floor* (60 mm, `floor_depth`) below its surface along the zone in the floor. The zones
+are those of DIN 18015-3:2016 unless changed (*German zones (DIN 18015-3)* resets them):
+ZW-o 150 - 450 mm below the ceiling, ZW-u 150 - 450 mm above the floor, ZW-m 1000 -
+1300 mm above the floor for rooms with worktops (off), ZS-t / ZS-f / ZS-e 100 - 300 mm
+beside doors, windows and corners, ZD-r 200 - 500 mm from the walls in the ceiling
+(shown, not routed through) and ZF, the same in the floor (the standard has no zones in
+the floor). A route the zones do not join stays unrouted (*no way through the
+installation zones*). *Show › Installation zones* shows the zones see-through on the
+walls in 3D and in the views of the walls, the one in the floor in the floor plan; *Show
+› Open walls and floors* sees through the walls and floor slabs in 3D, like *Open cable
+ducts*, to show the flush-mounted lines in them.
 Hoses, tubes and pipes end at the nozzles of the generated models of their devices (the
 suction and the pressure nozzle of a pump, the nozzles of a vessel, both ends of a valve
 or a fitting, the outlets of a manifold): the route comes to a point twice as far out of

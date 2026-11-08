@@ -435,6 +435,11 @@ pub struct PanelUi {
     /// The 3D view of a room in a building shows the whole building: its rooms, floor
     /// slabs, stairs and roofs.
     pub show_building: bool,
+    /// The installation zones of the rooms are shown, see-through.
+    pub show_zones: bool,
+    /// The walls and floors of the rooms are opened (seen through) to show the
+    /// flush-mounted lines in them.
+    pub open_walls: bool,
     /// The 3D view leaves out the walls between the eye and the inside of a room or
     /// enclosure.
     pub hide_front_walls: bool,
@@ -560,6 +565,8 @@ impl Default for PanelUi {
             show_lineup: true,
             show_site: false,
             show_building: false,
+            show_zones: false,
+            open_walls: false,
             hide_front_walls: false,
             hide_ceiling: false,
             open_ducts: false,
@@ -3058,6 +3065,24 @@ impl PanelUi {
                     let r = Rect::from_two_pos(to_screen(p(it.x, it.y)), to_screen(p(it.x + it.w, it.y + it.h)));
                     painter.rect_filled(r, 0.0, WIRE_HIGHLIGHT.gamma_multiply(0.18));
                     painter.rect_stroke(r.expand(2.0), 2.0, Stroke::new(2.5, WIRE_HIGHLIGHT), egui::StrokeKind::Outside);
+                }
+            }
+        }
+        // The installation zones of a wall of a room, see-through.
+        if self.show_zones && e.is_room() && matches!(self.face, Face::Wall(_) | Face::Inner(..)) {
+            let zones = openecraft_core::routing3d::flush::wall_zones(e, self.face, &prj.layout.routing);
+            let band = |x0: f32, y0: f32, x1: f32, y1: f32, kind| {
+                let r = Rect::from_two_pos(to_screen(p(x0, y0)), to_screen(p(x1, y1)));
+                painter.rect_filled(r, 0.0, scene3d::zone_color(kind).gamma_multiply(0.25));
+            };
+            for l in &zones.horizontal {
+                for &(x0, x1) in &l.stretches {
+                    band(x0, l.at - l.half, x1, l.at + l.half, prj.layout.routing.zones[l.zone].kind);
+                }
+            }
+            for l in &zones.vertical {
+                for &(y0, y1) in &l.stretches {
+                    band(l.at - l.half, y0, l.at + l.half, y1, prj.layout.routing.zones[l.zone].kind);
                 }
             }
         }

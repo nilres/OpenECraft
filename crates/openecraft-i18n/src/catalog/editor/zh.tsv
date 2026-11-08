@@ -143,6 +143,7 @@ Archive and version	归档和版本
 Archive project…	归档项目…
 Arms	分支
 As defined by the check	按检查的定义
+As the rules say ({})	按规则（{}）
 Aspects of the pages	页的方面
 Aspects, identifiers and work areas as a file for other projects	方面、标识符和工作区，作为文件供其他项目使用
 Assembly {}	组件 {}
@@ -434,9 +435,11 @@ Delete the layer; its items move to the default layer	删除图层；其元素�
 Delete the property and all its values	删除该属性及其所有值
 Delete this workspace	删除此工作区
 Delete variant	删除变体
+Delete zone	删除安装区
 Deny	拒绝
 Depth / mounted at	深度 / 安装于
 Depth from / to	深度从 / 到
+Depth in the floor	地面内深度
 Derive project definition	派生项目定义
 Descriptions	描述
 Deselect	取消选择
@@ -662,6 +665,7 @@ From / to	从 / 到
 From a template file…	来自模板文件…
 From the function definition	来自功能定义
 From the left end	距左端
+From – to	从 – 到
 Fullest stretch	最满段
 Function definitions	功能定义
 Function properties	功能属性
@@ -686,6 +690,7 @@ Generates the pages of all report blocks again	重新生成所有报表块的页
 Generates {} pages	生成 {} 页
 Generation failed: {}	生成失败：{}
 Generic	通用
+German zones (DIN 18015-3)	德国安装区（DIN 18015-3）
 Getting started	入门
 Global variable list with direct addresses for CODESYS, TwinCAT and others	带直接地址的全局变量列表，用于 CODESYS、TwinCAT 等
 Go to page	转到页
@@ -795,6 +800,7 @@ Inside temperature	内部温度
 Inside without cooling	无冷却时的内部温度
 Installation	安装方式
 Installation conditions of the conductors	导体的敷设条件
+Installation zones	安装区
 Installed plugins	已安装的插件
 Instead of user name and password	代替用户名和密码
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID 中的仪表在其标签中带有功能字母和回路编号 (TIC 101)；其设备标识符将其与原理图关联。
@@ -829,6 +835,7 @@ Layer	图层
 Layer {}	图层 {}
 Layer: {}	图层：{}
 Layers of graphics, texts, dimensions and images	图形、文本、尺寸标注和图像的图层
+Laying in rooms	房间内敷设方式
 Laying out the wires, cables and tubes…	正在排布导线、电缆和管子…
 Layout checks	布局检查
 Layout properties	布局属性
@@ -1000,6 +1007,7 @@ New stair	新建楼梯
 New sub-page	新建子页
 New subsection	新建子分节
 New tag for {}	{} 的新标识符
+New zone	新建安装区
 New, empty placement scheme	新的空放置方案
 Next free contact numbers on this device	此设备上的下一个空闲触点编号
 Next item	下一个元件
@@ -1099,6 +1107,7 @@ Open project	打开项目
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	从 Autodesk Vault 打开项目和文件，将项目、导出和 3D 模型放入 Vault
 Open the project	打开项目
 Open to {}: wires cross beside the mounting plates	向 {} 开放：导线在安装板旁边穿过
+Open walls and floors	打开墙壁和地面
 Open, save, import, export, print and the settings	打开、保存、导入、导出、打印和设置
 OpenECraft page templates	OpenECraft 页模板
 OpenECraft page templates (JSON)	OpenECraft 页模板 (JSON)
@@ -1586,6 +1595,7 @@ Single-line	单线
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	为原理图中尚无单线符号的动力设备生成单线符号，放在新概览页上
 Size {} × {} mm	尺寸 {} × {} mm
 Slot	槽
+Slot depth	开槽深度
 Slots	插槽
 Smallest cross-section of control circuits	控制电路的最小截面积
 Smallest cross-section of power circuits	主电路的最小截面积
@@ -1827,6 +1837,7 @@ What should be checked or changed?	应检查或更改什么？
 Wheel / right or middle drag	滚轮 / 右键或中键拖动
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	滚轮：缩放 · 右键单击：取消 · 图形捕捉到 0.5 mm，连接点捕捉到 4 mm 栅格
 When it differs from the page	与该页不同时
+Where	位置
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	导线的起点和终点：部件数据中的连接点、由功能模板生成的连接点，或在没有匹配的连接点时使用设备中心
 Whole building	整个建筑
 Whole words	全字匹配

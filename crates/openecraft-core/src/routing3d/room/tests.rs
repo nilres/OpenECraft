@@ -383,3 +383,30 @@ fn pipes_between_devices_in_the_room_keep_to_the_ceiling() {
         assert!(s[0][1] <= KEEP_TO_SURFACES + ROOM_GRID, "a long stretch through the room at {} mm: {:?}", s[0][1], h.points);
     }
 }
+
+#[test]
+fn hoses_laid_flush_run_in_the_walls_and_the_floor() {
+    let (mut prj, r, c) = pump_room();
+    with_roof_gland(&mut prj, c);
+    let an = Analysis::build(&prj);
+    let (wall_key, floor_key) = (tube(&an, "-QM3").key.clone(), tube(&an, "-QM1").key.clone());
+    prj.layout.laying.insert(wall_key.clone(), crate::routing3d::Laying::Wall);
+    prj.layout.laying.insert(floor_key.clone(), crate::routing3d::Laying::Floor);
+    let an = Analysis::build(&prj);
+    let pos = panel::positions(&prj.layout);
+    let local = |q: &V3| sub(*q, pos[r]);
+    // Between the valves on the right wall: in the wall (x beyond 4000), behind them.
+    let w = an.routing.item(&wall_key).unwrap();
+    assert!(w.routed() && w.laying == crate::routing3d::Laying::Wall, "{:?}", w.status);
+    let inner: Vec<V3> = w.points.iter().map(local).filter(|q| q[0] > 4000.0 + 1.0).collect();
+    assert!(inner.len() >= 2, "{:?}", w.points);
+    // From the cabinet: to the rear wall, down it and through the floor.
+    let f = an.routing.item(&floor_key).unwrap();
+    assert!(f.routed(), "{:?}", f.status);
+    let room_leg = f.legs.iter().find(|l| l.enclosure == r).expect("a leg through the room");
+    assert!(room_leg.points.iter().any(|q| local(q)[1] > 2800.0 + 10.0), "below the floor: {:?}", room_leg.points);
+    // Surface-mounted again: through the room as before.
+    prj.layout.laying.clear();
+    let an = Analysis::build(&prj);
+    assert!(an.routing.item(&wall_key).unwrap().points.iter().all(|q| local(q)[0] <= 4000.0 + 0.5));
+}

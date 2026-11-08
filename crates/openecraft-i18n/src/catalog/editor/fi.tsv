@@ -144,6 +144,7 @@ Archive and version	Arkisto ja versio
 Archive project…	Arkistoi projekti…
 Arms	Haarat
 As defined by the check	Tarkistuksen määrittämä
+As the rules say ({})	Sääntöjen mukaan ({})
 Aspects of the pages	Sivujen aspektit
 Aspects, identifiers and work areas as a file for other projects	Aspektit, tunnukset ja työalueet tiedostona muita projekteja varten
 Assembly {}	Kokoonpano {}
@@ -440,9 +441,11 @@ Delete the layer; its items move to the default layer	Poista taso; sen kohteet s
 Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
 Delete this workspace	Poista tämä työtila
 Delete variant	Poista muunnelma
+Delete zone	Poista vyöhyke
 Deny	Estä
 Depth / mounted at	Syvyys / asennettu kohtaan
 Depth from / to	Syvyys mistä / mihin
+Depth in the floor	Syvyys lattiassa
 Derive project definition	Johda projektin määrittely
 Descriptions	Kuvaukset
 Deselect	Poista valinta
@@ -670,6 +673,7 @@ From / to	Mistä / mihin
 From a template file…	Mallitiedostosta…
 From the function definition	Toimintomäärittelystä
 From the left end	Vasemmasta päästä
+From – to	Mistä – mihin
 Fullest stretch	Eniten täytetty osuus
 Function definitions	Toimintomäärittelyt
 Function properties	Toiminnon ominaisuudet
@@ -694,6 +698,7 @@ Generates the pages of all report blocks again	Luo kaikkien raporttilohkojen siv
 Generates {} pages	Luo {} sivua
 Generation failed: {}	Luonti epäonnistui: {}
 Generic	Yleinen
+German zones (DIN 18015-3)	Saksalaiset vyöhykkeet (DIN 18015-3)
 Getting started	Aloitus
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Globaalien muuttujien luettelo suorilla osoitteilla CODESYSille, TwinCATille ja muille
 Go to page	Siirry sivulle
@@ -803,6 +808,7 @@ Inside temperature	Sisälämpötila
 Inside without cooling	Sisällä ilman jäähdytystä
 Installation	Sijoitus
 Installation conditions of the conductors	Johtimien asennusolosuhteet
+Installation zones	Asennusvyöhykkeet
 Installed plugins	Asennetut laajennukset
 Instead of user name and password	Käyttäjänimen ja salasanan sijaan
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	PI-kaavion instrumenttien merkinnässä on tunnuskirjaimet ja piirin numero (TIC 101); niiden laitetunnus yhdistää ne piirikaavioon.
@@ -838,6 +844,7 @@ Layer	Taso
 Layer {}	Taso {}
 Layer: {}	Taso: {}
 Layers of graphics, texts, dimensions and images	Grafiikan, tekstien, mitoitusten ja kuvien tasot
+Laying in rooms	Asennus tiloissa
 Laying out the wires, cables and tubes…	Johtoja, kaapeleita ja putkia asetellaan…
 Layout checks	Asennustarkistukset
 Layout properties	Asennuskuvan ominaisuudet
@@ -1014,6 +1021,7 @@ New stair	Uudet portaat
 New sub-page	Uusi alasivu
 New subsection	Uusi alaosio
 New tag for {}	Uusi tunnus kohteelle {}
+New zone	Uusi vyöhyke
 New, empty placement scheme	Uusi, tyhjä sijoitteluskeema
 Next free contact numbers on this device	Laitteen seuraavat vapaat kosketinnumerot
 Next item	Seuraava kohde
@@ -1113,6 +1121,7 @@ Open project	Avaa projekti
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Avaa projekteja ja tiedostoja Autodesk Vaultista, tallenna projekti, viennit ja 3D-mallit Vaultiin
 Open the project	Avaa projekti
 Open to {}: wires cross beside the mounting plates	Avoin kohteeseen {}: johdot kulkevat asennuslevyjen vierestä
+Open walls and floors	Avaa seinät ja lattiat
 Open, save, import, export, print and the settings	Avaa, tallenna, tuo, vie, tulosta ja asetukset
 OpenECraft page templates	OpenECraft-sivumallit
 OpenECraft page templates (JSON)	OpenECraft-sivumallit (JSON)
@@ -1606,6 +1615,7 @@ Single-line symbols for the power devices of the schematic that have none yet, o
 Site plan	Asemapiirros
 Size {} × {} mm	Koko {} × {} mm
 Slot	Ura
+Slot depth	Uran syvyys
 Slots	Korttipaikat
 Smallest cross-section of control circuits	Ohjauspiirien pienin poikkipinta-ala
 Smallest cross-section of power circuits	Tehopiirien pienin poikkipinta-ala
@@ -1849,6 +1859,7 @@ What should be checked or changed?	Mitä pitäisi tarkistaa tai muuttaa?
 Wheel / right or middle drag	Rulla / oikean tai keskipainikkeen veto
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
 When it differs from the page	Kun se poikkeaa sivusta
+Where	Sijainti
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
 Whole building	Koko rakennus
 Whole words	Kokonaiset sanat

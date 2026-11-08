@@ -1464,3 +1464,25 @@ fn the_3d_view_shows_the_whole_building_with_stairs_and_roof() {
     let site = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
     assert!(site.bounds.1[1] > ridge + 3000.0 - 1.0 && site.bounds.0[1] > -400.0, "{:?}", site.bounds);
 }
+
+#[test]
+fn installation_zones_and_opened_walls_are_seen_through() {
+    let (prj, attic) = house();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    let shown = ui.shown_3d(&prj, attic);
+    let plain = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    assert!(!plain.sides.iter().any(|s| s.glass));
+    ui.show_zones = true;
+    let zones = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    let bands = openecraft_core::routing3d::flush::bands(&prj, attic, &prj.layout.routing).len();
+    assert_eq!(zones.sides.iter().filter(|s| s.glass).count(), bands);
+    // Opened: the walls of the room are glass too, seen from inside and outside.
+    ui.show_zones = false;
+    ui.open_walls = true;
+    let open = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    let walls = open.sides.iter().filter(|s| s.glass).count();
+    assert!(walls >= 4, "{walls}");
+    let eye = [100_000.0, 100_000.0, 100_000.0];
+    assert!(open.sides.iter().filter(|s| s.glass).all(|s| s.layer(eye, true) == Some(OUTER_WALLS)));
+}

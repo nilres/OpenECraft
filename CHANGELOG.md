@@ -5,6 +5,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Flush-mounted cables, wires and tubes in rooms:** each line is laid surface-mounted,
+  flush-mounted in the walls or in the floor (a project default in the routing rules,
+  set per line in its properties or with `set_laying`). Flush-mounted lines run in slots
+  of a configurable depth along the installation zones, preset to those of DIN 18015-3
+  and editable (`installation_zones`), or down into the floor and along its zone.
+  *Show › Installation zones* shows the zones see-through, *Show › Open walls and
+  floors* sees through walls and floor slabs to the lines in them
+  ([panel layout](docs/features/panel-layout.md)).
+
 - **Stairs and roofs of buildings:** stairs from level to level, straight, turned once
   or twice at quarter landings, with a half landing or spiral, their steps from the
   difference in height; flat, shed, gable, hip and pyramid roofs with roof windows. A

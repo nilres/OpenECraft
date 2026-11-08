@@ -8,7 +8,7 @@ use openecraft_core::model::Project;
 use openecraft_core::panel::{self, PLATE_MARGIN, PLATE_Z};
 use openecraft_core::parts::vec3::{add, dist, norm, sub};
 use openecraft_core::analysis::Analysis;
-use openecraft_core::routing3d::{self, Class, PathKind, ReserveMode, Reservation, RouteKind, RoutingPath, ShieldEnds};
+use openecraft_core::routing3d::{self, Class, Laying, PathKind, ReserveMode, Reservation, RouteKind, RoutingPath, ShieldEnds, ZoneKind};
 use egui::{Color32, Pos2, Rect, RichText, Shape, Stroke};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
@@ -679,6 +679,28 @@ impl PanelUi {
             ui.label(it.status_text());
             ui.end_row();
         });
+        // How it is laid in rooms: as the rules say, or as set for it.
+        ui.horizontal(|ui| {
+            ui.label(tr("Laying in rooms"));
+            let default = prj.layout.routing.laying;
+            let own = prj.layout.laying.get(&it.key).copied();
+            let shown = own.map_or_else(|| tr_fmt!("As the rules say ({})", tr(default.title())), |l| tr(l.title()).to_string());
+            let mut choice = own;
+            egui::ComboBox::from_id_salt("rlaying").selected_text(shown).show_ui(ui, |ui| {
+                ui.selectable_value(&mut choice, None, tr_fmt!("As the rules say ({})", tr(default.title())));
+                for l in Laying::ALL {
+                    ui.selectable_value(&mut choice, Some(l), tr(l.title()));
+                }
+            });
+            if choice != own {
+                match choice {
+                    Some(l) => prj.layout.laying.insert(it.key.clone(), l),
+                    None => prj.layout.laying.remove(&it.key),
+                };
+            }
+        })
+        .response
+        .on_hover_text(tr("Flush-mounted lines run in slots in the walls along the installation zones, or down into the floor and along its zone"));
         if it.kind == RouteKind::Cable {
             self.cable_cores(ui, prj, an, &it.key);
         }
@@ -942,6 +964,47 @@ impl PanelUi {
     }
 }
 
+/// The installation zones flush-mounted lines run in, with a reset to DIN 18015-3.
+fn installation_zones(ui: &mut egui::Ui, r: &mut routing3d::RoutingRules) {
+    egui::CollapsingHeader::new(tr("Installation zones")).id_salt("rzones").show(ui, |ui| {
+        let mut remove = None;
+        egui::Grid::new("rzonesgrid").num_columns(5).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
+            for t in [tr("Name"), tr("Where"), tr("From – to"), "", ""] {
+                ui.label(RichText::new(t).weak());
+            }
+            ui.end_row();
+            for (k, z) in r.zones.iter_mut().enumerate() {
+                ui.add(egui::TextEdit::singleline(&mut z.name).desired_width(50.0));
+                egui::ComboBox::from_id_salt(("rzonekind", k)).selected_text(tr(z.kind.title())).width(190.0).show_ui(ui, |ui| {
+                    for kind in ZoneKind::ALL {
+                        ui.selectable_value(&mut z.kind, kind, tr(kind.title()));
+                    }
+                });
+                ui.horizontal(|ui| {
+                    ui.add(egui::DragValue::new(&mut z.from).speed(5.0).range(0.0..=10_000.0));
+                    ui.add(egui::DragValue::new(&mut z.to).speed(5.0).range(0.0..=10_000.0).suffix(" mm"));
+                });
+                ui.checkbox(&mut z.on, "").on_hover_text(tr("Lines run in the zone"));
+                if icons::button(ui, Icon::Delete, tr("Delete zone")).clicked() {
+                    remove = Some(k);
+                }
+                ui.end_row();
+            }
+        });
+        if let Some(k) = remove {
+            r.zones.remove(k);
+        }
+        ui.horizontal(|ui| {
+            if icons::text_button(ui, Icon::Plus, tr("New zone")).clicked() {
+                r.zones.push(routing3d::InstallationZone { name: format!("Z{}", r.zones.len() + 1), kind: ZoneKind::AboveFloor, from: 600.0, to: 900.0, on: true });
+            }
+            if ui.button(tr("German zones (DIN 18015-3)")).on_hover_text(tr("Horizontal 15 - 45 cm above the floor and below the ceiling, the middle zone of kitchens 100 - 130 cm (off), vertical 10 - 30 cm beside doors, windows and corners, the ceiling and the floor 20 - 50 cm from the walls")).clicked() {
+                r.zones = routing3d::german_zones();
+            }
+        });
+    });
+}
+
 /// The routing rules of the project.
 fn rules(ui: &mut egui::Ui, prj: &mut Project) {
     let r = &mut prj.layout.routing;
@@ -969,7 +1032,17 @@ fn rules(ui: &mut egui::Ui, prj: &mut Project) {
             row(ui, tr("Cut length step tubes"), &mut r.cut_tube, 1.0..=1000.0, " mm", "");
             row(ui, tr("Cable end reserve"), &mut r.cable_reserve, 0.0..=5000.0, " mm", tr("Added to each cable end in the enclosure"));
             row(ui, tr("Shield pigtail"), &mut r.pigtail, 0.0..=500.0, " mm", tr("Length of a shield pigtail where there is no shield clamp"));
+            ui.label(tr("Laying in rooms"));
+            egui::ComboBox::from_id_salt("rruleslaying").selected_text(tr(r.laying.title())).show_ui(ui, |ui| {
+                for l in Laying::ALL {
+                    ui.selectable_value(&mut r.laying, l, tr(l.title()));
+                }
+            });
+            ui.end_row();
+            row(ui, tr("Slot depth"), &mut r.slot_depth, 5.0..=200.0, " mm", tr("Depth of the slots in the walls: flush-mounted lines lie this deep behind the surface"));
+            row(ui, tr("Depth in the floor"), &mut r.floor_depth, 5.0..=300.0, " mm", tr("Depth of the lines in the floor below its surface (in the screed or on the raw floor)"));
         });
+        installation_zones(ui, r);
         if ui.small_button(tr("Default rules")).clicked() {
             *r = Default::default();
         }

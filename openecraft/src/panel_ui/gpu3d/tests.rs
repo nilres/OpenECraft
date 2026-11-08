@@ -46,7 +46,7 @@ fn the_depths_reach_from_the_scene_to_its_farthest_corner() {
 }
 
 fn side(normal: V3, hideable: bool) -> SceneSide {
-    SceneSide { normal, at: [0.0; 3], inside: 0, hideable, decal: false }
+    SceneSide { normal, at: [0.0; 3], inside: 0, hideable, decal: false, glass: false }
 }
 
 #[test]

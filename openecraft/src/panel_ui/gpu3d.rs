@@ -83,6 +83,9 @@ enum Look {
 }
 
 fn look(side: &SceneSide, eye: V3, hide_front: bool, opacity: f32) -> Look {
+    if side.glass {
+        return Look::Translucent;
+    }
     match side.layer(eye, hide_front) {
         None => Look::Hidden,
         Some(OUTER_WALLS) if opacity <= 0.0 => Look::Hidden,
@@ -596,8 +599,8 @@ impl Renderer {
             // Walls seen from the outside, far to near, over everything.
             if !translucent.is_empty() {
                 gl.depth_mask(false);
-                use_faces(frame.opacity);
                 for i in translucent {
+                    use_faces(if scene.sides[i].glass { super::scene3d::GLASS_ALPHA } else { frame.opacity });
                     decal(scene.sides[i].decal);
                     draw(spans.sides[i]);
                 }

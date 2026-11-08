@@ -237,6 +237,8 @@ pub enum Cmd {
     LayoutLineup,
     LayoutSite,
     LayoutBuilding,
+    LayoutZones,
+    LayoutOpenWalls,
     LayoutHideFrontWalls,
     LayoutHideCeiling,
     LayoutOpenDucts,
@@ -714,6 +716,12 @@ pub static ALL: &[Def] = &[
         .toggle()
         .tip(tr_const!("Leave out the walls between the eye and the inside of the room or enclosure in the 3D view")),
     d(C::LayoutHideCeiling, "layout_hide_ceiling", tr_const!("Hide ceiling"), I::Enclosure).toggle().tip(tr_const!("Leave out the ceilings of the rooms and the roofs in the 3D view")),
+    d(C::LayoutZones, "layout_zones", tr_const!("Installation zones"), I::Grid)
+        .toggle()
+        .tip(tr_const!("Show the installation zones of the rooms see-through: on the walls in the 3D view and the views of the walls, in the floor in the floor plan")),
+    d(C::LayoutOpenWalls, "layout_open_walls", tr_const!("Open walls and floors"), I::Wall)
+        .toggle()
+        .tip(tr_const!("See through the walls and floors of the rooms in the 3D view: the flush-mounted lines in them are seen")),
     d(C::LayoutOpenDucts, "layout_open_ducts", tr_const!("Open cable ducts"), I::Duct).toggle().tip(tr_const!("Leave out the covers of all cable ducts in the 3D view: the wires in them are seen")),
     d(C::LayoutFit, "layout_fit", tr_const!("Fit"), I::Fit),
     d(C::LayoutNcData, "layout_nc_data", tr_const!("NC data"), I::Drill).menu().tip(tr_const!("Drilling pattern of the face shown as DXF, DWG or CSV")),

@@ -144,6 +144,7 @@ Archive and version	Arşiv ve sürüm
 Archive project…	Projeyi arşivle…
 Arms	Kollar
 As defined by the check	Kontrolün tanımladığı gibi
+As the rules say ({})	Kurallara göre ({})
 Aspects of the pages	Sayfaların yönleri
 Aspects, identifiers and work areas as a file for other projects	Diğer projeler için dosya olarak yönler, tanımlayıcılar ve çalışma alanları
 Assembly {}	Montaj grubu {}
@@ -440,9 +441,11 @@ Delete the layer; its items move to the default layer	Katmanı sil; öğeleri va
 Delete the property and all its values	Özelliği ve tüm değerlerini sil
 Delete this workspace	Bu çalışma alanını sil
 Delete variant	Varyantı sil
+Delete zone	Bölgeyi sil
 Deny	Reddet
 Depth / mounted at	Derinlik / montaj konumu
 Depth from / to	Derinlik başlangıç / bitiş
+Depth in the floor	Zemindeki derinlik
 Derive project definition	Proje tanımı türet
 Descriptions	Açıklamalar
 Deselect	Seçimi kaldır
@@ -670,6 +673,7 @@ From / to	Başlangıç / hedef
 From a template file…	Bir şablon dosyasından…
 From the function definition	Fonksiyon tanımından
 From the left end	Sol uçtan
+From – to	Başlangıç – bitiş
 Fullest stretch	En dolu bölüm
 Function definitions	Fonksiyon tanımları
 Function properties	Fonksiyon özellikleri
@@ -694,6 +698,7 @@ Generates the pages of all report blocks again	Tüm rapor bloklarının sayfalar
 Generates {} pages	{} sayfa oluşturur
 Generation failed: {}	Oluşturma başarısız oldu: {}
 Generic	Genel
+German zones (DIN 18015-3)	Alman bölgeleri (DIN 18015-3)
 Getting started	Başlarken
 Global variable list with direct addresses for CODESYS, TwinCAT and others	CODESYS, TwinCAT ve diğerleri için doğrudan adresli genel değişken listesi
 Go to page	Sayfaya git
@@ -803,6 +808,7 @@ Inside temperature	İç sıcaklık
 Inside without cooling	Soğutmasız iç sıcaklık
 Installation	Kurulum tipi
 Installation conditions of the conductors	İletkenlerin kurulum koşulları
+Installation zones	Tesisat bölgeleri
 Installed plugins	Yüklü eklentiler
 Instead of user name and password	Kullanıcı adı ve parola yerine
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID'deki enstrümanlar tanımlarında fonksiyon harflerini ve döngü numarasını taşır (TIC 101); cihaz etiketleri onları şemaya bağlar.
@@ -838,6 +844,7 @@ Layer	Katman
 Layer {}	Katman {}
 Layer: {}	Katman: {}
 Layers of graphics, texts, dimensions and images	Grafik, metin, ölçü ve görüntü katmanları
+Laying in rooms	Odalarda döşeme
 Laying out the wires, cables and tubes…	Teller, kablolar ve tüpler yerleştiriliyor…
 Layout checks	Yerleşim kontrolleri
 Layout properties	Yerleşim özellikleri
@@ -1014,6 +1021,7 @@ New stair	Yeni merdiven
 New sub-page	Yeni alt sayfa
 New subsection	Yeni alt bölüm
 New tag for {}	{} için yeni etiket
+New zone	Yeni bölge
 New, empty placement scheme	Yeni, boş yerleştirme şeması
 Next free contact numbers on this device	Bu cihazdaki sonraki boş kontak numaraları
 Next item	Sonraki öğe
@@ -1113,6 +1121,7 @@ Open project	Proje aç
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault'tan proje ve dosya açın, projeyi, dışa aktarımları ve 3D modelleri kasaya koyun
 Open the project	Projeyi aç
 Open to {}: wires cross beside the mounting plates	{} tarafına açık: teller montaj plakalarının yanından geçer
+Open walls and floors	Duvarları ve zeminleri aç
 Open, save, import, export, print and the settings	Açma, kaydetme, içe ve dışa aktarma, yazdırma ve ayarlar
 OpenECraft page templates	OpenECraft sayfa şablonları
 OpenECraft page templates (JSON)	OpenECraft sayfa şablonları (JSON)
@@ -1606,6 +1615,7 @@ Single-line symbols for the power devices of the schematic that have none yet, o
 Site plan	Vaziyet planı
 Size {} × {} mm	Boyut {} × {} mm
 Slot	Yuva
+Slot depth	Kanal derinliği
 Slots	Slotlar
 Smallest cross-section of control circuits	Kumanda devrelerinin en küçük kesiti
 Smallest cross-section of power circuits	Güç devrelerinin en küçük kesiti
@@ -1849,6 +1859,7 @@ What should be checked or changed?	Ne kontrol edilmeli veya değiştirilmeli?
 Wheel / right or middle drag	Tekerlek / sağ veya orta tuşla sürükleme
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Tekerlek: yakınlaştır · sağ tık: iptal · grafikler 0,5 mm'ye, bağlantı noktaları 4 mm ızgaraya yaslanır
 When it differs from the page	Sayfadan farklı olduğunda
+Where	Konum
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Telin başladığı ve bittiği yer: parça verilerinden bir bağlantı noktası, fonksiyon şablonundan oluşturulan bir nokta veya eşleşen bağlantı noktası yoksa cihaz merkezi
 Whole building	Tüm bina
 Whole words	Tam sözcükler

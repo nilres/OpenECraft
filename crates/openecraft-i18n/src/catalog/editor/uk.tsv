@@ -144,6 +144,7 @@ Archive and version	Архів і версія
 Archive project…	Архівувати проєкт…
 Arms	Плечі
 As defined by the check	Як визначено перевіркою
+As the rules say ({})	За правилами ({})
 Aspects of the pages	Аспекти сторінок
 Aspects, identifiers and work areas as a file for other projects	Аспекти, позначення та робочі області як файл для інших проєктів
 Assembly {}	Збірка {}
@@ -439,9 +440,11 @@ Delete the layer; its items move to the default layer	Видалити шар; �
 Delete the property and all its values	Видалити властивість з усіма значеннями
 Delete this workspace	Видалити цей робочий простір
 Delete variant	Видалити варіант
+Delete zone	Видалити зону
 Deny	Заборонити
 Depth / mounted at	Глибина / монтаж на
 Depth from / to	Глибина від / до
+Depth in the floor	Глибина в підлозі
 Derive project definition	Створити похідне визначення проєкту
 Descriptions	Описи
 Deselect	Скасувати вибір
@@ -669,6 +672,7 @@ From / to	Від / до
 From a template file…	Із файлу шаблону…
 From the function definition	З визначення функції
 From the left end	Від лівого кінця
+From – to	Від – до
 Fullest stretch	Найбільш заповнена ділянка
 Function definitions	Визначення функцій
 Function properties	Властивості функції
@@ -693,6 +697,7 @@ Generates the pages of all report blocks again	Повторно генерує �
 Generates {} pages	Генерує сторінок: {}
 Generation failed: {}	Помилка генерування: {}
 Generic	Загальний
+German zones (DIN 18015-3)	Німецькі зони (DIN 18015-3)
 Getting started	Початок роботи
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Список глобальних змінних із прямими адресами для CODESYS, TwinCAT та інших
 Go to page	Перейти до сторінки
@@ -802,6 +807,7 @@ Inside temperature	Внутрішня температура
 Inside without cooling	Усередині без охолодження
 Installation	Встановлення
 Installation conditions of the conductors	Умови прокладання провідників
+Installation zones	Монтажні зони
 Installed plugins	Встановлені плагіни
 Instead of user name and password	Замість імені користувача й пароля
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Прилади на P&ID мають у своїй мітці літери функції та номер контуру (TIC 101); їхнє позначення пристрою пов’язує їх зі схемою.
@@ -837,6 +843,7 @@ Layer	Шар
 Layer {}	Шар {}
 Layer: {}	Шар: {}
 Layers of graphics, texts, dimensions and images	Шари графіки, текстів, розмірів і зображень
+Laying in rooms	Прокладання в приміщеннях
 Laying out the wires, cables and tubes…	Розкладання проводів, кабелів і шлангів…
 Layout checks	Перевірки компонування
 Layout properties	Властивості компонування
@@ -1013,6 +1020,7 @@ New stair	Нові сходи
 New sub-page	Нова підсторінка
 New subsection	Новий підрозділ
 New tag for {}	Нове позначення для {}
+New zone	Нова зона
 New, empty placement scheme	Нова порожня схема розміщення
 Next free contact numbers on this device	Наступні вільні номери контактів на цьому пристрої
 Next item	Наступний елемент
@@ -1112,6 +1120,7 @@ Open project	Відкрити проєкт
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Відкривати проєкти й файли з Autodesk Vault, поміщати проєкт, експорти та 3D-моделі у сховище
 Open the project	Відкрити проєкт
 Open to {}: wires cross beside the mounting plates	Відкрито до {}: проводи проходять поруч із монтажними панелями
+Open walls and floors	Відкрити стіни й підлоги
 Open, save, import, export, print and the settings	Відкриття, збереження, імпорт, експорт, друк і параметри
 OpenECraft page templates	Шаблони сторінок OpenECraft
 OpenECraft page templates (JSON)	Шаблони сторінок OpenECraft (JSON)
@@ -1605,6 +1614,7 @@ Single-line symbols for the power devices of the schematic that have none yet, o
 Site plan	Генплан
 Size {} × {} mm	Розмір {} × {} мм
 Slot	Паз
+Slot depth	Глибина штроби
 Slots	Слоти
 Smallest cross-section of control circuits	Найменший переріз кіл керування
 Smallest cross-section of power circuits	Найменший переріз силових кіл
@@ -1848,6 +1858,7 @@ What should be checked or changed?	Що слід перевірити або з�
 Wheel / right or middle drag	Коліщатко / перетягування правою або середньою кнопкою
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Коліщатко: масштаб · правий клік: скасувати · графіка прив’язується до 0,5 мм, точки підключення – до сітки 4 мм
 When it differs from the page	Якщо відрізняється від сторінки
+Where	Положення
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Де провід починається й закінчується: точка підключення з даних виробу, згенерована із шаблону функцій або центр пристрою, якщо жодна точка підключення не підходить
 Whole building	Уся будівля
 Whole words	Цілі слова

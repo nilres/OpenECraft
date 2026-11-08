@@ -423,7 +423,8 @@ pub(super) fn project(scene: &Scene3d, camera: &Camera, rect: Rect, opacity: f32
         if !seen {
             continue;
         }
-        let color = if layer == OUTER_WALLS { face.color.gamma_multiply(opacity) } else { face.color };
+        let glass = face.side.is_some_and(|s| scene.sides[s].glass);
+        let color = if glass { face.color.gamma_multiply(super::scene3d::GLASS_ALPHA) } else if layer == OUTER_WALLS { face.color.gamma_multiply(opacity) } else { face.color };
         let k = key(layer, face.obj.map(|o| (o, 1)), depth / n as f32);
         push(&mut prims, k, Prim::Face { pts, z: zs, n: face.n, color, item: face.item, outline: face.outline });
     }

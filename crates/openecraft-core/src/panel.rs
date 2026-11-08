@@ -532,6 +532,7 @@ impl Default for Layout {
             macros: Vec::new(),
             routing: Default::default(),
             frozen: Vec::new(),
+            laying: Default::default(),
             checks: PanelRules::default(),
             manufacturing: Default::default(),
             buildings: Vec::new(),

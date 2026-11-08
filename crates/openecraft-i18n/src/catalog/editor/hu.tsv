@@ -144,6 +144,7 @@ Archive and version	Archívum és verzió
 Archive project…	Projekt archiválása…
 Arms	Karok
 As defined by the check	Ahogy az ellenőrzés meghatározza
+As the rules say ({})	A szabályok szerint ({})
 Aspects of the pages	Az oldalak aspektusai
 Aspects, identifiers and work areas as a file for other projects	Aspektusok, azonosítók és munkaterületek fájlként más projektek számára
 Assembly {}	{} szerelvény
@@ -440,9 +441,11 @@ Delete the layer; its items move to the default layer	A réteg törlése; elemei
 Delete the property and all its values	Tulajdonság törlése az összes értékével együtt
 Delete this workspace	A munkaterület törlése
 Delete variant	Változat törlése
+Delete zone	Zóna törlése
 Deny	Megtagadás
 Depth / mounted at	Mélység / szerelve itt
 Depth from / to	Mélység ettől / eddig
+Depth in the floor	Mélység a padlóban
 Derive project definition	Projektdefiníció származtatása
 Descriptions	Leírások
 Deselect	Kijelölés megszüntetése
@@ -670,6 +673,7 @@ From / to	Forrás / cél
 From a template file…	Sablonfájlból…
 From the function definition	A funkciódefinícióból
 From the left end	A bal végtől
+From – to	Tól – ig
 Fullest stretch	Legtelibb szakasz
 Function definitions	Funkciódefiníciók
 Function properties	Funkciótulajdonságok
@@ -694,6 +698,7 @@ Generates the pages of all report blocks again	Újragenerálja az összes kimuta
 Generates {} pages	{} oldalt generál
 Generation failed: {}	Sikertelen generálás: {}
 Generic	Általános
+German zones (DIN 18015-3)	Német zónák (DIN 18015-3)
 Getting started	Első lépések
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Globális változólista közvetlen címekkel a CODESYS, a TwinCAT és más rendszerek számára
 Go to page	Ugrás az oldalra
@@ -803,6 +808,7 @@ Inside temperature	Belső hőmérséklet
 Inside without cooling	Belül hűtés nélkül
 Installation	Felállítás
 Installation conditions of the conductors	A vezetők fektetési feltételei
+Installation zones	Szerelési zónák
 Installed plugins	Telepített bővítmények
 Instead of user name and password	Felhasználónév és jelszó helyett
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	A P&ID műszerei funkcióbetűket és körszámot viselnek a feliratukban (TIC 101); a készülékazonosítójuk kapcsolja össze őket a kapcsolási rajzzal.
@@ -838,6 +844,7 @@ Layer	Réteg
 Layer {}	{} réteg
 Layer: {}	Réteg: {}
 Layers of graphics, texts, dimensions and images	Grafikák, szövegek, méretezések és képek rétegei
+Laying in rooms	Fektetés a helyiségekben
 Laying out the wires, cables and tubes…	Vezetékek, kábelek és csövek elrendezése…
 Layout checks	Elrendezési ellenőrzések
 Layout properties	Elrendezés tulajdonságai
@@ -1014,6 +1021,7 @@ New stair	Új lépcső
 New sub-page	Új aloldal
 New subsection	Új alszakasz
 New tag for {}	Új azonosító ehhez: {}
+New zone	Új zóna
 New, empty placement scheme	Új, üres elhelyezési séma
 Next free contact numbers on this device	A készülék következő szabad érintkezőszámai
 Next item	Következő elem
@@ -1113,6 +1121,7 @@ Open project	Projekt megnyitása
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Projektek és fájlok megnyitása az Autodesk Vaultból, a projekt, exportok és 3D-modellek elhelyezése a vaultban
 Open the project	A projekt megnyitása
 Open to {}: wires cross beside the mounting plates	Nyitott ehhez: {}: a vezetékek a szerelőlapok mellett haladnak át
+Open walls and floors	Falak és padlók megnyitása
 Open, save, import, export, print and the settings	Megnyitás, mentés, importálás, exportálás, nyomtatás és a beállítások
 OpenECraft page templates	OpenECraft-oldalsablonok
 OpenECraft page templates (JSON)	OpenECraft-oldalsablonok (JSON)
@@ -1606,6 +1615,7 @@ Single-line symbols for the power devices of the schematic that have none yet, o
 Site plan	Helyszínrajz
 Size {} × {} mm	Méret: {} × {} mm
 Slot	Hasíték
+Slot depth	Horonymélység
 Slots	Slotok
 Smallest cross-section of control circuits	Vezérlőáramkörök legkisebb keresztmetszete
 Smallest cross-section of power circuits	Erősáramú áramkörök legkisebb keresztmetszete
@@ -1849,6 +1859,7 @@ What should be checked or changed?	Mit kell ellenőrizni vagy módosítani?
 Wheel / right or middle drag	Görgő / jobb vagy középső gombos húzás
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Görgő: nagyítás · jobb kattintás: mégse · a grafika 0,5 mm-re, a csatlakozási pontok a 4 mm-es rácsra illeszkednek
 When it differs from the page	Ha eltér az oldaltól
+Where	Hely
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	A vezeték kezdete és vége: az alkatrészadatokból származó csatlakozási pont, a funkciósablonból generált pont, vagy a készülék közepe, ha egyik csatlakozási pont sem egyezik
 Whole building	Egész épület
 Whole words	Csak teljes szavak

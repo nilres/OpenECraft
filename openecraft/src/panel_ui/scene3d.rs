@@ -94,7 +94,13 @@ pub(super) struct SceneSide {
     pub hideable: bool,
     /// A cutout lying on its wall.
     pub decal: bool,
+    /// Seen through from everywhere at [`GLASS_ALPHA`]: an installation zone, or a wall
+    /// or floor opened to show the flush-mounted lines in it.
+    pub glass: bool,
 }
+
+/// Opacity of what is drawn as glass ([`SceneSide::glass`]).
+pub(super) const GLASS_ALPHA: f32 = 0.3;
 
 impl SceneSide {
     pub fn outside(&self, eye: V3) -> bool {
@@ -103,6 +109,9 @@ impl SceneSide {
 
     /// Layer of its faces seen from `eye`; `None` when they are left out.
     pub fn layer(&self, eye: V3, hide_front: bool) -> Option<u8> {
+        if self.glass {
+            return Some(OUTER_WALLS);
+        }
         match self.outside(eye) {
             true if hide_front && self.hideable => None,
             true => Some(OUTER_WALLS),
@@ -492,6 +501,17 @@ const WINDOW_FRAME: Color32 = Color32::from_rgb(80, 84, 90);
 const STAIR: Color32 = Color32::from_rgb(196, 184, 160);
 const SLAB: Color32 = Color32::from_rgb(168, 168, 172);
 
+/// Colour of the installation zones of a kind: horizontal blue, vertical green, in the
+/// floor and the ceiling orange.
+pub(super) fn zone_color(kind: openecraft_core::routing3d::ZoneKind) -> Color32 {
+    use openecraft_core::routing3d::ZoneKind as K;
+    match kind {
+        K::AboveFloor | K::BelowCeiling => Color32::from_rgb(70, 140, 230),
+        K::BesideCorners | K::BesideDoors | K::BesideWindows => Color32::from_rgb(60, 180, 110),
+        K::Floor | K::Ceiling => Color32::from_rgb(240, 150, 50),
+    }
+}
+
 fn face_normal(pts: &[V3]) -> V3 {
     norm(cross(sub(pts[1], pts[0]), sub(pts[2], pts[0])))
 }
@@ -564,10 +584,15 @@ impl PanelUi {
                         let hole = vec![[hlo[0], hlo[1]], [hhi[0], hlo[1]], [hhi[0], hhi[1]], [hlo[0], hhi[1]]];
                         parts = parts.into_iter().flat_map(|p| outside_of(&p, &hole)).collect();
                     }
+                    // Opened to show the lines in the floor: seen through.
+                    let side = self.open_walls.then(|| {
+                        s.sides.push(SceneSide { normal: pose.turn([0.0, 1.0, 0.0]), at: pose.apply([0.0, 0.0, 0.0]), inside: 0, hideable: false, decal: false, glass: true });
+                        s.sides.len() - 1
+                    });
                     for p in parts {
                         for (pts, n) in roofs::prism(&p, Lin::constant(-bld::SLAB), Lin::constant(0.0), |_, _| true) {
                             let n = pose.turn(n);
-                            add_poly(s, &pts.iter().map(|&q| pose.apply(q)).collect::<Vec<V3>>(), n, lit(SLAB, n), 1, None, false);
+                            add_poly(s, &pts.iter().map(|&q| pose.apply(q)).collect::<Vec<V3>>(), n, lit(SLAB, n), 1, side, false);
                         }
                     }
                 }
@@ -599,7 +624,7 @@ impl PanelUi {
                     let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
                     let n = turn(f.normal);
                     let centre = [0, 1, 2].map(|i| pts.iter().map(|q| q[i]).sum::<f32>() / pts.len() as f32);
-                    s.sides.push(SceneSide { normal: turn(f.outward), at: centre, inside: 0, hideable: true, decal: false });
+                    s.sides.push(SceneSide { normal: turn(f.outward), at: centre, inside: 0, hideable: true, decal: false, glass: false });
                     let side = Some(s.sides.len() - 1);
                     add_poly(s, &pts, n, lit(base, n), 0, side, matches!(f.kind, RoofFaceKind::Glass | RoofFaceKind::Frame));
                 }
@@ -667,7 +692,7 @@ impl PanelUi {
         self.selection.hash(&mut h);
         self.wire_index(an).hash(&mut h);
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
-        (self.show_site, self.show_building).hash(&mut h);
+        (self.show_site, self.show_building, self.show_zones, self.open_walls).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);
@@ -793,7 +818,9 @@ impl PanelUi {
             let wall_side = |s: &mut Scene3d, face: Face, b: (V3, V3), hideable: bool, decal: bool| {
                 let n = panel::outward(e, face);
                 let c = [0, 1, 2].map(|k| if n[k] > 0.0 { b.1[k] } else if n[k] < 0.0 { b.0[k] } else { (b.0[k] + b.1[k]) / 2.0 });
-                s.sides.push(SceneSide { normal: pose.turn([n[0], -n[1], n[2]]), at: pose.apply(up(c)), inside: 0, hideable, decal });
+                // A room's wall opened to show the lines in it: seen through.
+                let glass = self.open_walls && e.is_room() && hideable;
+                s.sides.push(SceneSide { normal: pose.turn([n[0], -n[1], n[2]]), at: pose.apply(up(c)), inside: 0, hideable, decal, glass });
                 Some(s.sides.len() - 1)
             };
             // Door leaf on its hinge: seen from the outside it covers the equipment
@@ -807,7 +834,7 @@ impl PanelUi {
                     match c.role {
                         Role::Door => {
                             let side = *door_side.get_or_insert_with(|| {
-                                s.sides.push(SceneSide { normal: pose.turn(swing_dir([0.0, 0.0, 1.0])), at: pose.apply(swing([w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false });
+                                s.sides.push(SceneSide { normal: pose.turn(swing_dir([0.0, 0.0, 1.0])), at: pose.apply(swing([w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false, glass: false });
                                 s.sides.len() - 1
                             });
                             add_box(&mut s, 3, Some(side), None, min, max, Color32::from_rgb(190, 194, 200), None, true, false);
@@ -832,6 +859,21 @@ impl PanelUi {
                         Role::MountingPlate | Role::Body | Role::RackRails => add_box(&mut s, 1, None, None, min, max, color, None, false, false),
                         Role::Plinth | Role::BayingKit => add_box(&mut s, 0, None, None, min, max, color, None, false, false),
                     }
+                }
+            }
+            // The installation zones of a room, seen through.
+            if self.show_zones && e.is_room() {
+                for band in openecraft_core::routing3d::flush::bands(prj, k, &prj.layout.routing) {
+                    let base = zone_color(prj.layout.routing.zones[band.zone].kind);
+                    let pts: Vec<V3> = band.corners.iter().map(|&q| pose.apply(up(q))).collect();
+                    let centre = [0, 1, 2].map(|i| pts.iter().map(|q| q[i]).sum::<f32>() / 4.0);
+                    s.sides.push(SceneSide { normal: face_normal(&pts), at: centre, inside: 0, hideable: false, decal: true, glass: true });
+                    let side = Some(s.sides.len() - 1);
+                    // Both ways: seen from either side.
+                    let n = face_normal(&pts);
+                    add_poly(&mut s, &pts, n, base, 0, side, true);
+                    let back: Vec<V3> = pts.iter().rev().copied().collect();
+                    add_poly(&mut s, &back, [-n[0], -n[1], -n[2]], base, 0, side, true);
                 }
             }
             // The roof windows over a sloped ceiling, seen from inside.

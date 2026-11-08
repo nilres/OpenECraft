@@ -78,6 +78,73 @@ pub struct RoutingRules {
     pub cable_reserve: f32,
     /// Length of a shield pigtail where there is no shield clamp, mm.
     pub pigtail: f32,
+    /// How cables, wires and tubes are laid in rooms unless set for one of them
+    /// ([`super::panel::Layout::laying`]).
+    #[serde(skip_serializing_if = "Laying::is_surface")]
+    pub laying: Laying,
+    /// Depth of the slots cut into the walls for flush-mounted lines: the line lies this
+    /// deep behind the surface of the wall (its middle half its thickness less), mm.
+    pub slot_depth: f32,
+    /// Depth of the lines laid in the floor below its surface (in the screed or on the
+    /// raw floor below it), mm.
+    pub floor_depth: f32,
+    /// The installation zones flush-mounted lines run in (by default those of DIN
+    /// 18015-3).
+    pub zones: Vec<InstallationZone>,
+}
+
+/// How a cable, wire or tube is laid in a room.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum Laying {
+    /// On the walls, the ceiling and the floor, in cable ducts and along pipe runs.
+    #[default]
+    Surface,
+    /// Flush-mounted in slots in the walls, along the installation zones.
+    Wall,
+    /// Flush-mounted in the floor, down and up the walls in the vertical zones.
+    Floor,
+}
+
+impl Laying {
+    pub fn is_surface(&self) -> bool {
+        *self == Laying::Surface
+    }
+}
+
+/// Where an installation zone lies in a room.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum ZoneKind {
+    /// Along the walls, from `from` to `to` above the floor.
+    #[default]
+    AboveFloor,
+    /// Along the walls, from `from` to `to` below the ceiling.
+    BelowCeiling,
+    /// Up the walls, from `from` to `to` beside the corners of the room.
+    BesideCorners,
+    /// Up the walls, from `from` to `to` beside the doors.
+    BesideDoors,
+    /// Up the walls, from `from` to `to` beside the windows.
+    BesideWindows,
+    /// In the floor along the walls, from `from` to `to` away from them.
+    Floor,
+    /// In the ceiling along the walls, from `from` to `to` away from them (shown, not
+    /// routed through).
+    Ceiling,
+}
+
+/// An installation zone: a band of the walls, the floor or the ceiling of a room in
+/// which flush-mounted lines run (DIN 18015-3).
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct InstallationZone {
+    /// Short name, e.g. "ZW-u".
+    pub name: String,
+    pub kind: ZoneKind,
+    /// The band from `from` to `to` (see [`ZoneKind`]), mm.
+    pub from: f32,
+    pub to: f32,
+    /// Lines run in it (the middle zone of kitchens only where it is switched on).
+    pub on: bool,
 }
 
 /// A routing path drawn in an enclosure: a channel through free space (cable tray,

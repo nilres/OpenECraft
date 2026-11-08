@@ -143,6 +143,7 @@ Archive and version	アーカイブとバージョン
 Archive project…	プロジェクトをアーカイブ…
 Arms	側
 As defined by the check	チェックの定義どおり
+As the rules say ({})	規則に従う ({})
 Aspects of the pages	ページのアスペクト
 Aspects, identifiers and work areas as a file for other projects	他のプロジェクト用のファイルとしてのアスペクト、識別子、作業領域
 Assembly {}	アセンブリ {}
@@ -434,9 +435,11 @@ Delete the layer; its items move to the default layer	レイヤーを削除し�
 Delete the property and all its values	プロパティとそのすべての値を削除
 Delete this workspace	このワークスペースを削除
 Delete variant	バリアントを削除
+Delete zone	ゾーンを削除
 Deny	拒否
 Depth / mounted at	奥行き / 取付位置
 Depth from / to	奥行き 開始 / 終了
+Depth in the floor	床内の深さ
 Derive project definition	プロジェクト定義を派生
 Descriptions	説明
 Deselect	選択解除
@@ -662,6 +665,7 @@ From / to	接続元 / 接続先
 From a template file…	テンプレートファイルから…
 From the function definition	機能定義から
 From the left end	左端から
+From – to	から – まで
 Fullest stretch	最大充填区間
 Function definitions	機能定義
 Function properties	機能のプロパティ
@@ -686,6 +690,7 @@ Generates the pages of all report blocks again	すべてのレポートブロッ
 Generates {} pages	{} ページを生成します
 Generation failed: {}	生成に失敗しました: {}
 Generic	汎用
+German zones (DIN 18015-3)	ドイツのゾーン (DIN 18015-3)
 Getting started	はじめに使う
 Global variable list with direct addresses for CODESYS, TwinCAT and others	CODESYS、TwinCAT などのための直接アドレス付きグローバル変数リスト
 Go to page	ページへ移動
@@ -795,6 +800,7 @@ Inside temperature	内部温度
 Inside without cooling	冷却なしの内部温度
 Installation	設置方法
 Installation conditions of the conductors	導体の布設条件
+Installation zones	設置ゾーン
 Installed plugins	インストール済みプラグイン
 Instead of user name and password	ユーザー名とパスワードの代わり
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID の計器は、ラベルに機能文字とループ番号 (TIC 101) を持ちます。デバイスタグによって回路図とリンクされます。
@@ -829,6 +835,7 @@ Layer	レイヤー
 Layer {}	レイヤー {}
 Layer: {}	レイヤー: {}
 Layers of graphics, texts, dimensions and images	図形、テキスト、寸法、画像のレイヤー
+Laying in rooms	部屋内の敷設方法
 Laying out the wires, cables and tubes…	電線、ケーブル、チューブを配置しています…
 Layout checks	レイアウトチェック
 Layout properties	レイアウトのプロパティ
@@ -1000,6 +1007,7 @@ New stair	新しい階段
 New sub-page	新しいサブページ
 New subsection	新しいサブセクション
 New tag for {}	{} の新しいタグ
+New zone	新しいゾーン
 New, empty placement scheme	新しい空の配置スキーム
 Next free contact numbers on this device	このデバイスの次の空き接点番号
 Next item	次のアイテム
@@ -1099,6 +1107,7 @@ Open project	プロジェクトを開く
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault からプロジェクトとファイルを開き、プロジェクト、エクスポート、3D モデルを Vault に格納します
 Open the project	プロジェクトを開く
 Open to {}: wires cross beside the mounting plates	{} へ開放: 電線は取付板の横を通ります
+Open walls and floors	壁と床を開く
 Open, save, import, export, print and the settings	開く、保存、インポート、エクスポート、印刷と設定
 OpenECraft page templates	OpenECraft ページテンプレート
 OpenECraft page templates (JSON)	OpenECraft ページテンプレート (JSON)
@@ -1586,6 +1595,7 @@ Single-line	単線
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	単線シンボルがまだない回路図の動力デバイスの単線シンボル (新しい概要ページに作成)
 Size {} × {} mm	サイズ {} × {} mm
 Slot	長穴
+Slot depth	溝の深さ
 Slots	スロット
 Smallest cross-section of control circuits	制御回路の最小断面積
 Smallest cross-section of power circuits	動力回路の最小断面積
@@ -1828,6 +1838,7 @@ What should be checked or changed?	何をチェックまたは変更しますか
 Wheel / right or middle drag	ホイール / 右または中ボタンのドラッグ
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	ホイール: ズーム · 右クリック: キャンセル · 図形は 0.5 mm、接続ポイントは 4 mm グリッドにスナップ
 When it differs from the page	ページと異なる場合
+Where	位置
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	電線の始点と終点: 部品データの接続ポイント、機能テンプレートから生成された接続ポイント、または一致する接続ポイントがない場合はデバイスの中心
 Whole building	建物全体
 Whole words	単語単位
