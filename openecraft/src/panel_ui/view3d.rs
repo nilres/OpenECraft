@@ -38,8 +38,13 @@ impl PanelUi {
     /// y up, z towards the door): all of them at their places in the room, a room with
     /// the cabinets standing in it, or the current one or its whole line-up from the
     /// left with the first one's bottom at y 0.
+    /// The 3D view shows all of the plant: all enclosures, or the site is shown.
+    pub(super) fn whole_site(&self) -> bool {
+        self.show_site || self.site
+    }
+
     pub(super) fn shown_3d(&self, prj: &Project, ei: usize) -> Vec<(usize, SitePose)> {
-        if self.show_site {
+        if self.whole_site() {
             return panel::site_poses(prj).into_iter().enumerate().collect();
         }
         if prj.layout.enclosures[ei].is_room() {
@@ -73,13 +78,13 @@ impl PanelUi {
     /// The pose of the room the 3D view is drawn in the coordinates of (the plant
     /// points `q` are at `local(q)`), `None` when it is drawn in the plant's.
     pub(super) fn view_frame(&self, prj: &Project, ei: usize) -> Option<SitePose> {
-        (!self.show_site && prj.layout.enclosures.get(ei).is_some_and(|e| e.is_room())).then(|| panel::site_poses(prj)[ei])
+        (!self.whole_site() && prj.layout.enclosures.get(ei).is_some_and(|e| e.is_room())).then(|| panel::site_poses(prj)[ei])
     }
 
     /// The buildings whose floor slabs, stairs and roofs the 3D view shows: all of them
     /// with all enclosures, the room's own with its building.
     pub(super) fn buildings_3d(&self, prj: &Project, ei: usize) -> Vec<usize> {
-        if self.show_site {
+        if self.whole_site() {
             return (0..prj.layout.buildings.len()).collect();
         }
         panel::buildings::building_of(&prj.layout, ei).filter(|_| self.show_building).into_iter().collect()

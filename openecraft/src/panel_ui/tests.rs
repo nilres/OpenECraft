@@ -51,6 +51,64 @@ fn rooms_dropped_onto_a_level_stand_on_it() {
 }
 
 #[test]
+fn a_room_clicked_in_the_navigator_keeps_3d_or_shows_its_floor_plan() {
+    let (mut prj, [l0, _], free) = building_and_room();
+    let on_level = bld::add_room(&mut prj, "+ROOM2", Some(l0)).unwrap();
+    let mut ui = PanelUi { view: View::ThreeD, ..Default::default() };
+    ui.nav_action(&mut prj, NavAction::Open(on_level));
+    assert_eq!((ui.enclosure, ui.view), (on_level, View::ThreeD));
+    for view in [View::Front, View::Plan] {
+        ui.view = view;
+        ui.nav_action(&mut prj, NavAction::Open(free));
+        assert_eq!((ui.enclosure, ui.view, ui.in_room), (free, View::Plan, true), "{view:?}");
+    }
+    // From the site too.
+    ui.nav_action(&mut prj, NavAction::Site(None));
+    ui.nav_action(&mut prj, NavAction::Open(on_level));
+    assert_eq!((ui.site, ui.enclosure, ui.view), (false, on_level, View::Plan));
+}
+
+#[test]
+fn the_site_shows_the_site_plan_or_the_whole_plant_in_3d() {
+    let (mut prj, [l0, _], free) = building_and_room();
+    let on_level = bld::add_room(&mut prj, "+ROOM2", Some(l0)).unwrap();
+    let mut ui = PanelUi { view: View::Front, ..Default::default() };
+    ui.nav_action(&mut prj, NavAction::Site(None));
+    assert_eq!((ui.site, ui.view), (true, View::Plan), "a 2D view becomes the site plan");
+    ui.view = View::ThreeD;
+    ui.enclosure = free;
+    let shown: Vec<usize> = ui.shown_3d(&prj, free).into_iter().map(|s| s.0).collect();
+    assert_eq!(shown, (0..prj.layout.enclosures.len()).collect::<Vec<_>>(), "every room of the plant");
+    assert_eq!((ui.buildings_3d(&prj, free), ui.view_frame(&prj, free)), (vec![0], None));
+    // A building clicked is highlighted in it; the 3D view stays.
+    ui.nav_action(&mut prj, NavAction::Site(Some(0)));
+    assert_eq!((ui.site_plan.building, ui.view), (Some(0), View::ThreeD));
+    // A wall view or a drawing tool leaves the site.
+    ui.front_face(Face::Wall(0), false);
+    assert!(!ui.site);
+    ui.nav_action(&mut prj, NavAction::Site(None));
+    ui.choose_tool(Tool::Walls);
+    assert!(!ui.site);
+    assert!(on_level != free);
+}
+
+#[test]
+fn buildings_get_new_levels_and_the_site_new_buildings_from_their_menus() {
+    let (mut prj, _, _) = building_and_room();
+    let mut ui = PanelUi::default();
+    ui.nav_action(&mut prj, NavAction::NewLevel(0, false));
+    let b = &prj.layout.buildings[0];
+    let top = b.levels.last().unwrap();
+    assert_eq!((b.levels.len(), top.elevation, ui.nav_level), (3, 6000.0, Some(top.id)), "on top, selected for new rooms");
+    ui.nav_action(&mut prj, NavAction::NewLevel(0, true));
+    let b = &prj.layout.buildings[0];
+    assert_eq!((b.levels.len(), b.levels[0].elevation), (4, -bld::LEVEL_HEIGHT), "a basement");
+    ui.nav_action(&mut prj, NavAction::NewBuilding);
+    assert_eq!(prj.layout.buildings.iter().map(|b| b.name.as_str()).collect::<Vec<_>>(), vec!["+B1", "+B2"]);
+    assert_eq!((ui.site, ui.site_plan.building), (true, Some(1)));
+}
+
+#[test]
 fn fill_colours_follow_the_limit() {
     let green = fill_color(10.0, 70.0);
     assert_eq!(fill_color(56.0, 70.0), green, "up to 80 % of the limit");

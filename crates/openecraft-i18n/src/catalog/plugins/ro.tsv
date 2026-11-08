@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Centrul de la peretele din spate în mm
 Centre from the top of the enclosure in mm	Centrul de la partea de sus a carcasei în mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifică o piesă T (direcție, variantă, reprezentare), un colț (brațe), o încrucișare (linie, variantă, reprezentare) sau o punte (direcție, reprezentare)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Modifică o celulă a unui tabel: identificator de dispozitiv, text de funcție, descriere, articol; număr de conductor, culoare, secțiune, cablu, fir; șir, bornă
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Modifică o ușă sau o fereastră a unei încăperi: cum se deschide (balamale în stânga sau în dreapta, spre interior sau exterior, sau glisant), locul de-a lungul peretelui, dimensiunea și parapetul
 Changes a placed symbol; when it moves, connected wire ends follow	Modifică un simbol plasat; când acesta se mută, capetele conductoarelor conectate îl urmează
 Changes a text (only the given properties)	Modifică un text (numai proprietățile indicate)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Trece dispozitivele cu articole în curs de retragere sau scoase din fabricație la articolele succesoare (succesorii trebuie să fie articole ale proiectului)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Distanța chenarului față de 
 Distribute vertically (default horizontally)	Distribuire verticală (implicit orizontală)
 Distributes symbols, texts and graphics evenly between the first and the last one	Distribuie simbolurile, textele și grafica uniform între primul și ultimul
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Factorul de simultaneitate al consumatorilor (0: IEC 61439-1, tabelul 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Uși și ferestre: left_in (implicit, balamale în stânga văzute din interior, se deschide spre încăpere), right_in, left_out, right_out, slide_left sau slide_right
 Draw the contact image below coils (default true)	Desenarea imaginii contactelor sub bobine (implicit true)
 Draw the junction as a connection dot; its routing stays	Desenează piesa T ca punct de conexiune; traseul ei rămâne
 Draw wires in their colour	Desenare conductoare în culoarea lor
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Furtunuri, rețe
 Hyperlink (URL)	Hyperlink (URL)
 IP address or bus address	Adresă IP sau adresă de magistrală
 IT system with distributed neutral	Sistem IT cu neutru distribuit
+Id of the door or window (as listed by list_rooms)	Id-ul ușii sau ferestrei (așa cum îl listează list_rooms)
 Id of the panel item (from mounting_list)	ID-ul elementului de tablou (din mounting_list)
 Id of the path or reservation	ID-ul căii sau al rezervării
 Id of the text	ID-ul textului
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Vedere (true) sau portret (false)
 Language the project texts are written in, e.g. en	Limba în care sunt scrise textele proiectului, de ex. en
 Larger round holes are milled, mm	Găurile rotunde mai mari sunt frezate, mm
 Largest difference between hole and tool, mm	Cea mai mare diferență între gaură și sculă, mm
+Left edge from the left end of the wall (seen from inside) in mm	Marginea stângă de la capătul stâng al peretelui (văzut din interior), în mm
 Left edge on the face in mm	Marginea stângă pe față în mm
 Left edge on the mounting plate in mm	Marginea stângă pe placa de montaj în mm
 Left side bayed (no side panel)	Partea stângă alăturată (fără perete lateral)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Decalaj față
 One end, e.g. -K1:A1	Un capăt, de ex. -K1:A1
 One row per printed label instead of a count	Un rând per etichetă tipărită în locul unui număr
 Only devices on these pages (names separated by commas)	Numai dispozitivele de pe aceste pagini (nume separate prin virgule)
+Only doors and windows open	Doar ușile și ferestrele se deschid
 Only lines without a translation into this language	Doar rândurile fără traducere în această limbă
 Only list the new tags, change nothing	Numai listează noii identificatori, nu modifică nimic
 Only shows the package, no job is recorded	Afișează numai pachetul, nu se înregistrează nicio comandă de lucru
@@ -854,6 +859,7 @@ Unknown station kind: {}	Tip de stație necunoscut: {}
 Unknown symbol: {}	Simbol necunoscut: {}
 Unknown table: {}	Tabel necunoscut: {}
 Unknown vertical anchor: {}	Ancoră verticală necunoscută: {}
+Unknown way of opening: {}	Mod de deschidere necunoscut: {}
 Unknown wire colour {} (IEC 60757: {})	Culoare de conductor necunoscută {} (IEC 60757: {})
 Use this scheme for the marking export	Utilizarea acestei scheme pentru exportul de marcare
 Used (mm)	Folosit (mm)
@@ -875,6 +881,7 @@ Width in mm	Lățime în mm
 Width of the path in mm (default 50)	Lățimea căii în mm (implicit 50)
 Width, depth and height of a room are at least {} mm	Lățimea, adâncimea și înălțimea unei încăperi sunt de cel puțin {} mm
 Width, height and depth of an enclosure are at least {} mm	Lățimea, înălțimea și adâncimea unei carcase sunt de cel puțin {} mm
+Windows: height of the bottom edge above the floor in mm	Ferestre: înălțimea marginii inferioare deasupra pardoselii, în mm
 Wire colour (IEC 60757), e.g. BK	Culoare conductor (IEC 60757), de ex. BK
 Wire colour, e.g. BU	Culoare conductor, de ex. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Culoare conductor, de ex. BU (gol = din definiția potențialului)

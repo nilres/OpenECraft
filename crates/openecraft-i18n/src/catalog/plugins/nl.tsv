@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Midden vanaf de achterwand in mm
 Centre from the top of the enclosure in mm	Midden vanaf de bovenkant van de behuizing in mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Wijzigt een T-stuk (richting, variant, weergave), een hoek (armen), een kruising (lijn, variant, weergave) of een brug (richting, weergave)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Wijzigt een cel van een tabel: apparaataanduiding, functietekst, beschrijving, artikel; draadnummer, kleur, doorsnede, kabel, ader; klemmenstrook, klem
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Wijzigt een deur of raam van een ruimte: hoe het opent (scharnieren links of rechts, naar binnen of buiten, of schuivend), de plaats langs de wand, de maat en de borstwering
 Changes a placed symbol; when it moves, connected wire ends follow	Wijzigt een geplaatst symbool; als het wordt verplaatst, volgen aangesloten draadeinden
 Changes a text (only the given properties)	Wijzigt een tekst (alleen de opgegeven eigenschappen)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Zet apparaten met uitlopende of niet meer leverbare artikelen om naar de opvolgerartikelen (de opvolgers moeten projectartikelen zijn)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Afstand van de rand tot de papi
 Distribute vertically (default horizontally)	Verticaal verdelen (standaard horizontaal)
 Distributes symbols, texts and graphics evenly between the first and the last one	Verdeelt symbolen, teksten en grafiek gelijkmatig tussen de eerste en de laatste
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Gelijktijdigheidsfactor van de belastingen (0: IEC 61439-1, tabel 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Deuren en ramen: left_in (standaard, scharnieren links gezien van binnen, opent de ruimte in), right_in, left_out, right_out, slide_left of slide_right
 Draw the contact image below coils (default true)	De contactspiegel onder spoelen tekenen (standaard true)
 Draw the junction as a connection dot; its routing stays	Het T-stuk als verbindingspunt tekenen; de routering blijft
 Draw wires in their colour	Draden in hun kleur tekenen
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Slangen, fluïdu
 Hyperlink (URL)	Hyperlink (URL)
 IP address or bus address	IP-adres of busadres
 IT system with distributed neutral	IT-stelsel met meegevoerde neutrale geleider
+Id of the door or window (as listed by list_rooms)	Id van de deur of het raam (zoals vermeld door list_rooms)
 Id of the panel item (from mounting_list)	ID van het element (uit mounting_list)
 Id of the path or reservation	Id van het pad of de reservering
 Id of the text	ID van de tekst
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Liggend (true) of staand (false)
 Language the project texts are written in, e.g. en	Taal waarin de projectteksten zijn geschreven, bijv. en
 Larger round holes are milled, mm	Grotere ronde gaten worden gefreesd, mm
 Largest difference between hole and tool, mm	Grootste verschil tussen gat en gereedschap, mm
+Left edge from the left end of the wall (seen from inside) in mm	Linkerrand vanaf het linkereinde van de wand (gezien van binnen) in mm
 Left edge on the face in mm	Linkerrand op het vlak in mm
 Left edge on the mounting plate in mm	Linkerrand op de montageplaat in mm
 Left side bayed (no side panel)	Linkerzijde gekoppeld (geen zijwand)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Afstand tot de
 One end, e.g. -K1:A1	Eén uiteinde, bijv. -K1:A1
 One row per printed label instead of a count	Eén rij per afgedrukt label in plaats van een aantal
 Only devices on these pages (names separated by commas)	Alleen apparaten op deze pagina's (namen gescheiden door komma's)
+Only doors and windows open	Alleen deuren en ramen gaan open
 Only lines without a translation into this language	Alleen regels zonder vertaling in deze taal
 Only list the new tags, change nothing	Alleen de nieuwe aanduidingen weergeven, niets wijzigen
 Only shows the package, no job is recorded	Toont alleen het pakket, er wordt geen opdracht vastgelegd
@@ -854,6 +859,7 @@ Unknown station kind: {}	Onbekend stationstype: {}
 Unknown symbol: {}	Onbekend symbool: {}
 Unknown table: {}	Onbekende tabel: {}
 Unknown vertical anchor: {}	Onbekend verticaal ankerpunt: {}
+Unknown way of opening: {}	Onbekende manier van openen: {}
 Unknown wire colour {} (IEC 60757: {})	Onbekende draadkleur {} (IEC 60757: {})
 Use this scheme for the marking export	Dit schema gebruiken voor de markeringsexport
 Used (mm)	Gebruikt (mm)
@@ -875,6 +881,7 @@ Width in mm	Breedte in mm
 Width of the path in mm (default 50)	Breedte van het pad in mm (standaard 50)
 Width, depth and height of a room are at least {} mm	Breedte, diepte en hoogte van een ruimte zijn minstens {} mm
 Width, height and depth of an enclosure are at least {} mm	Breedte, hoogte en diepte van een behuizing zijn minstens {} mm
+Windows: height of the bottom edge above the floor in mm	Ramen: hoogte van de onderrand boven de vloer in mm
 Wire colour (IEC 60757), e.g. BK	Draadkleur (IEC 60757), bijv. BK
 Wire colour, e.g. BU	Draadkleur, bijv. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Draadkleur, bijv. BU (leeg = uit de potentiaaldefinitie)

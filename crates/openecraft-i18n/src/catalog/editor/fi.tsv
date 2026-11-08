@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Väylätyypin kaapeli jokaiselle yhteydelle, jolla ei ole kaapelia
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
+A level on top of the highest one	Kerros ylimmän päälle
 A new project	Uusi projekti
 A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.
@@ -204,6 +205,7 @@ Bottom edges	Alareunat
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kotelon alareuna (ilman sokkelia) lattiasta; korkeudet tarkistetaan, kun se tiedetään tai kotelo on sokkelin päällä
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
+Building {} added with a level at ground level	Rakennus {} lisätty, kerros maan tasolla
 Built-in frames cannot be changed; copy one to adapt it.	Sisäisiä kehyksiä ei voi muuttaa; kopioi kehys mukauttaaksesi sitä.
 Built-in scheme: copy it to change it.	Sisäinen skeema: kopioi se muuttaaksesi sitä.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Sisäiset nimiöt ovat vain luku -tilassa – tee oma käyttämällä toimintoa ”Kopioi uutena”.
@@ -298,6 +300,8 @@ Click to place the markup text	Napsauta sijoittaaksesi korjausmerkinnän tekstin
 Click to place the text from the field below	Napsauta sijoittaaksesi alla olevan kentän tekstin
 Click to put new rooms on this level; drop rooms onto it to move them here	Napsauta, niin uudet tilat tulevat tähän kerrokseen; pudota tiloja tähän siirtääksesi ne tänne
 Click to show	Napsauta näyttääksesi
+Click to show the building in the site plan; right-click for new levels	Napsauta näyttääksesi rakennuksen asemapiirroksessa; uudet kerrokset hiiren oikealla
+Click to show the site plan of the buildings, or all of the plant in the 3D view	Napsauta näyttääksesi rakennusten asemapiirroksen tai koko laitoksen 3D-näkymässä
 Click to show, right click for more	Näytä napsauttamalla, lisää hiiren oikealla painikkeella
 Click two corners	Napsauta kahta kulmaa
 Click two nodes to connect them	Yhdistä kaksi solmua napsauttamalla niitä
@@ -759,6 +763,7 @@ Hose defaults and PCT loops of the pre-planning	Letkujen oletusarvot ja esisuunn
 Hose number	Letkun numero
 Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
 IP / bus address	IP- / väyläosoite
 ISO 639-1 language code	ISO 639-1 -kielikoodi
 Identifiers	Tunnukset
@@ -882,6 +887,7 @@ Letters, digits, space, - _ . (up to 64 characters)	Kirjaimet, numerot, välily�
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	Kerrosriviliittimen kerros: ylemmät kerrokset ovat edellisen riviliittimen lohkon päällä
 Level of this kind of message	Tämän ilmoituslajin taso
 Level on top	Kerros päälle
+Level {} added to building {}; new rooms go onto it	Kerros {0} lisätty rakennukseen {1}; uudet huoneet tulevat sille
 Levels	Kerrokset
 Library	Kirjasto
 Limits	Raja-arvot
@@ -1175,6 +1181,7 @@ Opened {} from the project server	{} avattu projektipalvelimelta
 Opening	Aukko
 Opening in the mounting plate / door: click two corners (round: in the properties)	Aukko asennuslevyyn / oveen: napsauta kahta kulmaa (pyöreä: ominaisuuksissa)
 Opening {}…	Avataan {}…
+Opens	Avautuu
 Opens the page of the release	Avaa julkaisun sivun
 Opens the pages for printing in the browser with its print dialog	Avaa sivut tulostettaviksi selaimessa sen tulostusikkunalla
 Open…	Avaa…
@@ -1648,7 +1655,9 @@ Signed in to {} as {}	Kirjautunut kohteeseen {} käyttäjänä {}
 Signed out of Vault	Kirjauduttu ulos Vaultista
 Single-line	Yksinapainen
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Yksinapaiset symbolit niille piirikaavion tehopiirin laitteille, joilla niitä ei vielä ole, uudelle yleiskuvasivulle
+Site	Tontti
 Site plan	Asemapiirros
+Site plan, building {}	Asemapiirros, rakennus {}
 Size {} × {} mm	Koko {} × {} mm
 Slot	Ura
 Slot depth	Uran syvyys
@@ -1904,6 +1913,7 @@ Welcome to OpenECraft	Tervetuloa OpenECraftiin
 What is new	Uutta
 What should be checked or changed?	Mitä pitäisi tarkistaa tai muuttaa?
 Wheel / right or middle drag	Rulla / oikean tai keskipainikkeen veto
+Wheel: zoom · drag: move · click on a room: its floor plan	Rulla: zoomaa · vedä: siirrä · napsauta huonetta: sen pohjapiirros
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
 When it differs from the page	Kun se poikkeaa sivusta
 Where	Sijainti
@@ -2205,6 +2215,7 @@ x y	x y
 {} °C (max.)	{} °C (enint.)
 {} × {} pixels, {}	{} × {} pikseliä, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
+{}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa
 {}: drag to move it, a double-click shows the floor	{}: siirrä vetämällä, kaksoisnapsautus näyttää lattian
 {}: nothing to change	{}: ei muutettavaa

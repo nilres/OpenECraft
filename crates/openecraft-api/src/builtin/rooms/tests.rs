@@ -127,3 +127,20 @@ fn wall_penetrations_join_rooms() {
     assert_eq!((item["kind"].as_str(), item["w"].as_f64(), item["leads_to"].as_str()), (Some("penetration"), Some(300.0), Some("+ROOM2")), "{item}");
     assert!(run(&mut s, "add_wall_opening", json!({ "room": "+ROOM1", "kind": "penetration", "wall": "ceiling" })).is_err());
 }
+
+#[test]
+fn doors_and_windows_open_either_way_or_slide() {
+    let mut s = demo_session();
+    run(&mut s, "add_room", json!({ "name": "+ROOM1" })).unwrap();
+    let r = run(&mut s, "add_wall_opening", json!({ "room": "+ROOM1", "kind": "door", "wall": "wall1", "opens": "right_out" })).unwrap();
+    let id = r["id"].as_u64().unwrap();
+    assert_eq!(r["room"]["faces"][0]["items"][0]["opens"].as_str(), Some("right_out"));
+    // Swinging out, a cabinet in front of it is in nobody's way.
+    let r = run(&mut s, "place_in_room", json!({ "enclosure": "+CAB1", "room": "+ROOM1", "x": 1700, "z": 300 })).unwrap();
+    assert!(!r["problems"].as_array().unwrap().iter().any(|p| p.as_str().unwrap().contains("door")), "{}", r["problems"]);
+    let r = run(&mut s, "set_wall_opening", json!({ "room": "+ROOM1", "id": id, "opens": "slide_left", "width": 900 })).unwrap();
+    let item = &r["faces"][0]["items"][0];
+    assert_eq!((item["opens"].as_str(), item["w"].as_f64()), (Some("slide_left"), Some(900.0)));
+    assert!(run(&mut s, "set_wall_opening", json!({ "room": "+ROOM1", "id": id, "opens": "upwards" })).is_err());
+    assert!(run(&mut s, "add_wall_opening", json!({ "room": "+ROOM1", "kind": "penetration", "wall": "wall2", "opens": "left_in" })).is_err());
+}

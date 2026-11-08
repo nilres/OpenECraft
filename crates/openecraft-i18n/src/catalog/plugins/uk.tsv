@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Центр від задньої стінки в
 Centre from the top of the enclosure in mm	Центр від верхнього краю корпусу в мм
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Змінює Т-подібний вузол (напрямок, варіант, зображення), кут (плечі), перехрестя (лінія, варіант, зображення) або міст (напрямок, зображення)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Змінює клітинку таблиці: позначення пристрою, текст функції, опис, виріб; номер проводу, колір, переріз, кабель, жила; колодка, клема
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Змінює двері чи вікно приміщення: як відчиняється (петлі зліва чи справа, всередину чи назовні, або розсувні), положення вздовж стіни, розмір і підвіконня
 Changes a placed symbol; when it moves, connected wire ends follow	Змінює розміщений символ; коли він переміщується, кінці підключених проводів слідують за ним
 Changes a text (only the given properties)	Змінює текст (лише задані властивості)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Переводить пристрої з виробами, що знімаються або зняті з виробництва, на вироби-наступники (наступники мають бути виробами проєкту)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Відстань рамки в�
 Distribute vertically (default horizontally)	Розподілити по вертикалі (за замовчуванням по горизонталі)
 Distributes symbols, texts and graphics evenly between the first and the last one	Рівномірно розподіляє символи, тексти й графіку між першим і останнім
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Коефіцієнт одночасності навантажень (0: IEC 61439-1, таблиця 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Двері та вікна: left_in (типово, петлі зліва при погляді зсередини, відчиняється всередину приміщення), right_in, left_out, right_out, slide_left або slide_right
 Draw the contact image below coils (default true)	Відображати контакти під котушками (за замовчуванням true)
 Draw the junction as a connection dot; its routing stays	Малювати вузол як точку з'єднання; його маршрут зберігається
 Draw wires in their colour	Малювати проводи їхнім кольором
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Шланги, г
 Hyperlink (URL)	Гіперпосилання (URL)
 IP address or bus address	IP-адреса або адреса на шині
 IT system with distributed neutral	IT-система з розподіленим нейтральним провідником
+Id of the door or window (as listed by list_rooms)	Id дверей чи вікна (як у list_rooms)
 Id of the panel item (from mounting_list)	Ідентифікатор елемента компонування (з mounting_list)
 Id of the path or reservation	Ідентифікатор траси або резервування
 Id of the text	Ідентифікатор тексту
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Альбомна (true) або книжко
 Language the project texts are written in, e.g. en	Мова, якою написано тексти проєкту, напр. en
 Larger round holes are milled, mm	Більші круглі отвори фрезеруються, мм
 Largest difference between hole and tool, mm	Найбільша різниця між отвором та інструментом, мм
+Left edge from the left end of the wall (seen from inside) in mm	Лівий край від лівого кінця стіни (вигляд зсередини), мм
 Left edge on the face in mm	Лівий край на грані в мм
 Left edge on the mounting plate in mm	Лівий край на монтажній панелі в мм
 Left side bayed (no side panel)	Ліва сторона приєднана (без бічної стінки)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Зміщенн
 One end, e.g. -K1:A1	Один кінець, напр. -K1:A1
 One row per printed label instead of a count	Один рядок на кожну надруковану мітку замість кількості
 Only devices on these pages (names separated by commas)	Лише пристрої на цих сторінках (назви через кому)
+Only doors and windows open	Відчиняються лише двері та вікна
 Only lines without a translation into this language	Лише рядки без перекладу цією мовою
 Only list the new tags, change nothing	Лише перелічити нові позначення, нічого не змінювати
 Only shows the package, no job is recorded	Лише показує пакет, завдання не реєструється
@@ -854,6 +859,7 @@ Unknown station kind: {}	Невідомий вид станції: {}
 Unknown symbol: {}	Невідомий символ: {}
 Unknown table: {}	Невідома таблиця: {}
 Unknown vertical anchor: {}	Невідома вертикальна прив’язка: {}
+Unknown way of opening: {}	Невідомий спосіб відчинення: {}
 Unknown wire colour {} (IEC 60757: {})	Невідомий колір проводу {} (IEC 60757: {})
 Use this scheme for the marking export	Використовувати цю схему для експорту маркування
 Used (mm)	Використано (мм)
@@ -875,6 +881,7 @@ Width in mm	Ширина в мм
 Width of the path in mm (default 50)	Ширина траси в мм (за замовчуванням 50)
 Width, depth and height of a room are at least {} mm	Ширина, глибина та висота приміщення — щонайменше {} мм
 Width, height and depth of an enclosure are at least {} mm	Ширина, висота та глибина корпусу — щонайменше {} мм
+Windows: height of the bottom edge above the floor in mm	Вікна: висота нижнього краю над підлогою, мм
 Wire colour (IEC 60757), e.g. BK	Колір проводу (IEC 60757), напр. BK
 Wire colour, e.g. BU	Колір проводу, напр. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Колір проводу, напр. BU (порожньо = з визначення потенціалу)

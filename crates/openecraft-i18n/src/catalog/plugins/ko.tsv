@@ -84,6 +84,7 @@ Centre from the rear wall in mm	후면벽부터 중심까지(mm)
 Centre from the top of the enclosure in mm	외함 위쪽부터 중심까지(mm)
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T분기점(방향, 변형, 표시), 모서리(가지), 교차(선, 변형, 표시) 또는 브리지(방향, 표시)를 변경합니다
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	표의 셀을 변경합니다: 장치 태그, 기능 텍스트, 설명, 부품, 전선 번호, 색상, 단면적, 케이블, 심선, 단자대, 단자
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	실의 문 또는 창을 변경합니다: 열림 방식(왼쪽 또는 오른쪽 경첩, 안쪽 또는 바깥쪽으로 열림, 또는 미닫이), 벽을 따른 위치, 크기와 창대
 Changes a placed symbol; when it moves, connected wire ends follow	배치된 심볼을 변경합니다. 심볼을 이동하면 연결된 전선 끝이 따라갑니다
 Changes a text (only the given properties)	텍스트를 변경합니다(지정한 속성만)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	단종 예정 또는 단종된 부품을 사용하는 장치를 후속 부품으로 전환합니다(후속 부품은 프로젝트 부품이어야 함)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	용지 가장자리에서 테�
 Distribute vertically (default horizontally)	세로로 분포(기본값 가로)
 Distributes symbols, texts and graphics evenly between the first and the last one	심볼, 텍스트 및 그래픽을 첫 번째와 마지막 항목 사이에 균등하게 분포합니다
 Diversity factor of the loads (0: IEC 61439-1, table 101)	부하의 부등률(0: IEC 61439-1, 표 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	문과 창: left_in(기본값, 안쪽에서 볼 때 왼쪽 경첩, 실내 쪽으로 열림), right_in, left_out, right_out, slide_left 또는 slide_right
 Draw the contact image below coils (default true)	코일 아래에 접점 이미지 그리기(기본값 true)
 Draw the junction as a connection dot; its routing stays	분기점을 연결점으로 그립니다. 경로는 유지됩니다
 Draw wires in their colour	전선을 해당 색상으로 그리기
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	호스, 유체 �
 Hyperlink (URL)	하이퍼링크(URL)
 IP address or bus address	IP 주소 또는 버스 주소
 IT system with distributed neutral	중성선이 배선된 IT 계통
+Id of the door or window (as listed by list_rooms)	문 또는 창의 Id(list_rooms에 나열된 대로)
 Id of the panel item (from mounting_list)	패널 항목의 ID(mounting_list에서)
 Id of the path or reservation	경로 또는 예약의 ID
 Id of the text	텍스트의 ID
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	가로(true) 또는 세로(false)
 Language the project texts are written in, e.g. en	프로젝트 텍스트가 작성된 언어(예: en)
 Larger round holes are milled, mm	이보다 큰 원형 구멍은 밀링 가공(mm)
 Largest difference between hole and tool, mm	구멍과 공구 간 최대 차이(mm)
+Left edge from the left end of the wall (seen from inside) in mm	벽 왼쪽 끝에서 왼쪽 가장자리까지(안쪽에서 볼 때), mm
 Left edge on the face in mm	면에서의 왼쪽 가장자리(mm)
 Left edge on the mounting plate in mm	장착 플레이트 위의 왼쪽 가장자리(mm)
 Left side bayed (no side panel)	왼쪽 측면 결합(측면 패널 없음)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	심볼 위치�
 One end, e.g. -K1:A1	한쪽 끝(예: -K1:A1)
 One row per printed label instead of a count	개수 대신 인쇄된 라벨당 한 행
 Only devices on these pages (names separated by commas)	이 페이지의 장치만(이름은 쉼표로 구분)
+Only doors and windows open	문과 창만 열립니다
 Only lines without a translation into this language	이 언어로 번역되지 않은 줄만
 Only list the new tags, change nothing	새 태그만 나열하고 아무것도 변경하지 않음
 Only shows the package, no job is recorded	패키지만 표시하고 작업은 기록하지 않음
@@ -854,6 +859,7 @@ Unknown station kind: {}	알 수 없는 스테이션 종류: {}
 Unknown symbol: {}	알 수 없는 심볼: {}
 Unknown table: {}	알 수 없는 표: {}
 Unknown vertical anchor: {}	알 수 없는 세로 앵커: {}
+Unknown way of opening: {}	알 수 없는 열림 방식: {}
 Unknown wire colour {} (IEC 60757: {})	알 수 없는 전선 색상 {}(IEC 60757: {})
 Use this scheme for the marking export	마킹 내보내기에 이 스키마 사용
 Used (mm)	사용(mm)
@@ -875,6 +881,7 @@ Width in mm	너비(mm)
 Width of the path in mm (default 50)	경로 너비(mm, 기본값 50)
 Width, depth and height of a room are at least {} mm	방의 너비, 깊이, 높이는 최소 {} mm입니다
 Width, height and depth of an enclosure are at least {} mm	외함의 너비, 높이, 깊이는 최소 {} mm입니다
+Windows: height of the bottom edge above the floor in mm	창: 바닥에서 아래쪽 가장자리까지의 높이, mm
 Wire colour (IEC 60757), e.g. BK	전선 색상(IEC 60757, 예: BK)
 Wire colour, e.g. BU	전선 색상(예: BU)
 Wire colour, e.g. BU (empty = from the potential definition)	전선 색상(예: BU, 비우면 전위 정의에서 가져옴)

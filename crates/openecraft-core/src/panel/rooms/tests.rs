@@ -452,3 +452,38 @@ fn outlets_and_switches_go_at_their_mounting_height() {
     let other = crate::panel::place_accessory(&mut prj, room, "VIC.MPPT", Face::Wall(0), p(2000.0, 100.0)).unwrap();
     assert_eq!(prj.layout.enclosures[room].item(other).unwrap().y, 100.0);
 }
+
+#[test]
+fn doors_open_either_way_or_slide() {
+    let (mut prj, r, c) = project();
+    let door = add_opening(&mut prj, r, Opening::Door, Face::Wall(0), None, None, None).unwrap();
+    let zone = |prj: &Project| door_zone(&prj.layout.enclosures[r], prj.layout.enclosures[r].item(door).unwrap());
+    let service = |prj: &Project| super::super::validate(prj, &prj.layout.enclosures[r]).into_iter().filter(|f| f.kind == CheckKind::Service).map(|f| f.message).collect::<Vec<_>>();
+    // Hinged right it swings through the same area; outwards it keeps the room free.
+    set_opening(&mut prj, r, door, Some(Swing::RightIn), None, None, None).unwrap();
+    assert_eq!(zone(&prj), Some([[1500.0, 0.0], [2500.0, 0.0], [2500.0, 1000.0], [1500.0, 1000.0]]));
+    set_room(&mut prj, c, Some(r), Some(SitePlace { x: 1800.0, z: 600.0, angle: 0.0 })).unwrap();
+    assert_eq!(service(&prj).len(), 1);
+    set_opening(&mut prj, r, door, Some(Swing::RightOut), None, None, None).unwrap();
+    assert_eq!(zone(&prj), None);
+    assert!(service(&prj).is_empty());
+    // Sliding to the left its leaf runs in front of the wall left of the opening.
+    set_opening(&mut prj, r, door, Some(Swing::SlideLeft), None, None, None).unwrap();
+    assert_eq!(zone(&prj), Some([[500.0, 0.0], [1500.0, 0.0], [1500.0, SLIDE_DEPTH], [500.0, SLIDE_DEPTH]]));
+    set_room(&mut prj, c, Some(r), Some(SitePlace { x: 600.0, z: 0.0, angle: 0.0 })).unwrap();
+    let found = service(&prj);
+    assert!(found.len() == 1 && found[0].contains("sliding door"), "{found:?}");
+    set_opening(&mut prj, r, door, Some(Swing::SlideRight), None, None, None).unwrap();
+    assert!(service(&prj).is_empty());
+    // A window keeps its sill when it grows, a door stands on the floor.
+    let window = add_opening(&mut prj, r, Opening::Window, Face::Wall(1), Some(1000.0), None, None).unwrap();
+    set_opening(&mut prj, r, window, Some(Swing::LeftOut), None, Some((800.0, 1400.0)), None).unwrap();
+    let room = &prj.layout.enclosures[r];
+    let w = room.item(window).unwrap();
+    assert_eq!((w.swing, w.h, opening_sill(room, w)), (Swing::LeftOut, 1400.0, WINDOW_SILL));
+    set_opening(&mut prj, r, door, None, Some(500.0), Some((900.0, 2000.0)), Some(300.0)).unwrap();
+    let room = &prj.layout.enclosures[r];
+    let d = room.item(door).unwrap();
+    assert_eq!((d.x, d.w, opening_sill(room, d), d.swing), (500.0, 900.0, 0.0, Swing::SlideRight));
+    assert!(set_opening(&mut prj, r, 999_999, Some(Swing::LeftIn), None, None, None).is_err());
+}

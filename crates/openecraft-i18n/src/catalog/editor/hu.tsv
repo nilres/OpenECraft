@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Bustípusú kábel minden kábel nélküli kapcsolathoz
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Azonos méretű kivágás ugyanott a szomszéd oldalfalában: együtt kábelátvezetést alkotnak
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
+A level on top of the highest one	Egy szint a legfelső fölé
 A new project	Új projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.
@@ -204,6 +205,7 @@ Bottom edges	Alsó élek
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	A szekrény alsó éle (lábazat nélkül) a padló felett; a magasságokat akkor ellenőrzi, ha ez ismert, vagy ha a szekrény lábazaton áll
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Megszakítóképesség a zárlati árammal szemben a hálózat minden védőkészülékénél, lekapcsolás a legkisebb hibaáramnál az áramkör végén, a kábelek zárlati szilárdsága és szelektivitás az előtte kapcsolt készülékkel.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Híd: négy vezeték; a kapcsolat egy oldalon érkezik, és a három másikhoz megy, először a szemköztihez
+Building {} added with a level at ground level	A(z) {} épület hozzáadva egy talajszinti szinttel
 Built-in frames cannot be changed; copy one to adapt it.	A beépített keretek nem módosíthatók; az átalakításhoz másoljon le egyet.
 Built-in scheme: copy it to change it.	Beépített séma: a módosításhoz másolja le.
 Built-in title blocks are read only – use “Copy as new” to make your own.	A beépített szövegmezők csak olvashatók – saját létrehozásához használja a „Másolás újként” parancsot.
@@ -298,6 +300,8 @@ Click to place the markup text	Kattintson a korrektúraszöveg elhelyezéséhez
 Click to place the text from the field below	Kattintson az alábbi mező szövegének elhelyezéséhez
 Click to put new rooms on this level; drop rooms onto it to move them here	Kattintson, hogy az új helyiségek erre a szintre kerüljenek; ejtsen ide helyiségeket, hogy áthelyezze őket
 Click to show	Kattintson a megjelenítéshez
+Click to show the building in the site plan; right-click for new levels	Kattintson az épület megjelenítéséhez a helyszínrajzon; jobb kattintás új szintekhez
+Click to show the site plan of the buildings, or all of the plant in the 3D view	Kattintson az épületek helyszínrajzának megjelenítéséhez, vagy a teljes létesítményhez a 3D nézetben
 Click to show, right click for more	Kattintás: megjelenítés, jobb kattintás: továbbiak
 Click two corners	Kattintson két sarokra
 Click two nodes to connect them	Kattintson két csomópontra az összekötésükhöz
@@ -759,6 +763,7 @@ Hose defaults and PCT loops of the pre-planning	Tömlő-alapértékek és az el�
 Hose number	Tömlőszám
 Hoses and pipes	Tömlők és csövek
 Hoses rated below it are errors; 0 = not checked	Az ennél kisebb névleges nyomású tömlők hibának számítanak; 0 = nincs ellenőrzés
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hogyan nyílik a szárny: a bal vagy jobb élén zsanérral (a helyiség belsejéből nézve), a helyiség felé vagy kifelé, vagy a fal mentén tolva
 IP / bus address	IP- / buszcím
 ISO 639-1 language code	ISO 639-1 szerinti nyelvkód
 Identifiers	Azonosítók
@@ -882,6 +887,7 @@ Letters, digits, space, - _ . (up to 64 characters)	Betűk, számjegyek, szókö
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	Emeletes sorkapocs szintje: a felső szintek az előző sorkapocs blokkján ülnek
 Level of this kind of message	Ennek az üzenettípusnak a szintje
 Level on top	Szint felül
+Level {} added to building {}; new rooms go onto it	A(z) {0} szint hozzáadva a(z) {1} épülethez; az új helyiségek erre kerülnek
 Levels	Szintek
 Library	Könyvtár
 Limits	Határértékek
@@ -1175,6 +1181,7 @@ Opened {} from the project server	{} megnyitva a projektszerverről
 Opening	Nyílás
 Opening in the mounting plate / door: click two corners (round: in the properties)	Nyílás a szerelőlapon / ajtón: kattintson két sarokra (kerek: a tulajdonságokban)
 Opening {}…	{} megnyitása…
+Opens	Nyílás
 Opens the page of the release	Megnyitja a kiadás oldalát
 Opens the pages for printing in the browser with its print dialog	Megnyitja az oldalakat nyomtatásra a böngészőben annak nyomtatási párbeszédablakával
 Open…	Megnyitás…
@@ -1648,7 +1655,9 @@ Signed in to {} as {}	Bejelentkezve ide: {}, felhasználó: {}
 Signed out of Vault	Kijelentkezve a Vaultból
 Single-line	Egyvonalas
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Egyvonalas szimbólumok a kapcsolási rajz azon erősáramú készülékeihez, amelyeknek még nincs, új áttekintő oldalon
+Site	Telek
 Site plan	Helyszínrajz
+Site plan, building {}	Helyszínrajz, {} épület
 Size {} × {} mm	Méret: {} × {} mm
 Slot	Hasíték
 Slot depth	Horonymélység
@@ -1904,6 +1913,7 @@ Welcome to OpenECraft	Üdvözli az OpenECraft
 What is new	Újdonságok
 What should be checked or changed?	Mit kell ellenőrizni vagy módosítani?
 Wheel / right or middle drag	Görgő / jobb vagy középső gombos húzás
+Wheel: zoom · drag: move · click on a room: its floor plan	Görgő: nagyítás · húzás: mozgatás · kattintás egy helyiségre: alaprajza
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Görgő: nagyítás · jobb kattintás: mégse · a grafika 0,5 mm-re, a csatlakozási pontok a 4 mm-es rácsra illeszkednek
 When it differs from the page	Ha eltér az oldaltól
 Where	Hely
@@ -2205,6 +2215,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} képpont, {}
 {} – {} ({} pages)	{} – {} ({} oldal)
+{}: click to show its floor plan	{}: kattintson az alaprajz megjelenítéséhez
 {}: drag to move it, R turns it, a double-click opens it	{}: húzással mozgatható, R elforgatja, dupla kattintás megnyitja
 {}: drag to move it, a double-click shows the floor	{}: húzással mozgatható, dupla kattintás megjeleníti a padlót
 {}: nothing to change	{}: nincs mit módosítani

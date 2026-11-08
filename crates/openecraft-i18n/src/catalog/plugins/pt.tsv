@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Centro a partir da parede traseira em mm
 Centre from the top of the enclosure in mm	Centro a partir do topo do gabinete em mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Altera uma peça em T (direção, variante, representação), um canto (braços), um cruzamento (linha, variante, representação) ou uma ponte (direção, representação)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Altera uma célula de uma tabela: identificador de dispositivo, texto de função, descrição, peça; número do fio, cor, seção transversal, cabo, veia; régua, borne
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Altera uma porta ou janela de um ambiente: como abre (dobradiças à esquerda ou à direita, para dentro ou para fora, ou de correr), a sua posição ao longo da parede, o seu tamanho e peitoril
 Changes a placed symbol; when it moves, connected wire ends follow	Altera um símbolo posicionado; quando ele é movido, as extremidades dos fios conectados acompanham
 Changes a text (only the given properties)	Altera um texto (somente as propriedades informadas)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Muda os dispositivos com peças em descontinuação ou descontinuadas para as peças sucessoras (as sucessoras devem ser peças do projeto)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Distância da moldura até a bo
 Distribute vertically (default horizontally)	Distribuir verticalmente (padrão: horizontalmente)
 Distributes symbols, texts and graphics evenly between the first and the last one	Distribui símbolos, textos e gráficos uniformemente entre o primeiro e o último
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Fator de simultaneidade das cargas (0: IEC 61439-1, tabela 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Portas e janelas: left_in (padrão, dobradiças à esquerda vistas de dentro, abre para o ambiente), right_in, left_out, right_out, slide_left ou slide_right
 Draw the contact image below coils (default true)	Desenhar o espelho de contatos abaixo das bobinas (padrão true)
 Draw the junction as a connection dot; its routing stays	Desenhar a peça em T como ponto de conexão; o seu encaminhamento permanece
 Draw wires in their colour	Desenhar os fios em sua cor
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Mangueiras, rede
 Hyperlink (URL)	Hiperlink (URL)
 IP address or bus address	Endereço IP ou endereço de barramento
 IT system with distributed neutral	Sistema IT com neutro distribuído
+Id of the door or window (as listed by list_rooms)	Id da porta ou janela (como listado por list_rooms)
 Id of the panel item (from mounting_list)	ID do item do painel (de mounting_list)
 Id of the path or reservation	ID do caminho ou da reserva
 Id of the text	ID do texto
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Paisagem (true) ou retrato (false)
 Language the project texts are written in, e.g. en	Idioma em que os textos do projeto são escritos, por exemplo, en
 Larger round holes are milled, mm	Furos redondos maiores são fresados, mm
 Largest difference between hole and tool, mm	Maior diferença entre furo e ferramenta, mm
+Left edge from the left end of the wall (seen from inside) in mm	Borda esquerda a partir da extremidade esquerda da parede (vista de dentro) em mm
 Left edge on the face in mm	Borda esquerda na face em mm
 Left edge on the mounting plate in mm	Borda esquerda na placa de montagem em mm
 Left side bayed (no side panel)	Lado esquerdo acoplado (sem painel lateral)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Deslocamento e
 One end, e.g. -K1:A1	Uma extremidade, por exemplo, -K1:A1
 One row per printed label instead of a count	Uma linha por etiqueta impressa em vez de uma contagem
 Only devices on these pages (names separated by commas)	Somente dispositivos nestas páginas (nomes separados por vírgulas)
+Only doors and windows open	Apenas portas e janelas abrem
 Only lines without a translation into this language	Apenas linhas sem tradução para este idioma
 Only list the new tags, change nothing	Somente listar os novos identificadores, não alterar nada
 Only shows the package, no job is recorded	Somente mostra o pacote, nenhuma ordem é registrada
@@ -854,6 +859,7 @@ Unknown station kind: {}	Tipo de estação desconhecido: {}
 Unknown symbol: {}	Símbolo desconhecido: {}
 Unknown table: {}	Tabela desconhecida: {}
 Unknown vertical anchor: {}	Âncora vertical desconhecida: {}
+Unknown way of opening: {}	Modo de abertura desconhecido: {}
 Unknown wire colour {} (IEC 60757: {})	Cor de fio desconhecida {} (IEC 60757: {})
 Use this scheme for the marking export	Usar este esquema para a exportação de marcação
 Used (mm)	Usado (mm)
@@ -875,6 +881,7 @@ Width in mm	Largura em mm
 Width of the path in mm (default 50)	Largura do caminho em mm (padrão 50)
 Width, depth and height of a room are at least {} mm	Largura, profundidade e altura de uma sala são de pelo menos {} mm
 Width, height and depth of an enclosure are at least {} mm	Largura, altura e profundidade de um gabinete são de pelo menos {} mm
+Windows: height of the bottom edge above the floor in mm	Janelas: altura da borda inferior acima do piso em mm
 Wire colour (IEC 60757), e.g. BK	Cor do fio (IEC 60757), por exemplo, BK
 Wire colour, e.g. BU	Cor do fio, por exemplo, BU
 Wire colour, e.g. BU (empty = from the potential definition)	Cor do fio, por exemplo, BU (vazio = da definição do potencial)

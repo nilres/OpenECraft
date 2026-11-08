@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	ケーブルのない接続ごとにバスタイプのケーブルを作成
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	隣のエンクロージャーの側板の同じ位置に同じサイズの切り欠きを追加します。両方でケーブル貫通口になります
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
+A level on top of the highest one	最上階の上の階
 A new project	新しいプロジェクト
 A new release is downloaded in the background and installed when you close OpenECraft.	新しいリリースはバックグラウンドでダウンロードされ、OpenECraft を閉じるとインストールされます。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新しいリリースはバックグラウンドでダウンロードされ、このインストールを置き換えます。次回の起動から使われます。
@@ -202,6 +203,7 @@ Bottom edges	下端
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	床面からのエンクロージャー下端の高さ (台座を除く)。この値が既知の場合、またはエンクロージャーが台座に設置されている場合に高さがチェックされます
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	電源系統の各保護機器における短絡電流に対する遮断容量、回路末端の最小故障電流での遮断、ケーブルの短絡耐量、上位機器との選択遮断。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	ブリッジ：4本の接続線。接続は一方の側から入り、他の3方向へ、まず反対側へ向かいます
+Building {} added with a level at ground level	地上階 1 つで建物 {} を追加しました
 Built-in frames cannot be changed; copy one to adapt it.	組み込みの図枠は変更できません。調整するにはコピーしてください。
 Built-in scheme: copy it to change it.	組み込みのスキーム: 変更するにはコピーしてください。
 Built-in title blocks are read only – use “Copy as new” to make your own.	組み込みの表題欄は読み取り専用です。独自の表題欄を作成するには「新規としてコピー」を使用してください。
@@ -295,6 +297,8 @@ Click to place the markup text	クリックしてマークアップテキスト�
 Click to place the text from the field below	クリックして下のフィールドのテキストを配置します
 Click to put new rooms on this level; drop rooms onto it to move them here	クリックすると新しい部屋をこのフロアに作成します。部屋をここにドロップするとこのフロアに移動します
 Click to show	クリックして表示
+Click to show the building in the site plan; right-click for new levels	クリックで配置図に建物を表示、右クリックで新しい階
+Click to show the site plan of the buildings, or all of the plant in the 3D view	クリックで建物の配置図を表示、3D ビューでは設備全体を表示
 Click to show, right click for more	クリックで表示、右クリックでその他
 Click two corners	2 つのコーナーをクリックします
 Click two nodes to connect them	2 つのノードをクリックして接続します
@@ -752,6 +756,7 @@ Hose defaults and PCT loops of the pre-planning	ホースの既定値と事前�
 Hose number	ホース番号
 Hoses and pipes	ホースと配管
 Hoses rated below it are errors; 0 = not checked	これより定格の低いホースはエラーになります。0 = チェックしない
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	扉の開き方：左または右の端に吊り元（室内から見て）、室内側または室外側へ開く、または壁に沿って引く
 IP / bus address	IP / バスアドレス
 ISO 639-1 language code	ISO 639-1 言語コード
 Identifiers	識別子
@@ -873,6 +878,7 @@ Length {} mm	長さ {} mm
 Letters, digits, space, - _ . (up to 64 characters)	英字、数字、スペース、- _ . (最大 64 文字)
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	多段端子の段: 上の段は前の端子のブロックに載ります
 Level of this kind of message	この種類のメッセージのレベル
+Level {} added to building {}; new rooms go onto it	建物 {1} に階 {0} を追加しました。新しい部屋はこの階に置かれます
 Library	ライブラリ
 Limits	制限値
 Limits in effect	適用中の制限値
@@ -1162,6 +1168,7 @@ Opened {} from the project server	プロジェクトサーバーから {} を開
 Opening	開口部
 Opening in the mounting plate / door: click two corners (round: in the properties)	取付板 / 扉の開口部: 2 つのコーナーをクリック (円形: プロパティで設定)
 Opening {}…	{} を開いています…
+Opens	開き方
 Opens the page of the release	リリースのページを開きます
 Opens the pages for printing in the browser with its print dialog	ブラウザーの印刷ダイアログでページを印刷用に開きます
 Open…	開く…
@@ -1630,6 +1637,8 @@ Signed in to {} as {}	{} に {} としてサインインしました
 Signed out of Vault	Vault からサインアウトしました
 Single-line	単線
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	単線シンボルがまだない回路図の動力デバイスの単線シンボル (新しい概要ページに作成)
+Site	敷地
+Site plan, building {}	配置図、建物 {}
 Size {} × {} mm	サイズ {} × {} mm
 Slot	長穴
 Slot depth	溝の深さ
@@ -1884,6 +1893,7 @@ Welcome to OpenECraft	OpenECraft へようこそ
 What is new	新機能
 What should be checked or changed?	何をチェックまたは変更しますか?
 Wheel / right or middle drag	ホイール / 右または中ボタンのドラッグ
+Wheel: zoom · drag: move · click on a room: its floor plan	ホイール：ズーム · ドラッグ：移動 · 部屋をクリック：その平面図
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	ホイール: ズーム · 右クリック: キャンセル · 図形は 0.5 mm、接続ポイントは 4 mm グリッドにスナップ
 When it differs from the page	ページと異なる場合
 Where	位置
@@ -2177,6 +2187,7 @@ x y	x y
 {} °C (max.)	{} °C (最大)
 {} × {} pixels, {}	{} × {} ピクセル、{}
 {} – {} ({} pages)	{} – {} ({} ページ)
+{}: click to show its floor plan	{}：クリックで平面図を表示
 {}: drag to move it, R turns it, a double-click opens it	{}: ドラッグで移動、R で回転、ダブルクリックで開く
 {}: drag to move it, a double-click shows the floor	{}: ドラッグで移動、ダブルクリックで床を表示
 {}: nothing to change	{}: 変更なし

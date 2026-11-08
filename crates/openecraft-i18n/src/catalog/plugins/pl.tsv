@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Środek od ściany tylnej w mm
 Centre from the top of the enclosure in mm	Środek od górnej krawędzi obudowy w mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Zmienia trójnik (kierunek, wariant, przedstawienie), narożnik (ramiona), skrzyżowanie (linia, wariant, przedstawienie) lub mostek (kierunek, przedstawienie)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Zmienia komórkę tabeli: oznaczenie urządzenia, tekst funkcji, opis, artykuł; numer przewodu, kolor, przekrój, kabel, żyła; listwa, zacisk
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Zmienia drzwi lub okno pomieszczenia: sposób otwierania (zawiasy z lewej lub prawej, do wewnątrz lub na zewnątrz, albo przesuwnie), położenie wzdłuż ściany, wymiary i parapet
 Changes a placed symbol; when it moves, connected wire ends follow	Zmienia umieszczony symbol; gdy jest przesuwany, podłączone końce przewodów podążają za nim
 Changes a text (only the given properties)	Zmienia tekst (tylko podane właściwości)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Przestawia urządzenia z wycofywanymi lub wycofanymi artykułami na artykuły następcze (następcy muszą być artykułami projektu)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Odległość ramki od krawędzi
 Distribute vertically (default horizontally)	Rozmieść w pionie (domyślnie w poziomie)
 Distributes symbols, texts and graphics evenly between the first and the last one	Rozmieszcza symbole, teksty i grafikę równomiernie między pierwszym a ostatnim
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Współczynnik jednoczesności odbiorników (0: IEC 61439-1, tabela 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Drzwi i okna: left_in (domyślnie, zawiasy z lewej patrząc od wewnątrz, otwiera się do pomieszczenia), right_in, left_out, right_out, slide_left lub slide_right
 Draw the contact image below coils (default true)	Rysuj obraz styków pod cewkami (domyślnie true)
 Draw the junction as a connection dot; its routing stays	Rysować trójnik jako punkt połączenia; jego prowadzenie pozostaje
 Draw wires in their colour	Rysuj przewody w ich kolorze
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Węże, sieci i 
 Hyperlink (URL)	Hiperłącze (URL)
 IP address or bus address	Adres IP lub adres magistrali
 IT system with distributed neutral	Układ IT z rozprowadzonym przewodem neutralnym
+Id of the door or window (as listed by list_rooms)	Id drzwi lub okna (jak w list_rooms)
 Id of the panel item (from mounting_list)	Identyfikator elementu zabudowy (z mounting_list)
 Id of the path or reservation	Identyfikator ścieżki lub rezerwacji
 Id of the text	Identyfikator tekstu
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Poziomo (true) lub pionowo (false)
 Language the project texts are written in, e.g. en	Język, w którym są pisane teksty projektu, np. en
 Larger round holes are milled, mm	Większe otwory okrągłe są frezowane, mm
 Largest difference between hole and tool, mm	Największa różnica między otworem a narzędziem, mm
+Left edge from the left end of the wall (seen from inside) in mm	Lewa krawędź od lewego końca ściany (patrząc od wewnątrz) w mm
 Left edge on the face in mm	Lewa krawędź na ścianie w mm
 Left edge on the mounting plate in mm	Lewa krawędź na płycie montażowej w mm
 Left side bayed (no side panel)	Lewa strona szeregowana (bez ściany bocznej)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Przesunięcie 
 One end, e.g. -K1:A1	Jeden koniec, np. -K1:A1
 One row per printed label instead of a count	Jeden wiersz na drukowaną etykietę zamiast liczby
 Only devices on these pages (names separated by commas)	Tylko urządzenia na tych stronach (nazwy rozdzielone przecinkami)
+Only doors and windows open	Otwierają się tylko drzwi i okna
 Only lines without a translation into this language	Tylko wiersze bez tłumaczenia na ten język
 Only list the new tags, change nothing	Tylko wyświetl nowe oznaczenia, niczego nie zmieniaj
 Only shows the package, no job is recorded	Tylko pokazuje pakiet, zlecenie nie jest rejestrowane
@@ -854,6 +859,7 @@ Unknown station kind: {}	Nieznany rodzaj stacji: {}
 Unknown symbol: {}	Nieznany symbol: {}
 Unknown table: {}	Nieznana tabela: {}
 Unknown vertical anchor: {}	Nieznane zakotwiczenie pionowe: {}
+Unknown way of opening: {}	Nieznany sposób otwierania: {}
 Unknown wire colour {} (IEC 60757: {})	Nieznany kolor przewodu {} (IEC 60757: {})
 Use this scheme for the marking export	Użyj tego schematu do eksportu oznaczeń
 Used (mm)	Wykorzystane (mm)
@@ -875,6 +881,7 @@ Width in mm	Szerokość w mm
 Width of the path in mm (default 50)	Szerokość ścieżki w mm (domyślnie 50)
 Width, depth and height of a room are at least {} mm	Szerokość, głębokość i wysokość pomieszczenia wynoszą co najmniej {} mm
 Width, height and depth of an enclosure are at least {} mm	Szerokość, wysokość i głębokość obudowy wynoszą co najmniej {} mm
+Windows: height of the bottom edge above the floor in mm	Okna: wysokość dolnej krawędzi nad podłogą w mm
 Wire colour (IEC 60757), e.g. BK	Kolor przewodu (IEC 60757), np. BK
 Wire colour, e.g. BU	Kolor przewodu, np. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Kolor przewodu, np. BU (pusty = z definicji potencjału)

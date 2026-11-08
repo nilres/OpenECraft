@@ -1188,20 +1188,51 @@ pub fn draw_enclosure(
             }
             ItemKind::Cutout if matches!(it.opening, crate::model::panel::Opening::Door | crate::model::panel::Opening::Window) => {
                 // Doors and windows in the wall of a room, seen from inside: a frame,
-                // the door's handle on the right, the window's sashes.
+                // the leaf with the opening sign (its tip at the hinges, dashed when it
+                // opens outwards) or the arrow of a sliding leaf, the door's handle.
                 let line_ink = if ink == Ink::Line { Ink::Frame } else { ink };
                 d.rect(a, b, 0.0, Ink::Fill, true);
                 d.rect(a, b, 0.3, ink, false);
                 let f = 60.0_f32.min(it.w / 4.0).min(it.h / 4.0);
-                if it.opening == crate::model::panel::Opening::Door {
-                    d.rect(tf(it.x + f, it.y + f), tf(it.x + it.w - f, it.y + it.h), 0.15, line_ink, false);
-                    let handle = tf(it.x + it.w - f - 60.0, it.y + it.h - 1050.0_f32.min(it.h / 2.0));
-                    d.circle(handle, 20.0 * k, 0.2, line_ink, false);
+                let door = it.opening == crate::model::panel::Opening::Door;
+                let (top, bottom) = (it.y + f, if door { it.y + it.h } else { it.y + it.h - f });
+                let (left, right) = (it.x + f, it.x + it.w - f);
+                d.rect(tf(left, top), tf(right, bottom), 0.15, line_ink, false);
+                let slide = it.swing.slide();
+                if slide != 0.0 {
+                    // Sliding: the edge of the moving leaf and an arrow the way it opens.
+                    let mid = it.x + it.w / 2.0;
+                    if !door {
+                        d.line(tf(mid, top), tf(mid, bottom), 0.15, line_ink, false);
+                    }
+                    let (y, len) = ((top + bottom) / 2.0, (right - left) * 0.3);
+                    let (from, to) = (mid - slide * len, mid + slide * len);
+                    d.line(tf(from, y), tf(to, y), 0.2, line_ink, false);
+                    let head = 0.3 * len.min(150.0);
+                    d.line(tf(to, y), tf(to - slide * head, y - head * 0.6), 0.2, line_ink, false);
+                    d.line(tf(to, y), tf(to - slide * head, y + head * 0.6), 0.2, line_ink, false);
                 } else {
-                    let (c, m) = (tf(it.x + f, it.y + f), tf(it.x + it.w - f, it.y + it.h - f));
-                    d.rect(c, m, 0.15, line_ink, false);
-                    let mid = tf(it.x + it.w / 2.0, it.y + it.h / 2.0);
-                    d.line(p(mid.x, c.y), p(mid.x, m.y), 0.15, line_ink, false);
+                    let (hinge, free) = if it.swing.right() { (right, left) } else { (left, right) };
+                    let tip = tf(hinge, (top + bottom) / 2.0);
+                    // Opening away from the viewer: dashed, in dashes of the real size.
+                    let mid = (top + bottom) / 2.0;
+                    for y in [top, bottom] {
+                        if it.swing.outward() {
+                            let len = (free - hinge).hypot(mid - y);
+                            let n = (len / 140.0).floor().max(1.0) as usize;
+                            for s in 0..n {
+                                let (t0, t1) = (s as f32 / n as f32, (s as f32 + 80.0 / 140.0) / n as f32);
+                                let at = |t: f32| tf(free + (hinge - free) * t, y + (mid - y) * t);
+                                d.line(at(t0), at(t1), 0.12, line_ink, false);
+                            }
+                        } else {
+                            d.line(tf(free, y), tip, 0.12, line_ink, false);
+                        }
+                    }
+                    if door {
+                        let handle = tf(free - (free - hinge).signum() * 60.0, it.y + it.h - 1050.0_f32.min(it.h / 2.0));
+                        d.circle(handle, 20.0 * k, 0.2, line_ink, false);
+                    }
                 }
             }
             ItemKind::Cutout => {

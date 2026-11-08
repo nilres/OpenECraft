@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Centro dalla parete posteriore in mm
 Centre from the top of the enclosure in mm	Centro dal bordo superiore dell'armadio in mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Modifica un pezzo a T (direzione, variante, rappresentazione), un angolo (bracci), un incrocio (linea, variante, rappresentazione) o un ponte (direzione, rappresentazione)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Modifica una cella di una tabella: sigla dispositivo, testo funzione, descrizione, articolo; numero conduttore, colore, sezione, cavo, anima; morsettiera, morsetto
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Modifica una porta o una finestra di un locale: come si apre (cerniere a sinistra o a destra, verso l'interno o l'esterno, o scorrevole), la sua posizione lungo la parete, le dimensioni e il davanzale
 Changes a placed symbol; when it moves, connected wire ends follow	Modifica un simbolo posizionato; quando viene spostato, le estremità dei conduttori collegati lo seguono
 Changes a text (only the given properties)	Modifica un testo (solo le proprietà indicate)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Converte i dispositivi con articoli in dismissione o fuori produzione agli articoli successori (i successori devono essere articoli del progetto)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Distanza della cornice dal bord
 Distribute vertically (default horizontally)	Distribuisci verticalmente (predefinito orizzontalmente)
 Distributes symbols, texts and graphics evenly between the first and the last one	Distribuisce simboli, testi e grafica in modo uniforme tra il primo e l'ultimo
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Fattore di contemporaneità delle utenze (0: IEC 61439-1, tabella 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Porte e finestre: left_in (predefinito, cerniere a sinistra viste dall'interno, apre nel locale), right_in, left_out, right_out, slide_left o slide_right
 Draw the contact image below coils (default true)	Disegna l'immagine dei contatti sotto le bobine (predefinito true)
 Draw the junction as a connection dot; its routing stays	Disegnare il pezzo a T come punto di collegamento; il suo instradamento resta
 Draw wires in their colour	Disegna i conduttori nel loro colore
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Tubi flessibili,
 Hyperlink (URL)	Collegamento ipertestuale (URL)
 IP address or bus address	Indirizzo IP o indirizzo bus
 IT system with distributed neutral	Sistema IT con neutro distribuito
+Id of the door or window (as listed by list_rooms)	Id della porta o della finestra (come elencato da list_rooms)
 Id of the panel item (from mounting_list)	ID dell'elemento del layout (da mounting_list)
 Id of the path or reservation	ID del percorso o dello spazio riservato
 Id of the text	ID del testo
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Orizzontale (true) o verticale (false)
 Language the project texts are written in, e.g. en	Lingua in cui sono scritti i testi del progetto, ad es. en
 Larger round holes are milled, mm	I fori tondi più grandi vengono fresati, mm
 Largest difference between hole and tool, mm	Differenza massima tra foro e utensile, mm
+Left edge from the left end of the wall (seen from inside) in mm	Bordo sinistro dall'estremità sinistra della parete (visto dall'interno) in mm
 Left edge on the face in mm	Bordo sinistro sulla faccia in mm
 Left edge on the mounting plate in mm	Bordo sinistro sulla piastra di montaggio in mm
 Left side bayed (no side panel)	Lato sinistro affiancato (senza parete laterale)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Distanza dalla
 One end, e.g. -K1:A1	Un'estremità, ad es. -K1:A1
 One row per printed label instead of a count	Una riga per ogni etichetta stampata invece di un conteggio
 Only devices on these pages (names separated by commas)	Solo i dispositivi su queste pagine (nomi separati da virgole)
+Only doors and windows open	Solo porte e finestre si aprono
 Only lines without a translation into this language	Solo righe senza traduzione in questa lingua
 Only list the new tags, change nothing	Elenca solo le nuove sigle, non modificare nulla
 Only shows the package, no job is recorded	Mostra solo il pacchetto, nessuna commessa viene registrata
@@ -854,6 +859,7 @@ Unknown station kind: {}	Tipo di stazione sconosciuto: {}
 Unknown symbol: {}	Simbolo sconosciuto: {}
 Unknown table: {}	Tabella sconosciuta: {}
 Unknown vertical anchor: {}	Ancoraggio verticale sconosciuto: {}
+Unknown way of opening: {}	Modo di apertura sconosciuto: {}
 Unknown wire colour {} (IEC 60757: {})	Colore del conduttore sconosciuto {} (IEC 60757: {})
 Use this scheme for the marking export	Usa questo schema per l'esportazione della marcatura
 Used (mm)	Utilizzato (mm)
@@ -875,6 +881,7 @@ Width in mm	Larghezza in mm
 Width of the path in mm (default 50)	Larghezza del percorso in mm (predefinito 50)
 Width, depth and height of a room are at least {} mm	Larghezza, profondità e altezza di un locale sono di almeno {} mm
 Width, height and depth of an enclosure are at least {} mm	Larghezza, altezza e profondità di un armadio sono di almeno {} mm
+Windows: height of the bottom edge above the floor in mm	Finestre: altezza del bordo inferiore dal pavimento in mm
 Wire colour (IEC 60757), e.g. BK	Colore del conduttore (IEC 60757), ad es. BK
 Wire colour, e.g. BU	Colore del conduttore, ad es. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Colore del conduttore, ad es. BU (vuoto = dalla definizione del potenziale)

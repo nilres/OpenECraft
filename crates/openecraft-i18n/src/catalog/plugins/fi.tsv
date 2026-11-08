@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Keskikohta takaseinästä millimetreinä
 Centre from the top of the enclosure in mm	Keskikohta kotelon yläreunasta millimetreinä
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Muuttaa T-haaraa (suunta, variantti, esitystapa), kulmaa (haarat), risteystä (linja, variantti, esitystapa) tai siltaa (suunta, esitystapa)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Muuttaa taulukon solua: laitetunnus, toimintoteksti, kuvaus, osa; johtonumero, väri, poikkipinta-ala, kaapeli, johdin; rima, riviliitin
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Muuttaa huoneen ovea tai ikkunaa: miten se avautuu (saranat vasemmalla tai oikealla, sisään- tai ulospäin, tai liukuva), sen paikan seinällä, koon ja kaiteen korkeuden
 Changes a placed symbol; when it moves, connected wire ends follow	Muuttaa sijoitettua symbolia; kun se siirtyy, liitettyjen johtojen päät seuraavat
 Changes a text (only the given properties)	Muuttaa tekstiä (vain annetut ominaisuudet)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Vaihtaa poistumassa olevia tai valikoimasta poistuneita osia käyttävät laitteet seuraajaosiin (seuraajien on oltava projektin osia)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Kehyksen etäisyys paperin reun
 Distribute vertically (default horizontally)	Jaa pystysuunnassa (oletus vaakasuunnassa)
 Distributes symbols, texts and graphics evenly between the first and the last one	Jakaa symbolit, tekstit ja grafiikan tasaisesti ensimmäisen ja viimeisen välille
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Kuormien samanaikaisuuskerroin (0: IEC 61439-1, taulukko 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Ovet ja ikkunat: left_in (oletus, saranat vasemmalla sisältä katsottuna, aukeaa huoneeseen), right_in, left_out, right_out, slide_left tai slide_right
 Draw the contact image below coils (default true)	Piirrä kosketinkuvio kelojen alle (oletus true)
 Draw the junction as a connection dot; its routing stays	Piirrä T-haara liitospisteenä; sen reititys säilyy
 Draw wires in their colour	Piirrä johdot niiden värillä
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Letkut, fluidive
 Hyperlink (URL)	Hyperlinkki (URL)
 IP address or bus address	IP-osoite tai väyläosoite
 IT system with distributed neutral	IT-järjestelmä jaetulla nollajohtimella
+Id of the door or window (as listed by list_rooms)	Oven tai ikkunan tunnus (kuten list_rooms luettelee)
 Id of the panel item (from mounting_list)	Asennusosan ID (komennosta mounting_list)
 Id of the path or reservation	Polun tai varauksen tunniste
 Id of the text	Tekstin ID
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Vaakasuunta (true) tai pystysuunta (false)
 Language the project texts are written in, e.g. en	Kieli, jolla projektin tekstit on kirjoitettu, esim. en
 Larger round holes are milled, mm	Suuremmat pyöreät reiät jyrsitään, mm
 Largest difference between hole and tool, mm	Suurin ero reiän ja työkalun välillä, mm
+Left edge from the left end of the wall (seen from inside) in mm	Vasen reuna seinän vasemmasta päästä (sisältä katsottuna), mm
 Left edge on the face in mm	Vasen reuna pinnalla millimetreinä
 Left edge on the mounting plate in mm	Vasen reuna asennuslevyllä millimetreinä
 Left side bayed (no side panel)	Vasen puoli rivitetty (ei sivuseinää)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Siirtymä symb
 One end, e.g. -K1:A1	Ensimmäinen pää, esim. -K1:A1
 One row per printed label instead of a count	Yksi rivi tulostettua merkintäkilpeä kohden määrän sijaan
 Only devices on these pages (names separated by commas)	Vain näiden sivujen laitteet (nimet pilkuilla erotettuina)
+Only doors and windows open	Vain ovet ja ikkunat avautuvat
 Only lines without a translation into this language	Vain rivit, joilla ei ole käännöstä tälle kielelle
 Only list the new tags, change nothing	Luettele vain uudet tunnukset, älä muuta mitään
 Only shows the package, no job is recorded	Näyttää vain paketin, työtä ei kirjata
@@ -854,6 +859,7 @@ Unknown station kind: {}	Tuntematon asematyyppi: {}
 Unknown symbol: {}	Tuntematon symboli: {}
 Unknown table: {}	Tuntematon taulukko: {}
 Unknown vertical anchor: {}	Tuntematon pystyankkuri: {}
+Unknown way of opening: {}	Tuntematon avautumistapa: {}
 Unknown wire colour {} (IEC 60757: {})	Tuntematon johtoväri {} (IEC 60757: {})
 Use this scheme for the marking export	Käytä tätä skeemaa merkintöjen viennissä
 Used (mm)	Käytetty (mm)
@@ -875,6 +881,7 @@ Width in mm	Leveys millimetreinä
 Width of the path in mm (default 50)	Polun leveys millimetreinä (oletus 50)
 Width, depth and height of a room are at least {} mm	Tilan leveys, syvyys ja korkeus ovat vähintään {} mm
 Width, height and depth of an enclosure are at least {} mm	Kotelon leveys, korkeus ja syvyys ovat vähintään {} mm
+Windows: height of the bottom edge above the floor in mm	Ikkunat: alareunan korkeus lattiasta, mm
 Wire colour (IEC 60757), e.g. BK	Johtoväri (IEC 60757), esim. BK
 Wire colour, e.g. BU	Johtoväri, esim. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Johtoväri, esim. BU (tyhjä = potentiaalin määrityksestä)

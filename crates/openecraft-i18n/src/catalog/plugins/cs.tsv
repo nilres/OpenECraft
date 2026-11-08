@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Střed od zadní stěny v mm
 Centre from the top of the enclosure in mm	Střed od horního okraje skříně v mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Změní T-kus (směr, variantu, zobrazení), roh (ramena), křížení (čáru, variantu, zobrazení) nebo most (směr, zobrazení)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Změní buňku tabulky: označení přístroje, text funkce, popis, artikl; číslo vodiče, barva, průřez, kabel, žíla; svorkovnice, svorka
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Změní dveře nebo okno místnosti: způsob otevírání (závěsy vlevo nebo vpravo, dovnitř nebo ven, nebo posuvně), polohu podél stěny, velikost a parapet
 Changes a placed symbol; when it moves, connected wire ends follow	Změní umístěný symbol; při jeho přesunu se připojené konce vodičů posunou s ním
 Changes a text (only the given properties)	Změní text (pouze zadané vlastnosti)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Převede přístroje s dobíhajícími artikly nebo artikly s ukončenou výrobou na nástupnické artikly (nástupci musí být artikly projektu)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Vzdálenost rámečku od okraje
 Distribute vertically (default horizontally)	Rozmístit svisle (výchozí vodorovně)
 Distributes symbols, texts and graphics evenly between the first and the last one	Rovnoměrně rozmístí symboly, texty a grafiku mezi prvním a posledním
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Součinitel soudobosti spotřebičů (0: IEC 61439-1, tabulka 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Dveře a okna: left_in (výchozí, závěsy vlevo při pohledu zevnitř, otevírá se do místnosti), right_in, left_out, right_out, slide_left nebo slide_right
 Draw the contact image below coils (default true)	Kreslit zrcadlo kontaktů pod cívkami (výchozí true)
 Draw the junction as a connection dot; its routing stays	Kreslit T-kus jako spojovací bod; jeho vedení zůstává
 Draw wires in their colour	Kreslit vodiče v jejich barvě
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Hadice, tekutino
 Hyperlink (URL)	Hypertextový odkaz (URL)
 IP address or bus address	Adresa IP nebo adresa na sběrnici
 IT system with distributed neutral	Soustava IT s rozvedeným středním vodičem
+Id of the door or window (as listed by list_rooms)	Id dveří nebo okna (jak je uvádí list_rooms)
 Id of the panel item (from mounting_list)	ID prvku rozváděče (z mounting_list)
 Id of the path or reservation	ID trasy nebo rezervace
 Id of the text	ID textu
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Na šířku (true) nebo na výšku (false)
 Language the project texts are written in, e.g. en	Jazyk, ve kterém jsou texty projektu napsány, např. en
 Larger round holes are milled, mm	Větší kruhové otvory se frézují, mm
 Largest difference between hole and tool, mm	Největší rozdíl mezi otvorem a nástrojem, mm
+Left edge from the left end of the wall (seen from inside) in mm	Levá hrana od levého konce stěny (při pohledu zevnitř) v mm
 Left edge on the face in mm	Levý okraj na ploše v mm
 Left edge on the mounting plate in mm	Levý okraj na montážní desce v mm
 Left side bayed (no side panel)	Levá strana spojená do řady (bez boční stěny)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Odsazení od p
 One end, e.g. -K1:A1	Jeden konec, např. -K1:A1
 One row per printed label instead of a count	Jeden řádek na každý vytištěný štítek místo počtu
 Only devices on these pages (names separated by commas)	Pouze přístroje na těchto stránkách (názvy oddělené čárkami)
+Only doors and windows open	Otevírají se jen dveře a okna
 Only lines without a translation into this language	Jen řádky bez překladu do tohoto jazyka
 Only list the new tags, change nothing	Pouze vypsat nová označení, nic neměnit
 Only shows the package, no job is recorded	Pouze zobrazí balíček, zakázka se nezaznamená
@@ -854,6 +859,7 @@ Unknown station kind: {}	Neznámý druh stanice: {}
 Unknown symbol: {}	Neznámý symbol: {}
 Unknown table: {}	Neznámá tabulka: {}
 Unknown vertical anchor: {}	Neznámé svislé ukotvení: {}
+Unknown way of opening: {}	Neznámý způsob otevírání: {}
 Unknown wire colour {} (IEC 60757: {})	Neznámá barva vodiče {} (IEC 60757: {})
 Use this scheme for the marking export	Použít toto schéma pro export popisování
 Used (mm)	Použito (mm)
@@ -875,6 +881,7 @@ Width in mm	Šířka v mm
 Width of the path in mm (default 50)	Šířka trasy v mm (výchozí 50)
 Width, depth and height of a room are at least {} mm	Šířka, hloubka a výška místnosti jsou alespoň {} mm
 Width, height and depth of an enclosure are at least {} mm	Šířka, výška a hloubka skříně jsou alespoň {} mm
+Windows: height of the bottom edge above the floor in mm	Okna: výška spodní hrany nad podlahou v mm
 Wire colour (IEC 60757), e.g. BK	Barva vodiče (IEC 60757), např. BK
 Wire colour, e.g. BU	Barva vodiče, např. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Barva vodiče, např. BU (prázdné = z definice potenciálu)

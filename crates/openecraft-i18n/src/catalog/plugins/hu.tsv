@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Középpont a hátfaltól mm-ben
 Centre from the top of the enclosure in mm	Középpont a szekrény tetejétől mm-ben
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Megváltoztat egy T-elemet (irány, változat, ábrázolás), egy sarkot (karok), egy kereszteződést (vonal, változat, ábrázolás) vagy egy hidat (irány, ábrázolás)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Módosítja egy táblázat egy celláját: készülékazonosító, funkciószöveg, leírás, alkatrész; vezetékszám, szín, keresztmetszet, kábel, ér; sorkapocsléc, sorkapocs
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Módosítja egy helyiség ajtaját vagy ablakát: hogyan nyílik (zsanér balra vagy jobbra, befelé vagy kifelé, vagy toló), helyét a fal mentén, méretét és parapetjét
 Changes a placed symbol; when it moves, connected wire ends follow	Módosít egy elhelyezett szimbólumot; ha elmozdul, a csatlakozó vezetékvégek követik
 Changes a text (only the given properties)	Módosít egy szöveget (csak a megadott tulajdonságokat)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	A kifutó vagy megszűnt alkatrészeket használó készülékeket átállítja az utódalkatrészekre (az utódoknak projektalkatrészeknek kell lenniük)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	A keret távolsága a papír sz
 Distribute vertically (default horizontally)	Függőleges elosztás (alapértelmezés: vízszintes)
 Distributes symbols, texts and graphics evenly between the first and the last one	Egyenletesen osztja el a szimbólumokat, szövegeket és grafikákat az első és az utolsó között
 Diversity factor of the loads (0: IEC 61439-1, table 101)	A fogyasztók egyidejűségi tényezője (0: IEC 61439-1, 101. táblázat)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Ajtók és ablakok: left_in (alapértelmezés, zsanér balra belülről nézve, a helyiség felé nyílik), right_in, left_out, right_out, slide_left vagy slide_right
 Draw the contact image below coils (default true)	Érintkezőtükör rajzolása a tekercsek alá (alapértelmezés: true)
 Draw the junction as a connection dot; its routing stays	A T-elemet csatlakozási pontként rajzolja; az útvonala megmarad
 Draw wires in their colour	Vezetékek rajzolása a saját színükben
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Tömlők, fluidh
 Hyperlink (URL)	Hivatkozás (URL)
 IP address or bus address	IP-cím vagy buszcím
 IT system with distributed neutral	IT-rendszer kivezetett nullavezetővel
+Id of the door or window (as listed by list_rooms)	Az ajtó vagy ablak azonosítója (ahogy a list_rooms felsorolja)
 Id of the panel item (from mounting_list)	Az elrendezési elem azonosítója (a mounting_list alapján)
 Id of the path or reservation	Az út vagy foglalás azonosítója
 Id of the text	A szöveg azonosítója
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Fekvő (true) vagy álló (false)
 Language the project texts are written in, e.g. en	A projektszövegek nyelve, pl. en
 Larger round holes are milled, mm	Az ennél nagyobb kerek furatok marással készülnek, mm
 Largest difference between hole and tool, mm	A furat és a szerszám közötti legnagyobb eltérés, mm
+Left edge from the left end of the wall (seen from inside) in mm	Bal él a fal bal végétől (belülről nézve), mm
 Left edge on the face in mm	Bal él a felületen, mm-ben
 Left edge on the mounting plate in mm	Bal él a szerelőlapon mm-ben
 Left side bayed (no side panel)	Bal oldal sorolva (nincs oldalfal)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Eltolás a szi
 One end, e.g. -K1:A1	Az egyik vég, pl. -K1:A1
 One row per printed label instead of a count	Nyomtatott címkénként egy sor darabszám helyett
 Only devices on these pages (names separated by commas)	Csak az ezeken az oldalakon lévő készülékek (nevek vesszővel elválasztva)
+Only doors and windows open	Csak ajtók és ablakok nyílnak
 Only lines without a translation into this language	Csak az erre a nyelvre le nem fordított sorok
 Only list the new tags, change nothing	Csak az új azonosítók listázása, semmi nem módosul
 Only shows the package, no job is recorded	Csak a csomagot jeleníti meg, megbízás nem kerül rögzítésre
@@ -854,6 +859,7 @@ Unknown station kind: {}	Ismeretlen állomásfajta: {}
 Unknown symbol: {}	Ismeretlen szimbólum: {}
 Unknown table: {}	Ismeretlen táblázat: {}
 Unknown vertical anchor: {}	Ismeretlen függőleges horgony: {}
+Unknown way of opening: {}	Ismeretlen nyitási mód: {}
 Unknown wire colour {} (IEC 60757: {})	Ismeretlen érszín: {} (IEC 60757: {})
 Use this scheme for the marking export	Ennek a sémának a használata a feliratozási exporthoz
 Used (mm)	Felhasznált (mm)
@@ -875,6 +881,7 @@ Width in mm	Szélesség mm-ben
 Width of the path in mm (default 50)	Az út szélessége mm-ben (alapértelmezés: 50)
 Width, depth and height of a room are at least {} mm	A helyiség szélessége, mélysége és magassága legalább {} mm
 Width, height and depth of an enclosure are at least {} mm	A szekrény szélessége, magassága és mélysége legalább {} mm
+Windows: height of the bottom edge above the floor in mm	Ablakok: az alsó él magassága a padló felett, mm
 Wire colour (IEC 60757), e.g. BK	Érszín (IEC 60757), pl. BK
 Wire colour, e.g. BU	Érszín, pl. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Érszín, pl. BU (üres = a potenciáldefinícióból)

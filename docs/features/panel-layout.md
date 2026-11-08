@@ -143,11 +143,17 @@ or Enter), walls are dragged to move them or get a length in the room's properti
   right angles; an end near a wall snaps onto it), dragged across to move them, get
   length and thickness in the room's properties and are removed with Del; both sides (`inner1a`, `inner1b`) are faces like
   the walls.
-- **Doors and windows** (*Layout space › Draw › Door / Window*, command
-  `add_wall_opening`) are openings in a wall, placed by clicking the wall in the floor
-  plan or in the view of the wall: a door stands on the floor and swings into the room
-  (drawn with its swing), a window has its sill height; size, position and sill are in
-  their properties.
+- **Doors and windows** (*Layout space › Draw › Door / Window*, commands
+  `add_wall_opening`, `set_wall_opening`) are openings in a wall, placed by clicking the
+  wall in the floor plan or in the view of the wall: a door stands on the floor, a
+  window has its sill height; size, position, sill and how they open are in their
+  properties. *Opens* (`opens`) chooses the hinges at the left or right edge (seen from
+  inside the room) swinging into or out of the room, or a sliding leaf moving left or
+  right along the wall. The floor plan draws the leaf with its swing (from the outer
+  surface of the wall when it opens outwards) or the sliding leaf with its way, the view
+  of the wall the opening sign (its tip at the hinges, dashed when the leaf opens away
+  from the viewer) or an arrow. The check keeps the swing of an inward door and the way
+  of a sliding door in front of the wall free of cabinets.
 - **Cabinets** (their line-ups) stand in it at a place of the floor plan, dragged there
   in the floor plan (R turns the selected one about its centre), and move with the
   room. A cabinet outside the room, across a wall, in an inner wall or in the swing
@@ -216,6 +222,15 @@ floor plan of a room shows the rooms around it faintly with their names and cabi
 (those beside it, not the ones on the levels above and below); a double-click opens one
 of them. *Layout space › Show › All enclosures* shows every room and cabinet at its
 place in 3D, with the routes between them.
+
+The navigator (*Enclosures and rooms*) has the **site** at its root, above the
+buildings with their levels and rooms and the rooms outside buildings. A click on a room
+keeps the 3D view when it is shown and otherwise shows the room's floor plan. A click on
+the site shows the site plan of all buildings in the Layout space (the wheel zooms,
+dragging moves it, a click on a room opens its floor plan) or, in the 3D view, all of
+the plant with its buildings, floor slabs, stairs and roofs; a click on a building shows
+the site plan with it highlighted. The context menu of the site adds a building, that of
+a building a level on top or a basement, that of a level a room on it.
 
 ## Buildings, levels and shafts
 

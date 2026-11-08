@@ -48,13 +48,13 @@ pub use placement::{align, apply_anchors, apply_one_anchor, arrange_on_rail, cap
 pub use points::{device_points, exit_vector, nozzles, point_of, PlacedPoint};
 pub use rack::{is_rack, mount_in_rack, rack_units, RACK_SYSTEM, RACK_UNIT, RACK_WIDTH};
 pub use rooms::{
-    add_inner_wall, add_opening, add_pipe_run, add_wall_profile, pipe_run_offset, pipe_run_on_face, PIPE_RUN_WIDTH, inner_sides, moved_inner_wall, remove_inner_wall, side, INNER_WALL, door_zone, opening_sill, entries, entry_direction, entry_point, ENTRY_SILL, ENTRY_SIZE, DOOR_SIZE, WINDOW_SILL, WINDOW_SIZE, bounds, cabinet_problems, cabinets_in, check_outline, floor_cells, floor_footprint, floor_problems, footprint, inside_outline, mount_ok, mount_on_wall, moved_wall, new_room, normalize_outline, outline, room_face_from_key, room_face_key, room_face_title, room_faces,
+    add_inner_wall, add_opening, add_pipe_run, add_wall_profile, pipe_run_offset, pipe_run_on_face, PIPE_RUN_WIDTH, inner_sides, moved_inner_wall, remove_inner_wall, side, INNER_WALL, door_zone, opening_sill, set_opening, SLIDE_DEPTH, entries, entry_direction, entry_point, ENTRY_SILL, ENTRY_SIZE, DOOR_SIZE, WINDOW_SILL, WINDOW_SIZE, bounds, cabinet_problems, cabinets_in, check_outline, floor_cells, floor_footprint, floor_problems, footprint, inside_outline, mount_ok, mount_on_wall, moved_wall, new_room, normalize_outline, outline, room_face_from_key, room_face_key, room_face_title, room_faces,
     room_of, room_place, rooms, set_outline, turned_place, set_room, stand_on_floor, at_mounting_height, stands_inside, wall_length_set, walls, Wall, MIN_WALL, ROOM_WALL,
     penetration_link, wall_links, WallLink, Via, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP, is_outside, outside_building, through_wall,
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Turn};
+pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -189,6 +189,38 @@ impl Opening {
     pub fn from_key(key: &str) -> Option<Opening> {
         let k = key.trim().to_lowercase();
         Opening::ALL.into_iter().find(|o| o.key() == k)
+    }
+}
+
+impl Swing {
+    pub const ALL: [Swing; 6] = [Swing::LeftIn, Swing::RightIn, Swing::LeftOut, Swing::RightOut, Swing::SlideLeft, Swing::SlideRight];
+
+    pub fn title(self) -> &'static str {
+        match self {
+            Swing::LeftIn => tr("Hinged left, opens inwards"),
+            Swing::RightIn => tr("Hinged right, opens inwards"),
+            Swing::LeftOut => tr("Hinged left, opens outwards"),
+            Swing::RightOut => tr("Hinged right, opens outwards"),
+            Swing::SlideLeft => tr("Sliding to the left"),
+            Swing::SlideRight => tr("Sliding to the right"),
+        }
+    }
+
+    /// Key on the command line.
+    pub fn key(self) -> &'static str {
+        match self {
+            Swing::LeftIn => "left_in",
+            Swing::RightIn => "right_in",
+            Swing::LeftOut => "left_out",
+            Swing::RightOut => "right_out",
+            Swing::SlideLeft => "slide_left",
+            Swing::SlideRight => "slide_right",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<Swing> {
+        let k = key.trim().to_lowercase();
+        Swing::ALL.into_iter().find(|o| o.key() == k)
     }
 }
 

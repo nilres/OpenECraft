@@ -17,7 +17,7 @@
 //! Room coordinates (the enclosure coordinates of a room): x and z of the floor plan,
 //! y downwards from the ceiling (the floor at `height`).
 
-use super::{item_name, lineup_of, new_profile, part_by_number, place_device_on, site_poses, snap, CheckKind, SitePose, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Opening, PanelItem, SitePlace};
+use super::{item_name, lineup_of, new_profile, part_by_number, place_device_on, site_poses, snap, CheckKind, SitePose, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Opening, PanelItem, SitePlace, Swing};
 use crate::model::routing3d::{Class, PathKind, RoutingPath};
 use crate::geom::P;
 use crate::issue::Severity;
@@ -32,6 +32,8 @@ pub const DOOR_SIZE: (f32, f32) = (1000.0, 2100.0);
 /// Width and height of a new window and its sill above the floor, mm.
 pub const WINDOW_SIZE: (f32, f32) = (1200.0, 1200.0);
 pub const WINDOW_SILL: f32 = 900.0;
+/// Depth of the way of a sliding door in front of the wall (leaf and track), mm.
+pub const SLIDE_DEPTH: f32 = 100.0;
 /// Shortest wall of an outline, mm.
 pub const MIN_WALL: f32 = 50.0;
 /// Thickness of a new inner wall, mm.
@@ -711,15 +713,47 @@ pub fn add_opening(prj: &mut Project, room: usize, opening: Opening, face: Face,
     Ok(id)
 }
 
-/// Floor plan area a door swings through: as deep into the room as the door is wide.
+/// Floor plan area of the room a door's leaf moves through: as deep into the room as
+/// the door is wide when it swings inwards, the way of a sliding leaf beside the
+/// opening in front of the wall; none when it swings outwards.
 pub fn door_zone(e: &Enclosure, it: &PanelItem) -> Option<[[f32; 2]; 4]> {
-    if it.opening != Opening::Door {
+    if it.opening != Opening::Door || it.swing.outward() {
         return None;
     }
     let w = side(e, it.face)?;
     let (s, r, nm) = (w.start(), w.right(), w.normal);
     let at = |along: f32, into: f32| [s[0] + r[0] * along + nm[0] * into, s[1] + r[1] * along + nm[1] * into];
-    Some([at(it.x, 0.0), at(it.x + it.w, 0.0), at(it.x + it.w, it.w), at(it.x, it.w)])
+    let (a, b, depth) = match it.swing.slide() {
+        d if d < 0.0 => (it.x - it.w, it.x, SLIDE_DEPTH),
+        d if d > 0.0 => (it.x + it.w, it.x + 2.0 * it.w, SLIDE_DEPTH),
+        _ => (it.x, it.x + it.w, it.w),
+    };
+    Some([at(a, 0.0), at(b, 0.0), at(b, depth), at(a, depth)])
+}
+
+/// Changes how a door or window of a room opens, its place along the wall (left edge),
+/// its size and sill (windows); `None` keeps a value.
+pub fn set_opening(prj: &mut Project, room: usize, id: u64, swing: Option<Swing>, x: Option<f32>, size: Option<(f32, f32)>, sill: Option<f32>) -> Result<(), String> {
+    let e = prj.layout.enclosures.get(room).ok_or_else(|| tr_fmt!("No enclosure {}", room))?;
+    let it = e.item(id).filter(|i| matches!(i.opening, Opening::Door | Opening::Window)).ok_or_else(|| tr_fmt!("{} has no door or window {}", e.name, id))?;
+    let height = e.height;
+    let old_sill = opening_sill(e, it);
+    let door = it.opening == Opening::Door;
+    let e = &mut prj.layout.enclosures[room];
+    let Some(it) = e.items.iter_mut().find(|i| i.id == id) else { return Ok(()) };
+    if let Some(s) = swing {
+        it.swing = s;
+    }
+    if let Some(x) = x {
+        it.x = snap(x);
+    }
+    if let Some((w, h)) = size {
+        it.w = w.max(100.0);
+        it.h = h.clamp(100.0, height);
+    }
+    let sill = if door { 0.0 } else { sill.unwrap_or(old_sill).clamp(0.0, (height - it.h).max(0.0)) };
+    it.y = height - sill - it.h;
+    Ok(())
 }
 
 /// What a [`WallLink`] goes through.
@@ -1087,7 +1121,12 @@ fn plan_problems(e: &Enclosure, fp: &[[f32; 2]; 4], name: &str) -> Vec<(CheckKin
                 Face::Wall(n) => n + 1,
                 _ => 0,
             };
-            out.push((CheckKind::Service, vec![door.id], tr_fmt!("{}: {} stands in the swing of the door in wall {}", e.name, name, wall)));
+            let text = if door.swing.slide() != 0.0 {
+                tr_fmt!("{}: {} stands in the way of the sliding door in wall {}", e.name, name, wall)
+            } else {
+                tr_fmt!("{}: {} stands in the swing of the door in wall {}", e.name, name, wall)
+            };
+            out.push((CheckKind::Service, vec![door.id], text));
         }
     }
     if !inside_plan(&outline(e), fp) {

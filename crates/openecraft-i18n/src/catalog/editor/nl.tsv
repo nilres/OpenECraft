@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Een kabel van het bustype voor elke verbinding zonder kabel
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Een uitsparing van dezelfde grootte op dezelfde plaats in de zijwand van de buur: samen vormen ze een kabeldoorvoer
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Een bestand met dezelfde naam in de map krijgt een nieuwe versie (uit- en ingecheckt), anders wordt het bestand toegevoegd
+A level on top of the highest one	Een verdieping boven de hoogste
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
@@ -204,6 +205,7 @@ Bottom edges	Onderranden
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Onderkant van de behuizing (zonder sokkel) boven de vloer; de hoogten worden gecontroleerd als deze bekend is of de behuizing op een sokkel staat
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Uitschakelvermogen ten opzichte van de kortsluitstroom bij elk beveiligingsapparaat van het net, uitschakeling bij de laagste foutstroom aan het einde van de stroomkring, kortsluitvastheid van de kabels en selectiviteit met het voorgeschakelde apparaat.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
+Building {} added with a level at ground level	Gebouw {} toegevoegd met een verdieping op maaiveldhoogte
 Built-in frames cannot be changed; copy one to adapt it.	Ingebouwde kaders kunnen niet worden gewijzigd; kopieer er een om het aan te passen.
 Built-in scheme: copy it to change it.	Ingebouwd schema: kopieer het om het te wijzigen.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Ingebouwde titelblokken zijn alleen-lezen – gebruik ‘Als nieuw kopiëren’ om je eigen titelblok te maken.
@@ -298,6 +300,8 @@ Click to place the markup text	Klik om de markeringstekst te plaatsen
 Click to place the text from the field below	Klik om de tekst uit het veld hieronder te plaatsen
 Click to put new rooms on this level; drop rooms onto it to move them here	Klik om nieuwe ruimtes op deze verdieping te zetten; zet ruimtes hierop neer om ze hierheen te verplaatsen
 Click to show	Klik om weer te geven
+Click to show the building in the site plan; right-click for new levels	Klik om het gebouw in de situatietekening te tonen; rechtsklik voor nieuwe verdiepingen
+Click to show the site plan of the buildings, or all of the plant in the 3D view	Klik om de situatietekening van de gebouwen te tonen, of de hele installatie in de 3D-weergave
 Click to show, right click for more	Klik om te tonen, rechtsklik voor meer
 Click two corners	Klik op twee hoeken
 Click two nodes to connect them	Klik op twee knooppunten om ze te verbinden
@@ -759,6 +763,7 @@ Hose defaults and PCT loops of the pre-planning	Standaardwaarden voor slangen en
 Hose number	Slangnummer
 Hoses and pipes	Slangen en buizen
 Hoses rated below it are errors; 0 = not checked	Slangen met een lagere drukklasse zijn fouten; 0 = niet gecontroleerd
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hoe het blad opent: scharnieren aan de linker- of rechterrand (gezien vanuit de ruimte), de ruimte in of uit, of schuivend langs de wand
 IP / bus address	IP- / busadres
 ISO 639-1 language code	Taalcode volgens ISO 639-1
 Identifiers	Aanduidingen
@@ -882,6 +887,7 @@ Letters, digits, space, - _ . (up to 64 characters)	Letters, cijfers, spatie, - 
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	Etage van een etageklem: hogere etages zitten op het blok van de voorgaande klem
 Level of this kind of message	Niveau van deze soort melding
 Level on top	Verdieping erbovenop
+Level {} added to building {}; new rooms go onto it	Verdieping {} toegevoegd aan gebouw {}; nieuwe ruimten komen erop
 Levels	Verdiepingen
 Library	Bibliotheek
 Limits	Grenswaarden
@@ -1175,6 +1181,7 @@ Opened {} from the project server	{} geopend vanaf de projectserver
 Opening	Opening
 Opening in the mounting plate / door: click two corners (round: in the properties)	Opening in montageplaat / deur: klik op twee hoeken (rond: in de eigenschappen)
 Opening {}…	{} openen…
+Opens	Opent
 Opens the page of the release	Opent de pagina van de versie
 Opens the pages for printing in the browser with its print dialog	Opent de pagina's om af te drukken in de browser met het afdrukdialoogvenster daarvan
 Open…	Openen…
@@ -1648,7 +1655,9 @@ Signed in to {} as {}	Aangemeld bij {} als {}
 Signed out of Vault	Afgemeld bij Vault
 Single-line	Eenlijnig
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Eenlijnige symbolen voor de vermogensapparaten van het schema die er nog geen hebben, op een nieuwe overzichtspagina
+Site	Terrein
 Site plan	Situatietekening
+Site plan, building {}	Situatietekening, gebouw {}
 Size {} × {} mm	Afmeting {} × {} mm
 Slot	Sleuf
 Slot depth	Sleufdiepte
@@ -1904,6 +1913,7 @@ Welcome to OpenECraft	Welkom bij OpenECraft
 What is new	Nieuw
 What should be checked or changed?	Wat moet er worden gecontroleerd of gewijzigd?
 Wheel / right or middle drag	Muiswiel / slepen met rechter- of middelste muisknop
+Wheel: zoom · drag: move · click on a room: its floor plan	Wiel: zoomen · slepen: verplaatsen · klik op een ruimte: de plattegrond
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Muiswiel: zoomen · rechtsklik: annuleren · grafiek springt naar 0,5 mm, aansluitpunten naar het raster van 4 mm
 When it differs from the page	Wanneer deze afwijkt van de pagina
 Where	Plaats
@@ -2205,6 +2215,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
+{}: click to show its floor plan	{}: klik om de plattegrond te tonen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent
 {}: drag to move it, a double-click shows the floor	{}: slepen om te verplaatsen, dubbelklik toont de vloer
 {}: nothing to change	{}: niets te wijzigen

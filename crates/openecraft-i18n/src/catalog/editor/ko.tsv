@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	케이블이 없는 모든 연결에 버스 유형의 케이블
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
+A level on top of the highest one	가장 높은 층 위의 층
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.
@@ -202,6 +203,7 @@ Bottom edges	아래쪽 가장자리
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	바닥으로부터 외함 하단(받침대 제외)까지의 높이. 이 값을 알거나 외함이 받침대 위에 있으면 높이를 검사합니다
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	전원의 각 보호 장치에서 단락 전류 대비 차단 용량, 회로 끝의 최소 고장 전류에서의 차단, 케이블의 단락 내량 및 상위 장치와의 선택 차단.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	브리지: 네 연결선. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽으로 갑니다
+Building {} added with a level at ground level	지상층 하나로 건물 {}을(를) 추가했습니다
 Built-in frames cannot be changed; copy one to adapt it.	기본 제공 프레임은 변경할 수 없습니다. 수정하려면 복사하세요.
 Built-in scheme: copy it to change it.	기본 제공 스키마: 변경하려면 복사하세요.
 Built-in title blocks are read only – use “Copy as new” to make your own.	기본 제공 표제란은 읽기 전용입니다. 고유 표제란을 만들려면 “새로 복사”를 사용하세요.
@@ -293,6 +295,8 @@ Click to place the markup text	클릭하여 마크업 텍스트 배치
 Click to place the text from the field below	클릭하여 아래 필드의 텍스트 배치
 Click to put new rooms on this level; drop rooms onto it to move them here	클릭하면 새 방이 이 층에 만들어집니다. 방을 여기에 놓으면 이 층으로 이동합니다
 Click to show	클릭하여 표시
+Click to show the building in the site plan; right-click for new levels	클릭하면 배치도에 건물을 표시하고, 오른쪽 클릭으로 새 층을 추가합니다
+Click to show the site plan of the buildings, or all of the plant in the 3D view	클릭하면 건물의 배치도를, 3D 보기에서는 설비 전체를 표시합니다
 Click to show, right click for more	클릭하면 표시, 마우스 오른쪽 버튼은 추가 기능
 Click two corners	두 모서리를 클릭하세요
 Click two nodes to connect them	두 노드를 클릭하여 연결
@@ -749,6 +753,7 @@ Hose defaults and PCT loops of the pre-planning	사전 계획의 호스 기본�
 Hose number	호스 번호
 Hoses and pipes	호스 및 배관
 Hoses rated below it are errors; 0 = not checked	정격이 이보다 낮은 호스는 오류입니다. 0 = 검사 안 함
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	문짝이 열리는 방식: 왼쪽 또는 오른쪽 가장자리에 경첩(실내에서 볼 때), 실내 쪽 또는 바깥쪽으로 열림, 또는 벽을 따라 미닫이
 IP / bus address	IP / 버스 주소
 ISO 639-1 language code	ISO 639-1 언어 코드
 Identifiers	식별자
@@ -870,6 +875,7 @@ Length {} mm	길이 {} mm
 Letters, digits, space, - _ . (up to 64 characters)	문자, 숫자, 공백, - _ .(최대 64자)
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	다단 단자의 단: 위쪽 단은 앞 단자의 블록 위에 놓입니다
 Level of this kind of message	이 메시지 종류의 수준
+Level {} added to building {}; new rooms go onto it	건물 {1}에 층 {0}을(를) 추가했습니다. 새 실은 이 층에 놓입니다
 Library	라이브러리
 Limits	한계값
 Limits in effect	적용되는 한계값
@@ -1159,6 +1165,7 @@ Opened {} from the project server	프로젝트 서버에서 {} 열림
 Opening	개구부
 Opening in the mounting plate / door: click two corners (round: in the properties)	장착 플레이트 / 도어의 개구부: 두 모서리를 클릭하세요(원형: 속성에서)
 Opening {}…	{} 여는 중…
+Opens	열림 방식
 Opens the page of the release	릴리스 페이지를 엽니다
 Opens the pages for printing in the browser with its print dialog	브라우저의 인쇄 대화 상자로 인쇄할 페이지를 엽니다
 Open…	열기…
@@ -1626,6 +1633,8 @@ Signed in to {} as {}	{}에 {}(으)로 로그인됨
 Signed out of Vault	Vault에서 로그아웃됨
 Single-line	단선
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	아직 단선 심볼이 없는 회로도 전력 장치의 단선 심볼(새 개요 페이지에 생성)
+Site	부지
+Site plan, building {}	배치도, 건물 {}
 Size {} × {} mm	크기 {} × {} mm
 Slot	슬롯
 Slot depth	홈 깊이
@@ -1879,6 +1888,7 @@ Welcome to OpenECraft	OpenECraft에 오신 것을 환영합니다
 What is new	새로운 기능
 What should be checked or changed?	무엇을 검사하거나 변경해야 합니까?
 Wheel / right or middle drag	휠 / 오른쪽 또는 가운데 버튼 끌기
+Wheel: zoom · drag: move · click on a room: its floor plan	휠: 확대/축소 · 끌기: 이동 · 실 클릭: 평면도
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	휠: 확대/축소 · 오른쪽 클릭: 취소 · 그래픽은 0.5mm, 연결 지점은 4mm 그리드에 맞춰짐
 When it differs from the page	페이지와 다를 때
 Where	위치
@@ -2171,6 +2181,7 @@ x y	x y
 {} °C (max.)	{} °C(최대)
 {} × {} pixels, {}	{} × {} 픽셀, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
+{}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다
 {}: drag to move it, R turns it, a double-click opens it	{}: 드래그하여 이동, R로 회전, 두 번 클릭하여 열기
 {}: drag to move it, a double-click shows the floor	{}: 드래그하여 이동, 두 번 클릭하여 바닥 표시
 {}: nothing to change	{}: 변경할 항목 없음

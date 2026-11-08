@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Un cablu de tipul magistralei pentru fiecare conexiune fără cablu
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un decupaj de aceeași dimensiune în același loc în peretele lateral al vecinului: împreună formează o trecere de cabluri
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un fișier cu același nume din folder primește o versiune nouă (check-out și check-in), altfel fișierul este adăugat
+A level on top of the highest one	Un nivel deasupra celui mai înalt
 A new project	Un proiect nou
 A new release is downloaded in the background and installed when you close OpenECraft.	O versiune nouă se descarcă în fundal și se instalează când închideți OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	O versiune nouă se descarcă în fundal și înlocuiește această instalare; este folosită de la următoarea pornire.
@@ -204,6 +205,7 @@ Bottom edges	Marginile de jos
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Partea inferioară a carcasei (fără soclu) deasupra podelei; înălțimile sunt verificate dacă aceasta este cunoscută sau dacă carcasa stă pe un soclu
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
+Building {} added with a level at ground level	Clădirea {} adăugată cu un nivel la nivelul solului
 Built-in frames cannot be changed; copy one to adapt it.	Chenarele integrate nu pot fi modificate; copiați unul pentru a-l adapta.
 Built-in scheme: copy it to change it.	Schemă integrată: copiați-o pentru a o modifica.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Cartușele integrate sunt doar în citire – folosiți „Copiere ca nou” pentru a crea unul propriu.
@@ -298,6 +300,8 @@ Click to place the markup text	Faceți clic pentru a plasa textul adnotării
 Click to place the text from the field below	Faceți clic pentru a plasa textul din câmpul de mai jos
 Click to put new rooms on this level; drop rooms onto it to move them here	Faceți clic pentru a pune încăperile noi la acest nivel; plasați încăperi pe el pentru a le muta aici
 Click to show	Clic pentru afișare
+Click to show the building in the site plan; right-click for new levels	Clic pentru a afișa clădirea în planul de situație; clic dreapta pentru niveluri noi
+Click to show the site plan of the buildings, or all of the plant in the 3D view	Clic pentru a afișa planul de situație al clădirilor, sau toată instalația în vederea 3D
 Click to show, right click for more	Clic pentru afișare, clic dreapta pentru mai multe
 Click two corners	Faceți clic pe două colțuri
 Click two nodes to connect them	Faceți clic pe două noduri pentru a le conecta
@@ -759,6 +763,7 @@ Hose defaults and PCT loops of the pre-planning	Valori implicite pentru furtunur
 Hose number	Număr furtun
 Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
 IP / bus address	Adresă IP / de magistrală
 ISO 639-1 language code	Cod de limbă ISO 639-1
 Identifiers	Identificatori
@@ -882,6 +887,7 @@ Letters, digits, space, - _ . (up to 64 characters)	Litere, cifre, spațiu, - _ 
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	Nivelul unei borne multinivel: nivelurile superioare se află pe blocul bornei anterioare
 Level of this kind of message	Nivelul acestui tip de mesaj
 Level on top	Nivel deasupra
+Level {} added to building {}; new rooms go onto it	Nivelul {} adăugat la clădirea {}; încăperile noi merg pe el
 Levels	Niveluri
 Library	Bibliotecă
 Limits	Limite
@@ -1175,6 +1181,7 @@ Opened {} from the project server	S-a deschis {} de pe serverul de proiecte
 Opening	Deschidere
 Opening in the mounting plate / door: click two corners (round: in the properties)	Deschidere în placa de montaj / ușă: faceți clic pe două colțuri (rotundă: în proprietăți)
 Opening {}…	Se deschide {}…
+Opens	Deschidere
 Opens the page of the release	Deschide pagina versiunii
 Opens the pages for printing in the browser with its print dialog	Deschide paginile pentru tipărire în browser, cu dialogul de tipărire al acestuia
 Open…	Deschidere…
@@ -1648,7 +1655,9 @@ Signed in to {} as {}	Conectat la {} ca {}
 Signed out of Vault	Deconectat de la Vault
 Single-line	Monofilar
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Simboluri monofilare pentru dispozitivele de putere din schemă care nu au încă unul, pe o pagină de ansamblu nouă
+Site	Teren
 Site plan	Plan de situație
+Site plan, building {}	Plan de situație, clădirea {}
 Size {} × {} mm	Dimensiune {} × {} mm
 Slot	Fantă
 Slot depth	Adâncimea șlițului
@@ -1904,6 +1913,7 @@ Welcome to OpenECraft	Bun venit în OpenECraft
 What is new	Noutăți
 What should be checked or changed?	Ce trebuie verificat sau modificat?
 Wheel / right or middle drag	Rotiță / glisare cu butonul dreapta sau din mijloc
+Wheel: zoom · drag: move · click on a room: its floor plan	Rotiță: zoom · tragere: mutare · clic pe o încăpere: planul ei
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotiță: zoom · clic dreapta: anulare · grafica se aliniază la 0,5 mm, punctele de conexiune la grila de 4 mm
 When it differs from the page	Când diferă de pagină
 Where	Poziție
@@ -2205,6 +2215,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixeli, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
+{}: click to show its floor plan	{}: clic pentru a afișa planul
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide
 {}: drag to move it, a double-click shows the floor	{}: trageți pentru a muta, dublu clic afișează pardoseala
 {}: nothing to change	{}: nimic de modificat

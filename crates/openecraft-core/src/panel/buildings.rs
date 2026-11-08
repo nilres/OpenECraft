@@ -139,6 +139,12 @@ fn unique<'a>(taken: impl Iterator<Item = &'a str> + Clone, base: String) -> Str
     (2..).map(|k| format!("{base}-{k}")).find(|n| !taken.clone().any(|t| t == n)).unwrap_or(base)
 }
 
+/// A name for a new building: "+B1", "+B2", … not used by a building or an enclosure.
+pub fn free_building_name(layout: &Layout) -> String {
+    let taken = |n: &str| layout.buildings.iter().any(|b| b.name == n) || layout.enclosures.iter().any(|e| e.name == n);
+    (1..).map(|n| format!("+B{n}")).find(|n| !taken(n)).unwrap_or_default()
+}
+
 /// Adds a building with one level at ground level, right of what stands in the plant
 /// already; gives its index.
 pub fn add_building(prj: &mut Project, name: &str) -> Result<usize, String> {

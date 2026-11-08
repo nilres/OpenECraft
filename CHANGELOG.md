@@ -20,6 +20,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   system voltage of their modules, outside the MPP range, beyond the trackers or their
   currents. Commands `add_pv_string`, `set_pv_string`, `pv_strings`
   ([panel layout](docs/features/panel-layout.md)).
+- **Doors and windows open either way or slide:** hinges at the left or right, opening
+  into or out of the room, or a sliding leaf; drawn so in the floor plan and the wall
+  view, the check keeps the way of sliding doors free. Command `set_wall_opening`,
+  `opens` for `add_wall_opening`.
+- **Site in the navigator:** the site at the root above the buildings shows the site
+  plan of all buildings or the whole plant in 3D; a click on a room keeps the 3D view or
+  shows its floor plan; new buildings and levels from the context menus.
 
 - **Flush-mounted cables, wires and tubes in rooms:** each line is laid surface-mounted,
   flush-mounted in the walls or in the floor (a project default in the routing rules,

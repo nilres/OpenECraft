@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Центр от задней стенки в м�
 Centre from the top of the enclosure in mm	Центр от верха шкафа в мм
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Изменяет Т-образный узел (направление, вариант, изображение), угол (плечи), пересечение (линия, вариант, изображение) или мост (направление, изображение)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Изменяет ячейку таблицы: обозначение устройства, текст функции, описание, изделие; номер провода, цвет, сечение, кабель, жила; колодка, клемма
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Изменяет дверь или окно помещения: как открывается (петли слева или справа, внутрь или наружу, или раздвижная), положение вдоль стены, размер и подоконник
 Changes a placed symbol; when it moves, connected wire ends follow	Изменяет размещённый символ; при его перемещении подключённые концы проводов следуют за ним
 Changes a text (only the given properties)	Изменяет текст (только указанные свойства)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Переводит устройства с изделиями, снимаемыми или снятыми с производства, на изделия-преемники (преемники должны быть изделиями проекта)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Расстояние от ра�
 Distribute vertically (default horizontally)	Распределить по вертикали (по умолчанию по горизонтали)
 Distributes symbols, texts and graphics evenly between the first and the last one	Равномерно распределяет символы, тексты и графику между первым и последним
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Коэффициент одновременности нагрузок (0: IEC 61439-1, таблица 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Двери и окна: left_in (по умолчанию, петли слева при виде изнутри, открывается внутрь помещения), right_in, left_out, right_out, slide_left или slide_right
 Draw the contact image below coils (default true)	Рисовать зеркало контактов под катушками (по умолчанию true)
 Draw the junction as a connection dot; its routing stays	Рисовать узел как точку соединения; его маршрут сохраняется
 Draw wires in their colour	Рисовать провода их цветом
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Шланги, г
 Hyperlink (URL)	Гиперссылка (URL)
 IP address or bus address	IP-адрес или адрес на шине
 IT system with distributed neutral	Система IT с распределённой нейтралью
+Id of the door or window (as listed by list_rooms)	Id двери или окна (как в list_rooms)
 Id of the panel item (from mounting_list)	Идентификатор элемента компоновки (из mounting_list)
 Id of the path or reservation	ID пути или резервирования
 Id of the text	Идентификатор текста
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Альбомная (true) или книжн
 Language the project texts are written in, e.g. en	Язык, на котором написаны тексты проекта, например en
 Larger round holes are milled, mm	Круглые отверстия большего размера фрезеруются, мм
 Largest difference between hole and tool, mm	Максимальная разница между отверстием и инструментом, мм
+Left edge from the left end of the wall (seen from inside) in mm	Левый край от левого конца стены (вид изнутри), мм
 Left edge on the face in mm	Левый край на поверхности в мм
 Left edge on the mounting plate in mm	Левый край на монтажной панели в мм
 Left side bayed (no side panel)	Левая сторона пристыкована (без боковой стенки)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Смещени
 One end, e.g. -K1:A1	Один конец, например -K1:A1
 One row per printed label instead of a count	Одна строка на каждый печатаемый маркер вместо количества
 Only devices on these pages (names separated by commas)	Только устройства на этих листах (имена через запятую)
+Only doors and windows open	Открываются только двери и окна
 Only lines without a translation into this language	Только строки без перевода на этот язык
 Only list the new tags, change nothing	Только вывести новые обозначения, ничего не изменять
 Only shows the package, no job is recorded	Только показывает пакет, задание не создаётся
@@ -854,6 +859,7 @@ Unknown station kind: {}	Неизвестный вид станции: {}
 Unknown symbol: {}	Неизвестный символ: {}
 Unknown table: {}	Неизвестная таблица: {}
 Unknown vertical anchor: {}	Неизвестная вертикальная привязка: {}
+Unknown way of opening: {}	Неизвестный способ открывания: {}
 Unknown wire colour {} (IEC 60757: {})	Неизвестный цвет провода {} (IEC 60757: {})
 Use this scheme for the marking export	Использовать эту схему для экспорта маркировки
 Used (mm)	Использовано (мм)
@@ -875,6 +881,7 @@ Width in mm	Ширина в мм
 Width of the path in mm (default 50)	Ширина пути в мм (по умолчанию 50)
 Width, depth and height of a room are at least {} mm	Ширина, глубина и высота помещения — не менее {} мм
 Width, height and depth of an enclosure are at least {} mm	Ширина, высота и глубина корпуса — не менее {} мм
+Windows: height of the bottom edge above the floor in mm	Окна: высота нижнего края над полом, мм
 Wire colour (IEC 60757), e.g. BK	Цвет провода (IEC 60757), например BK
 Wire colour, e.g. BU	Цвет провода, например BU
 Wire colour, e.g. BU (empty = from the potential definition)	Цвет провода, например BU (пусто = из определения потенциала)

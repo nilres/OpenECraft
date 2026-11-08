@@ -9,8 +9,8 @@ use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::geom::p;
 use openecraft_core::model::Project;
-use openecraft_core::panel::{self, Face, ItemKind, Opening, SitePlace};
-use openecraft_i18n::{tr_const, tr_fmt};
+use openecraft_core::panel::{self, Face, ItemKind, Opening, SitePlace, Swing};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
 pub struct Rooms;
@@ -146,8 +146,23 @@ pub static COMMANDS: &[Spec] = &[
             optional("width", Kind::Num, tr_const!("Width in mm")),
             optional("height", Kind::Num, tr_const!("Height in mm")),
             optional("sill", Kind::Num, tr_const!("Windows, wall penetrations and building entries: height of the bottom edge above the floor in mm")),
+            optional("opens", Kind::Str, OPENS),
         ],
         run: add_wall_opening,
+    },
+    Spec {
+        name: "set_wall_opening",
+        help: tr_const!("Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill"),
+        params: &[
+            param("room", Kind::Str, ROOM),
+            param("id", Kind::Int, tr_const!("Id of the door or window (as listed by list_rooms)")),
+            optional("opens", Kind::Str, OPENS),
+            optional("x", Kind::Num, tr_const!("Left edge from the left end of the wall (seen from inside) in mm")),
+            optional("width", Kind::Num, tr_const!("Width in mm")),
+            optional("height", Kind::Num, tr_const!("Height in mm")),
+            optional("sill", Kind::Num, tr_const!("Windows: height of the bottom edge above the floor in mm")),
+        ],
+        run: set_wall_opening,
     },
     Spec {
         name: "mount_on_wall",
@@ -177,6 +192,7 @@ pub static COMMANDS: &[Spec] = &[
 ];
 
 const ROOM: &str = tr_const!("Room (location, e.g. +ROOM1)");
+const OPENS: &str = tr_const!("Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right");
 
 const FACE: &str = tr_const!("wall1, wall2, …, inner1a, inner1b, … (as listed by list_rooms), ceiling or floor; outside1, outside2, … (the outside of a wall) or rooftop");
 
@@ -244,6 +260,9 @@ fn room_json(prj: &Project, ri: usize) -> Value {
                 .map(|i| {
                     let kind = if i.opening.is_cutout() { format!("{:?}", i.kind).to_lowercase() } else { i.opening.key().to_string() };
                     let mut v = json!({ "id": i.id, "kind": kind, "tag": i.tag, "part": i.part, "x": i.x, "y": i.y, "w": i.w, "h": i.h, "z": i.z, "d": i.d, "wall_mounted": panel::mount_ok(prj, e, i) });
+                    if matches!(i.opening, Opening::Door | Opening::Window) {
+                        v["opens"] = json!(i.swing.key());
+                    }
                     if i.opening == Opening::Penetration {
                         let to = panel::penetration_link(prj, &poses, ri, i).map(|l| prj.layout.enclosures[l.to].name.clone());
                         v["leads_to"] = json!(to);
@@ -448,8 +467,29 @@ fn add_wall_opening(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let face = face_arg(prj, ri, a, "wall")?;
     let default = opening.size();
     let size = (a.num("width").is_some() || a.num("height").is_some()).then(|| (a.num("width").unwrap_or(default.0).max(100.0), a.num("height").unwrap_or(default.1).max(100.0)));
+    let swing = swing_arg(a)?;
+    if swing.is_some() && !matches!(opening, Opening::Door | Opening::Window) {
+        return Err(tr("Only doors and windows open").to_string());
+    }
     let id = panel::add_opening(prj, ri, opening, face, a.num("x"), size, a.num("sill"))?;
+    if swing.is_some() {
+        panel::set_opening(prj, ri, id, swing, None, None, None)?;
+    }
     Ok(json!({ "id": id, "room": room_json(prj, ri) }))
+}
+
+fn swing_arg(a: &Args) -> Result<Option<Swing>, String> {
+    a.str("opens").map(|k| Swing::from_key(k).ok_or_else(|| tr_fmt!("Unknown way of opening: {}", k))).transpose()
+}
+
+fn set_wall_opening(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ri = room_index(prj, a.req("room"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let swing = swing_arg(a)?;
+    let old = prj.layout.enclosures[ri].item(id).map(|i| (i.w, i.h)).unwrap_or_default();
+    let size = (a.num("width").is_some() || a.num("height").is_some()).then(|| (a.num("width").unwrap_or(old.0), a.num("height").unwrap_or(old.1)));
+    panel::set_opening(prj, ri, id, swing, a.num("x"), size, a.num("sill"))?;
+    Ok(room_json(prj, ri))
 }
 
 fn mount_on_wall(prj: &mut Project, a: &Args) -> Result<Value, String> {

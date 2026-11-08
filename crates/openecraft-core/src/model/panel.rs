@@ -539,6 +539,9 @@ pub struct PanelItem {
     /// Cutouts in the wall of a room: a door or a window.
     #[serde(skip_serializing_if = "Opening::is_cutout")]
     pub opening: Opening,
+    /// Doors and windows: how their leaf opens.
+    #[serde(skip_serializing_if = "Swing::is_default")]
+    pub swing: Swing,
 }
 
 impl super::Project {
@@ -572,8 +575,7 @@ impl super::Project {
 pub enum Opening {
     #[default]
     Cutout,
-    /// Stands on the floor; its leaf swings into the room, hinged at its left edge
-    /// seen from inside.
+    /// Stands on the floor; its leaf opens as its [`Swing`] says.
     Door,
     Window,
     /// A wall penetration (core hole, cable transit): cables, tubes and pipes pass
@@ -588,6 +590,47 @@ pub enum Opening {
 impl Opening {
     pub fn is_cutout(&self) -> bool {
         *self == Opening::Cutout
+    }
+}
+
+/// How the leaf (sash) of a door or window opens; left and right seen from inside the
+/// room (from the side of the wall it was placed on).
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum Swing {
+    /// Hinged at its left edge, swings into the room.
+    #[default]
+    LeftIn,
+    RightIn,
+    /// Hinged at its left edge, swings out of the room.
+    LeftOut,
+    RightOut,
+    /// Slides along the wall to the left, in front of it inside the room.
+    SlideLeft,
+    SlideRight,
+}
+
+impl Swing {
+    pub fn is_default(&self) -> bool {
+        *self == Swing::LeftIn
+    }
+
+    /// Hinged at its right edge.
+    pub fn right(self) -> bool {
+        matches!(self, Swing::RightIn | Swing::RightOut)
+    }
+
+    /// Swings out of the room.
+    pub fn outward(self) -> bool {
+        matches!(self, Swing::LeftOut | Swing::RightOut)
+    }
+
+    /// Slides instead of swinging: -1 to the left, 1 to the right, 0 for hinged leaves.
+    pub fn slide(self) -> f32 {
+        match self {
+            Swing::SlideLeft => -1.0,
+            Swing::SlideRight => 1.0,
+            _ => 0.0,
+        }
     }
 }
 

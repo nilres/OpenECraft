@@ -84,6 +84,7 @@ Centre from the rear wall in mm	背板からの中心位置 (mm)
 Centre from the top of the enclosure in mm	エンクロージャー上端からの中心位置 (mm)
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	T分岐（方向、種類、表示）、コーナー（側）、交差（線、種類、表示）またはブリッジ（方向、表示）を変更します
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	表のセルを変更します: デバイスタグ、機能テキスト、説明、部品。電線番号、色、断面積、ケーブル、心線。端子台、端子
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	部屋のドアまたは窓を変更します：開き方（左または右吊り元、内開きまたは外開き、または引き戸）、壁に沿った位置、寸法、窓台
 Changes a placed symbol; when it moves, connected wire ends follow	配置済みのシンボルを変更します。移動すると、接続された電線端が追従します
 Changes a text (only the given properties)	テキストを変更します (指定したプロパティのみ)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	生産終了予定または生産終了の部品を使用しているデバイスを後継部品に切り替えます (後継品はプロジェクト部品である必要があります)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	用紙の端から枠までの�
 Distribute vertically (default horizontally)	垂直方向に均等配置 (既定は水平方向)
 Distributes symbols, texts and graphics evenly between the first and the last one	シンボル、テキスト、グラフィックを最初と最後の間に均等に配置します
 Diversity factor of the loads (0: IEC 61439-1, table 101)	負荷の分散率 (0: IEC 61439-1、表 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	ドアと窓：left_in（既定、内側から見て左吊り元、室内側へ開く）、right_in、left_out、right_out、slide_left または slide_right
 Draw the contact image below coils (default true)	コイルの下に接点イメージを描画 (既定 true)
 Draw the junction as a connection dot; its routing stays	分岐を接続点として描きます。経路は保たれます
 Draw wires in their colour	電線を色付きで描画
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	ホース、流�
 Hyperlink (URL)	ハイパーリンク (URL)
 IP address or bus address	IP アドレスまたはバスアドレス
 IT system with distributed neutral	中性線を配線した IT 系統
+Id of the door or window (as listed by list_rooms)	ドアまたは窓の Id（list_rooms の一覧どおり）
 Id of the panel item (from mounting_list)	盤アイテムの ID (mounting_list から)
 Id of the path or reservation	経路または予約領域の ID
 Id of the text	テキストの ID
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	横 (true) または縦 (false)
 Language the project texts are written in, e.g. en	プロジェクトテキストの記述言語 (例: en)
 Larger round holes are milled, mm	これより大きい丸穴はフライス加工 (mm)
 Largest difference between hole and tool, mm	穴と工具の最大差 (mm)
+Left edge from the left end of the wall (seen from inside) in mm	壁の左端からの左端位置（内側から見て）、mm
 Left edge on the face in mm	面上の左端の位置 (mm)
 Left edge on the mounting plate in mm	取付板上の左端の位置 (mm)
 Left side bayed (no side panel)	左側を連結 (側板なし)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	シンボル�
 One end, e.g. -K1:A1	一方の端 (例: -K1:A1)
 One row per printed label instead of a count	数量の代わりに印刷するラベルごとに 1 行
 Only devices on these pages (names separated by commas)	これらのページのデバイスのみ (名前をカンマ区切りで指定)
+Only doors and windows open	開くのはドアと窓だけです
 Only lines without a translation into this language	この言語への翻訳がない行のみ
 Only list the new tags, change nothing	新しいタグを一覧表示するだけで何も変更しない
 Only shows the package, no job is recorded	パッケージを表示するだけで、ジョブは記録しません
@@ -854,6 +859,7 @@ Unknown station kind: {}	不明なステーションの種類: {}
 Unknown symbol: {}	不明なシンボル: {}
 Unknown table: {}	不明な表: {}
 Unknown vertical anchor: {}	不明な垂直アンカー: {}
+Unknown way of opening: {}	不明な開き方：{}
 Unknown wire colour {} (IEC 60757: {})	不明な電線色 {} (IEC 60757: {})
 Use this scheme for the marking export	このスキームをマーキングのエクスポートに使用
 Used (mm)	使用量 (mm)
@@ -875,6 +881,7 @@ Width in mm	幅 (mm)
 Width of the path in mm (default 50)	経路の幅 (mm、既定値 50)
 Width, depth and height of a room are at least {} mm	部屋の幅、奥行き、高さは {} mm 以上です
 Width, height and depth of an enclosure are at least {} mm	エンクロージャーの幅、高さ、奥行きは {} mm 以上です
+Windows: height of the bottom edge above the floor in mm	窓：床からの下端の高さ、mm
 Wire colour (IEC 60757), e.g. BK	電線色 (IEC 60757、例: BK)
 Wire colour, e.g. BU	電線色 (例: BU)
 Wire colour, e.g. BU (empty = from the potential definition)	電線色 (例: BU、空 = 電位定義から)

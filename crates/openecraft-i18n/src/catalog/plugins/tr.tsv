@@ -84,6 +84,7 @@ Centre from the rear wall in mm	mm cinsinden arka duvardan merkez
 Centre from the top of the enclosure in mm	mm cinsinden panonun üstünden merkez
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Bir T parçasını (yön, varyant, gösterim), bir köşeyi (kollar), bir kesişmeyi (çizgi, varyant, gösterim) veya bir köprüyü (yön, gösterim) değiştirir
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Bir tablonun hücresini değiştirir: cihaz etiketi, fonksiyon metni, açıklama, parça; tel numarası, renk, kesit, kablo, damar; şerit, klemens
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Bir odanın kapısını veya penceresini değiştirir: nasıl açıldığı (menteşe solda veya sağda, içe veya dışa, ya da sürgülü), duvar boyunca yeri, boyutu ve denizliği
 Changes a placed symbol; when it moves, connected wire ends follow	Yerleştirilmiş bir sembolü değiştirir; sembol taşındığında bağlı tel uçları onu izler
 Changes a text (only the given properties)	Bir metni değiştirir (yalnızca verilen özellikleri)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Üretimden kalkan veya üretimi durdurulan parçalara sahip cihazları halef parçalara geçirir (halefler proje parçası olmalıdır)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	mm cinsinden çerçevenin kâğ
 Distribute vertically (default horizontally)	Dikey dağıt (varsayılan yatay)
 Distributes symbols, texts and graphics evenly between the first and the last one	Sembolleri, metinleri ve grafikleri ilk ve son öğe arasında eşit olarak dağıtır
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Yüklerin eş zamanlılık faktörü (0: IEC 61439-1, tablo 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Kapılar ve pencereler: left_in (varsayılan, içeriden bakıldığında menteşe solda, odaya açılır), right_in, left_out, right_out, slide_left veya slide_right
 Draw the contact image below coils (default true)	Kontak görüntüsünü bobinlerin altına çiz (varsayılan true)
 Draw the junction as a connection dot; its routing stays	Parçayı bağlantı noktası olarak çiz; yönlendirmesi kalır
 Draw wires in their colour	Telleri kendi renklerinde çiz
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Hortumlar, akı�
 Hyperlink (URL)	Köprü (URL)
 IP address or bus address	IP adresi veya bus adresi
 IT system with distributed neutral	Nötrü dağıtılmış IT sistemi
+Id of the door or window (as listed by list_rooms)	Kapı veya pencerenin kimliği (list_rooms listesindeki gibi)
 Id of the panel item (from mounting_list)	Pano öğesinin kimliği (mounting_list çıktısından)
 Id of the path or reservation	Yolun veya ayrılmış alanın kimliği
 Id of the text	Metnin kimliği
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Yatay (true) veya dikey (false)
 Language the project texts are written in, e.g. en	Proje metinlerinin yazıldığı dil, ör. en
 Larger round holes are milled, mm	Daha büyük yuvarlak delikler frezelenir, mm
 Largest difference between hole and tool, mm	Delik ile takım arasındaki en büyük fark, mm
+Left edge from the left end of the wall (seen from inside) in mm	Duvarın sol ucundan sol kenar (içeriden bakıldığında), mm
 Left edge on the face in mm	mm cinsinden yüzey üzerindeki sol kenar
 Left edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki sol kenar
 Left side bayed (no side panel)	Sol taraf yan yana bağlı (yan panel yok)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Sembol konumun
 One end, e.g. -K1:A1	Bir uç, ör. -K1:A1
 One row per printed label instead of a count	Sayı yerine yazdırılan her etiket için bir satır
 Only devices on these pages (names separated by commas)	Yalnızca bu sayfalardaki cihazlar (adlar virgülle ayrılmış)
+Only doors and windows open	Yalnızca kapılar ve pencereler açılır
 Only lines without a translation into this language	Yalnızca bu dile çevirisi olmayan satırlar
 Only list the new tags, change nothing	Yalnızca yeni etiketleri listele, hiçbir şeyi değiştirme
 Only shows the package, no job is recorded	Yalnızca paketi gösterir, iş emri kaydedilmez
@@ -854,6 +859,7 @@ Unknown station kind: {}	Bilinmeyen istasyon türü: {}
 Unknown symbol: {}	Bilinmeyen sembol: {}
 Unknown table: {}	Bilinmeyen tablo: {}
 Unknown vertical anchor: {}	Bilinmeyen dikey bağlama noktası: {}
+Unknown way of opening: {}	Bilinmeyen açılış şekli: {}
 Unknown wire colour {} (IEC 60757: {})	Bilinmeyen tel rengi {} (IEC 60757: {})
 Use this scheme for the marking export	Etiketleme dışa aktarımı için bu şemayı kullan
 Used (mm)	Kullanılan (mm)
@@ -875,6 +881,7 @@ Width in mm	mm cinsinden genişlik
 Width of the path in mm (default 50)	mm cinsinden yolun genişliği (varsayılan 50)
 Width, depth and height of a room are at least {} mm	Bir odanın genişliği, derinliği ve yüksekliği en az {} mm'dir
 Width, height and depth of an enclosure are at least {} mm	Bir panonun genişliği, yüksekliği ve derinliği en az {} mm'dir
+Windows: height of the bottom edge above the floor in mm	Pencereler: alt kenarın zeminden yüksekliği, mm
 Wire colour (IEC 60757), e.g. BK	Tel rengi (IEC 60757), ör. BK
 Wire colour, e.g. BU	Tel rengi, ör. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Tel rengi, ör. BU (boş = potansiyel tanımından)

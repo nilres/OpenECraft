@@ -48,6 +48,7 @@ A baseline stores the whole project (pages, devices, parts, settings). Releasing
 A cable of the bus type for every connection without cable	Кабель шинного типу для кожного з’єднання без кабелю
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Виріз того самого розміру в тому самому місці бічної стінки сусіда: разом вони утворюють кабельний прохід
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Однойменний файл у папці отримує нову версію (отримання для редагування й повернення), інакше файл додається
+A level on top of the highest one	Поверх над найвищим
 A new project	Новий проєкт
 A new release is downloaded in the background and installed when you close OpenECraft.	Нова версія завантажується у фоновому режимі й встановлюється під час закриття OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Нова версія завантажується у фоновому режимі й замінює цю інсталяцію; вона використовується з наступного запуску.
@@ -204,6 +205,7 @@ Bottom edges	Нижні краї
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Нижній край корпусу (без цоколя) над підлогою; висоти перевіряються, якщо його відомо або корпус стоїть на цоколі
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Відключна здатність щодо струму короткого замикання на кожному захисному пристрої мережі, вимкнення за найменшого струму замикання в кінці його кола, стійкість кабелів до короткого замикання та селективність із пристроєм, розташованим вище за схемою.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Міст: чотири проводи; з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного
+Building {} added with a level at ground level	Будівлю {} додано з поверхом на рівні землі
 Built-in frames cannot be changed; copy one to adapt it.	Вбудовані рамки не можна змінити; скопіюйте рамку, щоб адаптувати її.
 Built-in scheme: copy it to change it.	Вбудована схема: скопіюйте її, щоб змінити.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Вбудовані основні написи доступні лише для читання – скористайтеся «Копіювати як новий», щоб створити власний.
@@ -298,6 +300,8 @@ Click to place the markup text	Клацніть, щоб розмістити т�
 Click to place the text from the field below	Клацніть, щоб розмістити текст із поля нижче
 Click to put new rooms on this level; drop rooms onto it to move them here	Клацніть, щоб нові приміщення створювалися на цьому поверсі; відпустіть тут приміщення, щоб перемістити їх сюди
 Click to show	Клацніть, щоб показати
+Click to show the building in the site plan; right-click for new levels	Клацніть, щоб показати будівлю на ситуаційному плані; правий клац — нові поверхи
+Click to show the site plan of the buildings, or all of the plant in the 3D view	Клацніть, щоб показати ситуаційний план будівель або всю установку в 3D-вигляді
 Click to show, right click for more	Клацніть, щоб показати, права кнопка — більше
 Click two corners	Клацніть два кути
 Click two nodes to connect them	Клацніть два вузли, щоб з’єднати їх
@@ -758,6 +762,7 @@ Hose defaults and PCT loops of the pre-planning	Параметри шлангі�
 Hose number	Номер шланга
 Hoses and pipes	Шланги й трубопроводи
 Hoses rated below it are errors; 0 = not checked	Шланги з меншим номінальним тиском – помилки; 0 = не перевіряється
+How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Як відчиняється стулка: петлі біля лівого чи правого краю (вигляд зсередини приміщення), всередину чи назовні приміщення, або зсувається вздовж стіни
 IP / bus address	IP-адреса / адреса на шині
 ISO 639-1 language code	Код мови ISO 639-1
 Identifiers	Позначення
@@ -881,6 +886,7 @@ Letters, digits, space, - _ . (up to 64 characters)	Літери, цифри, п
 Level of a multi-level terminal: upper levels sit on the block of the terminal before	Ярус багатоярусної клеми: верхні яруси розташовуються на блоці попередньої клеми
 Level of this kind of message	Рівень цього типу повідомлень
 Level on top	Поверх зверху
+Level {} added to building {}; new rooms go onto it	Поверх {} додано до будівлі {}; нові приміщення розміщуються на ньому
 Levels	Поверхи
 Library	Бібліотека
 Limits	Граничні значення
@@ -1174,6 +1180,7 @@ Opened {} from the project server	{} відкрито із сервера про
 Opening	Проріз
 Opening in the mounting plate / door: click two corners (round: in the properties)	Отвір у монтажній панелі / дверях: клацніть два кути (круглий: у властивостях)
 Opening {}…	Відкриття {}…
+Opens	Відчинення
 Opens the page of the release	Відкриває сторінку випуску
 Opens the pages for printing in the browser with its print dialog	Відкриває сторінки для друку в браузері з його діалоговим вікном друку
 Open…	Відкрити…
@@ -1647,7 +1654,9 @@ Signed in to {} as {}	Вхід у {} виконано як {}
 Signed out of Vault	Ви вийшли з Vault
 Single-line	Однолінійна
 Single-line symbols for the power devices of the schematic that have none yet, on a new overview page	Однолінійні символи для силових пристроїв схеми, які їх ще не мають, на новій оглядовій сторінці
+Site	Ділянка
 Site plan	Генплан
+Site plan, building {}	Ситуаційний план, будівля {}
 Size {} × {} mm	Розмір {} × {} мм
 Slot	Паз
 Slot depth	Глибина штроби
@@ -1903,6 +1912,7 @@ Welcome to OpenECraft	Ласкаво просимо до OpenECraft
 What is new	Що нового
 What should be checked or changed?	Що слід перевірити або змінити?
 Wheel / right or middle drag	Коліщатко / перетягування правою або середньою кнопкою
+Wheel: zoom · drag: move · click on a room: its floor plan	Коліщатко: масштаб · перетягування: зсув · клац по приміщенню: його план
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Коліщатко: масштаб · правий клік: скасувати · графіка прив’язується до 0,5 мм, точки підключення – до сітки 4 мм
 When it differs from the page	Якщо відрізняється від сторінки
 Where	Положення
@@ -2204,6 +2214,7 @@ x y	x y
 {} °C (max.)	{} °C (макс.)
 {} × {} pixels, {}	{} × {} пікселів, {}
 {} – {} ({} pages)	{} – {} (сторінок: {})
+{}: click to show its floor plan	{}: клацніть, щоб показати план
 {}: drag to move it, R turns it, a double-click opens it	{}: перетягніть, щоб перемістити, R повертає, подвійне клацання відкриває
 {}: drag to move it, a double-click shows the floor	{}: перетягніть, щоб перемістити, подвійне клацання показує підлогу
 {}: nothing to change	{}: нічого змінювати

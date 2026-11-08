@@ -5,7 +5,8 @@
 //! [`openecraft_core::panel::solar`]).
 
 use super::App;
-use egui::{pos2, vec2, Color32, Pos2, RichText, Sense, Stroke};
+use crate::panel_ui::site_plan::{self, SitePlan};
+use egui::{vec2, RichText, Sense};
 use openecraft_core::model::Project;
 use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, buildings as bld, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
@@ -27,14 +28,6 @@ pub struct BuildingsUi {
     stair_kind: StairKind,
     roof_shape: RoofShape,
 }
-
-/// Corners in the floor plan.
-type Outline = Vec<[f32; 2]>;
-
-/// Glass of roof windows in the site plan.
-const GLASS: Color32 = Color32::from_rgba_premultiplied(60, 100, 140, 120);
-/// PV modules in the site plan.
-const PV_MODULE: Color32 = Color32::from_rgba_premultiplied(20, 30, 70, 200);
 
 /// A part to choose: its number, description and size (width, height, depth).
 struct Choice {
@@ -241,12 +234,6 @@ fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView) ->
     add_string
 }
 
-/// A free name for a new building: `+B1`, `+B2`, …
-fn free_building_name(prj: &Project) -> String {
-    let taken = |n: &str| prj.layout.buildings.iter().any(|b| b.name == n) || prj.layout.enclosures.iter().any(|e| e.name == n);
-    (1..).map(|n| format!("+B{n}")).find(|n| !taken(n)).unwrap_or_default()
-}
-
 /// The building entries of all rooms: (item id, "room – wall n").
 fn entry_choices(prj: &Project) -> Vec<(u64, String)> {
     let layout = &prj.layout;
@@ -269,7 +256,7 @@ impl App {
         let (prj, st) = (&mut self.session.prj, &mut self.buildings_ui);
         ui.horizontal_wrapped(|ui| {
             if icons::text_button(ui, Icon::Plus, tr("New building")).on_hover_text(tr("A building with one level at ground level, beside what stands in the plant")).clicked() {
-                let name = free_building_name(prj);
+                let name = bld::free_building_name(&prj.layout);
                 match bld::add_building(prj, &name) {
                     Ok(bi) => {
                         st.sel = bi;
@@ -322,7 +309,7 @@ impl App {
             ui.separator();
             links_section(ui, prj, st);
             ui.separator();
-            site_plan(ui, prj, st);
+            site_plan_section(ui, prj, st);
         });
     }
 }
@@ -813,7 +800,7 @@ fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
 /// The site plan: the rooms of all buildings seen from above (those of the level shown
 /// highlighted), the shafts, the stairs reaching the level shown, the roofs with their
 /// windows and the links between the buildings.
-fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
+fn site_plan_section(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
     let layout = &prj.layout;
     let Some(b) = layout.buildings.get(st.sel) else { return };
     ui.horizontal(|ui| {
@@ -826,148 +813,7 @@ fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
             }
         });
     });
-    let poses = panel::site_poses(prj);
-    // Every room's outline in the plant (x, z).
-    let rooms: Vec<(usize, Vec<[f32; 2]>)> = panel::rooms(layout)
-        .into_iter()
-        .map(|ri| {
-            let pts = panel::outline(&layout.enclosures[ri])
-                .into_iter()
-                .map(|[x, z]| {
-                    let q = poses[ri].apply([x, 0.0, z]);
-                    [q[0], q[2]]
-                })
-                .collect();
-            (ri, pts)
-        })
-        .collect();
-    let links: Vec<Vec<[f32; 2]>> = layout.site_links.iter().filter_map(|l| bld::site_link_path(prj, &poses, l)).map(|p| p.into_iter().map(|q| [q[0], q[2]]).collect()).collect();
-    let shafts: Vec<[[f32; 2]; 4]> = b.shafts.iter().map(|s| bld::shaft_corners(b, s)).collect();
-    // The roofs (their slopes and windows) and stairs of every building in the plant.
-    let to_plant = |b: &panel::Building, q: [f32; 2]| {
-        let v = bld::building_pose(b).apply([q[0], 0.0, q[1]]);
-        [v[0], v[2]]
-    };
-    let roof_slopes: Vec<(usize, Vec<[f32; 2]>)> = layout.buildings.iter().enumerate().flat_map(|(bi, b)| b.roofs.iter().flat_map(move |r| roofs::slopes(r).into_iter().map(move |p| (bi, p.into_iter().map(|q| to_plant(b, q)).collect())))).collect();
-    let roof_windows: Vec<Vec<[f32; 2]>> = layout
-        .buildings
-        .iter()
-        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.windows.iter().filter_map(move |w| roofs::window_corners(r, w)).map(move |(c, _)| c.iter().map(|v| to_plant(b, [v[0], v[2]])).collect())))
-        .collect();
-    let pv_modules: Vec<Vec<[f32; 2]>> = layout
-        .buildings
-        .iter()
-        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.solar.iter().flat_map(move |a| solar::module_outlines(r, a)).map(move |m| m.iter().map(|&q| to_plant(b, q)).collect())))
-        .collect();
-    let stair_lines: Vec<(Vec<Outline>, Outline)> = b
-        .stairs
-        .iter()
-        .filter_map(|s| stairs::geometry(b, s))
-        .filter(|g| st.level == 0 || b.levels.iter().any(|l| l.id == st.level && g.from <= l.elevation + 0.5 && g.to >= l.elevation - 0.5))
-        .map(|g| (g.pieces.iter().map(|p| p.outline.iter().map(|&q| to_plant(b, q)).collect()).collect(), g.walk.iter().map(|&q| to_plant(b, q)).collect()))
-        .collect();
-    let all: Vec<[f32; 2]> = rooms.iter().flat_map(|r| r.1.iter().copied()).chain(links.iter().flatten().copied()).chain(shafts.iter().flatten().copied()).chain(roof_slopes.iter().flat_map(|r| r.1.iter().copied())).collect();
     let (size, _) = ui.allocate_exact_size(vec2(ui.available_width(), 320.0), Sense::hover());
-    let painter = ui.painter_at(size);
-    let visuals = ui.visuals();
-    painter.rect_filled(size, 2.0, visuals.extreme_bg_color);
-    if all.is_empty() {
-        painter.text(size.center(), egui::Align2::CENTER_CENTER, tr("No rooms in the plant yet"), egui::FontId::proportional(13.0), visuals.weak_text_color());
-        return;
-    }
-    let (lo, hi) = panel::bounds(&all);
-    let span = [(hi[0] - lo[0]).max(1000.0), (hi[1] - lo[1]).max(1000.0)];
-    let inner = size.shrink(16.0);
-    let scale = (inner.width() / span[0]).min(inner.height() / span[1]);
-    let origin = inner.center() - vec2((lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0) * scale;
-    let at = |q: [f32; 2]| -> Pos2 { origin + vec2(q[0], q[1]) * scale };
-    let line = visuals.text_color();
-    let weak = visuals.weak_text_color();
-    let accent = visuals.selection.stroke.color;
-    // Names already written: those of rooms above each other are written one below the
-    // other.
-    let mut labels: Vec<Pos2> = Vec::new();
-    for (ri, pts) in &rooms {
-        let e = &layout.enclosures[*ri];
-        let in_building = bld::building_of(layout, *ri) == Some(st.sel);
-        let on_level = in_building && (st.level == 0 || e.level == st.level);
-        let pts: Vec<Pos2> = pts.iter().map(|&q| at(q)).collect();
-        let (stroke, fill) = if on_level { (Stroke::new(1.5, line), visuals.selection.bg_fill.gamma_multiply(0.35)) } else { (Stroke::new(1.0, weak), Color32::TRANSPARENT) };
-        if fill != Color32::TRANSPARENT {
-            // Rooms at right angles: their cells are filled one by one.
-            for (a, c) in panel::floor_cells(e) {
-                let corners = [[a[0], a[2]], [c[0], a[2]], [c[0], c[2]], [a[0], c[2]]].map(|[x, z]| {
-                    let q = poses[*ri].apply([x, 0.0, z]);
-                    at([q[0], q[2]])
-                });
-                painter.add(egui::Shape::convex_polygon(corners.to_vec(), fill, Stroke::NONE));
-            }
-        }
-        painter.add(egui::Shape::closed_line(pts.clone(), stroke));
-        if on_level {
-            let mut c = pts.iter().fold(Pos2::ZERO, |s, p| s + p.to_vec2()) / pts.len() as f32;
-            while labels.iter().any(|l| (l.x - c.x).abs() < 40.0 && (l.y - c.y).abs() < 13.0) {
-                c.y += 13.0;
-            }
-            labels.push(c);
-            painter.text(c, egui::Align2::CENTER_CENTER, e.name.as_str(), egui::FontId::proportional(11.0), line);
-        }
-    }
-    // The roofs: their eaves, ridges and hips dashed, the roof windows.
-    for (bi, slope) in &roof_slopes {
-        let pts: Vec<Pos2> = slope.iter().map(|&q| at(q)).collect();
-        let color = if *bi == st.sel { line.gamma_multiply(0.7) } else { weak };
-        for k in 0..pts.len() {
-            painter.extend(egui::Shape::dashed_line(&[pts[k], pts[(k + 1) % pts.len()]], Stroke::new(1.0, color), 5.0, 3.0));
-        }
-    }
-    for w in &roof_windows {
-        let pts: Vec<Pos2> = w.iter().map(|&q| at(q)).collect();
-        painter.add(egui::Shape::convex_polygon(pts, GLASS, Stroke::new(1.0, line)));
-    }
-    for m in &pv_modules {
-        let pts: Vec<Pos2> = m.iter().map(|&q| at(q)).collect();
-        painter.add(egui::Shape::convex_polygon(pts, PV_MODULE, Stroke::new(0.5, weak)));
-    }
-    // The stairs reaching the level shown: their steps and the walking line with its arrow.
-    for (pieces, walk) in &stair_lines {
-        for p in pieces {
-            painter.add(egui::Shape::closed_line(p.iter().map(|&q| at(q)).collect(), Stroke::new(1.0, line)));
-        }
-        let pts: Vec<Pos2> = walk.iter().map(|&q| at(q)).collect();
-        painter.add(egui::Shape::line(pts.clone(), Stroke::new(1.5, accent)));
-        if let [.., a, b] = pts.as_slice() {
-            let d = (*b - *a).normalized() * 7.0;
-            painter.add(egui::Shape::convex_polygon(vec![*b, *b - d + d.rot90() * 0.5, *b - d - d.rot90() * 0.5], accent, Stroke::NONE));
-        }
-    }
-    for s in &shafts {
-        let pts: Vec<Pos2> = s.iter().map(|&q| at(q)).collect();
-        painter.add(egui::Shape::closed_line(pts.clone(), Stroke::new(1.5, accent)));
-        painter.line_segment([pts[0], pts[2]], Stroke::new(1.0, accent));
-        painter.line_segment([pts[1], pts[3]], Stroke::new(1.0, accent));
-    }
-    for (path, l) in links.iter().zip(&layout.site_links) {
-        let pts: Vec<Pos2> = path.iter().map(|&q| at(q)).collect();
-        let color = crate::style::lock();
-        for w in pts.windows(2) {
-            painter.extend(egui::Shape::dashed_line(&[w[0], w[1]], Stroke::new(2.0, color), 6.0, 4.0));
-        }
-        if let Some(m) = pts.get(pts.len() / 2) {
-            painter.text(*m + vec2(4.0, -4.0), egui::Align2::LEFT_BOTTOM, format!("{} ({})", l.name, l.kind.title()), egui::FontId::proportional(11.0), color);
-        }
-    }
-    for (bi, b) in layout.buildings.iter().enumerate() {
-        let corners: Vec<[f32; 2]> = rooms.iter().filter(|r| bld::building_of(layout, r.0) == Some(bi)).flat_map(|r| r.1.iter().copied()).collect();
-        let place = if corners.is_empty() { [b.site.x, b.site.z] } else { panel::bounds(&corners).0 };
-        let color = if bi == st.sel { accent } else { weak };
-        painter.text(at(place) - vec2(0.0, 4.0), egui::Align2::LEFT_BOTTOM, b.name.as_str(), egui::FontId::proportional(13.0), color);
-    }
-    // Scale bar: 10 m.
-    let bar = 10_000.0 * scale;
-    if bar > 20.0 && bar < size.width() - 40.0 {
-        let p0 = pos2(size.left() + 12.0, size.bottom() - 12.0);
-        painter.line_segment([p0, p0 + vec2(bar, 0.0)], Stroke::new(1.5, weak));
-        painter.text(p0 + vec2(bar / 2.0, -3.0), egui::Align2::CENTER_BOTTOM, "10 m", egui::FontId::proportional(10.0), weak);
-    }
+    let plan = SitePlan { building: Some(st.sel), level: st.level, ..Default::default() };
+    site_plan::paint(ui, size, prj, &plan, None);
 }

@@ -84,6 +84,7 @@ Centre from the rear wall in mm	距后板的中心距离 (mm)
 Centre from the top of the enclosure in mm	距机柜顶部的中心距离 (mm)
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	更改T型节点（方向、变体、表示方式）、拐角（分支）、交叉（直线、变体、表示方式）或桥接（方向、表示方式）
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	更改表格的单元格：设备标识符、功能文本、描述、部件；线号、颜色、截面积、电缆、芯线；端子排、端子
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	更改房间的门或窗：开启方式（左侧或右侧铰链、向内或向外开、或推拉）、沿墙的位置、尺寸和窗台
 Changes a placed symbol; when it moves, connected wire ends follow	更改已放置的符号；移动符号时，所连接的导线端会跟随移动
 Changes a text (only the given properties)	更改文本（仅更改给定的属性）
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	将使用即将停产或已停产部件的设备切换为后续部件（后续部件必须是项目部件）
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	边框到纸张边缘的距离 
 Distribute vertically (default horizontally)	垂直分布（默认水平）
 Distributes symbols, texts and graphics evenly between the first and the last one	在第一个和最后一个之间均匀分布符号、文本和图形
 Diversity factor of the loads (0: IEC 61439-1, table 101)	负载的同时系数（0：IEC 61439-1，表 101）
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	门和窗：left_in（默认，从内侧看左侧铰链，向房间内开）、right_in、left_out、right_out、slide_left 或 slide_right
 Draw the contact image below coils (default true)	在线圈下方绘制触点映像（默认 true）
 Draw the junction as a connection dot; its routing stays	将节点绘制为连接点；其走向保持不变
 Draw wires in their colour	按导线颜色绘制导线
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	软管、流体�
 Hyperlink (URL)	超链接 (URL)
 IP address or bus address	IP 地址或总线地址
 IT system with distributed neutral	带中性线的 IT 系统
+Id of the door or window (as listed by list_rooms)	门或窗的 Id（如 list_rooms 所列）
 Id of the panel item (from mounting_list)	布局元件的 ID（来自 mounting_list）
 Id of the path or reservation	路径或预留的 ID
 Id of the text	文本的 ID
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	横向 (true) 或纵向 (false)
 Language the project texts are written in, e.g. en	编写项目文本所用的语言，例如 en
 Larger round holes are milled, mm	大于此值的圆孔将被铣削，mm
 Largest difference between hole and tool, mm	孔与刀具之间的最大差值，mm
+Left edge from the left end of the wall (seen from inside) in mm	左边缘距墙左端的距离（从内侧看），mm
 Left edge on the face in mm	面上的左边缘 (mm)
 Left edge on the mounting plate in mm	安装板上的左边缘 (mm)
 Left side bayed (no side panel)	左侧并柜（无侧板）
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	相对符号�
 One end, e.g. -K1:A1	一端，例如 -K1:A1
 One row per printed label instead of a count	每个打印的标签一行，而不是数量
 Only devices on these pages (names separated by commas)	仅限这些页上的设备（名称以逗号分隔）
+Only doors and windows open	只有门和窗可以开启
 Only lines without a translation into this language	仅限未翻译为此语言的行
 Only list the new tags, change nothing	仅列出新标识符，不做任何更改
 Only shows the package, no job is recorded	仅显示包，不记录作业
@@ -854,6 +859,7 @@ Unknown station kind: {}	未知站类型：{}
 Unknown symbol: {}	未知符号：{}
 Unknown table: {}	未知表格：{}
 Unknown vertical anchor: {}	未知垂直锚点：{}
+Unknown way of opening: {}	未知的开启方式：{}
 Unknown wire colour {} (IEC 60757: {})	未知导线颜色 {}（IEC 60757：{}）
 Use this scheme for the marking export	将此方案用于标记导出
 Used (mm)	已用 (mm)
@@ -875,6 +881,7 @@ Width in mm	宽度 (mm)
 Width of the path in mm (default 50)	路径宽度 (mm)（默认 50）
 Width, depth and height of a room are at least {} mm	房间的宽度、深度和高度至少为 {} mm
 Width, height and depth of an enclosure are at least {} mm	机柜的宽度、高度和深度至少为 {} mm
+Windows: height of the bottom edge above the floor in mm	窗：下边缘距地面的高度，mm
 Wire colour (IEC 60757), e.g. BK	导线颜色 (IEC 60757)，例如 BK
 Wire colour, e.g. BU	导线颜色，例如 BU
 Wire colour, e.g. BU (empty = from the potential definition)	导线颜色，例如 BU（空 = 取自电位定义）

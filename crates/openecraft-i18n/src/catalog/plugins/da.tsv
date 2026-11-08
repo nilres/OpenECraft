@@ -84,6 +84,7 @@ Centre from the rear wall in mm	Centrum fra bagvæggen i mm
 Centre from the top of the enclosure in mm	Centrum fra kapslingens top i mm
 Changes a T-junction (direction, variant, representation), a corner (arms), a crossing (line, variant, representation) or a bridge (direction, representation)	Ændrer et T-stykke (retning, variant, fremstilling), et hjørne (arme), en krydsning (linje, variant, fremstilling) eller en bro (retning, fremstilling)
 Changes a cell of a table: device tag, function text, description, part; wire number, colour, cross-section, cable, core; strip, terminal	Ændrer en celle i en tabel: enhedsmærkning, funktionstekst, beskrivelse, artikel; ledningsnummer, farve, tværsnit, kabel, leder; klemrække, klemme
+Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Ændrer en dør eller et vindue i et rum: hvordan det åbner (hængsler til venstre eller højre, indad eller udad, eller skydes), dets plads langs væggen, størrelse og brystning
 Changes a placed symbol; when it moves, connected wire ends follow	Ændrer et placeret symbol; når det flyttes, følger tilsluttede ledningsender med
 Changes a text (only the given properties)	Ændrer en tekst (kun de angivne egenskaber)
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Skifter enheder med udfasede eller udgåede artikler til efterfølgerartiklerne (efterfølgerne skal være projektartikler)
@@ -198,6 +199,7 @@ Distance of the border from the paper edge in mm	Rammens afstand fra papirkanten
 Distribute vertically (default horizontally)	Fordel lodret (standard vandret)
 Distributes symbols, texts and graphics evenly between the first and the last one	Fordeler symboler, tekster og grafik jævnt mellem det første og det sidste
 Diversity factor of the loads (0: IEC 61439-1, table 101)	Belastningernes samtidighedsfaktor (0: IEC 61439-1, tabel 101)
+Doors and windows: left_in (default, hinged left seen from inside, opens into the room), right_in, left_out, right_out, slide_left or slide_right	Døre og vinduer: left_in (standard, hængsler til venstre set indefra, åbner ind i rummet), right_in, left_out, right_out, slide_left eller slide_right
 Draw the contact image below coils (default true)	Tegn kontaktspejlet under spoler (standard true)
 Draw the junction as a connection dot; its routing stays	Tegn T-stykket som et forbindelsespunkt; dets føring bevares
 Draw wires in their colour	Tegn ledninger i deres farve
@@ -283,6 +285,7 @@ Hoses, fluid nets and groups, electro-fluid links and PCT loops	Slanger, fluidne
 Hyperlink (URL)	Hyperlink (URL)
 IP address or bus address	IP-adresse eller busadresse
 IT system with distributed neutral	IT-system med fremført nulleder
+Id of the door or window (as listed by list_rooms)	Id for døren eller vinduet (som vist af list_rooms)
 Id of the panel item (from mounting_list)	Layoutelementets id (fra mounting_list)
 Id of the path or reservation	Id for vejen eller reservationen
 Id of the text	Tekstens id
@@ -316,6 +319,7 @@ Landscape (true) or portrait (false)	Liggende (true) eller stående (false)
 Language the project texts are written in, e.g. en	Sprog, som projektteksterne er skrevet på, f.eks. en
 Larger round holes are milled, mm	Større runde huller fræses, mm
 Largest difference between hole and tool, mm	Største forskel mellem hul og værktøj, mm
+Left edge from the left end of the wall (seen from inside) in mm	Venstre kant fra væggens venstre ende (set indefra) i mm
 Left edge on the face in mm	Venstre kant på fladen i mm
 Left edge on the mounting plate in mm	Venstre kant på monteringspladen i mm
 Left side bayed (no side panel)	Venstre side sammenbygget (ingen sideplade)
@@ -488,6 +492,7 @@ Offset from the symbol position in mm (default: below the symbol)	Forskydning fr
 One end, e.g. -K1:A1	Den ene ende, f.eks. -K1:A1
 One row per printed label instead of a count	Én række pr. udskrevet mærkat i stedet for et antal
 Only devices on these pages (names separated by commas)	Kun enheder på disse sider (navne adskilt af kommaer)
+Only doors and windows open	Kun døre og vinduer åbner
 Only lines without a translation into this language	Kun linjer uden oversættelse til dette sprog
 Only list the new tags, change nothing	Vis kun de nye betegnelser, ændr intet
 Only shows the package, no job is recorded	Viser kun pakken, der registreres ingen ordre
@@ -854,6 +859,7 @@ Unknown station kind: {}	Ukendt stationstype: {}
 Unknown symbol: {}	Ukendt symbol: {}
 Unknown table: {}	Ukendt tabel: {}
 Unknown vertical anchor: {}	Ukendt lodret anker: {}
+Unknown way of opening: {}	Ukendt måde at åbne på: {}
 Unknown wire colour {} (IEC 60757: {})	Ukendt ledningsfarve {} (IEC 60757: {})
 Use this scheme for the marking export	Brug dette skema til mærkningseksporten
 Used (mm)	Brugt (mm)
@@ -875,6 +881,7 @@ Width in mm	Bredde i mm
 Width of the path in mm (default 50)	Vejens bredde i mm (standard 50)
 Width, depth and height of a room are at least {} mm	Bredde, dybde og højde for et rum er mindst {} mm
 Width, height and depth of an enclosure are at least {} mm	Bredde, højde og dybde for en kapsling er mindst {} mm
+Windows: height of the bottom edge above the floor in mm	Vinduer: højde af underkanten over gulvet i mm
 Wire colour (IEC 60757), e.g. BK	Ledningsfarve (IEC 60757), f.eks. BK
 Wire colour, e.g. BU	Ledningsfarve, f.eks. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Ledningsfarve, f.eks. BU (tom = fra potentialedefinitionen)

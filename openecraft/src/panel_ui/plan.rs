@@ -603,16 +603,43 @@ impl PanelUi {
                 painter.line_segment([at(mid, 120.0), at(mid + 50.0, 60.0)], stroke);
                 continue;
             }
-            if it.opening == Opening::Door {
+            let slide = it.swing.slide();
+            if it.opening == Opening::Door && slide != 0.0 {
+                // A sliding leaf in front of the wall, its way beside the opening dashed.
+                let leaf = Stroke::new(if selected { 3.0 } else { 2.0 }, ink);
+                let y = panel::SLIDE_DEPTH / 2.0;
+                painter.line_segment([at(it.x, y), at(it.x + it.w, y)], leaf);
+                let (a, b) = if slide < 0.0 { (it.x - it.w, it.x) } else { (it.x + it.w, it.x + 2.0 * it.w) };
+                painter.extend(Shape::dashed_line(&[at(a, y), at(b, y)], Stroke::new(1.0, ink.gamma_multiply(0.6)), 6.0, 4.0));
+                let tip = at(it.x + it.w / 2.0 + slide * it.w * 0.3, y + 120.0);
+                let tail = at(it.x + it.w / 2.0 - slide * it.w * 0.3, y + 120.0);
+                painter.arrow(tail, tip - tail, Stroke::new(1.0, ink.gamma_multiply(0.8)));
+            } else if it.opening == Opening::Door {
+                // The leaf at its hinges, opened at a right angle, and its swing; into
+                // the room or out of it from the outer surface of the wall.
                 let leaf = Stroke::new(if selected { 2.0 } else { 1.2 }, ink);
-                painter.line_segment([at(it.x, 0.0), at(it.x, it.w)], leaf);
+                let (hinge, dir) = if it.swing.right() { (it.x + it.w, -1.0) } else { (it.x, 1.0) };
+                let (base, out) = if it.swing.outward() { (-t, -1.0) } else { (0.0, 1.0) };
+                painter.line_segment([at(hinge, base), at(hinge, base + out * it.w)], leaf);
                 let arc: Vec<Pos2> = (0..=16)
                     .map(|k| {
                         let a = std::f32::consts::FRAC_PI_2 * k as f32 / 16.0;
-                        at(it.x + it.w * a.cos(), it.w * a.sin())
+                        at(hinge + dir * it.w * a.cos(), base + out * it.w * a.sin())
                     })
                     .collect();
                 painter.add(Shape::line(arc, Stroke::new(1.0, ink.gamma_multiply(0.6))));
+            } else if slide != 0.0 {
+                // Two sashes side by side in the wall, the moving one with an arrow.
+                let frame = Stroke::new(1.2, ink);
+                painter.line_segment([at(it.x, 0.0), at(it.x + it.w, 0.0)], frame);
+                painter.line_segment([at(it.x, -t), at(it.x + it.w, -t)], frame);
+                let glass = Stroke::new(if selected { 4.0 } else { 3.0 }, pal.highlight);
+                let mid = it.x + it.w / 2.0;
+                painter.line_segment([at(it.x, -t * 0.65), at(mid + 40.0, -t * 0.65)], glass);
+                painter.line_segment([at(mid - 40.0, -t * 0.35), at(it.x + it.w, -t * 0.35)], glass);
+                let tip = at(mid + slide * it.w * 0.3, 160.0);
+                let tail = at(mid - slide * it.w * 0.3, 160.0);
+                painter.arrow(tail, tip - tail, Stroke::new(1.0, ink.gamma_multiply(0.8)));
             } else {
                 // Frame on both faces of the wall and the glass between them.
                 let frame = Stroke::new(1.2, ink);

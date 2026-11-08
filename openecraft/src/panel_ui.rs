@@ -22,6 +22,7 @@ mod nav3d;
 mod plan;
 mod routing_ui;
 mod scene3d;
+pub(crate) mod site_plan;
 mod view3d;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -432,6 +433,10 @@ pub struct PanelUi {
     pub show_lineup: bool,
     /// The 3D view shows all enclosures at their places in the room.
     pub show_site: bool,
+    /// The site (the root of the navigator) is shown instead of an enclosure: the site
+    /// plan of the buildings, or all of the plant in the 3D view.
+    pub site: bool,
+    site_plan: site_plan::SitePlan,
     /// The 3D view of a room in a building shows the whole building: its rooms, floor
     /// slabs, stairs and roofs.
     pub show_building: bool,
@@ -542,6 +547,21 @@ enum NavAction {
     Put(usize, u64),
     /// Takes a room out of its building.
     TakeOut(usize),
+    /// Shows a room: in the 3D view when it is shown, otherwise its floor plan.
+    Open(usize),
+    /// Shows the site, with a building highlighted.
+    Site(Option<usize>),
+    NewBuilding,
+    /// A level on top of a building, or below its lowest one (`true`).
+    NewLevel(usize, bool),
+}
+
+/// A heading of the navigator: the site, a building (index) or a level (id).
+#[derive(Clone, Copy, PartialEq, Debug)]
+enum Heading {
+    Site,
+    Building(usize),
+    Level(u64),
 }
 
 impl Default for PanelUi {
@@ -564,6 +584,8 @@ impl Default for PanelUi {
             show_heat: false,
             show_lineup: true,
             show_site: false,
+            site: false,
+            site_plan: site_plan::SitePlan::default(),
             show_building: false,
             show_zones: false,
             open_walls: false,
@@ -923,24 +945,30 @@ impl PanelUi {
         let lineups = panel::lineups(&prj.layout);
         let room_of = |lu: &Vec<usize>| lu.first().and_then(|&i| panel::room_of(&prj.layout, i));
         let mut rows: Vec<(usize, usize)> = Vec::new();
-        let mut headings: Vec<(usize, usize, String, Option<u64>)> = Vec::new();
+        let mut headings: Vec<(usize, usize, String, Heading)> = Vec::new();
         let room_rows = |rows: &mut Vec<(usize, usize)>, r: usize, indent: usize| {
             rows.push((indent, r));
             for lu in lineups.iter().filter(|lu| room_of(lu) == Some(r)) {
                 rows.extend(lu.iter().enumerate().map(|(k, &i)| (indent + 1 + usize::from(k > 0), i)));
             }
         };
-        for b in &prj.layout.buildings {
-            headings.push((rows.len(), 0, tr_fmt!("{}  building", b.name), None));
+        // The site at the root: the buildings and the rooms outside them.
+        let site = !prj.layout.buildings.is_empty() || !panel::rooms(&prj.layout).is_empty();
+        if site {
+            headings.push((0, 0, tr("Site").to_string(), Heading::Site));
+        }
+        let d = usize::from(site);
+        for (bi, b) in prj.layout.buildings.iter().enumerate() {
+            headings.push((rows.len(), d, tr_fmt!("{}  building", b.name), Heading::Building(bi)));
             for l in b.levels.iter().rev() {
-                headings.push((rows.len(), 1, tr_fmt!("{}  level, floor at {} m", l.name, format!("{:.2}", l.elevation / 1000.0)), Some(l.id)));
+                headings.push((rows.len(), d + 1, tr_fmt!("{}  level, floor at {} m", l.name, format!("{:.2}", l.elevation / 1000.0)), Heading::Level(l.id)));
                 for r in panel::buildings::rooms_on(&prj.layout, l.id) {
-                    room_rows(&mut rows, r, 2);
+                    room_rows(&mut rows, r, d + 2);
                 }
             }
         }
         for r in panel::rooms(&prj.layout).into_iter().filter(|&r| panel::buildings::building_of(&prj.layout, r).is_none()) {
-            room_rows(&mut rows, r, 0);
+            room_rows(&mut rows, r, d);
         }
         for lu in lineups.iter().filter(|lu| room_of(lu).is_none() && !lu.first().is_some_and(|&i| prj.layout.enclosures[i].is_room())) {
             rows.extend(lu.iter().enumerate().map(|(k, &i)| (usize::from(k > 0), i)));
@@ -948,8 +976,8 @@ impl PanelUi {
         let mut act = None;
         let mut headings = headings.into_iter().peekable();
         for (row, (indent, i)) in rows.into_iter().enumerate() {
-            while let Some((_, depth, text, level)) = headings.next_if(|h| h.0 <= row) {
-                act = self.nav_heading(ui, prj, depth, text, level).or(act);
+            while let Some((_, depth, text, heading)) = headings.next_if(|h| h.0 <= row) {
+                act = self.nav_heading(ui, prj, depth, text, heading).or(act);
             }
             let e = &prj.layout.enclosures[i];
             let level = (e.is_room() && panel::buildings::building_of(&prj.layout, i).is_some()).then_some(e.level);
@@ -967,18 +995,23 @@ impl PanelUi {
                         remove = Some(i);
                     }
                     ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
-                        let mut r = ui.add(egui::Button::selectable(i == self.enclosure, label.as_str()).truncate()).on_hover_text(label.as_str());
+                        let mut r = ui.add(egui::Button::selectable(i == self.enclosure && !self.site, label.as_str()).truncate()).on_hover_text(label.as_str());
                         if e.is_room() {
                             // Rooms are dragged onto the levels of the buildings.
                             r = r.interact(Sense::drag());
                             r.dnd_set_drag_payload(DraggedRoom(i));
                         }
                         if r.clicked() {
-                            self.enclosure = i;
-                            self.nav_level = None;
-                            self.selection.clear();
-                            self.fit_pending = true;
-                            self.cam = None;
+                            if e.is_room() {
+                                act = Some(NavAction::Open(i));
+                            } else {
+                                self.site = false;
+                                self.enclosure = i;
+                                self.nav_level = None;
+                                self.selection.clear();
+                                self.fit_pending = true;
+                                self.cam = None;
+                            }
                         }
                         if let Some(l) = level {
                             // Dropped onto a room of a level: onto its level.
@@ -1000,8 +1033,8 @@ impl PanelUi {
                 });
             });
         }
-        for (_, depth, text, level) in headings {
-            act = self.nav_heading(ui, prj, depth, text, level).or(act);
+        for (_, depth, text, heading) in headings {
+            act = self.nav_heading(ui, prj, depth, text, heading).or(act);
         }
         Self::room_drag_label(ui, prj);
         if let Some(a) = act {
@@ -1221,6 +1254,18 @@ impl PanelUi {
                         }
                     });
                     ui.end_row();
+                    if matches!(it.opening, Opening::Door | Opening::Window) {
+                        // Hinges left or right seen from inside, in or out, or sliding.
+                        ui.label(tr("Opens"));
+                        egui::ComboBox::from_id_salt("swing").selected_text(it.swing.title()).show_ui(ui, |ui| {
+                            for s in panel::Swing::ALL {
+                                ui.selectable_value(&mut it.swing, s, s.title());
+                            }
+                        })
+                        .response
+                        .on_hover_text(tr("How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall"));
+                        ui.end_row();
+                    }
                     ui.label(tr("Width × height"));
                     let floor = it.y + it.h;
                     ui.horizontal(|ui| {
@@ -2253,6 +2298,10 @@ impl PanelUi {
     // ------------------------------------------------------------------ canvas
 
     pub fn canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, db: &PartsDb) {
+        if self.site {
+            self.site_canvas(ui, prj, an);
+            return;
+        }
         let Some(ei) = self.enclosure_index(prj) else {
             ui.centered_and_justified(|ui| {
                 ui.label(tr("Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout."));
@@ -2294,6 +2343,9 @@ impl PanelUi {
 
     /// Chooses a tool (Layout space tab of the ribbon); drawing tools show the front view.
     pub fn choose_tool(&mut self, tool: Tool) {
+        if tool != Tool::Select {
+            self.site = false;
+        }
         if matches!(tool, Tool::Walls | Tool::InnerWalls) {
             self.view = View::Plan;
             self.wall_points.clear();
@@ -2312,6 +2364,7 @@ impl PanelUi {
 
     /// Shows a face in the front view (Layout space › View).
     pub fn front_face(&mut self, face: Face, inside: bool) {
+        self.site = false;
         self.view = View::Front;
         self.show_face(face, inside);
     }
@@ -2441,7 +2494,9 @@ impl PanelUi {
 
     /// Shows the floor plan of the room (Layout space › View › Floor plan).
     pub fn floor_plan(&mut self) {
-        if self.in_room {
+        if self.site {
+            self.view = View::Plan;
+        } else if self.in_room {
             self.view = if self.view == View::Plan { View::Front } else { View::Plan };
             self.fit_pending = true;
             if self.tool != Tool::Walls {
@@ -2499,17 +2554,154 @@ impl PanelUi {
                     Err(e) => e,
                 };
             }
+            NavAction::Open(r) => self.open_room(r),
+            NavAction::Site(b) => self.show_site_plan(b),
+            NavAction::NewBuilding => {
+                let name = panel::buildings::free_building_name(&prj.layout);
+                match panel::buildings::add_building(prj, &name) {
+                    Ok(bi) => {
+                        self.show_site_plan(Some(bi));
+                        self.status = tr_fmt!("Building {} added with a level at ground level", name);
+                    }
+                    Err(e) => self.status = e,
+                }
+            }
+            NavAction::NewLevel(bi, below) => {
+                let Some(b) = prj.layout.buildings.get(bi) else { return };
+                let elevation = below.then(|| b.levels.first().map_or(0.0, |l| l.elevation) - panel::buildings::LEVEL_HEIGHT);
+                self.status = match panel::buildings::add_level(prj, bi, None, elevation, None) {
+                    Ok(id) => {
+                        self.nav_level = Some(id);
+                        tr_fmt!("Level {} added to building {}; new rooms go onto it", level_name(prj, id), prj.layout.buildings[bi].name)
+                    }
+                    Err(e) => e,
+                };
+            }
+        }
+    }
+
+    /// Shows a room: the 3D view stays, any other view becomes its floor plan.
+    fn open_room(&mut self, ri: usize) {
+        self.site = false;
+        self.enclosure = ri;
+        self.in_room = true;
+        self.nav_level = None;
+        self.selection.clear();
+        self.fit_pending = true;
+        self.cam = None;
+        if self.view != View::ThreeD {
+            self.view = View::Plan;
+            if self.tool != Tool::Walls {
+                self.set_tool(Tool::Select);
+            }
+        }
+    }
+
+    /// Shows the site: its site plan, or all of the plant when the 3D view is shown;
+    /// building `b` highlighted.
+    fn show_site_plan(&mut self, b: Option<usize>) {
+        self.site = true;
+        self.site_plan = site_plan::SitePlan { building: b, ..Default::default() };
+        self.selection.clear();
+        self.cam = None;
+        if self.view != View::ThreeD {
+            self.view = View::Plan;
+        }
+        self.set_tool(Tool::Select);
+    }
+
+    /// The site plan of the plant in the canvas: zoomed with the wheel, moved by
+    /// dragging; a click on a room shows it.
+    fn site_canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
+        if self.view == View::ThreeD {
+            if let Some(ei) = self.enclosure_index(prj) {
+                ui.horizontal(|ui| {
+                    ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                        ui.weak(format!("{}  ·  3D", tr("Site")));
+                    });
+                });
+                ui.separator();
+                self.view_3d(ui, prj, ei, an);
+                return;
+            }
+        }
+        self.view = View::Plan;
+        ui.horizontal(|ui| {
+            ui.weak(tr("Wheel: zoom · drag: move · click on a room: its floor plan"));
+            ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                let what = match self.site_plan.building.and_then(|b| prj.layout.buildings.get(b)) {
+                    Some(b) => tr_fmt!("Site plan, building {}", b.name),
+                    None => tr("Site plan").to_string(),
+                };
+                ui.weak(format!("{}  ·  {}", tr("Site"), what));
+            });
+        });
+        ui.separator();
+        let (rect, resp) = ui.allocate_exact_size(ui.available_size(), Sense::click_and_drag());
+        if resp.hovered() {
+            let (wheel, zoom_delta, pointer) = ui.input(|i| (wheel_delta(i), i.zoom_delta(), i.pointer.hover_pos()));
+            let factor = zoom_delta * (wheel * 0.0025).exp();
+            if let (true, Some(m)) = ((factor - 1.0).abs() > 1e-4, pointer) {
+                let old = self.site_plan.zoom;
+                let zoom = (old * factor).clamp(0.2, 200.0);
+                // The point under the pointer stays where it is.
+                let c = rect.shrink(16.0).center();
+                self.site_plan.pan = (m - c) - (m - c - self.site_plan.pan) * (zoom / old);
+                self.site_plan.zoom = zoom;
+            }
+        }
+        if resp.dragged() {
+            self.site_plan.pan += resp.drag_delta();
+        }
+        if self.fit_pending {
+            self.site_plan.zoom = 1.0;
+            self.site_plan.pan = Vec2::ZERO;
+            self.fit_pending = false;
+        }
+        let hovered = site_plan::paint(ui, rect, prj, &self.site_plan, resp.hover_pos());
+        if let Some(ri) = hovered {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
+            if resp.clicked() {
+                self.open_room(ri);
+                return;
+            }
+            resp.on_hover_text(tr_fmt!("{}: click to show its floor plan", prj.layout.enclosures[ri].name));
         }
     }
 
     /// A heading of the navigator: a building, or a level (`level`) that is selected for
     /// new rooms by a click, takes rooms dropped onto it and has a context menu.
-    fn nav_heading(&self, ui: &mut egui::Ui, prj: &Project, depth: usize, text: String, level: Option<u64>) -> Option<NavAction> {
+    fn nav_heading(&self, ui: &mut egui::Ui, prj: &Project, depth: usize, text: String, heading: Heading) -> Option<NavAction> {
         ui.horizontal(|ui| {
             ui.add_space(14.0 * depth as f32);
-            let Some(id) = level else {
-                ui.label(RichText::new(text).strong());
-                return None;
+            let id = match heading {
+                Heading::Site => {
+                    let r = ui.add(egui::Button::selectable(self.site && self.site_plan.building.is_none(), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to show the site plan of the buildings, or all of the plant in the 3D view"));
+                    let mut act = r.clicked().then_some(NavAction::Site(None));
+                    r.context_menu(|ui| {
+                        if icons::text_button(ui, Icon::Plus, tr("New building")).on_hover_text(tr("A building with one level at ground level, beside what stands in the plant")).clicked() {
+                            act = Some(NavAction::NewBuilding);
+                            ui.close();
+                        }
+                    });
+                    return act;
+                }
+                Heading::Building(bi) => {
+                    let r = ui.add(egui::Button::selectable(self.site && self.site_plan.building == Some(bi), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to show the building in the site plan; right-click for new levels"));
+                    let mut act = r.clicked().then_some(NavAction::Site(Some(bi)));
+                    r.context_menu(|ui| {
+                        if icons::text_button(ui, Icon::Plus, tr("Level on top")).on_hover_text(tr("A level on top of the highest one")).clicked() {
+                            act = Some(NavAction::NewLevel(bi, false));
+                            ui.close();
+                        }
+                        if icons::text_button(ui, Icon::Plus, tr("Basement")).on_hover_text(tr("A level below the lowest one")).clicked() {
+                            act = Some(NavAction::NewLevel(bi, true));
+                            ui.close();
+                        }
+                    });
+                    return act;
+                }
+                Heading::Level(id) => id,
             };
             let r = ui.add(egui::Button::selectable(self.nav_level == Some(id), RichText::new(text).strong()).truncate()).on_hover_text(tr("Click to put new rooms on this level; drop rooms onto it to move them here"));
             let mut act = r.clicked().then_some(NavAction::Level(id));

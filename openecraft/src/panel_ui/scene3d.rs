@@ -711,7 +711,7 @@ impl PanelUi {
         self.selection.hash(&mut h);
         self.wire_index(an).hash(&mut h);
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
-        (self.show_site, self.show_building, self.show_zones, self.open_walls).hash(&mut h);
+        (self.whole_site(), self.show_building, self.show_zones, self.open_walls).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);
