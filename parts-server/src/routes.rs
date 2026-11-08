@@ -487,7 +487,7 @@ async fn import_parts(State(state): State<AppState>, headers: HeaderMap, body: S
     if !access.anywhere(PartsRight::EditParts) {
         return Err(forbidden(format!("user '{}' is not allowed to do this", user.name)));
     }
-    let parts = import(&body).map_err(|e| bad(format!("invalid parts data: {e}")))?;
+    let mut parts = import(&body).map_err(|e| bad(format!("invalid parts data: {e}")))?;
     if parts.iter().any(|p| p.number.trim().is_empty()) {
         return Err(bad("every part needs a part number"));
     }
@@ -502,15 +502,20 @@ async fn import_parts(State(state): State<AppState>, headers: HeaderMap, body: S
         return Err(bad(format!("part '{}' appears more than once in the file", dup.number)));
     }
     let mut store = store(&state);
-    for p in &parts {
+    let numbers: std::collections::BTreeSet<String> = parts.iter().map(|p| p.number.clone()).collect();
+    for p in &mut parts {
         let old = store.get(&p.number)?;
         check_catalog(&store, &user, &access, p, old.as_ref())?;
         need(&user, &access, PartsRight::EditParts, &p.manufacturer)?;
-        if let Some(old) = &old {
+        if let Some(old) = old {
             need(&user, &access, PartsRight::EditParts, &old.manufacturer)?;
+            // CSV, BMEcat and EPLAN XML carry no files: the stored ones stay.
+            if p.attachments.is_empty() {
+                p.attachments = old.attachments;
+            }
         }
         check_new_number(&store, &p.number)?;
-        if !p.successor.is_empty() && !parts.iter().any(|q| q.number == p.successor) && store.get(&p.successor)?.is_none() {
+        if !p.successor.is_empty() && !numbers.contains(&p.successor) && store.get(&p.successor)?.is_none() {
             return Err(bad(format!("successor '{}' of part '{}' not found", p.successor, p.number)));
         }
     }

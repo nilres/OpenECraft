@@ -138,6 +138,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   macro libraries of `generate_pages`, `update_macro_boxes` and
   `generate_preplanning_pages` (`macros`) must lie in `OPENECRAFT_MCP_ROOT` like all
   other files; folder ids of the vault tools are no longer taken for paths.
+- **Parts server:** importing parts that exist already (CSV, BMEcat, EPLAN XML) keeps
+  their data sheets, pictures and other files instead of removing them.
 - **Project archives:** documents and images of the same name are numbered inside
   the `files` folder (`files/2 …`) instead of in a folder `2 files` of their own.
 

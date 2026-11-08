@@ -302,6 +302,22 @@ async fn attachments_and_files() {
 }
 
 #[tokio::test]
+async fn importing_a_part_again_keeps_its_files() {
+    let app = app(Some(TOKEN));
+    let csv = "Part number;Manufacturer;Description\nIMP.1;ACME;Relay\n";
+    json::<ImportResult>(&app, "POST", "/api/v1/import", Some(TOKEN), csv).await;
+    let (status, _, _) = send(&app, "POST", "/api/v1/parts/IMP.1/attachments?name=sheet.pdf", Some(TOKEN), b"%PDF-1.4".to_vec()).await;
+    assert_eq!(status, StatusCode::OK);
+    // The CSV has no files: the data sheet stays with the changed part.
+    let csv = "Part number;Manufacturer;Description\nIMP.1;ACME;Relay, new text\n";
+    json::<ImportResult>(&app, "POST", "/api/v1/import", Some(TOKEN), csv).await;
+    let part: Part = json(&app, "GET", "/api/v1/parts/IMP.1", None, "").await;
+    assert_eq!(part.description, "Relay, new text");
+    assert_eq!(part.attachments.len(), 1);
+    assert_eq!(send(&app, "GET", &openecraft_parts::api::file_path(&part.attachments[0].id), None, Vec::new()).await.2, b"%PDF-1.4");
+}
+
+#[tokio::test]
 async fn import_and_export() {
     let app = app(Some(TOKEN));
     let csv = "Part number;Manufacturer;Description;Functions\nIMP.1;ACME;Imported relay;Coil:A1 A2|CO:11 12 14\n";
