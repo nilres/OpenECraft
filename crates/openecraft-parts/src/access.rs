@@ -328,17 +328,7 @@ impl<R: Right> Access<R> {
 
 /// Case-insensitive match with `*` (any text) and `?` (one character).
 pub fn matches(pattern: &str, text: &str) -> bool {
-    fn glob(p: &[char], t: &[char]) -> bool {
-        match p.first() {
-            None => t.is_empty(),
-            Some('*') => glob(&p[1..], t) || (!t.is_empty() && glob(p, &t[1..])),
-            Some('?') => !t.is_empty() && glob(&p[1..], &t[1..]),
-            Some(c) => t.first() == Some(c) && glob(&p[1..], &t[1..]),
-        }
-    }
-    let p: Vec<char> = pattern.trim().to_lowercase().chars().collect();
-    let t: Vec<char> = text.trim().to_lowercase().chars().collect();
-    glob(&p, &t)
+    crate::wildcard(&pattern.trim().to_lowercase(), &text.trim().to_lowercase())
 }
 
 #[cfg(test)]

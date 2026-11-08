@@ -174,3 +174,17 @@ fn signed_in_users_write_in_their_own_name() {
     assert!(own.approvals[0].approved);
     assert_eq!(own.approvals[0].user, "chief");
 }
+
+#[test]
+fn replies_keep_their_author_only_unchanged() {
+    let reply = |author: &str, text: &str| Reply { author: author.into(), date: "2026-11-08".into(), text: text.into() };
+    let theirs = Review { comments: vec![Comment { id: 2, rev: 1, author: "anna".into(), replies: vec![reply("chief", "ok"), reply("anna", "done")], ..Default::default() }], ..Default::default() };
+    let mut mine = theirs.clone();
+    mine.comments[0].rev = 2;
+    // A reply put before the chief's, and the chief's last words rewritten.
+    mine.comments[0].replies.insert(0, reply("chief", "Approved, ship it"));
+    mine.comments[0].replies[2].text = "not done".into();
+    sign(&theirs, &mut mine, "mallory");
+    let replies: Vec<(&str, &str)> = mine.comments[0].replies.iter().map(|r| (r.author.as_str(), r.text.as_str())).collect();
+    assert_eq!(replies, [("mallory", "Approved, ship it"), ("chief", "ok"), ("mallory", "not done")]);
+}

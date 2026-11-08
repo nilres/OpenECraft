@@ -29,6 +29,38 @@ pub fn natural_cmp(a: &str, b: &str) -> std::cmp::Ordering {
     ca.len().cmp(&cb.len())
 }
 
+/// `text` matches `pattern` with `*` (any text) and `?` (one character), case-sensitive.
+/// Runs in time `pattern × text` without recursion, so long texts and many `*` stay
+/// cheap (the servers match names of requests against the patterns of grants).
+pub fn wildcard(pattern: &str, text: &str) -> bool {
+    let (p, t): (Vec<char>, Vec<char>) = (pattern.chars().collect(), text.chars().collect());
+    let (mut pi, mut ti) = (0, 0);
+    // The last `*` and where in the text its match ends for now.
+    let mut star: Option<(usize, usize)> = None;
+    while ti < t.len() {
+        match p.get(pi) {
+            Some('*') => {
+                star = Some((pi, ti));
+                pi += 1;
+            }
+            Some(c) if *c == '?' || *c == t[ti] => {
+                pi += 1;
+                ti += 1;
+            }
+            _ => match star {
+                // The `*` takes one more character.
+                Some((sp, st)) => {
+                    star = Some((sp, st + 1));
+                    pi = sp + 1;
+                    ti = st + 1;
+                }
+                None => return false,
+            },
+        }
+    }
+    p[pi..].iter().all(|c| *c == '*')
+}
+
 /// Date `YYYY-MM-DD` (UTC) of a Unix time.
 pub fn date_from_unix(secs: u64) -> String {
     // Civil date from days since 1970-01-01 (H. Hinnant's algorithm).

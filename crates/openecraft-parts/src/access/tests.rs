@@ -168,3 +168,11 @@ fn json_form() {
     assert!(access.allows("x", R::Edit));
     assert_eq!(R::from_name("EDIT"), Some(R::Edit));
 }
+
+#[test]
+fn long_names_do_not_overflow_the_match() {
+    let name = format!("plant {}", "7".repeat(500_000));
+    assert!(matches("*", &name));
+    assert!(matches("Plant*", &name));
+    assert!(!matches("*8", &name));
+}

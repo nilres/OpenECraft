@@ -41,9 +41,9 @@ impl App {
     }
 
     /// Closes the editor (asking for unsaved changes first); it starts again updated.
+    /// Cancelling the question keeps the editor from starting again on a later close.
     pub(super) fn restart_to_update(&mut self, ctx: &egui::Context) {
-        self.updater.restart = true;
-        ctx.send_viewport_cmd(egui::ViewportCommand::Close);
+        self.request_replace(ctx, Replace::Close { restart: true });
     }
 
     /// The segment of the status bar (right to left): the download, the update to

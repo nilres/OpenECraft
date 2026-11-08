@@ -51,4 +51,4 @@ pub use mounting::{Cutout, MountingData, RailMount, MOUNTING_KEYS};
 pub use graphics::{parse_mesh, parse_obj, parse_stl, parse_svg, Mesh3d, MeshBuilder, Model2d, Prim2d, MAX_TRIANGLES};
 pub use part::*;
 pub use shared::Shared;
-pub use text::{date_from_unix, natural_cmp, unix_from_date};
+pub use text::{date_from_unix, natural_cmp, unix_from_date, wildcard};

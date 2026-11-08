@@ -70,3 +70,27 @@ fn wait_is_capped() {
     }
     assert_eq!(t.wait("x", None, now), Some(MAX_WAIT.as_secs()));
 }
+
+#[test]
+fn a_blank_name_is_not_the_client() {
+    let now = Instant::now();
+    // Failures with other names do not delay a blank one before the client's limit.
+    let mut t = Throttle::default();
+    for i in 0..FREE_ATTEMPTS {
+        t.failed(&format!("user{i}"), ip(1), now);
+    }
+    assert_eq!(t.wait(" ", ip(1), now), None);
+    // A failure with a blank name counts once for the client.
+    let mut t = Throttle::default();
+    for _ in 0..FREE_CLIENT_ATTEMPTS / 2 + 1 {
+        t.failed("", ip(2), now);
+    }
+    assert_eq!(t.wait("someone", ip(2), now), None);
+    // Its success does not forget the failures of the client.
+    let mut t = Throttle::default();
+    for i in 0..FREE_CLIENT_ATTEMPTS {
+        t.failed(&format!("user{i}"), ip(3), now);
+    }
+    t.succeeded("", ip(3));
+    assert!(t.wait("someone", ip(3), now).is_some());
+}

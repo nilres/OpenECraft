@@ -17,21 +17,24 @@ pub const MAX_WAIT: Duration = Duration::from_secs(300);
 /// Failures are forgotten after this long without another one.
 pub const FORGET_AFTER: Duration = Duration::from_secs(3600);
 
+/// Whose failures are counted: a user name from a client, or a client over all names.
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
+enum Key {
+    Name(String, Option<IpAddr>),
+    Client(IpAddr),
+}
+
 #[derive(Default)]
 pub struct Throttle {
-    failures: HashMap<String, (u32, Instant)>,
+    failures: HashMap<Key, (u32, Instant)>,
 }
 
 impl Throttle {
-    fn name_key(name: &str, client: Option<IpAddr>) -> String {
-        format!("{}\n{}", name.trim().to_lowercase(), client.map(|c| c.to_string()).unwrap_or_default())
+    fn name_key(name: &str, client: Option<IpAddr>) -> Key {
+        Key::Name(name.trim().to_lowercase(), client)
     }
 
-    fn client_key(client: IpAddr) -> String {
-        format!("\n{client}")
-    }
-
-    fn wait_of(&self, key: &str, free: u32, now: Instant) -> Option<u64> {
+    fn wait_of(&self, key: &Key, free: u32, now: Instant) -> Option<u64> {
         let (n, last) = self.failures.get(key)?;
         let since = now.saturating_duration_since(*last);
         if *n < free || since >= FORGET_AFTER {
@@ -45,12 +48,12 @@ impl Throttle {
     /// Seconds `client` has to wait before trying `name` again; None if it may now.
     pub fn wait(&self, name: &str, client: Option<IpAddr>, now: Instant) -> Option<u64> {
         let by_name = self.wait_of(&Self::name_key(name, client), FREE_ATTEMPTS, now);
-        let by_client = client.and_then(|c| self.wait_of(&Self::client_key(c), FREE_CLIENT_ATTEMPTS, now));
+        let by_client = client.and_then(|c| self.wait_of(&Key::Client(c),FREE_CLIENT_ATTEMPTS, now));
         by_name.max(by_client)
     }
 
     pub fn failed(&mut self, name: &str, client: Option<IpAddr>, now: Instant) {
-        let keys = [Some(Self::name_key(name, client)), client.map(Self::client_key)];
+        let keys = [Some(Self::name_key(name, client)), client.map(Key::Client)];
         for key in keys.into_iter().flatten() {
             let e = self.failures.entry(key).or_insert((0, now));
             if now.saturating_duration_since(e.1) >= FORGET_AFTER {

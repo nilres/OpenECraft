@@ -588,7 +588,7 @@ async fn login(State(state): State<AppState>, ClientIp(client): ClientIp, Json(l
     };
     let local = store(&state).account(login.name.trim()).filter(|a| a.user.provider.is_empty() && login.provider.trim().is_empty()).cloned();
     let directories = !access_file(&state).config.directories.is_empty();
-    let mut account = match local {
+    let account = match local {
         Some(a) if password_matches(&login.password, Some(&a.password)).await => a,
         Some(_) => {
             log::warn!("failed login of '{}'", login.name);
@@ -619,10 +619,30 @@ async fn login(State(state): State<AppState>, ClientIp(client): ClientIp, Json(l
             account
         }
     };
+    // The account may have changed during the check (another sign-in, a new password,
+    // deleted): the session goes on the stored account, not on the copy checked.
+    let mut store = store(&state);
+    let mut account = match store.account(&account.user.name) {
+        Some(now) if now.password == account.password && now.user.provider.eq_ignore_ascii_case(&account.user.provider) => {
+            let mut now = now.clone();
+            if !now.user.provider.is_empty() {
+                now.user.groups = account.user.groups;
+            }
+            now
+        }
+        // The first sign-in of a directory user.
+        None if !account.user.provider.is_empty() => account,
+        _ => {
+            drop(store);
+            log::warn!("failed login of '{}': the account changed meanwhile", login.name);
+            return Err(refused());
+        }
+    };
     throttle(&state).succeeded(&login.name, client);
     let token = account.start_session();
     let user = account.user.clone();
-    store(&state).put_account(account)?;
+    store.put_account(account)?;
+    drop(store);
     log::info!("{} signed in", user.name);
     let file = access_file(&state);
     let policy = &file.config.policy;

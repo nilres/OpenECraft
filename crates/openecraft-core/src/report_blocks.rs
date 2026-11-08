@@ -108,19 +108,11 @@ pub fn groups(table: &Table, col: usize) -> Vec<String> {
 /// `pattern` matches `text`: wildcards `*` and `?`, several patterns separated by `,`
 /// or `;`, case-insensitive; an empty pattern matches everything.
 pub fn matches(pattern: &str, text: &str) -> bool {
-    fn glob(p: &[char], t: &[char]) -> bool {
-        match p.first() {
-            None => t.is_empty(),
-            Some('*') => glob(&p[1..], t) || (!t.is_empty() && glob(p, &t[1..])),
-            Some('?') => !t.is_empty() && glob(&p[1..], &t[1..]),
-            Some(c) => t.first() == Some(c) && glob(&p[1..], &t[1..]),
-        }
-    }
-    let text: Vec<char> = text.to_lowercase().chars().collect();
+    let text = text.to_lowercase();
     let mut any = false;
     for p in pattern.split([',', ';']).map(str::trim).filter(|p| !p.is_empty()) {
         any = true;
-        if glob(&p.to_lowercase().chars().collect::<Vec<_>>(), &text) {
+        if openecraft_parts::wildcard(&p.to_lowercase(), &text) {
             return true;
         }
     }

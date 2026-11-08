@@ -104,8 +104,14 @@ pub fn sign(theirs: &Review, mine: &mut Review, user: &str) {
     for c in &mut mine.comments {
         let old = theirs.comments.iter().find(|t| t.id == c.id);
         c.author = old.map_or_else(|| user.into(), |t| t.author.clone());
-        for (i, r) in c.replies.iter_mut().enumerate() {
-            r.author = old.and_then(|t| t.replies.get(i)).map_or_else(|| user.into(), |t| t.author.clone());
+        // A reply keeps its author only where it is a stored reply unchanged (each
+        // stored one once), so nobody writes under another name by inserting replies.
+        let mut stored: Vec<&Reply> = old.map(|t| t.replies.iter().collect()).unwrap_or_default();
+        for r in &mut c.replies {
+            r.author = match stored.iter().position(|t| t.text == r.text && t.date == r.date) {
+                Some(i) => stored.remove(i).author.clone(),
+                None => user.into(),
+            };
         }
     }
     for m in &mut mine.markups {

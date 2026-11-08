@@ -183,8 +183,8 @@ enum Replace {
     Shared(String),
     /// A project file of the vault.
     Vault(Box<openecraft_client::vault::FileVersion>),
-    /// The window closes.
-    Close,
+    /// The window closes; with `restart` the editor starts again, updated.
+    Close { restart: bool },
 }
 
 /// A message of the status bar and of the message history.
@@ -669,8 +669,9 @@ impl App {
             }
             Replace::Shared(name) => self.remote.open(&name),
             Replace::Vault(file) => self.vault.download(*file, crate::vault::Use::Project),
-            Replace::Close => {
+            Replace::Close { restart } => {
                 self.closing = true;
+                self.updater.restart = restart;
                 ctx.send_viewport_cmd(egui::ViewportCommand::Close);
             }
         }
@@ -952,7 +953,7 @@ impl eframe::App for App {
         self.panel_ui.gpu_3d = self.shell.gpu_3d && frame.gl().is_some();
         // Closing the window with unsaved changes asks first (the second close, after
         // the answer, goes through).
-        if ctx.input(|i| i.viewport().close_requested()) && !self.closing && self.discard.request(self.session.dirty(), Replace::Close).is_none() {
+        if ctx.input(|i| i.viewport().close_requested()) && !self.closing && self.discard.request(self.session.dirty(), Replace::Close { restart: false }).is_none() {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
         }
         self.poll_loaded(&ctx);

@@ -198,6 +198,24 @@ async fn users_roles_and_sessions() {
 }
 
 #[tokio::test]
+async fn sign_ins_at_the_same_time_keep_the_account() {
+    let app = app(Some(TOKEN));
+    sign_up(&app, "eve", "Editor", "").await;
+    let login = r#"{"name": "eve", "password": "password-eve"}"#;
+    // Both sessions stay: the second sign-in does not write back an older copy.
+    let (a, b): (Session, Session) = tokio::join!(json(&app, "POST", "/api/v1/login", None, login), json(&app, "POST", "/api/v1/login", None, login));
+    for token in [&a.token, &b.token] {
+        assert_eq!(call(&app, "GET", "/api/v1/favorites", Some(token), "").await.0, StatusCode::OK);
+    }
+    // A sign-in during which the account is deleted does not bring it back.
+    let (signed_in, deleted) = tokio::join!(call(&app, "POST", "/api/v1/login", None, login), call(&app, "DELETE", "/api/v1/users/eve", Some(TOKEN), ""));
+    assert_eq!(deleted.0, StatusCode::NO_CONTENT);
+    assert_eq!(signed_in.0, StatusCode::UNAUTHORIZED);
+    let users: Vec<User> = json(&app, "GET", "/api/v1/users", Some(TOKEN), "").await;
+    assert!(users.iter().all(|u| u.name != "eve"));
+}
+
+#[tokio::test]
 async fn last_administrator_stays() {
     let state = state(None);
     {

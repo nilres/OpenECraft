@@ -20,3 +20,25 @@ fn dates() {
     assert_eq!(unix_from_date("2026-13-01"), None);
     assert_eq!(unix_from_date(""), None);
 }
+
+#[test]
+fn wildcards() {
+    let yes = [("", ""), ("*", ""), ("*", "abc"), ("a*", "abc"), ("*c", "abc"), ("a?c", "abc"), ("*b*", "abc"), ("a*b*c", "aXbYc"), ("**", "x"), ("a*a", "aa"), ("*ab", "aab")];
+    for (p, t) in yes {
+        assert!(wildcard(p, t), "{p} matches {t}");
+    }
+    let no = [("", "a"), ("?", ""), ("a", "A"), ("a*", "ba"), ("*b", "bc"), ("a*a", "a"), ("a?", "a"), ("*x*", "abc")];
+    for (p, t) in no {
+        assert!(!wildcard(p, t), "{p} does not match {t}");
+    }
+}
+
+#[test]
+fn wildcards_of_long_texts_are_cheap() {
+    // The recursive match before overflowed the stack and took exponential time here.
+    let long = "x".repeat(1_000_000);
+    assert!(wildcard("*", &long));
+    assert!(!wildcard("*y", &long));
+    let a = "a".repeat(5_000);
+    assert!(!wildcard("*a*a*a*a*a*a*a*a*a*b", &a));
+}
