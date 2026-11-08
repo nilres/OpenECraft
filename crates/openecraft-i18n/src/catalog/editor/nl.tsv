@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Een kabel van het bus
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Een uitsparing van dezelfde grootte op dezelfde plaats in de zijwand van de buur: samen vormen ze een kabeldoorvoer
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Een bestand met dezelfde naam in de map krijgt een nieuwe versie (uit- en ingecheckt), anders wordt het bestand toegevoegd
 A new project	Een nieuw project
+A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Een genummerde sectie die pagina's bevat zoals een map; de paginanamen beginnen met het nummer ervan (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Een profiel wijst de neutrale velden toe aan de kolomnamen van een bepaald systeem (bijv. MATNR voor het ERP-nummer in SAP). Zonder toewijzing worden gangbare Engelse en Duitse namen herkend.
 A project definition based on this one, with its own defaults and scheme	Een projectdefinitie op basis van deze, met eigen standaardwaarden en schema
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Wijzigt de paginavolgorde; de naam blijft
 Changes the tag of all functions of this device	Wijzigt de aanduiding van alle functies van dit apparaat
 Check	Controle
 Check all	Alles aanvinken
+Check for updates	Controleren op updates
 Check in project as new version of {}	Project inchecken als nieuwe versie van {}
 Check in to Vault	Inchecken in Vault
 Check in {} to Vault	{} inchecken in Vault
@@ -305,6 +308,7 @@ Close shared project	Gedeeld project sluiten
 Close the start page	De startpagina sluiten
 Closed / filled	Gesloten / gevuld
 Closed {} on the project server	{} gesloten op de projectserver
+Closes OpenECraft, installs the downloaded update and starts it again	Sluit OpenECraft, installeert de gedownloade update en start het opnieuw
 Collaboration	Samenwerking
 Collect texts from the project	Teksten uit het project verzamelen
 Collision classes	Botsingsklassen
@@ -503,6 +507,7 @@ Download into database	Downloaden naar database
 Download project	Project downloaden
 Downloaded {} (version {})	{} gedownload (versie {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} artikelen gedownload (revisie {}): {} nieuw, {} bijgewerkt
+Downloading OpenECraft {}	OpenECraft {} wordt gedownload
 Downstream part	Nageschakeld artikel
 Draft of revision {} created	Concept van revisie {} gemaakt
 Draft of revision {} discarded	Concept van revisie {} genegeerd
@@ -879,6 +884,9 @@ Locking…	Vergrendelen…
 Logic	Logica
 Longer values are drawn smaller (0 = no limit)	Langere waarden worden kleiner getekend (0 = geen limiet)
 Look at the point clicked, closer	Naar het aangeklikte punt kijken, dichterbij
+Look for updates when OpenECraft starts	Bij het starten van OpenECraft op updates controleren
+Looking for updates…	Zoeken naar updates…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Zoekt op GitHub naar een nieuwe versie van OpenECraft en installeert die op de achtergrond
 Loop	Lus
 Lowest fault current	Laagste foutstroom
 Macro boxes	Macrokaders
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	OpenECraft-structuursjabloon (JSON)
 OpenECraft symbol library	OpenECraft-symboolbibliotheek
 OpenECraft title blocks	OpenECraft-titelblokken
 OpenECraft title blocks and report schemes (JSON)	OpenECraft-titelblokken en -rapportschema's (JSON)
+OpenECraft {} is available	OpenECraft {} is beschikbaar
+OpenECraft {} is installed and starts next time	OpenECraft {} is geïnstalleerd en start de volgende keer
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} wordt geïnstalleerd wanneer u OpenECraft sluit
+OpenECraft {} is up to date	OpenECraft {} is up-to-date
 Opened {}	{} geopend
 Opened {} from Vault (version {})	{} geopend vanuit Vault (versie {})
 Opened {} from the project server	{} geopend vanaf de projectserver
 Opening	Opening
 Opening in the mounting plate / door: click two corners (round: in the properties)	Opening in montageplaat / deur: klik op twee hoeken (rond: in de eigenschappen)
 Opening {}…	{} openen…
+Opens the page of the release	Opent de pagina van de versie
 Opens the pages for printing in the browser with its print dialog	Opent de pagina's om af te drukken in de browser met het afdrukdialoogvenster daarvan
 Open…	Openen…
 Operations / year	Schakelcycli / jaar
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Ook afgewezen en gesloten
 Relative column width	Relatieve kolombreedte
 Release	Vrijgeven
 Release all	Alles vrijgeven
+Release page	Pagina van de versie
 Release route	Route vrijgeven
 Release without saving	Vrijgeven zonder opslaan
 Release: lock all pages	Vrijgeven: alle pagina's vergrendelen
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Alles terugzetten naar de standaardwaarden
 Reset pane layout	Indeling van de deelvensters herstellen
 Reset the ribbon	Het lint herstellen
 Reset to standard	Standaard herstellen
+Restart and update	Opnieuw starten en bijwerken
 Resulting: {} · {} · {} · {} m	Resultaat: {} · {} · {} · {} m
 Results of the project check	Resultaten van de projectcontrole
 Review	Review
@@ -1635,6 +1650,7 @@ Supply and conditions	Voeding en omstandigheden
 Surge protection	Overspanningsbeveiliging
 Swing the enclosure door open or shut (door devices and their wires move with it)	De kastdeur open- of dichtzwaaien (deurapparaten en hun draden zwaaien mee)
 Switch off the check \"{}\"	De controle \"{}\" uitschakelen
+Switched off on this computer ({})	Uitgeschakeld op deze computer ({})
 Switches the options with a condition by the configurator options	Schakelt de opties met een voorwaarde volgens de configuratoropties
 Switches to this workspace with its panes at their default places	Schakelt naar deze werkruimte met de deelvensters op hun standaardplaats
 Symbol editor	Symbooleditor
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	De ges
 The side of {} is open	De zijde van {} is open
 The symbol is placed in the project	Het symbool wordt in het project gebruikt
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	De klemartikelen noemen geen eindsteunen of afdekplaten (technische gegevens End bracket, End plate).
+The update failed	De update is mislukt
+The web version is updated on its server.	De webversie wordt op haar server bijgewerkt.
 The wire tool routes around symbols and other wires	Het draadgereedschap routeert om symbolen en andere draden heen
 The wires get the free cores of the cable in order (left to right)	De draden krijgen op volgorde (van links naar rechts) de vrije aders van de kabel
 The wires of the connection take these values again	De draden van de verbinding nemen deze waarden opnieuw over
@@ -1722,6 +1740,7 @@ Theme	Thema
 These settings are edited in their panes:	Deze instellingen worden in hun panelen bewerkt:
 Thickness	Dikte
 Thinner air needs more air flow	IJlere lucht vereist een grotere luchtstroom
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Deze installatie wordt bijgewerkt door haar pakketbeheerder of met de hand: OpenECraft meldt alleen een nieuwe versie.
 This page	Deze pagina
 This page contains schematic content which is not evaluated on non-schematic pages.	Deze pagina bevat schema-inhoud die op andere dan schemapagina's niet wordt geëvalueerd.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Dit project is deelproject {} van {} (afgesplitst {}). Sla het op en voeg het in het hoofdproject in wanneer het werk klaar is.
@@ -1756,6 +1775,7 @@ Update all	Alles bijwerken
 Update part links from Vault items	Artikelkoppelingen bijwerken vanuit Vault-items
 Update report blocks	Rapportblokken bijwerken
 Update {} changed macros	{} gewijzigde macro's bijwerken
+Updates	Updates
 Updates the project parts with the current database data	Werkt de projectartikelen bij met de actuele gegevens uit de database
 Updating the 3D routing	3D-routering wordt bijgewerkt
 Upload	Uploaden
@@ -1917,6 +1937,7 @@ missing	ontbreekt
 model	model
 name	naam
 no	nee
+no answer	geen antwoord
 no rooms	geen ruimten
 no wires	geen draden
 none	geen
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
 {} is not a PNG or JPEG image	{} is geen PNG- of JPEG-afbeelding
+{} is not in the disk image	{} staat niet in de schijfkopie
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail
 {} is used by: {}	{} wordt gebruikt door: {}
 {} items copied	{} elementen gekopieerd

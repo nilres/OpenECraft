@@ -407,7 +407,7 @@ impl Page {
             Page::Export => &[C::ExportSettings, C::PdfInLanguage, C::CheckInVault],
             Page::Print => &[C::PrintAll, C::PrintPage],
             Page::Info => &[C::ProjectProperties, C::ProjectManagement, C::MessagesPane, C::Revisions],
-            Page::Help => &[C::Help, C::Tutorial, C::Shortcuts, C::CommandSearch, C::CustomizeRibbon, C::About],
+            Page::Help => &[C::Help, C::Tutorial, C::Shortcuts, C::CommandSearch, C::CustomizeRibbon, C::About, C::CheckForUpdates, C::InstallUpdate],
         }
     }
 }

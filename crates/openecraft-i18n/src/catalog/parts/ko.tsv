@@ -325,6 +325,7 @@ Terminators, filters	종단기, 필터
 Test accessories	시험 부속품
 The EPLAN Data Portal only offers searching and reading parts	EPLAN Data Portal은 부품 검색 및 읽기만 제공합니다
 The access token is only needed for changes; it is not stored.	액세스 토큰은 변경 시에만 필요하며 저장되지 않습니다.
+The checksum of {} does not match: the download is damaged	{}의 SHA-256 값이 일치하지 않습니다: 다운로드가 손상되었습니다
 The directory checks the password and sets the groups at every sign-in	디렉터리 서비스는 로그인할 때마다 암호를 확인하고 그룹을 설정합니다
 The project has no parts	프로젝트에 부품이 없습니다
 The server cannot be reached	서버에 연결할 수 없습니다
@@ -379,6 +380,7 @@ the server refuses the connection (not started, or another port)	서버가 연�
 unchanged if empty	비워 두면 변경 안 함
 unexpected answer: {}	예기치 않은 응답: {}
 {} ({}, {})	{}({}, {})
+{} has no checksum in SHA256SUMS	SHA256SUMS에 {}의 SHA-256 값이 없습니다
 {} parts in {} catalogs, revision {}	부품 {}개, 카탈로그 {}개, 개정 {}
 {} parts, {} catalogs, {}	부품 {}개, 카탈로그 {}개, {}
 {} – save to upload it	{} – 업로드하려면 저장하세요

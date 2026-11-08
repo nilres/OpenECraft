@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Кабель шинн
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Виріз того самого розміру в тому самому місці бічної стінки сусіда: разом вони утворюють кабельний прохід
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Однойменний файл у папці отримує нову версію (отримання для редагування й повернення), інакше файл додається
 A new project	Новий проєкт
+A new release is downloaded in the background and installed when you close OpenECraft.	Нова версія завантажується у фоновому режимі й встановлюється під час закриття OpenECraft.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Нова версія завантажується у фоновому режимі й замінює цю інсталяцію; вона використовується з наступного запуску.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Нумерований розділ, що містить сторінки як тека; імена сторінок починаються з його номера (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Профіль зіставляє нейтральні поля з назвами стовпців певної системи (напр. MATNR для номера ERP у SAP). Без зіставлення розпізнаються поширені англійські та німецькі назви.
 A project definition based on this one, with its own defaults and scheme	Визначення проєкту на основі цього, з власними стандартними значеннями та схемою
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Змінює порядок сторін�
 Changes the tag of all functions of this device	Змінює позначення всіх функцій цього пристрою
 Check	Перевірка
 Check all	Позначити все
+Check for updates	Перевірити оновлення
 Check in project as new version of {}	Повернути проєкт як нову версію {}
 Check in to Vault	Помістити у Vault
 Check in {} to Vault	Повернути {} у Vault
@@ -305,6 +308,7 @@ Close shared project	Закрити спільний проєкт
 Close the start page	Закрити початкову сторінку
 Closed / filled	Замкнений / заповнений
 Closed {} on the project server	{} закрито на сервері проєктів
+Closes OpenECraft, installs the downloaded update and starts it again	Закриває OpenECraft, встановлює завантажене оновлення і знову запускає програму
 Collaboration	Співпраця
 Collect texts from the project	Зібрати тексти з проєкту
 Collision classes	Класи колізій
@@ -502,6 +506,7 @@ Download into database	Завантажити до бази даних
 Download project	Завантажити проєкт
 Downloaded {} (version {})	{} завантажено (версія {})
 Downloaded {} parts (revision {}): {} new, {} updated	Завантажено виробів: {} (ревізія {}): нових – {}, оновлених – {}
+Downloading OpenECraft {}	Завантаження OpenECraft {}
 Downstream part	Наступний виріб
 Draft of revision {} created	Чернетку ревізії {} створено
 Draft of revision {} discarded	Чернетку ревізії {} відхилено
@@ -878,6 +883,9 @@ Locking…	Блокування…
 Logic	Логіка
 Longer values are drawn smaller (0 = no limit)	Довші значення відображаються меншими (0 = без обмеження)
 Look at the point clicked, closer	Подивитися на точку клацання, ближче
+Look for updates when OpenECraft starts	Шукати оновлення під час запуску OpenECraft
+Looking for updates…	Пошук оновлень…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Шукає нову версію OpenECraft на GitHub і встановлює її у фоновому режимі
 Loop	Контур
 Lowest fault current	Найменший струм замикання
 Macro boxes	Рамки макросів
@@ -1113,12 +1121,17 @@ OpenECraft structure template (JSON)	Шаблон структури OpenECraft 
 OpenECraft symbol library	Бібліотека символів OpenECraft
 OpenECraft title blocks	Основні написи OpenECraft
 OpenECraft title blocks and report schemes (JSON)	Основні написи та схеми звітів OpenECraft (JSON)
+OpenECraft {} is available	Доступна версія OpenECraft {}
+OpenECraft {} is installed and starts next time	OpenECraft {} встановлено, він запуститься наступного разу
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} буде встановлено після закриття OpenECraft
+OpenECraft {} is up to date	Встановлено актуальну версію OpenECraft {}
 Opened {}	Відкрито {}
 Opened {} from Vault (version {})	{} відкрито з Vault (версія {})
 Opened {} from the project server	{} відкрито із сервера проєктів
 Opening	Проріз
 Opening in the mounting plate / door: click two corners (round: in the properties)	Отвір у монтажній панелі / дверях: клацніть два кути (круглий: у властивостях)
 Opening {}…	Відкриття {}…
+Opens the page of the release	Відкриває сторінку випуску
 Opens the pages for printing in the browser with its print dialog	Відкриває сторінки для друку в браузері з його діалоговим вікном друку
 Open…	Відкрити…
 Operations / year	Циклів комутації / рік
@@ -1319,6 +1332,7 @@ Rejected and closed ones too	Також відхилені та закриті
 Relative column width	Відносна ширина стовпця
 Release	Затвердити
 Release all	Розблокувати все
+Release page	Сторінка випуску
 Release route	Розблокувати трасу
 Release without saving	Звільнити без збереження
 Release: lock all pages	Затвердити: заблокувати всі сторінки
@@ -1393,6 +1407,7 @@ Reset all to the defaults	Скинути все до стандартних зн
 Reset pane layout	Скинути розташування панелей
 Reset the ribbon	Скинути стрічку
 Reset to standard	Скинути до стандартних
+Restart and update	Перезапустити й оновити
 Resulting: {} · {} · {} · {} m	Результат: {} · {} · {} · {} м
 Results of the project check	Результати перевірки проєкту
 Review	Коментарі
@@ -1634,6 +1649,7 @@ Supply and conditions	Живлення та умови
 Surge protection	Захист від перенапруг
 Swing the enclosure door open or shut (door devices and their wires move with it)	Відчинити або зачинити двері корпусу (пристрої на дверях і їхні проводи рухаються разом із ними)
 Switch off the check \"{}\"	Вимкнути перевірку «{}»
+Switched off on this computer ({})	Вимкнено на цьому комп'ютері ({})
 Switches the options with a condition by the configurator options	Перемикає опції з умовою відповідно до опцій конфігуратора
 Switches to this workspace with its panes at their default places	Перемикає на цей робочий простір із панелями на їхніх типових місцях
 Symbol editor	Редактор символів
@@ -1714,6 +1730,8 @@ The selected devices side by side on the selected rail, from its left end	Виб
 The side of {} is open	Сторона {} відкрита
 The symbol is placed in the project	Символ використовується в проєкті
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Вироби клем не вказують кінцевих фіксаторів або кінцевих кришок (технічні дані End bracket, End plate).
+The update failed	Не вдалося виконати оновлення
+The web version is updated on its server.	Вебверсія оновлюється на своєму сервері.
 The wire tool routes around symbols and other wires	Інструмент «Провід» прокладає проводи в обхід символів та інших проводів
 The wires get the free cores of the cable in order (left to right)	Проводи по черзі (зліва направо) отримують вільні жили кабелю
 The wires of the connection take these values again	Проводи з’єднання знову беруть ці значення
@@ -1721,6 +1739,7 @@ Theme	Тема
 These settings are edited in their panes:	Ці параметри змінюються в їхніх панелях:
 Thickness	Товщина
 Thinner air needs more air flow	Розріджене повітря потребує більшої витрати повітря
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Ця інсталяція оновлюється менеджером пакетів або вручну: OpenECraft лише повідомляє про нову версію.
 This page	Ця сторінка
 This page contains schematic content which is not evaluated on non-schematic pages.	Ця сторінка містить вміст схеми, який не обробляється на сторінках, що не є схемами.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Цей проєкт є підпроєктом {} проєкту {} (винесено {}). Після завершення роботи збережіть його та вставте в основний проєкт.
@@ -1755,6 +1774,7 @@ Update all	Оновити все
 Update part links from Vault items	Оновити зв’язки виробів з елементів Vault
 Update report blocks	Оновити блоки звітів
 Update {} changed macros	Оновити змінені макроси ({})
+Updates	Оновлення
 Updates the project parts with the current database data	Оновлює вироби проєкту поточними даними бази даних
 Updating the 3D routing	Оновлення 3D-прокладання
 Upload	Вивантажити
@@ -1916,6 +1936,7 @@ missing	відсутній
 model	модель
 name	назва
 no	ні
+no answer	немає відповіді
 no rooms	немає приміщень
 no wires	немає проводів
 none	немає
@@ -2025,6 +2046,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} імпортовано до бази даних виробів і розміщено як {}
 {} is neither in the parts database nor on the parts server	{} немає ні в базі даних виробів, ні на сервері виробів
 {} is not a PNG or JPEG image	{} не є зображенням PNG або JPEG
+{} is not in the disk image	{} немає в образі диска
 {} is not made for wall mounting: place it on a mounting rail	{} не призначений для настінного монтажу: встановіть його на рейку
 {} is used by: {}	{} використовується для: {}
 {} items copied	Скопійовано елементів: {}

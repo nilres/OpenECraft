@@ -111,6 +111,10 @@ refer to each other (the registry kinds take an `&Analysis`).
   changes routes the session searches the 3D routing on another thread as well
   (`Analysis::build_kept`, `routes_pending`). Without threads (the browser) the work
   is done at once.
+- `openecraft/src/updater.rs` updates the installed editor from the GitHub releases on a
+  thread of its own (`openecraft_client::update`: the latest release, versions, the file
+  of an installation, the check against `SHA256SUMS`); `App` only shows its state
+  (`app/update_ui.rs`). Nothing in the window waits for the network.
 - The shell (see `docs/ux-workplan.md`) is described by four modules without UI code,
   each unit tested: `openecraft/src/commands.rs` is the table of every command of the
   editor (id, title, tooltip, icon, kind, default keys, the pane it shows);

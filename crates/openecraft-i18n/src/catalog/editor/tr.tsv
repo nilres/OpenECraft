@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Kablosu olmayan her b
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Komşunun yan duvarında aynı yerde aynı boyutta bir kesim: birlikte bir kablo geçişi oluştururlar
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
 A new project	Yeni bir proje
+A new release is downloaded in the background and installed when you close OpenECraft.	Yeni bir sürüm arka planda indirilir ve OpenECraft'ı kapattığınızda yüklenir.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Yeni bir sürüm arka planda indirilir ve bu kurulumun yerini alır; bir sonraki başlatmadan itibaren kullanılır.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Sayfaları bir klasör gibi içeren numaralı bir bölüm; sayfa adları onun numarasıyla başlar (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profil, nötr alanları belirli bir sistemin sütun adlarıyla eşler (ör. SAP'de ERP numarası için MATNR). Eşleme yoksa İngilizce ve Almanca yaygın adlar tanınır.
 A project definition based on this one, with its own defaults and scheme	Kendi varsayılanları ve şemasıyla bu tanıma dayanan bir proje tanımı
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Sayfa sırasını değiştirir; ad aynı 
 Changes the tag of all functions of this device	Bu cihazın tüm fonksiyonlarının etiketini değiştirir
 Check	Kontrol
 Check all	Tümünü işaretle
+Check for updates	Güncellemeleri denetle
 Check in project as new version of {}	Projeyi {} öğesinin yeni sürümü olarak iade et
 Check in to Vault	Vault'a teslim et
 Check in {} to Vault	{} öğesini Vault'a iade et
@@ -305,6 +308,7 @@ Close shared project	Paylaşılan projeyi kapat
 Close the start page	Başlangıç sayfasını kapat
 Closed / filled	Kapalı / dolu
 Closed {} on the project server	{} proje sunucusunda kapatıldı
+Closes OpenECraft, installs the downloaded update and starts it again	OpenECraft'ı kapatır, indirilen güncellemeyi yükler ve yeniden başlatır
 Collaboration	İş birliği
 Collect texts from the project	Projeden metinleri topla
 Collision classes	Çakışma sınıfları
@@ -503,6 +507,7 @@ Download into database	Veritabanına indir
 Download project	Projeyi indir
 Downloaded {} (version {})	{} indirildi (sürüm {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} parça indirildi (revizyon {}): {} yeni, {} güncellendi
+Downloading OpenECraft {}	OpenECraft {} indiriliyor
 Downstream part	Alt taraftaki parça
 Draft of revision {} created	Revizyon {} taslağı oluşturuldu
 Draft of revision {} discarded	Revizyon {} taslağı atıldı
@@ -879,6 +884,9 @@ Locking…	Kilitleniyor…
 Logic	Mantık
 Longer values are drawn smaller (0 = no limit)	Daha uzun değerler daha küçük çizilir (0 = sınır yok)
 Look at the point clicked, closer	Tıklanan noktaya daha yakından bak
+Look for updates when OpenECraft starts	OpenECraft başlarken güncellemeleri ara
+Looking for updates…	Güncellemeler aranıyor…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub'da OpenECraft'ın yeni sürümünü arar ve arka planda yükler
 Loop	Döngü
 Lowest fault current	En düşük arıza akımı
 Macro boxes	Makro kutuları
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	OpenECraft yapı şablonu (JSON)
 OpenECraft symbol library	OpenECraft sembol kütüphanesi
 OpenECraft title blocks	OpenECraft antetleri
 OpenECraft title blocks and report schemes (JSON)	OpenECraft antetleri ve rapor düzenleri (JSON)
+OpenECraft {} is available	OpenECraft {} kullanılabilir
+OpenECraft {} is installed and starts next time	OpenECraft {} yüklendi ve bir sonraki başlatmada açılacak
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {}, OpenECraft'ı kapattığınızda yüklenecek
+OpenECraft {} is up to date	OpenECraft {} güncel
 Opened {}	{} açıldı
 Opened {} from Vault (version {})	{} Vault'tan açıldı (sürüm {})
 Opened {} from the project server	{} proje sunucusundan açıldı
 Opening	Açıklık
 Opening in the mounting plate / door: click two corners (round: in the properties)	Montaj plakasında / kapıda açıklık: iki köşeye tıklayın (yuvarlak: özelliklerde)
 Opening {}…	{} açılıyor…
+Opens the page of the release	Sürümün sayfasını açar
 Opens the pages for printing in the browser with its print dialog	Sayfaları yazdırmak için tarayıcıda yazdırma iletişim kutusuyla açar
 Open…	Aç…
 Operations / year	Çalışma / yıl
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Reddedilenler ve kapatılanlar da
 Relative column width	Göreli sütun genişliği
 Release	Yayımla
 Release all	Tümünü serbest bırak
+Release page	Sürüm sayfası
 Release route	Güzergâhı serbest bırak
 Release without saving	Kaydetmeden kilidi kaldır
 Release: lock all pages	Yayımla: tüm sayfaları kilitle
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Tümünü varsayılanlara sıfırla
 Reset pane layout	Panel düzenini sıfırla
 Reset the ribbon	Şeridi sıfırla
 Reset to standard	Standarda sıfırla
+Restart and update	Yeniden başlat ve güncelle
 Resulting: {} · {} · {} · {} m	Sonuç: {} · {} · {} · {} m
 Results of the project check	Proje kontrolünün sonuçları
 Review	İnceleme
@@ -1635,6 +1650,7 @@ Supply and conditions	Besleme ve koşullar
 Surge protection	Aşırı gerilim koruması
 Swing the enclosure door open or shut (door devices and their wires move with it)	Pano kapısını aç veya kapat (kapı cihazları ve telleri onunla birlikte döner)
 Switch off the check \"{}\"	\"{}\" kontrolünü kapat
+Switched off on this computer ({})	Bu bilgisayarda kapatıldı ({})
 Switches the options with a condition by the configurator options	Koşullu seçenekleri yapılandırıcı seçeneklerine göre değiştirir
 Switches to this workspace with its panes at their default places	Bu çalışma alanına geçer ve bölmeleri varsayılan yerlerine koyar
 Symbol editor	Sembol düzenleyici
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	Seçil
 The side of {} is open	{} tarafı açık
 The symbol is placed in the project	Sembol projede kullanılıyor
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Klemens parçaları klemens stoperi veya uç kapağı belirtmiyor (End bracket, End plate teknik verileri).
+The update failed	Güncelleme başarısız oldu
+The web version is updated on its server.	Web sürümü kendi sunucusunda güncellenir.
 The wire tool routes around symbols and other wires	Tel aracı sembollerin ve diğer tellerin etrafından yönlendirir
 The wires get the free cores of the cable in order (left to right)	Teller kablonun boş damarlarını sırayla (soldan sağa) alır
 The wires of the connection take these values again	Bağlantının telleri bu değerleri yeniden alır
@@ -1722,6 +1740,7 @@ Theme	Tema
 These settings are edited in their panes:	Bu ayarlar kendi panellerinde düzenlenir:
 Thickness	Kalınlık
 Thinner air needs more air flow	Daha seyrek hava daha fazla hava debisi gerektirir
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Bu kurulum paket yöneticisiyle veya elle güncellenir: OpenECraft yalnızca yeni bir sürümü bildirir.
 This page	Bu sayfa
 This page contains schematic content which is not evaluated on non-schematic pages.	Bu sayfa, şema dışı sayfalarda değerlendirilmeyen şema içeriği barındırıyor.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Bu proje, {1} projesinin {0} alt projesidir ({2} tarihinde dışarı alındı). İş bittiğinde kaydedin ve ana projeye ekleyin.
@@ -1756,6 +1775,7 @@ Update all	Tümünü güncelle
 Update part links from Vault items	Parça bağlantılarını Vault öğelerinden güncelle
 Update report blocks	Rapor bloklarını güncelle
 Update {} changed macros	Değişen {} makroyu güncelle
+Updates	Güncellemeler
 Updates the project parts with the current database data	Proje parçalarını geçerli veritabanı verileriyle günceller
 Updating the 3D routing	3D yönlendirme güncelleniyor
 Upload	Karşıya yükle
@@ -1917,6 +1937,7 @@ missing	eksik
 model	model
 name	ad
 no	hayır
+no answer	yanıt yok
 no rooms	oda yok
 no wires	tel yok
 none	yok
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} parça veritabanına aktarıldı ve {} olarak yerleştirildi
 {} is neither in the parts database nor on the parts server	{} ne parça veritabanında ne de parça sunucusunda var
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil
+{} is not in the disk image	{} disk görüntüsünde yok
 {} is not made for wall mounting: place it on a mounting rail	{} duvara montaj için uygun değil: bir montaj rayına yerleştirin
 {} is used by: {}	{} şunlar tarafından kullanılıyor: {}
 {} items copied	{} öğe kopyalandı

@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **Updates in the editor:** when it starts, the editor looks for a new release on
+  GitHub in the background, downloads it, checks it against `SHA256SUMS` and installs
+  it: the Windows setup runs silently when the editor is closed (*Restart and update*
+  in the status bar starts it again afterwards), an AppImage and the macOS apps are
+  replaced at once; packages of a distribution are only told of the new version.
+  Without a connection nothing waits. *File › Help › Check for updates* looks at any
+  time; *Settings › Updates* and `OPENECRAFT_NO_UPDATE_CHECK` switch the check at start
+  off ([installation](docs/installation.md#updates)).
 - **Docker images of the servers:** the parts server and the project server are
   published as `ghcr.io/nilres/openecraft-parts-server` and
   `ghcr.io/nilres/openecraft-project-server` with every release (`<version>`, `latest`)

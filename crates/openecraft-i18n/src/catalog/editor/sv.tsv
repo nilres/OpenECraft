@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	En kabel av busstypen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
 A new project	Ett nytt projekt
+A new release is downloaded in the background and installed when you close OpenECraft.	En ny version laddas ned i bakgrunden och installeras när du stänger OpenECraft.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version laddas ned i bakgrunden och ersätter den här installationen; den används från nästa start.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Ett numrerat avsnitt som innehåller sidor som en mapp; sidnamnen börjar med dess nummer (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	En profil mappar de neutrala fälten till kolumnnamnen i ett visst system (t.ex. MATNR för ERP-numret i SAP). Utan mappning identifieras vanliga engelska och tyska namn.
 A project definition based on this one, with its own defaults and scheme	En projektdefinition baserad på den här, med egna standardvärden och schema
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Ändrar sidordningen; namnet består
 Changes the tag of all functions of this device	Ändrar beteckningen för alla funktioner i den här apparaten
 Check	Kontroll
 Check all	Markera alla
+Check for updates	Sök efter uppdateringar
 Check in project as new version of {}	Checka in projektet som ny version av {}
 Check in to Vault	Checka in i Vault
 Check in {} to Vault	Checka in {} i Vault
@@ -305,6 +308,7 @@ Close shared project	Stäng delat projekt
 Close the start page	Stäng startsidan
 Closed / filled	Sluten / fylld
 Closed {} on the project server	{} stängd på projektservern
+Closes OpenECraft, installs the downloaded update and starts it again	Stänger OpenECraft, installerar den nedladdade uppdateringen och startar det igen
 Collaboration	Samarbete
 Collect texts from the project	Samla in texter från projektet
 Collision classes	Kollisionsklasser
@@ -503,6 +507,7 @@ Download into database	Ladda ned till databasen
 Download project	Ladda ned projekt
 Downloaded {} (version {})	{} nedladdad (version {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} artiklar nedladdade (revision {}): {} nya, {} uppdaterade
+Downloading OpenECraft {}	Laddar ned OpenECraft {}
 Downstream part	Underordnad artikel
 Draft of revision {} created	Utkast till revision {} skapat
 Draft of revision {} discarded	Utkast till revision {} ignorerat
@@ -879,6 +884,9 @@ Locking…	Låser…
 Logic	Logik
 Longer values are drawn smaller (0 = no limit)	Längre värden ritas mindre (0 = ingen gräns)
 Look at the point clicked, closer	Titta på den klickade punkten, närmare
+Look for updates when OpenECraft starts	Sök efter uppdateringar när OpenECraft startar
+Looking for updates…	Söker efter uppdateringar…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Söker efter en ny version av OpenECraft på GitHub och installerar den i bakgrunden
 Loop	Slinga
 Lowest fault current	Lägsta felström
 Macro boxes	Makrorutor
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	OpenECraft-strukturmall (JSON)
 OpenECraft symbol library	OpenECraft-symbolbibliotek
 OpenECraft title blocks	OpenECraft-namnrutor
 OpenECraft title blocks and report schemes (JSON)	OpenECraft-namnrutor och rapportscheman (JSON)
+OpenECraft {} is available	OpenECraft {} finns tillgänglig
+OpenECraft {} is installed and starts next time	OpenECraft {} är installerat och startar nästa gång
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} installeras när du stänger OpenECraft
+OpenECraft {} is up to date	OpenECraft {} är aktuell
 Opened {}	{} öppnad
 Opened {} from Vault (version {})	{} öppnad från Vault (version {})
 Opened {} from the project server	{} öppnad från projektservern
 Opening	Öppning
 Opening in the mounting plate / door: click two corners (round: in the properties)	Öppning i monteringsplåten / dörren: klicka på två hörn (rund: i egenskaperna)
 Opening {}…	Öppnar {}…
+Opens the page of the release	Öppnar versionens sida
 Opens the pages for printing in the browser with its print dialog	Öppnar sidorna för utskrift i webbläsaren med dess utskriftsdialog
 Open…	Öppna…
 Operations / year	Manövrer / år
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Även avvisade och stängda
 Relative column width	Relativ kolumnbredd
 Release	Frisläpp
 Release all	Frigör alla
+Release page	Versionens sida
 Release route	Frigör dragning
 Release without saving	Lås upp utan att spara
 Release: lock all pages	Frisläpp: lås alla sidor
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Återställ alla till standardvärdena
 Reset pane layout	Återställ panellayout
 Reset the ribbon	Återställ menyfliksområdet
 Reset to standard	Återställ till standard
+Restart and update	Starta om och uppdatera
 Resulting: {} · {} · {} · {} m	Resultat: {} · {} · {} · {} m
 Results of the project check	Resultat av projektkontrollen
 Review	Granskning
@@ -1635,6 +1650,7 @@ Supply and conditions	Matning och förhållanden
 Surge protection	Överspänningsskydd
 Swing the enclosure door open or shut (door devices and their wires move with it)	Sväng upp eller stäng kapslingsdörren (dörrapparater och deras ledningar följer med)
 Switch off the check \"{}\"	Stäng av kontrollen \"{}\"
+Switched off on this computer ({})	Avstängt på den här datorn ({})
 Switches the options with a condition by the configurator options	Kopplar alternativen med villkor enligt konfiguratoralternativen
 Switches to this workspace with its panes at their default places	Växlar till den här arbetsytan med panelerna på sina standardplatser
 Symbol editor	Symbolredigerare
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	De mar
 The side of {} is open	Sidan av {} är öppen
 The symbol is placed in the project	Symbolen är placerad i projektet
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Plintartiklarna anger inga ändstopp eller gavelplattor (tekniska data End bracket, End plate).
+The update failed	Uppdateringen misslyckades
+The web version is updated on its server.	Webbversionen uppdateras på sin server.
 The wire tool routes around symbols and other wires	Ledningsverktyget drar runt symboler och andra ledningar
 The wires get the free cores of the cable in order (left to right)	Ledningarna får kabelns lediga ledare i ordning (från vänster till höger)
 The wires of the connection take these values again	Förbindelsens ledningar får de här värdena igen
@@ -1722,6 +1740,7 @@ Theme	Tema
 These settings are edited in their panes:	Dessa inställningar redigeras i sina paneler:
 Thickness	Tjocklek
 Thinner air needs more air flow	Tunnare luft kräver större luftflöde
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Den här installationen uppdateras av dess pakethanterare eller för hand: OpenECraft meddelar bara en ny version.
 This page	Den här sidan
 This page contains schematic content which is not evaluated on non-schematic pages.	Den här sidan innehåller schemainnehåll som inte utvärderas på sidor som inte är schemasidor.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Det här projektet är delprojekt {} av {} (utlyft {}). Spara det och infoga det i huvudprojektet när arbetet är klart.
@@ -1756,6 +1775,7 @@ Update all	Uppdatera alla
 Update part links from Vault items	Uppdatera artikellänkar från Vault-objekt
 Update report blocks	Uppdatera rapportblock
 Update {} changed macros	Uppdatera {} ändrade makron
+Updates	Uppdateringar
 Updates the project parts with the current database data	Uppdaterar projektartiklarna med aktuella databasdata
 Updating the 3D routing	Uppdaterar 3D-dragningen
 Upload	Ladda upp
@@ -1917,6 +1937,7 @@ missing	saknas
 model	modell
 name	namn
 no	nej
+no answer	inget svar
 no rooms	inga rum
 no wires	inga ledningar
 none	inget
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importerad till artikeldatabasen och placerad som {}
 {} is neither in the parts database nor on the parts server	{} finns varken i artikeldatabasen eller på artikelservern
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
+{} is not in the disk image	{} finns inte i skivavbilden
 {} is not made for wall mounting: place it on a mounting rail	{} är inte avsedd för väggmontage: placera den på en skena
 {} is used by: {}	{} används av: {}
 {} items copied	{} objekt kopierade

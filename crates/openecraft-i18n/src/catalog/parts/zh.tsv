@@ -325,6 +325,7 @@ Terminators, filters	终端器、滤波器
 Test accessories	测试附件
 The EPLAN Data Portal only offers searching and reading parts	EPLAN Data Portal 仅支持搜索和读取部件
 The access token is only needed for changes; it is not stored.	访问令牌仅在更改时需要；不会被存储。
+The checksum of {} does not match: the download is damaged	{} 的校验和不匹配：下载已损坏
 The directory checks the password and sets the groups at every sign-in	目录服务在每次登录时检查密码并设置组
 The project has no parts	项目没有部件
 The server cannot be reached	无法连接到服务器
@@ -379,6 +380,7 @@ the server refuses the connection (not started, or another port)	服务器拒绝
 unchanged if empty	留空则不更改
 unexpected answer: {}	意外的响应：{}
 {} ({}, {})	{} ({}, {})
+{} has no checksum in SHA256SUMS	SHA256SUMS 中没有 {} 的校验和
 {} parts in {} catalogs, revision {}	{1} 个目录中共 {0} 个部件，修订 {2}
 {} parts, {} catalogs, {}	{} 个部件，{} 个目录，{}
 {} – save to upload it	{} – 保存后上传

@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Un cavo del tipo di b
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un'apertura delle stesse dimensioni nello stesso punto della parete laterale del vicino: insieme formano un passaggio cavi
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un file con lo stesso nome nella cartella riceve una nuova versione (check-out e check-in), altrimenti il file viene aggiunto
 A new project	Un nuovo progetto
+A new release is downloaded in the background and installed when you close OpenECraft.	Una nuova versione viene scaricata in background e installata alla chiusura di OpenECraft.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Una nuova versione viene scaricata in background e sostituisce questa installazione; viene usata dal prossimo avvio.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Una sezione numerata che contiene pagine come una cartella; i nomi delle pagine iniziano con il suo numero (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Un profilo associa i campi neutri ai nomi delle colonne di un determinato sistema (ad es. MATNR per il numero ERP in SAP). Senza mappatura vengono riconosciuti i nomi comuni in inglese e tedesco.
 A project definition based on this one, with its own defaults and scheme	Una definizione di progetto basata su questa, con propri valori predefiniti e schema
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Cambia l'ordine delle pagine; il nome res
 Changes the tag of all functions of this device	Modifica la sigla di tutte le funzioni di questo dispositivo
 Check	Verifica
 Check all	Seleziona tutto
+Check for updates	Cerca aggiornamenti
 Check in project as new version of {}	Esegui il check-in del progetto come nuova versione di {}
 Check in to Vault	Archivia in Vault
 Check in {} to Vault	Esegui il check-in di {} in Vault
@@ -305,6 +308,7 @@ Close shared project	Chiudi progetto condiviso
 Close the start page	Chiudi la pagina iniziale
 Closed / filled	Chiuso / pieno
 Closed {} on the project server	{} chiuso sul server di progetto
+Closes OpenECraft, installs the downloaded update and starts it again	Chiude OpenECraft, installa l'aggiornamento scaricato e lo riavvia
 Collaboration	Collaborazione
 Collect texts from the project	Raccogli testi dal progetto
 Collision classes	Classi di collisione
@@ -503,6 +507,7 @@ Download into database	Scarica nel database
 Download project	Scarica progetto
 Downloaded {} (version {})	{} scaricato (versione {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} articoli scaricati (revisione {}): {} nuovi, {} aggiornati
+Downloading OpenECraft {}	Download di OpenECraft {}
 Downstream part	Articolo a valle
 Draft of revision {} created	Bozza della revisione {} creata
 Draft of revision {} discarded	Bozza della revisione {} ignorata
@@ -879,6 +884,9 @@ Locking…	Blocco in corso…
 Logic	Logica
 Longer values are drawn smaller (0 = no limit)	I valori più lunghi vengono disegnati più piccoli (0 = nessun limite)
 Look at the point clicked, closer	Guarda il punto cliccato, più da vicino
+Look for updates when OpenECraft starts	Cerca aggiornamenti all'avvio di OpenECraft
+Looking for updates…	Ricerca di aggiornamenti…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Cerca una nuova versione di OpenECraft su GitHub e la installa in background
 Loop	Loop
 Lowest fault current	Corrente di guasto minima
 Macro boxes	Riquadri macro
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	Modello di struttura OpenECraft (JSON)
 OpenECraft symbol library	Libreria simboli OpenECraft
 OpenECraft title blocks	Cartigli OpenECraft
 OpenECraft title blocks and report schemes (JSON)	Cartigli e schemi di report OpenECraft (JSON)
+OpenECraft {} is available	OpenECraft {} è disponibile
+OpenECraft {} is installed and starts next time	OpenECraft {} è installato e partirà al prossimo avvio
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} verrà installato alla chiusura di OpenECraft
+OpenECraft {} is up to date	OpenECraft {} è aggiornato
 Opened {}	{} aperto
 Opened {} from Vault (version {})	{} aperto da Vault (versione {})
 Opened {} from the project server	{} aperto dal server di progetto
 Opening	Apertura
 Opening in the mounting plate / door: click two corners (round: in the properties)	Apertura nella piastra di montaggio / porta: fai clic su due angoli (rotonda: nelle proprietà)
 Opening {}…	Apertura di {}…
+Opens the page of the release	Apre la pagina della versione
 Opens the pages for printing in the browser with its print dialog	Apre le pagine per la stampa nel browser con la relativa finestra di stampa
 Open…	Apri…
 Operations / year	Manovre / anno
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Anche quelle rifiutate e chiuse
 Relative column width	Larghezza relativa della colonna
 Release	Rilascia
 Release all	Sblocca tutto
+Release page	Pagina della versione
 Release route	Sblocca percorso
 Release without saving	Rilascia senza salvare
 Release: lock all pages	Rilascia: blocca tutte le pagine
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Ripristina tutto ai valori predefiniti
 Reset pane layout	Reimposta disposizione dei riquadri
 Reset the ribbon	Ripristina la barra multifunzione
 Reset to standard	Ripristina standard
+Restart and update	Riavvia e aggiorna
 Resulting: {} · {} · {} · {} m	Risultato: {} · {} · {} · {} m
 Results of the project check	Risultati della verifica del progetto
 Review	Riesame
@@ -1635,6 +1650,7 @@ Supply and conditions	Alimentazione e condizioni
 Surge protection	Protezione contro le sovratensioni
 Swing the enclosure door open or shut (door devices and their wires move with it)	Apri o chiudi la porta dell'armadio (i dispositivi sulla porta e i loro conduttori si muovono con essa)
 Switch off the check \"{}\"	Disattiva la verifica \"{}\"
+Switched off on this computer ({})	Disattivato su questo computer ({})
 Switches the options with a condition by the configurator options	Commuta le opzioni con una condizione in base alle opzioni del configuratore
 Switches to this workspace with its panes at their default places	Passa a questa area di lavoro con i pannelli nelle posizioni predefinite
 Symbol editor	Editor simboli
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	I disp
 The side of {} is open	Il lato di {} è aperto
 The symbol is placed in the project	Il simbolo è utilizzato nel progetto
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Gli articoli morsetto non indicano supporti terminali né coperchi terminali (dati tecnici End bracket, End plate).
+The update failed	L'aggiornamento non è riuscito
+The web version is updated on its server.	La versione web viene aggiornata sul suo server.
 The wire tool routes around symbols and other wires	Lo strumento conduttore instrada attorno ai simboli e agli altri conduttori
 The wires get the free cores of the cable in order (left to right)	I conduttori ricevono in ordine (da sinistra a destra) le anime libere del cavo
 The wires of the connection take these values again	I conduttori del collegamento assumono di nuovo questi valori
@@ -1722,6 +1740,7 @@ Theme	Tema
 These settings are edited in their panes:	Queste impostazioni si modificano nei rispettivi riquadri:
 Thickness	Spessore
 Thinner air needs more air flow	L'aria più rarefatta richiede una maggiore portata d'aria
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Questa installazione viene aggiornata dal suo gestore di pacchetti o a mano: OpenECraft segnala solo una nuova versione.
 This page	Questa pagina
 This page contains schematic content which is not evaluated on non-schematic pages.	Questa pagina contiene contenuti di schema che non vengono valutati nelle pagine non di schema.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Questo progetto è il sottoprogetto {} di {} (estratto {}). Salvalo e inseriscilo nel progetto principale al termine del lavoro.
@@ -1756,6 +1775,7 @@ Update all	Aggiorna tutto
 Update part links from Vault items	Aggiorna i collegamenti degli articoli dagli elementi di Vault
 Update report blocks	Aggiorna blocchi di report
 Update {} changed macros	Aggiorna {} macro modificate
+Updates	Aggiornamenti
 Updates the project parts with the current database data	Aggiorna gli articoli del progetto con i dati attuali del database
 Updating the 3D routing	Aggiornamento dell'instradamento 3D
 Upload	Carica
@@ -1917,6 +1937,7 @@ missing	mancante
 model	modello
 name	nome
 no	no
+no answer	nessuna risposta
 no rooms	nessun locale
 no wires	nessun conduttore
 none	nessuno
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importato nel database articoli e posizionato come {}
 {} is neither in the parts database nor on the parts server	{} non è né nel database articoli né sul server articoli
 {} is not a PNG or JPEG image	{} non è un'immagine PNG o JPEG
+{} is not in the disk image	{} non è nell'immagine disco
 {} is not made for wall mounting: place it on a mounting rail	{} non è previsto per il montaggio a parete: posizionarlo su una guida
 {} is used by: {}	{} è usato da: {}
 {} items copied	{} elementi copiati

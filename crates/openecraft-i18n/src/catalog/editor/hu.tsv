@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Bustípusú kábel mi
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Azonos méretű kivágás ugyanott a szomszéd oldalfalában: együtt kábelátvezetést alkotnak
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	A mappában lévő azonos nevű fájl új verziót kap (kivétel és beadás), különben a fájl hozzáadódik
 A new project	Új projekt
+A new release is downloaded in the background and installed when you close OpenECraft.	Az új verzió a háttérben töltődik le, és az OpenECraft bezárásakor települ.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Az új verzió a háttérben töltődik le, és lecseréli ezt a telepítést; a következő indítástól használatos.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Számozott szakasz, amely mappaként tartalmazza az oldalakat; az oldalnevek a számával kezdődnek (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	A profil a semleges mezőket egy adott rendszer oszlopneveihez rendeli (pl. MATNR az ERP-számhoz SAP-ban). Hozzárendelés nélkül a szokásos angol és német nevek felismerésre kerülnek.
 A project definition based on this one, with its own defaults and scheme	Erre épülő projektdefiníció saját alapértékekkel és sémával
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Megváltoztatja az oldalak sorrendjét; a
 Changes the tag of all functions of this device	Módosítja a készülék összes funkciójának azonosítóját
 Check	Ellenőrzés
 Check all	Összes bejelölése
+Check for updates	Frissítések keresése
 Check in project as new version of {}	Projekt beadása {} új verziójaként
 Check in to Vault	Bejelentkeztetés a Vaultba
 Check in {} to Vault	{} beadása a Vaultba
@@ -305,6 +308,7 @@ Close shared project	Megosztott projekt bezárása
 Close the start page	A kezdőlap bezárása
 Closed / filled	Zárt / kitöltött
 Closed {} on the project server	{} bezárva a projektszerveren
+Closes OpenECraft, installs the downloaded update and starts it again	Bezárja az OpenECraftot, telepíti a letöltött frissítést, és újraindítja
 Collaboration	Együttműködés
 Collect texts from the project	Szövegek gyűjtése a projektből
 Collision classes	Ütközési osztályok
@@ -503,6 +507,7 @@ Download into database	Letöltés az adatbázisba
 Download project	Projekt letöltése
 Downloaded {} (version {})	{} letöltve ({} verzió)
 Downloaded {} parts (revision {}): {} new, {} updated	{} alkatrész letöltve ({}. revízió): {} új, {} frissítve
+Downloading OpenECraft {}	Az OpenECraft {} letöltése
 Downstream part	Utána kapcsolt alkatrész
 Draft of revision {} created	A(z) {} revízió piszkozata létrehozva
 Draft of revision {} discarded	A(z) {} revízió piszkozata elvetve
@@ -879,6 +884,9 @@ Locking…	Zárolás…
 Logic	Logika
 Longer values are drawn smaller (0 = no limit)	A hosszabb értékek kisebben jelennek meg (0 = nincs korlát)
 Look at the point clicked, closer	A kattintott pont megtekintése közelebbről
+Look for updates when OpenECraft starts	Frissítések keresése az OpenECraft indításakor
+Looking for updates…	Frissítések keresése…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Új OpenECraft-verziót keres a GitHubon, és a háttérben telepíti
 Loop	Kör
 Lowest fault current	Legkisebb hibaáram
 Macro boxes	Makródobozok
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	OpenECraft-struktúrasablon (JSON)
 OpenECraft symbol library	OpenECraft szimbólumkönyvtár
 OpenECraft title blocks	OpenECraft-szövegmezők
 OpenECraft title blocks and report schemes (JSON)	OpenECraft-szövegmezők és -kimutatássémák (JSON)
+OpenECraft {} is available	Elérhető az OpenECraft {}
+OpenECraft {} is installed and starts next time	Az OpenECraft {} telepítve, a következő indításkor elindul
+OpenECraft {} is installed when you close OpenECraft	Az OpenECraft {} az OpenECraft bezárásakor települ
+OpenECraft {} is up to date	Az OpenECraft {} naprakész
 Opened {}	{} megnyitva
 Opened {} from Vault (version {})	{} megnyitva a Vaultból ({} verzió)
 Opened {} from the project server	{} megnyitva a projektszerverről
 Opening	Nyílás
 Opening in the mounting plate / door: click two corners (round: in the properties)	Nyílás a szerelőlapon / ajtón: kattintson két sarokra (kerek: a tulajdonságokban)
 Opening {}…	{} megnyitása…
+Opens the page of the release	Megnyitja a kiadás oldalát
 Opens the pages for printing in the browser with its print dialog	Megnyitja az oldalakat nyomtatásra a böngészőben annak nyomtatási párbeszédablakával
 Open…	Megnyitás…
 Operations / year	Kapcsolások / év
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Az elutasítottak és lezártak is
 Relative column width	Relatív oszlopszélesség
 Release	Kiadás
 Release all	Összes feloldása
+Release page	A kiadás oldala
 Release route	Nyomvonal feloldása
 Release without saving	Zárolás feloldása mentés nélkül
 Release: lock all pages	Kiadás: összes oldal zárolása
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Az összes visszaállítása alapértelmezésre
 Reset pane layout	A panelek elrendezésének visszaállítása
 Reset the ribbon	A menüszalag visszaállítása
 Reset to standard	Visszaállítás alapértékre
+Restart and update	Újraindítás és frissítés
 Resulting: {} · {} · {} · {} m	Eredmény: {} · {} · {} · {} m
 Results of the project check	A projekt ellenőrzésének eredményei
 Review	Véleményezés
@@ -1635,6 +1650,7 @@ Supply and conditions	Betáplálás és feltételek
 Surge protection	Túlfeszültség-védelem
 Swing the enclosure door open or shut (door devices and their wires move with it)	A szekrényajtó kinyitása vagy becsukása (az ajtókészülékek és vezetékeik vele együtt mozognak)
 Switch off the check \"{}\"	A(z) \"{}\" ellenőrzés kikapcsolása
+Switched off on this computer ({})	Ezen a számítógépen kikapcsolva ({})
 Switches the options with a condition by the configurator options	A feltétellel rendelkező opciókat a konfigurátoropciók szerint kapcsolja
 Switches to this workspace with its panes at their default places	Átvált erre a munkaterületre, a panelek az alapértelmezett helyükön
 Symbol editor	Szimbólumszerkesztő
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	A kije
 The side of {} is open	{} oldala nyitott
 The symbol is placed in the project	A szimbólum használatban van a projektben
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	A sorkapocs-alkatrészek nem adnak meg végbakot vagy zárófedelet (End bracket, End plate műszaki adat).
+The update failed	A frissítés nem sikerült
+The web version is updated on its server.	A webes verzió a saját szerverén frissül.
 The wire tool routes around symbols and other wires	A vezetékeszköz kikerüli a szimbólumokat és más vezetékeket
 The wires get the free cores of the cable in order (left to right)	A vezetékek sorrendben (balról jobbra) megkapják a kábel szabad ereit
 The wires of the connection take these values again	Az összeköttetés vezetékei ismét átveszik ezeket az értékeket
@@ -1722,6 +1740,7 @@ Theme	Téma
 These settings are edited in their panes:	Ezek a beállítások a saját paneljükön szerkeszthetők:
 Thickness	Vastagság
 Thinner air needs more air flow	A ritkább levegőhöz nagyobb légáram szükséges
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Ezt a telepítést a csomagkezelője vagy kézzel lehet frissíteni: az OpenECraft csak jelzi az új verziót.
 This page	Ez az oldal
 This page contains schematic content which is not evaluated on non-schematic pages.	Az oldal kapcsolásirajz-tartalmat tartalmaz, amely nem kapcsolási rajz típusú oldalakon nem kerül kiértékelésre.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ez a projekt a(z) {} alprojekt, szülőprojekt: {} (kiemelve: {}). Mentse, és a munka végeztével illessze be a főprojektbe.
@@ -1756,6 +1775,7 @@ Update all	Összes frissítése
 Update part links from Vault items	Alkatrészhivatkozások frissítése Vault-elemekből
 Update report blocks	Kimutatásblokkok frissítése
 Update {} changed macros	{} módosult makró frissítése
+Updates	Frissítések
 Updates the project parts with the current database data	Frissíti a projektalkatrészeket az adatbázis aktuális adataival
 Updating the 3D routing	3D nyomvonalvezetés frissítése
 Upload	Feltöltés
@@ -1917,6 +1937,7 @@ missing	hiányzik
 model	modell
 name	név
 no	nem
+no answer	nincs válasz
 no rooms	nincs helyiség
 no wires	nincsenek vezetékek
 none	nincs
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} bekerült az alkatrész-adatbázisba, elhelyezve: {}
 {} is neither in the parts database nor on the parts server	{} sem az alkatrész-adatbázisban, sem az alkatrészkiszolgálón nem található
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép
+{} is not in the disk image	A(z) {} nincs a lemezképben
 {} is not made for wall mounting: place it on a mounting rail	{} nem falra szerelésre készült: helyezze szerelősínre
 {} is used by: {}	{} használja: {}
 {} items copied	{} elem másolva

@@ -161,8 +161,16 @@ Root: HKA; Subkey: "Software\Classes\Applications\openecraft.exe\SupportedTypes"
 
 [Run]
 Filename: "{app}\openecraft.exe"; Description: "{cm:LaunchProgram,OpenECraft}"; Flags: nowait postinstall skipifsilent
+; The update of the editor runs the setup silently and with /RESTART=1 starts it again.
+Filename: "{app}\openecraft.exe"; Flags: nowait runasoriginaluser; Check: RestartAfterUpdate
 
 [Code]
+// The editor asked to be started again after its update (Help › Restart and update).
+function RestartAfterUpdate: Boolean;
+begin
+  Result := WizardSilent and (ExpandConstant('{param:RESTART|0}') = '1');
+end;
+
 // The PATH of the user (per user installation) or of the machine (all users).
 function EnvironmentRoot: Integer;
 begin

@@ -36,6 +36,8 @@ impl App {
             Cmd::RenameDevice | Cmd::PartSelection => self.selected_tag().is_some(),
             Cmd::ShowInLayout | Cmd::ShowIn3d => self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
             Cmd::Quit => FileIo::has_own_window(),
+            Cmd::CheckForUpdates => crate::updater::supported() && !self.updater.busy(),
+            Cmd::InstallUpdate => matches!(self.updater.state(), crate::updater::State::Ready { .. }),
             Cmd::SaveAs => FileIo::can_save_in_place(),
             Cmd::NextPageTab | Cmd::PreviousPageTab | Cmd::ClosePageTab => self.page_tabs.len() > 1,
             Cmd::LayoutDoorInside | Cmd::LayoutDoor | Cmd::LayoutFront => self.panel_ui.view == crate::panel_ui::View::Front && !self.panel_ui.in_room,
@@ -217,6 +219,8 @@ impl App {
             Cmd::Settings => self.settings.open(),
             Cmd::Tutorial => self.help_chapter(1),
             Cmd::About => self.help_about(),
+            Cmd::CheckForUpdates => self.check_for_updates(ctx),
+            Cmd::InstallUpdate => self.restart_to_update(ctx),
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
             // ------------------------------------------------------------ home
             Cmd::Cut | Cmd::Copy => {

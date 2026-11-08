@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	케이블이 없는 �
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 A new project	새 프로젝트
+A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	폴더처럼 페이지를 담는 번호 매긴 구역입니다. 페이지 이름은 그 번호로 시작합니다 (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	프로필은 중립 필드를 특정 시스템의 열 이름에 매핑합니다(예: SAP에서 ERP 번호의 MATNR). 매핑이 없으면 일반적인 영어 및 독일어 이름이 인식됩니다.
 A project definition based on this one, with its own defaults and scheme	이 정의를 기반으로 고유 기본값과 스키마를 가진 프로젝트 정의
@@ -240,6 +242,7 @@ Changes the page order; the name stays	페이지 순서를 바꿉니다. 이름�
 Changes the tag of all functions of this device	이 장치의 모든 기능의 태그를 변경합니다
 Check	검사
 Check all	모두 선택
+Check for updates	업데이트 확인
 Check in project as new version of {}	프로젝트를 {}의 새 버전으로 체크 인
 Check in to Vault	Vault에 체크인
 Check in {} to Vault	{}을(를) Vault에 체크 인
@@ -299,6 +302,7 @@ Close shared project	공유 프로젝트 닫기
 Close the start page	시작 페이지 닫기
 Closed / filled	닫힘 / 채움
 Closed {} on the project server	프로젝트 서버에서 {} 닫힘
+Closes OpenECraft, installs the downloaded update and starts it again	OpenECraft를 닫고 다운로드한 업데이트를 설치한 후 다시 시작합니다
 Collaboration	협업
 Collect texts from the project	프로젝트에서 텍스트 수집
 Collision classes	충돌 클래스
@@ -495,6 +499,7 @@ Download into database	데이터베이스로 다운로드
 Download project	프로젝트 다운로드
 Downloaded {} (version {})	{}을(를) 다운로드했습니다(버전 {})
 Downloaded {} parts (revision {}): {} new, {} updated	부품 {}개 다운로드됨(개정 {}): 신규 {}개, 업데이트 {}개
+Downloading OpenECraft {}	OpenECraft {} 다운로드 중
 Downstream part	하위 부품
 Draft of revision {} created	개정 {}의 초안 만들어짐
 Draft of revision {} discarded	개정 {}의 초안 취소됨
@@ -864,6 +869,9 @@ Locking…	잠그는 중…
 Logic	로직
 Longer values are drawn smaller (0 = no limit)	더 긴 값은 더 작게 그려집니다(0 = 제한 없음)
 Look at the point clicked, closer	클릭한 점을 가까이에서 보기
+Look for updates when OpenECraft starts	OpenECraft 시작 시 업데이트 확인
+Looking for updates…	업데이트 확인 중…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub에서 OpenECraft의 새 릴리스를 찾아 백그라운드에서 설치합니다
 Loop	루프
 Lowest fault current	최소 고장 전류
 Macro boxes	매크로 박스
@@ -1096,12 +1104,17 @@ OpenECraft structure template (JSON)	OpenECraft 구조 템플릿(JSON)
 OpenECraft symbol library	OpenECraft 심볼 라이브러리
 OpenECraft title blocks	OpenECraft 표제란
 OpenECraft title blocks and report schemes (JSON)	OpenECraft 표제란 및 보고서 스키마(JSON)
+OpenECraft {} is available	OpenECraft {}을(를) 사용할 수 있습니다
+OpenECraft {} is installed and starts next time	OpenECraft {}이(가) 설치되었으며 다음 실행 시 시작됩니다
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {}은(는) OpenECraft를 닫으면 설치됩니다
+OpenECraft {} is up to date	OpenECraft {}은(는) 최신 버전입니다
 Opened {}	{} 열림
 Opened {} from Vault (version {})	Vault에서 {}을(를) 열었습니다(버전 {})
 Opened {} from the project server	프로젝트 서버에서 {} 열림
 Opening	개구부
 Opening in the mounting plate / door: click two corners (round: in the properties)	장착 플레이트 / 도어의 개구부: 두 모서리를 클릭하세요(원형: 속성에서)
 Opening {}…	{} 여는 중…
+Opens the page of the release	릴리스 페이지를 엽니다
 Opens the pages for printing in the browser with its print dialog	브라우저의 인쇄 대화 상자로 인쇄할 페이지를 엽니다
 Open…	열기…
 Operations / year	동작 횟수 / 년
@@ -1297,6 +1310,7 @@ Rejected and closed ones too	거부 및 종료된 항목 포함
 Relative column width	상대 열 너비
 Release	릴리스
 Release all	모두 고정 해제
+Release page	릴리스 페이지
 Release route	경로 고정 해제
 Release without saving	저장하지 않고 잠금 해제
 Release: lock all pages	릴리스: 모든 페이지 잠금
@@ -1371,6 +1385,7 @@ Reset all to the defaults	모두 기본값으로 재설정
 Reset pane layout	창 배치 재설정
 Reset the ribbon	리본 초기화
 Reset to standard	표준으로 재설정
+Restart and update	다시 시작하여 업데이트
 Resulting: {} · {} · {} · {} m	결과: {} · {} · {} · {} m
 Results of the project check	프로젝트 검사 결과
 Review	검토
@@ -1610,6 +1625,7 @@ Supply and conditions	전원 공급 및 조건
 Surge protection	서지 보호
 Swing the enclosure door open or shut (door devices and their wires move with it)	외함 도어를 열거나 닫습니다(도어 장치와 해당 전선이 함께 움직임)
 Switch off the check \"{}\"	\"{}\" 검사 끄기
+Switched off on this computer ({})	이 PC에서 꺼져 있습니다({})
 Switches the options with a condition by the configurator options	조건이 있는 옵션을 컨피규레이터 옵션에 따라 전환합니다
 Switches to this workspace with its panes at their default places	이 작업 공간으로 전환하고 창을 기본 위치로 되돌립니다
 Symbol editor	심볼 편집기
@@ -1690,12 +1706,15 @@ The selected devices side by side on the selected rail, from its left end	선택
 The side of {} is open	{}의 측면이 개방되어 있습니다
 The symbol is placed in the project	심볼이 프로젝트에 배치되어 있습니다
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	단자 부품에 엔드 브래킷이나 엔드 플레이트가 지정되어 있지 않습니다(기술 데이터 End bracket, End plate).
+The update failed	업데이트에 실패했습니다
+The web version is updated on its server.	웹 버전은 해당 서버에서 업데이트됩니다.
 The wires get the free cores of the cable in order (left to right)	전선은 케이블의 빈 심선을 순서대로(왼쪽에서 오른쪽) 받습니다
 The wires of the connection take these values again	연결의 전선이 이 값을 다시 받습니다
 Theme	테마
 These settings are edited in their panes:	이 설정은 각 창에서 편집합니다:
 Thickness	두께
 Thinner air needs more air flow	공기가 희박하면 더 많은 풍량이 필요합니다
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	이 설치는 패키지 관리자나 수동으로 업데이트됩니다. OpenECraft는 새 릴리스를 알리기만 합니다.
 This page	이 페이지
 This page contains schematic content which is not evaluated on non-schematic pages.	이 페이지에는 회로도가 아닌 페이지에서는 평가되지 않는 회로도 내용이 있습니다.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	이 프로젝트는 {1}의 하위 프로젝트 {0}입니다({2}에 반출). 작업이 끝나면 저장한 후 주 프로젝트에 삽입하세요.
@@ -1730,6 +1749,7 @@ Update all	모두 업데이트
 Update part links from Vault items	Vault 항목에서 부품 링크 업데이트
 Update report blocks	보고서 블록 업데이트
 Update {} changed macros	변경된 매크로 {}개 업데이트
+Updates	업데이트
 Updates the project parts with the current database data	현재 데이터베이스 데이터로 프로젝트 부품을 업데이트합니다
 Upload	업로드
 Upload database ({})	데이터베이스 업로드({})
@@ -1889,6 +1909,7 @@ missing	누락됨
 model	모델
 name	이름
 no	아니요
+no answer	응답 없음
 no wires	전선 없음
 not defined	정의되지 않음
 not in the P&ID	P&ID에 없음
@@ -1993,6 +2014,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{}을(를) 부품 데이터베이스로 가져와 {}(으)로 배치했습니다
 {} is neither in the parts database nor on the parts server	{}은(는) 부품 데이터베이스와 부품 서버 어디에도 없습니다
 {} is not a PNG or JPEG image	{}은(는) PNG 또는 JPEG 이미지가 아닙니다
+{} is not in the disk image	디스크 이미지에 {}이(가) 없습니다
 {} is used by: {}	{}을(를) 사용하는 항목: {}
 {} items copied	항목 {}개를 복사했습니다
 {} items selected	항목 {}개 선택됨

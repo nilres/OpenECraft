@@ -326,6 +326,7 @@ Terminators, filters	Lezárások, szűrők
 Test accessories	Vizsgálati tartozékok
 The EPLAN Data Portal only offers searching and reading parts	Az EPLAN Data Portal csak alkatrészek keresését és olvasását kínálja
 The access token is only needed for changes; it is not stored.	A hozzáférési token csak a módosításokhoz szükséges; nem tárolódik.
+The checksum of {} does not match: the download is damaged	A(z) {} ellenőrzőösszege nem egyezik: a letöltés sérült
 The directory checks the password and sets the groups at every sign-in	A címtár minden bejelentkezéskor ellenőrzi a jelszót és beállítja a csoportokat
 The project has no parts	A projektnek nincsenek alkatrészei
 The server cannot be reached	A szerver nem érhető el
@@ -381,6 +382,7 @@ the server refuses the connection (not started, or another port)	a kiszolgáló 
 unchanged if empty	változatlan, ha üres
 unexpected answer: {}	váratlan válasz: {}
 {} ({}, {})	{} ({}, {})
+{} has no checksum in SHA256SUMS	A(z) {} fájlnak nincs ellenőrzőösszege az SHA256SUMS fájlban
 {} parts in {} catalogs, revision {}	{} alkatrész {} katalógusban, {}. revízió
 {} parts, {} catalogs, {}	{} alkatrész, {} katalógus, {}
 {} – save to upload it	{} – a feltöltéshez mentse

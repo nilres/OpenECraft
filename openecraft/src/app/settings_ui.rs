@@ -23,11 +23,12 @@ pub(super) enum Node {
     Shortcuts,
     Ribbon,
     Servers,
+    Updates,
 }
 
 impl Node {
     const PROJECT: [Node; 6] = [Node::WireNumbering, Node::CrossReferences, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
-    const USER: [Node; 4] = [Node::Appearance, Node::Shortcuts, Node::Ribbon, Node::Servers];
+    const USER: [Node; 5] = [Node::Appearance, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
 
     fn title(self) -> &'static str {
         match self {
@@ -41,6 +42,7 @@ impl Node {
             Node::Shortcuts => tr("Keyboard shortcuts"),
             Node::Ribbon => tr("Ribbon"),
             Node::Servers => tr("Servers"),
+            Node::Updates => tr("Updates"),
         }
     }
 }
@@ -117,6 +119,7 @@ impl App {
                     Node::Shortcuts => self.shortcut_settings(ui),
                     Node::Ribbon => self.ribbon_settings(ui),
                     Node::Servers => self.server_links(ui),
+                    Node::Updates => self.update_settings(ui),
                 });
             });
         });

@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	ケーブルのない
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	隣のエンクロージャーの側板の同じ位置に同じサイズの切り欠きを追加します。両方でケーブル貫通口になります
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	フォルダー内に同名のファイルがある場合は新しいバージョンになり (チェックアウトとチェックイン)、ない場合はファイルが追加されます
 A new project	新しいプロジェクト
+A new release is downloaded in the background and installed when you close OpenECraft.	新しいリリースはバックグラウンドでダウンロードされ、OpenECraft を閉じるとインストールされます。
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	新しいリリースはバックグラウンドでダウンロードされ、このインストールを置き換えます。次回の起動から使われます。
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	フォルダーのようにページを含む番号付きセクション。ページ名はその番号で始まります (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	プロファイルは、ニュートラルフィールドを特定のシステムの列名に対応付けます (例: SAP の ERP 番号には MATNR)。マッピングがない場合は、一般的な英語名とドイツ語名が認識されます。
 A project definition based on this one, with its own defaults and scheme	これを基にした、独自の既定値とスキームを持つプロジェクト定義
@@ -241,6 +243,7 @@ Changes the page order; the name stays	ページの順序を変更します。�
 Changes the tag of all functions of this device	このデバイスのすべての機能のタグを変更します
 Check	チェック
 Check all	すべて選択
+Check for updates	更新を確認
 Check in project as new version of {}	プロジェクトを {} の新しいバージョンとしてチェックイン
 Check in to Vault	Vault にチェックイン
 Check in {} to Vault	{} を Vault にチェックイン
@@ -301,6 +304,7 @@ Close shared project	共有プロジェクトを閉じる
 Close the start page	スタートページを閉じる
 Closed / filled	閉じた図形 / 塗りつぶし
 Closed {} on the project server	プロジェクトサーバーで {} を閉じました
+Closes OpenECraft, installs the downloaded update and starts it again	OpenECraft を閉じ、ダウンロードした更新をインストールして再起動します
 Collaboration	共同作業
 Collect texts from the project	プロジェクトからテキストを収集
 Collision classes	干渉クラス
@@ -497,6 +501,7 @@ Download into database	データベースにダウンロード
 Download project	プロジェクトをダウンロード
 Downloaded {} (version {})	{} をダウンロードしました (バージョン {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} 個の部品をダウンロードしました (リビジョン {}): 新規 {}、更新 {}
+Downloading OpenECraft {}	OpenECraft {} をダウンロード中
 Downstream part	下位部品
 Draft of revision {} created	リビジョン {} のドラフトを作成しました
 Draft of revision {} discarded	リビジョン {} のドラフトを破棄しました
@@ -867,6 +872,9 @@ Locking…	ロックしています…
 Logic	ロジック
 Longer values are drawn smaller (0 = no limit)	長い値は小さく描画されます (0 = 制限なし)
 Look at the point clicked, closer	クリックした点を近くから見る
+Look for updates when OpenECraft starts	OpenECraft の起動時に更新を確認する
+Looking for updates…	更新を確認しています…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub で OpenECraft の新しいリリースを探し、バックグラウンドでインストールします
 Loop	ループ
 Lowest fault current	最小故障電流
 Macro boxes	マクロボックス
@@ -1099,12 +1107,17 @@ OpenECraft structure template (JSON)	OpenECraft 構造テンプレート (JSON)
 OpenECraft symbol library	OpenECraft シンボルライブラリ
 OpenECraft title blocks	OpenECraft 表題欄
 OpenECraft title blocks and report schemes (JSON)	OpenECraft 表題欄とレポートスキーム (JSON)
+OpenECraft {} is available	OpenECraft {} が利用可能です
+OpenECraft {} is installed and starts next time	OpenECraft {} がインストールされ、次回から起動します
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} は OpenECraft を閉じるとインストールされます
+OpenECraft {} is up to date	OpenECraft {} は最新です
 Opened {}	{} を開きました
 Opened {} from Vault (version {})	Vault から {} を開きました (バージョン {})
 Opened {} from the project server	プロジェクトサーバーから {} を開きました
 Opening	開口部
 Opening in the mounting plate / door: click two corners (round: in the properties)	取付板 / 扉の開口部: 2 つのコーナーをクリック (円形: プロパティで設定)
 Opening {}…	{} を開いています…
+Opens the page of the release	リリースのページを開きます
 Opens the pages for printing in the browser with its print dialog	ブラウザーの印刷ダイアログでページを印刷用に開きます
 Open…	開く…
 Operations / year	動作回数 / 年
@@ -1301,6 +1314,7 @@ Rejected and closed ones too	却下済みとクローズ済みも表示
 Relative column width	相対列幅
 Release	リリース
 Release all	すべて解除
+Release page	リリースページ
 Release route	ルートの固定を解除
 Release without saving	保存せずに解放
 Release: lock all pages	リリース: すべてのページをロック
@@ -1375,6 +1389,7 @@ Reset all to the defaults	すべて既定値にリセット
 Reset pane layout	パネル配置をリセット
 Reset the ribbon	リボンをリセット
 Reset to standard	標準にリセット
+Restart and update	再起動して更新
 Resulting: {} · {} · {} · {} m	結果: {} · {} · {} · {} m
 Results of the project check	プロジェクトのチェック結果
 Review	レビュー
@@ -1614,6 +1629,7 @@ Supply and conditions	電源供給と条件
 Surge protection	サージ保護
 Swing the enclosure door open or shut (door devices and their wires move with it)	エンクロージャーの扉を開閉します (扉取付機器とその電線も一緒に動きます)
 Switch off the check \"{}\"	チェック「{}」をオフにする
+Switched off on this computer ({})	このコンピューターではオフになっています（{}）
 Switches the options with a condition by the configurator options	条件付きのオプションをコンフィギュレーターのオプションに従って切り替えます
 Switches to this workspace with its panes at their default places	このワークスペースに切り替え、ペインを既定の位置に戻します
 Symbol editor	シンボルエディター
@@ -1694,6 +1710,8 @@ The selected devices side by side on the selected rail, from its left end	選択
 The side of {} is open	{} の側面は開放されています
 The symbol is placed in the project	シンボルはプロジェクト内で使用されています
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	端子部品にエンドクランプまたはエンドカバーの指定がありません (技術データ End bracket、End plate)。
+The update failed	更新に失敗しました
+The web version is updated on its server.	Web 版はそのサーバー上で更新されます。
 The wire tool routes around symbols and other wires	電線ツールはシンボルや他の電線を回避してルートを決めます
 The wires get the free cores of the cable in order (left to right)	電線にはケーブルの空き心線が順番に (左から右へ) 割り当てられます
 The wires of the connection take these values again	接続の電線がこれらの値を再び引き継ぎます
@@ -1701,6 +1719,7 @@ Theme	テーマ
 These settings are edited in their panes:	これらの設定は各ペインで編集します:
 Thickness	厚さ
 Thinner air needs more air flow	空気が薄いほど多くの風量が必要です
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	このインストールはパッケージマネージャーまたは手動で更新されます。OpenECraft は新しいリリースを知らせるだけです。
 This page	このページ
 This page contains schematic content which is not evaluated on non-schematic pages.	このページには回路図の内容が含まれていますが、回路図以外のページでは評価されません。
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	このプロジェクトは {1} のサブプロジェクト {0} です ({2} に切り出し)。作業が完了したら保存して、メインプロジェクトに挿入してください。
@@ -1735,6 +1754,7 @@ Update all	すべて更新
 Update part links from Vault items	Vault アイテムから部品リンクを更新
 Update report blocks	レポートブロックを更新
 Update {} changed macros	変更された {} 個のマクロを更新
+Updates	更新
 Updates the project parts with the current database data	プロジェクト部品をデータベースの最新データで更新します
 Upload	アップロード
 Upload database ({})	データベースをアップロード ({})
@@ -1894,6 +1914,7 @@ missing	なし
 model	モデル
 name	名前
 no	いいえ
+no answer	応答がありません
 no wires	電線なし
 not defined	未定義
 not in the P&ID	P&ID にありません
@@ -1998,6 +2019,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} を部品データベースにインポートし、{} として配置しました
 {} is neither in the parts database nor on the parts server	{} は部品データベースにも部品サーバーにもありません
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません
+{} is not in the disk image	ディスクイメージに {} がありません
 {} is not made for wall mounting: place it on a mounting rail	{} は壁取付用ではありません: 取付レールに配置してください
 {} is used by: {}	{} は次で使用されています: {}
 {} items copied	{} 個のアイテムをコピーしました

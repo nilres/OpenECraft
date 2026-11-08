@@ -197,6 +197,8 @@ pub enum Cmd {
     Help,
     Tutorial,
     About,
+    CheckForUpdates,
+    InstallUpdate,
     LayoutSpaces,
     LayoutView,
     LayoutProperties,
@@ -621,6 +623,10 @@ pub static ALL: &[Def] = &[
     d(C::Help, "help", tr_const!("Help"), I::Help).tool(ToolPane::Help).keys("F1").tip(tr_const!("Quick guide, tutorial and shortcuts; F1 opens the help of the pane in use")),
     d(C::Tutorial, "tutorial", tr_const!("Tutorial"), I::Book).tip(tr_const!("The tutorial in 13 chapters, from the first project to the automation")),
     d(C::About, "about", tr_const!("About OpenECraft"), I::Info).tip(tr_const!("Version and project page")),
+    d(C::CheckForUpdates, "check_for_updates", tr_const!("Check for updates"), I::Download)
+        .tip(tr_const!("Looks for a new release of OpenECraft on GitHub and installs it in the background")),
+    d(C::InstallUpdate, "install_update", tr_const!("Restart and update"), I::Download)
+        .tip(tr_const!("Closes OpenECraft, installs the downloaded update and starts it again")),
     d(C::LayoutSpaces, "layout_spaces", tr_const!("Layout spaces"), I::Enclosure).pane(Pane::LayoutSpaces).tip(tr_const!("Enclosures, devices to place and placed devices")),
     d(C::LayoutView, "layout_view", tr_const!("Panel layout"), I::Front).pane(Pane::LayoutView),
     d(C::LayoutProperties, "layout_properties", tr_const!("Layout properties"), I::Properties).pane(Pane::LayoutProperties),

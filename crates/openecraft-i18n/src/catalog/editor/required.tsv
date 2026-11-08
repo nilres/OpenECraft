@@ -81,6 +81,8 @@ A hidden or locked layer cannot take new items	Eine ausgeblendete oder gesperrte
 A level below the lowest one	Eine Ebene unter der untersten	Un niveau sous le plus bas	Un nivel bajo el más bajo
 A link joins two building entries: add building entries to the outer walls of rooms in different buildings (Layout space › Building entry).	Eine Verbindung verbindet zwei Gebäudeeinführungen: Gebäudeeinführungen in Außenwände von Räumen verschiedener Gebäude setzen (Layoutraum › Gebäudeeinführung).	Une liaison relie deux entrées de bâtiment : ajoutez des entrées de bâtiment aux murs extérieurs de pièces de bâtiments différents (Espace de montage › Entrée de bâtiment).	Un enlace une dos entradas de edificio: añada entradas de edificio a los muros exteriores de salas de distintos edificios (Espacio de montaje › Entrada de edificio).
 A new project	Ein neues Projekt	Un nouveau projet	Un proyecto nuevo
+A new release is downloaded in the background and installed when you close OpenECraft.	Eine neue Version wird im Hintergrund heruntergeladen und beim Schließen von OpenECraft installiert.	Une nouvelle version est téléchargée en arrière-plan et installée à la fermeture d'OpenECraft.	Una nueva versión se descarga en segundo plano y se instala al cerrar OpenECraft.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Eine neue Version wird im Hintergrund heruntergeladen und ersetzt diese Installation; sie gilt ab dem nächsten Start.	Une nouvelle version est téléchargée en arrière-plan et remplace cette installation ; elle est utilisée dès le prochain démarrage.	Una nueva versión se descarga en segundo plano y sustituye esta instalación; se usa a partir del próximo inicio.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Ein nummerierter Abschnitt, der Seiten wie ein Verzeichnis enthält; die Seitennamen beginnen mit seiner Nummer (2.3.1)	Une section numérotée qui contient des pages comme un dossier ; les noms des pages commencent par son numéro (2.3.1)	Una sección numerada que contiene páginas como un directorio; los nombres de las páginas empiezan por su número (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Ein Profil ordnet die neutralen Felder den Spaltennamen eines bestimmten Systems zu (z. B. MATNR für die ERP-Nummer in SAP). Ohne Zuordnung werden übliche englische und deutsche Namen erkannt.	Un profil affecte les champs neutres aux noms de colonnes d'un système donné (p. ex. MATNR pour le numéro ERP dans SAP). Sans affectation, les noms courants en anglais et en allemand sont reconnus.	Un perfil asigna los campos neutros a los nombres de columna de un sistema concreto (p. ej. MATNR para el número ERP en SAP). Sin asignación se reconocen los nombres habituales en inglés y alemán.
 A project definition based on this one, with its own defaults and scheme	Eine Projektdefinition auf Basis dieser, mit eigenen Vorgabewerten und Schema	Une définition de projet basée sur celle-ci, avec ses propres valeurs par défaut et son schéma	Una definición de proyecto basada en esta, con sus propios valores predeterminados y esquema
@@ -295,6 +297,7 @@ Changes the page order; the name stays	Ändert die Seitenreihenfolge; der Name b
 Changes the tag of all functions of this device	Ändert das Kennzeichen aller Funktionen dieses Betriebsmittels	Modifie le repère de toutes les fonctions de cet appareil	Cambia la designación de todas las funciones de este dispositivo
 Check	Prüfung	Contrôle	Revisión
 Check all	Alle auswählen	Tout cocher	Marcar todo
+Check for updates	Nach Updates suchen	Rechercher des mises à jour	Buscar actualizaciones
 Check in project as new version of {}	Projekt als neue Version von {} einchecken	Archiver le projet comme nouvelle version de {}	Proteger el proyecto como nueva versión de {}
 Check in to Vault	In Vault einchecken	Archiver dans Vault	Registrar en Vault
 Check in {} to Vault	{} in Vault einchecken	Archiver {} dans Vault	Proteger {} en Vault
@@ -374,6 +377,7 @@ Close shared project	Gemeinsames Projekt schließen	Fermer le projet partagé	Ce
 Close the start page	Startseite schließen	Fermer la page d'accueil	Cerrar la página de inicio
 Closed / filled	Geschlossen / gefüllt	Fermé / rempli	Cerrado / relleno
 Closed {} on the project server	{} auf dem Projektserver geschlossen	{} fermé sur le serveur de projets	{} cerrado en el servidor de proyectos
+Closes OpenECraft, installs the downloaded update and starts it again	Schließt OpenECraft, installiert das heruntergeladene Update und startet es neu	Ferme OpenECraft, installe la mise à jour téléchargée et le redémarre	Cierra OpenECraft, instala la actualización descargada y lo vuelve a iniciar
 Code: {}	Code: {}	Code : {}	Código: {}
 Collaboration	Zusammenarbeit	Collaboration	Colaboración
 Collect texts from the project	Texte aus dem Projekt sammeln	Collecter les textes du projet	Recopilar los textos del proyecto
@@ -585,6 +589,7 @@ Download into database	In Datenbank laden	Télécharger dans la base	Descargar a
 Download project	Projekt herunterladen	Télécharger le projet	Descargar proyecto
 Downloaded {} (version {})	{} heruntergeladen (Version {})	{} téléchargé (version {})	{} descargado (versión {})
 Downloaded {} parts (revision {}): {} new, {} updated	{} Artikel heruntergeladen (Revision {}): {} neu, {} aktualisiert	{} articles téléchargés (révision {}) : {} nouveaux, {} mis à jour	{} artículos descargados (revisión {}): {} nuevos, {} actualizados
+Downloading OpenECraft {}	OpenECraft {} wird heruntergeladen	Téléchargement d'OpenECraft {}	Descargando OpenECraft {}
 Downstream part	Nachgeschalteter Artikel	Article aval	Artículo aguas abajo
 Draft of revision {} created	Entwurf der Revision {} angelegt	Brouillon de la révision {} créé	Borrador de la revisión {} creado
 Draft of revision {} discarded	Entwurf der Revision {} verworfen	Brouillon de la révision {} abandonné	Borrador de la revisión {} descartado
@@ -994,6 +999,9 @@ Locking…	Sperren…	Verrouillage…	Bloqueando…
 Logic	Logik	Logique	Lógica
 Longer values are drawn smaller (0 = no limit)	Längere Werte werden kleiner gezeichnet (0 = keine Begrenzung)	Les valeurs plus longues sont dessinées plus petites (0 = sans limite)	Los valores más largos se dibujan más pequeños (0 = sin límite)
 Look at the point clicked, closer	Zum angeklickten Punkt blicken, näher heran	Regarder le point cliqué, de plus près	Mirar el punto pulsado, más de cerca
+Look for updates when OpenECraft starts	Beim Start von OpenECraft nach Updates suchen	Rechercher des mises à jour au démarrage d'OpenECraft	Buscar actualizaciones al iniciar OpenECraft
+Looking for updates…	Suche nach Updates…	Recherche de mises à jour…	Buscando actualizaciones…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Sucht auf GitHub nach einer neuen Version von OpenECraft und installiert sie im Hintergrund	Recherche une nouvelle version d'OpenECraft sur GitHub et l'installe en arrière-plan	Busca una nueva versión de OpenECraft en GitHub y la instala en segundo plano
 Loop	Stelle	Boucle	Lazo
 Lowest fault current	Kleinster Fehlerstrom	Courant de défaut minimal	Corriente de defecto mínima
 Macro boxes	Makrokästen	Boîtes de macro	Cajas de macro
@@ -1246,6 +1254,10 @@ OpenECraft structure template (JSON)	OpenECraft-Strukturvorlage (JSON)	Modèle d
 OpenECraft symbol library	OpenECraft-Symbolbibliothek	Bibliothèque de symboles OpenECraft	Biblioteca de símbolos de OpenECraft
 OpenECraft title blocks	OpenECraft-Schriftfelder	Cartouches OpenECraft	Cajetines de OpenECraft
 OpenECraft title blocks and report schemes (JSON)	OpenECraft-Schriftfelder und Auswertungsschemata (JSON)	Cartouches et schémas de rapport OpenECraft (JSON)	Cajetines y esquemas de informe de OpenECraft (JSON)
+OpenECraft {} is available	OpenECraft {} ist verfügbar	OpenECraft {} est disponible	OpenECraft {} está disponible
+OpenECraft {} is installed and starts next time	OpenECraft {} ist installiert und startet beim nächsten Mal	OpenECraft {} est installé et démarrera la prochaine fois	OpenECraft {} está instalado y se iniciará la próxima vez
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} wird installiert, wenn Sie OpenECraft schließen	OpenECraft {} sera installé à la fermeture d'OpenECraft	OpenECraft {} se instalará al cerrar OpenECraft
+OpenECraft {} is up to date	OpenECraft {} ist aktuell	OpenECraft {} est à jour	OpenECraft {} está actualizado
 Opened {}	{} geöffnet	{} ouvert	{} abierto
 Opened {} from Vault (version {})	{} aus Vault geöffnet (Version {})	{} ouvert depuis Vault (version {})	{} abierto desde Vault (versión {})
 Opened {} from the project server	{} vom Projektserver geöffnet	{} ouvert depuis le serveur de projets	{} abierto desde el servidor de proyectos
@@ -1253,6 +1265,7 @@ Opening	Öffnung	Ouverture	Abertura
 Opening in the mounting plate / door: click two corners (round: in the properties)	Öffnung in Montageplatte / Tür: Zwei Ecken anklicken (rund: in den Eigenschaften)	Ouverture dans la plaque de montage / la porte : cliquez sur deux coins (rond : dans les propriétés)	Abertura en la placa de montaje / puerta: haz clic en dos esquinas (redonda: en las propiedades)
 Opening the project	Projekt wird geöffnet	Ouverture du projet	Abriendo el proyecto
 Opening {}…	{} wird geöffnet…	Ouverture de {}…	Abriendo {}…
+Opens the page of the release	Öffnet die Seite der Version	Ouvre la page de la version	Abre la página de la versión
 Opens the pages for printing in the browser with its print dialog	Öffnet die Seiten zum Drucken im Browser mit dessen Druckdialog	Ouvre les pages pour l'impression dans le navigateur avec sa boîte de dialogue d'impression	Abre las páginas para imprimir en el navegador con su diálogo de impresión
 Open…	Öffnen…	Ouvrir…	Abrir…
 Operations / year	Schaltspiele / Jahr	Manœuvres / an	Maniobras / año
@@ -1467,6 +1480,7 @@ Rejected and closed ones too	Auch abgelehnte und geschlossene	Aussi les refusée
 Relative column width	Relative Spaltenbreite	Largeur relative de la colonne	Ancho relativo de la columna
 Release	Freigeben	Diffuser	Liberar
 Release all	Alle freigeben	Tout libérer	Liberar todo
+Release page	Seite der Version	Page de la version	Página de la versión
 Release route	Verlegung freigeben	Libérer le tracé	Liberar el recorrido
 Release without saving	Ohne Speichern freigeben	Libérer sans enregistrer	Liberar sin guardar
 Release: lock all pages	Freigeben: alle Seiten sperren	Valider : verrouiller toutes les pages	Liberar: bloquear todas las páginas
@@ -1545,6 +1559,7 @@ Reset all to the defaults	Alle auf die Vorgaben zurücksetzen	Tout réinitialise
 Reset pane layout	Anordnung der Fenster zurücksetzen	Réinitialiser la disposition des panneaux	Restablecer la disposición de los paneles
 Reset the ribbon	Menüband zurücksetzen	Réinitialiser le ruban	Restablecer la cinta de opciones
 Reset to standard	Auf Standard zurücksetzen	Rétablir la valeur standard	Restablecer al estándar
+Restart and update	Neu starten und aktualisieren	Redémarrer et mettre à jour	Reiniciar y actualizar
 Resulting: {} · {} · {} · {} m	Ergebnis: {} · {} · {} · {} m	Résultat : {} · {} · {} · {} m	Resultado: {} · {} · {} · {} m
 Results of the project check	Ergebnisse der Projektprüfung	Résultats du contrôle du projet	Resultados de la revisión del proyecto
 Review	Kommentare	Révision	Comentarios
@@ -1804,6 +1819,7 @@ Supply and conditions	Einspeisung und Bedingungen	Alimentation et conditions	Ali
 Surge protection	Überspannungsschutz	Protection contre les surtensions	Protección contra sobretensiones
 Swing the enclosure door open or shut (door devices and their wires move with it)	Gehäusetür auf- oder zuschwenken (Türgeräte und ihre Drähte schwenken mit)	Ouvrir ou fermer la porte de l'armoire (les appareils de porte et leurs fils pivotent avec elle)	Abrir o cerrar la puerta del armario (los equipos de la puerta y sus cables giran con ella)
 Switch off the check \"{}\"	Prüfung \"{}\" abschalten	Désactiver la vérification \"{}\"	Desactivar la comprobación \"{}\"
+Switched off on this computer ({})	Auf diesem Computer abgeschaltet ({})	Désactivé sur cet ordinateur ({})	Desactivado en este equipo ({})
 Switches the options with a condition by the configurator options	Schaltet die Optionen mit Bedingung nach den Konfigurator-Optionen	Commute les options avec condition selon les options du configurateur	Conmuta las opciones con condición según las opciones del configurador
 Switches to this workspace with its panes at their default places	Wechselt in diesen Arbeitsbereich und setzt seine Fenster an ihre Standardplätze	Passe à cet espace de travail avec ses panneaux à leur place par défaut	Cambia a este espacio de trabajo con sus paneles en su lugar predeterminado
 Symbol editor	Symboleditor	Éditeur de symboles	Editor de símbolos
@@ -1900,6 +1916,8 @@ The symbol is placed in the project	Das Symbol wird im Projekt verwendet	Le symb
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Die Klemmenartikel nennen keine Endhalter oder Abschlussdeckel (technische Daten End bracket, End plate).	Les articles de bornes n'indiquent ni butées d'arrêt ni flasques d'extrémité (données techniques End bracket, End plate).	Los artículos de bornas no indican soportes finales ni tapas finales (datos técnicos End bracket, End plate).
 The tutorial goes on with terminals, PLC, the panel layout, revisions and automation.	Das Tutorial geht weiter mit Klemmen, SPS, Aufbau, Revisionen und Automatisierung.	Le tutoriel continue avec les bornes, l'API, l'implantation, les révisions et l'automatisation.	El tutorial continúa con bornes, PLC, el montaje, las revisiones y la automatización.
 The tutorial in 13 chapters, from the first project to the automation	Das Tutorial in 13 Kapiteln, vom ersten Projekt bis zur Automatisierung	Le tutoriel en 13 chapitres, du premier projet à l'automatisation	El tutorial en 13 capítulos, desde el primer proyecto hasta la automatización
+The update failed	Das Update ist fehlgeschlagen	La mise à jour a échoué	La actualización ha fallado
+The web version is updated on its server.	Die Webversion wird auf ihrem Server aktualisiert.	La version web est mise à jour sur son serveur.	La versión web se actualiza en su servidor.
 The wire tool routes around symbols and other wires	Das Verbindungswerkzeug führt um Symbole und andere Verbindungen herum	L'outil fil contourne les symboles et les autres fils	La herramienta de cable rodea los símbolos y otros cables
 The wires get the free cores of the cable in order (left to right)	Die Leitungen erhalten der Reihe nach (von links nach rechts) die freien Adern des Kabels	Les fils reçoivent dans l'ordre (de gauche à droite) les âmes libres du câble	Los hilos reciben en orden (de izquierda a derecha) los núcleos libres del cable
 The wires of the connection take these values again	Die Verbindungsstücke übernehmen diese Werte erneut	Les fils de la liaison reprennent ces valeurs	Los cables de la conexión vuelven a tomar estos valores
@@ -1907,6 +1925,7 @@ Theme	Farbschema	Thème	Tema
 These settings are edited in their panes:	Diese Einstellungen werden in ihren Fenstern bearbeitet:	Ces paramètres se modifient dans leurs panneaux :	Estos ajustes se editan en sus paneles:
 Thickness	Dicke	Épaisseur	Grosor
 Thinner air needs more air flow	Dünnere Luft braucht mehr Luftvolumenstrom	Un air plus rare demande plus de débit d'air	El aire más enrarecido necesita más caudal de aire
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Diese Installation wird von ihrer Paketverwaltung oder von Hand aktualisiert: OpenECraft meldet nur eine neue Version.	Cette installation est mise à jour par son gestionnaire de paquets ou à la main : OpenECraft signale seulement une nouvelle version.	Esta instalación se actualiza con su gestor de paquetes o a mano: OpenECraft solo avisa de una nueva versión.
 This page	Diese Seite	Cette page	Esta página
 This page contains schematic content which is not evaluated on non-schematic pages.	Diese Seite enthält Schaltplaninhalte, die auf Nicht-Schaltplanseiten nicht ausgewertet werden.	Cette page contient des éléments de schéma qui ne sont pas évalués sur les pages autres que les schémas.	Esta página contiene contenido de esquema que no se evalúa en páginas que no son de esquema.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Dieses Projekt ist Teilprojekt {} von {} (ausgelagert {}). Speichern Sie es und fügen Sie es nach getaner Arbeit in das Hauptprojekt ein.	Ce projet est le sous-projet {} de {} (extrait le {}). Enregistrez-le et insérez-le dans le projet principal une fois le travail terminé.	Este proyecto es el subproyecto {} de {} (extraído el {}). Guárdelo e insértelo en el proyecto principal cuando termine el trabajo.
@@ -1947,6 +1966,7 @@ Update all	Alle aktualisieren	Tout mettre à jour	Actualizar todo
 Update part links from Vault items	Artikelverknüpfungen aus Vault-Elementen aktualisieren	Mettre à jour les liens d'articles depuis les éléments Vault	Actualizar los vínculos de artículos desde elementos de Vault
 Update report blocks	Berichtsblöcke aktualisieren	Mettre à jour les blocs de rapport	Actualizar bloques de informe
 Update {} changed macros	{} geänderte Makros aktualisieren	Mettre à jour {} macros modifiées	Actualizar {} macros modificadas
+Updates	Updates	Mises à jour	Actualizaciones
 Updates the project parts with the current database data	Aktualisiert die Projektartikel mit den aktuellen Daten der Datenbank	Met à jour les articles du projet avec les données actuelles de la base	Actualiza los artículos del proyecto con los datos actuales de la base de datos
 Updating the 3D routing	3D-Verlegung wird aktualisiert	Mise à jour du routage 3D	Actualizando el enrutado 3D
 Upload	Hochladen	Envoyer	Subir
@@ -2124,6 +2144,7 @@ missing	fehlt	manquant	falta
 model	Modell	modèle	modelo
 name	Name	nom	nombre
 no	nein	non	no
+no answer	keine Antwort	pas de réponse	sin respuesta
 no rooms	keine Räume	aucune pièce	ninguna sala
 no wires	keine Verbindungen	aucun fil	sin cables
 none	keins	aucun	ninguno
@@ -2239,6 +2260,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} is neither in the parts database nor on the parts server	{} ist weder in der Artikeldatenbank noch auf dem Artikelserver	{} n'est ni dans la base d'articles ni sur le serveur d'articles	{} no está ni en la base de datos de artículos ni en el servidor de artículos
 {} is not a PNG or JPEG image	{} ist kein PNG- oder JPEG-Bild	{} n'est pas une image PNG ou JPEG	{} no es una imagen PNG o JPEG
 {} is not an OpenECraft project template.	{} ist keine OpenECraft-Projektvorlage.	{} n'est pas un modèle de projet OpenECraft.	{} no es una plantilla de proyecto de OpenECraft.
+{} is not in the disk image	{} ist nicht im Disk-Image	{} n'est pas dans l'image disque	{} no está en la imagen de disco
 {} is not made for wall mounting: place it on a mounting rail	{} ist nicht für Wandmontage vorgesehen: auf eine Tragschiene setzen	{} n'est pas prévu pour le montage mural : placez-le sur un rail	{} no está previsto para montaje mural: colóquelo sobre un carril
 {} is used by: {}	{} wird verwendet von: {}	{} est utilisé par : {}	{} lo usan: {}
 {} items copied	{} Elemente kopiert	{} éléments copiés	{} elementos copiados

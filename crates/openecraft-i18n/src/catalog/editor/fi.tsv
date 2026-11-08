@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Väylätyypin kaapeli
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
 A new project	Uusi projekti
+A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Numeroitu osio, joka sisältää sivuja kuin kansio; sivujen nimet alkavat sen numerolla (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profiili yhdistää neutraalit kentät tietyn järjestelmän sarakkeiden nimiin (esim. MATNR ERP-numerolle SAP:ssa). Ilman määritystä tunnistetaan yleiset englannin- ja saksankieliset nimet.
 A project definition based on this one, with its own defaults and scheme	Tähän perustuva projektimäärittely omine oletusarvoineen ja skeemoineen
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Muuttaa sivujärjestystä; nimi säilyy
 Changes the tag of all functions of this device	Muuttaa tämän laitteen kaikkien toimintojen tunnuksen
 Check	Tarkistus
 Check all	Valitse kaikki
+Check for updates	Tarkista päivitykset
 Check in project as new version of {}	Kirjaa projekti sisään tiedoston {} uutena versiona
 Check in to Vault	Kirjaa sisään Vaultiin
 Check in {} to Vault	Kirjaa {} sisään Vaultiin
@@ -305,6 +308,7 @@ Close shared project	Sulje jaettu projekti
 Close the start page	Sulje aloitussivu
 Closed / filled	Suljettu / täytetty
 Closed {} on the project server	{} suljettu projektipalvelimella
+Closes OpenECraft, installs the downloaded update and starts it again	Sulkee OpenECraftin, asentaa ladatun päivityksen ja käynnistää sen uudelleen
 Collaboration	Yhteistyö
 Collect texts from the project	Kerää tekstit projektista
 Collision classes	Törmäysluokat
@@ -503,6 +507,7 @@ Download into database	Lataa tietokantaan
 Download project	Lataa projekti
 Downloaded {} (version {})	{} ladattiin (versio {})
 Downloaded {} parts (revision {}): {} new, {} updated	Ladattu {} osaa (revisio {}): {} uutta, {} päivitetty
+Downloading OpenECraft {}	Ladataan OpenECraft {}
 Downstream part	Jälkimmäinen osa
 Draft of revision {} created	Revision {} luonnos luotu
 Draft of revision {} discarded	Revision {} luonnos hylätty
@@ -879,6 +884,9 @@ Locking…	Lukitaan…
 Logic	Logiikka
 Longer values are drawn smaller (0 = no limit)	Pidemmät arvot piirretään pienempinä (0 = ei rajaa)
 Look at the point clicked, closer	Katso napsautettua kohtaa läheltä
+Look for updates when OpenECraft starts	Etsi päivityksiä, kun OpenECraft käynnistyy
+Looking for updates…	Etsitään päivityksiä…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Etsii OpenECraftin uutta versiota GitHubista ja asentaa sen taustalla
 Loop	Piiri
 Lowest fault current	Pienin vikavirta
 Macro boxes	Makrolaatikot
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	OpenECraft-rakennemalli (JSON)
 OpenECraft symbol library	OpenECraft-symbolikirjasto
 OpenECraft title blocks	OpenECraft-nimiöt
 OpenECraft title blocks and report schemes (JSON)	OpenECraft-nimiöt ja -raporttimallit (JSON)
+OpenECraft {} is available	OpenECraft {} on saatavilla
+OpenECraft {} is installed and starts next time	OpenECraft {} on asennettu ja käynnistyy seuraavalla kerralla
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} asennetaan, kun suljet OpenECraftin
+OpenECraft {} is up to date	OpenECraft {} on ajan tasalla
 Opened {}	Avattu {}
 Opened {} from Vault (version {})	{} avattiin Vaultista (versio {})
 Opened {} from the project server	{} avattu projektipalvelimelta
 Opening	Aukko
 Opening in the mounting plate / door: click two corners (round: in the properties)	Aukko asennuslevyyn / oveen: napsauta kahta kulmaa (pyöreä: ominaisuuksissa)
 Opening {}…	Avataan {}…
+Opens the page of the release	Avaa julkaisun sivun
 Opens the pages for printing in the browser with its print dialog	Avaa sivut tulostettaviksi selaimessa sen tulostusikkunalla
 Open…	Avaa…
 Operations / year	Kytkentäkerrat / vuosi
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	Myös hylätyt ja suljetut
 Relative column width	Suhteellinen sarakeleveys
 Release	Vapauta
 Release all	Vapauta kaikki
+Release page	Julkaisun sivu
 Release route	Vapauta reitti
 Release without saving	Vapauta tallentamatta
 Release: lock all pages	Vapauta: lukitse kaikki sivut
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Palauta kaikki oletuksiin
 Reset pane layout	Palauta paneelien asettelu
 Reset the ribbon	Palauta valintanauha
 Reset to standard	Palauta vakioasetukset
+Restart and update	Käynnistä uudelleen ja päivitä
 Resulting: {} · {} · {} · {} m	Tulos: {} · {} · {} · {} m
 Results of the project check	Projektin tarkistuksen tulokset
 Review	Kommentit
@@ -1635,6 +1650,7 @@ Supply and conditions	Syöttö ja olosuhteet
 Surge protection	Ylijännitesuojaus
 Swing the enclosure door open or shut (door devices and their wires move with it)	Avaa tai sulje kotelon ovi (ovilaitteet ja niiden johdot liikkuvat mukana)
 Switch off the check \"{}\"	Poista tarkistus \"{}\" käytöstä
+Switched off on this computer ({})	Poistettu käytöstä tässä tietokoneessa ({})
 Switches the options with a condition by the configurator options	Kytkee ehdolliset vaihtoehdot konfiguraattorin vaihtoehtojen mukaan
 Switches to this workspace with its panes at their default places	Vaihtaa tähän työtilaan ja palauttaa sen paneelit oletuspaikoilleen
 Symbol editor	Symbolieditori
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	Valitu
 The side of {} is open	Kohteen {} puoli on avoin
 The symbol is placed in the project	Symbolia käytetään projektissa
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Riviliitinosissa ei ole mainittu päätypidikkeitä tai päätylevyjä (tekniset tiedot End bracket, End plate).
+The update failed	Päivitys epäonnistui
+The web version is updated on its server.	Verkkoversio päivitetään sen palvelimella.
 The wire tool routes around symbols and other wires	Johtotyökalu reitittää symbolien ja muiden johtojen ympäri
 The wires get the free cores of the cable in order (left to right)	Johdot saavat kaapelin vapaat johtimet järjestyksessä (vasemmalta oikealle)
 The wires of the connection take these values again	Yhteyden johdot saavat nämä arvot uudelleen
@@ -1722,6 +1740,7 @@ Theme	Teema
 These settings are edited in their panes:	Näitä asetuksia muokataan omissa ruuduissaan:
 Thickness	Paksuus
 Thinner air needs more air flow	Ohuempi ilma vaatii suuremman ilmavirran
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Tämä asennus päivitetään paketinhallinnalla tai käsin: OpenECraft vain ilmoittaa uudesta versiosta.
 This page	Tämä sivu
 This page contains schematic content which is not evaluated on non-schematic pages.	Tämä sivu sisältää piirikaaviosisältöä, jota ei arvioida muilla kuin piirikaaviosivuilla.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tämä projekti on projektin {1} aliprojekti {0} (irrotettu {2}). Tallenna se ja liitä se pääprojektiin, kun työ on valmis.
@@ -1756,6 +1775,7 @@ Update all	Päivitä kaikki
 Update part links from Vault items	Päivitä osalinkit Vault-nimikkeistä
 Update report blocks	Päivitä raporttilohkot
 Update {} changed macros	Päivitä {} muuttunutta makroa
+Updates	Päivitykset
 Updates the project parts with the current database data	Päivittää projektin osat tietokannan nykyisillä tiedoilla
 Updating the 3D routing	Päivitetään 3D-reititystä
 Upload	Lataa palvelimelle
@@ -1917,6 +1937,7 @@ missing	puuttuu
 model	malli
 name	nimi
 no	ei
+no answer	ei vastausta
 no rooms	ei tiloja
 no wires	ei johtoja
 none	ei mitään
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} tuotiin osatietokantaan ja sijoitettiin nimellä {}
 {} is neither in the parts database nor on the parts server	{} ei ole osatietokannassa eikä osapalvelimella
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva
+{} is not in the disk image	{} ei ole levykuvassa
 {} is not made for wall mounting: place it on a mounting rail	{} ei ole tarkoitettu seinäasennukseen: aseta se asennuskiskoon
 {} is used by: {}	Kohdetta {} käyttää: {}
 {} items copied	{} kohdetta kopioitiin

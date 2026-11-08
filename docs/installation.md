@@ -105,6 +105,25 @@ not in the login keychain) the image is signed and notarized.
 Projects are opened with *File › Open project*; opening them by double-click in the Finder is not
 supported yet. CI builds the image on every push (artifact `openecraft-macos-dmg`).
 
+## Updates
+
+When it starts, the editor asks GitHub in the background for the latest release
+(`https://api.github.com/repos/nilres/OpenECraft/releases/latest`); without a connection
+it carries on without a message. A newer release is downloaded, checked against the
+`SHA256SUMS` of the release and installed:
+
+| Installation | Update |
+| --- | --- |
+| Windows setup | `OpenECraft-<version>-setup.exe` runs silently (`/SILENT`) when the editor is closed, in the folder and with the components of the installation; *Restart and update* starts the editor again afterwards |
+| AppImage | the AppImage file is replaced at once; the new version starts next time |
+| macOS app | `OpenECraft.app` (and `OpenECraft Parts Manager.app` next to it) are replaced from the disk image at once |
+| deb, rpm, Flatpak, Snap, tar.gz, own build | the status bar only tells of the new version and links its release page |
+
+The status bar shows the download and *Restart and update*; *File › Help › Check for
+updates* looks again and reports every outcome. *Settings › Updates* switches the check
+at start off, the environment variable `OPENECRAFT_NO_UPDATE_CHECK` (any value) does so
+for all users of a computer. The web version has no update of its own.
+
 ## Docker images of the servers
 
 The parts server and the project server are also published as Docker images on

@@ -49,6 +49,8 @@ A cable of the bus type for every connection without cable	Kabel typu sběrnice 
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Výřez stejné velikosti na stejném místě v boční stěně souseda: společně tvoří kabelovou průchodku
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Soubor se stejným názvem ve složce dostane novou verzi (rezervace a vrácení se změnami), jinak se soubor přidá
 A new project	Nový projekt
+A new release is downloaded in the background and installed when you close OpenECraft.	Nová verze se stáhne na pozadí a nainstaluje se po zavření OpenECraft.
+A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nová verze se stáhne na pozadí a nahradí tuto instalaci; použije se od příštího spuštění.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Číslovaný oddíl, který obsahuje stránky jako složka; názvy stránek začínají jeho číslem (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profil mapuje neutrální pole na názvy sloupců konkrétního systému (např. MATNR pro číslo ERP v SAP). Bez mapování se rozpoznají běžné anglické a německé názvy.
 A project definition based on this one, with its own defaults and scheme	Definice projektu založená na této, s vlastními výchozími hodnotami a schématem
@@ -245,6 +247,7 @@ Changes the page order; the name stays	Změní pořadí stránek; název zůstan
 Changes the tag of all functions of this device	Změní označení všech funkcí tohoto přístroje
 Check	Kontrola
 Check all	Zaškrtnout vše
+Check for updates	Zkontrolovat aktualizace
 Check in project as new version of {}	Vrátit projekt se změnami jako novou verzi {}
 Check in to Vault	Vrátit do Vaultu
 Check in {} to Vault	Vrátit {} se změnami do Vault
@@ -305,6 +308,7 @@ Close shared project	Zavřít sdílený projekt
 Close the start page	Zavřít úvodní stránku
 Closed / filled	Uzavřené / vyplněné
 Closed {} on the project server	{} na projektovém serveru zavřen
+Closes OpenECraft, installs the downloaded update and starts it again	Zavře OpenECraft, nainstaluje staženou aktualizaci a znovu jej spustí
 Collaboration	Spolupráce
 Collect texts from the project	Shromáždit texty z projektu
 Collision classes	Třídy kolizí
@@ -503,6 +507,7 @@ Download into database	Stáhnout do databáze
 Download project	Stáhnout projekt
 Downloaded {} (version {})	Staženo {} (verze {})
 Downloaded {} parts (revision {}): {} new, {} updated	Staženo {} artiklů (revize {}): {} nových, {} aktualizovaných
+Downloading OpenECraft {}	Stahování OpenECraft {}
 Downstream part	Následný artikl
 Draft of revision {} created	Koncept revize {} vytvořen
 Draft of revision {} discarded	Koncept revize {} zahozen
@@ -879,6 +884,9 @@ Locking…	Zamykání…
 Logic	Logika
 Longer values are drawn smaller (0 = no limit)	Delší hodnoty se kreslí menší (0 = bez omezení)
 Look at the point clicked, closer	Podívat se na kliknutý bod zblízka
+Look for updates when OpenECraft starts	Hledat aktualizace při spuštění OpenECraft
+Looking for updates…	Hledání aktualizací…
+Looks for a new release of OpenECraft on GitHub and installs it in the background	Vyhledá na GitHubu novou verzi OpenECraft a nainstaluje ji na pozadí
 Loop	Smyčka
 Lowest fault current	Nejnižší poruchový proud
 Macro boxes	Rámečky maker
@@ -1114,12 +1122,17 @@ OpenECraft structure template (JSON)	Šablona struktury OpenECraft (JSON)
 OpenECraft symbol library	Knihovna symbolů OpenECraft
 OpenECraft title blocks	Rohová razítka OpenECraft
 OpenECraft title blocks and report schemes (JSON)	Rohová razítka a schémata výkazů OpenECraft (JSON)
+OpenECraft {} is available	Je k dispozici OpenECraft {}
+OpenECraft {} is installed and starts next time	OpenECraft {} je nainstalován a spustí se příště
+OpenECraft {} is installed when you close OpenECraft	OpenECraft {} se nainstaluje po zavření OpenECraft
+OpenECraft {} is up to date	OpenECraft {} je aktuální
 Opened {}	Otevřeno: {}
 Opened {} from Vault (version {})	{} otevřeno z Vault (verze {})
 Opened {} from the project server	{} otevřen z projektového serveru
 Opening	Otvor
 Opening in the mounting plate / door: click two corners (round: in the properties)	Otvor v montážní desce / dveřích: klikněte na dva rohy (kruhový: ve vlastnostech)
 Opening {}…	Otevírání {}…
+Opens the page of the release	Otevře stránku vydání
 Opens the pages for printing in the browser with its print dialog	Otevře stránky k tisku v prohlížeči s jeho dialogem tisku
 Open…	Otevřít…
 Operations / year	Operace / rok
@@ -1320,6 +1333,7 @@ Rejected and closed ones too	I zamítnuté a uzavřené
 Relative column width	Relativní šířka sloupce
 Release	Uvolnit
 Release all	Uvolnit vše
+Release page	Stránka vydání
 Release route	Uvolnit trasu
 Release without saving	Uvolnit bez uložení
 Release: lock all pages	Uvolnit: uzamknout všechny stránky
@@ -1394,6 +1408,7 @@ Reset all to the defaults	Obnovit vše na výchozí hodnoty
 Reset pane layout	Obnovit uspořádání panelů
 Reset the ribbon	Obnovit pás karet
 Reset to standard	Obnovit standardní nastavení
+Restart and update	Restartovat a aktualizovat
 Resulting: {} · {} · {} · {} m	Výsledek: {} · {} · {} · {} m
 Results of the project check	Výsledky kontroly projektu
 Review	Komentáře
@@ -1635,6 +1650,7 @@ Supply and conditions	Napájení a podmínky
 Surge protection	Přepěťová ochrana
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otevřít nebo zavřít dveře skříně (přístroje ve dveřích a jejich vodiče se otáčejí s nimi)
 Switch off the check \"{}\"	Vypnout kontrolu \"{}\"
+Switched off on this computer ({})	Vypnuto na tomto počítači ({})
 Switches the options with a condition by the configurator options	Přepne volby s podmínkou podle voleb konfigurátoru
 Switches to this workspace with its panes at their default places	Přepne do tohoto pracovního prostoru s panely na jejich výchozích místech
 Symbol editor	Editor symbolů
@@ -1715,6 +1731,8 @@ The selected devices side by side on the selected rail, from its left end	Vybran
 The side of {} is open	Strana {} je otevřená
 The symbol is placed in the project	Symbol je v projektu použit
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Artikly svorek neuvádějí žádné koncové příchytky ani koncové kryty (technické údaje End bracket, End plate).
+The update failed	Aktualizace se nezdařila
+The web version is updated on its server.	Webová verze se aktualizuje na svém serveru.
 The wire tool routes around symbols and other wires	Nástroj pro vodiče vede vodiče kolem symbolů a jiných vodičů
 The wires get the free cores of the cable in order (left to right)	Vodiče dostanou postupně (zleva doprava) volné žíly kabelu
 The wires of the connection take these values again	Vodiče spojení znovu převezmou tyto hodnoty
@@ -1722,6 +1740,7 @@ Theme	Motiv
 These settings are edited in their panes:	Tato nastavení se upravují v jejich panelech:
 Thickness	Tloušťka
 Thinner air needs more air flow	Řidší vzduch vyžaduje větší průtok vzduchu
+This installation is updated by its package manager or by hand: OpenECraft only tells of a new release.	Tato instalace se aktualizuje správcem balíčků nebo ručně: OpenECraft jen oznámí novou verzi.
 This page	Tato stránka
 This page contains schematic content which is not evaluated on non-schematic pages.	Tato stránka obsahuje obsah schématu, který se na stránkách jiného typu než schéma nevyhodnocuje.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tento projekt je podprojekt {} projektu {} (vyčleněn {}). Uložte jej a po dokončení práce jej vložte do hlavního projektu.
@@ -1756,6 +1775,7 @@ Update all	Aktualizovat vše
 Update part links from Vault items	Aktualizovat odkazy na artikly z položek Vault
 Update report blocks	Aktualizovat bloky výkazů
 Update {} changed macros	Aktualizovat změněná makra ({})
+Updates	Aktualizace
 Updates the project parts with the current database data	Aktualizuje artikly projektu aktuálními daty z databáze
 Updating the 3D routing	Aktualizace 3D vedení
 Upload	Nahrát
@@ -1917,6 +1937,7 @@ missing	chybí
 model	model
 name	název
 no	ne
+no answer	žádná odpověď
 no rooms	žádné místnosti
 no wires	žádné vodiče
 none	žádná
@@ -2026,6 +2047,7 @@ x y	x y
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG
+{} is not in the disk image	{} není v obrazu disku
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu
 {} is used by: {}	{} používá: {}
 {} items copied	Zkopírováno {} prvků
