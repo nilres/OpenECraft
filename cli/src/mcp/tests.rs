@@ -123,3 +123,45 @@ fn files_stay_in_the_root_folder() {
     assert_eq!(r["isError"], true);
     let _ = std::fs::remove_dir_all(&root);
 }
+
+#[test]
+fn listed_project_files_and_macro_libraries_stay_in_the_root_folder() {
+    let root = crate::testing::temp_dir("mcp-lists");
+    let elsewhere = crate::testing::temp_dir("mcp-lists-elsewhere");
+    let mut s = session();
+    s.mcp_root = Some(root.clone());
+    let outside = elsewhere.join("other.oec");
+    std::fs::write(&outside, openecraft_core::sample::demo_project().to_json()).unwrap();
+    let before = std::fs::read(&outside).unwrap();
+    let inside = root.join("plan.oec").display().to_string();
+    let files = format!("{inside}; {}", outside.display());
+    let r = call_tool(&mut s, "batch_project_properties", json!({ "files": files, "set": { "company": "Mallory" } }));
+    assert_eq!(r["isError"], true, "{r}");
+    assert!(r["content"][0]["text"].as_str().unwrap().contains("OPENECRAFT_MCP_ROOT"));
+    assert_eq!(std::fs::read(&outside).unwrap(), before, "the file outside is not changed");
+    call_tool(&mut s, "new_project", json!({}));
+    let r = call_tool(&mut s, "generate_pages", json!({ "macros": outside.display().to_string() }));
+    assert!(r["content"][0]["text"].as_str().unwrap().contains("OPENECRAFT_MCP_ROOT"), "{r}");
+    // Folder ids of the vault are no files.
+    assert!(confine(&root, "vault_browse", json!({ "folder": "17" }).as_object().unwrap()).is_ok());
+    let _ = std::fs::remove_dir_all(&root);
+    let _ = std::fs::remove_dir_all(&elsewhere);
+}
+
+#[test]
+fn every_file_parameter_is_confined() {
+    // Parameters whose help speaks of files but that hold content, ids or names.
+    const NO_FILES: [&str; 8] = ["csv", "text", "file", "id", "version", "kind", "name", "part"];
+    let s = session();
+    for tool in tools::entries(&s) {
+        for p in tool.params().iter().filter(|p| p.kind == openecraft_api::Kind::Str) {
+            let help = p.help.to_lowercase();
+            let name = p.name.as_ref();
+            let files = help.split(|c: char| !c.is_alphanumeric()).any(|w| matches!(w, "file" | "files" | "folder"));
+            if !files || NO_FILES.contains(&name) || NOT_PATHS.contains(&(tool.name(), name)) {
+                continue;
+            }
+            assert!(PATH_PARAMS.contains(&name) || PATH_LIST_PARAMS.contains(&name), "{} --{name} ({}) names a file the MCP server does not confine", tool.name(), p.help);
+        }
+    }
+}

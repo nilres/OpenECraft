@@ -39,7 +39,13 @@ pub fn root_from_env() -> Option<PathBuf> {
 }
 
 /// Parameters of the tools that name files or folders.
-const PATH_PARAMS: [&str; 6] = ["path", "output", "folder", "database", "target", "template"];
+const PATH_PARAMS: [&str; 7] = ["path", "output", "folder", "database", "target", "template", "macros"];
+
+/// Parameters of the tools that name several files, separated by `;`.
+const PATH_LIST_PARAMS: [&str; 1] = ["files"];
+
+/// Parameters of those names that are ids of the vault, not files (tool, parameter).
+const NOT_PATHS: [(&str, &str); 2] = [("vault_browse", "folder"), ("vault_upload", "folder")];
 
 /// The absolute path without `.` and `..`, its existing part with symbolic links
 /// resolved.
@@ -67,11 +73,20 @@ fn resolve(path: &Path) -> PathBuf {
     resolved
 }
 
-/// The file and folder parameters of a tool call lie in `root`.
-fn confine(root: &Path, args: &Map<String, Value>) -> Result<(), String> {
+/// The file and folder parameters of a call of the tool `tool` lie in `root`.
+fn confine(root: &Path, tool: &str, args: &Map<String, Value>) -> Result<(), String> {
     let root = resolve(root);
-    for (name, value) in args.iter().filter(|(k, _)| PATH_PARAMS.contains(&k.as_str())) {
-        let Some(path) = value.as_str().map(str::trim).filter(|p| !p.is_empty()) else { continue };
+    let named = args.iter().filter(|(name, _)| !NOT_PATHS.contains(&(tool, name.as_str())));
+    let paths = named.filter_map(|(name, value)| Some((name.as_str(), value.as_str()?))).flat_map(|(name, value)| {
+        let list = PATH_LIST_PARAMS.contains(&name);
+        let values: Vec<&str> = if list { value.split(';').collect() } else if PATH_PARAMS.contains(&name) { vec![value] } else { Vec::new() };
+        values.into_iter().map(move |v| (name, v))
+    });
+    for (name, path) in paths {
+        let path = path.trim();
+        if path.is_empty() {
+            continue;
+        }
         // Built-in templates are names, not files.
         let file = path.contains(['/', '\\']) || [".oec", ".oecz"].iter().any(|e| path.to_lowercase().ends_with(e));
         if name == "template" && !file {
@@ -161,7 +176,7 @@ fn call(session: &mut Session, params: &Value) -> Result<Value, (i64, String)> {
         Some(_) => return Err((-32602, "arguments must be an object".into())),
     };
     // Tool errors are results the agent can react to, not protocol errors.
-    let allowed = session.mcp_root.as_deref().map_or(Ok(()), |root| confine(root, &args));
+    let allowed = session.mcp_root.as_deref().map_or(Ok(()), |root| confine(root, name, &args));
     let (text, is_error) = match allowed.and_then(|_| tools::call(session, tool, &args)) {
         Ok(Value::String(text)) => (text, false),
         Ok(mut value) => {

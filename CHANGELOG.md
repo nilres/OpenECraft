@@ -134,6 +134,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   password changed meanwhile. Replies to review comments on the project server keep
   the name of their author only while unchanged, so nobody writes under another name
   by putting a reply before theirs.
+- **MCP server:** the project files of `batch_project_properties` (`files`) and the
+  macro libraries of `generate_pages`, `update_macro_boxes` and
+  `generate_preplanning_pages` (`macros`) must lie in `OPENECRAFT_MCP_ROOT` like all
+  other files; folder ids of the vault tools are no longer taken for paths.
 
 - Use the DIN-rail clip position from imported mounting data when placing cabinet devices. Matching Beckhoff terminal housings and the EK1100 use the documented 63.8 mm rail datum.
 
