@@ -90,6 +90,7 @@ Descending	Csökkenő
 Description	Leírás
 Designation	Megnevezés
 Device	Készülék
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Eszköz (PV-generátor), amelyhez a modulok tartoznak; alkatrészei ekkor számolják őket az anyagjegyzékben
 Device description	Eszközleírás
 Device tag	Készülékazonosító
 Device {}	{} készülék
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	A számláló minimális számjegy
 Missing parameter: {}	Hiányzó paraméter: {}
 Missing value for --{}	Hiányzó érték: --{}
 Model import failed: {}	Sikertelen modellimportálás: {}
+Modules side by side in a row	Modulok egymás mellett egy sorban
 Mounted	Felszerelve
 Mounting	Szerelés
 Mounting data	Szerelési adatok
@@ -217,6 +219,7 @@ No machine {}	Nincs ilyen gép: {}
 No page named {}	Nincs {} nevű oldal
 No page template named {}	Nincs {} nevű oldalsablon
 No page {}	Nincs ilyen oldal: {}
+No part {} in the project	Nincs {} alkatrész a projektben
 No parts found	Nem található alkatrész
 No plot frame named {}	Nincs {} nevű rajzkeret
 No plug {}	Nincs {} csatlakozódugó
@@ -334,6 +337,7 @@ Role	Szerepkör
 Rooms	Helyiségek
 Route	Elvezetés
 Routing	Nyomvonalvezetés
+Rows of modules (east-west: rows of pairs)	Modulsorok (kelet-nyugat: párok sorai)
 Rule	Szabály
 Rule set	Szabálykészlet
 Safety function	Biztonsági funkció
@@ -391,6 +395,7 @@ Terminals	Sorkapcsok
 Text	Szöveg
 Text to find	Keresendő szöveg
 The identifier must not be empty	Az azonosító nem lehet üres
+The long side of the modules along the rows	A modulok hosszabb oldala a sorok mentén
 The page is released	Az oldal kiadva
 There is a connection symbol at this point already	Ezen a ponton már van kapcsolati szimbólum
 Thermal	Hőtechnika
@@ -438,6 +443,7 @@ access denied	hozzáférés megtagadva
 approved	jóváhagyva
 bonded	bekötve
 file or folder not found	a fájl vagy mappa nem található
+landscape	fekvő
 left	balra
 mm	mm
 normal	normál

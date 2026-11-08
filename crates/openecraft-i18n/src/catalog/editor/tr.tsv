@@ -178,6 +178,8 @@ Back	Geri
 Back to the project (Esc)	Projeye dön (Esc)
 Back-up up to (kA)	Yedek koruma sınırı (kA)
 Background	Arka plan
+Ballast	Balast
+Ballast per module	Modül başına balast
 Baseline {}	Referans sürüm {}
 Baseline {} created	Referans sürüm {} oluşturuldu
 Baseline {} {}	Referans sürüm {} {}
@@ -419,6 +421,7 @@ Define all used	Kullanılanların tümünü tanımla
 Defined potentials	Tanımlı potansiyeller
 Del	Del
 Delete	Sil
+Delete PV array	PV dizisini sil
 Delete cable (its wires are removed from it)	Kabloyu sil (telleri kablodan çıkarılır)
 Delete comment	Yorumu sil
 Delete connection point	Bağlantı noktasını sil
@@ -483,6 +486,7 @@ Digits	Basamak
 Dimension	Ölçü
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Yönlü T parçası: üç telin birleştiği yerde bağlantının iki telinin çıktığı cihazı ve hedeflerinin sırasını belirler
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Yönlü kesişme: orada kesişen iki teli bağlar; çizgisinin her ucu önce düz, sonra enine bağlanır
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Modüllerin baktığı yön, yukarıdan bakıldığında saat yönünün tersine (0: öne doğru)
 Discard changes	Değişiklikleri at
 Discard draft	Taslağı at
 Disconnection of distribution circuits	Dağıtım devrelerinin açması
@@ -616,6 +620,7 @@ Exported {}	{} dışa aktarıldı
 Exporting {}	{} dışa aktarılıyor
 Export…	Dışa aktar…
 Extras	Ekstralar
+Facing	Yönelim
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Fanlar, filtreler, kablo rakorları, lambalar, kollar: birini seçin, ardından yerleşeceği yere tıklayın
 Fastening hardware in the bill of materials	Malzeme listesinde sabitleme elemanları
 Favorite	Favori
@@ -676,6 +681,7 @@ Freeze route	Güzergâhı dondur
 Frequency	Frekans
 From / to	Başlangıç / hedef
 From a template file…	Bir şablon dosyasından…
+From row to row; 0: free of shade in winter	Sıradan sıraya; 0: kışın gölgesiz
 From the function definition	Fonksiyon tanımından
 From the left end	Sol uçtan
 From – to	Başlangıç – bitiş
@@ -710,6 +716,7 @@ Go to page	Sayfaya git
 Graphic line	Grafik çizgi
 Graphic rectangle	Grafik dikdörtgen
 Graphical form	Grafik form
+Greatest distance of the roof hooks along a rail	Bir ray boyunca çatı kancalarının en büyük aralığı
 Grid	Izgara
 Grid size	Izgara boyutu
 Grid {} mm	Izgara {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	En yüksek faz dengesizliği
 Highest short-circuit current	En yüksek kısa devre akımı
 Hole to sheet edge	Delikten sac kenarına
 Home	Giriş
+Hook distance	Kanca aralığı
 Horizontal	Yatay
 Horizontal (mm)	Yatay (mm)
 Horizontal centres	Yatay merkezler
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	Her bö
 In strip order; PE and other non-numeric terminals keep their designation	Şerit sırasına göre; PE ve sayısal olmayan diğer klemensler tanımlarını korur
 In the filtered rows	Filtrelenmiş satırlarda
 In the middle of the first wire	İlk telin ortasına
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Ön veya sağ çatı yüzeyinin ortasında, düz çatıda öne eğimli; yerine taşıyın
 In the project	Projede
 In the structure of the current page	Geçerli sayfanın yapısında
 Include manually set numbers	Manuel olarak ayarlanan numaraları dahil et
@@ -946,18 +955,21 @@ Messages	Mesajlar
 Messages ({})	Mesajlar ({})
 Messages of this session	Bu oturumun mesajları
 Middle	Orta
+Middle of the PV array in the floor plan of the building	PV dizisinin bina planındaki ortası
 Min. bend radius	Min. bükme yarıçapı
 Minimize the ribbon	Şeridi küçült
 Mirror	Yansıt
 Mirror (selection or symbol being placed)	Yansıt (seçim veya yerleştirilen sembol)
 Mode	Mod
 Model of a part (2D / 3D)	Bir parçanın modeli (2D / 3D)
+Module part; its size comes from the part	Modül parçası; boyutu parçadan gelir
 Motors feed the short circuit	Motorlar kısa devreyi besler
 Mounted on	Montaj yeri
 Mounting assistant: the panel items in mounting order with their place and part	Montaj yardımcısı: montaj sırasına göre pano öğeleri, yerleri ve parçalarıyla
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Yan yana montaj mesafesi; parçalar kendi mesafelerini ekler (Clearance left / right)
 Mounting height: {}	Montaj yüksekliği: {}
 Mounting plate: {} holes, {} cutouts	Montaj plakası: {} delik, {} kesim
+Mounting system	Montaj sistemi
 Move	Taşı
 Move down	Aşağı taşı
 Move left	Sola taşı
@@ -1188,6 +1200,8 @@ PLC channels	PLC kanalları
 PLC hardware and bus topology	PLC donanımı ve bus topolojisi
 PLC overview	PLC genel bakışı
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG veya JPEG bit eşlem, ör. bir logo veya fotoğraf
+PV array	PV dizisi
+PV arrays	PV dizileri
 Page graphics	Sayfa grafikleri
 Page heading	Sayfa başlığı
 Page list, devices, parts, panel layout and settings	Sayfa listesi, cihazlar, parçalar, pano yerleşimi ve ayarlar
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Yönlendirme yolu {} mm �
 Routing paths	Yönlendirme yolları
 Routing rules	Yönlendirme kuralları
 Row	Satır
+Row distance	Sıra aralığı
 Row drawing	Satır çizimi
 Row labels	Satır yazıları
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Yayımlanmış sayfalardaki satırlar değiştirilemez. Metindeki satır sonu \\n olarak yazılır.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Projenin kendi sayfa şablonları dos
 The project's own title blocks	Projenin kendi antetleri
 The project's own title blocks and report schemes	Projenin kendi antetleri ve rapor düzenleri
 The properties of the selection in a window beside the page	Seçimin özellikleri sayfanın yanındaki bir pencerede
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Ray veya montaj tabanı; aksesuarları kancalar, kelepçeler ve balasttır
 The recalculation keeps frozen routes as long as they are still possible	Yeniden hesaplama, mümkün olduğu sürece dondurulmuş güzergâhları korur
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Dosya sekmeli şerit menülerin yerini alır; Ctrl+Shift+P her komutu bulur.
 The second fault is checked at the line-to-earth voltage	İkinci arıza faz-toprak geriliminde kontrol edilir
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Bu proje, {1} projesinin {0} alt projesidir ({2} tarihinde dışarı alındı). İş bittiğinde kaydedin ve ana projeye ekleyin.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Burada üç tel birleşmeli: biri yönünde, ikisi enine. O zamana kadar bağlantı şema sırasında zincirlenir.
 Three-phase short-circuit current at the supply point	Besleme noktasındaki üç fazlı kısa devre akımı
+Tilt	Eğim
 Title	Başlık
 Title blocks	Antetler
 Title blocks, plot frames and page templates	Antetler, çizim çerçeveleri ve sayfa şablonları
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	Plaka üzerinde {} mm + {} mm pay; geri kalanı bağlantı noktalarından plakaya olan yoldur.
 {} mm, now {} mm	{} mm, şimdi {} mm
 {} mm, removed	{} mm, kaldırıldı
+{} modules	{} modül
+{} modules, {} kWp	{} modül, {} kWp
 {} new texts in the dictionary	Sözlükte {} yeni metin
 {} notes	{} not
 {} objects pasted	{} nesne yapıştırıldı

@@ -172,11 +172,98 @@ pub struct Roof {
     /// Roof windows in its slopes.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub windows: Vec<RoofWindow>,
+    /// Solar (PV) arrays on it (see `crate::panel::solar`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub solar: Vec<PvArray>,
 }
 
 impl Default for Roof {
     fn default() -> Self {
-        Roof { id: 0, name: String::new(), shape: RoofShape::Gable, x: 0.0, z: 0.0, width: 10_000.0, depth: 8000.0, along_z: false, flip: false, eaves: 3000.0, pitch: 35.0, overhang: 400.0, thickness: 300.0, windows: Vec::new() }
+        Roof { id: 0, name: String::new(), shape: RoofShape::Gable, x: 0.0, z: 0.0, width: 10_000.0, depth: 8000.0, along_z: false, flip: false, eaves: 3000.0, pitch: 35.0, overhang: 400.0, thickness: 300.0, windows: Vec::new(), solar: Vec::new() }
+    }
+}
+
+/// How the modules of a PV array are mounted.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum PvMounting {
+    /// On rails parallel to the covering, fastened to the roof with roof hooks.
+    #[default]
+    Parallel,
+    /// Flat roofs: rows of modules tilted towards one side on ballasted mounting bases.
+    Tilted,
+    /// Flat roofs: pairs of modules tilted towards both sides (east-west) on ballasted
+    /// mounting bases.
+    EastWest,
+}
+
+/// A solar (PV) array on a roof: rows of modules on one slope with their mounting.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PvArray {
+    pub id: u64,
+    pub name: String,
+    /// Its middle in the building's floor plan, mm.
+    pub x: f32,
+    pub z: f32,
+    /// Modules side by side in a row (along the eaves, or across the direction they face).
+    pub columns: u32,
+    /// Rows of modules (up the slope, or behind each other; east-west: rows of pairs).
+    pub rows: u32,
+    /// The long side of the modules along the rows instead of up the slope.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub landscape: bool,
+    /// Module part.
+    pub module: String,
+    /// Size of a module: short side, long side and frame height, mm.
+    pub module_width: f32,
+    pub module_length: f32,
+    pub module_height: f32,
+    pub mounting: PvMounting,
+    /// Tilt of the modules against the roof (tilted and east-west mounting), degrees.
+    pub tilt: f32,
+    /// Flat roofs: the direction the modules face, degrees counter-clockwise seen from
+    /// above (0: towards +z, the front).
+    pub azimuth: f32,
+    /// Distance from row to row (tilted and east-west mounting), mm; 0: so that a row
+    /// does not shade the next one in winter.
+    pub row_gap: f32,
+    /// Greatest distance of the roof hooks or mounting bases along a rail, mm.
+    pub span: f32,
+    /// Ballast per module (tilted and east-west mounting), kg.
+    pub ballast: f32,
+    /// Mounting system: part number of its rail (parallel mounting) or mounting base;
+    /// its accessories are the hooks, clamps, connectors and ballast. Empty: generic.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub system: String,
+    /// Device (PV generator) the modules belong to, e.g. "=PV+ROOF-G1"; its parts then
+    /// count the modules in the bill of materials.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub device: String,
+}
+
+impl Default for PvArray {
+    fn default() -> Self {
+        PvArray {
+            id: 0,
+            name: String::new(),
+            x: 0.0,
+            z: 0.0,
+            columns: 4,
+            rows: 2,
+            landscape: false,
+            module: "GEN.PV-430W".into(),
+            module_width: 1134.0,
+            module_length: 1722.0,
+            module_height: 30.0,
+            mounting: PvMounting::Parallel,
+            tilt: 15.0,
+            azimuth: 0.0,
+            row_gap: 0.0,
+            span: 1200.0,
+            ballast: 20.0,
+            system: String::new(),
+            device: String::new(),
+        }
     }
 }
 

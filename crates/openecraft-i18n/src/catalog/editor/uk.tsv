@@ -178,6 +178,8 @@ Back	Назад
 Back to the project (Esc)	Назад до проєкту (Esc)
 Back-up up to (kA)	Резервний захист до (kA)
 Background	Фон
+Ballast	Баласт
+Ballast per module	Баласт на модуль
 Baseline {}	Базова версія {}
 Baseline {} created	Базову версію {} створено
 Baseline {} {}	Базова версія {} {}
@@ -418,6 +420,7 @@ Define all used	Визначити всі використані
 Defined potentials	Визначені потенціали
 Del	Del
 Delete	Видалити
+Delete PV array	Видалити фотоелектричне поле
 Delete cable (its wires are removed from it)	Видалити кабель (його проводи буде вилучено з нього)
 Delete comment	Видалити коментар
 Delete connection point	Видалити точку підключення
@@ -482,6 +485,7 @@ Digits	Цифри
 Dimension	Розмір
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Спрямований Т-подібний вузол: де сходяться три проводи, задає пристрій, від якого йдуть два проводи з'єднання, і порядок їхніх цілей
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Спрямоване перехрестя: з'єднує два проводи, що там перехрещуються; кожен кінець його лінії з'єднується спочатку прямо, потім упоперек
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Напрямок, у який спрямовані модулі, проти годинникової стрілки при погляді згори (0: вперед)
 Discard changes	Скасувати зміни
 Discard draft	Відхилити чернетку
 Disconnection of distribution circuits	Вимкнення розподільних кіл
@@ -615,6 +619,7 @@ Exported {}	Експортовано {}
 Exporting {}	Експорт {}
 Export…	Експортувати…
 Extras	Додатково
+Facing	Орієнтація
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Вентилятори, фільтри, кабельні вводи, світильники, ручки: виберіть одне, потім клацніть місце встановлення
 Fastening hardware in the bill of materials	Кріпильні вироби в специфікації
 Favorite	Вибране
@@ -675,6 +680,7 @@ Freeze route	Зафіксувати трасу
 Frequency	Частота
 From / to	Від / до
 From a template file…	Із файлу шаблону…
+From row to row; 0: free of shade in winter	Від ряду до ряду; 0: без затінення взимку
 From the function definition	З визначення функції
 From the left end	Від лівого кінця
 From – to	Від – до
@@ -709,6 +715,7 @@ Go to page	Перейти до сторінки
 Graphic line	Графічна лінія
 Graphic rectangle	Графічний прямокутник
 Graphical form	Графічна форма
+Greatest distance of the roof hooks along a rail	Найбільша відстань покрівельних гаків уздовж рейки
 Grid	Сітка
 Grid size	Крок сітки
 Grid {} mm	Сітка {} мм
@@ -736,6 +743,7 @@ Highest phase unbalance	Найбільша несиметрія фаз
 Highest short-circuit current	Найбільший струм короткого замикання
 Hole to sheet edge	Від отвору до краю листа
 Home	Основне
+Hook distance	Крок гаків
 Horizontal	Горизонтальний
 Horizontal (mm)	По горизонталі (мм)
 Horizontal centres	Горизонтальні центри
@@ -790,6 +798,7 @@ In every section counting starts again after the section number (2.3.1).	У ко
 In strip order; PE and other non-numeric terminals keep their designation	У порядку колодки; PE та інші нечислові клеми зберігають своє позначення
 In the filtered rows	У відфільтрованих рядках
 In the middle of the first wire	Посередині першого проводу
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Посередині переднього або правого схилу, на плоскому даху з нахилом вперед; перемістіть його на місце
 In the project	У проєкті
 In the structure of the current page	У структурі поточної сторінки
 Include manually set numbers	Враховувати вручну задані номери
@@ -945,18 +954,21 @@ Messages	Повідомлення
 Messages ({})	Повідомлення ({})
 Messages of this session	Повідомлення цього сеансу
 Middle	Посередині
+Middle of the PV array in the floor plan of the building	Середина фотоелектричного поля на плані будівлі
 Min. bend radius	Мін. радіус згину
 Minimize the ribbon	Згорнути стрічку
 Mirror	Віддзеркалити
 Mirror (selection or symbol being placed)	Віддзеркалити (вибране або символ, що розміщується)
 Mode	Режим
 Model of a part (2D / 3D)	Модель виробу (2D / 3D)
+Module part; its size comes from the part	Виріб модуля; його розмір береться з виробу
 Motors feed the short circuit	Двигуни підживлюють коротке замикання
 Mounted on	Змонтовано на
 Mounting assistant: the panel items in mounting order with their place and part	Помічник монтажу: елементи компонування в порядку монтажу з місцем і виробом
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Монтажна відстань поруч; вироби додають власну (Clearance left / right)
 Mounting height: {}	Висота монтажу: {}
 Mounting plate: {} holes, {} cutouts	Монтажна панель: отворів – {}, вирізів – {}
+Mounting system	Монтажна система
 Move	Перемістити
 Move down	Перемістити вниз
 Move left	Перемістити ліворуч
@@ -1187,6 +1199,8 @@ PLC channels	Канали ПЛК
 PLC hardware and bus topology	Апаратне забезпечення ПЛК і топологія шини
 PLC overview	Огляд ПЛК
 PNG or JPEG bitmap, e.g. a logo or a photo	Растрове зображення PNG або JPEG, напр. логотип або фото
+PV array	Фотоелектричне поле
+PV arrays	Фотоелектричні поля
 Page graphics	Графіка сторінки
 Page heading	Заголовок сторінки
 Page list, devices, parts, panel layout and settings	Список сторінок, пристрої, вироби, компонування шафи та параметри
@@ -1480,6 +1494,7 @@ Routing path {} mm – double-click or Enter to finish	Траса проклад
 Routing paths	Траси прокладання
 Routing rules	Правила прокладання
 Row	Рядок
+Row distance	Відстань між рядами
 Row drawing	Креслення рядка
 Row labels	Позначення рядків
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Рядки на затверджених сторінках не можна змінити. Розрив рядка в тексті записується як \\n.
@@ -1764,6 +1779,7 @@ The project's own page templates as a file	Власні шаблони стор�
 The project's own title blocks	Власні основні написи проєкту
 The project's own title blocks and report schemes	Власні основні написи та схеми звітів проєкту
 The properties of the selection in a window beside the page	Властивості виділеного у вікні поруч зі сторінкою
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Рейка або монтажна основа; її приладдя — гаки, затискачі та баласт
 The recalculation keeps frozen routes as long as they are still possible	Під час перерахунку зафіксовані траси зберігаються, доки це можливо
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Стрічка з вкладкою Файл замінює меню; Ctrl+Shift+P знаходить будь-яку команду.
 The second fault is checked at the line-to-earth voltage	Подвійне замикання перевіряється при напрузі між фазою та землею
@@ -1786,6 +1802,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Цей проєкт є підпроєктом {} проєкту {} (винесено {}). Після завершення роботи збережіть його та вставте в основний проєкт.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Тут мають сходитися три проводи: один у його напрямку і два впоперек. До того з'єднання вибудовується в порядку схеми.
 Three-phase short-circuit current at the supply point	Трифазний струм короткого замикання в точці живлення
+Tilt	Нахил
 Title	Заголовок
 Title blocks	Основні написи
 Title blocks, plot frames and page templates	Основні написи, рамки аркушів і шаблони сторінок
@@ -2110,6 +2127,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} мм на панелі + {} мм запасу; решта – шлях від точок підключення до панелі.
 {} mm, now {} mm	{} мм, тепер {} мм
 {} mm, removed	{} мм, вилучено
+{} modules	{} модулів
+{} modules, {} kWp	{} модулів, {} кВт пік
 {} new texts in the dictionary	Нових текстів у словнику: {}
 {} notes	Приміток: {}
 {} objects pasted	Вставлено об’єктів: {}

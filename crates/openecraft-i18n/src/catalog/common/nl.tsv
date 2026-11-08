@@ -90,6 +90,7 @@ Descending	Aflopend
 Description	Beschrijving
 Designation	Benaming
 Device	Apparaat
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Apparaat (PV-generator) waartoe de modules behoren; zijn artikelen tellen ze dan in de stuklijst
 Device description	Apparaatbeschrijving
 Device tag	Apparaataanduiding
 Device {}	Apparaat {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Minimumaantal cijfers van de telle
 Missing parameter: {}	Ontbrekende parameter: {}
 Missing value for --{}	Ontbrekende waarde voor --{}
 Model import failed: {}	Model importeren mislukt: {}
+Modules side by side in a row	Modules naast elkaar in een rij
 Mounted	Gemonteerd
 Mounting	Montage
 Mounting data	Montagegegevens
@@ -217,6 +219,7 @@ No machine {}	Geen machine {}
 No page named {}	Geen pagina met de naam {}
 No page template named {}	Geen paginasjabloon met de naam {}
 No page {}	Geen pagina {}
+No part {} in the project	Geen artikel {} in het project
 No parts found	Geen artikelen gevonden
 No plot frame named {}	Geen plotkader met de naam {}
 No plug {}	Geen stekker {}
@@ -334,6 +337,7 @@ Role	Rol
 Rooms	Ruimtes
 Route	Routeren
 Routing	Routering
+Rows of modules (east-west: rows of pairs)	Rijen modules (oost-west: rijen van paren)
 Rule	Regel
 Rule set	Regelset
 Safety function	Veiligheidsfunctie
@@ -391,6 +395,7 @@ Terminals	Klemmen
 Text	Tekst
 Text to find	Te zoeken tekst
 The identifier must not be empty	De aanduiding mag niet leeg zijn
+The long side of the modules along the rows	De lange zijde van de modules langs de rijen
 The page is released	De pagina is vrijgegeven
 There is a connection symbol at this point already	Op dit punt is al een verbindingssymbool
 Thermal	Thermisch
@@ -438,6 +443,7 @@ access denied	toegang geweigerd
 approved	goedgekeurd
 bonded	aangesloten
 file or folder not found	bestand of map niet gevonden
+landscape	liggend
 left	naar links
 mm	mm
 normal	normaal

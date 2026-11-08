@@ -2,14 +2,15 @@
 //! ground level and the attic +AT1 under a gable roof whose eaves lie a knee wall above
 //! the attic floor, so the attic's ceiling slopes down to 1.2 m at its long walls; a
 //! stair turned once at a quarter landing leads up, two roof windows sit in the front
-//! slope. The rooms get Gira socket outlets, a network outlet and a switch, an MDT KNX
-//! push button and room temperature controller, a TV outlet, a COSMO heating circuit
-//! manifold for six circuits and a single-room control box.
+//! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one.
+//! The rooms get Gira socket outlets, a network outlet and a switch, an MDT KNX push
+//! button and room temperature controller, a TV outlet, a COSMO heating circuit manifold
+//! for six circuits and a single-room control box.
 
 use super::*;
 use crate::geom::p;
 use crate::model::panel::{Opening, SitePlace};
-use crate::panel::{self, buildings as bld, roofs, stairs, Face, RoofShape, StairKind};
+use crate::panel::{self, buildings as bld, roofs, solar, stairs, Face, RoofShape, StairKind};
 
 /// Height of the knee wall of the attic: the eaves above its floor, mm.
 const KNEE_WALL: f32 = 1000.0;
@@ -53,6 +54,15 @@ pub(super) fn project() -> Project {
     (r.eaves, r.pitch) = (attic_floor + KNEE_WALL, 40.0);
     for x in [2500.0, 5500.0] {
         roofs::add_window(&mut prj, b3, 0, Some([x, 4700.0])).expect("house");
+    }
+    // Two rows of five LONGi modules in the rear slope, on the generic rails and hooks.
+    crate::parts::ensure_in_project(&mut prj, &db, "LONGI.LR5-54HTH-430M");
+    let pv = solar::add_array(&mut prj, b3, 0, Some([4000.0, 1500.0])).expect("house");
+    let mut a = prj.layout.buildings[b3].roofs[0].solar.iter().find(|a| a.id == pv).cloned().expect("house");
+    solar::set_module(&prj, &mut a, "LONGI.LR5-54HTH-430M").expect("house");
+    a.columns = 5;
+    if let Some(s) = prj.layout.buildings[b3].roofs[0].solar.iter_mut().find(|s| s.id == pv) {
+        *s = a;
     }
 
     // The installation: outlets and switches at their mounting heights, the manifold

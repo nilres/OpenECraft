@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-artikelstamgegevens en stuklijst
 ERP number	ERP-nummer
 ETIM class	ETIM-klasse
 Earth electrode	Aardelektrode
+East-west on a flat roof	Oost-west op een plat dak
 Edit pages	Pagina's bewerken
 Edit project data	Projectgegevens bewerken
 Editor	Bewerker
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Kastlay-out in 3D (STEP)
 Panel layout in 3D (glTF)	Kastlay-out in 3D (glTF)
 Panel layout settings	Instellingen kastlay-out
 Panel legend	Kastlegenda
+Parallel to the roof on roof hooks	Parallel aan het dak op dakhaken
 Part accessories	Artikeltoebehoren
 Part data is maintained in the parts management	Artikelgegevens worden in het artikelbeheer onderhouden
 Part description	Artikelbeschrijving
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Eenrichtingslichtsluis, 4-draads
 Through-beam transmitter	Eenrichtingslichtsluis zender
 Thyristor	Thyristor
 Tightening torque	Aanhaalmoment
+Tilted on a flat roof	Schuin op een plat dak
 Time function	Tijdfunctie
 Time range	Tijdbereik
 Time relay coil KT (GB)	Spoel tijdrelais KT (GB)
@@ -1819,7 +1822,6 @@ is none of	is geen van
 is not	is niet
 is not empty	is niet leeg
 is one of	is een van
-landscape	liggend
 leakage	lek
 low	laag
 measuring	meet
@@ -1917,6 +1919,12 @@ yellow	geel
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bochten krapper dan de buigradius ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: verbonden in het eenlijnschema, maar niet in het schema
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} jaar is minder dan 3 jaar
+{}: PV array {} covers a roof window	{}: PV-veld {} bedekt een dakraam
+{}: PV array {} has {} modules, its device {} has {}	{}: PV-veld {} heeft {} modules, zijn apparaat {} heeft er {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: PV-veld {} is schuin gemonteerd op een hellend dak
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: PV-veld {} van dak {} ligt over een nok, een hoekkeper of de dakrand
+{}: PV array {} of roof {} lies outside the roof	{}: PV-veld {} van dak {} ligt buiten het dak
+{}: PV arrays {} and {} lie over each other	{}: PV-velden {} en {} liggen over elkaar
 {}: \"{}\" is not one of {}	{}: \"{}\" is niet een van {}
 {}: a TT system needs a residual current device	{}: een TT-stelsel heeft een aardlekbeveiliging nodig
 {}: accessory {} fits none of the device's parts	{}: toebehoren {} past op geen enkel artikel van het apparaat
@@ -1990,6 +1998,7 @@ yellow	geel
 {}: terminal {} uses {} levels, its part {} has {}	{}: klem {} gebruikt {} etages, het artikel {} ervan heeft er {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: klemmen {} liggen {} mm boven de vloer, minimaal {} mm vereist
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: het railsysteem met {} rails verbindt {} geleiders ({}): kortsluiting
+{}: the device {} of PV array {} does not exist	{}: het apparaat {} van PV-veld {} bestaat niet
 {}: the station has no port {}	{}: het station heeft geen poort {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) is groter dan het werkbereik van {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} is {} mm dik, {} verwerkt maximaal {} mm

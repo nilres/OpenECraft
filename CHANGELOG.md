@@ -5,6 +5,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.1] - unreleased
 
+- **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
+  on rails and roof hooks or on a flat roof tilted or east-west on ballasted mounting
+  bases. The mounting material (rails, connectors, roof hooks, end and middle clamps,
+  mounting bases, ballast, wind deflectors) follows from the modules and goes into the
+  bill of materials with them; it comes from a mounting system of the parts database
+  or from generic parts. New shipped catalogs `longi` and `jinko` with PV modules; the
+  check reports arrays across a ridge or off the roof, over roof windows or each other.
+  Commands `add_pv_array`, `set_pv_array` ([panel layout](docs/features/panel-layout.md)).
+
 - **Flush-mounted cables, wires and tubes in rooms:** each line is laid surface-mounted,
   flush-mounted in the walls or in the floor (a project default in the routing rules,
   set per line in its properties or with `set_laying`). Flush-mounted lines run in slots

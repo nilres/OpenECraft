@@ -92,6 +92,7 @@ Descending	Absteigend	Décroissant	Descendente
 Description	Beschreibung	Description	Descripción
 Designation	Bezeichnung	Désignation	Designación
 Device	Betriebsmittel	Appareil	Dispositivo
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Betriebsmittel (PV-Generator), zu dem die Module gehören; seine Artikel zählen sie dann in der Stückliste	Appareil (générateur photovoltaïque) auquel appartiennent les modules ; ses articles les comptent alors dans la nomenclature	Dispositivo (generador fotovoltaico) al que pertenecen los módulos; sus artículos los cuentan entonces en la lista de materiales
 Device description	Gerätebeschreibung	Description d'appareil	Descripción de dispositivo
 Device tag	Betriebsmittelkennzeichen	Repère d'appareil	Designación de dispositivo
 Device {}	Betriebsmittel {}	Appareil {}	Dispositivo {}
@@ -200,6 +201,7 @@ Minimum digits of the counter (leading zeros)	Mindestanzahl Stellen des Zählers
 Missing parameter: {}	Fehlender Parameter: {}	Paramètre manquant : {}	Falta el parámetro: {}
 Missing value for --{}	Fehlender Wert für --{}	Valeur manquante pour --{}	Falta el valor de --{}
 Model import failed: {}	Modellimport fehlgeschlagen: {}	Échec de l'import du modèle : {}	Error al importar el modelo: {}
+Modules side by side in a row	Module nebeneinander in einer Reihe	Modules côte à côte dans une rangée	Módulos uno al lado de otro en una fila
 Mounted	Montiert	Monté	Montado
 Mounting	Montage	Montage	Montaje
 Mounting data	Montagedaten	Données de montage	Datos de montaje
@@ -223,6 +225,7 @@ No machine {}	Keine Maschine {}	Pas de machine {}	No hay máquina {}
 No page named {}	Keine Seite mit dem Namen {}	Aucune page nommée {}	No hay ninguna página llamada {}
 No page template named {}	Keine Seitenvorlage namens {}	Aucun modèle de page nommé {}	Ninguna plantilla de página llamada {}
 No page {}	Keine Seite {}	Aucune page {}	No hay página {}
+No part {} in the project	Kein Artikel {} im Projekt	Pas d'article {} dans le projet	No hay ningún artículo {} en el proyecto
 No parts found	Keine Artikel gefunden	Aucun article trouvé	No se encontraron artículos
 No plot frame named {}	Kein Plotrahmen namens {}	Aucun cadre nommé {}	Ningún marco llamado {}
 No plug {}	Kein Stecker {}	Aucun connecteur {}	No hay conector {}
@@ -341,6 +344,7 @@ Role	Rolle	Rôle	Rol
 Rooms	Räume	Salles	Salas
 Route	Führen	Router	Trazar
 Routing	Verlegung	Cheminement	Tendido
+Rows of modules (east-west: rows of pairs)	Modulreihen (Ost-West: Reihen von Paaren)	Rangées de modules (est-ouest : rangées de paires)	Filas de módulos (este-oeste: filas de pares)
 Rule	Regel	Règle	Regla
 Rule set	Regelwerk	Jeu de règles	Conjunto de reglas
 Safety function	Sicherheitsfunktion	Fonction de sécurité	Función de seguridad
@@ -398,6 +402,7 @@ Terminals	Klemmen	Bornes	Bornes
 Text	Text	Texte	Texto
 Text to find	Zu suchender Text	Texte à rechercher	Texto a buscar
 The identifier must not be empty	Das Kennzeichen darf nicht leer sein	L'identificateur ne doit pas être vide	El identificador no debe estar vacío
+The long side of the modules along the rows	Die lange Seite der Module entlang der Reihen	Le grand côté des modules le long des rangées	El lado largo de los módulos a lo largo de las filas
 The page is released	Die Seite ist freigegeben	La page est validée	La página está liberada
 The ridge (or the slope of a shed roof) runs along z instead of x	Der First (oder die Neigung eines Pultdachs) verläuft entlang z statt x	Le faîtage (ou la pente d'un toit en appentis) suit z au lieu de x	La cumbrera (o la pendiente de una cubierta a un agua) va a lo largo de z en lugar de x
 There is a connection symbol at this point already	An diesem Punkt gibt es schon ein Verbindungssymbol	Il y a déjà un symbole de liaison à ce point	Ya hay un símbolo de conexión en este punto
@@ -447,6 +452,7 @@ access denied	Zugriff verweigert	accès refusé	acceso denegado
 approved	genehmigt	approuvé	aprobado
 bonded	angeschlossen	relié	conectado
 file or folder not found	Datei oder Ordner nicht gefunden	fichier ou dossier introuvable	archivo o carpeta no encontrado
+landscape	quer	paysage	horizontal
 left	nach links	vers la gauche	hacia la izquierda
 mm	mm	mm	mm
 normal	normal	normale	normal

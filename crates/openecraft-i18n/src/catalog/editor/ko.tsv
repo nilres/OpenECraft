@@ -177,6 +177,8 @@ Back	뒤로
 Back to the project (Esc)	프로젝트로 돌아가기 (Esc)
 Back-up up to (kA)	백업 한계(kA)
 Background	배경
+Ballast	밸러스트
+Ballast per module	모듈당 밸러스트
 Baseline {}	기준선 {}
 Baseline {} created	기준선 {} 만들어짐
 Baseline {} {}	기준선 {} {}
@@ -413,6 +415,7 @@ Define all used	사용된 항목 모두 정의
 Defined potentials	정의된 전위
 Del	Del
 Delete	삭제
+Delete PV array	태양광 어레이 삭제
 Delete cable (its wires are removed from it)	케이블 삭제(케이블의 전선은 케이블에서 제거됨)
 Delete comment	주석 삭제
 Delete connection point	연결 지점 삭제
@@ -475,6 +478,7 @@ Digits	자릿수
 Dimension	치수
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	방향 T분기점: 세 연결선이 만나는 지점에서 연결의 두 전선이 출발하는 장치와 대상의 순서를 지정합니다
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	방향 교차: 그곳에서 교차하는 두 연결선을 연결합니다. 선의 각 끝은 먼저 직진으로, 다음에 가로로 배선됩니다
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	모듈이 향하는 방향, 위에서 보아 반시계 방향 (0: 앞쪽)
 Discard changes	변경 내용 취소
 Discard draft	초안 취소
 Disconnection of distribution circuits	배전 회로의 차단
@@ -606,6 +610,7 @@ Export the messages as CSV	메시지를 CSV로 내보내기
 Exported {}	{} 내보냄
 Export…	내보내기…
 Extras	추가 기능
+Facing	방향
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	팬, 필터, 케이블 글랜드, 조명, 손잡이: 하나를 선택한 후 설치할 위치를 클릭하세요
 Fastening hardware in the bill of materials	자재 명세서의 고정 부품
 Favorite	즐겨찾기
@@ -665,6 +670,7 @@ Freeze route	경로 고정
 Frequency	주파수
 From / to	시작 / 끝
 From a template file…	템플릿 파일에서…
+From row to row; 0: free of shade in winter	열에서 열까지; 0: 겨울에 그늘 없음
 From the function definition	기능 정의에서
 From the left end	왼쪽 끝에서
 From – to	시작 – 끝
@@ -699,6 +705,7 @@ Go to page	페이지로 이동
 Graphic line	그래픽 선
 Graphic rectangle	그래픽 사각형
 Graphical form	그래픽 양식
+Greatest distance of the roof hooks along a rail	레일을 따른 지붕 후크의 최대 간격
 Grid	그리드
 Grid size	그리드 크기
 Grid {} mm	그리드 {} mm
@@ -726,6 +733,7 @@ Highest phase unbalance	최대 상 불평형
 Highest short-circuit current	최대 단락 전류
 Hole to sheet edge	구멍과 판금 가장자리 간 거리
 Home	홈
+Hook distance	후크 간격
 Horizontal	수평
 Horizontal (mm)	가로(mm)
 Horizontal centres	가로 가운데
@@ -780,6 +788,7 @@ In every section counting starts again after the section number (2.3.1).	각 구
 In strip order; PE and other non-numeric terminals keep their designation	단자대 순서대로. PE 및 기타 숫자가 아닌 단자는 명칭을 유지합니다
 In the filtered rows	필터링된 행에서
 In the middle of the first wire	첫 번째 전선의 가운데에
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	앞쪽 또는 오른쪽 지붕면 가운데, 평지붕에서는 앞쪽으로 기울임; 제자리로 옮기세요
 In the project	프로젝트 내
 In the structure of the current page	현재 페이지의 구조로
 Include manually set numbers	수동으로 설정한 번호 포함
@@ -931,18 +940,21 @@ Messages	메시지
 Messages ({})	메시지 ({})
 Messages of this session	이 세션의 메시지
 Middle	가운데
+Middle of the PV array in the floor plan of the building	건물 평면도에서 태양광 어레이의 중심
 Min. bend radius	최소 굽힘 반경
 Minimize the ribbon	리본 최소화
 Mirror	대칭
 Mirror (selection or symbol being placed)	대칭(선택 항목 또는 배치 중인 심볼)
 Mode	모드
 Model of a part (2D / 3D)	부품의 모델(2D / 3D)
+Module part; its size comes from the part	모듈 부품; 크기는 부품에서 가져옴
 Motors feed the short circuit	모터가 단락 전류를 공급함
 Mounted on	장착 대상
 Mounting assistant: the panel items in mounting order with their place and part	장착 도우미: 장착 순서에 따른 패널 항목과 위치 및 부품
 Mounting clearance side by side; parts add theirs (Clearance left / right)	나란히 배치할 때의 장착 이격 거리. 부품은 자체 값을 추가합니다(Clearance left / right)
 Mounting height: {}	설치 높이: {}
 Mounting plate: {} holes, {} cutouts	장착 플레이트: 구멍 {}개, 컷아웃 {}개
+Mounting system	설치 시스템
 Move	이동
 Move down	아래로 이동
 Move left	왼쪽으로 이동
@@ -1171,6 +1183,8 @@ PLC channels	PLC 채널
 PLC hardware and bus topology	PLC 하드웨어 및 버스 토폴로지
 PLC overview	PLC 개요
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 또는 JPEG 비트맵(예: 로고 또는 사진)
+PV array	태양광 어레이
+PV arrays	태양광 어레이
 Page graphics	페이지 그래픽
 Page heading	페이지 제목
 Page list, devices, parts, panel layout and settings	페이지 목록, 장치, 부품, 패널 레이아웃 및 설정
@@ -1459,6 +1473,7 @@ Routing path {} mm – double-click or Enter to finish	배선 경로 {} mm – �
 Routing paths	배선 경로
 Routing rules	배선 경로 규칙
 Row	행
+Row distance	열 간격
 Row drawing	행 도면
 Row labels	행 레이블
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	릴리스된 페이지의 행은 변경할 수 없습니다. 텍스트의 줄 바꿈은 \\n으로 씁니다.
@@ -1741,6 +1756,7 @@ The project's own page templates as a file	프로젝트 고유 페이지 템플�
 The project's own title blocks	프로젝트 고유 표제란
 The project's own title blocks and report schemes	프로젝트 고유 표제란 및 보고서 스키마
 The properties of the selection in a window beside the page	페이지 옆 창에 표시되는 선택 항목의 속성
+The rail or mounting base; its accessories are the hooks, clamps and ballast	레일 또는 설치 받침대; 부속품은 후크, 클램프, 밸러스트
 The recalculation keeps frozen routes as long as they are still possible	다시 계산할 때 가능한 한 고정된 경로가 유지됩니다
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	파일 탭이 있는 리본이 메뉴를 대신합니다. Ctrl+Shift+P로 모든 명령을 찾을 수 있습니다.
 The second fault is checked at the line-to-earth voltage	이중 고장은 대지 전압으로 검사됩니다
@@ -1762,6 +1778,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	이 프로젝트는 {1}의 하위 프로젝트 {0}입니다({2}에 반출). 작업이 끝나면 저장한 후 주 프로젝트에 삽입하세요.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	여기에서 세 연결선이 만나야 합니다: 하나는 그 방향으로, 둘은 가로로. 그때까지 연결은 회로도 순서로 연결됩니다.
 Three-phase short-circuit current at the supply point	전원 공급점의 3상 단락 전류
+Tilt	기울기
 Title	제목
 Title blocks	표제란
 Title blocks, plot frames and page templates	표제란, 플롯 프레임 및 페이지 템플릿
@@ -2078,6 +2095,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	플레이트 위 {} mm + 여유 {} mm. 나머지는 연결 지점에서 플레이트까지의 거리입니다.
 {} mm, now {} mm	{} mm, 현재 {} mm
 {} mm, removed	{} mm, 제거됨
+{} modules	모듈 {}개
+{} modules, {} kWp	모듈 {}개, {} kWp
 {} new texts in the dictionary	사전의 새 텍스트 {}개
 {} notes	참고 {}개
 {} objects pasted	개체 {}개 붙여넣음

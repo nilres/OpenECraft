@@ -90,6 +90,7 @@ Descending	Decrescente
 Description	Descrizione
 Designation	Designazione
 Device	Dispositivo
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Dispositivo (generatore fotovoltaico) a cui appartengono i moduli; i suoi articoli li contano allora nella distinta base
 Device description	Descrizione dispositivo
 Device tag	Sigla dispositivo
 Device {}	Dispositivo {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Numero minimo di cifre del contato
 Missing parameter: {}	Parametro mancante: {}
 Missing value for --{}	Valore mancante per --{}
 Model import failed: {}	Importazione del modello non riuscita: {}
+Modules side by side in a row	Moduli affiancati in una fila
 Mounted	Montato
 Mounting	Montaggio
 Mounting data	Dati di montaggio
@@ -217,6 +219,7 @@ No machine {}	Nessuna macchina {}
 No page named {}	Nessuna pagina denominata {}
 No page template named {}	Nessun modello di pagina denominato {}
 No page {}	Nessuna pagina {}
+No part {} in the project	Nessun articolo {} nel progetto
 No parts found	Nessun articolo trovato
 No plot frame named {}	Nessuna cornice di stampa denominata {}
 No plug {}	Nessun connettore {}
@@ -334,6 +337,7 @@ Role	Ruolo
 Rooms	Locali
 Route	Instrada
 Routing	Instradamento
+Rows of modules (east-west: rows of pairs)	File di moduli (est-ovest: file di coppie)
 Rule	Regola
 Rule set	Set di regole
 Safety function	Funzione di sicurezza
@@ -391,6 +395,7 @@ Terminals	Morsetti
 Text	Testo
 Text to find	Testo da trovare
 The identifier must not be empty	L'identificatore non può essere vuoto
+The long side of the modules along the rows	Il lato lungo dei moduli lungo le file
 The page is released	La pagina è rilasciata
 There is a connection symbol at this point already	C'è già un simbolo di collegamento in questo punto
 Thermal	Termica
@@ -438,6 +443,7 @@ access denied	accesso negato
 approved	approvato
 bonded	collegato
 file or folder not found	file o cartella non trovati
+landscape	orizzontale
 left	verso sinistra
 mm	mm
 normal	normale

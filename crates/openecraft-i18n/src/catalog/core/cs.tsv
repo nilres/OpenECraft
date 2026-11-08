@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Kmenová data položek ERP a kusovn�
 ERP number	Číslo ERP
 ETIM class	Třída ETIM
 Earth electrode	Zemnič
+East-west on a flat roof	Východ-západ na ploché střeše
 Edit pages	Upravovat stránky
 Edit project data	Upravovat data projektu
 Editor	Editor
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Rozvržení rozváděče ve 3D (STEP)
 Panel layout in 3D (glTF)	Rozvržení rozváděče ve 3D (glTF)
 Panel layout settings	Nastavení rozvržení rozváděče
 Panel legend	Legenda rozváděče
+Parallel to the roof on roof hooks	Rovnoběžně se střechou na střešních hácích
 Part accessories	Příslušenství dílů
 Part data is maintained in the parts management	Data artiklů se spravují ve správě artiklů
 Part description	Popis artiklu
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Jednocestná závora, 4vodičová
 Through-beam transmitter	Vysílač jednocestné závory
 Thyristor	Tyristor
 Tightening torque	Utahovací moment
+Tilted on a flat roof	Skloněně na ploché střeše
 Time function	Časová funkce
 Time range	Časový rozsah
 Time relay coil KT (GB)	Cívka časového relé KT (GB)
@@ -1819,7 +1822,6 @@ is none of	není žádným z
 is not	není
 is not empty	není prázdné
 is one of	je jedním z
-landscape	na šířku
 leakage	únik
 low	nízká
 measuring	měřicí
@@ -1917,6 +1919,12 @@ yellow	žlutá
 {} {}: bends closer than the bend radius ({} mm)	{} {}: ohyby těsnější než poloměr ohybu ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: propojeno v jednopólovém schématu, ale ne ve schématu zapojení
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} let je pod 3 roky
+{}: PV array {} covers a roof window	{}: FV pole {} zakrývá střešní okno
+{}: PV array {} has {} modules, its device {} has {}	{}: FV pole {} má {} modulů, jeho zařízení {} má {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: FV pole {} je namontováno skloněně na šikmé střeše
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: FV pole {} střechy {} leží přes hřeben, nároží nebo okraj střechy
+{}: PV array {} of roof {} lies outside the roof	{}: FV pole {} střechy {} leží mimo střechu
+{}: PV arrays {} and {} lie over each other	{}: FV pole {} a {} se překrývají
 {}: \"{}\" is not one of {}	{}: \"{}\" není jednou z hodnot {}
 {}: a TT system needs a residual current device	{}: soustava TT vyžaduje proudový chránič
 {}: accessory {} fits none of the device's parts	{}: příslušenství {} se nehodí k žádnému dílu přístroje
@@ -1990,6 +1998,7 @@ yellow	žlutá
 {}: terminal {} uses {} levels, its part {} has {}	{}: svorka {} používá {} pater, její artikl {} má {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: svorky {} jsou {} mm nad podlahou, vyžaduje se alespoň {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: přípojnicový systém s {} přípojnicemi spojuje {} vodiče ({}): zkrat
+{}: the device {} of PV array {} does not exist	{}: zařízení {} FV pole {} neexistuje
 {}: the station has no port {}	{}: stanice nemá port {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) je větší než pracovní prostor {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} má tloušťku {} mm, {} zpracuje nejvýše {} mm

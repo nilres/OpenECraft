@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-nimikerekisteri ja osaluettelo (
 ERP number	ERP-numero
 ETIM class	ETIM-luokka
 Earth electrode	Maadoituselektrodi
+East-west on a flat roof	Itä-länsi tasakatolla
 Edit pages	Muokkaa sivuja
 Edit project data	Muokkaa projektitietoja
 Editor	Muokkaaja
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Kaappiasennus 3D-muodossa (STEP)
 Panel layout in 3D (glTF)	Kaappiasennus 3D-muodossa (glTF)
 Panel layout settings	Kaappiasennuksen asetukset
 Panel legend	Kaapin selite
+Parallel to the roof on roof hooks	Katon suuntaisesti kattokoukuilla
 Part accessories	Osien lisävarusteet
 Part data is maintained in the parts management	Osien tietoja ylläpidetään osien hallinnassa
 Part description	Osan kuvaus
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Läpisäteilyvalokenno, 4-johtiminen
 Through-beam transmitter	Läpisäteilyvalokennon lähetin
 Thyristor	Tyristori
 Tightening torque	Kiristysmomentti
+Tilted on a flat roof	Kallistettuna tasakatolla
 Time function	Aikatoiminto
 Time range	Aika-alue
 Time relay coil KT (GB)	Aikareleen kela KT (GB)
@@ -1819,7 +1822,6 @@ is none of	ei ole mikään seuraavista
 is not	ei ole
 is not empty	ei ole tyhjä
 is one of	on jokin seuraavista
-landscape	vaaka
 leakage	vuoto
 low	matala
 measuring	mittaus
@@ -1917,6 +1919,12 @@ yellow	keltainen
 {} {}: bends closer than the bend radius ({} mm)	{} {}: taivutukset tiukempia kuin taivutussäde ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: yhdistetty yksinapaisessa kaaviossa mutta ei piirikaaviossa
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} vuotta on alle 3 vuotta
+{}: PV array {} covers a roof window	{}: aurinkopaneelikenttä {} peittää kattoikkunan
+{}: PV array {} has {} modules, its device {} has {}	{}: aurinkopaneelikentässä {} on {} moduulia, sen laitteessa {} on {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: aurinkopaneelikenttä {} on asennettu kallistettuna harjakatolle
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: katon {2} aurinkopaneelikenttä {1} on harjan, aumaharjan tai katon reunan yli
+{}: PV array {} of roof {} lies outside the roof	{0}: katon {2} aurinkopaneelikenttä {1} on katon ulkopuolella
+{}: PV arrays {} and {} lie over each other	{}: aurinkopaneelikentät {} ja {} ovat päällekkäin
 {}: \"{}\" is not one of {}	{}: \"{}\" ei ole mikään arvoista {}
 {}: a TT system needs a residual current device	{}: TT-järjestelmä tarvitsee vikavirtasuojan
 {}: accessory {} fits none of the device's parts	{}: lisävaruste {} ei sovi mihinkään laitteen osaan
@@ -1990,6 +1998,7 @@ yellow	keltainen
 {}: terminal {} uses {} levels, its part {} has {}	{}: riviliitin {} käyttää {} kerrosta, sen osassa {} on {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: riviliittimet {} ovat {} mm lattian yläpuolella, vähintään {} mm vaaditaan
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: kiskojärjestelmä, jossa on {} kiskoa, yhdistää {} johdinta ({}): oikosulku
+{}: the device {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} laitetta {1} ei ole
 {}: the station has no port {}	{}: asemalla ei ole porttia {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) on suurempi kuin koneen {} työalue
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} on {} mm paksu, {} ottaa enintään {} mm

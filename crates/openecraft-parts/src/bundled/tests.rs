@@ -119,3 +119,27 @@ fn room_outlets_and_manifolds_go_on_the_wall_with_their_nozzles() {
     let n = generic.iter().filter(|p| p.subgroup == "Heating circuit manifold").count();
     assert_eq!(n, 11);
 }
+
+#[test]
+fn pv_modules_of_longi_and_jinko_go_on_the_roof() {
+    for (id, n) in [("longi", 3), ("jinko", 3)] {
+        let c = load(id).unwrap();
+        let modules: Vec<&Part> = c.parts.iter().filter(|p| p.subgroup == "PV module").collect();
+        assert_eq!(modules.len(), n, "{id}");
+        for p in modules {
+            assert_eq!((p.width, p.height, p.depth, p.mounting.as_str()), (1134.0, 1722.0, 30.0, "Roof"), "{}", p.number);
+            assert!(p.power.ends_with(" Wp") && p.tech_value("Open-circuit voltage").is_some() && p.functions[0].kind == FnKind::PvGenerator, "{}", p.number);
+        }
+    }
+    let longi = load("longi").unwrap();
+    let p = longi.parts.iter().find(|p| p.number == "LONGI.LR5-54HTH-430M").unwrap();
+    assert_eq!((p.power.as_str(), p.tech_value("Short-circuit current")), ("430 Wp", Some("14.15 A")));
+    // The generic mounting: the rail and the bases carry their hooks, clamps and ballast.
+    let generic = default_catalog();
+    let rail = generic.iter().find(|p| p.number == "GEN.PV-RAIL-40").unwrap();
+    assert_eq!(rail.accessories.len(), 4);
+    for a in &rail.accessories {
+        let acc = generic.iter().find(|p| &p.number == a).unwrap();
+        assert!(acc.accessory && crate::accessory::mains_of(&generic, acc).iter().any(|m| m.number == rail.number), "{a}");
+    }
+}

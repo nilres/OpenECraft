@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Date de bază ale articolelor ERP ș
 ERP number	Număr ERP
 ETIM class	Clasă ETIM
 Earth electrode	Electrod de pământare
+East-west on a flat roof	Est-vest pe acoperiș plat
 Edit pages	Editare pagini
 Edit project data	Editare date proiect
 Editor	Editor
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Amplasare în tablou în 3D (STEP)
 Panel layout in 3D (glTF)	Amplasare în tablou în 3D (glTF)
 Panel layout settings	Setări amplasare în tablou
 Panel legend	Legendă tablou
+Parallel to the roof on roof hooks	Paralel cu acoperișul pe cârlige de acoperiș
 Part accessories	Accesorii ale articolelor
 Part data is maintained in the parts management	Datele articolelor sunt gestionate în administrarea articolelor
 Part description	Descriere articol
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Senzor barieră unidirecțională, 4 fire
 Through-beam transmitter	Emițător barieră unidirecțională
 Thyristor	Tiristor
 Tightening torque	Cuplu de strângere
+Tilted on a flat roof	Înclinat pe acoperiș plat
 Time function	Funcție de temporizare
 Time range	Domeniu de timp
 Time relay coil KT (GB)	Bobină de releu de timp KT (GB)
@@ -1819,7 +1822,6 @@ is none of	nu este niciunul dintre
 is not	nu este
 is not empty	nu este gol
 is one of	este unul dintre
-landscape	vedere
 leakage	scurgere
 low	scăzută
 measuring	măsurare
@@ -1917,6 +1919,12 @@ yellow	galben
 {} {}: bends closer than the bend radius ({} mm)	{} {}: curburi mai strânse decât raza de curbură ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: conectat în schema monofilară, dar nu și în schemă
 {}: MTTFd {} years is below 3 years	{}: MTTFd de {} ani este sub 3 ani
+{}: PV array {} covers a roof window	{}: câmpul fotovoltaic {} acoperă o fereastră de acoperiș
+{}: PV array {} has {} modules, its device {} has {}	{}: câmpul fotovoltaic {} are {} module, dispozitivul său {} are {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: câmpul fotovoltaic {} este montat înclinat pe un acoperiș înclinat
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: câmpul fotovoltaic {} al acoperișului {} trece peste o coamă, o muchie sau marginea acoperișului
+{}: PV array {} of roof {} lies outside the roof	{}: câmpul fotovoltaic {} al acoperișului {} se află în afara acoperișului
+{}: PV arrays {} and {} lie over each other	{}: câmpurile fotovoltaice {} și {} se suprapun
 {}: \"{}\" is not one of {}	{}: \"{}\" nu este una dintre {}
 {}: a TT system needs a residual current device	{}: un sistem TT necesită un dispozitiv diferențial rezidual
 {}: accessory {} fits none of the device's parts	{}: accesoriul {} nu se potrivește cu niciun articol al aparatului
@@ -1990,6 +1998,7 @@ yellow	galben
 {}: terminal {} uses {} levels, its part {} has {}	{}: borna {} folosește {} niveluri, articolul său {} are {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: bornele {} sunt la {} mm deasupra podelei, sunt necesari cel puțin {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
+{}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
 {}: the station has no port {}	{}: stația nu are portul {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) este mai mare decât zona de lucru a {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} are grosimea de {} mm, {} acceptă cel mult {} mm

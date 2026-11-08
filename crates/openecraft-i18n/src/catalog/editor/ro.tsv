@@ -178,6 +178,8 @@ Back	Înapoi
 Back to the project (Esc)	Înapoi la proiect (Esc)
 Back-up up to (kA)	Protecție de rezervă până la (kA)
 Background	Fundal
+Ballast	Balast
+Ballast per module	Balast pe modul
 Baseline {}	Versiunea de referință {}
 Baseline {} created	Versiunea de referință {} a fost creată
 Baseline {} {}	Versiunea de referință {} {}
@@ -419,6 +421,7 @@ Define all used	Definire toți cei utilizați
 Defined potentials	Potențiale definite
 Del	Del
 Delete	Ștergere
+Delete PV array	Ștergeți câmpul fotovoltaic
 Delete cable (its wires are removed from it)	Ștergere cablu (conductoarele sale sunt eliminate din el)
 Delete comment	Ștergere comentariu
 Delete connection point	Ștergere punct de conexiune
@@ -483,6 +486,7 @@ Digits	Cifre
 Dimension	Cotă
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Piesă T direcționată: unde se întâlnesc trei fire, indică aparatul de la care pornesc cele două fire ale conexiunii și ordinea țintelor lor
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Încrucișare direcționată: leagă cele două fire care se încrucișează acolo; fiecare capăt al liniei sale este cablat întâi drept înainte, apoi transversal
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Direcția spre care sunt orientate modulele, în sens antiorar văzut de sus (0: spre față)
 Discard changes	Renunță la modificări
 Discard draft	Renunțare la ciornă
 Disconnection of distribution circuits	Deconectarea circuitelor de distribuție
@@ -616,6 +620,7 @@ Exported {}	S-a exportat {}
 Exporting {}	Se exportă {}
 Export…	Export…
 Extras	Extra
+Facing	Orientare
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilatoare, filtre, presetupe, lămpi, mânere: alegeți unul, apoi faceți clic unde trebuie montat
 Fastening hardware in the bill of materials	Elemente de fixare în lista de materiale
 Favorite	Favorit
@@ -676,6 +681,7 @@ Freeze route	Fixare traseu
 Frequency	Frecvență
 From / to	De la / la
 From a template file…	Dintr-un fișier șablon…
+From row to row; 0: free of shade in winter	De la rând la rând; 0: fără umbrire iarna
 From the function definition	Din definiția de funcție
 From the left end	De la capătul stâng
 From – to	De la – până la
@@ -710,6 +716,7 @@ Go to page	Salt la pagină
 Graphic line	Linie grafică
 Graphic rectangle	Dreptunghi grafic
 Graphical form	Formular grafic
+Greatest distance of the roof hooks along a rail	Distanța maximă a cârligelor de acoperiș de-a lungul unei șine
 Grid	Grilă
 Grid size	Dimensiunea grilei
 Grid {} mm	Grilă {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Cel mai mare dezechilibru de fază
 Highest short-circuit current	Cel mai mare curent de scurtcircuit
 Hole to sheet edge	Gaură față de marginea tablei
 Home	Pornire
+Hook distance	Distanța cârligelor
 Horizontal	Orizontal
 Horizontal (mm)	Orizontal (mm)
 Horizontal centres	Centrele orizontale
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	În fie
 In strip order; PE and other non-numeric terminals keep their designation	În ordinea din șir; PE și alte borne nenumerice își păstrează denumirea
 In the filtered rows	În rândurile filtrate
 In the middle of the first wire	În mijlocul primului conductor
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	În mijlocul versantului din față sau din dreapta, pe acoperiș plat înclinat spre față; mutați-l la locul lui
 In the project	În proiect
 In the structure of the current page	În structura paginii curente
 Include manually set numbers	Includere numere setate manual
@@ -946,18 +955,21 @@ Messages	Mesaje
 Messages ({})	Mesaje ({})
 Messages of this session	Mesajele acestei sesiuni
 Middle	Mijloc
+Middle of the PV array in the floor plan of the building	Mijlocul câmpului fotovoltaic în planul clădirii
 Min. bend radius	Rază min. de curbură
 Minimize the ribbon	Minimizarea panglicii
 Mirror	Oglindire
 Mirror (selection or symbol being placed)	Oglindire (selecția sau simbolul care se plasează)
 Mode	Mod
 Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
+Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
 Motors feed the short circuit	Motoarele alimentează scurtcircuitul
 Mounted on	Montat pe
 Mounting assistant: the panel items in mounting order with their place and part	Asistent de montaj: elementele de tablou în ordinea de montaj, cu locul și articolul lor
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Distanță de montaj alăturată; articolele o adaugă pe a lor (Clearance left / right)
 Mounting height: {}	Înălțime de montaj: {}
 Mounting plate: {} holes, {} cutouts	Placă de montaj: {} găuri, {} decupaje
+Mounting system	Sistem de montaj
 Move	Mutare
 Move down	Mută în jos
 Move left	Mutare la stânga
@@ -1188,6 +1200,8 @@ PLC channels	Canale PLC
 PLC hardware and bus topology	Hardware PLC și topologie de magistrală
 PLC overview	Prezentare PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Imagine bitmap PNG sau JPEG, de ex. un logo sau o fotografie
+PV array	Câmp fotovoltaic
+PV arrays	Câmpuri fotovoltaice
 Page graphics	Grafica paginii
 Page heading	Titlul paginii
 Page list, devices, parts, panel layout and settings	Lista de pagini, dispozitive, articole, amplasare în tablou și setări
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Cale de pozare {} mm – 
 Routing paths	Căi de pozare
 Routing rules	Reguli de pozare
 Row	Rând
+Row distance	Distanța dintre rânduri
 Row drawing	Desen de rând
 Row labels	Etichete de rânduri
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rândurile de pe paginile aprobate nu pot fi modificate. Un salt de rând într-un text se scrie ca \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Șabloanele de pagină proprii ale pr
 The project's own title blocks	Cartușele proprii ale proiectului
 The project's own title blocks and report schemes	Cartușele și schemele de raport proprii ale proiectului
 The properties of the selection in a window beside the page	Proprietățile selecției într-o fereastră lângă pagină
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Șina sau baza de montaj; accesoriile ei sunt cârligele, clemele și balastul
 The recalculation keeps frozen routes as long as they are still possible	Recalcularea păstrează traseele fixate atât timp cât sunt încă posibile
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Panglica cu fila Fișier înlocuiește meniurile; Ctrl+Shift+P găsește orice comandă.
 The second fault is checked at the line-to-earth voltage	Al doilea defect este verificat la tensiunea fază-pământ
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Acest proiect este subproiectul {} al {} (extras la {}). Salvați-l și inserați-l în proiectul principal când lucrul este terminat.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Aici trebuie să se întâlnească trei fire: unul în direcția ei și două transversal. Până atunci conexiunea este înlănțuită în ordinea din schemă.
 Three-phase short-circuit current at the supply point	Curent de scurtcircuit trifazat în punctul de alimentare
+Tilt	Înclinare
 Title	Titlu
 Title blocks	Cartușe
 Title blocks, plot frames and page templates	Cartușe, chenare și șabloane de pagină
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm pe placă + {} mm rezervă; restul este traseul de la punctele de conexiune la placă.
 {} mm, now {} mm	{} mm, acum {} mm
 {} mm, removed	{} mm, eliminat
+{} modules	{} module
+{} modules, {} kWp	{} module, {} kWp
 {} new texts in the dictionary	{} texte noi în dicționar
 {} notes	Note: {}
 {} objects pasted	{} obiecte lipite

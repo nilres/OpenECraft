@@ -178,6 +178,8 @@ Back	Vissza
 Back to the project (Esc)	Vissza a projekthez (Esc)
 Back-up up to (kA)	Tartalékvédelem eddig (kA)
 Background	Háttér
+Ballast	Ballaszt
+Ballast per module	Ballaszt modulonként
 Baseline {}	{} alapállapot
 Baseline {} created	A(z) {} alapállapot létrehozva
 Baseline {} {}	{} {} alapállapot
@@ -419,6 +421,7 @@ Define all used	Az összes használt definiálása
 Defined potentials	Definiált potenciálok
 Del	Del
 Delete	Törlés
+Delete PV array	PV-mező törlése
 Delete cable (its wires are removed from it)	Kábel törlése (a vezetékei lekerülnek róla)
 Delete comment	Megjegyzés törlése
 Delete connection point	Csatlakozási pont törlése
@@ -483,6 +486,7 @@ Digits	Számjegyek
 Dimension	Méretezés
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Irányított T-elem: ahol három vezeték találkozik, megadja, melyik készülékből indul a kapcsolat két vezetéke, és a céljaik sorrendjét
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Irányított kereszteződés: összeköti az ott keresztező két vezetéket; vonalának mindkét vége először egyenesen, majd keresztben vezetékeződik
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Az irány, amerre a modulok néznek, felülről nézve az óramutató járásával ellentétesen (0: előre)
 Discard changes	Módosítások elvetése
 Discard draft	Piszkozat elvetése
 Disconnection of distribution circuits	Elosztó áramkörök lekapcsolása
@@ -616,6 +620,7 @@ Exported {}	{} exportálva
 Exporting {}	{} exportálása
 Export…	Exportálás…
 Extras	Extrák
+Facing	Tájolás
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilátorok, szűrők, kábeltömszelencék, lámpák, fogantyúk: válasszon egyet, majd kattintson a beépítés helyére
 Fastening hardware in the bill of materials	Rögzítőelemek az anyagjegyzékben
 Favorite	Kedvenc
@@ -676,6 +681,7 @@ Freeze route	Nyomvonal rögzítése
 Frequency	Frekvencia
 From / to	Forrás / cél
 From a template file…	Sablonfájlból…
+From row to row; 0: free of shade in winter	Sortól sorig; 0: télen árnyékmentes
 From the function definition	A funkciódefinícióból
 From the left end	A bal végtől
 From – to	Tól – ig
@@ -710,6 +716,7 @@ Go to page	Ugrás az oldalra
 Graphic line	Grafikus vonal
 Graphic rectangle	Grafikus téglalap
 Graphical form	Grafikus űrlap
+Greatest distance of the roof hooks along a rail	A tetőkampók legnagyobb távolsága egy sín mentén
 Grid	Rács
 Grid size	Rácsméret
 Grid {} mm	Rács {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Legnagyobb fázisaszimmetria
 Highest short-circuit current	Legnagyobb zárlati áram
 Hole to sheet edge	Furat a lemezszéltől
 Home	Kezdőlap
+Hook distance	Kampótávolság
 Horizontal	Vízszintes
 Horizontal (mm)	Vízszintes (mm)
 Horizontal centres	Vízszintes középvonalak
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	Minden 
 In strip order; PE and other non-numeric terminals keep their designation	Lécsorrendben; a PE és más nem numerikus sorkapcsok megtartják a megnevezésüket
 In the filtered rows	A szűrt sorokban
 In the middle of the first wire	Az első vezeték közepén
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Az első vagy jobb tetősík közepén, lapostetőn előre döntve; mozgassa a helyére
 In the project	A projektben
 In the structure of the current page	Az aktuális oldal struktúrájában
 Include manually set numbers	Kézzel megadott számok bevonása
@@ -946,18 +955,21 @@ Messages	Üzenetek
 Messages ({})	Üzenetek ({})
 Messages of this session	A munkamenet üzenetei
 Middle	Középen
+Middle of the PV array in the floor plan of the building	A PV-mező közepe az épület alaprajzán
 Min. bend radius	Min. hajlítási sugár
 Minimize the ribbon	A menüszalag kis méretre állítása
 Mirror	Tükrözés
 Mirror (selection or symbol being placed)	Tükrözés (kijelölés vagy az elhelyezés alatt álló szimbólum)
 Mode	Mód
 Model of a part (2D / 3D)	Alkatrész modellje (2D / 3D)
+Module part; its size comes from the part	Modul alkatrész; mérete az alkatrészből származik
 Motors feed the short circuit	A motorok táplálják a zárlatot
 Mounted on	Szerelve erre
 Mounting assistant: the panel items in mounting order with their place and part	Szerelési asszisztens: az elrendezési elemek szerelési sorrendben, helyükkel és alkatrészükkel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Szerelési szabad tér egymás mellett; az alkatrészek hozzáadják a sajátjukat (Clearance left / right)
 Mounting height: {}	Szerelési magasság: {}
 Mounting plate: {} holes, {} cutouts	Szerelőlap: {} furat, {} kivágás
+Mounting system	Szerelőrendszer
 Move	Mozgatás
 Move down	Mozgatás lefelé
 Move left	Mozgatás balra
@@ -1188,6 +1200,8 @@ PLC channels	PLC-csatornák
 PLC hardware and bus topology	PLC-hardver és busztopológia
 PLC overview	PLC-áttekintés
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG vagy JPEG bitkép, pl. logó vagy fénykép
+PV array	PV-mező
+PV arrays	PV-mezők
 Page graphics	Oldalgrafika
 Page heading	Oldalcím
 Page list, devices, parts, panel layout and settings	Oldallista, készülékek, alkatrészek, szekrényelrendezés és beállítások
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Fektetési út {} mm – 
 Routing paths	Fektetési utak
 Routing rules	Nyomvonalvezetési szabályok
 Row	Sor
+Row distance	Sortávolság
 Row drawing	Sorrajz
 Row labels	Sorfeliratok
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	A kiadott oldalakon lévő sorok nem módosíthatók. A szövegben a sortörést \\n jelöli.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	A projekt saját oldalsablonjai fájl
 The project's own title blocks	A projekt saját szövegmezői
 The project's own title blocks and report schemes	A projekt saját szövegmezői és kimutatássémái
 The properties of the selection in a window beside the page	A kijelölés tulajdonságai az oldal melletti ablakban
+The rail or mounting base; its accessories are the hooks, clamps and ballast	A sín vagy szerelőtalp; tartozékai a kampók, szorítók és ballaszt
 The recalculation keeps frozen routes as long as they are still possible	Az újraszámítás megtartja a rögzített nyomvonalakat, amíg lehetséges
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	A Fájl lappal rendelkező menüszalag felváltja a menüket; a Ctrl+Shift+P bármely parancsot megtalál.
 The second fault is checked at the line-to-earth voltage	A második hibát a fázis–föld feszültséggel ellenőrzi
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ez a projekt a(z) {} alprojekt, szülőprojekt: {} (kiemelve: {}). Mentse, és a munka végeztével illessze be a főprojektbe.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Itt három vezetéknek kell találkoznia: egynek az irányában és kettőnek keresztben. Addig a kapcsolat a kapcsolási rajz sorrendjében fűződik.
 Three-phase short-circuit current at the supply point	Háromfázisú zárlati áram a betáplálási pontnál
+Tilt	Dőlésszög
 Title	Cím
 Title blocks	Szövegmezők
 Title blocks, plot frames and page templates	Szövegmezők, rajzkeretek és oldalsablonok
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm a lapon + {} mm tartalék; a többi a csatlakozási pontoktól a lapig tartó út.
 {} mm, now {} mm	{} mm, most {} mm
 {} mm, removed	{} mm, eltávolítva
+{} modules	{} modul
+{} modules, {} kWp	{} modul, {} kWp
 {} new texts in the dictionary	{} új szöveg a szótárban
 {} notes	Megjegyzések: {}
 {} objects pasted	{} objektum beillesztve

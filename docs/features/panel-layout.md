@@ -270,6 +270,25 @@ hips dashed) with their roof windows, and the links.
   windows** (`add_roof_window`, `set_roof_window`; 780 × 1180 mm unless set otherwise)
   lie in a slope at their middle in the floor plan, with their width along the eaves
   and their length up the slope; they are seen from outside and from the room below.
+- **PV arrays** (*PV array* under a roof in the pane, `add_pv_array`, `set_pv_array`):
+  rows of solar modules on any roof shape. On a slope they lie **parallel** to the
+  covering on rails fastened with roof hooks: two rails under each row of modules in
+  portrait, under each column in landscape, the hooks at most the hook distance apart
+  (1200 mm unless set otherwise). On a flat roof they stand **tilted** towards one side
+  (15° unless set otherwise, facing the direction given) or **east-west** in pairs on
+  ballasted mounting bases, the rows so far apart that they do not shade each other at a
+  winter sun of 17° (or at a given distance). An array lies on the slope under its
+  middle; its module part (the generic ones `GEN.PV-430W` and `GEN.PV-400W-FB`, or
+  modules of the shipped catalogs `longi` and `jinko`) gives the size of the modules
+  and its peak power. The mounting material comes from its **mounting system**: a rail
+  or mounting base of the parts database whose accessories are its roof hooks, rail
+  connectors, end and middle clamps (the one for the module's frame height), ballast
+  and wind deflectors; the generic system `GEN.PV-RAIL-40` / `GEN.PV-BASE-S15` /
+  `GEN.PV-BASE-EW10` fills in what a system lacks. The modules (unless a device, a PV
+  generator, counts them) and the mounting material go into the bill of materials;
+  `list_buildings` gives each array's modules, peak power and material. The site plan
+  draws the modules, the 3D view the modules with their frames, the rails, the mounting
+  bases and the wind deflectors.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall
@@ -283,12 +302,15 @@ links whose building entries are gone, stairs without valid levels, with a rise 
 140 - 200 mm or breaking the step rule (twice the rise and the going 590 - 650 mm),
 roof windows off their slope or across a ridge or hip, rooms the roof comes down to the
 floor of, cabinets higher than the sloped ceiling at their place and items on the walls
-or the ceiling above the slope. Example 15 (`plant_buildings`) shows a main building
+or the ceiling above the slope, PV arrays off their roof or across a ridge, a hip or its
+edge, tilted on a pitched roof, over a roof window or over each other, and PV arrays
+whose device is missing or counts another number of modules. Example 15 (`plant_buildings`) shows a main building
 with two levels and a shaft, a pump house linked by a cable trench through which a
 motor cable is routed, façade lights and a weather station on the roof; example 16
 (`office_building`) adds an office building with an attic under a gable roof, a stair
-turned at a quarter landing, roof windows, outlets and switches of Gira and MDT and a
-COSMO heating circuit manifold.
+turned at a quarter landing, roof windows, a PV array of ten LONGi modules on rails and
+roof hooks in the rear slope, outlets and switches of Gira and MDT and a COSMO heating
+circuit manifold.
 
 **In 3D**, *Layout space › Show › Whole building* shows the building of the room shown
 with all its levels and rooms, their floor slabs, the stairs and the roofs; *All

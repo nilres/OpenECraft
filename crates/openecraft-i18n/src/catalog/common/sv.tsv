@@ -90,6 +90,7 @@ Descending	Fallande
 Description	Beskrivning
 Designation	Beteckning
 Device	Apparat
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhet (solcellsgenerator) som modulerna tillhör; dess artiklar räknar dem då i materiallistan
 Device description	Enhetsbeskrivning
 Device tag	Apparatbeteckning
 Device {}	Apparat {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Minsta antal siffror i räknaren (
 Missing parameter: {}	Parameter saknas: {}
 Missing value for --{}	Värde saknas för --{}
 Model import failed: {}	Modellimporten misslyckades: {}
+Modules side by side in a row	Moduler bredvid varandra i en rad
 Mounted	Monterad
 Mounting	Montering
 Mounting data	Monteringsdata
@@ -217,6 +219,7 @@ No machine {}	Ingen maskin {}
 No page named {}	Ingen sida med namnet {}
 No page template named {}	Ingen sidmall med namnet {}
 No page {}	Ingen sida {}
+No part {} in the project	Ingen artikel {} i projektet
 No parts found	Inga artiklar hittades
 No plot frame named {}	Ingen ritningsram med namnet {}
 No plug {}	Inget kontaktdon {}
@@ -334,6 +337,7 @@ Role	Roll
 Rooms	Rum
 Route	Dra runt
 Routing	Dragning
+Rows of modules (east-west: rows of pairs)	Modulrader (öst-väst: rader av par)
 Rule	Regel
 Rule set	Regelverk
 Safety function	Säkerhetsfunktion
@@ -391,6 +395,7 @@ Terminals	Plintar
 Text	Text
 Text to find	Text att söka efter
 The identifier must not be empty	Beteckningen får inte vara tom
+The long side of the modules along the rows	Modulernas långsida längs raderna
 The page is released	Sidan är frisläppt
 There is a connection symbol at this point already	Det finns redan en förbindelsesymbol i den här punkten
 Thermal	Termik
@@ -438,6 +443,7 @@ access denied	åtkomst nekad
 approved	godkänd
 bonded	ansluten
 file or folder not found	filen eller mappen hittades inte
+landscape	liggande
 left	vänster
 mm	mm
 normal	normal

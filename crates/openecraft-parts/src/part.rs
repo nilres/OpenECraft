@@ -51,7 +51,7 @@ pub const PRODUCT_GROUPS: &[(&str, &[&str])] = &[
     ("Measuring instruments", &["Ammeter", "Voltmeter", "Current transformer", "Battery monitor", "System monitoring"]),
     ("Motors", &["Three-phase motor", "Single-phase motor", "Brake motor", "DC motor"]),
     ("Drives", &["Frequency converter", "Soft starter"]),
-    ("Power supplies, transformers", &["Power supply", "Control transformer", "Battery", "DC-DC converter", "Inverter / charger", "Solar charge controller"]),
+    ("Power supplies, transformers", &["Power supply", "Control transformer", "Battery", "DC-DC converter", "Inverter / charger", "Solar charge controller", "PV module"]),
     ("Installation devices", &["Socket outlet", "Enclosure heater", "KNX actuator", "KNX system device"]),
     ("Terminals", &["Feed-through terminal", "PE terminal", "N terminal", "Disconnect terminal", "Fuse terminal", "End bracket", "Jumper", "Accessories"]),
     ("Connectors", &["Plug connector"]),
@@ -64,7 +64,8 @@ pub const PRODUCT_GROUPS: &[(&str, &[&str])] = &[
         &[
             "Mounting rail", "Cable duct", "Enclosure", "Busbar system", "Busbar holder", "PE busbar", "Plinth", "Side panel", "Rear wall", "Baying kit",
             "Gland plate", "Cable gland", "Cable clamp rail", "Rail standoff", "Filter fan", "Outlet filter", "Enclosure light", "Door handle",
-            "Document holder", "Screw", "Nut", "Washer", "Rivet nut",
+            "Document holder", "Screw", "Nut", "Washer", "Rivet nut", "PV mounting rail", "Roof hook", "PV rail connector", "PV end clamp",
+            "PV middle clamp", "PV mounting base", "Ballast", "Wind deflector",
         ],
     ),
     ("Cables", &["Power cable", "Control cable"]),

@@ -466,6 +466,7 @@ ERP item master and bill of materials (CSV)	ERP-Artikelstamm und Stückliste (CS
 ERP number	ERP-Nummer	Numéro ERP	Número ERP
 ETIM class	ETIM-Klasse	Classe ETIM	Clase ETIM
 Earth electrode	Erder	Prise de terre	Electrodo de tierra
+East-west on a flat roof	Ost-West auf einem Flachdach	Est-ouest sur un toit plat	Este-oeste en una cubierta plana
 Edit pages	Seiten bearbeiten	Modifier les pages	Editar páginas
 Edit project data	Projektdaten bearbeiten	Modifier les données du projet	Editar datos del proyecto
 Editor	Bearbeiter	Éditeur	Editor
@@ -1164,6 +1165,7 @@ Panel layout in 3D (STEP)	Schaltschrankaufbau in 3D (STEP)	Implantation d'armoir
 Panel layout in 3D (glTF)	Schaltschrankaufbau in 3D (glTF)	Implantation d'armoire en 3D (glTF)	Diseño de armario en 3D (glTF)
 Panel layout settings	Einstellungen Schaltschrankaufbau	Paramètres d'implantation d'armoire	Ajustes del montaje del armario
 Panel legend	Schaltschranklegende	Légende de l'armoire	Leyenda del armario
+Parallel to the roof on roof hooks	Parallel zum Dach auf Dachhaken	Parallèle au toit sur crochets de toit	Paralelo a la cubierta sobre ganchos de tejado
 Part accessories	Artikelzubehör	Accessoires d'articles	Accesorios de artículos
 Part data is maintained in the parts management	Artikeldaten werden in der Artikelverwaltung gepflegt	Les données d'article sont gérées dans la gestion des articles	Los datos de artículo se gestionan en la gestión de artículos
 Part description	Artikelbeschreibung	Description de l'article	Descripción del artículo
@@ -1707,6 +1709,7 @@ Through-beam sensor, 4-wire	Einweg-Lichtschranke Sender und Empfänger, 4-Leiter
 Through-beam transmitter	Einweg-Lichtschranke Sender	Émetteur de barrière photoélectrique	Emisor de barrera fotoeléctrica
 Thyristor	Thyristor	Thyristor	Tiristor
 Tightening torque	Anzugsdrehmoment	Couple de serrage	Par de apriete
+Tilted on a flat roof	Aufgeständert auf einem Flachdach	Incliné sur un toit plat	Inclinado en una cubierta plana
 Time function	Zeitfunktion	Fonction de temporisation	Función de tiempo
 Time range	Zeitbereich	Plage de temps	Rango de tiempo
 Time relay coil KT (GB)	Spule Zeitrelais KT (GB)	Bobine de relais temporisé KT (GB)	Bobina de relé temporizado KT (GB)
@@ -1925,7 +1928,6 @@ is none of	ist keines von	n'est aucun de	no es ninguno de
 is not	ist nicht	n'est pas	no es
 is not empty	ist nicht leer	n'est pas vide	no está vacío
 is one of	ist eines von	est l'un de	es uno de
-landscape	quer	paysage	horizontal
 leakage	Leck	fuite	fuga
 low	niedrig	basse	baja
 measuring	Mess	mesure	medición
@@ -2029,6 +2031,12 @@ yellow	gelb	jaune	amarillo
 {} {}: bends closer than the bend radius ({} mm)	{} {}: Biegungen enger als der Biegeradius ({} mm)	{} {} : coudes plus serrés que le rayon de courbure ({} mm)	{} {}: curvas más cerradas que el radio de curvatura ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: im Übersichtsschaltplan verbunden, aber nicht im Stromlaufplan	{} – {} : reliés dans le schéma unifilaire mais pas dans le schéma développé	{} – {}: conectados en el esquema unifilar pero no en el esquema desarrollado
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} Jahre liegt unter 3 Jahren	{} : MTTFd de {} ans inférieur à 3 ans	{}: MTTFd de {} años inferior a 3 años
+{}: PV array {} covers a roof window	{}: PV-Anlage {} verdeckt ein Dachfenster	{} : le champ photovoltaïque {} couvre une fenêtre de toit	{}: el campo fotovoltaico {} cubre una ventana de tejado
+{}: PV array {} has {} modules, its device {} has {}	{}: PV-Anlage {} hat {} Module, ihr Betriebsmittel {} hat {}	{} : le champ photovoltaïque {} a {} modules, son appareil {} en a {}	{}: el campo fotovoltaico {} tiene {} módulos, su dispositivo {} tiene {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: PV-Anlage {} ist auf einem geneigten Dach aufgeständert	{} : le champ photovoltaïque {} est monté incliné sur un toit en pente	{}: el campo fotovoltaico {} está montado inclinado en una cubierta inclinada
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: PV-Anlage {} des Dachs {} liegt über einem First, einem Grat oder dem Dachrand	{} : le champ photovoltaïque {} du toit {} passe sur un faîtage, une arête ou le bord du toit	{}: el campo fotovoltaico {} de la cubierta {} pasa sobre una cumbrera, una limatesa o el borde de la cubierta
+{}: PV array {} of roof {} lies outside the roof	{}: PV-Anlage {} des Dachs {} liegt außerhalb des Dachs	{} : le champ photovoltaïque {} du toit {} est hors du toit	{}: el campo fotovoltaico {} de la cubierta {} está fuera de la cubierta
+{}: PV arrays {} and {} lie over each other	{}: PV-Anlagen {} und {} liegen übereinander	{} : les champs photovoltaïques {} et {} se superposent	{}: los campos fotovoltaicos {} y {} se superponen
 {}: \"{}\" is not one of {}	{}: \"{}\" ist keiner von {}	{} : \"{}\" ne fait pas partie de {}	{}: \"{}\" no es uno de {}
 {}: a TT system needs a residual current device	{}: ein TT-System braucht eine Fehlerstrom-Schutzeinrichtung	{} : un schéma TT nécessite un dispositif différentiel	{}: un sistema TT necesita un dispositivo diferencial
 {}: a roof window of roof {} lies across a ridge, a hip or the edge of the roof	{}: ein Dachfenster von Dach {} liegt über einem First, einem Grat oder dem Dachrand	{} : une fenêtre du toit {} chevauche un faîtage, une arête ou le bord du toit	{}: una ventana de la cubierta {} cruza una cumbrera, una lima o el borde de la cubierta
@@ -2110,6 +2118,7 @@ yellow	gelb	jaune	amarillo
 {}: terminal {} uses {} levels, its part {} has {}	{}: Klemme {} nutzt {} Etagen, ihr Artikel {} hat {}	{} : la borne {} utilise {} étages, son article {} en a {}	{}: el borne {} usa {} pisos, su artículo {} tiene {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: Klemmen {} liegen {} mm über dem Boden, mindestens {} mm erforderlich	{} : les bornes {} sont à {} mm au-dessus du sol, au moins {} mm requis	{}: los bornes {} están a {} mm sobre el suelo, se requieren al menos {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: Das Sammelschienensystem mit {} Schienen verbindet {} Leiter ({}): Kurzschluss	{} : le système de jeu de barres à {} barres relie {} conducteurs ({}) : court-circuit	{}: el sistema de embarrado con {} barras une {} conductores ({}): cortocircuito
+{}: the device {} of PV array {} does not exist	{}: das Betriebsmittel {} der PV-Anlage {} gibt es nicht	{} : l'appareil {} du champ photovoltaïque {} n'existe pas	{}: el dispositivo {} del campo fotovoltaico {} no existe
 {}: the level of the room no longer exists	{}: die Ebene des Raums existiert nicht mehr	{} : le niveau de la pièce n'existe plus	{}: el nivel de la sala ya no existe
 {}: the station has no port {}	{}: Die Station hat keinen Port {}	{} : la station n'a pas de port {}	{}: la estación no tiene el puerto {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) ist größer als der Arbeitsbereich von {}	{} : {} ({} x {} mm) est plus grand que la zone de travail de {}	{}: {} ({} x {} mm) es mayor que el área de trabajo de {}

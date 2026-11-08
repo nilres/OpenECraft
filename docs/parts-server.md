@@ -49,7 +49,9 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   for 60 mm busbars and fuse switch disconnector strips for 185 mm with clip-in current
   transformers, circuit breakers h3+ with motor operators and releases, the NA
   protection relay EU400, univers cabinets with their component modules, energy
-  meters), `janitza` (power analyser UMG 604-PRO), `loxone` (energy meter for
+  meters), `janitza` (power analyser UMG 604-PRO), `jinko` (PV modules Tiger Neo
+  54HL4-B all black 405 - 415 Wp), `longi` (PV modules Hi-MO X6 Explorer LR5-54HTH
+  425 - 435 Wp), `loxone` (energy meter for
   1 / 5 A current transformers on the Tree bus), `mdt` (KNX actuators, IP
   interface / router, power supply, KNX push buttons, glass push button and room
   temperature controller for flush mounting), `phoenix_contact` (terminal blocks, relay

@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP malzeme ana verileri ve malzeme 
 ERP number	ERP numarası
 ETIM class	ETIM sınıfı
 Earth electrode	Topraklama elektrodu
+East-west on a flat roof	Düz çatıda doğu-batı
 Edit pages	Sayfaları düzenle
 Edit project data	Proje verilerini düzenle
 Editor	Düzenleyici
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	3D pano yerleşimi (STEP)
 Panel layout in 3D (glTF)	3D pano yerleşimi (glTF)
 Panel layout settings	Pano yerleşimi ayarları
 Panel legend	Pano lejantı
+Parallel to the roof on roof hooks	Çatı kancaları üzerinde çatıya paralel
 Part accessories	Parça aksesuarları
 Part data is maintained in the parts management	Parça verileri parça yönetiminde tutulur
 Part description	Parça açıklaması
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Karşılıklı tip sensör, 4 telli
 Through-beam transmitter	Karşılıklı tip verici
 Thyristor	Tristör
 Tightening torque	Sıkma torku
+Tilted on a flat roof	Düz çatıda eğimli
 Time function	Zaman fonksiyonu
 Time range	Zaman aralığı
 Time relay coil KT (GB)	Zaman rölesi bobini KT (GB)
@@ -1819,7 +1822,6 @@ is none of	şunların hiçbiri değildir
 is not	eşit değildir
 is not empty	boş değildir
 is one of	şunlardan biridir
-landscape	yatay
 leakage	kaçak
 low	düşük
 measuring	ölçüm
@@ -1917,6 +1919,12 @@ yellow	sarı
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bükümler bükme yarıçapından ({} mm) daha dar
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: tek hat şemasında bağlı, ancak şemada bağlı değil
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} yıl, 3 yılın altında
+{}: PV array {} covers a roof window	{}: PV dizisi {} bir çatı penceresini örtüyor
+{}: PV array {} has {} modules, its device {} has {}	{}: PV dizisi {} {} modüle sahip, cihazı {} ise {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: PV dizisi {} eğimli bir çatıya eğik monte edilmiş
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: {2} çatısının PV dizisi {1} bir mahya, kırma veya çatı kenarı üzerinden geçiyor
+{}: PV array {} of roof {} lies outside the roof	{0}: {2} çatısının PV dizisi {1} çatının dışında
+{}: PV arrays {} and {} lie over each other	{}: PV dizileri {} ve {} üst üste biniyor
 {}: \"{}\" is not one of {}	{}: \"{}\", {} değerlerinden biri değil
 {}: a TT system needs a residual current device	{}: TT sistemi bir kaçak akım koruma cihazı gerektirir
 {}: accessory {} fits none of the device's parts	{}: {} aksesuarı cihazın hiçbir parçasına uymuyor
@@ -1990,6 +1998,7 @@ yellow	sarı
 {}: terminal {} uses {} levels, its part {} has {}	{}: {} klemensi {} kat kullanıyor, {} parçasında {} var
 {}: terminals {} are {} mm above the floor, at least {} mm required	{0}: {1} klemensleri zeminden {2} mm yukarıda, en az {3} mm gerekli
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: {} baralı bara sistemi {} iletkeni birleştiriyor ({}): kısa devre
+{}: the device {} of PV array {} does not exist	{0}: PV dizisi {2} için {1} cihazı mevcut değil
 {}: the station has no port {}	{}: istasyonda {} portu yok
 {}: the {} ({} x {} mm) is larger than the working area of {}	{0}: {1} ({2} x {3} mm), {4} çalışma alanından büyük
 {}: the {} is {} mm thick, {} takes at most {} mm	{0}: {1} {2} mm kalınlığında, {3} en fazla {4} mm alır

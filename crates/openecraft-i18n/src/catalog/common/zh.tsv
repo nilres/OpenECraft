@@ -89,6 +89,7 @@ Descending	降序
 Description	描述
 Designation	标识
 Device	设备
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	组件所属的设备（光伏发电机）；其部件在物料清单中计算组件数量
 Device description	设备描述
 Device tag	设备标识符
 Device {}	设备 {}
@@ -194,6 +195,7 @@ Minimum digits of the counter (leading zeros)	计数器最小位数（前导零�
 Missing parameter: {}	缺少参数：{}
 Missing value for --{}	缺少 --{} 的值
 Model import failed: {}	模型导入失败：{}
+Modules side by side in a row	一行中并排的组件
 Mounted	已安装
 Mounting	安装
 Mounting data	安装数据
@@ -216,6 +218,7 @@ No machine {}	机器 {} 不存在
 No page named {}	没有名为 {} 的页
 No page template named {}	没有名为 {} 的页模板
 No page {}	页 {} 不存在
+No part {} in the project	项目中没有部件 {}
 No parts found	未找到部件
 No plot frame named {}	没有名为 {} 的图框
 No plug {}	没有插头 {}
@@ -333,6 +336,7 @@ Role	角色
 Rooms	房间
 Route	布线
 Routing	布线
+Rows of modules (east-west: rows of pairs)	组件行数（东西向：成对的行）
 Rule	规则
 Rule set	规则集
 Safety function	安全功能
@@ -390,6 +394,7 @@ Terminals	端子
 Text	文本
 Text to find	要查找的文本
 The identifier must not be empty	标识符不能为空
+The long side of the modules along the rows	组件长边沿行方向
 The page is released	该页已发布
 There is a connection symbol at this point already	此处已有连接符号
 Thermal	热
@@ -437,6 +442,7 @@ access denied	拒绝访问
 approved	已批准
 bonded	已联结
 file or folder not found	未找到文件或文件夹
+landscape	横向
 left	向左
 mm	mm
 normal	普通

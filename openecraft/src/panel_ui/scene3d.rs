@@ -11,6 +11,7 @@ use super::{PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
+use openecraft_core::panel::solar;
 use openecraft_core::panel::{self, buildings as bld, stairs, Face, ItemKind, Opening, Role, SitePose, PLATE_MARGIN, PLATE_Z};
 use openecraft_core::parts::vec3::{self, cross, dot, norm, sub, V3};
 use openecraft_core::routing3d::bundles::{self, Channel, Way};
@@ -498,6 +499,9 @@ const ROOF_EDGE: Color32 = Color32::from_rgb(130, 70, 52);
 const GABLE: Color32 = Color32::from_rgb(222, 216, 204);
 const GLASS: Color32 = Color32::from_rgb(120, 170, 215);
 const WINDOW_FRAME: Color32 = Color32::from_rgb(80, 84, 90);
+const PV_CELLS: Color32 = Color32::from_rgb(28, 40, 78);
+const PV_FRAME: Color32 = Color32::from_rgb(58, 60, 66);
+const PV_MOUNTING: Color32 = Color32::from_rgb(176, 180, 186);
 const STAIR: Color32 = Color32::from_rgb(196, 184, 160);
 const SLAB: Color32 = Color32::from_rgb(168, 168, 172);
 
@@ -552,7 +556,8 @@ fn cut_room_box(c: &Ceiling, (min, max): (V3, V3), slab: bool, t: f32) -> Vec<(V
 
 impl PanelUi {
     /// The floor slabs of the rooms of the buildings shown, their stairs and roofs (with
-    /// the gable walls and roof windows), seen from outside like the walls.
+    /// the gable walls and roof windows), seen from outside like the walls, and the PV
+    /// arrays on the roofs.
     fn building_faces(&self, s: &mut Scene3d, prj: &Project, ei: usize, shown: &[(usize, SitePose)], lit: &dyn Fn(Color32, V3) -> Color32) {
         let frame = self.view_frame(prj, ei);
         let to_view = |q: V3| frame.map_or(q, |f| f.local(q));
@@ -620,6 +625,9 @@ impl PanelUi {
                         RoofFaceKind::Gable => GABLE,
                         RoofFaceKind::Glass => GLASS,
                         RoofFaceKind::Frame => WINDOW_FRAME,
+                        RoofFaceKind::Module => PV_CELLS,
+                        RoofFaceKind::ModuleFrame => PV_FRAME,
+                        RoofFaceKind::Mounting => PV_MOUNTING,
                     };
                     let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
                     let n = turn(f.normal);
@@ -627,6 +635,17 @@ impl PanelUi {
                     s.sides.push(SceneSide { normal: turn(f.outward), at: centre, inside: 0, hideable: true, decal: false, glass: false });
                     let side = Some(s.sides.len() - 1);
                     add_poly(s, &pts, n, lit(base, n), 0, side, matches!(f.kind, RoofFaceKind::Glass | RoofFaceKind::Frame));
+                }
+                // The PV arrays on it, solid.
+                for f in solar::faces(b, r) {
+                    let base = match f.kind {
+                        RoofFaceKind::Module => PV_CELLS,
+                        RoofFaceKind::ModuleFrame => PV_FRAME,
+                        _ => PV_MOUNTING,
+                    };
+                    let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
+                    let n = turn(f.normal);
+                    add_poly(s, &pts, n, lit(base, n), 0, None, false);
                 }
             }
         }

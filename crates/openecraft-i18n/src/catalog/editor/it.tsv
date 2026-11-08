@@ -178,6 +178,8 @@ Back	Indietro
 Back to the project (Esc)	Torna al progetto (Esc)
 Back-up up to (kA)	Back-up fino a (kA)
 Background	Sfondo
+Ballast	Zavorra
+Ballast per module	Zavorra per modulo
 Baseline {}	Baseline {}
 Baseline {} created	Baseline {} creata
 Baseline {} {}	Baseline {} {}
@@ -419,6 +421,7 @@ Define all used	Definisci tutti quelli usati
 Defined potentials	Potenziali definiti
 Del	Del
 Delete	Elimina
+Delete PV array	Elimina campo fotovoltaico
 Delete cable (its wires are removed from it)	Elimina cavo (i suoi conduttori vengono rimossi)
 Delete comment	Elimina commento
 Delete connection point	Elimina punto di connessione
@@ -483,6 +486,7 @@ Digits	Cifre
 Dimension	Quota
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Pezzo a T direzionato: dove si incontrano tre conduttori, indica il dispositivo da cui partono i due fili del collegamento e l'ordine dei loro obiettivi
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Incrocio direzionato: collega i due conduttori che vi si incrociano; ciascuna estremità della sua linea è cablata prima dritta e poi trasversalmente
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Direzione verso cui sono rivolti i moduli, in senso antiorario visto dall'alto (0: verso il davanti)
 Discard changes	Scarta le modifiche
 Discard draft	Ignora bozza
 Disconnection of distribution circuits	Interruzione dei circuiti di distribuzione
@@ -616,6 +620,7 @@ Exported {}	{} esportato
 Exporting {}	Esportazione di {}
 Export…	Esporta…
 Extras	Extra
+Facing	Orientamento
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilatori, filtri, pressacavi, lampade, maniglie: scegline uno, poi fai clic nel punto di montaggio
 Fastening hardware in the bill of materials	Materiale di fissaggio nella distinta base
 Favorite	Preferito
@@ -676,6 +681,7 @@ Freeze route	Congela percorso
 Frequency	Frequenza
 From / to	Da / a
 From a template file…	Da un file modello…
+From row to row; 0: free of shade in winter	Da fila a fila; 0: senza ombra in inverno
 From the function definition	Dalla definizione di funzione
 From the left end	Dall'estremità sinistra
 From – to	Da – a
@@ -710,6 +716,7 @@ Go to page	Vai alla pagina
 Graphic line	Linea grafica
 Graphic rectangle	Rettangolo grafico
 Graphical form	Modulo grafico
+Greatest distance of the roof hooks along a rail	Distanza massima dei ganci da tetto lungo una guida
 Grid	Griglia
 Grid size	Dimensione della griglia
 Grid {} mm	Griglia {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Squilibrio delle fasi massimo
 Highest short-circuit current	Corrente di cortocircuito massima
 Hole to sheet edge	Foro dal bordo della lamiera
 Home	Home
+Hook distance	Distanza dei ganci
 Horizontal	Orizzontale
 Horizontal (mm)	Orizzontale (mm)
 Horizontal centres	Centri orizzontali
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	In ogni
 In strip order; PE and other non-numeric terminals keep their designation	Nell'ordine della morsettiera; PE e gli altri morsetti non numerici mantengono la loro designazione
 In the filtered rows	Nelle righe filtrate
 In the middle of the first wire	Al centro del primo conduttore
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Al centro della falda anteriore o destra, su un tetto piano inclinato verso il davanti; spostalo al suo posto
 In the project	Nel progetto
 In the structure of the current page	Nella struttura della pagina corrente
 Include manually set numbers	Includi i numeri impostati manualmente
@@ -946,18 +955,21 @@ Messages	Messaggi
 Messages ({})	Messaggi ({})
 Messages of this session	Messaggi di questa sessione
 Middle	Al centro
+Middle of the PV array in the floor plan of the building	Centro del campo fotovoltaico nella pianta dell'edificio
 Min. bend radius	Raggio di curvatura min.
 Minimize the ribbon	Riduci la barra multifunzione
 Mirror	Specchia
 Mirror (selection or symbol being placed)	Specchia (selezione o simbolo in fase di posizionamento)
 Mode	Modalità
 Model of a part (2D / 3D)	Modello di un articolo (2D / 3D)
+Module part; its size comes from the part	Articolo del modulo; la sua dimensione viene dall'articolo
 Motors feed the short circuit	I motori alimentano il cortocircuito
 Mounted on	Montato su
 Mounting assistant: the panel items in mounting order with their place and part	Assistente di montaggio: gli elementi del layout nell'ordine di montaggio con posizione e articolo
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Distanza di montaggio affiancata; gli articoli aggiungono la propria (Clearance left / right)
 Mounting height: {}	Altezza di montaggio: {}
 Mounting plate: {} holes, {} cutouts	Piastra di montaggio: {} fori, {} aperture
+Mounting system	Sistema di montaggio
 Move	Sposta
 Move down	Sposta in basso
 Move left	Sposta a sinistra
@@ -1188,6 +1200,8 @@ PLC channels	Canali PLC
 PLC hardware and bus topology	Hardware PLC e topologia bus
 PLC overview	Panoramica PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmap PNG o JPEG, ad es. un logo o una foto
+PV array	Campo fotovoltaico
+PV arrays	Campi fotovoltaici
 Page graphics	Grafica della pagina
 Page heading	Intestazione pagina
 Page list, devices, parts, panel layout and settings	Elenco pagine, dispositivi, articoli, layout quadro e impostazioni
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Percorso di instradamento
 Routing paths	Percorsi di instradamento
 Routing rules	Regole di instradamento
 Row	Riga
+Row distance	Distanza tra le file
 Row drawing	Disegno di riga
 Row labels	Etichette righe
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Le righe sulle pagine rilasciate non possono essere modificate. Un'interruzione di riga in un testo si scrive come \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	I modelli di pagina propri del proget
 The project's own title blocks	I cartigli propri del progetto
 The project's own title blocks and report schemes	I cartigli e gli schemi di report propri del progetto
 The properties of the selection in a window beside the page	Le proprietà della selezione in una finestra accanto alla pagina
+The rail or mounting base; its accessories are the hooks, clamps and ballast	La guida o la base di montaggio; i suoi accessori sono ganci, morsetti e zavorra
 The recalculation keeps frozen routes as long as they are still possible	Il ricalcolo mantiene i percorsi congelati finché sono ancora possibili
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	La barra multifunzione con la scheda File sostituisce i menu; Ctrl+Shift+P trova qualsiasi comando.
 The second fault is checked at the line-to-earth voltage	Il secondo guasto viene verificato alla tensione fase-terra
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Questo progetto è il sottoprogetto {} di {} (estratto {}). Salvalo e inseriscilo nel progetto principale al termine del lavoro.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Qui devono incontrarsi tre conduttori: uno nella sua direzione e due trasversali. Fino ad allora il collegamento è concatenato nell'ordine dello schema.
 Three-phase short-circuit current at the supply point	Corrente di cortocircuito trifase nel punto di alimentazione
+Tilt	Inclinazione
 Title	Titolo
 Title blocks	Cartigli
 Title blocks, plot frames and page templates	Cartigli, cornici di stampa e modelli di pagina
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm sulla piastra + {} mm di riserva; il resto è il percorso dai punti di connessione alla piastra.
 {} mm, now {} mm	{} mm, ora {} mm
 {} mm, removed	{} mm, rimosso
+{} modules	{} moduli
+{} modules, {} kWp	{} moduli, {} kWp
 {} new texts in the dictionary	{} nuovi testi nel dizionario
 {} notes	{} note
 {} objects pasted	{} oggetti incollati

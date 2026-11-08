@@ -427,6 +427,7 @@ ERP item master and bill of materials (CSV)	ERP 품목 마스터 및 부품 목�
 ERP number	ERP 번호
 ETIM class	ETIM 클래스
 Earth electrode	접지극
+East-west on a flat roof	평지붕에 동서 방향
 Edit pages	페이지 편집
 Edit project data	프로젝트 데이터 편집
 Editor	편집자
@@ -1079,6 +1080,7 @@ Panel layout in 3D (STEP)	3D 패널 레이아웃(STEP)
 Panel layout in 3D (glTF)	3D 패널 레이아웃(glTF)
 Panel layout settings	패널 레이아웃 설정
 Panel legend	패널 범례
+Parallel to the roof on roof hooks	지붕 후크 위에 지붕과 평행
 Part accessories	부품 액세서리
 Part data is maintained in the parts management	부품 데이터는 부품 관리에서 관리됩니다
 Part description	부품 설명
@@ -1601,6 +1603,7 @@ Through-beam sensor, 4-wire	투과형 센서, 4선식
 Through-beam transmitter	투과형 투광기
 Thyristor	사이리스터
 Tightening torque	조임 토크
+Tilted on a flat roof	평지붕에 기울여 설치
 Time function	타이머 기능
 Time range	시간 범위
 Time relay coil KT (GB)	타이머 릴레이 코일 KT(GB)
@@ -1807,7 +1810,6 @@ is none of	다음 중 어느 것도 아님
 is not	같지 않음
 is not empty	비어 있지 않음
 is one of	다음 중 하나임
-landscape	가로
 leakage	누유
 low	낮음
 measuring	측정
@@ -1905,6 +1907,12 @@ yellow	노랑
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 굽힘이 굽힘 반경({} mm)보다 작음
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 단선도에서는 연결되어 있지만 회로도에서는 연결되어 있지 않습니다
 {}: MTTFd {} years is below 3 years	{0}: MTTFd {1}년이 3년 미만입니다
+{}: PV array {} covers a roof window	{}: 태양광 어레이 {}이(가) 지붕창을 덮습니다
+{}: PV array {} has {} modules, its device {} has {}	{}: 태양광 어레이 {}의 모듈은 {}개, 그 장치 {}의 모듈은 {}개
+{}: PV array {} is mounted tilted on a pitched roof	{}: 태양광 어레이 {}이(가) 경사 지붕에 기울여 설치되어 있습니다
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: 지붕 {2}의 태양광 어레이 {1}이(가) 용마루, 추녀마루 또는 지붕 가장자리에 걸쳐 있습니다
+{}: PV array {} of roof {} lies outside the roof	{0}: 지붕 {2}의 태양광 어레이 {1}이(가) 지붕 밖에 있습니다
+{}: PV arrays {} and {} lie over each other	{}: 태양광 어레이 {}와(과) {}이(가) 겹칩니다
 {}: \"{}\" is not one of {}	{}: \"{}\"은(는) {} 중 하나가 아닙니다
 {}: a TT system needs a residual current device	{}: TT 계통에는 누전 차단기가 필요합니다
 {}: accessory {} fits none of the device's parts	{}: 액세서리 {}은(는) 장치의 어떤 부품에도 맞지 않습니다
@@ -1977,6 +1985,7 @@ yellow	노랑
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 단자 {}이(가) {}단에 있지만 그 앞에 단자 블록이 없습니다
 {}: terminal {} uses {} levels, its part {} has {}	{}: 단자 {}은(는) {}단을 사용하지만 해당 부품 {}은(는) {}단입니다
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 단자 {}이(가) 바닥에서 {} mm 높이에 있습니다. 최소 {} mm가 필요합니다
+{}: the device {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 장치 {1}이(가) 없습니다
 {}: the station has no port {}	{0}: 스테이션에 포트 {1}이(가) 없습니다
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {}({} x {} mm)이(가) {}의 작업 영역보다 큽니다
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {}의 두께는 {} mm이며, {}은(는) 최대 {} mm까지 가공합니다

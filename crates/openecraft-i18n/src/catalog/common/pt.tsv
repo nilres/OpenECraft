@@ -90,6 +90,7 @@ Descending	Decrescente
 Description	Descrição
 Designation	Designação
 Device	Dispositivo
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Dispositivo (gerador fotovoltaico) ao qual os módulos pertencem; suas peças então os contam na lista de materiais
 Device description	Descrição de dispositivo
 Device tag	Identificador de dispositivo
 Device {}	Dispositivo {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Mínimo de dígitos do contador (z
 Missing parameter: {}	Parâmetro ausente: {}
 Missing value for --{}	Valor ausente para --{}
 Model import failed: {}	Falha na importação do modelo: {}
+Modules side by side in a row	Módulos lado a lado numa fileira
 Mounted	Montado
 Mounting	Montagem
 Mounting data	Dados de montagem
@@ -217,6 +219,7 @@ No machine {}	Nenhuma máquina {}
 No page named {}	Nenhuma página chamada {}
 No page template named {}	Nenhum modelo de página chamado {}
 No page {}	Nenhuma página {}
+No part {} in the project	Nenhuma peça {} no projeto
 No parts found	Nenhuma peça encontrada
 No plot frame named {}	Nenhuma moldura de plotagem chamada {}
 No plug {}	Nenhum plugue {}
@@ -334,6 +337,7 @@ Role	Função
 Rooms	Salas
 Route	Rotear
 Routing	Roteamento
+Rows of modules (east-west: rows of pairs)	Fileiras de módulos (leste-oeste: fileiras de pares)
 Rule	Regra
 Rule set	Conjunto de regras
 Safety function	Função de segurança
@@ -391,6 +395,7 @@ Terminals	Bornes
 Text	Texto
 Text to find	Texto a localizar
 The identifier must not be empty	O identificador não pode ficar vazio
+The long side of the modules along the rows	O lado longo dos módulos ao longo das fileiras
 The page is released	A página está liberada
 There is a connection symbol at this point already	Já existe um símbolo de conexão neste ponto
 Thermal	Térmica
@@ -438,6 +443,7 @@ access denied	acesso negado
 approved	aprovado
 bonded	equipotencializado
 file or folder not found	arquivo ou pasta não encontrado
+landscape	paisagem
 left	para a esquerda
 mm	mm
 normal	normal

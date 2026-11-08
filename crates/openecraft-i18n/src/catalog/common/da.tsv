@@ -90,6 +90,7 @@ Descending	Faldende
 Description	Beskrivelse
 Designation	Betegnelse
 Device	Enhed
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhed (solcellegenerator), som modulerne hører til; dens dele tæller dem så i styklisten
 Device description	Enhedsbeskrivelse
 Device tag	Enhedsmærkning
 Device {}	Enhed {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Mindste antal cifre i tælleren (f
 Missing parameter: {}	Manglende parameter: {}
 Missing value for --{}	Manglende værdi for --{}
 Model import failed: {}	Modelimporten mislykkedes: {}
+Modules side by side in a row	Moduler side om side i en række
 Mounted	Monteret
 Mounting	Montering
 Mounting data	Monteringsdata
@@ -217,6 +219,7 @@ No machine {}	Ingen maskine {}
 No page named {}	Ingen side med navnet {}
 No page template named {}	Ingen sideskabelon med navnet {}
 No page {}	Ingen side {}
+No part {} in the project	Ingen del {} i projektet
 No parts found	Ingen artikler fundet
 No plot frame named {}	Ingen plotramme med navnet {}
 No plug {}	Intet stik {}
@@ -334,6 +337,7 @@ Role	Rolle
 Rooms	Rum
 Route	Før
 Routing	Føring
+Rows of modules (east-west: rows of pairs)	Modulrækker (øst-vest: rækker af par)
 Rule	Regel
 Rule set	Regelsæt
 Safety function	Sikkerhedsfunktion
@@ -391,6 +395,7 @@ Terminals	Klemmer
 Text	Tekst
 Text to find	Tekst, der skal søges efter
 The identifier must not be empty	Betegnelsen må ikke være tom
+The long side of the modules along the rows	Modulernes lange side langs rækkerne
 The page is released	Siden er frigivet
 There is a connection symbol at this point already	Der er allerede et forbindelsessymbol i dette punkt
 Thermal	Termik
@@ -438,6 +443,7 @@ access denied	adgang nægtet
 approved	godkendt
 bonded	tilsluttet
 file or folder not found	filen eller mappen blev ikke fundet
+landscape	liggende
 left	venstre
 mm	mm
 normal	normal

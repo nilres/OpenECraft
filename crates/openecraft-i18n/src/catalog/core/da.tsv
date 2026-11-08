@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-varestamdata og stykliste (CSV)
 ERP number	ERP-nummer
 ETIM class	ETIM-klasse
 Earth electrode	Jordelektrode
+East-west on a flat roof	Øst-vest på fladt tag
 Edit pages	Redigér sider
 Edit project data	Redigér projektdata
 Editor	Redaktør
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Tavlelayout i 3D (STEP)
 Panel layout in 3D (glTF)	Tavlelayout i 3D (glTF)
 Panel layout settings	Indstillinger for tavlelayout
 Panel legend	Tavlelegende
+Parallel to the roof on roof hooks	Parallelt med taget på tagkroge
 Part accessories	Artikeltilbehør
 Part data is maintained in the parts management	Artikeldata vedligeholdes i artikelstyringen
 Part description	Artikelbeskrivelse
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Gennemstrålingssensor, 4-leder
 Through-beam transmitter	Gennemstrålingssender
 Thyristor	Thyristor
 Tightening torque	Tilspændingsmoment
+Tilted on a flat roof	Skråt på fladt tag
 Time function	Tidsfunktion
 Time range	Tidsområde
 Time relay coil KT (GB)	Tidsrelæspole KT (GB)
@@ -1819,7 +1822,6 @@ is none of	er ingen af
 is not	er ikke
 is not empty	er ikke tom
 is one of	er en af
-landscape	liggende
 leakage	læk
 low	lav
 measuring	måle
@@ -1917,6 +1919,12 @@ yellow	gul
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bøjninger tættere end bøjningsradius ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: forbundet i enstregsdiagrammet, men ikke i diagrammet
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} år er under 3 år
+{}: PV array {} covers a roof window	{}: solcelleanlæg {} dækker et ovenlysvindue
+{}: PV array {} has {} modules, its device {} has {}	{}: solcelleanlæg {} har {} moduler, dets enhed {} har {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: solcelleanlæg {} er monteret skråt på et skråtag
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: solcelleanlæg {} på tag {} ligger hen over en kip, en grat eller tagkanten
+{}: PV array {} of roof {} lies outside the roof	{}: solcelleanlæg {} på tag {} ligger uden for taget
+{}: PV arrays {} and {} lie over each other	{}: solcelleanlæg {} og {} ligger over hinanden
 {}: \"{}\" is not one of {}	{}: \"{}\" er ikke en af {}
 {}: a TT system needs a residual current device	{}: Et TT-system kræver en fejlstrømsafbryder
 {}: accessory {} fits none of the device's parts	{}: tilbehøret {} passer ikke til nogen af enhedens artikler
@@ -1990,6 +1998,7 @@ yellow	gul
 {}: terminal {} uses {} levels, its part {} has {}	{}: klemme {} bruger {} etager, dens artikel {} har {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: klemmer {} er {} mm over gulvet, mindst {} mm påkrævet
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skinnesystemet med {} skinner forbinder {} ledere ({}): kortslutning
+{}: the device {} of PV array {} does not exist	{}: enheden {} for solcelleanlæg {} findes ikke
 {}: the station has no port {}	{}: Stationen har ingen port {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) er større end arbejdsområdet for {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} er {} mm tyk, {} kan højst tage {} mm

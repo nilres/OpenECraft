@@ -142,6 +142,50 @@ fn room_installation(c: &mut C) {
     }
 }
 
+/// A further PV module and the mounting material of PV arrays: rails, roof hooks, rail
+/// connectors and module clamps for mounting parallel to the roof, ballasted mounting
+/// bases (south and east-west), ballast and wind deflectors for flat roofs. The rail and
+/// the bases list the rest as their accessories.
+fn solar_mounting(c: &mut C) {
+    let p = c.add("GEN.PV-400W-FB", "PV module 400 Wp, monocrystalline, full black, glass-film, black frame, 1722 x 1134 mm", "Power supplies, transformers", "PV module", "G", 109.0, (1134.0, 1722.0, 30.0, 21.0), &[(FnKind::PvGenerator, "+ -")]);
+    p.current = "13.6 A (Isc)".into();
+    p.power = "400 Wp".into();
+    p.mounting = "Roof".into();
+    p.tech_data = "Open-circuit voltage: 37.4 V\nVoltage at maximum power: 31.2 V\nCurrent at maximum power: 12.8 A\nEfficiency: 20.5 %\nMax. system voltage: 1500 V DC".into();
+    let m = "Mounting";
+    let clamps = "Module frame height: 30 - 40 mm";
+    for (number, desc, subgroup, price, dims, tech) in [
+        ("GEN.PV-HOOK", "Roof hook stainless steel for pantiles and plain tiles, height adjustable, with two wood screws 8 x 100 mm for the rafter", "Roof hook", 9.5, (35.0, 180.0, 120.0, 0.9), "Material: stainless steel A2\nFastening: rafter"),
+        ("GEN.PV-RAIL-CONN", "Rail connector for the PV mounting rail 40 x 40 mm, aluminium, with screws", "PV rail connector", 4.2, (150.0, 40.0, 40.0, 0.25), "Material: aluminium"),
+        ("GEN.PV-CLAMP-END", "End clamp aluminium for framed PV modules 30 - 40 mm, with hammer-head bolt M8", "PV end clamp", 2.1, (40.0, 40.0, 45.0, 0.06), clamps),
+        ("GEN.PV-CLAMP-MID", "Middle clamp aluminium for framed PV modules 30 - 40 mm, with hammer-head bolt M8, earthing pin", "PV middle clamp", 2.3, (40.0, 40.0, 45.0, 0.06), clamps),
+        ("GEN.PV-BALLAST", "Ballast concrete block 400 x 250 x 50 mm, 12.5 kg, for flat roof mounting bases", "Ballast", 3.5, (400.0, 250.0, 50.0, 12.5), "Material: concrete"),
+        ("GEN.PV-DEFLECTOR", "Wind deflector aluminium for south-facing flat roof mounting, for one module in landscape", "Wind deflector", 19.0, (1134.0, 400.0, 2.0, 1.6), "Material: aluminium"),
+    ] {
+        let p = c.add(number, desc, m, subgroup, "", price, dims, &[]);
+        p.mounting = "Roof".into();
+        p.accessory = true;
+        p.tech_data = tech.into();
+    }
+    let p = c.add("GEN.PV-RAIL-40", "PV mounting rail aluminium 40 x 40 mm, length 4.2 m, for module clamps and roof hooks", m, "PV mounting rail", "", 38.0, (4200.0, 40.0, 40.0, 3.4), &[]);
+    p.mounting = "Roof".into();
+    p.tech_data = "Material: aluminium EN AW-6063 T66\nMax. span: 1.5 m".into();
+    p.accessories = ["GEN.PV-HOOK", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"].map(String::from).to_vec();
+    for (number, desc, price, tech) in [
+        ("GEN.PV-BASE-S15", "Flat roof mounting base south 15° aluminium, for framed modules in landscape, with protective mat and ballast tray", 24.0, "Tilt: 15°\nOrientation: south\nFastening: ballast"),
+        ("GEN.PV-BASE-EW10", "Flat roof mounting base east-west 10° aluminium, for framed modules in landscape, with protective mat and ballast tray", 29.0, "Tilt: 10°\nOrientation: east-west\nFastening: ballast"),
+    ] {
+        let p = c.add(number, desc, m, "PV mounting base", "", price, (1300.0, 400.0, 350.0, 2.2), &[]);
+        p.mounting = "Roof".into();
+        p.tech_data = tech.into();
+        let mut acc = vec!["GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-BALLAST"];
+        if number == "GEN.PV-BASE-S15" {
+            acc.push("GEN.PV-DEFLECTOR");
+        }
+        p.accessories = acc.into_iter().map(String::from).collect();
+    }
+}
+
 /// Generic example catalog with function templates.
 pub fn default_catalog() -> Vec<Part> {
     use FnKind::*;
@@ -473,6 +517,7 @@ Breaking capacity: 100 kA".into();
     p.power = "430 Wp".into();
     p.mounting = "Roof".into();
     p.tech_data = "Open-circuit voltage: 39.2 V\nVoltage at maximum power: 32.6 V\nCurrent at maximum power: 13.2 A\nEfficiency: 22 %\nMax. system voltage: 1500 V DC".into();
+    solar_mounting(&mut c);
     let p = c.add("GEN.PLC-CPU", "PLC CPU 24 V DC, 2 x Ethernet (Modbus TCP, EtherCAT master), 1 MB work memory", "PLC", "CPU", "A", 690.0, (60.0, 100.0, 75.0, 0.3), &[(Generic, "L+ M"), (Generic, "X1 X2")]);
     p.voltage = "24 V DC".into();
     p.tech_data = "Power loss: 6 W\nCurrent consumption: 250 mA".into();

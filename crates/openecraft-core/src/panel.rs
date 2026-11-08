@@ -32,6 +32,7 @@ mod placement;
 mod points;
 pub mod rack;
 pub mod roofs;
+pub mod solar;
 mod rooms;
 pub mod stairs;
 mod system;
@@ -53,7 +54,7 @@ pub use rooms::{
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Turn};
+pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PvArray, PvMounting, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -2088,6 +2089,14 @@ pub fn layout_material(prj: &Project) -> Vec<(String, f32, Vec<String>)> {
         let holders = crate::production::busbar_holders(e);
         if holders > 0 {
             add(&mut out, crate::production::BUSBAR_HOLDER, holders as f32, e.name.clone());
+        }
+    }
+    // The modules and the mounting of the PV arrays on the roofs.
+    for b in &prj.layout.buildings {
+        for a in b.roofs.iter().flat_map(|r| &r.solar) {
+            for (part, qty) in solar::material(prj, a) {
+                add(&mut out, &part, qty, format!("{} {}", b.name, a.name));
+            }
         }
     }
     if prj.layout.hardware {

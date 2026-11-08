@@ -89,6 +89,7 @@ Descending	降順
 Description	説明
 Designation	名称
 Device	デバイス
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	モジュールが属する機器（PV発電機）。その部品が部品表でモジュールを数えます
 Device description	デバイス記述
 Device tag	デバイスタグ
 Device {}	デバイス {}
@@ -194,6 +195,7 @@ Minimum digits of the counter (leading zeros)	カウンターの最小桁数 (�
 Missing parameter: {}	パラメーターがありません: {}
 Missing value for --{}	--{} の値がありません
 Model import failed: {}	モデルのインポートに失敗しました: {}
+Modules side by side in a row	1列に並ぶモジュール
 Mounted	取付済み
 Mounting	取付
 Mounting data	取付データ
@@ -216,6 +218,7 @@ No machine {}	機械 {} がありません
 No page named {}	{} という名前のページはありません
 No page template named {}	{} という名前のページテンプレートはありません
 No page {}	ページ {} がありません
+No part {} in the project	プロジェクトに部品 {} がありません
 No parts found	部品が見つかりません
 No plot frame named {}	{} という名前の図枠はありません
 No plug {}	プラグ {} はありません
@@ -333,6 +336,7 @@ Role	ロール
 Rooms	部屋
 Route	ルート
 Routing	配線ルート
+Rows of modules (east-west: rows of pairs)	モジュールの列（東西向き：ペアの列）
 Rule	ルール
 Rule set	ルールセット
 Safety function	安全機能
@@ -390,6 +394,7 @@ Terminals	端子
 Text	テキスト
 Text to find	検索するテキスト
 The identifier must not be empty	識別子は空にできません
+The long side of the modules along the rows	モジュールの長辺を列に沿わせる
 The page is released	ページはリリース済みです
 There is a connection symbol at this point already	この点にはすでに接続シンボルがあります
 Thermal	熱
@@ -436,6 +441,7 @@ access denied	アクセスが拒否されました
 approved	承認済み
 bonded	ボンディング済み
 file or folder not found	ファイルまたはフォルダーが見つかりません
+landscape	横
 left	左
 mm	mm
 normal	標準

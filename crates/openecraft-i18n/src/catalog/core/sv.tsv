@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-artikelregister och stycklista (
 ERP number	ERP-nummer
 ETIM class	ETIM-klass
 Earth electrode	Jordelektrod
+East-west on a flat roof	Öst-väst på platt tak
 Edit pages	Redigera sidor
 Edit project data	Redigera projektdata
 Editor	Redigerare
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Skåplayout i 3D (STEP)
 Panel layout in 3D (glTF)	Skåplayout i 3D (glTF)
 Panel layout settings	Inställningar för skåplayout
 Panel legend	Teckenförklaring för skåp
+Parallel to the roof on roof hooks	Parallellt med taket på takkrokar
 Part accessories	Artikeltillbehör
 Part data is maintained in the parts management	Artikeldata underhålls i artikelhanteringen
 Part description	Artikelbeskrivning
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Envägsfotocell, 4-tråds
 Through-beam transmitter	Envägsfotocell, sändare
 Thyristor	Tyristor
 Tightening torque	Åtdragningsmoment
+Tilted on a flat roof	Lutat på platt tak
 Time function	Tidsfunktion
 Time range	Tidsområde
 Time relay coil KT (GB)	Tidreläspole KT (GB)
@@ -1819,7 +1822,6 @@ is none of	är ingen av
 is not	är inte
 is not empty	är inte tom
 is one of	är en av
-landscape	liggande
 leakage	läckage
 low	låg
 measuring	mät
@@ -1917,6 +1919,12 @@ yellow	gul
 {} {}: bends closer than the bend radius ({} mm)	{} {}: böjar snävare än böjradien ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: förbundna i enlinjeschemat men inte i kretsschemat
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} år är under 3 år
+{}: PV array {} covers a roof window	{}: solcellsfält {} täcker ett takfönster
+{}: PV array {} has {} modules, its device {} has {}	{}: solcellsfält {} har {} moduler, dess enhet {} har {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: solcellsfält {} är monterat lutat på ett lutande tak
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: solcellsfält {} på tak {} ligger över en nock, en valmkant eller takkanten
+{}: PV array {} of roof {} lies outside the roof	{}: solcellsfält {} på tak {} ligger utanför taket
+{}: PV arrays {} and {} lie over each other	{}: solcellsfälten {} och {} ligger över varandra
 {}: \"{}\" is not one of {}	{}: \"{}\" är inte ett av {}
 {}: a TT system needs a residual current device	{}: ett TT-system kräver en jordfelsbrytare
 {}: accessory {} fits none of the device's parts	{}: tillbehöret {} passar inte till någon av enhetens artiklar
@@ -1990,6 +1998,7 @@ yellow	gul
 {}: terminal {} uses {} levels, its part {} has {}	{}: plint {} använder {} våningar, dess artikel {} har {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: plintarna {} ligger {} mm över golvet, minst {} mm krävs
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skensystemet med {} skenor förbinder {} ledare ({}): kortslutning
+{}: the device {} of PV array {} does not exist	{}: enheten {} för solcellsfält {} finns inte
 {}: the station has no port {}	{}: stationen har ingen port {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) är större än arbetsområdet för {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} är {} mm tjock, {} klarar högst {} mm

@@ -178,6 +178,8 @@ Back	Terug
 Back to the project (Esc)	Terug naar het project (Esc)
 Back-up up to (kA)	Back-up tot (kA)
 Background	Achtergrond
+Ballast	Ballast
+Ballast per module	Ballast per module
 Baseline {}	Baseline {}
 Baseline {} created	Baseline {} gemaakt
 Baseline {} {}	Baseline {} {}
@@ -419,6 +421,7 @@ Define all used	Alle gebruikte definiëren
 Defined potentials	Gedefinieerde potentialen
 Del	Del
 Delete	Verwijderen
+Delete PV array	PV-veld verwijderen
 Delete cable (its wires are removed from it)	Kabel verwijderen (de draden worden eruit verwijderd)
 Delete comment	Opmerking verwijderen
 Delete connection point	Aansluitpunt verwijderen
@@ -483,6 +486,7 @@ Digits	Cijfers
 Dimension	Maatvoering
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Gericht T-stuk: waar drie draden samenkomen, benoemt het het apparaat waar de twee draden van de verbinding beginnen en de volgorde van hun doelen
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Gerichte kruising: verbindt de twee draden die er kruisen; elk uiteinde van zijn lijn wordt eerst rechtdoor en dan dwars bedraad
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Richting waarin de modules wijzen, tegen de klok in van boven gezien (0: naar voren)
 Discard changes	Wijzigingen verwerpen
 Discard draft	Concept negeren
 Disconnection of distribution circuits	Uitschakeling van verdeelstroomkringen
@@ -616,6 +620,7 @@ Exported {}	{} geëxporteerd
 Exporting {}	{} exporteren
 Export…	Exporteren…
 Extras	Extra
+Facing	Oriëntatie
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilatoren, filters, kabelwartels, lampen, handgrepen: kies er een en klik waar het moet komen
 Fastening hardware in the bill of materials	Bevestigingsmateriaal in de stuklijst
 Favorite	Favoriet
@@ -676,6 +681,7 @@ Freeze route	Route bevriezen
 Frequency	Frequentie
 From / to	Van / naar
 From a template file…	Uit een sjabloonbestand…
+From row to row; 0: free of shade in winter	Van rij tot rij; 0: schaduwvrij in de winter
 From the function definition	Uit de functiedefinitie
 From the left end	Vanaf het linkeruiteinde
 From – to	Van – tot
@@ -710,6 +716,7 @@ Go to page	Naar pagina
 Graphic line	Grafische lijn
 Graphic rectangle	Grafische rechthoek
 Graphical form	Grafisch formulier
+Greatest distance of the roof hooks along a rail	Grootste afstand van de dakhaken langs een rail
 Grid	Raster
 Grid size	Rastergrootte
 Grid {} mm	Raster {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Hoogste fase-onbalans
 Highest short-circuit current	Hoogste kortsluitstroom
 Hole to sheet edge	Boring tot plaatrand
 Home	Start
+Hook distance	Haakafstand
 Horizontal	Horizontaal
 Horizontal (mm)	Horizontaal (mm)
 Horizontal centres	Horizontale middens
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	In elke
 In strip order; PE and other non-numeric terminals keep their designation	In volgorde van de klemmenstrook; PE en andere niet-numerieke klemmen behouden hun benaming
 In the filtered rows	In de gefilterde rijen
 In the middle of the first wire	In het midden van de eerste draad
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	In het midden van het voorste of rechter dakvlak, op een plat dak naar voren gekanteld; verplaats het naar zijn plek
 In the project	In het project
 In the structure of the current page	In de structuur van de huidige pagina
 Include manually set numbers	Handmatig ingestelde nummers meenemen
@@ -946,18 +955,21 @@ Messages	Meldingen
 Messages ({})	Meldingen ({})
 Messages of this session	Meldingen van deze sessie
 Middle	Midden
+Middle of the PV array in the floor plan of the building	Midden van het PV-veld in de plattegrond van het gebouw
 Min. bend radius	Min. buigradius
 Minimize the ribbon	Het lint minimaliseren
 Mirror	Spiegelen
 Mirror (selection or symbol being placed)	Spiegelen (selectie of symbool dat wordt geplaatst)
 Mode	Modus
 Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
+Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
 Motors feed the short circuit	Motoren voeden de kortsluiting
 Mounted on	Gemonteerd op
 Mounting assistant: the panel items in mounting order with their place and part	Montageassistent: de elementen van de kastlay-out in montagevolgorde met hun plaats en artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Montageafstand naast elkaar; artikelen voegen hun eigen afstand toe (Clearance left / right)
 Mounting height: {}	Montagehoogte: {}
 Mounting plate: {} holes, {} cutouts	Montageplaat: {} boringen, {} uitsparingen
+Mounting system	Montagesysteem
 Move	Verplaatsen
 Move down	Omlaag
 Move left	Naar links
@@ -1188,6 +1200,8 @@ PLC channels	PLC-kanalen
 PLC hardware and bus topology	PLC-hardware en bustopologie
 PLC overview	PLC-overzicht
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- of JPEG-bitmap, bijv. een logo of een foto
+PV array	PV-veld
+PV arrays	PV-velden
 Page graphics	Paginagrafiek
 Page heading	Paginakop
 Page list, devices, parts, panel layout and settings	Paginalijst, apparaten, artikelen, kastlay-out en instellingen
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Routeringspad {} mm – d
 Routing paths	Routeringspaden
 Routing rules	Routeringsregels
 Row	Rij
+Row distance	Rijafstand
 Row drawing	Rijtekening
 Row labels	Rijlabels
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rijen op vrijgegeven pagina's kunnen niet worden gewijzigd. Een regeleinde in een tekst wordt geschreven als \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	De eigen paginasjablonen van het proj
 The project's own title blocks	De eigen titelblokken van het project
 The project's own title blocks and report schemes	De eigen titelblokken en rapportschema's van het project
 The properties of the selection in a window beside the page	De eigenschappen van de selectie in een venster naast de pagina
+The rail or mounting base; its accessories are the hooks, clamps and ballast	De rail of montagevoet; zijn toebehoren zijn de haken, klemmen en ballast
 The recalculation keeps frozen routes as long as they are still possible	De herberekening behoudt bevroren routes zolang deze nog mogelijk zijn
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Het lint met het tabblad Bestand vervangt de menu's; Ctrl+Shift+P vindt elke opdracht.
 The second fault is checked at the line-to-earth voltage	De dubbele fout wordt gecontroleerd met de spanning fase–aarde
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Dit project is deelproject {} van {} (afgesplitst {}). Sla het op en voeg het in het hoofdproject in wanneer het werk klaar is.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Hier moeten drie draden samenkomen: één in zijn richting en twee dwars. Tot dan wordt de verbinding in schemavolgorde geketend.
 Three-phase short-circuit current at the supply point	Driefasige kortsluitstroom op het voedingspunt
+Tilt	Hellingshoek
 Title	Titel
 Title blocks	Titelblokken
 Title blocks, plot frames and page templates	Titelblokken, plotkaders en paginasjablonen
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm op de plaat + {} mm reserve; de rest is de weg van de aansluitpunten naar de plaat.
 {} mm, now {} mm	{} mm, nu {} mm
 {} mm, removed	{} mm, verwijderd
+{} modules	{} modules
+{} modules, {} kWp	{} modules, {} kWp
 {} new texts in the dictionary	{} nieuwe teksten in het woordenboek
 {} notes	{} opmerkingen
 {} objects pasted	{} objecten geplakt

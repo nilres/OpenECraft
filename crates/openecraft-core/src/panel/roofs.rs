@@ -54,7 +54,7 @@ impl RoofShape {
 }
 
 /// A linear function `a·x + b·z + c` of the floor plan (a plane of heights).
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
 pub struct Lin {
     pub a: f32,
     pub b: f32,
@@ -117,7 +117,7 @@ pub fn area(poly: &[[f32; 2]]) -> f32 {
 }
 
 /// The edges of a convex polygon as functions that are negative inside it.
-fn inside_lins(poly: &[[f32; 2]]) -> Vec<Lin> {
+pub(super) fn inside_lins(poly: &[[f32; 2]]) -> Vec<Lin> {
     let sign = if area(poly) >= 0.0 { 1.0 } else { -1.0 };
     (0..poly.len())
         .map(|k| {
@@ -432,9 +432,15 @@ pub enum RoofFaceKind {
     Glass,
     /// The frame of a roof window.
     Frame,
+    /// The cells of a PV module.
+    Module,
+    /// The frame of a PV module.
+    ModuleFrame,
+    /// Rails, mounting bases and wind deflectors of a PV array.
+    Mounting,
 }
 
-fn normal_of(pts: &[V3]) -> V3 {
+pub(super) fn normal_of(pts: &[V3]) -> V3 {
     let n = crate::parts::vec3::cross(crate::parts::vec3::sub(pts[1], pts[0]), crate::parts::vec3::sub(pts[2], pts[0]));
     crate::parts::vec3::norm(n)
 }
@@ -475,7 +481,7 @@ fn breaks(a: [f32; 2], b: [f32; 2], lins: &[Lin]) -> Vec<f32> {
     ts
 }
 
-fn lowest(lins: &[Lin], q: [f32; 2]) -> f32 {
+pub(super) fn lowest(lins: &[Lin], q: [f32; 2]) -> f32 {
     lins.iter().map(|l| l.at(q)).fold(f32::INFINITY, f32::min)
 }
 

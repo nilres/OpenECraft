@@ -90,6 +90,7 @@ Descending	Laskeva
 Description	Kuvaus
 Designation	Nimitys
 Device	Laite
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Laite (aurinkosähkögeneraattori), johon moduulit kuuluvat; sen osat laskevat ne silloin osaluetteloon
 Device description	Laitekuvaus
 Device tag	Laitetunnus
 Device {}	Laite {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Laskurin vähimmäisnumeromäärä
 Missing parameter: {}	Puuttuva parametri: {}
 Missing value for --{}	Puuttuva arvo valitsimelle --{}
 Model import failed: {}	Mallin tuonti epäonnistui: {}
+Modules side by side in a row	Moduulit vierekkäin rivissä
 Mounted	Asennettu
 Mounting	Asennus
 Mounting data	Asennustiedot
@@ -217,6 +219,7 @@ No machine {}	Konetta {} ei ole
 No page named {}	Ei sivua nimeltä {}
 No page template named {}	Ei sivumallia nimeltä {}
 No page {}	Sivua {} ei ole
+No part {} in the project	Projektissa ei ole osaa {}
 No parts found	Osia ei löytynyt
 No plot frame named {}	Ei piirustuskehystä nimeltä {}
 No plug {}	Ei pistoliitintä {}
@@ -334,6 +337,7 @@ Role	Rooli
 Rooms	Tilat
 Route	Reititä
 Routing	Reititys
+Rows of modules (east-west: rows of pairs)	Moduulirivit (itä-länsi: paririvit)
 Rule	Sääntö
 Rule set	Sääntökokoelma
 Safety function	Turvatoiminto
@@ -391,6 +395,7 @@ Terminals	Riviliittimet
 Text	Teksti
 Text to find	Etsittävä teksti
 The identifier must not be empty	Tunnus ei saa olla tyhjä
+The long side of the modules along the rows	Moduulien pitkä sivu rivien suuntaisesti
 The page is released	Sivu on vapautettu
 There is a connection symbol at this point already	Tässä pisteessä on jo liitossymboli
 Thermal	Lämpö
@@ -438,6 +443,7 @@ access denied	pääsy estetty
 approved	hyväksytty
 bonded	liitetty
 file or folder not found	tiedostoa tai kansiota ei löytynyt
+landscape	vaaka
 left	vasemmalle
 mm	mm
 normal	normaali

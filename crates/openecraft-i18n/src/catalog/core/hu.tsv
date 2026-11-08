@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-cikktörzs és anyagjegyzék (CS
 ERP number	ERP-szám
 ETIM class	ETIM-osztály
 Earth electrode	Földelő
+East-west on a flat roof	Kelet-nyugat lapostetőn
 Edit pages	Oldalak szerkesztése
 Edit project data	Projektadatok szerkesztése
 Editor	Szerkesztő
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Szekrényelrendezés 3D-ben (STEP)
 Panel layout in 3D (glTF)	Szekrényelrendezés 3D-ben (glTF)
 Panel layout settings	Szekrényelrendezés beállításai
 Panel legend	Szekrényjelmagyarázat
+Parallel to the roof on roof hooks	A tetővel párhuzamosan tetőkampókon
 Part accessories	Cikktartozékok
 Part data is maintained in the parts management	Az alkatrészadatok karbantartása az alkatrészkezelésben történik
 Part description	Alkatrészleírás
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Egyutas fénysorompó, 4 vezetékes
 Through-beam transmitter	Egyutas fénysorompó adója
 Thyristor	Tirisztor
 Tightening torque	Meghúzási nyomaték
+Tilted on a flat roof	Döntve lapostetőn
 Time function	Időfunkció
 Time range	Időtartomány
 Time relay coil KT (GB)	Időrelé tekercse KT (GB)
@@ -1819,7 +1822,6 @@ is none of	egyike sem ezeknek
 is not	nem egyenlő
 is not empty	nem üres
 is one of	ezek egyike
-landscape	fekvő
 leakage	szivárgó
 low	alacsony
 measuring	mérő
@@ -1917,6 +1919,12 @@ yellow	sárga
 {} {}: bends closer than the bend radius ({} mm)	{} {}: a hajlítások szűkebbek a hajlítási sugárnál ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: az egyvonalas rajzon összekötve, a kapcsolási rajzon nem
 {}: MTTFd {} years is below 3 years	{}: az MTTFd {} év, ami kevesebb 3 évnél
+{}: PV array {} covers a roof window	{}: a(z) {} PV-mező eltakar egy tetőablakot
+{}: PV array {} has {} modules, its device {} has {}	{}: a(z) {} PV-mezőnek {} modulja van, a(z) {} eszközének {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: a(z) {} PV-mező döntve van szerelve egy magastetőre
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: a(z) {2} tető {1} PV-mezője átnyúlik egy gerincen, élgerincen vagy a tető szélén
+{}: PV array {} of roof {} lies outside the roof	{0}: a(z) {2} tető {1} PV-mezője a tetőn kívül van
+{}: PV arrays {} and {} lie over each other	{}: a(z) {} és {} PV-mezők egymásra fekszenek
 {}: \"{}\" is not one of {}	{}: \"{}\" nem szerepel ezek között: {}
 {}: a TT system needs a residual current device	{}: a TT-rendszerhez áram-védőkapcsoló szükséges
 {}: accessory {} fits none of the device's parts	{}: a(z) {} tartozék a készülék egyik cikkéhez sem illeszkedik
@@ -1990,6 +1998,7 @@ yellow	sárga
 {}: terminal {} uses {} levels, its part {} has {}	{}: a(z) {} sorkapocs {} szintet használ, a(z) {} alkatrésze {} szintes
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: a(z) {} sorkapcsok {} mm-rel vannak a padló felett, legalább {} mm szükséges
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: a(z) {} sínes gyűjtősín-rendszer {} vezetőt köt össze ({}): rövidzárlat
+{}: the device {} of PV array {} does not exist	{}: a(z) {} eszköz a(z) {} PV-mezőhöz nem létezik
 {}: the station has no port {}	{}: az állomásnak nincs {} portja
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: a(z) {} ({} x {} mm) nagyobb a(z) {} munkaterületénél
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: a(z) {} {} mm vastag, {} legfeljebb {} mm-t fogad

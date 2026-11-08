@@ -541,7 +541,8 @@ fn plan_cells(prj: &Project, poses: &[SitePose], ri: usize) -> Vec<[[f32; 2]; 4]
 /// level or overlapping other rooms of their level; levels overlapping each other;
 /// shafts that join no rooms, and cabinets or floor-standing devices standing in a
 /// shaft; links between buildings whose building entries are gone; the problems of
-/// their stairs ([`super::stairs::problems`]) and roofs ([`super::roofs::problems`]).
+/// their stairs ([`super::stairs::problems`]), roofs ([`super::roofs::problems`]) and
+/// PV arrays ([`super::solar::problems`]).
 pub fn problems(prj: &Project) -> Vec<Issue> {
     let layout = &prj.layout;
     let poses = site_poses(prj);
@@ -612,6 +613,7 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
     }
     v.extend(super::stairs::problems(prj));
     v.extend(super::roofs::problems(prj));
+    v.extend(super::solar::problems(prj));
     v
 }
 

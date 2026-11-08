@@ -1,8 +1,8 @@
 //! Building commands: buildings of the plant with their levels, shafts, stairs and
-//! roofs (with roof windows), rooms on the levels, and links (cable trenches,
-//! conduits, cable bridges) between the building entries of different buildings
-//! ([`openecraft_core::panel::buildings`], [`openecraft_core::panel::stairs`],
-//! [`openecraft_core::panel::roofs`]).
+//! roofs (with roof windows and PV arrays), rooms on the levels, and links (cable
+//! trenches, conduits, cable bridges) between the building entries of different
+//! buildings ([`openecraft_core::panel::buildings`], [`openecraft_core::panel::stairs`],
+//! [`openecraft_core::panel::roofs`], [`openecraft_core::panel::solar`]).
 
 use crate::builtin::common::{int_in, num_in, NO_LIMIT, NO_MAX};
 use crate::params::{optional, param, Args, Kind};
@@ -10,7 +10,7 @@ use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
 use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
-use openecraft_core::panel::{self, roofs, stairs, LinkKind, Opening, RoofShape, SitePlace, StairKind, Turn};
+use openecraft_core::panel::{self, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
@@ -18,7 +18,7 @@ pub struct Buildings;
 
 impl Plugin for Buildings {
     fn info(&self) -> Info {
-        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels, shafts, stairs and roofs, rooms on the levels and links between buildings"))
+        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, rooms on the levels and links between buildings"))
     }
 
     fn register(&self, reg: &mut Registry) -> Result<(), String> {
@@ -46,6 +46,20 @@ const ROOF_ALONG_Z: &str = tr_const!("The ridge (or the slope of a shed roof) ru
 const ROOF_FLIP: &str = tr_const!("Shed roof: the low eaves at the rear or left instead of the front or right");
 const WINDOW_X: &str = tr_const!("Middle of the window in the floor plan of the building, x in mm");
 const WINDOW_Z: &str = tr_const!("Middle of the window in the floor plan of the building, z in mm");
+const PV_X: &str = tr_const!("Middle of the PV array in the floor plan of the building, x in mm");
+const PV_Z: &str = tr_const!("Middle of the PV array in the floor plan of the building, z in mm");
+const PV_COLUMNS: &str = tr_const!("Modules side by side in a row");
+const PV_ROWS: &str = tr_const!("Rows of modules (east-west: rows of pairs)");
+const PV_LANDSCAPE: &str = tr_const!("The long side of the modules along the rows");
+const PV_MODULE: &str = tr_const!("Part number of the module (its size comes from the part)");
+const PV_MOUNTING: &str = tr_const!("parallel (on roof hooks), tilted or east_west (flat roofs)");
+const PV_TILT: &str = tr_const!("Tilt of the modules on a flat roof in degrees");
+const PV_AZIMUTH: &str = tr_const!("Flat roofs: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)");
+const PV_ROW_GAP: &str = tr_const!("Distance from row to row on a flat roof in mm (0: free of shade in winter)");
+const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rail in mm");
+const PV_BALLAST: &str = tr_const!("Ballast per module on a flat roof in kg");
+const PV_SYSTEM: &str = tr_const!("Mounting system: part number of its rail or mounting base, whose accessories are the hooks, clamps and ballast (empty: generic)");
+const PV_DEVICE: &str = tr_const!("Device (PV generator) the modules belong to; its parts then count them in the bill of materials");
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
@@ -260,6 +274,56 @@ pub static COMMANDS: &[Spec] = &[
         run: set_roof_window,
     },
     Spec {
+        name: "add_pv_array",
+        help: tr_const!("Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. The modules and the mounting material go into the bill of materials"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            optional("x", Kind::Num, PV_X),
+            optional("z", Kind::Num, PV_Z),
+            optional("columns", Kind::Int, PV_COLUMNS),
+            optional("rows", Kind::Int, PV_ROWS),
+            optional("landscape", Kind::Bool, PV_LANDSCAPE),
+            optional("module", Kind::Str, PV_MODULE),
+            optional("mounting", Kind::Str, PV_MOUNTING),
+            optional("tilt", Kind::Num, PV_TILT),
+            optional("azimuth", Kind::Num, PV_AZIMUTH),
+            optional("row_gap", Kind::Num, PV_ROW_GAP),
+            optional("span", Kind::Num, PV_SPAN),
+            optional("ballast", Kind::Num, PV_BALLAST),
+            optional("system", Kind::Str, PV_SYSTEM),
+            optional("device", Kind::Str, PV_DEVICE),
+            optional("name", Kind::Str, tr_const!("Name (default PV1, PV2, …)")),
+        ],
+        run: add_pv_array,
+    },
+    Spec {
+        name: "set_pv_array",
+        help: tr_const!("Moves a PV array, changes its modules, their number and orientation, its mounting or mounting system, renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            param("array", Kind::Str, tr_const!("PV array: its name")),
+            optional("x", Kind::Num, PV_X),
+            optional("z", Kind::Num, PV_Z),
+            optional("columns", Kind::Int, PV_COLUMNS),
+            optional("rows", Kind::Int, PV_ROWS),
+            optional("landscape", Kind::Bool, PV_LANDSCAPE),
+            optional("module", Kind::Str, PV_MODULE),
+            optional("mounting", Kind::Str, PV_MOUNTING),
+            optional("tilt", Kind::Num, PV_TILT),
+            optional("azimuth", Kind::Num, PV_AZIMUTH),
+            optional("row_gap", Kind::Num, PV_ROW_GAP),
+            optional("span", Kind::Num, PV_SPAN),
+            optional("ballast", Kind::Num, PV_BALLAST),
+            optional("system", Kind::Str, PV_SYSTEM),
+            optional("device", Kind::Str, PV_DEVICE),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the PV array")),
+        ],
+        run: set_pv_array,
+    },
+    Spec {
         name: "add_site_link",
         help: tr_const!("Links a building entry of one room to a building entry of a room in another building: a cable trench, a conduit or a cable bridge, along which cables, tubes and pipes are routed from building to building"),
         params: &[
@@ -366,9 +430,11 @@ fn building_json(prj: &Project, bi: usize) -> Value {
         .iter()
         .map(|r| {
             let windows: Vec<Value> = r.windows.iter().map(|w| json!({ "id": w.id, "x": w.x, "z": w.z, "width": w.width, "length": w.length, "part": w.part })).collect();
+            let arrays: Vec<Value> = r.solar.iter().map(|a| pv_json(prj, a)).collect();
             json!({
                 "name": r.name, "shape": r.shape.key(), "x": r.x, "z": r.z, "width": r.width, "depth": r.depth, "along_z": r.along_z, "flip": r.flip,
                 "eaves": r.eaves, "pitch": r.pitch, "overhang": r.overhang, "thickness": r.thickness, "ridge": roofs::ridge_height(r), "windows": windows,
+                "solar": arrays,
             })
         })
         .collect();
@@ -693,6 +759,90 @@ fn set_roof_window(prj: &mut Project, a: &Args) -> Result<Value, String> {
         let mut w = windows[i].clone();
         window_args(a, &mut w)?;
         windows[i] = w;
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn pv_json(prj: &Project, a: &panel::PvArray) -> Value {
+    let material: Vec<Value> = solar::material(prj, a).into_iter().map(|(part, qty)| json!({ "part": part, "qty": qty })).collect();
+    json!({
+        "id": a.id, "name": a.name, "x": a.x, "z": a.z, "columns": a.columns, "rows": a.rows, "landscape": a.landscape,
+        "module": a.module, "module_size": [a.module_width, a.module_length, a.module_height], "modules": solar::module_count(a),
+        "peak_kw": solar::peak_power(prj, a), "mounting": a.mounting.key(), "tilt": a.tilt, "azimuth": a.azimuth, "row_gap": a.row_gap,
+        "span": a.span, "ballast": a.ballast, "system": a.system, "device": a.device, "material": material,
+    })
+}
+
+/// The PV array of roof `k` of building `bi` named by `array`.
+fn pv_arg(prj: &Project, bi: usize, k: usize, a: &Args) -> Result<usize, String> {
+    let key = a.req("array").trim();
+    let r = &prj.layout.buildings[bi].roofs[k];
+    r.solar.iter().position(|s| s.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No PV array {} on roof {}", key, r.name))
+}
+
+/// Applies the optional arguments of a PV array command.
+fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray) -> Result<panel::PvArray, String> {
+    s.x = a.num("x").unwrap_or(s.x);
+    s.z = a.num("z").unwrap_or(s.z);
+    s.columns = int_in(a, "columns", 1, 200)?.map_or(s.columns, |n| n as u32);
+    s.rows = int_in(a, "rows", 1, 100)?.map_or(s.rows, |n| n as u32);
+    if a.value("landscape").is_some() {
+        s.landscape = a.flag("landscape");
+    }
+    if let Some(m) = a.str("module") {
+        solar::set_module(prj, &mut s, m)?;
+    }
+    if let Some(m) = a.str("mounting") {
+        s.mounting = PvMounting::from_key(m).ok_or_else(|| tr_fmt!("Unknown mounting: {}", m))?;
+    }
+    s.tilt = num_in(a, "tilt", 0.0, 60.0)?.unwrap_or(s.tilt);
+    s.azimuth = a.num("azimuth").unwrap_or(s.azimuth);
+    s.row_gap = num_in(a, "row_gap", 0.0, 20_000.0)?.unwrap_or(s.row_gap);
+    s.span = num_in(a, "span", 300.0, 3000.0)?.unwrap_or(s.span);
+    s.ballast = num_in(a, "ballast", 0.0, 500.0)?.unwrap_or(s.ballast);
+    if let Some(p) = a.str("system").map(str::trim) {
+        if !p.is_empty() && !prj.parts.iter().chain(openecraft_core::parts::catalog()).any(|q| q.number == p) {
+            return Err(tr_fmt!("No part {} in the project", p));
+        }
+        s.system = p.into();
+    }
+    if let Some(d) = a.str("device") {
+        s.device = d.trim().into();
+    }
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        s.name = n.into();
+    }
+    Ok(solar::checked_array(s))
+}
+
+fn add_pv_array(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    let at = match (a.num("x"), a.num("z")) {
+        (Some(x), Some(z)) => Some([x, z]),
+        _ => None,
+    };
+    let id = solar::add_array(prj, bi, k, at)?;
+    let i = prj.layout.buildings[bi].roofs[k].solar.iter().position(|s| s.id == id).unwrap_or_default();
+    match pv_args(prj, a, prj.layout.buildings[bi].roofs[k].solar[i].clone()) {
+        Ok(s) => prj.layout.buildings[bi].roofs[k].solar[i] = s,
+        Err(e) => {
+            prj.layout.buildings[bi].roofs[k].solar.remove(i);
+            return Err(e);
+        }
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_pv_array(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    let i = pv_arg(prj, bi, k, a)?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].roofs[k].solar.remove(i);
+    } else {
+        let s = pv_args(prj, a, prj.layout.buildings[bi].roofs[k].solar[i].clone())?;
+        prj.layout.buildings[bi].roofs[k].solar[i] = s;
     }
     Ok(building_json(prj, bi))
 }

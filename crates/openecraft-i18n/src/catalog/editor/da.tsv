@@ -178,6 +178,8 @@ Back	Tilbage
 Back to the project (Esc)	Tilbage til projektet (Esc)
 Back-up up to (kA)	Backup op til (kA)
 Background	Baggrund
+Ballast	Ballast
+Ballast per module	Ballast pr. modul
 Baseline {}	Baseline {}
 Baseline {} created	Baseline {} er oprettet
 Baseline {} {}	Baseline {} {}
@@ -419,6 +421,7 @@ Define all used	Definer alle brugte
 Defined potentials	Definerede potentialer
 Del	Del
 Delete	Slet
+Delete PV array	Slet solcelleanlæg
 Delete cable (its wires are removed from it)	Slet kabel (dets ledninger fjernes fra det)
 Delete comment	Slet kommentar
 Delete connection point	Slet tilslutningspunkt
@@ -483,6 +486,7 @@ Digits	Cifre
 Dimension	Målsætning
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Rettet T-stykke: hvor tre ledere mødes, angiver det den enhed, forbindelsens to ledere udgår fra, og rækkefølgen af deres mål
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Rettet krydsning: forbinder de to ledere, der krydser hinanden der; hver ende af dens linje forbindes først ligeud og derefter på tværs
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Retning, modulerne vender mod, mod uret set ovenfra (0: fremad)
 Discard changes	Kassér ændringerne
 Discard draft	Kassér kladde
 Disconnection of distribution circuits	Udkobling af fordelingskredse
@@ -616,6 +620,7 @@ Exported {}	{} er eksporteret
 Exporting {}	Eksporterer {}
 Export…	Eksportér…
 Extras	Ekstra
+Facing	Retning
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilatorer, filtre, kabelforskruninger, lys, greb: Vælg et, og klik derefter, hvor det skal placeres
 Fastening hardware in the bill of materials	Fastgørelsesmateriel i styklisten
 Favorite	Favorit
@@ -676,6 +681,7 @@ Freeze route	Fastlås føring
 Frequency	Frekvens
 From / to	Fra / til
 From a template file…	Fra en skabelonfil…
+From row to row; 0: free of shade in winter	Fra række til række; 0: skyggefrit om vinteren
 From the function definition	Fra funktionsdefinitionen
 From the left end	Fra venstre ende
 From – to	Fra – til
@@ -710,6 +716,7 @@ Go to page	Gå til side
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafisk formular
+Greatest distance of the roof hooks along a rail	Største afstand mellem tagkrogene langs en skinne
 Grid	Gitter
 Grid size	Gitterstørrelse
 Grid {} mm	Gitter {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Højeste faseubalance
 Highest short-circuit current	Højeste kortslutningsstrøm
 Hole to sheet edge	Hul til pladekant
 Home	Hjem
+Hook distance	Krogafstand
 Horizontal	Vandret
 Horizontal (mm)	Vandret (mm)
 Horizontal centres	Vandrette midter
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	I hvert
 In strip order; PE and other non-numeric terminals keep their designation	I klemrækkefølge; PE og andre ikke-numeriske klemmer bevarer deres betegnelse
 In the filtered rows	I de filtrerede rækker
 In the middle of the first wire	Midt på den første ledning
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Midt på den forreste eller højre tagflade, på fladt tag hældt fremad; flyt det til sin plads
 In the project	I projektet
 In the structure of the current page	I den aktuelle sides struktur
 Include manually set numbers	Medtag manuelt angivne numre
@@ -946,18 +955,21 @@ Messages	Meddelelser
 Messages ({})	Meddelelser ({})
 Messages of this session	Meddelelser fra denne session
 Middle	Midt
+Middle of the PV array in the floor plan of the building	Midten af solcelleanlægget i bygningens plantegning
 Min. bend radius	Min. bøjningsradius
 Minimize the ribbon	Minimér båndet
 Mirror	Spejl
 Mirror (selection or symbol being placed)	Spejlvend (markering eller symbol, der placeres)
 Mode	Tilstand
 Model of a part (2D / 3D)	Model af en artikel (2D / 3D)
+Module part; its size comes from the part	Moduldel; dens størrelse kommer fra delen
 Motors feed the short circuit	Motorer føder kortslutningen
 Mounted on	Monteret på
 Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: layoutelementerne i monteringsrækkefølge med deres plads og artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Monteringsafstand side om side; artikler tilføjer deres egen (Clearance left / right)
 Mounting height: {}	Monteringshøjde: {}
 Mounting plate: {} holes, {} cutouts	Monteringsplade: {} huller, {} udskæringer
+Mounting system	Monteringssystem
 Move	Flyt
 Move down	Flyt ned
 Move left	Flyt til venstre
@@ -1188,6 +1200,8 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hardware og bustopologi
 PLC overview	PLC-oversigt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmap, f.eks. et logo eller et foto
+PV array	Solcelleanlæg
+PV arrays	Solcelleanlæg
 Page graphics	Sidegrafik
 Page heading	Sideoverskrift
 Page list, devices, parts, panel layout and settings	Sideliste, enheder, artikler, tavlelayout og indstillinger
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Føringsvej {} mm – dob
 Routing paths	Føringsveje
 Routing rules	Føringsregler
 Row	Række
+Row distance	Rækkeafstand
 Row drawing	Rækketegning
 Row labels	Rækkeetiketter
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rækker på frigivne sider kan ikke ændres. Et linjeskift i en tekst skrives som \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Projektets egne sideskabeloner som fi
 The project's own title blocks	Projektets egne tegningshoveder
 The project's own title blocks and report schemes	Projektets egne tegningshoveder og rapportskemaer
 The properties of the selection in a window beside the page	Markeringens egenskaber i et vindue ved siden af siden
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Skinnen eller monteringsfoden; dens tilbehør er kroge, klemmer og ballast
 The recalculation keeps frozen routes as long as they are still possible	Genberegningen bevarer fastlåste føringer, så længe de stadig er mulige
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Båndet med fanen Filer erstatter menuerne; Ctrl+Shift+P finder enhver kommando.
 The second fault is checked at the line-to-earth voltage	Dobbeltfejlen kontrolleres ved spændingen fase–jord
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Dette projekt er delprojekt {} af {} (udtaget {}). Gem det, og indsæt det i hovedprojektet, når arbejdet er færdigt.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Her skal tre ledere mødes: en i dets retning og to på tværs. Indtil da kædes forbindelsen i diagrammets rækkefølge.
 Three-phase short-circuit current at the supply point	Trefaset kortslutningsstrøm ved forsyningspunktet
+Tilt	Hældning
 Title	Titel
 Title blocks	Tegningshoveder
 Title blocks, plot frames and page templates	Tegningshoveder, plotrammer og sideskabeloner
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm på pladen + {} mm reserve; resten er vejen fra tilslutningspunkterne til pladen.
 {} mm, now {} mm	{} mm, nu {} mm
 {} mm, removed	{} mm, fjernet
+{} modules	{} moduler
+{} modules, {} kWp	{} moduler, {} kWp
 {} new texts in the dictionary	{} nye tekster i ordbogen
 {} notes	{} bemærkninger
 {} objects pasted	{} objekter indsat

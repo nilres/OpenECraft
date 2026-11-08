@@ -177,6 +177,8 @@ Back	戻る
 Back to the project (Esc)	プロジェクトに戻る (Esc)
 Back-up up to (kA)	バックアップの上限 (kA)
 Background	背景
+Ballast	バラスト
+Ballast per module	モジュールあたりのバラスト
 Baseline {}	ベースライン {}
 Baseline {} created	ベースライン {} を作成しました
 Baseline {} {}	ベースライン {} {}
@@ -415,6 +417,7 @@ Define all used	使用中のものをすべて定義
 Defined potentials	定義済みの電位
 Del	Del
 Delete	削除
+Delete PV array	PVアレイを削除
 Delete cable (its wires are removed from it)	ケーブルを削除 (その電線はケーブルから外されます)
 Delete comment	コメントを削除
 Delete connection point	接続ポイントを削除
@@ -477,6 +480,7 @@ Digits	桁数
 Dimension	寸法
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	方向付きT分岐：3本の接続線が交わる点で、接続の2本の線がどの機器から出るか、および目標の順序を指定します
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	方向付き交差：そこで交わる2本の接続線を接続します。線の各端はまず直進、次に横方向に配線されます
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	モジュールが向く方向、上から見て反時計回り（0：前方）
 Discard changes	変更を破棄
 Discard draft	ドラフトを破棄
 Disconnection of distribution circuits	分岐回路の遮断
@@ -609,6 +613,7 @@ Export the messages as CSV	メッセージを CSV としてエクスポート
 Exported {}	{} をエクスポートしました
 Export…	エクスポート…
 Extras	その他
+Facing	向き
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	ファン、フィルター、ケーブルグランド、照明、ハンドル: いずれかを選択し、取り付ける位置をクリックします
 Fastening hardware in the bill of materials	部品表に固定用部品を含める
 Favorite	お気に入り
@@ -668,6 +673,7 @@ Freeze route	ルートを固定
 Frequency	周波数
 From / to	接続元 / 接続先
 From a template file…	テンプレートファイルから…
+From row to row; 0: free of shade in winter	列から列まで。0：冬に影ができない
 From the function definition	機能定義から
 From the left end	左端から
 From – to	から – まで
@@ -702,6 +708,7 @@ Go to page	ページへ移動
 Graphic line	図形線
 Graphic rectangle	図形四角形
 Graphical form	グラフィカルフォーム
+Greatest distance of the roof hooks along a rail	レールに沿った屋根フックの最大間隔
 Grid	グリッド
 Grid size	グリッドサイズ
 Grid {} mm	グリッド {} mm
@@ -729,6 +736,7 @@ Highest phase unbalance	最大相不平衡
 Highest short-circuit current	最大短絡電流
 Hole to sheet edge	穴から板端まで
 Home	ホーム
+Hook distance	フック間隔
 Horizontal	水平
 Horizontal (mm)	水平 (mm)
 Horizontal centres	水平方向の中央
@@ -783,6 +791,7 @@ In every section counting starts again after the section number (2.3.1).	各セ�
 In strip order; PE and other non-numeric terminals keep their designation	端子台の順序で番号付けします。PE などの数字以外の端子は名称を保持します
 In the filtered rows	フィルター処理された行内
 In the middle of the first wire	最初の電線の中央
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	前面または右側の屋根面の中央、陸屋根では前方へ傾斜。所定の位置へ移動してください
 In the project	プロジェクト内
 In the structure of the current page	現在のページの構造内
 Include manually set numbers	手動で設定した番号を含める
@@ -934,18 +943,21 @@ Messages	メッセージ
 Messages ({})	メッセージ ({})
 Messages of this session	このセッションのメッセージ
 Middle	中央
+Middle of the PV array in the floor plan of the building	建物の平面図におけるPVアレイの中心
 Min. bend radius	最小曲げ半径
 Minimize the ribbon	リボンを最小化
 Mirror	反転
 Mirror (selection or symbol being placed)	反転 (選択内容または配置中のシンボル)
 Mode	モード
 Model of a part (2D / 3D)	部品のモデル (2D / 3D)
+Module part; its size comes from the part	モジュール部品。サイズは部品から取得
 Motors feed the short circuit	モーターが短絡電流を供給
 Mounted on	取付先
 Mounting assistant: the panel items in mounting order with their place and part	取付アシスタント: 盤アイテムを取付順に位置と部品とともに表示
 Mounting clearance side by side; parts add theirs (Clearance left / right)	横方向の取付クリアランス。部品は独自の値を加算します (Clearance left / right)
 Mounting height: {}	取付高さ: {}
 Mounting plate: {} holes, {} cutouts	取付板: 穴 {} 個、切り欠き {} 個
+Mounting system	架台システム
 Move	移動
 Move down	下へ移動
 Move left	左へ移動
@@ -1174,6 +1186,8 @@ PLC channels	PLC チャンネル
 PLC hardware and bus topology	PLC ハードウェアとバストポロジー
 PLC overview	PLC 概要
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG または JPEG のビットマップ (例: ロゴや写真)
+PV array	PVアレイ
+PV arrays	PVアレイ
 Page graphics	ページのグラフィック
 Page heading	ページ見出し
 Page list, devices, parts, panel layout and settings	ページリスト、デバイス、部品、盤レイアウト、設定
@@ -1463,6 +1477,7 @@ Routing path {} mm – double-click or Enter to finish	配線経路 {} mm – �
 Routing paths	配線経路
 Routing rules	配線ルール
 Row	行
+Row distance	列間隔
 Row drawing	行図形
 Row labels	行ラベル
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	リリース済みのページ上の行は変更できません。テキスト内の改行は \\n と記述します。
@@ -1745,6 +1760,7 @@ The project's own page templates as a file	プロジェクト独自のページ�
 The project's own title blocks	プロジェクト独自の表題欄
 The project's own title blocks and report schemes	プロジェクト独自の表題欄とレポートスキーム
 The properties of the selection in a window beside the page	ページの横のウィンドウに選択範囲のプロパティ
+The rail or mounting base; its accessories are the hooks, clamps and ballast	レールまたは架台。付属品はフック、クランプ、バラスト
 The recalculation keeps frozen routes as long as they are still possible	再計算では、可能な限り固定されたルートが維持されます
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	ファイルタブ付きのリボンがメニューに代わります。Ctrl+Shift+P で任意のコマンドを検索できます。
 The second fault is checked at the line-to-earth voltage	二重地絡は対地電圧でチェックされます
@@ -1767,6 +1783,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	このプロジェクトは {1} のサブプロジェクト {0} です ({2} に切り出し)。作業が完了したら保存して、メインプロジェクトに挿入してください。
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	ここで3本の接続線が交わる必要があります：1本はその方向に、2本は横方向に。それまでは接続は回路図の順序でつながれます。
 Three-phase short-circuit current at the supply point	電源供給点での三相短絡電流
+Tilt	傾斜角
 Title	タイトル
 Title blocks	表題欄
 Title blocks, plot frames and page templates	表題欄、図枠、ページテンプレート
@@ -2084,6 +2101,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	板上 {} mm + 余長 {} mm。残りは接続ポイントから板までの距離です。
 {} mm, now {} mm	{} mm、現在 {} mm
 {} mm, removed	{} mm、削除
+{} modules	{} 枚のモジュール
+{} modules, {} kWp	{} 枚のモジュール、{} kWp
 {} new texts in the dictionary	辞書に {} 件の新しいテキスト
 {} notes	{} 件の注記
 {} objects pasted	{} 個のオブジェクトを貼り付けました

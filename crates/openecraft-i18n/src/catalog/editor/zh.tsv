@@ -177,6 +177,8 @@ Back	返回
 Back to the project (Esc)	返回项目 (Esc)
 Back-up up to (kA)	后备保护至 (kA)
 Background	背景
+Ballast	压载
+Ballast per module	每块组件的压载
 Baseline {}	基线 {}
 Baseline {} created	已创建基线 {}
 Baseline {} {}	基线 {} {}
@@ -415,6 +417,7 @@ Define all used	定义所有已使用的
 Defined potentials	已定义的电位
 Del	Del
 Delete	删除
+Delete PV array	删除光伏阵列
 Delete cable (its wires are removed from it)	删除电缆（其导线将从中移除）
 Delete comment	删除批注
 Delete connection point	删除连接点
@@ -477,6 +480,7 @@ Digits	位数
 Dimension	尺寸标注
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	有向T型节点：在三条连接线相交处指定连接的两条导线从哪个设备出发以及目标的顺序
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	有向交叉：连接在此交叉的两条连接线；其直线的每一端先直通再横向接线
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	组件朝向的方向，从上方看逆时针（0：朝前）
 Discard changes	放弃更改
 Discard draft	放弃草稿
 Disconnection of distribution circuits	配电电路的切断
@@ -609,6 +613,7 @@ Export the messages as CSV	将消息导出为 CSV
 Exported {}	已导出 {}
 Export…	导出…
 Extras	附加功能
+Facing	朝向
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	风扇、过滤器、电缆密封接头、照明灯、把手：选择一个，然后单击其安装位置
 Fastening hardware in the bill of materials	物料清单中的紧固件
 Favorite	收藏
@@ -668,6 +673,7 @@ Freeze route	冻结布线
 Frequency	频率
 From / to	从 / 到
 From a template file…	来自模板文件…
+From row to row; 0: free of shade in winter	行与行之间；0：冬季无遮挡
 From the function definition	来自功能定义
 From the left end	距左端
 From – to	从 – 到
@@ -702,6 +708,7 @@ Go to page	转到页
 Graphic line	图形线
 Graphic rectangle	图形矩形
 Graphical form	图形表格
+Greatest distance of the roof hooks along a rail	沿导轨的屋面挂钩最大间距
 Grid	栅格
 Grid size	栅格大小
 Grid {} mm	栅格 {} mm
@@ -729,6 +736,7 @@ Highest phase unbalance	最大相不平衡度
 Highest short-circuit current	最大短路电流
 Hole to sheet edge	孔到板边距离
 Home	开始
+Hook distance	挂钩间距
 Horizontal	水平
 Horizontal (mm)	水平 (mm)
 Horizontal centres	水平中心
@@ -783,6 +791,7 @@ In every section counting starts again after the section number (2.3.1).	在每�
 In strip order; PE and other non-numeric terminals keep their designation	按端子排顺序；PE 和其他非数字端子保留其标识
 In the filtered rows	在已筛选的行中
 In the middle of the first wire	在第一条导线的中间
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	在前坡或右坡中间，平屋顶上向前倾斜；将其移到位置
 In the project	项目中
 In the structure of the current page	在当前页的结构中
 Include manually set numbers	包括手动设置的编号
@@ -934,18 +943,21 @@ Messages	消息
 Messages ({})	消息 ({})
 Messages of this session	本次会话的消息
 Middle	中间
+Middle of the PV array in the floor plan of the building	光伏阵列在建筑平面图中的中心
 Min. bend radius	最小弯曲半径
 Minimize the ribbon	最小化功能区
 Mirror	镜像
 Mirror (selection or symbol being placed)	镜像（所选内容或正在放置的符号）
 Mode	模式
 Model of a part (2D / 3D)	部件的模型 (2D / 3D)
+Module part; its size comes from the part	组件部件；尺寸来自部件
 Motors feed the short circuit	电机馈入短路
 Mounted on	安装在
 Mounting assistant: the panel items in mounting order with their place and part	安装助手：按安装顺序列出布局元件及其位置和部件
 Mounting clearance side by side; parts add theirs (Clearance left / right)	并排安装间距；部件可添加各自的间距 (Clearance left / right)
 Mounting height: {}	安装高度：{}
 Mounting plate: {} holes, {} cutouts	安装板：{} 个孔，{} 个开孔
+Mounting system	安装系统
 Move	移动
 Move down	下移
 Move left	左移
@@ -1174,6 +1186,8 @@ PLC channels	PLC 通道
 PLC hardware and bus topology	PLC 硬件和总线拓扑
 PLC overview	PLC 概览
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 或 JPEG 位图，例如徽标或照片
+PV array	光伏阵列
+PV arrays	光伏阵列
 Page graphics	页图形
 Page heading	页标题
 Page list, devices, parts, panel layout and settings	页列表、设备、部件、安装板布局和设置
@@ -1463,6 +1477,7 @@ Routing path {} mm – double-click or Enter to finish	布线路径 {} mm – �
 Routing paths	布线路径
 Routing rules	布线规则
 Row	行
+Row distance	行距
 Row drawing	行图形
 Row labels	行标签
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	已发布页上的行无法更改。文本中的换行写作 \\n。
@@ -1745,6 +1760,7 @@ The project's own page templates as a file	项目自己的页模板，作为文�
 The project's own title blocks	项目自己的标题栏
 The project's own title blocks and report schemes	项目自己的标题栏和报表方案
 The properties of the selection in a window beside the page	在页面旁的窗口中显示所选内容的属性
+The rail or mounting base; its accessories are the hooks, clamps and ballast	导轨或安装底座；其附件为挂钩、压块和压载
 The recalculation keeps frozen routes as long as they are still possible	只要仍然可行，重新计算会保留冻结的布线
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	带“文件”选项卡的功能区取代了菜单；Ctrl+Shift+P 可查找任意命令。
 The second fault is checked at the line-to-earth voltage	二次故障按相对地电压进行检查
@@ -1767,6 +1783,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	此项目是 {1} 的子项目 {0}（移出于 {2}）。完成工作后，请保存并将其插入主项目。
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	此处必须有三条连接线相交：一条沿其方向，两条横向。在此之前连接按原理图顺序串接。
 Three-phase short-circuit current at the supply point	电源进线点的三相短路电流
+Tilt	倾角
 Title	标题
 Title blocks	标题栏
 Title blocks, plot frames and page templates	标题栏、图框和页模板
@@ -2083,6 +2100,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	板上 {} mm + 余量 {} mm；其余为从连接点到安装板的路径。
 {} mm, now {} mm	{} mm，现在 {} mm
 {} mm, removed	{} mm，已移除
+{} modules	{} 块组件
+{} modules, {} kWp	{} 块组件，{} kWp
 {} new texts in the dictionary	词典中有 {} 个新文本
 {} notes	{} 个提示
 {} objects pasted	已粘贴 {} 个对象

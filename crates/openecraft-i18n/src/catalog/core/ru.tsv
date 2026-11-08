@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Основные данные поз
 ERP number	Номер ERP
 ETIM class	Класс ETIM
 Earth electrode	Заземлитель
+East-west on a flat roof	Восток-запад на плоской крыше
 Edit pages	Редактирование листов
 Edit project data	Редактирование данных проекта
 Editor	Редактор
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Компоновка шкафа в 3D (STEP)
 Panel layout in 3D (glTF)	Компоновка шкафа в 3D (glTF)
 Panel layout settings	Настройки компоновки шкафа
 Panel legend	Легенда шкафа
+Parallel to the roof on roof hooks	Параллельно крыше на кровельных крюках
 Part accessories	Принадлежности изделий
 Part data is maintained in the parts management	Данные изделий ведутся в управлении изделиями
 Part description	Описание изделия
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Оптический датчик на просве�
 Through-beam transmitter	Излучатель оптического датчика на просвет
 Thyristor	Тиристор
 Tightening torque	Момент затяжки
+Tilted on a flat roof	С наклоном на плоской крыше
 Time function	Временная функция
 Time range	Диапазон времени
 Time relay coil KT (GB)	Катушка реле времени KT (GB)
@@ -1819,7 +1822,6 @@ is none of	ни одно из
 is not	не равно
 is not empty	не пусто
 is one of	одно из
-landscape	альбомная
 leakage	утечка
 low	низкий
 measuring	измерение
@@ -1917,6 +1919,12 @@ yellow	жёлтый
 {} {}: bends closer than the bend radius ({} mm)	{} {}: изгибы меньше радиуса изгиба ({} мм)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: соединены на однолинейной схеме, но не на схеме
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} лет меньше 3 лет
+{}: PV array {} covers a roof window	{}: фотоэлектрическое поле {} закрывает мансардное окно
+{}: PV array {} has {} modules, its device {} has {}	{}: фотоэлектрическое поле {} имеет {} модулей, его устройство {} — {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: фотоэлектрическое поле {} смонтировано с наклоном на скатной крыше
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоэлектрическое поле {} крыши {} лежит поперёк конька, ребра или края крыши
+{}: PV array {} of roof {} lies outside the roof	{}: фотоэлектрическое поле {} крыши {} лежит вне крыши
+{}: PV arrays {} and {} lie over each other	{}: фотоэлектрические поля {} и {} перекрываются
 {}: \"{}\" is not one of {}	{}: «{}» не входит в {}
 {}: a TT system needs a residual current device	{}: для системы TT требуется устройство защитного отключения
 {}: accessory {} fits none of the device's parts	{}: принадлежность {} не подходит ни к одному изделию устройства
@@ -1990,6 +1998,7 @@ yellow	жёлтый
 {}: terminal {} uses {} levels, its part {} has {}	{}: клемма {} занимает ярусов: {}, а у её изделия {}: {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеммы {} находятся на высоте {} мм над полом, требуется не менее {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
+{}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
 {}: the station has no port {}	{}: у станции нет порта {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} мм) больше рабочей зоны {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: толщина {} – {} мм, {} обрабатывает не более {} мм

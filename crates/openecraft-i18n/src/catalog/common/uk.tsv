@@ -90,6 +90,7 @@ Descending	За спаданням
 Description	Опис
 Designation	Позначення
 Device	Пристрій
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Пристрій (фотоелектричний генератор), до якого належать модулі; його вироби тоді враховують їх у специфікації
 Device description	Опис пристрою
 Device tag	Позначення пристрою
 Device {}	Пристрій {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Мінімальна кількі�
 Missing parameter: {}	Відсутній параметр: {}
 Missing value for --{}	Відсутнє значення для --{}
 Model import failed: {}	Помилка імпорту моделі: {}
+Modules side by side in a row	Модулі поруч у ряду
 Mounted	Встановлено
 Mounting	Монтаж
 Mounting data	Дані монтажу
@@ -217,6 +219,7 @@ No machine {}	Немає верстата {}
 No page named {}	Немає сторінки з назвою {}
 No page template named {}	Немає шаблону сторінки з назвою {}
 No page {}	Немає сторінки {}
+No part {} in the project	Немає виробу {} у проєкті
 No parts found	Виробів не знайдено
 No plot frame named {}	Немає рамки аркуша з назвою {}
 No plug {}	Немає штекера {}
@@ -334,6 +337,7 @@ Role	Роль
 Rooms	Приміщення
 Route	Обхід
 Routing	Прокладання
+Rows of modules (east-west: rows of pairs)	Ряди модулів (схід-захід: ряди пар)
 Rule	Правило
 Rule set	Набір правил
 Safety function	Функція безпеки
@@ -391,6 +395,7 @@ Terminals	Клеми
 Text	Текст
 Text to find	Текст для пошуку
 The identifier must not be empty	Позначення не може бути порожнім
+The long side of the modules along the rows	Довга сторона модулів уздовж рядів
 The page is released	Сторінку затверджено
 There is a connection symbol at this point already	У цій точці вже є символ з'єднання
 Thermal	Тепловий режим
@@ -438,6 +443,7 @@ access denied	доступ заборонено
 approved	погоджено
 bonded	підключено
 file or folder not found	файл або папку не знайдено
+landscape	альбомна
 left	ліворуч
 mm	мм
 normal	звичайний

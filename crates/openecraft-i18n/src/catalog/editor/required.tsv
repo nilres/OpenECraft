@@ -221,6 +221,8 @@ Back to a rectangle of the room's width and depth	Zurück zu einem Rechteck aus 
 Back to the project (Esc)	Zurück zum Projekt (Esc)	Retour au projet (Échap)	Volver al proyecto (Esc)
 Back-up up to (kA)	Back-up bis (kA)	Accompagnement jusqu'à (kA)	Respaldo hasta (kA)
 Background	Hintergrund	Arrière-plan	Fondo
+Ballast	Ballast	Lest	Lastre
+Ballast per module	Ballast je Modul	Lest par module	Lastre por módulo
 Baseline {}	Baseline {}	Référence {}	Línea base {}
 Baseline {} created	Baseline {} angelegt	Référence {} créée	Línea base {} creada
 Baseline {} {}	Baseline {} {}	Référence {} {}	Línea base {} {}
@@ -492,6 +494,7 @@ Define all used	Alle verwendeten definieren	Définir tous les utilisés	Definir 
 Defined potentials	Definierte Potenziale	Potentiels définis	Potenciales definidos
 Del	Entf	Suppr	Supr
 Delete	Löschen	Supprimer	Eliminar
+Delete PV array	PV-Anlage löschen	Supprimer le champ photovoltaïque	Eliminar campo fotovoltaico
 Delete building; its rooms stay where they stand	Gebäude löschen; seine Räume bleiben, wo sie stehen	Supprimer le bâtiment ; ses pièces restent où elles sont	Eliminar el edificio; sus salas quedan donde están
 Delete cable (its wires are removed from it)	Kabel löschen (seine Leitungen werden entfernt)	Supprimer le câble (ses fils en sont retirés)	Eliminar cable (sus hilos se quitan de él)
 Delete comment	Kommentar löschen	Supprimer le commentaire	Eliminar comentario
@@ -567,6 +570,7 @@ Digits	Stellen	Chiffres	Dígitos
 Dimension	Bemaßung	Cotation	Cota
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Gerichtetes T-Stück: wo drei Verbindungslinien zusammentreffen, benennt es das Gerät, von dem die beiden Drähte der Verbindung ausgehen, und die Reihenfolge ihrer Ziele	Pièce en T dirigée : là où trois fils se rejoignent, elle nomme l'appareil d'où partent les deux fils de la liaison et l'ordre de leurs cibles	Pieza en T dirigida: donde se unen tres cables, indica el dispositivo del que parten los dos hilos de la conexión y el orden de sus destinos
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Gerichtete Kreuzung: verbindet die beiden sich dort kreuzenden Verbindungslinien; jedes Ende ihrer Linie wird zuerst geradeaus und dann quer verdrahtet	Croisement dirigé : relie les deux fils qui s'y croisent ; chaque extrémité de sa ligne est câblée tout droit d'abord, puis en travers	Cruce dirigido: conecta los dos cables que se cruzan allí; cada extremo de su línea se cablea primero en línea recta y después transversalmente
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Richtung, in die die Module zeigen, von oben gesehen gegen den Uhrzeigersinn (0: nach vorn)	Direction vers laquelle les modules sont orientés, dans le sens antihoraire vu de dessus (0 : vers l'avant)	Dirección hacia la que miran los módulos, en sentido antihorario visto desde arriba (0: hacia delante)
 Discard changes	Änderungen verwerfen	Abandonner les modifications	Descartar los cambios
 Discard draft	Entwurf verwerfen	Abandonner le brouillon	Descartar borrador
 Disconnection of distribution circuits	Abschaltung von Verteilerstromkreisen	Coupure des circuits de distribution	Desconexión de circuitos de distribución
@@ -713,6 +717,7 @@ Exporting {}	Exportiere {}	Exportation de {}	Exportando {}
 Export…	Exportieren…	Exporter…	Exportar…
 Extent of the floor plan; change it by its walls	Ausdehnung des Grundrisses; über seine Wände ändern	Étendue du plan ; à modifier par ses murs	Extensión del plano; se cambia mediante sus paredes
 Extras	Extras	Extras	Extras
+Facing	Ausrichtung	Orientation	Orientación
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Lüfter, Filter, Kabelverschraubungen, Leuchten, Griffe: eins wählen, dann an die Einbaustelle klicken	Ventilateurs, filtres, presse-étoupes, éclairages, poignées : en choisir un, puis cliquer à son emplacement	Ventiladores, filtros, prensaestopas, luces, manetas: elija uno y haga clic donde va
 Fastening hardware in the bill of materials	Befestigungsmaterial in der Stückliste	Visserie de fixation dans la nomenclature	Tornillería de fijación en la lista de materiales
 Favorite	Favorit	Favori	Favorito
@@ -780,6 +785,7 @@ Freeze route	Verlegung einfrieren	Figer le tracé	Congelar el recorrido
 Frequency	Frequenz	Fréquence	Frecuencia
 From / to	Von / nach	De / à	De / a
 From a template file…	Aus einer Vorlagendatei…	À partir d'un fichier modèle…	Desde un archivo de plantilla…
+From row to row; 0: free of shade in winter	Von Reihe zu Reihe; 0: im Winter verschattungsfrei	D'une rangée à l'autre ; 0 : sans ombrage en hiver	De fila a fila; 0: sin sombras en invierno
 From the function definition	Aus der Funktionsdefinition	De la définition de fonction	De la definición de función
 From the left end	Vom linken Ende	Depuis l'extrémité gauche	Desde el extremo izquierdo
 From the lowest level up to the next one; move it to its place in the building's floor plan	Von der untersten Ebene hinauf zur nächsten; an ihren Platz im Grundriss des Gebäudes verschieben	Du niveau le plus bas au suivant ; déplacez-le à sa place dans le plan du bâtiment	Desde el nivel más bajo hasta el siguiente; muévala a su lugar en la planta del edificio
@@ -817,6 +823,7 @@ Go to page	Zur Seite	Aller à la page	Ir a la página
 Graphic line	Grafische Linie	Ligne graphique	Línea gráfica
 Graphic rectangle	Grafisches Rechteck	Rectangle graphique	Rectángulo gráfico
 Graphical form	Grafisches Formular	Formulaire graphique	Formulario gráfico
+Greatest distance of the roof hooks along a rail	Größter Abstand der Dachhaken entlang einer Schiene	Plus grande distance des crochets de toit le long d'un rail	Mayor distancia de los ganchos de tejado a lo largo de un perfil
 Grid	Raster	Grille	Cuadrícula
 Grid off	Raster aus	Grille désactivée	Rejilla desactivada
 Grid size	Rastergröße	Taille de la grille	Tamaño de rejilla
@@ -851,6 +858,7 @@ Highest phase unbalance	Größte Phasenunsymmetrie	Déséquilibre des phases max
 Highest short-circuit current	Größter Kurzschlussstrom	Courant de court-circuit maximal	Corriente de cortocircuito máxima
 Hole to sheet edge	Bohrung zum Blechrand	Perçage au bord de la tôle	Taladro al borde de la chapa
 Home	Start	Accueil	Inicio
+Hook distance	Hakenabstand	Distance des crochets	Distancia de ganchos
 Horizontal	Horizontal	Horizontale	Horizontal
 Horizontal (mm)	Horizontal (mm)	Horizontal (mm)	Horizontal (mm)
 Horizontal 15 - 45 cm above the floor and below the ceiling, the middle zone of kitchens 100 - 130 cm (off), vertical 10 - 30 cm beside doors, windows and corners, the ceiling and the floor 20 - 50 cm from the walls	Waagerecht 15 - 45 cm über dem Fußboden und unter der Decke, die mittlere Zone für Küchen 100 - 130 cm (aus), senkrecht 10 - 30 cm neben Türen, Fenstern und Ecken, Decke und Fußboden 20 - 50 cm von den Wänden	Horizontales à 15 - 45 cm au-dessus du sol et sous le plafond, la zone médiane des cuisines à 100 - 130 cm (désactivée), verticales à 10 - 30 cm à côté des portes, fenêtres et angles, plafond et sol à 20 - 50 cm des murs	Horizontales a 15 - 45 cm sobre el suelo y bajo el techo, la zona media de cocinas a 100 - 130 cm (desactivada), verticales a 10 - 30 cm junto a puertas, ventanas y esquinas, techo y suelo a 20 - 50 cm de las paredes
@@ -907,6 +915,7 @@ In every section counting starts again after the section number (2.3.1).	In jede
 In strip order; PE and other non-numeric terminals keep their designation	In Leistenreihenfolge; PE und andere nicht numerische Klemmen behalten ihre Bezeichnung	Dans l'ordre du bornier ; PE et les autres bornes non numériques conservent leur désignation	En el orden de la regleta; PE y otros bornes no numéricos conservan su designación
 In the filtered rows	In den gefilterten Zeilen	Dans les lignes filtrées	En las filas filtradas
 In the middle of the first wire	In der Mitte des ersten Verbindungsstücks	Au milieu du premier fil	En el centro del primer cable
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	In der Mitte der vorderen oder rechten Dachfläche, auf einem Flachdach nach vorn aufgeständert; an seinen Platz verschieben	Au milieu du pan avant ou droit, sur un toit plat incliné vers l'avant ; déplacez-le à sa place	En el centro del faldón delantero o derecho, en una cubierta plana inclinado hacia delante; muévalo a su sitio
 In the project	Im Projekt	Dans le projet	En el proyecto
 In the structure of the current page	In der Struktur der aktuellen Seite	Dans la structure de la page actuelle	En la estructura de la página actual
 Include manually set numbers	Manuell gesetzte Nummern einbeziehen	Inclure les numéros définis manuellement	Incluir los números definidos manualmente
@@ -1069,6 +1078,7 @@ Messages	Meldungen	Messages	Mensajes
 Messages ({})	Meldungen ({})	Messages ({})	Mensajes ({})
 Messages of this session	Meldungen dieser Sitzung	Messages de cette session	Mensajes de esta sesión
 Middle	Mitte	Milieu	Centro
+Middle of the PV array in the floor plan of the building	Mitte der PV-Anlage im Grundriss des Gebäudes	Milieu du champ photovoltaïque dans le plan du bâtiment	Centro del campo fotovoltaico en la planta del edificio
 Middle of the front edge of the lowest step in the building's floor plan, and the direction of the first flight	Mitte der Vorderkante der untersten Stufe im Grundriss des Gebäudes und die Richtung des ersten Laufs	Milieu du nez de la marche la plus basse dans le plan du bâtiment, et la direction de la première volée	Centro del borde delantero del peldaño más bajo en la planta del edificio, y la dirección del primer tramo
 Min. bend radius	Min. Biegeradius	Rayon de courbure min.	Radio de curvatura mín.
 Minimize the ribbon	Menüband minimieren	Réduire le ruban	Minimizar la cinta de opciones
@@ -1076,12 +1086,14 @@ Mirror	Spiegeln	Miroir	Reflejar
 Mirror (selection or symbol being placed)	Spiegeln (Auswahl oder zu platzierendes Symbol)	Miroir (sélection ou symbole en cours de placement)	Reflejar (selección o símbolo que se coloca)
 Mode	Modus	Mode	Modo
 Model of a part (2D / 3D)	Modell eines Artikels (2D / 3D)	Modèle d'un article (2D / 3D)	Modelo de un artículo (2D / 3D)
+Module part; its size comes from the part	Modulartikel; seine Größe kommt vom Artikel	Article du module ; sa taille vient de l'article	Artículo del módulo; su tamaño viene del artículo
 Motors feed the short circuit	Motoren speisen den Kurzschluss	Les moteurs alimentent le court-circuit	Los motores alimentan el cortocircuito
 Mounted on	Montiert auf	Monté sur	Montado en
 Mounting assistant: the panel items in mounting order with their place and part	Montageassistent: die Teile des Schaltschranks in Montagereihenfolge mit Platz und Artikel	Assistant de montage : les éléments de l'armoire dans l'ordre de montage avec leur position et leur article	Asistente de montaje: los elementos del armario en orden de montaje con su posición y artículo
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Montageabstand nebeneinander; Artikel ergänzen ihren eigenen (Clearance left / right)	Distance de montage côte à côte ; les articles ajoutent la leur (Clearance left / right)	Distancia de montaje lado a lado; los artículos añaden la suya (Clearance left / right)
 Mounting height: {}	Montagehöhe: {}	Hauteur de pose : {}	Altura de montaje: {}
 Mounting plate: {} holes, {} cutouts	Montageplatte: {} Bohrungen, {} Ausschnitte	Plaque de montage : {} perçages, {} découpes	Placa de montaje: {} taladros, {} recortes
+Mounting system	Montagesystem	Système de montage	Sistema de montaje
 Move	Verschieben	Déplacer	Mover
 Move down	Nach unten	Descendre	Bajar
 Move left	Nach links	Déplacer à gauche	Mover a la izquierda
@@ -1335,6 +1347,8 @@ PLC channels	SPS-Kanäle	Canaux API	Canales PLC
 PLC hardware and bus topology	SPS-Hardware und Bustopologie	Matériel automate et topologie de bus	Hardware PLC y topología de bus
 PLC overview	SPS-Übersicht	Vue d'ensemble API	Resumen PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- oder JPEG-Bitmap, z. B. ein Logo oder ein Foto	Image PNG ou JPEG, p. ex. un logo ou une photo	Mapa de bits PNG o JPEG, p. ej. un logotipo o una foto
+PV array	PV-Anlage	Champ photovoltaïque	Campo fotovoltaico
+PV arrays	PV-Anlagen	Champs photovoltaïques	Campos fotovoltaicos
 Page graphics	Seitengrafik	Graphique de page	Gráficos de página
 Page heading	Seitenüberschrift	Titre de la page	Encabezado de la página
 Page list, devices, parts, panel layout and settings	Seitenliste, Geräte, Artikel, Schaltschrankaufbau und Einstellungen	Liste des pages, appareils, articles, implantation d'armoire et paramètres	Lista de páginas, dispositivos, artículos, montaje del armario y ajustes
@@ -1649,6 +1663,7 @@ Routing path {} mm – double-click or Enter to finish	Verlegeweg {} mm – Dopp
 Routing paths	Verlegewege	Chemins de routage	Rutas de tendido
 Routing rules	Verlegeregeln	Règles de routage	Reglas de tendido
 Row	Zeile	Ligne	Fila
+Row distance	Reihenabstand	Distance entre rangées	Distancia entre filas
 Row drawing	Zeilenzeichnung	Dessin de ligne	Dibujo de fila
 Row labels	Zeilenbeschriftung	Repères de lignes	Rótulos de filas
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Zeilen auf freigegebenen Seiten können nicht geändert werden. Ein Zeilenumbruch in einem Text wird als \\n geschrieben.	Les lignes sur des pages validées ne peuvent pas être modifiées. Un saut de ligne dans un texte s'écrit \\n.	Las filas en páginas liberadas no se pueden cambiar. Un salto de línea en un texto se escribe como \\n.
@@ -1960,6 +1975,7 @@ The project's own page templates as a file	Die eigenen Seitenvorlagen des Projek
 The project's own title blocks	Die eigenen Schriftfelder des Projekts	Les cartouches propres au projet	Los cajetines propios del proyecto
 The project's own title blocks and report schemes	Die eigenen Schriftfelder und Auswertungsschemata des Projekts	Les cartouches et schémas de rapport propres au projet	Los cajetines y esquemas de informe propios del proyecto
 The properties of the selection in a window beside the page	Die Eigenschaften der Auswahl in einem Fenster neben der Seite	Les propriétés de la sélection dans une fenêtre à côté de la page	Las propiedades de la selección en una ventana junto a la página
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Die Schiene oder Unterkonstruktion; ihr Zubehör sind Haken, Klemmen und Ballast	Le rail ou le support ; ses accessoires sont les crochets, les brides et le lest	El perfil o soporte; sus accesorios son los ganchos, las grapas y el lastre
 The recalculation keeps frozen routes as long as they are still possible	Die Neuberechnung behält eingefrorene Verlegungen bei, solange sie möglich sind	Le recalcul conserve les tracés figés tant qu'ils restent possibles	El recálculo mantiene los recorridos congelados mientras sigan siendo posibles
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Das Menüband mit der Registerkarte Datei ersetzt die Menüs; Strg+Umschalt+P findet jeden Befehl.	Le ruban avec l'onglet Fichier remplace les menus ; Ctrl+Maj+P trouve n'importe quelle commande.	La cinta de opciones con la pestaña Archivo sustituye a los menús; Ctrl+Mayús+P encuentra cualquier comando.
 The ribbon: File opens, saves, imports, exports and prints; the tabs hold the commands by topic. Alt shows the key tips, Ctrl+Shift+P finds any command, F6 moves between the panes, F1 opens the help of the pane in use.	Das Menüband: Datei öffnet, speichert, importiert, exportiert und druckt; die Registerkarten enthalten die Befehle nach Thema. Alt zeigt die Tastentipps, Strg+Umschalt+P findet jeden Befehl, F6 wechselt zwischen den Bereichen, F1 öffnet die Hilfe des verwendeten Bereichs.	Le ruban : Fichier ouvre, enregistre, importe, exporte et imprime ; les onglets regroupent les commandes par thème. Alt affiche les infobulles de touches, Ctrl+Maj+P trouve n'importe quelle commande, F6 passe d'un volet à l'autre, F1 ouvre l'aide du volet utilisé.	La cinta: Archivo abre, guarda, importa, exporta e imprime; las pestañas agrupan los comandos por tema. Alt muestra las sugerencias de teclas, Ctrl+Mayús+P encuentra cualquier comando, F6 cambia entre paneles, F1 abre la ayuda del panel en uso.
@@ -1989,6 +2005,7 @@ This project is subproject {} of {} (taken out {}). Save it and insert it into t
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Hier müssen drei Verbindungslinien zusammentreffen: eine in seiner Richtung und zwei quer dazu. Bis dahin wird die Verbindung in der Reihenfolge des Schaltplans verkettet.	Trois fils doivent se rejoindre ici : un dans sa direction et deux en travers. Jusque-là, la liaison est chaînée dans l'ordre du schéma.	Aquí deben unirse tres cables: uno en su dirección y dos transversales. Hasta entonces la conexión se encadena en el orden del esquema.
 Three-phase short-circuit current at the supply point	Dreipoliger Kurzschlussstrom am Einspeisepunkt	Courant de court-circuit triphasé au point d'alimentation	Corriente de cortocircuito trifásica en el punto de alimentación
 Through all levels; move it to its place in the building's floor plan	Durch alle Ebenen; an seinen Platz im Gebäudegrundriss schieben	À travers tous les niveaux ; déplacez-la à sa position dans le plan du bâtiment	A través de todos los niveles; muévalo a su posición en la planta del edificio
+Tilt	Neigung	Inclinaison	Inclinación
 Title	Titel	Titre	Título
 Title bar	Titelleiste	Barre de titre	Barra de título
 Title blocks	Schriftfelder	Cartouches	Cajetines
@@ -2341,6 +2358,8 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm auf der Platte + {} mm Reserve; der Rest ist der Weg von den Anschlüssen zur Platte.	{} mm sur la plaque + {} mm de réserve ; le reste est le chemin des points de connexion à la plaque.	{} mm en la placa + {} mm de reserva; el resto es el recorrido desde los puntos de conexión hasta la placa.
 {} mm, now {} mm	{} mm, jetzt {} mm	{} mm, maintenant {} mm	{} mm, ahora {} mm
 {} mm, removed	{} mm, entfernt	{} mm, supprimé	{} mm, eliminado
+{} modules	{} Module	{} modules	{} módulos
+{} modules, {} kWp	{} Module, {} kWp	{} modules, {} kWc	{} módulos, {} kWp
 {} mounted in the rack	{} im Rack montiert	{} monté dans la baie	{} montado en el rack
 {} new texts in the dictionary	{} neue Texte im Wörterbuch	{} nouveaux textes dans le dictionnaire	{} textos nuevos en el diccionario
 {} nodes, {} segments, {} m bundle	{} Knoten, {} Segmente, {} m Bündel	{} nœuds, {} segments, {} m de faisceau	{} nodos, {} segmentos, {} m de mazo

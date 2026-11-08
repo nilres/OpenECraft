@@ -178,6 +178,8 @@ Back	Zpět
 Back to the project (Esc)	Zpět k projektu (Esc)
 Back-up up to (kA)	Záložní do (kA)
 Background	Pozadí
+Ballast	Zátěž
+Ballast per module	Zátěž na modul
 Baseline {}	Základní verze {}
 Baseline {} created	Základní verze {} vytvořena
 Baseline {} {}	Základní verze {} {}
@@ -419,6 +421,7 @@ Define all used	Definovat všechny použité
 Defined potentials	Definované potenciály
 Del	Del
 Delete	Odstranit
+Delete PV array	Smazat FV pole
 Delete cable (its wires are removed from it)	Odstranit kabel (jeho vodiče z něj budou odebrány)
 Delete comment	Odstranit komentář
 Delete connection point	Odstranit přípojný bod
@@ -483,6 +486,7 @@ Digits	Číslice
 Dimension	Kóta
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Směrovaný T-kus: kde se stýkají tři vodiče, určuje přístroj, od něhož vycházejí dva vodiče spojení, a pořadí jejich cílů
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Směrované křížení: spojuje dva vodiče, které se tam kříží; každý konec jeho čáry je zapojen nejprve rovně a pak napříč
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Směr, kterým moduly míří, proti směru hodinových ručiček při pohledu shora (0: dopředu)
 Discard changes	Zahodit změny
 Discard draft	Zahodit koncept
 Disconnection of distribution circuits	Odpojení distribučních obvodů
@@ -616,6 +620,7 @@ Exported {}	Exportováno: {}
 Exporting {}	Export {}
 Export…	Exportovat…
 Extras	Doplňky
+Facing	Orientace
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilátory, filtry, kabelové vývodky, svítidla, rukojeti: jedno vyberte a pak klikněte na místo montáže
 Fastening hardware in the bill of materials	Spojovací materiál v kusovníku
 Favorite	Oblíbené
@@ -676,6 +681,7 @@ Freeze route	Zmrazit trasu
 Frequency	Kmitočet
 From / to	Od / do
 From a template file…	Ze souboru šablony…
+From row to row; 0: free of shade in winter	Od řady k řadě; 0: bez zastínění v zimě
 From the function definition	Z definice funkce
 From the left end	Od levého konce
 From – to	Od – do
@@ -710,6 +716,7 @@ Go to page	Přejít na stránku
 Graphic line	Grafická čára
 Graphic rectangle	Grafický obdélník
 Graphical form	Grafický formulář
+Greatest distance of the roof hooks along a rail	Největší vzdálenost střešních háků podél lišty
 Grid	Rastr
 Grid size	Velikost mřížky
 Grid {} mm	Rastr {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Nejvyšší nesymetrie fází
 Highest short-circuit current	Nejvyšší zkratový proud
 Hole to sheet edge	Otvor od okraje plechu
 Home	Domů
+Hook distance	Vzdálenost háků
 Horizontal	Vodorovná
 Horizontal (mm)	Vodorovně (mm)
 Horizontal centres	Vodorovné středy
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	V každ
 In strip order; PE and other non-numeric terminals keep their designation	V pořadí na svorkovnici; PE a ostatní nečíselné svorky si ponechají své označení
 In the filtered rows	Ve filtrovaných řádcích
 In the middle of the first wire	Uprostřed prvního vodiče
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Uprostřed přední nebo pravé střešní plochy, na ploché střeše skloněné dopředu; přesuňte jej na místo
 In the project	V projektu
 In the structure of the current page	Ve struktuře aktuální stránky
 Include manually set numbers	Zahrnout ručně zadaná čísla
@@ -946,18 +955,21 @@ Messages	Zprávy
 Messages ({})	Zprávy ({})
 Messages of this session	Zprávy této relace
 Middle	Uprostřed
+Middle of the PV array in the floor plan of the building	Střed FV pole v půdorysu budovy
 Min. bend radius	Min. poloměr ohybu
 Minimize the ribbon	Minimalizovat pás karet
 Mirror	Zrcadlit
 Mirror (selection or symbol being placed)	Zrcadlit (výběr nebo umísťovaný symbol)
 Mode	Režim
 Model of a part (2D / 3D)	Model artiklu (2D / 3D)
+Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
 Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
 Mounting assistant: the panel items in mounting order with their place and part	Asistent montáže: prvky rozváděče v pořadí montáže s místem a artiklem
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Montážní odstup vedle sebe; artikly přidávají svůj vlastní (Clearance left / right)
 Mounting height: {}	Montážní výška: {}
 Mounting plate: {} holes, {} cutouts	Montážní deska: {} otvorů, {} výřezů
+Mounting system	Montážní systém
 Move	Posunout
 Move down	Posunout dolů
 Move left	Posunout doleva
@@ -1188,6 +1200,8 @@ PLC channels	Kanály PLC
 PLC hardware and bus topology	Hardware PLC a topologie sběrnice
 PLC overview	Přehled PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmapa PNG nebo JPEG, např. logo nebo fotografie
+PV array	FV pole
+PV arrays	FV pole
 Page graphics	Grafika stránky
 Page heading	Nadpis stránky
 Page list, devices, parts, panel layout and settings	Seznam stránek, přístroje, artikly, rozvržení rozváděče a nastavení
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Trasa vedení {} mm – p
 Routing paths	Trasy vedení
 Routing rules	Pravidla vedení
 Row	Řádek
+Row distance	Vzdálenost řad
 Row drawing	Kresba řádku
 Row labels	Popisky řádků
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Řádky na uvolněných stránkách nelze měnit. Zalomení řádku v textu se zapisuje jako \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Vlastní šablony stránek projektu j
 The project's own title blocks	Vlastní rohová razítka projektu
 The project's own title blocks and report schemes	Vlastní rohová razítka a schémata výkazů projektu
 The properties of the selection in a window beside the page	Vlastnosti výběru v okně vedle stránky
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Lišta nebo montážní podstavec; jeho příslušenstvím jsou háky, svorky a zátěž
 The recalculation keeps frozen routes as long as they are still possible	Přepočet zachová zmrazené trasy, dokud jsou možné
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Pás karet s kartou Soubor nahrazuje nabídky; Ctrl+Shift+P najde libovolný příkaz.
 The second fault is checked at the line-to-earth voltage	Druhá porucha se kontroluje při napětí fáze proti zemi
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tento projekt je podprojekt {} projektu {} (vyčleněn {}). Uložte jej a po dokončení práce jej vložte do hlavního projektu.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Zde se musí stýkat tři vodiče: jeden v jeho směru a dva napříč. Do té doby je spojení řetězeno v pořadí ve schématu.
 Three-phase short-circuit current at the supply point	Třífázový zkratový proud v místě přívodu
+Tilt	Sklon
 Title	Název
 Title blocks	Rohová razítka
 Title blocks, plot frames and page templates	Rohová razítka, rámečky výkresů a šablony stránek
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm na desce + {} mm rezerva; zbytek je cesta od přípojných bodů k desce.
 {} mm, now {} mm	{} mm, nyní {} mm
 {} mm, removed	{} mm, odebráno
+{} modules	{} modulů
+{} modules, {} kWp	{} modulů, {} kWp
 {} new texts in the dictionary	Nové texty ve slovníku: {}
 {} notes	Poznámky: {}
 {} objects pasted	Vloženo objektů: {}

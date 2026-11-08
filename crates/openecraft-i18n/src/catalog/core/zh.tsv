@@ -425,6 +425,7 @@ ERP item master and bill of materials (CSV)	ERP 物料主数据和物料清单 (
 ERP number	ERP 编号
 ETIM class	ETIM 类别
 Earth electrode	接地极
+East-west on a flat roof	平屋顶上东西向
 Edit pages	编辑页
 Edit project data	编辑项目数据
 Editor	编辑者
@@ -1077,6 +1078,7 @@ Panel layout in 3D (STEP)	3D 安装板布局 (STEP)
 Panel layout in 3D (glTF)	3D 安装板布局 (glTF)
 Panel layout settings	安装板布局设置
 Panel legend	机柜图例
+Parallel to the roof on roof hooks	平行于屋面，安装在屋面挂钩上
 Part accessories	部件附件
 Part data is maintained in the parts management	部件数据在部件管理中维护
 Part description	部件描述
@@ -1599,6 +1601,7 @@ Through-beam sensor, 4-wire	对射式传感器，4 线制
 Through-beam transmitter	对射式发射器
 Thyristor	晶闸管
 Tightening torque	拧紧力矩
+Tilted on a flat roof	平屋顶上倾斜安装
 Time function	时间功能
 Time range	时间范围
 Time relay coil KT (GB)	时间继电器线圈 KT (GB)
@@ -1805,7 +1808,6 @@ is none of	不属于
 is not	不等于
 is not empty	不为空
 is one of	属于
-landscape	横向
 leakage	泄漏
 low	低
 measuring	测量
@@ -1903,6 +1905,12 @@ yellow	黄色
 {} {}: bends closer than the bend radius ({} mm)	{} {}：弯曲小于弯曲半径（{} mm）
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}：在单线图中已连接，但在原理图中未连接
 {}: MTTFd {} years is below 3 years	{}：MTTFd {} 年低于 3 年
+{}: PV array {} covers a roof window	{}：光伏阵列 {} 遮挡了一扇屋顶窗
+{}: PV array {} has {} modules, its device {} has {}	{}：光伏阵列 {} 有 {} 块组件，其设备 {} 有 {} 块
+{}: PV array {} is mounted tilted on a pitched roof	{}：光伏阵列 {} 在坡屋顶上倾斜安装
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}：屋顶 {2} 的光伏阵列 {1} 跨过屋脊、斜脊或屋顶边缘
+{}: PV array {} of roof {} lies outside the roof	{0}：屋顶 {2} 的光伏阵列 {1} 位于屋顶之外
+{}: PV arrays {} and {} lie over each other	{}：光伏阵列 {} 与 {} 相互重叠
 {}: \"{}\" is not one of {}	{}：\"{}\" 不是 {} 之一
 {}: a TT system needs a residual current device	{}：TT 系统需要剩余电流保护装置
 {}: accessory {} fits none of the device's parts	{}：附件 {} 不适配设备的任何部件
@@ -1975,6 +1983,7 @@ yellow	黄色
 {}: terminal {} is on level {}, but no terminal block is before it	{}：端子 {} 位于第 {} 层，但其前面没有端子块
 {}: terminal {} uses {} levels, its part {} has {}	{}：端子 {} 使用 {} 层，其部件 {} 有 {} 层
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}：端子 {} 离地 {} mm，至少需要 {} mm
+{}: the device {} of PV array {} does not exist	{0}：光伏阵列 {2} 的设备 {1} 不存在
 {}: the station has no port {}	{}：该站没有端口 {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}：{} ({} x {} mm) 大于 {} 的加工区域
 {}: the {} is {} mm thick, {} takes at most {} mm	{}：{} 厚 {} mm，{} 最大允许 {} mm

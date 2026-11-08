@@ -1,12 +1,13 @@
 //! Buildings pane: the buildings of the plant with their levels, the rooms on them,
-//! their shafts, stairs and roofs (with roof windows), the links between buildings and
-//! a site plan of all of them ([`openecraft_core::panel::buildings`],
-//! [`openecraft_core::panel::stairs`], [`openecraft_core::panel::roofs`]).
+//! their shafts, stairs and roofs (with roof windows and PV arrays), the links between
+//! buildings and a site plan of all of them ([`openecraft_core::panel::buildings`],
+//! [`openecraft_core::panel::stairs`], [`openecraft_core::panel::roofs`],
+//! [`openecraft_core::panel::solar`]).
 
 use super::App;
 use egui::{pos2, vec2, Color32, Pos2, RichText, Sense, Stroke};
 use openecraft_core::model::Project;
-use openecraft_core::panel::{self, buildings as bld, roofs, stairs, LinkKind, Opening, RoofShape, StairKind, Turn};
+use openecraft_core::panel::{self, buildings as bld, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 
@@ -31,6 +32,107 @@ type Outline = Vec<[f32; 2]>;
 
 /// Glass of roof windows in the site plan.
 const GLASS: Color32 = Color32::from_rgba_premultiplied(60, 100, 140, 120);
+/// PV modules in the site plan.
+const PV_MODULE: Color32 = Color32::from_rgba_premultiplied(20, 30, 70, 200);
+
+/// A part to choose: its number, description and size (width, height, depth).
+struct Choice {
+    number: String,
+    description: String,
+    subgroup: String,
+    size: [f32; 3],
+}
+
+/// The parts of the project and of the built-in catalog of one of `subgroups`.
+fn choices(prj: &Project, subgroups: &[&str]) -> Vec<Choice> {
+    let mut out: Vec<Choice> = Vec::new();
+    for p in prj.parts.iter().chain(openecraft_core::parts::catalog()) {
+        if subgroups.contains(&p.subgroup.as_str()) && !out.iter().any(|c| c.number == p.number) {
+            out.push(Choice { number: p.number.clone(), description: p.description.clone(), subgroup: p.subgroup.clone(), size: [p.width, p.height, p.depth] });
+        }
+    }
+    out
+}
+
+/// The PV arrays of a roof: place, modules, mounting and mounting system of each.
+fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, modules: &[Choice], systems: &[Choice], powers: &[String]) {
+    let mut gone = None;
+    for (a_k, a) in r.solar.iter_mut().enumerate() {
+        let id = (k, a_k);
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(14.0);
+            ui.add(egui::TextEdit::singleline(&mut a.name).desired_width(40.0));
+            egui::ComboBox::from_id_salt(("bldpvmount", id)).selected_text(tr(a.mounting.title())).show_ui(ui, |ui| {
+                for m in PvMounting::ALL {
+                    ui.selectable_value(&mut a.mounting, m, tr(m.title()));
+                }
+            });
+            egui::ComboBox::from_id_salt(("bldpvmodule", id)).selected_text(a.module.as_str()).width(170.0).show_ui(ui, |ui| {
+                for c in modules {
+                    if ui.selectable_label(a.module == c.number, c.number.as_str()).on_hover_text(c.description.as_str()).clicked() {
+                        a.module = c.number.clone();
+                        if c.size[0] > 0.0 && c.size[1] > 0.0 {
+                            (a.module_width, a.module_length) = (c.size[0].min(c.size[1]), c.size[0].max(c.size[1]));
+                        }
+                        if c.size[2] > 0.0 {
+                            a.module_height = c.size[2];
+                        }
+                    }
+                }
+            })
+            .response
+            .on_hover_text(tr("Module part; its size comes from the part"));
+            ui.label(powers.get(a_k).map_or("", String::as_str));
+            if icons::button(ui, Icon::Delete, tr("Delete PV array")).clicked() {
+                gone = Some(a_k);
+            }
+        });
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(28.0);
+            ui.add(egui::DragValue::new(&mut a.x).speed(10.0).prefix("x ").suffix(" mm"));
+            ui.add(egui::DragValue::new(&mut a.z).speed(10.0).prefix("z ").suffix(" mm")).on_hover_text(tr("Middle of the PV array in the floor plan of the building"));
+            ui.add(egui::DragValue::new(&mut a.columns).range(1..=200).suffix(" ×")).on_hover_text(tr("Modules side by side in a row"));
+            ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of modules (east-west: rows of pairs)"));
+            ui.checkbox(&mut a.landscape, tr("landscape")).on_hover_text(tr("The long side of the modules along the rows"));
+        });
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(28.0);
+            if a.mounting.is_tilted() {
+                ui.label(tr("Tilt"));
+                ui.add(egui::DragValue::new(&mut a.tilt).speed(0.5).range(0.0..=60.0).suffix(" °"));
+                ui.label(tr("Facing"));
+                ui.add(egui::DragValue::new(&mut a.azimuth).speed(1.0).suffix(" °")).on_hover_text(tr("Direction the modules face, counter-clockwise seen from above (0: towards the front)"));
+                ui.label(tr("Row distance"));
+                ui.add(egui::DragValue::new(&mut a.row_gap).speed(10.0).range(0.0..=20_000.0).suffix(" mm")).on_hover_text(tr("From row to row; 0: free of shade in winter"));
+                ui.label(tr("Ballast"));
+                ui.add(egui::DragValue::new(&mut a.ballast).speed(0.5).range(0.0..=500.0).suffix(" kg")).on_hover_text(tr("Ballast per module"));
+            } else {
+                ui.label(tr("Hook distance"));
+                ui.add(egui::DragValue::new(&mut a.span).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the roof hooks along a rail"));
+            }
+        });
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(28.0);
+            ui.label(tr("Mounting system"));
+            let main = if a.mounting.is_tilted() { solar::Role::Base } else { solar::Role::Rail };
+            let shown = if a.system.is_empty() { tr("Generic").to_string() } else { a.system.clone() };
+            egui::ComboBox::from_id_salt(("bldpvsystem", id)).selected_text(shown).width(150.0).show_ui(ui, |ui| {
+                ui.selectable_value(&mut a.system, String::new(), tr("Generic"));
+                for c in systems.iter().filter(|c| c.subgroup == main.subgroup()) {
+                    ui.selectable_value(&mut a.system, c.number.clone(), c.number.as_str()).on_hover_text(c.description.as_str());
+                }
+            })
+            .response
+            .on_hover_text(tr("The rail or mounting base; its accessories are the hooks, clamps and ballast"));
+            ui.label(tr("Device"));
+            ui.add(egui::TextEdit::singleline(&mut a.device).desired_width(90.0)).on_hover_text(tr("Device (PV generator) the modules belong to; its parts then count them in the bill of materials"));
+        });
+        *a = solar::checked_array(a.clone());
+    }
+    if let Some(a_k) = gone {
+        r.solar.remove(a_k);
+    }
+}
 
 /// A free name for a new building: `+B1`, `+B2`, …
 fn free_building_name(prj: &Project) -> String {
@@ -420,8 +522,24 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
             Some(tr_fmt!("{}: {} – {} m", e.name, format!("{:.2}", lo / 1000.0), format!("{:.2}", hi / 1000.0)))
         })
         .collect();
+    let modules = choices(prj, &["PV module"]);
+    let systems = choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]);
+    let powers: Vec<Vec<String>> = prj.layout.buildings[bi]
+        .roofs
+        .iter()
+        .map(|r| {
+            r.solar
+                .iter()
+                .map(|a| match solar::peak_power(prj, a) {
+                    Some(kw) => tr_fmt!("{} modules, {} kWp", solar::module_count(a), format!("{kw:.2}")),
+                    None => tr_fmt!("{} modules", solar::module_count(a)),
+                })
+                .collect()
+        })
+        .collect();
     let mut remove = None;
     let mut add_window = None;
+    let mut add_pv = None;
     let b = &mut prj.layout.buildings[bi];
     for (k, r) in b.roofs.iter_mut().enumerate() {
         ui.group(|ui| {
@@ -487,6 +605,13 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
             if let Some(w_k) = gone {
                 r.windows.remove(w_k);
             }
+            ui.horizontal_wrapped(|ui| {
+                ui.label(RichText::new(tr("PV arrays")).weak());
+                if icons::text_button(ui, Icon::Plus, tr("PV array")).on_hover_text(tr("In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place")).clicked() {
+                    add_pv = Some(k);
+                }
+            });
+            pv_arrays(ui, r, k, &modules, &systems, &powers[k]);
         });
         *r = roofs::checked_roof(r.clone());
     }
@@ -495,6 +620,9 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
     }
     if let Some(k) = add_window {
         let _ = roofs::add_window(prj, bi, k, None);
+    }
+    if let Some(k) = add_pv {
+        let _ = solar::add_array(prj, bi, k, None);
     }
     if !sloped.is_empty() {
         ui.label(RichText::new(tr("Rooms under sloped ceilings (lowest – highest ceiling)")).weak());
@@ -616,6 +744,11 @@ fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
         .iter()
         .flat_map(|b| b.roofs.iter().flat_map(move |r| r.windows.iter().filter_map(move |w| roofs::window_corners(r, w)).map(move |(c, _)| c.iter().map(|v| to_plant(b, [v[0], v[2]])).collect())))
         .collect();
+    let pv_modules: Vec<Vec<[f32; 2]>> = layout
+        .buildings
+        .iter()
+        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.solar.iter().flat_map(move |a| solar::module_outlines(r, a)).map(move |m| m.iter().map(|&q| to_plant(b, q)).collect())))
+        .collect();
     let stair_lines: Vec<(Vec<Outline>, Outline)> = b
         .stairs
         .iter()
@@ -681,6 +814,10 @@ fn site_plan(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
     for w in &roof_windows {
         let pts: Vec<Pos2> = w.iter().map(|&q| at(q)).collect();
         painter.add(egui::Shape::convex_polygon(pts, GLASS, Stroke::new(1.0, line)));
+    }
+    for m in &pv_modules {
+        let pts: Vec<Pos2> = m.iter().map(|&q| at(q)).collect();
+        painter.add(egui::Shape::convex_polygon(pts, PV_MODULE, Stroke::new(0.5, weak)));
     }
     // The stairs reaching the level shown: their steps and the walking line with its arrow.
     for (pieces, walk) in &stair_lines {

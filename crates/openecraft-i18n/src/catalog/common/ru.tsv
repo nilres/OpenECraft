@@ -90,6 +90,7 @@ Descending	По убыванию
 Description	Описание
 Designation	Обозначение
 Device	Устройство
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Устройство (фотоэлектрический генератор), к которому относятся модули; его изделия тогда учитывают их в спецификации
 Device description	Описание устройства
 Device tag	Обозначение устройства
 Device {}	Устройство {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Минимальное число 
 Missing parameter: {}	Отсутствует параметр: {}
 Missing value for --{}	Отсутствует значение для --{}
 Model import failed: {}	Ошибка импорта модели: {}
+Modules side by side in a row	Модули рядом в ряду
 Mounted	Смонтировано
 Mounting	Монтаж
 Mounting data	Монтажные данные
@@ -217,6 +219,7 @@ No machine {}	Нет станка {}
 No page named {}	Нет листа с именем {}
 No page template named {}	Нет шаблона листа с именем {}
 No page {}	Нет листа {}
+No part {} in the project	Нет изделия {} в проекте
 No parts found	Изделия не найдены
 No plot frame named {}	Нет рамки листа с именем {}
 No plug {}	Нет штекера {}
@@ -334,6 +337,7 @@ Role	Роль
 Rooms	Помещения
 Route	Обход
 Routing	Прокладка
+Rows of modules (east-west: rows of pairs)	Ряды модулей (восток-запад: ряды пар)
 Rule	Правило
 Rule set	Набор правил
 Safety function	Функция безопасности
@@ -391,6 +395,7 @@ Terminals	Клеммы
 Text	Текст
 Text to find	Искомый текст
 The identifier must not be empty	Идентификатор не может быть пустым
+The long side of the modules along the rows	Длинная сторона модулей вдоль рядов
 The page is released	Лист выпущен
 There is a connection symbol at this point already	В этой точке уже есть символ соединения
 Thermal	Тепловой режим
@@ -438,6 +443,7 @@ access denied	доступ запрещён
 approved	утверждено
 bonded	подключён
 file or folder not found	файл или папка не найдены
+landscape	альбомная
 left	влево
 mm	мм
 normal	обычный

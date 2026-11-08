@@ -90,6 +90,7 @@ Descending	Sestupně
 Description	Popis
 Designation	Označení
 Device	Přístroj
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Zařízení (FV generátor), ke kterému moduly patří; jeho díly je pak počítají v kusovníku
 Device description	Popis zařízení
 Device tag	Označení přístroje
 Device {}	Přístroj {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Minimální počet číslic číta
 Missing parameter: {}	Chybí parametr: {}
 Missing value for --{}	Chybí hodnota pro --{}
 Model import failed: {}	Import modelu se nezdařil: {}
+Modules side by side in a row	Moduly vedle sebe v řadě
 Mounted	Namontováno
 Mounting	Montáž
 Mounting data	Montážní data
@@ -217,6 +219,7 @@ No machine {}	Žádný stroj {}
 No page named {}	Žádná stránka s názvem {}
 No page template named {}	Žádná šablona stránky s názvem {}
 No page {}	Žádná stránka {}
+No part {} in the project	Žádný díl {} v projektu
 No parts found	Nebyly nalezeny žádné artikly
 No plot frame named {}	Žádný rámeček výkresu s názvem {}
 No plug {}	Žádný konektor {}
@@ -334,6 +337,7 @@ Role	Role
 Rooms	Místnosti
 Route	Vést
 Routing	Vedení
+Rows of modules (east-west: rows of pairs)	Řady modulů (východ-západ: řady dvojic)
 Rule	Pravidlo
 Rule set	Sada pravidel
 Safety function	Bezpečnostní funkce
@@ -391,6 +395,7 @@ Terminals	Svorky
 Text	Text
 Text to find	Hledaný text
 The identifier must not be empty	Identifikátor nesmí být prázdný
+The long side of the modules along the rows	Delší strana modulů podél řad
 The page is released	Stránka je uvolněna
 There is a connection symbol at this point already	V tomto bodě už symbol spojení je
 Thermal	Tepelné poměry
@@ -438,6 +443,7 @@ access denied	přístup odepřen
 approved	schváleno
 bonded	pospojeno
 file or folder not found	soubor nebo složka nenalezeny
+landscape	na šířku
 left	doleva
 mm	mm
 normal	normální

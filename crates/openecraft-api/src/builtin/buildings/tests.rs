@@ -132,3 +132,35 @@ fn stairs_roofs_and_roof_windows() {
     let b = run(&mut s, "set_stair", json!({ "building": "+H1", "stair": "ST1", "remove": true })).unwrap();
     assert_eq!(b["stairs"], json!([]));
 }
+
+#[test]
+fn pv_arrays_on_pitched_and_flat_roofs() {
+    let mut s = demo_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 30000, "z": 0 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 8000, "depth": 6000 })).unwrap();
+    run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable", "pitch": 40 })).unwrap();
+    // On rails and roof hooks in the middle of the front slope.
+    let b = run(&mut s, "add_pv_array", json!({ "building": "+H1", "roof": "R1", "module": "GEN.PV-400W-FB" })).unwrap();
+    let a = &b["roofs"][0]["solar"][0];
+    assert_eq!((a["name"].as_str(), a["mounting"].as_str(), a["modules"].as_u64()), (Some("PV1"), Some("parallel"), Some(8)));
+    assert!((a["peak_kw"].as_f64().unwrap() - 3.2).abs() < 1e-4);
+    let parts: Vec<&str> = a["material"].as_array().unwrap().iter().map(|m| m["part"].as_str().unwrap()).collect();
+    assert_eq!(parts, ["GEN.PV-400W-FB", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-HOOK", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"]);
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "pv1", "columns": 5, "rows": 1, "landscape": true })).unwrap();
+    assert_eq!(b["roofs"][0]["solar"][0]["modules"], 5);
+    assert!(run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "mounting": "wall" })).unwrap_err().contains("wall"));
+    assert!(run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "module": "NOPE" })).unwrap_err().contains("NOPE"));
+    assert!(run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV9" })).unwrap_err().contains("PV9"));
+    // On a flat roof: east-west pairs on ballasted mounting bases.
+    run(&mut s, "set_roof", json!({ "building": "+H1", "roof": "R1", "shape": "flat" })).unwrap();
+    let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "mounting": "east-west", "columns": 2, "tilt": 10, "azimuth": 90 })).unwrap();
+    let a = &b["roofs"][0]["solar"][0];
+    assert_eq!((a["mounting"].as_str(), a["modules"].as_u64()), (Some("east_west"), Some(4)));
+    assert!(a["material"].as_array().unwrap().iter().any(|m| m["part"] == "GEN.PV-BASE-EW10" && m["qty"] == 3.0));
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "remove": true })).unwrap();
+    assert!(b["roofs"][0].get("solar").is_some_and(|v| v == &json!([])));
+}

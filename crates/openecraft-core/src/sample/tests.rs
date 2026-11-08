@@ -549,4 +549,12 @@ fn office_building_has_its_roof_stair_and_installation() {
         assert!(prj.parts.iter().any(|p| p.number == n), "{n} in the project");
     }
     assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.part == "COSMO.CBRTLTH"));
+    // The PV array in the rear slope: ten LONGi modules, 4.3 kWp, with its rails and hooks
+    // in the bill of materials.
+    let a = &b.roofs[0].solar[0];
+    assert_eq!((crate::panel::solar::module_count(a), crate::panel::solar::peak_power(&prj, a)), (10, Some(4.3)));
+    let material = crate::panel::layout_material(&prj);
+    for (part, qty) in [("LONGI.LR5-54HTH-430M", 10.0), ("GEN.PV-RAIL-40", 8.0), ("GEN.PV-CLAMP-MID", 16.0)] {
+        assert!(material.iter().any(|(p, q, _)| p == part && *q == qty), "{part} {qty}: {material:?}");
+    }
 }

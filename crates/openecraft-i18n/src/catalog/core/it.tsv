@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Anagrafica articoli ERP e distinta b
 ERP number	Numero ERP
 ETIM class	Classe ETIM
 Earth electrode	Dispersore di terra
+East-west on a flat roof	Est-ovest su tetto piano
 Edit pages	Modifica pagine
 Edit project data	Modifica dati del progetto
 Editor	Editor
@@ -1090,6 +1091,7 @@ Panel layout in 3D (STEP)	Layout del quadro in 3D (STEP)
 Panel layout in 3D (glTF)	Layout del quadro in 3D (glTF)
 Panel layout settings	Impostazioni layout quadro
 Panel legend	Legenda quadro
+Parallel to the roof on roof hooks	Parallelo al tetto su ganci da tetto
 Part accessories	Accessori degli articoli
 Part data is maintained in the parts management	I dati degli articoli vengono gestiti nella gestione articoli
 Part description	Descrizione articolo
@@ -1613,6 +1615,7 @@ Through-beam sensor, 4-wire	Barriera a sbarramento, 4 fili
 Through-beam transmitter	Emettitore barriera a sbarramento
 Thyristor	Tiristore
 Tightening torque	Coppia di serraggio
+Tilted on a flat roof	Inclinato su tetto piano
 Time function	Funzione temporale
 Time range	Campo di temporizzazione
 Time relay coil KT (GB)	Bobina relè temporizzato KT (GB)
@@ -1819,7 +1822,6 @@ is none of	non è nessuno di
 is not	non è
 is not empty	non è vuoto
 is one of	è uno di
-landscape	orizzontale
 leakage	drenaggio
 low	bassa
 measuring	misura
@@ -1917,6 +1919,12 @@ yellow	giallo
 {} {}: bends closer than the bend radius ({} mm)	{} {}: curve più strette del raggio di curvatura ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: collegati nello schema unifilare ma non nello schema
 {}: MTTFd {} years is below 3 years	{}: MTTFd di {} anni inferiore a 3 anni
+{}: PV array {} covers a roof window	{}: il campo fotovoltaico {} copre una finestra da tetto
+{}: PV array {} has {} modules, its device {} has {}	{}: il campo fotovoltaico {} ha {} moduli, il suo dispositivo {} ne ha {}
+{}: PV array {} is mounted tilted on a pitched roof	{}: il campo fotovoltaico {} è montato inclinato su un tetto a falde
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: il campo fotovoltaico {} del tetto {} passa su un colmo, un displuvio o il bordo del tetto
+{}: PV array {} of roof {} lies outside the roof	{}: il campo fotovoltaico {} del tetto {} è fuori dal tetto
+{}: PV arrays {} and {} lie over each other	{}: i campi fotovoltaici {} e {} si sovrappongono
 {}: \"{}\" is not one of {}	{}: \"{}\" non è uno dei valori {}
 {}: a TT system needs a residual current device	{}: un sistema TT richiede un interruttore differenziale
 {}: accessory {} fits none of the device's parts	{}: l'accessorio {} non è compatibile con nessun articolo del dispositivo
@@ -1990,6 +1998,7 @@ yellow	giallo
 {}: terminal {} uses {} levels, its part {} has {}	{}: il morsetto {} usa {} livelli, il suo articolo {} ne ha {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: i morsetti {} sono a {} mm dal pavimento, sono richiesti almeno {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: il sistema di sbarre con {} barre unisce {} conduttori ({}): cortocircuito
+{}: the device {} of PV array {} does not exist	{}: il dispositivo {} del campo fotovoltaico {} non esiste
 {}: the station has no port {}	{}: la stazione non ha la porta {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) è più grande dell'area di lavoro di {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} ha uno spessore di {} mm, {} accetta al massimo {} mm

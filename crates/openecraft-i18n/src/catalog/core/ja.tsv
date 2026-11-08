@@ -427,6 +427,7 @@ ERP item master and bill of materials (CSV)	ERP 品目マスターと部品表 (
 ERP number	ERP 番号
 ETIM class	ETIM クラス
 Earth electrode	接地極
+East-west on a flat roof	陸屋根に東西向き
 Edit pages	ページの編集
 Edit project data	プロジェクトデータの編集
 Editor	編集者
@@ -1079,6 +1080,7 @@ Panel layout in 3D (STEP)	盤レイアウト 3D (STEP)
 Panel layout in 3D (glTF)	盤レイアウト 3D (glTF)
 Panel layout settings	盤レイアウトの設定
 Panel legend	盤凡例
+Parallel to the roof on roof hooks	屋根フックで屋根と平行
 Part accessories	部品アクセサリ
 Part data is maintained in the parts management	部品データは部品管理で管理されます
 Part description	部品の説明
@@ -1601,6 +1603,7 @@ Through-beam sensor, 4-wire	透過形光電センサー (4 線式)
 Through-beam transmitter	透過形投光器
 Thyristor	サイリスター
 Tightening torque	締付トルク
+Tilted on a flat roof	陸屋根に傾斜設置
 Time function	時間機能
 Time range	時間範囲
 Time relay coil KT (GB)	タイマーリレーコイル KT (GB)
@@ -1807,7 +1810,6 @@ is none of	のいずれでもない
 is not	と等しくない
 is not empty	が空でない
 is one of	のいずれか
-landscape	横
 leakage	ドレン
 low	低
 measuring	測定
@@ -1905,6 +1907,12 @@ yellow	黄
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 曲げが曲げ半径 ({} mm) より小さくなっています
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 単線結線図では接続されていますが、回路図では接続されていません
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} 年が 3 年を下回っています
+{}: PV array {} covers a roof window	{}：PVアレイ {} が天窓を覆っています
+{}: PV array {} has {} modules, its device {} has {}	{}：PVアレイ {} のモジュールは {} 枚、その機器 {} では {} 枚
+{}: PV array {} is mounted tilted on a pitched roof	{}：PVアレイ {} が勾配屋根に傾斜設置されています
+{}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}：屋根 {2} のPVアレイ {1} が棟、隅棟または屋根の端にかかっています
+{}: PV array {} of roof {} lies outside the roof	{0}：屋根 {2} のPVアレイ {1} が屋根の外にあります
+{}: PV arrays {} and {} lie over each other	{}：PVアレイ {} と {} が重なっています
 {}: \"{}\" is not one of {}	{}: 「{}」は {} のいずれでもありません
 {}: a TT system needs a residual current device	{}: TT 系統には漏電遮断器が必要です
 {}: accessory {} fits none of the device's parts	{}: アクセサリ {} は機器のどの部品にも適合しません
@@ -1977,6 +1985,7 @@ yellow	黄
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 端子 {} は {} 段目にありますが、その前に端子ブロックがありません
 {}: terminal {} uses {} levels, its part {} has {}	{}: 端子 {} は {} 段を使用していますが、その部品 {} は {} 段です
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 端子 {} は床面から {} mm です。{} mm 以上必要です
+{}: the device {} of PV array {} does not exist	{0}：PVアレイ {2} の機器 {1} は存在しません
 {}: the station has no port {}	{}: ステーションにポート {} がありません
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) は {} の加工範囲より大きいです
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} の厚さは {} mm ですが、{} は最大 {} mm までです

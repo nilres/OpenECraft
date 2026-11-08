@@ -178,6 +178,8 @@ Back	Takaisin
 Back to the project (Esc)	Takaisin projektiin (Esc)
 Back-up up to (kA)	Varasuojaus asti (kA)
 Background	Tausta
+Ballast	Painolasti
+Ballast per module	Painolasti moduulia kohti
 Baseline {}	Lähtötaso {}
 Baseline {} created	Lähtötaso {} luotu
 Baseline {} {}	Lähtötaso {} {}
@@ -419,6 +421,7 @@ Define all used	Määritä kaikki käytetyt
 Defined potentials	Määritetyt potentiaalit
 Del	Del
 Delete	Poista
+Delete PV array	Poista aurinkopaneelikenttä
 Delete cable (its wires are removed from it)	Poista kaapeli (sen johdot poistetaan siitä)
 Delete comment	Poista kommentti
 Delete connection point	Poista liitäntäpiste
@@ -483,6 +486,7 @@ Digits	Numeroita
 Dimension	Mitoitus
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Suunnattu T-haara: kohdassa, jossa kolme johdinta kohtaa, se määrää laitteen, josta liitoksen kaksi johdinta lähtevät, ja kohteiden järjestyksen
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Suunnattu risteys: yhdistää siinä risteävät kaksi johdinta; linjan kumpikin pää johdotetaan ensin suoraan ja sitten poikittain
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Suunta, johon moduulit osoittavat, vastapäivään ylhäältä katsottuna (0: eteenpäin)
 Discard changes	Hylkää muutokset
 Discard draft	Hylkää luonnos
 Disconnection of distribution circuits	Jakelupiirien poiskytkentä
@@ -616,6 +620,7 @@ Exported {}	Viety {}
 Exporting {}	Viedään {}
 Export…	Vie…
 Extras	Lisätoiminnot
+Facing	Suunta
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Tuulettimet, suodattimet, kaapeliläpiviennit, valaisimet, kahvat: valitse yksi ja napsauta sitten sen paikkaa
 Fastening hardware in the bill of materials	Kiinnitystarvikkeet osaluettelossa
 Favorite	Suosikki
@@ -676,6 +681,7 @@ Freeze route	Lukitse reitti
 Frequency	Taajuus
 From / to	Mistä / mihin
 From a template file…	Mallitiedostosta…
+From row to row; 0: free of shade in winter	Rivistä riviin; 0: varjoton talvella
 From the function definition	Toimintomäärittelystä
 From the left end	Vasemmasta päästä
 From – to	Mistä – mihin
@@ -710,6 +716,7 @@ Go to page	Siirry sivulle
 Graphic line	Grafiikkaviiva
 Graphic rectangle	Grafiikkasuorakulmio
 Graphical form	Graafinen lomake
+Greatest distance of the roof hooks along a rail	Kattokoukkujen suurin väli kiskoa pitkin
 Grid	Ruudukko
 Grid size	Ruudukon koko
 Grid {} mm	Ruudukko {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Suurin vaiheiden epäsymmetria
 Highest short-circuit current	Suurin oikosulkuvirta
 Hole to sheet edge	Reiän etäisyys levyn reunasta
 Home	Aloitus
+Hook distance	Koukkujen väli
 Horizontal	Vaakasuora
 Horizontal (mm)	Vaakasuunnassa (mm)
 Horizontal centres	Vaakasuuntaiset keskikohdat
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	Jokaise
 In strip order; PE and other non-numeric terminals keep their designation	Rimajärjestyksessä; PE ja muut ei-numeeriset riviliittimet säilyttävät nimityksensä
 In the filtered rows	Suodatetuissa riveissä
 In the middle of the first wire	Ensimmäisen johdon keskelle
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Etu- tai oikean lappeen keskelle, tasakatolla eteenpäin kallistettuna; siirrä se paikalleen
 In the project	Projektissa
 In the structure of the current page	Nykyisen sivun rakenteessa
 Include manually set numbers	Sisällytä manuaalisesti asetetut numerot
@@ -946,18 +955,21 @@ Messages	Viestit
 Messages ({})	Viestit ({})
 Messages of this session	Tämän istunnon viestit
 Middle	Keskellä
+Middle of the PV array in the floor plan of the building	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa
 Min. bend radius	Pienin taivutussäde
 Minimize the ribbon	Pienennä valintanauha
 Mirror	Peilaa
 Mirror (selection or symbol being placed)	Peilaa (valinta tai sijoitettava symboli)
 Mode	Tila
 Model of a part (2D / 3D)	Osan malli (2D / 3D)
+Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
 Motors feed the short circuit	Moottorit syöttävät oikosulkua
 Mounted on	Asennettu kohteeseen
 Mounting assistant: the panel items in mounting order with their place and part	Asennusavustaja: asennusosat asennusjärjestyksessä paikkoineen ja osineen
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Asennusetäisyys vierekkäin; osat lisäävät omansa (Clearance left / right)
 Mounting height: {}	Asennuskorkeus: {}
 Mounting plate: {} holes, {} cutouts	Asennuslevy: {} reikää, {} aukkoa
+Mounting system	Kiinnitysjärjestelmä
 Move	Siirrä
 Move down	Siirrä alaspäin
 Move left	Siirrä vasemmalle
@@ -1188,6 +1200,8 @@ PLC channels	PLC-kanavat
 PLC hardware and bus topology	PLC-laitteisto ja väylätopologia
 PLC overview	PLC-yleiskatsaus
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- tai JPEG-bittikarttakuva, esim. logo tai valokuva
+PV array	Aurinkopaneelikenttä
+PV arrays	Aurinkopaneelikentät
 Page graphics	Sivun grafiikka
 Page heading	Sivun otsikko
 Page list, devices, parts, panel layout and settings	Sivuluettelo, laitteet, osat, kaappiasennus ja asetukset
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Reitityspolku {} mm – l
 Routing paths	Reitityspolut
 Routing rules	Reitityssäännöt
 Row	Rivi
+Row distance	Riviväli
 Row drawing	Rivipiirros
 Row labels	Rivien merkinnät
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Vapautettujen sivujen rivejä ei voi muuttaa. Rivinvaihto tekstissä kirjoitetaan muodossa \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Projektin omat sivumallit tiedostona
 The project's own title blocks	Projektin omat nimiöt
 The project's own title blocks and report schemes	Projektin omat nimiöt ja raporttimallit
 The properties of the selection in a window beside the page	Valinnan ominaisuudet ikkunassa sivun vieressä
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Kisko tai kiinnitysjalka; sen lisävarusteita ovat koukut, puristimet ja painolasti
 The recalculation keeps frozen routes as long as they are still possible	Uudelleenlaskenta säilyttää lukitut reitit niin kauan kuin ne ovat mahdollisia
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Valintanauha Tiedosto-välilehtineen korvaa valikot; Ctrl+Shift+P löytää minkä tahansa komennon.
 The second fault is checked at the line-to-earth voltage	Toinen vika tarkistetaan vaihe–maa-jännitteellä
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tämä projekti on projektin {1} aliprojekti {0} (irrotettu {2}). Tallenna se ja liitä se pääprojektiin, kun työ on valmis.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tässä on kohdattava kolme johdinta: yksi sen suunnassa ja kaksi poikittain. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
 Three-phase short-circuit current at the supply point	Kolmivaiheinen oikosulkuvirta syöttöpisteessä
+Tilt	Kallistus
 Title	Otsikko
 Title blocks	Nimiöt
 Title blocks, plot frames and page templates	Nimiöt, piirustuskehykset ja sivumallit
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm levyllä + {} mm varaa; loput on matka liitäntäpisteistä levylle.
 {} mm, now {} mm	{} mm, nyt {} mm
 {} mm, removed	{} mm, poistettu
+{} modules	{} moduulia
+{} modules, {} kWp	{} moduulia, {} kWp
 {} new texts in the dictionary	{} uutta tekstiä sanakirjassa
 {} notes	Huomautuksia: {}
 {} objects pasted	{} objektia liitetty

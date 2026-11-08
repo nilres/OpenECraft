@@ -90,6 +90,7 @@ Descending	Azalan
 Description	Açıklama
 Designation	Tanım
 Device	Cihaz
+Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Modüllerin ait olduğu cihaz (PV jeneratörü); parçaları onları malzeme listesinde sayar
 Device description	Cihaz tanımı
 Device tag	Cihaz etiketi
 Device {}	Cihaz {}
@@ -195,6 +196,7 @@ Minimum digits of the counter (leading zeros)	Sayacın en az basamak sayısı (b
 Missing parameter: {}	Eksik parametre: {}
 Missing value for --{}	--{} için değer eksik
 Model import failed: {}	Model içe aktarma başarısız oldu: {}
+Modules side by side in a row	Bir sırada yan yana modüller
 Mounted	Monte edildi
 Mounting	Montaj
 Mounting data	Montaj verileri
@@ -217,6 +219,7 @@ No machine {}	{} makinesi yok
 No page named {}	{} adlı sayfa yok
 No page template named {}	{} adlı sayfa şablonu yok
 No page {}	{} sayfası yok
+No part {} in the project	Projede {} parçası yok
 No parts found	Parça bulunamadı
 No plot frame named {}	{} adlı çizim çerçevesi yok
 No plug {}	{} fişi yok
@@ -334,6 +337,7 @@ Role	Rol
 Rooms	Odalar
 Route	Yönlendir
 Routing	Yönlendirme
+Rows of modules (east-west: rows of pairs)	Modül sıraları (doğu-batı: çift sıraları)
 Rule	Kural
 Rule set	Kural seti
 Safety function	Güvenlik fonksiyonu
@@ -391,6 +395,7 @@ Terminals	Klemensler
 Text	Metin
 Text to find	Aranacak metin
 The identifier must not be empty	Tanımlayıcı boş olamaz
+The long side of the modules along the rows	Modüllerin uzun kenarı sıralar boyunca
 The page is released	Sayfa yayımlanmış
 There is a connection symbol at this point already	Bu noktada zaten bir bağlantı sembolü var
 Thermal	Termik
@@ -438,6 +443,7 @@ access denied	erişim reddedildi
 approved	onaylandı
 bonded	kuşaklandı
 file or folder not found	dosya veya klasör bulunamadı
+landscape	yatay
 left	sola
 mm	mm
 normal	normal

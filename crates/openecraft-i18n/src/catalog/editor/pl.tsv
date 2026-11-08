@@ -178,6 +178,8 @@ Back	Wstecz
 Back to the project (Esc)	Powrót do projektu (Esc)
 Back-up up to (kA)	Ochrona wsteczna do (kA)
 Background	Tło
+Ballast	Balast
+Ballast per module	Balast na moduł
 Baseline {}	Wersja bazowa {}
 Baseline {} created	Utworzono wersję bazową {}
 Baseline {} {}	Wersja bazowa {} {}
@@ -419,6 +421,7 @@ Define all used	Zdefiniuj wszystkie używane
 Defined potentials	Zdefiniowane potencjały
 Del	Del
 Delete	Usuń
+Delete PV array	Usuń instalację PV
 Delete cable (its wires are removed from it)	Usuń kabel (jego przewody zostaną z niego usunięte)
 Delete comment	Usuń komentarz
 Delete connection point	Usuń punkt połączenia
@@ -483,6 +486,7 @@ Digits	Cyfry
 Dimension	Wymiar
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Trójnik kierunkowy: tam, gdzie spotykają się trzy przewody, wskazuje urządzenie, od którego wychodzą dwa przewody połączenia, i kolejność ich celów
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Skrzyżowanie kierunkowe: łączy dwa krzyżujące się tam przewody; każdy koniec jego linii jest łączony najpierw na wprost, a potem poprzecznie
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Kierunek, w którym zwrócone są moduły, przeciwnie do ruchu wskazówek zegara patrząc z góry (0: do przodu)
 Discard changes	Odrzuć zmiany
 Discard draft	Odrzuć wersję roboczą
 Disconnection of distribution circuits	Wyłączenie obwodów rozdzielczych
@@ -616,6 +620,7 @@ Exported {}	Wyeksportowano {}
 Exporting {}	Eksportowanie {}
 Export…	Eksportuj…
 Extras	Dodatki
+Facing	Orientacja
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Wentylatory, filtry, dławiki kablowe, oświetlenie, uchwyty: wybierz jedno, a następnie kliknij miejsce docelowe
 Fastening hardware in the bill of materials	Elementy mocujące w zestawieniu materiałów
 Favorite	Ulubione
@@ -676,6 +681,7 @@ Freeze route	Zamroź trasę
 Frequency	Częstotliwość
 From / to	Od / do
 From a template file…	Z pliku szablonu…
+From row to row; 0: free of shade in winter	Od rzędu do rzędu; 0: bez zacienienia zimą
 From the function definition	Z definicji funkcji
 From the left end	Od lewego końca
 From – to	Od – do
@@ -710,6 +716,7 @@ Go to page	Przejdź do strony
 Graphic line	Linia graficzna
 Graphic rectangle	Prostokąt graficzny
 Graphical form	Formularz graficzny
+Greatest distance of the roof hooks along a rail	Największy odstęp haków dachowych wzdłuż szyny
 Grid	Siatka
 Grid size	Rozmiar siatki
 Grid {} mm	Siatka {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Największa asymetria faz
 Highest short-circuit current	Największy prąd zwarciowy
 Hole to sheet edge	Otwór od krawędzi blachy
 Home	Narzędzia główne
+Hook distance	Odstęp haków
 Horizontal	Poziomy
 Horizontal (mm)	W poziomie (mm)
 Horizontal centres	Środki w poziomie
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	W każd
 In strip order; PE and other non-numeric terminals keep their designation	W kolejności listwy; PE i inne nienumeryczne zaciski zachowują swoje oznaczenie
 In the filtered rows	W przefiltrowanych wierszach
 In the middle of the first wire	Na środku pierwszego przewodu
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Na środku przedniej lub prawej połaci, na dachu płaskim nachylony do przodu; przesuń go na miejsce
 In the project	W projekcie
 In the structure of the current page	W strukturze bieżącej strony
 Include manually set numbers	Uwzględnij numery ustawione ręcznie
@@ -946,18 +955,21 @@ Messages	Komunikaty
 Messages ({})	Komunikaty ({})
 Messages of this session	Komunikaty tej sesji
 Middle	Środek
+Middle of the PV array in the floor plan of the building	Środek instalacji PV w rzucie budynku
 Min. bend radius	Min. promień gięcia
 Minimize the ribbon	Minimalizuj wstążkę
 Mirror	Odbij
 Mirror (selection or symbol being placed)	Odbicie lustrzane (zaznaczenie lub umieszczany symbol)
 Mode	Tryb
 Model of a part (2D / 3D)	Model artykułu (2D / 3D)
+Module part; its size comes from the part	Część modułu; jej rozmiar pochodzi z części
 Motors feed the short circuit	Silniki zasilają zwarcie
 Mounted on	Zamontowany na
 Mounting assistant: the panel items in mounting order with their place and part	Asystent montażu: elementy zabudowy w kolejności montażu z miejscem i artykułem
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Odstęp montażowy obok siebie; artykuły dodają własny (Clearance left / right)
 Mounting height: {}	Wysokość montażu: {}
 Mounting plate: {} holes, {} cutouts	Płyta montażowa: otwory: {}, wycięcia: {}
+Mounting system	System montażowy
 Move	Przesuń
 Move down	Przesuń w dół
 Move left	Przesuń w lewo
@@ -1188,6 +1200,8 @@ PLC channels	Kanały PLC
 PLC hardware and bus topology	Sprzęt PLC i topologia magistrali
 PLC overview	Przegląd PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Mapa bitowa PNG lub JPEG, np. logo lub zdjęcie
+PV array	Instalacja PV
+PV arrays	Instalacje PV
 Page graphics	Grafika strony
 Page heading	Nagłówek strony
 Page list, devices, parts, panel layout and settings	Lista stron, urządzenia, artykuły, zabudowa szafy i ustawienia
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Ścieżka prowadzenia {} 
 Routing paths	Ścieżki prowadzenia
 Routing rules	Reguły prowadzenia
 Row	Wiersz
+Row distance	Odstęp rzędów
 Row drawing	Rysunek wiersza
 Row labels	Etykiety wierszy
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Nie można zmieniać wierszy na wydanych stronach. Podział wiersza w tekście zapisuje się jako \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Własne szablony stron projektu jako 
 The project's own title blocks	Własne tabliczki rysunkowe projektu
 The project's own title blocks and report schemes	Własne tabliczki rysunkowe i wzorce raportów projektu
 The properties of the selection in a window beside the page	Właściwości zaznaczenia w oknie obok strony
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Szyna lub podstawa montażowa; jej akcesoria to haki, zaciski i balast
 The recalculation keeps frozen routes as long as they are still possible	Ponowne obliczanie zachowuje zamrożone trasy, dopóki są one możliwe
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Wstążka z kartą Plik zastępuje menu; Ctrl+Shift+P znajduje dowolne polecenie.
 The second fault is checked at the line-to-earth voltage	Podwójne zwarcie jest sprawdzane przy napięciu przewód–ziemia
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ten projekt jest podprojektem {} projektu {} (wydzielonym {}). Zapisz go i wstaw do projektu głównego po zakończeniu pracy.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tutaj muszą spotkać się trzy przewody: jeden w jego kierunku i dwa poprzeczne. Do tego czasu połączenie jest łączone w kolejności na schemacie.
 Three-phase short-circuit current at the supply point	Trójfazowy prąd zwarciowy w punkcie zasilania
+Tilt	Nachylenie
 Title	Tytuł
 Title blocks	Tabliczki rysunkowe
 Title blocks, plot frames and page templates	Tabliczki rysunkowe, ramki rysunku i szablony stron
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm na płycie + {} mm zapasu; reszta to droga od punktów połączeń do płyty.
 {} mm, now {} mm	{} mm, teraz {} mm
 {} mm, removed	{} mm, usunięto
+{} modules	{} moduły
+{} modules, {} kWp	{} moduły, {} kWp
 {} new texts in the dictionary	Nowe teksty w słowniku: {}
 {} notes	Uwagi: {}
 {} objects pasted	Wklejone obiekty: {}

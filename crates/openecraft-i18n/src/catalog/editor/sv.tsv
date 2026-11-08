@@ -178,6 +178,8 @@ Back	Tillbaka
 Back to the project (Esc)	Tillbaka till projektet (Esc)
 Back-up up to (kA)	Back-up upp till (kA)
 Background	Bakgrund
+Ballast	Ballast
+Ballast per module	Ballast per modul
 Baseline {}	Baslinje {}
 Baseline {} created	Baslinje {} skapad
 Baseline {} {}	Baslinje {} {}
@@ -419,6 +421,7 @@ Define all used	Definiera alla använda
 Defined potentials	Definierade potentialer
 Del	Del
 Delete	Ta bort
+Delete PV array	Ta bort solcellsfält
 Delete cable (its wires are removed from it)	Ta bort kabel (dess ledningar tas bort från den)
 Delete comment	Ta bort kommentar
 Delete connection point	Ta bort anslutningspunkt
@@ -483,6 +486,7 @@ Digits	Siffror
 Dimension	Måttsättning
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Riktat T-stycke: där tre ledare möts anger det den apparat som förbindelsens två ledare utgår från och ordningen på deras mål
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Riktad korsning: förbinder de två ledare som korsar varandra där; varje ände av dess linje kopplas först rakt fram och sedan tvärs över
+Direction the modules face, counter-clockwise seen from above (0: towards the front)	Riktning som modulerna vetter mot, moturs sett ovanifrån (0: framåt)
 Discard changes	Släng ändringarna
 Discard draft	Ignorera utkast
 Disconnection of distribution circuits	Frånkoppling av fördelningsledningar
@@ -616,6 +620,7 @@ Exported {}	{} exporterad
 Exporting {}	Exporterar {}
 Export…	Exportera…
 Extras	Extra
+Facing	Riktning
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Fläktar, filter, kabelförskruvningar, belysning, handtag: välj ett och klicka sedan där det ska sitta
 Fastening hardware in the bill of materials	Fästelement i stycklistan
 Favorite	Favorit
@@ -676,6 +681,7 @@ Freeze route	Frys dragning
 Frequency	Frekvens
 From / to	Från / till
 From a template file…	Från en mallfil…
+From row to row; 0: free of shade in winter	Från rad till rad; 0: skuggfritt på vintern
 From the function definition	Från funktionsdefinitionen
 From the left end	Från vänster ände
 From – to	Från – till
@@ -710,6 +716,7 @@ Go to page	Gå till sidan
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafiskt formulär
+Greatest distance of the roof hooks along a rail	Största avstånd mellan takkrokarna längs en skena
 Grid	Rutnät
 Grid size	Rutnätsstorlek
 Grid {} mm	Rutnät {} mm
@@ -737,6 +744,7 @@ Highest phase unbalance	Högsta fasobalans
 Highest short-circuit current	Högsta kortslutningsström
 Hole to sheet edge	Hål till plåtkant
 Home	Start
+Hook distance	Krokavstånd
 Horizontal	Horisontell
 Horizontal (mm)	Vågrätt (mm)
 Horizontal centres	Vågräta mittlinjer
@@ -791,6 +799,7 @@ In every section counting starts again after the section number (2.3.1).	I varje
 In strip order; PE and other non-numeric terminals keep their designation	I plintradsordning; PE och andra icke-numeriska plintar behåller sin beteckning
 In the filtered rows	I de filtrerade raderna
 In the middle of the first wire	I mitten av den första ledningen
+In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place	Mitt på det främre eller högra takfallet, på platt tak lutat framåt; flytta det till sin plats
 In the project	I projektet
 In the structure of the current page	I den aktuella sidans struktur
 Include manually set numbers	Inkludera manuellt angivna nummer
@@ -946,18 +955,21 @@ Messages	Meddelanden
 Messages ({})	Meddelanden ({})
 Messages of this session	Meddelanden från denna session
 Middle	Mitten
+Middle of the PV array in the floor plan of the building	Mitten av solcellsfältet i byggnadens planritning
 Min. bend radius	Min. böjradie
 Minimize the ribbon	Minimera menyfliksområdet
 Mirror	Spegelvänd
 Mirror (selection or symbol being placed)	Spegla (markering eller symbol som placeras)
 Mode	Läge
 Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
+Module part; its size comes from the part	Modulartikel; dess storlek kommer från artikeln
 Motors feed the short circuit	Motorer matar kortslutningen
 Mounted on	Monterad på
 Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: skåplayoutens objekt i monteringsordning med deras plats och artikel
 Mounting clearance side by side; parts add theirs (Clearance left / right)	Monteringsavstånd sida vid sida; artiklar lägger till sitt eget (Clearance left / right)
 Mounting height: {}	Monteringshöjd: {}
 Mounting plate: {} holes, {} cutouts	Monteringsplåt: {} hål, {} urtag
+Mounting system	Monteringssystem
 Move	Flytta
 Move down	Flytta nedåt
 Move left	Flytta åt vänster
@@ -1188,6 +1200,8 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hårdvara och busstopologi
 PLC overview	PLC-översikt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmapp, t.ex. en logotyp eller ett foto
+PV array	Solcellsfält
+PV arrays	Solcellsfält
 Page graphics	Sidgrafik
 Page heading	Sidrubrik
 Page list, devices, parts, panel layout and settings	Sidlista, apparater, artiklar, skåplayout och inställningar
@@ -1481,6 +1495,7 @@ Routing path {} mm – double-click or Enter to finish	Dragningsväg {} mm – d
 Routing paths	Dragningsvägar
 Routing rules	Dragningsregler
 Row	Rad
+Row distance	Radavstånd
 Row drawing	Radritning
 Row labels	Radetiketter
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rader på frisläppta sidor kan inte ändras. En radbrytning i en text skrivs som \\n.
@@ -1765,6 +1780,7 @@ The project's own page templates as a file	Projektets egna sidmallar som en fil
 The project's own title blocks	Projektets egna namnrutor
 The project's own title blocks and report schemes	Projektets egna namnrutor och rapportscheman
 The properties of the selection in a window beside the page	Markeringens egenskaper i ett fönster bredvid sidan
+The rail or mounting base; its accessories are the hooks, clamps and ballast	Skenan eller monteringsfoten; dess tillbehör är krokar, klämmor och ballast
 The recalculation keeps frozen routes as long as they are still possible	Omberäkningen behåller frysta dragningar så länge de fortfarande är möjliga
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Menyfliksområdet med fliken Arkiv ersätter menyerna; Ctrl+Shift+P hittar alla kommandon.
 The second fault is checked at the line-to-earth voltage	Dubbelfelet kontrolleras vid spänningen fas–jord
@@ -1787,6 +1803,7 @@ This page contains schematic content which is not evaluated on non-schematic pag
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Det här projektet är delprojekt {} av {} (utlyft {}). Spara det och infoga det i huvudprojektet när arbetet är klart.
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Här måste tre ledare mötas: en i dess riktning och två tvärs över. Till dess kedjas förbindelsen i schemats ordning.
 Three-phase short-circuit current at the supply point	Trefasig kortslutningsström vid matningspunkten
+Tilt	Lutning
 Title	Rubrik
 Title blocks	Namnrutor
 Title blocks, plot frames and page templates	Namnrutor, ritningsramar och sidmallar
@@ -2111,6 +2128,8 @@ x y	x y
 {} mm on the plate + {} mm reserve; the rest is the way from the connection points to the plate.	{} mm på plåten + {} mm reserv; resten är vägen från anslutningspunkterna till plåten.
 {} mm, now {} mm	{} mm, nu {} mm
 {} mm, removed	{} mm, borttagen
+{} modules	{} moduler
+{} modules, {} kWp	{} moduler, {} kWp
 {} new texts in the dictionary	{} nya texter i ordlistan
 {} notes	{} anmärkningar
 {} objects pasted	{} objekt inklistrade

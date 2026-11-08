@@ -1466,6 +1466,29 @@ fn the_3d_view_shows_the_whole_building_with_stairs_and_roof() {
 }
 
 #[test]
+fn pv_arrays_lie_on_the_roof_of_the_whole_building() {
+    let (mut prj, attic) = house();
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    ui.toggle_building();
+    let faces = |ui: &mut PanelUi, prj: &Project| {
+        let an = Analysis::build(prj);
+        let shown = ui.shown_3d(prj, attic);
+        ui.scene_3d(&egui::Context::default(), prj, &an, attic, &shown).faces.len()
+    };
+    let before = faces(&mut ui, &prj);
+    // Two rows of four modules on the rear slope: each module ten faces, each rail four.
+    panel::solar::add_array(&mut prj, 0, 0, Some([4000.0, 1500.0])).unwrap();
+    assert!(panel::solar::problems(&prj).is_empty());
+    assert_eq!(faces(&mut ui, &prj), before + 8 * 10 + 4 * 4);
+    // Hidden with the roof.
+    ui.hide_ceiling = true;
+    let (mut bare, _) = house();
+    bare.layout.buildings[0].roofs[0].solar.clear();
+    let hidden = faces(&mut ui, &prj);
+    assert_eq!(hidden, faces(&mut ui, &bare));
+}
+
+#[test]
 fn installation_zones_and_opened_walls_are_seen_through() {
     let (prj, attic) = house();
     let an = Analysis::build(&prj);
