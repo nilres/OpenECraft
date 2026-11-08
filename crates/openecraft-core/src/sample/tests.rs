@@ -557,4 +557,9 @@ fn office_building_has_its_roof_stair_and_installation() {
     for (part, qty) in [("LONGI.LR5-54HTH-430M", 10.0), ("GEN.PV-RAIL-40", 8.0), ("GEN.PV-CLAMP-MID", 16.0)] {
         assert!(material.iter().any(|(p, q, _)| p == part && *q == qty), "{part} {qty}: {material:?}");
     }
+    // One string of ten on the inverter: 423 V at -10 °C, within its 1000 V.
+    let strings = crate::panel::solar::strings::all_strings(&prj);
+    let v = strings[0].values.unwrap();
+    assert_eq!((strings.len(), strings[0].string.series, strings[0].string.inverter.as_str()), (1, 10, "=PV-T1"));
+    assert!((v.voc_max - 422.8).abs() < 0.1 && v.vmp_min > 160.0, "{v:?}");
 }

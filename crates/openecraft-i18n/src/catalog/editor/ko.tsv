@@ -228,6 +228,7 @@ Calculations	계산
 Cancel / select tool / clear selection	취소 / 도구 선택 / 선택 해제
 Card	카드
 Cards without station: {}	스테이션 없는 카드: {}
+Cell temperatures of the strings	스트링의 셀 온도
 Centre	중앙
 Change project properties of the selected projects	선택한 프로젝트의 프로젝트 속성 변경
 Change request	변경 요청
@@ -435,6 +436,7 @@ Delete room	방 삭제
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	방 {}을(를) 벽에 있는 모든 것과 함께 삭제하시겠습니까? 그 안의 외함은 방 없이 남습니다.
 Delete section	구역 삭제
 Delete stair	계단 삭제
+Delete string	스트링 삭제
 Delete the group	그룹 삭제
 Delete the layer; its items move to the default layer	레이어 삭제. 레이어의 항목은 기본 레이어로 이동합니다
 Delete the property and all its values	속성 및 모든 값 삭제
@@ -731,6 +733,8 @@ Help	도움말
 Hide the groups you do not need and put the commands you use most into own groups.	필요 없는 그룹은 숨기고 자주 쓰는 명령은 자체 그룹에 넣습니다.
 Highest phase unbalance	최대 상 불평형
 Highest short-circuit current	최대 단락 전류
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	최고 전압 (최저 온도에서의 개방 전압), 평균 및 최저 전압 (평균 및 최고 온도에서 최대 출력 시), 최대 출력 시 전류, 피크 출력
+Highest: the lowest voltage	최고: 최저 전압
 Hole to sheet edge	구멍과 판금 가장자리 간 거리
 Home	홈
 Hook distance	후크 간격
@@ -819,6 +823,7 @@ Insulation	절연
 Interruption points refer to	중단점의 참조 대상
 Introduction	소개
 Invalid value	잘못된 값
+Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
 Isometric	등각
 Items on the layer	레이어의 항목
 Items with an anchor keep it; the others are inserted relative to the click.	앵커가 있는 항목은 앵커를 유지하고, 나머지 항목은 클릭 위치를 기준으로 삽입됩니다.
@@ -902,6 +907,7 @@ Looking for updates…	업데이트 확인 중…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub에서 OpenECraft의 새 릴리스를 찾아 백그라운드에서 설치합니다
 Loop	루프
 Lowest fault current	최소 고장 전류
+Lowest: the highest open-circuit voltage	최저: 최고 개방 전압
 Macro boxes	매크로 박스
 Macro boxes ({})	매크로 박스({})
 Macro saved to the library	매크로를 라이브러리에 저장했습니다
@@ -932,6 +938,7 @@ Master data	마스터 데이터
 Max. pressure	최대 압력
 Max. width	최대 너비
 Maximum fill of a carrier	케이블 지지대의 최대 충전율
+Mean: typical operation	평균: 일반 운전
 Measured	측정값
 Measures against common cause failure (at least 65 points)	공통 원인 고장에 대한 대책(최소 65점)
 Merge a symbol library file	심볼 라이브러리 파일 병합
@@ -1050,6 +1057,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	필드 케이블이 없습니다. 외함과 필드 장치를 경로 네트워크의 노드에 배치하세요.
 No filter fans: an air/air heat exchanger or a cooling unit	필터 팬 없음: 공기/공기 열교환기 또는 냉각 장치
 No harnesses defined.	정의된 하네스가 없습니다.
+No inverter	인버터 없음
 No longer reported	더 이상 보고되지 않음
 No macros yet. Select items in a schematic and save them as a macro.	아직 매크로가 없습니다. 회로도에서 항목을 선택하고 매크로로 저장하세요.
 No modules: plug in PLC cards of the schematic.	모듈이 없습니다. 회로도의 PLC 카드를 장착하세요.
@@ -1183,7 +1191,6 @@ PLC channels	PLC 채널
 PLC hardware and bus topology	PLC 하드웨어 및 버스 토폴로지
 PLC overview	PLC 개요
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 또는 JPEG 비트맵(예: 로고 또는 사진)
-PV array	태양광 어레이
 PV arrays	태양광 어레이
 Page graphics	페이지 그래픽
 Page heading	페이지 제목
@@ -1658,6 +1665,8 @@ Still reported	계속 보고됨
 Stock length	재고 길이
 Stop placing for this device	이 장치의 배치 중지
 Stratification (factor c)	온도 성층(계수 c)
+Strings	스트링
+Strings of this kind in parallel	이 종류의 병렬 스트링
 Strip on the rail	레일 위 단자대
 Strip {} mm	피복 제거 {} mm
 Strips / plugs	단자대 / 플러그
@@ -1744,6 +1753,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
 The macro library has no page macros (Macros › Save page as macro…).	매크로 라이브러리에 페이지 매크로가 없습니다(매크로 › 페이지를 매크로로 저장…).
+The modules no string takes yet in series, on the first inverter	아직 어느 스트링에도 속하지 않은 모듈을 직렬로, 첫 번째 인버터에
 The names of its pages follow	페이지 이름도 함께 변경됩니다
 The page name gets the section number	페이지 이름에 구역 번호가 붙습니다
 The page type, plot frame, title block, structure, description and the whole content are saved.	페이지 유형, 플롯 프레임, 표제란, 구조, 설명 및 전체 내용이 저장됩니다.
@@ -1794,6 +1804,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	튜토리얼
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	UI 배율
 Undo	실행 취소
 Undo brings it back.	실행 취소로 되돌릴 수 있습니다.
@@ -1974,6 +1985,7 @@ model	모델
 name	이름
 no	아니요
 no answer	응답 없음
+no electrical data of the module	모듈의 전기 데이터 없음
 no valid levels	유효한 층 없음
 no wires	전선 없음
 not defined	정의되지 않음

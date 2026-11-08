@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Kapacitní senzor, 3vodičový
 Capacitor	Kondenzátor
 Capacitor, polarized	Kondenzátor, polarizovaný
 Ceiling	Strop
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Teploty článků: {} °C (U max), {} °C (U stř.), {} °C (U min)
 Centre horizontally	Zarovnat vodorovně na střed
 Centre vertically	Zarovnat svisle na střed
 Centrifugal pump	Odstředivé čerpadlo
@@ -664,6 +665,8 @@ Hydraulic oil	Hydraulický olej
 Hydraulic power unit	Hydraulický agregát
 Hydraulic pump	Hydraulické čerpadlo
 Hysteresis	Hystereze
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc max (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (stroje: fázové vodiče BK, řízení DC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (fázové vodiče BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	MAC adresa
 MCAD	MCAD
 MCAD device placement (CSV)	Umístění přístrojů MCAD (CSV)
 MOSFET N-channel	MOSFET s kanálem N
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Stroj (ukázkové identifikátory)
 Machine frame	Rám stroje
@@ -839,6 +843,8 @@ Minimum operating temperature	Minimální provozní teplota
 Mirror contacts	Zrcadlové kontakty
 Mirrored	Zrcadleno
 Mission time	Doba mise
+Module	Modul
+Modules	Moduly
 Moisture	Vlhkost
 Moment of inertia	Moment setrvačnosti
 Motion detector	Detektor pohybu
@@ -930,6 +936,7 @@ No plugs	Žádné konektory
 No report block {}	Žádný blok výkazů {}
 No segment template named {}	Žádná šablona segmentu s názvem {}
 No subproject {}	Žádný podprojekt {}
+No such PV array	Takové FV pole neexistuje
 No such object: {}	Žádný takový objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Na přívodu není přepěťová ochrana (IEC 60364-4-44)
 No terminal {}	Žádná svorka {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Tagy PLC pro Rockwell Studio 5000 (CSV)
 PLC variables for Schneider Control Expert (XSY)	Proměnné PLC pro Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	Konstrukční kusovník PLM (JSON)
+PV strings	FV stringy
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Stránka / sloupec (3.4.1)
 Page name	Název stránky
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Potenciál {} je definován {}krát
 Potentials / Connectors	Potenciály / konektory
 Potentials, interruption points	Potenciály, body přerušení
 Potentiometer	Potenciometr
+Power (kWp)	Výkon (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Silový a řídicí obvod na několika stránkách: hlavní vypínač, ochrana motoru, tři stykače s blokováním, časové relé se zpožděným přítahem, body přerušení, potenciály s barvami vodičů, kabel motoru a výkazy kabelů.
 Power factor	Účiník
 Power factor meter	Měřič účiníku
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	Dvakrát zalomené (dvě čtvrtinové podest
 Two connection symbols on page {} lie on the same point	Dva symboly spojení na straně {} leží v tomtéž bodě
 Two-way switch (installation)	Střídavý přepínač (instalace)
 Type numbers	Typová čísla
+U max (V)	U max (V)
+U mean (V)	U stř. (V)
+U min (V)	U min (V)
 UL listed	Certifikace UL
 UV resistant	Odolný proti UV
 Unbalance {} %	Nesymetrie {} %
@@ -1918,6 +1930,9 @@ yellow	žlutá
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} je veden ke kabelovým vstupům svých skříní: nestojí ve společné místnosti, cesta mezi nimi není součástí rozvržení
 {} {}: bends closer than the bend radius ({} mm)	{} {}: ohyby těsnější než poloměr ohybu ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: propojeno v jednopólovém schématu, ale ne ve schématu zapojení
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP tracker {}: jeho stringy se liší napětím ({} V a {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP tracker {}: stringy dodávají {} A, více než {} A, které využije (výkon je omezen)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP tracker {}: stringy dosahují zkratového proudu {} A, více než {} A, které snese
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} let je pod 3 roky
 {}: PV array {} covers a roof window	{}: FV pole {} zakrývá střešní okno
 {}: PV array {} has {} modules, its device {} has {}	{}: FV pole {} má {} modulů, jeho zařízení {} má {}
@@ -1994,12 +2009,21 @@ yellow	žlutá
 {}: slot {} of rack {} is used by {} and {}	{}: slot {} nosného rámu {} používají {} a {}
 {}: solenoid coil not linked to a valve	{}: cívka není propojena s ventilem
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: elektromagnetický ventil bez propojené cívky (Tekutiny a procesní technika › Synchronizovat)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: string {} FV pole {} klesá na {} V při {} °C, pod rozsah MPP {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: string {} FV pole {} není připojen k žádnému střídači
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: string {} FV pole {} dosahuje {} V při maximálním výkonu při {} °C, nad rozsahem MPP {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: string {} FV pole {} dosahuje {} V při {} °C, více než systémové napětí {} V jeho modulů
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: string {} FV pole {} dosahuje {} V při {} °C, více než {} V, které snese {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: string {} FV pole {}: {} má jen {} MPP trackery
+{}: string {} of PV array {}: {} is no device with PV input data	{}: string {} FV pole {}: {} není zařízení s daty FV vstupu
 {}: terminal {} is on level {}, but no terminal block is before it	{}: svorka {} je na patře {}, ale před ní není žádný svorkový blok
 {}: terminal {} uses {} levels, its part {} has {}	{}: svorka {} používá {} pater, její artikl {} má {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: svorky {} jsou {} mm nad podlahou, vyžaduje se alespoň {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: přípojnicový systém s {} přípojnicemi spojuje {} vodiče ({}): zkrat
 {}: the device {} of PV array {} does not exist	{}: zařízení {} FV pole {} neexistuje
+{}: the module {} of PV array {} has no electrical data	{}: modul {} FV pole {} nemá elektrická data
 {}: the station has no port {}	{}: stanice nemá port {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: stringy FV pole {} spojují {} modulů, pole má {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) je větší než pracovní prostor {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} má tloušťku {} mm, {} zpracuje nejvýše {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: úbytek napětí {} V ({} %) nad {} %
@@ -2025,6 +2049,7 @@ yellow	žlutá
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} není určen pro montáž na stěnu, namontujte jej na lištu
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} je {} … {} mm nad podlahou, povoleno {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg na {} překračuje nosnost {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} modulů FV pole {} není připojeno k žádnému stringu
 {}: {} modules, the head has {} slots	{}: modulů: {}, hlavní modul má {} slotů
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} s {} mm je delší než skladová délka {} mm a musí se nastavovat
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} s {} mm je kratší než {} mm a obtížně se řeže

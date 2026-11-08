@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Czujnik pojemnościowy, 3-przewodowy
 Capacitor	Kondensator
 Capacitor, polarized	Kondensator, spolaryzowany
 Ceiling	Sufit
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperatury ogniw: {} °C (U maks.), {} °C (U śr.), {} °C (U min.)
 Centre horizontally	Wyśrodkuj w poziomie
 Centre vertically	Wyśrodkuj w pionie
 Centrifugal pump	Pompa odśrodkowa
@@ -664,6 +665,8 @@ Hydraulic oil	Olej hydrauliczny
 Hydraulic power unit	Zasilacz hydrauliczny
 Hydraulic pump	Pompa hydrauliczna
 Hysteresis	Histereza
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc maks. (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (maszyny: przewody fazowe BK, sterowanie DC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (przewody fazowe BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	Adres MAC
 MCAD	MCAD
 MCAD device placement (CSV)	Rozmieszczenie urządzeń MCAD (CSV)
 MOSFET N-channel	MOSFET z kanałem N
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Maszyna (przykładowe identyfikatory)
 Machine frame	Rama maszyny
@@ -839,6 +843,8 @@ Minimum operating temperature	Minimalna temperatura pracy
 Mirror contacts	Styki lustrzane
 Mirrored	Odbite lustrzanie
 Mission time	Czas misji
+Module	Moduł
+Modules	Moduły
 Moisture	Wilgotność
 Moment of inertia	Moment bezwładności
 Motion detector	Czujnik ruchu
@@ -930,6 +936,7 @@ No plugs	Brak złączy
 No report block {}	Brak bloku raportu {}
 No segment template named {}	Brak szablonu segmentu o nazwie {}
 No subproject {}	Brak podprojektu {}
+No such PV array	Brak takiej instalacji PV
 No such object: {}	Brak obiektu: {}
 No surge protective device at the supply (IEC 60364-4-44)	Brak ogranicznika przepięć na zasilaniu (IEC 60364-4-44)
 No terminal {}	Brak zacisku {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Tagi PLC dla Rockwell Studio 5000 (CSV)
 PLC variables for Schneider Control Expert (XSY)	Zmienne PLC dla Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	Konstrukcyjne zestawienie materiałów PLM (JSON)
+PV strings	Łańcuchy PV
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Strona / kolumna (3.4.1)
 Page name	Nazwa strony
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Potencjał {} zdefiniowany {} razy
 Potentials / Connectors	Potencjały / złącza
 Potentials, interruption points	Potencjały, punkty przerwania
 Potentiometer	Potencjometr
+Power (kWp)	Moc (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Obwód główny i sterowania na kilku stronach: wyłącznik główny, zabezpieczenie silnika, trzy styczniki z blokadami, przekaźnik czasowy opóźnionego załączania, punkty przerwania, potencjały z kolorami przewodów, kabel silnika i zestawienia kabli.
 Power factor	Współczynnik mocy
 Power factor meter	Miernik współczynnika mocy
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	Zabiegowe dwa razy (dwa spoczniki narożne)
 Two connection symbols on page {} lie on the same point	Dwa symbole połączeń na stronie {} leżą w tym samym punkcie
 Two-way switch (installation)	Łącznik schodowy (instalacyjny)
 Type numbers	Numery typów
+U max (V)	U maks. (V)
+U mean (V)	U śr. (V)
+U min (V)	U min. (V)
 UL listed	Na liście UL
 UV resistant	Odporny na UV
 Unbalance {} %	Asymetria {} %
@@ -1918,6 +1930,9 @@ yellow	żółty
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} jest poprowadzony do wejść kablowych swoich obudów: nie stoją we wspólnym pomieszczeniu, droga między nimi nie należy do układu
 {} {}: bends closer than the bend radius ({} mm)	{} {}: zagięcia ciaśniejsze niż promień gięcia ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: połączone na schemacie jednokreskowym, ale nie na schemacie elektrycznym
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, tracker MPP {}: jego łańcuchy różnią się napięciem ({} V i {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, tracker MPP {}: łańcuchy dają {} A, więcej niż {} A, które wykorzystuje (moc jest ograniczona)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, tracker MPP {}: łańcuchy osiągają prąd zwarcia {} A, więcej niż {} A, które przyjmuje
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} lat jest poniżej 3 lat
 {}: PV array {} covers a roof window	{}: instalacja PV {} zakrywa okno dachowe
 {}: PV array {} has {} modules, its device {} has {}	{}: instalacja PV {} ma {} modułów, jej urządzenie {} ma {}
@@ -1994,12 +2009,21 @@ yellow	żółty
 {}: slot {} of rack {} is used by {} and {}	{}: gniazdo {} kasety {} jest zajęte przez {} i {}
 {}: solenoid coil not linked to a valve	{}: cewka elektromagnetyczna niepowiązana z zaworem
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: zawór elektromagnetyczny bez powiązanej cewki (Płyny i procesy › Synchronizuj)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: łańcuch {} instalacji PV {} spada do {} V przy {} °C, poniżej zakresu MPP {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: łańcuch {} instalacji PV {} nie jest podłączony do żadnego falownika
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: łańcuch {} instalacji PV {} osiąga {} V przy mocy maksymalnej przy {} °C, powyżej zakresu MPP {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: łańcuch {} instalacji PV {} osiąga {} V przy {} °C, więcej niż napięcie systemowe {} V jego modułów
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: łańcuch {} instalacji PV {} osiąga {} V przy {} °C, więcej niż {} V, które przyjmuje {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: łańcuch {} instalacji PV {}: {} ma tylko {} trackery MPP
+{}: string {} of PV array {}: {} is no device with PV input data	{}: łańcuch {} instalacji PV {}: {} nie jest urządzeniem z danymi wejścia PV
 {}: terminal {} is on level {}, but no terminal block is before it	{}: zacisk {} znajduje się na piętrze {}, ale przed nim nie ma bloku zacisków
 {}: terminal {} uses {} levels, its part {} has {}	{}: zacisk {} wykorzystuje {} pięter, jego artykuł {} ma {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: zaciski {} znajdują się {} mm nad podłogą, wymagane co najmniej {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: system szyn zbiorczych z {} szynami łączy {} przewody ({}): zwarcie
 {}: the device {} of PV array {} does not exist	{}: urządzenie {} instalacji PV {} nie istnieje
+{}: the module {} of PV array {} has no electrical data	{}: moduł {} instalacji PV {} nie ma danych elektrycznych
 {}: the station has no port {}	{}: stacja nie ma portu {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: łańcuchy instalacji PV {} łączą {} modułów, instalacja ma {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) jest większa niż obszar roboczy {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} ma grubość {} mm, {} przyjmuje maks. {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: spadek napięcia {} V ({} %) powyżej {} %
@@ -2025,6 +2049,7 @@ yellow	żółty
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nie jest przeznaczony do montażu naściennego, zamontuj go na szynie
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} znajduje się {} … {} mm nad podłogą, dopuszczalne {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg na {} przekracza jej nośność {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} modułów instalacji PV {} nie jest podłączonych do łańcucha
 {}: {} modules, the head has {} slots	{}: moduły: {}, głowica ma {} gniazd
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} o długości {} mm jest dłuższy niż długość handlowa {} mm i musi być łączony
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} o długości {} mm jest krótszy niż {} mm i trudny do przycięcia

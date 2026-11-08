@@ -204,7 +204,6 @@ Bottom edges	Marginile de jos
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Partea inferioară a carcasei (fără soclu) deasupra podelei; înălțimile sunt verificate dacă aceasta este cunoscută sau dacă carcasa stă pe un soclu
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
-Building	Clădire
 Built-in frames cannot be changed; copy one to adapt it.	Chenarele integrate nu pot fi modificate; copiați unul pentru a-l adapta.
 Built-in scheme: copy it to change it.	Schemă integrată: copiați-o pentru a o modifica.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Cartușele integrate sunt doar în citire – folosiți „Copiere ca nou” pentru a crea unul propriu.
@@ -233,6 +232,7 @@ Calculations	Calcule
 Cancel / select tool / clear selection	Anulare / selectare instrument / golire selecție
 Card	Card
 Cards without station: {}	Carduri fără stație: {}
+Cell temperatures of the strings	Temperaturile celulelor șirurilor
 Centre	Centru
 Change project properties of the selected projects	Modificarea proprietăților de proiect ale proiectelor selectate
 Change request	Cerere de modificare
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Șterge secțiunea
 Delete shaft	Șterge puțul
 Delete stair	Ștergeți scara
+Delete string	Ștergeți șirul
 Delete the group	Ștergerea grupului
 Delete the layer; its items move to the default layer	Ștergeți stratul; elementele sale se mută pe stratul implicit
 Delete the property and all its values	Ștergerea proprietății și a tuturor valorilor sale
@@ -742,6 +743,8 @@ Help	Ajutor
 Hide the groups you do not need and put the commands you use most into own groups.	Ascundeți grupurile de care nu aveți nevoie și puneți comenzile cele mai folosite în grupuri proprii.
 Highest phase unbalance	Cel mai mare dezechilibru de fază
 Highest short-circuit current	Cel mai mare curent de scurtcircuit
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Tensiunea cea mai mare (în gol la temperatura cea mai scăzută), tensiunea medie și cea mai mică (la putere maximă la temperatura medie și cea mai ridicată), curentul la putere maximă, puterea de vârf
+Highest: the lowest voltage	Cea mai ridicată: tensiunea cea mai mică
 Hole to sheet edge	Gaură față de marginea tablei
 Home	Pornire
 Hook distance	Distanța cârligelor
@@ -830,6 +833,7 @@ Insulation	Izolație
 Interruption points refer to	Punctele de întrerupere fac referire la
 Introduction	Introducere
 Invalid value	Valoare nevalidă
+Inverter or charge controller (devices with PV input data)	Invertor sau regulator de încărcare (dispozitive cu date de intrare fotovoltaică)
 Isometric	Izometric
 Items on the layer	Elemente pe strat
 Items with an anchor keep it; the others are inserted relative to the click.	Elementele cu ancoră o păstrează; celelalte se inserează relativ la punctul de clic.
@@ -917,6 +921,7 @@ Looking for updates…	Se caută actualizări…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Caută o versiune nouă a OpenECraft pe GitHub și o instalează în fundal
 Loop	Buclă
 Lowest fault current	Cel mai mic curent de defect
+Lowest: the highest open-circuit voltage	Cea mai scăzută: tensiunea în gol cea mai mare
 Macro boxes	Casete macro
 Macro boxes ({})	Casete macro ({})
 Macro saved to the library	Macro salvat în bibliotecă
@@ -947,6 +952,7 @@ Master data	Date de bază
 Max. pressure	Presiune max.
 Max. width	Lățime max.
 Maximum fill of a carrier	Grad maxim de umplere a unui suport de cabluri
+Mean: typical operation	Medie: funcționare tipică
 Measured	Măsurat
 Measures against common cause failure (at least 65 points)	Măsuri împotriva defectelor de cauză comună (cel puțin 65 de puncte)
 Merge a symbol library file	Combinare cu un fișier de bibliotecă de simboluri
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
 No harnesses defined.	Nu sunt definite cablaje.
+No inverter	Fără invertor
 No longer reported	Nu mai este raportat
 No macros yet. Select items in a schematic and save them as a macro.	Încă nu există macro-uri. Selectați elemente într-o schemă și salvați-le ca macro.
 No modules: plug in PLC cards of the schematic.	Nu există module: inserați carduri PLC din schemă.
@@ -1200,7 +1207,6 @@ PLC channels	Canale PLC
 PLC hardware and bus topology	Hardware PLC și topologie de magistrală
 PLC overview	Prezentare PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Imagine bitmap PNG sau JPEG, de ex. un logo sau o fotografie
-PV array	Câmp fotovoltaic
 PV arrays	Câmpuri fotovoltaice
 Page graphics	Grafica paginii
 Page heading	Titlul paginii
@@ -1682,6 +1688,8 @@ Still reported	Încă raportat
 Stock length	Lungime de stoc
 Stop placing for this device	Oprire plasare pentru acest dispozitiv
 Stratification (factor c)	Stratificare (factor c)
+Strings	Șiruri
+Strings of this kind in parallel	Șiruri de acest fel în paralel
 Strip on the rail	Șir pe șină
 Strip {} mm	Dezizolare {} mm
 Strips / plugs	Șiruri de borne / conectori
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
 The items are selected and moved together	Elementele se selectează și se mută împreună
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
+The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
 The names of its pages follow	Numele paginilor ei se schimbă odată cu ea
 The page name gets the section number	Numele paginii primește numărul secțiunii
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Tutorial
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Scara interfeței
 Undo	Anulare acțiune
 Undo brings it back.	Anulare îl readuce.
@@ -2001,6 +2011,7 @@ model	model
 name	nume
 no	nu
 no answer	niciun răspuns
+no electrical data of the module	nu există date electrice ale modulului
 no rooms	nicio încăpere
 no valid levels	niciun nivel valid
 no wires	fără conductoare

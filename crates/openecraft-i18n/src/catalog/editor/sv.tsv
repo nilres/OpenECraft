@@ -204,7 +204,6 @@ Bottom edges	Underkanter
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (utan sockel) över golvet; höjderna kontrolleras när den är känd eller när kapslingen står på en sockel
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
-Building	Byggnad
 Built-in frames cannot be changed; copy one to adapt it.	Inbyggda ramar kan inte ändras; kopiera en för att anpassa den.
 Built-in scheme: copy it to change it.	Inbyggt schema: kopiera det för att ändra det.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Inbyggda namnrutor är skrivskyddade – använd ”Kopiera som ny” för att skapa en egen.
@@ -233,6 +232,7 @@ Calculations	Beräkningar
 Cancel / select tool / clear selection	Avbryt / välj verktyg / rensa markering
 Card	Kort
 Cards without station: {}	Kort utan station: {}
+Cell temperatures of the strings	Celltemperaturer för strängarna
 Centre	Mitten
 Change project properties of the selected projects	Ändra projektegenskaper för de markerade projekten
 Change request	Ändringsbegäran
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Ta bort avsnitt
 Delete shaft	Ta bort schakt
 Delete stair	Ta bort trappa
+Delete string	Ta bort sträng
 Delete the group	Ta bort gruppen
 Delete the layer; its items move to the default layer	Ta bort lagret; dess objekt flyttas till standardlagret
 Delete the property and all its values	Ta bort egenskapen och alla dess värden
@@ -742,6 +743,8 @@ Help	Hjälp
 Hide the groups you do not need and put the commands you use most into own groups.	Dölj de grupper du inte behöver och lägg de mest använda kommandona i egna grupper.
 Highest phase unbalance	Högsta fasobalans
 Highest short-circuit current	Högsta kortslutningsström
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Högsta spänning (tomgång vid lägsta temperatur), medel- och lägsta spänning (vid maximal effekt vid medel- och högsta temperatur), ström vid maximal effekt, toppeffekt
+Highest: the lowest voltage	Högsta: den lägsta spänningen
 Hole to sheet edge	Hål till plåtkant
 Home	Start
 Hook distance	Krokavstånd
@@ -830,6 +833,7 @@ Insulation	Isolering
 Interruption points refer to	Avbrottspunkter hänvisar till
 Introduction	Inledning
 Invalid value	Ogiltigt värde
+Inverter or charge controller (devices with PV input data)	Växelriktare eller laddregulator (enheter med PV-ingångsdata)
 Isometric	Isometrisk
 Items on the layer	Objekt på lagret
 Items with an anchor keep it; the others are inserted relative to the click.	Objekt med förankring behåller den; de övriga infogas relativt klicket.
@@ -917,6 +921,7 @@ Looking for updates…	Söker efter uppdateringar…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Söker efter en ny version av OpenECraft på GitHub och installerar den i bakgrunden
 Loop	Slinga
 Lowest fault current	Lägsta felström
+Lowest: the highest open-circuit voltage	Lägsta: den högsta tomgångsspänningen
 Macro boxes	Makrorutor
 Macro boxes ({})	Makrorutor ({})
 Macro saved to the library	Makrot sparat i biblioteket
@@ -947,6 +952,7 @@ Master data	Grunddata
 Max. pressure	Max. tryck
 Max. width	Max. bredd
 Maximum fill of a carrier	Högsta fyllnadsgrad för en kabelbärare
+Mean: typical operation	Medel: typisk drift
 Measured	Uppmätt
 Measures against common cause failure (at least 65 points)	Åtgärder mot fel med gemensam orsak (minst 65 poäng)
 Merge a symbol library file	Sammanfoga en symbolbiblioteksfil
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Inga fältkablar: placera kapslingarna och fältapparaterna vid noder i kabelvägsnätet.
 No filter fans: an air/air heat exchanger or a cooling unit	Inga filterfläktar: en luft/luft-värmeväxlare eller ett kylaggregat
 No harnesses defined.	Inga kabelstammar definierade.
+No inverter	Ingen växelriktare
 No longer reported	Rapporteras inte längre
 No macros yet. Select items in a schematic and save them as a macro.	Inga makron ännu. Markera objekt i ett schema och spara dem som ett makro.
 No modules: plug in PLC cards of the schematic.	Inga moduler: sätt i PLC-kort från schemat.
@@ -1200,7 +1207,6 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hårdvara och busstopologi
 PLC overview	PLC-översikt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmapp, t.ex. en logotyp eller ett foto
-PV array	Solcellsfält
 PV arrays	Solcellsfält
 Page graphics	Sidgrafik
 Page heading	Sidrubrik
@@ -1682,6 +1688,8 @@ Still reported	Rapporteras fortfarande
 Stock length	Lagerlängd
 Stop placing for this device	Sluta placera för den här apparaten
 Stratification (factor c)	Skiktning (faktor c)
+Strings	Strängar
+Strings of this kind in parallel	Strängar av detta slag parallellt
 Strip on the rail	Plintrad på skenan
 Strip {} mm	Skala av {} mm
 Strips / plugs	Plintrader / kontaktdon
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin vänstra sida mot den valdas högra sida; ledningar går mellan dem genom kabelgenomföringar
 The items are selected and moved together	Objekten markeras och flyttas tillsammans
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har inga sidmakron (Makron › Spara sida som makro…).
+The modules no string takes yet in series, on the first inverter	Modulerna som ingen sträng tar ännu, i serie, på den första växelriktaren
 The names of its pages follow	Namnen på dess sidor följer med
 The page name gets the section number	Sidnamnet får avsnittsnumret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidtyp, ritningsram, namnruta, struktur, beskrivning och hela innehållet sparas.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Handledning
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Gränssnittets skala
 Undo	Ångra
 Undo brings it back.	Ångra tar tillbaka det.
@@ -2001,6 +2011,7 @@ model	modell
 name	namn
 no	nej
 no answer	inget svar
+no electrical data of the module	inga elektriska data för modulen
 no rooms	inga rum
 no valid levels	inga giltiga våningar
 no wires	inga ledningar

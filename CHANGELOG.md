@@ -13,6 +13,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   or from generic parts. New shipped catalogs `longi` and `jinko` with PV modules; the
   check reports arrays across a ridge or off the roof, over roof windows or each other.
   Commands `add_pv_array`, `set_pv_array` ([panel layout](docs/features/panel-layout.md)).
+- **PV strings:** the modules of a PV array in series and in parallel as strings on the
+  MPP trackers of inverters and charge controllers, with their highest, mean and lowest
+  voltage, currents and power at the design cell temperatures; the report *PV strings*
+  lists them, the check reports strings above the input voltage of their inverter or the
+  system voltage of their modules, outside the MPP range, beyond the trackers or their
+  currents. Commands `add_pv_string`, `set_pv_string`, `pv_strings`
+  ([panel layout](docs/features/panel-layout.md)).
 
 - **Flush-mounted cables, wires and tubes in rooms:** each line is laid surface-mounted,
   flush-mounted in the walls or in the floor (a project default in the routing rules,

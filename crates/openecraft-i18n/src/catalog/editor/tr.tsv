@@ -204,7 +204,6 @@ Bottom edges	Alt kenarlar
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Panonun (kaide hariç) alt kenarının zeminden yüksekliği; bu değer biliniyorsa veya pano bir kaide üzerinde duruyorsa yükseklikler kontrol edilir
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Şebekenin her koruma cihazında kısa devre akımına karşı kesme kapasitesi, devresinin sonundaki en düşük arıza akımında açma, kabloların kısa devre dayanımı ve üst kademedeki cihazla seçicilik.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Köprü: dört tel; bağlantı bir taraftan gelir ve diğer üçüne gider, önce karşı tarafa
-Building	Bina
 Built-in frames cannot be changed; copy one to adapt it.	Yerleşik çerçeveler değiştirilemez; uyarlamak için birini kopyalayın.
 Built-in scheme: copy it to change it.	Yerleşik şema: değiştirmek için kopyalayın.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Yerleşik antetler salt okunurdur – kendi antetinizi oluşturmak için “Yeni olarak kopyala” komutunu kullanın.
@@ -233,6 +232,7 @@ Calculations	Hesaplamalar
 Cancel / select tool / clear selection	İptal / araç seç / seçimi temizle
 Card	Kart
 Cards without station: {}	İstasyonsuz kartlar: {}
+Cell temperatures of the strings	Dizilerin hücre sıcaklıkları
 Centre	Merkez
 Change project properties of the selected projects	Seçili projelerin proje özelliklerini değiştir
 Change request	Değişiklik talebi
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Bölümü sil
 Delete shaft	Şaftı sil
 Delete stair	Merdiveni sil
+Delete string	Diziyi sil
 Delete the group	Grubu sil
 Delete the layer; its items move to the default layer	Katmanı sil; öğeleri varsayılan katmana taşınır
 Delete the property and all its values	Özelliği ve tüm değerlerini sil
@@ -742,6 +743,8 @@ Help	Yardım
 Hide the groups you do not need and put the commands you use most into own groups.	İhtiyacınız olmayan grupları gizleyin, en çok kullandığınız komutları kendi gruplarınıza koyun.
 Highest phase unbalance	En yüksek faz dengesizliği
 Highest short-circuit current	En yüksek kısa devre akımı
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	En yüksek gerilim (en düşük sıcaklıkta açık devre), ortalama ve en düşük gerilim (ortalama ve en yüksek sıcaklıkta maksimum güçte), maksimum güçteki akım, tepe gücü
+Highest: the lowest voltage	En yüksek: en düşük gerilim
 Hole to sheet edge	Delikten sac kenarına
 Home	Giriş
 Hook distance	Kanca aralığı
@@ -830,6 +833,7 @@ Insulation	Yalıtım
 Interruption points refer to	Kesme noktalarının referansı
 Introduction	Giriş
 Invalid value	Geçersiz değer
+Inverter or charge controller (devices with PV input data)	İnvertör veya şarj kontrol cihazı (PV giriş verisi olan cihazlar)
 Isometric	İzometrik
 Items on the layer	Katmandaki öğeler
 Items with an anchor keep it; the others are inserted relative to the click.	Ankrajı olan öğeler ankrajlarını korur; diğerleri tıklanan noktaya göre eklenir.
@@ -917,6 +921,7 @@ Looking for updates…	Güncellemeler aranıyor…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub'da OpenECraft'ın yeni sürümünü arar ve arka planda yükler
 Loop	Döngü
 Lowest fault current	En düşük arıza akımı
+Lowest: the highest open-circuit voltage	En düşük: en yüksek açık devre gerilimi
 Macro boxes	Makro kutuları
 Macro boxes ({})	Makro kutuları ({})
 Macro saved to the library	Makro kütüphaneye kaydedildi
@@ -947,6 +952,7 @@ Master data	Ana veriler
 Max. pressure	Maks. basınç
 Max. width	Maks. genişlik
 Maximum fill of a carrier	Bir taşıyıcının maksimum doluluğu
+Mean: typical operation	Ortalama: tipik çalışma
 Measured	Ölçülen
 Measures against common cause failure (at least 65 points)	Ortak nedenli arızalara karşı önlemler (en az 65 puan)
 Merge a symbol library file	Bir sembol kütüphanesi dosyasını birleştir
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Saha kablosu yok: panoları ve saha cihazlarını güzergâh ağının düğümlerine yerleştirin.
 No filter fans: an air/air heat exchanger or a cooling unit	Filtreli fan yok: hava/hava ısı eşanjörü veya soğutma ünitesi
 No harnesses defined.	Tanımlı kablo demeti yok.
+No inverter	İnvertör yok
 No longer reported	Artık bildirilmiyor
 No macros yet. Select items in a schematic and save them as a macro.	Henüz makro yok. Bir şemada öğeleri seçin ve makro olarak kaydedin.
 No modules: plug in PLC cards of the schematic.	Modül yok: şemadaki PLC kartlarını takın.
@@ -1200,7 +1207,6 @@ PLC channels	PLC kanalları
 PLC hardware and bus topology	PLC donanımı ve bus topolojisi
 PLC overview	PLC genel bakışı
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG veya JPEG bit eşlem, ör. bir logo veya fotoğraf
-PV array	PV dizisi
 PV arrays	PV dizileri
 Page graphics	Sayfa grafikleri
 Page heading	Sayfa başlığı
@@ -1682,6 +1688,8 @@ Still reported	Hâlâ bildiriliyor
 Stock length	Stok uzunluğu
 Stop placing for this device	Bu cihaz için yerleştirmeyi bitir
 Stratification (factor c)	Tabakalaşma (c faktörü)
+Strings	Diziler
+Strings of this kind in parallel	Bu türdeki paralel diziler
 Strip on the rail	Ray üzerindeki şerit
 Strip {} mm	Soyma {} mm
 Strips / plugs	Şeritler / fişler
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Pano sol tarafıyla seçilen panonun sağ tarafına dayanır; teller aralarında kablo geçişlerinden geçer
 The items are selected and moved together	Öğeler birlikte seçilir ve taşınır
 The macro library has no page macros (Macros › Save page as macro…).	Makro kütüphanesinde sayfa makrosu yok (Makrolar › Sayfayı makro olarak kaydet…).
+The modules no string takes yet in series, on the first inverter	Henüz hiçbir dizinin almadığı modüller, seri olarak, ilk invertörde
 The names of its pages follow	Sayfalarının adları da değişir
 The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Eğitim
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Arayüz ölçeği
 Undo	Geri al
 Undo brings it back.	Geri al ile geri gelir.
@@ -2001,6 +2011,7 @@ model	model
 name	ad
 no	hayır
 no answer	yanıt yok
+no electrical data of the module	modülün elektrik verisi yok
 no rooms	oda yok
 no valid levels	geçerli kat yok
 no wires	tel yok

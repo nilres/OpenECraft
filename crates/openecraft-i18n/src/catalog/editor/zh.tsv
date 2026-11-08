@@ -229,6 +229,7 @@ Calculations	计算
 Cancel / select tool / clear selection	取消 / 选择工具 / 清除所选内容
 Card	卡件
 Cards without station: {}	没有站的卡件：{}
+Cell temperatures of the strings	组串的电池温度
 Centre	中心
 Change project properties of the selected projects	更改所选项目的项目属性
 Change request	变更请求
@@ -437,6 +438,7 @@ Delete room	删除房间
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	删除房间 {} 及其墙上的所有内容？其中的机柜保留，但不再属于任何房间。
 Delete section	删除分节
 Delete stair	删除楼梯
+Delete string	删除组串
 Delete the group	删除组
 Delete the layer; its items move to the default layer	删除图层；其元素将移到默认图层
 Delete the property and all its values	删除该属性及其所有值
@@ -734,6 +736,8 @@ Help	帮助
 Hide the groups you do not need and put the commands you use most into own groups.	隐藏不需要的组，并将最常用的命令放入自定义组。
 Highest phase unbalance	最大相不平衡度
 Highest short-circuit current	最大短路电流
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高电压（最低温度下的开路电压），平均和最低电压（平均和最高温度下的最大功率点电压），最大功率点电流，峰值功率
+Highest: the lowest voltage	最高：最低电压
 Hole to sheet edge	孔到板边距离
 Home	开始
 Hook distance	挂钩间距
@@ -822,6 +826,7 @@ Insulation	绝缘
 Interruption points refer to	中断点引用
 Introduction	简介
 Invalid value	无效值
+Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 Isometric	等轴测
 Items on the layer	图层上的元素
 Items with an anchor keep it; the others are inserted relative to the click.	带锚定的元素保留其锚定；其他元素相对于单击位置插入。
@@ -905,6 +910,7 @@ Looking for updates…	正在检查更新…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	在 GitHub 上查找 OpenECraft 的新版本并在后台安装
 Loop	回路
 Lowest fault current	最小故障电流
+Lowest: the highest open-circuit voltage	最低：最高开路电压
 Macro boxes	宏边框
 Macro boxes ({})	宏边框 ({})
 Macro saved to the library	宏已保存到库
@@ -935,6 +941,7 @@ Master data	主数据
 Max. pressure	最大压力
 Max. width	最大宽度
 Maximum fill of a carrier	电缆桥架的最大填充率
+Mean: typical operation	平均：典型运行
 Measured	测量值
 Measures against common cause failure (at least 65 points)	防止共因失效的措施（至少 65 分）
 Merge a symbol library file	合并符号库文件
@@ -1053,6 +1060,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	没有现场电缆：请将机柜和现场设备放置在布线网络的节点上。
 No filter fans: an air/air heat exchanger or a cooling unit	不使用过滤风扇：使用空气/空气换热器或冷却装置
 No harnesses defined.	未定义线束。
+No inverter	无逆变器
 No longer reported	不再报告
 No macros yet. Select items in a schematic and save them as a macro.	尚无宏。在原理图中选择元素并将其另存为宏。
 No modules: plug in PLC cards of the schematic.	没有模块：请插入原理图中的 PLC 卡件。
@@ -1186,7 +1194,6 @@ PLC channels	PLC 通道
 PLC hardware and bus topology	PLC 硬件和总线拓扑
 PLC overview	PLC 概览
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 或 JPEG 位图，例如徽标或照片
-PV array	光伏阵列
 PV arrays	光伏阵列
 Page graphics	页图形
 Page heading	页标题
@@ -1662,6 +1669,8 @@ Still reported	仍在报告
 Stock length	库存长度
 Stop placing for this device	停止为此设备放置
 Stratification (factor c)	温度分层（系数 c）
+Strings	组串
+Strings of this kind in parallel	此类组串并联数
 Strip on the rail	安装导轨上的端子排
 Strip {} mm	剥线 {} mm
 Strips / plugs	端子排 / 插头
@@ -1748,6 +1757,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	该机柜的左侧紧靠所选机柜的右侧；导线通过电缆过孔在它们之间穿过
 The items are selected and moved together	这些元素将一起被选择和移动
 The macro library has no page macros (Macros › Save page as macro…).	宏库没有页宏（宏 › 将页另存为宏…）。
+The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
 The names of its pages follow	其页的名称随之改变
 The page name gets the section number	页名称获得分节号
 The page type, plot frame, title block, structure, description and the whole content are saved.	将保存页类型、图框、标题栏、结构、描述和全部内容。
@@ -1799,6 +1809,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	教程
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp
 UI scale	界面缩放
 Undo	撤销
 Undo brings it back.	撤销可将其恢复。
@@ -1978,6 +1989,7 @@ model	模型
 name	名称
 no	否
 no answer	没有响应
+no electrical data of the module	无组件电气数据
 no valid levels	无有效楼层
 no wires	无导线
 not defined	未定义

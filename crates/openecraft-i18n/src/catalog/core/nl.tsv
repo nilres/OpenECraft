@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Capacitieve sensor, 3-draads
 Capacitor	Condensator
 Capacitor, polarized	Condensator, gepolariseerd
 Ceiling	Plafond
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Celtemperaturen: {} °C (U max), {} °C (U gem.), {} °C (U min)
 Centre horizontally	Horizontaal centreren
 Centre vertically	Verticaal centreren
 Centrifugal pump	Centrifugaalpomp
@@ -664,6 +665,8 @@ Hydraulic oil	Hydraulische olie
 Hydraulic power unit	Hydraulisch aggregaat
 Hydraulic pump	Hydraulische pomp
 Hysteresis	Hysterese
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc max (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (machines: fasegeleiders BK, DC-besturing BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (fasegeleiders BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	MAC-adres
 MCAD	MCAD
 MCAD device placement (CSV)	MCAD-apparaatplaatsing (CSV)
 MOSFET N-channel	MOSFET N-kanaal
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Machine (voorbeeldaanduidingen)
 Machine frame	Machineframe
@@ -839,6 +843,8 @@ Minimum operating temperature	Minimale bedrijfstemperatuur
 Mirror contacts	Spiegelcontacten
 Mirrored	Gespiegeld
 Mission time	Gebruiksduur
+Module	Module
+Modules	Modules
 Moisture	Vochtigheid
 Moment of inertia	Traagheidsmoment
 Motion detector	Bewegingsmelder
@@ -930,6 +936,7 @@ No plugs	Geen connectoren
 No report block {}	Geen rapportblok {}
 No segment template named {}	Geen segmentsjabloon met de naam {}
 No subproject {}	Geen deelproject {}
+No such PV array	Geen dergelijk PV-veld
 No such object: {}	Object bestaat niet: {}
 No surge protective device at the supply (IEC 60364-4-44)	Geen overspanningsbeveiliging bij de voeding (IEC 60364-4-44)
 No terminal {}	Geen klem {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	PLC-tags voor Rockwell Studio 5000 (CSV)
 PLC variables for Schneider Control Expert (XSY)	PLC-variabelen voor Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	PLM-engineeringstuklijst (JSON)
+PV strings	PV-strings
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Pagina / kolom (3.4.1)
 Page name	Paginanaam
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Potentiaal {} is {} keer gedefinieerd
 Potentials / Connectors	Potentialen / connectoren
 Potentials, interruption points	Potentialen, onderbrekingspunten
 Potentiometer	Potentiometer
+Power (kWp)	Vermogen (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Hoofd- en stuurstroomkring over meerdere pagina's: hoofdschakelaar, motorbeveiliging, drie magneetschakelaars met vergrendelingen, opkomvertraagd tijdrelais, onderbrekingspunten, potentialen met draadkleuren, motorkabel en kabeloverzichten.
 Power factor	Arbeidsfactor
 Power factor meter	Arbeidsfactormeter
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	Tweemaal gedraaid (twee kwartbordessen)
 Two connection symbols on page {} lie on the same point	Twee verbindingssymbolen op pagina {} liggen op hetzelfde punt
 Two-way switch (installation)	Wisselschakelaar (installatie)
 Type numbers	Typenummers
+U max (V)	U max (V)
+U mean (V)	U gem. (V)
+U min (V)	U min (V)
 UL listed	UL-gecertificeerd
 UV resistant	UV-bestendig
 Unbalance {} %	Onbalans {} %
@@ -1918,6 +1930,9 @@ yellow	geel
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} is gelegd tot de kabelinvoeren van zijn behuizingen: ze staan niet in een gemeenschappelijke ruimte, de weg ertussen hoort niet bij de lay-out
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bochten krapper dan de buigradius ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: verbonden in het eenlijnschema, maar niet in het schema
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-tracker {}: zijn strings verschillen in spanning ({} V en {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-tracker {}: de strings leveren {} A, meer dan de {} A die hij gebruikt (het vermogen wordt begrensd)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP-tracker {}: de strings bereiken een kortsluitstroom van {} A, meer dan de {} A die hij verdraagt
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} jaar is minder dan 3 jaar
 {}: PV array {} covers a roof window	{}: PV-veld {} bedekt een dakraam
 {}: PV array {} has {} modules, its device {} has {}	{}: PV-veld {} heeft {} modules, zijn apparaat {} heeft er {}
@@ -1994,12 +2009,21 @@ yellow	geel
 {}: slot {} of rack {} is used by {} and {}	{}: slot {} van rack {} wordt gebruikt door {} en {}
 {}: solenoid coil not linked to a valve	{}: magneetspoel niet aan een ventiel gekoppeld
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: magneetventiel zonder gekoppelde magneetspoel (Fluïdum en proces › Synchroniseren)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: string {} van PV-veld {} daalt tot {} V bij {} °C, onder het MPP-bereik van {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: string {} van PV-veld {} is op geen omvormer aangesloten
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: string {} van PV-veld {} bereikt {} V bij maximaal vermogen bij {} °C, boven het MPP-bereik van {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: string {} van PV-veld {} bereikt {} V bij {} °C, meer dan de systeemspanning van {} V van zijn modules
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: string {} van PV-veld {} bereikt {} V bij {} °C, meer dan de {} V die {} verdraagt
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: string {} van PV-veld {}: {} heeft maar {} MPP-trackers
+{}: string {} of PV array {}: {} is no device with PV input data	{}: string {} van PV-veld {}: {} is geen apparaat met PV-ingangsgegevens
 {}: terminal {} is on level {}, but no terminal block is before it	{}: klem {} ligt op etage {}, maar er staat geen klemblok voor
 {}: terminal {} uses {} levels, its part {} has {}	{}: klem {} gebruikt {} etages, het artikel {} ervan heeft er {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: klemmen {} liggen {} mm boven de vloer, minimaal {} mm vereist
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: het railsysteem met {} rails verbindt {} geleiders ({}): kortsluiting
 {}: the device {} of PV array {} does not exist	{}: het apparaat {} van PV-veld {} bestaat niet
+{}: the module {} of PV array {} has no electrical data	{}: de module {} van PV-veld {} heeft geen elektrische gegevens
 {}: the station has no port {}	{}: het station heeft geen poort {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: de strings van PV-veld {} verbinden {} modules, het veld heeft er {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) is groter dan het werkbereik van {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} is {} mm dik, {} verwerkt maximaal {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: spanningsval {} V ({} %) boven {} %
@@ -2025,6 +2049,7 @@ yellow	geel
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} is niet bedoeld voor wandmontage, monteer het op een rail
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} ligt {} … {} mm boven de vloer, toegestaan {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg op {} overschrijdt de draagkracht van {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} modules van PV-veld {} zijn op geen string aangesloten
 {}: {} modules, the head has {} slots	{}: {} modules, de kop heeft {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} van {} mm is langer dan de voorraadlengte van {} mm en moet worden samengevoegd
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} van {} mm is korter dan {} mm en moeilijk op lengte te zagen

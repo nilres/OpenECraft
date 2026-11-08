@@ -7,6 +7,7 @@
 use super::App;
 use egui::{pos2, vec2, Color32, Pos2, RichText, Sense, Stroke};
 use openecraft_core::model::Project;
+use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, buildings as bld, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
@@ -54,9 +55,110 @@ fn choices(prj: &Project, subgroups: &[&str]) -> Vec<Choice> {
     out
 }
 
-/// The PV arrays of a roof: place, modules, mounting and mounting system of each.
-fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, modules: &[Choice], systems: &[Choice], powers: &[String]) {
+/// What the PV arrays of the roofs of a building show besides their own data: the parts
+/// to choose, the inverters, and per roof and array its power and the values of its
+/// strings.
+struct PvView {
+    modules: Vec<Choice>,
+    systems: Vec<Choice>,
+    inverters: Vec<String>,
+    powers: Vec<Vec<String>>,
+    strings: Vec<Vec<Vec<String>>>,
+}
+
+impl PvView {
+    fn of(prj: &Project, bi: usize) -> PvView {
+        let roofs = &prj.layout.buildings[bi].roofs;
+        let d = &prj.layout.pv_design;
+        PvView {
+            modules: choices(prj, &["PV module"]),
+            systems: choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]),
+            inverters: strings::inverters(prj),
+            powers: roofs
+                .iter()
+                .map(|r| {
+                    r.solar
+                        .iter()
+                        .map(|a| match solar::peak_power(prj, a) {
+                            Some(kw) => tr_fmt!("{} modules, {} kWp", solar::module_count(a), format!("{kw:.2}")),
+                            None => tr_fmt!("{} modules", solar::module_count(a)),
+                        })
+                        .collect()
+                })
+                .collect(),
+            strings: roofs
+                .iter()
+                .map(|r| {
+                    r.solar
+                        .iter()
+                        .map(|a| {
+                            let m = strings::module_data(prj, &a.module);
+                            a.strings
+                                .iter()
+                                .map(|s| match m {
+                                    Some(m) => {
+                                        let v = strings::values(&m, d, s);
+                                        let f = |x: f32| format!("{x:.0}");
+                                        tr_fmt!("U {} / {} / {} V, I {} A, {} kWp", f(v.voc_max), f(v.vmp_mean), f(v.vmp_min), format!("{:.1}", v.imp), format!("{:.2}", v.power / 1000.0))
+                                    }
+                                    None => tr("no electrical data of the module").to_string(),
+                                })
+                                .collect()
+                        })
+                        .collect()
+                })
+                .collect(),
+        }
+    }
+}
+
+/// The strings of a PV array: modules in series and in parallel, inverter and tracker,
+/// their values; whether a string is to be added.
+fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), inverters: &[String], values: &[String]) -> bool {
+    let mut add = false;
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(28.0);
+        ui.label(RichText::new(tr("Strings")).weak());
+        if icons::text_button(ui, Icon::Plus, tr("String")).on_hover_text(tr("The modules no string takes yet in series, on the first inverter")).clicked() {
+            add = true;
+        }
+    });
     let mut gone = None;
+    for (s_k, s) in a.strings.iter_mut().enumerate() {
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(42.0);
+            ui.add(egui::TextEdit::singleline(&mut s.name).desired_width(30.0));
+            ui.add(egui::DragValue::new(&mut s.series).range(1..=200).suffix(" ×")).on_hover_text(tr("Modules in series"));
+            ui.add(egui::DragValue::new(&mut s.parallel).range(1..=50)).on_hover_text(tr("Strings of this kind in parallel"));
+            let shown = if s.inverter.is_empty() { tr("No inverter").to_string() } else { s.inverter.clone() };
+            egui::ComboBox::from_id_salt(("bldpvstring", id, s_k)).selected_text(shown).width(90.0).show_ui(ui, |ui| {
+                ui.selectable_value(&mut s.inverter, String::new(), tr("No inverter"));
+                for t in inverters {
+                    ui.selectable_value(&mut s.inverter, t.clone(), t.as_str());
+                }
+            })
+            .response
+            .on_hover_text(tr("Inverter or charge controller (devices with PV input data)"));
+            ui.add(egui::DragValue::new(&mut s.mppt).range(1..=64).prefix("MPPT ")).on_hover_text(tr("Its MPP tracker (input), from 1"));
+            ui.label(values.get(s_k).map_or("", String::as_str)).on_hover_text(tr("Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power"));
+            if icons::button(ui, Icon::Delete, tr("Delete string")).clicked() {
+                gone = Some(s_k);
+            }
+        });
+        *s = strings::checked_string(s.clone());
+    }
+    if let Some(s_k) = gone {
+        a.strings.remove(s_k);
+    }
+    add
+}
+
+/// The PV arrays of a roof: place, modules, mounting, mounting system and strings of
+/// each; the array to add a string to when asked.
+fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView) -> Option<usize> {
+    let (modules, systems, powers) = (&view.modules, &view.systems, &view.powers[k]);
+    let mut gone = None;
+    let mut add_string = None;
     for (a_k, a) in r.solar.iter_mut().enumerate() {
         let id = (k, a_k);
         ui.horizontal_wrapped(|ui| {
@@ -127,11 +229,16 @@ fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, modules: &[Choice
             ui.label(tr("Device"));
             ui.add(egui::TextEdit::singleline(&mut a.device).desired_width(90.0)).on_hover_text(tr("Device (PV generator) the modules belong to; its parts then count them in the bill of materials"));
         });
+        let values = view.strings[k].get(a_k).map_or(&[][..], Vec::as_slice);
+        if pv_strings(ui, a, id, &view.inverters, values) {
+            add_string = Some(a_k);
+        }
         *a = solar::checked_array(a.clone());
     }
     if let Some(a_k) = gone {
         r.solar.remove(a_k);
     }
+    add_string
 }
 
 /// A free name for a new building: `+B1`, `+B2`, …
@@ -522,24 +629,11 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
             Some(tr_fmt!("{}: {} – {} m", e.name, format!("{:.2}", lo / 1000.0), format!("{:.2}", hi / 1000.0)))
         })
         .collect();
-    let modules = choices(prj, &["PV module"]);
-    let systems = choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]);
-    let powers: Vec<Vec<String>> = prj.layout.buildings[bi]
-        .roofs
-        .iter()
-        .map(|r| {
-            r.solar
-                .iter()
-                .map(|a| match solar::peak_power(prj, a) {
-                    Some(kw) => tr_fmt!("{} modules, {} kWp", solar::module_count(a), format!("{kw:.2}")),
-                    None => tr_fmt!("{} modules", solar::module_count(a)),
-                })
-                .collect()
-        })
-        .collect();
+    let view = PvView::of(prj, bi);
     let mut remove = None;
     let mut add_window = None;
     let mut add_pv = None;
+    let mut add_string = None;
     let b = &mut prj.layout.buildings[bi];
     for (k, r) in b.roofs.iter_mut().enumerate() {
         ui.group(|ui| {
@@ -611,7 +705,9 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
                     add_pv = Some(k);
                 }
             });
-            pv_arrays(ui, r, k, &modules, &systems, &powers[k]);
+            if let Some(a_k) = pv_arrays(ui, r, k, &view) {
+                add_string = Some((k, a_k));
+            }
         });
         *r = roofs::checked_roof(r.clone());
     }
@@ -623,6 +719,20 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
     }
     if let Some(k) = add_pv {
         let _ = solar::add_array(prj, bi, k, None);
+    }
+    if let Some((k, a_k)) = add_string {
+        let _ = strings::add_string(prj, bi, k, a_k);
+    }
+    // The cell temperatures the strings of all arrays are designed for.
+    if prj.layout.buildings.iter().flat_map(|b| &b.roofs).any(|r| !r.solar.is_empty()) {
+        let d = &mut prj.layout.pv_design;
+        ui.horizontal_wrapped(|ui| {
+            ui.label(RichText::new(tr("Cell temperatures of the strings")).weak());
+            ui.add(egui::DragValue::new(&mut d.t_min).speed(0.5).range(-60.0..=40.0).suffix(" °C")).on_hover_text(tr("Lowest: the highest open-circuit voltage"));
+            ui.add(egui::DragValue::new(&mut d.t_mean).speed(0.5).range(-40.0..=70.0).suffix(" °C")).on_hover_text(tr("Mean: typical operation"));
+            ui.add(egui::DragValue::new(&mut d.t_max).speed(0.5).range(0.0..=110.0).suffix(" °C")).on_hover_text(tr("Highest: the lowest voltage"));
+        });
+        d.t_mean = d.t_mean.clamp(d.t_min, d.t_max.max(d.t_min));
     }
     if !sloped.is_empty() {
         ui.label(RichText::new(tr("Rooms under sloped ceilings (lowest – highest ceiling)")).weak());

@@ -248,7 +248,6 @@ Bottom edges	Untere Kanten	Bords inférieurs	Bordes inferiores
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Unterkante des Gehäuses (ohne Sockel) über dem Boden; die Höhen werden geprüft, wenn sie bekannt ist oder das Gehäuse auf einem Sockel steht	Bas de l'armoire (sans socle) au-dessus du sol ; les hauteurs sont contrôlées si elle est connue ou si l'armoire repose sur un socle	Parte inferior del armario (sin zócalo) sobre el suelo; las alturas se comprueban si se conoce o si el armario está sobre un zócalo
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Schaltvermögen gegen den Kurzschlussstrom an jedem Schutzorgan des Netzes, Abschaltung beim kleinsten Fehlerstrom am Ende seines Stromkreises, Kurzschlussfestigkeit der Leitungen und Selektivität zum vorgeschalteten Schutzorgan.	Pouvoir de coupure face au courant de court-circuit à chaque appareil de protection du réseau, coupure au courant de défaut minimal en bout de circuit, tenue au court-circuit des câbles et sélectivité avec l'appareil amont.	Poder de corte frente a la corriente de cortocircuito en cada dispositivo de protección de la red, desconexión con la corriente de defecto mínima al final de su circuito, resistencia al cortocircuito de los cables y selectividad con el dispositivo aguas arriba.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brücke: vier Verbindungslinien; die Verbindung kommt an einer Seite an und geht zu den drei anderen, zuerst zur gegenüberliegenden	Pont : quatre fils ; la liaison arrive d'un côté et va vers les trois autres, le côté opposé d'abord	Puente: cuatro cables; la conexión entra por un lado y va a los otros tres, primero al lado opuesto
-Building	Gebäude	Bâtiment	Edificio
 Building entry: the supply cable, the water main and other lines from outside come into the building through it; click on an outer wall in the floor plan or in the view of the wall	Hauseinführung: Versorgungskabel, Wasserleitung und andere Leitungen von außen kommen durch sie ins Gebäude; im Grundriss oder in der Ansicht der Wand auf eine Außenwand klicken	Entrée de bâtiment : le câble d'alimentation, la conduite d'eau et d'autres lignes venant de l'extérieur entrent par elle dans le bâtiment ; cliquez sur un mur extérieur dans le plan ou dans la vue du mur	Entrada al edificio: el cable de acometida, la tubería de agua y otras líneas del exterior entran por ella al edificio; haga clic en una pared exterior en la planta o en la vista de la pared
 Buildings of the plant: levels with their rooms, shafts through the levels, links between buildings and the site plan	Gebäude der Anlage: Ebenen mit ihren Räumen, Schächte durch die Ebenen, Verbindungen zwischen Gebäuden und der Lageplan	Bâtiments de l'installation : niveaux avec leurs pièces, gaines à travers les niveaux, liaisons entre bâtiments et plan de masse	Edificios de la instalación: niveles con sus salas, patinillos a través de los niveles, enlaces entre edificios y el plano de situación
 Built-in frames cannot be changed; copy one to adapt it.	Eingebaute Rahmen sind nicht änderbar; zum Anpassen kopieren.	Les cadres intégrés ne sont pas modifiables ; copiez-en un pour l'adapter.	Los marcos integrados no se pueden cambiar; copie uno para adaptarlo.
@@ -281,6 +280,7 @@ Cancel / select tool / clear selection	Abbrechen / Werkzeug wählen / Auswahl au
 Card	Karte	Carte	Tarjeta
 Cards without station: {}	Karten ohne Station: {}	Cartes sans station : {}	Tarjetas sin estación: {}
 Cavity plug	Blindstopfen	Bouchon d'alvéole	Tapón de cavidad
+Cell temperatures of the strings	Zelltemperaturen der Strings	Températures de cellule des chaînes	Temperaturas de célula de los strings
 Centre	Mitte	Centre	Centro
 Centre curve	Mittellinie	Ligne médiane	Línea central
 Change project properties of the selected projects	Projekteigenschaften der ausgewählten Projekte ändern	Modifier les propriétés de projet des projets sélectionnés	Cambiar las propiedades de proyecto de los proyectos seleccionados
@@ -520,6 +520,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Abschnitt löschen	Supprimer la section	Eliminar sección
 Delete shaft	Schacht löschen	Supprimer la gaine	Eliminar patinillo
 Delete stair	Treppe löschen	Supprimer l'escalier	Eliminar escalera
+Delete string	String löschen	Supprimer la chaîne	Eliminar string
 Delete the group	Gruppe löschen	Supprimer le groupe	Eliminar el grupo
 Delete the group {}?	Gruppe {} löschen?	Supprimer le groupe {} ?	¿Eliminar el grupo {}?
 Delete the layer; its items move to the default layer	Ebene löschen; ihre Objekte kommen auf die Standardebene	Supprimer le calque ; ses éléments passent sur le calque par défaut	Eliminar la capa; sus elementos pasan a la capa predeterminada
@@ -856,6 +857,8 @@ Hide walls in front	Wände davor ausblenden	Masquer les murs de devant	Ocultar l
 Higher than its level ({} mm)	Höher als seine Ebene ({} mm)	Plus haute que son niveau ({} mm)	Más alta que su nivel ({} mm)
 Highest phase unbalance	Größte Phasenunsymmetrie	Déséquilibre des phases maximal	Desequilibrio de fases máximo
 Highest short-circuit current	Größter Kurzschlussstrom	Courant de court-circuit maximal	Corriente de cortocircuito máxima
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Höchste Spannung (Leerlauf bei der niedrigsten Temperatur), mittlere und niedrigste Spannung (bei maximaler Leistung bei der mittleren und der höchsten Temperatur), Strom bei maximaler Leistung, Spitzenleistung	Tension la plus haute (à vide à la température la plus basse), tension moyenne et la plus basse (à puissance maximale à la température moyenne et la plus haute), courant à puissance maximale, puissance crête	Tensión más alta (circuito abierto a la temperatura más baja), tensión media y más baja (a máxima potencia a la temperatura media y la más alta), corriente a máxima potencia, potencia pico
+Highest: the lowest voltage	Höchste: die niedrigste Spannung	La plus haute : la tension la plus basse	Más alta: la tensión más baja
 Hole to sheet edge	Bohrung zum Blechrand	Perçage au bord de la tôle	Taladro al borde de la chapa
 Home	Start	Accueil	Inicio
 Hook distance	Hakenabstand	Distance des crochets	Distancia de ganchos
@@ -946,6 +949,7 @@ Insulation	Isolierung	Isolant	Aislamiento
 Interruption points refer to	Unterbrechungspunkte verweisen auf	Les points d'interruption renvoient à	Los puntos de interrupción remiten a
 Introduction	Einführung	Introduction	Introducción
 Invalid value	Ungültiger Wert	Valeur invalide	Valor no válido
+Inverter or charge controller (devices with PV input data)	Wechselrichter oder Laderegler (Betriebsmittel mit PV-Eingangsdaten)	Onduleur ou régulateur de charge (appareils avec des données d'entrée PV)	Inversor o regulador de carga (dispositivos con datos de entrada FV)
 Isometric	Isometrisch	Isométrique	Isométrica
 Items on the layer	Objekte auf der Ebene	Éléments sur le calque	Elementos en la capa
 Items with an anchor keep it; the others are inserted relative to the click.	Elemente mit Verankerung behalten sie; die anderen werden relativ zum Klick eingefügt.	Les éléments ancrés gardent leur ancrage ; les autres sont insérés par rapport au clic.	Los elementos anclados lo conservan; los demás se insertan respecto al clic.
@@ -1040,6 +1044,7 @@ Looking for updates…	Suche nach Updates…	Recherche de mises à jour…	Busca
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Sucht auf GitHub nach einer neuen Version von OpenECraft und installiert sie im Hintergrund	Recherche une nouvelle version d'OpenECraft sur GitHub et l'installe en arrière-plan	Busca una nueva versión de OpenECraft en GitHub y la instala en segundo plano
 Loop	Stelle	Boucle	Lazo
 Lowest fault current	Kleinster Fehlerstrom	Courant de défaut minimal	Corriente de defecto mínima
+Lowest: the highest open-circuit voltage	Niedrigste: die höchste Leerlaufspannung	La plus basse : la tension à vide la plus haute	Más baja: la tensión de circuito abierto más alta
 Macro boxes	Makrokästen	Boîtes de macro	Cajas de macro
 Macro boxes ({})	Makrokästen ({})	Boîtes de macro ({})	Cajas de macro ({})
 Macro saved to the library	Makro in der Bibliothek gespeichert	Macro enregistrée dans la bibliothèque	Macro guardada en la biblioteca
@@ -1070,6 +1075,7 @@ Master data	Stammdaten	Données de base	Datos maestros
 Max. pressure	Max. Druck	Pression max.	Presión máx.
 Max. width	Max. Breite	Largeur max.	Ancho máx.
 Maximum fill of a carrier	Maximale Füllung eines Kabelträgers	Remplissage maximal d'un support	Llenado máximo de un soporte
+Mean: typical operation	Mittlere: typischer Betrieb	Moyenne : fonctionnement typique	Media: funcionamiento típico
 Measured	Gemessen	Mesuré	Medido
 Measures against common cause failure (at least 65 points)	Maßnahmen gegen Ausfälle gemeinsamer Ursache (mindestens 65 Punkte)	Mesures contre les défaillances de cause commune (au moins 65 points)	Medidas contra fallos de causa común (al menos 65 puntos)
 Merge a symbol library file	Eine Symbolbibliotheksdatei zusammenführen	Fusionner un fichier de bibliothèque de symboles	Combinar un archivo de biblioteca de símbolos
@@ -1202,6 +1208,7 @@ No field cables: place the enclosures and field devices at nodes of the route ne
 No filter fans: an air/air heat exchanger or a cooling unit	Keine Filterlüfter: ein Luft/Luft-Wärmetauscher oder ein Kühlgerät	Pas de ventilateurs à filtre : un échangeur thermique air/air ou un climatiseur	Sin ventiladores con filtro: un intercambiador de calor aire/aire o un equipo de refrigeración
 No harnesses defined.	Keine Kabelbäume definiert.	Aucun faisceau défini.	No hay mazos definidos.
 No harnesses yet – Connections › Harnesses	Noch keine Kabelbäume – Verbindungen › Kabelbäume	Pas encore de faisceaux – Liaisons › Faisceaux	Aún no hay mazos – Conexiones › Mazos
+No inverter	Kein Wechselrichter	Pas d'onduleur	Sin inversor
 No longer reported	Wird nicht mehr gemeldet	N'est plus signalé	Ya no se notifica
 No macros yet. Select items in a schematic and save them as a macro.	Noch keine Makros. Wählen Sie Elemente in einem Schaltplan und speichern Sie sie als Makro.	Aucune macro pour l'instant. Sélectionnez des éléments dans un schéma et enregistrez-les comme macro.	Aún no hay macros. Selecciona elementos en un esquema y guárdalos como macro.
 No modules: plug in PLC cards of the schematic.	Keine Baugruppen: Stecken Sie SPS-Karten des Schaltplans.	Aucun module : insérez des cartes automate du schéma.	No hay módulos: inserte tarjetas PLC del esquema.
@@ -1347,7 +1354,6 @@ PLC channels	SPS-Kanäle	Canaux API	Canales PLC
 PLC hardware and bus topology	SPS-Hardware und Bustopologie	Matériel automate et topologie de bus	Hardware PLC y topología de bus
 PLC overview	SPS-Übersicht	Vue d'ensemble API	Resumen PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- oder JPEG-Bitmap, z. B. ein Logo oder ein Foto	Image PNG ou JPEG, p. ex. un logo ou une photo	Mapa de bits PNG o JPEG, p. ej. un logotipo o una foto
-PV array	PV-Anlage	Champ photovoltaïque	Campo fotovoltaico
 PV arrays	PV-Anlagen	Champs photovoltaïques	Campos fotovoltaicos
 Page graphics	Seitengrafik	Graphique de page	Gráficos de página
 Page heading	Seitenüberschrift	Titre de la page	Encabezado de la página
@@ -1867,6 +1873,8 @@ Store for editing	Zum Bearbeiten speichern	Enregistrer pour modifier	Guardar par
 Stored and edited in the harness	Im Kabelbaum gespeichert und bearbeitet	Enregistrée et modifiée dans le faisceau	Guardada y editada en el mazo
 Stores the derived topology in the harness, so nodes and segments can be edited	Speichert die abgeleitete Topologie im Kabelbaum, damit Knoten und Segmente bearbeitet werden können	Enregistre la topologie déduite dans le faisceau pour pouvoir modifier nœuds et segments	Guarda la topología derivada en el mazo para poder editar nodos y segmentos
 Stratification (factor c)	Schichtung (Faktor c)	Stratification (facteur c)	Estratificación (factor c)
+Strings	Strings	Chaînes	Strings
+Strings of this kind in parallel	Strings dieser Art parallel	Chaînes de ce type en parallèle	Strings de este tipo en paralelo
 Strip on the rail	Leiste auf der Tragschiene	Bornier sur le rail	Regleta en el carril
 Strip {} mm	Abisolieren {} mm	Dénuder {} mm	Pelar {} mm
 Strips / plugs	Klemmleisten / Stecker	Borniers / connecteurs	Regletas / conectores
@@ -1961,6 +1969,7 @@ The items are selected and moved together	Die Elemente werden gemeinsam ausgewä
 The level of a building the room is on (Layout space › Buildings); it moves with the building and its level	Die Ebene eines Gebäudes, auf der der Raum liegt (Layoutraum › Gebäude); er bewegt sich mit dem Gebäude und seiner Ebene	Le niveau d'un bâtiment sur lequel se trouve la pièce (Espace de montage › Bâtiments) ; elle suit le bâtiment et son niveau	El nivel de un edificio en el que está la sala (Espacio de montaje › Edificios); se mueve con el edificio y su nivel
 The low eaves at the rear or left instead of the front or right	Die niedrige Traufe hinten oder links statt vorne oder rechts	L'égout bas à l'arrière ou à gauche au lieu de l'avant ou de la droite	El alero bajo detrás o a la izquierda en lugar de delante o a la derecha
 The macro library has no page macros (Macros › Save page as macro…).	Die Makrobibliothek hat keine Seitenmakros (Makros › Seite als Makro speichern…).	La bibliothèque de macros n'a pas de macros de page (Macros › Enregistrer la page comme macro…).	La biblioteca de macros no tiene macros de página (Macros › Guardar página como macro…).
+The modules no string takes yet in series, on the first inverter	Die Module, die noch kein String nimmt, in Reihe, am ersten Wechselrichter	Les modules qu'aucune chaîne ne prend encore, en série, sur le premier onduleur	Los módulos que ningún string toma aún, en serie, en el primer inversor
 The names of its pages follow	Die Namen seiner Seiten ändern sich mit	Les noms de ses pages suivent	Los nombres de sus páginas cambian con ella
 The page is read only	Die Seite ist schreibgeschützt	La page est en lecture seule	La página es de solo lectura
 The page name gets the section number	Der Seitenname erhält die Abschnittsnummer	Le nom de la page reçoit le numéro de la section	El nombre de la página recibe el número de la sección
@@ -2024,6 +2033,7 @@ Tutorial: {}	Tutorial: {}	Tutoriel : {}	Tutorial: {}
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier müssen zwei Verbindungslinien im rechten Winkel zusammentreffen. Bei eingeschaltetem Auto-Connect werden Anschlusspunkte, die ihren Armen gegenüberliegen, mit ihr verdrahtet.	Deux fils doivent se rejoindre ici à angle droit. Avec l'auto-connexion activée, les points de connexion face à ses bras y sont reliés.	Aquí deben unirse dos cables en ángulo recto. Con la autoconexión activada, los puntos de conexión enfrentados a sus brazos se cablean a ella.
 Type a point	Punkt eingeben	Saisir un point	Introducir un punto
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Punkt eingeben und Enter drücken: x y in mm oder @dx dy relativ zum letzten Punkt; wirkt wie ein Klick des aktuellen Werkzeugs	Saisir un point puis Entrée : x y en mm, ou @dx dy relatif au dernier point ; agit comme un clic de l'outil courant	Escriba un punto y pulse Intro: x y en mm, o @dx dy relativo al último punto; actúa como un clic de la herramienta actual
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWc	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Skalierung der Oberfläche	Échelle de l'interface	Escala de la interfaz
 Undo	Rückgängig	Annuler	Deshacer
 Undo brings it back.	Rückgängig holt es zurück.	Annuler le rétablit.	Deshacer lo recupera.
@@ -2225,6 +2235,7 @@ model	Modell	modèle	modelo
 name	Name	nom	nombre
 no	nein	non	no
 no answer	keine Antwort	pas de réponse	sin respuesta
+no electrical data of the module	keine elektrischen Daten des Moduls	pas de données électriques du module	sin datos eléctricos del módulo
 no rooms	keine Räume	aucune pièce	ninguna sala
 no valid levels	keine gültigen Ebenen	pas de niveaux valides	sin niveles válidos
 no wires	keine Verbindungen	aucun fil	sin cables

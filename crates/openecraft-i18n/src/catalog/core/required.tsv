@@ -209,6 +209,7 @@ Capacitive sensor, 3-wire	Kapazitiver Sensor, 3-Leiter	Capteur capacitif, 3 fils
 Capacitor	Kondensator	Condensateur	Condensador
 Capacitor, polarized	Kondensator, gepolt	Condensateur polarisé	Condensador polarizado
 Ceiling	Decke	Plafond	Techo
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Zelltemperaturen: {} °C (U max), {} °C (U mittel), {} °C (U min)	Températures de cellule : {} °C (U max), {} °C (U moy.), {} °C (U min)	Temperaturas de célula: {} °C (U máx.), {} °C (U media), {} °C (U mín.)
 Centre horizontally	Horizontal zentrieren	Centrer horizontalement	Centrar horizontalmente
 Centre vertically	Vertikal zentrieren	Centrer verticalement	Centrar verticalmente
 Centrifugal pump	Kreiselpumpe	Pompe centrifuge	Bomba centrífuga
@@ -722,6 +723,8 @@ Hydraulic oil	Hydrauliköl	Huile hydraulique	Aceite hidráulico
 Hydraulic power unit	Hydraulikaggregat	Centrale hydraulique	Grupo hidráulico
 Hydraulic pump	Hydraulikpumpe	Pompe hydraulique	Bomba hidráulica
 Hysteresis	Hysterese	Hystérésis	Histéresis
+I mpp (A)	I mpp (A)	I mpp (A)	I mpp (A)
+I sc max (A)	I sc max (A)	I cc max (A)	I sc máx. (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (Maschinen: Außenleiter BK, DC-Steuerung BU)	IEC 60204-1 (machines : phases BK, commande CC BU)	IEC 60204-1 (máquinas: fases BK, mando CC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (Außenleiter BN, BK, GY)	IEC 60445 (phases BN, BK, GY)	IEC 60445 (fases BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)	CEI 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -841,6 +844,7 @@ MAC address	MAC-Adresse	Adresse MAC	Dirección MAC
 MCAD	MCAD	CAO mécanique	MCAD
 MCAD device placement (CSV)	MCAD-Geräteplatzierung (CSV)	Placement des appareils CAO mécanique (CSV)	Ubicación de equipos MCAD (CSV)
 MOSFET N-channel	MOSFET N-Kanal	MOSFET canal N	MOSFET de canal N
+MPPT	MPPT	MPPT	MPPT
 MTTFd	MTTFd	MTTFd	MTTFd
 Machine (example identifiers)	Maschine (Beispielkennzeichen)	Machine (identificateurs d'exemple)	Máquina (identificadores de ejemplo)
 Machine frame	Maschinengestell	Bâti de machine	Bastidor de máquina
@@ -904,6 +908,8 @@ Minimum operating temperature	Minimale Betriebstemperatur	Température de servic
 Mirror contacts	Spiegelkontakte	Contacts miroirs	Contactos espejo
 Mirrored	Gespiegelt	En miroir	Reflejado
 Mission time	Gebrauchsdauer	Durée de mission	Tiempo de misión
+Module	Modul	Module	Módulo
+Modules	Module	Modules	Módulos
 Moisture	Feuchte	Humidité	Humedad
 Moment of inertia	Trägheitsmoment	Moment d'inertie	Momento de inercia
 Motion detector	Bewegungsmelder	Détecteur de mouvement	Detector de movimiento
@@ -997,6 +1003,7 @@ No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
+No such PV array	Keine solche PV-Anlage	Pas de tel champ photovoltaïque	No existe tal campo fotovoltaico
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
 No such inner wall	Keine solche Innenwand	Aucun mur intérieur de ce type	No existe esa pared interior
 No such object: {}	Kein solches Objekt: {}	Objet inexistant : {}	No existe el objeto: {}
@@ -1140,6 +1147,7 @@ PLM	PLM	PLM	PLM
 PLM engineering BOM (JSON)	PLM-Konstruktionsstückliste (JSON)	Nomenclature d'ingénierie PLM (JSON)	Lista de materiales de ingeniería PLM (JSON)
 PV generator	PV-Generator	Générateur PV	Generador FV
 PV generator (single-line)	PV-Generator (einpolig)	Générateur PV (unifilaire)	Generador FV (unifilar)
+PV strings	PV-Strings	Chaînes photovoltaïques	Strings fotovoltaicos
 PVC (70 °C)	PVC (70 °C)	PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Seite / Spalte (3.4.1)	Page / colonne (3.4.1)	Página / columna (3.4.1)
 Page name	Seitenname	Nom de la page	Nombre de la página
@@ -1252,6 +1260,7 @@ Potential {} has no definition (Connections › Potentials)	Potenzial {} hat kei
 Potentials / Connectors	Potenziale / Stecker	Potentiels / connecteurs	Potenciales / conectores
 Potentials, interruption points	Potenziale, Unterbrechungsstellen	Potentiels, points d'interruption	Potenciales, puntos de interrupción
 Potentiometer	Potentiometer	Potentiomètre	Potenciómetro
+Power (kWp)	Leistung (kWp)	Puissance (kWc)	Potencia (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Haupt- und Steuerstromkreis auf mehreren Seiten: Hauptschalter, Motorschutz, drei Schütze mit Verriegelungen, anzugsverzögertes Zeitrelais, Unterbrechungsstellen, Potentiale mit Aderfarben, Motorkabel und Kabelauswertungen.	Circuit de puissance et de commande sur plusieurs pages : interrupteur principal, protection moteur, trois contacteurs avec verrouillages, temporisation au travail, points d'interruption, potentiels avec couleurs de fils, câble moteur et rapports de câbles.	Circuito de potencia y de mando en varias páginas: interruptor general, protección de motor, tres contactores con enclavamientos, temporizador a la conexión, puntos de interrupción, potenciales con colores de cable, cable del motor e informes de cables.
 Power factor	Leistungsfaktor	Facteur de puissance	Factor de potencia
 Power factor meter	Leistungsfaktormesser	Phasemètre (cos φ)	Medidor de factor de potencia
@@ -1768,6 +1777,9 @@ Two bayed Hager univers cabinets: two aluminium supplies on busbar terminals for
 Two connection symbols on page {} lie on the same point	Zwei Verbindungssymbole auf Seite {} liegen auf demselben Punkt	Deux symboles de liaison en page {} se trouvent au même point	Dos símbolos de conexión en la página {} están en el mismo punto
 Two-way switch (installation)	Wechselschalter (Installation)	Va-et-vient (installation)	Conmutador (instalación)
 Type numbers	Typnummern	Références de type	Números de tipo
+U max (V)	U max (V)	U max (V)	U máx. (V)
+U mean (V)	U mittel (V)	U moy. (V)	U media (V)
+U min (V)	U min (V)	U min (V)	U mín. (V)
 UL listed	UL-gelistet	Homologué UL	Certificado UL
 UV resistant	UV-beständig	Résistant aux UV	Resistente a los rayos UV
 Unbalance {} %	Unsymmetrie {} %	Déséquilibre {} %	Desequilibrio {} %
@@ -2030,6 +2042,9 @@ yellow	gelb	jaune	amarillo
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} ist bis zu den Kabeleinführungen seiner Schränke verlegt: sie stehen in keinem gemeinsamen Raum, der Weg dazwischen gehört nicht zum Aufbau	{} {} est posé jusqu'aux entrées de câbles de ses armoires : elles ne sont pas dans une même salle, le trajet entre elles ne fait pas partie de l'implantation	{} {} está tendido hasta las entradas de cables de sus armarios: no están en una misma sala, el trayecto entre ellos no forma parte del diseño
 {} {}: bends closer than the bend radius ({} mm)	{} {}: Biegungen enger als der Biegeradius ({} mm)	{} {} : coudes plus serrés que le rayon de courbure ({} mm)	{} {}: curvas más cerradas que el radio de curvatura ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: im Übersichtsschaltplan verbunden, aber nicht im Stromlaufplan	{} – {} : reliés dans le schéma unifilaire mais pas dans le schéma développé	{} – {}: conectados en el esquema unifilar pero no en el esquema desarrollado
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-Tracker {}: seine Strings unterscheiden sich in der Spannung ({} V und {} V)	{}, tracker MPP {} : ses chaînes diffèrent en tension ({} V et {} V)	{}, seguidor MPP {}: sus strings difieren en tensión ({} V y {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-Tracker {}: die Strings liefern {} A, mehr als die {} A, die er nutzt (die Leistung wird begrenzt)	{}, tracker MPP {} : les chaînes fournissent {} A, plus que les {} A qu'il utilise (la puissance est limitée)	{}, seguidor MPP {}: los strings entregan {} A, más que los {} A que usa (la potencia se limita)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP-Tracker {}: die Strings erreichen einen Kurzschlussstrom von {} A, mehr als die {} A, die er verträgt	{}, tracker MPP {} : les chaînes atteignent un courant de court-circuit de {} A, plus que les {} A qu'il supporte	{}, seguidor MPP {}: los strings alcanzan una corriente de cortocircuito de {} A, más que los {} A que admite
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} Jahre liegt unter 3 Jahren	{} : MTTFd de {} ans inférieur à 3 ans	{}: MTTFd de {} años inferior a 3 años
 {}: PV array {} covers a roof window	{}: PV-Anlage {} verdeckt ein Dachfenster	{} : le champ photovoltaïque {} couvre une fenêtre de toit	{}: el campo fotovoltaico {} cubre una ventana de tejado
 {}: PV array {} has {} modules, its device {} has {}	{}: PV-Anlage {} hat {} Module, ihr Betriebsmittel {} hat {}	{} : le champ photovoltaïque {} a {} modules, son appareil {} en a {}	{}: el campo fotovoltaico {} tiene {} módulos, su dispositivo {} tiene {}
@@ -2114,13 +2129,22 @@ yellow	gelb	jaune	amarillo
 {}: slot {} of rack {} is used by {} and {}	{}: Steckplatz {} von Baugruppenträger {} wird von {} und {} belegt	{} : l'emplacement {} du châssis {} est occupé par {} et {}	{}: el slot {} del bastidor {} lo ocupan {} y {}
 {}: solenoid coil not linked to a valve	{}: Magnetspule mit keinem Ventil verknüpft	{} : bobine liée à aucun distributeur	{}: bobina no vinculada a ninguna válvula
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: Magnetventil ohne verknüpfte Magnetspule (Fluid und Prozess › Abgleichen)	{} : électrodistributeur sans bobine liée (Fluide et procédé › Synchroniser)	{}: electroválvula sin bobina vinculada (Fluidos y proceso › Sincronizar)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: String {} der PV-Anlage {} sinkt auf {} V bei {} °C, unter den MPP-Bereich von {} ({} - {} V)	{} : la chaîne {} du champ photovoltaïque {} descend à {} V à {} °C, sous la plage MPP de {} ({} - {} V)	{}: el string {} del campo fotovoltaico {} baja a {} V a {} °C, por debajo del rango MPP de {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: String {} der PV-Anlage {} ist an keinen Wechselrichter angeschlossen	{} : la chaîne {} du champ photovoltaïque {} n'est raccordée à aucun onduleur	{}: el string {} del campo fotovoltaico {} no está conectado a ningún inversor
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: String {} der PV-Anlage {} erreicht bei maximaler Leistung {} V bei {} °C, über dem MPP-Bereich von {} ({} - {} V)	{} : la chaîne {} du champ photovoltaïque {} atteint {} V à puissance maximale à {} °C, au-dessus de la plage MPP de {} ({} - {} V)	{}: el string {} del campo fotovoltaico {} alcanza {} V a máxima potencia a {} °C, por encima del rango MPP de {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: String {} der PV-Anlage {} erreicht {} V bei {} °C, mehr als die Systemspannung von {} V seiner Module	{} : la chaîne {} du champ photovoltaïque {} atteint {} V à {} °C, plus que la tension système de {} V de ses modules	{}: el string {} del campo fotovoltaico {} alcanza {} V a {} °C, más que la tensión del sistema de {} V de sus módulos
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: String {} der PV-Anlage {} erreicht {} V bei {} °C, mehr als die {} V, die {} verträgt	{} : la chaîne {} du champ photovoltaïque {} atteint {} V à {} °C, plus que les {} V que {} supporte	{}: el string {} del campo fotovoltaico {} alcanza {} V a {} °C, más que los {} V que admite {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: String {} der PV-Anlage {}: {} hat nur {} MPP-Tracker	{} : chaîne {} du champ photovoltaïque {} : {} n'a que {} trackers MPP	{}: string {} del campo fotovoltaico {}: {} solo tiene {} seguidores MPP
+{}: string {} of PV array {}: {} is no device with PV input data	{}: String {} der PV-Anlage {}: {} ist kein Betriebsmittel mit PV-Eingangsdaten	{} : chaîne {} du champ photovoltaïque {} : {} n'est pas un appareil avec des données d'entrée PV	{}: string {} del campo fotovoltaico {}: {} no es un dispositivo con datos de entrada FV
 {}: terminal {} is on level {}, but no terminal block is before it	{}: Klemme {} liegt auf Etage {}, aber davor ist kein Klemmenblock	{} : la borne {} est à l'étage {}, mais aucun bloc ne la précède	{}: el borne {} está en el piso {}, pero no hay bloque delante
 {}: terminal {} uses {} levels, its part {} has {}	{}: Klemme {} nutzt {} Etagen, ihr Artikel {} hat {}	{} : la borne {} utilise {} étages, son article {} en a {}	{}: el borne {} usa {} pisos, su artículo {} tiene {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: Klemmen {} liegen {} mm über dem Boden, mindestens {} mm erforderlich	{} : les bornes {} sont à {} mm au-dessus du sol, au moins {} mm requis	{}: los bornes {} están a {} mm sobre el suelo, se requieren al menos {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: Das Sammelschienensystem mit {} Schienen verbindet {} Leiter ({}): Kurzschluss	{} : le système de jeu de barres à {} barres relie {} conducteurs ({}) : court-circuit	{}: el sistema de embarrado con {} barras une {} conductores ({}): cortocircuito
 {}: the device {} of PV array {} does not exist	{}: das Betriebsmittel {} der PV-Anlage {} gibt es nicht	{} : l'appareil {} du champ photovoltaïque {} n'existe pas	{}: el dispositivo {} del campo fotovoltaico {} no existe
 {}: the level of the room no longer exists	{}: die Ebene des Raums existiert nicht mehr	{} : le niveau de la pièce n'existe plus	{}: el nivel de la sala ya no existe
+{}: the module {} of PV array {} has no electrical data	{}: das Modul {} der PV-Anlage {} hat keine elektrischen Daten	{} : le module {} du champ photovoltaïque {} n'a pas de données électriques	{}: el módulo {} del campo fotovoltaico {} no tiene datos eléctricos
 {}: the station has no port {}	{}: Die Station hat keinen Port {}	{} : la station n'a pas de port {}	{}: la estación no tiene el puerto {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: die Strings der PV-Anlage {} verschalten {} Module, die Anlage hat {}	{} : les chaînes du champ photovoltaïque {} raccordent {} modules, le champ en a {}	{}: los strings del campo fotovoltaico {} conectan {} módulos, el campo tiene {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) ist größer als der Arbeitsbereich von {}	{} : {} ({} x {} mm) est plus grand que la zone de travail de {}	{}: {} ({} x {} mm) es mayor que el área de trabajo de {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} ist {} mm dick, {} nimmt höchstens {} mm	{} : {} a {} mm d'épaisseur, {} accepte au plus {} mm	{}: {} tiene {} mm de espesor, {} admite como máximo {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: Spannungsfall {} V ({} %) über {} %	{} : chute de tension {} V ({} %) au-dessus de {} %	{}: caída de tensión {} V ({} %) por encima del {} %
@@ -2153,6 +2177,7 @@ yellow	gelb	jaune	amarillo
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg auf {} überschreiten die Traglast von {} kg	{} : {} kg sur {} dépassent sa charge de {} kg	{}: {} kg en {} superan su carga de {} kg
 {}: {} leads into no room	{}: {} führt in keinen Raum	{} : {} ne mène à aucune salle	{}: {} no lleva a ninguna sala
 {}: {} lies above the sloped ceiling	{}: {} liegt über der Dachschräge	{} : {} se trouve au-dessus du plafond rampant	{}: {} queda por encima del techo inclinado
+{}: {} modules of PV array {} are not connected to a string	{}: {} Module der PV-Anlage {} sind an keinen String angeschlossen	{} : {} modules du champ photovoltaïque {} ne sont raccordés à aucune chaîne	{}: {} módulos del campo fotovoltaico {} no están conectados a ningún string
 {}: {} modules, the head has {} slots	{}: {} Baugruppen, der Kopf hat {} Steckplätze	{} : {} modules, la tête a {} emplacements	{}: {} módulos, la cabecera tiene {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} mit {} mm ist länger als die Lagerlänge von {} mm und muss gestoßen werden	{} : {} de {} mm dépasse la longueur de stock de {} mm et doit être raboutée	{}: {} de {} mm supera la longitud de stock de {} mm y debe empalmarse
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} mit {} mm ist kürzer als {} mm und schwer abzulängen	{} : {} de {} mm est plus court que {} mm et difficile à couper	{}: {} de {} mm es más corto que {} mm y difícil de cortar

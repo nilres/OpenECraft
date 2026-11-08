@@ -229,6 +229,7 @@ Calculations	計算
 Cancel / select tool / clear selection	キャンセル / ツールの選択 / 選択の解除
 Card	カード
 Cards without station: {}	ステーションのないカード: {}
+Cell temperatures of the strings	ストリングのセル温度
 Centre	中央
 Change project properties of the selected projects	選択したプロジェクトのプロジェクトプロパティを変更
 Change request	変更依頼
@@ -437,6 +438,7 @@ Delete room	部屋を削除
 Delete room {} with everything on its walls? The cabinets standing in it stay, without a room.	部屋 {} を壁の内容ごと削除しますか? 部屋にあるキャビネットは部屋なしで残ります。
 Delete section	セクションを削除
 Delete stair	階段を削除
+Delete string	ストリングを削除
 Delete the group	グループを削除
 Delete the layer; its items move to the default layer	レイヤーを削除します。そのアイテムは既定のレイヤーに移動します
 Delete the property and all its values	プロパティとそのすべての値を削除
@@ -734,6 +736,8 @@ Help	ヘルプ
 Hide the groups you do not need and put the commands you use most into own groups.	不要なグループを非表示にし、よく使うコマンドを独自のグループにまとめます。
 Highest phase unbalance	最大相不平衡
 Highest short-circuit current	最大短絡電流
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高電圧（最低温度での開放電圧）、平均・最低電圧（平均・最高温度での最大出力時）、最大出力時の電流、ピーク出力
+Highest: the lowest voltage	最高：最低電圧
 Hole to sheet edge	穴から板端まで
 Home	ホーム
 Hook distance	フック間隔
@@ -822,6 +826,7 @@ Insulation	絶縁
 Interruption points refer to	中断ポイントの参照先
 Introduction	はじめに
 Invalid value	無効な値
+Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 Isometric	等角
 Items on the layer	レイヤー上のアイテム
 Items with an anchor keep it; the others are inserted relative to the click.	アンカーを持つアイテムはそれを保持し、その他はクリック位置を基準に挿入されます。
@@ -905,6 +910,7 @@ Looking for updates…	更新を確認しています…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub で OpenECraft の新しいリリースを探し、バックグラウンドでインストールします
 Loop	ループ
 Lowest fault current	最小故障電流
+Lowest: the highest open-circuit voltage	最低：最高開放電圧
 Macro boxes	マクロボックス
 Macro boxes ({})	マクロボックス ({})
 Macro saved to the library	マクロをライブラリに保存しました
@@ -935,6 +941,7 @@ Master data	マスターデータ
 Max. pressure	最大圧力
 Max. width	最大幅
 Maximum fill of a carrier	支持材の最大占有率
+Mean: typical operation	平均：通常運転
 Measured	測定値
 Measures against common cause failure (at least 65 points)	共通原因故障に対する対策 (65 ポイント以上)
 Merge a symbol library file	シンボルライブラリファイルをマージ
@@ -1053,6 +1060,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	フィールドケーブルがありません。エンクロージャーとフィールドデバイスをルートネットワークのノードに配置してください。
 No filter fans: an air/air heat exchanger or a cooling unit	フィルターファンなし: 空気/空気熱交換器またはクーラー
 No harnesses defined.	ハーネスが定義されていません。
+No inverter	インバーターなし
 No longer reported	報告されなくなりました
 No macros yet. Select items in a schematic and save them as a macro.	マクロはまだありません。回路図で要素を選択し、マクロとして保存してください。
 No modules: plug in PLC cards of the schematic.	モジュールがありません: 回路図の PLC カードを装着してください。
@@ -1186,7 +1194,6 @@ PLC channels	PLC チャンネル
 PLC hardware and bus topology	PLC ハードウェアとバストポロジー
 PLC overview	PLC 概要
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG または JPEG のビットマップ (例: ロゴや写真)
-PV array	PVアレイ
 PV arrays	PVアレイ
 Page graphics	ページのグラフィック
 Page heading	ページ見出し
@@ -1662,6 +1669,8 @@ Still reported	引き続き報告されています
 Stock length	定尺長
 Stop placing for this device	このデバイスの配置を終了
 Stratification (factor c)	温度成層 (係数 c)
+Strings	ストリング
+Strings of this kind in parallel	この種類のストリングの並列数
 Strip on the rail	レール上の端子台
 Strip {} mm	被覆剥き {} mm
 Strips / plugs	端子台 / プラグ
@@ -1748,6 +1757,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
 The items are selected and moved together	アイテムはまとめて選択、移動されます
 The macro library has no page macros (Macros › Save page as macro…).	マクロライブラリにページマクロがありません (マクロ › ページをマクロとして保存…)。
+The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
 The names of its pages follow	そのページの名前も変わります
 The page name gets the section number	ページ名にセクション番号が付きます
 The page type, plot frame, title block, structure, description and the whole content are saved.	ページタイプ、図枠、表題欄、構造、説明、すべての内容が保存されます。
@@ -1799,6 +1809,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	チュートリアル
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
 UI scale	UI の拡大率
 Undo	元に戻す
 Undo brings it back.	元に戻すで復元できます。
@@ -1979,6 +1990,7 @@ model	モデル
 name	名前
 no	いいえ
 no answer	応答がありません
+no electrical data of the module	モジュールの電気データなし
 no valid levels	有効な階がありません
 no wires	電線なし
 not defined	未定義

@@ -204,7 +204,6 @@ Bottom edges	Alareunat
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kotelon alareuna (ilman sokkelia) lattiasta; korkeudet tarkistetaan, kun se tiedetään tai kotelo on sokkelin päällä
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
-Building	Rakennus
 Built-in frames cannot be changed; copy one to adapt it.	Sisäisiä kehyksiä ei voi muuttaa; kopioi kehys mukauttaaksesi sitä.
 Built-in scheme: copy it to change it.	Sisäinen skeema: kopioi se muuttaaksesi sitä.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Sisäiset nimiöt ovat vain luku -tilassa – tee oma käyttämällä toimintoa ”Kopioi uutena”.
@@ -233,6 +232,7 @@ Calculations	Laskelmat
 Cancel / select tool / clear selection	Peruuta / valitse työkalu / tyhjennä valinta
 Card	Kortti
 Cards without station: {}	Kortit ilman asemaa: {}
+Cell temperatures of the strings	Merkkijonojen kennolämpötilat
 Centre	Keskikohta
 Change project properties of the selected projects	Muuta valittujen projektien ominaisuuksia
 Change request	Muutospyyntö
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Poista osio
 Delete shaft	Poista kuilu
 Delete stair	Poista portaat
+Delete string	Poista merkkijono
 Delete the group	Poista ryhmä
 Delete the layer; its items move to the default layer	Poista taso; sen kohteet siirtyvät oletustasolle
 Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
@@ -742,6 +743,8 @@ Help	Ohje
 Hide the groups you do not need and put the commands you use most into own groups.	Piilota ryhmät, joita et tarvitse, ja kokoa useimmin käyttämäsi komennot omiin ryhmiin.
 Highest phase unbalance	Suurin vaiheiden epäsymmetria
 Highest short-circuit current	Suurin oikosulkuvirta
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Suurin jännite (tyhjäkäynti alimmassa lämpötilassa), keskimääräinen ja pienin jännite (maksimiteholla keski- ja korkeimmassa lämpötilassa), virta maksimiteholla, huipputeho
+Highest: the lowest voltage	Korkein: pienin jännite
 Hole to sheet edge	Reiän etäisyys levyn reunasta
 Home	Aloitus
 Hook distance	Koukkujen väli
@@ -830,6 +833,7 @@ Insulation	Eristys
 Interruption points refer to	Katkoskohdat viittaavat
 Introduction	Johdanto
 Invalid value	Virheellinen arvo
+Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
 Isometric	Isometrinen
 Items on the layer	Tason kohteet
 Items with an anchor keep it; the others are inserted relative to the click.	Ankkuroidut kohteet säilyttävät ankkurinsa; muut lisätään suhteessa napsautukseen.
@@ -917,6 +921,7 @@ Looking for updates…	Etsitään päivityksiä…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Etsii OpenECraftin uutta versiota GitHubista ja asentaa sen taustalla
 Loop	Piiri
 Lowest fault current	Pienin vikavirta
+Lowest: the highest open-circuit voltage	Alin: suurin tyhjäkäyntijännite
 Macro boxes	Makrolaatikot
 Macro boxes ({})	Makrolaatikot ({})
 Macro saved to the library	Makro tallennettiin kirjastoon
@@ -947,6 +952,7 @@ Master data	Perustiedot
 Max. pressure	Enimmäispaine
 Max. width	Enimmäisleveys
 Maximum fill of a carrier	Kannattimen suurin täyttöaste
+Mean: typical operation	Keski: tyypillinen käyttö
 Measured	Mitattu
 Measures against common cause failure (at least 65 points)	Toimenpiteet yhteisvikoja vastaan (vähintään 65 pistettä)
 Merge a symbol library file	Yhdistä symbolikirjastotiedosto
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
 No harnesses defined.	Johtosarjoja ei ole määritetty.
+No inverter	Ei vaihtosuuntaajaa
 No longer reported	Ei enää ilmoiteta
 No macros yet. Select items in a schematic and save them as a macro.	Ei vielä makroja. Valitse kohteita piirikaaviossa ja tallenna ne makrona.
 No modules: plug in PLC cards of the schematic.	Ei moduuleja: asenna piirikaavion PLC-kortteja.
@@ -1200,7 +1207,6 @@ PLC channels	PLC-kanavat
 PLC hardware and bus topology	PLC-laitteisto ja väylätopologia
 PLC overview	PLC-yleiskatsaus
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- tai JPEG-bittikarttakuva, esim. logo tai valokuva
-PV array	Aurinkopaneelikenttä
 PV arrays	Aurinkopaneelikentät
 Page graphics	Sivun grafiikka
 Page heading	Sivun otsikko
@@ -1682,6 +1688,8 @@ Still reported	Ilmoitetaan edelleen
 Stock length	Varastopituus
 Stop placing for this device	Lopeta tämän laitteen sijoittaminen
 Stratification (factor c)	Kerrostuminen (kerroin c)
+Strings	Merkkijonot
+Strings of this kind in parallel	Tämän tyypin merkkijonot rinnan
 Strip on the rail	Rima asennuskiskolla
 Strip {} mm	Kuori {} mm
 Strips / plugs	Rimat / pistoliittimet
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
 The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
+The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
 The names of its pages follow	Sen sivujen nimet muuttuvat mukana
 The page name gets the section number	Sivun nimi saa osion numeron
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Opetusohjelma
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Käyttöliittymän koko
 Undo	Kumoa
 Undo brings it back.	Kumoa palauttaa sen.
@@ -2001,6 +2011,7 @@ model	malli
 name	nimi
 no	ei
 no answer	ei vastausta
+no electrical data of the module	moduulin sähkötietoja ei ole
 no rooms	ei tiloja
 no valid levels	ei kelvollisia kerroksia
 no wires	ei johtoja

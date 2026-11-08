@@ -289,6 +289,26 @@ hips dashed) with their roof windows, and the links.
   `list_buildings` gives each array's modules, peak power and material. The site plan
   draws the modules, the 3D view the modules with their frames, the rails, the mounting
   bases and the wind deflectors.
+- **PV strings** (*String* under a PV array in the pane, `add_pv_string`,
+  `set_pv_string`, `pv_strings`): the modules of an array in series as strings, several
+  strings of a kind in parallel, each on an MPP tracker of an inverter or charge
+  controller (a device whose part has PV input data: `Max. PV input voltage`, `MPPT
+  voltage range`, `MPP trackers`, `Max. input current per MPPT`, `Max. short-circuit
+  current per MPPT`; the generic inverters `GEN.INV-PV-10KW` and `GEN.INV-PV-40KW`, the
+  Victron Inverter RS Smart Solar and SmartSolar MPPT have them). From the module's data
+  sheet values (`Open-circuit voltage`, `Short-circuit current`, `Voltage` / `Current at
+  maximum power`, the temperature coefficients of Voc, Isc and Pmax) and the cell
+  temperatures of the design (-10 / 25 / 70 °C unless set otherwise) follow the
+  **highest voltage** (open circuit at the lowest temperature), the **mean** and the
+  **lowest voltage** (at maximum power at the mean and the highest temperature, with the
+  coefficient of the power), the current at maximum power, the short-circuit current at
+  the highest temperature and the power. The report *PV strings* lists every string with
+  these values, the total power and the temperatures. The check reports strings whose
+  highest voltage exceeds the greatest input voltage of their inverter or the system
+  voltage of their modules, strings below or above the MPP range of their tracker,
+  trackers the inverter does not have, trackers whose strings together exceed their
+  short-circuit or input current or differ in voltage, and arrays with more modules in
+  strings than they have or modules in no string.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall

@@ -204,7 +204,6 @@ Bottom edges	Bordas inferiores
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Parte inferior do gabinete (sem base) acima do piso; as alturas são verificadas quando ela é conhecida ou quando o gabinete está sobre uma base
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacidade de interrupção em relação à corrente de curto-circuito em cada dispositivo de proteção da rede, seccionamento com a menor corrente de falta no fim de seu circuito, suportabilidade a curto-circuito dos cabos e seletividade com o dispositivo a montante.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quatro fios; a conexão entra por um lado e vai para os outros três, primeiro para o lado oposto
-Building	Edifício
 Built-in frames cannot be changed; copy one to adapt it.	As molduras integradas não podem ser alteradas; copie uma para adaptá-la.
 Built-in scheme: copy it to change it.	Esquema integrado: copie-o para alterá-lo.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Os selos integrados são somente leitura – use “Copiar como novo” para criar o seu próprio.
@@ -233,6 +232,7 @@ Calculations	Cálculos
 Cancel / select tool / clear selection	Cancelar / selecionar ferramenta / limpar seleção
 Card	Cartão
 Cards without station: {}	Cartões sem estação: {}
+Cell temperatures of the strings	Temperaturas de célula das strings
 Centre	Centro
 Change project properties of the selected projects	Alterar propriedades de projeto dos projetos selecionados
 Change request	Solicitação de alteração
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Excluir seção
 Delete shaft	Excluir shaft
 Delete stair	Excluir escada
+Delete string	Excluir string
 Delete the group	Excluir o grupo
 Delete the layer; its items move to the default layer	Excluir a camada; seus itens passam para a camada padrão
 Delete the property and all its values	Excluir a propriedade e todos os seus valores
@@ -742,6 +743,8 @@ Help	Ajuda
 Hide the groups you do not need and put the commands you use most into own groups.	Oculte os grupos de que você não precisa e coloque os comandos mais usados em grupos próprios.
 Highest phase unbalance	Maior desequilíbrio de fases
 Highest short-circuit current	Maior corrente de curto-circuito
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Tensão mais alta (circuito aberto à temperatura mais baixa), tensão média e mais baixa (à potência máxima à temperatura média e à mais alta), corrente à potência máxima, potência de pico
+Highest: the lowest voltage	Mais alta: a tensão mais baixa
 Hole to sheet edge	Furo até a borda da chapa
 Home	Início
 Hook distance	Distância dos ganchos
@@ -830,6 +833,7 @@ Insulation	Isolação
 Interruption points refer to	Os pontos de interrupção referem-se a
 Introduction	Introdução
 Invalid value	Valor inválido
+Inverter or charge controller (devices with PV input data)	Inversor ou controlador de carga (dispositivos com dados de entrada FV)
 Isometric	Isométrica
 Items on the layer	Itens na camada
 Items with an anchor keep it; the others are inserted relative to the click.	Os itens com ancoragem a mantêm; os demais são inseridos em relação ao clique.
@@ -917,6 +921,7 @@ Looking for updates…	Procurando atualizações…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Procura uma nova versão do OpenECraft no GitHub e a instala em segundo plano
 Loop	Malha
 Lowest fault current	Menor corrente de falta
+Lowest: the highest open-circuit voltage	Mais baixa: a tensão de circuito aberto mais alta
 Macro boxes	Caixas de macro
 Macro boxes ({})	Caixas de macro ({})
 Macro saved to the library	Macro salva na biblioteca
@@ -947,6 +952,7 @@ Master data	Dados mestres
 Max. pressure	Pressão máx.
 Max. width	Largura máx.
 Maximum fill of a carrier	Preenchimento máximo de um suporte
+Mean: typical operation	Média: operação típica
 Measured	Medido
 Measures against common cause failure (at least 65 points)	Medidas contra falhas de causa comum (pelo menos 65 pontos)
 Merge a symbol library file	Mesclar um arquivo de biblioteca de símbolos
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Nenhum cabo de campo: posicione os gabinetes e dispositivos de campo em nós da rede de rotas.
 No filter fans: an air/air heat exchanger or a cooling unit	Sem ventiladores com filtro: um trocador de calor ar/ar ou uma unidade de resfriamento
 No harnesses defined.	Nenhum chicote definido.
+No inverter	Sem inversor
 No longer reported	Não é mais relatada
 No macros yet. Select items in a schematic and save them as a macro.	Ainda não há macros. Selecione itens em um esquema elétrico e salve-os como macro.
 No modules: plug in PLC cards of the schematic.	Nenhum módulo: insira cartões de CLP do esquema elétrico.
@@ -1200,7 +1207,6 @@ PLC channels	Canais de CLP
 PLC hardware and bus topology	Hardware de CLP e topologia de barramento
 PLC overview	Visão geral do CLP
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmap PNG ou JPEG, por exemplo, um logotipo ou uma foto
-PV array	Sistema fotovoltaico
 PV arrays	Sistemas fotovoltaicos
 Page graphics	Gráficos da página
 Page heading	Título da página
@@ -1682,6 +1688,8 @@ Still reported	Ainda é relatada
 Stock length	Comprimento em estoque
 Stop placing for this device	Parar de posicionar para este dispositivo
 Stratification (factor c)	Estratificação (fator c)
+Strings	Strings
+Strings of this kind in parallel	Strings deste tipo em paralelo
 Strip on the rail	Régua no trilho
 Strip {} mm	Decapar {} mm
 Strips / plugs	Réguas / plugues
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	O gabinete fica com seu lado esquerdo encostado no lado direito do gabinete escolhido; os fios passam entre eles por passagens de cabos
 The items are selected and moved together	Os itens são selecionados e movidos juntos
 The macro library has no page macros (Macros › Save page as macro…).	A biblioteca de macros não tem macros de página (Macros › Salvar página como macro…).
+The modules no string takes yet in series, on the first inverter	Os módulos que nenhuma string usa ainda, em série, no primeiro inversor
 The names of its pages follow	Os nomes de suas páginas acompanham
 The page name gets the section number	O nome da página recebe o número da seção
 The page type, plot frame, title block, structure, description and the whole content are saved.	O tipo de página, a moldura de plotagem, o selo, a estrutura, a descrição e todo o conteúdo são salvos.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Tutorial
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aqui devem encontrar-se dois fios em ângulo reto. Com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digite um ponto e pressione Enter: x y em mm ou @dx dy em relação ao último ponto; funciona como um clique da ferramenta atual
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Escala da interface
 Undo	Desfazer
 Undo brings it back.	Desfazer o recupera.
@@ -2001,6 +2011,7 @@ model	modelo
 name	nome
 no	não
 no answer	sem resposta
+no electrical data of the module	sem dados elétricos do módulo
 no rooms	nenhuma sala
 no valid levels	sem pavimentos válidos
 no wires	sem fios

@@ -29,6 +29,9 @@ pub struct Layout {
     /// where not as the routing rules say ([`super::routing3d::RoutingRules::laying`]).
     #[serde(skip_serializing_if = "std::collections::BTreeMap::is_empty")]
     pub laying: std::collections::BTreeMap<String, super::routing3d::Laying>,
+    /// Cell temperatures the strings of the PV arrays are designed for.
+    #[serde(skip_serializing_if = "PvDesign::is_default")]
+    pub pv_design: PvDesign,
     /// Rules of the layout checks: clearances, collision classes, heights, thermal
     /// and manufacturing limits.
     #[serde(skip_serializing_if = "PanelRules::is_default")]
@@ -239,6 +242,55 @@ pub struct PvArray {
     /// count the modules in the bill of materials.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub device: String,
+    /// The strings its modules are connected in.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub strings: Vec<PvString>,
+}
+
+/// A string of a PV array: modules in series, possibly several such strings in
+/// parallel, on one MPP tracker of an inverter or charge controller.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PvString {
+    pub id: u64,
+    /// Name, e.g. "S1".
+    pub name: String,
+    /// Modules in series.
+    pub series: u32,
+    /// Strings of this kind in parallel.
+    pub parallel: u32,
+    /// Device tag of the inverter or charge controller.
+    pub inverter: String,
+    /// Its MPP tracker (input), from 1.
+    pub mppt: u32,
+}
+
+impl Default for PvString {
+    fn default() -> Self {
+        PvString { id: 0, name: String::new(), series: 1, parallel: 1, inverter: String::new(), mppt: 1 }
+    }
+}
+
+/// Cell temperatures for the design of PV strings, °C: the lowest (the highest open
+/// circuit voltage), the mean (typical operation) and the highest (the lowest voltage).
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PvDesign {
+    pub t_min: f32,
+    pub t_mean: f32,
+    pub t_max: f32,
+}
+
+impl Default for PvDesign {
+    fn default() -> Self {
+        PvDesign { t_min: -10.0, t_mean: 25.0, t_max: 70.0 }
+    }
+}
+
+impl PvDesign {
+    pub fn is_default(&self) -> bool {
+        *self == PvDesign::default()
+    }
 }
 
 impl Default for PvArray {
@@ -263,6 +315,7 @@ impl Default for PvArray {
             ballast: 20.0,
             system: String::new(),
             device: String::new(),
+            strings: Vec::new(),
         }
     }
 }

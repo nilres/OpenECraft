@@ -174,6 +174,7 @@ Capacitive sensor, 2-wire	电容式传感器，2 线制
 Capacitive sensor, 3-wire	电容式传感器，3 线制
 Capacitor	电容器
 Capacitor, polarized	电容器，极性
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	电池温度：{} °C（U 最大），{} °C（U 平均），{} °C（U 最小）
 Centre horizontally	水平居中
 Centre vertically	垂直居中
 Centrifugal pump	离心泵
@@ -654,6 +655,8 @@ Hydraulic oil	液压油
 Hydraulic power unit	液压动力单元
 Hydraulic pump	液压泵
 Hysteresis	迟滞
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc 最大 (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1（机械：相线 BK，直流控制 BU）
 IEC 60445 (phases BN, BK, GY)	IEC 60445（相线 BN、BK、GY）
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -766,6 +769,7 @@ MAC address	MAC 地址
 MCAD	MCAD
 MCAD device placement (CSV)	MCAD 设备放置 (CSV)
 MOSFET N-channel	N 沟道 MOSFET
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	机器（示例标识符）
 Machine frame	机器框架
@@ -829,6 +833,8 @@ Minimum operating temperature	最低工作温度
 Mirror contacts	镜像触点
 Mirrored	已镜像
 Mission time	任务时间
+Module	组件
+Modules	组件
 Moisture	湿度
 Moment of inertia	转动惯量
 Motion detector	移动探测器
@@ -919,6 +925,7 @@ No plugs	没有插头
 No report block {}	没有报表块 {}
 No segment template named {}	没有名为 {} 的规划段模板
 No subproject {}	子项目 {} 不存在
+No such PV array	没有此光伏阵列
 No such object: {}	对象不存在：{}
 No surge protective device at the supply (IEC 60364-4-44)	电源进线处没有浪涌保护器 (IEC 60364-4-44)
 No terminal {}	没有端子 {}
@@ -1053,6 +1060,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	用于 Rockwell Studio 5000 的 PLC 标�
 PLC variables for Schneider Control Expert (XSY)	用于 Schneider Control Expert 的 PLC 变量 (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	PLM 工程物料清单 (JSON)
+PV strings	光伏组串
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	页 / 列 (3.4.1)
 Page name	页名
@@ -1162,6 +1170,7 @@ Potential {} defined {} times	电位 {} 被定义了 {} 次
 Potentials / Connectors	电位 / 连接器
 Potentials, interruption points	电位、中断点
 Potentiometer	电位器
+Power (kWp)	功率 (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	分布在多页上的主电路和控制电路：主开关、电机保护、三个带互锁的接触器、通电延时继电器、中断点、带导线颜色的电位、电机电缆和电缆报表。
 Power factor	功率因数
 Power factor meter	功率因数表
@@ -1659,6 +1668,9 @@ Turned twice (two quarter landings)	双转（两个转角平台）
 Two connection symbols on page {} lie on the same point	第 {} 页上有两个连接符号位于同一点
 Two-way switch (installation)	双控开关（建筑安装）
 Type numbers	型号
+U max (V)	U 最大 (V)
+U mean (V)	U 平均 (V)
+U min (V)	U 最小 (V)
 UL listed	UL 认证
 UV resistant	耐紫外线
 Unbalance {} %	不平衡度 {} %
@@ -1904,6 +1916,9 @@ yellow	黄色
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} 敷设到其机柜的电缆入口：它们不在同一房间内，其间的路径不属于布局
 {} {}: bends closer than the bend radius ({} mm)	{} {}：弯曲小于弯曲半径（{} mm）
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}：在单线图中已连接，但在原理图中未连接
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}，MPP 跟踪器 {}：其组串电压不同（{} V 和 {} V）
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}，MPP 跟踪器 {}：组串输出 {} A，超过其可用的 {} A（功率受限）
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}，MPP 跟踪器 {}：组串短路电流达 {} A，超过其允许的 {} A
 {}: MTTFd {} years is below 3 years	{}：MTTFd {} 年低于 3 年
 {}: PV array {} covers a roof window	{}：光伏阵列 {} 遮挡了一扇屋顶窗
 {}: PV array {} has {} modules, its device {} has {}	{}：光伏阵列 {} 有 {} 块组件，其设备 {} 有 {} 块
@@ -1980,11 +1995,20 @@ yellow	黄色
 {}: slot {} of rack {} is used by {} and {}	{0}：机架 {2} 的插槽 {1} 被 {3} 和 {4} 占用
 {}: solenoid coil not linked to a valve	{}：电磁线圈未关联到阀
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}：电磁阀没有关联的电磁线圈（流体和过程 › 同步）
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{0}：光伏阵列 {2} 的组串 {1} 在 {4} °C 时降至 {3} V，低于 {5} 的 MPP 范围（{6} - {7} V）
+{}: string {} of PV array {} is connected to no inverter	{0}：光伏阵列 {2} 的组串 {1} 未连接到任何逆变器
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{0}：光伏阵列 {2} 的组串 {1} 在 {4} °C 最大功率时达到 {3} V，高于 {5} 的 MPP 范围（{6} - {7} V）
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{0}：光伏阵列 {2} 的组串 {1} 在 {4} °C 时达到 {3} V，超过其组件 {5} V 的系统电压
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{0}：光伏阵列 {2} 的组串 {1} 在 {4} °C 时达到 {3} V，超过 {6} 允许的 {5} V
+{}: string {} of PV array {}: {} has only {} MPP trackers	{0}：光伏阵列 {2} 的组串 {1}：{3} 只有 {4} 个 MPP 跟踪器
+{}: string {} of PV array {}: {} is no device with PV input data	{0}：光伏阵列 {2} 的组串 {1}：{3} 不是带光伏输入数据的设备
 {}: terminal {} is on level {}, but no terminal block is before it	{}：端子 {} 位于第 {} 层，但其前面没有端子块
 {}: terminal {} uses {} levels, its part {} has {}	{}：端子 {} 使用 {} 层，其部件 {} 有 {} 层
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}：端子 {} 离地 {} mm，至少需要 {} mm
 {}: the device {} of PV array {} does not exist	{0}：光伏阵列 {2} 的设备 {1} 不存在
+{}: the module {} of PV array {} has no electrical data	{0}：光伏阵列 {2} 的组件 {1} 没有电气数据
 {}: the station has no port {}	{}：该站没有端口 {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}：光伏阵列 {} 的组串连接了 {} 块组件，阵列共有 {} 块
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}：{} ({} x {} mm) 大于 {} 的加工区域
 {}: the {} is {} mm thick, {} takes at most {} mm	{}：{} 厚 {} mm，{} 最大允许 {} mm
 {}: voltage drop {} V ({} %) above {} %	{}：电压降 {} V（{} %）超过 {} %
@@ -2009,6 +2033,7 @@ yellow	黄色
 {}: {} is not made for wall mounting, mount it on a rail	{}：{} 不适合墙面安装，请安装在导轨上
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}：{} 离地 {} … {} mm，允许 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{0}：{2} 上的 {1} kg 超过其承载能力 {3} kg
+{}: {} modules of PV array {} are not connected to a string	{0}：光伏阵列 {2} 中有 {1} 块组件未接入组串
 {}: {} modules, the head has {} slots	{}：{} 个模块，头模块只有 {} 个插槽
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}：{} 长 {} mm，超过 {} mm 的库存长度，必须拼接
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}：{} 长 {} mm，短于 {} mm，难以切割

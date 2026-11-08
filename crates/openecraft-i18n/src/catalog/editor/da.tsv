@@ -204,7 +204,6 @@ Bottom edges	Nederste kanter
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Kapslingens underkant (uden sokkel) over gulvet; højderne kontrolleres, når den er kendt, eller kapslingen står på en sokkel
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brydeevne mod kortslutningsstrømmen ved hver beskyttelsesenhed i forsyningsnettet, udkobling ved den laveste fejlstrøm i slutningen af dens kreds, kablernes kortslutningsstyrke og selektivitet med den foranliggende enhed.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Bro: fire ledere; forbindelsen kommer ind på én side og går til de tre andre, den modsatte side først
-Building	Bygning
 Built-in frames cannot be changed; copy one to adapt it.	Indbyggede rammer kan ikke ændres; kopiér en for at tilpasse den.
 Built-in scheme: copy it to change it.	Indbygget skema: kopiér det for at ændre det.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Indbyggede tegningshoveder er skrivebeskyttede – brug »Kopiér som ny« for at lave dit eget.
@@ -233,6 +232,7 @@ Calculations	Beregninger
 Cancel / select tool / clear selection	Annuller / vælg værktøj / ryd markering
 Card	Kort
 Cards without station: {}	Kort uden station: {}
+Cell temperatures of the strings	Celletemperaturer for strengene
 Centre	Midte
 Change project properties of the selected projects	Ændr projektegenskaber for de valgte projekter
 Change request	Ændringsanmodning
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Slet afsnit
 Delete shaft	Slet skakt
 Delete stair	Slet trappe
+Delete string	Slet streng
 Delete the group	Slet gruppen
 Delete the layer; its items move to the default layer	Slet laget; dets elementer flyttes til standardlaget
 Delete the property and all its values	Slet egenskaben og alle dens værdier
@@ -742,6 +743,8 @@ Help	Hjælp
 Hide the groups you do not need and put the commands you use most into own groups.	Skjul de grupper, du ikke har brug for, og læg de mest brugte kommandoer i egne grupper.
 Highest phase unbalance	Højeste faseubalance
 Highest short-circuit current	Højeste kortslutningsstrøm
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Højeste spænding (tomgang ved laveste temperatur), middel- og laveste spænding (ved maksimal effekt ved middel- og højeste temperatur), strøm ved maksimal effekt, spidseffekt
+Highest: the lowest voltage	Højeste: den laveste spænding
 Hole to sheet edge	Hul til pladekant
 Home	Hjem
 Hook distance	Krogafstand
@@ -830,6 +833,7 @@ Insulation	Isolering
 Interruption points refer to	Afbrydelsespunkter henviser til
 Introduction	Indledning
 Invalid value	Ugyldig værdi
+Inverter or charge controller (devices with PV input data)	Inverter eller laderegulator (enheder med PV-indgangsdata)
 Isometric	Isometrisk
 Items on the layer	Elementer på laget
 Items with an anchor keep it; the others are inserted relative to the click.	Elementer med et anker beholder det; de andre indsættes i forhold til klikket.
@@ -917,6 +921,7 @@ Looking for updates…	Søger efter opdateringer…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Søger efter en ny version af OpenECraft på GitHub og installerer den i baggrunden
 Loop	Sløjfe
 Lowest fault current	Laveste fejlstrøm
+Lowest: the highest open-circuit voltage	Laveste: den højeste tomgangsspænding
 Macro boxes	Makrobokse
 Macro boxes ({})	Makrobokse ({})
 Macro saved to the library	Makro gemt i biblioteket
@@ -947,6 +952,7 @@ Master data	Stamdata
 Max. pressure	Maks. tryk
 Max. width	Maks. bredde
 Maximum fill of a carrier	Maksimal fyldning af en kabelbærer
+Mean: typical operation	Middel: typisk drift
 Measured	Målt
 Measures against common cause failure (at least 65 points)	Foranstaltninger mod fejl af fælles årsag (mindst 65 point)
 Merge a symbol library file	Flet en symbolbiblioteksfil
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Ingen feltkabler: placer kapslingerne og feltenhederne ved knuder i føringsnettet.
 No filter fans: an air/air heat exchanger or a cooling unit	Ingen filterventilatorer: en luft/luft-varmeveksler eller en køleenhed
 No harnesses defined.	Ingen ledningsnet defineret.
+No inverter	Ingen inverter
 No longer reported	Rapporteres ikke længere
 No macros yet. Select items in a schematic and save them as a macro.	Endnu ingen makroer. Vælg elementer i et diagram, og gem dem som en makro.
 No modules: plug in PLC cards of the schematic.	Ingen moduler: Isæt PLC-kort fra diagrammet.
@@ -1200,7 +1207,6 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hardware og bustopologi
 PLC overview	PLC-oversigt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmap, f.eks. et logo eller et foto
-PV array	Solcelleanlæg
 PV arrays	Solcelleanlæg
 Page graphics	Sidegrafik
 Page heading	Sideoverskrift
@@ -1682,6 +1688,8 @@ Still reported	Rapporteres stadig
 Stock length	Lagerlængde
 Stop placing for this device	Stop placering for denne enhed
 Stratification (factor c)	Lagdeling (faktor c)
+Strings	Strenge
+Strings of this kind in parallel	Strenge af denne slags parallelt
 Strip on the rail	Række på skinnen
 Strip {} mm	Afisoler {} mm
 Strips / plugs	Klemrækker / stik
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin venstre side mod den valgtes højre side; ledninger føres mellem dem gennem kabelgennemføringer
 The items are selected and moved together	Elementerne markeres og flyttes samlet
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har ingen sidemakroer (Makroer › Gem side som makro…).
+The modules no string takes yet in series, on the first inverter	Modulerne, som ingen streng tager endnu, i serie, på den første inverter
 The names of its pages follow	Navnene på dets sider følger med
 The page name gets the section number	Sidenavnet får afsnitsnummeret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidetype, plotramme, tegningshoved, struktur, beskrivelse og hele indholdet gemmes.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Selvstudium
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv et punkt, og tryk på Enter: x y i mm eller @dx dy i forhold til det sidste punkt; det virker som et klik med det aktuelle værktøj
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Skalering af brugerfladen
 Undo	Fortryd
 Undo brings it back.	Fortryd henter det tilbage.
@@ -2001,6 +2011,7 @@ model	model
 name	navn
 no	nej
 no answer	intet svar
+no electrical data of the module	ingen elektriske data for modulet
 no rooms	ingen rum
 no valid levels	ingen gyldige etager
 no wires	ingen ledninger

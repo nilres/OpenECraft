@@ -204,7 +204,6 @@ Bottom edges	Нижні краї
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Нижній край корпусу (без цоколя) над підлогою; висоти перевіряються, якщо його відомо або корпус стоїть на цоколі
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Відключна здатність щодо струму короткого замикання на кожному захисному пристрої мережі, вимкнення за найменшого струму замикання в кінці його кола, стійкість кабелів до короткого замикання та селективність із пристроєм, розташованим вище за схемою.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Міст: чотири проводи; з'єднання надходить з одного боку і йде до трьох інших, спочатку до протилежного
-Building	Будівля
 Built-in frames cannot be changed; copy one to adapt it.	Вбудовані рамки не можна змінити; скопіюйте рамку, щоб адаптувати її.
 Built-in scheme: copy it to change it.	Вбудована схема: скопіюйте її, щоб змінити.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Вбудовані основні написи доступні лише для читання – скористайтеся «Копіювати як новий», щоб створити власний.
@@ -233,6 +232,7 @@ Calculations	Розрахунки
 Cancel / select tool / clear selection	Скасувати / вибрати інструмент / зняти виділення
 Card	Плата
 Cards without station: {}	Плати без станції: {}
+Cell temperatures of the strings	Температури елементів ланцюжків
 Centre	Центр
 Change project properties of the selected projects	Змінити властивості вибраних проєктів
 Change request	Запит на зміну
@@ -442,6 +442,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Видалити розділ
 Delete shaft	Видалити шахту
 Delete stair	Видалити сходи
+Delete string	Видалити ланцюжок
 Delete the group	Видалити групу
 Delete the layer; its items move to the default layer	Видалити шар; його об’єкти переміщуються на стандартний шар
 Delete the property and all its values	Видалити властивість з усіма значеннями
@@ -741,6 +742,8 @@ Help	Довідка
 Hide the groups you do not need and put the commands you use most into own groups.	Сховайте непотрібні групи й розмістіть найуживаніші команди у власних групах.
 Highest phase unbalance	Найбільша несиметрія фаз
 Highest short-circuit current	Найбільший струм короткого замикання
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Найбільша напруга (холостого ходу за найнижчої температури), середня та найменша напруга (за максимальної потужності за середньої та найвищої температури), струм за максимальної потужності, пікова потужність
+Highest: the lowest voltage	Найвища: найменша напруга
 Hole to sheet edge	Від отвору до краю листа
 Home	Основне
 Hook distance	Крок гаків
@@ -829,6 +832,7 @@ Insulation	Ізоляція
 Interruption points refer to	Точки розриву посилаються на
 Introduction	Вступ
 Invalid value	Недійсне значення
+Inverter or charge controller (devices with PV input data)	Інвертор або контролер заряду (пристрої з даними входу ФЕ)
 Isometric	Ізометрія
 Items on the layer	Об’єкти на шарі
 Items with an anchor keep it; the others are inserted relative to the click.	Елементи з прив’язкою зберігають її; інші вставляються відносно місця клацання.
@@ -916,6 +920,7 @@ Looking for updates…	Пошук оновлень…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Шукає нову версію OpenECraft на GitHub і встановлює її у фоновому режимі
 Loop	Контур
 Lowest fault current	Найменший струм замикання
+Lowest: the highest open-circuit voltage	Найнижча: найбільша напруга холостого ходу
 Macro boxes	Рамки макросів
 Macro boxes ({})	Рамки макросів ({})
 Macro saved to the library	Макрос збережено в бібліотеці
@@ -946,6 +951,7 @@ Master data	Основні дані
 Max. pressure	Макс. тиск
 Max. width	Макс. ширина
 Maximum fill of a carrier	Максимальне заповнення кабельної конструкції
+Mean: typical operation	Середня: типова робота
 Measured	Виміряно
 Measures against common cause failure (at least 65 points)	Заходи проти відмов зі спільної причини (щонайменше 65 балів)
 Merge a symbol library file	Об’єднати файл бібліотеки символів
@@ -1066,6 +1072,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Немає польових кабелів: розмістіть шафи та польові пристрої у вузлах мережі трас.
 No filter fans: an air/air heat exchanger or a cooling unit	Без фільтрувальних вентиляторів: теплообмінник повітря/повітря або холодильний агрегат
 No harnesses defined.	Джгути не визначено.
+No inverter	Без інвертора
 No longer reported	Більше не повідомляється
 No macros yet. Select items in a schematic and save them as a macro.	Макросів ще немає. Виберіть елементи на схемі та збережіть їх як макрос.
 No modules: plug in PLC cards of the schematic.	Немає модулів: встановіть плати ПЛК зі схеми.
@@ -1199,7 +1206,6 @@ PLC channels	Канали ПЛК
 PLC hardware and bus topology	Апаратне забезпечення ПЛК і топологія шини
 PLC overview	Огляд ПЛК
 PNG or JPEG bitmap, e.g. a logo or a photo	Растрове зображення PNG або JPEG, напр. логотип або фото
-PV array	Фотоелектричне поле
 PV arrays	Фотоелектричні поля
 Page graphics	Графіка сторінки
 Page heading	Заголовок сторінки
@@ -1681,6 +1687,8 @@ Still reported	Досі повідомляється
 Stock length	Складська довжина
 Stop placing for this device	Припинити розміщення для цього пристрою
 Stratification (factor c)	Розшарування (коефіцієнт c)
+Strings	Ланцюжки
+Strings of this kind in parallel	Ланцюжки цього виду паралельно
 Strip on the rail	Колодка на рейці
 Strip {} mm	Зачистити {} мм
 Strips / plugs	Колодки / штекери
@@ -1767,6 +1775,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Корпус стоїть лівою стороною впритул до правої сторони вибраного; проводи проходять між ними через кабельні проходи
 The items are selected and moved together	Елементи вибираються й переміщуються разом
 The macro library has no page macros (Macros › Save page as macro…).	Бібліотека макросів не містить макросів сторінок (Макроси › Зберегти сторінку як макрос…).
+The modules no string takes yet in series, on the first inverter	Модулі, не зайняті жодним ланцюжком, послідовно, на першому інверторі
 The names of its pages follow	Імена його сторінок змінюються разом із ним
 The page name gets the section number	Ім'я сторінки отримує номер розділу
 The page type, plot frame, title block, structure, description and the whole content are saved.	Зберігаються тип сторінки, рамка аркуша, основний напис, структура, опис і весь вміст.
@@ -1818,6 +1827,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Навчальний посібник
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Тут мають сходитися два проводи під прямим кутом. За ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введіть точку й натисніть Enter: x y у мм або @dx dy відносно останньої точки; діє як клацання поточним інструментом
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пік
 UI scale	Масштаб інтерфейсу
 Undo	Скасувати
 Undo brings it back.	Скасування поверне його.
@@ -2000,6 +2010,7 @@ model	модель
 name	назва
 no	ні
 no answer	немає відповіді
+no electrical data of the module	немає електричних даних модуля
 no rooms	немає приміщень
 no valid levels	немає дійсних поверхів
 no wires	немає проводів

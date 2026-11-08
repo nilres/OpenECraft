@@ -2,7 +2,8 @@
 //! ground level and the attic +AT1 under a gable roof whose eaves lie a knee wall above
 //! the attic floor, so the attic's ceiling slopes down to 1.2 m at its long walls; a
 //! stair turned once at a quarter landing leads up, two roof windows sit in the front
-//! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one.
+//! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one,
+//! one string on a 10 kW inverter.
 //! The rooms get Gira socket outlets, a network outlet and a switch, an MDT KNX push
 //! button and room temperature controller, a TV outlet, a COSMO heating circuit manifold
 //! for six circuits and a single-room control box.
@@ -21,6 +22,7 @@ pub(super) fn project() -> Project {
     prj.info.description = "An office building with attic, stair and roof\nbeside the pump station".into();
     prj.structures.define(crate::structure::Aspect::Location, "OF1", "Office");
     prj.structures.define(crate::structure::Aspect::Location, "AT1", "Attic");
+    prj.structures.define(crate::structure::Aspect::Function, "PV", "Photovoltaics");
     let db = PartsDb { parts: crate::parts::bundled::default_parts() };
 
     // The office building beside the plant: two levels, a room of 8 × 6 m on each.
@@ -64,6 +66,12 @@ pub(super) fn project() -> Project {
     if let Some(s) = prj.layout.buildings[b3].roofs[0].solar.iter_mut().find(|s| s.id == pv) {
         *s = a;
     }
+    // All ten in series on the first MPP tracker of a 10 kW inverter.
+    crate::parts::ensure_in_project(&mut prj, &db, "GEN.INV-PV-10KW");
+    let mut inverter = crate::model::DeviceData::default();
+    inverter.parts.push(crate::parts::PartRef { number: "GEN.INV-PV-10KW".into(), count: 1 });
+    prj.devices.insert("=PV-T1".into(), inverter);
+    solar::strings::add_string(&mut prj, b3, 0, 0).expect("house");
 
     // The installation: outlets and switches at their mounting heights, the manifold
     // and the control box of the underfloor heating.

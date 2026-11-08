@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Ёмкостный датчик, 3-проводный
 Capacitor	Конденсатор
 Capacitor, polarized	Конденсатор, полярный
 Ceiling	Потолок
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Температуры элементов: {} °C (U макс.), {} °C (U средн.), {} °C (U мин.)
 Centre horizontally	Центрировать по горизонтали
 Centre vertically	Центрировать по вертикали
 Centrifugal pump	Центробежный насос
@@ -664,6 +665,8 @@ Hydraulic oil	Гидравлическое масло
 Hydraulic power unit	Гидростанция
 Hydraulic pump	Гидравлический насос
 Hysteresis	Гистерезис
+I mpp (A)	I mpp (А)
+I sc max (A)	I кз макс. (А)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (машины: фазы BK, управление DC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (фазы BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	MAC-адрес
 MCAD	MCAD
 MCAD device placement (CSV)	Размещение устройств MCAD (CSV)
 MOSFET N-channel	MOSFET с N-каналом
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Машина (примеры идентификаторов)
 Machine frame	Станина машины
@@ -839,6 +843,8 @@ Minimum operating temperature	Минимальная рабочая темпер
 Mirror contacts	Зеркальные контакты
 Mirrored	Отражено
 Mission time	Срок эксплуатации
+Module	Модуль
+Modules	Модули
 Moisture	Влажность
 Moment of inertia	Момент инерции
 Motion detector	Датчик движения
@@ -930,6 +936,7 @@ No plugs	Нет разъёмов
 No report block {}	Нет блока отчёта {}
 No segment template named {}	Нет шаблона сегмента с именем {}
 No subproject {}	Нет подпроекта {}
+No such PV array	Нет такого фотоэлектрического поля
 No such object: {}	Объект не найден: {}
 No surge protective device at the supply (IEC 60364-4-44)	Нет устройства защиты от перенапряжений на вводе питания (IEC 60364-4-44)
 No terminal {}	Нет клеммы {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Теги ПЛК для Rockwell Studio 5
 PLC variables for Schneider Control Expert (XSY)	Переменные ПЛК для Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	Конструкторская спецификация PLM (JSON)
+PV strings	Фотоэлектрические цепочки
 PVC (70 °C)	ПВХ (70 °C)
 Page / column (3.4.1)	Лист / столбец (3.4.1)
 Page name	Имя листа
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Потенциал {} определён {} раз
 Potentials / Connectors	Потенциалы / разъёмы
 Potentials, interruption points	Потенциалы, точки разрыва
 Potentiometer	Потенциометр
+Power (kWp)	Мощность (кВт пик)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Силовая цепь и цепь управления на нескольких страницах: главный выключатель, защита двигателя, три контактора с блокировками, реле времени с задержкой включения, точки разрыва, потенциалы с цветами проводов, кабель двигателя и отчёты по кабелям.
 Power factor	Коэффициент мощности
 Power factor meter	Измеритель коэффициента мощности
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	С двумя поворотами (две �
 Two connection symbols on page {} lie on the same point	Два символа соединений на странице {} лежат в одной точке
 Two-way switch (installation)	Проходной выключатель (электроустановочный)
 Type numbers	Номера типов
+U max (V)	U макс. (В)
+U mean (V)	U средн. (В)
+U min (V)	U мин. (В)
 UL listed	Сертифицировано UL
 UV resistant	Стойкий к УФ
 Unbalance {} %	Несимметрия {} %
@@ -1918,6 +1930,9 @@ yellow	жёлтый
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} проложен до кабельных вводов своих шкафов: они не стоят в общем помещении, путь между ними не входит в компоновку
 {} {}: bends closer than the bend radius ({} mm)	{} {}: изгибы меньше радиуса изгиба ({} мм)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: соединены на однолинейной схеме, но не на схеме
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-трекер {}: его цепочки различаются по напряжению ({} В и {} В)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-трекер {}: цепочки дают {} А, больше {} А, которые он использует (мощность ограничивается)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP-трекер {}: цепочки достигают тока короткого замыкания {} А, больше допустимых {} А
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} лет меньше 3 лет
 {}: PV array {} covers a roof window	{}: фотоэлектрическое поле {} закрывает мансардное окно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоэлектрическое поле {} имеет {} модулей, его устройство {} — {}
@@ -1994,12 +2009,21 @@ yellow	жёлтый
 {}: slot {} of rack {} is used by {} and {}	{}: слот {} стойки {} занят {} и {}
 {}: solenoid coil not linked to a valve	{}: катушка не связана с клапаном
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: электромагнитный клапан без связанной катушки (Гидропневматика и технологические процессы › Синхронизировать)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: цепочка {} фотоэлектрического поля {} падает до {} В при {} °C, ниже диапазона MPP {} ({} - {} В)
+{}: string {} of PV array {} is connected to no inverter	{}: цепочка {} фотоэлектрического поля {} не подключена ни к одному инвертору
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: цепочка {} фотоэлектрического поля {} достигает {} В при максимальной мощности при {} °C, выше диапазона MPP {} ({} - {} В)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: цепочка {} фотоэлектрического поля {} достигает {} В при {} °C, больше системного напряжения {} В её модулей
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: цепочка {} фотоэлектрического поля {} достигает {} В при {} °C, больше {} В, допустимых для {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: цепочка {} фотоэлектрического поля {}: у {} только {} MPP-трекера
+{}: string {} of PV array {}: {} is no device with PV input data	{}: цепочка {} фотоэлектрического поля {}: {} не является устройством с данными входа ФЭ
 {}: terminal {} is on level {}, but no terminal block is before it	{}: клемма {} находится на ярусе {}, но перед ней нет клеммного блока
 {}: terminal {} uses {} levels, its part {} has {}	{}: клемма {} занимает ярусов: {}, а у её изделия {}: {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеммы {} находятся на высоте {} мм над полом, требуется не менее {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
 {}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
+{}: the module {} of PV array {} has no electrical data	{}: у модуля {} фотоэлектрического поля {} нет электрических данных
 {}: the station has no port {}	{}: у станции нет порта {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: цепочки фотоэлектрического поля {} соединяют {} модулей, в поле {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} мм) больше рабочей зоны {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: толщина {} – {} мм, {} обрабатывает не более {} мм
 {}: voltage drop {} V ({} %) above {} %	{}: падение напряжения {} V ({} %) выше {} %
@@ -2025,6 +2049,7 @@ yellow	жёлтый
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} не предназначен для настенного монтажа, установите его на рейку
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} находится на высоте {} … {} мм над полом, допустимо {} … {} мм
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg на {} превышают допустимую нагрузку {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} модулей фотоэлектрического поля {} не подключены к цепочке
 {}: {} modules, the head has {} slots	{}: модулей – {}, у головного модуля слотов – {}
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} длиной {} мм длиннее складской длины {} мм и требует стыковки
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} длиной {} мм короче {} мм, его трудно отрезать

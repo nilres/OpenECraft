@@ -204,7 +204,6 @@ Bottom edges	Dolne krawędzie
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Dolna krawędź obudowy (bez cokołu) nad podłogą; wysokości są sprawdzane, gdy jest ona znana lub obudowa stoi na cokole
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Zdolność wyłączania w odniesieniu do prądu zwarciowego w każdym urządzeniu zabezpieczającym sieci, wyłączenie przy najmniejszym prądzie zwarcia na końcu jego obwodu, wytrzymałość zwarciowa kabli i selektywność względem urządzenia zabezpieczającego przed nim.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Mostek: cztery przewody; połączenie wchodzi z jednej strony i idzie do trzech pozostałych, najpierw do przeciwległej
-Building	Budynek
 Built-in frames cannot be changed; copy one to adapt it.	Wbudowanych ramek nie można zmieniać; skopiuj jedną, aby ją dostosować.
 Built-in scheme: copy it to change it.	Schemat wbudowany: skopiuj go, aby go zmienić.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Wbudowane tabliczki rysunkowe są tylko do odczytu – użyj „Kopiuj jako nowy”, aby utworzyć własną.
@@ -233,6 +232,7 @@ Calculations	Obliczenia
 Cancel / select tool / clear selection	Anuluj / wybierz narzędzie / wyczyść zaznaczenie
 Card	Karta
 Cards without station: {}	Karty bez stacji: {}
+Cell temperatures of the strings	Temperatury ogniw łańcuchów
 Centre	Środek
 Change project properties of the selected projects	Zmień właściwości projektu zaznaczonych projektów
 Change request	Wniosek o zmianę
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Usuń sekcję
 Delete shaft	Usuń szyb
 Delete stair	Usuń schody
+Delete string	Usuń łańcuch
 Delete the group	Usuń grupę
 Delete the layer; its items move to the default layer	Usuń warstwę; jej elementy zostaną przeniesione na warstwę domyślną
 Delete the property and all its values	Usuń właściwość wraz ze wszystkimi wartościami
@@ -742,6 +743,8 @@ Help	Pomoc
 Hide the groups you do not need and put the commands you use most into own groups.	Ukryj grupy, których nie potrzebujesz, a najczęściej używane polecenia umieść we własnych grupach.
 Highest phase unbalance	Największa asymetria faz
 Highest short-circuit current	Największy prąd zwarciowy
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Najwyższe napięcie (jałowe przy najniższej temperaturze), średnie i najniższe napięcie (przy mocy maksymalnej w średniej i najwyższej temperaturze), prąd przy mocy maksymalnej, moc szczytowa
+Highest: the lowest voltage	Najwyższa: najniższe napięcie
 Hole to sheet edge	Otwór od krawędzi blachy
 Home	Narzędzia główne
 Hook distance	Odstęp haków
@@ -830,6 +833,7 @@ Insulation	Izolacja
 Interruption points refer to	Punkty przerwania odsyłają do
 Introduction	Wprowadzenie
 Invalid value	Nieprawidłowa wartość
+Inverter or charge controller (devices with PV input data)	Falownik lub regulator ładowania (urządzenia z danymi wejścia PV)
 Isometric	Izometryczny
 Items on the layer	Elementy na warstwie
 Items with an anchor keep it; the others are inserted relative to the click.	Elementy z zakotwiczeniem zachowują je; pozostałe są wstawiane względem miejsca kliknięcia.
@@ -917,6 +921,7 @@ Looking for updates…	Szukanie aktualizacji…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Szuka nowej wersji OpenECraft w serwisie GitHub i instaluje ją w tle
 Loop	Pętla
 Lowest fault current	Najmniejszy prąd zwarcia
+Lowest: the highest open-circuit voltage	Najniższa: najwyższe napięcie jałowe
 Macro boxes	Ramki makr
 Macro boxes ({})	Ramki makr ({})
 Macro saved to the library	Zapisano makro w bibliotece
@@ -947,6 +952,7 @@ Master data	Dane podstawowe
 Max. pressure	Maks. ciśnienie
 Max. width	Maks. szerokość
 Maximum fill of a carrier	Maksymalne wypełnienie nośnika kabli
+Mean: typical operation	Średnia: typowa praca
 Measured	Zmierzony
 Measures against common cause failure (at least 65 points)	Środki przeciwko uszkodzeniom spowodowanym wspólną przyczyną (co najmniej 65 punktów)
 Merge a symbol library file	Scal plik biblioteki symboli
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Brak kabli obiektowych: umieść obudowy i urządzenia obiektowe w węzłach sieci tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez wentylatorów z filtrem: wymiennik ciepła powietrze/powietrze lub chłodziarka
 No harnesses defined.	Nie zdefiniowano wiązek.
+No inverter	Brak falownika
 No longer reported	Już niezgłaszany
 No macros yet. Select items in a schematic and save them as a macro.	Brak makr. Zaznacz elementy na schemacie i zapisz je jako makro.
 No modules: plug in PLC cards of the schematic.	Brak modułów: wstaw karty PLC ze schematu.
@@ -1200,7 +1207,6 @@ PLC channels	Kanały PLC
 PLC hardware and bus topology	Sprzęt PLC i topologia magistrali
 PLC overview	Przegląd PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Mapa bitowa PNG lub JPEG, np. logo lub zdjęcie
-PV array	Instalacja PV
 PV arrays	Instalacje PV
 Page graphics	Grafika strony
 Page heading	Nagłówek strony
@@ -1682,6 +1688,8 @@ Still reported	Nadal zgłaszany
 Stock length	Długość handlowa
 Stop placing for this device	Zakończ umieszczanie dla tego urządzenia
 Stratification (factor c)	Rozwarstwienie (współczynnik c)
+Strings	Łańcuchy
+Strings of this kind in parallel	Łańcuchy tego rodzaju równolegle
 Strip on the rail	Listwa na szynie montażowej
 Strip {} mm	Odizolowanie {} mm
 Strips / plugs	Listwy / wtyki
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Obudowa przylega lewą stroną do prawej strony wybranej obudowy; przewody przechodzą między nimi przez przepusty kablowe
 The items are selected and moved together	Elementy są zaznaczane i przesuwane razem
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteka makr nie zawiera makr stron (Makra › Zapisz stronę jako makro…).
+The modules no string takes yet in series, on the first inverter	Moduły, których żaden łańcuch jeszcze nie bierze, szeregowo, na pierwszym falowniku
 The names of its pages follow	Nazwy jej stron zmieniają się wraz z nią
 The page name gets the section number	Nazwa strony otrzymuje numer sekcji
 The page type, plot frame, title block, structure, description and the whole content are saved.	Zapisywane są typ strony, ramka rysunku, tabliczka rysunkowa, struktura, opis i cała zawartość.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Samouczek
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tutaj muszą spotkać się dwa przewody pod kątem prostym. Przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Wpisz punkt i naciśnij Enter: x y w mm lub @dx dy względem ostatniego punktu; działa jak kliknięcie bieżącym narzędziem
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Skala interfejsu
 Undo	Cofnij
 Undo brings it back.	Cofnij przywróci go.
@@ -2001,6 +2011,7 @@ model	model
 name	nazwa
 no	nie
 no answer	brak odpowiedzi
+no electrical data of the module	brak danych elektrycznych modułu
 no rooms	brak pomieszczeń
 no valid levels	brak prawidłowych kondygnacji
 no wires	brak przewodów

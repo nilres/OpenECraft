@@ -614,6 +614,7 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
     v.extend(super::stairs::problems(prj));
     v.extend(super::roofs::problems(prj));
     v.extend(super::solar::problems(prj));
+    v.extend(super::solar::strings::problems(prj));
     v
 }
 

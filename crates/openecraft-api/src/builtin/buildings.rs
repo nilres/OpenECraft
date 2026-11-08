@@ -10,6 +10,7 @@ use crate::{Info, Plugin, Registry};
 use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
 use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
+use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
@@ -60,6 +61,11 @@ const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rai
 const PV_BALLAST: &str = tr_const!("Ballast per module on a flat roof in kg");
 const PV_SYSTEM: &str = tr_const!("Mounting system: part number of its rail or mounting base, whose accessories are the hooks, clamps and ballast (empty: generic)");
 const PV_DEVICE: &str = tr_const!("Device (PV generator) the modules belong to; its parts then count them in the bill of materials");
+const PV_ARRAY: &str = tr_const!("PV array: its name");
+const PV_SERIES: &str = tr_const!("Modules in series");
+const PV_PARALLEL: &str = tr_const!("Strings of this kind in parallel (default 1)");
+const PV_INVERTER: &str = tr_const!("Device tag of the inverter or charge controller");
+const PV_MPPT: &str = tr_const!("Its MPP tracker (input), from 1");
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
@@ -303,7 +309,7 @@ pub static COMMANDS: &[Spec] = &[
         params: &[
             param("building", Kind::Str, BUILDING),
             param("roof", Kind::Str, ROOF),
-            param("array", Kind::Str, tr_const!("PV array: its name")),
+            param("array", Kind::Str, PV_ARRAY),
             optional("x", Kind::Num, PV_X),
             optional("z", Kind::Num, PV_Z),
             optional("columns", Kind::Int, PV_COLUMNS),
@@ -322,6 +328,48 @@ pub static COMMANDS: &[Spec] = &[
             optional("remove", Kind::Bool, tr_const!("Remove the PV array")),
         ],
         run: set_pv_array,
+    },
+    Spec {
+        name: "add_pv_string",
+        help: tr_const!("Connects modules of a PV array as a string: modules in series, strings of this kind in parallel, on an MPP tracker of an inverter or charge controller; without series the modules no string takes yet, without inverter the first device with PV input data"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            param("array", Kind::Str, PV_ARRAY),
+            optional("series", Kind::Int, PV_SERIES),
+            optional("parallel", Kind::Int, PV_PARALLEL),
+            optional("inverter", Kind::Str, PV_INVERTER),
+            optional("mppt", Kind::Int, PV_MPPT),
+            optional("name", Kind::Str, tr_const!("Name (default S1, S2, …)")),
+        ],
+        run: add_pv_string,
+    },
+    Spec {
+        name: "set_pv_string",
+        help: tr_const!("Changes the modules in series or in parallel of a string, its inverter or MPP tracker, renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("roof", Kind::Str, ROOF),
+            param("array", Kind::Str, PV_ARRAY),
+            param("string", Kind::Str, tr_const!("String: its name")),
+            optional("series", Kind::Int, PV_SERIES),
+            optional("parallel", Kind::Int, PV_PARALLEL),
+            optional("inverter", Kind::Str, PV_INVERTER),
+            optional("mppt", Kind::Int, PV_MPPT),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the string")),
+        ],
+        run: set_pv_string,
+    },
+    Spec {
+        name: "pv_strings",
+        help: tr_const!("Lists the strings of all PV arrays with their voltages (highest, mean, lowest), currents and power at the design temperatures and the problems of the strings; sets the cell temperatures they are designed for"),
+        params: &[
+            optional("t_min", Kind::Num, tr_const!("Lowest cell temperature in °C (default -10): the highest open-circuit voltage")),
+            optional("t_mean", Kind::Num, tr_const!("Mean cell temperature in °C (default 25)")),
+            optional("t_max", Kind::Num, tr_const!("Highest cell temperature in °C (default 70): the lowest voltage")),
+        ],
+        run: pv_strings,
     },
     Spec {
         name: "add_site_link",
@@ -770,7 +818,93 @@ fn pv_json(prj: &Project, a: &panel::PvArray) -> Value {
         "module": a.module, "module_size": [a.module_width, a.module_length, a.module_height], "modules": solar::module_count(a),
         "peak_kw": solar::peak_power(prj, a), "mounting": a.mounting.key(), "tilt": a.tilt, "azimuth": a.azimuth, "row_gap": a.row_gap,
         "span": a.span, "ballast": a.ballast, "system": a.system, "device": a.device, "material": material,
+        "strings": a.strings.iter().map(|s| string_json(prj, a, s)).collect::<Vec<_>>(),
     })
+}
+
+fn string_json(prj: &Project, a: &panel::PvArray, s: &panel::PvString) -> Value {
+    let values = strings::module_data(prj, &a.module).map(|m| {
+        let v = strings::values(&m, &prj.layout.pv_design, s);
+        json!({
+            "voltage_max": v.voc_max, "voltage_mean": v.vmp_mean, "voltage_min": v.vmp_min, "voltage_mpp_cold": v.vmp_max, "voc": v.voc,
+            "current": v.imp, "short_circuit_max": v.isc_max, "power": v.power, "power_hot": v.power_hot,
+        })
+    });
+    json!({ "id": s.id, "name": s.name, "series": s.series, "parallel": s.parallel, "modules": s.series * s.parallel, "inverter": s.inverter, "mppt": s.mppt, "values": values })
+}
+
+/// The array named by `array` on the roof named by `roof` of the building `building`.
+fn array_args(prj: &Project, a: &Args) -> Result<(usize, usize, usize), String> {
+    let bi = building_arg(prj, a, "building")?;
+    let k = roof_arg(prj, bi, a)?;
+    let i = pv_arg(prj, bi, k, a)?;
+    Ok((bi, k, i))
+}
+
+/// Applies the optional arguments of a string command.
+fn string_args(a: &Args, mut s: panel::PvString) -> Result<panel::PvString, String> {
+    s.series = int_in(a, "series", 1, 200)?.map_or(s.series, |n| n as u32);
+    s.parallel = int_in(a, "parallel", 1, 50)?.map_or(s.parallel, |n| n as u32);
+    s.mppt = int_in(a, "mppt", 1, 64)?.map_or(s.mppt, |n| n as u32);
+    if let Some(t) = a.str("inverter") {
+        s.inverter = t.trim().into();
+    }
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        s.name = n.into();
+    }
+    Ok(strings::checked_string(s))
+}
+
+fn add_pv_string(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (bi, k, i) = array_args(prj, a)?;
+    let id = strings::add_string(prj, bi, k, i)?;
+    let list = &mut prj.layout.buildings[bi].roofs[k].solar[i].strings;
+    let j = list.iter().position(|s| s.id == id).unwrap_or_default();
+    match string_args(a, list[j].clone()) {
+        Ok(s) => list[j] = s,
+        Err(e) => {
+            list.remove(j);
+            return Err(e);
+        }
+    }
+    Ok(pv_json(prj, &prj.layout.buildings[bi].roofs[k].solar[i]))
+}
+
+fn set_pv_string(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let (bi, k, i) = array_args(prj, a)?;
+    let key = a.req("string").trim();
+    let arr = &prj.layout.buildings[bi].roofs[k].solar[i];
+    let j = arr.strings.iter().position(|s| s.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No string {} in PV array {}", key, arr.name))?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].roofs[k].solar[i].strings.remove(j);
+    } else {
+        let s = string_args(a, arr.strings[j].clone())?;
+        prj.layout.buildings[bi].roofs[k].solar[i].strings[j] = s;
+    }
+    Ok(pv_json(prj, &prj.layout.buildings[bi].roofs[k].solar[i]))
+}
+
+fn pv_strings(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let mut d = prj.layout.pv_design;
+    d.t_min = num_in(a, "t_min", -60.0, 40.0)?.unwrap_or(d.t_min);
+    d.t_mean = num_in(a, "t_mean", -40.0, 70.0)?.unwrap_or(d.t_mean);
+    d.t_max = num_in(a, "t_max", 0.0, 110.0)?.unwrap_or(d.t_max);
+    if d.t_min > d.t_mean || d.t_mean > d.t_max {
+        return Err(tr("The temperatures must rise from t_min over t_mean to t_max").to_string());
+    }
+    prj.layout.pv_design = d;
+    let list: Vec<Value> = strings::all_strings(prj)
+        .into_iter()
+        .map(|r| {
+            let mut v = string_json(prj, r.array, r.string);
+            v["building"] = json!(r.building.name);
+            v["roof"] = json!(r.roof.name);
+            v["array"] = json!(r.array.name);
+            v
+        })
+        .collect();
+    let problems: Vec<String> = strings::problems(prj).iter().map(|i| i.message()).collect();
+    Ok(json!({ "t_min": d.t_min, "t_mean": d.t_mean, "t_max": d.t_max, "strings": list, "inverters": strings::inverters(prj), "problems": problems }))
 }
 
 /// The PV array of roof `k` of building `bi` named by `array`.

@@ -86,6 +86,7 @@ pub fn table(prj: &Project, an: &Analysis, kind: ReportKind) -> Table {
         ReportKind::FieldRouting => field_routing(prj, &an.field),
         ReportKind::Bonding => bonding_list(prj),
         ReportKind::RackElevation => rack_elevation(prj),
+        ReportKind::PvStrings => pv_strings(prj),
     }
 }
 
@@ -211,6 +212,52 @@ fn rack_elevation(prj: &Project) -> Table {
         let total = panel::rack_units(e);
         t.push(vec![e.name.clone(), format!("{} / {} U", total.saturating_sub(used), total), String::new(), String::new(), tr("free").to_string(), String::new()], None);
     }
+    t
+}
+
+/// The strings of the PV arrays with their modules, inverter and tracker, their voltages
+/// (highest: open circuit at the lowest temperature; lowest and mean: at maximum power at
+/// the highest and the mean temperature), currents and power, then the total power and
+/// the design temperatures.
+fn pv_strings(prj: &Project) -> Table {
+    use crate::panel::solar::strings;
+    let mut t = Table::with_widths(&[
+        (tr_const!("Building"), 0.6),
+        (tr_const!("PV array"), 0.6),
+        (tr_const!("String"), 0.5),
+        (tr_const!("Modules"), 0.6),
+        (tr_const!("Module"), 1.3),
+        (tr_const!("Inverter"), 0.8),
+        (tr_const!("MPPT"), 0.4),
+        (tr_const!("U max (V)"), 0.6),
+        (tr_const!("U mean (V)"), 0.6),
+        (tr_const!("U min (V)"), 0.6),
+        (tr_const!("I mpp (A)"), 0.6),
+        (tr_const!("I sc max (A)"), 0.6),
+        (tr_const!("Power (kWp)"), 0.6),
+    ]);
+    let mut total = 0.0;
+    for row in strings::all_strings(prj) {
+        let s = row.string;
+        let nums = row.values.map_or_else(
+            || vec![String::new(); 6],
+            |v| {
+                total += v.power;
+                vec![format!("{:.0}", v.voc_max), format!("{:.0}", v.vmp_mean), format!("{:.0}", v.vmp_min), format!("{:.1}", v.imp), format!("{:.1}", v.isc_max), format!("{:.2}", v.power / 1000.0)]
+            },
+        );
+        let mut cells = vec![row.building.name.clone(), row.array.name.clone(), s.name.clone(), format!("{} × {}", s.series, s.parallel), row.array.module.clone(), s.inverter.clone(), s.mppt.to_string()];
+        cells.extend(nums);
+        t.push(cells, None);
+    }
+    let d = &prj.layout.pv_design;
+    let mut sum = vec![String::new(); 13];
+    sum[0] = tr("Total").to_string();
+    sum[12] = format!("{:.2}", total / 1000.0);
+    t.push(sum, None);
+    let mut temps = vec![String::new(); 13];
+    temps[0] = tr_fmt!("Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)", format!("{:.0}", d.t_min), format!("{:.0}", d.t_mean), format!("{:.0}", d.t_max));
+    t.push(temps, None);
     t
 }
 

@@ -176,6 +176,7 @@ Capacitive sensor, 3-wire	静電容量形センサー (3 線式)
 Capacitor	コンデンサー
 Capacitor, polarized	有極性コンデンサー
 Ceiling	天井
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	セル温度：{} °C（U 最大）、{} °C（U 平均）、{} °C（U 最小）
 Centre horizontally	左右中央揃え
 Centre vertically	上下中央揃え
 Centrifugal pump	遠心ポンプ
@@ -656,6 +657,8 @@ Hydraulic oil	作動油
 Hydraulic power unit	油圧ユニット
 Hydraulic pump	油圧ポンプ
 Hysteresis	ヒステリシス
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc 最大 (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (機械: 相導体 BK、DC 制御 BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (相導体 BN、BK、GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -768,6 +771,7 @@ MAC address	MAC アドレス
 MCAD	MCAD
 MCAD device placement (CSV)	MCAD デバイス配置 (CSV)
 MOSFET N-channel	N チャネル MOSFET
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	機械 (識別子の例)
 Machine frame	機械フレーム
@@ -831,6 +835,8 @@ Minimum operating temperature	最低動作温度
 Mirror contacts	ミラー接点
 Mirrored	反転
 Mission time	ミッションタイム
+Module	モジュール
+Modules	モジュール
 Moisture	湿度
 Moment of inertia	慣性モーメント
 Motion detector	人感センサー
@@ -921,6 +927,7 @@ No plugs	プラグがありません
 No report block {}	レポートブロック {} はありません
 No segment template named {}	{} という名前のセグメントテンプレートはありません
 No subproject {}	サブプロジェクト {} がありません
+No such PV array	そのPVアレイはありません
 No such object: {}	該当するオブジェクトがありません: {}
 No surge protective device at the supply (IEC 60364-4-44)	電源供給部にサージ防護デバイスがありません (IEC 60364-4-44)
 No terminal {}	端子 {} はありません
@@ -1055,6 +1062,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Rockwell Studio 5000 用 PLC タグ (CSV
 PLC variables for Schneider Control Expert (XSY)	Schneider Control Expert 用 PLC 変数 (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	PLM 設計部品表 (JSON)
+PV strings	PVストリング
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	ページ / 列 (3.4.1)
 Page name	ページ名
@@ -1164,6 +1172,7 @@ Potential {} defined {} times	電位 {} が {} 回定義されています
 Potentials / Connectors	電位 / コネクター
 Potentials, interruption points	電位、中断ポイント
 Potentiometer	ポテンショメーター
+Power (kWp)	出力 (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	複数ページにわたる主回路と制御回路：主開閉器、モータ保護、インターロック付きの3つの電磁接触器、オンディレイタイマ、中断点、線色付きの電位、モータケーブル、ケーブルレポート。
 Power factor	力率
 Power factor meter	力率計
@@ -1661,6 +1670,9 @@ Turned twice (two quarter landings)	2 回曲がり (2 つの踊り場)
 Two connection symbols on page {} lie on the same point	ページ {} の2つの接続シンボルが同じ点にあります
 Two-way switch (installation)	3 路スイッチ (屋内配線)
 Type numbers	型番
+U max (V)	U 最大 (V)
+U mean (V)	U 平均 (V)
+U min (V)	U 最小 (V)
 UL listed	UL 認定
 UV resistant	耐紫外線
 Unbalance {} %	不平衡 {} %
@@ -1906,6 +1918,9 @@ yellow	黄
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} は各エンクロージャーのケーブル引込口まで配線されています。共通の部屋にないため、その間の経路はレイアウトに含まれません
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 曲げが曲げ半径 ({} mm) より小さくなっています
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 単線結線図では接続されていますが、回路図では接続されていません
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}、MPPトラッカー {}：ストリングの電圧が異なります（{} V と {} V）
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}、MPPトラッカー {}：ストリングは {} A を供給し、使用できる {} A を超えています（出力が制限されます）
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}、MPPトラッカー {}：ストリングの短絡電流は {} A に達し、許容値 {} A を超えています
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} 年が 3 年を下回っています
 {}: PV array {} covers a roof window	{}：PVアレイ {} が天窓を覆っています
 {}: PV array {} has {} modules, its device {} has {}	{}：PVアレイ {} のモジュールは {} 枚、その機器 {} では {} 枚
@@ -1982,11 +1997,20 @@ yellow	黄
 {}: slot {} of rack {} is used by {} and {}	{0}: ラック {2} のスロット {1} が {3} と {4} で使用されています
 {}: solenoid coil not linked to a valve	{}: ソレノイドコイルがバルブにリンクされていません
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: ソレノイドコイルがリンクされていない電磁弁 (流体とプロセス › 同期)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{0}：PVアレイ {2} のストリング {1} は {4} °C で {3} V に下がり、{5} のMPP範囲（{6} - {7} V）を下回ります
+{}: string {} of PV array {} is connected to no inverter	{0}：PVアレイ {2} のストリング {1} はどのインバーターにも接続されていません
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{0}：PVアレイ {2} のストリング {1} は {4} °C の最大出力時に {3} V に達し、{5} のMPP範囲（{6} - {7} V）を上回ります
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{0}：PVアレイ {2} のストリング {1} は {4} °C で {3} V に達し、モジュールのシステム電圧 {5} V を超えます
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{0}：PVアレイ {2} のストリング {1} は {4} °C で {3} V に達し、{6} の許容値 {5} V を超えます
+{}: string {} of PV array {}: {} has only {} MPP trackers	{0}：PVアレイ {2} のストリング {1}：{3} のMPPトラッカーは {4} 個だけです
+{}: string {} of PV array {}: {} is no device with PV input data	{0}：PVアレイ {2} のストリング {1}：{3} はPV入力データのある機器ではありません
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 端子 {} は {} 段目にありますが、その前に端子ブロックがありません
 {}: terminal {} uses {} levels, its part {} has {}	{}: 端子 {} は {} 段を使用していますが、その部品 {} は {} 段です
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 端子 {} は床面から {} mm です。{} mm 以上必要です
 {}: the device {} of PV array {} does not exist	{0}：PVアレイ {2} の機器 {1} は存在しません
+{}: the module {} of PV array {} has no electrical data	{0}：PVアレイ {2} のモジュール {1} には電気データがありません
 {}: the station has no port {}	{}: ステーションにポート {} がありません
+{}: the strings of PV array {} connect {} modules, the array has {}	{}：PVアレイ {} のストリングは {} 枚のモジュールを接続していますが、アレイには {} 枚です
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) は {} の加工範囲より大きいです
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} の厚さは {} mm ですが、{} は最大 {} mm までです
 {}: voltage drop {} V ({} %) above {} %	{}: 電圧降下 {} V ({} %) が {} % を超えています
@@ -2012,6 +2036,7 @@ yellow	黄
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} は壁取付用ではありません。レールに取り付けてください
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} は床面から {} … {} mm です (許容 {} … {} mm)
 {}: {} kg on the {} exceed its load of {} kg	{0}: {2} 上の {1} kg は耐荷重 {3} kg を超えています
+{}: {} modules of PV array {} are not connected to a string	{0}：PVアレイ {2} の {1} 枚のモジュールはストリングに接続されていません
 {}: {} modules, the head has {} slots	{}: モジュールが {} 個ありますが、ヘッドのスロットは {} 個です
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) は定尺長 {} mm より長いため、継ぎ足す必要があります
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} ({} mm) は {} mm より短いため、切断が困難です

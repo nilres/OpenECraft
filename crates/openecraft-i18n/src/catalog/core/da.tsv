@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Kapacitiv sensor, 3-leder
 Capacitor	Kondensator
 Capacitor, polarized	Kondensator, polariseret
 Ceiling	Loft
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Celletemperaturer: {} °C (U maks.), {} °C (U middel), {} °C (U min.)
 Centre horizontally	Centrer vandret
 Centre vertically	Centrer lodret
 Centrifugal pump	Centrifugalpumpe
@@ -664,6 +665,8 @@ Hydraulic oil	Hydraulikolie
 Hydraulic power unit	Hydraulikaggregat
 Hydraulic pump	Hydraulikpumpe
 Hysteresis	Hysterese
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc maks. (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (maskiner: faseledere BK, DC-styring BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (faseledere BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	MAC-adresse
 MCAD	MCAD
 MCAD device placement (CSV)	MCAD-enhedsplacering (CSV)
 MOSFET N-channel	MOSFET N-kanal
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Maskine (eksempelbetegnelser)
 Machine frame	Maskinramme
@@ -839,6 +843,8 @@ Minimum operating temperature	Minimal driftstemperatur
 Mirror contacts	Spejlkontakter
 Mirrored	Spejlvendt
 Mission time	Brugstid
+Module	Modul
+Modules	Moduler
 Moisture	Fugt
 Moment of inertia	Inertimoment
 Motion detector	Bevægelsesmelder
@@ -930,6 +936,7 @@ No plugs	Ingen stik
 No report block {}	Ingen rapportblok {}
 No segment template named {}	Ingen segmentskabelon med navnet {}
 No subproject {}	Intet delprojekt {}
+No such PV array	Intet sådant solcelleanlæg
 No such object: {}	Intet sådant objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Ingen overspændingsbeskyttelse ved forsyningen (IEC 60364-4-44)
 No terminal {}	Ingen klemme {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	PLC-tags til Rockwell Studio 5000 (CSV)
 PLC variables for Schneider Control Expert (XSY)	PLC-variabler til Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	PLM-konstruktionsstykliste (JSON)
+PV strings	Solcellestrenge
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Side / kolonne (3.4.1)
 Page name	Sidenavn
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Potentialet {} er defineret {} gange
 Potentials / Connectors	Potentialer / stik
 Potentials, interruption points	Potentialer, afbrydelsespunkter
 Potentiometer	Potentiometer
+Power (kWp)	Effekt (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Hoved- og styrekreds på flere sider: hovedafbryder, motorværn, tre kontaktorer med forriglinger, tiltrækningsforsinket tidsrelæ, afbrydelsespunkter, potentialer med lederfarver, motorkabel og kabelrapporter.
 Power factor	Effektfaktor
 Power factor meter	Effektfaktormåler
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	Drejet to gange (to kvartreposer)
 Two connection symbols on page {} lie on the same point	To forbindelsessymboler på side {} ligger i samme punkt
 Two-way switch (installation)	Korrespondanceafbryder (installation)
 Type numbers	Typenumre
+U max (V)	U maks. (V)
+U mean (V)	U middel (V)
+U min (V)	U min. (V)
 UL listed	UL-listet
 UV resistant	UV-bestandig
 Unbalance {} %	Ubalance {} %
@@ -1918,6 +1930,9 @@ yellow	gul
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} er ført til kabelindføringerne i sine kapslinger: de står ikke i et fælles rum, vejen mellem dem er ikke en del af layoutet
 {} {}: bends closer than the bend radius ({} mm)	{} {}: bøjninger tættere end bøjningsradius ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: forbundet i enstregsdiagrammet, men ikke i diagrammet
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-tracker {}: dens strenge har forskellig spænding ({} V og {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-tracker {}: strengene leverer {} A, mere end de {} A, den bruger (effekten begrænses)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP-tracker {}: strengene når en kortslutningsstrøm på {} A, mere end de {} A, den tåler
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} år er under 3 år
 {}: PV array {} covers a roof window	{}: solcelleanlæg {} dækker et ovenlysvindue
 {}: PV array {} has {} modules, its device {} has {}	{}: solcelleanlæg {} har {} moduler, dets enhed {} har {}
@@ -1994,12 +2009,21 @@ yellow	gul
 {}: slot {} of rack {} is used by {} and {}	{}: Slot {} i rack {} bruges af {} og {}
 {}: solenoid coil not linked to a valve	{}: magnetspole ikke tilknyttet en ventil
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: magnetventil uden tilknyttet magnetspole (Fluid og proces › Synkroniser)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: streng {} i solcelleanlæg {} falder til {} V ved {} °C, under MPP-området for {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: streng {} i solcelleanlæg {} er ikke tilsluttet nogen inverter
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: streng {} i solcelleanlæg {} når {} V ved maksimal effekt ved {} °C, over MPP-området for {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: streng {} i solcelleanlæg {} når {} V ved {} °C, mere end systemspændingen {} V for dens moduler
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: streng {} i solcelleanlæg {} når {} V ved {} °C, mere end de {} V, som {} tåler
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: streng {} i solcelleanlæg {}: {} har kun {} MPP-trackere
+{}: string {} of PV array {}: {} is no device with PV input data	{}: streng {} i solcelleanlæg {}: {} er ingen enhed med PV-indgangsdata
 {}: terminal {} is on level {}, but no terminal block is before it	{}: klemme {} er på etage {}, men der er ingen klemmeblok foran den
 {}: terminal {} uses {} levels, its part {} has {}	{}: klemme {} bruger {} etager, dens artikel {} har {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: klemmer {} er {} mm over gulvet, mindst {} mm påkrævet
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skinnesystemet med {} skinner forbinder {} ledere ({}): kortslutning
 {}: the device {} of PV array {} does not exist	{}: enheden {} for solcelleanlæg {} findes ikke
+{}: the module {} of PV array {} has no electrical data	{}: modulet {} i solcelleanlæg {} har ingen elektriske data
 {}: the station has no port {}	{}: Stationen har ingen port {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: strengene i solcelleanlæg {} forbinder {} moduler, anlægget har {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) er større end arbejdsområdet for {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} er {} mm tyk, {} kan højst tage {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: Spændingsfald {} V ({} %) over {} %
@@ -2025,6 +2049,7 @@ yellow	gul
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} er ikke beregnet til vægmontage, monter den på en skinne
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} er {} … {} mm over gulvet, tilladt {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg på {} overskrider dens bæreevne på {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} moduler i solcelleanlæg {} er ikke tilsluttet nogen streng
 {}: {} modules, the head has {} slots	{}: {} moduler, hovedet har {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} på {} mm er længere end lagerlængden på {} mm og skal samles
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} på {} mm er kortere end {} mm og svær at afkorte

@@ -18,6 +18,8 @@ use crate::parts::vec3::{add, cross, norm, scale, sub, V3};
 use crate::parts::Part;
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 
+pub mod strings;
+
 /// Gap between neighbouring modules (the clamps), mm.
 pub const CLAMP_GAP: f32 = 20.0;
 /// Underside of the modules above the covering on rails and roof hooks, mm.

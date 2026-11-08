@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Ємнісний датчик, 3-провідний
 Capacitor	Конденсатор
 Capacitor, polarized	Конденсатор, полярний
 Ceiling	Стеля
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Температури елементів: {} °C (U макс.), {} °C (U середн.), {} °C (U мін.)
 Centre horizontally	Центрувати по горизонталі
 Centre vertically	Центрувати по вертикалі
 Centrifugal pump	Відцентровий насос
@@ -664,6 +665,8 @@ Hydraulic oil	Гідравлічна олива
 Hydraulic power unit	Гідравлічна станція
 Hydraulic pump	Гідронасос
 Hysteresis	Гістерезис
+I mpp (A)	I mpp (А)
+I sc max (A)	I кз макс. (А)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (машини: фази BK, керування DC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (фази BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	MAC-адреса
 MCAD	MCAD
 MCAD device placement (CSV)	Розміщення пристроїв MCAD (CSV)
 MOSFET N-channel	MOSFET N-канальний
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Машина (приклади позначень)
 Machine frame	Рама машини
@@ -839,6 +843,8 @@ Minimum operating temperature	Мінімальна робоча температ
 Mirror contacts	Дзеркальні контакти
 Mirrored	Віддзеркалено
 Mission time	Тривалість експлуатації
+Module	Модуль
+Modules	Модулі
 Moisture	Вологість
 Moment of inertia	Момент інерції
 Motion detector	Датчик руху
@@ -930,6 +936,7 @@ No plugs	Немає роз'ємів
 No report block {}	Немає блоку звітів {}
 No segment template named {}	Немає шаблону сегмента з назвою {}
 No subproject {}	Немає підпроєкту {}
+No such PV array	Немає такого фотоелектричного поля
 No such object: {}	Немає такого об’єкта: {}
 No surge protective device at the supply (IEC 60364-4-44)	На вводі живлення немає пристрою захисту від перенапруг (IEC 60364-4-44)
 No terminal {}	Немає клеми {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Теги ПЛК для Rockwell Studio 5
 PLC variables for Schneider Control Expert (XSY)	Змінні ПЛК для Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	Конструкторська специфікація PLM (JSON)
+PV strings	Фотоелектричні ланцюжки
 PVC (70 °C)	ПВХ (70 °C)
 Page / column (3.4.1)	Сторінка / стовпець (3.4.1)
 Page name	Назва сторінки
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Потенціал {} визначено {} раз
 Potentials / Connectors	Потенціали / роз’єми
 Potentials, interruption points	Потенціали, точки розриву
 Potentiometer	Потенціометр
+Power (kWp)	Потужність (кВт пік)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Силове коло та коло керування на кількох сторінках: головний вимикач, захист двигуна, три контактори з блокуваннями, реле часу із затримкою ввімкнення, точки розриву, потенціали з кольорами проводів, кабель двигуна та звіти щодо кабелів.
 Power factor	Коефіцієнт потужності
 Power factor meter	Вимірювач коефіцієнта потужності
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	З двома поворотами (два �
 Two connection symbols on page {} lie on the same point	Два символи з'єднань на сторінці {} лежать в одній точці
 Two-way switch (installation)	Прохідний вимикач (електроустановка)
 Type numbers	Номери типів
+U max (V)	U макс. (В)
+U mean (V)	U середн. (В)
+U min (V)	U мін. (В)
 UL listed	Внесено до списку UL
 UV resistant	Стійкий до УФ
 Unbalance {} %	Несиметрія {} %
@@ -1918,6 +1930,9 @@ yellow	жовтий
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} прокладено до кабельних вводів своїх корпусів: вони не стоять у спільному приміщенні, шлях між ними не входить до компонування
 {} {}: bends closer than the bend radius ({} mm)	{} {}: згини менші за радіус згину ({} мм)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: з’єднано в однолінійній схемі, але не на схемі
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP-трекер {}: його ланцюжки відрізняються напругою ({} В і {} В)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP-трекер {}: ланцюжки дають {} А, більше за {} А, які він використовує (потужність обмежується)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP-трекер {}: ланцюжки досягають струму короткого замикання {} А, більше за допустимі {} А
 {}: MTTFd {} years is below 3 years	{}: MTTFd {} років менше 3 років
 {}: PV array {} covers a roof window	{}: фотоелектричне поле {} закриває мансардне вікно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоелектричне поле {} має {} модулів, його пристрій {} — {}
@@ -1994,12 +2009,21 @@ yellow	жовтий
 {}: slot {} of rack {} is used by {} and {}	{}: слот {} монтажного каркаса {} зайнятий {} і {}
 {}: solenoid coil not linked to a valve	{}: котушку не пов’язано з клапаном
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: електромагнітний клапан без пов’язаної котушки (Гідро-, пневмотехніка та технологія › Синхронізувати)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: ланцюжок {} фотоелектричного поля {} падає до {} В за {} °C, нижче діапазону MPP {} ({} - {} В)
+{}: string {} of PV array {} is connected to no inverter	{}: ланцюжок {} фотоелектричного поля {} не підключено до жодного інвертора
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: ланцюжок {} фотоелектричного поля {} досягає {} В за максимальної потужності за {} °C, вище діапазону MPP {} ({} - {} В)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: ланцюжок {} фотоелектричного поля {} досягає {} В за {} °C, більше за системну напругу {} В його модулів
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: ланцюжок {} фотоелектричного поля {} досягає {} В за {} °C, більше за {} В, допустимі для {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: ланцюжок {} фотоелектричного поля {}: {} має лише {} MPP-трекери
+{}: string {} of PV array {}: {} is no device with PV input data	{}: ланцюжок {} фотоелектричного поля {}: {} не є пристроєм з даними входу ФЕ
 {}: terminal {} is on level {}, but no terminal block is before it	{}: клема {} розташована на ярусі {}, але перед нею немає клемного блока
 {}: terminal {} uses {} levels, its part {} has {}	{}: клема {} використовує ярусів: {}, її виріб {} має {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеми {} розташовано на {} мм над підлогою, потрібно щонайменше {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система збірних шин з {} шинами з'єднує {} провідники ({}): коротке замикання
 {}: the device {} of PV array {} does not exist	{}: пристрій {} фотоелектричного поля {} не існує
+{}: the module {} of PV array {} has no electrical data	{}: модуль {} фотоелектричного поля {} не має електричних даних
 {}: the station has no port {}	{}: станція не має порту {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: ланцюжки фотоелектричного поля {} з'єднують {} модулів, у полі {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} мм) більше за робочу зону {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} має товщину {} мм, {} обробляє щонайбільше {} мм
 {}: voltage drop {} V ({} %) above {} %	{}: спад напруги {} V ({} %) понад {} %
@@ -2025,6 +2049,7 @@ yellow	жовтий
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} не призначений для настінного монтажу, встановіть його на рейку
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} розташовано на {} … {} мм над підлогою, допустимо {} … {} мм
 {}: {} kg on the {} exceed its load of {} kg	{}: {} кг на {} перевищують його допустиме навантаження {} кг
+{}: {} modules of PV array {} are not connected to a string	{}: {} модулів фотоелектричного поля {} не підключено до ланцюжка
 {}: {} modules, the head has {} slots	{}: модулів – {}, головний модуль має {} слотів
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} довжиною {} мм довше за складську довжину {} мм, його потрібно стикувати
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} довжиною {} мм коротше за {} мм, його важко відрізати

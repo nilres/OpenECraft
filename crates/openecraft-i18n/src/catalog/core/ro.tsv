@@ -183,6 +183,7 @@ Capacitive sensor, 3-wire	Senzor capacitiv, 3 fire
 Capacitor	Condensator
 Capacitor, polarized	Condensator, polarizat
 Ceiling	Tavan
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperaturile celulelor: {} °C (U max.), {} °C (U medie), {} °C (U min.)
 Centre horizontally	Centrare pe orizontală
 Centre vertically	Centrare pe verticală
 Centrifugal pump	Pompă centrifugă
@@ -664,6 +665,8 @@ Hydraulic oil	Ulei hidraulic
 Hydraulic power unit	Agregat hidraulic
 Hydraulic pump	Pompă hidraulică
 Hysteresis	Histerezis
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc max. (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1 (mașini: faze BK, comandă DC BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445 (faze BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -776,6 +779,7 @@ MAC address	Adresă MAC
 MCAD	MCAD
 MCAD device placement (CSV)	Plasarea dispozitivelor MCAD (CSV)
 MOSFET N-channel	MOSFET cu canal N
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	Mașină (identificatori exemplu)
 Machine frame	Cadrul mașinii
@@ -839,6 +843,8 @@ Minimum operating temperature	Temperatură minimă de funcționare
 Mirror contacts	Contacte oglindă
 Mirrored	Oglindit
 Mission time	Durată de misiune
+Module	Modul
+Modules	Module
 Moisture	Umiditate
 Moment of inertia	Moment de inerție
 Motion detector	Detector de mișcare
@@ -930,6 +936,7 @@ No plugs	Niciun conector
 No report block {}	Niciun bloc de raport {}
 No segment template named {}	Niciun șablon de segment cu numele {}
 No subproject {}	Nu există subproiectul {}
+No such PV array	Nu există un astfel de câmp fotovoltaic
 No such object: {}	Nu există obiectul: {}
 No surge protective device at the supply (IEC 60364-4-44)	Niciun dispozitiv de protecție la supratensiune la alimentare (IEC 60364-4-44)
 No terminal {}	Nicio bornă {}
@@ -1066,6 +1073,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Taguri PLC pentru Rockwell Studio 5000 (
 PLC variables for Schneider Control Expert (XSY)	Variabile PLC pentru Schneider Control Expert (XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	Listă de materiale de proiectare PLM (JSON)
+PV strings	Șiruri fotovoltaice
 PVC (70 °C)	PVC (70 °C)
 Page / column (3.4.1)	Pagină / coloană (3.4.1)
 Page name	Nume pagină
@@ -1175,6 +1183,7 @@ Potential {} defined {} times	Potențialul {} este definit de {} ori
 Potentials / Connectors	Potențiale / conectori
 Potentials, interruption points	Potențiale, puncte de întrerupere
 Potentiometer	Potențiometru
+Power (kWp)	Putere (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	Circuit de forță și de comandă pe mai multe pagini: întrerupător general, protecția motorului, trei contactoare cu interblocări, releu de timp cu întârziere la anclanșare, puncte de întrerupere, potențiale cu culori de fire, cablul motorului și rapoarte de cabluri.
 Power factor	Factor de putere
 Power factor meter	Cosfimetru
@@ -1673,6 +1682,9 @@ Turned twice (two quarter landings)	Cu două întoarceri (două podeste de colț
 Two connection symbols on page {} lie on the same point	Două simboluri de conexiune de pe pagina {} se află în același punct
 Two-way switch (installation)	Comutator cap-scară (instalații)
 Type numbers	Numere de tip
+U max (V)	U max. (V)
+U mean (V)	U medie (V)
+U min (V)	U min. (V)
 UL listed	Listat UL
 UV resistant	Rezistent la UV
 Unbalance {} %	Dezechilibru {} %
@@ -1918,6 +1930,9 @@ yellow	galben
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {} este pozat până la intrările de cabluri ale carcaselor sale: acestea nu se află într-o încăpere comună, traseul dintre ele nu face parte din amplasare
 {} {}: bends closer than the bend radius ({} mm)	{} {}: curburi mai strânse decât raza de curbură ({} mm)
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: conectat în schema monofilară, dar nu și în schemă
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, urmăritor MPP {}: șirurile sale diferă ca tensiune ({} V și {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, urmăritor MPP {}: șirurile furnizează {} A, mai mult decât cei {} A pe care îi folosește (puterea este limitată)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, urmăritor MPP {}: șirurile ating un curent de scurtcircuit de {} A, mai mult decât cei {} A pe care îi suportă
 {}: MTTFd {} years is below 3 years	{}: MTTFd de {} ani este sub 3 ani
 {}: PV array {} covers a roof window	{}: câmpul fotovoltaic {} acoperă o fereastră de acoperiș
 {}: PV array {} has {} modules, its device {} has {}	{}: câmpul fotovoltaic {} are {} module, dispozitivul său {} are {}
@@ -1994,12 +2009,21 @@ yellow	galben
 {}: slot {} of rack {} is used by {} and {}	{}: slotul {} al rack-ului {} este folosit de {} și {}
 {}: solenoid coil not linked to a valve	{}: bobină nelegată de o supapă
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: electrovalvă fără bobină legată (Fluide și procese › Sincronizare)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{}: șirul {} al câmpului fotovoltaic {} scade la {} V la {} °C, sub domeniul MPP al {} ({} - {} V)
+{}: string {} of PV array {} is connected to no inverter	{}: șirul {} al câmpului fotovoltaic {} nu este conectat la niciun invertor
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{}: șirul {} al câmpului fotovoltaic {} atinge {} V la putere maximă la {} °C, peste domeniul MPP al {} ({} - {} V)
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{}: șirul {} al câmpului fotovoltaic {} atinge {} V la {} °C, mai mult decât tensiunea de sistem de {} V a modulelor sale
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{}: șirul {} al câmpului fotovoltaic {} atinge {} V la {} °C, mai mult decât cei {} V pe care îi suportă {}
+{}: string {} of PV array {}: {} has only {} MPP trackers	{}: șirul {} al câmpului fotovoltaic {}: {} are doar {} urmăritoare MPP
+{}: string {} of PV array {}: {} is no device with PV input data	{}: șirul {} al câmpului fotovoltaic {}: {} nu este un dispozitiv cu date de intrare fotovoltaică
 {}: terminal {} is on level {}, but no terminal block is before it	{}: borna {} se află pe nivelul {}, dar înaintea ei nu există niciun bloc de borne
 {}: terminal {} uses {} levels, its part {} has {}	{}: borna {} folosește {} niveluri, articolul său {} are {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: bornele {} sunt la {} mm deasupra podelei, sunt necesari cel puțin {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
 {}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
+{}: the module {} of PV array {} has no electrical data	{}: modulul {} al câmpului fotovoltaic {} nu are date electrice
 {}: the station has no port {}	{}: stația nu are portul {}
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: șirurile câmpului fotovoltaic {} conectează {} module, câmpul are {}
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {} ({} x {} mm) este mai mare decât zona de lucru a {}
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {} are grosimea de {} mm, {} acceptă cel mult {} mm
 {}: voltage drop {} V ({} %) above {} %	{}: cădere de tensiune {} V ({} %) peste {} %
@@ -2025,6 +2049,7 @@ yellow	galben
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nu este destinat montajului pe perete, montați-l pe o șină
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} este la {} … {} mm deasupra podelei, permis {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg pe {} depășesc sarcina sa de {} kg
+{}: {} modules of PV array {} are not connected to a string	{}: {} module ale câmpului fotovoltaic {} nu sunt conectate la un șir
 {}: {} modules, the head has {} slots	{}: {} module, capul are {} sloturi
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} de {} mm este mai lung decât lungimea de stoc de {} mm și trebuie îmbinat
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {} de {} mm este mai scurt de {} mm și greu de tăiat

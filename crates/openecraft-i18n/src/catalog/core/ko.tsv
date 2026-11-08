@@ -176,6 +176,7 @@ Capacitive sensor, 3-wire	정전용량형 센서, 3선식
 Capacitor	커패시터
 Capacitor, polarized	커패시터, 유극
 Ceiling	천장
+Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	셀 온도: {} °C (U 최대), {} °C (U 평균), {} °C (U 최소)
 Centre horizontally	가로 가운데 맞춤
 Centre vertically	세로 가운데 맞춤
 Centrifugal pump	원심 펌프
@@ -656,6 +657,8 @@ Hydraulic oil	유압유
 Hydraulic power unit	유압 파워 유닛
 Hydraulic pump	유압 펌프
 Hysteresis	히스테리시스
+I mpp (A)	I mpp (A)
+I sc max (A)	I sc 최대 (A)
 IEC 60204-1 (machinery: phases BK, DC control BU)	IEC 60204-1(기계: 선도체 BK, DC 제어 BU)
 IEC 60445 (phases BN, BK, GY)	IEC 60445(선도체 BN, BK, GY)
 IEC 61131-3 (%IX0.0 / %QX0.0)	IEC 61131-3 (%IX0.0 / %QX0.0)
@@ -768,6 +771,7 @@ MAC address	MAC 주소
 MCAD	MCAD
 MCAD device placement (CSV)	MCAD 장치 배치(CSV)
 MOSFET N-channel	MOSFET N 채널
+MPPT	MPPT
 MTTFd	MTTFd
 Machine (example identifiers)	기계(예제 식별자)
 Machine frame	기계 프레임
@@ -831,6 +835,8 @@ Minimum operating temperature	최소 작동 온도
 Mirror contacts	미러 접점
 Mirrored	대칭됨
 Mission time	사용 기간
+Module	모듈
+Modules	모듈
 Moisture	습도
 Moment of inertia	관성 모멘트
 Motion detector	동작 감지기
@@ -921,6 +927,7 @@ No plugs	플러그 없음
 No report block {}	보고서 블록 {} 없음
 No segment template named {}	이름이 {}인 세그먼트 템플릿이 없습니다
 No subproject {}	하위 프로젝트 {}이(가) 없습니다
+No such PV array	해당 태양광 어레이 없음
 No such object: {}	해당 개체가 없습니다: {}
 No surge protective device at the supply (IEC 60364-4-44)	전원 공급부에 서지 보호 장치가 없습니다(IEC 60364-4-44)
 No terminal {}	단자 {} 없음
@@ -1055,6 +1062,7 @@ PLC tags for Rockwell Studio 5000 (CSV)	Rockwell Studio 5000용 PLC 태그(CSV)
 PLC variables for Schneider Control Expert (XSY)	Schneider Control Expert용 PLC 변수(XSY)
 PLM	PLM
 PLM engineering BOM (JSON)	PLM 엔지니어링 BOM(JSON)
+PV strings	태양광 스트링
 PVC (70 °C)	PVC(70 °C)
 Page / column (3.4.1)	페이지 / 열(3.4.1)
 Page name	페이지 이름
@@ -1164,6 +1172,7 @@ Potential {} defined {} times	전위 {}이(가) {}번 정의됨
 Potentials / Connectors	전위 / 커넥터
 Potentials, interruption points	전위, 중단점
 Potentiometer	전위차계
+Power (kWp)	출력 (kWp)
 Power and control circuit on several pages: main switch, motor protection, three contactors with interlocks, on-delay timer, interruption points, potentials with wire colours, motor cable and cable reports.	여러 페이지의 주회로와 제어 회로: 메인 스위치, 모터 보호, 인터록이 있는 접촉기 3개, 온 딜레이 타이머, 중단점, 전선 색상이 있는 전위, 모터 케이블 및 케이블 보고서.
 Power factor	역률
 Power factor meter	역률계
@@ -1661,6 +1670,9 @@ Turned twice (two quarter landings)	두 번 꺾임 (모서리 참 두 개)
 Two connection symbols on page {} lie on the same point	페이지 {}의 두 연결 기호가 같은 지점에 있습니다
 Two-way switch (installation)	3로 스위치(옥내 배선)
 Type numbers	유형 번호
+U max (V)	U 최대 (V)
+U mean (V)	U 평균 (V)
+U min (V)	U 최소 (V)
 UL listed	UL 등록
 UV resistant	내자외선성
 Unbalance {} %	불평형 {} %
@@ -1906,6 +1918,9 @@ yellow	노랑
 {} {} is routed to the cable entries of its enclosures: they stand in no common room, the way between them is not part of the layout	{} {}은(는) 각 외함의 케이블 인입구까지 배선됨: 공통된 방에 있지 않아 그 사이의 경로는 배치에 포함되지 않음
 {} {}: bends closer than the bend radius ({} mm)	{} {}: 굽힘이 굽힘 반경({} mm)보다 작음
 {} – {}: connected in the single-line diagram but not in the schematic	{} – {}: 단선도에서는 연결되어 있지만 회로도에서는 연결되어 있지 않습니다
+{}, MPP tracker {}: its strings differ in voltage ({} V and {} V)	{}, MPP 트래커 {}: 스트링 전압이 다릅니다 ({} V 및 {} V)
+{}, MPP tracker {}: the strings deliver {} A, more than the {} A it uses (the power is limited)	{}, MPP 트래커 {}: 스트링이 {} A를 공급하여 사용 가능한 {} A를 초과합니다 (출력 제한)
+{}, MPP tracker {}: the strings reach a short-circuit current of {} A, more than the {} A it takes	{}, MPP 트래커 {}: 스트링 단락 전류가 {} A로 허용치 {} A를 초과합니다
 {}: MTTFd {} years is below 3 years	{0}: MTTFd {1}년이 3년 미만입니다
 {}: PV array {} covers a roof window	{}: 태양광 어레이 {}이(가) 지붕창을 덮습니다
 {}: PV array {} has {} modules, its device {} has {}	{}: 태양광 어레이 {}의 모듈은 {}개, 그 장치 {}의 모듈은 {}개
@@ -1982,11 +1997,20 @@ yellow	노랑
 {}: slot {} of rack {} is used by {} and {}	{0}: 랙 {2}의 슬롯 {1}을(를) {3}와(과) {4}이(가) 사용합니다
 {}: solenoid coil not linked to a valve	{}: 밸브에 연결되지 않은 솔레노이드 코일
 {}: solenoid valve without linked solenoid coil (Fluid and process › Synchronize)	{}: 연결된 솔레노이드 코일이 없는 솔레노이드 밸브(유체 및 공정 › 동기화)
+{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)	{0}: 태양광 어레이 {2}의 스트링 {1}이(가) {4} °C에서 {3} V로 떨어져 {5}의 MPP 범위({6} - {7} V)보다 낮습니다
+{}: string {} of PV array {} is connected to no inverter	{0}: 태양광 어레이 {2}의 스트링 {1}이(가) 어떤 인버터에도 연결되어 있지 않습니다
+{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)	{0}: 태양광 어레이 {2}의 스트링 {1}이(가) {4} °C 최대 출력 시 {3} V에 도달하여 {5}의 MPP 범위({6} - {7} V)를 넘습니다
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules	{0}: 태양광 어레이 {2}의 스트링 {1}이(가) {4} °C에서 {3} V에 도달하여 모듈의 시스템 전압 {5} V를 초과합니다
+{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes	{0}: 태양광 어레이 {2}의 스트링 {1}이(가) {4} °C에서 {3} V에 도달하여 {6}의 허용치 {5} V를 초과합니다
+{}: string {} of PV array {}: {} has only {} MPP trackers	{0}: 태양광 어레이 {2}의 스트링 {1}: {3}의 MPP 트래커는 {4}개뿐입니다
+{}: string {} of PV array {}: {} is no device with PV input data	{0}: 태양광 어레이 {2}의 스트링 {1}: {3}은(는) 태양광 입력 데이터가 있는 장치가 아닙니다
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 단자 {}이(가) {}단에 있지만 그 앞에 단자 블록이 없습니다
 {}: terminal {} uses {} levels, its part {} has {}	{}: 단자 {}은(는) {}단을 사용하지만 해당 부품 {}은(는) {}단입니다
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 단자 {}이(가) 바닥에서 {} mm 높이에 있습니다. 최소 {} mm가 필요합니다
 {}: the device {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 장치 {1}이(가) 없습니다
+{}: the module {} of PV array {} has no electrical data	{0}: 태양광 어레이 {2}의 모듈 {1}에 전기 데이터가 없습니다
 {}: the station has no port {}	{0}: 스테이션에 포트 {1}이(가) 없습니다
+{}: the strings of PV array {} connect {} modules, the array has {}	{}: 태양광 어레이 {}의 스트링이 모듈 {}개를 연결하지만 어레이에는 {}개가 있습니다
 {}: the {} ({} x {} mm) is larger than the working area of {}	{}: {}({} x {} mm)이(가) {}의 작업 영역보다 큽니다
 {}: the {} is {} mm thick, {} takes at most {} mm	{}: {}의 두께는 {} mm이며, {}은(는) 최대 {} mm까지 가공합니다
 {}: voltage drop {} V ({} %) above {} %	{0}: 전압 강하 {1} V({2} %)가 {3} %를 초과함
@@ -2011,6 +2035,7 @@ yellow	노랑
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {}은(는) 장착 레일용이지만 플레이트에 직접 장착되어 있습니다
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {}이(가) 바닥에서 {} … {} mm 높이에 있습니다. 허용 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg이(가) {}의 허용 하중 {} kg을 초과합니다
+{}: {} modules of PV array {} are not connected to a string	{0}: 태양광 어레이 {2}의 모듈 {1}개가 스트링에 연결되어 있지 않습니다
 {}: {} modules, the head has {} slots	{0}: 모듈 {1}개, 헤드의 슬롯은 {2}개
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {}({} mm)이(가) 재고 길이 {} mm보다 길어 이어 붙여야 합니다
 {}: {} of {} mm is shorter than {} mm and hard to cut	{}: {}({} mm)이(가) {} mm보다 짧아 절단하기 어렵습니다

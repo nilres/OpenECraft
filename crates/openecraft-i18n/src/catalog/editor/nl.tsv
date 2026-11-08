@@ -204,7 +204,6 @@ Bottom edges	Onderranden
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Onderkant van de behuizing (zonder sokkel) boven de vloer; de hoogten worden gecontroleerd als deze bekend is of de behuizing op een sokkel staat
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Uitschakelvermogen ten opzichte van de kortsluitstroom bij elk beveiligingsapparaat van het net, uitschakeling bij de laagste foutstroom aan het einde van de stroomkring, kortsluitvastheid van de kabels en selectiviteit met het voorgeschakelde apparaat.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
-Building	Gebouw
 Built-in frames cannot be changed; copy one to adapt it.	Ingebouwde kaders kunnen niet worden gewijzigd; kopieer er een om het aan te passen.
 Built-in scheme: copy it to change it.	Ingebouwd schema: kopieer het om het te wijzigen.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Ingebouwde titelblokken zijn alleen-lezen – gebruik ‘Als nieuw kopiëren’ om je eigen titelblok te maken.
@@ -233,6 +232,7 @@ Calculations	Berekeningen
 Cancel / select tool / clear selection	Annuleren / gereedschap kiezen / selectie opheffen
 Card	Kaart
 Cards without station: {}	Kaarten zonder station: {}
+Cell temperatures of the strings	Celtemperaturen van de strings
 Centre	Midden
 Change project properties of the selected projects	Projecteigenschappen van de geselecteerde projecten wijzigen
 Change request	Wijzigingsverzoek
@@ -443,6 +443,7 @@ Delete room {} with everything on its walls? The cabinets standing in it stay, w
 Delete section	Sectie verwijderen
 Delete shaft	Schacht verwijderen
 Delete stair	Trap verwijderen
+Delete string	String verwijderen
 Delete the group	De groep verwijderen
 Delete the layer; its items move to the default layer	De laag verwijderen; de elementen ervan gaan naar de standaardlaag
 Delete the property and all its values	Eigenschap met alle waarden verwijderen
@@ -742,6 +743,8 @@ Help	Help
 Hide the groups you do not need and put the commands you use most into own groups.	Verberg de groepen die u niet nodig hebt en zet de meest gebruikte opdrachten in eigen groepen.
 Highest phase unbalance	Hoogste fase-onbalans
 Highest short-circuit current	Hoogste kortsluitstroom
+Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Hoogste spanning (nullast bij de laagste temperatuur), gemiddelde en laagste spanning (bij maximaal vermogen bij de gemiddelde en de hoogste temperatuur), stroom bij maximaal vermogen, piekvermogen
+Highest: the lowest voltage	Hoogste: de laagste spanning
 Hole to sheet edge	Boring tot plaatrand
 Home	Start
 Hook distance	Haakafstand
@@ -830,6 +833,7 @@ Insulation	Isolatie
 Interruption points refer to	Onderbrekingspunten verwijzen naar
 Introduction	Inleiding
 Invalid value	Ongeldige waarde
+Inverter or charge controller (devices with PV input data)	Omvormer of laadregelaar (apparaten met PV-ingangsgegevens)
 Isometric	Isometrisch
 Items on the layer	Elementen op de laag
 Items with an anchor keep it; the others are inserted relative to the click.	Elementen met een verankering behouden die; de andere worden ten opzichte van de klik ingevoegd.
@@ -917,6 +921,7 @@ Looking for updates…	Zoeken naar updates…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Zoekt op GitHub naar een nieuwe versie van OpenECraft en installeert die op de achtergrond
 Loop	Lus
 Lowest fault current	Laagste foutstroom
+Lowest: the highest open-circuit voltage	Laagste: de hoogste nullastspanning
 Macro boxes	Macrokaders
 Macro boxes ({})	Macrokaders ({})
 Macro saved to the library	Macro opgeslagen in de bibliotheek
@@ -947,6 +952,7 @@ Master data	Stamgegevens
 Max. pressure	Max. druk
 Max. width	Max. breedte
 Maximum fill of a carrier	Maximale vulling van een kabeldrager
+Mean: typical operation	Gemiddeld: typisch bedrijf
 Measured	Gemeten
 Measures against common cause failure (at least 65 points)	Maatregelen tegen uitval door een gemeenschappelijke oorzaak (minstens 65 punten)
 Merge a symbol library file	Een symboolbibliotheekbestand samenvoegen
@@ -1067,6 +1073,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Geen veldkabels: plaats de behuizingen en veldapparaten bij knooppunten van het tracénetwerk.
 No filter fans: an air/air heat exchanger or a cooling unit	Geen filterventilatoren: een lucht/lucht-warmtewisselaar of een koelaggregaat
 No harnesses defined.	Geen kabelbomen gedefinieerd.
+No inverter	Geen omvormer
 No longer reported	Wordt niet meer gemeld
 No macros yet. Select items in a schematic and save them as a macro.	Nog geen macro's. Selecteer elementen in een schema en sla ze op als macro.
 No modules: plug in PLC cards of the schematic.	Geen modules: plaats PLC-kaarten uit het schema.
@@ -1200,7 +1207,6 @@ PLC channels	PLC-kanalen
 PLC hardware and bus topology	PLC-hardware en bustopologie
 PLC overview	PLC-overzicht
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- of JPEG-bitmap, bijv. een logo of een foto
-PV array	PV-veld
 PV arrays	PV-velden
 Page graphics	Paginagrafiek
 Page heading	Paginakop
@@ -1682,6 +1688,8 @@ Still reported	Wordt nog gemeld
 Stock length	Voorraadlengte
 Stop placing for this device	Plaatsen voor dit apparaat beëindigen
 Stratification (factor c)	Stratificatie (factor c)
+Strings	Strings
+Strings of this kind in parallel	Strings van deze soort parallel
 Strip on the rail	Strook op de rail
 Strip {} mm	Strippen {} mm
 Strips / plugs	Stroken / stekkers
@@ -1768,6 +1776,7 @@ The door seen from the inside (hinges on the right): cable ducts and the wiring 
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	De behuizing staat met haar linkerzijde tegen de rechterzijde van de gekozen behuizing; draden lopen ertussen door kabeldoorvoeren
 The items are selected and moved together	De elementen worden samen geselecteerd en verplaatst
 The macro library has no page macros (Macros › Save page as macro…).	De macrobibliotheek heeft geen paginamacro's (Macro's › Pagina opslaan als macro…).
+The modules no string takes yet in series, on the first inverter	De modules die nog geen string neemt, in serie, op de eerste omvormer
 The names of its pages follow	De namen van de pagina's veranderen mee
 The page name gets the section number	De paginanaam krijgt het sectienummer
 The page type, plot frame, title block, structure, description and the whole content are saved.	Het paginatype, het plotkader, het titelblok, de structuur, de beschrijving en de volledige inhoud worden opgeslagen.
@@ -1819,6 +1828,7 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Tutorial	Tutorial
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Typ een punt en druk op Enter: x y in mm, of @dx dy ten opzichte van het laatste punt; dit werkt als een klik met het huidige gereedschap
+U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Schaal van de interface
 Undo	Ongedaan maken
 Undo brings it back.	Ongedaan maken haalt het terug.
@@ -2001,6 +2011,7 @@ model	model
 name	naam
 no	nee
 no answer	geen antwoord
+no electrical data of the module	geen elektrische gegevens van de module
 no rooms	geen ruimten
 no valid levels	geen geldige verdiepingen
 no wires	geen draden

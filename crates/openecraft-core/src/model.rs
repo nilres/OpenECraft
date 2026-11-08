@@ -353,10 +353,11 @@ pub enum ReportKind {
     FieldRouting,
     Bonding,
     RackElevation,
+    PvStrings,
 }
 
 impl ReportKind {
-    pub const ALL: [ReportKind; 42] = [
+    pub const ALL: [ReportKind; 43] = [
         ReportKind::TableOfContents,
         ReportKind::DeviceList,
         ReportKind::BillOfMaterials,
@@ -399,6 +400,7 @@ impl ReportKind {
         ReportKind::FieldRouting,
         ReportKind::Bonding,
         ReportKind::RackElevation,
+        ReportKind::PvStrings,
     ];
 
     /// English catalog key of the title.
@@ -446,6 +448,7 @@ impl ReportKind {
             ReportKind::FieldRouting => tr_const!("Field cable routing"),
             ReportKind::Bonding => tr_const!("Equipotential bonding"),
             ReportKind::RackElevation => tr_const!("19-inch rack elevation"),
+            ReportKind::PvStrings => tr_const!("PV strings"),
         }
     }
 
@@ -499,6 +502,7 @@ impl ReportKind {
             ReportKind::FieldRouting => "field_routing",
             ReportKind::Bonding => "bonding",
             ReportKind::RackElevation => "rack_elevation",
+            ReportKind::PvStrings => "pv_strings",
         }
     }
 
