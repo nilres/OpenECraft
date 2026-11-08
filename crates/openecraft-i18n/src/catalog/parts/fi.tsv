@@ -326,6 +326,7 @@ Terminators, filters	Päätteet, suodattimet
 Test accessories	Testaustarvikkeet
 The EPLAN Data Portal only offers searching and reading parts	EPLAN Data Portal tarjoaa vain osien haun ja lukemisen
 The access token is only needed for changes; it is not stored.	Käyttöoikeustokenia tarvitaan vain muutoksiin; sitä ei tallenneta.
+The checksum of {} does not match: the download is damaged	Tiedoston {} tarkistussumma ei täsmää: lataus on vioittunut
 The directory checks the password and sets the groups at every sign-in	Hakemistopalvelu tarkistaa salasanan ja asettaa ryhmät jokaisella kirjautumisella
 The project has no parts	Projektissa ei ole osia
 The server cannot be reached	Palvelimeen ei saada yhteyttä
@@ -381,6 +382,7 @@ the server refuses the connection (not started, or another port)	palvelin hylkä
 unchanged if empty	ennallaan, jos tyhjä
 unexpected answer: {}	odottamaton vastaus: {}
 {} ({}, {})	{} ({}, {})
+{} has no checksum in SHA256SUMS	Tiedostolla {} ei ole tarkistussummaa SHA256SUMS-tiedostossa
 {} parts in {} catalogs, revision {}	{} osaa {} luettelossa, revisio {}
 {} parts, {} catalogs, {}	{} osaa, {} luetteloa, {}
 {} – save to upload it	{} – tallenna ladataksesi palvelimelle

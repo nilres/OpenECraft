@@ -59,6 +59,10 @@ date), and the versions of the tools are pinned. Raise them together:
 | `THIRD-PARTY-LICENSES.html`, `SHA256SUMS` | the workflow |
 | `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
 
+The editor updates itself from the latest published release (no drafts, no
+pre-releases): it needs `SHA256SUMS` and the file names above, so keep them when
+changing the packages (`openecraft_client::update::Package`).
+
 ## Licenses
 
 OpenECraft is licensed under MIT (`LICENSE-MIT`) or Apache-2.0 (`LICENSE-APACHE`). The

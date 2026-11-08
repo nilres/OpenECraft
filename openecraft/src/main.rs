@@ -30,6 +30,7 @@ mod ribbon;
 mod style;
 mod vault;
 mod session;
+mod updater;
 mod wiring_ui;
 
 #[cfg(not(target_arch = "wasm32"))]

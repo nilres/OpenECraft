@@ -85,6 +85,7 @@ mod review_ui;
 mod revisions_ui;
 mod report_blocks_ui;
 mod symbol_editor;
+mod update_ui;
 mod vault_ui;
 
 use crate::dock::{LeftTab, Pane, ToolPane};
@@ -120,6 +121,8 @@ struct ShellState {
     frame_stats: bool,
     /// The 3D view of the panel layout is drawn by the graphics card.
     gpu_3d: bool,
+    /// Look for a new release when the editor starts (and install it).
+    update_check: bool,
 }
 
 impl Default for ShellState {
@@ -138,6 +141,7 @@ impl Default for ShellState {
             wall_opacity: crate::panel_ui::WALL_OPACITY,
             frame_stats: false,
             gpu_3d: true,
+            update_check: true,
         }
     }
 }
@@ -350,6 +354,8 @@ pub struct App {
     tablet_applied: Option<bool>,
     /// A part dropped onto a page that is being downloaded from the parts server.
     pending_drop: Option<crate::parts_ui::PendingDrop>,
+    /// Updates from the releases on GitHub.
+    updater: crate::updater::Updater,
 }
 
 impl App {
@@ -562,6 +568,7 @@ impl App {
             last_selection: (0, Vec::new()),
             tablet_applied: None,
             pending_drop: None,
+            updater: crate::updater::Updater::default(),
             dark: cc.egui_ctx.theme() == egui::Theme::Dark,
         };
         crate::style::apply(&cc.egui_ctx);
@@ -576,6 +583,10 @@ impl App {
             app.show_pane(Pane::Tool(ToolPane::Start));
         }
         app.shell.started = true;
+        // In the background: without a connection nothing waits for it.
+        if app.shell.update_check && crate::updater::allowed_at_start() {
+            app.updater.start(&cc.egui_ctx, false);
+        }
         // On the desktop the stored values are there at once.
         app.autosave.poll(&mut app.session, &mut app.parts_db);
         app
@@ -948,6 +959,7 @@ impl eframe::App for App {
         self.poll_jobs(&ctx);
         self.poll_remote(&ctx);
         self.poll_vault(&ctx);
+        self.poll_update(&ctx);
         self.autosave.poll(&mut self.session, &mut self.parts_db);
         let actions = self.parts_ui.poll_server(&ctx, &mut self.parts_db);
         self.parts_actions(&ctx, actions);
@@ -1031,6 +1043,8 @@ impl eframe::App for App {
     fn on_exit(&mut self, _gl: Option<&eframe::glow::Context>) {
         // The autosave of the last `save` is written before the app ends.
         self.autosave.finish();
+        // A downloaded Windows setup runs now that the files are free.
+        self.updater.finish();
     }
 
     fn save(&mut self, storage: &mut dyn eframe::Storage) {

@@ -325,6 +325,7 @@ Terminators, filters	終端器、フィルター
 Test accessories	テスト用付属品
 The EPLAN Data Portal only offers searching and reading parts	EPLAN Data Portal では部品の検索と読み取りのみ可能です
 The access token is only needed for changes; it is not stored.	アクセストークンは変更時にのみ必要です。保存されません。
+The checksum of {} does not match: the download is damaged	{} のチェックサムが一致しません：ダウンロードが破損しています
 The directory checks the password and sets the groups at every sign-in	ディレクトリはサインインのたびにパスワードを確認し、グループを設定します
 The project has no parts	プロジェクトに部品がありません
 The server cannot be reached	サーバーに接続できません
@@ -379,6 +380,7 @@ the server refuses the connection (not started, or another port)	サーバーが
 unchanged if empty	空欄の場合は変更なし
 unexpected answer: {}	予期しない応答: {}
 {} ({}, {})	{} ({}, {})
+{} has no checksum in SHA256SUMS	SHA256SUMS に {} のチェックサムがありません
 {} parts in {} catalogs, revision {}	部品 {} 個 (カタログ {} 個)、リビジョン {}
 {} parts, {} catalogs, {}	部品 {} 個、カタログ {} 個、{}
 {} – save to upload it	{} – 保存するとアップロードされます

@@ -144,6 +144,7 @@ impl App {
                         icons::show(ui, Icon::Lock, 14.0).on_hover_text(tr_fmt!("Locked by {} – read only", user));
                     }
                 }
+                self.update_status(ui);
                 for label in self.jobs_running() {
                     ui.label(RichText::new(label).small());
                     ui.add(egui::Spinner::new().size(12.0));

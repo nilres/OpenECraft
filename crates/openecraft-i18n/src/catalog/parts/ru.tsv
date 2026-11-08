@@ -326,6 +326,7 @@ Terminators, filters	Оконечные устройства, фильтры
 Test accessories	Принадлежности для испытаний
 The EPLAN Data Portal only offers searching and reading parts	EPLAN Data Portal позволяет только искать и читать изделия
 The access token is only needed for changes; it is not stored.	Маркер доступа нужен только для изменений; он не сохраняется.
+The checksum of {} does not match: the download is damaged	Контрольная сумма {} не совпадает: загрузка повреждена
 The directory checks the password and sets the groups at every sign-in	Служба каталогов проверяет пароль и задаёт группы при каждом входе
 The project has no parts	В проекте нет изделий
 The server cannot be reached	Сервер недоступен
@@ -381,6 +382,7 @@ the server refuses the connection (not started, or another port)	сервер о
 unchanged if empty	без изменений, если пусто
 unexpected answer: {}	непредвиденный ответ: {}
 {} ({}, {})	{} ({}, {})
+{} has no checksum in SHA256SUMS	Для {} нет контрольной суммы в SHA256SUMS
 {} parts in {} catalogs, revision {}	Изделий: {}, каталогов: {}, ревизия {}
 {} parts, {} catalogs, {}	Изделий: {}, каталогов: {}, {}
 {} – save to upload it	{} – сохраните, чтобы выгрузить
