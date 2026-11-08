@@ -56,6 +56,19 @@ fn archive_contains_project_files_and_manifest() {
 }
 
 #[test]
+fn files_of_the_same_name_stay_in_the_files_folder() {
+    let mut prj = demo_project();
+    for _ in 0..3 {
+        let id = prj.new_id();
+        let mut doc = Page::new(id, "8", "Data sheet", PageKind::Document);
+        doc.document = Some(Document::new("sheet.pdf", b"%PDF-1.4 test"));
+        prj.pages.push(doc);
+    }
+    let m = manifest(&archive(&prj, &ArchiveOptions::default())).unwrap();
+    assert_eq!(m.files, vec!["project.oec", "files/8 sheet.pdf", "files/2 8 sheet.pdf", "files/3 8 sheet.pdf"]);
+}
+
+#[test]
 fn old_files_are_converted() {
     let old = r#"{ "info": { "name": "Old" },
         "devices": { "-K1": { "part": "CT-9A-24DC" } },

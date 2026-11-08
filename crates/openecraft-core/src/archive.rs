@@ -144,11 +144,12 @@ pub fn archive(prj: &Project, opts: &ArchiveOptions) -> Vec<u8> {
     zip.add(PROJECT_FILE, prj.to_json().as_bytes());
     let mut files = vec![PROJECT_FILE.to_string()];
     let mut used = std::collections::BTreeSet::new();
+    // A file name used before gets a number in front, in the folder `files/`.
     let mut unique = |name: String| {
-        let mut n = name.clone();
+        let mut n = format!("files/{name}");
         let mut i = 2;
         while !used.insert(n.clone()) {
-            n = format!("{i} {name}");
+            n = format!("files/{i} {name}");
             i += 1;
         }
         n
@@ -157,7 +158,7 @@ pub fn archive(prj: &Project, opts: &ArchiveOptions) -> Vec<u8> {
         let docs = pg.document.iter().chain(pg.images.iter().map(|i| &i.file));
         for doc in docs {
             let Ok(bytes) = doc.bytes() else { continue };
-            let name = unique(format!("files/{} {}", file_name(&pg.name), file_name(&doc.name)));
+            let name = unique(format!("{} {}", file_name(&pg.name), file_name(&doc.name)));
             zip.add(&name, &bytes);
             files.push(name);
         }
