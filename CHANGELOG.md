@@ -3,7 +3,7 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
-## [0.1.1] - unreleased
+## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
   on rails and roof hooks or on a flat roof tilted or east-west on ballasted mounting
@@ -27,7 +27,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Site in the navigator:** the site at the root above the buildings shows the site
   plan of all buildings or the whole plant in 3D; a click on a room keeps the 3D view or
   shows its floor plan; new buildings and levels from the context menus.
-
 - **Flush-mounted cables, wires and tubes in rooms:** each line is laid surface-mounted,
   flush-mounted in the walls or in the floor (a project default in the routing rules,
   set per line in its properties or with `set_laying`). Flush-mounted lines run in slots
@@ -36,7 +35,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   *Show › Installation zones* shows the zones see-through, *Show › Open walls and
   floors* sees through walls and floor slabs to the lines in them
   ([panel layout](docs/features/panel-layout.md)).
-
 - **Stairs and roofs of buildings:** stairs from level to level, straight, turned once
   or twice at quarter landings, with a half landing or spiral, their steps from the
   difference in height; flat, shed, gable, hip and pyramid roofs with roof windows. A
@@ -52,12 +50,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (2 - 12 circuits) and single-room control boxes; generic parts and the new shipped
   catalogs `gira` and `cosmo`, more KNX push buttons in `mdt`. Example 16
   (`office_building`) shows them with a stair and a roof.
-
 - **Rooms onto levels in the navigator:** in *Enclosures and rooms* rooms are dragged
   onto a level of a building to stand on it; a selected level takes the rooms made with
   *New room*, and the context menu of a level offers *New room on this level*
   ([panel layout](docs/features/panel-layout.md)).
-
 - **Updates in the editor:** when it starts, the editor looks for a new release on
   GitHub in the background, downloads it, checks it against `SHA256SUMS` and installs
   it: the Windows setup runs silently when the editor is closed (*Restart and update*
@@ -97,7 +93,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Editor:** wires attached to moved items stay square: they slide along their rails,
   or get a jog where they cannot. Connection definition points and cable definition
   lines stay on their wires.
-
 - **3D routing in cabinets without cable ducts:** their wires are no longer laid
   along the mounting plate (through the devices and each other) but routed in 3D from
   connection point to connection point, like the wires of a room: clear of everything
@@ -195,23 +190,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   their data sheets, pictures and other files instead of removing them.
 - **Project archives:** documents and images of the same name are numbered inside
   the `files` folder (`files/2 …`) instead of in a folder `2 files` of their own.
-
 - Use the DIN-rail clip position from imported mounting data when placing cabinet devices. Matching Beckhoff terminal housings and the EK1100 use the documented 63.8 mm rail datum.
-
 - Snap cabinet devices flush to a nearby neighbor on the mounting plate while placing or moving a single module. The placement preview shows the snapped position.
-
 - Show imported EPLAN artwork on cabinet fronts. An assigned front view takes priority, followed by a mounting representation and then a fitted overview illustration.
-
 - Place successive imported PLC channels from a single card entry in the Insert center; when a card fills up, placement continues on a new device.
-
 - Link PLC channels placed from the symbol library to their uniquely matching catalog article, so the physical card appears once in the cabinet's devices-to-place list. Opening an existing project or reimporting the article also recovers unassigned cards.
-
 - Import Beckhoff analog signal and reference terminals as one PLC channel with a symbolic name such as U1, keeping both wire endpoints and the source data type.
-
 - Import single-channel EPLAN digital I/O representations as native PLC points with editable addresses, physical terminal designations, and one parts-list entry per card.
-
 - Reuse unchanged symbol drawings during part dragging and schematic rendering, including large imported EPLAN libraries.
-
 - Import embedded 2D graphics from EPLAN window macros into the project symbol library. EDZ parts carry their converted variants and per-variant diagnostics through the parts server.
 - Import additional SPECIAL contact forms and verified reciprocal potential transfers. Report unresolved source objects and their terminal designations per representation. Explicit reimport preserves placed wire endpoints and instance pin labels when compatible contacts are added.
 
