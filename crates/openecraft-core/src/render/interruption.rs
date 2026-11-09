@@ -101,12 +101,14 @@ pub fn side_places(def: &SymbolDef, s: &SymbolInst, side: TextSide) -> (TextPlac
 }
 
 /// The cross reference of an interruption point: its text, ink and the page of its
-/// first counterpart (None for a point without name).
-pub fn interruption_xref(prj: &Project, idx: &Index, page_i: usize, s: &SymbolInst) -> Option<(String, Ink, Option<usize>)> {
-    if !idx.interruptions.contains_key(&s.label) {
+/// first counterpart (None for a point without name, or whose reference property
+/// field shows the references).
+pub fn interruption_xref(prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Option<(String, Ink, Option<usize>)> {
+    let key = s.interruption_key();
+    if references::has_field(def, s) || !idx.interruptions.contains_key(&key) {
         return None;
     }
-    let others: Vec<Loc> = idx.interruption_targets(prj, &s.label, s.id);
+    let others: Vec<Loc> = idx.interruption_targets(prj, &key, s.id);
     if others.is_empty() {
         return Some(("?".to_string(), Ink::Error, None));
     }
@@ -126,7 +128,7 @@ pub(super) fn draw_label(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink:
 
 /// The cross reference, drawn with the annotations.
 pub(super) fn draw_xref(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) {
-    let Some((txt, ink, target)) = interruption_xref(prj, idx, page_i, s) else { return };
+    let Some((txt, ink, target)) = interruption_xref(prj, idx, page_i, def, s) else { return };
     let (_, xref) = interruption_places(def, s);
     let q = s.pos + xref.offset;
     d.text(q, &txt, SMALL_SIZE, xref.anchor, VAnchor::Middle, ink);
@@ -145,7 +147,7 @@ pub fn interruption_text_bounds(prj: &Project, idx: &Index, page_i: usize, def: 
     if !s.label.is_empty() {
         v.push((IntrText::Label, text_area(s.pos + label.offset, &s.label, label_size(def), label.anchor)));
     }
-    if let Some((txt, _, _)) = interruption_xref(prj, idx, page_i, s) {
+    if let Some((txt, _, _)) = interruption_xref(prj, idx, page_i, def, s) {
         v.push((IntrText::Xref, text_area(s.pos + xref.offset, &txt, SMALL_SIZE, xref.anchor)));
     }
     v
