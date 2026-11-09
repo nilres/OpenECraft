@@ -89,7 +89,10 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
     d.link(p(x0, pos.y - size * 0.7), p(x0 + w, pos.y + size * 0.7), page);
 }
 
+mod interruption;
 mod report_graphics;
+
+pub use interruption::{interruption_places, interruption_text_bounds, interruption_xref, side_places, IntrText};
 
 pub const SYMBOL_W: f32 = 0.25;
 pub const WIRE_W: f32 = 0.35;
@@ -440,11 +443,22 @@ fn draw_cable_def(d: &mut dyn Draw, prj: &Project, page: &Page, cd: &CableDef, i
 
 /// Draws only the symbol graphics (used for canvas, ghost and library previews).
 pub fn draw_symbol(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink: Ink) {
-    draw_prims(d, &def.prims, s, ink);
+    if def.func == Func::Interruption {
+        // The name of interruption points has a place of its own.
+        draw_prims_of(d, &def.prims, s, ink, false);
+        interruption::draw_label(d, def, s, ink);
+    } else {
+        draw_prims(d, &def.prims, s, ink);
+    }
 }
 
 /// Symbol graphics placed like the instance `s` (also used by the symbol editor).
 pub fn draw_prims(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink) {
+    draw_prims_of(d, prims, s, ink, true);
+}
+
+/// Symbol graphics, with or without the label fields.
+fn draw_prims_of(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink, labels: bool) {
     let tf = |q: P| s.pos + q.transform(s.rot, s.mirror);
     let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
     for prim in prims {
@@ -490,6 +504,7 @@ pub fn draw_prims(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink) {
             }
             Prim::Field { kind, pos, size, anchor } => {
                 let t = match kind {
+                    FieldKind::Label if !labels => continue,
                     FieldKind::Label => &s.label,
                     FieldKind::Tag => &s.tag,
                 };
@@ -620,16 +635,7 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
                 refs.extend(dev.auxs.iter().map(|a| (a.reference_from(prj, page_i), Some(a.page))));
             }
         }
-        Func::Interruption if idx.interruptions.contains_key(&s.label) => {
-            let others: Vec<Loc> = idx.interruption_targets(prj, &s.label, s.id);
-            let q = s.pos + p(2.2, 1.6).transform(s.rot, s.mirror) + p(0.0, 2.6);
-            let txt = if others.is_empty() { "?".to_string() } else { others.iter().map(|l| l.reference_from(prj, page_i)).collect::<Vec<_>>().join(" ") };
-            let ink = if others.is_empty() { Ink::Error } else { Ink::CrossRef };
-            d.text(q, &txt, SMALL_SIZE, Anchor::Left, VAnchor::Middle, ink);
-            if let Some(l) = others.first() {
-                link_text(d, q, &txt, SMALL_SIZE, Anchor::Left, l.page);
-            }
-        }
+        Func::Interruption => interruption::draw_xref(d, prj, idx, page_i, def, s),
         _ => {}
     }
     if matches!(def.func, Func::Main { .. }) && !s.tag.is_empty() {

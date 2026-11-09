@@ -3,6 +3,17 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.2] - unreleased
+
+- **Interruption points:** the name and the cross reference no longer crowd the arrow:
+  horizontal points show the name above and the cross reference below the conductor,
+  inside the page, vertical ones beside the arrow. Both can be put above, below, left
+  or right of the arrow for
+  all selected points at once, or dragged on their own without moving the symbol, and
+  reset to the automatic placement; the places are saved and exported, the cross
+  reference keeps its link. Command `place_interruption_texts`
+  ([schematic](docs/features/schematic.md)).
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
