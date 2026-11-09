@@ -259,7 +259,7 @@ fn tag_block_is_dragged_into_place() {
     ready(&mut ed, &ctx, &mut prj);
     ed.selection.insert(7);
     let def = prj.symbol("coil").unwrap();
-    let block = render::tag_block_bounds(&prj, 0, &def, &prj.pages[0].symbols[0]).unwrap();
+    let block = render::tag_block_bounds(&prj, &Index::build(&prj), 0, &def, &prj.pages[0].symbols[0]).unwrap();
     let from = ed.w2s(SCREEN, block.center());
     let to = ed.w2s(SCREEN, block.center() + p(-20.0, 10.0));
     frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
@@ -287,7 +287,7 @@ fn connection_point_designation_is_dragged_into_place() {
     ready(&mut ed, &ctx, &mut prj);
     ed.selection.insert(7);
     let def = prj.symbol("coil").unwrap();
-    let label = render::pin_label_places(&prj, 0, &def, &prj.pages[0].symbols[0])[1].clone();
+    let label = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, &prj.pages[0].symbols[0])[1].clone();
     let from = ed.w2s(SCREEN, label.bounds.center());
     let to = ed.w2s(SCREEN, label.bounds.center() + p(3.0, -2.0));
     frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
@@ -304,7 +304,7 @@ fn connection_point_designation_is_dragged_into_place() {
     assert_eq!(placed.side, Some(label.side), "the side it had");
     // Stored in the symbol's orientation: the quarter turn maps it back to the drag.
     assert!((placed.offset - label.shift).transform(1, false).dist(p(3.0, -2.0)) < 0.6, "{placed:?}");
-    let moved = render::pin_label_places(&prj, 0, &def, s)[1].clone();
+    let moved = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, s)[1].clone();
     assert!((moved.pos - label.pos).dist(p(3.0, -2.0)) < 0.6);
 }
 
@@ -439,7 +439,7 @@ fn dragging_one_of_several_selected_symbols_moves_them_all() {
     ready(&mut ed, &ctx, &mut prj);
     ed.selection = BTreeSet::from([7, 8]);
     let def = prj.symbol("coil").unwrap();
-    let block = render::tag_block_bounds(&prj, 0, &def, &prj.pages[0].symbols[0]).unwrap();
+    let block = render::tag_block_bounds(&prj, &Index::build(&prj), 0, &def, &prj.pages[0].symbols[0]).unwrap();
     drag(&mut ed, &ctx, &mut prj, 0, block.center(), block.center() + p(0.0, 20.0));
     let s = &prj.pages[0].symbols;
     assert_eq!((s[0].pos, s[1].pos), (p(100.0, 120.0), p(200.0, 120.0)));

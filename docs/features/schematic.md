@@ -99,6 +99,14 @@ in *Property placement*; *Reset* returns it to automatic placement. The placemen
 turns and mirrors with the symbol and never moves the connection point. Command:
 `place_pin_label`.
 
+Placed automatically, the tag block sits left of a vertical symbol and above a
+horizontal one. Where it would run into a neighbouring symbol there, it goes on the
+other side, above or below, whichever is first clear of symbols and wires with all its
+lines, the cross references included. The tag of
+a function right beside one of the same device in the same row (such as surge
+arresters drawn pole by pole) is shown once, at the first of them, like the strip tag
+of a row of terminals. A tag block placed by hand stays where it is.
+
 ## Find
 
 **Find** (*Home › Find…*, `Ctrl+F`): searches the whole project (page names and

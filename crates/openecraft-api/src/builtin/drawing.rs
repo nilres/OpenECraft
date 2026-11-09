@@ -808,7 +808,7 @@ fn place_pin_label(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let label = PinLabel { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: shift.untransform(s.rot, s.mirror) };
     s.set_pin_label(pi, label);
     let s = &prj.pages[i].symbols[si];
-    let place = openecraft_core::render::pin_label_places(prj, i, &def, s).into_iter().find(|l| l.pin == pi);
+    let place = openecraft_core::render::pin_label_places(prj, &openecraft_core::index::Index::build(prj), i, &def, s).into_iter().find(|l| l.pin == pi);
     Ok(json!({
         "id": id,
         "pin": pin,

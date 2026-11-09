@@ -4,6 +4,7 @@
 
 use super::{prop_bounds, tag_block_bounds, text_width, SMALL_SIZE};
 use crate::geom::{p, P, R};
+use crate::index::Index;
 use crate::model::{LabelSide, Project, SymbolInst, VAnchor};
 use crate::symbols::{Anchor, Prim, SymbolDef};
 
@@ -105,7 +106,7 @@ struct Obstacles {
 impl Obstacles {
     /// Graphics of the symbol, wires and other symbols near it, its tag block and
     /// placed properties.
-    fn around(prj: &Project, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Obstacles {
+    fn around(prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Obstacles {
         let mut o = Obstacles::default();
         let w = |q: P| s.pos + q.transform(s.rot, s.mirror);
         for prim in &def.prims {
@@ -144,7 +145,7 @@ impl Obstacles {
                 }
             }
         }
-        o.boxes.extend(tag_block_bounds(prj, page_i, def, s));
+        o.boxes.extend(tag_block_bounds(prj, idx, page_i, def, s));
         o.boxes.extend(s.props.iter().map(|pp| prop_bounds(prj, page_i, s, pp)));
         o
     }
@@ -168,7 +169,7 @@ impl Obstacles {
 
 /// Where the connection point designations of a placed symbol are drawn: one entry
 /// per pin with a designation, in pin order.
-pub fn pin_label_places(prj: &Project, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Vec<PinLabelPlace> {
+pub fn pin_label_places(prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> Vec<PinLabelPlace> {
     let mut out: Vec<PinLabelPlace> = Vec::new();
     if !def.show_pin_labels || s.pins.iter().take(def.pins.len()).all(|l| l.is_empty()) {
         return out;
@@ -195,7 +196,7 @@ pub fn pin_label_places(prj: &Project, page_i: usize, def: &SymbolDef, s: &Symbo
         let (side, shift) = match hand.side {
             Some(side) => (side.on_page(s.rot, s.mirror), hand.offset.transform(s.rot, s.mirror)),
             None => {
-                let o = obstacles.get_or_insert_with(|| Obstacles::around(prj, page_i, def, s));
+                let o = obstacles.get_or_insert_with(|| Obstacles::around(prj, idx, page_i, def, s));
                 let mut best: Option<(usize, LabelSide, P)> = None;
                 for (side, depth) in candidates(vertical, inward) {
                     let shift = deeper(side, depth) + hand.offset.transform(s.rot, s.mirror);

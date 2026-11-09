@@ -5,7 +5,7 @@ use crate::testkit::Kit;
 fn places(kit: &Kit, id: u64) -> Vec<PinLabelPlace> {
     let s = kit.prj.pages[0].symbols.iter().find(|s| s.id == id).unwrap();
     let def = kit.prj.symbol(&s.sym).unwrap();
-    pin_label_places(&kit.prj, 0, &def, s)
+    pin_label_places(&kit.prj, &Index::build(&kit.prj), 0, &def, s)
 }
 
 fn sym(kit: &mut Kit, id: u64) -> &mut SymbolInst {
@@ -139,11 +139,12 @@ fn trailing_automatic_designations_are_not_stored() {
 #[test]
 fn designations_of_built_in_symbols_keep_clear_of_their_graphics() {
     let kit = Kit::new();
+    let idx = Index::build(&kit.prj);
     let mut crossing = Vec::new();
     for def in crate::symbols::library().iter().filter(|d| d.show_pin_labels) {
         let s = SymbolInst { id: 1, sym: def.key.into(), pos: p(100.0, 100.0), pins: (0..def.pins.len()).map(|i| (i + 11).to_string()).collect(), ..Default::default() };
-        let o = Obstacles::around(&kit.prj, 0, def, &s);
-        for l in pin_label_places(&kit.prj, 0, def, &s) {
+        let o = Obstacles::around(&kit.prj, &idx, 0, def, &s);
+        for l in pin_label_places(&kit.prj, &idx, 0, def, &s) {
             if o.hits(&l.bounds) > 0 {
                 crossing.push(format!("{} {}", def.key, s.pins[l.pin]));
             }
