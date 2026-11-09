@@ -83,6 +83,7 @@ impl App {
             Cmd::TextTool => *tool == Tool::Text && self.editor.text_proto.is_none(),
             Cmd::ConnDefTool => *tool == Tool::ConnDef,
             Cmd::CableDefTool => *tool == Tool::CableDef,
+            Cmd::StructureBoxTool => *tool == Tool::StructureBox,
             Cmd::JunctionTool => *tool == Tool::Junction(JunctionKind::Tee),
             Cmd::CornerTool => *tool == Tool::Junction(JunctionKind::Corner),
             Cmd::CrossingTool => *tool == Tool::Junction(JunctionKind::Crossing),
@@ -112,6 +113,9 @@ impl App {
             Cmd::Layout3d => self.panel_ui.view == View::ThreeD,
             Cmd::LayoutFloorPlan => self.panel_ui.view == View::Plan,
             Cmd::LayoutDrawWalls => self.panel_ui.tool == crate::panel_ui::Tool::Walls,
+            Cmd::LayoutPlotBoundary => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Boundary,
+            Cmd::LayoutReferencePoint => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Reference,
+            Cmd::LayoutMeasure => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Measure,
             Cmd::LayoutInnerWalls => self.panel_ui.tool == crate::panel_ui::Tool::InnerWalls,
             Cmd::LayoutRoomDoor => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Door),
             Cmd::LayoutRoomWindow => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window),
@@ -311,6 +315,7 @@ impl App {
             Cmd::TextTool => self.set_tool(Tool::Text),
             Cmd::ConnDefTool => self.set_tool(Tool::ConnDef),
             Cmd::CableDefTool => self.set_tool(Tool::CableDef),
+            Cmd::StructureBoxTool => self.set_tool(Tool::StructureBox),
             Cmd::JunctionTool => self.set_tool(Tool::Junction(JunctionKind::Tee)),
             Cmd::CornerTool => self.set_tool(Tool::Junction(JunctionKind::Corner)),
             Cmd::CrossingTool => self.set_tool(Tool::Junction(JunctionKind::Crossing)),
@@ -412,6 +417,15 @@ impl App {
             }
             Cmd::LayoutFloorPlan => self.panel_ui.floor_plan(),
             Cmd::LayoutDrawWalls => self.panel_ui.choose_tool(crate::panel_ui::Tool::Walls),
+            Cmd::LayoutPlotBoundary | Cmd::LayoutReferencePoint | Cmd::LayoutMeasure => {
+                self.set_workspace(Workspace::Panel);
+                let tool = match cmd {
+                    Cmd::LayoutPlotBoundary => crate::panel_ui::SiteTool::Boundary,
+                    Cmd::LayoutReferencePoint => crate::panel_ui::SiteTool::Reference,
+                    _ => crate::panel_ui::SiteTool::Measure,
+                };
+                self.panel_ui.choose_site_tool(tool);
+            }
             Cmd::LayoutInnerWalls => self.panel_ui.choose_tool(crate::panel_ui::Tool::InnerWalls),
             Cmd::LayoutRoomDoor => self.panel_ui.choose_tool(crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Door)),
             Cmd::LayoutRoomWindow => self.panel_ui.choose_tool(crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window)),

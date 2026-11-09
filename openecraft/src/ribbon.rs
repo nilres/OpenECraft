@@ -102,6 +102,7 @@ pub static TABS: &[Tab] = &[
                 tr_const!("Connections"),
                 &[L(C::WireTool), S(C::JunctionTool), S(C::CornerTool), S(C::CrossingTool), S(C::BridgeTool), S(C::ConnDefTool), S(C::CableDefTool), S(C::InterruptionPoint), S(C::PotentialPoint)],
             ),
+            g("structure", tr_const!("Structure"), &[L(C::StructureBoxTool)]),
             g("macros", tr_const!("Macros"), &[L(C::InsertMacro), S(C::SaveSelectionAsMacro), S(C::SavePageAsMacro)]),
             g("text", tr_const!("Text"), &[L(C::TextTool), S(C::PathFunctionText), S(C::SpecialText)]),
             g(
@@ -278,6 +279,7 @@ pub static TABS: &[Tab] = &[
                 &[L(C::Layout3d), S(C::LayoutFloorPlan), S(C::LayoutFront), S(C::LayoutDoor), S(C::LayoutDoorInside), S(C::LayoutWalls), S(C::LayoutFit)],
             ),
             g("show", tr_const!("Show"), &[S(C::LayoutWires), S(C::LayoutDuctFill), S(C::LayoutHeat), S(C::LayoutLineup), S(C::LayoutSite), S(C::LayoutBuilding), S(C::LayoutHideFrontWalls), S(C::LayoutHideCeiling), S(C::LayoutOpenDucts), S(C::LayoutZones), S(C::LayoutOpenWalls)]),
+            g("site", tr_const!("Site"), &[S(C::LayoutPlotBoundary), S(C::LayoutReferencePoint), S(C::LayoutMeasure)]),
             g("production", tr_const!("Production"), &[L(C::LayoutNcData), S(C::LayoutReports), S(C::LayoutMountingPage)]),
         ],
     },
