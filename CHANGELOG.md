@@ -13,6 +13,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   moves along it, to the other side or out beside the wire to keep clear of the
   symbol's graphics, wires, nearby symbols and its other texts (the surge protective
   device's PE no longer runs into its arrow). Command `place_pin_label`.
+- **Cable cores at the cable definition line:** the stroke, core designation and cable
+  tag of each core sit where a cable definition line of its cable crosses the wire, so
+  they line up on wires of different lengths (30 % of the wire without a line). The core
+  designation and the cable tag of a selected wire can be dragged into place; they keep
+  their offset when the line moves, *Reset* in the wire properties places them
+  automatically again. `update_wire` takes `core_offset` and `cable_offset`
+  ([connections](docs/features/connections.md)).
 - **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
   and its corners are dragged afterwards; all buildings have to stay inside it, the check
   reports rooms, roofs and cabinets outside it and the site plan draws them red.

@@ -99,7 +99,22 @@ enum Handle {
     Pin(usize),
 }
 
-type PropHandle = (u64, Handle);
+/// Text that can be dragged on its own: one of a symbol, or a cable core text of a
+/// wire.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum PropHandle {
+    Symbol(u64, Handle),
+    Wire(u64, render::CoreText),
+}
+
+impl PropHandle {
+    /// The symbol or wire the text belongs to.
+    fn id(self) -> u64 {
+        match self {
+            PropHandle::Symbol(id, _) | PropHandle::Wire(id, _) => id,
+        }
+    }
+}
 
 enum Drag {
     None,
@@ -820,15 +835,22 @@ impl Editor {
         for s in page.symbols.iter().filter(|s| self.selection.contains(&s.id)) {
             for (i, pp) in s.props.iter().enumerate() {
                 if render::prop_bounds(prj, page_i, s, pp).expand(0.3).contains(q) {
-                    return Some((s.id, Handle::Prop(i)));
+                    return Some(PropHandle::Symbol(s.id, Handle::Prop(i)));
                 }
             }
             let Some(def) = prj.symbol(&s.sym) else { continue };
             if let Some(l) = render::pin_label_places(prj, idx, page_i, &def, s).iter().find(|l| l.bounds.expand(0.2).contains(q)) {
-                return Some((s.id, Handle::Pin(l.pin)));
+                return Some(PropHandle::Symbol(s.id, Handle::Pin(l.pin)));
             }
             if render::tag_block_bounds(prj, idx, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
-                return Some((s.id, Handle::Tag));
+                return Some(PropHandle::Symbol(s.id, Handle::Tag));
+            }
+        }
+        for w in page.wires.iter().filter(|w| self.selection.contains(&w.id)) {
+            for which in [render::CoreText::Core, render::CoreText::Cable] {
+                if render::core_text_bounds(page, w, which).is_some_and(|r| r.expand(0.3).contains(q)) {
+                    return Some(PropHandle::Wire(w.id, which));
+                }
             }
         }
         None
@@ -1110,18 +1132,22 @@ impl Editor {
                 }
             }
         }
-        // Handles of the movable texts of a single selected symbol.
+        // Handles of the movable texts of a single selected symbol or wire.
         if self.tool == Tool::Select && self.selection.len() == 1 && editable {
             let page = &prj.pages[page_i];
+            let mut boxes: Vec<R> = Vec::new();
             if let Some(s) = page.symbols.iter().find(|s| self.selection.contains(&s.id)) {
-                let mut boxes: Vec<R> = s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)).collect();
+                boxes.extend(s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)));
                 if let Some(r) = prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)) {
                     boxes.push(r);
                 }
-                for r in boxes {
-                    let sr = Rect::from_min_max(self.w2s(rect, r.min), self.w2s(rect, r.max)).expand(1.0);
-                    painter.rect_stroke(sr, 0.0, Stroke::new(1.0, pal.ghost), egui::StrokeKind::Outside);
-                }
+            }
+            if let Some(w) = page.wires.iter().find(|w| self.selection.contains(&w.id)) {
+                boxes.extend([render::CoreText::Core, render::CoreText::Cable].into_iter().filter_map(|which| render::core_text_bounds(page, w, which)));
+            }
+            for r in boxes {
+                let sr = Rect::from_min_max(self.w2s(rect, r.min), self.w2s(rect, r.max)).expand(1.0);
+                painter.rect_stroke(sr, 0.0, Stroke::new(1.0, pal.ghost), egui::StrokeKind::Outside);
             }
         }
         if !editable {
@@ -1736,22 +1762,24 @@ impl Editor {
             let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable);
             // The texts of a single selected symbol are placed on their own; with several
             // selected, dragging a text moves them all.
-            let group = handle.filter(|_| self.selection.len() > 1).map(|h| h.0);
+            let group = handle.filter(|_| self.selection.len() > 1).map(PropHandle::id);
             let hit = self.hit(prj, page_i, ow).or(group).filter(|_| editable);
             if let Some(handle) = handle.filter(|_| self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
-                let s = page.symbols.iter().find(|s| s.id == handle.0);
-                let orig = match (s, handle.1) {
-                    (Some(s), Handle::Prop(i)) => s.props[i].offset,
-                    (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
-                        prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
-                    }),
-                    (Some(s), Handle::Pin(i)) => pin_place(prj, idx, page_i, s, i).map(|l| l.shift).unwrap_or_default(),
-                    _ => P::default(),
+                let orig = match handle {
+                    PropHandle::Symbol(id, h) => match (page.symbols.iter().find(|s| s.id == id), h) {
+                        (Some(s), Handle::Prop(i)) => s.props[i].offset,
+                        (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
+                            prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
+                        }),
+                        (Some(s), Handle::Pin(i)) => pin_place(prj, idx, page_i, s, i).map(|l| l.shift).unwrap_or_default(),
+                        _ => P::default(),
+                    },
+                    PropHandle::Wire(id, which) => page.wires.iter().find(|w| w.id == id).and_then(|w| which.offset(w)).unwrap_or_default(),
                 };
                 // A designation placed automatically keeps the place it has now.
-                let side = match (s, handle.1) {
-                    (Some(s), Handle::Pin(i)) => pin_place(prj, idx, page_i, s, i).map(|l| l.side),
+                let side = match handle {
+                    PropHandle::Symbol(id, Handle::Pin(i)) => page.symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, i)).map(|l| l.side),
                     _ => None,
                 };
                 self.drag = Drag::Prop { handle, start: ow, orig, side };
@@ -1780,13 +1808,24 @@ impl Editor {
                 }
                 (Drag::Prop { handle, start, orig, side }, Some(w)) => {
                     let delta = (w - *start).snap(0.5);
-                    if let Some(s) = prj.pages[page_i].symbols.iter_mut().find(|s| s.id == handle.0) {
-                        match handle.1 {
-                            Handle::Prop(i) => s.props[i].offset = *orig + delta,
-                            Handle::Tag => s.tag_offset = Some(*orig + delta),
-                            Handle::Pin(i) => {
-                                let offset = *orig + delta.untransform(s.rot, s.mirror);
-                                s.set_pin_label(i, PinLabel { side: *side, offset });
+                    let to = *orig + delta;
+                    let page = &mut prj.pages[page_i];
+                    match *handle {
+                        PropHandle::Symbol(id, h) => {
+                            if let Some(s) = page.symbols.iter_mut().find(|s| s.id == id) {
+                                match h {
+                                    Handle::Prop(i) => s.props[i].offset = to,
+                                    Handle::Tag => s.tag_offset = Some(to),
+                                    Handle::Pin(i) => {
+                                        let offset = *orig + delta.untransform(s.rot, s.mirror);
+                                        s.set_pin_label(i, PinLabel { side: *side, offset });
+                                    }
+                                }
+                            }
+                        }
+                        PropHandle::Wire(id, which) => {
+                            if let Some(w) = page.wires.iter_mut().find(|w| w.id == id) {
+                                *which.offset_mut(w) = Some(to);
                             }
                         }
                     }

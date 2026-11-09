@@ -653,3 +653,16 @@ fn connection_point_designations_are_placed_and_reset() {
     assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A3" })).unwrap_err().contains("A3"));
     assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A1", "side": "up" })).unwrap_err().contains("up"));
 }
+
+#[test]
+fn cable_core_texts_are_placed_and_reset() {
+    let mut s = new_session();
+    let wire = run(&mut s, "add_wire", json!({ "page": "1", "points": [[30, 60], [90, 60]] })).unwrap();
+    let id = wire["ids"][0].clone();
+    run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[50, 55], [50, 65]] })).unwrap();
+    let w = run(&mut s, "update_wire", json!({ "page": "1", "id": id, "core_offset": [[2, -1.5]], "cable_offset": [[0, -3]] })).unwrap();
+    assert_eq!((w["core_offset"].clone(), w["cable_offset"].clone()), (json!([2.0, -1.5]), json!([0.0, -3.0])));
+    let w = run(&mut s, "update_wire", json!({ "page": "1", "id": id, "core_offset": [] })).unwrap();
+    assert_eq!((w["core_offset"].clone(), w["cable_offset"].clone()), (Value::Null, json!([0.0, -3.0])));
+    assert_eq!(run(&mut s, "get_page", json!({ "page": "1" })).unwrap()["wires"][0]["cable_offset"], json!([0.0, -3.0]));
+}
