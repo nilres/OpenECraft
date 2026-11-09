@@ -690,3 +690,24 @@ fn the_designation_of_a_device_connection_point_is_dragged_into_place() {
     assert_eq!(l.anchor, anchor);
     assert_eq!(openecraft_core::device_boxes::box_of(&prj, &prj.pages[0], s), Some(b));
 }
+
+#[test]
+fn cable_core_texts_of_a_selected_wire_are_dragged_into_place() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire { id: 7, a: p(100.0, 100.0), b: p(160.0, 100.0), ..Default::default() });
+    prj.fix_next_id();
+    cabledef::add(&mut prj, 0, p(120.0, 95.0), p(120.0, 105.0), "");
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let before = prj.pages[0].wires[0].clone();
+    for which in [render::CoreText::Core, render::CoreText::Cable] {
+        let at = render::core_text_bounds(&prj.pages[0], &prj.pages[0].wires[0], which).unwrap().center();
+        drag(&mut ed, &ctx, &mut prj, 0, at, at + p(6.0, 4.0));
+        let w = &prj.pages[0].wires[0];
+        let o = which.offset(w).expect("text placed");
+        assert!(o.dist(p(6.0, 4.0)) < 0.6, "{which:?} {o:?}");
+        assert_eq!((w.a, w.b, &w.cable, &w.core), (before.a, before.b, &before.cable, &before.core), "the wire and its core stay");
+    }
+}

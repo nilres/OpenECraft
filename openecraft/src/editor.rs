@@ -96,7 +96,22 @@ enum Handle {
     Pin,
 }
 
-type PropHandle = (u64, Handle);
+/// Text that can be dragged on its own: the tag block, a placed property or the
+/// connection point designation of a symbol, or a cable core text of a wire.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum PropHandle {
+    Symbol(u64, Handle),
+    Wire(u64, render::CoreText),
+}
+
+impl PropHandle {
+    /// The symbol or wire the text belongs to.
+    fn id(self) -> u64 {
+        match self {
+            PropHandle::Symbol(id, _) | PropHandle::Wire(id, _) => id,
+        }
+    }
+}
 
 enum Drag {
     None,
@@ -832,15 +847,22 @@ impl Editor {
         for s in page.symbols.iter().filter(|s| self.selection.contains(&s.id)) {
             for (i, pp) in s.props.iter().enumerate() {
                 if render::prop_bounds(prj, page_i, s, pp).expand(0.3).contains(q) {
-                    return Some((s.id, Handle::Prop(i)));
+                    return Some(PropHandle::Symbol(s.id, Handle::Prop(i)));
                 }
             }
             let Some(def) = prj.symbol(&s.sym) else { continue };
             if def.pins.len() == 1 && render::pin_label_bounds(&def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
-                return Some((s.id, Handle::Pin));
+                return Some(PropHandle::Symbol(s.id, Handle::Pin));
             }
             if render::tag_block_bounds(prj, idx, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
-                return Some((s.id, Handle::Tag));
+                return Some(PropHandle::Symbol(s.id, Handle::Tag));
+            }
+        }
+        for w in page.wires.iter().filter(|w| self.selection.contains(&w.id)) {
+            for which in [render::CoreText::Core, render::CoreText::Cable] {
+                if render::core_text_bounds(page, w, which).is_some_and(|r| r.expand(0.3).contains(q)) {
+                    return Some(PropHandle::Wire(w.id, which));
+                }
             }
         }
         None
@@ -1122,19 +1144,23 @@ impl Editor {
                 }
             }
         }
-        // Handles of the movable texts of a single selected symbol.
+        // Handles of the movable texts of a single selected symbol or wire.
         if self.tool == Tool::Select && self.selection.len() == 1 && editable {
             let page = &prj.pages[page_i];
+            let mut boxes: Vec<R> = Vec::new();
             if let Some(s) = page.symbols.iter().find(|s| self.selection.contains(&s.id)) {
-                let mut boxes: Vec<R> = s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)).collect();
+                boxes.extend(s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)));
                 if let Some(def) = prj.symbol(&s.sym) {
                     boxes.extend(render::tag_block_bounds(prj, idx, page_i, &def, s));
                     boxes.extend(render::pin_label_bounds(&def, s).filter(|_| def.pins.len() == 1));
                 }
-                for r in boxes {
-                    let sr = Rect::from_min_max(self.w2s(rect, r.min), self.w2s(rect, r.max)).expand(1.0);
-                    painter.rect_stroke(sr, 0.0, Stroke::new(1.0, pal.ghost), egui::StrokeKind::Outside);
-                }
+            }
+            if let Some(w) = page.wires.iter().find(|w| self.selection.contains(&w.id)) {
+                boxes.extend([render::CoreText::Core, render::CoreText::Cable].into_iter().filter_map(|which| render::core_text_bounds(page, w, which)));
+            }
+            for r in boxes {
+                let sr = Rect::from_min_max(self.w2s(rect, r.min), self.w2s(rect, r.max)).expand(1.0);
+                painter.rect_stroke(sr, 0.0, Stroke::new(1.0, pal.ghost), egui::StrokeKind::Outside);
             }
         }
         if !editable {
@@ -1780,18 +1806,20 @@ impl Editor {
             let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable);
             // The texts of a single selected symbol are placed on their own; with several
             // selected, dragging a text moves them all.
-            let group = handle.filter(|_| self.selection.len() > 1).map(|h| h.0);
+            let group = handle.filter(|_| self.selection.len() > 1).map(PropHandle::id);
             let hit = self.hit(prj, page_i, ow).or(group).filter(|_| editable);
             if let Some(handle) = handle.filter(|_| self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
-                let s = page.symbols.iter().find(|s| s.id == handle.0);
-                let orig = match (s, handle.1) {
-                    (Some(s), Handle::Prop(i)) => s.props[i].offset,
-                    (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
-                        prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
-                    }),
-                    (Some(s), Handle::Pin) => prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).0 - s.pos).unwrap_or_default(),
-                    _ => P::default(),
+                let orig = match handle {
+                    PropHandle::Symbol(id, part) => match (page.symbols.iter().find(|s| s.id == id), part) {
+                        (Some(s), Handle::Prop(i)) => s.props[i].offset,
+                        (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
+                            prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
+                        }),
+                        (Some(s), Handle::Pin) => prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).0 - s.pos).unwrap_or_default(),
+                        _ => P::default(),
+                    },
+                    PropHandle::Wire(id, which) => page.wires.iter().find(|w| w.id == id).and_then(|w| which.offset(w)).unwrap_or_default(),
                 };
                 self.drag = Drag::Prop { handle, start: ow, orig };
             } else if let Some(id) = hit {
@@ -1820,12 +1848,25 @@ impl Editor {
                 }
                 (Drag::Prop { handle, start, orig }, Some(w)) => {
                     let to = *orig + (w - *start).snap(0.5);
-                    let auto = prj.pages[page_i].symbols.iter().find(|s| s.id == handle.0).and_then(|s| prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).1));
-                    if let Some(s) = prj.pages[page_i].symbols.iter_mut().find(|s| s.id == handle.0) {
-                        match handle.1 {
-                            Handle::Prop(i) => s.props[i].offset = to,
-                            Handle::Tag => s.tag_offset = Some(to),
-                            Handle::Pin => s.pin_label = Some(PinLabel { offset: to, anchor: auto.unwrap_or(Anchor::Left) }),
+                    let auto = match *handle {
+                        PropHandle::Symbol(id, Handle::Pin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).1)),
+                        _ => None,
+                    };
+                    let page = &mut prj.pages[page_i];
+                    match *handle {
+                        PropHandle::Symbol(id, part) => {
+                            if let Some(s) = page.symbols.iter_mut().find(|s| s.id == id) {
+                                match part {
+                                    Handle::Prop(i) => s.props[i].offset = to,
+                                    Handle::Tag => s.tag_offset = Some(to),
+                                    Handle::Pin => s.pin_label = Some(PinLabel { offset: to, anchor: auto.unwrap_or(Anchor::Left) }),
+                                }
+                            }
+                        }
+                        PropHandle::Wire(id, which) => {
+                            if let Some(w) = page.wires.iter_mut().find(|w| w.id == id) {
+                                *which.offset_mut(w) = Some(to);
+                            }
                         }
                     }
                 }
