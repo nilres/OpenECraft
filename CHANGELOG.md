@@ -18,6 +18,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **A level in 3D:** a level clicked in the navigator while the 3D view is shown shows
   all rooms of that level side by side at their places, with their cabinets, floor
   slabs and stairs.
+- **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
+  would run into a neighbouring symbol goes on the other side of its symbol, above or
+  below, whichever is clear of symbols and wires; the tag of functions of one device
+  side by side in a row is shown once, at the first of them (the surge protective
+  devices `-F1` of the transformer metering examples no longer overlap). Tag blocks
+  placed by hand stay where they are.
 
 - Preserve imported plot-frame artwork and live page fields as reusable frames, separate from selectable page content, including canvas, frame preview and exports.
 
