@@ -208,6 +208,86 @@ fn a_row_of_terminals_shows_the_strip_tag_once() {
     assert!(tags.iter().all(|x| *x < 100.0 || (*x > 180.0 && *x < 200.0)), "{tags:?}");
 }
 
+fn spd(id: u64, x: f32, tag: &str, function_text: &str) -> SymbolInst {
+    SymbolInst { id, sym: "spd".into(), pos: p(x, 180.0), tag: tag.into(), function_text: function_text.into(), pins: vec!["L1".into(), "PE".into()], ..Default::default() }
+}
+
+/// Area of each placed symbol except `s`.
+fn other_bodies(prj: &Project, s: &SymbolInst) -> Vec<R> {
+    prj.pages[0].symbols.iter().filter(|o| o.id != s.id).map(|o| prj.symbol(&o.sym).unwrap().world_bounds(o.pos, o.rot, o.mirror)).collect()
+}
+
+#[test]
+fn adjacent_functions_of_one_device_show_the_tag_once() {
+    // Example 13: four surge protective devices 8 mm apart, all -F1.
+    let mut prj = Project::default();
+    for (i, x) in [140.0, 148.0, 156.0, 164.0].into_iter().enumerate() {
+        prj.pages[0].symbols.push(spd(10 + i as u64, x, "-F1", if i == 0 { "Surge protection" } else { "" }));
+    }
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    let tags: Vec<f32> = d.texts.iter().filter(|t| t.1 == "-F1").map(|t| t.0.x).collect();
+    assert_eq!(tags.len(), 1, "{tags:?}");
+    assert!(tags[0] < 140.0, "{tags:?}");
+    for s in &prj.pages[0].symbols {
+        let def = prj.symbol(&s.sym).unwrap();
+        let block = tag_block_bounds(&prj, 0, &def, s).unwrap();
+        assert!(other_bodies(&prj, s).iter().all(|b| !b.overlaps(&block)), "{}: {block:?}", s.pos.x);
+    }
+    // Far enough apart, each shows its tag.
+    prj.pages[0].symbols[1].pos.x = 160.0;
+    prj.pages[0].symbols.truncate(2);
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    assert_eq!(d.texts.iter().filter(|t| t.1 == "-F1").count(), 2);
+}
+
+#[test]
+fn a_tag_block_moves_to_the_side_clear_of_neighbouring_symbols() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(spd(10, 100.0, "-F1", ""));
+    prj.pages[0].symbols.push(spd(11, 108.0, "-F2", ""));
+    let def = prj.symbol("spd").unwrap();
+    let s = prj.pages[0].symbols[1].clone();
+    let block = tag_block_bounds(&prj, 0, &def, &s).unwrap();
+    assert!(block.min.x > 108.0, "right of -F2: {block:?}");
+    assert!(other_bodies(&prj, &s).iter().all(|b| !b.overlaps(&block)));
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    let f2 = d.texts.iter().find(|t| t.1 == "-F2").unwrap();
+    assert!(f2.0.x > 108.0 && f2.3 == Anchor::Left, "{f2:?}");
+    // The first keeps its usual place on the left.
+    let first = tag_block_bounds(&prj, 0, &def, &prj.pages[0].symbols[0]).unwrap();
+    assert!(first.max.x < 100.0, "{first:?}");
+    // With symbols on both sides it goes above, unless a wire runs there too.
+    prj.pages[0].symbols.push(spd(12, 116.0, "-F3", ""));
+    let block = tag_block_bounds(&prj, 0, &def, &prj.pages[0].symbols[1]).unwrap();
+    assert!(block.max.y < 176.0 && block.min.x < 108.0 && block.max.x > 108.0, "{block:?}");
+    prj.pages[0].wires.push(Wire { id: 20, a: p(108.0, 160.0), b: p(108.0, 176.0), ..Default::default() });
+    prj.pages[0].wires.push(Wire { id: 21, a: p(108.0, 184.0), b: p(108.0, 200.0), ..Default::default() });
+    let block = tag_block_bounds(&prj, 0, &def, &prj.pages[0].symbols[1]).unwrap();
+    assert!(block.max.x < 108.0, "stays on its usual side: {block:?}");
+}
+
+#[test]
+fn a_tag_block_placed_by_hand_stays_where_it_is() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(spd(10, 100.0, "-F1", ""));
+    let mut s = spd(11, 108.0, "-F1", "Second");
+    s.tag_offset = Some(p(-9.0, -1.0));
+    prj.pages[0].symbols.push(s.clone());
+    let def = prj.symbol("spd").unwrap();
+    let block = tag_block_bounds(&prj, 0, &def, &s).unwrap();
+    assert_eq!(block.min, p(99.0, 179.0));
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    assert_eq!(d.texts.iter().filter(|t| t.1 == "-F1").count(), 2, "the tag placed by hand is shown");
+}
+
 #[test]
 fn the_contact_image_of_a_turned_coil_stays_clear_of_its_pins() {
     let mut prj = Project::default();

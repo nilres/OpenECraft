@@ -3,6 +3,15 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [Unreleased]
+
+- **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
+  would run into a neighbouring symbol goes on the other side of its symbol, above or
+  below, whichever is clear of symbols and wires; the tag of functions of one device
+  side by side in a row is shown once, at the first of them (the surge protective
+  devices `-F1` of the transformer metering examples no longer overlap). Tag blocks
+  placed by hand stay where they are.
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope

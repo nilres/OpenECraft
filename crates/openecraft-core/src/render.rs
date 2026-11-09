@@ -638,20 +638,13 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
 
     // Tag block
     if def.show_tag {
-        let mut lines: Vec<(String, f32, Ink, Option<usize>)> = Vec::new();
-        if !s.tag.is_empty() && !continues_strip(prj, page_i, def, s) {
-            lines.push((structure::relative(&prj.pages[page_i], &s.tag), TAG_SIZE, text_ink, None));
-        }
-        if !s.function_text.is_empty() {
-            for l in s.function_text.lines() {
-                lines.push((l.to_string(), 2.0, text_ink, None));
-            }
-        }
+        let (texts, side) = tag_block_layout(prj, page_i, def, s);
+        let mut lines: Vec<(String, f32, Ink, Option<usize>)> = texts.into_iter().map(|(t, size)| (t, size, text_ink, None)).collect();
         for (r, target) in refs {
             let ink = if r == "?" { Ink::Error } else { Ink::CrossRef };
             lines.push((r, 2.0, ink, target));
         }
-        let (x, mut y, anchor) = tag_block_origin(def, s, &lines.iter().map(|l| l.1).collect::<Vec<_>>());
+        let (x, mut y, anchor) = tag_block_origin(def, s, &lines.iter().map(|l| l.1).collect::<Vec<_>>(), side);
         for (t, size, ink, target) in &lines {
             let q = p(x, y + size * 0.675);
             d.text(q, t, *size, anchor, VAnchor::Middle, *ink);
@@ -693,16 +686,113 @@ pub fn continues_strip(prj: &Project, page_i: usize, def: &SymbolDef, s: &Symbol
         })
 }
 
+/// Side of its symbol a tag block is placed on automatically.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum TagSide {
+    Left,
+    Right,
+    Above,
+    Below,
+}
+
+impl TagSide {
+    /// Sides tried in turn: the usual one (left of vertical symbols, above horizontal
+    /// ones), the opposite one, then the other two.
+    fn order(s: &SymbolInst) -> [TagSide; 4] {
+        use TagSide::*;
+        if s.rot.is_multiple_of(2) { [Left, Right, Above, Below] } else { [Above, Below, Left, Right] }
+    }
+}
+
 /// Where the tag block starts: x and top y of the first line and the text anchor
-/// (left of vertical symbols, above horizontal ones, or where it was placed).
-fn tag_block_origin(def: &SymbolDef, s: &SymbolInst, sizes: &[f32]) -> (f32, f32, Anchor) {
+/// (on side `side` of the symbol, or where it was placed).
+fn tag_block_origin(def: &SymbolDef, s: &SymbolInst, sizes: &[f32], side: TagSide) -> (f32, f32, Anchor) {
     let bounds = def.world_bounds(s.pos, s.rot, s.mirror);
     let total: f32 = sizes.iter().map(|z| z * 1.35).sum();
-    match s.tag_offset {
-        Some(o) => (s.pos.x + o.x, s.pos.y + o.y, Anchor::Left),
-        None if s.rot.is_multiple_of(2) => (bounds.min.x - 1.2, bounds.center().y - total / 2.0, Anchor::Right),
-        None => (bounds.center().x, bounds.min.y - 1.0 - total, Anchor::Center),
+    match (s.tag_offset, side) {
+        (Some(o), _) => (s.pos.x + o.x, s.pos.y + o.y, Anchor::Left),
+        (None, TagSide::Left) => (bounds.min.x - 1.2, bounds.center().y - total / 2.0, Anchor::Right),
+        (None, TagSide::Right) => (bounds.max.x + 1.2, bounds.center().y - total / 2.0, Anchor::Left),
+        (None, TagSide::Above) => (bounds.center().x, bounds.min.y - 1.0 - total, Anchor::Center),
+        (None, TagSide::Below) => (bounds.center().x, bounds.max.y + 1.0, Anchor::Center),
     }
+}
+
+/// Estimated area of tag block lines (text and height) starting at `x`, `y`.
+fn lines_box(x: f32, y: f32, anchor: Anchor, lines: &[(String, f32)]) -> R {
+    let w = lines.iter().map(|(t, z)| text_width(t, *z)).fold(0.0, f32::max);
+    let h: f32 = lines.iter().map(|l| l.1 * 1.35).sum();
+    let x0 = match anchor {
+        Anchor::Left => x,
+        Anchor::Center => x - w / 2.0,
+        Anchor::Right => x - w,
+    };
+    R::from_points(p(x0, y), p(x0 + w, y + h))
+}
+
+/// The other symbols near `s` on its page with their definitions and areas.
+fn neighbours<'a>(prj: &'a Project, page_i: usize, s: &SymbolInst) -> Vec<(&'a SymbolInst, crate::symbols::SymbolRef, R)> {
+    let symbols = prj.symbol_table();
+    prj.pages[page_i]
+        .symbols
+        .iter()
+        .filter(|o| o.id != s.id && (o.pos.x - s.pos.x).abs() < 60.0 && (o.pos.y - s.pos.y).abs() < 60.0)
+        .filter_map(|o| {
+            let d = symbols.get(&o.sym)?;
+            let r = d.world_bounds(o.pos, o.rot, o.mirror);
+            Some((o, d, r))
+        })
+        .collect()
+}
+
+/// Lines of the tag block without the cross references (text and height) and the
+/// side of the symbol it goes on.
+///
+/// The tag of a function right beside one before it of the same device (same row
+/// and turn) is left out where it would run into that function, so that it is shown
+/// once at the first of them, like the strip tag of a row of terminals. A block that
+/// runs into another symbol on its usual side goes on the first other side that is
+/// clear of symbols and wires, else it stays. Blocks placed by hand stay where they
+/// are.
+fn tag_block_layout(prj: &Project, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> (Vec<(String, f32)>, TagSide) {
+    let mut lines: Vec<(String, f32)> = s.function_text.lines().map(|l| (l.to_string(), 2.0)).collect();
+    let tag = (!s.tag.is_empty() && !continues_strip(prj, page_i, def, s)).then(|| (structure::relative(&prj.pages[page_i], &s.tag), TAG_SIZE));
+    let usual = TagSide::order(s)[0];
+    if s.tag_offset.is_some() {
+        lines.splice(0..0, tag);
+        return (lines, usual);
+    }
+    let near = neighbours(prj, page_i, s);
+    let place = |lines: &[(String, f32)], side: TagSide| {
+        let (x, y, anchor) = tag_block_origin(def, s, &lines.iter().map(|l| l.1).collect::<Vec<_>>(), side);
+        lines_box(x, y, anchor, lines)
+    };
+    if let Some(tag) = tag {
+        let mut with_tag = lines.clone();
+        with_tag.insert(0, tag);
+        let r = place(&with_tag, usual);
+        let is_terminal = |d: &SymbolDef| matches!(d.func, Func::Terminal);
+        let repeats = s.rot.is_multiple_of(2)
+            && !is_terminal(def)
+            && near.iter().any(|(o, od, ob)| o.tag == s.tag && o.rot == s.rot && (o.pos.y - s.pos.y).abs() < 0.1 && o.pos.x < s.pos.x && od.show_tag && !is_terminal(od) && r.overlaps(ob));
+        if !repeats {
+            lines = with_tag;
+        }
+    }
+    let hits_symbol = |r: &R| near.iter().any(|(_, _, ob)| r.overlaps(ob));
+    if lines.is_empty() || !hits_symbol(&place(&lines, usual)) {
+        return (lines, usual);
+    }
+    let wires: Vec<(P, P)> = prj.pages[page_i].wires.iter().map(|w| (w.a, w.b)).collect();
+    let side = TagSide::order(s)[1..]
+        .iter()
+        .copied()
+        .find(|side| {
+            let r = place(&lines, *side);
+            !hits_symbol(&r) && !wires.iter().any(|(a, b)| r.crosses(*a, *b))
+        })
+        .unwrap_or(usual);
+    (lines, side)
 }
 
 /// Approximate area of the tag block (tag and function text) of a placed symbol,
@@ -711,20 +801,9 @@ pub fn tag_block_bounds(prj: &Project, page_i: usize, def: &SymbolDef, s: &Symbo
     if !def.show_tag || (s.tag.is_empty() && s.function_text.is_empty()) {
         return None;
     }
-    let mut lines: Vec<(String, f32)> = Vec::new();
-    if !s.tag.is_empty() && !continues_strip(prj, page_i, def, s) {
-        lines.push((structure::relative(&prj.pages[page_i], &s.tag), TAG_SIZE));
-    }
-    lines.extend(s.function_text.lines().map(|l| (l.to_string(), 2.0)));
-    let (x, y, anchor) = tag_block_origin(def, s, &lines.iter().map(|l| l.1).collect::<Vec<_>>());
-    let w = lines.iter().map(|(t, z)| t.chars().count() as f32 * z * 0.62).fold(0.0, f32::max);
-    let h: f32 = lines.iter().map(|l| l.1 * 1.35).sum();
-    let x0 = match anchor {
-        Anchor::Left => x,
-        Anchor::Center => x - w / 2.0,
-        Anchor::Right => x - w,
-    };
-    Some(R::from_points(p(x0, y), p(x0 + w, y + h)))
+    let (lines, side) = tag_block_layout(prj, page_i, def, s);
+    let (x, y, anchor) = tag_block_origin(def, s, &lines.iter().map(|l| l.1).collect::<Vec<_>>(), side);
+    Some(lines_box(x, y, anchor, &lines))
 }
 
 /// Area of a placed property text.
