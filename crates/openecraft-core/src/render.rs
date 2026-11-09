@@ -89,7 +89,10 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
     d.link(p(x0, pos.y - size * 0.7), p(x0 + w, pos.y + size * 0.7), page);
 }
 
+mod pin_labels;
 mod report_graphics;
+
+pub use pin_labels::{pin_label_places, PinLabelPlace};
 
 pub const SYMBOL_W: f32 = 0.25;
 pub const WIRE_W: f32 = 0.35;
@@ -584,22 +587,8 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
     let vertical = s.rot.is_multiple_of(2);
 
     // Connection point designations
-    if def.show_pin_labels {
-        let c = bounds.center();
-        for (i, label) in s.pins.iter().enumerate().take(def.pins.len()) {
-            if label.is_empty() {
-                continue;
-            }
-            let q = def.pin_world(i, s.pos, s.rot, s.mirror);
-            let dlt = q - c;
-            if dlt.y.abs() >= dlt.x.abs() {
-                let y = q.y - dlt.y.signum() * 1.1;
-                d.text(p(q.x - 0.6, y), label, SMALL_SIZE, Anchor::Right, VAnchor::Middle, text_ink);
-            } else {
-                let x = q.x - dlt.x.signum() * 1.1;
-                d.text(p(x, q.y - 0.5), label, SMALL_SIZE, Anchor::Center, VAnchor::Bottom, text_ink);
-            }
-        }
+    for l in pin_labels::pin_label_places(prj, page_i, def, s) {
+        d.text(l.pos, &s.pins[l.pin], SMALL_SIZE, l.anchor, l.v, text_ink);
     }
 
     // Cross references

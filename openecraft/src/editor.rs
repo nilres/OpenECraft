@@ -80,15 +80,30 @@ impl Tool {
     }
 }
 
-/// Part of a symbol that can be dragged on its own: the tag block (None) or a
-/// placed property (index).
-type PropHandle = (u64, Option<usize>);
+/// Where the designation of pin `i` of a placed symbol is drawn.
+fn pin_place(prj: &Project, page_i: usize, s: &SymbolInst, i: usize) -> Option<render::PinLabelPlace> {
+    prj.symbol(&s.sym).and_then(|def| render::pin_label_places(prj, page_i, &def, s).into_iter().find(|l| l.pin == i))
+}
+
+/// Text of a symbol that can be dragged on its own.
+#[derive(Clone, Copy, Debug, PartialEq)]
+enum Handle {
+    /// The tag block.
+    Tag,
+    /// A placed property (index).
+    Prop(usize),
+    /// The designation of a connection point (pin index).
+    Pin(usize),
+}
+
+type PropHandle = (u64, Handle);
 
 enum Drag {
     None,
     Move { start: P, applied: P, moving: routing::Moving },
     Box { start: Pos2 },
-    Prop { handle: PropHandle, start: P, orig: P },
+    /// `side`: side of a dragged connection point designation (symbol orientation).
+    Prop { handle: PropHandle, start: P, orig: P, side: Option<LabelSide> },
 }
 
 pub struct Palette {
@@ -770,12 +785,15 @@ impl Editor {
         for s in page.symbols.iter().filter(|s| self.selection.contains(&s.id)) {
             for (i, pp) in s.props.iter().enumerate() {
                 if render::prop_bounds(prj, page_i, s, pp).expand(0.3).contains(q) {
-                    return Some((s.id, Some(i)));
+                    return Some((s.id, Handle::Prop(i)));
                 }
             }
             let Some(def) = prj.symbol(&s.sym) else { continue };
+            if let Some(l) = render::pin_label_places(prj, page_i, &def, s).iter().find(|l| l.bounds.expand(0.2).contains(q)) {
+                return Some((s.id, Handle::Pin(l.pin)));
+            }
             if render::tag_block_bounds(prj, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
-                return Some((s.id, None));
+                return Some((s.id, Handle::Tag));
             }
         }
         None
@@ -1672,13 +1690,19 @@ impl Editor {
                 let page = &prj.pages[page_i];
                 let s = page.symbols.iter().find(|s| s.id == handle.0);
                 let orig = match (s, handle.1) {
-                    (Some(s), Some(i)) => s.props[i].offset,
-                    (Some(s), None) => s.tag_offset.unwrap_or_else(|| {
+                    (Some(s), Handle::Prop(i)) => s.props[i].offset,
+                    (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
                         prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
                     }),
+                    (Some(s), Handle::Pin(i)) => pin_place(prj, page_i, s, i).map(|l| l.shift).unwrap_or_default(),
                     _ => P::default(),
                 };
-                self.drag = Drag::Prop { handle, start: ow, orig };
+                // A designation placed automatically keeps the place it has now.
+                let side = match (s, handle.1) {
+                    (Some(s), Handle::Pin(i)) => pin_place(prj, page_i, s, i).map(|l| l.side),
+                    _ => None,
+                };
+                self.drag = Drag::Prop { handle, start: ow, orig, side };
             } else if let Some(id) = hit {
                 if !self.selection.contains(&id) {
                     if !shift {
@@ -1702,12 +1726,16 @@ impl Editor {
                         *applied = total;
                     }
                 }
-                (Drag::Prop { handle, start, orig }, Some(w)) => {
-                    let to = *orig + (w - *start).snap(0.5);
+                (Drag::Prop { handle, start, orig, side }, Some(w)) => {
+                    let delta = (w - *start).snap(0.5);
                     if let Some(s) = prj.pages[page_i].symbols.iter_mut().find(|s| s.id == handle.0) {
                         match handle.1 {
-                            Some(i) => s.props[i].offset = to,
-                            None => s.tag_offset = Some(to),
+                            Handle::Prop(i) => s.props[i].offset = *orig + delta,
+                            Handle::Tag => s.tag_offset = Some(*orig + delta),
+                            Handle::Pin(i) => {
+                                let offset = *orig + delta.untransform(s.rot, s.mirror);
+                                s.set_pin_label(i, PinLabel { side: *side, offset });
+                            }
                         }
                     }
                 }

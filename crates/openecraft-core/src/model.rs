@@ -746,6 +746,10 @@ pub struct SymbolInst {
     /// Tag block placed by hand: position of its top-left corner relative to `pos`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tag_offset: Option<P>,
+    /// Connection point designations placed by hand, one per symbol pin (missing or
+    /// default ones are placed automatically).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub pin_labels: Vec<PinLabel>,
     /// Further properties shown beside the symbol (part number, description …).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub props: Vec<PlacedProp>,
@@ -773,11 +777,105 @@ impl Default for SymbolInst {
             function_text: String::new(),
             pins: Vec::new(),
             tag_offset: None,
+            pin_labels: Vec::new(),
             props: Vec::new(),
             scheme: String::new(),
             function_def: String::new(),
             values: BTreeMap::new(),
         }
+    }
+}
+
+impl SymbolInst {
+    /// Placement of the designation of pin `i` (default: automatic).
+    pub fn pin_label(&self, i: usize) -> PinLabel {
+        self.pin_labels.get(i).copied().unwrap_or_default()
+    }
+
+    /// Places the designation of pin `i`; trailing automatic ones are not stored.
+    pub fn set_pin_label(&mut self, i: usize, label: PinLabel) {
+        if self.pin_labels.len() <= i {
+            self.pin_labels.resize(i + 1, PinLabel::default());
+        }
+        self.pin_labels[i] = label;
+        while self.pin_labels.last().is_some_and(|l| l.is_auto()) {
+            self.pin_labels.pop();
+        }
+    }
+}
+
+/// Side of a connection point designation, in the symbol's own orientation (before
+/// rotation and mirroring), so that it turns with the symbol.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LabelSide {
+    Left,
+    Right,
+    Above,
+    Below,
+}
+
+impl LabelSide {
+    pub const ALL: [LabelSide; 4] = [LabelSide::Left, LabelSide::Right, LabelSide::Above, LabelSide::Below];
+
+    pub fn name(self) -> &'static str {
+        match self {
+            LabelSide::Left => "left",
+            LabelSide::Right => "right",
+            LabelSide::Above => "above",
+            LabelSide::Below => "below",
+        }
+    }
+
+    pub fn from_name(name: &str) -> Option<LabelSide> {
+        LabelSide::ALL.into_iter().find(|s| s.name() == name)
+    }
+
+    pub fn dir(self) -> P {
+        match self {
+            LabelSide::Left => P { x: -1.0, y: 0.0 },
+            LabelSide::Right => P { x: 1.0, y: 0.0 },
+            LabelSide::Above => P { x: 0.0, y: -1.0 },
+            LabelSide::Below => P { x: 0.0, y: 1.0 },
+        }
+    }
+
+    fn of_dir(d: P) -> LabelSide {
+        match (d.x.round() as i32, d.y.round() as i32) {
+            (x, _) if x < 0 => LabelSide::Left,
+            (x, _) if x > 0 => LabelSide::Right,
+            (_, y) if y < 0 => LabelSide::Above,
+            _ => LabelSide::Below,
+        }
+    }
+
+    /// The side on the page of a symbol turned by `rot` and mirrored.
+    pub fn on_page(self, rot: u8, mirror: bool) -> LabelSide {
+        LabelSide::of_dir(self.dir().transform(rot, mirror))
+    }
+
+    /// The symbol's own side of a side on the page.
+    pub fn in_symbol(self, rot: u8, mirror: bool) -> LabelSide {
+        LabelSide::of_dir(self.dir().untransform(rot, mirror))
+    }
+}
+
+/// Placement of a connection point designation set by hand. Side and offset are in
+/// the symbol's own orientation; the default is automatic placement.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PinLabel {
+    /// Side of the connection point; None = chosen automatically.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<LabelSide>,
+    /// Shift from the position of the side in mm.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub offset: P,
+}
+
+impl PinLabel {
+    pub fn is_auto(&self) -> bool {
+        *self == PinLabel::default()
     }
 }
 

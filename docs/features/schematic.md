@@ -91,6 +91,14 @@ Drag the tag block of a selected symbol; place further device
 properties (description, part / type number, manufacturer, designation, connection
 points, structure) beside it.
 
+Connection point designations are placed beside the lead of their connection point,
+moved along it, to its other side or out beside the wire where the symbol's graphics,
+wires, nearby symbols or the symbol's other texts are in the way. Drag one of a
+selected symbol to place it by hand, or choose left, right, above or below for each
+in *Property placement*; *Reset* returns it to automatic placement. The placement
+turns and mirrors with the symbol and never moves the connection point. Command:
+`place_pin_label`.
+
 ## Find
 
 **Find** (*Home › Find…*, `Ctrl+F`): searches the whole project (page names and

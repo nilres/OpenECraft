@@ -3,6 +3,17 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [Unreleased]
+
+- **Connection point designations** (#116): each designation of a selected symbol can
+  be dragged on its own, put left, right, above or below its connection point or reset
+  to automatic placement (Properties › *Property placement*); the placement is stored
+  with the symbol and turns and mirrors with it, without changing the connection point.
+  Placed automatically, a designation follows the lead of its connection point and
+  moves along it, to the other side or out beside the wire to keep clear of the
+  symbol's graphics, wires, nearby symbols and its other texts (the surge protective
+  device's PE no longer runs into its arrow). Command `place_pin_label`.
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
