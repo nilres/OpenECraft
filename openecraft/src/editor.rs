@@ -19,7 +19,8 @@ use openecraft_core::review::{Hit, MarkupKind, Pen};
 use openecraft_core::symlib::Symbols;
 use openecraft_core::symbols::{Anchor};
 use openecraft_core::netlist::junctions;
-use openecraft_core::{cabledef, conndef, graphics, routing};
+use openecraft_core::structure::StructureBox;
+use openecraft_core::{cabledef, conndef, graphics, routing, structure_boxes};
 use egui::{pos2, vec2, Align2, Color32, FontId, Key, Painter, PointerButton, Pos2, Rect, Sense, Shape as EShape, Stroke, Vec2};
 use std::collections::{BTreeSet, HashMap, HashSet};
 
@@ -41,6 +42,8 @@ pub enum Tool {
     ConnDef,
     /// Cable definition line across wires.
     CableDef,
+    /// Structure box: a rectangle whose devices take other structure identifiers.
+    StructureBox,
     /// Connection symbol: a directed T-junction where three wires meet, or a corner.
     Junction(JunctionKind),
     /// Place the items of `Editor::insert` (macro, image).
@@ -60,7 +63,7 @@ impl Tool {
     /// Clicks needed by a graphic tool (None: open ended).
     fn points(&self) -> Option<usize> {
         match self {
-            Tool::Line | Tool::Rect | Tool::Circle | Tool::Ellipse | Tool::CableDef => Some(2),
+            Tool::Line | Tool::Rect | Tool::Circle | Tool::Ellipse | Tool::CableDef | Tool::StructureBox => Some(2),
             Tool::Arc | Tool::Dimension(_) => Some(3),
             _ => None,
         }
@@ -288,6 +291,27 @@ impl Draw for EguiDraw<'_> {
             } else {
                 self.painter.add(EShape::Text(shape));
             }
+        }
+    }
+
+    fn image_quad(&mut self, img: &ImageItem, corners: &[P; 4]) {
+        let key = egui::Id::unique(("symbol-bitmap", fingerprint(&img.file)));
+        let texture = self.painter.ctx().data_mut(|data| data.get_temp::<Option<egui::TextureHandle>>(key));
+        let texture = texture.unwrap_or_else(|| {
+            let texture = decode_image(&img.file).map(|image| self.painter.ctx().load_texture(
+                format!("symbol-bitmap-{}", img.id), image, egui::TextureOptions::LINEAR));
+            self.painter.ctx().data_mut(|data| data.insert_temp(key, texture.clone()));
+            texture
+        });
+        if let Some(texture) = texture.filter(|_| self.force.is_none()) {
+            let mut mesh = Mesh::with_texture(texture.id());
+            for (corner, uv) in corners.iter().zip([pos2(0., 0.), pos2(1., 0.), pos2(1., 1.), pos2(0., 1.)]) {
+                mesh.vertices.push(egui::epaint::Vertex { pos: self.w2s(*corner), uv, color: Color32::WHITE });
+            }
+            mesh.indices.extend_from_slice(&[0, 1, 2, 0, 2, 3]);
+            self.painter.add(EShape::mesh(mesh));
+        } else {
+            render::image_placeholder(self, img);
         }
     }
 
@@ -665,6 +689,7 @@ impl Editor {
             ),
             Tool::CableDef if self.cable_target.is_empty() => tr("Draw a line across the wires that are cores of a new cable · Esc or right click to finish").to_string(),
             Tool::CableDef => tr_fmt!("Draw a line across the wires that are cores of cable {} · Esc or right click to finish", self.cable_target),
+            Tool::StructureBox => tr("Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish").to_string(),
             Tool::Insert => tr("Click to insert · Esc cancel").to_string(),
             Tool::Comment => tr("Click to place a comment").to_string(),
             Tool::Markup(..) => tr("Click to place the markup text").to_string(),
@@ -717,7 +742,8 @@ impl Editor {
     }
 
     /// Hit test: returns the id of the item under `q` (world), preferring texts and
-    /// symbols. Items on hidden or locked layers are skipped.
+    /// electrical symbols. Decorative symbols stay behind wires and their
+    /// definitions. Items on hidden or locked layers are skipped.
     pub fn hit(&self, prj: &Project, page_i: usize, q: P) -> Option<u64> {
         let page = &prj.pages[page_i];
         let tol = (8.0 / self.zoom).max(0.4);
@@ -728,13 +754,15 @@ impl Editor {
             }
         }
         let mut best: Option<(f32, u64)> = None;
+        let mut graphic: Option<(f32, u64)> = None;
         for s in page.symbols.iter().rev() {
             let Some(def) = prj.symbol(&s.sym) else { continue };
             let b = def.world_bounds(s.pos, s.rot, s.mirror);
             if b.expand(tol * 0.5).contains(q) {
                 let d = b.center().dist(q) / (b.width() + b.height()).max(1.0);
-                if best.map(|(bd, _)| d < bd).unwrap_or(true) {
-                    best = Some((d, s.id));
+                let candidate = if def.func == openecraft_core::symbols::Func::Graphic { &mut graphic } else { &mut best };
+                if candidate.map(|(bd, _)| d < bd).unwrap_or(true) {
+                    *candidate = Some((d, s.id));
                 }
             }
         }
@@ -755,17 +783,24 @@ impl Editor {
         if let Some(c) = page.cable_defs.iter().rev().find(|c| dist_to_segment(q, c.a, c.b) <= tol) {
             return Some(c.id);
         }
+        if let Some((_, id)) = graphic {
+            return Some(id);
+        }
         if let Some(d) = page.dimensions.iter().rev().find(|d| usable(&d.layer) && graphics::dim_hit(d, q, tol)) {
             return Some(d.id);
         }
         if let Some(s) = page.shapes.iter().rev().find(|s| usable(&s.layer) && graphics::shape_hit(s, q, tol)) {
             return Some(s.id);
         }
+        // A structure box is picked at its outline, so that clicks inside reach its devices.
+        if let Some(b) = page.structure_boxes.iter().rev().find(|b| structure_boxes::outline_distance(b, q) <= tol) {
+            return Some(b.id);
+        }
         page.images.iter().rev().find(|i| usable(&i.layer) && R::from_points(i.a, i.b).contains(q)).map(|i| i.id)
     }
 
     /// Tag block or placed property of a selected symbol under `q`.
-    fn prop_hit(&self, prj: &Project, page_i: usize, q: P) -> Option<PropHandle> {
+    fn prop_hit(&self, prj: &Project, idx: &Index, page_i: usize, q: P) -> Option<PropHandle> {
         let page = &prj.pages[page_i];
         for s in page.symbols.iter().filter(|s| self.selection.contains(&s.id)) {
             for (i, pp) in s.props.iter().enumerate() {
@@ -774,7 +809,7 @@ impl Editor {
                 }
             }
             let Some(def) = prj.symbol(&s.sym) else { continue };
-            if render::tag_block_bounds(prj, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
+            if render::tag_block_bounds(prj, idx, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
                 return Some((s.id, None));
             }
         }
@@ -953,7 +988,7 @@ impl Editor {
         if self.tool.is_review() {
             self.review_mouse(&resp, world, &mut out);
         } else if editable {
-            self.mouse(ui, &resp, prj, page_i, rect, world, snapped, an, &mut out);
+            self.mouse(ui, &resp, prj, page_i, rect, world, snapped, an, idx, &mut out);
         } else if resp.dnd_hover_payload::<PartDrag>().is_some() {
             // A part dragged onto a released, locked or generated page: say why it
             // cannot be dropped here instead of ignoring it.
@@ -966,11 +1001,11 @@ impl Editor {
             if let Some(q) = self.typed.take() {
                 self.select_at(prj, page_i, q, false);
             }
-            self.select_mouse(ui, &resp, prj, page_i, rect, world, false, &mut out);
+            self.select_mouse(ui, &resp, prj, idx, page_i, rect, world, false, &mut out);
         } else if self.typed.take().is_some() {
             out.message = Some(tr("The page is read only").to_string());
         }
-        self.cursor(ui, &resp, prj, page_i, world, editable);
+        self.cursor(ui, &resp, prj, idx, page_i, world, editable);
 
         // ------------------------------------------------------------ drawing
         self.update_textures(ui.ctx(), &prj.pages[page_i]);
@@ -1017,7 +1052,7 @@ impl Editor {
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PlacePayload>(), editable) {
             if let Some(def) = prj.symbol(pl.symbol) {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
-                let inst = SymbolInst { sym: def.key.into(), pos: sn, label: def.default_label.into(), ..Default::default() };
+                let inst = SymbolInst { pos: sn, ..ops::symbol_preview(prj, &def) };
                 render::draw_symbol(&mut g, &def, &inst, Ink::Ghost);
             }
         }
@@ -1062,7 +1097,7 @@ impl Editor {
             let page = &prj.pages[page_i];
             if let Some(s) = page.symbols.iter().find(|s| self.selection.contains(&s.id)) {
                 let mut boxes: Vec<R> = s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)).collect();
-                if let Some(r) = prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, page_i, &def, s)) {
+                if let Some(r) = prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)) {
                     boxes.push(r);
                 }
                 for r in boxes {
@@ -1097,6 +1132,8 @@ impl Editor {
                         s += &format!("   |  {}", graphics::dim_text(dm));
                     } else if let Some(c) = page.cable_defs.iter().find(|c| c.id == id) {
                         s += &format!("   |  {}", c.cable);
+                    } else if let Some(b) = page.structure_boxes.iter().find(|b| b.id == id) {
+                        s += &format!("   |  {} {}", tr("Structure box"), b.identifiers());
                     }
                 }
                 if self.tool == Tool::Wire && self.autoroute {
@@ -1114,12 +1151,10 @@ impl Editor {
             Tool::Place(key) => {
                 if let Some(def) = prj.symbol(key) {
                     let inst = SymbolInst {
-                        sym: def.key.into(),
                         pos: sn,
                         rot: self.place_rot,
                         mirror: self.place_mirror,
-                        label: def.default_label.into(),
-                        ..Default::default()
+                        ..ops::symbol_preview(prj, &def)
                     };
                     // A tinted box behind it: the symbol stays visible on a page zoomed out.
                     let b = def.world_bounds(sn, self.place_rot, self.place_mirror);
@@ -1139,6 +1174,12 @@ impl Editor {
             Tool::Line | Tool::Rect | Tool::Circle | Tool::Ellipse => {
                 if let (Some(&a), Some(kind)) = (self.pts.first(), self.tool.shape_kind()) {
                     ghost_shape(g, kind, a, sn, Vec::new(), 0.0);
+                }
+            }
+            Tool::StructureBox => {
+                if let Some(&a) = self.pts.first() {
+                    let r = R::from_points(a, sn);
+                    render::draw_structure_box(g, &StructureBox { a: r.min, b: r.max, ..Default::default() }, Ink::Ghost);
                 }
             }
             Tool::Arc => match self.pts.as_slice() {
@@ -1194,7 +1235,7 @@ impl Editor {
                 if let Some(clip) = &self.insert {
                     let d = ops::paste_offset(clip, sn);
                     for s in &clip.symbols {
-                        if let Some(def) = prj.symbol(&s.sym) {
+                        if let Some(def) = clip.symbol(prj,&s.sym) {
                             let inst = SymbolInst { pos: s.pos + d, ..s.clone() };
                             render::draw_symbol(g, &def, &inst, Ink::Ghost);
                         }
@@ -1330,7 +1371,8 @@ impl Editor {
                 }
             }
             // Like a drag: facing connection points of moved symbols are connected.
-            let moved_symbols = prj.pages[page_i].symbols.iter().any(|s| self.selection.contains(&s.id)) || prj.pages[page_i].junctions.iter().any(|j| self.selection.contains(&j.id));
+            let moved_symbols = prj.pages[page_i].symbols.iter().any(|s| self.selection.contains(&s.id))
+                || prj.pages[page_i].junctions.iter().any(|j| self.selection.contains(&j.id));
             if self.autoconnect && moved_symbols {
                 let n = routing::apply_autoconnect(prj, page_i, &self.selection);
                 if n > 0 {
@@ -1388,6 +1430,15 @@ impl Editor {
                 if graphics::dim_length(&dm).abs() > 0.01 {
                     dm.id = prj.new_id();
                     prj.pages[page_i].dimensions.push(dm);
+                }
+            }
+            Tool::StructureBox => {
+                let r = R::from_points(pts[0], pts[1]);
+                if r.width() > 0.0 && r.height() > 0.0 {
+                    let b = structure_boxes::new_box(prj, r.min, r.max, Default::default(), "");
+                    self.selection = BTreeSet::from([b.id]);
+                    prj.pages[page_i].structure_boxes.push(b);
+                    out.open_properties = true;
                 }
             }
             Tool::CableDef => {
@@ -1513,6 +1564,7 @@ impl Editor {
         world: Option<P>,
         snapped: Option<P>,
         an: &Analysis,
+        idx: &Index,
         out: &mut CanvasOutput,
     ) {
         let shift = ui.input(|i| i.modifiers.shift);
@@ -1552,7 +1604,7 @@ impl Editor {
                 if let Some(q) = click.filter(|_| !resp.clicked_by(PointerButton::Primary)) {
                     self.select_at(prj, page_i, q, shift);
                 }
-                self.select_mouse(ui, resp, prj, page_i, rect, world, true, out);
+                self.select_mouse(ui, resp, prj, idx, page_i, rect, world, true, out);
             }
             Tool::Insert => {
                 if let (Some(sn), Some(clip)) = (click, click.and_then(|_| self.insert.take())) {
@@ -1658,12 +1710,12 @@ impl Editor {
     /// Select tool: clicks select, drags move the selection or the texts of a single
     /// selected symbol, drags on empty space select by window. On a page that is not
     /// `editable` only the selection changes.
-    fn select_mouse(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, page_i: usize, rect: Rect, world: Option<P>, editable: bool, out: &mut CanvasOutput) {
+    fn select_mouse(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, idx: &Index, page_i: usize, rect: Rect, world: Option<P>, editable: bool, out: &mut CanvasOutput) {
         let shift = ui.input(|i| i.modifiers.shift);
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let ow = self.s2w(rect, origin);
-            let handle = self.prop_hit(prj, page_i, ow).filter(|_| editable);
+            let handle = self.prop_hit(prj, idx, page_i, ow).filter(|_| editable);
             // The texts of a single selected symbol are placed on their own; with several
             // selected, dragging a text moves them all.
             let group = handle.filter(|_| self.selection.len() > 1).map(|h| h.0);
@@ -1674,7 +1726,7 @@ impl Editor {
                 let orig = match (s, handle.1) {
                     (Some(s), Some(i)) => s.props[i].offset,
                     (Some(s), None) => s.tag_offset.unwrap_or_else(|| {
-                        prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
+                        prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
                     }),
                     _ => P::default(),
                 };
@@ -1729,7 +1781,9 @@ impl Editor {
                         let page = &prj.pages[page_i];
                         for id in ops::all_ids(page) {
                             let usable = graphics::item_layer(page, id).is_none_or(|l| graphics::shown(prj, l, false) && !graphics::locked(prj, l));
-                            if usable && ops::item_bounds(&symbols, page, id).is_some_and(|bb| box_selects(sel, crossing, bb)) {
+                            // A crossing window inside a structure box touches its devices, not the box.
+                            let within_box = crossing && page.structure_boxes.iter().any(|b| b.id == id && b.rect().contains_rect(&sel));
+                            if usable && !within_box && ops::item_bounds(&symbols, page, id).is_some_and(|bb| box_selects(sel, crossing, bb)) {
                                 self.selection.insert(id);
                             }
                         }
@@ -1794,14 +1848,15 @@ impl Editor {
 
     /// Pointer shape over the page: move or point over an item, grab over the texts
     /// of a selected symbol, crosshair for the drawing tools.
-    fn cursor(&self, ui: &egui::Ui, resp: &egui::Response, prj: &Project, page_i: usize, world: Option<P>, editable: bool) {
+    #[allow(clippy::too_many_arguments)]
+    fn cursor(&self, ui: &egui::Ui, resp: &egui::Response, prj: &Project, idx: &Index, page_i: usize, world: Option<P>, editable: bool) {
         let Some(w) = world.filter(|_| resp.hovered() || resp.dragged()) else { return };
         let icon = match (&self.tool, &self.drag) {
             (_, Drag::Prop { .. }) => egui::CursorIcon::Grabbing,
             (_, Drag::Move { .. }) => egui::CursorIcon::Move,
             (_, Drag::Box { .. }) => egui::CursorIcon::Crosshair,
-            (Tool::Select, Drag::None) if editable && self.selection.len() == 1 && self.prop_hit(prj, page_i, w).is_some() => egui::CursorIcon::Grab,
-            (Tool::Select, Drag::None) if editable && self.prop_hit(prj, page_i, w).is_some() => egui::CursorIcon::Move,
+            (Tool::Select, Drag::None) if editable && self.selection.len() == 1 && self.prop_hit(prj, idx, page_i, w).is_some() => egui::CursorIcon::Grab,
+            (Tool::Select, Drag::None) if editable && self.prop_hit(prj, idx, page_i, w).is_some() => egui::CursorIcon::Move,
             (Tool::Select, Drag::None) => match self.hit(prj, page_i, w) {
                 Some(_) if editable => egui::CursorIcon::Move,
                 Some(_) => egui::CursorIcon::PointingHand,
@@ -1858,6 +1913,9 @@ impl Editor {
 /// Draws a symbol preview into a small rectangle (symbol library).
 pub fn symbol_icon(ui: &mut egui::Ui, prj: &Project, key: &str, size: Vec2) -> egui::Response {
     let (resp, painter) = ui.allocate_painter(size, Sense::click());
+    if !ui.is_rect_visible(resp.rect) {
+        return resp;
+    }
     let Some(def) = prj.symbol(key) else { return resp };
     let pal = Palette::new(ui.visuals().dark_mode);
     let b = def.bounds;
@@ -1865,7 +1923,7 @@ pub fn symbol_icon(ui: &mut egui::Ui, prj: &Project, key: &str, size: Vec2) -> e
     let center = resp.rect.center();
     let origin = center - vec2(b.center().x, b.center().y) * zoom;
     let mut d = EguiDraw { painter: &painter, origin, zoom, pal: &pal, force: None, mirror: None, textures: None };
-    let inst = SymbolInst { sym: key.into(), label: def.default_label.into(), ..Default::default() };
+    let inst = ops::symbol_preview(prj, &def);
     render::draw_symbol(&mut d, &def, &inst, Ink::Line);
     resp
 }

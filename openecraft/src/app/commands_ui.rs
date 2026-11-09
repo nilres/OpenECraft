@@ -83,6 +83,7 @@ impl App {
             Cmd::TextTool => *tool == Tool::Text && self.editor.text_proto.is_none(),
             Cmd::ConnDefTool => *tool == Tool::ConnDef,
             Cmd::CableDefTool => *tool == Tool::CableDef,
+            Cmd::StructureBoxTool => *tool == Tool::StructureBox,
             Cmd::JunctionTool => *tool == Tool::Junction(JunctionKind::Tee),
             Cmd::CornerTool => *tool == Tool::Junction(JunctionKind::Corner),
             Cmd::CrossingTool => *tool == Tool::Junction(JunctionKind::Crossing),
@@ -231,7 +232,8 @@ impl App {
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
             // ------------------------------------------------------------ home
             Cmd::Cut | Cmd::Copy => {
-                let clip = ops::copy(&self.session.prj.pages[page], &self.editor.selection);
+                let mut clip = ops::copy(&self.session.prj.pages[page], &self.editor.selection);
+                clip.include_project_data(&self.session.prj);
                 ctx.copy_text(clip.to_text());
                 self.editor.clip = Some(clip);
                 if cmd == Cmd::Cut {
@@ -310,6 +312,7 @@ impl App {
             Cmd::TextTool => self.set_tool(Tool::Text),
             Cmd::ConnDefTool => self.set_tool(Tool::ConnDef),
             Cmd::CableDefTool => self.set_tool(Tool::CableDef),
+            Cmd::StructureBoxTool => self.set_tool(Tool::StructureBox),
             Cmd::JunctionTool => self.set_tool(Tool::Junction(JunctionKind::Tee)),
             Cmd::CornerTool => self.set_tool(Tool::Junction(JunctionKind::Corner)),
             Cmd::CrossingTool => self.set_tool(Tool::Junction(JunctionKind::Crossing)),
