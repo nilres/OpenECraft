@@ -35,4 +35,6 @@ pub struct Clip {
     pub cable_defs: Vec<CableDef>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub junctions: Vec<Junction>,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub structure_boxes: Vec<super::structure::StructureBox>,
 }

@@ -204,10 +204,10 @@ fn letters(n: usize) -> String {
     String::from_utf8(out).unwrap_or_default()
 }
 
-/// Creates a symbol instance for a page with sensible defaults (tag in the page's
-/// structure, numbering, ...).
+/// Creates a symbol instance for a page with sensible defaults (tag in the structure
+/// in effect at `pos`, numbering, ...).
 pub fn new_symbol(prj: &mut Project, page: usize, ctx: &PlaceCtx, def: &SymbolDef, pos: P, rot: u8, mirror: bool) -> SymbolInst {
-    let structure = crate::structure::page_structure(&prj.pages[page]);
+    let structure = crate::structure::scope(&prj.pages[page], pos).structure();
     let mut s = SymbolInst {
         id: prj.new_id(),
         sym: def.key.into(),
@@ -288,6 +288,9 @@ pub fn item_bounds(symbols: &Symbols, page: &Page, id: u64) -> Option<R> {
     if let Some(j) = page.junctions.iter().find(|j| j.id == id) {
         return Some(R::from_points(j.pos, j.pos).expand(1.0));
     }
+    if let Some(b) = page.structure_boxes.iter().find(|b| b.id == id) {
+        return Some(b.rect());
+    }
     page.cable_defs.iter().find(|c| c.id == id).map(|c| R::from_points(c.a, c.b))
 }
 
@@ -303,6 +306,7 @@ pub fn all_ids(page: &Page) -> Vec<u64> {
         .chain(page.conn_defs.iter().map(|s| s.id))
         .chain(page.cable_defs.iter().map(|s| s.id))
         .chain(page.junctions.iter().map(|s| s.id))
+        .chain(page.structure_boxes.iter().map(|s| s.id))
         .collect()
 }
 
@@ -333,6 +337,11 @@ fn map_items(page: &mut Page, sel: &BTreeSet<u64>, f: impl Fn(P) -> P) {
     }
     for j in page.junctions.iter_mut().filter(|j| sel.contains(&j.id)) {
         j.pos = f(j.pos);
+    }
+    for b in page.structure_boxes.iter_mut().filter(|b| sel.contains(&b.id)) {
+        let r = R::from_points(f(b.a), f(b.b));
+        b.a = r.min;
+        b.b = r.max;
     }
 }
 
@@ -472,6 +481,7 @@ pub fn delete(page: &mut Page, sel: &BTreeSet<u64>) {
     page.conn_defs.retain(|s| !sel.contains(&s.id));
     page.cable_defs.retain(|s| !sel.contains(&s.id));
     page.junctions.retain(|s| !sel.contains(&s.id));
+    page.structure_boxes.retain(|s| !sel.contains(&s.id));
 }
 
 /// Removes zero length wires and merges exact duplicates.
@@ -487,7 +497,17 @@ pub fn cleanup_wires(page: &mut Page) {
 
 const CLIP_MAGIC: &str = "openecraft-clipboard-v1";
 
+/// Copies the selected items. Tags are stored in the structure of the page: a device
+/// copied out of a structure box takes the structure of the place it is pasted to.
 pub fn copy(page: &Page, sel: &BTreeSet<u64>) -> Clip {
+    let here = crate::structure::Dt::of_page(page);
+    let in_page_structure = |s: &SymbolInst| {
+        let mut s = s.clone();
+        if !s.tag.is_empty() && !page.structure_boxes.is_empty() {
+            s.tag = here.complete(&crate::structure::relative_at(page, s.pos, &s.tag));
+        }
+        s
+    };
     Clip {
         magic: CLIP_MAGIC.into(),
         anchor: None,
@@ -496,7 +516,7 @@ pub fn copy(page: &Page, sel: &BTreeSet<u64>) -> Clip {
         installation: page.installation.clone(),
         location: page.location.clone(),
         product: page.product.clone(),
-        symbols: page.symbols.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
+        symbols: page.symbols.iter().filter(|s| sel.contains(&s.id)).map(in_page_structure).collect(),
         wires: page.wires.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         texts: page.texts.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         shapes: page.shapes.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
@@ -505,6 +525,7 @@ pub fn copy(page: &Page, sel: &BTreeSet<u64>) -> Clip {
         conn_defs: page.conn_defs.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         cable_defs: page.cable_defs.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
         junctions: page.junctions.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
+        structure_boxes: page.structure_boxes.iter().filter(|s| sel.contains(&s.id)).cloned().collect(),
     }
 }
 
@@ -544,6 +565,7 @@ impl Clip {
             && self.conn_defs.is_empty()
             && self.cable_defs.is_empty()
             && self.junctions.is_empty()
+            && self.structure_boxes.is_empty()
     }
 
     pub fn bounds(&self) -> R {
@@ -579,6 +601,9 @@ impl Clip {
         for j in &self.junctions {
             r.extend(j.pos);
         }
+        for b in &self.structure_boxes {
+            r.union(b.rect());
+        }
         r
     }
 }
@@ -590,12 +615,11 @@ pub fn paste_offset(clip: &Clip, at: P) -> P {
 }
 
 /// Pastes the clip so that its top-left corner lands on `at`. Tags move into the
-/// structure of the target page; device tags of main functions that already exist
+/// structure of the target page (or of the structure box they land in); device tags of main functions that already exist
 /// get new numbers (consistently for coil + contacts). Wire numbers and cable cores
 /// are not copied.
 pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u64> {
     let source = clip.structure();
-    let target = crate::structure::Dt::of_page(&prj.pages[page_i]);
     let b = clip.bounds();
     if !b.is_valid() {
         return BTreeSet::new();
@@ -623,6 +647,15 @@ pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u
     let existing: BTreeSet<String> = prj.all_tags().into_iter().collect();
     let mut rename: HashMap<String, String> = HashMap::new();
     let mut new_ids = BTreeSet::new();
+    // Structure boxes first: the symbols take the structure of the place they land.
+    for x in &clip.structure_boxes {
+        let mut x = x.clone();
+        x.id = prj.new_id();
+        x.a = x.a + d;
+        x.b = x.b + d;
+        new_ids.insert(x.id);
+        prj.pages[page_i].structure_boxes.push(x);
+    }
     let mut symbols_out = Vec::new();
     for s in &clip.symbols {
         let mut s = s.clone();
@@ -632,7 +665,7 @@ pub fn paste(prj: &mut Project, page_i: usize, clip: &Clip, at: P) -> BTreeSet<u
         s.id = prj.new_id();
         s.pos = s.pos + d;
         if !s.tag.is_empty() {
-            s.tag = target.complete(&source.relative(&s.tag));
+            s.tag = crate::structure::complete_at(&prj.pages[page_i], s.pos, &source.relative(&s.tag));
         }
         if let Some(def) = prj.symbol(&s.sym) {
             match def.func {
