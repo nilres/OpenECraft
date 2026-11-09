@@ -119,7 +119,12 @@ impl Obstacles {
                 }
                 Prim::Circle { c, r, fill, .. } => o.circles.push((w(*c), *r, *fill)),
                 Prim::Text { pos, text, size, .. } => o.boxes.push(text_box(w(*pos), text, *size, Anchor::Center, VAnchor::Middle)),
-                Prim::Field { .. } => {}
+                Prim::Image { corners, .. } => {
+                    let mut r = R::nothing();
+                    corners.iter().for_each(|c| r.extend(w(*c)));
+                    o.boxes.push(r);
+                }
+                Prim::Field { .. } | Prim::PropertyBlock(_) => {}
             }
         }
         let bounds = def.world_bounds(s.pos, s.rot, s.mirror);
