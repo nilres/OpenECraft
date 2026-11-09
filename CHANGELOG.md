@@ -3,6 +3,14 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.2] - unreleased
+
+- **Project properties:** the name and value fields of the custom properties use the
+  width of the dialog instead of shrinking to a few characters; the dialog can be
+  resized, and a long list of properties scrolls. A renamed property is applied when
+  its name field loses focus (Esc keeps the old name), so the text cursor no longer
+  jumps to another property while typing.
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
