@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	A projekt számozási sémája szerint számozza a vezetékeket
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=érték, OPTION!=érték, OPTION=a|b, & jellel összekapcsolva (üres: mindig)
 Offset from the symbol position in mm (default: below the symbol)	Eltolás a szimbólum helyzetétől mm-ben (alapértelmezés: a szimbólum alatt)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	A vezetéknél megjelenített kábelazonosító eltolása az automatikus helyétől, egy pont [dx, dy] mm-ben (nincs pont = automatikus)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Az érjelölés eltolása az automatikus helyétől, egy pont [dx, dy] mm-ben (nincs pont = automatikus)
 One end, e.g. -K1:A1	Az egyik vég, pl. -K1:A1
 One row per printed label instead of a count	Nyomtatott címkénként egy sor darabszám helyett
 Only devices on these pages (names separated by commas)	Csak az ezeken az oldalakon lévő készülékek (nevek vesszővel elválasztva)

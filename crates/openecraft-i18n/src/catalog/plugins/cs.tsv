@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Očísluje vodiče podle schématu číslování projektu
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=hodnota, OPTION!=hodnota, OPTION=a|b spojené pomocí & (prázdné: vždy)
 Offset from the symbol position in mm (default: below the symbol)	Odsazení od polohy symbolu v mm (výchozí: pod symbolem)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Posun označení kabelu u vodiče od jeho automatického místa, jeden bod [dx, dy] v mm (žádný bod = automaticky)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Posun označení žíly od jeho automatického místa, jeden bod [dx, dy] v mm (žádný bod = automaticky)
 One end, e.g. -K1:A1	Jeden konec, např. -K1:A1
 One row per printed label instead of a count	Jeden řádek na každý vytištěný štítek místo počtu
 Only devices on these pages (names separated by commas)	Pouze přístroje na těchto stránkách (názvy oddělené čárkami)

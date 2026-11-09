@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Numerotează conductoarele după schema de numerotare a proiectului
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=valoare, OPTION!=valoare, OPTION=a|b legate prin & (gol: întotdeauna)
 Offset from the symbol position in mm (default: below the symbol)	Decalaj față de poziția simbolului în mm (implicit: sub simbol)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Decalajul identificatorului cablului afișat la fir față de poziția automată, un punct [dx, dy] în mm (fără punct = automat)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Decalajul denumirii firului față de poziția automată, un punct [dx, dy] în mm (fără punct = automat)
 One end, e.g. -K1:A1	Un capăt, de ex. -K1:A1
 One row per printed label instead of a count	Un rând per etichetă tipărită în locul unui număr
 Only devices on these pages (names separated by commas)	Numai dispozitivele de pe aceste pagini (nume separate prin virgule)

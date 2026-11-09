@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Nummert de draden volgens het nummeringsschema van het project
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=waarde, OPTION!=waarde, OPTION=a|b gekoppeld met & (leeg: altijd)
 Offset from the symbol position in mm (default: below the symbol)	Afstand tot de symboolpositie in mm (standaard: onder het symbool)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Verschuiving van de kabelaanduiding bij de draad ten opzichte van de automatische plaats, één punt [dx, dy] in mm (geen punt = automatisch)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Verschuiving van de aderaanduiding ten opzichte van de automatische plaats, één punt [dx, dy] in mm (geen punt = automatisch)
 One end, e.g. -K1:A1	Eén uiteinde, bijv. -K1:A1
 One row per printed label instead of a count	Eén rij per afgedrukt label in plaats van een aantal
 Only devices on these pages (names separated by commas)	Alleen apparaten op deze pagina's (namen gescheiden door komma's)

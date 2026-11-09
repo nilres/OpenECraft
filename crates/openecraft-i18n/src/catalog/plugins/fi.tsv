@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Numeroi johdot projektin numerointimallin mukaan
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=arvo, OPTION!=arvo, OPTION=a|b yhdistettynä merkillä & (tyhjä: aina)
 Offset from the symbol position in mm (default: below the symbol)	Siirtymä symbolin sijainnista mm:nä (oletus: symbolin alapuolella)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Johtimen kohdalla näytetyn kaapelin tunnuksen siirtymä automaattisesta paikasta, yksi piste [dx, dy] mm (ei pistettä = automaattinen)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Johdinmerkinnän siirtymä automaattisesta paikasta, yksi piste [dx, dy] mm (ei pistettä = automaattinen)
 One end, e.g. -K1:A1	Ensimmäinen pää, esim. -K1:A1
 One row per printed label instead of a count	Yksi rivi tulostettua merkintäkilpeä kohden määrän sijaan
 Only devices on these pages (names separated by commas)	Vain näiden sivujen laitteet (nimet pilkuilla erotettuina)

@@ -652,3 +652,42 @@ fn only_web_links_are_exported() {
     let urls: Vec<&str> = d.urls.iter().map(|u| u.2.as_str()).collect();
     assert_eq!(urls, ["mailto:anna@example.org"]);
 }
+
+#[test]
+fn cable_cores_line_up_at_the_cable_definition_line_and_keep_their_offset() {
+    let mut prj = Project::default();
+    for (i, len) in [40.0, 60.0, 80.0, 100.0, 120.0].into_iter().enumerate() {
+        let y = 100.0 + i as f32 * 8.0;
+        prj.pages[0].wires.push(Wire { id: 1 + i as u64, a: p(100.0, y), b: p(100.0 + len, y), ..Default::default() });
+    }
+    prj.fix_next_id();
+    crate::cabledef::add(&mut prj, 0, p(130.0, 95.0), p(130.0, 140.0), "");
+    let names = ["L1", "L2", "L3", "N", "PE"];
+    prj.cables[0].cores = names.join(" ");
+    for (w, c) in prj.pages[0].wires.iter_mut().zip(names) {
+        w.core = c.into();
+    }
+    let cores = |prj: &Project| {
+        let an = Analysis::with_builtin(prj);
+        let mut d = Rec::default();
+        draw_page(&mut d, prj, &an.index, &an, 0, &Opts::default());
+        ["L1", "L2", "L3", "N", "PE"].map(|c| d.texts.iter().find(|t| t.1 == c).map(|t| t.0).expect(c))
+    };
+    let at = cores(&prj);
+    assert!(at.iter().all(|q| (q.x - 130.0).abs() < 1e-3), "cores at the cable definition line: {at:?}");
+    let w = &prj.pages[0].wires[2];
+    assert!(core_text_bounds(&prj.pages[0], w, CoreText::Core).is_some_and(|r| r.contains(at[2])));
+    assert!(core_text_bounds(&prj.pages[0], w, CoreText::Cable).is_none(), "the cable tag is on the first wire only");
+    assert!(core_text_bounds(&prj.pages[0], &prj.pages[0].wires[0], CoreText::Cable).is_some_and(|r| (r.center().x - 130.0).abs() < 1e-3));
+
+    prj.pages[0].wires[2].core_offset = Some(p(3.0, 1.5));
+    let moved = cores(&prj);
+    assert_eq!(moved[2], at[2] + p(3.0, 1.5));
+    assert_eq!(moved[1], at[1], "the other cores stay");
+    // The offset follows the cable definition line.
+    prj.pages[0].cable_defs[0].a.x = 120.0;
+    prj.pages[0].cable_defs[0].b.x = 120.0;
+    assert_eq!(cores(&prj)[2], at[2] + p(-7.0, 1.5));
+    prj.pages[0].cable_defs.clear();
+    assert!((cores(&prj)[4].x - (100.0 + 0.3 * 120.0)).abs() < 1e-3, "without a cable definition line at 30 %");
+}

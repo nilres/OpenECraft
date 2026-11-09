@@ -401,11 +401,13 @@ impl App {
                     if ui.selectable_label(w.cable.is_empty(), "(none)").clicked() {
                         w.cable.clear();
                         w.core.clear();
+                        (w.core_offset, w.cable_offset) = (None, None);
                     }
                     for (tag, _) in &cables {
                         if ui.selectable_label(w.cable == *tag, tag).clicked() && w.cable != *tag {
                             w.cable = tag.clone();
                             w.core.clear();
+                            (w.core_offset, w.cable_offset) = (None, None);
                         }
                     }
                 });
@@ -431,6 +433,19 @@ impl App {
                 ui.label(format!("{:.0} / {:.0}", w.b.x, w.b.y));
                 ui.end_row();
             });
+            if !w.cable.is_empty() {
+                ui.horizontal(|ui| {
+                    if w.core_offset.is_some() || w.cable_offset.is_some() {
+                        ui.weak(tr("Core labels placed by hand"));
+                        if ui.small_button(tr("Reset")).clicked() {
+                            w.core_offset = None;
+                            w.cable_offset = None;
+                        }
+                    } else {
+                        ui.weak(tr("Drag the core designation or the cable tag of the selected wire to place it."));
+                    }
+                });
+            }
             wire_labels_ui(ui, &mut w.labels);
             if number != number_now {
                 if let Some(net) = &open_net {

@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Нумерует провода по схеме нумерации проекта
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=значение, OPTION!=значение, OPTION=a|b, объединённые через & (пусто: всегда)
 Offset from the symbol position in mm (default: below the symbol)	Смещение от позиции символа в мм (по умолчанию: под символом)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Смещение обозначения кабеля у провода от его автоматического места, одна точка [dx, dy] в мм (без точки = автоматически)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Смещение обозначения жилы от его автоматического места, одна точка [dx, dy] в мм (без точки = автоматически)
 One end, e.g. -K1:A1	Один конец, например -K1:A1
 One row per printed label instead of a count	Одна строка на каждый печатаемый маркер вместо количества
 Only devices on these pages (names separated by commas)	Только устройства на этих листах (имена через запятую)

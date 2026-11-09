@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	Numera os fios conforme o esquema de numeração do projeto
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=valor, OPTION!=valor, OPTION=a|b unidos por & (vazio: sempre)
 Offset from the symbol position in mm (default: below the symbol)	Deslocamento em relação à posição do símbolo em mm (padrão: abaixo do símbolo)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	Deslocamento do identificador do cabo mostrado no fio em relação à posição automática, um ponto [dx, dy] em mm (sem ponto = automático)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	Deslocamento da designação da veia em relação à posição automática, um ponto [dx, dy] em mm (sem ponto = automático)
 One end, e.g. -K1:A1	Uma extremidade, por exemplo, -K1:A1
 One row per printed label instead of a count	Uma linha por etiqueta impressa em vez de uma contagem
 Only devices on these pages (names separated by commas)	Somente dispositivos nestas páginas (nomes separados por vírgulas)

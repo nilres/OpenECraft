@@ -26,6 +26,27 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
   20x1.5) as manufacturer parts. The example `building_services` has a gland for every
   cable, sized to it.
+- **Cable cores at the cable definition line:** the stroke, core designation and cable
+  tag of each core sit where a cable definition line of its cable crosses the wire, so
+  they line up on wires of different lengths (30 % of the wire without a line). The core
+  designation and the cable tag of a selected wire can be dragged into place; they keep
+  their offset when the line moves, *Reset* in the wire properties places them
+  automatically again. `update_wire` takes `core_offset` and `cable_offset`
+  ([connections](docs/features/connections.md)).
+
+- **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
+  and its corners are dragged afterwards; all buildings have to stay inside it, the check
+  reports rooms, roofs and cabinets outside it and the site plan draws them red.
+  Commands `plot`, `set_plot` ([panel layout](docs/features/panel-layout.md)).
+- **Georeferenced reference point:** a point of the plant with its easting, northing,
+  height and coordinate reference system and the direction of grid north; the site plan
+  shows the coordinates under the pointer and a north arrow, `list_buildings` the
+  coordinates of the buildings, IFC exports the plot's name, latitude and longitude.
+  *Site › Measure* measures distance and direction between two points. Commands
+  `set_reference_point`, `locate`, `measure`.
+- **A level in 3D:** a level clicked in the navigator while the 3D view is shown shows
+  all rooms of that level side by side at their places, with their cabinets, floor
+  slabs and stairs.
 - **Project properties:** the name and value fields of the custom properties use the
   width of the dialog instead of shrinking to a few characters; the dialog can be
   resized, and a long list of properties scrolls. A renamed property is applied when

@@ -913,6 +913,13 @@ pub struct Wire {
     pub cable: String,
     #[serde(skip_serializing_if = "String::is_empty")]
     pub core: String,
+    /// Core designation placed by hand: offset from its automatic position.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub core_offset: Option<P>,
+    /// Cable tag placed by hand (on the wire that shows it): offset from its
+    /// automatic position.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cable_offset: Option<P>,
 }
 
 impl Wire {

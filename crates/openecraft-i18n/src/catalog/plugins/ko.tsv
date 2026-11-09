@@ -488,6 +488,8 @@ Numbers the terminals of a strip 1 … n in strip order; non-numeric designation
 Numbers the wires by the numbering scheme of the project	프로젝트의 번호 지정 체계에 따라 전선 번호를 지정합니다
 OPTION=value, OPTION!=value, OPTION=a|b joined by & (empty: always)	OPTION=값, OPTION!=값, OPTION=a|b를 &로 결합(비우면 항상)
 Offset from the symbol position in mm (default: below the symbol)	심볼 위치로부터의 오프셋(mm, 기본값: 심볼 아래)
+Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)	전선에 표시되는 케이블 태그의 자동 위치로부터의 오프셋, 점 하나 [dx, dy] (mm) (점 없음 = 자동)
+Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)	심선 표시의 자동 위치로부터의 오프셋, 점 하나 [dx, dy] (mm) (점 없음 = 자동)
 One end, e.g. -K1:A1	한쪽 끝(예: -K1:A1)
 One row per printed label instead of a count	개수 대신 인쇄된 라벨당 한 행
 Only devices on these pages (names separated by commas)	이 페이지의 장치만(이름은 쉼표로 구분)

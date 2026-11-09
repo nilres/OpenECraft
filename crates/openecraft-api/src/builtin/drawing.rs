@@ -169,6 +169,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("wire_type", Kind::Str, tr_const!("Wire type")),
             optional("cable", Kind::Str, tr_const!("Cable tag")),
             optional("core", Kind::Str, tr_const!("Cable core")),
+            optional("core_offset", Kind::Points, tr_const!("Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
+            optional("cable_offset", Kind::Points, tr_const!("Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
             optional("medium", Kind::Str, tr_const!("Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)")),
             optional("length", Kind::Num, tr_const!("Hoses / pipes: length in m")),
         ],
@@ -860,6 +862,11 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
             *field = v.into();
         }
     }
+    for (name, field) in [("core_offset", &mut w.core_offset), ("cable_offset", &mut w.cable_offset)] {
+        if a.value(name).is_some_and(|v| !v.is_null()) {
+            *field = raw_points(a, name).first().map(|&[x, y]| p(x as f32, y as f32));
+        }
+    }
     if let Some(c) = color {
         w.color = c;
     }
@@ -876,7 +883,7 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
         w.length = l;
     }
     let medium = w.medium.map(|m| m.code()).unwrap_or_default();
-    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "medium": medium, "length": w.length }))
+    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "core_offset": w.core_offset.map(xy), "cable_offset": w.cable_offset.map(xy), "medium": medium, "length": w.length }))
 }
 
 /// Takes the style parameters of `add_text` / `update_text` that are given.
