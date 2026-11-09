@@ -659,6 +659,19 @@ fn accessories_from_parts() {
     assert!(o.iter().any(|o| o.item == id && o.round && (o.w - 25.5).abs() < 0.01));
     assert!(crate::production::holes_on(e, &prj.parts, Face::Bottom).is_empty());
     assert!(layout_material(&prj).iter().any(|m| m.0 == "GEN.GLAND-M25" && m.1 == 1.0));
+    // Drawn with the model of its part, in its box and along the axis out of the face:
+    // round, so its corners are empty, its dome (the outermost end) narrower than
+    // its body against the face.
+    let painted = device_mesh_painted(&prj, g).expect("the gland's model");
+    assert!(painted.iter().all(|(_, c)| c.is_some()), "painted");
+    let tris = place_triangles(e, g, painted.into_iter().map(|t| t.0).collect());
+    let (lo, hi) = item_box(e, g);
+    let pts: Vec<[f32; 3]> = tris.iter().flatten().copied().collect();
+    assert!(pts.iter().all(|q| (0..3).all(|k| q[k] >= lo[k] - 0.01 && q[k] <= hi[k] + 0.01)), "{lo:?} {hi:?}");
+    let (cx, cz, r) = ((lo[0] + hi[0]) / 2.0, (lo[2] + hi[2]) / 2.0, g.w / 2.0);
+    assert!(pts.iter().all(|q| (q[0] - cx).hypot(q[2] - cz) <= r + 0.01), "round within its box");
+    let radius_at = |y: f32| pts.iter().filter(|q| (q[1] - y).abs() < 0.01).map(|q| (q[0] - cx).hypot(q[2] - cz)).fold(0.0, f32::max);
+    assert!(radius_at(hi[1]) < radius_at(lo[1]) && radius_at(hi[1]) > 0.0, "dome {} body {}", radius_at(hi[1]), radius_at(lo[1]));
 }
 
 #[test]

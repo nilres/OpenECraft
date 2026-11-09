@@ -109,6 +109,27 @@ fn the_catalog_has_a_part_for_wall_mounting() {
 }
 
 #[test]
+fn cable_glands_come_in_both_materials_and_from_a_manufacturer() {
+    let parts = default_catalog();
+    let part = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));
+    for size in ["M16", "M20", "M25", "M32", "M40", "M63"] {
+        let (plastic, metal) = (part(&format!("GEN.GLAND-{size}")), part(&format!("GEN.GLAND-{size}-MS")));
+        assert_eq!((plastic.subgroup.as_str(), metal.subgroup.as_str()), ("Cable gland", "Cable gland"));
+        assert_eq!((plastic.tech_value("Clamping range min"), plastic.tech_value("Clamping range max")), (metal.tech_value("Clamping range min"), metal.tech_value("Clamping range max")));
+        assert!(plastic.tech_value("Material").is_some_and(|m| m.contains("Polyamide")) && metal.tech_value("Material").is_some_and(|m| m.contains("nickel")), "{size}");
+        // Drawn in their colours: the same shape, a different look.
+        let (m1, m2) = (plastic.model_3d.as_ref().unwrap(), metal.model_3d.as_ref().unwrap());
+        assert_eq!(m1.triangles.len(), m2.triangles.len());
+        assert!(m1.color(0).is_some() && m1.color(m1.triangles.len() - 1) != m2.color(m2.triangles.len() - 1), "{size}");
+    }
+    assert!(part("GEN.GLAND-M20-EMC").description.contains("EMC") && part("GEN.GLAND-M20-EMC").tech_value("Shielding").is_some());
+    let lapp = part("LAPP.53111020");
+    assert_eq!((lapp.manufacturer.as_str(), lapp.subgroup.as_str(), lapp.tech_value("Clamping range max")), ("LAPP", "Cable gland", Some("13")));
+    assert!(lapp.description.contains("SKINTOP") && lapp.model_3d.is_some());
+    assert_eq!(part("LAPP.53112020").tech_value("Material"), Some("Brass, nickel-plated"));
+}
+
+#[test]
 fn the_catalog_has_fluid_parts_for_rooms() {
     let parts = default_catalog();
     let part = |n: &str| parts.iter().find(|p| p.number == n).unwrap_or_else(|| panic!("{n}"));

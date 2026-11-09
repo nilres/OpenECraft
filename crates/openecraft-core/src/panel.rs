@@ -1018,14 +1018,22 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
     if it.kind == ItemKind::Busbar {
         return Some(busbars::mesh(prj, it));
     }
-    if it.kind != ItemKind::Device {
-        return None;
-    }
     // A placed model repeats the model's triangles in their order.
     let painted = |mesh: &crate::parts::Mesh3d, tris: Vec<Tri>| -> Vec<(Tri, Option<[u8; 3]>)> {
         let n = mesh.triangles.len().max(1);
         tris.into_iter().enumerate().map(|(i, t)| (t, mesh.color(i % n))).collect()
     };
+    // An accessory with a model: a cable gland, fan or handle in its cutout lies along
+    // the face it is mounted in, on the bottom of a cabinet as on its roof.
+    if it.kind == ItemKind::Accessory {
+        let mesh = part_by_number(prj, &it.part)?.model_3d.as_ref()?;
+        let tris = if it.z < 0.0 && it.face == Face::Bottom { place_mesh(mesh, &PanelItem { face: Face::Roof, ..it.clone() }) } else { place_mesh(mesh, it) };
+        let tris = painted(mesh, tris);
+        return (!tris.is_empty()).then_some(tris);
+    }
+    if it.kind != ItemKind::Device {
+        return None;
+    }
     // Accessories mounted on the main part: every piece in its box.
     if let Some(a) = mounted(prj, it) {
         let mut out = Vec::new();

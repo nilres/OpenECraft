@@ -34,7 +34,9 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   its cores part from there in smooth curves, each into its connection point from the
   side its wires leave it; through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
-  through one gland side by side. In a cabinet without cable ducts on its mounting
+  through one cable entry flange or wall penetration side by side. Cable glands, fans
+  and handles are drawn with the models of their parts: a gland as its hexagon body,
+  neck and dome in nickel-plated brass or polyamide. In a cabinet without cable ducts on its mounting
   plate the wires are laid by the 3D routing (see below), from connection point to
   connection point.
 - Copper **busbar systems** (bars drawn, metres and holders in the BOM) and rectangular
@@ -505,7 +507,11 @@ such a way); of the ways that cost about the same, a route takes one whose bends
 their distance (a short stretch first or last). A route between a cabinet and a device in its
 room (or two cabinets of one room) runs in legs: through the cabinet to a cable gland on
 its roof, sides or rear (one of its own cabinet first, otherwise of the line-up; without
-one through the middle of the roof, which is reported), then through the room. A
+one through the middle of the roof, which is reported), then through the room. A cable
+gland takes one cable: the free one whose clamping range fits the cable, nearest to
+where it heads; a cable entry flange takes as many as have places along its membrane.
+A cable that finds every gland of its cabinet taken is not routed and reported as an
+error (*… every cable gland of … is taken by another cable. Add a cable gland for it*). A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.

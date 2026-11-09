@@ -337,15 +337,54 @@ fn cables_take_the_glands_that_fit_them() {
     let gland = |id: u64, part: &str| PanelItem { id, kind: ItemKind::Accessory, part: part.into(), ..Default::default() };
     let (m20, m32, m32b, m25) = (gland(1, "GEN.GLAND-M20"), gland(2, "GEN.GLAND-M32"), gland(3, "GEN.GLAND-M32"), gland(4, "GEN.GLAND-M25"));
     let mut glands = Glands::default();
+    let through = |e: Entry| match e {
+        Entry::Through(g) => Some(g.id),
+        Entry::None => None,
+        Entry::Taken => Some(0),
+    };
     // The nearest that fits the cable, even farther off than one that does not.
-    assert_eq!(glands.pick(&prj, vec![(&m32, 10.0), (&m20, 100.0)], 10.0).map(|g| g.id), Some(1));
-    // Each thick cable its own gland; a third shares the nearest.
-    assert_eq!(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0).map(|g| g.id), Some(2));
-    assert_eq!(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0).map(|g| g.id), Some(3));
-    assert_eq!(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0).map(|g| g.id), Some(2));
-    // None fits: a free one before a taken one; nothing without glands.
-    assert_eq!(glands.pick(&prj, vec![(&m32, 10.0), (&m25, 50.0)], 30.0).map(|g| g.id), Some(4));
-    assert_eq!(glands.pick(&prj, vec![], 30.0), None);
+    assert_eq!(through(glands.pick(&prj, vec![(&m32, 10.0), (&m20, 100.0)], 10.0)), Some(1));
+    // Each thick cable its own gland; a gland takes one cable, so a third finds none.
+    assert_eq!(through(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0)), Some(2));
+    assert_eq!(through(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0)), Some(3));
+    assert_eq!(through(glands.pick(&prj, vec![(&m32, 10.0), (&m32b, 50.0)], 20.0)), Some(0));
+    // None fits: the nearest free one; nothing without glands.
+    assert_eq!(through(glands.pick(&prj, vec![(&m32, 10.0), (&m25, 50.0)], 30.0)), Some(4));
+    assert_eq!(through(glands.pick(&prj, vec![], 30.0)), None);
+    // A cable entry flange takes cable after cable (each at a place of its own).
+    let mut prj = Project::default();
+    prj.parts.push(crate::parts::Part { number: "FLANGE".into(), subgroup: "Cable entry".into(), tech_data: "Cutout: 220 x 90".into(), ..Default::default() });
+    let flange = gland(5, "FLANGE");
+    for _ in 0..3 {
+        assert_eq!(through(glands.pick(&prj, vec![(&flange, 10.0)], 20.0)), Some(5));
+    }
+}
+
+#[test]
+fn a_cable_without_a_free_gland_is_reported() {
+    // Two of the four cores of the demo's motor cable as a cable -W2 of its own: two
+    // cables out of +CAB1 through its one gland. A gland takes one cable, so one of
+    // them is not routed, with an error that names the cabinet; a second gland takes
+    // the other.
+    let mut prj = demo_with_gland();
+    let part = prj.parts.iter().find(|p| p.number == "GEN.CBL-4G1.5").unwrap().clone();
+    let id = prj.new_id();
+    prj.cables.push(Cable { id, tag: "-W2".into(), cable_type: part.type_number.clone(), cores: part.tech_value("Cores").unwrap_or_default().into(), cross_section: part.tech_value("Cross-section").unwrap_or_default().into(), length: 15.0, part: part.number.clone(), ..Default::default() });
+    let page = prj.pages.iter().position(|p| p.name == "2").unwrap();
+    let wires: std::collections::BTreeSet<u64> = prj.pages[page].wires.iter().filter(|w| w.cable == "-W1").map(|w| w.id).take(2).collect();
+    assert_eq!(crate::ops::assign_cores(&mut prj, page, &wires, "-W2"), 2);
+    let an = Analysis::checked(&prj);
+    let (w1, w2) = (an.routing.item("-W1").unwrap(), an.routing.item("-W2").unwrap());
+    assert!(w1.routed() != w2.routed(), "{:?} {:?}", w1.status, w2.status);
+    let left = if w1.routed() { w2 } else { w1 };
+    assert_eq!(left.status, Status::Unrouted(tr("no free cable gland").to_string()));
+    let p = an.routing.problems.iter().find(|p| p.level == Level::Error && p.message.contains(&left.label)).unwrap_or_else(|| panic!("{:?}", an.routing.problems));
+    assert!(p.message.contains("every cable gland of +CAB1") && p.target.is_some(), "{}", p.message);
+    assert!(an.issues.iter().any(|i| i.severity == Severity::Error && i.message() == p.message));
+    crate::panel::place_accessory(&mut prj, 0, "GEN.GLAND-M25", Face::Bottom, crate::geom::p(160.0, 100.0)).unwrap();
+    let an = Analysis::checked(&prj);
+    assert!(["-W1", "-W2"].iter().all(|k| an.routing.item(k).unwrap().routed()), "{:?}", an.routing.problems);
+    assert!(an.routing.problems.iter().all(|p| !p.message.contains("every cable gland")), "{:?}", an.routing.problems);
 }
 
 #[test]

@@ -12,8 +12,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   bends and the nozzle it comes out of, and is reported as not routable where there is
   none. Cables and pipes through one wall penetration pass it side by side instead of
   through one point. The example `building_services` has its cable entry lower in the
-  wall, the water service sleeve in its building entry and the couplings of the
-  compressed air outlets beside their units, so that every line has room for its bends.
+  wall, the water service sleeve in front of its building entry and the couplings of
+  the compressed air outlets beside their units, so that every line has room for its
+  bends.
+- **One cable per cable gland:** a cable gland takes one cable (the free one whose
+  clamping range fits, nearest to where the cable heads); a cable that finds every
+  gland of its cabinet taken is not routed and reported as an error that names the
+  cabinet, instead of being drawn through a gland with another cable. Cable entry
+  flanges still take several cables side by side. Cable glands are drawn with a model
+  of their own (hexagon body, neck and dome) in the colour of their material, and the
+  generic catalog gains them in brass nickel-plated (`GEN.GLAND-M16-MS` …
+  `-M63-MS`), as EMC glands with a contact spring for the shield braid
+  (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
+  20x1.5) as manufacturer parts. The example `building_services` has a gland for every
+  cable, sized to it.
 - **Project properties:** the name and value fields of the custom properties use the
   width of the dialog instead of shrinking to a few characters; the dialog can be
   resized, and a long list of properties scrolls. A renamed property is applied when
