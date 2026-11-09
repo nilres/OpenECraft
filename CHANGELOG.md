@@ -10,6 +10,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   resized, and a long list of properties scrolls. A renamed property is applied when
   its name field loses focus (Esc keeps the old name), so the text cursor no longer
   jumps to another property while typing.
+- **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
+  would run into a neighbouring symbol goes on the other side of its symbol, above or
+  below, whichever is clear of symbols and wires; the tag of functions of one device
+  side by side in a row is shown once, at the first of them (the surge protective
+  devices `-F1` of the transformer metering examples no longer overlap). Tag blocks
+  placed by hand stay where they are.
 
 - Preserve imported plot-frame artwork and live page fields as reusable frames, separate from selectable page content, including canvas, frame preview and exports.
 
