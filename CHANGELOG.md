@@ -3,6 +3,22 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [Unreleased]
+
+- **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
+  and its corners are dragged afterwards; all buildings have to stay inside it, the check
+  reports rooms, roofs and cabinets outside it and the site plan draws them red.
+  Commands `plot`, `set_plot` ([panel layout](docs/features/panel-layout.md)).
+- **Georeferenced reference point:** a point of the plant with its easting, northing,
+  height and coordinate reference system and the direction of grid north; the site plan
+  shows the coordinates under the pointer and a north arrow, `list_buildings` the
+  coordinates of the buildings, IFC exports the plot's name, latitude and longitude.
+  *Site › Measure* measures distance and direction between two points. Commands
+  `set_reference_point`, `locate`, `measure`.
+- **A level in 3D:** a level clicked in the navigator while the 3D view is shown shows
+  all rooms of that level side by side at their places, with their cabinets, floor
+  slabs and stairs.
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
