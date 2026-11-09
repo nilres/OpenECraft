@@ -3,6 +3,16 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.2] - unreleased
+
+- **Cable cores at the cable definition line:** the stroke, core designation and cable
+  tag of each core sit where a cable definition line of its cable crosses the wire, so
+  they line up on wires of different lengths (30 % of the wire without a line). The core
+  designation and the cable tag of a selected wire can be dragged into place; they keep
+  their offset when the line moves, *Reset* in the wire properties places them
+  automatically again. `update_wire` takes `core_offset` and `cable_offset`
+  ([connections](docs/features/connections.md)).
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope
