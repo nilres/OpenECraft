@@ -1510,7 +1510,8 @@ impl Editor {
         })
         .filter(|m| !m.is_empty());
         // The tool stays for the next symbol: changing the routing now changes that
-        // one, never the symbol just placed.
+        // one, never the symbol just placed. The properties show the next one.
+        out.open_properties = true;
     }
 
     #[allow(clippy::too_many_arguments)]

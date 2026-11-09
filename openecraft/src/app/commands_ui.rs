@@ -503,11 +503,15 @@ impl App {
 
     /// Sets a tool of the page editor and brings the page to the front.
     pub(super) fn set_tool(&mut self, tool: Tool) {
+        let symbol_tool = matches!(tool, Tool::Junction(_));
         self.editor.set_tool(tool);
         if crate::dock::find(&self.dock, Pane::Page).is_some() || self.workspace.is_workshop() {
             self.show_pane(Pane::Page);
         } else {
             self.set_workspace(Workspace::Schematic);
+        }
+        if symbol_tool {
+            self.show_symbol_tool_properties();
         }
         self.backstage = None;
     }

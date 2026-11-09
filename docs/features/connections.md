@@ -72,8 +72,8 @@ when a device or a drop moves along the rail, the T-junction slides with the dro
 the rail moves, its drops stretch and the junction stays on it; when the whole node
 moves the junction moves with it.
 
-While a connection symbol tool is active, the Properties pane shows the routings of the
-next symbol to pick from, Tab cycles them and R (Rotate) turns the symbol. A symbol just
+While a connection symbol tool is active, the Properties pane (shown again by the tool
+when it was closed) holds the routings of the next symbol to pick from, Tab cycles them and R (Rotate) turns the symbol. A symbol just
 placed is not selected, so these choices only affect the symbols still to place; a
 placed one is changed by selecting it. Where three wires meet already, a T-junction
 takes its direction from them and the chosen routing.

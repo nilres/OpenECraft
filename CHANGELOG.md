@@ -10,8 +10,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   symbol tool is active, Tab (*Next routing of the connection symbol to place*) cycles
   the routing or orientation of the next symbol, Rotate turns it, and the Properties
   pane shows its routings to pick from; a placed symbol is no longer selected, so these
-  changes never alter it. A T-junction placed where three wires meet keeps the chosen
-  routing. Connection symbols follow their wires when wires or devices move, sliding
+  changes never alter it; the tools show the Properties pane again when it was closed.
+  A T-junction placed where three wires meet keeps the chosen routing. Connection
+  symbols follow their wires when wires or devices move, also in fast drags, sliding
   along the rail with their drop, and wires branching off a moved wire stretch with it.
 
 ## [0.1.1] - 2026-11-08

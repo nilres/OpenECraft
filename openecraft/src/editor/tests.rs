@@ -629,7 +629,10 @@ fn a_placed_connection_symbol_keeps_its_routing_when_the_next_one_changes() {
         frame(ed, &ctx, prj, 0, vec![button(at, true)]);
         frame(ed, &ctx, prj, 0, vec![button(at, false)]);
     };
-    click(&mut ed, &mut prj, pos2(500.0, 400.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(pos2(500.0, 400.0))]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(pos2(500.0, 400.0), true)]);
+    let out = frame(&mut ed, &ctx, &mut prj, 0, vec![button(pos2(500.0, 400.0), false)]);
+    assert!(out.open_properties, "the properties with the next symbol are shown again");
     let first = prj.pages[0].junctions.last().cloned().unwrap();
     assert!(ed.selection.is_empty(), "the placed symbol is not selected while the tool stays");
     ed.next_routing();

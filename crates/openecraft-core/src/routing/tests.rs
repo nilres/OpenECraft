@@ -703,3 +703,25 @@ fn a_tee_follows_its_drop_along_the_rail() {
         assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]), "split {split}");
     }
 }
+
+#[test]
+fn a_fast_drag_ends_like_a_single_move() {
+    // Regression (#96): a drag that went far and came back lost the T-junction.
+    // Steps that slide the drop along the rail, then take it past the rail's end
+    // (where it bends instead), and back.
+    let drags: [&[P]; 3] = [&[p(40.0, 0.0), p(160.0, 0.0)], &[p(40.0, 0.0), p(200.0, 0.0), p(-40.0, 0.0)], &[p(160.0, 0.0), p(80.0, 40.0), p(-120.0, -20.0), p(-80.0, -20.0)]];
+    for (split, steps) in [false, true].into_iter().flat_map(|s| drags.into_iter().map(move |d| (s, d))) {
+        let total = steps.iter().fold(p(0.0, 0.0), |a, d| a + *d);
+        let (mut one, _, _, contact, tee) = tee_on_rail(split);
+        move_selection(&mut one, 0, &BTreeSet::from([contact]), total);
+        let (mut prj, _, _, _, _) = tee_on_rail(split);
+        let sel = BTreeSet::from([contact]);
+        let mut drag = Moving::new(&prj, 0, &sel);
+        for d in steps {
+            drag.step(&mut prj, 0, &sel, *d);
+        }
+        assert_eq!(tee_pos(&prj, tee), tee_pos(&one, tee), "split {split}, {steps:?}");
+        assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]), "split {split}, {steps:?}");
+        assert_eq!(connections(&prj), connections(&one), "split {split}, {steps:?}");
+    }
+}

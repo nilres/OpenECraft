@@ -196,6 +196,8 @@ pub struct Moving {
     attached: Vec<(u64, bool)>,
     before: Before,
     stretched: Vec<Wire>,
+    /// Where the connection symbols are with the stretched wires.
+    spots: Vec<(u64, P)>,
     next_id: u64,
 }
 
@@ -203,15 +205,22 @@ impl Moving {
     pub fn new(prj: &Project, page: usize, sel: &BTreeSet<u64>) -> Moving {
         let pg = &prj.pages[page];
         let attached = ops::attached_wire_ends(&prj.symbol_table(), pg, sel);
-        Moving { attached, before: Before::of(pg, sel), stretched: pg.wires.clone(), next_id: prj.next_id }
+        let spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
+        Moving { attached, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
     }
 
     /// Moves the selection `d` further; attached wires stretch and stay square.
     pub fn step(&mut self, prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P) {
         let pg = &mut prj.pages[page];
         std::mem::swap(&mut pg.wires, &mut self.stretched);
+        for j in pg.junctions.iter_mut() {
+            if let Some((_, q)) = self.spots.iter().find(|(id, _)| *id == j.id) {
+                j.pos = *q;
+            }
+        }
         ops::translate(pg, sel, &self.attached, d);
         self.stretched.clone_from(&pg.wires);
+        self.spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
         prj.next_id = self.next_id;
         square_wires(prj, page, &self.before);
     }
