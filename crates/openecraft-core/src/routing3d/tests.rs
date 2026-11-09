@@ -542,3 +542,34 @@ fn leg_end(leg: &RouteLeg, last: bool) -> V3 {
         leg.points[0]
     }
 }
+
+#[test]
+fn routes_through_one_wall_penetration_pass_it_side_by_side() {
+    // A penetration of 300 x 200 mm in the right wall of a room, into the room behind.
+    let mut prj = Project::default();
+    let room = panel::new_room(&mut prj, "+R1", 4000.0, 3000.0, 2800.0);
+    prj.layout.enclosures.push(room);
+    let item = panel::add_opening(&mut prj, 0, panel::Opening::Penetration, Face::Wall(1), Some(1000.0), None, None).unwrap();
+    let link = panel::WallLink { from: 0, item, to: 1, via: panel::Via::Wall, a: [3940.0, 500.0, 1150.0], b: [60.0, 500.0, 1150.0], length: 360.0, leave: [[-1.0, 0.0, 0.0], [1.0, 0.0, 0.0]] };
+    let mut glands = Glands::default();
+    // The first cable of 25 mm through its middle; the second, which comes from the
+    // front of the room like it (z 300), 35 mm beside it on that side: at the same
+    // place on both sides of the wall.
+    let (front, rear) = ([1000.0, 500.0, 300.0], [1000.0, 500.0, 2000.0]);
+    assert_eq!(glands.through_wall(&prj, link, 25.0, front, front), link);
+    let second = glands.through_wall(&prj, link, 25.0, front, front);
+    assert_eq!((sub(second.a, link.a), sub(second.b, link.b)), ([0.0, 0.0, -35.0], [0.0, 0.0, -35.0]));
+    // One from the rear of the room behind takes the place on the other side.
+    let third = glands.through_wall(&prj, link.reversed(), 25.0, rear, rear);
+    assert_eq!((sub(third.a, link.b), sub(third.b, link.a)), ([0.0, 0.0, 35.0], [0.0, 0.0, 35.0]));
+    // Seven of them fill the row, the next ones go into the rows above and below it.
+    let more: Vec<panel::WallLink> = (0..6).map(|_| glands.through_wall(&prj, link, 25.0, front, front)).collect();
+    assert!(more[..4].iter().all(|l| l.a[1] == 500.0) && more[0].a[2] == 1080.0 && more[4].a == [3940.0, 465.0, 1150.0] && more[5].a == [3940.0, 535.0, 1150.0], "{more:?}");
+    let places: Vec<V3> = [link, second, third.reversed()].into_iter().chain(more).map(|l| l.a).collect();
+    for (i, p) in places.iter().enumerate() {
+        assert!(places[..i].iter().all(|q| dist(*p, *q) >= 34.0), "{places:?}");
+    }
+    // A shaft or a link between buildings is passed as it is.
+    let shaft = panel::WallLink { via: panel::Via::Shaft, ..link };
+    assert_eq!(glands.through_wall(&prj, shaft, 25.0, front, front), shaft);
+}

@@ -439,7 +439,10 @@ comes into the other one against the direction that one gives, never past it and
 the box of its own device where the point lies inside it, such as the terminals of a
 switch on its module, never through another device that stands right before the
 point), keeps half its thickness clear of everything, bends with its
-radius only, and keeps apart from every other route; routes come together only where
+radius only, and keeps apart from every other route and from itself (where its ends
+lie too close for its bend radius it runs round in a loop that never comes back
+across or alongside its own way, the bends at its corners and the nozzle it comes out
+of; where there is no such loop it is not routed); routes come together only where
 they come up to the same device, and there they lie side by side: a route never runs
 across another one it comes together with (it may only on its own way out of a
 connection point, or where it comes up to the device the other one ends at, and goes
@@ -452,8 +455,10 @@ round them. A wire that finds no such way is not drawn: it is reported as an err
 (*… cannot be routed: no way that keeps half its thickness clear of everything and
 bends with its radius of … mm*). The usual causes are a conductor too thick for the
 room between its ends (a busbar cross-section drawn as a wire: mount the devices on a
-busbar system instead), connection points that face away from each other, or a
-terminal strip right below a switch. The messages pane jumps to a connection point of
+busbar system instead), connection points that face away from each other, a
+terminal strip right below a switch, or two ends closer to each other than the bends
+between them need (a cable entry right below the box it leads into, two fittings one
+above the other with their ports on their sides). The messages pane jumps to a connection point of
 the wire or cable, and the 3D view shows a red note with the reason at each of its ends
 in place of the route.
 

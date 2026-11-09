@@ -260,11 +260,12 @@ pub(super) fn plan_legs(prj: &Project, pos: &[V3], poses: &[SitePose], lineup_of
         Some(if k == ri { sub(q, pos[ri]) } else { cabinet_in_room(prj, poses, ri, k, sub(q, pos[k])) })
     };
     let at = [in_room(rooms[0], &ends[0])?, in_room(rooms[1], &ends[1])?];
-    // Through the nearest of the wall penetrations joining two rooms.
+    // Through the nearest of the wall penetrations joining two rooms, beside the routes
+    // that went through it before.
     for i in 0..chain.len() {
         let from = if i == 0 { at[0] } else { chain[i - 1].b };
         let to = chain.get(i + 1).map_or(at[1], |l| l.a);
-        chain[i] = nearest_link(links, chain[i], from, to);
+        chain[i] = taken.through_wall(prj, nearest_link(links, chain[i], from, to), diameter, from, to);
     }
     // What each end heads for in its room: the other end, or the wall penetration.
     let near = [chain.first().map_or(at[1], |l| l.a), chain.last().map_or(at[0], |l| l.b)];

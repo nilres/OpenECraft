@@ -3,6 +3,18 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
+## [0.1.2] - unreleased
+
+- **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
+  too close for its bend radius no longer runs back across or alongside its own way
+  (the supply cable `=GRID-W1` of the example `building_services` crossed itself below
+  the house connection box); it takes a loop that keeps its thickness from itself, its
+  bends and the nozzle it comes out of, and is reported as not routable where there is
+  none. Cables and pipes through one wall penetration pass it side by side instead of
+  through one point. The example `building_services` has its cable entry lower in the
+  wall, the water service sleeve in its building entry and the couplings of the
+  compressed air outlets beside their units, so that every line has room for its bends.
+
 ## [0.1.1] - 2026-11-08
 
 - **PV arrays on roofs:** rows of solar modules on every roof shape, parallel to a slope

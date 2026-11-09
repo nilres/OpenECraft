@@ -599,11 +599,13 @@ pub fn entries(prj: &Project, ei: usize) -> Vec<&PanelItem> {
 }
 
 /// The cable glands the cables routed so far go through (by item id), and where they
-/// go through them.
+/// go through them; the places the cables and tubes took in the wall penetrations they
+/// pass (by item id: how far beside and below the middle of the opening, and how thick).
 #[derive(Default)]
 struct Glands {
     taken: HashMap<u64, usize>,
     through: HashMap<u64, Vec<V3>>,
+    passed: HashMap<u64, Vec<([f32; 2], f32)>>,
 }
 
 impl Glands {
@@ -636,6 +638,44 @@ impl Glands {
         };
         through.push(q);
         q
+    }
+
+    /// The way through a wall penetration for a cable or tube of `diameter` that comes
+    /// from `from` in the room before it and goes on to `to` in the room behind (room
+    /// coordinates of each): at a place of its own in the opening, its thickness and a
+    /// centimetre from the ones that went through before it, the free place nearest to
+    /// the middle (in the middle row first, on the side its nearer end lies on: there
+    /// it has the least room to pass the ones beside it before the wall); in the middle
+    /// where none is free. Other ways between rooms as they are.
+    fn through_wall(&mut self, prj: &Project, link: panel::WallLink, diameter: f32, from: V3, to: V3) -> panel::WallLink {
+        if link.via != panel::Via::Wall {
+            return link;
+        }
+        // The opening is an item of one of the two rooms: places count to the right
+        // seen from inside that one.
+        let item = |ri: usize| prj.layout.enclosures.get(ri).and_then(|e| e.item(link.item));
+        let (it, side) = match (item(link.from), item(link.to)) {
+            (Some(it), _) => (it, 1.0),
+            (None, Some(it)) => (it, -1.0),
+            (None, None) => return link,
+        };
+        // Along the wall, across the way through it: the same way seen from both rooms.
+        let across = |leave: V3, by: f32| [-leave[2] * by, 0.0, leave[0] * by];
+        let (ua, ub) = (across(link.leave[0], 1.0), across(link.leave[1], -1.0));
+        let comes = if dist(from, link.a) <= dist(to, link.b) { dot(sub(from, link.a), ua) } else { dot(sub(to, link.b), ub) } * side;
+        let pitch = diameter + 10.0;
+        let most = |size: f32| ((size - diameter) / 2.0 / pitch).floor().max(0.0) as i32;
+        let (n, m) = (most(it.w), most(it.h));
+        let taken = self.passed.entry(link.item).or_default();
+        let free = |off: [f32; 2]| taken.iter().all(|(t, d)| (t[0] - off[0]).hypot(t[1] - off[1]) >= (diameter + d) / 2.0 + 9.0);
+        let off = (-m..=m)
+            .flat_map(|j| (-n..=n).map(move |k| (j, k)))
+            .filter(|&(j, k)| free([k as f32 * pitch, j as f32 * pitch]))
+            .min_by_key(|&(j, k)| (j.abs(), k.abs(), k as f32 * comes < 0.0, j, k))
+            .map_or([0.0; 2], |(j, k)| [k as f32 * pitch, j as f32 * pitch]);
+        taken.push((off, diameter));
+        let down = [0.0, off[1], 0.0];
+        panel::WallLink { a: add(add(link.a, scale(ua, off[0] * side)), down), b: add(add(link.b, scale(ub, off[0] * side)), down), ..link }
     }
 
     /// The gland for a cable of `diameter` among the `candidates` (each with how far it

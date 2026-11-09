@@ -1385,7 +1385,8 @@ fn clipping_in_3d(prj: &Project) -> Vec<String> {
                         let (_, _, _, ends2) = &tubes[i2];
                         let zone = (4.0 * (r + r2) + 20.0).max(3.0 * prj.layout.routing.grid + r + r2);
                         let same_item = ends.iter().any(|id| ends2.contains(id) && boxes.get(id).is_some_and(|b| within_box(near, grown(*b, zone))));
-                        if shared || same_item {
+                        // (A tube with itself converges nowhere.)
+                        if i2 != i && (shared || same_item) {
                             continue;
                         }
                         // Pushed apart until they overlap by no more than the layout leaves

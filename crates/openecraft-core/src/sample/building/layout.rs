@@ -145,6 +145,12 @@ fn fittings(prj: &mut Project, room: usize, face: Face, y: f32, at: &[(&str, f32
     }
 }
 
+/// Where the coupling of a compressed air outlet hangs: its middle this far beside the
+/// outlet port of the unit before it, its top this much lower than a unit would hang
+/// below that one.
+const COUPLING_ASIDE: f32 = 150.0;
+const COUPLING_BELOW: f32 = 80.0;
+
 pub(super) fn rooms(prj: &mut Project, db: &PartsDb, section: u64) {
     let [md, cc1, rack, acd, gak, hak] = enclosures(prj, db);
     house_connection_room(prj, md, hak);
@@ -337,8 +343,10 @@ fn house_connection_room(prj: &mut Project, md: usize, hak: usize) {
     prj.layout.enclosures.push(hr);
     let hr = prj.layout.enclosures.len() - 1;
     // Walls: 0 rear, 1 right (to the technical room), 2 front, 3 left.
-    panel::add_opening(prj, hr, Opening::Entry, Face::Wall(3), Some(600.0), None, None).expect("cable entry");
-    panel::add_opening(prj, hr, Opening::Entry, Face::Wall(3), Some(2500.0), Some((200.0, 200.0)), Some(1140.0)).expect("water entry");
+    // The cable entry low in the wall: the supply cable, 45 mm thick, bends up out of
+    // it and over into the house connection box with its bend radius of 180 mm.
+    panel::add_opening(prj, hr, Opening::Entry, Face::Wall(3), Some(600.0), None, Some(225.0)).expect("cable entry");
+    panel::add_opening(prj, hr, Opening::Entry, Face::Wall(3), Some(2700.0), Some((200.0, 200.0)), Some(1140.0)).expect("water entry");
     panel::add_opening(prj, hr, Opening::Door, Face::Wall(2), Some(400.0), None, None).expect("door");
     panel::add_opening(prj, hr, Opening::Penetration, Face::Wall(1), Some(1000.0), None, None).expect("cable penetration");
     panel::add_opening(prj, hr, Opening::Penetration, Face::Wall(1), Some(2400.0), Some((200.0, 200.0)), Some(1140.0)).expect("pipe penetration");
@@ -349,8 +357,9 @@ fn house_connection_room(prj: &mut Project, md: usize, hak: usize) {
     panel::mount_on_wall(prj, hr, "=GRID+HR-X1", Face::Wall(3), p(950.0, 2220.0)).expect("main earthing busbar");
     panel::mount_on_wall(prj, hr, "=GRID+HR-E1", Face::Wall(3), p(960.0, 2320.0)).expect("foundation earth electrode");
     // The water main along a pipe run on the left wall to the motor valve beside the
-    // wall penetration.
-    fittings(prj, hr, Face::Wall(3), 1560.0, &[("=WAT+HR-UM1", 2300.0), ("=WAT+HR-QM1", 2000.0), ("=WAT+HR-BF1", 1600.0), ("=WAT+HR-RM1", 1250.0)]);
+    // wall penetration; its wall sleeve sits right before the building entry, far enough
+    // from the ball valve for the pipe out of the wall to bend round and along it.
+    fittings(prj, hr, Face::Wall(3), 1560.0, &[("=WAT+HR-UM1", 2510.0), ("=WAT+HR-QM1", 2000.0), ("=WAT+HR-BF1", 1600.0), ("=WAT+HR-RM1", 1250.0)]);
     fittings(prj, hr, Face::Wall(1), 1560.0, &[("=WAT+HR-QM2", 1900.0)]);
     panel::add_pipe_run(prj, hr, Face::Wall(3), &[p(1100.0, 1560.0), p(2700.0, 1560.0)], None, None, Some("PR1")).expect("pipe run");
     panel::add_wall_profile(prj, hr, ItemKind::Duct, "GEN.DUCT-100X80", Face::Roof, p(400.0, 1150.0), p(3900.0, 1150.0)).expect("cable tray");
@@ -415,14 +424,18 @@ fn technical_room(prj: &mut Project, [cc1, rack, acd, gak]: [usize; 4]) {
     panel::add_pipe_run(prj, tr, Face::Wall(2), &[p(200.0, 1560.0), p(5800.0, 1560.0)], None, Some(250.0), Some("PR2")).expect("pipe run");
     fittings(prj, tr, Face::Wall(1), 2000.0, &[("=HEAT+TR-GP1", 2300.0)]);
     // Compressed air: the distribution line along the common wall, each outlet hanging
-    // from it with its treatment.
+    // from it with its treatment. The units have their ports on their sides: the
+    // coupling hangs beside the last one and lower, where the pipe out of its outlet
+    // port bends down into it.
     for ((devices, _), x) in super::air::OUTLETS.iter().zip([1200.0, 1600.0, 2000.0, 2900.0]) {
-        let mut y = 1000.0;
-        for (_, tag) in devices.iter() {
+        let (mut y, mut right) = (1000.0, x);
+        for (i, (_, tag)) in devices.iter().enumerate() {
             let tag = format!("=AIR+TR{tag}");
             let (w, h) = panel::device_size(prj, &tag).map_or((80.0, 80.0), |d| (d.w, d.h));
-            panel::mount_on_wall(prj, tr, &tag, Face::Wall(3), p(x - w / 2.0, y)).unwrap_or_else(|e| panic!("{tag}: {e}"));
-            y += h + 60.0;
+            let coupling = i + 1 == devices.len();
+            let at = if coupling { p(right + COUPLING_ASIDE - w / 2.0, y + COUPLING_BELOW) } else { p(x - w / 2.0, y) };
+            panel::mount_on_wall(prj, tr, &tag, Face::Wall(3), at).unwrap_or_else(|e| panic!("{tag}: {e}"));
+            (y, right) = (y + h + 60.0, x + w / 2.0);
         }
     }
     panel::add_pipe_run(prj, tr, Face::Wall(3), &[p(1000.0, 900.0), p(3100.0, 900.0)], None, None, Some("PR3")).expect("pipe run");
