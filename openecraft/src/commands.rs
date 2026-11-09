@@ -70,6 +70,7 @@ pub enum Cmd {
     TextTool,
     ConnDefTool,
     CableDefTool,
+    StructureBoxTool,
     JunctionTool,
     CornerTool,
     CrossingTool,
@@ -239,6 +240,9 @@ pub enum Cmd {
     LayoutLineup,
     LayoutSite,
     LayoutBuilding,
+    LayoutPlotBoundary,
+    LayoutReferencePoint,
+    LayoutMeasure,
     LayoutZones,
     LayoutOpenWalls,
     LayoutHideFrontWalls,
@@ -277,6 +281,7 @@ pub fn changes_page(cmd: Cmd) -> bool {
             | Cmd::TextTool
             | Cmd::ConnDefTool
             | Cmd::CableDefTool
+            | Cmd::StructureBoxTool
             | Cmd::JunctionTool
             | Cmd::CornerTool
             | Cmd::CrossingTool
@@ -453,6 +458,8 @@ pub static ALL: &[Def] = &[
         .tip(tr_const!("Connection definition point: defines number, colour, cross-section and cable core of a connection")),
     d(C::CableDefTool, "cable_definition", tr_const!("Cable definition"), I::CableDef)
         .tip(tr_const!("Cable definition: draw a line across the wires that are cores of a cable")),
+    d(C::StructureBoxTool, "structure_box", tr_const!("Structure box"), I::StructureBox)
+        .tip(tr_const!("Structure box: draw a rectangle around an area whose devices take other function (=) or location (+) identifiers than the page")),
     d(C::JunctionTool, "t_junction", tr_const!("T-junction"), I::Junction)
         .tip(tr_const!("Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets")),
     d(C::CornerTool, "corner", tr_const!("Corner"), I::Corner)
@@ -664,6 +671,15 @@ pub static ALL: &[Def] = &[
     d(C::LayoutFloorPlan, "layout_floor_plan", tr_const!("Floor plan"), I::Grid)
         .toggle()
         .tip(tr_const!("Floor plan of the room: drag walls to move them, drag cabinets to their places")),
+    d(C::LayoutPlotBoundary, "layout_plot_boundary", tr_const!("Plot boundary"), I::Polygon)
+        .toggle()
+        .tip(tr_const!("Draw the boundary of the plot in the site plan: click its corners, click the first one or press Enter to close; all buildings have to stay inside it")),
+    d(C::LayoutReferencePoint, "layout_reference_point", tr_const!("Reference point"), I::Pin)
+        .toggle()
+        .tip(tr_const!("Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it")),
+    d(C::LayoutMeasure, "layout_measure", tr_const!("Measure"), I::Dimension)
+        .toggle()
+        .tip(tr_const!("Measure in the site plan: click two points for the distance, how far east and north and the direction from north")),
     d(C::LayoutDrawWalls, "layout_draw_walls", tr_const!("Draw walls"), I::Polyline)
         .toggle()
         .tip(tr_const!("Draw the walls of the room: click the corners, walls run at right angles; click the first corner or press Enter to close")),
