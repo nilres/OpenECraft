@@ -10,6 +10,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   resized, and a long list of properties scrolls. A renamed property is applied when
   its name field loses focus (Esc keeps the old name), so the text cursor no longer
   jumps to another property while typing.
+- **Structure boxes:** *Insert › Structure box* draws a rectangle whose devices take other
+  function (`=`) or location (`+`) identifiers than the page (also installation site and
+  product); only the aspects set on the box override the page, nested boxes resolve to
+  the innermost. Devices follow when their main function moves into or out of a box or
+  the box is moved, resized or changed (in one undo step); aspects set on a device stay,
+  and a tag that exists already is refused instead of merging two devices. Tags on the
+  page omit what the box shows; the symbol properties show where each aspect comes from;
+  the structure check reports overlapping boxes. Commands `add_structure_box`,
+  `update_structure_box`, `list_structure_boxes`
+  ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
 - **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
   would run into a neighbouring symbol goes on the other side of its symbol, above or
   below, whichever is clear of symbols and wires; the tag of functions of one device
