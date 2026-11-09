@@ -21,7 +21,9 @@ impl App {
         match cmd {
             Cmd::Undo => self.session.history.can_undo(),
             Cmd::Redo => self.session.history.can_redo(),
-            Cmd::Cut | Cmd::Copy | Cmd::Delete | Cmd::Rotate | Cmd::Mirror | Cmd::MoveBy | Cmd::MultipleCopy | Cmd::SaveSelectionAsMacro | Cmd::AutoConnectSelection => has_sel,
+            // Rotate turns the symbol to place while a placing tool is active.
+            Cmd::Rotate => has_sel || matches!(self.editor.tool, Tool::Place(_) | Tool::Junction(_)),
+            Cmd::Cut | Cmd::Copy | Cmd::Delete | Cmd::Mirror | Cmd::MoveBy | Cmd::MultipleCopy | Cmd::SaveSelectionAsMacro | Cmd::AutoConnectSelection => has_sel,
             Cmd::Paste => self.editor.clip.is_some(),
             Cmd::Align => self.editor.selection.len() >= 2,
             Cmd::Distribute => self.editor.selection.len() >= 3,
@@ -283,6 +285,8 @@ impl App {
             Cmd::Rotate => {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_rot = (self.editor.place_rot + 1) % 4;
+                } else if matches!(self.editor.tool, Tool::Junction(_)) {
+                    self.editor.symbol_proto.turn();
                 } else {
                     routing::rotate(&mut self.session.prj, page, &self.editor.selection);
                 }

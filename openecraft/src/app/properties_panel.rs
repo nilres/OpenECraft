@@ -186,6 +186,11 @@ impl App {
                 self.page_props = Some(pi);
             }
             ui.add_space(6.0);
+            if matches!(self.editor.tool, Tool::Junction(_)) {
+                ui.separator();
+                self.junction_tool_properties(ui);
+                ui.separator();
+            }
             ui.weak(self.editor.hint());
             return;
         }

@@ -595,6 +595,13 @@ pub fn box_selects(window: R, crossing: bool, item: R) -> bool {
 }
 
 impl Editor {
+    /// The connection symbol tool places its next symbol with the following routing.
+    pub fn next_routing(&mut self) {
+        if matches!(self.tool, Tool::Junction(_)) {
+            self.symbol_proto = junctions::next_choice(&self.symbol_proto);
+        }
+    }
+
     pub fn set_tool(&mut self, tool: Tool) {
         if !matches!(tool, Tool::Place(_)) {
             self.place_tag = None;
@@ -793,14 +800,14 @@ impl Editor {
     }
 
     /// The connection symbol the tool would place at `q`: a T-junction with its stem
-    /// after the wires meeting there, a corner with the arms of the two wires there,
-    /// else in the tool's direction.
+    /// after the wires meeting there (and the tool's routing), a corner with the arms
+    /// of the two wires there, else in the tool's direction.
     fn junction_at(&self, page: &Page, q: P, kind: JunctionKind) -> Junction {
         let arms = junctions::arms(page, q);
         let proto = if self.symbol_proto.kind == kind { self.symbol_proto.clone() } else { Junction::new(kind, q) };
         match kind {
             JunctionKind::Tee => match arms.as_deref().and_then(junctions::stem_of) {
-                Some(dir) => Junction { pos: q, dir, variant: 3, ..proto },
+                Some(dir) => Junction { pos: q, dir, ..proto },
                 None => Junction { pos: q, ..proto },
             },
             JunctionKind::Corner => match arms.as_deref().and_then(junctions::corner_of) {
@@ -1239,7 +1246,7 @@ impl Editor {
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
         let g = self.grid;
         let sc = &self.shortcuts;
-        let (esc, enter, r, m, a, del, space, fit, all, arrows, events) = ui.input(|i| {
+        let (esc, enter, r, m, a, del, space, fit, all, arrows, next, events) = ui.input(|i| {
             (
                 i.key_pressed(Key::Escape),
                 sc.action_pressed(i, Action::FinishPolyline),
@@ -1256,6 +1263,7 @@ impl Editor {
                     (sc.action_pressed(i, Action::NudgeUp), p(0.0, -g)),
                     (sc.action_pressed(i, Action::NudgeDown), p(0.0, g)),
                 ],
+                sc.action_pressed(i, Action::NextRouting),
                 i.events.clone(),
             )
         });
@@ -1298,6 +1306,9 @@ impl Editor {
         if a && self.tool == Tool::Wire {
             self.autoroute = !self.autoroute;
             self.route_cache = None;
+        }
+        if next {
+            self.next_routing();
         }
         if r {
             if matches!(self.tool, Tool::Place(_)) {
@@ -1498,8 +1509,8 @@ impl Editor {
             }
         })
         .filter(|m| !m.is_empty());
-        self.selection = BTreeSet::from([id]);
-        out.open_properties = true;
+        // The tool stays for the next symbol: changing the routing now changes that
+        // one, never the symbol just placed.
     }
 
     #[allow(clippy::too_many_arguments)]

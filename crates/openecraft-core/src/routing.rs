@@ -51,9 +51,12 @@ fn pin_used(page: &Page, all: &[(u64, P, P)], sym: u64, q: P, dir: P) -> bool {
         || all.iter().any(|(id, o, _)| *id != sym && o.same(q))
 }
 
-/// Can a wire run from `a` to `b` without touching anything but its end points?
+/// Can a wire run from `a` to `b` without touching anything but its end points? A
+/// pin end must not lie on a wire; a connection symbol may sit on a wire running
+/// through it (a T-junction on a rail).
 fn clear(symbols: &Symbols, page: &Page, all: &[(u64, P, P)], a: P, b: P, ends: [u64; 2]) -> bool {
-    !page.wires.iter().any(|w| on_segment_interior(a, w.a, w.b) || on_segment_interior(b, w.a, w.b)) && unobstructed(symbols, page, all, a, b, &ends)
+    let on_wire = |q: P, id: u64| !page.junctions.iter().any(|j| j.id == id) && page.wires.iter().any(|w| on_segment_interior(q, w.a, w.b));
+    !on_wire(a, ends[0]) && !on_wire(b, ends[1]) && unobstructed(symbols, page, all, a, b, &ends)
 }
 
 /// Is the way from `a` to `b` free of connection points, wire ends and symbols other
@@ -149,12 +152,20 @@ struct HeldLine {
     past: (f32, f32),
 }
 
-/// A page before items move: its wires and the points and lines on them that do not
-/// move by themselves, which stay on their wires.
+/// A connection symbol that does not move by itself: the wire ends (wire id, is end
+/// `a`) at its point, which it follows.
+struct HeldJunction {
+    id: u64,
+    ends: Vec<(u64, bool)>,
+}
+
+/// A page before items move: its wires and the points, lines and connection symbols
+/// on them that do not move by themselves, which stay on their wires.
 pub struct Before {
     wires: Vec<Wire>,
     points: Vec<HeldPoint>,
     lines: Vec<HeldLine>,
+    junctions: Vec<HeldJunction>,
 }
 
 impl Before {
@@ -170,7 +181,11 @@ impl Before {
             let (first, last) = reach(page.wires.iter().filter(|w| wires.contains(&w.id)), c.a, dir)?;
             Some(HeldLine { id: c.id, a: c.a, b: c.b, wires, past: (first, c.a.dist(c.b) - last) })
         });
-        Before { lines: lines.collect(), points: points.collect(), wires: page.wires.clone() }
+        let junctions = page.junctions.iter().filter(|j| !sel.contains(&j.id)).map(|j| {
+            let ends = page.wires.iter().flat_map(|w| [(w.id, true, w.a), (w.id, false, w.b)]).filter(|(_, _, q)| q.same(j.pos)).map(|(id, is_a, _)| (id, is_a));
+            HeldJunction { id: j.id, ends: ends.collect() }
+        });
+        Before { lines: lines.collect(), points: points.collect(), junctions: junctions.collect(), wires: page.wires.clone() }
     }
 }
 
@@ -302,6 +317,26 @@ fn place_points(page: &mut Page, before: &Before, bent: &HashMap<u64, (Vec<P>, V
     }
 }
 
+/// Keeps the connection symbols of `before` with their wires: one whose wires no
+/// longer form it where it is goes to where the wire ends that met at it are now and
+/// form it again (a T-junction slides along the rail with its drop).
+fn place_junctions(page: &mut Page, before: &Before) {
+    for h in &before.junctions {
+        let Some(j) = page.junctions.iter().find(|j| j.id == h.id) else { continue };
+        let mut want = j.arms();
+        want.sort();
+        let forms = |q: P| crate::netlist::junctions::arms(page, q).is_some_and(|a| a == want);
+        if forms(j.pos) {
+            continue;
+        }
+        let ends = h.ends.iter().filter_map(|&(id, is_a)| page.wires.iter().find(|w| w.id == id).map(|w| if is_a { w.a } else { w.b }));
+        let Some(to) = ends.filter(|q| !q.same(j.pos)).find(|q| forms(*q)) else { continue };
+        if let Some(j) = page.junctions.iter_mut().find(|j| j.id == h.id) {
+            j.pos = to;
+        }
+    }
+}
+
 /// First and last place, as distances from `at` in direction `dir`, where `wires`
 /// cross the endless line through `at`.
 fn reach<'a>(wires: impl Iterator<Item = &'a Wire>, at: P, dir: P) -> Option<(f32, f32)> {
@@ -365,7 +400,9 @@ pub fn square_wires(prj: &mut Project, page_i: usize, before: &Before) {
         }
     }
     let mut pending: BTreeSet<u64> = bent.iter().map(|b| b.0).collect();
-    let all = pins(&symbols, &prj.pages[page_i]);
+    // Connection symbols do not hold the wires: they follow them afterwards.
+    let pg = &prj.pages[page_i];
+    let all: Vec<(u64, P, P)> = pins(&symbols, pg).into_iter().filter(|(id, _, _)| !pg.junctions.iter().any(|j| j.id == *id)).collect();
     let mut split = HashMap::new();
     for (id, a_moved, vertical) in bent {
         pending.remove(&id);
@@ -424,6 +461,7 @@ pub fn square_wires(prj: &mut Project, page_i: usize, before: &Before) {
     }
     place_points(&mut prj.pages[page_i], before, &split);
     ops::cleanup_wires(&mut prj.pages[page_i]);
+    place_junctions(&mut prj.pages[page_i], before);
     let added = split.into_iter().map(|(id, (_, added))| (id, added)).collect();
     place_lines(&mut prj.pages[page_i], before, &added);
 }

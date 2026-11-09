@@ -641,3 +641,65 @@ fn a_cable_line_that_crosses_nothing_stays() {
     move_selection(&mut prj, 0, &sel, p(-80.0, 8.0));
     assert_eq!(line_ends(&prj, cd), (p(80.0, 200.0), p(120.0, 200.0)));
 }
+
+#[test]
+fn autoconnect_branches_from_a_tee_on_a_continuous_wire() {
+    // Regression (#96): a T-junction placed on one wire running through it.
+    let mut prj = Project::default();
+    wire(&mut prj, p(20.0, 80.0), p(120.0, 80.0));
+    let contact = sym(&mut prj, "no", p(60.0, 120.0));
+    let tee = prj.new_id();
+    prj.pages[0].junctions.push(Junction { id: tee, pos: p(60.0, 80.0), dir: TeeDir::Down, variant: 3, ..Default::default() });
+    let st = prj.symbol_table();
+    assert_eq!(autoconnect(&st, &prj.pages[0], &BTreeSet::from([tee]), 400.0), vec![(p(60.0, 80.0), p(60.0, 116.0))]);
+    assert_eq!(autoconnect(&st, &prj.pages[0], &BTreeSet::from([contact]), 400.0), vec![(p(60.0, 116.0), p(60.0, 80.0))]);
+    assert_eq!(apply_autoconnect(&mut prj, 0, &BTreeSet::from([tee])), 1);
+    assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]));
+    // The arms along the wire are used: no second branch.
+    assert!(autoconnect(&prj.symbol_table(), &prj.pages[0], &BTreeSet::from([tee, contact]), 400.0).is_empty());
+}
+
+/// A rail with a T-junction at x 100 and a drop from it to a contact below.
+fn tee_on_rail(split: bool) -> (Project, u64, u64, u64, u64) {
+    let mut prj = Project::default();
+    let rail = if split {
+        let r = wire(&mut prj, p(20.0, 20.0), p(100.0, 20.0));
+        wire(&mut prj, p(100.0, 20.0), p(200.0, 20.0));
+        r
+    } else {
+        wire(&mut prj, p(20.0, 20.0), p(200.0, 20.0))
+    };
+    let drop = wire(&mut prj, p(100.0, 20.0), p(100.0, 76.0));
+    let contact = sym(&mut prj, "no", p(100.0, 80.0));
+    let tee = prj.new_id();
+    prj.pages[0].junctions.push(Junction { id: tee, pos: p(100.0, 20.0), dir: TeeDir::Down, variant: 3, ..Default::default() });
+    (prj, rail, drop, contact, tee)
+}
+
+fn tee_pos(prj: &Project, id: u64) -> P {
+    prj.pages[0].junctions.iter().find(|j| j.id == id).unwrap().pos
+}
+
+#[test]
+fn a_tee_follows_its_drop_along_the_rail() {
+    // Regression (#96): moving the wires left the junction behind.
+    for split in [false, true] {
+        // The device below moves: the drop slides along the rail, the T with it.
+        let (mut prj, _, drop, contact, tee) = tee_on_rail(split);
+        move_selection(&mut prj, 0, &BTreeSet::from([contact]), p(40.0, 0.0));
+        assert_eq!(the_wire(&prj, drop).a, p(140.0, 20.0), "split {split}");
+        assert_eq!(tee_pos(&prj, tee), p(140.0, 20.0), "split {split}: the T moves with the device");
+        assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]), "split {split}");
+        // The drop itself moves along the rail.
+        let (mut prj, _, drop, _, tee) = tee_on_rail(split);
+        move_selection(&mut prj, 0, &BTreeSet::from([drop]), p(-40.0, 0.0));
+        assert_eq!(tee_pos(&prj, tee), p(60.0, 20.0), "split {split}: the T moves with the drop");
+        assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]), "split {split}");
+        // The rail moves down: the drop gets shorter, the T stays on the rail.
+        let (mut prj, rail, _, _, tee) = tee_on_rail(split);
+        let sel: BTreeSet<u64> = if split { prj.pages[0].wires.iter().filter(|w| w.a.y == 20.0 && w.b.y == 20.0).map(|w| w.id).collect() } else { BTreeSet::from([rail]) };
+        move_selection(&mut prj, 0, &sel, p(0.0, 16.0));
+        assert_eq!(tee_pos(&prj, tee), p(100.0, 36.0), "split {split}: the T moves with the rail");
+        assert!(crate::netlist::junctions::fits(&prj, &prj.pages[0], &prj.pages[0].junctions[0]), "split {split}");
+    }
+}
