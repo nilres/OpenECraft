@@ -687,6 +687,7 @@ Selectivity and back-up protection of device pairs from the manufacturers' table
 Separator: semicolon, comma or tab	Роздільник: semicolon, comma або tab
 Sets how cross references are shown (only the given settings) and shows the settings	Задає спосіб показу перехресних посилань (лише задані параметри) і показує параметри
 Sets how the terminals of a jumper are bridged	Задає спосіб з’єднання клем перемички
+Sets how wire ends without a chosen termination are terminated: with ferrules or bare, and with twin ferrules where two wires share a connection point	Задає оконцювання кінців проводів без вибраного оконцювання: з наконечниками або без них, і з подвійними наконечниками там, де два проводи підключені до однієї точки
 Sets property values of an object; an empty value removes it	Задає значення властивостей об’єкта; порожнє значення вилучає його
 Sets the aspects the pages use	Задає аспекти, які використовують сторінки
 Sets the collision class of a panel item (empty: automatic)	Задає клас колізій елемента компонування (порожньо: автоматично)
@@ -822,6 +823,7 @@ Top edge on the face in mm	Верхній край на грані в мм
 Top edge on the mounting plate in mm	Верхній край на монтажній панелі в мм
 Translated line	Перекладений рядок
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Поворот навколо вертикалі в градусах проти годинникової стрілки, якщо дивитися згори (90: фронти повернуті праворуч)
+Two wires at a connection point share a twin ferrule	Два проводи в точці підключення отримують спільний подвійний наконечник
 Unit, e.g. kW	Одиниця, напр. kW
 Unknown accessory kind: {}	Невідомий тип аксесуара: {}
 Unknown action: {}	Невідома дія: {}
@@ -905,6 +907,7 @@ Windows: height of the bottom edge above the floor in mm	Вікна: висот�
 Wire colour (IEC 60757), e.g. BK	Колір проводу (IEC 60757), напр. BK
 Wire colour, e.g. BU	Колір проводу, напр. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Колір проводу, напр. BU (порожньо = з визначення потенціалу)
+Wire ends get ferrules	Кінці проводів отримують наконечники
 Wire number (kept when renumbering)	Номер проводу (зберігається під час перенумерації)
 Wire numbering and wiring marks	Нумерація проводів і позначки монтажу проводів
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Проводи, затонкі для свого захисного пристрою, і спад напруги кабелів (IEC 60204-1)

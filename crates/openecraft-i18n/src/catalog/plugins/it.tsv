@@ -687,6 +687,7 @@ Selectivity and back-up protection of device pairs from the manufacturers' table
 Separator: semicolon, comma or tab	Separatore: semicolon, comma o tab
 Sets how cross references are shown (only the given settings) and shows the settings	Imposta come vengono mostrati i riferimenti incrociati (solo le impostazioni indicate) e mostra le impostazioni
 Sets how the terminals of a jumper are bridged	Imposta come vengono ponticellati i morsetti di un ponticello
+Sets how wire ends without a chosen termination are terminated: with ferrules or bare, and with twin ferrules where two wires share a connection point	Imposta come vengono terminate le estremità dei conduttori senza terminazione scelta: con puntalini o spellate, e con puntalini doppi dove due conduttori condividono un punto di connessione
 Sets property values of an object; an empty value removes it	Imposta i valori delle proprietà di un oggetto; un valore vuoto lo rimuove
 Sets the aspects the pages use	Imposta gli aspetti usati dalle pagine
 Sets the collision class of a panel item (empty: automatic)	Imposta la classe di collisione di un elemento del layout (vuoto: automatico)
@@ -822,6 +823,7 @@ Top edge on the face in mm	Bordo superiore sulla faccia in mm
 Top edge on the mounting plate in mm	Bordo superiore sulla piastra di montaggio in mm
 Translated line	Riga tradotta
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotazione attorno all'asse verticale in gradi, in senso antiorario visto dall'alto (90: i fronti sono rivolti a destra)
+Two wires at a connection point share a twin ferrule	Due conduttori su un punto di connessione condividono un puntalino doppio
 Unit, e.g. kW	Unità, ad es. kW
 Unknown accessory kind: {}	Tipo di accessorio sconosciuto: {}
 Unknown action: {}	Azione sconosciuta: {}
@@ -905,6 +907,7 @@ Windows: height of the bottom edge above the floor in mm	Finestre: altezza del b
 Wire colour (IEC 60757), e.g. BK	Colore del conduttore (IEC 60757), ad es. BK
 Wire colour, e.g. BU	Colore del conduttore, ad es. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Colore del conduttore, ad es. BU (vuoto = dalla definizione del potenziale)
+Wire ends get ferrules	Le estremità dei conduttori ricevono puntalini
 Wire number (kept when renumbering)	Numero conduttore (mantenuto durante la rinumerazione)
 Wire numbering and wiring marks	Numerazione conduttori e contrassegni di cablatura
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Conduttori troppo sottili per il loro dispositivo di protezione e caduta di tensione dei cavi (IEC 60204-1)

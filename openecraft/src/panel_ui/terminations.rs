@@ -9,8 +9,9 @@ use openecraft_core::production::{self, Termination};
 use openecraft_i18n::{tr, tr_fmt};
 
 /// The termination picked in a combo box (`None`: the default) showing `current`
-/// (`None`: several different ones).
-fn choose(ui: &mut egui::Ui, id: impl egui::AsIdSalt, current: Option<Option<Termination>>, default: Termination, shown: String) -> Option<Option<Termination>> {
+/// (`None`: several different ones); twin ferrules only offered where `twin` (two wires
+/// at the connection point).
+fn choose(ui: &mut egui::Ui, id: impl egui::AsIdSalt, current: Option<Option<Termination>>, default: Termination, shown: String, twin: bool) -> Option<Option<Termination>> {
     let mut picked = None;
     egui::ComboBox::from_id_salt(id)
         .selected_text(shown)
@@ -19,7 +20,7 @@ fn choose(ui: &mut egui::Ui, id: impl egui::AsIdSalt, current: Option<Option<Ter
             if ui.selectable_label(current == Some(None), tr_fmt!("Default ({})", default.title())).clicked() {
                 picked = Some(None);
             }
-            for k in Termination::ALL {
+            for k in Termination::ALL.into_iter().filter(|k| twin || *k != Termination::TwinFerrule || current == Some(Some(*k))) {
                 if ui.selectable_label(current == Some(Some(k)), k.title()).clicked() {
                     picked = Some(Some(k));
                 }
@@ -30,13 +31,16 @@ fn choose(ui: &mut egui::Ui, id: impl egui::AsIdSalt, current: Option<Option<Ter
     picked
 }
 
-/// What a wire end gets: the stripping length and the part.
-fn gets(prj: &Project, at: &str, to: &str, cross_section: &str) -> String {
-    match production::end_at(prj, at, to, cross_section) {
-        Some(e) if e.part().is_empty() => tr_fmt!("strip {} mm, {}", format!("{:.0}", e.strip), e.describe()),
-        Some(e) => tr_fmt!("strip {} mm, {}", format!("{:.0}", e.strip), format!("{} ({})", e.describe(), e.part())),
-        None => String::new(),
-    }
+/// What a wire end gets: the stripping length, the part and the wire sharing its twin
+/// ferrule.
+fn gets(prj: &Project, ends: &production::Ends, at: &str, to: &str, cross_section: &str) -> String {
+    let Some(e) = ends.end(prj, at, to, cross_section) else { return String::new() };
+    let what = if e.part().is_empty() { e.describe() } else { format!("{} ({})", e.describe(), e.part()) };
+    let what = match ends.twin(prj, at, to) {
+        Some(t) => tr_fmt!("{}, together with the wire to {}", what, t.with),
+        None => what,
+    };
+    tr_fmt!("strip {} mm, {}", format!("{:.0}", e.strip), what)
 }
 
 /// The ends of the cores of `cable`, each with its other end and cross-section, both
@@ -61,21 +65,23 @@ fn default_at(prj: &Project, at: &str) -> Termination {
 
 impl PanelUi {
     /// The two ends of a wire of `cross_section` from `from` to `to`, each with the
-    /// choice of its termination and what it gets.
-    pub(super) fn wire_ends(&mut self, ui: &mut egui::Ui, prj: &mut Project, from: &str, to: &str, cross_section: &str) {
+    /// choice of its termination and what it gets; a twin ferrule is chosen for both
+    /// wires at the connection point ([`production::choose_termination`]).
+    pub(super) fn wire_ends(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, from: &str, to: &str, cross_section: &str) {
         ui.label(RichText::new(tr("Wire ends")).strong());
         egui::Grid::new("pwireends").num_columns(2).spacing([10.0, 4.0]).show(ui, |ui| {
             for (at, other) in [(from, to), (to, from)] {
                 ui.label(RichText::new(at).monospace());
                 let current = prj.layout.terminations.iter().find(|t| t.at == at && t.to == other).map(|t| t.kind);
-                let default = default_at(prj, at);
+                let default = an.ends.default_kind(prj, at, other);
                 let shown = current.map_or_else(|| tr_fmt!("Default ({})", default.title()), |k| k.title().to_string());
-                if let Some(kind) = choose(ui, ("wire_end", at, other), Some(current), default, shown) {
-                    production::set_termination(prj, at, other, kind);
+                let twin = an.ends.wires_at(at).len() == 2;
+                if let Some(kind) = choose(ui, ("wire_end", at, other), Some(current), default, shown, twin) {
+                    production::choose_termination(prj, &an.ends, at, other, kind);
                 }
                 ui.end_row();
                 ui.label("");
-                ui.label(RichText::new(gets(prj, at, other, cross_section)).weak());
+                ui.label(RichText::new(gets(prj, &an.ends, at, other, cross_section)).weak());
                 ui.end_row();
             }
         });
@@ -105,7 +111,7 @@ impl PanelUi {
                     Some(None) => tr_fmt!("Default ({})", default.title()),
                     None => tr("Mixed").to_string(),
                 };
-                if let Some(kind) = choose(ui, ("cable_end", cable, device), current, default, shown) {
+                if let Some(kind) = choose(ui, ("cable_end", cable, device), current, default, shown, false) {
                     for (end, other, _) in &at {
                         production::set_termination(prj, end, other, kind);
                     }

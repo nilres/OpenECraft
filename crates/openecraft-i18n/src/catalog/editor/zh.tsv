@@ -1877,6 +1877,7 @@ Transfer project parts to database	将项目部件传输到数据库
 Translate the project texts; documentation per language	翻译项目文本；按语言生成文档
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	绕垂直轴旋转，从上方看为逆时针（90 °：正面朝右）
 Tutorial	教程
+Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp
@@ -1959,6 +1960,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	滚轮：缩放 · 右键单击：取消 · 图形捕捉到 0.5 mm，连接点捕捉到 4 mm 栅格
 When it differs from the page	与该页不同时
 Where	位置
+Where neither wire has a termination chosen for it	两根导线都未选择端接方式时
 Where the point is in the plant; y: its height above the ground level of the plant	该点在设施中的位置；y：其高于设施地面的高度
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	设备结构的来源：与符号周围结构相同的结构部分为继承，符号移入或移出结构框时随之改变；其他结构部分属于设备本身，保持不变。
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	导线的起点和终点：部件数据中的连接点、由功能模板生成的连接点，或在没有匹配的连接点时使用设备中心
@@ -2262,6 +2264,7 @@ x y	x y
 {} × {} pixels, {}	{} × {} 像素，{}
 {} – {} ({} pages)	{} – {}（{} 页）
 {}: click to show its floor plan	{}：单击以显示其平面图
+{}: crimp together with the wire to {}	{}：与通往 {} 的导线一起压接
 {}: drag to move it, R turns it, a double-click opens it	{}：拖动以移动，R 旋转，双击打开
 {}: drag to move it, a double-click shows the floor	{}：拖动以移动，双击显示地面
 {}: nothing to change	{}：无需更改

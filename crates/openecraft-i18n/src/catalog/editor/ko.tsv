@@ -1872,6 +1872,7 @@ Transfer project parts to database	프로젝트 부품을 데이터베이스로 
 Translate the project texts; documentation per language	프로젝트 텍스트 번역, 언어별 문서
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	수직축 기준 회전, 위에서 볼 때 시계 반대 방향(90 °: 전면이 오른쪽을 향함)
 Tutorial	튜토리얼
+Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1955,6 +1956,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	휠: 확대/축소 · 오른쪽 클릭: 취소 · 그래픽은 0.5mm, 연결 지점은 4mm 그리드에 맞춰짐
 When it differs from the page	페이지와 다를 때
 Where	위치
+Where neither wire has a termination chosen for it	두 전선 모두 마감을 선택하지 않은 경우
 Where the point is in the plant; y: its height above the ground level of the plant	설비 내 점의 위치. y: 설비 지반면 위의 높이
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	장치 구조의 출처: 기호 주변 구조와 같은 측면은 상속되며 기호를 구조 박스 안으로 또는 밖으로 이동하면 함께 변경됩니다. 다른 측면은 장치 고유의 것으로 유지됩니다.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	전선이 시작하고 끝나는 곳: 부품 데이터의 연결 지점, 기능 템플릿에서 생성된 연결 지점 또는 일치하는 연결 지점이 없으면 장치 중심
@@ -2257,6 +2259,7 @@ x y	x y
 {} × {} pixels, {}	{} × {} 픽셀, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
 {}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다
+{}: crimp together with the wire to {}	{}: {}(으)로 가는 전선과 함께 압착
 {}: drag to move it, R turns it, a double-click opens it	{}: 드래그하여 이동, R로 회전, 두 번 클릭하여 열기
 {}: drag to move it, a double-click shows the floor	{}: 드래그하여 이동, 두 번 클릭하여 바닥 표시
 {}: nothing to change	{}: 변경할 항목 없음

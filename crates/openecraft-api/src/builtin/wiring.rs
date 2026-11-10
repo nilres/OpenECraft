@@ -8,7 +8,7 @@ use super::{add_commands, info, Spec};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::potentials::PotentialKind;
 use openecraft_core::model::{NumberScheme, Project};
-use openecraft_core::production::{self, EndTreatment, Termination};
+use openecraft_core::production::{self, EndTreatment, Termination, Twin};
 use openecraft_core::wiring::{self, Mark, Order, Status};
 use openecraft_core::marking;
 use openecraft_core::wirenum;
@@ -121,6 +121,15 @@ pub static COMMANDS: &[Spec] = &[
             optional("to", Kind::Str, tr_const!("Other end of the wire, e.g. -X1:3: only this wire")),
         ],
         run: set_termination,
+    },
+    Spec {
+        name: "set_ferrules",
+        help: tr_const!("Sets how wire ends without a chosen termination are terminated: with ferrules or bare, and with twin ferrules where two wires share a connection point"),
+        params: &[
+            optional("ferrules", Kind::Bool, tr_const!("Wire ends get ferrules")),
+            optional("twin_ferrules", Kind::Bool, tr_const!("Two wires at a connection point share a twin ferrule")),
+        ],
+        run: set_ferrules,
     },
     Spec {
         name: "terminations",
@@ -345,12 +354,12 @@ fn wiring_list(prj: &mut Project, a: &Args) -> Result<Value, String> {
         None => Order::Device,
     };
     let filter = a.str("status").map(|s| s.trim().to_ascii_lowercase());
-    let steps: Vec<Value> = wiring::steps(prj, &an.wiring, enclosure, order)
+    let steps: Vec<Value> = wiring::steps(prj, &an.ends, &an.wiring, enclosure, order)
         .into_iter()
         .filter(|st| filter.as_deref().is_none_or(|f| status_code(st.status) == f))
         .map(|st| {
             let w = &an.wiring[st.wire];
-            let ends = [end_json(&w.from, st.ends[0]), end_json(&w.to, st.ends[1])];
+            let ends = [end_json(&w.from, st.ends[0], st.twins[0].as_ref()), end_json(&w.to, st.ends[1], st.twins[1].as_ref())];
             json!({
                 "enclosure": w.enclosure_names(&prj.layout),
                 "from": w.from,
@@ -403,14 +412,16 @@ fn mark_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "from": w.from, "to": w.to, "status": status_code(wiring::status(prj, w)), "wired": p.done - p.changed, "total": p.total }))
 }
 
-/// A wire end with its termination, stripping length and part.
-fn end_json(at: &str, e: Option<EndTreatment>) -> Value {
+/// A wire end with its termination, stripping length and part, and the other wire
+/// sharing its twin ferrule (the part is given at the first of them).
+fn end_json(at: &str, e: Option<EndTreatment>, twin: Option<&Twin>) -> Value {
     json!({
         "at": at,
         "termination": e.map(|e| e.kind.key()),
         "strip_mm": e.map(|e| e.strip),
-        "part": e.map(|e| e.part()).filter(|p| !p.is_empty()),
+        "part": e.filter(|e| !e.shared).map(|e| e.part()).filter(|p| !p.is_empty()),
         "description": e.map(|e| e.describe()),
+        "twin_with": twin.map(|t| t.with.clone()),
     })
 }
 
@@ -424,16 +435,17 @@ fn set_termination(prj: &mut Project, a: &Args) -> Result<Value, String> {
         "auto" | "" => None,
         k => Some(Termination::from_key(k).ok_or_else(|| tr_fmt!("Unknown termination: {}", k))?),
     };
-    production::set_termination(prj, &at, &to, kind);
-    // The wire ends it applies to now.
     let an = Analysis::build(prj);
+    let wire_ends = &an.ends;
+    production::choose_termination(prj, wire_ends, &at, &to, kind);
+    // The wire ends it applies to now.
     let on = |end: &str, other: &str| (end == at || end.rsplit_once(':').is_some_and(|(d, _)| d == at)) && (to.is_empty() || other == to);
     let ends: Vec<Value> = an
         .wiring
         .iter()
         .flat_map(|w| [(&w.from, &w.to), (&w.to, &w.from)].map(|(end, other)| (end.clone(), other.clone(), w.cross_section.clone())))
         .filter(|(end, other, _)| on(end, other))
-        .map(|(end, other, cs)| end_json(&end, production::end_at(prj, &end, &other, &cs)))
+        .map(|(end, other, cs)| end_json(&end, wire_ends.end(prj, &end, &other, &cs), wire_ends.twin(prj, &end, &other).as_ref()))
         .collect();
     Ok(json!({ "at": at, "to": to, "termination": kind.map(|k| k.key()).unwrap_or("auto"), "ends": ends }))
 }
@@ -441,7 +453,17 @@ fn set_termination(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn terminations(prj: &mut Project, _: &Args) -> Result<Value, String> {
     let chosen: Vec<Value> = prj.layout.terminations.iter().map(|t| json!({ "at": t.at, "to": t.to, "termination": t.kind.key() })).collect();
     let kinds: Vec<Value> = Termination::ALL.iter().map(|k| json!({ "key": k.key(), "name": k.title() })).collect();
-    Ok(json!({ "ferrules": prj.layout.ferrules, "chosen": chosen, "kinds": kinds }))
+    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules, "chosen": chosen, "kinds": kinds }))
+}
+
+fn set_ferrules(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    if let Some(on) = a.value("ferrules").and_then(Value::as_bool) {
+        prj.layout.ferrules = on;
+    }
+    if let Some(on) = a.value("twin_ferrules").and_then(Value::as_bool) {
+        prj.layout.twin_ferrules = on;
+    }
+    Ok(json!({ "ferrules": prj.layout.ferrules, "twin_ferrules": prj.layout.twin_ferrules }))
 }
 
 fn remove_old_marks(prj: &mut Project, _: &Args) -> Result<Value, String> {

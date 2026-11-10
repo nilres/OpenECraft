@@ -516,7 +516,7 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
         g.1.extend(used);
     }
     // Ferrules and terminals of the routed panel wiring.
-    for (part, n) in crate::production::terminal_material(prj, wiring) {
+    for (part, n) in crate::production::terminal_material(prj, &crate::production::Ends::new(prj, conns), wiring) {
         let g = groups.entry(part).or_default();
         g.0 += n as f32;
         g.1.push("wiring".into());
@@ -962,16 +962,23 @@ pub fn production_wire_list(prj: &Project, an: &Analysis) -> Table {
     // (routed length, cells, jump target)
     type Row = (Option<f32>, Vec<String>, Option<(usize, u64)>);
     let mut rows: Vec<Row> = Vec::new();
+    let wire_ends = &an.ends;
     for c in &an.connections {
         let (from, to) = (pin_designation(prj, c.a), pin_designation(prj, c.b));
         let length = an.wiring.iter().find(|w| (w.from == from && w.to == to) || (w.from == to && w.to == from)).map(|w| w.length);
         // Cable cores are processed with their cable, not as single wires.
-        let ends = [(&from, &to), (&to, &from)].map(|(at, other)| crate::production::end_at(prj, at, other, &c.cross_section).filter(|_| c.cable.is_empty()));
+        let ends = [(&from, &to), (&to, &from)].map(|(at, other)| wire_ends.end(prj, at, other, &c.cross_section).filter(|_| c.cable.is_empty()));
         let both = |f: &dyn Fn(&crate::production::EndTreatment) -> String| {
             let [a, b] = ends.map(|e| e.map(|e| f(&e)).unwrap_or_default());
             if a == b { a } else { format!("{a} / {b}") }
         };
-        let [from_end, to_end] = ends.map(|e| e.map(|e| e.describe()).unwrap_or_default());
+        let [from_end, to_end] = [(&from, &to), (&to, &from)].map(|(at, other)| {
+            let Some(e) = ends[usize::from(at == &to)] else { return String::new() };
+            match wire_ends.twin(prj, at, other) {
+                Some(t) => tr_fmt!("{}, together with the wire to {}", e.describe(), t.with),
+                None => e.describe(),
+            }
+        });
         let target = Some((c.a.page, prj.pages[c.a.page].symbols[c.a.sym].id));
         rows.push((
             length,
@@ -985,7 +992,7 @@ pub fn production_wire_list(prj: &Project, an: &Analysis) -> Table {
                 both(&|e| format!("{:.0}", e.strip)),
                 from_end,
                 to_end,
-                both(&|e| e.part()),
+                both(&|e| if e.shared { "–".into() } else { e.part() }),
                 c.cable.clone(),
                 c.core.clone(),
                 c.net.clone(),
@@ -1020,13 +1027,14 @@ fn harness_data(prj: &Project, an: &Analysis) -> Table {
         (tr_const!("Length (mm)"), 0.8),
         (tr_const!("End treatment"), 1.6),
     ]);
+    let ends = &an.ends;
     for h in &prj.harnesses {
         let ws = crate::harness::wires(prj, an, &h.tag);
         for w in &ws {
             let fmt_end = |e: &(String, String)| if e.1.is_empty() { e.0.clone() } else { format!("{}:{}", e.0, e.1) };
             let end = [(&w.from, &w.to), (&w.to, &w.from)]
                 .map(|(at, other)| {
-                    crate::production::end_at(prj, &fmt_end(at), &fmt_end(other), &w.cross_section)
+                    ends.end(prj, &fmt_end(at), &fmt_end(other), &w.cross_section)
                         .map(|e| tr_fmt!("strip {} mm, {}", format!("{:.0}", e.strip), e.describe()))
                         .unwrap_or_default()
                 })

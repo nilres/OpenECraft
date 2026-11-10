@@ -13,6 +13,10 @@ pub struct Layout {
     /// Wire ends get ferrules (production wire list, bill of materials, 3D view), where
     /// no other termination is chosen for them (`terminations`).
     pub ferrules: bool,
+    /// With ferrules: two wires ending at the same connection point share a twin
+    /// ferrule, where neither has a termination chosen for it.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub twin_ferrules: bool,
     /// Terminations chosen for wire ends (ring terminals, …), see
     /// `crate::production::termination_of`.
     #[serde(skip_serializing_if = "Vec::is_empty")]

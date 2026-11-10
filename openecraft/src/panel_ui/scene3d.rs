@@ -70,10 +70,11 @@ struct TubeWay {
 pub(super) type EndLook = Vec<(EndPiece, Color32)>;
 
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
-/// an unknown cross-section): its termination ([`production::end_at`]), dimmed like the
-/// wire (`dim`, see [`super::wire_look`]).
-pub(super) fn wire_end(prj: &Project, at: &str, to: &str, cross_section: &str, dim: bool) -> EndLook {
-    let Some(t) = production::end_at(prj, at, to, cross_section) else { return Vec::new() };
+/// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
+/// shown at the first of its wires), dimmed like the wire (`dim`, see
+/// [`super::wire_look`]).
+pub(super) fn wire_end(prj: &Project, ends: &production::Ends, at: &str, to: &str, cross_section: &str, dim: bool) -> EndLook {
+    let Some(t) = ends.end(prj, at, to, cross_section) else { return Vec::new() };
     let outer = openecraft_core::harness::outer_diameter(cross_section);
     t.pieces(cross_section, outer)
         .into_iter()
@@ -1297,7 +1298,7 @@ impl PanelUi {
                 let bend = prj.layout.routing.bend_radius(RouteKind::Wire, diameter);
                 let on_plate = !e.is_room() && wire.door == (None, None);
                 let dim = selected_wire.is_some() && !selected;
-                let end = [wire_end(prj, &wire.from, &wire.to, &wire.cross_section, dim), wire_end(prj, &wire.to, &wire.from, &wire.cross_section, dim)];
+                let end = [wire_end(prj, &an.ends, &wire.from, &wire.to, &wire.cross_section, dim), wire_end(prj, &an.ends, &wire.to, &wire.from, &wire.cross_section, dim)];
                 for (i, path, connected) in &paths {
                     let (rest, below) = match on_plate {
                         true => (pose.turn([0.0, 0.0, 1.0]), path.iter().map(|q| q[2] - PLATE_Z).fold(f32::INFINITY, f32::min) - diameter / 2.0 - super::routing_ui::PLATE_CLEAR),

@@ -1603,6 +1603,8 @@ impl PanelUi {
                 .on_hover_text(tr("The check warns about cable ducts filled above this level"));
         });
         ui.checkbox(&mut prj.layout.ferrules, tr("Wire ends with ferrules")).on_hover_text(tr("Production wire list and bill of materials"));
+        ui.add_enabled(prj.layout.ferrules, egui::Checkbox::new(&mut prj.layout.twin_ferrules, tr("Twin ferrules where two wires share a connection point")))
+            .on_hover_text(tr("Where neither wire has a termination chosen for it"));
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
         climate_section(ui, prj, ei);
         let findings = self.findings(prj, an, ei);
@@ -2156,7 +2158,7 @@ impl PanelUi {
             .weak(),
         );
         ui.separator();
-        self.wire_ends(ui, prj, &w.from, &w.to, &w.cross_section);
+        self.wire_ends(ui, prj, an, &w.from, &w.to, &w.cross_section);
         ui.separator();
         ui.label(RichText::new(tr("Connected devices")).strong());
         let mut select = None;

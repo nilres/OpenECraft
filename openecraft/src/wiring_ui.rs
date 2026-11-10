@@ -93,7 +93,7 @@ fn swatch(ui: &mut egui::Ui, code: &str, size: f32) {
 
 impl WiringUi {
     fn steps(&self, prj: &Project, an: &Analysis) -> Vec<Step> {
-        wiring::steps(prj, &an.wiring, self.enclosure, self.order)
+        wiring::steps(prj, &an.ends, &an.wiring, self.enclosure, self.order)
     }
 
     fn current_index(&self, an: &Analysis) -> Option<usize> {
@@ -239,7 +239,9 @@ impl WiringUi {
         };
         let w = an.wiring[wi].clone();
         let status = wiring::status(prj, &w);
-        let ends = [(&w.from, &w.to), (&w.to, &w.from)].map(|(at, other)| openecraft_core::production::end_at(prj, at, other, &w.cross_section));
+        let wire_ends = &an.ends;
+        let ends = [(&w.from, &w.to), (&w.to, &w.from)].map(|(at, other)| wire_ends.end(prj, at, other, &w.cross_section));
+        let twins = [(&w.from, &w.to), (&w.to, &w.from)].map(|(at, other)| wire_ends.twin(prj, at, other));
         egui::Frame::group(ui.style()).inner_margin(12.0).show(ui, |ui| {
             ui.set_width(ui.available_width());
             ui.horizontal(|ui| {
@@ -274,6 +276,13 @@ impl WiringUi {
                                 ui.separator();
                             }
                         }
+                    }
+                }
+                // Wires sharing a twin ferrule are crimped together.
+                for (at, t) in [&w.from, &w.to].into_iter().zip(&twins) {
+                    if let Some(t) = t {
+                        ui.label(big(tr_fmt!("{}: crimp together with the wire to {}", at, t.with)).strong());
+                        ui.separator();
                     }
                 }
                 ui.label(big(w.routing().to_string()));

@@ -165,14 +165,16 @@ fn connections(prj: &Project, an: &Analysis) -> Vec<Row> {
 }
 
 fn wires(prj: &Project, an: &Analysis) -> Vec<Row> {
-    wiring::steps(prj, &an.wiring, None, Order::CrossSection)
+    wiring::steps(prj, &an.ends, &an.wiring, None, Order::CrossSection)
         .into_iter()
         .enumerate()
         .map(|(i, s)| {
             let w = &an.wiring[s.wire];
-            // The ferrule fields carry the part of any terminal of the end.
+            // The ferrule fields carry the part of any terminal of the end; a twin ferrule
+            // the end of the wire it is crimped with first.
             let [strip_from, strip_to] = s.ends.map(|e| e.map(|e| fmt_number(e.strip)).unwrap_or_default());
-            let [ferrule_from, ferrule_to] = s.ends.map(|e| e.map(|e| e.part()).unwrap_or_default());
+            let [ferrule_from, ferrule_to] = s.ends.map(|e| e.filter(|e| !e.shared).map(|e| e.part()).unwrap_or_default());
+            let [twin_from, twin_to] = s.twins.clone().map(|t| t.map(|t| t.with).unwrap_or_default());
             let status = match s.status {
                 Status::Open => "open",
                 Status::Done => "wired",
@@ -193,6 +195,8 @@ fn wires(prj: &Project, an: &Analysis) -> Vec<Row> {
                 (Field::StripTo, strip_to),
                 (Field::FerruleFrom, ferrule_from),
                 (Field::FerruleTo, ferrule_to),
+                (Field::TwinFrom, twin_from),
+                (Field::TwinTo, twin_to),
                 (Field::Quantity, "1".into()),
                 (Field::Status, status.into()),
                 (Field::Note, s.note.replace(['\n', '\r'], " ")),

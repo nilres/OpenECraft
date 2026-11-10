@@ -102,16 +102,24 @@ fn wire_ends_are_cut_off_the_way() {
     assert_eq!(with_ends(&short, 3.0, Color32::BLUE, None, &ends, up).len(), 1);
     // The look of a wire end: ferrule or bare copper, as the layout sets.
     let mut prj = openecraft_core::sample::demo_project();
+    let wire_ends = openecraft_core::production::Ends::default();
     let rgb = |c: [u8; 3]| Color32::from_rgb(c[0], c[1], c[2]);
     let colors = |look: &EndLook| look.iter().map(|p| p.1).collect::<Vec<_>>();
-    assert_eq!(colors(&wire_end(&prj, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::SLEEVE_RGB), rgb([35, 35, 38])]);
+    assert_eq!(colors(&wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::SLEEVE_RGB), rgb([35, 35, 38])]);
     prj.layout.ferrules = false;
-    assert_eq!(colors(&wire_end(&prj, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::COPPER_RGB)]);
-    assert!(wire_end(&prj, "-K1:1", "-X1:1", "", false).is_empty());
+    assert_eq!(colors(&wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::COPPER_RGB)]);
+    assert!(wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "", false).is_empty());
     // A ring terminal chosen for the last end: its flat ring lies round the end of the
     // way, across `up`.
     openecraft_core::production::set_termination(&mut prj, "-K1:1", "", Some(Termination::Ring));
-    let ring = wire_end(&prj, "-K1:1", "-X1:1", "1.5 mm²", false);
+    // Two wires sharing a twin ferrule: it is shown at the first of them, the other one
+    // shows only its conductor in it.
+    let pair = openecraft_core::production::Ends::of([("-X9:1", "-K8:1"), ("-X9:1", "-K9:1")].map(|(a, b)| (a.to_string(), b.to_string(), "1.5 mm²".to_string())));
+    prj.layout.ferrules = true;
+    openecraft_core::production::choose_termination(&mut prj, &pair, "-X9:1", "-K8:1", Some(Termination::TwinFerrule));
+    assert_eq!(colors(&wire_end(&prj, &pair, "-X9:1", "-K8:1", "1.5 mm²", false))[0], rgb(openecraft_core::production::SLEEVE_RGB));
+    assert_eq!(colors(&wire_end(&prj, &pair, "-X9:1", "-K9:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::COPPER_RGB)]);
+    let ring = wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false);
     assert!(matches!(ring[0].0.shape, EndShape::Ring { .. }));
     let pieces = with_ends(&way, 3.0, Color32::BLUE, None, &[Vec::new(), ring], up);
     let tip = pieces.last().unwrap();

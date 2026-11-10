@@ -21,6 +21,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cross-section); the production wire list shows the termination and parts of both
   ends, and the wiring assistant, the machine exports, the harness data and the bill of
   materials (with the new catalog parts) take them too.
+- **Twin ferrules for two wires:** a twin ferrule belongs to the two wires ending at
+  one connection point. Chosen for one of them it is chosen for the other one too
+  (offered only where exactly two wires end), it is shown once in 3D, counted once in
+  the bill of materials, named with the other wire in the production wire list and the
+  wiring assistant (which puts the two wires one after the other, to be crimped
+  together) and carried by the first of them in the machine exports (new fields *Twin
+  ferrule with (from)* / *(to)*). Two cross-sections get the ferrule for the larger
+  one. The check *Twin ferrules* warns about one with a single wire, at a point with
+  more than two wires or for two cross-sections. New layout setting *Twin ferrules where
+  two wires share a connection point* (command `set_ferrules`).
 - **Workspaces show their view again:** a workspace chosen in the title bar shows its
   main view (the panel layout, the workbench, …) even where the page was left in front
   of it, and the commands of the layout view (3D view, floor plan, mounting plate,

@@ -4,12 +4,13 @@
 //! [`crate::panel::validate`].
 
 use crate::geom::{p, P, R};
-use crate::model::Project;
+use crate::model::{natural_cmp, Project};
 use crate::panel::{Enclosure, Face, Fastening, ItemKind, PanelItem};
 use crate::parts::vec3::{add, cross, dot, norm, scale, sub, Tri, V3};
 use crate::parts::Part;
 pub use crate::model::panel::{Termination, WireTermination};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
+use std::collections::{HashMap, HashSet};
 use std::fmt::Write;
 
 /// Rails: M5 holes 12.5 mm from the ends, at most every 200 mm.
@@ -555,6 +556,9 @@ pub struct EndTreatment {
     pub strip: f32,
     pub ferrule: Option<Ferrule>,
     pub crimp: Option<Crimp>,
+    /// The twin ferrule is the one of the other wire ([`Twin::first`]): it is listed,
+    /// counted and shown there.
+    pub shared: bool,
 }
 
 /// The shape of an [`EndPiece`]: round along the wire, or flat (lying across the
@@ -621,6 +625,10 @@ impl EndTreatment {
     pub fn pieces(&self, cross_section: &str, outer: f32) -> Vec<EndPiece> {
         let core = conductor_diameter(cross_section_mm2(cross_section).unwrap_or(1.0)).min(outer * 0.8);
         let round = |length: f32, diameter: f32, color: [u8; 3]| EndPiece { length, diameter, color, shape: EndShape::Round };
+        if self.shared {
+            // Only its conductor, inside the twin ferrule of the other wire.
+            return vec![round(self.strip, core, COPPER_RGB)];
+        }
         if let Some(f) = self.ferrule {
             return match self.kind {
                 Termination::TwinFerrule => vec![round(f.length, core * 1.5 + 0.3, SLEEVE_RGB), round(f.collar() * 1.4, outer * 1.7, f.rgb())],
@@ -739,16 +747,16 @@ pub fn end_treatment(cross_section: &str, ferrules: bool) -> Option<EndTreatment
 /// cross-section); a cross-section without such a ferrule is stripped bare.
 pub fn treatment(cross_section: &str, kind: Termination) -> Option<EndTreatment> {
     let cs = cross_section_mm2(cross_section)?;
-    let bare = EndTreatment { kind: Termination::Bare, strip: if cs <= 2.5 { 8.0 } else if cs <= 6.0 { 10.0 } else { 12.0 }, ferrule: None, crimp: None };
+    let bare = EndTreatment { kind: Termination::Bare, strip: if cs <= 2.5 { 8.0 } else if cs <= 6.0 { 10.0 } else { 12.0 }, ferrule: None, crimp: None, shared: false };
     Some(match kind {
         Termination::Bare => bare,
         Termination::Ferrule | Termination::TwinFerrule => match FERRULES.iter().find(|f| (f.cross_section - cs).abs() < 0.01) {
-            Some(f) => EndTreatment { kind, strip: f.length, ferrule: Some(*f), crimp: None },
+            Some(f) => EndTreatment { kind, strip: f.length, ferrule: Some(*f), crimp: None, shared: false },
             None => bare,
         },
         _ => {
             let crimp = Crimp::for_cross_section(kind, cs);
-            EndTreatment { kind, strip: crimp.map(|c| c.barrel() + 1.0).unwrap_or(bare.strip), ferrule: None, crimp }
+            EndTreatment { kind, strip: crimp.map(|c| c.barrel() + 1.0).unwrap_or(bare.strip), ferrule: None, crimp, shared: false }
         }
     })
 }
@@ -772,7 +780,7 @@ pub fn termination_of(prj: &Project, at: &str, to: &str) -> Option<Termination> 
 
 /// End treatment of the end `at` of the wire of `cross_section` from `at` to `to`: as
 /// chosen ([`termination_of`]), otherwise ferrules or the bare conductor as the layout
-/// sets.
+/// sets; without the other wires at `at` (twin ferrules are not paired, see [`Ends`]).
 pub fn end_at(prj: &Project, at: &str, to: &str, cross_section: &str) -> Option<EndTreatment> {
     match termination_of(prj, at, to) {
         Some(kind) => treatment(cross_section, kind),
@@ -790,24 +798,150 @@ pub fn set_termination(prj: &mut Project, at: &str, to: &str, kind: Option<Termi
     }
 }
 
+/// A twin ferrule the wire end shares with another wire at its connection point
+/// ([`Ends::twin`]).
+#[derive(Clone, Debug, PartialEq)]
+pub struct Twin {
+    /// The far end of the other wire.
+    pub with: String,
+    /// Cross-section of the other wire.
+    pub cross_section: String,
+    /// This end carries the ferrule (it is listed, counted and shown here); the other
+    /// one shares it.
+    pub first: bool,
+}
+
+/// The wires ending at each connection point, to tell which of them share a twin
+/// ferrule: the termination of a wire end with all it depends on.
+#[derive(Clone, Debug, Default)]
+pub struct Ends {
+    /// Connection point → (far end, cross-section) of each wire ending there.
+    at: HashMap<String, Vec<(String, String)>>,
+}
+
+impl Ends {
+    /// The ends of the wires (from, to, cross-section).
+    pub fn of(wires: impl IntoIterator<Item = (String, String, String)>) -> Ends {
+        let mut at: HashMap<String, Vec<(String, String)>> = HashMap::new();
+        for (from, to, cs) in wires {
+            if from == to {
+                continue;
+            }
+            at.entry(from.clone()).or_default().push((to.clone(), cs.clone()));
+            at.entry(to).or_default().push((from, cs));
+        }
+        for v in at.values_mut() {
+            v.sort_by(|a, b| natural_cmp(&a.0, &b.0));
+        }
+        Ends { at }
+    }
+
+    /// The ends of the connections of a project, cable cores included.
+    pub fn new(prj: &Project, conns: &[crate::netlist::Connection]) -> Ends {
+        Ends::of(conns.iter().map(|c| (crate::netlist::pin_designation(prj, c.a), crate::netlist::pin_designation(prj, c.b), c.cross_section.clone())))
+    }
+
+    /// The far ends and cross-sections of the wires at the connection point `at`.
+    pub fn wires_at(&self, at: &str) -> &[(String, String)] {
+        self.at.get(at).map_or(&[], Vec::as_slice)
+    }
+
+    /// The connection points with wires, in no particular order.
+    pub fn points(&self) -> impl Iterator<Item = &str> {
+        self.at.keys().map(String::as_str)
+    }
+
+    /// Termination of the end `at` of the wire to `to` if it had none chosen for this
+    /// wire: as chosen for the connection point or its device, otherwise a twin ferrule
+    /// where the layout sets them and exactly two wires end at `at` (the other one
+    /// without a choice), otherwise ferrules or the bare conductor as the layout sets.
+    pub fn default_kind(&self, prj: &Project, at: &str, to: &str) -> Termination {
+        if let Some(kind) = termination_of(prj, at, "") {
+            return kind;
+        }
+        let wires = self.wires_at(at);
+        if !prj.layout.ferrules {
+            Termination::Bare
+        } else if prj.layout.twin_ferrules && wires.len() == 2 && wires.iter().filter(|(o, _)| o != to).all(|(o, _)| termination_of(prj, at, o).is_none()) {
+            Termination::TwinFerrule
+        } else {
+            Termination::Ferrule
+        }
+    }
+
+    /// Termination of the end `at` of the wire to `to`: as chosen
+    /// ([`termination_of`]), otherwise [`Ends::default_kind`].
+    pub fn kind(&self, prj: &Project, at: &str, to: &str) -> Termination {
+        termination_of(prj, at, to).unwrap_or_else(|| self.default_kind(prj, at, to))
+    }
+
+    /// The other wire sharing the twin ferrule of the end `at` of the wire to `to`: the
+    /// wire ends at `at` with twin ferrules pair up in the order of their far ends.
+    pub fn twin(&self, prj: &Project, at: &str, to: &str) -> Option<Twin> {
+        let twins: Vec<&(String, String)> = self.wires_at(at).iter().filter(|(o, _)| self.kind(prj, at, o) == Termination::TwinFerrule).collect();
+        let i = twins.iter().position(|(o, _)| o == to)?;
+        let (with, cross_section) = twins.get(i ^ 1)?;
+        Some(Twin { with: with.clone(), cross_section: cross_section.clone(), first: i % 2 == 0 })
+    }
+
+    /// End treatment of the end `at` of the wire of `cross_section` to `to`; a shared
+    /// twin ferrule is the one for the larger of the two cross-sections.
+    pub fn end(&self, prj: &Project, at: &str, to: &str, cross_section: &str) -> Option<EndTreatment> {
+        let kind = self.kind(prj, at, to);
+        let twin = if kind == Termination::TwinFerrule { self.twin(prj, at, to) } else { None };
+        let Some(t) = twin else { return treatment(cross_section, kind) };
+        let mm2 = |cs: &str| cross_section_mm2(cs).unwrap_or(0.0);
+        let larger = if mm2(&t.cross_section) > mm2(cross_section) { t.cross_section.as_str() } else { cross_section };
+        treatment(larger, kind).map(|e| EndTreatment { shared: !t.first, ..e })
+    }
+}
+
+/// Chooses the termination of the end `at` of the wire to `to` (`to` empty: of all
+/// wires at `at`, see [`set_termination`]). A twin ferrule chosen for one wire is
+/// chosen for the other wire at `at` too, where there is exactly one; choosing
+/// something else for a wire with a twin ferrule takes it from the other one as well.
+pub fn choose_termination(prj: &mut Project, ends: &Ends, at: &str, to: &str, kind: Option<Termination>) {
+    let (at, to) = (at.trim(), to.trim());
+    if !to.is_empty() {
+        let others: Vec<String> = ends.wires_at(at).iter().filter(|(o, _)| o != to).map(|(o, _)| o.clone()).collect();
+        let was_twin = ends.kind(prj, at, to) == Termination::TwinFerrule;
+        if let [other] = others.as_slice() {
+            if kind == Some(Termination::TwinFerrule) {
+                set_termination(prj, at, other, kind);
+            } else if was_twin && termination_of(prj, at, other) == Some(Termination::TwinFerrule) {
+                set_termination(prj, at, other, None);
+            }
+        }
+    }
+    set_termination(prj, at, to, kind);
+}
+
 /// Ferrules and terminals needed for the routed wires of the panel: (part, count); a
-/// twin ferrule takes two wire ends.
-pub fn terminal_material(prj: &Project, wiring: &[crate::panel::RoutedWire]) -> Vec<(String, usize)> {
-    let mut ends: Vec<(String, Termination, usize)> = Vec::new();
+/// twin ferrule is counted once for its two wires.
+pub fn terminal_material(prj: &Project, ends: &Ends, wiring: &[crate::panel::RoutedWire]) -> Vec<(String, usize)> {
+    let mut parts: Vec<(String, usize)> = Vec::new();
+    // The twin ferrules counted: (connection point, far ends of both wires).
+    let mut twins: HashSet<(String, String, String)> = HashSet::new();
     for w in wiring {
         for (at, to) in [(&w.from, &w.to), (&w.to, &w.from)] {
-            let Some(t) = end_at(prj, at, to, &w.cross_section) else { continue };
+            let Some(t) = ends.end(prj, at, to, &w.cross_section) else { continue };
             let part = t.part();
             if part.is_empty() {
                 continue;
             }
-            match ends.iter_mut().find(|x| x.0 == part) {
-                Some(x) => x.2 += 1,
-                None => ends.push((part, t.kind, 1)),
+            if let Some(tw) = ends.twin(prj, at, to).filter(|_| t.kind == Termination::TwinFerrule) {
+                let pair = if natural_cmp(to, &tw.with).is_le() { (to.clone(), tw.with) } else { (tw.with, to.clone()) };
+                if !twins.insert((at.clone(), pair.0, pair.1)) {
+                    continue;
+                }
+            }
+            match parts.iter_mut().find(|x| x.0 == part) {
+                Some(x) => x.1 += 1,
+                None => parts.push((part, 1)),
             }
         }
     }
-    ends.into_iter().map(|(part, kind, n)| (part, if kind == Termination::TwinFerrule { n.div_ceil(2) } else { n })).collect()
+    parts
 }
 
 #[cfg(test)]

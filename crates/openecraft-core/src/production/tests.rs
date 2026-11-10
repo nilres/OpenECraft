@@ -114,7 +114,7 @@ fn wire_end_treatment() {
     assert_eq!(cross_section_mm2("AWG 14"), None);
     let t = end_treatment("1.5 mm²", true).unwrap();
     assert_eq!((t.strip, t.ferrule.unwrap().color, t.ferrule.unwrap().part), (8.0, "black", "GEN.FER-1.5"));
-    assert_eq!(end_treatment("6 mm²", false).unwrap(), EndTreatment { kind: Termination::Bare, strip: 10.0, ferrule: None, crimp: None });
+    assert_eq!(end_treatment("6 mm²", false).unwrap(), EndTreatment { kind: Termination::Bare, strip: 10.0, ferrule: None, crimp: None, shared: false });
     // Unusual cross-sections get a stripping length but no ferrule.
     assert_eq!(end_treatment("1.2", true).unwrap().ferrule, None);
     assert!(end_treatment("", true).is_none());
@@ -314,7 +314,7 @@ fn terminals_in_the_bill_of_materials() {
     set_termination(&mut prj, &device, "", Some(Termination::Ring));
     set_termination(&mut prj, &w.to, &w.from, Some(Termination::TwinFerrule));
     let rings: usize = an.wiring.iter().filter(|x| x.cross_section == "1.5 mm²").map(|x| [&x.from, &x.to].iter().filter(|e| e.starts_with(&format!("{device}:"))).count()).sum();
-    let material = terminal_material(&prj, &an.wiring);
+    let material = terminal_material(&prj, &an.ends, &an.wiring);
     let count = |p: &str| material.iter().find(|m| m.0 == p).map(|m| m.1).unwrap_or(0);
     assert_eq!(count("GEN.RING-B"), rings);
     assert_eq!(count("GEN.FER2-1.5"), 1, "a twin ferrule for a single end too");
@@ -329,4 +329,87 @@ fn terminals_in_the_bill_of_materials() {
     let (from_end, to_end) = (row[col("Termination (from)")].clone(), row[col("Termination (to)")].clone());
     assert!(from_end.contains(Termination::Ring.title()) || to_end.contains(Termination::Ring.title()), "{row:?}");
     assert!(row[col("Terminal parts")].contains(" / "), "{row:?}");
+}
+
+#[test]
+fn twin_ferrules_are_shared_by_the_two_wires_at_a_point() {
+    let mut prj = Project::default();
+    let wire = |a: &str, b: &str, cs: &str| (a.to_string(), b.to_string(), cs.to_string());
+    let ends = Ends::of([wire("-X1:1", "-K2:13", "1.5 mm²"), wire("-X1:1", "-K1:13", "1.5 mm²"), wire("-X1:2", "-K3:1", "2.5 mm²"), wire("-X2:1", "-K4:1", "1.5 mm²"), wire("-X2:1", "-K5:1", "2.5 mm²")]);
+    assert_eq!(ends.wires_at("-X1:1").iter().map(|w| w.0.as_str()).collect::<Vec<_>>(), ["-K1:13", "-K2:13"]);
+    // Chosen for one wire, the twin ferrule is chosen for the other one at the point too.
+    choose_termination(&mut prj, &ends, "-X1:1", "-K2:13", Some(Termination::TwinFerrule));
+    assert_eq!(ends.kind(&prj, "-X1:1", "-K1:13"), Termination::TwinFerrule);
+    let first = ends.twin(&prj, "-X1:1", "-K1:13").unwrap();
+    let second = ends.twin(&prj, "-X1:1", "-K2:13").unwrap();
+    assert_eq!((first.with.as_str(), first.first, second.with.as_str(), second.first), ("-K2:13", true, "-K1:13", false));
+    let (a, b) = (ends.end(&prj, "-X1:1", "-K1:13", "1.5 mm²").unwrap(), ends.end(&prj, "-X1:1", "-K2:13", "1.5 mm²").unwrap());
+    assert_eq!((a.part(), a.shared, b.part(), b.shared), ("GEN.FER2-1.5".to_string(), false, "GEN.FER2-1.5".to_string(), true));
+    // The second wire shows only its conductor, inside the ferrule of the first one.
+    assert_eq!(b.pieces("1.5 mm²", 3.0).iter().map(|p| p.color).collect::<Vec<_>>(), [COPPER_RGB]);
+    assert!(a.pieces("1.5 mm²", 3.0).iter().any(|p| p.color == SLEEVE_RGB));
+    // Something else for one of them takes the twin ferrule from both.
+    choose_termination(&mut prj, &ends, "-X1:1", "-K2:13", Some(Termination::Pin));
+    assert_eq!(ends.kind(&prj, "-X1:1", "-K1:13"), Termination::Ferrule);
+    assert_eq!(ends.twin(&prj, "-X1:1", "-K2:13"), None);
+    // Two cross-sections: the ferrule for the larger one at both.
+    choose_termination(&mut prj, &ends, "-X2:1", "-K4:1", Some(Termination::TwinFerrule));
+    assert_eq!(ends.end(&prj, "-X2:1", "-K4:1", "1.5 mm²").unwrap().part(), "GEN.FER2-2.5");
+    assert_eq!(ends.end(&prj, "-X2:1", "-K5:1", "2.5 mm²").unwrap().part(), "GEN.FER2-2.5");
+    // Alone at its point, a twin ferrule has nobody to share it with.
+    choose_termination(&mut prj, &ends, "-X1:2", "-K3:1", Some(Termination::TwinFerrule));
+    assert_eq!(ends.twin(&prj, "-X1:2", "-K3:1"), None);
+    assert!(!ends.end(&prj, "-X1:2", "-K3:1", "2.5 mm²").unwrap().shared);
+}
+
+#[test]
+fn twin_ferrules_by_default_where_two_wires_meet() {
+    let mut prj = Project::default();
+    prj.layout.twin_ferrules = true;
+    let wire = |a: &str, b: &str| (a.to_string(), b.to_string(), "1.5 mm²".to_string());
+    let ends = Ends::of([wire("-X1:1", "-K1:13"), wire("-X1:1", "-K2:13"), wire("-X1:2", "-K3:1"), wire("-X1:3", "-K4:1"), wire("-X1:3", "-K5:1"), wire("-X1:3", "-K6:1")]);
+    assert_eq!(ends.kind(&prj, "-X1:1", "-K1:13"), Termination::TwinFerrule);
+    assert_eq!(ends.kind(&prj, "-K1:13", "-X1:1"), Termination::Ferrule, "one wire");
+    assert_eq!(ends.kind(&prj, "-X1:3", "-K4:1"), Termination::Ferrule, "three wires");
+    // A choice for one of the two wires leaves the other one an ordinary ferrule.
+    choose_termination(&mut prj, &ends, "-X1:1", "-K1:13", Some(Termination::Ring));
+    assert_eq!(ends.kind(&prj, "-X1:1", "-K2:13"), Termination::Ferrule);
+    assert_eq!(ends.default_kind(&prj, "-X1:1", "-K1:13"), Termination::TwinFerrule, "back to the default, both share one");
+    // Without ferrules, no twin ferrules either.
+    prj.layout.ferrules = false;
+    assert_eq!(ends.kind(&prj, "-X1:1", "-K2:13"), Termination::Bare);
+}
+
+#[test]
+fn twin_ferrules_counted_once_and_checked() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    // A connection point with two routed wires.
+    let routed = |at: &str, to: &str| an.wiring.iter().any(|w| (w.from == at && w.to == to) || (w.from == to && w.to == at));
+    let (at, to) = an
+        .wiring
+        .iter()
+        .flat_map(|w| [(w.from.clone(), w.to.clone()), (w.to.clone(), w.from.clone())])
+        .find(|(at, _)| an.ends.wires_at(at).len() == 2 && an.ends.wires_at(at).iter().all(|(o, _)| routed(at, o)))
+        .expect("a point with two wires");
+    let before = terminal_material(&prj, &an.ends, &an.wiring);
+    choose_termination(&mut prj, &an.ends, &at, &to, Some(Termination::TwinFerrule));
+    let material = terminal_material(&prj, &an.ends, &an.wiring);
+    let count = |m: &[(String, usize)], p: &str| m.iter().filter(|x| x.0.starts_with(p)).map(|x| x.1).sum::<usize>();
+    assert_eq!(count(&material, "GEN.FER2-"), 1, "{material:?}");
+    assert_eq!(count(&material, "GEN.FER-"), count(&before, "GEN.FER-") - 2);
+    let twin_issues = |prj: &Project| Analysis::checked(prj).issues.iter().filter(|i| i.message().starts_with("Twin ferrule at")).count();
+    assert_eq!(twin_issues(&prj), 0);
+    // Alone at a point it is checked.
+    let single = an.wiring.iter().flat_map(|w| [(w.from.clone(), w.to.clone()), (w.to.clone(), w.from.clone())]).find(|(p, _)| an.ends.wires_at(p).len() == 1).unwrap();
+    choose_termination(&mut prj, &an.ends, &single.0, &single.1, Some(Termination::TwinFerrule));
+    assert_eq!(twin_issues(&prj), 1);
+    // The wiring assistant puts the two wires one after the other.
+    let steps = crate::wiring::steps(&prj, &an.ends, &an.wiring, None, crate::wiring::Order::CrossSection);
+    let pos = |a: &str, b: &str| steps.iter().position(|s| { let w = &an.wiring[s.wire]; (w.from == a && w.to == b) || (w.from == b && w.to == a) }).unwrap();
+    let other = an.ends.twin(&prj, &at, &to).unwrap().with;
+    assert_eq!(pos(&at, &to).abs_diff(pos(&at, &other)), 1);
+    // The wire list names the other wire.
+    let list = crate::reports::production_wire_list(&prj, &an);
+    assert!(list.rows.iter().any(|r| r.iter().any(|c| c.contains(&other) && c.contains(Termination::TwinFerrule.title()))), "the twin in the wire list");
 }

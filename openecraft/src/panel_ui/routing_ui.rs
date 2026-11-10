@@ -66,7 +66,7 @@ fn route_end(prj: &Project, an: &Analysis, it: &openecraft_core::routing3d::Rout
     let device = |at: &str| at.rsplit_once(':').map_or(at, |(d, _)| d).to_string();
     let swapped = it.ends[0].tag != device(&w.from) && it.ends[0].tag == device(&w.to);
     let (at, other) = if (k == 0) != swapped { (&w.from, &w.to) } else { (&w.to, &w.from) };
-    super::scene3d::wire_end(prj, at, other, &w.cross_section, dim)
+    super::scene3d::wire_end(prj, &an.ends, at, other, &w.cross_section, dim)
 }
 
 /// How the core of the cable `cable` looks at the connection point `at`.
@@ -74,7 +74,7 @@ pub(super) fn core_end(prj: &Project, an: &Analysis, cable: &str, at: &str) -> s
     super::terminations::core_ends(prj, an, cable)
         .into_iter()
         .find(|(end, _, _)| end == at)
-        .map(|(_, other, cs)| super::scene3d::wire_end(prj, at, &other, &cs, false))
+        .map(|(_, other, cs)| super::scene3d::wire_end(prj, &an.ends, at, &other, &cs, false))
         .unwrap_or_default()
 }
 

@@ -687,6 +687,7 @@ Selectivity and back-up protection of device pairs from the manufacturers' table
 Separator: semicolon, comma or tab	Erotin: semicolon, comma tai tab
 Sets how cross references are shown (only the given settings) and shows the settings	Määrittää, miten ristiviittaukset näytetään (vain annetut asetukset), ja näyttää asetukset
 Sets how the terminals of a jumper are bridged	Määrittää, miten sillan riviliittimet silloitetaan
+Sets how wire ends without a chosen termination are terminated: with ferrules or bare, and with twin ferrules where two wires share a connection point	Määrittää, miten johtojen päät ilman valittua päätettä päätetään: pääteholkeilla tai kuorittuina, ja kaksoispääteholkeilla, kun kaksi johdinta jakaa liitäntäpisteen
 Sets property values of an object; an empty value removes it	Asettaa objektin ominaisuusarvot; tyhjä arvo poistaa sen
 Sets the aspects the pages use	Asettaa sivujen käyttämät aspektit
 Sets the collision class of a panel item (empty: automatic)	Asettaa asennusosan törmäysluokan (tyhjä: automaattinen)
@@ -822,6 +823,7 @@ Top edge on the face in mm	Yläreuna pinnalla millimetreinä
 Top edge on the mounting plate in mm	Yläreuna asennuslevyllä millimetreinä
 Translated line	Käännetty rivi
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Kierto pystyakselin ympäri asteina, ylhäältä katsottuna vastapäivään (90: etupuolet osoittavat oikealle)
+Two wires at a connection point share a twin ferrule	Liitäntäpisteen kaksi johdinta jakavat kaksoispääteholkin
 Unit, e.g. kW	Yksikkö, esim. kW
 Unknown accessory kind: {}	Tuntematon tarvikkeen laji: {}
 Unknown action: {}	Tuntematon toiminto: {}
@@ -905,6 +907,7 @@ Windows: height of the bottom edge above the floor in mm	Ikkunat: alareunan kork
 Wire colour (IEC 60757), e.g. BK	Johtoväri (IEC 60757), esim. BK
 Wire colour, e.g. BU	Johtoväri, esim. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Johtoväri, esim. BU (tyhjä = potentiaalin määrityksestä)
+Wire ends get ferrules	Johtojen päihin tulee pääteholkit
 Wire number (kept when renumbering)	Johtonumero (säilyy uudelleennumeroinnissa)
 Wire numbering and wiring marks	Johtojen numerointi ja johdotusmerkinnät
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Suojalaitteelleen liian ohuet johdot ja kaapelien jännitteenalenema (IEC 60204-1)

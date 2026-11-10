@@ -687,6 +687,7 @@ Selectivity and back-up protection of device pairs from the manufacturers' table
 Separator: semicolon, comma or tab	Scheidingsteken: semicolon, comma of tab
 Sets how cross references are shown (only the given settings) and shows the settings	Stelt in hoe kruisverwijzingen worden weergegeven (alleen de opgegeven instellingen) en toont de instellingen
 Sets how the terminals of a jumper are bridged	Stelt in hoe de klemmen van een brug worden doorverbonden
+Sets how wire ends without a chosen termination are terminated: with ferrules or bare, and with twin ferrules where two wires share a connection point	Bepaalt hoe draadeinden zonder gekozen afwerking worden afgewerkt: met adereindhulzen of blank, en met dubbele adereindhulzen waar twee draden een aansluitpunt delen
 Sets property values of an object; an empty value removes it	Stelt eigenschapswaarden van een object in; een lege waarde verwijdert de waarde
 Sets the aspects the pages use	Stelt de aspecten in die de pagina's gebruiken
 Sets the collision class of a panel item (empty: automatic)	Stelt de botsingsklasse van een montage-element in (leeg: automatisch)
@@ -822,6 +823,7 @@ Top edge on the face in mm	Bovenrand op het vlak in mm
 Top edge on the mounting plate in mm	Bovenrand op de montageplaat in mm
 Translated line	Vertaalde regel
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Draaiing om de verticale as in graden, van boven gezien linksom (90: de fronten wijzen naar rechts)
+Two wires at a connection point share a twin ferrule	Twee draden op een aansluitpunt delen een dubbele adereindhuls
 Unit, e.g. kW	Eenheid, bijv. kW
 Unknown accessory kind: {}	Onbekende soort toebehoren: {}
 Unknown action: {}	Onbekende actie: {}
@@ -905,6 +907,7 @@ Windows: height of the bottom edge above the floor in mm	Ramen: hoogte van de on
 Wire colour (IEC 60757), e.g. BK	Draadkleur (IEC 60757), bijv. BK
 Wire colour, e.g. BU	Draadkleur, bijv. BU
 Wire colour, e.g. BU (empty = from the potential definition)	Draadkleur, bijv. BU (leeg = uit de potentiaaldefinitie)
+Wire ends get ferrules	Draadeinden krijgen adereindhulzen
 Wire number (kept when renumbering)	Draadnummer (blijft behouden bij hernummeren)
 Wire numbering and wiring marks	Draadnummering en bedradingsmarkeringen
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Draden die te dun zijn voor hun beveiliging en de spanningsval van de kabels (IEC 60204-1)

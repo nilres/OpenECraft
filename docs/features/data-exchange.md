@@ -13,7 +13,8 @@ and copyable, **DXF** (R12, layers by kind) and **DWG** (AutoCAD 2004,
 the same drawing) per page or all pages side by side, SVG per page, printable HTML, production wire list (CSV with wire numbers,
 ends, colour, cross-section, routed length, stripping length and termination of
 both ends (ferrule per DIN 46228-4, twin ferrule, ring, fork, pin, flat plug or
-receptacle terminal) with their parts, cable cores; panel wires sorted by
+receptacle terminal) with their parts, a twin ferrule named with the other wire and
+listed at the first of them, cable cores; panel wires sorted by
 cross-section, colour and length for wire processing machines; ferrules and terminals
 also in the BOM; with a UTF-8 byte order mark, as
 the report CSVs of the editor, so that spreadsheets show `mm²` and umlauts), report CSVs, PLC symbol tables,
