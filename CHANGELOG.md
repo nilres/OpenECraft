@@ -5,6 +5,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Settings after an update check:** checking for updates no longer collapses Settings
+  into an unusable title bar. Dialogs already stuck this way recover their contents.
 - **Wire jumps** (#132): wires that cross without a connection can jump over each other
   with an arc, a square bridge or a gap, besides the plain crossing of before; the
   vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
