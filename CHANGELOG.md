@@ -5,6 +5,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Panel layout profile sizing** (#135): select a mounting rail or cable duct and drag
+  either end to change its length while the opposite end stays put.
 - **Connection point designations** (#116): each designation of a selected symbol can
   be dragged on its own, put left, right, above or below its connection point or reset
   to automatic placement (Properties › *Property placement*); the placement is stored
