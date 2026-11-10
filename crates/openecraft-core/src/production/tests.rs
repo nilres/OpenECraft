@@ -126,6 +126,25 @@ fn wire_end_treatment() {
 }
 
 #[test]
+fn wire_ends_seen_in_3d() {
+    let outer = crate::harness::outer_diameter("1.5 mm²");
+    // With a ferrule: its metal sleeve at the tip, then its collar (black for 1.5 mm²)
+    // over the insulation.
+    let p = end_treatment("1.5 mm²", true).unwrap().pieces("1.5 mm²", outer);
+    assert_eq!(p.len(), 2);
+    assert_eq!((p[0].length, p[0].color), (8.0, SLEEVE_RGB));
+    assert!(p[0].diameter < outer && p[1].diameter > outer, "{p:?}");
+    assert_eq!((p[1].length, p[1].color), (6.0, [35, 35, 38]));
+    // Every ferrule colour is known.
+    assert!(FERRULES.iter().all(|f| f.rgb() != [128, 128, 128]));
+    // Without one: the bare copper as long as it is stripped, thinner than the insulation.
+    let p = end_treatment("1.5 mm²", false).unwrap().pieces("1.5 mm²", outer);
+    assert_eq!(p.len(), 1);
+    assert_eq!((p[0].length, p[0].color), (8.0, COPPER_RGB));
+    assert!(p[0].diameter > 1.3 && p[0].diameter < outer, "{p:?}");
+}
+
+#[test]
 fn ferrules_in_wire_list_and_bom() {
     let mut prj = demo_project();
     for w in prj.pages.iter_mut().flat_map(|pg| pg.wires.iter_mut()).filter(|w| w.cable.is_empty()) {

@@ -395,11 +395,66 @@ pub const FERRULES: [Ferrule; 10] = [
     Ferrule { cross_section: 16.0, color: "blue", length: 12.0, part: "GEN.FER-16" },
 ];
 
+impl Ferrule {
+    /// Colour of its plastic collar.
+    pub fn rgb(&self) -> [u8; 3] {
+        match self.color {
+            "turquoise" => [64, 200, 200],
+            "white" => [235, 235, 235],
+            "grey" => [140, 140, 145],
+            "red" => [210, 40, 40],
+            "black" => [35, 35, 38],
+            "blue" => [40, 90, 200],
+            "yellow" => [235, 200, 40],
+            _ => [128, 128, 128],
+        }
+    }
+
+    /// Length of its plastic collar over the insulation (DIN 46228-4).
+    pub fn collar(&self) -> f32 {
+        if self.cross_section <= 4.0 { 6.0 } else if self.cross_section <= 6.0 { 8.0 } else { 10.0 }
+    }
+}
+
 /// End treatment of a wire end: stripping length and ferrule.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct EndTreatment {
     pub strip: f32,
     pub ferrule: Option<Ferrule>,
+}
+
+/// A piece of a wire end as it is seen (3D view): length and diameter in mm, colour.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct EndPiece {
+    pub length: f32,
+    pub diameter: f32,
+    pub color: [u8; 3],
+}
+
+/// Tin-plated copper of a ferrule sleeve.
+pub const SLEEVE_RGB: [u8; 3] = [196, 198, 204];
+/// Bare copper of a stripped conductor.
+pub const COPPER_RGB: [u8; 3] = [196, 112, 52];
+
+/// Diameter (mm) of the stranded conductor of a cross-section (mm²).
+pub fn conductor_diameter(cross_section: f32) -> f32 {
+    1.15 * 2.0 * (cross_section / std::f32::consts::PI).sqrt()
+}
+
+impl EndTreatment {
+    /// How the end of a wire of `cross_section` (with the outer diameter `outer`) looks,
+    /// from the tip inwards: the metal sleeve of the ferrule and its collar over the
+    /// insulation, or the bare copper conductor as long as it is stripped.
+    pub fn pieces(&self, cross_section: &str, outer: f32) -> Vec<EndPiece> {
+        let core = conductor_diameter(cross_section_mm2(cross_section).unwrap_or(1.0)).min(outer * 0.8);
+        match self.ferrule {
+            Some(f) => vec![
+                EndPiece { length: f.length, diameter: core + 0.3, color: SLEEVE_RGB },
+                EndPiece { length: f.collar(), diameter: outer + 0.8, color: f.rgb() },
+            ],
+            None => vec![EndPiece { length: self.strip, diameter: core, color: COPPER_RGB }],
+        }
+    }
 }
 
 /// End treatment for a wire cross-section (None if it is unknown).

@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Wire ends in 3D:** the 3D view of the panel layout shows the end of each wire and
+  cable core at its connection point: the ferrule (metal sleeve and collar in its
+  DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
+  conductor as long as it is stripped.
 - **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
   and its corners are dragged afterwards; all buildings have to stay inside it, the check
   reports rooms, roofs and cabinets outside it and the site plan draws them red.

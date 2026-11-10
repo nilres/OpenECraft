@@ -10,7 +10,7 @@ pub struct Layout {
     pub enclosures: Vec<Enclosure>,
     /// Additional wire length per connection (stripping, reserve loops) in mm.
     pub wire_reserve: f32,
-    /// Wire ends get ferrules (production wire list, bill of materials).
+    /// Wire ends get ferrules (production wire list, bill of materials, 3D view).
     pub ferrules: bool,
     /// Highest fill level of the cable ducts in percent (project check).
     pub duct_fill_limit: f32,

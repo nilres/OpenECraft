@@ -32,7 +32,9 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   wires such as green-yellow with a stripe) and, like cables and tubes, as thick as
   their outer diameter. A cable ends a little before the device it is connected to and
   its cores part from there in smooth curves, each into its connection point from the
-  side its wires leave it; through cable glands, wall penetrations and the cable passages
+  side its wires leave it. At its connection point a wire or core ends in its ferrule
+  (metal sleeve and collar in the DIN 46228-4 colour) where *Wire ends with ferrules* is
+  set, in the bare copper conductor as long as it is stripped otherwise; through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
   through one gland side by side. In a cabinet without cable ducts on its mounting
   plate the wires are laid by the 3D routing (see below), from connection point to

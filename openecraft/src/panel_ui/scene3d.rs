@@ -59,6 +59,59 @@ struct TubeWay {
     as_is: bool,
     /// The direction it leaves its ends in (see [`Way`]).
     leave: [V3; 2],
+    /// How its first and last end look where they are connected ([`wire_end`]).
+    ends: [EndLook; 2],
+}
+
+/// How the end of a wire or core at its connection point looks: the pieces of the
+/// ferrule or the bare conductor from the tip inwards (length, diameter, colour); none
+/// where it is not connected.
+pub(super) type EndLook = Vec<(f32, f32, Color32)>;
+
+/// [`EndLook`] of a wire of `cross_section` (none for an unknown one): with a ferrule
+/// where the wire ends get them (`ferrules`), the bare copper otherwise; dimmed like the
+/// wire (`dim`, see [`super::wire_look`]).
+pub(super) fn wire_end(cross_section: &str, ferrules: bool, dim: bool) -> EndLook {
+    let Some(t) = openecraft_core::production::end_treatment(cross_section, ferrules) else { return Vec::new() };
+    let outer = openecraft_core::harness::outer_diameter(cross_section);
+    t.pieces(cross_section, outer)
+        .into_iter()
+        .map(|p| {
+            let c = Color32::from_rgb(p.color[0], p.color[1], p.color[2]);
+            (p.length, p.diameter, if dim { c.gamma_multiply(0.3) } else { c })
+        })
+        .collect()
+}
+
+/// A way cut into its pieces as they are drawn: the ends ([`EndLook`]) at its first and
+/// last point and the rest between them, each with its diameter, colour and stripe. A
+/// way too short for its ends is drawn without them.
+fn with_ends(points: &[V3], diameter: f32, color: Color32, stripe: Option<Color32>, ends: &[EndLook; 2]) -> Vec<(Vec<V3>, f32, Color32, Option<Color32>)> {
+    let total: f32 = ends.iter().flatten().map(|p| p.0).sum();
+    if total <= 0.0 || vec3::path_length(points) <= total + diameter {
+        return vec![(points.to_vec(), diameter, color, stripe)];
+    }
+    // The pieces of an end cut off the start of `rest`.
+    let cut = |rest: &mut Vec<V3>, pieces: &EndLook| {
+        let mut out = Vec::new();
+        for &(length, d, c) in pieces {
+            let (head, tail) = vec3::split_at(rest, length);
+            out.push((head, d, c, None));
+            *rest = tail;
+        }
+        out
+    };
+    let mut rest = points.to_vec();
+    let mut out = cut(&mut rest, &ends[0]);
+    rest.reverse();
+    let last = cut(&mut rest, &ends[1]);
+    rest.reverse();
+    out.push((rest, diameter, color, stripe));
+    out.extend(last.into_iter().rev().map(|mut p| {
+        p.0.reverse();
+        p
+    }));
+    out
 }
 
 /// A flat face of the view: a triangle of a model or a side of a box.
@@ -1136,9 +1189,10 @@ impl PanelUi {
                     let at = passage(q);
                     [at, [at[0] + inward * lead, at[1], at[2]]]
                 };
-                let paths: Vec<(usize, Vec<V3>)> = match wire.door {
+                // Each stretch with whether it starts and ends at a connection point.
+                let paths: Vec<(usize, Vec<V3>, [bool; 2])> = match wire.door {
                     (Some(a), Some(b)) if wire.on_door() => match &wire.door_routes.0 {
-                        Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect())],
+                        Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect(), [true; 2])],
                         None => Vec::new(),
                     },
                     (a, b) => wire
@@ -1188,6 +1242,7 @@ impl PanelUi {
                                 along.reverse();
                                 to_terminal = true;
                             }
+                            let connected = [(entry, a, wire.terminals.0, &wire.door_routes.0), (exit, b, wire.terminals.1, &wire.door_routes.1)].map(|(through, door, terminal, door_route)| through.is_none() && if door.is_some() { door_route.is_some() } else { terminal.is_some() });
                             // From the connection points down to the plate.
                             let mut v = match (entry, a) {
                                 (None, Some(a)) => door_end(a, &wire.door_routes.0, route.points.first(), z),
@@ -1203,7 +1258,7 @@ impl PanelUi {
                                 (None, None) if !to_terminal => v.extend(wire.terminals.1.map(up)),
                                 _ => {}
                             }
-                            (i, v)
+                            (i, v, connected)
                         })
                         .collect(),
                 };
@@ -1211,7 +1266,8 @@ impl PanelUi {
                 // the mounting plate.
                 let bend = prj.layout.routing.bend_radius(RouteKind::Wire, diameter);
                 let on_plate = !e.is_room() && wire.door == (None, None);
-                for (i, path) in &paths {
+                let end = wire_end(&wire.cross_section, prj.layout.ferrules, selected_wire.is_some() && !selected);
+                for (i, path, connected) in &paths {
                     let (rest, below) = match on_plate {
                         true => (pose.turn([0.0, 0.0, 1.0]), path.iter().map(|q| q[2] - PLATE_Z).fold(f32::INFINITY, f32::min) - diameter / 2.0 - super::routing_ui::PLATE_CLEAR),
                         false => ([0.0; 3], f32::INFINITY),
@@ -1219,7 +1275,7 @@ impl PanelUi {
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2] }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2], ends: connected.map(|c| if c { end.clone() } else { Vec::new() }) }));
                         continue;
                     }
                     for seg in path.windows(2) {
@@ -1264,6 +1320,7 @@ impl PanelUi {
                     prev.bends.extend(t.bends.into_iter().skip(1));
                     prev.below = prev.below.min(t.below);
                     prev.leave[1] = t.leave[1];
+                    prev.ends[1] = t.ends[1].clone();
                 }
                 _ => pending.push(t),
             }
@@ -1292,7 +1349,7 @@ impl PanelUi {
         for line in self.routing_lines_3d(prj, an, &keys, &to_view, selected_wire) {
             if line.diameter > 0.0 {
                 let (sides, steps) = if matches!(line.target, RouteRef::Wire(_)) { (WIRE_SIDES, 2) } else { (TUBE_SIDES, 4) };
-                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave });
+                pending.push(TubeWay { points: line.points, bends: line.bends, diameter: line.diameter, color: line.color, stripe: line.stripe, width: line.width, on_top: line.on_top, target: line.target, sides, steps, rest: line.rest, below: line.below, as_is: line.as_is, leave: line.leave, ends: line.ends });
                 continue;
             }
             for seg in line.points.windows(2) {
@@ -1339,19 +1396,22 @@ impl PanelUi {
         let mut laid = laid.iter();
         for t in &pending {
             let points = laid.next().unwrap_or(&t.points);
-            tube_faces(&mut s.tubes, points, t.diameter, t.color, t.stripe, t.sides);
             tube_ways.push((points.clone(), t.diameter / 2.0));
             s.tube_paths.push((points.clone(), t.diameter / 2.0, t.target.clone()));
-            for seg in points.windows(2) {
-                let l = SceneLine { a: seg[0], b: seg[1], color: t.color, stripe: t.stripe, least: t.width, diameter: t.diameter, tube: true };
-                if t.on_top {
-                    s.lines.push(SceneLine { stripe: None, ..l });
-                } else {
-                    equipment_wires.push(l);
+            // The ferrules or the bare conductors at the connection points.
+            for (path, diameter, color, stripe) in with_ends(points, t.diameter, t.color, t.stripe, &t.ends) {
+                tube_faces(&mut s.tubes, &path, diameter, color, stripe, t.sides);
+                for seg in path.windows(2) {
+                    let l = SceneLine { a: seg[0], b: seg[1], color, stripe, least: t.width, diameter, tube: true };
+                    if t.on_top {
+                        s.lines.push(SceneLine { stripe: None, ..l });
+                    } else {
+                        equipment_wires.push(l);
+                    }
                 }
-                if !matches!(t.target, RouteRef::None) {
-                    s.picks.push((seg[0], seg[1], t.target.clone()));
-                }
+            }
+            if !matches!(t.target, RouteRef::None) {
+                s.picks.extend(points.windows(2).map(|seg| (seg[0], seg[1], t.target.clone())));
             }
         }
         let in_view = |q: V3| keys.iter().any(|&k| q[0] >= pos[k][0] && q[0] <= pos[k][0] + prj.layout.enclosures[k].width);

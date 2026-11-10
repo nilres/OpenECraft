@@ -55,6 +55,26 @@ pub(super) struct RouteLine {
     /// its ends and it is known (view coordinates, as long as the cells of the routing
     /// there are wide; none: zero).
     pub leave: [[f32; 3]; 2],
+    /// How a wire or core looks at its first and last point where it is connected there.
+    pub ends: [super::scene3d::EndLook; 2],
+}
+
+/// How the ends of a routed wire, or of the cores of a routed cable, look at their
+/// connection points (the cross-section of the cable's wires); dimmed like the wire.
+fn route_end(prj: &Project, an: &Analysis, it: &openecraft_core::routing3d::RoutedItem, dim: bool) -> super::scene3d::EndLook {
+    let wire = match (it.kind, it.wire) {
+        (RouteKind::Wire, Some(wi)) => an.wiring.get(wi),
+        (RouteKind::Cable, _) => an.wiring.iter().find(|w| !w.cable.is_empty() && w.cable == it.key),
+        _ => None,
+    };
+    wire.map(|w| super::scene3d::wire_end(&w.cross_section, prj.layout.ferrules, dim)).unwrap_or_default()
+}
+
+/// Diameter of the cores of a cable of `diameter` as thick as it tells for their number
+/// (see `routing3d::cable_diameter`).
+fn core_diameter(it: &openecraft_core::routing3d::RoutedItem, diameter: f32) -> f32 {
+    let cores_at = it.ends.iter().map(|e| e.cores.len()).max().unwrap_or(0).max(2) as f32;
+    ((diameter - 2.0) / (1.2 * (1.0 + 0.5 * cores_at).sqrt())).clamp(0.2 * diameter, 0.5 * diameter)
 }
 
 /// What [`fan_out`] tells: the points of the cable's way it keeps, those it goes on with
@@ -438,7 +458,7 @@ impl PanelUi {
             for path in &e.paths {
                 let selected = self.selected_object == Some(path.id);
                 let color = if path.face.is_some() { PIPE_COLOR } else { PATH_COLOR };
-                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2] });
+                out.push(RouteLine { points: path.points.iter().map(|q| g(*q)).collect(), color, stripe: None, width: if selected { 3.0 } else { 1.5 }, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2], ends: Default::default() });
             }
             for r in &e.reservations {
                 let color = match r.mode {
@@ -462,7 +482,7 @@ impl PanelUi {
                     ((0, 1, 0), (0, 1, 1)),
                     ((1, 1, 0), (1, 1, 1)),
                 ] {
-                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2] });
+                    out.push(RouteLine { points: vec![c(s.0, s.1, s.2), c(t.0, t.1, t.2)], color, stripe: None, width: 1.0, diameter: 0.0, bends: Vec::new(), rest: [0.0; 3], below: f32::INFINITY, on_top: false, target: RouteRef::None, as_is: false, leave: [[0.0; 3]; 2], ends: Default::default() });
                 }
             }
         }
@@ -493,10 +513,6 @@ impl PanelUi {
                     (color, None, width, it.diameter, selected, RouteRef::Item(it.key.clone()))
                 }
             };
-            // The cores of a cable as thick as its diameter tells for their number
-            // (see routing3d::cable_diameter).
-            let cores_at = it.ends.iter().map(|e| e.cores.len()).max().unwrap_or(0).max(2) as f32;
-            let core = ((diameter - 2.0) / (1.2 * (1.0 + 0.5 * cores_at).sqrt())).clamp(0.2 * diameter, 0.5 * diameter);
             // Leg by leg; legs through an enclosure not shown are left out, legs shown one
             // after the other are one line through the cable gland or wall penetration
             // between them, bent there with the route's bend radius.
@@ -527,6 +543,8 @@ impl PanelUi {
                         leave[end] = sub(to_view(leg, add(*q, openecraft_core::parts::vec3::scale(d, cell))), to_view(leg, *q));
                     }
                 }
+                // A wire's ends at the ends of the route (not into an enclosure not shown).
+                let ends = [(0, s == 0), (1, s == last)].map(|(k, at_end)| if at_end && it.wire.is_some() && it.ends[k].item.is_some() && it.ends[k].cores.is_empty() { route_end(prj, an, it, selected_wire.is_some() && !selected) } else { Vec::new() });
                 let mut points: Vec<[f32; 3]> = points.iter().map(|q| to_view(leg, *q)).collect();
                 let mut bends = bends.to_vec();
                 bends.resize(points.len(), 0.0);
@@ -547,7 +565,7 @@ impl PanelUi {
                     // In a cabinet the cable ends clear of the device and the cores pass its
                     // other terminals in front of it.
                     let device = it.ends[end].enclosure.zip(it.ends[end].item).filter(|_| rest != [0.0; 3]).and_then(|(k, id)| Some((fan_device(prj, &pos, k, id, &|q| to_view(leg, q))?, rest)));
-                    let (keep, tail, fan) = fan_out(&points, &bends, &at, diameter, core, device);
+                    let (keep, tail, fan) = fan_out(&points, &bends, &at, diameter, core_diameter(it, diameter), device);
                     cores.extend(fan);
                     points.truncate(keep);
                     bends.truncate(keep);
@@ -560,7 +578,7 @@ impl PanelUi {
                 }
                 for c in cores {
                     let bends = vec![0.0; c.len()];
-                    out.push(RouteLine { points: c, color, stripe: None, width: width * 0.5, diameter: core, bends, rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2] });
+                    out.push(RouteLine { points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), bends, rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Vec::new(), route_end(prj, an, it, false)] });
                 }
                 let index = match joined {
                     Some((prev, index)) if prev + 1 == s => {
@@ -589,10 +607,11 @@ impl PanelUi {
                         }
                         line.below = line.below.min(below);
                         line.leave[1] = leave[1];
+                        line.ends[1] = ends[1].clone();
                         index
                     }
                     _ => {
-                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false, leave });
+                        out.push(RouteLine { points, color, stripe, width, diameter, bends, rest, below, on_top: selected, target: target.clone(), as_is: false, leave, ends: ends.clone() });
                         out.len() - 1
                     }
                 };

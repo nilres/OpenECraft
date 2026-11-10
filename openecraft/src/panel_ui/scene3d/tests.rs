@@ -76,3 +76,31 @@ fn wires_come_down_to_the_duct_before_its_wall() {
     down_before_duct(&mut plain, [300.0, 200.0, 150.0], &[duct], 1.5);
     assert_eq!(plain, vec![[300.0, 140.0, 150.0], [300.0, 140.0, 50.0]]);
 }
+
+#[test]
+fn wire_ends_are_cut_off_the_way() {
+    let way = [[0.0, 0.0, 0.0], [100.0, 0.0, 0.0], [100.0, 100.0, 0.0]];
+    let (red, grey) = (Color32::RED, Color32::GRAY);
+    // A ferrule (sleeve and collar) at the first end, the bare conductor at the last.
+    let ends = [vec![(8.0, 1.8, grey), (6.0, 3.8, red)], vec![(8.0, 1.6, Color32::BROWN)]];
+    let pieces = with_ends(&way, 3.0, Color32::BLUE, None, &ends);
+    let looks: Vec<(f32, f32, Color32)> = pieces.iter().map(|p| (vec3::path_length(&p.0), p.1, p.2)).collect();
+    assert_eq!(looks.len(), 4);
+    assert_eq!((looks[0].1, looks[0].2, looks[1].1, looks[1].2), (1.8, grey, 3.8, red));
+    assert!((looks[0].0 - 8.0).abs() < 1e-4 && (looks[1].0 - 6.0).abs() < 1e-4, "{looks:?}");
+    assert_eq!((looks[2].1, looks[2].2), (3.0, Color32::BLUE));
+    assert!((looks[2].0 - 178.0).abs() < 1e-3, "{looks:?}");
+    assert_eq!(pieces[0].0[0], way[0]);
+    assert_eq!(pieces[3].0.last(), Some(&way[2]));
+    assert!((looks[3].0 - 8.0).abs() < 1e-4 && looks[3].2 == Color32::BROWN);
+    // Too short for its ends: drawn without them.
+    let short = [[0.0, 0.0, 0.0], [20.0, 0.0, 0.0]];
+    assert_eq!(with_ends(&short, 3.0, Color32::BLUE, None, &ends).len(), 1);
+    // The look of a wire end: ferrule or bare copper.
+    let rgb = |c: [u8; 3]| Color32::from_rgb(c[0], c[1], c[2]);
+    let with = wire_end("1.5 mm²", true, false);
+    assert_eq!(with.iter().map(|p| p.2).collect::<Vec<_>>(), vec![rgb(openecraft_core::production::SLEEVE_RGB), rgb([35, 35, 38])]);
+    let bare = wire_end("1.5 mm²", false, false);
+    assert_eq!(bare.iter().map(|p| p.2).collect::<Vec<_>>(), vec![rgb(openecraft_core::production::COPPER_RGB)]);
+    assert!(wire_end("", true, false).is_empty());
+}

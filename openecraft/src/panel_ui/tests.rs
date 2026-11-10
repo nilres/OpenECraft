@@ -1597,3 +1597,20 @@ fn installation_zones_and_opened_walls_are_seen_through() {
     let eye = [100_000.0, 100_000.0, 100_000.0];
     assert!(open.sides.iter().filter(|s| s.glass).all(|s| s.layer(eye, true) == Some(OUTER_WALLS)));
 }
+
+#[test]
+fn wire_ends_show_their_ferrules_or_the_bare_copper() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut ui = PanelUi { show_wires: true, ..Default::default() };
+    let rgb = |c: [u8; 3]| egui::Color32::from_rgb(c[0], c[1], c[2]);
+    let (sleeve, copper) = (rgb(openecraft_core::production::SLEEVE_RGB), rgb(openecraft_core::production::COPPER_RGB));
+    for ferrules in [true, false] {
+        prj.layout.ferrules = ferrules;
+        let an = Analysis::build(&prj);
+        let shown = ui.shown_3d(&prj, 0);
+        let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+        let count = |c: egui::Color32| scene.wires.iter().filter(|w| w.line.tube && w.line.color == c).count();
+        let (with, bare) = (count(sleeve), count(copper));
+        assert!(if ferrules { with > 0 && bare == 0 } else { with == 0 && bare > 0 }, "ferrules {ferrules}: {with} sleeve, {bare} copper pieces");
+    }
+}
