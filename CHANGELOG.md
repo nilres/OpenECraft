@@ -26,6 +26,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
   20x1.5) as manufacturer parts. The example `building_services` has a gland for every
   cable, sized to it.
+- **Device boxes with device connection points:** a dashed box of any size drawn on
+  the schematic is a device of its own (power supply, measuring instrument, control
+  module) without a library symbol; device connection points placed on its outline
+  belong to its device, lead away from its edge and are numbered on. Each point is a
+  separate connection (`-A1:L`, `-A1:+24V`) in the connection reports; designations,
+  directions, the box of a point and the place and alignment of its designation are
+  editable, resizing a box takes the points on a moved edge and their wires along, and
+  moving, copying, deleting and macros take a box with its points. Commands
+  `add_device_box`, `update_device_box`, `add_device_connections`,
+  `update_device_connection`, `list_device_boxes`
+  ([schematic](docs/features/schematic.md)).
+
 - **Cable cores at the cable definition line:** the stroke, core designation and cable
   tag of each core sit where a cable definition line of its cable crosses the wire, so
   they line up on wires of different lengths (30 % of the wire without a line). The core
@@ -62,6 +74,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   the structure check reports overlapping boxes. Commands `add_structure_box`,
   `update_structure_box`, `list_structure_boxes`
   ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
+
 - **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
   would run into a neighbouring symbol goes on the other side of its symbol, above or
   below, whichever is clear of symbols and wires; the tag of functions of one device

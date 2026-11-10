@@ -422,6 +422,7 @@ fn func_name(f: Func) -> &'static str {
         Func::Auxiliary => "auxiliary",
         Func::Junction => "junction",
         Func::Graphic => "graphic",
+        Func::Connection => "device_connection",
     }
 }
 
@@ -642,7 +643,7 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(tag) = tag {
         ops::check_tag(tag)?;
         match def.func {
-            Func::Aux(_) | Func::Overview => {
+            Func::Aux(_) | Func::Overview | Func::Connection => {
                 ctx.last_main.insert(def.letter.into(), tag.into());
             }
             Func::Terminal => ctx.last_strip = Some(tag.into()),
@@ -656,6 +657,9 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let pos = on_page(prj, i, num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default())?;
     let mut sym = ops::new_symbol(prj, i, &ctx, &def, pos, rotation(a)?.unwrap_or(0), a.flag("mirror"));
     if let Some(tag) = tag.filter(|_| def.func.has_tag()) {
+        if def.func == Func::Connection && sym.tag != tag {
+            sym.pins = vec![openecraft_core::device_boxes::next_designation(prj, tag)];
+        }
         sym.tag = tag.into();
     }
     apply_symbol_params(&mut sym, a)?;
@@ -986,7 +990,7 @@ fn update_text(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
     let before = prj.pages[i].clone();
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let d = snapped(a.num("dx").unwrap_or_default(), a.num("dy").unwrap_or_default());
     routing::move_selection(prj, i, &sel, d);
     if !inside_page(prj, i) {
@@ -1013,7 +1017,7 @@ fn distribute_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let count = a.int("count").unwrap_or(1);
     if !(1..=100).contains(&count) {
         return Err(tr("The number of copies must be between 1 and 100").to_string());
@@ -1030,7 +1034,7 @@ fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn delete_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     ops::delete(&mut prj.pages[i], &sel);
     Ok(json!({ "deleted": sel.len() }))
 }
