@@ -668,10 +668,14 @@ fn accessories_from_parts() {
     let (lo, hi) = item_box(e, g);
     let pts: Vec<[f32; 3]> = tris.iter().flatten().copied().collect();
     assert!(pts.iter().all(|q| (0..3).all(|k| q[k] >= lo[k] - 0.01 && q[k] <= hi[k] + 0.01)), "{lo:?} {hi:?}");
+    // It sits on the outer surface of the bottom and stands out of it as far as its part
+    // says (it floated a centimetre below it).
+    let (at_face, outer) = (pts.iter().map(|q| q[1]).fold(f32::INFINITY, f32::min), pts.iter().map(|q| q[1]).fold(f32::NEG_INFINITY, f32::max));
+    assert!((at_face - e.height).abs() < 0.01 && (outer - (e.height - e.wall() + 24.0)).abs() < 0.01, "{at_face} {outer} below {}", e.height);
     let (cx, cz, r) = ((lo[0] + hi[0]) / 2.0, (lo[2] + hi[2]) / 2.0, g.w / 2.0);
     assert!(pts.iter().all(|q| (q[0] - cx).hypot(q[2] - cz) <= r + 0.01), "round within its box");
     let radius_at = |y: f32| pts.iter().filter(|q| (q[1] - y).abs() < 0.01).map(|q| (q[0] - cx).hypot(q[2] - cz)).fold(0.0, f32::max);
-    assert!(radius_at(hi[1]) < radius_at(lo[1]) && radius_at(hi[1]) > 0.0, "dome {} body {}", radius_at(hi[1]), radius_at(lo[1]));
+    assert!(radius_at(outer) < radius_at(at_face) && radius_at(outer) > 0.0, "dome {} body {}", radius_at(outer), radius_at(at_face));
 }
 
 #[test]

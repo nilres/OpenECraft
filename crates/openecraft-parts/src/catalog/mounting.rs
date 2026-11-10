@@ -197,11 +197,12 @@ pub(super) fn model(p: &Part) -> Option<(Model2d, Mesh3d)> {
             }
         }
         "Cable gland" => {
-            // Seen from outside (z 0 is the outermost point, it sits in the face at z d):
-            // the dome of the cap nut with the seal insert in its mouth, its ring, the
-            // threaded neck and the hexagon body against the face; brass nickel-plated or
-            // polyamide (light grey, or black) by the material and colour of its
-            // technical data.
+            // Seen from outside (z 0 is the outermost point, it sits on the face at z d):
+            // the seal insert standing a little out of the mouth of the dome (no face of
+            // it in one plane with one of the dome: they would flicker), the dome of the
+            // cap nut, its ring, the threaded neck and the hexagon body against the face;
+            // brass nickel-plated or polyamide (light grey, or black) by the material and
+            // colour of its technical data.
             use super::models::{BLACK, DARK};
             let material = p.tech_value("Material").unwrap_or_default().to_lowercase();
             let metal = ["brass", "nickel", "steel", "metal"].iter().any(|m| material.contains(m)) || p.description.to_lowercase().contains("brass");
@@ -209,8 +210,8 @@ pub(super) fn model(p: &Part) -> Option<(Model2d, Mesh3d)> {
             let body = if metal { NICKEL } else if black { BLACK } else { POLYAMIDE };
             let (cx, cy, r) = (w / 2.0, h / 2.0, w.min(h) / 2.0);
             let m3 = &mut m.m3;
-            m3.add_cylinder([cx, cy, 0.0], 2, r * 0.55, d * 0.1, 16, DARK);
-            m3.add_frustum([cx, cy, 0.0], 2, r * 0.6, r, d * 0.25, 16, body);
+            m3.add_cylinder([cx, cy, 0.0], 2, r * 0.5, d * 0.08, 16, DARK);
+            m3.add_frustum([cx, cy, d * 0.04], 2, r * 0.6, r, d * 0.21, 16, body);
             m3.add_cylinder([cx, cy, d * 0.25], 2, r, d * 0.2, 16, body);
             m3.add_cylinder([cx, cy, d * 0.45], 2, r * 0.8, d * 0.2, 16, if metal { NICKEL } else { DARK });
             m3.add_frustum([cx, cy, d * 0.65], 2, r, r, d * 0.35, 6, body);

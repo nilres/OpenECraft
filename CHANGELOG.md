@@ -20,7 +20,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   gland of its cabinet taken is not routed and reported as an error that names the
   cabinet, instead of being drawn through a gland with another cable. Cable entry
   flanges still take several cables side by side. Cable glands are drawn with a model
-  of their own (hexagon body, neck and dome) in the colour of their material, and the
+  of their own (hexagon body, neck and dome) in the colour of their material, seated
+  on the outer surface of their wall (they floated a centimetre above it), and the
   generic catalog gains them in brass nickel-plated (`GEN.GLAND-M16-MS` …
   `-M63-MS`), as EMC glands with a contact spring for the shield braid
   (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M

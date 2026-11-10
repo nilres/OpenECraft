@@ -129,6 +129,40 @@ fn cable_glands_come_in_both_materials_and_from_a_manufacturer() {
     assert_eq!(part("LAPP.53112020").tech_value("Material"), Some("Brass, nickel-plated"));
 }
 
+/// Two triangles of a model in one plane, facing the same way, one over the other:
+/// drawn, they flicker (the depth test cannot tell which is in front).
+fn overlapping_faces(m: &crate::Mesh3d) -> Vec<(usize, usize)> {
+    use crate::vec3::{cross, dot, norm, sub};
+    let tri = |i: usize| m.triangles[i].map(|k| m.vertices[k as usize]);
+    let normal = |t: [[f32; 3]; 3]| norm(cross(sub(t[1], t[0]), sub(t[2], t[0])));
+    let centroid = |t: [[f32; 3]; 3]| [0, 1, 2].map(|k| (t[0][k] + t[1][k] + t[2][k]) / 3.0);
+    let inside = |q: [f32; 3], t: [[f32; 3]; 3], n: [f32; 3]| (0..3).all(|i| dot(cross(sub(t[(i + 1) % 3], t[i]), sub(q, t[i])), n) > 1e-4);
+    let mut out = Vec::new();
+    for i in 0..m.triangles.len() {
+        let (a, na) = (tri(i), normal(tri(i)));
+        for j in i + 1..m.triangles.len() {
+            let (b, nb) = (tri(j), normal(tri(j)));
+            if dot(na, nb) < 0.999 || dot(na, sub(b[0], a[0])).abs() > 0.01 {
+                continue;
+            }
+            if inside(centroid(a), b, nb) || inside(centroid(b), a, na) {
+                out.push((i, j));
+            }
+        }
+    }
+    out
+}
+
+#[test]
+fn cable_gland_models_have_no_faces_over_each_other() {
+    // The seal insert stood flush with the mouth of the dome: on the outermost face of
+    // every gland two caps lay over each other and flickered in the 3D view.
+    for p in default_catalog().iter().filter(|p| p.subgroup == "Cable gland") {
+        let m = p.model_3d.as_ref().unwrap();
+        assert!(overlapping_faces(m).is_empty(), "{}: {:?}", p.number, overlapping_faces(m));
+    }
+}
+
 #[test]
 fn the_catalog_has_fluid_parts_for_rooms() {
     let parts = default_catalog();

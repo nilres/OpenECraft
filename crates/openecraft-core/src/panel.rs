@@ -1025,12 +1025,15 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
         let n = mesh.triangles.len().max(1);
         tris.into_iter().enumerate().map(|(i, t)| (t, mesh.color(i % n))).collect()
     };
-    // An accessory with a model: a cable gland, fan or handle in its cutout lies along
-    // the face it is mounted in, on the bottom of a cabinet as on its roof.
+    // A cable gland with its model: from its outer end down onto the outer surface of
+    // the wall it sits in (its box reaches through the wall), along the face, on the
+    // bottom of a cabinet as on its roof.
     if it.kind == ItemKind::Accessory {
-        let mesh = part_by_number(prj, &it.part)?.model_3d.as_ref()?;
-        let tris = if it.z < 0.0 && it.face == Face::Bottom { place_mesh(mesh, &PanelItem { face: Face::Roof, ..it.clone() }) } else { place_mesh(mesh, it) };
-        let tris = painted(mesh, tris);
+        let part = part_by_number(prj, &it.part).filter(|p| p.subgroup == "Cable gland")?;
+        let mesh = part.model_3d.as_ref()?;
+        let wall = prj.layout.enclosures.iter().find(|e| e.item(it.id).is_some()).map_or(0.0, |e| e.wall());
+        let seated = PanelItem { face: if it.face == Face::Bottom { Face::Roof } else { it.face }, d: (-wall - it.z).clamp(0.1, it.d), ..it.clone() };
+        let tris = painted(mesh, place_mesh(mesh, &seated));
         return (!tris.is_empty()).then_some(tris);
     }
     if it.kind != ItemKind::Device {
