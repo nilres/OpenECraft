@@ -210,7 +210,7 @@ pub fn draw_page(d: &mut dyn Draw, prj: &Project, idx: &Index, an: &Analysis, pa
     for s in &page.symbols {
         let Some(def) = prj.symbol(&s.sym) else { continue };
         let ink = if opts.selected.contains(&s.id) { Ink::Selected } else { Ink::Line };
-        let tag = if continues_strip(prj, page_i, &def, s) {
+        let tag = if hides_tag(prj, page_i, &def, s) {
             String::new()
         } else if structured {
             structure::relative_at(page, s.pos, &s.tag)
@@ -511,6 +511,14 @@ pub fn draw_symbol(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink: Ink) 
 }
 
 fn draw_symbol_resolved(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink: Ink, property: &dyn Fn(&str) -> String, refs: &[references::Reference]) {
+    // A device box drawn to its size.
+    if let Some(sz) = s.size {
+        let c = [p(0.0, 0.0), p(sz.x, 0.0), sz, p(0.0, sz.y)].map(|q| s.pos + q.transform(s.rot, false));
+        for i in 0..4 {
+            d.line(c[i], c[(i + 1) % 4], SYMBOL_W, ink, true);
+        }
+        return;
+    }
     if s.pins.len() < def.pins.len() {
         let mut preview = s.clone();
         for pin in def.pins.iter().skip(preview.pins.len()) {
@@ -695,23 +703,108 @@ fn find_inst<'a>(prj: &'a Project, loc: &Loc) -> Option<&'a SymbolInst> {
     prj.pages[loc.page].symbols.iter().find(|s| s.id == loc.sym_id)
 }
 
-/// Text beside a wire at fraction `t` of its length: left of vertical wires, above
-/// horizontal ones (`below`: right of / below the wire).
 /// Distance of a wire number from the ends of its wire (mm).
 const END_CLEARANCE: f32 = 4.5;
-/// Length of a wire taken by the cable tag and core below the cable stroke (mm).
+/// Length of a wire taken by the cable tag and core beside the cable stroke (mm).
 const CORE_LABEL: f32 = 4.0;
 
-fn wire_text(d: &mut dyn Draw, w: &Wire, t: f32, text: &str, below: bool, ink: Ink) {
+/// Place of a text beside a wire at fraction `t` of its length: left of vertical
+/// wires, above horizontal ones (`below`: right of / below the wire).
+fn wire_text_place(w: &Wire, t: f32, below: bool) -> (P, Anchor, VAnchor) {
     let q = p(w.a.x + (w.b.x - w.a.x) * t, w.a.y + (w.b.y - w.a.y) * t);
     if (w.b.x - w.a.x).abs() < (w.b.y - w.a.y).abs() {
         let (dx, anchor) = if below { (1.2, Anchor::Left) } else { (-0.8, Anchor::Right) };
-        d.text(p(q.x + dx, q.y), text, SMALL_SIZE, anchor, VAnchor::Middle, ink);
+        (p(q.x + dx, q.y), anchor, VAnchor::Middle)
     } else if below {
-        d.text(p(q.x, q.y + 2.8), text, SMALL_SIZE, Anchor::Center, VAnchor::Bottom, ink);
+        (p(q.x, q.y + 2.8), Anchor::Center, VAnchor::Bottom)
     } else {
-        d.text(p(q.x, q.y - 0.6), text, SMALL_SIZE, Anchor::Center, VAnchor::Bottom, ink);
+        (p(q.x, q.y - 0.6), Anchor::Center, VAnchor::Bottom)
     }
+}
+
+fn wire_text(d: &mut dyn Draw, w: &Wire, t: f32, text: &str, below: bool, ink: Ink) {
+    let (q, anchor, v) = wire_text_place(w, t, below);
+    d.text(q, text, SMALL_SIZE, anchor, v, ink);
+}
+
+/// A text of the cable core annotation of a wire.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum CoreText {
+    /// The core designation, right of / below the wire.
+    Core,
+    /// The cable tag (once per cable and page), left of / above the wire.
+    Cable,
+}
+
+impl CoreText {
+    /// Offset of the text placed by hand.
+    pub fn offset(self, w: &Wire) -> Option<P> {
+        match self {
+            CoreText::Core => w.core_offset,
+            CoreText::Cable => w.cable_offset,
+        }
+    }
+
+    pub fn offset_mut(self, w: &mut Wire) -> &mut Option<P> {
+        match self {
+            CoreText::Core => &mut w.core_offset,
+            CoreText::Cable => &mut w.cable_offset,
+        }
+    }
+}
+
+/// Cabled wires of a page in drawing order, each with whether it shows the cable tag
+/// (the first wire of its cable).
+fn cabled_wires(page: &Page) -> Vec<(&Wire, bool)> {
+    let mut cabled: Vec<&Wire> = page.wires.iter().filter(|w| !w.cable.is_empty() && !w.hide_labels).collect();
+    cabled.sort_by(|a, b| a.a.x.min(a.b.x).total_cmp(&b.a.x.min(b.b.x)).then(a.a.y.total_cmp(&b.a.y)));
+    let mut tagged: Vec<&str> = Vec::new();
+    cabled
+        .into_iter()
+        .map(|w| {
+            let first = !tagged.contains(&w.cable.as_str());
+            if first {
+                tagged.push(&w.cable);
+            }
+            (w, first)
+        })
+        .collect()
+}
+
+/// Text, position and alignment of a cable core text of wire `w` (`tagged`: the wire
+/// shows the cable tag); None when the wire does not show it. The stroke is where a
+/// cable definition line of the cable crosses the wire (`cabledef::core_position`), a
+/// text placed by hand keeps its offset from there.
+fn core_text(page: &Page, w: &Wire, tagged: bool, which: CoreText) -> Option<(String, P, Anchor, VAnchor)> {
+    let text = match which {
+        CoreText::Core => w.core.clone(),
+        CoreText::Cable if tagged => structure::relative(page, &w.cable),
+        CoreText::Cable => String::new(),
+    };
+    if w.cable.is_empty() || w.hide_labels || text.is_empty() {
+        return None;
+    }
+    let (q, anchor, v) = wire_text_place(w, crate::cabledef::core_position(page, w), which == CoreText::Core);
+    Some((text, q + which.offset(w).unwrap_or_default(), anchor, v))
+}
+
+/// Area of a cable core text of wire `w` (the handle to drag it); None when the wire
+/// does not show it.
+pub fn core_text_bounds(page: &Page, w: &Wire, which: CoreText) -> Option<R> {
+    let tagged = which == CoreText::Cable && cabled_wires(page).iter().any(|(x, first)| *first && x.id == w.id);
+    let (text, q, anchor, v) = core_text(page, w, tagged, which)?;
+    let wd = text_width(&text, SMALL_SIZE).max(SMALL_SIZE);
+    let x0 = match anchor {
+        Anchor::Left => q.x,
+        Anchor::Center => q.x - wd / 2.0,
+        Anchor::Right => q.x - wd,
+    };
+    let (y0, y1) = match v {
+        VAnchor::Top => (q.y, q.y + SMALL_SIZE * 1.2),
+        VAnchor::Middle => (q.y - SMALL_SIZE * 0.6, q.y + SMALL_SIZE * 0.6),
+        VAnchor::Bottom => (q.y - SMALL_SIZE * 1.2, q.y),
+    };
+    Some(R::from_points(p(x0, y0), p(x0 + wd, y1)))
 }
 
 /// Wire numbers (once per connection and page, on its longest wire) and cable cores
@@ -731,27 +824,39 @@ fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usiz
         let Some(w) = wirenum::label_wire(page, page_i, net) else { continue };
         let number = wirenum::number_of(prj, net);
         if !number.is_empty() {
-            // Cable cores are labelled at 30 % of the wire: the number goes into the
-            // middle of the rest, clear of the end with the connection point
+            // The number goes into the middle of the longer part of the wire beside
+            // the cable stroke, clear of the ends with the connection point
             // designations.
             let len = (w.b.x - w.a.x).hypot(w.b.y - w.a.y);
-            let (from, to) = if w.cable.is_empty() { (END_CLEARANCE, len - END_CLEARANCE) } else { (0.3 * len + CORE_LABEL, len - END_CLEARANCE) };
-            let t = if to > from && len > 0.0 { (from + to) / 2.0 / len } else if w.cable.is_empty() { 0.5 } else { 0.72 };
-            wire_text(d, w, t, &number, false, Ink::Text);
+            let core = crate::cabledef::core_position(page, w);
+            let (from, to) = if w.cable.is_empty() {
+                (END_CLEARANCE, len - END_CLEARANCE)
+            } else if core <= 0.5 {
+                (core * len + CORE_LABEL, len - END_CLEARANCE)
+            } else {
+                (END_CLEARANCE, core * len - CORE_LABEL)
+            };
+            let t = if to > from && len > 0.0 {
+                (from + to) / 2.0 / len
+            } else if w.cable.is_empty() {
+                0.5
+            } else if core <= 0.5 {
+                (core + 1.0) / 2.0 + 0.07
+            } else {
+                core / 2.0 - 0.07
+            };
+            wire_text(d, w, t.clamp(0.0, 1.0), &number, false, Ink::Text);
         }
     }
-    let mut cabled: Vec<&Wire> = page.wires.iter().filter(|w| !w.cable.is_empty() && !w.hide_labels).collect();
-    cabled.sort_by(|a, b| a.a.x.min(a.b.x).total_cmp(&b.a.x.min(b.b.x)).then(a.a.y.total_cmp(&b.a.y)));
-    let mut tagged: Vec<&str> = Vec::new();
-    for w in cabled {
-        let t = 0.3;
+    for (w, tagged) in cabled_wires(page) {
+        let t = crate::cabledef::core_position(page, w);
         let q = p(w.a.x + (w.b.x - w.a.x) * t, w.a.y + (w.b.y - w.a.y) * t);
         d.line(q + p(-1.0, 0.8), q + p(1.0, -0.8), SYMBOL_W, Ink::Line, false);
-        if !tagged.contains(&w.cable.as_str()) {
-            tagged.push(&w.cable);
-            wire_text(d, w, t, &structure::relative(page, &w.cable), false, Ink::CrossRef);
+        for which in [CoreText::Cable, CoreText::Core] {
+            if let Some((text, q, anchor, v)) = core_text(page, w, tagged, which) {
+                d.text(q, &text, SMALL_SIZE, anchor, v, Ink::CrossRef);
+            }
         }
-        wire_text(d, w, t, &w.core, true, Ink::CrossRef);
     }
 }
 
@@ -767,24 +872,15 @@ fn draw_placed_references(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: 
 /// Device tag, function text, connection point designations and cross references.
 pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst, ink: Ink) {
     let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
-    let bounds = def.world_bounds(s.pos, s.rot, s.mirror);
+    let bounds = s.bounds(def);
     let vertical = s.rot.is_multiple_of(2);
 
     // Connection point designations
     if def.show_pin_labels {
-        let c = bounds.center();
         for (i, label) in s.pins.iter().enumerate().take(def.pins.len()) {
-            if label.is_empty() {
-                continue;
-            }
-            let q = def.pin_world(i, s.pos, s.rot, s.mirror);
-            let dlt = q - c;
-            if dlt.y.abs() >= dlt.x.abs() {
-                let y = q.y - dlt.y.signum() * 1.1;
-                d.text(p(q.x - 0.6, y), label, SMALL_SIZE, Anchor::Right, VAnchor::Middle, text_ink);
-            } else {
-                let x = q.x - dlt.x.signum() * 1.1;
-                d.text(p(x, q.y - 0.5), label, SMALL_SIZE, Anchor::Center, VAnchor::Bottom, text_ink);
+            if !label.is_empty() {
+                let (q, h, v) = pin_label_at(def, s, i);
+                d.text(q, label, SMALL_SIZE, h, v, text_ink);
             }
         }
     }
@@ -841,6 +937,46 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
     }
 }
 
+/// Where the designation of connection point `i` is written: placed by hand
+/// ([`SymbolInst::pin_label`], the first point), else beside the point, away from
+/// the middle of the symbol.
+pub fn pin_label_at(def: &SymbolDef, s: &SymbolInst, i: usize) -> (P, Anchor, VAnchor) {
+    if let (0, Some(l)) = (i, s.pin_label) {
+        return (s.pos + l.offset, l.anchor, VAnchor::Middle);
+    }
+    let q = def.pin_world(i, s.pos, s.rot, s.mirror);
+    let dlt = q - s.bounds(def).center();
+    if dlt.y.abs() >= dlt.x.abs() {
+        (p(q.x - 0.6, q.y - dlt.y.signum() * 1.1), Anchor::Right, VAnchor::Middle)
+    } else {
+        (p(q.x - dlt.x.signum() * 1.1, q.y - 0.5), Anchor::Center, VAnchor::Bottom)
+    }
+}
+
+/// Area of the designation of the first connection point (to pick and drag it).
+pub fn pin_label_bounds(def: &SymbolDef, s: &SymbolInst) -> Option<R> {
+    let label = s.pins.first().filter(|l| !l.is_empty() && def.show_pin_labels && !def.pins.is_empty())?;
+    let (q, h, v) = pin_label_at(def, s, 0);
+    let (w, ht) = (label.chars().count().max(1) as f32 * SMALL_SIZE * 0.62, SMALL_SIZE * 1.25);
+    let x0 = match h {
+        Anchor::Left => q.x,
+        Anchor::Center => q.x - w / 2.0,
+        Anchor::Right => q.x - w,
+    };
+    let y0 = match v {
+        VAnchor::Top => q.y,
+        VAnchor::Middle => q.y - ht / 2.0,
+        VAnchor::Bottom => q.y - ht,
+    };
+    Some(R::from_points(p(x0, y0), p(x0 + w, y0 + ht)))
+}
+
+/// The tag of a symbol is not written: a terminal continuing its strip, a device
+/// connection point on the box of its device (the box shows it).
+pub fn hides_tag(prj: &Project, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> bool {
+    continues_strip(prj, page_i, def, s) || (def.func == Func::Connection && crate::device_boxes::on_own_box(prj, &prj.pages[page_i], s))
+}
+
 /// A terminal right beside the one before it of the same strip (same row, at most
 /// 20 mm apart): the strip tag is shown once, at the first terminal of the row, or it
 /// would run into the terminal numbers.
@@ -876,10 +1012,12 @@ impl TagSide {
 /// Where the tag block starts: x and top y of the first line and the text anchor
 /// (on side `side` of the symbol, or where it was placed).
 fn tag_block_origin(def: &SymbolDef, s: &SymbolInst, sizes: &[f32], side: TagSide) -> (f32, f32, Anchor) {
-    let bounds = def.world_bounds(s.pos, s.rot, s.mirror);
+    let bounds = s.bounds(def);
     let total: f32 = sizes.iter().map(|z| z * 1.35).sum();
     match (s.tag_offset, side) {
         (Some(o), _) => (s.pos.x + o.x, s.pos.y + o.y, Anchor::Left),
+        // Inside the top left corner of a device box, clear of the points on its outline.
+        (None, _) if crate::device_boxes::is_box(s) => (bounds.min.x + 1.5, bounds.min.y + 1.5, Anchor::Left),
         (None, TagSide::Left) => (bounds.min.x - 1.2, bounds.center().y - total / 2.0, Anchor::Right),
         (None, TagSide::Right) => (bounds.max.x + 1.2, bounds.center().y - total / 2.0, Anchor::Left),
         (None, TagSide::Above) => (bounds.center().x, bounds.min.y - 1.0 - total, Anchor::Center),
@@ -954,7 +1092,7 @@ fn neighbours<'a>(prj: &'a Project, page_i: usize, s: &SymbolInst) -> Vec<(&'a S
         .filter(|o| o.id != s.id && (o.pos.x - s.pos.x).abs() < 60.0 && (o.pos.y - s.pos.y).abs() < 60.0)
         .filter_map(|o| {
             let d = symbols.get(&o.sym)?;
-            let r = d.world_bounds(o.pos, o.rot, o.mirror);
+            let r = o.bounds(&d);
             Some((o, d, r))
         })
         .collect()
@@ -972,7 +1110,7 @@ fn neighbours<'a>(prj: &'a Project, page_i: usize, s: &SymbolInst) -> Vec<(&'a S
 fn tag_block_layout(prj: &Project, idx: &Index, page_i: usize, def: &SymbolDef, s: &SymbolInst) -> (Vec<TagLine>, TagSide) {
     let mut lines: Vec<TagLine> = if def.has_function_text_field() { Vec::new() } else { s.function_text.lines().map(|l| TagLine::text(l.to_string(), 2.0)).collect() };
     lines.extend(block_references(prj, idx, page_i, def, s).into_iter().map(|(text, page)| TagLine { text, size: 2.0, reference: true, page }));
-    let tag = (!s.tag.is_empty() && !continues_strip(prj, page_i, def, s)).then(|| TagLine::text(structure::relative_at(&prj.pages[page_i], s.pos, &s.tag), TAG_SIZE));
+    let tag = (!s.tag.is_empty() && !hides_tag(prj, page_i, def, s)).then(|| TagLine::text(structure::relative_at(&prj.pages[page_i], s.pos, &s.tag), TAG_SIZE));
     let usual = TagSide::order(s)[0];
     if s.tag_offset.is_some() {
         lines.splice(0..0, tag);

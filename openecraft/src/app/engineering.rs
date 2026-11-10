@@ -80,11 +80,12 @@ fn clip_preview(ui: &mut egui::Ui, prj: &Project, clip: &Clip, size: egui::Vec2)
 impl App {
     /// Opens the save dialog for the selection (window macro) or the page (page macro).
     pub(super) fn save_as_macro(&mut self, whole_page: bool) {
+        let items = self.editor.items(&self.session.prj, self.session.page);
         let page = &self.session.prj.pages[self.session.page];
         let mut m = if whole_page {
             macros::from_page(page, &page.description)
         } else {
-            macros::from_selection(page, &self.editor.selection, "")
+            macros::from_selection(page, &items, "")
         };
         m.clip.include_project_data(&self.session.prj);
         self.eng.saving = Some(m);

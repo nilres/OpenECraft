@@ -58,6 +58,11 @@ pub enum PinKind {
     Female,
 }
 
+/// Symbol of a freely drawn device box.
+pub const DEVICE_BOX: &str = "devbox";
+/// Symbol of a device connection point.
+pub const DEVICE_POINT: &str = "devconn";
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Func {
     /// Main function of a device. `mirror` = draws a contact image (coils, overloads).
@@ -85,6 +90,10 @@ pub enum Func {
     Overview,
     /// Drawing without a device identity or electrical connection points.
     Graphic,
+    /// Device connection point: tag = device (usually the one of the device box it
+    /// sits on), its connection point designation names the connection (`-A1:L`).
+    /// Neither a main nor an auxiliary function; its connections are not joined.
+    Connection,
 }
 
 impl Func {
@@ -99,7 +108,7 @@ impl Func {
     }
 
     /// All functions a symbol can have (symbol editor).
-    pub const ALL: [Func; 21] = [
+    pub const ALL: [Func; 22] = [
         Func::Main { mirror: false },
         Func::Main { mirror: true },
         Func::Aux(ContactKind::No),
@@ -121,6 +130,7 @@ impl Func {
         Func::Auxiliary,
         Func::Junction,
         Func::Graphic,
+        Func::Connection,
     ];
 
     pub fn title(self) -> &'static str {
@@ -146,6 +156,7 @@ impl Func {
             Func::Auxiliary => tr("Auxiliary function"),
             Func::Junction => tr("Junction"),
             Func::Graphic => tr("Graphic (no electrical function)"),
+            Func::Connection => tr("Device connection point"),
         }
     }
 }
@@ -620,7 +631,7 @@ fn def(key: &'static str, name: &'static str, category: Category, letter: &'stat
         label: "",
         auto_number: false,
         show_tag: func.has_tag(),
-        show_pin_labels: matches!(func, Func::Main { .. } | Func::Aux(_)),
+        show_pin_labels: matches!(func, Func::Main { .. } | Func::Aux(_) | Func::Connection),
         bridges: Vec::new(),
     }
 }
@@ -1479,6 +1490,14 @@ fn build_library() -> Vec<SymbolDef> {
         b.pin(x, 8.0, ["5", "6", "7", "8"][i]);
     }
     v.push(def("box4", "Black box 4 + 4 connections", C::BlackBox, "A", MAIN).build(&mut b));
+
+    // Freely drawn device box (`SymbolInst::size` sets its outline) and the device
+    // connection points placed on it (see `crate::device_boxes`).
+    b.drect(0.0, 0.0, 24.0, 16.0);
+    v.push(def(DEVICE_BOX, "Device box", C::BlackBox, "A", MAIN).build(&mut b));
+
+    b.l(0.0, 0.0, 0.0, -4.0).pin(0.0, -4.0, "1");
+    v.push(def(DEVICE_POINT, "Device connection point", C::BlackBox, "A", Func::Connection).build(&mut b));
 
     // PLC boxes: 8 channels on one side, supply on the other.
     const CH: [&str; 8] = ["0", "1", "2", "3", "4", "5", "6", "7"];

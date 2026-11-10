@@ -169,6 +169,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("wire_type", Kind::Str, tr_const!("Wire type")),
             optional("cable", Kind::Str, tr_const!("Cable tag")),
             optional("core", Kind::Str, tr_const!("Cable core")),
+            optional("core_offset", Kind::Points, tr_const!("Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
+            optional("cable_offset", Kind::Points, tr_const!("Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
             optional("medium", Kind::Str, tr_const!("Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)")),
             optional("length", Kind::Num, tr_const!("Hoses / pipes: length in m")),
         ],
@@ -420,6 +422,7 @@ fn func_name(f: Func) -> &'static str {
         Func::Auxiliary => "auxiliary",
         Func::Junction => "junction",
         Func::Graphic => "graphic",
+        Func::Connection => "device_connection",
     }
 }
 
@@ -640,7 +643,7 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(tag) = tag {
         ops::check_tag(tag)?;
         match def.func {
-            Func::Aux(_) | Func::Overview => {
+            Func::Aux(_) | Func::Overview | Func::Connection => {
                 ctx.last_main.insert(def.letter.into(), tag.into());
             }
             Func::Terminal => ctx.last_strip = Some(tag.into()),
@@ -654,6 +657,9 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let pos = on_page(prj, i, num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default())?;
     let mut sym = ops::new_symbol(prj, i, &ctx, &def, pos, rotation(a)?.unwrap_or(0), a.flag("mirror"));
     if let Some(tag) = tag.filter(|_| def.func.has_tag()) {
+        if def.func == Func::Connection && sym.tag != tag {
+            sym.pins = vec![openecraft_core::device_boxes::next_designation(prj, tag)];
+        }
         sym.tag = tag.into();
     }
     apply_symbol_params(&mut sym, a)?;
@@ -860,6 +866,11 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
             *field = v.into();
         }
     }
+    for (name, field) in [("core_offset", &mut w.core_offset), ("cable_offset", &mut w.cable_offset)] {
+        if a.value(name).is_some_and(|v| !v.is_null()) {
+            *field = raw_points(a, name).first().map(|&[x, y]| p(x as f32, y as f32));
+        }
+    }
     if let Some(c) = color {
         w.color = c;
     }
@@ -876,7 +887,7 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
         w.length = l;
     }
     let medium = w.medium.map(|m| m.code()).unwrap_or_default();
-    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "medium": medium, "length": w.length }))
+    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "core_offset": w.core_offset.map(xy), "cable_offset": w.cable_offset.map(xy), "medium": medium, "length": w.length }))
 }
 
 /// Takes the style parameters of `add_text` / `update_text` that are given.
@@ -979,7 +990,7 @@ fn update_text(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
     let before = prj.pages[i].clone();
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let d = snapped(a.num("dx").unwrap_or_default(), a.num("dy").unwrap_or_default());
     routing::move_selection(prj, i, &sel, d);
     if !inside_page(prj, i) {
@@ -1006,7 +1017,7 @@ fn distribute_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let count = a.int("count").unwrap_or(1);
     if !(1..=100).contains(&count) {
         return Err(tr("The number of copies must be between 1 and 100").to_string());
@@ -1023,7 +1034,7 @@ fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn delete_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     ops::delete(&mut prj.pages[i], &sel);
     Ok(json!({ "deleted": sel.len() }))
 }
