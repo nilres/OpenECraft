@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Skapar eller ändrar en fluidapparatgrup
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Skapar eller ändrar en ritningsram i projektet (inbyggda ramar kopieras under ett nytt namn)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Skapar eller ändrar en potentialdefinition; dess ledningar får färgen och tvärsnittet om inget anges på ledningen
 Creates or changes a work area: only the pages and devices of its structure are shown	Skapar eller ändrar ett arbetsområde: endast sidorna och apparaterna i dess struktur visas
+Cross reference placed by hand: X offset from the insertion point in mm	Korsreferens placerad manuellt: X-förskjutning från insättningspunkten i mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Korsreferens placerad manuellt: Y-förskjutning från insättningspunkten i mm
 Cross section, e.g. 0.75 mm²	Tvärsnitt, t.ex. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Tvärsnitt, t.ex. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Tvärsnitt, t.ex. 1.5 mm² (tomt = från potentialdefinitionen)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Layoutobjektets ID (från mounting_lis
 Id of the path or reservation	ID för vägen eller reservationen
 Id of the text	Textens ID
 Identifier, e.g. A1 or CAB1	Beteckning, t.ex. A1 eller CAB1
+Ids of interruption points	ID:n för avbrottspunkter
 Ids of page items	ID:n för sidobjekt
 Ids of symbols and connection symbols (default: all symbols of the page)	Id för symboler och förbindelsesymboler (standard: alla symboler på sidan)
 In front of the page name (default /)	Före sidnamnet (standard /)
@@ -429,6 +432,8 @@ Name of the segment	Segmentets namn
 Name of the template	Mallens namn
 Name of the work area	Arbetsområdets namn
 Name or id; the tag for places	Namn eller ID; beteckningen för placeringar
+Name placed by hand: X offset from the insertion point in mm	Namn placerat manuellt: X-förskjutning från insättningspunkten i mm
+Name placed by hand: Y offset from the insertion point in mm	Namn placerat manuellt: Y-förskjutning från insättningspunkten i mm
 Name, e.g. the location +M1	Namn, t.ex. placeringen +M1
 New device tag	Ny apparatbeteckning
 New identifier	Ny beteckning
@@ -475,6 +480,7 @@ Node name or id	Nodnamn eller ID
 Node {} exists already	Noden {} finns redan
 Nodes to pass in this order, comma separated	Noder som ska passeras i den här ordningen, kommaavgränsade
 Nominal size, e.g. 8 mm or DN25	Nominell storlek, t.ex. 8 mm eller DN25
+None of the items is an interruption point	Inget av objekten är en avbrottspunkt
 Not a cross-section: {} (e.g. 1.5 mm²)	Inget tvärsnitt: {} (t.ex. 1.5 mm²)
 Not a valid safety function: {}	Inte en giltig säkerhetsfunktion: {}
 Note, e.g. what the problem is	Anteckning, t.ex. vad problemet är
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Placerar ett kapslingstillbehör (fläkt, filter, kabelförskruvning, belysning, handtag, PE-skena) på en yta
 Places of the group (0 = not limited)	Gruppens platser (0 = obegränsat)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerar skåpsraden för en kapsling i rummet (3D-vy av alla kapslingar); utan x och z placeras den enligt anläggningslayouten eller bredvid de andra skåpsraderna
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Placerar namnet och korsreferensen för avbrottspunkter på en sida av pilen eller manuellt med en förskjutning från insättningspunkten
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerar egenskaperna i ett schema på symboler; utan ID:n placeras det igen på alla symboler som använder det
 Planned part number	Planerat artikelnummer
 Planned power in kW	Planerad effekt i kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Okänd avgränsare: {}
 Unknown setting: {}	Okänd inställning: {}
 Unknown shield ends: {}	Okända skärmändar: {}
 Unknown side {} (socket or pin)	Okänd sida {} (socket eller pin)
+Unknown side: {}	Okänd sida: {}
 Unknown state: {}	Okänd status: {}
 Unknown station kind: {}	Okänd stationstyp: {}
 Unknown symbol: {}	Okänd symbol: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Radbrytningsbredd i mm (0: ingen radbrytning)
 X position in mm	X-position i mm
 Y position in mm (downwards)	Y-position i mm (nedåt)
 any, wires, cables or tubes	any, wires, cables eller tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left eller right; kasserar manuellt placerade texter
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip eller adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam eller product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi eller other

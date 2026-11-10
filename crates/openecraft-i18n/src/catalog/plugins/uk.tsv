@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Створює або змінює гр�
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Створює або змінює рамку аркуша проєкту (вбудовані рамки копіюються під новою назвою)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Створює або змінює визначення потенціалу; його проводи беруть колір і переріз, якщо їх не задано на проводі
 Creates or changes a work area: only the pages and devices of its structure are shown	Створює або змінює робочу область: показуються лише сторінки й пристрої її структури
+Cross reference placed by hand: X offset from the insertion point in mm	Перехресне посилання розміщено вручну: зміщення по X від точки вставки в мм
+Cross reference placed by hand: Y offset from the insertion point in mm	Перехресне посилання розміщено вручну: зміщення по Y від точки вставки в мм
 Cross section, e.g. 0.75 mm²	Переріз, напр. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Переріз, напр. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Переріз, напр. 1.5 mm² (порожньо = з визначення потенціалу)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Ідентифікатор елеме�
 Id of the path or reservation	Ідентифікатор траси або резервування
 Id of the text	Ідентифікатор тексту
 Identifier, e.g. A1 or CAB1	Позначення, напр. A1 або CAB1
+Ids of interruption points	ID точок розриву
 Ids of page items	Ідентифікатори елементів сторінок
 Ids of symbols and connection symbols (default: all symbols of the page)	Id символів і символів з'єднань (типово: усі символи сторінки)
 In front of the page name (default /)	Перед назвою сторінки (за замовчуванням /)
@@ -429,6 +432,8 @@ Name of the segment	Назва сегмента
 Name of the template	Назва шаблону
 Name of the work area	Назва робочої області
 Name or id; the tag for places	Назва або ідентифікатор; для розміщень – позначення
+Name placed by hand: X offset from the insertion point in mm	Ім'я розміщено вручну: зміщення по X від точки вставки в мм
+Name placed by hand: Y offset from the insertion point in mm	Ім'я розміщено вручну: зміщення по Y від точки вставки в мм
 Name, e.g. the location +M1	Назва, напр. розташування +M1
 New device tag	Нове позначення пристрою
 New identifier	Нове позначення
@@ -475,6 +480,7 @@ Node name or id	Назва або ідентифікатор вузла
 Node {} exists already	Вузол {} уже існує
 Nodes to pass in this order, comma separated	Вузли для проходження в цьому порядку, через кому
 Nominal size, e.g. 8 mm or DN25	Номінальний розмір, напр. 8 мм або DN25
+None of the items is an interruption point	Жоден з елементів не є точкою розриву
 Not a cross-section: {} (e.g. 1.5 mm²)	Не є перерізом: {} (напр. 1.5 mm²)
 Not a valid safety function: {}	Недійсна функція безпеки: {}
 Note, e.g. what the problem is	Примітка, напр. у чому полягає проблема
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Розміщує аксесуар корпусу (вентилятор, фільтр, кабельний ввід, світильник, ручку, шину PE) на грані
 Places of the group (0 = not limited)	Місця групи (0 = без обмеження)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Розміщує ряд корпусу в приміщенні (3D-вигляд усіх корпусів); без x і z ряд розміщується за планом установки або поруч з іншими рядами
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Розміщує ім'я та перехресне посилання точок розриву з одного боку стрілки або вручну зі зміщенням від точки вставки
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Розміщує властивості схеми на символах; без ідентифікаторів розміщує її знову на всіх символах, що її використовують
 Planned part number	Запланований номер виробу
 Planned power in kW	Запланована потужність у kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Невідомий роздільник: {}
 Unknown setting: {}	Невідомий параметр: {}
 Unknown shield ends: {}	Невідомі кінці екрана: {}
 Unknown side {} (socket or pin)	Невідомий бік {} (socket або pin)
+Unknown side: {}	Невідома сторона: {}
 Unknown state: {}	Невідомий стан: {}
 Unknown station kind: {}	Невідомий вид станції: {}
 Unknown symbol: {}	Невідомий символ: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Ширина перенесення в мм (0
 X position in mm	Положення X у мм
 Y position in mm (downwards)	Положення Y у мм (донизу)
 any, wires, cables or tubes	any, wires, cables або tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left або right; відкидає тексти, розміщені вручну
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip або adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam або product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi або other

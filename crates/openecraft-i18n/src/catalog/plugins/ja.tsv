@@ -134,6 +134,8 @@ Creates or changes a fluid device group	流体デバイスグループを作成�
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	プロジェクトの図枠を作成または変更します (組み込みの図枠は新しい名前でコピーされます)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	電位定義を作成または変更します。電線に設定がない限り、その電線は色と断面積を引き継ぎます
 Creates or changes a work area: only the pages and devices of its structure are shown	作業領域を作成または変更します: その構造のページとデバイスのみが表示されます
+Cross reference placed by hand: X offset from the insertion point in mm	手動で配置した相互参照：挿入点からの X オフセット（mm）
+Cross reference placed by hand: Y offset from the insertion point in mm	手動で配置した相互参照：挿入点からの Y オフセット（mm）
 Cross section, e.g. 0.75 mm²	断面積 (例: 0.75 mm²)
 Cross section, e.g. 1.5 mm²	断面積 (例: 1.5 mm²)
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	断面積 (例: 1.5 mm²、空 = 電位定義から)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	盤アイテムの ID (mounting_list �
 Id of the path or reservation	経路または予約領域の ID
 Id of the text	テキストの ID
 Identifier, e.g. A1 or CAB1	識別子 (例: A1 または CAB1)
+Ids of interruption points	中断ポイントの ID
 Ids of page items	ページアイテムの ID
 Ids of symbols and connection symbols (default: all symbols of the page)	シンボルおよび接続シンボルの id（既定：ページのすべてのシンボル）
 In front of the page name (default /)	ページ名の前 (既定 /)
@@ -429,6 +432,8 @@ Name of the segment	セグメントの名前
 Name of the template	テンプレートの名前
 Name of the work area	作業領域の名前
 Name or id; the tag for places	名前または ID (配置の場合はタグ)
+Name placed by hand: X offset from the insertion point in mm	手動で配置した名前：挿入点からの X オフセット（mm）
+Name placed by hand: Y offset from the insertion point in mm	手動で配置した名前：挿入点からの Y オフセット（mm）
 Name, e.g. the location +M1	名前 (例: 取付場所 +M1)
 New device tag	新しいデバイスタグ
 New identifier	新しい識別子
@@ -475,6 +480,7 @@ Node name or id	ノード名または ID
 Node {} exists already	ノード {} はすでに存在します
 Nodes to pass in this order, comma separated	この順序で通過するノード (カンマ区切り)
 Nominal size, e.g. 8 mm or DN25	呼び径 (例: 8 mm または DN25)
+None of the items is an interruption point	中断ポイントである要素がありません
 Not a cross-section: {} (e.g. 1.5 mm²)	断面積ではありません: {} (例: 1.5 mm²)
 Not a valid safety function: {}	有効な安全機能ではありません: {}
 Note, e.g. what the problem is	注記 (例: 問題の内容)
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	エンクロージャーの付属品 (ファン、フィルター、ケーブルグランド、照明、ハンドル、PE バー) を面に配置します
 Places of the group (0 = not limited)	グループの位置数 (0 = 制限なし)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	エンクロージャーの列盤を室内に配置します (すべてのエンクロージャーの 3D ビュー)。x と z を省略した場合は、プラントレイアウトに従って、または他の列盤の隣に配置されます
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	中断ポイントの名前と相互参照を矢印の側に、または挿入点からのオフセットで手動で配置します
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	スキームのプロパティをシンボルに配置します。ID を指定しない場合は、使用しているすべてのシンボルに再配置します
 Planned part number	計画部品番号
 Planned power in kW	計画電力 (kW)
@@ -856,6 +863,7 @@ Unknown separator: {}	不明な区切り文字: {}
 Unknown setting: {}	不明な設定: {}
 Unknown shield ends: {}	不明なシールド端: {}
 Unknown side {} (socket or pin)	不明な側 {} (socket または pin)
+Unknown side: {}	不明な側：{}
 Unknown state: {}	不明な状態: {}
 Unknown station kind: {}	不明なステーションの種類: {}
 Unknown symbol: {}	不明なシンボル: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	折り返し幅 (mm) (0: 折り返しなし)
 X position in mm	X 位置 (mm)
 Y position in mm (downwards)	Y 位置 (mm、下向き)
 any, wires, cables or tubes	any、wires、cables、または tubes
+auto, above, below, left or right; drops the texts placed by hand	auto、above、below、left または right。手動で配置したテキストを破棄します
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip、または adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam、または product
 controller, io_device, drive, hmi or other	controller、io_device、drive、hmi、または other

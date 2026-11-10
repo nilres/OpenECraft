@@ -15,7 +15,7 @@ use openecraft_core::symbols::{self, Anchor, Func, SymbolRef};
 use openecraft_core::symlib::Symbols;
 use openecraft_core::arrange::{self, Align};
 use openecraft_core::netlist::junctions;
-use openecraft_core::{cabledef, conndef, routing};
+use openecraft_core::{cabledef, conndef, render, routing};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 use std::collections::BTreeSet;
@@ -249,6 +249,20 @@ pub static COMMANDS: &[Spec] = &[
         help: tr_const!("Distributes symbols, texts and graphics evenly between the first and the last one"),
         params: &[PAGE, param("ids", Kind::Ids, tr_const!("Item ids")), optional("vertical", Kind::Bool, tr_const!("Distribute vertically (default horizontally)"))],
         run: distribute_items,
+    },
+    Spec {
+        name: "place_interruption_texts",
+        help: tr_const!("Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point"),
+        params: &[
+            PAGE,
+            param("ids", Kind::Ids, tr_const!("Ids of interruption points")),
+            optional("side", Kind::Str, tr_const!("auto, above, below, left or right; drops the texts placed by hand")),
+            optional("label_x", Kind::Num, tr_const!("Name placed by hand: X offset from the insertion point in mm")),
+            optional("label_y", Kind::Num, tr_const!("Name placed by hand: Y offset from the insertion point in mm")),
+            optional("xref_x", Kind::Num, tr_const!("Cross reference placed by hand: X offset from the insertion point in mm")),
+            optional("xref_y", Kind::Num, tr_const!("Cross reference placed by hand: Y offset from the insertion point in mm")),
+        ],
+        run: place_interruption_texts,
     },
     Spec {
         name: "copy_items",
@@ -941,12 +955,16 @@ fn text_style_args(t: &mut TextItem, a: &Args) -> Result<(), String> {
     Ok(())
 }
 
-fn text_json(t: &TextItem) -> Value {
-    let align = match t.align {
+fn anchor_code(a: Anchor) -> &'static str {
+    match a {
         Anchor::Left => "left",
         Anchor::Center => "center",
         Anchor::Right => "right",
-    };
+    }
+}
+
+fn text_json(t: &TextItem) -> Value {
+    let align = anchor_code(t.align);
     let valign = match t.valign {
         VAnchor::Top => "top",
         VAnchor::Middle => "middle",
@@ -1013,6 +1031,41 @@ fn distribute_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let sel = selection(&prj.pages[i], a)?;
     let n = arrange::distribute(prj, i, &sel, !a.flag("vertical"));
     Ok(json!({ "moved": n }))
+}
+
+fn place_interruption_texts(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let symbols = prj.symbol_table();
+    let i = editable(prj, a.req("page"))?;
+    let side = match a.str("side") {
+        Some(code) => Some(TextSide::from_code(code.trim()).ok_or_else(|| tr_fmt!("Unknown side: {}", code))?),
+        None => None,
+    };
+    let sel = selection(&prj.pages[i], a)?;
+    let by_hand = |name: &str, now: TextPlace| {
+        let (x, y) = (a.num(&format!("{name}_x")), a.num(&format!("{name}_y")));
+        (x.is_some() || y.is_some()).then(|| TextPlace { offset: p(x.unwrap_or(now.offset.x), y.unwrap_or(now.offset.y)), ..now })
+    };
+    let place_json = |t: TextPlace| json!({ "x": t.offset.x, "y": t.offset.y, "align": anchor_code(t.anchor) });
+    let mut points = Vec::new();
+    for s in prj.pages[i].symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
+        let Some(def) = symbols.get(&s.sym).filter(|d| d.func == Func::Interruption) else { continue };
+        if let Some(side) = side {
+            s.set_text_side(side);
+        }
+        let (label, xref) = render::interruption_places(&def, s);
+        if let Some(t) = by_hand("label", label) {
+            s.label_place = Some(t);
+        }
+        if let Some(t) = by_hand("xref", xref) {
+            s.xref_place = Some(t);
+        }
+        let (label, xref) = render::interruption_places(&def, s);
+        points.push(json!({ "id": s.id, "name": s.label, "side": s.text_side.code(), "label": place_json(label), "xref": place_json(xref) }));
+    }
+    if points.is_empty() {
+        return Err(tr("None of the items is an interruption point").to_string());
+    }
+    Ok(json!({ "points": points }))
 }
 
 fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {

@@ -98,7 +98,10 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
     d.link(p(x0, pos.y - size * 0.7), p(x0 + w, pos.y + size * 0.7), page);
 }
 
+mod interruption;
 mod report_graphics;
+
+pub use interruption::{interruption_places, interruption_text_bounds, interruption_xref, side_places, IntrText};
 
 pub const SYMBOL_W: f32 = 0.25;
 pub const WIRE_W: f32 = 0.35;
@@ -519,20 +522,25 @@ fn draw_symbol_resolved(d: &mut dyn Draw, def: &SymbolDef, s: &SymbolInst, ink: 
         }
         return;
     }
+    // The name of interruption points has a place of its own.
+    let labels = def.func != Func::Interruption;
     if s.pins.len() < def.pins.len() {
         let mut preview = s.clone();
         for pin in def.pins.iter().skip(preview.pins.len()) {
             preview.pins.push(pin.label.into());
         }
-        draw_prims_resolved(d, &def.prims, &preview, ink, property, refs);
+        draw_prims_resolved(d, &def.prims, &preview, ink, property, refs, labels);
     } else {
-        draw_prims_resolved(d, &def.prims, s, ink, property, refs);
+        draw_prims_resolved(d, &def.prims, s, ink, property, refs, labels);
+    }
+    if !labels {
+        interruption::draw_label(d, def, s, ink);
     }
 }
 
 /// Symbol graphics placed like the instance `s` (also used by the symbol editor).
 pub fn draw_prims(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink) {
-    draw_prims_resolved(d, prims, s, ink, &|key| s.values.get(key).cloned().unwrap_or_default(), &[]);
+    draw_prims_resolved(d, prims, s, ink, &|key| s.values.get(key).cloned().unwrap_or_default(), &[], true);
 }
 
 fn field_text(s: &SymbolInst, kind: FieldKind) -> String {
@@ -551,7 +559,8 @@ fn field_text(s: &SymbolInst, kind: FieldKind) -> String {
     }
 }
 
-fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink, property: &dyn Fn(&str) -> String, refs: &[references::Reference]) {
+/// Symbol graphics, with or without the label fields (`labels`).
+fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: Ink, property: &dyn Fn(&str) -> String, refs: &[references::Reference], labels: bool) {
     let tf = |q: P| s.pos + q.transform(s.rot, s.mirror);
     let text_ink = if ink == Ink::Line { Ink::Text } else { ink };
     for prim in prims {
@@ -598,6 +607,7 @@ fn draw_prims_resolved(d: &mut dyn Draw, prims: &[Prim], s: &SymbolInst, ink: In
                     _ => String::new(),
                 };
                 let t = match kind {
+                    FieldKind::Label if !labels => continue,
                     FieldKind::Label => &s.label,
                     FieldKind::FunctionText => &s.function_text,
                     FieldKind::Tag => &s.tag,
@@ -886,15 +896,8 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
     }
 
     // Cross reference of an interruption point, beside it
-    if matches!(def.func, Func::Interruption) && !references::has_field(def, s) && idx.interruptions.contains_key(&s.interruption_key()) {
-        let others: Vec<Loc> = idx.interruption_targets(prj, &s.interruption_key(), s.id);
-        let q = s.pos + p(2.2, 1.6).transform(s.rot, s.mirror) + p(0.0, 2.6);
-        let txt = if others.is_empty() { "?".to_string() } else { others.iter().map(|l| l.reference_from(prj, page_i)).collect::<Vec<_>>().join(" ") };
-        let ink = if others.is_empty() { Ink::Error } else { Ink::CrossRef };
-        d.text(q, &txt, SMALL_SIZE, Anchor::Left, VAnchor::Middle, ink);
-        if let Some(l) = others.first() {
-            link_text(d, q, &txt, SMALL_SIZE, Anchor::Left, l.page);
-        }
+    if def.func == Func::Interruption {
+        interruption::draw_xref(d, prj, idx, page_i, def, s);
     }
 
     // Tag block with the cross references
@@ -1274,7 +1277,7 @@ pub fn draw_plot_frame(d: &mut dyn Draw, prj: &Project, page_i: usize, f: &crate
     if !f.artwork.is_empty() {
         let instance = SymbolInst::default();
         draw_prims_resolved(d, &f.artwork, &instance, Ink::Frame,
-            &|key| crate::props::symbol_property_text(prj, page_i, &instance, key), &[]);
+            &|key| crate::props::symbol_property_text(prj, page_i, &instance, key), &[], true);
         return;
     }
     let fi = Ink::Frame;

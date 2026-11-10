@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Opretter eller ændrer en fluidenhedsgru
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Opretter eller ændrer en plotramme i projektet (indbyggede rammer kopieres under et nyt navn)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Opretter eller ændrer en potentialedefinition; dens ledninger overtager farve og tværsnit, medmindre de er angivet på ledningen
 Creates or changes a work area: only the pages and devices of its structure are shown	Opretter eller ændrer et arbejdsområde: Kun siderne og enhederne i dets struktur vises
+Cross reference placed by hand: X offset from the insertion point in mm	Krydshenvisning placeret manuelt: X-forskydning fra indsætningspunktet i mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Krydshenvisning placeret manuelt: Y-forskydning fra indsætningspunktet i mm
 Cross section, e.g. 0.75 mm²	Tværsnit, f.eks. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Tværsnit, f.eks. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Tværsnit, f.eks. 1.5 mm² (tom = fra potentialedefinitionen)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Layoutelementets id (fra mounting_list
 Id of the path or reservation	Id for vejen eller reservationen
 Id of the text	Tekstens id
 Identifier, e.g. A1 or CAB1	Betegnelse, f.eks. A1 eller CAB1
+Ids of interruption points	Id'er for afbrydelsespunkter
 Ids of page items	Id'er for sideelementer
 Ids of symbols and connection symbols (default: all symbols of the page)	Id'er for symboler og forbindelsessymboler (standard: alle symboler på siden)
 In front of the page name (default /)	Foran sidenavnet (standard /)
@@ -429,6 +432,8 @@ Name of the segment	Segmentets navn
 Name of the template	Skabelonens navn
 Name of the work area	Arbejdsområdets navn
 Name or id; the tag for places	Navn eller id; betegnelsen for placeringer
+Name placed by hand: X offset from the insertion point in mm	Navn placeret manuelt: X-forskydning fra indsætningspunktet i mm
+Name placed by hand: Y offset from the insertion point in mm	Navn placeret manuelt: Y-forskydning fra indsætningspunktet i mm
 Name, e.g. the location +M1	Navn, f.eks. placeringen +M1
 New device tag	Ny enhedsmærkning
 New identifier	Ny betegnelse
@@ -475,6 +480,7 @@ Node name or id	Knudenavn eller id
 Node {} exists already	Knude {} findes allerede
 Nodes to pass in this order, comma separated	Knuder, der skal passeres i denne rækkefølge, kommasepareret
 Nominal size, e.g. 8 mm or DN25	Nominel størrelse, f.eks. 8 mm eller DN25
+None of the items is an interruption point	Ingen af elementerne er et afbrydelsespunkt
 Not a cross-section: {} (e.g. 1.5 mm²)	Ikke et tværsnit: {} (f.eks. 1.5 mm²)
 Not a valid safety function: {}	Ikke en gyldig sikkerhedsfunktion: {}
 Note, e.g. what the problem is	Bemærkning, f.eks. hvad problemet er
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Placerer kapslingstilbehør (ventilator, filter, kabelforskruning, lys, greb, PE-skinne) på en flade
 Places of the group (0 = not limited)	Gruppens pladser (0 = ubegrænset)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerer en kapslings sammenbygning i rummet (3D-visning af alle kapslinger); uden x og z placeres den ud fra anlægslayoutet eller ved siden af de andre sammenbygninger
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Placerer navnet og krydshenvisningen for afbrydelsespunkter på en side af pilen eller manuelt med en forskydning fra indsætningspunktet
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerer et skemas egenskaber ved symboler; uden id'er placeres det igen ved alle symboler, der bruger det
 Planned part number	Planlagt artikelnummer
 Planned power in kW	Planlagt effekt i kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Ukendt separator: {}
 Unknown setting: {}	Ukendt indstilling: {}
 Unknown shield ends: {}	Ukendte skærmender: {}
 Unknown side {} (socket or pin)	Ukendt side {} (socket eller pin)
+Unknown side: {}	Ukendt side: {}
 Unknown state: {}	Ukendt tilstand: {}
 Unknown station kind: {}	Ukendt stationstype: {}
 Unknown symbol: {}	Ukendt symbol: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Ombrydningsbredde i mm (0: ingen ombrydning)
 X position in mm	X-position i mm
 Y position in mm (downwards)	Y-position i mm (nedad)
 any, wires, cables or tubes	any, wires, cables eller tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left eller right; kasserer manuelt placerede tekster
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip eller adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam eller product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi eller other

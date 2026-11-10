@@ -756,6 +756,15 @@ pub struct SymbolInst {
     /// Tag block placed by hand: position of its top-left corner relative to `pos`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tag_offset: Option<P>,
+    /// Interruption points: side of the name and the cross reference.
+    #[serde(skip_serializing_if = "TextSide::is_auto")]
+    pub text_side: TextSide,
+    /// Interruption points: name placed by hand.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub label_place: Option<TextPlace>,
+    /// Interruption points: cross reference placed by hand.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub xref_place: Option<TextPlace>,
     /// Further properties shown beside the symbol (part number, description …).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub props: Vec<PlacedProp>,
@@ -857,6 +866,9 @@ impl Default for SymbolInst {
             function_text: String::new(),
             pins: Vec::new(),
             tag_offset: None,
+            text_side: TextSide::Auto,
+            label_place: None,
+            xref_place: None,
             props: Vec::new(),
             scheme: String::new(),
             function_def: String::new(),
@@ -866,6 +878,78 @@ impl Default for SymbolInst {
             pin_label: None,
         }
     }
+}
+
+impl SymbolInst {
+    /// Shows the name and the cross reference of an interruption point on `side`,
+    /// dropping texts placed by hand.
+    pub fn set_text_side(&mut self, side: TextSide) {
+        self.text_side = side;
+        self.label_place = None;
+        self.xref_place = None;
+    }
+
+    /// Are the name or the cross reference not placed automatically?
+    pub fn texts_placed(&self) -> bool {
+        !self.text_side.is_auto() || self.label_place.is_some() || self.xref_place.is_some()
+    }
+}
+
+/// Where the name and the cross reference of an interruption point are shown.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TextSide {
+    /// Horizontal points: the name above and the cross reference below the conductor,
+    /// ending at the connection point (inside the page for points at its edge);
+    /// vertical points: beside the arrow.
+    #[default]
+    Auto,
+    Above,
+    Below,
+    Left,
+    Right,
+}
+
+impl TextSide {
+    pub const ALL: [TextSide; 5] = [TextSide::Auto, TextSide::Above, TextSide::Below, TextSide::Left, TextSide::Right];
+
+    pub fn is_auto(&self) -> bool {
+        *self == TextSide::Auto
+    }
+
+    /// Name in commands and files.
+    pub fn code(self) -> &'static str {
+        match self {
+            TextSide::Auto => "auto",
+            TextSide::Above => "above",
+            TextSide::Below => "below",
+            TextSide::Left => "left",
+            TextSide::Right => "right",
+        }
+    }
+
+    pub fn from_code(code: &str) -> Option<TextSide> {
+        TextSide::ALL.into_iter().find(|s| s.code() == code)
+    }
+
+    pub fn title(self) -> &'static str {
+        match self {
+            TextSide::Auto => tr("Automatic"),
+            TextSide::Above => tr("Above"),
+            TextSide::Below => tr("Below"),
+            TextSide::Left => tr("Left"),
+            TextSide::Right => tr("Right"),
+        }
+    }
+}
+
+/// A symbol text placed by hand: its anchor point (vertically centred) relative to the
+/// symbol position and its horizontal alignment.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+pub struct TextPlace {
+    pub offset: P,
+    #[serde(skip_serializing_if = "is_left", default = "default_anchor")]
+    pub anchor: Anchor,
 }
 
 /// Fixed placeable properties of older files (now property keys, see

@@ -134,6 +134,8 @@ Creates or changes a fluid device group	创建或更改流体设备组
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	创建或更改项目的图框（内置图框以新名称复制）
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	创建或更改电位定义；除非在导线上另行设置，其导线将采用该颜色和截面积
 Creates or changes a work area: only the pages and devices of its structure are shown	创建或更改工作区：只显示其结构中的页和设备
+Cross reference placed by hand: X offset from the insertion point in mm	手动放置的交叉引用：相对于插入点的 X 偏移（mm）
+Cross reference placed by hand: Y offset from the insertion point in mm	手动放置的交叉引用：相对于插入点的 Y 偏移（mm）
 Cross section, e.g. 0.75 mm²	截面积，例如 0.75 mm²
 Cross section, e.g. 1.5 mm²	截面积，例如 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	截面积，例如 1.5 mm²（空 = 取自电位定义）
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	布局元件的 ID（来自 mounting_l
 Id of the path or reservation	路径或预留的 ID
 Id of the text	文本的 ID
 Identifier, e.g. A1 or CAB1	标识符，例如 A1 或 CAB1
+Ids of interruption points	中断点的 ID
 Ids of page items	页元素的 ID
 Ids of symbols and connection symbols (default: all symbols of the page)	符号和连接符号的 id（默认：页面上的所有符号）
 In front of the page name (default /)	页名前面（默认 /）
@@ -429,6 +432,8 @@ Name of the segment	规划段名称
 Name of the template	模板名称
 Name of the work area	工作区名称
 Name or id; the tag for places	名称或 ID；放置则为标识符
+Name placed by hand: X offset from the insertion point in mm	手动放置的名称：相对于插入点的 X 偏移（mm）
+Name placed by hand: Y offset from the insertion point in mm	手动放置的名称：相对于插入点的 Y 偏移（mm）
 Name, e.g. the location +M1	名称，例如位置 +M1
 New device tag	新设备标识符
 New identifier	新标识符
@@ -475,6 +480,7 @@ Node name or id	节点名称或 ID
 Node {} exists already	节点 {} 已存在
 Nodes to pass in this order, comma separated	按此顺序经过的节点，以逗号分隔
 Nominal size, e.g. 8 mm or DN25	公称尺寸，例如 8 mm 或 DN25
+None of the items is an interruption point	没有一个元素是中断点
 Not a cross-section: {} (e.g. 1.5 mm²)	不是截面积：{}（例如 1.5 mm²）
 Not a valid safety function: {}	不是有效的安全功能：{}
 Note, e.g. what the problem is	注释，例如问题是什么
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	在某个面上放置机柜附件（风扇、过滤器、电缆密封接头、照明灯、把手、PE 排）
 Places of the group (0 = not limited)	组的位置数（0 = 不限）
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	将机柜的柜排放置在房间中（所有机柜的 3D 视图）；未指定 x 和 z 时，根据工厂布局放置或放在其他柜排旁边
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	将中断点的名称和交叉引用放置在符号的一侧，或手动放置在相对于插入点的偏移处
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	将方案的属性放置到符号处；未指定 ID 时，在所有使用它的符号处重新放置
 Planned part number	规划的部件编号
 Planned power in kW	规划功率，单位 kW
@@ -856,6 +863,7 @@ Unknown separator: {}	未知分隔符：{}
 Unknown setting: {}	未知设置：{}
 Unknown shield ends: {}	未知屏蔽端：{}
 Unknown side {} (socket or pin)	未知的侧 {}（socket 或 pin）
+Unknown side: {}	未知的一侧：{}
 Unknown state: {}	未知状态：{}
 Unknown station kind: {}	未知站类型：{}
 Unknown symbol: {}	未知符号：{}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	换行宽度，单位 mm（0：不换行）
 X position in mm	X 位置 (mm)
 Y position in mm (downwards)	Y 位置 (mm)（向下）
 any, wires, cables or tubes	any、wires、cables 或 tubes
+auto, above, below, left or right; drops the texts placed by hand	auto、above、below、left 或 right；放弃手动放置的文本
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto、tapped、through、rivet_nut、stud、clip 或 adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air、vacuum、hydraulic_oil、water、coolant、lubricant、gas、steam 或 product
 controller, io_device, drive, hmi or other	controller、io_device、drive、hmi 或 other

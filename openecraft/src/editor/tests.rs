@@ -276,6 +276,50 @@ fn tag_block_is_dragged_into_place() {
     assert!(o.dist(expect) < 0.6, "{o:?} {expect:?}");
 }
 
+#[test]
+fn interruption_name_and_cross_reference_are_dragged_on_their_own() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for (page, id) in [(0, 7), (1, 8)] {
+        prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), rot: 3, label: "L1_OUT".into(), ..Default::default() });
+    }
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let def = prj.symbol("intr").unwrap();
+    for (text, moved) in [(render::IntrText::Xref, p(8.0, 12.0)), (render::IntrText::Label, p(-12.0, -8.0))] {
+        let s = prj.pages[0].symbols[0].clone();
+        let idx = Index::build(&prj);
+        let area = render::interruption_text_bounds(&prj, &idx, 0, &def, &s).into_iter().find(|t| t.0 == text).unwrap().1;
+        let before = render::interruption_places(&def, &s);
+        let from = ed.w2s(SCREEN, area.center());
+        let to = ed.w2s(SCREEN, area.center() + moved);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+        for i in 1..=5 {
+            let t = i as f32 / 5.0;
+            frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from + (to - from) * t)]);
+        }
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+        let s = &prj.pages[0].symbols[0];
+        assert_eq!((s.pos, s.rot), (p(100.0, 100.0), 3), "the symbol stays");
+        let (old, new, other) = match text {
+            render::IntrText::Label => (before.0, s.label_place.expect("name placed"), (before.1, s.xref_place)),
+            render::IntrText::Xref => (before.1, s.xref_place.expect("cross reference placed"), (before.0, s.label_place)),
+        };
+        assert_eq!(new.anchor, old.anchor);
+        assert!(new.offset.dist(old.offset + moved) < 0.6, "{text:?}: {new:?} {old:?}");
+        if text == render::IntrText::Xref {
+            assert_eq!(other.1, None, "the name stays automatic");
+        } else {
+            assert_eq!(other.1.map(|t| t.offset), Some(other.0.offset), "the cross reference stays where it was dragged");
+        }
+    }
+}
+
 fn key(key: Key) -> Event {
     Event::Key { key, physical_key: None, pressed: true, repeat: false, modifiers: Modifiers::default() }
 }
