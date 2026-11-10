@@ -32,13 +32,6 @@ use crate::analysis::Analysis;
 use crate::issue::Severity;
 use crate::sample::demo_project;
 
-/// The demo with a cable gland in the bottom of +CAB1, below the terminal strip.
-fn demo_with_gland() -> Project {
-    let mut prj = demo_project();
-    crate::panel::place_accessory(&mut prj, 0, "GEN.GLAND-M25", Face::Bottom, crate::geom::p(80.0, 100.0)).unwrap();
-    prj
-}
-
 #[test]
 fn classes_diameters_and_kinds() {
     let prj = demo_project();
@@ -62,13 +55,19 @@ fn classes_diameters_and_kinds() {
 
 #[test]
 fn field_cable_runs_to_its_gland() {
-    let an = Analysis::checked(&demo_project());
+    // Without the gland in the bottom of +CAB1 the motor cable enters through the
+    // middle of the bottom, which is reported; with it, through the gland.
+    let mut bare = demo_project();
+    let glands: Vec<u64> = entries(&bare, 0).iter().map(|g| g.id).collect();
+    assert_eq!(glands.len(), 1);
+    bare.layout.enclosures[0].items.retain(|i| !glands.contains(&i.id));
+    let an = Analysis::checked(&bare);
     let w1 = an.routing.item("-W1").expect("motor cable");
     assert_eq!((w1.kind, w1.class), (RouteKind::Cable, Class::Power));
     assert!(w1.routed(), "{:?}", w1.status);
     assert_eq!(w1.ends[0].tag, "-X1");
     assert!(an.issues.iter().any(|i| i.message().contains("no cable gland")));
-    let an = Analysis::checked(&demo_with_gland());
+    let an = Analysis::checked(&demo_project());
     let w1 = an.routing.item("-W1").unwrap();
     assert_eq!(w1.ends[1].tag, "-M1");
     assert!(w1.ends[1].item.is_some());
@@ -83,7 +82,7 @@ fn field_cable_runs_to_its_gland() {
 
 #[test]
 fn wires_in_ducts_form_bundles_with_branches() {
-    let prj = demo_with_gland();
+    let prj = demo_project();
     let an = Analysis::checked(&prj);
     let wires: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind == RouteKind::Wire).collect();
     assert!(!wires.is_empty());
@@ -103,9 +102,9 @@ fn wires_in_ducts_form_bundles_with_branches() {
 
 #[test]
 fn wires_routed_in_3d_feed_the_duct_fill() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     prj.layout.routing.wires_3d = true;
-    let ducts = Analysis::checked(&demo_with_gland());
+    let ducts = Analysis::checked(&demo_project());
     let an = Analysis::checked(&prj);
     let free: Vec<&RoutedItem> = an.routing.items.iter().filter(|i| i.kind == RouteKind::Wire && an.wiring[i.wire.unwrap()].door == (None, None)).collect();
     assert!(!free.is_empty());
@@ -126,7 +125,7 @@ fn wires_routed_in_3d_feed_the_duct_fill() {
 
 #[test]
 fn frozen_routes_survive_recalculation_until_invalid() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     let an = Analysis::checked(&prj);
     let n = freeze(&mut prj, &an.routing, &[]);
     // Wires that stay on the door have no route in the enclosure to freeze.
@@ -160,7 +159,7 @@ fn frozen_routes_survive_recalculation_until_invalid() {
 
 #[test]
 fn bayed_enclosures_route_cables_through_passages() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     let cab2 = crate::panel::new_enclosure(&mut prj, crate::panel::ENCLOSURE_PART, "+CAB2");
     prj.layout.enclosures.push(cab2);
     let i = prj.layout.enclosures[0].items.iter().position(|i| i.tag == "-X1").unwrap();
@@ -184,7 +183,7 @@ fn bayed_enclosures_route_cables_through_passages() {
 
 #[test]
 fn rules_and_frozen_routes_round_trip() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     prj.layout.routing.segregation = 150.0;
     prj.layout.enclosures[0].paths.push(RoutingPath { id: 5, name: "Tray".into(), kind: PathKind::Cables, points: vec![[50.0, 50.0, 100.0], [50.0, 700.0, 100.0]], width: 40.0, classes: vec![Class::Signal], reserve: 20.0, face: None });
     prj.layout.enclosures[0].reservations.push(Reservation { id: 6, name: "Spare".into(), min: [300.0, 600.0, 20.0], max: [500.0, 750.0, 200.0], mode: ReserveMode::For(Class::Power) });
@@ -200,7 +199,7 @@ fn rules_and_frozen_routes_round_trip() {
 
 #[test]
 fn the_routing_is_reused_while_nothing_it_depends_on_changes() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     let mut cache = crate::analysis::Cache::default();
     // Routes searched by a build (progress is told before each one).
     let searched = |prj: &Project, cache: &mut crate::analysis::Cache| {
@@ -230,7 +229,7 @@ fn the_routing_is_reused_while_nothing_it_depends_on_changes() {
 
 #[test]
 fn an_interim_routing_keeps_what_still_fits() {
-    let an = Analysis::checked(&demo_with_gland());
+    let an = Analysis::checked(&demo_project());
     let r = &an.routing;
     assert!(r.items.iter().any(|i| i.kind == RouteKind::Wire) && r.items.iter().any(|i| i.kind == RouteKind::Cable));
     let interim = r.interim(1);
@@ -244,7 +243,7 @@ fn an_interim_routing_keeps_what_still_fits() {
 
 #[test]
 fn a_kept_routing_is_only_taken_from_the_cache() {
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     let mut cache = crate::analysis::Cache::default();
     let full = Analysis::build_with(&prj, &mut cache);
     let it = prj.layout.enclosures[0].items.iter_mut().find(|i| i.tag == "-K1").unwrap();
@@ -366,7 +365,7 @@ fn a_cable_without_a_free_gland_is_reported() {
     // cables out of +CAB1 through its one gland. A gland takes one cable, so one of
     // them is not routed, with an error that names the cabinet; a second gland takes
     // the other.
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     let part = prj.parts.iter().find(|p| p.number == "GEN.CBL-4G1.5").unwrap().clone();
     let id = prj.new_id();
     prj.cables.push(Cable { id, tag: "-W2".into(), cable_type: part.type_number.clone(), cores: part.tech_value("Cores").unwrap_or_default().into(), cross_section: part.tech_value("Cross-section").unwrap_or_default().into(), length: 15.0, part: part.number.clone(), ..Default::default() });
@@ -422,7 +421,7 @@ fn an_unroutable_cable_is_reported_at_its_connection_point() {
     // With half a metre of clearance nothing fits into the cabinet: the error names
     // the cable and points at a connection point of it, and so does the issue of the
     // project check.
-    let mut prj = demo_with_gland();
+    let mut prj = demo_project();
     prj.layout.routing.clearance = 500.0;
     let an = Analysis::checked(&prj);
     assert!(!an.routing.item("-W1").unwrap().routed());
@@ -566,7 +565,7 @@ fn wires_of_cabinets_without_cable_ducts_run_from_point_to_point() {
         }
     }
     // With cable ducts on the mounting plate the wires run through them.
-    let prj = demo_with_gland();
+    let prj = demo_project();
     let an = Analysis::checked(&prj);
     assert!(an.wiring.iter().all(|w| !between_points(&prj.layout, w) && !wire_in_3d(&prj.layout, w)));
 }

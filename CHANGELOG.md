@@ -20,13 +20,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   gland of its cabinet taken is not routed and reported as an error that names the
   cabinet, instead of being drawn through a gland with another cable. Cable entry
   flanges still take several cables side by side. Cable glands are drawn with a model
-  of their own (hexagon body, neck and dome) in the colour of their material, seated
-  on the outer surface of their wall (they floated a centimetre above it), and the
+  of their own in the colour of their material: outside the hexagon body, neck and
+  dome on the outer surface of their wall (they floated a centimetre above it), inside
+  the locknut and the end of the thread, which other routes keep clear of; and the
   generic catalog gains them in brass nickel-plated (`GEN.GLAND-M16-MS` …
   `-M63-MS`), as EMC glands with a contact spring for the shield braid
   (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
   20x1.5) as manufacturer parts. The example `building_services` has a gland for every
-  cable, sized to it.
+  cable, sized to it, and the conveyor (`conveyor`, `engineering_workflow`) one for its
+  motor cable, which came in through the middle of the bottom.
 - **Connection point designations** (#116): each designation of a selected symbol can
   be dragged on its own, put left, right, above or below its connection point or reset
   to automatic placement (Properties › *Property placement*); the placement is stored

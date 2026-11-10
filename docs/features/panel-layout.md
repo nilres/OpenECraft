@@ -35,8 +35,9 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   side its wires leave it; through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
   through one cable entry flange or wall penetration side by side. Cable glands are
-  drawn with the models of their parts, on the outer surface of their wall: the
-  hexagon body, neck and dome in nickel-plated brass or polyamide. In a cabinet without cable ducts on its mounting
+  drawn with the models of their parts: outside the hexagon body, neck and dome on the
+  outer surface of their wall, inside the locknut and the end of the thread on its
+  inner surface, in nickel-plated brass or polyamide; routes keep clear of the locknut. In a cabinet without cable ducts on its mounting
   plate the wires are laid by the 3D routing (see below), from connection point to
   connection point.
 - Copper **busbar systems** (bars drawn, metres and holders in the BOM) and rectangular
