@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Um caminho ao ar livre custa este número de vezes o caminho em uma canaleta ou caminho de roteamento
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Uma área de trabalho limita as páginas e os dispositivos no navegador a uma parte do projeto. Filtros: vazio = qualquer, * = quaisquer caracteres; A1 também abrange A1.2.
 About OpenECraft	Sobre o OpenECraft
-Above	Acima
 Above the floor	Acima do piso
 Accept as checked	Aceitar como verificada
 Accepted messages ({})	Mensagens aceitas ({})
@@ -194,7 +193,6 @@ Bayed	Acoplado
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Acoplado ao gabinete vizinho: sem painel lateral, um kit de acoplamento no lugar
 Bayed to the right of	Acoplado à direita de
 Becomes section {}	Torna-se a seção {}
-Below	Abaixo
 Bend radius	Raio de curvatura
 Bend radius cables	Raio de curvatura dos cabos
 Bend radius in drag chains	Raio de curvatura em esteiras porta-cabos
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Rascunho da revisão {} descartado
 Drag a connection point designation of the selected symbol to place it.	Arraste uma designação de conexão do símbolo selecionado para posicioná-la.
 Drag an entry into the page, or click it and then click into the page.	Arraste uma entrada para a página ou clique nela e depois clique na página.
 Drag the core designation or the cable tag of the selected wire to place it.	Arraste a designação da veia ou o identificador do cabo do fio selecionado para posicioná-los.
+Drag the name or the cross reference of the selected point to place it.	Arraste o nome ou a referência cruzada do ponto selecionado para posicioná-lo.
 Drag the tag of the selected symbol to place it.	Arraste o identificador do símbolo selecionado para posicioná-lo.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Arrastar: orbitar · arrastar com o botão direito/do meio ou Shift: deslocar · roda: zoom no ponteiro · clique duplo: olhar para lá · W A S D / setas, Q E: mover · clique: selecionar
 Draw	Desenhar
@@ -1039,6 +1038,7 @@ NC data (DXF)	Dados CN (DXF)
 NC data of this face (DWG)	Dados CN desta face (DWG)
 NC data of this face (DXF)	Dados CN desta face (DXF)
 Nailboard (SVG)…	Gabarito de montagem (SVG)…
+Name and cross reference	Nome e referência cruzada
 Name on the server	Nome no servidor
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; tipo de dados; endereço lógico; comentário – para ferramentas de programação de CLP
 Named copy of this form, for report blocks	Cópia nomeada deste formulário, para blocos de relatório
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Colocar o ponto georre
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Colocar o ponto georreferenciado da instalação na planta de situação; suas coordenadas vão para o painel Edifícios e cada ponto é medido a partir dele
 Placed	Posicionado
 Placed by hand	Posicionado manualmente
+Placed by hand; choosing a side places them anew.	Posicionados manualmente; escolher um lado os posiciona de novo.
 Placed here: {}	Posicionado aqui: {}
 Placed {}× in the project	Posicionado {}× no projeto
 Placeholders	Espaços reservados
@@ -1508,6 +1509,7 @@ Reset	Redefinir
 Reset all to the defaults	Redefinir tudo para os padrões
 Reset pane layout	Redefinir disposição dos painéis
 Reset the ribbon	Redefinir a faixa de opções
+Reset to automatic placement	Voltar ao posicionamento automático
 Reset to standard	Redefinir para o padrão
 Restart and update	Reiniciar e atualizar
 Resulting: {} · {} · {} · {} m	Resultado: {} · {} · {} · {} m

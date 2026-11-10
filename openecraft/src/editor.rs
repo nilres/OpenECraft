@@ -17,7 +17,7 @@ use egui::Mesh;
 use openecraft_core::analysis::Analysis;
 use openecraft_core::review::{Hit, MarkupKind, Pen};
 use openecraft_core::symlib::Symbols;
-use openecraft_core::symbols::{Anchor, Func};
+use openecraft_core::symbols::{Anchor, Func, SymbolDef};
 use openecraft_core::device_boxes;
 use openecraft_core::netlist::junctions;
 use openecraft_core::structure::StructureBox;
@@ -102,10 +102,13 @@ enum Handle {
     Pin(usize),
     /// The designation of its only connection point, placed freely.
     OnlyPin,
+    /// Name and cross reference of an interruption point.
+    Intr(render::IntrText),
 }
 
-/// Text that can be dragged on its own: the tag block, a placed property or a
-/// connection point designation of a symbol, or a cable core text of a wire.
+/// Text that can be dragged on its own: the tag block, a placed property, a
+/// connection point designation or the interruption texts of a symbol, or a cable
+/// core text of a wire.
 #[derive(Clone, Copy, Debug, PartialEq)]
 enum PropHandle {
     Symbol(u64, Handle),
@@ -866,6 +869,9 @@ impl Editor {
             }
             if render::tag_block_bounds(prj, idx, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
                 return Some(PropHandle::Symbol(s.id, Handle::Tag));
+            }
+            if let Some((t, _)) = render::interruption_text_bounds(prj, idx, page_i, &def, s).into_iter().find(|(_, r)| r.expand(0.3).contains(q)) {
+                return Some(PropHandle::Symbol(s.id, Handle::Intr(t)));
             }
         }
         for w in page.wires.iter().filter(|w| self.selection.contains(&w.id)) {
@@ -1828,6 +1834,7 @@ impl Editor {
                         }),
                         (Some(s), Handle::Pin(i)) => pin_place(prj, idx, page_i, s, i).map(|l| l.shift).unwrap_or_default(),
                         (Some(s), Handle::OnlyPin) => pin_place(prj, idx, page_i, s, 0).map(|l| l.pos - s.pos).unwrap_or_default(),
+                        (Some(s), Handle::Intr(t)) => prj.symbol(&s.sym).map(|def| intr_place(&def, s, t).offset).unwrap_or_default(),
                         _ => P::default(),
                     },
                     PropHandle::Wire(id, which) => page.wires.iter().find(|w| w.id == id).and_then(|w| which.offset(w)).unwrap_or_default(),
@@ -1865,6 +1872,7 @@ impl Editor {
                 (Drag::Prop { handle, start, orig, side }, Some(w)) => {
                     let delta = (w - *start).snap(0.5);
                     let to = *orig + delta;
+                    let symbols = prj.symbol_table();
                     let anchor = match *handle {
                         PropHandle::Symbol(id, Handle::OnlyPin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, 0)).map(|l| l.anchor),
                         _ => None,
@@ -1881,6 +1889,15 @@ impl Editor {
                                         s.set_pin_placement(i, PinPlacement { side: *side, offset });
                                     }
                                     Handle::OnlyPin => s.pin_label = Some(PinLabel { offset: to, anchor: anchor.unwrap_or(Anchor::Left) }),
+                                    Handle::Intr(t) => {
+                                        if let Some(def) = symbols.get(&s.sym) {
+                                            let place = TextPlace { offset: to, ..intr_place(&def, s, t) };
+                                            match t {
+                                                render::IntrText::Label => s.label_place = Some(place),
+                                                render::IntrText::Xref => s.xref_place = Some(place),
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -2062,6 +2079,13 @@ pub fn take_keys(ui: &egui::Ui, resp: &egui::Response) {
     if resp.contains_pointer() && ui.input(|i| i.pointer.any_pressed()) {
         ui.memory_mut(|m| m.stop_text_input());
     }
+}
+
+
+/// Current place of the name or the cross reference of an interruption point.
+fn intr_place(def: &SymbolDef, s: &SymbolInst, t: render::IntrText) -> TextPlace {
+    let (label, xref) = render::interruption_places(def, s);
+    if t == render::IntrText::Label { label } else { xref }
 }
 
 #[cfg(test)]

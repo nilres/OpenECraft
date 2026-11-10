@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Een weg vrij door de lucht kost zoveel keer de weg in een goot of routeringspad
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Een werkgebied beperkt de pagina's en apparaten in de navigator tot een deel van het project. Filters: leeg = alles, * = willekeurige tekens; A1 omvat ook A1.2.
 About OpenECraft	Over OpenECraft
-Above	Boven
 Above the floor	Boven de vloer
 Accept as checked	Accepteren als gecontroleerd
 Accepted messages ({})	Geaccepteerde meldingen ({})
@@ -194,7 +193,6 @@ Bayed	Gekoppeld
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Gekoppeld aan de naastgelegen behuizing: geen zijwand, in plaats daarvan een koppelset
 Bayed to the right of	Rechts gekoppeld aan
 Becomes section {}	Wordt sectie {}
-Below	Onder
 Bend radius	Buigradius
 Bend radius cables	Buigradius kabels
 Bend radius in drag chains	Buigradius in sleepkettingen
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Concept van revisie {} genegeerd
 Drag a connection point designation of the selected symbol to place it.	Sleep een aansluitbenaming van het geselecteerde symbool om deze te plaatsen.
 Drag an entry into the page, or click it and then click into the page.	Sleep een item naar de pagina, of klik erop en klik daarna in de pagina.
 Drag the core designation or the cable tag of the selected wire to place it.	Sleep de aderaanduiding of de kabelaanduiding van de geselecteerde draad om deze te plaatsen.
+Drag the name or the cross reference of the selected point to place it.	Sleep de naam of de kruisverwijzing van het geselecteerde punt om deze te plaatsen.
 Drag the tag of the selected symbol to place it.	Sleep de aanduiding van het geselecteerde symbool om deze te plaatsen.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Slepen: draaien · slepen met rechter-/middelste muisknop of Shift: verschuiven · wiel: zoomen bij de aanwijzer · dubbelklik: daarheen kijken · W A S D / pijltjes, Q E: bewegen · klik: selecteren
 Draw	Tekenen
@@ -1039,6 +1038,7 @@ NC data (DXF)	NC-gegevens (DXF)
 NC data of this face (DWG)	NC-gegevens van dit vlak (DWG)
 NC data of this face (DXF)	NC-gegevens van dit vlak (DXF)
 Nailboard (SVG)…	Spijkerbord (SVG)…
+Name and cross reference	Naam en kruisverwijzing
 Name on the server	Naam op de server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Naam; gegevenstype; logisch adres; commentaar – voor PLC-programmeertools
 Named copy of this form, for report blocks	Benoemde kopie van dit formulier, voor rapportblokken
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Het gegeorefereerde pu
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Het gegeorefereerde punt van de installatie in de situatietekening plaatsen; de coördinaten komen in het venster Gebouwen, elk punt wordt ervandaan gemeten
 Placed	Geplaatst
 Placed by hand	Handmatig geplaatst
+Placed by hand; choosing a side places them anew.	Handmatig geplaatst; een kant kiezen plaatst ze opnieuw.
 Placed here: {}	Hier geplaatst: {}
 Placed {}× in the project	{}× in het project geplaatst
 Placeholders	Tijdelijke aanduidingen
@@ -1508,6 +1509,7 @@ Reset	Herstellen
 Reset all to the defaults	Alles terugzetten naar de standaardwaarden
 Reset pane layout	Indeling van de deelvensters herstellen
 Reset the ribbon	Het lint herstellen
+Reset to automatic placement	Terug naar automatische plaatsing
 Reset to standard	Standaard herstellen
 Restart and update	Opnieuw starten en bijwerken
 Resulting: {} · {} · {} · {} m	Resultaat: {} · {} · {} · {} m

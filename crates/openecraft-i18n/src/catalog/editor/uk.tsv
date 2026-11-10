@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Шлях у вільному просторі коштує в стільки разів більше, ніж у каналі чи на трасі прокладання
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Робоча область обмежує сторінки й пристрої в навігаторі частиною проєкту. Фільтри: порожньо = будь-що, * = будь-які символи; A1 охоплює також A1.2.
 About OpenECraft	Про OpenECraft
-Above	Зверху
 Above the floor	Над підлогою
 Accept as checked	Прийняти як перевірене
 Accepted messages ({})	Прийняті повідомлення ({})
@@ -194,7 +193,6 @@ Bayed	Приєднано в ряд
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Приєднано до сусіднього корпусу: без бічної стінки, натомість комплект для з’єднання шаф
 Bayed to the right of	Приєднано праворуч до
 Becomes section {}	Стає розділом {}
-Below	Знизу
 Bend radius	Радіус згину
 Bend radius cables	Радіус згину кабелів
 Bend radius in drag chains	Радіус згину в кабельних ланцюгах
@@ -554,6 +552,7 @@ Draft of revision {} discarded	Чернетку ревізії {} відхиле
 Drag a connection point designation of the selected symbol to place it.	Перетягніть позначення точки підключення вибраного символу, щоб розмістити його.
 Drag an entry into the page, or click it and then click into the page.	Перетягніть запис на сторінку або клацніть його, а потім клацніть на сторінці.
 Drag the core designation or the cable tag of the selected wire to place it.	Перетягніть позначення жили або позначення кабелю вибраного проводу, щоб розмістити їх.
+Drag the name or the cross reference of the selected point to place it.	Перетягніть ім'я або перехресне посилання вибраної точки, щоб розмістити їх.
 Drag the tag of the selected symbol to place it.	Перетягніть позначення вибраного символу, щоб розмістити його.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Перетягування: обертання · перетягування правою/середньою кнопкою або з Shift: зсув · колесо: масштаб біля вказівника · подвійне клацання: подивитися туди · W A S D / стрілки, Q E: рух · клацання: вибір
 Draw	Малювати
@@ -1038,6 +1037,7 @@ NC data (DXF)	Дані ЧПК (DXF)
 NC data of this face (DWG)	Дані ЧПК цієї грані (DWG)
 NC data of this face (DXF)	Дані ЧПК цієї грані (DXF)
 Nailboard (SVG)…	Шаблон джгута (SVG)…
+Name and cross reference	Ім'я та перехресне посилання
 Name on the server	Назва на сервері
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Ім’я; тип даних; логічна адреса; коментар – для засобів програмування ПЛК
 Named copy of this form, for report blocks	Іменована копія цієї форми для блоків звітів
@@ -1314,6 +1314,7 @@ Place the georeferenced point everything is measured from	Розмістити �
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Розмістити геоприв'язану точку установки на генплані; її координати вводяться на панелі Будівлі, кожна точка вимірюється від неї
 Placed	Розміщено
 Placed by hand	Розміщено вручну
+Placed by hand; choosing a side places them anew.	Розміщено вручну; вибір сторони розміщує їх заново.
 Placed here: {}	Розміщено тут: {}
 Placed {}× in the project	Розміщено в проєкті {}×
 Placeholders	Заповнювачі
@@ -1507,6 +1508,7 @@ Reset	Скинути
 Reset all to the defaults	Скинути все до стандартних значень
 Reset pane layout	Скинути розташування панелей
 Reset the ribbon	Скинути стрічку
+Reset to automatic placement	Повернути автоматичне розміщення
 Reset to standard	Скинути до стандартних
 Restart and update	Перезапустити й оновити
 Resulting: {} · {} · {} · {} m	Результат: {} · {} · {} · {} м

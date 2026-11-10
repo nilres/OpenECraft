@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Reitti vapaan tilan kautta maksaa tämän verran kertaa enemmän kuin reitti kourussa tai reitityspolulla
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Työalue rajaa navigaattorin sivut ja laitteet osaan projektia. Suodattimet: tyhjä = mikä tahansa, * = mitkä tahansa merkit; A1 kattaa myös A1.2:n.
 About OpenECraft	Tietoja OpenECraftista
-Above	Yläpuolella
 Above the floor	Lattian yläpuolella
 Accept as checked	Hyväksy tarkistetuksi
 Accepted messages ({})	Hyväksytyt ilmoitukset ({})
@@ -194,7 +193,6 @@ Bayed	Rivitetty
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Rivitetty viereiseen koteloon: ei sivuseinää, vaan rivitysliitin
 Bayed to the right of	Rivitetty oikealle kohteesta
 Becomes section {}	Muuttuu osioksi {}
-Below	Alapuolella
 Bend radius	Taivutussäde
 Bend radius cables	Taivutussäde kaapelit
 Bend radius in drag chains	Taivutussäde kaapelinvetoketjuissa
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Revision {} luonnos hylätty
 Drag a connection point designation of the selected symbol to place it.	Vedä valitun symbolin liitäntäpisteen merkintää sijoittaaksesi sen.
 Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
 Drag the core designation or the cable tag of the selected wire to place it.	Vedä valitun johtimen johdinmerkintää tai kaapelin tunnusta sijoittaaksesi sen.
+Drag the name or the cross reference of the selected point to place it.	Vedä valitun pisteen nimeä tai ristiviittausta sijoittaaksesi sen.
 Drag the tag of the selected symbol to place it.	Vedä valitun symbolin tunnusta sijoittaaksesi sen.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Veto: kierrä · oikean/keskipainikkeen tai Vaihto-näppäimen veto: panoroi · rulla: zoomaa osoittimen kohdalle · kaksoisnapsautus: katso sinne · W A S D / nuolet, Q E: liiku · napsautus: valitse
 Draw	Piirrä
@@ -1039,6 +1038,7 @@ NC data (DXF)	NC-tiedot (DXF)
 NC data of this face (DWG)	Tämän pinnan NC-tiedot (DWG)
 NC data of this face (DXF)	Tämän pinnan NC-tiedot (DXF)
 Nailboard (SVG)…	Naulalauta (SVG)…
+Name and cross reference	Nimi ja ristiviittaus
 Name on the server	Nimi palvelimella
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
 Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Sijoita georeferoitu p
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Sijoita laitoksen georeferoitu piste asemapiirrokseen; sen koordinaatit annetaan Rakennukset-paneelissa, ja jokainen piste mitataan siitä
 Placed	Sijoitettu
 Placed by hand	Sijoitettu käsin
+Placed by hand; choosing a side places them anew.	Sijoitettu käsin; puolen valinta sijoittaa ne uudelleen.
 Placed here: {}	Sijoitettu tähän: {}
 Placed {}× in the project	Sijoitettu {}× projektissa
 Placeholders	Paikkamerkit
@@ -1508,6 +1509,7 @@ Reset	Nollaa
 Reset all to the defaults	Palauta kaikki oletuksiin
 Reset pane layout	Palauta paneelien asettelu
 Reset the ribbon	Palauta valintanauha
+Reset to automatic placement	Palauta automaattinen sijoittelu
 Reset to standard	Palauta vakioasetukset
 Restart and update	Käynnistä uudelleen ja päivitä
 Resulting: {} · {} · {} · {} m	Tulos: {} · {} · {} · {} m

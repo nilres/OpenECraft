@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Un percorso in aria libera costa questo numero di volte il percorso in una canalina o in un percorso di instradamento
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Un'area di lavoro limita le pagine e i dispositivi nel navigatore a una parte del progetto. Filtri: vuoto = qualsiasi, * = qualsiasi carattere; A1 comprende anche A1.2.
 About OpenECraft	Informazioni su OpenECraft
-Above	Sopra
 Above the floor	Sopra il pavimento
 Accept as checked	Accetta come verificato
 Accepted messages ({})	Messaggi accettati ({})
@@ -194,7 +193,6 @@ Bayed	Affiancato
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Affiancato all'armadio vicino: nessuna parete laterale, al suo posto un kit di affiancamento
 Bayed to the right of	Affiancato a destra di
 Becomes section {}	Diventa la sezione {}
-Below	Sotto
 Bend radius	Raggio di curvatura
 Bend radius cables	Raggio di curvatura cavi
 Bend radius in drag chains	Raggio di curvatura nelle catene portacavi
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Bozza della revisione {} ignorata
 Drag a connection point designation of the selected symbol to place it.	Trascina una designazione di connessione del simbolo selezionato per posizionarla.
 Drag an entry into the page, or click it and then click into the page.	Trascina una voce nella pagina, oppure fai clic su di essa e poi nella pagina.
 Drag the core designation or the cable tag of the selected wire to place it.	Trascina la designazione dell'anima o la sigla del cavo del filo selezionato per posizionarle.
+Drag the name or the cross reference of the selected point to place it.	Trascina il nome o il riferimento incrociato del punto selezionato per posizionarlo.
 Drag the tag of the selected symbol to place it.	Trascina la sigla del simbolo selezionato per posizionarla.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Trascina: orbita · trascinamento destro/centrale o Maiusc: sposta vista · rotellina: zoom sul puntatore · doppio clic: guarda lì · W A S D / frecce, Q E: muoviti · clic: seleziona
 Draw	Disegna
@@ -1039,6 +1038,7 @@ NC data (DXF)	Dati NC (DXF)
 NC data of this face (DWG)	Dati NC di questa faccia (DWG)
 NC data of this face (DXF)	Dati NC di questa faccia (DXF)
 Nailboard (SVG)…	Tavola chiodata (SVG)…
+Name and cross reference	Nome e riferimento incrociato
 Name on the server	Nome sul server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; Tipo di dati; Indirizzo logico; Commento – per strumenti di programmazione PLC
 Named copy of this form, for report blocks	Copia con nome di questo modulo, per i blocchi di report
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Posiziona il punto geo
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Posiziona il punto georeferenziato dell'impianto nella planimetria; le sue coordinate vanno nel riquadro Edifici, ogni punto si misura da esso
 Placed	Posizionato
 Placed by hand	Posizionato a mano
+Placed by hand; choosing a side places them anew.	Posizionati manualmente; scegliere un lato li posiziona di nuovo.
 Placed here: {}	Posizionato qui: {}
 Placed {}× in the project	Posizionato {}× nel progetto
 Placeholders	Segnaposto
@@ -1508,6 +1509,7 @@ Reset	Reimposta
 Reset all to the defaults	Ripristina tutto ai valori predefiniti
 Reset pane layout	Reimposta disposizione dei riquadri
 Reset the ribbon	Ripristina la barra multifunzione
+Reset to automatic placement	Ripristina il posizionamento automatico
 Reset to standard	Ripristina standard
 Restart and update	Riavvia e aggiorna
 Resulting: {} · {} · {} · {} m	Risultato: {} · {} · {} · {} m

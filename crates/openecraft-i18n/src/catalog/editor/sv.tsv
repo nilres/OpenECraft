@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	En väg genom fri luft kostar så här många gånger vägen i en kanal eller dragningsväg
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	Ett arbetsområde begränsar sidorna och apparaterna i navigatorn till en del av projektet. Filter: tomt = valfritt, * = valfria tecken; A1 omfattar även A1.2.
 About OpenECraft	Om OpenECraft
-Above	Ovanför
 Above the floor	Över golvet
 Accept as checked	Godkänn som kontrollerat
 Accepted messages ({})	Godkända meddelanden ({})
@@ -194,7 +193,6 @@ Bayed	Sammanbyggd
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Sammanbyggd med grannkapslingen: ingen sidovägg, i stället en sammanbyggnadssats
 Bayed to the right of	Sammanbyggd till höger om
 Becomes section {}	Blir avsnitt {}
-Below	Nedanför
 Bend radius	Böjradie
 Bend radius cables	Böjradie kablar
 Bend radius in drag chains	Böjradie i släpkedjor
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Utkast till revision {} ignorerat
 Drag a connection point designation of the selected symbol to place it.	Dra en anslutningspunktsbeteckning för den markerade symbolen för att placera den.
 Drag an entry into the page, or click it and then click into the page.	Dra en post till sidan, eller klicka på den och klicka sedan på sidan.
 Drag the core designation or the cable tag of the selected wire to place it.	Dra ledarbeteckningen eller kabelbeteckningen för den markerade ledningen för att placera den.
+Drag the name or the cross reference of the selected point to place it.	Dra namnet eller korsreferensen för den markerade punkten för att placera den.
 Drag the tag of the selected symbol to place it.	Dra beteckningen för den markerade symbolen för att placera den.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Dra: rotera · dra med höger-/mittknappen eller Skift: panorera · hjul: zooma vid pekaren · dubbelklick: titta dit · W A S D / pilar, Q E: förflytta · klick: markera
 Draw	Rita
@@ -1039,6 +1038,7 @@ NC data (DXF)	NC-data (DXF)
 NC data of this face (DWG)	NC-data för den här ytan (DWG)
 NC data of this face (DXF)	NC-data för den här ytan (DXF)
 Nailboard (SVG)…	Spikbräde (SVG)…
+Name and cross reference	Namn och korsreferens
 Name on the server	Namn på servern
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Namn; datatyp; logisk adress; kommentar – för PLC-programmeringsverktyg
 Named copy of this form, for report blocks	Namngiven kopia av det här formuläret, för rapportblock
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Placera den georeferer
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Placera anläggningens georefererade punkt i situationsplanen; dess koordinater anges i panelen Byggnader, varje punkt mäts sedan från den
 Placed	Placerad
 Placed by hand	Placerad manuellt
+Placed by hand; choosing a side places them anew.	Placerade manuellt; att välja en sida placerar dem på nytt.
 Placed here: {}	Placerat här: {}
 Placed {}× in the project	Placerad {}× i projektet
 Placeholders	Platshållare
@@ -1508,6 +1509,7 @@ Reset	Återställ
 Reset all to the defaults	Återställ alla till standardvärdena
 Reset pane layout	Återställ panellayout
 Reset the ribbon	Återställ menyfliksområdet
+Reset to automatic placement	Återställ automatisk placering
 Reset to standard	Återställ till standard
 Restart and update	Starta om och uppdatera
 Resulting: {} · {} · {} · {} m	Resultat: {} · {} · {} · {} m

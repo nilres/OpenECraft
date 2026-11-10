@@ -64,7 +64,6 @@ A template sets the page type, plot frame, title block, structure and descriptio
 A way through free air costs this many times the way in a duct or routing path	Un traseu prin aer liber costă de atâtea ori mai mult decât un traseu într-un canal sau pe o cale de pozare
 A work area limits the pages and devices in the navigator to a part of the project. Filters: empty = any, * = any characters; A1 also covers A1.2.	O zonă de lucru limitează paginile și dispozitivele din navigator la o parte a proiectului. Filtre: gol = oricare, * = orice caractere; A1 include și A1.2.
 About OpenECraft	Despre OpenECraft
-Above	Deasupra
 Above the floor	Deasupra podelei
 Accept as checked	Acceptare ca verificat
 Accepted messages ({})	Mesaje acceptate ({})
@@ -194,7 +193,6 @@ Bayed	Alăturat
 Bayed to the neighbouring enclosure: no side panel, a baying kit instead	Alăturat carcasei vecine: fără perete lateral, în schimb un set de alăturare
 Bayed to the right of	Alăturat în dreapta lui
 Becomes section {}	Devine secțiunea {}
-Below	Dedesubt
 Bend radius	Rază de curbură
 Bend radius cables	Rază de curbură cabluri
 Bend radius in drag chains	Raza de curbură în lanțurile portcablu
@@ -555,6 +553,7 @@ Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
 Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
 Drag the core designation or the cable tag of the selected wire to place it.	Glisați denumirea firului sau identificatorul cablului firului selectat pentru a le plasa.
+Drag the name or the cross reference of the selected point to place it.	Glisați numele sau referința încrucișată a punctului selectat pentru a-l plasa.
 Drag the tag of the selected symbol to place it.	Glisați identificatorul simbolului selectat pentru a-l plasa.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Glisare: orbitare · glisare cu butonul dreapta/din mijloc sau Shift: deplasare · rotiță: zoom la indicator · dublu clic: privește acolo · W A S D / săgeți, Q E: mișcare · clic: selectare
 Draw	Desenare
@@ -1039,6 +1038,7 @@ NC data (DXF)	Date NC (DXF)
 NC data of this face (DWG)	Date NC ale acestei fețe (DWG)
 NC data of this face (DXF)	Date NC ale acestei fețe (DXF)
 Nailboard (SVG)…	Planșetă (SVG)…
+Name and cross reference	Nume și referință încrucișată
 Name on the server	Nume pe server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Data Type; Logical Address; Comment – pentru instrumentele de programare PLC
 Named copy of this form, for report blocks	Copie denumită a acestui formular, pentru blocuri de raport
@@ -1315,6 +1315,7 @@ Place the georeferenced point everything is measured from	Plasați punctul geore
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Plasați punctul georeferențiat al instalației în planul de situație; coordonatele lui se introduc în panoul Clădiri, fiecare punct se măsoară de la el
 Placed	Plasat
 Placed by hand	Plasat manual
+Placed by hand; choosing a side places them anew.	Plasate manual; alegerea unei laturi le plasează din nou.
 Placed here: {}	Plasat aici: {}
 Placed {}× in the project	Plasat {}× în proiect
 Placeholders	Substituenți
@@ -1508,6 +1509,7 @@ Reset	Resetare
 Reset all to the defaults	Resetare totală la valorile implicite
 Reset pane layout	Resetare aranjare panouri
 Reset the ribbon	Resetarea panglicii
+Reset to automatic placement	Revenire la plasarea automată
 Reset to standard	Resetare la standard
 Restart and update	Repornește și actualizează
 Resulting: {} · {} · {} · {} m	Rezultat: {} · {} · {} · {} m

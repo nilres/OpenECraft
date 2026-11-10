@@ -72,6 +72,17 @@ other points, star from the first point, or pairs in schematic order; the check
 reports a point without partner) and whether coils draw a contact image. Command:
 `set_cross_references`.
 
+The name and the cross reference of an interruption point follow the arrow: for
+horizontal points the name above and the cross reference below the conductor, ending at
+the connection point, so that they stay inside the page at its edge; for vertical points
+beside the arrow (cross reference below the name). *Display* in the properties puts
+them above, below, left or right of the arrow instead, for all selected points at once
+(right of a right arrow: in one line after its tip, for conductors 4 mm apart); with one point
+selected, each text can be dragged on its own without moving the symbol, and the
+reset button returns to the automatic placement. The places are saved with the project
+and used by the PDF, SVG and DXF exports; the cross reference stays a link to its page.
+Command: `place_interruption_texts`.
+
 ## Connectivity / potentials
 
 Wires, T-junctions (with connection dots), terminals,
