@@ -276,6 +276,82 @@ fn tag_block_is_dragged_into_place() {
     assert!(o.dist(expect) < 0.6, "{o:?} {expect:?}");
 }
 
+#[test]
+fn connection_point_designation_is_dragged_into_place() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(SymbolInst { id: 7, sym: "coil".into(), pos: p(100.0, 100.0), rot: 1, tag: "-K1".into(), pins: vec!["A1".into(), "A2".into()], ..Default::default() });
+    prj.fix_next_id();
+    let before = prj.pages[0].symbols[0].clone();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let def = prj.symbol("coil").unwrap();
+    let label = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, &prj.pages[0].symbols[0])[1].clone();
+    let from = ed.w2s(SCREEN, label.bounds.center());
+    let to = ed.w2s(SCREEN, label.bounds.center() + p(3.0, -2.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+    for i in 1..=5 {
+        let t = i as f32 / 5.0;
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from + (to - from) * t)]);
+    }
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+    let s = &prj.pages[0].symbols[0];
+    assert_eq!((s.pos, &s.pins, s.tag_offset), (before.pos, &before.pins, None), "symbol, designations and tag stay");
+    assert!(s.pin_placement(0).is_auto());
+    let placed = s.pin_placement(1);
+    assert_eq!(placed.side, Some(label.side), "the side it had");
+    // Stored in the symbol's orientation: the quarter turn maps it back to the drag.
+    assert!((placed.offset - label.shift).transform(1, false).dist(p(3.0, -2.0)) < 0.6, "{placed:?}");
+    let moved = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, s)[1].clone();
+    assert!((moved.pos - label.pos).dist(p(3.0, -2.0)) < 0.6);
+}
+
+#[test]
+fn interruption_name_and_cross_reference_are_dragged_on_their_own() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for (page, id) in [(0, 7), (1, 8)] {
+        prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), rot: 3, label: "L1_OUT".into(), ..Default::default() });
+    }
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let def = prj.symbol("intr").unwrap();
+    for (text, moved) in [(render::IntrText::Xref, p(8.0, 12.0)), (render::IntrText::Label, p(-12.0, -8.0))] {
+        let s = prj.pages[0].symbols[0].clone();
+        let idx = Index::build(&prj);
+        let area = render::interruption_text_bounds(&prj, &idx, 0, &def, &s).into_iter().find(|t| t.0 == text).unwrap().1;
+        let before = render::interruption_places(&def, &s);
+        let from = ed.w2s(SCREEN, area.center());
+        let to = ed.w2s(SCREEN, area.center() + moved);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+        for i in 1..=5 {
+            let t = i as f32 / 5.0;
+            frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from + (to - from) * t)]);
+        }
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+        let s = &prj.pages[0].symbols[0];
+        assert_eq!((s.pos, s.rot), (p(100.0, 100.0), 3), "the symbol stays");
+        let (old, new, other) = match text {
+            render::IntrText::Label => (before.0, s.label_place.expect("name placed"), (before.1, s.xref_place)),
+            render::IntrText::Xref => (before.1, s.xref_place.expect("cross reference placed"), (before.0, s.label_place)),
+        };
+        assert_eq!(new.anchor, old.anchor);
+        assert!(new.offset.dist(old.offset + moved) < 0.6, "{text:?}: {new:?} {old:?}");
+        if text == render::IntrText::Xref {
+            assert_eq!(other.1, None, "the name stays automatic");
+        } else {
+            assert_eq!(other.1.map(|t| t.offset), Some(other.0.offset), "the cross reference stays where it was dragged");
+        }
+    }
+}
+
 fn key(key: Key) -> Event {
     Event::Key { key, physical_key: None, pressed: true, repeat: false, modifiers: Modifiers::default() }
 }
@@ -634,4 +710,94 @@ fn the_crossing_tool_connects_crossing_wires_and_turns_with_r() {
     // The bridge tool starts from its own prototype.
     ed.set_tool(Tool::Junction(JunctionKind::Bridge));
     assert_eq!((ed.symbol_proto.kind, ed.symbol_proto.dir), (JunctionKind::Bridge, TeeDir::Up));
+}
+
+#[test]
+fn device_boxes_are_drawn_and_take_their_points_along() {
+    let mut prj = Project::default();
+    let ctx = egui::Context::default();
+    let mut ed = Editor { autoconnect: false, ..Default::default() };
+    ready(&mut ed, &ctx, &mut prj);
+    ed.set_tool(Tool::DeviceBox);
+    click(&mut ed, &ctx, &mut prj, 0, p(80.0, 80.0));
+    click(&mut ed, &ctx, &mut prj, 0, p(120.0, 104.0));
+    let b = prj.pages[0].symbols[0].clone();
+    assert_eq!((b.sym.as_str(), b.tag.as_str(), b.pos, b.size), ("devbox", "-A1", p(80.0, 80.0), Some(p(40.0, 24.0))));
+    assert_eq!(ed.selection, BTreeSet::from([b.id]));
+    // Points on the top and the right edge lead away from them and are numbered on.
+    ed.set_tool(Tool::Place(openecraft_core::symbols::DEVICE_POINT));
+    assert!(ed.hint().contains("device box"), "{}", ed.hint());
+    click(&mut ed, &ctx, &mut prj, 0, p(88.0, 80.0));
+    click(&mut ed, &ctx, &mut prj, 0, p(120.0, 92.0));
+    let points: Vec<(String, String, u8)> = prj.pages[0].symbols[1..].iter().map(|s| (s.tag.clone(), s.pins[0].clone(), s.rot)).collect();
+    assert_eq!(points, vec![("-A1".into(), "1".into(), 0), ("-A1".into(), "2".into(), 1)]);
+    // Inside the box nothing is hit; its outline picks the box.
+    ed.set_tool(Tool::Select);
+    assert_eq!(ed.hit(&prj, 0, p(100.0, 96.0)), None);
+    assert_eq!(ed.hit(&prj, 0, p(100.0, 104.0)), Some(b.id));
+    // Dragging the box moves its points with it.
+    drag(&mut ed, &ctx, &mut prj, 0, p(100.0, 104.0), p(140.0, 120.0));
+    let pg = &prj.pages[0];
+    assert_eq!(pg.symbols[0].pos, p(120.0, 96.0));
+    assert_eq!((pg.symbols[1].pos, pg.symbols[2].pos), (p(128.0, 96.0), p(160.0, 108.0)));
+    // Delete takes them too.
+    frame(&mut ed, &ctx, &mut prj, 0, vec![key(Key::Delete)]);
+    assert!(prj.pages[0].symbols.is_empty());
+}
+
+#[test]
+fn the_designation_of_a_device_connection_point_is_dragged_into_place() {
+    let mut prj = Project::default();
+    let b = openecraft_core::device_boxes::add_box(&mut prj, 0, p(80.0, 80.0), p(120.0, 104.0), "", "").unwrap();
+    let id = openecraft_core::device_boxes::place_point(&mut prj, 0, p(88.0, 80.0), 0, "", "PE").unwrap();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(id);
+    let s = prj.pages[0].symbols.iter().find(|s| s.id == id).unwrap().clone();
+    let def = prj.symbol(&s.sym).unwrap();
+    let label = render::pin_label_bounds(&def, &s).unwrap();
+    drag(&mut ed, &ctx, &mut prj, 0, label.center(), label.center() + p(6.0, 10.0));
+    let s = prj.pages[0].symbols.iter().find(|s| s.id == id).unwrap();
+    assert_eq!(s.pos, p(88.0, 80.0), "the point stays");
+    let l = s.pin_label.expect("designation placed");
+    let (auto, anchor, _) = render::pin_label_at(&def, &SymbolInst { pin_label: None, ..s.clone() }, 0);
+    assert!(l.offset.dist(auto - s.pos + p(6.0, 10.0)) < 0.6, "{l:?}");
+    assert_eq!(l.anchor, anchor);
+    assert_eq!(openecraft_core::device_boxes::box_of(&prj, &prj.pages[0], s), Some(b));
+}
+
+#[test]
+fn cable_core_texts_of_a_selected_wire_are_dragged_into_place() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire { id: 7, a: p(100.0, 100.0), b: p(160.0, 100.0), ..Default::default() });
+    prj.fix_next_id();
+    cabledef::add(&mut prj, 0, p(120.0, 95.0), p(120.0, 105.0), "");
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let before = prj.pages[0].wires[0].clone();
+    for which in [render::CoreText::Core, render::CoreText::Cable] {
+        let at = render::core_text_bounds(&prj.pages[0], &prj.pages[0].wires[0], which).unwrap().center();
+        drag(&mut ed, &ctx, &mut prj, 0, at, at + p(6.0, 4.0));
+        let w = &prj.pages[0].wires[0];
+        let o = which.offset(w).expect("text placed");
+        assert!(o.dist(p(6.0, 4.0)) < 0.6, "{which:?} {o:?}");
+        assert_eq!((w.a, w.b, &w.cable, &w.core), (before.a, before.b, &before.cable, &before.core), "the wire and its core stay");
+    }
+}
+
+#[test]
+fn polylines_are_stroked_without_miter_spikes() {
+    let q = |pts: &[(f32, f32)]| pts.iter().map(|&(x, y)| pos2(x, y)).collect::<Vec<_>>();
+    // An outline without sharp turns stays one closed line.
+    let square = q(&[(0., 0.), (10., 0.), (10., 10.), (0., 10.)]);
+    assert_eq!(stroke_runs(square.clone(), true), Runs::Loop(square));
+    // A line that turns back is split there; repeated points are dropped.
+    let back = q(&[(0., 0.), (10., 0.), (10., 0.), (2., 0.5)]);
+    assert_eq!(stroke_runs(back, false), Runs::Open(vec![q(&[(0., 0.), (10., 0.)]), q(&[(10., 0.), (2., 0.5)])]));
+    // A closed outline along a line (an open polyline drawn closed) is no loop either.
+    let flat = q(&[(0., 0.), (5., 0.), (10., 0.)]);
+    assert_eq!(stroke_runs(flat, true), Runs::Open(vec![q(&[(0., 0.), (5., 0.), (10., 0.)]), q(&[(10., 0.), (0., 0.)])]));
 }

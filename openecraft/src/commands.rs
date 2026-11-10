@@ -77,6 +77,8 @@ pub enum Cmd {
     BridgeTool,
     InterruptionPoint,
     PotentialPoint,
+    DeviceBoxTool,
+    DeviceConnectionTool,
     InsertMacro,
     SaveSelectionAsMacro,
     SavePageAsMacro,
@@ -144,6 +146,7 @@ pub enum Cmd {
     PdfInLanguage,
     CheckSettings,
     CrossReferences,
+    WireCrossings,
     Marking,
     Shortcuts,
     CustomizeRibbon,
@@ -288,6 +291,8 @@ pub fn changes_page(cmd: Cmd) -> bool {
             | Cmd::BridgeTool
             | Cmd::InterruptionPoint
             | Cmd::PotentialPoint
+            | Cmd::DeviceBoxTool
+            | Cmd::DeviceConnectionTool
             | Cmd::LineTool
             | Cmd::RectTool
             | Cmd::CircleTool
@@ -470,6 +475,10 @@ pub static ALL: &[Def] = &[
         .tip(tr_const!("Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first")),
     d(C::InterruptionPoint, "interruption_point", tr_const!("Interruption point"), I::Interruption),
     d(C::PotentialPoint, "potential_point", tr_const!("Potential"), I::Potential),
+    d(C::DeviceBoxTool, "device_box", tr_const!("Device box"), I::DeviceBox)
+        .tip(tr_const!("Device box: draw a box of any size as a device (power supply, measuring instrument, control module)")),
+    d(C::DeviceConnectionTool, "device_connection_point", tr_const!("Device connection point"), I::DeviceConnection)
+        .tip(tr_const!("Device connection point: placed on a device box it is a connection of its device, numbered on")),
     d(C::InsertMacro, "insert_macro", tr_const!("Macro…"), I::Macro),
     d(C::SaveSelectionAsMacro, "save_selection_as_macro", tr_const!("Save selection as macro…"), I::Save),
     d(C::SavePageAsMacro, "save_page_as_macro", tr_const!("Save page as macro…"), I::Save),
@@ -548,6 +557,8 @@ pub static ALL: &[Def] = &[
     d(C::CheckSettings, "check_settings", tr_const!("Check settings…"), I::Settings).tip(tr_const!("Check settings: checks, message levels, accepted messages")),
     d(C::CrossReferences, "cross_references", tr_const!("Cross references…"), I::CrossRef)
         .tip(tr_const!("Format of cross references, structure of the target page, interruption points, contact images")),
+    d(C::WireCrossings, "wire_crossings", tr_const!("Wire crossings…"), I::Wire)
+        .tip(tr_const!("How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew")),
     d(C::Marking, "marking", tr_const!("Marking…"), I::Marking),
     d(C::Shortcuts, "shortcuts", tr_const!("Keyboard shortcuts…"), I::Keyboard),
     d(C::CustomizeRibbon, "customize_ribbon", tr_const!("Customize the ribbon…"), I::Settings),
@@ -755,6 +766,47 @@ pub static ALL: &[Def] = &[
     d(C::WiringExport, "wiring_export", tr_const!("Export CSV"), I::Download),
     d(C::TabletMode, "tablet_mode", tr_const!("Tablet mode"), I::Tablet).toggle().tip(tr_const!("Larger texts and buttons for a touch screen at the workbench")),
 ];
+
+/// Commands that change what the panel layout view shows or does: they bring it to the
+/// front, otherwise they would change a view hidden behind the page (the commands
+/// that create enclosures and rooms or work in the site plan switch to the panel layout).
+pub fn acts_in_layout_view(cmd: Cmd) -> bool {
+    use Cmd as C;
+    matches!(
+        cmd,
+        C::LayoutSelect
+            | C::LayoutRail
+            | C::LayoutDuct
+            | C::LayoutBusbar
+            | C::LayoutCutout
+            | C::LayoutRoutingPath
+            | C::LayoutReservation
+            | C::LayoutFloorPlan
+            | C::LayoutDrawWalls
+            | C::LayoutInnerWalls
+            | C::LayoutRoomDoor
+            | C::LayoutRoomWindow
+            | C::LayoutRoomPenetration
+            | C::LayoutRoomEntry
+            | C::LayoutPipeRun
+            | C::LayoutFront
+            | C::LayoutDoor
+            | C::LayoutDoorInside
+            | C::Layout3d
+            | C::LayoutWires
+            | C::LayoutDuctFill
+            | C::LayoutHeat
+            | C::LayoutLineup
+            | C::LayoutSite
+            | C::LayoutBuilding
+            | C::LayoutHideFrontWalls
+            | C::LayoutHideCeiling
+            | C::LayoutZones
+            | C::LayoutOpenWalls
+            | C::LayoutOpenDucts
+            | C::LayoutFit
+    )
+}
 
 /// The definition of a command.
 pub fn def(cmd: Cmd) -> &'static Def {

@@ -1,7 +1,7 @@
 //! The settings dialog: one window with a tree of the project settings (wire numbering,
-//! cross references, checks, marking, settings scheme, and the tools that keep further
-//! project settings) and the user settings (appearance, keyboard shortcuts, ribbon,
-//! servers).
+//! cross references, wire crossings, checks, marking, settings scheme, and the tools
+//! that keep further project settings) and the user settings (appearance, keyboard
+//! shortcuts, ribbon, servers).
 
 use super::*;
 use crate::commands;
@@ -15,6 +15,7 @@ pub(super) const SCALES: [f32; 7] = [0.75, 0.9, 1.0, 1.1, 1.25, 1.5, 2.0];
 pub(super) enum Node {
     WireNumbering,
     CrossReferences,
+    Wires,
     Checks,
     Marking,
     Scheme,
@@ -27,13 +28,14 @@ pub(super) enum Node {
 }
 
 impl Node {
-    const PROJECT: [Node; 6] = [Node::WireNumbering, Node::CrossReferences, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
+    const PROJECT: [Node; 7] = [Node::WireNumbering, Node::CrossReferences, Node::Wires, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
     const USER: [Node; 5] = [Node::Appearance, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
 
     fn title(self) -> &'static str {
         match self {
             Node::WireNumbering => tr("Wire numbering"),
             Node::CrossReferences => tr("Cross references"),
+            Node::Wires => tr("Wire crossings"),
             Node::Checks => tr("Check settings"),
             Node::Marking => tr("Marking"),
             Node::Scheme => tr("Settings scheme"),
@@ -111,6 +113,7 @@ impl App {
                 egui::ScrollArea::vertical().id_salt("settings_body").auto_shrink([false, false]).show(ui, |ui| match self.settings.node {
                     Node::WireNumbering => self.wire_numbering_body(ui),
                     Node::CrossReferences => self.xref_body(ui),
+                    Node::Wires => self.wires_body(ui),
                     Node::Checks => self.check_settings_body(ui),
                     Node::Marking => self.marking_body(ui),
                     Node::Scheme => self.scheme_settings(ui),

@@ -630,3 +630,79 @@ fn crossings_and_bridges_connect_four_wires() {
     assert_eq!(wires(&b)[0], "-K2:A1>-K1:A2");
     assert_eq!(run(&mut s, "list_connection_symbols", json!({})).unwrap().as_array().unwrap().len(), 1);
 }
+
+#[test]
+fn connection_point_designations_are_placed_and_reset() {
+    let mut s = new_session();
+    let coil = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 100, "y": 100, "rotation": 90 })).unwrap();
+    let id = coil["id"].clone();
+    let auto = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2" })).unwrap();
+    assert_eq!(auto["auto"], true);
+    let placed = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2", "side": "below", "dx": 1, "dy": 2 })).unwrap();
+    assert_eq!((placed["auto"].clone(), placed["side"].clone()), (json!(false), json!("below")), "{placed}");
+    let sym = s.project().unwrap().pages[0].symbols[0].clone();
+    assert_eq!(sym.pin_placement(1).side, Some(LabelSide::Right), "stored in the orientation of the symbol");
+    assert!((auto["x"].as_f64().unwrap() - placed["x"].as_f64().unwrap()).abs() > 0.5);
+    // Kept in the saved project, the designations themselves stay.
+    let prj = Project::from_json(&s.project().unwrap().to_json()).unwrap();
+    assert_eq!(prj.pages[0].symbols[0].pin_placements, sym.pin_placements);
+    assert_eq!(prj.pages[0].symbols[0].pins, ["A1", "A2"]);
+    let reset = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2", "side": "auto" })).unwrap();
+    assert_eq!(reset, auto);
+    assert!(s.project().unwrap().pages[0].symbols[0].pin_placements.is_empty());
+    assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A3" })).unwrap_err().contains("A3"));
+    assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A1", "side": "up" })).unwrap_err().contains("up"));
+}
+
+#[test]
+fn interruption_texts_are_placed_on_a_side_or_by_hand() {
+    let mut s = new_session();
+    let a = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 80, "rotation": 270, "label": "L1_OUT" })).unwrap()["id"].as_u64().unwrap();
+    let b = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 88, "rotation": 270, "label": "L2_OUT" })).unwrap()["id"].as_u64().unwrap();
+    let coil = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 80, "y": 80 })).unwrap()["id"].as_u64().unwrap();
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a, b, coil], "side": "above" })).unwrap();
+    let points = r["points"].as_array().unwrap();
+    assert_eq!(points.len(), 2, "only the interruption points");
+    assert!(points.iter().all(|p| p["side"] == "above" && p["label"]["align"] == "right" && p["xref"]["align"] == "left" && p["label"]["y"].as_f64().unwrap() < 0.0));
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "xref_x": 12, "xref_y": -2 })).unwrap();
+    assert_eq!((r["points"][0]["xref"]["x"].as_f64(), r["points"][0]["xref"]["y"].as_f64()), (Some(12.0), Some(-2.0)));
+    let prj = Project::from_json(&s.project().unwrap().to_json()).unwrap();
+    let placed = prj.pages[0].symbols.iter().find(|x| x.id == a).unwrap();
+    assert_eq!(placed.xref_place.map(|t| t.offset), Some(openecraft_core::geom::p(12.0, -2.0)), "kept on saving");
+    assert!(placed.label_place.is_none());
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "side": "auto" })).unwrap();
+    assert_eq!(r["points"][0]["xref"]["align"], "right", "below the conductor, ending at the connection point");
+    assert!(s.project().unwrap().pages[0].symbols.iter().all(|x| !x.texts_placed() || x.id == b));
+    assert!(run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "side": "diagonal" })).is_err());
+    assert!(run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [coil], "side": "left" })).is_err());
+}
+
+#[test]
+fn cable_core_texts_are_placed_and_reset() {
+    let mut s = new_session();
+    let wire = run(&mut s, "add_wire", json!({ "page": "1", "points": [[30, 60], [90, 60]] })).unwrap();
+    let id = wire["ids"][0].clone();
+    run(&mut s, "add_cable_definition", json!({ "page": "1", "points": [[50, 55], [50, 65]] })).unwrap();
+    let w = run(&mut s, "update_wire", json!({ "page": "1", "id": id, "core_offset": [[2, -1.5]], "cable_offset": [[0, -3]] })).unwrap();
+    assert_eq!((w["core_offset"].clone(), w["cable_offset"].clone()), (json!([2.0, -1.5]), json!([0.0, -3.0])));
+    let w = run(&mut s, "update_wire", json!({ "page": "1", "id": id, "core_offset": [] })).unwrap();
+    assert_eq!((w["core_offset"].clone(), w["cable_offset"].clone()), (Value::Null, json!([0.0, -3.0])));
+    assert_eq!(run(&mut s, "get_page", json!({ "page": "1" })).unwrap()["wires"][0]["cable_offset"], json!([0.0, -3.0]));
+}
+
+#[test]
+fn wire_settings_are_shown_and_changed() {
+    let mut s = new_session();
+    let shown = run(&mut s, "wire_settings", json!({})).unwrap();
+    assert_eq!(shown, json!({ "jump": "none", "jump_wire": "vertical", "tee": "dot", "reroute": false }));
+    let changed = run(&mut s, "wire_settings", json!({ "jump": "Arc", "jump_wire": "horizontal", "tee": "large_dot", "reroute": true })).unwrap();
+    assert_eq!(changed, json!({ "jump": "arc", "jump_wire": "horizontal", "tee": "large_dot", "reroute": true }));
+    let w = &s.project().unwrap().wire_settings;
+    assert_eq!((w.jump, w.jump_wire, w.tee, w.reroute), (JumpStyle::Arc, JumpWire::Horizontal, TeeStyle::LargeDot, true));
+    assert!(run(&mut s, "wire_settings", json!({ "jump": "loop" })).is_err());
+    assert!(run(&mut s, "wire_settings", json!({ "tee": "ring" })).is_err());
+    assert_eq!(s.project().unwrap().wire_settings.jump, JumpStyle::Arc);
+}

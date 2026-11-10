@@ -96,7 +96,7 @@ pub static TABS: &[Tab] = &[
         key_tip: 'I',
         context: false,
         groups: &[
-            g("symbols", tr_const!("Symbols"), &[L(C::InsertCenter), S(C::UnplacedPane)]),
+            g("symbols", tr_const!("Symbols"), &[L(C::InsertCenter), S(C::UnplacedPane), S(C::DeviceBoxTool), S(C::DeviceConnectionTool)]),
             g(
                 "connections",
                 tr_const!("Connections"),
@@ -192,6 +192,7 @@ pub static TABS: &[Tab] = &[
             g("field", tr_const!("Field wiring"), &[L(C::FieldWiring)]),
             g("marking", tr_const!("Marking"), &[L(C::Marking)]),
             g("xref", tr_const!("Cross references"), &[L(C::CrossReferences)]),
+            g("crossings", tr_const!("Wire crossings"), &[L(C::WireCrossings)]),
         ],
     },
     Tab {
