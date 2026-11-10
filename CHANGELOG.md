@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **EDZ parts without a usable macro** (#131): a part whose first function is a
+  generic one (the connection points of a drive or an HMI) is placed as a black box
+  with room for its connection points instead of an earth electrode. Elliptic arcs of
+  EPLAN macros keep the ratio of their axes and start and end where the macro says (the
+  S7-1200 CPU 6ES7212-1HG50-0XB0 had a half circle of 400 mm across the page), and
+  texts keep their justification (table labels stood on their lines, right-aligned
+  texts ran into their neighbours). The part selection of *Add part…* no longer grows
+  to the height of the screen.
 - **Connection point designations** (#116): each designation of a selected symbol can
   be dragged on its own, put left, right, above or below its connection point or reset
   to automatic placement (Properties › *Property placement*); the placement is stored
