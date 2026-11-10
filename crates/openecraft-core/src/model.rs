@@ -759,7 +759,7 @@ pub struct SymbolInst {
     /// Connection point designations placed by hand, one per symbol pin (missing or
     /// default ones are placed automatically).
     #[serde(skip_serializing_if = "Vec::is_empty")]
-    pub pin_labels: Vec<PinLabel>,
+    pub pin_placements: Vec<PinPlacement>,
     /// Further properties shown beside the symbol (part number, description …).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub props: Vec<PlacedProp>,
@@ -775,9 +775,45 @@ pub struct SymbolInst {
     /// Shared logical channels shown by several representations of this device.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub plc_bindings: BTreeMap<usize,plc_hw::ChannelBinding>,
+    /// Freely drawn device box: width and height of its outline, from `pos` towards
+    /// +x / +y before the rotation (see [`crate::device_boxes`]).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub size: Option<P>,
+    /// Connection point designation placed by hand (symbols with one connection point,
+    /// such as device connection points); None: beside the connection point.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pin_label: Option<PinLabel>,
+}
+
+/// Position of a connection point designation relative to the symbol position and
+/// its alignment.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PinLabel {
+    pub offset: P,
+    pub anchor: crate::symbols::Anchor,
 }
 
 impl SymbolInst {
+    /// Area of the symbol graphics in its own coordinates: the outline of a device box,
+    /// else the symbol's.
+    pub fn local_bounds(&self, def: &crate::symbols::SymbolDef) -> crate::geom::R {
+        match self.size {
+            Some(sz) => crate::geom::R::from_points(p(0.0, 0.0), sz),
+            None => def.bounds,
+        }
+    }
+
+    /// Area of the symbol graphics on the page (a device box is not mirrored).
+    pub fn bounds(&self, def: &crate::symbols::SymbolDef) -> crate::geom::R {
+        let b = self.local_bounds(def);
+        let mirror = self.mirror && self.size.is_none();
+        let mut r = crate::geom::R::nothing();
+        for c in [b.min, p(b.max.x, b.min.y), b.max, p(b.min.x, b.max.y)] {
+            r.extend(self.pos + c.transform(self.rot, mirror));
+        }
+        r
+    }
+
     /// A cable marker follows its inventory; other explicit part references never fall back.
     pub fn selected_part_number<'a>(&self, prj: &'a Project) -> Option<&'a str> {
         if let Some(tag)=self.values.get("function.cable").filter(|tag|!tag.is_empty()) {
@@ -825,30 +861,32 @@ impl Default for SymbolInst {
             function_text: String::new(),
             pins: Vec::new(),
             tag_offset: None,
-            pin_labels: Vec::new(),
+            pin_placements: Vec::new(),
             props: Vec::new(),
             scheme: String::new(),
             function_def: String::new(),
             values: BTreeMap::new(),
             plc_bindings: BTreeMap::new(),
+            size: None,
+            pin_label: None,
         }
     }
 }
 
 impl SymbolInst {
     /// Placement of the designation of pin `i` (default: automatic).
-    pub fn pin_label(&self, i: usize) -> PinLabel {
-        self.pin_labels.get(i).copied().unwrap_or_default()
+    pub fn pin_placement(&self, i: usize) -> PinPlacement {
+        self.pin_placements.get(i).copied().unwrap_or_default()
     }
 
     /// Places the designation of pin `i`; trailing automatic ones are not stored.
-    pub fn set_pin_label(&mut self, i: usize, label: PinLabel) {
-        if self.pin_labels.len() <= i {
-            self.pin_labels.resize(i + 1, PinLabel::default());
+    pub fn set_pin_placement(&mut self, i: usize, label: PinPlacement) {
+        if self.pin_placements.len() <= i {
+            self.pin_placements.resize(i + 1, PinPlacement::default());
         }
-        self.pin_labels[i] = label;
-        while self.pin_labels.last().is_some_and(|l| l.is_auto()) {
-            self.pin_labels.pop();
+        self.pin_placements[i] = label;
+        while self.pin_placements.last().is_some_and(|l| l.is_auto()) {
+            self.pin_placements.pop();
         }
     }
 }
@@ -913,7 +951,7 @@ impl LabelSide {
 /// the symbol's own orientation; the default is automatic placement.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
-pub struct PinLabel {
+pub struct PinPlacement {
     /// Side of the connection point; None = chosen automatically.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub side: Option<LabelSide>,
@@ -922,9 +960,9 @@ pub struct PinLabel {
     pub offset: P,
 }
 
-impl PinLabel {
+impl PinPlacement {
     pub fn is_auto(&self) -> bool {
-        *self == PinLabel::default()
+        *self == PinPlacement::default()
     }
 }
 

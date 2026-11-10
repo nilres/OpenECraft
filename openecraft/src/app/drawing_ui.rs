@@ -666,7 +666,7 @@ impl App {
         let classes: Vec<properties::ObjectClass> =
             [properties::ObjectClass::Device, properties::ObjectClass::Part].into_iter().filter(|_| !s.tag.is_empty()).chain(classes).chain([properties::ObjectClass::Page, properties::ObjectClass::Project]).collect();
         let pins = symbols.get(&s.sym).filter(|d| d.show_pin_labels).map_or(0, |d| d.pins.len().min(s.pins.len()));
-        let open = !s.props.is_empty() || s.tag_offset.is_some() || !s.pin_labels.is_empty();
+        let open = !s.props.is_empty() || s.tag_offset.is_some() || !s.pin_placements.is_empty();
         egui::CollapsingHeader::new(tr("Property placement")).id_salt("placement").default_open(open).show(ui, |ui| {
             let added = super::properties_ui::key_picker(ui, &self.session.prj, &classes, false, tr("➕ Place property"));
             let mut save_scheme = None;
@@ -682,7 +682,8 @@ impl App {
                     ui.weak(tr("Drag the tag of the selected symbol to place it."));
                 }
             });
-            if pins > 0 {
+            // A single connection point is placed freely (device connection points).
+            if pins > 1 {
                 pin_label_placement(ui, s, pins);
             }
             let mut remove = None;
@@ -1110,7 +1111,7 @@ fn pin_label_placement(ui: &mut egui::Ui, s: &mut SymbolInst, pins: usize) {
             if s.pins[i].is_empty() {
                 continue;
             }
-            let label = s.pin_label(i);
+            let label = s.pin_placement(i);
             let shown = label.side.map(|x| x.on_page(s.rot, s.mirror));
             let mut side = shown;
             ui.label(&s.pins[i]);
@@ -1121,10 +1122,10 @@ fn pin_label_placement(ui: &mut egui::Ui, s: &mut SymbolInst, pins: usize) {
                 }
             });
             if side != shown {
-                s.set_pin_label(i, PinLabel { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: Default::default() });
+                s.set_pin_placement(i, PinPlacement { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: Default::default() });
             }
             if ui.add_enabled(!label.is_auto(), egui::Button::new(tr("Reset")).small()).on_hover_text(tr("Automatic placement")).clicked() {
-                s.set_pin_label(i, PinLabel::default());
+                s.set_pin_placement(i, PinPlacement::default());
             }
             ui.end_row();
         }

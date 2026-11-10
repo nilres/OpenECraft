@@ -1,5 +1,5 @@
 use super::*;
-use crate::model::{PinLabel, Wire};
+use crate::model::{PinPlacement, Wire};
 use crate::testkit::Kit;
 
 fn places(kit: &Kit, id: u64) -> Vec<PinLabelPlace> {
@@ -84,7 +84,7 @@ fn wires_and_other_designations_push_a_designation_aside() {
 fn hand_placed_designations_turn_with_the_symbol() {
     let mut kit = Kit::new();
     let k = kit.sym("no", 100.0, 100.0, "-K1", "");
-    sym(&mut kit, k).set_pin_label(0, PinLabel { side: Some(LabelSide::Right), offset: p(1.0, 0.0) });
+    sym(&mut kit, k).set_pin_placement(0, PinPlacement { side: Some(LabelSide::Right), offset: p(1.0, 0.0) });
     let l = places(&kit, k)[0].clone();
     assert_eq!((l.side, l.anchor), (LabelSide::Right, Anchor::Left));
     let auto = places(&kit, k)[1].clone();
@@ -128,12 +128,12 @@ fn sides_convert_between_page_and_symbol() {
 #[test]
 fn trailing_automatic_designations_are_not_stored() {
     let mut s = SymbolInst::default();
-    s.set_pin_label(2, PinLabel { side: Some(LabelSide::Above), offset: P::default() });
-    assert_eq!(s.pin_labels.len(), 3);
-    s.set_pin_label(2, PinLabel::default());
-    assert!(s.pin_labels.is_empty());
+    s.set_pin_placement(2, PinPlacement { side: Some(LabelSide::Above), offset: P::default() });
+    assert_eq!(s.pin_placements.len(), 3);
+    s.set_pin_placement(2, PinPlacement::default());
+    assert!(s.pin_placements.is_empty());
     let json = serde_json::to_string(&s).unwrap();
-    assert!(!json.contains("pin_labels"), "older readers see nothing new");
+    assert!(!json.contains("pin_placements"), "older readers see nothing new");
 }
 
 #[test]

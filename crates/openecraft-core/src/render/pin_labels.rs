@@ -128,7 +128,7 @@ impl Obstacles {
                 Prim::Field { .. } | Prim::PropertyBlock(_) => {}
             }
         }
-        let bounds = def.world_bounds(s.pos, s.rot, s.mirror);
+        let bounds = s.bounds(def);
         let near = bounds.expand(8.0);
         let Some(page) = prj.pages.get(page_i) else { return o };
         for wire in &page.wires {
@@ -139,7 +139,7 @@ impl Obstacles {
         let symbols = prj.symbol_table();
         for other in page.symbols.iter().filter(|x| x.id != s.id && (x.pos.x - s.pos.x).abs() < 60.0 && (x.pos.y - s.pos.y).abs() < 60.0) {
             if let Some(od) = symbols.get(&other.sym) {
-                let ob = od.world_bounds(other.pos, other.rot, other.mirror);
+                let ob = other.bounds(&od);
                 if ob.overlaps(&near) {
                     o.boxes.push(ob);
                 }
@@ -174,14 +174,14 @@ pub fn pin_label_places(prj: &Project, idx: &Index, page_i: usize, def: &SymbolD
     if !def.show_pin_labels || s.pins.iter().take(def.pins.len()).all(|l| l.is_empty()) {
         return out;
     }
-    let center = def.world_bounds(s.pos, s.rot, s.mirror).center();
+    let center = s.bounds(def).center();
     let mut obstacles: Option<Obstacles> = None;
     for (i, text) in s.pins.iter().enumerate().take(def.pins.len()) {
         if text.is_empty() {
             continue;
         }
         let (q, vertical, inward) = lead(def, s, i, center);
-        let hand = s.pin_label(i);
+        let hand = s.pin_placement(i);
         // Page shift of a place `depth` inside instead of the usual one.
         let deeper = |side: LabelSide, depth: f32| {
             let beside = if vertical { side.dir().y == 0.0 } else { side.dir().x == 0.0 };
@@ -212,7 +212,14 @@ pub fn pin_label_places(prj: &Project, idx: &Index, page_i: usize, def: &SymbolD
                 best.map_or((LabelSide::Left, P::default()), |b| (b.1, b.2))
             }
         };
-        let (pos, anchor, v, bounds) = place(side, shift);
+        let (pos, anchor, v, bounds) = match (i, s.pin_label) {
+            // Placed freely (the only connection point, see `SymbolInst::pin_label`).
+            (0, Some(l)) => {
+                let pos = s.pos + l.offset;
+                (pos, l.anchor, VAnchor::Middle, text_box(pos, text, SMALL_SIZE, l.anchor, VAnchor::Middle))
+            }
+            _ => place(side, shift),
+        };
         out.push(PinLabelPlace { pin: i, pos, anchor, v, side: side.in_symbol(s.rot, s.mirror), shift: shift.untransform(s.rot, s.mirror), bounds });
     }
     out
