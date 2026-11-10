@@ -368,6 +368,7 @@ Connection points 1 and 2 are connected inside	接続ポイント 1 と 2 は内
 Connection:	接続:
 Connections ({})	接続 ({})
 Connections / harness	接続 / ハーネス
+Connections of four or more wires always have a dot.	4 本以上の配線の接続には常に点が付きます。
 Connections whose two ends are both on selected wires	両端が選択した電線上にある接続
 Connections without a defined potential	電位が定義されていない接続
 Connectors	コネクター
@@ -783,6 +784,7 @@ Hose number	ホース番号
 Hoses and pipes	ホースと配管
 Hoses rated below it are errors; 0 = not checked	これより定格の低いホースはエラーになります。0 = チェックしない
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	扉の開き方：左または右の端に吊り元（室内から見て）、室内側または室外側へ開く、または壁に沿って引く
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	配線が交差する配線をどのように越えるか、T 接続をどのように示すか、移動した項目の接続を再配線するか
 IP / bus address	IP / バスアドレス
 ISO 639-1 language code	ISO 639-1 言語コード
 Identifiers	識別子
@@ -867,6 +869,7 @@ Its pages replace the pages taken out	そのページで切り出されたペー
 Join collinear wires	一直線上の電線を結合
 Joins wire pieces in a line where nothing else connects (current page)	他に何も接続されていない一直線上の電線部分を結合します (現在のページ)
 Jumper {}	ジャンパー {}
+Jumps over the other:	もう一方を越える:
 K, Q, MM …	K、Q、MM …
 Keep sub-pages (3.a, 3.1) with the page before	サブページ (3.a、3.1) を前のページと一緒に維持
 Keep the degree of protection	保護等級を維持
@@ -880,6 +883,7 @@ Label (grey)	ラベル (グレー)
 Label field	ラベルフィールド
 Labeling scheme	ラベリングスキーム
 Landscape	横
+Large dot	大きい点
 Larger texts and buttons for a touch screen at the workbench	作業台のタッチスクリーン用に文字とボタンを大きく
 Latitude, longitude	緯度、経度
 Layer	レイヤー
@@ -1014,6 +1018,7 @@ Move to section	セクションへ移動
 Move up	上へ移動
 Moves to the top level as page {}	最上位レベルのページ {} になります
 Moves to {} as page {}	{} のページ {} になります
+Moving	移動
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	現在のページの単線シンボルに対する複線の動力シンボルと導体 (新しいページに作成)
 Multiple copy	複数コピー
 Multiple copy…	複数コピー…
@@ -1094,11 +1099,13 @@ No device has its main function in the box.	主機能がボックス内にある
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	取付データを持つデバイスはまだありません: 寸法のある部品をデバイスに割り当ててください (プロパティ › 部品)。
 No differences to {}.	{} との相違点はありません。
 No document embedded	ドキュメントが埋め込まれていません
+No dot: plain T	点なし: 単純な T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	エンクロージャーがまだありません – 「新しいエンクロージャー」で作成するか、「新しい部屋」でキャビネット用の部屋を作成します。
 No field cables: place the enclosures and field devices at nodes of the route network.	フィールドケーブルがありません。エンクロージャーとフィールドデバイスをルートネットワークのノードに配置してください。
 No filter fans: an air/air heat exchanger or a cooling unit	フィルターファンなし: 空気/空気熱交換器またはクーラー
 No harnesses defined.	ハーネスが定義されていません。
 No inverter	インバーターなし
+No jump: plain crossing, connections have dots	ジャンプなし: 単純な交差、接続には点
 No longer reported	報告されなくなりました
 No macros yet. Select items in a schematic and save them as a macro.	マクロはまだありません。回路図で要素を選択し、マクロとして保存してください。
 No modules: plug in PLC cards of the schematic.	モジュールがありません: 回路図の PLC カードを装着してください。
@@ -1345,6 +1352,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	部品でカ�
 Pre-planning (CSV, Excel)	事前計画 (CSV、Excel)
 Prefix	プレフィックス
 Press a key…	キーを押してください…
+Preview	プレビュー
 Previous item	前のアイテム
 Previous page	前のページ
 Previous page tab	前のページタブ
@@ -1531,6 +1539,7 @@ Round	円形
 Round cutouts facing each other in both side walls	両側板に向かい合う円形の切り欠き
 Route definition of {}	{} のルート定義
 Route network	ルートネットワーク
+Route the connections of moved items anew	移動した項目の接続を再配線
 Route wires in 3D	電線を 3D で配線
 Routed in {}: {} m, {} bends	{} 内の配線ルート: {} m、曲げ {} 箇所
 Routing around symbols	シンボル回避ルート
@@ -1768,6 +1777,7 @@ Synchronize	同期
 Synchronize function texts	機能テキストを同期
 Synchronize project parts from database	データベースからプロジェクト部品を同期
 T Text	T テキスト
+T-connections	T 接続
 Tab	タブ
 Table import failed: {}	表のインポートに失敗しました: {}
 Tablet mode	タブレットモード
@@ -1788,6 +1798,7 @@ Taken into the drawing: drawn faded	図面に反映済み: 薄く表示
 Takes the comments as function texts (matched by address)	コメントを機能テキストとして取り込みます (アドレスで照合)
 Takes the connection point designations of all functions of this device from the function templates of its parts	このデバイスのすべての機能の接続ポイント名称を、部品の機能テンプレートから取り込みます
 Takes the rights of the role away, whatever other grants give	他の付与内容にかかわらず、ロールの権限を取り消します
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	重みが最小の経路を選びます: グリッド単位の長さ、曲がりごとに 1.2、交差する配線ごとに 1.5。オフ: 配線は伸びて角を保ちます。
 Target languages	ターゲット言語
 Temperature rise at the roof against the middle (IEC/TR 60890)	中央部に対する天井部の温度上昇 (IEC/TR 60890)
 Template	テンプレート
@@ -1817,6 +1828,7 @@ The dictionary is empty: collect the texts from the project.	辞書が空です:
 The door seen from the front: door devices and cutouts	前面から見た扉: 扉取付機器と切り欠き
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	内側から見た扉 (ヒンジは右): 配線ダクトと扉裏の配線
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
+The horizontal wire	水平の配線
 The items are selected and moved together	アイテムはまとめて選択、移動されます
 The macro library has no page macros (Macros › Save page as macro…).	マクロライブラリにページマクロがありません (マクロ › ページをマクロとして保存…)。
 The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
@@ -1843,6 +1855,7 @@ The side of {} is open	{} の側面は開放されています
 The symbol is placed in the project	シンボルはプロジェクト内で使用されています
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	端子部品にエンドクランプまたはエンドカバーの指定がありません (技術データ End bracket、End plate)。
 The update failed	更新に失敗しました
+The vertical wire	垂直の配線
 The web version is updated on its server.	Web 版はそのサーバー上で更新されます。
 The wire tool routes around symbols and other wires	電線ツールはシンボルや他の電線を回避してルートを決めます
 The wires get the free cores of the cable in order (left to right)	電線にはケーブルの空き心線が順番に (左から右へ) 割り当てられます
@@ -1971,6 +1984,8 @@ Window macro: {}	ウィンドウマクロ: {}
 Window macros inserted from now on are recorded as macro boxes.	今後挿入するウィンドウマクロはマクロボックスとして記録されます。
 Window macros placed on the pages (not printed)	ページに配置されたウィンドウマクロ (印刷されません)
 Wire colour	電線の色
+Wire crossings	配線の交差
+Wire crossings…	配線の交差…
 Wire ends	電線端
 Wire ends with ferrules	フェルール付きの電線端
 Wire markers	電線マーカー
@@ -1984,6 +1999,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	電線 {} – {}  (こ
 Wire {} – {}  {} mm	電線 {} – {}  {} mm
 Wires and potentials	電線と電位
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	流体動力シンボルと P&ID シンボルのポート間の電線はホース / 配管です: 独自のネットを持ち、電線番号付けで番号が付けられ、ホースリストに記載されます。
+Wires crossing without connection	接続なしで交差する配線
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	ここから4方向すべてに接続線が出ている必要があります。それまでは接続は回路図の順序でつながれます。
 Wires of the connection	接続の電線
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	電線も、板上の配線ダクトだけでなく、障害物を考慮した 3D ルートを使用します

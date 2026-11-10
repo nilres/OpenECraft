@@ -371,6 +371,7 @@ Connection points 1 and 2 are connected inside	Tilslutningspunkt 1 og 2 er forbu
 Connection:	Forbindelse:
 Connections ({})	Forbindelser ({})
 Connections / harness	Forbindelser / ledningsnet
+Connections of four or more wires always have a dot.	Forbindelser mellem fire eller flere ledninger har altid en prik.
 Connections whose two ends are both on selected wires	Forbindelser, hvis to ender begge ligger på markerede ledninger
 Connections without a defined potential	Forbindelser uden defineret potentiale
 Connectors	Stik
@@ -791,6 +792,7 @@ Hose number	Slangenummer
 Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hvordan ledninger springer over de ledninger, de krydser, hvordan T-forbindelser markeres, og om flyttede elementer får deres forbindelser trukket på ny
 IP / bus address	IP- / busadresse
 ISO 639-1 language code	Sprogkode efter ISO 639-1
 Identifiers	Betegnelser
@@ -876,6 +878,7 @@ Join collinear wires	Sammenføj kollineære ledninger
 Joins	Forbinder
 Joins wire pieces in a line where nothing else connects (current page)	Sammenføjer ledningsstykker på en linje, hvor intet andet er tilsluttet (aktuel side)
 Jumper {}	Bro {}
+Jumps over the other:	Springer over den anden:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Hold undersider (3.a, 3.1) sammen med den forrige side
 Keep the degree of protection	Bevar kapslingsklassen
@@ -889,6 +892,7 @@ Label (grey)	Etiket (grå)
 Label field	Etiketfelt
 Labeling scheme	Mærkningsskema
 Landscape	Liggende
+Large dot	Stor prik
 Larger texts and buttons for a touch screen at the workbench	Større tekster og knapper til en berøringsskærm ved arbejdsbordet
 Latitude, longitude	Bredde, længde
 Layer	Lag
@@ -1026,6 +1030,7 @@ Move to section	Flyt til afsnit
 Move up	Flyt op
 Moves to the top level as page {}	Flyttes til øverste niveau som side {}
 Moves to {} as page {}	Flyttes til {} som side {}
+Moving	Flytning
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Flerstregede effektsymboler og ledere for de enstregede symboler på den aktuelle side, på en ny side
 Multiple copy	Kopiér flere gange
 Multiple copy…	Kopiér flere gange…
@@ -1108,11 +1113,13 @@ No device has its main function in the box.	Ingen enhed har sin hovedfunktion i 
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Ingen enhed har monteringsdata endnu: tildel enhederne artikler med mål (Egenskaber › Artikler).
 No differences to {}.	Ingen forskelle i forhold til {}.
 No document embedded	Intet dokument integreret
+No dot: plain T	Ingen prik: almindeligt T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling endnu – opret en med Ny kapsling, eller et rum til skabe med Nyt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ingen feltkabler: placer kapslingerne og feltenhederne ved knuder i føringsnettet.
 No filter fans: an air/air heat exchanger or a cooling unit	Ingen filterventilatorer: en luft/luft-varmeveksler eller en køleenhed
 No harnesses defined.	Ingen ledningsnet defineret.
 No inverter	Ingen inverter
+No jump: plain crossing, connections have dots	Intet spring: almindelig krydsning, forbindelser har prikker
 No longer reported	Rapporteres ikke længere
 No macros yet. Select items in a schematic and save them as a macro.	Endnu ingen makroer. Vælg elementer i et diagram, og gem dem som en makro.
 No modules: plug in PLC cards of the schematic.	Ingen moduler: Isæt PLC-kort fra diagrammet.
@@ -1360,6 +1367,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Effekttab, der
 Pre-planning (CSV, Excel)	Forprojektering (CSV, Excel)
 Prefix	Præfiks
 Press a key…	Tryk på en tast…
+Preview	Forhåndsvisning
 Previous item	Forrige element
 Previous page	Forrige side
 Previous page tab	Forrige sidefane
@@ -1549,6 +1557,7 @@ Round	Rund
 Round cutouts facing each other in both side walls	Runde udskæringer over for hinanden i begge sidevægge
 Route definition of {}	Definition af føringen for {}
 Route network	Føringsnet
+Route the connections of moved items anew	Træk forbindelserne for flyttede elementer på ny
 Route wires in 3D	Før ledninger i 3D
 Routed in {}: {} m, {} bends	Ført i {}: {} m, {} bøjninger
 Routing around symbols	Føring uden om symboler
@@ -1788,6 +1797,7 @@ Synchronize	Synkroniser
 Synchronize function texts	Synkronisér funktionstekster
 Synchronize project parts from database	Synkroniser projektartikler fra databasen
 T Text	T Tekst
+T-connections	T-forbindelser
 Tab	Tabulator
 Table import failed: {}	Tabelimporten mislykkedes: {}
 Tablet mode	Tablettilstand
@@ -1808,6 +1818,7 @@ Taken into the drawing: drawn faded	Overtaget i tegningen: tegnes nedtonet
 Takes the comments as function texts (matched by address)	Overtager kommentarerne som funktionstekster (tilknyttet via adressen)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Overtager tilslutningsbetegnelserne for alle funktioner i denne enhed fra funktionsskabelonerne for dens artikler
 Takes the rights of the role away, whatever other grants give	Fratager rollens rettigheder, uanset hvad andre tildelinger giver
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Vælger vejen med den laveste vægt: dens længde i gittertrin, 1,2 pr. knæk og 1,5 pr. krydset ledning. Fra: ledningerne strækkes og beholder deres hjørner.
 Target languages	Målsprog
 Temperature rise at the roof against the middle (IEC/TR 60890)	Temperaturstigning ved taget i forhold til midten (IEC/TR 60890)
 Template	Skabelon
@@ -1837,6 +1848,7 @@ The dictionary is empty: collect the texts from the project.	Ordbogen er tom: In
 The door seen from the front: door devices and cutouts	Døren set forfra: dørenheder og udskæringer
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Døren set indefra (hængsler til højre): kabelkanaler og ledningsføringen bag døren
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin venstre side mod den valgtes højre side; ledninger føres mellem dem gennem kabelgennemføringer
+The horizontal wire	Den vandrette ledning
 The items are selected and moved together	Elementerne markeres og flyttes samlet
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har ingen sidemakroer (Makroer › Gem side som makro…).
 The modules no string takes yet in series, on the first inverter	Modulerne, som ingen streng tager endnu, i serie, på den første inverter
@@ -1863,6 +1875,7 @@ The side of {} is open	Siden af {} er åben
 The symbol is placed in the project	Symbolet bruges i projektet
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Klemmeartiklerne angiver ingen endeholdere eller endeplader (tekniske data End bracket, End plate).
 The update failed	Opdateringen mislykkedes
+The vertical wire	Den lodrette ledning
 The web version is updated on its server.	Webversionen opdateres på sin server.
 The wire tool routes around symbols and other wires	Ledningsværktøjet fører uden om symboler og andre ledninger
 The wires get the free cores of the cable in order (left to right)	Ledningerne får kablets ledige ledere i rækkefølge (fra venstre mod højre)
@@ -1992,6 +2005,8 @@ Window macro: {}	Vinduesmakro: {}
 Window macros inserted from now on are recorded as macro boxes.	Vinduesmakroer, der indsættes fra nu af, registreres som makrobokse.
 Window macros placed on the pages (not printed)	Vinduesmakroer placeret på siderne (udskrives ikke)
 Wire colour	Lederfarve
+Wire crossings	Ledningskrydsninger
+Wire crossings…	Ledningskrydsninger…
 Wire ends	Ledningsender
 Wire ends with ferrules	Ledningsender med terminalrør
 Wire markers	Ledningsmærkater
@@ -2005,6 +2020,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Ledning {} – {}  ({}
 Wire {} – {}  {} mm	Ledning {} – {}  {} mm
 Wires and potentials	Ledninger og potentialer
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Ledninger mellem portene på fluidtekniske symboler og P&ID-symboler er slanger / rør: egne net, nummereret med ledningsnummereringen, opført i slangelisten.
+Wires crossing without connection	Ledninger, der krydser uden forbindelse
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Ledere skal udgå herfra i alle fire retninger. Indtil da kædes forbindelsen i diagrammets rækkefølge.
 Wires of the connection	Forbindelsens ledere
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Ledninger følger også de 3D-føringer, der tager højde for forhindringer, i stedet for kun kabelkanalerne på pladen

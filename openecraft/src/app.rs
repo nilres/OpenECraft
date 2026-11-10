@@ -51,6 +51,7 @@ mod start_page;
 mod status_bar;
 mod windows;
 mod xref_ui;
+mod wires_ui;
 mod compare_ui;
 mod engineering;
 mod field_ui;
