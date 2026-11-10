@@ -226,10 +226,10 @@ impl App {
                 self.export(ctx, "symbols.json".into(), (tr("OpenECraft symbol library"), "json"), json);
             }
             Some(Action::Place(key)) => {
-                if let Some(def) = self.session.prj.symbol(&key) {
-                    self.workspace = super::Workspace::Schematic;
-                    self.editor.set_tool(Tool::Place(def.key));
-                    self.notify(ctx, tr_fmt!("Click into the page to place {}", tr(def.name)));
+                if let Some((key, name)) = self.session.prj.symbol(&key).map(|def| (def.key, def.name)) {
+                    self.set_workspace(super::Workspace::Schematic);
+                    self.editor.set_tool(Tool::Place(key));
+                    self.notify(ctx, tr_fmt!("Click into the page to place {}", tr(name)));
                 }
             }
             Some(Action::Duplicate(si)) => {

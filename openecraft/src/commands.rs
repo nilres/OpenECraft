@@ -764,6 +764,47 @@ pub static ALL: &[Def] = &[
     d(C::TabletMode, "tablet_mode", tr_const!("Tablet mode"), I::Tablet).toggle().tip(tr_const!("Larger texts and buttons for a touch screen at the workbench")),
 ];
 
+/// Commands that change what the panel layout view shows or does: they bring it to the
+/// front, otherwise they would change a view hidden behind the page (the commands
+/// that create enclosures and rooms or work in the site plan switch to the panel layout).
+pub fn acts_in_layout_view(cmd: Cmd) -> bool {
+    use Cmd as C;
+    matches!(
+        cmd,
+        C::LayoutSelect
+            | C::LayoutRail
+            | C::LayoutDuct
+            | C::LayoutBusbar
+            | C::LayoutCutout
+            | C::LayoutRoutingPath
+            | C::LayoutReservation
+            | C::LayoutFloorPlan
+            | C::LayoutDrawWalls
+            | C::LayoutInnerWalls
+            | C::LayoutRoomDoor
+            | C::LayoutRoomWindow
+            | C::LayoutRoomPenetration
+            | C::LayoutRoomEntry
+            | C::LayoutPipeRun
+            | C::LayoutFront
+            | C::LayoutDoor
+            | C::LayoutDoorInside
+            | C::Layout3d
+            | C::LayoutWires
+            | C::LayoutDuctFill
+            | C::LayoutHeat
+            | C::LayoutLineup
+            | C::LayoutSite
+            | C::LayoutBuilding
+            | C::LayoutHideFrontWalls
+            | C::LayoutHideCeiling
+            | C::LayoutZones
+            | C::LayoutOpenWalls
+            | C::LayoutOpenDucts
+            | C::LayoutFit
+    )
+}
+
 /// The definition of a command.
 pub fn def(cmd: Cmd) -> &'static Def {
     ALL.iter().find(|d| d.cmd == cmd).expect("every command has a definition")

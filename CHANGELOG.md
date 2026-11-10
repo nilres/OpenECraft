@@ -9,6 +9,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cable core at its connection point: the ferrule (metal sleeve and collar in its
   DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
   conductor as long as it is stripped.
+- **Workspaces show their view again:** a workspace chosen in the title bar shows its
+  main view (the panel layout, the workbench, …) even where the page was left in front
+  of it, and the commands of the layout view (3D view, floor plan, mounting plate,
+  tools, …) bring it to the front instead of changing it unseen behind the page.
 - **Connection point designations** (#116): each designation of a selected symbol can
   be dragged on its own, put left, right, above or below its connection point or reset
   to automatic placement (Properties › *Property placement*); the placement is stored
