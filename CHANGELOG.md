@@ -5,6 +5,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Startup and the source of the project** (#129): *File › Settings › On startup*
+  chooses what opens when the editor starts: the start page with the local files and
+  the projects of the project server (*Show project manager*), the last project from
+  where it came – a server project is opened on the project server again, asking for a
+  sign-in if needed (*Reopen last project*, the default), the project list of the
+  project server without the last project (*Open project server*) or always the same
+  local file or server project. A project file opened from the file manager still
+  opens instead. The status bar always says where the project is saved: *Local file:
+  …*, *Project server: … / Project: …* (with *connection lost* while the server does
+  not answer) or *Local recovery copy of server project: …* – a project restored from
+  the last session or closed on the server is never shown as the shared project, and
+  the tooltip of *Save* names the destination. If the project server of the start is
+  not available, a dialog offers *Retry connection*, *Sign in…*, *Choose another
+  project* and *Open local recovery copy*; unsaved changes of the copy are saved or
+  discarded on purpose before the shared project replaces them.
 - **EDZ parts without a usable macro** (#131): a part whose first function is a
   generic one (the connection points of a drive or an HMI) is placed as a black box
   with room for its connection points instead of an earth electrode. Elliptic arcs of
