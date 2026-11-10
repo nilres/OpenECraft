@@ -78,6 +78,10 @@ struct TubeWay {
 /// colour; none where it is not connected.
 pub(super) type EndLook = Vec<(EndPiece, Color32)>;
 
+/// A stretch of a wire drawn along the plate: its index, its points, the axes of the
+/// openings it leaves (zero: none) and whether it starts and ends at a connection point.
+type WireStretch = (usize, Vec<V3>, [V3; 2], [bool; 2]);
+
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
 /// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
 /// shown at the first of its wires), dimmed like the wire (`dim`, see
@@ -1278,7 +1282,7 @@ impl PanelUi {
                 };
                 // Each stretch with the axes of the openings it leaves (zero: none) and whether
                 // it starts and ends at a connection point.
-                let paths: Vec<(usize, Vec<V3>, [V3; 2], [bool; 2])> = match wire.door {
+                let paths: Vec<WireStretch> = match wire.door {
                     (Some(a), Some(b)) if wire.on_door() => match &wire.door_routes.0 {
                         Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect(), [[0.0; 3]; 2], [true; 2])],
                         None => Vec::new(),
