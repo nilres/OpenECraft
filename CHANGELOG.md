@@ -23,6 +23,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   resized, and a long list of properties scrolls. A renamed property is applied when
   its name field loses focus (Esc keeps the old name), so the text cursor no longer
   jumps to another property while typing.
+- **Wires in 3D:** a wire starts in the opening of its connection point and leaves it
+  along the direction the point opens in (up or down out of the upper or lower edge of
+  a device) before it comes down to the cable duct, instead of running straight back
+  along the device to the mounting plate. The generated connection points of DIN rail
+  devices lie in their end faces below the screws (40 % of the depth above the rail
+  instead of 75 %, in front of the screws), and the generated models of DIN rail devices
+  and contactors show these wire entries; devices drawn as boxes (parts without a 3D
+  model) show the openings of their connection points.
 - **Structure boxes:** *Insert › Structure box* draws a rectangle whose devices take other
   function (`=`) or location (`+`) identifiers than the page (also installation site and
   product); only the aspects set on the box override the page, nested boxes resolve to

@@ -76,7 +76,8 @@ impl Frac {
     /// The stepped profile of a DIN rail device: base, shoulders with the terminals
     /// and the front in the middle (`front` up to z 0.985, details reach z 1).
     fn din(&mut self, c: [u8; 3]) {
-        self.b([0.0, 0.0, 0.0], [1.0, 1.0, 0.6], c);
+        let [w, h, d] = self.s;
+        crate::catalog::base_with_entries(&mut self.m, [w, h, 0.6 * d], &self.points, c);
         self.b([0.0, 0.14, 0.6], [1.0, 0.86, 0.8], c);
         self.b([0.02, 0.27, 0.8], [0.98, 0.73, 0.985], c);
         // Screw terminals on the steps above and below the shoulders, one per

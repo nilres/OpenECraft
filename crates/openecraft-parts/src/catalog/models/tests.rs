@@ -162,6 +162,37 @@ fn own_connection_points_are_on_the_models() {
 }
 
 #[test]
+fn din_rail_devices_have_a_wire_entry_in_the_end_face_at_every_connection_point() {
+    // Screw terminals are entered from the end faces, below the screws on the steps
+    // (a third to two fifths of the depth above the rail), not from the front.
+    let mut parts = default_catalog();
+    parts.extend(crate::bundled::default_parts());
+    let mut checked = 0;
+    for p in parts.iter().filter(|p| p.connection_points.is_empty() && p.top_group == crate::TopGroup::Electrical && p.mounting.starts_with("Mounting rail") && p.model_3d.is_some()) {
+        let points = p.connection_points_or_default().0;
+        let m = p.model_3d.as_ref().unwrap();
+        let entries: Vec<([f32; 3], [f32; 3])> = (m.triangles.iter().zip(&m.colors))
+            .filter(|(_, c)| **c == super::super::DARK_INSIDE)
+            .map(|(t, _)| {
+                let v = t.map(|i| m.vertices[i as usize]);
+                ([0, 1, 2].map(|k| v.iter().map(|a| a[k]).fold(f32::MAX, f32::min)), [0, 1, 2].map(|k| v.iter().map(|a| a[k]).fold(f32::MIN, f32::max)))
+            })
+            .collect();
+        if entries.is_empty() || p.subgroup.ends_with("terminal") {
+            continue;
+        }
+        for c in points.iter().filter(|c| matches!(c.exit, crate::Exit::Up | crate::Exit::Down)) {
+            assert!((c.pos[2] - 0.4 * p.depth).abs() < 0.01, "{} {}: wire entry at {:?}", p.number, c.pin, c.pos);
+            let y = if c.exit == crate::Exit::Up { p.height } else { 0.0 };
+            let found = entries.iter().any(|(lo, hi)| lo[0] <= c.pos[0] && c.pos[0] <= hi[0] && lo[2] <= c.pos[2] && c.pos[2] <= hi[2] && (lo[1] - y).abs().min((hi[1] - y).abs()) < 0.5);
+            assert!(found, "{}: no wire entry for {} at {:?}", p.number, c.pin, c.pos);
+        }
+        checked += 1;
+    }
+    assert!(checked > 50, "{checked} devices");
+}
+
+#[test]
 fn din_rail_devices_have_a_screw_at_every_connection_point() {
     let mut parts = default_catalog();
     parts.extend(crate::bundled::default_parts());
