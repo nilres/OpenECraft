@@ -222,6 +222,45 @@ impl Palette {
 /// None when the file cannot be decoded).
 pub type Textures = HashMap<u64, (u64, Option<egui::TextureHandle>)>;
 
+/// How a polyline is stroked.
+#[derive(Debug, PartialEq)]
+enum Runs {
+    /// A closed outline without sharp turns.
+    Loop(Vec<Pos2>),
+    /// Open lines, split where the outline turns back.
+    Open(Vec<Vec<Pos2>>),
+}
+
+/// The runs a polyline (screen points) is stroked in. egui joins segments with a miter
+/// that grows without limit where a line turns back on itself or repeats a point, so
+/// imported drawings got spikes across the page: repeated points are dropped and the
+/// line is split where it turns by more than about 135°.
+fn stroke_runs(mut v: Vec<Pos2>, closed: bool) -> Runs {
+    v.dedup_by(|b, a| a.distance(*b) < 0.01);
+    if closed && v.len() > 2 && v[0].distance(v[v.len() - 1]) < 0.01 {
+        v.pop();
+    }
+    let sharp = |a: Pos2, b: Pos2, c: Pos2| (b - a).normalized().dot((c - b).normalized()) < -0.7;
+    let n = v.len();
+    if closed && n > 2 && !(0..n).any(|i| sharp(v[(i + n - 1) % n], v[i], v[(i + 1) % n])) {
+        return Runs::Loop(v);
+    }
+    if closed && n > 2 {
+        v.push(v[0]);
+    }
+    let mut runs = Vec::new();
+    let mut run = Vec::new();
+    for (i, &q) in v.iter().enumerate() {
+        run.push(q);
+        if i > 0 && i + 1 < v.len() && sharp(v[i - 1], q, v[i + 1]) {
+            runs.push(std::mem::replace(&mut run, vec![q]));
+        }
+    }
+    runs.push(run);
+    runs.retain(|r| r.len() > 1);
+    Runs::Open(runs)
+}
+
 /// Renders page geometry with an egui painter.
 pub struct EguiDraw<'a> {
     pub painter: &'a Painter,
@@ -274,10 +313,14 @@ impl Draw for EguiDraw<'_> {
             } else {
                 self.painter.add(EShape::convex_polygon(v, self.color(ink), st));
             }
-        } else if closed {
-            self.painter.add(EShape::closed_line(v, self.stroke(width, ink)));
         } else {
-            self.painter.add(EShape::line(v, self.stroke(width, ink)));
+            let st = self.stroke(width, ink);
+            match stroke_runs(v, closed) {
+                Runs::Loop(v) => {
+                    self.painter.add(EShape::closed_line(v, st));
+                }
+                Runs::Open(runs) => self.painter.extend(runs.into_iter().map(|run| EShape::line(run, st))),
+            }
         }
     }
 

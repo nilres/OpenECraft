@@ -18,6 +18,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
   wire crossed. Labels and connection definition points come along; without a way the
   wire is squared as before.
+- **EDZ parts without a usable macro** (#131): a part whose first function is a
+  generic one (the connection points of a drive or an HMI) is placed as a black box
+  with room for its connection points instead of an earth electrode. Elliptic arcs of
+  EPLAN macros keep the ratio of their axes and start and end where the macro says (the
+  S7-1200 CPU 6ES7212-1HG50-0XB0 had a half circle of 400 mm across the page), and
+  texts keep their justification (table labels stood on their lines, right-aligned
+  texts ran into their neighbours). Open polylines of EPLAN macros stay open (each edge
+  of the CPU was closed back to its start), and the schematic no longer draws spikes
+  where a line turns back on itself. The part selection of *Add part…* no longer grows
+  to the height of the screen.
 - **Wire ends in 3D:** the 3D view of the panel layout shows the end of each wire and
   cable core at its connection point: the ferrule (metal sleeve and collar in its
   DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
