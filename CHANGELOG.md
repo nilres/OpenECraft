@@ -11,7 +11,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   EPLAN macros keep the ratio of their axes and start and end where the macro says (the
   S7-1200 CPU 6ES7212-1HG50-0XB0 had a half circle of 400 mm across the page), and
   texts keep their justification (table labels stood on their lines, right-aligned
-  texts ran into their neighbours). The part selection of *Add part…* no longer grows
+  texts ran into their neighbours). Open polylines of EPLAN macros stay open (each edge
+  of the CPU was closed back to its start), and the schematic no longer draws spikes
+  where a line turns back on itself. The part selection of *Add part…* no longer grows
   to the height of the screen.
 - **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
   too close for its bend radius no longer runs back across or alongside its own way

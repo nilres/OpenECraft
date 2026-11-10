@@ -230,7 +230,8 @@ impl Reader<'_> {
                     .split(';')
                     .map(|s| Some(f.at(if s.is_empty() { P::default() } else { xy(s)? })))
                     .collect::<Option<Vec<_>>>()?;
-                Some(Prim::Poly { pts, closed: true, fill: false })
+                // A623 = 0: an open polyline (rounded corners, edges of vendor drawings).
+                Some(Prim::Poly { pts, closed: el.attribute("A623") != Some("0"), fill: false })
             }
             "S90x5" | "O90" => {
                 let a = local_point("A1661")?;

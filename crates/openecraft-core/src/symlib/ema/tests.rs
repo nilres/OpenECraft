@@ -350,6 +350,19 @@ fn texts_keep_their_justification() {
 }
 
 #[test]
+fn polylines_are_closed_only_without_the_open_flag() {
+    // 6ES7212-1HG50-0XB0 draws its edges as open polylines: closed, each got a chord
+    // back to its start, across the device.
+    let poly = |record: &str| {
+        let v = decode(&MACRO.replace("<S31x5", &format!("{record}<S31x5"))).unwrap();
+        let Prim::Poly { closed, .. } = v[0].symbol.prims[0] else { panic!("{:?}", v[0].symbol.prims) };
+        closed
+    };
+    assert!(!poly(r#"<S34x5 A621="0/0;10/0;10/40" A623="0"/>"#));
+    assert!(poly(r#"<S34x5 A621="0/0;10/0;10/40"/>"#));
+}
+
+#[test]
 fn elliptic_arcs_keep_the_ratio_of_their_axes() {
     // A vertical major semi-axis of 4 mm and a minor one half as long, all around.
     let v = decode(&MACRO.replace("<S31x5", r#"<S32x5 A556="0/4" A557="0.5"/><S31x5"#)).unwrap();
