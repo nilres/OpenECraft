@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Condiție de configurator, de ex. ÎNCĂLZIRE=da (gol: comutată manual)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Configurează un furtun / tub / conductă: tip de conductă, articol, racorduri de capăt, presiune nominală, rază de curbură, mediu, dimensiune, culoare și lungime
 Connection point TAG:PIN, e.g. -K1:A1	Punct de conexiune IDENTIFICATOR:PIN, de ex. -K1:A1
+Connection point designation or number (1, 2, …)	Denumirea punctului de conexiune sau număr (1, 2, …)
 Connection point designations separated by commas or blanks	Denumiri ale punctelor de conexiune separate prin virgule sau spații
 Connection point designations, comma separated, e.g. 13,14	Denumiri ale punctelor de conexiune, separate prin virgulă, de ex. 13,14
 Connector id (required unless removing)	ID conector (obligatoriu, cu excepția eliminării)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Plasează o carcasă (+CAB1), un dispozitiv (-M1) sau un loc al mașinii (+M1) la un nod al rețelei de trasee
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Plasează un accesoriu de carcasă (ventilator, filtru, presetupă, lampă, mâner, bară PE) pe o față
 Places of the group (0 = not limited)	Locurile grupului (0 = nelimitat)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Plasează denumirea unui punct de conexiune al unui simbol la stânga, la dreapta, deasupra sau dedesubtul acestuia și o deplasează; fără latură și deplasare este plasată din nou automat
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plasează rândul de carcase al unei carcase în încăpere (vedere 3D a tuturor carcaselor); fără x și z, este plasat conform planului de amplasare a instalației sau lângă celelalte rânduri de carcase
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Plasează numele și referința încrucișată ale punctelor de întrerupere pe o latură a săgeții sau manual, cu un decalaj față de punctul de inserare
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plasează proprietățile unei scheme la simboluri; fără ID-uri, este replasată la toate simbolurile care o folosesc
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Cota din capacitate păstrată liberă, în procente
 Sheets	Foi
 Shield connected at: both, first, second or none	Ecran conectat la: both, first, second sau none
+Shift downwards in mm	Deplasare în jos în mm
+Shift to the right in mm	Deplasare spre dreapta în mm
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Calcule de scurtcircuit, sarcină, CEM și siguranță, seturi de reguli și validarea proiectului
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Curenți de scurtcircuit, capacități de rupere, timpi de deconectare, rezistența la scurtcircuit a cablurilor și selectivitatea dispozitivelor de protecție
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Puterea de scurtcircuit a rețelei din amonte de transformator în MVA (0: infinită)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Comut�
 Symbol id	ID simbol
 Symbol ids	ID-uri simbol
 Symbol key from list_symbols	Cheie de simbol din list_symbols
+Symbol {} has no connection point {}	Simbolul {} nu are punctul de conexiune {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Simboluri, conductoare, texte, definiții de cablu și de conexiune pe paginile de schemă
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Piesă T: direcția tijei; punte: latura de pe care vine conexiunea (left, right, up sau down)
 Tag of the terminal strip, e.g. -X1	Identificatorul șirului de borne, de ex. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (implicit), power, co
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal sau other
 left, center, right, top, middle or bottom	left, center, right, top, middle sau bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail sau pattern
+left, right, above or below on the page, or auto (default)	left, right, above sau below pe pagină, sau auto (implicit)
 main (default), supplementary or functional	main (implicit), supplementary sau functional
 mounted, problem or open	mounted, problem sau open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond sau accessory

@@ -86,21 +86,29 @@ impl Tool {
     }
 }
 
+/// Where the designation of pin `i` of a placed symbol is drawn.
+fn pin_place(prj: &Project, idx: &Index, page_i: usize, s: &SymbolInst, i: usize) -> Option<render::PinLabelPlace> {
+    prj.symbol(&s.sym).and_then(|def| render::pin_label_places(prj, idx, page_i, &def, s).into_iter().find(|l| l.pin == i))
+}
+
 /// Part of a symbol that can be dragged on its own.
 #[derive(Clone, Copy, Debug, PartialEq)]
 enum Handle {
+    /// The tag block.
     Tag,
     /// A placed property (index).
     Prop(usize),
-    /// The designation of its only connection point.
-    Pin,
+    /// The designation of a connection point (pin index).
+    Pin(usize),
+    /// The designation of its only connection point, placed freely.
+    OnlyPin,
     /// Name and cross reference of an interruption point.
     Intr(render::IntrText),
 }
 
-/// Text that can be dragged on its own: the tag block, a placed property, the
-/// connection point designation or the interruption texts of a symbol, or a cable core
-/// text of a wire.
+/// Text that can be dragged on its own: the tag block, a placed property, a
+/// connection point designation or the interruption texts of a symbol, or a cable
+/// core text of a wire.
 #[derive(Clone, Copy, Debug, PartialEq)]
 enum PropHandle {
     Symbol(u64, Handle),
@@ -121,7 +129,8 @@ enum Drag {
     /// The selection with the connection points of its device boxes (`items`) moves.
     Move { start: P, applied: P, moving: routing::Moving, items: BTreeSet<u64> },
     Box { start: Pos2 },
-    Prop { handle: PropHandle, start: P, orig: P },
+    /// `side`: side of a dragged connection point designation (symbol orientation).
+    Prop { handle: PropHandle, start: P, orig: P, side: Option<LabelSide> },
 }
 
 pub struct Palette {
@@ -854,8 +863,9 @@ impl Editor {
                 }
             }
             let Some(def) = prj.symbol(&s.sym) else { continue };
-            if def.pins.len() == 1 && render::pin_label_bounds(&def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
-                return Some(PropHandle::Symbol(s.id, Handle::Pin));
+            if let Some(l) = render::pin_label_places(prj, idx, page_i, &def, s).iter().find(|l| l.bounds.expand(0.2).contains(q)) {
+                let pin = if def.pins.len() == 1 { Handle::OnlyPin } else { Handle::Pin(l.pin) };
+                return Some(PropHandle::Symbol(s.id, pin));
             }
             if render::tag_block_bounds(prj, idx, page_i, &def, s).is_some_and(|r| r.expand(0.3).contains(q)) {
                 return Some(PropHandle::Symbol(s.id, Handle::Tag));
@@ -1158,7 +1168,7 @@ impl Editor {
                 boxes.extend(s.props.iter().map(|pp| render::prop_bounds(prj, page_i, s, pp)));
                 if let Some(def) = prj.symbol(&s.sym) {
                     boxes.extend(render::tag_block_bounds(prj, idx, page_i, &def, s));
-                    boxes.extend(render::pin_label_bounds(&def, s).filter(|_| def.pins.len() == 1));
+                    boxes.extend(render::pin_label_places(prj, idx, page_i, &def, s).into_iter().map(|l| l.bounds));
                 }
             }
             if let Some(w) = page.wires.iter().find(|w| self.selection.contains(&w.id)) {
@@ -1817,18 +1827,24 @@ impl Editor {
             if let Some(handle) = handle.filter(|_| self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
                 let orig = match handle {
-                    PropHandle::Symbol(id, part) => match (page.symbols.iter().find(|s| s.id == id), part) {
+                    PropHandle::Symbol(id, h) => match (page.symbols.iter().find(|s| s.id == id), h) {
                         (Some(s), Handle::Prop(i)) => s.props[i].offset,
                         (Some(s), Handle::Tag) => s.tag_offset.unwrap_or_else(|| {
                             prj.symbol(&s.sym).and_then(|def| render::tag_block_bounds(prj, idx, page_i, &def, s)).map(|r| r.min - s.pos).unwrap_or_default()
                         }),
-                        (Some(s), Handle::Pin) => prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).0 - s.pos).unwrap_or_default(),
+                        (Some(s), Handle::Pin(i)) => pin_place(prj, idx, page_i, s, i).map(|l| l.shift).unwrap_or_default(),
+                        (Some(s), Handle::OnlyPin) => pin_place(prj, idx, page_i, s, 0).map(|l| l.pos - s.pos).unwrap_or_default(),
                         (Some(s), Handle::Intr(t)) => prj.symbol(&s.sym).map(|def| intr_place(&def, s, t).offset).unwrap_or_default(),
                         _ => P::default(),
                     },
                     PropHandle::Wire(id, which) => page.wires.iter().find(|w| w.id == id).and_then(|w| which.offset(w)).unwrap_or_default(),
                 };
-                self.drag = Drag::Prop { handle, start: ow, orig };
+                // A designation placed automatically keeps the place it has now.
+                let side = match handle {
+                    PropHandle::Symbol(id, Handle::Pin(i)) => page.symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, i)).map(|l| l.side),
+                    _ => None,
+                };
+                self.drag = Drag::Prop { handle, start: ow, orig, side };
             } else if let Some(id) = hit {
                 if !self.selection.contains(&id) {
                     if !shift {
@@ -1853,11 +1869,12 @@ impl Editor {
                         *applied = total;
                     }
                 }
-                (Drag::Prop { handle, start, orig }, Some(w)) => {
-                    let to = *orig + (w - *start).snap(0.5);
+                (Drag::Prop { handle, start, orig, side }, Some(w)) => {
+                    let delta = (w - *start).snap(0.5);
+                    let to = *orig + delta;
                     let symbols = prj.symbol_table();
-                    let auto = match *handle {
-                        PropHandle::Symbol(id, Handle::Pin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| prj.symbol(&s.sym).map(|def| render::pin_label_at(&def, s, 0).1)),
+                    let anchor = match *handle {
+                        PropHandle::Symbol(id, Handle::OnlyPin) => prj.pages[page_i].symbols.iter().find(|s| s.id == id).and_then(|s| pin_place(prj, idx, page_i, s, 0)).map(|l| l.anchor),
                         _ => None,
                     };
                     let page = &mut prj.pages[page_i];
@@ -1867,7 +1884,11 @@ impl Editor {
                                 match part {
                                     Handle::Prop(i) => s.props[i].offset = to,
                                     Handle::Tag => s.tag_offset = Some(to),
-                                    Handle::Pin => s.pin_label = Some(PinLabel { offset: to, anchor: auto.unwrap_or(Anchor::Left) }),
+                                    Handle::Pin(i) => {
+                                        let offset = *orig + delta.untransform(s.rot, s.mirror);
+                                        s.set_pin_placement(i, PinPlacement { side: *side, offset });
+                                    }
+                                    Handle::OnlyPin => s.pin_label = Some(PinLabel { offset: to, anchor: anchor.unwrap_or(Anchor::Left) }),
                                     Handle::Intr(t) => {
                                         if let Some(def) = symbols.get(&s.sym) {
                                             let place = TextPlace { offset: to, ..intr_place(&def, s, t) };

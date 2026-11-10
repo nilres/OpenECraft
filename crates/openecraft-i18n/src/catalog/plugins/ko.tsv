@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	컨피규레이터 조건(예: HEATER=yes, 비워 두면 수동 전환)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	호스 / 튜브 / 배관을 구성합니다: 라인 유형, 부품, 끝단 피팅, 정격 압력, 굽힘 반경, 매체, 크기, 색상 및 길이
 Connection point TAG:PIN, e.g. -K1:A1	연결 지점 TAG:PIN(예: -K1:A1)
+Connection point designation or number (1, 2, …)	연결 지점 명칭 또는 번호 (1, 2, …)
 Connection point designations separated by commas or blanks	쉼표나 공백으로 구분된 연결 지점 명칭
 Connection point designations, comma separated, e.g. 13,14	쉼표로 구분된 연결 지점 명칭(예: 13,14)
 Connector id (required unless removing)	커넥터 ID(제거하는 경우 외에는 필수)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	필드 경로 네트워크의 노드에 외함(+CAB1), 장치(-M1) 또는 기계 위치(+M1)를 배치합니다
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	면에 외함 부속품(팬, 필터, 케이블 글랜드, 조명, 손잡이, PE 바)을 배치합니다
 Places of the group (0 = not limited)	그룹의 자리(0 = 제한 없음)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	심볼 연결 지점의 명칭을 왼쪽, 오른쪽, 위 또는 아래에 배치하고 이동합니다. 위치와 이동을 지정하지 않으면 다시 자동으로 배치합니다
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	외함의 열 배치를 공간에 배치합니다(모든 외함의 3D 보기). x와 z가 없으면 플랜트 레이아웃에 따라 또는 다른 열 배치 옆에 배치됩니다
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	중단점의 이름과 상호 참조를 화살표의 한쪽에 또는 삽입점으로부터의 오프셋으로 수동 배치합니다
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	스키마의 속성을 심볼에 배치합니다. ID가 없으면 이를 사용하는 모든 심볼에 다시 배치합니다
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	비워 두는 용량 비율(%)
 Sheets	시트
 Shield connected at: both, first, second or none	차폐 연결 위치: both, first, second 또는 none
+Shift downwards in mm	아래쪽 이동 (mm)
+Shift to the right in mm	오른쪽 이동 (mm)
 Short circuit, load, EMC and safety calculations, rule sets and project verification	단락, 부하, EMC 및 안전 계산, 규칙 세트 및 프로젝트 검증
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	단락 전류, 차단 용량, 차단 시간, 케이블의 단락 내량 및 보호 장치의 선택 차단
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	변압기 상위 계통의 단락 용량(MVA, 0: 무한대)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	조건
 Symbol id	심볼 ID
 Symbol ids	심볼 ID
 Symbol key from list_symbols	list_symbols의 심볼 키
+Symbol {} has no connection point {}	심볼 {}에 연결 지점 {}이(가) 없습니다
 Symbols, wires, texts, cable and connection definitions on schematic pages	회로도 페이지의 심볼, 전선, 텍스트, 케이블 및 연결 정의
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T분기점: 줄기의 방향. 브리지: 연결이 들어오는 쪽 (left, right, up 또는 down)
 Tag of the terminal strip, e.g. -X1	단자대의 태그(예: -X1)
@@ -863,7 +868,7 @@ Unknown separator: {}	알 수 없는 구분 기호: {}
 Unknown setting: {}	알 수 없는 설정: {}
 Unknown shield ends: {}	알 수 없는 차폐 끝: {}
 Unknown side {} (socket or pin)	알 수 없는 측 {} (socket 또는 pin)
-Unknown side: {}	알 수 없는 방향: {}
+Unknown side: {}	알 수 없는 위치: {}
 Unknown state: {}	알 수 없는 상태: {}
 Unknown station kind: {}	알 수 없는 스테이션 종류: {}
 Unknown symbol: {}	알 수 없는 심볼: {}
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout(기본값), power, co
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal 또는 other
 left, center, right, top, middle or bottom	left, center, right, top, middle 또는 bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail 또는 pattern
+left, right, above or below on the page, or auto (default)	페이지 기준 left, right, above 또는 below, 또는 auto (기본값)
 main (default), supplementary or functional	main(기본값), supplementary 또는 functional
 mounted, problem or open	mounted, problem 또는 open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond 또는 accessory

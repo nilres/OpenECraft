@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Warunek konfiguratora, np. HEATER=yes (puste: przełączana ręcznie)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Konfiguruje wąż / przewód rurowy / rurociąg: rodzaj przewodu, artykuł, złączki końcowe, klasę ciśnienia, promień gięcia, medium, średnicę, kolor i długość
 Connection point TAG:PIN, e.g. -K1:A1	Punkt połączenia OZNACZENIE:PIN, np. -K1:A1
+Connection point designation or number (1, 2, …)	Oznaczenie punktu połączenia lub numer (1, 2, …)
 Connection point designations separated by commas or blanks	Oznaczenia punktów połączeń oddzielone przecinkami lub spacjami
 Connection point designations, comma separated, e.g. 13,14	Oznaczenia punktów połączeń, oddzielone przecinkami, np. 13,14
 Connector id (required unless removing)	Identyfikator konektora (wymagany, chyba że profil jest usuwany)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Umieszcza obudowę (+CAB1), urządzenie (-M1) lub lokalizację maszyny (+M1) w węźle sieci tras
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Umieszcza akcesorium obudowy (wentylator, filtr, dławik kablowy, oświetlenie, uchwyt, szynę PE) na ścianie
 Places of the group (0 = not limited)	Miejsca grupy (0 = bez ograniczenia)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Umieszcza oznaczenie punktu połączenia symbolu po lewej, po prawej, powyżej lub poniżej niego i przesuwa je; bez strony i przesunięcia jest znów umieszczane automatycznie
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umieszcza szereg szaf obudowy w pomieszczeniu (widok 3D wszystkich obudów); bez x i z jest on umieszczany według planu instalacji lub obok innych szeregów szaf
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umieszcza nazwę i odsyłacz punktów przerwania po jednej stronie strzałki lub ręcznie z przesunięciem od punktu wstawienia
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umieszcza właściwości schematu przy symbolach; bez identyfikatorów umieszcza go ponownie przy wszystkich symbolach, które go używają
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Część pojemności pozostawiona wolna w procentach
 Sheets	Arkusze
 Shield connected at: both, first, second or none	Ekran podłączony na: both, first, second lub none
+Shift downwards in mm	Przesunięcie w dół w mm
+Shift to the right in mm	Przesunięcie w prawo w mm
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Obliczenia zwarciowe, obciążeniowe, EMC i bezpieczeństwa, zbiory reguł i weryfikacja projektu
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Prądy zwarciowe, zdolności wyłączania, czasy wyłączenia, wytrzymałość zwarciowa kabli i selektywność urządzeń zabezpieczających
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Moc zwarciowa sieci przed transformatorem w MVA (0: nieskończona)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Przeł
 Symbol id	Identyfikator symbolu
 Symbol ids	Identyfikatory symboli
 Symbol key from list_symbols	Klucz symbolu z list_symbols
+Symbol {} has no connection point {}	Symbol {} nie ma punktu połączenia {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symbole, przewody, teksty, definicje kabli i połączeń na stronach schematów
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Trójnik: kierunek trzonu; mostek: strona, z której wchodzi połączenie (left, right, up lub down)
 Tag of the terminal strip, e.g. -X1	Oznaczenie listwy zaciskowej, np. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (domyślnie), power, 
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal lub other
 left, center, right, top, middle or bottom	left, center, right, top, middle lub bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail lub pattern
+left, right, above or below on the page, or auto (default)	left, right, above lub below na stronie albo auto (domyślnie)
 main (default), supplementary or functional	main (domyślnie), supplementary lub functional
 mounted, problem or open	mounted, problem lub open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond lub accessory

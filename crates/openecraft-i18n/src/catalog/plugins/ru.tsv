@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Условие конфигуратора, например HEATER=yes (пусто: переключается вручную)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Настраивает шланг / трубку / трубу: тип линии, изделие, концевые фитинги, номинальное давление, радиус изгиба, среду, размер, цвет и длину
 Connection point TAG:PIN, e.g. -K1:A1	Точка подключения TAG:PIN, например -K1:A1
+Connection point designation or number (1, 2, …)	Обозначение точки подключения или номер (1, 2, …)
 Connection point designations separated by commas or blanks	Обозначения точек подключения через запятую или пробел
 Connection point designations, comma separated, e.g. 13,14	Обозначения точек подключения через запятую, например 13,14
 Connector id (required unless removing)	ID коннектора (обязательно, кроме удаления)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Размещает корпус (+CAB1), устройство (-M1) или место на машине (+M1) в узле сети трасс
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Размещает принадлежность корпуса (вентилятор, фильтр, кабельный ввод, светильник, ручку, шину PE) на поверхности
 Places of the group (0 = not limited)	Места группы (0 = без ограничения)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Размещает обозначение точки подключения символа слева, справа, сверху или снизу от неё и сдвигает его; без стороны и сдвига оно снова размещается автоматически
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Размещает ряд корпусов в помещении (3D-вид всех корпусов); без x и z он размещается по плану установки или рядом с другими рядами
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Размещает имя и перекрёстную ссылку точек разрыва с одной стороны стрелки или вручную со смещением от точки вставки
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Размещает свойства схемы у символов; без идентификаторов схема заново размещается у всех символов, которые её используют
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Доля ёмкости, оставляемая свободной, в процентах
 Sheets	Оформление листов
 Shield connected at: both, first, second or none	Экран подключён на: both, first, second или none
+Shift downwards in mm	Сдвиг вниз в мм
+Shift to the right in mm	Сдвиг вправо в мм
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Расчёты короткого замыкания, нагрузки, ЭМС и безопасности, наборы правил и проверка проекта
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Токи короткого замыкания, отключающие способности, времена отключения, стойкость кабелей к короткому замыканию и селективность защитных устройств
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Мощность короткого замыкания сети перед трансформатором в MVA (0: бесконечная)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Пер
 Symbol id	Идентификатор символа
 Symbol ids	Идентификаторы символов
 Symbol key from list_symbols	Ключ символа из list_symbols
+Symbol {} has no connection point {}	У символа {} нет точки подключения {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Символы, провода, тексты, определения кабелей и соединений на листах схем
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Т-образный узел: направление ножки; мост: сторона, с которой приходит соединение (left, right, up или down)
 Tag of the terminal strip, e.g. -X1	Обозначение клеммной колодки, например -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (по умолчан�
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal или other
 left, center, right, top, middle or bottom	left, center, right, top, middle или bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail или pattern
+left, right, above or below on the page, or auto (default)	left, right, above или below на странице либо auto (по умолчанию)
 main (default), supplementary or functional	main (по умолчанию), supplementary или functional
 mounted, problem or open	mounted, problem или open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond или accessory

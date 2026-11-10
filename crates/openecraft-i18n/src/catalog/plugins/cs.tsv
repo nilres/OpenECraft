@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Podmínka konfigurátoru, např. HEATER=yes (prázdné: přepíná se ručně)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Nakonfiguruje hadici / trubku / potrubí: typ vedení, artikl, koncová šroubení, tlaková třída, poloměr ohybu, médium, světlost, barva a délka
 Connection point TAG:PIN, e.g. -K1:A1	Přípojný bod TAG:PIN, např. -K1:A1
+Connection point designation or number (1, 2, …)	Označení přípojného bodu nebo číslo (1, 2, …)
 Connection point designations separated by commas or blanks	Označení přípojných bodů oddělená čárkami nebo mezerami
 Connection point designations, comma separated, e.g. 13,14	Označení přípojných bodů oddělená čárkou, např. 13,14
 Connector id (required unless removing)	ID konektoru (povinné, pokud se neodebírá)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Umístí skříň (+CAB1), přístroj (-M1) nebo umístění stroje (+M1) do uzlu sítě tras v poli
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Umístí příslušenství skříně (ventilátor, filtr, kabelovou vývodku, svítidlo, rukojeť, přípojnici PE) na plochu
 Places of the group (0 = not limited)	Místa skupiny (0 = neomezeno)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Umístí označení přípojného bodu symbolu vlevo, vpravo, nad nebo pod něj a posune je; bez strany a posunu se opět umístí automaticky
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umístí řadu skříní v místnosti (3D zobrazení všech skříní); bez x a z se umístí podle dispozice zařízení nebo vedle ostatních řad skříní
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umístí název a křížový odkaz bodů přerušení na stranu šipky nebo ručně s posunem od bodu vložení
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umístí vlastnosti schématu u symbolů; bez ID je znovu umístí u všech symbolů, které ho používají
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Podíl kapacity ponechaný volný v procentech
 Sheets	Listy
 Shield connected at: both, first, second or none	Stínění připojeno na: both, first, second nebo none
+Shift downwards in mm	Posun dolů v mm
+Shift to the right in mm	Posun doprava v mm
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Výpočty zkratů, zatížení, EMC a bezpečnosti, sady pravidel a ověření projektu
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Zkratové proudy, vypínací schopnosti, doby odpojení, zkratová odolnost kabelů a selektivita ochranných přístrojů
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Zkratový výkon sítě před transformátorem v MVA (0: nekonečný)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Přepn
 Symbol id	ID symbolu
 Symbol ids	ID symbolů
 Symbol key from list_symbols	Klíč symbolu z list_symbols
+Symbol {} has no connection point {}	Symbol {} nemá přípojný bod {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symboly, vodiče, texty, definice kabelů a spojení na stránkách schémat
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-kus: směr stopky; most: strana, odkud spojení přichází (left, right, up nebo down)
 Tag of the terminal strip, e.g. -X1	Označení svorkovnice, např. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (výchozí), power, c
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal nebo other
 left, center, right, top, middle or bottom	left, center, right, top, middle nebo bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail nebo pattern
+left, right, above or below on the page, or auto (default)	left, right, above nebo below na stránce, nebo auto (výchozí)
 main (default), supplementary or functional	main (výchozí), supplementary nebo functional
 mounted, problem or open	mounted, problem nebo open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond nebo accessory

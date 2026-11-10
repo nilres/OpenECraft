@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Konfiguratorbetingelse, f.eks. HEATER=yes (tom: skiftes manuelt)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Konfigurerer en slange / et rør / en rørledning: ledningstype, artikel, endefittings, trykklasse, bøjningsradius, medie, størrelse, farve og længde
 Connection point TAG:PIN, e.g. -K1:A1	Tilslutningspunkt TAG:PIN, f.eks. -K1:A1
+Connection point designation or number (1, 2, …)	Tilslutningsbetegnelse eller nummer (1, 2, …)
 Connection point designations separated by commas or blanks	Tilslutningsbetegnelser adskilt af kommaer eller mellemrum
 Connection point designations, comma separated, e.g. 13,14	Tilslutningsbetegnelser, kommasepareret, f.eks. 13,14
 Connector id (required unless removing)	Connector-id (påkrævet, undtagen ved fjernelse)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Placerer en kapsling (+CAB1), en enhed (-M1) eller en maskinplacering (+M1) ved en knude i føringsnettet
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Placerer kapslingstilbehør (ventilator, filter, kabelforskruning, lys, greb, PE-skinne) på en flade
 Places of the group (0 = not limited)	Gruppens pladser (0 = ubegrænset)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Placerer betegnelsen for et tilslutningspunkt på et symbol til venstre, til højre, over eller under det og forskyder den; uden side og forskydning placeres den automatisk igen
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerer en kapslings sammenbygning i rummet (3D-visning af alle kapslinger); uden x og z placeres den ud fra anlægslayoutet eller ved siden af de andre sammenbygninger
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Placerer navnet og krydshenvisningen for afbrydelsespunkter på en side af pilen eller manuelt med en forskydning fra indsætningspunktet
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerer et skemas egenskaber ved symboler; uden id'er placeres det igen ved alle symboler, der bruger det
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Andel af kapaciteten, der holdes fri, i procent
 Sheets	Ark
 Shield connected at: both, first, second or none	Skærm tilsluttet ved: both, first, second eller none
+Shift downwards in mm	Forskydning nedad i mm
+Shift to the right in mm	Forskydning mod højre i mm
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Kortslutnings-, belastnings-, EMC- og sikkerhedsberegninger, regelsæt og projektverificering
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Kortslutningsstrømme, brydeevner, udkoblingstider, kablernes kortslutningsstyrke og beskyttelsesenhedernes selektivitet
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Kortslutningseffekt for nettet før transformeren i MVA (0: uendelig)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Skifte
 Symbol id	Symbol-id
 Symbol ids	Symbol-id'er
 Symbol key from list_symbols	Symbolnøgle fra list_symbols
+Symbol {} has no connection point {}	Symbolet {} har intet tilslutningspunkt {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symboler, forbindelser, tekster, kabel- og forbindelsesdefinitioner på diagramsider
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stykke: stammens retning; bro: siden forbindelsen kommer fra (left, right, up eller down)
 Tag of the terminal strip, e.g. -X1	Klemrækkens betegnelse, f.eks. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (standard), power, co
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal eller other
 left, center, right, top, middle or bottom	left, center, right, top, middle eller bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail eller pattern
+left, right, above or below on the page, or auto (default)	left, right, above eller below på siden, eller auto (standard)
 main (default), supplementary or functional	main (standard), supplementary eller functional
 mounted, problem or open	mounted, problem eller open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond eller accessory

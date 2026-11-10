@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Konfiguraattorin ehto, esim. HEATER=yes (tyhjä: kytketään käsin)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Määrittää letkun / putken / putkiston: linjatyyppi, osa, pääteputkiliittimet, painemitoitus, taivutussäde, väliaine, koko, väri ja pituus
 Connection point TAG:PIN, e.g. -K1:A1	Liitäntäpiste TUNNUS:NASTA, esim. -K1:A1
+Connection point designation or number (1, 2, …)	Liitäntäpisteen merkintä tai numero (1, 2, …)
 Connection point designations separated by commas or blanks	Liitäntäpisteiden merkinnät pilkuilla tai välilyönneillä erotettuina
 Connection point designations, comma separated, e.g. 13,14	Liitäntäpisteiden merkinnät pilkuin erotettuina, esim. 13,14
 Connector id (required unless removing)	Konnektorin ID (pakollinen, paitsi poistettaessa)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Sijoittaa kotelon (+CAB1), laitteen (-M1) tai koneen sijainnin (+M1) reittiverkon solmuun
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Sijoittaa kotelon tarvikkeen (tuuletin, suodatin, kaapeliläpivienti, valaisin, kahva, PE-kisko) pinnalle
 Places of the group (0 = not limited)	Ryhmän paikat (0 = ei rajoitettu)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Sijoittaa symbolin liitäntäpisteen merkinnän sen vasemmalle, oikealle, yläpuolelle tai alapuolelle ja siirtää sitä; ilman puolta ja siirtoa se sijoitetaan taas automaattisesti
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Sijoittaa kotelon kaappirivin huoneeseen (kaikkien koteloiden 3D-näkymä); ilman x- ja z-arvoa se sijoitetaan laitoksen sijoituskuvan mukaan tai muiden kaappirivien viereen
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Sijoittaa katkospisteiden nimen ja ristiviittauksen nuolen yhdelle puolelle tai käsin siirtymällä lisäyspisteestä
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Sijoittaa skeeman ominaisuudet symboleihin; ilman tunnuksia se sijoitetaan uudelleen kaikkiin sitä käyttäviin symboleihin
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Vapaaksi jätettävä kapasiteetin osuus prosentteina
 Sheets	Arkit
 Shield connected at: both, first, second or none	Suojavaippa kytketty: both, first, second tai none
+Shift downwards in mm	Siirto alas (mm)
+Shift to the right in mm	Siirto oikealle (mm)
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Oikosulku-, kuorma-, EMC- ja turvallisuuslaskelmat, sääntökokoelmat ja projektin validointi
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Oikosulkuvirrat, katkaisukyvyt, poiskytkentäajat, kaapelien oikosulkukestoisuus ja suojalaitteiden selektiivisyys
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Muuntajaa edeltävän verkon oikosulkuteho MVA (0: ääretön)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Kytkee
 Symbol id	Symbolin ID
 Symbol ids	Symbolien ID:t
 Symbol key from list_symbols	Symbolin avain list_symbols-luettelosta
+Symbol {} has no connection point {}	Symbolilla {} ei ole liitäntäpistettä {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symbolit, johdot, tekstit, kaapeli- ja yhteysmäärittelyt piirikaaviosivuilla
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-haara: rungon suunta; silta: sivu, jolta liitos tulee (left, right, up tai down)
 Tag of the terminal strip, e.g. -X1	Riviliitinriman tunnus, esim. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (oletus), power, cont
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal tai other
 left, center, right, top, middle or bottom	left, center, right, top, middle tai bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail tai pattern
+left, right, above or below on the page, or auto (default)	left, right, above tai below sivulla, tai auto (oletus)
 main (default), supplementary or functional	main (oletus), supplementary tai functional
 mounted, problem or open	mounted, problem tai open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond tai accessory

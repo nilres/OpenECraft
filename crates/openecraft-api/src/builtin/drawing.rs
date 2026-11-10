@@ -137,6 +137,19 @@ pub static COMMANDS: &[Spec] = &[
         run: update_symbol,
     },
     Spec {
+        name: "place_pin_label",
+        help: tr_const!("Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again"),
+        params: &[
+            PAGE,
+            param("id", Kind::Int, tr_const!("Item id")),
+            param("pin", Kind::Str, tr_const!("Connection point designation or number (1, 2, …)")),
+            optional("side", Kind::Str, tr_const!("left, right, above or below on the page, or auto (default)")),
+            optional("dx", Kind::Num, tr_const!("Shift to the right in mm")),
+            optional("dy", Kind::Num, tr_const!("Shift downwards in mm")),
+        ],
+        run: place_pin_label,
+    },
+    Spec {
         name: "add_wire",
         help: tr_const!("Draws a wire through two or more points"),
         params: &[PAGE, param("points", Kind::Points, tr_const!("Points in mm: [[x, y], …]")),JUNCTION_POLICY],
@@ -795,6 +808,38 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     apply_symbol_params(sym, a)?;
     Ok(symbol_json(&symbols, sym))
+}
+
+fn place_pin_label(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let symbols = prj.symbol_table();
+    let i = editable(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let si = prj.pages[i].symbols.iter().position(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
+    let s = &prj.pages[i].symbols[si];
+    let def = symbols.get(&s.sym).ok_or_else(|| tr_fmt!("Unknown symbol: {}", s.sym))?;
+    let pin = a.req("pin");
+    let pi = pins_of(&symbols, s).iter().position(|(label, _)| label == pin).ok_or_else(|| tr_fmt!("Symbol {} has no connection point {}", id, pin))?;
+    let side = match a.str("side").unwrap_or("auto") {
+        "auto" => None,
+        name => Some(LabelSide::from_name(name).ok_or_else(|| tr_fmt!("Unknown side: {}", name))?),
+    };
+    let shift = p(num_in(a, "dx", -50.0, 50.0)?.unwrap_or(0.0), num_in(a, "dy", -50.0, 50.0)?.unwrap_or(0.0));
+    let s = &mut prj.pages[i].symbols[si];
+    let label = PinPlacement { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: shift.untransform(s.rot, s.mirror) };
+    s.set_pin_placement(pi, label);
+    if pi == 0 {
+        s.pin_label = None;
+    }
+    let s = &prj.pages[i].symbols[si];
+    let place = openecraft_core::render::pin_label_places(prj, &openecraft_core::index::Index::build(prj), i, &def, s).into_iter().find(|l| l.pin == pi);
+    Ok(json!({
+        "id": id,
+        "pin": pin,
+        "auto": label.is_auto(),
+        "side": place.as_ref().map(|l| l.side.on_page(s.rot, s.mirror).name()),
+        "x": place.as_ref().map(|l| l.pos.x),
+        "y": place.as_ref().map(|l| l.pos.y),
+    }))
 }
 
 fn set_pin_connection_directions(prj:&mut Project,a:&Args)->Result<Value,String> {

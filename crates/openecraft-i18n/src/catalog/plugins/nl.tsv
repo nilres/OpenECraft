@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Configuratorvoorwaarde, bijv. HEATER=yes (leeg: handmatig geschakeld)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Configureert een slang / buis / pijpleiding: leidingtype, artikel, eindfittingen, drukklasse, buigradius, medium, diameter, kleur en lengte
 Connection point TAG:PIN, e.g. -K1:A1	Aansluitpunt AANDUIDING:PIN, bijv. -K1:A1
+Connection point designation or number (1, 2, …)	Aansluitbenaming of nummer (1, 2, …)
 Connection point designations separated by commas or blanks	Aansluitbenamingen gescheiden door komma's of spaties
 Connection point designations, comma separated, e.g. 13,14	Aansluitbenamingen, gescheiden door komma's, bijv. 13,14
 Connector id (required unless removing)	Connector-ID (vereist, behalve bij verwijderen)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Plaatst een behuizing (+CAB1), een apparaat (-M1) of een machineplaats (+M1) bij een knooppunt van het tracénetwerk
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Plaatst een behuizingstoebehoren (ventilator, filter, kabelwartel, lamp, handgreep, PE-rail) op een vlak
 Places of the group (0 = not limited)	Plaatsen van de groep (0 = onbeperkt)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Plaatst de benaming van een aansluitpunt van een symbool links, rechts, boven of onder het punt en verschuift deze; zonder zijde en verschuiving wordt deze weer automatisch geplaatst
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plaatst de kastrij van een behuizing in de ruimte (3D-weergave van alle behuizingen); zonder x en z wordt deze geplaatst volgens de installatielay-out of naast de andere kastrijen
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Plaatst de naam en de kruisverwijzing van onderbrekingspunten aan een kant van de pijl of handmatig op een afstand van het invoegpunt
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plaatst de eigenschappen van een schema bij symbolen; zonder ID's wordt het opnieuw geplaatst bij alle symbolen die het gebruiken
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Deel van de capaciteit dat vrij blijft, in procent
 Sheets	Bladen
 Shield connected at: both, first, second or none	Afscherming aangesloten aan: both, first, second of none
+Shift downwards in mm	Verschuiving naar beneden in mm
+Shift to the right in mm	Verschuiving naar rechts in mm
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Kortsluit-, belastings-, EMC- en veiligheidsberekeningen, regelsets en projectcontrole
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Kortsluitstromen, uitschakelvermogens, uitschakeltijden, kortsluitvastheid van de kabels en selectiviteit van de beveiligingsapparaten
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Kortsluitvermogen van het net vóór de transformator in MVA (0: oneindig)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Schake
 Symbol id	Symbool-ID
 Symbol ids	Symbool-ID's
 Symbol key from list_symbols	Symboolsleutel uit list_symbols
+Symbol {} has no connection point {}	Symbool {} heeft geen aansluitpunt {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symbolen, draden, teksten, kabel- en verbindingsdefinities op schemapagina's
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stuk: richting van de steel; brug: zijde waar de verbinding vandaan komt (left, right, up of down)
 Tag of the terminal strip, e.g. -X1	Aanduiding van de klemmenstrook, bijv. -X1
@@ -863,7 +868,7 @@ Unknown separator: {}	Onbekend scheidingsteken: {}
 Unknown setting: {}	Onbekende instelling: {}
 Unknown shield ends: {}	Onbekende afschermingsuiteinden: {}
 Unknown side {} (socket or pin)	Onbekende zijde {} (socket of pin)
-Unknown side: {}	Onbekende kant: {}
+Unknown side: {}	Onbekende zijde: {}
 Unknown state: {}	Onbekende status: {}
 Unknown station kind: {}	Onbekend stationstype: {}
 Unknown symbol: {}	Onbekend symbool: {}
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (standaard), power, c
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal of other
 left, center, right, top, middle or bottom	left, center, right, top, middle of bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail of pattern
+left, right, above or below on the page, or auto (default)	left, right, above of below op de pagina, of auto (standaard)
 main (default), supplementary or functional	main (standaard), supplementary of functional
 mounted, problem or open	mounted, problem of open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond of accessory

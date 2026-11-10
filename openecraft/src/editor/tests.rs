@@ -277,6 +277,38 @@ fn tag_block_is_dragged_into_place() {
 }
 
 #[test]
+fn connection_point_designation_is_dragged_into_place() {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(SymbolInst { id: 7, sym: "coil".into(), pos: p(100.0, 100.0), rot: 1, tag: "-K1".into(), pins: vec!["A1".into(), "A2".into()], ..Default::default() });
+    prj.fix_next_id();
+    let before = prj.pages[0].symbols[0].clone();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    ed.selection.insert(7);
+    let def = prj.symbol("coil").unwrap();
+    let label = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, &prj.pages[0].symbols[0])[1].clone();
+    let from = ed.w2s(SCREEN, label.bounds.center());
+    let to = ed.w2s(SCREEN, label.bounds.center() + p(3.0, -2.0));
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+    for i in 1..=5 {
+        let t = i as f32 / 5.0;
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from + (to - from) * t)]);
+    }
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+    let s = &prj.pages[0].symbols[0];
+    assert_eq!((s.pos, &s.pins, s.tag_offset), (before.pos, &before.pins, None), "symbol, designations and tag stay");
+    assert!(s.pin_placement(0).is_auto());
+    let placed = s.pin_placement(1);
+    assert_eq!(placed.side, Some(label.side), "the side it had");
+    // Stored in the symbol's orientation: the quarter turn maps it back to the drag.
+    assert!((placed.offset - label.shift).transform(1, false).dist(p(3.0, -2.0)) < 0.6, "{placed:?}");
+    let moved = render::pin_label_places(&prj, &Index::build(&prj), 0, &def, s)[1].clone();
+    assert!((moved.pos - label.pos).dist(p(3.0, -2.0)) < 0.6);
+}
+
+#[test]
 fn interruption_name_and_cross_reference_are_dragged_on_their_own() {
     let mut prj = Project::default();
     let id = prj.new_id();
