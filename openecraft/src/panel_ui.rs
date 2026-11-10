@@ -24,6 +24,7 @@ mod routing_ui;
 mod scene3d;
 pub(crate) mod site_plan;
 mod site_tools;
+mod terminations;
 pub use site_tools::SiteTool;
 mod view3d;
 
@@ -2097,7 +2098,7 @@ impl PanelUi {
         });
     }
 
-    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &Project, an: &Analysis, wi: usize) {
+    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, wi: usize) {
         let w = &an.wiring[wi];
         ui.label(RichText::new(tr("Wire")).strong());
         egui::Grid::new("pwire").num_columns(2).spacing([10.0, 5.0]).show(ui, |ui| {
@@ -2154,6 +2155,8 @@ impl PanelUi {
             ))
             .weak(),
         );
+        ui.separator();
+        self.wire_ends(ui, prj, &w.from, &w.to, &w.cross_section);
         ui.separator();
         ui.label(RichText::new(tr("Connected devices")).strong());
         let mut select = None;

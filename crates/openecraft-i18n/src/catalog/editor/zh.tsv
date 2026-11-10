@@ -228,6 +228,7 @@ Cable definition	电缆定义
 Cable definition on page {}	页 {} 上的电缆定义
 Cable definition: draw a line across the wires that are cores of a cable	电缆定义：画一条线穿过作为电缆芯线的导线
 Cable end reserve	电缆端余量
+Cable ends	电缆端头
 Cable markers	电缆标记
 Cable passage to {}	到 {} 的电缆过孔
 Cable {}: {} cores assigned	电缆 {}：已分配 {} 根芯线
@@ -428,6 +429,7 @@ Dashed	虚线
 Decimals	小数位数
 Default	默认
 Default (part data or definition)	默认值（部件数据或定义）
+Default ({})	默认（{}）
 Default label	默认标签
 Default medium	默认介质
 Default rules	默认规则
@@ -649,7 +651,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	物料清单中的紧固件
 Favorite	收藏
 Favorites (JSON)	收藏 (JSON)
-Ferrule {} ({})	冷压端子 {}（{}）
 Field	字段
 Field (name, description, company, creator, date, revision) or project property	字段（name、description、company、creator、date、revision）或项目属性
 Field cables	现场电缆
@@ -784,6 +785,7 @@ Hose number	软管编号
 Hoses and pipes	软管和管道
 Hoses rated below it are errors; 0 = not checked	额定压力低于此值的软管视为错误；0 = 不检查
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	门扇的开启方式：铰链在左侧或右侧边缘（从房间内看），向房间内或向外开，或沿墙推拉
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	导线在此端的端接方式；默认按连接点或其设备的选择，否则按布局的管型端子设置
 IP / bus address	IP / 总线地址
 ISO 639-1 language code	ISO 639-1 语言代码
 Identifiers	标识符
@@ -992,6 +994,7 @@ Min. bend radius	最小弯曲半径
 Minimize the ribbon	最小化功能区
 Mirror	镜像
 Mirror (selection or symbol being placed)	镜像（所选内容或正在放置的符号）
+Mixed	混合
 Mode	模式
 Model of a part (2D / 3D)	部件的模型 (2D / 3D)
 Module part; its size comes from the part	组件部件；尺寸来自部件
@@ -2263,6 +2266,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}：拖动以移动，双击显示地面
 {}: nothing to change	{}：无需更改
 {}: pin {}	{}：引脚 {}
+{}: strip {} mm, {}	{}：剥线 {} mm，{}
 {}: {} addresses changed	{}：已更改 {} 个地址
 {}: {} changes in the open project (not saved yet)	{}：已打开的项目中有 {} 处更改（尚未保存）
 {}: {} changes saved	{}：已保存 {} 处更改

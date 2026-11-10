@@ -7,7 +7,7 @@
 use openecraft_i18n::tr;
 use crate::model::{natural_cmp, Project};
 use crate::panel::RoutedWire;
-use crate::production::{cross_section_mm2, end_treatment, EndTreatment};
+use crate::production::{cross_section_mm2, end_at, EndTreatment};
 use std::fmt::Write;
 pub use crate::model::wiring::{Mark, WiringMark};
 
@@ -83,8 +83,8 @@ pub struct Step {
     pub wire: usize,
     pub status: Status,
     pub note: String,
-    /// Stripping length and ferrule of both ends.
-    pub ends: Option<EndTreatment>,
+    /// Stripping length and ferrule or terminal of its `from` and `to` end.
+    pub ends: [Option<EndTreatment>; 2],
 }
 
 pub fn mark_of<'a>(prj: &'a Project, w: &RoutedWire) -> Option<&'a WiringMark> {
@@ -110,7 +110,7 @@ pub fn steps(prj: &Project, wiring: &[RoutedWire], enclosure: Option<usize>, ord
             wire: i,
             status: status(prj, w),
             note: mark_of(prj, w).map(|m| m.note.clone()).unwrap_or_default(),
-            ends: end_treatment(&w.cross_section, prj.layout.ferrules),
+            ends: [end_at(prj, &w.from, &w.to, &w.cross_section), end_at(prj, &w.to, &w.from, &w.cross_section)],
         })
         .collect();
     let start = |w: &RoutedWire| w.route.points.first().copied().unwrap_or_default();
@@ -211,11 +211,12 @@ pub fn next_open(steps: &[Step], current: Option<usize>) -> Option<usize> {
 
 /// Checklist with the wiring state as CSV (machine readable, English headers).
 pub fn csv(prj: &Project, wiring: &[RoutedWire], order: Order) -> String {
-    let mut out = String::from("Enclosure;Wire no.;From;To;Colour;Cross-section;Length (mm);Strip (mm);Ferrule;Status;Note\n");
+    let mut out = String::from("Enclosure;Wire no.;From;To;Colour;Cross-section;Length (mm);Strip (mm);Termination from;Termination to;Status;Note\n");
     for s in steps(prj, wiring, None, order) {
         let w = &wiring[s.wire];
-        let strip = s.ends.map(|e| format!("{:.0}", e.strip)).unwrap_or_default();
-        let ferrule = s.ends.and_then(|e| e.ferrule).map(|f| f.part).unwrap_or_default();
+        let [a, b] = s.ends.map(|e| e.map(|e| format!("{:.0}", e.strip)).unwrap_or_default());
+        let strip = if a == b { a } else { format!("{a}/{b}") };
+        let [from_end, to_end] = s.ends.map(|e| e.map(|e| if e.part().is_empty() { e.kind.key().to_string() } else { e.part() }).unwrap_or_default());
         let status = match s.status {
             Status::Open => "open",
             Status::Done => "wired",
@@ -224,7 +225,7 @@ pub fn csv(prj: &Project, wiring: &[RoutedWire], order: Order) -> String {
         };
         let _ = writeln!(
             out,
-            "{};{};{};{};{};{};{:.0};{strip};{ferrule};{status};{}",
+            "{};{};{};{};{};{};{:.0};{strip};{from_end};{to_end};{status};{}",
             w.enclosure_names(&prj.layout),
             w.number,
             w.from,

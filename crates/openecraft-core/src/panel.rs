@@ -595,6 +595,7 @@ impl Default for Layout {
             enclosures: Vec::new(),
             wire_reserve: 100.0,
             ferrules: true,
+            terminations: Vec::new(),
             duct_fill_limit: 70.0,
             hardware: true,
             macros: Vec::new(),

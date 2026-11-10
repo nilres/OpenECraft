@@ -230,6 +230,7 @@ Cable definition	Kaapelimääritys
 Cable definition on page {}	Kaapelimääritys sivulla {}
 Cable definition: draw a line across the wires that are cores of a cable	Kaapelimääritys: piirrä viiva niiden johtojen poikki, jotka ovat kaapelin johtimia
 Cable end reserve	Kaapelin päävara
+Cable ends	Kaapelin päät
 Cable markers	Kaapelimerkit
 Cable passage to {}	Kaapelin läpivientiaukko kohteeseen {}
 Cable {}: {} cores assigned	Kaapeli {}: {} johdinta määritetty
@@ -431,6 +432,7 @@ Dashed	Katkoviiva
 Decimals	Desimaalit
 Default	Oletus
 Default (part data or definition)	Oletus (osan tiedot tai määrittely)
+Default ({})	Oletus ({})
 Default label	Oletusnimitys
 Default medium	Oletusväliaine
 Default rules	Oletussäännöt
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Kiinnitystarvikkeet osaluettelossa
 Favorite	Suosikki
 Favorites (JSON)	Suosikit (JSON)
-Ferrule {} ({})	Pääteholkki {} ({})
 Field	Kenttä
 Field (name, description, company, creator, date, revision) or project property	Kenttä (name, description, company, creator, date, revision) tai projektiominaisuus
 Field cables	Kenttäkaapelit
@@ -791,6 +792,7 @@ Hose number	Letkun numero
 Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
 IP / bus address	IP- / väyläosoite
 ISO 639-1 language code	ISO 639-1 -kielikoodi
 Identifiers	Tunnukset
@@ -1003,6 +1005,7 @@ Min. bend radius	Pienin taivutussäde
 Minimize the ribbon	Pienennä valintanauha
 Mirror	Peilaa
 Mirror (selection or symbol being placed)	Peilaa (valinta tai sijoitettava symboli)
+Mixed	Sekalainen
 Mode	Tila
 Model of a part (2D / 3D)	Osan malli (2D / 3D)
 Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
@@ -2292,6 +2295,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: siirrä vetämällä, kaksoisnapsautus näyttää lattian
 {}: nothing to change	{}: ei muutettavaa
 {}: pin {}	{}: nasta {}
+{}: strip {} mm, {}	{}: kuori {} mm, {}
 {}: {} addresses changed	{}: {} osoitetta muutettu
 {}: {} changes in the open project (not saved yet)	{}: {} muutosta avoimessa projektissa (ei vielä tallennettu)
 {}: {} changes saved	{}: {} muutosta tallennettu

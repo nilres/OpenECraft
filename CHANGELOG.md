@@ -9,6 +9,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cable core at its connection point: the ferrule (metal sleeve and collar in its
   DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
   conductor as long as it is stripped.
+- **Terminations per wire end:** each end of a wire or cable core gets its own
+  termination: bare conductor, ferrule, twin ferrule, ring, fork or pin terminal, flat
+  plug or flat receptacle (insulated in red, blue or yellow by the cross-section,
+  uninsulated tubular cable lugs from 10 mm²). It is chosen in the properties of a
+  wire (*Wire ends*) or a cable (*Cable ends*, for all cores at one device), or with
+  the command `set_termination` for a connection point, a device or one wire;
+  `terminations` lists them. Ends without one keep the ferrule setting of the layout.
+  The 3D view draws every termination (rings round the connection point, flat plugs,
+  forks, pins and insulated sleeves in their colour, each cable core with its own
+  cross-section); the production wire list shows the termination and parts of both
+  ends, and the wiring assistant, the machine exports, the harness data and the bill of
+  materials (with the new catalog parts) take them too.
 - **Workspaces show their view again:** a workspace chosen in the title bar shows its
   main view (the panel layout, the workbench, …) even where the page was left in front
   of it, and the commands of the layout view (3D view, floor plan, mounting plate,

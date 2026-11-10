@@ -230,6 +230,7 @@ Cable definition	Definicja kabla
 Cable definition on page {}	Definicja kabla na stronie {}
 Cable definition: draw a line across the wires that are cores of a cable	Definicja kabla: narysuj linię przez przewody, które są żyłami kabla
 Cable end reserve	Zapas na koniec kabla
+Cable ends	Końce kabla
 Cable markers	Oznaczniki kabli
 Cable passage to {}	Przepust kablowy do {}
 Cable {}: {} cores assigned	Kabel {}: przypisane żyły: {}
@@ -431,6 +432,7 @@ Dashed	Kreskowana
 Decimals	Miejsca dziesiętne
 Default	Domyślne
 Default (part data or definition)	Domyślne (dane artykułu lub definicja)
+Default ({})	Domyślnie ({})
 Default label	Domyślna etykieta
 Default medium	Medium domyślne
 Default rules	Reguły domyślne
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Elementy mocujące w zestawieniu materiałów
 Favorite	Ulubione
 Favorites (JSON)	Ulubione (JSON)
-Ferrule {} ({})	Tulejka kablowa {} ({})
 Field	Pole
 Field (name, description, company, creator, date, revision) or project property	Pole (name, description, company, creator, date, revision) lub właściwość projektu
 Field cables	Kable obiektowe
@@ -791,6 +792,7 @@ Hose number	Numer węża
 Hoses and pipes	Węże i rury
 Hoses rated below it are errors; 0 = not checked	Węże o niższej klasie ciśnienia są błędami; 0 = bez sprawdzania
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak otwiera się skrzydło: zawiasy przy lewej lub prawej krawędzi (patrząc z wnętrza pomieszczenia), do wewnątrz lub na zewnątrz pomieszczenia, albo przesuwnie wzdłuż ściany
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak przewód jest zakończony na tym końcu; domyślnie jak wybrano dla punktu przyłączenia lub jego urządzenia, w przeciwnym razie według ustawienia tulejek w układzie
 IP / bus address	Adres IP / magistrali
 ISO 639-1 language code	Kod języka wg ISO 639-1
 Identifiers	Identyfikatory
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. promień gięcia
 Minimize the ribbon	Minimalizuj wstążkę
 Mirror	Odbij
 Mirror (selection or symbol being placed)	Odbicie lustrzane (zaznaczenie lub umieszczany symbol)
+Mixed	Mieszane
 Mode	Tryb
 Model of a part (2D / 3D)	Model artykułu (2D / 3D)
 Module part; its size comes from the part	Część modułu; jej rozmiar pochodzi z części
@@ -2292,6 +2295,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: przeciągnij, aby przesunąć, dwuklik pokazuje podłogę
 {}: nothing to change	{}: nic do zmiany
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: odizolować {} mm, {}
 {}: {} addresses changed	{}: zmienione adresy: {}
 {}: {} changes in the open project (not saved yet)	{}: {} zmian w otwartym projekcie (jeszcze niezapisanych)
 {}: {} changes saved	{}: zapisano zmiany: {}

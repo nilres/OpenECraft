@@ -228,6 +228,7 @@ Cable definition	ケーブル定義
 Cable definition on page {}	ページ {} のケーブル定義
 Cable definition: draw a line across the wires that are cores of a cable	ケーブル定義: ケーブルの心線となる電線を横切る線を描画します
 Cable end reserve	ケーブル端の余長
+Cable ends	ケーブル端末
 Cable markers	ケーブルマーカー
 Cable passage to {}	{} へのケーブル貫通口
 Cable {}: {} cores assigned	ケーブル {}: {} 本の心線を割り当てました
@@ -427,6 +428,7 @@ Dashed	破線
 Decimals	小数点以下の桁数
 Default	既定
 Default (part data or definition)	既定値 (部品データまたは定義)
+Default ({})	既定（{}）
 Default label	既定のラベル
 Default medium	既定の媒体
 Default rules	既定のルール
@@ -648,7 +650,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	部品表に固定用部品を含める
 Favorite	お気に入り
 Favorites (JSON)	お気に入り (JSON)
-Ferrule {} ({})	フェルール {} ({})
 Field	フィールド
 Field (name, description, company, creator, date, revision) or project property	フィールド (name、description、company、creator、date、revision) またはプロジェクトプロパティ
 Field cables	フィールドケーブル
@@ -783,6 +784,7 @@ Hose number	ホース番号
 Hoses and pipes	ホースと配管
 Hoses rated below it are errors; 0 = not checked	これより定格の低いホースはエラーになります。0 = チェックしない
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	扉の開き方：左または右の端に吊り元（室内から見て）、室内側または室外側へ開く、または壁に沿って引く
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	この端での電線の端末処理。既定では接続点またはその機器に選んだもの、なければレイアウトのフェルール設定に従います
 IP / bus address	IP / バスアドレス
 ISO 639-1 language code	ISO 639-1 言語コード
 Identifiers	識別子
@@ -991,6 +993,7 @@ Min. bend radius	最小曲げ半径
 Minimize the ribbon	リボンを最小化
 Mirror	反転
 Mirror (selection or symbol being placed)	反転 (選択内容または配置中のシンボル)
+Mixed	混在
 Mode	モード
 Model of a part (2D / 3D)	部品のモデル (2D / 3D)
 Module part; its size comes from the part	モジュール部品。サイズは部品から取得
@@ -2263,6 +2266,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: ドラッグで移動、ダブルクリックで床を表示
 {}: nothing to change	{}: 変更なし
 {}: pin {}	{}: ピン {}
+{}: strip {} mm, {}	{}：被覆除去 {} mm、{}
 {}: {} addresses changed	{}: {} 個のアドレスを変更しました
 {}: {} changes in the open project (not saved yet)	{}: 開いているプロジェクトで {} 件の変更 (未保存)
 {}: {} changes saved	{}: {} 件の変更を保存しました

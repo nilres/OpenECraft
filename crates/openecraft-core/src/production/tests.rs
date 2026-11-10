@@ -114,7 +114,7 @@ fn wire_end_treatment() {
     assert_eq!(cross_section_mm2("AWG 14"), None);
     let t = end_treatment("1.5 mm²", true).unwrap();
     assert_eq!((t.strip, t.ferrule.unwrap().color, t.ferrule.unwrap().part), (8.0, "black", "GEN.FER-1.5"));
-    assert_eq!(end_treatment("6 mm²", false).unwrap(), EndTreatment { strip: 10.0, ferrule: None });
+    assert_eq!(end_treatment("6 mm²", false).unwrap(), EndTreatment { kind: Termination::Bare, strip: 10.0, ferrule: None, crimp: None });
     // Unusual cross-sections get a stripping length but no ferrule.
     assert_eq!(end_treatment("1.2", true).unwrap().ferrule, None);
     assert!(end_treatment("", true).is_none());
@@ -153,7 +153,7 @@ fn ferrules_in_wire_list_and_bom() {
     let an = Analysis::checked(&prj);
     assert!(!an.wiring.is_empty());
     let list = crate::reports::production_wire_list(&prj, &an);
-    let col = list.headers.iter().position(|h| *h == "Ferrule part").unwrap();
+    let col = list.headers.iter().position(|h| *h == "Terminal parts").unwrap();
     assert!(list.rows.iter().any(|r| r[col] == "GEN.FER-0.75"));
     // Routed (panel) wires come first.
     let len = list.headers.iter().position(|h| *h == "Length (mm)").unwrap();
@@ -202,4 +202,131 @@ fn bars_sit_at_their_centre_distance() {
     // Without a centre distance, or one the system is too narrow for: evenly spaced.
     assert_eq!(bar_centres(parts, "GEN.BB-3X30X10", 90.0), vec![15.0, 45.0, 75.0]);
     assert_eq!(bar_centres(parts, "GEN.BB-3X30X10-185", 300.0), vec![50.0, 150.0, 250.0]);
+}
+
+#[test]
+fn terminations_are_chosen_per_wire_end() {
+    let mut prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let w = an.wiring.iter().find(|w| crate::production::cross_section_mm2(&w.cross_section).is_some()).expect("a routed wire").clone();
+    let cs = w.cross_section.clone();
+    // Without a choice: the layout setting.
+    assert_eq!(termination_of(&prj, &w.from, &w.to), None);
+    assert_eq!(end_at(&prj, &w.from, &w.to, &cs).unwrap().kind, Termination::Ferrule);
+    // For the device, for the connection point, for the one wire: the nearest counts.
+    let device = w.from.rsplit_once(':').unwrap().0.to_string();
+    set_termination(&mut prj, &device, "", Some(Termination::Pin));
+    assert_eq!(termination_of(&prj, &w.from, &w.to), Some(Termination::Pin));
+    set_termination(&mut prj, &w.from, "", Some(Termination::Fork));
+    assert_eq!(termination_of(&prj, &w.from, &w.to), Some(Termination::Fork));
+    set_termination(&mut prj, &w.from, &w.to, Some(Termination::Ring));
+    assert_eq!(termination_of(&prj, &w.from, &w.to), Some(Termination::Ring));
+    assert_eq!(termination_of(&prj, &w.from, "-Z9:1"), Some(Termination::Fork), "another wire at the same point");
+    assert_eq!(termination_of(&prj, &w.to, &w.from), None, "the other end keeps the setting");
+    // Choosing again replaces, None goes back.
+    set_termination(&mut prj, &w.from, &w.to, Some(Termination::Blade));
+    assert_eq!(prj.layout.terminations.iter().filter(|t| t.at == w.from && t.to == w.to).count(), 1);
+    set_termination(&mut prj, &w.from, &w.to, None);
+    assert_eq!(termination_of(&prj, &w.from, &w.to), Some(Termination::Fork));
+    // Renaming the device keeps them.
+    crate::ops::rename_device(&mut prj, &device, "-Q77");
+    let renamed = format!("-Q77:{}", w.from.rsplit_once(':').unwrap().1);
+    assert_eq!(termination_of(&prj, &renamed, &w.to), Some(Termination::Fork));
+    assert!(prj.layout.terminations.iter().any(|t| t.at == "-Q77"));
+    // Keys round trip, the file keeps them.
+    for t in Termination::ALL {
+        assert_eq!(Termination::from_key(t.key()), Some(t));
+    }
+    assert_eq!(Termination::from_key("Twin ferrule"), Some(Termination::TwinFerrule));
+    let json = serde_json::to_string(&prj.layout.terminations).unwrap();
+    assert!(json.contains("\"fork\""), "{json}");
+}
+
+#[test]
+fn crimp_terminals_by_cross_section() {
+    let part = |cs: &str, kind| treatment(cs, kind).unwrap().part();
+    assert_eq!(part("0.75 mm²", Termination::Ring), "GEN.RING-R");
+    assert_eq!(part("1.5 mm²", Termination::Fork), "GEN.FORK-B");
+    assert_eq!(part("6 mm²", Termination::Receptacle), "GEN.REC-Y");
+    assert_eq!(part("16 mm²", Termination::Ring), "GEN.LUG-16");
+    assert_eq!(part("1.5 mm²", Termination::TwinFerrule), "GEN.FER2-1.5");
+    assert_eq!(part("1.5 mm²", Termination::Bare), "");
+    // No flat plug for 16 mm²: stripped, no part, said so.
+    let t = treatment("16 mm²", Termination::Blade).unwrap();
+    assert_eq!((t.crimp, t.part().as_str()), (None, ""));
+    assert!(t.describe().contains(Termination::Blade.title()));
+    // The crimp barrel sets the stripping length.
+    assert_eq!(treatment("2.5 mm²", Termination::Pin).unwrap().strip, 7.0);
+    // Every part is in the catalog.
+    let catalog = crate::parts::catalog();
+    for cs in ["0.5", "1", "1.5", "2.5", "4", "6", "10", "16", "25", "35", "50", "70", "95", "120", "150", "185", "240"] {
+        for kind in Termination::ALL {
+            let Some(t) = treatment(&format!("{cs} mm²"), kind) else { continue };
+            let p = t.part();
+            assert!(p.is_empty() || catalog.iter().any(|c| c.number == p), "{p} for {cs} mm²");
+        }
+    }
+}
+
+#[test]
+fn terminals_seen_in_3d() {
+    let outer = crate::harness::outer_diameter("1.5 mm²");
+    let (tip, dir, up) = ([0.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, 1.0]);
+    for kind in Termination::ALL {
+        let p = treatment("1.5 mm²", kind).unwrap().pieces("1.5 mm²", outer);
+        assert!(!p.is_empty() && p.iter().all(|q| q.length > 0.0 && q.diameter > 0.0), "{kind:?}: {p:?}");
+        // Flat pieces have their triangles, near the tip and as thick as they are.
+        for q in p.iter().filter(|q| q.shape != EndShape::Round) {
+            let tris = q.mesh(tip, dir, up);
+            assert!(!tris.is_empty(), "{kind:?}");
+            let reach = q.length + q.diameter;
+            assert!(tris.iter().flatten().all(|v| v.iter().map(|c| c.abs()).fold(0.0, f32::max) <= reach), "{kind:?}");
+            assert!(tris.iter().flatten().all(|v| v[2].abs() <= 1.6), "{kind:?} lies flat");
+        }
+    }
+    // A ring terminal: the ring round the tip, then the blue insulated sleeve over the
+    // insulation.
+    let p = treatment("1.5 mm²", Termination::Ring).unwrap().pieces("1.5 mm²", outer);
+    assert!(matches!(p[0].shape, EndShape::Ring { hole, .. } if (hole - 4.3).abs() < 1e-3));
+    assert_eq!(p[1].color, [40, 90, 200]);
+    assert!(p[1].diameter > outer);
+    // The ring's triangles face outwards: those on top look up.
+    let tris = p[0].mesh(tip, dir, up);
+    let top: Vec<_> = tris.iter().filter(|t| t.iter().all(|v| (v[2] - 0.4).abs() < 1e-3)).collect();
+    assert!(!top.is_empty());
+    for t in top {
+        let n = crate::parts::vec3::cross(crate::parts::vec3::sub(t[1], t[0]), crate::parts::vec3::sub(t[2], t[0]));
+        assert!(n[2] > 0.0, "{t:?}");
+    }
+}
+
+#[test]
+fn terminals_in_the_bill_of_materials() {
+    let mut prj = demo_project();
+    for w in prj.pages.iter_mut().flat_map(|pg| pg.wires.iter_mut()).filter(|w| w.cable.is_empty()) {
+        w.cross_section = "1.5 mm²".into();
+    }
+    let an = Analysis::checked(&prj);
+    let ends = 2 * an.wiring.iter().filter(|w| w.cross_section == "1.5 mm²").count();
+    // Every wire end at one device gets a ring terminal, one wire end a twin ferrule.
+    let w = an.wiring.iter().find(|w| w.cross_section == "1.5 mm²").unwrap().clone();
+    let device = w.from.rsplit_once(':').unwrap().0.to_string();
+    set_termination(&mut prj, &device, "", Some(Termination::Ring));
+    set_termination(&mut prj, &w.to, &w.from, Some(Termination::TwinFerrule));
+    let rings: usize = an.wiring.iter().filter(|x| x.cross_section == "1.5 mm²").map(|x| [&x.from, &x.to].iter().filter(|e| e.starts_with(&format!("{device}:"))).count()).sum();
+    let material = terminal_material(&prj, &an.wiring);
+    let count = |p: &str| material.iter().find(|m| m.0 == p).map(|m| m.1).unwrap_or(0);
+    assert_eq!(count("GEN.RING-B"), rings);
+    assert_eq!(count("GEN.FER2-1.5"), 1, "a twin ferrule for a single end too");
+    assert_eq!(count("GEN.FER-1.5") + rings + 1, ends);
+    let an = Analysis::checked(&prj);
+    let bom = an.report(&prj, crate::model::ReportKind::BillOfMaterials).unwrap();
+    assert!(bom.rows.iter().any(|r| r[3] == "GEN.RING-B"));
+    // The wire list shows both ends.
+    let list = crate::reports::production_wire_list(&prj, &an);
+    let col = |name: &str| list.headers.iter().position(|h| *h == name).unwrap();
+    let row = list.rows.iter().find(|r| r[1] == w.from && r[2] == w.to || r[1] == w.to && r[2] == w.from).expect("the wire");
+    let (from_end, to_end) = (row[col("Termination (from)")].clone(), row[col("Termination (to)")].clone());
+    assert!(from_end.contains(Termination::Ring.title()) || to_end.contains(Termination::Ring.title()), "{row:?}");
+    assert!(row[col("Terminal parts")].contains(" / "), "{row:?}");
 }

@@ -230,6 +230,7 @@ Cable definition	Kabeldefinition
 Cable definition on page {}	Kabeldefinition på sida {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: rita en linje tvärs över de ledningar som är ledare i en kabel
 Cable end reserve	Reserv per kabelände
+Cable ends	Kabeländar
 Cable markers	Kabelmärkningar
 Cable passage to {}	Kabelgenomföring till {}
 Cable {}: {} cores assigned	Kabel {}: {} ledare tilldelade
@@ -431,6 +432,7 @@ Dashed	Streckad
 Decimals	Decimaler
 Default	Standard
 Default (part data or definition)	Standard (artikeldata eller definition)
+Default ({})	Standard ({})
 Default label	Standardetikett
 Default medium	Standardmedium
 Default rules	Standardregler
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Fästelement i stycklistan
 Favorite	Favorit
 Favorites (JSON)	Favoriter (JSON)
-Ferrule {} ({})	Ändhylsa {} ({})
 Field	Fält
 Field (name, description, company, creator, date, revision) or project property	Fält (name, description, company, creator, date, revision) eller projektegenskap
 Field cables	Fältkablar
@@ -791,6 +792,7 @@ Hose number	Slangnummer
 Hoses and pipes	Slangar och rör
 Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hur bladet öppnas: gångjärn i vänster eller höger kant (sett inifrån rummet), in i eller ut ur rummet, eller skjutbart längs väggen
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hur ledaren avslutas i denna ände; som standard som valt för anslutningspunkten eller dess enhet, annars enligt layoutens inställning för ändhylsor
 IP / bus address	IP- / bussadress
 ISO 639-1 language code	Språkkod enligt ISO 639-1
 Identifiers	Beteckningar
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. böjradie
 Minimize the ribbon	Minimera menyfliksområdet
 Mirror	Spegelvänd
 Mirror (selection or symbol being placed)	Spegla (markering eller symbol som placeras)
+Mixed	Blandat
 Mode	Läge
 Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
 Module part; its size comes from the part	Modulartikel; dess storlek kommer från artikeln
@@ -2292,6 +2295,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: dra för att flytta, dubbelklick visar golvet
 {}: nothing to change	{}: inget att ändra
 {}: pin {}	{}: stift {}
+{}: strip {} mm, {}	{}: skala {} mm, {}
 {}: {} addresses changed	{}: {} adresser ändrade
 {}: {} changes in the open project (not saved yet)	{}: {} ändringar i det öppna projektet (inte sparade ännu)
 {}: {} changes saved	{}: {} ändringar sparade

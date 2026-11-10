@@ -96,6 +96,7 @@ Changes the properties of a wire	Изменяет свойства провод�
 Changes the system, size and components of an enclosure (plinth, bayed sides, gland plate); anchored items follow	Изменяет систему, размер и компоненты корпуса (цоколь, пристыкованные стороны, фланцевая панель); привязанные элементы следуют за ним
 Check {} failed: {}	Сбой проверки {}: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Проверяет компоновку шкафа: коллизии, зазоры (монтажные, вентиляционные, ЭМС), зону обслуживания, высоты над полом, классы коллизий, температуры и технологичность
+Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Выбирает оконцевание проводов: зачищенный конец, наконечник-гильза или опрессованный наконечник; в точке подключения, во всех точках подключения устройства или только для одного провода
 Chosen value	Выбранное значение
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Зазоры, зона обслуживания, высоты, классы коллизий, тепловое моделирование и технологичность компоновки шкафа
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Климат корпусов (IEC/TR 60890): потери мощности, внутренняя температура, требуемый вентилятор или холодильный агрегат и обогрев; при необходимости изменяет настройки одного корпуса
@@ -113,6 +114,7 @@ Connection point TAG:PIN, e.g. -K1:A1	Точка подключения TAG:PIN,
 Connection point designation or number (1, 2, …)	Обозначение точки подключения или номер (1, 2, …)
 Connection point designations separated by commas or blanks	Обозначения точек подключения через запятую или пробел
 Connection point designations, comma separated, e.g. 13,14	Обозначения точек подключения через запятую, например 13,14
+Connection point, e.g. -K1:13, or a device, e.g. -K1 (all its connection points)	Точка подключения, напр. -K1:13, или устройство, напр. -K1 (все его точки подключения)
 Connector id (required unless removing)	ID коннектора (обязательно, кроме удаления)
 Connects two connection points with wires routed around symbols and other wires	Соединяет две точки подключения проводами в обход символов и других проводов
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Соединяет два порта станций сетевым кабелем; существующие соединения на этих портах заменяются
@@ -379,6 +381,7 @@ Lists the structure management: aspects of the pages, defined and used identifie
 Lists the subprojects taken out of the project, or the project it was taken from	Выводит список подпроектов, вынесенных из проекта, или проект, из которого он был вынесен
 Lists the symbols that can be placed, with their connection points relative to the insertion point	Выводит список символов, которые можно разместить, с их точками подключения относительно точки вставки
 Lists the terminal strips with their number of terminals and length on the rail	Выводит список клеммных колодок с числом клемм и длиной на рейке
+Lists the terminations chosen for wire ends and the kinds there are	Перечисляет выбранные оконцевания концов проводов и доступные виды
 Lists the translation dictionary of the project texts (source line and translations)	Выводит словарь переводов текстов проекта (исходная строка и переводы)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Выводит список оконных макросов, размещённых на листах (рамки макросов), с макросом, вариантом, значениями заполнителей и числом элементов
 Load losses of the transformer in W (0: typical)	Потери короткого замыкания трансформатора в W (0: типовые)
@@ -521,6 +524,7 @@ Operations	Операции
 Option name	Имя параметра
 Option name, e.g. STARTER	Имя параметра, например STARTER
 Options and rules of the configurator	Параметры и правила конфигуратора
+Other end of the wire, e.g. -X1:3: only this wire	Другой конец провода, напр. -X1:3: только этот провод
 Other end, e.g. -X1:3	Другой конец, например -X1:3
 Outer diameter in mm, 0 = estimated	Наружный диаметр в мм, 0 = оценивается
 Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Наружные длины прямых участков, мм, например 200, 150, 300
@@ -873,6 +877,7 @@ Unknown state: {}	Неизвестное состояние: {}
 Unknown station kind: {}	Неизвестный вид станции: {}
 Unknown symbol: {}	Неизвестный символ: {}
 Unknown table: {}	Неизвестная таблица: {}
+Unknown termination: {}	Неизвестное оконцевание: {}
 Unknown vertical anchor: {}	Неизвестная вертикальная привязка: {}
 Unknown way of opening: {}	Неизвестный способ открывания: {}
 Unknown wire colour {} (IEC 60757: {})	Неизвестный цвет провода {} (IEC 60757: {})
@@ -911,6 +916,7 @@ Y position in mm (downwards)	Положение по Y в мм (вниз)
 any, wires, cables or tubes	any, wires, cables или tubes
 auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left или right; отбрасывает тексты, размещённые вручную
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip или adhesive
+bare, ferrule, twin_ferrule, ring, fork, pin, blade, receptacle, or auto (as the layout sets ferrules)	bare, ferrule, twin_ferrule, ring, fork, pin, blade, receptacle или auto (по настройке наконечников компоновки)
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam или product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi или other
 copper or aluminium	copper или aluminium

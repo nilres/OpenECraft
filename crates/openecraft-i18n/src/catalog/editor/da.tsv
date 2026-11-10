@@ -230,6 +230,7 @@ Cable definition	Kabeldefinition
 Cable definition on page {}	Kabeldefinition på side {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: Tegn en linje hen over de ledninger, der er ledere i et kabel
 Cable end reserve	Reserve pr. kabelende
+Cable ends	Kabelender
 Cable markers	Kabelmærkater
 Cable passage to {}	Kabelgennemføring til {}
 Cable {}: {} cores assigned	Kabel {}: {} ledere tildelt
@@ -431,6 +432,7 @@ Dashed	Stiplet
 Decimals	Decimaler
 Default	Standard
 Default (part data or definition)	Standard (artikeldata eller definition)
+Default ({})	Standard ({})
 Default label	Standardetiket
 Default medium	Standardmedie
 Default rules	Standardregler
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Fastgørelsesmateriel i styklisten
 Favorite	Favorit
 Favorites (JSON)	Favoritter (JSON)
-Ferrule {} ({})	Terminalrør {} ({})
 Field	Felt
 Field (name, description, company, creator, date, revision) or project property	Felt (name, description, company, creator, date, revision) eller projektegenskab
 Field cables	Feltkabler
@@ -791,6 +792,7 @@ Hose number	Slangenummer
 Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hvordan lederen afsluttes i denne ende; som standard som valgt for tilslutningspunktet eller dets enhed, ellers efter layoutets indstilling for terminalrør
 IP / bus address	IP- / busadresse
 ISO 639-1 language code	Sprogkode efter ISO 639-1
 Identifiers	Betegnelser
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. bøjningsradius
 Minimize the ribbon	Minimér båndet
 Mirror	Spejl
 Mirror (selection or symbol being placed)	Spejlvend (markering eller symbol, der placeres)
+Mixed	Blandet
 Mode	Tilstand
 Model of a part (2D / 3D)	Model af en artikel (2D / 3D)
 Module part; its size comes from the part	Moduldel; dens størrelse kommer fra delen
@@ -2292,6 +2295,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: træk for at flytte, dobbeltklik viser gulvet
 {}: nothing to change	{}: intet at ændre
 {}: pin {}	{}: ben {}
+{}: strip {} mm, {}	{}: afisoler {} mm, {}
 {}: {} addresses changed	{}: {} adresser ændret
 {}: {} changes in the open project (not saved yet)	{}: {} ændringer i det åbne projekt (endnu ikke gemt)
 {}: {} changes saved	{}: {} ændringer gemt

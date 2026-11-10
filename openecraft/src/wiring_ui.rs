@@ -239,7 +239,7 @@ impl WiringUi {
         };
         let w = an.wiring[wi].clone();
         let status = wiring::status(prj, &w);
-        let ends = openecraft_core::production::end_treatment(&w.cross_section, prj.layout.ferrules);
+        let ends = [(&w.from, &w.to), (&w.to, &w.from)].map(|(at, other)| openecraft_core::production::end_at(prj, at, other, &w.cross_section));
         egui::Frame::group(ui.style()).inner_margin(12.0).show(ui, |ui| {
             ui.set_width(ui.available_width());
             ui.horizontal(|ui| {
@@ -258,13 +258,23 @@ impl WiringUi {
                 ui.separator();
                 ui.label(big(tr_fmt!("Length {} mm", format!("{:.0}", w.length))));
                 ui.separator();
-                if let Some(t) = ends {
-                    ui.label(big(tr_fmt!("Strip {} mm", format!("{:.0}", t.strip))));
-                    if let Some(f) = t.ferrule {
+                // What the ends get: once where both get the same.
+                let what = |e: &openecraft_core::production::EndTreatment| if e.part().is_empty() { e.describe() } else { format!("{} ({})", e.describe(), e.part()) };
+                match ends {
+                    [Some(a), Some(b)] if a == b => {
+                        ui.label(big(tr_fmt!("Strip {} mm", format!("{:.0}", a.strip))));
                         ui.separator();
-                        ui.label(big(tr_fmt!("Ferrule {} ({})", f.part, tr(f.color))));
+                        ui.label(big(what(&a)));
+                        ui.separator();
                     }
-                    ui.separator();
+                    _ => {
+                        for (at, e) in [(&w.from, ends[0]), (&w.to, ends[1])] {
+                            if let Some(e) = e {
+                                ui.label(big(tr_fmt!("{}: strip {} mm, {}", at, format!("{:.0}", e.strip), what(&e))));
+                                ui.separator();
+                            }
+                        }
+                    }
                 }
                 ui.label(big(w.routing().to_string()));
                 if w.net != w.number && !w.net.is_empty() {

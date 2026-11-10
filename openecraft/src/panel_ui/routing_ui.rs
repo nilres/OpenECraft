@@ -59,15 +59,23 @@ pub(super) struct RouteLine {
     pub ends: [super::scene3d::EndLook; 2],
 }
 
-/// How the ends of a routed wire, or of the cores of a routed cable, look at their
-/// connection points (the cross-section of the cable's wires); dimmed like the wire.
-fn route_end(prj: &Project, an: &Analysis, it: &openecraft_core::routing3d::RoutedItem, dim: bool) -> super::scene3d::EndLook {
-    let wire = match (it.kind, it.wire) {
-        (RouteKind::Wire, Some(wi)) => an.wiring.get(wi),
-        (RouteKind::Cable, _) => an.wiring.iter().find(|w| !w.cable.is_empty() && w.cable == it.key),
-        _ => None,
-    };
-    wire.map(|w| super::scene3d::wire_end(&w.cross_section, prj.layout.ferrules, dim)).unwrap_or_default()
+/// How the end `k` of a routed wire looks at its connection point; dimmed like the wire.
+fn route_end(prj: &Project, an: &Analysis, it: &openecraft_core::routing3d::RoutedItem, k: usize, dim: bool) -> super::scene3d::EndLook {
+    let Some(w) = it.wire.and_then(|wi| an.wiring.get(wi)).filter(|_| it.kind == RouteKind::Wire) else { return Vec::new() };
+    // The route may run from the wire's `to` end.
+    let device = |at: &str| at.rsplit_once(':').map_or(at, |(d, _)| d).to_string();
+    let swapped = it.ends[0].tag != device(&w.from) && it.ends[0].tag == device(&w.to);
+    let (at, other) = if (k == 0) != swapped { (&w.from, &w.to) } else { (&w.to, &w.from) };
+    super::scene3d::wire_end(prj, at, other, &w.cross_section, dim)
+}
+
+/// How the core of the cable `cable` looks at the connection point `at`.
+pub(super) fn core_end(prj: &Project, an: &Analysis, cable: &str, at: &str) -> super::scene3d::EndLook {
+    super::terminations::core_ends(prj, an, cable)
+        .into_iter()
+        .find(|(end, _, _)| end == at)
+        .map(|(_, other, cs)| super::scene3d::wire_end(prj, at, &other, &cs, false))
+        .unwrap_or_default()
 }
 
 /// Diameter of the cores of a cable of `diameter` as thick as it tells for their number
@@ -544,13 +552,13 @@ impl PanelUi {
                     }
                 }
                 // A wire's ends at the ends of the route (not into an enclosure not shown).
-                let ends = [(0, s == 0), (1, s == last)].map(|(k, at_end)| if at_end && it.wire.is_some() && it.ends[k].item.is_some() && it.ends[k].cores.is_empty() { route_end(prj, an, it, selected_wire.is_some() && !selected) } else { Vec::new() });
+                let ends = [(0, s == 0), (1, s == last)].map(|(k, at_end)| if at_end && it.wire.is_some() && it.ends[k].item.is_some() && it.ends[k].cores.is_empty() { route_end(prj, an, it, k, selected_wire.is_some() && !selected) } else { Vec::new() });
                 let mut points: Vec<[f32; 3]> = points.iter().map(|q| to_view(leg, *q)).collect();
                 let mut bends = bends.to_vec();
                 bends.resize(points.len(), 0.0);
                 // The cores part a little before the devices at the ends of the first and the
-                // last stretch.
-                let mut cores: Vec<Vec<[f32; 3]>> = Vec::new();
+                // last stretch, each into its connection point.
+                let (mut cores, mut core_pins): (Vec<Vec<[f32; 3]>>, Vec<String>) = Default::default();
                 for (end, at_end) in [(0, s == 0), (1, s == last)] {
                     let n = points.len();
                     if !at_end || it.ends[end].cores.is_empty() || n <= 2 {
@@ -566,6 +574,7 @@ impl PanelUi {
                     // other terminals in front of it.
                     let device = it.ends[end].enclosure.zip(it.ends[end].item).filter(|_| rest != [0.0; 3]).and_then(|(k, id)| Some((fan_device(prj, &pos, k, id, &|q| to_view(leg, q))?, rest)));
                     let (keep, tail, fan) = fan_out(&points, &bends, &at, diameter, core_diameter(it, diameter), device);
+                    core_pins.extend((0..fan.len()).map(|c| it.ends[end].pins.get(c).cloned().unwrap_or_default()));
                     cores.extend(fan);
                     points.truncate(keep);
                     bends.truncate(keep);
@@ -576,9 +585,8 @@ impl PanelUi {
                         bends.reverse();
                     }
                 }
-                for c in cores {
-                    let bends = vec![0.0; c.len()];
-                    out.push(RouteLine { points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), bends, rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Vec::new(), route_end(prj, an, it, false)] });
+                for (c, pin) in cores.into_iter().zip(core_pins) {
+                    out.push(RouteLine { bends: vec![0.0; c.len()], points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Vec::new(), core_end(prj, an, &it.key, &pin)] });
                 }
                 let index = match joined {
                     Some((prev, index)) if prev + 1 == s => {
@@ -722,6 +730,8 @@ impl PanelUi {
         .on_hover_text(tr("Flush-mounted lines run in slots in the walls along the installation zones, or down into the floor and along its zone"));
         if it.kind == RouteKind::Cable {
             self.cable_cores(ui, prj, an, &it.key);
+            ui.separator();
+            self.cable_ends(ui, prj, an, &it.key, [&it.ends[0].tag, &it.ends[1].tag]);
         }
         if let Some(s) = r.shields.iter().find(|s| s.cable == it.key) {
             ui.label(RichText::new(tr("Shield")).strong());

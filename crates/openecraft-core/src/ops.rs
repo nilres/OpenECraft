@@ -1046,6 +1046,7 @@ pub fn rename_device(prj: &mut Project, old: &str, new: &str) {
         }
     }
     crate::harness::rename_device(prj, old, new);
+    prj.layout.rename_device(old, new);
     if let Some(d) = prj.strips.remove(old) {
         prj.strips.entry(new.to_string()).or_insert(d);
     }

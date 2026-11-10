@@ -230,6 +230,7 @@ Cable definition	Kabeldefinitie
 Cable definition on page {}	Kabeldefinitie op pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinitie: trek een lijn over de draden die aders van een kabel zijn
 Cable end reserve	Reserve per kabeleinde
+Cable ends	Kabeleinden
 Cable markers	Kabelmarkeringen
 Cable passage to {}	Kabeldoorvoer naar {}
 Cable {}: {} cores assigned	Kabel {}: {} aders toegewezen
@@ -431,6 +432,7 @@ Dashed	Gestreept
 Decimals	Decimalen
 Default	Standaard
 Default (part data or definition)	Standaard (artikelgegevens of definitie)
+Default ({})	Standaard ({})
 Default label	Standaardlabel
 Default medium	Standaardmedium
 Default rules	Standaardregels
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Bevestigingsmateriaal in de stuklijst
 Favorite	Favoriet
 Favorites (JSON)	Favorieten (JSON)
-Ferrule {} ({})	Adereindhuls {} ({})
 Field	Veld
 Field (name, description, company, creator, date, revision) or project property	Veld (name, description, company, creator, date, revision) of projecteigenschap
 Field cables	Veldkabels
@@ -791,6 +792,7 @@ Hose number	Slangnummer
 Hoses and pipes	Slangen en buizen
 Hoses rated below it are errors; 0 = not checked	Slangen met een lagere drukklasse zijn fouten; 0 = niet gecontroleerd
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hoe het blad opent: scharnieren aan de linker- of rechterrand (gezien vanuit de ruimte), de ruimte in of uit, of schuivend langs de wand
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hoe de draad aan dit uiteinde wordt afgewerkt; standaard zoals gekozen voor het aansluitpunt of zijn apparaat, anders zoals de layout adereindhulzen instelt
 IP / bus address	IP- / busadres
 ISO 639-1 language code	Taalcode volgens ISO 639-1
 Identifiers	Aanduidingen
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. buigradius
 Minimize the ribbon	Het lint minimaliseren
 Mirror	Spiegelen
 Mirror (selection or symbol being placed)	Spiegelen (selectie of symbool dat wordt geplaatst)
+Mixed	Gemengd
 Mode	Modus
 Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
 Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
@@ -2292,6 +2295,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: slepen om te verplaatsen, dubbelklik toont de vloer
 {}: nothing to change	{}: niets te wijzigen
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: strippen {} mm, {}
 {}: {} addresses changed	{}: {} adressen gewijzigd
 {}: {} changes in the open project (not saved yet)	{}: {} wijzigingen in het geopende project (nog niet opgeslagen)
 {}: {} changes saved	{}: {} wijzigingen opgeslagen

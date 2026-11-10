@@ -279,6 +279,7 @@ Cable definition	Kabeldefinition	Définition de câble	Definición de manguera
 Cable definition on page {}	Kabeldefinition auf Seite {}	Définition de câble en page {}	Definición de manguera en la página {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: eine Linie über die Verbindungen ziehen, die Adern eines Kabels sind	Définition de câble : tracer une ligne à travers les fils qui sont des conducteurs d'un câble	Definición de manguera: trace una línea a través de los cables que son conductores de una manguera
 Cable end reserve	Reserve je Kabelende	Réserve par extrémité de câble	Reserva por extremo de manguera
+Cable ends	Kabelenden	Extrémités du câble	Extremos del cable
 Cable markers	Kabelmarkierer	Repères de câbles	Marcadores de mangueras
 Cable passage to {}	Kabeldurchführung zu {}	Passage de câbles vers {}	Paso de cables hacia {}
 Cable {}: {} cores assigned	Kabel {}: {} Adern zugeordnet	Câble {} : {} conducteurs affectés	Manguera {}: {} conductores asignados
@@ -514,6 +515,7 @@ Dashed	Gestrichelt	Pointillé	Discontinuo
 Decimals	Nachkommastellen	Décimales	Decimales
 Default	Vorgabe	Par défaut	Predeterminado
 Default (part data or definition)	Vorgabe (Artikeldaten oder Definition)	Par défaut (données d'article ou définition)	Predeterminado (datos del artículo o definición)
+Default ({})	Standard ({})	Par défaut ({})	Predeterminado ({})
 Default function text	Standardfunktionstext	Texte de fonction par défaut	Texto de función predeterminado
 Default label	Standardbezeichnung	Désignation par défaut	Designación predeterminada
 Default medium	Standardmedium	Fluide par défaut	Medio predeterminado
@@ -772,7 +774,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Befestigungsmaterial in der Stückliste	Visserie de fixation dans la nomenclature	Tornillería de fijación en la lista de materiales
 Favorite	Favorit	Favori	Favorito
 Favorites (JSON)	Favoriten (JSON)	Favoris (JSON)	Favoritos (JSON)
-Ferrule {} ({})	Aderendhülse {} ({})	Embout {} ({})	Puntera {} ({})
 Field	Feld	Champ	Campo
 Field (name, description, company, creator, date, revision) or project property	Feld (name, description, company, creator, date, revision) oder Projekteigenschaft	Champ (name, description, company, creator, date, revision) ou propriété de projet	Campo (name, description, company, creator, date, revision) o propiedad de proyecto
 Field cables	Feldkabel	Câbles de terrain	Cables de campo
@@ -930,6 +931,7 @@ Hose number	Schlauchnummer	Numéro de flexible	Número de manguera
 Hoses and pipes	Schläuche und Rohre	Flexibles et tuyaux	Mangueras y tuberías
 Hoses rated below it are errors; 0 = not checked	Schläuche mit geringerer Druckstufe sind Fehler; 0 = nicht geprüft	Les flexibles prévus pour moins sont des erreurs ; 0 = non vérifié	Las mangueras aptas para menos son errores; 0 = no se comprueba
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Wie der Flügel öffnet: Anschlag an der linken oder rechten Kante (vom Raum aus gesehen), in den Raum hinein oder aus ihm heraus, oder schiebend an der Wand entlang	Comment le vantail s'ouvre : paumelles sur le bord gauche ou droit (vu de l'intérieur de la pièce), vers l'intérieur ou l'extérieur de la pièce, ou coulissant le long du mur	Cómo abre la hoja: con bisagras en el borde izquierdo o derecho (visto desde dentro del recinto), hacia dentro o hacia fuera del recinto, o corredera a lo largo de la pared
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Wie die Leitung an diesem Ende abgeschlossen wird; standardmäßig wie für den Anschlusspunkt oder sein Betriebsmittel gewählt, sonst wie das Layout Aderendhülsen vorgibt	Comment le fil est terminé à cette extrémité ; par défaut comme choisi pour le point de connexion ou son appareil, sinon selon le réglage des embouts de l'implantation	Cómo se termina el cable en este extremo; por defecto como se eligió para el punto de conexión o su equipo, si no según el ajuste de punteras del montaje
 IP / bus address	IP- / Busadresse	Adresse IP / de bus	Dirección IP / de bus
 ISO 639-1 language code	Sprachcode nach ISO 639-1	Code de langue ISO 639-1	Código de idioma ISO 639-1
 Identifiers	Kennzeichen	Identificateurs	Identificadores
@@ -1155,6 +1157,7 @@ Min. bend radius	Min. Biegeradius	Rayon de courbure min.	Radio de curvatura mín
 Minimize the ribbon	Menüband minimieren	Réduire le ruban	Minimizar la cinta de opciones
 Mirror	Spiegeln	Miroir	Reflejar
 Mirror (selection or symbol being placed)	Spiegeln (Auswahl oder zu platzierendes Symbol)	Miroir (sélection ou symbole en cours de placement)	Reflejar (selección o símbolo que se coloca)
+Mixed	Gemischt	Mixte	Mixto
 Mode	Modus	Mode	Modo
 Model of a part (2D / 3D)	Modell eines Artikels (2D / 3D)	Modèle d'un article (2D / 3D)	Modelo de un artículo (2D / 3D)
 Module part; its size comes from the part	Modulartikel; seine Größe kommt vom Artikel	Article du module ; sa taille vient de l'article	Artículo del módulo; su tamaño viene del artículo
@@ -2578,6 +2581,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {}: drag to move it, a double-click shows the floor	{}: ziehen zum Verschieben, Doppelklick zeigt den Boden	{} : faire glisser pour déplacer, double-clic pour afficher le sol	{}: arrastre para mover, doble clic para mostrar el suelo
 {}: nothing to change	{}: nichts zu ändern	{} : rien à modifier	{}: nada que cambiar
 {}: pin {}	{}: Pin {}	{} : broche {}	{}: pin {}
+{}: strip {} mm, {}	{}: abisolieren {} mm, {}	{} : dénuder {} mm, {}	{}: pelar {} mm, {}
 {}: {} addresses changed	{}: {} Adressen geändert	{} : {} adresses modifiées	{}: {} direcciones cambiadas
 {}: {} changes in the open project (not saved yet)	{}: {} Änderungen im geöffneten Projekt (noch nicht gespeichert)	{} : {} modifications dans le projet ouvert (pas encore enregistrées)	{}: {} cambios en el proyecto abierto (aún sin guardar)
 {}: {} changes saved	{}: {} Änderungen gespeichert	{} : {} modifications enregistrées	{}: {} cambios guardados

@@ -230,6 +230,7 @@ Cable definition	Определение кабеля
 Cable definition on page {}	Определение кабеля на листе {}
 Cable definition: draw a line across the wires that are cores of a cable	Определение кабеля: проведите линию через провода, которые являются жилами кабеля
 Cable end reserve	Запас на конец кабеля
+Cable ends	Концы кабеля
 Cable markers	Маркировка кабелей
 Cable passage to {}	Кабельный проход к {}
 Cable {}: {} cores assigned	Кабель {}: назначено жил – {}
@@ -430,6 +431,7 @@ Dashed	Штриховая
 Decimals	Знаков после запятой
 Default	По умолчанию
 Default (part data or definition)	По умолчанию (данные изделия или определение)
+Default ({})	По умолчанию ({})
 Default label	Подпись по умолчанию
 Default medium	Среда по умолчанию
 Default rules	Правила по умолчанию
@@ -654,7 +656,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Крепёж в спецификации
 Favorite	Избранное
 Favorites (JSON)	Избранное (JSON)
-Ferrule {} ({})	Наконечник {} ({})
 Field	Поле
 Field (name, description, company, creator, date, revision) or project property	Поле (name, description, company, creator, date, revision) или свойство проекта
 Field cables	Полевые кабели
@@ -790,6 +791,7 @@ Hose number	Номер шланга
 Hoses and pipes	Шланги и трубы
 Hoses rated below it are errors; 0 = not checked	Шланги, рассчитанные на меньшее давление, – ошибки; 0 = не проверяется
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Как открывается створка: петли у левого или правого края (вид изнутри помещения), внутрь или наружу помещения, или сдвигается вдоль стены
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Как провод оконцован на этом конце; по умолчанию как выбрано для точки подключения или её устройства, иначе по настройке наконечников компоновки
 IP / bus address	IP-адрес / адрес на шине
 ISO 639-1 language code	Код языка по ISO 639-1
 Identifiers	Идентификаторы
@@ -1002,6 +1004,7 @@ Min. bend radius	Мин. радиус изгиба
 Minimize the ribbon	Свернуть ленту
 Mirror	Отразить
 Mirror (selection or symbol being placed)	Отразить (выделенное или размещаемый символ)
+Mixed	Разные
 Mode	Режим
 Model of a part (2D / 3D)	Модель изделия (2D / 3D)
 Module part; its size comes from the part	Изделие модуля; его размер берётся из изделия
@@ -2291,6 +2294,7 @@ x y	x y
 {}: drag to move it, a double-click shows the floor	{}: перетащите, чтобы переместить, двойной щелчок показывает пол
 {}: nothing to change	{}: нечего изменять
 {}: pin {}	{}: контакт {}
+{}: strip {} mm, {}	{}: зачистить {} мм, {}
 {}: {} addresses changed	{}: изменено адресов: {}
 {}: {} changes in the open project (not saved yet)	{}: изменений в открытом проекте: {} (ещё не сохранены)
 {}: {} changes saved	{}: сохранено изменений: {}

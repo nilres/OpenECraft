@@ -6,7 +6,10 @@
 use crate::geom::{p, P, R};
 use crate::model::Project;
 use crate::panel::{Enclosure, Face, Fastening, ItemKind, PanelItem};
+use crate::parts::vec3::{add, cross, dot, norm, scale, sub, Tri, V3};
 use crate::parts::Part;
+pub use crate::model::panel::{Termination, WireTermination};
+use openecraft_i18n::{tr, tr_const, tr_fmt};
 use std::fmt::Write;
 
 /// Rails: M5 holes 12.5 mm from the ends, at most every 200 mm.
@@ -416,22 +419,168 @@ impl Ferrule {
     }
 }
 
-/// End treatment of a wire end: stripping length and ferrule.
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct EndTreatment {
-    pub strip: f32,
-    pub ferrule: Option<Ferrule>,
+impl Termination {
+    pub const ALL: [Termination; 8] =
+        [Termination::Bare, Termination::Ferrule, Termination::TwinFerrule, Termination::Ring, Termination::Fork, Termination::Pin, Termination::Blade, Termination::Receptacle];
+
+    /// Key in the project file and on the command line.
+    pub fn key(self) -> &'static str {
+        match self {
+            Termination::Bare => "bare",
+            Termination::Ferrule => "ferrule",
+            Termination::TwinFerrule => "twin_ferrule",
+            Termination::Ring => "ring",
+            Termination::Fork => "fork",
+            Termination::Pin => "pin",
+            Termination::Blade => "blade",
+            Termination::Receptacle => "receptacle",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<Termination> {
+        let key = key.trim().to_ascii_lowercase().replace([' ', '-'], "_");
+        Termination::ALL.into_iter().find(|t| t.key() == key)
+    }
+
+    /// Name, translated.
+    pub fn title(self) -> &'static str {
+        tr(match self {
+            Termination::Bare => tr_const!("Bare conductor"),
+            Termination::Ferrule => tr_const!("Ferrule"),
+            Termination::TwinFerrule => tr_const!("Twin ferrule"),
+            Termination::Ring => tr_const!("Ring terminal"),
+            Termination::Fork => tr_const!("Fork terminal"),
+            Termination::Pin => tr_const!("Pin terminal"),
+            Termination::Blade => tr_const!("Flat plug"),
+            Termination::Receptacle => tr_const!("Flat receptacle"),
+        })
+    }
 }
 
-/// A piece of a wire end as it is seen (3D view): length and diameter in mm, colour.
+/// Insulation of a crimp terminal, coloured by the cross-sections it takes: red up to
+/// 1 mm², blue 1.5 to 2.5 mm², yellow 4 to 6 mm²; uninsulated from 10 mm².
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Band {
+    Red,
+    Blue,
+    Yellow,
+    Uninsulated,
+}
+
+/// A crimped terminal (ring, fork, pin, flat plug or receptacle) for a cross-section.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Crimp {
+    pub kind: Termination,
+    pub band: Band,
+    pub cross_section: f32,
+}
+
+impl Crimp {
+    /// The terminal of `kind` for `cross_section` (mm²); forks, flat plugs and
+    /// receptacles only up to 6 mm².
+    pub fn for_cross_section(kind: Termination, cross_section: f32) -> Option<Crimp> {
+        let band = match cross_section {
+            c if c <= 1.0 => Band::Red,
+            c if c <= 2.5 => Band::Blue,
+            c if c <= 6.0 => Band::Yellow,
+            _ => Band::Uninsulated,
+        };
+        let fits = matches!(kind, Termination::Ring | Termination::Pin) || (matches!(kind, Termination::Fork | Termination::Blade | Termination::Receptacle) && band != Band::Uninsulated);
+        fits.then_some(Crimp { kind, band, cross_section })
+    }
+
+    /// Colour of the insulation ("" uninsulated).
+    pub fn color(&self) -> &'static str {
+        match self.band {
+            Band::Red => "red",
+            Band::Blue => "blue",
+            Band::Yellow => "yellow",
+            Band::Uninsulated => "",
+        }
+    }
+
+    pub fn rgb(&self) -> [u8; 3] {
+        match self.band {
+            Band::Red => [210, 40, 40],
+            Band::Blue => [40, 90, 200],
+            Band::Yellow => [235, 200, 40],
+            Band::Uninsulated => SLEEVE_RGB,
+        }
+    }
+
+    /// Generic part number: the kind and the colour, uninsulated ones the cross-section.
+    pub fn part(&self) -> String {
+        let kind = match (self.kind, self.band) {
+            (Termination::Ring, Band::Uninsulated) => "LUG",
+            (Termination::Ring, _) => "RING",
+            (Termination::Fork, _) => "FORK",
+            (Termination::Blade, _) => "TAB",
+            (Termination::Receptacle, _) => "REC",
+            _ => "PIN",
+        };
+        match self.band {
+            Band::Red => format!("GEN.{kind}-R"),
+            Band::Blue => format!("GEN.{kind}-B"),
+            Band::Yellow => format!("GEN.{kind}-Y"),
+            Band::Uninsulated => format!("GEN.{kind}-{}", self.cross_section),
+        }
+    }
+
+    /// Length of the crimp barrel, mm.
+    pub fn barrel(&self) -> f32 {
+        match self.band {
+            Band::Red => 5.0,
+            Band::Blue => 6.0,
+            Band::Yellow => 7.0,
+            Band::Uninsulated => 8.0 + 2.0 * self.cross_section.sqrt(),
+        }
+    }
+
+    /// Hole of a ring or fork terminal, mm: M4, M5, M6 or M8.
+    pub fn hole(&self) -> f32 {
+        match self.band {
+            Band::Red | Band::Blue => 4.3,
+            Band::Yellow => 5.3,
+            Band::Uninsulated if self.cross_section <= 16.0 => 6.4,
+            Band::Uninsulated => 8.4,
+        }
+    }
+}
+
+/// End treatment of a wire end: how it is terminated, its stripping length, the
+/// ferrule or the crimped terminal.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct EndTreatment {
+    pub kind: Termination,
+    pub strip: f32,
+    pub ferrule: Option<Ferrule>,
+    pub crimp: Option<Crimp>,
+}
+
+/// The shape of an [`EndPiece`]: round along the wire, or flat (lying across the
+/// direction it is seen from best, see [`EndPiece::mesh`]).
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum EndShape {
+    Round,
+    /// A plate (flat plug, receptacle).
+    Flat { width: f32, thickness: f32 },
+    /// The ring of a ring terminal round the connection point.
+    Ring { outer: f32, hole: f32, thickness: f32 },
+    /// The open ring of a fork terminal.
+    Fork { width: f32, slot: f32, thickness: f32 },
+}
+
+/// A piece of a wire end as it is seen (3D view): length along the wire and diameter in
+/// mm, colour and shape.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct EndPiece {
     pub length: f32,
     pub diameter: f32,
     pub color: [u8; 3],
+    pub shape: EndShape,
 }
 
-/// Tin-plated copper of a ferrule sleeve.
+/// Tin-plated copper of a ferrule sleeve or a terminal.
 pub const SLEEVE_RGB: [u8; 3] = [196, 198, 204];
 /// Bare copper of a stripped conductor.
 pub const COPPER_RGB: [u8; 3] = [196, 112, 52];
@@ -442,46 +591,223 @@ pub fn conductor_diameter(cross_section: f32) -> f32 {
 }
 
 impl EndTreatment {
-    /// How the end of a wire of `cross_section` (with the outer diameter `outer`) looks,
-    /// from the tip inwards: the metal sleeve of the ferrule and its collar over the
-    /// insulation, or the bare copper conductor as long as it is stripped.
-    pub fn pieces(&self, cross_section: &str, outer: f32) -> Vec<EndPiece> {
-        let core = conductor_diameter(cross_section_mm2(cross_section).unwrap_or(1.0)).min(outer * 0.8);
-        match self.ferrule {
-            Some(f) => vec![
-                EndPiece { length: f.length, diameter: core + 0.3, color: SLEEVE_RGB },
-                EndPiece { length: f.collar(), diameter: outer + 0.8, color: f.rgb() },
-            ],
-            None => vec![EndPiece { length: self.strip, diameter: core, color: COPPER_RGB }],
+    /// Part number of the ferrule or terminal; empty for the bare conductor.
+    pub fn part(&self) -> String {
+        match (self.kind, self.ferrule, self.crimp) {
+            (Termination::TwinFerrule, Some(f), _) => f.part.replace("GEN.FER-", "GEN.FER2-"),
+            (_, Some(f), _) => f.part.to_string(),
+            (_, _, Some(c)) => c.part(),
+            _ => String::new(),
         }
     }
-}
 
-/// End treatment for a wire cross-section (None if it is unknown).
-pub fn end_treatment(cross_section: &str, ferrules: bool) -> Option<EndTreatment> {
-    let cs = cross_section_mm2(cross_section)?;
-    let f = FERRULES.iter().find(|f| (f.cross_section - cs).abs() < 0.01).copied();
-    match (ferrules, f) {
-        (true, Some(f)) => Some(EndTreatment { strip: f.length, ferrule: Some(f) }),
-        _ => Some(EndTreatment { strip: if cs <= 2.5 { 8.0 } else if cs <= 6.0 { 10.0 } else { 12.0 }, ferrule: None }),
+    /// What the end gets, translated: "Ferrule 1.5 mm² black", "Ring terminal red", …
+    pub fn describe(&self) -> String {
+        match (self.kind, self.ferrule, self.crimp) {
+            (Termination::TwinFerrule, Some(f), _) => tr_fmt!("Twin ferrule {} mm² {}", f.cross_section, tr(f.color)),
+            (_, Some(f), _) => tr_fmt!("Ferrule {} mm² {}", f.cross_section, tr(f.color)),
+            (_, _, Some(c)) if c.band == Band::Uninsulated => self.kind.title().to_string(),
+            (_, _, Some(c)) => format!("{} {}", self.kind.title(), tr(c.color())),
+            (Termination::Bare, ..) => self.kind.title().to_string(),
+            _ => tr_fmt!("{}: none for this cross-section", self.kind.title()),
+        }
+    }
+
+    /// How the end of a wire of `cross_section` (with the outer diameter `outer`) looks,
+    /// from the tip inwards: the metal sleeve of a ferrule and its collar over the
+    /// insulation, the ring, fork, pin or plate of a terminal and its insulated sleeve
+    /// (its barrel when uninsulated), or the bare copper conductor as long as it is
+    /// stripped.
+    pub fn pieces(&self, cross_section: &str, outer: f32) -> Vec<EndPiece> {
+        let core = conductor_diameter(cross_section_mm2(cross_section).unwrap_or(1.0)).min(outer * 0.8);
+        let round = |length: f32, diameter: f32, color: [u8; 3]| EndPiece { length, diameter, color, shape: EndShape::Round };
+        if let Some(f) = self.ferrule {
+            return match self.kind {
+                Termination::TwinFerrule => vec![round(f.length, core * 1.5 + 0.3, SLEEVE_RGB), round(f.collar() * 1.4, outer * 1.7, f.rgb())],
+                _ => vec![round(f.length, core + 0.3, SLEEVE_RGB), round(f.collar(), outer + 0.8, f.rgb())],
+            };
+        }
+        let Some(c) = self.crimp else { return vec![round(self.strip, core, COPPER_RGB)] };
+        let insulated = c.band != Band::Uninsulated;
+        let thickness = if insulated { 0.8 } else { 1.5 };
+        // The ring and the fork lie round the connection point at the tip.
+        let eye = c.hole() * 1.9;
+        let neck = 2.5;
+        let tongue = match c.kind {
+            Termination::Ring => EndPiece { length: eye / 2.0 + neck, diameter: eye, color: SLEEVE_RGB, shape: EndShape::Ring { outer: eye, hole: c.hole(), thickness } },
+            Termination::Fork => EndPiece { length: eye / 2.0 + neck, diameter: eye, color: SLEEVE_RGB, shape: EndShape::Fork { width: eye, slot: c.hole(), thickness } },
+            Termination::Blade => EndPiece { length: 8.0, diameter: 6.3, color: SLEEVE_RGB, shape: EndShape::Flat { width: 6.3, thickness: 0.8 } },
+            Termination::Receptacle => EndPiece { length: 9.0, diameter: 7.4, color: SLEEVE_RGB, shape: EndShape::Flat { width: 7.4, thickness: 3.0 } },
+            _ => {
+                let pin = match c.band {
+                    Band::Red | Band::Blue => 1.9,
+                    Band::Yellow => 2.8,
+                    Band::Uninsulated => core * 0.8,
+                };
+                round(if insulated { 10.0 } else { 16.0 }, pin, SLEEVE_RGB)
+            }
+        };
+        let sleeve = if insulated { round(c.barrel() + 3.0, outer + 1.6, c.rgb()) } else { round(c.barrel(), core + 1.6, SLEEVE_RGB) };
+        vec![tongue, sleeve]
     }
 }
 
-/// Ferrules needed for the routed wires of the panel: (part, count).
-pub fn ferrule_material(prj: &Project, wiring: &[crate::panel::RoutedWire]) -> Vec<(&'static str, usize)> {
-    let mut v: Vec<(&'static str, usize)> = Vec::new();
-    if !prj.layout.ferrules {
-        return v;
-    }
-    for w in wiring {
-        if let Some(f) = end_treatment(&w.cross_section, true).and_then(|t| t.ferrule) {
-            match v.iter_mut().find(|x| x.0 == f.part) {
-                Some(x) => x.1 += 2,
-                None => v.push((f.part, 2)),
+impl EndPiece {
+    /// Triangles of a flat piece (none for a round one) with its tip at `tip`, running
+    /// along `dir` (a unit vector, into the wire) and lying flat across `up` (a unit
+    /// vector square to `dir`): the ring and the fork round the tip, a plate from it.
+    pub fn mesh(&self, tip: V3, dir: V3, up: V3) -> Vec<Tri> {
+        let side = cross(dir, up);
+        let at = |along: f32, across: f32| add(add(tip, scale(dir, along)), scale(side, across));
+        // A plate from `from` to `to` along the wire, `width` wide, round `across`.
+        let plate = |from: f32, to: f32, across: f32, width: f32, thickness: f32| slab(at(from, across), at(to, across), side, width / 2.0, up, thickness / 2.0);
+        match self.shape {
+            EndShape::Round => Vec::new(),
+            EndShape::Flat { width, thickness } => plate(0.0, self.length, 0.0, width, thickness),
+            EndShape::Ring { outer, hole, thickness } => {
+                let mut v = annulus(tip, dir, side, up, outer / 2.0, hole / 2.0, thickness / 2.0, 0.0, std::f32::consts::TAU);
+                v.extend(plate(outer * 0.3, self.length, 0.0, outer * 0.45, thickness));
+                v
+            }
+            EndShape::Fork { width, slot, thickness } => {
+                // The closed half towards the wire, the prongs open away from it.
+                let (r, prong) = (width / 2.0, (width - slot) / 2.0);
+                let half = std::f32::consts::PI;
+                let mut v = annulus(tip, dir, side, up, r, slot / 2.0, thickness / 2.0, -half / 2.0, half / 2.0);
+                for s in [-1.0, 1.0] {
+                    v.extend(plate(-r, 0.0, s * (slot / 2.0 + prong / 2.0), prong, thickness));
+                }
+                v.extend(plate(r * 0.6, self.length, 0.0, width * 0.45, thickness));
+                v
             }
         }
     }
+}
+
+/// Two triangles of a quad, wound to face `out`.
+fn quad(q: [V3; 4], out: V3) -> [Tri; 2] {
+    let n = cross(sub(q[1], q[0]), sub(q[2], q[0]));
+    if dot(n, out) >= 0.0 {
+        [[q[0], q[1], q[2]], [q[0], q[2], q[3]]]
+    } else {
+        [[q[0], q[2], q[1]], [q[0], q[3], q[2]]]
+    }
+}
+
+/// A box from `a` to `b`, `half_w` to both sides along `side` and `half_t` along `up`.
+fn slab(a: V3, b: V3, side: V3, half_w: f32, up: V3, half_t: f32) -> Vec<Tri> {
+    let c = |p: V3, s: f32, u: f32| add(add(p, scale(side, s * half_w)), scale(up, u * half_t));
+    let dir = norm(sub(b, a));
+    let faces = [
+        ([c(a, -1.0, 1.0), c(b, -1.0, 1.0), c(b, 1.0, 1.0), c(a, 1.0, 1.0)], up),
+        ([c(a, -1.0, -1.0), c(b, -1.0, -1.0), c(b, 1.0, -1.0), c(a, 1.0, -1.0)], scale(up, -1.0)),
+        ([c(a, 1.0, -1.0), c(b, 1.0, -1.0), c(b, 1.0, 1.0), c(a, 1.0, 1.0)], side),
+        ([c(a, -1.0, -1.0), c(b, -1.0, -1.0), c(b, -1.0, 1.0), c(a, -1.0, 1.0)], scale(side, -1.0)),
+        ([c(a, -1.0, -1.0), c(a, 1.0, -1.0), c(a, 1.0, 1.0), c(a, -1.0, 1.0)], scale(dir, -1.0)),
+        ([c(b, -1.0, -1.0), c(b, 1.0, -1.0), c(b, 1.0, 1.0), c(b, -1.0, 1.0)], dir),
+    ];
+    faces.into_iter().flat_map(|(q, out)| quad(q, out)).collect()
+}
+
+/// A flat ring round `centre` (in the plane of `dir` and `side`, `half_t` thick along
+/// `up`) from the angle `from` to `to`, measured from `dir` towards `side`.
+#[allow(clippy::too_many_arguments)]
+fn annulus(centre: V3, dir: V3, side: V3, up: V3, outer: f32, inner: f32, half_t: f32, from: f32, to: f32) -> Vec<Tri> {
+    const STEPS: usize = 16;
+    let radial = |a: f32| add(scale(dir, a.cos()), scale(side, a.sin()));
+    let at = |a: f32, r: f32, u: f32| add(add(centre, scale(radial(a), r)), scale(up, u * half_t));
+    let mut v = Vec::new();
+    for k in 0..STEPS {
+        let (a0, a1) = (from + (to - from) * k as f32 / STEPS as f32, from + (to - from) * (k + 1) as f32 / STEPS as f32);
+        let mid = (a0 + a1) / 2.0;
+        for u in [1.0, -1.0] {
+            v.extend(quad([at(a0, inner, u), at(a0, outer, u), at(a1, outer, u), at(a1, inner, u)], scale(up, u)));
+        }
+        v.extend(quad([at(a0, outer, -1.0), at(a1, outer, -1.0), at(a1, outer, 1.0), at(a0, outer, 1.0)], radial(mid)));
+        v.extend(quad([at(a0, inner, -1.0), at(a1, inner, -1.0), at(a1, inner, 1.0), at(a0, inner, 1.0)], scale(radial(mid), -1.0)));
+    }
     v
+}
+
+/// End treatment for a wire cross-section (None if it is unknown): a ferrule where the
+/// wire ends get them (`ferrules`), otherwise the bare conductor.
+pub fn end_treatment(cross_section: &str, ferrules: bool) -> Option<EndTreatment> {
+    treatment(cross_section, if ferrules { Termination::Ferrule } else { Termination::Bare })
+}
+
+/// End treatment of a wire of `cross_section` terminated as `kind` (None for an unknown
+/// cross-section); a cross-section without such a ferrule is stripped bare.
+pub fn treatment(cross_section: &str, kind: Termination) -> Option<EndTreatment> {
+    let cs = cross_section_mm2(cross_section)?;
+    let bare = EndTreatment { kind: Termination::Bare, strip: if cs <= 2.5 { 8.0 } else if cs <= 6.0 { 10.0 } else { 12.0 }, ferrule: None, crimp: None };
+    Some(match kind {
+        Termination::Bare => bare,
+        Termination::Ferrule | Termination::TwinFerrule => match FERRULES.iter().find(|f| (f.cross_section - cs).abs() < 0.01) {
+            Some(f) => EndTreatment { kind, strip: f.length, ferrule: Some(*f), crimp: None },
+            None => bare,
+        },
+        _ => {
+            let crimp = Crimp::for_cross_section(kind, cs);
+            EndTreatment { kind, strip: crimp.map(|c| c.barrel() + 1.0).unwrap_or(bare.strip), ferrule: None, crimp }
+        }
+    })
+}
+
+/// The device of a connection point designation (`-K1:13` → `-K1`).
+fn device_of(at: &str) -> &str {
+    at.rsplit_once(':').map(|(d, _)| d).unwrap_or(at)
+}
+
+/// The termination chosen for the end `at` of the wire from `at` to `to`: for that
+/// wire, for every wire at `at`, or for every wire at its device.
+pub fn termination_of(prj: &Project, at: &str, to: &str) -> Option<Termination> {
+    let chosen = &prj.layout.terminations;
+    chosen
+        .iter()
+        .find(|t| t.at == at && !t.to.is_empty() && t.to == to)
+        .or_else(|| chosen.iter().find(|t| t.at == at && t.to.is_empty()))
+        .or_else(|| chosen.iter().find(|t| t.at == device_of(at) && t.to.is_empty()))
+        .map(|t| t.kind)
+}
+
+/// End treatment of the end `at` of the wire of `cross_section` from `at` to `to`: as
+/// chosen ([`termination_of`]), otherwise ferrules or the bare conductor as the layout
+/// sets.
+pub fn end_at(prj: &Project, at: &str, to: &str, cross_section: &str) -> Option<EndTreatment> {
+    match termination_of(prj, at, to) {
+        Some(kind) => treatment(cross_section, kind),
+        None => end_treatment(cross_section, prj.layout.ferrules),
+    }
+}
+
+/// Chooses the termination of the wire ends at `at` (a connection point or a device),
+/// only of the wire to `to` where it is given; `None` goes back to the layout setting.
+pub fn set_termination(prj: &mut Project, at: &str, to: &str, kind: Option<Termination>) {
+    let (at, to) = (at.trim(), to.trim());
+    prj.layout.terminations.retain(|t| !(t.at == at && t.to == to));
+    if let Some(kind) = kind {
+        prj.layout.terminations.push(WireTermination { at: at.into(), to: to.into(), kind });
+    }
+}
+
+/// Ferrules and terminals needed for the routed wires of the panel: (part, count); a
+/// twin ferrule takes two wire ends.
+pub fn terminal_material(prj: &Project, wiring: &[crate::panel::RoutedWire]) -> Vec<(String, usize)> {
+    let mut ends: Vec<(String, Termination, usize)> = Vec::new();
+    for w in wiring {
+        for (at, to) in [(&w.from, &w.to), (&w.to, &w.from)] {
+            let Some(t) = end_at(prj, at, to, &w.cross_section) else { continue };
+            let part = t.part();
+            if part.is_empty() {
+                continue;
+            }
+            match ends.iter_mut().find(|x| x.0 == part) {
+                Some(x) => x.2 += 1,
+                None => ends.push((part, t.kind, 1)),
+            }
+        }
+    }
+    ends.into_iter().map(|(part, kind, n)| (part, if kind == Termination::TwinFerrule { n.div_ceil(2) } else { n })).collect()
 }
 
 #[cfg(test)]
