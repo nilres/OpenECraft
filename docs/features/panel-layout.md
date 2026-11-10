@@ -32,7 +32,24 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   wires such as green-yellow with a stripe) and, like cables and tubes, as thick as
   their outer diameter. A cable ends a little before the device it is connected to and
   its cores part from there in smooth curves, each into its connection point from the
-  side its wires leave it; through cable glands, wall penetrations and the cable passages
+  side its wires leave it. At its connection point a wire or core ends in its
+  termination: a ferrule (metal sleeve and collar in the DIN 46228-4 colour) or a twin
+  ferrule, a ring terminal (its ring round the connection point), a fork, pin, flat plug
+  or flat receptacle terminal (with its red, blue or yellow insulated sleeve; uninsulated
+  tubular cable lugs from 10 mm²), or the bare copper conductor as long as it is
+  stripped. Each wire end can be given its own termination in the properties of the
+  wire (*Wire ends*), all cores of a cable at one of its devices in the properties of
+  the cable (*Cable ends*), and on the command line all ends at a connection point or a
+  device (`set_termination`); ends without one get a ferrule where *Wire ends with
+  ferrules* is set, the bare conductor otherwise. A twin ferrule is shared by the two
+  wires ending at one connection point: it is offered only there, chosen for both at
+  once, sized for the larger cross-section and drawn once, at the first of them; with
+  *Twin ferrules where two wires share a connection point* (or `set_ferrules`) every
+  such pair without a termination of its own gets one. The check *Twin ferrules* warns
+  about a twin ferrule with one wire, at a point with more than two wires or for two
+  cross-sections. The production wire list, the wiring
+  assistant, the machine exports and the bill of materials take the same terminations;
+  through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
   through one cable entry flange or wall penetration side by side. Cable glands are
   drawn with the models of their parts: outside the hexagon body, neck and dome on the

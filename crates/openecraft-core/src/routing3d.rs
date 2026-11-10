@@ -326,6 +326,8 @@ pub struct End {
     pub cores: Vec<V3>,
     /// The direction each of the cores leaves its connection point in.
     pub exits: Vec<V3>,
+    /// The designation of each of those connection points (`-X1:3`).
+    pub pins: Vec<String>,
     /// The end of the nozzle of the device a tube ends at (layout coordinates): the
     /// route comes to `point` straight out of it and goes on into it.
     pub nozzle: Option<V3>,
@@ -722,6 +724,7 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                 return End { tag: tag.into(), enclosure: Some(ei), point: Some(add(q, pos[ei])), item: Some(it.id), leave: Some(into), ..Default::default() };
             }
             let mut at: Vec<(V3, V3)> = Vec::new();
+            let mut designations: Vec<String> = Vec::new();
             let mut owners=std::collections::BTreeSet::new();
             for pin in pins {
                 let symbol=&prj.pages[pin.page].symbols[pin.sym];
@@ -730,7 +733,7 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                 owners.insert(item.id);
                 let placed=panel::device_points(prj,item);
                 if let Some(p)=panel::point_of(prj,&placed,symbol,pin.pin) {
-                    if !at.iter().any(|a|a.0==p.pos) {at.push((p.pos,panel::exit_vector(p.exit)));}
+                    if !at.iter().any(|a|a.0==p.pos) {at.push((p.pos,panel::exit_vector(p.exit)));designations.push(crate::netlist::pin_designation(prj,*pin));}
                 }
             }
             let q = match at.len() {
@@ -758,8 +761,9 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                     }
                 }
             }
-            let (cores, exits) = if at.len() > 1 { at.into_iter().map(|(q, x)| (in_layout(q), sub(in_layout(add(q, x)), in_layout(q)))).unzip() } else { Default::default() };
-            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), parts, cores, exits, nozzle: None, leave: Some(norm(leave)) }
+            let (cores, exits): (Vec<V3>, Vec<V3>) = if at.len() > 1 { at.into_iter().map(|(q, x)| (in_layout(q), sub(in_layout(add(q, x)), in_layout(q)))).unzip() } else { Default::default() };
+            let pins = if cores.is_empty() { Vec::new() } else { designations };
+            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), parts, cores, exits, pins, nozzle: None, leave: Some(norm(leave)) }
         }
         None => End { tag: tag.into(), ..Default::default() },
     }
