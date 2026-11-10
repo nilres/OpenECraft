@@ -230,6 +230,7 @@ Cable definition	Definice kabelu
 Cable definition on page {}	Definice kabelu na stránce {}
 Cable definition: draw a line across the wires that are cores of a cable	Definice kabelu: nakreslete čáru přes vodiče, které jsou žílami kabelu
 Cable end reserve	Rezerva na konec kabelu
+Cable ends	Konce kabelu
 Cable markers	Štítky kabelů
 Cable passage to {}	Kabelová průchodka do {}
 Cable {}: {} cores assigned	Kabel {}: přiřazeno žil: {}
@@ -431,6 +432,7 @@ Dashed	Čárkovaná
 Decimals	Desetinná místa
 Default	Výchozí
 Default (part data or definition)	Výchozí (data artiklu nebo definice)
+Default ({})	Výchozí ({})
 Default label	Výchozí popisek
 Default medium	Výchozí médium
 Default rules	Výchozí pravidla
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Spojovací materiál v kusovníku
 Favorite	Oblíbené
 Favorites (JSON)	Oblíbené (JSON)
-Ferrule {} ({})	Dutinka {} ({})
 Field	Pole
 Field (name, description, company, creator, date, revision) or project property	Pole (name, description, company, creator, date, revision) nebo vlastnost projektu
 Field cables	Polní kabely
@@ -791,6 +792,7 @@ Hose number	Číslo hadice
 Hoses and pipes	Hadice a potrubí
 Hoses rated below it are errors; 0 = not checked	Hadice dimenzované na nižší tlak jsou chyby; 0 = nekontroluje se
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak se otevírá křídlo: závěsy na levé nebo pravé hraně (při pohledu z místnosti), dovnitř nebo ven z místnosti, nebo posuvně podél stěny
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak je vodič na tomto konci zakončen; výchozí je volba pro připojovací bod nebo jeho zařízení, jinak podle nastavení dutinek v rozvržení
 IP / bus address	Adresa IP / sběrnice
 ISO 639-1 language code	Kód jazyka podle ISO 639-1
 Identifiers	Identifikátory
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. poloměr ohybu
 Minimize the ribbon	Minimalizovat pás karet
 Mirror	Zrcadlit
 Mirror (selection or symbol being placed)	Zrcadlit (výběr nebo umísťovaný symbol)
+Mixed	Smíšené
 Mode	Režim
 Model of a part (2D / 3D)	Model artiklu (2D / 3D)
 Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Převzít artikly projektu do databáze
 Translate the project texts; documentation per language	Překlad textů projektu; dokumentace pro každý jazyk
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Otočení kolem svislé osy, proti směru hodinových ručiček při pohledu shora (90 °: čela směřují doprava)
 Tutorial	Výukový kurz
+Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Zadejte bod a stiskněte Enter: x y v mm nebo @dx dy relativně k poslednímu bodu; působí jako kliknutí aktuálním nástrojem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Kolečko: zoom · pravé tlačítko: zrušit · grafika se přichytává na 0,5 mm, přípojné body na rastr 4 mm
 When it differs from the page	Pokud se liší od stránky
 Where	Poloha
+Where neither wire has a termination chosen for it	Tam, kde ani jeden vodič nemá zvolené zakončení
 Where the point is in the plant; y: its height above the ground level of the plant	Kde bod leží v zařízení; y: jeho výška nad úrovní terénu zařízení
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Odkud pochází struktura přístroje: aspekty shodné se strukturou kolem symbolu jsou zděděné a mění se, když se přesune do rámečku struktury nebo z něj; ostatní aspekty patří přístroji a zůstávají.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Kde vodič začíná a končí: přípojný bod z dat artiklu, bod vygenerovaný ze šablony funkce, nebo střed přístroje, pokud žádný přípojný bod neodpovídá
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixelů, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {}: click to show its floor plan	{}: kliknutím zobrazíte půdorys
+{}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře
 {}: drag to move it, a double-click shows the floor	{}: přetažením přesunete, dvojklik zobrazí podlahu
 {}: nothing to change	{}: není co měnit
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: odizolovat {} mm, {}
 {}: {} addresses changed	{}: změněno adres: {}
 {}: {} changes in the open project (not saved yet)	{}: {} změn v otevřeném projektu (zatím neuloženo)
 {}: {} changes saved	{}: uloženo {} změn

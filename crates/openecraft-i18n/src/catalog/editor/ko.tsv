@@ -227,6 +227,7 @@ Cable definition	케이블 정의
 Cable definition on page {}	페이지 {}의 케이블 정의
 Cable definition: draw a line across the wires that are cores of a cable	케이블 정의: 케이블의 심선인 전선을 가로질러 선을 그립니다
 Cable end reserve	케이블 끝 여유 길이
+Cable ends	케이블 끝단
 Cable markers	케이블 마커
 Cable passage to {}	{}(으)로의 케이블 통로
 Cable {}: {} cores assigned	케이블 {}: 심선 {}개 지정됨
@@ -426,6 +427,7 @@ Dashed	파선
 Decimals	소수 자릿수
 Default	기본
 Default (part data or definition)	기본값(부품 데이터 또는 정의)
+Default ({})	기본값({})
 Default label	기본 레이블
 Default medium	기본 매체
 Default rules	기본 규칙
@@ -646,7 +648,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	자재 명세서의 고정 부품
 Favorite	즐겨찾기
 Favorites (JSON)	즐겨찾기 (JSON)
-Ferrule {} ({})	페룰 {}({})
 Field	필드
 Field (name, description, company, creator, date, revision) or project property	필드(name, description, company, creator, date, revision) 또는 프로젝트 속성
 Field cables	필드 케이블
@@ -781,6 +782,7 @@ Hose number	호스 번호
 Hoses and pipes	호스 및 배관
 Hoses rated below it are errors; 0 = not checked	정격이 이보다 낮은 호스는 오류입니다. 0 = 검사 안 함
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	문짝이 열리는 방식: 왼쪽 또는 오른쪽 가장자리에 경첩(실내에서 볼 때), 실내 쪽 또는 바깥쪽으로 열림, 또는 벽을 따라 미닫이
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	이 끝단에서 전선을 마감하는 방식. 기본값은 연결점 또는 그 장치에 선택한 것, 없으면 레이아웃의 페룰 설정을 따릅니다
 IP / bus address	IP / 버스 주소
 ISO 639-1 language code	ISO 639-1 언어 코드
 Identifiers	식별자
@@ -989,6 +991,7 @@ Min. bend radius	최소 굽힘 반경
 Minimize the ribbon	리본 최소화
 Mirror	대칭
 Mirror (selection or symbol being placed)	대칭(선택 항목 또는 배치 중인 심볼)
+Mixed	혼합
 Mode	모드
 Model of a part (2D / 3D)	부품의 모델(2D / 3D)
 Module part; its size comes from the part	모듈 부품; 크기는 부품에서 가져옴
@@ -1869,6 +1872,7 @@ Transfer project parts to database	프로젝트 부품을 데이터베이스로 
 Translate the project texts; documentation per language	프로젝트 텍스트 번역, 언어별 문서
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	수직축 기준 회전, 위에서 볼 때 시계 반대 방향(90 °: 전면이 오른쪽을 향함)
 Tutorial	튜토리얼
+Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1952,6 +1956,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	휠: 확대/축소 · 오른쪽 클릭: 취소 · 그래픽은 0.5mm, 연결 지점은 4mm 그리드에 맞춰짐
 When it differs from the page	페이지와 다를 때
 Where	위치
+Where neither wire has a termination chosen for it	두 전선 모두 마감을 선택하지 않은 경우
 Where the point is in the plant; y: its height above the ground level of the plant	설비 내 점의 위치. y: 설비 지반면 위의 높이
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	장치 구조의 출처: 기호 주변 구조와 같은 측면은 상속되며 기호를 구조 박스 안으로 또는 밖으로 이동하면 함께 변경됩니다. 다른 측면은 장치 고유의 것으로 유지됩니다.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	전선이 시작하고 끝나는 곳: 부품 데이터의 연결 지점, 기능 템플릿에서 생성된 연결 지점 또는 일치하는 연결 지점이 없으면 장치 중심
@@ -2254,10 +2259,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} 픽셀, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
 {}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다
+{}: crimp together with the wire to {}	{}: {}(으)로 가는 전선과 함께 압착
 {}: drag to move it, R turns it, a double-click opens it	{}: 드래그하여 이동, R로 회전, 두 번 클릭하여 열기
 {}: drag to move it, a double-click shows the floor	{}: 드래그하여 이동, 두 번 클릭하여 바닥 표시
 {}: nothing to change	{}: 변경할 항목 없음
 {}: pin {}	{}: 핀 {}
+{}: strip {} mm, {}	{}: 피복 제거 {} mm, {}
 {}: {} addresses changed	{}: 주소 {}개 변경됨
 {}: {} changes in the open project (not saved yet)	{}: 열린 프로젝트에서 {}개 변경됨(아직 저장 안 됨)
 {}: {} changes saved	{}: {}개 변경 내용 저장됨

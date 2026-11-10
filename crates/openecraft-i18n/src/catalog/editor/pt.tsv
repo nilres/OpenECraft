@@ -230,6 +230,7 @@ Cable definition	Definição de cabo
 Cable definition on page {}	Definição de cabo na página {}
 Cable definition: draw a line across the wires that are cores of a cable	Definição de cabo: desenhe uma linha atravessando os fios que são veias de um cabo
 Cable end reserve	Reserva por extremidade de cabo
+Cable ends	Pontas do cabo
 Cable markers	Marcadores de cabo
 Cable passage to {}	Passagem de cabos para {}
 Cable {}: {} cores assigned	Cabo {}: {} veias atribuídas
@@ -431,6 +432,7 @@ Dashed	Tracejado
 Decimals	Casas decimais
 Default	Padrão
 Default (part data or definition)	Padrão (dados da peça ou definição)
+Default ({})	Padrão ({})
 Default label	Rótulo padrão
 Default medium	Meio padrão
 Default rules	Regras padrão
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Material de fixação na lista de materiais
 Favorite	Favorito
 Favorites (JSON)	Favoritos (JSON)
-Ferrule {} ({})	Ponteira {} ({})
 Field	Campo
 Field (name, description, company, creator, date, revision) or project property	Campo (name, description, company, creator, date, revision) ou propriedade de projeto
 Field cables	Cabos de campo
@@ -791,6 +792,7 @@ Hose number	Número da mangueira
 Hoses and pipes	Mangueiras e tubulações
 Hoses rated below it are errors; 0 = not checked	Mangueiras especificadas abaixo dela são erros; 0 = não verificado
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Como a folha abre: dobradiças na borda esquerda ou direita (vista de dentro do ambiente), para dentro ou para fora do ambiente, ou de correr ao longo da parede
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Como o fio é terminado nesta ponta; por padrão como escolhido para o ponto de conexão ou seu dispositivo, senão conforme a configuração de terminais tubulares do layout
 IP / bus address	Endereço IP / de barramento
 ISO 639-1 language code	Código de idioma ISO 639-1
 Identifiers	Identificadores
@@ -1003,6 +1005,7 @@ Min. bend radius	Raio mín. de curvatura
 Minimize the ribbon	Minimizar a faixa de opções
 Mirror	Espelhar
 Mirror (selection or symbol being placed)	Espelhar (seleção ou símbolo sendo posicionado)
+Mixed	Misto
 Mode	Modo
 Model of a part (2D / 3D)	Modelo de uma peça (2D / 3D)
 Module part; its size comes from the part	Peça do módulo; seu tamanho vem da peça
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Transferir peças do projeto para o banco de 
 Translate the project texts; documentation per language	Traduzir os textos do projeto; documentação por idioma
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotação em torno da vertical, no sentido anti-horário visto de cima (90 °: as frentes ficam voltadas para a direita)
 Tutorial	Tutorial
+Twin ferrules where two wires share a connection point	Terminais tubulares duplos onde dois fios compartilham um ponto de conexão
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aqui devem encontrar-se dois fios em ângulo reto. Com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digite um ponto e pressione Enter: x y em mm ou @dx dy em relação ao último ponto; funciona como um clique da ferramenta atual
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Roda: zoom · clique com o botão direito: cancelar · os gráficos se ajustam a 0,5 mm, os pontos de conexão à grade de 4 mm
 When it differs from the page	Quando difere da página
 Where	Posição
+Where neither wire has a termination chosen for it	Onde nenhum dos dois fios tem uma terminação escolhida
 Where the point is in the plant; y: its height above the ground level of the plant	Onde o ponto está na instalação; y: sua altura acima do nível do solo da instalação
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De onde vem a estrutura do dispositivo: aspectos iguais à estrutura em torno do símbolo são herdados e acompanham quando ele entra ou sai de uma caixa de estrutura; os outros aspectos são do próprio dispositivo e permanecem.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Onde o fio começa e termina: um ponto de conexão dos dados da peça, um gerado a partir do modelo de função ou o centro do dispositivo, se nenhum ponto de conexão corresponder
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} páginas)
 {}: click to show its floor plan	{}: clique para mostrar a sua planta
+{}: crimp together with the wire to {}	{}: crimpar junto com o fio para {}
 {}: drag to move it, R turns it, a double-click opens it	{}: arraste para mover, R para girar, clique duplo para abrir
 {}: drag to move it, a double-click shows the floor	{}: arraste para mover, clique duplo para mostrar o piso
 {}: nothing to change	{}: nada a alterar
 {}: pin {}	{}: pino {}
+{}: strip {} mm, {}	{}: desencapar {} mm, {}
 {}: {} addresses changed	{}: {} endereços alterados
 {}: {} changes in the open project (not saved yet)	{}: {} alterações no projeto aberto (ainda não salvas)
 {}: {} changes saved	{}: {} alterações salvas

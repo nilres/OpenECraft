@@ -230,6 +230,7 @@ Cable definition	Kabeldefinition
 Cable definition on page {}	Kabeldefinition på side {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: Tegn en linje hen over de ledninger, der er ledere i et kabel
 Cable end reserve	Reserve pr. kabelende
+Cable ends	Kabelender
 Cable markers	Kabelmærkater
 Cable passage to {}	Kabelgennemføring til {}
 Cable {}: {} cores assigned	Kabel {}: {} ledere tildelt
@@ -431,6 +432,7 @@ Dashed	Stiplet
 Decimals	Decimaler
 Default	Standard
 Default (part data or definition)	Standard (artikeldata eller definition)
+Default ({})	Standard ({})
 Default label	Standardetiket
 Default medium	Standardmedie
 Default rules	Standardregler
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Fastgørelsesmateriel i styklisten
 Favorite	Favorit
 Favorites (JSON)	Favoritter (JSON)
-Ferrule {} ({})	Terminalrør {} ({})
 Field	Felt
 Field (name, description, company, creator, date, revision) or project property	Felt (name, description, company, creator, date, revision) eller projektegenskab
 Field cables	Feltkabler
@@ -791,6 +792,7 @@ Hose number	Slangenummer
 Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hvordan lederen afsluttes i denne ende; som standard som valgt for tilslutningspunktet eller dets enhed, ellers efter layoutets indstilling for terminalrør
 IP / bus address	IP- / busadresse
 ISO 639-1 language code	Sprogkode efter ISO 639-1
 Identifiers	Betegnelser
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. bøjningsradius
 Minimize the ribbon	Minimér båndet
 Mirror	Spejl
 Mirror (selection or symbol being placed)	Spejlvend (markering eller symbol, der placeres)
+Mixed	Blandet
 Mode	Tilstand
 Model of a part (2D / 3D)	Model af en artikel (2D / 3D)
 Module part; its size comes from the part	Moduldel; dens størrelse kommer fra delen
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Overfør projektartikler til databasen
 Translate the project texts; documentation per language	Oversæt projektteksterne; dokumentation pr. sprog
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drejning om lodret akse, mod uret set ovenfra (90 °: fronterne vender mod højre)
 Tutorial	Selvstudium
+Twin ferrules where two wires share a connection point	Dobbelte terminalrør hvor to ledere deler et tilslutningspunkt
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv et punkt, og tryk på Enter: x y i mm eller @dx dy i forhold til det sidste punkt; det virker som et klik med det aktuelle værktøj
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zoom · højreklik: annuller · grafik fastgøres til 0,5 mm, tilslutningspunkter til 4 mm-gitteret
 When it differs from the page	Når den afviger fra siden
 Where	Placering
+Where neither wire has a termination chosen for it	Hvor ingen af lederne har en valgt afslutning
 Where the point is in the plant; y: its height above the ground level of the plant	Hvor punktet ligger i anlægget; y: dets højde over anlæggets terræn
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Hvor enhedens struktur kommer fra: aspekter, der er lig med strukturen omkring symbolet, arves og følger med, når det flyttes ind i eller ud af en strukturboks; andre aspekter er enhedens egne og bliver.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Hvor ledningen starter og slutter: et tilslutningspunkt fra artikeldataene, et genereret fra funktionsskabelonen eller enhedens midte, hvis intet tilslutningspunkt passer
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixel, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {}: click to show its floor plan	{}: klik for at vise plantegningen
+{}: crimp together with the wire to {}	{}: krymp sammen med lederen til {}
 {}: drag to move it, R turns it, a double-click opens it	{}: træk for at flytte, R drejer, dobbeltklik åbner
 {}: drag to move it, a double-click shows the floor	{}: træk for at flytte, dobbeltklik viser gulvet
 {}: nothing to change	{}: intet at ændre
 {}: pin {}	{}: ben {}
+{}: strip {} mm, {}	{}: afisoler {} mm, {}
 {}: {} addresses changed	{}: {} adresser ændret
 {}: {} changes in the open project (not saved yet)	{}: {} ændringer i det åbne projekt (endnu ikke gemt)
 {}: {} changes saved	{}: {} ændringer gemt

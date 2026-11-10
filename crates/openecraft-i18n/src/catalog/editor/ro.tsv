@@ -230,6 +230,7 @@ Cable definition	Definire cablu
 Cable definition on page {}	Definire cablu pe pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Definire cablu: trasați o linie peste conductoarele care sunt fire ale unui cablu
 Cable end reserve	Rezervă la capăt de cablu
+Cable ends	Capetele cablului
 Cable markers	Marcaje de cablu
 Cable passage to {}	Trecere de cabluri spre {}
 Cable {}: {} cores assigned	Cablul {}: {} fire atribuite
@@ -431,6 +432,7 @@ Dashed	Întrerupt
 Decimals	Zecimale
 Default	Implicit
 Default (part data or definition)	Implicit (date de articol sau definiție)
+Default ({})	Implicit ({})
 Default label	Etichetă implicită
 Default medium	Mediu implicit
 Default rules	Reguli implicite
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Elemente de fixare în lista de materiale
 Favorite	Favorit
 Favorites (JSON)	Favorite (JSON)
-Ferrule {} ({})	Manșon de capăt {} ({})
 Field	Câmp
 Field (name, description, company, creator, date, revision) or project property	Câmp (name, description, company, creator, date, revision) sau proprietate de proiect
 Field cables	Cabluri de câmp
@@ -791,6 +792,7 @@ Hose number	Număr furtun
 Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Cum este terminat conductorul la acest capăt; implicit cum s-a ales pentru punctul de conectare sau echipamentul său, altfel după setarea manșoanelor din amplasare
 IP / bus address	Adresă IP / de magistrală
 ISO 639-1 language code	Cod de limbă ISO 639-1
 Identifiers	Identificatori
@@ -1003,6 +1005,7 @@ Min. bend radius	Rază min. de curbură
 Minimize the ribbon	Minimizarea panglicii
 Mirror	Oglindire
 Mirror (selection or symbol being placed)	Oglindire (selecția sau simbolul care se plasează)
+Mixed	Mixt
 Mode	Mod
 Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
 Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Transfer articole proiect în baza de date
 Translate the project texts; documentation per language	Traducerea textelor proiectului; documentație pe limbi
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotire în jurul verticalei, în sens antiorar văzut de sus (90 °: fețele frontale sunt orientate spre dreapta)
 Tutorial	Tutorial
+Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotiță: zoom · clic dreapta: anulare · grafica se aliniază la 0,5 mm, punctele de conexiune la grila de 4 mm
 When it differs from the page	Când diferă de pagină
 Where	Poziție
+Where neither wire has a termination chosen for it	Unde niciunul dintre conductoare nu are o terminație aleasă
 Where the point is in the plant; y: its height above the ground level of the plant	Unde se află punctul în instalație; y: înălțimea lui deasupra nivelului solului instalației
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De unde provine structura dispozitivului: aspectele egale cu structura din jurul simbolului sunt moștenite și se schimbă când acesta este mutat într-o casetă de structură sau în afara ei; celelalte aspecte sunt ale dispozitivului și rămân.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Unde începe și se termină conductorul: un punct de conexiune din datele articolului, unul generat din șablonul de funcție sau centrul dispozitivului dacă niciun punct de conexiune nu corespunde
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixeli, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {}: click to show its floor plan	{}: clic pentru a afișa planul
+{}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide
 {}: drag to move it, a double-click shows the floor	{}: trageți pentru a muta, dublu clic afișează pardoseala
 {}: nothing to change	{}: nimic de modificat
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: dezizolare {} mm, {}
 {}: {} addresses changed	{}: {} adrese modificate
 {}: {} changes in the open project (not saved yet)	{}: {} modificări în proiectul deschis (încă nesalvate)
 {}: {} changes saved	{}: {} modificări salvate

@@ -230,6 +230,7 @@ Cable definition	Определение кабеля
 Cable definition on page {}	Определение кабеля на листе {}
 Cable definition: draw a line across the wires that are cores of a cable	Определение кабеля: проведите линию через провода, которые являются жилами кабеля
 Cable end reserve	Запас на конец кабеля
+Cable ends	Концы кабеля
 Cable markers	Маркировка кабелей
 Cable passage to {}	Кабельный проход к {}
 Cable {}: {} cores assigned	Кабель {}: назначено жил – {}
@@ -430,6 +431,7 @@ Dashed	Штриховая
 Decimals	Знаков после запятой
 Default	По умолчанию
 Default (part data or definition)	По умолчанию (данные изделия или определение)
+Default ({})	По умолчанию ({})
 Default label	Подпись по умолчанию
 Default medium	Среда по умолчанию
 Default rules	Правила по умолчанию
@@ -654,7 +656,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Крепёж в спецификации
 Favorite	Избранное
 Favorites (JSON)	Избранное (JSON)
-Ferrule {} ({})	Наконечник {} ({})
 Field	Поле
 Field (name, description, company, creator, date, revision) or project property	Поле (name, description, company, creator, date, revision) или свойство проекта
 Field cables	Полевые кабели
@@ -790,6 +791,7 @@ Hose number	Номер шланга
 Hoses and pipes	Шланги и трубы
 Hoses rated below it are errors; 0 = not checked	Шланги, рассчитанные на меньшее давление, – ошибки; 0 = не проверяется
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Как открывается створка: петли у левого или правого края (вид изнутри помещения), внутрь или наружу помещения, или сдвигается вдоль стены
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Как провод оконцован на этом конце; по умолчанию как выбрано для точки подключения или её устройства, иначе по настройке наконечников компоновки
 IP / bus address	IP-адрес / адрес на шине
 ISO 639-1 language code	Код языка по ISO 639-1
 Identifiers	Идентификаторы
@@ -1002,6 +1004,7 @@ Min. bend radius	Мин. радиус изгиба
 Minimize the ribbon	Свернуть ленту
 Mirror	Отразить
 Mirror (selection or symbol being placed)	Отразить (выделенное или размещаемый символ)
+Mixed	Разные
 Mode	Режим
 Model of a part (2D / 3D)	Модель изделия (2D / 3D)
 Module part; its size comes from the part	Изделие модуля; его размер берётся из изделия
@@ -1892,6 +1895,7 @@ Transfer project parts to database	Передать изделия проект�
 Translate the project texts; documentation per language	Перевод текстов проекта; документация на каждом языке
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот вокруг вертикальной оси, против часовой стрелки при виде сверху (90 °: лицевые стороны обращены вправо)
 Tutorial	Учебник
+Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик
@@ -1976,6 +1980,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Колесо: масштаб · правый щелчок: отмена · графика привязывается к 0,5 мм, точки подключения – к сетке 4 мм
 When it differs from the page	Если отличается от листа
 Where	Положение
+Where neither wire has a termination chosen for it	Если ни для одного из проводов не выбрано оконцевание
 Where the point is in the plant; y: its height above the ground level of the plant	Где точка находится в установке; y: её высота над уровнем земли установки
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Откуда берётся структура устройства: аспекты, равные структуре вокруг символа, наследуются и меняются при перемещении в рамку структуры или из неё; остальные аспекты принадлежат устройству и сохраняются.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Где провод начинается и заканчивается: точка подключения из данных изделия, точка, созданная из шаблона функций, или центр устройства, если ни одна точка подключения не подходит
@@ -2287,10 +2292,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} пикселей, {}
 {} – {} ({} pages)	{} – {} (листов: {})
 {}: click to show its floor plan	{}: щёлкните, чтобы показать план
+{}: crimp together with the wire to {}	{}: обжать вместе с проводом к {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетащите, чтобы переместить, R поворачивает, двойной щелчок открывает
 {}: drag to move it, a double-click shows the floor	{}: перетащите, чтобы переместить, двойной щелчок показывает пол
 {}: nothing to change	{}: нечего изменять
 {}: pin {}	{}: контакт {}
+{}: strip {} mm, {}	{}: зачистить {} мм, {}
 {}: {} addresses changed	{}: изменено адресов: {}
 {}: {} changes in the open project (not saved yet)	{}: изменений в открытом проекте: {} (ещё не сохранены)
 {}: {} changes saved	{}: сохранено изменений: {}

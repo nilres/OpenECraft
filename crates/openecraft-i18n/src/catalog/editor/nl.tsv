@@ -230,6 +230,7 @@ Cable definition	Kabeldefinitie
 Cable definition on page {}	Kabeldefinitie op pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinitie: trek een lijn over de draden die aders van een kabel zijn
 Cable end reserve	Reserve per kabeleinde
+Cable ends	Kabeleinden
 Cable markers	Kabelmarkeringen
 Cable passage to {}	Kabeldoorvoer naar {}
 Cable {}: {} cores assigned	Kabel {}: {} aders toegewezen
@@ -431,6 +432,7 @@ Dashed	Gestreept
 Decimals	Decimalen
 Default	Standaard
 Default (part data or definition)	Standaard (artikelgegevens of definitie)
+Default ({})	Standaard ({})
 Default label	Standaardlabel
 Default medium	Standaardmedium
 Default rules	Standaardregels
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Bevestigingsmateriaal in de stuklijst
 Favorite	Favoriet
 Favorites (JSON)	Favorieten (JSON)
-Ferrule {} ({})	Adereindhuls {} ({})
 Field	Veld
 Field (name, description, company, creator, date, revision) or project property	Veld (name, description, company, creator, date, revision) of projecteigenschap
 Field cables	Veldkabels
@@ -791,6 +792,7 @@ Hose number	Slangnummer
 Hoses and pipes	Slangen en buizen
 Hoses rated below it are errors; 0 = not checked	Slangen met een lagere drukklasse zijn fouten; 0 = niet gecontroleerd
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hoe het blad opent: scharnieren aan de linker- of rechterrand (gezien vanuit de ruimte), de ruimte in of uit, of schuivend langs de wand
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hoe de draad aan dit uiteinde wordt afgewerkt; standaard zoals gekozen voor het aansluitpunt of zijn apparaat, anders zoals de layout adereindhulzen instelt
 IP / bus address	IP- / busadres
 ISO 639-1 language code	Taalcode volgens ISO 639-1
 Identifiers	Aanduidingen
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. buigradius
 Minimize the ribbon	Het lint minimaliseren
 Mirror	Spiegelen
 Mirror (selection or symbol being placed)	Spiegelen (selectie of symbool dat wordt geplaatst)
+Mixed	Gemengd
 Mode	Modus
 Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
 Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Projectartikelen overnemen in de database
 Translate the project texts; documentation per language	De projectteksten vertalen; documentatie per taal
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Draaiing om de verticale as, van boven gezien linksom (90 °: de fronten wijzen naar rechts)
 Tutorial	Tutorial
+Twin ferrules where two wires share a connection point	Dubbele adereindhulzen waar twee draden een aansluitpunt delen
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Typ een punt en druk op Enter: x y in mm, of @dx dy ten opzichte van het laatste punt; dit werkt als een klik met het huidige gereedschap
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Muiswiel: zoomen · rechtsklik: annuleren · grafiek springt naar 0,5 mm, aansluitpunten naar het raster van 4 mm
 When it differs from the page	Wanneer deze afwijkt van de pagina
 Where	Plaats
+Where neither wire has a termination chosen for it	Waar voor geen van beide draden een afwerking is gekozen
 Where the point is in the plant; y: its height above the ground level of the plant	Waar het punt in de installatie ligt; y: de hoogte boven het maaiveld van de installatie
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Waar de structuur van het apparaat vandaan komt: aspecten die gelijk zijn aan de structuur rond het symbool zijn geërfd en volgen wanneer het in of uit een structuurkader wordt verplaatst; andere aspecten zijn van het apparaat zelf en blijven.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Waar de draad begint en eindigt: een aansluitpunt uit de artikelgegevens, een aansluitpunt gegenereerd uit de functiesjabloon, of het midden van het apparaat als geen aansluitpunt overeenkomt
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen
+{}: crimp together with the wire to {}	{}: samen met de draad naar {} krimpen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent
 {}: drag to move it, a double-click shows the floor	{}: slepen om te verplaatsen, dubbelklik toont de vloer
 {}: nothing to change	{}: niets te wijzigen
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: strippen {} mm, {}
 {}: {} addresses changed	{}: {} adressen gewijzigd
 {}: {} changes in the open project (not saved yet)	{}: {} wijzigingen in het geopende project (nog niet opgeslagen)
 {}: {} changes saved	{}: {} wijzigingen opgeslagen

@@ -1639,3 +1639,46 @@ fn installation_zones_and_opened_walls_are_seen_through() {
     let eye = [100_000.0, 100_000.0, 100_000.0];
     assert!(open.sides.iter().filter(|s| s.glass).all(|s| s.layer(eye, true) == Some(OUTER_WALLS)));
 }
+
+#[test]
+fn wire_ends_show_their_ferrules_or_the_bare_copper() {
+    let mut prj = openecraft_core::sample::demo_project();
+    let mut ui = PanelUi { show_wires: true, ..Default::default() };
+    let rgb = |c: [u8; 3]| egui::Color32::from_rgb(c[0], c[1], c[2]);
+    let (sleeve, copper) = (rgb(openecraft_core::production::SLEEVE_RGB), rgb(openecraft_core::production::COPPER_RGB));
+    for ferrules in [true, false] {
+        prj.layout.ferrules = ferrules;
+        let an = Analysis::build(&prj);
+        let shown = ui.shown_3d(&prj, 0);
+        let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+        let count = |c: egui::Color32| scene.wires.iter().filter(|w| w.line.tube && w.line.color == c).count();
+        let (with, bare) = (count(sleeve), count(copper));
+        assert!(if ferrules { with > 0 && bare == 0 } else { with == 0 && bare > 0 }, "ferrules {ferrules}: {with} sleeve, {bare} copper pieces");
+    }
+    // Ring terminals chosen at a device: their rings are flat faces among the tubes,
+    // their insulated sleeves in the colour of the cross-section.
+    prj.layout.ferrules = true;
+    let an = Analysis::build(&prj);
+    let device = an.wiring.iter().find(|w| w.cable.is_empty()).map(|w| w.from.rsplit_once(':').unwrap().0.to_string()).unwrap();
+    let before = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &ui.shown_3d(&prj, 0)).tubes.len();
+    openecraft_core::production::set_termination(&mut prj, &device, "", Some(openecraft_core::production::Termination::Ring));
+    let an = Analysis::build(&prj);
+    let shown = ui.shown_3d(&prj, 0);
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    assert!(scene.tubes.len() > before, "the rings add faces: {before} -> {}", scene.tubes.len());
+    let insulated = [[210, 40, 40], [40, 90, 200], [235, 200, 40]].map(rgb);
+    assert!(scene.wires.iter().any(|w| w.line.tube && insulated.contains(&w.line.color)), "insulated sleeves");
+}
+
+#[test]
+fn cables_leaving_the_enclosure_have_their_core_ends() {
+    // -W1 runs from the cabinet to the motor: its cores are not in the panel wiring.
+    let mut prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    assert!(an.wiring.iter().all(|w| w.cable != "-W1"));
+    let ends = terminations::core_ends(&prj, &an, "-W1");
+    assert!(ends.iter().any(|(at, _, _)| at == "-X1:1"), "{ends:?}");
+    let other = ends.iter().find(|(at, _, _)| at == "-X1:1").unwrap().1.clone();
+    openecraft_core::production::set_termination(&mut prj, "-X1:1", &other, Some(openecraft_core::production::Termination::Fork));
+    assert!(!routing_ui::core_end(&prj, &an, "-W1", "-X1:1").is_empty());
+}

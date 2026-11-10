@@ -168,6 +168,13 @@ impl App {
             self.show_pane(pane);
             return;
         }
+        if commands::acts_in_layout_view(cmd) && !self.workspace.is_workshop() {
+            if self.pane_shown(Pane::LayoutView) {
+                self.show_pane(Pane::LayoutView);
+            } else {
+                self.set_workspace(Workspace::Panel);
+            }
+        }
         if def.kind == Kind::Menu {
             // Menus open in the ribbon; from the command search, a key or a key tip
             // their entries open in a small window.

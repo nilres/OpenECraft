@@ -230,6 +230,7 @@ Cable definition	Kaapelimääritys
 Cable definition on page {}	Kaapelimääritys sivulla {}
 Cable definition: draw a line across the wires that are cores of a cable	Kaapelimääritys: piirrä viiva niiden johtojen poikki, jotka ovat kaapelin johtimia
 Cable end reserve	Kaapelin päävara
+Cable ends	Kaapelin päät
 Cable markers	Kaapelimerkit
 Cable passage to {}	Kaapelin läpivientiaukko kohteeseen {}
 Cable {}: {} cores assigned	Kaapeli {}: {} johdinta määritetty
@@ -431,6 +432,7 @@ Dashed	Katkoviiva
 Decimals	Desimaalit
 Default	Oletus
 Default (part data or definition)	Oletus (osan tiedot tai määrittely)
+Default ({})	Oletus ({})
 Default label	Oletusnimitys
 Default medium	Oletusväliaine
 Default rules	Oletussäännöt
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Kiinnitystarvikkeet osaluettelossa
 Favorite	Suosikki
 Favorites (JSON)	Suosikit (JSON)
-Ferrule {} ({})	Pääteholkki {} ({})
 Field	Kenttä
 Field (name, description, company, creator, date, revision) or project property	Kenttä (name, description, company, creator, date, revision) tai projektiominaisuus
 Field cables	Kenttäkaapelit
@@ -791,6 +792,7 @@ Hose number	Letkun numero
 Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
 IP / bus address	IP- / väyläosoite
 ISO 639-1 language code	ISO 639-1 -kielikoodi
 Identifiers	Tunnukset
@@ -1003,6 +1005,7 @@ Min. bend radius	Pienin taivutussäde
 Minimize the ribbon	Pienennä valintanauha
 Mirror	Peilaa
 Mirror (selection or symbol being placed)	Peilaa (valinta tai sijoitettava symboli)
+Mixed	Sekalainen
 Mode	Tila
 Model of a part (2D / 3D)	Osan malli (2D / 3D)
 Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Siirrä projektin osat tietokantaan
 Translate the project texts; documentation per language	Käännä projektin tekstit; dokumentaatio kielittäin
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Kierto pystyakselin ympäri, ylhäältä katsottuna vastapäivään (90 °: etupuolet osoittavat oikealle)
 Tutorial	Opetusohjelma
+Twin ferrules where two wires share a connection point	Kaksoispääteholkit, kun kaksi johdinta jakaa liitäntäpisteen
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
 When it differs from the page	Kun se poikkeaa sivusta
 Where	Sijainti
+Where neither wire has a termination chosen for it	Kun kummallekaan johtimelle ei ole valittu päätettä
 Where the point is in the plant; y: its height above the ground level of the plant	Missä piste on laitoksessa; y: sen korkeus laitoksen maanpinnan yläpuolella
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Mistä laitteen rakenne tulee: symbolia ympäröivää rakennetta vastaavat aspektit peritään ja ne muuttuvat, kun symboli siirretään rakennelaatikkoon tai siitä pois; muut aspektit ovat laitteen omia ja säilyvät.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pikseliä, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
+{}: crimp together with the wire to {}	{}: puristetaan yhdessä johtimen {} kanssa
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa
 {}: drag to move it, a double-click shows the floor	{}: siirrä vetämällä, kaksoisnapsautus näyttää lattian
 {}: nothing to change	{}: ei muutettavaa
 {}: pin {}	{}: nasta {}
+{}: strip {} mm, {}	{}: kuori {} mm, {}
 {}: {} addresses changed	{}: {} osoitetta muutettu
 {}: {} changes in the open project (not saved yet)	{}: {} muutosta avoimessa projektissa (ei vielä tallennettu)
 {}: {} changes saved	{}: {} muutosta tallennettu

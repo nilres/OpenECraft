@@ -167,6 +167,10 @@ enum Deferred {
     Cmd(Cmd),
     /// A device shown in the panel layout (`true`: in the 3D view).
     Focus(String, bool),
+    /// A page shown (and an item on it selected).
+    Goto(usize, u64),
+    Show(Pane),
+    Workspace(Workspace),
 }
 
 /// An action that replaces the project or ends the app: with unsaved changes it waits
@@ -717,6 +721,11 @@ impl App {
         if page >= self.session.prj.pages.len() {
             return;
         }
+        // While the panes are drawn the tree is not in `dock`: the page would seem closed.
+        if self.in_dock {
+            self.deferred.push(Deferred::Goto(page, id));
+            return;
+        }
         self.session.page = page;
         self.editor.cancel();
         self.editor.selection.clear();
@@ -749,6 +758,10 @@ impl App {
     /// Shows a pane: the active tab where it is docked, otherwise a window (tools) or a
     /// tab of the area it belongs to. A floating pane comes to the front.
     pub(super) fn show_pane(&mut self, pane: Pane) {
+        if self.in_dock {
+            self.deferred.push(Deferred::Show(pane));
+            return;
+        }
         let docked = crate::dock::find(&self.dock, pane).is_some();
         if self.floating.contains(&pane) || (!docked && self.shell.placement.floats(pane)) {
             if !self.floating.contains(&pane) {
@@ -781,14 +794,25 @@ impl App {
 
     /// Switches the workspace: its own arrangement of the panes comes back.
     pub(super) fn set_workspace(&mut self, w: Workspace) {
+        // While the panes are drawn the tree of the workspace is not in `dock`.
+        if self.in_dock {
+            self.deferred.push(Deferred::Workspace(w));
+            return;
+        }
         match w {
             Workspace::Mounting => self.mounting_ui.active = true,
             Workspace::Wiring => self.mounting_ui.active = false,
             _ => {}
         }
-        if w == self.workspace {
-            return;
+        if w != self.workspace {
+            self.swap_workspace(w);
         }
+        // The workspace is chosen for its main document (the panel layout, the
+        // workbench, …), even where another tab was left in front of it.
+        self.show_pane(crate::dock::main_document(w));
+    }
+
+    fn swap_workspace(&mut self, w: Workspace) {
         let tree = self.docks.remove(&w).unwrap_or_else(|| crate::dock::default_tree_for(w));
         let old = std::mem::replace(&mut self.dock, tree);
         self.docks.insert(self.workspace, old);
@@ -1028,6 +1052,9 @@ impl eframe::App for App {
             match d {
                 Deferred::Cmd(cmd) => self.run(&ctx, cmd),
                 Deferred::Focus(tag, three_d) => self.focus_device(&tag, three_d),
+                Deferred::Goto(page, id) => self.goto(page, id),
+                Deferred::Show(pane) => self.show_pane(pane),
+                Deferred::Workspace(w) => self.set_workspace(w),
             }
         }
         self.open_requests(false);

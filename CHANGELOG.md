@@ -15,6 +15,36 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   of the CPU was closed back to its start), and the schematic no longer draws spikes
   where a line turns back on itself. The part selection of *Add part…* no longer grows
   to the height of the screen.
+- **Wire ends in 3D:** the 3D view of the panel layout shows the end of each wire and
+  cable core at its connection point: the ferrule (metal sleeve and collar in its
+  DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
+  conductor as long as it is stripped.
+- **Terminations per wire end:** each end of a wire or cable core gets its own
+  termination: bare conductor, ferrule, twin ferrule, ring, fork or pin terminal, flat
+  plug or flat receptacle (insulated in red, blue or yellow by the cross-section,
+  uninsulated tubular cable lugs from 10 mm²). It is chosen in the properties of a
+  wire (*Wire ends*) or a cable (*Cable ends*, for all cores at one device), or with
+  the command `set_termination` for a connection point, a device or one wire;
+  `terminations` lists them. Ends without one keep the ferrule setting of the layout.
+  The 3D view draws every termination (rings round the connection point, flat plugs,
+  forks, pins and insulated sleeves in their colour, each cable core with its own
+  cross-section); the production wire list shows the termination and parts of both
+  ends, and the wiring assistant, the machine exports, the harness data and the bill of
+  materials (with the new catalog parts) take them too.
+- **Twin ferrules for two wires:** a twin ferrule belongs to the two wires ending at
+  one connection point. Chosen for one of them it is chosen for the other one too
+  (offered only where exactly two wires end), it is shown once in 3D, counted once in
+  the bill of materials, named with the other wire in the production wire list and the
+  wiring assistant (which puts the two wires one after the other, to be crimped
+  together) and carried by the first of them in the machine exports (new fields *Twin
+  ferrule with (from)* / *(to)*). Two cross-sections get the ferrule for the larger
+  one. The check *Twin ferrules* warns about one with a single wire, at a point with
+  more than two wires or for two cross-sections. New layout setting *Twin ferrules where
+  two wires share a connection point* (command `set_ferrules`).
+- **Workspaces show their view again:** a workspace chosen in the title bar shows its
+  main view (the panel layout, the workbench, …) even where the page was left in front
+  of it, and the commands of the layout view (3D view, floor plan, mounting plate,
+  tools, …) bring it to the front instead of changing it unseen behind the page.
 - **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
   too close for its bend radius no longer runs back across or alongside its own way
   (the supply cable `=GRID-W1` of the example `building_services` crossed itself below

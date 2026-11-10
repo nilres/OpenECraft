@@ -24,6 +24,7 @@ mod routing_ui;
 mod scene3d;
 pub(crate) mod site_plan;
 mod site_tools;
+mod terminations;
 pub use site_tools::SiteTool;
 mod view3d;
 
@@ -1602,6 +1603,8 @@ impl PanelUi {
                 .on_hover_text(tr("The check warns about cable ducts filled above this level"));
         });
         ui.checkbox(&mut prj.layout.ferrules, tr("Wire ends with ferrules")).on_hover_text(tr("Production wire list and bill of materials"));
+        ui.add_enabled(prj.layout.ferrules, egui::Checkbox::new(&mut prj.layout.twin_ferrules, tr("Twin ferrules where two wires share a connection point")))
+            .on_hover_text(tr("Where neither wire has a termination chosen for it"));
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
         climate_section(ui, prj, ei);
         let findings = self.findings(prj, an, ei);
@@ -2097,7 +2100,7 @@ impl PanelUi {
         });
     }
 
-    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &Project, an: &Analysis, wi: usize) {
+    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, wi: usize) {
         let w = &an.wiring[wi];
         ui.label(RichText::new(tr("Wire")).strong());
         egui::Grid::new("pwire").num_columns(2).spacing([10.0, 5.0]).show(ui, |ui| {
@@ -2154,6 +2157,8 @@ impl PanelUi {
             ))
             .weak(),
         );
+        ui.separator();
+        self.wire_ends(ui, prj, an, &w.from, &w.to, &w.cross_section);
         ui.separator();
         ui.label(RichText::new(tr("Connected devices")).strong());
         let mut select = None;

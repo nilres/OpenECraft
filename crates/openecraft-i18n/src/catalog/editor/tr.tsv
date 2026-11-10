@@ -230,6 +230,7 @@ Cable definition	Kablo tanımı
 Cable definition on page {}	{} sayfasında kablo tanımı
 Cable definition: draw a line across the wires that are cores of a cable	Kablo tanımı: bir kablonun damarları olan tellerin üzerinden bir çizgi çizin
 Cable end reserve	Kablo ucu payı
+Cable ends	Kablo uçları
 Cable markers	Kablo işaretleri
 Cable passage to {}	{} ile kablo geçişi
 Cable {}: {} cores assigned	Kablo {}: {} damar atandı
@@ -431,6 +432,7 @@ Dashed	Kesik çizgili
 Decimals	Ondalık basamak
 Default	Varsayılan
 Default (part data or definition)	Varsayılan (parça verileri veya tanım)
+Default ({})	Varsayılan ({})
 Default label	Varsayılan yazı
 Default medium	Varsayılan ortam
 Default rules	Varsayılan kurallar
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Malzeme listesinde sabitleme elemanları
 Favorite	Favori
 Favorites (JSON)	Favoriler (JSON)
-Ferrule {} ({})	Kablo yüksüğü {} ({})
 Field	Alan
 Field (name, description, company, creator, date, revision) or project property	Alan (name, description, company, creator, date, revision) veya proje özelliği
 Field cables	Saha kabloları
@@ -791,6 +792,7 @@ Hose number	Hortum numarası
 Hoses and pipes	Hortumlar ve borular
 Hoses rated below it are errors; 0 = not checked	Bunun altında derecelendirilmiş hortumlar hatadır; 0 = kontrol edilmez
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Kanadın açılışı: sol veya sağ kenarında menteşeli (odanın içinden bakıldığında), odaya doğru veya dışarı, ya da duvar boyunca sürgülü
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Telin bu uçta nasıl sonlandırıldığı; varsayılan olarak bağlantı noktası veya cihazı için seçildiği gibi, aksi halde yerleşimin yüksük ayarına göre
 IP / bus address	IP / bus adresi
 ISO 639-1 language code	ISO 639-1 dil kodu
 Identifiers	Tanımlayıcılar
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. bükme yarıçapı
 Minimize the ribbon	Şeridi küçült
 Mirror	Yansıt
 Mirror (selection or symbol being placed)	Yansıt (seçim veya yerleştirilen sembol)
+Mixed	Karışık
 Mode	Mod
 Model of a part (2D / 3D)	Bir parçanın modeli (2D / 3D)
 Module part; its size comes from the part	Modül parçası; boyutu parçadan gelir
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Proje parçalarını veritabanına aktar
 Translate the project texts; documentation per language	Proje metinlerini çevir; dil başına dokümantasyon
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90 °: ön yüzler sağa bakar)
 Tutorial	Eğitim
+Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Tekerlek: yakınlaştır · sağ tık: iptal · grafikler 0,5 mm'ye, bağlantı noktaları 4 mm ızgaraya yaslanır
 When it differs from the page	Sayfadan farklı olduğunda
 Where	Konum
+Where neither wire has a termination chosen for it	Hiçbir tel için sonlandırma seçilmemişse
 Where the point is in the plant; y: its height above the ground level of the plant	Noktanın tesisteki yeri; y: tesisin zemin seviyesinin üzerindeki yüksekliği
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Cihazın yapısının kaynağı: sembolün çevresindeki yapıya eşit olan yönler devralınır ve sembol bir yapı kutusuna girdiğinde veya çıktığında değişir; diğer yönler cihazın kendisine aittir ve korunur.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Telin başladığı ve bittiği yer: parça verilerinden bir bağlantı noktası, fonksiyon şablonundan oluşturulan bir nokta veya eşleşen bağlantı noktası yoksa cihaz merkezi
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} piksel, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın
+{}: crimp together with the wire to {}	{}: {} yönündeki telle birlikte sıkıştırın
 {}: drag to move it, R turns it, a double-click opens it	{}: taşımak için sürükleyin, R döndürür, çift tıklama açar
 {}: drag to move it, a double-click shows the floor	{}: taşımak için sürükleyin, çift tıklama zemini gösterir
 {}: nothing to change	{}: değiştirilecek bir şey yok
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: soyma {} mm, {}
 {}: {} addresses changed	{}: {} adres değiştirildi
 {}: {} changes in the open project (not saved yet)	{}: açık projede {} değişiklik (henüz kaydedilmedi)
 {}: {} changes saved	{}: {} değişiklik kaydedildi

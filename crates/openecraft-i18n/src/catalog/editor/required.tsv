@@ -279,6 +279,7 @@ Cable definition	Kabeldefinition	Définition de câble	Definición de manguera
 Cable definition on page {}	Kabeldefinition auf Seite {}	Définition de câble en page {}	Definición de manguera en la página {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: eine Linie über die Verbindungen ziehen, die Adern eines Kabels sind	Définition de câble : tracer une ligne à travers les fils qui sont des conducteurs d'un câble	Definición de manguera: trace una línea a través de los cables que son conductores de una manguera
 Cable end reserve	Reserve je Kabelende	Réserve par extrémité de câble	Reserva por extremo de manguera
+Cable ends	Kabelenden	Extrémités du câble	Extremos del cable
 Cable markers	Kabelmarkierer	Repères de câbles	Marcadores de mangueras
 Cable passage to {}	Kabeldurchführung zu {}	Passage de câbles vers {}	Paso de cables hacia {}
 Cable {}: {} cores assigned	Kabel {}: {} Adern zugeordnet	Câble {} : {} conducteurs affectés	Manguera {}: {} conductores asignados
@@ -514,6 +515,7 @@ Dashed	Gestrichelt	Pointillé	Discontinuo
 Decimals	Nachkommastellen	Décimales	Decimales
 Default	Vorgabe	Par défaut	Predeterminado
 Default (part data or definition)	Vorgabe (Artikeldaten oder Definition)	Par défaut (données d'article ou définition)	Predeterminado (datos del artículo o definición)
+Default ({})	Standard ({})	Par défaut ({})	Predeterminado ({})
 Default function text	Standardfunktionstext	Texte de fonction par défaut	Texto de función predeterminado
 Default label	Standardbezeichnung	Désignation par défaut	Designación predeterminada
 Default medium	Standardmedium	Fluide par défaut	Medio predeterminado
@@ -772,7 +774,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Befestigungsmaterial in der Stückliste	Visserie de fixation dans la nomenclature	Tornillería de fijación en la lista de materiales
 Favorite	Favorit	Favori	Favorito
 Favorites (JSON)	Favoriten (JSON)	Favoris (JSON)	Favoritos (JSON)
-Ferrule {} ({})	Aderendhülse {} ({})	Embout {} ({})	Puntera {} ({})
 Field	Feld	Champ	Campo
 Field (name, description, company, creator, date, revision) or project property	Feld (name, description, company, creator, date, revision) oder Projekteigenschaft	Champ (name, description, company, creator, date, revision) ou propriété de projet	Campo (name, description, company, creator, date, revision) o propiedad de proyecto
 Field cables	Feldkabel	Câbles de terrain	Cables de campo
@@ -930,6 +931,7 @@ Hose number	Schlauchnummer	Numéro de flexible	Número de manguera
 Hoses and pipes	Schläuche und Rohre	Flexibles et tuyaux	Mangueras y tuberías
 Hoses rated below it are errors; 0 = not checked	Schläuche mit geringerer Druckstufe sind Fehler; 0 = nicht geprüft	Les flexibles prévus pour moins sont des erreurs ; 0 = non vérifié	Las mangueras aptas para menos son errores; 0 = no se comprueba
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Wie der Flügel öffnet: Anschlag an der linken oder rechten Kante (vom Raum aus gesehen), in den Raum hinein oder aus ihm heraus, oder schiebend an der Wand entlang	Comment le vantail s'ouvre : paumelles sur le bord gauche ou droit (vu de l'intérieur de la pièce), vers l'intérieur ou l'extérieur de la pièce, ou coulissant le long du mur	Cómo abre la hoja: con bisagras en el borde izquierdo o derecho (visto desde dentro del recinto), hacia dentro o hacia fuera del recinto, o corredera a lo largo de la pared
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Wie die Leitung an diesem Ende abgeschlossen wird; standardmäßig wie für den Anschlusspunkt oder sein Betriebsmittel gewählt, sonst wie das Layout Aderendhülsen vorgibt	Comment le fil est terminé à cette extrémité ; par défaut comme choisi pour le point de connexion ou son appareil, sinon selon le réglage des embouts de l'implantation	Cómo se termina el cable en este extremo; por defecto como se eligió para el punto de conexión o su equipo, si no según el ajuste de punteras del montaje
 IP / bus address	IP- / Busadresse	Adresse IP / de bus	Dirección IP / de bus
 ISO 639-1 language code	Sprachcode nach ISO 639-1	Code de langue ISO 639-1	Código de idioma ISO 639-1
 Identifiers	Kennzeichen	Identificateurs	Identificadores
@@ -1155,6 +1157,7 @@ Min. bend radius	Min. Biegeradius	Rayon de courbure min.	Radio de curvatura mín
 Minimize the ribbon	Menüband minimieren	Réduire le ruban	Minimizar la cinta de opciones
 Mirror	Spiegeln	Miroir	Reflejar
 Mirror (selection or symbol being placed)	Spiegeln (Auswahl oder zu platzierendes Symbol)	Miroir (sélection ou symbole en cours de placement)	Reflejar (selección o símbolo que se coloca)
+Mixed	Gemischt	Mixte	Mixto
 Mode	Modus	Mode	Modo
 Model of a part (2D / 3D)	Modell eines Artikels (2D / 3D)	Modèle d'un article (2D / 3D)	Modelo de un artículo (2D / 3D)
 Module part; its size comes from the part	Modulartikel; seine Größe kommt vom Artikel	Article du module ; sa taille vient de l'article	Artículo del módulo; su tamaño viene del artículo
@@ -2141,6 +2144,7 @@ Translate the project texts; documentation per language	Projekttexte übersetzen
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drehung um die Senkrechte, von oben gesehen gegen den Uhrzeigersinn (90 °: die Fronten zeigen nach rechts)	Rotation autour de la verticale, dans le sens antihoraire vu d'en haut (90 ° : les façades sont tournées vers la droite)	Giro alrededor de la vertical, en sentido antihorario visto desde arriba (90 °: los frentes miran a la derecha)
 Tutorial	Tutorial	Tutoriel	Tutorial
 Tutorial: {}	Tutorial: {}	Tutoriel : {}	Tutorial: {}
+Twin ferrules where two wires share a connection point	Zwillingsaderendhülsen, wo zwei Leitungen einen Anschlusspunkt teilen	Embouts doubles là où deux fils partagent un point de connexion	Punteras dobles donde dos cables comparten un punto de conexión
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier müssen zwei Verbindungslinien im rechten Winkel zusammentreffen. Bei eingeschaltetem Auto-Connect werden Anschlusspunkte, die ihren Armen gegenüberliegen, mit ihr verdrahtet.	Deux fils doivent se rejoindre ici à angle droit. Avec l'auto-connexion activée, les points de connexion face à ses bras y sont reliés.	Aquí deben unirse dos cables en ángulo recto. Con la autoconexión activada, los puntos de conexión enfrentados a sus brazos se cablean a ella.
 Type a point	Punkt eingeben	Saisir un point	Introducir un punto
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Punkt eingeben und Enter drücken: x y in mm oder @dx dy relativ zum letzten Punkt; wirkt wie ein Klick des aktuellen Werkzeugs	Saisir un point puis Entrée : x y en mm, ou @dx dy relatif au dernier point ; agit comme un clic de l'outil courant	Escriba un punto y pulse Intro: x y en mm, o @dx dy relativo al último punto; actúa como un clic de la herramienta actual
@@ -2237,6 +2241,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Mausrad: Zoom · Rechtsklick: abbrechen · Grafik rastet auf 0,5 mm ein, Anschlusspunkte auf das 4-mm-Raster	Molette : zoom · clic droit : annuler · les graphiques s'alignent sur 0,5 mm, les points de connexion sur la grille de 4 mm	Rueda: zoom · clic derecho: cancelar · los gráficos se ajustan a 0,5 mm, los puntos de conexión a la cuadrícula de 4 mm
 When it differs from the page	Wenn sie von der Seite abweicht	Si elle diffère de la page	Si difiere de la página
 Where	Lage	Emplacement	Ubicación
+Where neither wire has a termination chosen for it	Wo für keine der beiden Leitungen ein Abschluss gewählt ist	Là où aucun des deux fils n'a de terminaison choisie	Donde ninguno de los dos cables tiene una terminación elegida
 Where the point is in the plant; y: its height above the ground level of the plant	Wo der Punkt in der Anlage liegt; y: seine Höhe über der Geländehöhe der Anlage	Emplacement du point dans l'installation ; y : sa hauteur au-dessus du niveau du sol de l'installation	Dónde está el punto en la instalación; y: su altura sobre el nivel del suelo de la instalación
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Woher die Struktur des Betriebsmittels kommt: Aspekte, die der Struktur um das Symbol herum entsprechen, sind geerbt und folgen, wenn es in einen Strukturkasten hinein- oder aus ihm herausbewegt wird; andere Aspekte gehören dem Betriebsmittel selbst und bleiben.	Origine de la structure de l'appareil : les aspects égaux à la structure autour du symbole sont hérités et suivent lorsqu'il entre dans un cadre de structure ou en sort ; les autres aspects sont propres à l'appareil et restent.	De dónde viene la estructura del dispositivo: los aspectos iguales a la estructura alrededor del símbolo se heredan y cambian cuando entra en un recuadro de estructura o sale de él; los demás aspectos son propios del dispositivo y se mantienen.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Wo die Verbindung beginnt und endet: ein Anschluss aus den Artikeldaten, ein aus der Funktionsschablone erzeugter oder die Gerätemitte, wenn kein Anschluss passt	Où le fil commence et se termine : un point de connexion des données de l'article, un point généré à partir du modèle de fonctions ou le centre de l'appareil si aucun point ne correspond	Dónde empieza y termina el cable: un punto de conexión de los datos del artículo, uno generado a partir de la plantilla de funciones o el centro del equipo si no coincide ningún punto
@@ -2574,10 +2579,12 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} – {} ({} pages)	{} – {} ({} Seiten)	{} – {} ({} pages)	{} – {} ({} páginas)
 {}: a double-click opens its floor plan	{}: ein Doppelklick öffnet seinen Grundriss	{} : un double-clic ouvre son plan	{}: un doble clic abre su planta
 {}: click to show its floor plan	{}: Klicken zeigt seinen Grundriss	{} : cliquer pour afficher son plan	{}: haga clic para mostrar su planta
+{}: crimp together with the wire to {}	{}: zusammen mit der Leitung nach {} crimpen	{} : sertir avec le fil vers {}	{}: engastar junto con el cable hacia {}
 {}: drag to move it, R turns it, a double-click opens it	{}: ziehen zum Verschieben, R dreht, Doppelklick öffnet	{} : faire glisser pour déplacer, R pour tourner, double-clic pour ouvrir	{}: arrastre para mover, R para girar, doble clic para abrir
 {}: drag to move it, a double-click shows the floor	{}: ziehen zum Verschieben, Doppelklick zeigt den Boden	{} : faire glisser pour déplacer, double-clic pour afficher le sol	{}: arrastre para mover, doble clic para mostrar el suelo
 {}: nothing to change	{}: nichts zu ändern	{} : rien à modifier	{}: nada que cambiar
 {}: pin {}	{}: Pin {}	{} : broche {}	{}: pin {}
+{}: strip {} mm, {}	{}: abisolieren {} mm, {}	{} : dénuder {} mm, {}	{}: pelar {} mm, {}
 {}: {} addresses changed	{}: {} Adressen geändert	{} : {} adresses modifiées	{}: {} direcciones cambiadas
 {}: {} changes in the open project (not saved yet)	{}: {} Änderungen im geöffneten Projekt (noch nicht gespeichert)	{} : {} modifications dans le projet ouvert (pas encore enregistrées)	{}: {} cambios en el proyecto abierto (aún sin guardar)
 {}: {} changes saved	{}: {} Änderungen gespeichert	{} : {} modifications enregistrées	{}: {} cambios guardados

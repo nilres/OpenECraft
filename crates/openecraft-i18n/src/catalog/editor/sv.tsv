@@ -230,6 +230,7 @@ Cable definition	Kabeldefinition
 Cable definition on page {}	Kabeldefinition på sida {}
 Cable definition: draw a line across the wires that are cores of a cable	Kabeldefinition: rita en linje tvärs över de ledningar som är ledare i en kabel
 Cable end reserve	Reserv per kabelände
+Cable ends	Kabeländar
 Cable markers	Kabelmärkningar
 Cable passage to {}	Kabelgenomföring till {}
 Cable {}: {} cores assigned	Kabel {}: {} ledare tilldelade
@@ -431,6 +432,7 @@ Dashed	Streckad
 Decimals	Decimaler
 Default	Standard
 Default (part data or definition)	Standard (artikeldata eller definition)
+Default ({})	Standard ({})
 Default label	Standardetikett
 Default medium	Standardmedium
 Default rules	Standardregler
@@ -655,7 +657,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Fästelement i stycklistan
 Favorite	Favorit
 Favorites (JSON)	Favoriter (JSON)
-Ferrule {} ({})	Ändhylsa {} ({})
 Field	Fält
 Field (name, description, company, creator, date, revision) or project property	Fält (name, description, company, creator, date, revision) eller projektegenskap
 Field cables	Fältkablar
@@ -791,6 +792,7 @@ Hose number	Slangnummer
 Hoses and pipes	Slangar och rör
 Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hur bladet öppnas: gångjärn i vänster eller höger kant (sett inifrån rummet), in i eller ut ur rummet, eller skjutbart längs väggen
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hur ledaren avslutas i denna ände; som standard som valt för anslutningspunkten eller dess enhet, annars enligt layoutens inställning för ändhylsor
 IP / bus address	IP- / bussadress
 ISO 639-1 language code	Språkkod enligt ISO 639-1
 Identifiers	Beteckningar
@@ -1003,6 +1005,7 @@ Min. bend radius	Min. böjradie
 Minimize the ribbon	Minimera menyfliksområdet
 Mirror	Spegelvänd
 Mirror (selection or symbol being placed)	Spegla (markering eller symbol som placeras)
+Mixed	Blandat
 Mode	Läge
 Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
 Module part; its size comes from the part	Modulartikel; dess storlek kommer från artikeln
@@ -1893,6 +1896,7 @@ Transfer project parts to database	Överför projektartiklar till databasen
 Translate the project texts; documentation per language	Översätt projekttexterna; dokumentation per språk
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Vridning kring lodlinjen, moturs sett ovanifrån (90 °: fronterna pekar åt höger)
 Tutorial	Handledning
+Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1977,6 +1981,7 @@ Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zooma · högerklick: avbryt · grafik fäster mot 0,5 mm, anslutningspunkter mot 4 mm-rutnätet
 When it differs from the page	När den skiljer sig från sidan
 Where	Läge
+Where neither wire has a termination chosen for it	Där ingen av ledarna har en vald avslutning
 Where the point is in the plant; y: its height above the ground level of the plant	Var punkten ligger i anläggningen; y: dess höjd över anläggningens marknivå
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Varifrån apparatens struktur kommer: aspekter som är lika med strukturen runt symbolen ärvs och följer med när den flyttas in i eller ut ur en strukturruta; andra aspekter är apparatens egna och står kvar.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Var ledningen börjar och slutar: en anslutningspunkt från artikeldata, en som genererats från funktionsmallen eller apparatens mitt om ingen anslutningspunkt matchar
@@ -2288,10 +2293,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} bildpunkter, {}
 {} – {} ({} pages)	{} – {} ({} sidor)
 {}: click to show its floor plan	{}: klicka för att visa planritningen
+{}: crimp together with the wire to {}	{}: krimpa tillsammans med ledaren till {}
 {}: drag to move it, R turns it, a double-click opens it	{}: dra för att flytta, R vrider, dubbelklick öppnar
 {}: drag to move it, a double-click shows the floor	{}: dra för att flytta, dubbelklick visar golvet
 {}: nothing to change	{}: inget att ändra
 {}: pin {}	{}: stift {}
+{}: strip {} mm, {}	{}: skala {} mm, {}
 {}: {} addresses changed	{}: {} adresser ändrade
 {}: {} changes in the open project (not saved yet)	{}: {} ändringar i det öppna projektet (inte sparade ännu)
 {}: {} changes saved	{}: {} ändringar sparade
