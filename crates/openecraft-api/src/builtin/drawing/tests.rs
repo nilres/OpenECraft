@@ -692,3 +692,17 @@ fn cable_core_texts_are_placed_and_reset() {
     assert_eq!((w["core_offset"].clone(), w["cable_offset"].clone()), (Value::Null, json!([0.0, -3.0])));
     assert_eq!(run(&mut s, "get_page", json!({ "page": "1" })).unwrap()["wires"][0]["cable_offset"], json!([0.0, -3.0]));
 }
+
+#[test]
+fn wire_settings_are_shown_and_changed() {
+    let mut s = new_session();
+    let shown = run(&mut s, "wire_settings", json!({})).unwrap();
+    assert_eq!(shown, json!({ "jump": "none", "jump_wire": "vertical", "tee": "dot", "reroute": false }));
+    let changed = run(&mut s, "wire_settings", json!({ "jump": "Arc", "jump_wire": "horizontal", "tee": "large_dot", "reroute": true })).unwrap();
+    assert_eq!(changed, json!({ "jump": "arc", "jump_wire": "horizontal", "tee": "large_dot", "reroute": true }));
+    let w = &s.project().unwrap().wire_settings;
+    assert_eq!((w.jump, w.jump_wire, w.tee, w.reroute), (JumpStyle::Arc, JumpWire::Horizontal, TeeStyle::LargeDot, true));
+    assert!(run(&mut s, "wire_settings", json!({ "jump": "loop" })).is_err());
+    assert!(run(&mut s, "wire_settings", json!({ "tee": "ring" })).is_err());
+    assert_eq!(s.project().unwrap().wire_settings.jump, JumpStyle::Arc);
+}

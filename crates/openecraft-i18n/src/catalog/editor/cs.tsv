@@ -372,6 +372,7 @@ Connection points 1 and 2 are connected inside	Přípojné body 1 a 2 jsou vnit�
 Connection:	Spojení:
 Connections ({})	Spojení ({})
 Connections / harness	Spojení / svazek
+Connections of four or more wires always have a dot.	Spojení čtyř a více vodičů mají vždy tečku.
 Connections whose two ends are both on selected wires	Spojení, jejichž oba konce leží na vybraných vodičích
 Connections without a defined potential	Spojení bez definovaného potenciálu
 Connectors	Konektory
@@ -793,6 +794,7 @@ Hoses and pipes	Hadice a potrubí
 Hoses rated below it are errors; 0 = not checked	Hadice dimenzované na nižší tlak jsou chyby; 0 = nekontroluje se
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak se otevírá křídlo: závěsy na levé nebo pravé hraně (při pohledu z místnosti), dovnitř nebo ven z místnosti, nebo posuvně podél stěny
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak je vodič na tomto konci zakončen; výchozí je volba pro připojovací bod nebo jeho zařízení, jinak podle nastavení dutinek v rozvržení
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak vodiče přeskakují křížené vodiče, jak se značí spojení T a zda přesunuté prvky vedou svá spojení znovu
 IP / bus address	Adresa IP / sběrnice
 ISO 639-1 language code	Kód jazyka podle ISO 639-1
 Identifiers	Identifikátory
@@ -879,6 +881,7 @@ Join collinear wires	Sloučit souosé vodiče
 Joins	Spojuje
 Joins wire pieces in a line where nothing else connects (current page)	Sloučí úseky vodičů v přímce, kde se nic jiného nepřipojuje (aktuální stránka)
 Jumper {}	Propojka {}
+Jumps over the other:	Přeskakuje druhý:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Ponechat podstránky (3.a, 3.1) u předchozí stránky
 Keep the degree of protection	Zachovat stupeň krytí
@@ -892,6 +895,7 @@ Label (grey)	Popisek (šedý)
 Label field	Pole popisku
 Labeling scheme	Schéma popisování
 Landscape	Na šířku
+Large dot	Velká tečka
 Larger texts and buttons for a touch screen at the workbench	Větší texty a tlačítka pro dotykovou obrazovku u pracovního stolu
 Latitude, longitude	Zeměpisná šířka, délka
 Layer	Vrstva
@@ -1030,6 +1034,7 @@ Move to section	Přesunout do oddílu
 Move up	Posunout nahoru
 Moves to the top level as page {}	Přejde na nejvyšší úroveň jako stránka {}
 Moves to {} as page {}	Přejde do {} jako stránka {}
+Moving	Přesouvání
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Vícepólové silové symboly a vodiče pro jednopólové symboly aktuální stránky na nové stránce
 Multiple copy	Vícenásobná kopie
 Multiple copy…	Vícenásobná kopie…
@@ -1113,11 +1118,13 @@ No device has its main function in the box.	Žádný přístroj nemá hlavní fu
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Zatím žádný přístroj nemá montážní data: přiřaďte přístrojům artikly s rozměry (Vlastnosti › Artikly).
 No differences to {}.	Žádné rozdíly oproti {}.
 No document embedded	Není vložen žádný dokument
+No dot: plain T	Bez tečky: prosté T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Zatím žádná skříň – vytvořte ji pomocí Nová skříň, nebo místnost pro rozváděče pomocí Nová místnost.
 No field cables: place the enclosures and field devices at nodes of the route network.	Žádné polní kabely: umístěte skříně a polní přístroje do uzlů sítě tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez filtračních ventilátorů: výměník tepla vzduch/vzduch nebo chladicí jednotka
 No harnesses defined.	Nejsou definovány žádné kabelové svazky.
 No inverter	Žádný střídač
+No jump: plain crossing, connections have dots	Bez přeskoku: prosté křížení, spojení mají tečky
 No longer reported	Již se nehlásí
 No macros yet. Select items in a schematic and save them as a macro.	Zatím žádná makra. Vyberte prvky ve schématu a uložte je jako makro.
 No modules: plug in PLC cards of the schematic.	Žádné moduly: zasuňte karty PLC ze schématu.
@@ -1365,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Ztrátový vý
 Pre-planning (CSV, Excel)	Předběžné plánování (CSV, Excel)
 Prefix	Předpona
 Press a key…	Stiskněte klávesu…
+Preview	Náhled
 Previous item	Předchozí prvek
 Previous page	Předchozí stránka
 Previous page tab	Předchozí karta stránky
@@ -1554,6 +1562,7 @@ Round	Kruhový
 Round cutouts facing each other in both side walls	Kruhové výřezy proti sobě v obou bočních stěnách
 Route definition of {}	Definice trasy kabelu {}
 Route network	Síť tras
+Route the connections of moved items anew	Vést spojení přesunutých prvků znovu
 Route wires in 3D	Vést vodiče ve 3D
 Routed in {}: {} m, {} bends	Vedeno v {}: {} m, ohyby: {}
 Routing around symbols	Vedení kolem symbolů
@@ -1796,6 +1805,7 @@ Synchronize	Synchronizovat
 Synchronize function texts	Synchronizovat texty funkcí
 Synchronize project parts from database	Synchronizovat artikly projektu z databáze
 T Text	T Text
+T-connections	Spojení T
 Tab	Tabulátor
 Table import failed: {}	Import tabulky se nezdařil: {}
 Tablet mode	Režim tabletu
@@ -1816,6 +1826,7 @@ Taken into the drawing: drawn faded	Převzato do výkresu: zobrazeno vybledle
 Takes the comments as function texts (matched by address)	Převezme komentáře jako texty funkcí (přiřazené podle adresy)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Převezme označení přípojných bodů všech funkcí tohoto přístroje ze šablon funkcí jeho artiklů
 Takes the rights of the role away, whatever other grants give	Odebere práva role bez ohledu na to, co dávají jiná přidělení
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Zvolí cestu s nejmenší váhou: její délka v krocích mřížky, 1,2 za ohyb a 1,5 za křížený vodič. Vypnuto: vodiče se natáhnou a ponechají si rohy.
 Target languages	Cílové jazyky
 Temperature rise at the roof against the middle (IEC/TR 60890)	Nárůst teploty u stropu oproti středu (IEC/TR 60890)
 Template	Šablona
@@ -1845,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	Slovník je prázdn
 The door seen from the front: door devices and cutouts	Dveře zepředu: přístroje ve dveřích a výřezy
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Dveře zevnitř (závěsy vpravo): kabelové kanály a zapojení za dveřmi
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Skříň stojí levou stranou u pravé strany zvolené skříně; vodiče mezi nimi vedou kabelovými průchodkami
+The horizontal wire	Vodorovný vodič
 The items are selected and moved together	Prvky se vybírají a přesouvají společně
 The macro library has no page macros (Macros › Save page as macro…).	Knihovna maker neobsahuje žádná makra stránek (Makra › Uložit stránku jako makro…).
 The modules no string takes yet in series, on the first inverter	Moduly, které ještě žádný string nebere, v sérii, na prvním střídači
@@ -1871,6 +1883,7 @@ The side of {} is open	Strana {} je otevřená
 The symbol is placed in the project	Symbol je v projektu použit
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Artikly svorek neuvádějí žádné koncové příchytky ani koncové kryty (technické údaje End bracket, End plate).
 The update failed	Aktualizace se nezdařila
+The vertical wire	Svislý vodič
 The web version is updated on its server.	Webová verze se aktualizuje na svém serveru.
 The wire tool routes around symbols and other wires	Nástroj pro vodiče vede vodiče kolem symbolů a jiných vodičů
 The wires get the free cores of the cable in order (left to right)	Vodiče dostanou postupně (zleva doprava) volné žíly kabelu
@@ -2005,6 +2018,8 @@ Window macro: {}	Makro okna: {}
 Window macros inserted from now on are recorded as macro boxes.	Okenní makra vložená od této chvíle se zaznamenávají jako rámečky maker.
 Window macros placed on the pages (not printed)	Okenní makra umístěná na stránkách (netisknou se)
 Wire colour	Barva vodiče
+Wire crossings	Křížení vodičů
+Wire crossings…	Křížení vodičů…
 Wire ends	Konce vodičů
 Wire ends with ferrules	Konce vodičů s dutinkami
 Wire markers	Štítky vodičů
@@ -2018,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Vodič {} – {}  ({} 
 Wire {} – {}  {} mm	Vodič {} – {}  {} mm
 Wires and potentials	Vodiče a potenciály
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Vodiče mezi přípoji symbolů tekutinových mechanismů a P&ID jsou hadice / potrubí: vlastní sítě, číslované číslováním vodičů, uvedené v seznamu hadic.
+Wires crossing without connection	Vodiče křížící se bez spojení
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Odtud musí vycházet vodiče ve všech čtyřech směrech. Do té doby je spojení řetězeno v pořadí ve schématu.
 Wires of the connection	Vodiče spojení
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Vodiče také použijí 3D trasy respektující překážky, místo pouze kabelových kanálů na desce

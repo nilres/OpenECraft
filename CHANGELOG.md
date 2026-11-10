@@ -13,6 +13,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
   wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
   The symbol editor's canvas pans too (also with the middle mouse button).
+- **Wire jumps** (#132): wires that cross without a connection can jump over each other
+  with an arc, a square bridge or a gap, besides the plain crossing of before; the
+  vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
+  dot (a plain T); connections of four or more wires always keep their dot. Set in
+  *Connections › Wire crossings…* (Settings › Wire crossings) with a preview, saved
+  with the project and in settings schemes, drawn alike on screen and in PDF, SVG and
+  DXF. Command `wire_settings`.
+- **Rerouting moved connections** (#132, off by default): with *Route the connections
+  of moved items anew* a wire left diagonal by a move is routed again together with
+  the corners after it, up to the next connection point, junction or branch: the
+  way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
+  wire crossed. Labels and connection definition points come along; without a way the
+  wire is squared as before.
 - **EDZ parts without a usable macro** (#131): a part whose first function is a
   generic one (the connection points of a drive or an HMI) is placed as a black box
   with room for its connection points instead of an earth electrode. Elliptic arcs of

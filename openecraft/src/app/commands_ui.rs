@@ -422,6 +422,7 @@ impl App {
             Cmd::UpdateReportBlocks => self.generate_report_blocks(ctx),
             Cmd::CheckSettings => self.settings.open_at(settings_ui::Node::Checks),
             Cmd::CrossReferences => self.settings.open_at(settings_ui::Node::CrossReferences),
+            Cmd::WireCrossings => self.settings.open_at(settings_ui::Node::Wires),
             Cmd::Marking => self.settings.open_at(settings_ui::Node::Marking),
             Cmd::Shortcuts => self.settings.open_at(settings_ui::Node::Shortcuts),
             Cmd::CustomizeRibbon => self.settings.open_at(settings_ui::Node::Ribbon),

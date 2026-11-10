@@ -371,6 +371,7 @@ Connection points 1 and 2 are connected inside	Точки підключення
 Connection:	З’єднання:
 Connections ({})	З’єднання ({})
 Connections / harness	З’єднання / джгут
+Connections of four or more wires always have a dot.	З'єднання чотирьох і більше проводів завжди позначаються крапкою.
 Connections whose two ends are both on selected wires	З’єднання, обидва кінці яких лежать на вибраних проводах
 Connections without a defined potential	З’єднання без визначеного потенціалу
 Connectors	Роз’єми
@@ -792,6 +793,7 @@ Hoses and pipes	Шланги й трубопроводи
 Hoses rated below it are errors; 0 = not checked	Шланги з меншим номінальним тиском – помилки; 0 = не перевіряється
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Як відчиняється стулка: петлі біля лівого чи правого краю (вигляд зсередини приміщення), всередину чи назовні приміщення, або зсувається вздовж стіни
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Як провід оконцьовано на цьому кінці; за замовчуванням як вибрано для точки підключення або її пристрою, інакше за налаштуванням наконечників компонування
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Як проводи перескакують через проводи, які вони перетинають, як позначаються T-з'єднання та чи прокладаються з'єднання переміщених елементів заново
 IP / bus address	IP-адреса / адреса на шині
 ISO 639-1 language code	Код мови ISO 639-1
 Identifiers	Позначення
@@ -878,6 +880,7 @@ Join collinear wires	Об’єднати колінеарні проводи
 Joins	З'єднує
 Joins wire pieces in a line where nothing else connects (current page)	Об’єднує відрізки проводів на одній лінії, де більше нічого не підключено (поточна сторінка)
 Jumper {}	Перемичка {}
+Jumps over the other:	Перескакує через інший:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Залишати підсторінки (3.a, 3.1) з попередньою сторінкою
 Keep the degree of protection	Зберігати ступінь захисту
@@ -891,6 +894,7 @@ Label (grey)	Мітка (сіра)
 Label field	Поле мітки
 Labeling scheme	Схема маркування
 Landscape	Альбомна
+Large dot	Велика крапка
 Larger texts and buttons for a touch screen at the workbench	Більші тексти й кнопки для сенсорного екрана на робочому місці
 Latitude, longitude	Широта, довгота
 Layer	Шар
@@ -1029,6 +1033,7 @@ Move to section	Перемістити до розділу
 Move up	Перемістити вгору
 Moves to the top level as page {}	Переходить на верхній рівень як сторінка {}
 Moves to {} as page {}	Переходить до {} як сторінка {}
+Moving	Переміщення
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Багатолінійні силові символи та провідники для однолінійних символів поточної сторінки на новій сторінці
 Multiple copy	Багаторазове копіювання
 Multiple copy…	Багаторазове копіювання…
@@ -1112,11 +1117,13 @@ No device has its main function in the box.	Жоден пристрій не м�
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Жоден пристрій ще не має даних монтажу: призначте пристроям вироби з розмірами (Властивості › Вироби).
 No differences to {}.	Немає відмінностей від {}.
 No document embedded	Документ не вбудовано
+No dot: plain T	Без крапки: просте T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусів ще немає – створіть корпус командою Новий корпус або приміщення для шаф командою Нове приміщення.
 No field cables: place the enclosures and field devices at nodes of the route network.	Немає польових кабелів: розмістіть шафи та польові пристрої у вузлах мережі трас.
 No filter fans: an air/air heat exchanger or a cooling unit	Без фільтрувальних вентиляторів: теплообмінник повітря/повітря або холодильний агрегат
 No harnesses defined.	Джгути не визначено.
 No inverter	Без інвертора
+No jump: plain crossing, connections have dots	Без перескоку: просте перетинання, з'єднання позначені крапками
 No longer reported	Більше не повідомляється
 No macros yet. Select items in a schematic and save them as a macro.	Макросів ще немає. Виберіть елементи на схемі та збережіть їх як макрос.
 No modules: plug in PLC cards of the schematic.	Немає модулів: встановіть плати ПЛК зі схеми.
@@ -1364,6 +1371,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Втрати �
 Pre-planning (CSV, Excel)	Попереднє планування (CSV, Excel)
 Prefix	Префікс
 Press a key…	Натисніть клавішу…
+Preview	Попередній перегляд
 Previous item	Попередній елемент
 Previous page	Попередня сторінка
 Previous page tab	Попередня вкладка сторінки
@@ -1553,6 +1561,7 @@ Round	Круглий
 Round cutouts facing each other in both side walls	Круглі вирізи один навпроти одного в обох бічних стінках
 Route definition of {}	Визначення траси {}
 Route network	Мережа трас
+Route the connections of moved items anew	Прокладати з'єднання переміщених елементів заново
 Route wires in 3D	Прокладати проводи в 3D
 Routed in {}: {} m, {} bends	Прокладено в {}: {} м, згинів – {}
 Routing around symbols	Обхід символів
@@ -1795,6 +1804,7 @@ Synchronize	Синхронізувати
 Synchronize function texts	Синхронізувати тексти функцій
 Synchronize project parts from database	Синхронізувати вироби проєкту з бази даних
 T Text	T Текст
+T-connections	T-з'єднання
 Tab	Табуляція
 Table import failed: {}	Помилка імпорту таблиці: {}
 Tablet mode	Режим планшета
@@ -1815,6 +1825,7 @@ Taken into the drawing: drawn faded	Перенесено в креслення: 
 Takes the comments as function texts (matched by address)	Бере коментарі як тексти функцій (зіставлення за адресою)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Бере позначення точок підключення всіх функцій цього пристрою із шаблонів функцій його виробів
 Takes the rights of the role away, whatever other grants give	Позбавляє прав ролі незалежно від того, що надають інші призначення
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Обирає шлях із найменшою вагою: його довжина в кроках сітки, 1,2 за згин і 1,5 за перетнутий провід. Вимк.: проводи розтягуються та зберігають свої кути.
 Target languages	Цільові мови
 Temperature rise at the roof against the middle (IEC/TR 60890)	Підвищення температури під дахом відносно середини (IEC/TR 60890)
 Template	Шаблон
@@ -1844,6 +1855,7 @@ The dictionary is empty: collect the texts from the project.	Словник по
 The door seen from the front: door devices and cutouts	Двері спереду: пристрої на дверях і вирізи
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Двері зсередини (петлі праворуч): кабельні канали та монтаж проводів за дверима
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Корпус стоїть лівою стороною впритул до правої сторони вибраного; проводи проходять між ними через кабельні проходи
+The horizontal wire	Горизонтальний провід
 The items are selected and moved together	Елементи вибираються й переміщуються разом
 The macro library has no page macros (Macros › Save page as macro…).	Бібліотека макросів не містить макросів сторінок (Макроси › Зберегти сторінку як макрос…).
 The modules no string takes yet in series, on the first inverter	Модулі, не зайняті жодним ланцюжком, послідовно, на першому інверторі
@@ -1870,6 +1882,7 @@ The side of {} is open	Сторона {} відкрита
 The symbol is placed in the project	Символ використовується в проєкті
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Вироби клем не вказують кінцевих фіксаторів або кінцевих кришок (технічні дані End bracket, End plate).
 The update failed	Не вдалося виконати оновлення
+The vertical wire	Вертикальний провід
 The web version is updated on its server.	Вебверсія оновлюється на своєму сервері.
 The wire tool routes around symbols and other wires	Інструмент «Провід» прокладає проводи в обхід символів та інших проводів
 The wires get the free cores of the cable in order (left to right)	Проводи по черзі (зліва направо) отримують вільні жили кабелю
@@ -2004,6 +2017,8 @@ Window macro: {}	Макрос вікна: {}
 Window macros inserted from now on are recorded as macro boxes.	Віконні макроси, вставлені відтепер, записуються як рамки макросів.
 Window macros placed on the pages (not printed)	Віконні макроси, розміщені на сторінках (не друкуються)
 Wire colour	Колір проводу
+Wire crossings	Перетини проводів
+Wire crossings…	Перетини проводів…
 Wire ends	Кінці проводів
 Wire ends with ferrules	Кінці проводів із наконечниками
 Wire markers	Маркери проводів
@@ -2017,6 +2032,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Провід {} – {}
 Wire {} – {}  {} mm	Провід {} – {}  {} мм
 Wires and potentials	Проводи та потенціали
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Проводи між портами символів гідро-/пневмотехніки та P&ID є шлангами / трубопроводами: власні мережі, пронумеровані нумерацією проводів, наведені в переліку шлангів.
+Wires crossing without connection	Проводи, що перетинаються без з'єднання
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Звідси мають виходити проводи в усіх чотирьох напрямках. До того з'єднання вибудовується в порядку схеми.
 Wires of the connection	Проводи з'єднання
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Проводи також прокладаються 3D-трасами з урахуванням перешкод, а не лише кабельними каналами на панелі

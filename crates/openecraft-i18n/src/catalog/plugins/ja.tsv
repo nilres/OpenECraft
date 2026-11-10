@@ -663,6 +663,7 @@ Right side bayed (no side panel)	右側を連結 (側板なし)
 Room {} exists already	部屋 {} は既に存在します
 Rotation in degrees clockwise: 0, 90, 180 or 270	時計回りの回転角度 (度): 0、90、180、270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	回転角度 (度、反時計回り。90 で下から上に読む向き)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	移動した項目の接続を再配線: 曲がりと交差が最も少ない最短経路
 Route the wires in 3D as well (otherwise through the cable ducts)	電線も 3D で配線する (それ以外は配線ダクト経由)
 Routing rules, paths, reservations, frozen routes and cable shields	配線ルールとルート、予約、固定されたルート、ケーブルシールド
 Row key (from table_get)	行キー (table_get から)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	「名前: 値」として表示
 Show the content	内容を表示
 Shows a property as a text beside a symbol	プロパティをシンボルの横にテキストとして表示します
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	端子台を表示します: 端子台の順序の端子 (段、ジャンパー、接続先を含む)、レール上のブロック、ジャンパー
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	ページ上で配線がどのように交差・接続するか、および移動した項目の接続を再配線するかを表示し、指定した値を変更します
 Shows or changes the machining strategy and which machine makes which face	加工方針と、どの面をどの機械で加工するかを表示または変更します
 Shows or changes the rules of copper bars; lengths in mm	銅バーのルールを表示または変更します。長さは mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	盤レイアウトチェックのルールを表示または変更します。値は mm (温度は °C)
@@ -768,6 +770,7 @@ Symbol ids	シンボル ID
 Symbol key from list_symbols	list_symbols のシンボルキー
 Symbol {} has no connection point {}	シンボル {} に接続ポイント {} はありません
 Symbols, wires, texts, cable and connection definitions on schematic pages	回路図ページ上のシンボル、電線、テキスト、ケーブル定義と接続定義
+T-connections: dot, large_dot or none	T 接続: dot、large_dot または none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T分岐：軸の方向。ブリッジ：接続が入ってくる側（left、right、up または down）
 Tag of the terminal strip, e.g. -X1	端子台のタグ (例: -X1)
 Take the cut lengths over as cable lengths	切断長をケーブル長として反映
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	交�
 The text height must be at least 0.5 mm	文字の高さは 0.5 mm 以上である必要があります
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	コーナーの2つの側、縦と横（例：down left。既定：その位置の接続線から、なければ down right）
 The wire has no length	接続に長さがありません
+The wire that jumps: vertical or horizontal	ジャンプする配線: vertical または horizontal
 The wrap width must not be negative	折り返し幅に負の値は指定できません
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	取付板の熱シミュレーション: 空気温度、ホットスポット、熱源、各デバイスの温度
 Thickest sheet or bar, mm	最大の板厚またはバー厚 (mm)
@@ -825,6 +829,7 @@ Translated line	翻訳された行
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	鉛直軸まわりの回転角度 (度、上から見て反時計回り、90: 正面が右向き)
 Two wires at a connection point share a twin ferrule	接続ポイントの2本の電線がツインフェルールを共有する
 Unit, e.g. kW	単位 (例: kW)
+Unknown T-connection style: {}	不明な T 接続スタイル: {}
 Unknown accessory kind: {}	不明な付属品の種類: {}
 Unknown action: {}	不明なアクション: {}
 Unknown address scheme: {}	不明なアドレス方式: {}
@@ -847,7 +852,9 @@ Unknown field: {}	不明なフィールド: {}
 Unknown group kind: {}	不明なグループの種類: {}
 Unknown installation: {}	不明な設置方法: {}
 Unknown insulation: {}	不明な絶縁: {}
+Unknown jump style: {}	不明なジャンプスタイル: {}
 Unknown jumper kind: {}	不明なジャンパーの種類: {}
+Unknown jumping wire: {}	不明なジャンプする配線: {}
 Unknown kind: {}	不明な種類: {}
 Unknown labels: {}	不明なラベル: {}
 Unknown level: {}	不明なレベル: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	電線色 (例: BU�
 Wire ends get ferrules	電線端にフェルールを付ける
 Wire number (kept when renumbering)	電線番号 (番号の振り直し時も保持されます)
 Wire numbering and wiring marks	電線番号付けと配線マーク
+Wires crossing without connection: none, arc, bridge or gap	接続なしで交差する配線: none、arc、bridge または gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	保護機器に対して細すぎる電線とケーブルの電圧降下 (IEC 60204-1)
 Working area in x, mm	X 方向の加工範囲 (mm)
 Working area in y, mm	Y 方向の加工範囲 (mm)

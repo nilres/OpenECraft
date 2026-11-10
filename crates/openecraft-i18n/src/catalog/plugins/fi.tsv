@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Oikea puoli rivitetty (ei sivuseinää)
 Room {} exists already	Tila {} on jo olemassa
 Rotation in degrees clockwise: 0, 90, 180 or 270	Kierto asteina myötäpäivään: 0, 90, 180 tai 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Kierto asteina vastapäivään (90 luetaan alhaalta ylöspäin)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Reititä siirrettyjen kohteiden yhteydet uudelleen: lyhin reitti vähimmillä mutkilla ja risteyksillä
 Route the wires in 3D as well (otherwise through the cable ducts)	Reititä myös johdot 3D:nä (muuten johtokourujen kautta)
 Routing rules, paths, reservations, frozen routes and cable shields	Reitityssäännöt, reitit, varaukset, jäädytetyt reititykset ja kaapelien suojavaipat
 Row key (from table_get)	Rivin avain (table_get-komennosta)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Näytä muodossa \"Nimi: arvo\"
 Show the content	Näytä sisältö
 Shows a property as a text beside a symbol	Näyttää ominaisuuden tekstinä symbolin vieressä
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Näyttää riviliitinriman: riviliittimet riman järjestyksessä kerroksineen, siltoineen ja kohteineen, lohkot kiskolla ja sillat
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Näyttää, miten johtimet risteävät ja liittyvät sivuilla ja reititetäänkö siirrettyjen kohteiden yhteydet uudelleen, ja muuttaa annetut arvot
 Shows or changes the machining strategy and which machine makes which face	Näyttää tai muuttaa työstöstrategian ja sen, mikä kone valmistaa minkin pinnan
 Shows or changes the rules of copper bars; lengths in mm	Näyttää tai muuttaa kuparikiskojen säännöt; pituudet mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Näyttää tai muuttaa kaappiasennuksen tarkistusten säännöt; arvot mm (lämpötila °C)
@@ -768,6 +770,7 @@ Symbol ids	Symbolien ID:t
 Symbol key from list_symbols	Symbolin avain list_symbols-luettelosta
 Symbol {} has no connection point {}	Symbolilla {} ei ole liitäntäpistettä {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symbolit, johdot, tekstit, kaapeli- ja yhteysmäärittelyt piirikaaviosivuilla
+T-connections: dot, large_dot or none	T-liitokset: dot, large_dot tai none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-haara: rungon suunta; silta: sivu, jolta liitos tulee (left, right, up tai down)
 Tag of the terminal strip, e.g. -X1	Riviliitinriman tunnus, esim. -X1
 Take the cut lengths over as cable lengths	Ota katkaisupituudet käyttöön kaapelien pituuksina
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	Riste
 The text height must be at least 0.5 mm	Tekstin korkeuden on oltava vähintään 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Kulman kaksi haaraa, pysty ja vaaka, esim. down left (oletus: paikan johtimien mukaan, muuten down right)
 The wire has no length	Yhteydellä ei ole pituutta
+The wire that jumps: vertical or horizontal	Hyppäävä johdin: vertical tai horizontal
 The wrap width must not be negative	Rivityksen leveys ei saa olla negatiivinen
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Asennuslevyn lämpösimulaatio: ilman lämpötilat, kuuma kohta, lämmönlähteet ja lämpötila jokaisen laitteen kohdalla
 Thickest sheet or bar, mm	Paksuin levy tai kisko, mm
@@ -825,6 +829,7 @@ Translated line	Käännetty rivi
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Kierto pystyakselin ympäri asteina, ylhäältä katsottuna vastapäivään (90: etupuolet osoittavat oikealle)
 Two wires at a connection point share a twin ferrule	Liitäntäpisteen kaksi johdinta jakavat kaksoispääteholkin
 Unit, e.g. kW	Yksikkö, esim. kW
+Unknown T-connection style: {}	Tuntematon T-liitoksen tyyli: {}
 Unknown accessory kind: {}	Tuntematon tarvikkeen laji: {}
 Unknown action: {}	Tuntematon toiminto: {}
 Unknown address scheme: {}	Tuntematon osoitemalli: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Tuntematon kenttä: {}
 Unknown group kind: {}	Tuntematon ryhmän laji: {}
 Unknown installation: {}	Tuntematon sijoitus: {}
 Unknown insulation: {}	Tuntematon eristys: {}
+Unknown jump style: {}	Tuntematon hyppytyyli: {}
 Unknown jumper kind: {}	Tuntematon siltalaji: {}
+Unknown jumping wire: {}	Tuntematon hyppäävä johdin: {}
 Unknown kind: {}	Tuntematon laji: {}
 Unknown labels: {}	Tuntemattomat merkinnät: {}
 Unknown level: {}	Tuntematon taso: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Johtoväri, esim. B
 Wire ends get ferrules	Johtojen päihin tulee pääteholkit
 Wire number (kept when renumbering)	Johtonumero (säilyy uudelleennumeroinnissa)
 Wire numbering and wiring marks	Johtojen numerointi ja johdotusmerkinnät
+Wires crossing without connection: none, arc, bridge or gap	Ilman liitosta risteävät johtimet: none, arc, bridge tai gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Suojalaitteelleen liian ohuet johdot ja kaapelien jännitteenalenema (IEC 60204-1)
 Working area in x, mm	Työalue x-suunnassa, mm
 Working area in y, mm	Työalue y-suunnassa, mm

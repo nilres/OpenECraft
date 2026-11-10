@@ -372,6 +372,7 @@ Connection points 1 and 2 are connected inside	Liitäntäpisteet 1 ja 2 on yhdis
 Connection:	Yhteys:
 Connections ({})	Yhteydet ({})
 Connections / harness	Yhteydet / johtosarja
+Connections of four or more wires always have a dot.	Neljän tai useamman johtimen liitoksissa on aina piste.
 Connections whose two ends are both on selected wires	Yhteydet, joiden molemmat päät ovat valituissa johdoissa
 Connections without a defined potential	Yhteydet ilman määritettyä potentiaalia
 Connectors	Liittimet
@@ -793,6 +794,7 @@ Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Miten johtimet hyppäävät risteämiensä johtimien yli, miten T-liitokset merkitään ja reititetäänkö siirrettyjen kohteiden yhteydet uudelleen
 IP / bus address	IP- / väyläosoite
 ISO 639-1 language code	ISO 639-1 -kielikoodi
 Identifiers	Tunnukset
@@ -879,6 +881,7 @@ Join collinear wires	Yhdistä samalla suoralla olevat johdot
 Joins	Yhdistää
 Joins wire pieces in a line where nothing else connects (current page)	Yhdistää johdonpalat linjassa, jossa mitään muuta ei liity (nykyinen sivu)
 Jumper {}	Silta {}
+Jumps over the other:	Hyppää toisen yli:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
 Keep the degree of protection	Säilytä kotelointiluokka
@@ -892,6 +895,7 @@ Label (grey)	Merkintä (harmaa)
 Label field	Merkintäkenttä
 Labeling scheme	Merkintäskeema
 Landscape	Vaakasuunta
+Large dot	Suuri piste
 Larger texts and buttons for a touch screen at the workbench	Suuremmat tekstit ja painikkeet työpenkin kosketusnäytölle
 Latitude, longitude	Leveys, pituus
 Layer	Taso
@@ -1030,6 +1034,7 @@ Move to section	Siirrä osioon
 Move up	Siirrä ylöspäin
 Moves to the top level as page {}	Siirtyy ylimmälle tasolle sivuksi {}
 Moves to {} as page {}	Siirtyy osioon {} sivuksi {}
+Moving	Siirtäminen
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Moninapaiset tehopiirin symbolit ja johtimet nykyisen sivun yksinapaisille symboleille uudelle sivulle
 Multiple copy	Monikopiointi
 Multiple copy…	Monikopiointi…
@@ -1113,11 +1118,13 @@ No device has its main function in the box.	Minkään laitteen päätoiminto ei 
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Millään laitteella ei vielä ole asennustietoja: liitä laitteisiin osat, joilla on mitat (Ominaisuudet › Osat).
 No differences to {}.	Ei eroja kohteeseen {}.
 No document embedded	Dokumenttia ei ole upotettu
+No dot: plain T	Ei pistettä: tavallinen T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
 No harnesses defined.	Johtosarjoja ei ole määritetty.
 No inverter	Ei vaihtosuuntaajaa
+No jump: plain crossing, connections have dots	Ei hyppyä: tavallinen risteys, liitoksissa on pisteet
 No longer reported	Ei enää ilmoiteta
 No macros yet. Select items in a schematic and save them as a macro.	Ei vielä makroja. Valitse kohteita piirikaaviossa ja tallenna ne makrona.
 No modules: plug in PLC cards of the schematic.	Ei moduuleja: asenna piirikaavion PLC-kortteja.
@@ -1365,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Häviöteho, j
 Pre-planning (CSV, Excel)	Esisuunnittelu (CSV, Excel)
 Prefix	Etuliite
 Press a key…	Paina näppäintä…
+Preview	Esikatselu
 Previous item	Edellinen kohde
 Previous page	Edellinen sivu
 Previous page tab	Edellinen sivuvälilehti
@@ -1554,6 +1562,7 @@ Round	Pyöreä
 Round cutouts facing each other in both side walls	Pyöreät aukot vastakkain molemmissa sivuseinissä
 Route definition of {}	Kaapelin {} reitin määrittely
 Route network	Reittiverkko
+Route the connections of moved items anew	Reititä siirrettyjen kohteiden yhteydet uudelleen
 Route wires in 3D	Reititä johdot 3D:nä
 Routed in {}: {} m, {} bends	Reititetty kohteessa {}: {} m, {} taivutusta
 Routing around symbols	Reititys symbolien ympäri
@@ -1796,6 +1805,7 @@ Synchronize	Synkronoi
 Synchronize function texts	Synkronoi toimintotekstit
 Synchronize project parts from database	Synkronoi projektin osat tietokannasta
 T Text	T Teksti
+T-connections	T-liitokset
 Tab	Sarkain
 Table import failed: {}	Taulukon tuonti epäonnistui: {}
 Tablet mode	Tablettitila
@@ -1816,6 +1826,7 @@ Taken into the drawing: drawn faded	Viety piirustukseen: piirretään haaleana
 Takes the comments as function texts (matched by address)	Ottaa kommentit toimintoteksteiksi (kohdistetaan osoitteen mukaan)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Ottaa tämän laitteen kaikkien toimintojen liitäntäpisteiden merkinnät sen osien toimintomalleista
 Takes the rights of the role away, whatever other grants give	Poistaa roolin oikeudet riippumatta siitä, mitä muut myönnöt antavat
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Valitsee reitin, jonka paino on pienin: sen pituus ruudukon askelina, 1,2 mutkaa kohden ja 1,5 risteävää johdinta kohden. Pois: johtimet venyvät ja säilyttävät kulmansa.
 Target languages	Kohdekielet
 Temperature rise at the roof against the middle (IEC/TR 60890)	Lämpötilan nousu katossa keskikohtaan verrattuna (IEC/TR 60890)
 Template	Malli
@@ -1845,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	Sanakirja on tyhjä
 The door seen from the front: door devices and cutouts	Ovi edestä katsottuna: ovilaitteet ja aukot
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ovi sisältä katsottuna (saranat oikealla): johtokourut ja johdotus oven takana
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
+The horizontal wire	Vaakasuora johdin
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
 The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
 The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
@@ -1871,6 +1883,7 @@ The side of {} is open	Kohteen {} puoli on avoin
 The symbol is placed in the project	Symbolia käytetään projektissa
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Riviliitinosissa ei ole mainittu päätypidikkeitä tai päätylevyjä (tekniset tiedot End bracket, End plate).
 The update failed	Päivitys epäonnistui
+The vertical wire	Pystysuora johdin
 The web version is updated on its server.	Verkkoversio päivitetään sen palvelimella.
 The wire tool routes around symbols and other wires	Johtotyökalu reitittää symbolien ja muiden johtojen ympäri
 The wires get the free cores of the cable in order (left to right)	Johdot saavat kaapelin vapaat johtimet järjestyksessä (vasemmalta oikealle)
@@ -2005,6 +2018,8 @@ Window macro: {}	Ikkunamakro: {}
 Window macros inserted from now on are recorded as macro boxes.	Tästä lähtien lisätyt ikkunamakrot tallennetaan makrolaatikoina.
 Window macros placed on the pages (not printed)	Sivuille sijoitetut ikkunamakrot (ei tulosteta)
 Wire colour	Johtimen väri
+Wire crossings	Johdinten risteykset
+Wire crossings…	Johdinten risteykset…
 Wire ends	Johtojen päät
 Wire ends with ferrules	Johtojen päät pääteholkeilla
 Wire markers	Johtomerkit
@@ -2018,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Johto {} – {}  ({}/{
 Wire {} – {}  {} mm	Johto {} – {}  {} mm
 Wires and potentials	Johtimet ja potentiaalit
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Fluidivoima- ja PI-symbolien porttien väliset johdot ovat letkuja / putkia: omat verkkonsa, numeroidaan johtojen numeroinnilla, luetellaan letkuluettelossa.
+Wires crossing without connection	Ilman liitosta risteävät johtimet
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Tästä on lähdettävä johtimia kaikkiin neljään suuntaan. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
 Wires of the connection	Liitoksen johtimet
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Myös johdot käyttävät esteet huomioivia 3D-reittejä pelkkien levyn johtokourujen sijaan

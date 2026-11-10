@@ -372,6 +372,7 @@ Connection points 1 and 2 are connected inside	I punti di connessione 1 e 2 sono
 Connection:	Collegamento:
 Connections ({})	Collegamenti ({})
 Connections / harness	Collegamenti / cablaggio
+Connections of four or more wires always have a dot.	Le giunzioni di quattro o più fili hanno sempre un punto.
 Connections whose two ends are both on selected wires	Collegamenti con entrambe le estremità su conduttori selezionati
 Connections without a defined potential	Collegamenti senza potenziale definito
 Connectors	Connettori
@@ -793,6 +794,7 @@ Hoses and pipes	Tubi flessibili e tubazioni
 Hoses rated below it are errors; 0 = not checked	I tubi flessibili con pressione nominale inferiore sono errori; 0 = non verificato
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Come si apre l'anta: cerniere sul bordo sinistro o destro (visto dall'interno del locale), verso l'interno o l'esterno del locale, o scorrevole lungo la parete
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Come il filo è terminato a questa estremità; per impostazione predefinita come scelto per il punto di connessione o il suo dispositivo, altrimenti secondo l'impostazione dei puntalini del layout
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Come i fili saltano sopra i fili che incrociano, come sono contrassegnate le giunzioni a T e se gli elementi spostati ritracciano i loro collegamenti
 IP / bus address	Indirizzo IP / bus
 ISO 639-1 language code	Codice lingua ISO 639-1
 Identifiers	Identificatori
@@ -879,6 +881,7 @@ Join collinear wires	Unisci conduttori allineati
 Joins	Collega
 Joins wire pieces in a line where nothing else connects (current page)	Unisce i tratti di conduttore in linea dove non è collegato nient'altro (pagina corrente)
 Jumper {}	Ponticello {}
+Jumps over the other:	Salta sopra l'altro:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Mantieni le sottopagine (3.a, 3.1) con la pagina precedente
 Keep the degree of protection	Mantieni il grado di protezione
@@ -892,6 +895,7 @@ Label (grey)	Etichetta (grigia)
 Label field	Campo etichetta
 Labeling scheme	Schema di marcatura
 Landscape	Orizzontale
+Large dot	Punto grande
 Larger texts and buttons for a touch screen at the workbench	Testi e pulsanti più grandi per un touch screen al banco di lavoro
 Latitude, longitude	Latitudine, longitudine
 Layer	Livello
@@ -1030,6 +1034,7 @@ Move to section	Sposta nella sezione
 Move up	Sposta in alto
 Moves to the top level as page {}	Passa al livello superiore come pagina {}
 Moves to {} as page {}	Passa in {} come pagina {}
+Moving	Spostamento
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Simboli di potenza e conduttori multifilari per i simboli unifilari della pagina corrente, su una nuova pagina
 Multiple copy	Copia multipla
 Multiple copy…	Copia multipla…
@@ -1113,11 +1118,13 @@ No device has its main function in the box.	Nessun dispositivo ha la sua funzion
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Nessun dispositivo ha ancora dati di montaggio: assegna ai dispositivi articoli con dimensioni (Proprietà › Articoli).
 No differences to {}.	Nessuna differenza rispetto a {}.
 No document embedded	Nessun documento incorporato
+No dot: plain T	Nessun punto: T semplice
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ancora nessun armadio – creane uno con Nuovo armadio, o un locale per gli armadi con Nuovo locale.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nessun cavo di campo: posiziona gli armadi e i dispositivi di campo sui nodi della rete dei percorsi cavi.
 No filter fans: an air/air heat exchanger or a cooling unit	Nessun ventilatore con filtro: uno scambiatore di calore aria/aria o un condizionatore
 No harnesses defined.	Nessun cablaggio definito.
 No inverter	Nessun inverter
+No jump: plain crossing, connections have dots	Nessun salto: incrocio semplice, le giunzioni hanno punti
 No longer reported	Non più segnalato
 No macros yet. Select items in a schematic and save them as a macro.	Ancora nessuna macro. Seleziona elementi in uno schema e salvali come macro.
 No modules: plug in PLC cards of the schematic.	Nessun modulo: inserisci le schede PLC dello schema.
@@ -1365,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Potenza dissip
 Pre-planning (CSV, Excel)	Preprogettazione (CSV, Excel)
 Prefix	Prefisso
 Press a key…	Premi un tasto…
+Preview	Anteprima
 Previous item	Elemento precedente
 Previous page	Pagina precedente
 Previous page tab	Scheda pagina precedente
@@ -1554,6 +1562,7 @@ Round	Rotondo
 Round cutouts facing each other in both side walls	Aperture rotonde affacciate in entrambe le pareti laterali
 Route definition of {}	Definizione del percorso di {}
 Route network	Rete dei percorsi cavi
+Route the connections of moved items anew	Ritracciare i collegamenti degli elementi spostati
 Route wires in 3D	Instrada i conduttori in 3D
 Routed in {}: {} m, {} bends	Instradato in {}: {} m, {} curve
 Routing around symbols	Instradamento attorno ai simboli
@@ -1796,6 +1805,7 @@ Synchronize	Sincronizza
 Synchronize function texts	Sincronizza testi di funzione
 Synchronize project parts from database	Sincronizza articoli del progetto dal database
 T Text	T Testo
+T-connections	Giunzioni a T
 Tab	Tabulazione
 Table import failed: {}	Importazione della tabella non riuscita: {}
 Tablet mode	Modalità tablet
@@ -1816,6 +1826,7 @@ Taken into the drawing: drawn faded	Acquisito nel disegno: disegnato sbiadito
 Takes the comments as function texts (matched by address)	Usa i commenti come testi funzione (associati tramite l'indirizzo)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Prende le designazioni dei punti di connessione di tutte le funzioni di questo dispositivo dai modelli di funzione dei suoi articoli
 Takes the rights of the role away, whatever other grants give	Revoca i diritti del ruolo, indipendentemente da quanto concesso da altre assegnazioni
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Prende il percorso di peso minimo: la sua lunghezza in passi di griglia, 1,2 per curva e 1,5 per filo incrociato. Disattivato: i fili si allungano e mantengono i loro angoli.
 Target languages	Lingue di destinazione
 Temperature rise at the roof against the middle (IEC/TR 60890)	Aumento di temperatura sul tetto rispetto al centro (IEC/TR 60890)
 Template	Modello
@@ -1845,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	Il dizionario è vu
 The door seen from the front: door devices and cutouts	La porta vista dal fronte: dispositivi sulla porta e aperture
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	La porta vista dall'interno (cerniere a destra): canaline e cablatura dietro la porta
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	L'armadio è posizionato con il lato sinistro contro il lato destro di quello scelto; i conduttori passano tra di essi attraverso passaggi cavi
+The horizontal wire	Il filo orizzontale
 The items are selected and moved together	Gli elementi vengono selezionati e spostati insieme
 The macro library has no page macros (Macros › Save page as macro…).	La libreria macro non contiene macro di pagina (Macro › Salva pagina come macro…).
 The modules no string takes yet in series, on the first inverter	I moduli che nessuna stringa prende ancora, in serie, sul primo inverter
@@ -1871,6 +1883,7 @@ The side of {} is open	Il lato di {} è aperto
 The symbol is placed in the project	Il simbolo è utilizzato nel progetto
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Gli articoli morsetto non indicano supporti terminali né coperchi terminali (dati tecnici End bracket, End plate).
 The update failed	L'aggiornamento non è riuscito
+The vertical wire	Il filo verticale
 The web version is updated on its server.	La versione web viene aggiornata sul suo server.
 The wire tool routes around symbols and other wires	Lo strumento conduttore instrada attorno ai simboli e agli altri conduttori
 The wires get the free cores of the cable in order (left to right)	I conduttori ricevono in ordine (da sinistra a destra) le anime libere del cavo
@@ -2005,6 +2018,8 @@ Window macro: {}	Macro finestra: {}
 Window macros inserted from now on are recorded as macro boxes.	Le macro finestra inserite d'ora in poi vengono registrate come riquadri macro.
 Window macros placed on the pages (not printed)	Macro finestra posizionate sulle pagine (non stampate)
 Wire colour	Colore del filo
+Wire crossings	Incroci dei fili
+Wire crossings…	Incroci dei fili…
 Wire ends	Estremità dei conduttori
 Wire ends with ferrules	Estremità dei conduttori con puntalini
 Wire markers	Marcatori conduttore
@@ -2018,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Conduttore {} – {}  
 Wire {} – {}  {} mm	Conduttore {} – {}  {} mm
 Wires and potentials	Conduttori e potenziali
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	I conduttori tra gli attacchi dei simboli oleodinamici/pneumatici e P&ID sono tubi flessibili / tubazioni: reti proprie, numerate con la numerazione conduttori, elencate nella lista tubi flessibili.
+Wires crossing without connection	Fili che si incrociano senza collegamento
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Da qui devono partire conduttori in tutte e quattro le direzioni. Fino ad allora il collegamento è concatenato nell'ordine dello schema.
 Wires of the connection	Fili del collegamento
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Anche i conduttori seguono i percorsi 3D che tengono conto degli ostacoli, invece delle sole canaline sulla piastra

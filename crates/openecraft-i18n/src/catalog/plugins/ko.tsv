@@ -663,6 +663,7 @@ Right side bayed (no side panel)	오른쪽 측면 결합(측면 패널 없음)
 Room {} exists already	방 {}이(가) 이미 있습니다
 Rotation in degrees clockwise: 0, 90, 180 or 270	시계 방향 회전 각도: 0, 90, 180 또는 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	회전 각도(도), 시계 반대 방향(90이면 아래에서 위로 읽음)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	이동한 항목의 연결을 다시 배선: 꺾임과 교차가 가장 적은 최단 경로
 Route the wires in 3D as well (otherwise through the cable ducts)	전선도 3D로 배선 경로 지정(그렇지 않으면 케이블 덕트를 통해)
 Routing rules, paths, reservations, frozen routes and cable shields	경로 설정 규칙, 경로, 예약, 고정된 경로 및 케이블 차폐
 Row key (from table_get)	행 키(table_get에서)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	\"이름: 값\"으로 표시
 Show the content	내용 표시
 Shows a property as a text beside a symbol	속성을 심볼 옆에 텍스트로 표시합니다
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	단자대를 표시합니다: 단자대 순서에 따른 단자(단, 점퍼 및 대상 포함), 레일 위의 블록 및 점퍼
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	페이지에서 전선이 교차하고 연결되는 방식과 항목을 이동할 때 연결을 다시 배선할지 여부를 표시하고 지정한 값을 변경합니다
 Shows or changes the machining strategy and which machine makes which face	가공 전략과 어떤 기계가 어떤 면을 가공하는지 표시하거나 변경합니다
 Shows or changes the rules of copper bars; lengths in mm	동바 규칙을 표시하거나 변경합니다. 길이는 mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	패널 레이아웃 검사 규칙을 표시하거나 변경합니다. 값은 mm(온도는 °C)
@@ -768,6 +770,7 @@ Symbol ids	심볼 ID
 Symbol key from list_symbols	list_symbols의 심볼 키
 Symbol {} has no connection point {}	심볼 {}에 연결 지점 {}이(가) 없습니다
 Symbols, wires, texts, cable and connection definitions on schematic pages	회로도 페이지의 심볼, 전선, 텍스트, 케이블 및 연결 정의
+T-connections: dot, large_dot or none	T 연결: dot, large_dot 또는 none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T분기점: 줄기의 방향. 브리지: 연결이 들어오는 쪽 (left, right, up 또는 down)
 Tag of the terminal strip, e.g. -X1	단자대의 태그(예: -X1)
 Take the cut lengths over as cable lengths	절단 길이를 케이블 길이로 적용
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	교�
 The text height must be at least 0.5 mm	텍스트 높이는 0.5 mm 이상이어야 합니다
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	모서리의 두 가지, 세로와 가로, 예: down left (기본: 해당 지점의 연결선에 따라, 없으면 down right)
 The wire has no length	연결의 길이가 없습니다
+The wire that jumps: vertical or horizontal	점프하는 전선: vertical 또는 horizontal
 The wrap width must not be negative	줄 바꿈 너비는 음수일 수 없습니다
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	장착 플레이트의 열 시뮬레이션: 공기 온도, 핫스팟, 열원 및 각 장치의 온도
 Thickest sheet or bar, mm	최대 판금 또는 바 두께(mm)
@@ -825,6 +829,7 @@ Translated line	번역된 줄
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	수직축 기준 회전 각도(도), 위에서 볼 때 시계 반대 방향(90: 전면이 오른쪽을 향함)
 Two wires at a connection point share a twin ferrule	연결 지점의 두 전선이 이중 페룰 하나를 공유합니다
 Unit, e.g. kW	단위(예: kW)
+Unknown T-connection style: {}	알 수 없는 T 연결 스타일: {}
 Unknown accessory kind: {}	알 수 없는 부속품 종류: {}
 Unknown action: {}	알 수 없는 작업: {}
 Unknown address scheme: {}	알 수 없는 주소 체계: {}
@@ -847,7 +852,9 @@ Unknown field: {}	알 수 없는 필드: {}
 Unknown group kind: {}	알 수 없는 그룹 종류: {}
 Unknown installation: {}	알 수 없는 설치 방식: {}
 Unknown insulation: {}	알 수 없는 절연: {}
+Unknown jump style: {}	알 수 없는 점프 스타일: {}
 Unknown jumper kind: {}	알 수 없는 점퍼 종류: {}
+Unknown jumping wire: {}	알 수 없는 점프 전선: {}
 Unknown kind: {}	알 수 없는 종류: {}
 Unknown labels: {}	알 수 없는 레이블: {}
 Unknown level: {}	알 수 없는 수준: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	전선 색상(예: 
 Wire ends get ferrules	전선 끝에 페룰을 사용합니다
 Wire number (kept when renumbering)	전선 번호(번호 다시 지정 시 유지됨)
 Wire numbering and wiring marks	전선 번호 지정 및 배선 표시
+Wires crossing without connection: none, arc, bridge or gap	연결 없이 교차하는 전선: none, arc, bridge 또는 gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	보호 장치에 비해 너무 가는 전선과 케이블의 전압 강하(IEC 60204-1)
 Working area in x, mm	x 방향 작업 영역(mm)
 Working area in y, mm	y 방향 작업 영역(mm)

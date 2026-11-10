@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Sağ taraf yan yana bağlı (yan panel yok)
 Room {} exists already	Oda {} zaten var
 Rotation in degrees clockwise: 0, 90, 180 or 270	Saat yönünde derece cinsinden döndürme: 0, 90, 180 veya 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Derece cinsinden dönüş, saat yönünün tersine (90 aşağıdan yukarıya okunur)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Taşınan öğelerin bağlantılarını yeniden yönlendir: en az büküm ve kesişimle en kısa yol
 Route the wires in 3D as well (otherwise through the cable ducts)	Telleri de 3D olarak yönlendir (aksi halde kablo kanallarından)
 Routing rules, paths, reservations, frozen routes and cable shields	Güzergâh kuralları, yollar, rezervasyonlar, dondurulmuş güzergâhlar ve kablo ekranları
 Row key (from table_get)	Satır anahtarı (table_get çıktısından)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	\"Ad: değer\" olarak göster
 Show the content	İçeriği göster
 Shows a property as a text beside a symbol	Bir özelliği sembolün yanında metin olarak gösterir
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Bir klemens şeridini gösterir: şerit sırasına göre klemensler kat, köprü ve hedefleriyle, ray üzerindeki bloklar ve köprüler
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Tellerin sayfalarda nasıl kesiştiğini ve birleştiğini ve taşınan öğelerin bağlantılarının yeniden yönlendirilip yönlendirilmediğini gösterir, verilen değerleri değiştirir
 Shows or changes the machining strategy and which machine makes which face	İşleme stratejisini ve hangi makinenin hangi yüzeyi ürettiğini gösterir veya değiştirir
 Shows or changes the rules of copper bars; lengths in mm	Bakır bara kurallarını gösterir veya değiştirir; uzunluklar mm cinsinden
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Pano yerleşimi kontrollerinin kurallarını gösterir veya değiştirir; değerler mm cinsinden (sıcaklık °C cinsinden)
@@ -768,6 +770,7 @@ Symbol ids	Sembol kimlikleri
 Symbol key from list_symbols	list_symbols listesinden sembol anahtarı
 Symbol {} has no connection point {}	{} sembolünün {} bağlantı noktası yok
 Symbols, wires, texts, cable and connection definitions on schematic pages	Şema sayfalarındaki semboller, teller, metinler, kablo ve bağlantı tanımları
+T-connections: dot, large_dot or none	T bağlantıları: dot, large_dot veya none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T parçası: gövdenin yönü; köprü: bağlantının geldiği taraf (left, right, up veya down)
 Tag of the terminal strip, e.g. -X1	Klemens şeridinin etiketi, ör. -X1
 Take the cut lengths over as cable lengths	Kesim uzunluklarını kablo uzunlukları olarak devral
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	Bir k
 The text height must be at least 0.5 mm	Metin yüksekliği en az 0,5 mm olmalıdır
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Bir köşenin dikey ve yatay iki kolu, örn. down left (varsayılan: oradaki tellere göre, yoksa down right)
 The wire has no length	Bağlantının uzunluğu yok
+The wire that jumps: vertical or horizontal	Atlayan tel: vertical veya horizontal
 The wrap width must not be negative	Kaydırma genişliği negatif olamaz
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Montaj plakasının termik simülasyonu: hava sıcaklıkları, sıcak nokta, ısı kaynakları ve her cihazdaki sıcaklık
 Thickest sheet or bar, mm	En kalın sac veya bara, mm
@@ -825,6 +829,7 @@ Translated line	Çevrilmiş satır
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Derece cinsinden dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90: ön yüzler sağa bakar)
 Two wires at a connection point share a twin ferrule	Bir bağlantı noktasındaki iki tel bir ikiz yüksüğü paylaşır
 Unit, e.g. kW	Birim, ör. kW
+Unknown T-connection style: {}	Bilinmeyen T bağlantı stili: {}
 Unknown accessory kind: {}	Bilinmeyen aksesuar türü: {}
 Unknown action: {}	Bilinmeyen eylem: {}
 Unknown address scheme: {}	Bilinmeyen adres şeması: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Bilinmeyen alan: {}
 Unknown group kind: {}	Bilinmeyen grup türü: {}
 Unknown installation: {}	Bilinmeyen kurulum tipi: {}
 Unknown insulation: {}	Bilinmeyen yalıtım: {}
+Unknown jump style: {}	Bilinmeyen atlama stili: {}
 Unknown jumper kind: {}	Bilinmeyen köprü türü: {}
+Unknown jumping wire: {}	Bilinmeyen atlayan tel: {}
 Unknown kind: {}	Bilinmeyen tür: {}
 Unknown labels: {}	Bilinmeyen yazı türü: {}
 Unknown level: {}	Bilinmeyen seviye: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Tel rengi, ör. BU 
 Wire ends get ferrules	Tel uçlarına kablo yüksüğü takılır
 Wire number (kept when renumbering)	Tel numarası (yeniden numaralandırmada korunur)
 Wire numbering and wiring marks	Tel numaralandırma ve kablolama işaretleri
+Wires crossing without connection: none, arc, bridge or gap	Bağlantısız kesişen teller: none, arc, bridge veya gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Koruma cihazlarına göre fazla ince teller ve kabloların gerilim düşümü (IEC 60204-1)
 Working area in x, mm	x yönünde çalışma alanı, mm
 Working area in y, mm	y yönünde çalışma alanı, mm

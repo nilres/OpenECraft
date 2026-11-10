@@ -372,6 +372,7 @@ Connection points 1 and 2 are connected inside	Punctele de conexiune 1 și 2 sun
 Connection:	Conexiune:
 Connections ({})	Conexiuni ({})
 Connections / harness	Conexiuni / cablaj
+Connections of four or more wires always have a dot.	Joncțiunile a patru sau mai multe fire au întotdeauna un punct.
 Connections whose two ends are both on selected wires	Conexiunile ale căror ambele capete se află pe conductoarele selectate
 Connections without a defined potential	Conexiuni fără potențial definit
 Connectors	Conectori
@@ -793,6 +794,7 @@ Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Cum este terminat conductorul la acest capăt; implicit cum s-a ales pentru punctul de conectare sau echipamentul său, altfel după setarea manșoanelor din amplasare
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Cum sar firele peste firele pe care le încrucișează, cum sunt marcate joncțiunile în T și dacă elementele mutate își retrasează conexiunile
 IP / bus address	Adresă IP / de magistrală
 ISO 639-1 language code	Cod de limbă ISO 639-1
 Identifiers	Identificatori
@@ -879,6 +881,7 @@ Join collinear wires	Unire conductoare coliniare
 Joins	Leagă
 Joins wire pieces in a line where nothing else connects (current page)	Unește segmentele de conductor aflate pe o linie unde nu se conectează nimic altceva (pagina curentă)
 Jumper {}	Puntea {}
+Jumps over the other:	Sare peste celălalt:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
 Keep the degree of protection	Menținerea gradului de protecție
@@ -892,6 +895,7 @@ Label (grey)	Etichetă (gri)
 Label field	Câmp de etichetă
 Labeling scheme	Schemă de marcare
 Landscape	Vedere
+Large dot	Punct mare
 Larger texts and buttons for a touch screen at the workbench	Texte și butoane mai mari pentru un ecran tactil la banca de lucru
 Latitude, longitude	Latitudine, longitudine
 Layer	Strat
@@ -1030,6 +1034,7 @@ Move to section	Mută în secțiune
 Move up	Mută în sus
 Moves to the top level as page {}	Trece la nivelul superior ca pagina {}
 Moves to {} as page {}	Trece în {} ca pagina {}
+Moving	Mutare
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Simboluri de putere multifilare și conductoare pentru simbolurile monofilare ale paginii curente, pe o pagină nouă
 Multiple copy	Copiere multiplă
 Multiple copy…	Copiere multiplă…
@@ -1113,11 +1118,13 @@ No device has its main function in the box.	Niciun dispozitiv nu are funcția pr
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Niciun dispozitiv nu are încă date de montaj: atribuiți dispozitivelor articole cu dimensiuni (Proprietăți › Articole).
 No differences to {}.	Nicio diferență față de {}.
 No document embedded	Niciun document încorporat
+No dot: plain T	Fără punct: T simplu
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Încă nicio carcasă – creați una cu Carcasă nouă sau o încăpere pentru dulapuri cu Încăpere nouă.
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
 No harnesses defined.	Nu sunt definite cablaje.
 No inverter	Fără invertor
+No jump: plain crossing, connections have dots	Fără salt: încrucișare simplă, joncțiunile au puncte
 No longer reported	Nu mai este raportat
 No macros yet. Select items in a schematic and save them as a macro.	Încă nu există macro-uri. Selectați elemente într-o schemă și salvați-le ca macro.
 No modules: plug in PLC cards of the schematic.	Nu există module: inserați carduri PLC din schemă.
@@ -1365,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Putere disipat
 Pre-planning (CSV, Excel)	Preplanificare (CSV, Excel)
 Prefix	Prefix
 Press a key…	Apăsați o tastă…
+Preview	Previzualizare
 Previous item	Elementul anterior
 Previous page	Pagina anterioară
 Previous page tab	Fila de pagină anterioară
@@ -1554,6 +1562,7 @@ Round	Rotund
 Round cutouts facing each other in both side walls	Decupaje rotunde față în față în ambii pereți laterali
 Route definition of {}	Definiția traseului pentru {}
 Route network	Rețea de trasee
+Route the connections of moved items anew	Retrasează conexiunile elementelor mutate
 Route wires in 3D	Pozare conductoare în 3D
 Routed in {}: {} m, {} bends	Pozat în {}: {} m, {} curburi
 Routing around symbols	Ocolirea simbolurilor
@@ -1796,6 +1805,7 @@ Synchronize	Sincronizare
 Synchronize function texts	Sincronizare texte de funcție
 Synchronize project parts from database	Sincronizare articole proiect din baza de date
 T Text	T Text
+T-connections	Joncțiuni în T
 Tab	Tabulator
 Table import failed: {}	Importul tabelului nu a reușit: {}
 Tablet mode	Mod tabletă
@@ -1816,6 +1826,7 @@ Taken into the drawing: drawn faded	Preluat în desen: afișat estompat
 Takes the comments as function texts (matched by address)	Preia comentariile ca texte de funcție (asociate după adresă)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Preia denumirile punctelor de conexiune ale tuturor funcțiilor acestui dispozitiv din șabloanele de funcție ale articolelor sale
 Takes the rights of the role away, whatever other grants give	Retrage drepturile rolului, indiferent de ce acordă alte atribuiri
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Alege drumul cu cea mai mică pondere: lungimea în pași de grilă, 1,2 pe cot și 1,5 pe fir încrucișat. Dezactivat: firele se întind și își păstrează colțurile.
 Target languages	Limbi țintă
 Temperature rise at the roof against the middle (IEC/TR 60890)	Creșterea temperaturii la plafon față de mijloc (IEC/TR 60890)
 Template	Șablon
@@ -1845,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	Dicționarul este g
 The door seen from the front: door devices and cutouts	Ușa văzută din față: dispozitive de ușă și decupaje
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ușa văzută din interior (balamale în dreapta): canale de cablu și cablarea din spatele ușii
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
+The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
@@ -1871,6 +1883,7 @@ The side of {} is open	Partea lui {} este deschisă
 The symbol is placed in the project	Simbolul este plasat în proiect
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Articolele de bornă nu indică opritoare de capăt sau plăci de capăt (date tehnice End bracket, End plate).
 The update failed	Actualizarea a eșuat
+The vertical wire	Firul vertical
 The web version is updated on its server.	Versiunea web este actualizată pe serverul ei.
 The wire tool routes around symbols and other wires	Instrumentul de conductor ocolește simbolurile și alte conductoare
 The wires get the free cores of the cable in order (left to right)	Conductoarele primesc pe rând firele libere ale cablului (de la stânga la dreapta)
@@ -2005,6 +2018,8 @@ Window macro: {}	Macro de fereastră: {}
 Window macros inserted from now on are recorded as macro boxes.	Macro-urile de fereastră inserate de acum înainte sunt înregistrate ca casete macro.
 Window macros placed on the pages (not printed)	Macro-uri de fereastră plasate pe pagini (netipărite)
 Wire colour	Culoarea firului
+Wire crossings	Încrucișări ale firelor
+Wire crossings…	Încrucișări ale firelor…
 Wire ends	Capete de conductor
 Wire ends with ferrules	Capete de conductor cu manșoane de capăt
 Wire markers	Marcaje de conductor
@@ -2018,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Conductor {} – {}  (
 Wire {} – {}  {} mm	Conductor {} – {}  {} mm
 Wires and potentials	Conductoare și potențiale
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Conductoarele dintre porturile simbolurilor de acționări hidraulice/pneumatice și P&ID sunt furtunuri / conducte: rețele proprii, numerotate cu numerotarea conductoarelor, listate în lista de furtunuri.
+Wires crossing without connection	Fire care se încrucișează fără conexiune
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	De aici trebuie să plece fire în toate cele patru direcții. Până atunci conexiunea este înlănțuită în ordinea din schemă.
 Wires of the connection	Firele conexiunii
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Și conductoarele urmează traseele 3D care țin cont de obstacole, nu doar canalele de cablu de pe placă

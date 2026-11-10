@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Lado direito acoplado (sem painel lateral)
 Room {} exists already	A sala {} já existe
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotação em graus no sentido horário: 0, 90, 180 ou 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotação em graus, no sentido anti-horário (90 é lido de baixo para cima)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Retraçar as conexões dos itens movidos: o caminho mais curto com o menor número de curvas e cruzamentos
 Route the wires in 3D as well (otherwise through the cable ducts)	Rotear também os fios em 3D (caso contrário, pelas canaletas)
 Routing rules, paths, reservations, frozen routes and cable shields	Regras de roteamento, caminhos, reservas, rotas congeladas e blindagens de cabos
 Row key (from table_get)	Chave da linha (de table_get)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Mostrar como \"Nome: valor\"
 Show the content	Mostrar o conteúdo
 Shows a property as a text beside a symbol	Mostra uma propriedade como texto ao lado de um símbolo
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Mostra uma régua de bornes: bornes na ordem da régua com nível, ponte e destinos, os blocos no trilho e as pontes
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Mostra como os fios se cruzam e se unem nas páginas e se mover itens retraça suas conexões, e altera os valores informados
 Shows or changes the machining strategy and which machine makes which face	Mostra ou altera a estratégia de usinagem e qual máquina fabrica qual face
 Shows or changes the rules of copper bars; lengths in mm	Mostra ou altera as regras das barras de cobre; comprimentos em mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Mostra ou altera as regras das verificações do layout do painel; valores em mm (temperatura em °C)
@@ -768,6 +770,7 @@ Symbol ids	IDs de símbolos
 Symbol key from list_symbols	Chave do símbolo de list_symbols
 Symbol {} has no connection point {}	O símbolo {} não tem o ponto de conexão {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Símbolos, fios, textos, definições de cabo e de conexão em páginas de esquema elétrico
+T-connections: dot, large_dot or none	Junções em T: dot, large_dot ou none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Peça em T: direção da haste; ponte: lado de onde vem a conexão (left, right, up ou down)
 Tag of the terminal strip, e.g. -X1	Identificador da régua de bornes, por exemplo, -X1
 Take the cut lengths over as cable lengths	Adotar os comprimentos de corte como comprimentos de cabo
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	A lin
 The text height must be at least 0.5 mm	A altura do texto deve ser de pelo menos 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Os dois braços de um canto, vertical e horizontal, p. ex. down left (padrão: conforme os fios no local, senão down right)
 The wire has no length	A ligação não tem comprimento
+The wire that jumps: vertical or horizontal	O fio que salta: vertical ou horizontal
 The wrap width must not be negative	A largura de quebra não pode ser negativa
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulação térmica da placa de montagem: temperaturas do ar, ponto quente, fontes de calor e a temperatura em cada dispositivo
 Thickest sheet or bar, mm	Chapa ou barra mais espessa, mm
@@ -825,6 +829,7 @@ Translated line	Linha traduzida
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotação em torno da vertical em graus, no sentido anti-horário visto de cima (90: as frentes ficam voltadas para a direita)
 Two wires at a connection point share a twin ferrule	Dois fios num ponto de conexão compartilham um terminal tubular duplo
 Unit, e.g. kW	Unidade, por exemplo, kW
+Unknown T-connection style: {}	Estilo de junção em T desconhecido: {}
 Unknown accessory kind: {}	Tipo de acessório desconhecido: {}
 Unknown action: {}	Ação desconhecida: {}
 Unknown address scheme: {}	Esquema de endereçamento desconhecido: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Campo desconhecido: {}
 Unknown group kind: {}	Tipo de grupo desconhecido: {}
 Unknown installation: {}	Instalação desconhecida: {}
 Unknown insulation: {}	Isolação desconhecida: {}
+Unknown jump style: {}	Estilo de salto desconhecido: {}
 Unknown jumper kind: {}	Tipo de ponte desconhecido: {}
+Unknown jumping wire: {}	Fio que salta desconhecido: {}
 Unknown kind: {}	Tipo desconhecido: {}
 Unknown labels: {}	Rótulos desconhecidos: {}
 Unknown level: {}	Nível desconhecido: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Cor do fio, por exe
 Wire ends get ferrules	As extremidades de fio recebem ponteiras
 Wire number (kept when renumbering)	Número do fio (mantido ao renumerar)
 Wire numbering and wiring marks	Numeração de fios e marcas de fiação
+Wires crossing without connection: none, arc, bridge or gap	Fios que se cruzam sem conexão: none, arc, bridge ou gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Fios finos demais para seu dispositivo de proteção e a queda de tensão dos cabos (IEC 60204-1)
 Working area in x, mm	Área de trabalho em x, mm
 Working area in y, mm	Área de trabalho em y, mm

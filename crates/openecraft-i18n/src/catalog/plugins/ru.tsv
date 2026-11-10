@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Правая сторона пристыков�
 Room {} exists already	Помещение {} уже существует
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот в градусах по часовой стрелке: 0, 90, 180 или 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот в градусах против часовой стрелки (при 90 текст читается снизу вверх)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Прокладывать соединения перемещённых элементов заново: кратчайший путь с наименьшим числом изгибов и пересечений
 Route the wires in 3D as well (otherwise through the cable ducts)	Прокладывать провода тоже в 3D (иначе по кабельным каналам)
 Routing rules, paths, reservations, frozen routes and cable shields	Правила прокладки, пути, резервирования, зафиксированные трассы и экраны кабелей
 Row key (from table_get)	Ключ строки (из table_get)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Показывать как «Имя: значение»
 Show the content	Показать содержимое
 Shows a property as a text beside a symbol	Показывает свойство в виде текста рядом с символом
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Показывает клеммную колодку: клеммы в порядке колодки с ярусом, перемычкой и целями, блоки на рейке и перемычки
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Показывает, как провода пересекаются и соединяются на страницах и прокладываются ли соединения перемещённых элементов заново, и изменяет заданные значения
 Shows or changes the machining strategy and which machine makes which face	Показывает или изменяет стратегию обработки и то, какой станок обрабатывает какую поверхность
 Shows or changes the rules of copper bars; lengths in mm	Показывает или изменяет правила для медных шин; длины в мм
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Показывает или изменяет правила проверок компоновки шкафа; значения в мм (температура в °C)
@@ -768,6 +770,7 @@ Symbol ids	Идентификаторы символов
 Symbol key from list_symbols	Ключ символа из list_symbols
 Symbol {} has no connection point {}	У символа {} нет точки подключения {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Символы, провода, тексты, определения кабелей и соединений на листах схем
+T-connections: dot, large_dot or none	T-соединения: dot, large_dot или none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Т-образный узел: направление ножки; мост: сторона, с которой приходит соединение (left, right, up или down)
 Tag of the terminal strip, e.g. -X1	Обозначение клеммной колодки, например -X1
 Take the cut lengths over as cable lengths	Принять длины отрезков как длины кабелей
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	Пр�
 The text height must be at least 0.5 mm	Высота текста должна быть не меньше 0,5 мм
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Два плеча угла, вертикальное и горизонтальное, например down left (по умолчанию: по проводам в этой точке, иначе down right)
 The wire has no length	У соединения нет длины
+The wire that jumps: vertical or horizontal	Провод, который перескакивает: vertical или horizontal
 The wrap width must not be negative	Ширина переноса не может быть отрицательной
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Тепловое моделирование монтажной панели: температуры воздуха, горячая точка, источники тепла и температура у каждого устройства
 Thickest sheet or bar, mm	Максимальная толщина листа или шины, мм
@@ -825,6 +829,7 @@ Translated line	Переведённая строка
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Поворот вокруг вертикальной оси в градусах, против часовой стрелки при виде сверху (90: лицевые стороны обращены вправо)
 Two wires at a connection point share a twin ferrule	Два провода в точке подключения получают общий двойной наконечник
 Unit, e.g. kW	Единица, например kW
+Unknown T-connection style: {}	Неизвестный стиль T-соединения: {}
 Unknown accessory kind: {}	Неизвестный вид принадлежности: {}
 Unknown action: {}	Неизвестное действие: {}
 Unknown address scheme: {}	Неизвестная схема адресации: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Неизвестное поле: {}
 Unknown group kind: {}	Неизвестный вид группы: {}
 Unknown installation: {}	Неизвестный способ установки: {}
 Unknown insulation: {}	Неизвестная изоляция: {}
+Unknown jump style: {}	Неизвестный стиль перескока: {}
 Unknown jumper kind: {}	Неизвестный вид перемычки: {}
+Unknown jumping wire: {}	Неизвестный перескакивающий провод: {}
 Unknown kind: {}	Неизвестный вид: {}
 Unknown labels: {}	Неизвестные подписи: {}
 Unknown level: {}	Неизвестный уровень: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Цвет прово
 Wire ends get ferrules	Концы проводов получают наконечники
 Wire number (kept when renumbering)	Номер провода (сохраняется при перенумерации)
 Wire numbering and wiring marks	Нумерация проводов и отметки проводки
+Wires crossing without connection: none, arc, bridge or gap	Провода, пересекающиеся без соединения: none, arc, bridge или gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Слишком тонкие провода для их защитного устройства и падение напряжения в кабелях (IEC 60204-1)
 Working area in x, mm	Рабочая зона по x, мм
 Working area in y, mm	Рабочая зона по y, мм
