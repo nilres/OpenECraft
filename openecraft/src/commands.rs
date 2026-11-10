@@ -146,6 +146,7 @@ pub enum Cmd {
     PdfInLanguage,
     CheckSettings,
     CrossReferences,
+    WireCrossings,
     Marking,
     Shortcuts,
     CustomizeRibbon,
@@ -556,6 +557,8 @@ pub static ALL: &[Def] = &[
     d(C::CheckSettings, "check_settings", tr_const!("Check settings…"), I::Settings).tip(tr_const!("Check settings: checks, message levels, accepted messages")),
     d(C::CrossReferences, "cross_references", tr_const!("Cross references…"), I::CrossRef)
         .tip(tr_const!("Format of cross references, structure of the target page, interruption points, contact images")),
+    d(C::WireCrossings, "wire_crossings", tr_const!("Wire crossings…"), I::Wire)
+        .tip(tr_const!("How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew")),
     d(C::Marking, "marking", tr_const!("Marking…"), I::Marking),
     d(C::Shortcuts, "shortcuts", tr_const!("Keyboard shortcuts…"), I::Keyboard),
     d(C::CustomizeRibbon, "customize_ribbon", tr_const!("Customize the ribbon…"), I::Settings),

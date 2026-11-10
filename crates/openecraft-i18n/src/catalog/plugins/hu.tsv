@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Jobb oldal sorolva (nincs oldalfal)
 Room {} exists already	A(z) {} helyiség már létezik
 Rotation in degrees clockwise: 0, 90, 180 or 270	Elforgatás fokban, az óramutató járásával megegyezően: 0, 90, 180 vagy 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Elforgatás fokban, az óramutató járásával ellentétesen (90: alulról felfelé olvasható)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Az áthelyezett elemek kapcsolatainak újravezetése: a legrövidebb út a legkevesebb töréssel és kereszteződéssel
 Route the wires in 3D as well (otherwise through the cable ducts)	A vezetékek 3D nyomvonalvezetése is (egyébként a kábelcsatornákon át)
 Routing rules, paths, reservations, frozen routes and cable shields	Nyomvonal-vezetési szabályok, útvonalak, foglalások, rögzített nyomvonalak és kábelárnyékolások
 Row key (from table_get)	Sorkulcs (a table_get kimenetéből)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Megjelenítés \"Név: érték\" formában
 Show the content	Tartalom megjelenítése
 Shows a property as a text beside a symbol	Egy tulajdonságot szövegként jelenít meg egy szimbólum mellett
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Megjelenít egy sorkapocslécet: a sorkapcsok lécsorrendben szinttel, áthidalással és célokkal, a sínen lévő blokkok és az áthidalások
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Megmutatja, hogyan keresztezik és kapcsolódnak a vezetékek az oldalakon, és hogy az elemek áthelyezése újravezeti-e a kapcsolataikat, és módosítja a megadott értékeket
 Shows or changes the machining strategy and which machine makes which face	Megjeleníti vagy módosítja a megmunkálási stratégiát és azt, hogy melyik gép melyik felületet gyártja
 Shows or changes the rules of copper bars; lengths in mm	Megjeleníti vagy módosítja a rézsínekre vonatkozó szabályokat; hosszak mm-ben
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Megjeleníti vagy módosítja a szekrényelrendezési ellenőrzések szabályait; értékek mm-ben (hőmérséklet °C-ban)
@@ -768,6 +770,7 @@ Symbol ids	Szimbólumazonosítók
 Symbol key from list_symbols	Szimbólumkulcs a list_symbols kimenetéből
 Symbol {} has no connection point {}	A(z) {} szimbólumnak nincs {} csatlakozási pontja
 Symbols, wires, texts, cable and connection definitions on schematic pages	Szimbólumok, vezetékek, szövegek, kábel- és összeköttetés-definíciók a kapcsolási rajz oldalain
+T-connections: dot, large_dot or none	T-csatlakozások: dot, large_dot vagy none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-elem: a szár iránya; híd: az oldal, ahonnan a kapcsolat érkezik (left, right, up vagy down)
 Tag of the terminal strip, e.g. -X1	A sorkapocsléc azonosítója, pl. -X1
 Take the cut lengths over as cable lengths	Vágási hosszak átvétele kábelhosszként
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	A ker
 The text height must be at least 0.5 mm	A szövegmagasságnak legalább 0,5 mm-nek kell lennie
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	A sarok két karja, függőleges és vízszintes, pl. down left (alapértelmezés: az ottani vezetékek szerint, különben down right)
 The wire has no length	A kapcsolatnak nincs hossza
+The wire that jumps: vertical or horizontal	Az átugró vezeték: vertical vagy horizontal
 The wrap width must not be negative	A tördelési szélesség nem lehet negatív
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	A szerelőlap termikus szimulációja: léghőmérsékletek, forró pont, hőforrások és a hőmérséklet minden készüléknél
 Thickest sheet or bar, mm	Legvastagabb lemez vagy sín, mm
@@ -825,6 +829,7 @@ Translated line	Lefordított sor
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Elforgatás a függőleges tengely körül fokban, felülről nézve az óramutató járásával ellentétesen (90: az előlapok jobbra néznek)
 Two wires at a connection point share a twin ferrule	Egy csatlakozási pont két vezetéke egy iker érvéghüvelyen osztozik
 Unit, e.g. kW	Mértékegység, pl. kW
+Unknown T-connection style: {}	Ismeretlen T-csatlakozási stílus: {}
 Unknown accessory kind: {}	Ismeretlen tartozéktípus: {}
 Unknown action: {}	Ismeretlen művelet: {}
 Unknown address scheme: {}	Ismeretlen címséma: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Ismeretlen mező: {}
 Unknown group kind: {}	Ismeretlen csoportfajta: {}
 Unknown installation: {}	Ismeretlen felállítás: {}
 Unknown insulation: {}	Ismeretlen szigetelés: {}
+Unknown jump style: {}	Ismeretlen átugrási stílus: {}
 Unknown jumper kind: {}	Ismeretlen áthidalástípus: {}
+Unknown jumping wire: {}	Ismeretlen átugró vezeték: {}
 Unknown kind: {}	Ismeretlen típus: {}
 Unknown labels: {}	Ismeretlen feliratok: {}
 Unknown level: {}	Ismeretlen szint: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Érszín, pl. BU (�
 Wire ends get ferrules	A vezetékvégek érvéghüvelyt kapnak
 Wire number (kept when renumbering)	Vezetékszám (újraszámozáskor megmarad)
 Wire numbering and wiring marks	Vezetékszámozás és huzalozási jelölések
+Wires crossing without connection: none, arc, bridge or gap	Csatlakozás nélkül keresztező vezetékek: none, arc, bridge vagy gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	A védőkészülékükhöz túl vékony vezetékek és a kábelek feszültségesése (IEC 60204-1)
 Working area in x, mm	Munkaterület x irányban, mm
 Working area in y, mm	Munkaterület y irányban, mm

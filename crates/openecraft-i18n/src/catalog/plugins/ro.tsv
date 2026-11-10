@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Partea dreaptă alăturată (fără perete late
 Room {} exists already	Încăperea {} există deja
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotație în grade, în sensul acelor de ceasornic: 0, 90, 180 sau 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotire în grade, în sens antiorar (90 se citește de jos în sus)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Retrasează conexiunile elementelor mutate: cel mai scurt drum cu cele mai puține coturi și încrucișări
 Route the wires in 3D as well (otherwise through the cable ducts)	Pozează și conductoarele în 3D (altfel prin canalele de cablu)
 Routing rules, paths, reservations, frozen routes and cable shields	Reguli de pozare, trasee, rezervări, trasee înghețate și ecrane de cablu
 Row key (from table_get)	Cheie de rând (din table_get)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Afișare ca \"Nume: valoare\"
 Show the content	Afișare conținut
 Shows a property as a text beside a symbol	Afișează o proprietate ca text lângă un simbol
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Afișează un șir de borne: bornele în ordinea din șir, cu nivel, punte și destinații, blocurile de pe șină și punțile
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Arată cum se încrucișează și se unesc firele pe pagini și dacă mutarea elementelor le retrasează conexiunile și modifică valorile date
 Shows or changes the machining strategy and which machine makes which face	Afișează sau modifică strategia de prelucrare și ce mașină prelucrează fiecare față
 Shows or changes the rules of copper bars; lengths in mm	Afișează sau modifică regulile pentru barele de cupru; lungimi în mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Afișează sau modifică regulile verificărilor de amplasare; valori în mm (temperatură în °C)
@@ -768,6 +770,7 @@ Symbol ids	ID-uri simbol
 Symbol key from list_symbols	Cheie de simbol din list_symbols
 Symbol {} has no connection point {}	Simbolul {} nu are punctul de conexiune {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Simboluri, conductoare, texte, definiții de cablu și de conexiune pe paginile de schemă
+T-connections: dot, large_dot or none	Joncțiuni în T: dot, large_dot sau none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	Piesă T: direcția tijei; punte: latura de pe care vine conexiunea (left, right, up sau down)
 Tag of the terminal strip, e.g. -X1	Identificatorul șirului de borne, de ex. -X1
 Take the cut lengths over as cable lengths	Preluare lungimi de tăiere ca lungimi de cablu
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	Linia
 The text height must be at least 0.5 mm	Înălțimea textului trebuie să fie de cel puțin 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Cele două brațe ale unui colț, vertical și orizontal, de ex. down left (implicit: după firele de acolo, altfel down right)
 The wire has no length	Conexiunea nu are lungime
+The wire that jumps: vertical or horizontal	Firul care sare: vertical sau horizontal
 The wrap width must not be negative	Lățimea de încadrare nu trebuie să fie negativă
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulare termică a plăcii de montaj: temperaturile aerului, punct fierbinte, surse de căldură și temperatura la fiecare dispozitiv
 Thickest sheet or bar, mm	Cea mai groasă tablă sau bară, mm
@@ -825,6 +829,7 @@ Translated line	Rând tradus
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Rotire în jurul verticalei în grade, în sens antiorar văzut de sus (90: fețele frontale sunt orientate spre dreapta)
 Two wires at a connection point share a twin ferrule	Două conductoare la un punct de conexiune împart un manșon dublu
 Unit, e.g. kW	Unitate, de ex. kW
+Unknown T-connection style: {}	Stil de joncțiune în T necunoscut: {}
 Unknown accessory kind: {}	Tip de accesoriu necunoscut: {}
 Unknown action: {}	Acțiune necunoscută: {}
 Unknown address scheme: {}	Schemă de adresare necunoscută: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Câmp necunoscut: {}
 Unknown group kind: {}	Tip de grup necunoscut: {}
 Unknown installation: {}	Instalare necunoscută: {}
 Unknown insulation: {}	Izolație necunoscută: {}
+Unknown jump style: {}	Stil de salt necunoscut: {}
 Unknown jumper kind: {}	Tip de punte necunoscut: {}
+Unknown jumping wire: {}	Fir care sare necunoscut: {}
 Unknown kind: {}	Tip necunoscut: {}
 Unknown labels: {}	Etichete necunoscute: {}
 Unknown level: {}	Nivel necunoscut: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Culoare conductor, 
 Wire ends get ferrules	Capetele de conductor primesc manșoane de capăt
 Wire number (kept when renumbering)	Număr de conductor (se păstrează la renumerotare)
 Wire numbering and wiring marks	Numerotarea conductoarelor și marcaje de cablare
+Wires crossing without connection: none, arc, bridge or gap	Fire care se încrucișează fără conexiune: none, arc, bridge sau gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Conductoare prea subțiri pentru dispozitivul lor de protecție și căderea de tensiune a cablurilor (IEC 60204-1)
 Working area in x, mm	Zonă de lucru pe x, mm
 Working area in y, mm	Zonă de lucru pe y, mm

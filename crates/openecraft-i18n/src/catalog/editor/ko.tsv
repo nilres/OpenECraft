@@ -372,6 +372,7 @@ Connection points 1 and 2 are connected inside	연결 지점 1과 2는 내부에
 Connection:	연결:
 Connections ({})	연결({})
 Connections / harness	연결 / 하네스
+Connections of four or more wires always have a dot.	네 개 이상의 전선 연결에는 항상 점이 표시됩니다.
 Connections whose two ends are both on selected wires	양쪽 끝이 모두 선택한 전선에 있는 연결
 Connections without a defined potential	정의된 전위가 없는 연결
 Connectors	커넥터
@@ -790,6 +791,7 @@ Hoses and pipes	호스 및 배관
 Hoses rated below it are errors; 0 = not checked	정격이 이보다 낮은 호스는 오류입니다. 0 = 검사 안 함
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	문짝이 열리는 방식: 왼쪽 또는 오른쪽 가장자리에 경첩(실내에서 볼 때), 실내 쪽 또는 바깥쪽으로 열림, 또는 벽을 따라 미닫이
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	이 끝단에서 전선을 마감하는 방식. 기본값은 연결점 또는 그 장치에 선택한 것, 없으면 레이아웃의 페룰 설정을 따릅니다
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	전선이 교차하는 전선을 넘는 방식, T 연결을 표시하는 방식, 이동한 항목의 연결을 다시 배선할지 여부
 IP / bus address	IP / 버스 주소
 ISO 639-1 language code	ISO 639-1 언어 코드
 Identifiers	식별자
@@ -874,6 +876,7 @@ Its pages replace the pages taken out	해당 페이지가 반출된 페이지를
 Join collinear wires	동일 선상의 전선 결합
 Joins wire pieces in a line where nothing else connects (current page)	다른 연결이 없는 곳에서 일직선상의 전선 조각을 결합합니다(현재 페이지)
 Jumper {}	점퍼 {}
+Jumps over the other:	다른 전선을 넘음:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	하위 페이지(3.a, 3.1)를 이전 페이지와 함께 유지
 Keep the degree of protection	보호 등급 유지
@@ -887,6 +890,7 @@ Label (grey)	레이블(회색)
 Label field	레이블 필드
 Labeling scheme	라벨링 스키마
 Landscape	가로
+Large dot	큰 점
 Larger texts and buttons for a touch screen at the workbench	작업대 터치스크린을 위한 더 큰 글자와 버튼
 Latitude, longitude	위도, 경도
 Layer	레이어
@@ -1025,6 +1029,7 @@ Move to section	구역으로 이동
 Move up	위로 이동
 Moves to the top level as page {}	최상위 수준의 페이지 {}(으)로 이동합니다
 Moves to {} as page {}	{}의 페이지 {}(으)로 이동합니다
+Moving	이동
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	현재 페이지의 단선 심볼에 대한 복선 전력 심볼과 도체(새 페이지에 생성)
 Multiple copy	다중 복사
 Multiple copy…	다중 복사…
@@ -1106,11 +1111,13 @@ No device has its main function in the box.	주 기능이 박스 안에 있는 �
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	아직 장착 데이터가 있는 장치가 없습니다: 장치에 치수가 있는 부품을 할당하십시오(속성 › 부품).
 No differences to {}.	{}와(과) 차이점이 없습니다.
 No document embedded	포함된 문서 없음
+No dot: plain T	점 없음: 단순 T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	아직 외함이 없습니다 – 새 외함으로 만들거나 새 방으로 외함용 방을 만드십시오.
 No field cables: place the enclosures and field devices at nodes of the route network.	필드 케이블이 없습니다. 외함과 필드 장치를 경로 네트워크의 노드에 배치하세요.
 No filter fans: an air/air heat exchanger or a cooling unit	필터 팬 없음: 공기/공기 열교환기 또는 냉각 장치
 No harnesses defined.	정의된 하네스가 없습니다.
 No inverter	인버터 없음
+No jump: plain crossing, connections have dots	점프 없음: 단순 교차, 연결에 점 표시
 No longer reported	더 이상 보고되지 않음
 No macros yet. Select items in a schematic and save them as a macro.	아직 매크로가 없습니다. 회로도에서 항목을 선택하고 매크로로 저장하세요.
 No modules: plug in PLC cards of the schematic.	모듈이 없습니다. 회로도의 PLC 카드를 장착하세요.
@@ -1361,6 +1368,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	부품에 포�
 Pre-planning (CSV, Excel)	사전 계획(CSV, Excel)
 Prefix	접두사
 Press a key…	키를 누르세요…
+Preview	미리 보기
 Previous item	이전 항목
 Previous page	이전 페이지
 Previous page tab	이전 페이지 탭
@@ -1554,6 +1562,7 @@ Round	원형
 Round cutouts facing each other in both side walls	양쪽 측벽에 서로 마주 보는 원형 컷아웃
 Route definition of {}	{}의 경로 정의
 Route network	경로 네트워크
+Route the connections of moved items anew	이동한 항목의 연결을 다시 배선
 Route wires in 3D	3D로 전선 배선 경로 지정
 Routed in {}: {} m, {} bends	{0}에 배선 경로 지정됨: {1} m, 굽힘 {2}개
 Routing around symbols	심볼 우회 경로 설정
@@ -1802,6 +1811,7 @@ Synchronize	동기화
 Synchronize function texts	기능 텍스트 동기화
 Synchronize project parts from database	데이터베이스에서 프로젝트 부품 동기화
 T Text	T 텍스트
+T-connections	T 연결
 Tab	탭
 Table import failed: {}	표 가져오기 실패: {}
 Tablet mode	태블릿 모드
@@ -1822,6 +1832,7 @@ Taken into the drawing: drawn faded	도면에 반영됨: 흐리게 표시
 Takes the comments as function texts (matched by address)	주석을 기능 텍스트로 가져옵니다(주소로 매칭)
 Takes the connection point designations of all functions of this device from the function templates of its parts	이 장치의 모든 기능의 연결 지점 명칭을 부품의 기능 템플릿에서 가져옵니다
 Takes the rights of the role away, whatever other grants give	다른 권한 부여와 관계없이 역할의 권한을 박탈합니다
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	가중치가 가장 작은 경로를 택합니다: 그리드 단위 길이, 꺾임마다 1.2, 교차하는 전선마다 1.5. 사용 안 함: 전선이 늘어나며 모서리를 유지합니다.
 Target languages	대상 언어
 Temperature rise at the roof against the middle (IEC/TR 60890)	중앙 대비 천장부 온도 상승(IEC/TR 60890)
 Template	템플릿
@@ -1851,6 +1862,7 @@ The dictionary is empty: collect the texts from the project.	사전이 비어 �
 The door seen from the front: door devices and cutouts	앞에서 본 도어: 도어 장치 및 컷아웃
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	안쪽에서 본 도어(힌지 오른쪽): 케이블 덕트 및 도어 뒤 배선
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
+The horizontal wire	가로 전선
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
 The macro library has no page macros (Macros › Save page as macro…).	매크로 라이브러리에 페이지 매크로가 없습니다(매크로 › 페이지를 매크로로 저장…).
 The modules no string takes yet in series, on the first inverter	아직 어느 스트링에도 속하지 않은 모듈을 직렬로, 첫 번째 인버터에
@@ -1880,6 +1892,7 @@ The side of {} is open	{}의 측면이 개방되어 있습니다
 The symbol is placed in the project	심볼이 프로젝트에 배치되어 있습니다
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	단자 부품에 엔드 브래킷이나 엔드 플레이트가 지정되어 있지 않습니다(기술 데이터 End bracket, End plate).
 The update failed	업데이트에 실패했습니다
+The vertical wire	세로 전선
 The web version is updated on its server.	웹 버전은 해당 서버에서 업데이트됩니다.
 The wires get the free cores of the cable in order (left to right)	전선은 케이블의 빈 심선을 순서대로(왼쪽에서 오른쪽) 받습니다
 The wires of the connection take these values again	연결의 전선이 이 값을 다시 받습니다
@@ -2009,6 +2022,8 @@ Window macro: {}	창 매크로: {}
 Window macros inserted from now on are recorded as macro boxes.	지금부터 삽입되는 창 매크로는 매크로 박스로 기록됩니다.
 Window macros placed on the pages (not printed)	페이지에 배치된 창 매크로(인쇄되지 않음)
 Wire colour	전선 색상
+Wire crossings	전선 교차
+Wire crossings…	전선 교차…
 Wire ends	전선 끝
 Wire ends with ferrules	페룰이 있는 전선 끝
 Wire markers	전선 마커
@@ -2022,6 +2037,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	전선 {0} – {1}  (�
 Wire {} – {}  {} mm	전선 {} – {}  {} mm
 Wires and potentials	전선과 전위
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	유체 동력 심볼과 P&ID 심볼의 포트 사이의 전선은 호스 / 배관입니다: 고유 네트이며, 전선 번호 지정으로 번호가 매겨지고 호스 목록에 나열됩니다.
+Wires crossing without connection	연결 없이 교차하는 전선
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	여기에서 네 방향 모두로 연결선이 나가야 합니다. 그때까지 연결은 회로도 순서로 연결됩니다.
 Wires of the connection	연결의 전선
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	전선도 플레이트 위의 케이블 덕트만 사용하는 대신 장애물을 고려한 3D 경로를 사용합니다

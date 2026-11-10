@@ -663,6 +663,7 @@ Right side bayed (no side panel)	Höger sida sammanbyggd (ingen sidovägg)
 Room {} exists already	Rummet {} finns redan
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader medurs: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Vridning i grader, moturs (90 läses nerifrån och upp)
+Route the connections of moved items anew: shortest way with the fewest bends and crossings	Dra förbindelserna för flyttade objekt på nytt: kortaste vägen med minst antal böjar och korsningar
 Route the wires in 3D as well (otherwise through the cable ducts)	Dra även ledningarna i 3D (annars genom kabelkanalerna)
 Routing rules, paths, reservations, frozen routes and cable shields	Förläggningsregler, förläggningsvägar, reservationer, frysta förläggningar och kabelskärmar
 Row key (from table_get)	Radnyckel (från table_get)
@@ -719,6 +720,7 @@ Show as \"Name: value\"	Visa som \"Namn: värde\"
 Show the content	Visa innehållet
 Shows a property as a text beside a symbol	Visar en egenskap som text bredvid en symbol
 Shows a terminal strip: terminals in strip order with level, jumper and targets, the blocks on the rail and the jumpers	Visar en plintrad: plintar i plintradsordning med våning, bygel och mål, blocken på skenan och byglarna
+Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given	Visar hur ledningar korsar och förbinds på sidorna och om flyttade objekt får sina förbindelser dragna på nytt, och ändrar de angivna värdena
 Shows or changes the machining strategy and which machine makes which face	Visar eller ändrar bearbetningsstrategin och vilken maskin som tillverkar vilken yta
 Shows or changes the rules of copper bars; lengths in mm	Visar eller ändrar reglerna för kopparskenor; längder i mm
 Shows or changes the rules of the panel layout checks; values in mm (temperature in °C)	Visar eller ändrar reglerna för layoutkontrollerna; värden i mm (temperatur i °C)
@@ -768,6 +770,7 @@ Symbol ids	Symbol-ID:n
 Symbol key from list_symbols	Symbolnyckel från list_symbols
 Symbol {} has no connection point {}	Symbolen {} har ingen anslutningspunkt {}
 Symbols, wires, texts, cable and connection definitions on schematic pages	Symboler, ledningar, texter, kabel- och förbindelsedefinitioner på schemasidor
+T-connections: dot, large_dot or none	T-förbindelser: dot, large_dot eller none
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-stycke: stammens riktning; brygga: sidan förbindelsen kommer från (left, right, up eller down)
 Tag of the terminal strip, e.g. -X1	Plintradens beteckning, t.ex. -X1
 Take the cut lengths over as cable lengths	Överför kaplängderna som kabellängder
@@ -813,6 +816,7 @@ The straight line of a crossing: vertical or horizontal (default vertical)	En ko
 The text height must be at least 0.5 mm	Texthöjden måste vara minst 0,5 mm
 The two arms of a corner, vertical and horizontal, e.g. down left (default: from the wires there, else down right)	Ett hörns två armar, lodrät och vågrät, t.ex. down left (standard: efter ledarna där, annars down right)
 The wire has no length	Förbindningen har ingen längd
+The wire that jumps: vertical or horizontal	Ledningen som hoppar: vertical eller horizontal
 The wrap width must not be negative	Radbrytningsbredden får inte vara negativ
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Termisk simulering av monteringsplåten: lufttemperaturer, varm punkt, värmekällor och temperaturen vid varje apparat
 Thickest sheet or bar, mm	Tjockaste plåt eller skena, mm
@@ -825,6 +829,7 @@ Translated line	Översatt rad
 Turn about the vertical in degrees, counter-clockwise seen from above (90: the fronts face to the right)	Vridning kring lodlinjen i grader, moturs sett ovanifrån (90: fronterna pekar åt höger)
 Two wires at a connection point share a twin ferrule	Två ledare vid en anslutningspunkt delar en dubbel ändhylsa
 Unit, e.g. kW	Enhet, t.ex. kW
+Unknown T-connection style: {}	Okänd stil för T-förbindelse: {}
 Unknown accessory kind: {}	Okänd tillbehörstyp: {}
 Unknown action: {}	Okänd åtgärd: {}
 Unknown address scheme: {}	Okänt adresschema: {}
@@ -847,7 +852,9 @@ Unknown field: {}	Okänt fält: {}
 Unknown group kind: {}	Okänd grupptyp: {}
 Unknown installation: {}	Okänd uppställning: {}
 Unknown insulation: {}	Okänd isolering: {}
+Unknown jump style: {}	Okänd hoppstil: {}
 Unknown jumper kind: {}	Okänd bygeltyp: {}
+Unknown jumping wire: {}	Okänd hoppande ledning: {}
 Unknown kind: {}	Okänd typ: {}
 Unknown labels: {}	Okända etiketter: {}
 Unknown level: {}	Okänd nivå: {}
@@ -910,6 +917,7 @@ Wire colour, e.g. BU (empty = from the potential definition)	Ledarfärg, t.ex. B
 Wire ends get ferrules	Ledningsändar får ändhylsor
 Wire number (kept when renumbering)	Ledningsnummer (behålls vid omnumrering)
 Wire numbering and wiring marks	Ledningsnumrering och inkopplingsmarkeringar
+Wires crossing without connection: none, arc, bridge or gap	Ledningar som korsar utan förbindelse: none, arc, bridge eller gap
 Wires too thin for their protective device and the voltage drop of the cables (IEC 60204-1)	Ledningar som är för klena för sitt skyddsdon och kablarnas spänningsfall (IEC 60204-1)
 Working area in x, mm	Arbetsområde i x, mm
 Working area in y, mm	Arbetsområde i y, mm

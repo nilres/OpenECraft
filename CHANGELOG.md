@@ -5,6 +5,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Wire jumps** (#132): wires that cross without a connection can jump over each other
+  with an arc, a square bridge or a gap, besides the plain crossing of before; the
+  vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
+  dot (a plain T); connections of four or more wires always keep their dot. Set in
+  *Connections › Wire crossings…* (Settings › Wire crossings) with a preview, saved
+  with the project and in settings schemes, drawn alike on screen and in PDF, SVG and
+  DXF. Command `wire_settings`.
+- **Rerouting moved connections** (#132, off by default): with *Route the connections
+  of moved items anew* a wire left diagonal by a move is routed again together with
+  the corners after it, up to the next connection point, junction or branch: the
+  way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
+  wire crossed. Labels and connection definition points come along; without a way the
+  wire is squared as before.
 - **Startup and the source of the project** (#129): *File › Settings › On startup*
   chooses what opens when the editor starts: the start page with the local files and
   the projects of the project server (*Show project manager*), the last project from

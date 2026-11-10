@@ -99,7 +99,11 @@ rail stays on the rail), otherwise the wire gets a jog or a route around what is
 the way, and a wire that cannot be squared without touching another connection stays
 diagonal. Connection definition points and cable definition lines stay on their
 wires unless they are moved themselves; a line that cannot stay across exactly its
-wires stays where it is. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
+wires stays where it is. With *Route the connections of moved items anew*
+(*Connections › Wire crossings…*, off by default) such a wire is routed again
+together with the corners after it, up to the next connection point, junction or
+branch, on the way of the least weight: its length in grid steps, 1.2 per bend and
+1.5 per wire crossed; a connection without such a way is squared as before. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
 coordinate field in the tool bar (`x y` absolute or `@dx dy` relative to the last
 point, Enter acts like a click of the current tool); *Home › Align* (edges or
 centres), *Distribute* (evenly, horizontally or vertically), *Move selection by…*
@@ -126,6 +130,18 @@ Lines, rectangles, circles, ellipses, arcs, polylines and
 polygons (width, colour, dashed, filled), dimensions (aligned / horizontal / vertical,
 scale, unit), PNG / JPEG images (also in the PDF and SVG export). **Layers**
 (navigator › Layers): visible, locked, printed, colour; DXF / DWG export per layer.
+
+## Wire crossings and T-connections
+
+Wires that cross without a connection are drawn as a plain crossing, or the vertical
+(or horizontal) wire jumps over the other with an **arc**, a square **bridge** or a
+**gap**; close jumps on a wire become one. T-connections show a **dot**, a **large
+dot** or **no dot** (a plain T); a connection of four or more wires always keeps its
+dot, so that it never looks like a crossing. *Connections › Wire crossings…* sets
+both with a preview; the setting is saved with the project and in settings schemes
+and applies to the canvas and the PDF, SVG and DXF export alike. Command line / MCP:
+`wire_settings` (`jump`: none, arc, bridge, gap; `jump_wire`: vertical, horizontal;
+`tee`: dot, large_dot, none; `reroute`).
 
 ## Routing
 
