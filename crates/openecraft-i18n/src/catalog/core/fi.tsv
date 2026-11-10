@@ -1847,6 +1847,7 @@ leakage	vuoto
 low	matala
 measuring	mittaus
 new	uusi
+no free cable gland	ei vapaata kaapeliläpivientiä
 no header	ei otsikkoriviä
 no list	ei luetteloa
 no path through the route network	ei reittiä reittiverkon kautta
@@ -1937,6 +1938,7 @@ yellow	keltainen
 {} unused device data records removed	{} käyttämätöntä laitetietuetta poistettiin
 {} wiring marks belong to wires that no longer exist	{} johdotusmerkintää kuuluu johtoihin, joita ei enää ole
 {} without device tag on page {}	{} ilman laitetunnusta sivulla {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} ei voida reitittää: jokainen kaapeliläpivienti kohteessa {} on toisen kaapelin käytössä. Lisää sille kaapeliläpivienti.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} ei voi reitittää: ei reittiä, joka pitää puolet paksuudesta vapaana kaikesta ja taipuu säteellä {} mm. Siirrä päitä tai tee tilaa.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} tulee sisään pohjan kautta: kotelossa ei ole kaapeliläpivientiä
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} tulee sisään katon kautta: katossa, sivuissa tai takaseinässä ei ole kaapeliläpivientiä
