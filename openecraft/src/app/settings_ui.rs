@@ -20,6 +20,7 @@ pub(super) enum Node {
     Scheme,
     ProjectTools,
     Appearance,
+    Navigation,
     Shortcuts,
     Ribbon,
     Servers,
@@ -28,7 +29,7 @@ pub(super) enum Node {
 
 impl Node {
     const PROJECT: [Node; 6] = [Node::WireNumbering, Node::CrossReferences, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
-    const USER: [Node; 5] = [Node::Appearance, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
+    const USER: [Node; 6] = [Node::Appearance, Node::Navigation, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
 
     fn title(self) -> &'static str {
         match self {
@@ -39,6 +40,7 @@ impl Node {
             Node::Scheme => tr("Settings scheme"),
             Node::ProjectTools => tr("Further project settings"),
             Node::Appearance => tr("Appearance"),
+            Node::Navigation => tr("Navigation"),
             Node::Shortcuts => tr("Keyboard shortcuts"),
             Node::Ribbon => tr("Ribbon"),
             Node::Servers => tr("Servers"),
@@ -116,6 +118,7 @@ impl App {
                     Node::Scheme => self.scheme_settings(ui),
                     Node::ProjectTools => self.project_tool_links(ui),
                     Node::Appearance => self.appearance_settings(ui),
+                    Node::Navigation => self.navigation_settings(ui),
                     Node::Shortcuts => self.shortcut_settings(ui),
                     Node::Ribbon => self.ribbon_settings(ui),
                     Node::Servers => self.server_links(ui),
@@ -223,6 +226,32 @@ impl App {
                     }
                 }
             });
+            ui.end_row();
+        });
+    }
+
+    /// What the wheel, a trackpad and a touch screen do in the 2D and 3D views.
+    fn navigation_settings(&mut self, ui: &mut egui::Ui) {
+        use openecraft_ui::nav::Scroll;
+        let nav = &mut self.shell.nav;
+        egui::Grid::new("navigation").num_columns(2).spacing([16.0, 8.0]).show(ui, |ui| {
+            ui.label(tr("Scrolling"));
+            ui.vertical(|ui| {
+                for s in Scroll::ALL {
+                    ui.radio_value(&mut nav.scroll, s, tr(s.title()));
+                }
+                ui.weak(match nav.scroll {
+                    Scroll::Auto => tr("Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel."),
+                    Scroll::Zoom => tr("Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans."),
+                    Scroll::Pan => tr("Scrolling pans in every direction; pinch or Ctrl + scroll to zoom."),
+                });
+            });
+            ui.end_row();
+            ui.label(tr("Direction"));
+            ui.checkbox(&mut nav.invert, tr("Invert the direction of panning by scrolling"));
+            ui.end_row();
+            ui.label(tr("Touch screen"));
+            ui.weak(tr("Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button."));
             ui.end_row();
         });
     }

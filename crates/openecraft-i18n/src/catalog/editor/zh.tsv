@@ -860,6 +860,7 @@ Insulation	绝缘
 Interruption points refer to	中断点引用
 Introduction	简介
 Invalid value	无效值
+Invert the direction of panning by scrolling	反转滚动平移的方向
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 Isometric	等轴测
 Items on the layer	图层上的元素
@@ -1034,6 +1035,7 @@ Name and cross reference	名称和交叉引用
 Name on the server	服务器上的名称
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名称; 数据类型; 逻辑地址; 注释 – 用于 PLC 编程工具
 Named copy of this form, for report blocks	此表单的命名副本，用于报表块
+Navigation	导航
 Navigators	导航器
 Neutral exchange file…	中性交换文件…
 Never	从不
@@ -1596,6 +1598,9 @@ Scheme name	方案名称
 Scheme placed again at {} symbols	已在 {} 个符号处重新放置方案
 Scheme {}	方案 {}
 Screws, nuts, washers and rivet nuts of the fixing points	固定点的螺钉、螺母、垫圈和拉铆螺母
+Scrolling	滚动
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	滚动可向任意方向平移视图；双指捏合或 Ctrl + 滚动进行缩放。
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	上下滚动在指针处缩放，横向滚动（水平滚轮、Shift + 滚轮）平移视图。
 Search (* and ? as placeholders)…	搜索（* 和 ? 作为通配符）…
 Search below this folder	在此文件夹下搜索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	按目录、产品组和技术数据搜索部件服务器，添加部件并检查数据库更新
@@ -1873,11 +1878,14 @@ Top edges	上边缘
 Top left	左上
 Top right	右上
 Total selectivity	完全选择性
+Touch screen	触摸屏
 Transfer project parts to database	将项目部件传输到数据库
 Translate the project texts; documentation per language	翻译项目文本；按语言生成文档
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	绕垂直轴旋转，从上方看为逆时针（90 °：正面朝右）
 Tutorial	教程
 Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	触控板上的双指平移视图，鼠标滚轮缩放。只有 macOS 能区分两者；在其他系统上，滚动与滚轮一样进行缩放。
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	双指可同时平移视图和捏合缩放；单指的作用与鼠标左键相同。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp

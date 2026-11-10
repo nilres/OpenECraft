@@ -1027,34 +1027,21 @@ impl Editor {
         }
 
         // ------------------------------------------------------------ navigation
-        if resp.hovered() {
-            // Raw wheel events: CAD style zoom around the cursor, no smoothing.
-            let (wheel, zoom_delta, ptr) = ui.input(|i| {
-                let mut wheel = 0.0;
-                for e in &i.events {
-                    if let egui::Event::MouseWheel { unit, delta, modifiers, .. } = e {
-                        if modifiers.ctrl || modifiers.command {
-                            continue; // already contained in zoom_delta()
-                        }
-                        wheel += match unit {
-                            egui::MouseWheelUnit::Point => delta.y,
-                            egui::MouseWheelUnit::Line => delta.y * 40.0,
-                            egui::MouseWheelUnit::Page => delta.y * 400.0,
-                        };
-                    }
-                }
-                (wheel, i.zoom_delta(), i.pointer.hover_pos())
-            });
-            if let Some(ptr) = ptr {
-                let factor = zoom_delta * (wheel * 0.0025).exp();
-                if (factor - 1.0).abs() > 1e-4 {
-                    self.zoom_at(rect, ptr, factor);
-                }
-            }
+        // Wheel, trackpad and touch: CAD style zoom around the cursor, no smoothing.
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.offset += gesture.pan;
+        if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
+            self.zoom_at(rect, at, gesture.zoom);
         }
         if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
             self.offset += resp.drag_delta();
         }
+        // Fingers navigating leave out the first one's selection window; a move already
+        // under way goes on.
+        if gesture.touch && matches!(self.drag, Drag::Box { .. }) {
+            self.drag = Drag::None;
+        }
+        let pointer_tools = !gesture.touch || !matches!(self.drag, Drag::None);
 
         let locked = prj.pages[page_i].locked;
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
@@ -1082,7 +1069,7 @@ impl Editor {
         }
 
         // ------------------------------------------------------------ mouse
-        if self.tool == Tool::Select && resp.clicked_by(PointerButton::Primary) {
+        if self.tool == Tool::Select && pointer_tools && resp.clicked_by(PointerButton::Primary) {
             out.clicked = world;
         }
         // Right click selects what is under the cursor; the app shows the context menu.
@@ -1096,7 +1083,9 @@ impl Editor {
             }
             out.response = Some(resp.clone());
         }
-        if self.tool.is_review() {
+        if !pointer_tools {
+            // The fingers navigate.
+        } else if self.tool.is_review() {
             self.review_mouse(&resp, world, &mut out);
         } else if editable {
             self.mouse(ui, &resp, prj, page_i, rect, world, snapped, an, idx, &mut out);

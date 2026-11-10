@@ -857,6 +857,7 @@ Insulation	절연
 Interruption points refer to	중단점의 참조 대상
 Introduction	소개
 Invalid value	잘못된 값
+Invert the direction of panning by scrolling	스크롤 이동 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
 Isometric	등각
 Items on the layer	레이어의 항목
@@ -1031,6 +1032,7 @@ Name and cross reference	이름 및 상호 참조
 Name on the server	서버의 이름
 Name; Data Type; Logical Address; Comment – for PLC programming tools	이름; 데이터 유형; 논리 주소; 주석 – PLC 프로그래밍 도구용
 Named copy of this form, for report blocks	보고서 블록용으로 이 양식에 이름을 지정한 복사본
+Navigation	탐색
 Navigators	탐색기
 Neutral exchange file…	중립 교환 파일…
 Never	안 함
@@ -1592,6 +1594,9 @@ Scheme name	스키마 이름
 Scheme placed again at {} symbols	심볼 {}개에 스키마를 다시 배치했습니다
 Scheme {}	스키마 {}
 Screws, nuts, washers and rivet nuts of the fixing points	고정점의 나사, 너트, 와셔 및 리벳 너트
+Scrolling	스크롤
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	스크롤하면 모든 방향으로 화면을 이동합니다. 확대/축소는 핀치 또는 Ctrl + 스크롤로 합니다.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	위아래로 스크롤하면 포인터 위치에서 확대/축소하고, 옆으로(가로 휠, Shift + 휠) 스크롤하면 화면을 이동합니다.
 Search (* and ? as placeholders)…	검색 (* 와 ? 는 와일드카드)…
 Search below this folder	이 폴더 아래에서 검색
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	카탈로그, 제품 그룹 및 기술 데이터로 부품 서버를 검색하고, 부품을 추가하며, 데이터베이스의 업데이트를 확인합니다
@@ -1868,11 +1873,14 @@ Top edges	위쪽 가장자리
 Top left	왼쪽 위
 Top right	오른쪽 위
 Total selectivity	완전 선택 차단
+Touch screen	터치스크린
 Transfer project parts to database	프로젝트 부품을 데이터베이스로 전송
 Translate the project texts; documentation per language	프로젝트 텍스트 번역, 언어별 문서
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	수직축 기준 회전, 위에서 볼 때 시계 반대 방향(90 °: 전면이 오른쪽을 향함)
 Tutorial	튜토리얼
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	트랙패드에서 두 손가락은 화면을 이동하고 마우스 휠은 확대/축소합니다. 둘을 구분하는 것은 macOS뿐이며, 다른 곳에서는 스크롤이 휠처럼 확대/축소합니다.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	두 손가락으로 이동과 핀치 확대/축소를 동시에 할 수 있으며, 한 손가락은 마우스 왼쪽 버튼처럼 작동합니다.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Trackpads and touch screens** (#134): every 2D and 3D view (schematic, front,
+  floor and site plan, 3D view, field plan, symbol editor) zooms with a pinch and pans
+  with two fingers, both in one movement; on a touch screen the first finger no longer
+  selects, moves or orbits while two are down. The horizontal mouse wheel and
+  `Shift`+wheel pan sideways. *Settings › Navigation* chooses what scrolling does:
+  *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
+  wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
+  The symbol editor's canvas pans too (also with the middle mouse button).
 - **EDZ parts without a usable macro** (#131): a part whose first function is a
   generic one (the connection points of a drive or an HMI) is placed as a black box
   with room for its connection points instead of an earth electrode. Elliptic arcs of

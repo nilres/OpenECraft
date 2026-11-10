@@ -859,6 +859,7 @@ Insulation	絶縁
 Interruption points refer to	中断ポイントの参照先
 Introduction	はじめに
 Invalid value	無効な値
+Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 Isometric	等角
 Items on the layer	レイヤー上のアイテム
@@ -1033,6 +1034,7 @@ Name and cross reference	名前と相互参照
 Name on the server	サーバー上の名前
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名前; データ型; 論理アドレス; コメント – PLC プログラミングツール用
 Named copy of this form, for report blocks	このフォームの名前付きコピー (レポートブロック用)
+Navigation	ナビゲーション
 Navigators	ナビゲーター
 Neutral exchange file…	ニュートラル交換ファイル…
 Never	表示しない
@@ -1595,6 +1597,9 @@ Scheme name	スキーム名
 Scheme placed again at {} symbols	スキームを {} 個のシンボルに再配置しました
 Scheme {}	スキーム {}
 Screws, nuts, washers and rivet nuts of the fixing points	固定ポイントのねじ、ナット、ワッシャー、リベットナット
+Scrolling	スクロール
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	スクロールで全方向にパンします。ズームはピンチまたは Ctrl + スクロールで行います。
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	上下のスクロールでポインター位置をズーム、横方向（水平ホイール、Shift + ホイール）でパンします。
 Search (* and ? as placeholders)…	検索 (* と ? はワイルドカード)…
 Search below this folder	このフォルダーの下を検索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	カタログ、製品グループ、技術データで部品サーバーを検索し、部品を追加して、データベースの更新を確認します
@@ -1872,11 +1877,14 @@ Top edges	上端
 Top left	左上
 Top right	右上
 Total selectivity	完全選択遮断
+Touch screen	タッチスクリーン
 Transfer project parts to database	プロジェクト部品をデータベースに転送
 Translate the project texts; documentation per language	プロジェクトテキストを翻訳します。言語ごとのドキュメント
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	鉛直軸まわりの回転 (上から見て反時計回り、90 °: 正面が右向き)
 Tutorial	チュートリアル
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	トラックパッドの 2 本指でパン、マウスホイールでズームします。両者を区別できるのは macOS だけで、その他ではスクロールはホイールと同じくズームします。
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	2 本指でパンとピンチズームを同時に行えます。1 本指はマウスの左ボタンと同じ働きをします。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp

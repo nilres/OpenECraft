@@ -867,6 +867,7 @@ Insulation	Szigetelés
 Interruption points refer to	A megszakítási pontok hivatkozása
 Introduction	Bevezetés
 Invalid value	Érvénytelen érték
+Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
 Isometric	Izometrikus
 Items on the layer	A réteg elemei
@@ -1045,6 +1046,7 @@ Name and cross reference	Név és kereszthivatkozás
 Name on the server	Név a szerveren
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Név; Adattípus; Logikai cím; Megjegyzés – PLC-programozó eszközökhöz
 Named copy of this form, for report blocks	Az űrlap elnevezett másolata kimutatásblokkokhoz
+Navigation	Navigáció
 Navigators	Navigátorok
 Neutral exchange file…	Semleges cserefájl…
 Never	Soha
@@ -1613,6 +1615,9 @@ Scheme name	Séma neve
 Scheme placed again at {} symbols	Séma újra elhelyezve {} szimbólumon
 Scheme {}	{} séma
 Screws, nuts, washers and rivet nuts of the fixing points	A rögzítési pontok csavarjai, anyái, alátétei és szegecsanyái
+Scrolling	Görgetés
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	A görgetés minden irányba mozgatja a nézetet; nagyításhoz csippentsen, vagy használja a Ctrl + görgetést.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	A fel-le görgetés a mutatónál nagyít, az oldalirányú (vízszintes görgő, Shift + görgő) mozgatja a nézetet.
 Search (* and ? as placeholders)…	Keresés (* és ? helyettesítő karakterként)…
 Search below this folder	Keresés ebben a mappában és alatta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Keresés az alkatrészszerveren katalógus, termékcsoport és műszaki adatok szerint, alkatrészek hozzáadása és az adatbázis frissítéseinek ellenőrzése
@@ -1892,11 +1897,14 @@ Top edges	Felső élek
 Top left	Bal felső
 Top right	Jobb felső
 Total selectivity	Teljes szelektivitás
+Touch screen	Érintőképernyő
 Transfer project parts to database	Projektalkatrészek átvitele az adatbázisba
 Translate the project texts; documentation per language	A projektszövegek fordítása; dokumentáció nyelvenként
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Elforgatás a függőleges tengely körül, felülről nézve az óramutató járásával ellentétesen (90 °: az előlapok jobbra néznek)
 Tutorial	Oktatóanyag
 Twin ferrules where two wires share a connection point	Iker érvéghüvelyek, ahol két vezeték osztozik egy csatlakozási ponton
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Az érintőpadon két ujj mozgatja a nézetet, az egérgörgő nagyít. Csak a macOS különbözteti meg őket; máshol a görgetés a görgőhöz hasonlóan nagyít.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Két ujj egyszerre mozgatja a nézetet és csippentéssel nagyít; egy ujj a bal egérgombként működik.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Írjon be egy pontot, és nyomja le az Enter billentyűt: x y mm-ben, vagy @dx dy az utolsó ponthoz képest; úgy működik, mint az aktuális eszközzel végzett kattintás
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
