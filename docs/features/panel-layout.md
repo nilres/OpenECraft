@@ -34,7 +34,10 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   its cores part from there in smooth curves, each into its connection point from the
   side its wires leave it; through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
-  through one gland side by side. In a cabinet without cable ducts on its mounting
+  through one cable entry flange or wall penetration side by side. Cable glands are
+  drawn with the models of their parts: outside the hexagon body, neck and dome on the
+  outer surface of their wall, inside the locknut and the end of the thread on its
+  inner surface, in nickel-plated brass or polyamide; routes keep clear of the locknut. In a cabinet without cable ducts on its mounting
   plate the wires are laid by the 3D routing (see below), from connection point to
   connection point.
 - Copper **busbar systems** (bars drawn, metres and holders in the BOM) and rectangular
@@ -472,7 +475,10 @@ comes into the other one against the direction that one gives, never past it and
 the box of its own device where the point lies inside it, such as the terminals of a
 switch on its module, never through another device that stands right before the
 point), keeps half its thickness clear of everything, bends with its
-radius only, and keeps apart from every other route; routes come together only where
+radius only, and keeps apart from every other route and from itself (where its ends
+lie too close for its bend radius it runs round in a loop that never comes back
+across or alongside its own way, the bends at its corners and the nozzle it comes out
+of; where there is no such loop it is not routed); routes come together only where
 they come up to the same device, and there they lie side by side: a route never runs
 across another one it comes together with (it may only on its own way out of a
 connection point, or where it comes up to the device the other one ends at, and goes
@@ -485,8 +491,10 @@ round them. A wire that finds no such way is not drawn: it is reported as an err
 (*… cannot be routed: no way that keeps half its thickness clear of everything and
 bends with its radius of … mm*). The usual causes are a conductor too thick for the
 room between its ends (a busbar cross-section drawn as a wire: mount the devices on a
-busbar system instead), connection points that face away from each other, or a
-terminal strip right below a switch. The messages pane jumps to a connection point of
+busbar system instead), connection points that face away from each other, a
+terminal strip right below a switch, or two ends closer to each other than the bends
+between them need (a cable entry right below the box it leads into, two fittings one
+above the other with their ports on their sides). The messages pane jumps to a connection point of
 the wire or cable, and the 3D view shows a red note with the reason at each of its ends
 in place of the route.
 
@@ -533,7 +541,11 @@ such a way); of the ways that cost about the same, a route takes one whose bends
 their distance (a short stretch first or last). A route between a cabinet and a device in its
 room (or two cabinets of one room) runs in legs: through the cabinet to a cable gland on
 its roof, sides or rear (one of its own cabinet first, otherwise of the line-up; without
-one through the middle of the roof, which is reported), then through the room. A
+one through the middle of the roof, which is reported), then through the room. A cable
+gland takes one cable: the free one whose clamping range fits the cable, nearest to
+where it heads; a cable entry flange takes as many as have places along its membrane.
+A cable that finds every gland of its cabinet taken is not routed and reported as an
+error (*… every cable gland of … is taken by another cable. Add a cable gland for it*). A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.
