@@ -1847,6 +1847,7 @@ leakage	szivárgó
 low	alacsony
 measuring	mérő
 new	új
+no free cable gland	nincs szabad kábeltömszelence
 no header	nincs fejléc
 no list	nincs lista
 no path through the route network	nincs útvonal a nyomvonalhálózaton át
@@ -1937,6 +1938,7 @@ yellow	sárga
 {} unused device data records removed	{} nem használt készülékadatrekord eltávolítva
 {} wiring marks belong to wires that no longer exist	{} huzalozási jelölés már nem létező vezetékekhez tartozik
 {} without device tag on page {}	{0} készülékazonosító nélkül a(z) {1}. oldalon
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nem vezethető: {} minden kábeltömszelencéjét másik kábel foglalja. Adjon hozzá egy kábeltömszelencét.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nem fektethető: nincs út, amely fél vastagságnyira marad mindentől és {} mm sugárral hajlik. Helyezze át a végeket vagy csináljon helyet.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} a fenéken keresztül lép be: nincs kábeltömszelence a szekrényben
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} a tetőn keresztül lép be: nincs kábeltömszelence a tetőn, az oldalakon vagy a hátfalon

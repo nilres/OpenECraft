@@ -1847,6 +1847,7 @@ leakage	утечка
 low	низкий
 measuring	измерение
 new	новый
+no free cable gland	нет свободного кабельного ввода
 no header	нет строки заголовка
 no list	нет списка
 no path through the route network	нет пути через сеть трасс
@@ -1937,6 +1938,7 @@ yellow	жёлтый
 {} unused device data records removed	Удалено неиспользуемых записей данных устройств: {}
 {} wiring marks belong to wires that no longer exist	Отметки монтажа ({}) относятся к проводам, которых больше нет
 {} without device tag on page {}	{} без обозначения устройства на листе {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} невозможно проложить: каждый кабельный ввод {} занят другим кабелем. Добавьте для него кабельный ввод.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} невозможно проложить: нет пути, который держит половину толщины от всего и изгибается с радиусом {} мм. Переместите концы или освободите место.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} вводится через дно: в шкафу нет кабельного ввода
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} вводится через крышу: нет кабельного ввода на крыше, боковых или задней стенке

@@ -13,6 +13,30 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   texts keep their justification (table labels stood on their lines, right-aligned
   texts ran into their neighbours). The part selection of *Add part…* no longer grows
   to the height of the screen.
+- **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
+  too close for its bend radius no longer runs back across or alongside its own way
+  (the supply cable `=GRID-W1` of the example `building_services` crossed itself below
+  the house connection box); it takes a loop that keeps its thickness from itself, its
+  bends and the nozzle it comes out of, and is reported as not routable where there is
+  none. Cables and pipes through one wall penetration pass it side by side instead of
+  through one point. The example `building_services` has its cable entry lower in the
+  wall, the water service sleeve in front of its building entry and the couplings of
+  the compressed air outlets beside their units, so that every line has room for its
+  bends.
+- **One cable per cable gland:** a cable gland takes one cable (the free one whose
+  clamping range fits, nearest to where the cable heads); a cable that finds every
+  gland of its cabinet taken is not routed and reported as an error that names the
+  cabinet, instead of being drawn through a gland with another cable. Cable entry
+  flanges still take several cables side by side. Cable glands are drawn with a model
+  of their own in the colour of their material: outside the hexagon body, neck and
+  dome on the outer surface of their wall (they floated a centimetre above it), inside
+  the locknut and the end of the thread, which other routes keep clear of; and the
+  generic catalog gains them in brass nickel-plated (`GEN.GLAND-M16-MS` …
+  `-M63-MS`), as EMC glands with a contact spring for the shield braid
+  (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
+  20x1.5) as manufacturer parts. The example `building_services` has a gland for every
+  cable, sized to it, and the conveyor (`conveyor`, `engineering_workflow`) one for its
+  motor cable, which came in through the middle of the bottom.
 - **Connection point designations** (#116): each designation of a selected symbol can
   be dragged on its own, put left, right, above or below its connection point or reset
   to automatic placement (Properties › *Property placement*); the placement is stored
