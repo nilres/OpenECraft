@@ -632,6 +632,29 @@ fn crossings_and_bridges_connect_four_wires() {
 }
 
 #[test]
+fn connection_point_designations_are_placed_and_reset() {
+    let mut s = new_session();
+    let coil = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 100, "y": 100, "rotation": 90 })).unwrap();
+    let id = coil["id"].clone();
+    let auto = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2" })).unwrap();
+    assert_eq!(auto["auto"], true);
+    let placed = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2", "side": "below", "dx": 1, "dy": 2 })).unwrap();
+    assert_eq!((placed["auto"].clone(), placed["side"].clone()), (json!(false), json!("below")), "{placed}");
+    let sym = s.project().unwrap().pages[0].symbols[0].clone();
+    assert_eq!(sym.pin_placement(1).side, Some(LabelSide::Right), "stored in the orientation of the symbol");
+    assert!((auto["x"].as_f64().unwrap() - placed["x"].as_f64().unwrap()).abs() > 0.5);
+    // Kept in the saved project, the designations themselves stay.
+    let prj = Project::from_json(&s.project().unwrap().to_json()).unwrap();
+    assert_eq!(prj.pages[0].symbols[0].pin_placements, sym.pin_placements);
+    assert_eq!(prj.pages[0].symbols[0].pins, ["A1", "A2"]);
+    let reset = run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A2", "side": "auto" })).unwrap();
+    assert_eq!(reset, auto);
+    assert!(s.project().unwrap().pages[0].symbols[0].pin_placements.is_empty());
+    assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A3" })).unwrap_err().contains("A3"));
+    assert!(run(&mut s, "place_pin_label", json!({ "page": "1", "id": id, "pin": "A1", "side": "up" })).unwrap_err().contains("up"));
+}
+
+#[test]
 fn interruption_texts_are_placed_on_a_side_or_by_hand() {
     let mut s = new_session();
     let a = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 80, "rotation": 270, "label": "L1_OUT" })).unwrap()["id"].as_u64().unwrap();

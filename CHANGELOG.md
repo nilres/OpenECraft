@@ -26,6 +26,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
   20x1.5) as manufacturer parts. The example `building_services` has a gland for every
   cable, sized to it.
+- **Connection point designations** (#116): each designation of a selected symbol can
+  be dragged on its own, put left, right, above or below its connection point or reset
+  to automatic placement (Properties › *Property placement*); the placement is stored
+  with the symbol and turns and mirrors with it, without changing the connection point.
+  Placed automatically, a designation follows the lead of its connection point and
+  moves along it, to the other side or out beside the wire to keep clear of the
+  symbol's graphics, wires, nearby symbols and its other texts (the surge protective
+  device's PE no longer runs into its arrow). Command `place_pin_label`.
 - **Interruption points:** the name and the cross reference no longer crowd the arrow:
   horizontal points show the name above and the cross reference below the conductor,
   inside the page, vertical ones beside the arrow. Both can be put above, below, left
@@ -34,7 +42,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   reset to the automatic placement; the places are saved and exported, the cross
   reference keeps its link. Command `place_interruption_texts`
   ([schematic](docs/features/schematic.md)).
-
 - **Device boxes with device connection points:** a dashed box of any size drawn on
   the schematic is a device of its own (power supply, measuring instrument, control
   module) without a library symbol; device connection points placed on its outline
@@ -54,7 +61,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   their offset when the line moves, *Reset* in the wire properties places them
   automatically again. `update_wire` takes `core_offset` and `cable_offset`
   ([connections](docs/features/connections.md)).
-
 - **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
   and its corners are dragged afterwards; all buildings have to stay inside it, the check
   reports rooms, roofs and cabinets outside it and the site plan draws them red.

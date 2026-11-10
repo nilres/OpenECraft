@@ -99,9 +99,11 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
 }
 
 mod interruption;
+mod pin_labels;
 mod report_graphics;
 
 pub use interruption::{interruption_places, interruption_text_bounds, interruption_xref, side_places, IntrText};
+pub use pin_labels::{pin_label_places, PinLabelPlace};
 
 pub const SYMBOL_W: f32 = 0.25;
 pub const WIRE_W: f32 = 0.35;
@@ -886,13 +888,8 @@ pub fn draw_annotations(d: &mut dyn Draw, prj: &Project, idx: &Index, page_i: us
     let vertical = s.rot.is_multiple_of(2);
 
     // Connection point designations
-    if def.show_pin_labels {
-        for (i, label) in s.pins.iter().enumerate().take(def.pins.len()) {
-            if !label.is_empty() {
-                let (q, h, v) = pin_label_at(def, s, i);
-                d.text(q, label, SMALL_SIZE, h, v, text_ink);
-            }
-        }
+    for l in pin_labels::pin_label_places(prj, idx, page_i, def, s) {
+        d.text(l.pos, &s.pins[l.pin], SMALL_SIZE, l.anchor, l.v, text_ink);
     }
 
     // Cross reference of an interruption point, beside it

@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Konfigurátorfeltétel, pl. HEATER=yes (üres: kézi kapcsolás)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Tömlőt / csövet / csővezetéket konfigurál: vezetékfajta, alkatrész, csatlakozószerelvények, névleges nyomás, hajlítási sugár, közeg, méret, szín és hossz
 Connection point TAG:PIN, e.g. -K1:A1	Csatlakozási pont AZONOSÍTÓ:TŰ, pl. -K1:A1
+Connection point designation or number (1, 2, …)	Csatlakozásmegnevezés vagy szám (1, 2, …)
 Connection point designations separated by commas or blanks	Csatlakozásmegnevezések vesszővel vagy szóközzel elválasztva
 Connection point designations, comma separated, e.g. 13,14	Csatlakozásmegnevezések vesszővel elválasztva, pl. 13,14
 Connector id (required unless removing)	Összekötő azonosítója (kötelező, kivéve eltávolításkor)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Szekrényt (+CAB1), készüléket (-M1) vagy géphelyet (+M1) helyez el a terepi nyomvonalhálózat egy csomópontján
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Szekrénytartozékot (ventilátor, szűrő, kábeltömszelence, lámpa, fogantyú, PE-sín) helyez el egy felületen
 Places of the group (0 = not limited)	A csoport helyei (0 = korlátlan)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Egy szimbólum csatlakozási pontjának megnevezését balra, jobbra, fölé vagy alá helyezi és eltolja; oldal és eltolás nélkül ismét automatikusan helyezi el
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Elhelyezi egy szekrény szekrénysorát a helyiségben (az összes szekrény 3D-nézete); x és z nélkül a létesítmény-elrendezés szerint vagy a többi szekrénysor mellé kerül
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Elhelyezi a megszakítási pontok nevét és kereszthivatkozását a nyíl egyik oldalán vagy kézzel a beszúrási ponttól mért eltolással
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Egy séma tulajdonságait helyezi el szimbólumokon; azonosítók nélkül újra elhelyezi minden azt használó szimbólumon
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	A kapacitás szabadon tartott része százalékban
 Sheets	Rajzlapok
 Shield connected at: both, first, second or none	Árnyékolás bekötve: both, first, second vagy none
+Shift downwards in mm	Eltolás lefelé mm-ben
+Shift to the right in mm	Eltolás jobbra mm-ben
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Zárlati, terhelési, EMC- és biztonsági számítások, szabálykészletek és projektellenőrzés
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Zárlati áramok, megszakítóképességek, lekapcsolási idők, a kábelek zárlati szilárdsága és a védőkészülékek szelektivitása
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	A transzformátor előtti hálózat zárlati teljesítménye MVA-ban (0: végtelen)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	A felt
 Symbol id	Szimbólumazonosító
 Symbol ids	Szimbólumazonosítók
 Symbol key from list_symbols	Szimbólumkulcs a list_symbols kimenetéből
+Symbol {} has no connection point {}	A(z) {} szimbólumnak nincs {} csatlakozási pontja
 Symbols, wires, texts, cable and connection definitions on schematic pages	Szimbólumok, vezetékek, szövegek, kábel- és összeköttetés-definíciók a kapcsolási rajz oldalain
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T-elem: a szár iránya; híd: az oldal, ahonnan a kapcsolat érkezik (left, right, up vagy down)
 Tag of the terminal strip, e.g. -X1	A sorkapocsléc azonosítója, pl. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (alapértelmezés), p
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal vagy other
 left, center, right, top, middle or bottom	left, center, right, top, middle vagy bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail vagy pattern
+left, right, above or below on the page, or auto (default)	left, right, above vagy below a lapon, vagy auto (alapértelmezett)
 main (default), supplementary or functional	main (alapértelmezett), supplementary vagy functional
 mounted, problem or open	mounted, problem vagy open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond vagy accessory

@@ -110,6 +110,7 @@ Configuration of an enclosure for the configurator of the enclosure maker: syste
 Configurator condition, e.g. HEATER=yes (empty: switched by hand)	Yapılandırıcı koşulu, ör. HEATER=yes (boş: elle değiştirilir)
 Configures a hose / tube / pipe: line type, part, end fittings, pressure rating, bend radius, medium, size, colour and length	Bir hortumu / tüpü / boruyu yapılandırır: hat tipi, parça, uç rakorları, basınç sınıfı, bükme yarıçapı, ortam, boyut, renk ve uzunluk
 Connection point TAG:PIN, e.g. -K1:A1	Bağlantı noktası ETİKET:PIN, ör. -K1:A1
+Connection point designation or number (1, 2, …)	Bağlantı noktası tanımı veya numarası (1, 2, …)
 Connection point designations separated by commas or blanks	Virgül veya boşlukla ayrılmış bağlantı noktası tanımları
 Connection point designations, comma separated, e.g. 13,14	Bağlantı noktası tanımları, virgülle ayrılmış, ör. 13,14
 Connector id (required unless removing)	Bağlayıcı kimliği (kaldırma dışında gerekli)
@@ -562,6 +563,7 @@ Places a symbol on a page. Without a tag the next free one is used; auxiliary co
 Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a node of the field route network	Saha güzergâh ağının bir düğümüne bir pano (+CAB1), bir cihaz (-M1) veya bir makine konumu (+M1) yerleştirir
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Bir yüzeye pano aksesuarı (fan, filtre, kablo rakoru, lamba, kol, PE barası) yerleştirir
 Places of the group (0 = not limited)	Grubun yerleri (0 = sınırsız)
+Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Bir sembolün bağlantı noktası tanımını noktanın soluna, sağına, üstüne veya altına yerleştirir ve kaydırır; taraf ve kaydırma olmadan yeniden otomatik olarak yerleştirilir
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Bir panonun dizisini odaya yerleştirir (tüm panoların 3D görünümü); x ve z verilmezse tesis yerleşimine göre veya diğer dizilerin yanına yerleştirilir
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Kesinti noktalarının adını ve çapraz referansını okun bir tarafına veya elle ekleme noktasından bir uzaklıkla yerleştirir
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Bir şemanın özelliklerini sembollere yerleştirir; kimlik verilmezse bunu kullanan tüm sembollere yeniden yerleştirilir
@@ -699,6 +701,8 @@ Sets the wire colour and cross-section of nets without a defined potential (empt
 Share of the capacity kept free in percent	Yüzde olarak boş tutulan kapasite oranı
 Sheets	Paftalar
 Shield connected at: both, first, second or none	Ekranın bağlandığı yer: both, first, second veya none
+Shift downwards in mm	Aşağı kaydırma (mm)
+Shift to the right in mm	Sağa kaydırma (mm)
 Short circuit, load, EMC and safety calculations, rule sets and project verification	Kısa devre, yük, EMC ve güvenlik hesaplamaları, kural setleri ve proje doğrulaması
 Short-circuit currents, breaking capacities, disconnection times, short-circuit withstand of the cables and selectivity of the protective devices	Kısa devre akımları, kesme kapasiteleri, açma süreleri, kabloların kısa devre dayanımı ve koruma cihazlarının seçiciliği
 Short-circuit power of the network upstream of the transformer in MVA (0: infinite)	Transformatörün üst tarafındaki şebekenin MVA cinsinden kısa devre gücü (0: sonsuz)
@@ -757,6 +761,7 @@ Switches the project options with a condition by the configurator options	Koşul
 Symbol id	Sembol kimliği
 Symbol ids	Sembol kimlikleri
 Symbol key from list_symbols	list_symbols listesinden sembol anahtarı
+Symbol {} has no connection point {}	{} sembolünün {} bağlantı noktası yok
 Symbols, wires, texts, cable and connection definitions on schematic pages	Şema sayfalarındaki semboller, teller, metinler, kablo ve bağlantı tanımları
 T-junction: direction of the stem; bridge: side the connection comes from (left, right, up or down)	T parçası: gövdenin yönü; köprü: bağlantının geldiği taraf (left, right, up veya down)
 Tag of the terminal strip, e.g. -X1	Klemens şeridinin etiketi, ör. -X1
@@ -922,6 +927,7 @@ keepout (default), power, control, signal or fluid	keepout (varsayılan), power,
 l, n, pe, dc_plus, dc_minus, signal or other	l, n, pe, dc_plus, dc_minus, signal veya other
 left, center, right, top, middle or bottom	left, center, right, top, middle veya bottom
 left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail or pattern	left, center_x, right, top, center_y, bottom, distribute_x, distribute_y, rail veya pattern
+left, right, above or below on the page, or auto (default)	sayfada left, right, above veya below ya da auto (varsayılan)
 main (default), supplementary or functional	main (varsayılan), supplementary veya functional
 mounted, problem or open	mounted, problem veya open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond veya accessory
