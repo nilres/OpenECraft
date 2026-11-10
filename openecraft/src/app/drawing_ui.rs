@@ -655,6 +655,41 @@ impl App {
         }
     }
 
+    /// Side of the name and cross reference of interruption points (`syms`: their
+    /// indices on the page), and a reset of the texts placed by hand.
+    pub(super) fn interruption_texts(&mut self, ui: &mut egui::Ui, pi: usize, syms: &[usize]) {
+        let page = &mut self.session.prj.pages[pi];
+        let first = page.symbols[syms[0]].text_side;
+        let same = syms.iter().all(|&i| page.symbols[i].text_side == first);
+        let by_hand = syms.iter().any(|&i| page.symbols[i].label_place.is_some() || page.symbols[i].xref_place.is_some());
+        let placed = syms.iter().any(|&i| page.symbols[i].texts_placed());
+        let mut chosen = None;
+        ui.separator();
+        ui.horizontal(|ui| {
+            ui.label(tr("Name and cross reference"));
+            egui::ComboBox::from_id_salt("intr_side").selected_text(if same { first.title() } else { tr("(several)") }).show_ui(ui, |ui| {
+                for side in TextSide::ALL {
+                    if ui.selectable_label(same && side == first, side.title()).clicked() {
+                        chosen = Some(side);
+                    }
+                }
+            });
+            if placed && icons::button(ui, Icon::Undo, tr("Reset to automatic placement")).clicked() {
+                chosen = Some(TextSide::Auto);
+            }
+        });
+        if by_hand {
+            ui.weak(tr("Placed by hand; choosing a side places them anew."));
+        } else if syms.len() == 1 {
+            ui.weak(tr("Drag the name or the cross reference of the selected point to place it."));
+        }
+        if let Some(side) = chosen {
+            for &i in syms {
+                page.symbols[i].set_text_side(side);
+            }
+        }
+    }
+
     /// Tag position, placed properties and placement scheme of a symbol.
     pub(super) fn placement_properties(&mut self, ui: &mut egui::Ui, pi: usize, si: usize) {
         let symbols = self.session.prj.symbol_table();

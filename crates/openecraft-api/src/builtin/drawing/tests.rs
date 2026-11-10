@@ -632,6 +632,32 @@ fn crossings_and_bridges_connect_four_wires() {
 }
 
 #[test]
+fn interruption_texts_are_placed_on_a_side_or_by_hand() {
+    let mut s = new_session();
+    let a = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 80, "rotation": 270, "label": "L1_OUT" })).unwrap()["id"].as_u64().unwrap();
+    let b = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "intr", "x": 200, "y": 88, "rotation": 270, "label": "L2_OUT" })).unwrap()["id"].as_u64().unwrap();
+    let coil = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 80, "y": 80 })).unwrap()["id"].as_u64().unwrap();
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a, b, coil], "side": "above" })).unwrap();
+    let points = r["points"].as_array().unwrap();
+    assert_eq!(points.len(), 2, "only the interruption points");
+    assert!(points.iter().all(|p| p["side"] == "above" && p["label"]["align"] == "right" && p["xref"]["align"] == "left" && p["label"]["y"].as_f64().unwrap() < 0.0));
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "xref_x": 12, "xref_y": -2 })).unwrap();
+    assert_eq!((r["points"][0]["xref"]["x"].as_f64(), r["points"][0]["xref"]["y"].as_f64()), (Some(12.0), Some(-2.0)));
+    let prj = Project::from_json(&s.project().unwrap().to_json()).unwrap();
+    let placed = prj.pages[0].symbols.iter().find(|x| x.id == a).unwrap();
+    assert_eq!(placed.xref_place.map(|t| t.offset), Some(openecraft_core::geom::p(12.0, -2.0)), "kept on saving");
+    assert!(placed.label_place.is_none());
+
+    let r = run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "side": "auto" })).unwrap();
+    assert_eq!(r["points"][0]["xref"]["align"], "right", "below the conductor, ending at the connection point");
+    assert!(s.project().unwrap().pages[0].symbols.iter().all(|x| !x.texts_placed() || x.id == b));
+    assert!(run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [a], "side": "diagonal" })).is_err());
+    assert!(run(&mut s, "place_interruption_texts", json!({ "page": "1", "ids": [coil], "side": "left" })).is_err());
+}
+
+#[test]
 fn cable_core_texts_are_placed_and_reset() {
     let mut s = new_session();
     let wire = run(&mut s, "add_wire", json!({ "page": "1", "points": [[30, 60], [90, 60]] })).unwrap();

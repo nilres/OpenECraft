@@ -199,6 +199,10 @@ impl App {
             ui.end_row();
         });
         ui.data_mut(|d| d.insert_temp(key, text));
+        let intr: Vec<usize> = syms.into_iter().filter(|&i| self.session.prj.symbol(&self.session.prj.pages[pi].symbols[i].sym).is_some_and(|d| d.func == Func::Interruption)).collect();
+        if !intr.is_empty() {
+            self.interruption_texts(ui, pi, &intr);
+        }
     }
 
     #[allow(clippy::too_many_lines)]
@@ -581,7 +585,8 @@ impl App {
         };
         ui.label(RichText::new(tr(def.name)).strong());
         let device = def.func.has_tag() && !s.tag.is_empty();
-        let tab = self.props_tab_bar(ui, device, !def.pins.is_empty(), def.show_tag);
+        let intr = def.func == Func::Interruption;
+        let tab = self.props_tab_bar(ui, device, !def.pins.is_empty(), def.show_tag || intr);
         let mut edited = s.clone();
         // The structure in effect where the symbol is: the page's or a structure box's.
         let page = &self.session.prj.pages[pi];
@@ -941,8 +946,13 @@ impl App {
                 }
             });
         }
-        if tab == PropTab::Display && self.session.prj.pages[pi].symbols.get(si).is_some_and(|x| x.id == s.id) && def.show_tag {
-            self.placement_properties(ui, pi, si);
+        if tab == PropTab::Display && self.session.prj.pages[pi].symbols.get(si).is_some_and(|x| x.id == s.id) {
+            if def.show_tag {
+                self.placement_properties(ui, pi, si);
+            }
+            if intr {
+                self.interruption_texts(ui, pi, &[si]);
+            }
         }
     }
 }

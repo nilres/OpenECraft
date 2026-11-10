@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Maakt of wijzigt een vloeistoftechnische
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Maakt of wijzigt een plotkader van het project (ingebouwde kaders worden onder een nieuwe naam gekopieerd)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Maakt of wijzigt een potentiaaldefinitie; de draden ervan nemen kleur en doorsnede over, tenzij die op de draad zijn ingesteld
 Creates or changes a work area: only the pages and devices of its structure are shown	Maakt of wijzigt een werkgebied: alleen de pagina's en apparaten van de structuur ervan worden weergegeven
+Cross reference placed by hand: X offset from the insertion point in mm	Kruisverwijzing handmatig geplaatst: X-afstand tot het invoegpunt in mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Kruisverwijzing handmatig geplaatst: Y-afstand tot het invoegpunt in mm
 Cross section, e.g. 0.75 mm²	Doorsnede, bijv. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Doorsnede, bijv. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Doorsnede, bijv. 1.5 mm² (leeg = uit de potentiaaldefinitie)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	ID van het element (uit mounting_list)
 Id of the path or reservation	Id van het pad of de reservering
 Id of the text	ID van de tekst
 Identifier, e.g. A1 or CAB1	Aanduiding, bijv. A1 of CAB1
+Ids of interruption points	Id's van onderbrekingspunten
 Ids of page items	ID's van pagina-elementen
 Ids of symbols and connection symbols (default: all symbols of the page)	Ids van symbolen en verbindingssymbolen (standaard: alle symbolen van de pagina)
 In front of the page name (default /)	Voor de paginanaam (standaard /)
@@ -429,6 +432,8 @@ Name of the segment	Naam van het segment
 Name of the template	Naam van de sjabloon
 Name of the work area	Naam van het werkgebied
 Name or id; the tag for places	Naam of ID; bij plaatsingen de aanduiding
+Name placed by hand: X offset from the insertion point in mm	Naam handmatig geplaatst: X-afstand tot het invoegpunt in mm
+Name placed by hand: Y offset from the insertion point in mm	Naam handmatig geplaatst: Y-afstand tot het invoegpunt in mm
 Name, e.g. the location +M1	Naam, bijv. de plaats +M1
 New device tag	Nieuwe apparaataanduiding
 New identifier	Nieuwe aanduiding
@@ -475,6 +480,7 @@ Node name or id	Naam of ID van knooppunt
 Node {} exists already	Knooppunt {} bestaat al
 Nodes to pass in this order, comma separated	Te passeren knooppunten in deze volgorde, gescheiden door komma's
 Nominal size, e.g. 8 mm or DN25	Nominale diameter, bijv. 8 mm of DN25
+None of the items is an interruption point	Geen van de elementen is een onderbrekingspunt
 Not a cross-section: {} (e.g. 1.5 mm²)	Geen doorsnede: {} (bijv. 1.5 mm²)
 Not a valid safety function: {}	Geen geldige veiligheidsfunctie: {}
 Note, e.g. what the problem is	Notitie, bijv. wat het probleem is
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Plaatst een behuizingstoebehoren (ventilator, filter, kabelwartel, lamp, handgreep, PE-rail) op een vlak
 Places of the group (0 = not limited)	Plaatsen van de groep (0 = onbeperkt)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plaatst de kastrij van een behuizing in de ruimte (3D-weergave van alle behuizingen); zonder x en z wordt deze geplaatst volgens de installatielay-out of naast de andere kastrijen
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Plaatst de naam en de kruisverwijzing van onderbrekingspunten aan een kant van de pijl of handmatig op een afstand van het invoegpunt
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plaatst de eigenschappen van een schema bij symbolen; zonder ID's wordt het opnieuw geplaatst bij alle symbolen die het gebruiken
 Planned part number	Gepland artikelnummer
 Planned power in kW	Gepland vermogen in kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Onbekend scheidingsteken: {}
 Unknown setting: {}	Onbekende instelling: {}
 Unknown shield ends: {}	Onbekende afschermingsuiteinden: {}
 Unknown side {} (socket or pin)	Onbekende zijde {} (socket of pin)
+Unknown side: {}	Onbekende kant: {}
 Unknown state: {}	Onbekende status: {}
 Unknown station kind: {}	Onbekend stationstype: {}
 Unknown symbol: {}	Onbekend symbool: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Afbreekbreedte in mm (0: geen tekstterugloop)
 X position in mm	X-positie in mm
 Y position in mm (downwards)	Y-positie in mm (naar beneden)
 any, wires, cables or tubes	any, wires, cables of tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left of right; verwerpt handmatig geplaatste teksten
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip of adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam of product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi of other

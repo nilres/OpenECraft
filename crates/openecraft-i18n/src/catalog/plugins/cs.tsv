@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Vytvoří nebo změní skupinu tekutinov
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Vytvoří nebo změní rámeček výkresu projektu (vestavěné rámečky se zkopírují pod novým názvem)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Vytvoří nebo změní definici potenciálu; jeho vodiče převezmou barvu a průřez, pokud nejsou nastaveny na vodiči
 Creates or changes a work area: only the pages and devices of its structure are shown	Vytvoří nebo změní pracovní oblast: zobrazí se jen stránky a přístroje její struktury
+Cross reference placed by hand: X offset from the insertion point in mm	Křížový odkaz umístěný ručně: posun X od bodu vložení v mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Křížový odkaz umístěný ručně: posun Y od bodu vložení v mm
 Cross section, e.g. 0.75 mm²	Průřez, např. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Průřez, např. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Průřez, např. 1.5 mm² (prázdné = z definice potenciálu)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	ID prvku rozváděče (z mounting_list
 Id of the path or reservation	ID trasy nebo rezervace
 Id of the text	ID textu
 Identifier, e.g. A1 or CAB1	Identifikátor, např. A1 nebo CAB1
+Ids of interruption points	ID bodů přerušení
 Ids of page items	ID prvků stránky
 Ids of symbols and connection symbols (default: all symbols of the page)	Id symbolů a symbolů spojení (výchozí: všechny symboly strany)
 In front of the page name (default /)	Před názvem stránky (výchozí /)
@@ -429,6 +432,8 @@ Name of the segment	Název segmentu
 Name of the template	Název šablony
 Name of the work area	Název pracovní oblasti
 Name or id; the tag for places	Název nebo ID; u umístění označení
+Name placed by hand: X offset from the insertion point in mm	Název umístěný ručně: posun X od bodu vložení v mm
+Name placed by hand: Y offset from the insertion point in mm	Název umístěný ručně: posun Y od bodu vložení v mm
 Name, e.g. the location +M1	Název, např. umístění +M1
 New device tag	Nové označení přístroje
 New identifier	Nový identifikátor
@@ -475,6 +480,7 @@ Node name or id	Název nebo ID uzlu
 Node {} exists already	Uzel {} již existuje
 Nodes to pass in this order, comma separated	Uzly, kterými se má projít v tomto pořadí, oddělené čárkou
 Nominal size, e.g. 8 mm or DN25	Jmenovitá světlost, např. 8 mm nebo DN25
+None of the items is an interruption point	Žádný z prvků není bod přerušení
 Not a cross-section: {} (e.g. 1.5 mm²)	Nejde o průřez: {} (např. 1.5 mm²)
 Not a valid safety function: {}	Neplatná bezpečnostní funkce: {}
 Note, e.g. what the problem is	Poznámka, např. v čem je problém
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Umístí příslušenství skříně (ventilátor, filtr, kabelovou vývodku, svítidlo, rukojeť, přípojnici PE) na plochu
 Places of the group (0 = not limited)	Místa skupiny (0 = neomezeno)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umístí řadu skříní v místnosti (3D zobrazení všech skříní); bez x a z se umístí podle dispozice zařízení nebo vedle ostatních řad skříní
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umístí název a křížový odkaz bodů přerušení na stranu šipky nebo ručně s posunem od bodu vložení
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umístí vlastnosti schématu u symbolů; bez ID je znovu umístí u všech symbolů, které ho používají
 Planned part number	Plánované číslo artiklu
 Planned power in kW	Plánovaný výkon v kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Neznámý oddělovač: {}
 Unknown setting: {}	Neznámé nastavení: {}
 Unknown shield ends: {}	Neznámé konce stínění: {}
 Unknown side {} (socket or pin)	Neznámá strana {} (socket nebo pin)
+Unknown side: {}	Neznámá strana: {}
 Unknown state: {}	Neznámý stav: {}
 Unknown station kind: {}	Neznámý druh stanice: {}
 Unknown symbol: {}	Neznámý symbol: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Šířka zalomení v mm (0: bez zalomení)
 X position in mm	Poloha X v mm
 Y position in mm (downwards)	Poloha Y v mm (směrem dolů)
 any, wires, cables or tubes	any, wires, cables nebo tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left nebo right; zahodí ručně umístěné texty
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip nebo adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam nebo product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi nebo other

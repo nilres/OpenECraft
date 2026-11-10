@@ -9,6 +9,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   cable core at its connection point: the ferrule (metal sleeve and collar in its
   DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
   conductor as long as it is stripped.
+- **Interruption points:** the name and the cross reference no longer crowd the arrow:
+  horizontal points show the name above and the cross reference below the conductor,
+  inside the page, vertical ones beside the arrow. Both can be put above, below, left
+  or right of the arrow for
+  all selected points at once, or dragged on their own without moving the symbol, and
+  reset to the automatic placement; the places are saved and exported, the cross
+  reference keeps its link. Command `place_interruption_texts`
+  ([schematic](docs/features/schematic.md)).
+
 - **Device boxes with device connection points:** a dashed box of any size drawn on
   the schematic is a device of its own (power supply, measuring instrument, control
   module) without a library symbol; device connection points placed on its outline

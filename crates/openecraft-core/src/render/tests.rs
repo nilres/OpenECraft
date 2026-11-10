@@ -654,6 +654,28 @@ fn only_web_links_are_exported() {
 }
 
 #[test]
+fn interruption_texts_are_drawn_where_they_were_placed() {
+    let mut prj = Project::default();
+    let id = prj.new_id();
+    prj.pages.push(Page::new(id, "2", "", PageKind::Schematic));
+    for page in [0, 1] {
+        let id = prj.new_id();
+        prj.pages[page].symbols.push(SymbolInst { id, sym: "intr".into(), pos: p(100.0, 100.0), rot: 3, label: "L1_OUT".into(), ..Default::default() });
+    }
+    let s = &mut prj.pages[0].symbols[0];
+    s.label_place = Some(TextPlace { offset: p(2.0, -5.0), anchor: Anchor::Center });
+    s.xref_place = Some(TextPlace { offset: p(6.0, 5.0), anchor: Anchor::Right });
+    let an = Analysis::with_builtin(&prj);
+    let mut d = Rec::default();
+    draw_page(&mut d, &prj, &an.index, &an, 0, &Opts::default());
+    let names: Vec<_> = d.texts.iter().filter(|t| t.1 == "L1_OUT").collect();
+    assert_eq!(names.len(), 1, "the name is drawn once, not also by the label field");
+    assert_eq!((names[0].0, names[0].3), (p(102.0, 95.0), Anchor::Center));
+    let xref = d.texts.iter().find(|t| t.1.starts_with('/')).expect("cross reference to page 2");
+    assert_eq!((xref.0, xref.3), (p(106.0, 105.0), Anchor::Right));
+}
+
+#[test]
 fn cable_cores_line_up_at_the_cable_definition_line_and_keep_their_offset() {
     let mut prj = Project::default();
     for (i, len) in [40.0, 60.0, 80.0, 100.0, 120.0].into_iter().enumerate() {

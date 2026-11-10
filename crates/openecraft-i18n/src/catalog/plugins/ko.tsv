@@ -134,6 +134,8 @@ Creates or changes a fluid device group	유체 장치 그룹을 만들거나 변
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	프로젝트의 플롯 프레임을 만들거나 변경합니다(기본 제공 프레임은 새 이름으로 복사됨)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	전위 정의를 만들거나 변경합니다. 전선에 설정되지 않은 경우 해당 전선이 색상과 단면적을 상속합니다
 Creates or changes a work area: only the pages and devices of its structure are shown	작업 영역을 만들거나 변경합니다: 해당 구조의 페이지와 장치만 표시됩니다
+Cross reference placed by hand: X offset from the insertion point in mm	수동으로 배치된 상호 참조: 삽입점으로부터의 X 오프셋(mm)
+Cross reference placed by hand: Y offset from the insertion point in mm	수동으로 배치된 상호 참조: 삽입점으로부터의 Y 오프셋(mm)
 Cross section, e.g. 0.75 mm²	단면적(예: 0.75 mm²)
 Cross section, e.g. 1.5 mm²	단면적(예: 1.5 mm²)
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	단면적(예: 1.5 mm², 비우면 전위 정의에서 가져옴)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	패널 항목의 ID(mounting_list에�
 Id of the path or reservation	경로 또는 예약의 ID
 Id of the text	텍스트의 ID
 Identifier, e.g. A1 or CAB1	식별자(예: A1 또는 CAB1)
+Ids of interruption points	중단점 ID
 Ids of page items	페이지 항목의 ID
 Ids of symbols and connection symbols (default: all symbols of the page)	기호와 연결 기호의 id (기본: 페이지의 모든 기호)
 In front of the page name (default /)	페이지 이름 앞(기본값 /)
@@ -429,6 +432,8 @@ Name of the segment	세그먼트 이름
 Name of the template	템플릿 이름
 Name of the work area	작업 영역 이름
 Name or id; the tag for places	이름 또는 ID, 배치의 경우 태그
+Name placed by hand: X offset from the insertion point in mm	수동으로 배치된 이름: 삽입점으로부터의 X 오프셋(mm)
+Name placed by hand: Y offset from the insertion point in mm	수동으로 배치된 이름: 삽입점으로부터의 Y 오프셋(mm)
 Name, e.g. the location +M1	이름(예: 위치 +M1)
 New device tag	새 장치 태그
 New identifier	새 식별자
@@ -475,6 +480,7 @@ Node name or id	노드 이름 또는 ID
 Node {} exists already	노드 {}이(가) 이미 있습니다
 Nodes to pass in this order, comma separated	이 순서로 통과할 노드(쉼표로 구분)
 Nominal size, e.g. 8 mm or DN25	호칭경(예: 8 mm 또는 DN25)
+None of the items is an interruption point	중단점인 요소가 없습니다
 Not a cross-section: {} (e.g. 1.5 mm²)	단면적이 아닙니다: {}(예: 1.5 mm²)
 Not a valid safety function: {}	유효한 안전 기능이 아님: {}
 Note, e.g. what the problem is	메모(예: 문제 내용)
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	면에 외함 부속품(팬, 필터, 케이블 글랜드, 조명, 손잡이, PE 바)을 배치합니다
 Places of the group (0 = not limited)	그룹의 자리(0 = 제한 없음)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	외함의 열 배치를 공간에 배치합니다(모든 외함의 3D 보기). x와 z가 없으면 플랜트 레이아웃에 따라 또는 다른 열 배치 옆에 배치됩니다
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	중단점의 이름과 상호 참조를 화살표의 한쪽에 또는 삽입점으로부터의 오프셋으로 수동 배치합니다
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	스키마의 속성을 심볼에 배치합니다. ID가 없으면 이를 사용하는 모든 심볼에 다시 배치합니다
 Planned part number	계획된 부품 번호
 Planned power in kW	계획된 전력(kW)
@@ -856,6 +863,7 @@ Unknown separator: {}	알 수 없는 구분 기호: {}
 Unknown setting: {}	알 수 없는 설정: {}
 Unknown shield ends: {}	알 수 없는 차폐 끝: {}
 Unknown side {} (socket or pin)	알 수 없는 측 {} (socket 또는 pin)
+Unknown side: {}	알 수 없는 방향: {}
 Unknown state: {}	알 수 없는 상태: {}
 Unknown station kind: {}	알 수 없는 스테이션 종류: {}
 Unknown symbol: {}	알 수 없는 심볼: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	줄 바꿈 너비(mm, 0: 줄 바꿈 없음)
 X position in mm	X 위치(mm)
 Y position in mm (downwards)	Y 위치(mm, 아래쪽 방향)
 any, wires, cables or tubes	any, wires, cables 또는 tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left 또는 right. 수동으로 배치된 텍스트를 버립니다
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip 또는 adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam 또는 product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi 또는 other

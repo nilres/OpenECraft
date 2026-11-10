@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Tworzy lub zmienia grupę urządzeń pł
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Tworzy lub zmienia ramkę rysunku projektu (wbudowane ramki są kopiowane pod nową nazwą)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Tworzy lub zmienia definicję potencjału; jego przewody przejmują kolor i przekrój, o ile nie ustawiono ich na przewodzie
 Creates or changes a work area: only the pages and devices of its structure are shown	Tworzy lub zmienia obszar roboczy: wyświetlane są tylko strony i urządzenia jego struktury
+Cross reference placed by hand: X offset from the insertion point in mm	Odsyłacz umieszczony ręcznie: przesunięcie X od punktu wstawienia w mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Odsyłacz umieszczony ręcznie: przesunięcie Y od punktu wstawienia w mm
 Cross section, e.g. 0.75 mm²	Przekrój, np. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Przekrój, np. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Przekrój, np. 1.5 mm² (pusty = z definicji potencjału)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Identyfikator elementu zabudowy (z mou
 Id of the path or reservation	Identyfikator ścieżki lub rezerwacji
 Id of the text	Identyfikator tekstu
 Identifier, e.g. A1 or CAB1	Identyfikator, np. A1 lub CAB1
+Ids of interruption points	Identyfikatory punktów przerwania
 Ids of page items	Identyfikatory elementów stron
 Ids of symbols and connection symbols (default: all symbols of the page)	Id symboli i symboli połączeń (domyślnie: wszystkie symbole strony)
 In front of the page name (default /)	Przed nazwą strony (domyślnie /)
@@ -429,6 +432,8 @@ Name of the segment	Nazwa segmentu
 Name of the template	Nazwa szablonu
 Name of the work area	Nazwa obszaru roboczego
 Name or id; the tag for places	Nazwa lub identyfikator; dla umieszczeń oznaczenie
+Name placed by hand: X offset from the insertion point in mm	Nazwa umieszczona ręcznie: przesunięcie X od punktu wstawienia w mm
+Name placed by hand: Y offset from the insertion point in mm	Nazwa umieszczona ręcznie: przesunięcie Y od punktu wstawienia w mm
 Name, e.g. the location +M1	Nazwa, np. miejsce montażu +M1
 New device tag	Nowe oznaczenie urządzenia
 New identifier	Nowy identyfikator
@@ -475,6 +480,7 @@ Node name or id	Nazwa lub identyfikator węzła
 Node {} exists already	Węzeł {} już istnieje
 Nodes to pass in this order, comma separated	Węzły do przejścia w tej kolejności, rozdzielone przecinkami
 Nominal size, e.g. 8 mm or DN25	Średnica nominalna, np. 8 mm lub DN25
+None of the items is an interruption point	Żaden z elementów nie jest punktem przerwania
 Not a cross-section: {} (e.g. 1.5 mm²)	To nie jest przekrój: {} (np. 1.5 mm²)
 Not a valid safety function: {}	To nie jest prawidłowa funkcja bezpieczeństwa: {}
 Note, e.g. what the problem is	Notatka, np. na czym polega problem
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Umieszcza akcesorium obudowy (wentylator, filtr, dławik kablowy, oświetlenie, uchwyt, szynę PE) na ścianie
 Places of the group (0 = not limited)	Miejsca grupy (0 = bez ograniczenia)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umieszcza szereg szaf obudowy w pomieszczeniu (widok 3D wszystkich obudów); bez x i z jest on umieszczany według planu instalacji lub obok innych szeregów szaf
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umieszcza nazwę i odsyłacz punktów przerwania po jednej stronie strzałki lub ręcznie z przesunięciem od punktu wstawienia
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umieszcza właściwości schematu przy symbolach; bez identyfikatorów umieszcza go ponownie przy wszystkich symbolach, które go używają
 Planned part number	Zaplanowany numer artykułu
 Planned power in kW	Zaplanowana moc w kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Nieznany separator: {}
 Unknown setting: {}	Nieznane ustawienie: {}
 Unknown shield ends: {}	Nieznane końce ekranu: {}
 Unknown side {} (socket or pin)	Nieznana strona {} (socket lub pin)
+Unknown side: {}	Nieznana strona: {}
 Unknown state: {}	Nieznany stan: {}
 Unknown station kind: {}	Nieznany rodzaj stacji: {}
 Unknown symbol: {}	Nieznany symbol: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Szerokość zawijania w mm (0: bez zawijania)
 X position in mm	Położenie X w mm
 Y position in mm (downwards)	Położenie Y w mm (w dół)
 any, wires, cables or tubes	any, wires, cables lub tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left lub right; odrzuca teksty umieszczone ręcznie
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip lub adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam lub product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi lub other

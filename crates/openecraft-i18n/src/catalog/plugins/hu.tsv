@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Fluid-készülékcsoportot hoz létre va
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Létrehozza vagy módosítja a projekt egy rajzkeretét (a beépített keretek új néven másolódnak)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Potenciáldefiníciót hoz létre vagy módosít; a vezetékei átveszik a színt és a keresztmetszetet, hacsak nincs a vezetéken beállítva
 Creates or changes a work area: only the pages and devices of its structure are shown	Munkaterületet hoz létre vagy módosít: csak a struktúrájához tartozó oldalak és készülékek jelennek meg
+Cross reference placed by hand: X offset from the insertion point in mm	Kézzel elhelyezett kereszthivatkozás: X eltolás a beszúrási ponttól mm-ben
+Cross reference placed by hand: Y offset from the insertion point in mm	Kézzel elhelyezett kereszthivatkozás: Y eltolás a beszúrási ponttól mm-ben
 Cross section, e.g. 0.75 mm²	Keresztmetszet, pl. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Keresztmetszet, pl. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Keresztmetszet, pl. 1.5 mm² (üres = a potenciáldefinícióból)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Az elrendezési elem azonosítója (a 
 Id of the path or reservation	Az út vagy foglalás azonosítója
 Id of the text	A szöveg azonosítója
 Identifier, e.g. A1 or CAB1	Azonosító, pl. A1 vagy CAB1
+Ids of interruption points	Megszakítási pontok azonosítói
 Ids of page items	Oldalelemek azonosítói
 Ids of symbols and connection symbols (default: all symbols of the page)	Szimbólumok és kapcsolati szimbólumok azonosítói (alapértelmezés: a lap minden szimbóluma)
 In front of the page name (default /)	Az oldalnév előtt (alapértelmezés: /)
@@ -429,6 +432,8 @@ Name of the segment	A szegmens neve
 Name of the template	A sablon neve
 Name of the work area	A munkaterület neve
 Name or id; the tag for places	Név vagy azonosító; elhelyezéseknél az azonosító
+Name placed by hand: X offset from the insertion point in mm	Kézzel elhelyezett név: X eltolás a beszúrási ponttól mm-ben
+Name placed by hand: Y offset from the insertion point in mm	Kézzel elhelyezett név: Y eltolás a beszúrási ponttól mm-ben
 Name, e.g. the location +M1	Név, pl. a +M1 szerelési hely
 New device tag	Új készülékazonosító
 New identifier	Új azonosító
@@ -475,6 +480,7 @@ Node name or id	Csomópont neve vagy azonosítója
 Node {} exists already	A(z) {} csomópont már létezik
 Nodes to pass in this order, comma separated	Érintendő csomópontok ebben a sorrendben, vesszővel elválasztva
 Nominal size, e.g. 8 mm or DN25	Névleges méret, pl. 8 mm vagy DN25
+None of the items is an interruption point	Egyik elem sem megszakítási pont
 Not a cross-section: {} (e.g. 1.5 mm²)	Nem keresztmetszet: {} (pl. 1.5 mm²)
 Not a valid safety function: {}	Nem érvényes biztonsági funkció: {}
 Note, e.g. what the problem is	Megjegyzés, pl. mi a probléma
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Szekrénytartozékot (ventilátor, szűrő, kábeltömszelence, lámpa, fogantyú, PE-sín) helyez el egy felületen
 Places of the group (0 = not limited)	A csoport helyei (0 = korlátlan)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Elhelyezi egy szekrény szekrénysorát a helyiségben (az összes szekrény 3D-nézete); x és z nélkül a létesítmény-elrendezés szerint vagy a többi szekrénysor mellé kerül
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Elhelyezi a megszakítási pontok nevét és kereszthivatkozását a nyíl egyik oldalán vagy kézzel a beszúrási ponttól mért eltolással
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Egy séma tulajdonságait helyezi el szimbólumokon; azonosítók nélkül újra elhelyezi minden azt használó szimbólumon
 Planned part number	Tervezett cikkszám
 Planned power in kW	Tervezett teljesítmény kW-ban
@@ -856,6 +863,7 @@ Unknown separator: {}	Ismeretlen elválasztó: {}
 Unknown setting: {}	Ismeretlen beállítás: {}
 Unknown shield ends: {}	Ismeretlen árnyékolásvégek: {}
 Unknown side {} (socket or pin)	Ismeretlen oldal: {} (socket vagy pin)
+Unknown side: {}	Ismeretlen oldal: {}
 Unknown state: {}	Ismeretlen állapot: {}
 Unknown station kind: {}	Ismeretlen állomásfajta: {}
 Unknown symbol: {}	Ismeretlen szimbólum: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Tördelési szélesség mm-ben (0: nincs törd
 X position in mm	X pozíció mm-ben
 Y position in mm (downwards)	Y pozíció mm-ben (lefelé)
 any, wires, cables or tubes	any, wires, cables vagy tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left vagy right; elveti a kézzel elhelyezett szövegeket
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip vagy adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam vagy product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi vagy other

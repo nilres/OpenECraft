@@ -134,6 +134,8 @@ Creates or changes a fluid device group	Luo tai muuttaa fluidilaiteryhmän
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Luo tai muuttaa projektin piirustuskehyksen (sisäiset kehykset kopioidaan uudella nimellä)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Luo tai muuttaa potentiaalin määrityksen; sen johdot saavat värin ja poikkipinta-alan, ellei niitä ole asetettu johtoon
 Creates or changes a work area: only the pages and devices of its structure are shown	Luo tai muuttaa työalueen: vain sen rakenteen sivut ja laitteet näytetään
+Cross reference placed by hand: X offset from the insertion point in mm	Käsin sijoitettu ristiviittaus: X-siirtymä lisäyspisteestä mm
+Cross reference placed by hand: Y offset from the insertion point in mm	Käsin sijoitettu ristiviittaus: Y-siirtymä lisäyspisteestä mm
 Cross section, e.g. 0.75 mm²	Poikkipinta-ala, esim. 0.75 mm²
 Cross section, e.g. 1.5 mm²	Poikkipinta-ala, esim. 1.5 mm²
 Cross section, e.g. 1.5 mm² (empty = from the potential definition)	Poikkipinta-ala, esim. 1.5 mm² (tyhjä = potentiaalin määrityksestä)
@@ -290,6 +292,7 @@ Id of the panel item (from mounting_list)	Asennusosan ID (komennosta mounting_li
 Id of the path or reservation	Polun tai varauksen tunniste
 Id of the text	Tekstin ID
 Identifier, e.g. A1 or CAB1	Tunnus, esim. A1 tai CAB1
+Ids of interruption points	Katkospisteiden tunnisteet
 Ids of page items	Sivun kohteiden tunnukset
 Ids of symbols and connection symbols (default: all symbols of the page)	Symbolien ja liitossymbolien tunnukset (oletus: sivun kaikki symbolit)
 In front of the page name (default /)	Sivun nimen edessä (oletus /)
@@ -429,6 +432,8 @@ Name of the segment	Segmentin nimi
 Name of the template	Mallin nimi
 Name of the work area	Työalueen nimi
 Name or id; the tag for places	Nimi tai ID; sijoituksille tunnus
+Name placed by hand: X offset from the insertion point in mm	Käsin sijoitettu nimi: X-siirtymä lisäyspisteestä mm
+Name placed by hand: Y offset from the insertion point in mm	Käsin sijoitettu nimi: Y-siirtymä lisäyspisteestä mm
 Name, e.g. the location +M1	Nimi, esim. sijainti +M1
 New device tag	Uusi laitetunnus
 New identifier	Uusi tunnus
@@ -475,6 +480,7 @@ Node name or id	Solmun nimi tai ID
 Node {} exists already	Solmu {} on jo olemassa
 Nodes to pass in this order, comma separated	Läpikuljettavat solmut tässä järjestyksessä pilkuilla erotettuina
 Nominal size, e.g. 8 mm or DN25	Nimelliskoko, esim. 8 mm tai DN25
+None of the items is an interruption point	Mikään kohteista ei ole katkospiste
 Not a cross-section: {} (e.g. 1.5 mm²)	Ei poikkipinta-ala: {} (esim. 1.5 mm²)
 Not a valid safety function: {}	Ei kelvollinen turvatoiminto: {}
 Note, e.g. what the problem is	Huomautus, esim. mikä ongelma on
@@ -557,6 +563,7 @@ Places an enclosure (+CAB1), a device (-M1) or a machine location (+M1) at a nod
 Places an enclosure accessory (fan, filter, cable gland, light, handle, PE bar) on a face	Sijoittaa kotelon tarvikkeen (tuuletin, suodatin, kaapeliläpivienti, valaisin, kahva, PE-kisko) pinnalle
 Places of the group (0 = not limited)	Ryhmän paikat (0 = ei rajoitettu)
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Sijoittaa kotelon kaappirivin huoneeseen (kaikkien koteloiden 3D-näkymä); ilman x- ja z-arvoa se sijoitetaan laitoksen sijoituskuvan mukaan tai muiden kaappirivien viereen
+Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Sijoittaa katkospisteiden nimen ja ristiviittauksen nuolen yhdelle puolelle tai käsin siirtymällä lisäyspisteestä
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Sijoittaa skeeman ominaisuudet symboleihin; ilman tunnuksia se sijoitetaan uudelleen kaikkiin sitä käyttäviin symboleihin
 Planned part number	Suunniteltu osanumero
 Planned power in kW	Suunniteltu teho kW
@@ -856,6 +863,7 @@ Unknown separator: {}	Tuntematon erotin: {}
 Unknown setting: {}	Tuntematon asetus: {}
 Unknown shield ends: {}	Tuntemattomat suojavaipan päät: {}
 Unknown side {} (socket or pin)	Tuntematon puoli {} (socket tai pin)
+Unknown side: {}	Tuntematon puoli: {}
 Unknown state: {}	Tuntematon tila: {}
 Unknown station kind: {}	Tuntematon asematyyppi: {}
 Unknown symbol: {}	Tuntematon symboli: {}
@@ -896,6 +904,7 @@ Wrap width in mm (0: no wrapping)	Rivitysleveys mm (0: ei rivitystä)
 X position in mm	X-sijainti millimetreinä
 Y position in mm (downwards)	Y-sijainti millimetreinä (alaspäin)
 any, wires, cables or tubes	any, wires, cables tai tubes
+auto, above, below, left or right; drops the texts placed by hand	auto, above, below, left tai right; hylkää käsin sijoitetut tekstit
 auto, tapped, through, rivet_nut, stud, clip or adhesive	auto, tapped, through, rivet_nut, stud, clip tai adhesive
 compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam or product	compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam tai product
 controller, io_device, drive, hmi or other	controller, io_device, drive, hmi tai other
