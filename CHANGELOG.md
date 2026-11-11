@@ -103,6 +103,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   main view (the panel layout, the workbench, …) even where the page was left in front
   of it, and the commands of the layout view (3D view, floor plan, mounting plate,
   tools, …) bring it to the front instead of changing it unseen behind the page.
+- **Rotate while moving a selection:** right-click during a drag to rotate its electrical
+  components 90° clockwise; `Shift`+right-click turns them counter-clockwise. The
+  selection stays attached to the pointer, in both schematic editing and panel layout.
 - **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
   too close for its bend radius no longer runs back across or alongside its own way
   (the supply cable `=GRID-W1` of the example `building_services` crossed itself below

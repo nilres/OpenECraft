@@ -1103,7 +1103,9 @@ impl Editor {
                     }
                 }
             }
-            out.response = Some(resp.clone());
+            if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+                out.response = Some(resp.clone());
+            }
         }
         if !pointer_tools {
             // The fingers navigate.
@@ -1753,6 +1755,37 @@ impl Editor {
         out.open_properties = true;
     }
 
+    fn rotate_while_dragging(&mut self, ui: &egui::Ui, prj: &mut Project, page_i: usize, world: Option<P>, editable: bool) {
+        if !editable || !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            return;
+        }
+        let rotations: Vec<bool> = ui.input(|i| {
+            i.events
+                .iter()
+                .filter_map(|event| match event {
+                    egui::Event::PointerButton {
+                        button: PointerButton::Secondary,
+                        pressed: true,
+                        modifiers,
+                        ..
+                    } => Some(modifiers.shift),
+                    _ => None,
+                })
+                .collect()
+        });
+        for counter_clockwise in rotations {
+            if let Drag::Move { start, applied, moving, items } = &mut self.drag {
+                for _ in 0..if counter_clockwise { 3 } else { 1 } {
+                    routing::rotate(prj, page_i, items);
+                }
+                *moving = routing::Moving::new(prj, page_i, items);
+                if let Some(w) = world {
+                    *start = w - *applied;
+                }
+            }
+        }
+    }
+
     #[allow(clippy::too_many_arguments)]
     fn mouse(
         &mut self,
@@ -1912,6 +1945,7 @@ impl Editor {
     /// `editable` only the selection changes.
     fn select_mouse(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, idx: &Index, page_i: usize, rect: Rect, world: Option<P>, editable: bool, out: &mut CanvasOutput) {
         let shift = ui.input(|i| i.modifiers.shift);
+        self.rotate_while_dragging(ui, prj, page_i, world, editable);
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let ow = self.s2w(rect, origin);
@@ -1958,7 +1992,7 @@ impl Editor {
                 self.drag = Drag::Box { start: origin };
             }
         }
-        if resp.dragged_by(PointerButton::Primary) {
+        if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             match (&mut self.drag, world) {
                 (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {
                     let total = lines.snap_from(w - *start, points, self.grid);
@@ -2010,7 +2044,7 @@ impl Editor {
                 _ => {}
             }
         }
-        if resp.drag_stopped() {
+        if resp.drag_stopped_by(PointerButton::Primary) {
             match std::mem::replace(&mut self.drag, Drag::None) {
                 Drag::Box { start } => {
                     if let Some(end) = resp.interact_pointer_pos().or(ui.input(|i| i.pointer.hover_pos())) {

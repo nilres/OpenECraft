@@ -44,6 +44,10 @@ fn button(pos: Pos2, pressed: bool) -> Event {
     Event::PointerButton { pos, button: PointerButton::Primary, pressed, modifiers: Modifiers::default() }
 }
 
+fn secondary_button(pos: Pos2, pressed: bool, modifiers: Modifiers) -> Event {
+    Event::PointerButton { pos, button: PointerButton::Secondary, pressed, modifiers }
+}
+
 /// Replay a drag over the sheet using a local vendor sample without checking it into the repository.
 #[test]
 #[ignore = "requires OPENECRAFT_DRAG_EDZ pointing to a schematic part archive"]
@@ -470,6 +474,43 @@ fn dragged_symbols_keep_their_wires_square() {
     let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
     assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 8.0)), "still vertical, still on the rail");
     assert_eq!(prj.pages[0].wires.len(), 2);
+}
+
+#[test]
+fn right_click_rotates_a_component_while_its_drag_continues() {
+    for (shift, rotation) in [(false, 1), (true, 3)] {
+        let mut prj = Project::default();
+        prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+        prj.fix_next_id();
+        let ctx = egui::Context::default();
+        let mut ed = Editor::default();
+        ready(&mut ed, &ctx, &mut prj);
+        let (from, intermediate, to) = (
+            ed.w2s(SCREEN, p(100.0, 100.0)),
+            ed.w2s(SCREEN, p(140.0, 100.0)),
+            ed.w2s(SCREEN, p(160.0, 100.0)),
+        );
+
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(intermediate)]);
+        let out = frame(
+            &mut ed,
+            &ctx,
+            &mut prj,
+            0,
+            vec![secondary_button(intermediate, true, Modifiers { shift, ..Default::default() })],
+        );
+        assert!(out.response.is_none(), "no context popover while the primary button is held");
+        let out = frame(&mut ed, &ctx, &mut prj, 0, vec![secondary_button(intermediate, false, Modifiers::default())]);
+        assert!(out.response.is_none(), "no context popover on right-click release during a drag");
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(to)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+
+        let symbol = &prj.pages[0].symbols[0];
+        assert_eq!(symbol.rot, rotation, "Shift={shift}");
+        assert_eq!(symbol.pos, p(160.0, 100.0), "the component follows the cursor through rotation");
+    }
 }
 
 #[test]
