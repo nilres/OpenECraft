@@ -278,15 +278,27 @@ pub(super) fn panel_legend(prj: &Project, idx: &Index) -> Table {
         (tr_const!("Mounting"), 0.8),
         (tr_const!("Position (mm)"), 0.9),
         (tr_const!("Size (mm)"), 0.9),
+        (tr_const!("Length (mm)"), 0.7),
     ]);
+    let order = |a: &&crate::panel::PanelItem, b: &&crate::panel::PanelItem| a.face.order().cmp(&b.face.order()).then(a.y.round().total_cmp(&b.y.round())).then(a.x.total_cmp(&b.x));
     for e in &prj.layout.enclosures {
-        let mut items: Vec<_> = e.items.iter().filter(|i| i.kind == ItemKind::Device).collect();
-        items.sort_by(|a, b| a.face.order().cmp(&b.face.order()).then(a.y.round().total_cmp(&b.y.round())).then(a.x.total_cmp(&b.x)));
-        for (n, it) in items.into_iter().enumerate() {
-            let data = prj.devices.get(&it.tag);
+        // The devices, then the rails, ducts and busbars to cut to length with their
+        // cross-section (width × height) and cut length.
+        let mut devices: Vec<_> = e.items.iter().filter(|i| i.kind == ItemKind::Device).collect();
+        devices.sort_by(order);
+        let mut profiles: Vec<_> = e.items.iter().filter(|i| i.kind.is_profile()).collect();
+        profiles.sort_by(|a, b| a.kind.layer().cmp(&b.kind.layer()).then(order(a, b)));
+        for (n, it) in devices.into_iter().chain(profiles).enumerate() {
             let part = prj.parts.iter().chain(crate::parts::catalog()).find(|p| p.number == it.part);
-            let description = data.map(|d| d.description.clone()).filter(|d| !d.is_empty()).or_else(|| part.map(|p| p.description.clone())).unwrap_or_default();
-            let target = idx.devices.get(&it.tag).and_then(|d| d.mains.first().or(d.others.first())).map(|l| (l.page, l.sym_id));
+            let part_text = || part.map(|p| p.description.clone()).filter(|d| !d.is_empty());
+            let (description, target, size, length) = if it.kind == ItemKind::Device {
+                let data = prj.devices.get(&it.tag);
+                let description = data.map(|d| d.description.clone()).filter(|d| !d.is_empty()).or_else(part_text).unwrap_or_default();
+                let target = idx.devices.get(&it.tag).and_then(|d| d.mains.first().or(d.others.first())).map(|l| (l.page, l.sym_id));
+                (description, target, format!("{:.0} × {:.0}", it.w, it.h), String::new())
+            } else {
+                (part_text().unwrap_or_else(|| it.kind.title().into()), None, it.profile_section(), crate::panel::mm_text(it.length()))
+            };
             t.push(
                 vec![
                     e.name.clone(),
@@ -296,7 +308,8 @@ pub(super) fn panel_legend(prj: &Project, idx: &Index) -> Table {
                     it.part.clone(),
                     it.face.title().into(),
                     format!("{:.0} / {:.0}", it.x, it.y),
-                    format!("{:.0} × {:.0}", it.w, it.h),
+                    size,
+                    length,
                 ],
                 target,
             );
