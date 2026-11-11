@@ -5,6 +5,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
+  placement crosshair to the edges of the schematic canvas, following the snapped
+  working point.
 - **Invisible grid lines:** connection points and wire ends off the drawing grid, as in
   imported drawings or on device boxes of any size, add invisible grid lines through
   them. The pointer snaps to them where they are nearer than the grid, so wires can be

@@ -24,6 +24,15 @@ fn the_unsaved_state_is_stored_with_the_shell() {
 }
 
 #[test]
+fn the_schematic_crosshair_setting_is_stored_with_the_shell() {
+    let shell = ShellState { full_crosshair: true, ..Default::default() };
+    let stored: ShellState = serde_json::from_str(&serde_json::to_string(&shell).unwrap()).unwrap();
+    assert!(stored.full_crosshair);
+    let old: ShellState = serde_json::from_str("{}").unwrap();
+    assert!(!old.full_crosshair, "stores written before use the short crosshair");
+}
+
+#[test]
 fn the_startup_setting_is_stored_with_the_shell() {
     use crate::startup::{ServerProject, Startup, Target};
     let startup = Startup::Project(Target::Server(ServerProject { url: "http://srv:8091".into(), name: "plant".into() }));

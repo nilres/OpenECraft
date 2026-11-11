@@ -122,6 +122,8 @@ struct ShellState {
     wall_opacity: f32,
     /// The title bar shows the frame time and the frames per second.
     frame_stats: bool,
+    /// Extend the schematic placement crosshair to the edges of the canvas.
+    full_crosshair: bool,
     /// The 3D view of the panel layout is drawn by the graphics card.
     gpu_3d: bool,
     /// Look for a new release when the editor starts (and install it).
@@ -147,6 +149,7 @@ impl Default for ShellState {
             sides: crate::dock::Sides::default(),
             wall_opacity: crate::panel_ui::WALL_OPACITY,
             frame_stats: false,
+            full_crosshair: false,
             gpu_3d: true,
             update_check: true,
             nav: openecraft_ui::nav::Settings::default(),
