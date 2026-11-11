@@ -138,6 +138,15 @@ enum Drag {
     Prop { handle: PropHandle, start: P, orig: P, side: Option<LabelSide> },
 }
 
+struct SnapCache {
+    page: usize,
+    analysis: u64,
+    grid: f32,
+    wires: usize,
+    symbols: usize,
+    lines: snap_lines::SnapLines,
+}
+
 pub struct Palette {
     pub canvas: Color32,
     pub paper: Color32,
@@ -509,6 +518,15 @@ pub struct PlacePayload {
     pub pins: Vec<String>,
 }
 
+fn crosshair_segments(rect: Rect, center: Pos2, full_canvas: bool) -> [[Pos2; 2]; 2] {
+    let (left, right, top, bottom) = if full_canvas {
+        (rect.left(), rect.right(), rect.top(), rect.bottom())
+    } else {
+        (center.x - 8.0, center.x + 8.0, center.y - 8.0, center.y + 8.0)
+    };
+    [[pos2(left, center.y), pos2(right, center.y)], [pos2(center.x, top), pos2(center.x, bottom)]]
+}
+
 /// Pixels per millimetre at 100 % (real size on a 96 dpi screen).
 pub const ZOOM_ACTUAL: f32 = 3.78;
 
@@ -525,6 +543,8 @@ pub struct Editor {
     /// it (R turns it).
     pub symbol_proto: Junction,
     pub show_grid: bool,
+    /// Draw a full-canvas crosshair at the current snapped working point.
+    pub full_crosshair: bool,
     /// Snap and drawing grid in mm (EPLAN grid sizes; connection points are on 4 mm).
     pub grid: f32,
     /// A point typed into the coordinate field: used like a click of the current tool.
@@ -585,6 +605,7 @@ pub struct Editor {
     textures: Textures,
     /// Wire routing preview: from, to and the path.
     route_cache: Option<(P, P, Vec<P>)>,
+    snap_cache: Option<SnapCache>,
     /// The user's keyboard shortcuts.
     pub shortcuts: crate::shortcuts::Shortcuts,
     /// The page is the document worked in: it takes the keys.
@@ -604,6 +625,7 @@ impl Default for Editor {
             place_mirror: false,
             symbol_proto: Junction::new(JunctionKind::Tee, P::default()),
             show_grid: true,
+            full_crosshair: false,
             grid: GRID,
             typed: None,
             last_point: None,
@@ -637,6 +659,7 @@ impl Default for Editor {
             frame: PlotFrame::default(),
             textures: HashMap::new(),
             route_cache: None,
+            snap_cache: None,
             text_proto: None,
             place_once: None,
             keys_active: true,
@@ -1029,6 +1052,14 @@ impl Editor {
         Some(if w.a.x == w.b.x { p(w.a.x, q.y.round()) } else if w.a.y == w.b.y { p(q.x.round(), w.a.y) } else { q })
     }
 
+    fn crosshair_point(&self, page: &Page, world: P, snapped: P) -> P {
+        match self.tool {
+            Tool::Select | Tool::Comment | Tool::Markup(..) => world,
+            Tool::ConnDef => self.wire_point(page, world, snapped).unwrap_or(snapped),
+            _ => snapped,
+        }
+    }
+
     /// Loads textures of the page's images that are new or changed.
     fn update_textures(&mut self, ctx: &egui::Context, page: &Page) {
         for img in &page.images {
@@ -1090,7 +1121,13 @@ impl Editor {
             Tool::Place(key) => Some((key, true)),
             _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| resp.dnd_release_payload::<PlacePayload>()).map(|pl| (pl.symbol, false)),
         };
-        let snapped = world.map(|w| self.snap_pointer(prj, &prj.pages[page_i], w, placing));
+        let drop_hover = resp.dnd_hover_payload::<PlacePayload>().is_some() || resp.dnd_hover_payload::<PartDrag>().is_some();
+        let needs_snap = !self.tool.is_review() && (self.tool != Tool::Select || resp.clicked_by(PointerButton::Primary) || drop_hover);
+        let snapped = if needs_snap {
+            world.map(|w| self.snap_pointer(prj, page_i, an.id, w, placing))
+        } else {
+            None
+        };
         self.hover = world;
         // New items never go onto a hidden or locked layer.
         if !layer_usable(prj, &self.active_layer) {
@@ -1150,7 +1187,14 @@ impl Editor {
         } else if self.typed.take().is_some() {
             out.message = Some(tr("The page is read only").to_string());
         }
-        self.cursor(ui, &resp, prj, idx, page_i, world, editable);
+        let pointer_hit = world.and_then(|w| self.hit(prj, page_i, w));
+        let pointer_prop = if self.tool == Tool::Select {
+            world.and_then(|w| self.prop_hit(prj, idx, page_i, w))
+        } else {
+            None
+        };
+        let pointer_end = world.and_then(|w| self.wire_end_hit(prj, page_i, w)).is_some();
+        self.cursor(ui, world, editable, pointer_hit, (pointer_prop.is_some(), pointer_end));
 
         // ------------------------------------------------------------ drawing
         self.update_textures(ui.ctx(), &prj.pages[page_i]);
@@ -1191,8 +1235,8 @@ impl Editor {
                 _ => g.rect(a, b, 0.5, Ink::Ghost, false),
             }
         }
-        if let (Some(w), true) = (world, self.tool == Tool::Select && matches!(self.drag, Drag::None)) {
-            self.draw_hover(&painter, rect, &pal, prj, page_i, w, an);
+        if self.tool == Tool::Select && matches!(self.drag, Drag::None) {
+            self.draw_hover(&painter, rect, &pal, prj, page_i, pointer_hit, an);
         }
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PlacePayload>(), editable) {
             if let Some(def) = prj.symbol(pl.symbol) {
@@ -1205,9 +1249,6 @@ impl Editor {
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PartDrag>(), editable) {
             // Where the dragged part lands, with its number.
             let c = self.w2s(rect, sn);
-            let st = Stroke::new(1.5, pal.ghost);
-            painter.line_segment([c - vec2(10.0, 0.0), c + vec2(10.0, 0.0)], st);
-            painter.line_segment([c - vec2(0.0, 10.0), c + vec2(0.0, 10.0)], st);
             let text = painter.layout_no_wrap(pl.number.clone(), egui::FontId::proportional(12.0), pal.ghost);
             let at = c + vec2(12.0, -12.0 - text.size().y);
             painter.rect_filled(Rect::from_min_size(at, text.size()).expand(3.0), 3.0, pal.ghost.gamma_multiply(0.18));
@@ -1221,14 +1262,23 @@ impl Editor {
                 draw_hints(&g, &routing::autoconnect(&prj.symbol_table(), pg, &self.selection, routing::AUTOCONNECT_REACH));
             }
         }
-        if let (Some(sn), Some(w), true) = (snapped, world, editable) {
-            let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
-            self.previews(&mut g, prj, &prj.pages[page_i], w, sn);
-            if self.tool != Tool::Select {
-                let c = self.w2s(rect, sn);
-                let st = Stroke::new(1.0, pal.ghost);
-                painter.line_segment([c - vec2(8.0, 0.0), c + vec2(8.0, 0.0)], st);
-                painter.line_segment([c - vec2(0.0, 8.0), c + vec2(0.0, 8.0)], st);
+        if let Some(w) = world {
+            if let (Some(sn), true) = (snapped, editable) {
+                let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+                self.previews(&mut g, prj, &prj.pages[page_i], w, sn);
+            }
+            let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
+                || resp.dnd_hover_payload::<PartDrag>().is_some();
+            if (self.tool != Tool::Select || self.full_crosshair || placement_drag)
+                && (editable || self.tool.is_review() || self.tool == Tool::Select)
+            {
+                let point = self.crosshair_point(&prj.pages[page_i], w, snapped.unwrap_or(w));
+                let center = self.w2s(rect, point);
+                let guides = painter.with_clip_rect(rect);
+                let stroke = Stroke::new(if self.full_crosshair { 0.8 } else { 1.0 }, pal.ghost);
+                for segment in crosshair_segments(rect, center, self.full_crosshair) {
+                    guides.line_segment(segment, stroke);
+                }
             }
         }
         if let Drag::Box { start } = self.drag {
@@ -1287,10 +1337,10 @@ impl Editor {
         }
 
         // Status line
-        self.status = match (world, snapped) {
-            (Some(w), Some(_)) => {
+        self.status = match world {
+            Some(w) => {
                 let mut s = tr_fmt!("Column {}  Row {}", self.frame.column_of(w), self.frame.row_of(w));
-                if let Some(id) = self.hit(prj, page_i, w) {
+                if let Some(id) = pointer_hit {
                     let page = &prj.pages[page_i];
                     if let Some(sym) = page.symbols.iter().find(|s| s.id == id) {
                         let name = prj.symbol(&sym.sym).map(|d| tr(d.name)).unwrap_or("?");
@@ -1310,7 +1360,7 @@ impl Editor {
                 }
                 s
             }
-            _ => String::new(),
+            None => String::new(),
         };
         out
     }
@@ -1726,8 +1776,26 @@ impl Editor {
     /// being `placing` (by the tool, or dragged in unturned) snaps from its connection
     /// points instead, so they land on such lines; a device connection point snaps
     /// itself, onto the outline of its box.
-    fn snap_pointer(&self, prj: &Project, page: &Page, w: P, placing: Option<(&str, bool)>) -> P {
-        let lines = snap_lines::SnapLines::of_page(prj, page, self.grid);
+    fn snap_pointer(&mut self, prj: &Project, page_i: usize, analysis: u64, w: P, placing: Option<(&str, bool)>) -> P {
+        let page = &prj.pages[page_i];
+        let rebuild = self.snap_cache.as_ref().is_none_or(|cache| {
+            cache.page != page_i
+                || cache.analysis != analysis
+                || cache.grid != self.grid
+                || cache.wires != page.wires.len()
+                || cache.symbols != page.symbols.len()
+        });
+        if rebuild {
+            self.snap_cache = Some(SnapCache {
+                page: page_i,
+                analysis,
+                grid: self.grid,
+                wires: page.wires.len(),
+                symbols: page.symbols.len(),
+                lines: snap_lines::SnapLines::of_page(prj, page, self.grid),
+            });
+        }
+        let lines = &self.snap_cache.as_ref().expect("snap cache was built").lines;
         let Some((def, by_tool)) = placing.and_then(|(key, by_tool)| Some((prj.symbol(key)?, by_tool))).filter(|(d, _)| d.func != Func::Connection) else {
             return lines.snap(w, self.grid);
         };
@@ -2136,8 +2204,8 @@ impl Editor {
 impl Editor {
     /// Faint highlight of the item under the pointer (select tool).
     #[allow(clippy::too_many_arguments)]
-    fn draw_hover(&self, painter: &Painter, rect: Rect, pal: &Palette, prj: &Project, page_i: usize, w: P, an: &Analysis) {
-        let Some(id) = self.hit(prj, page_i, w).filter(|id| !self.selection.contains(id)) else { return };
+    fn draw_hover(&self, painter: &Painter, rect: Rect, pal: &Palette, prj: &Project, page_i: usize, hit: Option<u64>, an: &Analysis) {
+        let Some(id) = hit.filter(|id| !self.selection.contains(id)) else { return };
         let page = &prj.pages[page_i];
         let color = pal.selected.gamma_multiply(0.35);
         if let Some(wire) = page.wires.iter().find(|x| x.id == id) {
@@ -2183,21 +2251,26 @@ impl Editor {
     }
 
     /// Pointer shape over the page: move or point over an item, grab over the texts
-    /// of a selected symbol, crosshair for the drawing tools.
+    /// of a selected symbol (`prop_hit`) and the ends of selected wires (`end_hit`),
+    /// crosshair for the drawing tools.
     #[allow(clippy::too_many_arguments)]
-    fn cursor(&self, ui: &egui::Ui, resp: &egui::Response, prj: &Project, idx: &Index, page_i: usize, world: Option<P>, editable: bool) {
-        let Some(w) = world.filter(|_| resp.hovered() || resp.dragged()) else { return };
+    fn cursor(&self, ui: &egui::Ui, world: Option<P>, editable: bool, hit: Option<u64>, (prop_hit, end_hit): (bool, bool)) {
+        let Some(_) = world else { return };
+        if self.full_crosshair {
+            ui.ctx().set_cursor_icon(egui::CursorIcon::None);
+            return;
+        }
         let icon = match (&self.tool, &self.drag) {
             (_, Drag::Prop { .. } | Drag::End { .. }) => egui::CursorIcon::Grabbing,
             (_, Drag::Move { .. }) => egui::CursorIcon::Move,
             (_, Drag::Box { .. }) => egui::CursorIcon::Crosshair,
-            (Tool::Select, Drag::None) if editable && self.wire_end_hit(prj, page_i, w).is_some() => egui::CursorIcon::Grab,
-            (Tool::Select, Drag::None) if editable && self.selection.len() == 1 && self.prop_hit(prj, idx, page_i, w).is_some() => egui::CursorIcon::Grab,
-            (Tool::Select, Drag::None) if editable && self.prop_hit(prj, idx, page_i, w).is_some() => egui::CursorIcon::Move,
-            (Tool::Select, Drag::None) => match self.hit(prj, page_i, w) {
+            (Tool::Select, Drag::None) if editable && end_hit => egui::CursorIcon::Grab,
+            (Tool::Select, Drag::None) if editable && self.selection.len() == 1 && prop_hit => egui::CursorIcon::Grab,
+            (Tool::Select, Drag::None) if editable && prop_hit => egui::CursorIcon::Move,
+            (Tool::Select, Drag::None) => match hit {
                 Some(_) if editable => egui::CursorIcon::Move,
                 Some(_) => egui::CursorIcon::PointingHand,
-                None => return,
+                None => egui::CursorIcon::Crosshair,
             },
             _ if editable || self.tool.is_review() => egui::CursorIcon::Crosshair,
             _ => egui::CursorIcon::NotAllowed,

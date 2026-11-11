@@ -1112,14 +1112,14 @@ fn generated_models(p: &Part) -> Option<(Model2d, Mesh3d)> {
     match shape {
         Shape::Din { toggle, display } => {
             let base = d * 0.6;
-            m3.add_painted_box([0.0, 0.0, 0.0], [w, h, base], models::BODY);
+            let points = p.connection_points_or_default().0;
+            base_with_entries(&mut m3, [w, h, base], &points, models::BODY);
             // Raised front in the middle third
             let (f0, f1) = (h * 0.3, h * 0.7);
             m3.add_painted_box([w * 0.05, f0, base], [w * 0.95, f1, if toggle || display { d * 0.92 } else { d }], models::BODY);
             rect(&mut prims, w * 0.05, f0, w * 0.95, f1, false);
             // Screw terminals on the steps above and below the front, one per connection
             // point of the row
-            let points = p.connection_points_or_default().0;
             for (exit, cy) in [(crate::Exit::Up, h * 0.85), (crate::Exit::Down, h * 0.15)] {
                 let xs: Vec<f32> = points.iter().filter(|c| c.exit == exit).map(|c| c.pos[0]).collect();
                 let r = (w / xs.len().max(1) as f32 * 0.28).min(3.0);
@@ -1190,8 +1190,8 @@ fn generated_models(p: &Part) -> Option<(Model2d, Mesh3d)> {
             }
         }
         Shape::Contactor => {
-            m3.add_painted_box([0.0, 0.0, 0.0], [w, h, d * 0.7], models::BODY);
             let points = p.connection_points_or_default().0;
+            base_with_entries(&mut m3, [w, h, d * 0.7], &points, models::BODY);
             for (exit, cy) in [(crate::Exit::Up, h * 0.94), (crate::Exit::Down, h * 0.06)] {
                 let xs: Vec<f32> = points.iter().filter(|c| c.exit == exit).map(|c| c.pos[0]).collect();
                 let r = (w / xs.len().max(1) as f32 * 0.3).min(3.0);
@@ -1303,6 +1303,52 @@ fn terminal_slice(m: &mut Mesh3d, w: f32, h: f32, d: f32, c: [u8; 3], front: Opt
             }
         }
         None => b([x0, m0, d * 0.25], [x1, m1, d], c),
+    }
+}
+
+/// The base of a DIN rail device (`w` × `h`, from the rail to `top`; y up) with the wire
+/// entries of its screw terminals in its end faces, below the screws on its steps: an
+/// opening at each connection point leaving up or down, at its x and height, its inside
+/// dark. Openings that do not fit into the base are left out.
+fn base_with_entries(m: &mut Mesh3d, [w, h, top]: [f32; 3], points: &[crate::ConnectionPoint], c: [u8; 3]) {
+    block_with_entries(m, w, (0.0, h), (0.0, top), points, 3.0, c);
+}
+
+/// A block across the device (`w` wide, from `y0` to `y1` up, from `z0` to `z1` towards
+/// the front) with the wire entries of the connection points leaving up through its
+/// upper end or down through its lower end (as [`base_with_entries`]; openings up to
+/// `most` from their middle).
+fn block_with_entries(m: &mut Mesh3d, w: f32, (y0, y1): (f32, f32), (z0, z1): (f32, f32), points: &[crate::ConnectionPoint], most: f32, c: [u8; 3]) {
+    let end = ((y1 - y0) * 0.04).min(2.0);
+    // (Set back no further than the connection points may lie off the model's surface.)
+    let back = (end / 2.0).min(0.4);
+    m.add_painted_box([0.0, y0 + end, z0], [w, y1 - end, z1], c);
+    // The upper end (points leaving up, y 0 in the front view) is at y1.
+    for (exit, e0, e1, inside) in [(crate::Exit::Up, y1 - end, y1, (y1 - end, y1 - back)), (crate::Exit::Down, y0, y0 + end, (y0 + back, y0 + end))] {
+        let row: Vec<[f32; 2]> = points.iter().filter(|p| p.exit == exit).map(|p| [p.pos[0], p.pos[2]]).collect();
+        let r = (w / row.len().max(1) as f32 * 0.3).min(most);
+        let half = ((z1 - z0) * 0.15).min(most);
+        let openings: Vec<([f32; 2], [f32; 2])> = row.iter().map(|&[x, z]| ([x - r, x + r], [z - half, z + half])).filter(|(x, z)| x[0] >= 0.0 && x[1] <= w && z[0] >= z0 && z[1] <= z1).collect();
+        // The end in cells between the edges of the openings: body, or the opening's
+        // inside set back.
+        let cuts = |edges: &mut Vec<f32>| {
+            edges.sort_by(f32::total_cmp);
+            edges.dedup_by(|a, b| (*a - *b).abs() < 1e-4);
+        };
+        let mut xs: Vec<f32> = [0.0, w].into_iter().chain(openings.iter().flat_map(|o| o.0)).collect();
+        let mut zs: Vec<f32> = [z0, z1].into_iter().chain(openings.iter().flat_map(|o| o.1)).collect();
+        cuts(&mut xs);
+        cuts(&mut zs);
+        for x in xs.windows(2) {
+            for z in zs.windows(2) {
+                let (cx, cz) = ((x[0] + x[1]) / 2.0, (z[0] + z[1]) / 2.0);
+                if openings.iter().any(|(ox, oz)| ox[0] < cx && cx < ox[1] && oz[0] < cz && cz < oz[1]) {
+                    m.add_painted_box([x[0], inside.0, z[0]], [x[1], inside.1, z[1]], DARK_INSIDE);
+                } else {
+                    m.add_painted_box([x[0], e0, z[0]], [x[1], e1, z[1]], c);
+                }
+            }
+        }
     }
 }
 

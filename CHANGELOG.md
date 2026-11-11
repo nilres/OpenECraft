@@ -13,6 +13,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   selected wire moves only that end, to disconnect it or connect it elsewhere. Commands:
   `move_items` (`keep_connections`), `move_wire_end`
   ([schematic](docs/features/schematic.md#editing)).
+- **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
+  placement crosshair to the edges of the schematic canvas, following the snapped
+  working point.
 - **AppImage on more systems:** the AppImage carries the keyboard and cursor libraries
   of X11 (xkbcommon, Xcursor, Xi), so the editor and the parts manager start on systems
   without them instead of quitting with *Library libxkbcommon-x11.so could not be
@@ -204,6 +207,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   resized, and a long list of properties scrolls. A renamed property is applied when
   its name field loses focus (Esc keeps the old name), so the text cursor no longer
   jumps to another property while typing.
+- **Wires in 3D:** a wire starts in the opening of its connection point and leaves it
+  along the direction the point opens in (up or down out of the upper or lower edge of
+  a device) before it comes down to the cable duct, instead of running straight back
+  along the device to the mounting plate. The generated connection points of DIN rail
+  devices lie in their end faces below the screws (40 % of the depth above the rail
+  instead of 75 %, in front of the screws), and the generated models of DIN rail devices
+  and contactors show these wire entries. NH fuse switch disconnectors on busbars are
+  wired into the clamps in their terminal compartments (57.5 % of the depth, entered
+  from the end faces below the screws) instead of in front of their terminal covers,
+  and the strips for 185 mm busbars are drawn with their fuses one above the other and
+  the connection compartment at the bottom. Devices drawn as boxes (parts without a 3D
+  model) show the openings of their connection points.
 - **Structure boxes:** *Insert › Structure box* draws a rectangle whose devices take other
   function (`=`) or location (`+`) identifiers than the page (also installation site and
   product); only the aspects set on the box override the page, nested boxes resolve to

@@ -1863,6 +1863,9 @@ pub struct RoutedWire {
     /// Connection point of an end on the plate or a wall (enclosure coordinates; the
     /// middle of the device front without one): the wire runs from there to the plate.
     pub terminals: (Option<V3>, Option<V3>),
+    /// The axis of the opening of a connection point in `terminals` (enclosure
+    /// coordinates, a unit vector out of the device): the wire goes into it along it.
+    pub axes: (Option<V3>, Option<V3>),
     /// Further stretches through cable passages into neighbouring enclosures of the
     /// line-up; empty if the wire stays in `enclosure`.
     pub legs: Vec<Leg>,
@@ -2033,10 +2036,14 @@ pub fn virtual_wiring(prj: &Project, conns: &[Connection]) -> (Vec<RoutedWire>, 
             let c = it.center();
             let at = point.map(|pt| pt.pos).unwrap_or([c.x, c.y, it.z + it.d]);
             let terminal = (it.face != Face::Door).then(|| face_point(e, it.face, at));
-            (w, extra, kind, door, door_route, terminal)
+            let axis = point.filter(|_| it.face != Face::Door).map(|pt| {
+                use crate::parts::vec3::{add, norm, sub};
+                norm(sub(face_point(e, it.face, add(pt.pos, exit_vector(pt.exit))), face_point(e, it.face, pt.pos)))
+            });
+            (w, extra, kind, door, door_route, (terminal, axis))
         };
-        let (pa, la, ka, da, ra, ta) = end(ea, ia, sa, c.a.pin);
-        let (pb, lb, kb, db, rb, tb) = end(eb, ib, sb, c.b.pin);
+        let (pa, la, ka, da, ra, (ta, xa)) = end(ea, ia, sa, c.a.pin);
+        let (pb, lb, kb, db, rb, (tb, xb)) = end(eb, ib, sb, c.b.pin);
         let e = &prj.layout.enclosures[ea];
         let (r, length, door_routes, legs) = match (da, db) {
             // Both ends on the door: along the door, not into the cabinet.
@@ -2081,6 +2088,7 @@ pub fn virtual_wiring(prj: &Project, conns: &[Connection]) -> (Vec<RoutedWire>, 
             door: (da, db),
             door_routes,
             terminals: (ta, tb),
+            axes: (xa, xb),
             legs,
         });
     }
