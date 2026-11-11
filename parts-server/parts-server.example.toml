@@ -16,8 +16,8 @@ data = "parts-db.sqlite"
 # Administrator token. Better kept out of this file: OPENECRAFT_TOKEN.
 # token = "change-me"
 
-# Administrator account created (or reset) at startup; its password is read from
-# OPENECRAFT_ADMIN_PASSWORD.
+# Administrator account created (or reset) at startup (or OPENECRAFT_ADMIN_USER); its
+# password is read from OPENECRAFT_ADMIN_PASSWORD.
 # admin_user = "admin"
 
 # Bundled manufacturer catalogs installed or updated at startup: ["all"] or ids.

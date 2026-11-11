@@ -36,7 +36,7 @@ pub struct Args {
     token: Option<String>,
     /// Create this administrator account (or reset its password) at startup; the
     /// password is read from OPENECRAFT_ADMIN_PASSWORD.
-    #[arg(long)]
+    #[arg(long, env = "OPENECRAFT_ADMIN_USER")]
     admin_user: Option<String>,
     /// Install or update bundled manufacturer catalogs at startup: `all` or ids
     /// (e.g. `siemens`). Parts changed by users are kept.
@@ -70,6 +70,7 @@ pub struct Settings {
     pub migrate_from: Option<PathBuf>,
     /// Administrator token (not empty).
     pub token: Option<String>,
+    /// Administrator to create (not empty).
     pub admin_user: Option<String>,
     pub install_catalogs: Vec<String>,
     pub access: PathBuf,
@@ -97,7 +98,7 @@ impl Settings {
             storage: StorageKind::resolve(args.storage.or(file.storage), &data),
             migrate_from: args.migrate_from,
             token: args.token.or(file.token).filter(|t| !t.trim().is_empty()),
-            admin_user: args.admin_user.or(file.admin_user),
+            admin_user: args.admin_user.or(file.admin_user).filter(|n| !n.trim().is_empty()),
             install_catalogs: if args.install_catalogs.is_empty() { file.install_catalogs } else { args.install_catalogs },
             data,
             access,

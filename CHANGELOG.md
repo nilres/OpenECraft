@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Server administrator from the environment:** `OPENECRAFT_ADMIN_USER` (parts server)
+  and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
+  created at startup, as `--admin-user` does, so a Docker container gets its first user
+  from environment variables alone ([installation](docs/installation.md#docker-images-of-the-servers)).
+
 - **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
   placement crosshair to the edges of the schematic canvas, following the snapped
   working point.

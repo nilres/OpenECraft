@@ -68,7 +68,8 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
 - Users: readers keep favorites, manufacturers change the parts and catalogs of their
   own manufacturer, editors all parts, administrators also manage the users. The
   `--token` (or `OPENECRAFT_TOKEN`) is the administrator token; `--admin-user <name>`
-  creates an administrator account with the password from `OPENECRAFT_ADMIN_PASSWORD`.
+  (or `OPENECRAFT_ADMIN_USER`) creates an administrator account with the password from
+  `OPENECRAFT_ADMIN_PASSWORD`.
   Users sign in with `POST /login` (`name` and `password`; `user` is taken for `name`, as
   on the project server) and send the session token as `Authorization: Bearer <token>`.
   A token the server does not know (an expired session) is refused with `401`, for
