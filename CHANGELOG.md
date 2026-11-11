@@ -5,6 +5,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **AppImage on more systems:** the AppImage carries the keyboard and cursor libraries
+  of X11 (xkbcommon, Xcursor, Xi), so the editor and the parts manager start on systems
+  without them instead of quitting with *Library libxkbcommon-x11.so could not be
+  loaded*.
 - **Invisible grid lines:** connection points and wire ends off the drawing grid, as in
   imported drawings or on device boxes of any size, add invisible grid lines through
   them. The pointer snaps to them where they are nearer than the grid, so wires can be

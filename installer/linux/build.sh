@@ -9,8 +9,9 @@
 #
 #   deb       dpkg-deb, dpkg-shlibdeps (apt install dpkg-dev)
 #   rpm       rpmbuild (dnf install rpm-build, apt install rpm)
-#   appimage  appimagetool (APPIMAGETOOL=<path>, otherwise release 1.9.1 is downloaded) and
-#             the AppImage runtime (release 20251108, downloaded; both checksums verified)
+#   appimage  Debian or Ubuntu (dpkg-query), patchelf, appimagetool (APPIMAGETOOL=<path>,
+#             otherwise release 1.9.1 is downloaded) and the AppImage runtime (release
+#             20251108, downloaded; both checksums verified)
 #   flatpak   flatpak, flatpak-builder (the runtime is installed from Flathub)
 #   snap      snapcraft (SNAPCRAFT="sudo snapcraft" SNAPCRAFT_ARGS=--destructive-mode in CI)
 #
@@ -168,10 +169,61 @@ download() {
     fi
 }
 
+# The window libraries winit loads at run time that are not on every system, with what
+# they need. The AppImage carries them; the libraries of the AppImage excludelist
+# (libX11, libxcb, libwayland-client, libGL, libEGL, …) and the Wayland libraries tied to
+# libwayland-client come from the system.
+appimage_libs=(libxkbcommon.so.0 libxkbcommon-x11.so.0 libxcb-xkb.so.1 libXcursor.so.1 libXrender.so.1
+    libXfixes.so.3 libXi.so.6 libXext.so.6)
+appimage_system_libs=(libc.so.6 libm.so.6 libdl.so.2 libpthread.so.0 librt.so.1 libutil.so.1 libgcc_s.so.1
+    ld-linux-x86-64.so.2 ld-linux-aarch64.so.1 libX11.so.6 libX11-xcb.so.1 libxcb.so.1 libz.so.1)
+
+# bundle_libs <AppDir>: copies appimage_libs to usr/lib and their packages' copyright
+# files to usr/share/doc, makes the editor and the parts manager look there first and refuses a library the AppImage neither has nor may expect.
+# $ORIGIN is for patchelf, not the shell.
+# shellcheck disable=SC2016
+bundle_libs() {
+    local dir="$1" lib path pkg file need
+    need patchelf appimage
+    need readelf appimage
+    need ldconfig appimage
+    need dpkg-query "the licenses of the libraries in the AppImage (build it on Debian or Ubuntu)"
+    install -d "$dir/usr/lib"
+    for lib in "${appimage_libs[@]}"; do
+        path="$(ldconfig -p | awk -v lib="$lib" '$1 == lib && !found { print $NF; found = 1 }')"
+        [ -n "$path" ] || die "$lib not found, needed for appimage"
+        path="$(readlink -f "$path")"
+        install -m 644 "$path" "$dir/usr/lib/$lib"
+        patchelf --set-rpath '$ORIGIN' "$dir/usr/lib/$lib"
+        pkg="$(dpkg-query -S "*/${path##*/}" | awk -F : 'NR == 1 { print $1 }')" || die "no package contains $path"
+        install -D -m 644 "/usr/share/doc/$pkg/copyright" "$dir/usr/share/doc/$pkg/copyright"
+    done
+    patchelf --set-rpath '$ORIGIN/../lib' "$dir/usr/bin/openecraft" "$dir/usr/bin/openecraft-parts-manager"
+    for file in "$dir"/usr/bin/* "$dir"/usr/lib/*; do
+        for need in $(readelf -d "$file" | sed -n 's/.*(NEEDED).*\[\(.*\)\]$/\1/p'); do
+            [ -e "$dir/usr/lib/$need" ] || [[ " ${appimage_system_libs[*]} " == *" $need "* ]] \
+                || die "$need, needed by ${file##*/}, is neither in the AppImage nor on every system"
+        done
+    done
+    local bins_glibc libs_glibc
+    bins_glibc="$(glibc_needed "$dir"/usr/bin/*)"
+    libs_glibc="$(glibc_needed "$dir"/usr/lib/*)"
+    [ "$(printf '%s\n' "$bins_glibc" "$libs_glibc" | sort -V | tail -n 1)" = "$bins_glibc" ] \
+        || die "the libraries for the AppImage need $libs_glibc, the programs only $bins_glibc: build on an older system"
+}
+
+# glibc_needed <ELF file>...: the newest glibc version the files need, e.g. GLIBC_2.35.
+glibc_needed() {
+    readelf -V "$@" | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -n 1
+}
+
 build_appimage() {
     local dir="$work/OpenECraft.AppDir" tool="${APPIMAGETOOL:-}" runtime
     [ -n "${runtime_sha256[$arch]:-}" ] || die "no AppImage runtime for $arch"
     stage "$dir/usr"
+    bundle_libs "$dir"
+    # The AppImage catalog and appimagetool look for AppStream data by its older name.
+    mv "$dir/usr/share/metainfo/$id.metainfo.xml" "$dir/usr/share/metainfo/$id.appdata.xml"
     install -m 644 "$here/appimage/RUNTIME-LICENSES.txt" "$dir/usr/share/doc/openecraft/APPIMAGE-RUNTIME-LICENSES.txt"
     install -m 755 "$here/appimage/AppRun" "$dir/AppRun"
     cp "$here/$id.desktop" "$dir/$id.desktop"
