@@ -36,6 +36,20 @@ new device with their own points. Commands: `add_device_box`, `update_device_box
 `add_device_connections` (several at a distance, designations given or numbered on),
 `update_device_connection`, `list_device_boxes`.
 
+A box can also continue a device placed elsewhere: give it the device's tag and choose
+its *Role* in the properties (`role` of `add_device_box` and `update_device_box`). An
+*Extension* adds connection points to the device, for a device too large for one box or
+a library symbol that lacks some connections. Its points are new connections, and a
+designation the device already has is reported as used twice. A *Pin view* shows some
+connection points the device already has, for example only the supply of a PLC card on
+the power page; tick them in the properties (`show_device_pins`) or place points with
+their designations. A point on a view is the connection point it shows: wires drawn
+there belong to that point's potential on every page, reports list the connection once,
+from the device's own point, and the check reports a view of a point the device does
+not have. Neither role is a second main function. The box shows a cross reference to
+the device, and the device's main function to its boxes; copied without the device,
+these boxes stay on it. A box with a role but no device placed is reported.
+
 ## Structure identifiers (IEC 81346)
 
 Pages carry a function (`=A1`) and a location
@@ -58,7 +72,8 @@ deleting the box, renames the device (all its functions) in its inherited aspect
 the same undo step and keeps its own; a tag that exists already is refused and reported
 instead of merging two devices. The symbol properties show where each aspect comes
 from. Boxes are copied, pasted and saved in macros with their devices; the check
-*Structure identifiers* reports boxes that overlap without one lying inside the other.
+*Structure identifiers* reports boxes that overlap without one lying inside the other, and
+devices inside a box whose tag has another value for an aspect the box sets.
 Commands `add_structure_box`, `update_structure_box`, `list_structure_boxes`.
 
 ## Live cross references
@@ -103,7 +118,14 @@ wires stays where it is. With *Route the connections of moved items anew*
 (*Connections › Wire crossings…*, off by default) such a wire is routed again
 together with the corners after it, up to the next connection point, junction or
 branch, on the way of the least weight: its length in grid steps, 1.2 per bend and
-1.5 per wire crossed; a connection without such a way is squared as before. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
+1.5 per wire crossed; a connection without such a way is squared as before.
+Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View);
+connection points and wire ends off that grid (imported drawings, device boxes of any
+size) add invisible grid lines through them, so the pointer snaps to them where they
+are nearer than the grid, wires can start at such points and things can be connected
+to such wires; a symbol being placed or moved snaps from its own connection points
+(and a moved wire from its ends), so they land on such lines and auto-connect joins
+them; a
 coordinate field in the tool bar (`x y` absolute or `@dx dy` relative to the last
 point, Enter acts like a click of the current tool); *Home › Align* (edges or
 centres), *Distribute* (evenly, horizontally or vertically), *Move selection by…*
@@ -146,7 +168,8 @@ and applies to the canvas and the PDF, SVG and DXF export alike. Command line / 
 ## Routing
 
 Auto-connect draws wires between facing free connection points when
-symbols are placed or moved; the wire tool can route around symbols and other wires
+symbols are placed or moved; while a symbol is placed or moved with the mouse, faint
+dotted lines show the wires it would draw; the wire tool can route around symbols and other wires
 (A); collinear wire pieces can be joined. Also as `route` / `autoconnect` commands.
 
 ## Property placement

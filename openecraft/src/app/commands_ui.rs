@@ -21,7 +21,9 @@ impl App {
         match cmd {
             Cmd::Undo => self.session.history.can_undo(),
             Cmd::Redo => self.session.history.can_redo(),
-            Cmd::Cut | Cmd::Copy | Cmd::Delete | Cmd::Rotate | Cmd::Mirror | Cmd::MoveBy | Cmd::MultipleCopy | Cmd::SaveSelectionAsMacro | Cmd::AutoConnectSelection => has_sel,
+            // Rotate turns the symbol to place while a placing tool is active.
+            Cmd::Rotate => has_sel || matches!(self.editor.tool, Tool::Place(_) | Tool::Junction(_)),
+            Cmd::Cut | Cmd::Copy | Cmd::Delete | Cmd::Mirror | Cmd::MoveBy | Cmd::MultipleCopy | Cmd::SaveSelectionAsMacro | Cmd::AutoConnectSelection => has_sel,
             Cmd::Paste => self.editor.clip.is_some(),
             Cmd::Align => self.editor.selection.len() >= 2,
             Cmd::Distribute => self.editor.selection.len() >= 3,
@@ -299,6 +301,8 @@ impl App {
             Cmd::Rotate => {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_rot = (self.editor.place_rot + 1) % 4;
+                } else if matches!(self.editor.tool, Tool::Junction(_)) {
+                    self.editor.symbol_proto.turn();
                 } else {
                     let items = self.editor.items(&self.session.prj, page);
                     routing::rotate(&mut self.session.prj, page, &items);
@@ -530,11 +534,15 @@ impl App {
 
     /// Sets a tool of the page editor and brings the page to the front.
     pub(super) fn set_tool(&mut self, tool: Tool) {
+        let symbol_tool = matches!(tool, Tool::Junction(_));
         self.editor.set_tool(tool);
         if crate::dock::find(&self.dock, Pane::Page).is_some() || self.workspace.is_workshop() {
             self.show_pane(Pane::Page);
         } else {
             self.set_workspace(Workspace::Schematic);
+        }
+        if symbol_tool {
+            self.show_symbol_tool_properties();
         }
         self.backstage = None;
     }
@@ -725,7 +733,7 @@ impl App {
         }
     }
 
-    /// A menu entry that runs a command (with its shortcut and tooltip).
+    /// A button that runs a command (with its shortcut and tooltip).
     pub(super) fn cmd_button(&mut self, ui: &mut egui::Ui, cmd: Cmd) {
         let def = commands::def(cmd);
         let keys = self.editor.shortcuts.cmd_text(cmd);
@@ -735,11 +743,12 @@ impl App {
             Some(on) => ui.add_enabled(enabled, egui::Button::selectable(on, title).shortcut_text(keys)),
             None => ui.add_enabled(enabled, egui::Button::new(title).shortcut_text(keys)),
         };
-        let r = if def.tip.is_empty() { r } else { r.on_hover_text(tr(def.tip)) };
+        let tip = self.cmd_tip(cmd);
+        let r = if tip.is_empty() { r } else { r.on_hover_text(tip) };
         if r.clicked() {
             let ctx = ui.ctx().clone();
             self.run(&ctx, cmd);
-            ui.close();
+            close_command_menu(ui);
         }
     }
 
@@ -840,3 +849,13 @@ impl App {
         }
     }
 }
+
+fn close_command_menu(ui: &egui::Ui) {
+    // The same buttons appear in Settings, where close() would collapse the window.
+    if egui::containers::menu::is_in_menu(ui) {
+        ui.close();
+    }
+}
+
+#[cfg(test)]
+mod tests;

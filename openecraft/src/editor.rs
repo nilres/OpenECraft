@@ -21,7 +21,7 @@ use openecraft_core::symbols::{Anchor, Func, SymbolDef};
 use openecraft_core::device_boxes;
 use openecraft_core::netlist::junctions;
 use openecraft_core::structure::StructureBox;
-use openecraft_core::{cabledef, conndef, graphics, routing, structure_boxes};
+use openecraft_core::{cabledef, conndef, graphics, routing, snap_lines, structure_boxes};
 use egui::{pos2, vec2, Align2, Color32, FontId, Key, Painter, PointerButton, Pos2, Rect, Sense, Shape as EShape, Stroke, Vec2};
 use std::collections::{BTreeSet, HashMap, HashSet};
 
@@ -126,8 +126,10 @@ impl PropHandle {
 
 enum Drag {
     None,
-    /// The selection with the connection points of its device boxes (`items`) moves.
-    Move { start: P, applied: P, moving: routing::Moving, items: BTreeSet<u64> },
+    /// The selection with the connection points of its device boxes (`items`) moves;
+    /// its connection points and wire ends (`points`) snap to the invisible grid lines
+    /// of what stays (`lines`).
+    Move { start: P, applied: P, moving: Box<routing::Moving>, items: BTreeSet<u64>, points: Vec<P>, lines: snap_lines::SnapLines },
     Box { start: Pos2 },
     /// `side`: side of a dragged connection point designation (symbol orientation).
     Prop { handle: PropHandle, start: P, orig: P, side: Option<LabelSide> },
@@ -426,6 +428,14 @@ fn skewed(painter: &Painter, shape: &TextShape, k: f32) -> Mesh {
     mesh
 }
 
+/// Faint dotted lines where auto-connect would draw wires.
+fn draw_hints(g: &EguiDraw<'_>, segs: &[(P, P)]) {
+    let color = g.pal.ghost.gamma_multiply(0.7);
+    for (a, b) in segs {
+        g.painter.extend(EShape::dotted_line(&[g.w2s(*a), g.w2s(*b)], color, 5.0, 1.0));
+    }
+}
+
 fn convex(pts: &[P]) -> bool {
     let n = pts.len();
     let mut sign = 0.0f32;
@@ -701,6 +711,13 @@ pub fn box_selects(window: R, crossing: bool, item: R) -> bool {
 }
 
 impl Editor {
+    /// The connection symbol tool places its next symbol with the following routing.
+    pub fn next_routing(&mut self) {
+        if matches!(self.tool, Tool::Junction(_)) {
+            self.symbol_proto = junctions::next_choice(&self.symbol_proto);
+        }
+    }
+
     pub fn set_tool(&mut self, tool: Tool) {
         if !matches!(tool, Tool::Place(_)) {
             self.place_tag = None;
@@ -939,14 +956,14 @@ impl Editor {
     }
 
     /// The connection symbol the tool would place at `q`: a T-junction with its stem
-    /// after the wires meeting there, a corner with the arms of the two wires there,
-    /// else in the tool's direction.
+    /// after the wires meeting there (and the tool's routing), a corner with the arms
+    /// of the two wires there, else in the tool's direction.
     fn junction_at(&self, page: &Page, q: P, kind: JunctionKind) -> Junction {
         let arms = junctions::arms(page, q);
         let proto = if self.symbol_proto.kind == kind { self.symbol_proto.clone() } else { Junction::new(kind, q) };
         match kind {
             JunctionKind::Tee => match arms.as_deref().and_then(junctions::stem_of) {
-                Some(dir) => Junction { pos: q, dir, variant: 3, ..proto },
+                Some(dir) => Junction { pos: q, dir, ..proto },
                 None => Junction { pos: q, ..proto },
             },
             JunctionKind::Corner => match arms.as_deref().and_then(junctions::corner_of) {
@@ -1027,40 +1044,32 @@ impl Editor {
         }
 
         // ------------------------------------------------------------ navigation
-        if resp.hovered() {
-            // Raw wheel events: CAD style zoom around the cursor, no smoothing.
-            let (wheel, zoom_delta, ptr) = ui.input(|i| {
-                let mut wheel = 0.0;
-                for e in &i.events {
-                    if let egui::Event::MouseWheel { unit, delta, modifiers, .. } = e {
-                        if modifiers.ctrl || modifiers.command {
-                            continue; // already contained in zoom_delta()
-                        }
-                        wheel += match unit {
-                            egui::MouseWheelUnit::Point => delta.y,
-                            egui::MouseWheelUnit::Line => delta.y * 40.0,
-                            egui::MouseWheelUnit::Page => delta.y * 400.0,
-                        };
-                    }
-                }
-                (wheel, i.zoom_delta(), i.pointer.hover_pos())
-            });
-            if let Some(ptr) = ptr {
-                let factor = zoom_delta * (wheel * 0.0025).exp();
-                if (factor - 1.0).abs() > 1e-4 {
-                    self.zoom_at(rect, ptr, factor);
-                }
-            }
+        // Wheel, trackpad and touch: CAD style zoom around the cursor, no smoothing.
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.offset += gesture.pan;
+        if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
+            self.zoom_at(rect, at, gesture.zoom);
         }
         if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
             self.offset += resp.drag_delta();
         }
+        // Fingers navigating leave out the first one's selection window; a move already
+        // under way goes on.
+        if gesture.touch && matches!(self.drag, Drag::Box { .. }) {
+            self.drag = Drag::None;
+        }
+        let pointer_tools = !gesture.touch || !matches!(self.drag, Drag::None);
 
         let locked = prj.pages[page_i].locked;
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
         let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p));
         let world = ptr.map(|s| self.s2w(rect, s));
-        let snapped = world.map(|w| w.snap(self.grid));
+        // Connection points and wire ends off the grid are invisible grid lines.
+        let placing = match self.tool {
+            Tool::Place(key) => Some((key, true)),
+            _ => resp.dnd_hover_payload::<PlacePayload>().or_else(|| resp.dnd_release_payload::<PlacePayload>()).map(|pl| (pl.symbol, false)),
+        };
+        let snapped = world.map(|w| self.snap_pointer(prj, &prj.pages[page_i], w, placing));
         self.hover = world;
         // New items never go onto a hidden or locked layer.
         if !layer_usable(prj, &self.active_layer) {
@@ -1082,7 +1091,7 @@ impl Editor {
         }
 
         // ------------------------------------------------------------ mouse
-        if self.tool == Tool::Select && resp.clicked_by(PointerButton::Primary) {
+        if self.tool == Tool::Select && pointer_tools && resp.clicked_by(PointerButton::Primary) {
             out.clicked = world;
         }
         // Right click selects what is under the cursor; the app shows the context menu.
@@ -1094,9 +1103,13 @@ impl Editor {
                     }
                 }
             }
-            out.response = Some(resp.clone());
+            if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+                out.response = Some(resp.clone());
+            }
         }
-        if self.tool.is_review() {
+        if !pointer_tools {
+            // The fingers navigate.
+        } else if self.tool.is_review() {
             self.review_mouse(&resp, world, &mut out);
         } else if editable {
             self.mouse(ui, &resp, prj, page_i, rect, world, snapped, an, idx, &mut out);
@@ -1165,6 +1178,7 @@ impl Editor {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
                 let inst = SymbolInst { pos: sn, ..ops::symbol_preview(prj, &def) };
                 render::draw_symbol(&mut g, &def, &inst, Ink::Ghost);
+                self.autoconnect_hints(&g, prj, &prj.pages[page_i], inst);
             }
         }
         if let (Some(sn), Some(pl), true) = (snapped, resp.dnd_hover_payload::<PartDrag>(), editable) {
@@ -1177,6 +1191,14 @@ impl Editor {
             let at = c + vec2(12.0, -12.0 - text.size().y);
             painter.rect_filled(Rect::from_min_size(at, text.size()).expand(3.0), 3.0, pal.ghost.gamma_multiply(0.18));
             painter.galley(at, text, pal.ghost);
+        }
+        if let (Drag::Move { applied, .. }, true) = (&self.drag, self.autoconnect) {
+            let pg = &prj.pages[page_i];
+            let moves_symbols = pg.symbols.iter().any(|s| self.selection.contains(&s.id)) || pg.junctions.iter().any(|j| self.selection.contains(&j.id));
+            if moves_symbols && (applied.x != 0.0 || applied.y != 0.0) {
+                let g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
+                draw_hints(&g, &routing::autoconnect(&prj.symbol_table(), pg, &self.selection, routing::AUTOCONNECT_REACH));
+            }
         }
         if let (Some(sn), Some(w), true) = (snapped, world, editable) {
             let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
@@ -1277,6 +1299,7 @@ impl Editor {
                     let r = Rect::from_two_pos(g.w2s(b.min), g.w2s(b.max)).expand(3.0);
                     g.painter.rect_filled(r, 2.0, g.pal.ghost.gamma_multiply(0.18));
                     render::draw_symbol(g, &def, &inst, Ink::Ghost);
+                    self.autoconnect_hints(g, prj, page, inst);
                 }
             }
             Tool::Wire => {
@@ -1405,7 +1428,7 @@ impl Editor {
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
         let g = self.grid;
         let sc = &self.shortcuts;
-        let (esc, enter, r, m, a, del, space, fit, all, arrows, events) = ui.input(|i| {
+        let (esc, enter, r, m, a, del, space, fit, all, arrows, next, events) = ui.input(|i| {
             (
                 i.key_pressed(Key::Escape),
                 sc.action_pressed(i, Action::FinishPolyline),
@@ -1422,6 +1445,7 @@ impl Editor {
                     (sc.action_pressed(i, Action::NudgeUp), p(0.0, -g)),
                     (sc.action_pressed(i, Action::NudgeDown), p(0.0, g)),
                 ],
+                sc.action_pressed(i, Action::NextRouting),
                 i.events.clone(),
             )
         });
@@ -1464,6 +1488,9 @@ impl Editor {
         if a && self.tool == Tool::Wire {
             self.autoroute = !self.autoroute;
             self.route_cache = None;
+        }
+        if next {
+            self.next_routing();
         }
         if r {
             if matches!(self.tool, Tool::Place(_)) {
@@ -1664,6 +1691,33 @@ impl Editor {
 
     /// Rotation of a symbol placed at `sn`: a device connection point on the outline of a
     /// device box leads away from its edge, everything else as turned by the user.
+    /// Where the pointer at `w` snaps: to the grid or an invisible grid line. A symbol
+    /// being `placing` (by the tool, or dragged in unturned) snaps from its connection
+    /// points instead, so they land on such lines; a device connection point snaps
+    /// itself, onto the outline of its box.
+    fn snap_pointer(&self, prj: &Project, page: &Page, w: P, placing: Option<(&str, bool)>) -> P {
+        let lines = snap_lines::SnapLines::of_page(prj, page, self.grid);
+        let Some((def, by_tool)) = placing.and_then(|(key, by_tool)| Some((prj.symbol(key)?, by_tool))).filter(|(d, _)| d.func != Func::Connection) else {
+            return lines.snap(w, self.grid);
+        };
+        let inst = match by_tool {
+            true => SymbolInst { rot: self.place_rotation(prj, page, &def, w.snap(self.grid)), mirror: self.place_mirror, ..Default::default() },
+            false => ops::symbol_preview(prj, &def),
+        };
+        match snap_lines::pins_at_origin(&def, &inst) {
+            pins if pins.is_empty() => lines.snap(w, self.grid),
+            pins => lines.snap_from(w, &pins, self.grid),
+        }
+    }
+
+    /// With Auto-connect on, the wires a symbol placed as `inst` would get.
+    fn autoconnect_hints(&self, g: &EguiDraw<'_>, prj: &Project, page: &Page, inst: SymbolInst) {
+        if self.autoconnect {
+            // An id no item has: the symbol is not on the page yet.
+            draw_hints(g, &routing::autoconnect_placed(&prj.symbol_table(), page, SymbolInst { id: u64::MAX, ..inst }));
+        }
+    }
+
     fn place_rotation(&self, prj: &Project, page: &Page, def: &openecraft_core::symbols::SymbolDef, sn: P) -> u8 {
         match def.func {
             Func::Connection => device_boxes::direction_at(prj, page, sn).unwrap_or(self.place_rot),
@@ -1696,8 +1750,43 @@ impl Editor {
             }
         })
         .filter(|m| !m.is_empty());
-        self.selection = BTreeSet::from([id]);
+        // The tool stays for the next symbol: changing the routing now changes that
+        // one, never the symbol just placed. The properties show the next one.
         out.open_properties = true;
+    }
+
+    fn rotate_while_dragging(&mut self, ui: &egui::Ui, prj: &mut Project, page_i: usize, world: Option<P>, editable: bool) {
+        if !editable || !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            return;
+        }
+        let rotations: Vec<bool> = ui.input(|i| {
+            i.events
+                .iter()
+                .filter_map(|event| match event {
+                    egui::Event::PointerButton {
+                        button: PointerButton::Secondary,
+                        pressed: true,
+                        modifiers,
+                        ..
+                    } => Some(modifiers.shift),
+                    _ => None,
+                })
+                .collect()
+        });
+        for counter_clockwise in rotations {
+            if let Drag::Move { start, applied, moving, items, points, lines } = &mut self.drag {
+                for _ in 0..if counter_clockwise { 3 } else { 1 } {
+                    routing::rotate(prj, page_i, items);
+                }
+                **moving = routing::Moving::new(prj, page_i, items);
+                let page = &prj.pages[page_i];
+                *points = snap_lines::points_of(prj, page, items);
+                *lines = snap_lines::SnapLines::without(prj, page, self.grid, points);
+                if let Some(w) = world {
+                    *start = w - *applied;
+                }
+            }
+        }
     }
 
     #[allow(clippy::too_many_arguments)]
@@ -1859,6 +1948,7 @@ impl Editor {
     /// `editable` only the selection changes.
     fn select_mouse(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, idx: &Index, page_i: usize, rect: Rect, world: Option<P>, editable: bool, out: &mut CanvasOutput) {
         let shift = ui.input(|i| i.modifiers.shift);
+        self.rotate_while_dragging(ui, prj, page_i, world, editable);
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let ow = self.s2w(rect, origin);
@@ -1896,16 +1986,19 @@ impl Editor {
                     self.selection.insert(id);
                 }
                 let items = self.items(prj, page_i);
-                let moving = routing::Moving::new(prj, page_i, &items);
-                self.drag = Drag::Move { start: ow, applied: p(0.0, 0.0), moving, items };
+                let moving = Box::new(routing::Moving::new(prj, page_i, &items));
+                let page = &prj.pages[page_i];
+                let points = snap_lines::points_of(prj, page, &items);
+                let lines = snap_lines::SnapLines::without(prj, page, self.grid, &points);
+                self.drag = Drag::Move { start: ow, applied: p(0.0, 0.0), moving, items, points, lines };
             } else {
                 self.drag = Drag::Box { start: origin };
             }
         }
-        if resp.dragged_by(PointerButton::Primary) {
+        if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             match (&mut self.drag, world) {
-                (Drag::Move { start, applied, moving, items }, Some(w)) => {
-                    let total = (w - *start).snap(self.grid);
+                (Drag::Move { start, applied, moving, items, points, lines }, Some(w)) => {
+                    let total = lines.snap_from(w - *start, points, self.grid);
                     let delta = total - *applied;
                     if delta.x != 0.0 || delta.y != 0.0 {
                         moving.step(prj, page_i, items, delta);
@@ -1954,7 +2047,7 @@ impl Editor {
                 _ => {}
             }
         }
-        if resp.drag_stopped() {
+        if resp.drag_stopped_by(PointerButton::Primary) {
             match std::mem::replace(&mut self.drag, Drag::None) {
                 Drag::Box { start } => {
                     if let Some(end) = resp.interact_pointer_pos().or(ui.input(|i| i.pointer.hover_pos())) {

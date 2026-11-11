@@ -5,6 +5,40 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **AppImage on more systems:** the AppImage carries the keyboard and cursor libraries
+  of X11 (xkbcommon, Xcursor, Xi), so the editor and the parts manager start on systems
+  without them instead of quitting with *Library libxkbcommon-x11.so could not be
+  loaded*.
+- **Invisible grid lines:** connection points and wire ends off the drawing grid, as in
+  imported drawings or on device boxes of any size, add invisible grid lines through
+  them. The pointer snaps to them where they are nearer than the grid, so wires can be
+  drawn from such points and things connected to such wires. A symbol being placed or
+  moved snaps from its own connection points, so they land on such lines and
+  auto-connect joins them ([schematic](docs/features/schematic.md)).
+- **Auto-connect hints:** while a symbol is placed or moved with the mouse, faint
+  dotted lines show the wires auto-connect would draw
+  ([schematic](docs/features/schematic.md#routing)).
+- **Panel layout profile sizing** (#135): select a mounting rail or cable duct and drag
+  either end to change its length while the opposite end stays put.
+- **Connection symbols** (#96): Auto-connect wires the branch of a T-junction that sits
+  on one continuous wire, as it does on a wire split at the junction. While a connection
+  symbol tool is active, Tab (*Next routing of the connection symbol to place*) cycles
+  the routing or orientation of the next symbol, Rotate turns it, and the Properties
+  pane shows its routings to pick from; a placed symbol is no longer selected, so these
+  changes never alter it; the tools show the Properties pane again when it was closed.
+  A T-junction placed where three wires meet keeps the chosen routing. Connection
+  symbols follow their wires when wires or devices move, also in fast drags, sliding
+  along the rail with their drop, and wires branching off a moved wire stretch with it.
+- **Trackpads and touch screens** (#134): every 2D and 3D view (schematic, front,
+  floor and site plan, 3D view, field plan, symbol editor) zooms with a pinch and pans
+  with two fingers, both in one movement; on a touch screen the first finger no longer
+  selects, moves or orbits while two are down. The horizontal mouse wheel and
+  `Shift`+wheel pan sideways. *Settings › Navigation* chooses what scrolling does:
+  *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
+  wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
+  The symbol editor's canvas pans too (also with the middle mouse button).
+- **Settings after an update check:** checking for updates no longer collapses Settings
+  into an unusable title bar. Dialogs already stuck this way recover their contents.
 - **Wire jumps** (#132): wires that cross without a connection can jump over each other
   with an arc, a square bridge or a gap, besides the plain crossing of before; the
   vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
@@ -18,6 +52,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
   wire crossed. Labels and connection definition points come along; without a way the
   wire is squared as before.
+- **Startup and the source of the project** (#129): *File › Settings › On startup*
+  chooses what opens when the editor starts: the start page with the local files and
+  the projects of the project server (*Show project manager*), the last project from
+  where it came – a server project is opened on the project server again, asking for a
+  sign-in if needed (*Reopen last project*, the default), the project list of the
+  project server without the last project (*Open project server*) or always the same
+  local file or server project. A project file opened from the file manager still
+  opens instead. The status bar always says where the project is saved: *Local file:
+  …*, *Project server: … / Project: …* (with *connection lost* while the server does
+  not answer) or *Local recovery copy of server project: …* – a project restored from
+  the last session or closed on the server is never shown as the shared project, and
+  the tooltip of *Save* names the destination. If the project server of the start is
+  not available, a dialog offers *Retry connection*, *Sign in…*, *Choose another
+  project* and *Open local recovery copy*; unsaved changes of the copy are saved or
+  discarded on purpose before the shared project replaces them.
 - **EDZ parts without a usable macro** (#131): a part whose first function is a
   generic one (the connection points of a drive or an HMI) is placed as a black box
   with room for its connection points instead of an earth electrode. Elliptic arcs of
@@ -58,6 +107,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   main view (the panel layout, the workbench, …) even where the page was left in front
   of it, and the commands of the layout view (3D view, floor plan, mounting plate,
   tools, …) bring it to the front instead of changing it unseen behind the page.
+- **Rotate while moving a selection:** right-click during a drag to rotate its electrical
+  components 90° clockwise; `Shift`+right-click turns them counter-clockwise. The
+  selection stays attached to the pointer, in both schematic editing and panel layout.
 - **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
   too close for its bend radius no longer runs back across or alongside its own way
   (the supply cable `=GRID-W1` of the example `building_services` crossed itself below
@@ -98,6 +150,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   reset to the automatic placement; the places are saved and exported, the cross
   reference keeps its link. Command `place_interruption_texts`
   ([schematic](docs/features/schematic.md)).
+- CAD drawing imports return original geometry bounds and their page origin, so
+  external importers can recover drawing coordinates without changing page placement.
+
 - **Device boxes with device connection points:** a dashed box of any size drawn on
   the schematic is a device of its own (power supply, measuring instrument, control
   module) without a library symbol; device connection points placed on its outline
@@ -108,6 +163,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   moving, copying, deleting and macros take a box with its points. Commands
   `add_device_box`, `update_device_box`, `add_device_connections`,
   `update_device_connection`, `list_device_boxes`
+  ([schematic](docs/features/schematic.md)).
+- **Device box roles:** a device box with the tag of a device placed elsewhere can add
+  connection points to it (*Extension*) or show only selected connection points of it
+  on another page (*Pin view*). Wires at a view belong to the point it shows, reports
+  list that connection once, and neither role counts as a second main function. Role
+  on `add_device_box` and `update_device_box`, command `show_device_pins`
   ([schematic](docs/features/schematic.md)).
 
 - **Cable cores at the cable definition line:** the stroke, core designation and cable
@@ -154,7 +215,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   the box is moved, resized or changed (in one undo step); aspects set on a device stay,
   and a tag that exists already is refused instead of merging two devices. Tags on the
   page omit what the box shows; the symbol properties show where each aspect comes from;
-  the structure check reports overlapping boxes. Commands `add_structure_box`,
+  the structure check reports overlapping boxes and devices inside a box with another
+  structure. Commands `add_structure_box`,
   `update_structure_box`, `list_structure_boxes`
   ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
 
@@ -244,6 +306,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - Preserve the connectivity domain of imported fluid and process symbols so their ports stay distinct from electrical connections.
 - Keep imported property text angles and pin designation fields editable and linked to their placed symbol.
 - Support imported secondary device functions and local junction paths without adding spurious main functions or device endpoints.
+
+- **Accessories from macros:** a macro can list in `device_part_additions` the literal
+  accessory articles of its devices to add when it extends an existing device; the other
+  articles and the local quantities of that device stay as they are.
+
+- **Reusing failed route searches:** with the routing rule `reuse_failed_searches` (off by
+  default), a search that found no route is not repeated when later routes only fill the
+  channels.
 
 ## [0.1.1] - 2026-11-08
 

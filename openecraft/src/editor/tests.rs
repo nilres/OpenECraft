@@ -44,6 +44,10 @@ fn button(pos: Pos2, pressed: bool) -> Event {
     Event::PointerButton { pos, button: PointerButton::Primary, pressed, modifiers: Modifiers::default() }
 }
 
+fn secondary_button(pos: Pos2, pressed: bool, modifiers: Modifiers) -> Event {
+    Event::PointerButton { pos, button: PointerButton::Secondary, pressed, modifiers }
+}
+
 /// Replay a drag over the sheet using a local vendor sample without checking it into the repository.
 #[test]
 #[ignore = "requires OPENECRAFT_DRAG_EDZ pointing to a schematic part archive"]
@@ -473,6 +477,43 @@ fn dragged_symbols_keep_their_wires_square() {
 }
 
 #[test]
+fn right_click_rotates_a_component_while_its_drag_continues() {
+    for (shift, rotation) in [(false, 1), (true, 3)] {
+        let mut prj = Project::default();
+        prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+        prj.fix_next_id();
+        let ctx = egui::Context::default();
+        let mut ed = Editor::default();
+        ready(&mut ed, &ctx, &mut prj);
+        let (from, intermediate, to) = (
+            ed.w2s(SCREEN, p(100.0, 100.0)),
+            ed.w2s(SCREEN, p(140.0, 100.0)),
+            ed.w2s(SCREEN, p(160.0, 100.0)),
+        );
+
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(from)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(from, true)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(intermediate)]);
+        let out = frame(
+            &mut ed,
+            &ctx,
+            &mut prj,
+            0,
+            vec![secondary_button(intermediate, true, Modifiers { shift, ..Default::default() })],
+        );
+        assert!(out.response.is_none(), "no context popover while the primary button is held");
+        let out = frame(&mut ed, &ctx, &mut prj, 0, vec![secondary_button(intermediate, false, Modifiers::default())]);
+        assert!(out.response.is_none(), "no context popover on right-click release during a drag");
+        frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(to)]);
+        frame(&mut ed, &ctx, &mut prj, 0, vec![button(to, false)]);
+
+        let symbol = &prj.pages[0].symbols[0];
+        assert_eq!(symbol.rot, rotation, "Shift={shift}");
+        assert_eq!(symbol.pos, p(160.0, 100.0), "the component follows the cursor through rotation");
+    }
+}
+
+#[test]
 fn dragging_one_of_several_selected_symbols_moves_them_all() {
     let mut prj = Project::default();
     prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
@@ -652,7 +693,7 @@ fn the_junction_tool_takes_its_direction_from_the_wires() {
     assert_eq!((js[0].pos, js[0].dir, js[0].variant), (p(100.0, 60.0), TeeDir::Up, 3));
     assert_eq!((js[1].pos, js[1].dir), (p(160.0, 100.0), TeeDir::Left));
     assert_eq!(ed.tool, Tool::Junction(JunctionKind::Tee), "the tool stays for the next junction");
-    assert_eq!(ed.selection, BTreeSet::from([js[1].id]));
+    assert!(ed.selection.is_empty(), "the placed junction is not selected, so changes go to the next one");
     // The same point takes no second junction.
     ed.typed = Some(p(100.0, 60.0));
     let out = frame(&mut ed, &ctx, &mut prj, 0, vec![]);
@@ -713,6 +754,39 @@ fn the_crossing_tool_connects_crossing_wires_and_turns_with_r() {
 }
 
 #[test]
+fn a_placed_connection_symbol_keeps_its_routing_when_the_next_one_changes() {
+    // Regression (#96): changing the orientation after a placement changed the
+    // corner just placed instead of the next one.
+    let mut prj = Project::new_default();
+    let ctx = egui::Context::default();
+    let mut ed = Editor::default();
+    ed.set_tool(Tool::Junction(JunctionKind::Corner));
+    let click = |ed: &mut Editor, prj: &mut Project, at: Pos2| {
+        frame(ed, &ctx, prj, 0, vec![Event::PointerMoved(at)]);
+        frame(ed, &ctx, prj, 0, vec![button(at, true)]);
+        frame(ed, &ctx, prj, 0, vec![button(at, false)]);
+    };
+    frame(&mut ed, &ctx, &mut prj, 0, vec![Event::PointerMoved(pos2(500.0, 400.0))]);
+    frame(&mut ed, &ctx, &mut prj, 0, vec![button(pos2(500.0, 400.0), true)]);
+    let out = frame(&mut ed, &ctx, &mut prj, 0, vec![button(pos2(500.0, 400.0), false)]);
+    assert!(out.open_properties, "the properties with the next symbol are shown again");
+    let first = prj.pages[0].junctions.last().cloned().unwrap();
+    assert!(ed.selection.is_empty(), "the placed symbol is not selected while the tool stays");
+    ed.next_routing();
+    ed.symbol_proto.turn();
+    click(&mut ed, &mut prj, pos2(700.0, 400.0));
+    let page = &prj.pages[0];
+    assert_eq!(page.junctions.len(), 2);
+    assert_eq!(page.junctions[0], first, "the first corner keeps its arms");
+    assert_ne!(page.junctions[1].links(), first.links(), "the second one has the new arms");
+    // The next routing only changes the tool's symbol.
+    let before = ed.symbol_proto.clone();
+    ed.next_routing();
+    assert_ne!(ed.symbol_proto.links(), before.links());
+    assert_eq!(prj.pages[0].junctions[0], first);
+}
+
+#[test]
 fn device_boxes_are_drawn_and_take_their_points_along() {
     let mut prj = Project::default();
     let ctx = egui::Context::default();
@@ -765,6 +839,38 @@ fn the_designation_of_a_device_connection_point_is_dragged_into_place() {
     assert!(l.offset.dist(auto - s.pos + p(6.0, 10.0)) < 0.6, "{l:?}");
     assert_eq!(l.anchor, anchor);
     assert_eq!(openecraft_core::device_boxes::box_of(&prj, &prj.pages[0], s), Some(b));
+}
+
+#[test]
+fn placed_and_moved_symbols_snap_their_connection_points_to_lines_off_the_grid() {
+    let mut prj = Project::default();
+    // Wires off the grid at x = 120.5 and 133.5, away from where the coil goes.
+    prj.pages[0].wires.push(Wire { id: 1, a: p(120.5, 20.0), b: p(120.5, 40.0), ..Default::default() });
+    prj.pages[0].wires.push(Wire { id: 2, a: p(133.5, 20.0), b: p(133.5, 40.0), ..Default::default() });
+    prj.fix_next_id();
+    let ctx = egui::Context::default();
+    let mut ed = Editor { autoconnect: false, ..Default::default() };
+    ready(&mut ed, &ctx, &mut prj);
+    let def = prj.symbol("coil").unwrap();
+    // Turned, its connection points lie beside the insertion point.
+    let o = snap_lines::pins_at_origin(&def, &SymbolInst { rot: 1, ..Default::default() })[0];
+    assert_ne!(o.x, 0.0);
+    let pin_xs = |prj: &Project| -> Vec<f32> {
+        let sel = prj.pages[0].symbols.iter().map(|s| s.id).collect();
+        snap_lines::points_of(prj, &prj.pages[0], &sel).iter().map(|q| q.x).collect()
+    };
+    // Placed with its connection point 0.2 mm beside the wire, which is nearer than the grid.
+    ed.set_tool(Tool::Place("coil"));
+    ed.place_rot = 1;
+    click(&mut ed, &ctx, &mut prj, 0, p(120.3, 80.2) - o);
+    assert!(pin_xs(&prj).iter().any(|x| (x - 120.5).abs() < 0.01), "{:?}", pin_xs(&prj));
+    assert_eq!(prj.pages[0].symbols[0].pos.y, 80.0 - o.y, "no line across: the grid");
+    // Moved 12.8 mm right, the point lands on the other wire.
+    ed.set_tool(Tool::Select);
+    let s = prj.pages[0].symbols[0].clone();
+    let c = s.bounds(&def).center();
+    drag(&mut ed, &ctx, &mut prj, 0, c, c + p(12.8, 0.0));
+    assert!(pin_xs(&prj).iter().any(|x| (x - 133.5).abs() < 0.01), "{:?}", pin_xs(&prj));
 }
 
 #[test]

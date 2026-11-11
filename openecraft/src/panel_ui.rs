@@ -95,6 +95,73 @@ pub enum NcFormat {
 struct MoveDrag {
     start: P,
     originals: Vec<(u64, f32, f32)>,
+    resize: Option<ProfileResize>,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum ProfileEnd {
+    Start,
+    End,
+}
+
+struct ProfileResize {
+    id: u64,
+    end: ProfileEnd,
+    original: PanelItem,
+}
+
+fn profile_end_hit(item: &PanelItem, q: P, tolerance: f32) -> Option<ProfileEnd> {
+    if !matches!(item.kind, ItemKind::Rail | ItemKind::Duct) {
+        return None;
+    }
+    let (start, end) = item.center_line();
+    let (start_dist, end_dist) = (q.dist(start), q.dist(end));
+    if start_dist.min(end_dist) > tolerance {
+        None
+    } else if start_dist <= end_dist {
+        Some(ProfileEnd::Start)
+    } else {
+        Some(ProfileEnd::End)
+    }
+}
+
+fn selected_profile<'a>(e: &'a Enclosure, selection: &BTreeSet<u64>, face: Face) -> Option<&'a PanelItem> {
+    let mut profiles = selection.iter().filter_map(|id| {
+        e.item(*id).filter(|i| i.face == face && matches!(i.kind, ItemKind::Rail | ItemKind::Duct))
+    });
+    let profile = profiles.next()?;
+    profiles.next().is_none().then_some(profile)
+}
+
+fn resize_profile_end(item: &mut PanelItem, original: &PanelItem, end: ProfileEnd, coordinate: f32) {
+    let coordinate = panel::snap(coordinate);
+    if original.horizontal() {
+        let start = original.x;
+        let finish = original.x + original.w;
+        match end {
+            ProfileEnd::Start => {
+                item.x = coordinate.clamp(finish - 5000.0, finish - 10.0);
+                item.w = finish - item.x;
+            }
+            ProfileEnd::End => {
+                item.x = start;
+                item.w = coordinate.clamp(start + 10.0, start + 5000.0) - start;
+            }
+        }
+    } else {
+        let start = original.y;
+        let finish = original.y + original.h;
+        match end {
+            ProfileEnd::Start => {
+                item.y = coordinate.clamp(finish - 5000.0, finish - 10.0);
+                item.h = finish - item.y;
+            }
+            ProfileEnd::End => {
+                item.y = start;
+                item.h = coordinate.clamp(start + 10.0, start + 5000.0) - start;
+            }
+        }
+    }
 }
 
 /// Climate settings and result of an enclosure (IEC/TR 60890).
@@ -2716,20 +2783,26 @@ impl PanelUi {
         if self.site_plan.extent.is_none() || self.fit_pending {
             self.site_plan.extent = Some(site_plan::extent(prj));
         }
-        if resp.hovered() {
-            let (wheel, zoom_delta, pointer) = ui.input(|i| (wheel_delta(i), i.zoom_delta(), i.pointer.hover_pos()));
-            let factor = zoom_delta * (wheel * 0.0025).exp();
-            if let (true, Some(m)) = ((factor - 1.0).abs() > 1e-4, pointer) {
-                let old = self.site_plan.zoom;
-                let zoom = (old * factor).clamp(0.2, 200.0);
-                // The point under the pointer stays where it is.
-                let c = rect.shrink(16.0).center();
-                self.site_plan.pan = (m - c) - (m - c - self.site_plan.pan) * (zoom / old);
-                self.site_plan.zoom = zoom;
-            }
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.site_plan.pan += gesture.pan;
+        if let (true, Some(m)) = (gesture.zooms(), gesture.at) {
+            let old = self.site_plan.zoom;
+            let zoom = (old * gesture.zoom).clamp(0.2, 200.0);
+            // The point under the pointer stays where it is.
+            let c = rect.shrink(16.0).center();
+            self.site_plan.pan = (m - c) - (m - c - self.site_plan.pan) * (zoom / old);
+            self.site_plan.zoom = zoom;
         }
-        let dragging_corner = self.site_tools(ui, rect, &resp, prj);
-        if resp.dragged() && !dragging_corner {
+        // Fingers navigating put a dragged corner back and do not use the tools.
+        let dragging_corner = if gesture.touch {
+            if let Some((_, old)) = self.site_drag.take() {
+                prj.layout.plot.outline = old;
+            }
+            false
+        } else {
+            self.site_tools(ui, rect, &resp, prj)
+        };
+        if resp.dragged() && !dragging_corner && !gesture.touch {
             self.site_plan.pan += resp.drag_delta();
         }
         if self.fit_pending {
@@ -3066,19 +3139,24 @@ impl PanelUi {
             self.fit_pending = false;
         }
         // Zoom / pan
-        if resp.hovered() {
-            let (wheel, zoom_delta, ptr) = ui.input(|i| (wheel_delta(i), i.zoom_delta(), i.pointer.hover_pos()));
-            if let Some(ptr) = ptr {
-                let factor = zoom_delta * (wheel * 0.0025).exp();
-                if (factor - 1.0).abs() > 1e-4 {
-                    let before = self.s2w(rect, ptr);
-                    self.zoom = (self.zoom * factor).clamp(0.05, 20.0);
-                    self.offset = ptr - rect.min - vec2(before.x, before.y) * self.zoom;
-                }
-            }
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.offset += gesture.pan;
+        if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
+            let before = self.s2w(rect, at);
+            self.zoom = (self.zoom * gesture.zoom).clamp(0.05, 20.0);
+            self.offset = at - rect.min - vec2(before.x, before.y) * self.zoom;
         }
-        if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
+        if resp.dragged_by(PointerButton::Middle)
+            || (resp.dragged_by(PointerButton::Secondary) && self.drag.is_none())
+        {
             self.offset += resp.drag_delta();
+        }
+        // Fingers navigating end a move of the first one where it is.
+        if gesture.touch {
+            if let Some(drag) = self.drag.take() {
+                let moved: Vec<u64> = drag.originals.iter().map(|o| o.0).collect();
+                panel::capture_anchors(&mut prj.layout.enclosures[ei], &moved);
+            }
         }
         let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|q| rect.contains(*q));
         // Plate coordinates of the pointer
@@ -3118,7 +3196,8 @@ impl PanelUi {
                 self.fit_pending = true;
             }
         }
-        if resp.clicked_by(PointerButton::Secondary) {
+        let moving_primary = self.drag.is_some() && ui.input(|i| i.pointer.button_down(PointerButton::Primary));
+        if resp.clicked_by(PointerButton::Secondary) && !moving_primary {
             if self.start.is_some() {
                 self.start = None;
             } else {
@@ -3126,8 +3205,9 @@ impl PanelUi {
             }
         }
 
-        // Mouse
+        // Mouse (not while fingers navigate)
         match self.tool.clone() {
+            _ if gesture.touch => {}
             Tool::Select => self.select_and_move(ui, &resp, prj, ei, rect, an),
             Tool::Rail | Tool::Duct | Tool::Busbar => {
                 if let (true, Some(sn)) = (resp.clicked_by(PointerButton::Primary), snapped) {
@@ -3478,6 +3558,14 @@ impl PanelUi {
                 self.status = tr_fmt!("X {}  Y {} mm · {}", format!("{:.0}", q.x), format!("{:.0}", q.y), self.face.title());
             }
         }
+        if let Some(item) = selected_profile(e, &self.selection, self.face).filter(|i| !self.hidden(i)) {
+            let (start, end) = item.center_line();
+            for point in [start, end] {
+                let point = to_screen(point);
+                painter.circle_filled(point, 4.0, ui.visuals().selection.bg_fill);
+                painter.circle_stroke(point, 4.0, Stroke::new(1.5, pal.line));
+            }
+        }
     }
 
     fn select_and_move(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, ei: usize, rect: Rect, an: &Analysis) {
@@ -3498,11 +3586,28 @@ impl PanelUi {
             let x = (s.x - rect.min.x - offset.x) / zoom;
             p(mirror.map(|m| m - x).unwrap_or(x) - fm.x, (s.y - rect.min.y - offset.y) / zoom - fm.y)
         };
+        if self.drag.is_none() && resp.hovered() {
+            if let (Some(ptr), Some(item)) = (resp.hover_pos(), selected_profile(&prj.layout.enclosures[ei], &self.selection, face)) {
+                if !hidden(item) && profile_end_hit(item, to_plate(ptr), 8.0 / zoom).is_some() {
+                    ui.ctx().set_cursor_icon(if item.horizontal() {
+                        egui::CursorIcon::ResizeHorizontal
+                    } else {
+                        egui::CursorIcon::ResizeVertical
+                    });
+                }
+            }
+        }
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
             let q = to_plate(origin);
             let e = &prj.layout.enclosures[ei];
-            if let Some(id) = hit(e, q) {
+            let resize = selected_profile(e, &self.selection, face)
+                .filter(|i| !hidden(i))
+                .and_then(|i| profile_end_hit(i, q, 8.0 / self.zoom).map(|end| ProfileResize { id: i.id, end, original: i.clone() }));
+            if let Some(resize) = resize {
+                self.selected_wire = None;
+                self.drag = Some(MoveDrag { start: q, originals: Vec::new(), resize: Some(resize) });
+            } else if let Some(id) = hit(e, q) {
                 self.selected_wire = None;
                 if !self.selection.contains(&id) {
                     if !shift {
@@ -3518,43 +3623,68 @@ impl PanelUi {
                     }
                 }
                 let originals = e.items.iter().filter(|i| ids.contains(&i.id)).map(|i| (i.id, i.x, i.y)).collect();
-                self.drag = Some(MoveDrag { start: q, originals });
+                self.drag = Some(MoveDrag { start: q, originals, resize: None });
             }
         }
-        if resp.dragged_by(PointerButton::Primary) {
-            if let (Some(drag), Some(ptr)) = (&self.drag, resp.interact_pointer_pos()) {
+        if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            let ptr = ui.input(|i| i.pointer.hover_pos()).or_else(|| resp.interact_pointer_pos());
+            if let (Some(drag), Some(ptr)) = (&self.drag, ptr) {
                 let q = to_plate(ptr);
-                let dx = panel::snap(q.x - drag.start.x);
-                let dy = panel::snap(q.y - drag.start.y);
                 let e = &mut prj.layout.enclosures[ei];
-                for (id, x0, y0) in &drag.originals {
-                    if let Some(it) = e.items.iter_mut().find(|i| i.id == *id) {
-                        it.x = x0 + dx;
-                        it.y = y0 + dy;
+                if let Some(resize) = &drag.resize {
+                    if let Some(item) = e.items.iter_mut().find(|i| i.id == resize.id) {
+                        let coordinate = if resize.original.horizontal() { q.x } else { q.y };
+                        resize_profile_end(item, &resize.original, resize.end, coordinate);
                     }
-                }
-                // Devices that are moved on their own snap onto rails.
-                let moved: Vec<u64> = drag.originals.iter().map(|o| o.0).collect();
-                let moving_rails = e.items.iter().any(|i| i.kind == ItemKind::Rail && moved.contains(&i.id));
-                if !moving_rails {
-                    let single = moved.len() == 1;
-                    for id in moved {
-                        if let Some(idx) = e.items.iter().position(|i| i.id == id) {
-                            let mut it = e.items[idx].clone();
-                            if single { panel::snap_device(e, &mut it); } else { panel::snap_to_rail(e, &mut it); }
-                            e.items[idx] = it;
+                } else {
+                    let dx = panel::snap(q.x - drag.start.x);
+                    let dy = panel::snap(q.y - drag.start.y);
+                    for (id, x0, y0) in &drag.originals {
+                        if let Some(it) = e.items.iter_mut().find(|i| i.id == *id) {
+                            it.x = x0 + dx;
+                            it.y = y0 + dy;
                         }
                     }
+                    // Devices that are moved on their own snap onto rails.
+                    let moved: Vec<u64> = drag.originals.iter().map(|o| o.0).collect();
+                    let moving_rails = e.items.iter().any(|i| i.kind == ItemKind::Rail && moved.contains(&i.id));
+                    if !moving_rails {
+                        let single = moved.len() == 1;
+                        for id in moved {
+                            if let Some(idx) = e.items.iter().position(|i| i.id == id) {
+                                let mut it = e.items[idx].clone();
+                                if single { panel::snap_device(e, &mut it); } else { panel::snap_to_rail(e, &mut it); }
+                                e.items[idx] = it;
+                            }
+                        }
+                    }
+                    self.status = format!("ΔX {dx:.0}  ΔY {dy:.0} mm");
                 }
-                self.status = format!("ΔX {dx:.0}  ΔY {dy:.0} mm");
             }
         }
-        if resp.drag_stopped() {
+        let pointer = ui.input(|i| i.pointer.hover_pos()).map(to_plate);
+        self.rotate_while_moving(ui, prj, ei, pointer);
+        let primary_released = ui.input(|i| {
+            i.events.iter().any(|event| matches!(
+                event,
+                egui::Event::PointerButton {
+                    button: PointerButton::Primary,
+                    pressed: false,
+                    ..
+                }
+            ))
+        });
+        if resp.drag_stopped_by(PointerButton::Primary) || primary_released {
             if let Some(drag) = self.drag.take() {
-                let moved: Vec<u64> = drag.originals.iter().map(|o| o.0).collect();
-                panel::capture_anchors(&mut prj.layout.enclosures[ei], &moved);
+                let changed = drag
+                    .resize
+                    .as_ref()
+                    .map(|r| vec![r.id])
+                    .unwrap_or_else(|| drag.originals.iter().map(|o| o.0).collect());
+                panel::capture_anchors(&mut prj.layout.enclosures[ei], &changed);
             }
         }
+
         if resp.clicked_by(PointerButton::Primary) {
             if let Some(ptr) = resp.interact_pointer_pos() {
                 let q = to_plate(ptr);
@@ -3593,6 +3723,56 @@ impl PanelUi {
             }
         }
     }
+
+    fn rotate_while_moving(&mut self, ui: &egui::Ui, prj: &mut Project, ei: usize, pointer: Option<P>) {
+        if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            return;
+        }
+        let rotations: Vec<bool> = ui.input(|i| {
+            i.events
+                .iter()
+                .filter_map(|event| match event {
+                    egui::Event::PointerButton {
+                        button: PointerButton::Secondary,
+                        pressed: true,
+                        modifiers,
+                        ..
+                    } => Some(modifiers.shift),
+                    _ => None,
+                })
+                .collect()
+        });
+        for counter_clockwise in rotations {
+            let Some(drag) = &self.drag else { continue };
+            let ids: Vec<u64> = drag.originals.iter().map(|original| original.0).collect();
+            let orientations: HashMap<u64, panel::PanelRotation> = prj.layout.enclosures[ei]
+                .items
+                .iter()
+                .filter(|item| ids.contains(&item.id) && matches!(item.kind, ItemKind::Device | ItemKind::Accessory))
+                .map(|item| (item.id, panel::device_rotation(prj, item)))
+                .collect();
+            let e = &mut prj.layout.enclosures[ei];
+            for item in e.items.iter_mut().filter(|item| ids.contains(&item.id)) {
+                for _ in 0..if counter_clockwise { 3 } else { 1 } {
+                    item.rotate();
+                }
+                if let Some(orientation) = orientations.get(&item.id) {
+                    let delta = if counter_clockwise { 270 } else { 90 };
+                    item.rotation = Some(panel::PanelRotation::from_degrees(orientation.degrees() + delta).unwrap());
+                }
+            }
+            let originals = e
+                .items
+                .iter()
+                .filter(|item| ids.contains(&item.id))
+                .map(|item| (item.id, item.x, item.y))
+                .collect();
+            if let (Some(drag), Some(pointer)) = (&mut self.drag, pointer) {
+                drag.start = pointer;
+                drag.originals = originals;
+            }
+        }
+    }
 }
 
 /// Items behind the door (cable ducts) are hidden in its front view: they cannot be
@@ -3625,24 +3805,6 @@ fn ungroup(e: &mut Enclosure, ids: &[u64]) {
 
 fn rotate(e: &mut Enclosure, sel: &BTreeSet<u64>) {
     panel::rotate_items(e,&sel.iter().copied().collect::<Vec<_>>());
-}
-
-/// Mouse wheel movement in points (same handling as the schematic canvas).
-fn wheel_delta(i: &egui::InputState) -> f32 {
-    let mut wheel = 0.0;
-    for ev in &i.events {
-        if let egui::Event::MouseWheel { unit, delta, modifiers, .. } = ev {
-            if modifiers.ctrl || modifiers.command {
-                continue;
-            }
-            wheel += match unit {
-                egui::MouseWheelUnit::Point => delta.y,
-                egui::MouseWheelUnit::Line => delta.y * 40.0,
-                egui::MouseWheelUnit::Page => delta.y * 400.0,
-            };
-        }
-    }
-    wheel
 }
 
 /// Blue (cool) over yellow to red (hot) for 0 … 1.

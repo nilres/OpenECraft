@@ -150,6 +150,131 @@ fn fill_colours_follow_the_limit() {
 }
 
 #[test]
+fn profile_end_handles_resize_without_moving_the_opposite_end() {
+    let original = PanelItem { kind: ItemKind::Rail, x: 100.0, y: 50.0, w: 200.0, h: 35.0, ..Default::default() };
+    let mut item = original.clone();
+    resize_profile_end(&mut item, &original, ProfileEnd::Start, 70.0);
+    assert_eq!((item.x, item.w, item.y, item.h), (70.0, 230.0, 50.0, 35.0));
+
+    resize_profile_end(&mut item, &original, ProfileEnd::End, 340.0);
+    assert_eq!((item.x, item.w), (100.0, 240.0));
+    resize_profile_end(&mut item, &original, ProfileEnd::End, 6000.0);
+    assert_eq!(item.w, 5000.0, "the length matches the property editor's maximum");
+
+    let vertical = PanelItem { kind: ItemKind::Duct, x: 20.0, y: 100.0, w: 40.0, h: 200.0, ..Default::default() };
+    item = vertical.clone();
+    resize_profile_end(&mut item, &vertical, ProfileEnd::End, 245.0);
+    assert_eq!((item.x, item.y, item.w, item.h), (20.0, 100.0, 40.0, 145.0));
+
+    resize_profile_end(&mut item, &vertical, ProfileEnd::End, 104.0);
+    assert_eq!(item.h, 10.0, "the length cannot be shorter than the property editor's minimum");
+}
+
+#[test]
+fn selected_profile_can_be_resized_with_its_mounted_group_members_selected() {
+    let rail = PanelItem { id: 1, kind: ItemKind::Rail, ..Default::default() };
+    let device = PanelItem { id: 2, kind: ItemKind::Device, ..Default::default() };
+    let mut enclosure = Enclosure { items: vec![rail, device], ..Default::default() };
+    let selection = [1, 2].into_iter().collect();
+    assert_eq!(selected_profile(&enclosure, &selection, Face::Plate).map(|i| i.id), Some(1));
+
+    enclosure.items.push(PanelItem { id: 3, kind: ItemKind::Rail, ..Default::default() });
+    let selection = [1, 2, 3].into_iter().collect();
+    assert!(selected_profile(&enclosure, &selection, Face::Plate).is_none());
+}
+
+#[test]
+fn panel_items_rotate_during_a_move_and_keep_following_the_cursor() {
+    fn frame(
+        ctx: &egui::Context,
+        ui: &mut PanelUi,
+        prj: &mut Project,
+        an: &Analysis,
+        time: f64,
+        events: Vec<egui::Event>,
+    ) {
+        let input = egui::RawInput {
+            screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 600.0))),
+            time: Some(time),
+            events,
+            ..Default::default()
+        };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    }
+
+    for (shift, expected, (w, h), rotation, (expected_w, expected_h)) in [
+        (false, panel::PanelRotation::Deg90, (40.0, 80.0), Some(panel::PanelRotation::Deg0), (80.0, 40.0)),
+        (true, panel::PanelRotation::Deg270, (40.0, 80.0), Some(panel::PanelRotation::Deg0), (80.0, 40.0)),
+        (false, panel::PanelRotation::Deg90, (40.0, 40.0), None, (40.0, 40.0)),
+    ] {
+        let item = PanelItem {
+            id: 1,
+            x: 120.0 - w / 2.0,
+            y: 140.0 - h / 2.0,
+            w,
+            h,
+            rotation,
+            ..Default::default()
+        };
+        let mut prj = Project::default();
+        prj.layout.enclosures.push(Enclosure { items: vec![item], ..Default::default() });
+        let an = Analysis::build(&prj);
+        let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, ..Default::default() };
+        let ctx = egui::Context::default();
+        let start = egui::pos2(120.0, 140.0);
+        let moved = egui::pos2(140.0, 150.0);
+        let placed = egui::pos2(170.0, 170.0);
+        let event = |pos, button, pressed, modifiers| egui::Event::PointerButton {
+            pos,
+            button,
+            pressed,
+            modifiers,
+        };
+
+        frame(&ctx, &mut ui, &mut prj, &an, 0.0, vec![egui::Event::PointerMoved(start)]);
+        frame(&ctx, &mut ui, &mut prj, &an, 0.1, vec![event(start, egui::PointerButton::Primary, true, Default::default())]);
+        frame(&ctx, &mut ui, &mut prj, &an, 0.2, vec![egui::Event::PointerMoved(moved)]);
+        let modifiers = egui::Modifiers { shift, ..Default::default() };
+        frame(
+            &ctx,
+            &mut ui,
+            &mut prj,
+            &an,
+            0.3,
+            vec![event(moved, egui::PointerButton::Secondary, true, modifiers)],
+        );
+        frame(&ctx, &mut ui, &mut prj, &an, 0.4, vec![egui::Event::PointerMoved(placed)]);
+        frame(
+            &ctx,
+            &mut ui,
+            &mut prj,
+            &an,
+            0.5,
+            vec![event(placed, egui::PointerButton::Secondary, false, Default::default())],
+        );
+        frame(
+            &ctx,
+            &mut ui,
+            &mut prj,
+            &an,
+            0.6,
+            vec![event(placed, egui::PointerButton::Primary, false, Default::default())],
+        );
+
+        let item = &prj.layout.enclosures[0].items[0];
+        assert_eq!(item.rotation, Some(expected), "shift: {shift}");
+        assert_eq!(
+            (item.x + item.w / 2.0, item.y + item.h / 2.0),
+            (placed.x, placed.y),
+            "shift: {shift}, status: {}",
+            ui.status
+        );
+        assert_eq!((item.w, item.h), (expected_w, expected_h), "shift: {shift}");
+        assert!(ui.drag.is_none(), "primary release ends the move");
+    }
+}
+
+#[test]
 fn door_sides_have_their_own_tools() {
     let mut ui = PanelUi { face: Face::Door, ..Default::default() };
     assert!(!ui.tool_allowed(&Tool::Duct) && ui.tool_allowed(&Tool::Cutout));
@@ -1005,7 +1130,7 @@ fn wires_are_laid_out_on_another_thread_with_their_progress_shown() {
     let mut moved = prj.clone();
     let device = moved.layout.enclosures[0].items.iter().position(|i| i.kind == ItemKind::Device).unwrap();
     moved.layout.enclosures[0].items[device].x += 30.0;
-    ui.drag = Some(MoveDrag { start: openecraft_core::geom::p(0.0, 0.0), originals: Vec::new() });
+    ui.drag = Some(MoveDrag { start: openecraft_core::geom::p(0.0, 0.0), originals: Vec::new(), resize: None });
     let dragged = ui.scene_3d(&ctx, &moved, &an, 0, &shown);
     assert!(dragged.waiting.is_some() && ui.layouts.progress().is_none());
 }
