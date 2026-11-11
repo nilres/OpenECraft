@@ -741,6 +741,44 @@ fn wires_pass_in_front_of_the_busbars() {
 }
 
 #[test]
+fn wires_go_into_the_openings_of_generated_connection_points() {
+    // The generated connection points of the demo lie on the upper and lower edges of
+    // their devices: the wire drawn to one starts in its opening and leaves it along its
+    // axis, up or down at its height (its first millimetres out of the device), not
+    // straight back to the plate along the device.
+    use openecraft_core::parts::vec3::{dist, dot, scale, sub};
+    let prj = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&prj);
+    let e = &prj.layout.enclosures[0];
+    let mut ui = PanelUi { enclosure: 0, show_wires: true, ..Default::default() };
+    let shown = ui.shown_3d(&prj, 0);
+    let scene = ui.scene_3d(&egui::Context::default(), &prj, &an, 0, &shown);
+    let mut checked = 0;
+    for (wi, w) in an.wiring.iter().enumerate().filter(|(_, w)| w.enclosure == 0 && w.door == (None, None)) {
+        let segs: Vec<([f32; 3], [f32; 3])> = scene.picks.iter().filter(|p| matches!(p.2, routing_ui::RouteRef::Wire(i) if i == wi)).map(|p| (p.0, p.1)).collect();
+        for (t, axis, kind) in [(w.terminals.0, w.axes.0, w.ends.0), (w.terminals.1, w.axes.1, w.ends.1)] {
+            let Some(t) = t.filter(|_| kind == panel::EndKind::Generated) else { continue };
+            let (t, axis) = ([t[0], e.height - t[1], t[2]], axis.map(|x| [x[0], -x[1], x[2]]).expect("the axis of a connection point"));
+            assert!(axis[1].abs() > 0.99, "{} – {}: generated points open up or down, not {axis:?}", w.from, w.to);
+            let hole = sub(t, scale(axis, scene3d::INSERTED));
+            assert!(segs.iter().any(|s| dist(s.0, hole) < 0.01 || dist(s.1, hole) < 0.01), "{} – {}: the drawn wire does not start in the opening below {t:?}", w.from, w.to);
+            // Along the drawn wire from the opening to 4 mm out of the device.
+            let mut at = hole;
+            let mut used = vec![false; segs.len()];
+            while dist(at, hole) < scene3d::INSERTED + 4.0 {
+                let Some(k) = (0..segs.len()).find(|&k| !used[k] && (dist(segs[k].0, at) < 0.01 || dist(segs[k].1, at) < 0.01)) else { break };
+                used[k] = true;
+                at = if dist(segs[k].0, at) < 0.01 { segs[k].1 } else { segs[k].0 };
+            }
+            let d = sub(at, hole);
+            assert!(dist(at, hole) >= scene3d::INSERTED + 4.0 && dot(d, axis) > 0.9 * dist(at, hole), "{} – {}: out of the opening at {t:?} towards {d:?}", w.from, w.to);
+            checked += 1;
+        }
+    }
+    assert!(checked > 20, "{checked}");
+}
+
+#[test]
 fn face_summaries_count_openings_apart() {
     let item = |kind: ItemKind, opening: Opening| PanelItem { kind, opening, ..Default::default() };
     let rail = item(ItemKind::Rail, Opening::Cutout);

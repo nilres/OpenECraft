@@ -1797,6 +1797,39 @@ pub fn draw_enclosure(
             }
         }
     }
+    // Rails, ducts and busbars: cross-section and cut length in the longest stretch no
+    // device covers; on a full one beside its end, in line with it (not on the door
+    // ducts seen through the door).
+    let bounds = if face == Face::Plate {
+        let (pw, ph) = e.plate_size();
+        R::from_points(p(0.0, 0.0), p(pw, ph))
+    } else {
+        R::from_points(p(-m.x, -m.y), p(vw - m.x, vh - m.y))
+    };
+    let mut labels: Vec<R> = Vec::new();
+    for it in e.items.iter().filter(|i| i.face == face && i.kind.is_profile() && !(i.kind == ItemKind::Duct && face == Face::Door && !inside)) {
+        let ink = if selected.contains(&it.id) {
+            Ink::Selected
+        } else if problems.contains(&it.id) {
+            Ink::Error
+        } else {
+            Ink::Text
+        };
+        let at = |t: f32| if it.horizontal() { tf(t, it.y + it.h / 2.0) } else { tf(it.x + it.w / 2.0, t) };
+        let (from, to) = panel::free_stretch(e, it);
+        if let Some((label, size)) = profile_label_fit(it, to - from, k) {
+            labels.push(draw_profile_label(d, it, at((from + to) / 2.0), &label, size, ink));
+            continue;
+        }
+        // Beside the end, a gap of about the label's height away, else before the start.
+        let across = it.w.min(it.h);
+        let [(end, after), (before, start)] = panel::end_room(e, it, bounds);
+        let beside = [(after - end, 1.0, end), (start - before, -1.0, start)];
+        if let Some((label, size, dir, edge)) = beside.into_iter().find_map(|(room, dir, edge)| profile_label_fit(it, room - across, k).map(|(l, s)| (l, s, dir, edge))) {
+            let half = (text_width(&label, size) / 2.0 + size * 0.9) / k;
+            labels.push(draw_profile_label(d, it, at(edge + dir * half), &label, size, ink));
+        }
+    }
     // Cutouts of door devices and accessories (dashed: under the item)
     {
         let under = |o: &crate::production::Opening| e.item(o.item).map(|i| matches!(i.kind, ItemKind::Device | ItemKind::Accessory)).unwrap_or(false);
@@ -1813,17 +1846,45 @@ pub fn draw_enclosure(
             }
         }
     }
-    // Drilling pattern (holes hidden under other devices are left out); weld studs as
-    // a filled dot.
+    // Drilling pattern (holes hidden under other devices and the labels of ducts are
+    // left out); weld studs as a filled dot.
     for h in crate::production::holes_on(e, parts, face) {
+        let c = tf(h.pos.x, h.pos.y);
         let covered = e.items.iter().any(|i| i.kind == ItemKind::Device && i.face == face && i.id != h.item && i.rect().contains(h.pos));
-        if covered {
+        if covered || labels.iter().any(|r| r.contains(c)) {
             continue;
         }
-        let c = tf(h.pos.x, h.pos.y);
         let stud = h.fastening == panel::Fastening::Stud;
         d.circle(c, (h.diameter / 2.0 * k).max(0.25), if stud { 0.0 } else { 0.1 }, Ink::Frame, stud);
     }
+}
+
+/// Label of a rail, duct or busbar on a free stretch `free` mm long, and its text size:
+/// cross-section and cut length, only the cut length where that does not fit, none
+/// where even that would become unreadable.
+fn profile_label_fit(it: &PanelItem, free: f32, k: f32) -> Option<(String, f32)> {
+    let across = it.w.min(it.h) * k;
+    let room = free * k * 0.9;
+    let fit = |label: String| {
+        let size = (across * 0.5).min(30.0 * k);
+        let size = size.min(size * room / text_width(&label, size));
+        (size >= across * 0.3).then_some((label, size))
+    };
+    fit(it.profile_label()).or_else(|| fit(tr_fmt!("L = {} mm", panel::mm_text(it.length()))))
+}
+
+/// Draws the label of a rail, duct or busbar centred at `c`, along it, on a small
+/// background; gives its box.
+fn draw_profile_label(d: &mut dyn Draw, it: &PanelItem, c: P, label: &str, size: f32, ink: Ink) -> R {
+    let half = (text_width(label, size) / 2.0 + size * 0.3, size * 0.65);
+    let half = if it.horizontal() { p(half.0, half.1) } else { p(half.1, half.0) };
+    d.rect(c - half, c + half, 0.0, Ink::Plate, true);
+    let mut style = TextStyle::plain(size, Anchor::Center, VAnchor::Middle);
+    if !it.horizontal() {
+        style.angle = 90.0;
+    }
+    d.styled_text(c, label, &style, ink);
+    R::from_points(c - half, c + half)
 }
 
 /// Draws a part's 2D front view into a placed device. Rotated devices (width and

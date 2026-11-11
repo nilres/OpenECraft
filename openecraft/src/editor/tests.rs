@@ -23,6 +23,169 @@ fn electrical_items_remain_selectable_inside_page_graphics() {
     assert_eq!(ed.hit(&prj, 0, p(200., 150.)), Some(1), "artwork remains selectable");
 }
 
+#[test]
+fn full_crosshair_spans_the_canvas_at_the_snapped_working_point() {
+    let mut prj = Project::default();
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        tool: Tool::Text,
+        full_crosshair: true,
+        show_grid: false,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let screen = Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0));
+    let mut canvas_rect = Rect::NOTHING;
+    let input = RawInput {
+        screen_rect: Some(screen),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        canvas_rect = ui.available_rect_before_wrap();
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides: Vec<_> = output
+        .shapes
+        .iter()
+        .filter_map(|s| match &s.shape {
+            egui::Shape::LineSegment { points, stroke } if (stroke.width - 0.8).abs() < 0.01 => Some(*points),
+            _ => None,
+        })
+        .collect();
+    output.textures_delta.clear();
+    let center = pos2(canvas_rect.min.x + 100.0, canvas_rect.min.y + 108.0);
+    assert_eq!(
+        guides,
+        vec![
+            [pos2(canvas_rect.left(), center.y), pos2(canvas_rect.right(), center.y)],
+            [pos2(center.x, canvas_rect.top()), pos2(center.x, canvas_rect.bottom())],
+        ]
+    );
+}
+
+#[test]
+fn select_tool_uses_a_crosshair_cursor_and_shows_full_guides() {
+    let mut prj = Project::default();
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        full_crosshair: true,
+        show_grid: false,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let input = RawInput {
+        screen_rect: Some(Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0))),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides = output
+        .shapes
+        .iter()
+        .filter(|s| matches!(&s.shape, egui::Shape::LineSegment { stroke, .. } if (stroke.width - 0.8).abs() < 0.01))
+        .count();
+    assert_eq!(guides, 2);
+    assert_eq!(output.platform_output.cursor_icon, egui::CursorIcon::None);
+    assert!(ed.snap_cache.is_none(), "idle selection should not rebuild page snap lines");
+    output.textures_delta.clear();
+}
+
+#[test]
+fn pointer_snapping_reuses_and_refreshes_cached_page_lines() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire {
+        id: 1,
+        a: p(0.0, 103.0),
+        b: p(500.0, 103.0),
+        ..Default::default()
+    });
+    let mut ed = Editor { grid: 4.0, ..Default::default() };
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 102.0), None), p(100.0, 103.0));
+    let xs = ed.snap_cache.as_ref().unwrap().lines.xs.as_ptr();
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 102.0), None), p(100.0, 103.0));
+    assert_eq!(ed.snap_cache.as_ref().unwrap().lines.xs.as_ptr(), xs);
+
+    prj.pages[0].wires.push(Wire {
+        id: 2,
+        a: p(0.0, 206.0),
+        b: p(500.0, 206.0),
+        ..Default::default()
+    });
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 205.8), None), p(100.0, 206.0));
+    assert_eq!(ed.snap_cache.as_ref().unwrap().wires, 2);
+}
+
+#[test]
+fn full_crosshair_follows_a_connection_definition_point_on_a_wire() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire {
+        id: 1,
+        a: p(0.0, 103.0),
+        b: p(500.0, 103.0),
+        ..Default::default()
+    });
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        tool: Tool::ConnDef,
+        full_crosshair: true,
+        show_grid: false,
+        grid: 4.0,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let screen = Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0));
+    let mut canvas_rect = Rect::NOTHING;
+    let input = RawInput {
+        screen_rect: Some(screen),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        canvas_rect = ui.available_rect_before_wrap();
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides: Vec<_> = output
+        .shapes
+        .iter()
+        .filter_map(|s| match &s.shape {
+            egui::Shape::LineSegment { points, stroke } if (stroke.width - 0.8).abs() < 0.01 => {
+                Some(*points)
+            }
+            _ => None,
+        })
+        .collect();
+    output.textures_delta.clear();
+    let center = pos2(canvas_rect.min.x + 101.0, canvas_rect.min.y + 103.0);
+    assert_eq!(
+        guides,
+        vec![
+            [
+                pos2(canvas_rect.left(), center.y),
+                pos2(canvas_rect.right(), center.y)
+            ],
+            [
+                pos2(center.x, canvas_rect.top()),
+                pos2(center.x, canvas_rect.bottom())
+            ],
+        ]
+    );
+}
+
 /// Runs one editor frame on page `page` with the given input events.
 fn frame(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, events: Vec<Event>) -> CanvasOutput {
     let idx = Index::build(prj);

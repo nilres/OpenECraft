@@ -27,7 +27,7 @@ pub struct Args {
     token: Option<String>,
     /// Creates (or resets) an administrator account with the password from
     /// OPENECRAFT_PROJECT_ADMIN_PASSWORD.
-    #[arg(long)]
+    #[arg(long, env = "OPENECRAFT_PROJECT_ADMIN_USER")]
     admin_user: Option<String>,
     /// Access settings: directories (Active Directory, LDAP), roles and grants.
     /// Default: `access.json` in the data directory.

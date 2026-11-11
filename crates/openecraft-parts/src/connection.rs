@@ -53,6 +53,32 @@ pub struct ConnectionPoint {
 /// Screw terminals sit somewhat behind the front of a device.
 const TERMINAL_DEPTH: f32 = 0.75;
 
+/// Height of the wire entries of the screw terminals of DIN rail devices above the rail,
+/// as a part of the device's depth: they are in its end faces below the screws, which
+/// are reached from the front of its steps (in miniature circuit breakers and contactors
+/// a third to two fifths of the depth, in terminal blocks from 0.3 to 0.5).
+const RAIL_TERMINAL_DEPTH: f32 = 0.4;
+
+/// Height of the clamps of NH fuse switch disconnectors mounted on busbars above the
+/// bars, as a part of the depth: in the terminal compartments at their ends, entered
+/// from the end faces below the screws reached through the terminal covers.
+const FUSE_SWITCH_TERMINAL_DEPTH: f32 = 0.575;
+
+/// The height of the generated connection points of a part above its mounting surface:
+/// DIN rail devices are entered from their end faces ([`RAIL_TERMINAL_DEPTH`]), as are
+/// fuse switch disconnectors on busbars ([`FUSE_SWITCH_TERMINAL_DEPTH`]); PLC modules
+/// from their front connectors.
+fn terminal_depth(part: &Part) -> f32 {
+    let plc = part.functions.iter().any(|f| matches!(f.kind, FnKind::PlcInput | FnKind::PlcOutput | FnKind::PlcAnalogInput | FnKind::PlcAnalogOutput));
+    if part.mounting.starts_with("Mounting rail") && !plc {
+        RAIL_TERMINAL_DEPTH
+    } else if part.mounting.starts_with("Busbar") && part.subgroup == "Fuse switch disconnector" {
+        FUSE_SWITCH_TERMINAL_DEPTH
+    } else {
+        TERMINAL_DEPTH
+    }
+}
+
 /// Devices mounted in the door: their terminals are on the rear.
 fn door_kind(kind: FnKind) -> bool {
     matches!(kind, FnKind::PushbuttonNo | FnKind::PushbuttonNc | FnKind::SwitchNo | FnKind::SwitchNc | FnKind::Signal | FnKind::Meter)
@@ -87,8 +113,9 @@ pub fn upper_side(pin: &str) -> bool {
 /// without size.
 pub fn default_connection_points(part: &Part) -> Vec<ConnectionPoint> {
     let Some([w, h, d]) = part.size() else { return Vec::new() };
+    let depth = d * terminal_depth(part);
     if part.functions.iter().any(|f| f.kind == FnKind::Terminal) {
-        let pin = |pin: &str, y, exit| ConnectionPoint { pin: pin.into(), pos: [w / 2.0, y, d * TERMINAL_DEPTH], exit };
+        let pin = |pin: &str, y, exit| ConnectionPoint { pin: pin.into(), pos: [w / 2.0, y, depth], exit };
         return vec![pin("1", 0.0, Exit::Up), pin("2", h, Exit::Down)];
     }
     let door = !part.functions.is_empty() && part.functions.iter().all(|f| door_kind(f.kind));
@@ -116,8 +143,8 @@ pub fn default_connection_points(part: &Part) -> Vec<ConnectionPoint> {
             let (pos, exit) = match (door, top) {
                 (true, true) => ([x, h * 0.25, d], Exit::Front),
                 (true, false) => ([x, h * 0.75, d], Exit::Front),
-                (false, true) => ([x, 0.0, d * TERMINAL_DEPTH], Exit::Up),
-                (false, false) => ([x, h, d * TERMINAL_DEPTH], Exit::Down),
+                (false, true) => ([x, 0.0, depth], Exit::Up),
+                (false, false) => ([x, h, depth], Exit::Down),
             };
             out.push(ConnectionPoint { pin, pos, exit });
         }

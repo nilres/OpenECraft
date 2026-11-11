@@ -712,8 +712,9 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
     // transformers), N and PE of the measured feeders below them, clear of the cables'
     // way down.
     rail(prj, hv2, 20.0, 980.0, 205.0);
-    // Each meter with its MCB above its strip, the power analyser above its transformers.
-    on_rail(prj, hv2, 205.0, 30.0, &["=EMS+HV2-P5", "=EMS+HV2-F5", "=DIST+HV2-P21", "=DIST+HV2-F21", "=DIST+HV2-P22", "=DIST+HV2-F22", "=DIST+HV2-P23", "=DIST+HV2-F23", "=DIST+HV2-P24", "=DIST+HV2-F24"]);
+    // Each meter with its MCB above its strip, the power analyser above its transformers
+    // (its MCB on its left: the leads to its many terminals have room above it).
+    on_rail(prj, hv2, 205.0, 30.0, &["=EMS+HV2-F5", "=EMS+HV2-P5", "=DIST+HV2-P21", "=DIST+HV2-F21", "=DIST+HV2-P22", "=DIST+HV2-F22", "=DIST+HV2-P23", "=DIST+HV2-F23", "=DIST+HV2-P24", "=DIST+HV2-F24"]);
     rail(prj, hv2, 20.0, 980.0, 335.0);
     on_rail(prj, hv2, 335.0, 340.0, &["=DIST+HV2-X21", "=DIST+HV2-X22", "=DIST+HV2-X23", "=DIST+HV2-X24"]);
     // The residual current devices and the terminals of the heat pumps below their

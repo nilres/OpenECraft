@@ -528,6 +528,7 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
         g.1.push("marking".into());
     }
     // Wiring and mounting material may come straight from the built-in catalog.
+    let cuts = panel::cut_pieces(prj);
     let mut sum = 0.0;
     for (i, (part, (qty, tags))) in groups.iter().enumerate() {
         let pd = prj.parts.iter().chain(catalog.iter()).find(|p| &p.number == part).cloned().unwrap_or_else(|| Part {
@@ -555,7 +556,9 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
             None,
         );
         // Components of an assembly below it, included in its price.
-        for (k, (sub, n)) in crate::parts::assembly_components(prj, part, *qty).into_iter().enumerate() {
+        let components = crate::parts::assembly_components(prj, part, *qty);
+        let first_cut = components.len() + 1;
+        for (k, (sub, n)) in components.into_iter().enumerate() {
             let sd = prj.parts.iter().chain(catalog.iter()).find(|p| p.number == sub).cloned().unwrap_or_default();
             t.push(
                 vec![
@@ -567,6 +570,25 @@ fn bom(prj: &Project, idx: &Index, wiring: &[RoutedWire], conns: &[Connection]) 
                     sd.manufacturer,
                     sd.description,
                     tr_fmt!("in {}", part),
+                    String::new(),
+                    tr("incl.").to_string(),
+                ],
+                None,
+            );
+        }
+        // Rails, ducts and busbars: the pieces to cut from it, per enclosure (no part
+        // number: the material is the row above).
+        for (k, (_, enclosure, length, n)) in cuts.iter().filter(|c| &c.0 == part).enumerate() {
+            t.push(
+                vec![
+                    format!("{}.{}", i + 1, first_cut + k),
+                    n.to_string(),
+                    tr("pcs").to_string(),
+                    String::new(),
+                    String::new(),
+                    String::new(),
+                    tr_fmt!("Cut length {} mm", panel::mm_text(*length)),
+                    enclosure.clone(),
                     String::new(),
                     tr("incl.").to_string(),
                 ],
