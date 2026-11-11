@@ -22,6 +22,20 @@ pub struct Unplaced {
 
 /// The first built-in symbol that stands for a function kind.
 pub fn symbol_for(kind: FnKind) -> Option<&'static str> {
+    symbol_with_pins(kind, 0)
+}
+
+/// The symbol of a function with `pins` connection points: a generic function says
+/// nothing about its graphics, so it is a black box with room for its connection
+/// points (not the first generic symbol of the library, an earth electrode).
+pub fn symbol_with_pins(kind: FnKind, pins: usize) -> Option<&'static str> {
+    if kind == FnKind::Generic {
+        return Some(match pins {
+            0..=2 => "box1",
+            3..=4 => "box2",
+            _ => "box4",
+        });
+    }
     crate::symbols::library().iter().map(|d| d.key).find(|k| parts::kind_of_symbol(k) == Some(kind))
 }
 
@@ -29,13 +43,20 @@ pub fn symbol_for(kind: FnKind) -> Option<&'static str> {
 /// designations: those of its first function that has a symbol (a contactor's coil,
 /// a breaker's main contacts). `None` for parts without one (enclosures, rails).
 pub fn part_symbol(part: &parts::Part) -> Option<(&'static str, Vec<String>)> {
-    part.functions.iter().find_map(|f| symbol_for(f.kind).map(|s| (s, f.pin_list())))
+    if !part.symbol.is_empty() {
+        return None;
+    }
+    part.functions.iter().find_map(|f| {
+        let pins = f.pin_list();
+        symbol_with_pins(f.kind, pins.len()).map(|s| (s, pins))
+    })
 }
 
 /// Channels of the PLC cards (with a device description) without a symbol, per card
 /// in address order.
 pub fn plc_channels(prj: &Project) -> Vec<Unplaced> {
     let mut out = Vec::new();
+    let channels=crate::model::plc_hw::bindings::placed(prj);
     for card in crate::plc::cards(prj) {
         let mut families = HashSet::new();
         let mut occupied = HashSet::new();
@@ -56,12 +77,27 @@ pub fn plc_channels(prj: &Project) -> Vec<Unplaced> {
             out.push(Unplaced { tag: card.clone(), symbol: def.key, label, pins: symbol.pins.iter().map(|p| p.label.clone()).collect(), title });
         }
         let Some(desc) = crate::plc_hw::description_of(prj, &card) else { continue };
-        let placed: HashSet<crate::plc::AddressKey> =
+        let mut placed: HashSet<crate::plc::AddressKey> =
             prj.pages.iter().flat_map(|p| p.symbols.iter()).filter(|s| s.tag == card).map(|s| crate::plc::address_key(&s.label)).collect();
-        for (input, n, symbol) in [(true, desc.inputs, "plc_in"), (false, desc.outputs, "plc_out")] {
+        let mut hardware=HashSet::new();
+        let module=prj.pages.iter().flat_map(|p|&p.symbols).filter(|s|s.tag==card).filter_map(|s|prj.symbol(&s.sym)).max_by_key(|d|d.plc_channels.len());
+        for &(pi,si,index) in &channels {
+            let s=&prj.pages[pi].symbols[si];if s.tag!=card {continue;}
+            let Some(def)=prj.symbol(&s.sym) else {continue;};let c=&def.plc_channels[index];
+            if let Some(input)=c.input {
+                let number=crate::model::plc_hw::bindings::index(prj,s.id,index).unwrap_or(c.index);
+                let ordinal=module.as_ref().filter(|d|d.plc_channels.iter().any(|c|c.input==Some(!input)))
+                    .and_then(|d|d.plc_channels.iter().filter(|c|c.input==Some(input)).position(|c|c.index==number)).unwrap_or(usize::from(number));
+                hardware.insert((input,ordinal as u32));
+            }
+            let address=crate::model::plc_hw::bindings::value(prj,s.id,index,"address").unwrap_or_default();
+            if !address.is_empty() {placed.insert(crate::plc::address_key(&address));}
+        }
+        let analog=matches!(desc.kind,crate::model::devdesc::ModuleKind::AnalogInput|crate::model::devdesc::ModuleKind::AnalogOutput);
+        for (input, n, symbol) in [(true, desc.inputs, if analog {"plc_ai"} else {"plc_in"}), (false, desc.outputs, if analog {"plc_ao"} else {"plc_out"})] {
             for ch in 0..n {
                 let addr = crate::plc_hw::card_address(prj, &card, input, ch);
-                if !placed.contains(&crate::plc::address_key(&addr)) && !out.iter().any(|p| p.tag == card && p.label == addr) {
+                if !hardware.contains(&(input,ch)) && !placed.contains(&crate::plc::address_key(&addr)) && !out.iter().any(|p| p.tag == card && p.label == addr) {
                     out.push(Unplaced { tag: card.clone(), symbol, label: addr.clone(), pins: Vec::new(), title: addr });
                 }
             }
@@ -79,8 +115,8 @@ pub fn device_functions(prj: &Project, db: Option<&PartsDb>) -> Vec<Unplaced> {
         // PLC channels).
         let own = |k: FnKind| matches!(k, FnKind::Terminal | FnKind::PlugPin | FnKind::PlcInput | FnKind::PlcOutput | FnKind::PlcAnalogInput | FnKind::PlcAnalogOutput);
         for f in parts::reserve_functions(prj, db, tag).into_iter().filter(|f| !own(f.kind)) {
-            let Some(symbol) = symbol_for(f.kind) else { continue };
             let pins = f.pin_list();
+            let Some(symbol) = symbol_with_pins(f.kind, pins.len()) else { continue };
             let title = format!("{} {}", f.kind.title(), pins.join("-")).trim().to_string();
             out.push(Unplaced { tag: tag.clone(), symbol, label: String::new(), pins, title });
         }

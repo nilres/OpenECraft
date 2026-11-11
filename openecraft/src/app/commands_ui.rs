@@ -85,12 +85,15 @@ impl App {
             Cmd::TextTool => *tool == Tool::Text && self.editor.text_proto.is_none(),
             Cmd::ConnDefTool => *tool == Tool::ConnDef,
             Cmd::CableDefTool => *tool == Tool::CableDef,
+            Cmd::StructureBoxTool => *tool == Tool::StructureBox,
             Cmd::JunctionTool => *tool == Tool::Junction(JunctionKind::Tee),
             Cmd::CornerTool => *tool == Tool::Junction(JunctionKind::Corner),
             Cmd::CrossingTool => *tool == Tool::Junction(JunctionKind::Crossing),
             Cmd::BridgeTool => *tool == Tool::Junction(JunctionKind::Bridge),
             Cmd::LineTool => *tool == Tool::Line,
             Cmd::RectTool => *tool == Tool::Rect,
+            Cmd::DeviceBoxTool => *tool == Tool::DeviceBox,
+            Cmd::DeviceConnectionTool => *tool == Tool::Place(openecraft_core::symbols::DEVICE_POINT),
             Cmd::CircleTool => *tool == Tool::Circle,
             Cmd::EllipseTool => *tool == Tool::Ellipse,
             Cmd::ArcTool => *tool == Tool::Arc,
@@ -114,6 +117,9 @@ impl App {
             Cmd::Layout3d => self.panel_ui.view == View::ThreeD,
             Cmd::LayoutFloorPlan => self.panel_ui.view == View::Plan,
             Cmd::LayoutDrawWalls => self.panel_ui.tool == crate::panel_ui::Tool::Walls,
+            Cmd::LayoutPlotBoundary => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Boundary,
+            Cmd::LayoutReferencePoint => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Reference,
+            Cmd::LayoutMeasure => self.panel_ui.site && self.panel_ui.site_tool == crate::panel_ui::SiteTool::Measure,
             Cmd::LayoutInnerWalls => self.panel_ui.tool == crate::panel_ui::Tool::InnerWalls,
             Cmd::LayoutRoomDoor => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Door),
             Cmd::LayoutRoomWindow => self.panel_ui.tool == crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window),
@@ -163,6 +169,13 @@ impl App {
             }
             self.show_pane(pane);
             return;
+        }
+        if commands::acts_in_layout_view(cmd) && !self.workspace.is_workshop() {
+            if self.pane_shown(Pane::LayoutView) {
+                self.show_pane(Pane::LayoutView);
+            } else {
+                self.set_workspace(Workspace::Panel);
+            }
         }
         if def.kind == Kind::Menu {
             // Menus open in the ribbon; from the command search, a key or a key tip
@@ -233,11 +246,13 @@ impl App {
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
             // ------------------------------------------------------------ home
             Cmd::Cut | Cmd::Copy => {
-                let clip = ops::copy(&self.session.prj.pages[page], &self.editor.selection);
+                let items = self.editor.items(&self.session.prj, page);
+                let mut clip = ops::copy(&self.session.prj.pages[page], &items);
+                clip.include_project_data(&self.session.prj);
                 ctx.copy_text(clip.to_text());
                 self.editor.clip = Some(clip);
                 if cmd == Cmd::Cut {
-                    ops::delete(&mut self.session.prj.pages[page], &self.editor.selection);
+                    ops::delete(&mut self.session.prj.pages[page], &items);
                     self.editor.selection.clear();
                 }
             }
@@ -279,7 +294,8 @@ impl App {
                 self.session.redo();
             }
             Cmd::Delete => {
-                ops::delete(&mut self.session.prj.pages[page], &self.editor.selection);
+                let items = self.editor.items(&self.session.prj, page);
+                ops::delete(&mut self.session.prj.pages[page], &items);
                 self.editor.selection.clear();
             }
             Cmd::Rotate => {
@@ -288,14 +304,16 @@ impl App {
                 } else if matches!(self.editor.tool, Tool::Junction(_)) {
                     self.editor.symbol_proto.turn();
                 } else {
-                    routing::rotate(&mut self.session.prj, page, &self.editor.selection);
+                    let items = self.editor.items(&self.session.prj, page);
+                    routing::rotate(&mut self.session.prj, page, &items);
                 }
             }
             Cmd::Mirror => {
                 if matches!(self.editor.tool, Tool::Place(_)) {
                     self.editor.place_mirror = !self.editor.place_mirror;
                 } else {
-                    ops::mirror(&mut self.session.prj.pages[page], &self.editor.selection);
+                    let items = self.editor.items(&self.session.prj, page);
+                    ops::mirror(&mut self.session.prj.pages[page], &items);
                 }
             }
             Cmd::Find => self.find_ui.open = true,
@@ -314,12 +332,15 @@ impl App {
             Cmd::TextTool => self.set_tool(Tool::Text),
             Cmd::ConnDefTool => self.set_tool(Tool::ConnDef),
             Cmd::CableDefTool => self.set_tool(Tool::CableDef),
+            Cmd::StructureBoxTool => self.set_tool(Tool::StructureBox),
             Cmd::JunctionTool => self.set_tool(Tool::Junction(JunctionKind::Tee)),
             Cmd::CornerTool => self.set_tool(Tool::Junction(JunctionKind::Corner)),
             Cmd::CrossingTool => self.set_tool(Tool::Junction(JunctionKind::Crossing)),
             Cmd::BridgeTool => self.set_tool(Tool::Junction(JunctionKind::Bridge)),
             Cmd::InterruptionPoint => self.set_tool(Tool::Place("intr")),
             Cmd::PotentialPoint => self.set_tool(Tool::Place("pot")),
+            Cmd::DeviceBoxTool => self.set_tool(Tool::DeviceBox),
+            Cmd::DeviceConnectionTool => self.set_tool(Tool::Place(openecraft_core::symbols::DEVICE_POINT)),
             Cmd::InsertMacro => self.show_pane(Pane::Tool(ToolPane::Macros)),
             Cmd::SaveSelectionAsMacro => self.save_as_macro(false),
             Cmd::SavePageAsMacro => self.save_as_macro(true),
@@ -405,6 +426,7 @@ impl App {
             Cmd::UpdateReportBlocks => self.generate_report_blocks(ctx),
             Cmd::CheckSettings => self.settings.open_at(settings_ui::Node::Checks),
             Cmd::CrossReferences => self.settings.open_at(settings_ui::Node::CrossReferences),
+            Cmd::WireCrossings => self.settings.open_at(settings_ui::Node::Wires),
             Cmd::Marking => self.settings.open_at(settings_ui::Node::Marking),
             Cmd::Shortcuts => self.settings.open_at(settings_ui::Node::Shortcuts),
             Cmd::CustomizeRibbon => self.settings.open_at(settings_ui::Node::Ribbon),
@@ -415,6 +437,15 @@ impl App {
             }
             Cmd::LayoutFloorPlan => self.panel_ui.floor_plan(),
             Cmd::LayoutDrawWalls => self.panel_ui.choose_tool(crate::panel_ui::Tool::Walls),
+            Cmd::LayoutPlotBoundary | Cmd::LayoutReferencePoint | Cmd::LayoutMeasure => {
+                self.set_workspace(Workspace::Panel);
+                let tool = match cmd {
+                    Cmd::LayoutPlotBoundary => crate::panel_ui::SiteTool::Boundary,
+                    Cmd::LayoutReferencePoint => crate::panel_ui::SiteTool::Reference,
+                    _ => crate::panel_ui::SiteTool::Measure,
+                };
+                self.panel_ui.choose_site_tool(tool);
+            }
             Cmd::LayoutInnerWalls => self.panel_ui.choose_tool(crate::panel_ui::Tool::InnerWalls),
             Cmd::LayoutRoomDoor => self.panel_ui.choose_tool(crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Door)),
             Cmd::LayoutRoomWindow => self.panel_ui.choose_tool(crate::panel_ui::Tool::Opening(openecraft_core::panel::Opening::Window)),
@@ -702,7 +733,7 @@ impl App {
         }
     }
 
-    /// A menu entry that runs a command (with its shortcut and tooltip).
+    /// A button that runs a command (with its shortcut and tooltip).
     pub(super) fn cmd_button(&mut self, ui: &mut egui::Ui, cmd: Cmd) {
         let def = commands::def(cmd);
         let keys = self.editor.shortcuts.cmd_text(cmd);
@@ -716,7 +747,7 @@ impl App {
         if r.clicked() {
             let ctx = ui.ctx().clone();
             self.run(&ctx, cmd);
-            ui.close();
+            close_command_menu(ui);
         }
     }
 
@@ -817,3 +848,13 @@ impl App {
         }
     }
 }
+
+fn close_command_menu(ui: &egui::Ui) {
+    // The same buttons appear in Settings, where close() would collapse the window.
+    if egui::containers::menu::is_in_menu(ui) {
+        ui.close();
+    }
+}
+
+#[cfg(test)]
+mod tests;

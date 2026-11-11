@@ -32,9 +32,29 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   wires such as green-yellow with a stripe) and, like cables and tubes, as thick as
   their outer diameter. A cable ends a little before the device it is connected to and
   its cores part from there in smooth curves, each into its connection point from the
-  side its wires leave it; through cable glands, wall penetrations and the cable passages
+  side its wires leave it. At its connection point a wire or core ends in its
+  termination: a ferrule (metal sleeve and collar in the DIN 46228-4 colour) or a twin
+  ferrule, a ring terminal (its ring round the connection point), a fork, pin, flat plug
+  or flat receptacle terminal (with its red, blue or yellow insulated sleeve; uninsulated
+  tubular cable lugs from 10 mm²), or the bare copper conductor as long as it is
+  stripped. Each wire end can be given its own termination in the properties of the
+  wire (*Wire ends*), all cores of a cable at one of its devices in the properties of
+  the cable (*Cable ends*), and on the command line all ends at a connection point or a
+  device (`set_termination`); ends without one get a ferrule where *Wire ends with
+  ferrules* is set, the bare conductor otherwise. A twin ferrule is shared by the two
+  wires ending at one connection point: it is offered only there, chosen for both at
+  once, sized for the larger cross-section and drawn once, at the first of them; with
+  *Twin ferrules where two wires share a connection point* (or `set_ferrules`) every
+  such pair without a termination of its own gets one. The check *Twin ferrules* warns
+  about a twin ferrule with one wire, at a point with more than two wires or for two
+  cross-sections. The production wire list, the wiring
+  assistant, the machine exports and the bill of materials take the same terminations;
+  through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several
-  through one gland side by side. In a cabinet without cable ducts on its mounting
+  through one cable entry flange or wall penetration side by side. Cable glands are
+  drawn with the models of their parts: outside the hexagon body, neck and dome on the
+  outer surface of their wall, inside the locknut and the end of the thread on its
+  inner surface, in nickel-plated brass or polyamide; routes keep clear of the locknut. In a cabinet without cable ducts on its mounting
   plate the wires are laid by the 3D routing (see below), from connection point to
   connection point.
 - Copper **busbar systems** (bars drawn, metres and holders in the BOM) and rectangular
@@ -229,8 +249,40 @@ keeps the 3D view when it is shown and otherwise shows the room's floor plan. A 
 the site shows the site plan of all buildings in the Layout space (the wheel zooms,
 dragging moves it, a click on a room opens its floor plan) or, in the 3D view, all of
 the plant with its buildings, floor slabs, stairs and roofs; a click on a building shows
-the site plan with it highlighted. The context menu of the site adds a building, that of
-a building a level on top or a basement, that of a level a room on it.
+the site plan with it highlighted. A level clicked while the 3D view is shown shows all
+rooms of that level side by side at their places, with the cabinets standing in them,
+the floor slabs and the stairs reaching the level (no roofs); a second click shows all
+of the plant again. The context menu of the site adds a building, draws the plot
+boundary or places the reference point, that of a building a level on top or a
+basement, that of a level a room on it.
+
+## Plot boundary and reference point
+
+The **plot** (*Layout space › Site*, the context menu of the site, the *Plot* section of
+the Buildings pane; plugin `buildings`) is the parcel of land the plant stands on.
+
+- **Plot boundary** (*Site › Plot boundary*, command `set_plot`): drawn in the site plan
+  corner by corner (a click on the first corner, a double-click or Enter closes it,
+  Backspace takes back the last corner, Esc stops); the corners snap to the corners of
+  the rooms (inside and outside their walls), of the shafts and to the reference point.
+  Its corners are dragged in the site plan afterwards. The boundary must not cross
+  itself; the site plan writes its name and area, the pane its corners, area and
+  length. **All buildings have to stay inside it**: the check *Buildings, levels and
+  shafts* reports as errors rooms whose outer walls reach outside the boundary, and
+  warns about roofs reaching over it with their overhang and cabinets outside it; the
+  site plan draws them in the colour of errors and `plot` lists them.
+- **Reference point** (*Site › Reference point*, command `set_reference_point`): a
+  georeferenced point of the plant (where it is in the plant, its easting, northing
+  and height above sea level in a coordinate reference system such as `EPSG:25832`, the
+  direction of grid north in the plant and, if known, its latitude and longitude). Every
+  point of the plant is measured from it: the site plan shows the coordinates under the
+  pointer (easting and northing, or how far east and north of the point), a north
+  arrow, and `list_buildings` the easting, northing and height of each building's
+  origin; `locate` converts between the plant and the coordinate system. IFC exports
+  write the plot's name and the latitude, longitude and height into their site.
+- **Measure** (*Site › Measure*, command `measure`): two points clicked in the site plan
+  give their distance, how far east and north the second lies and its direction from
+  grid north.
 
 ## Buildings, levels and shafts
 
@@ -351,7 +403,8 @@ circuit manifold.
 with all its levels and rooms, their floor slabs, the stairs and the roofs; *All
 enclosures* shows every building of the plant this way. Roofs and gable walls are seen
 from outside like the walls (translucent, or left out with *Hide walls in front*);
-*Hide ceiling* leaves out the ceilings and the roofs to look into the building.
+*Hide ceiling* leaves out the ceilings and the roofs to look into the building. The
+plant in 3D draws the plot boundary on the ground and the reference point as a post.
 
 ![Floor plan of the electrical_room example: L-shaped room, inner wall, door, window and the two cabinets](../images/room.png)
 
@@ -439,7 +492,10 @@ comes into the other one against the direction that one gives, never past it and
 the box of its own device where the point lies inside it, such as the terminals of a
 switch on its module, never through another device that stands right before the
 point), keeps half its thickness clear of everything, bends with its
-radius only, and keeps apart from every other route; routes come together only where
+radius only, and keeps apart from every other route and from itself (where its ends
+lie too close for its bend radius it runs round in a loop that never comes back
+across or alongside its own way, the bends at its corners and the nozzle it comes out
+of; where there is no such loop it is not routed); routes come together only where
 they come up to the same device, and there they lie side by side: a route never runs
 across another one it comes together with (it may only on its own way out of a
 connection point, or where it comes up to the device the other one ends at, and goes
@@ -452,8 +508,10 @@ round them. A wire that finds no such way is not drawn: it is reported as an err
 (*… cannot be routed: no way that keeps half its thickness clear of everything and
 bends with its radius of … mm*). The usual causes are a conductor too thick for the
 room between its ends (a busbar cross-section drawn as a wire: mount the devices on a
-busbar system instead), connection points that face away from each other, or a
-terminal strip right below a switch. The messages pane jumps to a connection point of
+busbar system instead), connection points that face away from each other, a
+terminal strip right below a switch, or two ends closer to each other than the bends
+between them need (a cable entry right below the box it leads into, two fittings one
+above the other with their ports on their sides). The messages pane jumps to a connection point of
 the wire or cable, and the 3D view shows a red note with the reason at each of its ends
 in place of the route.
 
@@ -500,7 +558,11 @@ such a way); of the ways that cost about the same, a route takes one whose bends
 their distance (a short stretch first or last). A route between a cabinet and a device in its
 room (or two cabinets of one room) runs in legs: through the cabinet to a cable gland on
 its roof, sides or rear (one of its own cabinet first, otherwise of the line-up; without
-one through the middle of the roof, which is reported), then through the room. A
+one through the middle of the roof, which is reported), then through the room. A cable
+gland takes one cable: the free one whose clamping range fits the cable, nearest to
+where it heads; a cable entry flange takes as many as have places along its membrane.
+A cable that finds every gland of its cabinet taken is not routed and reported as an
+error (*… every cable gland of … is taken by another cable. Add a cable gland for it*). A
 cabinet hanging on a wall (its bottom above the floor) is also left through a gland in
 its bottom: below each such gland a shaft down to the floor and out to the front of the
 cabinet stays free for the routes. Frozen, such a route keeps its legs.

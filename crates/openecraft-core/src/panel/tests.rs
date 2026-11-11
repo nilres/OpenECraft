@@ -2,6 +2,48 @@ use super::*;
 use crate::analysis::Analysis;
 use crate::sample::demo_project;
 
+#[test]
+fn explicit_panel_rotations_preserve_square_orientation_and_round_trip() {
+    assert_eq!(serde_json::from_str::<PanelRotation>("-90").unwrap(),PanelRotation::Deg270);
+    assert!(serde_json::from_str::<PanelRotation>("45").is_err());
+    let mut item=device(90000,100.,200.,40.,40.,0.,20.);
+    assert_eq!(item_rotation(&item,40.),PanelRotation::Deg0);
+    item.rotation=Some(PanelRotation::Deg180);
+    assert_eq!(item_rotation(&item,40.),PanelRotation::Deg180);
+    assert_eq!(front_point(&item,PanelRotation::Deg180,0.,40.,[0.25,0.75]),p(130.,210.));
+    let original=item.clone();
+    for _ in 0..4 {item.rotate();}
+    assert_eq!(item,original);
+    let mut prj=Project::default();
+    prj.layout.enclosures.push(Enclosure {items:vec![item],..Default::default()});
+    let reopened=Project::from_json(&prj.to_json()).unwrap();
+    assert_eq!(reopened.layout.enclosures[0].items[0].rotation,Some(PanelRotation::Deg180));
+}
+
+#[test]
+fn explicit_panel_orientation_maps_mesh_vertices_and_points_identically() {
+    let mesh=crate::parts::Mesh3d {vertices:vec![[0.,0.,0.],[20.,40.,10.],[3.,33.,4.]],triangles:vec![[0,1,2]],..Default::default()};
+    for face in [Face::Plate,Face::Bottom] {
+        for angle in [0,90,180,270] {
+            let rotation=PanelRotation::from_degrees(angle).unwrap();
+            let natural=if face==Face::Bottom {[20.,10.]} else {[20.,40.]};
+            let [w,h]=if rotation.is_quarter() {[natural[1],natural[0]]} else {natural};
+            let item=PanelItem {face,rotation:Some(rotation),x:100.,y:200.,w,h,d:40.,..Default::default()};
+            let tris=place_mesh(&mesh,&item);
+            for (index,vertex) in mesh.vertices.iter().enumerate() {
+                assert_eq!(tris[0][index],place_point(&mesh,&item,*vertex));
+            }
+            let expected=if face==Face::Bottom {
+                match angle {0=>[103.,204.,33.],90=>[106.,203.,33.],180=>[117.,206.,33.],_=>[104.,217.,33.]}
+            } else {
+                match angle {0=>[103.,207.,16.],90=>[133.,203.,16.],180=>[117.,233.,16.],_=>[107.,217.,16.]}
+            };
+            let actual=place_point(&mesh,&item,mesh.vertices[2]);
+            assert!(actual.iter().zip(expected).all(|(a,b)|(a-b).abs()<0.001),"{face:?} {angle}: {actual:?}");
+        }
+    }
+}
+
 fn device(id: u64, x: f32, y: f32, w: f32, h: f32, z: f32, d: f32) -> PanelItem {
     PanelItem { id, kind: ItemKind::Device, tag: format!("-D{id}"), x, y, w, h, z, d, ..Default::default() }
 }
@@ -181,6 +223,21 @@ fn layout_material_in_bom() {
     let bom = &an.report(&prj, crate::model::ReportKind::BillOfMaterials).unwrap();
     let rail = bom.rows.iter().find(|r| r[3] == RAIL_PART).unwrap();
     assert_eq!((rail[1].as_str(), rail[2].as_str()), ("1.29", "m"));
+}
+
+#[test]
+fn rail_standoffs_use_support_height_and_respect_hardware_setting() {
+    let mut prj=demo_project();
+    let plate=PanelItem {id:900,kind:ItemKind::MountingPlate,z:10.,d:2.,..Default::default()};
+    let rail=PanelItem {id:901,kind:ItemKind::Rail,part:RAIL_PART.into(),w:300.,h:35.,d:7.5,z:12.,mounted_on:900,mounting_explicit:true,..Default::default()};
+    prj.layout.enclosures[0].items=vec![plate,rail];
+    let qty=|p:&Project|layout_material(p).iter().find(|m|m.0==crate::parts::mechanics::RAIL_STANDOFF).map(|m|m.1).unwrap_or(0.);
+    assert_eq!(qty(&prj),0.);
+    prj.layout.enclosures[0].items[1].z=52.;assert!(qty(&prj)>0.);
+    prj.layout.hardware=false;assert_eq!(qty(&prj),0.);prj.layout.hardware=true;
+    prj.layout.enclosures[0].items[1].mounted_on=0;assert_eq!(qty(&prj),0.,"unknown explicit support");
+    prj.layout.enclosures[0].items[1].mounting_explicit=false;assert!(qty(&prj)>0.,"legacy datum remains valid");
+    prj.layout.hardware=false;assert!(qty(&prj)>0.,"rails without an explicit support do not depend on the hardware setting");
 }
 
 #[test]
@@ -601,7 +658,30 @@ fn accessories_from_parts() {
     let o = crate::production::openings(e, &prj.parts, Face::Bottom);
     assert!(o.iter().any(|o| o.item == id && o.round && (o.w - 25.5).abs() < 0.01));
     assert!(crate::production::holes_on(e, &prj.parts, Face::Bottom).is_empty());
-    assert!(layout_material(&prj).iter().any(|m| m.0 == "GEN.GLAND-M25" && m.1 == 1.0));
+    // (with the demo's own gland for its motor cable)
+    assert!(layout_material(&prj).iter().any(|m| m.0 == "GEN.GLAND-M25" && m.1 == 2.0));
+    // Drawn with the model of its part, in its box and along the axis out of the face:
+    // round, so its corners are empty, its dome (the outermost end) narrower than
+    // its body against the face.
+    let painted = device_mesh_painted(&prj, g).expect("the gland's model");
+    assert!(painted.iter().all(|(_, c)| c.is_some()), "painted");
+    let tris = place_triangles(e, g, painted.into_iter().map(|t| t.0).collect());
+    let (lo, hi) = item_box(e, g);
+    let pts: Vec<[f32; 3]> = tris.iter().flatten().copied().collect();
+    assert!(pts.iter().all(|q| (0..3).all(|k| q[k] >= lo[k] - 0.01 && q[k] <= hi[k] + 0.01)), "{lo:?} {hi:?}");
+    // It sits on the outer surface of the bottom and stands out of it as far as its part
+    // says (it floated a centimetre below it); its locknut sits on the inner surface and
+    // reaches into the cabinet. Nothing of it lies in the wall.
+    let (inner, outer) = (pts.iter().map(|q| q[1]).fold(f32::INFINITY, f32::min), pts.iter().map(|q| q[1]).fold(f32::NEG_INFINITY, f32::max));
+    let (inside, at_face) = (e.height - e.wall(), e.height);
+    assert!((outer - (inside + 24.0)).abs() < 0.01 && (inner - (inside - 8.0 + crate::parts::GLAND_GAP)).abs() < 0.01, "{inner} {outer}");
+    assert!(pts.iter().all(|q| q[1] <= inside + 0.01 || q[1] >= at_face - 0.01), "in the wall");
+    assert!(pts.iter().any(|q| (q[1] - at_face).abs() < 0.01) && pts.iter().any(|q| (q[1] - inside).abs() < 0.01), "on both surfaces");
+    let (cx, cz, r) = ((lo[0] + hi[0]) / 2.0, (lo[2] + hi[2]) / 2.0, g.w / 2.0);
+    assert!(pts.iter().all(|q| (q[0] - cx).hypot(q[2] - cz) <= r + 0.01), "round within its box");
+    let radius_at = |y: f32| pts.iter().filter(|q| (q[1] - y).abs() < 0.01).map(|q| (q[0] - cx).hypot(q[2] - cz)).fold(0.0, f32::max);
+    assert!(radius_at(outer) < radius_at(at_face) && radius_at(outer) > 0.0, "dome {} body {}", radius_at(outer), radius_at(at_face));
+    assert!(radius_at(inside) > 0.0 && radius_at(inner) < radius_at(inside), "locknut {} thread end {}", radius_at(inside), radius_at(inner));
 }
 
 #[test]

@@ -8,6 +8,7 @@ A page named {} already exists	Esiste già una pagina denominata {}
 A page needs a name	Una pagina ha bisogno di un nome
 A routing path needs {} points at least	Un percorso di instradamento richiede almeno {} punti
 A section cannot be moved into itself	Una sezione non può essere spostata in se stessa
+Above	Sopra
 Access token	Token di accesso
 Accessories	Accessori
 Accessory	Accessorio
@@ -17,6 +18,8 @@ Address	Indirizzo
 Angle	Angolo
 Apply	Applica
 Approvers	Approvatori
+Automatic	Automatico
+Below	Sotto
 Bold	Grassetto
 Bottom	Fondo
 Bottom with removable gland plate	Fondo con piastra passacavi rimovibile
@@ -33,6 +36,7 @@ Cable core	Anima del cavo
 Cable duct	Canalina
 Cable overview	Panoramica cavi
 Cable tag	Sigla cavo
+Cable tag, e.g. -W20	Sigla del cavo, ad es. -W20
 Cables	Cavi
 Cancel	Annulla
 Cannot read {}: {}	Impossibile leggere {}: {}
@@ -64,6 +68,7 @@ Configurator	Configuratore
 Connect	Connetti
 Connected to	Collegato a
 Connecting…	Connessione in corso…
+Connection point	Punto di connessione
 Connection points	Punti di connessione
 Connections	Collegamenti
 Connector	Connettore
@@ -85,6 +90,7 @@ DWG drawing	Disegno DWG
 DXF drawing	Disegno DXF
 Dark	Scuro
 Data portal	Data Portal
+Data type	Tipo di dati
 Date	Data
 Depth	Profondità
 Descending	Decrescente
@@ -92,6 +98,7 @@ Description	Descrizione
 Designation	Designazione
 Device	Dispositivo
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Dispositivo (generatore fotovoltaico) a cui appartengono i moduli; i suoi articoli li contano allora nella distinta base
+Device connection point	Punto di connessione del dispositivo
 Device description	Descrizione dispositivo
 Device tag	Sigla dispositivo
 Device {}	Dispositivo {}
@@ -209,12 +216,15 @@ Mounting plate	Piastra di montaggio
 Mounting rail	Guida di montaggio
 Name	Nome
 Name of the block	Nome del blocco
+Name of the plot, e.g. the cadastral parcel	Nome del lotto, p. es. la particella catastale
+Name of the point, e.g. a survey point	Nome del punto, p. es. un caposaldo
 Name of the scheme	Nome dello schema
 Net	Rete
 New name	Nuovo nome
 No	No
 No Vault item matches a part of the project	Nessun elemento di Vault corrisponde a un articolo del progetto
 No cable {}	Nessun cavo {}
+No connection point {}	Nessun punto di connessione {}
 No device {}	Nessun dispositivo {}
 No enclosure {}	Nessun armadio {}
 No labeling scheme named {}	Nessuno schema di marcatura denominato {}
@@ -222,6 +232,7 @@ No machine {}	Nessuna macchina {}
 No page named {}	Nessuna pagina denominata {}
 No page template named {}	Nessun modello di pagina denominato {}
 No page {}	Nessuna pagina {}
+No part {}	Nessun articolo {}
 No part {} in the project	Nessun articolo {} nel progetto
 No parts found	Nessun articolo trovato
 No plot frame named {}	Nessuna cornice di stampa denominata {}
@@ -235,6 +246,7 @@ No symbol with id {}	Nessun simbolo con ID {}
 Nominal size	Diametro nominale
 Not a language code: {}	Non è un codice lingua: {}
 Not a macro file: {}	Non è un file di macro: {}
+Not a symbol id: {}	Non è un ID di simbolo: {}
 Not a valid rule set file: {}	Non è un file di set di regole valido: {}
 Not in the schematic	Non nello schema
 Note	Nota
@@ -328,6 +340,8 @@ Relay	Relè
 Released pages cannot be moved	Le pagine rilasciate non possono essere spostate
 Remove	Rimuovi
 Remove from favorites	Rimuovi dai preferiti
+Remove the boundary	Rimuovi il confine
+Remove the reference point	Rimuovi il punto di riferimento
 Report	Report
 Report blocks	Blocchi di report
 Report: {}	Report: {}
@@ -386,6 +400,8 @@ Successor	Successore
 Supplier	Fornitore
 Supply	Approvvigionamento
 Symbol	Simbolo
+Symbol key	Chiave del simbolo
+Symbolic address	Indirizzo simbolico
 Symbols	Simboli
 System	Sistema
 T-junction	Pezzo a T
@@ -458,6 +474,7 @@ open	aperto
 rejected	rifiutato
 right	verso destra
 spare	riserva
+strip {} mm, {}	spelare {} mm, {}
 the disk is full	il disco è pieno
 the file exists already	il file esiste già
 this is a folder	è una cartella
@@ -467,5 +484,6 @@ yes	sì
 {} exists already	{} esiste già
 {} parts	{} articoli
 {} wires	{} conduttori
+{}, together with the wire to {}	{}, insieme al conduttore verso {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} non poggia sul pavimento, scegli un articolo a pavimento
 ➕ Add accessory	➕ Aggiungi accessorio

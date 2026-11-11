@@ -8,6 +8,7 @@ A page named {} already exists	Strona o nazwie {} już istnieje
 A page needs a name	Strona musi mieć nazwę
 A routing path needs {} points at least	Ścieżka prowadzenia wymaga co najmniej {} punktów
 A section cannot be moved into itself	Sekcji nie można przenieść do niej samej
+Above	Powyżej
 Access token	Token dostępu
 Accessories	Akcesoria
 Accessory	Akcesorium
@@ -17,6 +18,8 @@ Address	Adres
 Angle	Kąt
 Apply	Zastosuj
 Approvers	Zatwierdzający
+Automatic	Automatycznie
+Below	Poniżej
 Bold	Pogrubienie
 Bottom	Dno
 Bottom with removable gland plate	Dno ze zdejmowaną płytą dławicową
@@ -33,6 +36,7 @@ Cable core	Żyła kabla
 Cable duct	Kanał kablowy
 Cable overview	Przegląd kabli
 Cable tag	Oznaczenie kabla
+Cable tag, e.g. -W20	Oznaczenie kabla, np. -W20
 Cables	Kable
 Cancel	Anuluj
 Cannot read {}: {}	Nie można odczytać {}: {}
@@ -64,6 +68,7 @@ Configurator	Konfigurator
 Connect	Połącz
 Connected to	Połączono z
 Connecting…	Łączenie…
+Connection point	Punkt połączenia
 Connection points	Punkty połączeń
 Connections	Połączenia
 Connector	Złącze
@@ -85,6 +90,7 @@ DWG drawing	Rysunek DWG
 DXF drawing	Rysunek DXF
 Dark	Ciemny
 Data portal	Portal danych
+Data type	Typ danych
 Date	Data
 Depth	Głębokość
 Descending	Malejąco
@@ -92,6 +98,7 @@ Description	Opis
 Designation	Oznaczenie
 Device	Urządzenie
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Urządzenie (generator PV), do którego należą moduły; jego części liczą je wtedy w zestawieniu materiałów
+Device connection point	Punkt przyłączeniowy urządzenia
 Device description	Opis urządzenia
 Device tag	Oznaczenie urządzenia
 Device {}	Urządzenie {}
@@ -209,12 +216,15 @@ Mounting plate	Płyta montażowa
 Mounting rail	Szyna montażowa
 Name	Nazwa
 Name of the block	Nazwa bloku
+Name of the plot, e.g. the cadastral parcel	Nazwa działki, np. działka ewidencyjna
+Name of the point, e.g. a survey point	Nazwa punktu, np. punkt osnowy
 Name of the scheme	Nazwa wzorca
 Net	Sieć
 New name	Nowa nazwa
 No	Nie
 No Vault item matches a part of the project	Żaden element Vault nie pasuje do artykułu projektu
 No cable {}	Brak kabla {}
+No connection point {}	Brak punktu przyłączeniowego {}
 No device {}	Brak urządzenia {}
 No enclosure {}	Brak obudowy {}
 No labeling scheme named {}	Brak schematu oznaczania o nazwie {}
@@ -222,6 +232,7 @@ No machine {}	Brak maszyny {}
 No page named {}	Brak strony o nazwie {}
 No page template named {}	Brak szablonu strony o nazwie {}
 No page {}	Brak strony {}
+No part {}	Brak artykułu {}
 No part {} in the project	Brak części {} w projekcie
 No parts found	Nie znaleziono artykułów
 No plot frame named {}	Brak ramki rysunku o nazwie {}
@@ -235,6 +246,7 @@ No symbol with id {}	Brak symbolu o identyfikatorze {}
 Nominal size	Średnica nominalna
 Not a language code: {}	To nie jest kod języka: {}
 Not a macro file: {}	To nie jest plik makr: {}
+Not a symbol id: {}	To nie jest identyfikator symbolu: {}
 Not a valid rule set file: {}	To nie jest prawidłowy plik zestawu reguł: {}
 Not in the schematic	Nie na schemacie
 Note	Uwaga
@@ -328,6 +340,8 @@ Relay	Przekaźnik
 Released pages cannot be moved	Nie można przenosić wydanych stron
 Remove	Usuń
 Remove from favorites	Usuń z ulubionych
+Remove the boundary	Usuń granicę
+Remove the reference point	Usuń punkt odniesienia
 Report	Raport
 Report blocks	Bloki raportów
 Report: {}	Raport: {}
@@ -386,6 +400,8 @@ Successor	Następca
 Supplier	Dostawca
 Supply	Zasilanie mediami
 Symbol	Symbol
+Symbol key	Klucz symbolu
+Symbolic address	Adres symboliczny
 Symbols	Symbole
 System	System
 T-junction	Trójnik
@@ -458,6 +474,7 @@ open	otwarty
 rejected	odrzucona
 right	w prawo
 spare	rezerwa
+strip {} mm, {}	odizolować {} mm, {}
 the disk is full	dysk jest pełny
 the file exists already	plik już istnieje
 this is a folder	to jest folder
@@ -467,5 +484,6 @@ yes	tak
 {} exists already	{} już istnieje
 {} parts	Artykuły: {}
 {} wires	Przewody: {}
+{}, together with the wire to {}	{}, razem z przewodem do {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} nie stoi na podłodze, wybierz artykuł stojący na podłodze
 ➕ Add accessory	➕ Dodaj akcesorium

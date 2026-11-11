@@ -8,6 +8,7 @@ A page named {} already exists	{} という名前のページは既に存在し�
 A page needs a name	ページには名前が必要です
 A routing path needs {} points at least	配線経路には少なくとも {} 個の点が必要です
 A section cannot be moved into itself	セクションをそれ自身の中に移動することはできません
+Above	上
 Access token	アクセストークン
 Accessories	付属品
 Accessory	付属品
@@ -17,6 +18,8 @@ Address	アドレス
 Angle	角度
 Apply	適用
 Approvers	承認者
+Automatic	自動
+Below	下
 Bold	太字
 Bottom	底板
 Bottom with removable gland plate	取り外し可能なグランドプレート付きの底板
@@ -31,6 +34,7 @@ Cable core	ケーブル心線
 Cable duct	配線ダクト
 Cable overview	ケーブル概要
 Cable tag	ケーブルタグ
+Cable tag, e.g. -W20	ケーブルのタグ、例: -W20
 Cables	ケーブル
 Cancel	キャンセル
 Cannot read {}: {}	{} を読み取れません: {}
@@ -62,6 +66,7 @@ Configurator	コンフィギュレーター
 Connect	接続
 Connected to	接続先
 Connecting…	接続中…
+Connection point	接続ポイント
 Connection points	接続ポイント
 Connections	接続
 Connector	コネクター
@@ -83,6 +88,7 @@ DWG drawing	DWG 図面
 DXF drawing	DXF 図面
 Dark	ダーク
 Data portal	データポータル
+Data type	データ型
 Date	日付
 Depth	奥行き
 Descending	降順
@@ -90,6 +96,7 @@ Description	説明
 Designation	名称
 Device	デバイス
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	モジュールが属する機器（PV発電機）。その部品が部品表でモジュールを数えます
+Device connection point	機器接続ポイント
 Device description	デバイス記述
 Device tag	デバイスタグ
 Device {}	デバイス {}
@@ -207,12 +214,15 @@ Mounting plate	取付板
 Mounting rail	取付レール
 Name	名前
 Name of the block	ブロックの名前
+Name of the plot, e.g. the cadastral parcel	敷地の名前（例：地番）
+Name of the point, e.g. a survey point	点の名前（例：測量点）
 Name of the scheme	スキームの名前
 Net	ネット
 New name	新しい名前
 No	いいえ
 No Vault item matches a part of the project	プロジェクトの部品に一致する Vault アイテムはありません
 No cable {}	ケーブル {} はありません
+No connection point {}	接続点 {} がありません
 No device {}	デバイス {} はありません
 No enclosure {}	エンクロージャー {} はありません
 No labeling scheme named {}	{} という名前のラベリングスキームはありません
@@ -220,6 +230,7 @@ No machine {}	機械 {} がありません
 No page named {}	{} という名前のページはありません
 No page template named {}	{} という名前のページテンプレートはありません
 No page {}	ページ {} がありません
+No part {}	部品 {} がありません
 No part {} in the project	プロジェクトに部品 {} がありません
 No parts found	部品が見つかりません
 No plot frame named {}	{} という名前の図枠はありません
@@ -233,6 +244,7 @@ No symbol with id {}	ID {} のシンボルはありません
 Nominal size	呼び径
 Not a language code: {}	言語コードではありません: {}
 Not a macro file: {}	マクロファイルではありません: {}
+Not a symbol id: {}	シンボル ID ではありません: {}
 Not a valid rule set file: {}	有効なルールセットファイルではありません: {}
 Not in the schematic	回路図にありません
 Note	注記
@@ -326,6 +338,8 @@ Relay	リレー
 Released pages cannot be moved	リリース済みのページは移動できません
 Remove	削除
 Remove from favorites	お気に入りから削除
+Remove the boundary	境界を削除
+Remove the reference point	基準点を削除
 Report	レポート
 Report blocks	レポートブロック
 Report: {}	レポート: {}
@@ -384,6 +398,8 @@ Successor	後継品
 Supplier	仕入先
 Supply	供給
 Symbol	シンボル
+Symbol key	シンボルキー
+Symbolic address	シンボリックアドレス
 Symbols	シンボル
 System	システム
 T-junction	T分岐
@@ -455,6 +471,7 @@ open	開
 rejected	却下
 right	右
 spare	予備
+strip {} mm, {}	被覆除去 {} mm、{}
 the disk is full	ディスクがいっぱいです
 the file exists already	ファイルは既に存在します
 this is a folder	これはフォルダーです
@@ -464,5 +481,6 @@ yes	はい
 {} exists already	{} は既に存在します
 {} parts	{} 個の部品
 {} wires	{} 本の電線
+{}, together with the wire to {}	{}、{} への電線と共用
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} は床置きではありません。床置き部品を選択してください
 ➕ Add accessory	➕ 付属品を追加

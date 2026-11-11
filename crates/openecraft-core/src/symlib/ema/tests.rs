@@ -1,6 +1,20 @@
 use super::*;
 
 #[test]
+fn vendor_neutral_part_assignment_uses_the_project_symbol() {
+    let mut prj = crate::model::Project::default();
+    prj.symbols.push(crate::symlib::UserSymbol {
+        key: "user:vendor_part".into(),
+        pins: vec![crate::symlib::UserPin { pos: p(0., 0.), label: "11".into(), internal: false }],
+        ..Default::default()
+    });
+    let part = openecraft_parts::Part { number: "vendor.part".into(), symbol: "user:vendor_part".into(), ..Default::default() };
+    let (key, pins) = part_symbol(&mut prj, &part, None).unwrap();
+    assert_eq!(key, "user:vendor_part");
+    assert_eq!(pins, vec!["11"]);
+}
+
+#[test]
 fn repeating_a_card_uses_each_channel_then_starts_a_new_device() {
     use crate::{model::Project, ops, parts};
     let mut source = String::from(r#"<EplanPxfRoot Name="Card" Type="WindowMacro">"#);
@@ -207,7 +221,7 @@ fn macro_graphics_and_known_contacts_keep_their_relative_positions() {
     let v = decode(MACRO).unwrap();
     assert_eq!(v.len(), 2);
     assert_ne!(v[0].symbol.key, v[1].symbol.key);
-    assert_eq!(v[0].symbol.pins, [UserPin { pos: p(8., 4.), label: "1".into() }]);
+    assert_eq!(v[0].symbol.pins, [UserPin { pos: p(8., 4.), label: "1".into(), internal: false }]);
     assert_eq!(v[0].symbol.prims[0], Prim::Line { a: p(2., 2.), b: p(4., -1.), dashed: false });
     assert!(v[0].warnings.contains("library SPECIAL/999/1"));
     let mut symbols = Vec::new();
@@ -261,7 +275,7 @@ fn referenced_devices_stay_separate_and_keep_the_macro_origin() {
 fn native_master_mapping_keeps_internal_bridges_and_contact_positions() {
     let mapping = UserSymbol {
         key: "user:eplan-lib:SPECIAL:999:1".into(),
-        pins: vec![UserPin { pos: p(-4., 0.), label: "a".into() }, UserPin { pos: p(4., 0.), label: "b".into() }],
+        pins: vec![UserPin { pos: p(-4., 0.), label: "a".into(), internal: false }, UserPin { pos: p(4., 0.), label: "b".into(), internal: false }],
         bridges: vec![(0, 1)],
         ..Default::default()
     };
@@ -276,7 +290,7 @@ fn native_master_mapping_keeps_internal_bridges_and_contact_positions() {
 fn explicit_logic_and_mirrored_contacts_use_the_master_direction() {
     let text = MACRO.replace("A1263=\"0\"><S61x183 A1061=\"1\"/>", "A1263=\"7\"><S61x183 A1061=\"0\" A1063=\"1\"><S16x1062 A161=\"1\"/></S61x183>");
     let v = decode(&text).unwrap();
-    assert_eq!(v[0].symbol.pins[0], UserPin { pos: p(4., 8.), label: "1".into() });
+    assert_eq!(v[0].symbol.pins[0], UserPin { pos: p(4., 8.), label: "1".into(), internal: false });
     let unknown = &v[0].unresolved[0];
     assert_eq!(unknown.master, "SPECIAL/999/1");
     assert_eq!(unknown.designations, ["9"]);
@@ -287,7 +301,7 @@ fn explicit_logic_and_mirrored_contacts_use_the_master_direction() {
 fn repeated_two_sided_designations_remain_two_independent_endpoints() {
     let text = MACRO.replace("A185=\"1\"", "A185=\"L1;L1\"").replace("A1262=\"13\"", "A1262=\"22\"");
     let v = decode(&text).unwrap();
-    assert_eq!(v[0].symbol.pins, [UserPin { pos: p(8., 4.), label: "L1".into() }, UserPin { pos: p(8., 10.), label: "L1".into() }]);
+    assert_eq!(v[0].symbol.pins, [UserPin { pos: p(8., 4.), label: "L1".into(), internal: false }, UserPin { pos: p(8., 10.), label: "L1".into(), internal: false }]);
     assert!(v[0].symbol.bridges.is_empty());
     let v = decode(&text.replace("L1;L1", "A;B")).unwrap();
     assert!(v[0].symbol.pins.is_empty());
@@ -315,6 +329,58 @@ fn omitted_zero_coordinates_are_drawn_inside_embedded_blocks() {
     let v = decode(&MACRO.replace("<S31x5", &format!("{graphics}<S31x5"))).unwrap();
     assert!(matches!(&v[0].symbol.prims[0], Prim::Poly { pts, closed: true, .. } if pts[0] == p(2., 2.)));
     assert!(matches!(&v[0].symbol.prims[1], Prim::Poly { pts, closed: false, .. } if pts[0] == p(4., 2.)));
+}
+
+#[test]
+fn texts_keep_their_justification() {
+    let text = |justification: &str, text: &str| {
+        let record = format!(r#"<S30x5 A511="??_??@{text};"><S54x505 A961="2" A966="{justification}"/></S30x5><S31x5"#);
+        let v = decode(&MACRO.replace("<S31x5", &record)).unwrap();
+        let Prim::Text { pos, anchor, .. } = v[0].symbol.prims[0].clone() else { panic!("{:?}", v[0].symbol.prims) };
+        (pos, anchor)
+    };
+    // Drawn around its middle: a bottom justified text (table labels of the S7-1200) rises
+    // to stand on its point instead of being struck through by the line below it.
+    assert_eq!(text("7", "0"), (p(2., 2. - 0.7), Anchor::Left));
+    assert_eq!(text("9", "6ES7"), (p(2., 2. - 0.7), Anchor::Right));
+    assert_eq!(text("2", "X10"), (p(2., 2. + 1.1), Anchor::Center));
+    assert_eq!(text("0", "X10"), (p(2., 2.), Anchor::Left));
+    // The last line of a bottom justified text stands on the point.
+    assert_eq!(text("7", "CPU 1212C&#10;DC/DC/RLY").0, p(2., 2. - 0.7 - 2.5));
+}
+
+#[test]
+fn polylines_are_closed_only_without_the_open_flag() {
+    // 6ES7212-1HG50-0XB0 draws its edges as open polylines: closed, each got a chord
+    // back to its start, across the device.
+    let poly = |record: &str| {
+        let v = decode(&MACRO.replace("<S31x5", &format!("{record}<S31x5"))).unwrap();
+        let Prim::Poly { closed, .. } = v[0].symbol.prims[0] else { panic!("{:?}", v[0].symbol.prims) };
+        closed
+    };
+    assert!(!poly(r#"<S34x5 A621="0/0;10/0;10/40" A623="0"/>"#));
+    assert!(poly(r#"<S34x5 A621="0/0;10/0;10/40"/>"#));
+}
+
+#[test]
+fn elliptic_arcs_keep_the_ratio_of_their_axes() {
+    // A vertical major semi-axis of 4 mm and a minor one half as long, all around.
+    let v = decode(&MACRO.replace("<S31x5", r#"<S32x5 A556="0/4" A557="0.5"/><S31x5"#)).unwrap();
+    let Prim::Poly { pts, .. } = &v[0].symbol.prims[0] else { panic!("{:?}", v[0].symbol.prims) };
+    let span = |f: fn(&P) -> f32| pts.iter().map(f).fold(f32::MIN, f32::max) - pts.iter().map(f).fold(f32::MAX, f32::min);
+    assert!((span(|q| q.x) - 4.).abs() < 0.01, "{pts:?}");
+    assert!((span(|q| q.y) - 8.).abs() < 0.01, "{pts:?}");
+    // The angles are seen from the centre: an eighth of a flat ellipse ends on its diagonal
+    // (the parameter would end far out on the major axis).
+    let v = decode(&MACRO.replace("<S31x5", r#"<S32x5 A556="4/0" A557="0.5" A554="0.785398"/><S31x5"#)).unwrap();
+    let Prim::Poly { pts, .. } = &v[0].symbol.prims[0] else { panic!() };
+    let end = *pts.last().unwrap() - p(2., 2.);
+    assert!((end.x - 1.789).abs() < 0.01 && (end.y + 1.789).abs() < 0.01, "{end:?}");
+    // 6ES7212-1HG50-0XB0: a 52 mm edge drawn as an arc of a 800 mm long, 3.5 mm wide ellipse.
+    let edge = r#"<S32x5 A553="0.0676127642085957" A554="3.07397988938122" A556="0/400" A557="0.004361"/><S31x5"#;
+    let v = decode(&MACRO.replace("<S31x5", edge)).unwrap();
+    let Prim::Poly { pts, .. } = &v[0].symbol.prims[0] else { panic!() };
+    assert!(pts.iter().all(|q| (q.y - 2.).abs() < 26.5 && (q.x - 2.).abs() < 1.8), "{pts:?}");
 }
 
 #[test]

@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Sala elétrica
 A device tag must not be empty	A identificação do dispositivo não pode estar vazia
 A pipe run turns at right angles	Um percurso de tubulação vira em ângulo reto
+A plot boundary has at least three corners	Um limite de terreno tem pelo menos três vértices
 A port cannot be connected to itself	Uma porta não pode ser conectada a si mesma
 A room needs at least four walls	Uma sala precisa de pelo menos quatro paredes
 A section number consists of letters and digits and does not start with 0	Um número de seção consiste em letras e dígitos e não começa com 0
@@ -75,7 +76,6 @@ Approved by	Liberado por
 Arms {} and {}	Braços {} e {}
 Asset number	Número do ativo
 Author of the last revision	Autor da última revisão
-Automatic	Automático
 Autotransformer 1-phase	Autotransformador monofásico
 Autotransformer 1-phase, adjustable	Autotransformador monofásico, ajustável
 Autotransformer 3-phase	Autotransformador trifásico
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Função auxiliar: contato principal
 Auxiliary relay coil R (JIS)	Bobina de relé auxiliar R (JIS)
 B10d	B10d
 Ball valve	Válvula de esfera
+Bare conductor	Condutor desencapado
 Basis	Base
 Battery	Bateria
 Battery capacity	Capacidade da bateria
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	O ponto 
 Connection definition point on page {} is not on a wire	O ponto de definição de conexão na página {} não está em um fio
 Connection definitions	Definições de conexão
 Connection list	Lista de conexões
-Connection point	Ponto de conexão
 Connection point descriptions	Descrições dos pontos de conexão
 Connection point {} is not on the {} mm grid.	O ponto de conexão {} não está na grade de {} mm.
 Connection point {} lies on another one.	O ponto de conexão {} está sobre outro.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	Os circuitos de comando CC 
 DC/DC converter	Conversor CC/CC
 DWG export failed: {}	Falha na exportação DWG: {}
 Data sheet	Folha de dados
-Data type	Tipo de dados
 Date of the last revision	Data da última revisão
 Degree of protection	Grau de proteção
 Delete projects	Excluir projetos
@@ -501,8 +500,8 @@ Fan 3-phase	Ventilador trifásico
 Fan 3-phase, 6 terminals	Ventilador trifásico, 6 terminais
 Ferrule	Ponteira
 Ferrule from	Ponteira de
-Ferrule part	Peça de ponteira
 Ferrule to	Ponteira para
+Ferrule {} mm² {}	Terminal tubular {} mm² {}
 Field cable routing	Roteamento de cabos de campo
 Field cable {} cannot be routed from {} to {}	O cabo de campo {} não pode ser roteado de {} para {}
 Field cable {}: {} is not placed in the plant layout	Cabo de campo {}: {} não está posicionado no layout da planta
@@ -523,6 +522,8 @@ Fitting	Engate
 Fittings	Engates
 Flame retardant	Retardante de chama
 Flat cable {} has {} cores, the IDC connector {} has {} pins	O cabo plano {} tem {} condutores, o conector IDC {} tem {} pinos
+Flat plug	Terminal faston macho
+Flat receptacle	Terminal faston fêmea
 Flat roof	Telhado plano
 Float switch NC	Chave de boia NF
 Float switch NO	Chave de boia NA
@@ -548,6 +549,7 @@ Foot switch NC	Pedal NF
 Foot switch NO	Pedal NA
 Foot switch NO (NFPA)	Pedal NA (NFPA)
 Force	Força
+Fork terminal	Terminal garfo
 Format (placeholders)	Formato (espaços reservados)
 Frame size	Tamanho construtivo
 Free	Livre
@@ -751,6 +753,7 @@ Last edited by	Última edição por
 Last inspection	Última inspeção
 Last revision	Última revisão
 Latching	Com retenção
+Latitude is within ±90° and longitude within ±180°	A latitude fica dentro de ±90° e a longitude dentro de ±180°
 Lead time (days)	Prazo de entrega (dias)
 Leakage current	Corrente de fuga
 Leakage line	Linha de dreno
@@ -926,7 +929,6 @@ Neutral (N)	Neutro (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Os condutores neutros devem ser azul-claro (IEC 60204-1, 13.2.3)
 Next inspection	Próxima inspeção
 Nibbling	Roedura
-No connection point {}	Nenhum ponto de conexão {}
 No connection {}	Nenhuma conexão {}
 No devices to add to the single-line diagram	Nenhum dispositivo a adicionar ao diagrama unifilar
 No document embedded - choose a file in the page properties	Nenhum documento incorporado - escolha um arquivo nas propriedades da página
@@ -935,7 +937,6 @@ No known column in the header row	Nenhuma coluna conhecida na linha de cabeçalh
 No option {}	Nenhuma opção {}
 No page or page item with id {}	Nenhuma página ou item de página com o ID {}
 No page with id {}	Nenhuma página com o ID {}
-No part {}	Nenhuma peça {}
 No plugs	Sem conectores
 No report block {}	Nenhum bloco de relatório {}
 No segment template named {}	Nenhum modelo de segmento com o nome {}
@@ -961,7 +962,6 @@ Not a packed project	Não é um projeto empacotado
 Not a project database: {}	Não é um banco de dados de projetos: {}
 Not a settings scheme: {}	Não é um esquema de configurações: {}
 Not a structure template: {}	Não é um modelo de estrutura: {}
-Not a symbol id: {}	Não é um ID de símbolo: {}
 Not a valid JSON file: {}	Não é um arquivo JSON válido: {}
 Not a valid project file: {}	Não é um arquivo de projeto válido: {}
 Not a valid property library: {}	Não é uma biblioteca de propriedades válida: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Lâmpada piloto (NFPA)
 Pilot line	Linha de pilotagem
 Pin connection diagram	Diagrama de conexões de pinos
 Pin side (male)	Lado dos pinos (macho)
+Pin terminal	Terminal pino
 Pipe	Tubulação
 Piston diameter	Diâmetro do pistão
 Piston rod diameter	Diâmetro da haste do pistão
@@ -1342,6 +1343,7 @@ Reviewer	Revisor
 Revision overview (changes)	Visão geral de revisões (alterações)
 Right side	Lado direito
 Right side panel	Painel lateral direito
+Ring terminal	Terminal olhal
 Rivet nut	Porca rebite
 RoHS compliant	Em conformidade com RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Chave de rolete NA
 Roof	Teto
 Roof top	Cobertura
 Room floor	Piso da sala
+Room {} stands outside the plot boundary	A sala {} está fora do limite do terreno
 Rotation	Rotação
 Round punch	Punção redondo
 Routing list (3D)	Lista de roteamento (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Decapagem (mm)
 Stripping from (mm)	Decapagem de (mm)
 Stripping to (mm)	Decapagem para (mm)
 Stroke	Curso
+Structure box on page {} sets no structure identifier	A caixa de estrutura da página {} não define nenhum identificador de estrutura
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	Caixas de estrutura da página {} se sobrepõem sem que uma esteja dentro da outra: os dispositivos em ambas recebem a estrutura da menor
 Structure identifier {} is not defined in the structure management	O identificador de estrutura {} não está definido no gerenciamento de estruturas
 Structure identifier {} must not contain blanks or the signs = + - / :	O identificador de estrutura {} não pode conter espaços nem os sinais = + - / :
 Structure identifiers	Identificadores de estrutura
@@ -1537,8 +1542,6 @@ Switches / Sensors	Chaves / sensores
 Switches, pushbuttons	Chaves, botões
 Switching frequency	Frequência de manobras
 Switching output	Saída de comutação
-Symbol key	Chave do símbolo
-Symbolic address	Endereço simbólico
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A peça em T na página {} não corresponde aos seus fios: precisa de um fio na sua direção, dois transversais e nenhum ponto de conexão ali
 Table of contents	Sumário
 Tabloid landscape	Tabloid paisagem
@@ -1566,9 +1569,12 @@ Terminal description	Descrição do borne
 Terminal diagram	Diagrama de bornes
 Terminal line-up	Alinhamento de bornes
 Terminal marker	Marcador de borne
+Terminal parts	Peças das pontas
 Terminal strip data of {} without terminals	Dados de régua de bornes de {} sem bornes
 Terminal strip overview	Visão geral de réguas de bornes
 Terminal strips and PLC addresses	Réguas de bornes e endereços de CLP
+Termination (from)	Terminação (de)
+Termination (to)	Terminação (para)
 Text file	Arquivo de texto
 The DXF file contains nothing that can be imported	O arquivo DXF não contém nada que possa ser importado
 The PDF has no pages that can be read	O PDF não tem páginas que possam ser lidas
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	O fabricante do conju
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Os painéis em linha em sua sala: planta em L, parede interna, porta e janela, a linha de painéis em seu lugar, um trilho com uma tomada em uma parede, uma luminária de emergência montada na parede e uma eletrocalha sob o teto.
 The configuration is not a JSON object	A configuração não é um objeto JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	O transportador após a primeira liberação: uma revisão liberada e bloqueada, alterações marcadas desde então, comentários de análise com marcações em vermelho, uma solicitação de alteração, a revisão B no fluxo de aprovação e uma linha de base para comparar.
+The coordinates of the reference point must be numbers	As coordenadas do ponto de referência devem ser números
+The coordinates of the reference point {} are not valid	As coordenadas do ponto de referência {} não são válidas
+The corners of the plot boundary must be numbers	Os vértices do limite do terreno devem ser números
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	O projeto de demonstração: entradas e saídas do CLP, layout do painel com trilhos, canaletas e dispositivos de porta, chicote da porta e cabo do motor.
 The embedded document {} is damaged	O documento incorporado {} está danificado
 The file is empty	O arquivo está vazio
@@ -1592,6 +1601,9 @@ The next free id is already in use	O próximo ID livre já está em uso
 The option needs a name	A opção precisa de um nome
 The page needs a number	A página precisa de um número
 The pages were changed after the submission; submit the revision again	As páginas foram alteradas após o envio; envie a revisão novamente
+The plot boundary crosses itself	O limite do terreno cruza-se a si mesmo
+The plot boundary encloses no area	O limite do terreno não delimita nenhuma área
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	O limite do terreno não é um polígono: cruza-se a si mesmo ou tem menos de três vértices
 The project has no panel layout	O projeto não tem layout do painel
 The property needs a name	A propriedade precisa de um nome
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	A estação de bombeamento montada em dois painéis de piso em linha: sistema de barramentos, trilhos e canaletas, dispositivos de porta e puxadores, ventilador com filtro, luminária, barra de terra, prensa-cabos, uma passagem de cabos, cálculo de climatização, ocupação das canaletas e roteamento 3D.
@@ -1685,6 +1697,14 @@ Tubes	Tubos
 Tubing / piping list	Lista de tubos / tubulações
 Turned once (quarter landing)	Com um giro (patamar de canto)
 Turned twice (two quarter landings)	Com dois giros (dois patamares de canto)
+Twin ferrule	Terminal tubular duplo
+Twin ferrule at {} is not shared with a second wire	O terminal tubular duplo em {} não é compartilhado com um segundo fio
+Twin ferrule at {} joins wires of {} and {}	O terminal tubular duplo em {} une fios de {} e {}
+Twin ferrule at {}: {} wires end there, it takes two	Terminal tubular duplo em {}: {} fios terminam ali, ele recebe dois
+Twin ferrule with (from)	Terminal tubular duplo com (de)
+Twin ferrule with (to)	Terminal tubular duplo com (para)
+Twin ferrule {} mm² {}	Terminal tubular duplo {} mm² {}
+Twin ferrules	Terminais tubulares duplos
 Two connection symbols on page {} lie on the same point	Dois símbolos de conexão na página {} estão no mesmo ponto
 Two-way switch (installation)	Interruptor paralelo (instalação)
 Type numbers	Números de tipo
@@ -1767,6 +1787,7 @@ Winding connection	Ligação do enrolamento
 Wire assigned to unknown cable {}	Fio atribuído a cabo desconhecido {}
 Wire colour GNYE is reserved for protective conductors ({})	A cor de fio GNYE é reservada para condutores de proteção ({})
 Wire colours and cross-sections	Cores e seções transversais dos fios
+Wire crossings and connections	Cruzamentos e junções de fios
 Wire defaults	Padrões de fio
 Wire jumper	Ponte de fio
 Wire list (panel routing)	Lista de fios (roteamento no painel)
@@ -1844,6 +1865,7 @@ leakage	dreno
 low	baixa
 measuring	medição
 new	novo
+no free cable gland	nenhum prensa-cabo livre
 no header	nenhum cabeçalho
 no list	nenhuma lista
 no path through the route network	nenhum caminho pela rede de rotas
@@ -1875,8 +1897,6 @@ routed	roteado
 shield clamp ({} mm away)	braçadeira de blindagem (a {} mm)
 silver	prateado
 starts with	começa com
-strip {} mm	decapar {} mm
-strip {} mm, ferrule {} mm² {}	decapar {} mm, ponteira {} mm² {}
 suction	sucção
 supply	alimentação
 terminals {} – {}	bornes {} – {}
@@ -1915,6 +1935,8 @@ yellow	amarelo
 {} is placed at the missing node {}	{} está posicionado no nó ausente {}
 {} is planned twice ({} and {})	{} está planejado duas vezes ({} e {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} é seletivo em relação a {} apenas até {} A (corrente de curto-circuito {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} mantém sua estrutura: suas funções principais estão em caixas de estrutura diferentes ({})
+{} keeps its structure: {} exists already	{} mantém sua estrutura: {} já existe
 {} lies outside page {}	{} está fora da página {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} marcas de montagem pertencem a itens que não existem mais
@@ -1926,11 +1948,13 @@ yellow	amarelo
 {} report references converted to report names	{} referências de relatório convertidas em nomes de relatório
 {} s	{} s
 {} single part assignments converted to part lists	{} atribuições de peça individuais convertidas em listas de peças
+{} stands outside the plot boundary	{} está fora do limite do terreno
 {} symbols, {} wires, {} texts / graphics	{} símbolos, {} fios, {} textos / gráficos
 {} texts are not translated into {}	{} textos não estão traduzidos para {}
 {} unused device data records removed	{} registros de dados de dispositivo não usados removidos
 {} wiring marks belong to wires that no longer exist	{} marcas de fiação pertencem a fios que não existem mais
 {} without device tag on page {}	{} sem identificador de dispositivo na página {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} não pode ser roteado: cada prensa-cabo de {} está ocupado por outro cabo. Adicione um prensa-cabo para ele.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} não pode ser roteado: nenhum caminho que mantenha metade da sua espessura livre de tudo e curve com o seu raio de {} mm. Mova as suas extremidades ou abra espaço.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} entra pelo fundo: nenhum prensa-cabo no gabinete
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} entra pelo teto: nenhum prensa-cabo no teto, nas laterais ou na traseira
@@ -1997,6 +2021,7 @@ yellow	amarelo
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: nenhuma peça de ponte para a ponte {} (dados técnicos Jumper da peça de borne)
 {}: no part assigned	{}: nenhuma peça atribuída
 {}: no service space of {} mm in front of {} (the door is too close)	{}: não há espaço de serviço de {} mm à frente de {} (a porta está muito próxima)
+{}: none for this cross-section	{}: nenhum para esta seção
 {}: not in the single-line diagram	{}: fora do diagrama unifilar
 {}: not placed in the panel layout	{}: não posicionado no layout do painel
 {}: operations per year needed for the B10d of {}	{}: manobras por ano necessárias para o B10d de {}
@@ -2010,6 +2035,8 @@ yellow	amarelo
 {}: port {} is not a {} port	{}: a porta {} não é uma porta {}
 {}: ports with different media ({})	{}: portas com meios diferentes ({})
 {}: replace {} after {} years (T10d)	{}: substituir {} após {} anos (T10d)
+{}: roof {} reaches over the plot boundary	{}: o telhado {} ultrapassa o limite do terreno
+{}: room {} stands outside the plot boundary	{}: a sala {} está fora do limite do terreno
 {}: routing path {} is full ({} % of its usable cross-section)	{}: o caminho de roteamento {} está cheio ({} % de sua seção transversal útil)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a corrente de segunda falta {} A em {} não desliga em {} s (precisa de {} A)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: o símbolo unifilar '{}' não corresponde ao esquema elétrico ('{}')

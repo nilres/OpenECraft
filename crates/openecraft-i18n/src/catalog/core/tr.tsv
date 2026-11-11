@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Elektrik odası
 A device tag must not be empty	Cihaz etiketi boş olamaz
 A pipe run turns at right angles	Bir boru güzergâhı dik açıyla döner
+A plot boundary has at least three corners	Bir arsa sınırının en az üç köşesi vardır
 A port cannot be connected to itself	Bir port kendisine bağlanamaz
 A room needs at least four walls	Bir oda en az dört duvar gerektirir
 A section number consists of letters and digits and does not start with 0	Bölüm numarası harf ve rakamlardan oluşur ve 0 ile başlamaz
@@ -75,7 +76,6 @@ Approved by	Onaylayan
 Arms {} and {}	Kollar {} ve {}
 Asset number	Demirbaş numarası
 Author of the last revision	Son revizyonun yazarı
-Automatic	Otomatik
 Autotransformer 1-phase	Ototransformatör 1 fazlı
 Autotransformer 1-phase, adjustable	Ototransformatör 1 fazlı, ayarlanabilir
 Autotransformer 3-phase	Ototransformatör 3 fazlı
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Yardımcı fonksiyon: ana kontak
 Auxiliary relay coil R (JIS)	Yardımcı röle bobini R (JIS)
 B10d	B10d
 Ball valve	Küresel vana
+Bare conductor	Çıplak iletken
 Basis	Dayanak
 Battery	Batarya
 Battery capacity	Batarya kapasitesi
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	{} sayfa
 Connection definition point on page {} is not on a wire	{} sayfasındaki bağlantı tanım noktası bir tel üzerinde değil
 Connection definitions	Bağlantı tanımları
 Connection list	Bağlantı listesi
-Connection point	Bağlantı noktası
 Connection point descriptions	Bağlantı noktası açıklamaları
 Connection point {} is not on the {} mm grid.	Bağlantı noktası {}, {} mm ızgarasında değil.
 Connection point {} lies on another one.	Bağlantı noktası {} başka bir noktanın üzerinde.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	DC kumanda devreleri mavi o
 DC/DC converter	DC/DC dönüştürücü
 DWG export failed: {}	DWG dışa aktarımı başarısız oldu: {}
 Data sheet	Veri sayfası
-Data type	Veri tipi
 Date of the last revision	Son revizyonun tarihi
 Degree of protection	Koruma derecesi
 Delete projects	Projeleri sil
@@ -501,8 +500,8 @@ Fan 3-phase	Fan 3 fazlı
 Fan 3-phase, 6 terminals	Fan 3 fazlı, 6 bağlantı ucu
 Ferrule	Kablo yüksüğü
 Ferrule from	Başlangıçta yüksük
-Ferrule part	Kablo yüksüğü parçası
 Ferrule to	Bitişte yüksük
+Ferrule {} mm² {}	Yüksük {} mm² {}
 Field cable routing	Saha kablosu güzergâhı
 Field cable {} cannot be routed from {} to {}	Saha kablosu {}, {} ile {} arasında döşenemiyor
 Field cable {}: {} is not placed in the plant layout	Saha kablosu {}: {} tesis yerleşiminde yerleştirilmemiş
@@ -523,6 +522,8 @@ Fitting	Rakor
 Fittings	Rakorlar
 Flame retardant	Alev geciktirici
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Yassı kablo {}: {} damar, IDC konnektör {}: {} pin
+Flat plug	Erkek düz soket
+Flat receptacle	Dişi düz soket
 Flat roof	Düz çatı
 Float switch NC	Şamandıra şalteri NK
 Float switch NO	Şamandıra şalteri NA
@@ -548,6 +549,7 @@ Foot switch NC	Ayak şalteri NK
 Foot switch NO	Ayak şalteri NA
 Foot switch NO (NFPA)	Ayak şalteri NA (NFPA)
 Force	Kuvvet
+Fork terminal	Çatal kablo pabucu
 Format (placeholders)	Format (yer tutucular)
 Frame size	Yapı boyutu
 Free	Serbest
@@ -751,6 +753,7 @@ Last edited by	Son düzenleyen
 Last inspection	Son muayene
 Last revision	Son revizyon
 Latching	Kalıcı
+Latitude is within ±90° and longitude within ±180°	Enlem ±90° ve boylam ±180° içindedir
 Lead time (days)	Teslim süresi (gün)
 Leakage current	Kaçak akım
 Leakage line	Kaçak hattı
@@ -926,7 +929,6 @@ Neutral (N)	Nötr (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Nötr iletkenler açık mavi olmalıdır (IEC 60204-1, 13.2.3)
 Next inspection	Sonraki muayene
 Nibbling	Nibbling
-No connection point {}	{} bağlantı noktası yok
 No connection {}	{} bağlantısı yok
 No devices to add to the single-line diagram	Tek hat şemasına eklenecek cihaz yok
 No document embedded - choose a file in the page properties	Gömülü belge yok - sayfa özelliklerinde bir dosya seçin
@@ -935,7 +937,6 @@ No known column in the header row	Başlık satırında bilinen sütun yok
 No option {}	{} seçeneği yok
 No page or page item with id {}	{} kimlikli sayfa veya sayfa öğesi yok
 No page with id {}	{} kimlikli sayfa yok
-No part {}	{} parçası yok
 No plugs	Konnektör yok
 No report block {}	{} rapor bloğu yok
 No segment template named {}	{} adlı segment şablonu yok
@@ -961,7 +962,6 @@ Not a packed project	Paketlenmiş proje değil
 Not a project database: {}	Proje veritabanı değil: {}
 Not a settings scheme: {}	Ayar şeması değil: {}
 Not a structure template: {}	Yapı şablonu değil: {}
-Not a symbol id: {}	Sembol kimliği değil: {}
 Not a valid JSON file: {}	Geçerli bir JSON dosyası değil: {}
 Not a valid project file: {}	Geçerli bir proje dosyası değil: {}
 Not a valid property library: {}	Geçerli bir özellik kütüphanesi değil: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Sinyal lambası (NFPA)
 Pilot line	Pilot hattı
 Pin connection diagram	Pin bağlantı şeması
 Pin side (male)	Pin tarafı (erkek)
+Pin terminal	Pin kablo pabucu
 Pipe	Boru
 Piston diameter	Piston çapı
 Piston rod diameter	Piston kolu çapı
@@ -1342,6 +1343,7 @@ Reviewer	İncelemeci
 Revision overview (changes)	Revizyon genel bakışı (değişiklikler)
 Right side	Sağ taraf
 Right side panel	Sağ yan panel
+Ring terminal	Halka kablo pabucu
 Rivet nut	Perçin somun
 RoHS compliant	RoHS uyumlu
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Makaralı şalter NA
 Roof	Üst
 Roof top	Çatı
 Room floor	Oda zemini
+Room {} stands outside the plot boundary	{} odası arsa sınırının dışında
 Rotation	Dönüş
 Round punch	Yuvarlak zımba
 Routing list (3D)	Yönlendirme listesi (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Soyma (mm)
 Stripping from (mm)	Soyma başlangıç (mm)
 Stripping to (mm)	Soyma bitiş (mm)
 Stroke	Strok
+Structure box on page {} sets no structure identifier	{} sayfasındaki yapı kutusu hiçbir yapı tanımlayıcısı belirlemiyor
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	{} sayfasındaki yapı kutuları biri diğerinin içinde olmadan çakışıyor: her ikisindeki cihazlar küçük olanın yapısını alır
 Structure identifier {} is not defined in the structure management	Yapı tanımlayıcısı {} yapı yönetiminde tanımlı değil
 Structure identifier {} must not contain blanks or the signs = + - / :	Yapı tanımlayıcısı {} boşluk veya = + - / : işaretlerini içeremez
 Structure identifiers	Yapı tanımlayıcıları
@@ -1537,8 +1542,6 @@ Switches / Sensors	Anahtarlar / Sensörler
 Switches, pushbuttons	Şalterler, butonlar
 Switching frequency	Anahtarlama frekansı
 Switching output	Anahtarlama çıkışı
-Symbol key	Sembol anahtarı
-Symbolic address	Sembolik adres
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Sayfa {} üzerindeki T parçası tellerine uymuyor: yönünde bir tel, enine iki tel gerekir ve orada bağlantı noktası olmamalı
 Table of contents	İçindekiler
 Tabloid landscape	Tabloid yatay
@@ -1566,9 +1569,12 @@ Terminal description	Klemens açıklaması
 Terminal diagram	Klemens şeması
 Terminal line-up	Klemens dizilimi
 Terminal marker	Klemens işareti
+Terminal parts	Uç parçaları
 Terminal strip data of {} without terminals	Klemensi olmayan {} klemens şeridi verileri
 Terminal strip overview	Klemens şeridi genel bakışı
 Terminal strips and PLC addresses	Klemens şeritleri ve PLC adresleri
+Termination (from)	Sonlandırma (başlangıç)
+Termination (to)	Sonlandırma (bitiş)
 Text file	Metin dosyası
 The DXF file contains nothing that can be imported	DXF dosyası içe aktarılabilecek bir şey içermiyor
 The PDF has no pages that can be read	PDF'te okunabilir sayfa yok
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	Düzen imalatçısı 
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Odasındaki yan yana panolar: L biçimli kat planı, iç duvar, kapı ve pencere, yerindeki pano dizisi, bir duvarda prizli bir ray, duvara monte acil durum aydınlatması ve tavan altında bir kablo tavası.
 The configuration is not a JSON object	Yapılandırma bir JSON nesnesi değil
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	İlk yayından sonra konveyör: yayınlanmış ve kilitlenmiş bir revizyon, o zamandan beri işaretlenen değişiklikler, kırmızı işaretlemeli inceleme yorumları, bir değişiklik talebi, onay sürecindeki B revizyonu ve karşılaştırma için bir temel durum.
+The coordinates of the reference point must be numbers	Referans noktasının koordinatları sayı olmalıdır
+The coordinates of the reference point {} are not valid	{} referans noktasının koordinatları geçerli değil
+The corners of the plot boundary must be numbers	Arsa sınırının köşeleri sayı olmalıdır
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	Demo projesi: PLC giriş ve çıkışları, raylar, kablo kanalları ve kapı cihazlarıyla pano yerleşimi, kapı kablo demeti ve motor kablosu.
 The embedded document {} is damaged	Gömülü belge {} hasarlı
 The file is empty	Dosya boş
@@ -1592,6 +1601,9 @@ The next free id is already in use	Sonraki boş kimlik zaten kullanımda
 The option needs a name	Seçenek için bir ad gerekli
 The page needs a number	Sayfa için bir numara gerekli
 The pages were changed after the submission; submit the revision again	Sayfalar gönderimden sonra değiştirildi; revizyonu yeniden gönderin
+The plot boundary crosses itself	Arsa sınırı kendisiyle kesişiyor
+The plot boundary encloses no area	Arsa sınırı bir alan çevrelemiyor
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	Arsa sınırı bir çokgen değil: kendisiyle kesişiyor veya üçten az köşesi var
 The project has no panel layout	Projede pano yerleşimi yok
 The property needs a name	Özellik için bir ad gerekli
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	İki yan yana zemin panosuna kurulmuş pompa istasyonu: bara sistemi, raylar ve kablo kanalları, kapı cihazları ve kollar, filtreli fan, aydınlatma, PE barası, kablo rakorları, bir kablo geçişi, iklimlendirme hesabı, kanal doluluğu ve 3D yönlendirme.
@@ -1685,6 +1697,14 @@ Tubes	Tüpler
 Tubing / piping list	Tüp / boru listesi
 Turned once (quarter landing)	Bir kez dönen (köşe sahanlığı)
 Turned twice (two quarter landings)	İki kez dönen (iki köşe sahanlığı)
+Twin ferrule	İkiz yüksük
+Twin ferrule at {} is not shared with a second wire	{} noktasındaki ikiz yüksük ikinci bir telle paylaşılmıyor
+Twin ferrule at {} joins wires of {} and {}	{} noktasındaki ikiz yüksük {} ve {} kesitli telleri birleştiriyor
+Twin ferrule at {}: {} wires end there, it takes two	{} noktasındaki ikiz yüksük: orada {} tel bitiyor, iki tel alır
+Twin ferrule with (from)	İkiz yüksük ile (başlangıç)
+Twin ferrule with (to)	İkiz yüksük ile (bitiş)
+Twin ferrule {} mm² {}	İkiz yüksük {} mm² {}
+Twin ferrules	İkiz yüksükler
 Two connection symbols on page {} lie on the same point	Sayfa {} üzerinde iki bağlantı sembolü aynı noktada
 Two-way switch (installation)	Vaviyen anahtar (tesisat)
 Type numbers	Tip numaraları
@@ -1767,6 +1787,7 @@ Winding connection	Sargı bağlantısı
 Wire assigned to unknown cable {}	Tel bilinmeyen bir kabloya atanmış: {}
 Wire colour GNYE is reserved for protective conductors ({})	GNYE tel rengi koruma iletkenlerine ayrılmıştır ({})
 Wire colours and cross-sections	Tel renkleri ve kesitleri
+Wire crossings and connections	Tel kesişimleri ve bağlantıları
 Wire defaults	Tel varsayılanları
 Wire jumper	Tel köprü
 Wire list (panel routing)	Tel listesi (pano yönlendirmesi)
@@ -1844,6 +1865,7 @@ leakage	kaçak
 low	düşük
 measuring	ölçüm
 new	yeni
+no free cable gland	boş kablo rakoru yok
 no header	başlık yok
 no list	liste yok
 no path through the route network	güzergâh ağında yol yok
@@ -1875,8 +1897,6 @@ routed	yönlendirildi
 shield clamp ({} mm away)	ekran kelepçesi ({} mm uzakta)
 silver	gümüş
 starts with	ile başlar
-strip {} mm	soyma {} mm
-strip {} mm, ferrule {} mm² {}	soyma {} mm, kablo yüksüğü {} mm² {}
 suction	emme
 supply	besleme
 terminals {} – {}	klemensler {} – {}
@@ -1915,6 +1935,8 @@ yellow	sarı
 {} is placed at the missing node {}	{}, mevcut olmayan {} düğümüne yerleştirilmiş
 {} is planned twice ({} and {})	{} iki kez planlanmış ({} ve {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{}, {} ile yalnızca {} A'ya kadar seçici (kısa devre akımı {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} yapısını korur: ana fonksiyonları farklı yapı kutularında ({})
+{} keeps its structure: {} exists already	{} yapısını korur: {} zaten var
 {} lies outside page {}	{} sayfa {} dışında
 {} min {} s	{} dk {} sn
 {} mounting marks belong to items that no longer exist	{} montaj işareti artık mevcut olmayan öğelere ait
@@ -1926,11 +1948,13 @@ yellow	sarı
 {} report references converted to report names	{} rapor referansı rapor adlarına dönüştürüldü
 {} s	{} sn
 {} single part assignments converted to part lists	{} tekil parça ataması parça listelerine dönüştürüldü
+{} stands outside the plot boundary	{} arsa sınırının dışında
 {} symbols, {} wires, {} texts / graphics	{} sembol, {} tel, {} metin / grafik
 {} texts are not translated into {}	{} metin {} diline çevrilmedi
 {} unused device data records removed	Kullanılmayan {} cihaz veri kaydı kaldırıldı
 {} wiring marks belong to wires that no longer exist	{} kablolama işareti artık var olmayan tellere ait
 {} without device tag on page {}	{} sayfasında cihaz etiketi olmayan {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} yönlendirilemiyor: {} içindeki her kablo rakoru başka bir kablo tarafından kullanılıyor. Bunun için bir kablo rakoru ekleyin.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} yönlendirilemiyor: her şeyden yarı kalınlığı kadar uzak kalan ve {} mm yarıçapla bükülen yol yok. Uçları taşıyın veya yer açın.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} tabandan giriyor: panoda kablo rakoru yok
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} tavandan giriyor: tavanda, yanlarda veya arkada kablo rakoru yok
@@ -1997,6 +2021,7 @@ yellow	sarı
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: {} köprüsü için köprü parçası yok (klemens parçasının Jumper teknik verisi)
 {}: no part assigned	{}: atanmış parça yok
 {}: no service space of {} mm in front of {} (the door is too close)	{0}: {2} önünde {1} mm servis alanı yok (kapı çok yakın)
+{}: none for this cross-section	{}: bu kesit için yok
 {}: not in the single-line diagram	{}: tek hat şemasında yok
 {}: not placed in the panel layout	{}: pano yerleşiminde yerleştirilmemiş
 {}: operations per year needed for the B10d of {}	{}: {} cihazının B10d değeri için yıllık çalışma sayısı gerekli
@@ -2010,6 +2035,8 @@ yellow	sarı
 {}: port {} is not a {} port	{}: {} portu bir {} portu değil
 {}: ports with different media ({})	{}: farklı ortamlara sahip portlar ({})
 {}: replace {} after {} years (T10d)	{}: {} öğesini {} yıl sonra değiştirin (T10d)
+{}: roof {} reaches over the plot boundary	{}: {} çatısı arsa sınırını aşıyor
+{}: room {} stands outside the plot boundary	{}: {} odası arsa sınırının dışında
 {}: routing path {} is full ({} % of its usable cross-section)	{}: {} yönlendirme yolu dolu (kullanılabilir kesitinin %{} kadarı)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {2} noktasında {1} A ikinci arıza akımı {3} s içinde açmıyor ({4} A gerekli)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: tek hatlı sembol '{}' şemayla eşleşmiyor ('{}')

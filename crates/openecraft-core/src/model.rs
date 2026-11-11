@@ -77,6 +77,9 @@ pub struct Project {
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub sections: Vec<Section>,
     pub parts: Vec<Part>,
+    /// Source-format records retained by importers for data without a native field.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub import_sources: BTreeMap<String, openecraft_parts::Shared<serde_json::Value>>,
     /// Device level data (article assignment etc.) keyed by device tag.
     pub devices: BTreeMap<String, DeviceData>,
     /// Panel layout (enclosures, mounting plates, rails, ducts, devices).
@@ -92,6 +95,9 @@ pub struct Project {
     /// Wires are drawn in their colour (schematic, PDF, SVG).
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub wire_colors: bool,
+    /// How wires cross and connect (jumps, T-connections) and follow a move.
+    #[serde(skip_serializing_if = "WireSettings::is_default")]
+    pub wire_settings: WireSettings,
     /// Terminal strip data (order, jumpers, spare terminals) keyed by strip tag.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub strips: BTreeMap<String, StripData>,
@@ -198,6 +204,7 @@ impl Default for Project {
             pages: Vec::new(),
             sections: Vec::new(),
             parts: Vec::new(),
+            import_sources: BTreeMap::new(),
             devices: BTreeMap::new(),
             layout: Layout::default(),
             cables: Vec::new(),
@@ -205,6 +212,7 @@ impl Default for Project {
             potentials: Vec::new(),
             wire_defaults: Default::default(),
             wire_colors: false,
+            wire_settings: Default::default(),
             strips: BTreeMap::new(),
             plugs: BTreeMap::new(),
             plc_cards: BTreeMap::new(),
@@ -652,6 +660,10 @@ pub struct Page {
     /// Window macros placed on the page (macro boxes).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub macro_boxes: Vec<macro_box::MacroBox>,
+    /// Structure boxes: areas whose devices take other structure identifiers than
+    /// the page's (`crate::structure::scope`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub structure_boxes: Vec<structure::StructureBox>,
 }
 
 impl Default for Page {
@@ -695,6 +707,7 @@ impl Page {
             junctions: Vec::new(),
             values: BTreeMap::new(),
             macro_boxes: Vec::new(),
+            structure_boxes: Vec::new(),
         }
     }
 
@@ -708,6 +721,7 @@ impl Page {
             && self.conn_defs.is_empty()
             && self.cable_defs.is_empty()
             && self.junctions.is_empty()
+            && self.structure_boxes.is_empty()
     }
 }
 
@@ -746,6 +760,19 @@ pub struct SymbolInst {
     /// Tag block placed by hand: position of its top-left corner relative to `pos`.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tag_offset: Option<P>,
+    /// Connection point designations placed by hand, one per symbol pin (missing or
+    /// default ones are placed automatically).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub pin_placements: Vec<PinPlacement>,
+    /// Interruption points: side of the name and the cross reference.
+    #[serde(skip_serializing_if = "TextSide::is_auto")]
+    pub text_side: TextSide,
+    /// Interruption points: name placed by hand.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub label_place: Option<TextPlace>,
+    /// Interruption points: cross reference placed by hand.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub xref_place: Option<TextPlace>,
     /// Further properties shown beside the symbol (part number, description …).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub props: Vec<PlacedProp>,
@@ -758,6 +785,80 @@ pub struct SymbolInst {
     /// Function, terminal and PLC connection point property values.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub values: properties::Values,
+    /// Shared logical channels shown by several representations of this device.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub plc_bindings: BTreeMap<usize,plc_hw::ChannelBinding>,
+    /// Freely drawn device box: width and height of its outline, from `pos` towards
+    /// +x / +y before the rotation (see [`crate::device_boxes`]).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub size: Option<P>,
+    /// Connection point designation placed by hand (symbols with one connection point,
+    /// such as device connection points); None: beside the connection point.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pin_label: Option<PinLabel>,
+}
+
+/// Position of a connection point designation relative to the symbol position and
+/// its alignment.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PinLabel {
+    pub offset: P,
+    pub anchor: crate::symbols::Anchor,
+}
+
+impl SymbolInst {
+    /// Area of the symbol graphics in its own coordinates: the outline of a device box,
+    /// else the symbol's.
+    pub fn local_bounds(&self, def: &crate::symbols::SymbolDef) -> crate::geom::R {
+        match self.size {
+            Some(sz) => crate::geom::R::from_points(p(0.0, 0.0), sz),
+            None => def.bounds,
+        }
+    }
+
+    /// Area of the symbol graphics on the page (a device box is not mirrored).
+    pub fn bounds(&self, def: &crate::symbols::SymbolDef) -> crate::geom::R {
+        let b = self.local_bounds(def);
+        let mirror = self.mirror && self.size.is_none();
+        let mut r = crate::geom::R::nothing();
+        for c in [b.min, p(b.max.x, b.min.y), b.max, p(b.min.x, b.max.y)] {
+            r.extend(self.pos + c.transform(self.rot, mirror));
+        }
+        r
+    }
+
+    /// A cable marker follows its inventory; other explicit part references never fall back.
+    pub fn selected_part_number<'a>(&self, prj: &'a Project) -> Option<&'a str> {
+        if let Some(tag)=self.values.get("function.cable").filter(|tag|!tag.is_empty()) {
+            return prj.cable(tag).filter(|cable|!cable.part.is_empty()).map(|cable|cable.part.as_str())
+        }
+        if let Some(number) = self.values.get("function.part_number") {
+            if let Some(device) = prj.devices.get(&self.tag) {
+                if let Some(part)=device.parts.iter().find(|p|p.number==*number) {return Some(part.number.as_str());}
+            }
+            return prj.cable(&self.tag).filter(|c| c.part == *number).map(|c| c.part.as_str());
+        }
+        self.assigned_part_number(prj, 1)
+    }
+
+    pub(crate) fn assigned_part_number<'a>(&self, prj: &'a Project, index: usize) -> Option<&'a str> {
+        let index = index.checked_sub(1)?;
+        if let Some(tag)=self.values.get("function.cable").filter(|tag|!tag.is_empty()) {
+            return prj.cable(tag).filter(|cable|index==0 && !cable.part.is_empty()).map(|cable|cable.part.as_str())
+        }
+        if let Some(device) = prj.devices.get(&self.tag) {
+            return device.parts.get(index).map(|part| part.number.as_str());
+        }
+        prj.cable(&self.tag).filter(|c| index == 0 && !c.part.is_empty()).map(|c| c.part.as_str())
+    }
+
+    /// Electrical identity of an interruption point; its displayed name stays unchanged.
+    pub fn interruption_key(&self) -> String {
+        match self.values.get("function.connection_scope").filter(|scope| !scope.is_empty()) {
+            Some(scope) => format!("\0{}\0{}", scope, self.label),
+            None => self.label.clone(),
+        }
+    }
 }
 
 impl Default for SymbolInst {
@@ -773,11 +874,182 @@ impl Default for SymbolInst {
             function_text: String::new(),
             pins: Vec::new(),
             tag_offset: None,
+            pin_placements: Vec::new(),
+            text_side: TextSide::Auto,
+            label_place: None,
+            xref_place: None,
             props: Vec::new(),
             scheme: String::new(),
             function_def: String::new(),
             values: BTreeMap::new(),
+            plc_bindings: BTreeMap::new(),
+            size: None,
+            pin_label: None,
         }
+    }
+}
+
+impl SymbolInst {
+    /// Placement of the designation of pin `i` (default: automatic).
+    pub fn pin_placement(&self, i: usize) -> PinPlacement {
+        self.pin_placements.get(i).copied().unwrap_or_default()
+    }
+
+    /// Places the designation of pin `i`; trailing automatic ones are not stored.
+    pub fn set_pin_placement(&mut self, i: usize, label: PinPlacement) {
+        if self.pin_placements.len() <= i {
+            self.pin_placements.resize(i + 1, PinPlacement::default());
+        }
+        self.pin_placements[i] = label;
+        while self.pin_placements.last().is_some_and(|l| l.is_auto()) {
+            self.pin_placements.pop();
+        }
+    }
+
+    /// Shows the name and the cross reference of an interruption point on `side`,
+    /// dropping texts placed by hand.
+    pub fn set_text_side(&mut self, side: TextSide) {
+        self.text_side = side;
+        self.label_place = None;
+        self.xref_place = None;
+    }
+
+    /// Are the name or the cross reference not placed automatically?
+    pub fn texts_placed(&self) -> bool {
+        !self.text_side.is_auto() || self.label_place.is_some() || self.xref_place.is_some()
+    }
+}
+
+/// Where the name and the cross reference of an interruption point are shown.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TextSide {
+    /// Horizontal points: the name above and the cross reference below the conductor,
+    /// ending at the connection point (inside the page for points at its edge);
+    /// vertical points: beside the arrow.
+    #[default]
+    Auto,
+    Above,
+    Below,
+    Left,
+    Right,
+}
+
+impl TextSide {
+    pub const ALL: [TextSide; 5] = [TextSide::Auto, TextSide::Above, TextSide::Below, TextSide::Left, TextSide::Right];
+
+    pub fn is_auto(&self) -> bool {
+        *self == TextSide::Auto
+    }
+
+    /// Name in commands and files.
+    pub fn code(self) -> &'static str {
+        match self {
+            TextSide::Auto => "auto",
+            TextSide::Above => "above",
+            TextSide::Below => "below",
+            TextSide::Left => "left",
+            TextSide::Right => "right",
+        }
+    }
+
+    pub fn from_code(code: &str) -> Option<TextSide> {
+        TextSide::ALL.into_iter().find(|s| s.code() == code)
+    }
+
+    pub fn title(self) -> &'static str {
+        match self {
+            TextSide::Auto => tr("Automatic"),
+            TextSide::Above => tr("Above"),
+            TextSide::Below => tr("Below"),
+            TextSide::Left => tr("Left"),
+            TextSide::Right => tr("Right"),
+        }
+    }
+}
+
+/// A symbol text placed by hand: its anchor point (vertically centred) relative to the
+/// symbol position and its horizontal alignment.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
+pub struct TextPlace {
+    pub offset: P,
+    #[serde(skip_serializing_if = "is_left", default = "default_anchor")]
+    pub anchor: Anchor,
+}
+
+
+/// Side of a connection point designation, in the symbol's own orientation (before
+/// rotation and mirroring), so that it turns with the symbol.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LabelSide {
+    Left,
+    Right,
+    Above,
+    Below,
+}
+
+impl LabelSide {
+    pub const ALL: [LabelSide; 4] = [LabelSide::Left, LabelSide::Right, LabelSide::Above, LabelSide::Below];
+
+    pub fn name(self) -> &'static str {
+        match self {
+            LabelSide::Left => "left",
+            LabelSide::Right => "right",
+            LabelSide::Above => "above",
+            LabelSide::Below => "below",
+        }
+    }
+
+    pub fn from_name(name: &str) -> Option<LabelSide> {
+        LabelSide::ALL.into_iter().find(|s| s.name() == name)
+    }
+
+    pub fn dir(self) -> P {
+        match self {
+            LabelSide::Left => P { x: -1.0, y: 0.0 },
+            LabelSide::Right => P { x: 1.0, y: 0.0 },
+            LabelSide::Above => P { x: 0.0, y: -1.0 },
+            LabelSide::Below => P { x: 0.0, y: 1.0 },
+        }
+    }
+
+    fn of_dir(d: P) -> LabelSide {
+        match (d.x.round() as i32, d.y.round() as i32) {
+            (x, _) if x < 0 => LabelSide::Left,
+            (x, _) if x > 0 => LabelSide::Right,
+            (_, y) if y < 0 => LabelSide::Above,
+            _ => LabelSide::Below,
+        }
+    }
+
+    /// The side on the page of a symbol turned by `rot` and mirrored.
+    pub fn on_page(self, rot: u8, mirror: bool) -> LabelSide {
+        LabelSide::of_dir(self.dir().transform(rot, mirror))
+    }
+
+    /// The symbol's own side of a side on the page.
+    pub fn in_symbol(self, rot: u8, mirror: bool) -> LabelSide {
+        LabelSide::of_dir(self.dir().untransform(rot, mirror))
+    }
+}
+
+/// Placement of a connection point designation set by hand. Side and offset are in
+/// the symbol's own orientation; the default is automatic placement.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct PinPlacement {
+    /// Side of the connection point; None = chosen automatically.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<LabelSide>,
+    /// Shift from the position of the side in mm.
+    #[serde(skip_serializing_if = "is_zero")]
+    pub offset: P,
+}
+
+impl PinPlacement {
+    pub fn is_auto(&self) -> bool {
+        *self == PinPlacement::default()
     }
 }
 
@@ -832,6 +1104,9 @@ pub struct Wire {
     /// Cross-section set manually (e.g. "1.5 mm²"); empty = automatic. Hoses and
     /// pipes (fluid nets): nominal size, e.g. "8 mm" or "DN25".
     pub cross_section: String,
+    /// Conductor construction/type, e.g. H07V-K or MKEM; empty = unspecified.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub wire_type: String,
     /// Medium of a hose / pipe; None = the project's default.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub medium: Option<fluid::Medium>,
@@ -847,11 +1122,44 @@ pub struct Wire {
     /// Set manually: automatic numbering keeps it.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub number_fixed: bool,
+    /// Suppress automatic number and cable/core labels when annotations are placed separately.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub hide_labels: bool,
+    /// Explicit live labels, retained independently of automatic label visibility.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub labels: Vec<wiring::WireLabel>,
+    /// Per-wire junction policy; None inherits the page's legacy setting.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub explicit_junctions: Option<bool>,
     /// Tag of the cable this wire is a core of, and the core designation.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub cable: String,
     #[serde(skip_serializing_if = "String::is_empty")]
     pub core: String,
+    /// Core designation placed by hand: offset from its automatic position.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub core_offset: Option<P>,
+    /// Cable tag placed by hand (on the wire that shows it): offset from its
+    /// automatic position.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cable_offset: Option<P>,
+}
+
+impl Wire {
+    pub fn requires_explicit_junctions(&self,page:&Page)->bool {
+        self.explicit_junctions.unwrap_or_else(||page.values.get("page.explicit_wire_junctions").is_some_and(|v|v=="true"))
+    }
+
+    pub fn junction_policy(&self)->&'static str {
+        match self.explicit_junctions {None=>"inherit",Some(true)=>"explicit",Some(false)=>"implicit"}
+    }
+
+    pub fn same_properties(&self,other:&Self)->bool {
+        self.color==other.color && self.cross_section==other.cross_section && self.wire_type==other.wire_type
+            && self.medium==other.medium && self.length==other.length && self.hose==other.hose
+            && self.number_fixed==other.number_fixed && (!self.number_fixed || self.number==other.number) && self.hide_labels==other.hide_labels
+            && self.cable==other.cable && self.core==other.core && self.explicit_junctions==other.explicit_junctions
+    }
 }
 
 /// `skip_serializing_if` for numbers at their default.
@@ -1036,6 +1344,82 @@ impl CrossRefs {
         *self == CrossRefs::default()
     }
 }
+
+/// How a wire passes over another one it does not connect to.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Default)]
+pub enum JumpStyle {
+    /// Plain crossing: only the dots tell connections.
+    #[default]
+    None,
+    /// A semicircle over the other wire.
+    Arc,
+    /// A square bridge over the other wire.
+    Bridge,
+    /// The wire is broken off on both sides of the other wire.
+    Gap,
+}
+
+/// Which wire of a crossing jumps over the other.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Default)]
+pub enum JumpWire {
+    #[default]
+    Vertical,
+    Horizontal,
+}
+
+/// Mark of a T-connection of wires (three wires meeting; four or more always get a
+/// dot, so that they differ from a crossing).
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize, Default)]
+pub enum TeeStyle {
+    #[default]
+    Dot,
+    LargeDot,
+    /// A plain T without a mark.
+    None,
+}
+
+/// How wires cross and connect on the pages, and whether moving rearranges them.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, Default)]
+#[serde(default)]
+pub struct WireSettings {
+    #[serde(skip_serializing_if = "is_zero")]
+    pub jump: JumpStyle,
+    #[serde(skip_serializing_if = "is_zero")]
+    pub jump_wire: JumpWire,
+    #[serde(skip_serializing_if = "is_zero")]
+    pub tee: TeeStyle,
+    /// A moved item's connections are routed anew (shortest way with the fewest bends
+    /// and crossings) instead of stretching the wires.
+    #[serde(skip_serializing_if = "std::ops::Not::not")]
+    pub reroute: bool,
+}
+
+impl WireSettings {
+    pub fn is_default(&self) -> bool {
+        *self == WireSettings::default()
+    }
+}
+
+/// Keys of the wire settings (command line, MCP).
+macro_rules! keyed {
+    ($t:ident { $($v:ident => $k:literal),* $(,)? }) => {
+        impl $t {
+            pub const ALL: &'static [$t] = &[$($t::$v),*];
+
+            pub fn key(self) -> &'static str {
+                match self { $($t::$v => $k),* }
+            }
+
+            pub fn from_key(key: &str) -> Option<$t> {
+                $t::ALL.iter().copied().find(|v| v.key() == key.trim().to_ascii_lowercase())
+            }
+        }
+    };
+}
+
+keyed!(JumpStyle { None => "none", Arc => "arc", Bridge => "bridge", Gap => "gap" });
+keyed!(JumpWire { Vertical => "vertical", Horizontal => "horizontal" });
+keyed!(TeeStyle { Dot => "dot", LargeDot => "large_dot", None => "none" });
 
 /// Settings of the automatic wire numbering.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -1680,6 +2064,7 @@ impl Project {
             max = pg.conn_defs.iter().map(|s| s.id).fold(max, u64::max);
             max = pg.cable_defs.iter().map(|s| s.id).fold(max, u64::max);
             max = pg.junctions.iter().map(|s| s.id).fold(max, u64::max);
+            max = pg.structure_boxes.iter().map(|s| s.id).fold(max, u64::max);
         }
         for e in &self.layout.enclosures {
             max = max.max(e.id);
@@ -1716,7 +2101,7 @@ impl Project {
             } else {
                 legacy
             };
-            dev.parts.push(PartRef { number, count: 1 });
+            dev.parts.push(PartRef { number, count: 1, total:false });
         }
         for (old, new) in remapped {
             self.parts.retain(|p| p.number != old);
@@ -1758,6 +2143,7 @@ impl Project {
             .chain(self.plc_cards.keys())
             .map(String::as_str)
             .chain(self.layout.enclosures.iter().flat_map(|e| e.items.iter()).map(|i| i.tag.as_str()))
+            .chain(self.layout.enclosures.iter().map(|e|e.device_tag.as_str()))
             .chain(parked)
             .filter(|t| !t.is_empty())
     }
@@ -1765,12 +2151,17 @@ impl Project {
     /// Next free device tag for an identifying letter within a structure, e.g.
     /// `=A1-K3` (counted per structure, as `=A1-K1` and `=A2-K1` are different devices).
     pub fn next_tag(&self, structure: &str, letter: &str) -> String {
+        self.next_tag_reserved(structure,letter,&Default::default())
+    }
+
+    pub(crate) fn next_tag_reserved(&self,structure:&str,letter:&str,reserved:&std::collections::BTreeSet<String>)->String {
         let prefix = format!("{structure}-{letter}");
         let tags = self.pages.iter().flat_map(|pg| pg.symbols.iter().map(|s| s.tag.as_str()));
         let max = tags
             .chain(self.cables.iter().map(|c| c.tag.as_str()))
             .chain(self.harnesses.iter().map(|h| h.tag.as_str()))
             .chain(self.unplaced_tags())
+            .chain(reserved.iter().map(String::as_str))
             .filter_map(|t| t.strip_prefix(&prefix)?.parse::<u32>().ok())
             .max()
             .unwrap_or(0);

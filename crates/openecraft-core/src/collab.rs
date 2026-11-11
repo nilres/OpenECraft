@@ -563,6 +563,7 @@ fn with_data(out: &mut Project, src: &Project) {
         pages: _,
         sections,
         parts,
+        import_sources,
         devices,
         layout,
         cables,
@@ -570,6 +571,7 @@ fn with_data(out: &mut Project, src: &Project) {
         potentials,
         wire_defaults,
         wire_colors,
+        wire_settings,
         strips,
         plugs,
         plc_cards,
@@ -608,6 +610,7 @@ fn with_data(out: &mut Project, src: &Project) {
     out.info = info.clone();
     out.sections = sections.clone();
     out.parts = parts.clone();
+    out.import_sources = import_sources.clone();
     out.devices = devices.clone();
     out.layout = layout.clone();
     out.cables = cables.clone();
@@ -615,6 +618,7 @@ fn with_data(out: &mut Project, src: &Project) {
     out.potentials = potentials.clone();
     out.wire_defaults = wire_defaults.clone();
     out.wire_colors = *wire_colors;
+    out.wire_settings = wire_settings.clone();
     out.strips = strips.clone();
     out.plugs = plugs.clone();
     out.plc_cards = plc_cards.clone();
@@ -655,6 +659,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         pages,
         sections,
         parts,
+        import_sources,
         devices,
         layout,
         cables,
@@ -662,6 +667,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         potentials,
         wire_defaults,
         wire_colors,
+        wire_settings,
         strips,
         plugs,
         plc_cards,
@@ -701,6 +707,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         && *info == b.info
         && *sections == b.sections
         && *parts == b.parts
+        && *import_sources == b.import_sources
         && *devices == b.devices
         && *layout == b.layout
         && *cables == b.cables
@@ -708,6 +715,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         && *potentials == b.potentials
         && *wire_defaults == b.wire_defaults
         && *wire_colors == b.wire_colors
+        && *wire_settings == b.wire_settings
         && *strips == b.strips
         && *plugs == b.plugs
         && *plc_cards == b.plc_cards

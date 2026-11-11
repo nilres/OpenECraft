@@ -15,10 +15,12 @@ use openecraft_core::symbols::{self, Anchor, Func, SymbolRef};
 use openecraft_core::symlib::Symbols;
 use openecraft_core::arrange::{self, Align};
 use openecraft_core::netlist::junctions;
-use openecraft_core::{cabledef, conndef, routing};
+use openecraft_core::{cabledef, conndef, render, routing};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 use std::collections::BTreeSet;
+
+const JUNCTION_POLICY:Param=optional("junction_policy",Kind::Str,tr_const!("Wire junction policy: inherit, explicit or implicit"));
 
 pub struct Drawing;
 
@@ -33,6 +35,43 @@ impl Plugin for Drawing {
 }
 
 pub static COMMANDS: &[Spec] = &[
+    Spec {
+        name:"merge_symbol_definitions",
+        help:tr_const!("Installs symbol definitions while preserving local revisions and returns a key per input"),
+        params:&[param("definitions",Kind::Object,tr_const!("Symbol definitions in an items array"))],
+        run:merge_symbol_definitions,
+    },
+    Spec {
+        name:"set_pin_connection_directions",
+        help:tr_const!("Sets allowed side contacts of a user symbol connection point"),
+        params:&[
+            param("symbol",Kind::Str,tr_const!("Symbol key")),
+            param("pin",Kind::Int,tr_const!("Zero-based connection point index")),
+            param("directions",Kind::Str,tr_const!("Comma-separated up, right, down, left, all, or none")),
+        ],
+        run:set_pin_connection_directions,
+    },
+    Spec {
+        name: "set_symbol_junction_paths",
+        help: tr_const!("Sets physical target paths of a user junction symbol"),
+        params: &[
+            param("symbol",Kind::Str,tr_const!("Symbol key")),
+            param("paths",Kind::Object,tr_const!("Junction paths with links (zero-based pin pairs) and optional directed flag")),
+        ],
+        run: set_symbol_junction_paths,
+    },
+    Spec {
+        name: "insert_macro",
+        help: tr_const!("Inserts a native macro with its symbol definitions on a page"),
+        params: &[
+            PAGE,
+            param("macro", Kind::Str, tr_const!("Native macro JSON")),
+            optional("values", Kind::Object, tr_const!("Macro placeholder values by name")),
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+        ],
+        run: insert_macro,
+    },
     Spec {
         name: "import_ema",
         help: tr_const!("Imports 2D EPLAN window macro variants into the project symbol library"),
@@ -98,9 +137,22 @@ pub static COMMANDS: &[Spec] = &[
         run: update_symbol,
     },
     Spec {
+        name: "place_pin_label",
+        help: tr_const!("Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again"),
+        params: &[
+            PAGE,
+            param("id", Kind::Int, tr_const!("Item id")),
+            param("pin", Kind::Str, tr_const!("Connection point designation or number (1, 2, …)")),
+            optional("side", Kind::Str, tr_const!("left, right, above or below on the page, or auto (default)")),
+            optional("dx", Kind::Num, tr_const!("Shift to the right in mm")),
+            optional("dy", Kind::Num, tr_const!("Shift downwards in mm")),
+        ],
+        run: place_pin_label,
+    },
+    Spec {
         name: "add_wire",
         help: tr_const!("Draws a wire through two or more points"),
-        params: &[PAGE, param("points", Kind::Points, tr_const!("Points in mm: [[x, y], …]"))],
+        params: &[PAGE, param("points", Kind::Points, tr_const!("Points in mm: [[x, y], …]")),JUNCTION_POLICY],
         run: add_wire,
     },
     Spec {
@@ -111,6 +163,7 @@ pub static COMMANDS: &[Spec] = &[
             param("from", Kind::Str, tr_const!("Start: device tag and connection point, e.g. -K1:A1")),
             param("to", Kind::Str, tr_const!("End: device tag and connection point, e.g. -S1:14")),
             optional("via", Kind::Points, tr_const!("Points in between: [[x, y], …]")),
+            JUNCTION_POLICY,
         ],
         run: connect,
     },
@@ -121,10 +174,16 @@ pub static COMMANDS: &[Spec] = &[
             PAGE,
             param("id", Kind::Int, tr_const!("Item id")),
             optional("number", Kind::Str, tr_const!("Wire number (kept when renumbering)")),
+            optional("hide_labels", Kind::Bool, tr_const!("Hide automatic wire and cable labels")),
+            optional("labels", Kind::Object, tr_const!("Placed wire labels")),
+            JUNCTION_POLICY,
             optional("color", Kind::Str, tr_const!("Wire colour, e.g. BU (empty = from the potential definition)")),
             optional("cross_section", Kind::Str, tr_const!("Cross section, e.g. 1.5 mm² (empty = from the potential definition)")),
+            optional("wire_type", Kind::Str, tr_const!("Wire type")),
             optional("cable", Kind::Str, tr_const!("Cable tag")),
             optional("core", Kind::Str, tr_const!("Cable core")),
+            optional("core_offset", Kind::Points, tr_const!("Offset of the core designation from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
+            optional("cable_offset", Kind::Points, tr_const!("Offset of the cable tag shown at the wire from its automatic place, one point [dx, dy] in mm (no point = automatic)")),
             optional("medium", Kind::Str, tr_const!("Hoses / pipes: medium (compressed_air, vacuum, hydraulic_oil, water, coolant, lubricant, gas, steam, product; empty = project default)")),
             optional("length", Kind::Num, tr_const!("Hoses / pipes: length in m")),
         ],
@@ -189,6 +248,17 @@ pub static COMMANDS: &[Spec] = &[
         run: move_items,
     },
     Spec {
+        name: "wire_settings",
+        help: tr_const!("Shows how wires cross and connect on the pages and whether moving items routes their connections anew, and changes those given"),
+        params: &[
+            optional("jump", Kind::Str, tr_const!("Wires crossing without connection: none, arc, bridge or gap")),
+            optional("jump_wire", Kind::Str, tr_const!("The wire that jumps: vertical or horizontal")),
+            optional("tee", Kind::Str, tr_const!("T-connections: dot, large_dot or none")),
+            optional("reroute", Kind::Bool, tr_const!("Route the connections of moved items anew: shortest way with the fewest bends and crossings")),
+        ],
+        run: wire_settings,
+    },
+    Spec {
         name: "align_items",
         help: tr_const!("Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow"),
         params: &[
@@ -203,6 +273,20 @@ pub static COMMANDS: &[Spec] = &[
         help: tr_const!("Distributes symbols, texts and graphics evenly between the first and the last one"),
         params: &[PAGE, param("ids", Kind::Ids, tr_const!("Item ids")), optional("vertical", Kind::Bool, tr_const!("Distribute vertically (default horizontally)"))],
         run: distribute_items,
+    },
+    Spec {
+        name: "place_interruption_texts",
+        help: tr_const!("Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point"),
+        params: &[
+            PAGE,
+            param("ids", Kind::Ids, tr_const!("Ids of interruption points")),
+            optional("side", Kind::Str, tr_const!("auto, above, below, left or right; drops the texts placed by hand")),
+            optional("label_x", Kind::Num, tr_const!("Name placed by hand: X offset from the insertion point in mm")),
+            optional("label_y", Kind::Num, tr_const!("Name placed by hand: Y offset from the insertion point in mm")),
+            optional("xref_x", Kind::Num, tr_const!("Cross reference placed by hand: X offset from the insertion point in mm")),
+            optional("xref_y", Kind::Num, tr_const!("Cross reference placed by hand: Y offset from the insertion point in mm")),
+        ],
+        run: place_interruption_texts,
     },
     Spec {
         name: "copy_items",
@@ -229,6 +313,7 @@ pub static COMMANDS: &[Spec] = &[
             PAGE,
             param("from", Kind::Str, tr_const!("Connection point TAG:PIN, e.g. -K1:A1")),
             param("to", Kind::Str, tr_const!("Connection point TAG:PIN, e.g. -K1:A1")),
+            JUNCTION_POLICY,
         ],
         run: route,
     },
@@ -372,6 +457,10 @@ fn func_name(f: Func) -> &'static str {
         Func::Potential => "potential",
         Func::Interruption => "interruption",
         Func::Overview => "overview",
+        Func::Auxiliary => "auxiliary",
+        Func::Junction => "junction",
+        Func::Graphic => "graphic",
+        Func::Connection => "device_connection",
     }
 }
 
@@ -454,11 +543,18 @@ fn apply_symbol_params(s: &mut SymbolInst, a: &Args) -> Result<(), String> {
     Ok(())
 }
 
-fn push_path(prj: &mut Project, page: usize, pts: &[P]) -> Vec<u64> {
+fn wire_policy(value:&str)->Result<Option<bool>,String> {
+    match value.trim().to_ascii_lowercase().as_str() {
+        "inherit"=>Ok(None),"explicit"=>Ok(Some(true)),"implicit"=>Ok(Some(false)),
+        _=>Err(tr_fmt!("Unknown wire junction policy: {}",value)),
+    }
+}
+
+fn push_path(prj: &mut Project, page: usize, pts: &[P],explicit_junctions:Option<bool>) -> Vec<u64> {
     let mut ids = Vec::new();
     for seg in pts.windows(2).filter(|s| !s[0].same(s[1])) {
         let id = prj.new_id();
-        prj.pages[page].wires.push(Wire { id, a: seg[0], b: seg[1], ..Default::default() });
+        prj.pages[page].wires.push(Wire { id, a: seg[0], b: seg[1],explicit_junctions, ..Default::default() });
         ids.push(id);
     }
     ops::cleanup_wires(&mut prj.pages[page]);
@@ -541,6 +637,8 @@ fn selection(pg: &Page, a: &Args) -> Result<BTreeSet<u64>, String> {
 fn list_symbols(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let query = a.str("query").unwrap_or_default().to_lowercase();
     let category = a.str("category").map(|c| c.trim().to_ascii_lowercase());
+    let function_texts: std::collections::HashMap<&str, &str> = prj.symbols.iter().map(|u| (u.key.as_str(), u.default_function_text.as_str())).collect();
+    let defaults: std::collections::HashMap<_, _> = prj.symbols.iter().map(|u| (u.key.as_str(), &u.default_values)).collect();
     let user: Vec<SymbolRef> = prj.symbols.iter().filter_map(|u| prj.symbol(&u.key)).collect();
     let list = symbols::library()
         .iter()
@@ -557,7 +655,15 @@ fn list_symbols(prj: &mut Project, a: &Args) -> Result<Value, String> {
                 "function": func_name(d.func),
                 "letter": d.letter,
                 "default_label": d.default_label,
+                "default_function_text": function_texts.get(d.key).copied().unwrap_or_default(),
+                "default_values": defaults.get(d.key),
+                "plc_channels": d.plc_channels,
+                "property_blocks": d.prims.iter().filter_map(|p| if let symbols::Prim::PropertyBlock(block) = p { Some(block) } else { None }).collect::<Vec<_>>(),
                 "pins": pins,
+                "fluid_ports": d.fluid_ports,
+                "pin_directions": d.pin_directions,
+                "directed_junction": d.directed_junction,
+                "bridges": d.bridges,
             })
         });
     Ok(Value::Array(list.collect()))
@@ -575,7 +681,7 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(tag) = tag {
         ops::check_tag(tag)?;
         match def.func {
-            Func::Aux(_) | Func::Overview => {
+            Func::Aux(_) | Func::Overview | Func::Connection => {
                 ctx.last_main.insert(def.letter.into(), tag.into());
             }
             Func::Terminal => ctx.last_strip = Some(tag.into()),
@@ -589,6 +695,9 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let pos = on_page(prj, i, num(a, "x").unwrap_or_default(), num(a, "y").unwrap_or_default())?;
     let mut sym = ops::new_symbol(prj, i, &ctx, &def, pos, rotation(a)?.unwrap_or(0), a.flag("mirror"));
     if let Some(tag) = tag.filter(|_| def.func.has_tag()) {
+        if def.func == Func::Connection && sym.tag != tag {
+            sym.pins = vec![openecraft_core::device_boxes::next_designation(prj, tag)];
+        }
         sym.tag = tag.into();
     }
     apply_symbol_params(&mut sym, a)?;
@@ -601,11 +710,32 @@ fn place_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(out)
 }
 
+fn merge_symbol_definitions(prj:&mut Project,a:&Args)->Result<Value,String> {
+    let items=a.value("definitions").and_then(|v|v.get("items")).filter(|v|v.is_array())
+        .ok_or_else(||tr("Symbol definitions need an items array").to_string())?;
+    let definitions:Vec<openecraft_core::symlib::UserSymbol>=serde_json::from_value(items.clone()).map_err(|e|e.to_string())?;
+    if definitions.iter().any(|d|d.key.trim().is_empty()) {return Err(tr("A symbol definition needs a key").into());}
+    let before=prj.symbols.len();let keys=ops::merge_symbol_definitions(prj,&definitions);
+    Ok(json!({"keys":keys,"added":prj.symbols.len()-before}))
+}
+
 fn import_ema(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let variants = openecraft_core::symlib::ema::decode_with_library(a.req("xml"), &prj.symbols)?;
     let added = openecraft_core::symlib::ema::import_project(prj, &variants);
     let windows: Vec<_> = variants.iter().filter_map(openecraft_core::macros::eplan_window).collect();
     Ok(json!({"added":added,"variants":variants,"macros":windows}))
+}
+
+fn insert_macro(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let page = editable(prj, a.req("page"))?;
+    let m: openecraft_core::macros::Macro = serde_json::from_str(a.req("macro")).map_err(|e| e.to_string())?;
+    let values=match a.value("values") {
+        Some(values)=>serde_json::from_value(values.clone()).map_err(|error|error.to_string())?,
+        None=>std::collections::BTreeMap::new(),
+    };
+    let clip=m.resolve(&values);
+    let ids = ops::paste(prj, page, &clip, p(a.num("x").unwrap_or_default(), a.num("y").unwrap_or_default()));
+    Ok(json!({ "ids": ids, "symbol_definitions": m.clip.symbol_defs.len() }))
 }
 
 fn place_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -663,10 +793,11 @@ fn place_part(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if pins.len() == sym.pins.len() {
         sym.pins = pins;
     }
-    parts::assign_placed_part(prj, &db, &sym.sym, &sym.tag, &number);
+    let id = sym.id;
     let mut out = symbol_json(&prj.symbol_table(), &sym);
     out["part"] = json!(number);
     prj.pages[i].symbols.push(sym);
+    parts::assign_placed_function_part(prj, &db, i, id, &number);
     Ok(out)
 }
 
@@ -690,13 +821,75 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(symbol_json(&symbols, sym))
 }
 
+fn place_pin_label(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let symbols = prj.symbol_table();
+    let i = editable(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let si = prj.pages[i].symbols.iter().position(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
+    let s = &prj.pages[i].symbols[si];
+    let def = symbols.get(&s.sym).ok_or_else(|| tr_fmt!("Unknown symbol: {}", s.sym))?;
+    let pin = a.req("pin");
+    let pi = pins_of(&symbols, s).iter().position(|(label, _)| label == pin).ok_or_else(|| tr_fmt!("Symbol {} has no connection point {}", id, pin))?;
+    let side = match a.str("side").unwrap_or("auto") {
+        "auto" => None,
+        name => Some(LabelSide::from_name(name).ok_or_else(|| tr_fmt!("Unknown side: {}", name))?),
+    };
+    let shift = p(num_in(a, "dx", -50.0, 50.0)?.unwrap_or(0.0), num_in(a, "dy", -50.0, 50.0)?.unwrap_or(0.0));
+    let s = &mut prj.pages[i].symbols[si];
+    let label = PinPlacement { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: shift.untransform(s.rot, s.mirror) };
+    s.set_pin_placement(pi, label);
+    if pi == 0 {
+        s.pin_label = None;
+    }
+    let s = &prj.pages[i].symbols[si];
+    let place = openecraft_core::render::pin_label_places(prj, &openecraft_core::index::Index::build(prj), i, &def, s).into_iter().find(|l| l.pin == pi);
+    Ok(json!({
+        "id": id,
+        "pin": pin,
+        "auto": label.is_auto(),
+        "side": place.as_ref().map(|l| l.side.on_page(s.rot, s.mirror).name()),
+        "x": place.as_ref().map(|l| l.pos.x),
+        "y": place.as_ref().map(|l| l.pos.y),
+    }))
+}
+
+fn set_pin_connection_directions(prj:&mut Project,a:&Args)->Result<Value,String> {
+    let key=a.req("symbol");
+    let pin=int_in(a,"pin",0,u32::MAX.into())?.unwrap_or(0) as usize;
+    let mut mask=0;
+    for direction in a.req("directions").split(',').map(str::trim) {
+        mask|=match direction {"up"=>1,"right"=>2,"down"=>4,"left"=>8,"all"=>15,"none"=>0,_=>return Err(tr_fmt!("Unknown connection direction: {}",direction))};
+    }
+    let symbol=prj.symbols.iter_mut().find(|s|s.key==key).ok_or_else(||tr_fmt!("Unknown user symbol: {}",key))?;
+    if pin>=symbol.pins.len() {return Err(tr_fmt!("Connection point index {} is out of range",pin));}
+    if mask==15 {symbol.pin_directions.remove(&pin);} else {symbol.pin_directions.insert(pin,mask);}
+    Ok(json!({"symbol":key,"pin":pin,"directions":mask}))
+}
+
+fn set_symbol_junction_paths(prj:&mut Project,a:&Args)->Result<Value,String> {
+    let key=a.req("symbol");
+    let value=a.value("paths").expect("required object");
+    for name in value.as_object().expect("checked object").keys() {
+        if !["links","directed"].contains(&name.as_str()) {return Err(tr_fmt!("Unknown parameter: {}",name));}
+    }
+    let invalid=||tr("Junction paths need distinct valid connection point indexes").to_string();
+    let links:Vec<(usize,usize)>=serde_json::from_value(value["links"].clone()).map_err(|_|invalid())?;
+    let directed=match value.get("directed") {Some(v)=>v.as_bool().ok_or_else(invalid)?,None=>true};
+    let symbol=prj.symbols.iter_mut().find(|s|s.key==key).ok_or_else(||tr_fmt!("Unknown user symbol: {}",key))?;
+    if symbol.func!=Func::Junction {return Err(tr_fmt!("Symbol {} is not a junction",key));}
+    if links.iter().any(|&(a,b)| a==b || a>=symbol.pins.len() || b>=symbol.pins.len()) {return Err(invalid());}
+    symbol.bridges=links;
+    symbol.directed_junction=directed;
+    Ok(json!({"symbol":key,"directed":directed,"links":symbol.bridges}))
+}
+
 fn add_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
     let pts = raw_points(a, "points").into_iter().map(|[x, y]| on_page(prj, i, x, y)).collect::<Result<Vec<P>, String>>()?;
     if pts.len() < 2 {
         return Err(tr("A wire needs at least two points").to_string());
     }
-    let ids = push_path(prj, i, &pts);
+    let ids = push_path(prj, i, &pts,wire_policy(a.str("junction_policy").unwrap_or("inherit"))?);
     if ids.is_empty() {
         return Err(tr("The wire has no length").to_string());
     }
@@ -713,23 +906,39 @@ fn connect(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     pts.push(to);
     let path = orthogonal(&pts);
-    let ids = push_path(prj, i, &path);
+    let ids = push_path(prj, i, &path,wire_policy(a.str("junction_policy").unwrap_or("inherit"))?);
     Ok(json!({ "ids": ids, "points": path.into_iter().map(xy).collect::<Vec<_>>() }))
 }
 
 fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
+    let policy=a.str("junction_policy").map(wire_policy).transpose()?;
     let id = a.int("id").unwrap_or_default() as u64;
     let w = prj.pages[i].wires.iter_mut().find(|w| w.id == id).ok_or_else(|| tr_fmt!("No wire with id {}", id))?;
+    if let Some(policy)=policy {w.explicit_junctions=policy;}
     if let Some(n) = a.str("number") {
         w.number = n.into();
         w.number_fixed = !n.is_empty();
     }
+    if let Some(hide) = a.value("hide_labels").and_then(Value::as_bool) {
+        w.hide_labels = hide;
+    }
+    if let Some(layout) = a.value("labels") {
+        let labels: Vec<openecraft_core::model::wiring::WireLabel> = layout.get("items").cloned()
+            .and_then(|items| serde_json::from_value(items).ok()).ok_or_else(|| tr("Invalid wire label layout").to_string())?;
+        if labels.iter().any(|label| !label.is_valid()) {return Err(tr("Invalid wire label layout").into());}
+        w.labels = labels;
+    }
     let color = a.str("color").map(wire_color).transpose()?;
     let cross = a.str("cross_section").map(cross_section).transpose()?;
-    for (name, field) in [("cable", &mut w.cable), ("core", &mut w.core)] {
+    for (name, field) in [("cable", &mut w.cable), ("core", &mut w.core), ("wire_type", &mut w.wire_type)] {
         if let Some(v) = a.str(name) {
             *field = v.into();
+        }
+    }
+    for (name, field) in [("core_offset", &mut w.core_offset), ("cable_offset", &mut w.cable_offset)] {
+        if a.value(name).is_some_and(|v| !v.is_null()) {
+            *field = raw_points(a, name).first().map(|&[x, y]| p(x as f32, y as f32));
         }
     }
     if let Some(c) = color {
@@ -748,7 +957,7 @@ fn update_wire(prj: &mut Project, a: &Args) -> Result<Value, String> {
         w.length = l;
     }
     let medium = w.medium.map(|m| m.code()).unwrap_or_default();
-    Ok(json!({ "id": w.id, "number": w.number, "color": w.color, "cross_section": w.cross_section, "cable": w.cable, "core": w.core, "medium": medium, "length": w.length }))
+    Ok(json!({ "id": w.id, "number": w.number, "hide_labels": w.hide_labels,"labels":w.labels,"junction_policy":w.junction_policy(), "color": w.color, "cross_section": w.cross_section, "wire_type": w.wire_type, "cable": w.cable, "core": w.core, "core_offset": w.core_offset.map(xy), "cable_offset": w.cable_offset.map(xy), "medium": medium, "length": w.length }))
 }
 
 /// Takes the style parameters of `add_text` / `update_text` that are given.
@@ -802,12 +1011,16 @@ fn text_style_args(t: &mut TextItem, a: &Args) -> Result<(), String> {
     Ok(())
 }
 
-fn text_json(t: &TextItem) -> Value {
-    let align = match t.align {
+fn anchor_code(a: Anchor) -> &'static str {
+    match a {
         Anchor::Left => "left",
         Anchor::Center => "center",
         Anchor::Right => "right",
-    };
+    }
+}
+
+fn text_json(t: &TextItem) -> Value {
+    let align = anchor_code(t.align);
     let valign = match t.valign {
         VAnchor::Top => "top",
         VAnchor::Middle => "middle",
@@ -851,7 +1064,7 @@ fn update_text(prj: &mut Project, a: &Args) -> Result<Value, String> {
 fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
     let before = prj.pages[i].clone();
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let d = snapped(a.num("dx").unwrap_or_default(), a.num("dy").unwrap_or_default());
     routing::move_selection(prj, i, &sel, d);
     if !inside_page(prj, i) {
@@ -859,6 +1072,23 @@ fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
         return Err(tr("The items would leave the page").to_string());
     }
     Ok(json!({ "moved": sel.len(), "dx": d.x, "dy": d.y }))
+}
+
+fn wire_settings(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let s = &mut prj.wire_settings;
+    if let Some(k) = a.str("jump") {
+        s.jump = JumpStyle::from_key(k).ok_or_else(|| tr_fmt!("Unknown jump style: {}", k))?;
+    }
+    if let Some(k) = a.str("jump_wire") {
+        s.jump_wire = JumpWire::from_key(k).ok_or_else(|| tr_fmt!("Unknown jumping wire: {}", k))?;
+    }
+    if let Some(k) = a.str("tee") {
+        s.tee = TeeStyle::from_key(k).ok_or_else(|| tr_fmt!("Unknown T-connection style: {}", k))?;
+    }
+    if let Some(v) = a.value("reroute").and_then(Value::as_bool) {
+        s.reroute = v;
+    }
+    Ok(json!({ "jump": s.jump.key(), "jump_wire": s.jump_wire.key(), "tee": s.tee.key(), "reroute": s.reroute }))
 }
 
 fn align_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -876,9 +1106,44 @@ fn distribute_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "moved": n }))
 }
 
+fn place_interruption_texts(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let symbols = prj.symbol_table();
+    let i = editable(prj, a.req("page"))?;
+    let side = match a.str("side") {
+        Some(code) => Some(TextSide::from_code(code.trim()).ok_or_else(|| tr_fmt!("Unknown side: {}", code))?),
+        None => None,
+    };
+    let sel = selection(&prj.pages[i], a)?;
+    let by_hand = |name: &str, now: TextPlace| {
+        let (x, y) = (a.num(&format!("{name}_x")), a.num(&format!("{name}_y")));
+        (x.is_some() || y.is_some()).then(|| TextPlace { offset: p(x.unwrap_or(now.offset.x), y.unwrap_or(now.offset.y)), ..now })
+    };
+    let place_json = |t: TextPlace| json!({ "x": t.offset.x, "y": t.offset.y, "align": anchor_code(t.anchor) });
+    let mut points = Vec::new();
+    for s in prj.pages[i].symbols.iter_mut().filter(|s| sel.contains(&s.id)) {
+        let Some(def) = symbols.get(&s.sym).filter(|d| d.func == Func::Interruption) else { continue };
+        if let Some(side) = side {
+            s.set_text_side(side);
+        }
+        let (label, xref) = render::interruption_places(&def, s);
+        if let Some(t) = by_hand("label", label) {
+            s.label_place = Some(t);
+        }
+        if let Some(t) = by_hand("xref", xref) {
+            s.xref_place = Some(t);
+        }
+        let (label, xref) = render::interruption_places(&def, s);
+        points.push(json!({ "id": s.id, "name": s.label, "side": s.text_side.code(), "label": place_json(label), "xref": place_json(xref) }));
+    }
+    if points.is_empty() {
+        return Err(tr("None of the items is an interruption point").to_string());
+    }
+    Ok(json!({ "points": points }))
+}
+
 fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let count = a.int("count").unwrap_or(1);
     if !(1..=100).contains(&count) {
         return Err(tr("The number of copies must be between 1 and 100").to_string());
@@ -895,7 +1160,7 @@ fn copy_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
 
 fn delete_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let i = editable(prj, a.req("page"))?;
-    let sel = selection(&prj.pages[i], a)?;
+    let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     ops::delete(&mut prj.pages[i], &sel);
     Ok(json!({ "deleted": sel.len() }))
 }
@@ -906,7 +1171,7 @@ fn route(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let (from, to) = wire_ends(&symbols, &prj.pages[i], a.req("from"), a.req("to"))?;
     let area = openecraft_core::frame::of_page(prj, i).area();
     let path = routing::route(&prj.symbol_table(), &prj.pages[i], area, from, to);
-    let ids = push_path(prj, i, &path);
+    let ids = push_path(prj, i, &path,wire_policy(a.str("junction_policy").unwrap_or("inherit"))?);
     Ok(json!({ "ids": ids, "points": path.into_iter().map(xy).collect::<Vec<_>>() }))
 }
 

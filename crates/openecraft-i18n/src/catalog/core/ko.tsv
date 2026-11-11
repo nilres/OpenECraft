@@ -18,6 +18,7 @@
 9 · Electrical room	9 · 전기실
 A device tag must not be empty	장치 태그는 비워 둘 수 없습니다
 A pipe run turns at right angles	배관 경로는 직각으로 꺾입니다
+A plot boundary has at least three corners	부지 경계에는 꼭짓점이 3개 이상 있어야 합니다
 A port cannot be connected to itself	포트는 자신에게 연결할 수 없습니다
 A room needs at least four walls	방에는 벽이 4개 이상 필요합니다
 A section number consists of letters and digits and does not start with 0	구역 번호는 문자와 숫자로 이루어지며 0으로 시작하지 않습니다
@@ -72,7 +73,6 @@ Approved by	승인자
 Arms {} and {}	가지 {}과(와) {}
 Asset number	자산 번호
 Author of the last revision	마지막 개정 작성자
-Automatic	자동
 Autotransformer 1-phase	단상 단권 변압기
 Autotransformer 1-phase, adjustable	단상 단권 변압기, 조정 가능
 Autotransformer 3-phase	3상 단권 변압기
@@ -89,6 +89,7 @@ Auxiliary function: main contact	보조 기능: 주접점
 Auxiliary relay coil R (JIS)	보조 릴레이 코일 R(JIS)
 B10d	B10d
 Ball valve	볼 밸브
+Bare conductor	피복 벗긴 도체
 Basis	근거
 Battery	배터리
 Battery capacity	배터리 용량
@@ -239,7 +240,6 @@ Connection definition point on page {} is not applied to its connection	페이�
 Connection definition point on page {} is not on a wire	페이지 {}의 연결 정의점이 전선 위에 있지 않습니다
 Connection definitions	연결 정의
 Connection list	연결 목록
-Connection point	연결 지점
 Connection point descriptions	연결 지점 설명
 Connection point {} is not on the {} mm grid.	연결 지점 {0}이(가) {1}mm 그리드에 있지 않습니다.
 Connection point {} lies on another one.	연결 지점 {}이(가) 다른 연결 지점과 겹칩니다.
@@ -334,7 +334,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	DC 제어 회로는 파란�
 DC/DC converter	DC/DC 컨버터
 DWG export failed: {}	DWG 내보내기 실패: {}
 Data sheet	데이터시트
-Data type	데이터 유형
 Date of the last revision	마지막 개정 날짜
 Degree of protection	보호 등급
 Delete projects	프로젝트 삭제
@@ -494,8 +493,8 @@ Fan 3-phase	3상 팬
 Fan 3-phase, 6 terminals	3상 팬, 단자 6개
 Ferrule	페룰
 Ferrule from	시작 쪽 페룰
-Ferrule part	페룰 부품
 Ferrule to	끝 쪽 페룰
+Ferrule {} mm² {}	페룰 {} mm² {}
 Field cable routing	필드 케이블 경로 설정
 Field cable {} cannot be routed from {} to {}	필드 케이블 {}을(를) {}에서 {}(으)로 포설할 수 없습니다
 Field cable {}: {} is not placed in the plant layout	필드 케이블 {}: {}이(가) 플랜트 레이아웃에 배치되지 않았습니다
@@ -516,6 +515,8 @@ Fitting	피팅
 Fittings	피팅
 Flame retardant	난연성
 Flat cable {} has {} cores, the IDC connector {} has {} pins	리본 케이블 {}은(는) {}심, IDC 커넥터 {}은(는) {}핀입니다
+Flat plug	평형 수 단자
+Flat receptacle	평형 암 단자
 Flat roof	평지붕
 Float switch NC	플로트 스위치 b접점
 Float switch NO	플로트 스위치 a접점
@@ -541,6 +542,7 @@ Foot switch NC	풋 스위치 b접점
 Foot switch NO	풋 스위치 a접점
 Foot switch NO (NFPA)	풋 스위치 a접점(NFPA)
 Force	힘
+Fork terminal	Y형 단자
 Format (placeholders)	형식(자리 표시자)
 Frame size	프레임 크기
 Free	자유
@@ -743,6 +745,7 @@ Last edited by	마지막 편집자
 Last inspection	최종 점검
 Last revision	마지막 개정
 Latching	래칭
+Latitude is within ±90° and longitude within ±180°	위도는 ±90°, 경도는 ±180° 이내입니다
 Lead time (days)	리드 타임(일)
 Leakage current	누설 전류
 Leakage line	누유 라인
@@ -917,7 +920,6 @@ Neutral (N)	중성선(N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	중성선은 하늘색이어야 합니다(IEC 60204-1, 13.2.3)
 Next inspection	다음 점검
 Nibbling	니블링
-No connection point {}	연결 지점 {} 없음
 No connection {}	연결 {} 없음
 No devices to add to the single-line diagram	단선도에 추가할 장치가 없습니다
 No document embedded - choose a file in the page properties	포함된 문서 없음 - 페이지 속성에서 파일을 선택하세요
@@ -926,7 +928,6 @@ No known column in the header row	머리글 행에 알려진 열이 없습니다
 No option {}	옵션 {}이(가) 없습니다
 No page or page item with id {}	ID가 {}인 페이지 또는 페이지 항목이 없습니다
 No page with id {}	ID가 {}인 페이지가 없습니다
-No part {}	부품 {} 없음
 No plugs	플러그 없음
 No report block {}	보고서 블록 {} 없음
 No segment template named {}	이름이 {}인 세그먼트 템플릿이 없습니다
@@ -952,7 +953,6 @@ Not a packed project	패키지된 프로젝트가 아닙니다
 Not a project database: {}	프로젝트 데이터베이스가 아닙니다: {}
 Not a settings scheme: {}	설정 스키마가 아닙니다: {}
 Not a structure template: {}	구조 템플릿이 아님: {}
-Not a symbol id: {}	심볼 ID가 아닙니다: {}
 Not a valid JSON file: {}	유효한 JSON 파일이 아닙니다: {}
 Not a valid project file: {}	유효한 프로젝트 파일이 아님: {}
 Not a valid property library: {}	유효한 속성 라이브러리가 아닙니다: {}
@@ -1126,6 +1126,7 @@ Pilot light (NFPA)	표시등(NFPA)
 Pilot line	파일럿 라인
 Pin connection diagram	핀 연결 다이어그램
 Pin side (male)	핀 측 (수)
+Pin terminal	핀 단자
 Pipe	배관
 Piston diameter	피스톤 직경
 Piston rod diameter	피스톤 로드 직경
@@ -1331,6 +1332,7 @@ Reviewer	검토자
 Revision overview (changes)	개정 개요(변경 내용)
 Right side	오른쪽 측면
 Right side panel	오른쪽 측면 패널
+Ring terminal	링 단자
 Rivet nut	리벳 너트
 RoHS compliant	RoHS 준수
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1338,6 +1340,7 @@ Roller switch NC	롤러 스위치 b접점
 Roller switch NO	롤러 스위치 a접점
 Roof	지붕
 Room floor	방 바닥
+Room {} stands outside the plot boundary	실 {}이(가) 부지 경계 밖에 있습니다
 Rotation	회전
 Round punch	원형 펀치
 Routing list (3D)	배선 경로 목록(3D)
@@ -1489,6 +1492,8 @@ Strip (mm)	피복 제거(mm)
 Stripping from (mm)	피복 제거 시작(mm)
 Stripping to (mm)	피복 제거 끝(mm)
 Stroke	스트로크
+Structure box on page {} sets no structure identifier	페이지 {}의 구조 박스가 구조 식별자를 설정하지 않습니다
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	페이지 {}의 구조 박스가 서로 포함하지 않고 겹칩니다: 두 박스에 모두 있는 장치는 더 작은 박스의 구조를 가집니다
 Structure identifier {} is not defined in the structure management	구조 식별자 {}이(가) 구조 관리에 정의되어 있지 않습니다
 Structure identifier {} must not contain blanks or the signs = + - / :	구조 식별자 {}에는 공백이나 기호 = + - / :를 사용할 수 없습니다
 Structure identifiers	구조 식별자
@@ -1525,8 +1530,6 @@ Switches / Sensors	스위치 / 센서
 Switches, pushbuttons	스위치, 푸시버튼
 Switching frequency	개폐 빈도
 Switching output	스위칭 출력
-Symbol key	심볼 키
-Symbolic address	심볼릭 주소
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	페이지 {}의 T분기점이 연결선과 맞지 않습니다: 그 방향으로 하나, 가로로 둘의 연결선이 필요하며 그 지점에 접속점이 없어야 합니다
 Table of contents	목차
 Tabloid landscape	Tabloid 가로
@@ -1554,9 +1557,12 @@ Terminal description	단자 설명
 Terminal diagram	단자 다이어그램
 Terminal line-up	단자 배열
 Terminal marker	단자 마커
+Terminal parts	단말 부품
 Terminal strip data of {} without terminals	단자가 없는 {}의 단자대 데이터
 Terminal strip overview	단자대 개요
 Terminal strips and PLC addresses	단자대 및 PLC 주소
+Termination (from)	마감(시작)
+Termination (to)	마감(끝)
 Text file	텍스트 파일
 The DXF file contains nothing that can be imported	DXF 파일에 가져올 수 있는 내용이 없습니다
 The PDF has no pages that can be read	PDF에 읽을 수 있는 페이지가 없습니다
@@ -1568,6 +1574,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	조립품 제조업�
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	방 안의 외함 열: L자형 평면도, 내벽, 문과 창문, 제자리에 놓인 외함 열, 벽의 콘센트가 있는 레일, 벽에 설치된 비상등 및 천장 아래의 케이블 트레이.
 The configuration is not a JSON object	구성이 JSON 개체가 아닙니다
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	첫 릴리스 이후의 컨베이어: 릴리스되어 잠긴 개정, 그 이후 표시된 변경 사항, 레드라인이 있는 검토 의견, 변경 요청, 승인 워크플로 중인 개정 B 및 비교할 기준선.
+The coordinates of the reference point must be numbers	기준점의 좌표는 숫자여야 합니다
+The coordinates of the reference point {} are not valid	기준점 {}의 좌표가 유효하지 않습니다
+The corners of the plot boundary must be numbers	부지 경계의 꼭짓점은 숫자여야 합니다
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	데모 프로젝트: PLC 입력 및 출력, 레일, 덕트, 도어 장치가 있는 외함 배치도, 도어 하네스 및 모터 케이블.
 The embedded document {} is damaged	포함된 문서 {}이(가) 손상되었습니다
 The file is empty	파일이 비어 있습니다
@@ -1580,6 +1589,9 @@ The next free id is already in use	다음 사용 가능한 ID가 이미 사용 �
 The option needs a name	옵션에는 이름이 필요합니다
 The page needs a number	페이지에는 번호가 필요합니다
 The pages were changed after the submission; submit the revision again	제출 후 페이지가 변경되었습니다. 개정을 다시 제출하세요
+The plot boundary crosses itself	부지 경계가 자기 자신과 교차합니다
+The plot boundary encloses no area	부지 경계가 면적을 둘러싸지 않습니다
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	부지 경계가 다각형이 아닙니다: 자기 교차하거나 꼭짓점이 3개 미만입니다
 The project has no panel layout	프로젝트에 패널 레이아웃이 없습니다
 The property needs a name	속성에는 이름이 필요합니다
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	나란히 연결된 두 개의 자립형 외함에 설치된 펌프장: 부스바 시스템, 레일과 덕트, 도어 장치와 손잡이, 필터 팬, 조명, PE 바, 케이블 글랜드, 케이블 통로, 외함 기후 계산, 덕트 충전율 및 3D 라우팅.
@@ -1673,6 +1685,14 @@ Tubes	튜브
 Tubing / piping list	튜브 / 배관 목록
 Turned once (quarter landing)	한 번 꺾임 (모서리 참)
 Turned twice (two quarter landings)	두 번 꺾임 (모서리 참 두 개)
+Twin ferrule	이중 페룰
+Twin ferrule at {} is not shared with a second wire	{}의 이중 페룰을 함께 쓰는 두 번째 전선이 없습니다
+Twin ferrule at {} joins wires of {} and {}	{}의 이중 페룰이 {}와 {} 전선을 묶습니다
+Twin ferrule at {}: {} wires end there, it takes two	{}의 이중 페룰: 전선 {}개가 끝나지만 두 개용입니다
+Twin ferrule with (from)	이중 페룰 상대(시작)
+Twin ferrule with (to)	이중 페룰 상대(끝)
+Twin ferrule {} mm² {}	이중 페룰 {} mm² {}
+Twin ferrules	이중 페룰
 Two connection symbols on page {} lie on the same point	페이지 {}의 두 연결 기호가 같은 지점에 있습니다
 Two-way switch (installation)	3로 스위치(옥내 배선)
 Type numbers	유형 번호
@@ -1755,6 +1775,7 @@ Winding connection	권선 결선
 Wire assigned to unknown cable {}	알 수 없는 케이블 {}에 지정된 전선
 Wire colour GNYE is reserved for protective conductors ({})	전선 색상 GNYE는 보호 도체 전용입니다({})
 Wire colours and cross-sections	전선 색상 및 단면적
+Wire crossings and connections	전선 교차 및 연결
 Wire defaults	전선 기본값
 Wire jumper	와이어 점퍼
 Wire list (panel routing)	전선 목록(패널 배선 경로)
@@ -1863,8 +1884,6 @@ routed	배선 경로 지정됨
 shield clamp ({} mm away)	차폐 클램프({} mm 떨어짐)
 silver	은색
 starts with	시작 문자
-strip {} mm	피복 제거 {} mm
-strip {} mm, ferrule {} mm² {}	피복 제거 {} mm, 페룰 {} mm² {}
 suction	흡입
 supply	공급
 terminals {} – {}	단자 {} – {}
@@ -1903,6 +1922,8 @@ yellow	노랑
 {} is placed at the missing node {}	{}이(가) 누락된 노드 {}에 배치되어 있습니다
 {} is planned twice ({} and {})	{}이(가) 두 번 계획되었습니다({} 및 {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0}은(는) {1}에 대해 {2} A까지만 선택 차단됩니다(단락 전류 {3} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{}의 구조가 유지됩니다: 주 기능이 서로 다른 구조 박스에 있습니다({})
+{} keeps its structure: {} exists already	{}의 구조가 유지됩니다: {}이(가) 이미 있습니다
 {} lies outside page {}	{}이(가) 페이지 {} 밖에 있습니다
 {} min {} s	{}분 {}초
 {} mounting marks belong to items that no longer exist	장착 표시 {}개가 더 이상 존재하지 않는 항목에 속합니다
@@ -1914,6 +1935,7 @@ yellow	노랑
 {} report references converted to report names	보고서 참조 {}개를 보고서 이름으로 변환했습니다
 {} s	{}초
 {} single part assignments converted to part lists	단일 부품 할당 {}개를 부품 목록으로 변환했습니다
+{} stands outside the plot boundary	{}이(가) 부지 경계 밖에 있습니다
 {} symbols, {} wires, {} texts / graphics	심볼 {}개, 전선 {}개, 텍스트 / 그래픽 {}개
 {} texts are not translated into {}	텍스트 {0}개가 {1}(으)로 번역되지 않았습니다
 {} unused device data records removed	사용하지 않는 장치 데이터 레코드 {}개를 제거했습니다
@@ -1985,6 +2007,7 @@ yellow	노랑
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{0}: 점퍼 {1}에 대한 점퍼 부품 없음(단자 부품의 기술 데이터 Jumper)
 {}: no part assigned	{}: 지정된 부품 없음
 {}: no service space of {} mm in front of {} (the door is too close)	{}: {} mm의 서비스 공간이 {} 앞에 없습니다(도어가 너무 가까움)
+{}: none for this cross-section	{}: 이 단면적용 없음
 {}: not in the single-line diagram	{}: 단선도에 없습니다
 {}: not placed in the panel layout	{}: 패널 레이아웃에 배치되지 않음
 {}: operations per year needed for the B10d of {}	{0}: {1}의 B10d에 연간 동작 횟수가 필요합니다
@@ -1998,6 +2021,8 @@ yellow	노랑
 {}: port {} is not a {} port	{0}: 포트 {1}은(는) {2} 포트가 아닙니다
 {}: ports with different media ({})	{}: 매체가 다른 포트({})
 {}: replace {} after {} years (T10d)	{}: {}을(를) {}년 후 교체(T10d)
+{}: roof {} reaches over the plot boundary	{}: 지붕 {}이(가) 부지 경계를 넘습니다
+{}: room {} stands outside the plot boundary	{}: 실 {}이(가) 부지 경계 밖에 있습니다
 {}: routing path {} is full ({} % of its usable cross-section)	{0}: 배선 경로 {1}이(가) 가득 참(사용 가능 단면적의 {2} %)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {2}에서 이중 고장 전류 {1} A로는 {3} s 이내에 차단되지 않습니다({4} A 필요)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: 단선 심볼 '{}'이(가) 회로도('{}')와 일치하지 않습니다

@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Villamos helyiség
 A device tag must not be empty	Az eszközazonosító nem lehet üres
 A pipe run turns at right angles	A csővezeték-nyomvonal derékszögben fordul
+A plot boundary has at least three corners	Egy telekhatárnak legalább három sarka van
 A port cannot be connected to itself	Egy port nem köthető össze önmagával
 A room needs at least four walls	Egy helyiségnek legalább négy fal kell
 A section number consists of letters and digits and does not start with 0	A szakaszszám betűkből és számjegyekből áll, és nem kezdődik 0-val
@@ -75,7 +76,6 @@ Approved by	Jóváhagyta
 Arms {} and {}	Karok {} és {}
 Asset number	Eszköznyilvántartási szám
 Author of the last revision	Az utolsó revízió szerzője
-Automatic	Automatikus
 Autotransformer 1-phase	Takarékkapcsolású transzformátor, egyfázisú
 Autotransformer 1-phase, adjustable	Takarékkapcsolású transzformátor, egyfázisú, állítható
 Autotransformer 3-phase	Takarékkapcsolású transzformátor, háromfázisú
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Segédfunkció: főérintkező
 Auxiliary relay coil R (JIS)	Segédrelé tekercse R (JIS)
 B10d	B10d
 Ball valve	Golyóscsap
+Bare conductor	Csupaszított vezető
 Basis	Alap
 Battery	Akkumulátor
 Battery capacity	Akkumulátor-kapacitás
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	A(z) {}.
 Connection definition point on page {} is not on a wire	A(z) {}. oldalon lévő összeköttetés-definíciós pont nincs vezetéken
 Connection definitions	Összeköttetés-definíciók
 Connection list	Összeköttetéslista
-Connection point	Csatlakozási pont
 Connection point descriptions	Csatlakozási pontok leírásai
 Connection point {} is not on the {} mm grid.	A(z) {} csatlakozási pont nincs a(z) {} mm-es rácson.
 Connection point {} lies on another one.	A(z) {} csatlakozási pont egy másikon fekszik.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	A DC vezérlőáramkörökn
 DC/DC converter	DC/DC átalakító
 DWG export failed: {}	A DWG-exportálás sikertelen: {}
 Data sheet	Adatlap
-Data type	Adattípus
 Date of the last revision	Az utolsó revízió dátuma
 Degree of protection	Védettségi fokozat
 Delete projects	Projektek törlése
@@ -501,8 +500,8 @@ Fan 3-phase	Ventilátor, háromfázisú
 Fan 3-phase, 6 terminals	Ventilátor, háromfázisú, 6 csatlakozós
 Ferrule	Érvéghüvely
 Ferrule from	Érvéghüvely kezdet
-Ferrule part	Érvéghüvely-alkatrész
 Ferrule to	Érvéghüvely vég
+Ferrule {} mm² {}	Érvéghüvely {} mm² {}
 Field cable routing	Terepi kábelek nyomvonaltervezése
 Field cable {} cannot be routed from {} to {}	{} terepi kábel nem vezethető el {} és {} között
 Field cable {}: {} is not placed in the plant layout	{} terepi kábel: {} nincs elhelyezve a létesítmény-elrendezésben
@@ -523,6 +522,8 @@ Fitting	Csatlakozószerelvény
 Fittings	Csatlakozószerelvények
 Flame retardant	Lángterjedésgátló
 Flat cable {} has {} cores, the IDC connector {} has {} pins	A(z) {} szalagkábelnek {} ere van, a(z) {} IDC csatlakozónak {} lába
+Flat plug	Laposdugó
+Flat receptacle	Laposhüvely
 Flat roof	Lapostető
 Float switch NC	Úszókapcsoló, nyitóérintkező
 Float switch NO	Úszókapcsoló, záróérintkező
@@ -548,6 +549,7 @@ Foot switch NC	Lábkapcsoló, nyitóérintkező
 Foot switch NO	Lábkapcsoló, záróérintkező
 Foot switch NO (NFPA)	Lábkapcsoló, záróérintkező (NFPA)
 Force	Erő
+Fork terminal	Villás saru
 Format (placeholders)	Formátum (helyőrzők)
 Frame size	Építési méret
 Free	Szabad
@@ -751,6 +753,7 @@ Last edited by	Utoljára szerkesztette
 Last inspection	Utolsó felülvizsgálat
 Last revision	Utolsó revízió
 Latching	Reteszelő
+Latitude is within ±90° and longitude within ±180°	A szélesség ±90°, a hosszúság ±180° között van
 Lead time (days)	Szállítási idő (nap)
 Leakage current	Szivárgási áram
 Leakage line	Szivárgóolaj-vezeték
@@ -926,7 +929,6 @@ Neutral (N)	Nullavezető (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	A nullavezetőknek világoskéknek kell lenniük (IEC 60204-1, 13.2.3)
 Next inspection	Következő felülvizsgálat
 Nibbling	Nibbelés
-No connection point {}	Nincs {} csatlakozási pont
 No connection {}	Nincs {} összeköttetés
 No devices to add to the single-line diagram	Nincs az egyvonalas rajzhoz hozzáadandó készülék
 No document embedded - choose a file in the page properties	Nincs beágyazott dokumentum – válasszon fájlt az oldaltulajdonságokban
@@ -935,7 +937,6 @@ No known column in the header row	A fejlécsorban nincs ismert oszlop
 No option {}	Nincs ilyen opció: {}
 No page or page item with id {}	Nincs {} azonosítójú oldal vagy oldalelem
 No page with id {}	Nincs {} azonosítójú oldal
-No part {}	Nincs {} alkatrész
 No plugs	Nincsenek csatlakozók
 No report block {}	Nincs {} kimutatásblokk
 No segment template named {}	Nincs ilyen nevű szegmenssablon: {}
@@ -961,7 +962,6 @@ Not a packed project	Nem csomagolt projekt
 Not a project database: {}	Nem projektadatbázis: {}
 Not a settings scheme: {}	Nem beállításséma: {}
 Not a structure template: {}	Nem struktúrasablon: {}
-Not a symbol id: {}	Nem szimbólumazonosító: {}
 Not a valid JSON file: {}	Nem érvényes JSON-fájl: {}
 Not a valid project file: {}	Nem érvényes projektfájl: {}
 Not a valid property library: {}	Nem érvényes tulajdonságkönyvtár: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Jelzőlámpa (NFPA)
 Pilot line	Vezérlővezeték
 Pin connection diagram	Csatlakozódugó-bekötési terv
 Pin side (male)	Tüske oldal (apa)
+Pin terminal	Csapos saru
 Pipe	Csővezeték
 Piston diameter	Dugattyúátmérő
 Piston rod diameter	Dugattyúrúd-átmérő
@@ -1342,6 +1343,7 @@ Reviewer	Véleményező
 Revision overview (changes)	Revízió-áttekintés (változások)
 Right side	Jobb oldal
 Right side panel	Jobb oldalfal
+Ring terminal	Gyűrűs saru
 Rivet nut	Szegecsanya
 RoHS compliant	RoHS-megfelelő
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Görgős kapcsoló, záróérintkező
 Roof	Tető
 Roof top	Tető
 Room floor	Helyiség padlója
+Room {} stands outside the plot boundary	A(z) {} helyiség a telekhatáron kívül áll
 Rotation	Elforgatás
 Round punch	Kerek lyukasztó
 Routing list (3D)	Nyomvonallista (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Csupaszolás (mm)
 Stripping from (mm)	Csupaszítás kezdete (mm)
 Stripping to (mm)	Csupaszítás vége (mm)
 Stroke	Löket
+Structure box on page {} sets no structure identifier	A(z) {} oldal struktúrakerete nem ad meg struktúraazonosítót
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	A(z) {} oldal struktúrakeretei átfedik egymást anélkül, hogy az egyik a másikban lenne: a mindkettőben lévő készülékek a kisebbik struktúráját kapják
 Structure identifier {} is not defined in the structure management	A(z) {} struktúraazonosító nincs definiálva a struktúrakezelésben
 Structure identifier {} must not contain blanks or the signs = + - / :	A(z) {} struktúraazonosító nem tartalmazhat szóközt és = + - / : jeleket
 Structure identifiers	Struktúraazonosítók
@@ -1537,8 +1542,6 @@ Switches / Sensors	Kapcsolók / érzékelők
 Switches, pushbuttons	Kapcsolók, nyomógombok
 Switching frequency	Kapcsolási gyakoriság
 Switching output	Kapcsolókimenet
-Symbol key	Szimbólumkulcs
-Symbolic address	Szimbolikus cím
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	A(z) {}. lapon lévő T-elem nem illik a vezetékeihez: egy vezeték kell az irányában, kettő keresztben, és nem lehet ott csatlakozási pont
 Table of contents	Tartalomjegyzék
 Tabloid landscape	Tabloid fekvő
@@ -1566,9 +1569,12 @@ Terminal description	Sorkapocsleírás
 Terminal diagram	Sorkapocsterv
 Terminal line-up	Sorkapocs-sorrend
 Terminal marker	Sorkapocsjelölő
+Terminal parts	Végződések cikkszámai
 Terminal strip data of {} without terminals	{} sorkapocsléc-adatai sorkapcsok nélkül
 Terminal strip overview	Sorkapocsléc-áttekintés
 Terminal strips and PLC addresses	Sorkapocslécek és PLC-címek
+Termination (from)	Lezárás (honnan)
+Termination (to)	Lezárás (hová)
 Text file	Szövegfájl
 The DXF file contains nothing that can be imported	A DXF-fájl nem tartalmaz importálható elemet
 The PDF has no pages that can be read	A PDF-ben nincsenek olvasható oldalak
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	A berendezés gyárt�
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	A szekrénysor a helyiségében: L alakú alaprajz, belső fal, ajtó és ablak, a szekrénysor a helyén, egy sín dugaszolóaljzattal a falon, falra szerelt vészvilágító lámpa és kábeltálca a mennyezet alatt.
 The configuration is not a JSON object	A konfiguráció nem JSON-objektum
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	A szállítószalag az első kiadás után: kiadott és zárolt revízió, az azóta jelölt változások, ellenőrzési megjegyzések piros jelölésekkel, egy módosítási kérelem, a B revízió a jóváhagyási folyamatban és egy összehasonlítási alapállapot.
+The coordinates of the reference point must be numbers	A referenciapont koordinátáinak számoknak kell lenniük
+The coordinates of the reference point {} are not valid	A(z) {} referenciapont koordinátái érvénytelenek
+The corners of the plot boundary must be numbers	A telekhatár sarkainak számoknak kell lenniük
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	A bemutató projekt: PLC be- és kimenetek, a szekrény elrendezése sínekkel, kábelcsatornákkal és ajtókészülékekkel, ajtókábelköteg és motorkábel.
 The embedded document {} is damaged	A(z) {} beágyazott dokumentum sérült
 The file is empty	A fájl üres
@@ -1592,6 +1601,9 @@ The next free id is already in use	A következő szabad azonosító már foglalt
 The option needs a name	Az opcióhoz név szükséges
 The page needs a number	Az oldalhoz szám szükséges
 The pages were changed after the submission; submit the revision again	Az oldalak a beküldés után módosultak; küldje be újra a revíziót
+The plot boundary crosses itself	A telekhatár önmagát metszi
+The plot boundary encloses no area	A telekhatár nem zár körül területet
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	A telekhatár nem sokszög: önmagát metszi, vagy háromnál kevesebb sarka van
 The project has no panel layout	A projektnek nincs szekrényelrendezése
 The property needs a name	A tulajdonsághoz név szükséges
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	A szivattyútelep két sorolt álló szekrényben: gyűjtősín-rendszer, sínek és kábelcsatornák, ajtókészülékek és fogantyúk, szűrős ventilátor, lámpa, PE-sín, kábeltömszelencék, kábelátvezetés, klimatizálási számítás, csatornatöltöttség és 3D-útvonaltervezés.
@@ -1685,6 +1697,14 @@ Tubes	Csövek
 Tubing / piping list	Cső- / tömlőanyag-lista
 Turned once (quarter landing)	Egyszer forduló (negyedpihenő)
 Turned twice (two quarter landings)	Kétszer forduló (két negyedpihenő)
+Twin ferrule	Iker érvéghüvely
+Twin ferrule at {} is not shared with a second wire	A(z) {} iker érvéghüvelyén nem osztozik második vezeték
+Twin ferrule at {} joins wires of {} and {}	A(z) {} iker érvéghüvelye {} és {} keresztmetszetű vezetékeket köt össze
+Twin ferrule at {}: {} wires end there, it takes two	Iker érvéghüvely, {}: {} vezeték végződik ott, kettőt fogad be
+Twin ferrule with (from)	Iker érvéghüvely ezzel (honnan)
+Twin ferrule with (to)	Iker érvéghüvely ezzel (hová)
+Twin ferrule {} mm² {}	Iker érvéghüvely {} mm² {}
+Twin ferrules	Iker érvéghüvelyek
 Two connection symbols on page {} lie on the same point	A(z) {}. lapon két kapcsolati szimbólum ugyanazon a ponton fekszik
 Two-way switch (installation)	Váltókapcsoló (installációs)
 Type numbers	Típusszámok
@@ -1767,6 +1787,7 @@ Winding connection	Tekercskapcsolás
 Wire assigned to unknown cable {}	A vezeték ismeretlen kábelhez van rendelve: {}
 Wire colour GNYE is reserved for protective conductors ({})	A GNYE érszín a védővezetők számára van fenntartva ({})
 Wire colours and cross-sections	Érszínek és keresztmetszetek
+Wire crossings and connections	Vezetékkereszteződések és -csatlakozások
 Wire defaults	Vezeték-alapértékek
 Wire jumper	Huzaláthidaló
 Wire list (panel routing)	Vezetéklista (szekrényen belüli nyomvonal)
@@ -1844,6 +1865,7 @@ leakage	szivárgó
 low	alacsony
 measuring	mérő
 new	új
+no free cable gland	nincs szabad kábeltömszelence
 no header	nincs fejléc
 no list	nincs lista
 no path through the route network	nincs útvonal a nyomvonalhálózaton át
@@ -1875,8 +1897,6 @@ routed	fektetve
 shield clamp ({} mm away)	árnyékolásbilincs ({} mm-re)
 silver	ezüst
 starts with	ezzel kezdődik
-strip {} mm	csupaszolás {} mm
-strip {} mm, ferrule {} mm² {}	csupaszolás {} mm, érvéghüvely {} mm² {}
 suction	szívó
 supply	táp
 terminals {} – {}	sorkapcsok: {} – {}
@@ -1915,6 +1935,8 @@ yellow	sárga
 {} is placed at the missing node {}	{} a hiányzó {} csomóponton van elhelyezve
 {} is planned twice ({} and {})	{} kétszer van tervezve ({} és {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{0} csak {2} A-ig szelektív ehhez képest: {1} (zárlati áram {3} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} megtartja a struktúráját: főfunkciói különböző struktúrakeretekben vannak ({})
+{} keeps its structure: {} exists already	{} megtartja a struktúráját: {} már létezik
 {} lies outside page {}	{} a(z) {} oldalon kívül esik
 {} min {} s	{} perc {} mp
 {} mounting marks belong to items that no longer exist	{} szerelési jelölés már nem létező elemekhez tartozik
@@ -1926,11 +1948,13 @@ yellow	sárga
 {} report references converted to report names	{} kimutatáshivatkozás kimutatásnévvé alakítva
 {} s	{} mp
 {} single part assignments converted to part lists	{} egyedi alkatrész-hozzárendelés alkatrészlistává alakítva
+{} stands outside the plot boundary	{} a telekhatáron kívül áll
 {} symbols, {} wires, {} texts / graphics	{} szimbólum, {} vezeték, {} szöveg / grafika
 {} texts are not translated into {}	{0} szöveg nincs lefordítva erre: {1}
 {} unused device data records removed	{} nem használt készülékadatrekord eltávolítva
 {} wiring marks belong to wires that no longer exist	{} huzalozási jelölés már nem létező vezetékekhez tartozik
 {} without device tag on page {}	{0} készülékazonosító nélkül a(z) {1}. oldalon
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nem vezethető: {} minden kábeltömszelencéjét másik kábel foglalja. Adjon hozzá egy kábeltömszelencét.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nem fektethető: nincs út, amely fél vastagságnyira marad mindentől és {} mm sugárral hajlik. Helyezze át a végeket vagy csináljon helyet.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} a fenéken keresztül lép be: nincs kábeltömszelence a szekrényben
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} a tetőn keresztül lép be: nincs kábeltömszelence a tetőn, az oldalakon vagy a hátfalon
@@ -1997,6 +2021,7 @@ yellow	sárga
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: nincs áthidaló-alkatrész a(z) {} áthidaláshoz (a sorkapocs-alkatrész Jumper műszaki adata)
 {}: no part assigned	{}: nincs hozzárendelt alkatrész
 {}: no service space of {} mm in front of {} (the door is too close)	{}: nincs {} mm szervizterület a(z) {} előtt (az ajtó túl közel van)
+{}: none for this cross-section	{}: ehhez a keresztmetszethez nincs
 {}: not in the single-line diagram	{}: nincs az egyvonalas rajzon
 {}: not placed in the panel layout	{}: nincs elhelyezve a szekrényelrendezésben
 {}: operations per year needed for the B10d of {}	{}: a(z) {} B10d-értékéhez szükséges az évenkénti kapcsolási szám
@@ -2010,6 +2035,8 @@ yellow	sárga
 {}: port {} is not a {} port	{}: a(z) {} port nem {}-port
 {}: ports with different media ({})	{}: különböző közegű csatlakozások ({})
 {}: replace {} after {} years (T10d)	{}: a(z) {} cseréje {} év után (T10d)
+{}: roof {} reaches over the plot boundary	{}: a(z) {} tető túlnyúlik a telekhatáron
+{}: room {} stands outside the plot boundary	{}: a(z) {} helyiség a telekhatáron kívül áll
 {}: routing path {} is full ({} % of its usable cross-section)	{}: a(z) {} fektetési út megtelt (hasznos keresztmetszetének {} %-a)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a(z) {} A második hibaáram itt: {} nem kapcsol le {} s-on belül ({} A szükséges)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: az egyvonalas szimbólum ('{}') nem egyezik a kapcsolási rajzzal ('{}')

@@ -39,6 +39,15 @@ impl P {
         q
     }
 
+    /// Inverse of [`P::transform`]: from page directions back to the symbol's own.
+    pub fn untransform(self, rot: u8, mirror: bool) -> P {
+        let mut q = self;
+        for _ in 0..(rot % 4) {
+            q = p(q.y, -q.x);
+        }
+        if mirror { p(-q.x, q.y) } else { q }
+    }
+
     /// Integer key used for connectivity (0.01 mm resolution).
     pub fn key(self) -> (i64, i64) {
         ((self.x * 100.0).round() as i64, (self.y * 100.0).round() as i64)
@@ -142,6 +151,35 @@ impl R {
 
     pub fn height(&self) -> f32 {
         self.max.y - self.min.y
+    }
+
+    /// Do the two rectangles share more than an edge?
+    pub fn overlaps(&self, o: &R) -> bool {
+        self.min.x < o.max.x && o.min.x < self.max.x && self.min.y < o.max.y && o.min.y < self.max.y
+    }
+
+    /// Does the segment `a`-`b` run through the rectangle (Liang–Barsky clipping)?
+    pub fn crosses(&self, a: P, b: P) -> bool {
+        let d = b - a;
+        let (mut t0, mut t1) = (0.0f32, 1.0f32);
+        for (pp, q) in [(-d.x, a.x - self.min.x), (d.x, self.max.x - a.x), (-d.y, a.y - self.min.y), (d.y, self.max.y - a.y)] {
+            if pp == 0.0 {
+                if q < 0.0 {
+                    return false;
+                }
+            } else {
+                let t = q / pp;
+                if pp < 0.0 {
+                    t0 = t0.max(t);
+                } else {
+                    t1 = t1.min(t);
+                }
+                if t0 > t1 {
+                    return false;
+                }
+            }
+        }
+        true
     }
 }
 

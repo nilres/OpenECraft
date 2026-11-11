@@ -108,6 +108,18 @@ fn display_text(raw: &str) -> String {
     openecraft_parts::language_text(raw)
 }
 
+/// Justification of a text (`A966` of its format): 1 to 9 are the top, middle and bottom
+/// rows of left, centred and right (0 the default). Gives the anchor and how far the
+/// reference point is moved down, in text heights, so that the text drawn around its
+/// middle has its top, middle or baseline where EPLAN puts it.
+fn justification(style: Option<&Element>) -> (Anchor, f32) {
+    let Some(n @ 1..=9) = style.and_then(|s| s.attribute("A966")).and_then(|s| s.parse::<u8>().ok()) else {
+        return (Anchor::Left, 0.);
+    };
+    let anchor = [Anchor::Left, Anchor::Center, Anchor::Right][usize::from((n - 1) % 3)];
+    (anchor, [0.55, 0.1, -0.35][usize::from((n - 1) / 3)])
+}
+
 #[derive(Clone, Copy)]
 struct Frame {
     origin: P,
@@ -218,7 +230,8 @@ impl Reader<'_> {
                     .split(';')
                     .map(|s| Some(f.at(if s.is_empty() { P::default() } else { xy(s)? })))
                     .collect::<Option<Vec<_>>>()?;
-                Some(Prim::Poly { pts, closed: true, fill: false })
+                // A623 = 0: an open polyline (rounded corners, edges of vendor drawings).
+                Some(Prim::Poly { pts, closed: el.attribute("A623") != Some("0"), fill: false })
             }
             "S90x5" | "O90" => {
                 let a = local_point("A1661")?;
@@ -241,29 +254,45 @@ impl Reader<'_> {
                 let size = style.and_then(|s| s.attribute("A961")).and_then(number).filter(|n| *n > 0.).unwrap_or(2.5);
                 let angle = style.and_then(|s| s.attribute("A962")).and_then(number).unwrap_or_default();
                 let axis = f.x * angle.cos() + f.y * angle.sin();
+                let text = display_text(el.attribute("A511")?);
+                let (anchor, mut below) = justification(style);
+                // The lines below the first are drawn further down (1.25 heights each): a
+                // middle or bottom justified text rises by half or all of them.
+                if let Some(n @ 4..=9) = style.and_then(|s| s.attribute("A966")).and_then(|s| s.parse::<u8>().ok()) {
+                    below -= (text.lines().count().max(1) - 1) as f32 * 1.25 * if n > 6 { 1. } else { 0.5 };
+                }
+                // Down along the glyphs: a quarter turn from the reading direction.
+                let down = p(-axis.y, axis.x) * (below * size / axis.len().max(f32::EPSILON));
                 Some(Prim::Text {
-                    pos: f.at(local_point("A501")?),
-                    text: display_text(el.attribute("A511")?),
+                    pos: f.at(local_point("A501")?) + down,
+                    text,
                     size,
-                    anchor: Anchor::Left,
+                    anchor,
                     color: None,
                     angle: Some((-axis.y).atan2(axis.x).to_degrees()),
                 })
             }
             "S32x5" | "O32" => {
+                // Elliptic arc: the major semi-axis, the ratio of the minor one to it and
+                // the start and end angles seen from the centre, from the major axis.
                 let center = local_point("A555")?;
                 let radius = q("A556")?;
-                let start = number(el.attribute("A553").unwrap_or("0"))?;
-                let end = number(el.attribute("A554").unwrap_or("0"))?;
-                let mut sweep = (end - start).rem_euclid(std::f32::consts::TAU);
-                if sweep < 0.00001 {
+                let ratio = number(el.attribute("A557").unwrap_or("1"))?;
+                let minor = p(-radius.y, radius.x) * ratio;
+                let polar = |key| -> Option<f32> { number(el.attribute(key).unwrap_or("0")) };
+                let (from, to) = (polar("A553")?, polar("A554")?);
+                // The parameter of the point the angle points to.
+                let parameter = |angle: f32| angle.sin().atan2(ratio * angle.cos());
+                let start = parameter(from);
+                let mut sweep = (parameter(to) - start).rem_euclid(std::f32::consts::TAU);
+                if (to - from).rem_euclid(std::f32::consts::TAU) < 0.00001 {
                     sweep = std::f32::consts::TAU;
                 }
                 let steps = (sweep * 16.).ceil() as usize;
                 let pts = (0..=steps)
                     .map(|i| {
                         let (s, c) = (start + sweep * i as f32 / steps as f32).sin_cos();
-                        f.at(center + p(radius.x * c - radius.y * s, radius.x * s + radius.y * c))
+                        f.at(center + radius * c + minor * s)
                     })
                     .collect();
                 Some(Prim::Poly { pts, closed: false, fill: false })
@@ -326,6 +355,7 @@ impl Reader<'_> {
         let target = &mut self.result.symbol;
         for g in &symbol.prims {
             let transformed = match g {
+                Prim::Image { name, data, corners } => Prim::Image { name: name.clone(), data: data.clone(), corners: corners.map(pt) },
                 Prim::Line { a, b, dashed } => Prim::Line { a: pt(*a), b: pt(*b), dashed: *dashed },
                 Prim::Poly { pts, closed, fill } => Prim::Poly { pts: pts.iter().copied().map(pt).collect(), closed: *closed, fill: *fill },
                 Prim::Circle { c, r, fill, color } => Prim::Path {
@@ -361,7 +391,23 @@ impl Reader<'_> {
                         color: *color,
                     }
                 }
-                Prim::Field { kind, pos, size, anchor } => Prim::Field { kind: *kind, pos: pt(*pos), size: *size, anchor: *anchor },
+                Prim::Field { kind, pos, size, anchor, angle } => Prim::Field {
+                    kind: *kind, pos: pt(*pos), size: *size, anchor: *anchor,
+                    angle: angle.map(|degrees| {
+                        let (s, c) = degrees.to_radians().sin_cos();
+                        let axis = pt(*pos + p(c, -s)) - pt(*pos);
+                        (-axis.y).atan2(axis.x).to_degrees()
+                    }),
+                },
+                Prim::PropertyBlock(block) => {
+                    let mut transformed = block.clone();
+                    transformed.pos = pt(block.pos);
+                    transformed.step = pt(block.pos + block.step) - transformed.pos;
+                    let (sin, cos) = block.angle.to_radians().sin_cos();
+                    let axis = pt(block.pos + p(cos, -sin)) - transformed.pos;
+                    transformed.angle = (-axis.y).atan2(axis.x).to_degrees();
+                    Prim::PropertyBlock(transformed)
+                }
             };
             target.prims.push(transformed);
         }
@@ -382,7 +428,7 @@ impl Reader<'_> {
         for (pin, label) in symbol.pins.iter().zip(labels) {
             let name = if label.is_empty() { pin.label.as_str() } else { label };
             let label = if plug.is_empty() { name.to_string() } else { format!("{plug}.{name}") };
-            target.pins.push(UserPin { pos: pt(pin.pos), label });
+            target.pins.push(UserPin { pos: pt(pin.pos), label, internal: false });
         }
         for &(a, b) in &symbol.bridges {
             if a < symbol.pins.len() && b < symbol.pins.len() {
@@ -532,7 +578,7 @@ impl Reader<'_> {
                 return;
             }
             if let Some(pos) = pos {
-                self.result.symbol.prims.push(Prim::Field { kind: crate::symbols::FieldKind::Label, pos: f.at(pos), size, anchor: Anchor::Left });
+                self.result.symbol.prims.push(Prim::Field { kind: crate::symbols::FieldKind::Label, pos: f.at(pos), size, anchor: Anchor::Left, angle: None });
             }
             return;
         }
@@ -550,7 +596,9 @@ impl Reader<'_> {
             let text = display_text(value);
             let text = if stored.is_none() && matches!(id, "20038" | "20039") { text.split(';').collect::<Vec<_>>().join("\n") } else { text };
             if !text.trim().is_empty() {
-                let g = self.styled(field, Prim::Text { pos: f.at(pos), text, size, anchor: Anchor::Left, angle: None, color: None });
+                let (anchor, below) = justification(field.child("S54x505"));
+                let pos = f.at(pos) + p(0., below * size);
+                let g = self.styled(field, Prim::Text { pos, text, size, anchor, angle: None, color: None });
                 self.result.symbol.prims.push(g);
             }
         } else if id == "20010" && owner.attribute("A1262") == Some("1") && pos.is_some() {
@@ -559,6 +607,7 @@ impl Reader<'_> {
                 pos: f.at(pos.unwrap_or_default()),
                 size,
                 anchor: Anchor::Left,
+                angle: None,
             });
             self.result.symbol.show_tag = false;
         } else {
@@ -952,6 +1001,11 @@ pub fn part_symbol_for_card(
     key: Option<&str>,
     card: Option<&str>,
 ) -> Option<(&'static str, Vec<String>)> {
+    if !part.symbol.is_empty() {
+        if let Some(def) = project.symbol(key.unwrap_or(&part.symbol)) {
+            return Some((def.key, def.pins.iter().map(|pin| pin.label.to_owned()).collect()));
+        }
+    }
     let mut candidates = part
         .eplan_variants
         .iter()

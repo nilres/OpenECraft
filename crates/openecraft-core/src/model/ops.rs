@@ -1,6 +1,7 @@
 //! Data of `crate::ops` that the project file holds (see `docs/architecture.md`).
 
 use super::*;
+use std::collections::BTreeSet;
 
 use serde::{Deserialize, Serialize};
 
@@ -22,6 +23,16 @@ pub struct Clip {
     /// Definitions needed when this clip is inserted into another project.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub symbol_defs: super::symlib::SymbolList,
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub devices: BTreeMap<String, DeviceData>,
+    /// Explicit literal accessory articles to add when extending an existing device.
+    #[serde(skip_serializing_if = "BTreeMap::is_empty")]
+    pub device_part_additions: BTreeMap<String, BTreeSet<String>>,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub parts: Vec<Part>,
+    /// Cable definitions owned by this clip, with their catalog references.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub cables: Vec<Cable>,
     pub wires: Vec<Wire>,
     pub texts: Vec<TextItem>,
     pub shapes: Vec<Shape>,
@@ -33,6 +44,10 @@ pub struct Clip {
     pub conn_defs: Vec<ConnDef>,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub cable_defs: Vec<CableDef>,
+    #[serde(skip)]
+    pub(crate) symbol_cache: crate::symlib::SymbolCache,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub junctions: Vec<Junction>,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub structure_boxes: Vec<super::structure::StructureBox>,
 }

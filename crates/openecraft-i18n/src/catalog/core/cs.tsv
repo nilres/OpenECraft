@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Elektrická místnost
 A device tag must not be empty	Označení zařízení nesmí být prázdné
 A pipe run turns at right angles	Potrubní trasa se lomí v pravém úhlu
+A plot boundary has at least three corners	Hranice pozemku má alespoň tři rohy
 A port cannot be connected to itself	Port nelze připojit sám k sobě
 A room needs at least four walls	Místnost potřebuje alespoň čtyři stěny
 A section number consists of letters and digits and does not start with 0	Číslo oddílu se skládá z písmen a číslic a nezačíná číslicí 0
@@ -75,7 +76,6 @@ Approved by	Schválil
 Arms {} and {}	Ramena {} a {}
 Asset number	Inventární číslo
 Author of the last revision	Autor poslední revize
-Automatic	Automaticky
 Autotransformer 1-phase	Autotransformátor 1fázový
 Autotransformer 1-phase, adjustable	Autotransformátor 1fázový, nastavitelný
 Autotransformer 3-phase	Autotransformátor 3fázový
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Pomocná funkce: hlavní kontakt
 Auxiliary relay coil R (JIS)	Cívka pomocného relé R (JIS)
 B10d	B10d
 Ball valve	Kulový kohout
+Bare conductor	Odizolovaný vodič
 Basis	Základ
 Battery	Baterie
 Battery capacity	Kapacita baterie
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	Bod defi
 Connection definition point on page {} is not on a wire	Bod definice spojení na stránce {} neleží na vodiči
 Connection definitions	Definice spojení
 Connection list	Seznam spojení
-Connection point	Přípojný bod
 Connection point descriptions	Popisy přípojných bodů
 Connection point {} is not on the {} mm grid.	Přípojný bod {} neleží na rastru {} mm.
 Connection point {} lies on another one.	Přípojný bod {} leží na jiném.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	Stejnosměrné řídicí ob
 DC/DC converter	Měnič DC/DC
 DWG export failed: {}	Export DWG selhal: {}
 Data sheet	Katalogový list
-Data type	Datový typ
 Date of the last revision	Datum poslední revize
 Degree of protection	Stupeň krytí
 Delete projects	Odstraňovat projekty
@@ -501,8 +500,8 @@ Fan 3-phase	Ventilátor 3fázový
 Fan 3-phase, 6 terminals	Ventilátor 3fázový, 6 svorek
 Ferrule	Dutinka
 Ferrule from	Dutinka od
-Ferrule part	Artikl dutinky
 Ferrule to	Dutinka do
+Ferrule {} mm² {}	Dutinka {} mm² {}
 Field cable routing	Trasování polních kabelů
 Field cable {} cannot be routed from {} to {}	Polní kabel {} nelze vést z {} do {}
 Field cable {}: {} is not placed in the plant layout	Polní kabel {}: {} není umístěno v dispozici zařízení
@@ -523,6 +522,8 @@ Fitting	Šroubení
 Fittings	Šroubení
 Flame retardant	Nehořlavý
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Plochý kabel {} má {} žil, konektor IDC {} má {} pinů
+Flat plug	Plochý kolík
+Flat receptacle	Plochá dutinka
 Flat roof	Plochá střecha
 Float switch NC	Plovákový spínač, rozpínací
 Float switch NO	Plovákový spínač spínací
@@ -548,6 +549,7 @@ Foot switch NC	Nožní spínač, rozpínací
 Foot switch NO	Nožní spínač, spínací
 Foot switch NO (NFPA)	Nožní spínač, spínací (NFPA)
 Force	Síla
+Fork terminal	Vidlicové oko
 Format (placeholders)	Formát (zástupné symboly)
 Frame size	Konstrukční velikost
 Free	Volné
@@ -751,6 +753,7 @@ Last edited by	Naposledy upravil
 Last inspection	Poslední revize
 Last revision	Poslední revize
 Latching	Aretovaný
+Latitude is within ±90° and longitude within ±180°	Zeměpisná šířka je v rozsahu ±90° a délka v rozsahu ±180°
 Lead time (days)	Dodací lhůta (dny)
 Leakage current	Unikající proud
 Leakage line	Vedení prosakujícího oleje
@@ -926,7 +929,6 @@ Neutral (N)	Střední vodič (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Střední vodiče musí být světle modré (IEC 60204-1, 13.2.3)
 Next inspection	Příští revize
 Nibbling	Prostřihování
-No connection point {}	Žádný připojovací bod {}
 No connection {}	Žádné spojení {}
 No devices to add to the single-line diagram	Žádné přístroje k přidání do jednopólového schématu
 No document embedded - choose a file in the page properties	Není vložen žádný dokument - vyberte soubor ve vlastnostech stránky
@@ -935,7 +937,6 @@ No known column in the header row	V záhlaví není žádný známý sloupec
 No option {}	Žádná volba {}
 No page or page item with id {}	Žádná stránka ani prvek stránky s ID {}
 No page with id {}	Žádná stránka s ID {}
-No part {}	Žádný artikl {}
 No plugs	Žádné konektory
 No report block {}	Žádný blok výkazů {}
 No segment template named {}	Žádná šablona segmentu s názvem {}
@@ -961,7 +962,6 @@ Not a packed project	Není zabalený projekt
 Not a project database: {}	Není databáze projektů: {}
 Not a settings scheme: {}	Není schéma nastavení: {}
 Not a structure template: {}	Nejde o šablonu struktury: {}
-Not a symbol id: {}	Není ID symbolu: {}
 Not a valid JSON file: {}	Není platný soubor JSON: {}
 Not a valid project file: {}	Neplatný soubor projektu: {}
 Not a valid property library: {}	Není platná knihovna vlastností: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Signálka (NFPA)
 Pilot line	Řídicí vedení
 Pin connection diagram	Schéma připojení kolíků
 Pin side (male)	Strana kolíků (samec)
+Pin terminal	Kolíkové oko
 Pipe	Potrubí
 Piston diameter	Průměr pístu
 Piston rod diameter	Průměr pístnice
@@ -1342,6 +1343,7 @@ Reviewer	Kontrolor
 Revision overview (changes)	Přehled revizí (změny)
 Right side	Pravá strana
 Right side panel	Pravá boční stěna
+Ring terminal	Kabelové oko
 Rivet nut	Nýtovací matice
 RoHS compliant	Vyhovuje RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Kladičkový spínač, spínací
 Roof	Střecha
 Roof top	Střecha
 Room floor	Podlaha místnosti
+Room {} stands outside the plot boundary	Místnost {} stojí mimo hranici pozemku
 Rotation	Otočení
 Round punch	Kruhový razník
 Routing list (3D)	Seznam vedení (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Odizolování (mm)
 Stripping from (mm)	Odizolování od (mm)
 Stripping to (mm)	Odizolování do (mm)
 Stroke	Zdvih
+Structure box on page {} sets no structure identifier	Rámeček struktury na stránce {} nenastavuje žádný identifikátor struktury
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	Rámečky struktury na stránce {} se překrývají, aniž by jeden ležel uvnitř druhého: přístroje v obou přebírají strukturu menšího
 Structure identifier {} is not defined in the structure management	Identifikátor struktury {} není definován ve správě struktury
 Structure identifier {} must not contain blanks or the signs = + - / :	Identifikátor struktury {} nesmí obsahovat mezery ani znaky = + - / :
 Structure identifiers	Identifikátory struktury
@@ -1537,8 +1542,6 @@ Switches / Sensors	Spínače / snímače
 Switches, pushbuttons	Spínače, tlačítka
 Switching frequency	Četnost spínání
 Switching output	Spínací výstup
-Symbol key	Klíč symbolu
-Symbolic address	Symbolická adresa
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-kus na straně {} neodpovídá svým vodičům: potřebuje jeden vodič ve svém směru, dva napříč a žádný připojovací bod v místě
 Table of contents	Obsah
 Tabloid landscape	Tabloid na šířku
@@ -1566,9 +1569,12 @@ Terminal description	Popis svorky
 Terminal diagram	Schéma svorkovnice
 Terminal line-up	Řazení svorek
 Terminal marker	Štítek svorky
+Terminal parts	Díly koncovek
 Terminal strip data of {} without terminals	Data svorkovnice {} bez svorek
 Terminal strip overview	Přehled svorkovnic
 Terminal strips and PLC addresses	Svorkovnice a adresy PLC
+Termination (from)	Zakončení (od)
+Termination (to)	Zakončení (do)
 Text file	Textový soubor
 The DXF file contains nothing that can be imported	Soubor DXF neobsahuje nic, co by bylo možné importovat
 The PDF has no pages that can be read	PDF nemá žádné čitelné stránky
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	Výrobce rozváděče
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Řada rozvaděčů ve své místnosti: půdorys ve tvaru L, vnitřní stěna, dveře a okno, řada na svém místě, lišta se zásuvkou na stěně, nouzové svítidlo na stěně a kabelový žlab pod stropem.
 The configuration is not a JSON object	Konfigurace není objekt JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Dopravník po prvním uvolnění: uvolněná a uzamčená revize, od té doby označené změny, komentáře z kontroly s červenými značkami, žádost o změnu, revize B ve schvalovacím procesu a základní stav k porovnání.
+The coordinates of the reference point must be numbers	Souřadnice referenčního bodu musí být čísla
+The coordinates of the reference point {} are not valid	Souřadnice referenčního bodu {} nejsou platné
+The corners of the plot boundary must be numbers	Rohy hranice pozemku musí být čísla
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	Ukázkový projekt: vstupy a výstupy PLC, rozmístění skříně s lištami, kabelovými žlaby a přístroji ve dveřích, svazek dveří a kabel motoru.
 The embedded document {} is damaged	Vložený dokument {} je poškozen
 The file is empty	Soubor je prázdný
@@ -1592,6 +1601,9 @@ The next free id is already in use	Další volné ID je již použito
 The option needs a name	Volba potřebuje název
 The page needs a number	Stránka potřebuje číslo
 The pages were changed after the submission; submit the revision again	Stránky byly po předložení změněny; předložte revizi znovu
+The plot boundary crosses itself	Hranice pozemku protíná sama sebe
+The plot boundary encloses no area	Hranice pozemku neohraničuje žádnou plochu
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	Hranice pozemku není mnohoúhelník: protíná sama sebe nebo má méně než tři rohy
 The project has no panel layout	Projekt nemá rozvržení rozváděče
 The property needs a name	Vlastnost potřebuje název
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Čerpací stanice vestavěná do dvou řazených stojanových skříní: přípojnicový systém, lišty a kabelové žlaby, přístroje ve dveřích a rukojeti, ventilátor s filtrem, osvětlení, přípojnice PE, kabelové vývodky, kabelová průchodka, výpočet klimatizace, zaplnění žlabů a 3D trasování.
@@ -1685,6 +1697,14 @@ Tubes	Trubky
 Tubing / piping list	Seznam trubek / potrubí
 Turned once (quarter landing)	Jednou zalomené (čtvrtinová podesta)
 Turned twice (two quarter landings)	Dvakrát zalomené (dvě čtvrtinové podesty)
+Twin ferrule	Dvojitá dutinka
+Twin ferrule at {} is not shared with a second wire	Dvojitá dutinka v {} není sdílena s druhým vodičem
+Twin ferrule at {} joins wires of {} and {}	Dvojitá dutinka v {} spojuje vodiče {} a {}
+Twin ferrule at {}: {} wires end there, it takes two	Dvojitá dutinka v {}: končí tam {} vodičů, pojme dva
+Twin ferrule with (from)	Dvojitá dutinka s (od)
+Twin ferrule with (to)	Dvojitá dutinka s (do)
+Twin ferrule {} mm² {}	Dvojitá dutinka {} mm² {}
+Twin ferrules	Dvojité dutinky
 Two connection symbols on page {} lie on the same point	Dva symboly spojení na straně {} leží v tomtéž bodě
 Two-way switch (installation)	Střídavý přepínač (instalace)
 Type numbers	Typová čísla
@@ -1767,6 +1787,7 @@ Winding connection	Zapojení vinutí
 Wire assigned to unknown cable {}	Vodič přiřazen k neznámému kabelu {}
 Wire colour GNYE is reserved for protective conductors ({})	Barva vodiče GNYE je vyhrazena pro ochranné vodiče ({})
 Wire colours and cross-sections	Barvy a průřezy vodičů
+Wire crossings and connections	Křížení a spojení vodičů
 Wire defaults	Výchozí hodnoty vodičů
 Wire jumper	Drátová propojka
 Wire list (panel routing)	Seznam vodičů (vedení v rozváděči)
@@ -1844,6 +1865,7 @@ leakage	únik
 low	nízká
 measuring	měřicí
 new	nový
+no free cable gland	žádná volná kabelová průchodka
 no header	žádné záhlaví
 no list	žádný seznam
 no path through the route network	žádná cesta sítí tras
@@ -1875,8 +1897,6 @@ routed	vedeno
 shield clamp ({} mm away)	svorka stínění ({} mm daleko)
 silver	stříbrná
 starts with	začíná na
-strip {} mm	odizolovat {} mm
-strip {} mm, ferrule {} mm² {}	odizolovat {} mm, dutinka {} mm² {}
 suction	sací
 supply	napájení
 terminals {} – {}	svorky {} – {}
@@ -1915,6 +1935,8 @@ yellow	žlutá
 {} is placed at the missing node {}	{} je umístěno v chybějícím uzlu {}
 {} is planned twice ({} and {})	{} je plánováno dvakrát ({} a {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} je selektivní vůči {} jen do {} A (zkratový proud {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} si ponechává svou strukturu: jeho hlavní funkce leží v různých rámečcích struktury ({})
+{} keeps its structure: {} exists already	{} si ponechává svou strukturu: {} již existuje
 {} lies outside page {}	{} leží mimo stránku {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} značek montáže patří k prvkům, které již neexistují
@@ -1926,11 +1948,13 @@ yellow	žlutá
 {} report references converted to report names	{} odkazů na výkazy převedeno na názvy výkazů
 {} s	{} s
 {} single part assignments converted to part lists	{} jednotlivých přiřazení artiklů převedeno na seznamy artiklů
+{} stands outside the plot boundary	{} stojí mimo hranici pozemku
 {} symbols, {} wires, {} texts / graphics	Symboly: {}, vodiče: {}, texty / grafika: {}
 {} texts are not translated into {}	Nepřeložené texty do jazyka {1}: {0}
 {} unused device data records removed	Odebráno {} nepoužitých záznamů dat přístrojů
 {} wiring marks belong to wires that no longer exist	Značky zapojení ({}) patří k vodičům, které již neexistují
 {} without device tag on page {}	{} bez označení přístroje na stránce {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nelze vést: každá kabelová průchodka v {} je obsazena jiným kabelem. Přidejte pro něj kabelovou průchodku.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nelze vést: žádná cesta, která drží polovinu tloušťky od všeho a ohýbá se s poloměrem {} mm. Přesuňte konce nebo udělejte místo.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} vstupuje dnem: ve skříni není kabelová vývodka
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} vstupuje střechou: na střeše, bocích ani zadní stěně není kabelová vývodka
@@ -1997,6 +2021,7 @@ yellow	žlutá
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: žádný artikl propojky pro propojku {} (technické údaje Jumper artiklu svorky)
 {}: no part assigned	{}: není přiřazen žádný artikl
 {}: no service space of {} mm in front of {} (the door is too close)	{}: před {1} není servisní prostor {0} mm (dveře jsou příliš blízko)
+{}: none for this cross-section	{}: žádný pro tento průřez
 {}: not in the single-line diagram	{}: není v jednopólovém schématu
 {}: not placed in the panel layout	{}: není umístěno v rozvržení rozváděče
 {}: operations per year needed for the B10d of {}	{}: pro B10d {} je potřeba počet operací za rok
@@ -2010,6 +2035,8 @@ yellow	žlutá
 {}: port {} is not a {} port	{}: port {} není port typu {}
 {}: ports with different media ({})	{}: přípoje s různými médii ({})
 {}: replace {} after {} years (T10d)	{}: vyměnit {} po {} letech (T10d)
+{}: roof {} reaches over the plot boundary	{}: střecha {} přesahuje hranici pozemku
+{}: room {} stands outside the plot boundary	{}: místnost {} stojí mimo hranici pozemku
 {}: routing path {} is full ({} % of its usable cross-section)	{}: trasa vedení {} je plná ({} % jejího využitelného průřezu)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: proud druhé poruchy {} A v {} neodpojí do {} s (potřeba {} A)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: jednopólový symbol '{}' neodpovídá schématu zapojení ('{}')

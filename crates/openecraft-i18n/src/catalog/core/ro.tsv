@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Cameră electrică
 A device tag must not be empty	Marcajul echipamentului nu poate fi gol
 A pipe run turns at right angles	Un traseu de conducte se întoarce în unghi drept
+A plot boundary has at least three corners	O limită de teren are cel puțin trei colțuri
 A port cannot be connected to itself	Un port nu poate fi conectat la el însuși
 A room needs at least four walls	O încăpere are nevoie de cel puțin patru pereți
 A section number consists of letters and digits and does not start with 0	Un număr de secțiune constă din litere și cifre și nu începe cu 0
@@ -75,7 +76,6 @@ Approved by	Aprobat de
 Arms {} and {}	Brațe {} și {}
 Asset number	Număr de inventar
 Author of the last revision	Autorul ultimei revizii
-Automatic	Automat
 Autotransformer 1-phase	Autotransformator monofazat
 Autotransformer 1-phase, adjustable	Autotransformator monofazat, reglabil
 Autotransformer 3-phase	Autotransformator trifazat
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Funcție auxiliară: contact principal
 Auxiliary relay coil R (JIS)	Bobină de releu auxiliar R (JIS)
 B10d	B10d
 Ball valve	Robinet cu bilă
+Bare conductor	Conductor dezizolat
 Basis	Bază
 Battery	Baterie
 Battery capacity	Capacitatea bateriei
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	Punctul 
 Connection definition point on page {} is not on a wire	Punctul de definire a conexiunii de pe pagina {} nu se află pe un conductor
 Connection definitions	Definiții de conexiune
 Connection list	Listă de conexiuni
-Connection point	Punct de conexiune
 Connection point descriptions	Descrieri ale punctelor de conexiune
 Connection point {} is not on the {} mm grid.	Punctul de conexiune {} nu se află pe grila de {} mm.
 Connection point {} lies on another one.	Punctul de conexiune {} se suprapune peste altul.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	Circuitele de comandă în 
 DC/DC converter	Convertor c.c./c.c.
 DWG export failed: {}	Exportul DWG nu a reușit: {}
 Data sheet	Fișă tehnică
-Data type	Tip de date
 Date of the last revision	Data ultimei revizii
 Degree of protection	Grad de protecție
 Delete projects	Ștergere proiecte
@@ -501,8 +500,8 @@ Fan 3-phase	Ventilator trifazat
 Fan 3-phase, 6 terminals	Ventilator trifazat, 6 borne
 Ferrule	Manșon de capăt
 Ferrule from	Manșon de capăt de la
-Ferrule part	Articol manșon de capăt
 Ferrule to	Manșon de capăt la
+Ferrule {} mm² {}	Manșon {} mm² {}
 Field cable routing	Pozarea cablurilor de câmp
 Field cable {} cannot be routed from {} to {}	Cablul de câmp {} nu poate fi pozat de la {} la {}
 Field cable {}: {} is not placed in the plant layout	Cablu de câmp {}: {} nu este plasat în planul de amplasare a instalației
@@ -523,6 +522,8 @@ Fitting	Racord
 Fittings	Racorduri
 Flame retardant	Ignifug
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Cablul plat {} are {} conductori, conectorul IDC {} are {} pini
+Flat plug	Fișă plată
+Flat receptacle	Mufă plată
 Flat roof	Acoperiș terasă
 Float switch NC	Comutator cu flotor NÎ
 Float switch NO	Comutator cu plutitor ND
@@ -548,6 +549,7 @@ Foot switch NC	Comutator de picior NÎ
 Foot switch NO	Comutator de picior ND
 Foot switch NO (NFPA)	Comutator de picior ND (NFPA)
 Force	Forță
+Fork terminal	Papuc furcă
 Format (placeholders)	Format (substituenți)
 Frame size	Mărime constructivă
 Free	Liber
@@ -751,6 +753,7 @@ Last edited by	Ultima editare de
 Last inspection	Ultima inspecție
 Last revision	Ultima revizie
 Latching	Cu reținere
+Latitude is within ±90° and longitude within ±180°	Latitudinea este în ±90°, iar longitudinea în ±180°
 Lead time (days)	Timp de livrare (zile)
 Leakage current	Curent de scurgere
 Leakage line	Conductă de scurgeri
@@ -926,7 +929,6 @@ Neutral (N)	Neutru (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Conductoarele neutre trebuie să fie albastru deschis (IEC 60204-1, 13.2.3)
 Next inspection	Următoarea inspecție
 Nibbling	Nibelare
-No connection point {}	Niciun punct de conectare {}
 No connection {}	Nicio conexiune {}
 No devices to add to the single-line diagram	Niciun dispozitiv de adăugat în schema monofilară
 No document embedded - choose a file in the page properties	Niciun document încorporat - alegeți un fișier în proprietățile paginii
@@ -935,7 +937,6 @@ No known column in the header row	Nicio coloană cunoscută în rândul de antet
 No option {}	Nu există opțiunea {}
 No page or page item with id {}	Nu există nicio pagină sau element de pagină cu ID-ul {}
 No page with id {}	Nu există nicio pagină cu ID-ul {}
-No part {}	Niciun articol {}
 No plugs	Niciun conector
 No report block {}	Niciun bloc de raport {}
 No segment template named {}	Niciun șablon de segment cu numele {}
@@ -961,7 +962,6 @@ Not a packed project	Nu este un proiect împachetat
 Not a project database: {}	Nu este o bază de date de proiecte: {}
 Not a settings scheme: {}	Nu este o schemă de setări: {}
 Not a structure template: {}	Nu este un șablon de structură: {}
-Not a symbol id: {}	Nu este un ID de simbol: {}
 Not a valid JSON file: {}	Nu este un fișier JSON valid: {}
 Not a valid project file: {}	Nu este un fișier de proiect valid: {}
 Not a valid property library: {}	Nu este o bibliotecă de proprietăți validă: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Lampă de semnalizare (NFPA)
 Pilot line	Conductă de pilotare
 Pin connection diagram	Schemă de conectare a pinilor
 Pin side (male)	Partea pinilor (tată)
+Pin terminal	Papuc pin
 Pipe	Conductă
 Piston diameter	Diametrul pistonului
 Piston rod diameter	Diametrul tijei pistonului
@@ -1342,6 +1343,7 @@ Reviewer	Examinator
 Revision overview (changes)	Prezentare revizii (modificări)
 Right side	Partea dreaptă
 Right side panel	Perete lateral dreapta
+Ring terminal	Papuc inel
 Rivet nut	Piuliță nituită
 RoHS compliant	Conform RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Comutator cu rolă ND
 Roof	Plafon
 Roof top	Acoperiș
 Room floor	Pardoseala încăperii
+Room {} stands outside the plot boundary	Încăperea {} se află în afara limitei terenului
 Rotation	Rotire
 Round punch	Poanson rotund
 Routing list (3D)	Listă de pozare (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Dezizolare (mm)
 Stripping from (mm)	Dezizolare de la (mm)
 Stripping to (mm)	Dezizolare la (mm)
 Stroke	Cursă
+Structure box on page {} sets no structure identifier	Caseta de structură de pe pagina {} nu stabilește niciun identificator de structură
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	Casetele de structură de pe pagina {} se suprapun fără ca una să se afle în cealaltă: dispozitivele din ambele preiau structura celei mai mici
 Structure identifier {} is not defined in the structure management	Identificatorul de structură {} nu este definit în gestionarea structurii
 Structure identifier {} must not contain blanks or the signs = + - / :	Identificatorul de structură {} nu trebuie să conțină spații sau semnele = + - / :
 Structure identifiers	Identificatori de structură
@@ -1537,8 +1542,6 @@ Switches / Sensors	Comutatoare / senzori
 Switches, pushbuttons	Comutatoare, butoane
 Switching frequency	Frecvență de comutare
 Switching output	Ieșire de comutare
-Symbol key	Cheie simbol
-Symbolic address	Adresă simbolică
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Piesa T de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în direcția ei, două transversal și niciun punct de conexiune acolo
 Table of contents	Cuprins
 Tabloid landscape	Tabloid vedere
@@ -1566,9 +1569,12 @@ Terminal description	Descriere bornă
 Terminal diagram	Schemă de borne
 Terminal line-up	Dispunere borne
 Terminal marker	Marcaj de bornă
+Terminal parts	Articole capete
 Terminal strip data of {} without terminals	Date de șir de borne pentru {} fără borne
 Terminal strip overview	Prezentare șiruri de borne
 Terminal strips and PLC addresses	Șiruri de borne și adrese PLC
+Termination (from)	Terminație (de la)
+Termination (to)	Terminație (la)
 Text file	Fișier text
 The DXF file contains nothing that can be imported	Fișierul DXF nu conține nimic ce poate fi importat
 The PDF has no pages that can be read	PDF-ul nu are pagini care pot fi citite
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	Producătorul ansambl
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Șirul de dulapuri în camera sa: plan în formă de L, perete interior, ușă și fereastră, șirul de dulapuri la locul său, o șină cu o priză pe un perete, un corp de iluminat de siguranță montat pe perete și un jgheab de cabluri sub tavan.
 The configuration is not a JSON object	Configurația nu este un obiect JSON
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportorul după prima lansare: o revizie lansată și blocată, modificările marcate de atunci, comentarii de verificare cu marcaje roșii, o cerere de modificare, revizia B în fluxul de aprobare și o linie de bază pentru comparare.
+The coordinates of the reference point must be numbers	Coordonatele punctului de referință trebuie să fie numere
+The coordinates of the reference point {} are not valid	Coordonatele punctului de referință {} nu sunt valide
+The corners of the plot boundary must be numbers	Colțurile limitei terenului trebuie să fie numere
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	Proiectul demonstrativ: intrări și ieșiri PLC, amplasarea în dulap cu șine, canale de cablu și aparate pe ușă, fasciculul ușii și cablul motorului.
 The embedded document {} is damaged	Documentul încorporat {} este deteriorat
 The file is empty	Fișierul este gol
@@ -1592,6 +1601,9 @@ The next free id is already in use	Următorul ID liber este deja utilizat
 The option needs a name	Opțiunea necesită un nume
 The page needs a number	Pagina necesită un număr
 The pages were changed after the submission; submit the revision again	Paginile au fost modificate după trimitere; trimiteți din nou revizia
+The plot boundary crosses itself	Limita terenului se intersectează cu ea însăși
+The plot boundary encloses no area	Limita terenului nu înconjoară nicio suprafață
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	Limita terenului nu este un poligon: se intersectează sau are mai puțin de trei colțuri
 The project has no panel layout	Proiectul nu are amplasare în tablou
 The property needs a name	Proprietatea necesită un nume
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Stația de pompare montată în două dulapuri de podea alăturate: sistem de bare, șine și canale de cablu, aparate pe ușă și mânere, ventilator cu filtru, iluminat, bară PE, presetupe, o trecere de cabluri, calculul climatizării, gradul de umplere al canalelor și rutare 3D.
@@ -1685,6 +1697,14 @@ Tubes	Tuburi
 Tubing / piping list	Listă de tuburi / conducte
 Turned once (quarter landing)	Cu o întoarcere (podest de colț)
 Turned twice (two quarter landings)	Cu două întoarceri (două podeste de colț)
+Twin ferrule	Manșon dublu
+Twin ferrule at {} is not shared with a second wire	Manșonul dublu de la {} nu este împărțit cu un al doilea conductor
+Twin ferrule at {} joins wires of {} and {}	Manșonul dublu de la {} unește conductoare de {} și {}
+Twin ferrule at {}: {} wires end there, it takes two	Manșon dublu la {}: acolo se termină {} conductoare, primește două
+Twin ferrule with (from)	Manșon dublu cu (de la)
+Twin ferrule with (to)	Manșon dublu cu (spre)
+Twin ferrule {} mm² {}	Manșon dublu {} mm² {}
+Twin ferrules	Manșoane duble
 Two connection symbols on page {} lie on the same point	Două simboluri de conexiune de pe pagina {} se află în același punct
 Two-way switch (installation)	Comutator cap-scară (instalații)
 Type numbers	Numere de tip
@@ -1767,6 +1787,7 @@ Winding connection	Conexiunea înfășurării
 Wire assigned to unknown cable {}	Conductor atribuit unui cablu necunoscut {}
 Wire colour GNYE is reserved for protective conductors ({})	Culoarea de conductor GNYE este rezervată conductoarelor de protecție ({})
 Wire colours and cross-sections	Culori de conductor și secțiuni
+Wire crossings and connections	Încrucișări și joncțiuni ale firelor
 Wire defaults	Valori implicite ale conductoarelor
 Wire jumper	Punte din conductor
 Wire list (panel routing)	Listă de conductoare (pozare în tablou)
@@ -1844,6 +1865,7 @@ leakage	scurgere
 low	scăzută
 measuring	măsurare
 new	nou
+no free cable gland	niciun presetupă liberă
 no header	niciun antet
 no list	nicio listă
 no path through the route network	niciun traseu prin rețeaua de trasee
@@ -1875,8 +1897,6 @@ routed	pozat
 shield clamp ({} mm away)	clemă de ecran (la {} mm)
 silver	argintiu
 starts with	începe cu
-strip {} mm	dezizolare {} mm
-strip {} mm, ferrule {} mm² {}	dezizolare {} mm, manșon de capăt {} mm² {}
 suction	aspirație
 supply	alimentare
 terminals {} – {}	bornele {} – {}
@@ -1915,6 +1935,8 @@ yellow	galben
 {} is placed at the missing node {}	{} este plasat la nodul lipsă {}
 {} is planned twice ({} and {})	{} este planificat de două ori ({} și {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} este selectiv față de {} doar până la {} A (curent de scurtcircuit {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} își păstrează structura: funcțiile sale principale se află în casete de structură diferite ({})
+{} keeps its structure: {} exists already	{} își păstrează structura: {} există deja
 {} lies outside page {}	{} se află în afara paginii {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} marcaje de montaj aparțin unor elemente care nu mai există
@@ -1926,11 +1948,13 @@ yellow	galben
 {} report references converted to report names	{} referințe de raport convertite în nume de raport
 {} s	{} s
 {} single part assignments converted to part lists	{} atribuiri de articole individuale convertite în liste de articole
+{} stands outside the plot boundary	{} se află în afara limitei terenului
 {} symbols, {} wires, {} texts / graphics	{} simboluri, {} conductoare, {} texte / grafice
 {} texts are not translated into {}	{} texte nu sunt traduse în {}
 {} unused device data records removed	{} înregistrări neutilizate de date de dispozitiv eliminate
 {} wiring marks belong to wires that no longer exist	{} marcaje de cablare aparțin unor conductoare care nu mai există
 {} without device tag on page {}	{} fără identificator de dispozitiv pe pagina {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} nu poate fi trasat: fiecare presetupă din {} este ocupată de alt cablu. Adăugați o presetupă pentru el.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} nu poate fi pozat: nicio cale care păstrează jumătate din grosime liberă de tot și se curbează cu raza de {} mm. Mutați capetele sau faceți loc.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} intră prin bază: nicio presetupă în carcasă
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} intră prin acoperiș: nicio presetupă pe acoperiș, laterale sau spate
@@ -1997,6 +2021,7 @@ yellow	galben
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: niciun articol de punte pentru puntea {} (date tehnice Jumper ale articolului de bornă)
 {}: no part assigned	{}: niciun articol atribuit
 {}: no service space of {} mm in front of {} (the door is too close)	{}: nu există spațiu de service de {} mm în fața {} (ușa este prea aproape)
+{}: none for this cross-section	{}: niciunul pentru această secțiune
 {}: not in the single-line diagram	{}: nu este în schema monofilară
 {}: not placed in the panel layout	{}: nu este plasat în amplasarea în tablou
 {}: operations per year needed for the B10d of {}	{}: sunt necesare manevrele pe an pentru B10d al lui {}
@@ -2010,6 +2035,8 @@ yellow	galben
 {}: port {} is not a {} port	{}: portul {} nu este un port {}
 {}: ports with different media ({})	{}: porturi cu medii diferite ({})
 {}: replace {} after {} years (T10d)	{}: înlocuiți {} după {} ani (T10d)
+{}: roof {} reaches over the plot boundary	{}: acoperișul {} depășește limita terenului
+{}: room {} stands outside the plot boundary	{}: încăperea {} se află în afara limitei terenului
 {}: routing path {} is full ({} % of its usable cross-section)	{}: calea de pozare {} este plină ({} % din secțiunea utilă)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: curentul de dublu defect {} A la {} nu deconectează în {} s (necesită {} A)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: simbolul monofilar '{}' nu corespunde schemei ('{}')

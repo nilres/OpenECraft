@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Elrum
 A device tag must not be empty	En apparatbeteckning får inte vara tom
 A pipe run turns at right angles	En rörgata svänger i räta vinklar
+A plot boundary has at least three corners	En tomtgräns har minst tre hörn
 A port cannot be connected to itself	En port kan inte anslutas till sig själv
 A room needs at least four walls	Ett rum behöver minst fyra väggar
 A section number consists of letters and digits and does not start with 0	Ett avsnittsnummer består av bokstäver och siffror och börjar inte med 0
@@ -75,7 +76,6 @@ Approved by	Godkänd av
 Arms {} and {}	Armar {} och {}
 Asset number	Inventarienummer
 Author of the last revision	Författare till den senaste revisionen
-Automatic	Automatisk
 Autotransformer 1-phase	Autotransformator 1-fas
 Autotransformer 1-phase, adjustable	Autotransformator 1-fas, inställbar
 Autotransformer 3-phase	Autotransformator 3-fas
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Hjälpfunktion: huvudkontakt
 Auxiliary relay coil R (JIS)	Hjälpreläspole R (JIS)
 B10d	B10d
 Ball valve	Kulventil
+Bare conductor	Avskalad ledare
 Basis	Grund
 Battery	Batteri
 Battery capacity	Batterikapacitet
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	Förbind
 Connection definition point on page {} is not on a wire	Förbindelsedefinitionspunkten på sida {} ligger inte på en ledning
 Connection definitions	Förbindelsedefinitioner
 Connection list	Förbindelselista
-Connection point	Anslutningspunkt
 Connection point descriptions	Beskrivningar av anslutningspunkter
 Connection point {} is not on the {} mm grid.	Anslutningspunkt {} ligger inte på {} mm-rutnätet.
 Connection point {} lies on another one.	Anslutningspunkt {} ligger på en annan.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	DC-styrkretsar bör vara bl
 DC/DC converter	DC/DC-omvandlare
 DWG export failed: {}	DWG-exporten misslyckades: {}
 Data sheet	Datablad
-Data type	Datatyp
 Date of the last revision	Datum för den senaste revisionen
 Degree of protection	Kapslingsklass
 Delete projects	Ta bort projekt
@@ -501,8 +500,8 @@ Fan 3-phase	Fläkt 3-fas
 Fan 3-phase, 6 terminals	Fläkt 3-fas, 6 anslutningar
 Ferrule	Ändhylsa
 Ferrule from	Ändhylsa från
-Ferrule part	Ändhylsartikel
 Ferrule to	Ändhylsa till
+Ferrule {} mm² {}	Ändhylsa {} mm² {}
 Field cable routing	Kabelvägar för fältkablar
 Field cable {} cannot be routed from {} to {}	Fältkabel {} kan inte dras från {} till {}
 Field cable {}: {} is not placed in the plant layout	Fältkabel {}: {} är inte placerad i anläggningslayouten
@@ -523,6 +522,8 @@ Fitting	Koppling
 Fittings	Kopplingar
 Flame retardant	Flamskyddad
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Flatkabeln {} har {} ledare, IDC-kontakten {} har {} stift
+Flat plug	Flatstift
+Flat receptacle	Flathylsa
 Flat roof	Platt tak
 Float switch NC	Flottörbrytare, brytande
 Float switch NO	Nivåvippa slutande
@@ -548,6 +549,7 @@ Foot switch NC	Fotbrytare, brytande
 Foot switch NO	Fotbrytare, slutande
 Foot switch NO (NFPA)	Fotbrytare, slutande (NFPA)
 Force	Kraft
+Fork terminal	Gaffelkabelsko
 Format (placeholders)	Format (platshållare)
 Frame size	Byggstorlek
 Free	Fri
@@ -751,6 +753,7 @@ Last edited by	Senast redigerad av
 Last inspection	Senaste besiktning
 Last revision	Senaste revision
 Latching	Låsande
+Latitude is within ±90° and longitude within ±180°	Latituden ligger inom ±90° och longituden inom ±180°
 Lead time (days)	Ledtid (dagar)
 Leakage current	Läckström
 Leakage line	Läckledning
@@ -926,7 +929,6 @@ Neutral (N)	Neutralledare (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutralledare måste vara ljusblå (IEC 60204-1, 13.2.3)
 Next inspection	Nästa besiktning
 Nibbling	Nibbling
-No connection point {}	Ingen anslutningspunkt {}
 No connection {}	Ingen förbindelse {}
 No devices to add to the single-line diagram	Inga apparater att lägga till i enlinjeschemat
 No document embedded - choose a file in the page properties	Inget dokument inbäddat - välj en fil i sidegenskaperna
@@ -935,7 +937,6 @@ No known column in the header row	Ingen känd kolumn i rubrikraden
 No option {}	Inget alternativ {}
 No page or page item with id {}	Ingen sida och inget sidobjekt med ID {}
 No page with id {}	Ingen sida med ID {}
-No part {}	Ingen artikel {}
 No plugs	Inga kontakter
 No report block {}	Inget rapportblock {}
 No segment template named {}	Ingen segmentmall med namnet {}
@@ -961,7 +962,6 @@ Not a packed project	Inte ett packat projekt
 Not a project database: {}	Ingen projektdatabas: {}
 Not a settings scheme: {}	Inte ett inställningsschema: {}
 Not a structure template: {}	Inte en strukturmall: {}
-Not a symbol id: {}	Inget symbol-ID: {}
 Not a valid JSON file: {}	Ingen giltig JSON-fil: {}
 Not a valid project file: {}	Inte en giltig projektfil: {}
 Not a valid property library: {}	Inget giltigt egenskapsbibliotek: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Signallampa (NFPA)
 Pilot line	Styrledning
 Pin connection diagram	Stiftanslutningsschema
 Pin side (male)	Stiftsida (hane)
+Pin terminal	Stiftkabelsko
 Pipe	Rörledning
 Piston diameter	Kolvdiameter
 Piston rod diameter	Kolvstångsdiameter
@@ -1342,6 +1343,7 @@ Reviewer	Granskare
 Revision overview (changes)	Revisionsöversikt (ändringar)
 Right side	Höger sida
 Right side panel	Höger sidovägg
+Ring terminal	Ringkabelsko
 Rivet nut	Nitmutter
 RoHS compliant	RoHS-kompatibel
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Rullbrytare, slutande
 Roof	Tak
 Roof top	Tak
 Room floor	Rummets golv
+Room {} stands outside the plot boundary	Rum {} står utanför tomtgränsen
 Rotation	Vridning
 Round punch	Rund stans
 Routing list (3D)	Dragningslista (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Avskalning (mm)
 Stripping from (mm)	Avisolering från (mm)
 Stripping to (mm)	Avisolering till (mm)
 Stroke	Slaglängd
+Structure box on page {} sets no structure identifier	Strukturruta på sida {} anger ingen strukturbeteckning
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	Strukturrutor på sida {} överlappar utan att den ena ligger inuti den andra: apparater i båda får strukturen från den mindre
 Structure identifier {} is not defined in the structure management	Strukturbeteckningen {} är inte definierad i strukturhanteringen
 Structure identifier {} must not contain blanks or the signs = + - / :	Strukturbeteckningen {} får inte innehålla blanksteg eller tecknen = + - / :
 Structure identifiers	Strukturbeteckningar
@@ -1537,8 +1542,6 @@ Switches / Sensors	Brytare / givare
 Switches, pushbuttons	Brytare, tryckknappar
 Switching frequency	Kopplingsfrekvens
 Switching output	Kopplingsutgång
-Symbol key	Symbolnyckel
-Symbolic address	Symbolisk adress
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	T-stycket på sida {} passar inte sina ledare: det behöver en ledare i sin riktning, två tvärs över och ingen anslutningspunkt där
 Table of contents	Innehållsförteckning
 Tabloid landscape	Tabloid liggande
@@ -1566,9 +1569,12 @@ Terminal description	Plintbeskrivning
 Terminal diagram	Plintschema
 Terminal line-up	Plintuppställning
 Terminal marker	Plintmärkning
+Terminal parts	Artiklar för ändar
 Terminal strip data of {} without terminals	Plintradsdata för {} utan plintar
 Terminal strip overview	Plintradsöversikt
 Terminal strips and PLC addresses	Plintrader och PLC-adresser
+Termination (from)	Avslutning (från)
+Termination (to)	Avslutning (till)
 Text file	Textfil
 The DXF file contains nothing that can be imported	DXF-filen innehåller inget som kan importeras
 The PDF has no pages that can be read	PDF-filen har inga sidor som kan läsas
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tillverkaren av koppl
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Skåpraden i sitt rum: L-format planritning, innervägg, dörr och fönster, skåpraden på sin plats, en skena med ett vägguttag, en väggmonterad nödbelysning och en kabelstege under taket.
 The configuration is not a JSON object	Konfigurationen är inte ett JSON-objekt
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	Transportören efter första frisläppningen: en frisläppt och låst revision, ändringar markerade sedan dess, granskningskommentarer med rödmarkering, en ändringsbegäran, revision B i godkännandeflödet och en baslinje att jämföra med.
+The coordinates of the reference point must be numbers	Referenspunktens koordinater måste vara tal
+The coordinates of the reference point {} are not valid	Referenspunktens {} koordinater är ogiltiga
+The corners of the plot boundary must be numbers	Tomtgränsens hörn måste vara tal
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	Demoprojektet: PLC-in- och utgångar, skåplayout med skenor, kabelkanaler och dörrapparater, dörrkabelstam och motorkabel.
 The embedded document {} is damaged	Det inbäddade dokumentet {} är skadat
 The file is empty	Filen är tom
@@ -1592,6 +1601,9 @@ The next free id is already in use	Nästa lediga ID används redan
 The option needs a name	Alternativet behöver ett namn
 The page needs a number	Sidan behöver ett nummer
 The pages were changed after the submission; submit the revision again	Sidorna ändrades efter att de skickades; skicka revisionen igen
+The plot boundary crosses itself	Tomtgränsen korsar sig själv
+The plot boundary encloses no area	Tomtgränsen omsluter ingen yta
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	Tomtgränsen är ingen polygon: den korsar sig själv eller har färre än tre hörn
 The project has no panel layout	Projektet har ingen skåplayout
 The property needs a name	Egenskapen behöver ett namn
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Pumpstationen inbyggd i två sammanbyggda golvskåp: skensystem, skenor och kabelkanaler, dörrapparater och handtag, filterfläkt, belysning, PE-skena, kabelförskruvningar, en kabelgenomföring, klimatberäkning, kanalfyllnad och 3D-dragning.
@@ -1685,6 +1697,14 @@ Tubes	Slangar
 Tubing / piping list	Rör- / slanglista
 Turned once (quarter landing)	Svängd en gång (kvartsvilplan)
 Turned twice (two quarter landings)	Svängd två gånger (två kvartsvilplan)
+Twin ferrule	Dubbel ändhylsa
+Twin ferrule at {} is not shared with a second wire	Dubbel ändhylsa vid {} delas inte med en andra ledare
+Twin ferrule at {} joins wires of {} and {}	Dubbel ändhylsa vid {} förenar ledare på {} och {}
+Twin ferrule at {}: {} wires end there, it takes two	Dubbel ändhylsa vid {}: {} ledare slutar där, den tar två
+Twin ferrule with (from)	Dubbel ändhylsa med (från)
+Twin ferrule with (to)	Dubbel ändhylsa med (till)
+Twin ferrule {} mm² {}	Dubbel ändhylsa {} mm² {}
+Twin ferrules	Dubbla ändhylsor
 Two connection symbols on page {} lie on the same point	Två förbindelsesymboler på sida {} ligger i samma punkt
 Two-way switch (installation)	Trappströmställare (installation)
 Type numbers	Typnummer
@@ -1767,6 +1787,7 @@ Winding connection	Lindningskoppling
 Wire assigned to unknown cable {}	Ledning tilldelad okänd kabel {}
 Wire colour GNYE is reserved for protective conductors ({})	Ledarfärgen GNYE är reserverad för skyddsledare ({})
 Wire colours and cross-sections	Ledarfärger och tvärsnitt
+Wire crossings and connections	Ledningskorsningar och -förbindelser
 Wire defaults	Standardvärden för ledningar
 Wire jumper	Trådbygel
 Wire list (panel routing)	Ledningslista (skåpdragning)
@@ -1844,6 +1865,7 @@ leakage	läckage
 low	låg
 measuring	mät
 new	ny
+no free cable gland	ingen ledig kabelförskruvning
 no header	ingen rubrikrad
 no list	ingen lista
 no path through the route network	ingen väg genom kabelvägsnätet
@@ -1875,8 +1897,6 @@ routed	dragen
 shield clamp ({} mm away)	skärmklämma ({} mm bort)
 silver	silver
 starts with	börjar med
-strip {} mm	skala av {} mm
-strip {} mm, ferrule {} mm² {}	skala av {} mm, ändhylsa {} mm² {}
 suction	sug
 supply	matning
 terminals {} – {}	plintar {} – {}
@@ -1915,6 +1935,8 @@ yellow	gul
 {} is placed at the missing node {}	{} är placerad vid den saknade noden {}
 {} is planned twice ({} and {})	{} är planerad två gånger ({} och {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} är selektiv mot {} endast upp till {} A (kortslutningsström {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} behåller sin struktur: dess huvudfunktioner ligger i olika strukturrutor ({})
+{} keeps its structure: {} exists already	{} behåller sin struktur: {} finns redan
 {} lies outside page {}	{} ligger utanför sida {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} monteringsmarkeringar hör till objekt som inte längre finns
@@ -1926,11 +1948,13 @@ yellow	gul
 {} report references converted to report names	{} rapportreferenser konverterade till rapportnamn
 {} s	{} s
 {} single part assignments converted to part lists	{} enskilda artikeltilldelningar konverterade till artikellistor
+{} stands outside the plot boundary	{} står utanför tomtgränsen
 {} symbols, {} wires, {} texts / graphics	{} symboler, {} ledningar, {} texter / grafik
 {} texts are not translated into {}	{} texter är inte översatta till {}
 {} unused device data records removed	{} oanvända apparatdataposter borttagna
 {} wiring marks belong to wires that no longer exist	{} inkopplingsmarkeringar hör till ledningar som inte längre finns
 {} without device tag on page {}	{} utan apparatbeteckning på sida {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} kan inte dras: varje kabelförskruvning i {} upptas av en annan kabel. Lägg till en kabelförskruvning för den.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} kan inte dras: ingen väg som håller halva tjockleken fri från allt och böjer med radien {} mm. Flytta ändarna eller gör plats.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} går in genom botten: ingen kabelförskruvning i kapslingen
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} går in genom taket: ingen kabelförskruvning på tak, sidor eller bakstycke
@@ -1997,6 +2021,7 @@ yellow	gul
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: ingen bygelartikel för bygel {} (tekniska data Jumper för plintartikeln)
 {}: no part assigned	{}: ingen artikel tilldelad
 {}: no service space of {} mm in front of {} (the door is too close)	{}: inget serviceutrymme på {} mm framför {} (dörren är för nära)
+{}: none for this cross-section	{}: ingen för denna area
 {}: not in the single-line diagram	{}: inte i enlinjeschemat
 {}: not placed in the panel layout	{}: inte placerad i skåplayouten
 {}: operations per year needed for the B10d of {}	{}: antal manövrer per år krävs för B10d för {}
@@ -2010,6 +2035,8 @@ yellow	gul
 {}: port {} is not a {} port	{}: port {} är inte en {}-port
 {}: ports with different media ({})	{}: portar med olika medier ({})
 {}: replace {} after {} years (T10d)	{}: byt ut {} efter {} år (T10d)
+{}: roof {} reaches over the plot boundary	{}: tak {} sticker ut över tomtgränsen
+{}: room {} stands outside the plot boundary	{}: rum {} står utanför tomtgränsen
 {}: routing path {} is full ({} % of its usable cross-section)	{}: dragningsväg {} är full ({} % av dess användbara tvärsnitt)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: dubbelfelsströmmen {} A vid {} kopplar inte bort inom {} s (behöver {} A)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: enlinjesymbolen '{}' matchar inte kretsschemat ('{}')

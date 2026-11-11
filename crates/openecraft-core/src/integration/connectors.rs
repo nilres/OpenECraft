@@ -165,13 +165,16 @@ fn connections(prj: &Project, an: &Analysis) -> Vec<Row> {
 }
 
 fn wires(prj: &Project, an: &Analysis) -> Vec<Row> {
-    wiring::steps(prj, &an.wiring, None, Order::CrossSection)
+    wiring::steps(prj, &an.ends, &an.wiring, None, Order::CrossSection)
         .into_iter()
         .enumerate()
         .map(|(i, s)| {
             let w = &an.wiring[s.wire];
-            let strip = s.ends.map(|e| fmt_number(e.strip)).unwrap_or_default();
-            let ferrule = s.ends.and_then(|e| e.ferrule).map(|f| f.part.to_string()).unwrap_or_default();
+            // The ferrule fields carry the part of any terminal of the end; a twin ferrule
+            // the end of the wire it is crimped with first.
+            let [strip_from, strip_to] = s.ends.map(|e| e.map(|e| fmt_number(e.strip)).unwrap_or_default());
+            let [ferrule_from, ferrule_to] = s.ends.map(|e| e.filter(|e| !e.shared).map(|e| e.part()).unwrap_or_default());
+            let [twin_from, twin_to] = s.twins.clone().map(|t| t.map(|t| t.with).unwrap_or_default());
             let status = match s.status {
                 Status::Open => "open",
                 Status::Done => "wired",
@@ -188,10 +191,12 @@ fn wires(prj: &Project, an: &Analysis) -> Vec<Row> {
                 (Field::Color, w.color.clone()),
                 (Field::CrossSection, w.cross_section.clone()),
                 (Field::Length, format!("{:.0}", w.length)),
-                (Field::StripFrom, strip.clone()),
-                (Field::StripTo, strip),
-                (Field::FerruleFrom, ferrule.clone()),
-                (Field::FerruleTo, ferrule),
+                (Field::StripFrom, strip_from),
+                (Field::StripTo, strip_to),
+                (Field::FerruleFrom, ferrule_from),
+                (Field::FerruleTo, ferrule_to),
+                (Field::TwinFrom, twin_from),
+                (Field::TwinTo, twin_to),
                 (Field::Quantity, "1".into()),
                 (Field::Status, status.into()),
                 (Field::Note, s.note.replace(['\n', '\r'], " ")),
@@ -257,7 +262,7 @@ pub fn plm(prj: &Project, an: &Analysis) -> String {
     // Engineering BOM: location → device → parts.
     let mut locations: std::collections::BTreeMap<String, Vec<Value>> = Default::default();
     for (tag, d) in prj.devices.iter().filter(|(_, d)| !d.parts.is_empty()) {
-        let parts: Vec<Value> = d.parts.iter().map(|r| json!({ Field::PartNumber.code(): r.number, Field::Quantity.code(): r.count.max(1) })).collect();
+        let parts: Vec<Value> = d.parts.iter().map(|r| json!({ Field::PartNumber.code(): r.number, Field::Quantity.code(): r.quantity() })).collect();
         locations.entry(enclosure_of(prj, tag)).or_default().push(json!({ Field::Tag.code(): tag, Field::Description.code(): d.description, "parts": parts }));
     }
     let structure: Vec<Value> = locations.into_iter().map(|(loc, devices)| json!({ Field::Enclosure.code(): loc, "devices": devices })).collect();

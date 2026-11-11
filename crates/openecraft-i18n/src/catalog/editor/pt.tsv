@@ -55,6 +55,7 @@ A new release is downloaded in the background and replaces this installation; it
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Uma seção numerada que contém páginas como um diretório; os nomes das páginas começam com o seu número (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Um perfil mapeia os campos neutros para os nomes de coluna de um sistema específico (por exemplo, MATNR para o número ERP no SAP). Sem mapeamento, nomes comuns em inglês e alemão são reconhecidos.
 A project definition based on this one, with its own defaults and scheme	Uma definição de projeto baseada nesta, com seus próprios valores padrão e esquema
+A reference point at the origin of the plant	Um ponto de referência na origem da instalação
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Um bloco de relatório gera as páginas de um relatório, por exemplo, um diagrama de bornes por régua, e as atualiza.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Uma página de esquema elétrico 3.1, 3.2, … após a página atual, mantida como subpágina ao renumerar
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	Uma página de esquema elétrico por dispositivo planejado com macro de página que ainda não está no esquema elétrico (segmento selecionado, caso contrário todos)
@@ -162,6 +163,7 @@ Assign to harness	Atribuir ao chicote
 Assign wires: select them in the schematic › Assign to cable.	Atribuir fios: selecione-os no esquema elétrico › Atribuir ao cabo.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Motores assíncronos na rede aumentam a maior corrente de curto-circuito (IEC 60909-0)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Na temperatura ambiente máxima; o aquecedor mantém o ponto de orvalho. 0 = não considerado
+At the origin	Na origem
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	No ponto de alimentação: Ik3 máx {} kA, Ik1 mín {} kA
 At the top level	No nível superior
 Author	Autor
@@ -172,6 +174,7 @@ Automatic (from the potential definition)	Automático (a partir da definição d
 Automatic ({})	Automático ({})
 Automatic accessories	Acessórios automáticos
 Automatic configuration	Configuração automática
+Automatic placement	Posicionamento automático
 Automation	Automação
 Aux	Aux.
 Avoid:	Evitar:
@@ -202,7 +205,10 @@ Border	Borda
 Border distance (mm)	Distância da borda (mm)
 Both sides are open: the wires need no cutout	Os dois lados estão abertos: os fios não precisam de recorte
 Bottom edges	Bordas inferiores
+Bottom left	Inferior esquerdo
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Parte inferior do gabinete (sem base) acima do piso; as alturas são verificadas quando ela é conhecida ou quando o gabinete está sobre uma base
+Bottom right	Inferior direito
+Boundary	Limite
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacidade de interrupção em relação à corrente de curto-circuito em cada dispositivo de proteção da rede, seccionamento com a menor corrente de falta no fim de seu circuito, suportabilidade a curto-circuito dos cabos e seletividade com o dispositivo a montante.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quatro fios; a conexão entra por um lado e vai para os outros três, primeiro para o lado oposto
 Building {} added with a level at ground level	Edifício {} adicionado com um piso ao nível do solo
@@ -224,6 +230,7 @@ Cable definition	Definição de cabo
 Cable definition on page {}	Definição de cabo na página {}
 Cable definition: draw a line across the wires that are cores of a cable	Definição de cabo: desenhe uma linha atravessando os fios que são veias de um cabo
 Cable end reserve	Reserva por extremidade de cabo
+Cable ends	Pontas do cabo
 Cable markers	Marcadores de cabo
 Cable passage to {}	Passagem de cabos para {}
 Cable {}: {} cores assigned	Cabo {}: {} veias atribuídas
@@ -291,6 +298,7 @@ Click on the 4 mm grid	Clique na grade de 4 mm
 Click on the wall: the part goes there at its mounting height	Clique na parede: a peça fica ali na sua altura de montagem
 Click start and end point	Clique no ponto inicial e no ponto final
 Click the corners of a machine or building, double-click to finish	Clique nos cantos de uma máquina ou edifício e clique duas vezes para concluir
+Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Clique nos vértices do limite do terreno · clique no primeiro, clique duplo ou Enter: fechar · Backspace: voltar · Esc: parar
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Clique nas extremidades das paredes internas; cada clique inicia a próxima, extremidades perto de uma parede se encaixam nela. Esc, Enter ou um clique duplo terminam a cadeia, Esc de novo a ferramenta.
 Click to add a node of the route network	Clique para adicionar um nó da rede de rotas
 Click to add to the selected text.	Clique para adicionar ao texto selecionado.
@@ -304,8 +312,12 @@ Click to show the building in the site plan; right-click for new levels	Clique p
 Click to show the site plan of the buildings, or all of the plant in the 3D view	Clique para mostrar a planta de situação dos edifícios, ou toda a instalação na vista 3D
 Click to show, right click for more	Clique para mostrar, botão direito para mais
 Click two corners	Clique em dois cantos
+Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Clique em dois cantos da caixa de estrutura e depois defina seus identificadores nas propriedades · Esc ou clique direito para terminar
 Click two nodes to connect them	Clique em dois nós para conectá-los
+Click two points to measure from one to the other · Esc: stop	Clique em dois pontos para medir de um ao outro · Esc: parar
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Clique onde quatro fios se encontram: a ponte leva a conexão de um lado para os outros três, primeiro para o oposto · {} gira-a · Esc ou clique direito para terminar
+Click where it is in the site plan	Clique na sua posição na planta de situação
+Click where the reference point is	Clique onde está o ponto de referência
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Clique onde três fios se encontram: a peça em T indica o dispositivo de onde partem os fios e a ordem dos seus destinos · {} gira-a onde ainda não se encontram fios · Esc ou clique direito para terminar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Clique onde dois fios se cruzam: o cruzamento liga-os e leva cada extremidade da sua linha primeiro em linha reta e depois transversalmente · {} gira-o · Esc ou clique direito para terminar
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Clique onde dois fios se encontram em ângulo reto, ou onde pontos de conexão se defrontam através do canto: com a autoconexão ativa, desenham-se fios até ele · {} gira-o · Esc ou clique direito para terminar
@@ -345,7 +357,7 @@ Comments and markup	Comentários e marcações
 Compare and baselines	Comparação e linhas de base
 Compare with	Comparar com
 Compare with a baseline, a revision or another project file and take differences over	Comparar com uma linha de base, uma revisão ou outro arquivo de projeto e aplicar as diferenças
-Complete tag: {}\nAspects missing here are taken from the page (=function +location).	Identificador completo: {}\nOs aspectos ausentes aqui são obtidos da página (=função +localização).
+Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Identificador completo: {}\nOs aspectos ausentes aqui são obtidos da página (=função +localização) ou da caixa de estrutura em que o símbolo está.
 Condition	Condição
 Condition (OPTION=value & …)	Condição (OPTION=valor & …)
 Conductive frame	Estrutura condutora
@@ -354,11 +366,13 @@ Connected devices	Dispositivos conectados
 Connected to:	Conectado a:
 Connection definition point	Ponto de definição de conexão
 Connection definition point: defines number, colour, cross-section and cable core of a connection	Ponto de definição de conexão: define o número, a cor, a seção transversal e a veia de cabo de uma conexão
+Connection point designations	Designações dos pontos de conexão
 Connection point {}	Ponto de conexão {}
 Connection points 1 and 2 are connected inside	Os pontos de conexão 1 e 2 estão interligados internamente
 Connection:	Conexão:
 Connections ({})	Conexões ({})
 Connections / harness	Conexões / chicote
+Connections of four or more wires always have a dot.	As junções de quatro ou mais fios sempre têm um ponto.
 Connections whose two ends are both on selected wires	Conexões cujas duas extremidades estão em fios selecionados
 Connections without a defined potential	Conexões sem potencial definido
 Connectors	Conectores
@@ -367,6 +381,7 @@ Consecutive addresses from the start byte, in schematic order	Endereços consecu
 Contact image below coils	Espelho de contatos abaixo das bobinas
 Content	Conteúdo
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	O conteúdo de uma opção inativa fica oculto: ele não é desenhado, avaliado, relatado nem exportado.
+Coordinate reference system	Sistema de referência de coordenadas
 Copies	Cópias
 Copies function texts between both representations where one is empty	Copia textos de função entre as duas representações onde uma está vazia
 Copies in rows and columns	Cópias em linhas e colunas
@@ -378,6 +393,7 @@ Copy / cut / paste (devices get new tags)	Copiar / recortar / colar (os disposit
 Copy as new	Copiar como novo
 Copy built-in…	Copiar integrado…
 Core designations separated by blanks	Designações das veias separadas por espaços
+Core labels placed by hand	Rótulos das veias posicionados manualmente
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Veias 1, 2, 3 … para os fios cruzados, mais GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Canto: dois fios em ângulo reto; com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele
 Cover sheet, overview, graphics, report, mounting layout or a page template	Capa, visão geral, gráfico, relatório, layout de montagem ou um modelo de página
@@ -412,10 +428,12 @@ DWG imported as page {}: {} lines, {} texts (not imported: {})	DWG importado com
 DXF import failed: {}	Falha na importação do DXF: {}
 DXF imported as page {}: {} lines, {} texts	DXF importado como página {}: {} linhas, {} textos
 DXF imported as page {}: {} lines, {} texts (not imported: {})	DXF importado como página {}: {} linhas, {} textos (não importado: {})
+Dash-dot	Traço-ponto
 Dashed	Tracejado
 Decimals	Casas decimais
 Default	Padrão
 Default (part data or definition)	Padrão (dados da peça ou definição)
+Default ({})	Padrão ({})
 Default label	Rótulo padrão
 Default medium	Meio padrão
 Default rules	Regras padrão
@@ -463,6 +481,7 @@ Descriptions	Descrições
 Deselect	Desmarcar
 Designations separated by blanks; empty: those of the symbol	Designações separadas por espaços; vazio: as do símbolo
 Destination: each end shows the connection point at the other end	Destino: cada extremidade mostra o ponto de conexão da outra extremidade
+Device box	Caixa de dispositivo
 Device description (GSDML, ESI)	Descrição de dispositivo (GSDML, ESI)
 Device descriptions	Descrições de dispositivo
 Device descriptions of PROFINET (GSDML) and EtherCAT (ESI) devices	Descrições de dispositivos PROFINET (GSDML) e EtherCAT (ESI)
@@ -478,10 +497,12 @@ Device, terminal, wire and cable markers for marking software	Marcadores de disp
 Devices ({})	Dispositivos ({})
 Devices are not copied: a device is placed once.	Os dispositivos não são copiados: um dispositivo é posicionado uma única vez.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Os dispositivos são planejados com símbolos unifilares e projetados no esquema elétrico multifilar; ambos compartilham o identificador do dispositivo.
+Devices in the box: {}	Dispositivos na caixa: {}
 Devices of a channel	Dispositivos de um canal
 Devices of the second channel; empty = like the first	Dispositivos do segundo canal; vazio = como o primeiro
 Devices placed on the page get its structure; their tags are shown without it.	Os dispositivos posicionados na página recebem sua estrutura; seus identificadores são exibidos sem ela.
 Devices to place	Dispositivos a posicionar
+Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Os dispositivos cuja função principal está na caixa recebem os identificadores definidos aqui; aspectos vazios são herdados da página ou de uma caixa envolvente.
 Devices, connections and terminals: filter, fill, find and replace, CSV	Dispositivos, conexões e bornes: filtrar, preencher, localizar e substituir, CSV
 Dew point	Ponto de orvalho
 Diameter	Diâmetro
@@ -491,6 +512,7 @@ Digits	Dígitos
 Dimension	Cota
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Peça em T direcionada: onde três fios se encontram, indica o dispositivo de onde partem os dois fios da conexão e a ordem dos seus destinos
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Cruzamento direcionado: liga os dois fios que ali se cruzam; cada extremidade da sua linha é cablada primeiro em linha reta e depois transversalmente
+Direction of grid north, counter-clockwise seen from above from the rear of the plant (-z)	Direção do norte da quadrícula, no sentido anti-horário visto de cima a partir do fundo da instalação (-z)
 Direction the modules face, counter-clockwise seen from above (0: towards the front)	Direção para a qual os módulos estão voltados, no sentido anti-horário visto de cima (0: para a frente)
 Discard changes	Descartar alterações
 Discard draft	Descartar rascunho
@@ -531,7 +553,10 @@ Downloading OpenECraft {}	Baixando o OpenECraft {}
 Downstream part	Peça a jusante
 Draft of revision {} created	Rascunho da revisão {} criado
 Draft of revision {} discarded	Rascunho da revisão {} descartado
+Drag a connection point designation of the selected symbol to place it.	Arraste uma designação de conexão do símbolo selecionado para posicioná-la.
 Drag an entry into the page, or click it and then click into the page.	Arraste uma entrada para a página ou clique nela e depois clique na página.
+Drag the core designation or the cable tag of the selected wire to place it.	Arraste a designação da veia ou o identificador do cabo do fio selecionado para posicioná-los.
+Drag the name or the cross reference of the selected point to place it.	Arraste o nome ou a referência cruzada do ponto selecionado para posicioná-lo.
 Drag the tag of the selected symbol to place it.	Arraste o identificador do símbolo selecionado para posicioná-lo.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Arrastar: orbitar · arrastar com o botão direito/do meio ou Shift: deslocar · roda: zoom no ponteiro · clique duplo: olhar para lá · W A S D / setas, Q E: mover · clique: selecionar
 Draw	Desenhar
@@ -541,6 +566,8 @@ Draw cable definition	Desenhar definição de cabo
 Draw connections	Desenhar conexões
 Draw connections between facing connection points when symbols are placed or moved	Desenhar conexões entre pontos de conexão opostos quando símbolos são posicionados ou movidos
 Draw inner walls	Desenhar paredes internas
+Draw the boundary of the plot in the site plan: click its corners, click the first one or press Enter to close; all buildings have to stay inside it	Desenhar o limite do terreno na planta de situação: clique nos vértices, no primeiro ou pressione Enter para fechar; todos os edifícios devem ficar dentro
+Draw the boundary of the plot in the site plan; all buildings have to stay inside it	Desenhar o limite do terreno na planta de situação; todos os edifícios devem ficar dentro dele
 Draw the page yourself: graphics for every page and a row drawing repeated for every row; texts take the columns as placeholders	Desenhe a página você mesmo: gráficos para cada página e um desenho de linha repetido para cada linha; os textos usam as colunas como espaços reservados
 Draw the three wires of the T-junction to it: one in its direction and two across	Desenhe os três fios da peça em T até ela: um na sua direção e dois transversais
 Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Desenhe os dois fios do canto até ele, ou ative a autoconexão e coloque-o voltado para pontos de conexão livres
@@ -565,6 +592,7 @@ Duplicate	Duplicar
 Each example builds on the one before and shows more of the features.	Cada exemplo se baseia no anterior e mostra mais funções.
 Each point-to-point connection can belong to a harness	Cada conexão ponto a ponto pode pertencer a um chicote
 Earthing system	Esquema de aterramento
+Easting, northing	Coordenada leste, norte
 Eaves	Beiral
 Edge length of the routing grid: smaller is finer and slower	Comprimento da aresta da grade de roteamento: menor é mais fino e mais lento
 Edit	Editar
@@ -630,7 +658,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Material de fixação na lista de materiais
 Favorite	Favorito
 Favorites (JSON)	Favoritos (JSON)
-Ferrule {} ({})	Ponteira {} ({})
 Field	Campo
 Field (name, description, company, creator, date, revision) or project property	Campo (name, description, company, creator, date, revision) ou propriedade de projeto
 Field cables	Cabos de campo
@@ -723,6 +750,7 @@ Graphic rectangle	Retângulo gráfico
 Graphical form	Formulário gráfico
 Greatest distance of the roof hooks along a rail	Maior distância dos ganchos de telhado ao longo de um trilho
 Grid	Grade
+Grid north	Norte da quadrícula
 Grid size	Tamanho da grade
 Grid {} mm	Grade {} mm
 Group as assembly	Agrupar como conjunto
@@ -738,6 +766,7 @@ Heat map	Mapa de calor
 Heating	Aquecimento
 Heating circuit manifolds and control boxes	Coletores de aquecimento e caixas de regulação
 Height (mm)	Altura (mm)
+Height above sea level	Altitude
 Height above the floor	Altura acima do piso
 Height above the mounting plate	Altura acima da placa de montagem
 Height above the plate	Altura acima da placa
@@ -764,6 +793,8 @@ Hose number	Número da mangueira
 Hoses and pipes	Mangueiras e tubulações
 Hoses rated below it are errors; 0 = not checked	Mangueiras especificadas abaixo dela são erros; 0 = não verificado
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Como a folha abre: dobradiças na borda esquerda ou direita (vista de dentro do ambiente), para dentro ou para fora do ambiente, ou de correr ao longo da parede
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Como o fio é terminado nesta ponta; por padrão como escolhido para o ponto de conexão ou seu dispositivo, senão conforme a configuração de terminais tubulares do layout
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Como os fios saltam sobre os fios que cruzam, como as junções em T são marcadas e se os itens movidos retraçam suas conexões
 IP / bus address	Endereço IP / de barramento
 ISO 639-1 language code	Código de idioma ISO 639-1
 Identifiers	Identificadores
@@ -838,6 +869,7 @@ Insulation	Isolação
 Interruption points refer to	Os pontos de interrupção referem-se a
 Introduction	Introdução
 Invalid value	Valor inválido
+Invert the direction of panning by scrolling	Inverter a direção do movimento da vista pela rolagem
 Inverter or charge controller (devices with PV input data)	Inversor ou controlador de carga (dispositivos com dados de entrada FV)
 Isometric	Isométrica
 Items on the layer	Itens na camada
@@ -849,6 +881,7 @@ Join collinear wires	Unir fios colineares
 Joins	Liga
 Joins wire pieces in a line where nothing else connects (current page)	Une trechos de fio em linha onde nada mais se conecta (página atual)
 Jumper {}	Ponte {}
+Jumps over the other:	Salta sobre o outro:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Manter subpáginas (3.a, 3.1) com a página anterior
 Keep the degree of protection	Manter o grau de proteção
@@ -862,7 +895,9 @@ Label (grey)	Rótulo (cinza)
 Label field	Campo de rótulo
 Labeling scheme	Esquema de etiquetagem
 Landscape	Paisagem
+Large dot	Ponto grande
 Larger texts and buttons for a touch screen at the workbench	Textos e botões maiores para uma tela sensível ao toque na bancada
+Latitude, longitude	Latitude, longitude
 Layer	Camada
 Layer {}	Camada {}
 Layer: {}	Camada: {}
@@ -888,6 +923,7 @@ Level of a multi-level terminal: upper levels sit on the block of the terminal b
 Level of this kind of message	Nível deste tipo de mensagem
 Level on top	Pavimento acima
 Level {} added to building {}; new rooms go onto it	Piso {} adicionado ao edifício {}; os novos ambientes vão para ele
+Level {} of building {}	Pavimento {} do edifício {}
 Levels	Pavimentos
 Library	Biblioteca
 Limits	Limites
@@ -959,6 +995,8 @@ Max. pressure	Pressão máx.
 Max. width	Largura máx.
 Maximum fill of a carrier	Preenchimento máximo de um suporte
 Mean: typical operation	Média: operação típica
+Measure	Medir
+Measure in the site plan: click two points for the distance, how far east and north and the direction from north	Medir na planta de situação: clique em dois pontos para a distância, quanto a leste e ao norte e a direção a partir do norte
 Measured	Medido
 Measures against common cause failure (at least 65 points)	Medidas contra falhas de causa comum (pelo menos 65 pontos)
 Merge a symbol library file	Mesclar um arquivo de biblioteca de símbolos
@@ -972,6 +1010,7 @@ Min. bend radius	Raio mín. de curvatura
 Minimize the ribbon	Minimizar a faixa de opções
 Mirror	Espelhar
 Mirror (selection or symbol being placed)	Espelhar (seleção ou símbolo sendo posicionado)
+Mixed	Misto
 Mode	Modo
 Model of a part (2D / 3D)	Modelo de uma peça (2D / 3D)
 Module part; its size comes from the part	Peça do módulo; seu tamanho vem da peça
@@ -995,6 +1034,7 @@ Move to section	Mover para a seção
 Move up	Mover para cima
 Moves to the top level as page {}	Vai para o nível superior como página {}
 Moves to {} as page {}	Vai para {} como página {}
+Moving	Mover
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Símbolos de potência multifilares e condutores para os símbolos unifilares da página atual, em uma nova página
 Multiple copy	Cópia múltipla
 Multiple copy…	Cópia múltipla…
@@ -1007,9 +1047,11 @@ NC data (DXF)	Dados CN (DXF)
 NC data of this face (DWG)	Dados CN desta face (DWG)
 NC data of this face (DXF)	Dados CN desta face (DXF)
 Nailboard (SVG)…	Gabarito de montagem (SVG)…
+Name and cross reference	Nome e referência cruzada
 Name on the server	Nome no servidor
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; tipo de dados; endereço lógico; comentário – para ferramentas de programação de CLP
 Named copy of this form, for report blocks	Cópia nomeada deste formulário, para blocos de relatório
+Navigation	Navegação
 Navigators	Navegadores
 Neutral exchange file…	Arquivo de intercâmbio neutro…
 Never	Nunca
@@ -1072,14 +1114,17 @@ No cables yet. Draw a cable definition across wires or add a cable.	Ainda não h
 No change requests yet.	Ainda não há solicitações de alteração.
 No changes since the last revision.	Nenhuma alteração desde a última revisão.
 No data of other systems imported yet.	Nenhum dado de outros sistemas importado ainda.
+No device has its main function in the box.	Nenhum dispositivo tem sua função principal na caixa.
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Nenhum dispositivo tem dados de montagem ainda: atribua peças com dimensões aos dispositivos (Propriedades › Peças).
 No differences to {}.	Nenhuma diferença em relação a {}.
 No document embedded	Nenhum documento incorporado
+No dot: plain T	Sem ponto: T simples
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ainda não há gabinete – crie um com Novo gabinete, ou uma sala para armários com Nova sala.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nenhum cabo de campo: posicione os gabinetes e dispositivos de campo em nós da rede de rotas.
 No filter fans: an air/air heat exchanger or a cooling unit	Sem ventiladores com filtro: um trocador de calor ar/ar ou uma unidade de resfriamento
 No harnesses defined.	Nenhum chicote definido.
 No inverter	Sem inversor
+No jump: plain crossing, connections have dots	Sem salto: cruzamento simples, as junções têm pontos
 No longer reported	Não é mais relatada
 No macros yet. Select items in a schematic and save them as a macro.	Ainda não há macros. Selecione itens em um esquema elétrico e salve-os como macro.
 No modules: plug in PLC cards of the schematic.	Nenhum módulo: insira cartões de CLP do esquema elétrico.
@@ -1191,6 +1236,7 @@ Options	Opções
 Ordinary cable	Cabo comum
 Orientation	Orientação
 Origin	Origem
+Origin of the plant	Origem da instalação
 Other values ({})	Outros valores ({})
 Otherwise from the plant layout, or next to the other line-ups	Caso contrário, a partir do layout da planta ou ao lado das outras fileiras
 Out since {} (pages locked)	Retirado desde {} (páginas bloqueadas)
@@ -1203,6 +1249,7 @@ Output failed: {}	Falha na emissão: {}
 Output to another project	Emitir para outro projeto
 Output to project…	Emitir para projeto…
 Outputs	Saídas
+Outside the plot boundary: {}	Fora do limite do terreno: {}
 Overhang	Beiral saliente
 Own colour	Cor própria
 Own drawn form	Formulário desenhado próprio
@@ -1268,13 +1315,19 @@ Place a comment on the page	Posicionar um comentário na página
 Place again at all symbols using it	Posicionar novamente em todos os símbolos que o utilizam
 Place an enclosure, device or machine location at this node	Posicionar um gabinete, dispositivo ou localização de máquina neste nó
 Place connection definition point	Posicionar ponto de definição de conexão
+Place connection points	Posicionar pontos de conexão
 Place functions of this device	Posicionar funções deste dispositivo
 Place in schematic	Posicionar no esquema elétrico
 Place in the building	Posição no edifício
 Place in the plant	Posição na instalação
 Place in the room	Local no ambiente
+Place in the site plan	Colocar na planta de situação
 Place text	Posicionar texto
+Place the georeferenced point everything is measured from	Colocar o ponto georreferenciado a partir do qual tudo é medido
+Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Colocar o ponto georreferenciado da instalação na planta de situação; suas coordenadas vão para o painel Edifícios e cada ponto é medido a partir dele
 Placed	Posicionado
+Placed by hand	Posicionado manualmente
+Placed by hand; choosing a side places them anew.	Posicionados manualmente; escolher um lado os posiciona de novo.
 Placed here: {}	Posicionado aqui: {}
 Placed {}× in the project	Posicionado {}× no projeto
 Placeholders	Espaços reservados
@@ -1290,7 +1343,12 @@ Plant layout	Layout da planta
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Layout da planta, rede de rotas, planejamento de cabos de campo, equipotencialização e acessórios de cabo
 Plant segments with planned devices before the schematic	Segmentos da planta com dispositivos planejados antes do esquema elétrico
 Plate outline, holes per diameter, cutouts	Contorno da placa, furos por diâmetro, recortes
+Plot	Terreno
+Plot boundary	Limite do terreno
+Plot boundary drawn: {} m²	Limite do terreno desenhado: {} m²
+Plot boundary drawn: {} m²; outside it: {}	Limite do terreno desenhado: {} m²; fora dele: {}
 Plot frames	Molduras de plotagem
+Plot, {}	Terreno, {}
 Plug in card	Inserir cartão
 Plugin commands	Comandos de plug-in
 Plugins	Plug-ins
@@ -1314,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Perda de potê
 Pre-planning (CSV, Excel)	Pré-planejamento (CSV, Excel)
 Prefix	Prefixo
 Press a key…	Pressione uma tecla…
+Preview	Pré-visualização
 Previous item	Item anterior
 Previous page	Página anterior
 Previous page tab	Guia de página anterior
@@ -1380,6 +1439,8 @@ Record	Gravar
 Rectangular	Retangular
 Redline: to be changed · Greenline: changed as built	Redline: a alterar · Greenline: alterado conforme construído
 Redo	Refazer
+Reference point	Ponto de referência
+Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Ponto de referência colocado em x {} m, z {} m; insira suas coordenadas no painel Edifícios
 Refresh	Atualizar
 Refresh example catalog parts (GEN.*)	Atualizar peças do catálogo de exemplo (GEN.*)
 Reject	Rejeitar
@@ -1461,6 +1522,7 @@ Reset	Redefinir
 Reset all to the defaults	Redefinir tudo para os padrões
 Reset pane layout	Redefinir disposição dos painéis
 Reset the ribbon	Redefinir a faixa de opções
+Reset to automatic placement	Voltar ao posicionamento automático
 Reset to standard	Redefinir para o padrão
 Restart and update	Reiniciar e atualizar
 Resulting: {} · {} · {} · {} m	Resultado: {} · {} · {} · {} m
@@ -1500,6 +1562,7 @@ Round	Redondo
 Round cutouts facing each other in both side walls	Recortes redondos frente a frente nas duas paredes laterais
 Route definition of {}	Definição de rota de {}
 Route network	Rede de rotas
+Route the connections of moved items anew	Retraçar as conexões dos itens movidos
 Route wires in 3D	Rotear fios em 3D
 Routed in {}: {} m, {} bends	Roteado em {}: {} m, {} curvas
 Routing around symbols	Roteamento em torno dos símbolos
@@ -1561,6 +1624,9 @@ Scheme name	Nome do esquema
 Scheme placed again at {} symbols	Esquema posicionado novamente em {} símbolos
 Scheme {}	Esquema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Parafusos, porcas, arruelas e porcas rebite dos pontos de fixação
+Scrolling	Rolagem
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	A rolagem move a vista em todas as direções; faça pinça ou Ctrl + rolagem para aplicar zoom.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Rolar para cima e para baixo aplica zoom no ponteiro, para os lados (roda horizontal, Shift + roda) move a vista.
 Search (* and ? as placeholders)…	Pesquisar (* e ? como curingas)…
 Search below this folder	Pesquisar abaixo desta pasta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Pesquisar no servidor de peças por catálogo, grupo de produtos e dados técnicos, adicionar peças e verificar se há atualizações no banco de dados
@@ -1665,6 +1731,7 @@ Slots	Slots
 Smallest cross-section of control circuits	Menor seção transversal dos circuitos de comando
 Smallest cross-section of power circuits	Menor seção transversal dos circuitos de potência
 Socket outlets, data and antenna outlets	Tomadas de energia, de dados e de antena
+Solid	Contínuo
 Some wires have no length: place their devices in the panel layout or set the field length.	Alguns fios não têm comprimento: posicione seus dispositivos no layout do painel ou defina o comprimento do campo.
 Sort by designation	Classificar por designação
 Sort order	Ordem de classificação
@@ -1704,7 +1771,10 @@ Strip {} mm	Decapar {} mm
 Strips / plugs	Réguas / plugues
 Structure (IEC 81346)	Estrutura (IEC 81346)
 Structure (function / location)…	Estrutura (função / localização)…
+Structure box	Caixa de estrutura
+Structure box: draw a rectangle around an area whose devices take other function (=) or location (+) identifiers than the page	Caixa de estrutura: desenhe um retângulo em torno de uma área cujos dispositivos recebem identificadores de função (=) ou localização (+) diferentes dos da página
 Structure identifiers (IEC 81346), templates and work areas	Identificadores de estrutura (IEC 81346), modelos e áreas de trabalho
+Structure in the box	Estrutura na caixa
 Structure management	Gerenciamento de estruturas
 Structure of the target page	Estrutura da página de destino
 Style	Estilo
@@ -1735,6 +1805,7 @@ Synchronize	Sincronizar
 Synchronize function texts	Sincronizar textos de função
 Synchronize project parts from database	Sincronizar peças do projeto a partir do banco de dados
 T Text	T Texto
+T-connections	Junções em T
 Tab	Tabulação
 Table import failed: {}	Falha na importação da tabela: {}
 Tablet mode	Modo tablet
@@ -1755,6 +1826,7 @@ Taken into the drawing: drawn faded	Aplicado no desenho: exibido esmaecido
 Takes the comments as function texts (matched by address)	Aplica os comentários como textos de função (associados pelo endereço)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Aplica as designações dos pontos de conexão de todas as funções deste dispositivo a partir dos modelos de função de suas peças
 Takes the rights of the role away, whatever other grants give	Retira os direitos da função, independentemente do que outras concessões deem
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Usa o caminho de menor peso: seu comprimento em passos de grade, 1,2 por curva e 1,5 por fio cruzado. Desligado: os fios se esticam e mantêm seus cantos.
 Target languages	Idiomas de destino
 Temperature rise at the roof against the middle (IEC/TR 60890)	Elevação de temperatura no teto em relação ao meio (IEC/TR 60890)
 Template	Modelo
@@ -1767,6 +1839,7 @@ Terminals at least	Bornes no mínimo
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Bornes com o mesmo número de ponte são interligados (mesmo potencial). Os bornes de reserva são contados na lista de materiais.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termos separados por ';': chave=valor (igual), chave~texto (contém) ou texto encontrado em qualquer lugar
 Test connection	Testar conexão
+Text offset	Deslocamento do texto
 Text size	Tamanho do texto
 Texts	Textos
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	O EPLAN Data Portal oferece somente pesquisa e leitura de peças: abra a janela do portal de dados para adicionar suas peças.
@@ -1783,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	O dicionário está
 The door seen from the front: door devices and cutouts	A porta vista de frente: dispositivos da porta e recortes
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	A porta vista por dentro (dobradiças à direita): canaletas e a fiação atrás da porta
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	O gabinete fica com seu lado esquerdo encostado no lado direito do gabinete escolhido; os fios passam entre eles por passagens de cabos
+The horizontal wire	O fio horizontal
 The items are selected and moved together	Os itens são selecionados e movidos juntos
 The macro library has no page macros (Macros › Save page as macro…).	A biblioteca de macros não tem macros de página (Macros › Salvar página como macro…).
 The modules no string takes yet in series, on the first inverter	Os módulos que nenhuma string usa ainda, em série, no primeiro inversor
@@ -1791,6 +1865,7 @@ The page name gets the section number	O nome da página recebe o número da seç
 The page type, plot frame, title block, structure, description and the whole content are saved.	O tipo de página, a moldura de plotagem, o selo, a estrutura, a descrição e todo o conteúdo são salvos.
 The pages it generated stay	As páginas geradas por ele permanecem
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	O banco de dados de peças é compartilhado por todos os projetos. As peças são copiadas para um projeto quando são atribuídas a um dispositivo.
+The point's coordinates in the coordinate reference system	As coordenadas do ponto no sistema de referência de coordenadas
 The project changed since the search.	O projeto foi alterado desde a pesquisa.
 The project check	A verificação do projeto
 The project database needs the desktop version: the browser cannot search folders.	O banco de dados de projetos precisa da versão desktop: o navegador não pode pesquisar pastas.
@@ -1801,12 +1876,14 @@ The properties of the selection in a window beside the page	As propriedades da s
 The rail or mounting base; its accessories are the hooks, clamps and ballast	O trilho ou a base de montagem; seus acessórios são os ganchos, grampos e lastro
 The recalculation keeps frozen routes as long as they are still possible	O recálculo mantém as rotas congeladas enquanto ainda forem possíveis
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	A faixa de opções com a guia Arquivo substitui os menus; Ctrl+Shift+P encontra qualquer comando.
+The rooms of the level side by side; click the level again for all of the plant	As salas do pavimento lado a lado; clique de novo no pavimento para toda a instalação
 The second fault is checked at the line-to-earth voltage	A segunda falta é verificada com a tensão fase-terra
 The selected devices side by side on the selected rail, from its left end	Os dispositivos selecionados lado a lado no trilho selecionado, a partir de sua extremidade esquerda
 The side of {} is open	O lado de {} está aberto
 The symbol is placed in the project	O símbolo está posicionado no projeto
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	As peças de borne não indicam suportes finais nem tampas finais (dados técnicos End bracket, End plate).
 The update failed	A atualização falhou
+The vertical wire	O fio vertical
 The web version is updated on its server.	A versão web é atualizada no seu servidor.
 The wire tool routes around symbols and other wires	A ferramenta de fio roteia em torno de símbolos e outros fios
 The wires get the free cores of the cable in order (left to right)	Os fios recebem as veias livres do cabo em ordem (da esquerda para a direita)
@@ -1830,11 +1907,17 @@ Toggle corner direction while drawing wires	Alternar a direção do canto ao des
 Toggle routing around symbols (wire tool)	Alternar roteamento em volta dos símbolos (ferramenta de fio)
 Top	Superior
 Top edges	Bordas superiores
+Top left	Superior esquerdo
+Top right	Superior direito
 Total selectivity	Seletividade total
+Touch screen	Tela sensível ao toque
 Transfer project parts to database	Transferir peças do projeto para o banco de dados
 Translate the project texts; documentation per language	Traduzir os textos do projeto; documentação por idioma
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotação em torno da vertical, no sentido anti-horário visto de cima (90 °: as frentes ficam voltadas para a direita)
 Tutorial	Tutorial
+Twin ferrules where two wires share a connection point	Terminais tubulares duplos onde dois fios compartilham um ponto de conexão
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dois dedos no trackpad movem a vista, a roda do mouse aplica zoom. Só o macOS distingue os dois; nos outros sistemas a rolagem aplica zoom como a roda.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Dois dedos movem a vista e aplicam zoom com pinça ao mesmo tempo; um dedo funciona como o botão esquerdo do mouse.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aqui devem encontrar-se dois fios em ângulo reto. Com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digite um ponto e pressione Enter: x y em mm ou @dx dy em relação ao último ponto; funciona como um clique da ferramenta atual
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1902,6 +1985,7 @@ Visible	Visível
 Voltage (line to line)	Tensão (entre fases)
 Voltage drop	Queda de tensão
 W A S D / arrows, Q / E	W A S D / setas, Q / E
+WGS 84, written into the site of IFC exports	WGS 84, gravada no terreno das exportações IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Parede {}, {} m: arraste para movê-la, clique duplo para mostrá-la e equipá-la
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Parede {}, {} m: a parede mostrada na vista da parede (destacada); arraste para movê-la
 Wall-mounted part	Peça de montagem na parede
@@ -1914,9 +1998,13 @@ What is new	Novidades
 What should be checked or changed?	O que deve ser verificado ou alterado?
 Wheel / right or middle drag	Roda / arrastar com o botão direito ou do meio
 Wheel: zoom · drag: move · click on a room: its floor plan	Roda: zoom · arrastar: mover · clique num ambiente: a sua planta
+Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Roda: zoom · arrastar: mover · clique numa sala: sua planta · arrastar um vértice do limite do terreno
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Roda: zoom · clique com o botão direito: cancelar · os gráficos se ajustam a 0,5 mm, os pontos de conexão à grade de 4 mm
 When it differs from the page	Quando difere da página
 Where	Posição
+Where neither wire has a termination chosen for it	Onde nenhum dos dois fios tem uma terminação escolhida
+Where the point is in the plant; y: its height above the ground level of the plant	Onde o ponto está na instalação; y: sua altura acima do nível do solo da instalação
+Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De onde vem a estrutura do dispositivo: aspectos iguais à estrutura em torno do símbolo são herdados e acompanham quando ele entra ou sai de uma caixa de estrutura; os outros aspectos são do próprio dispositivo e permanecem.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Onde o fio começa e termina: um ponto de conexão dos dados da peça, um gerado a partir do modelo de função ou o centro do dispositivo, se nenhum ponto de conexão corresponder
 Whole building	Edifício inteiro
 Whole words	Palavras inteiras
@@ -1930,6 +2018,8 @@ Window macro: {}	Macro de janela: {}
 Window macros inserted from now on are recorded as macro boxes.	Macros de janela inseridas a partir de agora são registradas como caixas de macro.
 Window macros placed on the pages (not printed)	Macros de janela posicionadas nas páginas (não impressas)
 Wire colour	Cor do fio
+Wire crossings	Cruzamentos de fios
+Wire crossings…	Cruzamentos de fios…
 Wire ends	Extremidades do fio
 Wire ends with ferrules	Extremidades de fio com ponteiras
 Wire markers	Marcadores de fio
@@ -1943,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Fio {} – {}  ({} de 
 Wire {} – {}  {} mm	Fio {} – {}  {} mm
 Wires and potentials	Fios e potenciais
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Os fios entre as portas de símbolos de tecnologia de fluidos e de P&ID são mangueiras / tubulações: redes próprias, numeradas com a numeração de fios, listadas na lista de mangueiras.
+Wires crossing without connection	Fios que se cruzam sem conexão
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	Aqui devem sair fios nas quatro direções. Até então a conexão é encadeada na ordem do esquema.
 Wires of the connection	Fios da conexão
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Os fios também seguem as rotas 3D que evitam obstáculos, em vez de apenas as canaletas da placa
@@ -1954,6 +2045,7 @@ With everything below it	Com tudo abaixo dele
 With the current pages; the approvals so far become void	Com as páginas atuais; as aprovações até agora perdem a validade
 With values only	Somente com valores
 Withdraw	Retirar
+Without a reference point the plant is measured from its origin, north towards the rear.	Sem ponto de referência, a instalação é medida a partir da origem, com o norte para trás.
 Without approvers a new revision is released directly.	Sem aprovadores, uma nova revisão é liberada diretamente.
 Without bus system	Sem sistema de barramento
 Without power loss data: {}	Sem dados de perda de potência: {}
@@ -2010,7 +2102,12 @@ from the parts	das peças
 given	fixado
 horizontal	horizontal
 if	se
+inherited	herdado
+inherited from structure box {}	herdado da caixa de estrutura {}
+inherited from the page	herdado da página
+inherited: {}	herdado: {}
 kW	kW
+known	conhecida
 low side at the rear	lado baixo atrás
 male	macho
 manual	manual
@@ -2043,6 +2140,7 @@ placed / provided by the parts	posicionado / fornecido pelas peças
 reached: PL {}	atingido: PL {}
 review round {}	rodada de análise {}
 ridge {} m	cumeeira {} m
+set on the device	definido no dispositivo
 sloped ceiling from {} m	teto inclinado a partir de {} m
 some	alguns
 taken over	aplicado
@@ -2054,6 +2152,7 @@ value set…	conjunto de valores…
 vertical	vertical
 with bus cables	com cabos de barramento
 x y	x y
+{}   {} m east, {} m north of the reference point	{}   {} m a leste, {} m ao norte do ponto de referência
 {}  (door)	{}  (porta)
 {}  (free)	{}  (livre)
 {}  (used)	{}  (usado)
@@ -2109,6 +2208,7 @@ x y	x y
 {} copies placed	{} cópias posicionadas
 {} corner points	{} pontos de canto
 {} corners	{} cantos
+{} corners, {} m², {} m round	{} vértices, {} m², {} m de perímetro
 {} details	{} detalhes
 {} device descriptions imported	{} descrições de dispositivo importadas
 {} devices	{} dispositivos
@@ -2142,6 +2242,7 @@ x y	x y
 {} items, {} %	{} itens, {} %
 {} links created, {} function texts copied	{} vínculos criados, {} textos de função copiados
 {} m of {} m wired	{} m de {} m fiados
+{} m: {} m east, {} m north, {}° from north	{} m: {} m a leste, {} m ao norte, {}° a partir do norte
 {} macro boxes updated	{} caixas de macro atualizadas
 {} markers	{} marcadores
 {} mm	{} mm
@@ -2216,10 +2317,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} páginas)
 {}: click to show its floor plan	{}: clique para mostrar a sua planta
+{}: crimp together with the wire to {}	{}: crimpar junto com o fio para {}
 {}: drag to move it, R turns it, a double-click opens it	{}: arraste para mover, R para girar, clique duplo para abrir
 {}: drag to move it, a double-click shows the floor	{}: arraste para mover, clique duplo para mostrar o piso
 {}: nothing to change	{}: nada a alterar
 {}: pin {}	{}: pino {}
+{}: strip {} mm, {}	{}: desencapar {} mm, {}
 {}: {} addresses changed	{}: {} endereços alterados
 {}: {} changes in the open project (not saved yet)	{}: {} alterações no projeto aberto (ainda não salvas)
 {}: {} changes saved	{}: {} alterações salvas

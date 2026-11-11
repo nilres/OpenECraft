@@ -8,6 +8,7 @@ A page named {} already exists	Sivu nimeltä {} on jo olemassa
 A page needs a name	Sivulla on oltava nimi
 A routing path needs {} points at least	Reitityspolku tarvitsee vähintään {} pistettä
 A section cannot be moved into itself	Osiota ei voi siirtää itsensä sisään
+Above	Yläpuolella
 Access token	Käyttöoikeustokeni
 Accessories	Tarvikkeet
 Accessory	Tarvike
@@ -17,6 +18,8 @@ Address	Osoite
 Angle	Kulma
 Apply	Käytä
 Approvers	Hyväksyjät
+Automatic	Automaattinen
+Below	Alapuolella
 Bold	Lihavointi
 Bottom	Pohja
 Bottom with removable gland plate	Pohja irrotettavalla läpivientilevyllä
@@ -33,6 +36,7 @@ Cable core	Kaapelin johdin
 Cable duct	Johtokouru
 Cable overview	Kaapelien yleiskatsaus
 Cable tag	Kaapelitunnus
+Cable tag, e.g. -W20	Kaapelin tunnus, esim. -W20
 Cables	Kaapelit
 Cancel	Peruuta
 Cannot read {}: {}	Ei voi lukea kohdetta {}: {}
@@ -64,6 +68,7 @@ Configurator	Konfiguraattori
 Connect	Yhdistä
 Connected to	Yhdistetty kohteeseen
 Connecting…	Yhdistetään…
+Connection point	Liitäntäpiste
 Connection points	Liitäntäpisteet
 Connections	Yhteydet
 Connector	Liitin
@@ -85,6 +90,7 @@ DWG drawing	DWG-piirustus
 DXF drawing	DXF-piirustus
 Dark	Tumma
 Data portal	Dataportaali
+Data type	Tietotyyppi
 Date	Päivämäärä
 Depth	Syvyys
 Descending	Laskeva
@@ -92,6 +98,7 @@ Description	Kuvaus
 Designation	Nimitys
 Device	Laite
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Laite (aurinkosähkögeneraattori), johon moduulit kuuluvat; sen osat laskevat ne silloin osaluetteloon
+Device connection point	Laitteen liitäntäpiste
 Device description	Laitekuvaus
 Device tag	Laitetunnus
 Device {}	Laite {}
@@ -209,12 +216,15 @@ Mounting plate	Asennuslevy
 Mounting rail	Asennuskisko
 Name	Nimi
 Name of the block	Lohkon nimi
+Name of the plot, e.g. the cadastral parcel	Tontin nimi, esim. kiinteistötunnus
+Name of the point, e.g. a survey point	Pisteen nimi, esim. mittapiste
 Name of the scheme	Mallin nimi
 Net	Verkko
 New name	Uusi nimi
 No	Ei
 No Vault item matches a part of the project	Mikään Vault-nimike ei vastaa projektin osaa
 No cable {}	Ei kaapelia {}
+No connection point {}	Ei liitäntäpistettä {}
 No device {}	Ei laitetta {}
 No enclosure {}	Ei koteloa {}
 No labeling scheme named {}	Merkintäskeemaa nimeltä {} ei ole
@@ -222,6 +232,7 @@ No machine {}	Konetta {} ei ole
 No page named {}	Ei sivua nimeltä {}
 No page template named {}	Ei sivumallia nimeltä {}
 No page {}	Sivua {} ei ole
+No part {}	Ei osaa {}
 No part {} in the project	Projektissa ei ole osaa {}
 No parts found	Osia ei löytynyt
 No plot frame named {}	Ei piirustuskehystä nimeltä {}
@@ -235,6 +246,7 @@ No symbol with id {}	Ei symbolia tunnisteella {}
 Nominal size	Nimelliskoko
 Not a language code: {}	Ei kielikoodi: {}
 Not a macro file: {}	Ei makrotiedosto: {}
+Not a symbol id: {}	Ei symbolin tunnus: {}
 Not a valid rule set file: {}	Ei kelvollinen sääntökokoelmatiedosto: {}
 Not in the schematic	Ei piirikaaviossa
 Note	Huomautus
@@ -328,6 +340,8 @@ Relay	Rele
 Released pages cannot be moved	Vapautettuja sivuja ei voi siirtää
 Remove	Poista
 Remove from favorites	Poista suosikeista
+Remove the boundary	Poista raja
+Remove the reference point	Poista vertailupiste
 Report	Raportti
 Report blocks	Raporttilohkot
 Report: {}	Raportti: {}
@@ -386,6 +400,8 @@ Successor	Seuraaja
 Supplier	Toimittaja
 Supply	Syöttö
 Symbol	Symboli
+Symbol key	Symbolin avain
+Symbolic address	Symbolinen osoite
 Symbols	Symbolit
 System	Järjestelmä
 T-junction	T-haara
@@ -458,6 +474,7 @@ open	avoin
 rejected	hylätty
 right	oikealle
 spare	vara
+strip {} mm, {}	kuori {} mm, {}
 the disk is full	levy on täynnä
 the file exists already	tiedosto on jo olemassa
 this is a folder	tämä on kansio
@@ -467,5 +484,6 @@ yes	kyllä
 {} exists already	{} on jo olemassa
 {} parts	{} osaa
 {} wires	{} johtoa
+{}, together with the wire to {}	{}, yhdessä johtimen {} kanssa
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} ei seiso lattialla, valitse lattialle sijoitettava osa
 ➕ Add accessory	➕ Lisää tarvike

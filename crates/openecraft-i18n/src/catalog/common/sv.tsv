@@ -8,6 +8,7 @@ A page named {} already exists	Det finns redan en sida med namnet {}
 A page needs a name	En sida behöver ett namn
 A routing path needs {} points at least	En dragningsväg kräver minst {} punkter
 A section cannot be moved into itself	Ett avsnitt kan inte flyttas in i sig självt
+Above	Ovanför
 Access token	Åtkomsttoken
 Accessories	Tillbehör
 Accessory	Tillbehör
@@ -17,6 +18,8 @@ Address	Adress
 Angle	Vinkel
 Apply	Verkställ
 Approvers	Godkännare
+Automatic	Automatisk
+Below	Nedanför
 Bold	Fet
 Bottom	Botten
 Bottom with removable gland plate	Botten med avtagbar genomföringsplåt
@@ -33,6 +36,7 @@ Cable core	Kabelledare
 Cable duct	Kabelkanal
 Cable overview	Kabelöversikt
 Cable tag	Kabelbeteckning
+Cable tag, e.g. -W20	Kabelbeteckning, t.ex. -W20
 Cables	Kablar
 Cancel	Avbryt
 Cannot read {}: {}	Det går inte att läsa {}: {}
@@ -64,6 +68,7 @@ Configurator	Konfigurator
 Connect	Anslut
 Connected to	Ansluten till
 Connecting…	Ansluter…
+Connection point	Anslutningspunkt
 Connection points	Anslutningspunkter
 Connections	Förbindelser
 Connector	Kontaktdon
@@ -85,6 +90,7 @@ DWG drawing	DWG-ritning
 DXF drawing	DXF-ritning
 Dark	Mörkt
 Data portal	Dataportal
+Data type	Datatyp
 Date	Datum
 Depth	Djup
 Descending	Fallande
@@ -92,6 +98,7 @@ Description	Beskrivning
 Designation	Beteckning
 Device	Apparat
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhet (solcellsgenerator) som modulerna tillhör; dess artiklar räknar dem då i materiallistan
+Device connection point	Apparatanslutningspunkt
 Device description	Enhetsbeskrivning
 Device tag	Apparatbeteckning
 Device {}	Apparat {}
@@ -209,12 +216,15 @@ Mounting plate	Monteringsplåt
 Mounting rail	Monteringsskena
 Name	Namn
 Name of the block	Blockets namn
+Name of the plot, e.g. the cadastral parcel	Tomtens namn, t.ex. fastighetsbeteckningen
+Name of the point, e.g. a survey point	Punktens namn, t.ex. en mätpunkt
 Name of the scheme	Schemats namn
 Net	Nät
 New name	Nytt namn
 No	Nej
 No Vault item matches a part of the project	Inget Vault-objekt matchar någon artikel i projektet
 No cable {}	Ingen kabel {}
+No connection point {}	Ingen anslutningspunkt {}
 No device {}	Ingen apparat {}
 No enclosure {}	Ingen kapsling {}
 No labeling scheme named {}	Inget märkningsschema med namnet {}
@@ -222,6 +232,7 @@ No machine {}	Ingen maskin {}
 No page named {}	Ingen sida med namnet {}
 No page template named {}	Ingen sidmall med namnet {}
 No page {}	Ingen sida {}
+No part {}	Ingen artikel {}
 No part {} in the project	Ingen artikel {} i projektet
 No parts found	Inga artiklar hittades
 No plot frame named {}	Ingen ritningsram med namnet {}
@@ -235,6 +246,7 @@ No symbol with id {}	Ingen symbol med ID {}
 Nominal size	Nominell storlek
 Not a language code: {}	Inte en språkkod: {}
 Not a macro file: {}	Inte en makrofil: {}
+Not a symbol id: {}	Inget symbol-ID: {}
 Not a valid rule set file: {}	Inte en giltig regelverksfil: {}
 Not in the schematic	Inte i schemat
 Note	Obs!
@@ -328,6 +340,8 @@ Relay	Relä
 Released pages cannot be moved	Frisläppta sidor kan inte flyttas
 Remove	Ta bort
 Remove from favorites	Ta bort från favoriter
+Remove the boundary	Ta bort gränsen
+Remove the reference point	Ta bort referenspunkten
 Report	Rapport
 Report blocks	Rapportblock
 Report: {}	Rapport: {}
@@ -386,6 +400,8 @@ Successor	Efterföljare
 Supplier	Leverantör
 Supply	Försörjning
 Symbol	Symbol
+Symbol key	Symbolnyckel
+Symbolic address	Symbolisk adress
 Symbols	Symboler
 System	System
 T-junction	T-stycke
@@ -458,6 +474,7 @@ open	öppen
 rejected	avvisad
 right	höger
 spare	reserv
+strip {} mm, {}	skala {} mm, {}
 the disk is full	disken är full
 the file exists already	filen finns redan
 this is a folder	detta är en mapp
@@ -467,5 +484,6 @@ yes	ja
 {} exists already	{} finns redan
 {} parts	{} artiklar
 {} wires	{} ledningar
+{}, together with the wire to {}	{}, tillsammans med ledaren till {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} står inte på golvet, välj en golvstående artikel
 ➕ Add accessory	➕ Lägg till tillbehör

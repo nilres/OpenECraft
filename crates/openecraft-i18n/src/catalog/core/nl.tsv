@@ -21,6 +21,7 @@
 9 · Electrical room	9 · Elektrische ruimte
 A device tag must not be empty	Een apparaatcode mag niet leeg zijn
 A pipe run turns at right angles	Een leidingtracé buigt haaks af
+A plot boundary has at least three corners	Een perceelgrens heeft minstens drie hoeken
 A port cannot be connected to itself	Een poort kan niet met zichzelf worden verbonden
 A room needs at least four walls	Een ruimte heeft minstens vier wanden nodig
 A section number consists of letters and digits and does not start with 0	Een sectienummer bestaat uit letters en cijfers en begint niet met 0
@@ -75,7 +76,6 @@ Approved by	Goedgekeurd door
 Arms {} and {}	Armen {} en {}
 Asset number	Assetnummer
 Author of the last revision	Auteur van de laatste revisie
-Automatic	Automatisch
 Autotransformer 1-phase	Spaartransformator 1-fasig
 Autotransformer 1-phase, adjustable	Spaartransformator 1-fasig, instelbaar
 Autotransformer 3-phase	Spaartransformator 3-fasig
@@ -92,6 +92,7 @@ Auxiliary function: main contact	Hulpfunctie: hoofdcontact
 Auxiliary relay coil R (JIS)	Spoel hulprelais R (JIS)
 B10d	B10d
 Ball valve	Kogelkraan
+Bare conductor	Blanke geleider
 Basis	Grondslag
 Battery	Batterij
 Battery capacity	Batterijcapaciteit
@@ -246,7 +247,6 @@ Connection definition point on page {} is not applied to its connection	Verbindi
 Connection definition point on page {} is not on a wire	Verbindingsdefinitiepunt op pagina {} ligt niet op een draad
 Connection definitions	Verbindingsdefinities
 Connection list	Verbindingslijst
-Connection point	Aansluitpunt
 Connection point descriptions	Beschrijvingen van aansluitpunten
 Connection point {} is not on the {} mm grid.	Aansluitpunt {} ligt niet op het raster van {} mm.
 Connection point {} lies on another one.	Aansluitpunt {} ligt op een ander aansluitpunt.
@@ -341,7 +341,6 @@ DC control circuits should be blue (NFPA 79, 13.2.4)	DC-stuurstroomkringen moete
 DC/DC converter	DC/DC-omvormer
 DWG export failed: {}	DWG-export mislukt: {}
 Data sheet	Gegevensblad
-Data type	Gegevenstype
 Date of the last revision	Datum van de laatste revisie
 Degree of protection	Beschermingsgraad
 Delete projects	Projecten verwijderen
@@ -501,8 +500,8 @@ Fan 3-phase	Ventilator 3-fasig
 Fan 3-phase, 6 terminals	Ventilator 3-fasig, 6 aansluitingen
 Ferrule	Adereindhuls
 Ferrule from	Adereindhuls van
-Ferrule part	Artikel adereindhuls
 Ferrule to	Adereindhuls naar
+Ferrule {} mm² {}	Adereindhuls {} mm² {}
 Field cable routing	Tracering van veldkabels
 Field cable {} cannot be routed from {} to {}	Veldkabel {} kan niet worden gelegd van {} naar {}
 Field cable {}: {} is not placed in the plant layout	Veldkabel {}: {} is niet geplaatst in de installatielay-out
@@ -523,6 +522,8 @@ Fitting	Fitting
 Fittings	Fittingen
 Flame retardant	Vlamvertragend
 Flat cable {} has {} cores, the IDC connector {} has {} pins	Platte kabel {} heeft {} aders, de IDC-connector {} heeft {} pinnen
+Flat plug	Vlakstekker
+Flat receptacle	Vlakstekerhuls
 Flat roof	Plat dak
 Float switch NC	Vlotterschakelaar verbreekcontact
 Float switch NO	Vlotterschakelaar maakcontact
@@ -548,6 +549,7 @@ Foot switch NC	Voetschakelaar verbreekcontact
 Foot switch NO	Voetschakelaar maakcontact
 Foot switch NO (NFPA)	Voetschakelaar maakcontact (NFPA)
 Force	Kracht
+Fork terminal	Vorkkabelschoen
 Format (placeholders)	Indeling (tijdelijke aanduidingen)
 Frame size	Bouwgrootte
 Free	Vrij
@@ -751,6 +753,7 @@ Last edited by	Laatst bewerkt door
 Last inspection	Laatste keuring
 Last revision	Laatste revisie
 Latching	Vergrendelend
+Latitude is within ±90° and longitude within ±180°	De breedtegraad ligt binnen ±90° en de lengtegraad binnen ±180°
 Lead time (days)	Levertijd (dagen)
 Leakage current	Lekstroom
 Leakage line	Lekolieleiding
@@ -926,7 +929,6 @@ Neutral (N)	Neutrale geleider (N)
 Neutral conductors must be light blue (IEC 60204-1, 13.2.3)	Neutrale geleiders moeten lichtblauw zijn (IEC 60204-1, 13.2.3)
 Next inspection	Volgende keuring
 Nibbling	Nibbelen
-No connection point {}	Geen aansluitpunt {}
 No connection {}	Geen verbinding {}
 No devices to add to the single-line diagram	Geen apparaten om aan het eenlijnschema toe te voegen
 No document embedded - choose a file in the page properties	Geen document ingesloten - kies een bestand in de pagina-eigenschappen
@@ -935,7 +937,6 @@ No known column in the header row	Geen bekende kolom in de koprij
 No option {}	Geen optie {}
 No page or page item with id {}	Geen pagina of pagina-element met de ID {}
 No page with id {}	Geen pagina met de ID {}
-No part {}	Geen artikel {}
 No plugs	Geen connectoren
 No report block {}	Geen rapportblok {}
 No segment template named {}	Geen segmentsjabloon met de naam {}
@@ -961,7 +962,6 @@ Not a packed project	Geen verpakt project
 Not a project database: {}	Geen projectdatabase: {}
 Not a settings scheme: {}	Geen instellingenschema: {}
 Not a structure template: {}	Geen structuursjabloon: {}
-Not a symbol id: {}	Geen symbool-ID: {}
 Not a valid JSON file: {}	Geen geldig JSON-bestand: {}
 Not a valid project file: {}	Geen geldig projectbestand: {}
 Not a valid property library: {}	Geen geldige eigenschappenbibliotheek: {}
@@ -1137,6 +1137,7 @@ Pilot light (NFPA)	Signaallamp (NFPA)
 Pilot line	Stuurleiding
 Pin connection diagram	Pinaansluitschema
 Pin side (male)	Pinzijde (mannelijk)
+Pin terminal	Penkabelschoen
 Pipe	Pijpleiding
 Piston diameter	Zuigerdiameter
 Piston rod diameter	Zuigerstangdiameter
@@ -1342,6 +1343,7 @@ Reviewer	Reviewer
 Revision overview (changes)	Revisieoverzicht (wijzigingen)
 Right side	Rechterzijde
 Right side panel	Rechterzijwand
+Ring terminal	Ringkabelschoen
 Rivet nut	Blindklinkmoer
 RoHS compliant	RoHS-conform
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
@@ -1350,6 +1352,7 @@ Roller switch NO	Rolschakelaar maakcontact
 Roof	Dak
 Roof top	Dak
 Room floor	Vloer van de ruimte
+Room {} stands outside the plot boundary	Ruimte {} staat buiten de perceelgrens
 Rotation	Draaiing
 Round punch	Ronde stempel
 Routing list (3D)	Routeringslijst (3D)
@@ -1501,6 +1504,8 @@ Strip (mm)	Strippen (mm)
 Stripping from (mm)	Strippen van (mm)
 Stripping to (mm)	Strippen naar (mm)
 Stroke	Slag
+Structure box on page {} sets no structure identifier	Structuurkader op pagina {} stelt geen structuuraanduiding in
+Structure boxes on page {} overlap without one lying inside the other: devices in both take the structure of the smaller one	Structuurkaders op pagina {} overlappen zonder dat het ene in het andere ligt: apparaten in beide krijgen de structuur van het kleinste
 Structure identifier {} is not defined in the structure management	Structuuraanduiding {} is niet gedefinieerd in het structuurbeheer
 Structure identifier {} must not contain blanks or the signs = + - / :	Structuuraanduiding {} mag geen spaties en geen van de tekens = + - / : bevatten
 Structure identifiers	Structuuraanduidingen
@@ -1537,8 +1542,6 @@ Switches / Sensors	Schakelaars / sensoren
 Switches, pushbuttons	Schakelaars, drukknoppen
 Switching frequency	Schakelfrequentie
 Switching output	Schakeluitgang
-Symbol key	Symboolsleutel
-Symbolic address	Symbolisch adres
 T-junction on page {} does not fit its wires: it needs one wire in its direction, two across and no connection point there	Het T-stuk op pagina {} past niet bij zijn draden: het heeft één draad in zijn richting, twee dwars en geen aansluitpunt daar nodig
 Table of contents	Inhoudsopgave
 Tabloid landscape	Tabloid liggend
@@ -1566,9 +1569,12 @@ Terminal description	Klembeschrijving
 Terminal diagram	Klemmenplan
 Terminal line-up	Klemmenopstelling
 Terminal marker	Klemmarkering
+Terminal parts	Artikelen draadeinden
 Terminal strip data of {} without terminals	Klemmenstrookgegevens van {} zonder klemmen
 Terminal strip overview	Overzicht klemmenstroken
 Terminal strips and PLC addresses	Klemmenstroken en PLC-adressen
+Termination (from)	Afwerking (van)
+Termination (to)	Afwerking (naar)
 Text file	Tekstbestand
 The DXF file contains nothing that can be imported	Het DXF-bestand bevat niets wat kan worden geïmporteerd
 The PDF has no pages that can be read	De PDF heeft geen leesbare pagina's
@@ -1580,6 +1586,9 @@ The assembly manufacturer must be named (IEC 61439-1, 6.1)	De fabrikant van de v
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	De kastenrij in haar ruimte: L-vormige plattegrond, binnenwand, deur en raam, de kastenrij op haar plaats, een montagerail met een wandcontactdoos, een op de wand gemonteerde noodverlichting en een kabelgoot onder het plafond.
 The configuration is not a JSON object	De configuratie is geen JSON-object
 The conveyor after its first release: a released and locked revision, changes marked since, review comments with redlining, a change request, revision B in the approval workflow and a baseline to compare with.	De transportband na de eerste vrijgave: een vrijgegeven en vergrendelde revisie, sindsdien gemarkeerde wijzigingen, reviewopmerkingen met redlining, een wijzigingsverzoek, revisie B in de goedkeuringsworkflow en een baseline om mee te vergelijken.
+The coordinates of the reference point must be numbers	De coördinaten van het referentiepunt moeten getallen zijn
+The coordinates of the reference point {} are not valid	De coördinaten van het referentiepunt {} zijn ongeldig
+The corners of the plot boundary must be numbers	De hoeken van de perceelgrens moeten getallen zijn
 The demo project: PLC inputs and outputs, panel layout of the enclosure with rails, ducts and door devices, door harness and motor cable.	Het demoproject: PLC-in- en uitgangen, opbouwtekening van de kast met rails, kabelgoten en deurapparaten, deurkabelboom en motorkabel.
 The embedded document {} is damaged	Het ingesloten document {} is beschadigd
 The file is empty	Het bestand is leeg
@@ -1592,6 +1601,9 @@ The next free id is already in use	De volgende vrije ID is al in gebruik
 The option needs a name	De optie heeft een naam nodig
 The page needs a number	De pagina heeft een nummer nodig
 The pages were changed after the submission; submit the revision again	De pagina's zijn na het indienen gewijzigd; dien de revisie opnieuw in
+The plot boundary crosses itself	De perceelgrens snijdt zichzelf
+The plot boundary encloses no area	De perceelgrens omsluit geen oppervlak
+The plot boundary is no polygon: it crosses itself or has fewer than three corners	De perceelgrens is geen veelhoek: ze snijdt zichzelf of heeft minder dan drie hoeken
 The project has no panel layout	Het project heeft geen kastlay-out
 The property needs a name	De eigenschap heeft een naam nodig
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Het pompstation ingebouwd in twee aaneengeschakelde vloerkasten: railsysteem, montagerails en kabelgoten, deurapparaten en grepen, filterventilator, verlichting, aardrail, kabelwartels, een kabeldoorvoer, klimaatberekening, gootvulling en 3D-routing.
@@ -1685,6 +1697,14 @@ Tubes	Slangen
 Tubing / piping list	Buis- / leidinglijst
 Turned once (quarter landing)	Eenmaal gedraaid (kwartbordes)
 Turned twice (two quarter landings)	Tweemaal gedraaid (twee kwartbordessen)
+Twin ferrule	Dubbele adereindhuls
+Twin ferrule at {} is not shared with a second wire	Dubbele adereindhuls op {} wordt niet gedeeld met een tweede draad
+Twin ferrule at {} joins wires of {} and {}	Dubbele adereindhuls op {} verbindt draden van {} en {}
+Twin ferrule at {}: {} wires end there, it takes two	Dubbele adereindhuls op {}: daar eindigen {} draden, hij neemt er twee
+Twin ferrule with (from)	Dubbele adereindhuls met (van)
+Twin ferrule with (to)	Dubbele adereindhuls met (naar)
+Twin ferrule {} mm² {}	Dubbele adereindhuls {} mm² {}
+Twin ferrules	Dubbele adereindhulzen
 Two connection symbols on page {} lie on the same point	Twee verbindingssymbolen op pagina {} liggen op hetzelfde punt
 Two-way switch (installation)	Wisselschakelaar (installatie)
 Type numbers	Typenummers
@@ -1767,6 +1787,7 @@ Winding connection	Wikkelingschakeling
 Wire assigned to unknown cable {}	Draad toegewezen aan onbekende kabel {}
 Wire colour GNYE is reserved for protective conductors ({})	De draadkleur GNYE is voorbehouden aan beschermingsleidingen ({})
 Wire colours and cross-sections	Draadkleuren en doorsneden
+Wire crossings and connections	Draadkruisingen en -verbindingen
 Wire defaults	Standaardwaarden voor draden
 Wire jumper	Draadbrug
 Wire list (panel routing)	Draadlijst (routering in de kast)
@@ -1844,6 +1865,7 @@ leakage	lek
 low	laag
 measuring	meet
 new	nieuw
+no free cable gland	geen vrije kabelwartel
 no header	geen koprij
 no list	geen lijst
 no path through the route network	geen weg door het tracénetwerk
@@ -1875,8 +1897,6 @@ routed	gerouteerd
 shield clamp ({} mm away)	afschermingsklem ({} mm verwijderd)
 silver	zilver
 starts with	begint met
-strip {} mm	strippen {} mm
-strip {} mm, ferrule {} mm² {}	strippen {} mm, adereindhuls {} mm² {}
 suction	zuig
 supply	voeding
 terminals {} – {}	klemmen {} – {}
@@ -1915,6 +1935,8 @@ yellow	geel
 {} is placed at the missing node {}	{} is geplaatst bij het ontbrekende knooppunt {}
 {} is planned twice ({} and {})	{} is twee keer gepland ({} en {})
 {} is selective to {} only up to {} A (short-circuit current {} A)	{} is selectief ten opzichte van {} tot slechts {} A (kortsluitstroom {} A)
+{} keeps its structure: its main functions lie in different structure boxes ({})	{} behoudt zijn structuur: zijn hoofdfuncties liggen in verschillende structuurkaders ({})
+{} keeps its structure: {} exists already	{} behoudt zijn structuur: {} bestaat al
 {} lies outside page {}	{} ligt buiten pagina {}
 {} min {} s	{} min {} s
 {} mounting marks belong to items that no longer exist	{} montagemarkeringen horen bij elementen die niet meer bestaan
@@ -1926,11 +1948,13 @@ yellow	geel
 {} report references converted to report names	{} rapportverwijzingen omgezet in rapportnamen
 {} s	{} s
 {} single part assignments converted to part lists	{} afzonderlijke artikeltoewijzingen omgezet in artikellijsten
+{} stands outside the plot boundary	{} staat buiten de perceelgrens
 {} symbols, {} wires, {} texts / graphics	{} symbolen, {} draden, {} teksten / grafieken
 {} texts are not translated into {}	{} teksten zijn niet vertaald in {}
 {} unused device data records removed	{} ongebruikte apparaatgegevensrecords verwijderd
 {} wiring marks belong to wires that no longer exist	{} bedradingsmarkeringen horen bij draden die niet meer bestaan
 {} without device tag on page {}	{} zonder apparaataanduiding op pagina {}
+{} {} cannot be routed: every cable gland of {} is taken by another cable. Add a cable gland for it.	{} {} kan niet worden gerouteerd: elke kabelwartel van {} is bezet door een andere kabel. Voeg er een kabelwartel voor toe.
 {} {} cannot be routed: no way that keeps half its thickness clear of everything and bends with its radius of {} mm. Move its ends or make room for it.	{} {} kan niet worden gerouteerd: geen weg die de halve dikte vrij houdt van alles en buigt met zijn radius van {} mm. Verplaats de uiteinden of maak ruimte.
 {} {} enters through the bottom: no cable gland in the enclosure	{} {} komt binnen via de bodem: geen kabelwartel in de behuizing
 {} {} enters through the roof: no cable gland on the roof, sides or rear	{} {} komt binnen via het dak: geen kabelwartel op dak, zijkanten of achterwand
@@ -1997,6 +2021,7 @@ yellow	geel
 {}: no jumper part for jumper {} (tech data Jumper of the terminal part)	{}: geen brugartikel voor brug {} (technische gegevens Jumper van het klemartikel)
 {}: no part assigned	{}: geen artikel toegewezen
 {}: no service space of {} mm in front of {} (the door is too close)	{}: geen serviceruimte van {} mm voor {} (de deur is te dichtbij)
+{}: none for this cross-section	{}: geen voor deze doorsnede
 {}: not in the single-line diagram	{}: niet in het eenlijnschema
 {}: not placed in the panel layout	{}: niet in de kastlay-out geplaatst
 {}: operations per year needed for the B10d of {}	{}: schakelcycli per jaar nodig voor de B10d van {}
@@ -2010,6 +2035,8 @@ yellow	geel
 {}: port {} is not a {} port	{}: poort {} is geen {}-poort
 {}: ports with different media ({})	{}: poorten met verschillende media ({})
 {}: replace {} after {} years (T10d)	{}: {} na {} jaar vervangen (T10d)
+{}: roof {} reaches over the plot boundary	{}: dak {} steekt over de perceelgrens
+{}: room {} stands outside the plot boundary	{}: ruimte {} staat buiten de perceelgrens
 {}: routing path {} is full ({} % of its usable cross-section)	{}: routeringspad {} is vol ({} % van de bruikbare doorsnede)
 {}: second fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: dubbele foutstroom {} A bij {} schakelt niet af binnen {} s (vereist {} A)
 {}: single-line symbol '{}' does not match the schematic ('{}')	{}: eenlijnig symbool '{}' komt niet overeen met het schema ('{}')

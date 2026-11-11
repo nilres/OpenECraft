@@ -57,6 +57,9 @@ fn dwg_drawings_are_imported_as_pages() {
     assert_eq!(r["description"], "Plant");
     let from_dxf = run(&mut s, "import_dxf", json!({ "path": dxf.to_str().unwrap() })).unwrap();
     assert_eq!((&r["lines"], &r["texts"]), (&from_dxf["lines"], &from_dxf["texts"]));
+    assert_eq!(r["source_bounds"], from_dxf["source_bounds"]);
+    assert_eq!(r["page_origin"], from_dxf["page_origin"]);
+    assert!(r["source_bounds"]["min"]["x"].is_number());
     assert_eq!(s.project().unwrap().pages.len(), pages + 2);
     std::fs::write(&dwg, b"AC1018 damaged").unwrap();
     assert!(run(&mut s, "import_dwg", json!({ "path": dwg.to_str().unwrap() })).unwrap_err().contains("DWG"));
@@ -122,4 +125,11 @@ fn pages_and_sections_move_before_others() {
     // Section 2 before section 1: they swap their numbers, the pages follow.
     run(&mut s, "set_section", json!({ "section": "2", "before": "1" })).unwrap();
     assert_eq!(run(&mut s, "list_sections", json!({})).unwrap()[1]["pages"], json!(["2.2", "2.3", "2.1"]));
+}
+
+#[test]
+fn adding_a_page_continues_imported_numeric_subpage_names() {
+    let mut s=new_session();s.project_mut().unwrap().pages[0].name="20a".into();
+    assert_eq!(run(&mut s,"add_page",json!({"kind":"schematic"})).unwrap()["name"],"21");
+    assert_eq!(run(&mut s,"list_pages",json!({})).unwrap()[0]["name"],"20a");
 }

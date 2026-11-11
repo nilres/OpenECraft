@@ -8,6 +8,7 @@ A page named {} already exists	이름이 {}인 페이지가 이미 있습니다
 A page needs a name	페이지에는 이름이 필요합니다
 A routing path needs {} points at least	배선 경로에는 점이 {}개 이상 필요합니다
 A section cannot be moved into itself	구역을 자기 자신 안으로 이동할 수 없습니다
+Above	위
 Access token	액세스 토큰
 Accessories	부속품
 Accessory	부속품
@@ -17,6 +18,8 @@ Address	주소
 Angle	각도
 Apply	적용
 Approvers	승인자
+Automatic	자동
+Below	아래
 Bold	굵게
 Bottom	바닥
 Bottom with removable gland plate	분리형 글랜드 플레이트가 있는 바닥
@@ -31,6 +34,7 @@ Cable core	케이블 심선
 Cable duct	케이블 덕트
 Cable overview	케이블 개요
 Cable tag	케이블 태그
+Cable tag, e.g. -W20	케이블 태그, 예: -W20
 Cables	케이블
 Cancel	취소
 Cannot read {}: {}	{0}을(를) 읽을 수 없음: {1}
@@ -62,6 +66,7 @@ Configurator	컨피규레이터
 Connect	연결
 Connected to	연결 대상
 Connecting…	연결 중…
+Connection point	연결 지점
 Connection points	연결 지점
 Connections	연결
 Connector	커넥터
@@ -83,6 +88,7 @@ DWG drawing	DWG 도면
 DXF drawing	DXF 도면
 Dark	어둡게
 Data portal	데이터 포털
+Data type	데이터 유형
 Date	날짜
 Depth	깊이
 Descending	내림차순
@@ -90,6 +96,7 @@ Description	설명
 Designation	명칭
 Device	장치
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	모듈이 속한 장치(태양광 발전기); 그 부품이 자재 명세서에서 모듈을 셉니다
+Device connection point	장치 연결 지점
 Device description	장치 설명
 Device tag	장치 태그
 Device {}	장치 {}
@@ -207,12 +214,15 @@ Mounting plate	장착 플레이트
 Mounting rail	장착 레일
 Name	이름
 Name of the block	블록 이름
+Name of the plot, e.g. the cadastral parcel	부지 이름 (예: 지번)
+Name of the point, e.g. a survey point	점 이름 (예: 측량점)
 Name of the scheme	스키마 이름
 Net	네트
 New name	새 이름
 No	아니요
 No Vault item matches a part of the project	프로젝트의 부품과 일치하는 Vault 항목이 없습니다
 No cable {}	케이블 {} 없음
+No connection point {}	연결 지점 {} 없음
 No device {}	장치 {} 없음
 No enclosure {}	외함 {} 없음
 No labeling scheme named {}	이름이 {}인 라벨링 스키마가 없습니다
@@ -220,6 +230,7 @@ No machine {}	기계 {}이(가) 없습니다
 No page named {}	이름이 {}인 페이지 없음
 No page template named {}	이름이 {}인 페이지 템플릿 없음
 No page {}	{} 페이지가 없습니다
+No part {}	부품 {} 없음
 No part {} in the project	프로젝트에 부품 {}이(가) 없습니다
 No parts found	부품을 찾을 수 없습니다
 No plot frame named {}	이름이 {}인 플롯 프레임 없음
@@ -233,6 +244,7 @@ No symbol with id {}	ID가 {}인 심볼 없음
 Nominal size	호칭경
 Not a language code: {}	언어 코드가 아님: {}
 Not a macro file: {}	매크로 파일이 아님: {}
+Not a symbol id: {}	심볼 ID가 아닙니다: {}
 Not a valid rule set file: {}	유효한 규칙 세트 파일이 아님: {}
 Not in the schematic	회로도에 없음
 Note	참고
@@ -326,6 +338,8 @@ Relay	릴레이
 Released pages cannot be moved	릴리스된 페이지는 이동할 수 없습니다
 Remove	제거
 Remove from favorites	즐겨찾기에서 제거
+Remove the boundary	경계 제거
+Remove the reference point	기준점 제거
 Report	보고서
 Report blocks	보고서 블록
 Report: {}	보고서: {}
@@ -384,6 +398,8 @@ Successor	후속 제품
 Supplier	공급업체
 Supply	공급
 Symbol	심볼
+Symbol key	심볼 키
+Symbolic address	심볼릭 주소
 Symbols	심볼
 System	시스템
 T-junction	T분기점
@@ -456,6 +472,7 @@ open	열림
 rejected	거부됨
 right	오른쪽
 spare	예비
+strip {} mm, {}	피복 제거 {} mm, {}
 the disk is full	디스크가 가득 찼습니다
 the file exists already	파일이 이미 있습니다
 this is a folder	폴더입니다
@@ -465,5 +482,6 @@ yes	예
 {} exists already	{}이(가) 이미 있습니다
 {} parts	부품 {}개
 {} wires	전선 {}개
+{}, together with the wire to {}	{}, {}(으)로 가는 전선과 함께
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {}은(는) 바닥 설치형이 아닙니다. 바닥 설치형 부품을 선택하십시오
 ➕ Add accessory	➕ 부속품 추가

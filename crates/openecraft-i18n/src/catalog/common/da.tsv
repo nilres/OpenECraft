@@ -8,6 +8,7 @@ A page named {} already exists	Der findes allerede en side med navnet {}
 A page needs a name	En side skal have et navn
 A routing path needs {} points at least	En føringsvej kræver mindst {} punkter
 A section cannot be moved into itself	Et afsnit kan ikke flyttes ind i sig selv
+Above	Over
 Access token	Adgangstoken
 Accessories	Tilbehør
 Accessory	Tilbehør
@@ -17,6 +18,8 @@ Address	Adresse
 Angle	Vinkel
 Apply	Anvend
 Approvers	Godkendere
+Automatic	Automatisk
+Below	Under
 Bold	Fed
 Bottom	Bund
 Bottom with removable gland plate	Bund med aftagelig flangeplade
@@ -33,6 +36,7 @@ Cable core	Kabelleder
 Cable duct	Kabelkanal
 Cable overview	Kabeloversigt
 Cable tag	Kabelmærkning
+Cable tag, e.g. -W20	Kabelbetegnelse, f.eks. -W20
 Cables	Kabler
 Cancel	Annuller
 Cannot read {}: {}	{} kan ikke læses: {}
@@ -64,6 +68,7 @@ Configurator	Konfigurator
 Connect	Forbind
 Connected to	Forbundet med
 Connecting…	Opretter forbindelse…
+Connection point	Tilslutningspunkt
 Connection points	Tilslutningspunkter
 Connections	Forbindelser
 Connector	Stikforbinder
@@ -85,6 +90,7 @@ DWG drawing	DWG-tegning
 DXF drawing	DXF-tegning
 Dark	Mørk
 Data portal	Dataportal
+Data type	Datatype
 Date	Dato
 Depth	Dybde
 Descending	Faldende
@@ -92,6 +98,7 @@ Description	Beskrivelse
 Designation	Betegnelse
 Device	Enhed
 Device (PV generator) the modules belong to; its parts then count them in the bill of materials	Enhed (solcellegenerator), som modulerne hører til; dens dele tæller dem så i styklisten
+Device connection point	Enhedstilslutningspunkt
 Device description	Enhedsbeskrivelse
 Device tag	Enhedsmærkning
 Device {}	Enhed {}
@@ -209,12 +216,15 @@ Mounting plate	Monteringsplade
 Mounting rail	Monteringsskinne
 Name	Navn
 Name of the block	Blokkens navn
+Name of the plot, e.g. the cadastral parcel	Grundens navn, f.eks. matriklen
+Name of the point, e.g. a survey point	Punktets navn, f.eks. et målepunkt
 Name of the scheme	Skemaets navn
 Net	Net
 New name	Nyt navn
 No	Nej
 No Vault item matches a part of the project	Intet Vault-element passer til en artikel i projektet
 No cable {}	Intet kabel {}
+No connection point {}	Intet tilslutningspunkt {}
 No device {}	Ingen enhed {}
 No enclosure {}	Ingen kapsling {}
 No labeling scheme named {}	Intet mærkningsskema med navnet {}
@@ -222,6 +232,7 @@ No machine {}	Ingen maskine {}
 No page named {}	Ingen side med navnet {}
 No page template named {}	Ingen sideskabelon med navnet {}
 No page {}	Ingen side {}
+No part {}	Ingen artikel {}
 No part {} in the project	Ingen del {} i projektet
 No parts found	Ingen artikler fundet
 No plot frame named {}	Ingen plotramme med navnet {}
@@ -235,6 +246,7 @@ No symbol with id {}	Intet symbol med id {}
 Nominal size	Nominel størrelse
 Not a language code: {}	Ikke en sprogkode: {}
 Not a macro file: {}	Ikke en makrofil: {}
+Not a symbol id: {}	Ikke et symbol-id: {}
 Not a valid rule set file: {}	Ikke en gyldig regelsætfil: {}
 Not in the schematic	Ikke i diagrammet
 Note	Bemærkning
@@ -328,6 +340,8 @@ Relay	Relæ
 Released pages cannot be moved	Frigivne sider kan ikke flyttes
 Remove	Fjern
 Remove from favorites	Fjern fra favoritter
+Remove the boundary	Fjern grænsen
+Remove the reference point	Fjern referencepunktet
 Report	Rapport
 Report blocks	Rapportblokke
 Report: {}	Rapport: {}
@@ -386,6 +400,8 @@ Successor	Efterfølger
 Supplier	Leverandør
 Supply	Forsyning
 Symbol	Symbol
+Symbol key	Symbolnøgle
+Symbolic address	Symbolsk adresse
 Symbols	Symboler
 System	System
 T-junction	T-stykke
@@ -458,6 +474,7 @@ open	åben
 rejected	afvist
 right	højre
 spare	reserve
+strip {} mm, {}	afisoler {} mm, {}
 the disk is full	disken er fuld
 the file exists already	filen findes allerede
 this is a folder	dette er en mappe
@@ -467,5 +484,6 @@ yes	ja
 {} exists already	{} findes allerede
 {} parts	{} artikler
 {} wires	{} ledninger
+{}, together with the wire to {}	{}, sammen med lederen til {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} står ikke på gulvet, vælg en gulvstående artikel
 ➕ Add accessory	➕ Tilføj tilbehør

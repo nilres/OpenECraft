@@ -55,6 +55,7 @@ A new release is downloaded in the background and replaces this installation; it
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	O secțiune numerotată care conține pagini ca un director; numele paginilor încep cu numărul ei (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Un profil mapează câmpurile neutre la numele de coloane ale unui anumit sistem (de ex. MATNR pentru numărul ERP în SAP). Fără mapare, sunt recunoscute numele uzuale în engleză și germană.
 A project definition based on this one, with its own defaults and scheme	O definiție de proiect bazată pe aceasta, cu propriile valori implicite și schemă
+A reference point at the origin of the plant	Un punct de referință în originea instalației
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Un bloc de raport generează paginile unui raport, de ex. o schemă de borne pentru fiecare șir, și le actualizează.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	O pagină de schemă 3.1, 3.2, … după pagina curentă, păstrată ca subpagină la renumerotare
 A schematic page per planned device with a page macro that is not in the schematic yet (selected segment, otherwise all)	O pagină de schemă pentru fiecare dispozitiv planificat cu macro de pagină care nu este încă în schemă (segmentul selectat, altfel toate)
@@ -162,6 +163,7 @@ Assign to harness	Atribuire la cablaj
 Assign wires: select them in the schematic › Assign to cable.	Atribuire conductoare: selectați-le în schemă › Atribuire la cablu.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Motoarele asincrone conectate la rețea măresc cel mai mare curent de scurtcircuit (IEC 60909-0)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	La cea mai ridicată temperatură ambiantă; încălzitorul menține punctul de rouă. 0 = neluat în considerare
+At the origin	În origine
 At the supply point: Ik3 max {} kA, Ik1 min {} kA	La punctul de alimentare: Ik3 max {} kA, Ik1 min {} kA
 At the top level	La nivelul superior
 Author	Autor
@@ -172,6 +174,7 @@ Automatic (from the potential definition)	Automat (din definiția potențialului
 Automatic ({})	Automat ({})
 Automatic accessories	Accesorii automate
 Automatic configuration	Configurare automată
+Automatic placement	Plasare automată
 Automation	Automatizare
 Aux	Aux
 Avoid:	Evitare:
@@ -202,7 +205,10 @@ Border	Bordură
 Border distance (mm)	Distanță față de margine (mm)
 Both sides are open: the wires need no cutout	Ambele părți sunt deschise: conductoarele nu necesită decupaj
 Bottom edges	Marginile de jos
+Bottom left	Stânga jos
 Bottom of the enclosure (without plinth) above the floor; heights are checked when it is known or the enclosure stands on a plinth	Partea inferioară a carcasei (fără soclu) deasupra podelei; înălțimile sunt verificate dacă aceasta este cunoscută sau dacă carcasa stă pe un soclu
+Bottom right	Dreapta jos
+Boundary	Limită
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
 Building {} added with a level at ground level	Clădirea {} adăugată cu un nivel la nivelul solului
@@ -224,6 +230,7 @@ Cable definition	Definire cablu
 Cable definition on page {}	Definire cablu pe pagina {}
 Cable definition: draw a line across the wires that are cores of a cable	Definire cablu: trasați o linie peste conductoarele care sunt fire ale unui cablu
 Cable end reserve	Rezervă la capăt de cablu
+Cable ends	Capetele cablului
 Cable markers	Marcaje de cablu
 Cable passage to {}	Trecere de cabluri spre {}
 Cable {}: {} cores assigned	Cablul {}: {} fire atribuite
@@ -291,6 +298,7 @@ Click on the 4 mm grid	Faceți clic pe grila de 4 mm
 Click on the wall: the part goes there at its mounting height	Faceți clic pe perete: piesa se așază acolo la înălțimea ei de montaj
 Click start and end point	Faceți clic pe punctul de start și pe cel final
 Click the corners of a machine or building, double-click to finish	Faceți clic pe colțurile unei mașini sau ale unei clădiri, dublu clic pentru a termina
+Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Faceți clic pe colțurile limitei terenului · clic pe primul, dublu clic sau Enter: închidere · Backspace: înapoi · Esc: oprire
 Click the ends of the inner walls; every click starts the next one, ends near a wall snap onto it. Esc, Enter or a double-click ends the chain, Esc again the tool.	Faceți clic pe capetele pereților interiori; fiecare clic îl începe pe următorul, capetele de lângă un perete se lipesc de el. Esc, Enter sau un dublu clic încheie lanțul, încă un Esc instrumentul.
 Click to add a node of the route network	Faceți clic pentru a adăuga un nod al rețelei de trasee
 Click to add to the selected text.	Faceți clic pentru a adăuga la textul selectat.
@@ -304,8 +312,12 @@ Click to show the building in the site plan; right-click for new levels	Clic pen
 Click to show the site plan of the buildings, or all of the plant in the 3D view	Clic pentru a afișa planul de situație al clădirilor, sau toată instalația în vederea 3D
 Click to show, right click for more	Clic pentru afișare, clic dreapta pentru mai multe
 Click two corners	Faceți clic pe două colțuri
+Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Faceți clic pe două colțuri ale casetei de structură, apoi stabiliți identificatorii ei în proprietăți · Esc sau clic dreapta pentru a termina
 Click two nodes to connect them	Faceți clic pe două noduri pentru a le conecta
+Click two points to measure from one to the other · Esc: stop	Faceți clic pe două puncte pentru a măsura de la unul la celălalt · Esc: oprire
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Faceți clic unde se întâlnesc patru fire: puntea duce conexiunea de pe o latură spre celelalte trei, întâi spre cea opusă · {} o rotește · Esc sau clic dreapta pentru a termina
+Click where it is in the site plan	Faceți clic pe locul lui în planul de situație
+Click where the reference point is	Faceți clic unde se află punctul de referință
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Faceți clic unde se întâlnesc trei fire: piesa T indică aparatul de la care pornesc firele și ordinea țintelor lor · {} o rotește unde încă nu se întâlnesc fire · Esc sau clic dreapta pentru a termina
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Faceți clic unde două fire se încrucișează: încrucișarea le leagă și duce fiecare capăt al liniei sale întâi drept înainte, apoi transversal · {} o rotește · Esc sau clic dreapta pentru a termina
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Faceți clic unde două fire se întâlnesc în unghi drept, sau unde puncte de conexiune se află față în față peste colț: cu conectarea automată activă se desenează fire către el · {} îl rotește · Esc sau clic dreapta pentru a termina
@@ -345,7 +357,7 @@ Comments and markup	Comentarii și marcaje
 Compare and baselines	Comparare și versiuni de referință
 Compare with	Comparare cu
 Compare with a baseline, a revision or another project file and take differences over	Comparare cu o versiune de referință, o revizie sau alt fișier de proiect și preluarea diferențelor
-Complete tag: {}\nAspects missing here are taken from the page (=function +location).	Identificator complet: {}\nAspectele care lipsesc aici se preiau de la pagină (=funcție +loc de montare).
+Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Identificator complet: {}\nAspectele care lipsesc aici se preiau de la pagină (=funcție +loc de montare) sau de la caseta de structură în care se află simbolul.
 Condition	Condiție
 Condition (OPTION=value & …)	Condiție (OPTION=valoare & …)
 Conductive frame	Cadru conductor
@@ -354,11 +366,13 @@ Connected devices	Dispozitive conectate
 Connected to:	Conectat la:
 Connection definition point	Punct de definire a conexiunii
 Connection definition point: defines number, colour, cross-section and cable core of a connection	Punct de definire a conexiunii: definește numărul, culoarea, secțiunea și firul de cablu al unei conexiuni
+Connection point designations	Denumiri puncte de conexiune
 Connection point {}	Punct de conexiune {}
 Connection points 1 and 2 are connected inside	Punctele de conexiune 1 și 2 sunt conectate intern
 Connection:	Conexiune:
 Connections ({})	Conexiuni ({})
 Connections / harness	Conexiuni / cablaj
+Connections of four or more wires always have a dot.	Joncțiunile a patru sau mai multe fire au întotdeauna un punct.
 Connections whose two ends are both on selected wires	Conexiunile ale căror ambele capete se află pe conductoarele selectate
 Connections without a defined potential	Conexiuni fără potențial definit
 Connectors	Conectori
@@ -367,6 +381,7 @@ Consecutive addresses from the start byte, in schematic order	Adrese consecutive
 Contact image below coils	Imaginea contactelor sub bobine
 Content	Conținut
 Content of an inactive option is hidden: it is not drawn, evaluated, reported or exported.	Conținutul unei opțiuni inactive este ascuns: nu este desenat, evaluat, raportat sau exportat.
+Coordinate reference system	Sistem de coordonate de referință
 Copies	Copii
 Copies function texts between both representations where one is empty	Copiază textele de funcție între cele două reprezentări acolo unde una este goală
 Copies in rows and columns	Copii în rânduri și coloane
@@ -378,6 +393,7 @@ Copy / cut / paste (devices get new tags)	Copiere / decupare / lipire (dispoziti
 Copy as new	Copiere ca nou
 Copy built-in…	Copiere element integrat…
 Core designations separated by blanks	Denumirile firelor, separate prin spații
+Core labels placed by hand	Etichetele firelor plasate manual
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Fire 1, 2, 3 … pentru conductoarele intersectate, plus GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Colț: două fire în unghi drept; cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el
 Cover sheet, overview, graphics, report, mounting layout or a page template	Copertă, prezentare generală, grafică, raport, amplasare de montaj sau un șablon de pagină
@@ -412,10 +428,12 @@ DWG imported as page {}: {} lines, {} texts (not imported: {})	DWG importat ca p
 DXF import failed: {}	Importul DXF nu a reușit: {}
 DXF imported as page {}: {} lines, {} texts	DXF importat ca pagina {}: {} linii, {} texte
 DXF imported as page {}: {} lines, {} texts (not imported: {})	DXF importat ca pagina {}: {} linii, {} texte (neimportate: {})
+Dash-dot	Linie-punct
 Dashed	Întrerupt
 Decimals	Zecimale
 Default	Implicit
 Default (part data or definition)	Implicit (date de articol sau definiție)
+Default ({})	Implicit ({})
 Default label	Etichetă implicită
 Default medium	Mediu implicit
 Default rules	Reguli implicite
@@ -463,6 +481,7 @@ Descriptions	Descrieri
 Deselect	Deselectare
 Designations separated by blanks; empty: those of the symbol	Denumiri separate prin spații; gol: cele ale simbolului
 Destination: each end shows the connection point at the other end	Destinație: fiecare capăt afișează punctul de conexiune de la celălalt capăt
+Device box	Casetă de dispozitiv
 Device description (GSDML, ESI)	Descriere de dispozitiv (GSDML, ESI)
 Device descriptions	Descrieri de dispozitiv
 Device descriptions of PROFINET (GSDML) and EtherCAT (ESI) devices	Descrieri de dispozitiv pentru dispozitive PROFINET (GSDML) și EtherCAT (ESI)
@@ -478,10 +497,12 @@ Device, terminal, wire and cable markers for marking software	Marcaje de dispozi
 Devices ({})	Dispozitive ({})
 Devices are not copied: a device is placed once.	Dispozitivele nu se copiază: un dispozitiv se plasează o singură dată.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Dispozitivele sunt planificate cu simboluri monofilare și proiectate în schema multifilară; ambele au același identificator de dispozitiv.
+Devices in the box: {}	Dispozitive în casetă: {}
 Devices of a channel	Dispozitivele unui canal
 Devices of the second channel; empty = like the first	Dispozitivele celui de-al doilea canal; gol = ca primul
 Devices placed on the page get its structure; their tags are shown without it.	Dispozitivele plasate pe pagină preiau structura acesteia; identificatorii lor se afișează fără ea.
 Devices to place	Dispozitive de plasat
+Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.	Dispozitivele a căror funcție principală se află în casetă primesc identificatorii stabiliți aici; aspectele goale se moștenesc de la pagină sau de la o casetă care o cuprinde.
 Devices, connections and terminals: filter, fill, find and replace, CSV	Dispozitive, conexiuni și borne: filtrare, completare, căutare și înlocuire, CSV
 Dew point	Punct de rouă
 Diameter	Diametru
@@ -491,6 +512,7 @@ Digits	Cifre
 Dimension	Cotă
 Directed T-junction: where three wires meet, names the device the two wires of the connection start from and the order of their targets	Piesă T direcționată: unde se întâlnesc trei fire, indică aparatul de la care pornesc cele două fire ale conexiunii și ordinea țintelor lor
 Directed crossing: connects the two wires crossing there; each end of its line is wired straight on first and across second	Încrucișare direcționată: leagă cele două fire care se încrucișează acolo; fiecare capăt al liniei sale este cablat întâi drept înainte, apoi transversal
+Direction of grid north, counter-clockwise seen from above from the rear of the plant (-z)	Direcția nordului rețelei, în sens antiorar văzut de sus, de la spatele instalației (-z)
 Direction the modules face, counter-clockwise seen from above (0: towards the front)	Direcția spre care sunt orientate modulele, în sens antiorar văzut de sus (0: spre față)
 Discard changes	Renunță la modificări
 Discard draft	Renunțare la ciornă
@@ -531,7 +553,10 @@ Downloading OpenECraft {}	Se descarcă OpenECraft {}
 Downstream part	Articol din aval
 Draft of revision {} created	Ciorna reviziei {} a fost creată
 Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
+Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
+Drag the core designation or the cable tag of the selected wire to place it.	Glisați denumirea firului sau identificatorul cablului firului selectat pentru a le plasa.
+Drag the name or the cross reference of the selected point to place it.	Glisați numele sau referința încrucișată a punctului selectat pentru a-l plasa.
 Drag the tag of the selected symbol to place it.	Glisați identificatorul simbolului selectat pentru a-l plasa.
 Drag: orbit · right/middle or Shift+drag: pan · wheel: zoom at the pointer · double-click: look there · W A S D / arrows, Q E: move · click: select	Glisare: orbitare · glisare cu butonul dreapta/din mijloc sau Shift: deplasare · rotiță: zoom la indicator · dublu clic: privește acolo · W A S D / săgeți, Q E: mișcare · clic: selectare
 Draw	Desenare
@@ -541,6 +566,8 @@ Draw cable definition	Desenare definire cablu
 Draw connections	Desenare conexiuni
 Draw connections between facing connection points when symbols are placed or moved	Desenează conexiuni între punctele de conexiune față în față când simbolurile sunt plasate sau mutate
 Draw inner walls	Desenează pereți interiori
+Draw the boundary of the plot in the site plan: click its corners, click the first one or press Enter to close; all buildings have to stay inside it	Desenați limita terenului în planul de situație: clic pe colțuri, pe primul sau apăsați Enter pentru a închide; toate clădirile trebuie să rămână în interior
+Draw the boundary of the plot in the site plan; all buildings have to stay inside it	Desenați limita terenului în planul de situație; toate clădirile trebuie să rămână în interior
 Draw the page yourself: graphics for every page and a row drawing repeated for every row; texts take the columns as placeholders	Desenați pagina singur: grafică pentru fiecare pagină și un desen de rând repetat pentru fiecare rând; textele preiau coloanele ca substituenți
 Draw the three wires of the T-junction to it: one in its direction and two across	Desenați cele trei fire ale piesei T până la ea: unul în direcția ei și două transversal
 Draw the two wires of the corner to it, or switch on Auto-connect and place it facing free connection points	Desenați cele două fire ale colțului până la el, sau activați conectarea automată și plasați-l în fața unor puncte de conexiune libere
@@ -565,6 +592,7 @@ Duplicate	Duplicare
 Each example builds on the one before and shows more of the features.	Fiecare exemplu se bazează pe cel anterior și arată mai multe funcții.
 Each point-to-point connection can belong to a harness	Fiecare conexiune punct la punct poate aparține unui cablaj
 Earthing system	Sistem de legare la pământ
+Easting, northing	Coordonată est, nord
 Eaves	Streașină
 Edge length of the routing grid: smaller is finer and slower	Lungimea laturii grilei de pozare: mai mică înseamnă mai fină și mai lentă
 Edit	Editare
@@ -630,7 +658,6 @@ Fans, filters, cable glands, lights, handles: choose one, then click where it go
 Fastening hardware in the bill of materials	Elemente de fixare în lista de materiale
 Favorite	Favorit
 Favorites (JSON)	Favorite (JSON)
-Ferrule {} ({})	Manșon de capăt {} ({})
 Field	Câmp
 Field (name, description, company, creator, date, revision) or project property	Câmp (name, description, company, creator, date, revision) sau proprietate de proiect
 Field cables	Cabluri de câmp
@@ -723,6 +750,7 @@ Graphic rectangle	Dreptunghi grafic
 Graphical form	Formular grafic
 Greatest distance of the roof hooks along a rail	Distanța maximă a cârligelor de acoperiș de-a lungul unei șine
 Grid	Grilă
+Grid north	Nordul rețelei
 Grid size	Dimensiunea grilei
 Grid {} mm	Grilă {} mm
 Group as assembly	Grupare ca ansamblu
@@ -738,6 +766,7 @@ Heat map	Hartă termică
 Heating	Încălzire
 Heating circuit manifolds and control boxes	Distribuitoare de încălzire și cutii de reglare
 Height (mm)	Înălțime (mm)
+Height above sea level	Altitudine
 Height above the floor	Înălțime deasupra podelei
 Height above the mounting plate	Înălțime deasupra plăcii de montaj
 Height above the plate	Înălțime deasupra plăcii
@@ -764,6 +793,8 @@ Hose number	Număr furtun
 Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
+How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Cum este terminat conductorul la acest capăt; implicit cum s-a ales pentru punctul de conectare sau echipamentul său, altfel după setarea manșoanelor din amplasare
+How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Cum sar firele peste firele pe care le încrucișează, cum sunt marcate joncțiunile în T și dacă elementele mutate își retrasează conexiunile
 IP / bus address	Adresă IP / de magistrală
 ISO 639-1 language code	Cod de limbă ISO 639-1
 Identifiers	Identificatori
@@ -838,6 +869,7 @@ Insulation	Izolație
 Interruption points refer to	Punctele de întrerupere fac referire la
 Introduction	Introducere
 Invalid value	Valoare nevalidă
+Invert the direction of panning by scrolling	Inversează direcția deplasării prin derulare
 Inverter or charge controller (devices with PV input data)	Invertor sau regulator de încărcare (dispozitive cu date de intrare fotovoltaică)
 Isometric	Izometric
 Items on the layer	Elemente pe strat
@@ -849,6 +881,7 @@ Join collinear wires	Unire conductoare coliniare
 Joins	Leagă
 Joins wire pieces in a line where nothing else connects (current page)	Unește segmentele de conductor aflate pe o linie unde nu se conectează nimic altceva (pagina curentă)
 Jumper {}	Puntea {}
+Jumps over the other:	Sare peste celălalt:
 K, Q, MM …	K, Q, MM …
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
 Keep the degree of protection	Menținerea gradului de protecție
@@ -862,7 +895,9 @@ Label (grey)	Etichetă (gri)
 Label field	Câmp de etichetă
 Labeling scheme	Schemă de marcare
 Landscape	Vedere
+Large dot	Punct mare
 Larger texts and buttons for a touch screen at the workbench	Texte și butoane mai mari pentru un ecran tactil la banca de lucru
+Latitude, longitude	Latitudine, longitudine
 Layer	Strat
 Layer {}	Stratul {}
 Layer: {}	Strat: {}
@@ -888,6 +923,7 @@ Level of a multi-level terminal: upper levels sit on the block of the terminal b
 Level of this kind of message	Nivelul acestui tip de mesaj
 Level on top	Nivel deasupra
 Level {} added to building {}; new rooms go onto it	Nivelul {} adăugat la clădirea {}; încăperile noi merg pe el
+Level {} of building {}	Nivelul {} al clădirii {}
 Levels	Niveluri
 Library	Bibliotecă
 Limits	Limite
@@ -959,6 +995,8 @@ Max. pressure	Presiune max.
 Max. width	Lățime max.
 Maximum fill of a carrier	Grad maxim de umplere a unui suport de cabluri
 Mean: typical operation	Medie: funcționare tipică
+Measure	Măsurare
+Measure in the site plan: click two points for the distance, how far east and north and the direction from north	Măsurați în planul de situație: clic pe două puncte pentru distanță, cât spre est și nord și direcția față de nord
 Measured	Măsurat
 Measures against common cause failure (at least 65 points)	Măsuri împotriva defectelor de cauză comună (cel puțin 65 de puncte)
 Merge a symbol library file	Combinare cu un fișier de bibliotecă de simboluri
@@ -972,6 +1010,7 @@ Min. bend radius	Rază min. de curbură
 Minimize the ribbon	Minimizarea panglicii
 Mirror	Oglindire
 Mirror (selection or symbol being placed)	Oglindire (selecția sau simbolul care se plasează)
+Mixed	Mixt
 Mode	Mod
 Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
 Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
@@ -995,6 +1034,7 @@ Move to section	Mută în secțiune
 Move up	Mută în sus
 Moves to the top level as page {}	Trece la nivelul superior ca pagina {}
 Moves to {} as page {}	Trece în {} ca pagina {}
+Moving	Mutare
 Multi-line power symbols and conductors for the single-line symbols of the current page, on a new page	Simboluri de putere multifilare și conductoare pentru simbolurile monofilare ale paginii curente, pe o pagină nouă
 Multiple copy	Copiere multiplă
 Multiple copy…	Copiere multiplă…
@@ -1007,9 +1047,11 @@ NC data (DXF)	Date NC (DXF)
 NC data of this face (DWG)	Date NC ale acestei fețe (DWG)
 NC data of this face (DXF)	Date NC ale acestei fețe (DXF)
 Nailboard (SVG)…	Planșetă (SVG)…
+Name and cross reference	Nume și referință încrucișată
 Name on the server	Nume pe server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Data Type; Logical Address; Comment – pentru instrumentele de programare PLC
 Named copy of this form, for report blocks	Copie denumită a acestui formular, pentru blocuri de raport
+Navigation	Navigare
 Navigators	Navigatoare
 Neutral exchange file…	Fișier de schimb neutru…
 Never	Niciodată
@@ -1072,14 +1114,17 @@ No cables yet. Draw a cable definition across wires or add a cable.	Încă nu ex
 No change requests yet.	Încă nu există cereri de modificare.
 No changes since the last revision.	Nicio modificare de la ultima revizie.
 No data of other systems imported yet.	Încă nu au fost importate date ale altor sisteme.
+No device has its main function in the box.	Niciun dispozitiv nu are funcția principală în casetă.
 No device has mounting data yet: assign parts with dimensions to the devices (Properties › Parts).	Niciun dispozitiv nu are încă date de montaj: atribuiți dispozitivelor articole cu dimensiuni (Proprietăți › Articole).
 No differences to {}.	Nicio diferență față de {}.
 No document embedded	Niciun document încorporat
+No dot: plain T	Fără punct: T simplu
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Încă nicio carcasă – creați una cu Carcasă nouă sau o încăpere pentru dulapuri cu Încăpere nouă.
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
 No harnesses defined.	Nu sunt definite cablaje.
 No inverter	Fără invertor
+No jump: plain crossing, connections have dots	Fără salt: încrucișare simplă, joncțiunile au puncte
 No longer reported	Nu mai este raportat
 No macros yet. Select items in a schematic and save them as a macro.	Încă nu există macro-uri. Selectați elemente într-o schemă și salvați-le ca macro.
 No modules: plug in PLC cards of the schematic.	Nu există module: inserați carduri PLC din schemă.
@@ -1191,6 +1236,7 @@ Options	Opțiuni
 Ordinary cable	Cablu obișnuit
 Orientation	Orientare
 Origin	Origine
+Origin of the plant	Originea instalației
 Other values ({})	Alte valori ({})
 Otherwise from the plant layout, or next to the other line-ups	Altfel din planul de amplasare a instalației sau lângă celelalte rânduri de carcase
 Out since {} (pages locked)	Extras de la {} (pagini blocate)
@@ -1203,6 +1249,7 @@ Output failed: {}	Transmiterea nu a reușit: {}
 Output to another project	Transmitere în alt proiect
 Output to project…	Transmitere în proiect…
 Outputs	Ieșiri
+Outside the plot boundary: {}	În afara limitei terenului: {}
 Overhang	Consolă
 Own colour	Culoare proprie
 Own drawn form	Formular desenat propriu
@@ -1268,13 +1315,19 @@ Place a comment on the page	Plasare comentariu pe pagină
 Place again at all symbols using it	Replasare la toate simbolurile care o folosesc
 Place an enclosure, device or machine location at this node	Plasați o carcasă, un dispozitiv sau un loc al mașinii la acest nod
 Place connection definition point	Plasare punct de definire a conexiunii
+Place connection points	Plasează puncte de conexiune
 Place functions of this device	Plasare funcții ale acestui dispozitiv
 Place in schematic	Plasare în schemă
 Place in the building	Poziția în clădire
 Place in the plant	Loc în instalație
 Place in the room	Loc în încăpere
+Place in the site plan	Plasați în planul de situație
 Place text	Plasare text
+Place the georeferenced point everything is measured from	Plasați punctul georeferențiat de la care se măsoară totul
+Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Plasați punctul georeferențiat al instalației în planul de situație; coordonatele lui se introduc în panoul Clădiri, fiecare punct se măsoară de la el
 Placed	Plasat
+Placed by hand	Plasat manual
+Placed by hand; choosing a side places them anew.	Plasate manual; alegerea unei laturi le plasează din nou.
 Placed here: {}	Plasat aici: {}
 Placed {}× in the project	Plasat {}× în proiect
 Placeholders	Substituenți
@@ -1290,7 +1343,12 @@ Plant layout	Plan de amplasare a instalației
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Plan de amplasare a instalației, rețea de trasee, planificarea cablurilor de câmp, legătură echipotențială și accesorii de cablu
 Plant segments with planned devices before the schematic	Segmente de instalație cu dispozitive planificate înainte de schemă
 Plate outline, holes per diameter, cutouts	Contur placă, găuri pe diametru, decupaje
+Plot	Teren
+Plot boundary	Limita terenului
+Plot boundary drawn: {} m²	Limita terenului desenată: {} m²
+Plot boundary drawn: {} m²; outside it: {}	Limita terenului desenată: {} m²; în afara ei: {}
 Plot frames	Chenare
+Plot, {}	Teren, {}
 Plug in card	Inserare card
 Plugin commands	Comenzi plugin
 Plugins	Pluginuri
@@ -1314,6 +1372,7 @@ Power loss not covered by the parts (tech data Power loss: 7.5 W)	Putere disipat
 Pre-planning (CSV, Excel)	Preplanificare (CSV, Excel)
 Prefix	Prefix
 Press a key…	Apăsați o tastă…
+Preview	Previzualizare
 Previous item	Elementul anterior
 Previous page	Pagina anterioară
 Previous page tab	Fila de pagină anterioară
@@ -1380,6 +1439,8 @@ Record	Înregistrare
 Rectangular	Dreptunghiular
 Redline: to be changed · Greenline: changed as built	Redline: de modificat · Greenline: modificat conform execuției
 Redo	Refacere
+Reference point	Punct de referință
+Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Punct de referință plasat la x {} m, z {} m; introduceți coordonatele lui în panoul Clădiri
 Refresh	Reîmprospătare
 Refresh example catalog parts (GEN.*)	Reîmprospătare articole din catalogul exemplu (GEN.*)
 Reject	Respingere
@@ -1461,6 +1522,7 @@ Reset	Resetare
 Reset all to the defaults	Resetare totală la valorile implicite
 Reset pane layout	Resetare aranjare panouri
 Reset the ribbon	Resetarea panglicii
+Reset to automatic placement	Revenire la plasarea automată
 Reset to standard	Resetare la standard
 Restart and update	Repornește și actualizează
 Resulting: {} · {} · {} · {} m	Rezultat: {} · {} · {} · {} m
@@ -1500,6 +1562,7 @@ Round	Rotund
 Round cutouts facing each other in both side walls	Decupaje rotunde față în față în ambii pereți laterali
 Route definition of {}	Definiția traseului pentru {}
 Route network	Rețea de trasee
+Route the connections of moved items anew	Retrasează conexiunile elementelor mutate
 Route wires in 3D	Pozare conductoare în 3D
 Routed in {}: {} m, {} bends	Pozat în {}: {} m, {} curburi
 Routing around symbols	Ocolirea simbolurilor
@@ -1561,6 +1624,9 @@ Scheme name	Nume schemă
 Scheme placed again at {} symbols	Schemă replasată la {} simboluri
 Scheme {}	Schema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Șuruburi, piulițe, șaibe și piulițe nituite ale punctelor de fixare
+Scrolling	Derulare
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Derularea deplasează vederea în orice direcție; ciupiți sau Ctrl + derulare pentru mărire.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Derularea în sus și în jos mărește la indicator, lateral (rotiță orizontală, Shift + rotiță) deplasează vederea.
 Search (* and ? as placeholders)…	Căutare (* și ? ca metacaractere)…
 Search below this folder	Căutare sub acest folder
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Căutați în serverul de articole după catalog, grupă de produse și date tehnice, adăugați articole și verificați baza de date pentru actualizări
@@ -1665,6 +1731,7 @@ Slots	Sloturi
 Smallest cross-section of control circuits	Cea mai mică secțiune a circuitelor de comandă
 Smallest cross-section of power circuits	Cea mai mică secțiune a circuitelor de putere
 Socket outlets, data and antenna outlets	Prize, prize de date și de antenă
+Solid	Continuu
 Some wires have no length: place their devices in the panel layout or set the field length.	Unele conductoare nu au lungime: plasați dispozitivele lor în amplasarea în tablou sau setați lungimea câmpului.
 Sort by designation	Sortare după denumire
 Sort order	Ordine de sortare
@@ -1704,7 +1771,10 @@ Strip {} mm	Dezizolare {} mm
 Strips / plugs	Șiruri de borne / conectori
 Structure (IEC 81346)	Structură (IEC 81346)
 Structure (function / location)…	Structură (funcție / loc de montare)…
+Structure box	Casetă de structură
+Structure box: draw a rectangle around an area whose devices take other function (=) or location (+) identifiers than the page	Casetă de structură: trasați un dreptunghi în jurul unei zone ale cărei dispozitive primesc alți identificatori de funcție (=) sau de loc de montare (+) decât pagina
 Structure identifiers (IEC 81346), templates and work areas	Identificatori de structură (IEC 81346), șabloane și zone de lucru
+Structure in the box	Structura din casetă
 Structure management	Gestionare structură
 Structure of the target page	Structura paginii țintă
 Style	Stil
@@ -1735,6 +1805,7 @@ Synchronize	Sincronizare
 Synchronize function texts	Sincronizare texte de funcție
 Synchronize project parts from database	Sincronizare articole proiect din baza de date
 T Text	T Text
+T-connections	Joncțiuni în T
 Tab	Tabulator
 Table import failed: {}	Importul tabelului nu a reușit: {}
 Tablet mode	Mod tabletă
@@ -1755,6 +1826,7 @@ Taken into the drawing: drawn faded	Preluat în desen: afișat estompat
 Takes the comments as function texts (matched by address)	Preia comentariile ca texte de funcție (asociate după adresă)
 Takes the connection point designations of all functions of this device from the function templates of its parts	Preia denumirile punctelor de conexiune ale tuturor funcțiilor acestui dispozitiv din șabloanele de funcție ale articolelor sale
 Takes the rights of the role away, whatever other grants give	Retrage drepturile rolului, indiferent de ce acordă alte atribuiri
+Takes the way with the least weight: its length in grid steps, 1.2 per bend and 1.5 per wire crossed. Off: the wires stretch and keep their corners.	Alege drumul cu cea mai mică pondere: lungimea în pași de grilă, 1,2 pe cot și 1,5 pe fir încrucișat. Dezactivat: firele se întind și își păstrează colțurile.
 Target languages	Limbi țintă
 Temperature rise at the roof against the middle (IEC/TR 60890)	Creșterea temperaturii la plafon față de mijloc (IEC/TR 60890)
 Template	Șablon
@@ -1767,6 +1839,7 @@ Terminals at least	Borne cel puțin
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Bornele cu același număr de punte sunt legate prin punte (același potențial). Bornele de rezervă sunt incluse în lista de materiale.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termeni separați prin ';': cheie=valoare (egal), cheie~text (conține) sau text găsit oriunde
 Test connection	Testare conexiune
+Text offset	Decalaj text
 Text size	Dimensiune text
 Texts	Texte
 The EPLAN Data Portal only offers searching and reading parts: open the data portal window to add its parts.	EPLAN Data Portal oferă numai căutarea și citirea articolelor: deschideți fereastra portalului de date pentru a adăuga articolele sale.
@@ -1783,6 +1856,7 @@ The dictionary is empty: collect the texts from the project.	Dicționarul este g
 The door seen from the front: door devices and cutouts	Ușa văzută din față: dispozitive de ușă și decupaje
 The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ușa văzută din interior (balamale în dreapta): canale de cablu și cablarea din spatele ușii
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
+The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
@@ -1791,6 +1865,7 @@ The page name gets the section number	Numele paginii primește numărul secțiun
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
 The pages it generated stay	Paginile generate de acesta rămân
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza de date de articole este partajată de toate proiectele. Articolele se copiază într-un proiect atunci când sunt atribuite unui dispozitiv.
+The point's coordinates in the coordinate reference system	Coordonatele punctului în sistemul de coordonate de referință
 The project changed since the search.	Proiectul s-a modificat de la căutare.
 The project check	Verificarea proiectului
 The project database needs the desktop version: the browser cannot search folders.	Baza de date de proiecte necesită versiunea desktop: browserul nu poate căuta în foldere.
@@ -1801,12 +1876,14 @@ The properties of the selection in a window beside the page	Proprietățile sele
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Șina sau baza de montaj; accesoriile ei sunt cârligele, clemele și balastul
 The recalculation keeps frozen routes as long as they are still possible	Recalcularea păstrează traseele fixate atât timp cât sunt încă posibile
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Panglica cu fila Fișier înlocuiește meniurile; Ctrl+Shift+P găsește orice comandă.
+The rooms of the level side by side; click the level again for all of the plant	Încăperile nivelului una lângă alta; faceți din nou clic pe nivel pentru toată instalația
 The second fault is checked at the line-to-earth voltage	Al doilea defect este verificat la tensiunea fază-pământ
 The selected devices side by side on the selected rail, from its left end	Dispozitivele selectate unul lângă altul pe șina selectată, de la capătul ei stâng
 The side of {} is open	Partea lui {} este deschisă
 The symbol is placed in the project	Simbolul este plasat în proiect
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Articolele de bornă nu indică opritoare de capăt sau plăci de capăt (date tehnice End bracket, End plate).
 The update failed	Actualizarea a eșuat
+The vertical wire	Firul vertical
 The web version is updated on its server.	Versiunea web este actualizată pe serverul ei.
 The wire tool routes around symbols and other wires	Instrumentul de conductor ocolește simbolurile și alte conductoare
 The wires get the free cores of the cable in order (left to right)	Conductoarele primesc pe rând firele libere ale cablului (de la stânga la dreapta)
@@ -1830,11 +1907,17 @@ Toggle corner direction while drawing wires	Comutare direcție colț la desenare
 Toggle routing around symbols (wire tool)	Comutare pozare în jurul simbolurilor (instrument conductor)
 Top	Sus
 Top edges	Marginile de sus
+Top left	Stânga sus
+Top right	Dreapta sus
 Total selectivity	Selectivitate totală
+Touch screen	Ecran tactil
 Transfer project parts to database	Transfer articole proiect în baza de date
 Translate the project texts; documentation per language	Traducerea textelor proiectului; documentație pe limbi
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotire în jurul verticalei, în sens antiorar văzut de sus (90 °: fețele frontale sunt orientate spre dreapta)
 Tutorial	Tutorial
+Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Două degete pe touchpad deplasează vederea, rotița mouse-ului mărește. Doar macOS le deosebește; în rest, derularea mărește ca rotița.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Două degete deplasează vederea și măresc prin ciupire în același timp; un deget funcționează ca butonul stâng al mouse-ului.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -1902,6 +1985,7 @@ Visible	Vizibil
 Voltage (line to line)	Tensiune (între faze)
 Voltage drop	Cădere de tensiune
 W A S D / arrows, Q / E	W A S D / săgeți, Q / E
+WGS 84, written into the site of IFC exports	WGS 84, scrisă în terenul exporturilor IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Peretele {}, {} m: trageți pentru a-l muta, dublu clic îl afișează pentru echipare
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Peretele {}, {} m: peretele afișat în vederea peretelui (evidențiat); trageți pentru a-l muta
 Wall-mounted part	Articol de montat pe perete
@@ -1914,9 +1998,13 @@ What is new	Noutăți
 What should be checked or changed?	Ce trebuie verificat sau modificat?
 Wheel / right or middle drag	Rotiță / glisare cu butonul dreapta sau din mijloc
 Wheel: zoom · drag: move · click on a room: its floor plan	Rotiță: zoom · tragere: mutare · clic pe o încăpere: planul ei
+Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rotiță: zoom · glisare: mutare · clic pe o încăpere: planul ei · glisați un colț al limitei terenului
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotiță: zoom · clic dreapta: anulare · grafica se aliniază la 0,5 mm, punctele de conexiune la grila de 4 mm
 When it differs from the page	Când diferă de pagină
 Where	Poziție
+Where neither wire has a termination chosen for it	Unde niciunul dintre conductoare nu are o terminație aleasă
+Where the point is in the plant; y: its height above the ground level of the plant	Unde se află punctul în instalație; y: înălțimea lui deasupra nivelului solului instalației
+Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De unde provine structura dispozitivului: aspectele egale cu structura din jurul simbolului sunt moștenite și se schimbă când acesta este mutat într-o casetă de structură sau în afara ei; celelalte aspecte sunt ale dispozitivului și rămân.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Unde începe și se termină conductorul: un punct de conexiune din datele articolului, unul generat din șablonul de funcție sau centrul dispozitivului dacă niciun punct de conexiune nu corespunde
 Whole building	Întreaga clădire
 Whole words	Cuvinte întregi
@@ -1930,6 +2018,8 @@ Window macro: {}	Macro de fereastră: {}
 Window macros inserted from now on are recorded as macro boxes.	Macro-urile de fereastră inserate de acum înainte sunt înregistrate ca casete macro.
 Window macros placed on the pages (not printed)	Macro-uri de fereastră plasate pe pagini (netipărite)
 Wire colour	Culoarea firului
+Wire crossings	Încrucișări ale firelor
+Wire crossings…	Încrucișări ale firelor…
 Wire ends	Capete de conductor
 Wire ends with ferrules	Capete de conductor cu manșoane de capăt
 Wire markers	Marcaje de conductor
@@ -1943,6 +2033,7 @@ Wire {} – {}  ({} of {} here, click again for the next)	Conductor {} – {}  (
 Wire {} – {}  {} mm	Conductor {} – {}  {} mm
 Wires and potentials	Conductoare și potențiale
 Wires between the ports of fluid power and P&ID symbols are hoses / pipes: their own nets, numbered with the wire numbering, listed in the hose list.	Conductoarele dintre porturile simbolurilor de acționări hidraulice/pneumatice și P&ID sunt furtunuri / conducte: rețele proprii, numerotate cu numerotarea conductoarelor, listate în lista de furtunuri.
+Wires crossing without connection	Fire care se încrucișează fără conexiune
 Wires must leave here in all four directions. Until then the connection is chained in schematic order.	De aici trebuie să plece fire în toate cele patru direcții. Până atunci conexiunea este înlănțuită în ordinea din schemă.
 Wires of the connection	Firele conexiunii
 Wires take the obstacle-aware 3D routes too, instead of only the cable ducts on the plate	Și conductoarele urmează traseele 3D care țin cont de obstacole, nu doar canalele de cablu de pe placă
@@ -1954,6 +2045,7 @@ With everything below it	Cu tot ce se află sub el
 With the current pages; the approvals so far become void	Cu paginile curente; avizele de până acum devin nule
 With values only	Numai cu valori
 Withdraw	Retragere
+Without a reference point the plant is measured from its origin, north towards the rear.	Fără punct de referință, instalația se măsoară din origine, nordul spre spate.
 Without approvers a new revision is released directly.	Fără avizatori, o revizie nouă este aprobată direct.
 Without bus system	Fără sistem de magistrală
 Without power loss data: {}	Fără date de putere disipată: {}
@@ -2010,7 +2102,12 @@ from the parts	din articole
 given	dată
 horizontal	orizontal
 if	dacă
+inherited	moștenit
+inherited from structure box {}	moștenit de la caseta de structură {}
+inherited from the page	moștenit de la pagină
+inherited: {}	moștenit: {}
 kW	kW
+known	cunoscută
 low side at the rear	latura joasă în spate
 male	tată
 manual	manual
@@ -2043,6 +2140,7 @@ placed / provided by the parts	plasat / furnizat de articole
 reached: PL {}	atins: PL {}
 review round {}	runda de examinare {}
 ridge {} m	coamă {} m
+set on the device	stabilit pe dispozitiv
 sloped ceiling from {} m	tavan înclinat de la {} m
 some	unele
 taken over	preluat
@@ -2054,6 +2152,7 @@ value set…	set de valori…
 vertical	vertical
 with bus cables	cu cabluri de magistrală
 x y	x y
+{}   {} m east, {} m north of the reference point	{}   {} m est, {} m nord de punctul de referință
 {}  (door)	{}  (ușă)
 {}  (free)	{}  (liber)
 {}  (used)	{}  (utilizat)
@@ -2109,6 +2208,7 @@ x y	x y
 {} copies placed	{} copii plasate
 {} corner points	{} colțuri
 {} corners	{} colțuri
+{} corners, {} m², {} m round	{} colțuri, {} m², perimetru {} m
 {} details	{} detalii
 {} device descriptions imported	{} descrieri de dispozitiv importate
 {} devices	{} aparate
@@ -2142,6 +2242,7 @@ x y	x y
 {} items, {} %	{} elemente, {} %
 {} links created, {} function texts copied	{} legături create, {} texte de funcție copiate
 {} m of {} m wired	{} m din {} m cablați
+{} m: {} m east, {} m north, {}° from north	{} m: {} m spre est, {} m spre nord, {}° de la nord
 {} macro boxes updated	{} casete macro actualizate
 {} markers	{} marcaje
 {} mm	{} mm
@@ -2216,10 +2317,12 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixeli, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {}: click to show its floor plan	{}: clic pentru a afișa planul
+{}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide
 {}: drag to move it, a double-click shows the floor	{}: trageți pentru a muta, dublu clic afișează pardoseala
 {}: nothing to change	{}: nimic de modificat
 {}: pin {}	{}: pin {}
+{}: strip {} mm, {}	{}: dezizolare {} mm, {}
 {}: {} addresses changed	{}: {} adrese modificate
 {}: {} changes in the open project (not saved yet)	{}: {} modificări în proiectul deschis (încă nesalvate)
 {}: {} changes saved	{}: {} modificări salvate

@@ -15,6 +15,27 @@ Device tags (`-K1`, `-S3`, …) are assigned automatically.
 Main function (coil) + auxiliary functions (contacts) form one device. Select a coil and
 place contacts: they are assigned to it and numbered (13/14, 21/22, …).
 
+## Device boxes and device connection points
+
+Power supplies, measuring instruments and control modules without a library symbol:
+*Insert › Device box* draws a dashed box of any size as a new device (`-A1`, with its
+function text and parts like any other device), *Insert › Device connection point*
+places its connections one click after the other. A point placed on the outline of a
+box belongs to the box's device, leads away from the edge it is on and is numbered on
+(1, 2, 3 …; `13` is followed by `14`); its designation (`L`, `N`, `PE`, `+24V`, …) is
+edited in its properties. Each point is a connection of its own, distinct from
+terminals: two points of a box are never connected by the box, they appear as
+`-A1:L`, `-A1:N` in the connection and device connection reports, and the check reports
+a designation used twice on one device. The properties of a point name its device box
+(another box assigns it to that device); a point away from its box shows its device
+tag, on its box the box shows it. Its designation can be dragged to any place and
+aligned left, centred or right. The properties of a box set its width and height:
+points on an edge that moves go with it, their wires follow. Moving, turning, copying,
+cutting, deleting and saving as a macro take a box with its points; copies become a
+new device with their own points. Commands: `add_device_box`, `update_device_box`,
+`add_device_connections` (several at a distance, designations given or numbered on),
+`update_device_connection`, `list_device_boxes`.
+
 ## Structure identifiers (IEC 81346)
 
 Pages carry a function (`=A1`) and a location
@@ -23,6 +44,22 @@ and cross references show only what differs from the page structure (EPLAN style
 tags are numbered per structure, copy / paste moves devices into the target structure,
 changing a page structure can move its devices along. The device navigator groups by
 structure; the title block shows the full page name (`=A1+CAB1/3`).
+
+**Structure boxes** (*Insert › Structure box*) give an area of a page its own function,
+location (or installation site, product): draw a rectangle and set the aspects it
+overrides in the properties; empty aspects are inherited from the page or an enclosing
+box, nested boxes resolve to the innermost. A device belongs to the box its main
+function's insertion point lies in: it gets the box's structure (`=SYS+FIELD-S1` on a
+page `=SYS+CAB1`), its tag on the page omits what the box shows, and its full tag is
+what the navigator, numbering, cross references and reports use. An aspect of a tag
+equal to the structure around the symbol is inherited, any other is the device's own:
+moving the main function into or out of a box, or moving, resizing, changing or
+deleting the box, renames the device (all its functions) in its inherited aspects in
+the same undo step and keeps its own; a tag that exists already is refused and reported
+instead of merging two devices. The symbol properties show where each aspect comes
+from. Boxes are copied, pasted and saved in macros with their devices; the check
+*Structure identifiers* reports boxes that overlap without one lying inside the other.
+Commands `add_structure_box`, `update_structure_box`, `list_structure_boxes`.
 
 ## Live cross references
 
@@ -34,6 +71,17 @@ shown (when it differs, always, never), what interruption points refer to (all
 other points, star from the first point, or pairs in schematic order; the check
 reports a point without partner) and whether coils draw a contact image. Command:
 `set_cross_references`.
+
+The name and the cross reference of an interruption point follow the arrow: for
+horizontal points the name above and the cross reference below the conductor, ending at
+the connection point, so that they stay inside the page at its edge; for vertical points
+beside the arrow (cross reference below the name). *Display* in the properties puts
+them above, below, left or right of the arrow instead, for all selected points at once
+(right of a right arrow: in one line after its tip, for conductors 4 mm apart); with one point
+selected, each text can be dragged on its own without moving the symbol, and the
+reset button returns to the automatic placement. The places are saved with the project
+and used by the PDF, SVG and DXF exports; the cross reference stays a link to its page.
+Command: `place_interruption_texts`.
 
 ## Connectivity / potentials
 
@@ -51,7 +99,11 @@ rail stays on the rail), otherwise the wire gets a jog or a route around what is
 the way, and a wire that cannot be squared without touching another connection stays
 diagonal. Connection definition points and cable definition lines stay on their
 wires unless they are moved themselves; a line that cannot stay across exactly its
-wires stays where it is. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
+wires stays where it is. With *Route the connections of moved items anew*
+(*Connections › Wire crossings…*, off by default) such a wire is routed again
+together with the corners after it, up to the next connection point, junction or
+branch, on the way of the least weight: its length in grid steps, 1.2 per bend and
+1.5 per wire crossed; a connection without such a way is squared as before. Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View); a
 coordinate field in the tool bar (`x y` absolute or `@dx dy` relative to the last
 point, Enter acts like a click of the current tool); *Home › Align* (edges or
 centres), *Distribute* (evenly, horizontally or vertically), *Move selection by…*
@@ -79,6 +131,18 @@ polygons (width, colour, dashed, filled), dimensions (aligned / horizontal / ver
 scale, unit), PNG / JPEG images (also in the PDF and SVG export). **Layers**
 (navigator › Layers): visible, locked, printed, colour; DXF / DWG export per layer.
 
+## Wire crossings and T-connections
+
+Wires that cross without a connection are drawn as a plain crossing, or the vertical
+(or horizontal) wire jumps over the other with an **arc**, a square **bridge** or a
+**gap**; close jumps on a wire become one. T-connections show a **dot**, a **large
+dot** or **no dot** (a plain T); a connection of four or more wires always keeps its
+dot, so that it never looks like a crossing. *Connections › Wire crossings…* sets
+both with a preview; the setting is saved with the project and in settings schemes
+and applies to the canvas and the PDF, SVG and DXF export alike. Command line / MCP:
+`wire_settings` (`jump`: none, arc, bridge, gap; `jump_wire`: vertical, horizontal;
+`tee`: dot, large_dot, none; `reroute`).
+
 ## Routing
 
 Auto-connect draws wires between facing free connection points when
@@ -90,6 +154,23 @@ symbols are placed or moved; the wire tool can route around symbols and other wi
 Drag the tag block of a selected symbol; place further device
 properties (description, part / type number, manufacturer, designation, connection
 points, structure) beside it.
+
+Connection point designations are placed beside the lead of their connection point,
+moved along it, to its other side or out beside the wire where the symbol's graphics,
+wires, nearby symbols or the symbol's other texts are in the way. Drag one of a
+selected symbol to place it by hand, or choose left, right, above or below for each
+in *Property placement*; *Reset* returns it to automatic placement. The placement
+turns and mirrors with the symbol and never moves the connection point. Command:
+`place_pin_label`. The designation of a symbol with a single connection point (such as a
+device connection point) is dragged freely and keeps its alignment.
+
+Placed automatically, the tag block sits left of a vertical symbol and above a
+horizontal one. Where it would run into a neighbouring symbol there, it goes on the
+other side, above or below, whichever is first clear of symbols and wires with all its
+lines, the cross references included. The tag of
+a function right beside one of the same device in the same row (such as surge
+arresters drawn pole by pole) is shown once, at the first of them, like the strip tag
+of a row of terminals. A tag block placed by hand stays where it is.
 
 ## Find
 

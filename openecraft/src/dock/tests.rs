@@ -235,3 +235,20 @@ fn a_closed_properties_pane_comes_back_beside_the_page() {
     let shown = visible(&tree);
     assert!(shown.contains(&Pane::Properties) && shown.contains(&Pane::Page), "{shown:?}");
 }
+
+#[test]
+fn a_workspace_shows_its_main_document_again() {
+    assert_eq!(main_document(Workspace::Schematic), Pane::Page);
+    assert_eq!(main_document(Workspace::Panel), Pane::LayoutView);
+    assert_eq!(main_document(Workspace::Wiring), Pane::WiringWorkbench);
+    for w in Workspace::ALL {
+        assert!(main_document(w).is_document(), "{w:?}");
+    }
+    // The page was left in front of the panel layout: choosing the workspace shows the layout.
+    let mut tree = default_tree_for(Workspace::Panel);
+    assert!(visible(&tree).contains(&Pane::LayoutView));
+    show(&mut tree, Pane::Page);
+    assert!(!visible(&tree).contains(&Pane::LayoutView));
+    show(&mut tree, main_document(Workspace::Panel));
+    assert!(visible(&tree).contains(&Pane::LayoutView) && !visible(&tree).contains(&Pane::Page));
+}

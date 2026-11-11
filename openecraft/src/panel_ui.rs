@@ -23,6 +23,9 @@ mod plan;
 mod routing_ui;
 mod scene3d;
 pub(crate) mod site_plan;
+mod site_tools;
+mod terminations;
+pub use site_tools::SiteTool;
 mod view3d;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -374,10 +377,11 @@ fn profile_part_combo(ui: &mut egui::Ui, salt: &str, choices: &[panel::ProfileCh
 
 /// The item and the other members of its group (assembly).
 fn with_group(e: &Enclosure, id: u64) -> Vec<u64> {
-    match e.item(id).map(|i| i.group) {
+    let ids=match e.item(id).map(|i| i.group) {
         Some(g) if g != 0 => panel::group_members(e, g),
         _ => vec![id],
-    }
+    };
+    panel::mounted_items(e,&ids)
 }
 
 /// Placement along one axis: kind and distances.
@@ -437,6 +441,11 @@ pub struct PanelUi {
     /// plan of the buildings, or all of the plant in the 3D view.
     pub site: bool,
     site_plan: site_plan::SitePlan,
+    /// The tool of the site plan, the points it has taken, and the corner of the plot
+    /// boundary dragged with the boundary before.
+    pub site_tool: SiteTool,
+    site_points: Vec<[f32; 2]>,
+    site_drag: Option<(usize, Vec<[f32; 2]>)>,
     /// The 3D view of a room in a building shows the whole building: its rooms, floor
     /// slabs, stairs and roofs.
     pub show_building: bool,
@@ -554,6 +563,8 @@ enum NavAction {
     NewBuilding,
     /// A level on top of a building, or below its lowest one (`true`).
     NewLevel(usize, bool),
+    /// A tool of the site plan.
+    SiteTool(SiteTool),
 }
 
 /// A heading of the navigator: the site, a building (index) or a level (id).
@@ -586,6 +597,9 @@ impl Default for PanelUi {
             show_site: false,
             site: false,
             site_plan: site_plan::SitePlan::default(),
+            site_tool: SiteTool::Select,
+            site_points: Vec::new(),
+            site_drag: None,
             show_building: false,
             show_zones: false,
             open_walls: false,
@@ -953,7 +967,7 @@ impl PanelUi {
             }
         };
         // The site at the root: the buildings and the rooms outside them.
-        let site = !prj.layout.buildings.is_empty() || !panel::rooms(&prj.layout).is_empty();
+        let site = !prj.layout.buildings.is_empty() || !panel::rooms(&prj.layout).is_empty() || !prj.layout.plot.is_default();
         if site {
             headings.push((0, 0, tr("Site").to_string(), Heading::Site));
         }
@@ -1143,7 +1157,7 @@ impl PanelUi {
                     rotate(&mut prj.layout.enclosures[ei], &self.selection);
                 }
                 if icons::text_button(ui, Icon::Delete, tr("Delete")).clicked() {
-                    prj.layout.enclosures[ei].items.retain(|i| !self.selection.contains(&i.id));
+                    panel::remove_items(&mut prj.layout.enclosures[ei],&self.selection.iter().copied().collect::<Vec<_>>());
                     self.selection.clear();
                 }
             });
@@ -1230,9 +1244,9 @@ impl PanelUi {
                     });
                     if it.face != before {
                         // Keep the position in front view; door devices sit directly on the door.
-                        let shift = it.face.origin() - before.origin();
-                        it.x -= shift;
-                        it.y -= shift;
+                        let shift = e.face_offset(it.face) - e.face_offset(before);
+                        it.x -= shift.x;
+                        it.y -= shift.y;
                         it.z = if it.kind == ItemKind::Accessory { before_item.z.min(0.0) } else { 0.0 };
                         it.anchor = Anchor::default();
                         self.face = it.face;
@@ -1402,6 +1416,20 @@ impl PanelUi {
                 }
             });
             ui.horizontal(|ui| {
+                if !opening {
+                    let label=it.rotation.map(|r|format!("{}°",r.degrees())).unwrap_or_else(||tr("Infer panel rotation from part dimensions").into());
+                    egui::ComboBox::from_id_salt("panel_rotation").selected_text(label).show_ui(ui,|ui| {
+                        ui.selectable_value(&mut it.rotation,None,tr("Infer panel rotation from part dimensions"));
+                        for degrees in [0,90,180,270] {
+                            let target=panel::PanelRotation::from_degrees(degrees).unwrap();
+                            if ui.selectable_label(it.rotation==Some(target),format!("{degrees}°")).clicked() {
+                                let height=part.as_ref().and_then(|p|p.size()).map(|s|s[1]).unwrap_or(it.h);
+                                if panel::item_rotation(&it,height).is_quarter()!=target.is_quarter() {it.rotate();}
+                                it.rotation=Some(target);
+                            }
+                        }
+                    });
+                }
                 if !opening && icons::text_button(ui, Icon::Rotate, tr("Rotate")).on_hover_text("R").clicked() {
                     it.rotate();
                 }
@@ -1575,6 +1603,8 @@ impl PanelUi {
                 .on_hover_text(tr("The check warns about cable ducts filled above this level"));
         });
         ui.checkbox(&mut prj.layout.ferrules, tr("Wire ends with ferrules")).on_hover_text(tr("Production wire list and bill of materials"));
+        ui.add_enabled(prj.layout.ferrules, egui::Checkbox::new(&mut prj.layout.twin_ferrules, tr("Twin ferrules where two wires share a connection point")))
+            .on_hover_text(tr("Where neither wire has a termination chosen for it"));
         ui.checkbox(&mut prj.layout.hardware, tr("Fastening hardware in the bill of materials")).on_hover_text(tr("Screws, nuts, washers and rivet nuts of the fixing points"));
         climate_section(ui, prj, ei);
         let findings = self.findings(prj, an, ei);
@@ -2070,7 +2100,7 @@ impl PanelUi {
         });
     }
 
-    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &Project, an: &Analysis, wi: usize) {
+    fn wire_properties(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis, wi: usize) {
         let w = &an.wiring[wi];
         ui.label(RichText::new(tr("Wire")).strong());
         egui::Grid::new("pwire").num_columns(2).spacing([10.0, 5.0]).show(ui, |ui| {
@@ -2127,6 +2157,8 @@ impl PanelUi {
             ))
             .weak(),
         );
+        ui.separator();
+        self.wire_ends(ui, prj, an, &w.from, &w.to, &w.cross_section);
         ui.separator();
         ui.label(RichText::new(tr("Connected devices")).strong());
         let mut select = None;
@@ -2534,7 +2566,20 @@ impl PanelUi {
     fn nav_action(&mut self, prj: &mut Project, act: NavAction) {
         let level_name = |prj: &Project, id: u64| panel::buildings::level_by_id(&prj.layout, id).map(|l| l.name.clone()).unwrap_or_default();
         match act {
-            NavAction::Level(id) => self.nav_level = if self.nav_level == Some(id) { None } else { Some(id) },
+            NavAction::Level(id) if self.nav_level == Some(id) => {
+                self.nav_level = None;
+                if self.level_3d() == Some(id) {
+                    // Back to all of the plant, the building highlighted.
+                    self.site_plan.level = 0;
+                    self.cam = None;
+                }
+            }
+            NavAction::Level(id) => {
+                self.nav_level = Some(id);
+                if self.view == View::ThreeD {
+                    self.show_level(prj, id);
+                }
+            }
             NavAction::NewRoomOn(id) => {
                 self.nav_level = Some(id);
                 self.new_room(prj);
@@ -2556,6 +2601,7 @@ impl PanelUi {
             }
             NavAction::Open(r) => self.open_room(r),
             NavAction::Site(b) => self.show_site_plan(b),
+            NavAction::SiteTool(t) => self.choose_site_tool(t),
             NavAction::NewBuilding => {
                 let name = panel::buildings::free_building_name(&prj.layout);
                 match panel::buildings::add_building(prj, &name) {
@@ -2597,11 +2643,22 @@ impl PanelUi {
         }
     }
 
+    /// Shows the rooms of a level side by side at their places in the 3D view, with the
+    /// cabinets standing in them; the site plan highlights them.
+    fn show_level(&mut self, prj: &Project, id: u64) {
+        let Some((bi, _)) = panel::buildings::find_level(&prj.layout, id) else { return };
+        self.show_site_plan(Some(bi));
+        self.site_plan.level = id;
+    }
+
     /// Shows the site: its site plan, or all of the plant when the 3D view is shown;
     /// building `b` highlighted.
     fn show_site_plan(&mut self, b: Option<usize>) {
         self.site = true;
         self.site_plan = site_plan::SitePlan { building: b, ..Default::default() };
+        self.site_tool = SiteTool::Select;
+        self.site_points.clear();
+        self.site_drag = None;
         self.selection.clear();
         self.cam = None;
         if self.view != View::ThreeD {
@@ -2615,9 +2672,20 @@ impl PanelUi {
     fn site_canvas(&mut self, ui: &mut egui::Ui, prj: &mut Project, an: &Analysis) {
         if self.view == View::ThreeD {
             if let Some(ei) = self.enclosure_index(prj) {
+                let level = self.level_3d().and_then(|l| panel::buildings::find_level(&prj.layout, l));
+                let what = match level {
+                    Some((bi, li)) => {
+                        let b = &prj.layout.buildings[bi];
+                        tr_fmt!("Level {} of building {}", b.levels[li].name, b.name)
+                    }
+                    None => tr("Site").to_string(),
+                };
                 ui.horizontal(|ui| {
+                    if level.is_some() {
+                        ui.weak(tr("The rooms of the level side by side; click the level again for all of the plant"));
+                    }
                     ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
-                        ui.weak(format!("{}  ·  3D", tr("Site")));
+                        ui.weak(format!("{what}  ·  3D"));
                     });
                 });
                 ui.separator();
@@ -2627,7 +2695,13 @@ impl PanelUi {
         }
         self.view = View::Plan;
         ui.horizontal(|ui| {
-            ui.weak(tr("Wheel: zoom · drag: move · click on a room: its floor plan"));
+            let hint = match self.site_tool {
+                SiteTool::Select => tr("Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary"),
+                SiteTool::Boundary => tr("Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop"),
+                SiteTool::Reference => tr("Click where the reference point is"),
+                SiteTool::Measure => tr("Click two points to measure from one to the other · Esc: stop"),
+            };
+            ui.weak(hint);
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 let what = match self.site_plan.building.and_then(|b| prj.layout.buildings.get(b)) {
                     Some(b) => tr_fmt!("Site plan, building {}", b.name),
@@ -2638,19 +2712,30 @@ impl PanelUi {
         });
         ui.separator();
         let (rect, resp) = ui.allocate_exact_size(ui.available_size(), Sense::click_and_drag());
-        if resp.hovered() {
-            let (wheel, zoom_delta, pointer) = ui.input(|i| (wheel_delta(i), i.zoom_delta(), i.pointer.hover_pos()));
-            let factor = zoom_delta * (wheel * 0.0025).exp();
-            if let (true, Some(m)) = ((factor - 1.0).abs() > 1e-4, pointer) {
-                let old = self.site_plan.zoom;
-                let zoom = (old * factor).clamp(0.2, 200.0);
-                // The point under the pointer stays where it is.
-                let c = rect.shrink(16.0).center();
-                self.site_plan.pan = (m - c) - (m - c - self.site_plan.pan) * (zoom / old);
-                self.site_plan.zoom = zoom;
-            }
+        // The part of the plant in view stays while the plan is edited, until it is fitted.
+        if self.site_plan.extent.is_none() || self.fit_pending {
+            self.site_plan.extent = Some(site_plan::extent(prj));
         }
-        if resp.dragged() {
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.site_plan.pan += gesture.pan;
+        if let (true, Some(m)) = (gesture.zooms(), gesture.at) {
+            let old = self.site_plan.zoom;
+            let zoom = (old * gesture.zoom).clamp(0.2, 200.0);
+            // The point under the pointer stays where it is.
+            let c = rect.shrink(16.0).center();
+            self.site_plan.pan = (m - c) - (m - c - self.site_plan.pan) * (zoom / old);
+            self.site_plan.zoom = zoom;
+        }
+        // Fingers navigating put a dragged corner back and do not use the tools.
+        let dragging_corner = if gesture.touch {
+            if let Some((_, old)) = self.site_drag.take() {
+                prj.layout.plot.outline = old;
+            }
+            false
+        } else {
+            self.site_tools(ui, rect, &resp, prj)
+        };
+        if resp.dragged() && !dragging_corner && !gesture.touch {
             self.site_plan.pan += resp.drag_delta();
         }
         if self.fit_pending {
@@ -2658,7 +2743,8 @@ impl PanelUi {
             self.site_plan.pan = Vec2::ZERO;
             self.fit_pending = false;
         }
-        let hovered = site_plan::paint(ui, rect, prj, &self.site_plan, resp.hover_pos());
+        let hovered = site_plan::paint(ui, rect, prj, &self.site_plan, resp.hover_pos()).filter(|_| self.site_tool == SiteTool::Select && !dragging_corner);
+        self.paint_site_tools(ui, rect, prj, resp.hover_pos());
         if let Some(ri) = hovered {
             ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
             if resp.clicked() {
@@ -2681,6 +2767,14 @@ impl PanelUi {
                     r.context_menu(|ui| {
                         if icons::text_button(ui, Icon::Plus, tr("New building")).on_hover_text(tr("A building with one level at ground level, beside what stands in the plant")).clicked() {
                             act = Some(NavAction::NewBuilding);
+                            ui.close();
+                        }
+                        if icons::text_button(ui, Icon::Polygon, tr("Plot boundary")).on_hover_text(tr("Draw the boundary of the plot in the site plan; all buildings have to stay inside it")).clicked() {
+                            act = Some(NavAction::SiteTool(SiteTool::Boundary));
+                            ui.close();
+                        }
+                        if icons::text_button(ui, Icon::Pin, tr("Reference point")).on_hover_text(tr("Place the georeferenced point everything is measured from")).clicked() {
+                            act = Some(NavAction::SiteTool(SiteTool::Reference));
                             ui.close();
                         }
                     });
@@ -2978,26 +3072,29 @@ impl PanelUi {
             self.fit_pending = false;
         }
         // Zoom / pan
-        if resp.hovered() {
-            let (wheel, zoom_delta, ptr) = ui.input(|i| (wheel_delta(i), i.zoom_delta(), i.pointer.hover_pos()));
-            if let Some(ptr) = ptr {
-                let factor = zoom_delta * (wheel * 0.0025).exp();
-                if (factor - 1.0).abs() > 1e-4 {
-                    let before = self.s2w(rect, ptr);
-                    self.zoom = (self.zoom * factor).clamp(0.05, 20.0);
-                    self.offset = ptr - rect.min - vec2(before.x, before.y) * self.zoom;
-                }
-            }
+        let gesture = openecraft_ui::nav::read(ui, &resp);
+        self.offset += gesture.pan;
+        if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
+            let before = self.s2w(rect, at);
+            self.zoom = (self.zoom * gesture.zoom).clamp(0.05, 20.0);
+            self.offset = at - rect.min - vec2(before.x, before.y) * self.zoom;
         }
         if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
             self.offset += resp.drag_delta();
         }
+        // Fingers navigating end a move of the first one where it is.
+        if gesture.touch {
+            if let Some(drag) = self.drag.take() {
+                let moved: Vec<u64> = drag.originals.iter().map(|o| o.0).collect();
+                panel::capture_anchors(&mut prj.layout.enclosures[ei], &moved);
+            }
+        }
         let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|q| rect.contains(*q));
         // Plate coordinates of the pointer
-        let fm = self.face.origin();
+        let fm = prj.layout.enclosures[ei].face_offset(self.face);
         let mirror = self.mirror(&prj.layout.enclosures[ei]);
         let unmirror = move |q: P| p(mirror.map(|m| m - q.x).unwrap_or(q.x), q.y);
-        let plate = ptr.map(|s| unmirror(self.s2w(rect, s)) - p(fm, fm));
+        let plate = ptr.map(|s| unmirror(self.s2w(rect, s)) - fm);
         let snapped = plate.map(|q| p(panel::snap(q.x), panel::snap(q.y)));
 
         // Keyboard
@@ -3020,7 +3117,7 @@ impl PanelUi {
                 self.set_tool(Tool::Select);
             }
             if del && !self.selection.is_empty() {
-                e.items.retain(|i| !self.selection.contains(&i.id));
+                panel::remove_items(e,&self.selection.iter().copied().collect::<Vec<_>>());
                 self.selection.clear();
             }
             if r {
@@ -3038,8 +3135,9 @@ impl PanelUi {
             }
         }
 
-        // Mouse
+        // Mouse (not while fingers navigate)
         match self.tool.clone() {
+            _ if gesture.touch => {}
             Tool::Select => self.select_and_move(ui, &resp, prj, ei, rect, an),
             Tool::Rail | Tool::Duct | Tool::Busbar => {
                 if let (true, Some(sn)) = (resp.clicked_by(PointerButton::Primary), snapped) {
@@ -3185,7 +3283,7 @@ impl PanelUi {
         let problems = panel::problems_of(&self.findings(prj, an, ei));
         let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror, textures: None };
         render::draw_enclosure(&mut d, e, self.face, self.door_inside, p(0.0, 0.0), 1.0, &self.selection, &problems, prj);
-        let to_screen = |q: P| origin + vec2(mirror.map(|m| m - (q.x + fm)).unwrap_or(q.x + fm), q.y + fm) * self.zoom;
+        let to_screen = |q: P| origin + vec2(mirror.map(|m| m - (q.x + fm.x)).unwrap_or(q.x + fm.x), q.y + fm.y) * self.zoom;
         if self.show_heat && self.face == Face::Plate {
             let map = panel::thermal::heat_map(prj, e);
             let (pw, ph) = e.plate_size();
@@ -3316,7 +3414,7 @@ impl PanelUi {
         }
         // Previews
         let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror, textures: None };
-        let m = p(fm, fm);
+        let m = fm;
         match (&self.tool, snapped, plate) {
             (Tool::RoutingPath, Some(sn), _) => {
                 let mut pts: Vec<Pos2> = self.path_points.iter().map(|q| to_screen(*q)).collect();
@@ -3404,11 +3502,11 @@ impl PanelUi {
             items.sort_by_key(|i| std::cmp::Reverse(i.kind.layer()));
             items.first().map(|i| i.id)
         };
-        let (offset, zoom, fm) = (self.offset, self.zoom, face.origin());
+        let (offset, zoom, fm) = (self.offset, self.zoom, prj.layout.enclosures[ei].face_offset(face));
         let mirror = self.mirror(&prj.layout.enclosures[ei]);
         let to_plate = move |s: Pos2| {
             let x = (s.x - rect.min.x - offset.x) / zoom;
-            p(mirror.map(|m| m - x).unwrap_or(x) - fm, (s.y - rect.min.y - offset.y) / zoom - fm)
+            p(mirror.map(|m| m - x).unwrap_or(x) - fm.x, (s.y - rect.min.y - offset.y) / zoom - fm.y)
         };
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
@@ -3536,33 +3634,7 @@ fn ungroup(e: &mut Enclosure, ids: &[u64]) {
 }
 
 fn rotate(e: &mut Enclosure, sel: &BTreeSet<u64>) {
-    for i in 0..e.items.len() {
-        // Doors and windows of a room keep their size (only width and height are theirs).
-        if sel.contains(&e.items[i].id) && e.items[i].opening.is_cutout() {
-            e.items[i].rotate();
-            let mut it = e.items[i].clone();
-            panel::snap_to_rail(e, &mut it);
-            e.items[i] = it;
-        }
-    }
-}
-
-/// Mouse wheel movement in points (same handling as the schematic canvas).
-fn wheel_delta(i: &egui::InputState) -> f32 {
-    let mut wheel = 0.0;
-    for ev in &i.events {
-        if let egui::Event::MouseWheel { unit, delta, modifiers, .. } = ev {
-            if modifiers.ctrl || modifiers.command {
-                continue;
-            }
-            wheel += match unit {
-                egui::MouseWheelUnit::Point => delta.y,
-                egui::MouseWheelUnit::Line => delta.y * 40.0,
-                egui::MouseWheelUnit::Page => delta.y * 400.0,
-            };
-        }
-    }
-    wheel
+    panel::rotate_items(e,&sel.iter().copied().collect::<Vec<_>>());
 }
 
 /// Blue (cool) over yellow to red (hot) for 0 … 1.

@@ -158,7 +158,7 @@ pub fn example(key: &str) -> Option<Project> {
 /// Device data with the parts of each tag; the parts are copied into the project.
 fn assign_parts(prj: &mut Project, db: &PartsDb, devices: &[(&str, &[&str])]) {
     for (tag, parts) in devices {
-        let refs = parts.iter().map(|n| PartRef { number: n.to_string(), count: 1 }).collect();
+        let refs = parts.iter().map(|n| PartRef { number: n.to_string(), count: 1, total:false }).collect();
         prj.devices.insert(tag.to_string(), DeviceData { parts: refs, ..Default::default() });
         for n in *parts {
             crate::parts::ensure_in_project(prj, db, n);
@@ -183,8 +183,9 @@ impl Pg<'_> {
     fn sym(&mut self, key: &str, x: f32, y: f32, rot: u8, tag: &str, label: &str, ftext: &str) -> &mut Self {
         let def = self.prj.symbol(key).expect("symbol");
         let id = self.prj.new_id();
-        // Tags take the missing structure aspects from the page (`-K1` → `=A1+CAB1-K1`).
-        let tag = if tag.is_empty() { String::new() } else { crate::structure::complete(&self.prj.pages[self.page], tag) };
+        // Tags take the missing structure aspects from the page or the structure box
+        // they are in (`-K1` → `=A1+CAB1-K1`).
+        let tag = if tag.is_empty() { String::new() } else { crate::structure::complete_at(&self.prj.pages[self.page], p(x, y), tag) };
         let s = SymbolInst {
             id,
             sym: key.into(),
@@ -449,6 +450,10 @@ fn add_panel_layout(prj: &mut Project, db: &PartsDb) {
     for (tag, x, y) in DOOR_DEVICES {
         panel::place_device_on(prj, 0, tag, p(x, y), panel::Face::Door);
     }
+    // The motor cable -W1 leaves through a cable gland of its own in the bottom, below
+    // the terminal strip.
+    crate::parts::ensure_in_project(prj, db, "GEN.GLAND-M25");
+    panel::place_accessory(prj, 0, "GEN.GLAND-M25", panel::Face::Bottom, p(80.0, 100.0));
     // Door ducts: one along the hinge side, one above and one below the row of
     // command devices; the door wires run through them to the hinge.
     crate::parts::ensure_in_project(prj, db, panel::DOOR_DUCT_PART);

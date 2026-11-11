@@ -87,6 +87,107 @@ pub(super) fn color_field(ui: &mut egui::Ui, color: &mut Option<[u8; 3]>) {
     });
 }
 
+fn corner_title(c: structure::BoxCorner) -> &'static str {
+    match c {
+        structure::BoxCorner::TopLeft => tr("Top left"),
+        structure::BoxCorner::TopRight => tr("Top right"),
+        structure::BoxCorner::BottomLeft => tr("Bottom left"),
+        structure::BoxCorner::BottomRight => tr("Bottom right"),
+    }
+}
+
+fn box_line_title(l: structure::BoxLine) -> &'static str {
+    match l {
+        structure::BoxLine::DashDot => tr("Dash-dot"),
+        structure::BoxLine::Dashed => tr("Dashed"),
+        structure::BoxLine::Solid => tr("Solid"),
+    }
+}
+
+impl App {
+    /// Structure box: the identifiers it sets (empty aspects are inherited), its
+    /// label and outline, its size and the devices in it.
+    fn structure_box_properties(&mut self, ui: &mut egui::Ui, pi: usize, id: u64) {
+        use structure::{Aspect, BoxCorner, BoxLine};
+        let prj = &self.session.prj;
+        let pg = &prj.pages[pi];
+        let Some(b) = pg.structure_boxes.iter().find(|b| b.id == id) else { return };
+        // What the box inherits: the structure around it without the box itself.
+        let inherited = structure::around_box(pg, b);
+        let symbols = prj.symbol_table();
+        let devices: Vec<String> = pg
+            .symbols
+            .iter()
+            .filter(|s| !s.tag.is_empty() && structure::boxes_at(pg, s.pos).last().is_some_and(|i| i.id == id))
+            .filter(|s| matches!(symbols.get(&s.sym).map(|d| d.func), Some(openecraft_core::symbols::Func::Main { .. })))
+            .map(|s| structure::relative_at(pg, s.pos, &s.tag))
+            .collect();
+        let used = prj.structures.page_aspects();
+        let aspects: Vec<Aspect> = Aspect::ALL.into_iter().filter(|a| used.contains(a) || !b.structure.get(*a).is_empty()).collect();
+        let effective = structure::box_scope(pg, b).structure();
+        let pg = &mut self.session.prj.pages[pi];
+        let Some(b) = pg.structure_boxes.iter_mut().find(|b| b.id == id) else { return };
+        ui.label(RichText::new(tr("Structure box")).strong());
+        ui.add(egui::Label::new(RichText::new(tr("Devices whose main function lies in the box take the identifiers set here; empty aspects are inherited from the page or an enclosing box.")).weak()).wrap());
+        egui::Grid::new("sbprops").num_columns(2).show(ui, |ui| {
+            for a in aspects {
+                ui.label(format!("{} ({})", a.title(), a.prefix()));
+                let around = inherited.get(a);
+                let hint = if around.is_empty() { tr("inherited").to_string() } else { tr_fmt!("inherited: {}", a.format(around)) };
+                let value = b.structure.get_mut(a);
+                if ui.add(egui::TextEdit::singleline(value).hint_text(hint).desired_width(120.0).font(egui::TextStyle::Monospace)).changed() {
+                    *value = structure::clean_aspect(value);
+                }
+                ui.end_row();
+            }
+            ui.label(tr("Description"));
+            ui.add(egui::TextEdit::singleline(&mut b.description).desired_width(160.0));
+            ui.end_row();
+            ui.label(tr("Structure in the box"));
+            ui.label(RichText::new(if effective.is_empty() { "–".to_string() } else { effective.clone() }).monospace());
+            ui.end_row();
+            ui.label(tr("Identifiers"));
+            egui::ComboBox::from_id_salt("sbcorner").selected_text(corner_title(b.label)).show_ui(ui, |ui| {
+                for c in [BoxCorner::TopLeft, BoxCorner::TopRight, BoxCorner::BottomLeft, BoxCorner::BottomRight] {
+                    ui.selectable_value(&mut b.label, c, corner_title(c));
+                }
+            });
+            ui.end_row();
+            ui.label(tr("Text offset"));
+            ui.horizontal(|ui| {
+                ui.add(egui::DragValue::new(&mut b.label_offset.x).speed(0.5).prefix("x ").suffix(" mm"));
+                ui.add(egui::DragValue::new(&mut b.label_offset.y).speed(0.5).prefix("y ").suffix(" mm"));
+            });
+            ui.end_row();
+            ui.label(tr("Outline"));
+            egui::ComboBox::from_id_salt("sbline").selected_text(box_line_title(b.line)).show_ui(ui, |ui| {
+                for l in [BoxLine::DashDot, BoxLine::Dashed, BoxLine::Solid] {
+                    ui.selectable_value(&mut b.line, l, box_line_title(l));
+                }
+            });
+            ui.end_row();
+            let (mut w, mut h) = (b.b.x - b.a.x, b.b.y - b.a.y);
+            ui.label(tr("Width"));
+            if ui.add(egui::DragValue::new(&mut w).range(4.0..=2000.0).speed(1.0).suffix(" mm")).changed() {
+                b.b.x = b.a.x + w;
+            }
+            ui.end_row();
+            ui.label(tr("Height"));
+            if ui.add(egui::DragValue::new(&mut h).range(4.0..=2000.0).speed(1.0).suffix(" mm")).changed() {
+                b.b.y = b.a.y + h;
+            }
+            ui.end_row();
+        });
+        color_field(ui, &mut b.color);
+        ui.separator();
+        if devices.is_empty() {
+            ui.weak(tr("No device has its main function in the box."));
+        } else {
+            ui.label(tr_fmt!("Devices in the box: {}", devices.join(", ")));
+        }
+    }
+}
+
 fn anchor_title(a: Anchor) -> &'static str {
     match a {
         Anchor::Left => tr("Left"),
@@ -201,15 +302,21 @@ impl App {
             ..Default::default()
         };
         self.editor.set_tool(Tool::Insert);
-        self.editor.insert = Some(ops::Clip { images: vec![img], ..ops::Clip::new() });
+        let mut clip = ops::Clip::new();
+        clip.images.push(img);
+        self.editor.insert = Some(clip);
         self.editor.insert_macro = None;
         self.notify(ctx, tr("Click into the page to place the image"));
     }
 
-    /// Properties of texts, graphics, dimensions, images and definitions. Returns
-    /// false if `id` is none of them.
+    /// Properties of texts, graphics, dimensions, images, definitions and structure
+    /// boxes. Returns false if `id` is none of them.
     pub(super) fn graphic_properties(&mut self, ui: &mut egui::Ui, id: u64) -> bool {
         let pi = self.session.page;
+        if self.session.prj.pages[pi].structure_boxes.iter().any(|b| b.id == id) {
+            self.structure_box_properties(ui, pi, id);
+            return true;
+        }
         let names = graphics::layer_names(&self.session.prj);
         let cables: Vec<(String, Vec<String>)> = self.session.prj.cables.iter().map(|c| (c.tag.clone(), c.core_list())).collect();
         let pg = &mut self.session.prj.pages[pi];
@@ -575,6 +682,41 @@ impl App {
         }
     }
 
+    /// Side of the name and cross reference of interruption points (`syms`: their
+    /// indices on the page), and a reset of the texts placed by hand.
+    pub(super) fn interruption_texts(&mut self, ui: &mut egui::Ui, pi: usize, syms: &[usize]) {
+        let page = &mut self.session.prj.pages[pi];
+        let first = page.symbols[syms[0]].text_side;
+        let same = syms.iter().all(|&i| page.symbols[i].text_side == first);
+        let by_hand = syms.iter().any(|&i| page.symbols[i].label_place.is_some() || page.symbols[i].xref_place.is_some());
+        let placed = syms.iter().any(|&i| page.symbols[i].texts_placed());
+        let mut chosen = None;
+        ui.separator();
+        ui.horizontal(|ui| {
+            ui.label(tr("Name and cross reference"));
+            egui::ComboBox::from_id_salt("intr_side").selected_text(if same { first.title() } else { tr("(several)") }).show_ui(ui, |ui| {
+                for side in TextSide::ALL {
+                    if ui.selectable_label(same && side == first, side.title()).clicked() {
+                        chosen = Some(side);
+                    }
+                }
+            });
+            if placed && icons::button(ui, Icon::Undo, tr("Reset to automatic placement")).clicked() {
+                chosen = Some(TextSide::Auto);
+            }
+        });
+        if by_hand {
+            ui.weak(tr("Placed by hand; choosing a side places them anew."));
+        } else if syms.len() == 1 {
+            ui.weak(tr("Drag the name or the cross reference of the selected point to place it."));
+        }
+        if let Some(side) = chosen {
+            for &i in syms {
+                page.symbols[i].set_text_side(side);
+            }
+        }
+    }
+
     /// Tag position, placed properties and placement scheme of a symbol.
     pub(super) fn placement_properties(&mut self, ui: &mut egui::Ui, pi: usize, si: usize) {
         let symbols = self.session.prj.symbol_table();
@@ -585,7 +727,8 @@ impl App {
         let classes = properties::Object::Function(s.id).classes(&self.session.prj);
         let classes: Vec<properties::ObjectClass> =
             [properties::ObjectClass::Device, properties::ObjectClass::Part].into_iter().filter(|_| !s.tag.is_empty()).chain(classes).chain([properties::ObjectClass::Page, properties::ObjectClass::Project]).collect();
-        let open = !s.props.is_empty() || s.tag_offset.is_some();
+        let pins = symbols.get(&s.sym).filter(|d| d.show_pin_labels).map_or(0, |d| d.pins.len().min(s.pins.len()));
+        let open = !s.props.is_empty() || s.tag_offset.is_some() || !s.pin_placements.is_empty();
         egui::CollapsingHeader::new(tr("Property placement")).id_salt("placement").default_open(open).show(ui, |ui| {
             let added = super::properties_ui::key_picker(ui, &self.session.prj, &classes, false, tr("➕ Place property"));
             let mut save_scheme = None;
@@ -601,6 +744,10 @@ impl App {
                     ui.weak(tr("Drag the tag of the selected symbol to place it."));
                 }
             });
+            // A single connection point is placed freely (device connection points).
+            if pins > 1 {
+                pin_label_placement(ui, s, pins);
+            }
             let mut remove = None;
             egui::Grid::new("pprops").num_columns(4).show(ui, |ui| {
                 for (i, pp) in s.props.iter_mut().enumerate() {
@@ -1004,4 +1151,45 @@ fn dim_title(kind: DimKind) -> &'static str {
         DimKind::Horizontal => tr("Horizontal"),
         DimKind::Vertical => tr("Vertical"),
     }
+}
+
+fn side_title(side: Option<LabelSide>) -> &'static str {
+    match side {
+        None => tr("Automatic"),
+        Some(LabelSide::Left) => tr("Left"),
+        Some(LabelSide::Right) => tr("Right"),
+        Some(LabelSide::Above) => tr("Above"),
+        Some(LabelSide::Below) => tr("Below"),
+    }
+}
+
+/// Side of each connection point designation of a symbol (as seen on the page) and
+/// the reset to automatic placement.
+fn pin_label_placement(ui: &mut egui::Ui, s: &mut SymbolInst, pins: usize) {
+    ui.label(tr("Connection point designations"));
+    ui.weak(tr("Drag a connection point designation of the selected symbol to place it."));
+    egui::Grid::new("pinlabels").num_columns(3).show(ui, |ui| {
+        for i in 0..pins {
+            if s.pins[i].is_empty() {
+                continue;
+            }
+            let label = s.pin_placement(i);
+            let shown = label.side.map(|x| x.on_page(s.rot, s.mirror));
+            let mut side = shown;
+            ui.label(&s.pins[i]);
+            egui::ComboBox::from_id_salt(("pinside", i)).selected_text(side_title(side)).show_ui(ui, |ui| {
+                ui.selectable_value(&mut side, None, side_title(None));
+                for x in LabelSide::ALL {
+                    ui.selectable_value(&mut side, Some(x), side_title(Some(x)));
+                }
+            });
+            if side != shown {
+                s.set_pin_placement(i, PinPlacement { side: side.map(|x| x.in_symbol(s.rot, s.mirror)), offset: Default::default() });
+            }
+            if ui.add_enabled(!label.is_auto(), egui::Button::new(tr("Reset")).small()).on_hover_text(tr("Automatic placement")).clicked() {
+                s.set_pin_placement(i, PinPlacement::default());
+            }
+            ui.end_row();
+        }
+    });
 }

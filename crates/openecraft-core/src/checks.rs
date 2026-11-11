@@ -49,6 +49,7 @@ pub fn builtin() -> Vec<Check> {
             crate::singleline::problems(prj, &an.index, &an.netlist).into_iter().map(|(severity, message, target)| Issue::plain(severity, message, target)).collect()
         }),
         entry("wiring_marks", tr_const!("Wiring marks"), |prj, an| check_wiring_marks(prj, &an.wiring)),
+        entry("twin_ferrules", tr_const!("Twin ferrules"), |prj, an| check_twin_ferrules(prj, &an.ends)),
         entry("mounting_marks", tr_const!("Mounting marks"), |prj, _| check_mounting_marks(prj)),
         entry("preplanning", tr_const!("Pre-planning"), |prj, an| crate::preplanning::issues(prj, &an.index)),
         entry("integration", tr_const!("Enterprise integration"), |prj, _| crate::integration::problems(prj)),
@@ -56,7 +57,9 @@ pub fn builtin() -> Vec<Check> {
         entry("buildings", tr_const!("Buildings, levels and shafts"), |prj, _| crate::panel::buildings::problems(prj)),
         entry("routing_3d", tr_const!("3D routing"), |_, an| check_routing(&an.routing)),
         entry("structure", tr_const!("Structure identifiers"), |prj, _| {
-            crate::structure::problems(prj).into_iter().map(|message| Issue::plain(Severity::Warning, message, None)).collect()
+            let mut v: Vec<Issue> = crate::structure::problems(prj).into_iter().map(|message| Issue::plain(Severity::Warning, message, None)).collect();
+            v.extend(crate::structure_boxes::problems(prj));
+            v
         }),
         entry("translations", tr_const!("Project languages"), |prj, _| check_translations(prj)),
         entry("harnesses", tr_const!("Harnesses"), check_harnesses),
@@ -192,7 +195,7 @@ fn check_translations(prj: &Project) -> Vec<Issue> {
 
 /// Project check ("Prüfläufe"): finds typical engineering mistakes.
 pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
-    let mut v = Vec::new();
+    let mut v = check_function_parts(prj);
     let placed = crate::parts::placed_kinds(prj);
     for tag in idx.sorted_tags() {
         let dev = &idx.devices[tag];
@@ -205,15 +208,18 @@ pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
             v.push(crate::issue!(Severity::Error, t(&mains[1]), "{}: main function placed {} times", tag, mains.len()));
         }
         if !dev.others.is_empty() {
-            // Duplicate terminal numbers / PLC addresses (plug pins: see `plugs::problems`)
+            // Duplicate terminal numbers / PLC addresses / device connection points (plug
+            // pins: see `plugs::problems`)
             let mut seen: HashMap<String, usize> = HashMap::new();
             for l in &dev.others {
                 let s = prj.pages[l.page].symbols.iter().find(|s| s.id == l.sym_id);
-                if let Some(s) = s.filter(|s| !matches!(prj.symbol(&s.sym).map(|d| d.func), Some(Func::Plug(_)))) {
-                    let c = seen.entry(s.label.clone()).or_default();
+                let func = s.and_then(|s| prj.symbol(&s.sym)).map(|d| d.func);
+                if let Some(s) = s.filter(|_| !matches!(func, Some(Func::Plug(_)))) {
+                    let designation = if func == Some(Func::Connection) { s.pins.first().cloned().unwrap_or_default() } else { s.label.clone() };
+                    let c = seen.entry(designation.clone()).or_default();
                     *c += 1;
                     if *c == 2 {
-                        v.push(crate::issue!(Severity::Warning, t(l), "{}: designation '{}' used more than once", tag, s.label));
+                        v.push(crate::issue!(Severity::Warning, t(l), "{}: designation '{}' used more than once", tag, designation));
                     }
                 }
             }
@@ -243,12 +249,13 @@ pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
         }
     }
     for (name, locs) in &idx.interruptions {
+        let label = &prj.pages[locs[0].page].symbols.iter().find(|s| s.id == locs[0].sym_id).unwrap().label;
         if locs.len() == 1 {
-            v.push(crate::issue!(Severity::Warning, Some((locs[0].page, locs[0].sym_id)), "Interruption point '{}' has no counterpart", name));
+            v.push(crate::issue!(Severity::Warning, Some((locs[0].page, locs[0].sym_id)), "Interruption point '{}' has no counterpart", label));
         } else if prj.xref.interruptions == InterruptionMode::Pairs {
             // In pairs the last point of an odd number has no partner.
             if let Some(l) = locs.iter().find(|l| idx.interruption_targets(prj, name, l.sym_id).is_empty()) {
-                v.push(crate::issue!(Severity::Warning, Some((l.page, l.sym_id)), "Interruption point '{}' has no counterpart", name));
+                v.push(crate::issue!(Severity::Warning, Some((l.page, l.sym_id)), "Interruption point '{}' has no counterpart", label));
             }
         }
     }
@@ -289,6 +296,20 @@ pub fn check(prj: &Project, idx: &Index, nl: &Netlist) -> Vec<Issue> {
     v
 }
 
+fn check_function_parts(prj: &Project) -> Vec<Issue> {
+    let mut issues = Vec::new();
+    for (pi, page) in prj.pages.iter().enumerate() {
+        for s in &page.symbols {
+            if let Some(number) = s.values.get("function.part_number") {
+                if s.selected_part_number(prj).is_none() {
+                    issues.push(crate::issue!(Severity::Error, Some((pi, s.id)), "{}: selected part {} is no longer assigned to this device", s.tag, number));
+                }
+            }
+        }
+    }
+    issues
+}
+
 /// Accessories (auxiliary and signal contacts, …) only work attached to a part they
 /// fit: one on a device without such a part is a mistake.
 fn check_accessories(prj: &Project, idx: &Index) -> Vec<Issue> {
@@ -313,7 +334,7 @@ fn mains_of_main_parts(prj: &Project, tag: &str, mains: &[crate::index::Loc]) ->
     for r in refs {
         let Some(p) = crate::sizing::part(prj, &r.number).filter(|p| p.accessory) else { continue };
         for f in &p.functions {
-            *spare.entry(f.kind).or_default() += r.count.max(1) as usize;
+            *spare.entry(f.kind).or_default() += r.quantity() as usize;
         }
     }
     let kind = |l: &crate::index::Loc| prj.pages[l.page].symbols.iter().find(|s| s.id == l.sym_id).and_then(|s| crate::parts::kind_of_symbol(&s.sym));
@@ -378,10 +399,16 @@ fn check_open_wire_ends(prj: &Project) -> Vec<Issue> {
 fn check_wires(prj: &Project, nl: &Netlist, open: &Netlist) -> Vec<Issue> {
     let mut v = Vec::new();
     let mut tags: HashMap<&str, usize> = HashMap::new();
+    let catalog = crate::parts::catalog();
     for c in &prj.cables {
         *tags.entry(c.tag.as_str()).or_default() += 1;
         if c.tag.trim().is_empty() {
             v.push(crate::issue!(Severity::Error, None, "Cable without tag"));
+        }
+        if (!c.length.is_finite() || c.length <= 0.0)
+            && prj.parts.iter().chain(catalog.iter()).find(|p| p.number == c.part).is_some_and(|p| p.quantity_unit == "m")
+        {
+            v.push(crate::issue!(Severity::Warning, None, "{}: cable length is missing; material quantity is unknown", c.tag));
         }
     }
     for (tag, n) in tags.iter().filter(|(t, n)| **n > 1 && !t.is_empty()) {
@@ -597,6 +624,29 @@ fn check_wiring_marks(prj: &Project, wiring: &[RoutedWire]) -> Vec<Issue> {
     let stale = crate::wiring::stale(prj, wiring).len();
     if stale > 0 {
         v.push(crate::issue!(Severity::Info, None, "{} wiring marks belong to wires that no longer exist", stale));
+    }
+    v
+}
+
+/// Twin ferrules: each takes two wires of the same cross-section.
+fn check_twin_ferrules(prj: &Project, ends: &crate::production::Ends) -> Vec<Issue> {
+    use crate::production::{cross_section_mm2, Termination};
+    let mut points: Vec<&str> = ends.points().collect();
+    points.sort_by(|a, b| crate::model::natural_cmp(a, b));
+    let mut v = Vec::new();
+    for at in points {
+        let wires = ends.wires_at(at);
+        let twins: Vec<&(String, String)> = wires.iter().filter(|(o, _)| ends.kind(prj, at, o) == Termination::TwinFerrule).collect();
+        if twins.is_empty() {
+            continue;
+        }
+        if wires.len() > 2 {
+            v.push(crate::issue!(Severity::Warning, None, "Twin ferrule at {}: {} wires end there, it takes two", at, wires.len()));
+        } else if twins.len() < 2 {
+            v.push(crate::issue!(Severity::Warning, None, "Twin ferrule at {} is not shared with a second wire", at));
+        } else if cross_section_mm2(&twins[0].1) != cross_section_mm2(&twins[1].1) {
+            v.push(crate::issue!(Severity::Warning, None, "Twin ferrule at {} joins wires of {} and {}", at, twins[0].1, twins[1].1));
+        }
     }
     v
 }

@@ -3,7 +3,7 @@
 The notable changes of each OpenECraft release. The section of a version is the text of
 its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
-## [Unreleased]
+## [0.1.2] - unreleased
 
 - **Connection symbols** (#96): Auto-connect wires the branch of a T-junction that sits
   on one continuous wire, as it does on a wire split at the junction. While a connection
@@ -14,6 +14,254 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   A T-junction placed where three wires meet keeps the chosen routing. Connection
   symbols follow their wires when wires or devices move, also in fast drags, sliding
   along the rail with their drop, and wires branching off a moved wire stretch with it.
+- **Trackpads and touch screens** (#134): every 2D and 3D view (schematic, front,
+  floor and site plan, 3D view, field plan, symbol editor) zooms with a pinch and pans
+  with two fingers, both in one movement; on a touch screen the first finger no longer
+  selects, moves or orbits while two are down. The horizontal mouse wheel and
+  `Shift`+wheel pan sideways. *Settings › Navigation* chooses what scrolling does:
+  *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
+  wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
+  The symbol editor's canvas pans too (also with the middle mouse button).
+- **Settings after an update check:** checking for updates no longer collapses Settings
+  into an unusable title bar. Dialogs already stuck this way recover their contents.
+- **Wire jumps** (#132): wires that cross without a connection can jump over each other
+  with an arc, a square bridge or a gap, besides the plain crossing of before; the
+  vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
+  dot (a plain T); connections of four or more wires always keep their dot. Set in
+  *Connections › Wire crossings…* (Settings › Wire crossings) with a preview, saved
+  with the project and in settings schemes, drawn alike on screen and in PDF, SVG and
+  DXF. Command `wire_settings`.
+- **Rerouting moved connections** (#132, off by default): with *Route the connections
+  of moved items anew* a wire left diagonal by a move is routed again together with
+  the corners after it, up to the next connection point, junction or branch: the
+  way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
+  wire crossed. Labels and connection definition points come along; without a way the
+  wire is squared as before.
+- **EDZ parts without a usable macro** (#131): a part whose first function is a
+  generic one (the connection points of a drive or an HMI) is placed as a black box
+  with room for its connection points instead of an earth electrode. Elliptic arcs of
+  EPLAN macros keep the ratio of their axes and start and end where the macro says (the
+  S7-1200 CPU 6ES7212-1HG50-0XB0 had a half circle of 400 mm across the page), and
+  texts keep their justification (table labels stood on their lines, right-aligned
+  texts ran into their neighbours). Open polylines of EPLAN macros stay open (each edge
+  of the CPU was closed back to its start), and the schematic no longer draws spikes
+  where a line turns back on itself. The part selection of *Add part…* no longer grows
+  to the height of the screen.
+- **Wire ends in 3D:** the 3D view of the panel layout shows the end of each wire and
+  cable core at its connection point: the ferrule (metal sleeve and collar in its
+  DIN 46228-4 colour) where *Wire ends with ferrules* is set, otherwise the bare copper
+  conductor as long as it is stripped.
+- **Terminations per wire end:** each end of a wire or cable core gets its own
+  termination: bare conductor, ferrule, twin ferrule, ring, fork or pin terminal, flat
+  plug or flat receptacle (insulated in red, blue or yellow by the cross-section,
+  uninsulated tubular cable lugs from 10 mm²). It is chosen in the properties of a
+  wire (*Wire ends*) or a cable (*Cable ends*, for all cores at one device), or with
+  the command `set_termination` for a connection point, a device or one wire;
+  `terminations` lists them. Ends without one keep the ferrule setting of the layout.
+  The 3D view draws every termination (rings round the connection point, flat plugs,
+  forks, pins and insulated sleeves in their colour, each cable core with its own
+  cross-section); the production wire list shows the termination and parts of both
+  ends, and the wiring assistant, the machine exports, the harness data and the bill of
+  materials (with the new catalog parts) take them too.
+- **Twin ferrules for two wires:** a twin ferrule belongs to the two wires ending at
+  one connection point. Chosen for one of them it is chosen for the other one too
+  (offered only where exactly two wires end), it is shown once in 3D, counted once in
+  the bill of materials, named with the other wire in the production wire list and the
+  wiring assistant (which puts the two wires one after the other, to be crimped
+  together) and carried by the first of them in the machine exports (new fields *Twin
+  ferrule with (from)* / *(to)*). Two cross-sections get the ferrule for the larger
+  one. The check *Twin ferrules* warns about one with a single wire, at a point with
+  more than two wires or for two cross-sections. New layout setting *Twin ferrules where
+  two wires share a connection point* (command `set_ferrules`).
+- **Workspaces show their view again:** a workspace chosen in the title bar shows its
+  main view (the panel layout, the workbench, …) even where the page was left in front
+  of it, and the commands of the layout view (3D view, floor plan, mounting plate,
+  tools, …) bring it to the front instead of changing it unseen behind the page.
+- **3D routing keeps a route apart from itself:** a cable, wire or pipe whose ends lie
+  too close for its bend radius no longer runs back across or alongside its own way
+  (the supply cable `=GRID-W1` of the example `building_services` crossed itself below
+  the house connection box); it takes a loop that keeps its thickness from itself, its
+  bends and the nozzle it comes out of, and is reported as not routable where there is
+  none. Cables and pipes through one wall penetration pass it side by side instead of
+  through one point. The example `building_services` has its cable entry lower in the
+  wall, the water service sleeve in front of its building entry and the couplings of
+  the compressed air outlets beside their units, so that every line has room for its
+  bends.
+- **One cable per cable gland:** a cable gland takes one cable (the free one whose
+  clamping range fits, nearest to where the cable heads); a cable that finds every
+  gland of its cabinet taken is not routed and reported as an error that names the
+  cabinet, instead of being drawn through a gland with another cable. Cable entry
+  flanges still take several cables side by side. Cable glands are drawn with a model
+  of their own in the colour of their material: outside the hexagon body, neck and
+  dome on the outer surface of their wall (they floated a centimetre above it), inside
+  the locknut and the end of the thread, which other routes keep clear of; and the
+  generic catalog gains them in brass nickel-plated (`GEN.GLAND-M16-MS` …
+  `-M63-MS`), as EMC glands with a contact spring for the shield braid
+  (`GEN.GLAND-M16-EMC` … `-M40-EMC`) and two LAPP SKINTOP glands (ST-M and MS-M
+  20x1.5) as manufacturer parts. The example `building_services` has a gland for every
+  cable, sized to it, and the conveyor (`conveyor`, `engineering_workflow`) one for its
+  motor cable, which came in through the middle of the bottom.
+- **Connection point designations** (#116): each designation of a selected symbol can
+  be dragged on its own, put left, right, above or below its connection point or reset
+  to automatic placement (Properties › *Property placement*); the placement is stored
+  with the symbol and turns and mirrors with it, without changing the connection point.
+  Placed automatically, a designation follows the lead of its connection point and
+  moves along it, to the other side or out beside the wire to keep clear of the
+  symbol's graphics, wires, nearby symbols and its other texts (the surge protective
+  device's PE no longer runs into its arrow). Command `place_pin_label`.
+- **Interruption points:** the name and the cross reference no longer crowd the arrow:
+  horizontal points show the name above and the cross reference below the conductor,
+  inside the page, vertical ones beside the arrow. Both can be put above, below, left
+  or right of the arrow for
+  all selected points at once, or dragged on their own without moving the symbol, and
+  reset to the automatic placement; the places are saved and exported, the cross
+  reference keeps its link. Command `place_interruption_texts`
+  ([schematic](docs/features/schematic.md)).
+- CAD drawing imports return original geometry bounds and their page origin, so
+  external importers can recover drawing coordinates without changing page placement.
+
+- **Device boxes with device connection points:** a dashed box of any size drawn on
+  the schematic is a device of its own (power supply, measuring instrument, control
+  module) without a library symbol; device connection points placed on its outline
+  belong to its device, lead away from its edge and are numbered on. Each point is a
+  separate connection (`-A1:L`, `-A1:+24V`) in the connection reports; designations,
+  directions, the box of a point and the place and alignment of its designation are
+  editable, resizing a box takes the points on a moved edge and their wires along, and
+  moving, copying, deleting and macros take a box with its points. Commands
+  `add_device_box`, `update_device_box`, `add_device_connections`,
+  `update_device_connection`, `list_device_boxes`
+  ([schematic](docs/features/schematic.md)).
+
+- **Cable cores at the cable definition line:** the stroke, core designation and cable
+  tag of each core sit where a cable definition line of its cable crosses the wire, so
+  they line up on wires of different lengths (30 % of the wire without a line). The core
+  designation and the cable tag of a selected wire can be dragged into place; they keep
+  their offset when the line moves, *Reset* in the wire properties places them
+  automatically again. `update_wire` takes `core_offset` and `cable_offset`
+  ([connections](docs/features/connections.md)).
+- **Plot boundary:** the boundary of the plot is drawn in the site plan corner by corner
+  and its corners are dragged afterwards; all buildings have to stay inside it, the check
+  reports rooms, roofs and cabinets outside it and the site plan draws them red.
+  Commands `plot`, `set_plot` ([panel layout](docs/features/panel-layout.md)).
+- **Georeferenced reference point:** a point of the plant with its easting, northing,
+  height and coordinate reference system and the direction of grid north; the site plan
+  shows the coordinates under the pointer and a north arrow, `list_buildings` the
+  coordinates of the buildings, IFC exports the plot's name, latitude and longitude.
+  *Site › Measure* measures distance and direction between two points. Commands
+  `set_reference_point`, `locate`, `measure`.
+- **A level in 3D:** a level clicked in the navigator while the 3D view is shown shows
+  all rooms of that level side by side at their places, with their cabinets, floor
+  slabs and stairs.
+- **Project properties:** the name and value fields of the custom properties use the
+  width of the dialog instead of shrinking to a few characters; the dialog can be
+  resized, and a long list of properties scrolls. A renamed property is applied when
+  its name field loses focus (Esc keeps the old name), so the text cursor no longer
+  jumps to another property while typing.
+- **Structure boxes:** *Insert › Structure box* draws a rectangle whose devices take other
+  function (`=`) or location (`+`) identifiers than the page (also installation site and
+  product); only the aspects set on the box override the page, nested boxes resolve to
+  the innermost. Devices follow when their main function moves into or out of a box or
+  the box is moved, resized or changed (in one undo step); aspects set on a device stay,
+  and a tag that exists already is refused instead of merging two devices. Tags on the
+  page omit what the box shows; the symbol properties show where each aspect comes from;
+  the structure check reports overlapping boxes. Commands `add_structure_box`,
+  `update_structure_box`, `list_structure_boxes`
+  ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
+
+- **Tag blocks clear of neighbouring symbols:** a tag block placed automatically that
+  would run into a neighbouring symbol goes on the other side of its symbol, above or
+  below, whichever is clear of symbols and wires; the tag of functions of one device
+  side by side in a row is shown once, at the first of them (the surge protective
+  devices `-F1` of the transformer metering examples no longer overlap). Tag blocks
+  placed by hand stay where they are.
+
+- Preserve imported plot-frame artwork and live page fields as reusable frames, separate from selectable page content, including canvas, frame preview and exports.
+
+- PLC addresses that are not byte.bit addresses, such as imported card positions like `A1.3.1`, are compared as whole texts, so different addresses are no longer reported as duplicates.
+- Keep the closing window responsive while preparing recovery data, with progress for the previous autosave, project, parts database and macro library.
+- Reuse Insert center symbol groups and search results while scrolling, refreshing them when definitions, parts, search text or language change.
+- Keep the Insert center responsive while scrolling large libraries by drawing only visible list rows and previews and reusing unplaced-function results until the project or catalog changes.
+- Add live function cross-reference fields with native page links, multiline attribute flow and a shared reference query. Authored tag fields can retain reference placement without freezing sheet names.
+- Expose native symbol definition reconciliation to importers, preserving local revisions and reusing equal definitions.
+- Continue new page numbering after imported alphabetic subpages such as 20a and 20.a, within each section.
+- Preserve explicit cabinet rotations through front artwork, meshes, pins, wire exits and drilling; expose orientation editing through the editor and plugin commands.
+- Distinguish plugin defaults from explicit false for optional boolean form fields.
+- Renaming a placed cable marker follows its explicit cable reference and keeps
+  ordinary devices with a shared tag independent. Unambiguous cable material-owner
+  references follow renames and are cleared when the cable is removed.
+- Placed wire labels read live core, cable, wire number or colour values, retain
+  their layout through routing splits, joins, rotation and portable copy/paste,
+  and can be edited in wire properties or the shared `update_wire` command.
+- Cable properties in symbol attribute blocks and placed annotations follow the
+  linked inventory entry, including custom marker captions. Placed part properties
+  show the selected article consistently with attribute blocks and exports.
+- Cable tag entry commits on Enter or leaving the field; empty, duplicate and
+  invalid tags leave the inventory and drawing references intact. The editor and
+  table command share validation, including released drawings.
+- Explicit cable markers follow the current cable article through property,
+  table and catalog edits, including when their displayed caption is customized.
+- Cable renames keep explicitly linked drawing markers, connection definitions,
+  cable definition lines and inactive options synchronized; shared ordinary
+  device tags stay separate. Portable copies retain the cable association.
+- Keep frame references to the previous, next and last sheet current within their section, including schemes whose numbering starts above one.
+- Keep page and project property blocks live in drawing graphics, expose local sheet numbers and section page counts, and retain editable page defaults in reusable page templates. Offer page and project fields in the symbol editor's property picker.
+- Advertise parallel cable-core support to external importers so a newer verification CLI cannot mask an older running editor.
+- Resolve portable macro parameters in symbol graphics, pin labels and library defaults as well as placed instance data.
+- Keep imported cable symbol article references current when choosing or typing a new cable part, while preserving ordinary device selections.
+- Preserve explicit function article lookup when an ordinary device and a cable share an authored tag, without duplicating cable material.
+- Retain distinct parallel cable cores between the same terminals in physical connections and regenerated cable reports.
+- Preserve owned cable definitions, catalog parts and core assignments when copying circuits or inserting macros, with fresh consistent tags.
+- Include imported project cable parts in the cable picker, preserve local catalog overrides, and expose the same available parts through the shared registry.
+- Apply declared catalog cable diameters when selecting a part, return to the routing estimate when the new part has no valid diameter, and expose cable part application through the shared plugin command.
+- Keep missing lengths of cable sold by metre as unknown material quantities and prices. Retain known partial totals and identify the cables that need a length through the shared project check.
+- Preserve individual wire junction policies when inserting imported macros into existing drawings. Keep existing implicit contacts, trace imported physical routes, expose editable policies through the shared API and wire properties, and preserve different conductor properties during cleanup.
+- Preserve device properties, material owners and literal extra quantities when inserting portable macros. Keep local counts when extending an existing device and reserve incoming tags before assigning collision replacements.
+- Keep cabinet-only devices in the device and material lists independently of their extras. Count undrawn individual cabinet terminals once and keep their quantity stable when the corresponding schematic terminal is added.
+- Preserve cabinet material ownership independently of mounting geometry. Exclude duplicate physical articles or whole devices from the BOM, retain editable material-only devices, and derive optional rail spacers from actual support height.
+- Preserve literal additional-article quantities, including zero, without multiplying them by terminal positions. Keep primary material growth for newly drawn terminals, avoid counting physical cabinet articles twice and expose quantity modes and physical article bindings through the shared API.
+- Retain explicit cabinet mounting origins and unnumbered single-part footprints without adding implicit plates, repeated terminal strips or accessory stacks. Keep open assembly routing free of invented walls and count explicit plate articles.
+- Place individual terminals with their own parts and physical routing points while retaining whole-strip placement for existing projects.
+- Represent open mounting assemblies and explicit mounting plates without invented enclosure geometry. Retain instance mounting datums, support vertical DIN rails, carry mounted descendants on moves and resize operations, and preserve mounting references in portable and pattern copies through the shared panel API.
+- Convert every digital channel of complete PLC modules when changing the station address scheme, synchronizing linked views while retaining custom address text and signal names.
+- Preserve PLC channel addresses when changing only hardware metadata. Offer explicit readdressing through the shared API and avoid inventing PROFINET ports for imported CPUs with no network data.
+- Count every logical channel of complete PLC modules in part functions and reserve-function checks. Recognize analog part functions in hardware descriptions and exclude occupied module channels from the unplaced navigator even with custom addresses.
+- Preserve card-relative PLC channel numbers across split electrical symbols and sheet reordering, including continued projects imported before explicit channel indices were stored.
+- Link multiple PLC channel representations into one logical I/O entry, prefer electrical pins for navigation, and synchronize channel edits across views, including property edits and configuration import. Keep copies on other device tags independent.
+- Edit the selected channel's address, signal name and comment in the PLC overview without overwriting its module or other channels. Keep row identity stable while addresses change and respect released pages.
+- Preserve complete PLC module symbols with independent channels, physical pin mappings, editable addresses, signal names and comments. Configure and exchange their channels through the PLC table and shared API.
+- Load external plugin folders from Manage plugins and remember them for later launches. Clear previous Find results after successful plugin commands.
+- Clear cached Find results when opening or creating another project.
+- Let wires and connection definitions be selected inside decorative symbol bounds.
+- Trace conductor attributes through valid wire contacts and expose physical wire routes to plugins.
+- Preserve editable conductor types in wire properties, connection tables, API and reports.
+- Add editable, flowing symbol attribute blocks that resolve current function and part properties in drawings and exports, with library defaults for new placements.
+- Select an assigned part independently for each device function, retain the selection when earlier parts are removed, and report removed selected parts. Expose live function manufacturers, selection text and batch attribute inspection to plugins.
+- Keep explicitly placed function text linked to editable instance data, retain user-symbol function text defaults on placement, and avoid a duplicate automatic annotation.
+- Preserve locally displayed product designation levels on imported symbols, and update them when the device is renamed. The symbol editor and plugins can choose the displayed level count.
+- Keep directional imported ports and explicit wire junctions from shorting circuits at side crossings or attaching wires to intermediate device ports. Preserve authored wire endpoints and internal jumper rails, and use port directions when adding new automatic connections.
+- Preserve physical wire targets through imported junction paths and drawn branches, and keep internal component bridges out of manufacturing connections. Junction paths remain editable in the symbol editor and through plugins; `list_connections` exposes the resulting pin-to-pin wiring.
+- Let imported conductors retain separately placed annotations while keeping their editable wire and cable properties.
+- Preserve editable fluid port functions on user symbols independently of their connection point numbers.
+- Keep scoped interruption points electrically separate while preserving their displayed names and scoped cross references.
+- Connect intermediate terminal attachments along continuous jumper rails, and expose their net membership to plugins.
+- Keep decorative imported artwork and plot frames from blocking automatic connections and wire routing.
+- Preserve device assignments and catalog parts in portable macros, and render their bundled symbol definitions in previews before insertion.
+- Preserve transparent and palette PNG images in PDF output, and support source plot frames and component-name fields on imported pages.
+- Keep custom symbol definitions with portable native macros, preserve local edits on insertion, and distinguish internal jumper attachments from physical terminals.
+- Expose macro insertion and native net membership through plugins, and accept large CLI parameter objects from JSON files.
+- Let imported parts select project symbol definitions across editor, CLI and MCP placement, and retain vendor source records with projects.
+- Preserve embedded bitmaps in imported symbol libraries, including rotated and mirrored instances on the canvas and in SVG and PDF output.
+- Preserve the connectivity domain of imported fluid and process symbols so their ports stay distinct from electrical connections.
+- Keep imported property text angles and pin designation fields editable and linked to their placed symbol.
+- Support imported secondary device functions and local junction paths without adding spurious main functions or device endpoints.
+
+- **Accessories from macros:** a macro can list in `device_part_additions` the literal
+  accessory articles of its devices to add when it extends an existing device; the other
+  articles and the local quantities of that device stay as they are.
+
+- **Reusing failed route searches:** with the routing rule `reuse_failed_searches` (off by
+  default), a search that found no route is not repeated when later routes only fill the
+  channels.
 
 ## [0.1.1] - 2026-11-08
 
