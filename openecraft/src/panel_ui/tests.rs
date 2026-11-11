@@ -181,6 +181,9 @@ fn selected_profile_can_be_resized_with_its_mounted_group_members_selected() {
     enclosure.items.push(PanelItem { id: 3, kind: ItemKind::Rail, ..Default::default() });
     let selection = [1, 2, 3].into_iter().collect();
     assert!(selected_profile(&enclosure, &selection, Face::Plate).is_none());
+}
+
+#[test]
 fn panel_items_rotate_during_a_move_and_keep_following_the_cursor() {
     fn frame(
         ctx: &egui::Context,

@@ -1774,11 +1774,14 @@ impl Editor {
                 .collect()
         });
         for counter_clockwise in rotations {
-            if let Drag::Move { start, applied, moving, items } = &mut self.drag {
+            if let Drag::Move { start, applied, moving, items, points, lines } = &mut self.drag {
                 for _ in 0..if counter_clockwise { 3 } else { 1 } {
                     routing::rotate(prj, page_i, items);
                 }
-                *moving = routing::Moving::new(prj, page_i, items);
+                **moving = routing::Moving::new(prj, page_i, items);
+                let page = &prj.pages[page_i];
+                *points = snap_lines::points_of(prj, page, items);
+                *lines = snap_lines::SnapLines::without(prj, page, self.grid, points);
                 if let Some(w) = world {
                     *start = w - *applied;
                 }
