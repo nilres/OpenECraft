@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Készülék-, sork
 Devices ({})	Készülékek ({})
 Devices are not copied: a device is placed once.	A készülékek nem másolódnak: egy készülék csak egyszer helyezhető el.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	A készülékeket egyvonalas szimbólumokkal tervezik, és a többvonalas kapcsolási rajzon dolgozzák ki; mindkettő ugyanazt a készülékazonosítót használja.
+Devices back to the devices to place: {}	Az elhelyezendő készülékek közé visszakerült készülékek: {}
+Devices go back to the devices to place	A készülékek visszakerülnek az elhelyezendő készülékek közé
 Devices in the box: {}	Készülékek a keretben: {}
 Devices of a channel	Egy csatorna készülékei
 Devices of the second channel; empty = like the first	A második csatorna készülékei; üres = mint az első
@@ -879,7 +881,12 @@ Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
 Isometric	Izometrikus
+Items copied: {}	Másolt elemek: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Másolt elemek: {} (kihagyott készülékek: {}, egy készüléket csak egyszer lehet elhelyezni)
+Items cut: {}	Kivágott elemek: {}
+Items cut: {} (devices back to the devices to place: {})	Kivágott elemek: {} (az elhelyezendő készülékek közé visszakerült készülékek: {})
 Items on the layer	A réteg elemei
+Items pasted: {}	Beillesztett elemek: {}
 Items with an anchor keep it; the others are inserted relative to the click.	A horgonnyal rendelkező elemek megtartják azt; a többi a kattintáshoz képest kerül beszúrásra.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Tételek, készülékek, elhelyezések, összeköttetések, vezetékek és dokumentumok egyetlen JSON-fájlban az összekötő nélküli rendszerekhez
 Its pages and subsections go to the section above	Oldalai és alszakaszai a fölötte lévő szakaszba kerülnek

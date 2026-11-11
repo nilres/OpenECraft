@@ -498,6 +498,8 @@ Device, terminal, wire and cable markers for marking software	用于标记软件
 Devices ({})	设备 ({})
 Devices are not copied: a device is placed once.	不复制设备：一个设备只放置一次。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	设备用单线符号规划，在多线原理图中设计；两者共享设备标识符。
+Devices back to the devices to place: {}	回到待放置设备中的设备：{}
+Devices go back to the devices to place	设备回到待放置的设备中
 Devices in the box: {}	框内设备：{}
 Devices of a channel	通道的设备
 Devices of the second channel; empty = like the first	第二通道的设备；留空 = 与第一通道相同
@@ -872,7 +874,12 @@ Invalid value	无效值
 Invert the direction of panning by scrolling	反转滚动平移的方向
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 Isometric	等轴测
+Items copied: {}	已复制的元素：{}
+Items copied: {} (devices left out: {}, a device is placed once)	已复制的元素：{}（省略的设备：{}，设备只放置一次）
+Items cut: {}	已剪切的元素：{}
+Items cut: {} (devices back to the devices to place: {})	已剪切的元素：{}（回到待放置设备中的设备：{}）
 Items on the layer	图层上的元素
+Items pasted: {}	已粘贴的元素：{}
 Items with an anchor keep it; the others are inserted relative to the click.	带锚定的元素保留其锚定；其他元素相对于单击位置插入。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	将物料、设备、放置、连接、导线和文档放在一个 JSON 文件中，供没有接口的系统使用
 Its pages and subsections go to the section above	其页和子分节移到上级分节

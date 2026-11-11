@@ -22,6 +22,14 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   "devices to place" list with their real dimensions from the parts data (contactor +
   auxiliary block add up in depth, terminal strips are as long as their terminals and
   spares) and snapped onto rails; rotate, delete.
+- Cut, copy and paste in the front view: right click an item for *Cut*, *Copy*,
+  *Paste*, *Properties* and *Remove* (devices go back to the devices to place), or
+  `Ctrl+X` / `Ctrl+C` / `Ctrl+V`. Rails, ducts, busbars, cutouts and accessories are
+  copied with the items mounted on them, devices are left out (a device is placed
+  once); cut items leave the layout, cut devices go back to the devices to place. The
+  pasted items follow the pointer until a click places them, on any face of any
+  enclosure; `Esc` or a right click cancels. The command `copy_panel_items` does the
+  same from the command line and for AI agents.
 - 2D front view and a 3D view: drag to orbit, right / middle or Shift+drag to pan, the
   wheel zooms at the pointer and walks on into a room, a double-click turns to what was
   clicked and closes in, `W` `A` `S` `D` / arrow keys and `Q` `E` move through the view

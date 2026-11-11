@@ -502,6 +502,8 @@ Device, terminal, wire and cable markers for marking software	Маркери п�
 Devices ({})	Пристрої ({})
 Devices are not copied: a device is placed once.	Пристрої не копіюються: пристрій розміщується один раз.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Пристрої плануються однолінійними символами і проєктуються в багатолінійній схемі; обидва мають спільне позначення пристрою.
+Devices back to the devices to place: {}	Пристроїв повернуто до пристроїв для розміщення: {}
+Devices go back to the devices to place	Пристрої повертаються до пристроїв для розміщення
 Devices in the box: {}	Пристрої в рамці: {}
 Devices of a channel	Пристрої каналу
 Devices of the second channel; empty = like the first	Пристрої другого каналу; порожньо = як у першого
@@ -878,7 +880,12 @@ Invalid value	Недійсне значення
 Invert the direction of panning by scrolling	Обернути напрямок зсуву прокручуванням
 Inverter or charge controller (devices with PV input data)	Інвертор або контролер заряду (пристрої з даними входу ФЕ)
 Isometric	Ізометрія
+Items copied: {}	Скопійовано елементів: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Скопійовано елементів: {} (пропущено пристроїв: {}, пристрій розміщується лише один раз)
+Items cut: {}	Вирізано елементів: {}
+Items cut: {} (devices back to the devices to place: {})	Вирізано елементів: {} (пристроїв повернуто до пристроїв для розміщення: {})
 Items on the layer	Об’єкти на шарі
+Items pasted: {}	Вставлено елементів: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Елементи з прив’язкою зберігають її; інші вставляються відносно місця клацання.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Вироби, пристрої, розміщення, з’єднання, проводи й документи в одному файлі JSON для систем без конектора
 Its pages and subsections go to the section above	Його сторінки та підрозділи переходять до батьківського розділу

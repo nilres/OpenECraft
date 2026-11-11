@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	İşaretleme yazı
 Devices ({})	Cihazlar ({})
 Devices are not copied: a device is placed once.	Cihazlar kopyalanmaz: bir cihaz bir kez yerleştirilir.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Cihazlar tek hatlı sembollerle planlanır ve çok hatlı şemada projelendirilir; ikisi aynı cihaz etiketini paylaşır.
+Devices back to the devices to place: {}	Yerleştirilecek cihazlara geri dönen cihazlar: {}
+Devices go back to the devices to place	Cihazlar yerleştirilecek cihazlara geri döner
 Devices in the box: {}	Kutudaki cihazlar: {}
 Devices of a channel	Bir kanalın cihazları
 Devices of the second channel; empty = like the first	İkinci kanalın cihazları; boş = birinci gibi
@@ -879,7 +881,12 @@ Invalid value	Geçersiz değer
 Invert the direction of panning by scrolling	Kaydırmayla görünüm kaydırma yönünü ters çevir
 Inverter or charge controller (devices with PV input data)	İnvertör veya şarj kontrol cihazı (PV giriş verisi olan cihazlar)
 Isometric	İzometrik
+Items copied: {}	Kopyalanan öğeler: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopyalanan öğeler: {} (atlanan cihazlar: {}, bir cihaz yalnızca bir kez yerleştirilir)
+Items cut: {}	Kesilen öğeler: {}
+Items cut: {} (devices back to the devices to place: {})	Kesilen öğeler: {} (yerleştirilecek cihazlara geri dönen cihazlar: {})
 Items on the layer	Katmandaki öğeler
+Items pasted: {}	Yapıştırılan öğeler: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Ankrajı olan öğeler ankrajlarını korur; diğerleri tıklanan noktaya göre eklenir.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Bağlayıcısı olmayan sistemler için tek bir JSON dosyasında öğeler, cihazlar, yerleşimler, bağlantılar, teller ve belgeler
 Its pages and subsections go to the section above	Sayfaları ve alt bölümleri üst bölüme geçer

@@ -18,6 +18,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Auto-connect hints:** while a symbol is placed or moved with the mouse, faint
   dotted lines show the wires auto-connect would draw
   ([schematic](docs/features/schematic.md#routing)).
+- **Cut, copy and paste in the panel layout** (#153): right click an item in the front
+  view for *Cut*, *Copy*, *Paste*, *Properties* and *Remove* (devices go back to the
+  devices to place), or use `Ctrl+X` / `Ctrl+C` / `Ctrl+V`. Rails, ducts and the other
+  items are copied with what is mounted on them, without devices; cut devices go back
+  to the devices to place. The copy follows the pointer until a click places it
+  ([panel layout](docs/features/panel-layout.md#enclosures-and-devices)). New command
+  `copy_panel_items`.
 - **Panel layout profile sizing** (#135): select a mounting rail or cable duct and drag
   either end to change its length while the opposite end stays put.
 - **Connection symbols** (#96): Auto-connect wires the branch of a T-junction that sits

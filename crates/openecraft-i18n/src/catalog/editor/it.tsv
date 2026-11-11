@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Marcatori per disp
 Devices ({})	Dispositivi ({})
 Devices are not copied: a device is placed once.	I dispositivi non vengono copiati: un dispositivo viene posizionato una sola volta.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	I dispositivi vengono pianificati con simboli unifilari e progettati nello schema multifilare; entrambi condividono la sigla dispositivo.
+Devices back to the devices to place: {}	Dispositivi tornati tra i dispositivi da posizionare: {}
+Devices go back to the devices to place	I dispositivi tornano tra i dispositivi da posizionare
 Devices in the box: {}	Dispositivi nel riquadro: {}
 Devices of a channel	Dispositivi di un canale
 Devices of the second channel; empty = like the first	Dispositivi del secondo canale; vuoto = come il primo
@@ -879,7 +881,12 @@ Invalid value	Valore non valido
 Invert the direction of panning by scrolling	Inverti la direzione dello spostamento con lo scorrimento
 Inverter or charge controller (devices with PV input data)	Inverter o regolatore di carica (dispositivi con dati di ingresso FV)
 Isometric	Isometrica
+Items copied: {}	Elementi copiati: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Elementi copiati: {} (dispositivi esclusi: {}, un dispositivo si posiziona una sola volta)
+Items cut: {}	Elementi tagliati: {}
+Items cut: {} (devices back to the devices to place: {})	Elementi tagliati: {} (dispositivi tornati tra i dispositivi da posizionare: {})
 Items on the layer	Elementi del livello
+Items pasted: {}	Elementi incollati: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Gli elementi con ancoraggio lo mantengono; gli altri vengono inseriti rispetto al clic.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Articoli, dispositivi, posizionamenti, collegamenti, conduttori e documenti in un unico file JSON per sistemi senza connettore
 Its pages and subsections go to the section above	Le sue pagine e sottosezioni passano alla sezione superiore

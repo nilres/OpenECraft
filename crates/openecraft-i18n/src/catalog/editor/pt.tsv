@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Marcadores de disp
 Devices ({})	Dispositivos ({})
 Devices are not copied: a device is placed once.	Os dispositivos não são copiados: um dispositivo é posicionado uma única vez.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Os dispositivos são planejados com símbolos unifilares e projetados no esquema elétrico multifilar; ambos compartilham o identificador do dispositivo.
+Devices back to the devices to place: {}	Dispositivos devolvidos aos dispositivos a posicionar: {}
+Devices go back to the devices to place	Os dispositivos voltam para os dispositivos a posicionar
 Devices in the box: {}	Dispositivos na caixa: {}
 Devices of a channel	Dispositivos de um canal
 Devices of the second channel; empty = like the first	Dispositivos do segundo canal; vazio = como o primeiro
@@ -879,7 +881,12 @@ Invalid value	Valor inválido
 Invert the direction of panning by scrolling	Inverter a direção do movimento da vista pela rolagem
 Inverter or charge controller (devices with PV input data)	Inversor ou controlador de carga (dispositivos com dados de entrada FV)
 Isometric	Isométrica
+Items copied: {}	Elementos copiados: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Elementos copiados: {} (dispositivos omitidos: {}, um dispositivo é posicionado uma única vez)
+Items cut: {}	Elementos recortados: {}
+Items cut: {} (devices back to the devices to place: {})	Elementos recortados: {} (dispositivos devolvidos aos dispositivos a posicionar: {})
 Items on the layer	Itens na camada
+Items pasted: {}	Elementos colados: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Os itens com ancoragem a mantêm; os demais são inseridos em relação ao clique.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Itens, dispositivos, posicionamentos, conexões, fios e documentos em um arquivo JSON para sistemas sem conector
 Its pages and subsections go to the section above	Suas páginas e subseções vão para a seção superior

@@ -52,6 +52,8 @@ pub enum Tool {
     Opening(Opening),
     /// Inner walls of a room in its floor plan: click their ends.
     InnerWalls,
+    /// The copied items follow the pointer: a click places them.
+    Paste,
 }
 
 impl Tool {
@@ -554,6 +556,10 @@ pub struct PanelUi {
     pub add_page: Option<u64>,
     /// Parts management opened (to mark parts for wall mounting).
     pub open_parts: bool,
+    /// The layout properties pane shown (context menu › Properties).
+    pub open_properties: bool,
+    /// Items copied in the layout (Ctrl+C), pasted with Ctrl+V.
+    pub clip: Option<panel::PanelClip>,
     /// NC export of an enclosure face.
     pub export: Option<(usize, Face, NcFormat)>,
     pattern: Option<PatternDialog>,
@@ -691,6 +697,8 @@ impl Default for PanelUi {
             goto_schematic: None,
             add_page: None,
             open_parts: false,
+            open_properties: false,
+            clip: None,
             export: None,
             pattern: None,
             save_macro: None,
@@ -792,6 +800,113 @@ impl PanelUi {
         self.selection = with_group(e, id).into_iter().collect();
         self.selected_wire = None;
         self.selected_route = None;
+    }
+
+    /// Copies the selected items without the devices (Ctrl+C), onto the system
+    /// clipboard too.
+    pub fn copy_selection(&mut self, ctx: &egui::Context, prj: &Project) {
+        let Some(e) = prj.layout.enclosures.get(self.enclosure) else { return };
+        let clip = panel::copy_items(e, &self.selection.iter().copied().collect::<Vec<_>>());
+        self.status = match (clip.items.len(), clip.devices) {
+            (0, 0) => return,
+            (0, _) => tr("Devices are not copied: a device is placed once.").into(),
+            (n, 0) => tr_fmt!("Items copied: {}", n),
+            (n, d) => tr_fmt!("Items copied: {} (devices left out: {}, a device is placed once)", n, d),
+        };
+        if !clip.is_empty() {
+            ctx.copy_text(clip.to_text());
+            self.clip = Some(clip);
+        }
+    }
+
+    /// Cuts the selected items (Ctrl+X): copied as by Copy, then removed with the
+    /// items mounted on them; the devices go back to the devices to place.
+    pub fn cut_selection(&mut self, ctx: &egui::Context, prj: &mut Project) {
+        let ei = self.enclosure;
+        let Some(e) = prj.layout.enclosures.get_mut(ei) else { return };
+        let ids = panel::mounted_items(e, &self.selection.iter().copied().collect::<Vec<_>>());
+        if ids.is_empty() {
+            return;
+        }
+        let clip = panel::copy_items(e, &ids);
+        let devices = e.items.iter().filter(|i| ids.contains(&i.id) && i.kind == ItemKind::Device).count();
+        panel::remove_items(e, &ids);
+        self.selection.clear();
+        self.status = match (clip.items.len(), devices) {
+            (0, d) => tr_fmt!("Devices back to the devices to place: {}", d),
+            (n, 0) => tr_fmt!("Items cut: {}", n),
+            (n, d) => tr_fmt!("Items cut: {} (devices back to the devices to place: {})", n, d),
+        };
+        if !clip.is_empty() {
+            ctx.copy_text(clip.to_text());
+            self.clip = Some(clip);
+        }
+    }
+
+    pub fn can_paste(&self) -> bool {
+        self.clip.as_ref().is_some_and(|c| !c.is_empty())
+    }
+
+    /// Ctrl+V: the copied items follow the pointer until a click places them.
+    pub fn paste(&mut self) {
+        if self.can_paste() {
+            self.choose_tool(Tool::Paste);
+        }
+    }
+
+    /// Places the copied items with the pointer at `q` in their middle; they become
+    /// the selection.
+    fn place_clip(&mut self, prj: &mut Project, db: &PartsDb, ei: usize, q: P) {
+        let Some(clip) = self.clip.clone() else { return };
+        for it in &clip.items {
+            if db.get(&it.part).is_some() {
+                parts::ensure_in_project(prj, db, &it.part);
+            }
+        }
+        if clip.items.iter().any(|i| i.kind == ItemKind::Busbar) {
+            parts::ensure_in_project(prj, db, openecraft_core::production::BUSBAR_HOLDER);
+        }
+        let ids = panel::paste_items(prj, ei, &clip, self.face, paste_corner(&clip, q));
+        self.status = tr_fmt!("Items pasted: {}", ids.len());
+        self.set_tool(Tool::Select);
+        self.selection = ids.into_iter().collect();
+        self.selected_wire = None;
+        self.selected_route = None;
+    }
+
+    /// Removes the selected items from the layout: devices go back to the devices to
+    /// place.
+    fn remove_selection(&mut self, prj: &mut Project, ei: usize) {
+        panel::remove_items(&mut prj.layout.enclosures[ei], &self.selection.iter().copied().collect::<Vec<_>>());
+        self.selection.clear();
+    }
+
+    /// The context menu of the items in the front view.
+    fn item_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, ei: usize) {
+        let any = !self.selection.is_empty();
+        let cut = ui.add_enabled(any, egui::Button::new(tr("Cut")).shortcut_text("Ctrl+X")).on_hover_text(tr("Devices go back to the devices to place"));
+        if cut.clicked() {
+            self.cut_selection(ui.ctx(), prj);
+            ui.close();
+        }
+        if ui.add_enabled(any, egui::Button::new(tr("Copy")).shortcut_text("Ctrl+C")).clicked() {
+            self.copy_selection(ui.ctx(), prj);
+            ui.close();
+        }
+        if ui.add_enabled(self.can_paste(), egui::Button::new(tr("Paste")).shortcut_text("Ctrl+V")).clicked() {
+            self.paste();
+            ui.close();
+        }
+        ui.separator();
+        if ui.add_enabled(any, egui::Button::new(tr("Properties"))).clicked() {
+            self.open_properties = true;
+            ui.close();
+        }
+        let remove = ui.add_enabled(any, egui::Button::new(tr("Remove")).shortcut_text("Del")).on_hover_text(tr("Devices go back to the devices to place"));
+        if remove.clicked() {
+            self.remove_selection(prj, ei);
+            ui.close();
+        }
     }
 
     fn select_wire(&mut self, key: (String, String)) {
@@ -3171,8 +3286,25 @@ impl PanelUi {
             let (esc, del, r, f) = ui.input(|i| {
                 (i.key_pressed(Key::Escape), i.key_pressed(Key::Delete), i.key_pressed(Key::R) && i.modifiers.is_none(), i.key_pressed(Key::F) && i.modifiers.is_none())
             });
+            for ev in ui.input(|i| i.events.clone()) {
+                match ev {
+                    egui::Event::Copy if !self.selection.is_empty() => self.copy_selection(ui.ctx(), prj),
+                    egui::Event::Cut if !self.selection.is_empty() => self.cut_selection(ui.ctx(), prj),
+                    egui::Event::Paste(text) => {
+                        if let Some(clip) = panel::PanelClip::from_text(&text).filter(|c| !c.is_empty()) {
+                            self.clip = Some(clip);
+                            self.paste();
+                        }
+                    }
+                    _ => {}
+                }
+            }
+            if del && !self.selection.is_empty() {
+                self.remove_selection(prj, ei);
+            }
             let e = &mut prj.layout.enclosures[ei];
-            if esc {
+            // Esc closes an open context menu only.
+            if esc && !egui::Popup::is_any_open(ui.ctx()) {
                 if self.start.is_some() || !self.path_points.is_empty() {
                     self.start = None;
                     self.path_points.clear();
@@ -3185,10 +3317,6 @@ impl PanelUi {
             if !self.tool_allowed(&self.tool) {
                 self.set_tool(Tool::Select);
             }
-            if del && !self.selection.is_empty() {
-                panel::remove_items(e,&self.selection.iter().copied().collect::<Vec<_>>());
-                self.selection.clear();
-            }
             if r {
                 rotate(e, &self.selection);
             }
@@ -3197,13 +3325,9 @@ impl PanelUi {
             }
         }
         let moving_primary = self.drag.is_some() && ui.input(|i| i.pointer.button_down(PointerButton::Primary));
-        if resp.clicked_by(PointerButton::Secondary) && !moving_primary {
-            if self.start.is_some() {
-                self.start = None;
-            } else {
-                self.set_tool(Tool::Select);
-            }
-        }
+        // The context menu of the selection (a right click ends the other tools, it
+        // turns items being moved).
+        let menu = self.tool == Tool::Select && !moving_primary && !gesture.touch;
 
         // Mouse (not while fingers navigate)
         match self.tool.clone() {
@@ -3309,6 +3433,11 @@ impl PanelUi {
                 }
             }
             Tool::Walls | Tool::InnerWalls => {}
+            Tool::Paste => {
+                if let (true, Some(q)) = (resp.clicked_by(PointerButton::Primary), plate) {
+                    self.place_clip(prj, db, ei, q);
+                }
+            }
             Tool::Opening(opening) => {
                 if let (true, Some(q)) = (resp.clicked_by(PointerButton::Primary), plate) {
                     let (w, _) = opening.size();
@@ -3344,6 +3473,16 @@ impl PanelUi {
                     }
                 }
             }
+        }
+        if resp.clicked_by(PointerButton::Secondary) && !moving_primary {
+            if self.start.is_some() {
+                self.start = None;
+            } else {
+                self.set_tool(Tool::Select);
+            }
+        }
+        if menu {
+            egui::Popup::context_menu(&resp).show(|ui| self.item_menu(ui, prj, ei));
         }
 
         // Draw
@@ -3551,6 +3690,15 @@ impl PanelUi {
                 g.rect(p(ghost.x, ghost.y) + m, p(ghost.x + ghost.w, ghost.y + ghost.h) + m, 0.6, Ink::Ghost, false);
                 g.text(ghost.center() + m, tag, (w.min(h) * 0.22).clamp(3.0, 9.0), openecraft_core::symbols::Anchor::Center, render::VAnchor::Middle, Ink::Ghost);
             }
+            (Tool::Paste, _, Some(q)) => {
+                if let Some(clip) = &self.clip {
+                    let at = paste_corner(clip, q);
+                    for it in &clip.items {
+                        let a = p(at.x + it.x, at.y + it.y);
+                        g.rect(a + m, p(a.x + it.w, a.y + it.h) + m, 0.6, Ink::Ghost, false);
+                    }
+                }
+            }
             _ => {}
         }
         if let Some(q) = plate {
@@ -3574,12 +3722,7 @@ impl PanelUi {
         let face = self.face;
         let inside = self.door_inside;
         let hidden = move |i: &PanelItem| hidden_behind_door(inside, i);
-        let hit = |e: &Enclosure, q: P| -> Option<u64> {
-            // Top layer first: devices, busbars, ducts, rails, cutouts.
-            let mut items: Vec<&PanelItem> = e.items.iter().filter(|i| i.face == face && !hidden(i) && i.rect().expand(tol).contains(q)).collect();
-            items.sort_by_key(|i| std::cmp::Reverse(i.kind.layer()));
-            items.first().map(|i| i.id)
-        };
+        let hit = |e: &Enclosure, q: P| item_at(e, face, inside, q, tol);
         let (offset, zoom, fm) = (self.offset, self.zoom, prj.layout.enclosures[ei].face_offset(face));
         let mirror = self.mirror(&prj.layout.enclosures[ei]);
         let to_plate = move |s: Pos2| {
@@ -3595,6 +3738,13 @@ impl PanelUi {
                         egui::CursorIcon::ResizeVertical
                     });
                 }
+            }
+        }
+        // A right click selects the item under the pointer for the context menu.
+        if resp.secondary_clicked() && self.drag.is_none() {
+            let e = &prj.layout.enclosures[ei];
+            if let Some(id) = resp.interact_pointer_pos().and_then(|s| hit(e, to_plate(s))).filter(|id| !self.selection.contains(id)) {
+                self.select_assembly(e, id);
             }
         }
         if resp.drag_started_by(PointerButton::Primary) {
@@ -3779,6 +3929,20 @@ impl PanelUi {
 /// picked there.
 fn hidden_behind_door(inside: bool, it: &PanelItem) -> bool {
     it.face == Face::Door && !inside && it.kind == ItemKind::Duct
+}
+
+/// The item at `q` on a face, the top layer first: devices, busbars, ducts, rails,
+/// cutouts.
+fn item_at(e: &Enclosure, face: Face, inside: bool, q: P, tol: f32) -> Option<u64> {
+    let mut items: Vec<&PanelItem> = e.items.iter().filter(|i| i.face == face && !hidden_behind_door(inside, i) && i.rect().expand(tol).contains(q)).collect();
+    items.sort_by_key(|i| std::cmp::Reverse(i.kind.layer()));
+    items.first().map(|i| i.id)
+}
+
+/// Top left corner of the copied items with the pointer at `q` in their middle: moved
+/// from where they were by steps of the grid.
+fn paste_corner(clip: &panel::PanelClip, q: P) -> P {
+    p(clip.x + panel::snap(q.x - clip.w / 2.0 - clip.x), clip.y + panel::snap(q.y - clip.h / 2.0 - clip.y))
 }
 
 

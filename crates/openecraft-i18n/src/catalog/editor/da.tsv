@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Enheds-, klem-, le
 Devices ({})	Enheder ({})
 Devices are not copied: a device is placed once.	Enheder kopieres ikke: En enhed placeres én gang.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Enheder planlægges med enstregede symboler og projekteres i det flerstregede diagram; begge deler enhedsmærkningen.
+Devices back to the devices to place: {}	Enheder tilbage blandt enheder, der skal placeres: {}
+Devices go back to the devices to place	Enhederne går tilbage til enheder, der skal placeres
 Devices in the box: {}	Enheder i boksen: {}
 Devices of a channel	Enheder i en kanal
 Devices of the second channel; empty = like the first	Enheder i den anden kanal; tom = som den første
@@ -879,7 +881,12 @@ Invalid value	Ugyldig værdi
 Invert the direction of panning by scrolling	Vend retningen for panorering med rulning
 Inverter or charge controller (devices with PV input data)	Inverter eller laderegulator (enheder med PV-indgangsdata)
 Isometric	Isometrisk
+Items copied: {}	Kopierede elementer: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopierede elementer: {} (udeladte enheder: {}, en enhed placeres kun én gang)
+Items cut: {}	Klippede elementer: {}
+Items cut: {} (devices back to the devices to place: {})	Klippede elementer: {} (enheder tilbage blandt enheder, der skal placeres: {})
 Items on the layer	Elementer på laget
+Items pasted: {}	Indsatte elementer: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementer med et anker beholder det; de andre indsættes i forhold til klikket.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Varer, enheder, placeringer, forbindelser, ledninger og dokumenter i én JSON-fil til systemer uden connector
 Its pages and subsections go to the section above	Dets sider og underafsnit flyttes til afsnittet ovenover

@@ -496,6 +496,8 @@ Device, terminal, wire and cable markers for marking software	마킹 소프트�
 Devices ({})	장치 ({})
 Devices are not copied: a device is placed once.	장치는 복사되지 않습니다. 장치는 한 번만 배치됩니다.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	장치는 단선 심볼로 계획되고 복선 회로도에서 설계되며, 둘은 장치 태그를 공유합니다.
+Devices back to the devices to place: {}	배치할 장치로 돌아간 장치: {}
+Devices go back to the devices to place	장치는 배치할 장치로 돌아갑니다
 Devices in the box: {}	박스 내 장치: {}
 Devices of a channel	채널의 장치
 Devices of the second channel; empty = like the first	두 번째 채널의 장치. 비워 두면 첫 번째 채널과 같음
@@ -869,7 +871,12 @@ Invalid value	잘못된 값
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
 Isometric	등각
+Items copied: {}	복사한 요소: {}
+Items copied: {} (devices left out: {}, a device is placed once)	복사한 요소: {} (제외된 장치: {}, 장치는 한 번만 배치됩니다)
+Items cut: {}	잘라낸 요소: {}
+Items cut: {} (devices back to the devices to place: {})	잘라낸 요소: {} (배치할 장치로 돌아간 장치: {})
 Items on the layer	레이어의 항목
+Items pasted: {}	붙여넣은 요소: {}
 Items with an anchor keep it; the others are inserted relative to the click.	앵커가 있는 항목은 앵커를 유지하고, 나머지 항목은 클릭 위치를 기준으로 삽입됩니다.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	커넥터가 없는 시스템을 위해 품목, 장치, 배치, 연결, 전선 및 문서를 하나의 JSON 파일로 저장
 Its pages and subsections go to the section above	페이지와 하위 구역은 상위 구역으로 이동됩니다

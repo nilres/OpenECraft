@@ -497,6 +497,8 @@ Device, terminal, wire and cable markers for marking software	マーキングソ
 Devices ({})	デバイス ({})
 Devices are not copied: a device is placed once.	デバイスはコピーされません: デバイスは 1 回だけ配置されます。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	デバイスは単線シンボルで計画し、複線回路図で設計します。両方で同じデバイスタグを共有します。
+Devices back to the devices to place: {}	配置するデバイスに戻したデバイス: {}
+Devices go back to the devices to place	デバイスは配置するデバイスに戻ります
 Devices in the box: {}	ボックス内のデバイス: {}
 Devices of a channel	チャンネルのデバイス
 Devices of the second channel; empty = like the first	第 2 チャンネルのデバイス。空欄 = 第 1 チャンネルと同じ
@@ -871,7 +873,12 @@ Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 Isometric	等角
+Items copied: {}	コピーした要素: {}
+Items copied: {} (devices left out: {}, a device is placed once)	コピーした要素: {} (除外したデバイス: {}、デバイスは一度だけ配置されます)
+Items cut: {}	切り取った要素: {}
+Items cut: {} (devices back to the devices to place: {})	切り取った要素: {} (配置するデバイスに戻したデバイス: {})
 Items on the layer	レイヤー上のアイテム
+Items pasted: {}	貼り付けた要素: {}
 Items with an anchor keep it; the others are inserted relative to the click.	アンカーを持つアイテムはそれを保持し、その他はクリック位置を基準に挿入されます。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	コネクターのないシステム向けに、アイテム、デバイス、配置、接続、電線、ドキュメントを 1 つの JSON ファイルにまとめます
 Its pages and subsections go to the section above	そのページとサブセクションは上位のセクションに移ります

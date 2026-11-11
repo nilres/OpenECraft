@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Laite-, riviliitin
 Devices ({})	Laitteet ({})
 Devices are not copied: a device is placed once.	Laitteita ei kopioida: laite sijoitetaan kerran.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Laitteet suunnitellaan yksinapaisilla symboleilla ja toteutetaan moninapaisessa piirikaaviossa; molemmilla on sama laitetunnus.
+Devices back to the devices to place: {}	Sijoitettaviin laitteisiin palautetut laitteet: {}
+Devices go back to the devices to place	Laitteet palaavat sijoitettaviin laitteisiin
 Devices in the box: {}	Laitteet laatikossa: {}
 Devices of a channel	Kanavan laitteet
 Devices of the second channel; empty = like the first	Toisen kanavan laitteet; tyhjä = kuten ensimmäinen
@@ -879,7 +881,12 @@ Invalid value	Virheellinen arvo
 Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
 Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
 Isometric	Isometrinen
+Items copied: {}	Kopioidut kohteet: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopioidut kohteet: {} (pois jätetyt laitteet: {}, laite sijoitetaan vain kerran)
+Items cut: {}	Leikatut kohteet: {}
+Items cut: {} (devices back to the devices to place: {})	Leikatut kohteet: {} (sijoitettaviin laitteisiin palautetut laitteet: {})
 Items on the layer	Tason kohteet
+Items pasted: {}	Liitetyt kohteet: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Ankkuroidut kohteet säilyttävät ankkurinsa; muut lisätään suhteessa napsautukseen.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Nimikkeet, laitteet, sijoittelut, yhteydet, johdot ja asiakirjat yhdessä JSON-tiedostossa järjestelmille, joilla ei ole konnektoria
 Its pages and subsections go to the section above	Sen sivut ja alaosiot siirtyvät yläosioon

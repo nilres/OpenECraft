@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Štítky přístro
 Devices ({})	Přístroje ({})
 Devices are not copied: a device is placed once.	Přístroje se nekopírují: přístroj se umisťuje jen jednou.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Přístroje se plánují jednopólovými symboly a zpracovávají ve vícepólovém schématu zapojení; obě sdílejí označení přístroje.
+Devices back to the devices to place: {}	Přístroje vrácené mezi přístroje k umístění: {}
+Devices go back to the devices to place	Přístroje se vrátí mezi přístroje k umístění
 Devices in the box: {}	Přístroje v rámečku: {}
 Devices of a channel	Přístroje kanálu
 Devices of the second channel; empty = like the first	Přístroje druhého kanálu; prázdné = jako první
@@ -879,7 +881,12 @@ Invalid value	Neplatná hodnota
 Invert the direction of panning by scrolling	Obrátit směr posouvání pohledu
 Inverter or charge controller (devices with PV input data)	Střídač nebo regulátor nabíjení (zařízení s daty FV vstupu)
 Isometric	Izometrický
+Items copied: {}	Zkopírované prvky: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Zkopírované prvky: {} (vynechané přístroje: {}, přístroj se umisťuje jen jednou)
+Items cut: {}	Vyjmuté prvky: {}
+Items cut: {} (devices back to the devices to place: {})	Vyjmuté prvky: {} (přístroje vrácené mezi přístroje k umístění: {})
 Items on the layer	Objekty ve vrstvě
+Items pasted: {}	Vložené prvky: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Prvky s ukotvením si je ponechají; ostatní se vloží relativně ke kliknutí.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Položky, přístroje, umístění, spojení, vodiče a dokumenty v jednom souboru JSON pro systémy bez konektoru
 Its pages and subsections go to the section above	Jeho stránky a pododdíly přejdou do nadřazeného oddílu

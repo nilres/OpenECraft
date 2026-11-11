@@ -1942,6 +1942,26 @@ impl Editor {
         }
     }
 
+    /// Selects by the window dragged from `start` to `end` (screen): from left to right
+    /// the items inside, from right to left the items it touches.
+    fn window_select(&mut self, prj: &Project, page_i: usize, rect: Rect, start: Pos2, end: Pos2, shift: bool) {
+        let sel = R::from_points(self.s2w(rect, start), self.s2w(rect, end));
+        let crossing = end.x < start.x;
+        if !shift {
+            self.selection.clear();
+        }
+        let symbols = prj.symbol_table();
+        let page = &prj.pages[page_i];
+        for id in ops::all_ids(page) {
+            let usable = graphics::item_layer(page, id).is_none_or(|l| graphics::shown(prj, l, false) && !graphics::locked(prj, l));
+            // A crossing window inside a structure box touches its devices, not the box.
+            let within_box = crossing && page.structure_boxes.iter().any(|b| b.id == id && b.rect().contains_rect(&sel));
+            if usable && !within_box && ops::item_bounds(&symbols, page, id).is_some_and(|bb| box_selects(sel, crossing, bb)) {
+                self.selection.insert(id);
+            }
+        }
+    }
+
     #[allow(clippy::too_many_arguments)]
     /// Select tool: clicks select, drags move the selection or the texts of a single
     /// selected symbol, drags on empty space select by window. On a page that is not
@@ -2051,23 +2071,7 @@ impl Editor {
             match std::mem::replace(&mut self.drag, Drag::None) {
                 Drag::Box { start } => {
                     if let Some(end) = resp.interact_pointer_pos().or(ui.input(|i| i.pointer.hover_pos())) {
-                        let a = self.s2w(rect, start);
-                        let b = self.s2w(rect, end);
-                        let sel = R::from_points(a, b);
-                        let crossing = end.x < start.x;
-                        if !shift {
-                            self.selection.clear();
-                        }
-                        let symbols = prj.symbol_table();
-                        let page = &prj.pages[page_i];
-                        for id in ops::all_ids(page) {
-                            let usable = graphics::item_layer(page, id).is_none_or(|l| graphics::shown(prj, l, false) && !graphics::locked(prj, l));
-                            // A crossing window inside a structure box touches its devices, not the box.
-                            let within_box = crossing && page.structure_boxes.iter().any(|b| b.id == id && b.rect().contains_rect(&sel));
-                            if usable && !within_box && ops::item_bounds(&symbols, page, id).is_some_and(|bb| box_selects(sel, crossing, bb)) {
-                                self.selection.insert(id);
-                            }
-                        }
+                        self.window_select(prj, page_i, rect, start, end, shift);
                     }
                 }
                 Drag::Move { applied, .. } => {

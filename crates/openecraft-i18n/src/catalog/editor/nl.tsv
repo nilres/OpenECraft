@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	Apparaat-, klem-, 
 Devices ({})	Apparaten ({})
 Devices are not copied: a device is placed once.	Apparaten worden niet gekopieerd: een apparaat wordt één keer geplaatst.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Apparaten worden gepland met eenlijnige symbolen en uitgewerkt in het meerlijnige schema; beide delen de apparaataanduiding.
+Devices back to the devices to place: {}	Apparaten terug bij de te plaatsen apparaten: {}
+Devices go back to the devices to place	Apparaten gaan terug naar de te plaatsen apparaten
 Devices in the box: {}	Apparaten in het kader: {}
 Devices of a channel	Apparaten van een kanaal
 Devices of the second channel; empty = like the first	Apparaten van het tweede kanaal; leeg = zoals het eerste
@@ -879,7 +881,12 @@ Invalid value	Ongeldige waarde
 Invert the direction of panning by scrolling	Richting van verschuiven door scrollen omkeren
 Inverter or charge controller (devices with PV input data)	Omvormer of laadregelaar (apparaten met PV-ingangsgegevens)
 Isometric	Isometrisch
+Items copied: {}	Gekopieerde elementen: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Gekopieerde elementen: {} (weggelaten apparaten: {}, een apparaat wordt maar één keer geplaatst)
+Items cut: {}	Geknipte elementen: {}
+Items cut: {} (devices back to the devices to place: {})	Geknipte elementen: {} (apparaten terug bij de te plaatsen apparaten: {})
 Items on the layer	Elementen op de laag
+Items pasted: {}	Geplakte elementen: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementen met een verankering behouden die; de andere worden ten opzichte van de klik ingevoegd.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Artikelen, apparaten, plaatsingen, verbindingen, draden en documenten in één JSON-bestand voor systemen zonder connector
 Its pages and subsections go to the section above	De pagina's en subsecties gaan naar de bovenliggende sectie
