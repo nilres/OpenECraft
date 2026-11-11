@@ -245,6 +245,7 @@ pub struct Moving {
     /// Attached ends on a moved wire (wire id, is end `a`, moved wire id): drops from a
     /// moved rail.
     branches: Vec<(u64, bool, u64)>,
+    keep: bool,
     before: Before,
     stretched: Vec<Wire>,
     /// Where the connection symbols are with the stretched wires.
@@ -281,8 +282,13 @@ impl Moving {
             }
         }
         let mut m = Moving::with(prj, page, sel, attached, held);
-        m.branches = branches;
+        (m.branches, m.keep) = (branches, keep);
         m
+    }
+
+    /// Whether it keeps the connections ([`Moving::keeping`]).
+    pub fn keeps(&self) -> bool {
+        self.keep
     }
 
     /// Moving one end of a wire alone: it leaves what it is connected to.
@@ -293,7 +299,7 @@ impl Moving {
     fn with(prj: &Project, page: usize, sel: &BTreeSet<u64>, attached: Vec<(u64, bool)>, held: Vec<HeldEnd>) -> Moving {
         let pg = &prj.pages[page];
         let spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
-        Moving { attached, held, branches: Vec::new(), before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
+        Moving { attached, held, branches: Vec::new(), keep: true, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
     }
 
     /// Moves the selection `d` further; attached wires stretch and stay square.

@@ -1809,7 +1809,7 @@ impl Editor {
                 for _ in 0..if counter_clockwise { 3 } else { 1 } {
                     routing::rotate(prj, page_i, items);
                 }
-                **moving = routing::Moving::new(prj, page_i, items);
+                **moving = routing::Moving::keeping(prj, page_i, items, moving.keeps());
                 let page = &prj.pages[page_i];
                 *points = snap_lines::points_of(prj, page, items);
                 *lines = snap_lines::SnapLines::without(prj, page, self.grid, points);
@@ -1989,10 +1989,8 @@ impl Editor {
             // selected, dragging a text moves them all.
             let group = handle.filter(|_| self.selection.len() > 1).map(PropHandle::id);
             let hit = self.hit(prj, page_i, ow).or(group).filter(|_| editable);
-            if let Some((wire, is_a, from)) = end {
-                let moving = Box::new(routing::Moving::wire_end(prj, page_i, wire, is_a));
-                let lines = snap_lines::SnapLines::without(prj, &prj.pages[page_i], self.grid, &[from]);
-                self.drag = Drag::End { start: ow, from, applied: p(0.0, 0.0), moving, lines };
+            if let Some(end) = end {
+                self.start_end_drag(prj, page_i, ow, end);
             } else if let Some(handle) = handle.filter(|_| self.selection.len() == 1) {
                 let page = &prj.pages[page_i];
                 let orig = match handle {
@@ -2155,6 +2153,13 @@ impl Editor {
             painter.rect_filled(r, 2.0, color.gamma_multiply(0.3));
             painter.rect_stroke(r, 2.0, Stroke::new(1.0, color), egui::StrokeKind::Outside);
         }
+    }
+
+    /// Starts dragging the end `is_a` at `from` of the selected wire `wire` alone.
+    fn start_end_drag(&mut self, prj: &Project, page_i: usize, start: P, (wire, is_a, from): (u64, bool, P)) {
+        let moving = Box::new(routing::Moving::wire_end(prj, page_i, wire, is_a));
+        let lines = snap_lines::SnapLines::without(prj, &prj.pages[page_i], self.grid, &[from]);
+        self.drag = Drag::End { start, from, applied: p(0.0, 0.0), moving, lines };
     }
 
     /// Selects with the window dragged from `start` to `end` (screen): from right to

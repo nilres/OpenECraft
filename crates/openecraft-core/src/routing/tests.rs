@@ -981,6 +981,7 @@ fn other_wires_at_the_connection_point_stay_there() {
 fn without_keeping_connections_the_selection_leaves_them() {
     let PeWire { mut prj, pin, pe, .. } = pe_wire();
     let wires = prj.pages[0].wires.len();
+    assert!(!Moving::keeping(&prj, 0, &BTreeSet::from([pe]), false).keeps());
     move_selection_keeping(&mut prj, 0, &BTreeSet::from([pe]), p(0.0, -16.0), false);
     assert_eq!((the_wire(&prj, pe).a, the_wire(&prj, pe).b), (p(40.0, 20.0), p(120.0, 20.0)));
     assert_eq!(ends_at(&prj, pin), 0, "off the connection point");
