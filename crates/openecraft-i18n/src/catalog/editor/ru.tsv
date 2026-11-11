@@ -875,6 +875,7 @@ Insulation	Изоляция
 Interruption points refer to	Точки разрыва ссылаются на
 Introduction	Введение
 Invalid value	Недопустимое значение
+Invert the direction of panning by scrolling	Обратить направление сдвига прокруткой
 Inverter or charge controller (devices with PV input data)	Инвертор или контроллер заряда (устройства с данными входа ФЭ)
 Isometric	Изометрия
 Items on the layer	Объекты на слое
@@ -1059,6 +1060,7 @@ Name and cross reference	Имя и перекрёстная ссылка
 Name on the server	Имя на сервере
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Имя; тип данных; логический адрес; комментарий – для средств программирования ПЛК
 Named copy of this form, for report blocks	Именованная копия этой формы для блоков отчётов
+Navigation	Навигация
 Navigators	Навигаторы
 Neutral exchange file…	Нейтральный файл обмена…
 Never	Никогда
@@ -1651,6 +1653,9 @@ Scheme name	Имя схемы
 Scheme placed again at {} symbols	Схема заново размещена у символов: {}
 Scheme {}	Схема {}
 Screws, nuts, washers and rivet nuts of the fixing points	Винты, гайки, шайбы и заклёпочные гайки точек крепления
+Scrolling	Прокрутка
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Прокрутка сдвигает вид в любом направлении; для масштабирования сведите пальцы или используйте Ctrl + прокрутку.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Прокрутка вверх и вниз масштабирует у указателя, вбок (горизонтальное колесо, Shift + колесо) сдвигает вид.
 Search (* and ? as placeholders)…	Поиск (* и ? как подстановочные знаки)…
 Search below this folder	Искать в этой папке и ниже
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Поиск на сервере изделий по каталогу, группе продуктов и техническим данным, добавление изделий и проверка базы данных на наличие обновлений
@@ -1941,11 +1946,14 @@ Top edges	По верхнему краю
 Top left	Слева сверху
 Top right	Справа сверху
 Total selectivity	Полная селективность
+Touch screen	Сенсорный экран
 Transfer project parts to database	Передать изделия проекта в базу данных
 Translate the project texts; documentation per language	Перевод текстов проекта; документация на каждом языке
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот вокруг вертикальной оси, против часовой стрелки при виде сверху (90 °: лицевые стороны обращены вправо)
 Tutorial	Учебник
 Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Два пальца на тачпаде сдвигают вид, колесо мыши масштабирует. Различать их умеет только macOS; в других системах прокрутка масштабирует, как колесо.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Два пальца одновременно сдвигают вид и масштабируют щипком; один палец работает как левая кнопка мыши.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик

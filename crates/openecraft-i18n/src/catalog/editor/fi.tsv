@@ -876,6 +876,7 @@ Insulation	Eristys
 Interruption points refer to	Katkoskohdat viittaavat
 Introduction	Johdanto
 Invalid value	Virheellinen arvo
+Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
 Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
 Isometric	Isometrinen
 Items on the layer	Tason kohteet
@@ -1060,6 +1061,7 @@ Name and cross reference	Nimi ja ristiviittaus
 Name on the server	Nimi palvelimella
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
 Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
+Navigation	Navigointi
 Navigators	Navigaattorit
 Neutral exchange file…	Neutraali siirtotiedosto…
 Never	Ei koskaan
@@ -1652,6 +1654,9 @@ Scheme name	Mallin nimi
 Scheme placed again at {} symbols	Skeema sijoitettiin uudelleen {} symboliin
 Scheme {}	Malli {}
 Screws, nuts, washers and rivet nuts of the fixing points	Kiinnityspisteiden ruuvit, mutterit, aluslevyt ja niittimutterit
+Scrolling	Vieritys
+Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Vieritys panoroi kaikkiin suuntiin; zoomaa nipistämällä tai Ctrl + vierityksellä.
+Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Vieritys ylös ja alas zoomaa osoittimen kohdalla, sivuttain (vaakarulla, Vaihto + rulla) panoroi.
 Search (* and ? as placeholders)…	Hae (* ja ? jokerimerkkeinä)…
 Search below this folder	Hae tämän kansion alta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
@@ -1942,11 +1947,14 @@ Top edges	Yläreunat
 Top left	Vasen yläkulma
 Top right	Oikea yläkulma
 Total selectivity	Täydellinen selektiivisyys
+Touch screen	Kosketusnäyttö
 Transfer project parts to database	Siirrä projektin osat tietokantaan
 Translate the project texts; documentation per language	Käännä projektin tekstit; dokumentaatio kielittäin
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Kierto pystyakselin ympäri, ylhäältä katsottuna vastapäivään (90 °: etupuolet osoittavat oikealle)
 Tutorial	Opetusohjelma
 Twin ferrules where two wires share a connection point	Kaksoispääteholkit, kun kaksi johdinta jakaa liitäntäpisteen
+Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Kaksi sormea kosketuslevyllä panoroi, hiiren rulla zoomaa. Vain macOS erottaa ne; muualla vieritys zoomaa kuten rulla.
+Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Kaksi sormea panoroi ja zoomaa nipistämällä samanaikaisesti; yksi sormi toimii kuten hiiren vasen painike.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

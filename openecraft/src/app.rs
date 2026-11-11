@@ -126,6 +126,8 @@ struct ShellState {
     gpu_3d: bool,
     /// Look for a new release when the editor starts (and install it).
     update_check: bool,
+    /// What the wheel, trackpads and touch screens do in the views.
+    nav: openecraft_ui::nav::Settings,
     /// What the editor opens when it starts.
     startup: crate::startup::Startup,
 }
@@ -147,6 +149,7 @@ impl Default for ShellState {
             frame_stats: false,
             gpu_3d: true,
             update_check: true,
+            nav: openecraft_ui::nav::Settings::default(),
             startup: crate::startup::Startup::default(),
         }
     }
@@ -1061,6 +1064,7 @@ impl eframe::App for App {
         self.apply_scale(&ctx);
         self.panel_ui.wall_opacity = self.shell.wall_opacity;
         self.panel_ui.gpu_3d = self.shell.gpu_3d && frame.gl().is_some();
+        openecraft_ui::nav::set(&ctx, self.shell.nav);
         // Ask about unsaved changes, then keep the window until recovery is ready.
         if ctx.input(|i| i.viewport().close_requested()) && !self.closing {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
