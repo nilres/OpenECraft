@@ -184,6 +184,7 @@ impl Default for RoutingRules {
             segregation: 100.0,
             segregation_factor: 4.0,
             wires_3d: false,
+            reuse_failed_searches: false,
             bend_wire: 4.0,
             bend_cable: 4.0,
             bend_tube: 5.0,
@@ -326,6 +327,8 @@ pub struct End {
     pub cores: Vec<V3>,
     /// The direction each of the cores leaves its connection point in.
     pub exits: Vec<V3>,
+    /// The designation of each of those connection points (`-X1:3`).
+    pub pins: Vec<String>,
     /// The end of the nozzle of the device a tube ends at (layout coordinates): the
     /// route comes to `point` straight out of it and goes on into it.
     pub nozzle: Option<V3>,
@@ -722,6 +725,7 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                 return End { tag: tag.into(), enclosure: Some(ei), point: Some(add(q, pos[ei])), item: Some(it.id), leave: Some(into), ..Default::default() };
             }
             let mut at: Vec<(V3, V3)> = Vec::new();
+            let mut designations: Vec<String> = Vec::new();
             let mut owners=std::collections::BTreeSet::new();
             for pin in pins {
                 let symbol=&prj.pages[pin.page].symbols[pin.sym];
@@ -730,7 +734,7 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                 owners.insert(item.id);
                 let placed=panel::device_points(prj,item);
                 if let Some(p)=panel::point_of(prj,&placed,symbol,pin.pin) {
-                    if !at.iter().any(|a|a.0==p.pos) {at.push((p.pos,panel::exit_vector(p.exit)));}
+                    if !at.iter().any(|a|a.0==p.pos) {at.push((p.pos,panel::exit_vector(p.exit)));designations.push(crate::netlist::pin_designation(prj,*pin));}
                 }
             }
             let q = match at.len() {
@@ -758,8 +762,9 @@ fn device_end(prj: &Project, pos: &[V3], tag: &str, pins: &[PinRef]) -> End {
                     }
                 }
             }
-            let (cores, exits) = if at.len() > 1 { at.into_iter().map(|(q, x)| (in_layout(q), sub(in_layout(add(q, x)), in_layout(q)))).unzip() } else { Default::default() };
-            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), parts, cores, exits, nozzle: None, leave: Some(norm(leave)) }
+            let (cores, exits): (Vec<V3>, Vec<V3>) = if at.len() > 1 { at.into_iter().map(|(q, x)| (in_layout(q), sub(in_layout(add(q, x)), in_layout(q)))).unzip() } else { Default::default() };
+            let pins = if cores.is_empty() { Vec::new() } else { designations };
+            End { tag: tag.into(), enclosure: Some(ei), point: Some(in_layout(q)), item: Some(it.id), parts, cores, exits, pins, nozzle: None, leave: Some(norm(leave)) }
         }
         None => End { tag: tag.into(), ..Default::default() },
     }
@@ -1230,6 +1235,18 @@ fn gland_taken(prj: &Project, ends: &[End; 2]) -> Option<usize> {
     ends.iter().find_map(|e| e.enclosure.filter(|&ei| e.item.is_none() && e.point.is_some() && !prj.layout.enclosures[ei].is_room() && !entries(prj, ei).is_empty()))
 }
 
+type Ahead = (Option<grid::Way>, Vec<f32>, Option<grid::GoalCosts>);
+
+fn finish_ahead(space:&grid::Space, req:&grid::Request, area:f32, reuse_failed:bool, entry:Option<Ahead>, search:impl FnOnce(Option<&grid::GoalCosts>)->Option<grid::Way>)->Option<grid::Way> {
+    match entry {
+        // Within one class, routing only fills paths and adds obstacles. An impossible
+        // route cannot become possible, even when a path's fill state changed.
+        Some((None,loads,_)) if reuse_failed || space.full_as(&loads,area)=>None,
+        Some((Some(way),loads,_)) if space.full_as(&loads,area) && space.still_apart(&way.cells,req)=>Some(way),
+        entry=>search(entry.as_ref().and_then(|e|e.2.as_ref())),
+    }
+}
+
 /// Routes the `jobs` one after the other, the searches of a class on up to `workers`
 /// threads at the same time (with the same routes).
 #[allow(clippy::too_many_lines)]
@@ -1340,7 +1357,6 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
     // after the other).
     // A way found ahead with the use of the routing paths of its space then and the costs
     // to its goal (to search it again without working them out).
-    type Ahead = (Option<grid::Way>, Vec<f32>, Option<grid::GoalCosts>);
     let mut ahead: HashMap<(usize, usize), Ahead> = HashMap::new();
     // The legs (job, leg) searched at the same time against the spaces as they are.
     let search_ahead = |tasks: &[(usize, usize)], spaces: &HashMap<usize, grid::Space>| -> Vec<Ahead> {
@@ -1480,11 +1496,7 @@ fn route(prj: &Project, wiring: &mut [RoutedWire], jobs: Vec<Job>, mut glands: G
                     // no route took its room (the same as searched now); otherwise searched
                     // again, with the costs to the goal worked out then where they still hold.
                     let entry = ahead.remove(&(n, i));
-                    let fresh = entry.as_ref().is_some_and(|e| space.full_as(&e.1, area));
-                    match entry {
-                        Some((way, ..)) if fresh && way.as_ref().is_none_or(|w| space.still_apart(&w.cells, &req)) => way,
-                        entry => space.route_with(leg.a, leg.b, &req, rules, entry.as_ref().and_then(|e| e.2.as_ref())).0,
-                    }
+                    finish_ahead(space,&req,area,rules.reuse_failed_searches,entry,|costs|space.route_with(leg.a,leg.b,&req,rules,costs).0)
                     .map(|w| (w.points, w.cells, w.free))
                 }
             };

@@ -810,6 +810,38 @@ Breaking capacity: 100 kA".into();
         p.mounting.clear();
         p.tech_data = format!("Cross-section: {shown} mm²\nColour: {color}\nLength: {len} mm");
     }
+    // Twin ferrules: two wires of the cross-section in one.
+    for (cs, color) in [("0.34", "turquoise"), ("0.5", "white"), ("0.75", "grey"), ("1.0", "red"), ("1.5", "black"), ("2.5", "blue"), ("4", "grey"), ("6", "yellow"), ("10", "red"), ("16", "blue")] {
+        let shown = cs.strip_suffix(".0").unwrap_or(cs);
+        let p = c.add(&format!("GEN.FER2-{cs}"), &format!("Twin ferrule 2 x {shown} mm², insulated, {color}"), "Wiring material", "Ferrule", "", 0.06, (0.0, 0.0, 0.0, 0.0), &[]);
+        p.mounting.clear();
+        p.tech_data = format!("Cross-section: 2 x {shown} mm²\nColour: {color}");
+    }
+
+    // Insulated crimp terminals, coloured by the cross-sections they take.
+    for (band, color, range, stud) in [("R", "red", "0.5 - 1 mm²", "M4"), ("B", "blue", "1.5 - 2.5 mm²", "M4"), ("Y", "yellow", "4 - 6 mm²", "M5")] {
+        for (kind, name, subgroup) in [
+            ("RING", format!("Ring terminal {stud}"), "Ring terminal"),
+            ("FORK", format!("Fork terminal {stud}"), "Fork terminal"),
+            ("PIN", "Pin terminal".to_string(), "Pin terminal"),
+            ("TAB", "Flat plug 6.3 x 0.8 mm".to_string(), "Flat plug"),
+            ("REC", "Flat receptacle 6.3 x 0.8 mm".to_string(), "Flat receptacle"),
+        ] {
+            let p = c.add(&format!("GEN.{kind}-{band}"), &format!("{name}, insulated, {color}, {range}"), "Wiring material", subgroup, "", 0.08, (0.0, 0.0, 0.0, 0.0), &[]);
+            p.mounting.clear();
+            p.tech_data = format!("Cross-section: {range}\nColour: {color}");
+        }
+    }
+    // Uninsulated tubular cable lugs (DIN 46235) and pin terminals for large cross-sections.
+    for cs in ["10", "16", "25", "35", "50", "70", "95", "120", "150", "185", "240"] {
+        let stud = if cs == "10" || cs == "16" { "M6" } else { "M8" };
+        let p = c.add(&format!("GEN.LUG-{cs}"), &format!("Tubular cable lug {cs} mm² {stud}, tinned copper"), "Wiring material", "Cable lug", "", 0.6, (0.0, 0.0, 0.0, 0.0), &[]);
+        p.mounting.clear();
+        p.tech_data = format!("Cross-section: {cs} mm²\nStud: {stud}");
+        let p = c.add(&format!("GEN.PIN-{cs}"), &format!("Pin terminal {cs} mm², tinned copper"), "Wiring material", "Pin terminal", "", 0.5, (0.0, 0.0, 0.0, 0.0), &[]);
+        p.mounting.clear();
+        p.tech_data = format!("Cross-section: {cs} mm²");
+    }
 
     // Cables: sold by the metre; the cores are listed in the technical data.
     for (number, desc, subgroup, price, kg, cores, cs) in [
