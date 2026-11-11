@@ -94,6 +94,8 @@ use crate::dock::{LeftTab, Pane, ToolPane};
 /// Storage keys of the shell.
 const RECENT_KEY: &str = "recent_projects";
 const UI_KEY: &str = "shell";
+/// The server project of the last session (open or as a local copy).
+const SERVER_PROJECT_KEY: &str = "project_server_project";
 
 /// What the shell remembers besides the panes: ribbon state, scale, first start.
 #[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
@@ -126,6 +128,8 @@ struct ShellState {
     update_check: bool,
     /// What the wheel, trackpads and touch screens do in the views.
     nav: openecraft_ui::nav::Settings,
+    /// What the editor opens when it starts.
+    startup: crate::startup::Startup,
 }
 
 impl Default for ShellState {
@@ -146,6 +150,7 @@ impl Default for ShellState {
             gpu_3d: true,
             update_check: true,
             nav: openecraft_ui::nav::Settings::default(),
+            startup: crate::startup::Startup::default(),
         }
     }
 }
@@ -316,6 +321,11 @@ pub struct App {
     shown_lang: openecraft_i18n::Lang,
     /// Project server: shared projects and locks.
     remote: crate::remote::Remote,
+    /// The open project is a local copy of this server project (restored from the last
+    /// session or closed on the server), not the shared project itself.
+    recovery: Option<crate::startup::ServerProject>,
+    /// A server project being opened at the start.
+    reconnect: Option<crate::startup::Reconnect>,
     /// Autodesk Vault: browsing, imports and check-ins.
     vault: crate::vault::Vault,
     vault_ui: vault_ui::VaultUi,
@@ -402,6 +412,7 @@ impl App {
         let mut insert_center = crate::insert_center::InsertCenter::default();
         let mut plugin_cmds = crate::plugin_commands::PluginCommands::default();
         let mut stored = false;
+        let mut recovery = None;
         if let Some(storage) = cc.storage {
             stored = storage.get_string("file_name").is_some();
             language = eframe::get_value(storage, openecraft_ui::language::STORAGE_KEY);
@@ -436,6 +447,8 @@ impl App {
             if let Some(user) = eframe::get_value::<String>(storage, "project_server_user").filter(|u| !u.is_empty()) {
                 remote.user = user;
             }
+            // The restored project is only a copy of the server project of the last session.
+            recovery = eframe::get_value::<Option<crate::startup::ServerProject>>(storage, SERVER_PROJECT_KEY).flatten().filter(|_| file_name.is_none());
             if let Some(url) = eframe::get_value(storage, "vault_url") {
                 vault.url = url;
             }
@@ -558,6 +571,8 @@ impl App {
             title: String::new(),
             shown_lang: openecraft_i18n::lang(),
             remote,
+            recovery,
+            reconnect: None,
             vault,
             vault_ui: Default::default(),
             review_ui: Default::default(),
@@ -591,6 +606,7 @@ impl App {
             dark: cc.egui_ctx.theme() == egui::Theme::Dark,
         };
         crate::style::apply(&cc.egui_ctx);
+        app.remote.attach(&cc.egui_ctx);
         if unsaved {
             app.session.mark_unsaved();
         }
@@ -612,19 +628,74 @@ impl App {
     }
 
     /// Opens the wiring assistant instead of the schematic and a project file, e.g. one
-    /// double-clicked in the file manager (desktop).
+    /// double-clicked in the file manager (desktop); without a file what Settings › On
+    /// startup says.
     pub fn start(mut self, wiring: bool, file: Option<String>) -> Self {
         if wiring {
             self.set_workspace(Workspace::Wiring);
             self.shell.tablet_once = true;
         }
-        if let Some(path) = file {
-            // The project restored from the last session may have unsaved changes.
-            if let Some(Replace::Path(path)) = self.discard.request(self.session.dirty(), Replace::Path(path)) {
-                self.io.open_path(&path, Purpose::Project);
-            }
+        match file {
+            Some(path) => self.open_at_start(crate::startup::Target::File(path)),
+            None => self.apply_startup(),
         }
         self
+    }
+
+    fn apply_startup(&mut self) {
+        use crate::startup::Action;
+        match crate::startup::plan(&self.shell.startup, self.session.file_name.as_deref(), self.recovery.as_ref()) {
+            Action::Keep => {}
+            Action::ShowStart => {
+                self.show_pane(Pane::Tool(ToolPane::Start));
+                self.remote.list();
+            }
+            Action::ShowServer => {
+                // Unsaved work of the last session stays; otherwise no project of it is open.
+                if !self.session.dirty() {
+                    self.replace_project(Project::new_default(), None);
+                }
+                self.show_pane(Pane::Tool(ToolPane::ProjectServer));
+                self.remote.list();
+            }
+            Action::Open(target) => self.open_at_start(target),
+        }
+    }
+
+    /// Opens a project at the start; the project restored from the last session may
+    /// have unsaved changes, the discard dialog asks first.
+    fn open_at_start(&mut self, target: crate::startup::Target) {
+        match target {
+            crate::startup::Target::File(path) => {
+                if let Some(Replace::Path(path)) = self.discard.request(self.session.dirty(), Replace::Path(path)) {
+                    self.io.open_path(&path, Purpose::Project);
+                }
+            }
+            crate::startup::Target::Server(project) => {
+                if !project.url.trim().is_empty() {
+                    self.remote.url = project.url.clone();
+                }
+                let name = project.name.clone();
+                self.reconnect = Some(crate::startup::Reconnect { project, state: crate::startup::ReconnectState::Connecting });
+                if let Some(Replace::Shared(name)) = self.discard.request(self.session.dirty(), Replace::Shared(name)) {
+                    self.remote.open(&name);
+                }
+            }
+        }
+    }
+
+    /// Where the open project comes from and where Save puts it.
+    fn origin(&self) -> crate::startup::Origin<'_> {
+        use crate::startup::Origin;
+        if let Some(sh) = &self.remote.shared {
+            Origin::Server { url: &self.remote.url, name: &sh.name, connected: !self.remote.lost }
+        } else if let Some(f) = &self.session.file_name {
+            Origin::File(f)
+        } else if let Some(p) = &self.recovery {
+            Origin::Recovery(p)
+        } else {
+            Origin::New
+        }
     }
 
     /// The reports of the registry (built-in and of plugins): id and title.
@@ -699,6 +770,7 @@ impl App {
 
     fn replace_project(&mut self, prj: Project, file_name: Option<String>) {
         self.remote.close();
+        self.recovery = None;
         // Another project must not be checked in as a version of the vault's file.
         self.vault.origin = None;
         if let Some(path) = &file_name {
@@ -1136,6 +1208,7 @@ impl eframe::App for App {
         eframe::set_value(storage, "project_database", &self.projects_ui.db);
         eframe::set_value(storage, "project_server_url", &self.remote.url);
         eframe::set_value(storage, "project_server_user", &self.remote.user);
+        eframe::set_value(storage, SERVER_PROJECT_KEY, &self.remote.project().or_else(|| self.recovery.clone()));
         eframe::set_value(storage, "vault_url", &self.vault.url);
         eframe::set_value(storage, "vault_name", &self.vault.vault_name);
         eframe::set_value(storage, "vault_user", &self.vault.user);

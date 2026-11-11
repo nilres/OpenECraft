@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Kabel typu magistrali
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Wycięcie tej samej wielkości w tym samym miejscu ściany bocznej sąsiada: razem tworzą przepust kablowy
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Plik o tej samej nazwie w folderze otrzymuje nową wersję (wyewidencjonowanie i zaewidencjonowanie), w przeciwnym razie plik jest dodawany
 A level on top of the highest one	Kondygnacja nad najwyższą
+A local file opens locally, a server project is opened on the project server again	Plik lokalny otwiera się lokalnie, projekt z serwera jest ponownie otwierany na serwerze projektów
+A local file or a project on the project server	Plik lokalny lub projekt na serwerze projektów
 A new project	Nowy projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	Nowa wersja jest pobierana w tle i instalowana po zamknięciu OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Nowa wersja jest pobierana w tle i zastępuje tę instalację; jest używana od następnego uruchomienia.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Numerowana sekcja zawierająca strony jak katalog; nazwy stron zaczynają się od jej numeru (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profil mapuje neutralne pola na nazwy kolumn konkretnego systemu (np. MATNR dla numeru ERP w SAP). Bez mapowania rozpoznawane są typowe nazwy angielskie i niemieckie.
 A project definition based on this one, with its own defaults and scheme	Definicja projektu oparta na tej, z własnymi wartościami domyślnymi i schematem
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Zamiast tego otwiera się plik projektu otwarty z menedżera plików. Niezapisane zmiany z ostatniej sesji nigdy nie są odrzucane bez pytania.
 A reference point at the origin of the plant	Punkt odniesienia w początku układu instalacji
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Blok raportu generuje strony raportu, np. jeden schemat zacisków na listwę, i aktualizuje je.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Strona schematu 3.1, 3.2, … za bieżącą stroną, zachowywana jako podstrona przy przenumerowywaniu
@@ -279,7 +282,9 @@ Choices	Wartości do wyboru
 Choices (separated by commas)	Wartości do wyboru (oddzielone przecinkami)
 Choose	Wybierz
 Choose a baseline, a revision or a project file to compare the project with.	Wybierz wersję bazową, rewizję lub plik projektu, z którym ma zostać porównany projekt.
+Choose a project on every start: local files and projects of the project server	Wybieraj projekt przy każdym uruchomieniu: pliki lokalne i projekty serwera projektów
 Choose a room first: floor-standing parts go on its floor.	Najpierw wybierz pomieszczenie: artykuły stojące na podłodze stawia się na jego podłodze.
+Choose another project	Wybierz inny projekt
 Choose file…	Wybierz plik…
 Choose pages	Wybierz strony
 Chooses the pages whose structure starts with this	Wybiera strony, których struktura zaczyna się od tego
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Połączenia, których oba
 Connections without a defined potential	Połączenia bez zdefiniowanego potencjału
 Connectors	Złącza
 Connects free connection points of the selected symbols with facing ones	Łączy wolne punkty połączeń zaznaczonych symboli ze zwróconymi do nich punktami
+Connects to the project server and shows its projects, without the project of the last session	Łączy się z serwerem projektów i pokazuje jego projekty, bez projektu z ostatniej sesji
 Consecutive addresses from the start byte, in schematic order	Kolejne adresy od bajtu początkowego, w kolejności schematu
 Contact image below coils	Obraz styków pod cewkami
 Content	Zawartość
@@ -744,6 +750,7 @@ Generic	Ogólne
 German zones (DIN 18015-3)	Strefy niemieckie (DIN 18015-3)
 Getting started	Pierwsze kroki
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Lista zmiennych globalnych z adresami bezpośrednimi dla CODESYS, TwinCAT i innych
+Go on working locally; Save saves to a local file	Pracuj dalej lokalnie; Zapisz zapisuje do pliku lokalnego
 Go to page	Przejdź do strony
 Graphic line	Linia graficzna
 Graphic rectangle	Prostokąt graficzny
@@ -945,6 +952,9 @@ Load template…	Załaduj szablon…
 Loading changes…	Ładowanie zmian…
 Loading the project access…	Ładowanie dostępu do projektu…
 Loads	Odbiorniki
+Local file	Plik lokalny
+Local file: {}	Plik lokalny: {}
+Local recovery copy of server project: {}	Lokalna kopia odzyskiwania projektu z serwera: {}
 Lock all	Zablokuj wszystko
 Lock all pages	Zablokuj wszystkie strony
 Lock current page	Zablokuj bieżącą stronę
@@ -1080,6 +1090,7 @@ New potential	Nowy potencjał
 New project	Nowy projekt
 New project from template	Nowy projekt z szablonu
 New project scheme from the selected one	Nowy schemat projektu z wybranego
+New project, not saved yet	Nowy projekt, jeszcze niezapisany
 New report page	Nowa strona raportu
 New request	Nowy wniosek
 New revision	Nowa rewizja
@@ -1164,6 +1175,7 @@ Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
 Not saved, locked or changed by another user: {}	Nie zapisano, zablokowane lub zmienione przez innego użytkownika: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	To nie jest wspólny projekt: zmiany są zapisywane lokalnie, dopóki nie zostanie ponownie otwarty na serwerze projektów
 Nothing exchanged yet.	Jeszcze niczego nie wymieniono.
 Nothing left in this list.	Na tej liście nic nie pozostało.
 Nothing to show	Brak danych do wyświetlenia
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Średnicy zewnętrznej, ułożone na stałe
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Średnicy zewnętrznej; rury są gięte kolanami o promieniu półtorej średnicy
 Off	Wył.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Przesunięcie od jednego wiersza do następnego: w dół dla list, w bok dla wierszy obok siebie
+On startup	Przy uruchomieniu
 One row per label	Jeden wiersz na etykietę
 Only devices on the current page	Tylko urządzenia na bieżącej stronie
 Only frames no page uses can be deleted	Można usuwać tylko ramki, których nie używa żadna strona
@@ -1187,6 +1200,7 @@ Only messages of the current page	Tylko komunikaty bieżącej strony
 Only parts whose function template provides the device's main function	Tylko artykuły, których szablon funkcji zapewnia funkcję główną urządzenia
 Only rows that pass all filters are shown	Wyświetlane są tylko wiersze spełniające wszystkie filtry
 Only web and e-mail addresses (http, https, mailto) are links	Tylko adresy internetowe i e-mail (http, https, mailto) są linkami
+Open a specific project	Otwórz określony projekt
 Open and save shared projects, lock pages	Otwieraj i zapisuj projekty współdzielone, blokuj strony
 Open archive…	Otwórz archiwum…
 Open as project	Otwórz jako projekt
@@ -1195,7 +1209,9 @@ Open demo project	Otwórz projekt demonstracyjny
 Open door	Otwórz drzwi
 Open in a new page tab	Otwórz w nowej karcie strony
 Open link	Otwórz łącze
+Open local recovery copy	Otwórz lokalną kopię odzyskiwania
 Open project	Otwórz projekt
+Open project server	Otwórz serwer projektów
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Otwieraj projekty i pliki z Autodesk Vault, umieszczaj projekt, eksporty i modele 3D w magazynie Vault
 Open the project	Otwórz projekt
 Open to {}: wires cross beside the mounting plates	Otwarte do {}: przewody przechodzą obok płyt montażowych
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Wartość dom
 Project file	Plik projektu
 Project file…	Plik projektu…
 Project information	Informacje o projekcie
+Project on the project server	Projekt na serwerze projektów
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Artykuły projektu to kopie zapisane w tym projekcie; są używane w zestawieniu materiałów i kontroli projektu.
 Project properties changed in {} projects	Zmieniono właściwości projektu w projektach: {}
 Project properties…	Właściwości projektu…
 Project server	Serwer projektów
 Project server: {}	Serwer projektów: {}
+Project server: {} / Project: {}	Serwer projektów: {} / Projekt: {}
+Project server: {} / Project: {} – connection lost	Serwer projektów: {} / Projekt: {} – utracono połączenie
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Teksty projektu (teksty funkcji, opisy stron, teksty swobodne, opisy) są pisane w języku źródłowym; słownik tłumaczy je wiersz po wierszu. Raporty i tabliczki rysunkowe są w języku wyjściowym.
 Project: {}	Projekt: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projekty od pierwszego obwodu do całej instalacji, każdy pokazuje więcej funkcji
+Projects on the project server {}	Projekty na serwerze projektów {}
+Projects on the server	Projekty na serwerze
 Properties…	Właściwości…
 Property database	Baza danych właściwości
 Property definitions	Definicje właściwości
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Przenumeruj 1 … n
 Renumber contact	Przenumeruj styk
 Renumber pages	Przenumeruj strony
 Renumber pages…	Przenumeruj strony…
+Reopen last project	Otwórz ponownie ostatni projekt
 Repair {} findings	Napraw usterki ({})
 Replace	Zastąp
 Replace all	Zamień wszystko
@@ -1527,6 +1549,7 @@ Reset to standard	Przywróć standard
 Restart and update	Uruchom ponownie i zaktualizuj
 Resulting: {} · {} · {} · {} m	Wynik: {} · {} · {} · {} m
 Results of the project check	Wyniki kontroli projektu
+Retry connection	Ponów połączenie
 Review	Komentarze
 Review ({})	Komentarze ({})
 Revision marks	Znaczniki rewizji
@@ -1598,18 +1621,25 @@ Save as project template…	Zapisz jako szablon projektu…
 Save as scheme	Zapisz jako schemat
 Save as template	Zapisz jako szablon
 Save as template…	Zapisz jako szablon…
+Save asks for a file	Zapisz pyta o plik
 Save as…	Zapisz jako…
 Save current page as template…	Zapisz bieżącą stronę jako szablon…
 Save current…	Zapisz bieżący…
 Save file…	Zapisz plik…
+Save locally	Zapisz lokalnie
+Save locally to {}	Zapisz lokalnie w {}
+Save locally; {} on the project server stays unchanged	Zapisz lokalnie; {} na serwerze projektów pozostaje bez zmian
 Save page as macro…	Zapisz stronę jako makro…
 Save page as template	Zapisz stronę jako szablon
 Save page as template…	Zapisz stronę jako szablon…
 Save selection as macro…	Zapisz zaznaczenie jako makro…
 Save the box content as the macro in the library	Zapisz zawartość ramki jako makro w bibliotece
 Save to project server	Zapisz na serwerze projektów
+Save to project server: {}	Zapisz na serwerze projektów: {}
+Save to project server: {} – the connection is lost, saving tries again	Zapisz na serwerze projektów: {} – połączenie zostało utracone, zapis spróbuje ponownie
 Save workspace	Zapisz obszar roboczy
 Save workspace…	Zapisz obszar roboczy…
+Saved to	Zapisano w
 Saved to the project server (revision {})	Zapisano na serwerze projektów (rewizja {})
 Saved workspaces	Zapisane obszary robocze
 Saves the placed properties as a placement scheme of the project	Zapisuje umieszczone właściwości jako schemat rozmieszczenia projektu
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Średnik
 Separator	Separator
 Server URL	Adres URL serwera
+Server address and sign-in	Adres serwera i logowanie
 Server type	Typ serwera
 Servers	Serwery
 Service space in front	Przestrzeń serwisowa z przodu
@@ -1705,6 +1736,7 @@ Show in schematic	Pokaż na schemacie
 Show in the schematic	Pokaż na schemacie
 Show on the pages	Pokaż na stronach
 Show or hide panes; drag a tab to dock it elsewhere	Pokaż lub ukryj panele; przeciągnij kartę, aby zadokować ją w innym miejscu
+Show project manager	Pokaż menedżera projektów
 Show the enclosures bayed to this one as well	Pokaż także obudowy szeregowane z tą obudową
 Show the messages accepted as checked	Pokaż komunikaty zaakceptowane jako sprawdzone
 Show the other wires	Pokaż pozostałe przewody
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Wyświetlane w tabliczkach rysunkowych za
 Shown instead of the measured value	Wyświetlane zamiast zmierzonej wartości
 Shows	Pokazuje
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Ściany boczne, ściana tylna, dach i dno widziane z zewnątrz: wentylatory, dławiki kablowe, wycięcia
+Sign in in the Project server pane; the project opens afterwards	Zaloguj się w panelu Serwer projektów; potem projekt się otworzy
+Sign in…	Zaloguj się…
 Signed in to {} as {}	Zalogowano do {} jako {}
 Signed out of Vault	Wylogowano z Vault
 Single-line	Jednokreskowy
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Elementy są zaznaczane i przesuwane r
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteka makr nie zawiera makr stron (Makra › Zapisz stronę jako makro…).
 The modules no string takes yet in series, on the first inverter	Moduły, których żaden łańcuch jeszcze nie bierze, szeregowo, na pierwszym falowniku
 The names of its pages follow	Nazwy jej stron zmieniają się wraz z nią
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otwarty projekt jest lokalną kopią odzyskiwania. Jego zmiany nie są zapisane na serwerze projektów; zanim otworzy się wspólny projekt, zdecydujesz, czy zapisać je lokalnie, czy odrzucić.
 The page name gets the section number	Nazwa strony otrzymuje numer sekcji
 The page type, plot frame, title block, structure, description and the whole content are saved.	Zapisywane są typ strony, ramka rysunku, tabliczka rysunkowa, struktura, opis i cała zawartość.
 The pages it generated stay	Wygenerowane przez niego strony pozostają
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Współrzędne punktu
 The project changed since the search.	Projekt zmienił się od czasu wyszukiwania.
 The project check	Kontrola projektu
 The project database needs the desktop version: the browser cannot search folders.	Baza danych projektów wymaga wersji desktopowej: przeglądarka nie może przeszukiwać folderów.
+The project server does not answer: changes are not saved on it until the connection is back	Serwer projektów nie odpowiada: zmiany nie są na nim zapisywane, dopóki połączenie nie wróci
+The project server {} could not open {}.	Serwer projektów {} nie mógł otworzyć {}.
 The project's own page templates as a file	Własne szablony stron projektu jako plik
 The project's own title blocks	Własne tabliczki rysunkowe projektu
 The project's own title blocks and report schemes	Własne tabliczki rysunkowe i wzorce raportów projektu
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	Strony, które otrzymają nową nazwę: {}
 {} pages removed, {} pages generated	Usunięte strony: {}, wygenerowane strony: {}
 {} pages renamed	Zmieniono nazwy stron: {}
+{} pages, users: {}	Stron: {}, użytkownicy: {}
 {} pages; their names start with {}	Stron: {}; ich nazwy zaczynają się od {}
 {} parts added to the database	Dodano artykuły do bazy danych: {}
 {} parts of the database updated – synchronize the project parts in parts management	Zaktualizowano artykuły bazy danych: {} – zsynchronizuj artykuły projektu w zarządzaniu artykułami

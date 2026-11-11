@@ -743,7 +743,8 @@ impl App {
             Some(on) => ui.add_enabled(enabled, egui::Button::selectable(on, title).shortcut_text(keys)),
             None => ui.add_enabled(enabled, egui::Button::new(title).shortcut_text(keys)),
         };
-        let r = if def.tip.is_empty() { r } else { r.on_hover_text(tr(def.tip)) };
+        let tip = self.cmd_tip(cmd);
+        let r = if tip.is_empty() { r } else { r.on_hover_text(tip) };
         if r.clicked() {
             let ctx = ui.ctx().clone();
             self.run(&ctx, cmd);

@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	为每个没有电缆
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	在相邻机柜侧板的相同位置开一个相同大小的孔：两者共同构成电缆过孔
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	文件夹中的同名文件将获得新版本（签出后签入），否则添加该文件
 A level on top of the highest one	在最高楼层之上添加一层
+A local file opens locally, a server project is opened on the project server again	本地文件在本地打开，服务器项目在项目服务器上重新打开
+A local file or a project on the project server	本地文件或项目服务器上的项目
 A new project	新项目
 A new release is downloaded in the background and installed when you close OpenECraft.	新版本会在后台下载，并在关闭 OpenECraft 时安装。
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	新版本会在后台下载并替换此安装；从下次启动起生效。
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	像目录一样包含页的编号分节；页名称以其编号开头 (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	配置文件将中性字段映射到特定系统的列名（例如 SAP 中 ERP 编号对应的 MATNR）。没有映射时，可识别常见的英文和德文名称。
 A project definition based on this one, with its own defaults and scheme	基于此定义的项目定义，具有自己的默认值和方案
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	改为打开从文件管理器打开的项目文件。上次会话中未保存的更改绝不会在未询问的情况下被丢弃。
 A reference point at the origin of the plant	位于设施原点的参考点
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	报表块生成报表的页（例如每个端子排一个端子图）并更新这些页。
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	当前页之后的原理图页 3.1、3.2 …，重新编号时保持为子页
@@ -276,7 +279,9 @@ Choices	选项值
 Choices (separated by commas)	选项值（以逗号分隔）
 Choose	选择
 Choose a baseline, a revision or a project file to compare the project with.	选择要与项目进行比较的基线、修订或项目文件。
+Choose a project on every start: local files and projects of the project server	每次启动时选择项目：本地文件和项目服务器上的项目
 Choose a room first: floor-standing parts go on its floor.	请先选择房间：落地式部件放在其地面上。
+Choose another project	选择其他项目
 Choose file…	选择文件…
 Choose pages	选择页
 Chooses the pages whose structure starts with this	选择结构以此开头的页
@@ -374,6 +379,7 @@ Connections whose two ends are both on selected wires	两端都位于所选导�
 Connections without a defined potential	没有定义电位的连接
 Connectors	连接器
 Connects free connection points of the selected symbols with facing ones	将所选符号的空闲连接点与相对的连接点连接
+Connects to the project server and shows its projects, without the project of the last session	连接项目服务器并显示其项目，不打开上次会话的项目
 Consecutive addresses from the start byte, in schematic order	从起始字节开始的连续地址，按原理图顺序
 Contact image below coils	线圈下方的触点映像
 Content	内容
@@ -737,6 +743,7 @@ Generic	通用
 German zones (DIN 18015-3)	德国安装区（DIN 18015-3）
 Getting started	入门
 Global variable list with direct addresses for CODESYS, TwinCAT and others	带直接地址的全局变量列表，用于 CODESYS、TwinCAT 等
+Go on working locally; Save saves to a local file	继续在本地工作；“保存”会保存到本地文件
 Go to page	转到页
 Graphic line	图形线
 Graphic rectangle	图形矩形
@@ -934,6 +941,9 @@ Load template…	加载模板…
 Loading changes…	正在加载更改…
 Loading the project access…	正在加载项目访问权限…
 Loads	负载
+Local file	本地文件
+Local file: {}	本地文件：{}
+Local recovery copy of server project: {}	服务器项目的本地恢复副本：{}
 Lock all	全部锁定
 Lock all pages	锁定所有页
 Lock current page	锁定当前页
@@ -1068,6 +1078,7 @@ New potential	新建电位
 New project	新建项目
 New project from template	从模板新建项目
 New project scheme from the selected one	根据所选方案新建项目方案
+New project, not saved yet	新项目，尚未保存
 New report page	新建报表页
 New request	新建请求
 New revision	新建修订
@@ -1151,6 +1162,7 @@ Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
 Not saved, locked or changed by another user: {}	未保存，已被其他用户锁定或更改：{}
+Not the shared project: changes are saved locally until it is opened on the project server again	不是共享项目：在项目服务器上重新打开之前，更改将保存在本地
 Nothing exchanged yet.	尚未进行任何交换。
 Nothing left in this list.	此列表中没有剩余项。
 Nothing to show	无可显示内容
@@ -1167,6 +1179,7 @@ Of the outer diameter, as laid fixed	外径的倍数，固定敷设
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径的倍数；管道用一倍半直径的弯头弯曲
 Off	关
 Offset from one row to the next: downwards for lists, sideways for rows side by side	从一行到下一行的偏移：列表向下，并排的行向侧面
+On startup	启动时
 One row per label	每个标签一行
 Only devices on the current page	仅限当前页上的设备
 Only frames no page uses can be deleted	只能删除没有页使用的图框
@@ -1174,6 +1187,7 @@ Only messages of the current page	仅限当前页的消息
 Only parts whose function template provides the device's main function	仅限功能模板提供设备主功能的部件
 Only rows that pass all filters are shown	仅显示通过所有筛选的行
 Only web and e-mail addresses (http, https, mailto) are links	只有网址和电子邮件地址（http、https、mailto）可作为链接
+Open a specific project	打开指定项目
 Open and save shared projects, lock pages	打开和保存共享项目，锁定页
 Open archive…	打开归档…
 Open as project	作为项目打开
@@ -1182,7 +1196,9 @@ Open demo project	打开演示项目
 Open door	打开柜门
 Open in a new page tab	在新的页选项卡中打开
 Open link	打开链接
+Open local recovery copy	打开本地恢复副本
 Open project	打开项目
+Open project server	打开项目服务器
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	从 Autodesk Vault 打开项目和文件，将项目、导出和 3D 模型放入 Vault
 Open the project	打开项目
 Open to {}: wires cross beside the mounting plates	向 {} 开放：导线在安装板旁边穿过
@@ -1384,14 +1400,19 @@ Project default; pages can choose their own in the page properties	项目默认�
 Project file	项目文件
 Project file…	项目文件…
 Project information	项目信息
+Project on the project server	项目服务器上的项目
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	项目部件是存储在此项目中的副本；它们用于物料清单和项目检查。
 Project properties changed in {} projects	已在 {} 个项目中更改项目属性
 Project properties…	项目属性…
 Project server	项目服务器
 Project server: {}	项目服务器：{}
+Project server: {} / Project: {}	项目服务器：{} / 项目：{}
+Project server: {} / Project: {} – connection lost	项目服务器：{} / 项目：{} – 连接已断开
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	项目文本（功能文本、页描述、自由文本、描述）以源语言编写；词典逐行翻译这些文本。报表和标题栏遵循输出语言。
 Project: {}	项目：{}
 Projects from a first circuit to a whole plant, each showing more of the features	从第一个电路到整个工厂的项目，每个都展示更多功能
+Projects on the project server {}	项目服务器 {} 上的项目
+Projects on the server	服务器上的项目
 Properties…	属性…
 Property database	属性数据库
 Property definitions	属性定义
@@ -1476,6 +1497,7 @@ Renumber 1 … n	重新编号 1 … n
 Renumber contact	重新为触点编号
 Renumber pages	页重新编号
 Renumber pages…	页重新编号…
+Reopen last project	重新打开上一个项目
 Repair {} findings	修复 {} 个问题
 Replace	替换
 Replace all	全部替换
@@ -1510,6 +1532,7 @@ Reset to standard	重置为标准
 Restart and update	重新启动并更新
 Resulting: {} · {} · {} · {} m	结果：{} · {} · {} · {} m
 Results of the project check	项目检查的结果
+Retry connection	重试连接
 Review	审阅
 Review ({})	审阅（{}）
 Revision marks	修订标记
@@ -1581,18 +1604,25 @@ Save as project template…	另存为项目模板…
 Save as scheme	另存为方案
 Save as template	另存为模板
 Save as template…	另存为模板…
+Save asks for a file	“保存”会询问文件
 Save as…	另存为…
 Save current page as template…	将当前页另存为模板…
 Save current…	保存当前…
 Save file…	保存文件…
+Save locally	保存到本地
+Save locally to {}	保存到本地 {}
+Save locally; {} on the project server stays unchanged	保存到本地；项目服务器上的 {} 保持不变
 Save page as macro…	将页另存为宏…
 Save page as template	将页另存为模板
 Save page as template…	将页另存为模板…
 Save selection as macro…	将所选内容另存为宏…
 Save the box content as the macro in the library	将边框内容另存为库中的宏
 Save to project server	保存到项目服务器
+Save to project server: {}	保存到项目服务器：{}
+Save to project server: {} – the connection is lost, saving tries again	保存到项目服务器：{} – 连接已断开，保存将重试
 Save workspace	保存工作区
 Save workspace…	保存工作区…
+Saved to	保存位置
 Saved to the project server (revision {})	已保存到项目服务器（修订 {}）
 Saved workspaces	已保存的工作区
 Saves the placed properties as a placement scheme of the project	将已放置的属性保存为项目的放置方案
@@ -1649,6 +1679,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	分号
 Separator	分离器
 Server URL	服务器 URL
+Server address and sign-in	服务器地址和登录
 Server type	服务器类型
 Servers	服务器
 Service space in front	前方维护空间
@@ -1687,6 +1718,7 @@ Show in schematic	在原理图中显示
 Show in the schematic	在原理图中显示
 Show on the pages	在页上显示
 Show or hide panes; drag a tab to dock it elsewhere	显示或隐藏窗格；拖动选项卡可将其停靠到别处
+Show project manager	显示项目管理器
 Show the enclosures bayed to this one as well	同时显示与此机柜并柜的机柜
 Show the messages accepted as checked	显示已接受为已检查的消息
 Show the other wires	显示其他导线
@@ -1699,6 +1731,8 @@ Shown in title blocks with {prop:Name}	在标题栏中以 {prop:Name} 显示
 Shown instead of the measured value	代替测量值显示
 Shows	显示
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	从外部看到的侧板、后板、顶板和底板：风扇、电缆密封接头、开孔
+Sign in in the Project server pane; the project opens afterwards	在“项目服务器”窗格中登录；之后项目将打开
+Sign in…	登录…
 Signed in to {} as {}	已作为 {1} 登录到 {0}
 Signed out of Vault	已从 Vault 注销
 Single-line	单线
@@ -1842,6 +1876,7 @@ The items are selected and moved together	这些元素将一起被选择和移�
 The macro library has no page macros (Macros › Save page as macro…).	宏库没有页宏（宏 › 将页另存为宏…）。
 The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
 The names of its pages follow	其页的名称随之改变
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	打开的项目是本地恢复副本。其更改未保存在项目服务器上；在打开共享项目之前，由您决定将其保存到本地还是放弃。
 The page name gets the section number	页名称获得分节号
 The page type, plot frame, title block, structure, description and the whole content are saved.	将保存页类型、图框、标题栏、结构、描述和全部内容。
 The pages it generated stay	其生成的页保留
@@ -1850,6 +1885,8 @@ The point's coordinates in the coordinate reference system	该点在坐标参考
 The project changed since the search.	自搜索以来项目已更改。
 The project check	项目检查
 The project database needs the desktop version: the browser cannot search folders.	项目数据库需要桌面版：浏览器无法搜索文件夹。
+The project server does not answer: changes are not saved on it until the connection is back	项目服务器无响应：在连接恢复之前，更改不会保存到服务器上
+The project server {} could not open {}.	项目服务器 {} 无法打开 {}。
 The project's own page templates as a file	项目自己的页模板，作为文件
 The project's own title blocks	项目自己的标题栏
 The project's own title blocks and report schemes	项目自己的标题栏和报表方案
@@ -2246,6 +2283,7 @@ x y	x y
 {} pages get a new name	{} 页将获得新名称
 {} pages removed, {} pages generated	已移除 {} 页，已生成 {} 页
 {} pages renamed	已重命名 {} 页
+{} pages, users: {}	{} 页，用户：{}
 {} pages; their names start with {}	{} 页；其名称以 {} 开头
 {} parts added to the database	已将 {} 个部件添加到数据库
 {} parts of the database updated – synchronize the project parts in parts management	已更新数据库中的 {} 个部件 – 请在部件管理中同步项目部件

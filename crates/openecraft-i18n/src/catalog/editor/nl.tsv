@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Een kabel van het bus
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Een uitsparing van dezelfde grootte op dezelfde plaats in de zijwand van de buur: samen vormen ze een kabeldoorvoer
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Een bestand met dezelfde naam in de map krijgt een nieuwe versie (uit- en ingecheckt), anders wordt het bestand toegevoegd
 A level on top of the highest one	Een verdieping boven de hoogste
+A local file opens locally, a server project is opened on the project server again	Een lokaal bestand opent lokaal, een serverproject wordt opnieuw op de projectserver geopend
+A local file or a project on the project server	Een lokaal bestand of een project op de projectserver
 A new project	Een nieuw project
 A new release is downloaded in the background and installed when you close OpenECraft.	Een nieuwe versie wordt op de achtergrond gedownload en geïnstalleerd wanneer u OpenECraft sluit.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Een nieuwe versie wordt op de achtergrond gedownload en vervangt deze installatie; ze wordt vanaf de volgende start gebruikt.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Een genummerde sectie die pagina's bevat zoals een map; de paginanamen beginnen met het nummer ervan (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Een profiel wijst de neutrale velden toe aan de kolomnamen van een bepaald systeem (bijv. MATNR voor het ERP-nummer in SAP). Zonder toewijzing worden gangbare Engelse en Duitse namen herkend.
 A project definition based on this one, with its own defaults and scheme	Een projectdefinitie op basis van deze, met eigen standaardwaarden en schema
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Een projectbestand dat vanuit bestandsbeheer wordt geopend, opent in plaats daarvan. Niet-opgeslagen wijzigingen van de laatste sessie worden nooit zonder te vragen verworpen.
 A reference point at the origin of the plant	Een referentiepunt in de oorsprong van de installatie
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Een rapportblok genereert de pagina's van een rapport, bijv. één klemmenplan per klemmenstrook, en werkt ze bij.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Een schemapagina 3.1, 3.2, … na de huidige pagina, die bij het opnieuw nummeren een subpagina blijft
@@ -279,7 +282,9 @@ Choices	Keuzes
 Choices (separated by commas)	Keuzes (gescheiden door komma's)
 Choose	Kiezen
 Choose a baseline, a revision or a project file to compare the project with.	Kies een baseline, een revisie of een projectbestand om het project mee te vergelijken.
+Choose a project on every start: local files and projects of the project server	Bij elke start een project kiezen: lokale bestanden en projecten van de projectserver
 Choose a room first: floor-standing parts go on its floor.	Kies eerst een ruimte: vloerstaande artikelen komen op de vloer.
+Choose another project	Ander project kiezen
 Choose file…	Bestand kiezen…
 Choose pages	Pagina's kiezen
 Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de structuur hiermee begint
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Verbindingen waarvan beide
 Connections without a defined potential	Verbindingen zonder gedefinieerde potentiaal
 Connectors	Connectoren
 Connects free connection points of the selected symbols with facing ones	Verbindt vrije aansluitpunten van de geselecteerde symbolen met tegenover elkaar liggende
+Connects to the project server and shows its projects, without the project of the last session	Verbindt met de projectserver en toont zijn projecten, zonder het project van de laatste sessie
 Consecutive addresses from the start byte, in schematic order	Opeenvolgende adressen vanaf de startbyte, in schemavolgorde
 Contact image below coils	Contactspiegel onder spoelen
 Content	Inhoud
@@ -744,6 +750,7 @@ Generic	Generiek
 German zones (DIN 18015-3)	Duitse zones (DIN 18015-3)
 Getting started	Aan de slag
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Globale variabelenlijst met directe adressen voor CODESYS, TwinCAT en andere
+Go on working locally; Save saves to a local file	Lokaal verder werken; Opslaan slaat op in een lokaal bestand
 Go to page	Naar pagina
 Graphic line	Grafische lijn
 Graphic rectangle	Grafische rechthoek
@@ -945,6 +952,9 @@ Load template…	Sjabloon laden…
 Loading changes…	Wijzigingen laden…
 Loading the project access…	Projecttoegang laden…
 Loads	Belastingen
+Local file	Lokaal bestand
+Local file: {}	Lokaal bestand: {}
+Local recovery copy of server project: {}	Lokale herstelkopie van serverproject: {}
 Lock all	Alles vergrendelen
 Lock all pages	Alle pagina's vergrendelen
 Lock current page	Huidige pagina vergrendelen
@@ -1080,6 +1090,7 @@ New potential	Nieuwe potentiaal
 New project	Nieuw project
 New project from template	Nieuw project uit sjabloon
 New project scheme from the selected one	Nieuw projectschema op basis van het geselecteerde
+New project, not saved yet	Nieuw project, nog niet opgeslagen
 New report page	Nieuwe rapportpagina
 New request	Nieuw verzoek
 New revision	Nieuwe revisie
@@ -1164,6 +1175,7 @@ Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
 Not saved, locked or changed by another user: {}	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Niet het gedeelde project: wijzigingen worden lokaal opgeslagen tot het opnieuw op de projectserver wordt geopend
 Nothing exchanged yet.	Nog niets uitgewisseld.
 Nothing left in this list.	Niets meer in deze lijst.
 Nothing to show	Niets weer te geven
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Van de buitendiameter, vast gelegd
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Van de buitendiameter; buizen worden gebogen met bochten van anderhalve diameter
 Off	Uit
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Verschuiving van de ene rij naar de volgende: omlaag voor lijsten, zijwaarts voor rijen naast elkaar
+On startup	Bij het starten
 One row per label	Eén rij per label
 Only devices on the current page	Alleen apparaten op de huidige pagina
 Only frames no page uses can be deleted	Alleen kaders die door geen enkele pagina worden gebruikt, kunnen worden verwijderd
@@ -1187,6 +1200,7 @@ Only messages of the current page	Alleen meldingen van de huidige pagina
 Only parts whose function template provides the device's main function	Alleen artikelen waarvan de functiesjabloon de hoofdfunctie van het apparaat biedt
 Only rows that pass all filters are shown	Alleen rijen die aan alle filters voldoen, worden weergegeven
 Only web and e-mail addresses (http, https, mailto) are links	Alleen web- en e-mailadressen (http, https, mailto) zijn links
+Open a specific project	Een bepaald project openen
 Open and save shared projects, lock pages	Gedeelde projecten openen en opslaan, pagina's vergrendelen
 Open archive…	Archief openen…
 Open as project	Openen als project
@@ -1195,7 +1209,9 @@ Open demo project	Demoproject openen
 Open door	Deur openen
 Open in a new page tab	In een nieuw paginatabblad openen
 Open link	Koppeling openen
+Open local recovery copy	Lokale herstelkopie openen
 Open project	Project openen
+Open project server	Projectserver openen
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Projecten en bestanden openen vanuit Autodesk Vault, het project, exports en 3D-modellen in de vault plaatsen
 Open the project	Het project openen
 Open to {}: wires cross beside the mounting plates	Open naar {}: draden lopen naast de montageplaten over
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Projectstanda
 Project file	Projectbestand
 Project file…	Projectbestand…
 Project information	Projectinformatie
+Project on the project server	Project op de projectserver
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projectartikelen zijn de kopieën die in dit project zijn opgeslagen; ze worden gebruikt voor de stuklijst en de projectcontrole.
 Project properties changed in {} projects	Projecteigenschappen gewijzigd in {} projecten
 Project properties…	Projecteigenschappen…
 Project server	Projectserver
 Project server: {}	Projectserver: {}
+Project server: {} / Project: {}	Projectserver: {} / Project: {}
+Project server: {} / Project: {} – connection lost	Projectserver: {} / Project: {} – verbinding verbroken
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projectteksten (functieteksten, paginabeschrijvingen, vrije teksten, beschrijvingen) worden in de brontaal geschreven; het woordenboek vertaalt ze regel voor regel. Rapporten en titelblokken volgen de uitvoertaal.
 Project: {}	Project: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projecten van een eerste stroomkring tot een hele installatie, elk toont meer van de functies
+Projects on the project server {}	Projecten op de projectserver {}
+Projects on the server	Projecten op de server
 Properties…	Eigenschappen…
 Property database	Eigenschappendatabase
 Property definitions	Eigenschapsdefinities
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Opnieuw nummeren 1 … n
 Renumber contact	Contact opnieuw nummeren
 Renumber pages	Pagina's opnieuw nummeren
 Renumber pages…	Pagina's opnieuw nummeren…
+Reopen last project	Laatste project opnieuw openen
 Repair {} findings	{} bevindingen herstellen
 Replace	Vervangen
 Replace all	Alles vervangen
@@ -1527,6 +1549,7 @@ Reset to standard	Standaard herstellen
 Restart and update	Opnieuw starten en bijwerken
 Resulting: {} · {} · {} · {} m	Resultaat: {} · {} · {} · {} m
 Results of the project check	Resultaten van de projectcontrole
+Retry connection	Verbinding opnieuw proberen
 Review	Review
 Review ({})	Review ({})
 Revision marks	Revisiemarkeringen
@@ -1598,18 +1621,25 @@ Save as project template…	Opslaan als projectsjabloon…
 Save as scheme	Opslaan als schema
 Save as template	Opslaan als sjabloon
 Save as template…	Opslaan als sjabloon…
+Save asks for a file	Opslaan vraagt om een bestand
 Save as…	Opslaan als…
 Save current page as template…	Huidige pagina opslaan als sjabloon…
 Save current…	Huidige opslaan…
 Save file…	Bestand opslaan…
+Save locally	Lokaal opslaan
+Save locally to {}	Lokaal opslaan in {}
+Save locally; {} on the project server stays unchanged	Lokaal opslaan; {} op de projectserver blijft ongewijzigd
 Save page as macro…	Pagina opslaan als macro…
 Save page as template	Pagina opslaan als sjabloon
 Save page as template…	Pagina opslaan als sjabloon…
 Save selection as macro…	Selectie opslaan als macro…
 Save the box content as the macro in the library	De inhoud van het kader als de macro in de bibliotheek opslaan
 Save to project server	Opslaan op de projectserver
+Save to project server: {}	Opslaan op projectserver: {}
+Save to project server: {} – the connection is lost, saving tries again	Opslaan op projectserver: {} – de verbinding is verbroken, opslaan probeert het opnieuw
 Save workspace	Werkruimte opslaan
 Save workspace…	Werkruimte opslaan…
+Saved to	Opgeslagen in
 Saved to the project server (revision {})	Opgeslagen op de projectserver (revisie {})
 Saved workspaces	Opgeslagen werkruimten
 Saves the placed properties as a placement scheme of the project	Slaat de geplaatste eigenschappen op als plaatsingsschema van het project
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Puntkomma
 Separator	Afscheider
 Server URL	Server-URL
+Server address and sign-in	Serveradres en aanmelding
 Server type	Servertype
 Servers	Servers
 Service space in front	Serviceruimte ervoor
@@ -1705,6 +1736,7 @@ Show in schematic	Weergeven in het schema
 Show in the schematic	Weergeven in het schema
 Show on the pages	Weergeven op de pagina's
 Show or hide panes; drag a tab to dock it elsewhere	Panelen tonen of verbergen; sleep een tabblad om het elders vast te zetten
+Show project manager	Projectbeheer tonen
 Show the enclosures bayed to this one as well	Ook de behuizingen weergeven die aan deze zijn gekoppeld
 Show the messages accepted as checked	De als gecontroleerd geaccepteerde meldingen weergeven
 Show the other wires	De andere draden weergeven
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Weergegeven in titelblokken met {prop:Nam
 Shown instead of the measured value	Wordt weergegeven in plaats van de gemeten waarde
 Shows	Toont
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Zijwanden, achterwand, dak en bodem gezien van buiten: ventilatoren, kabelwartels, uitsparingen
+Sign in in the Project server pane; the project opens afterwards	Meld u aan in het deelvenster Projectserver; daarna opent het project
+Sign in…	Aanmelden…
 Signed in to {} as {}	Aangemeld bij {} als {}
 Signed out of Vault	Afgemeld bij Vault
 Single-line	Eenlijnig
@@ -1861,6 +1895,7 @@ The items are selected and moved together	De elementen worden samen geselecteerd
 The macro library has no page macros (Macros › Save page as macro…).	De macrobibliotheek heeft geen paginamacro's (Macro's › Pagina opslaan als macro…).
 The modules no string takes yet in series, on the first inverter	De modules die nog geen string neemt, in serie, op de eerste omvormer
 The names of its pages follow	De namen van de pagina's veranderen mee
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Het geopende project is een lokale herstelkopie. De wijzigingen ervan zijn niet op de projectserver opgeslagen; voordat het gedeelde project opent, beslist u of u ze lokaal opslaat of verwerpt.
 The page name gets the section number	De paginanaam krijgt het sectienummer
 The page type, plot frame, title block, structure, description and the whole content are saved.	Het paginatype, het plotkader, het titelblok, de structuur, de beschrijving en de volledige inhoud worden opgeslagen.
 The pages it generated stay	De gegenereerde pagina's blijven behouden
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	De coördinaten van h
 The project changed since the search.	Het project is gewijzigd sinds de zoekopdracht.
 The project check	De projectcontrole
 The project database needs the desktop version: the browser cannot search folders.	De projectdatabase vereist de desktopversie: de browser kan geen mappen doorzoeken.
+The project server does not answer: changes are not saved on it until the connection is back	De projectserver antwoordt niet: wijzigingen worden daar pas opgeslagen als de verbinding terug is
+The project server {} could not open {}.	De projectserver {} kon {} niet openen.
 The project's own page templates as a file	De eigen paginasjablonen van het project als bestand
 The project's own title blocks	De eigen titelblokken van het project
 The project's own title blocks and report schemes	De eigen titelblokken en rapportschema's van het project
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} pagina's krijgen een nieuwe naam
 {} pages removed, {} pages generated	{} pagina's verwijderd, {} pagina's gegenereerd
 {} pages renamed	{} pagina's hernoemd
+{} pages, users: {}	{} pagina's, gebruikers: {}
 {} pages; their names start with {}	{} pagina's; hun namen beginnen met {}
 {} parts added to the database	{} artikelen aan de database toegevoegd
 {} parts of the database updated – synchronize the project parts in parts management	{} artikelen van de database bijgewerkt – synchroniseer de projectartikelen in het artikelbeheer

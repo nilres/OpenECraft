@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Väylätyypin kaapeli
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Samankokoinen aukko samassa kohdassa naapurin sivuseinässä: yhdessä ne muodostavat kaapelin läpivientiaukon
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Kansiossa oleva samanniminen tiedosto saa uuden version (kirjataan ulos ja sisään), muuten tiedosto lisätään
 A level on top of the highest one	Kerros ylimmän päälle
+A local file opens locally, a server project is opened on the project server again	Paikallinen tiedosto avautuu paikallisesti, palvelinprojekti avataan uudelleen projektipalvelimella
+A local file or a project on the project server	Paikallinen tiedosto tai projektipalvelimen projekti
 A new project	Uusi projekti
 A new release is downloaded in the background and installed when you close OpenECraft.	Uusi versio ladataan taustalla ja asennetaan, kun suljet OpenECraftin.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uusi versio ladataan taustalla ja se korvaa tämän asennuksen; sitä käytetään seuraavasta käynnistyksestä alkaen.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Numeroitu osio, joka sisältää sivuja kuin kansio; sivujen nimet alkavat sen numerolla (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profiili yhdistää neutraalit kentät tietyn järjestelmän sarakkeiden nimiin (esim. MATNR ERP-numerolle SAP:ssa). Ilman määritystä tunnistetaan yleiset englannin- ja saksankieliset nimet.
 A project definition based on this one, with its own defaults and scheme	Tähän perustuva projektimäärittely omine oletusarvoineen ja skeemoineen
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Tiedostonhallinnasta avattu projektitiedosto avautuu sen sijaan. Viime istunnon tallentamattomia muutoksia ei koskaan hylätä kysymättä.
 A reference point at the origin of the plant	Vertailupiste laitoksen origossa
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Raporttilohko luo raportin sivut, esim. yhden riviliitinkaavion rimaa kohden, ja päivittää ne.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Piirikaaviosivu 3.1, 3.2, … nykyisen sivun jälkeen, säilyy alasivuna uudelleennumeroinnissa
@@ -279,7 +282,9 @@ Choices	Valinnat
 Choices (separated by commas)	Valinnat (pilkuin erotettuina)
 Choose	Valitse
 Choose a baseline, a revision or a project file to compare the project with.	Valitse lähtötaso, revisio tai projektitiedosto, johon projektia verrataan.
+Choose a project on every start: local files and projects of the project server	Valitse projekti joka käynnistyksessä: paikalliset tiedostot ja projektipalvelimen projektit
 Choose a room first: floor-standing parts go on its floor.	Valitse ensin huone: lattialle sijoitettavat osat tulevat sen lattialle.
+Choose another project	Valitse toinen projekti
 Choose file…	Valitse tiedosto…
 Choose pages	Valitse sivut
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Yhteydet, joiden molemmat 
 Connections without a defined potential	Yhteydet ilman määritettyä potentiaalia
 Connectors	Liittimet
 Connects free connection points of the selected symbols with facing ones	Yhdistää valittujen symbolien vapaat liitäntäpisteet vastakkaisiin
+Connects to the project server and shows its projects, without the project of the last session	Yhdistää projektipalvelimeen ja näyttää sen projektit ilman viime istunnon projektia
 Consecutive addresses from the start byte, in schematic order	Peräkkäiset osoitteet aloitustavusta alkaen piirikaavion järjestyksessä
 Contact image below coils	Kosketinkuvio kelojen alla
 Content	Sisältö
@@ -744,6 +750,7 @@ Generic	Yleinen
 German zones (DIN 18015-3)	Saksalaiset vyöhykkeet (DIN 18015-3)
 Getting started	Aloitus
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Globaalien muuttujien luettelo suorilla osoitteilla CODESYSille, TwinCATille ja muille
+Go on working locally; Save saves to a local file	Jatka työtä paikallisesti; Tallenna tallentaa paikalliseen tiedostoon
 Go to page	Siirry sivulle
 Graphic line	Grafiikkaviiva
 Graphic rectangle	Grafiikkasuorakulmio
@@ -945,6 +952,9 @@ Load template…	Lataa malli…
 Loading changes…	Ladataan muutoksia…
 Loading the project access…	Ladataan projektin käyttöoikeuksia…
 Loads	Kuormat
+Local file	Paikallinen tiedosto
+Local file: {}	Paikallinen tiedosto: {}
+Local recovery copy of server project: {}	Palvelinprojektin paikallinen palautuskopio: {}
 Lock all	Lukitse kaikki
 Lock all pages	Lukitse kaikki sivut
 Lock current page	Lukitse nykyinen sivu
@@ -1080,6 +1090,7 @@ New potential	Uusi potentiaali
 New project	Uusi projekti
 New project from template	Uusi projekti mallista
 New project scheme from the selected one	Uusi projektiskeema valitusta
+New project, not saved yet	Uusi projekti, ei vielä tallennettu
 New report page	Uusi raporttisivu
 New request	Uusi pyyntö
 New revision	Uusi revisio
@@ -1164,6 +1175,7 @@ Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
 Not saved, locked or changed by another user: {}	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Ei jaettu projekti: muutokset tallennetaan paikallisesti, kunnes se avataan uudelleen projektipalvelimella
 Nothing exchanged yet.	Mitään ei ole vielä siirretty.
 Nothing left in this list.	Tässä luettelossa ei ole enää mitään.
 Nothing to show	Ei näytettävää
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Ulkohalkaisijasta, kiinteästi asennettuna
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Ulkohalkaisijasta; putket taivutetaan puolentoista halkaisijan käyrillä
 Off	Pois
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Siirtymä rivistä seuraavaan: alaspäin luetteloille, sivuttain vierekkäisille riveille
+On startup	Käynnistettäessä
 One row per label	Yksi rivi merkintäkilpeä kohden
 Only devices on the current page	Vain nykyisen sivun laitteet
 Only frames no page uses can be deleted	Vain kehykset, joita mikään sivu ei käytä, voi poistaa
@@ -1187,6 +1200,7 @@ Only messages of the current page	Vain nykyisen sivun ilmoitukset
 Only parts whose function template provides the device's main function	Vain osat, joiden toimintomalli tarjoaa laitteen päätoiminnon
 Only rows that pass all filters are shown	Vain rivit, jotka läpäisevät kaikki suodattimet, näytetään
 Only web and e-mail addresses (http, https, mailto) are links	Vain verkko- ja sähköpostiosoitteet (http, https, mailto) ovat linkkejä
+Open a specific project	Avaa tietty projekti
 Open and save shared projects, lock pages	Avaa ja tallenna jaettuja projekteja, lukitse sivuja
 Open archive…	Avaa arkisto…
 Open as project	Avaa projektina
@@ -1195,7 +1209,9 @@ Open demo project	Avaa esittelyprojekti
 Open door	Avaa ovi
 Open in a new page tab	Avaa uudessa sivuvälilehdessä
 Open link	Avaa linkki
+Open local recovery copy	Avaa paikallinen palautuskopio
 Open project	Avaa projekti
+Open project server	Avaa projektipalvelin
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Avaa projekteja ja tiedostoja Autodesk Vaultista, tallenna projekti, viennit ja 3D-mallit Vaultiin
 Open the project	Avaa projekti
 Open to {}: wires cross beside the mounting plates	Avoin kohteeseen {}: johdot kulkevat asennuslevyjen vierestä
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Projektin ole
 Project file	Projektitiedosto
 Project file…	Projektitiedosto…
 Project information	Projektin tiedot
+Project on the project server	Projekti projektipalvelimella
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projektin osat ovat tähän projektiin tallennettuja kopioita; niitä käytetään osaluetteloon ja projektin tarkistukseen.
 Project properties changed in {} projects	Projektin ominaisuuksia muutettiin {} projektissa
 Project properties…	Projektin ominaisuudet…
 Project server	Projektipalvelin
 Project server: {}	Projektipalvelin: {}
+Project server: {} / Project: {}	Projektipalvelin: {} / Projekti: {}
+Project server: {} / Project: {} – connection lost	Projektipalvelin: {} / Projekti: {} – yhteys katkesi
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projektin tekstit (toimintotekstit, sivujen kuvaukset, vapaat tekstit, kuvaukset) kirjoitetaan lähdekielellä; sanakirja kääntää ne rivi riviltä. Raportit ja nimiöt noudattavat tulostekieltä.
 Project: {}	Projekti: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projekteja ensimmäisestä piiristä kokonaiseen laitokseen, kukin näyttää enemmän toiminnoista
+Projects on the project server {}	Projektipalvelimen {} projektit
+Projects on the server	Palvelimen projektit
 Properties…	Ominaisuudet…
 Property database	Ominaisuustietokanta
 Property definitions	Ominaisuusmäärittelyt
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Numeroi uudelleen 1 … n
 Renumber contact	Numeroi kosketin uudelleen
 Renumber pages	Numeroi sivut uudelleen
 Renumber pages…	Numeroi sivut uudelleen…
+Reopen last project	Avaa viimeisin projekti uudelleen
 Repair {} findings	Korjaa {} havaintoa
 Replace	Korvaa
 Replace all	Korvaa kaikki
@@ -1527,6 +1549,7 @@ Reset to standard	Palauta vakioasetukset
 Restart and update	Käynnistä uudelleen ja päivitä
 Resulting: {} · {} · {} · {} m	Tulos: {} · {} · {} · {} m
 Results of the project check	Projektin tarkistuksen tulokset
+Retry connection	Yritä yhteyttä uudelleen
 Review	Kommentit
 Review ({})	Kommentit ({})
 Revision marks	Revisiomerkinnät
@@ -1598,18 +1621,25 @@ Save as project template…	Tallenna projektimallina…
 Save as scheme	Tallenna skeemana
 Save as template	Tallenna mallina
 Save as template…	Tallenna mallina…
+Save asks for a file	Tallenna kysyy tiedostoa
 Save as…	Tallenna nimellä…
 Save current page as template…	Tallenna nykyinen sivu mallina…
 Save current…	Tallenna nykyinen…
 Save file…	Tallenna tiedosto…
+Save locally	Tallenna paikallisesti
+Save locally to {}	Tallenna paikallisesti kohteeseen {}
+Save locally; {} on the project server stays unchanged	Tallenna paikallisesti; {} projektipalvelimella pysyy ennallaan
 Save page as macro…	Tallenna sivu makrona…
 Save page as template	Tallenna sivu mallina
 Save page as template…	Tallenna sivu mallina…
 Save selection as macro…	Tallenna valinta makrona…
 Save the box content as the macro in the library	Tallenna laatikon sisältö makrona kirjastoon
 Save to project server	Tallenna projektipalvelimelle
+Save to project server: {}	Tallenna projektipalvelimelle: {}
+Save to project server: {} – the connection is lost, saving tries again	Tallenna projektipalvelimelle: {} – yhteys on katkennut, tallennus yrittää uudelleen
 Save workspace	Tallenna työtila
 Save workspace…	Tallenna työtila…
+Saved to	Tallennettu kohteeseen
 Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
 Saved workspaces	Tallennetut työtilat
 Saves the placed properties as a placement scheme of the project	Tallentaa sijoitetut ominaisuudet projektin sijoitteluskeemaksi
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Puolipiste
 Separator	Erotin
 Server URL	Palvelimen URL
+Server address and sign-in	Palvelimen osoite ja kirjautuminen
 Server type	Palvelimen tyyppi
 Servers	Palvelimet
 Service space in front	Huoltotila edessä
@@ -1705,6 +1736,7 @@ Show in schematic	Näytä piirikaaviossa
 Show in the schematic	Näytä piirikaaviossa
 Show on the pages	Näytä sivuilla
 Show or hide panes; drag a tab to dock it elsewhere	Näytä tai piilota ruutuja; vedä välilehteä telakoidaksesi sen muualle
+Show project manager	Näytä projektienhallinta
 Show the enclosures bayed to this one as well	Näytä myös tähän rivitetyt kotelot
 Show the messages accepted as checked	Näytä tarkistetuiksi hyväksytyt ilmoitukset
 Show the other wires	Näytä muut johdot
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Näytetään nimiöissä merkinnällä {p
 Shown instead of the measured value	Näytetään mitatun arvon sijaan
 Shows	Näyttää
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sivuseinät, takaseinä, katto ja pohja ulkoa katsottuna: tuulettimet, kaapeliläpiviennit, aukot
+Sign in in the Project server pane; the project opens afterwards	Kirjaudu sisään Projektipalvelin-ruudussa; projekti avautuu sen jälkeen
+Sign in…	Kirjaudu sisään…
 Signed in to {} as {}	Kirjautunut kohteeseen {} käyttäjänä {}
 Signed out of Vault	Kirjauduttu ulos Vaultista
 Single-line	Yksinapainen
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Kohteet valitaan ja siirretään yhdes
 The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
 The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
 The names of its pages follow	Sen sivujen nimet muuttuvat mukana
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Avoin projekti on paikallinen palautuskopio. Sen muutoksia ei ole tallennettu projektipalvelimelle; ennen kuin jaettu projekti avautuu, päätät, tallennetaanko ne paikallisesti vai hylätäänkö ne.
 The page name gets the section number	Sivun nimi saa osion numeron
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
 The pages it generated stay	Sen luomat sivut jäävät
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Pisteen koordinaatit 
 The project changed since the search.	Projekti on muuttunut haun jälkeen.
 The project check	Projektin tarkistus
 The project database needs the desktop version: the browser cannot search folders.	Projektitietokanta vaatii työpöytäversion: selain ei voi hakea kansioista.
+The project server does not answer: changes are not saved on it until the connection is back	Projektipalvelin ei vastaa: muutoksia ei tallenneta sinne ennen kuin yhteys palaa
+The project server {} could not open {}.	Projektipalvelin {} ei voinut avata projektia {}.
 The project's own page templates as a file	Projektin omat sivumallit tiedostona
 The project's own title blocks	Projektin omat nimiöt
 The project's own title blocks and report schemes	Projektin omat nimiöt ja raporttimallit
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} sivua saa uuden nimen
 {} pages removed, {} pages generated	{} sivua poistettu, {} sivua luotu
 {} pages renamed	{} sivua nimettiin uudelleen
+{} pages, users: {}	Sivuja {}, käyttäjät: {}
 {} pages; their names start with {}	{} sivua; niiden nimet alkavat {}
 {} parts added to the database	{} osaa lisätty tietokantaan
 {} parts of the database updated – synchronize the project parts in parts management	Tietokannan {} osaa päivitettiin – synkronoi projektin osat osien hallinnassa

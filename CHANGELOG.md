@@ -37,6 +37,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   way of the least weight, its length in grid steps plus 1.2 per bend and 1.5 per
   wire crossed. Labels and connection definition points come along; without a way the
   wire is squared as before.
+- **Startup and the source of the project** (#129): *File › Settings › On startup*
+  chooses what opens when the editor starts: the start page with the local files and
+  the projects of the project server (*Show project manager*), the last project from
+  where it came – a server project is opened on the project server again, asking for a
+  sign-in if needed (*Reopen last project*, the default), the project list of the
+  project server without the last project (*Open project server*) or always the same
+  local file or server project. A project file opened from the file manager still
+  opens instead. The status bar always says where the project is saved: *Local file:
+  …*, *Project server: … / Project: …* (with *connection lost* while the server does
+  not answer) or *Local recovery copy of server project: …* – a project restored from
+  the last session or closed on the server is never shown as the shared project, and
+  the tooltip of *Save* names the destination. If the project server of the start is
+  not available, a dialog offers *Retry connection*, *Sign in…*, *Choose another
+  project* and *Open local recovery copy*; unsaved changes of the copy are saved or
+  discarded on purpose before the shared project replaces them.
 - **EDZ parts without a usable macro** (#131): a part whose first function is a
   generic one (the connection points of a drive or an HMI) is placed as a black box
   with room for its connection points instead of an earth electrode. Elliptic arcs of
@@ -131,6 +146,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   `add_device_box`, `update_device_box`, `add_device_connections`,
   `update_device_connection`, `list_device_boxes`
   ([schematic](docs/features/schematic.md)).
+- **Device box roles:** a device box with the tag of a device placed elsewhere can add
+  connection points to it (*Extension*) or show only selected connection points of it
+  on another page (*Pin view*). Wires at a view belong to the point it shows, reports
+  list that connection once, and neither role counts as a second main function. Role
+  on `add_device_box` and `update_device_box`, command `show_device_pins`
+  ([schematic](docs/features/schematic.md)).
 
 - **Cable cores at the cable definition line:** the stroke, core designation and cable
   tag of each core sit where a cable definition line of its cable crosses the wire, so
@@ -164,7 +185,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   the box is moved, resized or changed (in one undo step); aspects set on a device stay,
   and a tag that exists already is refused instead of merging two devices. Tags on the
   page omit what the box shows; the symbol properties show where each aspect comes from;
-  the structure check reports overlapping boxes. Commands `add_structure_box`,
+  the structure check reports overlapping boxes and devices inside a box with another
+  structure. Commands `add_structure_box`,
   `update_structure_box`, `list_structure_boxes`
   ([schematic](docs/features/schematic.md#structure-identifiers-iec-81346)).
 

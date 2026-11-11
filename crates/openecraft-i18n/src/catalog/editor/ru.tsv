@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Кабель шинн
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Вырез того же размера в том же месте боковой стенки соседа: вместе они образуют кабельный проход
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Одноимённый файл в папке получает новую версию (извлекается и возвращается), иначе файл добавляется
 A level on top of the highest one	Этаж над самым верхним
+A local file opens locally, a server project is opened on the project server again	Локальный файл открывается локально, проект с сервера снова открывается на сервере проектов
+A local file or a project on the project server	Локальный файл или проект на сервере проектов
 A new project	Новый проект
 A new release is downloaded in the background and installed when you close OpenECraft.	Новая версия загружается в фоновом режиме и устанавливается при закрытии OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Новая версия загружается в фоновом режиме и заменяет эту установку; она используется со следующего запуска.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Нумерованный раздел, содержащий листы как папка; имена листов начинаются с его номера (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Профиль сопоставляет нейтральные поля с именами столбцов конкретной системы (например, MATNR для номера ERP в SAP). Без сопоставления распознаются распространенные английские и немецкие имена.
 A project definition based on this one, with its own defaults and scheme	Определение проекта на основе этого, с собственными значениями по умолчанию и схемой
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Вместо этого открывается файл проекта, открытый из файлового менеджера. Несохранённые изменения последнего сеанса никогда не отбрасываются без вопроса.
 A reference point at the origin of the plant	Опорная точка в начале координат установки
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Блок отчёта создаёт листы отчёта, например одну схему клемм на колодку, и обновляет их.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Лист схемы 3.1, 3.2, … после текущего листа, при перенумерации остаётся подлистом
@@ -279,7 +282,9 @@ Choices	Варианты выбора
 Choices (separated by commas)	Варианты выбора (через запятую)
 Choose	Выбрать
 Choose a baseline, a revision or a project file to compare the project with.	Выберите базовую версию, ревизию или файл проекта для сравнения с проектом.
+Choose a project on every start: local files and projects of the project server	Выбирать проект при каждом запуске: локальные файлы и проекты сервера проектов
 Choose a room first: floor-standing parts go on its floor.	Сначала выберите помещение: напольные изделия ставятся на его пол.
+Choose another project	Выбрать другой проект
 Choose file…	Выбрать файл…
 Choose pages	Выбрать листы
 Chooses the pages whose structure starts with this	Выбирает листы, структура которых начинается с этого
@@ -376,6 +381,7 @@ Connections whose two ends are both on selected wires	Соединения, об
 Connections without a defined potential	Соединения без определённого потенциала
 Connectors	Разъёмы
 Connects free connection points of the selected symbols with facing ones	Соединяет свободные точки подключения выбранных символов с обращёнными к ним
+Connects to the project server and shows its projects, without the project of the last session	Подключается к серверу проектов и показывает его проекты, без проекта последнего сеанса
 Consecutive addresses from the start byte, in schematic order	Последовательные адреса от начального байта, в порядке схемы
 Contact image below coils	Зеркало контактов под катушками
 Content	Содержимое
@@ -743,6 +749,7 @@ Generic	Универсальный
 German zones (DIN 18015-3)	Немецкие зоны (DIN 18015-3)
 Getting started	Начало работы
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Список глобальных переменных с прямыми адресами для CODESYS, TwinCAT и других
+Go on working locally; Save saves to a local file	Продолжить работу локально; «Сохранить» сохраняет в локальный файл
 Go to page	Перейти к листу
 Graphic line	Графическая линия
 Graphic rectangle	Графический прямоугольник
@@ -944,6 +951,9 @@ Load template…	Загрузить шаблон…
 Loading changes…	Загрузка изменений…
 Loading the project access…	Загрузка доступа к проекту…
 Loads	Нагрузки
+Local file	Локальный файл
+Local file: {}	Локальный файл: {}
+Local recovery copy of server project: {}	Локальная копия восстановления проекта сервера: {}
 Lock all	Заблокировать все
 Lock all pages	Заблокировать все листы
 Lock current page	Заблокировать текущий лист
@@ -1079,6 +1089,7 @@ New potential	Новый потенциал
 New project	Новый проект
 New project from template	Новый проект из шаблона
 New project scheme from the selected one	Новая схема проекта на основе выбранной
+New project, not saved yet	Новый проект, ещё не сохранён
 New report page	Новый лист отчёта
 New request	Новый запрос
 New revision	Новая ревизия
@@ -1163,6 +1174,7 @@ Not found: {}	Не найдено: {}
 Not in the project parts – synchronize in parts management	Нет в изделиях проекта – синхронизируйте в управлении изделиями
 Not on a wire	Не на проводе
 Not saved, locked or changed by another user: {}	Не сохранено, заблокировано или изменено другим пользователем: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Это не общий проект: изменения сохраняются локально, пока он снова не будет открыт на сервере проектов
 Nothing exchanged yet.	Обмена ещё не было.
 Nothing left in this list.	В этом списке больше ничего нет.
 Nothing to show	Нет данных для отображения
@@ -1179,6 +1191,7 @@ Of the outer diameter, as laid fixed	От наружного диаметра, �
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	От наружного диаметра; трубы гнутся отводами в полтора диаметра
 Off	Откл.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Смещение от одной строки к следующей: вниз для списков, вбок для строк, расположенных рядом
+On startup	При запуске
 One row per label	Одна строка на каждый маркер
 Only devices on the current page	Только устройства на текущем листе
 Only frames no page uses can be deleted	Удалять можно только рамки, которые не используются ни одним листом
@@ -1186,6 +1199,7 @@ Only messages of the current page	Только сообщения текущег
 Only parts whose function template provides the device's main function	Только изделия, шаблон функций которых предоставляет главную функцию устройства
 Only rows that pass all filters are shown	Показываются только строки, удовлетворяющие всем фильтрам
 Only web and e-mail addresses (http, https, mailto) are links	Ссылками могут быть только веб- и почтовые адреса (http, https, mailto)
+Open a specific project	Открыть определённый проект
 Open and save shared projects, lock pages	Открытие и сохранение общих проектов, блокировка листов
 Open archive…	Открыть архив…
 Open as project	Открыть как проект
@@ -1194,7 +1208,9 @@ Open demo project	Открыть демонстрационный проект
 Open door	Открыть дверь
 Open in a new page tab	Открыть в новой вкладке листа
 Open link	Открыть ссылку
+Open local recovery copy	Открыть локальную копию восстановления
 Open project	Открыть проект
+Open project server	Открыть сервер проектов
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Открывать проекты и файлы из Autodesk Vault, помещать проект, экспорты и 3D-модели в хранилище
 Open the project	Открыть проект
 Open to {}: wires cross beside the mounting plates	Открыто к {}: провода проходят рядом с монтажными панелями
@@ -1397,14 +1413,19 @@ Project default; pages can choose their own in the page properties	Значен�
 Project file	Файл проекта
 Project file…	Файл проекта…
 Project information	Сведения о проекте
+Project on the project server	Проект на сервере проектов
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Изделия проекта – это копии, хранящиеся в данном проекте; они используются для спецификации и проверки проекта.
 Project properties changed in {} projects	Свойства изменены в проектах: {}
 Project properties…	Свойства проекта…
 Project server	Сервер проектов
 Project server: {}	Сервер проектов: {}
+Project server: {} / Project: {}	Сервер проектов: {} / Проект: {}
+Project server: {} / Project: {} – connection lost	Сервер проектов: {} / Проект: {} – соединение потеряно
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Тексты проекта (тексты функций, описания листов, свободные тексты, описания) пишутся на исходном языке; словарь переводит их построчно. Отчёты и основные надписи следуют языку вывода.
 Project: {}	Проект: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Проекты от первой цепи до целой установки, каждый показывает больше функций
+Projects on the project server {}	Проекты на сервере проектов {}
+Projects on the server	Проекты на сервере
 Properties…	Свойства…
 Property database	База данных свойств
 Property definitions	Определения свойств
@@ -1492,6 +1513,7 @@ Renumber 1 … n	Перенумеровать 1 … n
 Renumber contact	Перенумеровать контакт
 Renumber pages	Перенумеровать листы
 Renumber pages…	Перенумеровать листы…
+Reopen last project	Открыть последний проект снова
 Repair {} findings	Исправить замечания ({})
 Replace	Заменить
 Replace all	Заменить все
@@ -1526,6 +1548,7 @@ Reset to standard	Сбросить к стандартным
 Restart and update	Перезапустить и обновить
 Resulting: {} · {} · {} · {} m	Итог: {} · {} · {} · {} м
 Results of the project check	Результаты проверки проекта
+Retry connection	Повторить подключение
 Review	Рецензирование
 Review ({})	Рецензирование ({})
 Revision marks	Отметки ревизий
@@ -1597,18 +1620,25 @@ Save as project template…	Сохранить как шаблон проект�
 Save as scheme	Сохранить как схему
 Save as template	Сохранить как шаблон
 Save as template…	Сохранить как шаблон…
+Save asks for a file	«Сохранить» запросит файл
 Save as…	Сохранить как…
 Save current page as template…	Сохранить текущий лист как шаблон…
 Save current…	Сохранить текущее…
 Save file…	Сохранить файл…
+Save locally	Сохранить локально
+Save locally to {}	Сохранить локально в {}
+Save locally; {} on the project server stays unchanged	Сохранить локально; {} на сервере проектов не изменится
 Save page as macro…	Сохранить лист как макрос…
 Save page as template	Сохранить лист как шаблон
 Save page as template…	Сохранить лист как шаблон…
 Save selection as macro…	Сохранить выделенное как макрос…
 Save the box content as the macro in the library	Сохранить содержимое рамки как макрос в библиотеке
 Save to project server	Сохранить на сервере проектов
+Save to project server: {}	Сохранить на сервере проектов: {}
+Save to project server: {} – the connection is lost, saving tries again	Сохранить на сервере проектов: {} – соединение потеряно, сохранение повторит попытку
 Save workspace	Сохранить рабочее пространство
 Save workspace…	Сохранить рабочее пространство…
+Saved to	Сохранено в
 Saved to the project server (revision {})	Сохранено на сервере проектов (ревизия {})
 Saved workspaces	Сохранённые рабочие пространства
 Saves the placed properties as a placement scheme of the project	Сохраняет размещённые свойства как схему размещения проекта
@@ -1665,6 +1695,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Точка с запятой
 Separator	Сепаратор
 Server URL	URL сервера
+Server address and sign-in	Адрес сервера и вход
 Server type	Тип сервера
 Servers	Серверы
 Service space in front	Зона обслуживания спереди
@@ -1704,6 +1735,7 @@ Show in schematic	Показать на схеме
 Show in the schematic	Показать на схеме
 Show on the pages	Показывать на листах
 Show or hide panes; drag a tab to dock it elsewhere	Показать или скрыть панели; перетащите вкладку, чтобы закрепить её в другом месте
+Show project manager	Показать менеджер проектов
 Show the enclosures bayed to this one as well	Показать также шкафы, пристыкованные к этому
 Show the messages accepted as checked	Показать сообщения, принятые как проверенные
 Show the other wires	Показать остальные провода
@@ -1716,6 +1748,8 @@ Shown in title blocks with {prop:Name}	Отображается в основн�
 Shown instead of the measured value	Отображается вместо измеренного значения
 Shows	Показывает
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Боковые стенки, задняя стенка, крыша и дно снаружи: вентиляторы, кабельные вводы, вырезы
+Sign in in the Project server pane; the project opens afterwards	Войдите в панели «Сервер проектов»; затем проект откроется
+Sign in…	Войти…
 Signed in to {} as {}	Вход в {} выполнен как {}
 Signed out of Vault	Выход из Vault выполнен
 Single-line	Однолинейный
@@ -1860,6 +1894,7 @@ The items are selected and moved together	Элементы выделяются 
 The macro library has no page macros (Macros › Save page as macro…).	В библиотеке макросов нет макросов листов (Макросы › Сохранить лист как макрос…).
 The modules no string takes yet in series, on the first inverter	Модули, не занятые ни одной цепочкой, последовательно, на первом инверторе
 The names of its pages follow	Имена его листов меняются вместе с ним
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Открытый проект – локальная копия восстановления. Его изменения не сохранены на сервере проектов; перед открытием общего проекта вы решаете, сохранить их локально или отбросить.
 The page name gets the section number	Имя листа получает номер раздела
 The page type, plot frame, title block, structure, description and the whole content are saved.	Сохраняются тип листа, рамка, основная надпись, структура, описание и всё содержимое.
 The pages it generated stay	Созданные им листы остаются
@@ -1868,6 +1903,8 @@ The point's coordinates in the coordinate reference system	Координаты 
 The project changed since the search.	Проект изменился после поиска.
 The project check	Проверка проекта
 The project database needs the desktop version: the browser cannot search folders.	Для базы данных проектов требуется настольная версия: браузер не может просматривать папки.
+The project server does not answer: changes are not saved on it until the connection is back	Сервер проектов не отвечает: изменения не сохраняются на нём, пока соединение не восстановится
+The project server {} could not open {}.	Сервер проектов {} не смог открыть {}.
 The project's own page templates as a file	Собственные шаблоны листов проекта в виде файла
 The project's own title blocks	Собственные основные надписи проекта
 The project's own title blocks and report schemes	Собственные основные надписи и схемы отчётов проекта
@@ -2272,6 +2309,7 @@ x y	x y
 {} pages get a new name	Листов с новым именем: {}
 {} pages removed, {} pages generated	Удалено листов: {}, создано листов: {}
 {} pages renamed	Переименовано листов: {}
+{} pages, users: {}	Страниц: {}, пользователи: {}
 {} pages; their names start with {}	Листов: {}; их имена начинаются с {}
 {} parts added to the database	Добавлено изделий в базу данных: {}
 {} parts of the database updated – synchronize the project parts in parts management	Обновлено изделий базы данных: {} – синхронизируйте изделия проекта в управлении изделиями

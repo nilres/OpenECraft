@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Un cablu de tipul mag
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Un decupaj de aceeași dimensiune în același loc în peretele lateral al vecinului: împreună formează o trecere de cabluri
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Un fișier cu același nume din folder primește o versiune nouă (check-out și check-in), altfel fișierul este adăugat
 A level on top of the highest one	Un nivel deasupra celui mai înalt
+A local file opens locally, a server project is opened on the project server again	Un fișier local se deschide local, un proiect de pe server este redeschis pe serverul de proiecte
+A local file or a project on the project server	Un fișier local sau un proiect de pe serverul de proiecte
 A new project	Un proiect nou
 A new release is downloaded in the background and installed when you close OpenECraft.	O versiune nouă se descarcă în fundal și se instalează când închideți OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	O versiune nouă se descarcă în fundal și înlocuiește această instalare; este folosită de la următoarea pornire.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	O secțiune numerotată care conține pagini ca un director; numele paginilor încep cu numărul ei (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Un profil mapează câmpurile neutre la numele de coloane ale unui anumit sistem (de ex. MATNR pentru numărul ERP în SAP). Fără mapare, sunt recunoscute numele uzuale în engleză și germană.
 A project definition based on this one, with its own defaults and scheme	O definiție de proiect bazată pe aceasta, cu propriile valori implicite și schemă
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	În schimb se deschide un fișier de proiect deschis din managerul de fișiere. Modificările nesalvate ale ultimei sesiuni nu sunt niciodată renunțate fără întrebare.
 A reference point at the origin of the plant	Un punct de referință în originea instalației
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Un bloc de raport generează paginile unui raport, de ex. o schemă de borne pentru fiecare șir, și le actualizează.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	O pagină de schemă 3.1, 3.2, … după pagina curentă, păstrată ca subpagină la renumerotare
@@ -279,7 +282,9 @@ Choices	Opțiuni de alegere
 Choices (separated by commas)	Opțiuni de alegere (separate prin virgule)
 Choose	Alegeți
 Choose a baseline, a revision or a project file to compare the project with.	Alegeți o versiune de referință, o revizie sau un fișier de proiect cu care să comparați proiectul.
+Choose a project on every start: local files and projects of the project server	Alege un proiect la fiecare pornire: fișiere locale și proiecte ale serverului de proiecte
 Choose a room first: floor-standing parts go on its floor.	Alegeți mai întâi o încăpere: articolele care stau pe pardoseală se pun pe pardoseala ei.
+Choose another project	Alege alt proiect
 Choose file…	Alegere fișier…
 Choose pages	Alegere pagini
 Chooses the pages whose structure starts with this	Alege paginile a căror structură începe cu aceasta
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Conexiunile ale căror amb
 Connections without a defined potential	Conexiuni fără potențial definit
 Connectors	Conectori
 Connects free connection points of the selected symbols with facing ones	Conectează punctele de conexiune libere ale simbolurilor selectate cu cele aflate față în față
+Connects to the project server and shows its projects, without the project of the last session	Se conectează la serverul de proiecte și îi afișează proiectele, fără proiectul ultimei sesiuni
 Consecutive addresses from the start byte, in schematic order	Adrese consecutive de la octetul de start, în ordinea din schemă
 Contact image below coils	Imaginea contactelor sub bobine
 Content	Conținut
@@ -744,6 +750,7 @@ Generic	Generic
 German zones (DIN 18015-3)	Zone germane (DIN 18015-3)
 Getting started	Primii pași
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Listă de variabile globale cu adrese directe pentru CODESYS, TwinCAT și altele
+Go on working locally; Save saves to a local file	Continuă lucrul local; Salvează salvează într-un fișier local
 Go to page	Salt la pagină
 Graphic line	Linie grafică
 Graphic rectangle	Dreptunghi grafic
@@ -945,6 +952,9 @@ Load template…	Încărcare șablon…
 Loading changes…	Se încarcă modificările…
 Loading the project access…	Se încarcă accesul la proiect…
 Loads	Consumatori
+Local file	Fișier local
+Local file: {}	Fișier local: {}
+Local recovery copy of server project: {}	Copie locală de recuperare a proiectului de pe server: {}
 Lock all	Blocare toate
 Lock all pages	Blocare toate paginile
 Lock current page	Blocare pagină curentă
@@ -1080,6 +1090,7 @@ New potential	Potențial nou
 New project	Proiect nou
 New project from template	Proiect nou din șablon
 New project scheme from the selected one	Schemă de proiect nouă din cea selectată
+New project, not saved yet	Proiect nou, încă nesalvat
 New report page	Pagină de raport nouă
 New request	Cerere nouă
 New revision	Revizie nouă
@@ -1164,6 +1175,7 @@ Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
 Not saved, locked or changed by another user: {}	Nesalvat, blocat sau modificat de alt utilizator: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Nu este proiectul partajat: modificările sunt salvate local până când este redeschis pe serverul de proiecte
 Nothing exchanged yet.	Încă nu s-a schimbat nimic.
 Nothing left in this list.	Nu a mai rămas nimic în această listă.
 Nothing to show	Nimic de afișat
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Din diametrul exterior, pozat fix
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Din diametrul exterior; țevile se curbează cu coturi de un diametru și jumătate
 Off	Dezactivat
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Decalajul de la un rând la următorul: în jos pentru liste, lateral pentru rânduri alăturate
+On startup	La pornire
 One row per label	Un rând per etichetă
 Only devices on the current page	Numai dispozitivele de pe pagina curentă
 Only frames no page uses can be deleted	Pot fi șterse doar chenarele pe care nu le folosește nicio pagină
@@ -1187,6 +1200,7 @@ Only messages of the current page	Numai mesajele paginii curente
 Only parts whose function template provides the device's main function	Doar articolele al căror șablon de funcție oferă funcția principală a dispozitivului
 Only rows that pass all filters are shown	Se afișează doar rândurile care trec de toate filtrele
 Only web and e-mail addresses (http, https, mailto) are links	Doar adresele web și de e-mail (http, https, mailto) sunt linkuri
+Open a specific project	Deschide un anumit proiect
 Open and save shared projects, lock pages	Deschiderea și salvarea proiectelor partajate, blocarea paginilor
 Open archive…	Deschidere arhivă…
 Open as project	Deschidere ca proiect
@@ -1195,7 +1209,9 @@ Open demo project	Deschidere proiect demonstrativ
 Open door	Deschidere ușă
 Open in a new page tab	Deschidere într-o filă de pagină nouă
 Open link	Deschide linkul
+Open local recovery copy	Deschide copia locală de recuperare
 Open project	Deschidere proiect
+Open project server	Deschide serverul de proiecte
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Deschideți proiecte și fișiere din Autodesk Vault, plasați proiectul, exporturile și modelele 3D în vault
 Open the project	Deschiderea proiectului
 Open to {}: wires cross beside the mounting plates	Deschis spre {}: conductoarele trec pe lângă plăcile de montaj
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Valoare impli
 Project file	Fișier de proiect
 Project file…	Fișier de proiect…
 Project information	Informații despre proiect
+Project on the project server	Proiect pe serverul de proiecte
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Articolele proiectului sunt copiile stocate în acest proiect; ele se folosesc pentru lista de materiale și verificarea proiectului.
 Project properties changed in {} projects	Proprietăți de proiect modificate în {} proiecte
 Project properties…	Proprietăți proiect…
 Project server	Server de proiecte
 Project server: {}	Server de proiecte: {}
+Project server: {} / Project: {}	Server de proiecte: {} / Proiect: {}
+Project server: {} / Project: {} – connection lost	Server de proiecte: {} / Proiect: {} – conexiune pierdută
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Textele proiectului (texte de funcție, descrieri de pagină, texte libere, descrieri) se scriu în limba sursă; dicționarul le traduce rând cu rând. Rapoartele și cartușele urmează limba de ieșire.
 Project: {}	Proiect: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Proiecte de la un prim circuit la o instalație întreagă, fiecare arată mai multe funcții
+Projects on the project server {}	Proiecte pe serverul de proiecte {}
+Projects on the server	Proiecte pe server
 Properties…	Proprietăți…
 Property database	Bază de date de proprietăți
 Property definitions	Definiții de proprietăți
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Renumerotare 1 … n
 Renumber contact	Renumerotare contact
 Renumber pages	Renumerotare pagini
 Renumber pages…	Renumerotare pagini…
+Reopen last project	Redeschide ultimul proiect
 Repair {} findings	Reparare {} constatări
 Replace	Înlocuire
 Replace all	Înlocuire totală
@@ -1527,6 +1549,7 @@ Reset to standard	Resetare la standard
 Restart and update	Repornește și actualizează
 Resulting: {} · {} · {} · {} m	Rezultat: {} · {} · {} · {} m
 Results of the project check	Rezultatele verificării proiectului
+Retry connection	Reîncearcă conexiunea
 Review	Comentarii
 Review ({})	Comentarii ({})
 Revision marks	Marcaje de revizie
@@ -1598,18 +1621,25 @@ Save as project template…	Salvare ca șablon de proiect…
 Save as scheme	Salvare ca schemă
 Save as template	Salvare ca șablon
 Save as template…	Salvare ca șablon…
+Save asks for a file	Salvează cere un fișier
 Save as…	Salvare ca…
 Save current page as template…	Salvare pagină curentă ca șablon…
 Save current…	Salvare curent…
 Save file…	Salvare fișier…
+Save locally	Salvează local
+Save locally to {}	Salvează local în {}
+Save locally; {} on the project server stays unchanged	Salvează local; {} de pe serverul de proiecte rămâne neschimbat
 Save page as macro…	Salvare pagină ca macro…
 Save page as template	Salvare pagină ca șablon
 Save page as template…	Salvare pagină ca șablon…
 Save selection as macro…	Salvare selecție ca macro…
 Save the box content as the macro in the library	Salvarea conținutului casetei ca macro în bibliotecă
 Save to project server	Salvare pe serverul de proiecte
+Save to project server: {}	Salvează pe serverul de proiecte: {}
+Save to project server: {} – the connection is lost, saving tries again	Salvează pe serverul de proiecte: {} – conexiunea s-a pierdut, salvarea încearcă din nou
 Save workspace	Salvare spațiu de lucru
 Save workspace…	Salvare spațiu de lucru…
+Saved to	Salvat în
 Saved to the project server (revision {})	Salvat pe serverul de proiecte (revizia {})
 Saved workspaces	Spații de lucru salvate
 Saves the placed properties as a placement scheme of the project	Salvează proprietățile plasate ca schemă de plasare a proiectului
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Punct și virgulă
 Separator	Separator
 Server URL	URL server
+Server address and sign-in	Adresa serverului și autentificare
 Server type	Tip de server
 Servers	Servere
 Service space in front	Spațiu de service în față
@@ -1705,6 +1736,7 @@ Show in schematic	Afișare în schemă
 Show in the schematic	Afișare în schemă
 Show on the pages	Afișare pe pagini
 Show or hide panes; drag a tab to dock it elsewhere	Afișare sau ascundere panouri; trageți o filă pentru a o andoca în altă parte
+Show project manager	Afișează managerul de proiecte
 Show the enclosures bayed to this one as well	Afișare și a carcaselor alăturate acesteia
 Show the messages accepted as checked	Afișare mesaje acceptate ca verificate
 Show the other wires	Afișare celelalte conductoare
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Afișat în cartușe cu {prop:Name}
 Shown instead of the measured value	Afișat în locul valorii măsurate
 Shows	Afișează
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Pereții laterali, peretele din spate, plafonul și baza văzute din exterior: ventilatoare, presetupe, decupaje
+Sign in in the Project server pane; the project opens afterwards	Autentificați-vă în panoul Server de proiecte; apoi proiectul se deschide
+Sign in…	Autentificare…
 Signed in to {} as {}	Conectat la {} ca {}
 Signed out of Vault	Deconectat de la Vault
 Single-line	Monofilar
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Elementele se selectează și se mută
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
 The names of its pages follow	Numele paginilor ei se schimbă odată cu ea
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Proiectul deschis este o copie locală de recuperare. Modificările sale nu sunt salvate pe serverul de proiecte; înainte ca proiectul partajat să se deschidă, decideți dacă le salvați local sau le renunțați.
 The page name gets the section number	Numele paginii primește numărul secțiunii
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
 The pages it generated stay	Paginile generate de acesta rămân
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Coordonatele punctulu
 The project changed since the search.	Proiectul s-a modificat de la căutare.
 The project check	Verificarea proiectului
 The project database needs the desktop version: the browser cannot search folders.	Baza de date de proiecte necesită versiunea desktop: browserul nu poate căuta în foldere.
+The project server does not answer: changes are not saved on it until the connection is back	Serverul de proiecte nu răspunde: modificările nu sunt salvate pe el până nu revine conexiunea
+The project server {} could not open {}.	Serverul de proiecte {} nu a putut deschide {}.
 The project's own page templates as a file	Șabloanele de pagină proprii ale proiectului ca fișier
 The project's own title blocks	Cartușele proprii ale proiectului
 The project's own title blocks and report schemes	Cartușele și schemele de raport proprii ale proiectului
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} pagini primesc un nume nou
 {} pages removed, {} pages generated	{} pagini eliminate, {} pagini generate
 {} pages renamed	{} pagini redenumite
+{} pages, users: {}	{} pagini, utilizatori: {}
 {} pages; their names start with {}	{} pagini; numele lor încep cu {}
 {} parts added to the database	S-au adăugat {} articole în baza de date
 {} parts of the database updated – synchronize the project parts in parts management	{} articole din baza de date actualizate – sincronizați articolele proiectului în administrarea articolelor

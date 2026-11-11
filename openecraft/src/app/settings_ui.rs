@@ -22,6 +22,7 @@ pub(super) enum Node {
     ProjectTools,
     Appearance,
     Navigation,
+    Startup,
     Shortcuts,
     Ribbon,
     Servers,
@@ -30,7 +31,7 @@ pub(super) enum Node {
 
 impl Node {
     const PROJECT: [Node; 7] = [Node::WireNumbering, Node::CrossReferences, Node::Wires, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
-    const USER: [Node; 6] = [Node::Appearance, Node::Navigation, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
+    const USER: [Node; 7] = [Node::Appearance, Node::Navigation, Node::Startup, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
 
     fn title(self) -> &'static str {
         match self {
@@ -43,6 +44,7 @@ impl Node {
             Node::ProjectTools => tr("Further project settings"),
             Node::Appearance => tr("Appearance"),
             Node::Navigation => tr("Navigation"),
+            Node::Startup => tr("On startup"),
             Node::Shortcuts => tr("Keyboard shortcuts"),
             Node::Ribbon => tr("Ribbon"),
             Node::Servers => tr("Servers"),
@@ -122,6 +124,7 @@ impl App {
                     Node::ProjectTools => self.project_tool_links(ui),
                     Node::Appearance => self.appearance_settings(ui),
                     Node::Navigation => self.navigation_settings(ui),
+                    Node::Startup => self.startup_settings(ui),
                     Node::Shortcuts => self.shortcut_settings(ui),
                     Node::Ribbon => self.ribbon_settings(ui),
                     Node::Servers => self.server_links(ui),
@@ -174,6 +177,84 @@ impl App {
                     ui.weak(tr(d.tip));
                 }
             });
+        }
+    }
+
+    /// What opens when the editor starts: the start page, the last project, the project
+    /// server or a chosen local file or server project.
+    fn startup_settings(&mut self, ui: &mut egui::Ui) {
+        use crate::startup::{ServerProject, Startup, Target, MODES};
+        let local = FileIo::can_save_in_place();
+        ui.weak(tr("A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking."));
+        ui.add_space(4.0);
+        let mode = self.shell.startup.mode();
+        for (m, title, tip) in MODES {
+            if ui.radio(mode == m, tr(title)).clicked() {
+                // A specific project starts as the open one.
+                let target = match (self.remote.project(), &self.session.file_name) {
+                    (Some(p), _) => Target::Server(p),
+                    (None, Some(f)) if local => Target::File(f.clone()),
+                    _ => Target::Server(ServerProject { url: self.remote.url.clone(), name: String::new() }),
+                };
+                self.shell.startup.set_mode(m, target);
+            }
+            ui.indent(("startup_tip", title), |ui| ui.weak(tr(tip)));
+        }
+        let Startup::Project(target) = &mut self.shell.startup else { return };
+        ui.separator();
+        ui.horizontal(|ui| {
+            let file = matches!(target, Target::File(_));
+            if local && ui.radio(file, tr("Local file")).clicked() && !file {
+                *target = Target::File(self.session.file_name.clone().unwrap_or_default());
+            }
+            if ui.radio(!file, tr("Project on the project server")).clicked() && file {
+                *target = Target::Server(ServerProject { url: self.remote.url.clone(), name: String::new() });
+            }
+        });
+        let mut list = false;
+        egui::Grid::new("startup_target").num_columns(2).spacing([12.0, 6.0]).show(ui, |ui| match target {
+            Target::File(path) => {
+                ui.label(tr("File"));
+                ui.horizontal(|ui| {
+                    ui.add(egui::TextEdit::singleline(path).desired_width(360.0));
+                    let r = ui.add_enabled(!self.recent.is_empty(), egui::Button::new(tr("Recent projects")));
+                    egui::Popup::menu(&r).show(|ui| {
+                        for p in &self.recent {
+                            if ui.button(p.as_str()).clicked() {
+                                *path = p.clone();
+                            }
+                        }
+                    });
+                });
+                ui.end_row();
+            }
+            Target::Server(p) => {
+                ui.label(tr("Server"));
+                ui.add(egui::TextEdit::singleline(&mut p.url).desired_width(360.0));
+                ui.end_row();
+                ui.label(tr("Project"));
+                ui.horizontal(|ui| {
+                    ui.add(egui::TextEdit::singleline(&mut p.name).desired_width(200.0).hint_text(tr("Name on the server")));
+                    let r = ui.add_enabled(!self.remote.projects.is_empty(), egui::Button::new(tr("Projects on the server")));
+                    egui::Popup::menu(&r).show(|ui| {
+                        for s in &self.remote.projects {
+                            if ui.button(s.name.as_str()).clicked() {
+                                p.name = s.name.clone();
+                            }
+                        }
+                    });
+                    list = icons::button(ui, Icon::Rotate, tr("List projects")).clicked();
+                });
+                ui.end_row();
+            }
+        });
+        if list {
+            if let Startup::Project(Target::Server(p)) = &self.shell.startup {
+                if self.remote.shared.is_none() {
+                    self.remote.url = p.url.clone();
+                }
+            }
+            self.remote.list();
         }
     }
 

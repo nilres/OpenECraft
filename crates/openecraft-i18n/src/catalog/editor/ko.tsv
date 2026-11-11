@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	케이블이 없는 �
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	인접 외함 측벽의 같은 위치에 있는 같은 크기의 컷아웃: 함께 케이블 통로를 이룹니다
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	폴더에 같은 이름의 파일이 있으면 새 버전이 생성되고(체크 아웃 후 체크 인), 그렇지 않으면 파일이 추가됩니다
 A level on top of the highest one	가장 높은 층 위의 층
+A local file opens locally, a server project is opened on the project server again	로컬 파일은 로컬에서 열리고, 서버 프로젝트는 프로젝트 서버에서 다시 열립니다
+A local file or a project on the project server	로컬 파일 또는 프로젝트 서버의 프로젝트
 A new project	새 프로젝트
 A new release is downloaded in the background and installed when you close OpenECraft.	새 릴리스는 백그라운드에서 다운로드되며 OpenECraft를 닫으면 설치됩니다.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	새 릴리스는 백그라운드에서 다운로드되어 이 설치를 대체하며, 다음 실행부터 사용됩니다.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	폴더처럼 페이지를 담는 번호 매긴 구역입니다. 페이지 이름은 그 번호로 시작합니다 (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	프로필은 중립 필드를 특정 시스템의 열 이름에 매핑합니다(예: SAP에서 ERP 번호의 MATNR). 매핑이 없으면 일반적인 영어 및 독일어 이름이 인식됩니다.
 A project definition based on this one, with its own defaults and scheme	이 정의를 기반으로 고유 기본값과 스키마를 가진 프로젝트 정의
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	대신 파일 관리자에서 연 프로젝트 파일이 열립니다. 마지막 세션의 저장되지 않은 변경 사항은 확인 없이 버려지지 않습니다.
 A reference point at the origin of the plant	설비 원점의 기준점
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	보고서 블록은 보고서의 페이지(예: 단자대별 단자 다이어그램 하나)를 생성하고 업데이트합니다.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	현재 페이지 다음의 회로도 페이지 3.1, 3.2, …(번호를 다시 매길 때 하위 페이지로 유지됨)
@@ -275,7 +278,9 @@ Choices	선택 항목
 Choices (separated by commas)	선택 항목(쉼표로 구분)
 Choose	선택
 Choose a baseline, a revision or a project file to compare the project with.	프로젝트와 비교할 기준선, 개정 또는 프로젝트 파일을 선택하세요.
+Choose a project on every start: local files and projects of the project server	시작할 때마다 프로젝트 선택: 로컬 파일과 프로젝트 서버의 프로젝트
 Choose a room first: floor-standing parts go on its floor.	먼저 방을 선택하십시오: 바닥 설치형 부품은 방 바닥에 설치합니다.
+Choose another project	다른 프로젝트 선택
 Choose file…	파일 선택…
 Choose pages	페이지 선택
 Chooses the pages whose structure starts with this	구조가 이 값으로 시작하는 페이지를 선택합니다
@@ -372,6 +377,7 @@ Connections whose two ends are both on selected wires	양쪽 끝이 모두 선�
 Connections without a defined potential	정의된 전위가 없는 연결
 Connectors	커넥터
 Connects free connection points of the selected symbols with facing ones	선택한 심볼의 빈 연결 지점을 마주 보는 연결 지점과 연결합니다
+Connects to the project server and shows its projects, without the project of the last session	프로젝트 서버에 연결하여 프로젝트를 표시합니다. 마지막 세션의 프로젝트는 열지 않습니다
 Consecutive addresses from the start byte, in schematic order	시작 바이트부터 회로도 순서대로 연속된 주소
 Contact image below coils	코일 아래 접점 이미지
 Content	내용
@@ -734,6 +740,7 @@ Generic	일반
 German zones (DIN 18015-3)	독일 구역 (DIN 18015-3)
 Getting started	시작하기
 Global variable list with direct addresses for CODESYS, TwinCAT and others	CODESYS, TwinCAT 등을 위한 직접 주소가 포함된 전역 변수 목록
+Go on working locally; Save saves to a local file	로컬에서 계속 작업. 저장은 로컬 파일에 저장합니다
 Go to page	페이지로 이동
 Graphic line	그래픽 선
 Graphic rectangle	그래픽 사각형
@@ -931,6 +938,9 @@ Load template…	템플릿 로드…
 Loading changes…	변경 내용 로드 중…
 Loading the project access…	프로젝트 액세스를 로드하는 중…
 Loads	부하
+Local file	로컬 파일
+Local file: {}	로컬 파일: {}
+Local recovery copy of server project: {}	서버 프로젝트의 로컬 복구 사본: {}
 Lock all	모두 잠금
 Lock all pages	모든 페이지 잠금
 Lock current page	현재 페이지 잠금
@@ -1065,6 +1075,7 @@ New potential	새 전위
 New project	새 프로젝트
 New project from template	템플릿에서 새 프로젝트
 New project scheme from the selected one	선택한 스키마에서 새 프로젝트 스키마
+New project, not saved yet	새 프로젝트, 아직 저장되지 않음
 New report page	새 보고서 페이지
 New request	새 요청
 New revision	새 개정
@@ -1148,6 +1159,7 @@ Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
 Not saved, locked or changed by another user: {}	저장되지 않음, 다른 사용자가 잠그거나 변경함: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	공유 프로젝트가 아닙니다: 프로젝트 서버에서 다시 열 때까지 변경 사항은 로컬에 저장됩니다
 Nothing exchanged yet.	아직 교환된 내용이 없습니다.
 Nothing left in this list.	이 목록에 남은 항목이 없습니다.
 Nothing to show	표시할 항목 없음
@@ -1164,6 +1176,7 @@ Of the outer diameter, as laid fixed	외경의 배수, 고정 포설 시
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	외경의 배수. 배관은 직경 1.5배의 곡관으로 굽힘
 Off	끄기
 Offset from one row to the next: downwards for lists, sideways for rows side by side	한 행에서 다음 행까지의 오프셋: 목록은 아래쪽, 나란히 놓인 행은 옆쪽
+On startup	시작할 때
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
 Only frames no page uses can be deleted	어떤 페이지도 사용하지 않는 프레임만 삭제할 수 있습니다
@@ -1171,6 +1184,7 @@ Only messages of the current page	현재 페이지의 메시지만
 Only parts whose function template provides the device's main function	기능 템플릿이 장치의 주 기능을 제공하는 부품만
 Only rows that pass all filters are shown	모든 필터를 통과한 행만 표시됩니다
 Only web and e-mail addresses (http, https, mailto) are links	웹 주소와 이메일 주소(http, https, mailto)만 링크가 될 수 있습니다
+Open a specific project	특정 프로젝트 열기
 Open and save shared projects, lock pages	공유 프로젝트 열기 및 저장, 페이지 잠금
 Open archive…	아카이브 열기…
 Open as project	프로젝트로 열기
@@ -1179,7 +1193,9 @@ Open demo project	데모 프로젝트 열기
 Open door	도어 열기
 Open in a new page tab	새 페이지 탭에서 열기
 Open link	링크 열기
+Open local recovery copy	로컬 복구 사본 열기
 Open project	프로젝트 열기
+Open project server	프로젝트 서버 열기
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault에서 프로젝트와 파일을 열고, 프로젝트, 내보내기 및 3D 모델을 Vault에 넣습니다
 Open the project	프로젝트 열기
 Open to {}: wires cross beside the mounting plates	{}(으)로 개방됨: 전선이 장착 플레이트 옆으로 지나감
@@ -1380,14 +1396,19 @@ Project default; pages can choose their own in the page properties	프로젝트 
 Project file	프로젝트 파일
 Project file…	프로젝트 파일…
 Project information	프로젝트 정보
+Project on the project server	프로젝트 서버의 프로젝트
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	프로젝트 부품은 이 프로젝트에 저장된 복사본으로, 자재 명세서와 프로젝트 검사에 사용됩니다.
 Project properties changed in {} projects	프로젝트 {}개의 프로젝트 속성을 변경했습니다
 Project properties…	프로젝트 속성…
 Project server	프로젝트 서버
 Project server: {}	프로젝트 서버: {}
+Project server: {} / Project: {}	프로젝트 서버: {} / 프로젝트: {}
+Project server: {} / Project: {} – connection lost	프로젝트 서버: {} / 프로젝트: {} – 연결 손실
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	프로젝트 텍스트(기능 텍스트, 페이지 설명, 자유 텍스트, 설명)는 원본 언어로 작성되며, 사전이 줄 단위로 번역합니다. 보고서와 표제란은 출력 언어를 따릅니다.
 Project: {}	프로젝트: {}
 Projects from a first circuit to a whole plant, each showing more of the features	첫 회로부터 전체 플랜트까지의 프로젝트, 각각 더 많은 기능을 표시합니다
+Projects on the project server {}	프로젝트 서버 {}의 프로젝트
+Projects on the server	서버의 프로젝트
 Properties…	속성…
 Property database	속성 데이터베이스
 Property definitions	속성 정의
@@ -1472,6 +1493,7 @@ Renumber 1 … n	1 … n으로 번호 다시 지정
 Renumber contact	접점 번호 다시 지정
 Renumber pages	페이지 번호 다시 매기기
 Renumber pages…	페이지 번호 다시 매기기…
+Reopen last project	마지막 프로젝트 다시 열기
 Repair {} findings	결과 {}개 복구
 Replace	바꾸기
 Replace all	모두 바꾸기
@@ -1506,6 +1528,7 @@ Reset to standard	표준으로 재설정
 Restart and update	다시 시작하여 업데이트
 Resulting: {} · {} · {} · {} m	결과: {} · {} · {} · {} m
 Results of the project check	프로젝트 검사 결과
+Retry connection	연결 다시 시도
 Review	검토
 Review ({})	검토({})
 Revision marks	개정 표시
@@ -1577,18 +1600,25 @@ Save as project template…	프로젝트 템플릿으로 저장…
 Save as scheme	스키마로 저장
 Save as template	템플릿으로 저장
 Save as template…	템플릿으로 저장…
+Save asks for a file	저장 시 파일을 선택합니다
 Save as…	다른 이름으로 저장…
 Save current page as template…	현재 페이지를 템플릿으로 저장…
 Save current…	현재 작업 공간 저장…
 Save file…	파일 저장…
+Save locally	로컬에 저장
+Save locally to {}	로컬의 {}에 저장
+Save locally; {} on the project server stays unchanged	로컬에 저장. 프로젝트 서버의 {}은(는) 변경되지 않습니다
 Save page as macro…	페이지를 매크로로 저장…
 Save page as template	페이지를 템플릿으로 저장
 Save page as template…	페이지를 템플릿으로 저장…
 Save selection as macro…	선택 항목을 매크로로 저장…
 Save the box content as the macro in the library	박스 내용을 라이브러리에 매크로로 저장
 Save to project server	프로젝트 서버에 저장
+Save to project server: {}	프로젝트 서버에 저장: {}
+Save to project server: {} – the connection is lost, saving tries again	프로젝트 서버에 저장: {} – 연결이 손실되었습니다. 저장을 다시 시도합니다
 Save workspace	작업 공간 저장
 Save workspace…	작업 공간 저장…
+Saved to	저장 위치
 Saved to the project server (revision {})	프로젝트 서버에 저장됨(개정 {})
 Saved workspaces	저장된 작업 공간
 Saves the placed properties as a placement scheme of the project	배치된 속성을 프로젝트의 배치 스키마로 저장합니다
@@ -1645,6 +1675,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	세미콜론
 Separator	분리기
 Server URL	서버 URL
+Server address and sign-in	서버 주소 및 로그인
 Server type	서버 유형
 Servers	서버
 Service space in front	전면 서비스 공간
@@ -1683,6 +1714,7 @@ Show in schematic	회로도에서 표시
 Show in the schematic	회로도에서 표시
 Show on the pages	페이지에 표시
 Show or hide panes; drag a tab to dock it elsewhere	창 표시 또는 숨기기. 탭을 끌어 다른 곳에 도킹합니다
+Show project manager	프로젝트 관리자 표시
 Show the enclosures bayed to this one as well	이 외함에 결합된 외함도 표시
 Show the messages accepted as checked	확인됨으로 승인된 메시지 표시
 Show the other wires	다른 전선 표시
@@ -1695,6 +1727,8 @@ Shown in title blocks with {prop:Name}	표제란에 {prop:Name}으로 표시됨
 Shown instead of the measured value	측정값 대신 표시됨
 Shows	표시
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	밖에서 본 측벽, 후면벽, 지붕 및 바닥: 팬, 케이블 글랜드, 컷아웃
+Sign in in the Project server pane; the project opens afterwards	프로젝트 서버 창에서 로그인하세요. 이후 프로젝트가 열립니다
+Sign in…	로그인…
 Signed in to {} as {}	{}에 {}(으)로 로그인됨
 Signed out of Vault	Vault에서 로그아웃됨
 Single-line	단선
@@ -1838,6 +1872,7 @@ The items are selected and moved together	항목이 함께 선택되고 이동�
 The macro library has no page macros (Macros › Save page as macro…).	매크로 라이브러리에 페이지 매크로가 없습니다(매크로 › 페이지를 매크로로 저장…).
 The modules no string takes yet in series, on the first inverter	아직 어느 스트링에도 속하지 않은 모듈을 직렬로, 첫 번째 인버터에
 The names of its pages follow	페이지 이름도 함께 변경됩니다
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	열린 프로젝트는 로컬 복구 사본입니다. 변경 사항은 프로젝트 서버에 저장되지 않았습니다. 공유 프로젝트를 열기 전에 로컬에 저장할지 버릴지 결정합니다.
 The page name gets the section number	페이지 이름에 구역 번호가 붙습니다
 The page type, plot frame, title block, structure, description and the whole content are saved.	페이지 유형, 플롯 프레임, 표제란, 구조, 설명 및 전체 내용이 저장됩니다.
 The pages it generated stay	생성된 페이지는 유지됩니다
@@ -1846,6 +1881,8 @@ The point's coordinates in the coordinate reference system	좌표 참조계에�
 The project changed since the search.	검색 이후 프로젝트가 변경되었습니다.
 The project check	프로젝트 검사
 The project database needs the desktop version: the browser cannot search folders.	프로젝트 데이터베이스에는 데스크톱 버전이 필요합니다. 브라우저에서는 폴더를 검색할 수 없습니다.
+The project server does not answer: changes are not saved on it until the connection is back	프로젝트 서버가 응답하지 않습니다: 연결이 돌아올 때까지 변경 사항이 서버에 저장되지 않습니다
+The project server {} could not open {}.	프로젝트 서버 {}에서 {}을(를) 열 수 없습니다.
 The project's own page templates as a file	프로젝트 고유 페이지 템플릿(파일)
 The project's own title blocks	프로젝트 고유 표제란
 The project's own title blocks and report schemes	프로젝트 고유 표제란 및 보고서 스키마
@@ -2241,6 +2278,7 @@ x y	x y
 {} pages get a new name	페이지 {}개에 새 이름이 지정됩니다
 {} pages removed, {} pages generated	페이지 {}개 제거됨, 페이지 {}개 생성됨
 {} pages renamed	페이지 {}개의 이름을 바꿨습니다
+{} pages, users: {}	{}페이지, 사용자: {}
 {} pages; their names start with {}	{}개 페이지, 이름은 {}(으)로 시작합니다
 {} parts added to the database	부품 {}개가 데이터베이스에 추가됨
 {} parts of the database updated – synchronize the project parts in parts management	데이터베이스의 부품 {}개를 업데이트했습니다. 부품 관리에서 프로젝트 부품을 동기화하세요

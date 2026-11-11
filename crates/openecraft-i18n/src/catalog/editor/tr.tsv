@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Kablosu olmayan her b
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Komşunun yan duvarında aynı yerde aynı boyutta bir kesim: birlikte bir kablo geçişi oluştururlar
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Klasörde aynı adlı bir dosya varsa yeni bir sürüm alır (kullanıma alınıp iade edilir), aksi halde dosya eklenir
 A level on top of the highest one	En üsttekinin üzerine bir kat
+A local file opens locally, a server project is opened on the project server again	Yerel bir dosya yerel olarak açılır, sunucu projesi proje sunucusunda yeniden açılır
+A local file or a project on the project server	Yerel bir dosya veya proje sunucusundaki bir proje
 A new project	Yeni bir proje
 A new release is downloaded in the background and installed when you close OpenECraft.	Yeni bir sürüm arka planda indirilir ve OpenECraft'ı kapattığınızda yüklenir.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Yeni bir sürüm arka planda indirilir ve bu kurulumun yerini alır; bir sonraki başlatmadan itibaren kullanılır.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Sayfaları bir klasör gibi içeren numaralı bir bölüm; sayfa adları onun numarasıyla başlar (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Profil, nötr alanları belirli bir sistemin sütun adlarıyla eşler (ör. SAP'de ERP numarası için MATNR). Eşleme yoksa İngilizce ve Almanca yaygın adlar tanınır.
 A project definition based on this one, with its own defaults and scheme	Kendi varsayılanları ve şemasıyla bu tanıma dayanan bir proje tanımı
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Bunun yerine dosya yöneticisinden açılan proje dosyası açılır. Son oturumun kaydedilmemiş değişiklikleri sormadan asla atılmaz.
 A reference point at the origin of the plant	Tesisin orijininde bir referans noktası
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Rapor bloğu, bir raporun sayfalarını oluşturur (ör. şerit başına bir klemens şeması) ve bunları günceller.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Geçerli sayfadan sonra 3.1, 3.2, … şeklinde bir şema sayfası; yeniden numaralandırmada alt sayfa olarak kalır
@@ -279,7 +282,9 @@ Choices	Seçenekler
 Choices (separated by commas)	Seçenekler (virgülle ayrılmış)
 Choose	Seç
 Choose a baseline, a revision or a project file to compare the project with.	Projeyi karşılaştırmak için bir referans sürüm, bir revizyon veya bir proje dosyası seçin.
+Choose a project on every start: local files and projects of the project server	Her başlangıçta bir proje seç: yerel dosyalar ve proje sunucusunun projeleri
 Choose a room first: floor-standing parts go on its floor.	Önce bir oda seçin: zemine konan parçalar onun zeminine yerleştirilir.
+Choose another project	Başka bir proje seç
 Choose file…	Dosya seç…
 Choose pages	Sayfaları seç
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	İki ucu da seçili teller
 Connections without a defined potential	Tanımlı potansiyeli olmayan bağlantılar
 Connectors	Konnektörler
 Connects free connection points of the selected symbols with facing ones	Seçili sembollerin boş bağlantı noktalarını karşılarındakilerle bağlar
+Connects to the project server and shows its projects, without the project of the last session	Proje sunucusuna bağlanır ve projelerini gösterir, son oturumun projesi olmadan
 Consecutive addresses from the start byte, in schematic order	Başlangıç baytından itibaren şema sırasına göre ardışık adresler
 Contact image below coils	Bobinlerin altında kontak görüntüsü
 Content	İçerik
@@ -744,6 +750,7 @@ Generic	Genel
 German zones (DIN 18015-3)	Alman bölgeleri (DIN 18015-3)
 Getting started	Başlarken
 Global variable list with direct addresses for CODESYS, TwinCAT and others	CODESYS, TwinCAT ve diğerleri için doğrudan adresli genel değişken listesi
+Go on working locally; Save saves to a local file	Yerel olarak çalışmaya devam et; Kaydet yerel bir dosyaya kaydeder
 Go to page	Sayfaya git
 Graphic line	Grafik çizgi
 Graphic rectangle	Grafik dikdörtgen
@@ -945,6 +952,9 @@ Load template…	Şablon yükle…
 Loading changes…	Değişiklikler yükleniyor…
 Loading the project access…	Proje erişimi yükleniyor…
 Loads	Yükler
+Local file	Yerel dosya
+Local file: {}	Yerel dosya: {}
+Local recovery copy of server project: {}	Sunucu projesinin yerel kurtarma kopyası: {}
 Lock all	Tümünü kilitle
 Lock all pages	Tüm sayfaları kilitle
 Lock current page	Geçerli sayfayı kilitle
@@ -1080,6 +1090,7 @@ New potential	Yeni potansiyel
 New project	Yeni proje
 New project from template	Şablondan yeni proje
 New project scheme from the selected one	Seçili şemadan yeni proje şeması
+New project, not saved yet	Yeni proje, henüz kaydedilmedi
 New report page	Yeni rapor sayfası
 New request	Yeni talep
 New revision	Yeni revizyon
@@ -1164,6 +1175,7 @@ Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
 Not saved, locked or changed by another user: {}	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Paylaşılan proje değil: proje sunucusunda yeniden açılana kadar değişiklikler yerel olarak kaydedilir
 Nothing exchanged yet.	Henüz hiçbir şey değiş tokuş edilmedi.
 Nothing left in this list.	Bu listede bir şey kalmadı.
 Nothing to show	Gösterilecek bir şey yok
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Dış çapın katı, sabit döşemede
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Dış çapın katı; borular bir buçuk çaplık dirseklerle bükülür
 Off	Kapalı
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Bir satırdan sonrakine kaydırma: listeler için aşağı doğru, yan yana satırlar için yana doğru
+On startup	Başlangıçta
 One row per label	Etiket başına bir satır
 Only devices on the current page	Yalnızca geçerli sayfadaki cihazlar
 Only frames no page uses can be deleted	Yalnızca hiçbir sayfanın kullanmadığı çerçeveler silinebilir
@@ -1187,6 +1200,7 @@ Only messages of the current page	Yalnızca geçerli sayfanın mesajları
 Only parts whose function template provides the device's main function	Yalnızca fonksiyon şablonu cihazın ana fonksiyonunu sağlayan parçalar
 Only rows that pass all filters are shown	Yalnızca tüm filtrelerden geçen satırlar gösterilir
 Only web and e-mail addresses (http, https, mailto) are links	Yalnızca web ve e-posta adresleri (http, https, mailto) bağlantı olabilir
+Open a specific project	Belirli bir proje aç
 Open and save shared projects, lock pages	Paylaşılan projeleri aç ve kaydet, sayfaları kilitle
 Open archive…	Arşiv aç…
 Open as project	Proje olarak aç
@@ -1195,7 +1209,9 @@ Open demo project	Demo projeyi aç
 Open door	Kapıyı aç
 Open in a new page tab	Yeni bir sayfa sekmesinde aç
 Open link	Bağlantıyı aç
+Open local recovery copy	Yerel kurtarma kopyasını aç
 Open project	Proje aç
+Open project server	Proje sunucusunu aç
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault'tan proje ve dosya açın, projeyi, dışa aktarımları ve 3D modelleri kasaya koyun
 Open the project	Projeyi aç
 Open to {}: wires cross beside the mounting plates	{} tarafına açık: teller montaj plakalarının yanından geçer
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Proje varsay�
 Project file	Proje dosyası
 Project file…	Proje dosyası…
 Project information	Proje bilgileri
+Project on the project server	Proje sunucusundaki proje
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Proje parçaları bu projede saklanan kopyalardır; malzeme listesi ve proje kontrolü için kullanılırlar.
 Project properties changed in {} projects	{} projede proje özellikleri değiştirildi
 Project properties…	Proje özellikleri…
 Project server	Proje sunucusu
 Project server: {}	Proje sunucusu: {}
+Project server: {} / Project: {}	Proje sunucusu: {} / Proje: {}
+Project server: {} / Project: {} – connection lost	Proje sunucusu: {} / Proje: {} – bağlantı kesildi
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Proje metinleri (fonksiyon metinleri, sayfa açıklamaları, serbest metinler, açıklamalar) kaynak dilde yazılır; sözlük bunları satır satır çevirir. Raporlar ve antetler çıktı dilini izler.
 Project: {}	Proje: {}
 Projects from a first circuit to a whole plant, each showing more of the features	İlk devreden tüm tesise kadar projeler; her biri özelliklerin daha fazlasını gösterir
+Projects on the project server {}	{} proje sunucusundaki projeler
+Projects on the server	Sunucudaki projeler
 Properties…	Özellikler…
 Property database	Özellik veritabanı
 Property definitions	Özellik tanımları
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Yeniden numaralandır 1 … n
 Renumber contact	Kontağı yeniden numaralandır
 Renumber pages	Sayfaları yeniden numaralandır
 Renumber pages…	Sayfaları yeniden numaralandır…
+Reopen last project	Son projeyi yeniden aç
 Repair {} findings	{} bulguyu onar
 Replace	Değiştir
 Replace all	Tümünü değiştir
@@ -1527,6 +1549,7 @@ Reset to standard	Standarda sıfırla
 Restart and update	Yeniden başlat ve güncelle
 Resulting: {} · {} · {} · {} m	Sonuç: {} · {} · {} · {} m
 Results of the project check	Proje kontrolünün sonuçları
+Retry connection	Bağlantıyı yeniden dene
 Review	İnceleme
 Review ({})	İnceleme ({})
 Revision marks	Revizyon işaretleri
@@ -1598,18 +1621,25 @@ Save as project template…	Proje şablonu olarak kaydet…
 Save as scheme	Şema olarak kaydet
 Save as template	Şablon olarak kaydet
 Save as template…	Şablon olarak kaydet…
+Save asks for a file	Kaydet bir dosya sorar
 Save as…	Farklı kaydet…
 Save current page as template…	Geçerli sayfayı şablon olarak kaydet…
 Save current…	Geçerli olanı kaydet…
 Save file…	Dosyayı kaydet…
+Save locally	Yerel olarak kaydet
+Save locally to {}	Yerel olarak {} dosyasına kaydet
+Save locally; {} on the project server stays unchanged	Yerel olarak kaydet; proje sunucusundaki {} değişmez
 Save page as macro…	Sayfayı makro olarak kaydet…
 Save page as template	Sayfayı şablon olarak kaydet
 Save page as template…	Sayfayı şablon olarak kaydet…
 Save selection as macro…	Seçimi makro olarak kaydet…
 Save the box content as the macro in the library	Kutu içeriğini kütüphanede makro olarak kaydet
 Save to project server	Proje sunucusuna kaydet
+Save to project server: {}	Proje sunucusuna kaydet: {}
+Save to project server: {} – the connection is lost, saving tries again	Proje sunucusuna kaydet: {} – bağlantı kesildi, kaydetme yeniden dener
 Save workspace	Çalışma alanını kaydet
 Save workspace…	Çalışma alanını kaydet…
+Saved to	Kaydedildiği yer
 Saved to the project server (revision {})	Proje sunucusuna kaydedildi (revizyon {})
 Saved workspaces	Kaydedilmiş çalışma alanları
 Saves the placed properties as a placement scheme of the project	Yerleştirilen özellikleri projenin bir yerleştirme şeması olarak kaydeder
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Noktalı virgül
 Separator	Ayırıcı
 Server URL	Sunucu URL'si
+Server address and sign-in	Sunucu adresi ve oturum açma
 Server type	Sunucu türü
 Servers	Sunucular
 Service space in front	Öndeki servis alanı
@@ -1705,6 +1736,7 @@ Show in schematic	Şemada göster
 Show in the schematic	Şemada göster
 Show on the pages	Sayfalarda göster
 Show or hide panes; drag a tab to dock it elsewhere	Panelleri göster veya gizle; başka yere yerleştirmek için bir sekmeyi sürükleyin
+Show project manager	Proje yöneticisini göster
 Show the enclosures bayed to this one as well	Buna yan yana bağlı panoları da göster
 Show the messages accepted as checked	Kontrol edildi olarak kabul edilen mesajları göster
 Show the other wires	Diğer telleri göster
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Antetlerde {prop:Name} ile gösterilir
 Shown instead of the measured value	Ölçülen değer yerine gösterilir
 Shows	Gösterir
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Dışarıdan görülen yan duvarlar, arka duvar, üst ve taban: fanlar, kablo rakorları, kesimler
+Sign in in the Project server pane; the project opens afterwards	Proje sunucusu bölmesinde oturum açın; proje ardından açılır
+Sign in…	Oturum aç…
 Signed in to {} as {}	{} üzerinde {} olarak oturum açıldı
 Signed out of Vault	Vault oturumu kapatıldı
 Single-line	Tek hatlı
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Öğeler birlikte seçilir ve taşın�
 The macro library has no page macros (Macros › Save page as macro…).	Makro kütüphanesinde sayfa makrosu yok (Makrolar › Sayfayı makro olarak kaydet…).
 The modules no string takes yet in series, on the first inverter	Henüz hiçbir dizinin almadığı modüller, seri olarak, ilk invertörde
 The names of its pages follow	Sayfalarının adları da değişir
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Açık proje yerel bir kurtarma kopyasıdır. Değişiklikleri proje sunucusuna kaydedilmedi; paylaşılan proje açılmadan önce bunları yerel olarak kaydetmeye veya atmaya siz karar verirsiniz.
 The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
 The pages it generated stay	Oluşturduğu sayfalar kalır
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Noktanın koordinat r
 The project changed since the search.	Proje aramadan bu yana değişti.
 The project check	Proje kontrolü
 The project database needs the desktop version: the browser cannot search folders.	Proje veritabanı için masaüstü sürümü gerekir: tarayıcı klasörlerde arama yapamaz.
+The project server does not answer: changes are not saved on it until the connection is back	Proje sunucusu yanıt vermiyor: bağlantı geri gelene kadar değişiklikler orada kaydedilmez
+The project server {} could not open {}.	Proje sunucusu {} şunu açamadı: {}.
 The project's own page templates as a file	Projenin kendi sayfa şablonları dosya olarak
 The project's own title blocks	Projenin kendi antetleri
 The project's own title blocks and report schemes	Projenin kendi antetleri ve rapor düzenleri
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} sayfa yeni ad alıyor
 {} pages removed, {} pages generated	{} sayfa kaldırıldı, {} sayfa oluşturuldu
 {} pages renamed	{} sayfa yeniden adlandırıldı
+{} pages, users: {}	{} sayfa, kullanıcılar: {}
 {} pages; their names start with {}	{} sayfa; adları {} ile başlar
 {} parts added to the database	Veritabanına {} parça eklendi
 {} parts of the database updated – synchronize the project parts in parts management	Veritabanında {} parça güncellendi – parça yönetiminde proje parçalarını eşitleyin

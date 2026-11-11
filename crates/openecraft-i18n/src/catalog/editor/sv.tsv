@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	En kabel av busstypen
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Ett urtag av samma storlek på samma ställe i grannens sidovägg: tillsammans bildar de en kabelgenomföring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samma namn i mappen får en ny version (utcheckad och incheckad), annars läggs filen till
 A level on top of the highest one	En våning ovanför den högsta
+A local file opens locally, a server project is opened on the project server again	En lokal fil öppnas lokalt, ett serverprojekt öppnas igen på projektservern
+A local file or a project on the project server	En lokal fil eller ett projekt på projektservern
 A new project	Ett nytt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version laddas ned i bakgrunden och installeras när du stänger OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version laddas ned i bakgrunden och ersätter den här installationen; den används från nästa start.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Ett numrerat avsnitt som innehåller sidor som en mapp; sidnamnen börjar med dess nummer (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	En profil mappar de neutrala fälten till kolumnnamnen i ett visst system (t.ex. MATNR för ERP-numret i SAP). Utan mappning identifieras vanliga engelska och tyska namn.
 A project definition based on this one, with its own defaults and scheme	En projektdefinition baserad på den här, med egna standardvärden och schema
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	En projektfil som öppnas från filhanteraren öppnas i stället. Osparade ändringar från senaste sessionen förkastas aldrig utan att fråga.
 A reference point at the origin of the plant	En referenspunkt i anläggningens origo
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Ett rapportblock genererar sidorna i en rapport, t.ex. ett plintschema per plintrad, och uppdaterar dem.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	En schemasida 3.1, 3.2, … efter den aktuella sidan, som förblir undersida vid omnumrering
@@ -279,7 +282,9 @@ Choices	Val
 Choices (separated by commas)	Val (åtskilda med kommatecken)
 Choose	Välj
 Choose a baseline, a revision or a project file to compare the project with.	Välj en baslinje, en revision eller en projektfil att jämföra projektet med.
+Choose a project on every start: local files and projects of the project server	Välj ett projekt vid varje start: lokala filer och projekt på projektservern
 Choose a room first: floor-standing parts go on its floor.	Välj först ett rum: golvstående artiklar ställs på dess golv.
+Choose another project	Välj ett annat projekt
 Choose file…	Välj fil…
 Choose pages	Välj sidor
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Förbindelser vars båda �
 Connections without a defined potential	Förbindelser utan definierad potential
 Connectors	Kontaktdon
 Connects free connection points of the selected symbols with facing ones	Ansluter lediga anslutningspunkter för de markerade symbolerna med motstående
+Connects to the project server and shows its projects, without the project of the last session	Ansluter till projektservern och visar dess projekt, utan projektet från senaste sessionen
 Consecutive addresses from the start byte, in schematic order	Löpande adresser från startbyten, i schemaordning
 Contact image below coils	Kontaktavbildning under spolar
 Content	Innehåll
@@ -744,6 +750,7 @@ Generic	Generisk
 German zones (DIN 18015-3)	Tyska zoner (DIN 18015-3)
 Getting started	Kom igång
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Global variabellista med direkta adresser för CODESYS, TwinCAT och andra
+Go on working locally; Save saves to a local file	Fortsätt arbeta lokalt; Spara sparar till en lokal fil
 Go to page	Gå till sidan
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
@@ -945,6 +952,9 @@ Load template…	Läs in mall…
 Loading changes…	Läser in ändringar…
 Loading the project access…	Läser in projektåtkomsten…
 Loads	Laster
+Local file	Lokal fil
+Local file: {}	Lokal fil: {}
+Local recovery copy of server project: {}	Lokal återställningskopia av serverprojekt: {}
 Lock all	Lås alla
 Lock all pages	Lås alla sidor
 Lock current page	Lås aktuell sida
@@ -1080,6 +1090,7 @@ New potential	Ny potential
 New project	Nytt projekt
 New project from template	Nytt projekt från mall
 New project scheme from the selected one	Nytt projektschema från det markerade
+New project, not saved yet	Nytt projekt, inte sparat än
 New report page	Ny rapportsida
 New request	Ny begäran
 New revision	Ny revision
@@ -1164,6 +1175,7 @@ Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
 Not saved, locked or changed by another user: {}	Inte sparat, låst eller ändrat av en annan användare: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Inte det delade projektet: ändringar sparas lokalt tills det öppnas på projektservern igen
 Nothing exchanged yet.	Inget har utbytts ännu.
 Nothing left in this list.	Inget kvar i den här listan.
 Nothing to show	Inget att visa
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Av ytterdiametern, fast förlagd
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Av ytterdiametern; rör böjs med böjar på en och en halv diameter
 Off	Av
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Förskjutning från en rad till nästa: nedåt för listor, åt sidan för rader bredvid varandra
+On startup	Vid start
 One row per label	En rad per etikett
 Only devices on the current page	Endast apparater på den aktuella sidan
 Only frames no page uses can be deleted	Endast ramar som ingen sida använder kan tas bort
@@ -1187,6 +1200,7 @@ Only messages of the current page	Endast meddelanden för den aktuella sidan
 Only parts whose function template provides the device's main function	Endast artiklar vars funktionsmall tillhandahåller apparatens huvudfunktion
 Only rows that pass all filters are shown	Endast rader som klarar alla filter visas
 Only web and e-mail addresses (http, https, mailto) are links	Endast webb- och e-postadresser (http, https, mailto) är länkar
+Open a specific project	Öppna ett visst projekt
 Open and save shared projects, lock pages	Öppna och spara delade projekt, lås sidor
 Open archive…	Öppna arkiv…
 Open as project	Öppna som projekt
@@ -1195,7 +1209,9 @@ Open demo project	Öppna demoprojekt
 Open door	Öppna dörren
 Open in a new page tab	Öppna i en ny sidflik
 Open link	Öppna länk
+Open local recovery copy	Öppna den lokala återställningskopian
 Open project	Öppna projekt
+Open project server	Öppna projektservern
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Öppna projekt och filer från Autodesk Vault, lägg projektet, exporter och 3D-modeller i valvet
 Open the project	Öppna projektet
 Open to {}: wires cross beside the mounting plates	Öppen mot {}: ledningar går över bredvid monteringsplåtarna
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Projektstanda
 Project file	Projektfil
 Project file…	Projektfil…
 Project information	Projektinformation
+Project on the project server	Projekt på projektservern
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projektartiklar är de kopior som lagras i det här projektet; de används för stycklistan och projektkontrollen.
 Project properties changed in {} projects	Projektegenskaper ändrade i {} projekt
 Project properties…	Projektegenskaper…
 Project server	Projektserver
 Project server: {}	Projektserver: {}
+Project server: {} / Project: {}	Projektserver: {} / Projekt: {}
+Project server: {} / Project: {} – connection lost	Projektserver: {} / Projekt: {} – anslutningen förlorad
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projekttexter (funktionstexter, sidbeskrivningar, fria texter, beskrivningar) skrivs på källspråket; ordlistan översätter dem rad för rad. Rapporter och namnrutor följer utdataspråket.
 Project: {}	Projekt: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projekt från en första krets till en hel anläggning, vart och ett visar fler av funktionerna
+Projects on the project server {}	Projekt på projektservern {}
+Projects on the server	Projekt på servern
 Properties…	Egenskaper…
 Property database	Egenskapsdatabas
 Property definitions	Egenskapsdefinitioner
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Numrera om 1 … n
 Renumber contact	Numrera om kontakt
 Renumber pages	Numrera om sidor
 Renumber pages…	Numrera om sidor…
+Reopen last project	Öppna senaste projektet igen
 Repair {} findings	Reparera {} avvikelser
 Replace	Ersätt
 Replace all	Ersätt alla
@@ -1527,6 +1549,7 @@ Reset to standard	Återställ till standard
 Restart and update	Starta om och uppdatera
 Resulting: {} · {} · {} · {} m	Resultat: {} · {} · {} · {} m
 Results of the project check	Resultat av projektkontrollen
+Retry connection	Försök ansluta igen
 Review	Granskning
 Review ({})	Granskning ({})
 Revision marks	Revisionsmarkeringar
@@ -1598,18 +1621,25 @@ Save as project template…	Spara som projektmall…
 Save as scheme	Spara som schema
 Save as template	Spara som mall
 Save as template…	Spara som mall…
+Save asks for a file	Spara frågar efter en fil
 Save as…	Spara som…
 Save current page as template…	Spara aktuell sida som mall…
 Save current…	Spara aktuell…
 Save file…	Spara fil…
+Save locally	Spara lokalt
+Save locally to {}	Spara lokalt i {}
+Save locally; {} on the project server stays unchanged	Spara lokalt; {} på projektservern förblir oförändrat
 Save page as macro…	Spara sida som makro…
 Save page as template	Spara sida som mall
 Save page as template…	Spara sida som mall…
 Save selection as macro…	Spara markering som makro…
 Save the box content as the macro in the library	Spara rutans innehåll som makrot i biblioteket
 Save to project server	Spara på projektservern
+Save to project server: {}	Spara på projektservern: {}
+Save to project server: {} – the connection is lost, saving tries again	Spara på projektservern: {} – anslutningen är förlorad, sparandet försöker igen
 Save workspace	Spara arbetsyta
 Save workspace…	Spara arbetsyta…
+Saved to	Sparat i
 Saved to the project server (revision {})	Sparat på projektservern (revision {})
 Saved workspaces	Sparade arbetsytor
 Saves the placed properties as a placement scheme of the project	Sparar de placerade egenskaperna som ett placeringsschema i projektet
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Semikolon
 Separator	Avskiljare
 Server URL	Server-URL
+Server address and sign-in	Serveradress och inloggning
 Server type	Servertyp
 Servers	Servrar
 Service space in front	Serviceutrymme framför
@@ -1705,6 +1736,7 @@ Show in schematic	Visa i schemat
 Show in the schematic	Visa i schemat
 Show on the pages	Visa på sidorna
 Show or hide panes; drag a tab to dock it elsewhere	Visa eller dölj paneler; dra en flik för att docka den på annat ställe
+Show project manager	Visa projekthanteraren
 Show the enclosures bayed to this one as well	Visa även de kapslingar som är sammanbyggda med den här
 Show the messages accepted as checked	Visa de meddelanden som godkänts som kontrollerade
 Show the other wires	Visa de andra ledningarna
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Visas i namnrutor med {prop:Name}
 Shown instead of the measured value	Visas i stället för det uppmätta värdet
 Shows	Visar
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidoväggar, bakvägg, tak och botten sedda utifrån: fläktar, kabelförskruvningar, urtag
+Sign in in the Project server pane; the project opens afterwards	Logga in i fönstret Projektserver; sedan öppnas projektet
+Sign in…	Logga in…
 Signed in to {} as {}	Inloggad på {} som {}
 Signed out of Vault	Utloggad från Vault
 Single-line	Enlinje
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Objekten markeras och flyttas tillsamm
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har inga sidmakron (Makron › Spara sida som makro…).
 The modules no string takes yet in series, on the first inverter	Modulerna som ingen sträng tar ännu, i serie, på den första växelriktaren
 The names of its pages follow	Namnen på dess sidor följer med
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det öppna projektet är en lokal återställningskopia. Dess ändringar är inte sparade på projektservern; innan det delade projektet öppnas bestämmer du om de ska sparas lokalt eller förkastas.
 The page name gets the section number	Sidnamnet får avsnittsnumret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidtyp, ritningsram, namnruta, struktur, beskrivning och hela innehållet sparas.
 The pages it generated stay	De sidor det genererade finns kvar
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Punktens koordinater 
 The project changed since the search.	Projektet har ändrats sedan sökningen.
 The project check	Projektkontrollen
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kräver skrivbordsversionen: webbläsaren kan inte söka i mappar.
+The project server does not answer: changes are not saved on it until the connection is back	Projektservern svarar inte: ändringar sparas inte där förrän anslutningen är tillbaka
+The project server {} could not open {}.	Projektservern {} kunde inte öppna {}.
 The project's own page templates as a file	Projektets egna sidmallar som en fil
 The project's own title blocks	Projektets egna namnrutor
 The project's own title blocks and report schemes	Projektets egna namnrutor och rapportscheman
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} sidor får ett nytt namn
 {} pages removed, {} pages generated	{} sidor borttagna, {} sidor genererade
 {} pages renamed	{} sidor har bytt namn
+{} pages, users: {}	{} sidor, användare: {}
 {} pages; their names start with {}	{} sidor; deras namn börjar med {}
 {} parts added to the database	{} artiklar tillagda i databasen
 {} parts of the database updated – synchronize the project parts in parts management	{} artiklar i databasen uppdaterade – synkronisera projektartiklarna i artikelhanteringen

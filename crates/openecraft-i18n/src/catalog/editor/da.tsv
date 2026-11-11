@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Et kabel af bustypen 
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	En udskæring af samme størrelse på samme sted i naboens sidevæg: Sammen udgør de en kabelgennemføring
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	En fil med samme navn i mappen får en ny version (tjekket ud og ind), ellers tilføjes filen
 A level on top of the highest one	En etage over den øverste
+A local file opens locally, a server project is opened on the project server again	En lokal fil åbnes lokalt, et serverprojekt åbnes igen på projektserveren
+A local file or a project on the project server	En lokal fil eller et projekt på projektserveren
 A new project	Et nyt projekt
 A new release is downloaded in the background and installed when you close OpenECraft.	En ny version hentes i baggrunden og installeres, når du lukker OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	En ny version hentes i baggrunden og erstatter denne installation; den bruges fra næste start.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Et nummereret afsnit, der indeholder sider som en mappe; sidenavnene begynder med dets nummer (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	En profil knytter de neutrale felter til kolonnenavnene i et bestemt system (f.eks. MATNR for ERP-nummeret i SAP). Uden en tilknytning genkendes almindelige engelske og tyske navne.
 A project definition based on this one, with its own defaults and scheme	En projektdefinition baseret på denne, med egne standardværdier og eget skema
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	En projektfil åbnet fra filhåndteringen åbnes i stedet. Ikke-gemte ændringer fra sidste session kasseres aldrig uden at spørge.
 A reference point at the origin of the plant	Et referencepunkt i anlæggets origo
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	En rapportblok genererer siderne i en rapport, f.eks. ét klemdiagram pr. klemrække, og opdaterer dem.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	En diagramside 3.1, 3.2, … efter den aktuelle side, som bevares som underside ved omnummerering
@@ -279,7 +282,9 @@ Choices	Valgmuligheder
 Choices (separated by commas)	Valgmuligheder (adskilt af kommaer)
 Choose	Vælg
 Choose a baseline, a revision or a project file to compare the project with.	Vælg en baseline, en revision eller en projektfil, som projektet skal sammenlignes med.
+Choose a project on every start: local files and projects of the project server	Vælg et projekt ved hver start: lokale filer og projekter på projektserveren
 Choose a room first: floor-standing parts go on its floor.	Vælg først et rum: gulvstående artikler står på dets gulv.
+Choose another project	Vælg et andet projekt
 Choose file…	Vælg fil…
 Choose pages	Vælg sider
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Forbindelser, hvis to ende
 Connections without a defined potential	Forbindelser uden defineret potentiale
 Connectors	Stik
 Connects free connection points of the selected symbols with facing ones	Forbinder ledige tilslutningspunkter på de markerede symboler med modstående
+Connects to the project server and shows its projects, without the project of the last session	Forbinder til projektserveren og viser dens projekter, uden projektet fra sidste session
 Consecutive addresses from the start byte, in schematic order	Fortløbende adresser fra startbyten i diagramrækkefølge
 Contact image below coils	Kontaktspejl under spoler
 Content	Indhold
@@ -744,6 +750,7 @@ Generic	Generisk
 German zones (DIN 18015-3)	Tyske zoner (DIN 18015-3)
 Getting started	Kom i gang
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Global variabelliste med direkte adresser til CODESYS, TwinCAT og andre
+Go on working locally; Save saves to a local file	Arbejd videre lokalt; Gem gemmer i en lokal fil
 Go to page	Gå til side
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
@@ -945,6 +952,9 @@ Load template…	Indlæs skabelon…
 Loading changes…	Indlæser ændringer…
 Loading the project access…	Indlæser projektadgangen…
 Loads	Belastninger
+Local file	Lokal fil
+Local file: {}	Lokal fil: {}
+Local recovery copy of server project: {}	Lokal gendannelseskopi af serverprojekt: {}
 Lock all	Lås alle
 Lock all pages	Lås alle sider
 Lock current page	Lås aktuel side
@@ -1080,6 +1090,7 @@ New potential	Nyt potentiale
 New project	Nyt projekt
 New project from template	Nyt projekt fra skabelon
 New project scheme from the selected one	Nyt projektskema ud fra det valgte
+New project, not saved yet	Nyt projekt, ikke gemt endnu
 New report page	Ny rapportside
 New request	Ny anmodning
 New revision	Ny revision
@@ -1164,6 +1175,7 @@ Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
 Not saved, locked or changed by another user: {}	Ikke gemt, låst eller ændret af en anden bruger: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Ikke det delte projekt: ændringer gemmes lokalt, indtil det åbnes på projektserveren igen
 Nothing exchanged yet.	Der er endnu ikke udvekslet noget.
 Nothing left in this list.	Der er intet tilbage i denne liste.
 Nothing to show	Intet at vise
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Af den ydre diameter, fast forlagt
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Af den ydre diameter; rør bøjes med bøjninger på halvanden diameter
 Off	Fra
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Forskydning fra én række til den næste: nedad for lister, sidelæns for rækker side om side
+On startup	Ved start
 One row per label	Én række pr. mærkat
 Only devices on the current page	Kun enheder på den aktuelle side
 Only frames no page uses can be deleted	Kun rammer, som ingen side bruger, kan slettes
@@ -1187,6 +1200,7 @@ Only messages of the current page	Kun meddelelser for den aktuelle side
 Only parts whose function template provides the device's main function	Kun artikler, hvis funktionsskabelon leverer enhedens hovedfunktion
 Only rows that pass all filters are shown	Kun rækker, der opfylder alle filtre, vises
 Only web and e-mail addresses (http, https, mailto) are links	Kun web- og e-mailadresser (http, https, mailto) er links
+Open a specific project	Åbn et bestemt projekt
 Open and save shared projects, lock pages	Åbn og gem delte projekter, lås sider
 Open archive…	Åbn arkiv…
 Open as project	Åbn som projekt
@@ -1195,7 +1209,9 @@ Open demo project	Åbn demoprojekt
 Open door	Åbn dør
 Open in a new page tab	Åbn i en ny sidefane
 Open link	Åbn link
+Open local recovery copy	Åbn den lokale gendannelseskopi
 Open project	Åbn projekt
+Open project server	Åbn projektserveren
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Åbn projekter og filer fra Autodesk Vault, læg projektet, eksporter og 3D-modeller i vaulten
 Open the project	Åbn projektet
 Open to {}: wires cross beside the mounting plates	Åben mod {}: Ledninger krydser ved siden af monteringspladerne
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Projektstanda
 Project file	Projektfil
 Project file…	Projektfil…
 Project information	Projektinformation
+Project on the project server	Projekt på projektserveren
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	Projektartikler er de kopier, der er gemt i dette projekt; de bruges til styklisten og projektkontrollen.
 Project properties changed in {} projects	Projektegenskaber ændret i {} projekter
 Project properties…	Projektegenskaber…
 Project server	Projektserver
 Project server: {}	Projektserver: {}
+Project server: {} / Project: {}	Projektserver: {} / Projekt: {}
+Project server: {} / Project: {} – connection lost	Projektserver: {} / Projekt: {} – forbindelsen mistet
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Projekttekster (funktionstekster, sidebeskrivelser, frie tekster, beskrivelser) skrives på kildesproget; ordbogen oversætter dem linje for linje. Rapporter og tegningshoveder følger outputsproget.
 Project: {}	Projekt: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projekter fra en første kreds til et helt anlæg, hvert viser flere af funktionerne
+Projects on the project server {}	Projekter på projektserveren {}
+Projects on the server	Projekter på serveren
 Properties…	Egenskaber…
 Property database	Egenskabsdatabase
 Property definitions	Egenskabsdefinitioner
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Omnummerér 1 … n
 Renumber contact	Omnummerér kontakt
 Renumber pages	Omnummerér sider
 Renumber pages…	Omnummerér sider…
+Reopen last project	Genåbn seneste projekt
 Repair {} findings	Reparér {} fund
 Replace	Erstat
 Replace all	Erstat alle
@@ -1527,6 +1549,7 @@ Reset to standard	Nulstil til standard
 Restart and update	Genstart og opdater
 Resulting: {} · {} · {} · {} m	Resultat: {} · {} · {} · {} m
 Results of the project check	Resultater af projektkontrollen
+Retry connection	Prøv forbindelsen igen
 Review	Gennemsyn
 Review ({})	Gennemsyn ({})
 Revision marks	Revisionsmarkeringer
@@ -1598,18 +1621,25 @@ Save as project template…	Gem som projektskabelon…
 Save as scheme	Gem som skema
 Save as template	Gem som skabelon
 Save as template…	Gem som skabelon…
+Save asks for a file	Gem spørger efter en fil
 Save as…	Gem som…
 Save current page as template…	Gem aktuel side som skabelon…
 Save current…	Gem aktuelt…
 Save file…	Gem fil…
+Save locally	Gem lokalt
+Save locally to {}	Gem lokalt i {}
+Save locally; {} on the project server stays unchanged	Gem lokalt; {} på projektserveren forbliver uændret
 Save page as macro…	Gem side som makro…
 Save page as template	Gem side som skabelon
 Save page as template…	Gem side som skabelon…
 Save selection as macro…	Gem markering som makro…
 Save the box content as the macro in the library	Gem boksens indhold som makroen i biblioteket
 Save to project server	Gem på projektserveren
+Save to project server: {}	Gem på projektserveren: {}
+Save to project server: {} – the connection is lost, saving tries again	Gem på projektserveren: {} – forbindelsen er mistet, gemning prøver igen
 Save workspace	Gem arbejdsområde
 Save workspace…	Gem arbejdsområde…
+Saved to	Gemt i
 Saved to the project server (revision {})	Gemt på projektserveren (revision {})
 Saved workspaces	Gemte arbejdsområder
 Saves the placed properties as a placement scheme of the project	Gemmer de placerede egenskaber som et placeringsskema i projektet
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Semikolon
 Separator	Separator
 Server URL	Server-URL
+Server address and sign-in	Serveradresse og login
 Server type	Servertype
 Servers	Servere
 Service space in front	Serviceområde foran
@@ -1705,6 +1736,7 @@ Show in schematic	Vis i diagrammet
 Show in the schematic	Vis i diagrammet
 Show on the pages	Vis på siderne
 Show or hide panes; drag a tab to dock it elsewhere	Vis eller skjul paneler; træk en fane for at fastgøre den et andet sted
+Show project manager	Vis projektstyring
 Show the enclosures bayed to this one as well	Vis også de kapslinger, der er sammenbygget med denne
 Show the messages accepted as checked	Vis de meddelelser, der er accepteret som kontrolleret
 Show the other wires	Vis de andre ledninger
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Vises i tegningshoveder med {prop:Name}
 Shown instead of the measured value	Vises i stedet for den målte værdi
 Shows	Viser
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidevægge, bagvæg, tag og bund set udefra: ventilatorer, kabelforskruninger, udskæringer
+Sign in in the Project server pane; the project opens afterwards	Log ind i ruden Projektserver; derefter åbnes projektet
+Sign in…	Log ind…
 Signed in to {} as {}	Logget på {} som {}
 Signed out of Vault	Logget af Vault
 Single-line	Enstreget
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Elementerne markeres og flyttes samlet
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har ingen sidemakroer (Makroer › Gem side som makro…).
 The modules no string takes yet in series, on the first inverter	Modulerne, som ingen streng tager endnu, i serie, på den første inverter
 The names of its pages follow	Navnene på dets sider følger med
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det åbne projekt er en lokal gendannelseskopi. Dets ændringer er ikke gemt på projektserveren; før det delte projekt åbnes, beslutter du, om de skal gemmes lokalt eller kasseres.
 The page name gets the section number	Sidenavnet får afsnitsnummeret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidetype, plotramme, tegningshoved, struktur, beskrivelse og hele indholdet gemmes.
 The pages it generated stay	De sider, den har genereret, bevares
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	Punktets koordinater 
 The project changed since the search.	Projektet er ændret siden søgningen.
 The project check	Projektkontrollen
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kræver desktopversionen: browseren kan ikke gennemsøge mapper.
+The project server does not answer: changes are not saved on it until the connection is back	Projektserveren svarer ikke: ændringer gemmes ikke der, før forbindelsen er tilbage
+The project server {} could not open {}.	Projektserveren {} kunne ikke åbne {}.
 The project's own page templates as a file	Projektets egne sideskabeloner som fil
 The project's own title blocks	Projektets egne tegningshoveder
 The project's own title blocks and report schemes	Projektets egne tegningshoveder og rapportskemaer
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} sider får et nyt navn
 {} pages removed, {} pages generated	{} sider fjernet, {} sider genereret
 {} pages renamed	{} sider omdøbt
+{} pages, users: {}	{} sider, brugere: {}
 {} pages; their names start with {}	{} sider; deres navne begynder med {}
 {} parts added to the database	{} artikler tilføjet til databasen
 {} parts of the database updated – synchronize the project parts in parts management	{} artikler i databasen er opdateret – synkronisér projektartiklerne i artikelstyringen

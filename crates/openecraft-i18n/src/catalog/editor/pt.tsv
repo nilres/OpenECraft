@@ -49,12 +49,15 @@ A cable of the bus type for every connection without cable	Um cabo do tipo do ba
 A cutout of the same size at the same place in the neighbour's side wall: together they are a cable passage	Um recorte do mesmo tamanho no mesmo lugar na parede lateral do vizinho: juntos formam uma passagem de cabos
 A file of the same name in the folder gets a new version (checked out and in), otherwise the file is added	Um arquivo de mesmo nome na pasta recebe uma nova versão (check-out e check-in), caso contrário o arquivo é adicionado
 A level on top of the highest one	Um piso acima do mais alto
+A local file opens locally, a server project is opened on the project server again	Um arquivo local abre localmente, um projeto do servidor é reaberto no servidor de projetos
+A local file or a project on the project server	Um arquivo local ou um projeto no servidor de projetos
 A new project	Um novo projeto
 A new release is downloaded in the background and installed when you close OpenECraft.	Uma nova versão é baixada em segundo plano e instalada quando você fecha o OpenECraft.
 A new release is downloaded in the background and replaces this installation; it is used from the next start.	Uma nova versão é baixada em segundo plano e substitui esta instalação; ela é usada a partir da próxima inicialização.
 A numbered section that holds pages like a directory; the page names start with its number (2.3.1)	Uma seção numerada que contém páginas como um diretório; os nomes das páginas começam com o seu número (2.3.1)
 A profile maps the neutral fields to the column names of a particular system (e.g. MATNR for the ERP number in SAP). Without a mapping, common names in English and German are recognized.	Um perfil mapeia os campos neutros para os nomes de coluna de um sistema específico (por exemplo, MATNR para o número ERP no SAP). Sem mapeamento, nomes comuns em inglês e alemão são reconhecidos.
 A project definition based on this one, with its own defaults and scheme	Uma definição de projeto baseada nesta, com seus próprios valores padrão e esquema
+A project file opened from the file manager opens instead. Unsaved changes of the last session are never dropped without asking.	Um arquivo de projeto aberto pelo gerenciador de arquivos abre em seu lugar. Alterações não salvas da última sessão nunca são descartadas sem perguntar.
 A reference point at the origin of the plant	Um ponto de referência na origem da instalação
 A report block generates the pages of a report, e.g. one terminal diagram per strip, and updates them.	Um bloco de relatório gera as páginas de um relatório, por exemplo, um diagrama de bornes por régua, e as atualiza.
 A schematic page 3.1, 3.2, … after the current page, kept as sub-page when renumbering	Uma página de esquema elétrico 3.1, 3.2, … após a página atual, mantida como subpágina ao renumerar
@@ -279,7 +282,9 @@ Choices	Opções
 Choices (separated by commas)	Opções (separadas por vírgulas)
 Choose	Escolher
 Choose a baseline, a revision or a project file to compare the project with.	Escolha uma linha de base, uma revisão ou um arquivo de projeto para comparar com o projeto.
+Choose a project on every start: local files and projects of the project server	Escolher um projeto a cada início: arquivos locais e projetos do servidor de projetos
 Choose a room first: floor-standing parts go on its floor.	Escolha primeiro uma sala: peças apoiadas no piso vão no piso dela.
+Choose another project	Escolher outro projeto
 Choose file…	Escolher arquivo…
 Choose pages	Escolher páginas
 Chooses the pages whose structure starts with this	Escolhe as páginas cuja estrutura começa com isto
@@ -377,6 +382,7 @@ Connections whose two ends are both on selected wires	Conexões cujas duas extre
 Connections without a defined potential	Conexões sem potencial definido
 Connectors	Conectores
 Connects free connection points of the selected symbols with facing ones	Conecta os pontos de conexão livres dos símbolos selecionados aos opostos
+Connects to the project server and shows its projects, without the project of the last session	Conecta ao servidor de projetos e mostra seus projetos, sem o projeto da última sessão
 Consecutive addresses from the start byte, in schematic order	Endereços consecutivos a partir do byte inicial, na ordem do esquema elétrico
 Contact image below coils	Espelho de contatos abaixo das bobinas
 Content	Conteúdo
@@ -744,6 +750,7 @@ Generic	Genérico
 German zones (DIN 18015-3)	Zonas alemãs (DIN 18015-3)
 Getting started	Primeiros passos
 Global variable list with direct addresses for CODESYS, TwinCAT and others	Lista de variáveis globais com endereços diretos para CODESYS, TwinCAT e outros
+Go on working locally; Save saves to a local file	Continuar trabalhando localmente; Salvar salva em um arquivo local
 Go to page	Ir para a página
 Graphic line	Linha gráfica
 Graphic rectangle	Retângulo gráfico
@@ -945,6 +952,9 @@ Load template…	Carregar modelo…
 Loading changes…	Carregando alterações…
 Loading the project access…	Carregando o acesso ao projeto…
 Loads	Cargas
+Local file	Arquivo local
+Local file: {}	Arquivo local: {}
+Local recovery copy of server project: {}	Cópia de recuperação local do projeto do servidor: {}
 Lock all	Bloquear tudo
 Lock all pages	Bloquear todas as páginas
 Lock current page	Bloquear página atual
@@ -1080,6 +1090,7 @@ New potential	Novo potencial
 New project	Novo projeto
 New project from template	Novo projeto a partir de modelo
 New project scheme from the selected one	Novo esquema de projeto a partir do selecionado
+New project, not saved yet	Projeto novo, ainda não salvo
 New report page	Nova página de relatório
 New request	Nova solicitação
 New revision	Nova revisão
@@ -1164,6 +1175,7 @@ Not found: {}	Não encontrado: {}
 Not in the project parts – synchronize in parts management	Não está nas peças do projeto – sincronize no gerenciamento de peças
 Not on a wire	Não está em um fio
 Not saved, locked or changed by another user: {}	Não salvo, bloqueado ou alterado por outro usuário: {}
+Not the shared project: changes are saved locally until it is opened on the project server again	Não é o projeto compartilhado: as alterações são salvas localmente até ele ser aberto novamente no servidor de projetos
 Nothing exchanged yet.	Nada foi trocado ainda.
 Nothing left in this list.	Não resta nada nesta lista.
 Nothing to show	Nada a exibir
@@ -1180,6 +1192,7 @@ Of the outer diameter, as laid fixed	Do diâmetro exterior, em instalação fixa
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Do diâmetro exterior; os tubos rígidos são curvados com curvas de um diâmetro e meio
 Off	Desativado
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Deslocamento de uma linha para a próxima: para baixo em listas, para o lado em linhas lado a lado
+On startup	Ao iniciar
 One row per label	Uma linha por etiqueta
 Only devices on the current page	Somente dispositivos na página atual
 Only frames no page uses can be deleted	Somente molduras que nenhuma página usa podem ser excluídas
@@ -1187,6 +1200,7 @@ Only messages of the current page	Somente mensagens da página atual
 Only parts whose function template provides the device's main function	Apenas peças cujo modelo de função oferece a função principal do dispositivo
 Only rows that pass all filters are shown	Apenas as linhas que passam por todos os filtros são exibidas
 Only web and e-mail addresses (http, https, mailto) are links	Somente endereços web e de e-mail (http, https, mailto) são links
+Open a specific project	Abrir um projeto específico
 Open and save shared projects, lock pages	Abrir e salvar projetos compartilhados, bloquear páginas
 Open archive…	Abrir arquivo compactado…
 Open as project	Abrir como projeto
@@ -1195,7 +1209,9 @@ Open demo project	Abrir projeto de demonstração
 Open door	Abrir porta
 Open in a new page tab	Abrir em uma nova guia de página
 Open link	Abrir link
+Open local recovery copy	Abrir a cópia de recuperação local
 Open project	Abrir projeto
+Open project server	Abrir o servidor de projetos
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Abrir projetos e arquivos do Autodesk Vault, colocar o projeto, exportações e modelos 3D no vault
 Open the project	Abrir o projeto
 Open to {}: wires cross beside the mounting plates	Aberto para {}: os fios passam ao lado das placas de montagem
@@ -1398,14 +1414,19 @@ Project default; pages can choose their own in the page properties	Padrão do pr
 Project file	Arquivo de projeto
 Project file…	Arquivo de projeto…
 Project information	Informações do projeto
+Project on the project server	Projeto no servidor de projetos
 Project parts are the copies stored in this project; they are used for the bill of materials and the project check.	As peças do projeto são as cópias armazenadas neste projeto; elas são usadas para a lista de materiais e a verificação do projeto.
 Project properties changed in {} projects	Propriedades de projeto alteradas em {} projetos
 Project properties…	Propriedades do projeto…
 Project server	Servidor de projetos
 Project server: {}	Servidor de projetos: {}
+Project server: {} / Project: {}	Servidor de projetos: {} / Projeto: {}
+Project server: {} / Project: {} – connection lost	Servidor de projetos: {} / Projeto: {} – conexão perdida
 Project texts (function texts, page descriptions, free texts, descriptions) are written in the source language; the dictionary translates them line by line. Reports and title blocks follow the output language.	Os textos do projeto (textos de função, descrições de página, textos livres, descrições) são escritos no idioma de origem; o dicionário os traduz linha por linha. Os relatórios e selos seguem o idioma de saída.
 Project: {}	Projeto: {}
 Projects from a first circuit to a whole plant, each showing more of the features	Projetos do primeiro circuito a uma instalação completa, cada um mostrando mais funções
+Projects on the project server {}	Projetos no servidor de projetos {}
+Projects on the server	Projetos no servidor
 Properties…	Propriedades…
 Property database	Banco de dados de propriedades
 Property definitions	Definições de propriedade
@@ -1493,6 +1514,7 @@ Renumber 1 … n	Renumerar 1 … n
 Renumber contact	Renumerar contato
 Renumber pages	Renumerar páginas
 Renumber pages…	Renumerar páginas…
+Reopen last project	Reabrir o último projeto
 Repair {} findings	Reparar {} constatações
 Replace	Substituir
 Replace all	Substituir tudo
@@ -1527,6 +1549,7 @@ Reset to standard	Redefinir para o padrão
 Restart and update	Reiniciar e atualizar
 Resulting: {} · {} · {} · {} m	Resultado: {} · {} · {} · {} m
 Results of the project check	Resultados da verificação do projeto
+Retry connection	Tentar conectar novamente
 Review	Comentários
 Review ({})	Comentários ({})
 Revision marks	Marcas de revisão
@@ -1598,18 +1621,25 @@ Save as project template…	Salvar como modelo de projeto…
 Save as scheme	Salvar como esquema
 Save as template	Salvar como modelo
 Save as template…	Salvar como modelo…
+Save asks for a file	Salvar pede um arquivo
 Save as…	Salvar como…
 Save current page as template…	Salvar a página atual como modelo…
 Save current…	Salvar atual…
 Save file…	Salvar arquivo…
+Save locally	Salvar localmente
+Save locally to {}	Salvar localmente em {}
+Save locally; {} on the project server stays unchanged	Salvar localmente; {} no servidor de projetos não muda
 Save page as macro…	Salvar página como macro…
 Save page as template	Salvar página como modelo
 Save page as template…	Salvar página como modelo…
 Save selection as macro…	Salvar seleção como macro…
 Save the box content as the macro in the library	Salvar o conteúdo da caixa como a macro na biblioteca
 Save to project server	Salvar no servidor de projetos
+Save to project server: {}	Salvar no servidor de projetos: {}
+Save to project server: {} – the connection is lost, saving tries again	Salvar no servidor de projetos: {} – a conexão foi perdida, salvar tenta novamente
 Save workspace	Salvar espaço de trabalho
 Save workspace…	Salvar espaço de trabalho…
+Saved to	Salvo em
 Saved to the project server (revision {})	Salvo no servidor de projetos (revisão {})
 Saved workspaces	Espaços de trabalho salvos
 Saves the placed properties as a placement scheme of the project	Salva as propriedades posicionadas como esquema de posicionamento do projeto
@@ -1666,6 +1696,7 @@ Selectivity and back-up protection of device pairs as tested by the manufacturer
 Semicolon	Ponto e vírgula
 Separator	Separador
 Server URL	URL do servidor
+Server address and sign-in	Endereço do servidor e login
 Server type	Tipo de servidor
 Servers	Servidores
 Service space in front	Espaço de serviço à frente
@@ -1705,6 +1736,7 @@ Show in schematic	Mostrar no esquema elétrico
 Show in the schematic	Mostrar no esquema elétrico
 Show on the pages	Mostrar nas páginas
 Show or hide panes; drag a tab to dock it elsewhere	Mostrar ou ocultar painéis; arraste uma guia para acoplá-la em outro lugar
+Show project manager	Mostrar o gerenciador de projetos
 Show the enclosures bayed to this one as well	Mostrar também os gabinetes acoplados a este
 Show the messages accepted as checked	Mostrar as mensagens aceitas como verificadas
 Show the other wires	Mostrar os outros fios
@@ -1717,6 +1749,8 @@ Shown in title blocks with {prop:Name}	Exibido nos selos com {prop:Name}
 Shown instead of the measured value	Exibido em vez do valor medido
 Shows	Mostra
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Paredes laterais, parede traseira, teto e fundo vistos de fora: ventiladores, prensa-cabos, recortes
+Sign in in the Project server pane; the project opens afterwards	Entre no painel Servidor de projetos; o projeto abre em seguida
+Sign in…	Entrar…
 Signed in to {} as {}	Conectado a {} como {}
 Signed out of Vault	Desconectado do Vault
 Single-line	Unifilar
@@ -1861,6 +1895,7 @@ The items are selected and moved together	Os itens são selecionados e movidos j
 The macro library has no page macros (Macros › Save page as macro…).	A biblioteca de macros não tem macros de página (Macros › Salvar página como macro…).
 The modules no string takes yet in series, on the first inverter	Os módulos que nenhuma string usa ainda, em série, no primeiro inversor
 The names of its pages follow	Os nomes de suas páginas acompanham
+The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	O projeto aberto é uma cópia de recuperação local. Suas alterações não estão salvas no servidor de projetos; antes de o projeto compartilhado abrir, você decide se as salva localmente ou as descarta.
 The page name gets the section number	O nome da página recebe o número da seção
 The page type, plot frame, title block, structure, description and the whole content are saved.	O tipo de página, a moldura de plotagem, o selo, a estrutura, a descrição e todo o conteúdo são salvos.
 The pages it generated stay	As páginas geradas por ele permanecem
@@ -1869,6 +1904,8 @@ The point's coordinates in the coordinate reference system	As coordenadas do pon
 The project changed since the search.	O projeto foi alterado desde a pesquisa.
 The project check	A verificação do projeto
 The project database needs the desktop version: the browser cannot search folders.	O banco de dados de projetos precisa da versão desktop: o navegador não pode pesquisar pastas.
+The project server does not answer: changes are not saved on it until the connection is back	O servidor de projetos não responde: as alterações não são salvas nele até a conexão voltar
+The project server {} could not open {}.	O servidor de projetos {} não conseguiu abrir {}.
 The project's own page templates as a file	Os modelos de página próprios do projeto como arquivo
 The project's own title blocks	Os selos próprios do projeto
 The project's own title blocks and report schemes	Os selos e esquemas de relatório próprios do projeto
@@ -2273,6 +2310,7 @@ x y	x y
 {} pages get a new name	{} páginas recebem um novo nome
 {} pages removed, {} pages generated	{} páginas removidas, {} páginas geradas
 {} pages renamed	{} páginas renomeadas
+{} pages, users: {}	{} páginas, usuários: {}
 {} pages; their names start with {}	{} páginas; seus nomes começam com {}
 {} parts added to the database	{} peças adicionadas ao banco de dados
 {} parts of the database updated – synchronize the project parts in parts management	{} peças do banco de dados atualizadas – sincronize as peças do projeto no gerenciamento de peças
