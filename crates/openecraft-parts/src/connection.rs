@@ -59,13 +59,21 @@ const TERMINAL_DEPTH: f32 = 0.75;
 /// a third to two fifths of the depth, in terminal blocks from 0.3 to 0.5).
 const RAIL_TERMINAL_DEPTH: f32 = 0.4;
 
+/// Height of the clamps of NH fuse switch disconnectors mounted on busbars above the
+/// bars, as a part of the depth: in the terminal compartments at their ends, entered
+/// from the end faces below the screws reached through the terminal covers.
+const FUSE_SWITCH_TERMINAL_DEPTH: f32 = 0.575;
+
 /// The height of the generated connection points of a part above its mounting surface:
-/// DIN rail devices are entered from their end faces ([`RAIL_TERMINAL_DEPTH`]), PLC
-/// modules from their front connectors.
+/// DIN rail devices are entered from their end faces ([`RAIL_TERMINAL_DEPTH`]), as are
+/// fuse switch disconnectors on busbars ([`FUSE_SWITCH_TERMINAL_DEPTH`]); PLC modules
+/// from their front connectors.
 fn terminal_depth(part: &Part) -> f32 {
     let plc = part.functions.iter().any(|f| matches!(f.kind, FnKind::PlcInput | FnKind::PlcOutput | FnKind::PlcAnalogInput | FnKind::PlcAnalogOutput));
     if part.mounting.starts_with("Mounting rail") && !plc {
         RAIL_TERMINAL_DEPTH
+    } else if part.mounting.starts_with("Busbar") && part.subgroup == "Fuse switch disconnector" {
+        FUSE_SWITCH_TERMINAL_DEPTH
     } else {
         TERMINAL_DEPTH
     }

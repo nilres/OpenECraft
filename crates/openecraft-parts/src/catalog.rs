@@ -1311,16 +1311,24 @@ fn terminal_slice(m: &mut Mesh3d, w: f32, h: f32, d: f32, c: [u8; 3], front: Opt
 /// opening at each connection point leaving up or down, at its x and height, its inside
 /// dark. Openings that do not fit into the base are left out.
 fn base_with_entries(m: &mut Mesh3d, [w, h, top]: [f32; 3], points: &[crate::ConnectionPoint], c: [u8; 3]) {
-    let end = (h * 0.04).min(2.0);
+    block_with_entries(m, w, (0.0, h), (0.0, top), points, 3.0, c);
+}
+
+/// A block across the device (`w` wide, from `y0` to `y1` up, from `z0` to `z1` towards
+/// the front) with the wire entries of the connection points leaving up through its
+/// upper end or down through its lower end (as [`base_with_entries`]; openings up to
+/// `most` from their middle).
+fn block_with_entries(m: &mut Mesh3d, w: f32, (y0, y1): (f32, f32), (z0, z1): (f32, f32), points: &[crate::ConnectionPoint], most: f32, c: [u8; 3]) {
+    let end = ((y1 - y0) * 0.04).min(2.0);
     // (Set back no further than the connection points may lie off the model's surface.)
     let back = (end / 2.0).min(0.4);
-    m.add_painted_box([0.0, end, 0.0], [w, h - end, top], c);
-    // The upper end (points leaving up, y 0 in the front view) is at y h.
-    for (exit, y0, y1, inside) in [(crate::Exit::Up, h - end, h, (h - end, h - back)), (crate::Exit::Down, 0.0, end, (back, end))] {
+    m.add_painted_box([0.0, y0 + end, z0], [w, y1 - end, z1], c);
+    // The upper end (points leaving up, y 0 in the front view) is at y1.
+    for (exit, e0, e1, inside) in [(crate::Exit::Up, y1 - end, y1, (y1 - end, y1 - back)), (crate::Exit::Down, y0, y0 + end, (y0 + back, y0 + end))] {
         let row: Vec<[f32; 2]> = points.iter().filter(|p| p.exit == exit).map(|p| [p.pos[0], p.pos[2]]).collect();
-        let r = (w / row.len().max(1) as f32 * 0.3).min(3.0);
-        let half = (top * 0.15).min(3.0);
-        let openings: Vec<([f32; 2], [f32; 2])> = row.iter().map(|&[x, z]| ([x - r, x + r], [z - half, z + half])).filter(|(x, z)| x[0] >= 0.0 && x[1] <= w && z[0] >= 0.0 && z[1] <= top).collect();
+        let r = (w / row.len().max(1) as f32 * 0.3).min(most);
+        let half = ((z1 - z0) * 0.15).min(most);
+        let openings: Vec<([f32; 2], [f32; 2])> = row.iter().map(|&[x, z]| ([x - r, x + r], [z - half, z + half])).filter(|(x, z)| x[0] >= 0.0 && x[1] <= w && z[0] >= z0 && z[1] <= z1).collect();
         // The end in cells between the edges of the openings: body, or the opening's
         // inside set back.
         let cuts = |edges: &mut Vec<f32>| {
@@ -1328,7 +1336,7 @@ fn base_with_entries(m: &mut Mesh3d, [w, h, top]: [f32; 3], points: &[crate::Con
             edges.dedup_by(|a, b| (*a - *b).abs() < 1e-4);
         };
         let mut xs: Vec<f32> = [0.0, w].into_iter().chain(openings.iter().flat_map(|o| o.0)).collect();
-        let mut zs: Vec<f32> = [0.0, top].into_iter().chain(openings.iter().flat_map(|o| o.1)).collect();
+        let mut zs: Vec<f32> = [z0, z1].into_iter().chain(openings.iter().flat_map(|o| o.1)).collect();
         cuts(&mut xs);
         cuts(&mut zs);
         for x in xs.windows(2) {
@@ -1337,7 +1345,7 @@ fn base_with_entries(m: &mut Mesh3d, [w, h, top]: [f32; 3], points: &[crate::Con
                 if openings.iter().any(|(ox, oz)| ox[0] < cx && cx < ox[1] && oz[0] < cz && cz < oz[1]) {
                     m.add_painted_box([x[0], inside.0, z[0]], [x[1], inside.1, z[1]], DARK_INSIDE);
                 } else {
-                    m.add_painted_box([x[0], y0, z[0]], [x[1], y1, z[1]], c);
+                    m.add_painted_box([x[0], e0, z[0]], [x[1], e1, z[1]], c);
                 }
             }
         }
