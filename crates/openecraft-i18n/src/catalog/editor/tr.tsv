@@ -560,6 +560,7 @@ Downstream part	Alt taraftaki parça
 Draft of revision {} created	Revizyon {} taslağı oluşturuldu
 Draft of revision {} discarded	Revizyon {} taslağı atıldı
 Drag a connection point designation of the selected symbol to place it.	Yerleştirmek için seçili sembolün bir bağlantı noktası tanımını sürükleyin.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Yalnızca o ucu taşımak için seçili bir telin ucunu sürükleyin. Alt ile sürüklemek Bağlantıları koru ayarını tersine çevirir.
 Drag an entry into the page, or click it and then click into the page.	Bir girişi sayfaya sürükleyin veya tıklayıp ardından sayfaya tıklayın.
 Drag the core designation or the cable tag of the selected wire to place it.	Yerleştirmek için seçili telin damar tanımını veya kablo etiketini sürükleyin.
 Drag the name or the cross reference of the selected point to place it.	Yerleştirmek için seçili noktanın adını veya çapraz referansını sürükleyin.
@@ -890,6 +891,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Başka hi
 Jumper {}	Köprü {}
 Jumps over the other:	Diğerinin üzerinden atlar:
 K, Q, MM …	K, Q, MM …
+Keep connections	Bağlantıları koru
 Keep sub-pages (3.a, 3.1) with the page before	Alt sayfaları (3.a, 3.1) önceki sayfayla birlikte tut
 Keep the degree of protection	Koruma derecesini koru
 Keep this route when recalculating, as long as it is still possible	Yeniden hesaplarken, mümkün olduğu sürece bu güzergâhı koru
@@ -1042,6 +1044,7 @@ Move the devices of this page into the new structure	Bu sayfanın cihazlarını 
 Move through the 3D view (Shift: faster)	3B görünümde hareket et (Shift: daha hızlı)
 Move to section	Bölüme taşı
 Move up	Yukarı taşı
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Taşınan semboller tellerini birlikte çeker, taşınan teller bittikleri bağlantı noktalarında kalır. Sürüklerken Alt basılı tutmak bunu tersine çevirir; seçili bir telin ucunu sürüklemek onu ayırır
 Moves to the top level as page {}	En üst düzeye {} sayfası olarak geçer
 Moves to {} as page {}	{} bölümüne {} sayfası olarak geçer
 Moving	Taşıma

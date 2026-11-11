@@ -724,3 +724,26 @@ fn wire_settings_are_shown_and_changed() {
     assert!(run(&mut s, "wire_settings", json!({ "tee": "ring" })).is_err());
     assert_eq!(s.project().unwrap().wire_settings.jump, JumpStyle::Arc);
 }
+
+#[test]
+fn a_moved_wire_keeps_its_connection_unless_told_and_a_wire_end_leaves_it() {
+    let mut s = new_session();
+    let coil = run(&mut s, "place_symbol", json!({ "page": "1", "symbol": "coil", "x": 100, "y": 100 })).unwrap();
+    let pin = (coil["pins"][0]["x"].as_f64().unwrap(), coil["pins"][0]["y"].as_f64().unwrap());
+    let wire = run(&mut s, "add_wire", json!({ "page": "1", "points": [[pin.0, pin.1], [pin.0 + 40.0, pin.1]] })).unwrap();
+    let id = wire["ids"][0].clone();
+    run(&mut s, "move_items", json!({ "page": "1", "ids": [id], "dx": 0, "dy": -8 })).unwrap();
+    let page = run(&mut s, "get_page", json!({ "page": "1" })).unwrap();
+    let wires = page["wires"].as_array().unwrap();
+    assert_eq!(wires.len(), 2, "a leg from the connection point: {wires:?}");
+    assert!(wires.iter().any(|w| w["from"] == json!([pin.0, pin.1]) || w["to"] == json!([pin.0, pin.1])));
+
+    run(&mut s, "move_items", json!({ "page": "1", "ids": [id], "dx": 0, "dy": -8, "keep_connections": false })).unwrap();
+    let page = run(&mut s, "get_page", json!({ "page": "1" })).unwrap();
+    assert_eq!(page["wires"].as_array().unwrap().len(), 2, "no further leg");
+
+    let out = run(&mut s, "move_wire_end", json!({ "page": "1", "id": id, "end": "to", "x": pin.0 + 60.0, "y": pin.1 - 16.0 })).unwrap();
+    assert_eq!(out["wires"][0]["to"], json!([pin.0 + 60.0, pin.1 - 16.0]));
+    assert!(run(&mut s, "move_wire_end", json!({ "page": "1", "id": id, "end": "middle", "x": 0, "y": 0 })).unwrap_err().contains("middle"));
+    assert!(run(&mut s, "move_wire_end", json!({ "page": "1", "id": 9999, "end": "from", "x": 20, "y": 20 })).is_err());
+}

@@ -313,6 +313,7 @@ Item id	Kohteen tunniste
 Item ids	Kohteiden tunnisteet
 Jumper number	Siltanumero
 Jumper number (terminals with the same number are bridged); 0 removes it	Siltanumero (samanumeroiset riviliittimet on silloitettu); 0 poistaa sen
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Säilytä liitännät (oletus): liitetyt johdot venyvät, siirretyt johdot pysyvät liitäntäpisteissä ja johdoissa, joihin ne päättyvät; false irrottaa ne
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Säilytä kotelointiluokka: lämmönsiirrin tai jäähdytyslaite suodatinpuhaltimien sijaan
 Key figures of the project and a list of its device tags	Projektin tunnusluvut ja luettelo sen laitetunnuksista
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektin tunnusluvut: sivut, symbolit, johdot, laitteet, osat, kaapelit ja tarkistusten tulokset
@@ -420,6 +421,7 @@ Measuring range or set point	Mittausalue tai asetusarvo
 Message code, e.g. wires.3f9a1c	Ilmoituskoodi, esim. wires.3f9a1c
 Milling feed, mm/min	Jyrsintäsyöttö, mm/min
 Mirror the symbol	Peilaa symboli
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Siirtää johdon yhtä päätä: se irtoaa siitä, mihin se on liitetty, ja liittyy siihen, mihin se osuu; johto pysyy suorakulmaisena
 Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
 Moves the page before this page of its section (or of the section given)	Siirtää sivun osionsa (tai annetun osion) tämän sivun eteen
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Siirtää osion yläosionsa (tai annetun) tämän osion eteen; numerot jatkuvat järjestyksessä
@@ -800,6 +802,7 @@ The configuration (JSON)	Konfiguraatio (JSON)
 The copies would leave the page	Kopiot joutuisivat sivun ulkopuolelle
 The counting step must be at least 1	Laskennan askeleen on oltava vähintään 1
 The devices do not fit onto rail {}	Laitteet eivät mahdu kiskolle {}
+The end: from or to	Pää: from tai to
 The feedback (CSV with header or JSON)	Palaute (CSV otsikkorivillä tai JSON)
 The first page number must not be negative	Ensimmäinen sivunumero ei saa olla negatiivinen
 The items would leave the page	Kohteet joutuisivat sivun ulkopuolelle
@@ -891,6 +894,7 @@ Unknown termination: {}	Tuntematon pääte: {}
 Unknown vertical anchor: {}	Tuntematon pystyankkuri: {}
 Unknown way of opening: {}	Tuntematon avautumistapa: {}
 Unknown wire colour {} (IEC 60757: {})	Tuntematon johtoväri {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Tuntematon johdon pää: {} (from tai to)
 Use this scheme for the marking export	Käytä tätä skeemaa merkintöjen viennissä
 Used (mm)	Käytetty (mm)
 Value while none is set	Arvo, kun mitään ei ole asetettu

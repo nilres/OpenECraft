@@ -313,6 +313,7 @@ Item id	Öğe kimliği
 Item ids	Öğe kimlikleri
 Jumper number	Köprü numarası
 Jumper number (terminals with the same number are bridged); 0 removes it	Köprü numarası (aynı numaralı klemensler köprülenir); 0 kaldırır
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Bağlantıları koru (varsayılan): bağlı teller uzar, taşınan teller bittikleri bağlantı noktalarında ve tellerde kalır; false onları ayırır
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Koruma derecesini koru: filtreli fanlar yerine ısı eşanjörü veya soğutma ünitesi
 Key figures of the project and a list of its device tags	Projenin temel göstergeleri ve cihaz etiketlerinin listesi
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projenin temel göstergeleri: sayfalar, semboller, teller, cihazlar, parçalar, kablolar ve kontrol sonuçları
@@ -420,6 +421,7 @@ Measuring range or set point	Ölçüm aralığı veya ayar noktası
 Message code, e.g. wires.3f9a1c	Mesaj kodu, ör. wires.3f9a1c
 Milling feed, mm/min	Frezeleme ilerlemesi, mm/dk
 Mirror the symbol	Sembolü yansıt
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
 Moves the page before this page of its section (or of the section given)	Sayfayı bölümünün (veya verilen bölümün) bu sayfasının önüne taşır
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Bölümü üst bölümünün (veya verilen üst bölümün) bu bölümünün önüne taşır; numaralar sırayla devam eder
@@ -800,6 +802,7 @@ The configuration (JSON)	Yapılandırma (JSON)
 The copies would leave the page	Kopyalar sayfanın dışına çıkar
 The counting step must be at least 1	Sayma adımı en az 1 olmalıdır
 The devices do not fit onto rail {}	Cihazlar {} rayına sığmıyor
+The end: from or to	Uç: from veya to
 The feedback (CSV with header or JSON)	Geri bildirim (başlıklı CSV veya JSON)
 The first page number must not be negative	İlk sayfa numarası negatif olamaz
 The items would leave the page	Öğeler sayfanın dışına çıkar
@@ -891,6 +894,7 @@ Unknown termination: {}	Bilinmeyen sonlandırma: {}
 Unknown vertical anchor: {}	Bilinmeyen dikey bağlama noktası: {}
 Unknown way of opening: {}	Bilinmeyen açılış şekli: {}
 Unknown wire colour {} (IEC 60757: {})	Bilinmeyen tel rengi {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Bilinmeyen tel ucu: {} (from veya to)
 Use this scheme for the marking export	Etiketleme dışa aktarımı için bu şemayı kullan
 Used (mm)	Kullanılan (mm)
 Value while none is set	Hiçbiri ayarlanmamışken geçerli değer

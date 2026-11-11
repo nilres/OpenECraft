@@ -68,6 +68,7 @@ impl App {
         let tool = &self.editor.tool;
         let on = match cmd {
             Cmd::AutoConnect => self.editor.autoconnect,
+            Cmd::KeepConnections => self.editor.keep_connections,
             Cmd::Route => self.editor.autoroute,
             Cmd::Grid => self.editor.show_grid,
             Cmd::ConnectionPoints => self.editor.show_pins,
@@ -358,6 +359,7 @@ impl App {
             Cmd::CommentTool => self.set_tool(Tool::Comment),
             // ------------------------------------------------------------ edit
             Cmd::AutoConnect => self.editor.autoconnect = !self.editor.autoconnect,
+            Cmd::KeepConnections => self.editor.keep_connections = !self.editor.keep_connections,
             Cmd::Route => {
                 self.editor.autoroute = !self.editor.autoroute;
                 self.editor.cancel();

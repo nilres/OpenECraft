@@ -313,6 +313,7 @@ Item id	ID prvku
 Item ids	ID prvků
 Jumper number	Číslo propojky
 Jumper number (terminals with the same number are bridged); 0 removes it	Číslo propojky (svorky se stejným číslem jsou propojeny); 0 jej odebere
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Zachovat propojení (výchozí): připojené vodiče se natáhnou, přesouvané vodiče zůstanou na přípojných bodech a vodičích, kde končí; false je odpojí
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Zachovat stupeň krytí: výměník tepla nebo chladicí jednotka místo filtračních ventilátorů
 Key figures of the project and a list of its device tags	Klíčové ukazatele projektu a seznam jeho označení přístrojů
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Klíčové ukazatele projektu: stránky, symboly, vodiče, přístroje, artikly, kabely a výsledky kontrol
@@ -420,6 +421,7 @@ Measuring range or set point	Měřicí rozsah nebo žádaná hodnota
 Message code, e.g. wires.3f9a1c	Kód hlášení, např. wires.3f9a1c
 Milling feed, mm/min	Posuv frézování, mm/min
 Mirror the symbol	Zrcadlit symbol
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Přesune jeden konec vodiče: odpojí se od toho, k čemu je připojen, a připojí se k tomu, na co narazí; vodič zůstane pravoúhlý
 Moves symbols, wires and texts; connected wire ends follow	Přesune symboly, vodiče a texty; připojené konce vodičů se posunou s nimi
 Moves the page before this page of its section (or of the section given)	Přesune stránku před tuto stránku jejího oddílu (nebo zadaného oddílu)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Přesune oddíl před tento oddíl jeho nadřazeného oddílu (nebo zadaného); čísla pokračují v pořadí
@@ -800,6 +802,7 @@ The configuration (JSON)	Konfigurace (JSON)
 The copies would leave the page	Kopie by opustily stránku
 The counting step must be at least 1	Krok číslování musí být alespoň 1
 The devices do not fit onto rail {}	Přístroje se nevejdou na lištu {}
+The end: from or to	Konec: from nebo to
 The feedback (CSV with header or JSON)	Zpětné hlášení (CSV se záhlavím nebo JSON)
 The first page number must not be negative	První číslo stránky nesmí být záporné
 The items would leave the page	Prvky by opustily stránku
@@ -891,6 +894,7 @@ Unknown termination: {}	Neznámé zakončení: {}
 Unknown vertical anchor: {}	Neznámé svislé ukotvení: {}
 Unknown way of opening: {}	Neznámý způsob otevírání: {}
 Unknown wire colour {} (IEC 60757: {})	Neznámá barva vodiče {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Neznámý konec vodiče: {} (from nebo to)
 Use this scheme for the marking export	Použít toto schéma pro export popisování
 Used (mm)	Použito (mm)
 Value while none is set	Hodnota, dokud není žádná nastavena

@@ -313,6 +313,7 @@ Item id	Ідентифікатор елемента
 Item ids	Ідентифікатори елементів
 Jumper number	Номер перемички
 Jumper number (terminals with the same number are bridged); 0 removes it	Номер перемички (клеми з однаковим номером з’єднано перемичкою); 0 вилучає її
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Зберігати з'єднання (за замовчуванням): приєднані проводи розтягуються, переміщувані проводи залишаються на точках підключення та проводах, де вони закінчуються; false від'єднує їх
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Зберігати ступінь захисту: теплообмінник або холодильний агрегат замість фільтрувальних вентиляторів
 Key figures of the project and a list of its device tags	Ключові показники проєкту та список позначень його пристроїв
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Ключові показники проєкту: сторінки, символи, проводи, пристрої, вироби, кабелі та результати перевірок
@@ -420,6 +421,7 @@ Measuring range or set point	Діапазон вимірювання або ус
 Message code, e.g. wires.3f9a1c	Код повідомлення, напр. wires.3f9a1c
 Milling feed, mm/min	Подача фрезерування, мм/хв
 Mirror the symbol	Віддзеркалити символ
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Переміщує один кінець проводу: він від'єднується від того, до чого підключений, і підключається до того, чого торкається; провід залишається прямокутним
 Moves symbols, wires and texts; connected wire ends follow	Переміщує символи, проводи й тексти; кінці підключених проводів слідують за ними
 Moves the page before this page of its section (or of the section given)	Переміщує сторінку перед цією сторінкою її розділу (або вказаного розділу)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Переміщує розділ перед цим розділом його батьківського розділу (або вказаного); номери йдуть по порядку
@@ -800,6 +802,7 @@ The configuration (JSON)	Конфігурація (JSON)
 The copies would leave the page	Копії вийшли б за межі сторінки
 The counting step must be at least 1	Крок лічби має бути щонайменше 1
 The devices do not fit onto rail {}	Пристрої не вміщуються на рейці {}
+The end: from or to	Кінець: from або to
 The feedback (CSV with header or JSON)	Зворотний зв’язок (CSV із заголовком або JSON)
 The first page number must not be negative	Перший номер сторінки не може бути від'ємним
 The items would leave the page	Елементи вийшли б за межі сторінки
@@ -891,6 +894,7 @@ Unknown termination: {}	Невідоме оконцювання: {}
 Unknown vertical anchor: {}	Невідома вертикальна прив’язка: {}
 Unknown way of opening: {}	Невідомий спосіб відчинення: {}
 Unknown wire colour {} (IEC 60757: {})	Невідомий колір проводу {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Невідомий кінець проводу: {} (from або to)
 Use this scheme for the marking export	Використовувати цю схему для експорту маркування
 Used (mm)	Використано (мм)
 Value while none is set	Значення, поки інше не задано

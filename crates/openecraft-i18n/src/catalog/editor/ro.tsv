@@ -560,6 +560,7 @@ Downstream part	Articol din aval
 Draft of revision {} created	Ciorna reviziei {} a fost creată
 Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
 Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Trageți un capăt al unui conductor selectat pentru a muta doar acel capăt. Tragerea cu Alt inversează Păstrează conexiunile.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
 Drag the core designation or the cable tag of the selected wire to place it.	Glisați denumirea firului sau identificatorul cablului firului selectat pentru a le plasa.
 Drag the name or the cross reference of the selected point to place it.	Glisați numele sau referința încrucișată a punctului selectat pentru a-l plasa.
@@ -890,6 +891,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Unește s
 Jumper {}	Puntea {}
 Jumps over the other:	Sare peste celălalt:
 K, Q, MM …	K, Q, MM …
+Keep connections	Păstrează conexiunile
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
 Keep the degree of protection	Menținerea gradului de protecție
 Keep this route when recalculating, as long as it is still possible	Păstrarea acestui traseu la recalculare, atât timp cât este încă posibil
@@ -1042,6 +1044,7 @@ Move the devices of this page into the new structure	Mutarea dispozitivelor aces
 Move through the 3D view (Shift: faster)	Deplasare prin vizualizarea 3D (Shift: mai repede)
 Move to section	Mută în secțiune
 Move up	Mută în sus
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Simbolurile mutate își trag conductoarele după ele, iar conductoarele mutate rămân pe punctele de conexiune unde se termină. Alt ținut apăsat în timpul tragerii inversează asta; tragerea unui capăt al unui conductor selectat îl deconectează
 Moves to the top level as page {}	Trece la nivelul superior ca pagina {}
 Moves to {} as page {}	Trece în {} ca pagina {}
 Moving	Mutare

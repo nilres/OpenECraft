@@ -313,6 +313,7 @@ Item id	Element-id
 Item ids	Element-id'er
 Jumper number	Bronummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Bronummer (klemmer med samme nummer brokobles); 0 fjerner det
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Bevar forbindelserne (standard): tilsluttede ledninger strækkes, flyttede ledninger bliver på de tilslutningspunkter og ledninger, hvor de ender; false kobler dem fra
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Bevar kapslingsklassen: varmeveksler eller køleenhed i stedet for filterventilatorer
 Key figures of the project and a list of its device tags	Projektets nøgletal og en liste over dets enhedsmærkninger
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektets nøgletal: sider, symboler, forbindelser, enheder, artikler, kabler og kontrolresultater
@@ -420,6 +421,7 @@ Measuring range or set point	Måleområde eller sætpunkt
 Message code, e.g. wires.3f9a1c	Meddelelseskode, f.eks. wires.3f9a1c
 Milling feed, mm/min	Fræsetilspænding, mm/min
 Mirror the symbol	Spejl symbolet
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flytter én ende af en ledning: den forlader det, den er tilsluttet, og forbindes med det, den møder; ledningen forbliver vinkelret
 Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
 Moves the page before this page of its section (or of the section given)	Flytter siden foran denne side i dens afsnit (eller i det angivne afsnit)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Flytter afsnittet foran dette afsnit i dets overordnede afsnit (eller i det angivne); numrene tæller fortsat i rækkefølge
@@ -800,6 +802,7 @@ The configuration (JSON)	Konfigurationen (JSON)
 The copies would leave the page	Kopierne ville komme uden for siden
 The counting step must be at least 1	Tællesteget skal være mindst 1
 The devices do not fit onto rail {}	Enhederne passer ikke på skinnen {}
+The end: from or to	Enden: from eller to
 The feedback (CSV with header or JSON)	Tilbagemeldingen (CSV med overskriftsrække eller JSON)
 The first page number must not be negative	Første sidenummer må ikke være negativt
 The items would leave the page	Elementerne ville komme uden for siden
@@ -891,6 +894,7 @@ Unknown termination: {}	Ukendt afslutning: {}
 Unknown vertical anchor: {}	Ukendt lodret anker: {}
 Unknown way of opening: {}	Ukendt måde at åbne på: {}
 Unknown wire colour {} (IEC 60757: {})	Ukendt ledningsfarve {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Ukendt ledningsende: {} (from eller to)
 Use this scheme for the marking export	Brug dette skema til mærkningseksporten
 Used (mm)	Brugt (mm)
 Value while none is set	Værdi, så længe ingen er angivet

@@ -555,6 +555,7 @@ Downstream part	下级部件
 Draft of revision {} created	已创建修订 {} 的草稿
 Draft of revision {} discarded	已放弃修订 {} 的草稿
 Drag a connection point designation of the selected symbol to place it.	拖动所选符号的连接点标识以放置它。
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	拖动所选导线的一端可仅移动该端。按住 Alt 拖动会反转保持连接。
 Drag an entry into the page, or click it and then click into the page.	将条目拖到页中，或单击条目后在页中单击。
 Drag the core designation or the cable tag of the selected wire to place it.	拖动所选导线的芯线标识或电缆标识符以放置它。
 Drag the name or the cross reference of the selected point to place it.	拖动所选点的名称或交叉引用以放置它。
@@ -882,6 +883,7 @@ Joins wire pieces in a line where nothing else connects (current page)	合并一
 Jumper {}	跳线 {}
 Jumps over the other:	跳过另一条：
 K, Q, MM …	K、Q、MM …
+Keep connections	保持连接
 Keep sub-pages (3.a, 3.1) with the page before	子页 (3.a, 3.1) 保持在前一页之下
 Keep the degree of protection	保持防护等级
 Keep this route when recalculating, as long as it is still possible	重新计算时保留此布线（只要仍然可行）
@@ -1031,6 +1033,7 @@ Move the devices of this page into the new structure	将此页的设备移动到
 Move through the 3D view (Shift: faster)	在 3D 视图中移动（Shift：更快）
 Move to section	移到分节
 Move up	上移
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移动的符号会带动其导线，移动的导线会保留在其端点所在的连接点上。拖动时按住 Alt 可反转此行为；拖动所选导线的一端可将其断开
 Moves to the top level as page {}	移到最上层，成为页 {}
 Moves to {} as page {}	移到 {}，成为页 {}
 Moving	移动

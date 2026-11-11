@@ -313,6 +313,7 @@ Item id	元素 ID
 Item ids	元素 ID
 Jumper number	跳线编号
 Jumper number (terminals with the same number are bridged); 0 removes it	跳线编号（编号相同的端子相互桥接）；0 表示删除
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	保持连接（默认）：相连的导线会随之伸缩，移动的导线保留在其端点所在的连接点和导线上；false 则断开它们
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保持防护等级：使用换热器或冷却装置代替过滤风扇
 Key figures of the project and a list of its device tags	项目的关键指标及其设备标识符列表
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	项目的关键指标：页、符号、导线、设备、部件、电缆和检查结果
@@ -420,6 +421,7 @@ Measuring range or set point	测量范围或设定值
 Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
 Moves the page before this page of its section (or of the section given)	将页移到其分节（或指定分节）中此页之前
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	将分节移到其上级分节（或指定上级）中此分节之前；编号按顺序继续
@@ -800,6 +802,7 @@ The configuration (JSON)	配置 (JSON)
 The copies would leave the page	副本将移出页面
 The counting step must be at least 1	计数步长必须至少为 1
 The devices do not fit onto rail {}	设备无法放入导轨 {}
+The end: from or to	端点：from 或 to
 The feedback (CSV with header or JSON)	反馈（带标题行的 CSV 或 JSON）
 The first page number must not be negative	起始页码不能为负数
 The items would leave the page	这些元素将移出页面
@@ -891,6 +894,7 @@ Unknown termination: {}	未知的端接方式：{}
 Unknown vertical anchor: {}	未知垂直锚点：{}
 Unknown way of opening: {}	未知的开启方式：{}
 Unknown wire colour {} (IEC 60757: {})	未知导线颜色 {}（IEC 60757：{}）
+Unknown wire end: {} (from or to)	未知的导线端：{}（from 或 to）
 Use this scheme for the marking export	将此方案用于标记导出
 Used (mm)	已用 (mm)
 Value while none is set	未设置时的值

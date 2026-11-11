@@ -313,6 +313,7 @@ Item id	Elemazonosító
 Item ids	Elemazonosítók
 Jumper number	Áthidalásszám
 Jumper number (terminals with the same number are bridged); 0 removes it	Áthidalásszám (az azonos számú sorkapcsok át vannak hidalva); 0 eltávolítja
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Kapcsolatok megtartása (alapértelmezett): a csatlakozó vezetékek megnyúlnak, az áthelyezett vezetékek azokon a csatlakozási pontokon és vezetékeken maradnak, ahol végződnek; false leválasztja őket
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	A védettségi fokozat megtartása: hőcserélő vagy hűtőkészülék szűrős ventilátorok helyett
 Key figures of the project and a list of its device tags	A projekt mutatói és készülékazonosítóinak listája
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	A projekt mutatói: oldalak, szimbólumok, vezetékek, készülékek, alkatrészek, kábelek és ellenőrzési eredmények
@@ -420,6 +421,7 @@ Measuring range or set point	Méréstartomány vagy alapjel
 Message code, e.g. wires.3f9a1c	Üzenetkód, pl. wires.3f9a1c
 Milling feed, mm/min	Marási előtolás, mm/min
 Mirror the symbol	Szimbólum tükrözése
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Egy vezeték egyik végét mozgatja: leválik arról, amihez csatlakozik, és csatlakozik ahhoz, amibe ütközik; a vezeték derékszögű marad
 Moves symbols, wires and texts; connected wire ends follow	Szimbólumokat, vezetékeket és szövegeket mozgat; a csatlakozó vezetékvégek követik
 Moves the page before this page of its section (or of the section given)	Áthelyezi az oldalt a szakasza (vagy a megadott szakasz) ezen oldala elé
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Áthelyezi a szakaszt a szülője (vagy a megadott szülő) ezen szakasza elé; a számok sorrendben folytatódnak
@@ -800,6 +802,7 @@ The configuration (JSON)	A konfiguráció (JSON)
 The copies would leave the page	A másolatok kikerülnének az oldalról
 The counting step must be at least 1	A számlálási lépésköz legalább 1 legyen
 The devices do not fit onto rail {}	A készülékek nem férnek el a(z) {} sínen
+The end: from or to	A vég: from vagy to
 The feedback (CSV with header or JSON)	A visszajelzés (CSV fejléccel vagy JSON)
 The first page number must not be negative	Az első oldalszám nem lehet negatív
 The items would leave the page	Az elemek kikerülnének az oldalról
@@ -891,6 +894,7 @@ Unknown termination: {}	Ismeretlen lezárás: {}
 Unknown vertical anchor: {}	Ismeretlen függőleges horgony: {}
 Unknown way of opening: {}	Ismeretlen nyitási mód: {}
 Unknown wire colour {} (IEC 60757: {})	Ismeretlen érszín: {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Ismeretlen vezetékvég: {} (from vagy to)
 Use this scheme for the marking export	Ennek a sémának a használata a feliratozási exporthoz
 Used (mm)	Felhasznált (mm)
 Value while none is set	Érték, ha nincs beállítva

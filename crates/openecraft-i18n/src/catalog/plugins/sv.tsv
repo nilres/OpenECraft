@@ -313,6 +313,7 @@ Item id	Objekt-ID
 Item ids	Objekt-ID:n
 Jumper number	Bygelnummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Bygelnummer (plintar med samma nummer byglas); 0 tar bort det
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Behåll anslutningarna (standard): anslutna ledningar sträcks, flyttade ledningar stannar kvar på anslutningspunkterna och ledningarna där de slutar; false kopplar loss dem
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Behåll kapslingsklassen: värmeväxlare eller kylaggregat i stället för filterfläktar
 Key figures of the project and a list of its device tags	Projektets nyckeltal och en lista över dess apparatbeteckningar
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Projektets nyckeltal: sidor, symboler, ledningar, apparater, artiklar, kablar och kontrollresultat
@@ -420,6 +421,7 @@ Measuring range or set point	Mätområde eller börvärde
 Message code, e.g. wires.3f9a1c	Meddelandekod, t.ex. wires.3f9a1c
 Milling feed, mm/min	Fräsmatning, mm/min
 Mirror the symbol	Spegelvänd symbolen
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flyttar en ände av en ledning: den lämnar det den är ansluten till och ansluts till det den möter; ledningen förblir vinkelrät
 Moves symbols, wires and texts; connected wire ends follow	Flyttar symboler, ledningar och texter; anslutna ledningsändar följer med
 Moves the page before this page of its section (or of the section given)	Flyttar sidan före denna sida i dess avsnitt (eller i det angivna avsnittet)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Flyttar avsnittet före detta avsnitt i dess överordnade avsnitt (eller i det angivna); numren fortsätter i ordning
@@ -800,6 +802,7 @@ The configuration (JSON)	Konfigurationen (JSON)
 The copies would leave the page	Kopiorna skulle hamna utanför sidan
 The counting step must be at least 1	Räknesteget måste vara minst 1
 The devices do not fit onto rail {}	Apparaterna får inte plats på skena {}
+The end: from or to	Änden: from eller to
 The feedback (CSV with header or JSON)	Återkopplingen (CSV med rubrikrad eller JSON)
 The first page number must not be negative	Första sidnumret får inte vara negativt
 The items would leave the page	Objekten skulle hamna utanför sidan
@@ -891,6 +894,7 @@ Unknown termination: {}	Okänd avslutning: {}
 Unknown vertical anchor: {}	Okänd lodrät förankring: {}
 Unknown way of opening: {}	Okänt sätt att öppna: {}
 Unknown wire colour {} (IEC 60757: {})	Okänd ledarfärg {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Okänd ledningsände: {} (from eller to)
 Use this scheme for the marking export	Använd det här schemat för märkningsexporten
 Used (mm)	Använt (mm)
 Value while none is set	Värde när inget är angivet

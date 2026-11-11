@@ -313,6 +313,7 @@ Item id	Element-id
 Item ids	Element-id's
 Jumper number	Brugnummer
 Jumper number (terminals with the same number are bridged); 0 removes it	Brugnummer (klemmen met hetzelfde nummer zijn doorverbonden); 0 verwijdert het
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Verbindingen behouden (standaard): aangesloten draden rekken mee, verplaatste draden blijven op de aansluitpunten en draden waar ze eindigen; false maakt ze los
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Beschermingsgraad behouden: warmtewisselaar of koelaggregaat in plaats van filterventilatoren
 Key figures of the project and a list of its device tags	Kengetallen van het project en een lijst van de apparaataanduidingen
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Kengetallen van het project: pagina's, symbolen, draden, apparaten, artikelen, kabels en controleresultaten
@@ -420,6 +421,7 @@ Measuring range or set point	Meetbereik of setpoint
 Message code, e.g. wires.3f9a1c	Meldingscode, bijv. wires.3f9a1c
 Milling feed, mm/min	Freesvoeding, mm/min
 Mirror the symbol	Het symbool spiegelen
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
 Moves the page before this page of its section (or of the section given)	Verplaatst de pagina vóór deze pagina van haar sectie (of van de opgegeven sectie)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Verplaatst de sectie vóór deze sectie van de bovenliggende sectie (of van de opgegeven); de nummers lopen door in volgorde
@@ -800,6 +802,7 @@ The configuration (JSON)	De configuratie (JSON)
 The copies would leave the page	De kopieën zouden buiten de pagina komen
 The counting step must be at least 1	De telstap moet minstens 1 zijn
 The devices do not fit onto rail {}	De apparaten passen niet op rail {}
+The end: from or to	Het uiteinde: from of to
 The feedback (CSV with header or JSON)	De terugmelding (CSV met koprij of JSON)
 The first page number must not be negative	Het eerste paginanummer mag niet negatief zijn
 The items would leave the page	De elementen zouden buiten de pagina komen
@@ -891,6 +894,7 @@ Unknown termination: {}	Onbekende afwerking: {}
 Unknown vertical anchor: {}	Onbekend verticaal ankerpunt: {}
 Unknown way of opening: {}	Onbekende manier van openen: {}
 Unknown wire colour {} (IEC 60757: {})	Onbekende draadkleur {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Onbekend draaduiteinde: {} (from of to)
 Use this scheme for the marking export	Dit schema gebruiken voor de markeringsexport
 Used (mm)	Gebruikt (mm)
 Value while none is set	Waarde zolang er geen is ingesteld
