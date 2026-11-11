@@ -143,7 +143,8 @@ pub(super) fn brand_of(p: &Part) -> Option<Brand> {
         },
         "Pylontech" if sub == "Battery" => Brand::Pylontech,
         "Hager" => match sub {
-            // Strips for 185 mm busbar systems: tall and narrow.
+            // Strips for 185 mm busbar systems and the narrow NH000 disconnector (its
+            // poles one above the other): tall and narrow.
             "Fuse switch disconnector" if p.height > 3.0 * p.width => Brand::HagerStrip,
             "Fuse switch disconnector" => Brand::HagerNh,
             "Energy meter" => Brand::HagerMeter,
