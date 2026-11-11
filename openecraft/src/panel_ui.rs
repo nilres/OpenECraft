@@ -3146,7 +3146,9 @@ impl PanelUi {
             self.zoom = (self.zoom * gesture.zoom).clamp(0.05, 20.0);
             self.offset = at - rect.min - vec2(before.x, before.y) * self.zoom;
         }
-        if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
+        if resp.dragged_by(PointerButton::Middle)
+            || (resp.dragged_by(PointerButton::Secondary) && self.drag.is_none())
+        {
             self.offset += resp.drag_delta();
         }
         // Fingers navigating end a move of the first one where it is.
@@ -3194,7 +3196,8 @@ impl PanelUi {
                 self.fit_pending = true;
             }
         }
-        if resp.clicked_by(PointerButton::Secondary) {
+        let moving_primary = self.drag.is_some() && ui.input(|i| i.pointer.button_down(PointerButton::Primary));
+        if resp.clicked_by(PointerButton::Secondary) && !moving_primary {
             if self.start.is_some() {
                 self.start = None;
             } else {
@@ -3623,8 +3626,9 @@ impl PanelUi {
                 self.drag = Some(MoveDrag { start: q, originals, resize: None });
             }
         }
-        if resp.dragged_by(PointerButton::Primary) {
-            if let (Some(drag), Some(ptr)) = (&self.drag, resp.interact_pointer_pos()) {
+        if ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            let ptr = ui.input(|i| i.pointer.hover_pos()).or_else(|| resp.interact_pointer_pos());
+            if let (Some(drag), Some(ptr)) = (&self.drag, ptr) {
                 let q = to_plate(ptr);
                 let e = &mut prj.layout.enclosures[ei];
                 if let Some(resize) = &drag.resize {
@@ -3658,7 +3662,19 @@ impl PanelUi {
                 }
             }
         }
-        if resp.drag_stopped() {
+        let pointer = ui.input(|i| i.pointer.hover_pos()).map(to_plate);
+        self.rotate_while_moving(ui, prj, ei, pointer);
+        let primary_released = ui.input(|i| {
+            i.events.iter().any(|event| matches!(
+                event,
+                egui::Event::PointerButton {
+                    button: PointerButton::Primary,
+                    pressed: false,
+                    ..
+                }
+            ))
+        });
+        if resp.drag_stopped_by(PointerButton::Primary) || primary_released {
             if let Some(drag) = self.drag.take() {
                 let changed = drag
                     .resize
@@ -3668,6 +3684,7 @@ impl PanelUi {
                 panel::capture_anchors(&mut prj.layout.enclosures[ei], &changed);
             }
         }
+
         if resp.clicked_by(PointerButton::Primary) {
             if let Some(ptr) = resp.interact_pointer_pos() {
                 let q = to_plate(ptr);
@@ -3703,6 +3720,56 @@ impl PanelUi {
                     None if !shift => self.deselect(),
                     None => {}
                 }
+            }
+        }
+    }
+
+    fn rotate_while_moving(&mut self, ui: &egui::Ui, prj: &mut Project, ei: usize, pointer: Option<P>) {
+        if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            return;
+        }
+        let rotations: Vec<bool> = ui.input(|i| {
+            i.events
+                .iter()
+                .filter_map(|event| match event {
+                    egui::Event::PointerButton {
+                        button: PointerButton::Secondary,
+                        pressed: true,
+                        modifiers,
+                        ..
+                    } => Some(modifiers.shift),
+                    _ => None,
+                })
+                .collect()
+        });
+        for counter_clockwise in rotations {
+            let Some(drag) = &self.drag else { continue };
+            let ids: Vec<u64> = drag.originals.iter().map(|original| original.0).collect();
+            let orientations: HashMap<u64, panel::PanelRotation> = prj.layout.enclosures[ei]
+                .items
+                .iter()
+                .filter(|item| ids.contains(&item.id) && matches!(item.kind, ItemKind::Device | ItemKind::Accessory))
+                .map(|item| (item.id, panel::device_rotation(prj, item)))
+                .collect();
+            let e = &mut prj.layout.enclosures[ei];
+            for item in e.items.iter_mut().filter(|item| ids.contains(&item.id)) {
+                for _ in 0..if counter_clockwise { 3 } else { 1 } {
+                    item.rotate();
+                }
+                if let Some(orientation) = orientations.get(&item.id) {
+                    let delta = if counter_clockwise { 270 } else { 90 };
+                    item.rotation = Some(panel::PanelRotation::from_degrees(orientation.degrees() + delta).unwrap());
+                }
+            }
+            let originals = e
+                .items
+                .iter()
+                .filter(|item| ids.contains(&item.id))
+                .map(|item| (item.id, item.x, item.y))
+                .collect();
+            if let (Some(drag), Some(pointer)) = (&mut self.drag, pointer) {
+                drag.start = pointer;
+                drag.originals = originals;
             }
         }
     }

@@ -69,7 +69,7 @@ bash installer/linux/build.sh flatpak snap           # sandboxed packages
 | --- | --- | --- | --- |
 | Debian, Ubuntu | `openecraft_<version>_amd64.deb` | `sudo apt install ./openecraft_*.deb` | `dpkg-dev` |
 | Fedora, RHEL, openSUSE | `openecraft-<version>-1.x86_64.rpm` | `sudo dnf install ./openecraft-*.rpm` | `rpmbuild` |
-| Any distribution | `OpenECraft-<version>-x86_64.AppImage` | `chmod +x`, start it | `appimagetool` and its runtime (downloaded, checksums verified) |
+| Any distribution | `OpenECraft-<version>-x86_64.AppImage` | `chmod +x`, start it | Debian or Ubuntu, `patchelf`, `appimagetool` and its runtime (downloaded, checksums verified) |
 | Any distribution | `OpenECraft-<version>-x86_64.flatpak` | `flatpak install --user OpenECraft-*.flatpak` | `flatpak-builder` |
 | Any distribution | `openecraft_<version>_amd64.snap` | `sudo snap install --dangerous openecraft_*.snap` | `snapcraft` |
 | Any distribution | `OpenECraft-<version>-linux-x86_64.tar.gz` | `./install.sh` (to `~/.local`) | `tar` |
@@ -81,6 +81,9 @@ the Flatpak with `flatpak run --command=openecraft-cli io.github.nilres.OpenECra
 and in the snap as `openecraft.cli`, `openecraft.parts-manager`, … CI builds them on every
 push (artifacts `openecraft-linux-packages`, `openecraft-flatpak`, `openecraft-snap`);
 deb, rpm, AppImage and tar.gz are built on Debian 12 and run with glibc 2.36 or newer.
+The AppImage carries the window libraries that are not on every system (xkbcommon,
+Xcursor, Xi: `appimage_libs` in `installer/linux/build.sh`); the build refuses one that
+needs another library or a newer glibc than the programs.
 The desktop entries, MIME types and AppStream data (`io.github.nilres.OpenECraft`) are
 in `installer/linux/`; a new version needs a `<release>` in the metainfo file.
 
