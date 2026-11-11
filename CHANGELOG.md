@@ -13,6 +13,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
   wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
   The symbol editor's canvas pans too (also with the middle mouse button).
+- **Settings after an update check:** checking for updates no longer collapses Settings
+  into an unusable title bar. Dialogs already stuck this way recover their contents.
 - **Wire jumps** (#132): wires that cross without a connection can jump over each other
   with an arc, a square bridge or a gap, besides the plain crossing of before; the
   vertical or the horizontal wire jumps. T-connections show a dot, a large dot or no
@@ -106,6 +108,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   reset to the automatic placement; the places are saved and exported, the cross
   reference keeps its link. Command `place_interruption_texts`
   ([schematic](docs/features/schematic.md)).
+- CAD drawing imports return original geometry bounds and their page origin, so
+  external importers can recover drawing coordinates without changing page placement.
+
 - **Device boxes with device connection points:** a dashed box of any size drawn on
   the schematic is a device of its own (power supply, measuring instrument, control
   module) without a library symbol; device connection points placed on its outline
@@ -240,6 +245,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - Preserve the connectivity domain of imported fluid and process symbols so their ports stay distinct from electrical connections.
 - Keep imported property text angles and pin designation fields editable and linked to their placed symbol.
 - Support imported secondary device functions and local junction paths without adding spurious main functions or device endpoints.
+
+- **Accessories from macros:** a macro can list in `device_part_additions` the literal
+  accessory articles of its devices to add when it extends an existing device; the other
+  articles and the local quantities of that device stay as they are.
+
+- **Reusing failed route searches:** with the routing rule `reuse_failed_searches` (off by
+  default), a search that found no route is not repeated when later routes only fill the
+  channels.
 
 ## [0.1.1] - 2026-11-08
 

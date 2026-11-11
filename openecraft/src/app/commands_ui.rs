@@ -725,7 +725,7 @@ impl App {
         }
     }
 
-    /// A menu entry that runs a command (with its shortcut and tooltip).
+    /// A button that runs a command (with its shortcut and tooltip).
     pub(super) fn cmd_button(&mut self, ui: &mut egui::Ui, cmd: Cmd) {
         let def = commands::def(cmd);
         let keys = self.editor.shortcuts.cmd_text(cmd);
@@ -739,7 +739,7 @@ impl App {
         if r.clicked() {
             let ctx = ui.ctx().clone();
             self.run(&ctx, cmd);
-            ui.close();
+            close_command_menu(ui);
         }
     }
 
@@ -840,3 +840,13 @@ impl App {
         }
     }
 }
+
+fn close_command_menu(ui: &egui::Ui) {
+    // The same buttons appear in Settings, where close() would collapse the window.
+    if egui::containers::menu::is_in_menu(ui) {
+        ui.close();
+    }
+}
+
+#[cfg(test)]
+mod tests;
