@@ -47,3 +47,13 @@ fn the_example_configuration_is_valid() {
     let f = file(include_str!("../../project-server.example.toml"));
     assert!(f.bind.is_some() && f.data.is_some());
 }
+
+#[test]
+fn the_admin_user_can_come_from_the_environment() {
+    use clap::CommandFactory;
+    let command = Args::command();
+    let arg = command.get_arguments().find(|a| a.get_id() == "admin_user").unwrap();
+    assert_eq!(arg.get_env(), Some(std::ffi::OsStr::new("OPENECRAFT_PROJECT_ADMIN_USER")));
+    let s = Settings::merge(args(&["--admin-user", " "]), File::default());
+    assert_eq!(s.admin_user, None, "an empty name is no administrator");
+}

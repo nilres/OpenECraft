@@ -147,8 +147,11 @@ docker run -d --name projects -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKEN
 The settings of each image are in `/etc/openecraft/parts-server.toml` and
 `project-server.toml` (`bind = "0.0.0.0:<port>"`, `data` in `/data`); mount your own
 file there or add command line options after the image name
-(`… openecraft-parts-server --install-catalogs all`, `--admin-user admin` with the
-password in `OPENECRAFT_ADMIN_PASSWORD` / `OPENECRAFT_PROJECT_ADMIN_PASSWORD`).
+(`… openecraft-parts-server --install-catalogs all`). The first administrator comes
+from the environment too: `-e OPENECRAFT_ADMIN_USER=admin -e
+OPENECRAFT_ADMIN_PASSWORD=<password>` (`OPENECRAFT_PROJECT_ADMIN_USER` /
+`OPENECRAFT_PROJECT_ADMIN_PASSWORD` for the project server) creates the account, or
+resets its password, at every start.
 A bind mount instead of a volume must be writable by the user of the image (uid 1000,
 or start the container with `--user`). `installer/docker/compose.yaml` starts both
 servers with Docker Compose. The servers speak plain HTTP: keep them on `127.0.0.1`

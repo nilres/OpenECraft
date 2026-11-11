@@ -81,7 +81,17 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   one conductor, and follows the conductors through the primaries of current
   transformers.
 - Mounting layout pages (scaled 2D model view with dimensions) for printing / SVG;
-  rails and ducts appear in the BOM by cut length, enclosures per piece.
+  cable ducts, mounting rails and busbar systems carry a label with their
+  cross-section and cut length (*60 × 100 mm, L = 940 mm*) on the longest stretch no
+  device covers, shrunk to fit, only the length (*L = 430 mm*) where the whole label
+  does not fit. A full one gets it beside its end (else its start), in line with it, up
+  to the next item or the plate edge; it is left out where even there it would be
+  unreadable. Rails, ducts and busbars
+  appear in the BOM by total length (or stock pieces), with the pieces to cut per
+  enclosure and length below each part (no part number of their own, so ERP exports
+  count the material once); enclosures per piece. The panel legend lists every rail,
+  duct and busbar system after the devices with its part number, cross-section
+  (width × height) and cut length.
 - Jump between a device in the schematic and its place in the panel layout.
 
 ## Collision and boundary checks

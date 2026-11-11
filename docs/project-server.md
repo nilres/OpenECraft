@@ -39,7 +39,7 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   editors lock, change, save and create projects, project managers also delete
   projects and manage who may use them, administrators also manage the users; a user's
   role can be limited to some projects (names with `*` / `?`). `--admin-user <name>`
-  creates the first administrator with the password from
+  (or `OPENECRAFT_PROJECT_ADMIN_USER`) creates the first administrator with the password from
   `OPENECRAFT_PROJECT_ADMIN_PASSWORD` (at least 8 characters, as every password). Users
   sign in from *Tools › Project server…* (user name, password, *Sign in*); the server uses
   the account's name on the locks, whatever the request says, and for the comments,

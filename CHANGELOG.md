@@ -13,6 +13,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   selected wire moves only that end, to disconnect it or connect it elsewhere. Commands:
   `move_items` (`keep_connections`), `move_wire_end`
   ([schematic](docs/features/schematic.md#editing)).
+- **Server administrator from the environment:** `OPENECRAFT_ADMIN_USER` (parts server)
+  and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
+  created at startup, as `--admin-user` does, so a Docker container gets its first user
+  from environment variables alone ([installation](docs/installation.md#docker-images-of-the-servers)).
+
 - **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
   placement crosshair to the edges of the schematic canvas, following the snapped
   working point.
@@ -29,6 +34,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Auto-connect hints:** while a symbol is placed or moved with the mouse, faint
   dotted lines show the wires auto-connect would draw
   ([schematic](docs/features/schematic.md#routing)).
+- **Profile sizes on mounting layouts** (#152): cable ducts, mounting rails and busbar
+  systems are labelled with their cross-section and cut length
+  (*60 × 100 mm, L = 940 mm*) on mounting layout pages and in the panel layout, on the
+  longest stretch no device covers (only the length where the whole label does not
+  fit), beside the end of a full one. The panel legend lists them after the devices with part number, cross-section
+  (width × height) and cut length; the bill of materials lists the pieces to cut below
+  each of their parts (*2 pcs, Cut length 550 mm, +CAB1*).
 - **Panel layout profile sizing** (#135): select a mounting rail or cable duct and drag
   either end to change its length while the opposite end stays put.
 - **Connection symbols** (#96): Auto-connect wires the branch of a T-junction that sits

@@ -10,7 +10,7 @@
 //! wall seen from the outside, `z` is the distance from the wall's inside surface
 //! into the enclosure (negative: sticking out).
 
-use openecraft_i18n::tr;
+use openecraft_i18n::{tr, tr_fmt};
 use crate::geom::{p, P, R};
 use crate::model::Project;
 use crate::netlist::Connection;
@@ -311,6 +311,17 @@ impl PanelItem {
             let x = self.x + self.w / 2.0;
             (p(x, self.y), p(x, self.y + self.h))
         }
+    }
+
+    /// Rails, ducts and busbars: cross-section (width across × height) as written on
+    /// mounting layouts, e.g. "60 × 100".
+    pub fn profile_section(&self) -> String {
+        format!("{} × {}", mm_text(self.w.min(self.h)), mm_text(self.d))
+    }
+
+    /// Rails, ducts and busbars: cross-section and cut length for the drawing.
+    pub fn profile_label(&self) -> String {
+        tr_fmt!("{} mm, L = {} mm", self.profile_section(), mm_text(self.length()))
     }
 
     /// Rotates by 90° around the centre.
@@ -687,6 +698,70 @@ pub fn bars_along_x(parts: &[crate::parts::Part], bar: &PanelItem) -> bool {
     } else {
         bar.w >= bar.h
     }
+}
+
+/// Rails, ducts and busbars: the longest stretch along the item (start and end in face
+/// coordinates) that no item drawn over it covers, the place of its label.
+pub fn free_stretch(e: &Enclosure, it: &PanelItem) -> (f32, f32) {
+    let along = it.horizontal();
+    let (start, end) = if along { (it.x, it.x + it.w) } else { (it.y, it.y + it.h) };
+    let r = it.rect();
+    let mut covered: Vec<(f32, f32)> = e
+        .items
+        .iter()
+        .filter(|o| o.id != it.id && o.face == it.face && o.kind.layer() > it.kind.layer())
+        .map(PanelItem::rect)
+        .filter(|o| o.min.x < r.max.x && o.max.x > r.min.x && o.min.y < r.max.y && o.max.y > r.min.y)
+        .map(|o| if along { (o.min.x, o.max.x) } else { (o.min.y, o.max.y) })
+        .collect();
+    covered.sort_by(|a, b| a.0.total_cmp(&b.0));
+    let (mut best, mut at) = ((start, start), start);
+    for (a, b) in covered.into_iter().chain([(end, end)]) {
+        let a = a.clamp(start, end);
+        if a - at > best.1 - best.0 {
+            best = (at, a);
+        }
+        at = at.max(b);
+    }
+    best
+}
+
+/// Rails, ducts and busbars: the free stretches in line with the item beyond its end
+/// and before its start, up to the next item or the edge of `bounds` (face
+/// coordinates), the place of its label where the item itself is full.
+pub fn end_room(e: &Enclosure, it: &PanelItem, bounds: R) -> [(f32, f32); 2] {
+    let along = it.horizontal();
+    let (start, end) = if along { (it.x, it.x + it.w) } else { (it.y, it.y + it.h) };
+    let (lo, hi) = if along { (bounds.min.x, bounds.max.x) } else { (bounds.min.y, bounds.max.y) };
+    let (mut before, mut after) = (lo.min(start), hi.max(end));
+    let r = it.rect();
+    for o in e.items.iter().filter(|o| o.id != it.id && o.face == it.face && o.kind != ItemKind::MountingPlate) {
+        let q = o.rect();
+        let in_line = if along { q.min.y < r.max.y && q.max.y > r.min.y } else { q.min.x < r.max.x && q.max.x > r.min.x };
+        if !in_line {
+            continue;
+        }
+        let (a, b) = if along { (q.min.x, q.max.x) } else { (q.min.y, q.max.y) };
+        if a >= end {
+            after = after.min(a);
+        } else if b <= start {
+            before = before.max(b);
+        } else {
+            if b > end {
+                after = end;
+            }
+            if a < start {
+                before = start;
+            }
+        }
+    }
+    [(end, after), (before, start)]
+}
+
+/// Millimetres on drawings and in lists: whole numbers, one decimal where needed.
+pub fn mm_text(v: f32) -> String {
+    let s = format!("{v:.1}");
+    s.strip_suffix(".0").map(str::to_string).unwrap_or(s)
 }
 
 /// Profile width and height of rails / ducts (from the part or the defaults).
@@ -2212,6 +2287,25 @@ pub fn material_tags(prj:&Project)->std::collections::BTreeSet<&String> {
     prj.layout.enclosures.iter().flat_map(|e|std::iter::once(&e.device_tag)
         .chain(e.items.iter().filter(|i|i.kind==ItemKind::Device).map(|i|&i.tag)))
         .filter(|tag|!tag.is_empty()).collect()
+}
+
+/// The pieces to cut of the rails, ducts and busbars in the BOM: (part number,
+/// enclosure, cut length in mm, count), by part, enclosure and length, longest first.
+pub fn cut_pieces(prj: &Project) -> Vec<(String, String, f32, usize)> {
+    let mut out: Vec<(String, String, f32, usize)> = Vec::new();
+    for e in &prj.layout.enclosures {
+        let profiles = e.items.iter().filter(|i| i.kind.is_profile() && !i.part.is_empty() && !i.bom_excluded && !crate::parts::excluded_from_bom(prj, &i.tag));
+        for i in profiles {
+            let length = (i.length() * 10.0).round() / 10.0;
+            match out.iter_mut().find(|c| c.0 == i.part && c.1 == e.name && c.2 == length) {
+                Some(c) => c.3 += 1,
+                None => out.push((i.part.clone(), e.name.clone(), length, 1)),
+            }
+        }
+    }
+    let at = |name: &str| prj.layout.enclosures.iter().position(|e| e.name == name);
+    out.sort_by(|a, b| a.0.cmp(&b.0).then(at(&a.1).cmp(&at(&b.1))).then(b.2.total_cmp(&a.2)));
+    out
 }
 
 /// Material for the BOM: (part number, quantity, where used) of the enclosures and
