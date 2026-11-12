@@ -1133,7 +1133,10 @@ impl Editor {
 
         let locked = prj.pages[page_i].locked;
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
-        let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p));
+        // Not where a window, menu or popup lies over the canvas (crosshair, previews,
+        // hits); a press or drag that started on the canvas keeps the pointer.
+        let covered = |p: Pos2| ui.ctx().layer_id_at(p).is_some_and(|l| l != ui.layer_id()) && !resp.is_pointer_button_down_on();
+        let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|p| rect.contains(*p) && !covered(*p));
         let world = ptr.map(|s| self.s2w(rect, s));
         // Connection points and wire ends off the grid are invisible grid lines.
         let placing = match self.tool {
