@@ -47,6 +47,7 @@ Altitude of the site in m	A telepítési hely tengerszint feletti magassága m-b
 Ambient temperature of the conductors in °C	A vezetők környezeti hőmérséklete °C-ban
 An outline needs {} points at least	A körvonalhoz legalább {} pont szükséges
 Anchor along the axis: free, start:<mm>, center:<mm>, end:<mm> or stretch:<mm>,<mm>	Horgony a tengely mentén: free, start:<mm>, center:<mm>, end:<mm> vagy stretch:<mm>,<mm>
+Angle in degrees, counter-clockwise	Szög fokban, az óramutatóval ellentétesen
 Aspects separated by commas, e.g. function,location	Aspektusok vesszővel elválasztva, pl. function,location
 Assigns a function definition to a placed symbol (designations and scheme are taken over)	Funkciódefiníciót rendel egy elhelyezett szimbólumhoz (a megnevezések és a séma átvételre kerülnek)
 Asynchronous motors add to the short-circuit current	Az aszinkronmotorok hozzájárulnak a zárlati áramhoz
@@ -101,6 +102,7 @@ Chosen value	Választott érték
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	A szekrényelrendezés szabad terei, szervizterülete, magasságai, ütközési osztályai, termikus szimulációja és gyárthatósága
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	A szekrények klimatizálása (IEC/TR 60890): veszteségi teljesítmény, belső hőmérséklet, szükséges ventilátor vagy hűtőegység és fűtés; igény szerint módosítja egy szekrény beállításait
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Ütközési osztály: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, saját osztály vagy * bármelyikhez
+Colour as #RRGGBB	Szín #RRGGBB formában
 Column and row strips	Oszlop- és sorsávok
 Column mapping {field code: column name}	Oszlop-hozzárendelés {mezőkód: oszlopnév}
 Column name, e.g. Description	Oszlopnév, pl. Description
@@ -137,6 +139,7 @@ Creates or changes a configurator option	Konfigurátoropciót hoz létre vagy m�
 Creates or changes a fluid device group	Fluid-készülékcsoportot hoz létre vagy módosít
 Creates or changes a plot frame of the project (built-in frames are copied under a new name)	Létrehozza vagy módosítja a projekt egy rajzkeretét (a beépített keretek új néven másolódnak)
 Creates or changes a potential definition; its wires take the colour and cross-section unless set on the wire	Potenciáldefiníciót hoz létre vagy módosít; a vezetékei átveszik a színt és a keresztmetszetet, hacsak nincs a vezetéken beállítva
+Creates or changes a title block of the project (built-in ones are copied under a new name)	Létrehozza vagy módosítja a projekt egyik szövegmezőjét (a beépítetteket új néven másolja)
 Creates or changes a work area: only the pages and devices of its structure are shown	Munkaterületet hoz létre vagy módosít: csak a struktúrájához tartozó oldalak és készülékek jelennek meg
 Cross reference placed by hand: X offset from the insertion point in mm	Kézzel elhelyezett kereszthivatkozás: X eltolás a beszúrási ponttól mm-ben
 Cross reference placed by hand: Y offset from the insertion point in mm	Kézzel elhelyezett kereszthivatkozás: Y eltolás a beszúrási ponttól mm-ben
@@ -171,6 +174,7 @@ Deletes a page	Töröl egy oldalt
 Deletes a page template of the project	Töröl egy oldalsablont a projektből
 Deletes a plot frame of the project that no page uses	Töröl a projektből egy olyan rajzkeretet, amelyet egyetlen oldal sem használ
 Deletes a potential definition	Töröl egy potenciáldefiníciót
+Deletes a title block of the project; pages using it get the project default	Törli a projekt egyik szövegmezőjét; az azt használó oldalak a projekt alapértelmezését kapják
 Deletes a work area	Töröl egy munkaterületet
 Deletes symbols, wires, texts and shapes	Szimbólumokat, vezetékeket, szövegeket és alakzatokat töröl
 Depth in mm	Mélység mm-ben
@@ -220,6 +224,7 @@ EMC classes of the cables (drive output, analogue, power, signal, shield) and th
 Edge length of the routing grid in mm	A nyomvonalrács élhossza mm-ben
 Electrical device tags separated by commas or blanks (empty = remove the links)	Villamos készülékazonosítók vesszővel vagy szóközzel elválasztva (üres = a kapcsolatok eltávolítása)
 Electrical engineering	Villamosmérnöki terület
+Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elemek (Line, Rect, Text, Image) mm-ben a szövegmező területének bal felső sarkától egy items tömbben
 Enclosure (location, e.g. +CAB1)	Szekrény (szerelési hely, pl. +CAB1)
 Enclosure (location, e.g. +CAB1) whose settings change	Szekrény (szerelési hely, pl. +CAB1), amelynek beállításai módosulnak
 Enclosure climate and electrical sizing	Szekrényklíma és villamos méretezés
@@ -311,6 +316,7 @@ Integration profiles and status	Integrációs profilok és állapot
 Interruption points refer to: all (default), star or pairs	A megszakítási pontok hivatkozása: all (alapértelmezett), star vagy pairs
 Invalid answer of the plugin: {}	Érvénytelen bővítményválasz: {}
 Invalid segment name: {}	Érvénytelen szegmensnév: {}
+Invalid title block elements: {}	Érvénytelen szövegmező-elemek: {}
 Item id	Elemazonosító
 Item ids	Elemazonosítók
 Jumper number	Áthidalásszám
@@ -385,6 +391,7 @@ Lists the subprojects taken out of the project, or the project it was taken from
 Lists the symbols that can be placed, with their connection points relative to the insertion point	Felsorolja az elhelyezhető szimbólumokat a beszúrási ponthoz viszonyított csatlakozási pontjaikkal
 Lists the terminal strips with their number of terminals and length on the rail	Felsorolja a sorkapocsléceket a sorkapcsok számával és a sínen elfoglalt hosszal
 Lists the terminations chosen for wire ends and the kinds there are	Felsorolja a vezetékvégekhez választott lezárásokat és a meglévő fajtákat
+Lists the title blocks (built-in and the project's own) with their elements, the project default and the placeholders	Felsorolja a szövegmezőket (beépített és a projekt saját) elemeikkel, a projekt alapértelmezését és a helyőrzőket
 Lists the translation dictionary of the project texts (source line and translations)	Felsorolja a projektszövegek fordítási szótárát (forrássor és fordítások)
 Lists the window macros placed on the pages (macro boxes) with macro, variant, placeholder values and number of items	Felsorolja az oldalakon elhelyezett ablakmakrókat (makródobozokat) a makróval, változattal, helyőrzőértékekkel és az elemek számával
 Load losses of the transformer in W (0: typical)	A transzformátor rövidzárási veszteségei W-ban (0: tipikus)
@@ -438,6 +445,8 @@ Name of the main earthing terminal	A fő földelősín neve
 Name of the safety function to remove	Az eltávolítandó biztonsági funkció neve
 Name of the segment	A szegmens neve
 Name of the template	A sablon neve
+Name of the title block	A szövegmező neve
+Name of the title block (with page_type: empty removes the choice)	A szövegmező neve (page_type esetén: üres törli a választást)
 Name of the work area	A munkaterület neve
 Name or id; the tag for places	Név vagy azonosító; elhelyezéseknél az azonosító
 Name placed by hand: X offset from the insertion point in mm	Kézzel elhelyezett név: X eltolás a beszúrási ponttól mm-ben
@@ -480,6 +489,7 @@ No terminal strip {}	Nincs ilyen sorkapocsléc: {}
 No terminal {} on strip {}	Nincs {} sorkapocs a(z) {} lécen
 No text with id {}	Nincs {} azonosítójú szöveg
 No three wires meet at {} / {} mm: give the direction of the stem	A(z) {} / {} mm pontban nem találkozik három vezeték: adja meg a szár irányát
+No title block named {}	Nincs {} nevű szövegmező
 No transformer: set {} first	Nincs transzformátor: előbb állítsa be ezt: {}
 No wire at {} / {} mm	Nincs vezeték a(z) {} / {} mm helyen
 No wire with id {}	Nincs {} azonosítójú vezeték
@@ -489,6 +499,7 @@ Node {} exists already	A(z) {} csomópont már létezik
 Nodes to pass in this order, comma separated	Érintendő csomópontok ebben a sorrendben, vesszővel elválasztva
 Nominal size, e.g. 8 mm or DN25	Névleges méret, pl. 8 mm vagy DN25
 None of the items is an interruption point	Egyik elem sem megszakítási pont
+Not a colour (#RRGGBB): {}	Nem szín (#RRGGBB): {}
 Not a cross-section: {} (e.g. 1.5 mm²)	Nem keresztmetszet: {} (pl. 1.5 mm²)
 Not a valid safety function: {}	Nem érvényes biztonsági funkció: {}
 Note, e.g. what the problem is	Megjegyzés, pl. mi a probléma
@@ -510,6 +521,7 @@ One end, e.g. -K1:A1	Az egyik vég, pl. -K1:A1
 One row per printed label instead of a count	Nyomtatott címkénként egy sor darabszám helyett
 Only devices on these pages (names separated by commas)	Csak az ezeken az oldalakon lévő készülékek (nevek vesszővel elválasztva)
 Only doors and windows open	Csak ajtók és ablakok nyílnak
+Only for pages of this type: schematic, cover, report, mounting, overview, graphic or document	Csak ilyen típusú oldalakhoz: schematic, cover, report, mounting, overview, graphic vagy document
 Only lines without a translation into this language	Csak az erre a nyelvre le nem fordított sorok
 Only list the new tags, change nothing	Csak az új azonosítók listázása, semmi nem módosul
 Only shows the package, no job is recorded	Csak a csomagot jeleníti meg, megbízás nem kerül rögzítésre
@@ -583,7 +595,7 @@ Plans the machining of a face: operations (drilling, tapping, milling, punching,
 Plant segments with planned devices before the schematic: templates, power budget, state against the schematic, exchange as CSV / Excel	Létesítményszegmensek tervezett készülékekkel a kapcsolási rajz előtt: sablonok, teljesítménymérleg, állapot a kapcsolási rajzhoz képest, csere CSV / Excel formátumban
 Plinth height in mm, 0 without plinth	Lábazat magassága mm-ben, 0 lábazat nélkül
 Plot frame (list_frames); empty = the project default	Rajzkeret (list_frames); üres = a projekt alapértelmezése
-Plot frames and page templates of the project	A projekt rajzkeretei és oldalsablonjai
+Plot frames, title blocks and page templates of the project	A projekt rajzkeretei, szövegmezői és oldalsablonjai
 Plug tag, e.g. -X10	Csatlakozódugó-azonosító, pl. -X10
 Plugin id '{}' is not snake_case	A(z) '{}' bővítményazonosító nem snake_case formátumú
 Plugin {} is loaded twice	A(z) {} bővítmény kétszer van betöltve
@@ -708,6 +720,8 @@ Sets the plot frame of all pages that do not choose one	Beállítja az összes o
 Sets the shield and the outer diameter of a cable	Beállítja egy kábel árnyékolását és külső átmérőjét
 Sets the source language of the project texts and the target languages (ISO 639-1 codes)	Beállítja a projektszövegek forrásnyelvét és a célnyelveket (ISO 639-1 kódok)
 Sets the spare terminals of a strip and whether its accessories are added automatically	Beállítja egy léc tartalék sorkapcsait, és hogy a tartozékai automatikusan hozzáadódjanak-e
+Sets the stamp drawn across all pages by the state of the revision workflow (e.g. DRAFT); without parameters it shows the stamp	Beállítja a revíziós folyamat állapota szerint minden oldalon keresztben rajzolt bélyegzőt (pl. TERVEZET); paraméter nélkül megmutatja
+Sets the title block of all pages that do not choose one, or of the pages of one type	Beállítja a szövegmezőt minden olyan oldalon, amely nem választ, vagy egy típus oldalain
 Sets the translation of a line of the project texts (empty removes it)	Beállítja a projektszövegek egy sorának fordítását (üres érték eltávolítja)
 Sets the wire colour and cross-section of nets without a defined potential (empty = none)	Beállítja a definiált potenciál nélküli hálózatok érszínét és keresztmetszetét (üres = nincs)
 Share of the capacity kept free in percent	A kapacitás szabadon tartott része százalékban
@@ -790,11 +804,16 @@ Terminal designation	Sorkapocs megnevezése
 Terminal designations in strip order, separated by commas	Sorkapocs-megnevezések lécsorrendben, vesszővel elválasztva
 Terminal order, levels, jumpers, spare terminals and accessories	Sorkapocssorrend, szintek, áthidalások, tartalék sorkapcsok és tartozékok
 Text height in mm	Szövegmagasság mm-ben
+Text height in mm (0: fitted to the page)	Szövegmagasság mm-ben (0: az oldalhoz igazítva)
 Text height in mm (default 3.5)	Szövegmagasság mm-ben (alapértelmezés: 3.5)
 Text in id, name or order number	Szöveg az azonosítóban, a névben vagy a rendelési számban
 Text in the key or name	Szöveg a kulcsban vagy a névben
 Text in the line or a translation	Szöveg a sorban vagy egy fordításban
 Text to find; empty: fill	Keresendő szöveg; üres: kitöltés
+Text when everything is released, e.g. AS BUILT	Szöveg, ha minden ki van adva, pl. MEGVALÓSULT
+Text when the revision is approved but not released	Szöveg, ha a revízió jóvá van hagyva, de nincs kiadva
+Text while a revision is a draft or nothing is released yet (placeholders allowed; empty: none)	Szöveg, amíg egy revízió tervezet, vagy még semmi sincs kiadva (helyőrzők megengedettek; üres: nincs)
+Text while a revision is in review or was rejected	Szöveg, amíg egy revízió ellenőrzés alatt áll vagy elutasították
 Text; placeholders such as {page} or {prop:Name} are filled in when drawn	Szöveg; a helyőrzők, például {page} vagy {prop:Name}, rajzoláskor töltődnek ki
 The arms of a corner are one vertical and one horizontal direction, e.g. down left, not {}	A sarok karjai egy függőleges és egy vízszintes irány, pl. down left, nem {}
 The cable definition line crosses no wire	A kábeldefiníciós vonal nem keresztez vezetéket
@@ -829,6 +848,9 @@ Thermal simulation of the mounting plate: air temperatures, hot spot, heat sourc
 Thickest sheet or bar, mm	Legvastagabb lemez vagy sín, mm
 Time per drilling, punching or bending operation, s	Idő fúrási, lyukasztási vagy hajlítási műveletenként, s
 Time per tool change, s	Idő szerszámcserénként, s
+Title block (list_title_blocks); empty = the project default	Szövegmező (list_title_blocks); üres = a projekt alapértelmezése
+Title block of the pages with this frame that do not choose one; empty: the project default	Az e kerettel rendelkező, saját szövegmezőt nem választó oldalak szövegmezője; üres: a projekt alapértelmezése
+Title block to start from when it is new (default: Standard)	Szövegmező, amelyből új esetén kiindul (alapértelmezés: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Szerszámok, pl. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
 Top edge on the face in mm	Felső él a felületen, mm-ben
 Top edge on the mounting plate in mm	Felső él a szerelőlapon mm-ben
@@ -875,6 +897,7 @@ Unknown node: {}	Ismeretlen csomópont: {}
 Unknown numbering scheme: {}	Ismeretlen számozási séma: {}
 Unknown object class: {}	Ismeretlen objektumosztály: {}
 Unknown order: {}	Ismeretlen sorrend: {}
+Unknown page type: {}	Ismeretlen oldaltípus: {}
 Unknown paper format: {}	Ismeretlen papírformátum: {}
 Unknown path kind: {}	Ismeretlen útfajta: {}
 Unknown placeholder {}: possible are {}	Ismeretlen helyőrző: {}; lehetséges: {}
@@ -914,7 +937,6 @@ Which line the position is on: top (first), middle or bottom (last)	Melyik sor v
 Who accepted it	Ki fogadta el
 Whole words only	Csak teljes szavak
 Why the message is accepted	Miért fogadták el az üzenetet
-Width in mm	Szélesség mm-ben
 Width of the path in mm (default 50)	Az út szélessége mm-ben (alapértelmezés: 50)
 Width, depth and height of a room are at least {} mm	A helyiség szélessége, mélysége és magassága legalább {} mm
 Width, height and depth of an enclosure are at least {} mm	A szekrény szélessége, magassága és mélysége legalább {} mm
@@ -980,6 +1002,7 @@ wired, problem or open	wired, problem vagy open
 {} has no enclosure bayed to its right side	{} jobb oldalához nincs szekrény sorolva
 {} has no enclosure system; give one	{} nem rendelkezik szekrényrendszerrel; adjon meg egyet
 {} is a built-in frame; give the frame a new name	{} beépített keret; adjon a keretnek új nevet
+{} is a built-in title block; give the title block a new name	{} beépített szövegmező; adjon új nevet a szövegmezőnek
 {} is a room already	A(z) {} már helyiség
 {} is ambiguous: use #id:pin	{} nem egyértelmű: használja a #id:pin formát
 {} is an enclosure already	A(z) {} már szekrény

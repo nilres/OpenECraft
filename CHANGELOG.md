@@ -5,6 +5,29 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Logos in title blocks** (#165): title blocks and drawn report forms get image
+  elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
+  title block and its file) or the new project logo of *Project properties › Logo*
+  (e.g. the customer's), fitted with its aspect ratio; the cover page shows the project
+  logo. Texts of forms can be bold, italic and rotated, and new placeholders show the
+  previous and next page (`{page.previous}`, `{page.next}`) and revision tables
+  (`{rev.1.name}`, `{rev.2.date}` …). Commands: `list_title_blocks`, `set_title_block`,
+  `delete_title_block`, `set_default_title_block`, `set_page` (`title_block`),
+  `add_title_block_image`, `set_project_info` (`logo`)
+  ([reports and checks](docs/features/reports-and-checks.md#forms)).
+- **Customised forms and drawings:** elements of title blocks and drawn forms can be
+  limited to page types or to a filled placeholder (revision tables), get their own
+  colour and dashes, and QR codes encode texts with placeholders. Title blocks follow
+  the page type and the plot frame (*Title block by page type*, frame property). A
+  **stamp** across every page follows the revision workflow (DRAFT, FOR APPROVAL,
+  nothing or AS BUILT when released) and `{rev.status}`, `{rev.approved_by}`,
+  `{rev.approved_date}` show who approved. Report forms get total rows, shaded rows
+  and column alignment. The **company library** on the parts server shares title
+  blocks, report schemes and plot frames between projects (`GET` / `PUT
+  /api/v1/libraries/forms`). Commands: `set_stamp`, `set_default_title_block`
+  (`page_type`), `set_frame` (`title_block`), `parts_company_forms`,
+  `parts_publish_company_forms`
+  ([reports and checks](docs/features/reports-and-checks.md#forms)).
 - **Straight ferrules and terminals:** a wire or cable core with a ferrule or a crimped
   terminal runs straight out of its connection point for the length of it (with its
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D

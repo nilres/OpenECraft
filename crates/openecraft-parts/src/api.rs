@@ -21,6 +21,8 @@
 //! | POST | `/api/v1/login` | [`Login`] → [`Session`] |
 //! | POST | `/api/v1/logout` | ends the session of the token |
 //! | GET / PUT | `/api/v1/favorites` | part numbers of the caller (signed in) |
+//! | GET | `/api/v1/libraries/{name}` | a library: JSON shared by all projects, e.g. [`FORMS_LIBRARY`] (404 when none was stored) |
+//! | PUT | `/api/v1/libraries/{name}` | JSON body (editor of catalogs) |
 //! | GET | `/api/v1/users` | [`User`] list (administrator) |
 //! | PUT / DELETE | `/api/v1/users/{name}` | [`UserUpdate`] (administrator) |
 //! | GET | `/api/v1/access` | [`Settings`](crate::access::Settings) of [`PartsRight`] (administrator) |
@@ -261,6 +263,15 @@ pub fn encode_component(s: &str) -> String {
         }
     }
     out
+}
+
+/// Library of the company's forms: title blocks, report schemes and plot frames
+/// (the editor's form library file).
+pub const FORMS_LIBRARY: &str = "forms";
+
+/// Path of a library, e.g. `/api/v1/libraries/forms`.
+pub fn library_path(name: &str) -> String {
+    format!("{API_PREFIX}/libraries/{}", encode_component(name))
 }
 
 /// Path of a single part, e.g. `/api/v1/parts/GEN.CT-9A-24DC`.

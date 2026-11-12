@@ -277,6 +277,7 @@ impl App {
         let (window, esc) = self.dialogs.window(ctx, tr("Project properties"), "project_properties", None);
         let mut open = !esc;
         let prj_tb_names = openecraft_core::forms::names(&self.session.prj);
+        let mut choose_logo = false;
         window.open(&mut open).default_width(520.0).min_width(360.0).show(ctx, |ui| {
             let info = &mut self.session.prj.info;
             let line = |ui: &mut egui::Ui, text: &mut String| ui.add(egui::TextEdit::singleline(text).desired_width(f32::INFINITY));
@@ -298,6 +299,20 @@ impl App {
                 ui.end_row();
                 ui.label(tr("Revision"));
                 line(ui, &mut info.revision);
+                ui.end_row();
+                ui.label(tr("Logo")).on_hover_text(tr("Shown on the cover page and by the image elements of title blocks that show the project logo"));
+                ui.horizontal(|ui| {
+                    match &info.logo {
+                        Some(logo) => ui.label(&logo.file.name),
+                        None => ui.weak(tr("None")),
+                    };
+                    if ui.button(tr("Choose image…")).clicked() {
+                        choose_logo = true;
+                    }
+                    if info.logo.is_some() && icons::text_button(ui, Icon::Delete, tr("Remove")).clicked() {
+                        info.logo = None;
+                    }
+                });
                 ui.end_row();
                 ui.label(tr("Title block"));
                 let forms = &mut self.session.prj.forms;
@@ -363,6 +378,9 @@ impl App {
             }
         });
         self.show_project = open;
+        if choose_logo {
+            self.io.open(ctx, crate::io::Purpose::Logo);
+        }
     }
 
     }

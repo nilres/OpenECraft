@@ -51,11 +51,13 @@ Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT 
 Import SVG…	SVG 가져오기…
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN 부품 교환의 내부 값(0: 정의되지 않음)
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	호환되는 부품 중 하나에 장착된 경우에만 작동합니다. 해당 부품이 없는 장치에서는 프로젝트 검사가 보고합니다
+Loaded the library {}	라이브러리 {}을(를) 불러왔습니다
 Loaded {} parts (revision {})	부품 {}개 로드됨(개정 {})
 Loading catalogs…	카탈로그를 로드하는 중…
 Loading favorites…	즐겨찾기를 로드하는 중…
 Loading the history…	기록을 로드하는 중…
 Loading users…	사용자를 로드하는 중…
+Loading {}…	{} 불러오는 중…
 Mark for adding to the parts database	부품 데이터베이스에 추가하도록 표시
 Mounted directly on the wall or ceiling of a room	방의 벽이나 천장에 직접 설치
 Moves lines such as Power loss: 3 W into the typed fields	Power loss: 3 W 같은 줄을 형식이 지정된 필드로 이동합니다
@@ -83,6 +85,7 @@ Rotate 90°:	90° 회전:
 Save the file	파일 저장
 Saved catalog {}	카탈로그 {}을(를) 저장했습니다
 Saved part {}	부품 {} 저장됨
+Saved the library {}	라이브러리 {}을(를) 저장했습니다
 Saved user {}	사용자 {}을(를) 저장했습니다
 Saving favorites…	즐겨찾기를 저장하는 중…
 Saving {}…	{} 저장 중…
@@ -98,6 +101,7 @@ Successor {}	후속 제품 {}
 Take {} values from the technical data	기술 데이터에서 값 {}개 가져오기
 The 2D front view is used in the panel front view and on mounting layout pages, the 3D model in the 3D panel view. Both are fitted to the mounting data (width × height × depth).	2D 정면도는 패널 정면도와 장착 레이아웃 페이지에서, 3D 모델은 3D 패널 보기에서 사용됩니다. 둘 다 장착 데이터(너비 × 높이 × 깊이)에 맞춰집니다.
 The model ({} × {} × {}) differs from the mounting data ({} × {} × {}); it is stretched to the mounting data.	모델({} × {} × {})이 장착 데이터({} × {} × {})와 다릅니다. 장착 데이터에 맞게 늘어납니다.
+The parts server has no library {} yet	부품 서버에 아직 라이브러리 {}이(가) 없습니다
 The price refers to this many units	가격 기준 단위 수량
 The successor is not in this parts list	후속 제품이 이 부품 목록에 없습니다
 This part is an accessory	이 부품은 액세서리입니다

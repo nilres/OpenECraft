@@ -266,6 +266,10 @@ pub struct ProjectInfo {
     /// shown in title blocks as `{prop:Name}`.
     #[serde(skip_serializing_if = "BTreeMap::is_empty")]
     pub properties: BTreeMap<String, String>,
+    /// Logo of the project (e.g. the customer's): shown on the cover page and by the
+    /// image elements of title blocks and report forms that have no picture.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub logo: Option<forms::Picture>,
 }
 
 impl Default for ProjectInfo {
@@ -278,6 +282,7 @@ impl Default for ProjectInfo {
             date: String::new(),
             revision: "A".into(),
             properties: BTreeMap::new(),
+            logo: None,
         }
     }
 }
