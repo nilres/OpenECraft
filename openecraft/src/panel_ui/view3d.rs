@@ -7,6 +7,8 @@
 use openecraft_i18n::{tr, tr_fmt};
 use super::gpu3d::{Camera, Frame};
 use super::nav3d::{self, Side};
+use crate::commands::Cmd;
+use crate::gestures::{MouseAction, Role};
 use super::routing_ui::RouteRef;
 use super::scene3d::{Scene3d, EQUIPMENT, ON_TOP};
 use super::{PanelUi, DOOR_OPEN_ANGLE, OUTER_WALLS};
@@ -16,7 +18,7 @@ use openecraft_core::panel::{self, ItemKind, SitePose};
 use openecraft_core::parts::vec3::{self, dot, sub, Orbit, V3};
 use openecraft_core::analysis::Analysis;
 use openecraft_ui::icons::{self, Icon};
-use egui::{vec2, Color32, Key, PointerButton, Pos2, Rect, Sense, Stroke, Vec2};
+use egui::{vec2, Color32, PointerButton, Pos2, Rect, Sense, Stroke, Vec2};
 
 impl PanelUi {
     /// Opens or closes the door in the 3D view.
@@ -124,23 +126,25 @@ impl PanelUi {
         let cam = self.cam.get_or_insert(fitted);
         let f = rect.height() * 1.3;
         let mut moved = false;
-        // Orbit; pan with the right or middle button or Shift; zoom at the pointer. Two
-        // fingers on a touch screen pan and zoom; the first one does not orbit then.
-        let shift = ui.input(|i| i.modifiers.shift);
+        // Orbit and pan by the gestures chosen (left button; right or middle button or
+        // Shift); zoom at the pointer. Two fingers on a touch screen pan and zoom; the
+        // first one does not orbit then.
+        let mods = ui.input(|i| i.modifiers);
+        let gestures = crate::gestures::get(ui.ctx());
         let gesture = openecraft_ui::nav::read(ui, &resp);
-        let mouse = !gesture.touch;
-        if mouse && (resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) || (shift && resp.dragged_by(PointerButton::Primary))) {
-            nav3d::pan(cam, resp.drag_delta(), f);
-            moved = true;
-        } else if mouse && resp.dragged_by(PointerButton::Primary) {
-            nav3d::orbit(cam, resp.drag_delta());
-            moved = true;
+        let drag = if gesture.touch { None } else { gestures.drag_of(&[MouseAction::Pan3d, MouseAction::Orbit3d], &resp, mods) };
+        match drag {
+            Some(MouseAction::Pan3d) => nav3d::pan(cam, resp.drag_delta(), f),
+            Some(_) => nav3d::orbit(cam, resp.drag_delta()),
+            None => {}
         }
+        moved |= drag.is_some();
         moved |= nav3d::gesture(cam, &gesture, rect.center(), f);
         // Keyboard: moving through the view, Home fits it.
         let mut fit = false;
         if (self.keys_active || resp.hovered()) && !ui.ctx().egui_wants_keyboard_input() {
-            let ((dir, fast), home) = ui.input(|i| (nav3d::held(i), i.key_pressed(Key::Home)));
+            let sc = crate::shortcuts::get(ui.ctx());
+            let ((dir, fast), home) = ui.input(|i| (nav3d::held(i, &sc, gestures.modifier(Role::Faster3d)), sc.cmd_pressed(i, Cmd::FitPage)));
             if dir.iter().any(|d| *d != 0.0) {
                 nav3d::keys(cam, dir, fast, dt);
                 moved = true;
@@ -171,7 +175,7 @@ impl PanelUi {
         let opacity = self.wall_opacity.clamp(0.0, 1.0);
         let hide_front = self.hide_front_walls;
         let picking = resp.clicked_by(PointerButton::Primary);
-        let focusing = resp.double_clicked_by(PointerButton::Primary);
+        let focusing = gestures.double_clicked(MouseAction::Focus3d, &resp, mods);
         let prims = if self.gpu_3d && !self.gpu.failed() {
             painter.add(self.gpu.shape(ui.ctx(), rect, scene.clone(), Frame { camera, opacity, hide_front, background }));
             // The faces under the pointer are only needed for a click.

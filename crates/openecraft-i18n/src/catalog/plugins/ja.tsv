@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	ステーションの 2 つのポートをネットワークケーブルで接続します。これらのポートの既存の接続は置き換えられます
 Copies function texts between the single-line diagram and the schematic where one side is empty	単線結線図と回路図の間で、一方が空の機能テキストをコピーします
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	アイテムを一定の間隔で複数回コピーします。デバイスには新しいタグ、端子には新しい番号が付きます
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	要素をその上に取り付けられた要素と一緒に面上の x / y へコピーします (別のエンクロージャーにも可)。デバイスは除外されます (デバイスは一度だけ配置されます)
 Copper bar cutting list	銅バー切断リスト
 Copper bars	銅バー
 Corner points in metres	頂点 (m)
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	右側に設�
 Enclosure name (all if missing)	エンクロージャー名 (省略時はすべて)
 Enclosure part number	エンクロージャーの部品番号
 Enclosure system (default: the enclosure's)	エンクロージャーシステム (既定: そのエンクロージャーのシステム)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	コピー先のエンクロージャー (取付場所、例: +CAB2)。省略時は同じもの
 Enclosure {} exists already	エンクロージャー {} は既に存在します
 Enclosures, panel items, accessories and panel macros	エンクロージャー、盤アイテム、付属品、盤マクロ
 End brackets and end plates from the tech data of the terminal parts	端子部品の技術データに基づくエンドクランプとエンドカバー
@@ -490,6 +492,7 @@ None of the items is an interruption point	中断ポイントである要素が�
 Not a cross-section: {} (e.g. 1.5 mm²)	断面積ではありません: {} (例: 1.5 mm²)
 Not a valid safety function: {}	有効な安全機能ではありません: {}
 Note, e.g. what the problem is	注記 (例: 問題の内容)
+Nothing to copy: devices are placed once	コピーするものがありません: デバイスは一度だけ配置されます
 Nothing to remove: {} {}	削除する対象がありません: {} {}
 Number of columns	列数
 Number of copies (default 1)	コピー数 (既定 1)

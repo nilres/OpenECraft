@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Yhdistää asemien kaksi porttia verkkokaapelilla; näiden porttien olemassa olevat yhteydet korvataan
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopioi toimintotekstit yksinapaisen kaavion ja piirikaavion välillä, kun toinen puoli on tyhjä
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopioi kohteita useita kertoja kiinteällä etäisyydellä; laitteet saavat uudet tunnukset, riviliittimet uudet numerot
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopioi kohteet niihin asennettuine kohteineen pinnan kohtaan x / y, myös toiseen koteloon; laitteet jätetään pois (laite sijoitetaan vain kerran)
 Copper bar cutting list	Kuparikiskojen leikkuuluettelo
 Copper bars	Kuparikiskot
 Corner points in metres	Kulmapisteet metreinä
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Kotelo, jonka 
 Enclosure name (all if missing)	Kotelon nimi (kaikki, jos puuttuu)
 Enclosure part number	Kotelon osanumero
 Enclosure system (default: the enclosure's)	Kotelojärjestelmä (oletus: kotelon järjestelmä)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kotelo, johon kopiot menevät (sijainti, esim. +CAB2); ilman sitä sama
 Enclosure {} exists already	Kotelo {} on jo olemassa
 Enclosures, panel items, accessories and panel macros	Kotelot, asennusosat, tarvikkeet ja kaappiasennuksen makrot
 End brackets and end plates from the tech data of the terminal parts	Päätytuet ja päätylevyt riviliitinosien teknisistä tiedoista
@@ -490,6 +492,7 @@ None of the items is an interruption point	Mikään kohteista ei ole katkospiste
 Not a cross-section: {} (e.g. 1.5 mm²)	Ei poikkipinta-ala: {} (esim. 1.5 mm²)
 Not a valid safety function: {}	Ei kelvollinen turvatoiminto: {}
 Note, e.g. what the problem is	Huomautus, esim. mikä ongelma on
+Nothing to copy: devices are placed once	Ei kopioitavaa: laitteet sijoitetaan vain kerran
 Nothing to remove: {} {}	Ei poistettavaa: {} {}
 Number of columns	Sarakkeiden määrä
 Number of copies (default 1)	Kopioiden määrä (oletus 1)

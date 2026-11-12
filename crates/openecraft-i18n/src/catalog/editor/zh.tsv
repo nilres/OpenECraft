@@ -85,7 +85,6 @@ Add rule	添加规则
 Add sort key	添加排序键
 Add the facing cutout in {}	在 {} 中添加相对的开孔
 Add to device	添加到设备
-Add to selection	添加到所选内容
 Add to the pre-planning	添加到预规划
 Add user	添加用户
 Added to both ends of the length for the cut length (insertion depth)	计算下料长度时加到长度两端（插入深度）
@@ -129,6 +128,7 @@ Ambient temperature	环境温度
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	归档 (.oecz) 是一个 ZIP 文件，包含项目、清单以及作为独立文件的嵌入文档和图像。
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	将旧图纸作为图形放到新的原理图页上（线、圆弧、文本、块）
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	一款秉承 EPLAN Electric P8 理念的开放式电气 CAE 编辑器。
+Another gesture for the same function	同一功能的另一个动作
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	具有此名称的现有宏的另一个变体（例如 B），可在插入时选择
 Any project file: its settings, forms, structure, potentials and pages start the new project	任何项目文件：其设置、表格、结构、电位和页将作为新项目的起点
 Appearance	外观
@@ -290,14 +290,18 @@ Circuits of a generic manifold	通用分配器的回路数
 Clear	清除
 Clearance	间距
 Clearances	间距
+Click	单击
+Click a text: open its link	单击文本：打开其链接
 Click an element in the drawing to edit it.	单击图形中的元素以对其进行编辑。
 Click centre, then a point on the circle	单击圆心，然后单击圆上的一点
+Click in the panel layout: a single item of an assembly	在安装板布局中单击：组件中的单个项
 Click into the page to place the image	在页中单击以放置图像
 Click into the page to place {}	在页中单击以放置 {}
 Click on a wall	请点击墙
 Click on a wire to place the connection definition point	单击导线以放置连接定义点
 Click on the 4 mm grid	在 4 mm 栅格上单击
 Click on the wall: the part goes there at its mounting height	单击墙壁：部件以其安装高度放在该处
+Click or window: add to the selection or take out of it	单击或窗口：添加到所选内容或从中移除
 Click start and end point	单击起点和终点
 Click the corners of a machine or building, double-click to finish	单击机器或建筑物的各个角点，双击完成
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	单击场地边界的角点 · 单击第一个、双击或 Enter：闭合 · Backspace：后退 · Esc：停止
@@ -323,6 +327,7 @@ Click where the reference point is	单击参考点所在位置
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	在三条连接线相交处单击：T型节点指定导线出发的设备以及目标的顺序 · 在尚无连接线相交处 {} 可旋转 · Esc 或右键结束
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	在两条连接线交叉处单击：交叉连接二者，并将其直线的每一端先直通再横向引出 · {} 可旋转 · Esc 或右键结束
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	在两条连接线直角相交处或连接点隔着拐角相对处单击：开启自动连接时会向它绘制连接线 · {} 可旋转 · Esc 或右键结束
+Click while moving	移动时单击
 Click, or drag it into the page	单击，或将其拖到页中
 Climate (IEC 60890)	温控 (IEC 60890)
 Clipboard	剪贴板
@@ -498,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	用于标记软件
 Devices ({})	设备 ({})
 Devices are not copied: a device is placed once.	不复制设备：一个设备只放置一次。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	设备用单线符号规划，在多线原理图中设计；两者共享设备标识符。
+Devices back to the devices to place: {}	回到待放置设备中的设备：{}
+Devices go back to the devices to place	设备回到待放置的设备中
 Devices in the box: {}	框内设备：{}
 Devices of a channel	通道的设备
 Devices of the second channel; empty = like the first	第二通道的设备；留空 = 与第一通道相同
@@ -532,6 +539,7 @@ Distribute vertically	垂直分布
 Distributed neutral	带中性线
 Diversity factor	同时系数
 Divider	隔板
+Do the gesture…	请做出动作…
 Dock	停靠
 Document {} embedded ({})	已嵌入文档 {}（{}）
 Documents	文档
@@ -545,7 +553,7 @@ Door clearance	柜门间隙
 Door cutouts (CSV)	柜门开孔 (CSV)
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
-Double-click (3D view)	双击（3D 视图）
+Double-click	双击
 Download into database	下载到数据库
 Download project	下载项目
 Downloaded {} (version {})	已下载 {}（版本 {}）
@@ -554,6 +562,7 @@ Downloading OpenECraft {}	正在下载 OpenECraft {}
 Downstream part	下级部件
 Draft of revision {} created	已创建修订 {} 的草稿
 Draft of revision {} discarded	已放弃修订 {} 的草稿
+Drag	拖动
 Drag a connection point designation of the selected symbol to place it.	拖动所选符号的连接点标识以放置它。
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	拖动所选导线的一端可仅移动该端。按住 Alt 拖动会反转保持连接。
 Drag an entry into the page, or click it and then click into the page.	将条目拖到页中，或单击条目后在页中单击。
@@ -684,6 +693,8 @@ Find and replace in the whole project	在整个项目中查找和替换
 Find results	查找结果
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	按项编号或 Part Number 属性查找项目部件对应的 Vault 项，并显示物料 ID、修订和生命周期状态的更改以供审阅
 Find…	查找…
+Finish a wire, polyline, polygon or wall	完成导线、多段线、多边形或墙
+Finish or cancel the drawing, then back to selecting	完成或取消绘制，然后返回选择
 First row	第一行
 Fit	适合窗口
 Fit page	适合页面
@@ -774,6 +785,7 @@ Height above the mounting plate	安装板以上高度
 Height above the plate	板以上高度
 Height of the plinth, 0 without plinth	底座高度，0 表示无底座
 Heights above floor (IEC 60204-1)	离地高度 (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	在单击、移动或滚动时按住。在 macOS 上 Ctrl 为 Cmd。
 Help	帮助
 Hide the groups you do not need and put the commands you use most into own groups.	隐藏不需要的组，并将最常用的命令放入自定义组。
 Highest phase unbalance	最大相不平衡度
@@ -874,7 +886,12 @@ Invalid value	无效值
 Invert the direction of panning by scrolling	反转滚动平移的方向
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 Isometric	等轴测
+Items copied: {}	已复制的元素：{}
+Items copied: {} (devices left out: {}, a device is placed once)	已复制的元素：{}（省略的设备：{}，设备只放置一次）
+Items cut: {}	已剪切的元素：{}
+Items cut: {} (devices back to the devices to place: {})	已剪切的元素：{}（回到待放置设备中的设备：{}）
 Items on the layer	图层上的元素
+Items pasted: {}	已粘贴的元素：{}
 Items with an anchor keep it; the others are inserted relative to the click.	带锚定的元素保留其锚定；其他元素相对于单击位置插入。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	将物料、设备、放置、连接、导线和文档放在一个 JSON 文件中，供没有接口的系统使用
 Its pages and subsections go to the section above	其页和子分节移到上级分节
@@ -892,6 +909,8 @@ Key tips of the ribbon	功能区访问键
 Key: {}	键：{}
 Keyboard shortcuts	键盘快捷方式
 Keyboard shortcuts…	键盘快捷方式…
+Keys and gestures	按键和动作
+Keys of the 3D view	3D 视图的按键
 Label	标签
 Label (grey)	标签（灰色）
 Label field	标签字段
@@ -913,6 +932,7 @@ Layout spaces	布局空间
 Leave out the ceilings of the rooms and the roofs in the 3D view	在三维视图中省略房间顶棚和屋顶
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	在 3D 视图中省略所有线槽的盖板：可以看到其中的导线
 Leave repeated values of the first column blank	第一列中重复的值留空
+Left button	左键
 Left edges	左边缘
 Legend plates (door devices)	铭牌（柜门设备）
 Length from the node to the device	节点到设备的长度
@@ -926,6 +946,7 @@ Level of this kind of message	此类消息的级别
 Level {} added to building {}; new rooms go onto it	已向建筑物 {1} 添加楼层 {0}；新房间将放在该层
 Level {} of building {}	建筑 {1} 的楼层 {0}
 Library	库
+Like two fingers	与双指相同
 Limits	限值
 Limits in effect	生效的限值
 Line to PE at the supply point; 0 = from the highest short-circuit current	电源进线点的相对 PE 故障电流；0 = 根据最大短路电流计算
@@ -959,7 +980,6 @@ Locked by {} – read only	已被 {} 锁定 – 只读
 Locking…	正在锁定…
 Logic	逻辑
 Longer values are drawn smaller (0 = no limit)	较长的值将以较小字号绘制（0 = 无限制）
-Look at the point clicked, closer	看向单击的点，并靠近
 Look for updates when OpenECraft starts	OpenECraft 启动时检查更新
 Looking for updates…	正在检查更新…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	在 GitHub 上查找 OpenECraft 的新版本并在后台安装
@@ -1007,6 +1027,7 @@ Messages	消息
 Messages ({})	消息 ({})
 Messages of this session	本次会话的消息
 Middle	中间
+Middle button	中键
 Middle of the PV array in the floor plan of the building	光伏阵列在建筑平面图中的中心
 Min. bend radius	最小弯曲半径
 Minimize the ribbon	最小化功能区
@@ -1015,6 +1036,7 @@ Mirror (selection or symbol being placed)	镜像（所选内容或正在放置�
 Mixed	混合
 Mode	模式
 Model of a part (2D / 3D)	部件的模型 (2D / 3D)
+Modifier keys	组合键
 Module part; its size comes from the part	组件部件；尺寸来自部件
 Motors feed the short circuit	电机馈入短路
 Mounted on	安装在
@@ -1023,17 +1045,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	并�
 Mounting height: {}	安装高度：{}
 Mounting plate: {} holes, {} cutouts	安装板：{} 个孔，{} 个开孔
 Mounting system	安装系统
+Mouse	鼠标
 Move	移动
+Move ahead in the 3D view (held)	在 3D 视图中前进（按住）
+Move back in the 3D view (held)	在 3D 视图中后退（按住）
 Move down	下移
+Move down in the 3D view (held)	在 3D 视图中向下移动（按住）
+Move faster with the keys of the 3D view	使用 3D 视图的按键更快移动
 Move left	左移
+Move left in the 3D view (held)	在 3D 视图中向左移动（按住）
 Move page down	下移页
 Move page up	上移页
+Move right in the 3D view (held)	在 3D 视图中向右移动（按住）
 Move selection by	按偏移移动所选内容
 Move selection by…	按偏移移动所选内容…
 Move the devices of this page into the new structure	将此页的设备移动到新结构中
-Move through the 3D view (Shift: faster)	在 3D 视图中移动（Shift：更快）
 Move to section	移到分节
 Move up	上移
+Move up in the 3D view (held)	在 3D 视图中向上移动（按住）
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移动的符号会带动其导线，移动的导线会保留在其端点所在的连接点上。拖动时按住 Alt 可反转此行为；拖动所选导线的一端可将其断开
 Moves to the top level as page {}	移到最上层，成为页 {}
 Moves to {} as page {}	移到 {}，成为页 {}
@@ -1054,7 +1083,6 @@ Name and cross reference	名称和交叉引用
 Name on the server	服务器上的名称
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名称; 数据类型; 逻辑地址; 注释 – 用于 PLC 编程工具
 Named copy of this form, for report blocks	此表单的命名副本，用于报表块
-Navigation	导航
 Navigators	导航器
 Neutral exchange file…	中性交换文件…
 Never	从不
@@ -1124,6 +1152,7 @@ No dot: plain T	无圆点：普通 T 形
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	还没有机柜 – 使用“新建机柜”创建，或使用“新建房间”创建放置机柜的房间。
 No field cables: place the enclosures and field devices at nodes of the route network.	没有现场电缆：请将机柜和现场设备放置在布线网络的节点上。
 No filter fans: an air/air heat exchanger or a cooling unit	不使用过滤风扇：使用空气/空气换热器或冷却装置
+No gesture	无动作
 No harnesses defined.	未定义线束。
 No inverter	无逆变器
 No jump: plain crossing, connections have dots	无跳线：普通交叉，连接处有圆点
@@ -1166,6 +1195,7 @@ Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
 Not saved, locked or changed by another user: {}	未保存，已被其他用户锁定或更改：{}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	未采用：仅左键用于选择、绘制和移动；请按住组合键或使用其他按键。
 Not the shared project: changes are saved locally until it is opened on the project server again	不是共享项目：在项目服务器上重新打开之前，更改将保存在本地
 Nothing exchanged yet.	尚未进行任何交换。
 Nothing left in this list.	此列表中没有剩余项。
@@ -1183,6 +1213,8 @@ Of the outer diameter, as laid fixed	外径的倍数，固定敷设
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径的倍数；管道用一倍半直径的弯头弯曲
 Off	关
 Offset from one row to the next: downwards for lists, sideways for rows side by side	从一行到下一行的偏移：列表向下，并排的行向侧面
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	适用于触摸屏和触控板。仅平移：捏合不缩放；仅缩放：在系统能区分触控板时，双指在触控板上滚动也会缩放。单指的作用与鼠标左键相同。
+On a touch screen; trackpads leave three-finger gestures to the system.	适用于触摸屏；触控板的三指操作由系统处理。
 On startup	启动时
 One row per label	每个标签一行
 Only devices on the current page	仅限当前页上的设备
@@ -1205,6 +1237,7 @@ Open project	打开项目
 Open project server	打开项目服务器
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	从 Autodesk Vault 打开项目和文件，将项目、导出和 3D 模型放入 Vault
 Open the project	打开项目
+Open the selection: its properties, in the floor plan its face	打开所选内容：其属性，在平面图中为其面
 Open to {}: wires cross beside the mounting plates	向 {} 开放：导线在安装板旁边穿过
 Open walls and floors	打开墙壁和地面
 Open, save, import, export, print and the settings	打开、保存、导入、导出、打印和设置
@@ -1240,6 +1273,7 @@ Open…	打开…
 Operations / year	操作次数 / 年
 Option	选项
 Options	选项
+Orbit the 3D view	旋转 3D 视图
 Ordinary cable	普通电缆
 Orientation	方向
 Origin	来源
@@ -1289,7 +1323,10 @@ Pages and templates using the frame follow	使用该图框的页和模板随之�
 Pages of revision {}	修订 {} 的页
 Pages of the selected block	所选块的页
 Pages using it get the project default	使用它的页将获得项目默认值
+Pages, panel layout and plans	页面、安装板布局和平面图
 Pairs in schematic order (1-2, 3-4 …)	按原理图顺序成对（1-2、3-4 …）
+Pan the 3D view	平移 3D 视图
+Pan the page, the panel layout and the plans	平移页面、安装板布局和平面图
 Pane menu	窗格菜单
 Panel wiring report	机柜接线报表
 Panes	窗格
@@ -1444,6 +1481,7 @@ Recent projects	最近的项目
 Recently used	最近使用
 Recommended height of manual actuators (10.1.2)	手动操作元件的建议高度 (10.1.2)
 Record	录制
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	录制：在出现的区域中做出动作，可按住组合键（Esc 取消）。添加会保留已有的动作。在选择工具中右键单击会打开上下文菜单。
 Rectangular	矩形
 Redline: to be changed · Greenline: changed as built	红线：待更改 · 绿线：已按竣工状态更改
 Redo	重做
@@ -1552,6 +1590,7 @@ Revisions, approval and release	修订、审批和发布
 Ribbon	功能区
 Ribbon (JSON)	功能区 (JSON)
 Ribbon imported	功能区已导入
+Right button	右键
 Right click for more	右键单击查看更多
 Right edges	右边缘
 Right neighbour	右侧相邻机柜
@@ -1568,6 +1607,8 @@ Room {} taken out of the building; it stays where it stands	房间 {} 已移出�
 Rooms under sloped ceilings (lowest – highest ceiling)	斜顶下的房间（最低 – 最高顶棚）
 Rotate	旋转
 Rotate (selection or symbol being placed)	旋转（所选内容或正在放置的符号）
+Rotate what is being moved	旋转正在移动的对象
+Rotate what is being moved counter-clockwise	逆时针旋转正在移动的对象
 Round	圆形
 Round cutouts facing each other in both side walls	两侧板上相对的圆形开孔
 Route definition of {}	{} 的路径定义
@@ -1643,7 +1684,9 @@ Scheme {}	方案 {}
 Screws, nuts, washers and rivet nuts of the fixing points	固定点的螺钉、螺母、垫圈和拉铆螺母
 Scrolling	滚动
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	滚动可向任意方向平移视图；双指捏合或 Ctrl + 滚动进行缩放。
+Scrolling up and down pans sideways	上下滚动时横向平移
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	上下滚动在指针处缩放，横向滚动（水平滚轮、Shift + 滚轮）平移视图。
+Scrolling zooms, also where it pans	滚动时缩放，在平移处也是如此
 Search (* and ? as placeholders)…	搜索（* 和 ? 作为通配符）…
 Search below this folder	在此文件夹下搜索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	按目录、产品组和技术数据搜索部件服务器，添加部件并检查数据库更新
@@ -1703,7 +1746,6 @@ Shield pigtail	屏蔽辫线
 Shielded	带屏蔽
 Shielded analogue cables	屏蔽的模拟量电缆
 Shielded drive cables	屏蔽的驱动电缆
-Shift + click / drag	Shift + 单击 / 拖动
 Short circuit and selectivity	短路和选择性
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	短路、选择性、负载、EMC、功能安全以及根据规则集进行验证
 Short-circuit currents	短路电流
@@ -1772,6 +1814,7 @@ Start	开始
 Start again when the page structure changes	页结构更改时重新开始
 Start at	起始值
 Start byte	起始字节
+Start of a move: Keep connections the other way round	开始移动时：保持连接反向
 Start page	开始页
 Station	站
 Stations and racks	站和机架
@@ -1878,6 +1921,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	水平导线
 The items are selected and moved together	这些元素将一起被选择和移动
 The macro library has no page macros (Macros › Save page as macro…).	宏库没有页宏（宏 › 将页另存为宏…）。
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	使滚轮横向平移或缩放的组合键在“组合键”中设置。
 The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
 The names of its pages follow	其页的名称随之改变
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	打开的项目是本地恢复副本。其更改未保存在项目服务器上；在打开共享项目之前，由您决定将其保存到本地还是放弃。
@@ -1918,6 +1962,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	此页
 This page contains schematic content which is not evaluated on non-schematic pages.	此页包含原理图内容，这些内容在非原理图页上不会被评估。
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	此项目是 {1} 的子项目 {0}（移出于 {2}）。完成工作后，请保存并将其插入主项目。
+Three fingers	三指
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	此处必须有三条连接线相交：一条沿其方向，两条横向。在此之前连接按原理图顺序串接。
 Three-phase short-circuit current at the supply point	电源进线点的三相短路电流
 Tilt	倾角
@@ -1936,10 +1981,11 @@ Touch screen	触摸屏
 Transfer project parts to database	将项目部件传输到数据库
 Translate the project texts; documentation per language	翻译项目文本；按语言生成文档
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	绕垂直轴旋转，从上方看为逆时针（90 °：正面朝右）
+Turn the 3D view to the point	将 3D 视图转向该点
 Tutorial	教程
 Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
+Two fingers	双指
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	触控板上的双指平移视图，鼠标滚轮缩放。只有 macOS 能区分两者；在其他系统上，滚动与滚轮一样进行缩放。
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	双指可同时平移视图和捏合缩放；单指的作用与鼠标左键相同。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp
@@ -2005,7 +2051,6 @@ View	视图
 Visible	可见
 Voltage (line to line)	电压（线电压）
 Voltage drop	电压降
-W A S D / arrows, Q / E	W A S D / 方向键，Q / E
 WGS 84, written into the site of IFC exports	WGS 84，写入 IFC 导出的场地
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	墙 {}，{} m：拖动以移动，双击显示以进行布置
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	墙 {}，{} m：墙视图中显示的墙（突出显示）；拖动以移动
@@ -2016,7 +2061,7 @@ Web between holes	孔间筋宽
 Welcome to OpenECraft	欢迎使用 OpenECraft
 What is new	新功能
 What should be checked or changed?	应检查或更改什么？
-Wheel / right or middle drag	滚轮 / 右键或中键拖动
+Wheel and touch	滚轮和触摸
 Wheel: zoom · drag: move · click on a room: its floor plan	滚轮：缩放 · 拖动：移动 · 单击房间：其平面图
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	滚轮：缩放 · 拖动：移动 · 单击房间：其平面图 · 拖动场地边界的角点
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	滚轮：缩放 · 右键单击：取消 · 图形捕捉到 0.5 mm，连接点捕捉到 4 mm 栅格
@@ -2083,7 +2128,8 @@ You may only view this project.	您只能查看此项目。
 You may review this project: comments, markup and approvals, no other changes.	您可以审阅此项目：批注、标记和审批，不可进行其他更改。
 Your unsaved changes of it are taken back	你对其所做的未保存更改将被撤回
 Zoom	缩放
-Zoom / pan	缩放 / 平移
+Zoom in in the 3D view (held)	放大 3D 视图（按住）
+Zoom out in the 3D view (held)	缩小 3D 视图（按住）
 all	全部
 all cards	所有卡件
 all lines	所有行
@@ -2329,6 +2375,7 @@ x y	x y
 {} °C (max.)	{} °C（最高）
 {} × {} pixels, {}	{} × {} 像素，{}
 {} – {} ({} pages)	{} – {}（{} 页）
+{} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
 {}: click to show its floor plan	{}：单击以显示其平面图
 {}: crimp together with the wire to {}	{}：与通往 {} 的导线一起压接
 {}: drag to move it, R turns it, a double-click opens it	{}：拖动以移动，R 旋转，双击打开

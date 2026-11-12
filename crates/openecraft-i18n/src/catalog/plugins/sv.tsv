@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Ansluter två portar på stationer med en nätverkskabel; befintliga anslutningar på de här portarna ersätts
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopierar funktionstexter mellan enlinjeschemat och kretsschemat där den ena sidan är tom
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopierar objekt flera gånger med ett fast avstånd; apparater får nya beteckningar, plintar nya nummer
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopierar element med elementen som är monterade på dem till x / y på en yta, även i en annan kapsling; apparater utelämnas (en apparat placeras bara en gång)
 Copper bar cutting list	Kaplista för kopparskenor
 Copper bars	Kopparskenor
 Corner points in metres	Hörnpunkter i meter
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Kapsling som d
 Enclosure name (all if missing)	Kapslingsnamn (alla om det saknas)
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling som kopiorna hamnar i (placering, t.ex. +CAB2); utan anges samma
 Enclosure {} exists already	Kapsling {} finns redan
 Enclosures, panel items, accessories and panel macros	Kapslingar, layoutobjekt, tillbehör och layoutmakron
 End brackets and end plates from the tech data of the terminal parts	Ändstöd och ändplattor från plintartiklarnas tekniska data
@@ -490,6 +492,7 @@ None of the items is an interruption point	Inget av objekten är en avbrottspunk
 Not a cross-section: {} (e.g. 1.5 mm²)	Inget tvärsnitt: {} (t.ex. 1.5 mm²)
 Not a valid safety function: {}	Inte en giltig säkerhetsfunktion: {}
 Note, e.g. what the problem is	Anteckning, t.ex. vad problemet är
+Nothing to copy: devices are placed once	Inget att kopiera: apparater placeras bara en gång
 Nothing to remove: {} {}	Inget att ta bort: {} {}
 Number of columns	Antal kolumner
 Number of copies (default 1)	Antal kopior (standard 1)

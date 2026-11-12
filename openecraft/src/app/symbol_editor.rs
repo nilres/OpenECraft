@@ -588,11 +588,13 @@ fn symbol_preview(u: &UserSymbol) -> SymbolInst {
     inst
 }
 
-/// Wheel, trackpad, two fingers and the middle button zoom and pan the canvas.
-fn navigate(ui: &egui::Ui, se: &mut SymbolEditor, resp: &egui::Response) -> openecraft_ui::nav::Gesture {
+/// Wheel, trackpad, two fingers and the pan gesture zoom and pan the canvas; gives
+/// whether the canvas is navigated instead of drawn on.
+fn navigate(ui: &egui::Ui, se: &mut SymbolEditor, resp: &egui::Response) -> bool {
     let gesture = openecraft_ui::nav::read(ui, resp);
     se.pan += gesture.pan;
-    if resp.dragged_by(PointerButton::Middle) {
+    let panning = crate::gestures::get(ui.ctx()).dragged(crate::gestures::MouseAction::PanView, resp, ui.input(|i| i.modifiers));
+    if panning {
         se.pan += resp.drag_delta();
     }
     if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
@@ -600,10 +602,11 @@ fn navigate(ui: &egui::Ui, se: &mut SymbolEditor, resp: &egui::Response) -> open
         se.zoom = (se.zoom * gesture.zoom).clamp(3.0, 60.0);
         se.pan = at - resp.rect.center() - before * se.zoom;
     }
-    if gesture.touch {
+    let navigating = gesture.touch || (panning && resp.dragged_by(PointerButton::Primary));
+    if navigating {
         se.drag = None;
     }
-    gesture
+    navigating
 }
 
 fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
@@ -611,7 +614,7 @@ fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
     let (resp, painter) = ui.allocate_painter(vec2(400.0, 340.0), Sense::click_and_drag());
     let rect = resp.rect;
     painter.rect_filled(rect, 4.0, pal.paper);
-    let gesture = navigate(ui, se, &resp);
+    let navigating = navigate(ui, se, &resp);
     let origin = rect.center() + se.pan;
     let zoom = se.zoom;
     let to_mm = move |s: egui::Pos2| p((s.x - origin.x) / zoom, (s.y - origin.y) / zoom);
@@ -652,7 +655,7 @@ fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
             delete_hit(se, u);
         }
     }
-    if resp.clicked_by(PointerButton::Secondary) {
+    if crate::gestures::get(ui.ctx()).clicked(crate::gestures::MouseAction::CancelTool, &resp, ui.input(|i| i.modifiers)) {
         if se.start.is_some() {
             se.start = None;
         } else {
@@ -663,7 +666,7 @@ fn canvas(ui: &mut egui::Ui, se: &mut SymbolEditor, u: &mut UserSymbol) {
     // Mouse (not while fingers navigate)
     let clicked = resp.clicked_by(PointerButton::Primary);
     match (se.tool, snapped) {
-        _ if gesture.touch => {}
+        _ if navigating => {}
         (SymTool::Select, _) => {
             let tol = 6.0 / se.zoom;
             if resp.drag_started_by(PointerButton::Primary) {

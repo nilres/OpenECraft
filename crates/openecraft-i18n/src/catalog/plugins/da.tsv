@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Forbinder to porte på stationer med et netværkskabel; eksisterende forbindelser på disse porte erstattes
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopierer funktionstekster mellem enstregsdiagrammet og diagrammet, hvor den ene side er tom
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopierer elementer flere gange med en fast afstand; enheder får nye betegnelser, klemmer nye numre
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopierer elementer med de elementer, der er monteret på dem, til x / y på en flade, også i en anden kapsling; enheder udelades (en enhed placeres kun én gang)
 Copper bar cutting list	Tilskæringsliste for kobberskinner
 Copper bars	Kobberskinner
 Corner points in metres	Hjørnepunkter i meter
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Kapsling, som 
 Enclosure name (all if missing)	Kapslingsnavn (alle, hvis det mangler)
 Enclosure part number	Kapslingens artikelnummer
 Enclosure system (default: the enclosure's)	Kapslingssystem (standard: kapslingens)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kapsling, som kopierne kommer i (placering, f.eks. +CAB2); uden angivelse den samme
 Enclosure {} exists already	Kapslingen {} findes allerede
 Enclosures, panel items, accessories and panel macros	Kapslinger, layoutelementer, tilbehør og tavlemakroer
 End brackets and end plates from the tech data of the terminal parts	Endestop og endeplader ud fra klemmeartiklernes tekniske data
@@ -490,6 +492,7 @@ None of the items is an interruption point	Ingen af elementerne er et afbrydelse
 Not a cross-section: {} (e.g. 1.5 mm²)	Ikke et tværsnit: {} (f.eks. 1.5 mm²)
 Not a valid safety function: {}	Ikke en gyldig sikkerhedsfunktion: {}
 Note, e.g. what the problem is	Bemærkning, f.eks. hvad problemet er
+Nothing to copy: devices are placed once	Intet at kopiere: enheder placeres kun én gang
 Nothing to remove: {} {}	Intet at fjerne: {} {}
 Number of columns	Antal kolonner
 Number of copies (default 1)	Antal kopier (standard 1)

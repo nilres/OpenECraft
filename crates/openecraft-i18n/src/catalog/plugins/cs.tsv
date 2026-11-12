@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Spojí dva porty stanic síťovým kabelem; stávající spojení na těchto portech se nahradí
 Copies function texts between the single-line diagram and the schematic where one side is empty	Zkopíruje texty funkcí mezi jednopólovým schématem a schématem zapojení tam, kde je jedna strana prázdná
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Zkopíruje prvky několikrát v pevné vzdálenosti; přístroje dostanou nová označení, svorky nová čísla
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Zkopíruje prvky s prvky na nich namontovanými na x / y na ploše, i jiné skříně; přístroje se vynechají (přístroj se umisťuje jen jednou)
 Copper bar cutting list	Seznam dělení měděných přípojnic
 Copper bars	Měděné přípojnice
 Corner points in metres	Rohové body v metrech
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Skříň, vpra
 Enclosure name (all if missing)	Název skříně (všechny, pokud chybí)
 Enclosure part number	Číslo artiklu skříně
 Enclosure system (default: the enclosure's)	Systém skříní (výchozí: systém skříně)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Skříň, do které kopie přijdou (umístění, např. +CAB2); bez zadání stejná
 Enclosure {} exists already	Skříň {} již existuje
 Enclosures, panel items, accessories and panel macros	Skříně, prvky rozváděče, příslušenství a makra rozváděče
 End brackets and end plates from the tech data of the terminal parts	Koncové držáky a koncové desky z technických údajů artiklů svorek
@@ -490,6 +492,7 @@ None of the items is an interruption point	Žádný z prvků není bod přeruše
 Not a cross-section: {} (e.g. 1.5 mm²)	Nejde o průřez: {} (např. 1.5 mm²)
 Not a valid safety function: {}	Neplatná bezpečnostní funkce: {}
 Note, e.g. what the problem is	Poznámka, např. v čem je problém
+Nothing to copy: devices are placed once	Nic ke kopírování: přístroje se umisťují jen jednou
 Nothing to remove: {} {}	Není co odebrat: {} {}
 Number of columns	Počet sloupců
 Number of copies (default 1)	Počet kopií (výchozí 1)

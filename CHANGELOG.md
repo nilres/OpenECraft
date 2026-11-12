@@ -10,6 +10,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D
   view, instead of bending the ferrule where it goes into the device
   ([panel layout](docs/features/panel-layout.md)).
+- **Keys and gestures:** *File › Settings › Keys and gestures* configures every key,
+  modifier and gesture in one place: the keyboard shortcuts (now also the keys that
+  move through the 3D view, and the panel layout follows the keys of Rotate, Delete and
+  Fit), the modifier keys (adding to the selection, opening links, a single item of an
+  assembly, *Keep connections* reversed for a move, rotating back, moving faster in 3D,
+  the wheel turned sideways or zooming),
+  the mouse buttons that pan, orbit, cancel, rotate while moving and the double-clicks,
+  and what the wheel does, two fingers (pan and zoom together, zoom only or pan only)
+  and three fingers on a touch screen. It replaces the *Navigation* and
+  *Keyboard shortcuts* settings ([user interface](docs/user-interface.md)).
 - **Moved wires stay connected** (#133): a wire moved on its own no longer leaves the
   connection points it ends at; it gets a new leg from the point, or slides along the
   rail it ends on. *Edit › Keep connections* (on by default) switches this and the
@@ -39,6 +49,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Auto-connect hints:** while a symbol is placed or moved with the mouse, faint
   dotted lines show the wires auto-connect would draw
   ([schematic](docs/features/schematic.md#routing)).
+- **Cut, copy and paste in the panel layout** (#153): right click an item in the front
+  view for *Cut*, *Copy*, *Paste*, *Properties* and *Remove* (devices go back to the
+  devices to place), or use `Ctrl+X` / `Ctrl+C` / `Ctrl+V`. Rails, ducts and the other
+  items are copied with what is mounted on them, without devices; cut devices go back
+  to the devices to place. The copy follows the pointer until a click places it
+  ([panel layout](docs/features/panel-layout.md#enclosures-and-devices)). New command
+  `copy_panel_items`.
 - **Profile sizes on mounting layouts** (#152): cable ducts, mounting rails and busbar
   systems are labelled with their cross-section and cut length
   (*60 × 100 mm, L = 940 mm*) on mounting layout pages and in the panel layout, on the
@@ -61,7 +78,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   floor and site plan, 3D view, field plan, symbol editor) zooms with a pinch and pans
   with two fingers, both in one movement; on a touch screen the first finger no longer
   selects, moves or orbits while two are down. The horizontal mouse wheel and
-  `Shift`+wheel pan sideways. *Settings › Navigation* chooses what scrolling does:
+  `Shift`+wheel pan sideways. *Settings › Keys and gestures › Wheel and touch* chooses what scrolling does:
   *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
   wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
   The symbol editor's canvas pans too (also with the middle mouse button).

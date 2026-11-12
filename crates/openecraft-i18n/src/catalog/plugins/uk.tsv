@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	З’єднує два порти станцій мережевим кабелем; наявні з’єднання на цих портах замінюються
 Copies function texts between the single-line diagram and the schematic where one side is empty	Копіює тексти функцій між однолінійною схемою та схемою там, де одна сторона порожня
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Копіює елементи кілька разів із фіксованою відстанню; пристрої отримують нові позначення, клеми – нові номери
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Копіює елементи разом із встановленими на них елементами в x / y на грані, також іншого корпусу; пристрої пропускаються (пристрій розміщується лише один раз)
 Copper bar cutting list	Карта розкрою мідних шин
 Copper bars	Мідні шини
 Corner points in metres	Кутові точки в метрах
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Корпус, 
 Enclosure name (all if missing)	Назва корпусу (усі, якщо не вказано)
 Enclosure part number	Номер виробу корпусу
 Enclosure system (default: the enclosure's)	Система корпусів (за замовчуванням: система корпусу)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Корпус, до якого потрапляють копії (розташування, напр. +CAB2); без зазначення той самий
 Enclosure {} exists already	Корпус {} вже існує
 Enclosures, panel items, accessories and panel macros	Шафи, елементи компонування, аксесуари та макроси компонування
 End brackets and end plates from the tech data of the terminal parts	Кінцеві фіксатори та кінцеві кришки з технічних даних виробів клем
@@ -490,6 +492,7 @@ None of the items is an interruption point	Жоден з елементів не
 Not a cross-section: {} (e.g. 1.5 mm²)	Не є перерізом: {} (напр. 1.5 mm²)
 Not a valid safety function: {}	Недійсна функція безпеки: {}
 Note, e.g. what the problem is	Примітка, напр. у чому полягає проблема
+Nothing to copy: devices are placed once	Нічого копіювати: пристрої розміщуються лише один раз
 Nothing to remove: {} {}	Нічого вилучати: {} {}
 Number of columns	Кількість стовпців
 Number of copies (default 1)	Кількість копій (за замовчуванням 1)

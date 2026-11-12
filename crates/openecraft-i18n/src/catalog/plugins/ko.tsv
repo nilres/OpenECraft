@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	스테이션의 두 포트를 네트워크 케이블로 연결합니다. 이 포트에 이미 있는 연결은 교체됩니다
 Copies function texts between the single-line diagram and the schematic where one side is empty	한쪽이 비어 있는 경우 단선도와 회로도 간에 기능 텍스트를 복사합니다
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	항목을 일정한 간격으로 여러 번 복사합니다. 장치에는 새 태그가, 단자에는 새 번호가 지정됩니다
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	요소를 그 위에 장착된 요소와 함께 면의 x / y 위치로 복사합니다(다른 외함으로도 가능). 장치는 제외됩니다(장치는 한 번만 배치됩니다)
 Copper bar cutting list	동바 절단 목록
 Copper bars	동바
 Corner points in metres	꼭짓점(m)
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	이 외함이 
 Enclosure name (all if missing)	외함 이름(없으면 모두)
 Enclosure part number	외함 부품 번호
 Enclosure system (default: the enclosure's)	외함 시스템(기본값: 해당 외함의 시스템)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	복사본이 들어갈 외함(위치, 예: +CAB2). 생략하면 같은 외함
 Enclosure {} exists already	외함 {}이(가) 이미 있습니다
 Enclosures, panel items, accessories and panel macros	외함, 패널 항목, 부속품 및 패널 매크로
 End brackets and end plates from the tech data of the terminal parts	단자 부품의 기술 데이터에 따른 엔드 브래킷 및 엔드 플레이트
@@ -490,6 +492,7 @@ None of the items is an interruption point	중단점인 요소가 없습니다
 Not a cross-section: {} (e.g. 1.5 mm²)	단면적이 아닙니다: {}(예: 1.5 mm²)
 Not a valid safety function: {}	유효한 안전 기능이 아님: {}
 Note, e.g. what the problem is	메모(예: 문제 내용)
+Nothing to copy: devices are placed once	복사할 항목이 없습니다: 장치는 한 번만 배치됩니다
 Nothing to remove: {} {}	제거할 항목이 없습니다: {} {}
 Number of columns	열 수
 Number of copies (default 1)	복사본 수(기본값 1)

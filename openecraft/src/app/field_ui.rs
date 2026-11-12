@@ -274,7 +274,9 @@ impl App {
         if resp.drag_stopped() {
             fu.dragging = None;
         }
-        if resp.double_clicked() && fu.tool == CanvasTool::Outline && fu.outline.len() >= 3 {
+        let gestures = crate::gestures::get(ui.ctx());
+        let mods = ui.input(|i| i.modifiers);
+        if gestures.double_clicked(crate::gestures::MouseAction::FinishByDoubleClick, &resp, mods) && fu.tool == CanvasTool::Outline && fu.outline.len() >= 3 {
             let id = self.session.prj.new_id();
             let name = format!("+M{}", self.session.prj.field.outlines.len() + 1);
             self.session.prj.field.outlines.push(Outline { id, name, points: std::mem::take(&mut fu.outline), conductive: true });
@@ -301,7 +303,7 @@ impl App {
                 }
             }
         }
-        if resp.secondary_clicked() {
+        if gestures.clicked(crate::gestures::MouseAction::CancelTool, &resp, mods) {
             fu.start = None;
             fu.outline.clear();
         }

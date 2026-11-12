@@ -97,7 +97,8 @@ impl PanelUi {
     }
 
     /// Keys of the site tools: Enter closes the boundary, Backspace takes back the last
-    /// point, Escape drops the points or stops the tool.
+    /// point, Escape drops the points or stops the tool. Enter and Backspace stand for
+    /// the keys of finishing a polyline and of Delete.
     pub(super) fn site_key(&mut self, prj: &mut Project, key: Key) {
         match key {
             Key::Enter if self.site_tool == SiteTool::Boundary && self.site_points.len() >= 3 => self.finish_boundary(prj),
@@ -153,12 +154,22 @@ impl PanelUi {
             let close = self.site_tool == SiteTool::Boundary && self.site_points.first().is_some_and(|&f| frame.at(f).distance(p) <= 8.0);
             self.site_click(prj, q, close);
         }
-        if resp.double_clicked() && self.site_tool == SiteTool::Boundary && self.site_points.len() >= 3 {
+        let gestures = crate::gestures::get(ui.ctx());
+        let finish = gestures.double_clicked(crate::gestures::MouseAction::FinishByDoubleClick, resp, ui.input(|i| i.modifiers));
+        if finish && self.site_tool == SiteTool::Boundary && self.site_points.len() >= 3 {
             self.finish_boundary(prj);
         }
         if (resp.hovered() || !self.site_points.is_empty()) && !ui.ctx().egui_wants_keyboard_input() {
-            for key in [Key::Enter, Key::Backspace, Key::Escape] {
-                if ui.input(|i| i.key_pressed(key)) {
+            let sc = crate::shortcuts::get(ui.ctx());
+            let keys = ui.input(|i| {
+                [
+                    (sc.action_pressed(i, crate::shortcuts::Action::FinishPolyline), Key::Enter),
+                    (sc.cmd_pressed(i, crate::commands::Cmd::Delete), Key::Backspace),
+                    (i.key_pressed(Key::Escape), Key::Escape),
+                ]
+            });
+            for (pressed, key) in keys {
+                if pressed {
                     self.site_key(prj, key);
                 }
             }

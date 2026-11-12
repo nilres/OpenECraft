@@ -15,6 +15,10 @@ impl App {
         let has_sel = !self.editor.selection.is_empty();
         let pages = self.session.prj.pages.len();
         let page = self.session.page;
+        // Cut, copy and paste act on the panel layout while it is the document worked in.
+        if self.active_doc == Pane::LayoutView && matches!(cmd, Cmd::Cut | Cmd::Copy | Cmd::Paste) {
+            return if cmd == Cmd::Paste { self.panel_ui.can_paste() } else { !self.panel_ui.selection.is_empty() };
+        }
         if commands::changes_page(cmd) && !self.page_editable() {
             return false;
         }
@@ -246,6 +250,9 @@ impl App {
             Cmd::InstallUpdate => self.restart_to_update(ctx),
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
             // ------------------------------------------------------------ home
+            Cmd::Cut if self.active_doc == Pane::LayoutView => self.panel_ui.cut_selection(ctx, &mut self.session.prj),
+            Cmd::Copy if self.active_doc == Pane::LayoutView => self.panel_ui.copy_selection(ctx, &self.session.prj),
+            Cmd::Paste if self.active_doc == Pane::LayoutView => self.panel_ui.paste(),
             Cmd::Cut | Cmd::Copy => {
                 let items = self.editor.items(&self.session.prj, page);
                 let mut clip = ops::copy(&self.session.prj.pages[page], &items);
@@ -760,6 +767,7 @@ impl App {
         // Esc closes the dialog on top first (not while a key is recorded, the key tips
         // are shown or a modal question waits).
         let esc = self.recording.is_none()
+            && !self.settings.recording()
             && self.ribbon.tips.is_none()
             && !self.search.is_open()
             && ctx.memory(|m| m.top_modal_layer().is_none())
@@ -788,7 +796,7 @@ impl App {
                     continue;
                 }
                 // Plain keys only act on the page (and never while typing).
-                let plain = keys.iter().all(|k| !k.command && !k.alt && !matches!(k.key, Key::F1 | Key::F2 | Key::F4 | Key::F6 | Key::Insert | Key::PageUp | Key::PageDown));
+                let plain = keys.iter().all(crate::shortcuts::Shortcut::page_only);
                 if (typing && !keys.iter().any(|k| k.command || k.alt)) || (plain && !page_active) {
                     continue;
                 }

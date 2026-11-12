@@ -1,10 +1,12 @@
 //! The settings dialog: one window with a tree of the project settings (wire numbering,
 //! cross references, wire crossings, checks, marking, settings scheme, and the tools
-//! that keep further project settings) and the user settings (appearance, keyboard
-//! shortcuts, ribbon, servers).
+//! that keep further project settings) and the user settings (appearance, keys and
+//! gestures, ribbon, servers).
 
 use super::*;
 use crate::commands;
+use crate::gestures::{self, Binding, Clash, MouseAction, Role, View};
+use openecraft_ui::nav::Mod;
 use crate::ribbon::{self, CustomGroup, TABS};
 use crate::shortcuts;
 
@@ -21,7 +23,6 @@ pub(super) enum Node {
     Scheme,
     ProjectTools,
     Appearance,
-    Navigation,
     Startup,
     Shortcuts,
     Ribbon,
@@ -31,7 +32,7 @@ pub(super) enum Node {
 
 impl Node {
     const PROJECT: [Node; 7] = [Node::WireNumbering, Node::CrossReferences, Node::Wires, Node::Checks, Node::Marking, Node::Scheme, Node::ProjectTools];
-    const USER: [Node; 7] = [Node::Appearance, Node::Navigation, Node::Startup, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
+    const USER: [Node; 6] = [Node::Appearance, Node::Startup, Node::Shortcuts, Node::Ribbon, Node::Servers, Node::Updates];
 
     fn title(self) -> &'static str {
         match self {
@@ -43,9 +44,8 @@ impl Node {
             Node::Scheme => tr("Settings scheme"),
             Node::ProjectTools => tr("Further project settings"),
             Node::Appearance => tr("Appearance"),
-            Node::Navigation => tr("Navigation"),
             Node::Startup => tr("On startup"),
-            Node::Shortcuts => tr("Keyboard shortcuts"),
+            Node::Shortcuts => tr("Keys and gestures"),
             Node::Ribbon => tr("Ribbon"),
             Node::Servers => tr("Servers"),
             Node::Updates => tr("Updates"),
@@ -64,11 +64,51 @@ pub(super) struct SettingsUi {
     ribbon_tab: usize,
     /// Own group (index) whose deletion waits for the confirmation.
     confirm_group: Option<usize>,
+    /// Part of the keys and gestures shown.
+    section: Section,
+    /// Mouse action whose gesture is recorded, and whether it is added to the others.
+    recording: Option<(MouseAction, bool)>,
+    /// Why the gesture recorded last was not taken.
+    refused: bool,
+}
+
+/// The parts of the keys and gestures.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub(super) enum Section {
+    #[default]
+    Keys,
+    Modifiers,
+    Mouse,
+    WheelTouch,
+}
+
+impl Section {
+    const ALL: [Section; 4] = [Section::Keys, Section::Modifiers, Section::Mouse, Section::WheelTouch];
+
+    fn title(self) -> &'static str {
+        match self {
+            Section::Keys => tr("Keyboard shortcuts"),
+            Section::Modifiers => tr("Modifier keys"),
+            Section::Mouse => tr("Mouse"),
+            Section::WheelTouch => tr("Wheel and touch"),
+        }
+    }
 }
 
 impl Default for SettingsUi {
     fn default() -> Self {
-        SettingsUi { open: false, node: Node::Appearance, filter: String::new(), new_group: String::new(), add_filter: String::new(), ribbon_tab: 0, confirm_group: None }
+        SettingsUi {
+            open: false,
+            node: Node::Appearance,
+            filter: String::new(),
+            new_group: String::new(),
+            add_filter: String::new(),
+            ribbon_tab: 0,
+            confirm_group: None,
+            section: Section::Keys,
+            recording: None,
+            refused: false,
+        }
     }
 }
 
@@ -76,6 +116,14 @@ impl SettingsUi {
     pub fn open_at(&mut self, node: Node) {
         self.open = true;
         self.node = node;
+        if node == Node::Shortcuts {
+            self.section = Section::Keys;
+        }
+    }
+
+    /// A mouse gesture is being recorded: Esc cancels it instead of closing the dialog.
+    pub fn recording(&self) -> bool {
+        self.open && self.recording.is_some()
     }
 
     /// Opens the dialog at the node shown last.
@@ -88,6 +136,7 @@ impl App {
     pub(super) fn settings_window(&mut self, ctx: &egui::Context) {
         if !self.settings.open {
             self.recording = None;
+            self.settings.recording = None;
             return;
         }
         // One size for every node: the close button stays where it is.
@@ -123,9 +172,8 @@ impl App {
                     Node::Scheme => self.scheme_settings(ui),
                     Node::ProjectTools => self.project_tool_links(ui),
                     Node::Appearance => self.appearance_settings(ui),
-                    Node::Navigation => self.navigation_settings(ui),
                     Node::Startup => self.startup_settings(ui),
-                    Node::Shortcuts => self.shortcut_settings(ui),
+                    Node::Shortcuts => self.input_settings(ui),
                     Node::Ribbon => self.ribbon_settings(ui),
                     Node::Servers => self.server_links(ui),
                     Node::Updates => self.update_settings(ui),
@@ -317,30 +365,207 @@ impl App {
         });
     }
 
+    /// Keyboard shortcuts, modifier keys, mouse gestures, wheel and touch.
+    fn input_settings(&mut self, ui: &mut egui::Ui) {
+        ui.horizontal_wrapped(|ui| {
+            for s in Section::ALL {
+                if ui.selectable_value(&mut self.settings.section, s, s.title()).changed() {
+                    self.recording = None;
+                    self.settings.recording = None;
+                }
+            }
+        });
+        ui.separator();
+        match self.settings.section {
+            Section::Keys => self.shortcut_settings(ui),
+            Section::Modifiers => self.modifier_settings(ui),
+            Section::Mouse => self.mouse_settings(ui),
+            Section::WheelTouch => self.navigation_settings(ui),
+        }
+    }
+
+    /// The modifier of every function done with one held: a choice of Shift, Ctrl, Alt
+    /// or off, and the default.
+    fn modifier_settings(&mut self, ui: &mut egui::Ui) {
+        ui.weak(tr("Held while clicking, moving or scrolling. Ctrl is Cmd on macOS."));
+        let conflicts = self.editor.gestures.conflicts();
+        let error = crate::style::colors(self.dark).error;
+        let name = |m: Option<Mod>| m.map_or_else(|| tr("Off").to_string(), |m| m.name().to_string());
+        let g = &mut self.editor.gestures;
+        egui::Grid::new("modifier_grid").num_columns(3).striped(true).spacing([10.0, 4.0]).show(ui, |ui| {
+            for r in Role::ALL {
+                ui.label(tr(r.title()));
+                let now = g.modifier(r);
+                let mut chosen = now;
+                let clash = conflicts.iter().any(|(_, ids)| ids.contains(&r.id()));
+                let shown = RichText::new(name(now)).monospace();
+                egui::ComboBox::from_id_salt(("modifier", r.id())).selected_text(if clash { shown.color(error) } else { shown }).show_ui(ui, |ui| {
+                    ui.selectable_value(&mut chosen, None, tr("Off"));
+                    for m in Mod::ALL {
+                        ui.selectable_value(&mut chosen, Some(m), m.name());
+                    }
+                });
+                if chosen != now {
+                    g.set_modifier(r, chosen);
+                }
+                if ui.add_enabled(!g.modifier_is_default(r), egui::Button::new(tr("Default")).small()).clicked() {
+                    g.set_modifier(r, r.default());
+                }
+                ui.end_row();
+            }
+        });
+        self.gesture_conflicts(ui, &conflicts, |c| matches!(c, Clash::Modifier(_)));
+        ui.separator();
+        if ui.button(tr("Reset all to the defaults")).clicked() {
+            self.editor.gestures.reset_modifiers();
+        }
+    }
+
+    /// The buttons of every mouse action, grouped by the views: record, add, clear,
+    /// default.
+    fn mouse_settings(&mut self, ui: &mut egui::Ui) {
+        ui.weak(tr("Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu."));
+        let conflicts = self.editor.gestures.conflicts();
+        for (title, view) in [(tr("Pages, panel layout and plans"), View::Flat), (tr("3D view"), View::Spatial)] {
+            ui.add_space(6.0);
+            ui.label(RichText::new(title).strong());
+            for a in MouseAction::ALL.into_iter().filter(|a| a.view() == view) {
+                ui.separator();
+                self.mouse_row(ui, a, &conflicts);
+            }
+        }
+        if self.settings.refused {
+            ui.colored_label(crate::style::warning(), tr("Not taken: the left button alone selects, draws and moves; hold a modifier or use another button."));
+        }
+        self.gesture_conflicts(ui, &conflicts, |c| matches!(c, Clash::Mouse(..)));
+        ui.separator();
+        if ui.button(tr("Reset all to the defaults")).clicked() {
+            self.editor.gestures.reset_mouse();
+            self.settings.recording = None;
+        }
+    }
+
+    /// A mouse action: its title, then how it is done, its gestures and the buttons,
+    /// wrapping in narrow dialogs and long languages; the recording field below.
+    fn mouse_row(&mut self, ui: &mut egui::Ui, a: MouseAction, conflicts: &[(Clash, Vec<&'static str>)]) {
+        let recording = self.settings.recording.filter(|(r, _)| *r == a);
+        let g = &mut self.editor.gestures;
+        let bindings = g.mouse(a);
+        ui.label(tr(a.title()));
+        let text = bindings.iter().map(Binding::text).collect::<Vec<_>>().join(" / ");
+        let shown = if recording.is_some() {
+            RichText::new(tr("Do the gesture…")).italics()
+        } else if text.is_empty() {
+            RichText::new("–").weak()
+        } else {
+            RichText::new(text).monospace()
+        };
+        let clash = conflicts.iter().any(|(_, ids)| ids.contains(&a.id()));
+        let shown = if clash { shown.color(crate::style::colors(self.dark).error) } else { shown };
+        ui.horizontal_wrapped(|ui| {
+            ui.weak(tr(a.kind().title()));
+            ui.label(shown);
+            ui.add_space(8.0);
+            if ui.small_button(tr("Record")).clicked() {
+                self.settings.recording = Some((a, false));
+                self.settings.refused = false;
+            }
+            if ui.small_button(tr("Add")).on_hover_text(tr("Another gesture for the same function")).clicked() {
+                self.settings.recording = Some((a, true));
+                self.settings.refused = false;
+            }
+            if ui.add_enabled(!bindings.is_empty(), egui::Button::new(tr("Clear")).small()).on_hover_text(tr("No gesture")).clicked() {
+                g.set_mouse(a, Vec::new());
+            }
+            if ui.add_enabled(!g.mouse_is_default(a), egui::Button::new(tr("Default")).small()).clicked() {
+                g.set_mouse(a, a.defaults());
+            }
+        });
+        if let Some((a, add)) = recording {
+            self.gesture_pad(ui, a, add);
+        }
+    }
+
+    /// The field a mouse gesture is recorded on.
+    fn gesture_pad(&mut self, ui: &mut egui::Ui, a: MouseAction, add: bool) {
+        let size = egui::vec2(ui.available_width().min(560.0), 80.0);
+        let (resp, painter) = ui.allocate_painter(size, egui::Sense::click_and_drag());
+        let v = ui.visuals();
+        painter.rect(resp.rect, 6.0, v.extreme_bg_color, v.selection.stroke, egui::StrokeKind::Inside);
+        let text = tr_fmt!("{} – {} here (Esc cancels)", tr(a.title()), tr(a.kind().title()));
+        painter.text(resp.rect.center(), egui::Align2::CENTER_CENTER, text, egui::FontId::proportional(13.0), v.text_color());
+        let (events, mods, esc) = ui.input(|i| (i.events.clone(), i.modifiers, i.key_pressed(Key::Escape)));
+        if esc {
+            self.settings.recording = None;
+            return;
+        }
+        let Some(b) = gestures::recorded(a.kind(), &resp, &events, mods) else { return };
+        self.settings.refused = !a.accepts(&b);
+        if self.settings.refused {
+            return;
+        }
+        if add {
+            self.editor.gestures.add_mouse(a, b);
+        } else {
+            self.editor.gestures.set_mouse(a, vec![b]);
+        }
+        self.settings.recording = None;
+    }
+
+    /// The conflicts of the gestures `of` picks, as on the keyboard page.
+    fn gesture_conflicts(&self, ui: &mut egui::Ui, conflicts: &[(Clash, Vec<&'static str>)], of: impl Fn(&Clash) -> bool) {
+        for (clash, ids) in conflicts.iter().filter(|(c, _)| of(c)) {
+            let names: Vec<&str> = ids.iter().map(|id| tr(gestures::title(id))).collect();
+            ui.colored_label(crate::style::colors(self.dark).error, tr_fmt!("{} is used by: {}", clash.text(), names.join(", ")));
+        }
+    }
+
     /// What the wheel, a trackpad and a touch screen do in the 2D and 3D views.
     fn navigation_settings(&mut self, ui: &mut egui::Ui) {
-        use openecraft_ui::nav::Scroll;
+        use openecraft_ui::nav::{Fingers, Scroll};
         let nav = &mut self.shell.nav;
-        egui::Grid::new("navigation").num_columns(2).spacing([16.0, 8.0]).show(ui, |ui| {
-            ui.label(tr("Scrolling"));
-            ui.vertical(|ui| {
-                for s in Scroll::ALL {
-                    ui.radio_value(&mut nav.scroll, s, tr(s.title()));
-                }
-                ui.weak(match nav.scroll {
-                    Scroll::Auto => tr("Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel."),
-                    Scroll::Zoom => tr("Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans."),
-                    Scroll::Pan => tr("Scrolling pans in every direction; pinch or Ctrl + scroll to zoom."),
-                });
+        // One block per setting: its name, then its options indented, a line between.
+        let block = |ui: &mut egui::Ui, title: &str, first: bool, body: &mut dyn FnMut(&mut egui::Ui)| {
+            if !first {
+                ui.add_space(4.0);
+                ui.separator();
+            }
+            ui.label(RichText::new(title).strong());
+            ui.indent(title, |ui| body(ui));
+        };
+        block(ui, tr("Scrolling"), true, &mut |ui| {
+            for s in Scroll::ALL {
+                ui.radio_value(&mut nav.scroll, s, tr(s.title()));
+            }
+            ui.weak(match nav.scroll {
+                Scroll::Auto => tr("Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel."),
+                Scroll::Zoom => tr("Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans."),
+                Scroll::Pan => tr("Scrolling pans in every direction; pinch or Ctrl + scroll to zoom."),
             });
-            ui.end_row();
-            ui.label(tr("Direction"));
-            ui.checkbox(&mut nav.invert, tr("Invert the direction of panning by scrolling"));
-            ui.end_row();
-            ui.label(tr("Touch screen"));
-            ui.weak(tr("Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button."));
-            ui.end_row();
         });
+        block(ui, tr("Direction"), false, &mut |ui| {
+            ui.checkbox(&mut nav.invert, tr("Invert the direction of panning by scrolling"));
+        });
+        block(ui, tr("Two fingers"), false, &mut |ui| {
+            for f in Fingers::ALL {
+                ui.radio_value(&mut nav.two_fingers, f, tr(f.title()));
+            }
+            ui.weak(tr("On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button."));
+        });
+        block(ui, tr("Three fingers"), false, &mut |ui| {
+            ui.radio_value(&mut nav.three_fingers, None, tr("Like two fingers"));
+            for f in Fingers::ALL {
+                ui.radio_value(&mut nav.three_fingers, Some(f), tr(f.title()));
+            }
+            ui.weak(tr("On a touch screen; trackpads leave three-finger gestures to the system."));
+        });
+        ui.add_space(4.0);
+        ui.separator();
+        ui.weak(tr("The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys."));
+        ui.separator();
+        if ui.button(tr("Reset all to the defaults")).clicked() {
+            self.shell.nav = Default::default();
+        }
     }
 
     /// Every command and key of the page editor with its keys: record, clear, default.
@@ -524,3 +749,6 @@ impl App {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

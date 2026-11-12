@@ -179,18 +179,18 @@ impl App {
         egui::Grid::new("help_keys").striped(true).show(ui, |ui| {
             let sc = &self.editor.shortcuts;
             let configured: Vec<(String, &str)> = shortcuts::binding_ids().into_iter().map(|id| (sc.text(id), tr(shortcuts::title(id)))).filter(|(k, _)| !k.is_empty()).collect();
-            let fixed: Vec<(String, &str)> = [
-                (tr("Esc"), tr("Cancel / select tool / clear selection")),
-                (tr("Wheel / right or middle drag"), tr("Zoom / pan")),
-                (tr("Shift + click / drag"), tr("Add to selection")),
-                (tr("W A S D / arrows, Q / E"), tr("Move through the 3D view (Shift: faster)")),
-                (tr("Double-click (3D view)"), tr("Look at the point clicked, closer")),
-                ("Alt / F10", tr("Key tips of the ribbon")),
-            ]
+            // The mouse gestures and modifiers as set in Keys and gestures.
+            let g = &self.editor.gestures;
+            let mouse = crate::gestures::MouseAction::ALL.into_iter().filter_map(|a| {
+                let keys: Vec<String> = g.mouse(a).iter().map(crate::gestures::Binding::text).collect();
+                (!keys.is_empty()).then(|| (format!("{} ({})", keys.join(" / "), tr(a.kind().title())), tr(a.title())))
+            });
+            let mods = crate::gestures::Role::ALL.into_iter().filter_map(|r| g.modifier(r).map(|m| (m.name().to_string(), tr(r.title()))));
+            let fixed: Vec<(String, &str)> = [(tr("Esc"), tr("Cancel / select tool / clear selection")), ("Alt / F10", tr("Key tips of the ribbon"))]
             .into_iter()
             .map(|(k, v)| (k.to_string(), v))
             .collect();
-            for (k, v) in configured.into_iter().chain(fixed) {
+            for (k, v) in configured.into_iter().chain(mouse).chain(mods).chain(fixed) {
                 ui.label(RichText::new(k).monospace());
                 ui.label(v);
                 ui.end_row();

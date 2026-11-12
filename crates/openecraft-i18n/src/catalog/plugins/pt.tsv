@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Conecta duas portas de estações com um cabo de rede; as conexões já existentes nessas portas são substituídas
 Copies function texts between the single-line diagram and the schematic where one side is empty	Copia textos de função entre o diagrama unifilar e o esquema elétrico onde um dos lados está vazio
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Copia itens várias vezes a uma distância fixa; os dispositivos recebem novos identificadores, os bornes, novos números
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Copia elementos com os elementos montados neles para x / y numa face, também de outro gabinete; os dispositivos são omitidos (um dispositivo é posicionado uma única vez)
 Copper bar cutting list	Lista de corte de barras de cobre
 Copper bars	Barras de cobre
 Corner points in metres	Pontos de canto em metros
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Gabinete à di
 Enclosure name (all if missing)	Nome do gabinete (todos, se ausente)
 Enclosure part number	Número da peça do gabinete
 Enclosure system (default: the enclosure's)	Sistema de gabinete (padrão: o do gabinete)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Gabinete para onde vão as cópias (localização, por exemplo, +CAB2); o mesmo se omitido
 Enclosure {} exists already	O gabinete {} já existe
 Enclosures, panel items, accessories and panel macros	Gabinetes, itens do painel, acessórios e macros de painel
 End brackets and end plates from the tech data of the terminal parts	Batentes finais e placas de fechamento a partir dos dados técnicos das peças de borne
@@ -490,6 +492,7 @@ None of the items is an interruption point	Nenhum dos itens é um ponto de inter
 Not a cross-section: {} (e.g. 1.5 mm²)	Não é uma seção transversal: {} (por exemplo, 1.5 mm²)
 Not a valid safety function: {}	Não é uma função de segurança válida: {}
 Note, e.g. what the problem is	Nota, por exemplo, qual é o problema
+Nothing to copy: devices are placed once	Nada para copiar: os dispositivos são posicionados uma única vez
 Nothing to remove: {} {}	Nada a remover: {} {}
 Number of columns	Número de colunas
 Number of copies (default 1)	Número de cópias (padrão 1)

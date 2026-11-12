@@ -85,7 +85,6 @@ Add rule	규칙 추가
 Add sort key	정렬 키 추가
 Add the facing cutout in {}	{}에 마주 보는 컷아웃 추가
 Add to device	장치에 추가
-Add to selection	선택 항목에 추가
 Add to the pre-planning	사전 계획에 추가
 Add user	사용자 추가
 Added to both ends of the length for the cut length (insertion depth)	절단 길이를 위해 길이의 양쪽 끝에 더해짐(삽입 깊이)
@@ -129,6 +128,7 @@ Ambient temperature	주위 온도
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	아카이브(.oecz)는 프로젝트, 매니페스트, 포함된 문서와 이미지를 개별 파일로 담은 ZIP 파일입니다.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	새 회로도 페이지에 그래픽으로 넣는 기존 도면(선, 호, 텍스트, 블록)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	EPLAN Electric P8의 방식을 따르는 개방형 전기 CAE 편집기입니다.
+Another gesture for the same function	같은 기능의 다른 제스처
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	이 이름을 가진 기존 매크로의 다른 변형(예: B), 삽입 시 선택
 Any project file: its settings, forms, structure, potentials and pages start the new project	모든 프로젝트 파일: 해당 설정, 양식, 구조, 전위 및 페이지로 새 프로젝트를 시작합니다
 Appearance	모양
@@ -289,13 +289,17 @@ Circuits of a generic manifold	일반 분배기의 회로 수
 Clear	지우기
 Clearance	이격 거리
 Clearances	이격 거리
+Click	클릭
+Click a text: open its link	텍스트 클릭: 링크 열기
 Click an element in the drawing to edit it.	도면의 요소를 클릭하여 편집하세요.
 Click centre, then a point on the circle	중심을 클릭한 후 원 위의 점을 클릭하세요
+Click in the panel layout: a single item of an assembly	패널 레이아웃에서 클릭: 어셈블리의 단일 항목
 Click into the page to place the image	페이지를 클릭하여 이미지를 배치하세요
 Click into the page to place {}	페이지를 클릭하여 {}을(를) 배치하세요
 Click on a wire to place the connection definition point	전선을 클릭하여 연결 정의점 배치
 Click on the 4 mm grid	4mm 그리드를 클릭하세요
 Click on the wall: the part goes there at its mounting height	벽을 클릭하십시오: 부품이 설치 높이에 놓입니다
+Click or window: add to the selection or take out of it	클릭 또는 창: 선택에 추가하거나 선택에서 제거
 Click start and end point	시작점과 끝점을 클릭하세요
 Click the corners of a machine or building, double-click to finish	기계 또는 건물의 모서리를 클릭하고 두 번 클릭하여 완료
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	부지 경계의 꼭짓점 클릭 · 첫 번째 클릭, 더블클릭 또는 Enter: 닫기 · Backspace: 뒤로 · Esc: 중지
@@ -321,6 +325,7 @@ Click where the reference point is	기준점이 있는 곳을 클릭하십시오
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	세 연결선이 만나는 지점을 클릭: T분기점은 전선이 출발하는 장치와 대상의 순서를 지정합니다 · 아직 연결선이 만나지 않는 곳에서는 {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	두 연결선이 교차하는 지점을 클릭: 교차는 둘을 연결하고 선의 각 끝을 먼저 직진으로, 다음에 가로로 이끕니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	두 연결선이 직각으로 만나는 지점 또는 접속점이 모서리를 사이에 두고 마주하는 지점을 클릭: 자동 연결이 켜져 있으면 여기까지 연결선이 그려집니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
+Click while moving	이동하는 동안 클릭
 Click, or drag it into the page	클릭하거나 페이지로 끌어 놓기
 Climate (IEC 60890)	온도 관리(IEC 60890)
 Clipboard	클립보드
@@ -496,6 +501,8 @@ Device, terminal, wire and cable markers for marking software	마킹 소프트�
 Devices ({})	장치 ({})
 Devices are not copied: a device is placed once.	장치는 복사되지 않습니다. 장치는 한 번만 배치됩니다.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	장치는 단선 심볼로 계획되고 복선 회로도에서 설계되며, 둘은 장치 태그를 공유합니다.
+Devices back to the devices to place: {}	배치할 장치로 돌아간 장치: {}
+Devices go back to the devices to place	장치는 배치할 장치로 돌아갑니다
 Devices in the box: {}	박스 내 장치: {}
 Devices of a channel	채널의 장치
 Devices of the second channel; empty = like the first	두 번째 채널의 장치. 비워 두면 첫 번째 채널과 같음
@@ -530,6 +537,7 @@ Distribute vertically	세로로 균등 배치
 Distributed neutral	중성선 배선됨
 Diversity factor	부등률
 Divider	구분판
+Do the gesture…	제스처를 하세요…
 Dock	도킹
 Document {} embedded ({})	문서 {} 포함됨({})
 Documents	문서
@@ -543,7 +551,7 @@ Door clearance	도어 이격 거리
 Door cutouts (CSV)	도어 컷아웃(CSV)
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
-Double-click (3D view)	두 번 클릭 (3D 보기)
+Double-click	두 번 클릭
 Download into database	데이터베이스로 다운로드
 Download project	프로젝트 다운로드
 Downloaded {} (version {})	{}을(를) 다운로드했습니다(버전 {})
@@ -552,6 +560,7 @@ Downloading OpenECraft {}	OpenECraft {} 다운로드 중
 Downstream part	하위 부품
 Draft of revision {} created	개정 {}의 초안 만들어짐
 Draft of revision {} discarded	개정 {}의 초안 취소됨
+Drag	끌기
 Drag a connection point designation of the selected symbol to place it.	선택한 심볼의 연결 지점 명칭을 끌어서 배치하세요.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	선택한 전선의 끝을 드래그하면 그 끝만 이동합니다. Alt를 누른 채 드래그하면 연결 유지가 반대로 됩니다.
 Drag an entry into the page, or click it and then click into the page.	항목을 페이지로 끌어 놓거나, 항목을 클릭한 다음 페이지를 클릭하세요.
@@ -681,6 +690,8 @@ Find and replace in the whole project	프로젝트 전체에서 찾기 및 바�
 Find results	검색 결과
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	항목 번호 또는 Part Number 속성으로 프로젝트 부품의 Vault 항목을 찾아 품목 ID, 개정 및 수명 주기 상태의 변경 내용을 검토용으로 표시합니다
 Find…	찾기…
+Finish a wire, polyline, polygon or wall	전선, 폴리선, 다각형 또는 벽 마치기
+Finish or cancel the drawing, then back to selecting	그리기를 끝내거나 취소한 뒤 선택으로 돌아가기
 First row	첫 행
 Fit	맞춤
 Fit page	페이지 맞춤
@@ -771,6 +782,7 @@ Height above the mounting plate	장착 플레이트 위 높이
 Height above the plate	플레이트 위 높이
 Height of the plinth, 0 without plinth	받침대 높이, 0이면 받침대 없음
 Heights above floor (IEC 60204-1)	바닥으로부터의 높이(IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	클릭, 이동 또는 스크롤하는 동안 누릅니다. macOS에서 Ctrl은 Cmd입니다.
 Help	도움말
 Hide the groups you do not need and put the commands you use most into own groups.	필요 없는 그룹은 숨기고 자주 쓰는 명령은 자체 그룹에 넣습니다.
 Highest phase unbalance	최대 상 불평형
@@ -871,7 +883,12 @@ Invalid value	잘못된 값
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
 Isometric	등각
+Items copied: {}	복사한 요소: {}
+Items copied: {} (devices left out: {}, a device is placed once)	복사한 요소: {} (제외된 장치: {}, 장치는 한 번만 배치됩니다)
+Items cut: {}	잘라낸 요소: {}
+Items cut: {} (devices back to the devices to place: {})	잘라낸 요소: {} (배치할 장치로 돌아간 장치: {})
 Items on the layer	레이어의 항목
+Items pasted: {}	붙여넣은 요소: {}
 Items with an anchor keep it; the others are inserted relative to the click.	앵커가 있는 항목은 앵커를 유지하고, 나머지 항목은 클릭 위치를 기준으로 삽입됩니다.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	커넥터가 없는 시스템을 위해 품목, 장치, 배치, 연결, 전선 및 문서를 하나의 JSON 파일로 저장
 Its pages and subsections go to the section above	페이지와 하위 구역은 상위 구역으로 이동됩니다
@@ -889,6 +906,8 @@ Key tips of the ribbon	리본의 액세스 키
 Key: {}	키: {}
 Keyboard shortcuts	바로 가기 키
 Keyboard shortcuts…	바로 가기 키…
+Keys and gestures	키와 제스처
+Keys of the 3D view	3D 보기 키
 Label	레이블
 Label (grey)	레이블(회색)
 Label field	레이블 필드
@@ -910,6 +929,7 @@ Layout spaces	레이아웃 공간
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D 보기에서 방의 천장과 지붕 생략
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3D 보기에서 모든 케이블 덕트의 덮개를 생략합니다: 안의 전선이 보입니다
 Leave repeated values of the first column blank	첫 번째 열의 반복 값을 비워 둠
+Left button	왼쪽 단추
 Left edges	왼쪽 가장자리
 Legend plates (door devices)	명판(도어 장치)
 Length from the node to the device	노드에서 장치까지의 길이
@@ -923,6 +943,7 @@ Level of this kind of message	이 메시지 종류의 수준
 Level {} added to building {}; new rooms go onto it	건물 {1}에 층 {0}을(를) 추가했습니다. 새 실은 이 층에 놓입니다
 Level {} of building {}	건물 {1}의 {0}층
 Library	라이브러리
+Like two fingers	두 손가락과 같게
 Limits	한계값
 Limits in effect	적용되는 한계값
 Line to PE at the supply point; 0 = from the highest short-circuit current	전원 공급점의 선-PE 간. 0 = 최대 단락 전류에서
@@ -956,7 +977,6 @@ Locked by {} – read only	잠금: {} – 읽기 전용
 Locking…	잠그는 중…
 Logic	로직
 Longer values are drawn smaller (0 = no limit)	더 긴 값은 더 작게 그려집니다(0 = 제한 없음)
-Look at the point clicked, closer	클릭한 점을 가까이에서 보기
 Look for updates when OpenECraft starts	OpenECraft 시작 시 업데이트 확인
 Looking for updates…	업데이트 확인 중…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub에서 OpenECraft의 새 릴리스를 찾아 백그라운드에서 설치합니다
@@ -1004,6 +1024,7 @@ Messages	메시지
 Messages ({})	메시지 ({})
 Messages of this session	이 세션의 메시지
 Middle	가운데
+Middle button	가운데 단추
 Middle of the PV array in the floor plan of the building	건물 평면도에서 태양광 어레이의 중심
 Min. bend radius	최소 굽힘 반경
 Minimize the ribbon	리본 최소화
@@ -1012,6 +1033,7 @@ Mirror (selection or symbol being placed)	대칭(선택 항목 또는 배치 중
 Mixed	혼합
 Mode	모드
 Model of a part (2D / 3D)	부품의 모델(2D / 3D)
+Modifier keys	보조키
 Module part; its size comes from the part	모듈 부품; 크기는 부품에서 가져옴
 Motors feed the short circuit	모터가 단락 전류를 공급함
 Mounted on	장착 대상
@@ -1020,17 +1042,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	나�
 Mounting height: {}	설치 높이: {}
 Mounting plate: {} holes, {} cutouts	장착 플레이트: 구멍 {}개, 컷아웃 {}개
 Mounting system	설치 시스템
+Mouse	마우스
 Move	이동
+Move ahead in the 3D view (held)	3D 보기에서 앞으로 이동(누른 채로)
+Move back in the 3D view (held)	3D 보기에서 뒤로 이동(누른 채로)
 Move down	아래로 이동
+Move down in the 3D view (held)	3D 보기에서 아래로 이동(누른 채로)
+Move faster with the keys of the 3D view	3D 보기 키로 더 빠르게 이동
 Move left	왼쪽으로 이동
+Move left in the 3D view (held)	3D 보기에서 왼쪽으로 이동(누른 채로)
 Move page down	페이지를 아래로 이동
 Move page up	페이지를 위로 이동
+Move right in the 3D view (held)	3D 보기에서 오른쪽으로 이동(누른 채로)
 Move selection by	선택 항목 이동 거리
 Move selection by…	선택 항목 이동…
 Move the devices of this page into the new structure	이 페이지의 장치를 새 구조로 이동
-Move through the 3D view (Shift: faster)	3D 보기에서 이동 (Shift: 더 빠르게)
 Move to section	구역으로 이동
 Move up	위로 이동
+Move up in the 3D view (held)	3D 보기에서 위로 이동(누른 채로)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	이동한 심볼은 전선을 함께 끌고 가고, 이동한 전선은 끝이 있는 연결 지점에 남습니다. 드래그 중 Alt를 누르면 반대로 동작합니다. 선택한 전선의 끝을 드래그하면 연결이 해제됩니다
 Moves to the top level as page {}	최상위 수준의 페이지 {}(으)로 이동합니다
 Moves to {} as page {}	{}의 페이지 {}(으)로 이동합니다
@@ -1051,7 +1080,6 @@ Name and cross reference	이름 및 상호 참조
 Name on the server	서버의 이름
 Name; Data Type; Logical Address; Comment – for PLC programming tools	이름; 데이터 유형; 논리 주소; 주석 – PLC 프로그래밍 도구용
 Named copy of this form, for report blocks	보고서 블록용으로 이 양식에 이름을 지정한 복사본
-Navigation	탐색
 Navigators	탐색기
 Neutral exchange file…	중립 교환 파일…
 Never	안 함
@@ -1121,6 +1149,7 @@ No dot: plain T	점 없음: 단순 T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	아직 외함이 없습니다 – 새 외함으로 만들거나 새 방으로 외함용 방을 만드십시오.
 No field cables: place the enclosures and field devices at nodes of the route network.	필드 케이블이 없습니다. 외함과 필드 장치를 경로 네트워크의 노드에 배치하세요.
 No filter fans: an air/air heat exchanger or a cooling unit	필터 팬 없음: 공기/공기 열교환기 또는 냉각 장치
+No gesture	제스처 없음
 No harnesses defined.	정의된 하네스가 없습니다.
 No inverter	인버터 없음
 No jump: plain crossing, connections have dots	점프 없음: 단순 교차, 연결에 점 표시
@@ -1163,6 +1192,7 @@ Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
 Not saved, locked or changed by another user: {}	저장되지 않음, 다른 사용자가 잠그거나 변경함: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	적용 안 됨: 왼쪽 단추만으로는 선택, 그리기, 이동을 합니다. 보조키를 누르거나 다른 단추를 사용하세요.
 Not the shared project: changes are saved locally until it is opened on the project server again	공유 프로젝트가 아닙니다: 프로젝트 서버에서 다시 열 때까지 변경 사항은 로컬에 저장됩니다
 Nothing exchanged yet.	아직 교환된 내용이 없습니다.
 Nothing left in this list.	이 목록에 남은 항목이 없습니다.
@@ -1180,6 +1210,8 @@ Of the outer diameter, as laid fixed	외경의 배수, 고정 포설 시
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	외경의 배수. 배관은 직경 1.5배의 곡관으로 굽힘
 Off	끄기
 Offset from one row to the next: downwards for lists, sideways for rows side by side	한 행에서 다음 행까지의 오프셋: 목록은 아래쪽, 나란히 놓인 행은 옆쪽
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	터치스크린과 트랙패드에 적용됩니다. 이동만: 핀치로 확대/축소하지 않습니다. 확대/축소만: 시스템이 트랙패드를 구별하는 경우 트랙패드에서 두 손가락 스크롤도 확대/축소합니다. 한 손가락은 마우스 왼쪽 단추처럼 작동합니다.
+On a touch screen; trackpads leave three-finger gestures to the system.	터치스크린에 적용됩니다. 트랙패드의 세 손가락 제스처는 시스템이 사용합니다.
 On startup	시작할 때
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
@@ -1202,6 +1234,7 @@ Open project	프로젝트 열기
 Open project server	프로젝트 서버 열기
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault에서 프로젝트와 파일을 열고, 프로젝트, 내보내기 및 3D 모델을 Vault에 넣습니다
 Open the project	프로젝트 열기
+Open the selection: its properties, in the floor plan its face	선택 항목 열기: 속성, 평면도에서는 해당 면
 Open to {}: wires cross beside the mounting plates	{}(으)로 개방됨: 전선이 장착 플레이트 옆으로 지나감
 Open walls and floors	벽과 바닥 열기
 Open, save, import, export, print and the settings	열기, 저장, 가져오기, 내보내기, 인쇄 및 설정
@@ -1237,6 +1270,7 @@ Open…	열기…
 Operations / year	동작 횟수 / 년
 Option	옵션
 Options	옵션
+Orbit the 3D view	3D 보기 회전
 Ordinary cable	일반 케이블
 Orientation	방향
 Origin	출처
@@ -1286,7 +1320,10 @@ Pages and templates using the frame follow	이 프레임을 사용하는 페이�
 Pages of revision {}	개정 {}의 페이지
 Pages of the selected block	선택한 블록의 페이지
 Pages using it get the project default	이를 사용하는 페이지는 프로젝트 기본값을 받습니다
+Pages, panel layout and plans	페이지, 패널 레이아웃 및 도면
 Pairs in schematic order (1-2, 3-4 …)	회로도 순서대로 쌍으로(1-2, 3-4 …)
+Pan the 3D view	3D 보기 이동
+Pan the page, the panel layout and the plans	페이지, 패널 레이아웃, 도면 이동
 Pane menu	창 메뉴
 Panel wiring report	패널 배선 보고서
 Panes	창
@@ -1440,6 +1477,7 @@ Recent projects	최근 프로젝트
 Recently used	최근 사용
 Recommended height of manual actuators (10.1.2)	수동 조작부의 권장 높이(10.1.2)
 Record	기록
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	기록: 나타나는 영역에서 제스처를 하고, 원하면 보조키를 누른 채로 합니다(Esc는 취소). 추가는 기존 제스처를 유지합니다. 선택 도구에서 마우스 오른쪽 클릭은 상황에 맞는 메뉴를 엽니다.
 Rectangular	사각형
 Redline: to be changed · Greenline: changed as built	레드라인: 변경 예정 · 그린라인: 시공 상태대로 변경됨
 Redo	다시 실행
@@ -1548,6 +1586,7 @@ Revisions, approval and release	개정, 승인 및 릴리스
 Ribbon	리본
 Ribbon (JSON)	리본 (JSON)
 Ribbon imported	리본을 가져왔습니다
+Right button	오른쪽 단추
 Right click for more	마우스 오른쪽 단추를 클릭하여 추가 옵션
 Right edges	오른쪽 가장자리
 Right neighbour	오른쪽 인접 외함
@@ -1564,6 +1603,8 @@ Room {} taken out of the building; it stays where it stands	방 {} 을(를) 건�
 Rooms under sloped ceilings (lowest – highest ceiling)	경사 천장 아래의 방 (가장 낮은 – 가장 높은 천장)
 Rotate	회전
 Rotate (selection or symbol being placed)	회전(선택 항목 또는 배치 중인 심볼)
+Rotate what is being moved	이동 중인 항목 회전
+Rotate what is being moved counter-clockwise	이동 중인 항목을 시계 반대 방향으로 회전
 Round	원형
 Round cutouts facing each other in both side walls	양쪽 측벽에 서로 마주 보는 원형 컷아웃
 Route definition of {}	{}의 경로 정의
@@ -1640,7 +1681,9 @@ Scheme {}	스키마 {}
 Screws, nuts, washers and rivet nuts of the fixing points	고정점의 나사, 너트, 와셔 및 리벳 너트
 Scrolling	스크롤
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	스크롤하면 모든 방향으로 화면을 이동합니다. 확대/축소는 핀치 또는 Ctrl + 스크롤로 합니다.
+Scrolling up and down pans sideways	위아래 스크롤로 옆으로 이동
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	위아래로 스크롤하면 포인터 위치에서 확대/축소하고, 옆으로(가로 휠, Shift + 휠) 스크롤하면 화면을 이동합니다.
+Scrolling zooms, also where it pans	스크롤로 확대/축소(이동하는 곳에서도)
 Search (* and ? as placeholders)…	검색 (* 와 ? 는 와일드카드)…
 Search below this folder	이 폴더 아래에서 검색
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	카탈로그, 제품 그룹 및 기술 데이터로 부품 서버를 검색하고, 부품을 추가하며, 데이터베이스의 업데이트를 확인합니다
@@ -1700,7 +1743,6 @@ Shield pigtail	차폐 피그테일
 Shielded	차폐됨
 Shielded analogue cables	차폐된 아날로그 케이블
 Shielded drive cables	차폐된 드라이브 케이블
-Shift + click / drag	Shift + 클릭 / 끌기
 Short circuit and selectivity	단락 및 선택 차단
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	단락, 선택 차단, 부하, EMC, 기능 안전 및 규칙 세트에 대한 검증
 Short-circuit currents	단락 전류
@@ -1769,6 +1811,7 @@ Start	시작
 Start again when the page structure changes	페이지 구조가 바뀌면 다시 시작
 Start at	시작 값
 Start byte	시작 바이트
+Start of a move: Keep connections the other way round	이동 시작 시: 연결 유지를 반대로
 Start page	시작 페이지
 Station	스테이션
 Stations and racks	스테이션 및 랙
@@ -1875,6 +1918,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	가로 전선
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
 The macro library has no page macros (Macros › Save page as macro…).	매크로 라이브러리에 페이지 매크로가 없습니다(매크로 › 페이지를 매크로로 저장…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	휠로 옆으로 이동하거나 확대/축소하는 보조키는 보조키에서 설정합니다.
 The modules no string takes yet in series, on the first inverter	아직 어느 스트링에도 속하지 않은 모듈을 직렬로, 첫 번째 인버터에
 The names of its pages follow	페이지 이름도 함께 변경됩니다
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	열린 프로젝트는 로컬 복구 사본입니다. 변경 사항은 프로젝트 서버에 저장되지 않았습니다. 공유 프로젝트를 열기 전에 로컬에 저장할지 버릴지 결정합니다.
@@ -1914,6 +1958,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	이 페이지
 This page contains schematic content which is not evaluated on non-schematic pages.	이 페이지에는 회로도가 아닌 페이지에서는 평가되지 않는 회로도 내용이 있습니다.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	이 프로젝트는 {1}의 하위 프로젝트 {0}입니다({2}에 반출). 작업이 끝나면 저장한 후 주 프로젝트에 삽입하세요.
+Three fingers	세 손가락
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	여기에서 세 연결선이 만나야 합니다: 하나는 그 방향으로, 둘은 가로로. 그때까지 연결은 회로도 순서로 연결됩니다.
 Three-phase short-circuit current at the supply point	전원 공급점의 3상 단락 전류
 Tilt	기울기
@@ -1932,10 +1977,11 @@ Touch screen	터치스크린
 Transfer project parts to database	프로젝트 부품을 데이터베이스로 전송
 Translate the project texts; documentation per language	프로젝트 텍스트 번역, 언어별 문서
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	수직축 기준 회전, 위에서 볼 때 시계 반대 방향(90 °: 전면이 오른쪽을 향함)
+Turn the 3D view to the point	3D 보기를 해당 점으로 돌리기
 Tutorial	튜토리얼
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
+Two fingers	두 손가락
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	트랙패드에서 두 손가락은 화면을 이동하고 마우스 휠은 확대/축소합니다. 둘을 구분하는 것은 macOS뿐이며, 다른 곳에서는 스크롤이 휠처럼 확대/축소합니다.
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	두 손가락으로 이동과 핀치 확대/축소를 동시에 할 수 있으며, 한 손가락은 마우스 왼쪽 버튼처럼 작동합니다.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2001,7 +2047,6 @@ View	보기
 Visible	표시
 Voltage (line to line)	전압(선간)
 Voltage drop	전압 강하
-W A S D / arrows, Q / E	W A S D / 화살표, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, IFC 내보내기의 부지에 기록됩니다
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	벽 {}, {} m: 드래그하여 이동, 두 번 클릭하면 장착할 수 있도록 표시
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	벽 {}, {} m: 벽 보기에 표시된 벽(강조 표시), 드래그하여 이동
@@ -2013,7 +2058,7 @@ Web between holes	구멍 사이 웹
 Welcome to OpenECraft	OpenECraft에 오신 것을 환영합니다
 What is new	새로운 기능
 What should be checked or changed?	무엇을 검사하거나 변경해야 합니까?
-Wheel / right or middle drag	휠 / 오른쪽 또는 가운데 버튼 끌기
+Wheel and touch	휠 및 터치
 Wheel: zoom · drag: move · click on a room: its floor plan	휠: 확대/축소 · 끌기: 이동 · 실 클릭: 평면도
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	휠: 확대/축소 · 드래그: 이동 · 실 클릭: 평면도 · 부지 경계의 꼭짓점 드래그
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	휠: 확대/축소 · 오른쪽 클릭: 취소 · 그래픽은 0.5mm, 연결 지점은 4mm 그리드에 맞춰짐
@@ -2080,7 +2125,8 @@ You may only view this project.	이 프로젝트를 보기만 할 수 있습니�
 You may review this project: comments, markup and approvals, no other changes.	이 프로젝트를 검토할 수 있습니다. 주석, 마크업 및 승인만 가능하며 다른 변경은 할 수 없습니다.
 Your unsaved changes of it are taken back	저장되지 않은 변경 내용이 취소됩니다
 Zoom	확대/축소
-Zoom / pan	확대/축소 / 화면 이동
+Zoom in in the 3D view (held)	3D 보기 확대(누른 채로)
+Zoom out in the 3D view (held)	3D 보기 축소(누른 채로)
 all	모두
 all cards	모든 카드
 all lines	모든 줄
@@ -2325,6 +2371,7 @@ x y	x y
 {} °C (max.)	{} °C(최대)
 {} × {} pixels, {}	{} × {} 픽셀, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
+{} – {} here (Esc cancels)	{} – 여기에서 {}(Esc는 취소)
 {}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다
 {}: crimp together with the wire to {}	{}: {}(으)로 가는 전선과 함께 압착
 {}: drag to move it, R turns it, a double-click opens it	{}: 드래그하여 이동, R로 회전, 두 번 클릭하여 열기

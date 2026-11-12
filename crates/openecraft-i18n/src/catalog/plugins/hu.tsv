@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Két állomásport összekötése hálózati kábellel; az e portokon már meglévő kapcsolatok lecserélődnek
 Copies function texts between the single-line diagram and the schematic where one side is empty	Funkciószövegeket másol az egyvonalas rajz és a kapcsolási rajz között, ahol az egyik oldal üres
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Többször lemásolja az elemeket rögzített távolságra; a készülékek új azonosítót, a sorkapcsok új számot kapnak
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Elemeket másol a rájuk szerelt elemekkel együtt egy felület x / y pontjára, másik szekrénybe is; a készülékek kimaradnak (egy készüléket csak egyszer lehet elhelyezni)
 Copper bar cutting list	Rézsínek szabási listája
 Copper bars	Rézsínek
 Corner points in metres	Sarokpontok méterben
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	A szekrény, a
 Enclosure name (all if missing)	Szekrény neve (ha hiányzik: az összes)
 Enclosure part number	A szekrény cikkszáma
 Enclosure system (default: the enclosure's)	Szekrényrendszer (alapértelmezés: a szekrényé)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Szekrény, ahová a másolatok kerülnek (szerelési hely, pl. +CAB2); megadás nélkül ugyanaz
 Enclosure {} exists already	A(z) {} szekrény már létezik
 Enclosures, panel items, accessories and panel macros	Szekrények, elrendezési elemek, tartozékok és elrendezési makrók
 End brackets and end plates from the tech data of the terminal parts	Végbakok és zárólapok a sorkapocs-alkatrészek műszaki adataiból
@@ -490,6 +492,7 @@ None of the items is an interruption point	Egyik elem sem megszakítási pont
 Not a cross-section: {} (e.g. 1.5 mm²)	Nem keresztmetszet: {} (pl. 1.5 mm²)
 Not a valid safety function: {}	Nem érvényes biztonsági funkció: {}
 Note, e.g. what the problem is	Megjegyzés, pl. mi a probléma
+Nothing to copy: devices are placed once	Nincs mit másolni: a készülékeket csak egyszer lehet elhelyezni
 Nothing to remove: {} {}	Nincs mit eltávolítani: {} {}
 Number of columns	Oszlopok száma
 Number of copies (default 1)	Másolatok száma (alapértelmezés: 1)

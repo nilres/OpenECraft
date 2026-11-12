@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Conectează două porturi ale unor stații cu un cablu de rețea; conexiunile existente pe aceste porturi sunt înlocuite
 Copies function texts between the single-line diagram and the schematic where one side is empty	Copiază textele de funcție între schema monofilară și schema multifilară acolo unde una dintre ele este goală
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Copiază elementele de mai multe ori la o distanță fixă; dispozitivele primesc identificatori noi, bornele numere noi
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Copiază elemente împreună cu elementele montate pe ele la x / y pe o față, și a altei carcase; dispozitivele sunt omise (un dispozitiv se plasează o singură dată)
 Copper bar cutting list	Listă de debitare a barelor de cupru
 Copper bars	Bare de cupru
 Corner points in metres	Puncte de colț în metri
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Carcasa în dr
 Enclosure name (all if missing)	Nume carcasă (toate, dacă lipsește)
 Enclosure part number	Numărul de articol al carcasei
 Enclosure system (default: the enclosure's)	Sistem de carcase (implicit: cel al carcasei)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Carcasa în care ajung copiile (loc de montare, de ex. +CAB2); aceeași dacă lipsește
 Enclosure {} exists already	Carcasa {} există deja
 Enclosures, panel items, accessories and panel macros	Carcase, elemente de tablou, accesorii și macro-uri de tablou
 End brackets and end plates from the tech data of the terminal parts	Opritoare de capăt și plăci de capăt din datele tehnice ale articolelor de bornă
@@ -490,6 +492,7 @@ None of the items is an interruption point	Niciunul dintre elemente nu este un p
 Not a cross-section: {} (e.g. 1.5 mm²)	Nu este o secțiune: {} (de ex. 1.5 mm²)
 Not a valid safety function: {}	Nu este o funcție de securitate validă: {}
 Note, e.g. what the problem is	Notă, de ex. care este problema
+Nothing to copy: devices are placed once	Nimic de copiat: dispozitivele se plasează o singură dată
 Nothing to remove: {} {}	Nimic de eliminat: {} {}
 Number of columns	Număr de coloane
 Number of copies (default 1)	Număr de copii (implicit 1)

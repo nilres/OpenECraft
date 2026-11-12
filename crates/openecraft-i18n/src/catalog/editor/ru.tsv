@@ -85,7 +85,6 @@ Add rule	Добавить правило
 Add sort key	Добавить ключ сортировки
 Add the facing cutout in {}	Добавить ответный вырез в {}
 Add to device	Добавить к устройству
-Add to selection	Добавить к выделению
 Add to the pre-planning	Добавить в предварительное проектирование
 Add user	Добавить пользователя
 Added to both ends of the length for the cut length (insertion depth)	Прибавляется к длине на обоих концах для длины отрезка (глубина вставки)
@@ -130,6 +129,7 @@ Ambient temperature	Температура окружающей среды
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Архив (.oecz) – это ZIP-файл с проектом, манифестом и внедрёнными документами и изображениями в виде отдельных файлов.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Старый чертёж как графика на новом листе схемы (линии, дуги, тексты, блоки)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Открытый электротехнический САПР-редактор в духе EPLAN Electric P8.
+Another gesture for the same function	Ещё один жест для той же функции
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Ещё один вариант существующего макроса с этим именем (например, B), выбирается при вставке
 Any project file: its settings, forms, structure, potentials and pages start the new project	Любой файл проекта: его настройки, формы, структура, потенциалы и листы становятся основой нового проекта
 Appearance	Оформление
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Контуры типового распреде�
 Clear	Очистить
 Clearance	Зазор
 Clearances	Зазоры
+Click	Щелчок
+Click a text: open its link	Щелчок по тексту: открыть его ссылку
 Click an element in the drawing to edit it.	Щёлкните элемент на чертеже, чтобы изменить его.
 Click centre, then a point on the circle	Щёлкните центр, затем точку на окружности
+Click in the panel layout: a single item of an assembly	Щелчок в компоновке шкафа: отдельный элемент сборки
 Click into the page to place the image	Щёлкните на листе, чтобы разместить изображение
 Click into the page to place {}	Щёлкните на листе, чтобы разместить {}
 Click on a wall	Щёлкните по стене
 Click on a wire to place the connection definition point	Щёлкните провод, чтобы разместить точку определения соединения
 Click on the 4 mm grid	Щёлкните по сетке 4 мм
 Click on the wall: the part goes there at its mounting height	Щёлкните по стене: изделие встанет там на свою высоту монтажа
+Click or window: add to the selection or take out of it	Щелчок или рамка: добавить к выбору или убрать из него
 Click start and end point	Щёлкните начальную и конечную точки
 Click the corners of a machine or building, double-click to finish	Щёлкните углы машины или здания, дважды щёлкните для завершения
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Щёлкайте по углам границы участка · по первому, двойной щелчок или Enter: замкнуть · Backspace: назад · Esc: стоп
@@ -326,6 +330,7 @@ Click where the reference point is	Щёлкните там, где находи�
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Щёлкните, где сходятся три провода: Т-образный узел задаёт устройство, от которого идут провода, и порядок их целей · {} поворачивает его, где провода ещё не сходятся · Esc или правая кнопка завершает
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Щёлкните, где пересекаются два провода: пересечение соединяет их и ведёт каждый конец своей линии сначала прямо, затем поперёк · {} поворачивает его · Esc или правая кнопка завершает
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Щёлкните, где два провода сходятся под прямым углом, или где точки подключения расположены напротив друг друга через угол: при включённом автосоединении к нему проводятся провода · {} поворачивает его · Esc или правая кнопка завершает
+Click while moving	Щелчок при перемещении
 Click, or drag it into the page	Щёлкните или перетащите на лист
 Climate (IEC 60890)	Климат (IEC 60890)
 Clipboard	Буфер обмена
@@ -502,6 +507,8 @@ Device, terminal, wire and cable markers for marking software	Маркировк
 Devices ({})	Устройства ({})
 Devices are not copied: a device is placed once.	Устройства не копируются: устройство размещается один раз.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Устройства планируются однолинейными символами и проектируются на многолинейной схеме; у обоих общее обозначение устройства.
+Devices back to the devices to place: {}	Устройств возвращено в устройства для размещения: {}
+Devices go back to the devices to place	Устройства возвращаются в устройства для размещения
 Devices in the box: {}	Устройства в рамке: {}
 Devices of a channel	Устройства канала
 Devices of the second channel; empty = like the first	Устройства второго канала; пусто = как у первого
@@ -536,6 +543,7 @@ Distribute vertically	Распределить по вертикали
 Distributed neutral	Распределённая нейтраль
 Diversity factor	Коэффициент одновременности
 Divider	Перегородка
+Do the gesture…	Выполните жест…
 Dock	Закрепить
 Document {} embedded ({})	Документ {} встроен ({})
 Documents	Документы
@@ -549,7 +557,7 @@ Door clearance	Свободное пространство двери
 Door cutouts (CSV)	Вырезы в двери (CSV)
 Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезов – {}
 Dot	Точка
-Double-click (3D view)	Двойной щелчок (3D-вид)
+Double-click	Двойной щелчок
 Download into database	Загрузить в базу данных
 Download project	Скачать проект
 Downloaded {} (version {})	{} скачан (версия {})
@@ -558,6 +566,7 @@ Downloading OpenECraft {}	Загрузка OpenECraft {}
 Downstream part	Нижестоящее изделие
 Draft of revision {} created	Черновик ревизии {} создан
 Draft of revision {} discarded	Черновик ревизии {} отменён
+Drag	Перетаскивание
 Drag a connection point designation of the selected symbol to place it.	Перетащите обозначение точки подключения выбранного символа, чтобы разместить его.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Перетащите конец выбранного провода, чтобы переместить только этот конец. Перетаскивание с Alt меняет Сохранять соединения на противоположное.
 Drag an entry into the page, or click it and then click into the page.	Перетащите запись на лист или щёлкните её, а затем щёлкните на листе.
@@ -689,6 +698,8 @@ Find and replace in the whole project	Найти и заменить во всё
 Find results	Результаты поиска
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Ищет элементы Vault для изделий проекта по номеру элемента или свойству Part Number и показывает изменения ID позиции, ревизии и состояния жизненного цикла для проверки
 Find…	Найти…
+Finish a wire, polyline, polygon or wall	Завершить провод, полилинию, многоугольник или стену
+Finish or cancel the drawing, then back to selecting	Завершить или отменить рисование и вернуться к выбору
 First row	Первая строка
 Fit	Вписать
 Fit page	По размеру листа
@@ -780,6 +791,7 @@ Height above the mounting plate	Высота над монтажной пане�
 Height above the plate	Высота над панелью
 Height of the plinth, 0 without plinth	Высота цоколя, 0 – без цоколя
 Heights above floor (IEC 60204-1)	Высоты над полом (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Удерживается при щелчке, перемещении или прокрутке. Ctrl в macOS — Cmd.
 Help	Справка
 Hide the groups you do not need and put the commands you use most into own groups.	Скройте ненужные группы и поместите самые используемые команды в собственные группы.
 Highest phase unbalance	Наибольшая несимметрия фаз
@@ -880,7 +892,12 @@ Invalid value	Недопустимое значение
 Invert the direction of panning by scrolling	Обратить направление сдвига прокруткой
 Inverter or charge controller (devices with PV input data)	Инвертор или контроллер заряда (устройства с данными входа ФЭ)
 Isometric	Изометрия
+Items copied: {}	Скопировано элементов: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Скопировано элементов: {} (пропущено устройств: {}, устройство размещается только один раз)
+Items cut: {}	Вырезано элементов: {}
+Items cut: {} (devices back to the devices to place: {})	Вырезано элементов: {} (устройств возвращено в устройства для размещения: {})
 Items on the layer	Объекты на слое
+Items pasted: {}	Вставлено элементов: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Элементы с привязкой сохраняют её; остальные вставляются относительно точки щелчка.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Позиции, устройства, размещения, соединения, провода и документы в одном файле JSON для систем без коннектора
 Its pages and subsections go to the section above	Его листы и подразделы переходят в родительский раздел
@@ -899,6 +916,8 @@ Key tips of the ribbon	Клавиши доступа ленты
 Key: {}	Ключ: {}
 Keyboard shortcuts	Сочетания клавиш
 Keyboard shortcuts…	Сочетания клавиш…
+Keys and gestures	Клавиши и жесты
+Keys of the 3D view	Клавиши 3D-вида
 Label	Надпись
 Label (grey)	Надпись (серая)
 Label field	Поле надписи
@@ -920,6 +939,7 @@ Layout spaces	Монтажные пространства
 Leave out the ceilings of the rooms and the roofs in the 3D view	Скрыть потолки помещений и крыши в 3D-виде
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	В 3D-виде не показывать крышки всех кабельных каналов: провода в них становятся видны
 Leave repeated values of the first column blank	Не повторять одинаковые значения первого столбца
+Left button	Левая кнопка
 Left edges	По левому краю
 Legend plates (door devices)	Шильдики (устройства на двери)
 Length from the node to the device	Длина от узла до устройства
@@ -935,6 +955,7 @@ Level {} added to building {}; new rooms go onto it	Этаж {} добавлен
 Level {} of building {}	Этаж {} здания {}
 Levels	Уровни
 Library	Библиотека
+Like two fingers	Как два пальца
 Limits	Пределы
 Limits in effect	Действующие пределы
 Line to PE at the supply point; 0 = from the highest short-circuit current	Фаза – PE в точке питания; 0 = из наибольшего тока короткого замыкания
@@ -969,7 +990,6 @@ Locked by {} – read only	Заблокировано пользователем
 Locking…	Блокировка…
 Logic	Логика
 Longer values are drawn smaller (0 = no limit)	Более длинные значения рисуются мельче (0 = без ограничения)
-Look at the point clicked, closer	Посмотреть на точку щелчка, ближе
 Look for updates when OpenECraft starts	Искать обновления при запуске OpenECraft
 Looking for updates…	Поиск обновлений…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Ищет новую версию OpenECraft на GitHub и устанавливает её в фоновом режиме
@@ -1017,6 +1037,7 @@ Messages	Сообщения
 Messages ({})	Сообщения ({})
 Messages of this session	Сообщения этого сеанса
 Middle	Посередине
+Middle button	Средняя кнопка
 Middle of the PV array in the floor plan of the building	Середина фотоэлектрического поля на плане здания
 Min. bend radius	Мин. радиус изгиба
 Minimize the ribbon	Свернуть ленту
@@ -1025,6 +1046,7 @@ Mirror (selection or symbol being placed)	Отразить (выделенное
 Mixed	Разные
 Mode	Режим
 Model of a part (2D / 3D)	Модель изделия (2D / 3D)
+Modifier keys	Клавиши-модификаторы
 Module part; its size comes from the part	Изделие модуля; его размер берётся из изделия
 Motors feed the short circuit	Двигатели подпитывают короткое замыкание
 Mounted on	Установлено на
@@ -1033,17 +1055,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Мо�
 Mounting height: {}	Высота монтажа: {}
 Mounting plate: {} holes, {} cutouts	Монтажная панель: отверстий – {}, вырезов – {}
 Mounting system	Монтажная система
+Mouse	Мышь
 Move	Переместить
+Move ahead in the 3D view (held)	Двигаться вперёд в 3D-виде (удерживать)
+Move back in the 3D view (held)	Двигаться назад в 3D-виде (удерживать)
 Move down	Переместить вниз
+Move down in the 3D view (held)	Двигаться вниз в 3D-виде (удерживать)
+Move faster with the keys of the 3D view	Быстрее двигаться клавишами 3D-вида
 Move left	Сдвинуть влево
+Move left in the 3D view (held)	Двигаться влево в 3D-виде (удерживать)
 Move page down	Переместить лист вниз
 Move page up	Переместить лист вверх
+Move right in the 3D view (held)	Двигаться вправо в 3D-виде (удерживать)
 Move selection by	Переместить выделенное на
 Move selection by…	Переместить выделенное на…
 Move the devices of this page into the new structure	Переместить устройства этого листа в новую структуру
-Move through the 3D view (Shift: faster)	Перемещение в 3D-виде (Shift: быстрее)
 Move to section	Переместить в раздел
 Move up	Переместить вверх
+Move up in the 3D view (held)	Двигаться вверх в 3D-виде (удерживать)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Перемещаемые символы тянут за собой провода, а перемещаемые провода остаются на точках подключения, где они заканчиваются. Удержание Alt при перетаскивании меняет это на противоположное; перетаскивание конца выбранного провода отсоединяет его
 Moves to the top level as page {}	Переходит на верхний уровень как лист {}
 Moves to {} as page {}	Переходит в {} как лист {}
@@ -1064,7 +1093,6 @@ Name and cross reference	Имя и перекрёстная ссылка
 Name on the server	Имя на сервере
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Имя; тип данных; логический адрес; комментарий – для средств программирования ПЛК
 Named copy of this form, for report blocks	Именованная копия этой формы для блоков отчётов
-Navigation	Навигация
 Navigators	Навигаторы
 Neutral exchange file…	Нейтральный файл обмена…
 Never	Никогда
@@ -1136,6 +1164,7 @@ No dot: plain T	Без точки: простое T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусов пока нет – создайте корпус командой Новый корпус или помещение для шкафов командой Новое помещение.
 No field cables: place the enclosures and field devices at nodes of the route network.	Нет полевых кабелей: разместите корпуса и полевые устройства в узлах сети трасс.
 No filter fans: an air/air heat exchanger or a cooling unit	Без вентиляторов с фильтром: теплообменник воздух/воздух или холодильный агрегат
+No gesture	Без жеста
 No harnesses defined.	Жгуты не определены.
 No inverter	Без инвертора
 No jump: plain crossing, connections have dots	Без перескока: простое пересечение, соединения обозначены точками
@@ -1178,6 +1207,7 @@ Not found: {}	Не найдено: {}
 Not in the project parts – synchronize in parts management	Нет в изделиях проекта – синхронизируйте в управлении изделиями
 Not on a wire	Не на проводе
 Not saved, locked or changed by another user: {}	Не сохранено, заблокировано или изменено другим пользователем: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не принято: одна левая кнопка выбирает, рисует и перемещает; удерживайте модификатор или используйте другую кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Это не общий проект: изменения сохраняются локально, пока он снова не будет открыт на сервере проектов
 Nothing exchanged yet.	Обмена ещё не было.
 Nothing left in this list.	В этом списке больше ничего нет.
@@ -1195,6 +1225,8 @@ Of the outer diameter, as laid fixed	От наружного диаметра, �
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	От наружного диаметра; трубы гнутся отводами в полтора диаметра
 Off	Откл.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Смещение от одной строки к следующей: вниз для списков, вбок для строк, расположенных рядом
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	На сенсорном экране и тачпаде. Только сдвиг: щипок не масштабирует; только масштабирование: прокрутка двумя пальцами на тачпаде тоже масштабирует, если система различает тачпады. Один палец работает как левая кнопка мыши.
+On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорном экране; тачпады оставляют жесты тремя пальцами системе.
 On startup	При запуске
 One row per label	Одна строка на каждый маркер
 Only devices on the current page	Только устройства на текущем листе
@@ -1217,6 +1249,7 @@ Open project	Открыть проект
 Open project server	Открыть сервер проектов
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Открывать проекты и файлы из Autodesk Vault, помещать проект, экспорты и 3D-модели в хранилище
 Open the project	Открыть проект
+Open the selection: its properties, in the floor plan its face	Открыть выбранное: его свойства, на плане помещения его сторону
 Open to {}: wires cross beside the mounting plates	Открыто к {}: провода проходят рядом с монтажными панелями
 Open walls and floors	Открыть стены и полы
 Open, save, import, export, print and the settings	Открытие, сохранение, импорт, экспорт, печать и настройки
@@ -1252,6 +1285,7 @@ Open…	Открыть…
 Operations / year	Срабатываний / год
 Option	Параметр
 Options	Параметры
+Orbit the 3D view	Вращать 3D-вид
 Ordinary cable	Обычный кабель
 Orientation	Ориентация
 Origin	Источник
@@ -1301,7 +1335,10 @@ Pages and templates using the frame follow	Листы и шаблоны с эт�
 Pages of revision {}	Листы ревизии {}
 Pages of the selected block	Листы выбранного блока
 Pages using it get the project default	Листы, использующие её, получают значение по умолчанию для проекта
+Pages, panel layout and plans	Страницы, компоновка шкафа и планы
 Pairs in schematic order (1-2, 3-4 …)	Пары в порядке схемы (1-2, 3-4 …)
+Pan the 3D view	Сдвигать 3D-вид
+Pan the page, the panel layout and the plans	Сдвигать страницу, компоновку шкафа и планы
 Pane menu	Меню панели
 Panel wiring report	Отчёт о монтаже проводов шкафа
 Panes	Панели
@@ -1460,6 +1497,7 @@ Recent projects	Последние проекты
 Recently used	Недавно использованные
 Recommended height of manual actuators (10.1.2)	Рекомендуемая высота органов ручного управления (10.1.2)
 Record	Записать
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Записать: выполните жест в появившемся поле, при желании удерживая модификатор (Esc отменяет). «Добавить» сохраняет имеющиеся жесты. Правый щелчок в инструменте выбора открывает контекстное меню.
 Rectangular	Прямоугольный
 Redline: to be changed · Greenline: changed as built	Красная правка: требуется изменить · Зелёная правка: изменено по факту монтажа
 Redo	Повторить
@@ -1568,6 +1606,7 @@ Revisions, approval and release	Ревизии, утверждение и вып
 Ribbon	Лента
 Ribbon (JSON)	Лента (JSON)
 Ribbon imported	Лента импортирована
+Right button	Правая кнопка
 Right click for more	Щёлкните правой кнопкой для других действий
 Right edges	По правому краю
 Right neighbour	Сосед справа
@@ -1584,6 +1623,8 @@ Room {} taken out of the building; it stays where it stands	Помещение {
 Rooms under sloped ceilings (lowest – highest ceiling)	Помещения под скошенными потолками (самый низкий – самый высокий потолок)
 Rotate	Повернуть
 Rotate (selection or symbol being placed)	Повернуть (выделенное или размещаемый символ)
+Rotate what is being moved	Повернуть перемещаемое
+Rotate what is being moved counter-clockwise	Повернуть перемещаемое против часовой стрелки
 Round	Круглый
 Round cutouts facing each other in both side walls	Круглые вырезы друг напротив друга в обеих боковых стенках
 Route definition of {}	Определение трассы {}
@@ -1660,7 +1701,9 @@ Scheme {}	Схема {}
 Screws, nuts, washers and rivet nuts of the fixing points	Винты, гайки, шайбы и заклёпочные гайки точек крепления
 Scrolling	Прокрутка
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Прокрутка сдвигает вид в любом направлении; для масштабирования сведите пальцы или используйте Ctrl + прокрутку.
+Scrolling up and down pans sideways	Прокрутка вверх и вниз сдвигает вбок
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Прокрутка вверх и вниз масштабирует у указателя, вбок (горизонтальное колесо, Shift + колесо) сдвигает вид.
+Scrolling zooms, also where it pans	Прокрутка масштабирует, даже там, где она сдвигает
 Search (* and ? as placeholders)…	Поиск (* и ? как подстановочные знаки)…
 Search below this folder	Искать в этой папке и ниже
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Поиск на сервере изделий по каталогу, группе продуктов и техническим данным, добавление изделий и проверка базы данных на наличие обновлений
@@ -1721,7 +1764,6 @@ Shield pigtail	Косичка экрана
 Shielded	Экранированный
 Shielded analogue cables	Экранированные аналоговые кабели
 Shielded drive cables	Экранированные кабели приводов
-Shift + click / drag	Shift + щелчок / перетаскивание
 Short circuit and selectivity	Короткое замыкание и селективность
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Короткое замыкание, селективность, нагрузки, ЭМС, функциональная безопасность и проверка по наборам правил
 Short-circuit currents	Токи короткого замыкания
@@ -1791,6 +1833,7 @@ Start	Начало
 Start again when the page structure changes	Начинать заново при изменении структуры листов
 Start at	Начать с
 Start byte	Начальный байт
+Start of a move: Keep connections the other way round	Начало перемещения: «Сохранять соединения» наоборот
 Start page	Начальная страница
 Station	Станция
 Stations and racks	Станции и стойки
@@ -1897,6 +1940,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Горизонтальный провод
 The items are selected and moved together	Элементы выделяются и перемещаются вместе
 The macro library has no page macros (Macros › Save page as macro…).	В библиотеке макросов нет макросов листов (Макросы › Сохранить лист как макрос…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модификаторы, с которыми колесо сдвигает вбок или масштабирует, задаются в разделе «Клавиши-модификаторы».
 The modules no string takes yet in series, on the first inverter	Модули, не занятые ни одной цепочкой, последовательно, на первом инверторе
 The names of its pages follow	Имена его листов меняются вместе с ним
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Открытый проект – локальная копия восстановления. Его изменения не сохранены на сервере проектов; перед открытием общего проекта вы решаете, сохранить их локально или отбросить.
@@ -1937,6 +1981,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Этот лист
 This page contains schematic content which is not evaluated on non-schematic pages.	Этот лист содержит элементы схемы, которые не обрабатываются на листах, не являющихся схемами.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Этот проект – подпроект {} проекта {} (вынесен {}). Сохраните его и после завершения работы вставьте в основной проект.
+Three fingers	Три пальца
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Здесь должны сходиться три провода: один в его направлении и два поперёк. До тех пор соединение выстраивается в порядке схемы.
 Three-phase short-circuit current at the supply point	Ток трёхфазного короткого замыкания в точке питания
 Tilt	Наклон
@@ -1955,10 +2000,11 @@ Touch screen	Сенсорный экран
 Transfer project parts to database	Передать изделия проекта в базу данных
 Translate the project texts; documentation per language	Перевод текстов проекта; документация на каждом языке
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот вокруг вертикальной оси, против часовой стрелки при виде сверху (90 °: лицевые стороны обращены вправо)
+Turn the 3D view to the point	Повернуть 3D-вид к точке
 Tutorial	Учебник
 Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
+Two fingers	Два пальца
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Два пальца на тачпаде сдвигают вид, колесо мыши масштабирует. Различать их умеет только macOS; в других системах прокрутка масштабирует, как колесо.
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Два пальца одновременно сдвигают вид и масштабируют щипком; один палец работает как левая кнопка мыши.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик
@@ -2025,7 +2071,6 @@ View	Вид
 Visible	Видимый
 Voltage (line to line)	Напряжение (линейное)
 Voltage drop	Падение напряжения
-W A S D / arrows, Q / E	W A S D / стрелки, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, записывается в участок при экспорте IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Стена {}, {} м: перетащите, чтобы переместить, двойной щелчок покажет её для оснащения
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Стена {}, {} м: стена, показанная в виде стены (выделена); перетащите, чтобы переместить
@@ -2037,7 +2082,7 @@ Web between holes	Перемычка между отверстиями
 Welcome to OpenECraft	Добро пожаловать в OpenECraft
 What is new	Что нового
 What should be checked or changed?	Что нужно проверить или изменить?
-Wheel / right or middle drag	Колесо / перетаскивание правой или средней кнопкой
+Wheel and touch	Колесо и касание
 Wheel: zoom · drag: move · click on a room: its floor plan	Колесо: масштаб · перетаскивание: сдвиг · щелчок по помещению: его план
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Колесо: масштаб · перетаскивание: сдвиг · щелчок по помещению: его план · перетащите угол границы участка
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Колесо: масштаб · правый щелчок: отмена · графика привязывается к 0,5 мм, точки подключения – к сетке 4 мм
@@ -2104,7 +2149,8 @@ You may only view this project.	Вы можете только просматр�
 You may review this project: comments, markup and approvals, no other changes.	Вы можете рецензировать этот проект: комментарии, пометки и согласования, без других изменений.
 Your unsaved changes of it are taken back	Ваши несохранённые изменения в нём будут отменены
 Zoom	Масштаб
-Zoom / pan	Масштаб / сдвиг
+Zoom in in the 3D view (held)	Приблизить 3D-вид (удерживать)
+Zoom out in the 3D view (held)	Отдалить 3D-вид (удерживать)
 all	все
 all cards	все платы
 all lines	все строки
@@ -2358,6 +2404,7 @@ x y	x y
 {} °C (max.)	{} °C (макс.)
 {} × {} pixels, {}	{} × {} пикселей, {}
 {} – {} ({} pages)	{} – {} (листов: {})
+{} – {} here (Esc cancels)	{} – {} здесь (Esc отменяет)
 {}: click to show its floor plan	{}: щёлкните, чтобы показать план
 {}: crimp together with the wire to {}	{}: обжать вместе с проводом к {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетащите, чтобы переместить, R поворачивает, двойной щелчок открывает

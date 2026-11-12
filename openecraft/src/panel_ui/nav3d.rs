@@ -4,7 +4,9 @@
 
 use openecraft_core::parts::vec3::{add, length, norm, scale, sub, Orbit, V3};
 use openecraft_i18n::tr_const;
-use egui::{InputState, Key, Vec2};
+use crate::shortcuts::{Action, Shortcuts};
+use egui::{InputState, Vec2};
+use openecraft_ui::nav::Mod;
 use std::f32::consts::{FRAC_PI_2, PI, TAU};
 
 /// Nearest the camera comes to its orbit centre (mm); zooming in further walks on.
@@ -68,22 +70,19 @@ pub(super) fn walk(cam: &mut Orbit, ahead: f32, side: f32, rise: f32) {
 }
 
 /// Keys held for moving: ahead, to the right, up, closer (each -1, 0 or 1) and whether
-/// Shift is held. Nothing while Ctrl, Cmd or Alt is held (shortcuts).
-pub(super) fn held(i: &InputState) -> ([f32; 4], bool) {
-    if i.modifiers.command || i.modifiers.ctrl || i.modifiers.alt {
-        return ([0.0; 4], false);
+/// the modifier `fast` is held. The modifier `fast` is left out of the keys; others
+/// must be the ones of a key (Ctrl+S, Ctrl+A are shortcuts).
+pub(super) fn held(i: &InputState, sc: &Shortcuts, fast: Option<Mod>) -> ([f32; 4], bool) {
+    let fast = fast.filter(|f| f.held(i.modifiers));
+    let mut m = i.modifiers;
+    match fast {
+        Some(Mod::Shift) => m.shift = false,
+        Some(Mod::Ctrl) => (m.ctrl, m.command, m.mac_cmd) = (false, false, false),
+        Some(Mod::Alt) => m.alt = false,
+        None => {}
     }
-    let axis = |plus: &[Key], minus: &[Key]| {
-        let on = |keys: &[Key]| keys.iter().any(|k| i.key_down(*k));
-        on(plus) as i8 as f32 - on(minus) as i8 as f32
-    };
-    let dir = [
-        axis(&[Key::W, Key::ArrowUp], &[Key::S, Key::ArrowDown]),
-        axis(&[Key::D, Key::ArrowRight], &[Key::A, Key::ArrowLeft]),
-        axis(&[Key::E], &[Key::Q]),
-        axis(&[Key::Plus, Key::Equals], &[Key::Minus]),
-    ];
-    (dir, i.modifiers.shift)
+    let dir = Action::FLY.map(|(plus, minus)| sc.action_down(i, plus, m) as i8 as f32 - sc.action_down(i, minus, m) as i8 as f32);
+    (dir, fast.is_some())
 }
 
 /// Moves the camera for `dt` seconds with the keys held (see [`held`]).

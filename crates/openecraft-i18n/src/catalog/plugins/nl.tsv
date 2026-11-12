@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Verbindt twee poorten van stations met een netwerkkabel; bestaande verbindingen op deze poorten worden vervangen
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopieert functieteksten tussen het eenlijnschema en het schema waar één kant leeg is
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopieert elementen meerdere keren op een vaste afstand; apparaten krijgen nieuwe aanduidingen, klemmen nieuwe nummers
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopieert elementen met de daarop gemonteerde elementen naar x / y op een vlak, ook van een andere behuizing; apparaten worden weggelaten (een apparaat wordt maar één keer geplaatst)
 Copper bar cutting list	Zaaglijst koperrails
 Copper bars	Koperrails
 Corner points in metres	Hoekpunten in meter
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Behuizing waar
 Enclosure name (all if missing)	Naam van de behuizing (alle als deze ontbreekt)
 Enclosure part number	Artikelnummer van de behuizing
 Enclosure system (default: the enclosure's)	Behuizingssysteem (standaard: dat van de behuizing)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Behuizing waar de kopieën heen gaan (locatie, bijv. +CAB2); dezelfde indien weggelaten
 Enclosure {} exists already	Behuizing {} bestaat al
 Enclosures, panel items, accessories and panel macros	Behuizingen, montage-elementen, toebehoren en montagemacro's
 End brackets and end plates from the tech data of the terminal parts	Eindsteunen en eindplaten uit de technische gegevens van de klemartikelen
@@ -490,6 +492,7 @@ None of the items is an interruption point	Geen van de elementen is een onderbre
 Not a cross-section: {} (e.g. 1.5 mm²)	Geen doorsnede: {} (bijv. 1.5 mm²)
 Not a valid safety function: {}	Geen geldige veiligheidsfunctie: {}
 Note, e.g. what the problem is	Notitie, bijv. wat het probleem is
+Nothing to copy: devices are placed once	Niets te kopiëren: apparaten worden maar één keer geplaatst
 Nothing to remove: {} {}	Niets te verwijderen: {} {}
 Number of columns	Aantal kolommen
 Number of copies (default 1)	Aantal kopieën (standaard 1)

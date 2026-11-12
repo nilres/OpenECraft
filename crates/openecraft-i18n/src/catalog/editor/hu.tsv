@@ -85,7 +85,6 @@ Add rule	Szabály hozzáadása
 Add sort key	Rendezési kulcs hozzáadása
 Add the facing cutout in {}	A szemközti kivágás hozzáadása ehhez: {}
 Add to device	Hozzáadás a készülékhez
-Add to selection	Hozzáadás a kijelöléshez
 Add to the pre-planning	Hozzáadás az előtervezéshez
 Add user	Felhasználó hozzáadása
 Added to both ends of the length for the cut length (insertion depth)	A vágási hosszhoz a hossz mindkét végén hozzáadódik (bedugási mélység)
@@ -130,6 +129,7 @@ Ambient temperature	Környezeti hőmérséklet
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Az archívum (.oecz) egy ZIP-fájl, amely a projektet, egy manifestet, valamint a beágyazott dokumentumokat és képeket külön fájlokként tartalmazza.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Régi rajz grafikaként egy új kapcsolásirajz-oldalon (vonalak, ívek, szövegek, blokkok)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Nyílt elektrotechnikai CAE-szerkesztő az EPLAN Electric P8 szellemében.
+Another gesture for the same function	Újabb kézmozdulat ugyanahhoz a funkcióhoz
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Egy meglévő, ilyen nevű makró további változata (pl. B), beszúráskor választható
 Any project file: its settings, forms, structure, potentials and pages start the new project	Bármely projektfájl: a beállításai, űrlapjai, struktúrája, potenciáljai és oldalai képezik az új projekt kiindulópontját
 Appearance	Megjelenés
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Általános osztó körei
 Clear	Törlés
 Clearance	Szabad tér
 Clearances	Szabad terek
+Click	Kattintás
+Click a text: open its link	Kattintás egy szövegre: hivatkozásának megnyitása
 Click an element in the drawing to edit it.	Kattintson a rajz egy elemére a szerkesztéséhez.
 Click centre, then a point on the circle	Kattintson a középpontra, majd a kör egy pontjára
+Click in the panel layout: a single item of an assembly	Kattintás a szekrényelrendezésben: egy szerelvény egyetlen eleme
 Click into the page to place the image	Kattintson az oldalra a kép elhelyezéséhez
 Click into the page to place {}	Kattintson az oldalra a(z) {} elhelyezéséhez
 Click on a wall	Kattintson egy falra
 Click on a wire to place the connection definition point	Kattintson egy vezetékre az összeköttetés-definíciós pont elhelyezéséhez
 Click on the 4 mm grid	Kattintson a 4 mm-es rácsra
 Click on the wall: the part goes there at its mounting height	Kattintson a falra: az alkatrész ott a szerelési magasságába kerül
+Click or window: add to the selection or take out of it	Kattintás vagy ablak: hozzáadás a kijelöléshez vagy kivétel belőle
 Click start and end point	Kattintson a kezdő- és a végpontra
 Click the corners of a machine or building, double-click to finish	Kattintson egy gép vagy épület sarkaira, a befejezéshez kattintson duplán
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Kattintson a telekhatár sarkaira · az elsőre kattintás, dupla kattintás vagy Enter: lezárás · Backspace: vissza · Esc: befejezés
@@ -326,6 +330,7 @@ Click where the reference point is	Kattintson oda, ahol a referenciapont van
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kattintson oda, ahol három vezeték találkozik: a T-elem megadja, melyik készülékből indulnak a vezetékek, és a céljaik sorrendjét · {} elforgatja, ahol még nem találkoznak vezetékek · Esc vagy jobb kattintás befejezi
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték keresztezi egymást: a kereszteződés összeköti őket, és vonalának mindkét végét először egyenesen, majd keresztben vezeti · {} elforgatja · Esc vagy jobb kattintás befejezi
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték derékszögben találkozik, vagy ahol csatlakozási pontok a sarkon át szemben állnak: bekapcsolt automatikus csatlakoztatással vezetékek rajzolódnak hozzá · {} elforgatja · Esc vagy jobb kattintás befejezi
+Click while moving	Kattintás mozgatás közben
 Click, or drag it into the page	Kattintson rá, vagy húzza az oldalra
 Climate (IEC 60890)	Klimatizálás (IEC 60890)
 Clipboard	Vágólap
@@ -503,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Készülék-, sork
 Devices ({})	Készülékek ({})
 Devices are not copied: a device is placed once.	A készülékek nem másolódnak: egy készülék csak egyszer helyezhető el.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	A készülékeket egyvonalas szimbólumokkal tervezik, és a többvonalas kapcsolási rajzon dolgozzák ki; mindkettő ugyanazt a készülékazonosítót használja.
+Devices back to the devices to place: {}	Az elhelyezendő készülékek közé visszakerült készülékek: {}
+Devices go back to the devices to place	A készülékek visszakerülnek az elhelyezendő készülékek közé
 Devices in the box: {}	Készülékek a keretben: {}
 Devices of a channel	Egy csatorna készülékei
 Devices of the second channel; empty = like the first	A második csatorna készülékei; üres = mint az első
@@ -537,6 +544,7 @@ Distribute vertically	Elosztás függőlegesen
 Distributed neutral	Kivezetett nullavezető
 Diversity factor	Egyidejűségi tényező
 Divider	Elválasztó
+Do the gesture…	Végezze el a kézmozdulatot…
 Dock	Rögzítés
 Document {} embedded ({})	A(z) {} dokumentum beágyazva ({})
 Documents	Dokumentumok
@@ -550,7 +558,7 @@ Door clearance	Ajtó szabad tere
 Door cutouts (CSV)	Ajtókivágások (CSV)
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
-Double-click (3D view)	Dupla kattintás (3D nézet)
+Double-click	Dupla kattintás
 Download into database	Letöltés az adatbázisba
 Download project	Projekt letöltése
 Downloaded {} (version {})	{} letöltve ({} verzió)
@@ -559,6 +567,7 @@ Downloading OpenECraft {}	Az OpenECraft {} letöltése
 Downstream part	Utána kapcsolt alkatrész
 Draft of revision {} created	A(z) {} revízió piszkozata létrehozva
 Draft of revision {} discarded	A(z) {} revízió piszkozata elvetve
+Drag	Húzás
 Drag a connection point designation of the selected symbol to place it.	Húzza a kijelölt szimbólum egy csatlakozásmegnevezését az elhelyezéséhez.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Egy kijelölt vezeték végét húzva csak azt a véget mozgatja. Az Alt lenyomásával végzett húzás megfordítja a Kapcsolatok megtartása beállítást.
 Drag an entry into the page, or click it and then click into the page.	Húzzon egy bejegyzést az oldalra, vagy kattintson rá, majd az oldalra.
@@ -690,6 +699,8 @@ Find and replace in the whole project	Keresés és csere a teljes projektben
 Find results	Találatok
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Megkeresi a projektalkatrészek Vault-elemeit elemszám vagy Part Number tulajdonság alapján, és áttekintésre megjeleníti a tételazonosító, a revízió és az életciklus-állapot változásait
 Find…	Keresés…
+Finish a wire, polyline, polygon or wall	Vezeték, vonallánc, sokszög vagy fal befejezése
+Finish or cancel the drawing, then back to selecting	A rajzolás befejezése vagy megszakítása, majd vissza a kijelöléshez
 First row	Első sor
 Fit	Illesztés
 Fit page	Oldal méretre igazítása
@@ -781,6 +792,7 @@ Height above the mounting plate	Magasság a szerelőlap fölött
 Height above the plate	Magasság a lap fölött
 Height of the plinth, 0 without plinth	A lábazat magassága, 0 lábazat nélkül
 Heights above floor (IEC 60204-1)	Padló feletti magasságok (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Kattintás, mozgatás vagy görgetés közben nyomva tartva. macOS-en a Ctrl a Cmd.
 Help	Súgó
 Hide the groups you do not need and put the commands you use most into own groups.	Rejtse el a szükségtelen csoportokat, a leggyakrabban használt parancsokat pedig tegye saját csoportokba.
 Highest phase unbalance	Legnagyobb fázisaszimmetria
@@ -881,7 +893,12 @@ Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
 Isometric	Izometrikus
+Items copied: {}	Másolt elemek: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Másolt elemek: {} (kihagyott készülékek: {}, egy készüléket csak egyszer lehet elhelyezni)
+Items cut: {}	Kivágott elemek: {}
+Items cut: {} (devices back to the devices to place: {})	Kivágott elemek: {} (az elhelyezendő készülékek közé visszakerült készülékek: {})
 Items on the layer	A réteg elemei
+Items pasted: {}	Beillesztett elemek: {}
 Items with an anchor keep it; the others are inserted relative to the click.	A horgonnyal rendelkező elemek megtartják azt; a többi a kattintáshoz képest kerül beszúrásra.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Tételek, készülékek, elhelyezések, összeköttetések, vezetékek és dokumentumok egyetlen JSON-fájlban az összekötő nélküli rendszerekhez
 Its pages and subsections go to the section above	Oldalai és alszakaszai a fölötte lévő szakaszba kerülnek
@@ -900,6 +917,8 @@ Key tips of the ribbon	A menüszalag gyorsbillentyűi
 Key: {}	Kulcs: {}
 Keyboard shortcuts	Billentyűparancsok
 Keyboard shortcuts…	Billentyűparancsok…
+Keys and gestures	Billentyűk és kézmozdulatok
+Keys of the 3D view	A 3D nézet billentyűi
 Label	Felirat
 Label (grey)	Felirat (szürke)
 Label field	Feliratmező
@@ -921,6 +940,7 @@ Layout spaces	Szerelési terek
 Leave out the ceilings of the rooms and the roofs in the 3D view	A helyiségek mennyezetének és a tetőknek az elhagyása a 3D nézetben
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	A 3D nézetben elhagyja az összes kábelcsatorna fedelét: a bennük lévő vezetékek láthatók
 Leave repeated values of the first column blank	Az első oszlop ismétlődő értékeinek üresen hagyása
+Left button	Bal gomb
 Left edges	Bal élek
 Legend plates (door devices)	Feliratos táblák (ajtókészülékek)
 Length from the node to the device	Hossz a csomóponttól a készülékig
@@ -936,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	A(z) {0} szint hozzáadva a(
 Level {} of building {}	{1} épület {0} szintje
 Levels	Szintek
 Library	Könyvtár
+Like two fingers	Mint két ujj
 Limits	Határértékek
 Limits in effect	Érvényes határértékek
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fázis–PE a betáplálási pontnál; 0 = a legnagyobb zárlati áramból
@@ -970,7 +991,6 @@ Locked by {} – read only	Zárolta: {} – csak olvasható
 Locking…	Zárolás…
 Logic	Logika
 Longer values are drawn smaller (0 = no limit)	A hosszabb értékek kisebben jelennek meg (0 = nincs korlát)
-Look at the point clicked, closer	A kattintott pont megtekintése közelebbről
 Look for updates when OpenECraft starts	Frissítések keresése az OpenECraft indításakor
 Looking for updates…	Frissítések keresése…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Új OpenECraft-verziót keres a GitHubon, és a háttérben telepíti
@@ -1018,6 +1038,7 @@ Messages	Üzenetek
 Messages ({})	Üzenetek ({})
 Messages of this session	A munkamenet üzenetei
 Middle	Középen
+Middle button	Középső gomb
 Middle of the PV array in the floor plan of the building	A PV-mező közepe az épület alaprajzán
 Min. bend radius	Min. hajlítási sugár
 Minimize the ribbon	A menüszalag kis méretre állítása
@@ -1026,6 +1047,7 @@ Mirror (selection or symbol being placed)	Tükrözés (kijelölés vagy az elhel
 Mixed	Vegyes
 Mode	Mód
 Model of a part (2D / 3D)	Alkatrész modellje (2D / 3D)
+Modifier keys	Módosítóbillentyűk
 Module part; its size comes from the part	Modul alkatrész; mérete az alkatrészből származik
 Motors feed the short circuit	A motorok táplálják a zárlatot
 Mounted on	Szerelve erre
@@ -1034,17 +1056,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Szere
 Mounting height: {}	Szerelési magasság: {}
 Mounting plate: {} holes, {} cutouts	Szerelőlap: {} furat, {} kivágás
 Mounting system	Szerelőrendszer
+Mouse	Egér
 Move	Mozgatás
+Move ahead in the 3D view (held)	Előre a 3D nézetben (nyomva tartva)
+Move back in the 3D view (held)	Hátra a 3D nézetben (nyomva tartva)
 Move down	Mozgatás lefelé
+Move down in the 3D view (held)	Le a 3D nézetben (nyomva tartva)
+Move faster with the keys of the 3D view	Gyorsabb mozgás a 3D nézet billentyűivel
 Move left	Mozgatás balra
+Move left in the 3D view (held)	Balra a 3D nézetben (nyomva tartva)
 Move page down	Oldal mozgatása lefelé
 Move page up	Oldal mozgatása felfelé
+Move right in the 3D view (held)	Jobbra a 3D nézetben (nyomva tartva)
 Move selection by	Kijelölés mozgatása ennyivel
 Move selection by…	Kijelölés mozgatása…
 Move the devices of this page into the new structure	Az oldal készülékeinek áthelyezése az új struktúrába
-Move through the 3D view (Shift: faster)	Mozgás a 3D nézetben (Shift: gyorsabban)
 Move to section	Áthelyezés szakaszba
 Move up	Mozgatás felfelé
+Move up in the 3D view (held)	Fel a 3D nézetben (nyomva tartva)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Az áthelyezett szimbólumok magukkal húzzák vezetékeiket, az áthelyezett vezetékek pedig azokon a csatlakozási pontokon maradnak, ahol végződnek. Húzás közben lenyomott Alt megfordítja ezt; egy kijelölt vezeték végének húzása leválasztja azt
 Moves to the top level as page {}	A legfelső szintre kerül {} oldalként
 Moves to {} as page {}	{} szakaszba kerül {} oldalként
@@ -1065,7 +1094,6 @@ Name and cross reference	Név és kereszthivatkozás
 Name on the server	Név a szerveren
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Név; Adattípus; Logikai cím; Megjegyzés – PLC-programozó eszközökhöz
 Named copy of this form, for report blocks	Az űrlap elnevezett másolata kimutatásblokkokhoz
-Navigation	Navigáció
 Navigators	Navigátorok
 Neutral exchange file…	Semleges cserefájl…
 Never	Soha
@@ -1137,6 +1165,7 @@ No dot: plain T	Nincs pont: egyszerű T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Még nincs szekrény – hozzon létre egyet az Új szekrény paranccsal, vagy helyiséget a szekrényeknek az Új helyiség paranccsal.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nincsenek terepi kábelek: helyezze el a szekrényeket és a terepi készülékeket a nyomvonalhálózat csomópontjain.
 No filter fans: an air/air heat exchanger or a cooling unit	Nincsenek szűrős ventilátorok: levegő/levegő hőcserélő vagy hűtőkészülék
+No gesture	Nincs kézmozdulat
 No harnesses defined.	Nincsenek definiált kábelkötegek.
 No inverter	Nincs inverter
 No jump: plain crossing, connections have dots	Nincs átugrás: egyszerű kereszteződés, a csatlakozásoknak pontjuk van
@@ -1179,6 +1208,7 @@ Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
 Not on a wire	Nincs vezetéken
 Not saved, locked or changed by another user: {}	Nincs mentve, egy másik felhasználó zárolta vagy módosította: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nincs átvéve: a bal gomb önmagában kijelöl, rajzol és mozgat; tartson nyomva egy módosítóbillentyűt, vagy használjon másik gombot.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nem a megosztott projekt: a módosítások helyben mentődnek, amíg újra meg nem nyitják a projektkiszolgálón
 Nothing exchanged yet.	Még nem történt adatcsere.
 Nothing left in this list.	Ebben a listában nem maradt semmi.
@@ -1196,6 +1226,8 @@ Of the outer diameter, as laid fixed	A külső átmérő többszöröse, fix fek
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	A külső átmérő többszöröse; a csöveket másfél átmérőjű ívekkel hajlítják
 Off	Ki
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Eltolás egyik sortól a következőig: lefelé listáknál, oldalra az egymás melletti soroknál
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Érintőképernyőn és érintőpadon. Csak mozgatás: a csippentés nem nagyít; csak nagyítás: a kétujjas görgetés az érintőpadon is nagyít, ahol a rendszer megkülönbözteti az érintőpadokat. Egy ujj a bal egérgombként működik.
+On a touch screen; trackpads leave three-finger gestures to the system.	Érintőképernyőn; az érintőpadok a háromujjas kézmozdulatokat a rendszerre hagyják.
 On startup	Indításkor
 One row per label	Címkénként egy sor
 Only devices on the current page	Csak az aktuális oldalon lévő készülékek
@@ -1218,6 +1250,7 @@ Open project	Projekt megnyitása
 Open project server	Projektkiszolgáló megnyitása
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Projektek és fájlok megnyitása az Autodesk Vaultból, a projekt, exportok és 3D-modellek elhelyezése a vaultban
 Open the project	A projekt megnyitása
+Open the selection: its properties, in the floor plan its face	A kijelölés megnyitása: tulajdonságai, az alaprajzon a nézete
 Open to {}: wires cross beside the mounting plates	Nyitott ehhez: {}: a vezetékek a szerelőlapok mellett haladnak át
 Open walls and floors	Falak és padlók megnyitása
 Open, save, import, export, print and the settings	Megnyitás, mentés, importálás, exportálás, nyomtatás és a beállítások
@@ -1253,6 +1286,7 @@ Open…	Megnyitás…
 Operations / year	Kapcsolások / év
 Option	Opció
 Options	Opciók
+Orbit the 3D view	A 3D nézet forgatása
 Ordinary cable	Normál kábel
 Orientation	Tájolás
 Origin	Eredet
@@ -1302,7 +1336,10 @@ Pages and templates using the frame follow	Az ezt a keretet használó oldalak �
 Pages of revision {}	A(z) {} revízió oldalai
 Pages of the selected block	A kijelölt blokk oldalai
 Pages using it get the project default	Az ezt használó oldalak a projekt alapértelmezését kapják
+Pages, panel layout and plans	Oldalak, szekrényelrendezés és tervek
 Pairs in schematic order (1-2, 3-4 …)	Párok a kapcsolási rajz sorrendjében (1-2, 3-4 …)
+Pan the 3D view	A 3D nézet mozgatása
+Pan the page, the panel layout and the plans	Az oldal, a szekrényelrendezés és a tervek mozgatása
 Pane menu	Panelmenü
 Panel wiring report	Szekrényhuzalozási kimutatás
 Panes	Panelek
@@ -1461,6 +1498,7 @@ Recent projects	Legutóbbi projektek
 Recently used	Legutóbb használt
 Recommended height of manual actuators (10.1.2)	Kézi kezelőelemek ajánlott magassága (10.1.2)
 Record	Rögzítés
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Rögzítés: végezze el a kézmozdulatot a megjelenő mezőben, igény szerint módosítóbillentyűt nyomva tartva (Esc megszakítja). A Hozzáadás megtartja a meglévő kézmozdulatokat. A kijelölőeszközben a jobb kattintás a helyi menüt nyitja meg.
 Rectangular	Téglalap alakú
 Redline: to be changed · Greenline: changed as built	Redline: módosítandó · Greenline: kivitelezés szerint módosítva
 Redo	Mégis
@@ -1569,6 +1607,7 @@ Revisions, approval and release	Revíziók, jóváhagyás és kiadás
 Ribbon	Menüszalag
 Ribbon (JSON)	Menüszalag (JSON)
 Ribbon imported	Menüszalag importálva
+Right button	Jobb gomb
 Right click for more	A jobb gombbal további lehetőségek
 Right edges	Jobb élek
 Right neighbour	Jobb oldali szomszéd
@@ -1585,6 +1624,8 @@ Room {} taken out of the building; it stays where it stands	A(z) {} helyiség ki
 Rooms under sloped ceilings (lowest – highest ceiling)	Ferde mennyezetű helyiségek (legalacsonyabb – legmagasabb mennyezet)
 Rotate	Elforgatás
 Rotate (selection or symbol being placed)	Elforgatás (kijelölés vagy az elhelyezés alatt álló szimbólum)
+Rotate what is being moved	A mozgatott elem forgatása
+Rotate what is being moved counter-clockwise	A mozgatott elem forgatása az óramutatóval ellentétesen
 Round	Kerek
 Round cutouts facing each other in both side walls	Egymással szemben lévő kerek kivágások mindkét oldalfalban
 Route definition of {}	{} nyomvonal-definíciója
@@ -1661,7 +1702,9 @@ Scheme {}	{} séma
 Screws, nuts, washers and rivet nuts of the fixing points	A rögzítési pontok csavarjai, anyái, alátétei és szegecsanyái
 Scrolling	Görgetés
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	A görgetés minden irányba mozgatja a nézetet; nagyításhoz csippentsen, vagy használja a Ctrl + görgetést.
+Scrolling up and down pans sideways	A fel-le görgetés oldalra mozgat
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	A fel-le görgetés a mutatónál nagyít, az oldalirányú (vízszintes görgő, Shift + görgő) mozgatja a nézetet.
+Scrolling zooms, also where it pans	A görgetés nagyít, ott is, ahol mozgatna
 Search (* and ? as placeholders)…	Keresés (* és ? helyettesítő karakterként)…
 Search below this folder	Keresés ebben a mappában és alatta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Keresés az alkatrészszerveren katalógus, termékcsoport és műszaki adatok szerint, alkatrészek hozzáadása és az adatbázis frissítéseinek ellenőrzése
@@ -1722,7 +1765,6 @@ Shield pigtail	Árnyékolás-pigtail
 Shielded	Árnyékolt
 Shielded analogue cables	Árnyékolt analóg kábelek
 Shielded drive cables	Árnyékolt hajtáskábelek
-Shift + click / drag	Shift + kattintás / húzás
 Short circuit and selectivity	Zárlat és szelektivitás
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zárlat, szelektivitás, terhelések, EMC, funkcionális biztonság és ellenőrzés szabálykészletek alapján
 Short-circuit currents	Zárlati áramok
@@ -1792,6 +1834,7 @@ Start	Kezdés
 Start again when the page structure changes	Újrakezdés, ha az oldalstruktúra megváltozik
 Start at	Kezdőérték
 Start byte	Kezdőbájt
+Start of a move: Keep connections the other way round	Mozgatás kezdete: Kapcsolatok megtartása fordítva
 Start page	Kezdőlap
 Station	Állomás
 Stations and racks	Állomások és modultartók
@@ -1898,6 +1941,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	A vízszintes vezeték
 The items are selected and moved together	Az elemek kijelölése és mozgatása együtt történik
 The macro library has no page macros (Macros › Save page as macro…).	A makrókönyvtárban nincsenek oldalmakrók (Makrók › Oldal mentése makróként…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	A módosítóbillentyűk, amelyekkel a görgő oldalra mozgat vagy nagyít, a Módosítóbillentyűk részben állíthatók be.
 The modules no string takes yet in series, on the first inverter	A még egy stringhez sem tartozó modulok sorba kötve, az első inverteren
 The names of its pages follow	Oldalainak neve is változik
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	A megnyitott projekt helyi helyreállítási másolat. A módosításai nincsenek mentve a projektkiszolgálón; mielőtt a megosztott projekt megnyílik, eldöntheti, hogy helyben menti vagy elveti őket.
@@ -1938,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Ez az oldal
 This page contains schematic content which is not evaluated on non-schematic pages.	Az oldal kapcsolásirajz-tartalmat tartalmaz, amely nem kapcsolási rajz típusú oldalakon nem kerül kiértékelésre.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ez a projekt a(z) {} alprojekt, szülőprojekt: {} (kiemelve: {}). Mentse, és a munka végeztével illessze be a főprojektbe.
+Three fingers	Három ujj
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Itt három vezetéknek kell találkoznia: egynek az irányában és kettőnek keresztben. Addig a kapcsolat a kapcsolási rajz sorrendjében fűződik.
 Three-phase short-circuit current at the supply point	Háromfázisú zárlati áram a betáplálási pontnál
 Tilt	Dőlésszög
@@ -1956,10 +2001,11 @@ Touch screen	Érintőképernyő
 Transfer project parts to database	Projektalkatrészek átvitele az adatbázisba
 Translate the project texts; documentation per language	A projektszövegek fordítása; dokumentáció nyelvenként
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Elforgatás a függőleges tengely körül, felülről nézve az óramutató járásával ellentétesen (90 °: az előlapok jobbra néznek)
+Turn the 3D view to the point	A 3D nézet ráfordítása a pontra
 Tutorial	Oktatóanyag
 Twin ferrules where two wires share a connection point	Iker érvéghüvelyek, ahol két vezeték osztozik egy csatlakozási ponton
+Two fingers	Két ujj
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Az érintőpadon két ujj mozgatja a nézetet, az egérgörgő nagyít. Csak a macOS különbözteti meg őket; máshol a görgetés a görgőhöz hasonlóan nagyít.
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Két ujj egyszerre mozgatja a nézetet és csippentéssel nagyít; egy ujj a bal egérgombként működik.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Írjon be egy pontot, és nyomja le az Enter billentyűt: x y mm-ben, vagy @dx dy az utolsó ponthoz képest; úgy működik, mint az aktuális eszközzel végzett kattintás
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2026,7 +2072,6 @@ View	Nézet
 Visible	Látható
 Voltage (line to line)	Feszültség (vonali)
 Voltage drop	Feszültségesés
-W A S D / arrows, Q / E	W A S D / nyilak, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, az IFC-exportok telkébe kerül
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	{}. fal, {} m: húzással mozgatható, dupla kattintással megjelenik a felszereléshez
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	{}. fal, {} m: a falnézetben látható fal (kiemelve); húzással mozgatható
@@ -2038,7 +2083,7 @@ Web between holes	Anyaghíd a furatok között
 Welcome to OpenECraft	Üdvözli az OpenECraft
 What is new	Újdonságok
 What should be checked or changed?	Mit kell ellenőrizni vagy módosítani?
-Wheel / right or middle drag	Görgő / jobb vagy középső gombos húzás
+Wheel and touch	Görgő és érintés
 Wheel: zoom · drag: move · click on a room: its floor plan	Görgő: nagyítás · húzás: mozgatás · kattintás egy helyiségre: alaprajza
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Görgő: nagyítás · húzás: mozgatás · kattintás egy helyiségre: alaprajza · a telekhatár sarkának húzása
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Görgő: nagyítás · jobb kattintás: mégse · a grafika 0,5 mm-re, a csatlakozási pontok a 4 mm-es rácsra illeszkednek
@@ -2105,7 +2150,8 @@ You may only view this project.	Ezt a projektet csak megtekintheti.
 You may review this project: comments, markup and approvals, no other changes.	Ezt a projektet véleményezheti: megjegyzések, korrektúrák és jóváhagyások, más módosítás nem.
 Your unsaved changes of it are taken back	Az ezen végzett, nem mentett változtatásai visszavonásra kerülnek
 Zoom	Nagyítás
-Zoom / pan	Nagyítás / mozgatás
+Zoom in in the 3D view (held)	Nagyítás a 3D nézetben (nyomva tartva)
+Zoom out in the 3D view (held)	Kicsinyítés a 3D nézetben (nyomva tartva)
 all	mind
 all cards	összes kártya
 all lines	összes sor
@@ -2359,6 +2405,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} képpont, {}
 {} – {} ({} pages)	{} – {} ({} oldal)
+{} – {} here (Esc cancels)	{} – {} itt (Esc megszakítja)
 {}: click to show its floor plan	{}: kattintson az alaprajz megjelenítéséhez
 {}: crimp together with the wire to {}	{}: a(z) {} felé menő vezetékkel együtt krimpelendő
 {}: drag to move it, R turns it, a double-click opens it	{}: húzással mozgatható, R elforgatja, dupla kattintás megnyitja

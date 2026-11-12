@@ -178,6 +178,7 @@ Connects two ports of stations with a network cable; connections already on thes
 Coordinate reference system, e.g. EPSG:25832	Koordinatenreferenzsystem, z. B. EPSG:25832	Système de coordonnées de référence, p. ex. EPSG:25832	Sistema de referencia de coordenadas, p. ej. EPSG:25832
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopiert Funktionstexte zwischen Übersichtsschaltplan und Stromlaufplan, wo eine Seite leer ist	Copie les textes de fonction entre le schéma unifilaire et le schéma développé lorsqu'un côté est vide	Copia los textos de función entre el esquema unifilar y el esquema desarrollado cuando un lado está vacío
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopiert Elemente mehrfach in festem Abstand; Betriebsmittel erhalten neue Kennzeichen, Klemmen neue Nummern	Copie des éléments plusieurs fois à distance fixe ; les appareils reçoivent de nouveaux repères, les bornes de nouveaux numéros	Copia elementos varias veces a una distancia fija; los dispositivos reciben nuevas identificaciones, los bornes nuevos números
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopiert Elemente mit den darauf montierten Elementen nach x / y auf einer Fläche, auch eines anderen Gehäuses; Betriebsmittel werden ausgelassen (ein Betriebsmittel wird nur einmal platziert)	Copie des éléments avec les éléments montés dessus en x / y sur une face, aussi d'une autre armoire ; les appareils sont omis (un appareil n'est placé qu'une fois)	Copia elementos con los elementos montados en ellos a x / y en una cara, también de otro armario; los dispositivos se omiten (un dispositivo se coloca una sola vez)
 Copper bar cutting list	Zuschnittliste Kupferschienen	Liste de découpe des barres de cuivre	Lista de corte de pletinas de cobre
 Copper bars	Kupferschienen	Barres de cuivre	Pletinas de cobre
 Corner of the identifiers: top_left, top_right, bottom_left or bottom_right	Ecke der Kennzeichen: top_left, top_right, bottom_left oder bottom_right	Coin des identifiants : top_left, top_right, bottom_left ou bottom_right	Esquina de los identificadores: top_left, top_right, bottom_left o bottom_right
@@ -318,6 +319,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Schrank, recht
 Enclosure name (all if missing)	Gehäusename (alle, wenn nicht angegeben)	Nom de l'armoire (toutes si absent)	Nombre del armario (todos si falta)
 Enclosure part number	Artikelnummer des Gehäuses	Référence de l'armoire	Referencia del armario
 Enclosure system (default: the enclosure's)	Gehäusesystem (Standard: das des Gehäuses)	Système d'armoire (par défaut : celui de l'armoire)	Sistema de armario (por defecto: el del armario)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Gehäuse, in das die Kopien kommen (Ort, z. B. +CAB2); ohne Angabe dasselbe	Armoire où vont les copies (emplacement, p. ex. +CAB2) ; la même sans	Armario al que van las copias (ubicación, p. ej. +CAB2); el mismo si se omite
 Enclosure {} exists already	Gehäuse {} existiert bereits	L'armoire {} existe déjà	El armario {} ya existe
 Enclosures, panel items, accessories and panel macros	Schränke, Aufbauelemente, Zubehör und Aufbaumakros	Armoires, éléments d'implantation, accessoires et macros d'implantation	Armarios, elementos del armario, accesorios y macros de armario
 End along the segment, 0 … 1	Ende entlang des Segments, 0 … 1	Fin le long du segment, 0 … 1	Fin a lo largo del segmento, 0 … 1
@@ -736,6 +738,7 @@ Not a cross-section: {} (e.g. 1.5 mm²)	Kein Querschnitt: {} (z. B. 1.5 mm²)	Pa
 Not a point: {}	Kein Punkt: {}	Pas un point : {}	No es un punto: {}
 Not a valid safety function: {}	Keine gültige Sicherheitsfunktion: {}	Fonction de sécurité non valide : {}	Función de seguridad no válida: {}
 Note, e.g. what the problem is	Notiz, z. B. worin das Problem besteht	Note, p. ex. quel est le problème	Nota, p. ej. cuál es el problema
+Nothing to copy: devices are placed once	Nichts zu kopieren: Betriebsmittel werden nur einmal platziert	Rien à copier : un appareil n'est placé qu'une fois	Nada que copiar: los dispositivos se colocan una sola vez
 Nothing to remove: {} {}	Nichts zu entfernen: {} {}	Rien à supprimer : {} {}	Nada que eliminar: {} {}
 Number of columns	Anzahl der Spalten	Nombre de colonnes	Número de columnas
 Number of copies (default 1)	Anzahl Kopien (Standard 1)	Nombre de copies (1 par défaut)	Número de copias (1 por defecto)

@@ -85,7 +85,6 @@ Add rule	Přidat pravidlo
 Add sort key	Přidat klíč řazení
 Add the facing cutout in {}	Přidat protilehlý výřez v {}
 Add to device	Přidat k přístroji
-Add to selection	Přidat do výběru
 Add to the pre-planning	Převzít do předběžného návrhu
 Add user	Přidat uživatele
 Added to both ends of the length for the cut length (insertion depth)	Přičte se k délce na obou koncích pro délku řezu (hloubka zasunutí)
@@ -130,6 +129,7 @@ Ambient temperature	Okolní teplota
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Archiv (.oecz) je soubor ZIP s projektem, manifestem a vloženými dokumenty a obrázky jako samostatnými soubory.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Starý výkres jako grafika na nové stránce schématu (čáry, oblouky, texty, bloky)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Otevřený elektrotechnický CAE editor v duchu EPLAN Electric P8.
+Another gesture for the same function	Další gesto pro stejnou funkci
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Další varianta existujícího makra s tímto názvem (např. B), volitelná při vkládání
 Any project file: its settings, forms, structure, potentials and pages start the new project	Libovolný projektový soubor: jeho nastavení, formuláře, struktura, potenciály a stránky tvoří základ nového projektu
 Appearance	Vzhled
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Okruhy obecného rozdělovače
 Clear	Vymazat
 Clearance	Odstup
 Clearances	Odstupy
+Click	Klepnutí
+Click a text: open its link	Klepnutí na text: otevřít jeho odkaz
 Click an element in the drawing to edit it.	Klikněte na prvek ve výkresu, chcete-li jej upravit.
 Click centre, then a point on the circle	Klikněte na střed, pak na bod kružnice
+Click in the panel layout: a single item of an assembly	Klepnutí v rozvržení rozváděče: jediná položka sestavy
 Click into the page to place the image	Kliknutím do stránky umístíte obrázek
 Click into the page to place {}	Kliknutím do stránky umístíte {}
 Click on a wall	Klikněte na stěnu
 Click on a wire to place the connection definition point	Kliknutím na vodič umístíte bod definice spojení
 Click on the 4 mm grid	Klikněte na rastr 4 mm
 Click on the wall: the part goes there at its mounting height	Klepněte na stěnu: díl se tam umístí ve své montážní výšce
+Click or window: add to the selection or take out of it	Klepnutí nebo okno: přidat do výběru nebo z něj odebrat
 Click start and end point	Klikněte na počáteční a koncový bod
 Click the corners of a machine or building, double-click to finish	Klikněte na rohy stroje nebo budovy, poklikáním dokončete
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Klikněte na rohy hranice pozemku · klik na první, dvojklik nebo Enter: uzavřít · Backspace: zpět · Esc: ukončit
@@ -326,6 +330,7 @@ Click where the reference point is	Klikněte tam, kde leží referenční bod
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klepněte, kde se stýkají tři vodiče: T-kus určuje přístroj, od něhož vodiče vycházejí, a pořadí jejich cílů · {} jej otočí, kde se vodiče ještě nestýkají · Esc nebo pravé tlačítko ukončí
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klepněte, kde se kříží dva vodiče: křížení je spojí a vede každý konec své čáry nejprve rovně, pak napříč · {} jej otočí · Esc nebo pravé tlačítko ukončí
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají dva vodiče v pravém úhlu, nebo kde připojovací body leží naproti sobě přes roh: při zapnutém automatickém spojování se k němu nakreslí vodiče · {} jej otočí · Esc nebo pravé tlačítko ukončí
+Click while moving	Klepnutí při přesouvání
 Click, or drag it into the page	Klikněte nebo přetáhněte do stránky
 Climate (IEC 60890)	Klimatizace (IEC 60890)
 Clipboard	Schránka
@@ -503,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Štítky přístro
 Devices ({})	Přístroje ({})
 Devices are not copied: a device is placed once.	Přístroje se nekopírují: přístroj se umisťuje jen jednou.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Přístroje se plánují jednopólovými symboly a zpracovávají ve vícepólovém schématu zapojení; obě sdílejí označení přístroje.
+Devices back to the devices to place: {}	Přístroje vrácené mezi přístroje k umístění: {}
+Devices go back to the devices to place	Přístroje se vrátí mezi přístroje k umístění
 Devices in the box: {}	Přístroje v rámečku: {}
 Devices of a channel	Přístroje kanálu
 Devices of the second channel; empty = like the first	Přístroje druhého kanálu; prázdné = jako první
@@ -537,6 +544,7 @@ Distribute vertically	Rozmístit svisle
 Distributed neutral	Rozvedený střední vodič
 Diversity factor	Součinitel soudobosti
 Divider	Přepážka
+Do the gesture…	Proveďte gesto…
 Dock	Ukotvit
 Document {} embedded ({})	Dokument {} vložen ({})
 Documents	Dokumenty
@@ -550,7 +558,7 @@ Door clearance	Volný prostor u dveří
 Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
-Double-click (3D view)	Dvojklik (3D zobrazení)
+Double-click	Dvojklik
 Download into database	Stáhnout do databáze
 Download project	Stáhnout projekt
 Downloaded {} (version {})	Staženo {} (verze {})
@@ -559,6 +567,7 @@ Downloading OpenECraft {}	Stahování OpenECraft {}
 Downstream part	Následný artikl
 Draft of revision {} created	Koncept revize {} vytvořen
 Draft of revision {} discarded	Koncept revize {} zahozen
+Drag	Tažení
 Drag a connection point designation of the selected symbol to place it.	Přetažením označení přípojného bodu vybraného symbolu jej umístíte.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Táhněte konec vybraného vodiče, chcete-li přesunout jen tento konec. Tažení s Alt obrátí Zachovat propojení.
 Drag an entry into the page, or click it and then click into the page.	Přetáhněte položku do stránky nebo na ni klikněte a potom klikněte do stránky.
@@ -690,6 +699,8 @@ Find and replace in the whole project	Najít a nahradit v celém projektu
 Find results	Výsledky hledání
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Najde položky Vault artiklů projektu podle čísla položky nebo vlastnosti Part Number a zobrazí změny ID položky, revize a stavu životního cyklu ke kontrole
 Find…	Najít…
+Finish a wire, polyline, polygon or wall	Dokončit vodič, lomenou čáru, mnohoúhelník nebo stěnu
+Finish or cancel the drawing, then back to selecting	Dokončit nebo zrušit kreslení, pak zpět k výběru
 First row	První řádek
 Fit	Přizpůsobit
 Fit page	Přizpůsobit stránku
@@ -781,6 +792,7 @@ Height above the mounting plate	Výška nad montážní deskou
 Height above the plate	Výška nad deskou
 Height of the plinth, 0 without plinth	Výška soklu, 0 bez soklu
 Heights above floor (IEC 60204-1)	Výšky nad podlahou (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Drží se při klepnutí, přesouvání nebo posouvání. Ctrl je v macOS Cmd.
 Help	Nápověda
 Hide the groups you do not need and put the commands you use most into own groups.	Skryjte skupiny, které nepotřebujete, a nejpoužívanější příkazy dejte do vlastních skupin.
 Highest phase unbalance	Nejvyšší nesymetrie fází
@@ -881,7 +893,12 @@ Invalid value	Neplatná hodnota
 Invert the direction of panning by scrolling	Obrátit směr posouvání pohledu
 Inverter or charge controller (devices with PV input data)	Střídač nebo regulátor nabíjení (zařízení s daty FV vstupu)
 Isometric	Izometrický
+Items copied: {}	Zkopírované prvky: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Zkopírované prvky: {} (vynechané přístroje: {}, přístroj se umisťuje jen jednou)
+Items cut: {}	Vyjmuté prvky: {}
+Items cut: {} (devices back to the devices to place: {})	Vyjmuté prvky: {} (přístroje vrácené mezi přístroje k umístění: {})
 Items on the layer	Objekty ve vrstvě
+Items pasted: {}	Vložené prvky: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Prvky s ukotvením si je ponechají; ostatní se vloží relativně ke kliknutí.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Položky, přístroje, umístění, spojení, vodiče a dokumenty v jednom souboru JSON pro systémy bez konektoru
 Its pages and subsections go to the section above	Jeho stránky a pododdíly přejdou do nadřazeného oddílu
@@ -900,6 +917,8 @@ Key tips of the ribbon	Přístupové klávesy pásu karet
 Key: {}	Klíč: {}
 Keyboard shortcuts	Klávesové zkratky
 Keyboard shortcuts…	Klávesové zkratky…
+Keys and gestures	Klávesy a gesta
+Keys of the 3D view	Klávesy 3D pohledu
 Label	Popisek
 Label (grey)	Popisek (šedý)
 Label field	Pole popisku
@@ -921,6 +940,7 @@ Layout spaces	Montážní prostory
 Leave out the ceilings of the rooms and the roofs in the 3D view	Vynechat stropy místností a střechy ve 3D zobrazení
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Ve 3D zobrazení vynechá víka všech kabelových kanálů: vodiče v nich jsou vidět
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
+Left button	Levé tlačítko
 Left edges	Levé hrany
 Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
@@ -936,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Podlaží {} přidáno do bu
 Level {} of building {}	Podlaží {} budovy {}
 Levels	Podlaží
 Library	Knihovna
+Like two fingers	Jako dva prsty
 Limits	Mezní hodnoty
 Limits in effect	Platné mezní hodnoty
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fáze proti PE v místě přívodu; 0 = z nejvyššího zkratového proudu
@@ -970,7 +991,6 @@ Locked by {} – read only	Uzamkl {} – jen pro čtení
 Locking…	Zamykání…
 Logic	Logika
 Longer values are drawn smaller (0 = no limit)	Delší hodnoty se kreslí menší (0 = bez omezení)
-Look at the point clicked, closer	Podívat se na kliknutý bod zblízka
 Look for updates when OpenECraft starts	Hledat aktualizace při spuštění OpenECraft
 Looking for updates…	Hledání aktualizací…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Vyhledá na GitHubu novou verzi OpenECraft a nainstaluje ji na pozadí
@@ -1018,6 +1038,7 @@ Messages	Zprávy
 Messages ({})	Zprávy ({})
 Messages of this session	Zprávy této relace
 Middle	Uprostřed
+Middle button	Prostřední tlačítko
 Middle of the PV array in the floor plan of the building	Střed FV pole v půdorysu budovy
 Min. bend radius	Min. poloměr ohybu
 Minimize the ribbon	Minimalizovat pás karet
@@ -1026,6 +1047,7 @@ Mirror (selection or symbol being placed)	Zrcadlit (výběr nebo umísťovaný s
 Mixed	Smíšené
 Mode	Režim
 Model of a part (2D / 3D)	Model artiklu (2D / 3D)
+Modifier keys	Modifikační klávesy
 Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
 Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
@@ -1034,17 +1056,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Mont�
 Mounting height: {}	Montážní výška: {}
 Mounting plate: {} holes, {} cutouts	Montážní deska: {} otvorů, {} výřezů
 Mounting system	Montážní systém
+Mouse	Myš
 Move	Posunout
+Move ahead in the 3D view (held)	Pohyb vpřed v 3D pohledu (držet)
+Move back in the 3D view (held)	Pohyb vzad v 3D pohledu (držet)
 Move down	Posunout dolů
+Move down in the 3D view (held)	Pohyb dolů v 3D pohledu (držet)
+Move faster with the keys of the 3D view	Rychlejší pohyb klávesami 3D pohledu
 Move left	Posunout doleva
+Move left in the 3D view (held)	Pohyb doleva v 3D pohledu (držet)
 Move page down	Posunout stránku dolů
 Move page up	Posunout stránku nahoru
+Move right in the 3D view (held)	Pohyb doprava v 3D pohledu (držet)
 Move selection by	Posunout výběr o
 Move selection by…	Posunout výběr o…
 Move the devices of this page into the new structure	Přesunout přístroje této stránky do nové struktury
-Move through the 3D view (Shift: faster)	Pohyb ve 3D zobrazení (Shift: rychleji)
 Move to section	Přesunout do oddílu
 Move up	Posunout nahoru
+Move up in the 3D view (held)	Pohyb nahoru v 3D pohledu (držet)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Přesouvané symboly táhnou své vodiče s sebou a přesouvané vodiče zůstávají na přípojných bodech, kde končí. Držení Alt při tažení to obrátí; tažení konce vybraného vodiče jej odpojí
 Moves to the top level as page {}	Přejde na nejvyšší úroveň jako stránka {}
 Moves to {} as page {}	Přejde do {} jako stránka {}
@@ -1065,7 +1094,6 @@ Name and cross reference	Název a křížový odkaz
 Name on the server	Název na serveru
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Název; datový typ; logická adresa; komentář – pro programovací nástroje PLC
 Named copy of this form, for report blocks	Pojmenovaná kopie tohoto formuláře pro bloky výkazů
-Navigation	Navigace
 Navigators	Navigátory
 Neutral exchange file…	Neutrální výměnný soubor…
 Never	Nikdy
@@ -1137,6 +1165,7 @@ No dot: plain T	Bez tečky: prosté T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Zatím žádná skříň – vytvořte ji pomocí Nová skříň, nebo místnost pro rozváděče pomocí Nová místnost.
 No field cables: place the enclosures and field devices at nodes of the route network.	Žádné polní kabely: umístěte skříně a polní přístroje do uzlů sítě tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez filtračních ventilátorů: výměník tepla vzduch/vzduch nebo chladicí jednotka
+No gesture	Žádné gesto
 No harnesses defined.	Nejsou definovány žádné kabelové svazky.
 No inverter	Žádný střídač
 No jump: plain crossing, connections have dots	Bez přeskoku: prosté křížení, spojení mají tečky
@@ -1179,6 +1208,7 @@ Not found: {}	Nenalezeno: {}
 Not in the project parts – synchronize in parts management	Není mezi artikly projektu – synchronizujte ve správě artiklů
 Not on a wire	Neleží na vodiči
 Not saved, locked or changed by another user: {}	Neuloženo, uzamčeno nebo změněno jiným uživatelem: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepřevzato: samotné levé tlačítko vybírá, kreslí a přesouvá; podržte modifikační klávesu nebo použijte jiné tlačítko.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nejde o sdílený projekt: změny se ukládají místně, dokud nebude znovu otevřen na serveru projektů
 Nothing exchanged yet.	Zatím nebylo nic vyměněno.
 Nothing left in this list.	V tomto seznamu nic nezbývá.
@@ -1196,6 +1226,8 @@ Of the outer diameter, as laid fixed	Vnějšího průměru, pevně uloženo
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Vnějšího průměru; trubky se ohýbají oblouky o jeden a půl průměru
 Off	Vypnuto
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Posun z jednoho řádku na další: dolů pro seznamy, do strany pro řádky vedle sebe
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Na dotykové obrazovce a touchpadu. Jen posouvat: roztažení prstů nepřibližuje; jen přibližovat: posouvání dvěma prsty na touchpadu také přibližuje, kde systém touchpady rozlišuje. Jeden prst funguje jako levé tlačítko myši.
+On a touch screen; trackpads leave three-finger gestures to the system.	Na dotykové obrazovce; touchpady nechávají gesta třemi prsty systému.
 On startup	Při spuštění
 One row per label	Jeden řádek na štítek
 Only devices on the current page	Pouze přístroje na aktuální stránce
@@ -1218,6 +1250,7 @@ Open project	Otevřít projekt
 Open project server	Otevřít server projektů
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Otevírat projekty a soubory z Autodesk Vault, ukládat projekt, exporty a 3D modely do trezoru Vault
 Open the project	Otevřít projekt
+Open the selection: its properties, in the floor plan its face	Otevřít výběr: jeho vlastnosti, v půdorysu jeho stranu
 Open to {}: wires cross beside the mounting plates	Otevřeno do {}: vodiče přecházejí vedle montážních desek
 Open walls and floors	Otevřít stěny a podlahy
 Open, save, import, export, print and the settings	Otevřít, uložit, importovat, exportovat, tisknout a nastavení
@@ -1253,6 +1286,7 @@ Open…	Otevřít…
 Operations / year	Operace / rok
 Option	Volba
 Options	Volby
+Orbit the 3D view	Otáčet 3D pohled
 Ordinary cable	Běžný kabel
 Orientation	Orientace
 Origin	Původ
@@ -1302,7 +1336,10 @@ Pages and templates using the frame follow	Stránky a šablony s tímto rámečk
 Pages of revision {}	Stránky revize {}
 Pages of the selected block	Stránky vybraného bloku
 Pages using it get the project default	Stránky, které jej používají, dostanou výchozí nastavení projektu
+Pages, panel layout and plans	Stránky, rozvržení rozváděče a plány
 Pairs in schematic order (1-2, 3-4 …)	Dvojice v pořadí schématu (1-2, 3-4 …)
+Pan the 3D view	Posouvat 3D pohled
+Pan the page, the panel layout and the plans	Posouvat stránku, rozvržení rozváděče a plány
 Pane menu	Nabídka panelu
 Panel wiring report	Výkaz zapojení rozváděče
 Panes	Panely
@@ -1461,6 +1498,7 @@ Recent projects	Poslední projekty
 Recently used	Naposledy použité
 Recommended height of manual actuators (10.1.2)	Doporučená výška ručních ovládacích prvků (10.1.2)
 Record	Zaznamenat
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Nahrát: proveďte gesto v poli, které se objeví, případně s podrženou modifikační klávesou (Esc ruší). Přidat zachová stávající gesta. Pravé tlačítko v nástroji výběru otevře místní nabídku.
 Rectangular	Obdélníkový
 Redline: to be changed · Greenline: changed as built	Redline: ke změně · Greenline: změněno podle skutečného provedení
 Redo	Znovu
@@ -1569,6 +1607,7 @@ Revisions, approval and release	Revize, schválení a uvolnění
 Ribbon	Pás karet
 Ribbon (JSON)	Pás karet (JSON)
 Ribbon imported	Pás karet importován
+Right button	Pravé tlačítko
 Right click for more	Kliknutím pravým tlačítkem další možnosti
 Right edges	Pravé hrany
 Right neighbour	Pravý soused
@@ -1585,6 +1624,8 @@ Room {} taken out of the building; it stays where it stands	Místnost {} vyjmuta
 Rooms under sloped ceilings (lowest – highest ceiling)	Místnosti pod šikmými stropy (nejnižší – nejvyšší strop)
 Rotate	Otočit
 Rotate (selection or symbol being placed)	Otočit (výběr nebo umísťovaný symbol)
+Rotate what is being moved	Otočit to, co se přesouvá
+Rotate what is being moved counter-clockwise	Otočit to, co se přesouvá, proti směru hodinových ručiček
 Round	Kruhový
 Round cutouts facing each other in both side walls	Kruhové výřezy proti sobě v obou bočních stěnách
 Route definition of {}	Definice trasy kabelu {}
@@ -1661,7 +1702,9 @@ Scheme {}	Schéma {}
 Screws, nuts, washers and rivet nuts of the fixing points	Šrouby, matice, podložky a nýtovací matice upevňovacích bodů
 Scrolling	Posouvání
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Posouvání posouvá pohled všemi směry; přiblížení sevřením prstů nebo Ctrl + posouvání.
+Scrolling up and down pans sideways	Posouvání nahoru a dolů posouvá do strany
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Posouvání nahoru a dolů přibližuje u ukazatele, do stran (vodorovné kolečko, Shift + kolečko) posouvá pohled.
+Scrolling zooms, also where it pans	Posouvání přibližuje, i tam, kde jinak posouvá
 Search (* and ? as placeholders)…	Hledat (* a ? jako zástupné znaky)…
 Search below this folder	Hledat pod touto složkou
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Prohledávat server artiklů podle katalogu, skupiny produktů a technických údajů, přidávat artikly a kontrolovat aktualizace databáze
@@ -1722,7 +1765,6 @@ Shield pigtail	Pigtail stínění
 Shielded	Stíněný
 Shielded analogue cables	Stíněné analogové kabely
 Shielded drive cables	Stíněné kabely pohonů
-Shift + click / drag	Shift + kliknutí / tažení
 Short circuit and selectivity	Zkrat a selektivita
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zkrat, selektivita, zatížení, EMC, funkční bezpečnost a ověření podle sad pravidel
 Short-circuit currents	Zkratové proudy
@@ -1792,6 +1834,7 @@ Start	Začátek
 Start again when the page structure changes	Začít znovu, když se změní struktura stránky
 Start at	Začít od
 Start byte	Počáteční bajt
+Start of a move: Keep connections the other way round	Začátek přesunu: Zachovat propojení obráceně
 Start page	Úvodní stránka
 Station	Stanice
 Stations and racks	Stanice a nosné rámy
@@ -1898,6 +1941,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Vodorovný vodič
 The items are selected and moved together	Prvky se vybírají a přesouvají společně
 The macro library has no page macros (Macros › Save page as macro…).	Knihovna maker neobsahuje žádná makra stránek (Makra › Uložit stránku jako makro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifikační klávesy, se kterými kolečko posouvá do strany nebo přibližuje, se nastavují v části Modifikační klávesy.
 The modules no string takes yet in series, on the first inverter	Moduly, které ještě žádný string nebere, v sérii, na prvním střídači
 The names of its pages follow	Názvy jeho stránek se změní s ním
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otevřený projekt je místní obnovovací kopie. Jeho změny nejsou uloženy na serveru projektů; než se sdílený projekt otevře, rozhodnete, zda je uložit místně, nebo zahodit.
@@ -1938,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Tato stránka
 This page contains schematic content which is not evaluated on non-schematic pages.	Tato stránka obsahuje obsah schématu, který se na stránkách jiného typu než schéma nevyhodnocuje.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tento projekt je podprojekt {} projektu {} (vyčleněn {}). Uložte jej a po dokončení práce jej vložte do hlavního projektu.
+Three fingers	Tři prsty
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Zde se musí stýkat tři vodiče: jeden v jeho směru a dva napříč. Do té doby je spojení řetězeno v pořadí ve schématu.
 Three-phase short-circuit current at the supply point	Třífázový zkratový proud v místě přívodu
 Tilt	Sklon
@@ -1956,10 +2001,11 @@ Touch screen	Dotyková obrazovka
 Transfer project parts to database	Převzít artikly projektu do databáze
 Translate the project texts; documentation per language	Překlad textů projektu; dokumentace pro každý jazyk
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Otočení kolem svislé osy, proti směru hodinových ručiček při pohledu shora (90 °: čela směřují doprava)
+Turn the 3D view to the point	Natočit 3D pohled na bod
 Tutorial	Výukový kurz
 Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
+Two fingers	Dva prsty
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dva prsty na touchpadu posouvají pohled, kolečko myši přibližuje. Rozlišit je umí jen macOS; jinde posouvání přibližuje jako kolečko.
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Dva prsty současně posouvají pohled a sevřením přibližují; jeden prst funguje jako levé tlačítko myši.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Zadejte bod a stiskněte Enter: x y v mm nebo @dx dy relativně k poslednímu bodu; působí jako kliknutí aktuálním nástrojem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2026,7 +2072,6 @@ View	Zobrazení
 Visible	Viditelná
 Voltage (line to line)	Napětí (sdružené)
 Voltage drop	Úbytek napětí
-W A S D / arrows, Q / E	W A S D / šipky, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, zapisuje se do pozemku exportů IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Stěna {}, {} m: přetažením ji přesunete, dvojklik ji zobrazí k osazení
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Stěna {}, {} m: stěna zobrazená v pohledu na stěnu (zvýrazněná); přetažením ji přesunete
@@ -2038,7 +2083,7 @@ Web between holes	Můstek mezi otvory
 Welcome to OpenECraft	Vítejte v OpenECraft
 What is new	Co je nového
 What should be checked or changed?	Co se má zkontrolovat nebo změnit?
-Wheel / right or middle drag	Kolečko / tažení pravým nebo prostředním tlačítkem
+Wheel and touch	Kolečko a dotyk
 Wheel: zoom · drag: move · click on a room: its floor plan	Kolečko: zoom · tažení: posun · klik na místnost: její půdorys
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Kolečko: zoom · tažení: posun · klik na místnost: její půdorys · tažení rohu hranice pozemku
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Kolečko: zoom · pravé tlačítko: zrušit · grafika se přichytává na 0,5 mm, přípojné body na rastr 4 mm
@@ -2105,7 +2150,8 @@ You may only view this project.	Tento projekt si můžete pouze prohlížet.
 You may review this project: comments, markup and approvals, no other changes.	Tento projekt můžete kontrolovat: komentáře, značky a schválení, žádné jiné změny.
 Your unsaved changes of it are taken back	Vaše neuložené změny v něm budou vráceny
 Zoom	Lupa
-Zoom / pan	Zoom / posun
+Zoom in in the 3D view (held)	Přiblížit 3D pohled (držet)
+Zoom out in the 3D view (held)	Oddálit 3D pohled (držet)
 all	všechny
 all cards	všechny karty
 all lines	všechny řádky
@@ -2359,6 +2405,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixelů, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
+{} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
 {}: click to show its floor plan	{}: kliknutím zobrazíte půdorys
 {}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře

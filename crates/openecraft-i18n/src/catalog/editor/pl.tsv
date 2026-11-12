@@ -85,7 +85,6 @@ Add rule	Dodaj regułę
 Add sort key	Dodaj klucz sortowania
 Add the facing cutout in {}	Dodaj przeciwległe wycięcie w {}
 Add to device	Dodaj do urządzenia
-Add to selection	Dodaj do zaznaczenia
 Add to the pre-planning	Dodaj do planowania wstępnego
 Add user	Dodaj użytkownika
 Added to both ends of the length for the cut length (insertion depth)	Dodawany do długości na obu końcach w celu uzyskania długości cięcia (głębokość wsunięcia)
@@ -130,6 +129,7 @@ Ambient temperature	Temperatura otoczenia
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Archiwum (.oecz) to plik ZIP z projektem, manifestem oraz osadzonymi dokumentami i obrazami jako osobnymi plikami.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Stary rysunek jako grafika na nowej stronie schematu (linie, łuki, teksty, bloki)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Otwarty edytor elektrotechnicznego CAE w duchu EPLAN Electric P8.
+Another gesture for the same function	Kolejny gest dla tej samej funkcji
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Kolejny wariant istniejącego makra o tej nazwie (np. B), do wyboru podczas wstawiania
 Any project file: its settings, forms, structure, potentials and pages start the new project	Dowolny plik projektu: jego ustawienia, formularze, struktura, potencjały i strony stanowią początek nowego projektu
 Appearance	Wygląd
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Obiegi rozdzielacza ogólnego
 Clear	Wyczyść
 Clearance	Odstęp
 Clearances	Odstępy
+Click	Kliknięcie
+Click a text: open its link	Kliknięcie tekstu: otwarcie jego łącza
 Click an element in the drawing to edit it.	Kliknij element na rysunku, aby go edytować.
 Click centre, then a point on the circle	Kliknij środek, a następnie punkt na okręgu
+Click in the panel layout: a single item of an assembly	Kliknięcie w zabudowie szafy: pojedynczy element zespołu
 Click into the page to place the image	Kliknij na stronie, aby umieścić obraz
 Click into the page to place {}	Kliknij na stronie, aby umieścić {}
 Click on a wall	Kliknij ścianę
 Click on a wire to place the connection definition point	Kliknij przewód, aby umieścić punkt definicji połączenia
 Click on the 4 mm grid	Kliknij na siatce 4 mm
 Click on the wall: the part goes there at its mounting height	Kliknij na ścianę: element trafia tam na swoją wysokość montażu
+Click or window: add to the selection or take out of it	Kliknięcie lub okno: dodanie do zaznaczenia lub usunięcie z niego
 Click start and end point	Kliknij punkt początkowy i końcowy
 Click the corners of a machine or building, double-click to finish	Kliknij narożniki maszyny lub budynku, kliknij dwukrotnie, aby zakończyć
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Kliknij narożniki granicy działki · kliknij pierwszy, kliknij dwukrotnie lub Enter: zamknij · Backspace: cofnij · Esc: zakończ
@@ -326,6 +330,7 @@ Click where the reference point is	Kliknij w miejscu punktu odniesienia
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kliknij tam, gdzie spotykają się trzy przewody: trójnik wskazuje urządzenie, od którego wychodzą przewody, i kolejność ich celów · {} obraca go tam, gdzie przewody jeszcze się nie spotykają · Esc lub prawy przycisk kończy
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kliknij tam, gdzie krzyżują się dwa przewody: skrzyżowanie łączy je i prowadzi każdy koniec swojej linii najpierw na wprost, potem poprzecznie · {} obraca je · Esc lub prawy przycisk kończy
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kliknij tam, gdzie dwa przewody spotykają się pod kątem prostym, lub gdzie punkty przyłączenia leżą naprzeciw siebie przez narożnik: przy włączonym automatycznym łączeniu rysowane są do niego przewody · {} obraca go · Esc lub prawy przycisk kończy
+Click while moving	Kliknięcie podczas przesuwania
 Click, or drag it into the page	Kliknij lub przeciągnij na stronę
 Climate (IEC 60890)	Klimatyzacja (IEC 60890)
 Clipboard	Schowek
@@ -503,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Oznaczniki urządz
 Devices ({})	Urządzenia ({})
 Devices are not copied: a device is placed once.	Urządzenia nie są kopiowane: urządzenie jest umieszczane jeden raz.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Urządzenia są planowane za pomocą symboli jednokreskowych i projektowane na schemacie wielokreskowym; obie reprezentacje mają wspólne oznaczenie urządzenia.
+Devices back to the devices to place: {}	Urządzenia z powrotem w urządzeniach do umieszczenia: {}
+Devices go back to the devices to place	Urządzenia wracają do urządzeń do umieszczenia
 Devices in the box: {}	Urządzenia w ramce: {}
 Devices of a channel	Urządzenia kanału
 Devices of the second channel; empty = like the first	Urządzenia drugiego kanału; puste = jak w pierwszym
@@ -537,6 +544,7 @@ Distribute vertically	Rozmieść pionowo
 Distributed neutral	Rozprowadzony przewód neutralny
 Diversity factor	Współczynnik jednoczesności
 Divider	Przegroda
+Do the gesture…	Wykonaj gest…
 Dock	Zadokuj
 Document {} embedded ({})	Osadzono dokument {} ({})
 Documents	Dokumenty
@@ -550,7 +558,7 @@ Door clearance	Wolna przestrzeń drzwi
 Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
-Double-click (3D view)	Dwuklik (widok 3D)
+Double-click	Dwukrotne kliknięcie
 Download into database	Pobierz do bazy danych
 Download project	Pobierz projekt
 Downloaded {} (version {})	Pobrano {} (wersja {})
@@ -559,6 +567,7 @@ Downloading OpenECraft {}	Pobieranie OpenECraft {}
 Downstream part	Artykuł podrzędny
 Draft of revision {} created	Utworzono wersję roboczą rewizji {}
 Draft of revision {} discarded	Odrzucono wersję roboczą rewizji {}
+Drag	Przeciąganie
 Drag a connection point designation of the selected symbol to place it.	Przeciągnij oznaczenie punktu połączenia zaznaczonego symbolu, aby je umieścić.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Przeciągnij koniec zaznaczonego przewodu, aby przesunąć tylko ten koniec. Przeciąganie z Alt odwraca Zachowaj połączenia.
 Drag an entry into the page, or click it and then click into the page.	Przeciągnij pozycję na stronę albo kliknij ją, a następnie kliknij na stronie.
@@ -690,6 +699,8 @@ Find and replace in the whole project	Znajdź i zamień w całym projekcie
 Find results	Wyniki wyszukiwania
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Znajduje elementy Vault artykułów projektu według numeru elementu lub właściwości Part Number i wyświetla zmiany identyfikatora pozycji, rewizji i stanu cyklu życia do przejrzenia
 Find…	Znajdź…
+Finish a wire, polyline, polygon or wall	Zakończenie przewodu, polilinii, wielokąta lub ściany
+Finish or cancel the drawing, then back to selecting	Zakończenie lub anulowanie rysowania, potem powrót do zaznaczania
 First row	Pierwszy wiersz
 Fit	Dopasuj
 Fit page	Dopasuj stronę
@@ -781,6 +792,7 @@ Height above the mounting plate	Wysokość nad płytą montażową
 Height above the plate	Wysokość nad płytą
 Height of the plinth, 0 without plinth	Wysokość cokołu, 0 bez cokołu
 Heights above floor (IEC 60204-1)	Wysokości nad podłogą (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Przytrzymywany podczas klikania, przesuwania lub przewijania. Ctrl to Cmd w macOS.
 Help	Pomoc
 Hide the groups you do not need and put the commands you use most into own groups.	Ukryj grupy, których nie potrzebujesz, a najczęściej używane polecenia umieść we własnych grupach.
 Highest phase unbalance	Największa asymetria faz
@@ -881,7 +893,12 @@ Invalid value	Nieprawidłowa wartość
 Invert the direction of panning by scrolling	Odwróć kierunek przesuwania przewijaniem
 Inverter or charge controller (devices with PV input data)	Falownik lub regulator ładowania (urządzenia z danymi wejścia PV)
 Isometric	Izometryczny
+Items copied: {}	Skopiowane elementy: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Skopiowane elementy: {} (pominięte urządzenia: {}, urządzenie umieszcza się tylko raz)
+Items cut: {}	Wycięte elementy: {}
+Items cut: {} (devices back to the devices to place: {})	Wycięte elementy: {} (urządzenia z powrotem w urządzeniach do umieszczenia: {})
 Items on the layer	Elementy na warstwie
+Items pasted: {}	Wklejone elementy: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementy z zakotwiczeniem zachowują je; pozostałe są wstawiane względem miejsca kliknięcia.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Artykuły, urządzenia, umieszczenia, połączenia, przewody i dokumenty w jednym pliku JSON dla systemów bez konektora
 Its pages and subsections go to the section above	Jej strony i podsekcje przechodzą do sekcji nadrzędnej
@@ -900,6 +917,8 @@ Key tips of the ribbon	Klawisze dostępu wstążki
 Key: {}	Klucz: {}
 Keyboard shortcuts	Skróty klawiaturowe
 Keyboard shortcuts…	Skróty klawiaturowe…
+Keys and gestures	Klawisze i gesty
+Keys of the 3D view	Klawisze widoku 3D
 Label	Etykieta
 Label (grey)	Etykieta (szara)
 Label field	Pole etykiety
@@ -921,6 +940,7 @@ Layout spaces	Przestrzenie montażowe
 Leave out the ceilings of the rooms and the roofs in the 3D view	Pomiń sufity pomieszczeń i dachy w widoku 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	W widoku 3D pomija pokrywy wszystkich korytek kablowych: przewody w nich są widoczne
 Leave repeated values of the first column blank	Pozostaw puste powtarzające się wartości pierwszej kolumny
+Left button	Lewy przycisk
 Left edges	Lewe krawędzie
 Legend plates (door devices)	Tabliczki opisowe (urządzenia na drzwiach)
 Length from the node to the device	Długość od węzła do urządzenia
@@ -936,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Dodano kondygnację {} do bu
 Level {} of building {}	Kondygnacja {} budynku {}
 Levels	Kondygnacje
 Library	Biblioteka
+Like two fingers	Jak dwa palce
 Limits	Wartości graniczne
 Limits in effect	Obowiązujące wartości graniczne
 Line to PE at the supply point; 0 = from the highest short-circuit current	Faza–PE w punkcie zasilania; 0 = z największego prądu zwarciowego
@@ -970,7 +991,6 @@ Locked by {} – read only	Zablokowane przez {} – tylko do odczytu
 Locking…	Blokowanie…
 Logic	Logika
 Longer values are drawn smaller (0 = no limit)	Dłuższe wartości są rysowane mniejsze (0 = bez ograniczenia)
-Look at the point clicked, closer	Spójrz na kliknięty punkt z bliska
 Look for updates when OpenECraft starts	Szukaj aktualizacji przy uruchamianiu OpenECraft
 Looking for updates…	Szukanie aktualizacji…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Szuka nowej wersji OpenECraft w serwisie GitHub i instaluje ją w tle
@@ -1018,6 +1038,7 @@ Messages	Komunikaty
 Messages ({})	Komunikaty ({})
 Messages of this session	Komunikaty tej sesji
 Middle	Środek
+Middle button	Środkowy przycisk
 Middle of the PV array in the floor plan of the building	Środek instalacji PV w rzucie budynku
 Min. bend radius	Min. promień gięcia
 Minimize the ribbon	Minimalizuj wstążkę
@@ -1026,6 +1047,7 @@ Mirror (selection or symbol being placed)	Odbicie lustrzane (zaznaczenie lub umi
 Mixed	Mieszane
 Mode	Tryb
 Model of a part (2D / 3D)	Model artykułu (2D / 3D)
+Modifier keys	Klawisze modyfikujące
 Module part; its size comes from the part	Część modułu; jej rozmiar pochodzi z części
 Motors feed the short circuit	Silniki zasilają zwarcie
 Mounted on	Zamontowany na
@@ -1034,17 +1056,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Odst�
 Mounting height: {}	Wysokość montażu: {}
 Mounting plate: {} holes, {} cutouts	Płyta montażowa: otwory: {}, wycięcia: {}
 Mounting system	System montażowy
+Mouse	Mysz
 Move	Przesuń
+Move ahead in the 3D view (held)	Ruch do przodu w widoku 3D (przytrzymaj)
+Move back in the 3D view (held)	Ruch do tyłu w widoku 3D (przytrzymaj)
 Move down	Przesuń w dół
+Move down in the 3D view (held)	Ruch w dół w widoku 3D (przytrzymaj)
+Move faster with the keys of the 3D view	Szybszy ruch klawiszami widoku 3D
 Move left	Przesuń w lewo
+Move left in the 3D view (held)	Ruch w lewo w widoku 3D (przytrzymaj)
 Move page down	Przesuń stronę w dół
 Move page up	Przesuń stronę w górę
+Move right in the 3D view (held)	Ruch w prawo w widoku 3D (przytrzymaj)
 Move selection by	Przesuń zaznaczenie o
 Move selection by…	Przesuń zaznaczenie o…
 Move the devices of this page into the new structure	Przenieś urządzenia tej strony do nowej struktury
-Move through the 3D view (Shift: faster)	Poruszanie się w widoku 3D (Shift: szybciej)
 Move to section	Przenieś do sekcji
 Move up	Przesuń w górę
+Move up in the 3D view (held)	Ruch w górę w widoku 3D (przytrzymaj)
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Przesuwane symbole ciągną za sobą przewody, a przesuwane przewody pozostają na punktach połączenia, na których się kończą. Przytrzymanie Alt podczas przeciągania to odwraca; przeciągnięcie końca zaznaczonego przewodu go odłącza
 Moves to the top level as page {}	Przechodzi na najwyższy poziom jako strona {}
 Moves to {} as page {}	Przechodzi do {} jako strona {}
@@ -1065,7 +1094,6 @@ Name and cross reference	Nazwa i odsyłacz
 Name on the server	Nazwa na serwerze
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nazwa; typ danych; adres logiczny; komentarz – dla narzędzi programowania PLC
 Named copy of this form, for report blocks	Nazwana kopia tego formularza, dla bloków raportów
-Navigation	Nawigacja
 Navigators	Nawigatory
 Neutral exchange file…	Neutralny plik wymiany…
 Never	Nigdy
@@ -1137,6 +1165,7 @@ No dot: plain T	Bez kropki: zwykłe T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Brak obudowy – utwórz ją poleceniem Nowa obudowa lub pomieszczenie na szafy poleceniem Nowe pomieszczenie.
 No field cables: place the enclosures and field devices at nodes of the route network.	Brak kabli obiektowych: umieść obudowy i urządzenia obiektowe w węzłach sieci tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez wentylatorów z filtrem: wymiennik ciepła powietrze/powietrze lub chłodziarka
+No gesture	Brak gestu
 No harnesses defined.	Nie zdefiniowano wiązek.
 No inverter	Brak falownika
 No jump: plain crossing, connections have dots	Bez przeskoku: zwykłe skrzyżowanie, połączenia mają kropki
@@ -1179,6 +1208,7 @@ Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
 Not saved, locked or changed by another user: {}	Nie zapisano, zablokowane lub zmienione przez innego użytkownika: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nie przyjęto: sam lewy przycisk zaznacza, rysuje i przesuwa; przytrzymaj klawisz modyfikujący lub użyj innego przycisku.
 Not the shared project: changes are saved locally until it is opened on the project server again	To nie jest wspólny projekt: zmiany są zapisywane lokalnie, dopóki nie zostanie ponownie otwarty na serwerze projektów
 Nothing exchanged yet.	Jeszcze niczego nie wymieniono.
 Nothing left in this list.	Na tej liście nic nie pozostało.
@@ -1196,6 +1226,8 @@ Of the outer diameter, as laid fixed	Średnicy zewnętrznej, ułożone na stałe
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Średnicy zewnętrznej; rury są gięte kolanami o promieniu półtorej średnicy
 Off	Wył.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Przesunięcie od jednego wiersza do następnego: w dół dla list, w bok dla wierszy obok siebie
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Na ekranie dotykowym i gładziku. Tylko przesuwanie: szczypanie nie powiększa; tylko powiększanie: przewijanie dwoma palcami na gładziku też powiększa, jeśli system rozróżnia gładziki. Jeden palec działa jak lewy przycisk myszy.
+On a touch screen; trackpads leave three-finger gestures to the system.	Na ekranie dotykowym; gładziki zostawiają gesty trzema palcami systemowi.
 On startup	Przy uruchomieniu
 One row per label	Jeden wiersz na etykietę
 Only devices on the current page	Tylko urządzenia na bieżącej stronie
@@ -1218,6 +1250,7 @@ Open project	Otwórz projekt
 Open project server	Otwórz serwer projektów
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Otwieraj projekty i pliki z Autodesk Vault, umieszczaj projekt, eksporty i modele 3D w magazynie Vault
 Open the project	Otwórz projekt
+Open the selection: its properties, in the floor plan its face	Otwarcie zaznaczenia: jego właściwości, w rzucie jego widok
 Open to {}: wires cross beside the mounting plates	Otwarte do {}: przewody przechodzą obok płyt montażowych
 Open walls and floors	Otwórz ściany i podłogi
 Open, save, import, export, print and the settings	Otwieranie, zapisywanie, import, eksport, drukowanie i ustawienia
@@ -1253,6 +1286,7 @@ Open…	Otwórz…
 Operations / year	Cykle łączeniowe / rok
 Option	Opcja
 Options	Opcje
+Orbit the 3D view	Obracanie widoku 3D
 Ordinary cable	Zwykły kabel
 Orientation	Orientacja
 Origin	Pochodzenie
@@ -1302,7 +1336,10 @@ Pages and templates using the frame follow	Strony i szablony używające tej ram
 Pages of revision {}	Strony rewizji {}
 Pages of the selected block	Strony wybranego bloku
 Pages using it get the project default	Strony, które go używają, otrzymują wartość domyślną projektu
+Pages, panel layout and plans	Strony, zabudowa szafy i rzuty
 Pairs in schematic order (1-2, 3-4 …)	Par w kolejności schematu (1-2, 3-4 …)
+Pan the 3D view	Przesuwanie widoku 3D
+Pan the page, the panel layout and the plans	Przesuwanie strony, zabudowy szafy i rzutów
 Pane menu	Menu panelu
 Panel wiring report	Raport okablowania szafy
 Panes	Panele
@@ -1461,6 +1498,7 @@ Recent projects	Ostatnie projekty
 Recently used	Ostatnio używane
 Recommended height of manual actuators (10.1.2)	Zalecana wysokość ręcznych elementów sterowniczych (10.1.2)
 Record	Nagraj
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Nagraj: wykonaj gest w polu, które się pojawi, w razie potrzeby z przytrzymanym klawiszem modyfikującym (Esc anuluje). Dodaj zachowuje istniejące gesty. Prawy przycisk w narzędziu zaznaczania otwiera menu kontekstowe.
 Rectangular	Prostokątny
 Redline: to be changed · Greenline: changed as built	Redline: do zmiany · Greenline: zmienione zgodnie z wykonaniem
 Redo	Ponów
@@ -1569,6 +1607,7 @@ Revisions, approval and release	Rewizje, zatwierdzanie i wydawanie
 Ribbon	Wstążka
 Ribbon (JSON)	Wstążka (JSON)
 Ribbon imported	Zaimportowano wstążkę
+Right button	Prawy przycisk
 Right click for more	Kliknij prawym przyciskiem, aby uzyskać więcej opcji
 Right edges	Prawe krawędzie
 Right neighbour	Prawy sąsiad
@@ -1585,6 +1624,8 @@ Room {} taken out of the building; it stays where it stands	Pomieszczenie {} wyj
 Rooms under sloped ceilings (lowest – highest ceiling)	Pomieszczenia pod skosami (najniższy – najwyższy sufit)
 Rotate	Obróć
 Rotate (selection or symbol being placed)	Obróć (zaznaczenie lub umieszczany symbol)
+Rotate what is being moved	Obracanie przesuwanych elementów
+Rotate what is being moved counter-clockwise	Obracanie przesuwanych elementów przeciwnie do ruchu wskazówek zegara
 Round	Okrągły
 Round cutouts facing each other in both side walls	Okrągłe wycięcia naprzeciw siebie w obu ścianach bocznych
 Route definition of {}	Definicja trasy kabla {}
@@ -1661,7 +1702,9 @@ Scheme {}	Wzorzec {}
 Screws, nuts, washers and rivet nuts of the fixing points	Śruby, nakrętki, podkładki i nitonakrętki punktów mocowania
 Scrolling	Przewijanie
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Przewijanie przesuwa widok w każdym kierunku; aby powiększyć, zsuń palce lub użyj Ctrl + przewijania.
+Scrolling up and down pans sideways	Przewijanie w górę i w dół przesuwa w bok
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Przewijanie w górę i w dół powiększa przy wskaźniku, w bok (poziome kółko, Shift + kółko) przesuwa.
+Scrolling zooms, also where it pans	Przewijanie powiększa, także tam, gdzie przesuwa
 Search (* and ? as placeholders)…	Szukaj (* i ? jako symbole wieloznaczne)…
 Search below this folder	Szukaj poniżej tego folderu
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Przeszukaj serwer artykułów według katalogu, grupy produktów i danych technicznych, dodaj artykuły i sprawdź bazę danych pod kątem aktualizacji
@@ -1722,7 +1765,6 @@ Shield pigtail	Pigtail ekranu
 Shielded	Ekranowany
 Shielded analogue cables	Ekranowane kable analogowe
 Shielded drive cables	Ekranowane kable napędów
-Shift + click / drag	Shift + kliknięcie / przeciągnięcie
 Short circuit and selectivity	Zwarcie i selektywność
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zwarcie, selektywność, obciążenia, EMC, bezpieczeństwo funkcjonalne i weryfikacja względem zestawów reguł
 Short-circuit currents	Prądy zwarciowe
@@ -1792,6 +1834,7 @@ Start	Początek
 Start again when the page structure changes	Zacznij od nowa, gdy zmienia się struktura strony
 Start at	Rozpocznij od
 Start byte	Bajt początkowy
+Start of a move: Keep connections the other way round	Początek przesuwania: Zachowaj połączenia odwrotnie
 Start page	Strona startowa
 Station	Stacja
 Stations and racks	Stacje i kasety
@@ -1898,6 +1941,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Przewód poziomy
 The items are selected and moved together	Elementy są zaznaczane i przesuwane razem
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteka makr nie zawiera makr stron (Makra › Zapisz stronę jako makro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Klawisze modyfikujące, które sprawiają, że kółko przesuwa w bok lub powiększa, ustawia się w sekcji Klawisze modyfikujące.
 The modules no string takes yet in series, on the first inverter	Moduły, których żaden łańcuch jeszcze nie bierze, szeregowo, na pierwszym falowniku
 The names of its pages follow	Nazwy jej stron zmieniają się wraz z nią
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otwarty projekt jest lokalną kopią odzyskiwania. Jego zmiany nie są zapisane na serwerze projektów; zanim otworzy się wspólny projekt, zdecydujesz, czy zapisać je lokalnie, czy odrzucić.
@@ -1938,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Ta strona
 This page contains schematic content which is not evaluated on non-schematic pages.	Ta strona zawiera elementy schematu, które nie są analizowane na stronach innych niż schemat.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ten projekt jest podprojektem {} projektu {} (wydzielonym {}). Zapisz go i wstaw do projektu głównego po zakończeniu pracy.
+Three fingers	Trzy palce
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tutaj muszą spotkać się trzy przewody: jeden w jego kierunku i dwa poprzeczne. Do tego czasu połączenie jest łączone w kolejności na schemacie.
 Three-phase short-circuit current at the supply point	Trójfazowy prąd zwarciowy w punkcie zasilania
 Tilt	Nachylenie
@@ -1956,10 +2001,11 @@ Touch screen	Ekran dotykowy
 Transfer project parts to database	Przenieś artykuły projektu do bazy danych
 Translate the project texts; documentation per language	Tłumacz teksty projektu; dokumentacja w każdym języku
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Obrót wokół osi pionowej, przeciwnie do ruchu wskazówek zegara patrząc z góry (90 °: fronty skierowane w prawo)
+Turn the 3D view to the point	Obrócenie widoku 3D w stronę punktu
 Tutorial	Samouczek
 Twin ferrules where two wires share a connection point	Tulejki podwójne tam, gdzie dwa przewody dzielą punkt połączenia
+Two fingers	Dwa palce
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dwa palce na gładziku przesuwają widok, kółko myszy powiększa. Tylko macOS je rozróżnia; w innych systemach przewijanie powiększa jak kółko.
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Dwa palce jednocześnie przesuwają i powiększają (rozsuwanie palców); jeden palec działa jak lewy przycisk myszy.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tutaj muszą spotkać się dwa przewody pod kątem prostym. Przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Wpisz punkt i naciśnij Enter: x y w mm lub @dx dy względem ostatniego punktu; działa jak kliknięcie bieżącym narzędziem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
@@ -2026,7 +2072,6 @@ View	Widok
 Visible	Widoczna
 Voltage (line to line)	Napięcie (międzyfazowe)
 Voltage drop	Spadek napięcia
-W A S D / arrows, Q / E	W A S D / strzałki, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, zapisywana w terenie eksportów IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Ściana {}, {} m: przeciągnij, aby przesunąć, dwuklik pokazuje ją do wyposażenia
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Ściana {}, {} m: ściana pokazana w widoku ściany (wyróżniona); przeciągnij, aby przesunąć
@@ -2038,7 +2083,7 @@ Web between holes	Mostek między otworami
 Welcome to OpenECraft	Witamy w OpenECraft
 What is new	Co nowego
 What should be checked or changed?	Co należy sprawdzić lub zmienić?
-Wheel / right or middle drag	Kółko myszy / przeciąganie prawym lub środkowym przyciskiem
+Wheel and touch	Kółko i dotyk
 Wheel: zoom · drag: move · click on a room: its floor plan	Kółko: powiększenie · przeciągnij: przesuń · kliknij pomieszczenie: jego rzut
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Kółko: zoom · przeciągnij: przesuń · kliknij pomieszczenie: jego rzut · przeciągnij narożnik granicy działki
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Kółko myszy: powiększenie · prawy przycisk: anuluj · grafika przyciąga do 0,5 mm, punkty połączeń do siatki 4 mm
@@ -2105,7 +2150,8 @@ You may only view this project.	Możesz tylko wyświetlać ten projekt.
 You may review this project: comments, markup and approvals, no other changes.	Możesz recenzować ten projekt: komentarze, adnotacje i zatwierdzenia, bez innych zmian.
 Your unsaved changes of it are taken back	Twoje niezapisane zmiany zostaną cofnięte
 Zoom	Powiększenie
-Zoom / pan	Powiększenie / przesuwanie
+Zoom in in the 3D view (held)	Powiększanie widoku 3D (przytrzymaj)
+Zoom out in the 3D view (held)	Pomniejszanie widoku 3D (przytrzymaj)
 all	wszystkie
 all cards	wszystkie karty
 all lines	wszystkie wiersze
@@ -2359,6 +2405,7 @@ x y	x y
 {} °C (max.)	{} °C (maks.)
 {} × {} pixels, {}	{} × {} pikseli, {}
 {} – {} ({} pages)	{} – {} (strony: {})
+{} – {} here (Esc cancels)	{} – {} tutaj (Esc anuluje)
 {}: click to show its floor plan	{}: kliknij, aby pokazać jego rzut
 {}: crimp together with the wire to {}	{}: zaciskać razem z przewodem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: przeciągnij, aby przesunąć, R obraca, dwuklik otwiera

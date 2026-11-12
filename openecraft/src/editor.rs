@@ -2,6 +2,7 @@
 //! drawing wires, texts, graphics, dimensions and connection / cable definitions.
 
 use crate::commands::Cmd;
+use crate::gestures::{MouseAction, Role};
 use crate::shortcuts::Action;
 use openecraft_ui::part_editor::PartDrag;
 use openecraft_i18n::{tr, tr_fmt};
@@ -608,6 +609,8 @@ pub struct Editor {
     snap_cache: Option<SnapCache>,
     /// The user's keyboard shortcuts.
     pub shortcuts: crate::shortcuts::Shortcuts,
+    /// The user's mouse gestures and modifier keys.
+    pub gestures: crate::gestures::Gestures,
     /// The page is the document worked in: it takes the keys.
     pub keys_active: bool,
     /// The items copied or cut last (Home › Paste).
@@ -642,6 +645,7 @@ impl Default for Editor {
             keep_connections: true,
             autoroute: false,
             shortcuts: Default::default(),
+            gestures: Default::default(),
             cable_target: String::new(),
             place_tag: None,
             place_part: None,
@@ -1102,15 +1106,17 @@ impl Editor {
         if let (true, Some(at)) = (gesture.zooms(), gesture.at) {
             self.zoom_at(rect, at, gesture.zoom);
         }
-        if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
+        let panning = self.gestures.dragged(MouseAction::PanView, &resp, ui.input(|i| i.modifiers));
+        if panning {
             self.offset += resp.drag_delta();
         }
-        // Fingers navigating leave out the first one's selection window; a move already
-        // under way goes on.
-        if gesture.touch && matches!(self.drag, Drag::Box { .. }) {
+        // Fingers navigating, or the left button panning with a modifier, leave out the
+        // selection window; a move already under way goes on.
+        let navigating = gesture.touch || (panning && resp.dragged_by(PointerButton::Primary));
+        if navigating && matches!(self.drag, Drag::Box { .. }) {
             self.drag = Drag::None;
         }
-        let pointer_tools = !gesture.touch || !matches!(self.drag, Drag::None);
+        let pointer_tools = !navigating || !matches!(self.drag, Drag::None);
 
         let locked = prj.pages[page_i].locked;
         let editable = prj.pages[page_i].is_editable() && !self.read_only;
@@ -1858,20 +1864,8 @@ impl Editor {
         if !editable || !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             return;
         }
-        let rotations: Vec<bool> = ui.input(|i| {
-            i.events
-                .iter()
-                .filter_map(|event| match event {
-                    egui::Event::PointerButton {
-                        button: PointerButton::Secondary,
-                        pressed: true,
-                        modifiers,
-                        ..
-                    } => Some(modifiers.shift),
-                    _ => None,
-                })
-                .collect()
-        });
+        let presses = ui.input(|i| self.gestures.presses(MouseAction::RotateWhileMoving, &i.events));
+        let rotations: Vec<bool> = presses.into_iter().map(|m| self.gestures.held(Role::RotateBack, m)).collect();
         for counter_clockwise in rotations {
             if let Drag::Move { start, applied, moving, items, points, lines } = &mut self.drag {
                 for _ in 0..if counter_clockwise { 3 } else { 1 } {
@@ -1902,9 +1896,10 @@ impl Editor {
         idx: &Index,
         out: &mut CanvasOutput,
     ) {
-        let shift = ui.input(|i| i.modifiers.shift);
-        let secondary_click = resp.clicked_by(PointerButton::Secondary);
-        if secondary_click {
+        let mods = ui.input(|i| i.modifiers);
+        let shift = self.gestures.held(Role::AddToSelection, mods);
+        let finish = self.gestures.double_clicked(MouseAction::FinishByDoubleClick, resp, mods);
+        if self.gestures.clicked(MouseAction::CancelTool, resp, mods) {
             if matches!(self.tool, Tool::Polyline | Tool::Polygon) && !self.pts.is_empty() {
                 self.finish_poly(prj, page_i);
             } else if self.wire_start.is_some() || !self.pts.is_empty() {
@@ -1957,7 +1952,6 @@ impl Editor {
                 }
             }
             Tool::Wire => {
-                let finish = resp.double_clicked();
                 if let Some(sn) = click {
                     match self.wire_start {
                         None => self.wire_start = Some(sn),
@@ -2017,7 +2011,7 @@ impl Editor {
                         self.pts.push(sn);
                     }
                 }
-                if resp.double_clicked() {
+                if finish {
                     self.finish_poly(prj, page_i);
                 }
             }
@@ -2046,7 +2040,7 @@ impl Editor {
     /// selected symbol, drags on empty space select by window. On a page that is not
     /// `editable` only the selection changes.
     fn select_mouse(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, idx: &Index, page_i: usize, rect: Rect, world: Option<P>, editable: bool, out: &mut CanvasOutput) {
-        let shift = ui.input(|i| i.modifiers.shift);
+        let (mods, shift) = ui.input(|i| (i.modifiers, self.gestures.held(Role::AddToSelection, i.modifiers)));
         self.rotate_while_dragging(ui, prj, page_i, world, editable);
         if resp.drag_started_by(PointerButton::Primary) {
             let origin = ui.input(|i| i.pointer.press_origin()).unwrap_or(rect.center());
@@ -2088,7 +2082,7 @@ impl Editor {
                     self.selection.insert(id);
                 }
                 let items = self.items(prj, page_i);
-                let keep = self.keep_connections != ui.input(|i| i.modifiers.alt);
+                let keep = self.keep_connections != self.gestures.held(Role::ReverseKeepConnections, mods);
                 let moving = Box::new(routing::Moving::keeping(prj, page_i, &items, keep));
                 let page = &prj.pages[page_i];
                 let points = snap_lines::points_of(prj, page, &items);
@@ -2183,8 +2177,7 @@ impl Editor {
         if resp.clicked_by(PointerButton::Primary) {
             if let Some(w) = world {
                 let hit = self.hit(prj, page_i, w);
-                let ctrl = ui.input(|i| i.modifiers.ctrl || i.modifiers.command);
-                if let (true, Some(link)) = (ctrl, hit.and_then(|id| prj.pages[page_i].texts.iter().find(|t| t.id == id)).map(|t| t.link.trim().to_string()).filter(|l| !l.is_empty())) {
+                if let (true, Some(link)) = (self.gestures.held(Role::OpenLink, mods), hit.and_then(|id| prj.pages[page_i].texts.iter().find(|t| t.id == id)).map(|t| t.link.trim().to_string()).filter(|l| !l.is_empty())) {
                     if openecraft_parts::api::is_web_link(&link) {
                         out.open_url = Some(link);
                     } else {
@@ -2195,7 +2188,7 @@ impl Editor {
                 self.select_at(prj, page_i, w, shift);
             }
         }
-        if resp.double_clicked() && !self.selection.is_empty() {
+        if self.gestures.double_clicked(MouseAction::OpenProperties, resp, mods) && !self.selection.is_empty() {
             out.open_properties = true;
         }
     }

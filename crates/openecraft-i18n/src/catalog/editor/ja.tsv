@@ -85,7 +85,6 @@ Add rule	ルールを追加
 Add sort key	並べ替えキーを追加
 Add the facing cutout in {}	{} に向かい合う切り欠きを追加
 Add to device	デバイスに追加
-Add to selection	選択に追加
 Add to the pre-planning	事前計画に追加
 Add user	ユーザーを追加
 Added to both ends of the length for the cut length (insertion depth)	切断長を求めるために長さの両端に加算されます (差し込み深さ)
@@ -129,6 +128,7 @@ Ambient temperature	周囲温度
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	アーカイブ (.oecz) は、プロジェクト、マニフェスト、埋め込みドキュメントと画像を個別のファイルとして含む ZIP ファイルです。
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	古い図面を新しい回路図ページに図形として取り込みます (線、円弧、テキスト、ブロック)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	EPLAN Electric P8 の考え方に基づくオープンな電気 CAE エディター。
+Another gesture for the same function	同じ機能の別のジェスチャー
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	この名前の既存マクロの別バリアント (例: B)。挿入時に選択します
 Any project file: its settings, forms, structure, potentials and pages start the new project	任意のプロジェクトファイル: その設定、フォーム、構造、電位、ページが新しいプロジェクトの初期内容になります
 Appearance	外観
@@ -290,14 +290,18 @@ Circuits of a generic manifold	汎用ヘッダーの回路数
 Clear	クリア
 Clearance	クリアランス
 Clearances	クリアランス
+Click	クリック
+Click a text: open its link	テキストをクリック：リンクを開く
 Click an element in the drawing to edit it.	図面内の要素をクリックして編集します。
 Click centre, then a point on the circle	中心をクリックし、次に円周上の点をクリックします
+Click in the panel layout: a single item of an assembly	盤レイアウトでクリック：アセンブリの単一の項目
 Click into the page to place the image	ページ内をクリックして画像を配置します
 Click into the page to place {}	ページ内をクリックして {} を配置します
 Click on a wall	壁をクリック
 Click on a wire to place the connection definition point	電線をクリックして接続定義ポイントを配置します
 Click on the 4 mm grid	4 mm グリッド上をクリックします
 Click on the wall: the part goes there at its mounting height	壁をクリック: 部品はその取付高さに置かれます
+Click or window: add to the selection or take out of it	クリックまたは窓：選択に追加または選択から除外
 Click start and end point	始点と終点をクリックします
 Click the corners of a machine or building, double-click to finish	機械または建物の角をクリックし、ダブルクリックで終了します
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	敷地境界の頂点をクリック · 最初の頂点、ダブルクリックまたは Enter：閉じる · Backspace：戻る · Esc：終了
@@ -323,6 +327,7 @@ Click where the reference point is	基準点の位置をクリックします
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	3本の接続線が交わる点をクリック：T分岐は電線が出る機器と目標の順序を指定します · まだ接続線が交わらない場所では {} で回転 · Esc または右クリックで終了
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	2本の接続線が交わる点をクリック：交差は両者を接続し、線の各端をまず直進、次に横方向へ導きます · {} で回転 · Esc または右クリックで終了
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	2本の接続線が直角に交わる点、または接続点がコーナーをはさんで向き合う点をクリック：自動接続が有効なときはここへ接続線が描かれます · {} で回転 · Esc または右クリックで終了
+Click while moving	移動中にクリック
 Click, or drag it into the page	クリックするか、ページにドラッグします
 Climate (IEC 60890)	温度管理 (IEC 60890)
 Clipboard	クリップボード
@@ -497,6 +502,8 @@ Device, terminal, wire and cable markers for marking software	マーキングソ
 Devices ({})	デバイス ({})
 Devices are not copied: a device is placed once.	デバイスはコピーされません: デバイスは 1 回だけ配置されます。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	デバイスは単線シンボルで計画し、複線回路図で設計します。両方で同じデバイスタグを共有します。
+Devices back to the devices to place: {}	配置するデバイスに戻したデバイス: {}
+Devices go back to the devices to place	デバイスは配置するデバイスに戻ります
 Devices in the box: {}	ボックス内のデバイス: {}
 Devices of a channel	チャンネルのデバイス
 Devices of the second channel; empty = like the first	第 2 チャンネルのデバイス。空欄 = 第 1 チャンネルと同じ
@@ -531,6 +538,7 @@ Distribute vertically	垂直方向に均等配置
 Distributed neutral	中性線を配線
 Diversity factor	分散率
 Divider	セパレーター
+Do the gesture…	ジェスチャーを行ってください…
 Dock	ドッキング
 Document {} embedded ({})	ドキュメント {} を埋め込みました ({})
 Documents	ドキュメント
@@ -544,7 +552,7 @@ Door clearance	扉のクリアランス
 Door cutouts (CSV)	扉の切り欠き (CSV)
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
-Double-click (3D view)	ダブルクリック (3D ビュー)
+Double-click	ダブルクリック
 Download into database	データベースにダウンロード
 Download project	プロジェクトをダウンロード
 Downloaded {} (version {})	{} をダウンロードしました (バージョン {})
@@ -553,6 +561,7 @@ Downloading OpenECraft {}	OpenECraft {} をダウンロード中
 Downstream part	下位部品
 Draft of revision {} created	リビジョン {} のドラフトを作成しました
 Draft of revision {} discarded	リビジョン {} のドラフトを破棄しました
+Drag	ドラッグ
 Drag a connection point designation of the selected symbol to place it.	選択したシンボルの接続ポイントの名称をドラッグして配置します。
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	選択した電線の端をドラッグすると、その端だけを移動します。Alt を押しながらドラッグすると「接続を保持」が逆になります。
 Drag an entry into the page, or click it and then click into the page.	エントリをページにドラッグするか、クリックしてからページ内をクリックします。
@@ -683,6 +692,8 @@ Find and replace in the whole project	プロジェクト全体で検索と置換
 Find results	検索結果
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	プロジェクト部品の Vault アイテムをアイテム番号または Part Number プロパティで検索し、アイテム ID、リビジョン、ライフサイクル状態の変更を確認用に表示します
 Find…	検索…
+Finish a wire, polyline, polygon or wall	配線、ポリライン、多角形、壁を終了
+Finish or cancel the drawing, then back to selecting	描画を終了またはキャンセルし、選択に戻る
 First row	最初の行
 Fit	全体表示
 Fit page	ページに合わせる
@@ -773,6 +784,7 @@ Height above the mounting plate	取付板からの高さ
 Height above the plate	板からの高さ
 Height of the plinth, 0 without plinth	台座の高さ (0 は台座なし)
 Heights above floor (IEC 60204-1)	床面からの高さ (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	クリック、移動、スクロールの間押したままにします。macOS では Ctrl は Cmd です。
 Help	ヘルプ
 Hide the groups you do not need and put the commands you use most into own groups.	不要なグループを非表示にし、よく使うコマンドを独自のグループにまとめます。
 Highest phase unbalance	最大相不平衡
@@ -873,7 +885,12 @@ Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 Isometric	等角
+Items copied: {}	コピーした要素: {}
+Items copied: {} (devices left out: {}, a device is placed once)	コピーした要素: {} (除外したデバイス: {}、デバイスは一度だけ配置されます)
+Items cut: {}	切り取った要素: {}
+Items cut: {} (devices back to the devices to place: {})	切り取った要素: {} (配置するデバイスに戻したデバイス: {})
 Items on the layer	レイヤー上のアイテム
+Items pasted: {}	貼り付けた要素: {}
 Items with an anchor keep it; the others are inserted relative to the click.	アンカーを持つアイテムはそれを保持し、その他はクリック位置を基準に挿入されます。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	コネクターのないシステム向けに、アイテム、デバイス、配置、接続、電線、ドキュメントを 1 つの JSON ファイルにまとめます
 Its pages and subsections go to the section above	そのページとサブセクションは上位のセクションに移ります
@@ -891,6 +908,8 @@ Key tips of the ribbon	リボンのアクセスキー
 Key: {}	キー: {}
 Keyboard shortcuts	キーボードショートカット
 Keyboard shortcuts…	キーボードショートカット…
+Keys and gestures	キーとジェスチャー
+Keys of the 3D view	3D ビューのキー
 Label	ラベル
 Label (grey)	ラベル (グレー)
 Label field	ラベルフィールド
@@ -912,6 +931,7 @@ Layout spaces	レイアウト空間
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D ビューで部屋の天井と屋根を省略
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3D ビューですべての配線ダクトのふたを省略します：中の電線が見えます
 Leave repeated values of the first column blank	最初の列で繰り返される値を空白にする
+Left button	左ボタン
 Left edges	左端
 Legend plates (door devices)	銘板 (扉取付機器)
 Length from the node to the device	ノードからデバイスまでの長さ
@@ -925,6 +945,7 @@ Level of this kind of message	この種類のメッセージのレベル
 Level {} added to building {}; new rooms go onto it	建物 {1} に階 {0} を追加しました。新しい部屋はこの階に置かれます
 Level {} of building {}	建物 {1} の階 {0}
 Library	ライブラリ
+Like two fingers	2 本指と同じ
 Limits	制限値
 Limits in effect	適用中の制限値
 Line to PE at the supply point; 0 = from the highest short-circuit current	電源供給点での線-PE 間。0 = 最大短絡電流から算出
@@ -958,7 +979,6 @@ Locked by {} – read only	{} がロック中 – 読み取り専用
 Locking…	ロックしています…
 Logic	ロジック
 Longer values are drawn smaller (0 = no limit)	長い値は小さく描画されます (0 = 制限なし)
-Look at the point clicked, closer	クリックした点を近くから見る
 Look for updates when OpenECraft starts	OpenECraft の起動時に更新を確認する
 Looking for updates…	更新を確認しています…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub で OpenECraft の新しいリリースを探し、バックグラウンドでインストールします
@@ -1006,6 +1026,7 @@ Messages	メッセージ
 Messages ({})	メッセージ ({})
 Messages of this session	このセッションのメッセージ
 Middle	中央
+Middle button	中ボタン
 Middle of the PV array in the floor plan of the building	建物の平面図におけるPVアレイの中心
 Min. bend radius	最小曲げ半径
 Minimize the ribbon	リボンを最小化
@@ -1014,6 +1035,7 @@ Mirror (selection or symbol being placed)	反転 (選択内容または配置中
 Mixed	混在
 Mode	モード
 Model of a part (2D / 3D)	部品のモデル (2D / 3D)
+Modifier keys	モディファイアキー
 Module part; its size comes from the part	モジュール部品。サイズは部品から取得
 Motors feed the short circuit	モーターが短絡電流を供給
 Mounted on	取付先
@@ -1022,17 +1044,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	横�
 Mounting height: {}	取付高さ: {}
 Mounting plate: {} holes, {} cutouts	取付板: 穴 {} 個、切り欠き {} 個
 Mounting system	架台システム
+Mouse	マウス
 Move	移動
+Move ahead in the 3D view (held)	3D ビューで前進（押したまま）
+Move back in the 3D view (held)	3D ビューで後ろへ移動（押したまま）
 Move down	下へ移動
+Move down in the 3D view (held)	3D ビューで下へ移動（押したまま）
+Move faster with the keys of the 3D view	3D ビューのキーで速く移動
 Move left	左へ移動
+Move left in the 3D view (held)	3D ビューで左へ移動（押したまま）
 Move page down	ページを下へ移動
 Move page up	ページを上へ移動
+Move right in the 3D view (held)	3D ビューで右へ移動（押したまま）
 Move selection by	選択内容の移動量
 Move selection by…	選択内容を移動…
 Move the devices of this page into the new structure	このページのデバイスを新しい構造に移動
-Move through the 3D view (Shift: faster)	3D ビューの中を移動 (Shift: 高速)
 Move to section	セクションへ移動
 Move up	上へ移動
+Move up in the 3D view (held)	3D ビューで上へ移動（押したまま）
 Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移動したシンボルは電線を引き連れ、移動した電線は端のある接続ポイントに留まります。ドラッグ中に Alt を押すと逆になります。選択した電線の端をドラッグすると切り離せます
 Moves to the top level as page {}	最上位レベルのページ {} になります
 Moves to {} as page {}	{} のページ {} になります
@@ -1053,7 +1082,6 @@ Name and cross reference	名前と相互参照
 Name on the server	サーバー上の名前
 Name; Data Type; Logical Address; Comment – for PLC programming tools	名前; データ型; 論理アドレス; コメント – PLC プログラミングツール用
 Named copy of this form, for report blocks	このフォームの名前付きコピー (レポートブロック用)
-Navigation	ナビゲーション
 Navigators	ナビゲーター
 Neutral exchange file…	ニュートラル交換ファイル…
 Never	表示しない
@@ -1123,6 +1151,7 @@ No dot: plain T	点なし: 単純な T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	エンクロージャーがまだありません – 「新しいエンクロージャー」で作成するか、「新しい部屋」でキャビネット用の部屋を作成します。
 No field cables: place the enclosures and field devices at nodes of the route network.	フィールドケーブルがありません。エンクロージャーとフィールドデバイスをルートネットワークのノードに配置してください。
 No filter fans: an air/air heat exchanger or a cooling unit	フィルターファンなし: 空気/空気熱交換器またはクーラー
+No gesture	ジェスチャーなし
 No harnesses defined.	ハーネスが定義されていません。
 No inverter	インバーターなし
 No jump: plain crossing, connections have dots	ジャンプなし: 単純な交差、接続には点
@@ -1165,6 +1194,7 @@ Not found: {}	見つかりません: {}
 Not in the project parts – synchronize in parts management	プロジェクト部品にありません – 部品管理で同期してください
 Not on a wire	電線上にありません
 Not saved, locked or changed by another user: {}	保存されていません。他のユーザーがロックまたは変更しています: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	使えません：左ボタンのみは選択、描画、移動に使われます。モディファイアキーを押すか別のボタンを使ってください。
 Not the shared project: changes are saved locally until it is opened on the project server again	共有プロジェクトではありません：プロジェクトサーバーで再度開くまで変更はローカルに保存されます
 Nothing exchanged yet.	まだ何も交換されていません。
 Nothing left in this list.	このリストには何も残っていません。
@@ -1182,6 +1212,8 @@ Of the outer diameter, as laid fixed	外径の倍数、固定敷設時
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径の倍数。配管は直径の1.5倍のエルボで曲げられます
 Off	オフ
 Offset from one row to the next: downwards for lists, sideways for rows side by side	行から次の行へのオフセット: リストの場合は下方向、横に並ぶ行の場合は横方向
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	タッチスクリーンとトラックパッドで有効です。パンのみ：ピンチでズームしません。ズームのみ：システムがトラックパッドを区別できる場合、トラックパッドでの 2 本指スクロールもズームします。1 本指はマウスの左ボタンと同じです。
+On a touch screen; trackpads leave three-finger gestures to the system.	タッチスクリーンで有効です。トラックパッドの 3 本指の操作はシステムが使います。
 On startup	起動時
 One row per label	ラベルごとに 1 行
 Only devices on the current page	現在のページのデバイスのみ
@@ -1204,6 +1236,7 @@ Open project	プロジェクトを開く
 Open project server	プロジェクトサーバーを開く
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault からプロジェクトとファイルを開き、プロジェクト、エクスポート、3D モデルを Vault に格納します
 Open the project	プロジェクトを開く
+Open the selection: its properties, in the floor plan its face	選択を開く：プロパティ、平面図ではその面
 Open to {}: wires cross beside the mounting plates	{} へ開放: 電線は取付板の横を通ります
 Open walls and floors	壁と床を開く
 Open, save, import, export, print and the settings	開く、保存、インポート、エクスポート、印刷と設定
@@ -1239,6 +1272,7 @@ Open…	開く…
 Operations / year	動作回数 / 年
 Option	オプション
 Options	オプション
+Orbit the 3D view	3D ビューを回転
 Ordinary cable	通常のケーブル
 Orientation	向き
 Origin	発生元
@@ -1288,7 +1322,10 @@ Pages and templates using the frame follow	この図枠を使用しているペ�
 Pages of revision {}	リビジョン {} のページ
 Pages of the selected block	選択したブロックのページ
 Pages using it get the project default	これを使用しているページにはプロジェクトの既定値が適用されます
+Pages, panel layout and plans	ページ、盤レイアウト、図面
 Pairs in schematic order (1-2, 3-4 …)	回路図の順序でペア (1-2、3-4 …)
+Pan the 3D view	3D ビューをパン
+Pan the page, the panel layout and the plans	ページ、盤レイアウト、図面をパン
 Pane menu	ペインメニュー
 Panel wiring report	盤配線レポート
 Panes	ペイン
@@ -1443,6 +1480,7 @@ Recent projects	最近のプロジェクト
 Recently used	最近使用したもの
 Recommended height of manual actuators (10.1.2)	手動操作部の推奨高さ (10.1.2)
 Record	記録
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	記録：表示される領域でジェスチャーを行います。必要ならモディファイアキーを押したままにします（Esc でキャンセル）。追加は既存のジェスチャーを残します。選択ツールでの右クリックはコンテキストメニューを開きます。
 Rectangular	四角形
 Redline: to be changed · Greenline: changed as built	レッドライン: 変更予定 · グリーンライン: 施工どおりに変更済み
 Redo	やり直し
@@ -1551,6 +1589,7 @@ Revisions, approval and release	リビジョン、承認、リリース
 Ribbon	リボン
 Ribbon (JSON)	リボン (JSON)
 Ribbon imported	リボンをインポートしました
+Right button	右ボタン
 Right click for more	右クリックでその他の操作
 Right edges	右端
 Right neighbour	右隣
@@ -1567,6 +1606,8 @@ Room {} taken out of the building; it stays where it stands	部屋 {} を建物�
 Rooms under sloped ceilings (lowest – highest ceiling)	傾斜天井の下の部屋 (最低 – 最高の天井)
 Rotate	回転
 Rotate (selection or symbol being placed)	回転 (選択内容または配置中のシンボル)
+Rotate what is being moved	移動中のものを回転
+Rotate what is being moved counter-clockwise	移動中のものを反時計回りに回転
 Round	円形
 Round cutouts facing each other in both side walls	両側板に向かい合う円形の切り欠き
 Route definition of {}	{} のルート定義
@@ -1643,7 +1684,9 @@ Scheme {}	スキーム {}
 Screws, nuts, washers and rivet nuts of the fixing points	固定ポイントのねじ、ナット、ワッシャー、リベットナット
 Scrolling	スクロール
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	スクロールで全方向にパンします。ズームはピンチまたは Ctrl + スクロールで行います。
+Scrolling up and down pans sideways	上下スクロールで横にパン
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	上下のスクロールでポインター位置をズーム、横方向（水平ホイール、Shift + ホイール）でパンします。
+Scrolling zooms, also where it pans	スクロールでズーム（パンする場所でも）
 Search (* and ? as placeholders)…	検索 (* と ? はワイルドカード)…
 Search below this folder	このフォルダーの下を検索
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	カタログ、製品グループ、技術データで部品サーバーを検索し、部品を追加して、データベースの更新を確認します
@@ -1703,7 +1746,6 @@ Shield pigtail	シールドピグテール
 Shielded	シールド付き
 Shielded analogue cables	シールド付きアナログケーブル
 Shielded drive cables	シールド付きドライブケーブル
-Shift + click / drag	Shift + クリック / ドラッグ
 Short circuit and selectivity	短絡と選択遮断
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	短絡、選択遮断、負荷、EMC、機能安全、ルールセットに対する検証
 Short-circuit currents	短絡電流
@@ -1772,6 +1814,7 @@ Start	開始
 Start again when the page structure changes	ページの構造が変わったら番号をリセット
 Start at	開始番号
 Start byte	開始バイト
+Start of a move: Keep connections the other way round	移動の開始時：接続を保持を逆にする
 Start page	スタートページ
 Station	ステーション
 Stations and racks	ステーションとラック
@@ -1878,6 +1921,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	水平の配線
 The items are selected and moved together	アイテムはまとめて選択、移動されます
 The macro library has no page macros (Macros › Save page as macro…).	マクロライブラリにページマクロがありません (マクロ › ページをマクロとして保存…)。
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	ホイールで横にパンまたはズームするモディファイアキーは「モディファイアキー」で設定します。
 The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
 The names of its pages follow	そのページの名前も変わります
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	開いているプロジェクトはローカル復元コピーです。その変更はプロジェクトサーバーに保存されていません。共有プロジェクトを開く前に、ローカルに保存するか破棄するかを決めます。
@@ -1918,6 +1962,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	このページ
 This page contains schematic content which is not evaluated on non-schematic pages.	このページには回路図の内容が含まれていますが、回路図以外のページでは評価されません。
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	このプロジェクトは {1} のサブプロジェクト {0} です ({2} に切り出し)。作業が完了したら保存して、メインプロジェクトに挿入してください。
+Three fingers	3 本指
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	ここで3本の接続線が交わる必要があります：1本はその方向に、2本は横方向に。それまでは接続は回路図の順序でつながれます。
 Three-phase short-circuit current at the supply point	電源供給点での三相短絡電流
 Tilt	傾斜角
@@ -1936,10 +1981,11 @@ Touch screen	タッチスクリーン
 Transfer project parts to database	プロジェクト部品をデータベースに転送
 Translate the project texts; documentation per language	プロジェクトテキストを翻訳します。言語ごとのドキュメント
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	鉛直軸まわりの回転 (上から見て反時計回り、90 °: 正面が右向き)
+Turn the 3D view to the point	3D ビューをその点に向ける
 Tutorial	チュートリアル
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
+Two fingers	2 本指
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	トラックパッドの 2 本指でパン、マウスホイールでズームします。両者を区別できるのは macOS だけで、その他ではスクロールはホイールと同じくズームします。
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	2 本指でパンとピンチズームを同時に行えます。1 本指はマウスの左ボタンと同じ働きをします。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
@@ -2005,7 +2051,6 @@ View	表示
 Visible	表示
 Voltage (line to line)	電圧 (線間)
 Voltage drop	電圧降下
-W A S D / arrows, Q / E	W A S D / 矢印キー、Q / E
 WGS 84, written into the site of IFC exports	WGS 84。IFC エクスポートの敷地に書き込まれます
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	壁 {}、{} m: ドラッグで移動、ダブルクリックで表示して取り付け
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	壁 {}、{} m: 壁ビューに表示中の壁 (強調表示)、ドラッグで移動
@@ -2017,7 +2062,7 @@ Web between holes	穴間の残し幅
 Welcome to OpenECraft	OpenECraft へようこそ
 What is new	新機能
 What should be checked or changed?	何をチェックまたは変更しますか?
-Wheel / right or middle drag	ホイール / 右または中ボタンのドラッグ
+Wheel and touch	ホイールとタッチ
 Wheel: zoom · drag: move · click on a room: its floor plan	ホイール：ズーム · ドラッグ：移動 · 部屋をクリック：その平面図
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	ホイール：ズーム · ドラッグ：移動 · 部屋をクリック：平面図 · 敷地境界の頂点をドラッグ
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	ホイール: ズーム · 右クリック: キャンセル · 図形は 0.5 mm、接続ポイントは 4 mm グリッドにスナップ
@@ -2084,7 +2129,8 @@ You may only view this project.	このプロジェクトは閲覧のみ可能で
 You may review this project: comments, markup and approvals, no other changes.	このプロジェクトはレビューのみ可能です: コメント、マークアップ、承認のみで、その他の変更はできません。
 Your unsaved changes of it are taken back	未保存の変更は取り消されます
 Zoom	ズーム
-Zoom / pan	ズーム / パン
+Zoom in in the 3D view (held)	3D ビューを拡大（押したまま）
+Zoom out in the 3D view (held)	3D ビューを縮小（押したまま）
 all	すべて
 all cards	すべてのカード
 all lines	すべての行
@@ -2330,6 +2376,7 @@ x y	x y
 {} °C (max.)	{} °C (最大)
 {} × {} pixels, {}	{} × {} ピクセル、{}
 {} – {} ({} pages)	{} – {} ({} ページ)
+{} – {} here (Esc cancels)	{} – ここで{}（Esc でキャンセル）
 {}: click to show its floor plan	{}：クリックで平面図を表示
 {}: crimp together with the wire to {}	{}: {} への電線と一緒に圧着
 {}: drag to move it, R turns it, a double-click opens it	{}: ドラッグで移動、R で回転、ダブルクリックで開く

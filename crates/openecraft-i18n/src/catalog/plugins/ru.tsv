@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Соединяет два порта станций сетевым кабелем; существующие соединения на этих портах заменяются
 Copies function texts between the single-line diagram and the schematic where one side is empty	Копирует тексты функций между однолинейной схемой и схемой, если на одной из них текст пуст
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Копирует элементы несколько раз с фиксированным шагом; устройства получают новые обозначения, клеммы – новые номера
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Копирует элементы вместе с установленными на них элементами в x / y на поверхности, также другого корпуса; устройства пропускаются (устройство размещается только один раз)
 Copper bar cutting list	Карта раскроя медных шин
 Copper bars	Медные шины
 Corner points in metres	Угловые точки в метрах
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Шкаф, сп
 Enclosure name (all if missing)	Имя корпуса (если не указано – все)
 Enclosure part number	Номер изделия корпуса
 Enclosure system (default: the enclosure's)	Система корпусов (по умолчанию: система корпуса)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Корпус, в который попадают копии (место установки, например +CAB2); без указания тот же
 Enclosure {} exists already	Корпус {} уже существует
 Enclosures, panel items, accessories and panel macros	Корпуса, элементы компоновки, принадлежности и макросы компоновки
 End brackets and end plates from the tech data of the terminal parts	Концевые стопоры и торцевые пластины по техническим данным изделий клемм
@@ -490,6 +492,7 @@ None of the items is an interruption point	Ни один из элементов
 Not a cross-section: {} (e.g. 1.5 mm²)	Не является сечением: {} (например 1.5 mm²)
 Not a valid safety function: {}	Недопустимая функция безопасности: {}
 Note, e.g. what the problem is	Примечание, например в чём проблема
+Nothing to copy: devices are placed once	Нечего копировать: устройства размещаются только один раз
 Nothing to remove: {} {}	Нечего удалять: {} {}
 Number of columns	Число столбцов
 Number of copies (default 1)	Число копий (по умолчанию 1)

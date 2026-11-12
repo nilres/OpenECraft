@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	İstasyonların iki portunu bir ağ kablosuyla bağlar; bu portlardaki mevcut bağlantılar değiştirilir
 Copies function texts between the single-line diagram and the schematic where one side is empty	Bir tarafın boş olduğu yerlerde fonksiyon metinlerini tek hat şeması ile şema arasında kopyalar
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Öğeleri sabit aralıkla birkaç kez kopyalar; cihazlar yeni etiketler, klemensler yeni numaralar alır
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Öğeleri üzerlerine monte edilmiş öğelerle birlikte bir yüzeyde x / y konumuna, başka bir panoya da kopyalar; cihazlar atlanır (bir cihaz yalnızca bir kez yerleştirilir)
 Copper bar cutting list	Bakır bara kesim listesi
 Copper bars	Bakır baralar
 Corner points in metres	Metre cinsinden köşe noktaları
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Sağında durd
 Enclosure name (all if missing)	Pano adı (verilmezse tümü)
 Enclosure part number	Pano parça numarası
 Enclosure system (default: the enclosure's)	Pano sistemi (varsayılan: panonunki)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Kopyaların gideceği pano (konum, ör. +CAB2); belirtilmezse aynısı
 Enclosure {} exists already	Pano {} zaten var
 Enclosures, panel items, accessories and panel macros	Panolar, pano öğeleri, aksesuarlar ve pano makroları
 End brackets and end plates from the tech data of the terminal parts	Klemens parçalarının teknik verilerinden uç tutucular ve kapak plakaları
@@ -490,6 +492,7 @@ None of the items is an interruption point	Öğelerin hiçbiri kesinti noktası 
 Not a cross-section: {} (e.g. 1.5 mm²)	Kesit değil: {} (ör. 1.5 mm²)
 Not a valid safety function: {}	Geçerli bir güvenlik fonksiyonu değil: {}
 Note, e.g. what the problem is	Not, ör. sorunun ne olduğu
+Nothing to copy: devices are placed once	Kopyalanacak bir şey yok: cihazlar yalnızca bir kez yerleştirilir
 Nothing to remove: {} {}	Kaldırılacak bir şey yok: {} {}
 Number of columns	Sütun sayısı
 Number of copies (default 1)	Kopya sayısı (varsayılan 1)

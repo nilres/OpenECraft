@@ -127,6 +127,7 @@ refer to each other (the registry kinds take an `&Analysis`).
   workspace); `openecraft/src/workspaces.rs` the built-in and saved workspaces.
   `openecraft/src/insert_center.rs` holds the search, favorites and recently used
   entries of the Insert center, `openecraft/src/shortcuts.rs` the keys of every command,
+  `openecraft/src/gestures.rs` the mouse gestures and modifier keys of the views,
   `openecraft/src/style.rs` the state colours (light and dark, tested for contrast).
   The tests check that every command has a place in the shell and every pane a
   command, so a new feature cannot be unreachable. Icons are vector paths in

@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Łączy dwa porty stacji kablem sieciowym; istniejące połączenia na tych portach są zastępowane
 Copies function texts between the single-line diagram and the schematic where one side is empty	Kopiuje teksty funkcji między schematem jednokreskowym a schematem elektrycznym tam, gdzie jedna strona jest pusta
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Kopiuje elementy kilka razy w stałej odległości; urządzenia otrzymują nowe oznaczenia, zaciski nowe numery
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Kopiuje elementy wraz z zamontowanymi na nich elementami do x / y na ścianie, także innej obudowy; urządzenia są pomijane (urządzenie umieszcza się tylko raz)
 Copper bar cutting list	Lista rozkroju szyn miedzianych
 Copper bars	Szyny miedziane
 Corner points in metres	Punkty narożne w metrach
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Obudowa, z kt�
 Enclosure name (all if missing)	Nazwa obudowy (wszystkie, jeśli nie podano)
 Enclosure part number	Numer artykułu obudowy
 Enclosure system (default: the enclosure's)	System obudów (domyślnie: system danej obudowy)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Obudowa, do której trafiają kopie (miejsce montażu, np. +CAB2); bez podania ta sama
 Enclosure {} exists already	Obudowa {} już istnieje
 Enclosures, panel items, accessories and panel macros	Obudowy, elementy zabudowy, akcesoria i makra zabudowy
 End brackets and end plates from the tech data of the terminal parts	Uchwyty końcowe i pokrywy końcowe z danych technicznych artykułów zacisków
@@ -490,6 +492,7 @@ None of the items is an interruption point	Żaden z elementów nie jest punktem 
 Not a cross-section: {} (e.g. 1.5 mm²)	To nie jest przekrój: {} (np. 1.5 mm²)
 Not a valid safety function: {}	To nie jest prawidłowa funkcja bezpieczeństwa: {}
 Note, e.g. what the problem is	Notatka, np. na czym polega problem
+Nothing to copy: devices are placed once	Nic do skopiowania: urządzenia umieszcza się tylko raz
 Nothing to remove: {} {}	Nic do usunięcia: {} {}
 Number of columns	Liczba kolumn
 Number of copies (default 1)	Liczba kopii (domyślnie 1)
