@@ -24,6 +24,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   `parts_registration` (`enabled`, `approval`), `parts_user_approve`. New API:
   `POST /register`, `GET|PUT /registration`, `POST /users/{name}/approval`; `/info`
   tells whether the registration is open.
+- **EPLAN Data Portal downloads:** DXF and commercial-data downloads use the current
+  POST API, and the connection test checks the protected file-provider service without
+  downloading commercial data. On Windows, an explicit Remember token option lets
+  a verified PAT be shared securely between the editor and CLI/MCP through
+  Credential Manager ([parts server](docs/parts-server.md#shared-data-portal-pat-on-windows)). The first
+  GUI request loads the saved PAT in the background automatically, without requiring
+  a connection test. Concurrent requests share the lookup.
+
 - **Straight ferrules and terminals:** a wire or cable core with a ferrule or a crimped
   terminal runs straight out of its connection point for the length of it (with its
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D
