@@ -41,6 +41,7 @@ fn frame_preview(ui: &mut egui::Ui, f: &PlotFrame, prj: &openecraft_core::model:
 }
 
 impl App {
+    #[allow(clippy::too_many_lines)]
     pub(super) fn frame_tab(&mut self, ui: &mut egui::Ui) {
         let names = frame::names(&self.session.prj);
         let pu = &mut self.pages_ui;
