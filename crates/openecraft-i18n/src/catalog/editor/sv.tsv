@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Våning {} tillagd i byggnad
 Level {} of building {}	Plan {} i byggnad {}
 Levels	Våningar
 Library	Bibliotek
+Like two fingers	Som två fingrar
 Limits	Gränsvärden
 Limits in effect	Gällande gränsvärden
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fas mot PE vid matningspunkten; 0 = från den högsta kortslutningsströmmen
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Av ytterdiametern, fast förlagd
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Av ytterdiametern; rör böjs med böjar på en och en halv diameter
 Off	Av
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Förskjutning från en rad till nästa: nedåt för listor, åt sidan för rader bredvid varandra
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	På pekskärm och styrplatta. Endast panorera: nypning zoomar inte; endast zooma: rullning med två fingrar på styrplattan zoomar också, där systemet skiljer ut styrplattor. Ett finger fungerar som vänster musknapp.
+On a touch screen; trackpads leave three-finger gestures to the system.	På pekskärm; styrplattor lämnar gester med tre fingrar åt systemet.
 On startup	Vid start
 One row per label	En rad per etikett
 Only devices on the current page	Endast apparater på den aktuella sidan
@@ -1360,8 +1363,6 @@ Path function text	Strömvägens funktionstext
 Pattern	Mönster
 Pattern…	Mönster…
 Pin-out	Stiftbeläggning
-Pinching	Nypning
-Pinching on a trackpad or a touch screen zooms	Nypning på styrplatta eller pekskärm zoomar
 Pipe run	Rörgata
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rörgata på en vägg, i taket eller på golvet i rummet, längs vilken slangar, rör och rörledningar dras: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
 Pipe run {} mm – double-click or Enter to finish	Rörgata {} mm – dubbelklicka eller tryck på Enter för att avsluta
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Den här sidan
 This page contains schematic content which is not evaluated on non-schematic pages.	Den här sidan innehåller schemainnehåll som inte utvärderas på sidor som inte är schemasidor.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Det här projektet är delprojekt {} av {} (utlyft {}). Spara det och infoga det i huvudprojektet när arbetet är klart.
+Three fingers	Tre fingrar
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Här måste tre ledare mötas: en i dess riktning och två tvärs över. Till dess kedjas förbindelsen i schemats ordning.
 Three-phase short-circuit current at the supply point	Trefasig kortslutningsström vid matningspunkten
 Tilt	Lutning
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Vänd 3D-vyn mot punkten
 Tutorial	Handledning
 Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
+Two fingers	Två fingrar
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Två fingrar på en styrplatta panorerar, mushjulet zoomar. Bara macOS skiljer dem åt; annars zoomar rullning som hjulet.
-Two fingers pan	Två fingrar panorerar
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Två fingrar panorerar och zoomar med nypning samtidigt; ett finger fungerar som vänster musknapp.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

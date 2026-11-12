@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	{1} binasına {0} katı ekle
 Level {} of building {}	{1} binasının {0} katı
 Levels	Katlar
 Library	Kütüphane
+Like two fingers	İki parmak gibi
 Limits	Sınırlar
 Limits in effect	Geçerli sınırlar
 Line to PE at the supply point; 0 = from the highest short-circuit current	Besleme noktasında faz-PE; 0 = en yüksek kısa devre akımından
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Dış çapın katı, sabit döşemede
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Dış çapın katı; borular bir buçuk çaplık dirseklerle bükülür
 Off	Kapalı
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Bir satırdan sonrakine kaydırma: listeler için aşağı doğru, yan yana satırlar için yana doğru
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Dokunmatik ekranda ve dokunmatik yüzeyde. Yalnızca kaydır: kıstırma yakınlaştırmaz; yalnızca yakınlaştır: sistemin dokunmatik yüzeyleri ayırt ettiği yerde iki parmakla kaydırma da yakınlaştırır. Tek parmak sol fare düğmesi gibi çalışır.
+On a touch screen; trackpads leave three-finger gestures to the system.	Dokunmatik ekranda; dokunmatik yüzeyler üç parmak hareketlerini sisteme bırakır.
 On startup	Başlangıçta
 One row per label	Etiket başına bir satır
 Only devices on the current page	Yalnızca geçerli sayfadaki cihazlar
@@ -1360,8 +1363,6 @@ Path function text	Yol fonksiyon metni
 Pattern	Desen
 Pattern…	Desen…
 Pin-out	Pin dizilimi
-Pinching	Kıstırma
-Pinching on a trackpad or a touch screen zooms	Dokunmatik yüzeyde veya dokunmatik ekranda kıstırma yakınlaştırır
 Pipe run	Boru güzergâhı
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Odanın duvarında, tavanında veya zemininde, hortumların, boruların ve boru hatlarının boyunca döşendiği boru güzergâhı: köşelere tıklayın, bitirmek için çift tıklayın veya Enter'a basın
 Pipe run {} mm – double-click or Enter to finish	Boru güzergâhı {} mm – bitirmek için çift tıklayın veya Enter'a basın
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Bu sayfa
 This page contains schematic content which is not evaluated on non-schematic pages.	Bu sayfa, şema dışı sayfalarda değerlendirilmeyen şema içeriği barındırıyor.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Bu proje, {1} projesinin {0} alt projesidir ({2} tarihinde dışarı alındı). İş bittiğinde kaydedin ve ana projeye ekleyin.
+Three fingers	Üç parmak
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Burada üç tel birleşmeli: biri yönünde, ikisi enine. O zamana kadar bağlantı şema sırasında zincirlenir.
 Three-phase short-circuit current at the supply point	Besleme noktasındaki üç fazlı kısa devre akımı
 Tilt	Eğim
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3B görünümü noktaya çevir
 Tutorial	Eğitim
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
+Two fingers	İki parmak
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dokunmatik yüzeyde iki parmak görünümü kaydırır, fare tekerleği yakınlaştırır. Bunları yalnızca macOS ayırt eder; diğer sistemlerde kaydırma tekerlek gibi yakınlaştırır.
-Two fingers pan	İki parmak kaydırır
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	İki parmak aynı anda görünümü kaydırır ve kıstırarak yakınlaştırır; tek parmak sol fare düğmesi gibi çalışır.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

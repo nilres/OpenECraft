@@ -943,6 +943,7 @@ Level of this kind of message	이 메시지 종류의 수준
 Level {} added to building {}; new rooms go onto it	건물 {1}에 층 {0}을(를) 추가했습니다. 새 실은 이 층에 놓입니다
 Level {} of building {}	건물 {1}의 {0}층
 Library	라이브러리
+Like two fingers	두 손가락과 같게
 Limits	한계값
 Limits in effect	적용되는 한계값
 Line to PE at the supply point; 0 = from the highest short-circuit current	전원 공급점의 선-PE 간. 0 = 최대 단락 전류에서
@@ -1209,6 +1210,8 @@ Of the outer diameter, as laid fixed	외경의 배수, 고정 포설 시
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	외경의 배수. 배관은 직경 1.5배의 곡관으로 굽힘
 Off	끄기
 Offset from one row to the next: downwards for lists, sideways for rows side by side	한 행에서 다음 행까지의 오프셋: 목록은 아래쪽, 나란히 놓인 행은 옆쪽
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	터치스크린과 트랙패드에 적용됩니다. 이동만: 핀치로 확대/축소하지 않습니다. 확대/축소만: 시스템이 트랙패드를 구별하는 경우 트랙패드에서 두 손가락 스크롤도 확대/축소합니다. 한 손가락은 마우스 왼쪽 단추처럼 작동합니다.
+On a touch screen; trackpads leave three-finger gestures to the system.	터치스크린에 적용됩니다. 트랙패드의 세 손가락 제스처는 시스템이 사용합니다.
 On startup	시작할 때
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
@@ -1344,8 +1347,6 @@ Path function text	경로 기능 텍스트
 Pattern	패턴
 Pattern…	패턴…
 Pin-out	핀 배치
-Pinching	핀치
-Pinching on a trackpad or a touch screen zooms	트랙패드나 터치스크린에서 핀치로 확대/축소
 Pipe run	배관 경로
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	방의 벽, 천장 또는 바닥에 있는 배관 경로로, 호스, 튜브, 배관이 이를 따라 배선됩니다: 모서리를 클릭하고 두 번 클릭하거나 Enter로 완료
 Pipe run {} mm – double-click or Enter to finish	배관 경로 {} mm – 두 번 클릭하거나 Enter로 완료
@@ -1957,6 +1958,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	이 페이지
 This page contains schematic content which is not evaluated on non-schematic pages.	이 페이지에는 회로도가 아닌 페이지에서는 평가되지 않는 회로도 내용이 있습니다.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	이 프로젝트는 {1}의 하위 프로젝트 {0}입니다({2}에 반출). 작업이 끝나면 저장한 후 주 프로젝트에 삽입하세요.
+Three fingers	세 손가락
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	여기에서 세 연결선이 만나야 합니다: 하나는 그 방향으로, 둘은 가로로. 그때까지 연결은 회로도 순서로 연결됩니다.
 Three-phase short-circuit current at the supply point	전원 공급점의 3상 단락 전류
 Tilt	기울기
@@ -1978,9 +1980,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D 보기를 해당 점으로 돌리기
 Tutorial	튜토리얼
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
+Two fingers	두 손가락
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	트랙패드에서 두 손가락은 화면을 이동하고 마우스 휠은 확대/축소합니다. 둘을 구분하는 것은 macOS뿐이며, 다른 곳에서는 스크롤이 휠처럼 확대/축소합니다.
-Two fingers pan	두 손가락으로 이동
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	두 손가락으로 이동과 핀치 확대/축소를 동시에 할 수 있으며, 한 손가락은 마우스 왼쪽 버튼처럼 작동합니다.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

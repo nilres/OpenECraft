@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Piano {} aggiunto all'edific
 Level {} of building {}	Piano {} dell'edificio {}
 Levels	Piani
 Library	Libreria
+Like two fingers	Come due dita
 Limits	Limiti
 Limits in effect	Limiti in vigore
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fase-PE nel punto di alimentazione; 0 = dalla corrente di cortocircuito massima
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Del diametro esterno, in posa fissa
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Del diametro esterno; le tubazioni sono curvate con curve di un diametro e mezzo
 Off	Disattivato
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Spostamento da una riga alla successiva: verso il basso per gli elenchi, lateralmente per righe affiancate
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Su touch screen e trackpad. Solo spostare: il pizzico non esegue lo zoom; solo zoom: lo scorrimento con due dita sul trackpad esegue anche lo zoom, dove il sistema distingue i trackpad. Un dito funziona come il tasto sinistro del mouse.
+On a touch screen; trackpads leave three-finger gestures to the system.	Sul touch screen; i trackpad lasciano i gesti a tre dita al sistema.
 On startup	All'avvio
 One row per label	Una riga per etichetta
 Only devices on the current page	Solo i dispositivi sulla pagina corrente
@@ -1360,8 +1363,6 @@ Path function text	Testo di funzione del percorso
 Pattern	Matrice
 Pattern…	Matrice…
 Pin-out	Piedinatura
-Pinching	Pizzico
-Pinching on a trackpad or a touch screen zooms	Il pizzico sul trackpad o sul touch screen esegue lo zoom
 Pipe run	Percorso tubazioni
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Percorso tubazioni su una parete, il soffitto o il pavimento del locale, lungo cui vengono instradati tubi flessibili, tubi e tubazioni: fai clic sugli angoli, doppio clic o Enter per terminare
 Pipe run {} mm – double-click or Enter to finish	Percorso tubazioni {} mm – doppio clic o Enter per terminare
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Questa pagina
 This page contains schematic content which is not evaluated on non-schematic pages.	Questa pagina contiene contenuti di schema che non vengono valutati nelle pagine non di schema.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Questo progetto è il sottoprogetto {} di {} (estratto {}). Salvalo e inseriscilo nel progetto principale al termine del lavoro.
+Three fingers	Tre dita
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Qui devono incontrarsi tre conduttori: uno nella sua direzione e due trasversali. Fino ad allora il collegamento è concatenato nell'ordine dello schema.
 Three-phase short-circuit current at the supply point	Corrente di cortocircuito trifase nel punto di alimentazione
 Tilt	Inclinazione
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Orientare la vista 3D verso il punto
 Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Puntalini doppi dove due conduttori condividono un punto di connessione
+Two fingers	Due dita
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Due dita sul trackpad spostano la vista, la rotella del mouse esegue lo zoom. Solo macOS li distingue; altrove lo scorrimento esegue lo zoom come la rotella.
-Two fingers pan	Due dita spostano la vista
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Due dita spostano la vista e, pizzicando, eseguono lo zoom contemporaneamente; un dito funziona come il tasto sinistro del mouse.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Qui devono incontrarsi due conduttori ad angolo retto. Con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digita un punto e premi Enter: x y in mm o @dx dy rispetto all'ultimo punto; agisce come un clic dello strumento corrente
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

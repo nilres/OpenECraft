@@ -12,7 +12,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   assembly, *Keep connections* reversed for a move, rotating back, moving faster in 3D,
   the wheel turned sideways or zooming),
   the mouse buttons that pan, orbit, cancel, rotate while moving and the double-clicks,
-  and what the wheel, pinching and two fingers do. It replaces the *Navigation* and
+  and what the wheel does, two fingers (pan and zoom together, zoom only or pan only)
+  and three fingers on a touch screen. It replaces the *Navigation* and
   *Keyboard shortcuts* settings ([user interface](docs/user-interface.md)).
 - **Moved wires stay connected** (#133): a wire moved on its own no longer leaves the
   connection points it ends at; it gets a new leg from the point, or slides along the

@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	A(z) {0} szint hozzáadva a(
 Level {} of building {}	{1} épület {0} szintje
 Levels	Szintek
 Library	Könyvtár
+Like two fingers	Mint két ujj
 Limits	Határértékek
 Limits in effect	Érvényes határértékek
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fázis–PE a betáplálási pontnál; 0 = a legnagyobb zárlati áramból
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	A külső átmérő többszöröse, fix fek
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	A külső átmérő többszöröse; a csöveket másfél átmérőjű ívekkel hajlítják
 Off	Ki
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Eltolás egyik sortól a következőig: lefelé listáknál, oldalra az egymás melletti soroknál
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Érintőképernyőn és érintőpadon. Csak mozgatás: a csippentés nem nagyít; csak nagyítás: a kétujjas görgetés az érintőpadon is nagyít, ahol a rendszer megkülönbözteti az érintőpadokat. Egy ujj a bal egérgombként működik.
+On a touch screen; trackpads leave three-finger gestures to the system.	Érintőképernyőn; az érintőpadok a háromujjas kézmozdulatokat a rendszerre hagyják.
 On startup	Indításkor
 One row per label	Címkénként egy sor
 Only devices on the current page	Csak az aktuális oldalon lévő készülékek
@@ -1360,8 +1363,6 @@ Path function text	Áramút-funkciószöveg
 Pattern	Minta
 Pattern…	Minta…
 Pin-out	Lábkiosztás
-Pinching	Csippentés
-Pinching on a trackpad or a touch screen zooms	Csippentés az érintőpadon vagy érintőképernyőn nagyít
 Pipe run	Csővezeték-nyomvonal
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Csővezeték-nyomvonal a helyiség falán, mennyezetén vagy padlóján, amely mentén a tömlők, csövek és csővezetékek haladnak: kattintson a sarkokra, a befejezéshez kattintson duplán vagy nyomja meg az Enter billentyűt
 Pipe run {} mm – double-click or Enter to finish	Csővezeték-nyomvonal {} mm – a befejezéshez kattintson duplán, vagy nyomja meg az Enter billentyűt
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Ez az oldal
 This page contains schematic content which is not evaluated on non-schematic pages.	Az oldal kapcsolásirajz-tartalmat tartalmaz, amely nem kapcsolási rajz típusú oldalakon nem kerül kiértékelésre.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ez a projekt a(z) {} alprojekt, szülőprojekt: {} (kiemelve: {}). Mentse, és a munka végeztével illessze be a főprojektbe.
+Three fingers	Három ujj
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Itt három vezetéknek kell találkoznia: egynek az irányában és kettőnek keresztben. Addig a kapcsolat a kapcsolási rajz sorrendjében fűződik.
 Three-phase short-circuit current at the supply point	Háromfázisú zárlati áram a betáplálási pontnál
 Tilt	Dőlésszög
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	A 3D nézet ráfordítása a pontra
 Tutorial	Oktatóanyag
 Twin ferrules where two wires share a connection point	Iker érvéghüvelyek, ahol két vezeték osztozik egy csatlakozási ponton
+Two fingers	Két ujj
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Az érintőpadon két ujj mozgatja a nézetet, az egérgörgő nagyít. Csak a macOS különbözteti meg őket; máshol a görgetés a görgőhöz hasonlóan nagyít.
-Two fingers pan	Két ujj mozgat
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Két ujj egyszerre mozgatja a nézetet és csippentéssel nagyít; egy ujj a bal egérgombként működik.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Itt két vezetéknek kell derékszögben találkoznia. Bekapcsolt automatikus csatlakoztatással a karjaival szemközti csatlakozási pontok hozzá vezetékeződnek.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Írjon be egy pontot, és nyomja le az Enter billentyűt: x y mm-ben, vagy @dx dy az utolsó ponthoz képest; úgy működik, mint az aktuális eszközzel végzett kattintás
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

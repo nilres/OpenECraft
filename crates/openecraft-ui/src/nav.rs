@@ -77,6 +77,37 @@ impl Scroll {
     }
 }
 
+/// What fingers do: two on a touch screen or a trackpad, three on a touch screen.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub enum Fingers {
+    /// Pan and zoom in one movement.
+    #[default]
+    PanAndZoom,
+    Zoom,
+    Pan,
+}
+
+impl Fingers {
+    pub const ALL: [Fingers; 3] = [Fingers::PanAndZoom, Fingers::Zoom, Fingers::Pan];
+
+    /// Name shown in the settings (English, translate with `tr`).
+    pub fn title(self) -> &'static str {
+        match self {
+            Fingers::PanAndZoom => openecraft_i18n::tr_const!("Pan and zoom together"),
+            Fingers::Zoom => openecraft_i18n::tr_const!("Zoom only"),
+            Fingers::Pan => openecraft_i18n::tr_const!("Pan only"),
+        }
+    }
+
+    pub fn zooms(self) -> bool {
+        self != Fingers::Pan
+    }
+
+    pub fn pans(self) -> bool {
+        self != Fingers::Zoom
+    }
+}
+
 /// The user's choice, kept by the application and handed to the views with [`set`].
 #[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 #[serde(default)]
@@ -84,10 +115,12 @@ pub struct Settings {
     pub scroll: Scroll,
     /// Scrolling pans the other way round (the content moves against the fingers).
     pub invert: bool,
-    /// Pinching (trackpad, touch screen) zooms.
-    pub pinch: bool,
-    /// Two fingers on a touch screen pan.
-    pub touch_pan: bool,
+    /// Two fingers on a touch screen; on a trackpad pinching (not with [`Fingers::Pan`])
+    /// and scrolling the platform names a trackpad's (zooms with [`Fingers::Zoom`]).
+    pub two_fingers: Fingers,
+    /// Three or more fingers on a touch screen (none: like two). Trackpads leave them
+    /// to the system.
+    pub three_fingers: Option<Fingers>,
     /// Held while scrolling: scrolling up and down pans sideways (none: off). Kept by
     /// the application with its other modifiers, so not stored here.
     #[serde(skip)]
@@ -99,7 +132,17 @@ pub struct Settings {
 
 impl Default for Settings {
     fn default() -> Self {
-        Settings { scroll: Scroll::Auto, invert: false, pinch: true, touch_pan: true, sideways: Some(Mod::Shift), zoom: Some(Mod::Ctrl) }
+        Settings { scroll: Scroll::Auto, invert: false, two_fingers: Fingers::PanAndZoom, three_fingers: None, sideways: Some(Mod::Shift), zoom: Some(Mod::Ctrl) }
+    }
+}
+
+impl Settings {
+    /// What `n` fingers on a touch screen do.
+    pub fn fingers(&self, n: usize) -> Fingers {
+        match self.three_fingers {
+            Some(f) if n >= 3 => f,
+            _ => self.two_fingers,
+        }
     }
 }
 
@@ -151,8 +194,9 @@ pub fn read(ui: &Ui, resp: &Response) -> Gesture {
             if !resp.rect.contains(t.start_pos) {
                 return Gesture { touch, ..Gesture::NONE };
             }
-            let zoom = if s.pinch { t.zoom_delta } else { 1.0 };
-            let pan = if s.touch_pan { t.translation_delta } else { Vec2::ZERO };
+            let f = s.fingers(t.num_touches);
+            let zoom = if f.zooms() { t.zoom_delta } else { 1.0 };
+            let pan = if f.pans() { t.translation_delta } else { Vec2::ZERO };
             return Gesture { zoom, at: Some(t.center_pos), pan, touch };
         }
         if touch || !resp.hovered() {
@@ -166,7 +210,7 @@ pub fn read(ui: &Ui, resp: &Response) -> Gesture {
 /// Zoom of the pinches on a trackpad in a frame (1: none). Ctrl + wheel, which egui
 /// adds to `InputState::zoom_delta`, is read by [`wheel`] with the chosen modifier.
 fn pinch(events: &[Event], s: Settings) -> f32 {
-    if !s.pinch {
+    if !s.two_fingers.zooms() {
         return 1.0;
     }
     events.iter().filter_map(|e| if let Event::Zoom(f) = e { Some(*f) } else { None }).product()
@@ -194,10 +238,13 @@ fn wheel(events: &[Event], s: Settings) -> (f32, Vec2) {
         if sideways && d.x == 0.0 {
             d = Vec2::new(d.y, 0.0);
         }
+        // Two fingers chosen to zoom only: a trackpad the platform names zooms.
+        let trackpad = matches!(source, MouseWheelSource::Trackpad | MouseWheelSource::Momentum);
         let pans = match s.scroll {
+            _ if trackpad && !s.two_fingers.pans() => false,
             Scroll::Pan => true,
             Scroll::Zoom => false,
-            Scroll::Auto => matches!(source, MouseWheelSource::Trackpad | MouseWheelSource::Momentum),
+            Scroll::Auto => trackpad,
         };
         let moved = if pans || sideways {
             d

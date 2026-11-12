@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Nivelul {} adăugat la clăd
 Level {} of building {}	Nivelul {} al clădirii {}
 Levels	Niveluri
 Library	Bibliotecă
+Like two fingers	Ca două degete
 Limits	Limite
 Limits in effect	Limite în vigoare
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fază–PE în punctul de alimentare; 0 = din cel mai mare curent de scurtcircuit
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Din diametrul exterior, pozat fix
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Din diametrul exterior; țevile se curbează cu coturi de un diametru și jumătate
 Off	Dezactivat
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Decalajul de la un rând la următorul: în jos pentru liste, lateral pentru rânduri alăturate
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Pe ecranul tactil și pe touchpad. Doar deplasare: ciupirea nu mărește; doar mărire: derularea cu două degete pe touchpad mărește și ea, acolo unde sistemul deosebește touchpadurile. Un deget funcționează ca butonul stâng al mouse-ului.
+On a touch screen; trackpads leave three-finger gestures to the system.	Pe ecranul tactil; touchpadurile lasă gesturile cu trei degete sistemului.
 On startup	La pornire
 One row per label	Un rând per etichetă
 Only devices on the current page	Numai dispozitivele de pe pagina curentă
@@ -1360,8 +1363,6 @@ Path function text	Text de funcție de cale
 Pattern	Model de repetare
 Pattern…	Model de repetare…
 Pin-out	Configurația pinilor
-Pinching	Ciupire
-Pinching on a trackpad or a touch screen zooms	Ciupirea pe touchpad sau pe ecranul tactil mărește
 Pipe run	Traseu de conducte
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Traseu de conducte pe un perete, tavan sau pardoseala încăperii, de-a lungul căruia se pozează furtunuri, tuburi și conducte: faceți clic pe colțuri, dublu clic sau Enter pentru a termina
 Pipe run {} mm – double-click or Enter to finish	Traseu de conducte {} mm – dublu clic sau Enter pentru a termina
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Această pagină
 This page contains schematic content which is not evaluated on non-schematic pages.	Această pagină conține elemente de schemă care nu sunt evaluate pe paginile care nu sunt de schemă.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Acest proiect este subproiectul {} al {} (extras la {}). Salvați-l și inserați-l în proiectul principal când lucrul este terminat.
+Three fingers	Trei degete
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Aici trebuie să se întâlnească trei fire: unul în direcția ei și două transversal. Până atunci conexiunea este înlănțuită în ordinea din schemă.
 Three-phase short-circuit current at the supply point	Curent de scurtcircuit trifazat în punctul de alimentare
 Tilt	Înclinare
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Întoarcerea vederii 3D spre punct
 Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
+Two fingers	Două degete
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Două degete pe touchpad deplasează vederea, rotița mouse-ului mărește. Doar macOS le deosebește; în rest, derularea mărește ca rotița.
-Two fingers pan	Două degete deplasează
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Două degete deplasează vederea și măresc prin ciupire în același timp; un deget funcționează ca butonul stâng al mouse-ului.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

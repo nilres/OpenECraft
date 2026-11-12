@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Kerros {0} lisätty rakennuk
 Level {} of building {}	Rakennuksen {1} kerros {0}
 Levels	Kerrokset
 Library	Kirjasto
+Like two fingers	Kuten kaksi sormea
 Limits	Raja-arvot
 Limits in effect	Voimassa olevat raja-arvot
 Line to PE at the supply point; 0 = from the highest short-circuit current	Vaihe–PE syöttöpisteessä; 0 = suurimmasta oikosulkuvirrasta
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Ulkohalkaisijasta, kiinteästi asennettuna
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Ulkohalkaisijasta; putket taivutetaan puolentoista halkaisijan käyrillä
 Off	Pois
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Siirtymä rivistä seuraavaan: alaspäin luetteloille, sivuttain vierekkäisille riveille
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Kosketusnäytöllä ja kosketuslevyllä. Vain panorointi: nipistys ei zoomaa; vain zoomaus: vieritys kahdella sormella kosketuslevyllä zoomaa myös, jos järjestelmä tunnistaa kosketuslevyt. Yksi sormi toimii kuin hiiren vasen painike.
+On a touch screen; trackpads leave three-finger gestures to the system.	Kosketusnäytöllä; kosketuslevyt jättävät kolmen sormen eleet järjestelmälle.
 On startup	Käynnistettäessä
 One row per label	Yksi rivi merkintäkilpeä kohden
 Only devices on the current page	Vain nykyisen sivun laitteet
@@ -1360,8 +1363,6 @@ Path function text	Polun toimintoteksti
 Pattern	Kuvio
 Pattern…	Kuvio…
 Pin-out	Nastajärjestys
-Pinching	Nipistys
-Pinching on a trackpad or a touch screen zooms	Nipistys kosketuslevyllä tai kosketusnäytöllä zoomaa
 Pipe run	Putkireitti
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Putkireitti huoneen seinällä, katossa tai lattialla, jota pitkin letkut, putket ja putkistot reititetään: napsauta kulmat, lopeta kaksoisnapsautuksella tai Enterillä
 Pipe run {} mm – double-click or Enter to finish	Putkireitti {} mm – lopeta kaksoisnapsautuksella tai Enterillä
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Tämä sivu
 This page contains schematic content which is not evaluated on non-schematic pages.	Tämä sivu sisältää piirikaaviosisältöä, jota ei arvioida muilla kuin piirikaaviosivuilla.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tämä projekti on projektin {1} aliprojekti {0} (irrotettu {2}). Tallenna se ja liitä se pääprojektiin, kun työ on valmis.
+Three fingers	Kolme sormea
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tässä on kohdattava kolme johdinta: yksi sen suunnassa ja kaksi poikittain. Siihen asti liitos ketjutetaan kaavion järjestyksessä.
 Three-phase short-circuit current at the supply point	Kolmivaiheinen oikosulkuvirta syöttöpisteessä
 Tilt	Kallistus
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Käännä 3D-näkymä pisteeseen
 Tutorial	Opetusohjelma
 Twin ferrules where two wires share a connection point	Kaksoispääteholkit, kun kaksi johdinta jakaa liitäntäpisteen
+Two fingers	Kaksi sormea
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Kaksi sormea kosketuslevyllä panoroi, hiiren rulla zoomaa. Vain macOS erottaa ne; muualla vieritys zoomaa kuten rulla.
-Two fingers pan	Kaksi sormea panoroi
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Kaksi sormea panoroi ja zoomaa nipistämällä samanaikaisesti; yksi sormi toimii kuten hiiren vasen painike.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

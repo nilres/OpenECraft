@@ -427,15 +427,11 @@ impl App {
         ui.weak(tr("Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu."));
         let conflicts = self.editor.gestures.conflicts();
         for (title, view) in [(tr("Pages, panel layout and plans"), View::Flat), (tr("3D view"), View::Spatial)] {
-            ui.add_space(4.0);
+            ui.add_space(6.0);
             ui.label(RichText::new(title).strong());
-            egui::Grid::new(("mouse_grid", view as u8)).num_columns(3).striped(true).spacing([10.0, 4.0]).show(ui, |ui| {
-                for a in MouseAction::ALL.into_iter().filter(|a| a.view() == view) {
-                    self.mouse_row(ui, a, &conflicts);
-                }
-            });
-            if let Some((a, add)) = self.settings.recording.filter(|(a, _)| a.view() == view) {
-                self.gesture_pad(ui, a, add);
+            for a in MouseAction::ALL.into_iter().filter(|a| a.view() == view) {
+                ui.separator();
+                self.mouse_row(ui, a, &conflicts);
             }
         }
         if self.settings.refused {
@@ -449,16 +445,15 @@ impl App {
         }
     }
 
+    /// A mouse action: its title, then how it is done, its gestures and the buttons,
+    /// wrapping in narrow dialogs and long languages; the recording field below.
     fn mouse_row(&mut self, ui: &mut egui::Ui, a: MouseAction, conflicts: &[(Clash, Vec<&'static str>)]) {
+        let recording = self.settings.recording.filter(|(r, _)| *r == a);
         let g = &mut self.editor.gestures;
         let bindings = g.mouse(a);
-        // Long titles and several gestures wrap: the buttons stay in the dialog.
-        ui.vertical(|ui| {
-            ui.set_max_width(230.0);
-            ui.add(egui::Label::new(tr(a.title())).wrap());
-        });
+        ui.label(tr(a.title()));
         let text = bindings.iter().map(Binding::text).collect::<Vec<_>>().join(" / ");
-        let shown = if self.settings.recording.is_some_and(|(r, _)| r == a) {
+        let shown = if recording.is_some() {
             RichText::new(tr("Do the gesture…")).italics()
         } else if text.is_empty() {
             RichText::new("–").weak()
@@ -467,12 +462,10 @@ impl App {
         };
         let clash = conflicts.iter().any(|(_, ids)| ids.contains(&a.id()));
         let shown = if clash { shown.color(crate::style::colors(self.dark).error) } else { shown };
-        ui.vertical(|ui| {
-            ui.set_max_width(200.0);
+        ui.horizontal_wrapped(|ui| {
             ui.weak(tr(a.kind().title()));
-            ui.add(egui::Label::new(shown).wrap());
-        });
-        ui.horizontal(|ui| {
+            ui.label(shown);
+            ui.add_space(8.0);
             if ui.small_button(tr("Record")).clicked() {
                 self.settings.recording = Some((a, false));
                 self.settings.refused = false;
@@ -488,7 +481,9 @@ impl App {
                 g.set_mouse(a, a.defaults());
             }
         });
-        ui.end_row();
+        if let Some((a, add)) = recording {
+            self.gesture_pad(ui, a, add);
+        }
     }
 
     /// The field a mouse gesture is recorded on.
@@ -527,7 +522,7 @@ impl App {
 
     /// What the wheel, a trackpad and a touch screen do in the 2D and 3D views.
     fn navigation_settings(&mut self, ui: &mut egui::Ui) {
-        use openecraft_ui::nav::Scroll;
+        use openecraft_ui::nav::{Fingers, Scroll};
         let nav = &mut self.shell.nav;
         egui::Grid::new("navigation").num_columns(2).spacing([16.0, 8.0]).show(ui, |ui| {
             ui.label(tr("Scrolling"));
@@ -545,13 +540,21 @@ impl App {
             ui.label(tr("Direction"));
             ui.checkbox(&mut nav.invert, tr("Invert the direction of panning by scrolling"));
             ui.end_row();
-            ui.label(tr("Pinching"));
-            ui.checkbox(&mut nav.pinch, tr("Pinching on a trackpad or a touch screen zooms"));
-            ui.end_row();
-            ui.label(tr("Touch screen"));
+            ui.label(tr("Two fingers"));
             ui.vertical(|ui| {
-                ui.checkbox(&mut nav.touch_pan, tr("Two fingers pan"));
-                ui.weak(tr("Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button."));
+                for f in Fingers::ALL {
+                    ui.radio_value(&mut nav.two_fingers, f, tr(f.title()));
+                }
+                ui.weak(tr("On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button."));
+            });
+            ui.end_row();
+            ui.label(tr("Three fingers"));
+            ui.vertical(|ui| {
+                ui.radio_value(&mut nav.three_fingers, None, tr("Like two fingers"));
+                for f in Fingers::ALL {
+                    ui.radio_value(&mut nav.three_fingers, Some(f), tr(f.title()));
+                }
+                ui.weak(tr("On a touch screen; trackpads leave three-finger gestures to the system."));
             });
             ui.end_row();
         });
@@ -743,3 +746,6 @@ impl App {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

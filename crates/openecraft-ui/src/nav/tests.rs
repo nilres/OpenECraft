@@ -70,7 +70,8 @@ fn the_sideways_modifier_can_be_changed_or_switched_off() {
 fn trackpad_pinches_zoom_unless_switched_off() {
     let events = [Event::Zoom(1.5), Event::Zoom(2.0)];
     assert!((pinch(&events, Settings::default()) - 3.0).abs() < 1e-6);
-    assert_eq!(pinch(&events, Settings { pinch: false, ..Settings::default() }), 1.0);
+    assert_eq!(pinch(&events, Settings { two_fingers: Fingers::Pan, ..Settings::default() }), 1.0);
+    assert!((pinch(&events, Settings { two_fingers: Fingers::Zoom, ..Settings::default() }) - 3.0).abs() < 1e-6);
 }
 
 #[test]
@@ -136,19 +137,52 @@ fn two_fingers_pinch_and_pan_together() {
     assert!(!frame(&ctx, 0.6, Vec::new()).touch);
 }
 
+/// Fingers 1 … `n` come down along y = 100 (100, 200, …), then the last one moves 100
+/// to the right: the fingers spread and their middle moves. Gives the gesture then.
+fn spread(s: Settings, n: u64) -> Gesture {
+    let ctx = Context::default();
+    set(&ctx, s);
+    frame(&ctx, 0.0, vec![Event::PointerMoved(pos2(100.0, 100.0))]);
+    frame(&ctx, 0.1, vec![Event::PointerMoved(pos2(100.0, 100.0)), touch(1, TouchPhase::Start, pos2(100.0, 100.0))]);
+    for k in 2..=n {
+        frame(&ctx, 0.1 * k as f64, vec![touch(k, TouchPhase::Start, pos2(100.0 * k as f32, 100.0))]);
+    }
+    frame(&ctx, 0.1 * (n + 1) as f64, vec![touch(n, TouchPhase::Move, pos2(100.0 * n as f32 + 100.0, 100.0))])
+}
+
 #[test]
 fn two_fingers_only_zoom_or_only_pan_when_chosen() {
-    for (pinch, touch_pan) in [(false, true), (true, false)] {
-        let ctx = Context::default();
-        set(&ctx, Settings { pinch, touch_pan, ..Settings::default() });
-        frame(&ctx, 0.0, vec![Event::PointerMoved(pos2(100.0, 100.0))]);
-        frame(&ctx, 0.1, vec![Event::PointerMoved(pos2(100.0, 100.0)), touch(1, TouchPhase::Start, pos2(100.0, 100.0))]);
-        frame(&ctx, 0.2, vec![touch(2, TouchPhase::Start, pos2(200.0, 100.0))]);
-        let g = frame(&ctx, 0.3, vec![touch(2, TouchPhase::Move, pos2(300.0, 100.0))]);
+    for f in Fingers::ALL {
+        let g = spread(Settings { two_fingers: f, ..Settings::default() }, 2);
         assert!(g.touch);
-        assert_eq!(g.zooms(), pinch, "{g:?}");
-        assert_eq!(g.pans(), touch_pan, "{g:?}");
+        assert_eq!((g.zooms(), g.pans()), (f.zooms(), f.pans()), "{f:?} {g:?}");
     }
+}
+
+#[test]
+fn three_fingers_do_what_is_chosen_for_them() {
+    // Like two fingers unless chosen.
+    let g = spread(Settings { two_fingers: Fingers::Zoom, ..Settings::default() }, 3);
+    assert!(g.zooms() && !g.pans(), "{g:?}");
+    for f in [Fingers::Pan, Fingers::Zoom] {
+        let s = Settings { three_fingers: Some(f), ..Settings::default() };
+        let g = spread(s, 3);
+        assert_eq!((g.zooms(), g.pans()), (f.zooms(), f.pans()), "{f:?} {g:?}");
+        // Two fingers keep their own choice.
+        let two = spread(s, 2);
+        assert!(two.zooms() && two.pans(), "{two:?}");
+    }
+    assert_eq!(Settings { three_fingers: Some(Fingers::Pan), ..Settings::default() }.fingers(4), Fingers::Pan);
+}
+
+#[test]
+fn trackpad_scrolling_zooms_when_two_fingers_only_zoom() {
+    let fingers = scroll(MouseWheelUnit::Point, vec2(3.0, -5.0), MouseWheelSource::Trackpad, Modifiers::NONE);
+    let s = Settings { two_fingers: Fingers::Zoom, ..setting(Scroll::Pan, false) };
+    assert_eq!(wheel(std::slice::from_ref(&fingers), s), (-5.0, vec2(3.0, 0.0)));
+    // A wheel still follows the scrolling setting.
+    let wheel_ev = scroll(MouseWheelUnit::Line, vec2(0.0, 1.0), MouseWheelSource::Wheel, Modifiers::NONE);
+    assert_eq!(wheel(&[wheel_ev], s), (0.0, vec2(0.0, 40.0)));
 }
 
 #[test]

@@ -946,6 +946,7 @@ Level of this kind of message	此类消息的级别
 Level {} added to building {}; new rooms go onto it	已向建筑物 {1} 添加楼层 {0}；新房间将放在该层
 Level {} of building {}	建筑 {1} 的楼层 {0}
 Library	库
+Like two fingers	与双指相同
 Limits	限值
 Limits in effect	生效的限值
 Line to PE at the supply point; 0 = from the highest short-circuit current	电源进线点的相对 PE 故障电流；0 = 根据最大短路电流计算
@@ -1212,6 +1213,8 @@ Of the outer diameter, as laid fixed	外径的倍数，固定敷设
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径的倍数；管道用一倍半直径的弯头弯曲
 Off	关
 Offset from one row to the next: downwards for lists, sideways for rows side by side	从一行到下一行的偏移：列表向下，并排的行向侧面
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	适用于触摸屏和触控板。仅平移：捏合不缩放；仅缩放：在系统能区分触控板时，双指在触控板上滚动也会缩放。单指的作用与鼠标左键相同。
+On a touch screen; trackpads leave three-finger gestures to the system.	适用于触摸屏；触控板的三指操作由系统处理。
 On startup	启动时
 One row per label	每个标签一行
 Only devices on the current page	仅限当前页上的设备
@@ -1347,8 +1350,6 @@ Path function text	路径功能文本
 Pattern	阵列
 Pattern…	阵列…
 Pin-out	引脚分配
-Pinching	捏合
-Pinching on a trackpad or a touch screen zooms	在触控板或触摸屏上捏合可缩放
 Pipe run	管道走线
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	房间墙面、顶部或地面上的管道走线，软管、管子和管道沿其布线：单击各个角点，双击或按 Enter 完成
 Pipe run {} mm – double-click or Enter to finish	管道走线 {} mm – 双击或按 Enter 完成
@@ -1961,6 +1962,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	此页
 This page contains schematic content which is not evaluated on non-schematic pages.	此页包含原理图内容，这些内容在非原理图页上不会被评估。
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	此项目是 {1} 的子项目 {0}（移出于 {2}）。完成工作后，请保存并将其插入主项目。
+Three fingers	三指
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	此处必须有三条连接线相交：一条沿其方向，两条横向。在此之前连接按原理图顺序串接。
 Three-phase short-circuit current at the supply point	电源进线点的三相短路电流
 Tilt	倾角
@@ -1982,9 +1984,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	将 3D 视图转向该点
 Tutorial	教程
 Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
+Two fingers	双指
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	触控板上的双指平移视图，鼠标滚轮缩放。只有 macOS 能区分两者；在其他系统上，滚动与滚轮一样进行缩放。
-Two fingers pan	双指平移
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	双指可同时平移视图和捏合缩放；单指的作用与鼠标左键相同。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	此处必须有两条连接线直角相交。开启自动连接时，正对其分支的连接点会接到它上。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	输入点并按 Enter：x y（单位 mm），或 @dx dy 表示相对于上一个点；其作用与当前工具的单击相同
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V，I {} A，{} kWp

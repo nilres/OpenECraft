@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Dodano kondygnację {} do bu
 Level {} of building {}	Kondygnacja {} budynku {}
 Levels	Kondygnacje
 Library	Biblioteka
+Like two fingers	Jak dwa palce
 Limits	Wartości graniczne
 Limits in effect	Obowiązujące wartości graniczne
 Line to PE at the supply point; 0 = from the highest short-circuit current	Faza–PE w punkcie zasilania; 0 = z największego prądu zwarciowego
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Średnicy zewnętrznej, ułożone na stałe
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Średnicy zewnętrznej; rury są gięte kolanami o promieniu półtorej średnicy
 Off	Wył.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Przesunięcie od jednego wiersza do następnego: w dół dla list, w bok dla wierszy obok siebie
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Na ekranie dotykowym i gładziku. Tylko przesuwanie: szczypanie nie powiększa; tylko powiększanie: przewijanie dwoma palcami na gładziku też powiększa, jeśli system rozróżnia gładziki. Jeden palec działa jak lewy przycisk myszy.
+On a touch screen; trackpads leave three-finger gestures to the system.	Na ekranie dotykowym; gładziki zostawiają gesty trzema palcami systemowi.
 On startup	Przy uruchomieniu
 One row per label	Jeden wiersz na etykietę
 Only devices on the current page	Tylko urządzenia na bieżącej stronie
@@ -1360,8 +1363,6 @@ Path function text	Tekst funkcji ścieżki
 Pattern	Wzór
 Pattern…	Wzór…
 Pin-out	Rozkład pinów
-Pinching	Szczypanie
-Pinching on a trackpad or a touch screen zooms	Szczypanie na gładziku lub ekranie dotykowym powiększa
 Pipe run	Trasa rurociągu
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Trasa rurociągu na ścianie, suficie lub podłodze pomieszczenia, wzdłuż której prowadzi się węże, rurki i rury: kliknij narożniki, dwukrotne kliknięcie lub Enter kończy
 Pipe run {} mm – double-click or Enter to finish	Trasa rurociągu {} mm – dwukrotne kliknięcie lub Enter kończy
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Ta strona
 This page contains schematic content which is not evaluated on non-schematic pages.	Ta strona zawiera elementy schematu, które nie są analizowane na stronach innych niż schemat.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Ten projekt jest podprojektem {} projektu {} (wydzielonym {}). Zapisz go i wstaw do projektu głównego po zakończeniu pracy.
+Three fingers	Trzy palce
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Tutaj muszą spotkać się trzy przewody: jeden w jego kierunku i dwa poprzeczne. Do tego czasu połączenie jest łączone w kolejności na schemacie.
 Three-phase short-circuit current at the supply point	Trójfazowy prąd zwarciowy w punkcie zasilania
 Tilt	Nachylenie
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Obrócenie widoku 3D w stronę punktu
 Tutorial	Samouczek
 Twin ferrules where two wires share a connection point	Tulejki podwójne tam, gdzie dwa przewody dzielą punkt połączenia
+Two fingers	Dwa palce
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dwa palce na gładziku przesuwają widok, kółko myszy powiększa. Tylko macOS je rozróżnia; w innych systemach przewijanie powiększa jak kółko.
-Two fingers pan	Dwa palce przesuwają
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Dwa palce jednocześnie przesuwają i powiększają (rozsuwanie palców); jeden palec działa jak lewy przycisk myszy.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tutaj muszą spotkać się dwa przewody pod kątem prostym. Przy włączonym automatycznym łączeniu punkty przyłączenia naprzeciw jego ramion są z nim łączone.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Wpisz punkt i naciśnij Enter: x y w mm lub @dx dy względem ostatniego punktu; działa jak kliknięcie bieżącym narzędziem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

@@ -955,6 +955,7 @@ Level {} added to building {}; new rooms go onto it	Этаж {} добавлен
 Level {} of building {}	Этаж {} здания {}
 Levels	Уровни
 Library	Библиотека
+Like two fingers	Как два пальца
 Limits	Пределы
 Limits in effect	Действующие пределы
 Line to PE at the supply point; 0 = from the highest short-circuit current	Фаза – PE в точке питания; 0 = из наибольшего тока короткого замыкания
@@ -1224,6 +1225,8 @@ Of the outer diameter, as laid fixed	От наружного диаметра, �
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	От наружного диаметра; трубы гнутся отводами в полтора диаметра
 Off	Откл.
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Смещение от одной строки к следующей: вниз для списков, вбок для строк, расположенных рядом
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	На сенсорном экране и тачпаде. Только сдвиг: щипок не масштабирует; только масштабирование: прокрутка двумя пальцами на тачпаде тоже масштабирует, если система различает тачпады. Один палец работает как левая кнопка мыши.
+On a touch screen; trackpads leave three-finger gestures to the system.	На сенсорном экране; тачпады оставляют жесты тремя пальцами системе.
 On startup	При запуске
 One row per label	Одна строка на каждый маркер
 Only devices on the current page	Только устройства на текущем листе
@@ -1359,8 +1362,6 @@ Path function text	Текст функции пути
 Pattern	Массив
 Pattern…	Массив…
 Pin-out	Распиновка
-Pinching	Щипок
-Pinching on a trackpad or a touch screen zooms	Щипок на тачпаде или сенсорном экране масштабирует
 Pipe run	Трасса трубопровода
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Трасса трубопровода на стене, потолке или полу помещения, вдоль которой прокладываются шланги, трубки и трубы: щёлкните углы, двойной щелчок или Enter – завершить
 Pipe run {} mm – double-click or Enter to finish	Трасса трубопровода {} мм – двойной щелчок или Enter – завершить
@@ -1980,6 +1981,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Этот лист
 This page contains schematic content which is not evaluated on non-schematic pages.	Этот лист содержит элементы схемы, которые не обрабатываются на листах, не являющихся схемами.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Этот проект – подпроект {} проекта {} (вынесен {}). Сохраните его и после завершения работы вставьте в основной проект.
+Three fingers	Три пальца
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Здесь должны сходиться три провода: один в его направлении и два поперёк. До тех пор соединение выстраивается в порядке схемы.
 Three-phase short-circuit current at the supply point	Ток трёхфазного короткого замыкания в точке питания
 Tilt	Наклон
@@ -2001,9 +2003,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Повернуть 3D-вид к точке
 Tutorial	Учебник
 Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
+Two fingers	Два пальца
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Два пальца на тачпаде сдвигают вид, колесо мыши масштабирует. Различать их умеет только macOS; в других системах прокрутка масштабирует, как колесо.
-Two fingers pan	Два пальца сдвигают
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Два пальца одновременно сдвигают вид и масштабируют щипком; один палец работает как левая кнопка мыши.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик

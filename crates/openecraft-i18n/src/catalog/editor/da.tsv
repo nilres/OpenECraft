@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Etage {} tilføjet til bygni
 Level {} of building {}	Etage {} i bygning {}
 Levels	Etager
 Library	Bibliotek
+Like two fingers	Som to fingre
 Limits	Grænser
 Limits in effect	Gældende grænser
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fase mod PE ved forsyningspunktet; 0 = fra den højeste kortslutningsstrøm
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Af den ydre diameter, fast forlagt
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Af den ydre diameter; rør bøjes med bøjninger på halvanden diameter
 Off	Fra
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Forskydning fra én række til den næste: nedad for lister, sidelæns for rækker side om side
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	På berøringsskærm og pegefelt. Kun panorering: knib zoomer ikke; kun zoom: rulning med to fingre på pegefeltet zoomer også, hvor systemet skelner pegefelter. En finger virker som venstre museknap.
+On a touch screen; trackpads leave three-finger gestures to the system.	På berøringsskærm; pegefelter overlader bevægelser med tre fingre til systemet.
 On startup	Ved start
 One row per label	Én række pr. mærkat
 Only devices on the current page	Kun enheder på den aktuelle side
@@ -1360,8 +1363,6 @@ Path function text	Strømvejsfunktionstekst
 Pattern	Mønster
 Pattern…	Mønster…
 Pin-out	Benforbindelse
-Pinching	Knib
-Pinching on a trackpad or a touch screen zooms	Knib på pegefelt eller berøringsskærm zoomer
 Pipe run	Rørtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rørtracé på en væg, loftet eller gulvet i rummet, langs hvilket slanger, rør og rørledninger føres: klik på hjørnerne, dobbeltklik eller Enter for at afslutte
 Pipe run {} mm – double-click or Enter to finish	Rørtracé {} mm – dobbeltklik eller tryk på Enter for at afslutte
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Denne side
 This page contains schematic content which is not evaluated on non-schematic pages.	Denne side indeholder diagramindhold, som ikke evalueres på sider, der ikke er diagramsider.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Dette projekt er delprojekt {} af {} (udtaget {}). Gem det, og indsæt det i hovedprojektet, når arbejdet er færdigt.
+Three fingers	Tre fingre
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Her skal tre ledere mødes: en i dets retning og to på tværs. Indtil da kædes forbindelsen i diagrammets rækkefølge.
 Three-phase short-circuit current at the supply point	Trefaset kortslutningsstrøm ved forsyningspunktet
 Tilt	Hældning
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Vend 3D-visningen mod punktet
 Tutorial	Selvstudium
 Twin ferrules where two wires share a connection point	Dobbelte terminalrør hvor to ledere deler et tilslutningspunkt
+Two fingers	To fingre
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	To fingre på et pegefelt panorerer, musehjulet zoomer. Kun macOS skelner mellem dem; ellers zoomer rulning som hjulet.
-Two fingers pan	To fingre panorerer
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	To fingre panorerer og zoomer ved knib på samme tid; én finger virker som venstre museknap.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv et punkt, og tryk på Enter: x y i mm eller @dx dy i forhold til det sidste punkt; det virker som et klik med det aktuelle værktøj
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

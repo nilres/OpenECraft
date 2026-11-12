@@ -956,6 +956,7 @@ Level {} added to building {}; new rooms go onto it	Podlaží {} přidáno do bu
 Level {} of building {}	Podlaží {} budovy {}
 Levels	Podlaží
 Library	Knihovna
+Like two fingers	Jako dva prsty
 Limits	Mezní hodnoty
 Limits in effect	Platné mezní hodnoty
 Line to PE at the supply point; 0 = from the highest short-circuit current	Fáze proti PE v místě přívodu; 0 = z nejvyššího zkratového proudu
@@ -1225,6 +1226,8 @@ Of the outer diameter, as laid fixed	Vnějšího průměru, pevně uloženo
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	Vnějšího průměru; trubky se ohýbají oblouky o jeden a půl průměru
 Off	Vypnuto
 Offset from one row to the next: downwards for lists, sideways for rows side by side	Posun z jednoho řádku na další: dolů pro seznamy, do strany pro řádky vedle sebe
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Na dotykové obrazovce a touchpadu. Jen posouvat: roztažení prstů nepřibližuje; jen přibližovat: posouvání dvěma prsty na touchpadu také přibližuje, kde systém touchpady rozlišuje. Jeden prst funguje jako levé tlačítko myši.
+On a touch screen; trackpads leave three-finger gestures to the system.	Na dotykové obrazovce; touchpady nechávají gesta třemi prsty systému.
 On startup	Při spuštění
 One row per label	Jeden řádek na štítek
 Only devices on the current page	Pouze přístroje na aktuální stránce
@@ -1360,8 +1363,6 @@ Path function text	Text funkce cesty
 Pattern	Vzor
 Pattern…	Vzor…
 Pin-out	Zapojení pinů
-Pinching	Roztažení prstů
-Pinching on a trackpad or a touch screen zooms	Roztažení prstů na touchpadu nebo dotykové obrazovce přibližuje
 Pipe run	Potrubní trasa
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Potrubní trasa na stěně, stropu nebo podlaze místnosti, podél které se vedou hadice, trubky a potrubí: klikněte na rohy, poklikáním nebo Enter ukončíte
 Pipe run {} mm – double-click or Enter to finish	Potrubní trasa {} mm – poklikáním nebo Enter ukončíte
@@ -1981,6 +1982,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	Tato stránka
 This page contains schematic content which is not evaluated on non-schematic pages.	Tato stránka obsahuje obsah schématu, který se na stránkách jiného typu než schéma nevyhodnocuje.
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	Tento projekt je podprojekt {} projektu {} (vyčleněn {}). Uložte jej a po dokončení práce jej vložte do hlavního projektu.
+Three fingers	Tři prsty
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	Zde se musí stýkat tři vodiče: jeden v jeho směru a dva napříč. Do té doby je spojení řetězeno v pořadí ve schématu.
 Three-phase short-circuit current at the supply point	Třífázový zkratový proud v místě přívodu
 Tilt	Sklon
@@ -2002,9 +2004,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	Natočit 3D pohled na bod
 Tutorial	Výukový kurz
 Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
+Two fingers	Dva prsty
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dva prsty na touchpadu posouvají pohled, kolečko myši přibližuje. Rozlišit je umí jen macOS; jinde posouvání přibližuje jako kolečko.
-Two fingers pan	Dva prsty posouvají
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Dva prsty současně posouvají pohled a sevřením přibližují; jeden prst funguje jako levé tlačítko myši.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Zde se musí stýkat dva vodiče v pravém úhlu. Při zapnutém automatickém spojování se k němu připojí připojovací body naproti jeho ramenům.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Zadejte bod a stiskněte Enter: x y v mm nebo @dx dy relativně k poslednímu bodu; působí jako kliknutí aktuálním nástrojem
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp

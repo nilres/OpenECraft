@@ -945,6 +945,7 @@ Level of this kind of message	この種類のメッセージのレベル
 Level {} added to building {}; new rooms go onto it	建物 {1} に階 {0} を追加しました。新しい部屋はこの階に置かれます
 Level {} of building {}	建物 {1} の階 {0}
 Library	ライブラリ
+Like two fingers	2 本指と同じ
 Limits	制限値
 Limits in effect	適用中の制限値
 Line to PE at the supply point; 0 = from the highest short-circuit current	電源供給点での線-PE 間。0 = 最大短絡電流から算出
@@ -1211,6 +1212,8 @@ Of the outer diameter, as laid fixed	外径の倍数、固定敷設時
 Of the outer diameter; pipes are bent with elbows of one and a half diameters	外径の倍数。配管は直径の1.5倍のエルボで曲げられます
 Off	オフ
 Offset from one row to the next: downwards for lists, sideways for rows side by side	行から次の行へのオフセット: リストの場合は下方向、横に並ぶ行の場合は横方向
+On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	タッチスクリーンとトラックパッドで有効です。パンのみ：ピンチでズームしません。ズームのみ：システムがトラックパッドを区別できる場合、トラックパッドでの 2 本指スクロールもズームします。1 本指はマウスの左ボタンと同じです。
+On a touch screen; trackpads leave three-finger gestures to the system.	タッチスクリーンで有効です。トラックパッドの 3 本指の操作はシステムが使います。
 On startup	起動時
 One row per label	ラベルごとに 1 行
 Only devices on the current page	現在のページのデバイスのみ
@@ -1346,8 +1349,6 @@ Path function text	パス機能テキスト
 Pattern	パターン
 Pattern…	パターン…
 Pin-out	ピン配置
-Pinching	ピンチ
-Pinching on a trackpad or a touch screen zooms	トラックパッドやタッチスクリーンでのピンチでズーム
 Pipe run	配管ルート
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	部屋の壁、天井、床に沿った配管ルートで、ホース、チューブ、配管がこれに沿って配線されます: 角をクリックし、ダブルクリックまたは Enter で終了
 Pipe run {} mm – double-click or Enter to finish	配管ルート {} mm – ダブルクリックまたは Enter で終了
@@ -1961,6 +1962,7 @@ This installation is updated by its package manager or by hand: OpenECraft only 
 This page	このページ
 This page contains schematic content which is not evaluated on non-schematic pages.	このページには回路図の内容が含まれていますが、回路図以外のページでは評価されません。
 This project is subproject {} of {} (taken out {}). Save it and insert it into the main project when the work is done.	このプロジェクトは {1} のサブプロジェクト {0} です ({2} に切り出し)。作業が完了したら保存して、メインプロジェクトに挿入してください。
+Three fingers	3 本指
 Three wires must meet here: one in its direction and two across. Until then the connection is chained in schematic order.	ここで3本の接続線が交わる必要があります：1本はその方向に、2本は横方向に。それまでは接続は回路図の順序でつながれます。
 Three-phase short-circuit current at the supply point	電源供給点での三相短絡電流
 Tilt	傾斜角
@@ -1982,9 +1984,8 @@ Turn about the vertical, counter-clockwise seen from above (90 °: the fronts fa
 Turn the 3D view to the point	3D ビューをその点に向ける
 Tutorial	チュートリアル
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
+Two fingers	2 本指
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	トラックパッドの 2 本指でパン、マウスホイールでズームします。両者を区別できるのは macOS だけで、その他ではスクロールはホイールと同じくズームします。
-Two fingers pan	2 本指でパン
-Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	2 本指でパンとピンチズームを同時に行えます。1 本指はマウスの左ボタンと同じ働きをします。
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
