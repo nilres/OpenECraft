@@ -4,7 +4,7 @@ use crate::parts_server::{Server, Transport};
 use crate::session::Session;
 use openecraft_client::{ehttp, Endpoint, PortalKind};
 use openecraft_parts::access::{Policy, Settings};
-use openecraft_parts::api::{ApiError, ImportResult, Login, PartQuery, ServerInfo, Session as ApiSession, UserUpdate, API_PREFIX};
+use openecraft_parts::api::{ApiError, ImportResult, Login, PartQuery, Registration, ServerInfo, Session as ApiSession, UserUpdate, API_PREFIX};
 use openecraft_parts::portal::{Attachment, AttachmentKind, Catalog, ChangeKind, HistoryEntry, PartsRight, Role, User};
 use openecraft_parts::{import, to_csv, Part};
 use std::cell::RefCell;
@@ -26,6 +26,7 @@ pub struct FakeServer {
     pub policy: Rc<RefCell<Policy<PartsRight>>>,
     /// Libraries by name (JSON text).
     pub libraries: Rc<RefCell<std::collections::BTreeMap<String, String>>>,
+    pub registration: Rc<RefCell<Registration>>,
 }
 
 /// Attachment file: id, name and content.
@@ -118,6 +119,12 @@ impl Transport for FakeServer {
                 self.users.borrow_mut().push(user.clone());
                 return Ok(json(&user));
             }
+            (["users", name, "approval"], ehttp::Method::POST) => {
+                let mut users = self.users.borrow_mut();
+                let Some(user) = users.iter_mut().find(|u| u.name == *name) else { return Ok(error(404, "user not found")) };
+                user.pending = false;
+                return Ok(json(&*user));
+            }
             (["users", name], ehttp::Method::DELETE) => {
                 self.users.borrow_mut().retain(|x| x.name != *name);
                 return Ok(response(204, Vec::new()));
@@ -144,6 +151,15 @@ impl Transport for FakeServer {
             (["libraries", name], ehttp::Method::PUT) => {
                 self.libraries.borrow_mut().insert(name.to_string(), String::from_utf8(req.body.clone()).map_err(|e| e.to_string())?);
                 return Ok(response(204, Vec::new()));
+            }
+            (["registration"], method) => {
+                if !authorized {
+                    return Ok(error(401, "invalid token"));
+                }
+                if *method == ehttp::Method::PUT {
+                    *self.registration.borrow_mut() = serde_json::from_slice(&req.body).map_err(|e| e.to_string())?;
+                }
+                return Ok(json(&*self.registration.borrow()));
             }
             (["files", id], _) => {
                 let files = self.files.borrow();
