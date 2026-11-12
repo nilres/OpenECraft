@@ -302,17 +302,14 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
         });
         ui.end_row();
     });
+    // The preview above the tables: side by side they are wider than the window.
     ui.add_space(6.0);
-    ui.horizontal_top(|ui| {
-        mounting_preview(ui, part, vec2(240.0, 220.0));
-        ui.vertical(|ui| {
-            ui.weak(tr("Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise."));
-            ui.label(RichText::new(tr("Cutouts")).strong());
-            cutout_table(ui, "pcut", &mut part.mounting_data.cutouts);
-            ui.label(RichText::new(tr("Door cutouts")).strong()).on_hover_text(tr("In the door, when they differ from the cutouts"));
-            cutout_table(ui, "pdcut", &mut part.mounting_data.door_cutouts);
-        });
-    });
+    mounting_preview(ui, part, vec2(240.0, 200.0));
+    ui.weak(tr("Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise."));
+    ui.label(RichText::new(tr("Cutouts")).strong());
+    cutout_table(ui, "pcut", &mut part.mounting_data.cutouts);
+    ui.label(RichText::new(tr("Door cutouts")).strong().color(DOOR_CUTOUT)).on_hover_text(tr("In the door, when they differ from the cutouts"));
+    cutout_table(ui, "pdcut", &mut part.mounting_data.door_cutouts);
 }
 
 fn cutout_size(v: &mut f32) -> egui::DragValue<'_> {
@@ -331,7 +328,7 @@ fn cutout_table(ui: &mut egui::Ui, id: &str, list: &mut Vec<PlacedCutout>) {
             for (i, c) in list.iter_mut().enumerate() {
                 let mut round = matches!(c.shape, Cutout::Round { .. });
                 let was = round;
-                egui::ComboBox::from_id_salt((id, "shape", i)).selected_text(if round { tr("Round") } else { tr("Rectangular") }).width(100.0).show_ui(ui, |ui| {
+                egui::ComboBox::from_id_salt((id, "shape", i)).selected_text(if round { tr("Round") } else { tr("Rectangular") }).width(90.0).show_ui(ui, |ui| {
                     ui.selectable_value(&mut round, true, tr("Round"));
                     ui.selectable_value(&mut round, false, tr("Rectangular"));
                 });
@@ -374,15 +371,22 @@ fn cutout_table(ui: &mut egui::Ui, id: &str, list: &mut Vec<PlacedCutout>) {
     }
 }
 
-/// The cutouts of a part (dashed) in a front view drawn with `map` (part mm to screen).
+/// Colour of the door cutouts in the previews.
+const DOOR_CUTOUT: Color32 = Color32::from_rgb(220, 120, 30);
+
+/// The cutouts of a part (dashed) and its own door cutouts (dotted, orange) in a front
+/// view drawn with `map` (part mm to screen).
 fn paint_cutouts(painter: &egui::Painter, part: &Part, map: &dyn Fn([f32; 2]) -> Pos2, color: Color32) {
     let (w, h) = (part.width, part.height);
-    for c in part.cutouts(false) {
-        let mut pts: Vec<Pos2> = c.outline(w, h).into_iter().map(map).collect();
-        if let Some(first) = pts.first().copied() {
-            pts.push(first);
+    let lists = [(part.cutouts(false), color, 5.0), (part.mounting_data.door_cutouts.clone(), DOOR_CUTOUT, 2.0)];
+    for (list, color, dash) in lists {
+        for c in list {
+            let mut pts: Vec<Pos2> = c.outline(w, h).into_iter().map(map).collect();
+            if let Some(first) = pts.first().copied() {
+                pts.push(first);
+            }
+            painter.extend(Shape::dashed_line(&pts, Stroke::new(1.2, color), dash, 3.0));
         }
-        painter.extend(Shape::dashed_line(&pts, Stroke::new(1.2, color), 5.0, 3.0));
     }
 }
 
@@ -405,7 +409,7 @@ fn mounting_preview(ui: &mut egui::Ui, part: &Part, size: egui::Vec2) {
         }
     };
     part.mounting_data.holes.iter().for_each(|q| include(*q));
-    part.cutouts(false).iter().flat_map(|c| c.outline(w, h)).for_each(&mut include);
+    part.cutouts(false).iter().chain(&part.mounting_data.door_cutouts).flat_map(|c| c.outline(w, h)).for_each(&mut include);
     let zoom = ((size.x - 24.0) / (hi[0] - lo[0])).min((size.y - 24.0) / (hi[1] - lo[1]));
     let origin = resp.rect.center() - vec2(lo[0] + hi[0], lo[1] + hi[1]) * zoom / 2.0;
     let map = |q: [f32; 2]| origin + vec2(q[0], q[1]) * zoom;
