@@ -556,6 +556,7 @@ Downstream part	下位部品
 Draft of revision {} created	リビジョン {} のドラフトを作成しました
 Draft of revision {} discarded	リビジョン {} のドラフトを破棄しました
 Drag a connection point designation of the selected symbol to place it.	選択したシンボルの接続ポイントの名称をドラッグして配置します。
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	選択した電線の端をドラッグすると、その端だけを移動します。Alt を押しながらドラッグすると「接続を保持」が逆になります。
 Drag an entry into the page, or click it and then click into the page.	エントリをページにドラッグするか、クリックしてからページ内をクリックします。
 Drag the core designation or the cable tag of the selected wire to place it.	選択した電線の心線記号またはケーブルタグをドラッグして配置します。
 Drag the name or the cross reference of the selected point to place it.	選択したポイントの名前または相互参照をドラッグして配置します。
@@ -889,6 +890,7 @@ Joins wire pieces in a line where nothing else connects (current page)	他に何
 Jumper {}	ジャンパー {}
 Jumps over the other:	もう一方を越える:
 K, Q, MM …	K、Q、MM …
+Keep connections	接続を保持
 Keep sub-pages (3.a, 3.1) with the page before	サブページ (3.a、3.1) を前のページと一緒に維持
 Keep the degree of protection	保護等級を維持
 Keep this route when recalculating, as long as it is still possible	再計算時も、可能な限りこのルートを維持します
@@ -1038,6 +1040,7 @@ Move the devices of this page into the new structure	このページのデバイ
 Move through the 3D view (Shift: faster)	3D ビューの中を移動 (Shift: 高速)
 Move to section	セクションへ移動
 Move up	上へ移動
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移動したシンボルは電線を引き連れ、移動した電線は端のある接続ポイントに留まります。ドラッグ中に Alt を押すと逆になります。選択した電線の端をドラッグすると切り離せます
 Moves to the top level as page {}	最上位レベルのページ {} になります
 Moves to {} as page {}	{} のページ {} になります
 Moving	移動

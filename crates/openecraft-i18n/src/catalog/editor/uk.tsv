@@ -561,6 +561,7 @@ Downstream part	Наступний виріб
 Draft of revision {} created	Чернетку ревізії {} створено
 Draft of revision {} discarded	Чернетку ревізії {} відхилено
 Drag a connection point designation of the selected symbol to place it.	Перетягніть позначення точки підключення вибраного символу, щоб розмістити його.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Перетягніть кінець вибраного проводу, щоб перемістити лише цей кінець. Перетягування з Alt змінює Зберігати з'єднання на протилежне.
 Drag an entry into the page, or click it and then click into the page.	Перетягніть запис на сторінку або клацніть його, а потім клацніть на сторінці.
 Drag the core designation or the cable tag of the selected wire to place it.	Перетягніть позначення жили або позначення кабелю вибраного проводу, щоб розмістити їх.
 Drag the name or the cross reference of the selected point to place it.	Перетягніть ім'я або перехресне посилання вибраної точки, щоб розмістити їх.
@@ -897,6 +898,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Об’є
 Jumper {}	Перемичка {}
 Jumps over the other:	Перескакує через інший:
 K, Q, MM …	K, Q, MM …
+Keep connections	Зберігати з'єднання
 Keep sub-pages (3.a, 3.1) with the page before	Залишати підсторінки (3.a, 3.1) з попередньою сторінкою
 Keep the degree of protection	Зберігати ступінь захисту
 Keep this route when recalculating, as long as it is still possible	Зберігати цю трасу під час перерахунку, доки це можливо
@@ -1049,6 +1051,7 @@ Move the devices of this page into the new structure	Перемістити пр
 Move through the 3D view (Shift: faster)	Переміщення у 3D-виді (Shift: швидше)
 Move to section	Перемістити до розділу
 Move up	Перемістити вгору
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Переміщувані символи тягнуть за собою проводи, а переміщувані проводи залишаються на точках підключення, де вони закінчуються. Утримання Alt під час перетягування змінює це на протилежне; перетягування кінця вибраного проводу від'єднує його
 Moves to the top level as page {}	Переходить на верхній рівень як сторінка {}
 Moves to {} as page {}	Переходить до {} як сторінка {}
 Moving	Переміщення

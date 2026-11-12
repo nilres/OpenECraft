@@ -562,6 +562,7 @@ Downstream part	Jälkimmäinen osa
 Draft of revision {} created	Revision {} luonnos luotu
 Draft of revision {} discarded	Revision {} luonnos hylätty
 Drag a connection point designation of the selected symbol to place it.	Vedä valitun symbolin liitäntäpisteen merkintää sijoittaaksesi sen.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Vedä valitun johdon päätä siirtääksesi vain sen pään. Vetäminen Alt pohjassa kääntää Säilytä liitännät -asetuksen.
 Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
 Drag the core designation or the cable tag of the selected wire to place it.	Vedä valitun johtimen johdinmerkintää tai kaapelin tunnusta sijoittaaksesi sen.
 Drag the name or the cross reference of the selected point to place it.	Vedä valitun pisteen nimeä tai ristiviittausta sijoittaaksesi sen.
@@ -898,6 +899,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Yhdistä�
 Jumper {}	Silta {}
 Jumps over the other:	Hyppää toisen yli:
 K, Q, MM …	K, Q, MM …
+Keep connections	Säilytä liitännät
 Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
 Keep the degree of protection	Säilytä kotelointiluokka
 Keep this route when recalculating, as long as it is still possible	Säilytä tämä reitti uudelleenlaskennassa niin kauan kuin se on mahdollista
@@ -1050,6 +1052,7 @@ Move the devices of this page into the new structure	Siirrä tämän sivun laitt
 Move through the 3D view (Shift: faster)	Liiku 3D-näkymässä (Vaihto: nopeammin)
 Move to section	Siirrä osioon
 Move up	Siirrä ylöspäin
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Siirretyt symbolit vetävät johtonsa mukanaan ja siirretyt johdot pysyvät liitäntäpisteissä, joihin ne päättyvät. Alt pohjassa vedettäessä kääntää tämän; valitun johdon pään vetäminen irrottaa sen
 Moves to the top level as page {}	Siirtyy ylimmälle tasolle sivuksi {}
 Moves to {} as page {}	Siirtyy osioon {} sivuksi {}
 Moving	Siirtäminen

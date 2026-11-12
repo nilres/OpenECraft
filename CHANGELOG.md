@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Moved wires stay connected** (#133): a wire moved on its own no longer leaves the
+  connection points it ends at; it gets a new leg from the point, or slides along the
+  rail it ends on. *Edit › Keep connections* (on by default) switches this and the
+  stretching of attached wires off, so the selection moves alone; Alt held at the
+  start of a drag reverses it for that drag. Dragging the square handle at an end of a
+  selected wire moves only that end, to disconnect it or connect it elsewhere. Commands:
+  `move_items` (`keep_connections`), `move_wire_end`
+  ([schematic](docs/features/schematic.md#editing)).
 - **Server administrator from the environment:** `OPENECRAFT_ADMIN_USER` (parts server)
   and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
   created at startup, as `--admin-user` does, so a Docker container gets its first user
