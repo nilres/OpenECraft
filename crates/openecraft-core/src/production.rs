@@ -617,6 +617,18 @@ impl EndTreatment {
         }
     }
 
+    /// How far from its tip the end of a wire of `cross_section` (with the outer
+    /// diameter `outer`) cannot bend: the ferrule with its collar, the terminal with its
+    /// sleeve, the conductor inside the twin ferrule of the other wire ([`Self::pieces`]);
+    /// nothing for a bare conductor. The wire runs straight that far out of its
+    /// connection point.
+    pub fn straight(&self, cross_section: &str, outer: f32) -> f32 {
+        if self.ferrule.is_none() && self.crimp.is_none() {
+            return 0.0;
+        }
+        self.pieces(cross_section, outer).iter().map(|p| p.length).sum()
+    }
+
     /// How the end of a wire of `cross_section` (with the outer diameter `outer`) looks,
     /// from the tip inwards: the metal sleeve of a ferrule and its collar over the
     /// insulation, the ring, fork, pin or plate of a terminal and its insulated sleeve

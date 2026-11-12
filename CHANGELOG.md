@@ -5,6 +5,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Straight ferrules and terminals:** a wire or cable core with a ferrule or a crimped
+  terminal runs straight out of its connection point for the length of it (with its
+  collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D
+  view, instead of bending the ferrule where it goes into the device
+  ([panel layout](docs/features/panel-layout.md)).
 - **AppImage on more systems:** the AppImage carries the keyboard and cursor libraries
   of X11 (xkbcommon, Xcursor, Xi), so the editor and the parts manager start on systems
   without them instead of quitting with *Library libxkbcommon-x11.so could not be

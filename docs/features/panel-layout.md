@@ -48,7 +48,13 @@ line-ups, rooms of the building with their floor-standing equipment and pipe run
   *Twin ferrules where two wires share a connection point* (or `set_ferrules`) every
   such pair without a termination of its own gets one. The check *Twin ferrules* warns
   about a twin ferrule with one wire, at a point with more than two wires or for two
-  cross-sections. The production wire list, the wiring
+  cross-sections. A ferrule or crimped terminal does not bend: the wire or core runs
+  straight out of its connection point as far as it reaches (with its collar or
+  insulated sleeve) and bends only behind it. The 3D routing plans that straight way
+  out where the space in front of the connection point is free; where it is not (a
+  neighbouring wire, a cable duct close by), the wire bends tighter right behind the
+  ferrule or terminal.
+  The production wire list, the wiring
   assistant, the machine exports and the bill of materials take the same terminations;
   through cable glands, wall penetrations and the cable passages
   between cabinets cables and wires are drawn in one piece, bent round there, several

@@ -180,7 +180,7 @@ const CORE_RULES: &[(&str, &[&str])] = &[
     ("climate", &["model", "panel", "parts"]),
     ("manufacturing", &["geom", "model", "panel", "parts", "production"]),
     ("routing", &["cabledef", "conndef", "frame", "geom", "model", "netlist", "ops", "symbols", "symlib"]),
-    ("routing3d", &["fluid", "geom", "harness", "model", "netlist", "panel", "parallel", "parts", "plc_hw", "potentials"]),
+    ("routing3d", &["fluid", "geom", "harness", "model", "netlist", "panel", "parallel", "parts", "plc_hw", "potentials", "production"]),
     ("field", &["geom", "issue", "model", "netlist", "panel", "parts", "production", "render", "routing3d", "structure", "svg", "symbols"]),
     ("strips", &["frame", "model", "netlist", "parts", "symbols", "text"]),
     ("plugs", &["frame", "model", "netlist", "parts", "symbols", "text"]),

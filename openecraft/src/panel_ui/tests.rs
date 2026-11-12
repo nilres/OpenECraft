@@ -1126,7 +1126,7 @@ fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
     // bend of the cable has not ended yet.
     let way = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 60.0, 0.0], [500.0, 110.0, 0.0]];
     let at = [([495.0, 110.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 110.0, 0.0], [0.0, -1.0, 0.0])];
-    let (keep, tail, cores) = routing_ui::fan_out(&way, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0, None);
+    let (keep, tail, cores) = routing_ui::fan_out(&way, &[0.0, 100.0, 0.0, 0.0], &at, &[], 20.0, 5.0, None);
     // The cable keeps its way up to the corner and ends on the bend round it, as far
     // behind the corner (along y) as it was cut.
     assert_eq!(keep, 1);
@@ -1142,8 +1142,24 @@ fn a_cable_ending_behind_a_corner_ends_on_its_bend() {
     // Further behind the corner nothing changes: it ends on its straight way.
     let long = [[0.0, 0.0, 0.0], [500.0, 0.0, 0.0], [500.0, 300.0, 0.0], [500.0, 350.0, 0.0]];
     let at = [([495.0, 350.0, 0.0], [0.0, -1.0, 0.0]), ([505.0, 350.0, 0.0], [0.0, -1.0, 0.0])];
-    let (keep, tail, _) = routing_ui::fan_out(&long, &[0.0, 100.0, 0.0, 0.0], &at, 20.0, 5.0, None);
+    let (keep, tail, _) = routing_ui::fan_out(&long, &[0.0, 100.0, 0.0, 0.0], &at, &[], 20.0, 5.0, None);
     assert_eq!((keep, tail), (2, vec![[500.0, 290.0, 0.0]]));
+}
+
+#[test]
+fn the_cores_of_a_cable_come_straight_into_their_ferrules() {
+    // Two cores parting to terminals 40 mm apart, their wires leaving them downwards: with
+    // 14 mm ferrules each ends straight up into its terminal for that long.
+    let way = [[0.0, 0.0, 0.0], [0.0, 400.0, 0.0], [0.0, 500.0, 0.0]];
+    let at = [([-20.0, 500.0, 0.0], [0.0, -1.0, 0.0]), ([20.0, 500.0, 0.0], [0.0, -1.0, 0.0])];
+    let (_, _, cores) = routing_ui::fan_out(&way, &[0.0; 3], &at, &[14.0, 0.0], 20.0, 5.0, None);
+    let (head, _) = vec3::split_at(&cores[0].iter().rev().copied().collect::<Vec<_>>(), 14.0);
+    assert!(head.iter().all(|q| (q[0] + 20.0).abs() < 1e-3 && q[2].abs() < 1e-3), "{head:?}");
+    assert_eq!(cores[0].last(), Some(&at[0].0));
+    // Without one the curve comes into its point as before.
+    let (_, _, plain) = routing_ui::fan_out(&way, &[0.0; 3], &at, &[], 20.0, 5.0, None);
+    assert_eq!(plain[1], cores[1]);
+    assert!(vec3::dist(plain[0][plain[0].len() - 2], at[0].0) < 14.0);
 }
 
 #[test]
@@ -1182,7 +1198,7 @@ fn the_cores_of_a_cable_stay_between_their_ends() {
     // (into the bars they sit on) before they come up to them.
     let way = [[0.0, 0.0, 200.0], [0.0, 700.0, 200.0], [0.0, 705.0, 90.0], [0.0, 890.0, 90.0]];
     let at = [([0.0, 705.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 890.0, 90.0], [0.0, -1.0, 0.0]), ([0.0, 1075.0, 90.0], [0.0, -1.0, 0.0])];
-    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0, None);
+    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, &[], 55.0, 14.0, None);
     let end = tail[tail.len() - 1];
     for (core, (q, _)) in cores.iter().zip(&at) {
         let start = core[0];
@@ -1196,7 +1212,7 @@ fn the_cores_of_a_cable_stay_between_their_ends() {
     // ones in front of the box (a core's radius and more), the core to the first comes
     // down into it without rising first.
     let strip = (([-20.0, 680.0, 20.0], [20.0, 1100.0, 125.0]), [0.0, 0.0, 1.0]);
-    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, 55.0, 14.0, Some(strip));
+    let (_, tail, cores) = routing_ui::fan_out(&way, &[0.0, 110.0, 110.0, 0.0], &at, &[], 55.0, 14.0, Some(strip));
     assert!(tail.iter().all(|p| p[2] >= 125.0 + 27.5 + 1.0 - 0.01), "{tail:?}");
     for (k, (core, (q, _))) in cores.iter().zip(&at).enumerate() {
         let passing: Vec<&[f32; 3]> = core.iter().filter(|p| at[..k].iter().any(|(o, _)| (p[1] - o[1]).abs() < 30.0)).collect();
@@ -1806,4 +1822,67 @@ fn cables_leaving_the_enclosure_have_their_core_ends() {
     let other = ends.iter().find(|(at, _, _)| at == "-X1:1").unwrap().1.clone();
     openecraft_core::production::set_termination(&mut prj, "-X1:1", &other, Some(openecraft_core::production::Termination::Fork));
     assert!(!routing_ui::core_end(&prj, &an, "-W1", "-X1:1").is_empty());
+}
+
+/// How far the ends of the tubes drawn in the 3D views of a project bend away from a
+/// straight line as far out of their connection points as their ferrules or terminals
+/// reach: the worst ones (by how far), and how many ends were looked at.
+fn bent_terminations(prj: &Project) -> (usize, Vec<(f32, String)>) {
+    let an = Analysis::build(prj);
+    let (mut all, mut bent) = (0, Vec::new());
+    let scenes: Vec<usize> = (0..prj.layout.enclosures.len()).filter(|&k| prj.layout.enclosures[k].is_room() || openecraft_core::panel::lineup_of(&prj.layout, k).first() == Some(&k)).collect();
+    for ei in scenes {
+        let mut ui = PanelUi { enclosure: ei, show_wires: true, ..Default::default() };
+        let shown = ui.shown_3d(prj, ei);
+        let ctx = egui::Context::default();
+        let mut s = ui.scene_3d(&ctx, prj, &an, ei, &shown);
+        while s.waiting.is_some() {
+            std::thread::sleep(std::time::Duration::from_millis(20));
+            s = ui.scene_3d(&ctx, prj, &an, ei, &shown);
+        }
+        for ((points, _, target), straight) in s.tube_paths.iter().zip(&s.straight_ends) {
+            for (k, &length) in straight.iter().enumerate().filter(|(_, l)| **l > 0.0) {
+                let mut way = points.clone();
+                if k == 1 {
+                    way.reverse();
+                }
+                let (head, _) = vec3::split_at(&way, length);
+                let along = vec3::norm(vec3::sub(head[head.len() - 1], head[0]));
+                let off = head.iter().map(|q| {
+                    let v = vec3::sub(*q, head[0]);
+                    vec3::length(vec3::sub(v, vec3::scale(along, vec3::dot(v, along))))
+                });
+                all += 1;
+                let worst = off.fold(0.0, f32::max);
+                if worst > 0.25 {
+                    let name = match target {
+                        routing_ui::RouteRef::Wire(wi) => format!("{} - {}", an.wiring[*wi].from, an.wiring[*wi].to),
+                        routing_ui::RouteRef::Item(key) => key.clone(),
+                        routing_ui::RouteRef::None => String::new(),
+                    };
+                    bent.push((worst, format!("{name} end {k}: {worst:.2} mm off within {length} mm")));
+                }
+            }
+        }
+    }
+    bent.sort_by(|a, b| b.0.total_cmp(&a.0));
+    (all, bent)
+}
+
+#[test]
+fn ferrules_and_terminals_are_not_bent() {
+    // A ferrule or crimped terminal does not bend: wires and cores run straight out of
+    // their connection points as far as it reaches, along the cable ducts (demo, example
+    // 9) and laid by the 3D routing (example 14), also where a route leaves a connection
+    // point beside the cells of the routing. A ring terminal at a device too.
+    let example = |key: &str| openecraft_core::sample::example(key).unwrap();
+    let mut rings = openecraft_core::sample::demo_project();
+    let an = Analysis::build(&rings);
+    let device = an.wiring.iter().find(|w| w.cable.is_empty()).map(|w| w.from.rsplit_once(':').unwrap().0.to_string()).unwrap();
+    openecraft_core::production::set_termination(&mut rings, &device, "", Some(openecraft_core::production::Termination::Ring));
+    for (name, prj) in [("demo", openecraft_core::sample::demo_project()), ("rings", rings), ("cabinet_lineup", example("cabinet_lineup")), ("industrial_main_distribution", example("industrial_main_distribution"))] {
+        let (all, bent) = bent_terminations(&prj);
+        let list: Vec<&str> = bent.iter().map(|b| b.1.as_str()).collect();
+        assert!(all > 40 && bent.is_empty(), "{name}: {} of {all}:\n{}", bent.len(), list.join("\n"));
+    }
 }

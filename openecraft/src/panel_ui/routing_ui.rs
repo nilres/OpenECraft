@@ -61,7 +61,7 @@ pub(super) struct RouteLine {
 
 /// How the end `k` of a routed wire looks at its connection point; dimmed like the wire.
 fn route_end(prj: &Project, an: &Analysis, it: &openecraft_core::routing3d::RoutedItem, k: usize, dim: bool) -> super::scene3d::EndLook {
-    let Some(w) = it.wire.and_then(|wi| an.wiring.get(wi)).filter(|_| it.kind == RouteKind::Wire) else { return Vec::new() };
+    let Some(w) = it.wire.and_then(|wi| an.wiring.get(wi)).filter(|_| it.kind == RouteKind::Wire) else { return Default::default() };
     // The route may run from the wire's `to` end.
     let device = |at: &str| at.rsplit_once(':').map_or(at, |(d, _)| d).to_string();
     let swapped = it.ends[0].tag != device(&w.from) && it.ends[0].tag == device(&w.to);
@@ -105,8 +105,11 @@ pub(super) type FanDevice = (([f32; 3], [f32; 3]), [f32; 3]);
 /// points on its way (terminals one above the other on the bars) passes them in front
 /// of the device. Where the cable ends closer behind a corner than
 /// its bend there (`bends`: the bend radius of each point of `way`) reaches, it ends on
-/// that bend: its last points lie along it, the cores go on round it.
-pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3])], cable: f32, core: f32, device: Option<FanDevice>) -> Fan {
+/// that bend: its last points lie along it, the cores go on round it. A core comes
+/// into its connection point straight for as long as `straight` says for it (its
+/// ferrule or terminal, which does not bend; none: nothing).
+#[allow(clippy::too_many_arguments)]
+pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3])], straight: &[f32], cable: f32, core: f32, device: Option<FanDevice>) -> Fan {
     use openecraft_core::parts::vec3::{cross, dot, length, scale};
     // Up to the device, without the middle of the connection points.
     let route = &way[..way.len().saturating_sub(1)];
@@ -197,8 +200,11 @@ pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3]
     let ways = at
         .iter()
         .zip(place)
-        .map(|(&(q, exit), off)| {
+        .enumerate()
+        .map(|(k, (&(tip, exit), off))| {
             let start = add(split, off);
+            // The curve ends where the straight piece into the connection point begins.
+            let q = add(tip, scale(norm(exit), straight.get(k).copied().unwrap_or(0.0).min(0.5 * dist(start, tip))));
             let pull = 0.45 * dist(start, q);
             let (mut b, mut c) = (add(start, scale(dir, pull)), add(q, scale(norm(exit), pull)));
             // Past other connection points in line before its own it goes in front of the
@@ -232,13 +238,17 @@ pub(super) fn fan_out(way: &[[f32; 3]], bends: &[f32], at: &[([f32; 3], [f32; 3]
             // a corner before the split, into the bars its terminal sits on).
             let within = |p: [f32; 3]| [0, 1, 2].map(|k| p[k].clamp(lo[k], hi[k]));
             let (b, c) = (within(b), within(c));
-            (0..=CORE_STEPS)
+            let mut way: Vec<[f32; 3]> = (0..=CORE_STEPS)
                 .map(|i| {
                     let t = i as f32 / CORE_STEPS as f32;
                     let u = 1.0 - t;
                     [0, 1, 2].map(|k| u * u * u * start[k] + 3.0 * u * u * t * b[k] + 3.0 * u * t * t * c[k] + t * t * t * q[k])
                 })
-                .collect()
+                .collect();
+            if dist(q, tip) > 1e-3 {
+                way.push(tip);
+            }
+            way
         })
         .collect();
     (keep, tail, ways)
@@ -552,7 +562,7 @@ impl PanelUi {
                     }
                 }
                 // A wire's ends at the ends of the route (not into an enclosure not shown).
-                let ends = [(0, s == 0), (1, s == last)].map(|(k, at_end)| if at_end && it.wire.is_some() && it.ends[k].item.is_some() && it.ends[k].cores.is_empty() { route_end(prj, an, it, k, selected_wire.is_some() && !selected) } else { Vec::new() });
+                let ends = [(0, s == 0), (1, s == last)].map(|(k, at_end)| if at_end && it.wire.is_some() && it.ends[k].item.is_some() && it.ends[k].cores.is_empty() { route_end(prj, an, it, k, selected_wire.is_some() && !selected) } else { Default::default() });
                 let mut points: Vec<[f32; 3]> = points.iter().map(|q| to_view(leg, *q)).collect();
                 let mut bends = bends.to_vec();
                 bends.resize(points.len(), 0.0);
@@ -573,7 +583,7 @@ impl PanelUi {
                     // In a cabinet the cable ends clear of the device and the cores pass its
                     // other terminals in front of it.
                     let device = it.ends[end].enclosure.zip(it.ends[end].item).filter(|_| rest != [0.0; 3]).and_then(|(k, id)| Some((fan_device(prj, &pos, k, id, &|q| to_view(leg, q))?, rest)));
-                    let (keep, tail, fan) = fan_out(&points, &bends, &at, diameter, core_diameter(it, diameter), device);
+                    let (keep, tail, fan) = fan_out(&points, &bends, &at, &it.ends[end].pins.iter().map(|pin| core_end(prj, an, &it.key, pin).straight).collect::<Vec<_>>(), diameter, core_diameter(it, diameter), device);
                     core_pins.extend((0..fan.len()).map(|c| it.ends[end].pins.get(c).cloned().unwrap_or_default()));
                     cores.extend(fan);
                     points.truncate(keep);
@@ -586,7 +596,7 @@ impl PanelUi {
                     }
                 }
                 for (c, pin) in cores.into_iter().zip(core_pins) {
-                    out.push(RouteLine { bends: vec![0.0; c.len()], points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Vec::new(), core_end(prj, an, &it.key, &pin)] });
+                    out.push(RouteLine { bends: vec![0.0; c.len()], points: c, color, stripe: None, width: width * 0.5, diameter: core_diameter(it, diameter), rest: [0.0; 3], below: f32::INFINITY, on_top: selected, target: target.clone(), as_is: true, leave: [[0.0; 3]; 2], ends: [Default::default(), core_end(prj, an, &it.key, &pin)] });
                 }
                 let index = match joined {
                     Some((prev, index)) if prev + 1 == s => {

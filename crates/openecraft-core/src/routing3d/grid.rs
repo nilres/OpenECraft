@@ -12,8 +12,9 @@
 //! all of it but the items at its ends (near its ends the clearance round the items
 //! does not count, the items do). It turns only where its bend, rounded with the bend
 //! radius, keeps clear too. A route leaves each of its ends straight on, as far as its
-//! bend radius (through the box of its own device where the connection point lies
-//! inside it), and between two of its bends it runs straight for two radii (the arcs
+//! bend radius and what does not bend at the end (the ferrule or terminal of a wire,
+//! [`Request::straight`]; through the box of its own device where the connection point
+//! lies inside it), and between two of its bends it runs straight for two radii (the arcs
 //! of both fit between them); a lane change with an S-bend is free of that. Where there
 //! is no way like that, there is no route.
 //! Routes keep apart from the ones routed before them by their thicknesses: none runs
@@ -170,6 +171,9 @@ pub struct Request<'a> {
     /// How far the route runs straight already before each end point (out of the
     /// nozzle of a device), mm.
     pub out: [f32; 2],
+    /// How far it runs straight out of each end point before its bend there may begin
+    /// (the ferrule or terminal of a wire, which does not bend), mm.
+    pub straight: [f32; 2],
     /// Cross-section in mm² (capacity of the paths).
     pub area: f32,
     /// Extra cost of a turn (mm), from the bend radius.
@@ -1484,8 +1488,18 @@ impl Space {
     }
 
     /// [`Space::route`] with the costs to the goal of a search of the same request before
-    /// (where they still hold), and the costs it used.
+    /// (where they still hold), and the costs it used. Where there is no way straight out
+    /// of its ends as far as [`Request::straight`] says, the way out of them as far as its
+    /// bend radius.
     pub fn route_with(&self, a: V3, b: V3, req: &Request, rules: &RoutingRules, known: Option<&GoalCosts>) -> (Option<Way>, Option<GoalCosts>) {
+        let found = self.route_once(a, b, req, rules, known);
+        if found.0.is_some() || req.straight == [0.0; 2] {
+            return found;
+        }
+        self.route_once(a, b, &Request { straight: [0.0; 2], ..*req }, rules, known)
+    }
+
+    fn route_once(&self, a: V3, b: V3, req: &Request, rules: &RoutingRules, known: Option<&GoalCosts>) -> (Option<Way>, Option<GoalCosts>) {
         // Ends closer than a cell that face each other (the nozzles of two fittings in
         // line): straight from one to the other.
         let facing = Space::axis_of(req.leave[0]).zip(Space::axis_of(req.leave[1])).is_some_and(|(x, y)| x.0 == y.0 && x.1 == -y.1);
@@ -1494,13 +1508,21 @@ impl Space {
             cells.dedup();
             return (Some(Way { points: vec![a, b], cells, free: 0.0 }), known.cloned());
         }
-        // The route runs straight out of its ends for its bend radius and on between its
-        // bends for two of them (the arcs of both fit between), a cell to spare.
+        // The route runs straight out of its ends for its bend radius (and the length of
+        // what does not bend there, where it can: through cells no other route took) and
+        // on between its bends for two of them (the arcs of both fit between), a cell to
+        // spare.
         let straight = (2.0 * req.turn / self.cell).ceil() as usize + 1;
-        let far = req.turn;
-        let cells = (far / self.cell).ceil() as usize;
-        let lead_in = self.lead(a, req.leave[0], self.lead_limit(a, req.leave[0], b, req.leave[1]), req.out[0], far, req, cells);
-        let lead_out = self.lead(b, req.leave[1], self.lead_limit(b, req.leave[1], a, req.leave[0]), req.out[1], far, req, cells);
+        let lead = |q: V3, i: usize, other: V3| {
+            let limit = self.lead_limit(q, req.leave[i], other, req.leave[1 - i]);
+            let run = |far: f32| self.lead(q, req.leave[i], limit, req.out[i], far, req, (far / self.cell).ceil() as usize);
+            let free = |cells: &[usize]| cells.iter().all(|&idx| self.channel(idx, req) || self.taken[idx] + req.half + 0.5 <= 0.0);
+            match run(req.turn + req.straight[i]) {
+                Some((cells, _, full)) if req.straight[i] > 0.0 && !(full && free(&cells)) => run(req.turn),
+                way => way,
+            }
+        };
+        let (lead_in, lead_out) = (lead(a, 0, b), lead(b, 1, a));
         // An end without a direction is left from the nearest passable cell; one the
         // route cannot leave straight on for its bend radius cannot be left at all.
         let mut ends = Ends { lead_in: Vec::new(), dir: 6, lead_out: Vec::new(), arrive: 6 };

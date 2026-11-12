@@ -19,7 +19,7 @@ fn an_impossible_ahead_search_is_not_repeated_after_fill_changes() {
     space.paths.push(grid::PathCells {enclosure:0,id:1,kind:PathKind::Any,classes:0,capacity:1.,used:2.,items:1,implied:false});
     let loads=vec![0.];
     assert!(!space.full_as(&loads,1.));
-    let req=grid::Request {kind:RouteKind::Cable,class:Class::Signal,ignore:&[],at:[[0.;3];2],leave:[[0.;3];2],out:[0.;2],area:1.,turn:25.,half:1.};
+    let req=grid::Request {kind:RouteKind::Cable,class:Class::Signal,ignore:&[],at:[[0.;3];2],leave:[[0.;3];2],out:[0.;2],straight:[0.;2],area:1.,turn:25.,half:1.};
     assert!(finish_ahead(&space,&req,1.,true,Some((None,loads.clone(),None)),|_|panic!("an impossible route must not be searched again")).is_none());
     let mut searched=false;
     assert!(finish_ahead(&space,&req,1.,true,None,|_|{searched=true;None}).is_none());

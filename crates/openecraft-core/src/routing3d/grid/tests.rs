@@ -14,7 +14,7 @@ fn single() -> Enclosure {
 }
 
 fn req(ignore: &[u64]) -> Request<'_> {
-    Request { kind: RouteKind::Cable, class: Class::Signal, ignore, at: [[0.0; 3]; 2], leave: [[0.0; 3]; 2], out: [0.0; 2], area: 50.0, turn: 12.5, half: 3.0 }
+    Request { kind: RouteKind::Cable, class: Class::Signal, ignore, at: [[0.0; 3]; 2], leave: [[0.0; 3]; 2], out: [0.0; 2], straight: [0.0; 2], area: 50.0, turn: 12.5, half: 3.0 }
 }
 
 fn space(prj: &Project) -> Space {
@@ -222,6 +222,14 @@ fn routes_leave_their_ends_straight_on() {
     // Without directions the first stretch is the short way to the nearest cell.
     let any = s.route(a, b, &Request { leave: [[0.0; 3]; 2], ..r }, &rules).expect("a way");
     assert!(length(&any.points) <= length(&w.points) + 1e-3);
+    // With a ferrule at the start it runs straight on for that too before it bends.
+    let thin = Request { turn: 25.0, ..r };
+    let ferrule = s.route(a, b, &Request { straight: [40.0, 0.0], ..thin }, &rules).expect("a way");
+    let first = sub(ferrule.points[2], ferrule.points[1]);
+    assert!((first[0], first[1]) == (0.0, 0.0) && first[2] >= 65.0 - 12.5 - 1e-3, "{:?}", ferrule.points);
+    // Where there is no room for that, it leaves its end as far as its bend radius.
+    let none = s.route(a, b, &Request { straight: [5000.0, 0.0], ..r }, &rules).expect("a way");
+    assert_eq!(none.points, w.points);
 }
 
 /// Distance of a point from a box (0 inside).

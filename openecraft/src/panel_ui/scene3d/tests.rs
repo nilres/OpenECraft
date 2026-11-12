@@ -84,7 +84,7 @@ fn wire_ends_are_cut_off_the_way() {
     let (red, grey) = (Color32::RED, Color32::GRAY);
     let round = |length: f32, diameter: f32, c: Color32| (EndPiece { length, diameter, color: [0; 3], shape: EndShape::Round }, c);
     // A ferrule (sleeve and collar) at the first end, the bare conductor at the last.
-    let ends = [vec![round(8.0, 1.8, grey), round(6.0, 3.8, red)], vec![round(8.0, 1.6, Color32::BROWN)]];
+    let ends = [EndLook { pieces: vec![round(8.0, 1.8, grey), round(6.0, 3.8, red)], straight: 14.0 }, EndLook { pieces: vec![round(8.0, 1.6, Color32::BROWN)], straight: 0.0 }];
     let up = [0.0, 0.0, 1.0];
     let pieces = with_ends(&way, 3.0, Color32::BLUE, None, &ends, up);
     let looks: Vec<(f32, f32, Color32)> = pieces.iter().map(|p| (vec3::path_length(&p.path), p.diameter, p.color)).collect();
@@ -106,8 +106,11 @@ fn wire_ends_are_cut_off_the_way() {
     let rgb = |c: [u8; 3]| Color32::from_rgb(c[0], c[1], c[2]);
     let colors = |look: &EndLook| look.iter().map(|p| p.1).collect::<Vec<_>>();
     assert_eq!(colors(&wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::SLEEVE_RGB), rgb([35, 35, 38])]);
+    // The ferrule does not bend: the wire runs straight out as far as it reaches.
+    assert_eq!(wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false).straight, 14.0);
     prj.layout.ferrules = false;
     assert_eq!(colors(&wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::COPPER_RGB)]);
+    assert_eq!(wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false).straight, 0.0);
     assert!(wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "", false).is_empty());
     // A ring terminal chosen for the last end: its flat ring lies round the end of the
     // way, across `up`.
@@ -121,7 +124,7 @@ fn wire_ends_are_cut_off_the_way() {
     assert_eq!(colors(&wire_end(&prj, &pair, "-X9:1", "-K9:1", "1.5 mm²", false)), vec![rgb(openecraft_core::production::COPPER_RGB)]);
     let ring = wire_end(&prj, &wire_ends, "-K1:1", "-X1:1", "1.5 mm²", false);
     assert!(matches!(ring[0].0.shape, EndShape::Ring { .. }));
-    let pieces = with_ends(&way, 3.0, Color32::BLUE, None, &[Vec::new(), ring], up);
+    let pieces = with_ends(&way, 3.0, Color32::BLUE, None, &[EndLook::default(), ring], up);
     let tip = pieces.last().unwrap();
     assert!(!tip.flat.is_empty());
     let near = |v: &V3| vec3::length(sub(*v, way[2])) <= 8.0;

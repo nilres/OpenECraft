@@ -198,6 +198,9 @@ pub struct Way<'a> {
     /// connection point, a cable gland; none: zero): it runs straight out of them. As
     /// long as the cells of the routing there are wide.
     pub leave: [V3; 2],
+    /// How far it runs straight out of its first and its last point before it bends
+    /// (a ferrule or terminal there), mm.
+    pub straight: [f32; 2],
 }
 
 /// The ways drawn apart from those they run together with, with the bend radius of each
@@ -367,7 +370,7 @@ pub fn spread_ways(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[
                 return (way.points.to_vec(), way.radii.to_vec());
             }
             let offsets: Vec<V3> = (0..way.points.len().saturating_sub(1)).map(|j| moves.get(&(i, j)).copied().unwrap_or([0.0; 3])).collect();
-            let (points, radii) = lay(way.points, way.radii, &offsets, way.leave);
+            let (points, radii) = lay(way.points, way.radii, &offsets, way.leave, way.straight);
             in_ducts(points, radii, way.diameter / 2.0, channels)
         })
         .collect()
@@ -649,9 +652,10 @@ const IN_LINE: f32 = 12.5;
 /// the bends of its corners fit on it; [`MOVED`] corners at most); between the corners
 /// moved with one end and those moved with the other the longest stretch runs straight. Where the end point lies
 /// further aside (the way straight out of it was barred, [`IN_LINE`]), the way comes
-/// onto the line of its first stretch as the routing left room for ([`onto_lane`]).
+/// onto the line of its first stretch as the routing left room for ([`onto_lane`]),
+/// straight out of the end point for `straight` first (for the first and the last).
 #[allow(clippy::too_many_lines)]
-fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2]) -> (Vec<V3>, Vec<f32>) {
+fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2], straight: [f32; 2]) -> (Vec<V3>, Vec<f32>) {
     let n = points.len();
     let radius = |j: usize| radii.get(j).copied().unwrap_or(0.0);
     let dir = |j: usize| norm(sub(points[j + 1], points[j]));
@@ -661,22 +665,24 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2]) -> (Vec<V3>
     }
     // The slanting stretch `end` at an end (`next`: the stretch after it, where there is
     // one): the direction the way runs along it (`out`: where known), and whether the
-    // stretch after it is part of that way out of the end.
-    let lead = |end: usize, next: Option<usize>, out: V3| -> Option<(V3, bool)> {
+    // stretch after it is part of that way out of the end. Where it runs straight out
+    // of the end first (`straight`), also one that only runs aside onto the grid.
+    let lead = |end: usize, next: Option<usize>, out: V3, straight: f32| -> Option<(V3, bool)> {
         if axial(end) || dist(points[end], points[end + 1]) > DOGLEG {
             return None;
         }
         let on = |j: usize, d: V3| axial(j) && dot(dir(j), d) > 0.99;
         if dot(out, out) > 0.25 {
             let out = norm(out);
-            return (dot(dir(end), out) > 0.0).then(|| (out, next.is_some_and(|j| on(j, out))));
+            let ahead = if straight > 0.0 { -1e-3 } else { 0.0 };
+            return (dot(dir(end), out) > ahead).then(|| (out, next.is_some_and(|j| on(j, out))));
         }
         let j = next.filter(|&j| axial(j) && dot(dir(end), dir(j)) > 0.5 && dist(points[end], points[end + 1]) <= dist(points[j], points[j + 1]))?;
         Some((dir(j), true))
     };
-    let start = lead(0, (n > 2).then_some(1), leave[0]);
+    let start = lead(0, (n > 2).then_some(1), leave[0], straight[0]);
     let first = usize::from(start.is_some_and(|l| l.1));
-    let end = lead(n - 2, (n >= 4 + first).then(|| n - 3), scale(leave[1], -1.0));
+    let end = lead(n - 2, (n >= 4 + first).then(|| n - 3), scale(leave[1], -1.0), straight[1]);
     let last = n - 1 - usize::from(end.is_some_and(|l| l.1));
     if start.is_none() && end.is_none() && offsets.iter().all(|o| *o == [0.0; 3]) {
         return (points.to_vec(), radii.to_vec());
@@ -816,10 +822,10 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2]) -> (Vec<V3>
         out.push((from, r0));
         // From an end point beside its line onto it.
         if k == 0 && start.is_some() && from_start.is_none() {
-            out.extend(onto_lane(from, (a, d), to, bend, r1).map(|q| (q, bend)));
+            out.extend(onto_lane(from, (a, d), to, bend, r1, straight[0]).map(|q| (q, bend)));
         }
         if k + 1 == m && end.is_some() && from_end.is_none() {
-            let [p, q] = onto_lane(to, (a, d), from, bend, r0);
+            let [p, q] = onto_lane(to, (a, d), from, bend, r0, straight[1]);
             out.extend([(q, bend), (p, bend)]);
         }
         // Onto its lane behind the bends of its corners (their radius: a right angle);
@@ -848,7 +854,9 @@ fn lay(points: &[V3], radii: &[f32], offsets: &[V3], leave: [V3; 2]) -> (Vec<V3>
 /// no longer than that, the point it comes onto the line at (twice). Twice `at` (no
 /// corners) where the line passes through it, the way reaches `to` before, or there is
 /// no room for the S-bend before the bend at `to`: the way then runs straight to `to`.
-fn onto_lane(at: V3, lane: (V3, V3), to: V3, bend: f32, corner: f32) -> [V3; 2] {
+/// Where it runs `straight` out of `at` first (a ferrule or terminal there), it does
+/// not lean over and its S-bend begins behind that.
+fn onto_lane(at: V3, lane: (V3, V3), to: V3, bend: f32, corner: f32, straight: f32) -> [V3; 2] {
     let d = scale(lane.1, dot(sub(to, at), lane.1).signum());
     let off = sub(lane.0, at);
     let across = sub(off, scale(d, dot(off, d)));
@@ -858,13 +866,15 @@ fn onto_lane(at: V3, lane: (V3, V3), to: V3, bend: f32, corner: f32) -> [V3; 2] 
         return [at; 2];
     }
     // Leaning over to it where that takes no longer than the S-bend and its bend.
-    if lean <= run + bend {
+    if lean <= run + bend && straight <= 0.0 {
         return if lean < length - 1.0 { [add(add(at, scale(d, lean)), across); 2] } else { [at; 2] };
     }
-    if run + corner > length + 1.0 {
+    // (The arcs of the S-bend share the stretch across.)
+    let out = if straight > 0.0 { (run / 2.0).max(straight + bend.min(aside / 2.0)) } else { run / 2.0 };
+    if out + run / 2.0 + corner > length + 1.0 {
         return [at; 2];
     }
-    let turn = add(at, scale(d, run / 2.0));
+    let turn = add(at, scale(d, out));
     [turn, add(turn, across)]
 }
 
@@ -908,10 +918,23 @@ const MOST_MOVE: f32 = 4.0;
 const MOST_MOVE_EXTRA: f32 = 20.0;
 
 /// The ways as the 3D view draws them: laid side by side ([`spread_ways`] on a grid of
-/// `cell`), bent round their corners ([`Way::steps`] points per quarter turn) and pushed
-/// apart ([`separate`]); `progress` as for [`separate_with`].
+/// `cell`), straight out of their ends as far as [`Way::straight`] ([`straight_out`], the
+/// corners moved only at the ends they leave in a direction of their own, [`Way::leave`]),
+/// bent round their corners ([`Way::steps`] points per quarter turn) and pushed apart
+/// ([`separate`]); `progress` as for [`separate_with`].
 pub fn lay_out(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Channel], insides: &[(V3, V3)], progress: &dyn Fn(usize, usize) -> bool) -> Option<Vec<Vec<V3>>> {
-    let laid = spread_ways(ways, cell, obstacles, channels, insides);
+    let mut laid = spread_ways(ways, cell, obstacles, channels, insides);
+    for (w, (points, radii)) in ways.iter().zip(&mut laid).filter(|(w, _)| !w.held) {
+        radii.resize(points.len(), 0.0);
+        // (Where the routing planned the straight way out of the end.)
+        let planned = |k: usize| w.leave[k] != [0.0; 3];
+        straight_out(points, radii, w.straight[0], planned(0));
+        points.reverse();
+        radii.reverse();
+        straight_out(points, radii, w.straight[1], planned(1));
+        points.reverse();
+        radii.reverse();
+    }
     let bent: Vec<Vec<V3>> = ways
         .iter()
         .zip(&laid)
@@ -944,6 +967,39 @@ pub fn lay_out(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Chan
     };
     let strands: Vec<Strand> = ways.iter().zip(&laid).zip(&bent).map(|((w, (points, radii)), bent)| Strand { points: bent, diameter: w.diameter, rest: w.rest, below: w.below, tails: tails(points, radii), held: w.held }).collect();
     separate_with(&strands, obstacles, channels, insides, progress)
+}
+
+/// A way (its corners and their bend radii, one per point) that runs straight out of its
+/// first point for `straight` mm (a ferrule or terminal there, which does not bend)
+/// before the bend at its first corner begins: where `moves`, the corner moves on along
+/// the first stretch where that is shorter than this and the bend (the point after it
+/// as far, where the stretch to it runs across: the way goes on as before beside where
+/// it went), otherwise the bend there is tightened where it would begin before.
+pub fn straight_out(points: &mut [V3], radii: &mut [f32], straight: f32, moves: bool) {
+    if points.len() < 3 || straight <= 0.0 {
+        return;
+    }
+    let (d, first) = (norm(sub(points[1], points[0])), dist(points[0], points[1]));
+    if first < 1e-3 {
+        return;
+    }
+    // (Far enough for the bend with its radius behind it.)
+    let half = dot(d, norm(sub(points[2], points[1]))).clamp(-1.0, 1.0).acos() / 2.0;
+    let bend = if half > 1e-3 { radii.get(1).copied().unwrap_or(0.0) * half.tan().min(1.0) } else { 0.0 };
+    let short = straight + bend.max(0.5) - first;
+    if short > 0.0 && moves {
+        let across = dot(norm(sub(points[2], points[1])), d).abs() < 0.1;
+        let moved = scale(d, short);
+        points[1] = add(points[1], moved);
+        if across && points.len() > 3 {
+            points[2] = add(points[2], moved);
+        }
+    }
+    let (first, on) = (dist(points[0], points[1]), norm(sub(points[2], points[1])));
+    let half = dot(d, on).clamp(-1.0, 1.0).acos() / 2.0;
+    if let Some(r) = radii.get_mut(1).filter(|_| half > 1e-3) {
+        *r = r.min((first - straight).max(0.0) / half.tan());
+    }
 }
 
 /// Where a drawn way bends tighter than with `radius`: the places (the middle of each,

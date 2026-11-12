@@ -66,23 +66,38 @@ struct TubeWay {
 
 /// How the end of a wire or core at its connection point looks: the pieces of the
 /// ferrule, the terminal or the bare conductor from the tip inwards, each with its
-/// colour; none where it is not connected.
-pub(super) type EndLook = Vec<(EndPiece, Color32)>;
+/// colour; none where it is not connected. The way runs `straight` out of the point
+/// first, as far as what does not bend there reaches
+/// ([`production::EndTreatment::straight`]).
+#[derive(Clone, Default)]
+pub(super) struct EndLook {
+    pieces: Vec<(EndPiece, Color32)>,
+    pub straight: f32,
+}
+
+impl std::ops::Deref for EndLook {
+    type Target = [(EndPiece, Color32)];
+    fn deref(&self) -> &Self::Target {
+        &self.pieces
+    }
+}
 
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
 /// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
 /// shown at the first of its wires), dimmed like the wire (`dim`, see
 /// [`super::wire_look`]).
 pub(super) fn wire_end(prj: &Project, ends: &production::Ends, at: &str, to: &str, cross_section: &str, dim: bool) -> EndLook {
-    let Some(t) = ends.end(prj, at, to, cross_section) else { return Vec::new() };
+    let Some(t) = ends.end(prj, at, to, cross_section) else { return EndLook::default() };
     let outer = openecraft_core::harness::outer_diameter(cross_section);
-    t.pieces(cross_section, outer)
+    let pieces = t
+        .pieces(cross_section, outer)
         .into_iter()
         .map(|p| {
             let c = Color32::from_rgb(p.color[0], p.color[1], p.color[2]);
             (p, if dim { c.gamma_multiply(0.3) } else { c })
         })
-        .collect()
+        .collect();
+    EndLook { pieces, straight: t.straight(cross_section, outer) }
 }
 
 /// A piece of a way as it is drawn: its points (along which the processor draws it as
@@ -100,14 +115,14 @@ pub(super) struct Drawn {
 /// last point and the rest between them. Flat pieces lie across `up` (as far as they
 /// can). A way too short for its ends is drawn without them.
 pub(super) fn with_ends(points: &[V3], diameter: f32, color: Color32, stripe: Option<Color32>, ends: &[EndLook; 2], up: V3) -> Vec<Drawn> {
-    let total: f32 = ends.iter().flatten().map(|p| p.0.length).sum();
+    let total: f32 = ends.iter().flat_map(|e| e.iter()).map(|p| p.0.length).sum();
     if total <= 0.0 || vec3::path_length(points) <= total + diameter {
         return vec![Drawn { path: points.to_vec(), diameter, color, stripe, flat: Vec::new() }];
     }
     // The pieces of an end cut off the start of `rest`, the tip first.
     let cut = |rest: &mut Vec<V3>, pieces: &EndLook| {
         let mut out = Vec::new();
-        for &(piece, c) in pieces {
+        for &(piece, c) in pieces.iter() {
             let (head, tail) = vec3::split_at(rest, piece.length);
             let flat = match (head.first(), head.last()) {
                 (Some(&tip), Some(&inner)) if piece.shape != EndShape::Round => {
@@ -275,6 +290,9 @@ pub(super) struct Scene3d {
     pub picks: Vec<(V3, V3, RouteRef)>,
     /// The tubes drawn: the way of each, its radius and what it is.
     pub tube_paths: Vec<(Vec<V3>, f32, RouteRef)>,
+    /// How far each of them runs straight out of its first and its last point (its
+    /// ferrules or terminals there, [`EndLook::straight`]).
+    pub straight_ends: Vec<[f32; 2]>,
     /// Box around everything.
     pub bounds: (V3, V3),
 }
@@ -298,6 +316,7 @@ struct LayoutWay {
     steps: usize,
     held: bool,
     leave: [V3; 2],
+    straight: [f32; 2],
 }
 
 impl LayoutInput {
@@ -306,7 +325,7 @@ impl LayoutInput {
         let mut h = std::collections::hash_map::DefaultHasher::new();
         for w in &self.ways {
             (w.points.len(), w.bends.len(), w.steps, w.held).hash(&mut h);
-            w.points.iter().chain(&w.leave).flatten().chain(&w.bends).chain(&w.rest).chain([&w.diameter, &w.below]).for_each(|v| v.to_bits().hash(&mut h));
+            w.points.iter().chain(&w.leave).flatten().chain(&w.bends).chain(&w.rest).chain(&w.straight).chain([&w.diameter, &w.below]).for_each(|v| v.to_bits().hash(&mut h));
         }
         (self.obstacles.len(), self.insides.len(), self.channels.len()).hash(&mut h);
         let boxes = self.obstacles.iter().chain(&self.insides).chain(self.channels.iter().map(|c| &c.inside));
@@ -316,7 +335,7 @@ impl LayoutInput {
 
     /// The ways laid out; `None` when `progress` (rounds done, of all) answers false.
     fn lay_out(&self, progress: &dyn Fn(usize, usize) -> bool) -> Option<Vec<Vec<V3>>> {
-        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held, leave: w.leave }).collect();
+        let ways: Vec<Way> = self.ways.iter().map(|w| Way { points: &w.points, radii: &w.bends, diameter: w.diameter, rest: w.rest, below: w.below, steps: w.steps, held: w.held, leave: w.leave, straight: w.straight }).collect();
         bundles::lay_out(&ways, LANE_CELL, &self.obstacles, &self.channels, &self.insides, progress)
     }
 }
@@ -1304,10 +1323,37 @@ impl PanelUi {
                         true => (pose.turn([0.0, 0.0, 1.0]), path.iter().map(|q| q[2] - PLATE_Z).fold(f32::INFINITY, f32::min) - diameter / 2.0 - super::routing_ui::PLATE_CLEAR),
                         false => ([0.0; 3], f32::INFINITY),
                     };
+                    let ends = [0, 1].map(|k| if connected[k] { end[k].clone() } else { EndLook::default() });
+                    // Out of a connection point straight as far as its ferrule or terminal
+                    // reaches (`bundles::lay_out`): where the way comes down to the plate
+                    // before that, it comes down behind it, as long as that keeps clear of
+                    // the cable ducts and the other devices.
+                    let mut path = path.clone();
+                    let clear: Vec<(V3, V3)> = duct_boxes.iter().chain(blockers.iter().filter(|(id, _)| *id != wire.items.0 && *id != wire.items.1).map(|(_, b)| b)).map(|(lo, hi)| (lo.map(|v| v - diameter / 2.0), hi.map(|v| v + diameter / 2.0))).collect();
+                    for (k, look) in ends.iter().enumerate().filter(|(_, e)| e.straight > 0.0) {
+                        if path.len() < 3 {
+                            break;
+                        }
+                        if k == 1 {
+                            path.reverse();
+                        }
+                        // (Not up the fraction of a millimetre to the height it runs at.)
+                        if vec3::dist(path[0], path[1]) < 1.0 {
+                            path.remove(1);
+                        }
+                        let mut moved = path.clone();
+                        bundles::straight_out(&mut moved, &mut [], look.straight, true);
+                        if moved.len() >= 3 && (1..3).all(|j| moved[j] == path[j] || !clear.iter().any(|b| vec3::segment_in_box(moved[j - 1], moved[j], *b).is_some())) {
+                            path = moved;
+                        }
+                        if k == 1 {
+                            path.reverse();
+                        }
+                    }
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2], ends: [0, 1].map(|k| if connected[k] { end[k].clone() } else { Vec::new() }) }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2], ends }));
                         continue;
                     }
                     for seg in path.windows(2) {
@@ -1417,7 +1463,7 @@ impl PanelUi {
                 insides.push(([0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::INFINITY, f32::min)), [0, 1, 2].map(|i| corners.iter().map(|q| q[i]).fold(f32::NEG_INFINITY, f32::max))));
             }
         }
-        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is, leave: t.leave }).collect();
+        let ways = pending.iter().map(|t| LayoutWay { points: t.points.clone(), bends: t.bends.clone(), diameter: t.diameter, rest: t.rest, below: t.below, steps: t.steps, held: t.as_is, leave: t.leave, straight: t.ends.each_ref().map(|e| e.straight) }).collect();
         let laid = match lay_out(LayoutInput { ways, obstacles, channels, insides }) {
             Ok(ways) => ways,
             Err(key) => {
@@ -1430,6 +1476,7 @@ impl PanelUi {
             let points = laid.next().unwrap_or(&t.points);
             tube_ways.push((points.clone(), t.diameter / 2.0));
             s.tube_paths.push((points.clone(), t.diameter / 2.0, t.target.clone()));
+            s.straight_ends.push(t.ends.each_ref().map(|e| e.straight));
             // The ferrules, terminals or bare conductors at the connection points; flat
             // terminals face away from the plate.
             let up = if t.rest == [0.0; 3] { [0.0, 0.0, 1.0] } else { t.rest };

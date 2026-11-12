@@ -145,6 +145,22 @@ fn wire_ends_seen_in_3d() {
 }
 
 #[test]
+fn terminations_keep_the_wire_end_straight() {
+    let outer = crate::harness::outer_diameter("1.5 mm²");
+    // The ferrule with its collar, the terminal with its sleeve; a bare conductor bends.
+    assert_eq!(end_treatment("1.5 mm²", true).unwrap().straight("1.5 mm²", outer), 14.0);
+    assert_eq!(end_treatment("1.5 mm²", false).unwrap().straight("1.5 mm²", outer), 0.0);
+    for kind in [Termination::Ring, Termination::Fork, Termination::Pin, Termination::Blade, Termination::Receptacle] {
+        let t = treatment("1.5 mm²", kind).unwrap();
+        let all: f32 = t.pieces("1.5 mm²", outer).iter().map(|p| p.length).sum();
+        assert!(t.straight("1.5 mm²", outer) == all && all > 10.0, "{kind:?}: {all}");
+    }
+    // The conductor of a wire sharing the twin ferrule of the other one lies in it.
+    let shared = EndTreatment { shared: true, ..treatment("1.5 mm²", Termination::TwinFerrule).unwrap() };
+    assert_eq!(shared.straight("1.5 mm²", outer), 8.0);
+}
+
+#[test]
 fn ferrules_in_wire_list_and_bom() {
     let mut prj = demo_project();
     for w in prj.pages.iter_mut().flat_map(|pg| pg.wires.iter_mut()).filter(|w| w.cable.is_empty()) {
