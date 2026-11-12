@@ -473,8 +473,20 @@ impl Part {
     /// takes the door cutouts where the part has them (typed data, otherwise the
     /// technical data of older parts).
     pub fn cutouts(&self, door: bool) -> Vec<PlacedCutout> {
+        let md = &self.mounting_data;
         let keys: &[&str] = if door { &["Door cutout", "Cutout"] } else { &["Cutout"] };
-        keys.iter().find_map(|k| self.data_value(k).and_then(|v| parse_cutouts(&v)).filter(|l| !l.is_empty())).unwrap_or_default()
+        keys.iter()
+            .find_map(|k| {
+                let typed = match *k {
+                    "Door cutout" => &md.door_cutouts,
+                    _ => &md.cutouts,
+                };
+                if !typed.is_empty() {
+                    return Some(typed.clone());
+                }
+                self.tech_value(k).and_then(parse_cutouts).filter(|l| !l.is_empty())
+            })
+            .unwrap_or_default()
     }
 
     /// A mounting / placement value: the typed one, otherwise the line of the technical

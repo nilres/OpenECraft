@@ -194,14 +194,30 @@ fn tapped_and_through_holes() {
 
 #[test]
 fn rail_mounting_from_rail_data_and_texts() {
-    assert_eq!(rail_mounting(0.0, 0.0, &["SIMATIC HMI MTP700"]), None);
-    assert_eq!(rail_mounting(7.5, 0.0, &[""]).as_deref(), Some("Mounting rail 35 mm"));
-    assert_eq!(rail_mounting(0.0, -4.0, &[""]).as_deref(), Some("Mounting rail 35 mm"));
-    assert_eq!(rail_mounting(0.0, 0.0, &["Snaps onto DIN rail TS 35 x 15"]).as_deref(), Some("Mounting rail 35 x 15 mm"));
-    assert_eq!(rail_mounting(0.0, 0.0, &["Montage auf Hutschiene"]).as_deref(), Some("Mounting rail 35 mm"));
-    assert_eq!(rail_mounting(0.0, 0.0, &["for mounting rail TS15"]).as_deref(), Some("Mounting rail 15 mm"));
-    assert_eq!(rail_mounting(0.0, 0.0, &["", "G 32 rail, TS32"]).as_deref(), Some("Mounting rail G 32"));
+    let rail = |snap, offset, description: &str, other: &str| rail_mounting(snap, offset, description, &[other]);
+    assert_eq!(rail(0.0, 0.0, "SIMATIC HMI MTP700", ""), None);
+    assert_eq!(rail(7.5, 0.0, "", "").as_deref(), Some("Mounting rail 35 mm"));
+    assert_eq!(rail(0.0, -4.0, "", "").as_deref(), Some("Mounting rail 35 mm"));
+    assert_eq!(rail(0.0, 0.0, "Relay", "Snaps onto DIN rail TS 35 x 15").as_deref(), Some("Mounting rail 35 x 15 mm"));
+    assert_eq!(rail(0.0, 0.0, "Relay", "Montage auf Hutschiene").as_deref(), Some("Mounting rail 35 mm"));
+    assert_eq!(rail(0.0, 0.0, "Relay for mounting rail TS15", "").as_deref(), Some("Mounting rail 15 mm"));
+    assert_eq!(rail(0.0, 0.0, "Junction box", "for G 32 rail, TS32").as_deref(), Some("Mounting rail G 32"));
+    // Numbers that only look like rails, and rails themselves.
+    assert_eq!(rail(0.0, 0.0, "Fuse holder for DIN rail, gG 32 A", "").as_deref(), Some("Mounting rail 35 mm"));
+    assert_eq!(rail(0.0, 0.0, "Terminal for DIN rail", "Dimensions 35x150 mm").as_deref(), Some("Mounting rail 35 mm"));
+    assert_eq!(rail(0.0, 0.0, "Mounting rail 35 x 7.5, 2 m", ""), None);
+    assert_eq!(rail(0.0, 0.0, "TS 35 rail, perforated", ""), None);
+    assert_eq!(rail_text("Mounting rail TS 35 x 15, G 32"), "mounting rail ts35x15, g32");
     // EPLAN's snap height makes an imported part one for the rail.
     let xml = r#"<r><part P_ARTICLE_PARTNR="X.2" P_ARTICLE_DESCR1="en_US@Relay;" P_ARTICLE_SNAPHEIGHT="7.5" P_ARTICLE_MOUNTINGSITE="0"/></r>"#;
     assert_eq!(from_eplan_xml(xml).unwrap()[0].mounting, "Mounting rail 35 mm");
+}
+
+#[test]
+fn clearance_holes_of_large_screws_stay_holes() {
+    let xml = r#"<r><part P_ARTICLE_PARTNR="X.3" P_ARTICLE_HEIGHT="200" P_ARTICLE_WIDTH="150" P_ARTICLE_REF_CONSTRUCTION_NAME="C"/>
+        <construction P_PART_CONSTRUCTION_NAME="C"><drillingPosition dimension1="13.5" type="1" xpos="10" ypos="10"/><drillingPosition dimension1="13.5" type="1" xpos="140" ypos="190"/></construction></r>"#;
+    let md = from_eplan_xml(xml).unwrap().remove(0).mounting_data;
+    assert_eq!((md.holes.len(), md.hole_thread.as_str()), (2, "Ø13.5"), "M12 clearance holes");
+    assert!(md.cutouts.is_empty());
 }

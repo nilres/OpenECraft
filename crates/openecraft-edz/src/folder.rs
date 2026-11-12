@@ -237,17 +237,25 @@ impl Folder {
             if !source.contains(number) || !openecraft_parts::is_eplan_xml(&source) {
                 continue;
             }
-            let docs: Vec<String> = std::iter::once(source.clone()).chain(companions(path, &source)).collect();
-            let parts = openecraft_parts::from_eplan_documents(&docs.iter().map(String::as_str).collect::<Vec<_>>()).map_err(|e| format!("{}: {e}", path.display()))?;
+            let parts = openecraft_parts::from_eplan_xml(&source).map_err(|e| format!("{}: {e}", path.display()))?;
             let count = parts.len();
             for p in parts.into_iter().filter(|p| p.number == number) {
-                found.push((count, path, p));
+                found.push((count, path, p, source.clone()));
             }
         }
-        found.sort_by_key(|(count, path, _)| (*count, *path));
+        found.sort_by(|a, b| (a.0, a.1).cmp(&(b.0, b.1)));
         let mut iter = found.into_iter();
-        let (_, source, mut part) = iter.next().ok_or_else(|| format!("Unknown part {number}"))?;
-        let conflicting: Vec<_> = iter.filter(|(_, _, p)| p != &part).map(|(_, path, _)| path.display().to_string()).collect();
+        let (_, source, mut part, article) = iter.next().ok_or_else(|| format!("Unknown part {number}"))?;
+        let conflicting: Vec<_> = iter.filter(|(_, _, p, _)| p != &part).map(|(_, path, _, _)| path.display().to_string()).collect();
+        // The connection points and drilling pattern of the chosen article.
+        let others = companions(source, &article);
+        if !others.is_empty() {
+            let docs: Vec<&str> = std::iter::once(article.as_str()).chain(others.iter().map(String::as_str)).collect();
+            let parts = openecraft_parts::from_eplan_documents(&docs).map_err(|e| format!("{}: {e}", source.display()))?;
+            if let Some(p) = parts.into_iter().find(|p| p.number == number) {
+                part = p;
+            }
+        }
         let mut files = Vec::new();
         if !part.eplan_macro.is_empty() {
             let path = self.resolve(&part.eplan_macro, source)?;
@@ -262,7 +270,7 @@ impl Folder {
                 data,
             });
         }
-        if let Some((_, reference)) = picture_refs(&text(&bytes(source)?)).into_iter().find(|(n, _)| n == number) {
+        if let Some((_, reference)) = picture_refs(&article).into_iter().find(|(n, _)| n == number) {
             if let Some(data) = Self::pick(&self.pictures, &reference, "$(md_img)/", source).ok().and_then(|p| bytes(p).ok()) {
                 part.picture = crate::picture::thumbnail(&data).unwrap_or_default();
             }

@@ -127,7 +127,7 @@ the device. Floor-standing parts stand upright on the floor of a room.
 - **EDZ** (EPLAN Data Portal archives, 7-Zip): the parts XML inside is read as above,
   together with clearances, power loss and the datasheet link. Embedded 2D window
   macros become project symbols. The product picture is kept with the part as a small
-  JPEG (at most 256 px) and shown in the part details with its mounting data
+  JPEG (at most 192 px) and shown in the part details with its mounting data
   (mounting, holes, cutout, clearances) and the wires its connection points take.
   Parts Manager and `parts_import` also store the original files as attachments. The
   project and server part records carry the converted definitions and diagnostics.

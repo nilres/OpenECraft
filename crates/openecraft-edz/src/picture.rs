@@ -5,8 +5,8 @@ use image::codecs::jpeg::JpegEncoder;
 use image::imageops::FilterType;
 use image::RgbImage;
 
-/// Largest width and height of a picture, px.
-pub const SIZE: u32 = 256;
+/// Largest width and height of a picture, px (a few KB each).
+pub const SIZE: u32 = 192;
 
 /// The picture (PNG, JPEG) as a JPEG of at most [`SIZE`] px on white, in base64;
 /// `None` if it cannot be read.
@@ -20,7 +20,7 @@ pub fn thumbnail(data: &[u8]) -> Option<String> {
         image::Rgb([white(r, a), white(g, a), white(b, a)])
     });
     let mut out = Vec::new();
-    JpegEncoder::new_with_quality(&mut out, 85).encode_image(&rgb).ok()?;
+    JpegEncoder::new_with_quality(&mut out, 80).encode_image(&rgb).ok()?;
     Some(openecraft_parts::base64::encode(&out))
 }
 

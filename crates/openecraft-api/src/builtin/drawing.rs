@@ -824,11 +824,12 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if let Some(tag) = a.str("tag") {
         ops::check_tag(tag)?;
     }
-    if !to.same(old) {
-        routing::move_selection(prj, i, &BTreeSet::from([id]), to - old);
-    }
+    // Scaled before it moves: a symbol that cannot be scaled is left as it is.
     if let Some(factor) = num_in(a, "scale", openecraft_core::symlib::SCALE_RANGE.0, openecraft_core::symlib::SCALE_RANGE.1)? {
         ops::set_symbol_scale(prj, i, id, factor)?;
+    }
+    if !to.same(old) {
+        routing::move_selection(prj, i, &BTreeSet::from([id]), to - old);
     }
     let symbols = if a.value("scale").is_some() { prj.symbol_table() } else { symbols };
     let sym = prj.pages[i].symbols.iter_mut().find(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;

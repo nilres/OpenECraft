@@ -306,3 +306,13 @@ fn wires_follow_the_connection_points_of_a_scaled_symbol() {
     prj.pages[0].symbols.push(crate::model::SymbolInst { id: 4, sym: "coil".into(), ..Default::default() });
     assert!(crate::ops::set_symbol_scale(&mut prj, 0, 4, 2.0).is_err());
 }
+
+#[test]
+fn dragging_a_factor_keeps_few_scaled_symbols() {
+    let prj = scaled_project();
+    let table = prj.symbol_table();
+    for i in 0..200 {
+        assert!(table.get(&scaled_key("user:imported", 1.0 + i as f32 / 100.0)).is_some());
+    }
+    assert!(table.scaled.lock().unwrap().len() <= MAX_SCALED);
+}

@@ -185,8 +185,9 @@ enum Drill {
     Cutout([f32; 2], Cutout, f32),
 }
 
-/// Holes up to this diameter take screws; larger ones are openings for the device.
-const MAX_SCREW_HOLE: f32 = 12.0;
+/// Holes up to this diameter take screws (the clearance hole of M16 is 17.5 mm); larger
+/// ones are openings for the device (command devices: 22.5 mm).
+const MAX_SCREW_HOLE: f32 = 18.0;
 
 /// The positions of a `<construction>` drilling pattern, and their records as they are
 /// (kept with the part: what a subtype or the third dimension means is not known).
@@ -214,22 +215,63 @@ fn drill_holes(el: &Element) -> (Vec<Drill>, Vec<serde_json::Value>) {
 /// Texts that say a part snaps onto a mounting rail.
 const RAIL_WORDS: [&str; 9] = ["din rail", "din-rail", "top hat rail", "top-hat rail", "mounting rail", "rail mount", "hutschiene", "tragschiene", "en 60715"];
 
+/// Rails by their names (in [`rail_text`]).
+const RAIL_NAMES: [&str; 4] = ["ts35", "ts15", "ts32", "g32"];
+
+/// A text in lower case with the names of rails written together: `ts 35` → `ts35`,
+/// `35 x 15` → `35x15`, `g 32` → `g32`.
+fn rail_text(text: &str) -> String {
+    let chars: Vec<char> = text.to_lowercase().replace('×', "x").chars().collect();
+    // `w` ends `out` as a word of its own.
+    let ends = |out: &str, w: &str| out.ends_with(w) && !out[..out.len() - w.len()].chars().next_back().is_some_and(char::is_alphanumeric);
+    let mut out = String::new();
+    for (i, &c) in chars.iter().enumerate() {
+        if c.is_whitespace() {
+            let next = chars[i + 1..].iter().find(|c| !c.is_whitespace()).copied();
+            let join = match (out.chars().next_back(), next) {
+                (Some(p), Some('x')) if p.is_ascii_digit() => true,
+                (Some('x'), Some(n)) if n.is_ascii_digit() => out.chars().rev().nth(1).is_some_and(|c| c.is_ascii_digit()),
+                (Some(_), Some(n)) if n.is_ascii_digit() => ends(&out, "ts") || ends(&out, "g"),
+                _ => false,
+            };
+            if join {
+                continue;
+            }
+        }
+        out.push(c);
+    }
+    out
+}
+
+/// `pattern` stands on its own in `text`: no letter or digit before it, no digit after.
+fn standalone(text: &str, pattern: &str) -> bool {
+    text.match_indices(pattern).any(|(i, _)| {
+        let before = text[..i].chars().next_back();
+        let after = text[i + pattern.len()..].chars().next();
+        !before.is_some_and(char::is_alphanumeric) && !after.is_some_and(|c| c.is_ascii_digit())
+    })
+}
+
 /// The mounting of a part on a rail by EPLAN's rail data (snap height, centre offset)
-/// or by its texts: `Mounting rail 35 mm`, `Mounting rail 35 x 15 mm`,
-/// `Mounting rail 15 mm` or `Mounting rail G 32` by the rail they name; `None` for parts
-/// that are not snapped onto a rail.
-fn rail_mounting(snap_height: f32, center_offset: f32, texts: &[&str]) -> Option<String> {
-    let text = texts.join("\n").to_lowercase();
-    let compact: String = text.chars().filter(|c| !c.is_whitespace()).collect();
-    let named = RAIL_WORDS.iter().any(|w| text.contains(w)) || ["ts35", "ts15", "ts32"].iter().any(|w| compact.contains(w));
+/// or by its texts (description and others): `Mounting rail 35 mm`,
+/// `Mounting rail 35 x 15 mm`, `Mounting rail 15 mm` or `Mounting rail G 32` by the rail
+/// they name; `None` for parts that are not snapped onto a rail, and for rails, whose
+/// description starts with one.
+fn rail_mounting(snap_height: f32, center_offset: f32, description: &str, others: &[&str]) -> Option<String> {
+    let lead = rail_text(description.trim());
+    if RAIL_WORDS.iter().chain(&RAIL_NAMES).any(|w| lead.starts_with(w)) {
+        return None;
+    }
+    let text = rail_text(&std::iter::once(description).chain(others.iter().copied()).collect::<Vec<_>>().join("\n"));
+    let named = RAIL_WORDS.iter().any(|w| text.contains(w)) || RAIL_NAMES[..3].iter().any(|w| standalone(&text, w));
     if !named && snap_height <= 0.0 && center_offset == 0.0 {
         return None;
     }
-    Some(if compact.contains("35x15") {
+    Some(if standalone(&text, "35x15") || text.contains("ts35x15") {
         "Mounting rail 35 x 15 mm".into()
-    } else if compact.contains("ts15") || compact.contains("15mmrail") {
+    } else if standalone(&text, "ts15") || text.contains("15 mm rail") {
         "Mounting rail 15 mm".into()
-    } else if compact.contains("ts32") || compact.contains("g32") {
+    } else if standalone(&text, "ts32") || standalone(&text, "g32") {
         "Mounting rail G 32".into()
     } else {
         "Mounting rail 35 mm".into()
@@ -276,7 +318,7 @@ fn part_of(el: &Element, variant: Option<&Element>) -> Option<Part> {
     }
     let rail = part.mounting_data.rail;
     if part.mounting.is_empty() || part.mounting.to_lowercase().contains("rail") {
-        if let Some(m) = rail_mounting(rail.clip_on, rail.center_offset, &[&part.mounting, &part.description, &part.note]) {
+        if let Some(m) = rail_mounting(rail.clip_on, rail.center_offset, &part.description, &[&part.mounting, &part.note]) {
             part.mounting = m;
         }
     }
@@ -373,7 +415,10 @@ pub fn from_eplan_documents(texts: &[&str]) -> Result<Vec<Part>, String> {
                     let (width, height) = (part.width, part.height);
                     let md = &mut part.mounting_data;
                     let at = |p: &[f32; 2]| [p[0] + offset[0], height - (p[1] + offset[1])];
-                    md.holes = holes.iter().filter_map(|h| match h { Drill::Hole(p, _) | Drill::Thread(p, _) => Some(at(p)), Drill::Cutout(..) => None }).collect();
+                    let found: Vec<[f32; 2]> = holes.iter().filter_map(|h| match h { Drill::Hole(p, _) | Drill::Thread(p, _) => Some(at(p)), Drill::Cutout(..) => None }).collect();
+                    if !found.is_empty() {
+                        md.holes = found;
+                    }
                     // One size for all holes: the thread of tapped ones, otherwise the
                     // diameter of the through holes.
                     let thread = holes.iter().find_map(|h| match h { Drill::Thread(_, d) if *d > 0.0 => Some(format!("M{d}")), _ => None });

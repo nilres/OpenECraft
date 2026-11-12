@@ -296,6 +296,9 @@ type Defs = Arc<HashMap<String, Arc<SymbolDef>>>;
 #[derive(Clone, Default)]
 pub struct SymbolCache(Arc<Mutex<Option<(crate::model::symlib::SymbolList, Defs, Scaled)>>>, front_view::FrontCache);
 
+/// Most scaled symbols kept: dragging a factor looks up a new one in every frame.
+const MAX_SCALED: usize = 64;
+
 /// Scaled user symbols by their key, made when they are first looked up.
 type Scaled = Arc<Mutex<HashMap<String, Arc<SymbolDef>>>>;
 
@@ -349,6 +352,9 @@ impl Symbols {
         let (base, factor) = scale_of(key);
         let def = user.get(base)?;
         let mut scaled = self.scaled.lock().unwrap_or_else(|e| e.into_inner());
+        if scaled.len() >= MAX_SCALED && !scaled.contains_key(key) {
+            scaled.clear();
+        }
         let d = scaled.entry(key.to_string()).or_insert_with(|| Arc::new(scale_def(def, factor, key)));
         Some(SymbolRef::User(d.clone()))
     }

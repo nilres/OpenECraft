@@ -400,9 +400,14 @@ pub fn set_symbol_scale(prj: &mut Project, page: usize, id: u64, factor: f32) ->
     let s = pg.symbols.iter().find(|s| s.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
     let (base, _) = crate::symlib::scale_of(&s.sym);
     if !base.starts_with(crate::symlib::PREFIX) {
-        return Err(tr("Only symbols of the symbol library can be scaled").to_string());
+        // Built-in symbols have their own size only.
+        let unchanged = crate::symlib::scaled_key("user:", factor) == "user:";
+        return if unchanged { Ok(()) } else { Err(tr("Only symbols of the symbol library can be scaled").to_string()) };
     }
     let key = crate::symlib::scaled_key(base, factor);
+    if key == s.sym {
+        return Ok(());
+    }
     let unknown = || tr_fmt!("Unknown symbol: {}", s.sym);
     let (old, new) = (symbols.get(&s.sym).ok_or_else(unknown)?, symbols.get(&key).ok_or_else(unknown)?);
     let moves: Vec<(P, P)> = (0..old.pins.len().min(new.pins.len()))

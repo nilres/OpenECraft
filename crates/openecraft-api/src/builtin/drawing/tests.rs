@@ -772,3 +772,15 @@ fn imported_symbols_are_scaled_with_their_wires_and_keep_their_texts() {
     assert!(openecraft_core::svg::page_svg(&project, 0).contains("BIG"));
     assert!(run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"scale":50})).is_err(), "out of range");
 }
+
+#[test]
+fn built_in_symbols_take_their_own_scale_and_refuse_others_unchanged() {
+    let mut s = new_session();
+    let placed = run(&mut s, "place_symbol", json!({"page":"1","x":140,"y":80,"tag":"-K1","symbol":"coil"})).unwrap();
+    // The scale it reports, sent back with a move: it moves.
+    let moved = run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"x":160,"scale":placed["scale"]})).unwrap();
+    assert_eq!((moved["x"].as_f64(), moved["scale"].as_f64()), (Some(160.0), Some(1.0)));
+    // Another scale is refused before anything changes.
+    assert!(run(&mut s, "update_symbol", json!({"page":"1","id":placed["id"],"x":200,"scale":2})).is_err());
+    assert_eq!(s.project().unwrap().pages[0].symbols[0].pos.x, 160.0);
+}

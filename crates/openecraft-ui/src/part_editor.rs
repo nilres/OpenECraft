@@ -1267,21 +1267,34 @@ pub fn quantity_unit(unit: &str) -> &str {
     if unit == "pcs" { tr("pcs") } else { unit }
 }
 
-/// The decoded product picture of a part, kept as a texture while it is shown.
+/// Most product pictures kept as textures; the ones shown longest ago are freed.
+const PICTURES_KEPT: usize = 16;
+
+/// The decoded product picture of a part as a texture, kept while it is among the last
+/// [`PICTURES_KEPT`] shown.
 fn picture_texture(ctx: &egui::Context, picture: &str) -> Option<egui::TextureHandle> {
     use std::hash::{Hash, Hasher};
+    type Kept = Vec<(u64, Option<egui::TextureHandle>)>;
     let mut h = std::hash::DefaultHasher::new();
     picture.hash(&mut h);
-    let id = egui::Id::unique(("part_picture", h.finish()));
-    if let Some(texture) = ctx.data(|d| d.get_temp::<Option<egui::TextureHandle>>(id)) {
-        return texture;
+    let key = h.finish();
+    let id = egui::Id::unique("openecraft_part_pictures");
+    let mut kept: Kept = ctx.data(|d| d.get_temp(id)).unwrap_or_default();
+    let texture = match kept.iter().position(|(k, _)| *k == key) {
+        Some(i) => kept.remove(i).1,
+        None => {
+            let image = openecraft_parts::base64::decode(picture).and_then(|bytes| image::load_from_memory(&bytes).ok()).map(|img| {
+                let rgba = img.to_rgba8();
+                egui::ColorImage::from_rgba_unmultiplied([rgba.width() as usize, rgba.height() as usize], rgba.as_raw())
+            });
+            image.map(|img| ctx.load_texture("part_picture", img, egui::TextureOptions::LINEAR))
+        }
+    };
+    kept.push((key, texture.clone()));
+    if kept.len() > PICTURES_KEPT {
+        kept.remove(0);
     }
-    let image = openecraft_parts::base64::decode(picture).and_then(|bytes| image::load_from_memory(&bytes).ok()).map(|img| {
-        let rgba = img.to_rgba8();
-        egui::ColorImage::from_rgba_unmultiplied([rgba.width() as usize, rgba.height() as usize], rgba.as_raw())
-    });
-    let texture = image.map(|img| ctx.load_texture("part_picture", img, egui::TextureOptions::LINEAR));
-    ctx.data_mut(|d| d.insert_temp(id, texture.clone()));
+    ctx.data_mut(|d| d.insert_temp(id, kept));
     texture
 }
 

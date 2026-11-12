@@ -304,17 +304,16 @@ pub fn door_cutouts(part: Option<&Part>, it: &PanelItem) -> Vec<PlacedCutout> {
 pub fn openings(e: &Enclosure, parts: &[Part], face: Face) -> Vec<Opening> {
     let mut v = Vec::new();
     for it in e.items.iter().filter(|i| i.face == face) {
-        let part = || parts.iter().chain(crate::parts::catalog()).find(|p| p.number == it.part);
-        match it.kind {
-            ItemKind::Cutout => v.push(Opening { item: it.id, center: it.center(), w: it.w, h: it.h, round: it.round, angle: 0.0, radius: 0.0 }),
-            ItemKind::Device if face == Face::Door => v.extend(door_cutouts(part(), it).iter().map(|c| place_cutout(it, part(), c))),
-            ItemKind::Device | ItemKind::Accessory => {
-                if let Some(p) = part() {
-                    v.extend(p.cutouts(false).iter().map(|c| place_cutout(it, Some(p), c)));
-                }
-            }
-            _ => {}
+        if it.kind == ItemKind::Cutout {
+            v.push(Opening { item: it.id, center: it.center(), w: it.w, h: it.h, round: it.round, angle: 0.0, radius: 0.0 });
+            continue;
         }
+        if !matches!(it.kind, ItemKind::Device | ItemKind::Accessory) {
+            continue;
+        }
+        let part = parts.iter().chain(crate::parts::catalog()).find(|p| p.number == it.part);
+        let cutouts = if it.kind == ItemKind::Device && face == Face::Door { door_cutouts(part, it) } else { part.map(|p| p.cutouts(false)).unwrap_or_default() };
+        v.extend(cutouts.iter().map(|c| place_cutout(it, part, c)));
     }
     v
 }
