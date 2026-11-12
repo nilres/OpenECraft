@@ -223,6 +223,47 @@ fn layout_material_in_bom() {
     let bom = &an.report(&prj, crate::model::ReportKind::BillOfMaterials).unwrap();
     let rail = bom.rows.iter().find(|r| r[3] == RAIL_PART).unwrap();
     assert_eq!((rail[1].as_str(), rail[2].as_str()), ("1.29", "m"));
+    // Below each profile the pieces to cut, without a part number of their own.
+    let below = |part: &str| {
+        let at = bom.rows.iter().position(|r| r[3] == part).unwrap();
+        bom.rows[at + 1..].iter().take_while(|r| r[3].is_empty() && r[0].contains('.')).map(|r| (r[0].clone(), r[1].clone(), r[6].clone(), r[7].clone())).collect::<Vec<_>>()
+    };
+    let rails = below(RAIL_PART);
+    assert_eq!(rails.len(), 1, "{rails:?}");
+    assert!(rails[0].0.ends_with(".1") && rails[0].1 == "3" && rails[0].2 == "Cut length 430 mm" && rails[0].3 == "+CAB1", "{rails:?}");
+    let ducts: Vec<(String, String)> = below(DUCT_PART).into_iter().map(|r| (r.1, r.2)).collect();
+    assert_eq!(ducts, [("2", "Cut length 670 mm"), ("2", "Cut length 550 mm"), ("2", "Cut length 470 mm")].map(|(n, t)| (n.to_string(), t.to_string())));
+    // Integration exports do not count the pieces as material of their own.
+    let lines = crate::integration::bom(&prj, &an);
+    assert_eq!(lines.iter().filter(|l| l.part == RAIL_PART).count(), 1);
+}
+
+#[test]
+fn cut_pieces_by_part_enclosure_and_length() {
+    let mut prj = demo_project();
+    let items = &mut prj.layout.enclosures[0].items;
+    let rails: Vec<usize> = (0..items.len()).filter(|&i| items[i].kind == ItemKind::Rail).collect();
+    items[rails[0]].bom_excluded = true;
+    items[rails[1]].w += 0.04;
+    let rail_pieces: Vec<(f32, usize)> = cut_pieces(&prj).into_iter().filter(|c| c.0 == RAIL_PART).map(|c| (c.2, c.3)).collect();
+    assert_eq!(rail_pieces, [(430.0, 2)], "excluded from the BOM, lengths to a tenth of a mm");
+}
+
+#[test]
+fn labels_go_on_the_longest_free_stretch() {
+    let mut e = Enclosure::default();
+    let rail = PanelItem { id: 1, kind: ItemKind::Rail, x: 0.0, y: 100.0, w: 500.0, h: 35.0, d: 7.5, ..Default::default() };
+    let device = |id, x: f32, w| PanelItem { id, kind: ItemKind::Device, x, y: 80.0, w, h: 80.0, ..Default::default() };
+    e.items = vec![rail.clone(), device(2, 0.0, 100.0), device(3, 90.0, 60.0), device(4, 300.0, 50.0)];
+    assert_eq!(free_stretch(&e, &rail), (150.0, 300.0));
+    // Items under it, on another face or beside it do not count.
+    e.items = vec![rail.clone(), PanelItem { id: 5, kind: ItemKind::Cutout, x: 0.0, y: 100.0, w: 400.0, h: 35.0, ..Default::default() }, PanelItem { face: Face::Door, ..device(6, 0.0, 400.0) }, device(7, 0.0, 400.0)];
+    e.items[3].y = 135.0;
+    assert_eq!(free_stretch(&e, &rail), (0.0, 500.0));
+    let mut vertical = rail.clone();
+    vertical.rotate();
+    e.items = vec![vertical.clone(), PanelItem { id: 8, kind: ItemKind::Duct, x: vertical.x - 10.0, y: vertical.y + 400.0, w: 60.0, h: 200.0, ..Default::default() }];
+    assert_eq!(free_stretch(&e, &vertical), (vertical.y, vertical.y + 400.0));
 }
 
 #[test]
@@ -258,6 +299,85 @@ fn mounting_page_renders() {
     assert!(svg.contains("+CAB1"));
     assert!(svg.contains("Scale 1:"));
     assert!(svg.contains("-K1"));
+}
+
+#[test]
+fn ducts_show_section_and_cut_length_on_the_mounting_page() {
+    assert_eq!((mm_text(60.0), mm_text(37.5), mm_text(939.96)), ("60".into(), "37.5".into(), "940".into()));
+    let horizontal = PanelItem { kind: ItemKind::Duct, w: 940.0, h: 60.0, d: 100.0, ..Default::default() };
+    assert_eq!(horizontal.profile_section(), "60 × 100");
+    assert_eq!(horizontal.profile_label(), "60 × 100 mm, L = 940 mm");
+    let mut vertical = horizontal.clone();
+    vertical.rotate();
+    assert_eq!(vertical.profile_label(), horizontal.profile_label());
+
+    let prj = demo_project();
+    let page = prj.pages.iter().position(|pg| matches!(pg.kind, crate::model::PageKind::Mounting(_))).unwrap();
+    let svg = crate::svg::page_svg(&prj, page);
+    let ducts: Vec<&PanelItem> = prj.layout.enclosures[0].items.iter().filter(|i| i.kind == ItemKind::Duct && i.face == Face::Plate).collect();
+    assert!(ducts.iter().any(|d| !d.horizontal()) && ducts.iter().any(|d| d.horizontal()));
+    for d in ducts {
+        assert!(svg.contains(&d.profile_label()), "{}", d.profile_label());
+    }
+    // Rails show theirs beside the devices on them.
+    for r in prj.layout.enclosures[0].items.iter().filter(|i| i.kind == ItemKind::Rail) {
+        assert!(svg.contains(&format!("L = {} mm", mm_text(r.length()))), "{}", r.profile_label());
+    }
+}
+
+#[test]
+fn room_beside_the_ends_up_to_the_next_item() {
+    let mut e = Enclosure::default();
+    let rail = PanelItem { id: 1, kind: ItemKind::Rail, x: 100.0, y: 100.0, w: 300.0, h: 35.0, d: 7.5, ..Default::default() };
+    let bounds = R::from_points(p(0.0, 0.0), p(550.0, 800.0));
+    let other = |id, kind, x: f32, y: f32, w, h| PanelItem { id, kind, x, y, w, h, ..Default::default() };
+    // Devices on it, items above it and the plate do not count; a duct in line does.
+    e.items = vec![
+        rail.clone(),
+        other(2, ItemKind::Device, 100.0, 80.0, 300.0, 80.0),
+        other(3, ItemKind::Device, 0.0, 0.0, 550.0, 60.0),
+        other(4, ItemKind::MountingPlate, 0.0, 0.0, 550.0, 800.0),
+        other(5, ItemKind::Duct, 500.0, 0.0, 40.0, 800.0),
+    ];
+    assert_eq!(end_room(&e, &rail, bounds), [(400.0, 500.0), (0.0, 100.0)]);
+    // An item sticking out over an end leaves no room there.
+    e.items.push(other(6, ItemKind::Device, 380.0, 90.0, 50.0, 60.0));
+    assert_eq!(end_room(&e, &rail, bounds)[0], (400.0, 400.0));
+    let vertical = PanelItem { w: 35.0, h: 300.0, ..rail.clone() };
+    e.items = vec![vertical.clone(), other(7, ItemKind::Duct, 0.0, 0.0, 550.0, 40.0)];
+    assert_eq!(end_room(&e, &vertical, bounds), [(400.0, 800.0), (40.0, 100.0)]);
+}
+
+#[test]
+fn a_full_rail_shows_its_length_beside_its_end() {
+    let mut prj = demo_project();
+    let e = &mut prj.layout.enclosures[0];
+    let ri = e.items.iter().position(|i| i.kind == ItemKind::Rail).unwrap();
+    e.items[ri].w = 330.0;
+    let rail = e.items[ri].clone();
+    e.items.push(PanelItem { id: 991, kind: ItemKind::Device, x: rail.x, y: rail.y - 20.0, w: rail.w, h: 75.0, ..Default::default() });
+    assert_eq!(free_stretch(e, &rail).1 - free_stretch(e, &rail).0, 0.0);
+    let page = prj.pages.iter().position(|pg| matches!(pg.kind, crate::model::PageKind::Mounting(_))).unwrap();
+    let svg = crate::svg::page_svg(&prj, page);
+    assert!(svg.contains("Scale 1:10"));
+    let x_of = |label: &str| {
+        let at = svg.find(&format!(">{label}<")).unwrap_or_else(|| panic!("{label} missing"));
+        let tag = &svg[svg[..at].rfind("<text").unwrap()..at];
+        tag.split("x=\"").nth(1).and_then(|s| s.split('"').next()).and_then(|s| s.parse::<f32>().ok()).unwrap()
+    };
+    // Right of the rail's end (x 390 on the plate) and short of the duct (x 510); the
+    // top duct's label is at the middle of the plate (x 275).
+    let beside = x_of("L = 330 mm") - x_of("40 × 60 mm, L = 550 mm");
+    assert!(beside > (390.0 - 275.0) / 10.0 && beside < (510.0 - 275.0) / 10.0, "{beside}");
+}
+
+#[test]
+fn busbars_show_their_cut_length() {
+    let mut prj = demo_project();
+    let e = &mut prj.layout.enclosures[0];
+    e.items.push(PanelItem { id: 990, kind: ItemKind::Busbar, part: BUSBAR_PART.into(), x: 60.0, y: 640.0, w: 450.0, h: 60.0, d: 30.0, ..Default::default() });
+    let page = prj.pages.iter().position(|pg| matches!(pg.kind, crate::model::PageKind::Mounting(_))).unwrap();
+    assert!(crate::svg::page_svg(&prj, page).contains("60 × 30 mm, L = 450 mm"));
 }
 
 #[test]

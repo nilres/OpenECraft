@@ -926,14 +926,26 @@ pub fn lay_out(ways: &[Way], cell: f32, obstacles: &[(V3, V3)], channels: &[Chan
     let mut laid = spread_ways(ways, cell, obstacles, channels, insides);
     for (w, (points, radii)) in ways.iter().zip(&mut laid).filter(|(w, _)| !w.held) {
         radii.resize(points.len(), 0.0);
-        // (Where the routing planned the straight way out of the end.)
-        let planned = |k: usize| w.leave[k] != [0.0; 3];
-        straight_out(points, radii, w.straight[0], planned(0));
-        points.reverse();
-        radii.reverse();
-        straight_out(points, radii, w.straight[1], planned(1));
-        points.reverse();
-        radii.reverse();
+        // (Where the routing planned the straight way out of the end, without turning
+        // back and into nothing it did not run into before.)
+        let hits = |p: &[V3]| -> Vec<usize> {
+            let r = w.diameter / 2.0;
+            let grown = |(lo, hi): (V3, V3)| (lo.map(|v| v - r), hi.map(|v| v + r));
+            (0..obstacles.len()).filter(|&o| p.windows(2).take(2).any(|s| segment_in_box(s[0], s[1], grown(obstacles[o])).is_some())).collect()
+        };
+        for k in 0..2 {
+            let (mut p, mut r) = (points.clone(), radii.clone());
+            straight_out(&mut p, &mut r, w.straight[k], w.leave[k] != [0.0; 3]);
+            let before = hits(points);
+            let back = p.windows(3).take(2).any(|s| dot(sub(s[1], s[0]), sub(s[2], s[1])) < -1e-3);
+            if back || !hits(&p).iter().all(|o| before.contains(o)) {
+                (p, r) = (points.clone(), radii.clone());
+                straight_out(&mut p, &mut r, w.straight[k], false);
+            }
+            (*points, *radii) = (p, r);
+            points.reverse();
+            radii.reverse();
+        }
     }
     let bent: Vec<Vec<V3>> = ways
         .iter()

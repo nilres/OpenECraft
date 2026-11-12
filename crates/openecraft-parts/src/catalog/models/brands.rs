@@ -53,6 +53,20 @@ impl Frac {
         }
     }
 
+    /// The connection points leaving in direction `exit`.
+    fn leaving(&self, exit: Exit) -> Vec<ConnectionPoint> {
+        self.points.iter().filter(|c| c.exit == exit).cloned().collect()
+    }
+
+    /// A block across the part from `y0` to `y1` and `z0` to `z1` (fractions) with the
+    /// wire entries of the connection points leaving up through its upper end (`up`) or
+    /// down through its lower end, as [`crate::catalog::block_with_entries`].
+    fn with_entries(&mut self, (y0, y1): (f32, f32), (z0, z1): (f32, f32), up: bool, c: [u8; 3]) {
+        let [w, h, d] = self.s;
+        let points = self.leaving(if up { Exit::Up } else { Exit::Down });
+        crate::catalog::block_with_entries(&mut self.m, w, (y0 * h, y1 * h), (z0 * d, z1 * d), &points, 6.0, c);
+    }
+
     /// A box from `lo` to `hi`.
     pub(super) fn b(&mut self, lo: [f32; 3], hi: [f32; 3], c: [u8; 3]) {
         self.m.add_painted_box(self.at(lo), self.at(hi), c);
@@ -76,7 +90,8 @@ impl Frac {
     /// The stepped profile of a DIN rail device: base, shoulders with the terminals
     /// and the front in the middle (`front` up to z 0.985, details reach z 1).
     fn din(&mut self, c: [u8; 3]) {
-        self.b([0.0, 0.0, 0.0], [1.0, 1.0, 0.6], c);
+        let [w, h, d] = self.s;
+        crate::catalog::base_with_entries(&mut self.m, [w, h, 0.6 * d], &self.points, c);
         self.b([0.0, 0.14, 0.6], [1.0, 0.86, 0.8], c);
         self.b([0.02, 0.27, 0.8], [0.98, 0.73, 0.985], c);
         // Screw terminals on the steps above and below the shoulders, one per
@@ -102,6 +117,7 @@ pub(super) enum Brand {
     Lynx,
     Pylontech,
     HagerNh,
+    HagerStrip,
     HagerMeter,
     HagerDin { rcd: bool, contactor: bool },
     Dehn(usize),
@@ -127,6 +143,9 @@ pub(super) fn brand_of(p: &Part) -> Option<Brand> {
         },
         "Pylontech" if sub == "Battery" => Brand::Pylontech,
         "Hager" => match sub {
+            // Strips for 185 mm busbar systems and the narrow NH000 disconnector (its
+            // poles one above the other): tall and narrow.
+            "Fuse switch disconnector" if p.height > 3.0 * p.width => Brand::HagerStrip,
             "Fuse switch disconnector" => Brand::HagerNh,
             "Energy meter" => Brand::HagerMeter,
             "Residual current device" => Brand::HagerDin { rcd: true, contactor: false },
@@ -263,11 +282,12 @@ pub(super) fn draw(f: &mut Frac, brand: Brand) {
         }
         Brand::HagerNh => {
             // Light grey: cover with its grip and three windows on the fuse links,
-            // terminal covers top and bottom, blue label.
+            // terminal covers top and bottom (the clamps entered from their end faces,
+            // below the screws), blue label.
             let base = [200, 202, 204];
             f.b([0.0, 0.0, 0.0], [1.0, 1.0, 0.45], base);
-            f.b([0.0, 0.86, 0.45], [1.0, 1.0, 0.7], LIGHT);
-            f.b([0.0, 0.0, 0.45], [1.0, 0.14, 0.7], LIGHT);
+            f.with_entries((0.86, 1.0), (0.45, 0.7), true, LIGHT);
+            f.with_entries((0.0, 0.14), (0.45, 0.7), false, LIGHT);
             f.b([0.03, 0.14, 0.45], [0.97, 0.86, 0.88], [220, 222, 224]);
             f.b([0.05, 0.78, 0.88], [0.95, 0.88, 1.0], [208, 210, 212]);
             f.b([0.72, 0.72, 0.88], [0.92, 0.76, 0.9], HAGER_BLUE);
@@ -278,6 +298,27 @@ pub(super) fn draw(f: &mut Frac, brand: Brand) {
                 for y in [0.07, 0.93] {
                     f.knob(x, y, 0.7, 0.72, 0.05, DARK);
                 }
+            }
+        }
+        Brand::HagerStrip => {
+            // Grey strip on the bars: the three fuse carriers one above the other in the
+            // black handle frame, the connection compartment at the bottom (white cover,
+            // blue label, the screws of the clamps of the outgoing cables entered from
+            // below), a cap on top.
+            let base = [200, 202, 204];
+            f.b([0.0, 0.12, 0.0], [1.0, 0.97, 0.55], base);
+            f.with_entries((0.0, 0.12), (0.0, 0.8), false, LIGHT);
+            f.with_entries((0.97, 1.0), (0.0, 0.8), true, base);
+            f.b([0.15, 0.03, 0.8], [0.85, 0.05, 0.81], HAGER_BLUE);
+            for (x, _) in f.points_to(Exit::Down) {
+                f.knob(x, 0.08, 0.8, 0.82, 0.1, DARK);
+            }
+            f.b([0.4, 0.13, 0.55], [0.6, 0.96, 0.99], BLACK);
+            for k in 0..3 {
+                let y = 0.14 + k as f32 * 0.275;
+                f.b([0.06, y, 0.55], [0.94, y + 0.25, 0.9], [220, 222, 224]);
+                f.b([0.12, y + 0.02, 0.9], [0.88, y + 0.23, 0.97], BLACK);
+                f.b([0.25, y + 0.07, 0.97], [0.75, y + 0.18, 0.98], [214, 210, 196]);
             }
         }
         Brand::HagerMeter => {

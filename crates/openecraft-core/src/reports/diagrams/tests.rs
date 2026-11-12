@@ -97,10 +97,28 @@ fn panel_legend_numbers_the_devices() {
     let an = Analysis::checked(&prj);
     let t = &an.report(&prj, ReportKind::PanelLegend).unwrap();
     let cab = rows(t, "+CAB1");
-    let placed = prj.layout.enclosures[0].items.iter().filter(|i| i.kind == ItemKind::Device).count();
-    assert!(placed > 0);
-    assert_eq!(cab.len(), placed);
+    let items = &prj.layout.enclosures[0].items;
+    let placed = items.iter().filter(|i| i.kind == ItemKind::Device).count();
+    let profiles = items.iter().filter(|i| i.kind.is_profile()).count();
+    assert!(placed > 0 && profiles > 0);
+    assert_eq!(cab.len(), placed + profiles);
     let numbers: Vec<String> = cab.iter().map(|r| r[1].clone()).collect();
-    assert_eq!(numbers, (1..=placed).map(|n| n.to_string()).collect::<Vec<_>>());
-    assert!(cab.iter().any(|r| r[2] == "-K1" && !r[4].is_empty()));
+    assert_eq!(numbers, (1..=placed + profiles).map(|n| n.to_string()).collect::<Vec<_>>());
+    assert!(cab.iter().any(|r| r[2] == "-K1" && !r[4].is_empty() && r[8].is_empty()));
+}
+
+#[test]
+fn panel_legend_lists_profiles_with_section_and_cut_length() {
+    let prj = demo_project();
+    let an = Analysis::checked(&prj);
+    let t = &an.report(&prj, ReportKind::PanelLegend).unwrap();
+    let cab = rows(t, "+CAB1");
+    // After the devices: rails, then ducts, each with its part, cross-section and length.
+    let first = cab.iter().position(|r| r[2].is_empty()).expect("profiles");
+    assert!(cab[first..].iter().all(|r| r[2].is_empty() && !r[8].is_empty()));
+    let duct = prj.layout.enclosures[0].items.iter().find(|i| i.kind == ItemKind::Duct).unwrap();
+    let row = cab.iter().find(|r| r[4] == duct.part && r[8] == crate::panel::mm_text(duct.length())).expect("duct row");
+    assert_eq!(row[7], format!("{} × {}", crate::panel::mm_text(duct.w.min(duct.h)), crate::panel::mm_text(duct.d)));
+    let kinds: Vec<ItemKind> = cab[first..].iter().map(|r| prj.layout.enclosures[0].items.iter().find(|i| i.kind.is_profile() && i.part == r[4]).unwrap().kind).collect();
+    assert!(kinds.windows(2).all(|w| w[0].layer() <= w[1].layer()), "{kinds:?}");
 }

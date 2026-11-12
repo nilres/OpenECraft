@@ -313,6 +313,7 @@ Item id	항목 ID
 Item ids	항목 ID
 Jumper number	점퍼 번호
 Jumper number (terminals with the same number are bridged); 0 removes it	점퍼 번호(번호가 같은 단자는 서로 연결됨). 0이면 제거
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	연결 유지(기본값): 연결된 전선은 늘어나고, 이동한 전선은 끝이 있는 연결 지점과 전선에 남습니다. false이면 연결을 해제합니다
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	보호 등급 유지: 필터 팬 대신 열교환기 또는 냉각 장치
 Key figures of the project and a list of its device tags	프로젝트의 주요 지표 및 장치 태그 목록
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	프로젝트의 주요 지표: 페이지, 심볼, 전선, 장치, 부품, 케이블 및 검사 결과
@@ -420,6 +421,7 @@ Measuring range or set point	측정 범위 또는 설정값
 Message code, e.g. wires.3f9a1c	메시지 코드(예: wires.3f9a1c)
 Milling feed, mm/min	밀링 이송(mm/min)
 Mirror the symbol	심볼 대칭
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	전선의 한쪽 끝을 이동합니다. 끝은 연결된 대상에서 떨어지고 만나는 대상에 연결됩니다. 전선은 직각을 유지합니다
 Moves symbols, wires and texts; connected wire ends follow	심볼, 전선 및 텍스트를 이동합니다. 연결된 전선 끝이 따라갑니다
 Moves the page before this page of its section (or of the section given)	페이지를 해당 구역(또는 지정한 구역)의 이 페이지 앞으로 이동합니다
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	구역을 상위 구역(또는 지정한 상위 구역)의 이 구역 앞으로 이동합니다. 번호는 순서대로 이어집니다
@@ -800,6 +802,7 @@ The configuration (JSON)	구성(JSON)
 The copies would leave the page	복사본이 페이지 밖으로 나갑니다
 The counting step must be at least 1	번호 증가 단계는 1 이상이어야 합니다
 The devices do not fit onto rail {}	장치가 레일 {}에 맞지 않습니다
+The end: from or to	끝: from 또는 to
 The feedback (CSV with header or JSON)	피드백(머리글이 있는 CSV 또는 JSON)
 The first page number must not be negative	첫 페이지 번호는 음수일 수 없습니다
 The items would leave the page	항목이 페이지 밖으로 나갑니다
@@ -891,6 +894,7 @@ Unknown termination: {}	알 수 없는 마감 방식: {}
 Unknown vertical anchor: {}	알 수 없는 세로 앵커: {}
 Unknown way of opening: {}	알 수 없는 열림 방식: {}
 Unknown wire colour {} (IEC 60757: {})	알 수 없는 전선 색상 {}(IEC 60757: {})
+Unknown wire end: {} (from or to)	알 수 없는 전선 끝: {} (from 또는 to)
 Use this scheme for the marking export	마킹 내보내기에 이 스키마 사용
 Used (mm)	사용(mm)
 Value while none is set	설정된 값이 없을 때의 값

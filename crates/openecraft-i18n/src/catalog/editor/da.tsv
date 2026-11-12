@@ -560,6 +560,7 @@ Downstream part	Efterkoblet artikel
 Draft of revision {} created	Kladde til revision {} er oprettet
 Draft of revision {} discarded	Kladden til revision {} er kasseret
 Drag a connection point designation of the selected symbol to place it.	Træk en tilslutningsbetegnelse for det markerede symbol for at placere den.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Træk i en ende af en markeret ledning for kun at flytte den ende. Trækning med Alt vender Bevar forbindelser om.
 Drag an entry into the page, or click it and then click into the page.	Træk en post ind på siden, eller klik på den, og klik derefter på siden.
 Drag the core designation or the cable tag of the selected wire to place it.	Træk lederbetegnelsen eller kabelmærkningen for den markerede leder for at placere den.
 Drag the name or the cross reference of the selected point to place it.	Træk navnet eller krydshenvisningen for det markerede punkt for at placere det.
@@ -658,6 +659,7 @@ Export the messages as CSV	Eksportér meddelelserne som CSV
 Exported {}	{} er eksporteret
 Exporting {}	Eksporterer {}
 Export…	Eksportér…
+Extend guides to canvas edges	Forlæng hjælpelinjerne til lærredets kanter
 Extras	Ekstra
 Facing	Retning
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	Ventilatorer, filtre, kabelforskruninger, lys, greb: Vælg et, og klik derefter, hvor det skal placeres
@@ -890,6 +892,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Sammenfø
 Jumper {}	Bro {}
 Jumps over the other:	Springer over den anden:
 K, Q, MM …	K, Q, MM …
+Keep connections	Bevar forbindelser
 Keep sub-pages (3.a, 3.1) with the page before	Hold undersider (3.a, 3.1) sammen med den forrige side
 Keep the degree of protection	Bevar kapslingsklassen
 Keep this route when recalculating, as long as it is still possible	Bevar denne føring ved genberegning, så længe den stadig er mulig
@@ -1042,6 +1045,7 @@ Move the devices of this page into the new structure	Flyt enhederne på denne si
 Move through the 3D view (Shift: faster)	Bevæg dig gennem 3D-visningen (Skift: hurtigere)
 Move to section	Flyt til afsnit
 Move up	Flyt op
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Flyttede symboler trækker deres ledninger med, og flyttede ledninger bliver på de tilslutningspunkter, hvor de ender. Alt holdt nede under trækning vender det om; træk i en ende af en markeret ledning for at koble den fra
 Moves to the top level as page {}	Flyttes til øverste niveau som side {}
 Moves to {} as page {}	Flyttes til {} som side {}
 Moving	Flytning
@@ -1649,6 +1653,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Gemmer a
 Saving failed: {}	Lagringen mislykkedes: {}
 Saving the project access…	Gemmer projektadgangen…
 Saving to the project server…	Gemmer på projektserveren…
+Schematic crosshair	Trådkors i skemaet
 Scheme	Skema
 Scheme name	Skemanavn
 Scheme placed again at {} symbols	Skema placeret igen ved {} symboler

@@ -283,6 +283,9 @@ impl App {
             ui.label(tr("Title bar"));
             ui.checkbox(&mut self.shell.frame_stats, tr("Show the frame time and the frames per second"));
             ui.end_row();
+            ui.label(tr("Schematic crosshair"));
+            ui.checkbox(&mut self.shell.full_crosshair, tr("Extend guides to canvas edges"));
+            ui.end_row();
             ui.label(tr("3D view"));
             ui.horizontal(|ui| {
                 let r = ui.checkbox(&mut self.shell.gpu_3d, tr("Draw with the graphics card"));

@@ -313,6 +313,7 @@ Item id	アイテム ID
 Item ids	アイテム ID
 Jumper number	ジャンパー番号
 Jumper number (terminals with the same number are bridged); 0 removes it	ジャンパー番号 (同じ番号の端子が橋絡されます)。0 で削除
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	接続を保持 (既定): 接続された電線は伸縮し、移動した電線は端のある接続ポイントと電線に留まります。false で切り離します
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保護等級を維持: フィルターファンの代わりに熱交換器またはクーラー
 Key figures of the project and a list of its device tags	プロジェクトの主要指標とデバイスタグの一覧
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	プロジェクトの主要指標: ページ、シンボル、電線、デバイス、部品、ケーブル、チェック結果
@@ -420,6 +421,7 @@ Measuring range or set point	測定範囲または設定値
 Message code, e.g. wires.3f9a1c	メッセージコード (例: wires.3f9a1c)
 Milling feed, mm/min	フライス送り速度 (mm/min)
 Mirror the symbol	シンボルを反転
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	電線の一方の端を移動します。端は接続先から離れ、接触したものに接続されます。電線は直角のままです
 Moves symbols, wires and texts; connected wire ends follow	シンボル、電線、テキストを移動します。接続された電線端が追従します
 Moves the page before this page of its section (or of the section given)	ページをそのセクション（または指定したセクション）のこのページの前に移動します
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	セクションをその親（または指定した親）のこのセクションの前に移動します。番号は順に続きます
@@ -800,6 +802,7 @@ The configuration (JSON)	構成 (JSON)
 The copies would leave the page	コピーがページの外に出てしまいます
 The counting step must be at least 1	カウントの増分は 1 以上である必要があります
 The devices do not fit onto rail {}	デバイスがレール {} に収まりません
+The end: from or to	端: from または to
 The feedback (CSV with header or JSON)	フィードバック (ヘッダー付き CSV または JSON)
 The first page number must not be negative	最初のページ番号に負の値は指定できません
 The items would leave the page	要素がページの外に出てしまいます
@@ -891,6 +894,7 @@ Unknown termination: {}	不明な端末処理：{}
 Unknown vertical anchor: {}	不明な垂直アンカー: {}
 Unknown way of opening: {}	不明な開き方：{}
 Unknown wire colour {} (IEC 60757: {})	不明な電線色 {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	不明な電線端: {} (from または to)
 Use this scheme for the marking export	このスキームをマーキングのエクスポートに使用
 Used (mm)	使用量 (mm)
 Value while none is set	未設定時の値

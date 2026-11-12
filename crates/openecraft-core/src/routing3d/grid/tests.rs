@@ -227,6 +227,13 @@ fn routes_leave_their_ends_straight_on() {
     let ferrule = s.route(a, b, &Request { straight: [40.0, 0.0], ..thin }, &rules).expect("a way");
     let first = sub(ferrule.points[2], ferrule.points[1]);
     assert!((first[0], first[1]) == (0.0, 0.0) && first[2] >= 65.0 - 12.5 - 1e-3, "{:?}", ferrule.points);
+    // Not where the cores of a cable part in front of the end: there only as far as its
+    // bend radius.
+    let mut fanned = space(&prj);
+    fanned.take_cores([200.0, 375.0, 160.0], &[[300.0, 375.0, 160.0]], 5.0);
+    let plain = fanned.route(a, b, &thin, &rules).expect("a way");
+    assert_ne!(plain.points, ferrule.points);
+    assert_eq!(fanned.route(a, b, &Request { straight: [40.0, 0.0], ..thin }, &rules).expect("a way").points, plain.points);
     // Where there is no room for that, it leaves its end as far as its bend radius.
     let none = s.route(a, b, &Request { straight: [5000.0, 0.0], ..r }, &rules).expect("a way");
     assert_eq!(none.points, w.points);

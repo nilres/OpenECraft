@@ -10,6 +10,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D
   view, instead of bending the ferrule where it goes into the device
   ([panel layout](docs/features/panel-layout.md)).
+- **Moved wires stay connected** (#133): a wire moved on its own no longer leaves the
+  connection points it ends at; it gets a new leg from the point, or slides along the
+  rail it ends on. *Edit › Keep connections* (on by default) switches this and the
+  stretching of attached wires off, so the selection moves alone; Alt held at the
+  start of a drag reverses it for that drag. Dragging the square handle at an end of a
+  selected wire moves only that end, to disconnect it or connect it elsewhere. Commands:
+  `move_items` (`keep_connections`), `move_wire_end`
+  ([schematic](docs/features/schematic.md#editing)).
+- **Server administrator from the environment:** `OPENECRAFT_ADMIN_USER` (parts server)
+  and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
+  created at startup, as `--admin-user` does, so a Docker container gets its first user
+  from environment variables alone ([installation](docs/installation.md#docker-images-of-the-servers)).
+
+- **Full-canvas schematic crosshair:** *File › Settings › Appearance* can extend the
+  placement crosshair to the edges of the schematic canvas, following the snapped
+  working point.
 - **AppImage on more systems:** the AppImage carries the keyboard and cursor libraries
   of X11 (xkbcommon, Xcursor, Xi), so the editor and the parts manager start on systems
   without them instead of quitting with *Library libxkbcommon-x11.so could not be
@@ -23,6 +39,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Auto-connect hints:** while a symbol is placed or moved with the mouse, faint
   dotted lines show the wires auto-connect would draw
   ([schematic](docs/features/schematic.md#routing)).
+- **Profile sizes on mounting layouts** (#152): cable ducts, mounting rails and busbar
+  systems are labelled with their cross-section and cut length
+  (*60 × 100 mm, L = 940 mm*) on mounting layout pages and in the panel layout, on the
+  longest stretch no device covers (only the length where the whole label does not
+  fit), beside the end of a full one. The panel legend lists them after the devices with part number, cross-section
+  (width × height) and cut length; the bill of materials lists the pieces to cut below
+  each of their parts (*2 pcs, Cut length 550 mm, +CAB1*).
 - **Panel layout profile sizing** (#135): select a mounting rail or cable duct and drag
   either end to change its length while the opposite end stays put.
 - **Connection symbols** (#96): Auto-connect wires the branch of a T-junction that sits
@@ -201,6 +224,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   resized, and a long list of properties scrolls. A renamed property is applied when
   its name field loses focus (Esc keeps the old name), so the text cursor no longer
   jumps to another property while typing.
+- **Wires in 3D:** a wire starts in the opening of its connection point and leaves it
+  along the direction the point opens in (up or down out of the upper or lower edge of
+  a device) before it comes down to the cable duct, instead of running straight back
+  along the device to the mounting plate. The generated connection points of DIN rail
+  devices lie in their end faces below the screws (40 % of the depth above the rail
+  instead of 75 %, in front of the screws), and the generated models of DIN rail devices
+  and contactors show these wire entries. NH fuse switch disconnectors on busbars are
+  wired into the clamps in their terminal compartments (57.5 % of the depth, entered
+  from the end faces below the screws) instead of in front of their terminal covers,
+  and the strips for 185 mm busbars are drawn with their fuses one above the other and
+  the connection compartment at the bottom. Devices drawn as boxes (parts without a 3D
+  model) show the openings of their connection points.
 - **Structure boxes:** *Insert › Structure box* draws a rectangle whose devices take other
   function (`=`) or location (`+`) identifiers than the page (also installation site and
   product); only the aspects set on the box override the page, nested boxes resolve to

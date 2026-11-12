@@ -553,6 +553,7 @@ Downstream part	하위 부품
 Draft of revision {} created	개정 {}의 초안 만들어짐
 Draft of revision {} discarded	개정 {}의 초안 취소됨
 Drag a connection point designation of the selected symbol to place it.	선택한 심볼의 연결 지점 명칭을 끌어서 배치하세요.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	선택한 전선의 끝을 드래그하면 그 끝만 이동합니다. Alt를 누른 채 드래그하면 연결 유지가 반대로 됩니다.
 Drag an entry into the page, or click it and then click into the page.	항목을 페이지로 끌어 놓거나, 항목을 클릭한 다음 페이지를 클릭하세요.
 Drag the core designation or the cable tag of the selected wire to place it.	선택한 전선의 심선 표시 또는 케이블 태그를 끌어서 배치하세요.
 Drag the name or the cross reference of the selected point to place it.	선택한 점의 이름 또는 상호 참조를 끌어서 배치하세요.
@@ -649,6 +650,7 @@ Export symbol table (CSV)…	심볼 테이블 내보내기(CSV)…
 Export the messages as CSV	메시지를 CSV로 내보내기
 Exported {}	{} 내보냄
 Export…	내보내기…
+Extend guides to canvas edges	안내선을 가장자리까지 연장
 Extras	추가 기능
 Facing	방향
 Fans, filters, cable glands, lights, handles: choose one, then click where it goes	팬, 필터, 케이블 글랜드, 조명, 손잡이: 하나를 선택한 후 설치할 위치를 클릭하세요
@@ -879,6 +881,7 @@ Joins wire pieces in a line where nothing else connects (current page)	다른 �
 Jumper {}	점퍼 {}
 Jumps over the other:	다른 전선을 넘음:
 K, Q, MM …	K, Q, MM …
+Keep connections	연결 유지
 Keep sub-pages (3.a, 3.1) with the page before	하위 페이지(3.a, 3.1)를 이전 페이지와 함께 유지
 Keep the degree of protection	보호 등급 유지
 Keep this route when recalculating, as long as it is still possible	다시 계산할 때 가능한 한 이 경로를 유지
@@ -1028,6 +1031,7 @@ Move the devices of this page into the new structure	이 페이지의 장치를 
 Move through the 3D view (Shift: faster)	3D 보기에서 이동 (Shift: 더 빠르게)
 Move to section	구역으로 이동
 Move up	위로 이동
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	이동한 심볼은 전선을 함께 끌고 가고, 이동한 전선은 끝이 있는 연결 지점에 남습니다. 드래그 중 Alt를 누르면 반대로 동작합니다. 선택한 전선의 끝을 드래그하면 연결이 해제됩니다
 Moves to the top level as page {}	최상위 수준의 페이지 {}(으)로 이동합니다
 Moves to {} as page {}	{}의 페이지 {}(으)로 이동합니다
 Moving	이동
@@ -1628,6 +1632,7 @@ Saves the workspace, the arrangement of the panels and the open windows	작업 �
 Saving failed: {}	저장 실패: {}
 Saving the project access…	프로젝트 액세스를 저장하는 중…
 Saving to the project server…	프로젝트 서버에 저장 중…
+Schematic crosshair	회로도 십자선
 Scheme	스키마
 Scheme name	스키마 이름
 Scheme placed again at {} symbols	심볼 {}개에 스키마를 다시 배치했습니다

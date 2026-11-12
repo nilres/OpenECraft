@@ -782,10 +782,11 @@ fn enclosures(prj: &mut Project, db: &PartsDb) {
         panel::place_device(prj, hv, tag, p(x, 1315.0));
     }
     // Field 4: generation metering, power flowing up from the busbar of the inverters
-    // to the coupling switch at the top.
-    panel::place_device(prj, hv, "=NA+HV-Q30", p(805.0, 150.0));
-    rail(prj, 760.0, 990.0, 445.0);
-    on_rail(prj, hv, 445.0, 830.0, &["=MS2+HV-F41"]);
+    // to the coupling switch at the top (room above it for the bends of the conductors
+    // into its terminals).
+    panel::place_device(prj, hv, "=NA+HV-Q30", p(805.0, 170.0));
+    rail(prj, 760.0, 990.0, 465.0);
+    on_rail(prj, hv, 465.0, 830.0, &["=MS2+HV-F41"]);
     panel::place_device(prj, hv, "=MS2+HV-T2", p(750.0, 675.0));
     // Field 5: busbar of the inverters with their feeders; it reaches into field 4 for
     // the fuse switch disconnector of the generation metering.

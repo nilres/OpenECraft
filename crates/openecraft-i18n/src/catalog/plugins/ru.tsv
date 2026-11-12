@@ -313,6 +313,7 @@ Item id	ID элемента
 Item ids	ID элементов
 Jumper number	Номер перемычки
 Jumper number (terminals with the same number are bridged); 0 removes it	Номер перемычки (клеммы с одинаковым номером соединены перемычкой); 0 удаляет его
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Сохранять соединения (по умолчанию): присоединённые провода растягиваются, перемещаемые провода остаются на точках подключения и проводах, где они заканчиваются; false отсоединяет их
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Сохранить степень защиты: теплообменник или холодильный агрегат вместо вентиляторов с фильтром
 Key figures of the project and a list of its device tags	Ключевые показатели проекта и список обозначений его устройств
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Ключевые показатели проекта: листы, символы, провода, устройства, изделия, кабели и результаты проверок
@@ -420,6 +421,7 @@ Measuring range or set point	Диапазон измерения или уста
 Message code, e.g. wires.3f9a1c	Код сообщения, например wires.3f9a1c
 Milling feed, mm/min	Подача при фрезеровании, мм/мин
 Mirror the symbol	Отразить символ
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Перемещает один конец провода: он отсоединяется от того, к чему подключён, и подключается к тому, чего касается; провод остаётся прямоугольным
 Moves symbols, wires and texts; connected wire ends follow	Перемещает символы, провода и тексты; подключённые концы проводов следуют за ними
 Moves the page before this page of its section (or of the section given)	Перемещает лист перед этим листом его раздела (или указанного раздела)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Перемещает раздел перед этим разделом его родительского раздела (или указанного); номера идут по порядку
@@ -800,6 +802,7 @@ The configuration (JSON)	Конфигурация (JSON)
 The copies would leave the page	Копии вышли бы за пределы листа
 The counting step must be at least 1	Шаг счёта должен быть не меньше 1
 The devices do not fit onto rail {}	Устройства не помещаются на рейку {}
+The end: from or to	Конец: from или to
 The feedback (CSV with header or JSON)	Обратная связь (CSV со строкой заголовка или JSON)
 The first page number must not be negative	Первый номер листа не может быть отрицательным
 The items would leave the page	Элементы вышли бы за пределы листа
@@ -891,6 +894,7 @@ Unknown termination: {}	Неизвестное оконцевание: {}
 Unknown vertical anchor: {}	Неизвестная вертикальная привязка: {}
 Unknown way of opening: {}	Неизвестный способ открывания: {}
 Unknown wire colour {} (IEC 60757: {})	Неизвестный цвет провода {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Неизвестный конец провода: {} (from или to)
 Use this scheme for the marking export	Использовать эту схему для экспорта маркировки
 Used (mm)	Использовано (мм)
 Value while none is set	Значение, пока не задано другое

@@ -313,6 +313,7 @@ Item id	ID element
 Item ids	ID-uri elemente
 Jumper number	Număr de punte
 Jumper number (terminals with the same number are bridged); 0 removes it	Numărul de punte (bornele cu același număr sunt puntate); 0 îl elimină
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Păstrează conexiunile (implicit): conductoarele conectate se întind, conductoarele mutate rămân pe punctele de conexiune și conductoarele unde se termină; false le deconectează
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Menținerea gradului de protecție: schimbător de căldură sau agregat de răcire în locul ventilatoarelor cu filtru
 Key figures of the project and a list of its device tags	Indicatorii proiectului și o listă a identificatorilor săi de dispozitiv
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicatorii proiectului: pagini, simboluri, conductoare, dispozitive, articole, cabluri și rezultatele verificărilor
@@ -420,6 +421,7 @@ Measuring range or set point	Domeniu de măsură sau valoare prescrisă
 Message code, e.g. wires.3f9a1c	Cod de mesaj, de ex. wires.3f9a1c
 Milling feed, mm/min	Avans de frezare, mm/min
 Mirror the symbol	Oglindire simbol
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Mută un capăt al unui conductor: acesta părăsește ceea ce era conectat și se conectează la ceea ce întâlnește; conductorul rămâne ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Mută simboluri, conductoare și texte; capetele conductoarelor conectate le urmează
 Moves the page before this page of its section (or of the section given)	Mută pagina înaintea acestei pagini din secțiunea ei (sau din secțiunea dată)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Mută secțiunea înaintea acestei secțiuni a părintelui ei (sau a părintelui dat); numerele continuă în ordine
@@ -800,6 +802,7 @@ The configuration (JSON)	Configurația (JSON)
 The copies would leave the page	Copiile ar ieși din pagină
 The counting step must be at least 1	Pasul de numărare trebuie să fie cel puțin 1
 The devices do not fit onto rail {}	Dispozitivele nu încap pe șina {}
+The end: from or to	Capătul: from sau to
 The feedback (CSV with header or JSON)	Confirmarea (CSV cu antet sau JSON)
 The first page number must not be negative	Primul număr de pagină nu trebuie să fie negativ
 The items would leave the page	Elementele ar ieși din pagină
@@ -891,6 +894,7 @@ Unknown termination: {}	Terminație necunoscută: {}
 Unknown vertical anchor: {}	Ancoră verticală necunoscută: {}
 Unknown way of opening: {}	Mod de deschidere necunoscut: {}
 Unknown wire colour {} (IEC 60757: {})	Culoare de conductor necunoscută {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Capăt de conductor necunoscut: {} (from sau to)
 Use this scheme for the marking export	Utilizarea acestei scheme pentru exportul de marcare
 Used (mm)	Folosit (mm)
 Value while none is set	Valoare cât timp nu este setată niciuna

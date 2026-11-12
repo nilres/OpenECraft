@@ -119,6 +119,20 @@ wires stays where it is. With *Route the connections of moved items anew*
 together with the corners after it, up to the next connection point, junction or
 branch, on the way of the least weight: its length in grid steps, 1.2 per bend and
 1.5 per wire crossed; a connection without such a way is squared as before.
+
+A moved wire stays connected too: its end at a connection point of a symbol that
+stays gets a new leg from that point (a jog instead where the leg would touch another
+connection point or wire), its end on a wire running through slides along that wire,
+and other wires at the point stay there; a straight wire keeps its direction and lands
+where it was dragged to, a wire held at both ends does not move along itself. Drops
+from a moved rail follow it only across the rail, so they keep their place when the
+rail is moved along itself. *Edit › Keep connections* (on by default) turns this off together with
+the stretching of attached wires, so that the selection moves alone and leaves its
+connections; holding Alt when a drag starts reverses the setting for that drag. To
+disconnect one end, select the wire and drag the square handle at that end: only that
+end moves, it connects to what it is dropped on and the wire stays square. Commands:
+`move_items` (`keep_connections`), `move_wire_end`.
+
 Editing aids: grid sizes 1, 2, 4, 8 and 16 mm (View);
 connection points and wire ends off that grid (imported drawings, device boxes of any
 size) add invisible grid lines through them, so the pointer snaps to them where they

@@ -44,6 +44,20 @@ fn wires_leave_their_own_devices_at_the_height_of_their_connection_points() {
 }
 
 #[test]
+fn wires_leave_the_openings_of_their_connection_points_along_their_axes() {
+    // Out of an opening at z 80 pointing +y, to the duct depth (z 50) and on along +y:
+    // out along the axis, down, on without going back.
+    let mut way = vec![[454.0, 1640.0, 50.0], [454.0, 1745.0, 50.0]];
+    out_of_terminal(&mut way, [454.0, 1640.0, 80.0], Some([0.0, 1.0, 0.0]), 9.0);
+    assert_eq!(way, vec![[454.0, 1649.0, 80.0], [454.0, 1649.0, 50.0], [454.0, 1745.0, 50.0]]);
+    // A second point right below the first one is no stretch of its own (it made the
+    // way go out and back, laid out with a corner far away).
+    let mut doubled = vec![[454.0, 1640.0, 50.0], [454.0, 1640.3, 50.0], [454.0, 1745.0, 50.0]];
+    out_of_terminal(&mut doubled, [454.0, 1640.0, 80.0], Some([0.0, 1.0, 0.0]), 9.0);
+    assert_eq!(doubled, way);
+}
+
+#[test]
 fn wires_come_down_before_the_ducts_not_through_their_covers() {
     // A run at duct depth (z 30) crosses a device (z up to 70) standing right before a
     // duct (y 100 .. 150, 60 deep): it comes down before the wall of the duct, not into

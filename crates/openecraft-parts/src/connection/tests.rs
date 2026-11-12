@@ -37,6 +37,18 @@ fn contactor_points_in_two_rows() {
 }
 
 #[test]
+fn din_rail_devices_are_entered_from_their_end_faces() {
+    // Below the screws on their steps (40 % of the depth); devices on the plate somewhat
+    // behind their fronts.
+    let mut part = catalog_part("GEN.CT-9A-24DC");
+    assert!(part.mounting.starts_with("Mounting rail"), "{}", part.mounting);
+    let z = |part: &Part| default_connection_points(part).iter().map(|c| c.pos[2]).collect::<Vec<f32>>();
+    assert!(z(&part).iter().all(|&z| (z - 0.4 * part.depth).abs() < 1e-3), "{:?}", z(&part));
+    part.mounting = "Mounting plate".into();
+    assert!(z(&part).iter().all(|&z| (z - 0.75 * part.depth).abs() < 1e-3), "{:?}", z(&part));
+}
+
+#[test]
 fn terminals_have_one_point_per_side() {
     let points = default_connection_points(&catalog_part("GEN.TB-2.5"));
     assert_eq!(points.iter().map(|c| (c.pin.as_str(), c.exit)).collect::<Vec<_>>(), [("1", Exit::Up), ("2", Exit::Down)]);

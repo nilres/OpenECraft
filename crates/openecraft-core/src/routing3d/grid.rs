@@ -252,6 +252,9 @@ pub struct Space {
     /// The item at the end the routes that took the cell were near there (0: none,
     /// `u64::MAX`: more than one).
     taken_item: Vec<u64>,
+    /// The cores of a cable part there from its end to their connection points
+    /// ([`Space::take_cores`]): no route runs straight out of its end through them.
+    fanned: Vec<bool>,
     /// The cell lies on the straight way out of an end of a route ([`Space::keep_ways_out`]):
     /// only routes near one of their own ends pass it.
     way_out: Vec<bool>,
@@ -416,6 +419,7 @@ impl Space {
             taken_end: vec![true; total],
             taken_along: vec![0; total],
             taken_item: vec![0; total],
+            fanned: vec![false; total],
             way_out: vec![false; total],
             path: vec![0; total],
             reserved: vec![0; total],
@@ -900,6 +904,16 @@ impl Space {
                 for idx in way {
                     self.way_out[idx] = true;
                 }
+            }
+        }
+    }
+
+    /// The cores of half thickness `half` of a cable, from the end of its route at `end`
+    /// to their connection points `cores`, where they part (and a cell round them).
+    pub fn take_cores(&mut self, end: V3, cores: &[V3], half: f32) {
+        for q in cores {
+            for idx in self.cells_near(&[end, *q], half + self.cell) {
+                self.fanned[idx] = true;
             }
         }
     }
@@ -1516,7 +1530,7 @@ impl Space {
         let lead = |q: V3, i: usize, other: V3| {
             let limit = self.lead_limit(q, req.leave[i], other, req.leave[1 - i]);
             let run = |far: f32| self.lead(q, req.leave[i], limit, req.out[i], far, req, (far / self.cell).ceil() as usize);
-            let free = |cells: &[usize]| cells.iter().all(|&idx| self.channel(idx, req) || self.taken[idx] + req.half + 0.5 <= 0.0);
+            let free = |cells: &[usize]| cells.iter().all(|&idx| self.channel(idx, req) || (self.taken[idx] + req.half + 0.5 <= 0.0 && !self.fanned[idx]));
             match run(req.turn + req.straight[i]) {
                 Some((cells, _, full)) if req.straight[i] > 0.0 && !(full && free(&cells)) => run(req.turn),
                 way => way,

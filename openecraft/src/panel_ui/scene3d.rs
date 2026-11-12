@@ -35,6 +35,15 @@ const LANE_CELL: f32 = 8.0;
 /// Wires without cable ducts shorter than this (mm on the plate) between two connection
 /// points run at their height instead of along the plate.
 const JUMPER: f32 = 200.0;
+/// How far a wire goes into the opening of its connection point (its stripped end or
+/// ferrule), mm.
+pub(super) const INSERTED: f32 = 8.0;
+/// How far a wire runs straight out of the opening of its connection point at most, mm
+/// (four times its thickness and 4 mm where that is less).
+const LEAD: f32 = 12.0;
+/// Size of the opening drawn at a connection point of a device drawn as a box, mm.
+const OPENING: f32 = 5.0;
+const OPENING_COLOR: Color32 = Color32::from_rgb(34, 36, 40);
 /// How long (ms) a scene waits for its layout before it is shown without it.
 const LAYOUT_WAIT: u32 = 30;
 
@@ -81,6 +90,10 @@ impl std::ops::Deref for EndLook {
         &self.pieces
     }
 }
+
+/// A stretch of a wire drawn along the plate: its index, its points, the axes of the
+/// openings it leaves (zero: none) and whether it starts and ends at a connection point.
+type WireStretch = (usize, Vec<V3>, [V3; 2], [bool; 2]);
 
 /// [`EndLook`] of the end `at` of the wire of `cross_section` from `at` to `to` (none for
 /// an unknown cross-section): its termination ([`production::Ends::end`]; a twin ferrule
@@ -522,6 +535,51 @@ fn leave_device(along: &mut Vec<V3>, own: (V3, V3), height: f32) {
     along.drain(..n);
     let q = along[0];
     along.insert(0, [q[0], q[1], height]);
+}
+
+/// A wire's way along the plate that starts right below its connection point `terminal`
+/// (one on the outline of its device, as the generated ones): it leaves the opening at
+/// its height along its `axis` (along the plate), `lead` far (half the first stretch at
+/// most where that runs the same way), and comes down there, not straight back along the
+/// device; on to the ducts as before.
+fn out_of_terminal(along: &mut Vec<V3>, terminal: V3, axis: Option<V3>, lead: f32) {
+    let Some(x) = axis.filter(|x| x[2].abs() < 0.5) else { return };
+    if along.len() < 2 || (along[0][0] - terminal[0]).abs() > 0.01 || (along[0][1] - terminal[1]).abs() > 0.01 {
+        return;
+    }
+    // (Points right below the first one are no stretch of their own.)
+    let flat = |p: V3, q: V3| ((q[0] - p[0]).powi(2) + (q[1] - p[1]).powi(2)).sqrt();
+    while along.len() > 2 && flat(along[0], along[1]) < 1.0 && (along[1][2] - along[0][2]).abs() < 1.0 {
+        along.remove(1);
+    }
+    let (a, b) = (along[0], along[1]);
+    let len = flat(a, b);
+    let ahead = (b[0] - a[0]) * x[0] + (b[1] - a[1]) * x[1] > 0.5 * len;
+    let lead = if ahead { lead.min(len / 2.0) } else { lead };
+    let q = [a[0] + x[0] * lead, a[1] + x[1] * lead];
+    along.splice(0..1, [[q[0], q[1], terminal[2]], [q[0], q[1], a[2]]]);
+}
+
+/// The openings of the connection points of a device drawn as a box (its part has no
+/// 3D model of its own): a dark square on the face each opens in, around the point.
+#[allow(clippy::too_many_arguments)]
+fn openings(s: &mut Scene3d, prj: &Project, e: &panel::Enclosure, it: &panel::PanelItem, pose: &SitePose, obj: Option<usize>, k: usize, lit: &dyn Fn(Color32, V3) -> Color32) {
+    let modelled = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == it.part).is_some_and(|p| p.model_3d.is_some());
+    if it.kind != ItemKind::Device || it.face == Face::Door || modelled {
+        return;
+    }
+    let up = |q: V3| [q[0], e.height - q[1], q[2]];
+    for pt in panel::device_points(prj, it) {
+        let c = panel::face_point(e, it.face, pt.pos);
+        let a = norm(sub(panel::face_point(e, it.face, vec3::add(pt.pos, panel::exit_vector(pt.exit))), c));
+        let u = norm(cross(a, if a[0].abs() < 0.9 { [1.0, 0.0, 0.0] } else { [0.0, 1.0, 0.0] }));
+        let v = cross(a, u);
+        let at = |du: f32, dv: f32| pose.apply(up(vec3::add(c, vec3::add(vec3::scale(a, 0.2), vec3::add(vec3::scale(u, du), vec3::scale(v, dv))))));
+        let half = OPENING / 2.0;
+        let normal = pose.turn([a[0], -a[1], a[2]]);
+        let pts = [at(-half, -half), at(half, -half), at(half, half), at(-half, half)];
+        s.faces.push(SceneFace { pts, n: 4, normal, color: lit(OPENING_COLOR, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: true });
+    }
 }
 
 /// A wire's way out of its device ([`leave_device`]) that comes down less than its
@@ -1119,6 +1177,7 @@ impl PanelUi {
                         let w = w.map(|q| pose.apply(q));
                         s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: false });
                     }
+                    openings(&mut s, prj, e, it, &pose, obj, k, &lit);
                     continue;
                 }
                 // Cable ducts of a cabinet: slotted walls and the cover.
@@ -1174,6 +1233,7 @@ impl PanelUi {
                 };
                 let decal = it.kind == ItemKind::Cutout && !it.face.is_wall();
                 add_box(&mut s, layer, side, obj, min, max, base, Some(it.id), on_door, decal);
+                openings(&mut s, prj, e, it, &pose, obj, k, &lit);
             }
             // The drives on the floor: shafts and couplings, pulleys and belts, gear
             // cases; picked as their machine.
@@ -1239,10 +1299,11 @@ impl PanelUi {
                     let at = passage(q);
                     [at, [at[0] + inward * lead, at[1], at[2]]]
                 };
-                // Each stretch with whether it starts and ends at a connection point.
-                let paths: Vec<(usize, Vec<V3>, [bool; 2])> = match wire.door {
+                // Each stretch with the axes of the openings it leaves (zero: none) and whether
+                // it starts and ends at a connection point.
+                let paths: Vec<WireStretch> = match wire.door {
                     (Some(a), Some(b)) if wire.on_door() => match &wire.door_routes.0 {
-                        Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect(), [true; 2])],
+                        Some(r) => vec![(0, panel::door_jumper_path(e, a, b, r).into_iter().map(|v| swing(up(v))).collect(), [[0.0; 3]; 2], [true; 2])],
                         None => Vec::new(),
                     },
                     (a, b) => wire
@@ -1274,21 +1335,30 @@ impl PanelUi {
                             // The ways out of the connection points belong to it (they run
                             // along the fronts of the devices beside, over which they are
                             // lifted too).
+                            // They start in the openings of their connection points and leave
+                            // them along their axes.
                             let own = |id: u64| blockers.iter().find(|b| b.0 == id).map(|b| b.1);
                             let (mut from_terminal, mut to_terminal) = (false, false);
-                            if let (None, None, Some(t), Some(b)) = (entry, a, wire.terminals.0.map(up), own(wire.items.0)) {
-                                leave_device(&mut along, b, t[2]);
-                                under_terminal(&mut along, t, diameter);
-                                down_before_duct(&mut along, t, &duct_boxes, diameter / 2.0);
+                            let mut leave = [[0.0; 3]; 2];
+                            let axes = [wire.axes.0, wire.axes.1].map(|x| x.map(|x| [x[0], -x[1], x[2]]));
+                            let out = |along: &mut Vec<V3>, t: V3, b: (V3, V3), axis: Option<V3>| {
+                                out_of_terminal(along, t, axis, (4.0 * diameter + 4.0).min(LEAD));
+                                leave_device(along, b, t[2]);
+                                under_terminal(along, t, diameter);
+                                down_before_duct(along, t, &duct_boxes, diameter / 2.0);
                                 along.insert(0, t);
+                                if let Some(x) = axis {
+                                    along.insert(0, vec3::sub(t, vec3::scale(x, INSERTED)));
+                                }
+                                axis.unwrap_or([0.0; 3])
+                            };
+                            if let (None, None, Some(t), Some(b)) = (entry, a, wire.terminals.0.map(up), own(wire.items.0)) {
+                                leave[0] = out(&mut along, t, b, axes[0]);
                                 from_terminal = true;
                             }
                             if let (None, None, Some(t), Some(b)) = (exit, b, wire.terminals.1.map(up), own(wire.items.1)) {
                                 along.reverse();
-                                leave_device(&mut along, b, t[2]);
-                                under_terminal(&mut along, t, diameter);
-                                down_before_duct(&mut along, t, &duct_boxes, diameter / 2.0);
-                                along.insert(0, t);
+                                leave[1] = out(&mut along, t, b, axes[1]);
                                 along.reverse();
                                 to_terminal = true;
                             }
@@ -1308,7 +1378,7 @@ impl PanelUi {
                                 (None, None) if !to_terminal => v.extend(wire.terminals.1.map(up)),
                                 _ => {}
                             }
-                            (i, v, connected)
+                            (i, v, leave, connected)
                         })
                         .collect(),
                 };
@@ -1318,7 +1388,7 @@ impl PanelUi {
                 let on_plate = !e.is_room() && wire.door == (None, None);
                 let dim = selected_wire.is_some() && !selected;
                 let end = [wire_end(prj, &an.ends, &wire.from, &wire.to, &wire.cross_section, dim), wire_end(prj, &an.ends, &wire.to, &wire.from, &wire.cross_section, dim)];
-                for (i, path, connected) in &paths {
+                for (i, path, leave, connected) in &paths {
                     let (rest, below) = match on_plate {
                         true => (pose.turn([0.0, 0.0, 1.0]), path.iter().map(|q| q[2] - PLATE_Z).fold(f32::INFINITY, f32::min) - diameter / 2.0 - super::routing_ui::PLATE_CLEAR),
                         false => ([0.0; 3], f32::INFINITY),
@@ -1337,13 +1407,19 @@ impl PanelUi {
                         if k == 1 {
                             path.reverse();
                         }
-                        // (Not up the fraction of a millimetre to the height it runs at.)
-                        if vec3::dist(path[0], path[1]) < 1.0 {
+                        // (In one piece out of the opening of its connection point.)
+                        while path.len() > 3 && vec3::dot(vec3::norm(vec3::sub(path[1], path[0])), vec3::norm(vec3::sub(path[2], path[1]))) > 0.9999 {
                             path.remove(1);
                         }
+                        // (Not up the fraction of a millimetre to the height it runs at.) Where
+                        // it leaves the opening along it, that way out is planned already.
                         let mut moved = path.clone();
+                        if vec3::dist(moved[0], moved[1]) < 1.0 {
+                            moved.remove(1);
+                        }
+                        let trimmed = moved.clone();
                         bundles::straight_out(&mut moved, &mut [], look.straight, true);
-                        if moved.len() >= 3 && (1..3).all(|j| moved[j] == path[j] || !clear.iter().any(|b| vec3::segment_in_box(moved[j - 1], moved[j], *b).is_some())) {
+                        if leave[k] == [0.0; 3] && moved.len() >= 3 && moved != trimmed && (1..3).all(|j| moved[j] == trimmed[j] || !clear.iter().any(|b| vec3::segment_in_box(moved[j - 1], moved[j], *b).is_some())) {
                             path = moved;
                         }
                         if k == 1 {
@@ -1353,7 +1429,7 @@ impl PanelUi {
                     let path: Vec<V3> = path.iter().map(|q| pose.apply(*q)).collect();
                     if diameter > 0.0 {
                         let bends = vec![bend; path.len()];
-                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: [[0.0; 3]; 2], ends }));
+                        wire_pieces.push((wi, *i, TubeWay { points: path, bends, diameter, color, stripe, width, on_top: selected, target: RouteRef::Wire(wi), sides: WIRE_SIDES, steps: 2, rest, below, as_is: false, leave: leave.map(|x| pose.turn(x)), ends }));
                         continue;
                     }
                     for seg in path.windows(2) {

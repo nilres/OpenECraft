@@ -516,3 +516,19 @@ fn a_way_runs_straight_out_of_its_end_as_far_as_its_ferrule() {
     straight_out(&mut points, &mut radii, 0.0, true);
     assert_eq!((points, radii), (way, vec![0.0, 12.0, 12.0, 0.0]));
 }
+
+#[test]
+fn a_way_laid_out_moves_its_corner_behind_its_ferrule_only_into_free_space() {
+    // Planned out of the terminal along y: the corner moves on behind the ferrule, but
+    // not into a box in front of it; there the bend is tightened instead.
+    let way = vec![[0.0, 0.0, 50.0], [0.0, 20.0, 50.0], [0.0, 20.0, 10.0], [300.0, 20.0, 10.0]];
+    let radii = [0.0, 12.0, 12.0, 0.0];
+    let ways = [Way { points: &way, radii: &radii, diameter: 2.0, rest: [0.0; 3], below: f32::INFINITY, steps: 4, held: false, leave: [[0.0, 1.0, 0.0], [0.0; 3]], straight: [14.0, 0.0] }];
+    let furthest = |obstacles: &[(V3, V3)]| {
+        let laid = lay_out(&ways, 8.0, obstacles, &[], &[], &|_, _| true).expect("not stopped");
+        laid[0].iter().filter(|q| q[0].abs() < 1.0 && q[2] > 12.0).map(|q| q[1]).fold(0.0, f32::max)
+    };
+    assert!(furthest(&[]) > 25.0);
+    let in_front = ([-5.0, 22.0, 0.0], [5.0, 40.0, 60.0]);
+    assert!(furthest(&[in_front]) <= 20.0 + 1e-3);
+}

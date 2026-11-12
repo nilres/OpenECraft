@@ -23,13 +23,181 @@ fn electrical_items_remain_selectable_inside_page_graphics() {
     assert_eq!(ed.hit(&prj, 0, p(200., 150.)), Some(1), "artwork remains selectable");
 }
 
+#[test]
+fn full_crosshair_spans_the_canvas_at_the_snapped_working_point() {
+    let mut prj = Project::default();
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        tool: Tool::Text,
+        full_crosshair: true,
+        show_grid: false,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let screen = Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0));
+    let mut canvas_rect = Rect::NOTHING;
+    let input = RawInput {
+        screen_rect: Some(screen),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        canvas_rect = ui.available_rect_before_wrap();
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides: Vec<_> = output
+        .shapes
+        .iter()
+        .filter_map(|s| match &s.shape {
+            egui::Shape::LineSegment { points, stroke } if (stroke.width - 0.8).abs() < 0.01 => Some(*points),
+            _ => None,
+        })
+        .collect();
+    output.textures_delta.clear();
+    let center = pos2(canvas_rect.min.x + 100.0, canvas_rect.min.y + 108.0);
+    assert_eq!(
+        guides,
+        vec![
+            [pos2(canvas_rect.left(), center.y), pos2(canvas_rect.right(), center.y)],
+            [pos2(center.x, canvas_rect.top()), pos2(center.x, canvas_rect.bottom())],
+        ]
+    );
+}
+
+#[test]
+fn select_tool_uses_a_crosshair_cursor_and_shows_full_guides() {
+    let mut prj = Project::default();
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        full_crosshair: true,
+        show_grid: false,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let input = RawInput {
+        screen_rect: Some(Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0))),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides = output
+        .shapes
+        .iter()
+        .filter(|s| matches!(&s.shape, egui::Shape::LineSegment { stroke, .. } if (stroke.width - 0.8).abs() < 0.01))
+        .count();
+    assert_eq!(guides, 2);
+    assert_eq!(output.platform_output.cursor_icon, egui::CursorIcon::None);
+    assert!(ed.snap_cache.is_none(), "idle selection should not rebuild page snap lines");
+    output.textures_delta.clear();
+}
+
+#[test]
+fn pointer_snapping_reuses_and_refreshes_cached_page_lines() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire {
+        id: 1,
+        a: p(0.0, 103.0),
+        b: p(500.0, 103.0),
+        ..Default::default()
+    });
+    let mut ed = Editor { grid: 4.0, ..Default::default() };
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 102.0), None), p(100.0, 103.0));
+    let xs = ed.snap_cache.as_ref().unwrap().lines.xs.as_ptr();
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 102.0), None), p(100.0, 103.0));
+    assert_eq!(ed.snap_cache.as_ref().unwrap().lines.xs.as_ptr(), xs);
+
+    prj.pages[0].wires.push(Wire {
+        id: 2,
+        a: p(0.0, 206.0),
+        b: p(500.0, 206.0),
+        ..Default::default()
+    });
+    assert_eq!(ed.snap_pointer(&prj, 0, 42, p(100.0, 205.8), None), p(100.0, 206.0));
+    assert_eq!(ed.snap_cache.as_ref().unwrap().wires, 2);
+}
+
+#[test]
+fn full_crosshair_follows_a_connection_definition_point_on_a_wire() {
+    let mut prj = Project::default();
+    prj.pages[0].wires.push(Wire {
+        id: 1,
+        a: p(0.0, 103.0),
+        b: p(500.0, 103.0),
+        ..Default::default()
+    });
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor {
+        tool: Tool::ConnDef,
+        full_crosshair: true,
+        show_grid: false,
+        grid: 4.0,
+        zoom: 1.0,
+        offset: Vec2::ZERO,
+        fit_pending: false,
+        ..Default::default()
+    };
+    let ctx = egui::Context::default();
+    let screen = Rect::from_min_size(Pos2::ZERO, vec2(1200.0, 800.0));
+    let mut canvas_rect = Rect::NOTHING;
+    let input = RawInput {
+        screen_rect: Some(screen),
+        events: vec![Event::PointerMoved(pos2(101.0, 107.0))],
+        ..Default::default()
+    };
+    let mut output = ctx.run_ui(input, |ui| {
+        canvas_rect = ui.available_rect_before_wrap();
+        ed.ui(ui, &mut prj, 0, &idx, &an);
+    });
+    let guides: Vec<_> = output
+        .shapes
+        .iter()
+        .filter_map(|s| match &s.shape {
+            egui::Shape::LineSegment { points, stroke } if (stroke.width - 0.8).abs() < 0.01 => {
+                Some(*points)
+            }
+            _ => None,
+        })
+        .collect();
+    output.textures_delta.clear();
+    let center = pos2(canvas_rect.min.x + 101.0, canvas_rect.min.y + 103.0);
+    assert_eq!(
+        guides,
+        vec![
+            [
+                pos2(canvas_rect.left(), center.y),
+                pos2(canvas_rect.right(), center.y)
+            ],
+            [
+                pos2(center.x, canvas_rect.top()),
+                pos2(center.x, canvas_rect.bottom())
+            ],
+        ]
+    );
+}
+
 /// Runs one editor frame on page `page` with the given input events.
 fn frame(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, events: Vec<Event>) -> CanvasOutput {
+    frame_with(ed, ctx, prj, page, events, Modifiers::default())
+}
+
+/// A frame with the modifier keys `modifiers` held.
+fn frame_with(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, events: Vec<Event>, modifiers: Modifiers) -> CanvasOutput {
     let idx = Index::build(prj);
     let an = Analysis::build(prj);
     let input = RawInput {
         screen_rect: Some(Rect::from_min_size(pos2(0.0, 0.0), vec2(1200.0, 800.0))),
-        events,
+        events: std::iter::once(Event::ModifiersChanged(modifiers)).chain(events).collect(),
         ..Default::default()
     };
     let mut canvas = CanvasOutput::default();
@@ -362,15 +530,20 @@ fn key(key: Key) -> Event {
 
 /// Drags with the primary button from page point `a` to `b`.
 fn drag(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, a: P, b: P) {
+    drag_with(ed, ctx, prj, page, a, b, Modifiers::default());
+}
+
+/// Drags from `a` to `b` with the modifier keys `m` held.
+fn drag_with(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, a: P, b: P, m: Modifiers) {
     let (from, to) = (ed.w2s(SCREEN, a), ed.w2s(SCREEN, b));
-    frame(ed, ctx, prj, page, vec![Event::PointerMoved(from)]);
-    frame(ed, ctx, prj, page, vec![button(from, true)]);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerMoved(from)], m);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerButton { pos: from, button: PointerButton::Primary, pressed: true, modifiers: m }], m);
     for i in 1..=5 {
         let t = i as f32 / 5.0;
-        frame(ed, ctx, prj, page, vec![Event::PointerMoved(from + (to - from) * t)]);
+        frame_with(ed, ctx, prj, page, vec![Event::PointerMoved(from + (to - from) * t)], m);
     }
-    frame(ed, ctx, prj, page, vec![button(to, false)]);
-    frame(ed, ctx, prj, page, vec![]);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerButton { pos: to, button: PointerButton::Primary, pressed: false, modifiers: m }], m);
+    frame_with(ed, ctx, prj, page, vec![], m);
 }
 
 fn coil(id: u64, pos: P, tag: &str) -> SymbolInst {
@@ -906,4 +1079,62 @@ fn polylines_are_stroked_without_miter_spikes() {
     // A closed outline along a line (an open polyline drawn closed) is no loop either.
     let flat = q(&[(0., 0.), (5., 0.), (10., 0.)]);
     assert_eq!(stroke_runs(flat, true), Runs::Open(vec![q(&[(0., 0.), (5., 0.), (10., 0.)]), q(&[(10., 0.), (0., 0.)])]));
+}
+
+/// A coil with a wire from its upper connection point straight up to a free end.
+fn coil_with_wire() -> (Project, P) {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+    let top = prj.symbol("coil").unwrap().pin_world(0, p(100.0, 100.0), 0, false);
+    prj.pages[0].wires.push(Wire { id: 9, a: p(100.0, 40.0), b: top, ..Default::default() });
+    prj.fix_next_id();
+    (prj, top)
+}
+
+fn ends_at(prj: &Project, q: P) -> usize {
+    prj.pages[0].wires.iter().filter(|w| w.a.same(q) || w.b.same(q)).count()
+}
+
+#[test]
+fn a_dragged_wire_stays_on_its_connection_point_unless_alt_is_held() {
+    let ctx = egui::Context::default();
+    let (mut prj, top) = coil_with_wire();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    drag(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0), p(140.0, 60.0));
+    let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+    assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 0.0)), "where it was dragged to");
+    assert_eq!(ends_at(&prj, top), 1, "a leg from the connection point");
+    assert_eq!(prj.pages[0].wires.len(), 2);
+
+    for alt in [true, false] {
+        let (mut prj, top) = coil_with_wire();
+        let mut ed = Editor::default();
+        ready(&mut ed, &ctx, &mut prj);
+        ed.keep_connections = alt;
+        drag_with(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0), p(140.0, 60.0), if alt { Modifiers::ALT } else { Modifiers::default() });
+        let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+        assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 0.0)), "alt {alt}");
+        assert_eq!(ends_at(&prj, top), 0, "alt {alt}: off the connection point");
+        assert_eq!(prj.pages[0].wires.len(), 1, "alt {alt}");
+    }
+}
+
+#[test]
+fn the_end_of_a_selected_wire_is_dragged_alone() {
+    let ctx = egui::Context::default();
+    let (mut prj, top) = coil_with_wire();
+    prj.pages[0].wires.push(Wire { id: 20, a: p(20.0, 40.0), b: p(300.0, 40.0), ..Default::default() });
+    prj.fix_next_id();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    click(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0));
+    assert_eq!(ed.selection, BTreeSet::from([9]));
+    drag(&mut ed, &ctx, &mut prj, 0, top, top + p(-40.0, 0.0));
+    assert_eq!(prj.pages[0].symbols[0].pos, p(100.0, 100.0), "the coil stays");
+    assert_eq!(ends_at(&prj, top), 0, "disconnected");
+    assert!(prj.pages[0].wires.iter().all(|w| w.a.x == w.b.x || w.a.y == w.b.y), "square: {:?}", prj.pages[0].wires);
+    assert_eq!(ends_at(&prj, top + p(-40.0, 0.0)), 1);
+    let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+    assert!(w.a.y == 40.0 || w.b.y == 40.0, "the other end stays on the rail: {w:?}");
 }

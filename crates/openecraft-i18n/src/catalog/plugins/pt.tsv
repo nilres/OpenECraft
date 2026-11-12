@@ -313,6 +313,7 @@ Item id	ID do item
 Item ids	IDs dos itens
 Jumper number	Número da ponte
 Jumper number (terminals with the same number are bridged); 0 removes it	Número da ponte (bornes com o mesmo número são interligados); 0 o remove
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Manter as conexões (padrão): fios conectados se esticam, fios movidos permanecem nos pontos de conexão e fios onde terminam; false os solta
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Manter o grau de proteção: trocador de calor ou unidade de resfriamento em vez de ventiladores com filtro
 Key figures of the project and a list of its device tags	Indicadores do projeto e uma lista de seus identificadores de dispositivo
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicadores do projeto: páginas, símbolos, fios, dispositivos, peças, cabos e resultados de verificação
@@ -420,6 +421,7 @@ Measuring range or set point	Faixa de medição ou ponto de ajuste
 Message code, e.g. wires.3f9a1c	Código da mensagem, por exemplo, wires.3f9a1c
 Milling feed, mm/min	Avanço de fresamento, mm/min
 Mirror the symbol	Espelhar o símbolo
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Move uma extremidade de um fio: ela deixa aquilo a que está conectada e se conecta ao que encontra; o fio continua ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Move símbolos, fios e textos; as extremidades dos fios conectados acompanham
 Moves the page before this page of its section (or of the section given)	Move a página para antes desta página da sua seção (ou da seção indicada)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Move a seção para antes desta seção da seção superior (ou da indicada); os números continuam em ordem
@@ -800,6 +802,7 @@ The configuration (JSON)	A configuração (JSON)
 The copies would leave the page	As cópias sairiam da página
 The counting step must be at least 1	O passo de contagem deve ser pelo menos 1
 The devices do not fit onto rail {}	Os dispositivos não cabem no trilho {}
+The end: from or to	A extremidade: from ou to
 The feedback (CSV with header or JSON)	O retorno (CSV com cabeçalho ou JSON)
 The first page number must not be negative	O primeiro número de página não pode ser negativo
 The items would leave the page	Os itens sairiam da página
@@ -891,6 +894,7 @@ Unknown termination: {}	Terminação desconhecida: {}
 Unknown vertical anchor: {}	Âncora vertical desconhecida: {}
 Unknown way of opening: {}	Modo de abertura desconhecido: {}
 Unknown wire colour {} (IEC 60757: {})	Cor de fio desconhecida {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Extremidade de fio desconhecida: {} (from ou to)
 Use this scheme for the marking export	Usar este esquema para a exportação de marcação
 Used (mm)	Usado (mm)
 Value while none is set	Valor enquanto nenhum estiver definido
