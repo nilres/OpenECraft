@@ -49,7 +49,7 @@ openecraft-cli --project drawing.oec import_eplan_symbols --path Beckhoff --part
   (`parts_search`), manage catalogs, files, favorites and users (`parts_catalog_save`,
   `parts_attach`, `parts_favorites`, `parts_user_save`, …), compare the project parts
   with the server (`parts_check_updates`) and share the company's forms
-  (`parts_publish_company_forms`, `parts_company_forms`).
+  (`parts_company_forms` (`publish`)).
 - Help and messages follow `--lang` or the system language; the MCP server answers in
   English unless `--lang` is given.
 

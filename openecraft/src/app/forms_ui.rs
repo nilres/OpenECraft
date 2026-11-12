@@ -866,12 +866,15 @@ fn color_row(ui: &mut egui::Ui, color: &mut Option<[u8; 3]>) {
     ui.end_row();
 }
 
+/// A placeholder that is empty for the rows of a revision table without revision.
+const FILLED_EXAMPLE: &str = "{rev.2.name}";
+
 /// Where an element is drawn: only when a text is not empty, only on some page types.
 fn show_editor(ui: &mut egui::Ui, show: &mut forms::Show) {
     egui::CollapsingHeader::new(tr("Shown")).id_salt("itemshow").default_open(!show.is_always()).show(ui, |ui| {
         ui.horizontal(|ui| {
             ui.label(tr("Only when filled"));
-            ui.add(egui::TextEdit::singleline(&mut show.filled).hint_text("{rev.2.name}").desired_width(160.0))
+            ui.add(egui::TextEdit::singleline(&mut show.filled).hint_text(FILLED_EXAMPLE).desired_width(160.0))
                 .on_hover_text(tr("The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table"));
         });
         ui.label(tr("Only on pages of these types (none ticked: on all)"));

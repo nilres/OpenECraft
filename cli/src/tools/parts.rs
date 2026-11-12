@@ -113,16 +113,13 @@ pub static TOOLS: &[Tool] = &[
     Tool {
         name: "parts_company_forms",
         help: tr_const!("Adds the company's form library of the parts server (title blocks, report schemes, plot frames) to the project"),
-        params: &[],
+        params: &[optional(
+            "publish",
+            Kind::Bool,
+            tr_const!("Stores the project's own title blocks, report schemes and plot frames as the company's form library on the parts server (editors)"),
+        )],
         needs_project: true,
         run: company_forms,
-    },
-    Tool {
-        name: "parts_publish_company_forms",
-        help: tr_const!("Stores the project's own title blocks, report schemes and plot frames as the company's form library on the parts server (editors)"),
-        params: &[],
-        needs_project: true,
-        run: publish_company_forms,
     },
     Tool {
         name: "parts_favorites",
@@ -365,8 +362,11 @@ fn file(s: &mut Session, a: &Args) -> Result<Value, String> {
     Ok(json!({ "path": path, "bytes": data.len() }))
 }
 
-fn company_forms(s: &mut Session, _: &Args) -> Result<Value, String> {
+fn company_forms(s: &mut Session, a: &Args) -> Result<Value, String> {
     use openecraft_core::forms::{self, FormLibrary};
+    if a.flag("publish") {
+        return publish_company_forms(s);
+    }
     let json = s.server.library(openecraft_parts::api::FORMS_LIBRARY)?.ok_or_else(|| tr("The parts server has no form library yet").to_string())?;
     let lib = FormLibrary::from_json(&json).map_err(|e| tr_fmt!("Not a title block file: {}", e))?;
     let frames = lib.frames.len();
@@ -374,7 +374,7 @@ fn company_forms(s: &mut Session, _: &Args) -> Result<Value, String> {
     Ok(json!({ "title_blocks": title_blocks, "schemes": schemes, "frames": frames }))
 }
 
-fn publish_company_forms(s: &mut Session, _: &Args) -> Result<Value, String> {
+fn publish_company_forms(s: &mut Session) -> Result<Value, String> {
     let lib = openecraft_core::forms::FormLibrary::of(s.project()?);
     if lib.is_empty() {
         return Err(tr("The project has no title blocks, report schemes or plot frames of its own").into());

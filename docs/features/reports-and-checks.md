@@ -49,7 +49,7 @@ DRAFT while a revision is prepared, FOR APPROVAL in review, nothing (or AS BUILT
 released (*Forms › Title blocks › Stamp*, `set_stamp`).
 **Company library**: the project's own title blocks, report schemes and plot frames are
 published to the parts server and loaded into other projects (*Title blocks › Company
-library*, `parts_publish_company_forms`, `parts_company_forms`; publishing needs the
+library*, `parts_company_forms` (`publish`); publishing needs the
 right to edit catalogs). Report forms choose the columns, their order, the heading and
 the rows per report page, the alignment of each column, columns summed in a total row
 below the last row (with the unit of their values) and shaded every second row.

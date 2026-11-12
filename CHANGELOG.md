@@ -25,8 +25,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   and column alignment. The **company library** on the parts server shares title
   blocks, report schemes and plot frames between projects (`GET` / `PUT
   /api/v1/libraries/forms`). Commands: `set_stamp`, `set_default_title_block`
-  (`page_type`), `set_frame` (`title_block`), `parts_company_forms`,
-  `parts_publish_company_forms`
+  (`page_type`), `set_frame` (`title_block`), `parts_company_forms`
+  (`publish`)
   ([reports and checks](docs/features/reports-and-checks.md#forms)).
 - **EPLAN Data Portal downloads:** DXF and commercial-data downloads use the current
   POST API, and the connection test checks the protected file-provider service without

@@ -279,10 +279,10 @@ fn company_forms_are_published_and_added_to_projects() {
     let mut s = session_with(&srv);
     run(&mut s, "new_project", json!({})).unwrap();
     assert!(run(&mut s, "parts_company_forms", json!({})).unwrap_err().contains("no form library"));
-    assert!(run(&mut s, "parts_publish_company_forms", json!({})).unwrap_err().contains("no title blocks"));
+    assert!(run(&mut s, "parts_company_forms", json!({ "publish": true })).unwrap_err().contains("no title blocks"));
     run(&mut s, "set_title_block", json!({ "name": "Company", "based_on": "Compact" })).unwrap();
     run(&mut s, "set_frame", json!({ "name": "Company A4", "based_on": "A4 portrait" })).unwrap();
-    let sent = run(&mut s, "parts_publish_company_forms", json!({})).unwrap();
+    let sent = run(&mut s, "parts_company_forms", json!({ "publish": true })).unwrap();
     assert_eq!((sent["title_blocks"].as_u64(), sent["frames"].as_u64()), (Some(1), Some(1)));
     assert!(srv.libraries.borrow()["forms"].contains("Company A4"));
 

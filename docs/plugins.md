@@ -602,7 +602,7 @@ Commands: `set_stamp`, `set_default_title_block` (`page_type`), `set_frame`
 (`title_block`); `set_title_block` takes the new element fields. The form library
 (file and the parts server library `forms`, `GET` / `PUT /api/v1/libraries/forms`)
 also carries `frames`; the command line loads and publishes it with
-`parts_company_forms` and `parts_publish_company_forms`.
+`parts_company_forms` (with `publish`).
 
 ### Live function reference fields
 
