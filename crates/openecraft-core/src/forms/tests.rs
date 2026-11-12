@@ -520,3 +520,27 @@ fn form_libraries_carry_plot_frames() {
     // Files without frames still load.
     assert!(FormLibrary::from_json(r#"{"title_blocks": []}"#).unwrap().frames.is_empty());
 }
+
+#[test]
+fn the_cover_logo_goes_where_the_project_puts_it() {
+    let mut prj = demo_project();
+    assert_eq!(prj.pages[0].kind, PageKind::Cover);
+    prj.info.logo = Some(picture("customer.png", &png(80, 80)).unwrap());
+    let frame = crate::frame::of_page(&prj, 0);
+    let area = frame.area();
+    let images = |prj: &Project| {
+        let mut d = Record::default();
+        crate::render::draw_page(&mut d, prj, &crate::index::Index::build(prj), &crate::analysis::Analysis::build(prj), 0, &Default::default());
+        d.images.into_iter().filter(|i| i.file.name == "customer.png").map(|i| (i.a, i.b)).collect::<Vec<_>>()
+    };
+    // Above the project name: centred, as high as the area allows.
+    let auto = crate::render::cover_logo_place(&prj, &frame);
+    assert!((auto.x + auto.width / 2.0 - area.width() / 2.0).abs() < 0.01);
+    let (a, b) = images(&prj)[0];
+    assert!(((a.x + b.x) / 2.0 - area.center().x).abs() < 0.01 && (b.y - a.y - auto.height).abs() < 0.01);
+    // Its own place: the square logo fitted into 50 x 20 mm at (10, 30).
+    prj.info.cover_logo = Some(crate::model::CoverLogo { x: 10.0, y: 30.0, width: 50.0, height: 20.0 });
+    assert_eq!(images(&prj), vec![(area.min + p(25.0, 30.0), area.min + p(45.0, 50.0))]);
+    let back: Project = serde_json::from_str(&serde_json::to_string(&prj).unwrap()).unwrap();
+    assert_eq!(back.info.cover_logo, prj.info.cover_logo);
+}

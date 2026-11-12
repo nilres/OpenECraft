@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Asenkron motorlar kısa dev
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Otomatik donanım yapılandırması: CPU'lar ve bus kuplörleri için istasyonlar, bus sistemleri, kartların istasyonlara atanması, slotlar, başlangıç adresleri, nokta adresleri, IP adresleri ve hat topolojisi
 Back to the default rules first	Önce varsayılan kurallara dön
 Back to the default strategy first	Önce varsayılan stratejiye dön
+Back to the place above the project name	Proje adının üstündeki yere geri dön
 Back-up protection up to this short-circuit current in kA (0: not given)	kA cinsinden bu kısa devre akımına kadar yedek koruma (0: verilmemiş)
 Bar id	Bara kimliği
 Bar thickness, mm (default 5)	Bara kalınlığı, mm (varsayılan 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Metre cinsinden zeminden yükseklik
 Height above the mounting plate in mm (default 50)	mm cinsinden montaj plakası üzerindeki yükseklik (varsayılan 50)
 Height in mm	mm cinsinden yükseklik
 Height in mm without plinth; negative: unknown (wall mounted)	Kaide hariç mm cinsinden yükseklik; negatif: bilinmiyor (duvara monte)
+Height in mm; the logo keeps its aspect ratio inside	mm cinsinden yükseklik; logo içinde en boy oranını korur
 Higher-level product aspect (-) of the page; the devices on the page move along	Sayfanın üst düzey ürün yönü (-); sayfadaki cihazlar da birlikte taşınır
 Highest actuator on the door above the floor (0: not checked)	Kapıdaki en yüksek kumanda elemanının zeminden yüksekliği (0: kontrol edilmez)
 Highest air temperature at devices without data (0: not checked)	Verisi olmayan cihazlarda en yüksek hava sıcaklığı (0: kontrol edilmez)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Proje metinlerinin yazıldı�
 Larger round holes are milled, mm	Daha büyük yuvarlak delikler frezelenir, mm
 Largest difference between hole and tool, mm	Delik ile takım arasındaki en büyük fark, mm
 Left edge from the left end of the wall (seen from inside) in mm	Duvarın sol ucundan sol kenar (içeriden bakıldığında), mm
+Left edge in mm	mm cinsinden sol kenar
 Left edge on the face in mm	mm cinsinden yüzey üzerindeki sol kenar
 Left edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki sol kenar
 Left side bayed (no side panel)	Sol taraf yan yana bağlı (yan panel yok)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Grubun yerleri (0 = sınırsız)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Bir sembolün bağlantı noktası tanımını noktanın soluna, sağına, üstüne veya altına yerleştirir ve kaydırır; taraf ve kaydırma olmadan yeniden otomatik olarak yerleştirilir
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Bir panonun dizisini odaya yerleştirir (tüm panoların 3D görünümü); x ve z verilmezse tesis yerleşimine göre veya diğer dizilerin yanına yerleştirilir
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Kesinti noktalarının adını ve çapraz referansını okun bir tarafına veya elle ekleme noktasından bir uzaklıkla yerleştirir
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Proje logosunu kapak sayfasına yerleştirir (çizim alanının sol üst köşesinden mm); parametresiz yeri gösterir
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Bir şemanın özelliklerini sembollere yerleştirir; kimlik verilmezse bunu kullanan tüm sembollere yeniden yerleştirilir
 Planned part number	Planlanan parça numarası
 Planned power in kW	kW cinsinden planlanan güç
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Antet (list_title_b
 Title block of the pages with this frame that do not choose one; empty: the project default	Bu çerçeveye sahip ve antet seçmeyen sayfaların antedi; boş: projenin varsayılanı
 Title block to start from when it is new (default: Standard)	Yeniyse başlangıç alınacak antet (varsayılan: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Takımlar, ör. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	mm cinsinden üst kenar
 Top edge on the face in mm	mm cinsinden yüzey üzerindeki üst kenar
 Top edge on the mounting plate in mm	mm cinsinden montaj plakası üzerindeki üst kenar
 Translated line	Çevrilmiş satır

@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Az aszinkronmotorok hozzáj
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatikus hardverkonfiguráció: állomások a CPU-khoz és buszcsatolókhoz, buszrendszerek, kártyák állomásokhoz rendelése, slotok, kezdőcímek, pontcímek, IP-címek és vonali topológia
 Back to the default rules first	Előbb visszaállítás az alapértelmezett szabályokra
 Back to the default strategy first	Előbb visszaállítás az alapértelmezett stratégiára
+Back to the place above the project name	Vissza a projekt neve fölötti helyre
 Back-up protection up to this short-circuit current in kA (0: not given)	Tartalékvédelem eddig a zárlati áramig, kA-ban (0: nincs megadva)
 Bar id	Sínazonosító
 Bar thickness, mm (default 5)	Sínvastagság, mm (alapértelmezés: 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Padló feletti magasság méterben
 Height above the mounting plate in mm (default 50)	Magasság a szerelőlap fölött mm-ben (alapértelmezés: 50)
 Height in mm	Magasság mm-ben
 Height in mm without plinth; negative: unknown (wall mounted)	Magasság mm-ben lábazat nélkül; negatív: ismeretlen (falra szerelt)
+Height in mm; the logo keeps its aspect ratio inside	Magasság mm-ben; a logó megtartja benne a méretarányát
 Higher-level product aspect (-) of the page; the devices on the page move along	Az oldal felettestermék-aspektusa (-); az oldalon lévő készülékek vele mozognak
 Highest actuator on the door above the floor (0: not checked)	A legmagasabb kezelőelem az ajtón a padló felett (0: nincs ellenőrzés)
 Highest air temperature at devices without data (0: not checked)	A legmagasabb léghőmérséklet adatok nélküli készülékeknél (0: nincs ellenőrzés)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	A projektszövegek nyelve, pl
 Larger round holes are milled, mm	Az ennél nagyobb kerek furatok marással készülnek, mm
 Largest difference between hole and tool, mm	A furat és a szerszám közötti legnagyobb eltérés, mm
 Left edge from the left end of the wall (seen from inside) in mm	Bal él a fal bal végétől (belülről nézve), mm
+Left edge in mm	Bal szél mm-ben
 Left edge on the face in mm	Bal él a felületen, mm-ben
 Left edge on the mounting plate in mm	Bal él a szerelőlapon mm-ben
 Left side bayed (no side panel)	Bal oldal sorolva (nincs oldalfal)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	A csoport helyei (0 = korlátlan)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Egy szimbólum csatlakozási pontjának megnevezését balra, jobbra, fölé vagy alá helyezi és eltolja; oldal és eltolás nélkül ismét automatikusan helyezi el
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Elhelyezi egy szekrény szekrénysorát a helyiségben (az összes szekrény 3D-nézete); x és z nélkül a létesítmény-elrendezés szerint vagy a többi szekrénysor mellé kerül
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Elhelyezi a megszakítási pontok nevét és kereszthivatkozását a nyíl egyik oldalán vagy kézzel a beszúrási ponttól mért eltolással
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	A projekt logóját a fedlapra helyezi (mm a rajzterület bal felső sarkától); paraméter nélkül megmutatja a helyét
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Egy séma tulajdonságait helyezi el szimbólumokon; azonosítók nélkül újra elhelyezi minden azt használó szimbólumon
 Planned part number	Tervezett cikkszám
 Planned power in kW	Tervezett teljesítmény kW-ban
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Szövegmező (list_
 Title block of the pages with this frame that do not choose one; empty: the project default	Az e kerettel rendelkező, saját szövegmezőt nem választó oldalak szövegmezője; üres: a projekt alapértelmezése
 Title block to start from when it is new (default: Standard)	Szövegmező, amelyből új esetén kiindul (alapértelmezés: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Szerszámok, pl. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Felső szél mm-ben
 Top edge on the face in mm	Felső él a felületen, mm-ben
 Top edge on the mounting plate in mm	Felső él a szerelőlapon mm-ben
 Translated line	Lefordított sor

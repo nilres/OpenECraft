@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Asynchronní motory přisp�
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatická konfigurace hardwaru: stanice pro CPU a sběrnicové moduly, sběrnicové systémy, karty ke stanicím, sloty, počáteční adresy, adresy bodů, adresy IP a liniová topologie
 Back to the default rules first	Nejprve obnovit výchozí pravidla
 Back to the default strategy first	Nejprve obnovit výchozí strategii
+Back to the place above the project name	Zpět na místo nad názvem projektu
 Back-up protection up to this short-circuit current in kA (0: not given)	Záložní ochrana až do tohoto zkratového proudu v kA (0: neuvedeno)
 Bar id	ID přípojnice
 Bar thickness, mm (default 5)	Tloušťka přípojnice, mm (výchozí 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Výška nad podlahou v metrech
 Height above the mounting plate in mm (default 50)	Výška nad montážní deskou v mm (výchozí 50)
 Height in mm	Výška v mm
 Height in mm without plinth; negative: unknown (wall mounted)	Výška v mm bez soklu; záporná: neznámá (montáž na stěnu)
+Height in mm; the logo keeps its aspect ratio inside	Výška v mm; logo si v ní zachová poměr stran
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspekt nadřazeného produktu (-) stránky; přístroje na stránce se přesunou s ním
 Highest actuator on the door above the floor (0: not checked)	Nejvyšší ovládací prvek na dveřích nad podlahou (0: nekontroluje se)
 Highest air temperature at devices without data (0: not checked)	Nejvyšší teplota vzduchu u přístrojů bez údajů (0: nekontroluje se)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Jazyk, ve kterém jsou texty 
 Larger round holes are milled, mm	Větší kruhové otvory se frézují, mm
 Largest difference between hole and tool, mm	Největší rozdíl mezi otvorem a nástrojem, mm
 Left edge from the left end of the wall (seen from inside) in mm	Levá hrana od levého konce stěny (při pohledu zevnitř) v mm
+Left edge in mm	Levý okraj v mm
 Left edge on the face in mm	Levý okraj na ploše v mm
 Left edge on the mounting plate in mm	Levý okraj na montážní desce v mm
 Left side bayed (no side panel)	Levá strana spojená do řady (bez boční stěny)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Místa skupiny (0 = neomezeno)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Umístí označení přípojného bodu symbolu vlevo, vpravo, nad nebo pod něj a posune je; bez strany a posunu se opět umístí automaticky
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umístí řadu skříní v místnosti (3D zobrazení všech skříní); bez x a z se umístí podle dispozice zařízení nebo vedle ostatních řad skříní
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umístí název a křížový odkaz bodů přerušení na stranu šipky nebo ručně s posunem od bodu vložení
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Umístí logo projektu na titulní list (mm od levého horního rohu kreslicí plochy); bez parametrů zobrazí místo
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umístí vlastnosti schématu u symbolů; bez ID je znovu umístí u všech symbolů, které ho používají
 Planned part number	Plánované číslo artiklu
 Planned power in kW	Plánovaný výkon v kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Rohové razítko (l
 Title block of the pages with this frame that do not choose one; empty: the project default	Razítko stránek s tímto rámečkem, které žádné nevybírají; prázdné: výchozí razítko projektu
 Title block to start from when it is new (default: Standard)	Rohové razítko, ze kterého se vychází, je-li nové (výchozí: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Nástroje, např. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Horní okraj v mm
 Top edge on the face in mm	Horní okraj na ploše v mm
 Top edge on the mounting plate in mm	Horní okraj na montážní desce v mm
 Translated line	Přeložený řádek

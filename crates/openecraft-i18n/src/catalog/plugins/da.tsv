@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Asynkronmotorer bidrager ti
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatisk hardwarekonfiguration: stationer for CPU'er og buskoblere, bussystemer, kort til stationer, slots, startadresser, punktadresser, IP-adresser og en linjetopologi
 Back to the default rules first	Nulstil først til standardreglerne
 Back to the default strategy first	Nulstil først til standardstrategien
+Back to the place above the project name	Tilbage til pladsen over projektnavnet
 Back-up protection up to this short-circuit current in kA (0: not given)	Backupbeskyttelse op til denne kortslutningsstrøm i kA (0: ikke angivet)
 Bar id	Skinne-id
 Bar thickness, mm (default 5)	Skinnetykkelse, mm (standard 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Højde over gulvet i meter
 Height above the mounting plate in mm (default 50)	Højde over monteringspladen i mm (standard 50)
 Height in mm	Højde i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Højde i mm uden sokkel; negativ: ukendt (vægmonteret)
+Height in mm; the logo keeps its aspect ratio inside	Højde i mm; logoet bevarer sit billedformat indeni
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspektet overordnet produkt (-) for siden; enhederne på siden flytter med
 Highest actuator on the door above the floor (0: not checked)	Højeste betjeningselement på døren over gulvet (0: kontrolleres ikke)
 Highest air temperature at devices without data (0: not checked)	Højeste lufttemperatur ved enheder uden data (0: kontrolleres ikke)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Sprog, som projektteksterne e
 Larger round holes are milled, mm	Større runde huller fræses, mm
 Largest difference between hole and tool, mm	Største forskel mellem hul og værktøj, mm
 Left edge from the left end of the wall (seen from inside) in mm	Venstre kant fra væggens venstre ende (set indefra) i mm
+Left edge in mm	Venstre kant i mm
 Left edge on the face in mm	Venstre kant på fladen i mm
 Left edge on the mounting plate in mm	Venstre kant på monteringspladen i mm
 Left side bayed (no side panel)	Venstre side sammenbygget (ingen sideplade)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Gruppens pladser (0 = ubegrænset)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Placerer betegnelsen for et tilslutningspunkt på et symbol til venstre, til højre, over eller under det og forskyder den; uden side og forskydning placeres den automatisk igen
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerer en kapslings sammenbygning i rummet (3D-visning af alle kapslinger); uden x og z placeres den ud fra anlægslayoutet eller ved siden af de andre sammenbygninger
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Placerer navnet og krydshenvisningen for afbrydelsespunkter på en side af pilen eller manuelt med en forskydning fra indsætningspunktet
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Placerer projektets logo på forsiden (mm fra tegneområdets øverste venstre hjørne); uden parametre vises pladsen
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerer et skemas egenskaber ved symboler; uden id'er placeres det igen ved alle symboler, der bruger det
 Planned part number	Planlagt artikelnummer
 Planned power in kW	Planlagt effekt i kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Tegningshoved (list
 Title block of the pages with this frame that do not choose one; empty: the project default	Tegningshoved for sider med denne ramme, der ikke vælger et; tom: projektets standard
 Title block to start from when it is new (default: Standard)	Tegningshoved at tage udgangspunkt i, når det er nyt (standard: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Værktøjer, f.eks. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Øverste kant i mm
 Top edge on the face in mm	Øverste kant på fladen i mm
 Top edge on the mounting plate in mm	Øverste kant på monteringspladen i mm
 Translated line	Oversat linje

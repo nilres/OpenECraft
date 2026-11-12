@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Asynchrone motoren dragen b
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatische hardwareconfiguratie: stations voor CPU's en buskoppelaars, bussystemen, kaarten naar stations, slots, startadressen, adressen van de punten, IP-adressen en een lijntopologie
 Back to the default rules first	Eerst terugzetten naar de standaardregels
 Back to the default strategy first	Eerst terug naar de standaardstrategie
+Back to the place above the project name	Terug naar de plaats boven de projectnaam
 Back-up protection up to this short-circuit current in kA (0: not given)	Back-upbeveiliging tot deze kortsluitstroom in kA (0: niet opgegeven)
 Bar id	Rail-ID
 Bar thickness, mm (default 5)	Raildikte, mm (standaard 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Hoogte boven de vloer in meter
 Height above the mounting plate in mm (default 50)	Hoogte boven de montageplaat in mm (standaard 50)
 Height in mm	Hoogte in mm
 Height in mm without plinth; negative: unknown (wall mounted)	Hoogte in mm zonder sokkel; negatief: onbekend (wandmontage)
+Height in mm; the logo keeps its aspect ratio inside	Hoogte in mm; het logo behoudt daarbinnen zijn beeldverhouding
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspect bovenliggend product (-) van de pagina; de apparaten op de pagina gaan mee
 Highest actuator on the door above the floor (0: not checked)	Hoogste bedieningselement in de deur boven de vloer (0: niet gecontroleerd)
 Highest air temperature at devices without data (0: not checked)	Hoogste luchttemperatuur bij apparaten zonder gegevens (0: niet gecontroleerd)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Taal waarin de projectteksten
 Larger round holes are milled, mm	Grotere ronde gaten worden gefreesd, mm
 Largest difference between hole and tool, mm	Grootste verschil tussen gat en gereedschap, mm
 Left edge from the left end of the wall (seen from inside) in mm	Linkerrand vanaf het linkereinde van de wand (gezien van binnen) in mm
+Left edge in mm	Linkerrand in mm
 Left edge on the face in mm	Linkerrand op het vlak in mm
 Left edge on the mounting plate in mm	Linkerrand op de montageplaat in mm
 Left side bayed (no side panel)	Linkerzijde gekoppeld (geen zijwand)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Plaatsen van de groep (0 = onbeperkt)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Plaatst de benaming van een aansluitpunt van een symbool links, rechts, boven of onder het punt en verschuift deze; zonder zijde en verschuiving wordt deze weer automatisch geplaatst
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plaatst de kastrij van een behuizing in de ruimte (3D-weergave van alle behuizingen); zonder x en z wordt deze geplaatst volgens de installatielay-out of naast de andere kastrijen
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Plaatst de naam en de kruisverwijzing van onderbrekingspunten aan een kant van de pijl of handmatig op een afstand van het invoegpunt
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Plaatst het projectlogo op het voorblad (mm vanaf de linkerbovenhoek van het tekengebied); zonder parameters toont het de plaats
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plaatst de eigenschappen van een schema bij symbolen; zonder ID's wordt het opnieuw geplaatst bij alle symbolen die het gebruiken
 Planned part number	Gepland artikelnummer
 Planned power in kW	Gepland vermogen in kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Titelblok (list_tit
 Title block of the pages with this frame that do not choose one; empty: the project default	Titelblok van de pagina's met dit kader die er geen kiezen; leeg: de projectstandaard
 Title block to start from when it is new (default: Standard)	Titelblok om van uit te gaan als het nieuw is (standaard: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Gereedschappen, bijv. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Bovenrand in mm
 Top edge on the face in mm	Bovenrand op het vlak in mm
 Top edge on the mounting plate in mm	Bovenrand op de montageplaat in mm
 Translated line	Vertaalde regel

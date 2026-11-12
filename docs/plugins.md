@@ -568,7 +568,9 @@ Hosts advertising `title_block_images` accept `Image` elements in title blocks
 `{"type": "Image", "a": {…}, "b": {…}, "picture": {"file": {"name", "data"}, "px": [w, h]}}`
 with a base64 PNG or JPEG fitted into the rectangle `a`..`b` keeping its aspect ratio.
 Without `picture` the element shows `info.logo` (same shape as `picture`), the project
-logo that the cover page also shows. `Text` elements take optional `bold`, `italic` and
+logo that the cover page also shows: above the project name, or fitted into
+`info.cover_logo` (`x`, `y`, `width`, `height` in mm from the top left corner of the
+drawing area; command `set_cover_logo`). `Text` elements take optional `bold`, `italic` and
 `angle` (degrees, counter-clockwise). Placeholders `{page.previous}`, `{page.next}` and
 `{rev.N.name|date|author|description}` (N-th last released revision) are filled like the
 others. The shared commands `list_title_blocks`, `set_title_block` (elements as

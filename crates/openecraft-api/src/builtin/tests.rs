@@ -43,6 +43,20 @@ fn title_blocks_are_listed_created_chosen_and_deleted() {
 }
 
 #[test]
+fn the_cover_logo_is_placed_by_command() {
+    let p = Plugins::new(Vec::<String>::new());
+    let mut prj = demo_project();
+    let mut run = |args: serde_json::Value| p.run(p.command("set_cover_logo").unwrap(), &mut prj, args.as_object().unwrap());
+    let auto = run(serde_json::json!({})).unwrap();
+    assert_eq!((auto["automatic"].as_bool(), auto["width"].as_f64()), (Some(true), Some(120.0)));
+    let own = run(serde_json::json!({ "x": 20.0, "height": 30.0 })).unwrap();
+    assert_eq!((own["automatic"].as_bool(), own["x"].as_f64(), own["y"].clone(), own["width"].as_f64(), own["height"].as_f64()), (Some(false), Some(20.0), auto["y"].clone(), Some(120.0), Some(30.0)));
+    assert!(run(serde_json::json!({ "width": 0.0 })).is_err());
+    assert_eq!(run(serde_json::json!({ "automatic": true })).unwrap()["automatic"], true);
+    assert!(prj.info.cover_logo.is_none());
+}
+
+#[test]
 fn stamp_and_title_blocks_by_page_type_and_frame() {
     let p = Plugins::new(Vec::<String>::new());
     let mut prj = demo_project();

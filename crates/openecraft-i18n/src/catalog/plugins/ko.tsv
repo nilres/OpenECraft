@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	비동기 모터가 단락 
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	자동 하드웨어 구성: CPU와 버스 커플러용 스테이션, 버스 시스템, 스테이션에 카드 지정, 슬롯, 시작 주소, 점 주소, IP 주소 및 라인 토폴로지
 Back to the default rules first	먼저 기본 규칙으로 되돌리기
 Back to the default strategy first	먼저 기본 전략으로 되돌리기
+Back to the place above the project name	프로젝트 이름 위 위치로 되돌리기
 Back-up protection up to this short-circuit current in kA (0: not given)	이 단락 전류(kA)까지 백업 보호(0: 지정 안 됨)
 Bar id	바 ID
 Bar thickness, mm (default 5)	바 두께(mm, 기본값 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	바닥으로부터의 높이(m)
 Height above the mounting plate in mm (default 50)	장착 플레이트 위 높이(mm, 기본값 50)
 Height in mm	높이(mm)
 Height in mm without plinth; negative: unknown (wall mounted)	받침대를 제외한 높이(mm). 음수: 알 수 없음(벽 장착)
+Height in mm; the logo keeps its aspect ratio inside	높이(mm). 로고는 그 안에서 가로세로 비율을 유지합니다
 Higher-level product aspect (-) of the page; the devices on the page move along	페이지의 상위 제품 측면(-). 페이지의 장치가 함께 이동합니다
 Highest actuator on the door above the floor (0: not checked)	바닥으로부터 도어의 가장 높은 조작부 높이(0: 검사 안 함)
 Highest air temperature at devices without data (0: not checked)	데이터가 없는 장치 주변의 최고 공기 온도(0: 검사 안 함)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	프로젝트 텍스트가 작
 Larger round holes are milled, mm	이보다 큰 원형 구멍은 밀링 가공(mm)
 Largest difference between hole and tool, mm	구멍과 공구 간 최대 차이(mm)
 Left edge from the left end of the wall (seen from inside) in mm	벽 왼쪽 끝에서 왼쪽 가장자리까지(안쪽에서 볼 때), mm
+Left edge in mm	왼쪽 가장자리(mm)
 Left edge on the face in mm	면에서의 왼쪽 가장자리(mm)
 Left edge on the mounting plate in mm	장착 플레이트 위의 왼쪽 가장자리(mm)
 Left side bayed (no side panel)	왼쪽 측면 결합(측면 패널 없음)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	그룹의 자리(0 = 제한 없음)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	심볼 연결 지점의 명칭을 왼쪽, 오른쪽, 위 또는 아래에 배치하고 이동합니다. 위치와 이동을 지정하지 않으면 다시 자동으로 배치합니다
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	외함의 열 배치를 공간에 배치합니다(모든 외함의 3D 보기). x와 z가 없으면 플랜트 레이아웃에 따라 또는 다른 열 배치 옆에 배치됩니다
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	중단점의 이름과 상호 참조를 화살표의 한쪽에 또는 삽입점으로부터의 오프셋으로 수동 배치합니다
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	프로젝트 로고를 표지에 배치합니다(도면 영역 왼쪽 위 모서리부터 mm). 매개변수가 없으면 위치를 표시합니다
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	스키마의 속성을 심볼에 배치합니다. ID가 없으면 이를 사용하는 모든 심볼에 다시 배치합니다
 Planned part number	계획된 부품 번호
 Planned power in kW	계획된 전력(kW)
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	표제란(list_titl
 Title block of the pages with this frame that do not choose one; empty: the project default	이 프레임을 쓰고 표제란을 선택하지 않은 페이지의 표제란. 비어 있음 = 프로젝트 기본값
 Title block to start from when it is new (default: Standard)	새로 만들 때 시작할 표제란(기본값: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	공구(예: D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120)
+Top edge in mm	위쪽 가장자리(mm)
 Top edge on the face in mm	면에서의 위쪽 가장자리(mm)
 Top edge on the mounting plate in mm	장착 플레이트 위의 위쪽 가장자리(mm)
 Translated line	번역된 줄

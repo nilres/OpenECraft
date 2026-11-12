@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Асинхронні дви
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Автоматична апаратна конфігурація: станції для CPU і шинних з’єднувачів, шинні системи, плати до станцій, слоти, початкові адреси, адреси точок, IP-адреси та лінійна топологія
 Back to the default rules first	Спочатку повернутися до стандартних правил
 Back to the default strategy first	Спочатку повернутися до стандартної стратегії
+Back to the place above the project name	Повернути на місце над назвою проєкту
 Back-up protection up to this short-circuit current in kA (0: not given)	Резервний захист до цього струму короткого замикання в kA (0: не задано)
 Bar id	Ідентифікатор шини
 Bar thickness, mm (default 5)	Товщина шини, мм (за замовчуванням 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Висота над підлогою в мет�
 Height above the mounting plate in mm (default 50)	Висота над монтажною панеллю в мм (за замовчуванням 50)
 Height in mm	Висота в мм
 Height in mm without plinth; negative: unknown (wall mounted)	Висота в мм без цоколя; від’ємне значення: невідомо (настінний монтаж)
+Height in mm; the logo keeps its aspect ratio inside	Висота в мм; логотип зберігає всередині свої пропорції
 Higher-level product aspect (-) of the page; the devices on the page move along	Аспект виробу вищого рівня (-) сторінки; пристрої сторінки переміщуються разом із нею
 Highest actuator on the door above the floor (0: not checked)	Найвищий орган керування на дверцятах над підлогою (0: не перевіряється)
 Highest air temperature at devices without data (0: not checked)	Найвища температура повітря біля пристроїв без даних (0: не перевіряється)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Мова, якою напис
 Larger round holes are milled, mm	Більші круглі отвори фрезеруються, мм
 Largest difference between hole and tool, mm	Найбільша різниця між отвором та інструментом, мм
 Left edge from the left end of the wall (seen from inside) in mm	Лівий край від лівого кінця стіни (вигляд зсередини), мм
+Left edge in mm	Лівий край у мм
 Left edge on the face in mm	Лівий край на грані в мм
 Left edge on the mounting plate in mm	Лівий край на монтажній панелі в мм
 Left side bayed (no side panel)	Ліва сторона приєднана (без бічної стінки)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Місця групи (0 = без обме
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Розміщує позначення точки підключення символу ліворуч, праворуч, зверху або знизу від неї та зсуває його; без сторони та зсуву воно знову розміщується автоматично
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Розміщує ряд корпусу в приміщенні (3D-вигляд усіх корпусів); без x і z ряд розміщується за планом установки або поруч з іншими рядами
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Розміщує ім'я та перехресне посилання точок розриву з одного боку стрілки або вручну зі зміщенням від точки вставки
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Розміщує логотип проєкту на титульній сторінці (мм від лівого верхнього кута області креслення); без параметрів показує місце
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Розміщує властивості схеми на символах; без ідентифікаторів розміщує її знову на всіх символах, що її використовують
 Planned part number	Запланований номер виробу
 Planned power in kW	Запланована потужність у kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Основний н
 Title block of the pages with this frame that do not choose one; empty: the project default	Основний напис сторінок із цією рамкою, які не вибирають власний; порожньо: типовий напис проєкту
 Title block to start from when it is new (default: Standard)	Основний напис, з якого почати, якщо він новий (типово: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Інструменти, напр. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Верхній край у мм
 Top edge on the face in mm	Верхній край на грані в мм
 Top edge on the mounting plate in mm	Верхній край на монтажній панелі в мм
 Translated line	Перекладений рядок

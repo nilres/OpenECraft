@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Motoarele asincrone contrib
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Configurare hardware automată: stații pentru CPU-uri și cuploare de magistrală, sisteme de magistrală, carduri la stații, sloturi, adrese de start, adrese de puncte, adrese IP și o topologie liniară
 Back to the default rules first	Mai întâi revenire la regulile implicite
 Back to the default strategy first	Mai întâi revenire la strategia implicită
+Back to the place above the project name	Înapoi la locul de deasupra numelui proiectului
 Back-up protection up to this short-circuit current in kA (0: not given)	Protecție de rezervă până la acest curent de scurtcircuit în kA (0: neindicat)
 Bar id	ID bară
 Bar thickness, mm (default 5)	Grosimea barei, mm (implicit 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Înălțime deasupra podelei în metri
 Height above the mounting plate in mm (default 50)	Înălțime deasupra plăcii de montaj în mm (implicit 50)
 Height in mm	Înălțime în mm
 Height in mm without plinth; negative: unknown (wall mounted)	Înălțime în mm fără soclu; negativ: necunoscută (montaj pe perete)
+Height in mm; the logo keeps its aspect ratio inside	Înălțime în mm; sigla își păstrează proporțiile în interior
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspectul de produs de nivel superior (-) al paginii; dispozitivele de pe pagină se mută odată cu ea
 Highest actuator on the door above the floor (0: not checked)	Cel mai înalt element de acționare pe ușă deasupra podelei (0: neverificat)
 Highest air temperature at devices without data (0: not checked)	Cea mai ridicată temperatură a aerului la dispozitive fără date (0: neverificat)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Limba în care sunt scrise te
 Larger round holes are milled, mm	Găurile rotunde mai mari sunt frezate, mm
 Largest difference between hole and tool, mm	Cea mai mare diferență între gaură și sculă, mm
 Left edge from the left end of the wall (seen from inside) in mm	Marginea stângă de la capătul stâng al peretelui (văzut din interior), în mm
+Left edge in mm	Marginea stângă în mm
 Left edge on the face in mm	Marginea stângă pe față în mm
 Left edge on the mounting plate in mm	Marginea stângă pe placa de montaj în mm
 Left side bayed (no side panel)	Partea stângă alăturată (fără perete lateral)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Locurile grupului (0 = nelimitat)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Plasează denumirea unui punct de conexiune al unui simbol la stânga, la dreapta, deasupra sau dedesubtul acestuia și o deplasează; fără latură și deplasare este plasată din nou automat
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Plasează rândul de carcase al unei carcase în încăpere (vedere 3D a tuturor carcaselor); fără x și z, este plasat conform planului de amplasare a instalației sau lângă celelalte rânduri de carcase
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Plasează numele și referința încrucișată ale punctelor de întrerupere pe o latură a săgeții sau manual, cu un decalaj față de punctul de inserare
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Plasează sigla proiectului pe copertă (mm de la colțul stânga sus al zonei de desen); fără parametri afișează locul
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Plasează proprietățile unei scheme la simboluri; fără ID-uri, este replasată la toate simbolurile care o folosesc
 Planned part number	Număr de articol planificat
 Planned power in kW	Putere planificată în kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Cartuș (list_title
 Title block of the pages with this frame that do not choose one; empty: the project default	Cartușul paginilor cu acest chenar care nu aleg unul; gol: cartușul implicit al proiectului
 Title block to start from when it is new (default: Standard)	Cartușul de la care se pornește când este nou (implicit: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Scule, de ex. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Marginea de sus în mm
 Top edge on the face in mm	Marginea de sus pe față în mm
 Top edge on the mounting plate in mm	Marginea de sus pe placa de montaj în mm
 Translated line	Rând tradus

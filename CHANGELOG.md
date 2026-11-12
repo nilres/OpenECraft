@@ -9,7 +9,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*
   (e.g. the customer's), fitted with its aspect ratio; the cover page shows the project
-  logo. Texts of forms can be bold, italic and rotated, and new placeholders show the
+  logo above the project name or at a place and size of its own (`set_cover_logo`). Texts of forms can be bold, italic and rotated, and new placeholders show the
   previous and next page (`{page.previous}`, `{page.next}`) and revision tables
   (`{rev.1.name}`, `{rev.2.date}` …). Commands: `list_title_blocks`, `set_title_block`,
   `delete_title_block`, `set_default_title_block`, `set_page` (`title_block`),

@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Epätahtimoottorit lisääv
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automaattinen laitteistokokoonpano: asemat CPU:ille ja väyläliittimille, väyläjärjestelmät, kortit asemiin, korttipaikat, aloitusosoitteet, pisteiden osoitteet, IP-osoitteet ja linjatopologia
 Back to the default rules first	Palauta ensin oletussäännöt
 Back to the default strategy first	Palauta ensin oletusstrategia
+Back to the place above the project name	Takaisin paikalleen projektin nimen yläpuolelle
 Back-up protection up to this short-circuit current in kA (0: not given)	Varasuojaus tähän oikosulkuvirtaan asti kA (0: ei annettu)
 Bar id	Kiskon ID
 Bar thickness, mm (default 5)	Kiskon paksuus, mm (oletus 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Korkeus lattiasta metreinä
 Height above the mounting plate in mm (default 50)	Korkeus asennuslevyn yläpuolella millimetreinä (oletus 50)
 Height in mm	Korkeus millimetreinä
 Height in mm without plinth; negative: unknown (wall mounted)	Korkeus mm ilman sokkelia; negatiivinen: tuntematon (seinäasennus)
+Height in mm; the logo keeps its aspect ratio inside	Korkeus millimetreinä; logo säilyttää sen sisällä kuvasuhteensa
 Higher-level product aspect (-) of the page; the devices on the page move along	Sivun ylemmän tason tuote -aspekti (-); sivun laitteet siirtyvät mukana
 Highest actuator on the door above the floor (0: not checked)	Oven ylin käyttöelin lattiasta (0: ei tarkisteta)
 Highest air temperature at devices without data (0: not checked)	Korkein ilman lämpötila laitteilla, joilla ei ole tietoja (0: ei tarkisteta)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Kieli, jolla projektin teksti
 Larger round holes are milled, mm	Suuremmat pyöreät reiät jyrsitään, mm
 Largest difference between hole and tool, mm	Suurin ero reiän ja työkalun välillä, mm
 Left edge from the left end of the wall (seen from inside) in mm	Vasen reuna seinän vasemmasta päästä (sisältä katsottuna), mm
+Left edge in mm	Vasen reuna millimetreinä
 Left edge on the face in mm	Vasen reuna pinnalla millimetreinä
 Left edge on the mounting plate in mm	Vasen reuna asennuslevyllä millimetreinä
 Left side bayed (no side panel)	Vasen puoli rivitetty (ei sivuseinää)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Ryhmän paikat (0 = ei rajoitettu)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Sijoittaa symbolin liitäntäpisteen merkinnän sen vasemmalle, oikealle, yläpuolelle tai alapuolelle ja siirtää sitä; ilman puolta ja siirtoa se sijoitetaan taas automaattisesti
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Sijoittaa kotelon kaappirivin huoneeseen (kaikkien koteloiden 3D-näkymä); ilman x- ja z-arvoa se sijoitetaan laitoksen sijoituskuvan mukaan tai muiden kaappirivien viereen
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Sijoittaa katkospisteiden nimen ja ristiviittauksen nuolen yhdelle puolelle tai käsin siirtymällä lisäyspisteestä
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Sijoittaa projektin logon kansilehdelle (millimetreinä piirustusalueen vasemmasta yläkulmasta); ilman parametreja näyttää paikan
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Sijoittaa skeeman ominaisuudet symboleihin; ilman tunnuksia se sijoitetaan uudelleen kaikkiin sitä käyttäviin symboleihin
 Planned part number	Suunniteltu osanumero
 Planned power in kW	Suunniteltu teho kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Nimiö (list_title_
 Title block of the pages with this frame that do not choose one; empty: the project default	Tämän kehyksen sivujen nimiö, kun ne eivät valitse omaa; tyhjä: projektin oletus
 Title block to start from when it is new (default: Standard)	Nimiö, josta aloitetaan, kun se on uusi (oletus: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Työkalut, esim. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Yläreuna millimetreinä
 Top edge on the face in mm	Yläreuna pinnalla millimetreinä
 Top edge on the mounting plate in mm	Yläreuna asennuslevyllä millimetreinä
 Translated line	Käännetty rivi

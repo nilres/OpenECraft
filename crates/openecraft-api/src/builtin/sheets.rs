@@ -96,6 +96,18 @@ pub static COMMANDS: &[Spec] = &[
         run: set_default_title_block,
     },
     Spec {
+        name: "set_cover_logo",
+        help: tr_const!("Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place"),
+        params: &[
+            optional("x", Kind::Num, tr_const!("Left edge in mm")),
+            optional("y", Kind::Num, tr_const!("Top edge in mm")),
+            optional("width", Kind::Num, tr_const!("Width in mm")),
+            optional("height", Kind::Num, tr_const!("Height in mm; the logo keeps its aspect ratio inside")),
+            optional("automatic", Kind::Bool, tr_const!("Back to the place above the project name")),
+        ],
+        run: set_cover_logo,
+    },
+    Spec {
         name: "set_stamp",
         help: tr_const!("Sets the stamp drawn across all pages by the state of the revision workflow (e.g. DRAFT); without parameters it shows the stamp"),
         params: &[
@@ -337,6 +349,28 @@ fn set_default_title_block(prj: &mut Project, a: &Args) -> Result<Value, String>
         None => prj.forms.default_title_block = if name == forms::STANDARD { String::new() } else { name.into() },
     }
     Ok(title_block_json(prj, &forms::find(prj, name)))
+}
+
+fn set_cover_logo(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let page = prj.pages.iter().position(|p| p.kind == openecraft_core::model::PageKind::Cover).unwrap_or(0);
+    let frame = frame::of_page(prj, page);
+    if a.flag("automatic") {
+        prj.info.cover_logo = None;
+    } else if ["x", "y", "width", "height"].iter().any(|k| a.num(k).is_some()) {
+        let mut place = openecraft_core::render::cover_logo_place(prj, &frame);
+        let area = frame.area();
+        place.x = num_in(a, "x", -50.0, area.width())?.unwrap_or(place.x);
+        place.y = num_in(a, "y", -50.0, area.height())?.unwrap_or(place.y);
+        place.width = num_in(a, "width", 1.0, area.width())?.unwrap_or(place.width);
+        place.height = num_in(a, "height", 1.0, area.height())?.unwrap_or(place.height);
+        prj.info.cover_logo = Some(place);
+    }
+    let place = openecraft_core::render::cover_logo_place(prj, &frame);
+    Ok(json!({
+        "automatic": prj.info.cover_logo.is_none(),
+        "x": place.x, "y": place.y, "width": place.width, "height": place.height,
+        "logo": prj.info.logo.as_ref().map(|l| l.file.name.clone()),
+    }))
 }
 
 fn hex_color(s: &str) -> Result<[u8; 3], String> {

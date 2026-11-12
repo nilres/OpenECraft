@@ -34,7 +34,8 @@ rotated (e.g. 90° for texts running upwards). An image element keeps its own pi
 (PNG, JPEG, e.g. the company logo, travelling with the title block file) or shows the
 project logo of *Project properties › Logo* (e.g. the customer's, different in every
 project), fitted into its rectangle with its aspect ratio; the cover page shows the
-project logo above the project name. Drawn report forms take the same elements.
+project logo above the project name or at a place of its own (*Project properties ›
+Logo on the cover page*, `set_cover_logo`). Drawn report forms take the same elements.
 Every element can be limited to pages of some types (e.g. a field only on report
 pages) or to a filled placeholder (e.g. the second row of a revision table only with
 `{rev.2.name}`); lines, rectangles and texts get their own colour, lines and rectangles

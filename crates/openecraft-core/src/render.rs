@@ -1328,6 +1328,17 @@ fn draw_title_block(d: &mut dyn Draw, prj: &Project, page_i: usize) {
     crate::forms::draw(d, &form, prj, page_i);
 }
 
+/// Area of the logo on the cover page (relative to the drawing area): the project's
+/// own, otherwise above the project name.
+pub fn cover_logo_place(prj: &Project, frame: &crate::frame::PlotFrame) -> crate::model::CoverLogo {
+    if let Some(place) = prj.info.cover_logo {
+        return place;
+    }
+    let a = frame.area();
+    let k = a.height() / 240.0;
+    crate::model::CoverLogo { x: a.width() / 2.0 - 60.0, y: 15.0 * k, width: 120.0, height: 38.0 * k }
+}
+
 fn draw_cover(d: &mut dyn Draw, prj: &Project, frame: &crate::frame::PlotFrame) {
     let info = &prj.info;
     let a = frame.area();
@@ -1336,7 +1347,9 @@ fn draw_cover(d: &mut dyn Draw, prj: &Project, frame: &crate::frame::PlotFrame) 
     let k = a.height() / 240.0;
     let at = |y: f32| a.min.y + (y - 15.0) * k;
     if let Some(logo) = &info.logo {
-        d.image(&crate::forms::fitted_image(logo, p(cx - 60.0, at(30.0)), p(cx + 60.0, at(68.0))));
+        let place = cover_logo_place(prj, frame);
+        let o = a.min + p(place.x, place.y);
+        d.image(&crate::forms::fitted_image(logo, o, o + p(place.width, place.height)));
     }
     d.text(p(cx, at(80.0)), &info.name, 10.0, Anchor::Center, VAnchor::Middle, Ink::Text);
     for (i, l) in info.description.lines().enumerate() {

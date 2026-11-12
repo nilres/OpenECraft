@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	异步电机会增大短路
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	自动硬件组态：CPU 和总线耦合器的站、总线系统、卡件到站的分配、插槽、起始地址、点地址、IP 地址和线形拓扑
 Back to the default rules first	先恢复为默认规则
 Back to the default strategy first	先恢复为默认策略
+Back to the place above the project name	恢复到项目名称上方的位置
 Back-up protection up to this short-circuit current in kA (0: not given)	在此短路电流（kA）以下具有后备保护（0：未给定）
 Bar id	铜排 ID
 Bar thickness, mm (default 5)	铜排厚度，mm（默认 5）
@@ -278,6 +279,7 @@ Height above the floor in metres	离地高度，单位为米
 Height above the mounting plate in mm (default 50)	安装板以上高度 (mm)（默认 50）
 Height in mm	高度 (mm)
 Height in mm without plinth; negative: unknown (wall mounted)	高度，单位 mm，不含底座；负值：未知（壁挂安装）
+Height in mm; the logo keeps its aspect ratio inside	高度（毫米）；标志在其中保持原比例
 Higher-level product aspect (-) of the page; the devices on the page move along	页的上级产品方面 (-)；页上的设备随之移动
 Highest actuator on the door above the floor (0: not checked)	柜门上操作元件的最高离地高度（0：不检查）
 Highest air temperature at devices without data (0: not checked)	无数据设备处的最高空气温度（0：不检查）
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	编写项目文本所用的�
 Larger round holes are milled, mm	大于此值的圆孔将被铣削，mm
 Largest difference between hole and tool, mm	孔与刀具之间的最大差值，mm
 Left edge from the left end of the wall (seen from inside) in mm	左边缘距墙左端的距离（从内侧看），mm
+Left edge in mm	左边缘（毫米）
 Left edge on the face in mm	面上的左边缘 (mm)
 Left edge on the mounting plate in mm	安装板上的左边缘 (mm)
 Left side bayed (no side panel)	左侧并柜（无侧板）
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	组的位置数（0 = 不限）
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	将符号连接点的标识放在其左侧、右侧、上方或下方并进行偏移；不指定方位和偏移时重新自动放置
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	将机柜的柜排放置在房间中（所有机柜的 3D 视图）；未指定 x 和 z 时，根据工厂布局放置或放在其他柜排旁边
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	将中断点的名称和交叉引用放置在符号的一侧，或手动放置在相对于插入点的偏移处
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	将项目标志放在封面上（从绘图区域左上角起的毫米数）；无参数时显示位置
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	将方案的属性放置到符号处；未指定 ID 时，在所有使用它的符号处重新放置
 Planned part number	规划的部件编号
 Planned power in kW	规划功率，单位 kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	标题栏（list_ti
 Title block of the pages with this frame that do not choose one; empty: the project default	使用此图框且未选择标题栏的页的标题栏；空 = 项目默认
 Title block to start from when it is new (default: Standard)	新建时作为起点的标题栏（默认：Standard）
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	刀具，例如 D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	上边缘（毫米）
 Top edge on the face in mm	面上的上边缘 (mm)
 Top edge on the mounting plate in mm	安装板上的上边缘 (mm)
 Translated line	翻译后的行

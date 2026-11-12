@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Asynkronmotorer bidrar till
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatisk hårdvarukonfiguration: stationer för CPU:er och busskopplare, bussystem, kort till stationer, kortplatser, startadresser, punktadresser, IP-adresser och en linjetopologi
 Back to the default rules first	Återställ först till standardreglerna
 Back to the default strategy first	Återställ först till standardstrategin
+Back to the place above the project name	Tillbaka till platsen ovanför projektnamnet
 Back-up protection up to this short-circuit current in kA (0: not given)	Back-up-skydd upp till den här kortslutningsströmmen i kA (0: inte angiven)
 Bar id	Sken-ID
 Bar thickness, mm (default 5)	Skentjocklek, mm (standard 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Höjd över golvet i meter
 Height above the mounting plate in mm (default 50)	Höjd över monteringsplåten i mm (standard 50)
 Height in mm	Höjd i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Höjd i mm utan sockel; negativ: okänd (väggmonterad)
+Height in mm; the logo keeps its aspect ratio inside	Höjd i mm; logotypen behåller sitt bildförhållande inuti
 Higher-level product aspect (-) of the page; the devices on the page move along	Sidans aspekt för överordnad produkt (-); apparaterna på sidan följer med
 Highest actuator on the door above the floor (0: not checked)	Högsta manöverdon i dörren över golvet (0: kontrolleras inte)
 Highest air temperature at devices without data (0: not checked)	Högsta lufttemperatur vid apparater utan data (0: kontrolleras inte)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Språk som projekttexterna ä
 Larger round holes are milled, mm	Större runda hål fräses, mm
 Largest difference between hole and tool, mm	Största skillnad mellan hål och verktyg, mm
 Left edge from the left end of the wall (seen from inside) in mm	Vänster kant från väggens vänstra ände (sett inifrån) i mm
+Left edge in mm	Vänsterkant i mm
 Left edge on the face in mm	Vänsterkant på ytan i mm
 Left edge on the mounting plate in mm	Vänsterkant på monteringsplåten i mm
 Left side bayed (no side panel)	Vänster sida sammanbyggd (ingen sidovägg)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Gruppens platser (0 = obegränsat)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Placerar beteckningen för en anslutningspunkt på en symbol till vänster, till höger, ovanför eller nedanför den och förskjuter den; utan sida och förskjutning placeras den automatiskt igen
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Placerar skåpsraden för en kapsling i rummet (3D-vy av alla kapslingar); utan x och z placeras den enligt anläggningslayouten eller bredvid de andra skåpsraderna
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Placerar namnet och korsreferensen för avbrottspunkter på en sida av pilen eller manuellt med en förskjutning från insättningspunkten
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Placerar projektets logotyp på försättsbladet (mm från ritytans övre vänstra hörn); utan parametrar visas platsen
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Placerar egenskaperna i ett schema på symboler; utan ID:n placeras det igen på alla symboler som använder det
 Planned part number	Planerat artikelnummer
 Planned power in kW	Planerad effekt i kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Namnruta (list_titl
 Title block of the pages with this frame that do not choose one; empty: the project default	Namnruta för sidor med denna ram som inte väljer någon; tom: projektets standard
 Title block to start from when it is new (default: Standard)	Namnruta att utgå från när den är ny (standard: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Verktyg, t.ex. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Överkant i mm
 Top edge on the face in mm	Överkant på ytan i mm
 Top edge on the mounting plate in mm	Överkant på monteringsplåten i mm
 Translated line	Översatt rad

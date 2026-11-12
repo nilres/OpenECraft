@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Motores assíncronos contri
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Configuração automática de hardware: estações para CPUs e acopladores de barramento, sistemas de barramento, cartões para estações, slots, endereços iniciais, endereços dos pontos, endereços IP e uma topologia em linha
 Back to the default rules first	Voltar primeiro às regras padrão
 Back to the default strategy first	Voltar primeiro à estratégia padrão
+Back to the place above the project name	Voltar ao lugar acima do nome do projeto
 Back-up protection up to this short-circuit current in kA (0: not given)	Proteção back-up até esta corrente de curto-circuito em kA (0: não informado)
 Bar id	ID da barra
 Bar thickness, mm (default 5)	Espessura da barra, mm (padrão 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Altura acima do piso em metros
 Height above the mounting plate in mm (default 50)	Altura acima da placa de montagem em mm (padrão 50)
 Height in mm	Altura em mm
 Height in mm without plinth; negative: unknown (wall mounted)	Altura em mm sem base; negativo: desconhecido (montagem em parede)
+Height in mm; the logo keeps its aspect ratio inside	Altura em mm; o logotipo mantém sua proporção dentro dela
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspecto de produto de nível superior (-) da página; os dispositivos da página acompanham
 Highest actuator on the door above the floor (0: not checked)	Atuador mais alto na porta acima do piso (0: não verificado)
 Highest air temperature at devices without data (0: not checked)	Temperatura do ar máxima em dispositivos sem dados (0: não verificado)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Idioma em que os textos do pr
 Larger round holes are milled, mm	Furos redondos maiores são fresados, mm
 Largest difference between hole and tool, mm	Maior diferença entre furo e ferramenta, mm
 Left edge from the left end of the wall (seen from inside) in mm	Borda esquerda a partir da extremidade esquerda da parede (vista de dentro) em mm
+Left edge in mm	Borda esquerda em mm
 Left edge on the face in mm	Borda esquerda na face em mm
 Left edge on the mounting plate in mm	Borda esquerda na placa de montagem em mm
 Left side bayed (no side panel)	Lado esquerdo acoplado (sem painel lateral)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Posições do grupo (0 = sem limite)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Posiciona a designação de um ponto de conexão de um símbolo à esquerda, à direita, acima ou abaixo dele e a desloca; sem lado nem deslocamento, ela volta a ser posicionada automaticamente
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Posiciona a fileira de um gabinete no ambiente (vista 3D de todos os gabinetes); sem x e z, ela é posicionada a partir do layout da planta ou ao lado das outras fileiras
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Posiciona o nome e a referência cruzada dos pontos de interrupção num lado da seta ou manualmente com um deslocamento do ponto de inserção
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Posiciona o logotipo do projeto na capa (mm a partir do canto superior esquerdo da área de desenho); sem parâmetros, mostra o lugar
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Posiciona as propriedades de um esquema em símbolos; sem IDs, ele é posicionado novamente em todos os símbolos que o utilizam
 Planned part number	Número de peça planejado
 Planned power in kW	Potência planejada em kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Selo (list_title_bl
 Title block of the pages with this frame that do not choose one; empty: the project default	Selo das páginas com esta moldura que não escolhem nenhum; vazio: o padrão do projeto
 Title block to start from when it is new (default: Standard)	Selo de partida quando é novo (padrão: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Ferramentas, por exemplo, D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Borda superior em mm
 Top edge on the face in mm	Borda superior na face em mm
 Top edge on the mounting plate in mm	Borda superior na placa de montagem em mm
 Translated line	Linha traduzida

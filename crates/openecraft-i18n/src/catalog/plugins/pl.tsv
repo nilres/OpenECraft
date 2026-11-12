@@ -54,6 +54,7 @@ Asynchronous motors add to the short-circuit current	Silniki asynchroniczne zwi�
 Automatic hardware configuration: stations for CPUs and bus couplers, bus systems, cards to stations, slots, start addresses, point addresses, IP addresses and a line topology	Automatyczna konfiguracja sprzętowa: stacje dla CPU i sprzęgieł magistrali, systemy magistral, przypisanie kart do stacji, gniazda, adresy początkowe, adresy punktów, adresy IP i topologia liniowa
 Back to the default rules first	Najpierw przywróć reguły domyślne
 Back to the default strategy first	Najpierw przywróć strategię domyślną
+Back to the place above the project name	Powrót na miejsce nad nazwą projektu
 Back-up protection up to this short-circuit current in kA (0: not given)	Ochrona wsteczna do tego prądu zwarciowego w kA (0: nie podano)
 Bar id	Identyfikator szyny
 Bar thickness, mm (default 5)	Grubość szyny, mm (domyślnie 5)
@@ -278,6 +279,7 @@ Height above the floor in metres	Wysokość nad podłogą w metrach
 Height above the mounting plate in mm (default 50)	Wysokość nad płytą montażową w mm (domyślnie 50)
 Height in mm	Wysokość w mm
 Height in mm without plinth; negative: unknown (wall mounted)	Wysokość w mm bez cokołu; ujemna: nieznana (montaż naścienny)
+Height in mm; the logo keeps its aspect ratio inside	Wysokość w mm; logo zachowuje w niej swoje proporcje
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspekt produktu nadrzędnego (-) strony; urządzenia na stronie są przenoszone razem z nią
 Highest actuator on the door above the floor (0: not checked)	Najwyższy element sterowniczy na drzwiach nad podłogą (0: nie sprawdzane)
 Highest air temperature at devices without data (0: not checked)	Najwyższa temperatura powietrza przy urządzeniach bez danych (0: nie sprawdzane)
@@ -335,6 +337,7 @@ Language the project texts are written in, e.g. en	Język, w którym są pisane 
 Larger round holes are milled, mm	Większe otwory okrągłe są frezowane, mm
 Largest difference between hole and tool, mm	Największa różnica między otworem a narzędziem, mm
 Left edge from the left end of the wall (seen from inside) in mm	Lewa krawędź od lewego końca ściany (patrząc od wewnątrz) w mm
+Left edge in mm	Lewa krawędź w mm
 Left edge on the face in mm	Lewa krawędź na ścianie w mm
 Left edge on the mounting plate in mm	Lewa krawędź na płycie montażowej w mm
 Left side bayed (no side panel)	Lewa strona szeregowana (bez ściany bocznej)
@@ -587,6 +590,7 @@ Places of the group (0 = not limited)	Miejsca grupy (0 = bez ograniczenia)
 Places the designation of a connection point of a symbol on a side and shifts it; without side and shift it is placed automatically again	Umieszcza oznaczenie punktu połączenia symbolu po lewej, po prawej, powyżej lub poniżej niego i przesuwa je; bez strony i przesunięcia jest znów umieszczane automatycznie
 Places the line-up of an enclosure in the room (3D view of all enclosures); without x and z it is placed from the plant layout or next to the other line-ups	Umieszcza szereg szaf obudowy w pomieszczeniu (widok 3D wszystkich obudów); bez x i z jest on umieszczany według planu instalacji lub obok innych szeregów szaf
 Places the name and the cross reference of interruption points on a side of the arrow, or by hand at an offset from the insertion point	Umieszcza nazwę i odsyłacz punktów przerwania po jednej stronie strzałki lub ręcznie z przesunięciem od punktu wstawienia
+Places the project logo on the cover page (mm from the top left corner of the drawing area); without parameters it shows the place	Umieszcza logo projektu na stronie tytułowej (mm od lewego górnego rogu obszaru rysunku); bez parametrów pokazuje miejsce
 Places the properties of a scheme at symbols; without ids it is placed again at all symbols using it	Umieszcza właściwości schematu przy symbolach; bez identyfikatorów umieszcza go ponownie przy wszystkich symbolach, które go używają
 Planned part number	Zaplanowany numer artykułu
 Planned power in kW	Zaplanowana moc w kW
@@ -852,6 +856,7 @@ Title block (list_title_blocks); empty = the project default	Tabliczka rysunkowa
 Title block of the pages with this frame that do not choose one; empty: the project default	Tabliczka stron z tą ramką, które żadnej nie wybierają; pusta: domyślna projektu
 Title block to start from when it is new (default: Standard)	Tabliczka, od której zacząć, gdy jest nowa (domyślnie: Standard)
 Tools, e.g. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120	Narzędzia, np. D4.2 T1; M5 T21; F10 T30; R22.5 T101; Q92x92 T120
+Top edge in mm	Górna krawędź w mm
 Top edge on the face in mm	Górna krawędź na ścianie w mm
 Top edge on the mounting plate in mm	Górna krawędź na płycie montażowej w mm
 Translated line	Przetłumaczony wiersz
