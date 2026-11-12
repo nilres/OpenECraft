@@ -39,8 +39,8 @@ fn json_import() {
 fn connection_points_in_csv() {
     let mut part = Part { number: "OWN.K1".into(), ..Default::default() };
     part.connection_points = vec![
-        ConnectionPoint { pin: "A1".into(), pos: [5.5, 0.0, 60.0], exit: Exit::Up },
-        ConnectionPoint { pin: "14".into(), pos: [40.0, 74.0, 55.25], exit: Exit::Down },
+        ConnectionPoint { pin: "A1".into(), pos: [5.5, 0.0, 60.0], exit: Exit::Up, ..Default::default() },
+        ConnectionPoint { pin: "14".into(), pos: [40.0, 74.0, 55.25], exit: Exit::Down, ..Default::default() },
     ];
     let csv = to_csv(std::slice::from_ref(&part));
     let header = csv.lines().next().unwrap();

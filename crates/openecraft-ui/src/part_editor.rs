@@ -1,5 +1,5 @@
-//! Part widgets: product group tree, tabbed part editor, read only summary and
-//! previews of the 2D front view and the 3D model.
+//! Part widgets: product group tree, tabbed part editor, read only summary with the
+//! product picture and previews of the 2D front view and the 3D model.
 
 use openecraft_i18n::{tr, tr_fmt};
 use crate::icons::{self, Icon};
@@ -391,6 +391,16 @@ pub fn part_editor(ui: &mut egui::Ui, part: &mut Part, state: &mut EditorState, 
                 ui.label(tr("Note"));
                 ui.add(egui::TextEdit::multiline(&mut part.note).desired_rows(2).desired_width(f32::INFINITY));
                 ui.end_row();
+                if !part.picture.is_empty() {
+                    ui.label(tr("Picture"));
+                    ui.horizontal(|ui| {
+                        part_picture(ui, part, 120.0);
+                        if icons::button(ui, Icon::Delete, tr("Remove picture")).clicked() {
+                            part.picture.clear();
+                        }
+                    });
+                    ui.end_row();
+                }
             });
         }
         PartTab::Commercial => {
@@ -709,11 +719,15 @@ fn connections_tab(ui: &mut egui::Ui, part: &mut Part, selected: &mut Option<usi
     });
     if own {
         let mut remove = None;
-        egui::Grid::new("pcp").num_columns(7).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
+        egui::Grid::new("pcp").num_columns(10).striped(true).spacing([8.0, 4.0]).show(ui, |ui| {
             ui.label("");
-            for h in [tr("Designation"), "X", "Y", "Z", tr("Wire leaves"), ""] {
+            for h in [tr("Designation"), "X", "Y", "Z", tr("Wire leaves")] {
                 ui.label(RichText::new(h).strong());
             }
+            ui.label(RichText::new(tr("Min. mm²")).strong()).on_hover_text(tr("Smallest conductor the clamp takes (0: not known)"));
+            ui.label(RichText::new(tr("Max. mm²")).strong()).on_hover_text(tr("Largest conductor the clamp takes (0: not known)"));
+            ui.label(RichText::new(tr("Wires")).strong()).on_hover_text(tr("Most wires the clamp takes (0: not known)"));
+            ui.label("");
             ui.end_row();
             for (i, c) in part.connection_points.iter_mut().enumerate() {
                 if ui.radio(*selected == Some(i), "").on_hover_text(tr("Place by clicking into the view")).clicked() {
@@ -728,6 +742,9 @@ fn connections_tab(ui: &mut egui::Ui, part: &mut Part, selected: &mut Option<usi
                         ui.selectable_value(&mut c.exit, e, exit_title(e));
                     }
                 });
+                ui.add(egui::DragValue::new(&mut c.min_cross_section).speed(0.05).range(0.0..=1000.0).max_decimals(2));
+                ui.add(egui::DragValue::new(&mut c.max_cross_section).speed(0.05).range(0.0..=1000.0).max_decimals(2));
+                ui.add(egui::DragValue::new(&mut c.max_wires).range(0..=99));
                 if icons::button(ui, Icon::Delete, tr("Remove")).clicked() {
                     remove = Some(i);
                 }
@@ -741,7 +758,7 @@ fn connections_tab(ui: &mut egui::Ui, part: &mut Part, selected: &mut Option<usi
     }
     if icons::text_button(ui, Icon::Plus, tr("Add connection point")).clicked() {
         let [w, _, d] = part.size().unwrap_or_default();
-        part.connection_points.push(ConnectionPoint { pin: String::new(), pos: [w / 2.0, 0.0, d * 0.75], exit: Exit::Up });
+        part.connection_points.push(ConnectionPoint { pin: String::new(), pos: [w / 2.0, 0.0, d * 0.75], exit: Exit::Up, ..Default::default() });
         *selected = Some(part.connection_points.len() - 1);
     }
 }
@@ -1133,10 +1150,88 @@ pub fn quantity_unit(unit: &str) -> &str {
     if unit == "pcs" { tr("pcs") } else { unit }
 }
 
+/// The decoded product picture of a part, kept as a texture while it is shown.
+fn picture_texture(ctx: &egui::Context, picture: &str) -> Option<egui::TextureHandle> {
+    use std::hash::{Hash, Hasher};
+    let mut h = std::hash::DefaultHasher::new();
+    picture.hash(&mut h);
+    let id = egui::Id::unique(("part_picture", h.finish()));
+    if let Some(texture) = ctx.data(|d| d.get_temp::<Option<egui::TextureHandle>>(id)) {
+        return texture;
+    }
+    let image = openecraft_parts::base64::decode(picture).and_then(|bytes| image::load_from_memory(&bytes).ok()).map(|img| {
+        let rgba = img.to_rgba8();
+        egui::ColorImage::from_rgba_unmultiplied([rgba.width() as usize, rgba.height() as usize], rgba.as_raw())
+    });
+    let texture = image.map(|img| ctx.load_texture("part_picture", img, egui::TextureOptions::LINEAR));
+    ctx.data_mut(|d| d.insert_temp(id, texture.clone()));
+    texture
+}
+
+/// The product picture of a part ([`Part::picture`]), at most `max` points wide and
+/// high; nothing for parts without one.
+pub fn part_picture(ui: &mut egui::Ui, part: &Part, max: f32) {
+    if part.picture.is_empty() {
+        return;
+    }
+    if let Some(texture) = picture_texture(ui.ctx(), &part.picture) {
+        let size = texture.size_vec2();
+        let scale = (max / size.x.max(size.y)).min(1.0);
+        ui.add(egui::Image::new((texture.id(), size * scale)));
+    }
+}
+
+/// The wires the connection points of a part take, e.g. `0.2 – 1.5 mm², 1 wire per
+/// connection point`; empty without such data.
+pub fn wire_summary(p: &Part) -> String {
+    let limited: Vec<&ConnectionPoint> = p.connection_points.iter().filter(|c| c.has_wire_limits()).collect();
+    if limited.is_empty() {
+        return String::new();
+    }
+    let smallest = limited.iter().map(|c| c.min_cross_section).filter(|v| *v > 0.0).fold(f32::INFINITY, f32::min);
+    let largest = limited.iter().map(|c| c.max_cross_section).fold(0.0, f32::max);
+    let wires = limited.iter().map(|c| c.max_wires).max().unwrap_or(0);
+    let mm2 = |v: f32| openecraft_i18n::decimal(v.into(), 2).trim_end_matches('0').trim_end_matches(['.', ',']).to_string();
+    let range = match (smallest.is_finite(), largest > 0.0) {
+        (true, true) => tr_fmt!("{} – {} mm²", mm2(smallest), mm2(largest)),
+        (true, false) => tr_fmt!("from {} mm²", mm2(smallest)),
+        (false, true) => tr_fmt!("up to {} mm²", mm2(largest)),
+        (false, false) => String::new(),
+    };
+    match (range.is_empty(), wires) {
+        (_, 0) => range,
+        (true, n) => tr_fmt!("{} wires per connection point", n),
+        (false, n) => tr_fmt!("{}, {} wires per connection point", range, n),
+    }
+}
+
+/// The clearances of a part, e.g. `25 mm above, 25 mm below`; empty without any.
+fn clearance_summary(md: &MountingData) -> String {
+    let n = |v: f32| openecraft_i18n::decimal(v.into(), 1).trim_end_matches('0').trim_end_matches(['.', ',']).to_string();
+    let mut sides = Vec::new();
+    if md.clearance_top > 0.0 {
+        sides.push(tr_fmt!("{} mm above", n(md.clearance_top)));
+    }
+    if md.clearance_bottom > 0.0 {
+        sides.push(tr_fmt!("{} mm below", n(md.clearance_bottom)));
+    }
+    if md.clearance_left > 0.0 {
+        sides.push(tr_fmt!("{} mm left", n(md.clearance_left)));
+    }
+    if md.clearance_right > 0.0 {
+        sides.push(tr_fmt!("{} mm right", n(md.clearance_right)));
+    }
+    if md.clearance_front > 0.0 {
+        sides.push(tr_fmt!("{} mm in front", n(md.clearance_front)));
+    }
+    sides.join(", ")
+}
+
 /// Read only summary of a part.
 pub fn part_summary(ui: &mut egui::Ui, p: &Part) {
     ui.label(RichText::new(&p.number).monospace().strong());
     ui.label(&p.description);
+    part_picture(ui, p, 200.0);
     egui::Grid::new("sum").num_columns(2).show(ui, |ui| {
         for (k, v) in [
             (tr("Manufacturer"), p.manufacturer.clone()),
@@ -1153,6 +1248,12 @@ pub fn part_summary(ui: &mut egui::Ui, p: &Part) {
             (tr("Successor"), p.successor.clone()),
             (tr("Wall mounting"), if p.wall_mountable() { tr("yes").to_string() } else { String::new() }),
             (tr("Floor mounting"), if p.floor_standing() { tr("yes").to_string() } else { String::new() }),
+            (tr("Mounting"), p.mounting.clone()),
+            (tr("Mounting holes"), p.data_value("Mounting holes").unwrap_or_default()),
+            (tr("Cutout"), p.data_value("Cutout").unwrap_or_default()),
+            (tr("Door cutout"), p.data_value("Door cutout").unwrap_or_default()),
+            (tr("Clearances"), clearance_summary(&p.mounting_data)),
+            (tr("Wire connection"), wire_summary(p)),
         ] {
             if !v.trim().is_empty() && v.trim() != "/" {
                 ui.label(RichText::new(k).weak());

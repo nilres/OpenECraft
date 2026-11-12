@@ -5,6 +5,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **More data from EDZ files** (#162): connection points keep the wires their clamps
+  take (smallest and largest cross-section, most wires), and the new check *Wires at
+  connection points* warns about more wires than that or wires too thin or too thick.
+  Drilling patterns tell tapped from through holes and give the cutout of a part (an
+  HMI panel's `197 x 141` instead of a Ø141 hole); EPLAN's rail data or a text naming
+  the rail make a part one for a mounting rail of that size. The product picture is
+  kept with the part and shown in the part details with its mounting and wiring data,
+  and the part XML of an unpacked EDZ file is read with its connection points, drilling
+  pattern, macros and picture ([parts](docs/features/parts.md)).
+- **Scaled symbols** (#162): *Scale* in the properties of a placed library symbol (or
+  `update_symbol` with `scale`) draws an imported symbol larger or smaller, its texts
+  at their size and its wires following ([symbols](docs/features/symbols.md)).
 - **Straight ferrules and terminals:** a wire or cable core with a ferrule or a crimped
   terminal runs straight out of its connection point for the length of it (with its
   collar or insulated sleeve) and bends only behind it, in the 3D routing and in the 3D

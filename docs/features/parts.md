@@ -113,12 +113,23 @@ the device. Floor-standing parts stand upright on the floor of a room.
   XML for the way back (parts management, `parts_export --format eplan_xml`). Function
   templates become function templates (PLC inputs and outputs as PLC functions),
   connection point definitions connection points (connection points on plugs as
-  `X10.1`), drilling patterns mounting holes.
+  `X10.1`) with the wires their clamps take (smallest and largest cross-section in mm²,
+  converted from AWG where only that is given, and the most wires), drilling patterns
+  mounting holes: through holes (`Ø3.3`) or tapped ones (`M4`), while a rectangular
+  position or a hole larger than a screw is the cutout of the part (an HMI panel's
+  `197 x 141`). EPLAN's rail data (snap height, centre offset) or a text naming the rail
+  (*DIN rail*, *Hutschiene*, *TS 35*, *TS 15*, *35 x 15*, *G 32*) make the part one for
+  a mounting rail of that size (*Mounting rail 35 mm*).
 - **EDZ** (EPLAN Data Portal archives, 7-Zip): the parts XML inside is read as above,
   together with clearances, power loss and the datasheet link. Embedded 2D window
-  macros become project symbols. Parts Manager and `parts_import` also store the
-  original files as attachments. The project and server part records carry the
-  converted definitions and diagnostics.
+  macros become project symbols. The product picture is kept with the part as a small
+  JPEG (at most 256 px) and shown in the part details with its mounting data
+  (mounting, holes, cutout, clearances) and the wires its connection points take.
+  Parts Manager and `parts_import` also store the original files as attachments. The
+  project and server part records carry the converted definitions and diagnostics.
+  The part XML of an unpacked EDZ file (`items/partxml/…part.xml`) is read the same
+  way: with the connection point and drilling pattern files next to it and the macros
+  and pictures below `items/`.
 
 ### Placing an EPLAN symbol
 

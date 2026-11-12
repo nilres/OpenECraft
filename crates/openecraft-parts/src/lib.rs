@@ -19,6 +19,7 @@
 pub mod access;
 pub mod accessory;
 pub mod api;
+pub mod base64;
 mod bmecat;
 pub mod bundled;
 mod catalog;

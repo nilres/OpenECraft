@@ -133,6 +133,7 @@ pub static COMMANDS: &[Spec] = &[
             LABEL,
             FUNCTION_TEXT,
             PINS,
+            optional("scale", Kind::Num, tr_const!("Size of a symbol of the symbol library as a factor (1 = as drawn); its texts keep their size and connected wire ends follow")),
         ],
         run: update_symbol,
     },
@@ -826,6 +827,10 @@ fn update_symbol(prj: &mut Project, a: &Args) -> Result<Value, String> {
     if !to.same(old) {
         routing::move_selection(prj, i, &BTreeSet::from([id]), to - old);
     }
+    if let Some(factor) = num_in(a, "scale", openecraft_core::symlib::SCALE_RANGE.0, openecraft_core::symlib::SCALE_RANGE.1)? {
+        ops::set_symbol_scale(prj, i, id, factor)?;
+    }
+    let symbols = if a.value("scale").is_some() { prj.symbol_table() } else { symbols };
     let sym = prj.pages[i].symbols.iter_mut().find(|x| x.id == id).ok_or_else(|| tr_fmt!("No symbol with id {}", id))?;
     if let Some(tag) = a.str("tag") {
         sym.tag = tag.into();
