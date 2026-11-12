@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Keys and gestures:** *File › Settings › Keys and gestures* configures every key,
+  modifier and gesture in one place: the keyboard shortcuts (now also the keys that
+  move through the 3D view, and the panel layout follows the keys of Rotate, Delete and
+  Fit), the modifier keys (adding to the selection, opening links, a single item of an
+  assembly, rotating back, moving faster in 3D, the wheel turned sideways or zooming),
+  the mouse buttons that pan, orbit, cancel, rotate while moving and the double-clicks,
+  and what the wheel, pinching and two fingers do. It replaces the *Navigation* and
+  *Keyboard shortcuts* settings ([user interface](docs/user-interface.md)).
 - **Server administrator from the environment:** `OPENECRAFT_ADMIN_USER` (parts server)
   and `OPENECRAFT_PROJECT_ADMIN_USER` (project server) name the administrator account
   created at startup, as `--admin-user` does, so a Docker container gets its first user
@@ -48,7 +56,7 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   floor and site plan, 3D view, field plan, symbol editor) zooms with a pinch and pans
   with two fingers, both in one movement; on a touch screen the first finger no longer
   selects, moves or orbits while two are down. The horizontal mouse wheel and
-  `Shift`+wheel pan sideways. *Settings › Navigation* chooses what scrolling does:
+  `Shift`+wheel pan sideways. *Settings › Keys and gestures › Wheel and touch* chooses what scrolling does:
   *Automatic* (trackpads pan, mouse wheels zoom, told apart on macOS), *Zooms (mouse
   wheel)* or *Pans (trackpad)*, and can invert the direction of panning by scrolling.
   The symbol editor's canvas pans too (also with the middle mouse button).

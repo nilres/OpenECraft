@@ -85,7 +85,6 @@ Add rule	Lägg till regel
 Add sort key	Lägg till sorteringsnyckel
 Add the facing cutout in {}	Lägg till motstående urtag i {}
 Add to device	Lägg till i apparat
-Add to selection	Lägg till i markering
 Add to the pre-planning	Lägg till i förprojekteringen
 Add user	Lägg till användare
 Added to both ends of the length for the cut length (insertion depth)	Läggs till i båda ändar av längden för kaplängden (insticksdjup)
@@ -130,6 +129,7 @@ Ambient temperature	Omgivningstemperatur
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Ett arkiv (.oecz) är en ZIP-fil med projektet, ett manifest och de inbäddade dokumenten och bilderna som egna filer.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	En gammal ritning som grafik på en ny schemasida (linjer, bågar, texter, block)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	En öppen el-CAE-redigerare i EPLAN Electric P8:s anda.
+Another gesture for the same function	En till gest för samma funktion
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Ytterligare en variant av ett befintligt makro med det här namnet (t.ex. B), väljs vid infogning
 Any project file: its settings, forms, structure, potentials and pages start the new project	Valfri projektfil: dess inställningar, formulär, struktur, potentialer och sidor blir början på det nya projektet
 Appearance	Utseende
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Kretsar för en generisk fördelare
 Clear	Rensa
 Clearance	Frigång
 Clearances	Avstånd
+Click	Klick
+Click a text: open its link	Klick på en text: öppna dess länk
 Click an element in the drawing to edit it.	Klicka på ett element i ritningen för att redigera det.
 Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en punkt på cirkeln
+Click in the panel layout: a single item of an assembly	Klick i skåplayouten: en enskild del av en sammansättning
 Click into the page to place the image	Klicka på sidan för att placera bilden
 Click into the page to place {}	Klicka på sidan för att placera {}
 Click on a wall	Klicka på en vägg
 Click on a wire to place the connection definition point	Klicka på en ledning för att placera förbindelsedefinitionspunkten
 Click on the 4 mm grid	Klicka på 4 mm-rutnätet
 Click on the wall: the part goes there at its mounting height	Klicka på väggen: delen hamnar där på sin monteringshöjd
+Click or window: add to the selection or take out of it	Klick eller fönster: lägg till i markeringen eller ta bort ur den
 Click start and end point	Klicka på start- och slutpunkt
 Click the corners of a machine or building, double-click to finish	Klicka på hörnen av en maskin eller byggnad, dubbelklicka för att avsluta
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Klicka på tomtgränsens hörn · klicka på det första, dubbelklicka eller Enter: stäng · Backsteg: tillbaka · Esc: sluta
@@ -326,6 +330,7 @@ Click where the reference point is	Klicka där referenspunkten ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicka där tre ledare möts: T-stycket anger den apparat som ledarna utgår från och ordningen på deras mål · {} vrider det där inga ledare möts ännu · Esc eller högerklick avslutar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicka där två ledare korsar varandra: korsningen förbinder dem och leder varje ände av sin linje först rakt fram, sedan tvärs över · {} vrider den · Esc eller högerklick avslutar
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klicka där två ledare möts i rät vinkel, eller där anslutningspunkter är vända mot varandra över hörnet: med automatisk anslutning på ritas ledare till det · {} vrider det · Esc eller högerklick avslutar
+Click while moving	Klick under flytt
 Click, or drag it into the page	Klicka, eller dra den till sidan
 Climate (IEC 60890)	Klimat (IEC 60890)
 Clipboard	Urklipp
@@ -537,6 +542,7 @@ Distribute vertically	Fördela vertikalt
 Distributed neutral	Distribuerad neutralledare
 Diversity factor	Sammanlagringsfaktor
 Divider	Skiljevägg
+Do the gesture…	Gör gesten…
 Dock	Docka
 Document {} embedded ({})	Dokument {} inbäddat ({})
 Documents	Dokument
@@ -550,7 +556,7 @@ Door clearance	Dörrfrigång
 Door cutouts (CSV)	Dörrurtag (CSV)
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
-Double-click (3D view)	Dubbelklick (3D-vy)
+Double-click	Dubbelklick
 Download into database	Ladda ned till databasen
 Download project	Ladda ned projekt
 Downloaded {} (version {})	{} nedladdad (version {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	Laddar ned OpenECraft {}
 Downstream part	Underordnad artikel
 Draft of revision {} created	Utkast till revision {} skapat
 Draft of revision {} discarded	Utkast till revision {} ignorerat
+Drag	Dra
 Drag a connection point designation of the selected symbol to place it.	Dra en anslutningspunktsbeteckning för den markerade symbolen för att placera den.
 Drag an entry into the page, or click it and then click into the page.	Dra en post till sidan, eller klicka på den och klicka sedan på sidan.
 Drag the core designation or the cable tag of the selected wire to place it.	Dra ledarbeteckningen eller kabelbeteckningen för den markerade ledningen för att placera den.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Sök och ersätt i hela projektet
 Find results	Sökresultat
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Söker Vault-objekten för projektartiklarna via objektnummer eller egenskapen Part Number och visar ändringarna av artikel-ID, revision och livscykelstatus för granskning
 Find…	Sök…
+Finish a wire, polyline, polygon or wall	Avsluta en ledning, polylinje, polygon eller vägg
+Finish or cancel the drawing, then back to selecting	Avsluta eller avbryt ritandet, sedan tillbaka till markering
 First row	Första raden
 Fit	Anpassa
 Fit page	Anpassa sida
@@ -780,6 +789,7 @@ Height above the mounting plate	Höjd över monteringsplåten
 Height above the plate	Höjd över plåten
 Height of the plinth, 0 without plinth	Sockelns höjd, 0 utan sockel
 Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Hålls ned vid klick, flytt eller rullning. Ctrl är Cmd i macOS.
 Help	Hjälp
 Hide the groups you do not need and put the commands you use most into own groups.	Dölj de grupper du inte behöver och lägg de mest använda kommandona i egna grupper.
 Highest phase unbalance	Högsta fasobalans
@@ -898,6 +908,8 @@ Key tips of the ribbon	Menyfliksområdets snabbtangenter
 Key: {}	Nyckel: {}
 Keyboard shortcuts	Kortkommandon
 Keyboard shortcuts…	Kortkommandon…
+Keys and gestures	Tangenter och gester
+Keys of the 3D view	Tangenter i 3D-vyn
 Label	Etikett
 Label (grey)	Etikett (grå)
 Label field	Etikettfält
@@ -919,6 +931,7 @@ Layout spaces	Monteringsutrymmen
 Leave out the ceilings of the rooms and the roofs in the 3D view	Utelämna rummens tak och yttertaken i 3D-vyn
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Utelämna locken på alla kabelkanaler i 3D-vyn: ledarna i dem syns
 Leave repeated values of the first column blank	Lämna upprepade värden i den första kolumnen tomma
+Left button	Vänster knapp
 Left edges	Vänsterkanter
 Legend plates (door devices)	Märkskyltar (dörrapparater)
 Length from the node to the device	Längd från noden till apparaten
@@ -968,7 +981,6 @@ Locked by {} – read only	Låst av {} – skrivskyddad
 Locking…	Låser…
 Logic	Logik
 Longer values are drawn smaller (0 = no limit)	Längre värden ritas mindre (0 = ingen gräns)
-Look at the point clicked, closer	Titta på den klickade punkten, närmare
 Look for updates when OpenECraft starts	Sök efter uppdateringar när OpenECraft startar
 Looking for updates…	Söker efter uppdateringar…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Söker efter en ny version av OpenECraft på GitHub och installerar den i bakgrunden
@@ -1016,6 +1028,7 @@ Messages	Meddelanden
 Messages ({})	Meddelanden ({})
 Messages of this session	Meddelanden från denna session
 Middle	Mitten
+Middle button	Mittenknapp
 Middle of the PV array in the floor plan of the building	Mitten av solcellsfältet i byggnadens planritning
 Min. bend radius	Min. böjradie
 Minimize the ribbon	Minimera menyfliksområdet
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Spegla (markering eller symbol som pla
 Mixed	Blandat
 Mode	Läge
 Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
+Modifier keys	Modifieringstangenter
 Module part; its size comes from the part	Modulartikel; dess storlek kommer från artikeln
 Motors feed the short circuit	Motorer matar kortslutningen
 Mounted on	Monterad på
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Monte
 Mounting height: {}	Monteringshöjd: {}
 Mounting plate: {} holes, {} cutouts	Monteringsplåt: {} hål, {} urtag
 Mounting system	Monteringssystem
+Mouse	Mus
 Move	Flytta
+Move ahead in the 3D view (held)	Flytta framåt i 3D-vyn (håll ned)
+Move back in the 3D view (held)	Flytta bakåt i 3D-vyn (håll ned)
 Move down	Flytta nedåt
+Move down in the 3D view (held)	Flytta nedåt i 3D-vyn (håll ned)
+Move faster with the keys of the 3D view	Flytta snabbare med tangenterna i 3D-vyn
 Move left	Flytta åt vänster
+Move left in the 3D view (held)	Flytta åt vänster i 3D-vyn (håll ned)
 Move page down	Flytta sidan nedåt
 Move page up	Flytta sidan uppåt
+Move right in the 3D view (held)	Flytta åt höger i 3D-vyn (håll ned)
 Move selection by	Flytta markeringen med
 Move selection by…	Flytta markeringen med…
 Move the devices of this page into the new structure	Flytta sidans apparater till den nya strukturen
-Move through the 3D view (Shift: faster)	Förflytta sig i 3D-vyn (Skift: snabbare)
 Move to section	Flytta till avsnitt
 Move up	Flytta uppåt
+Move up in the 3D view (held)	Flytta uppåt i 3D-vyn (håll ned)
 Moves to the top level as page {}	Flyttas till översta nivån som sida {}
 Moves to {} as page {}	Flyttas till {} som sida {}
 Moving	Flytta
@@ -1062,7 +1083,6 @@ Name and cross reference	Namn och korsreferens
 Name on the server	Namn på servern
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Namn; datatyp; logisk adress; kommentar – för PLC-programmeringsverktyg
 Named copy of this form, for report blocks	Namngiven kopia av det här formuläret, för rapportblock
-Navigation	Navigering
 Navigators	Navigatorer
 Neutral exchange file…	Neutral utbytesfil…
 Never	Aldrig
@@ -1134,6 +1154,7 @@ No dot: plain T	Ingen punkt: enkelt T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling ännu – skapa en med Ny kapsling, eller ett rum för skåp med Nytt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Inga fältkablar: placera kapslingarna och fältapparaterna vid noder i kabelvägsnätet.
 No filter fans: an air/air heat exchanger or a cooling unit	Inga filterfläktar: en luft/luft-värmeväxlare eller ett kylaggregat
+No gesture	Ingen gest
 No harnesses defined.	Inga kabelstammar definierade.
 No inverter	Ingen växelriktare
 No jump: plain crossing, connections have dots	Inget hopp: enkel korsning, förbindelser har punkter
@@ -1176,6 +1197,7 @@ Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
 Not saved, locked or changed by another user: {}	Inte sparat, låst eller ändrat av en annan användare: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Inte tagen: vänster knapp ensam markerar, ritar och flyttar; håll ned en modifieringstangent eller använd en annan knapp.
 Not the shared project: changes are saved locally until it is opened on the project server again	Inte det delade projektet: ändringar sparas lokalt tills det öppnas på projektservern igen
 Nothing exchanged yet.	Inget har utbytts ännu.
 Nothing left in this list.	Inget kvar i den här listan.
@@ -1215,6 +1237,7 @@ Open project	Öppna projekt
 Open project server	Öppna projektservern
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Öppna projekt och filer från Autodesk Vault, lägg projektet, exporter och 3D-modeller i valvet
 Open the project	Öppna projektet
+Open the selection: its properties, in the floor plan its face	Öppna markeringen: dess egenskaper, i planritningen dess sida
 Open to {}: wires cross beside the mounting plates	Öppen mot {}: ledningar går över bredvid monteringsplåtarna
 Open walls and floors	Öppna väggar och golv
 Open, save, import, export, print and the settings	Öppna, spara, importera, exportera, skriva ut och inställningarna
@@ -1250,6 +1273,7 @@ Open…	Öppna…
 Operations / year	Manövrer / år
 Option	Alternativ
 Options	Alternativ
+Orbit the 3D view	Rotera 3D-vyn
 Ordinary cable	Vanlig kabel
 Orientation	Orientering
 Origin	Ursprung
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Sidor och mallar som använder ramen 
 Pages of revision {}	Sidor i revision {}
 Pages of the selected block	Sidor i det markerade blocket
 Pages using it get the project default	Sidor som använder den får projektstandarden
+Pages, panel layout and plans	Sidor, skåplayout och planer
 Pairs in schematic order (1-2, 3-4 …)	Par i schemaordning (1-2, 3-4 …)
+Pan the 3D view	Panorera 3D-vyn
+Pan the page, the panel layout and the plans	Panorera sidan, skåplayouten och planerna
 Pane menu	Panelmeny
 Panel wiring report	Rapport skåpinkoppling
 Panes	Paneler
@@ -1323,6 +1350,8 @@ Path function text	Strömvägens funktionstext
 Pattern	Mönster
 Pattern…	Mönster…
 Pin-out	Stiftbeläggning
+Pinching	Nypning
+Pinching on a trackpad or a touch screen zooms	Nypning på styrplatta eller pekskärm zoomar
 Pipe run	Rörgata
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rörgata på en vägg, i taket eller på golvet i rummet, längs vilken slangar, rör och rörledningar dras: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
 Pipe run {} mm – double-click or Enter to finish	Rörgata {} mm – dubbelklicka eller tryck på Enter för att avsluta
@@ -1458,6 +1487,7 @@ Recent projects	Senaste projekt
 Recently used	Senast använda
 Recommended height of manual actuators (10.1.2)	Rekommenderad höjd för manuella manöverdon (10.1.2)
 Record	Spela in
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Spela in: gör gesten i fältet som visas, med en modifieringstangent nedtryckt om du vill (Esc avbryter). Lägg till behåller befintliga gester. Högerklick i markeringsverktyget öppnar snabbmenyn.
 Rectangular	Rektangulär
 Redline: to be changed · Greenline: changed as built	Redline: ska ändras · Greenline: ändrat enligt utförande
 Redo	Gör om
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revisioner, godkännande och frisläppning
 Ribbon	Menyfliksområde
 Ribbon (JSON)	Menyfliksområde (JSON)
 Ribbon imported	Menyfliksområdet importerat
+Right button	Höger knapp
 Right click for more	Högerklicka för mer
 Right edges	Högerkanter
 Right neighbour	Granne till höger
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	Rum {} har tagits ut
 Rooms under sloped ceilings (lowest – highest ceiling)	Rum under snedtak (lägsta – högsta tak)
 Rotate	Rotera
 Rotate (selection or symbol being placed)	Rotera (markering eller symbol som placeras)
+Rotate what is being moved	Rotera det som flyttas
+Rotate what is being moved counter-clockwise	Rotera det som flyttas moturs
 Round	Rund
 Round cutouts facing each other in both side walls	Runda urtag mitt emot varandra i båda sidoväggarna
 Route definition of {}	Kabelvägsdefinition för {}
@@ -1658,7 +1691,9 @@ Scheme {}	Schema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Skruvar, muttrar, brickor och nitmuttrar för fästpunkterna
 Scrolling	Rullning
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Rullning panorerar åt alla håll; nyp eller Ctrl + rullning för att zooma.
+Scrolling up and down pans sideways	Rullning upp och ned panorerar i sidled
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Rullning upp och ner zoomar vid pekaren, åt sidan (horisontellt hjul, Skift + hjul) panorerar.
+Scrolling zooms, also where it pans	Rullning zoomar, även där den panorerar
 Search (* and ? as placeholders)…	Sök (* och ? som jokertecken)…
 Search below this folder	Sök under den här mappen
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Sök på artikelservern efter katalog, produktgrupp och tekniska data, lägg till artiklar och kontrollera om databasen har uppdateringar
@@ -1719,7 +1754,6 @@ Shield pigtail	Skärm-pigtail
 Shielded	Skärmad
 Shielded analogue cables	Skärmade analogkablar
 Shielded drive cables	Skärmade drivkablar
-Shift + click / drag	Skift + klick / dra
 Short circuit and selectivity	Kortslutning och selektivitet
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortslutning, selektivitet, laster, EMC, funktionssäkerhet och kontroll mot regelverk
 Short-circuit currents	Kortslutningsströmmar
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Den vågräta ledningen
 The items are selected and moved together	Objekten markeras och flyttas tillsammans
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har inga sidmakron (Makron › Spara sida som makro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifieringstangenterna som får hjulet att panorera i sidled eller zooma ställs in under Modifieringstangenter.
 The modules no string takes yet in series, on the first inverter	Modulerna som ingen sträng tar ännu, i serie, på den första växelriktaren
 The names of its pages follow	Namnen på dess sidor följer med
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det öppna projektet är en lokal återställningskopia. Dess ändringar är inte sparade på projektservern; innan det delade projektet öppnas bestämmer du om de ska sparas lokalt eller förkastas.
@@ -1953,9 +1988,11 @@ Touch screen	Pekskärm
 Transfer project parts to database	Överför projektartiklar till databasen
 Translate the project texts; documentation per language	Översätt projekttexterna; dokumentation per språk
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Vridning kring lodlinjen, moturs sett ovanifrån (90 °: fronterna pekar åt höger)
+Turn the 3D view to the point	Vänd 3D-vyn mot punkten
 Tutorial	Handledning
 Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Två fingrar på en styrplatta panorerar, mushjulet zoomar. Bara macOS skiljer dem åt; annars zoomar rullning som hjulet.
+Two fingers pan	Två fingrar panorerar
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Två fingrar panorerar och zoomar med nypning samtidigt; ett finger fungerar som vänster musknapp.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
@@ -2023,7 +2060,6 @@ View	Visa
 Visible	Synligt
 Voltage (line to line)	Spänning (huvudspänning)
 Voltage drop	Spänningsfall
-W A S D / arrows, Q / E	W A S D / pilar, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, skrivs in i tomten vid IFC-export
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Vägg {}, {} m: dra för att flytta, dubbelklick visar den för att utrusta den
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Vägg {}, {} m: väggen som visas i väggvyn (markerad); dra för att flytta den
@@ -2035,7 +2071,7 @@ Web between holes	Material mellan hål
 Welcome to OpenECraft	Välkommen till OpenECraft
 What is new	Nyheter
 What should be checked or changed?	Vad ska kontrolleras eller ändras?
-Wheel / right or middle drag	Hjul / dra med höger- eller mittknappen
+Wheel and touch	Hjul och pekskärm
 Wheel: zoom · drag: move · click on a room: its floor plan	Hjul: zoom · dra: flytta · klicka på ett rum: dess planritning
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Hjul: zooma · dra: flytta · klicka på ett rum: dess planritning · dra ett hörn av tomtgränsen
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Hjul: zooma · högerklick: avbryt · grafik fäster mot 0,5 mm, anslutningspunkter mot 4 mm-rutnätet
@@ -2102,7 +2138,8 @@ You may only view this project.	Du får endast visa det här projektet.
 You may review this project: comments, markup and approvals, no other changes.	Du får granska det här projektet: kommentarer, markeringar och godkännanden, inga andra ändringar.
 Your unsaved changes of it are taken back	Dina osparade ändringar i den tas tillbaka
 Zoom	Zooma
-Zoom / pan	Zooma / panorera
+Zoom in in the 3D view (held)	Zooma in i 3D-vyn (håll ned)
+Zoom out in the 3D view (held)	Zooma ut i 3D-vyn (håll ned)
 all	alla
 all cards	alla kort
 all lines	alla rader
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} bildpunkter, {}
 {} – {} ({} pages)	{} – {} ({} sidor)
+{} – {} here (Esc cancels)	{} – {} här (Esc avbryter)
 {}: click to show its floor plan	{}: klicka för att visa planritningen
 {}: crimp together with the wire to {}	{}: krimpa tillsammans med ledaren till {}
 {}: drag to move it, R turns it, a double-click opens it	{}: dra för att flytta, R vrider, dubbelklick öppnar

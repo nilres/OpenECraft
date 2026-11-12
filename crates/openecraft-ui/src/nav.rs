@@ -6,7 +6,50 @@
 //! after a gesture began, [`Gesture::touch`] is set: the view then leaves out what the
 //! first finger would do as a pointer (selecting, moving, orbiting).
 
-use egui::{Context, Event, Id, InputState, MouseWheelSource, MouseWheelUnit, Pos2, Response, Ui, Vec2};
+use egui::{Context, Event, Id, InputState, Modifiers, MouseWheelSource, MouseWheelUnit, Pos2, Response, Ui, Vec2};
+
+/// A modifier key the user can choose for a function; `Ctrl` is Cmd on macOS.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
+pub enum Mod {
+    Shift,
+    Ctrl,
+    Alt,
+}
+
+impl Mod {
+    pub const ALL: [Mod; 3] = [Mod::Shift, Mod::Ctrl, Mod::Alt];
+
+    /// Key name, as in the shortcuts (not translated).
+    pub fn name(self) -> &'static str {
+        match self {
+            Mod::Shift => "Shift",
+            Mod::Ctrl => "Ctrl",
+            Mod::Alt => "Alt",
+        }
+    }
+
+    pub fn parse(s: &str) -> Option<Mod> {
+        match s.trim().to_ascii_lowercase().as_str() {
+            "shift" => Some(Mod::Shift),
+            "ctrl" | "cmd" | "command" => Some(Mod::Ctrl),
+            "alt" | "option" => Some(Mod::Alt),
+            _ => None,
+        }
+    }
+
+    pub fn held(self, m: Modifiers) -> bool {
+        match self {
+            Mod::Shift => m.shift,
+            Mod::Ctrl => m.ctrl || m.command,
+            Mod::Alt => m.alt,
+        }
+    }
+
+    /// The first modifier held (Ctrl, Shift, Alt), as recorded for a gesture.
+    pub fn of(m: Modifiers) -> Option<Mod> {
+        [Mod::Ctrl, Mod::Shift, Mod::Alt].into_iter().find(|k| k.held(m))
+    }
+}
 
 /// What scrolling (wheel, two fingers on a trackpad) does in a view.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
@@ -35,12 +78,29 @@ impl Scroll {
 }
 
 /// The user's choice, kept by the application and handed to the views with [`set`].
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 #[serde(default)]
 pub struct Settings {
     pub scroll: Scroll,
     /// Scrolling pans the other way round (the content moves against the fingers).
     pub invert: bool,
+    /// Pinching (trackpad, touch screen) zooms.
+    pub pinch: bool,
+    /// Two fingers on a touch screen pan.
+    pub touch_pan: bool,
+    /// Held while scrolling: scrolling up and down pans sideways (none: off). Kept by
+    /// the application with its other modifiers, so not stored here.
+    #[serde(skip)]
+    pub sideways: Option<Mod>,
+    /// Held while scrolling: scrolling zooms, also where it pans (none: off).
+    #[serde(skip)]
+    pub zoom: Option<Mod>,
+}
+
+impl Default for Settings {
+    fn default() -> Self {
+        Settings { scroll: Scroll::Auto, invert: false, pinch: true, touch_pan: true, sideways: Some(Mod::Shift), zoom: Some(Mod::Ctrl) }
+    }
 }
 
 fn settings_id() -> Id {
@@ -91,34 +151,47 @@ pub fn read(ui: &Ui, resp: &Response) -> Gesture {
             if !resp.rect.contains(t.start_pos) {
                 return Gesture { touch, ..Gesture::NONE };
             }
-            return Gesture { zoom: t.zoom_delta, at: Some(t.center_pos), pan: t.translation_delta, touch };
+            let zoom = if s.pinch { t.zoom_delta } else { 1.0 };
+            let pan = if s.touch_pan { t.translation_delta } else { Vec2::ZERO };
+            return Gesture { zoom, at: Some(t.center_pos), pan, touch };
         }
         if touch || !resp.hovered() {
             return Gesture { touch, ..Gesture::NONE };
         }
         let (wheel, pan) = wheel(&i.events, s);
-        Gesture { zoom: i.zoom_delta() * (wheel * 0.0025).exp(), at: i.pointer.hover_pos(), pan, touch: false }
+        Gesture { zoom: pinch(&i.events, s) * (wheel * 0.0025).exp(), at: i.pointer.hover_pos(), pan, touch: false }
     })
 }
 
-/// Wheel events of a frame: the movement that zooms (points up) and the pan. Ctrl /
-/// Command + wheel and pinching are left to `InputState::zoom_delta`.
+/// Zoom of the pinches on a trackpad in a frame (1: none). Ctrl + wheel, which egui
+/// adds to `InputState::zoom_delta`, is read by [`wheel`] with the chosen modifier.
+fn pinch(events: &[Event], s: Settings) -> f32 {
+    if !s.pinch {
+        return 1.0;
+    }
+    events.iter().filter_map(|e| if let Event::Zoom(f) = e { Some(*f) } else { None }).product()
+}
+
+/// Wheel events of a frame: the movement that zooms (points up) and the pan.
 fn wheel(events: &[Event], s: Settings) -> (f32, Vec2) {
     let mut zoom = 0.0;
     let mut pan = Vec2::ZERO;
     for e in events {
         let Event::MouseWheel { unit, delta, modifiers, source, .. } = e else { continue };
-        if modifiers.ctrl || modifiers.command {
-            continue;
-        }
         let mut d = *delta
             * match unit {
                 MouseWheelUnit::Point => 1.0,
                 MouseWheelUnit::Line => 40.0,
                 MouseWheelUnit::Page => 400.0,
             };
-        // Shift turns the wheel sideways (macOS does that itself).
-        if modifiers.shift && d.x == 0.0 {
+        // As fast as Ctrl + wheel in egui.
+        if s.zoom.is_some_and(|m| m.held(*modifiers)) {
+            zoom += 2.0 * (d.x + d.y);
+            continue;
+        }
+        // The modifier turns the wheel sideways (macOS does that itself for Shift).
+        let sideways = s.sideways.is_some_and(|m| m.held(*modifiers));
+        if sideways && d.x == 0.0 {
             d = Vec2::new(d.y, 0.0);
         }
         let pans = match s.scroll {
@@ -126,7 +199,7 @@ fn wheel(events: &[Event], s: Settings) -> (f32, Vec2) {
             Scroll::Zoom => false,
             Scroll::Auto => matches!(source, MouseWheelSource::Trackpad | MouseWheelSource::Momentum),
         };
-        let moved = if pans || modifiers.shift {
+        let moved = if pans || sideways {
             d
         } else {
             zoom += d.y;

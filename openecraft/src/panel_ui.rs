@@ -3,7 +3,10 @@
 
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
+use crate::commands::Cmd;
 use crate::editor::{EguiDraw, Palette};
+use crate::gestures::{MouseAction, Role};
+use crate::shortcuts::Action;
 use openecraft_core::geom::{p, P};
 use openecraft_core::model::{natural_cmp, Project};
 use openecraft_core::panel::{self, Align, Anchor, Enclosure, Face, Fastening, ItemKind, Opening, PanelItem, SitePlace, PLATE_MARGIN, PLATE_THICKNESS, PLATE_Z};
@@ -3146,11 +3149,14 @@ impl PanelUi {
             self.zoom = (self.zoom * gesture.zoom).clamp(0.05, 20.0);
             self.offset = at - rect.min - vec2(before.x, before.y) * self.zoom;
         }
-        if resp.dragged_by(PointerButton::Middle)
-            || (resp.dragged_by(PointerButton::Secondary) && self.drag.is_none())
-        {
+        // While something is moved only the middle button pans: the others rotate or move.
+        let mods = ui.input(|i| i.modifiers);
+        let gestures = crate::gestures::get(ui.ctx());
+        let panning = gestures.dragged(MouseAction::PanView, &resp, mods) && (self.drag.is_none() || resp.dragged_by(PointerButton::Middle));
+        if panning {
             self.offset += resp.drag_delta();
         }
+        let navigating = gesture.touch || (panning && resp.dragged_by(PointerButton::Primary));
         // Fingers navigating end a move of the first one where it is.
         if gesture.touch {
             if let Some(drag) = self.drag.take() {
@@ -3168,9 +3174,8 @@ impl PanelUi {
 
         // Keyboard
         if self.keys_active && !ui.ctx().egui_wants_keyboard_input() {
-            let (esc, del, r, f) = ui.input(|i| {
-                (i.key_pressed(Key::Escape), i.key_pressed(Key::Delete), i.key_pressed(Key::R) && i.modifiers.is_none(), i.key_pressed(Key::F) && i.modifiers.is_none())
-            });
+            let sc = crate::shortcuts::get(ui.ctx());
+            let (esc, del, r, f) = ui.input(|i| (i.key_pressed(Key::Escape), sc.cmd_pressed(i, Cmd::Delete), sc.cmd_pressed(i, Cmd::Rotate), sc.cmd_pressed(i, Cmd::FitPage)));
             let e = &mut prj.layout.enclosures[ei];
             if esc {
                 if self.start.is_some() || !self.path_points.is_empty() {
@@ -3197,7 +3202,7 @@ impl PanelUi {
             }
         }
         let moving_primary = self.drag.is_some() && ui.input(|i| i.pointer.button_down(PointerButton::Primary));
-        if resp.clicked_by(PointerButton::Secondary) && !moving_primary {
+        if gestures.clicked(MouseAction::CancelTool, &resp, mods) && !moving_primary {
             if self.start.is_some() {
                 self.start = None;
             } else {
@@ -3205,9 +3210,12 @@ impl PanelUi {
             }
         }
 
-        // Mouse (not while fingers navigate)
+        // Mouse (not while fingers or the left button navigate)
+        let finish = gestures.double_clicked(MouseAction::FinishByDoubleClick, &resp, mods);
+        let sc = crate::shortcuts::get(ui.ctx());
+        let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| sc.action_pressed(i, Action::FinishPolyline));
         match self.tool.clone() {
-            _ if gesture.touch => {}
+            _ if navigating => {}
             Tool::Select => self.select_and_move(ui, &resp, prj, ei, rect, an),
             Tool::Rail | Tool::Duct | Tool::Busbar => {
                 if let (true, Some(sn)) = (resp.clicked_by(PointerButton::Primary), snapped) {
@@ -3253,8 +3261,7 @@ impl PanelUi {
                         self.path_points.push(sn);
                     }
                 }
-                let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| i.key_pressed(Key::Enter));
-                if (resp.double_clicked() || enter) && self.path_points.len() >= 2 {
+                if (finish || enter) && self.path_points.len() >= 2 {
                     let id = self.add_routing_path(prj, ei);
                     self.selected_object = Some(id);
                 }
@@ -3266,8 +3273,7 @@ impl PanelUi {
                         self.path_points.push(q);
                     }
                 }
-                let enter = !ui.ctx().egui_wants_keyboard_input() && ui.input(|i| i.key_pressed(Key::Enter));
-                if (resp.double_clicked() || enter) && self.path_points.len() >= 2 {
+                if (finish || enter) && self.path_points.len() >= 2 {
                     let points = std::mem::take(&mut self.path_points);
                     match panel::add_pipe_run(prj, ei, self.face, &points, None, None, None) {
                         Ok(id) => self.selected_object = Some(id),
@@ -3569,7 +3575,9 @@ impl PanelUi {
     }
 
     fn select_and_move(&mut self, ui: &egui::Ui, resp: &egui::Response, prj: &mut Project, ei: usize, rect: Rect, an: &Analysis) {
-        let shift = ui.input(|i| i.modifiers.shift);
+        let gestures = crate::gestures::get(ui.ctx());
+        let mods = ui.input(|i| i.modifiers);
+        let shift = gestures.held(Role::AddToSelection, mods);
         let tol = 6.0 / self.zoom;
         let face = self.face;
         let inside = self.door_inside;
@@ -3707,7 +3715,7 @@ impl PanelUi {
                     }
                 }
                 self.selected_wire = None;
-                let alt = ui.input(|i| i.modifiers.alt);
+                let alt = gestures.held(Role::SingleItem, mods);
                 match item {
                     Some(id) if shift => {
                         if !self.selection.remove(&id) {
@@ -3728,20 +3736,8 @@ impl PanelUi {
         if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
             return;
         }
-        let rotations: Vec<bool> = ui.input(|i| {
-            i.events
-                .iter()
-                .filter_map(|event| match event {
-                    egui::Event::PointerButton {
-                        button: PointerButton::Secondary,
-                        pressed: true,
-                        modifiers,
-                        ..
-                    } => Some(modifiers.shift),
-                    _ => None,
-                })
-                .collect()
-        });
+        let gestures = crate::gestures::get(ui.ctx());
+        let rotations: Vec<bool> = ui.input(|i| gestures.presses(MouseAction::RotateWhileMoving, &i.events)).into_iter().map(|m| gestures.held(Role::RotateBack, m)).collect();
         for counter_clockwise in rotations {
             let Some(drag) = &self.drag else { continue };
             let ids: Vec<u64> = drag.originals.iter().map(|original| original.0).collect();

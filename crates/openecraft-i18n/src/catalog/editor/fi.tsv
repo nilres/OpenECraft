@@ -85,7 +85,6 @@ Add rule	Lisää sääntö
 Add sort key	Lisää lajitteluavain
 Add the facing cutout in {}	Lisää vastakkainen aukko kohteeseen {}
 Add to device	Lisää laitteeseen
-Add to selection	Lisää valintaan
 Add to the pre-planning	Lisää esisuunnitteluun
 Add user	Lisää käyttäjä
 Added to both ends of the length for the cut length (insertion depth)	Lisätään pituuden molempiin päihin katkaisupituutta varten (työntösyvyys)
@@ -130,6 +129,7 @@ Ambient temperature	Ympäristön lämpötila
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Arkisto (.oecz) on ZIP-tiedosto, joka sisältää projektin, manifestin sekä upotetut asiakirjat ja kuvat omina tiedostoinaan.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Vanha piirustus grafiikkana uudella piirikaaviosivulla (viivat, kaaret, tekstit, lohkot)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Avoin sähkösuunnittelun CAE-editori EPLAN Electric P8:n hengessä.
+Another gesture for the same function	Toinen ele samalle toiminnolle
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Toinen muunnelma olemassa olevasta samannimisestä makrosta (esim. B), valitaan lisättäessä
 Any project file: its settings, forms, structure, potentials and pages start the new project	Mikä tahansa projektitiedosto: sen asetukset, lomakkeet, rakenne, potentiaalit ja sivut aloittavat uuden projektin
 Appearance	Ulkoasu
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Yleisen jakotukin piirit
 Clear	Tyhjennä
 Clearance	Vapaa etäisyys
 Clearances	Etäisyydet
+Click	Napsautus
+Click a text: open its link	Tekstin napsautus: avaa sen linkki
 Click an element in the drawing to edit it.	Napsauta piirustuksen elementtiä muokataksesi sitä.
 Click centre, then a point on the circle	Napsauta keskipistettä ja sitten ympyrän pistettä
+Click in the panel layout: a single item of an assembly	Napsautus kaappiasennuksessa: kokoonpanon yksittäinen osa
 Click into the page to place the image	Napsauta sivua sijoittaaksesi kuvan
 Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
 Click on a wall	Napsauta seinää
 Click on a wire to place the connection definition point	Napsauta johtoa sijoittaaksesi yhteyden määrityspisteen
 Click on the 4 mm grid	Napsauta 4 mm:n ruudukkoon
 Click on the wall: the part goes there at its mounting height	Napsauta seinää: osa tulee siihen asennuskorkeudelleen
+Click or window: add to the selection or take out of it	Napsautus tai ikkuna: lisää valintaan tai poista siitä
 Click start and end point	Napsauta alku- ja loppupistettä
 Click the corners of a machine or building, double-click to finish	Napsauta koneen tai rakennuksen kulmia, lopeta kaksoisnapsauttamalla
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Napsauta tontin rajan kulmia · napsauta ensimmäistä, kaksoisnapsauta tai Enter: sulje · Askelpalautin: takaisin · Esc: lopeta
@@ -326,6 +330,7 @@ Click where the reference point is	Napsauta vertailupisteen kohtaa
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta kohtaa suorassa kulmassa, tai jossa liitäntäpisteet ovat vastakkain kulman yli: automaattisen kytkennän ollessa päällä siihen piirretään johtimet · {} kääntää sen · Esc tai oikea painike lopettaa
+Click while moving	Napsautus siirrettäessä
 Click, or drag it into the page	Napsauta tai vedä sivulle
 Climate (IEC 60890)	Ilmastointi (IEC 60890)
 Clipboard	Leikepöytä
@@ -537,6 +542,7 @@ Distribute vertically	Jaa tasaisesti pystysuunnassa
 Distributed neutral	Jaettu nollajohdin
 Diversity factor	Samanaikaisuuskerroin
 Divider	Erotin
+Do the gesture…	Tee ele…
 Dock	Telakoi
 Document {} embedded ({})	Dokumentti {} upotettu ({})
 Documents	Dokumentit
@@ -550,7 +556,7 @@ Door clearance	Oven vapaa tila
 Door cutouts (CSV)	Oviaukot (CSV)
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
-Double-click (3D view)	Kaksoisnapsautus (3D-näkymä)
+Double-click	Kaksoisnapsautus
 Download into database	Lataa tietokantaan
 Download project	Lataa projekti
 Downloaded {} (version {})	{} ladattiin (versio {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	Ladataan OpenECraft {}
 Downstream part	Jälkimmäinen osa
 Draft of revision {} created	Revision {} luonnos luotu
 Draft of revision {} discarded	Revision {} luonnos hylätty
+Drag	Vedä
 Drag a connection point designation of the selected symbol to place it.	Vedä valitun symbolin liitäntäpisteen merkintää sijoittaaksesi sen.
 Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
 Drag the core designation or the cable tag of the selected wire to place it.	Vedä valitun johtimen johdinmerkintää tai kaapelin tunnusta sijoittaaksesi sen.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Etsi ja korvaa koko projektissa
 Find results	Hakutulokset
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Etsii projektin osien Vault-nimikkeet nimikenumeron tai ominaisuuden Part Number perusteella ja näyttää nimikkeen ID:n, revision ja elinkaaren tilan muutokset tarkistettaviksi
 Find…	Etsi…
+Finish a wire, polyline, polygon or wall	Lopeta johdin, murtoviiva, monikulmio tai seinä
+Finish or cancel the drawing, then back to selecting	Lopeta tai peruuta piirtäminen ja palaa valintaan
 First row	Ensimmäinen rivi
 Fit	Sovita
 Fit page	Sovita sivu
@@ -780,6 +789,7 @@ Height above the mounting plate	Korkeus asennuslevyn yläpuolella
 Height above the plate	Korkeus levyn yläpuolella
 Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
 Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Pidetään painettuna napsautettaessa, siirrettäessä tai vieritettäessä. Ctrl on macOS:ssä Cmd.
 Help	Ohje
 Hide the groups you do not need and put the commands you use most into own groups.	Piilota ryhmät, joita et tarvitse, ja kokoa useimmin käyttämäsi komennot omiin ryhmiin.
 Highest phase unbalance	Suurin vaiheiden epäsymmetria
@@ -898,6 +908,8 @@ Key tips of the ribbon	Valintanauhan pikanäppäimet
 Key: {}	Avain: {}
 Keyboard shortcuts	Pikanäppäimet
 Keyboard shortcuts…	Pikanäppäimet…
+Keys and gestures	Näppäimet ja eleet
+Keys of the 3D view	3D-näkymän näppäimet
 Label	Merkintä
 Label (grey)	Merkintä (harmaa)
 Label field	Merkintäkenttä
@@ -919,6 +931,7 @@ Layout spaces	Asennustilat
 Leave out the ceilings of the rooms and the roofs in the 3D view	Jätä tilojen katot ja yläpohjat pois 3D-näkymästä
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Jätä kaikkien johtokanavien kannet pois 3D-näkymästä: niissä olevat johtimet näkyvät
 Leave repeated values of the first column blank	Jätä ensimmäisen sarakkeen toistuvat arvot tyhjiksi
+Left button	Vasen painike
 Left edges	Vasemmat reunat
 Legend plates (door devices)	Nimikilvet (ovilaitteet)
 Length from the node to the device	Pituus solmusta laitteeseen
@@ -968,7 +981,6 @@ Locked by {} – read only	Lukinnut {} – vain luku
 Locking…	Lukitaan…
 Logic	Logiikka
 Longer values are drawn smaller (0 = no limit)	Pidemmät arvot piirretään pienempinä (0 = ei rajaa)
-Look at the point clicked, closer	Katso napsautettua kohtaa läheltä
 Look for updates when OpenECraft starts	Etsi päivityksiä, kun OpenECraft käynnistyy
 Looking for updates…	Etsitään päivityksiä…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Etsii OpenECraftin uutta versiota GitHubista ja asentaa sen taustalla
@@ -1016,6 +1028,7 @@ Messages	Viestit
 Messages ({})	Viestit ({})
 Messages of this session	Tämän istunnon viestit
 Middle	Keskellä
+Middle button	Keskipainike
 Middle of the PV array in the floor plan of the building	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa
 Min. bend radius	Pienin taivutussäde
 Minimize the ribbon	Pienennä valintanauha
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Peilaa (valinta tai sijoitettava symbo
 Mixed	Sekalainen
 Mode	Tila
 Model of a part (2D / 3D)	Osan malli (2D / 3D)
+Modifier keys	Muokkausnäppäimet
 Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
 Motors feed the short circuit	Moottorit syöttävät oikosulkua
 Mounted on	Asennettu kohteeseen
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Asenn
 Mounting height: {}	Asennuskorkeus: {}
 Mounting plate: {} holes, {} cutouts	Asennuslevy: {} reikää, {} aukkoa
 Mounting system	Kiinnitysjärjestelmä
+Mouse	Hiiri
 Move	Siirrä
+Move ahead in the 3D view (held)	Liiku eteenpäin 3D-näkymässä (pidä painettuna)
+Move back in the 3D view (held)	Liiku taaksepäin 3D-näkymässä (pidä painettuna)
 Move down	Siirrä alaspäin
+Move down in the 3D view (held)	Liiku alaspäin 3D-näkymässä (pidä painettuna)
+Move faster with the keys of the 3D view	Liiku nopeammin 3D-näkymän näppäimillä
 Move left	Siirrä vasemmalle
+Move left in the 3D view (held)	Liiku vasemmalle 3D-näkymässä (pidä painettuna)
 Move page down	Siirrä sivua alaspäin
 Move page up	Siirrä sivua ylöspäin
+Move right in the 3D view (held)	Liiku oikealle 3D-näkymässä (pidä painettuna)
 Move selection by	Siirrä valintaa
 Move selection by…	Siirrä valintaa…
 Move the devices of this page into the new structure	Siirrä tämän sivun laitteet uuteen rakenteeseen
-Move through the 3D view (Shift: faster)	Liiku 3D-näkymässä (Vaihto: nopeammin)
 Move to section	Siirrä osioon
 Move up	Siirrä ylöspäin
+Move up in the 3D view (held)	Liiku ylöspäin 3D-näkymässä (pidä painettuna)
 Moves to the top level as page {}	Siirtyy ylimmälle tasolle sivuksi {}
 Moves to {} as page {}	Siirtyy osioon {} sivuksi {}
 Moving	Siirtäminen
@@ -1062,7 +1083,6 @@ Name and cross reference	Nimi ja ristiviittaus
 Name on the server	Nimi palvelimella
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nimi; tietotyyppi; looginen osoite; kommentti – PLC-ohjelmointityökaluille
 Named copy of this form, for report blocks	Tämän lomakkeen nimetty kopio raporttilohkoja varten
-Navigation	Navigointi
 Navigators	Navigaattorit
 Neutral exchange file…	Neutraali siirtotiedosto…
 Never	Ei koskaan
@@ -1134,6 +1154,7 @@ No dot: plain T	Ei pistettä: tavallinen T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
+No gesture	Ei elettä
 No harnesses defined.	Johtosarjoja ei ole määritetty.
 No inverter	Ei vaihtosuuntaajaa
 No jump: plain crossing, connections have dots	Ei hyppyä: tavallinen risteys, liitoksissa on pisteet
@@ -1176,6 +1197,7 @@ Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
 Not saved, locked or changed by another user: {}	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ei otettu: pelkkä vasen painike valitsee, piirtää ja siirtää; pidä muokkausnäppäin painettuna tai käytä toista painiketta.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ei jaettu projekti: muutokset tallennetaan paikallisesti, kunnes se avataan uudelleen projektipalvelimella
 Nothing exchanged yet.	Mitään ei ole vielä siirretty.
 Nothing left in this list.	Tässä luettelossa ei ole enää mitään.
@@ -1215,6 +1237,7 @@ Open project	Avaa projekti
 Open project server	Avaa projektipalvelin
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Avaa projekteja ja tiedostoja Autodesk Vaultista, tallenna projekti, viennit ja 3D-mallit Vaultiin
 Open the project	Avaa projekti
+Open the selection: its properties, in the floor plan its face	Avaa valinta: sen ominaisuudet, pohjapiirroksessa sen puoli
 Open to {}: wires cross beside the mounting plates	Avoin kohteeseen {}: johdot kulkevat asennuslevyjen vierestä
 Open walls and floors	Avaa seinät ja lattiat
 Open, save, import, export, print and the settings	Avaa, tallenna, tuo, vie, tulosta ja asetukset
@@ -1250,6 +1273,7 @@ Open…	Avaa…
 Operations / year	Kytkentäkerrat / vuosi
 Option	Vaihtoehto
 Options	Vaihtoehdot
+Orbit the 3D view	Kierrä 3D-näkymää
 Ordinary cable	Tavallinen kaapeli
 Orientation	Suunta
 Origin	Alkuperä
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Kehystä käyttävät sivut ja mallit
 Pages of revision {}	Revision {} sivut
 Pages of the selected block	Valitun lohkon sivut
 Pages using it get the project default	Sitä käyttävät sivut saavat projektin oletuksen
+Pages, panel layout and plans	Sivut, kaappiasennus ja piirrokset
 Pairs in schematic order (1-2, 3-4 …)	Parit piirikaavion järjestyksessä (1-2, 3-4 …)
+Pan the 3D view	Panoroi 3D-näkymää
+Pan the page, the panel layout and the plans	Panoroi sivua, kaappiasennusta ja piirroksia
 Pane menu	Ruudun valikko
 Panel wiring report	Kaapin johdotusraportti
 Panes	Ruudut
@@ -1323,6 +1350,8 @@ Path function text	Polun toimintoteksti
 Pattern	Kuvio
 Pattern…	Kuvio…
 Pin-out	Nastajärjestys
+Pinching	Nipistys
+Pinching on a trackpad or a touch screen zooms	Nipistys kosketuslevyllä tai kosketusnäytöllä zoomaa
 Pipe run	Putkireitti
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Putkireitti huoneen seinällä, katossa tai lattialla, jota pitkin letkut, putket ja putkistot reititetään: napsauta kulmat, lopeta kaksoisnapsautuksella tai Enterillä
 Pipe run {} mm – double-click or Enter to finish	Putkireitti {} mm – lopeta kaksoisnapsautuksella tai Enterillä
@@ -1458,6 +1487,7 @@ Recent projects	Viimeisimmät projektit
 Recently used	Viimeksi käytetyt
 Recommended height of manual actuators (10.1.2)	Käsikäyttöisten käyttöelinten suositeltu korkeus (10.1.2)
 Record	Tallenna näppäin
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Tallenna: tee ele näkyviin tulevassa kentässä, halutessasi muokkausnäppäin painettuna (Esc peruuttaa). Lisää säilyttää nykyiset eleet. Hiiren oikea painike valintatyökalussa avaa pikavalikon.
 Rectangular	Suorakulmainen
 Redline: to be changed · Greenline: changed as built	Redline: muutettava · Greenline: muutettu toteutuksen mukaan
 Redo	Tee uudelleen
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revisiot, hyväksyntä ja vapautus
 Ribbon	Valintanauha
 Ribbon (JSON)	Valintanauha (JSON)
 Ribbon imported	Valintanauha tuotu
+Right button	Oikea painike
 Right click for more	Lisää toimintoja hiiren oikealla painikkeella
 Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	Tila {} poistettu ra
 Rooms under sloped ceilings (lowest – highest ceiling)	Tilat vinon katon alla (matalin – korkein katto)
 Rotate	Kierrä
 Rotate (selection or symbol being placed)	Kierrä (valinta tai sijoitettava symboli)
+Rotate what is being moved	Kierrä siirrettävää
+Rotate what is being moved counter-clockwise	Kierrä siirrettävää vastapäivään
 Round	Pyöreä
 Round cutouts facing each other in both side walls	Pyöreät aukot vastakkain molemmissa sivuseinissä
 Route definition of {}	Kaapelin {} reitin määrittely
@@ -1658,7 +1691,9 @@ Scheme {}	Malli {}
 Screws, nuts, washers and rivet nuts of the fixing points	Kiinnityspisteiden ruuvit, mutterit, aluslevyt ja niittimutterit
 Scrolling	Vieritys
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Vieritys panoroi kaikkiin suuntiin; zoomaa nipistämällä tai Ctrl + vierityksellä.
+Scrolling up and down pans sideways	Vieritys ylös ja alas panoroi sivuttain
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Vieritys ylös ja alas zoomaa osoittimen kohdalla, sivuttain (vaakarulla, Vaihto + rulla) panoroi.
+Scrolling zooms, also where it pans	Vieritys zoomaa myös siellä, missä se panoroi
 Search (* and ? as placeholders)…	Hae (* ja ? jokerimerkkeinä)…
 Search below this folder	Hae tämän kansion alta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
@@ -1719,7 +1754,6 @@ Shield pigtail	Suojavaipan punos
 Shielded	Suojavaipallinen
 Shielded analogue cables	Suojavaipalliset analogiakaapelit
 Shielded drive cables	Suojavaipalliset käyttökaapelit
-Shift + click / drag	Vaihto + napsautus / veto
 Short circuit and selectivity	Oikosulku ja selektiivisyys
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Oikosulku, selektiivisyys, kuormat, EMC, toiminnallinen turvallisuus ja validointi sääntökokoelmia vasten
 Short-circuit currents	Oikosulkuvirrat
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Vaakasuora johdin
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
 The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Muokkausnäppäimet, joilla rulla panoroi sivuttain tai zoomaa, asetetaan kohdassa Muokkausnäppäimet.
 The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
 The names of its pages follow	Sen sivujen nimet muuttuvat mukana
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Avoin projekti on paikallinen palautuskopio. Sen muutoksia ei ole tallennettu projektipalvelimelle; ennen kuin jaettu projekti avautuu, päätät, tallennetaanko ne paikallisesti vai hylätäänkö ne.
@@ -1953,9 +1988,11 @@ Touch screen	Kosketusnäyttö
 Transfer project parts to database	Siirrä projektin osat tietokantaan
 Translate the project texts; documentation per language	Käännä projektin tekstit; dokumentaatio kielittäin
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Kierto pystyakselin ympäri, ylhäältä katsottuna vastapäivään (90 °: etupuolet osoittavat oikealle)
+Turn the 3D view to the point	Käännä 3D-näkymä pisteeseen
 Tutorial	Opetusohjelma
 Twin ferrules where two wires share a connection point	Kaksoispääteholkit, kun kaksi johdinta jakaa liitäntäpisteen
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Kaksi sormea kosketuslevyllä panoroi, hiiren rulla zoomaa. Vain macOS erottaa ne; muualla vieritys zoomaa kuten rulla.
+Two fingers pan	Kaksi sormea panoroi
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Kaksi sormea panoroi ja zoomaa nipistämällä samanaikaisesti; yksi sormi toimii kuten hiiren vasen painike.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Tässä on kohdattava kaksi johdinta suorassa kulmassa. Automaattisen kytkennän ollessa päällä sen haaroja vastapäätä olevat liitäntäpisteet johdotetaan siihen.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Kirjoita piste ja paina Enter: x y millimetreinä tai @dx dy suhteessa edelliseen pisteeseen; toimii kuin nykyisen työkalun napsautus
@@ -2023,7 +2060,6 @@ View	Näytä
 Visible	Näkyvä
 Voltage (line to line)	Jännite (pääjännite)
 Voltage drop	Jännitteenalenema
-W A S D / arrows, Q / E	W A S D / nuolet, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, kirjoitetaan IFC-vientien tonttiin
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Seinä {}, {} m: siirrä vetämällä, kaksoisnapsautus näyttää sen varustettavaksi
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Seinä {}, {} m: seinänäkymässä näkyvä seinä (korostettu); siirrä vetämällä
@@ -2035,7 +2071,7 @@ Web between holes	Kannas reikien välissä
 Welcome to OpenECraft	Tervetuloa OpenECraftiin
 What is new	Uutta
 What should be checked or changed?	Mitä pitäisi tarkistaa tai muuttaa?
-Wheel / right or middle drag	Rulla / oikean tai keskipainikkeen veto
+Wheel and touch	Rulla ja kosketus
 Wheel: zoom · drag: move · click on a room: its floor plan	Rulla: zoomaa · vedä: siirrä · napsauta huonetta: sen pohjapiirros
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rulla: zoomaus · vedä: siirrä · napsauta tilaa: sen pohjapiirros · vedä tontin rajan kulmaa
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rulla: zoomaa · hiiren oikea painike: peruuta · grafiikka kohdistuu 0,5 mm:iin, liitäntäpisteet 4 mm:n ruudukkoon
@@ -2102,7 +2138,8 @@ You may only view this project.	Voit vain katsella tätä projektia.
 You may review this project: comments, markup and approvals, no other changes.	Voit tarkastaa tämän projektin: kommentit, merkinnät ja hyväksynnät, ei muita muutoksia.
 Your unsaved changes of it are taken back	Siihen tekemäsi tallentamattomat muutokset perutaan
 Zoom	Zoomaus
-Zoom / pan	Zoomaa / panoroi
+Zoom in in the 3D view (held)	Lähennä 3D-näkymää (pidä painettuna)
+Zoom out in the 3D view (held)	Loitonna 3D-näkymää (pidä painettuna)
 all	kaikki
 all cards	kaikki kortit
 all lines	kaikki rivit
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (enint.)
 {} × {} pixels, {}	{} × {} pikseliä, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
+{} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
 {}: crimp together with the wire to {}	{}: puristetaan yhdessä johtimen {} kanssa
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa

@@ -1,6 +1,6 @@
 use super::*;
 use super::super::gpu3d::Camera;
-use egui::{vec2, Pos2};
+use egui::{vec2, Key, Pos2};
 use openecraft_core::parts::vec3::dot;
 
 const F: f32 = 1000.0;
@@ -88,15 +88,32 @@ fn keys_move_faster_with_shift_and_zoom() {
 
 #[test]
 fn held_keys_give_the_directions() {
+    let sc = Shortcuts::default();
+    let shift = Some(Mod::Shift);
     let mut i = InputState::default();
     i.keys_down.extend([Key::W, Key::A, Key::E]);
-    assert_eq!(held(&i), ([1.0, -1.0, 1.0, 0.0], false));
+    assert_eq!(held(&i, &sc, shift), ([1.0, -1.0, 1.0, 0.0], false));
     i.keys_down.insert(Key::ArrowDown);
     i.modifiers.shift = true;
-    assert_eq!(held(&i), ([0.0, -1.0, 1.0, 0.0], true), "forward and back cancel");
+    assert_eq!(held(&i, &sc, shift), ([0.0, -1.0, 1.0, 0.0], true), "forward and back cancel");
     i.modifiers.ctrl = true;
     i.modifiers.command = true;
-    assert_eq!(held(&i).0, [0.0; 4], "Ctrl+S, Ctrl+A are shortcuts");
+    assert_eq!(held(&i, &sc, shift).0, [0.0; 4], "Ctrl+S, Ctrl+A are shortcuts");
+    // Alt chosen for moving faster: held with Alt, the keys still move.
+    i.modifiers = egui::Modifiers::ALT;
+    assert_eq!(held(&i, &sc, Some(Mod::Alt)), ([0.0, -1.0, 1.0, 0.0], true));
+    assert_eq!(held(&i, &sc, shift).0, [0.0; 4]);
+}
+
+#[test]
+fn changed_keys_move_the_3d_view() {
+    let mut sc = Shortcuts::default();
+    sc.set(Action::FlyForward.id(), vec![crate::shortcuts::Shortcut::parse("I").unwrap()]);
+    let mut i = InputState::default();
+    i.keys_down.insert(Key::W);
+    assert_eq!(held(&i, &sc, None).0, [0.0; 4]);
+    i.keys_down.insert(Key::I);
+    assert_eq!(held(&i, &sc, None).0, [1.0, 0.0, 0.0, 0.0]);
 }
 
 #[test]

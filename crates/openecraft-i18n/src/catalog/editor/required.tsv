@@ -123,7 +123,6 @@ Add rule	Regel hinzufügen	Ajouter une règle	Añadir regla
 Add sort key	Sortierung hinzufügen	Ajouter un critère de tri	Añadir criterio de orden
 Add the facing cutout in {}	Gegenüberliegenden Ausschnitt in {} hinzufügen	Ajouter la découpe en face dans {}	Añadir el recorte enfrentado en {}
 Add to device	Zum Betriebsmittel hinzufügen	Ajouter à l'appareil	Añadir al dispositivo
-Add to selection	Zur Auswahl hinzufügen	Ajouter à la sélection	Añadir a la selección
 Add to the pre-planning	In die Vorplanung übernehmen	Ajouter à la pré-étude	Añadir a la preplanificación
 Add user	Benutzer hinzufügen	Ajouter un utilisateur	Añadir usuario
 Added to both ends of the length for the cut length (insertion depth)	Wird für die Schnittlänge an beiden Enden zur Länge addiert (Einstecktiefe)	Ajoutée aux deux extrémités pour la longueur de coupe (profondeur d'insertion)	Se suma a ambos extremos para la longitud de corte (profundidad de inserción)
@@ -174,6 +173,7 @@ Ambient temperature	Umgebungstemperatur	Température ambiante	Temperatura ambien
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Ein Archiv (.oecz) ist eine ZIP-Datei mit dem Projekt, einem Manifest und den eingebetteten Dokumenten und Bildern als eigene Dateien.	Une archive (.oecz) est un fichier ZIP contenant le projet, un manifeste ainsi que les documents et images incorporés sous forme de fichiers distincts.	Un archivo comprimido (.oecz) es un archivo ZIP con el proyecto, un manifiesto y los documentos e imágenes incrustados como archivos propios.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Eine alte Zeichnung als Grafik auf einer neuen Schaltplanseite (Linien, Bögen, Texte, Blöcke)	Un ancien dessin comme graphique sur une nouvelle page de schéma (lignes, arcs, textes, blocs)	Un dibujo antiguo como gráfico en una nueva página de esquema (líneas, arcos, textos, bloques)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Ein offener Elektro-CAE-Editor im Sinne von EPLAN Electric P8.	Un éditeur CAO électrique ouvert dans l'esprit d'EPLAN Electric P8.	Un editor CAE eléctrico abierto al estilo de EPLAN Electric P8.
+Another gesture for the same function	Eine weitere Geste für dieselbe Funktion	Un autre geste pour la même fonction	Otro gesto para la misma función
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Weitere Variante eines vorhandenen Makros mit diesem Namen (z. B. B), beim Einfügen wählbar	Autre variante d'une macro existante de ce nom (p. ex. B), choisie à l'insertion	Otra variante de una macro existente con este nombre (p. ej. B), elegida al insertar
 Any project file: its settings, forms, structure, potentials and pages start the new project	Jede Projektdatei: ihre Einstellungen, Formulare, Struktur, Potenziale und Seiten beginnen das neue Projekt	Tout fichier projet : ses réglages, formulaires, structure, potentiels et pages démarrent le nouveau projet	Cualquier archivo de proyecto: sus ajustes, formularios, estructura, potenciales y páginas inician el nuevo proyecto
 Appearance	Erscheinungsbild	Apparence	Apariencia
@@ -350,8 +350,11 @@ Circuits of a generic manifold	Heizkreise eines generischen Verteilers	Circuits 
 Clear	Leeren	Effacer	Borrar
 Clearance	Abstand	Distance	Distancia
 Clearances	Abstände	Distances	Distancias
+Click	Klicken	Clic	Clic
+Click a text: open its link	Klick auf einen Text: seinen Link öffnen	Clic sur un texte : ouvrir son lien	Clic en un texto: abrir su enlace
 Click an element in the drawing to edit it.	Klicken Sie auf ein Element in der Zeichnung, um es zu bearbeiten.	Cliquez sur un élément du dessin pour le modifier.	Haz clic en un elemento del dibujo para editarlo.
 Click centre, then a point on the circle	Klicken Sie auf den Mittelpunkt, dann auf einen Punkt des Kreises	Cliquez sur le centre, puis sur un point du cercle	Haz clic en el centro y luego en un punto del círculo
+Click in the panel layout: a single item of an assembly	Klick im Schaltschrankaufbau: ein einzelnes Teil einer Baugruppe	Clic dans l'implantation d'armoire : un seul élément d'un ensemble	Clic en el diseño del armario: un solo elemento de un conjunto
 Click into the page to place the image	In die Seite klicken, um das Bild zu platzieren	Cliquer dans la page pour placer l'image	Haga clic en la página para colocar la imagen
 Click into the page to place {}	Klicken Sie in die Seite, um {} zu platzieren	Cliquez dans la page pour placer {}	Haz clic en la página para colocar {}
 Click on a wall	Auf eine Wand klicken	Cliquez sur un mur	Haga clic en una pared
@@ -365,6 +368,7 @@ Click on the 4 mm grid	Klicken Sie auf das 4-mm-Raster	Cliquez sur la grille de 
 Click on the outline of a device box: the point belongs to its device, leads away from the edge and is numbered on · {} turns it off the outline · Esc or right click to finish	Auf den Umriss einer Gerätebox klicken: Der Punkt gehört zu ihrem Betriebsmittel, führt von der Kante weg und wird weiternummeriert · {} dreht ihn außerhalb des Umrisses · Esc oder Rechtsklick beendet	Cliquer sur le contour d'une boîte d'appareil : le point appartient à son appareil, part du bord et est numéroté à la suite · {} le tourne hors du contour · Échap ou clic droit pour terminer	Haga clic en el contorno de una caja de dispositivo: el punto pertenece a su dispositivo, sale del borde y se numera a continuación · {} lo gira fuera del contorno · Esc o clic derecho para terminar
 Click on the outline of the box: each point is a connection of its device, numbered on	Auf den Umriss der Box klicken: Jeder Punkt ist ein Anschluss ihres Betriebsmittels, weiternummeriert	Cliquer sur le contour de la boîte : chaque point est une connexion de son appareil, numérotée à la suite	Haga clic en el contorno de la caja: cada punto es una conexión de su dispositivo, numerada a continuación
 Click on the wall: the part goes there at its mounting height	Auf die Wand klicken: das Teil sitzt dort auf seiner Montagehöhe	Cliquez sur le mur : l'article s'y place à sa hauteur de pose	Haga clic en la pared: el artículo se coloca allí a su altura de montaje
+Click or window: add to the selection or take out of it	Klick oder Fenster: zur Auswahl hinzufügen oder aus ihr nehmen	Clic ou fenêtre : ajouter à la sélection ou en retirer	Clic o ventana: añadir a la selección o quitar de ella
 Click start and corner points · {} toggles corner direction · {} toggles routing around symbols · ends automatically on a connection · {} or double click ends the wire · Esc or right click to finish	Start- und Eckpunkte klicken · {} wechselt die Eckrichtung · {} schaltet das Führen um Symbole herum um · endet automatisch an einem Anschluss · {} oder Doppelklick beendet die Verbindung · Esc oder Rechtsklick beendet	Cliquer le point de départ et les angles · {} change le sens de l'angle · {} active le routage autour des symboles · se termine automatiquement sur une connexion · {} ou double-clic termine le fil · Échap ou clic droit pour terminer	Haga clic en el inicio y las esquinas · {} cambia la dirección de la esquina · {} activa el trazado alrededor de los símbolos · termina automáticamente en una conexión · {} o doble clic termina el cable · Esc o clic derecho para terminar
 Click start and end point	Klicken Sie auf Start- und Endpunkt	Cliquez sur le point de départ et le point d'arrivée	Haz clic en el punto inicial y el final
 Click start point, click end point · Esc or right click to finish	Klicken Sie auf den Startpunkt, dann auf den Endpunkt · Esc oder Rechtsklick beendet	Cliquez sur le point de départ, puis sur le point d'arrivée · Échap ou clic droit pour terminer	Haz clic en el punto inicial y luego en el final · Esc o clic derecho para terminar
@@ -404,6 +408,7 @@ Click where the reference point is	Dort klicken, wo der Bezugspunkt liegt	Clique
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicken, wo drei Verbindungslinien zusammentreffen: das T-Stück benennt das Gerät, von dem die Drähte ausgehen, und die Reihenfolge ihrer Ziele · {} dreht es, wo noch keine Linien zusammentreffen · Esc oder Rechtsklick beendet	Cliquez là où trois fils se rejoignent : la pièce en T nomme l'appareil d'où partent les fils et l'ordre de leurs cibles · {} la tourne là où aucun fil ne se rejoint encore · Échap ou clic droit pour terminer	Haga clic donde se unen tres cables: la pieza en T indica el dispositivo del que parten los hilos y el orden de sus destinos · {} la gira donde aún no se unen cables · Esc o clic derecho para terminar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicken, wo sich zwei Verbindungslinien kreuzen: die Kreuzung verbindet sie und führt jedes Ende ihrer Linie zuerst geradeaus, dann quer · {} dreht sie · Esc oder Rechtsklick beendet	Cliquez là où deux fils se croisent : le croisement les relie et mène chaque extrémité de sa ligne tout droit d'abord, puis en travers · {} le tourne · Échap ou clic droit pour terminer	Haga clic donde se cruzan dos cables: el cruce los conecta y lleva cada extremo de su línea primero en línea recta y después transversalmente · {} lo gira · Esc o clic derecho para terminar
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klicken, wo zwei Verbindungslinien im rechten Winkel zusammentreffen oder wo Anschlusspunkte über die Ecke einander gegenüberliegen: bei eingeschaltetem Auto-Connect werden Linien zu ihr gezeichnet · {} dreht sie · Esc oder Rechtsklick beendet	Cliquez là où deux fils se rejoignent à angle droit, ou là où des points de connexion se font face à travers le coin : avec l'auto-connexion activée, des fils y sont tracés · {} le tourne · Échap ou clic droit pour terminer	Haga clic donde dos cables se unen en ángulo recto, o donde puntos de conexión se enfrentan a través de la esquina: con la autoconexión activada se dibujan cables hacia ella · {} la gira · Esc o clic derecho para terminar
+Click while moving	Klicken beim Verschieben	Clic pendant le déplacement	Clic al mover
 Click, or drag it into the page	Anklicken oder in die Seite ziehen	Cliquez, ou faites-le glisser dans la page	Haga clic o arrástrelo a la página
 Climate (IEC 60890)	Klimatisierung (IEC 60890)	Climatisation (CEI 60890)	Climatización (IEC 60890)
 Clipboard	Zwischenablage	Presse-papiers	Portapapeles
@@ -639,6 +644,7 @@ Distribute vertically	Vertikal verteilen	Répartir verticalement	Distribuir vert
 Distributed neutral	Neutralleiter mitgeführt	Neutre distribué	Neutro distribuido
 Diversity factor	Gleichzeitigkeitsfaktor	Facteur de simultanéité	Factor de simultaneidad
 Divider	Trennsteg	Séparateur	Separador
+Do the gesture…	Geste ausführen…	Faites le geste…	Haga el gesto…
 Dock	Andocken	Ancrer	Acoplar
 Document {} embedded ({})	Dokument {} eingebettet ({})	Document {} intégré ({})	Documento {} incrustado ({})
 Documents	Dokumente	Documents	Documentos
@@ -653,7 +659,7 @@ Door cutouts (CSV)	Türausschnitte (CSV)	Découpes de porte (CSV)	Recortes de pu
 Door in a wall of the room: click on the wall in the floor plan or in the view of the wall	Tür in einer Wand des Raums: im Grundriss oder in der Ansicht der Wand auf die Wand klicken	Porte dans un mur de la salle : cliquez sur le mur dans le plan ou dans la vue du mur	Puerta en una pared de la sala: haga clic en la pared en el plano o en la vista de la pared
 Door: {} devices, {} cutouts	Tür: {} Betriebsmittel, {} Ausschnitte	Porte : {} appareils, {} découpes	Puerta: {} dispositivos, {} recortes
 Dot	Punkt	Point	Punto
-Double-click (3D view)	Doppelklick (3D-Ansicht)	Double-clic (vue 3D)	Doble clic (vista 3D)
+Double-click	Doppelklick	Double-clic	Doble clic
 Down	Unten	Bas	Abajo
 Download into database	In Datenbank laden	Télécharger dans la base	Descargar a la base de datos
 Download project	Projekt herunterladen	Télécharger le projet	Descargar proyecto
@@ -663,6 +669,7 @@ Downloading OpenECraft {}	OpenECraft {} wird heruntergeladen	Téléchargement d'
 Downstream part	Nachgeschalteter Artikel	Article aval	Artículo aguas abajo
 Draft of revision {} created	Entwurf der Revision {} angelegt	Brouillon de la révision {} créé	Borrador de la revisión {} creado
 Draft of revision {} discarded	Entwurf der Revision {} verworfen	Brouillon de la révision {} abandonné	Borrador de la revisión {} descartado
+Drag	Ziehen	Glisser	Arrastrar
 Drag a connection point designation of the selected symbol to place it.	Anschlussbezeichnung des markierten Symbols ziehen, um sie zu platzieren.	Glisser une désignation de connexion du symbole sélectionné pour la placer.	Arrastre una designación de conexión del símbolo seleccionado para colocarla.
 Drag a wall to move it, drag a cabinet to its place (R turns it); double-click a wall to equip it, a cabinet to open it. Del removes the selected inner wall.	Wand ziehen, um sie zu verschieben, Schaltschrank an seinen Platz ziehen (R dreht ihn); Doppelklick auf eine Wand, um sie zu bestücken, auf einen Schaltschrank, um ihn zu öffnen. Entf entfernt die gewählte Innenwand.	Faites glisser un mur pour le déplacer, une armoire vers son emplacement (R la tourne) ; double-cliquez sur un mur pour l'équiper, sur une armoire pour l'ouvrir. Suppr supprime le mur intérieur sélectionné.	Arrastre una pared para moverla, un armario a su lugar (R lo gira); doble clic en una pared para equiparla, en un armario para abrirlo. Supr elimina la pared interior seleccionada.
 Drag an entry into the page, or click it and then click into the page.	Einen Eintrag in die Seite ziehen, oder anklicken und dann in die Seite klicken.	Faites glisser une entrée dans la page, ou cliquez dessus puis dans la page.	Arrastre una entrada a la página, o haga clic en ella y luego en la página.
@@ -811,6 +818,8 @@ Find results	Suchergebnisse	Résultats de recherche	Resultados de búsqueda
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Sucht die Vault-Elemente der Projektartikel über die Elementnummer oder die Eigenschaft Part Number und zeigt die Änderungen von Teile-ID, Revision und Lebenszyklusstatus zur Prüfung	Trouve les éléments Vault des articles du projet par numéro d'élément ou propriété Part Number et affiche les modifications de l'ID d'article, de la révision et de l'état du cycle de vie pour vérification	Busca los elementos de Vault de los artículos del proyecto por número de elemento o propiedad Part Number y muestra los cambios de ID de artículo, revisión y estado del ciclo de vida para revisarlos
 Find…	Suchen…	Rechercher…	Buscar…
 Finish a wire, polyline or polygon	Verbindung, Polylinie oder Polygon abschließen	Terminer un fil, une polyligne ou un polygone	Terminar un cable, una polilínea o un polígono
+Finish a wire, polyline, polygon or wall	Verbindung, Polylinie, Polygon oder Wand abschließen	Terminer un fil, une polyligne, un polygone ou un mur	Terminar un cable, una polilínea, un polígono o una pared
+Finish or cancel the drawing, then back to selecting	Zeichnen abschließen oder abbrechen, dann zurück zum Auswählen	Terminer ou annuler le dessin, puis revenir à la sélection	Terminar o cancelar el dibujo y volver a seleccionar
 First row	Erste Zeile	Première ligne	Primera fila
 Fit	Einpassen	Ajuster	Ajustar
 Fit page	Seite einpassen	Ajuster la page	Ajustar página
@@ -918,6 +927,7 @@ Height of the plinth, 0 without plinth	Höhe des Sockels, 0 ohne Sockel	Hauteur 
 Height of the sill (bottom edge) above the floor	Höhe der Brüstung (Unterkante) über dem Boden	Hauteur de l'allège (bord inférieur) au-dessus du sol	Altura del alféizar (borde inferior) sobre el suelo
 Height of the underside of the roof over the walls above the ground level of the building; below the ceiling of a level it slopes the ceilings of the rooms there	Höhe der Dachunterseite über den Wänden über dem Bodenniveau des Gebäudes; unterhalb der Decke einer Ebene macht es die Decken der Räume dort schräg	Hauteur de la sous-face du toit au droit des murs au-dessus du niveau du sol du bâtiment ; sous le plafond d'un niveau, il rend rampants les plafonds des salles de ce niveau	Altura de la cara inferior de la cubierta sobre los muros por encima del nivel del suelo del edificio; por debajo del techo de un nivel inclina los techos de las salas de ese nivel
 Heights above floor (IEC 60204-1)	Höhen über Boden (IEC 60204-1)	Hauteurs au-dessus du sol (CEI 60204-1)	Alturas sobre el suelo (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Beim Klicken, Verschieben oder Scrollen gedrückt gehalten. Strg ist Cmd unter macOS.	Maintenue en cliquant, déplaçant ou faisant défiler. Ctrl est Cmd sous macOS.	Se mantiene pulsada al hacer clic, mover o desplazar. Ctrl es Cmd en macOS.
 Help	Hilfe	Aide	Ayuda
 Hide ceiling	Decke ausblenden	Masquer le plafond	Ocultar el techo
 Hide the groups you do not need and put the commands you use most into own groups.	Nicht benötigte Gruppen ausblenden und die meistgenutzten Befehle in eigene Gruppen legen.	Masquez les groupes inutiles et placez les commandes les plus utilisées dans vos propres groupes.	Oculte los grupos que no necesita y ponga los comandos que más usa en grupos propios.
@@ -1045,6 +1055,8 @@ Key tips of the ribbon	Zugriffstasten des Menübands	Touches d'accès du ruban	T
 Key: {}	Schlüssel: {}	Clé : {}	Clave: {}
 Keyboard shortcuts	Tastenkürzel	Raccourcis clavier	Atajos de teclado
 Keyboard shortcuts…	Tastenkürzel…	Raccourcis clavier…	Atajos de teclado…
+Keys and gestures	Tasten und Gesten	Touches et gestes	Teclas y gestos
+Keys of the 3D view	Tasten der 3D-Ansicht	Touches de la vue 3D	Teclas de la vista 3D
 Keys of the page editor	Tasten des Seiteneditors	Touches de l'éditeur de page	Teclas del editor de páginas
 Label	Beschriftung	Libellé	Etiqueta
 Label (grey)	Beschriftung (grau)	Libellé (gris)	Etiqueta (gris)
@@ -1070,6 +1082,7 @@ Leave out the ceilings of the rooms in the 3D view	In der 3D-Ansicht die Decken 
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In der 3D-Ansicht die Deckel aller Kabelkanäle weglassen: die Verbindungen darin werden sichtbar	Dans la vue 3D, omettre les couvercles de toutes les goulottes : les fils qu'elles contiennent sont visibles	En la vista 3D, omitir las tapas de todas las canaletas: se ven los cables que contienen
 Leave out the walls between the eye and the inside of the room or enclosure in the 3D view	In der 3D-Ansicht die Wände zwischen Betrachter und dem Inneren des Raums oder Gehäuses weglassen	Dans la vue 3D, omettre les murs entre l'œil et l'intérieur de la salle ou de l'armoire	En la vista 3D, omitir las paredes entre el ojo y el interior de la sala o del armario
 Leave repeated values of the first column blank	Wiederholte Werte der ersten Spalte leer lassen	Laisser vides les valeurs répétées de la première colonne	Dejar en blanco los valores repetidos de la primera columna
+Left button	Linke Taste	Bouton gauche	Botón izquierdo
 Left edges	Linke Kanten	Bords gauches	Bordes izquierdos
 Legend plates (door devices)	Bezeichnungsschilder (Türgeräte)	Plaques de repérage (appareils de porte)	Placas de leyenda (equipos de puerta)
 Length from the node to the device	Länge vom Knoten bis zum Gerät	Longueur du nœud à l'appareil	Longitud del nodo al aparato
@@ -1122,7 +1135,6 @@ Locked by {} – read only	Gesperrt von {} – schreibgeschützt	Verrouillé par
 Locking…	Sperren…	Verrouillage…	Bloqueando…
 Logic	Logik	Logique	Lógica
 Longer values are drawn smaller (0 = no limit)	Längere Werte werden kleiner gezeichnet (0 = keine Begrenzung)	Les valeurs plus longues sont dessinées plus petites (0 = sans limite)	Los valores más largos se dibujan más pequeños (0 = sin límite)
-Look at the point clicked, closer	Zum angeklickten Punkt blicken, näher heran	Regarder le point cliqué, de plus près	Mirar el punto pulsado, más de cerca
 Look for updates when OpenECraft starts	Beim Start von OpenECraft nach Updates suchen	Rechercher des mises à jour au démarrage d'OpenECraft	Buscar actualizaciones al iniciar OpenECraft
 Looking for updates…	Suche nach Updates…	Recherche de mises à jour…	Buscando actualizaciones…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Sucht auf GitHub nach einer neuen Version von OpenECraft und installiert sie im Hintergrund	Recherche une nouvelle version d'OpenECraft sur GitHub et l'installe en arrière-plan	Busca una nueva versión de OpenECraft en GitHub y la instala en segundo plano
@@ -1170,6 +1182,7 @@ Messages	Meldungen	Messages	Mensajes
 Messages ({})	Meldungen ({})	Messages ({})	Mensajes ({})
 Messages of this session	Meldungen dieser Sitzung	Messages de cette session	Mensajes de esta sesión
 Middle	Mitte	Milieu	Centro
+Middle button	Mittlere Taste	Bouton du milieu	Botón central
 Middle of the PV array in the floor plan of the building	Mitte der PV-Anlage im Grundriss des Gebäudes	Milieu du champ photovoltaïque dans le plan du bâtiment	Centro del campo fotovoltaico en la planta del edificio
 Middle of the front edge of the lowest step in the building's floor plan, and the direction of the first flight	Mitte der Vorderkante der untersten Stufe im Grundriss des Gebäudes und die Richtung des ersten Laufs	Milieu du nez de la marche la plus basse dans le plan du bâtiment, et la direction de la première volée	Centro del borde delantero del peldaño más bajo en la planta del edificio, y la dirección del primer tramo
 Min. bend radius	Min. Biegeradius	Rayon de courbure min.	Radio de curvatura mín.
@@ -1179,6 +1192,7 @@ Mirror (selection or symbol being placed)	Spiegeln (Auswahl oder zu platzierende
 Mixed	Gemischt	Mixte	Mixto
 Mode	Modus	Mode	Modo
 Model of a part (2D / 3D)	Modell eines Artikels (2D / 3D)	Modèle d'un article (2D / 3D)	Modelo de un artículo (2D / 3D)
+Modifier keys	Zusatztasten	Touches de modification	Teclas modificadoras
 Module part; its size comes from the part	Modulartikel; seine Größe kommt vom Artikel	Article du module ; sa taille vient de l'article	Artículo del módulo; su tamaño viene del artículo
 Motors feed the short circuit	Motoren speisen den Kurzschluss	Les moteurs alimentent le court-circuit	Los motores alimentan el cortocircuito
 Mounted on	Montiert auf	Monté sur	Montado en
@@ -1187,11 +1201,18 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Monta
 Mounting height: {}	Montagehöhe: {}	Hauteur de pose : {}	Altura de montaje: {}
 Mounting plate: {} holes, {} cutouts	Montageplatte: {} Bohrungen, {} Ausschnitte	Plaque de montage : {} perçages, {} découpes	Placa de montaje: {} taladros, {} recortes
 Mounting system	Montagesystem	Système de montage	Sistema de montaje
+Mouse	Maus	Souris	Ratón
 Move	Verschieben	Déplacer	Mover
+Move ahead in the 3D view (held)	In der 3D-Ansicht vorwärts bewegen (gedrückt halten)	Avancer dans la vue 3D (maintenir)	Avanzar en la vista 3D (mantener pulsado)
+Move back in the 3D view (held)	In der 3D-Ansicht rückwärts bewegen (gedrückt halten)	Reculer dans la vue 3D (maintenir)	Retroceder en la vista 3D (mantener pulsado)
 Move down	Nach unten	Descendre	Bajar
+Move down in the 3D view (held)	In der 3D-Ansicht nach unten bewegen (gedrückt halten)	Descendre dans la vue 3D (maintenir)	Bajar en la vista 3D (mantener pulsado)
+Move faster with the keys of the 3D view	Mit den Tasten der 3D-Ansicht schneller bewegen	Se déplacer plus vite avec les touches de la vue 3D	Moverse más rápido con las teclas de la vista 3D
 Move left	Nach links	Déplacer à gauche	Mover a la izquierda
+Move left in the 3D view (held)	In der 3D-Ansicht nach links bewegen (gedrückt halten)	Aller à gauche dans la vue 3D (maintenir)	Moverse a la izquierda en la vista 3D (mantener pulsado)
 Move page down	Seite nach unten schieben	Déplacer la page vers le bas	Mover página hacia abajo
 Move page up	Seite nach oben schieben	Déplacer la page vers le haut	Mover página hacia arriba
+Move right in the 3D view (held)	In der 3D-Ansicht nach rechts bewegen (gedrückt halten)	Aller à droite dans la vue 3D (maintenir)	Moverse a la derecha en la vista 3D (mantener pulsado)
 Move selection by	Auswahl verschieben um	Déplacer la sélection de	Mover la selección
 Move selection by…	Auswahl verschieben um…	Déplacer la sélection de…	Mover la selección…
 Move selection down by one grid step	Auswahl um einen Rasterschritt nach unten verschieben	Déplacer la sélection d'un pas de grille vers le bas	Mover la selección un paso de cuadrícula hacia abajo
@@ -1199,9 +1220,9 @@ Move selection left by one grid step	Auswahl um einen Rasterschritt links versch
 Move selection right by one grid step	Auswahl um einen Rasterschritt rechts verschieben	Déplacer la sélection d'un pas de grille vers la droite	Mover la selección un paso de cuadrícula a la derecha
 Move selection up by one grid step	Auswahl um einen Rasterschritt nach oben verschieben	Déplacer la sélection d'un pas de grille vers le haut	Mover la selección un paso de cuadrícula hacia arriba
 Move the devices of this page into the new structure	Die Betriebsmittel dieser Seite in die neue Struktur verschieben	Déplacer les appareils de cette page dans la nouvelle structure	Mover los dispositivos de esta página a la nueva estructura
-Move through the 3D view (Shift: faster)	In der 3D-Ansicht bewegen (Umschalt: schneller)	Se déplacer dans la vue 3D (Maj : plus vite)	Moverse por la vista 3D (Mayús: más rápido)
 Move to section	In Abschnitt verschieben	Déplacer vers la section	Mover a la sección
 Move up	Nach oben	Monter	Subir
+Move up in the 3D view (held)	In der 3D-Ansicht nach oben bewegen (gedrückt halten)	Monter dans la vue 3D (maintenir)	Subir en la vista 3D (mantener pulsado)
 Moves this function to the existing device {}	Verschiebt diese Funktion zum vorhandenen Betriebsmittel {}	Déplace cette fonction vers l'appareil existant {}	Mueve esta función al dispositivo existente {}
 Moves this function to the new device {}	Verschiebt diese Funktion zum neuen Betriebsmittel {}	Déplace cette fonction vers le nouvel appareil {}	Mueve esta función al nuevo dispositivo {}
 Moves to the top level as page {}	Kommt als Seite {} auf die oberste Ebene	Passe au niveau supérieur comme page {}	Pasa al nivel superior como página {}
@@ -1223,7 +1244,6 @@ Name and cross reference	Name und Querverweis	Nom et renvoi	Nombre y referencia 
 Name on the server	Name auf dem Server	Nom sur le serveur	Nombre en el servidor
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Datentyp; Logische Adresse; Kommentar – für SPS-Programmierwerkzeuge	Nom ; Type de données ; Adresse logique ; Commentaire – pour les outils de programmation API	Nombre; Tipo de datos; Dirección lógica; Comentario – para herramientas de programación PLC
 Named copy of this form, for report blocks	Benannte Kopie dieses Formulars, für Auswertungsblöcke	Copie nommée de ce formulaire, pour les blocs de rapports	Copia con nombre de este formulario, para bloques de informes
-Navigation	Navigation	Navigation	Navegación
 Navigators	Navigatoren	Navigateurs	Navegadores
 Neutral exchange file…	Neutrale Austauschdatei…	Fichier d'échange neutre…	Archivo de intercambio neutro…
 Never	Nie	Jamais	Nunca
@@ -1300,6 +1320,7 @@ No dot: plain T	Kein Punkt: einfaches T	Pas de point : T simple	Sin punto: T sim
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Noch kein Gehäuse – mit Neues Gehäuse anlegen, oder mit Neuer Raum einen Raum für Schaltschränke.	Pas encore d'enveloppe – créez-en une avec Nouvelle enveloppe, ou une salle pour les armoires avec Nouvelle salle.	Aún no hay envolvente – cree una con Nueva envolvente, o una sala para armarios con Nueva sala.
 No field cables: place the enclosures and field devices at nodes of the route network.	Keine Feldkabel: Schaltschränke und Feldgeräte an Knoten des Trassennetzes platzieren.	Aucun câble de terrain : placez les armoires et les appareils de terrain sur des nœuds du réseau.	No hay cables de campo: coloque los armarios y aparatos de campo en nodos de la red de recorridos.
 No filter fans: an air/air heat exchanger or a cooling unit	Keine Filterlüfter: ein Luft/Luft-Wärmetauscher oder ein Kühlgerät	Pas de ventilateurs à filtre : un échangeur thermique air/air ou un climatiseur	Sin ventiladores con filtro: un intercambiador de calor aire/aire o un equipo de refrigeración
+No gesture	Keine Geste	Aucun geste	Sin gesto
 No harnesses defined.	Keine Kabelbäume definiert.	Aucun faisceau défini.	No hay mazos definidos.
 No harnesses yet – Connections › Harnesses	Noch keine Kabelbäume – Verbindungen › Kabelbäume	Pas encore de faisceaux – Liaisons › Faisceaux	Aún no hay mazos – Conexiones › Mazos
 No inverter	Kein Wechselrichter	Pas d'onduleur	Sin inversor
@@ -1350,6 +1371,7 @@ Not on a page	Nicht auf einer Seite	Pas sur une page	No está en una página
 Not on a page: shows it in its pane	Nicht auf einer Seite: zeigt es in seinem Bereich	Pas sur une page : l'affiche dans son volet	No está en una página: lo muestra en su panel
 Not on a wire	Nicht auf einer Verbindung	Pas sur un fil	No está sobre un cable
 Not saved, locked or changed by another user: {}	Nicht gespeichert, von einem anderen Benutzer gesperrt oder geändert: {}	Non enregistré, verrouillé ou modifié par un autre utilisateur : {}	No guardado, bloqueado o modificado por otro usuario: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nicht übernommen: die linke Taste allein wählt aus, zeichnet und verschiebt; eine Zusatztaste halten oder eine andere Taste nehmen.	Non retenu : le bouton gauche seul sélectionne, dessine et déplace ; maintenez une touche de modification ou utilisez un autre bouton.	No aceptado: el botón izquierdo solo selecciona, dibuja y mueve; mantenga una tecla modificadora o use otro botón.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nicht das gemeinsame Projekt: Änderungen werden lokal gespeichert, bis es wieder auf dem Projektserver geöffnet wird	Ce n'est pas le projet partagé : les modifications sont enregistrées en local jusqu'à sa réouverture sur le serveur de projets	No es el proyecto compartido: los cambios se guardan localmente hasta que se vuelva a abrir en el servidor de proyectos
 Nothing exchanged yet.	Noch nichts ausgetauscht.	Rien n'a encore été échangé.	Todavía no se ha intercambiado nada.
 Nothing left in this list.	Nichts mehr in dieser Liste.	Plus rien dans cette liste.	No queda nada en esta lista.
@@ -1391,6 +1413,7 @@ Open project	Projekt öffnen	Ouvrir le projet	Abrir proyecto
 Open project server	Projektserver öffnen	Ouvrir le serveur de projets	Abrir el servidor de proyectos
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Projekte und Dateien aus Autodesk Vault öffnen, das Projekt, Exporte und 3D-Modelle im Vault ablegen	Ouvrir des projets et fichiers depuis Autodesk Vault, placer le projet, les exports et les modèles 3D dans le Vault	Abrir proyectos y archivos de Autodesk Vault, colocar el proyecto, las exportaciones y los modelos 3D en el Vault
 Open the project	Projekt öffnen	Ouvrir le projet	Abrir el proyecto
+Open the selection: its properties, in the floor plan its face	Auswahl öffnen: ihre Eigenschaften, im Grundriss ihre Ansicht	Ouvrir la sélection : ses propriétés, dans le plan sa face	Abrir la selección: sus propiedades, en el plano su cara
 Open to {}: wires cross beside the mounting plates	Offen zu {}: Drähte laufen neben den Montageplatten hinüber	Ouverte vers {} : les fils passent à côté des plaques de montage	Abierto hacia {}: los cables pasan junto a las placas de montaje
 Open walls and floors	Wände und Böden öffnen	Ouvrir murs et sols	Abrir paredes y suelos
 Open, save, import, export, print and the settings	Öffnen, Speichern, Importieren, Exportieren, Drucken und die Einstellungen	Ouvrir, enregistrer, importer, exporter, imprimer et les paramètres	Abrir, guardar, importar, exportar, imprimir y los ajustes
@@ -1427,6 +1450,7 @@ Open…	Öffnen…	Ouvrir…	Abrir…
 Operations / year	Schaltspiele / Jahr	Manœuvres / an	Maniobras / año
 Option	Option	Option	Opción
 Options	Optionen	Options	Opciones
+Orbit the 3D view	3D-Ansicht drehen	Faire pivoter la vue 3D	Orbitar la vista 3D
 Ordinary cable	Normales Kabel	Câble ordinaire	Cable normal
 Orientation	Ausrichtung	Orientation	Orientación
 Origin	Herkunft	Origine	Origen
@@ -1481,7 +1505,10 @@ Pages and templates using the frame follow	Seiten und Vorlagen mit diesem Rahmen
 Pages of revision {}	Seiten der Revision {}	Pages de la révision {}	Páginas de la revisión {}
 Pages of the selected block	Seiten des gewählten Blocks	Pages du bloc sélectionné	Páginas del bloque seleccionado
 Pages using it get the project default	Seiten, die es verwenden, erhalten den Projektstandard	Les pages qui l'utilisent prennent la valeur par défaut du projet	Las páginas que lo usan reciben el valor predeterminado del proyecto
+Pages, panel layout and plans	Seiten, Schaltschrankaufbau und Pläne	Pages, implantation d'armoire et plans	Páginas, diseño del armario y planos
 Pairs in schematic order (1-2, 3-4 …)	Paare in Schaltplanreihenfolge (1-2, 3-4 …)	Paires dans l'ordre du schéma (1-2, 3-4 …)	Pares en el orden del esquema (1-2, 3-4 …)
+Pan the 3D view	3D-Ansicht verschieben	Déplacer la vue 3D	Desplazar la vista 3D
+Pan the page, the panel layout and the plans	Seite, Schaltschrankaufbau und Pläne verschieben	Déplacer la vue de la page, de l'implantation d'armoire et des plans	Desplazar la página, el diseño del armario y los planos
 Pane menu	Fenstermenü	Menu du panneau	Menú del panel
 Panel wiring report	Bericht Schaltschrankverdrahtung	Rapport de câblage de l'armoire	Informe de cableado del armario
 Panes	Fenster	Panneaux	Paneles
@@ -1508,6 +1535,8 @@ Pattern	Muster	Motif	Patrón
 Pattern…	Muster…	Motif…	Patrón…
 Pin view	Anschlussansicht	Vue de connexions	Vista de conexiones
 Pin-out	Pinbelegung	Brochage	Asignación de pines
+Pinching	Spreizen	Pincement	Pellizcar
+Pinching on a trackpad or a touch screen zooms	Spreizen auf Trackpad oder Touchscreen zoomt	Le pincement sur un pavé tactile ou un écran tactile zoome	Pellizcar en un panel táctil o una pantalla táctil hace zoom
 Pipe run	Rohrtrasse	Chemin de tuyauterie	Recorrido de tuberías
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rohrtrasse an einer Wand, der Decke oder dem Boden des Raums, entlang der Schläuche, Rohre und Rohrleitungen verlegt werden: Eckpunkte anklicken, Doppelklick oder Enter zum Abschließen	Chemin de tuyauterie sur un mur, le plafond ou le sol de la salle, le long duquel sont posés flexibles, tubes et tuyaux : cliquer les coins, double-clic ou Entrée pour terminer	Recorrido de tuberías en una pared, el techo o el suelo de la sala, a lo largo del cual se tienden mangueras, tubos y tuberías: haga clic en las esquinas, doble clic o Intro para terminar
 Pipe run {} mm – double-click or Enter to finish	Rohrtrasse {} mm – Doppelklick oder Enter zum Abschließen	Chemin de tuyauterie {} mm – double-clic ou Entrée pour terminer	Recorrido de tuberías {} mm – doble clic o Intro para terminar
@@ -1656,6 +1685,7 @@ Recent projects	Zuletzt verwendete Projekte	Projets récents	Proyectos recientes
 Recently used	Zuletzt verwendet	Utilisés récemment	Usados recientemente
 Recommended height of manual actuators (10.1.2)	Empfohlene Höhe von Bedienteilen (10.1.2)	Hauteur recommandée des organes de commande manuels (10.1.2)	Altura recomendada de los actuadores manuales (10.1.2)
 Record	Aufnehmen	Enregistrer	Grabar
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Aufnehmen: die Geste im erscheinenden Feld ausführen, auf Wunsch mit gedrückter Zusatztaste (Esc bricht ab). Hinzufügen behält die vorhandenen Gesten. Rechtsklick im Auswahlwerkzeug öffnet das Kontextmenü.	Enregistrer : faites le geste dans le champ qui apparaît, en maintenant une touche de modification si souhaité (Échap annule). Ajouter conserve les gestes existants. Le clic droit dans l'outil de sélection ouvre le menu contextuel.	Grabar: haga el gesto en el campo que aparece, con una tecla modificadora pulsada si lo desea (Esc cancela). Añadir conserva los gestos existentes. El clic derecho en la herramienta de selección abre el menú contextual.
 Record: press the new key with its modifiers (Esc cancels). Esc and copy / cut / paste stay fixed.	Aufnehmen: die neue Taste mit ihren Zusatztasten drücken (Esc bricht ab). Esc und Kopieren / Ausschneiden / Einfügen bleiben fest.	Enregistrer : appuyez sur la nouvelle touche avec ses modificateurs (Échap annule). Échap et copier / couper / coller restent fixes.	Grabar: pulse la nueva tecla con sus modificadores (Esc cancela). Esc y copiar / cortar / pegar no cambian.
 Rectangular	Rechteckig	Rectangulaire	Rectangular
 Redline: to be changed · Greenline: changed as built	Redline: zu ändern · Greenline: wie gebaut geändert	Redline : à modifier · Greenline : modifié tel que construit	Redline: a cambiar · Greenline: cambiado según construcción
@@ -1771,6 +1801,7 @@ Revisions, approval and release	Revisionen, Genehmigung und Freigabe	Révisions,
 Ribbon	Menüband	Ruban	Cinta de opciones
 Ribbon (JSON)	Menüband (JSON)	Ruban (JSON)	Cinta de opciones (JSON)
 Ribbon imported	Menüband importiert	Ruban importé	Cinta de opciones importada
+Right button	Rechte Taste	Bouton droit	Botón derecho
 Right click a message in the Messages pane to change its level.	Rechtsklick auf eine Meldung im Bereich Meldungen ändert ihre Stufe.	Clic droit sur un message dans le volet Messages pour changer son niveau.	Haga clic derecho en un mensaje del panel Mensajes para cambiar su nivel.
 Right click for more	Rechtsklick für mehr	Clic droit pour plus	Clic derecho para más
 Right edges	Rechte Kanten	Bords droits	Bordes derechos
@@ -1791,6 +1822,8 @@ Rotate	Drehen	Pivoter	Girar
 Rotate (selection or symbol being placed)	Drehen (Auswahl oder zu platzierendes Symbol)	Pivoter (sélection ou symbole en cours de placement)	Girar (selección o símbolo que se coloca)
 Rotate left	Nach links drehen	Tourner à gauche	Girar a la izquierda
 Rotate right	Nach rechts drehen	Tourner à droite	Girar a la derecha
+Rotate what is being moved	Das Verschobene drehen	Tourner ce qui est déplacé	Girar lo que se está moviendo
+Rotate what is being moved counter-clockwise	Das Verschobene gegen den Uhrzeigersinn drehen	Tourner ce qui est déplacé dans le sens antihoraire	Girar lo que se mueve en sentido antihorario
 Round	Rund	Rond	Redondo
 Round cutouts facing each other in both side walls	Runde Ausschnitte gegenüber in beiden Seitenwänden	Découpes rondes face à face dans les deux parois latérales	Recortes redondos enfrentados en ambas paredes laterales
 Route definition of {}	Trassendefinition von {}	Définition du cheminement de {}	Definición del recorrido de {}
@@ -1871,7 +1904,9 @@ Scheme {}	Schema {}	Schéma {}	Esquema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Schrauben, Muttern, Scheiben und Einnietmuttern der Befestigungspunkte	Vis, écrous, rondelles et écrous à sertir des points de fixation	Tornillos, tuercas, arandelas y tuercas remachables de los puntos de fijación
 Scrolling	Scrollen	Défilement	Desplazamiento
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Scrollen verschiebt in jede Richtung; zum Zoomen die Finger zusammenziehen oder Strg + Scrollen.	Le défilement déplace la vue dans toutes les directions ; pincer ou Ctrl + défilement pour zoomer.	El desplazamiento mueve la vista en cualquier dirección; pellizcar o Ctrl + desplazar para hacer zoom.
+Scrolling up and down pans sideways	Scrollen nach oben und unten verschiebt seitwärts	Le défilement vertical déplace latéralement	Desplazar arriba y abajo mueve la vista hacia los lados
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Scrollen nach oben und unten zoomt am Mauszeiger, seitwärts (horizontales Rad, Umschalt + Rad) verschiebt.	Défiler vers le haut et le bas zoome au pointeur, latéralement (molette horizontale, Maj + molette) déplace la vue.	Desplazar arriba y abajo hace zoom en el puntero, de lado (rueda horizontal, Mayús + rueda) desplaza la vista.
+Scrolling zooms, also where it pans	Scrollen zoomt, auch wo es sonst verschiebt	Le défilement zoome, même là où il déplace	Desplazar hace zoom, también donde mueve la vista
 Seal	Einzeladerabdichtung	Joint	Junta
 Search (* and ? as placeholders)…	Suchen (* und ? als Platzhalter)…	Rechercher (* et ? comme jokers)…	Buscar (* y ? como comodines)…
 Search below this folder	Unterhalb dieses Ordners suchen	Rechercher sous ce dossier	Buscar debajo de esta carpeta
@@ -1936,7 +1971,6 @@ Shield pigtail	Schirm-Pigtail	Queue de cochon du blindage	Coleta de pantalla
 Shielded	Geschirmt	Blindé	Apantallado
 Shielded analogue cables	Geschirmte Analogleitungen	Câbles analogiques blindés	Cables analógicos apantallados
 Shielded drive cables	Geschirmte Antriebsleitungen	Câbles de variateur blindés	Cables de accionamiento apantallados
-Shift + click / drag	Umschalt + Klick / Ziehen	Maj + clic / glisser	Mayús + clic / arrastrar
 Short circuit and selectivity	Kurzschluss und Selektivität	Court-circuit et sélectivité	Cortocircuito y selectividad
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kurzschluss, Selektivität, Lasten, EMV, funktionale Sicherheit und Prüfung gegen Regelwerke	Court-circuit, sélectivité, charges, CEM, sécurité fonctionnelle et vérification par rapport aux jeux de règles	Cortocircuito, selectividad, cargas, CEM, seguridad funcional y verificación frente a conjuntos de reglas
 Short-circuit currents	Kurzschlussströme	Courants de court-circuit	Corrientes de cortocircuito
@@ -2137,6 +2171,7 @@ The items are selected and moved together	Die Elemente werden gemeinsam ausgewä
 The level of a building the room is on (Layout space › Buildings); it moves with the building and its level	Die Ebene eines Gebäudes, auf der der Raum liegt (Layoutraum › Gebäude); er bewegt sich mit dem Gebäude und seiner Ebene	Le niveau d'un bâtiment sur lequel se trouve la pièce (Espace de montage › Bâtiments) ; elle suit le bâtiment et son niveau	El nivel de un edificio en el que está la sala (Espacio de montaje › Edificios); se mueve con el edificio y su nivel
 The low eaves at the rear or left instead of the front or right	Die niedrige Traufe hinten oder links statt vorne oder rechts	L'égout bas à l'arrière ou à gauche au lieu de l'avant ou de la droite	El alero bajo detrás o a la izquierda en lugar de delante o a la derecha
 The macro library has no page macros (Macros › Save page as macro…).	Die Makrobibliothek hat keine Seitenmakros (Makros › Seite als Makro speichern…).	La bibliothèque de macros n'a pas de macros de page (Macros › Enregistrer la page comme macro…).	La biblioteca de macros no tiene macros de página (Macros › Guardar página como macro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Die Zusatztasten, mit denen das Mausrad seitwärts verschiebt oder zoomt, werden unter Zusatztasten eingestellt.	Les touches de modification qui font défiler la molette latéralement ou zoomer se règlent sous Touches de modification.	Las teclas modificadoras que hacen que la rueda desplace hacia los lados o haga zoom se ajustan en Teclas modificadoras.
 The modules no string takes yet in series, on the first inverter	Die Module, die noch kein String nimmt, in Reihe, am ersten Wechselrichter	Les modules qu'aucune chaîne ne prend encore, en série, sur le premier onduleur	Los módulos que ningún string toma aún, en serie, en el primer inversor
 The names of its pages follow	Die Namen seiner Seiten ändern sich mit	Les noms de ses pages suivent	Los nombres de sus páginas cambian con ella
 The next symbol is placed with this routing; placed symbols keep theirs · {} next routing · {} turns it	Das nächste Symbol wird mit dieser Verlegung platziert; platzierte Symbole behalten ihre · {} nächste Verlegung · {} dreht es	Le prochain symbole est placé avec ce cheminement ; les symboles placés gardent le leur · {} cheminement suivant · {} le tourne	El siguiente símbolo se coloca con este tendido; los símbolos colocados conservan el suyo · {} siguiente tendido · {} lo gira
@@ -2207,10 +2242,12 @@ Touch screen	Touchscreen	Écran tactile	Pantalla táctil
 Transfer project parts to database	Projektartikel in die Datenbank übernehmen	Transférer les articles du projet dans la base	Transferir los artículos del proyecto a la base de datos
 Translate the project texts; documentation per language	Projekttexte übersetzen; Dokumentation je Sprache	Traduire les textes du projet ; documentation par langue	Traducir los textos del proyecto; documentación por idioma
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drehung um die Senkrechte, von oben gesehen gegen den Uhrzeigersinn (90 °: die Fronten zeigen nach rechts)	Rotation autour de la verticale, dans le sens antihoraire vu d'en haut (90 ° : les façades sont tournées vers la droite)	Giro alrededor de la vertical, en sentido antihorario visto desde arriba (90 °: los frentes miran a la derecha)
+Turn the 3D view to the point	3D-Ansicht auf den Punkt ausrichten	Tourner la vue 3D vers le point	Girar la vista 3D hacia el punto
 Tutorial	Tutorial	Tutoriel	Tutorial
 Tutorial: {}	Tutorial: {}	Tutoriel : {}	Tutorial: {}
 Twin ferrules where two wires share a connection point	Zwillingsaderendhülsen, wo zwei Leitungen einen Anschlusspunkt teilen	Embouts doubles là où deux fils partagent un point de connexion	Punteras dobles donde dos cables comparten un punto de conexión
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Zwei Finger auf einem Trackpad verschieben, das Mausrad zoomt. Nur macOS unterscheidet beide; sonst zoomt Scrollen wie das Mausrad.	Deux doigts sur un pavé tactile déplacent la vue, la molette zoome. Seul macOS les distingue ; ailleurs, le défilement zoome comme la molette.	Dos dedos en un panel táctil desplazan la vista, la rueda del ratón hace zoom. Solo macOS los distingue; en otros sistemas el desplazamiento hace zoom como la rueda.
+Two fingers pan	Zwei Finger verschieben	Deux doigts déplacent	Dos dedos desplazan
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Zwei Finger verschieben und zoomen gleichzeitig; ein Finger wirkt wie die linke Maustaste.	Deux doigts déplacent la vue et zooment en pinçant en même temps ; un doigt agit comme le bouton gauche de la souris.	Dos dedos desplazan la vista y hacen zoom al pellizcar a la vez; un dedo funciona como el botón izquierdo del ratón.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier müssen zwei Verbindungslinien im rechten Winkel zusammentreffen. Bei eingeschaltetem Auto-Connect werden Anschlusspunkte, die ihren Armen gegenüberliegen, mit ihr verdrahtet.	Deux fils doivent se rejoindre ici à angle droit. Avec l'auto-connexion activée, les points de connexion face à ses bras y sont reliés.	Aquí deben unirse dos cables en ángulo recto. Con la autoconexión activada, los puntos de conexión enfrentados a sus brazos se cablean a ella.
 Type a point	Punkt eingeben	Saisir un point	Introducir un punto
@@ -2284,7 +2321,6 @@ View	Ansicht	Affichage	Ver
 Visible	Sichtbar	Visible	Visible
 Voltage (line to line)	Spannung (Außenleiter)	Tension (entre phases)	Tensión (entre fases)
 Voltage drop	Spannungsfall	Chute de tension	Caída de tensión
-W A S D / arrows, Q / E	W A S D / Pfeiltasten, Q / E	W A S D / flèches, Q / E	W A S D / flechas, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, wird in das Grundstück von IFC-Exporten geschrieben	WGS 84, écrite dans le site des exports IFC	WGS 84, se escribe en el emplazamiento de las exportaciones IFC
 Waiting for the previous autosave	Warten auf die vorherige automatische Speicherung	Attente de la sauvegarde automatique précédente	Esperando el guardado automático anterior
 Wall opacity	Deckkraft der Wände	Opacité des murs	Opacidad de las paredes
@@ -2302,7 +2338,7 @@ Web between holes	Steg zwischen Bohrungen	Âme entre perçages	Alma entre taladr
 Welcome to OpenECraft	Willkommen bei OpenECraft	Bienvenue dans OpenECraft	Bienvenido a OpenECraft
 What is new	Neuigkeiten	Nouveautés	Novedades
 What should be checked or changed?	Was soll geprüft oder geändert werden?	Que faut-il vérifier ou modifier ?	¿Qué hay que comprobar o cambiar?
-Wheel / right or middle drag	Mausrad / Rechts- oder Mittelklick-Ziehen	Molette / glisser avec clic droit ou milieu	Rueda / arrastrar con botón derecho o central
+Wheel and touch	Mausrad und Touch	Molette et tactile	Rueda y táctil
 Wheel: zoom · drag: move · click on a room: its floor plan	Mausrad: Zoom · Ziehen: verschieben · Klick auf einen Raum: sein Grundriss	Molette : zoom · glisser : déplacer · clic sur une pièce : son plan	Rueda: zoom · arrastrar: mover · clic en un recinto: su planta
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rad: Zoom · Ziehen: verschieben · Klick auf einen Raum: sein Grundriss · Ecke der Grundstücksgrenze ziehen	Molette : zoom · glisser : déplacer · clic sur une pièce : son plan · glisser un sommet de la limite du terrain	Rueda: zoom · arrastrar: mover · clic en una sala: su plano · arrastrar una esquina del límite de la parcela
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Mausrad: Zoom · Rechtsklick: abbrechen · Grafik rastet auf 0,5 mm ein, Anschlusspunkte auf das 4-mm-Raster	Molette : zoom · clic droit : annuler · les graphiques s'alignent sur 0,5 mm, les points de connexion sur la grille de 4 mm	Rueda: zoom · clic derecho: cancelar · los gráficos se ajustan a 0,5 mm, los puntos de conexión a la cuadrícula de 4 mm
@@ -2375,10 +2411,11 @@ You may only view this project.	Sie dürfen dieses Projekt nur ansehen.	Vous pou
 You may review this project: comments, markup and approvals, no other changes.	Sie dürfen dieses Projekt prüfen: Kommentare, Markierungen und Freigaben, keine anderen Änderungen.	Vous pouvez réviser ce projet : commentaires, annotations et approbations, aucune autre modification.	Puede revisar este proyecto: comentarios, marcas y aprobaciones, ningún otro cambio.
 Your unsaved changes of it are taken back	Ihre ungespeicherten Änderungen daran werden zurückgenommen	Vos modifications non enregistrées sont annulées	Sus cambios no guardados se deshacen
 Zoom	Zoom	Zoom	Zoom
-Zoom / pan	Zoom / Verschieben	Zoom / déplacement	Zoom / desplazar
 Zoom 100 %	Zoom 100 %	Zoom 100 %	Zoom 100 %
 Zoom in	Vergrößern	Zoom avant	Acercar
+Zoom in in the 3D view (held)	In der 3D-Ansicht vergrößern (gedrückt halten)	Zoomer dans la vue 3D (maintenir)	Acercar la vista 3D (mantener pulsado)
 Zoom out	Verkleinern	Zoom arrière	Alejar
+Zoom out in the 3D view (held)	In der 3D-Ansicht verkleinern (gedrückt halten)	Dézoomer dans la vue 3D (maintenir)	Alejar la vista 3D (mantener pulsado)
 Zoom: 100% ≈ real size on a 96 dpi screen. Click fits the page.	Zoom: 100 % ≈ Originalgröße auf einem 96-dpi-Bildschirm. Klick passt die Seite ein.	Zoom : 100 % ≈ taille réelle sur un écran de 96 dpi. Un clic ajuste la page.	Zoom: 100 % ≈ tamaño real en una pantalla de 96 ppp. Un clic ajusta la página.
 Zoom: click fits the view.	Zoom: Klick passt die Ansicht ein.	Zoom : un clic ajuste la vue.	Zoom: un clic ajusta la vista.
 all	alle	toutes	todas
@@ -2648,6 +2685,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} × {} mm, {} walls	{} × {} mm, {} Wände	{} × {} mm, {} murs	{} × {} mm, {} paredes
 {} × {} pixels, {}	{} × {} Pixel, {}	{} × {} pixels, {}	{} × {} píxeles, {}
 {} – {} ({} pages)	{} – {} ({} Seiten)	{} – {} ({} pages)	{} – {} ({} páginas)
+{} – {} here (Esc cancels)	{} – hier {} (Esc bricht ab)	{} – {} ici (Échap annule)	{} – {} aquí (Esc cancela)
 {}: a double-click opens its floor plan	{}: ein Doppelklick öffnet seinen Grundriss	{} : un double-clic ouvre son plan	{}: un doble clic abre su planta
 {}: click to show its floor plan	{}: Klicken zeigt seinen Grundriss	{} : cliquer pour afficher son plan	{}: haga clic para mostrar su planta
 {}: crimp together with the wire to {}	{}: zusammen mit der Leitung nach {} crimpen	{} : sertir avec le fil vers {}	{}: engastar junto con el cable hacia {}

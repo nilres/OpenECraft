@@ -85,7 +85,6 @@ Add rule	Додати правило
 Add sort key	Додати ключ сортування
 Add the facing cutout in {}	Додати протилежний виріз у {}
 Add to device	Додати до пристрою
-Add to selection	Додати до виділення
 Add to the pre-planning	Додати до попереднього планування
 Add user	Додати користувача
 Added to both ends of the length for the cut length (insertion depth)	Додається до обох кінців довжини для довжини відрізання (глибина вставлення)
@@ -130,6 +129,7 @@ Ambient temperature	Температура навколишнього серед
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Архів (.oecz) – це ZIP-файл із проєктом, маніфестом і вбудованими документами та зображеннями як окремими файлами.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Старе креслення як графіка на новій сторінці схеми (лінії, дуги, тексти, блоки)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Відкритий електротехнічний САПР-редактор у дусі EPLAN Electric P8.
+Another gesture for the same function	Ще один жест для тієї ж функції
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Інший варіант наявного макросу з цією назвою (напр. B), вибирається під час вставлення
 Any project file: its settings, forms, structure, potentials and pages start the new project	Будь-який файл проєкту: його параметри, форми, структура, потенціали та сторінки стають основою нового проєкту
 Appearance	Вигляд інтерфейсу
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Контури типового розподіл�
 Clear	Очистити
 Clearance	Відступ
 Clearances	Відстані
+Click	Клацання
+Click a text: open its link	Клацання по тексту: відкрити його посилання
 Click an element in the drawing to edit it.	Клацніть елемент на кресленні, щоб редагувати його.
 Click centre, then a point on the circle	Клацніть центр, потім точку на колі
+Click in the panel layout: a single item of an assembly	Клацання в компонуванні шафи: окремий елемент збірки
 Click into the page to place the image	Клацніть на сторінці, щоб розмістити зображення
 Click into the page to place {}	Клацніть на сторінці, щоб розмістити {}
 Click on a wall	Клацніть по стіні
 Click on a wire to place the connection definition point	Клацніть провід, щоб розмістити точку визначення з’єднання
 Click on the 4 mm grid	Клацніть на сітці 4 мм
 Click on the wall: the part goes there at its mounting height	Клацніть на стіну: виріб стане там на свою висоту монтажу
+Click or window: add to the selection or take out of it	Клацання або рамка: додати до вибору або прибрати з нього
 Click start and end point	Клацніть початкову й кінцеву точки
 Click the corners of a machine or building, double-click to finish	Клацайте кути машини або будівлі, двічі клацніть для завершення
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Клацайте по кутах межі ділянки · по першому, подвійне клацання або Enter: замкнути · Backspace: назад · Esc: стоп
@@ -326,6 +330,7 @@ Click where the reference point is	Клацніть там, де розташо�
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Клацніть, де сходяться три проводи: Т-подібний вузол задає пристрій, від якого йдуть проводи, і порядок їхніх цілей · {} повертає його, де проводи ще не сходяться · Esc або права кнопка завершує
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Клацніть, де перехрещуються два проводи: перехрестя з'єднує їх і веде кожен кінець своєї лінії спочатку прямо, потім упоперек · {} повертає його · Esc або права кнопка завершує
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Клацніть, де два проводи сходяться під прямим кутом, або де точки підключення розташовані навпроти через кут: за ввімкненого автоз'єднання до нього проводяться проводи · {} повертає його · Esc або права кнопка завершує
+Click while moving	Клацання під час переміщення
 Click, or drag it into the page	Клацніть або перетягніть на сторінку
 Climate (IEC 60890)	Тепловий режим (IEC 60890)
 Clipboard	Буфер обміну
@@ -536,6 +541,7 @@ Distribute vertically	Розподілити вертикально
 Distributed neutral	Розподілений нейтральний провідник
 Diversity factor	Коефіцієнт одночасності
 Divider	Розділювальна перегородка
+Do the gesture…	Виконайте жест…
 Dock	Закріпити
 Document {} embedded ({})	Документ {} вбудовано ({})
 Documents	Документи
@@ -549,7 +555,7 @@ Door clearance	Вільний простір дверей
 Door cutouts (CSV)	Вирізи дверей (CSV)
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
-Double-click (3D view)	Подвійне клацання (3D-вид)
+Double-click	Подвійне клацання
 Download into database	Завантажити до бази даних
 Download project	Завантажити проєкт
 Downloaded {} (version {})	{} завантажено (версія {})
@@ -558,6 +564,7 @@ Downloading OpenECraft {}	Завантаження OpenECraft {}
 Downstream part	Наступний виріб
 Draft of revision {} created	Чернетку ревізії {} створено
 Draft of revision {} discarded	Чернетку ревізії {} відхилено
+Drag	Перетягування
 Drag a connection point designation of the selected symbol to place it.	Перетягніть позначення точки підключення вибраного символу, щоб розмістити його.
 Drag an entry into the page, or click it and then click into the page.	Перетягніть запис на сторінку або клацніть його, а потім клацніть на сторінці.
 Drag the core designation or the cable tag of the selected wire to place it.	Перетягніть позначення жили або позначення кабелю вибраного проводу, щоб розмістити їх.
@@ -688,6 +695,8 @@ Find and replace in the whole project	Знайти й замінити в усь
 Find results	Результати пошуку
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Знаходить елементи Vault для виробів проєкту за номером елемента або властивістю Part Number і показує зміни ідентифікатора позиції, ревізії та стану життєвого циклу для перегляду
 Find…	Знайти…
+Finish a wire, polyline, polygon or wall	Завершити провід, полілінію, багатокутник або стіну
+Finish or cancel the drawing, then back to selecting	Завершити або скасувати малювання й повернутися до вибору
 First row	Перший рядок
 Fit	Умістити
 Fit page	Умістити сторінку
@@ -779,6 +788,7 @@ Height above the mounting plate	Висота над монтажною пане�
 Height above the plate	Висота над панеллю
 Height of the plinth, 0 without plinth	Висота цоколя, 0 – без цоколя
 Heights above floor (IEC 60204-1)	Висоти над підлогою (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Утримується під час клацання, переміщення чи прокручування. Ctrl у macOS — Cmd.
 Help	Довідка
 Hide the groups you do not need and put the commands you use most into own groups.	Сховайте непотрібні групи й розмістіть найуживаніші команди у власних групах.
 Highest phase unbalance	Найбільша несиметрія фаз
@@ -897,6 +907,8 @@ Key tips of the ribbon	Клавіші доступу стрічки
 Key: {}	Ключ: {}
 Keyboard shortcuts	Сполучення клавіш
 Keyboard shortcuts…	Сполучення клавіш…
+Keys and gestures	Клавіші та жести
+Keys of the 3D view	Клавіші 3D-вигляду
 Label	Мітка
 Label (grey)	Мітка (сіра)
 Label field	Поле мітки
@@ -918,6 +930,7 @@ Layout spaces	Монтажні простори
 Leave out the ceilings of the rooms and the roofs in the 3D view	Не показувати стелі приміщень і дахи у 3D-виді
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	У 3D-вигляді не показувати кришки всіх кабельних каналів: дроти в них стає видно
 Leave repeated values of the first column blank	Залишати повторювані значення першого стовпця порожніми
+Left button	Ліва кнопка
 Left edges	Ліві краї
 Legend plates (door devices)	Таблички з написами (пристрої на дверях)
 Length from the node to the device	Довжина від вузла до пристрою
@@ -967,7 +980,6 @@ Locked by {} – read only	Заблоковано користувачем {} �
 Locking…	Блокування…
 Logic	Логіка
 Longer values are drawn smaller (0 = no limit)	Довші значення відображаються меншими (0 = без обмеження)
-Look at the point clicked, closer	Подивитися на точку клацання, ближче
 Look for updates when OpenECraft starts	Шукати оновлення під час запуску OpenECraft
 Looking for updates…	Пошук оновлень…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Шукає нову версію OpenECraft на GitHub і встановлює її у фоновому режимі
@@ -1015,6 +1027,7 @@ Messages	Повідомлення
 Messages ({})	Повідомлення ({})
 Messages of this session	Повідомлення цього сеансу
 Middle	Посередині
+Middle button	Середня кнопка
 Middle of the PV array in the floor plan of the building	Середина фотоелектричного поля на плані будівлі
 Min. bend radius	Мін. радіус згину
 Minimize the ribbon	Згорнути стрічку
@@ -1023,6 +1036,7 @@ Mirror (selection or symbol being placed)	Віддзеркалити (вибра
 Mixed	Різні
 Mode	Режим
 Model of a part (2D / 3D)	Модель виробу (2D / 3D)
+Modifier keys	Клавіші-модифікатори
 Module part; its size comes from the part	Виріб модуля; його розмір береться з виробу
 Motors feed the short circuit	Двигуни підживлюють коротке замикання
 Mounted on	Змонтовано на
@@ -1031,17 +1045,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Мо�
 Mounting height: {}	Висота монтажу: {}
 Mounting plate: {} holes, {} cutouts	Монтажна панель: отворів – {}, вирізів – {}
 Mounting system	Монтажна система
+Mouse	Миша
 Move	Перемістити
+Move ahead in the 3D view (held)	Рухатися вперед у 3D-вигляді (утримувати)
+Move back in the 3D view (held)	Рухатися назад у 3D-вигляді (утримувати)
 Move down	Перемістити вниз
+Move down in the 3D view (held)	Рухатися вниз у 3D-вигляді (утримувати)
+Move faster with the keys of the 3D view	Швидше рухатися клавішами 3D-вигляду
 Move left	Перемістити ліворуч
+Move left in the 3D view (held)	Рухатися ліворуч у 3D-вигляді (утримувати)
 Move page down	Перемістити сторінку вниз
 Move page up	Перемістити сторінку вгору
+Move right in the 3D view (held)	Рухатися праворуч у 3D-вигляді (утримувати)
 Move selection by	Перемістити вибране на
 Move selection by…	Перемістити вибране на…
 Move the devices of this page into the new structure	Перемістити пристрої цієї сторінки в нову структуру
-Move through the 3D view (Shift: faster)	Переміщення у 3D-виді (Shift: швидше)
 Move to section	Перемістити до розділу
 Move up	Перемістити вгору
+Move up in the 3D view (held)	Рухатися вгору у 3D-вигляді (утримувати)
 Moves to the top level as page {}	Переходить на верхній рівень як сторінка {}
 Moves to {} as page {}	Переходить до {} як сторінка {}
 Moving	Переміщення
@@ -1061,7 +1082,6 @@ Name and cross reference	Ім'я та перехресне посилання
 Name on the server	Назва на сервері
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Ім’я; тип даних; логічна адреса; коментар – для засобів програмування ПЛК
 Named copy of this form, for report blocks	Іменована копія цієї форми для блоків звітів
-Navigation	Навігація
 Navigators	Навігатори
 Neutral exchange file…	Нейтральний файл обміну…
 Never	Ніколи
@@ -1133,6 +1153,7 @@ No dot: plain T	Без крапки: просте T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусів ще немає – створіть корпус командою Новий корпус або приміщення для шаф командою Нове приміщення.
 No field cables: place the enclosures and field devices at nodes of the route network.	Немає польових кабелів: розмістіть шафи та польові пристрої у вузлах мережі трас.
 No filter fans: an air/air heat exchanger or a cooling unit	Без фільтрувальних вентиляторів: теплообмінник повітря/повітря або холодильний агрегат
+No gesture	Без жесту
 No harnesses defined.	Джгути не визначено.
 No inverter	Без інвертора
 No jump: plain crossing, connections have dots	Без перескоку: просте перетинання, з'єднання позначені крапками
@@ -1175,6 +1196,7 @@ Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
 Not on a wire	Не на проводі
 Not saved, locked or changed by another user: {}	Не збережено, заблоковано або змінено іншим користувачем: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не прийнято: сама ліва кнопка вибирає, малює та переміщує; утримуйте модифікатор або використайте іншу кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Це не спільний проєкт: зміни зберігаються локально, доки його знову не відкрито на сервері проєктів
 Nothing exchanged yet.	Обміну ще не було.
 Nothing left in this list.	У цьому списку нічого не залишилося.
@@ -1214,6 +1236,7 @@ Open project	Відкрити проєкт
 Open project server	Відкрити сервер проєктів
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Відкривати проєкти й файли з Autodesk Vault, поміщати проєкт, експорти та 3D-моделі у сховище
 Open the project	Відкрити проєкт
+Open the selection: its properties, in the floor plan its face	Відкрити вибране: його властивості, на плані приміщення його бік
 Open to {}: wires cross beside the mounting plates	Відкрито до {}: проводи проходять поруч із монтажними панелями
 Open walls and floors	Відкрити стіни й підлоги
 Open, save, import, export, print and the settings	Відкриття, збереження, імпорт, експорт, друк і параметри
@@ -1249,6 +1272,7 @@ Open…	Відкрити…
 Operations / year	Циклів комутації / рік
 Option	Параметр
 Options	Параметри
+Orbit the 3D view	Обертати 3D-вигляд
 Ordinary cable	Звичайний кабель
 Orientation	Орієнтація
 Origin	Походження
@@ -1298,7 +1322,10 @@ Pages and templates using the frame follow	Сторінки й шаблони з
 Pages of revision {}	Сторінки ревізії {}
 Pages of the selected block	Сторінки вибраного блоку
 Pages using it get the project default	Сторінки, які його використовують, отримують стандарт проєкту
+Pages, panel layout and plans	Сторінки, компонування шафи та плани
 Pairs in schematic order (1-2, 3-4 …)	Пари в порядку схеми (1-2, 3-4 …)
+Pan the 3D view	Зсувати 3D-вигляд
+Pan the page, the panel layout and the plans	Зсувати сторінку, компонування шафи та плани
 Pane menu	Меню панелі
 Panel wiring report	Звіт про монтаж проводів шафи
 Panes	Панелі
@@ -1322,6 +1349,8 @@ Path function text	Текст функції шляху
 Pattern	Масив
 Pattern…	Масив…
 Pin-out	Розпіновка
+Pinching	Щипок
+Pinching on a trackpad or a touch screen zooms	Щипок на тачпаді або сенсорному екрані масштабує
 Pipe run	Траса трубопроводу
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Траса трубопроводу на стіні, стелі або підлозі приміщення, уздовж якої прокладаються шланги, трубки та труби: клацніть кути, подвійне клацання або Enter – завершити
 Pipe run {} mm – double-click or Enter to finish	Траса трубопроводу {} мм – подвійне клацання або Enter – завершити
@@ -1457,6 +1486,7 @@ Recent projects	Останні проєкти
 Recently used	Нещодавно використані
 Recommended height of manual actuators (10.1.2)	Рекомендована висота ручних органів керування (10.1.2)
 Record	Записати
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Записати: виконайте жест у полі, що з’явиться, за бажання утримуючи модифікатор (Esc скасовує). «Додати» зберігає наявні жести. Клацання правою кнопкою в інструменті вибору відкриває контекстне меню.
 Rectangular	Прямокутний
 Redline: to be changed · Greenline: changed as built	Червона розмітка: слід змінити · Зелена розмітка: змінено за фактом виконання
 Redo	Повторити
@@ -1565,6 +1595,7 @@ Revisions, approval and release	Ревізії, погодження та зат
 Ribbon	Стрічка
 Ribbon (JSON)	Стрічка (JSON)
 Ribbon imported	Стрічку імпортовано
+Right button	Права кнопка
 Right click for more	Клацніть правою кнопкою для інших дій
 Right edges	Праві краї
 Right neighbour	Сусід праворуч
@@ -1581,6 +1612,8 @@ Room {} taken out of the building; it stays where it stands	Приміщення
 Rooms under sloped ceilings (lowest – highest ceiling)	Приміщення під скошеними стелями (найнижча – найвища стеля)
 Rotate	Повернути
 Rotate (selection or symbol being placed)	Повернути (вибране або символ, що розміщується)
+Rotate what is being moved	Повернути те, що переміщується
+Rotate what is being moved counter-clockwise	Повернути те, що переміщується, проти годинникової стрілки
 Round	Круглий
 Round cutouts facing each other in both side walls	Круглі вирізи один навпроти одного в обох бічних стінках
 Route definition of {}	Визначення траси {}
@@ -1657,7 +1690,9 @@ Scheme {}	Схема {}
 Screws, nuts, washers and rivet nuts of the fixing points	Гвинти, гайки, шайби та заклепкові гайки точок кріплення
 Scrolling	Прокручування
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Прокручування зсуває вигляд у будь-якому напрямку; для масштабування зведіть пальці або скористайтеся Ctrl + прокручуванням.
+Scrolling up and down pans sideways	Прокручування вгору й вниз зсуває вбік
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Прокручування вгору й униз масштабує біля вказівника, убік (горизонтальне коліщатко, Shift + коліщатко) зсуває вигляд.
+Scrolling zooms, also where it pans	Прокручування масштабує, навіть там, де воно зсуває
 Search (* and ? as placeholders)…	Пошук (* і ? як символи підстановки)…
 Search below this folder	Шукати в цій папці та вкладених
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Шукати на сервері виробів за каталогом, групою продуктів і технічними даними, додавати вироби та перевіряти базу даних на оновлення
@@ -1718,7 +1753,6 @@ Shield pigtail	Косичка екрана
 Shielded	Екранований
 Shielded analogue cables	Екрановані кабелі аналогових сигналів
 Shielded drive cables	Екрановані кабелі приводів
-Shift + click / drag	Shift + клацання / перетягування
 Short circuit and selectivity	Коротке замикання та селективність
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Коротке замикання, селективність, навантаження, ЕМС, функціональна безпека та перевірка за наборами правил
 Short-circuit currents	Струми короткого замикання
@@ -1894,6 +1928,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Горизонтальний провід
 The items are selected and moved together	Елементи вибираються й переміщуються разом
 The macro library has no page macros (Macros › Save page as macro…).	Бібліотека макросів не містить макросів сторінок (Макроси › Зберегти сторінку як макрос…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модифікатори, з якими коліщатко зсуває вбік або масштабує, задаються в розділі «Клавіші-модифікатори».
 The modules no string takes yet in series, on the first inverter	Модулі, не зайняті жодним ланцюжком, послідовно, на першому інверторі
 The names of its pages follow	Імена його сторінок змінюються разом із ним
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Відкритий проєкт – локальна копія відновлення. Його зміни не збережено на сервері проєктів; перед відкриттям спільного проєкту ви вирішуєте, зберегти їх локально чи відкинути.
@@ -1952,9 +1987,11 @@ Touch screen	Сенсорний екран
 Transfer project parts to database	Передати вироби проєкту до бази даних
 Translate the project texts; documentation per language	Переклад текстів проєкту; документація для кожної мови
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот навколо вертикалі проти годинникової стрілки, якщо дивитися згори (90 °: фронти повернуті праворуч)
+Turn the 3D view to the point	Повернути 3D-вигляд до точки
 Tutorial	Навчальний посібник
 Twin ferrules where two wires share a connection point	Подвійні наконечники там, де два проводи підключені до однієї точки
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Два пальці на тачпаді зсувають вигляд, коліщатко миші масштабує. Розрізняє їх лише macOS; в інших системах прокручування масштабує, як коліщатко.
+Two fingers pan	Два пальці зсувають
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Два пальці одночасно зсувають вигляд і масштабують щипком; один палець працює як ліва кнопка миші.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Тут мають сходитися два проводи під прямим кутом. За ввімкненого автоз'єднання точки підключення навпроти його плечей з'єднуються з ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введіть точку й натисніть Enter: x y у мм або @dx dy відносно останньої точки; діє як клацання поточним інструментом
@@ -2022,7 +2059,6 @@ View	Вигляд
 Visible	Видимий
 Voltage (line to line)	Напруга (лінійна)
 Voltage drop	Спад напруги
-W A S D / arrows, Q / E	W A S D / стрілки, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, записується в ділянку під час експорту IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Стіна {}, {} м: перетягніть, щоб перемістити, подвійне клацання покаже її для оснащення
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Стіна {}, {} м: стіна, показана у вигляді стіни (виділена); перетягніть, щоб перемістити
@@ -2034,7 +2070,7 @@ Web between holes	Перемичка між отворами
 Welcome to OpenECraft	Ласкаво просимо до OpenECraft
 What is new	Що нового
 What should be checked or changed?	Що слід перевірити або змінити?
-Wheel / right or middle drag	Коліщатко / перетягування правою або середньою кнопкою
+Wheel and touch	Коліщатко та дотик
 Wheel: zoom · drag: move · click on a room: its floor plan	Коліщатко: масштаб · перетягування: зсув · клац по приміщенню: його план
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Коліщатко: масштаб · перетягування: зсув · клацання по приміщенню: його план · перетягніть кут межі ділянки
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Коліщатко: масштаб · правий клік: скасувати · графіка прив’язується до 0,5 мм, точки підключення – до сітки 4 мм
@@ -2101,7 +2137,8 @@ You may only view this project.	Ви можете лише переглядат�
 You may review this project: comments, markup and approvals, no other changes.	Ви можете рецензувати цей проєкт: коментарі, позначки та затвердження, без інших змін.
 Your unsaved changes of it are taken back	Ваші незбережені зміни в ньому буде скасовано
 Zoom	Масштаб
-Zoom / pan	Масштаб / зсув
+Zoom in in the 3D view (held)	Наблизити 3D-вигляд (утримувати)
+Zoom out in the 3D view (held)	Віддалити 3D-вигляд (утримувати)
 all	усі
 all cards	усі плати
 all lines	усі рядки
@@ -2355,6 +2392,7 @@ x y	x y
 {} °C (max.)	{} °C (макс.)
 {} × {} pixels, {}	{} × {} пікселів, {}
 {} – {} ({} pages)	{} – {} (сторінок: {})
+{} – {} here (Esc cancels)	{} – {} тут (Esc скасовує)
 {}: click to show its floor plan	{}: клацніть, щоб показати план
 {}: crimp together with the wire to {}	{}: обтиснути разом із проводом до {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетягніть, щоб перемістити, R повертає, подвійне клацання відкриває

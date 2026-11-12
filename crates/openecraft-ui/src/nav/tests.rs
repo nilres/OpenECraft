@@ -6,7 +6,7 @@ fn scroll(unit: MouseWheelUnit, delta: Vec2, source: MouseWheelSource, modifiers
 }
 
 fn setting(scroll: Scroll, invert: bool) -> Settings {
-    Settings { scroll, invert }
+    Settings { scroll, invert, ..Settings::default() }
 }
 
 #[test]
@@ -41,11 +41,48 @@ fn trackpads_pan_in_both_directions() {
 }
 
 #[test]
-fn ctrl_scrolling_is_left_to_the_zoom_of_egui() {
+fn the_zoom_modifier_zooms_also_where_scrolling_pans() {
     for m in [Modifiers::CTRL, Modifiers::COMMAND] {
         let pinch = scroll(MouseWheelUnit::Point, vec2(0.0, 4.0), MouseWheelSource::Trackpad, m);
-        assert_eq!(wheel(&[pinch], setting(Scroll::Pan, false)), (0.0, Vec2::ZERO));
+        assert_eq!(wheel(&[pinch], setting(Scroll::Pan, false)), (8.0, Vec2::ZERO));
     }
+    // Another modifier chosen: Ctrl + wheel is plain scrolling, Alt zooms.
+    let s = Settings { zoom: Some(Mod::Alt), ..setting(Scroll::Pan, false) };
+    let ctrl = scroll(MouseWheelUnit::Point, vec2(0.0, 4.0), MouseWheelSource::Trackpad, Modifiers::CTRL);
+    assert_eq!(wheel(&[ctrl], s), (0.0, vec2(0.0, 4.0)));
+    let alt = scroll(MouseWheelUnit::Point, vec2(0.0, 4.0), MouseWheelSource::Trackpad, Modifiers::ALT);
+    assert_eq!(wheel(std::slice::from_ref(&alt), s), (8.0, Vec2::ZERO));
+    // Off: no modifier zooms.
+    assert_eq!(wheel(&[alt], Settings { zoom: None, ..s }), (0.0, vec2(0.0, 4.0)));
+}
+
+#[test]
+fn the_sideways_modifier_can_be_changed_or_switched_off() {
+    let alt = scroll(MouseWheelUnit::Line, vec2(0.0, 1.0), MouseWheelSource::Wheel, Modifiers::ALT);
+    let shift = scroll(MouseWheelUnit::Line, vec2(0.0, 1.0), MouseWheelSource::Wheel, Modifiers::SHIFT);
+    let s = Settings { sideways: Some(Mod::Alt), ..setting(Scroll::Zoom, false) };
+    assert_eq!(wheel(std::slice::from_ref(&alt), s), (0.0, vec2(40.0, 0.0)));
+    assert_eq!(wheel(&[shift], s), (40.0, Vec2::ZERO), "Shift zooms like the plain wheel");
+    assert_eq!(wheel(&[alt], Settings { sideways: None, ..s }), (40.0, Vec2::ZERO));
+}
+
+#[test]
+fn trackpad_pinches_zoom_unless_switched_off() {
+    let events = [Event::Zoom(1.5), Event::Zoom(2.0)];
+    assert!((pinch(&events, Settings::default()) - 3.0).abs() < 1e-6);
+    assert_eq!(pinch(&events, Settings { pinch: false, ..Settings::default() }), 1.0);
+}
+
+#[test]
+fn modifiers_are_named_and_recognised() {
+    for m in Mod::ALL {
+        assert_eq!(Mod::parse(m.name()), Some(m));
+    }
+    assert_eq!(Mod::parse("Cmd"), Some(Mod::Ctrl));
+    assert_eq!(Mod::parse("Hyper"), None);
+    assert!(Mod::Ctrl.held(Modifiers::COMMAND) && Mod::Ctrl.held(Modifiers::CTRL));
+    assert_eq!(Mod::of(Modifiers::SHIFT | Modifiers::CTRL), Some(Mod::Ctrl));
+    assert_eq!(Mod::of(Modifiers::NONE), None);
 }
 
 #[test]
@@ -97,6 +134,21 @@ fn two_fingers_pinch_and_pan_together() {
     let release = frame(&ctx, 0.5, vec![touch(1, TouchPhase::End, pos2(90.0, 100.0))]);
     assert!(release.touch);
     assert!(!frame(&ctx, 0.6, Vec::new()).touch);
+}
+
+#[test]
+fn two_fingers_only_zoom_or_only_pan_when_chosen() {
+    for (pinch, touch_pan) in [(false, true), (true, false)] {
+        let ctx = Context::default();
+        set(&ctx, Settings { pinch, touch_pan, ..Settings::default() });
+        frame(&ctx, 0.0, vec![Event::PointerMoved(pos2(100.0, 100.0))]);
+        frame(&ctx, 0.1, vec![Event::PointerMoved(pos2(100.0, 100.0)), touch(1, TouchPhase::Start, pos2(100.0, 100.0))]);
+        frame(&ctx, 0.2, vec![touch(2, TouchPhase::Start, pos2(200.0, 100.0))]);
+        let g = frame(&ctx, 0.3, vec![touch(2, TouchPhase::Move, pos2(300.0, 100.0))]);
+        assert!(g.touch);
+        assert_eq!(g.zooms(), pinch, "{g:?}");
+        assert_eq!(g.pans(), touch_pan, "{g:?}");
+    }
 }
 
 #[test]

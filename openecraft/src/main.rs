@@ -15,6 +15,7 @@ mod dock;
 mod conventions;
 mod editor;
 mod frame_stats;
+mod gestures;
 #[cfg(test)]
 mod glyphs;
 mod insert_center;

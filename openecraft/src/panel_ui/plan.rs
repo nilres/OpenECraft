@@ -4,7 +4,10 @@
 
 use super::routing_ui::PIPE_COLOR;
 use super::{PanelUi, Tool, View};
+use crate::commands::Cmd;
 use crate::editor::Palette;
+use crate::gestures::MouseAction;
+use crate::shortcuts::Action;
 use egui::{vec2, CursorIcon, Key, PointerButton, Pos2, Rect, Sense, Shape, Stroke};
 use openecraft_core::geom::{p, P};
 use openecraft_core::model::Project;
@@ -220,11 +223,15 @@ impl PanelUi {
             self.zoom = (self.zoom * gesture.zoom).clamp(0.002, 5.0);
             self.offset = at - rect.min - vec2(before.x, before.y) * self.zoom;
         }
-        if resp.dragged_by(PointerButton::Middle) || resp.dragged_by(PointerButton::Secondary) {
+        let mods = ui.input(|i| i.modifiers);
+        let gestures = crate::gestures::get(ui.ctx());
+        let panning = gestures.dragged(MouseAction::PanView, &resp, mods);
+        if panning {
             self.offset += resp.drag_delta();
         }
-        // Fingers navigating end a drag of the first one where it is.
-        if gesture.touch {
+        // Fingers or the left button navigating end a drag of the first one where it is.
+        let navigating = gesture.touch || (panning && resp.dragged_by(PointerButton::Primary));
+        if navigating {
             self.plan_drag = None;
         }
         let ptr = ui.input(|i| i.pointer.hover_pos()).filter(|q| rect.contains(*q));
@@ -233,7 +240,10 @@ impl PanelUi {
 
         // Keyboard
         if self.keys_active && !ui.ctx().egui_wants_keyboard_input() {
-            let (esc, back, enter, r) = ui.input(|i| (i.key_pressed(Key::Escape), i.key_pressed(Key::Backspace), i.key_pressed(Key::Enter), i.key_pressed(Key::R) && i.modifiers.is_none()));
+            // Delete takes back the last corner while walls are drawn.
+            let sc = crate::shortcuts::get(ui.ctx());
+            let (esc, delete, enter, r) = ui.input(|i| (i.key_pressed(Key::Escape), sc.cmd_pressed(i, Cmd::Delete), sc.action_pressed(i, Action::FinishPolyline), sc.cmd_pressed(i, Cmd::Rotate)));
+            let back = delete && !self.wall_points.is_empty();
             if esc {
                 if self.wall_points.is_empty() {
                     self.set_tool(Tool::Select);
@@ -243,7 +253,7 @@ impl PanelUi {
                     self.wall_points.clear();
                 }
             }
-            let del = ui.input(|i| i.key_pressed(Key::Delete));
+            let del = delete && !back;
             if del && self.plan_inner.is_none() {
                 let selected = std::mem::take(&mut self.selection);
                 prj.layout.enclosures[ei].items.retain(|i| !(on_floor(i) && selected.contains(&i.id)));
@@ -270,7 +280,7 @@ impl PanelUi {
                 }
             }
         }
-        if resp.clicked_by(PointerButton::Secondary) {
+        if gestures.clicked(MouseAction::CancelTool, &resp, mods) {
             if self.wall_points.is_empty() {
                 self.set_tool(Tool::Select);
             } else {
@@ -316,7 +326,7 @@ impl PanelUi {
                 if let (true, Some(q)) = (resp.clicked_by(PointerButton::Primary), plan) {
                     let corner = ortho_corner(self.wall_points.last().copied(), q);
                     let closes = self.wall_points.len() >= 3 && self.wall_points.first().is_some_and(|f| (f.x - corner.x).abs() + (f.y - corner.y).abs() <= pick.max(WALL_SNAP));
-                    if closes || resp.double_clicked() {
+                    if closes || gestures.double_clicked(MouseAction::FinishByDoubleClick, &resp, mods) {
                         self.finish_walls(prj, ei);
                     } else if self.wall_points.last().is_none_or(|l| !l.same(corner)) {
                         self.wall_points.push(corner);
@@ -328,7 +338,7 @@ impl PanelUi {
                     // A chain of inner walls: every click ends one and starts the next.
                     let corner = inner_corner(&walls, self.wall_points.last().copied(), q);
                     match self.wall_points.last().copied() {
-                        _ if resp.double_clicked() => self.wall_points.clear(),
+                        _ if gestures.double_clicked(MouseAction::FinishByDoubleClick, &resp, mods) => self.wall_points.clear(),
                         Some(last) if !last.same(corner) => match panel::add_inner_wall(prj, ei, [last.x, last.y], [corner.x, corner.y], panel::INNER_WALL) {
                             Ok(id) => {
                                 // The properties show the wall just drawn.
@@ -439,7 +449,7 @@ impl PanelUi {
                         None => self.selection.clear(),
                     }
                 }
-                if resp.double_clicked() {
+                if gestures.double_clicked(MouseAction::OpenProperties, &resp, mods) {
                     if let Some(id) = hit_floor {
                         // The floor with the part selected.
                         self.front_face(Face::Bottom, false);

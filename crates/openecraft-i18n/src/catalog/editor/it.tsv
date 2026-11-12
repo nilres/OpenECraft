@@ -85,7 +85,6 @@ Add rule	Aggiungi regola
 Add sort key	Aggiungi criterio di ordinamento
 Add the facing cutout in {}	Aggiungi l'apertura affacciata in {}
 Add to device	Aggiungi al dispositivo
-Add to selection	Aggiungi alla selezione
 Add to the pre-planning	Aggiungi alla preprogettazione
 Add user	Aggiungi utente
 Added to both ends of the length for the cut length (insertion depth)	Aggiunta a entrambe le estremità della lunghezza per ottenere la lunghezza di taglio (profondità di inserimento)
@@ -130,6 +129,7 @@ Ambient temperature	Temperatura ambiente
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Un archivio (.oecz) è un file ZIP con il progetto, un manifest e i documenti e le immagini incorporati come file separati.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Un vecchio disegno come grafica su una nuova pagina di schema (linee, archi, testi, blocchi)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Un editor CAE elettrico aperto nello spirito di EPLAN Electric P8.
+Another gesture for the same function	Un altro gesto per la stessa funzione
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Un'altra variante di una macro esistente con questo nome (ad es. B), selezionabile durante l'inserimento
 Any project file: its settings, forms, structure, potentials and pages start the new project	Qualsiasi file di progetto: le sue impostazioni, moduli, struttura, potenziali e pagine costituiscono l'inizio del nuovo progetto
 Appearance	Aspetto
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Circuiti di un collettore generico
 Clear	Cancella
 Clearance	Distanza minima
 Clearances	Distanze
+Click	Clic
+Click a text: open its link	Clic su un testo: aprire il suo link
 Click an element in the drawing to edit it.	Fai clic su un elemento del disegno per modificarlo.
 Click centre, then a point on the circle	Fai clic sul centro, poi su un punto del cerchio
+Click in the panel layout: a single item of an assembly	Clic nel layout del quadro: un singolo elemento di un gruppo
 Click into the page to place the image	Fai clic nella pagina per posizionare l'immagine
 Click into the page to place {}	Fai clic nella pagina per posizionare {}
 Click on a wall	Fare clic su una parete
 Click on a wire to place the connection definition point	Fai clic su un conduttore per posizionare il punto di definizione collegamento
 Click on the 4 mm grid	Fai clic sulla griglia da 4 mm
 Click on the wall: the part goes there at its mounting height	Fai clic sulla parete: il componente va lì alla sua altezza di montaggio
+Click or window: add to the selection or take out of it	Clic o finestra: aggiungere alla selezione o toglierne
 Click start and end point	Fai clic sul punto iniziale e finale
 Click the corners of a machine or building, double-click to finish	Fai clic sugli angoli di una macchina o di un edificio, doppio clic per terminare
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Clicca sui vertici del confine del lotto · clicca sul primo, doppio clic o Invio: chiudi · Backspace: indietro · Esc: termina
@@ -326,6 +330,7 @@ Click where the reference point is	Clicca dove si trova il punto di riferimento
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Fai clic dove si incontrano tre conduttori: il pezzo a T indica il dispositivo da cui partono i fili e l'ordine dei loro obiettivi · {} lo ruota dove non si incontrano ancora conduttori · Esc o clic destro per terminare
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Fai clic dove due conduttori si incrociano: l'incrocio li collega e porta ciascuna estremità della sua linea prima dritta e poi trasversalmente · {} lo ruota · Esc o clic destro per terminare
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Fai clic dove due conduttori si incontrano ad angolo retto, o dove punti di collegamento si fronteggiano attraverso l'angolo: con la connessione automatica attiva vi vengono disegnati conduttori · {} lo ruota · Esc o clic destro per terminare
+Click while moving	Clic durante lo spostamento
 Click, or drag it into the page	Fai clic o trascinalo nella pagina
 Climate (IEC 60890)	Climatizzazione (IEC 60890)
 Clipboard	Appunti
@@ -537,6 +542,7 @@ Distribute vertically	Distribuisci verticalmente
 Distributed neutral	Neutro distribuito
 Diversity factor	Fattore di contemporaneità
 Divider	Setto separatore
+Do the gesture…	Eseguire il gesto…
 Dock	Aggancia
 Document {} embedded ({})	Documento {} incorporato ({})
 Documents	Documenti
@@ -550,7 +556,7 @@ Door clearance	Spazio libero porta
 Door cutouts (CSV)	Aperture porta (CSV)
 Door: {} devices, {} cutouts	Porta: {} dispositivi, {} aperture
 Dot	Punto
-Double-click (3D view)	Doppio clic (vista 3D)
+Double-click	Doppio clic
 Download into database	Scarica nel database
 Download project	Scarica progetto
 Downloaded {} (version {})	{} scaricato (versione {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	Download di OpenECraft {}
 Downstream part	Articolo a valle
 Draft of revision {} created	Bozza della revisione {} creata
 Draft of revision {} discarded	Bozza della revisione {} ignorata
+Drag	Trascinare
 Drag a connection point designation of the selected symbol to place it.	Trascina una designazione di connessione del simbolo selezionato per posizionarla.
 Drag an entry into the page, or click it and then click into the page.	Trascina una voce nella pagina, oppure fai clic su di essa e poi nella pagina.
 Drag the core designation or the cable tag of the selected wire to place it.	Trascina la designazione dell'anima o la sigla del cavo del filo selezionato per posizionarle.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Trova e sostituisci in tutto il progetto
 Find results	Risultati della ricerca
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Cerca gli elementi di Vault degli articoli del progetto tramite il numero dell'elemento o la proprietà Part Number e mostra le modifiche di ID elemento, revisione e stato del ciclo di vita per il riesame
 Find…	Trova…
+Finish a wire, polyline, polygon or wall	Terminare un filo, una polilinea, un poligono o una parete
+Finish or cancel the drawing, then back to selecting	Terminare o annullare il disegno, poi tornare alla selezione
 First row	Prima riga
 Fit	Adatta
 Fit page	Adatta pagina
@@ -780,6 +789,7 @@ Height above the mounting plate	Altezza sopra la piastra di montaggio
 Height above the plate	Altezza sopra la piastra
 Height of the plinth, 0 without plinth	Altezza dello zoccolo, 0 senza zoccolo
 Heights above floor (IEC 60204-1)	Altezze dal pavimento (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tenuto premuto mentre si fa clic, si sposta o si scorre. Ctrl è Cmd su macOS.
 Help	Guida
 Hide the groups you do not need and put the commands you use most into own groups.	Nascondi i gruppi che non ti servono e metti i comandi più usati in gruppi propri.
 Highest phase unbalance	Squilibrio delle fasi massimo
@@ -898,6 +908,8 @@ Key tips of the ribbon	Tasti di accesso della barra multifunzione
 Key: {}	Chiave: {}
 Keyboard shortcuts	Tasti di scelta rapida
 Keyboard shortcuts…	Tasti di scelta rapida…
+Keys and gestures	Tasti e gesti
+Keys of the 3D view	Tasti della vista 3D
 Label	Etichetta
 Label (grey)	Etichetta (grigia)
 Label field	Campo etichetta
@@ -919,6 +931,7 @@ Layout spaces	Spazi di montaggio
 Leave out the ceilings of the rooms and the roofs in the 3D view	Ometti i soffitti dei locali e i tetti nella vista 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Nella vista 3D omette i coperchi di tutte le canaline: i fili al loro interno sono visibili
 Leave repeated values of the first column blank	Lascia vuoti i valori ripetuti della prima colonna
+Left button	Tasto sinistro
 Left edges	Bordi sinistri
 Legend plates (door devices)	Targhette di identificazione (dispositivi sulla porta)
 Length from the node to the device	Lunghezza dal nodo al dispositivo
@@ -968,7 +981,6 @@ Locked by {} – read only	Bloccato da {} – sola lettura
 Locking…	Blocco in corso…
 Logic	Logica
 Longer values are drawn smaller (0 = no limit)	I valori più lunghi vengono disegnati più piccoli (0 = nessun limite)
-Look at the point clicked, closer	Guarda il punto cliccato, più da vicino
 Look for updates when OpenECraft starts	Cerca aggiornamenti all'avvio di OpenECraft
 Looking for updates…	Ricerca di aggiornamenti…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Cerca una nuova versione di OpenECraft su GitHub e la installa in background
@@ -1016,6 +1028,7 @@ Messages	Messaggi
 Messages ({})	Messaggi ({})
 Messages of this session	Messaggi di questa sessione
 Middle	Al centro
+Middle button	Tasto centrale
 Middle of the PV array in the floor plan of the building	Centro del campo fotovoltaico nella pianta dell'edificio
 Min. bend radius	Raggio di curvatura min.
 Minimize the ribbon	Riduci la barra multifunzione
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Specchia (selezione o simbolo in fase 
 Mixed	Misto
 Mode	Modalità
 Model of a part (2D / 3D)	Modello di un articolo (2D / 3D)
+Modifier keys	Tasti modificatori
 Module part; its size comes from the part	Articolo del modulo; la sua dimensione viene dall'articolo
 Motors feed the short circuit	I motori alimentano il cortocircuito
 Mounted on	Montato su
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Dista
 Mounting height: {}	Altezza di montaggio: {}
 Mounting plate: {} holes, {} cutouts	Piastra di montaggio: {} fori, {} aperture
 Mounting system	Sistema di montaggio
+Mouse	Mouse
 Move	Sposta
+Move ahead in the 3D view (held)	Avanzare nella vista 3D (tenere premuto)
+Move back in the 3D view (held)	Indietreggiare nella vista 3D (tenere premuto)
 Move down	Sposta in basso
+Move down in the 3D view (held)	Scendere nella vista 3D (tenere premuto)
+Move faster with the keys of the 3D view	Muoversi più velocemente con i tasti della vista 3D
 Move left	Sposta a sinistra
+Move left in the 3D view (held)	Spostarsi a sinistra nella vista 3D (tenere premuto)
 Move page down	Sposta pagina in basso
 Move page up	Sposta pagina in alto
+Move right in the 3D view (held)	Spostarsi a destra nella vista 3D (tenere premuto)
 Move selection by	Sposta selezione di
 Move selection by…	Sposta selezione di…
 Move the devices of this page into the new structure	Sposta i dispositivi di questa pagina nella nuova struttura
-Move through the 3D view (Shift: faster)	Muoversi nella vista 3D (Maiusc: più veloce)
 Move to section	Sposta nella sezione
 Move up	Sposta in alto
+Move up in the 3D view (held)	Salire nella vista 3D (tenere premuto)
 Moves to the top level as page {}	Passa al livello superiore come pagina {}
 Moves to {} as page {}	Passa in {} come pagina {}
 Moving	Spostamento
@@ -1062,7 +1083,6 @@ Name and cross reference	Nome e riferimento incrociato
 Name on the server	Nome sul server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Nome; Tipo di dati; Indirizzo logico; Commento – per strumenti di programmazione PLC
 Named copy of this form, for report blocks	Copia con nome di questo modulo, per i blocchi di report
-Navigation	Navigazione
 Navigators	Navigatori
 Neutral exchange file…	File di scambio neutro…
 Never	Mai
@@ -1134,6 +1154,7 @@ No dot: plain T	Nessun punto: T semplice
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ancora nessun armadio – creane uno con Nuovo armadio, o un locale per gli armadi con Nuovo locale.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nessun cavo di campo: posiziona gli armadi e i dispositivi di campo sui nodi della rete dei percorsi cavi.
 No filter fans: an air/air heat exchanger or a cooling unit	Nessun ventilatore con filtro: uno scambiatore di calore aria/aria o un condizionatore
+No gesture	Nessun gesto
 No harnesses defined.	Nessun cablaggio definito.
 No inverter	Nessun inverter
 No jump: plain crossing, connections have dots	Nessun salto: incrocio semplice, le giunzioni hanno punti
@@ -1176,6 +1197,7 @@ Not found: {}	Non trovato: {}
 Not in the project parts – synchronize in parts management	Non presente negli articoli del progetto – sincronizza in Gestione articoli
 Not on a wire	Non su un conduttore
 Not saved, locked or changed by another user: {}	Non salvato, bloccato o modificato da un altro utente: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Non accettato: il tasto sinistro da solo seleziona, disegna e sposta; tenere premuto un modificatore o usare un altro tasto.
 Not the shared project: changes are saved locally until it is opened on the project server again	Non è il progetto condiviso: le modifiche vengono salvate in locale finché non viene riaperto sul server dei progetti
 Nothing exchanged yet.	Ancora nessuno scambio.
 Nothing left in this list.	Non è rimasto nulla in questo elenco.
@@ -1215,6 +1237,7 @@ Open project	Apri progetto
 Open project server	Apri il server dei progetti
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Apri progetti e file da Autodesk Vault, inserisci il progetto, le esportazioni e i modelli 3D nel vault
 Open the project	Apri il progetto
+Open the selection: its properties, in the floor plan its face	Aprire la selezione: le sue proprietà, nella pianta la sua faccia
 Open to {}: wires cross beside the mounting plates	Aperto verso {}: i conduttori passano accanto alle piastre di montaggio
 Open walls and floors	Apri pareti e pavimenti
 Open, save, import, export, print and the settings	Apri, salva, importa, esporta, stampa e le impostazioni
@@ -1250,6 +1273,7 @@ Open…	Apri…
 Operations / year	Manovre / anno
 Option	Opzione
 Options	Opzioni
+Orbit the 3D view	Ruotare la vista 3D
 Ordinary cable	Cavo normale
 Orientation	Orientamento
 Origin	Origine
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Le pagine e i modelli che usano la co
 Pages of revision {}	Pagine della revisione {}
 Pages of the selected block	Pagine del blocco selezionato
 Pages using it get the project default	Le pagine che lo usano ricevono il predefinito del progetto
+Pages, panel layout and plans	Pagine, layout del quadro e piante
 Pairs in schematic order (1-2, 3-4 …)	Coppie nell'ordine dello schema (1-2, 3-4 …)
+Pan the 3D view	Spostare la vista 3D
+Pan the page, the panel layout and the plans	Spostare la vista di pagina, layout del quadro e piante
 Pane menu	Menu del riquadro
 Panel wiring report	Report cablatura quadro
 Panes	Riquadri
@@ -1323,6 +1350,8 @@ Path function text	Testo di funzione del percorso
 Pattern	Matrice
 Pattern…	Matrice…
 Pin-out	Piedinatura
+Pinching	Pizzico
+Pinching on a trackpad or a touch screen zooms	Il pizzico sul trackpad o sul touch screen esegue lo zoom
 Pipe run	Percorso tubazioni
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Percorso tubazioni su una parete, il soffitto o il pavimento del locale, lungo cui vengono instradati tubi flessibili, tubi e tubazioni: fai clic sugli angoli, doppio clic o Enter per terminare
 Pipe run {} mm – double-click or Enter to finish	Percorso tubazioni {} mm – doppio clic o Enter per terminare
@@ -1458,6 +1487,7 @@ Recent projects	Progetti recenti
 Recently used	Usati di recente
 Recommended height of manual actuators (10.1.2)	Altezza consigliata degli attuatori manuali (10.1.2)
 Record	Registra
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Registra: eseguire il gesto nel campo che appare, tenendo premuto un modificatore se si desidera (Esc annulla). Aggiungi mantiene i gesti esistenti. Il clic destro nello strumento di selezione apre il menu contestuale.
 Rectangular	Rettangolare
 Redline: to be changed · Greenline: changed as built	Redline: da modificare · Greenline: modificato come costruito
 Redo	Ripeti
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revisioni, approvazione e rilascio
 Ribbon	Barra multifunzione
 Ribbon (JSON)	Barra multifunzione (JSON)
 Ribbon imported	Barra multifunzione importata
+Right button	Tasto destro
 Right click for more	Clic destro per altre opzioni
 Right edges	Bordi destri
 Right neighbour	Vicino a destra
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	Locale {} tolto dall
 Rooms under sloped ceilings (lowest – highest ceiling)	Locali sotto soffitti inclinati (soffitto più basso – più alto)
 Rotate	Ruota
 Rotate (selection or symbol being placed)	Ruota (selezione o simbolo in fase di posizionamento)
+Rotate what is being moved	Ruotare ciò che si sta spostando
+Rotate what is being moved counter-clockwise	Ruotare ciò che si sta spostando in senso antiorario
 Round	Rotondo
 Round cutouts facing each other in both side walls	Aperture rotonde affacciate in entrambe le pareti laterali
 Route definition of {}	Definizione del percorso di {}
@@ -1658,7 +1691,9 @@ Scheme {}	Schema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Viti, dadi, rondelle e inserti filettati dei punti di fissaggio
 Scrolling	Scorrimento
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Lo scorrimento sposta la vista in ogni direzione; pizzicare o Ctrl + scorrimento per lo zoom.
+Scrolling up and down pans sideways	Lo scorrimento in su e in giù sposta di lato
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Scorrere in alto e in basso esegue lo zoom sul puntatore, di lato (rotella orizzontale, Maiusc + rotella) sposta la vista.
+Scrolling zooms, also where it pans	Lo scorrimento esegue lo zoom, anche dove sposterebbe
 Search (* and ? as placeholders)…	Cerca (* e ? come caratteri jolly)…
 Search below this folder	Cerca sotto questa cartella
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Cerca nel server articoli per catalogo, gruppo di prodotti e dati tecnici, aggiungi articoli e verifica la presenza di aggiornamenti nel database
@@ -1719,7 +1754,6 @@ Shield pigtail	Pigtail schermo
 Shielded	Schermato
 Shielded analogue cables	Cavi analogici schermati
 Shielded drive cables	Cavi degli azionamenti schermati
-Shift + click / drag	Shift + clic / trascinamento
 Short circuit and selectivity	Cortocircuito e selettività
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Cortocircuito, selettività, carichi, EMC, sicurezza funzionale e verifica rispetto ai set di regole
 Short-circuit currents	Correnti di cortocircuito
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Il filo orizzontale
 The items are selected and moved together	Gli elementi vengono selezionati e spostati insieme
 The macro library has no page macros (Macros › Save page as macro…).	La libreria macro non contiene macro di pagina (Macro › Salva pagina come macro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	I modificatori che fanno spostare la rotella di lato o eseguire lo zoom si impostano in Tasti modificatori.
 The modules no string takes yet in series, on the first inverter	I moduli che nessuna stringa prende ancora, in serie, sul primo inverter
 The names of its pages follow	I nomi delle sue pagine si adeguano
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Il progetto aperto è una copia di ripristino locale. Le sue modifiche non sono salvate sul server dei progetti; prima che il progetto condiviso si apra, decidi se salvarle in locale o scartarle.
@@ -1953,9 +1988,11 @@ Touch screen	Touch screen
 Transfer project parts to database	Trasferisci articoli del progetto nel database
 Translate the project texts; documentation per language	Traduci i testi del progetto; documentazione per lingua
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotazione attorno all'asse verticale, in senso antiorario visto dall'alto (90 °: i fronti sono rivolti a destra)
+Turn the 3D view to the point	Orientare la vista 3D verso il punto
 Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Puntalini doppi dove due conduttori condividono un punto di connessione
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Due dita sul trackpad spostano la vista, la rotella del mouse esegue lo zoom. Solo macOS li distingue; altrove lo scorrimento esegue lo zoom come la rotella.
+Two fingers pan	Due dita spostano la vista
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Due dita spostano la vista e, pizzicando, eseguono lo zoom contemporaneamente; un dito funziona come il tasto sinistro del mouse.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Qui devono incontrarsi due conduttori ad angolo retto. Con la connessione automatica attiva, i punti di collegamento rivolti ai suoi bracci vi vengono cablati.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digita un punto e premi Enter: x y in mm o @dx dy rispetto all'ultimo punto; agisce come un clic dello strumento corrente
@@ -2023,7 +2060,6 @@ View	Visualizza
 Visible	Visibile
 Voltage (line to line)	Tensione (concatenata)
 Voltage drop	Caduta di tensione
-W A S D / arrows, Q / E	W A S D / frecce, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, scritta nel sito delle esportazioni IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Parete {}, {} m: trascina per spostarla, doppio clic per mostrarla e attrezzarla
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Parete {}, {} m: la parete mostrata nella vista della parete (evidenziata); trascina per spostarla
@@ -2035,7 +2071,7 @@ Web between holes	Nervatura tra i fori
 Welcome to OpenECraft	Benvenuto in OpenECraft
 What is new	Novità
 What should be checked or changed?	Cosa deve essere verificato o modificato?
-Wheel / right or middle drag	Rotellina / trascinamento con tasto destro o centrale
+Wheel and touch	Rotella e tocco
 Wheel: zoom · drag: move · click on a room: its floor plan	Rotella: zoom · trascinare: spostare · clic su un locale: la sua pianta
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rotellina: zoom · trascina: sposta · clic su un locale: la sua pianta · trascina un vertice del confine del lotto
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotellina: zoom · clic destro: annulla · la grafica si aggancia a 0,5 mm, i punti di connessione alla griglia da 4 mm
@@ -2102,7 +2138,8 @@ You may only view this project.	Puoi solo visualizzare questo progetto.
 You may review this project: comments, markup and approvals, no other changes.	Puoi eseguire il riesame di questo progetto: commenti, annotazioni e approvazioni, nessun'altra modifica.
 Your unsaved changes of it are taken back	Le tue modifiche non salvate vengono annullate
 Zoom	Zoom
-Zoom / pan	Zoom / spostamento vista
+Zoom in in the 3D view (held)	Ingrandire la vista 3D (tenere premuto)
+Zoom out in the 3D view (held)	Ridurre la vista 3D (tenere premuto)
 all	tutti
 all cards	tutte le schede
 all lines	tutte le righe
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixel, {}
 {} – {} ({} pages)	{} – {} ({} pagine)
+{} – {} here (Esc cancels)	{} – {} qui (Esc annulla)
 {}: click to show its floor plan	{}: clic per mostrarne la pianta
 {}: crimp together with the wire to {}	{}: crimpare insieme al conduttore verso {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trascina per spostare, R per ruotare, doppio clic per aprire

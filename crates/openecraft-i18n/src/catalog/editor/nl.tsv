@@ -85,7 +85,6 @@ Add rule	Regel toevoegen
 Add sort key	Sorteersleutel toevoegen
 Add the facing cutout in {}	De tegenoverliggende uitsparing in {} toevoegen
 Add to device	Aan apparaat toevoegen
-Add to selection	Aan selectie toevoegen
 Add to the pre-planning	Aan de voorplanning toevoegen
 Add user	Gebruiker toevoegen
 Added to both ends of the length for the cut length (insertion depth)	Wordt voor de snijlengte aan beide uiteinden bij de lengte opgeteld (insteekdiepte)
@@ -130,6 +129,7 @@ Ambient temperature	Omgevingstemperatuur
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Een archief (.oecz) is een ZIP-bestand met het project, een manifest en de ingesloten documenten en afbeeldingen als afzonderlijke bestanden.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Een oude tekening als grafiek op een nieuwe schemapagina (lijnen, bogen, teksten, blokken)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Een open elektrische CAE-editor in de geest van EPLAN Electric P8.
+Another gesture for the same function	Nog een gebaar voor dezelfde functie
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Een andere variant van een bestaande macro met deze naam (bijv. B), te kiezen bij het invoegen
 Any project file: its settings, forms, structure, potentials and pages start the new project	Elk projectbestand: de instellingen, formulieren, structuur, potentialen en pagina's ervan vormen het begin van het nieuwe project
 Appearance	Weergave
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Groepen van een generieke verdeler
 Clear	Wissen
 Clearance	Vrije ruimte
 Clearances	Afstanden
+Click	Klik
+Click a text: open its link	Klik op een tekst: de koppeling openen
 Click an element in the drawing to edit it.	Klik op een element in de tekening om het te bewerken.
 Click centre, then a point on the circle	Klik op het middelpunt en daarna op een punt van de cirkel
+Click in the panel layout: a single item of an assembly	Klik in de kastlay-out: één onderdeel van een samenstelling
 Click into the page to place the image	Klik in de pagina om de afbeelding te plaatsen
 Click into the page to place {}	Klik in de pagina om {} te plaatsen
 Click on a wall	Klik op een wand
 Click on a wire to place the connection definition point	Klik op een draad om het verbindingsdefinitiepunt te plaatsen
 Click on the 4 mm grid	Klik op het raster van 4 mm
 Click on the wall: the part goes there at its mounting height	Klik op de wand: het onderdeel komt daar op zijn montagehoogte
+Click or window: add to the selection or take out of it	Klik of venster: aan de selectie toevoegen of eruit halen
 Click start and end point	Klik op begin- en eindpunt
 Click the corners of a machine or building, double-click to finish	Klik op de hoeken van een machine of gebouw, dubbelklik om te voltooien
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Klik op de hoeken van de perceelgrens · klik op de eerste, dubbelklik of Enter: sluiten · Backspace: terug · Esc: stoppen
@@ -326,6 +330,7 @@ Click where the reference point is	Klik waar het referentiepunt ligt
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik waar drie draden samenkomen: het T-stuk benoemt het apparaat waar de draden beginnen en de volgorde van hun doelen · {} draait het waar nog geen draden samenkomen · Esc of rechtsklik om te beëindigen
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik waar twee draden kruisen: de kruising verbindt ze en leidt elk uiteinde van zijn lijn eerst rechtdoor, dan dwars · {} draait hem · Esc of rechtsklik om te beëindigen
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klik waar twee draden in een rechte hoek samenkomen, of waar aansluitpunten over de hoek tegenover elkaar liggen: met Auto-connect aan worden er draden naartoe getekend · {} draait hem · Esc of rechtsklik om te beëindigen
+Click while moving	Klik tijdens het verplaatsen
 Click, or drag it into the page	Klik erop of sleep het naar de pagina
 Climate (IEC 60890)	Klimaatbeheersing (IEC 60890)
 Clipboard	Klembord
@@ -537,6 +542,7 @@ Distribute vertically	Verticaal verdelen
 Distributed neutral	Meegevoerde neutrale geleider
 Diversity factor	Gelijktijdigheidsfactor
 Divider	Scheidingsschot
+Do the gesture…	Maak het gebaar…
 Dock	Vastzetten
 Document {} embedded ({})	Document {} ingesloten ({})
 Documents	Documenten
@@ -550,7 +556,7 @@ Door clearance	Deurvrijruimte
 Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
-Double-click (3D view)	Dubbelklik (3D-weergave)
+Double-click	Dubbelklik
 Download into database	Downloaden naar database
 Download project	Project downloaden
 Downloaded {} (version {})	{} gedownload (versie {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	OpenECraft {} wordt gedownload
 Downstream part	Nageschakeld artikel
 Draft of revision {} created	Concept van revisie {} gemaakt
 Draft of revision {} discarded	Concept van revisie {} genegeerd
+Drag	Slepen
 Drag a connection point designation of the selected symbol to place it.	Sleep een aansluitbenaming van het geselecteerde symbool om deze te plaatsen.
 Drag an entry into the page, or click it and then click into the page.	Sleep een item naar de pagina, of klik erop en klik daarna in de pagina.
 Drag the core designation or the cable tag of the selected wire to place it.	Sleep de aderaanduiding of de kabelaanduiding van de geselecteerde draad om deze te plaatsen.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Zoeken en vervangen in het hele project
 Find results	Zoekresultaten
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Zoekt de Vault-items van de projectartikelen op itemnummer of de eigenschap Part Number en toont de wijzigingen van item-ID, revisie en levenscyclusstatus ter beoordeling
 Find…	Zoeken…
+Finish a wire, polyline, polygon or wall	Een draad, polylijn, veelhoek of wand afronden
+Finish or cancel the drawing, then back to selecting	Tekenen afronden of annuleren, daarna terug naar selecteren
 First row	Eerste rij
 Fit	Passend maken
 Fit page	Pagina passend maken
@@ -780,6 +789,7 @@ Height above the mounting plate	Hoogte boven de montageplaat
 Height above the plate	Hoogte boven de plaat
 Height of the plinth, 0 without plinth	Hoogte van de sokkel, 0 zonder sokkel
 Heights above floor (IEC 60204-1)	Hoogten boven vloer (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ingedrukt bij klikken, verplaatsen of scrollen. Ctrl is Cmd op macOS.
 Help	Help
 Hide the groups you do not need and put the commands you use most into own groups.	Verberg de groepen die u niet nodig hebt en zet de meest gebruikte opdrachten in eigen groepen.
 Highest phase unbalance	Hoogste fase-onbalans
@@ -898,6 +908,8 @@ Key tips of the ribbon	Toegangstoetsen van het lint
 Key: {}	Sleutel: {}
 Keyboard shortcuts	Sneltoetsen
 Keyboard shortcuts…	Sneltoetsen…
+Keys and gestures	Toetsen en gebaren
+Keys of the 3D view	Toetsen van de 3D-weergave
 Label	Label
 Label (grey)	Label (grijs)
 Label field	Labelveld
@@ -919,6 +931,7 @@ Layout spaces	Montageruimten
 Leave out the ceilings of the rooms and the roofs in the 3D view	De plafonds van de ruimtes en de daken weglaten in de 3D-weergave
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In de 3D-weergave de deksels van alle kabelgoten weglaten: de draden erin zijn zichtbaar
 Leave repeated values of the first column blank	Herhaalde waarden van de eerste kolom leeg laten
+Left button	Linkerknop
 Left edges	Linkerranden
 Legend plates (door devices)	Tekstplaatjes (deurapparaten)
 Length from the node to the device	Lengte van het knooppunt tot het apparaat
@@ -968,7 +981,6 @@ Locked by {} – read only	Vergrendeld door {} – alleen-lezen
 Locking…	Vergrendelen…
 Logic	Logica
 Longer values are drawn smaller (0 = no limit)	Langere waarden worden kleiner getekend (0 = geen limiet)
-Look at the point clicked, closer	Naar het aangeklikte punt kijken, dichterbij
 Look for updates when OpenECraft starts	Bij het starten van OpenECraft op updates controleren
 Looking for updates…	Zoeken naar updates…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Zoekt op GitHub naar een nieuwe versie van OpenECraft en installeert die op de achtergrond
@@ -1016,6 +1028,7 @@ Messages	Meldingen
 Messages ({})	Meldingen ({})
 Messages of this session	Meldingen van deze sessie
 Middle	Midden
+Middle button	Middelste knop
 Middle of the PV array in the floor plan of the building	Midden van het PV-veld in de plattegrond van het gebouw
 Min. bend radius	Min. buigradius
 Minimize the ribbon	Het lint minimaliseren
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Spiegelen (selectie of symbool dat wor
 Mixed	Gemengd
 Mode	Modus
 Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
+Modifier keys	Combinatietoetsen
 Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
 Motors feed the short circuit	Motoren voeden de kortsluiting
 Mounted on	Gemonteerd op
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Monta
 Mounting height: {}	Montagehoogte: {}
 Mounting plate: {} holes, {} cutouts	Montageplaat: {} boringen, {} uitsparingen
 Mounting system	Montagesysteem
+Mouse	Muis
 Move	Verplaatsen
+Move ahead in the 3D view (held)	Vooruit bewegen in de 3D-weergave (ingedrukt houden)
+Move back in the 3D view (held)	Achteruit bewegen in de 3D-weergave (ingedrukt houden)
 Move down	Omlaag
+Move down in the 3D view (held)	Omlaag bewegen in de 3D-weergave (ingedrukt houden)
+Move faster with the keys of the 3D view	Sneller bewegen met de toetsen van de 3D-weergave
 Move left	Naar links
+Move left in the 3D view (held)	Naar links bewegen in de 3D-weergave (ingedrukt houden)
 Move page down	Pagina omlaag verplaatsen
 Move page up	Pagina omhoog verplaatsen
+Move right in the 3D view (held)	Naar rechts bewegen in de 3D-weergave (ingedrukt houden)
 Move selection by	Selectie verplaatsen met
 Move selection by…	Selectie verplaatsen met…
 Move the devices of this page into the new structure	De apparaten van deze pagina naar de nieuwe structuur verplaatsen
-Move through the 3D view (Shift: faster)	Door de 3D-weergave bewegen (Shift: sneller)
 Move to section	Naar sectie verplaatsen
 Move up	Omhoog
+Move up in the 3D view (held)	Omhoog bewegen in de 3D-weergave (ingedrukt houden)
 Moves to the top level as page {}	Gaat naar het bovenste niveau als pagina {}
 Moves to {} as page {}	Gaat naar {} als pagina {}
 Moving	Verplaatsen
@@ -1062,7 +1083,6 @@ Name and cross reference	Naam en kruisverwijzing
 Name on the server	Naam op de server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Naam; gegevenstype; logisch adres; commentaar – voor PLC-programmeertools
 Named copy of this form, for report blocks	Benoemde kopie van dit formulier, voor rapportblokken
-Navigation	Navigatie
 Navigators	Navigators
 Neutral exchange file…	Neutraal uitwisselingsbestand…
 Never	Nooit
@@ -1134,6 +1154,7 @@ No dot: plain T	Geen punt: gewone T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Nog geen behuizing – maak er een met Nieuwe behuizing, of een ruimte voor kasten met Nieuwe ruimte.
 No field cables: place the enclosures and field devices at nodes of the route network.	Geen veldkabels: plaats de behuizingen en veldapparaten bij knooppunten van het tracénetwerk.
 No filter fans: an air/air heat exchanger or a cooling unit	Geen filterventilatoren: een lucht/lucht-warmtewisselaar of een koelaggregaat
+No gesture	Geen gebaar
 No harnesses defined.	Geen kabelbomen gedefinieerd.
 No inverter	Geen omvormer
 No jump: plain crossing, connections have dots	Geen sprong: gewone kruising, verbindingen hebben punten
@@ -1176,6 +1197,7 @@ Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
 Not saved, locked or changed by another user: {}	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Niet overgenomen: de linkerknop alleen selecteert, tekent en verplaatst; houd een combinatietoets ingedrukt of gebruik een andere knop.
 Not the shared project: changes are saved locally until it is opened on the project server again	Niet het gedeelde project: wijzigingen worden lokaal opgeslagen tot het opnieuw op de projectserver wordt geopend
 Nothing exchanged yet.	Nog niets uitgewisseld.
 Nothing left in this list.	Niets meer in deze lijst.
@@ -1215,6 +1237,7 @@ Open project	Project openen
 Open project server	Projectserver openen
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Projecten en bestanden openen vanuit Autodesk Vault, het project, exports en 3D-modellen in de vault plaatsen
 Open the project	Het project openen
+Open the selection: its properties, in the floor plan its face	De selectie openen: de eigenschappen, in de plattegrond het aanzicht
 Open to {}: wires cross beside the mounting plates	Open naar {}: draden lopen naast de montageplaten over
 Open walls and floors	Wanden en vloeren openen
 Open, save, import, export, print and the settings	Openen, opslaan, importeren, exporteren, afdrukken en de instellingen
@@ -1250,6 +1273,7 @@ Open…	Openen…
 Operations / year	Schakelcycli / jaar
 Option	Optie
 Options	Opties
+Orbit the 3D view	De 3D-weergave draaien
 Ordinary cable	Gewone kabel
 Orientation	Oriëntatie
 Origin	Herkomst
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Pagina's en sjablonen die het kader g
 Pages of revision {}	Pagina's van revisie {}
 Pages of the selected block	Pagina's van het geselecteerde blok
 Pages using it get the project default	Pagina's die het gebruiken, krijgen de projectstandaard
+Pages, panel layout and plans	Pagina's, kastlay-out en plattegronden
 Pairs in schematic order (1-2, 3-4 …)	Paren in schemavolgorde (1-2, 3-4 …)
+Pan the 3D view	De 3D-weergave verschuiven
+Pan the page, the panel layout and the plans	Pagina, kastlay-out en plattegronden verschuiven
 Pane menu	Paneelmenu
 Panel wiring report	Rapport kastbedrading
 Panes	Panelen
@@ -1323,6 +1350,8 @@ Path function text	Padfunctietekst
 Pattern	Patroon
 Pattern…	Patroon…
 Pin-out	Pinbezetting
+Pinching	Knijpen
+Pinching on a trackpad or a touch screen zooms	Knijpen op een trackpad of touchscreen zoomt
 Pipe run	Leidingtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Leidingtracé op een wand, het plafond of de vloer van de ruimte, waarlangs slangen, buizen en leidingen worden gelegd: klik de hoekpunten, dubbelklik of druk op Enter om te voltooien
 Pipe run {} mm – double-click or Enter to finish	Leidingtracé {} mm – dubbelklik of druk op Enter om te voltooien
@@ -1458,6 +1487,7 @@ Recent projects	Recente projecten
 Recently used	Recent gebruikt
 Recommended height of manual actuators (10.1.2)	Aanbevolen hoogte van handbedieningselementen (10.1.2)
 Record	Opnemen
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Opnemen: maak het gebaar in het veld dat verschijnt, desgewenst met een combinatietoets ingedrukt (Esc annuleert). Toevoegen houdt de bestaande gebaren. Rechtsklikken in het selectiegereedschap opent het contextmenu.
 Rectangular	Rechthoekig
 Redline: to be changed · Greenline: changed as built	Redline: te wijzigen · Greenline: gewijzigd zoals gebouwd
 Redo	Opnieuw
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revisies, goedkeuring en vrijgave
 Ribbon	Lint
 Ribbon (JSON)	Lint (JSON)
 Ribbon imported	Lint geïmporteerd
+Right button	Rechterknop
 Right click for more	Klik met de rechtermuisknop voor meer
 Right edges	Rechterranden
 Right neighbour	Rechterbuur
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	Ruimte {} uit het ge
 Rooms under sloped ceilings (lowest – highest ceiling)	Ruimtes onder schuine plafonds (laagste – hoogste plafond)
 Rotate	Draaien
 Rotate (selection or symbol being placed)	Draaien (selectie of symbool dat wordt geplaatst)
+Rotate what is being moved	Draaien wat verplaatst wordt
+Rotate what is being moved counter-clockwise	Draaien wat verplaatst wordt, linksom
 Round	Rond
 Round cutouts facing each other in both side walls	Ronde uitsparingen tegenover elkaar in beide zijwanden
 Route definition of {}	Tracédefinitie van {}
@@ -1658,7 +1691,9 @@ Scheme {}	Schema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Schroeven, moeren, ringen en blindklinkmoeren van de bevestigingspunten
 Scrolling	Scrollen
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Scrollen verschuift in elke richting; knijpen of Ctrl + scrollen om te zoomen.
+Scrolling up and down pans sideways	Op en neer scrollen verschuift zijwaarts
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Omhoog en omlaag scrollen zoomt bij de aanwijzer, zijwaarts (horizontaal wiel, Shift + wiel) verschuift.
+Scrolling zooms, also where it pans	Scrollen zoomt, ook waar het anders verschuift
 Search (* and ? as placeholders)…	Zoeken (* en ? als jokertekens)…
 Search below this folder	Zoeken onder deze map
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	De artikelserver doorzoeken op catalogus, productgroep en technische gegevens, artikelen toevoegen en de database controleren op updates
@@ -1719,7 +1754,6 @@ Shield pigtail	Afschermingspigtail
 Shielded	Afgeschermd
 Shielded analogue cables	Afgeschermde analoge kabels
 Shielded drive cables	Afgeschermde aandrijfkabels
-Shift + click / drag	Shift + klikken / slepen
 Short circuit and selectivity	Kortsluiting en selectiviteit
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortsluiting, selectiviteit, belastingen, EMC, functionele veiligheid en verificatie tegen regelsets
 Short-circuit currents	Kortsluitstromen
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	De horizontale draad
 The items are selected and moved together	De elementen worden samen geselecteerd en verplaatst
 The macro library has no page macros (Macros › Save page as macro…).	De macrobibliotheek heeft geen paginamacro's (Macro's › Pagina opslaan als macro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	De combinatietoetsen waarmee het wiel zijwaarts verschuift of zoomt, stelt u in onder Combinatietoetsen.
 The modules no string takes yet in series, on the first inverter	De modules die nog geen string neemt, in serie, op de eerste omvormer
 The names of its pages follow	De namen van de pagina's veranderen mee
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Het geopende project is een lokale herstelkopie. De wijzigingen ervan zijn niet op de projectserver opgeslagen; voordat het gedeelde project opent, beslist u of u ze lokaal opslaat of verwerpt.
@@ -1953,9 +1988,11 @@ Touch screen	Touchscreen
 Transfer project parts to database	Projectartikelen overnemen in de database
 Translate the project texts; documentation per language	De projectteksten vertalen; documentatie per taal
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Draaiing om de verticale as, van boven gezien linksom (90 °: de fronten wijzen naar rechts)
+Turn the 3D view to the point	De 3D-weergave naar het punt draaien
 Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Dubbele adereindhulzen waar twee draden een aansluitpunt delen
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Twee vingers op een trackpad verschuiven, het muiswiel zoomt. Alleen macOS onderscheidt ze; elders zoomt scrollen zoals het wiel.
+Two fingers pan	Twee vingers verschuiven
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Twee vingers verschuiven en zoomen tegelijk door te knijpen; één vinger werkt als de linkermuisknop.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier moeten twee draden in een rechte hoek samenkomen. Met Auto-connect aan worden aansluitpunten tegenover zijn armen ermee verbonden.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Typ een punt en druk op Enter: x y in mm, of @dx dy ten opzichte van het laatste punt; dit werkt als een klik met het huidige gereedschap
@@ -2023,7 +2060,6 @@ View	Beeld
 Visible	Zichtbaar
 Voltage (line to line)	Spanning (fase-fase)
 Voltage drop	Spanningsval
-W A S D / arrows, Q / E	W A S D / pijltjes, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, wordt in het terrein van IFC-exports geschreven
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Wand {}, {} m: slepen om te verplaatsen, dubbelklik toont hem om uit te rusten
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Wand {}, {} m: de wand die in het wandaanzicht wordt getoond (gemarkeerd); slepen om te verplaatsen
@@ -2035,7 +2071,7 @@ Web between holes	Brug tussen boringen
 Welcome to OpenECraft	Welkom bij OpenECraft
 What is new	Nieuw
 What should be checked or changed?	Wat moet er worden gecontroleerd of gewijzigd?
-Wheel / right or middle drag	Muiswiel / slepen met rechter- of middelste muisknop
+Wheel and touch	Wiel en aanraking
 Wheel: zoom · drag: move · click on a room: its floor plan	Wiel: zoomen · slepen: verplaatsen · klik op een ruimte: de plattegrond
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Wiel: zoomen · slepen: verschuiven · klik op een ruimte: de plattegrond · sleep een hoek van de perceelgrens
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Muiswiel: zoomen · rechtsklik: annuleren · grafiek springt naar 0,5 mm, aansluitpunten naar het raster van 4 mm
@@ -2102,7 +2138,8 @@ You may only view this project.	Je mag dit project alleen bekijken.
 You may review this project: comments, markup and approvals, no other changes.	Je mag dit project reviewen: opmerkingen, markeringen en goedkeuringen, geen andere wijzigingen.
 Your unsaved changes of it are taken back	Je niet-opgeslagen wijzigingen daaraan worden teruggedraaid
 Zoom	Zoom
-Zoom / pan	Zoomen / verschuiven
+Zoom in in the 3D view (held)	Inzoomen in de 3D-weergave (ingedrukt houden)
+Zoom out in the 3D view (held)	Uitzoomen in de 3D-weergave (ingedrukt houden)
 all	alle
 all cards	alle kaarten
 all lines	alle regels
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
+{} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen
 {}: crimp together with the wire to {}	{}: samen met de draad naar {} krimpen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent

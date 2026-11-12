@@ -758,6 +758,7 @@ impl App {
         // Esc closes the dialog on top first (not while a key is recorded, the key tips
         // are shown or a modal question waits).
         let esc = self.recording.is_none()
+            && !self.settings.recording()
             && self.ribbon.tips.is_none()
             && !self.search.is_open()
             && ctx.memory(|m| m.top_modal_layer().is_none())
@@ -786,7 +787,7 @@ impl App {
                     continue;
                 }
                 // Plain keys only act on the page (and never while typing).
-                let plain = keys.iter().all(|k| !k.command && !k.alt && !matches!(k.key, Key::F1 | Key::F2 | Key::F4 | Key::F6 | Key::Insert | Key::PageUp | Key::PageDown));
+                let plain = keys.iter().all(crate::shortcuts::Shortcut::page_only);
                 if (typing && !keys.iter().any(|k| k.command || k.alt)) || (plain && !page_active) {
                     continue;
                 }

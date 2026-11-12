@@ -1,13 +1,15 @@
-//! Keyboard shortcuts the user can change (Settings › Keyboard shortcuts): every command
+//! Keyboard shortcuts the user can change (Settings › Keys and gestures): every command
 //! of `crate::commands` and the few keys only the page editor reads (actions), their
 //! default keys, the user's own keys (stored by the app), conflicts and the text shown
 //! in the ribbon, the menus and the help. Bindings are named by the command id, so the
 //! keys stored by earlier versions (`open`, `rotate`, `wire_tool`, …) keep working.
+//! The app hands the shortcuts to the views of the panel layout with [`set`].
 
 use crate::commands::{self, Cmd};
 use egui::{InputState, Key, Modifiers};
 use openecraft_i18n::tr_const;
 use std::collections::BTreeMap;
+use std::sync::Arc;
 
 /// Storage key of the user's shortcuts.
 pub const STORAGE_KEY: &str = "shortcuts";
@@ -23,10 +25,55 @@ pub enum Action {
     NudgeUp,
     NudgeDown,
     NextRouting,
+    FlyForward,
+    FlyBack,
+    FlyLeft,
+    FlyRight,
+    FlyUp,
+    FlyDown,
+    FlyCloser,
+    FlyAway,
+}
+
+/// Where the keys of a binding act: conflicts are only found among the bindings of one.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Scope {
+    /// The schematic page and the commands.
+    Page,
+    /// The panel layout, its plans and its 3D view.
+    Layout,
 }
 
 impl Action {
-    pub const ALL: [Action; 8] = [Action::WireCorner, Action::Autoroute, Action::FinishPolyline, Action::NudgeLeft, Action::NudgeRight, Action::NudgeUp, Action::NudgeDown, Action::NextRouting];
+    pub const ALL: [Action; 16] = [
+        Action::WireCorner,
+        Action::Autoroute,
+        Action::FinishPolyline,
+        Action::NudgeLeft,
+        Action::NudgeRight,
+        Action::NudgeUp,
+        Action::NudgeDown,
+        Action::NextRouting,
+        Action::FlyForward,
+        Action::FlyBack,
+        Action::FlyLeft,
+        Action::FlyRight,
+        Action::FlyUp,
+        Action::FlyDown,
+        Action::FlyCloser,
+        Action::FlyAway,
+    ];
+
+    /// Keys held to move in the 3D view, plus and minus of: ahead, to the right, up, closer.
+    pub const FLY: [(Action, Action); 4] = [(Action::FlyForward, Action::FlyBack), (Action::FlyRight, Action::FlyLeft), (Action::FlyUp, Action::FlyDown), (Action::FlyCloser, Action::FlyAway)];
+
+    pub fn scopes(self) -> &'static [Scope] {
+        match self {
+            Action::FinishPolyline => &[Scope::Page, Scope::Layout],
+            Action::FlyForward | Action::FlyBack | Action::FlyLeft | Action::FlyRight | Action::FlyUp | Action::FlyDown | Action::FlyCloser | Action::FlyAway => &[Scope::Layout],
+            _ => &[Scope::Page],
+        }
+    }
 
     /// Id in the stored settings.
     pub fn id(self) -> &'static str {
@@ -39,6 +86,14 @@ impl Action {
             Action::NudgeUp => "nudge_up",
             Action::NudgeDown => "nudge_down",
             Action::NextRouting => "next_routing",
+            Action::FlyForward => "fly_forward",
+            Action::FlyBack => "fly_back",
+            Action::FlyLeft => "fly_left",
+            Action::FlyRight => "fly_right",
+            Action::FlyUp => "fly_up",
+            Action::FlyDown => "fly_down",
+            Action::FlyCloser => "fly_closer",
+            Action::FlyAway => "fly_away",
         }
     }
 
@@ -53,6 +108,14 @@ impl Action {
             Action::NudgeUp => tr_const!("Move selection up by one grid step"),
             Action::NudgeDown => tr_const!("Move selection down by one grid step"),
             Action::NextRouting => tr_const!("Next routing of the connection symbol to place"),
+            Action::FlyForward => tr_const!("Move ahead in the 3D view (held)"),
+            Action::FlyBack => tr_const!("Move back in the 3D view (held)"),
+            Action::FlyLeft => tr_const!("Move left in the 3D view (held)"),
+            Action::FlyRight => tr_const!("Move right in the 3D view (held)"),
+            Action::FlyUp => tr_const!("Move up in the 3D view (held)"),
+            Action::FlyDown => tr_const!("Move down in the 3D view (held)"),
+            Action::FlyCloser => tr_const!("Zoom in in the 3D view (held)"),
+            Action::FlyAway => tr_const!("Zoom out in the 3D view (held)"),
         }
     }
 
@@ -67,6 +130,14 @@ impl Action {
             Action::NudgeUp => vec![plain(Key::ArrowUp)],
             Action::NudgeDown => vec![plain(Key::ArrowDown)],
             Action::NextRouting => vec![plain(Key::Tab)],
+            Action::FlyForward => vec![plain(Key::W), plain(Key::ArrowUp)],
+            Action::FlyBack => vec![plain(Key::S), plain(Key::ArrowDown)],
+            Action::FlyLeft => vec![plain(Key::A), plain(Key::ArrowLeft)],
+            Action::FlyRight => vec![plain(Key::D), plain(Key::ArrowRight)],
+            Action::FlyUp => vec![plain(Key::E)],
+            Action::FlyDown => vec![plain(Key::Q)],
+            Action::FlyCloser => vec![plain(Key::Plus), plain(Key::Equals)],
+            Action::FlyAway => vec![plain(Key::Minus)],
         }
     }
 }
@@ -96,8 +167,20 @@ pub fn groups() -> Vec<(&'static str, Vec<&'static str>)> {
     }
     let other: Vec<&'static str> = commands::ALL.iter().filter(|d| !seen.contains(&d.cmd)).map(|d| d.id).collect();
     out.push((tr_const!("File and further commands"), other));
-    out.push((tr_const!("Keys of the page editor"), Action::ALL.iter().map(|a| a.id()).collect()));
+    let (layout, page): (Vec<Action>, Vec<Action>) = Action::ALL.iter().partition(|a| a.scopes() == [Scope::Layout]);
+    out.push((tr_const!("Keys of the page editor"), page.iter().map(|a| a.id()).collect()));
+    out.push((tr_const!("Keys of the 3D view"), layout.iter().map(|a| a.id()).collect()));
     out
+}
+
+/// Where a key of a binding acts. Plain keys of commands only act on the page; the
+/// keys the canvas reads itself (rotate, delete, fit) also in the panel layout.
+pub fn scopes(id: &str, s: &Shortcut) -> &'static [Scope] {
+    match commands::by_id(id) {
+        Some(d) if !d.canvas_keys && s.page_only() => &[Scope::Page],
+        Some(_) => &[Scope::Page, Scope::Layout],
+        None => Action::ALL.into_iter().find(|a| a.id() == id).map_or(&[Scope::Page], Action::scopes),
+    }
 }
 
 /// English title of a binding.
@@ -178,6 +261,28 @@ impl Shortcut {
     pub fn pressed(&self, i: &InputState) -> bool {
         i.key_pressed(self.key) && self.held(i.modifiers)
     }
+
+    /// A key without Ctrl or Alt that the app only gives to the page (the others act
+    /// in every pane).
+    pub fn page_only(&self) -> bool {
+        !self.command && !self.alt && !matches!(self.key, Key::F1 | Key::F2 | Key::F4 | Key::F6 | Key::Insert | Key::PageUp | Key::PageDown)
+    }
+}
+
+fn ctx_id() -> egui::Id {
+    egui::Id::unique("openecraft_shortcuts")
+}
+
+/// Hands the shortcuts to the views that do not belong to the page editor.
+pub fn set(ctx: &egui::Context, s: &Shortcuts) {
+    if ctx.data(|d| d.get_temp::<Arc<Shortcuts>>(ctx_id())).is_none_or(|old| *old != *s) {
+        ctx.data_mut(|d| d.insert_temp(ctx_id(), Arc::new(s.clone())));
+    }
+}
+
+/// The shortcuts handed over by [`set`], the defaults before.
+pub fn get(ctx: &egui::Context) -> Arc<Shortcuts> {
+    ctx.data(|d| d.get_temp(ctx_id())).unwrap_or_default()
 }
 
 /// The user's shortcuts: changed bindings with their keys (none = no shortcut), the
@@ -237,6 +342,12 @@ impl Shortcuts {
         self.pressed(i, a.id())
     }
 
+    /// A key of the action is held down with the modifiers `m`: Ctrl and Alt must be the
+    /// ones of the key, Shift is left to the caller (the 3D view moves faster).
+    pub fn action_down(&self, i: &InputState, a: Action, m: Modifiers) -> bool {
+        self.keys(a.id()).iter().any(|s| i.key_down(s.key) && (m.command || m.ctrl) == s.command && m.alt == s.alt)
+    }
+
     /// Takes the presses of an action's plain Tab key out of the raw input, before
     /// egui moves the keyboard focus with them; returns how many there were.
     pub fn take_tab(&self, raw: &mut egui::RawInput, a: Action) -> usize {
@@ -260,19 +371,26 @@ impl Shortcuts {
         }
     }
 
-    /// Shortcuts used by more than one binding.
+    /// Shortcuts used by more than one binding where they act.
     pub fn conflicts(&self) -> Vec<(Shortcut, Vec<&'static str>)> {
-        let mut by_key: Vec<(Shortcut, Vec<&'static str>)> = Vec::new();
-        for id in binding_ids() {
-            for s in self.keys(id) {
-                match by_key.iter_mut().find(|(k, _)| *k == s) {
-                    Some((_, v)) => v.push(id),
-                    None => by_key.push((s, vec![id])),
+        let mut out: Vec<(Shortcut, Vec<&'static str>)> = Vec::new();
+        for scope in [Scope::Page, Scope::Layout] {
+            let mut by_key: Vec<(Shortcut, Vec<&'static str>)> = Vec::new();
+            for id in binding_ids() {
+                for s in self.keys(id).into_iter().filter(|s| scopes(id, s).contains(&scope)) {
+                    match by_key.iter_mut().find(|(k, _)| *k == s) {
+                        Some((_, v)) => v.push(id),
+                        None => by_key.push((s, vec![id])),
+                    }
+                }
+            }
+            for c in by_key.into_iter().filter(|(_, v)| v.len() > 1) {
+                if !out.contains(&c) {
+                    out.push(c);
                 }
             }
         }
-        by_key.retain(|(_, v)| v.len() > 1);
-        by_key
+        out
     }
 
     /// For the app's storage: binding id → key texts.

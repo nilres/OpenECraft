@@ -406,6 +406,7 @@ impl App {
         let mut plugin_folders: Vec<String> = Vec::new();
         let mut language: Option<String> = None;
         let mut shortcuts = crate::shortcuts::Shortcuts::default();
+        let mut gestures = crate::gestures::Gestures::default();
         let mut layouts: Vec<crate::workspaces::Layout> = Vec::new();
         let mut projects_ui = projects_ui::ProjectsUi::default();
         let mut dock = None;
@@ -434,6 +435,9 @@ impl App {
             plugin_folders = eframe::get_value(storage, plugins_ui::FOLDERS_KEY).unwrap_or_default();
             if let Some(stored) = eframe::get_value(storage, crate::shortcuts::STORAGE_KEY) {
                 shortcuts = crate::shortcuts::Shortcuts::from_storage(&stored);
+            }
+            if let Some(stored) = eframe::get_value(storage, crate::gestures::STORAGE_KEY) {
+                gestures = crate::gestures::Gestures::from_storage(&stored);
             }
             layouts = eframe::get_value(storage, crate::workspaces::STORAGE_KEY).unwrap_or_default();
             dock = storage.get_string(crate::dock::STORAGE_KEY).and_then(|s| crate::dock::from_json(&s));
@@ -494,6 +498,7 @@ impl App {
             editor: {
                 let mut editor = Editor::default();
                 editor.shortcuts = shortcuts;
+                editor.gestures = gestures;
                 editor
             },
             io: FileIo::default(),
@@ -1077,7 +1082,9 @@ impl eframe::App for App {
         self.apply_scale(&ctx);
         self.panel_ui.wall_opacity = self.shell.wall_opacity;
         self.panel_ui.gpu_3d = self.shell.gpu_3d && frame.gl().is_some();
-        openecraft_ui::nav::set(&ctx, self.shell.nav);
+        openecraft_ui::nav::set(&ctx, self.editor.gestures.nav(self.shell.nav));
+        crate::shortcuts::set(&ctx, &self.editor.shortcuts);
+        crate::gestures::set(&ctx, &self.editor.gestures);
         // Ask about unsaved changes, then keep the window until recovery is ready.
         if ctx.input(|i| i.viewport().close_requested()) && !self.closing {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
@@ -1218,6 +1225,7 @@ impl eframe::App for App {
         eframe::set_value(storage, plugins_ui::STORAGE_KEY, &self.plugins.disabled());
         eframe::set_value(storage, plugins_ui::FOLDERS_KEY, &self.plugins_ui.folders());
         eframe::set_value(storage, crate::shortcuts::STORAGE_KEY, &self.editor.shortcuts.to_storage());
+        eframe::set_value(storage, crate::gestures::STORAGE_KEY, &self.editor.gestures.to_storage());
         eframe::set_value(storage, crate::workspaces::STORAGE_KEY, &self.layouts);
         storage.set_string(crate::dock::STORAGE_KEY, crate::dock::to_json(&self.dock));
         storage.set_string(crate::ribbon::STORAGE_KEY, self.ribbon.custom.to_json());

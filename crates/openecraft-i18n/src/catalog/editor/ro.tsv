@@ -85,7 +85,6 @@ Add rule	Adăugare regulă
 Add sort key	Adăugare cheie de sortare
 Add the facing cutout in {}	Adăugare decupaj corespondent în {}
 Add to device	Adăugare la dispozitiv
-Add to selection	Adăugare la selecție
 Add to the pre-planning	Adăugare la preplanificare
 Add user	Adăugare utilizator
 Added to both ends of the length for the cut length (insertion depth)	Se adaugă la ambele capete ale lungimii pentru lungimea de tăiere (adâncime de inserție)
@@ -130,6 +129,7 @@ Ambient temperature	Temperatură ambiantă
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	O arhivă (.oecz) este un fișier ZIP cu proiectul, un manifest și documentele și imaginile încorporate ca fișiere separate.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Un desen vechi ca grafică pe o pagină de schemă nouă (linii, arce, texte, blocuri)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	Un editor CAE electric deschis, în spiritul EPLAN Electric P8.
+Another gesture for the same function	Încă un gest pentru aceeași funcție
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	O altă variantă a unui macro existent cu acest nume (de ex. B), aleasă la inserare
 Any project file: its settings, forms, structure, potentials and pages start the new project	Orice fișier de proiect: setările, formularele, structura, potențialele și paginile sale stau la baza noului proiect
 Appearance	Aspect
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Circuitele unui distribuitor generic
 Clear	Golire
 Clearance	Distanță
 Clearances	Distanțe
+Click	Clic
+Click a text: open its link	Clic pe un text: deschiderea legăturii lui
 Click an element in the drawing to edit it.	Faceți clic pe un element din desen pentru a-l edita.
 Click centre, then a point on the circle	Faceți clic pe centru, apoi pe un punct al cercului
+Click in the panel layout: a single item of an assembly	Clic în amplasarea în tablou: un singur element al unui ansamblu
 Click into the page to place the image	Faceți clic în pagină pentru a plasa imaginea
 Click into the page to place {}	Faceți clic în pagină pentru a plasa {}
 Click on a wall	Faceți clic pe un perete
 Click on a wire to place the connection definition point	Faceți clic pe un conductor pentru a plasa punctul de definire a conexiunii
 Click on the 4 mm grid	Faceți clic pe grila de 4 mm
 Click on the wall: the part goes there at its mounting height	Faceți clic pe perete: piesa se așază acolo la înălțimea ei de montaj
+Click or window: add to the selection or take out of it	Clic sau fereastră: adăugare la selecție sau scoatere din ea
 Click start and end point	Faceți clic pe punctul de start și pe cel final
 Click the corners of a machine or building, double-click to finish	Faceți clic pe colțurile unei mașini sau ale unei clădiri, dublu clic pentru a termina
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Faceți clic pe colțurile limitei terenului · clic pe primul, dublu clic sau Enter: închidere · Backspace: înapoi · Esc: oprire
@@ -326,6 +330,7 @@ Click where the reference point is	Faceți clic unde se află punctul de referin
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Faceți clic unde se întâlnesc trei fire: piesa T indică aparatul de la care pornesc firele și ordinea țintelor lor · {} o rotește unde încă nu se întâlnesc fire · Esc sau clic dreapta pentru a termina
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Faceți clic unde două fire se încrucișează: încrucișarea le leagă și duce fiecare capăt al liniei sale întâi drept înainte, apoi transversal · {} o rotește · Esc sau clic dreapta pentru a termina
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Faceți clic unde două fire se întâlnesc în unghi drept, sau unde puncte de conexiune se află față în față peste colț: cu conectarea automată activă se desenează fire către el · {} îl rotește · Esc sau clic dreapta pentru a termina
+Click while moving	Clic în timpul mutării
 Click, or drag it into the page	Faceți clic sau trageți în pagină
 Climate (IEC 60890)	Climatizare (IEC 60890)
 Clipboard	Clipboard
@@ -537,6 +542,7 @@ Distribute vertically	Distribuire pe verticală
 Distributed neutral	Neutru distribuit
 Diversity factor	Factor de simultaneitate
 Divider	Separator
+Do the gesture…	Faceți gestul…
 Dock	Andocare
 Document {} embedded ({})	Documentul {} a fost încorporat ({})
 Documents	Documente
@@ -550,7 +556,7 @@ Door clearance	Distanță liberă față de ușă
 Door cutouts (CSV)	Decupaje ușă (CSV)
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
-Double-click (3D view)	Dublu clic (vizualizare 3D)
+Double-click	Dublu clic
 Download into database	Descărcare în baza de date
 Download project	Descărcare proiect
 Downloaded {} (version {})	{} descărcat (versiunea {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	Se descarcă OpenECraft {}
 Downstream part	Articol din aval
 Draft of revision {} created	Ciorna reviziei {} a fost creată
 Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
+Drag	Tragere
 Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
 Drag the core designation or the cable tag of the selected wire to place it.	Glisați denumirea firului sau identificatorul cablului firului selectat pentru a le plasa.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Găsire și înlocuire în întregul proie
 Find results	Rezultatele căutării
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Găsește elementele Vault ale articolelor proiectului după numărul elementului sau proprietatea Part Number și afișează modificările ID-ului de articol, reviziei și stării ciclului de viață pentru examinare
 Find…	Găsire…
+Finish a wire, polyline, polygon or wall	Terminarea unui fir, unei polilinii, unui poligon sau unui perete
+Finish or cancel the drawing, then back to selecting	Terminarea sau anularea desenului, apoi înapoi la selectare
 First row	Primul rând
 Fit	Încadrare
 Fit page	Încadrare pagină
@@ -780,6 +789,7 @@ Height above the mounting plate	Înălțime deasupra plăcii de montaj
 Height above the plate	Înălțime deasupra plăcii
 Height of the plinth, 0 without plinth	Înălțimea soclului, 0 fără soclu
 Heights above floor (IEC 60204-1)	Înălțimi deasupra podelei (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ținută apăsat la clic, mutare sau derulare. Ctrl este Cmd pe macOS.
 Help	Ajutor
 Hide the groups you do not need and put the commands you use most into own groups.	Ascundeți grupurile de care nu aveți nevoie și puneți comenzile cele mai folosite în grupuri proprii.
 Highest phase unbalance	Cel mai mare dezechilibru de fază
@@ -898,6 +908,8 @@ Key tips of the ribbon	Tastele de acces ale panglicii
 Key: {}	Cheie: {}
 Keyboard shortcuts	Comenzi rapide de la tastatură
 Keyboard shortcuts…	Comenzi rapide de la tastatură…
+Keys and gestures	Taste și gesturi
+Keys of the 3D view	Tastele vederii 3D
 Label	Etichetă
 Label (grey)	Etichetă (gri)
 Label field	Câmp de etichetă
@@ -919,6 +931,7 @@ Layout spaces	Spații de montaj
 Leave out the ceilings of the rooms and the roofs in the 3D view	Omiteți tavanele încăperilor și acoperișurile în vederea 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	În vizualizarea 3D omite capacele tuturor canalelor de cabluri: firele din ele se văd
 Leave repeated values of the first column blank	Lăsare necompletate a valorilor repetate din prima coloană
+Left button	Butonul stâng
 Left edges	Marginile din stânga
 Legend plates (door devices)	Plăcuțe de identificare (dispozitive de ușă)
 Length from the node to the device	Lungimea de la nod la dispozitiv
@@ -968,7 +981,6 @@ Locked by {} – read only	Blocat de {} – doar în citire
 Locking…	Se blochează…
 Logic	Logică
 Longer values are drawn smaller (0 = no limit)	Valorile mai lungi se desenează mai mic (0 = fără limită)
-Look at the point clicked, closer	Privește punctul pe care s-a dat clic, mai de aproape
 Look for updates when OpenECraft starts	Caută actualizări la pornirea OpenECraft
 Looking for updates…	Se caută actualizări…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Caută o versiune nouă a OpenECraft pe GitHub și o instalează în fundal
@@ -1016,6 +1028,7 @@ Messages	Mesaje
 Messages ({})	Mesaje ({})
 Messages of this session	Mesajele acestei sesiuni
 Middle	Mijloc
+Middle button	Butonul din mijloc
 Middle of the PV array in the floor plan of the building	Mijlocul câmpului fotovoltaic în planul clădirii
 Min. bend radius	Rază min. de curbură
 Minimize the ribbon	Minimizarea panglicii
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Oglindire (selecția sau simbolul care
 Mixed	Mixt
 Mode	Mod
 Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
+Modifier keys	Taste modificatoare
 Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
 Motors feed the short circuit	Motoarele alimentează scurtcircuitul
 Mounted on	Montat pe
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Dista
 Mounting height: {}	Înălțime de montaj: {}
 Mounting plate: {} holes, {} cutouts	Placă de montaj: {} găuri, {} decupaje
 Mounting system	Sistem de montaj
+Mouse	Mouse
 Move	Mutare
+Move ahead in the 3D view (held)	Deplasare înainte în vederea 3D (ținut apăsat)
+Move back in the 3D view (held)	Deplasare înapoi în vederea 3D (ținut apăsat)
 Move down	Mută în jos
+Move down in the 3D view (held)	Deplasare în jos în vederea 3D (ținut apăsat)
+Move faster with the keys of the 3D view	Deplasare mai rapidă cu tastele vederii 3D
 Move left	Mutare la stânga
+Move left in the 3D view (held)	Deplasare la stânga în vederea 3D (ținut apăsat)
 Move page down	Mutare pagină în jos
 Move page up	Mutare pagină în sus
+Move right in the 3D view (held)	Deplasare la dreapta în vederea 3D (ținut apăsat)
 Move selection by	Mutare selecție cu
 Move selection by…	Mutare selecție cu…
 Move the devices of this page into the new structure	Mutarea dispozitivelor acestei pagini în noua structură
-Move through the 3D view (Shift: faster)	Deplasare prin vizualizarea 3D (Shift: mai repede)
 Move to section	Mută în secțiune
 Move up	Mută în sus
+Move up in the 3D view (held)	Deplasare în sus în vederea 3D (ținut apăsat)
 Moves to the top level as page {}	Trece la nivelul superior ca pagina {}
 Moves to {} as page {}	Trece în {} ca pagina {}
 Moving	Mutare
@@ -1062,7 +1083,6 @@ Name and cross reference	Nume și referință încrucișată
 Name on the server	Nume pe server
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Data Type; Logical Address; Comment – pentru instrumentele de programare PLC
 Named copy of this form, for report blocks	Copie denumită a acestui formular, pentru blocuri de raport
-Navigation	Navigare
 Navigators	Navigatoare
 Neutral exchange file…	Fișier de schimb neutru…
 Never	Niciodată
@@ -1134,6 +1154,7 @@ No dot: plain T	Fără punct: T simplu
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Încă nicio carcasă – creați una cu Carcasă nouă sau o încăpere pentru dulapuri cu Încăpere nouă.
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
+No gesture	Niciun gest
 No harnesses defined.	Nu sunt definite cablaje.
 No inverter	Fără invertor
 No jump: plain crossing, connections have dots	Fără salt: încrucișare simplă, joncțiunile au puncte
@@ -1176,6 +1197,7 @@ Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
 Not saved, locked or changed by another user: {}	Nesalvat, blocat sau modificat de alt utilizator: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepreluat: butonul stâng singur selectează, desenează și mută; țineți apăsată o tastă modificatoare sau folosiți alt buton.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nu este proiectul partajat: modificările sunt salvate local până când este redeschis pe serverul de proiecte
 Nothing exchanged yet.	Încă nu s-a schimbat nimic.
 Nothing left in this list.	Nu a mai rămas nimic în această listă.
@@ -1215,6 +1237,7 @@ Open project	Deschidere proiect
 Open project server	Deschide serverul de proiecte
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Deschideți proiecte și fișiere din Autodesk Vault, plasați proiectul, exporturile și modelele 3D în vault
 Open the project	Deschiderea proiectului
+Open the selection: its properties, in the floor plan its face	Deschiderea selecției: proprietățile ei, în plan fața ei
 Open to {}: wires cross beside the mounting plates	Deschis spre {}: conductoarele trec pe lângă plăcile de montaj
 Open walls and floors	Deschideți pereții și pardoselile
 Open, save, import, export, print and the settings	Deschidere, salvare, import, export, tipărire și setări
@@ -1250,6 +1273,7 @@ Open…	Deschidere…
 Operations / year	Manevre / an
 Option	Opțiune
 Options	Opțiuni
+Orbit the 3D view	Rotirea vederii 3D
 Ordinary cable	Cablu obișnuit
 Orientation	Orientare
 Origin	Origine
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Paginile și șabloanele care foloses
 Pages of revision {}	Paginile reviziei {}
 Pages of the selected block	Paginile blocului selectat
 Pages using it get the project default	Paginile care îl folosesc primesc valoarea implicită a proiectului
+Pages, panel layout and plans	Pagini, amplasare în tablou și planuri
 Pairs in schematic order (1-2, 3-4 …)	Perechi în ordinea schemei (1-2, 3-4 …)
+Pan the 3D view	Deplasarea vederii 3D
+Pan the page, the panel layout and the plans	Deplasarea paginii, a amplasării în tablou și a planurilor
 Pane menu	Meniul panoului
 Panel wiring report	Raport de cablare a tabloului
 Panes	Panouri
@@ -1323,6 +1350,8 @@ Path function text	Text de funcție de cale
 Pattern	Model de repetare
 Pattern…	Model de repetare…
 Pin-out	Configurația pinilor
+Pinching	Ciupire
+Pinching on a trackpad or a touch screen zooms	Ciupirea pe touchpad sau pe ecranul tactil mărește
 Pipe run	Traseu de conducte
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Traseu de conducte pe un perete, tavan sau pardoseala încăperii, de-a lungul căruia se pozează furtunuri, tuburi și conducte: faceți clic pe colțuri, dublu clic sau Enter pentru a termina
 Pipe run {} mm – double-click or Enter to finish	Traseu de conducte {} mm – dublu clic sau Enter pentru a termina
@@ -1458,6 +1487,7 @@ Recent projects	Proiecte recente
 Recently used	Folosite recent
 Recommended height of manual actuators (10.1.2)	Înălțimea recomandată a elementelor de acționare manuală (10.1.2)
 Record	Înregistrare
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Înregistrare: faceți gestul în câmpul care apare, ținând apăsată o tastă modificatoare dacă doriți (Esc anulează). Adăugare păstrează gesturile existente. Clicul dreapta în instrumentul de selectare deschide meniul contextual.
 Rectangular	Dreptunghiular
 Redline: to be changed · Greenline: changed as built	Redline: de modificat · Greenline: modificat conform execuției
 Redo	Refacere
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revizii, avizare și aprobare
 Ribbon	Panglică
 Ribbon (JSON)	Panglică (JSON)
 Ribbon imported	Panglică importată
+Right button	Butonul drept
 Right click for more	Clic dreapta pentru mai multe
 Right edges	Marginile din dreapta
 Right neighbour	Vecin din dreapta
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	Încăperea {} a fos
 Rooms under sloped ceilings (lowest – highest ceiling)	Încăperi sub tavane înclinate (cel mai jos – cel mai înalt tavan)
 Rotate	Rotire
 Rotate (selection or symbol being placed)	Rotire (selecția sau simbolul care se plasează)
+Rotate what is being moved	Rotirea a ceea ce se mută
+Rotate what is being moved counter-clockwise	Rotirea a ceea ce se mută în sens antiorar
 Round	Rotund
 Round cutouts facing each other in both side walls	Decupaje rotunde față în față în ambii pereți laterali
 Route definition of {}	Definiția traseului pentru {}
@@ -1658,7 +1691,9 @@ Scheme {}	Schema {}
 Screws, nuts, washers and rivet nuts of the fixing points	Șuruburi, piulițe, șaibe și piulițe nituite ale punctelor de fixare
 Scrolling	Derulare
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Derularea deplasează vederea în orice direcție; ciupiți sau Ctrl + derulare pentru mărire.
+Scrolling up and down pans sideways	Derularea în sus și în jos deplasează lateral
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Derularea în sus și în jos mărește la indicator, lateral (rotiță orizontală, Shift + rotiță) deplasează vederea.
+Scrolling zooms, also where it pans	Derularea mărește, și acolo unde deplasează
 Search (* and ? as placeholders)…	Căutare (* și ? ca metacaractere)…
 Search below this folder	Căutare sub acest folder
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Căutați în serverul de articole după catalog, grupă de produse și date tehnice, adăugați articole și verificați baza de date pentru actualizări
@@ -1719,7 +1754,6 @@ Shield pigtail	Pigtail de ecran
 Shielded	Ecranat
 Shielded analogue cables	Cabluri analogice ecranate
 Shielded drive cables	Cabluri de acționare ecranate
-Shift + click / drag	Shift + clic / glisare
 Short circuit and selectivity	Scurtcircuit și selectivitate
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Scurtcircuit, selectivitate, sarcini, CEM, securitate funcțională și verificare față de seturi de reguli
 Short-circuit currents	Curenți de scurtcircuit
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tastele modificatoare cu care rotița deplasează lateral sau mărește se setează la Taste modificatoare.
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
 The names of its pages follow	Numele paginilor ei se schimbă odată cu ea
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Proiectul deschis este o copie locală de recuperare. Modificările sale nu sunt salvate pe serverul de proiecte; înainte ca proiectul partajat să se deschidă, decideți dacă le salvați local sau le renunțați.
@@ -1953,9 +1988,11 @@ Touch screen	Ecran tactil
 Transfer project parts to database	Transfer articole proiect în baza de date
 Translate the project texts; documentation per language	Traducerea textelor proiectului; documentație pe limbi
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotire în jurul verticalei, în sens antiorar văzut de sus (90 °: fețele frontale sunt orientate spre dreapta)
+Turn the 3D view to the point	Întoarcerea vederii 3D spre punct
 Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Două degete pe touchpad deplasează vederea, rotița mouse-ului mărește. Doar macOS le deosebește; în rest, derularea mărește ca rotița.
+Two fingers pan	Două degete deplasează
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	Două degete deplasează vederea și măresc prin ciupire în același timp; un deget funcționează ca butonul stâng al mouse-ului.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aici trebuie să se întâlnească două fire în unghi drept. Cu conectarea automată activă, punctele de conexiune aflate în fața brațelor sale sunt cablate la el.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Introduceți un punct și apăsați Enter: x y în mm sau @dx dy relativ la ultimul punct; acționează ca un clic al instrumentului curent
@@ -2023,7 +2060,6 @@ View	Vizualizare
 Visible	Vizibil
 Voltage (line to line)	Tensiune (între faze)
 Voltage drop	Cădere de tensiune
-W A S D / arrows, Q / E	W A S D / săgeți, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, scrisă în terenul exporturilor IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Peretele {}, {} m: trageți pentru a-l muta, dublu clic îl afișează pentru echipare
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Peretele {}, {} m: peretele afișat în vederea peretelui (evidențiat); trageți pentru a-l muta
@@ -2035,7 +2071,7 @@ Web between holes	Punte de material între găuri
 Welcome to OpenECraft	Bun venit în OpenECraft
 What is new	Noutăți
 What should be checked or changed?	Ce trebuie verificat sau modificat?
-Wheel / right or middle drag	Rotiță / glisare cu butonul dreapta sau din mijloc
+Wheel and touch	Rotiță și atingere
 Wheel: zoom · drag: move · click on a room: its floor plan	Rotiță: zoom · tragere: mutare · clic pe o încăpere: planul ei
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rotiță: zoom · glisare: mutare · clic pe o încăpere: planul ei · glisați un colț al limitei terenului
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Rotiță: zoom · clic dreapta: anulare · grafica se aliniază la 0,5 mm, punctele de conexiune la grila de 4 mm
@@ -2102,7 +2138,8 @@ You may only view this project.	Puteți doar vizualiza acest proiect.
 You may review this project: comments, markup and approvals, no other changes.	Puteți examina acest proiect: comentarii, adnotări și avize, fără alte modificări.
 Your unsaved changes of it are taken back	Modificările dvs. nesalvate ale acesteia sunt anulate
 Zoom	Zoom
-Zoom / pan	Zoom / deplasare
+Zoom in in the 3D view (held)	Mărire în vederea 3D (ținut apăsat)
+Zoom out in the 3D view (held)	Micșorare în vederea 3D (ținut apăsat)
 all	toate
 all cards	toate cardurile
 all lines	toate rândurile
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} pixels, {}	{} × {} pixeli, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
+{} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
 {}: click to show its floor plan	{}: clic pentru a afișa planul
 {}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide

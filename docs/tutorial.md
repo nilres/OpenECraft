@@ -58,7 +58,7 @@ panel layout. Most steps below can be tried on it.
   entry, then click into the page to place it. Placing continues until Esc or a right
   click. The star keeps an entry among the favorites; the ones used last come first.
 - R rotates and M mirrors the symbol being placed (or the selection). Keys can be
-  changed in *File › Settings › Keyboard shortcuts*.
+  changed in *File › Settings › Keys and gestures*, like the mouse buttons and modifiers.
 - Device tags are assigned automatically from the identifying letter (`-K1`, `-S2`).
   To place contacts of a contactor, select its coil first: contacts placed then
   belong to it and get the next free numbers (13/14, 21/22, …). Contacts and coils

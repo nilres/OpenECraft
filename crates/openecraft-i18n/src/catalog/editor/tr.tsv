@@ -85,7 +85,6 @@ Add rule	Kural ekle
 Add sort key	Sıralama ölçütü ekle
 Add the facing cutout in {}	{} içine karşılıklı kesimi ekle
 Add to device	Cihaza ekle
-Add to selection	Seçime ekle
 Add to the pre-planning	Ön planlamaya ekle
 Add user	Kullanıcı ekle
 Added to both ends of the length for the cut length (insertion depth)	Kesim uzunluğu için uzunluğun her iki ucuna eklenir (yerleştirme derinliği)
@@ -130,6 +129,7 @@ Ambient temperature	Ortam sıcaklığı
 An archive (.oecz) is a ZIP file with the project, a manifest and the embedded documents and images as files of their own.	Arşiv (.oecz); projeyi, bir manifestoyu ve gömülü belgeleri ve görüntüleri ayrı dosyalar olarak içeren bir ZIP dosyasıdır.
 An old drawing as graphics on a new schematic page (lines, arcs, texts, blocks)	Yeni bir şema sayfasında grafik olarak eski bir çizim (çizgiler, yaylar, metinler, bloklar)
 An open electrical CAE editor in the spirit of EPLAN Electric P8.	EPLAN Electric P8 anlayışında açık bir elektrik CAE düzenleyicisi.
+Another gesture for the same function	Aynı işlev için başka bir hareket
 Another variant of an existing macro with this name (e.g. B), chosen when inserting	Bu ada sahip mevcut bir makronun başka bir varyantı (ör. B), ekleme sırasında seçilir
 Any project file: its settings, forms, structure, potentials and pages start the new project	Herhangi bir proje dosyası: ayarları, formları, yapısı, potansiyelleri ve sayfaları yeni projenin başlangıcını oluşturur
 Appearance	Görünüş
@@ -293,14 +293,18 @@ Circuits of a generic manifold	Genel bir kollektörün devreleri
 Clear	Temizle
 Clearance	Açıklık mesafesi
 Clearances	Mesafeler
+Click	Tıklama
+Click a text: open its link	Bir metne tıklama: bağlantısını aç
 Click an element in the drawing to edit it.	Düzenlemek için çizimdeki bir öğeye tıklayın.
 Click centre, then a point on the circle	Merkeze, ardından dairenin üzerindeki bir noktaya tıklayın
+Click in the panel layout: a single item of an assembly	Pano yerleşiminde tıklama: bir montajın tek öğesi
 Click into the page to place the image	Görüntüyü yerleştirmek için sayfaya tıklayın
 Click into the page to place {}	{} öğesini yerleştirmek için sayfaya tıklayın
 Click on a wall	Bir duvara tıklayın
 Click on a wire to place the connection definition point	Bağlantı tanım noktasını yerleştirmek için bir tele tıklayın
 Click on the 4 mm grid	4 mm ızgarada tıklayın
 Click on the wall: the part goes there at its mounting height	Duvara tıklayın: parça orada montaj yüksekliğine yerleşir
+Click or window: add to the selection or take out of it	Tıklama veya pencere: seçime ekle veya seçimden çıkar
 Click start and end point	Başlangıç ve bitiş noktasına tıklayın
 Click the corners of a machine or building, double-click to finish	Bir makinenin veya binanın köşelerine tıklayın, bitirmek için çift tıklayın
 Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop	Arsa sınırının köşelerine tıklayın · ilkine tıklama, çift tıklama veya Enter: kapat · Geri: geri al · Esc: dur
@@ -326,6 +330,7 @@ Click where the reference point is	Referans noktasının olduğu yere tıklayın
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Üç telin birleştiği yere tıklayın: T parçası tellerin çıktığı cihazı ve hedeflerinin sırasını belirler · {} henüz tel birleşmeyen yerde döndürür · Bitirmek için Esc veya sağ tık
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	İki telin kesiştiği yere tıklayın: kesişme onları bağlar ve çizgisinin her ucunu önce düz, sonra enine götürür · {} döndürür · Bitirmek için Esc veya sağ tık
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	İki telin dik açıyla birleştiği veya bağlantı noktalarının köşe üzerinden birbirine baktığı yere tıklayın: otomatik bağlama açıkken ona teller çizilir · {} döndürür · Bitirmek için Esc veya sağ tık
+Click while moving	Taşırken tıklama
 Click, or drag it into the page	Tıklayın veya sayfaya sürükleyin
 Climate (IEC 60890)	İklimlendirme (IEC 60890)
 Clipboard	Pano
@@ -537,6 +542,7 @@ Distribute vertically	Dikey dağıt
 Distributed neutral	Dağıtılmış nötr
 Diversity factor	Eş zamanlılık faktörü
 Divider	Ayırıcı
+Do the gesture…	Hareketi yapın…
 Dock	Yerleştir
 Document {} embedded ({})	{} belgesi gömüldü ({})
 Documents	Belgeler
@@ -550,7 +556,7 @@ Door clearance	Kapı boşluğu
 Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
-Double-click (3D view)	Çift tıklama (3B görünüm)
+Double-click	Çift tıklama
 Download into database	Veritabanına indir
 Download project	Projeyi indir
 Downloaded {} (version {})	{} indirildi (sürüm {})
@@ -559,6 +565,7 @@ Downloading OpenECraft {}	OpenECraft {} indiriliyor
 Downstream part	Alt taraftaki parça
 Draft of revision {} created	Revizyon {} taslağı oluşturuldu
 Draft of revision {} discarded	Revizyon {} taslağı atıldı
+Drag	Sürükleme
 Drag a connection point designation of the selected symbol to place it.	Yerleştirmek için seçili sembolün bir bağlantı noktası tanımını sürükleyin.
 Drag an entry into the page, or click it and then click into the page.	Bir girişi sayfaya sürükleyin veya tıklayıp ardından sayfaya tıklayın.
 Drag the core designation or the cable tag of the selected wire to place it.	Yerleştirmek için seçili telin damar tanımını veya kablo etiketini sürükleyin.
@@ -689,6 +696,8 @@ Find and replace in the whole project	Tüm projede bul ve değiştir
 Find results	Arama sonuçları
 Finds the Vault items of the project parts by item number or Part Number property and shows the changes of item ID, revision and lifecycle state for review	Proje parçalarının Vault öğelerini öğe numarasına veya Part Number özelliğine göre bulur ve öğe kimliği, revizyon ve yaşam döngüsü durumundaki değişiklikleri inceleme için gösterir
 Find…	Bul…
+Finish a wire, polyline, polygon or wall	Kablo, çoklu çizgi, çokgen veya duvarı bitir
+Finish or cancel the drawing, then back to selecting	Çizimi bitir veya iptal et, sonra seçime dön
 First row	İlk satır
 Fit	Sığdır
 Fit page	Sayfaya sığdır
@@ -780,6 +789,7 @@ Height above the mounting plate	Montaj plakası üzerindeki yükseklik
 Height above the plate	Plaka üzerindeki yükseklik
 Height of the plinth, 0 without plinth	Kaidenin yüksekliği, kaide yoksa 0
 Heights above floor (IEC 60204-1)	Zeminden yükseklikler (IEC 60204-1)
+Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tıklarken, taşırken veya kaydırırken basılı tutulur. macOS'ta Ctrl, Cmd'dir.
 Help	Yardım
 Hide the groups you do not need and put the commands you use most into own groups.	İhtiyacınız olmayan grupları gizleyin, en çok kullandığınız komutları kendi gruplarınıza koyun.
 Highest phase unbalance	En yüksek faz dengesizliği
@@ -898,6 +908,8 @@ Key tips of the ribbon	Şeridin erişim tuşları
 Key: {}	Anahtar: {}
 Keyboard shortcuts	Klavye kısayolları
 Keyboard shortcuts…	Klavye kısayolları…
+Keys and gestures	Tuşlar ve hareketler
+Keys of the 3D view	3B görünüm tuşları
 Label	Yazı
 Label (grey)	Yazı (gri)
 Label field	Yazı alanı
@@ -919,6 +931,7 @@ Layout spaces	Montaj alanları
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D görünümde odaların tavanlarını ve çatıları gösterme
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3B görünümde tüm kablo kanallarının kapaklarını gösterme: içlerindeki teller görünür
 Leave repeated values of the first column blank	İlk sütunun yinelenen değerlerini boş bırak
+Left button	Sol düğme
 Left edges	Sol kenarlar
 Legend plates (door devices)	Tanıtım plakaları (kapı cihazları)
 Length from the node to the device	Düğümden cihaza uzunluk
@@ -968,7 +981,6 @@ Locked by {} – read only	{} tarafından kilitlendi – salt okunur
 Locking…	Kilitleniyor…
 Logic	Mantık
 Longer values are drawn smaller (0 = no limit)	Daha uzun değerler daha küçük çizilir (0 = sınır yok)
-Look at the point clicked, closer	Tıklanan noktaya daha yakından bak
 Look for updates when OpenECraft starts	OpenECraft başlarken güncellemeleri ara
 Looking for updates…	Güncellemeler aranıyor…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub'da OpenECraft'ın yeni sürümünü arar ve arka planda yükler
@@ -1016,6 +1028,7 @@ Messages	Mesajlar
 Messages ({})	Mesajlar ({})
 Messages of this session	Bu oturumun mesajları
 Middle	Orta
+Middle button	Orta düğme
 Middle of the PV array in the floor plan of the building	PV dizisinin bina planındaki ortası
 Min. bend radius	Min. bükme yarıçapı
 Minimize the ribbon	Şeridi küçült
@@ -1024,6 +1037,7 @@ Mirror (selection or symbol being placed)	Yansıt (seçim veya yerleştirilen se
 Mixed	Karışık
 Mode	Mod
 Model of a part (2D / 3D)	Bir parçanın modeli (2D / 3D)
+Modifier keys	Değiştirici tuşlar
 Module part; its size comes from the part	Modül parçası; boyutu parçadan gelir
 Motors feed the short circuit	Motorlar kısa devreyi besler
 Mounted on	Montaj yeri
@@ -1032,17 +1046,24 @@ Mounting clearance side by side; parts add theirs (Clearance left / right)	Yan y
 Mounting height: {}	Montaj yüksekliği: {}
 Mounting plate: {} holes, {} cutouts	Montaj plakası: {} delik, {} kesim
 Mounting system	Montaj sistemi
+Mouse	Fare
 Move	Taşı
+Move ahead in the 3D view (held)	3B görünümde ileri git (basılı tut)
+Move back in the 3D view (held)	3B görünümde geri git (basılı tut)
 Move down	Aşağı taşı
+Move down in the 3D view (held)	3B görünümde aşağı git (basılı tut)
+Move faster with the keys of the 3D view	3B görünüm tuşlarıyla daha hızlı git
 Move left	Sola taşı
+Move left in the 3D view (held)	3B görünümde sola git (basılı tut)
 Move page down	Sayfayı aşağı taşı
 Move page up	Sayfayı yukarı taşı
+Move right in the 3D view (held)	3B görünümde sağa git (basılı tut)
 Move selection by	Seçimi şu kadar taşı
 Move selection by…	Seçimi taşı…
 Move the devices of this page into the new structure	Bu sayfanın cihazlarını yeni yapıya taşı
-Move through the 3D view (Shift: faster)	3B görünümde hareket et (Shift: daha hızlı)
 Move to section	Bölüme taşı
 Move up	Yukarı taşı
+Move up in the 3D view (held)	3B görünümde yukarı git (basılı tut)
 Moves to the top level as page {}	En üst düzeye {} sayfası olarak geçer
 Moves to {} as page {}	{} bölümüne {} sayfası olarak geçer
 Moving	Taşıma
@@ -1062,7 +1083,6 @@ Name and cross reference	Ad ve çapraz referans
 Name on the server	Sunucudaki ad
 Name; Data Type; Logical Address; Comment – for PLC programming tools	Ad; Veri tipi; Mantıksal adres; Açıklama – PLC programlama araçları için
 Named copy of this form, for report blocks	Rapor blokları için bu formun adlandırılmış kopyası
-Navigation	Gezinme
 Navigators	Gezginler
 Neutral exchange file…	Nötr değişim dosyası…
 Never	Hiçbir zaman
@@ -1134,6 +1154,7 @@ No dot: plain T	Nokta yok: düz T
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Henüz pano yok – Yeni pano ile bir pano veya Yeni oda ile panolar için bir oda oluşturun.
 No field cables: place the enclosures and field devices at nodes of the route network.	Saha kablosu yok: panoları ve saha cihazlarını güzergâh ağının düğümlerine yerleştirin.
 No filter fans: an air/air heat exchanger or a cooling unit	Filtreli fan yok: hava/hava ısı eşanjörü veya soğutma ünitesi
+No gesture	Hareket yok
 No harnesses defined.	Tanımlı kablo demeti yok.
 No inverter	İnvertör yok
 No jump: plain crossing, connections have dots	Atlama yok: düz kesişim, bağlantılarda nokta var
@@ -1176,6 +1197,7 @@ Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
 Not saved, locked or changed by another user: {}	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi: {}
+Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Alınmadı: tek başına sol düğme seçer, çizer ve taşır; bir değiştirici tuşu basılı tutun veya başka bir düğme kullanın.
 Not the shared project: changes are saved locally until it is opened on the project server again	Paylaşılan proje değil: proje sunucusunda yeniden açılana kadar değişiklikler yerel olarak kaydedilir
 Nothing exchanged yet.	Henüz hiçbir şey değiş tokuş edilmedi.
 Nothing left in this list.	Bu listede bir şey kalmadı.
@@ -1215,6 +1237,7 @@ Open project	Proje aç
 Open project server	Proje sunucusunu aç
 Open projects and files from Autodesk Vault, put the project, exports and 3D models into the vault	Autodesk Vault'tan proje ve dosya açın, projeyi, dışa aktarımları ve 3D modelleri kasaya koyun
 Open the project	Projeyi aç
+Open the selection: its properties, in the floor plan its face	Seçimi aç: özellikleri, kat planında yüzü
 Open to {}: wires cross beside the mounting plates	{} tarafına açık: teller montaj plakalarının yanından geçer
 Open walls and floors	Duvarları ve zeminleri aç
 Open, save, import, export, print and the settings	Açma, kaydetme, içe ve dışa aktarma, yazdırma ve ayarlar
@@ -1250,6 +1273,7 @@ Open…	Aç…
 Operations / year	Çalışma / yıl
 Option	Seçenek
 Options	Seçenekler
+Orbit the 3D view	3B görünümü döndür
 Ordinary cable	Normal kablo
 Orientation	Yön
 Origin	Köken
@@ -1299,7 +1323,10 @@ Pages and templates using the frame follow	Çerçeveyi kullanan sayfalar ve şab
 Pages of revision {}	Revizyon {} sayfaları
 Pages of the selected block	Seçili bloğun sayfaları
 Pages using it get the project default	Bunu kullanan sayfalar proje varsayılanını alır
+Pages, panel layout and plans	Sayfalar, pano yerleşimi ve planlar
 Pairs in schematic order (1-2, 3-4 …)	Şema sırasına göre çiftler (1-2, 3-4 …)
+Pan the 3D view	3B görünümü kaydır
+Pan the page, the panel layout and the plans	Sayfayı, pano yerleşimini ve planları kaydır
 Pane menu	Panel menüsü
 Panel wiring report	Pano kablolama raporu
 Panes	Paneller
@@ -1323,6 +1350,8 @@ Path function text	Yol fonksiyon metni
 Pattern	Desen
 Pattern…	Desen…
 Pin-out	Pin dizilimi
+Pinching	Kıstırma
+Pinching on a trackpad or a touch screen zooms	Dokunmatik yüzeyde veya dokunmatik ekranda kıstırma yakınlaştırır
 Pipe run	Boru güzergâhı
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Odanın duvarında, tavanında veya zemininde, hortumların, boruların ve boru hatlarının boyunca döşendiği boru güzergâhı: köşelere tıklayın, bitirmek için çift tıklayın veya Enter'a basın
 Pipe run {} mm – double-click or Enter to finish	Boru güzergâhı {} mm – bitirmek için çift tıklayın veya Enter'a basın
@@ -1458,6 +1487,7 @@ Recent projects	Son projeler
 Recently used	Son kullanılanlar
 Recommended height of manual actuators (10.1.2)	Elle kumanda elemanlarının önerilen yüksekliği (10.1.2)
 Record	Kaydet
+Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Kaydet: beliren alanda hareketi yapın, isterseniz bir değiştirici tuşu basılı tutun (Esc iptal eder). Ekle mevcut hareketleri korur. Seçim aracında sağ tıklama bağlam menüsünü açar.
 Rectangular	Dikdörtgen
 Redline: to be changed · Greenline: changed as built	Redline: değiştirilecek · Greenline: uygulandığı gibi değiştirildi
 Redo	Yinele
@@ -1566,6 +1596,7 @@ Revisions, approval and release	Revizyonlar, onay ve yayımlama
 Ribbon	Şerit
 Ribbon (JSON)	Şerit (JSON)
 Ribbon imported	Şerit içe aktarıldı
+Right button	Sağ düğme
 Right click for more	Daha fazlası için sağ tıklayın
 Right edges	Sağ kenarlar
 Right neighbour	Sağ komşu
@@ -1582,6 +1613,8 @@ Room {} taken out of the building; it stays where it stands	{} odası binadan ç
 Rooms under sloped ceilings (lowest – highest ceiling)	Eğimli tavan altındaki odalar (en alçak – en yüksek tavan)
 Rotate	Döndür
 Rotate (selection or symbol being placed)	Döndür (seçim veya yerleştirilen sembol)
+Rotate what is being moved	Taşınanı döndür
+Rotate what is being moved counter-clockwise	Taşınanı saat yönünün tersine döndür
 Round	Yuvarlak
 Round cutouts facing each other in both side walls	Her iki yan duvarda karşılıklı yuvarlak kesimler
 Route definition of {}	{} güzergâh tanımı
@@ -1658,7 +1691,9 @@ Scheme {}	Düzen {}
 Screws, nuts, washers and rivet nuts of the fixing points	Sabitleme noktalarının vidaları, somunları, pulları ve perçin somunları
 Scrolling	Kaydırma
 Scrolling pans in every direction; pinch or Ctrl + scroll to zoom.	Kaydırma görünümü her yöne kaydırır; yakınlaştırmak için kıstırın veya Ctrl + kaydırma kullanın.
+Scrolling up and down pans sideways	Yukarı ve aşağı kaydırma yana kaydırır
 Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + wheel) pans.	Yukarı ve aşağı kaydırma imleçte yakınlaştırır, yana (yatay tekerlek, Shift + tekerlek) görünümü kaydırır.
+Scrolling zooms, also where it pans	Kaydırma, kaydırdığı yerde de yakınlaştırır
 Search (* and ? as placeholders)…	Ara (* ve ? joker karakter olarak)…
 Search below this folder	Bu klasörün altında ara
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Parça sunucusunda katalog, ürün grubu ve teknik verilere göre arayın, parça ekleyin ve veritabanında güncellemeleri kontrol edin
@@ -1719,7 +1754,6 @@ Shield pigtail	Ekran pigtail
 Shielded	Ekranlı
 Shielded analogue cables	Ekranlı analog kabloları
 Shielded drive cables	Ekranlı sürücü kabloları
-Shift + click / drag	Shift + tıkla / sürükle
 Short circuit and selectivity	Kısa devre ve seçicilik
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kısa devre, seçicilik, yükler, EMC, fonksiyonel güvenlik ve kural setlerine göre doğrulama
 Short-circuit currents	Kısa devre akımları
@@ -1895,6 +1929,7 @@ The enclosure stands with its left side against the right side of the chosen one
 The horizontal wire	Yatay tel
 The items are selected and moved together	Öğeler birlikte seçilir ve taşınır
 The macro library has no page macros (Macros › Save page as macro…).	Makro kütüphanesinde sayfa makrosu yok (Makrolar › Sayfayı makro olarak kaydet…).
+The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tekerleğin yana kaydırmasını veya yakınlaştırmasını sağlayan değiştiriciler Değiştirici tuşlar altında ayarlanır.
 The modules no string takes yet in series, on the first inverter	Henüz hiçbir dizinin almadığı modüller, seri olarak, ilk invertörde
 The names of its pages follow	Sayfalarının adları da değişir
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Açık proje yerel bir kurtarma kopyasıdır. Değişiklikleri proje sunucusuna kaydedilmedi; paylaşılan proje açılmadan önce bunları yerel olarak kaydetmeye veya atmaya siz karar verirsiniz.
@@ -1953,9 +1988,11 @@ Touch screen	Dokunmatik ekran
 Transfer project parts to database	Proje parçalarını veritabanına aktar
 Translate the project texts; documentation per language	Proje metinlerini çevir; dil başına dokümantasyon
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90 °: ön yüzler sağa bakar)
+Turn the 3D view to the point	3B görünümü noktaya çevir
 Tutorial	Eğitim
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
 Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Dokunmatik yüzeyde iki parmak görünümü kaydırır, fare tekerleği yakınlaştırır. Bunları yalnızca macOS ayırt eder; diğer sistemlerde kaydırma tekerlek gibi yakınlaştırır.
+Two fingers pan	İki parmak kaydırır
 Two fingers pan and pinch to zoom at the same time; one finger works like the left mouse button.	İki parmak aynı anda görünümü kaydırır ve kıstırarak yakınlaştırır; tek parmak sol fare düğmesi gibi çalışır.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
@@ -2023,7 +2060,6 @@ View	Görünüm
 Visible	Görünür
 Voltage (line to line)	Gerilim (fazlar arası)
 Voltage drop	Gerilim düşümü
-W A S D / arrows, Q / E	W A S D / oklar, Q / E
 WGS 84, written into the site of IFC exports	WGS 84, IFC dışa aktarımlarının arsasına yazılır
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Duvar {}, {} m: taşımak için sürükleyin, donatmak için çift tıklayarak gösterin
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Duvar {}, {} m: duvar görünümünde gösterilen duvar (vurgulu); taşımak için sürükleyin
@@ -2035,7 +2071,7 @@ Web between holes	Delikler arası ara
 Welcome to OpenECraft	OpenECraft'a hoş geldiniz
 What is new	Yenilikler
 What should be checked or changed?	Ne kontrol edilmeli veya değiştirilmeli?
-Wheel / right or middle drag	Tekerlek / sağ veya orta tuşla sürükleme
+Wheel and touch	Tekerlek ve dokunma
 Wheel: zoom · drag: move · click on a room: its floor plan	Tekerlek: yakınlaştır · sürükle: kaydır · odaya tıkla: kat planı
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Tekerlek: yakınlaştır · sürükle: taşı · odaya tıkla: kat planı · arsa sınırının köşesini sürükle
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Tekerlek: yakınlaştır · sağ tık: iptal · grafikler 0,5 mm'ye, bağlantı noktaları 4 mm ızgaraya yaslanır
@@ -2102,7 +2138,8 @@ You may only view this project.	Bu projeyi yalnızca görüntüleyebilirsiniz.
 You may review this project: comments, markup and approvals, no other changes.	Bu projeyi inceleyebilirsiniz: yorumlar, işaretlemeler ve onaylar, başka değişiklik yok.
 Your unsaved changes of it are taken back	Bu öğedeki kaydedilmemiş değişiklikleriniz geri alınır
 Zoom	Yakınlaştır
-Zoom / pan	Yakınlaştır / kaydır
+Zoom in in the 3D view (held)	3B görünümü yakınlaştır (basılı tut)
+Zoom out in the 3D view (held)	3B görünümü uzaklaştır (basılı tut)
 all	tümü
 all cards	tüm kartlar
 all lines	tüm satırlar
@@ -2356,6 +2393,7 @@ x y	x y
 {} °C (max.)	{} °C (maks.)
 {} × {} pixels, {}	{} × {} piksel, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
+{} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın
 {}: crimp together with the wire to {}	{}: {} yönündeki telle birlikte sıkıştırın
 {}: drag to move it, R turns it, a double-click opens it	{}: taşımak için sürükleyin, R döndürür, çift tıklama açar
