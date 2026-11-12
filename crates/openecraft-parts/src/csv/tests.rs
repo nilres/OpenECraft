@@ -67,7 +67,7 @@ fn typed_mounting_data_in_csv() {
     // Values that cannot be read stay in the technical data.
     let text = "Part number;Power loss;Door cutout\nY.1;a lot;Ø22.5\n";
     let y = &from_csv(text).unwrap()[0];
-    assert_eq!(y.mounting_data.door_cutout, Some(crate::Cutout::Round { d: 22.5 }));
+    assert_eq!(y.mounting_data.door_cutouts, [crate::PlacedCutout::centered(crate::Cutout::Round { d: 22.5 })]);
     assert_eq!(y.tech_data, "Power loss: a lot");
 }
 

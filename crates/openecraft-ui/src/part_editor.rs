@@ -8,7 +8,7 @@ use egui::{vec2, Color32, Pos2, RichText, Sense, Shape, Stroke};
 use openecraft_parts::vec3::{cross, dot, norm, sub, Orbit};
 use openecraft_parts::{
     default_connection_points, distinct_values, parse_mesh, parse_svg, natural_cmp, ConnectionPoint, Exit, FnKind, FunctionTemplate, Grouping,
-    Component, Mesh3d, Model2d, MountingData, Part, PartFilter, Prim2d, TopGroup, MOUNTING_KEYS, PRODUCT_GROUPS,
+    Component, Cutout, Mesh3d, Model2d, MountingData, Part, PartFilter, PlacedCutout, Prim2d, TopGroup, MOUNTING_KEYS, PRODUCT_GROUPS,
 };
 use openecraft_parts::portal::{Attachment, Lifecycle};
 use openecraft_parts::{date_from_unix, productgroups};
@@ -258,7 +258,7 @@ fn typed_text_row(ui: &mut egui::Ui, part: &str, label: &str, data: &mut Mountin
 }
 
 const HOLES_HINT: &str = "M4: 6,8; 42,8";
-const CUTOUT_HINT: &str = "Ø22.5 / 92 x 92";
+const CUTOUT_HINT: &str = "Ø22.5; 92 x 92 @ 0/-6.5 R3 15°";
 
 /// Typed mounting data: clearances, holes, cutouts, power loss, fastening.
 fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
@@ -302,6 +302,122 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
         });
         ui.end_row();
     });
+    ui.add_space(6.0);
+    ui.horizontal_top(|ui| {
+        mounting_preview(ui, part, vec2(240.0, 220.0));
+        ui.vertical(|ui| {
+            ui.weak(tr("Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise."));
+            ui.label(RichText::new(tr("Cutouts")).strong());
+            cutout_table(ui, "pcut", &mut part.mounting_data.cutouts);
+            ui.label(RichText::new(tr("Door cutouts")).strong()).on_hover_text(tr("In the door, when they differ from the cutouts"));
+            cutout_table(ui, "pdcut", &mut part.mounting_data.door_cutouts);
+        });
+    });
+}
+
+fn cutout_size(v: &mut f32) -> egui::DragValue<'_> {
+    egui::DragValue::new(v).speed(0.5).range(0.1..=5000.0).suffix(" mm")
+}
+
+/// The cutouts of a list with their shape, size, place, turn and corner radius.
+fn cutout_table(ui: &mut egui::Ui, id: &str, list: &mut Vec<PlacedCutout>) {
+    let mut remove = None;
+    if !list.is_empty() {
+        egui::Grid::new(id).num_columns(8).striped(true).spacing([6.0, 4.0]).show(ui, |ui| {
+            for h in [tr("Shape"), tr("Width / Ø"), tr("Height"), "X", "Y", tr("Angle"), tr("Corner radius"), ""] {
+                ui.label(RichText::new(h).strong());
+            }
+            ui.end_row();
+            for (i, c) in list.iter_mut().enumerate() {
+                let mut round = matches!(c.shape, Cutout::Round { .. });
+                let was = round;
+                egui::ComboBox::from_id_salt((id, "shape", i)).selected_text(if round { tr("Round") } else { tr("Rectangular") }).width(100.0).show_ui(ui, |ui| {
+                    ui.selectable_value(&mut round, true, tr("Round"));
+                    ui.selectable_value(&mut round, false, tr("Rectangular"));
+                });
+                if round != was {
+                    let [w, h] = c.size();
+                    c.shape = if round { Cutout::Round { d: w.min(h) } } else { Cutout::Rect { w, h } };
+                }
+                match &mut c.shape {
+                    Cutout::Round { d } => {
+                        ui.add(cutout_size(d));
+                        ui.label("");
+                    }
+                    Cutout::Rect { w, h } => {
+                        ui.add(cutout_size(w));
+                        ui.add(cutout_size(h));
+                    }
+                }
+                for v in &mut c.offset {
+                    ui.add(egui::DragValue::new(v).speed(0.5).range(-5000.0..=5000.0).suffix(" mm"));
+                }
+                if round {
+                    ui.label("");
+                    ui.label("");
+                } else {
+                    ui.add(egui::DragValue::new(&mut c.angle).speed(1.0).range(-360.0..=360.0).suffix("°"));
+                    ui.add(egui::DragValue::new(&mut c.radius).speed(0.25).range(0.0..=1000.0).suffix(" mm"));
+                }
+                if icons::button(ui, Icon::Delete, tr("Remove")).clicked() {
+                    remove = Some(i);
+                }
+                ui.end_row();
+            }
+        });
+    }
+    if let Some(i) = remove {
+        list.remove(i);
+    }
+    if icons::text_button(ui, Icon::Plus, tr("Add cutout")).clicked() {
+        list.push(PlacedCutout::centered(Cutout::Rect { w: 50.0, h: 50.0 }));
+    }
+}
+
+/// The cutouts of a part (dashed) in a front view drawn with `map` (part mm to screen).
+fn paint_cutouts(painter: &egui::Painter, part: &Part, map: &dyn Fn([f32; 2]) -> Pos2, color: Color32) {
+    let (w, h) = (part.width, part.height);
+    for c in part.cutouts(false) {
+        let mut pts: Vec<Pos2> = c.outline(w, h).into_iter().map(map).collect();
+        if let Some(first) = pts.first().copied() {
+            pts.push(first);
+        }
+        painter.extend(Shape::dashed_line(&pts, Stroke::new(1.2, color), 5.0, 3.0));
+    }
+}
+
+/// Front view of a part with its mounting holes and cutouts.
+fn mounting_preview(ui: &mut egui::Ui, part: &Part, size: egui::Vec2) {
+    let (resp, painter) = ui.allocate_painter(size, Sense::hover());
+    let visuals = ui.visuals();
+    painter.rect_filled(resp.rect, 4.0, visuals.extreme_bg_color);
+    let Some([w, h, _]) = part.size() else {
+        painter.text(resp.rect.center(), egui::Align2::CENTER_CENTER, tr("no mounting data"), egui::FontId::proportional(12.0), visuals.weak_text_color());
+        return;
+    };
+    // Holes and cutouts may lie beyond the outline (lugs of rail devices).
+    let mut lo = [0.0f32, 0.0f32];
+    let mut hi = [w, h];
+    let mut include = |q: [f32; 2]| {
+        for k in 0..2 {
+            lo[k] = lo[k].min(q[k]);
+            hi[k] = hi[k].max(q[k]);
+        }
+    };
+    part.mounting_data.holes.iter().for_each(|q| include(*q));
+    part.cutouts(false).iter().flat_map(|c| c.outline(w, h)).for_each(&mut include);
+    let zoom = ((size.x - 24.0) / (hi[0] - lo[0])).min((size.y - 24.0) / (hi[1] - lo[1]));
+    let origin = resp.rect.center() - vec2(lo[0] + hi[0], lo[1] + hi[1]) * zoom / 2.0;
+    let map = |q: [f32; 2]| origin + vec2(q[0], q[1]) * zoom;
+    let ink = visuals.text_color();
+    painter.rect_filled(egui::Rect::from_two_pos(map([0.0, 0.0]), map([w, h])), 0.0, visuals.widgets.inactive.bg_fill);
+    painter.rect_stroke(egui::Rect::from_two_pos(map([0.0, 0.0]), map([w, h])), 0.0, Stroke::new(1.0, ink), egui::StrokeKind::Middle);
+    let accent = Color32::from_rgb(40, 110, 230);
+    paint_cutouts(&painter, part, &map, accent);
+    let hole: f32 = part.mounting_data.hole_thread.trim_start_matches(['Ø', 'M']).replace(',', ".").parse().unwrap_or(4.0);
+    for q in &part.mounting_data.holes {
+        painter.circle_stroke(map(*q), (hole / 2.0 * zoom).max(2.0), Stroke::new(1.2, ink));
+    }
 }
 
 /// Marking of parts that stand on the floor of a room (part trees, editor, summary).
@@ -784,6 +900,7 @@ fn connection_preview(ui: &mut egui::Ui, part: &Part, points: &[ConnectionPoint]
         paint_model_2d(&painter, m, &|q| map([q[0] * sx, q[1] * sy]), zoom * sx.min(sy), Stroke::new(1.0, ink.gamma_multiply(0.6)));
     }
     painter.rect_stroke(egui::Rect::from_two_pos(map([0.0, 0.0]), map([w, h])), 0.0, Stroke::new(1.0, ink), egui::StrokeKind::Middle);
+    paint_cutouts(&painter, part, &map, ink.gamma_multiply(0.5));
     let accent = Color32::from_rgb(40, 110, 230);
     let highlight = Color32::from_rgb(230, 40, 200);
     for (i, c) in points.iter().enumerate() {

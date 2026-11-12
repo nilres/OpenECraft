@@ -14,7 +14,7 @@
 
 use crate::productgroups::{self, Classification};
 use crate::xml::{self, Element};
-use crate::{ConnectionPoint, Cutout, Exit, FnKind, FunctionTemplate, Part};
+use crate::{ConnectionPoint, Cutout, Exit, FnKind, FunctionTemplate, Part, PlacedCutout};
 use std::collections::HashMap;
 use std::fmt::Write;
 
@@ -179,30 +179,36 @@ enum Drill {
     Hole([f32; 2], f32),
     /// Tapped hole of this nominal size (type 2: `M4`).
     Thread([f32; 2], f32),
-    /// Opening for the device: rectangular (type 3, height and width) or round (holes
-    /// larger than a screw, as for command devices).
-    Cutout(Cutout),
+    /// Opening for the device around its centre, turned by an angle (degrees,
+    /// counter-clockwise): rectangular (type 3, height and width) or round (holes larger
+    /// than a screw, as for command devices).
+    Cutout([f32; 2], Cutout, f32),
 }
 
 /// Holes up to this diameter take screws; larger ones are openings for the device.
 const MAX_SCREW_HOLE: f32 = 12.0;
 
-/// The positions of a `<construction>` drilling pattern.
-fn drill_holes(el: &Element) -> Vec<Drill> {
-    el.all("drillingPosition")
+/// The positions of a `<construction>` drilling pattern, and their records as they are
+/// (kept with the part: what a subtype or the third dimension means is not known).
+fn drill_holes(el: &Element) -> (Vec<Drill>, Vec<serde_json::Value>) {
+    let positions: Vec<&Element> = el.all("drillingPosition").collect();
+    let drills = positions
+        .iter()
         .filter_map(|h| {
             let v = |a: &str| num(attr(h, a));
             let pos = [v("xpos"), v("ypos")];
             let (d1, d2) = (v("dimension1"), v("dimension2"));
             Some(match v("type") as u32 {
                 2 => Drill::Thread(pos, d1),
-                3 if d1 > 0.0 && d2 > 0.0 => Drill::Cutout(Cutout::Rect { w: d2, h: d1 }),
+                3 if d1 > 0.0 && d2 > 0.0 => Drill::Cutout(pos, Cutout::Rect { w: d2, h: d1 }, v("angle")),
                 3 => return None,
-                _ if d1 > MAX_SCREW_HOLE => Drill::Cutout(Cutout::Round { d: d1 }),
+                _ if d1 > MAX_SCREW_HOLE => Drill::Cutout(pos, Cutout::Round { d: d1 }, 0.0),
                 _ => Drill::Hole(pos, d1),
             })
         })
-        .collect()
+        .collect();
+    let records = positions.iter().map(|h| serde_json::Value::Object(h.attributes.iter().map(|(k, v)| (k.clone(), serde_json::Value::String(v.clone()))).collect())).collect();
+    (drills, records)
 }
 
 /// Texts that say a part snaps onto a mounting rail.
@@ -356,10 +362,18 @@ pub fn from_eplan_documents(texts: &[&str]) -> Result<Vec<Part>, String> {
                 if let Some(points) = points {
                     part.connection_points = connection_points(points, part.height);
                 }
-                if let Some(holes) = holes {
+                if let Some((holes, records)) = holes {
+                    if !records.is_empty() {
+                        let mut data = part.source_data.as_ref().map(|d| d.as_ref().clone()).unwrap_or_else(|| serde_json::json!({}));
+                        if let Some(map) = data.as_object_mut() {
+                            map.insert("eplan_drilling".into(), serde_json::Value::Array(records.clone()));
+                            part.source_data = Some(data.into());
+                        }
+                    }
+                    let (width, height) = (part.width, part.height);
                     let md = &mut part.mounting_data;
-                    let at = |p: &[f32; 2]| [p[0] + offset[0], part.height - (p[1] + offset[1])];
-                    md.holes = holes.iter().filter_map(|h| match h { Drill::Hole(p, _) | Drill::Thread(p, _) => Some(at(p)), Drill::Cutout(_) => None }).collect();
+                    let at = |p: &[f32; 2]| [p[0] + offset[0], height - (p[1] + offset[1])];
+                    md.holes = holes.iter().filter_map(|h| match h { Drill::Hole(p, _) | Drill::Thread(p, _) => Some(at(p)), Drill::Cutout(..) => None }).collect();
                     // One size for all holes: the thread of tapped ones, otherwise the
                     // diameter of the through holes.
                     let thread = holes.iter().find_map(|h| match h { Drill::Thread(_, d) if *d > 0.0 => Some(format!("M{d}")), _ => None });
@@ -367,7 +381,19 @@ pub fn from_eplan_documents(texts: &[&str]) -> Result<Vec<Part>, String> {
                     if let Some(size) = thread.or(hole) {
                         md.hole_thread = size;
                     }
-                    md.cutout = holes.iter().find_map(|h| match h { Drill::Cutout(c) => Some(*c), _ => None }).or(md.cutout);
+                    let cutouts: Vec<PlacedCutout> = holes
+                        .iter()
+                        .filter_map(|h| match h {
+                            Drill::Cutout(p, shape, angle) => {
+                                let [x, y] = at(p);
+                                Some(PlacedCutout { shape: *shape, offset: [x - width / 2.0, y - height / 2.0], angle: *angle, radius: 0.0 })
+                            }
+                            _ => None,
+                        })
+                        .collect();
+                    if !cutouts.is_empty() {
+                        md.cutouts = cutouts;
+                    }
                 }
                 parts.push(part);
             }

@@ -9,6 +9,7 @@ Accessories of this part	Zubehör dieses Artikels	Accessoires de cet article	Acc
 Accessories only work together with the parts they fit. A part lists its accessories, an accessory the parts it fits; either side is enough.	Zubehör funktioniert nur zusammen mit den Artikeln, zu denen es passt. Ein Artikel nennt sein Zubehör, ein Zubehör die Artikel, zu denen es passt; eine Seite genügt.	Les accessoires ne fonctionnent qu'avec les articles auxquels ils conviennent. Un article indique ses accessoires, un accessoire les articles auxquels il convient ; un seul côté suffit.	Los accesorios solo funcionan junto con los artículos con los que son compatibles. Un artículo indica sus accesorios, un accesorio los artículos con los que es compatible; basta con un lado.
 Accessory, mounted: {}	Zubehör, montiert: {}	Accessoire, monté : {}	Accesorio, montado: {}
 Add connection point	Anschluss hinzufügen	Ajouter un point de connexion	Añadir punto de conexión
+Add cutout	Ausschnitt hinzufügen	Ajouter une découpe	Añadir recorte
 Add function	Funktion hinzufügen	Ajouter une fonction	Añadir función
 Add marked parts to the parts database ({})	Markierte Artikel in die Artikeldatenbank übernehmen ({})	Ajouter les articles marqués à la base d'articles ({})	Añadir los artículos marcados a la base de datos de artículos ({})
 Add to the parts database	In die Artikeldatenbank übernehmen	Ajouter à la base d'articles	Añadir a la base de datos de artículos
@@ -27,12 +28,14 @@ Compares the local parts with the parts server: newer versions, phase-out, disco
 Connect to a parts server and search.	Verbinden Sie sich mit einem Artikelserver und suchen Sie.	Connectez-vous à un serveur d'articles et lancez une recherche.	Conéctese a un servidor de artículos y busque.
 Connected: {} {} – {} parts, revision {}, {}	Verbunden: {} {} – {} Artikel, Revision {}, {}	Connecté : {} {} – {} articles, révision {}, {}	Conectado: {} {} – {} artículos, revisión {}, {}
 Connection designations	Verbindungsbezeichnungen	Désignations des liaisons	Designaciones de conexión
+Corner radius	Eckenradius	Rayon d'angle	Radio de esquina
 Datasheet (URL)	Datenblatt (URL)	Fiche technique (URL)	Hoja de datos (URL)
 Deleted catalog {}	Katalog {} gelöscht	Catalogue {} supprimé	Catálogo {} eliminado
 Deleted part {}	Artikel {} gelöscht	Article {} supprimé	Artículo {} eliminado
 Deleted user {}	Benutzer {} gelöscht	Utilisateur {} supprimé	Usuario {} eliminado
 Deleting {}…	Lösche {} …	Suppression de {}…	Eliminando {}…
 Dimensions	Abmessungen	Dimensions	Dimensiones
+Door cutouts	Türausschnitte	Découpes de porte	Recortes de puerta
 Downloaded {} ({} bytes)	{} heruntergeladen ({} Bytes)	{} téléchargé ({} octets)	{} descargado ({} bytes)
 Downloading parts…	Artikel werden heruntergeladen …	Téléchargement des articles…	Descargando artículos…
 Drag it onto a schematic page to place it	Auf eine Schaltplanseite ziehen, um ihn zu platzieren	Faites-le glisser sur une page de schéma pour le placer	Arrástrelo a una página de esquema para colocarlo
@@ -50,6 +53,7 @@ Group by	Gruppieren nach	Grouper par	Agrupar por
 Identifying letter of devices using this part (K, Q, S …)	Kennbuchstabe von Betriebsmitteln mit diesem Artikel (K, Q, S …)	Lettre d'identification des appareils utilisant cet article (K, Q, S …)	Letra identificativa de los dispositivos que usan este artículo (K, Q, S …)
 Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT importieren…	Importer STL / OBJ / STEP / IGES / IFC / JT…	Importar STL / OBJ / STEP / IGES / IFC / JT…
 Import SVG…	SVG importieren…	Importer SVG…	Importar SVG…
+In the door, when they differ from the cutouts	In der Tür, wenn sie von den Ausschnitten abweichen	Dans la porte, lorsqu'elles diffèrent des découpes	En la puerta, cuando difieren de los recortes
 Internal values of the EPLAN part exchange (0: undefined)	Interne Werte des EPLAN-Artikelaustauschs (0: undefiniert)	Valeurs internes de l'échange d'articles EPLAN (0 : non défini)	Valores internos del intercambio de artículos de EPLAN (0: indefinido)
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Es funktioniert nur an einem der Artikel, zu denen es passt; die Projektprüfung meldet es an einem Gerät ohne solchen Artikel	Il ne fonctionne que fixé à l'un des articles auxquels il convient ; la vérification du projet le signale sur un appareil sans tel article	Solo funciona montado en uno de los artículos con los que es compatible; la verificación del proyecto lo indica en un equipo sin dicho artículo
 Largest conductor the clamp takes (0: not known)	Größter Leiter, den die Klemmstelle aufnimmt (0: unbekannt)	Plus gros conducteur accepté par la borne (0 : inconnu)	Conductor más grande que admite el borne (0: desconocido)
@@ -122,7 +126,9 @@ Voltage / current	Spannung / Strom	Tension / courant	Tensión / corriente
 WALL	WAND	MUR	PARED
 Wall mounting	Wandmontage	Montage mural	Montaje mural
 Where the accessory sits on the part it fits, in the panel layout and the 3D view	Wo das Zubehör am passenden Artikel sitzt, im Aufbauplan und in der 3D-Ansicht	Emplacement de l'accessoire sur l'article auquel il convient, dans l'implantation et la vue 3D	Dónde se sitúa el accesorio en el artículo compatible, en el esquema de montaje y en la vista 3D
+Where the cutouts are: the centre from the middle of the front view (x to the right, y down), the turn counter-clockwise.	Lage der Ausschnitte: der Mittelpunkt von der Mitte der Frontansicht aus (x nach rechts, y nach unten), die Drehung gegen den Uhrzeigersinn.	Position des découpes : le centre à partir du milieu de la vue de face (x vers la droite, y vers le bas), la rotation dans le sens antihoraire.	Posición de los recortes: el centro desde el medio de la vista frontal (x hacia la derecha, y hacia abajo), el giro en sentido antihorario.
 Where the wires are connected in the panel layout: the designation as in the function template, the position in the front view (x from the left, y from the top, z above the mounting surface) and the direction the wire leaves in. Parts without own connection points get them from the function template.	Wo im Aufbau verdrahtet wird: die Bezeichnung wie in der Funktionsschablone, die Lage in der Frontansicht (x von links, y von oben, z über der Montagefläche) und die Richtung, in der die Leitung abgeht. Artikel ohne eigene Anschlüsse erhalten sie aus der Funktionsschablone.	Où les fils sont raccordés dans l'implantation : la désignation comme dans le modèle de fonctions, la position dans la vue de face (x depuis la gauche, y depuis le haut, z au-dessus de la surface de montage) et la direction de départ du fil. Les articles sans points propres les reçoivent du modèle de fonctions.	Dónde se conectan los cables en el montaje: la designación como en la plantilla de funciones, la posición en la vista frontal (x desde la izquierda, y desde arriba, z sobre la superficie de montaje) y la dirección en la que sale el cable. Los artículos sin puntos propios los obtienen de la plantilla de funciones.
+Width / Ø	Breite / Ø	Largeur / Ø	Ancho / Ø
 Wire connection	Leiteranschluss	Raccordement des fils	Conexión de cables
 Wire leaves	Abgang	Départ du fil	Salida del cable
 Zoom only	Nur zoomen	Zoomer seulement	Solo zoom

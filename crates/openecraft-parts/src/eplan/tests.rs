@@ -163,9 +163,13 @@ fn wire_limits_and_cutouts_are_read() {
     // Without metric sizes the AWG size is converted: AWG 12 is 3.31 mm².
     let fe = p.connection_points.iter().find(|c| c.pin == "FE").unwrap();
     assert_eq!((fe.min_cross_section, fe.max_cross_section, fe.max_wires), (0.0, 3.31, 0));
-    // The rectangular drilling position is the cutout of the panel, not a hole.
+    // The rectangular drilling position is the cutout of the panel, not a hole: 6.5 mm
+    // above the middle of the front.
     let md = &p.mounting_data;
-    assert_eq!(md.cutout, Some(crate::Cutout::Rect { w: 197.0, h: 141.0 }));
+    assert_eq!(md.cutouts, [crate::PlacedCutout { shape: crate::Cutout::Rect { w: 197.0, h: 141.0 }, offset: [0.0, -6.5], angle: 0.0, radius: 0.0 }]);
+    // The records stay as they are.
+    let records = &p.source_data.as_ref().unwrap()["eplan_drilling"];
+    assert_eq!((records[0]["subtype"].as_str(), records[0]["dimension2"].as_str()), (Some("1"), Some("197")));
     assert!(md.holes.is_empty() && md.hole_thread.is_empty());
     assert!(p.mounting.is_empty(), "not on a rail");
 }
@@ -183,7 +187,7 @@ fn tapped_and_through_holes() {
     assert_eq!(tapped.hole_thread, "M4");
     assert_eq!(tapped.holes, vec![[5.35, 280.3], [36.5, 94.3]]);
     // A hole too large for a screw is the opening of the device.
-    assert_eq!(tapped.cutout, Some(crate::Cutout::Round { d: 22.5 }));
+    assert_eq!(tapped.cutouts, [crate::PlacedCutout { shape: crate::Cutout::Round { d: 22.5 }, offset: [36.0, 34.0], angle: 0.0, radius: 0.0 }], "the part has no width: from its left edge");
     let through = from_eplan_xml(&pattern(1)).unwrap().remove(0).mounting_data;
     assert_eq!((through.hole_thread.as_str(), through.holes.len()), ("Ø4", 2));
 }

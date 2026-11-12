@@ -47,7 +47,7 @@ fn a_part_file_of_an_unpacked_edz_is_read_with_its_points_drilling_and_picture()
     let p = &edz.parts[0];
     let x80 = &p.connection_points[0];
     assert_eq!((x80.pin.as_str(), x80.min_cross_section, x80.max_cross_section, x80.max_wires), ("X80.1", 0.2, 1.5, 1));
-    assert_eq!(p.mounting_data.cutout, Some(openecraft_parts::Cutout::Rect { w: 197.0, h: 141.0 }));
+    assert_eq!(p.mounting_data.cutouts[0].shape, openecraft_parts::Cutout::Rect { w: 197.0, h: 141.0 });
     assert!(!p.picture.is_empty(), "a small copy of the picture");
     assert_eq!(edz.files.iter().map(|f| (f.name.as_str(), f.kind)).collect::<Vec<_>>(), [("hmi.png", AttachmentKind::Image)]);
     // The same when the article is picked from the indexed folder.

@@ -14,6 +14,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   kept with the part and shown in the part details with its mounting and wiring data,
   and the part XML of an unpacked EDZ file is read with its connection points, drilling
   pattern, macros and picture ([parts](docs/features/parts.md)).
+- **Placed cutouts** (#162): a part has any number of cutouts and door cutouts, each with
+  its centre, turn and corner radius (table and preview in the *Mounting* tab of the part
+  editor, text `197 x 141 @ 0/-6.5 R3 15°`, read from EDZ drilling patterns). The
+  openings sit there and turn with the device, the NC data carry turn and radius, and
+  the manufacturing check reports cutouts beyond the device front or in the free edge
+  of the door and the walls ([panel layout](docs/features/panel-layout.md)).
 - **Scaled symbols** (#162): *Scale* in the properties of a placed library symbol (or
   `update_symbol` with `scale`) draws an imported symbol larger or smaller, its texts
   at their size and its wires following ([symbols](docs/features/symbols.md)).
