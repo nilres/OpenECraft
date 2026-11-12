@@ -188,7 +188,6 @@ Apply to the connection	Auf die Verbindung anwenden	Appliquer à la liaison	Apli
 Apply to {} projects	Auf {} Projekte anwenden	Appliquer à {} projets	Aplicar a {} proyectos
 Approval workflow	Genehmigungsablauf	Circuit d'approbation	Flujo de aprobación
 Approvals needed	Benötigte Genehmigungen	Approbations nécessaires	Aprobaciones necesarias
-Approve	Genehmigen	Approuver	Aprobar
 Approving needs an approver; you are \"{}\".	Genehmigen kann nur ein Genehmiger; Sie sind \"{}\".	Seul un approbateur peut approuver ; vous êtes \"{}\".	Solo un aprobador puede aprobar; usted es \"{}\".
 Arc	Bogen	Arc	Arco
 Archive and version	Archiv und Version	Archive et version	Archivo y versión
@@ -208,6 +207,7 @@ Assign to cable	Kabel zuweisen	Affecter au câble	Asignar al cable
 Assign to existing device	Vorhandenem Betriebsmittel zuweisen	Affecter à un appareil existant	Asignar a un dispositivo existente
 Assign to harness	Kabelbaum zuweisen	Affecter au faisceau	Asignar al mazo
 Assign wires: select them in the schematic › Assign to cable.	Leitungen zuweisen: Wählen Sie sie im Schaltplan › Kabel zuweisen.	Affecter des fils : sélectionnez-les dans le schéma › Affecter au câble.	Asignar hilos: selecciónalos en el esquema › Asignar al cable.
+Assume Windows trackpad (default) pans unknown point-based or fractional-line scrolling; whole-line and page scrolling zoom. Strict treats every unknown source as a mouse wheel.	Windows-Trackpad annehmen (Standard) verschiebt Scrollen mit unbekannter Quelle in Punkten oder Zeilenbruchteilen; ganze Zeilen- und Seitenschritte zoomen. Streng behandelt jede unbekannte Quelle als Mausrad.	Supposer un pavé tactile Windows (par défaut) déplace les défilements inconnus en points ou en fractions de ligne ; les lignes entières et les pages zooment. Strict traite toute source inconnue comme une molette de souris.	Suponer panel táctil de Windows (predeterminado) desplaza los desplazamientos desconocidos en puntos o fracciones de línea; las líneas completas y las páginas hacen zoom. Estricto trata todas las fuentes desconocidas como ruedas de ratón.
 Asynchronous motors on the mains add to the highest short-circuit current (IEC 60909-0)	Asynchronmotoren am Netz erhöhen den größten Kurzschlussstrom (IEC 60909-0)	Les moteurs asynchrones sur le réseau augmentent le courant de court-circuit maximal (CEI 60909-0)	Los motores asíncronos de la red aumentan la corriente de cortocircuito máxima (IEC 60909-0)
 At the highest ambient temperature; the heater keeps the dew point. 0 = not considered	Bei der höchsten Umgebungstemperatur; die Heizung hält den Taupunkt. 0 = nicht berücksichtigt	À la température ambiante maximale ; le chauffage maintient le point de rosée. 0 = non pris en compte	A la temperatura ambiente máxima; la calefacción mantiene el punto de rocío. 0 = no se considera
 At the origin	Im Ursprung	À l'origine	En el origen
@@ -222,6 +222,7 @@ Automatic (from the potential definition)	Automatisch (aus der Potenzialdefiniti
 Automatic ({})	Automatisch ({})	Automatique ({})	Automática ({})
 Automatic accessories	Automatisches Zubehör	Accessoires automatiques	Accesorios automáticos
 Automatic configuration	Automatische Konfiguration	Configuration automatique	Configuración automática
+Automatic mode pans with identified trackpad input, zooms with mouse-wheel input, and uses the wheel-source policy below for unknown sources.	Der automatische Modus verschiebt bei als Trackpad erkanntem Scrollen, zoomt bei als Mausrad erkanntem Scrollen und verwendet für unbekannte Quellen die unten gewählte Regel.	En mode automatique, le défilement identifié comme provenant d'un pavé tactile déplace la vue, celui d'une molette de souris zoome, et les sources inconnues suivent la règle ci-dessous.	En modo automático, el desplazamiento identificado como panel táctil desplaza la vista, el de la rueda del ratón hace zoom y las fuentes desconocidas siguen la regla siguiente.
 Automatic placement	Automatische Platzierung	Placement automatique	Colocación automática
 Automation	Automatisierung	Automatisation	Automatización
 Aux	Hilfs	Aux	Aux
@@ -538,7 +539,6 @@ Define	Definieren	Définir	Definir
 Define all used	Alle verwendeten definieren	Définir tous les utilisés	Definir todos los usados
 Defined potentials	Definierte Potenziale	Potentiels définis	Potenciales definidos
 Del	Entf	Suppr	Supr
-Delete	Löschen	Supprimer	Eliminar
 Delete PV array	PV-Anlage löschen	Supprimer le champ photovoltaïque	Eliminar campo fotovoltaico
 Delete building; its rooms stay where they stand	Gebäude löschen; seine Räume bleiben, wo sie stehen	Supprimer le bâtiment ; ses pièces restent où elles sont	Eliminar el edificio; sus salas quedan donde están
 Delete cable (its wires are removed from it)	Kabel löschen (seine Leitungen werden entfernt)	Supprimer le câble (ses fils en sont retirés)	Eliminar cable (sus hilos se quitan de él)
@@ -574,7 +574,6 @@ Delete the workspace {}?	Arbeitsbereich {} löschen?	Supprimer l'espace de trava
 Delete this workspace	Diesen Arbeitsbereich löschen	Supprimer cet espace de travail	Eliminar este espacio de trabajo
 Delete variant	Variante löschen	Supprimer la variante	Eliminar variante
 Delete zone	Zone löschen	Supprimer la zone	Eliminar zona
-Deny	Verweigern	Refuser	Denegar
 Depth / mounted at	Tiefe / Montage bei	Profondeur / montage à	Profundidad / montaje a
 Depth from / to	Tiefe von / bis	Profondeur de / à	Profundidad de / a
 Depth in the floor	Tiefe im Fußboden	Profondeur dans le sol	Profundidad en el suelo
@@ -628,7 +627,6 @@ Directed crossing: connects the two wires crossing there; each end of its line i
 Direction of grid north, counter-clockwise seen from above from the rear of the plant (-z)	Richtung von Gitternord, von oben gesehen gegen den Uhrzeigersinn ab der Rückseite der Anlage (-z)	Direction du nord du quadrillage, dans le sens antihoraire vu de dessus depuis l'arrière de l'installation (-z)	Dirección del norte de cuadrícula, en sentido antihorario visto desde arriba desde la parte trasera de la instalación (-z)
 Direction the modules face, counter-clockwise seen from above (0: towards the front)	Richtung, in die die Module zeigen, von oben gesehen gegen den Uhrzeigersinn (0: nach vorn)	Direction vers laquelle les modules sont orientés, dans le sens antihoraire vu de dessus (0 : vers l'avant)	Dirección hacia la que miran los módulos, en sentido antihorario visto desde arriba (0: hacia delante)
 Disabled	Deaktiviert	Désactivé	Desactivado
-Discard changes	Änderungen verwerfen	Abandonner les modifications	Descartar los cambios
 Discard draft	Entwurf verwerfen	Abandonner le brouillon	Descartar borrador
 Disconnection of distribution circuits	Abschaltung von Verteilerstromkreisen	Coupure des circuits de distribution	Desconexión de circuitos de distribución
 Disconnection of final circuits	Abschaltung von Endstromkreisen	Coupure des circuits terminaux	Desconexión de circuitos finales
@@ -725,7 +723,6 @@ Earthing system	Netzform	Schéma de liaison à la terre	Esquema de conexión a t
 Easting, northing	Ostwert, Nordwert	Coordonnée est, nord	Coordenada este, norte
 Eaves	Traufe	Égout	Alero
 Edge length of the routing grid: smaller is finer and slower	Kantenlänge des Verlegerasters: kleiner ist feiner und langsamer	Longueur d'arête de la grille de routage : plus petit est plus fin et plus lent	Longitud de arista de la rejilla de tendido: más pequeña es más fina y más lenta
-Edit	Bearbeiten	Édition	Edición
 Edit in table	In Tabelle bearbeiten	Modifier dans un tableau	Editar en tabla
 Edit in table…	In Tabelle bearbeiten…	Modifier dans un tableau…	Editar en tabla…
 Editable copy of this plot frame	Bearbeitbare Kopie dieses Plotrahmens	Copie modifiable de ce cadre	Copia editable de este marco
@@ -968,7 +965,6 @@ Identifying letters	Kennbuchstaben	Lettres repères	Letras de código
 Images (PNG, JPEG)	Bilder (PNG, JPEG)	Images (PNG, JPEG)	Imágenes (PNG, JPEG)
 Image…	Bild…	Image…	Imagen…
 Implicit junctions	Implizite Verbindungen	Jonctions implicites	Uniones implícitas
-Import	Import	Import	Importación
 Import AutomationML…	AutomationML importieren…	Importer AutomationML…	Importar AutomationML…
 Import CSV / Excel…	CSV / Excel importieren…	Importer CSV / Excel…	Importar CSV / Excel…
 Import CSV…	CSV importieren…	Importer un CSV…	Importar CSV…
@@ -1257,7 +1253,6 @@ Name; Data Type; Logical Address; Comment – for PLC programming tools	Name; Da
 Named copy of this form, for report blocks	Benannte Kopie dieses Formulars, für Auswertungsblöcke	Copie nommée de ce formulaire, pour les blocs de rapports	Copia con nombre de este formulario, para bloques de informes
 Navigators	Navigatoren	Navigateurs	Navegadores
 Neutral exchange file…	Neutrale Austauschdatei…	Fichier d'échange neutre…	Archivo de intercambio neutro…
-Never	Nie	Jamais	Nunca
 New	Neu	Nouveau	Nuevo
 New block	Neuer Block	Nouveau bloc	Nuevo bloque
 New building	Neues Gebäude	Nouveau bâtiment	Nuevo edificio
@@ -1705,7 +1700,6 @@ Reference point	Bezugspunkt	Point de référence	Punto de referencia
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Bezugspunkt bei x {} m, z {} m gesetzt; seine Koordinaten im Bereich Gebäude eingeben	Point de référence placé en x {} m, z {} m ; saisir ses coordonnées dans le volet Bâtiments	Punto de referencia colocado en x {} m, z {} m; introduzca sus coordenadas en el panel Edificios
 Refresh	Aktualisieren	Actualiser	Actualizar
 Refresh example catalog parts (GEN.*)	Beispielkatalog-Artikel (GEN.*) aktualisieren	Actualiser les articles du catalogue d'exemple (GEN.*)	Actualizar los artículos del catálogo de ejemplo (GEN.*)
-Reject	Ablehnen	Refuser	Rechazar
 Rejected and closed ones too	Auch abgelehnte und geschlossene	Aussi les refusées et clôturées	También las rechazadas y cerradas
 Relative column width	Relative Spaltenbreite	Largeur relative de la colonne	Ancho relativo de la columna
 Release	Freigeben	Diffuser	Liberar
@@ -1860,7 +1854,6 @@ Rules insert page macros when their condition holds. Generating replaces the pag
 Run	Ausführen	Exécuter	Ejecutar
 SVG drawing	SVG-Zeichnung	Dessin SVG	Dibujo SVG
 Safety functions of ISO 13849-1: each subsystem (input, logic, output) with the devices of a channel, its category, diagnostic coverage and operations per year. Devices count with PL / PFHd, MTTFd or B10d of their parts.	Sicherheitsfunktionen nach ISO 13849-1: jedes Teilsystem (Eingang, Logik, Ausgang) mit den Betriebsmitteln eines Kanals, seiner Kategorie, dem Diagnosedeckungsgrad und den Schaltspielen pro Jahr. Betriebsmittel zählen mit PL / PFHd, MTTFd oder B10d ihrer Artikel.	Fonctions de sécurité de l'ISO 13849-1 : chaque sous-système (entrée, logique, sortie) avec les appareils d'un canal, sa catégorie, sa couverture de diagnostic et ses manœuvres par an. Les appareils comptent avec le PL / PFHd, le MTTFd ou le B10d de leurs articles.	Funciones de seguridad de ISO 13849-1: cada subsistema (entrada, lógica, salida) con los equipos de un canal, su categoría, cobertura de diagnóstico y maniobras por año. Los equipos cuentan con el PL / PFHd, MTTFd o B10d de sus artículos.
-Save	Speichern	Enregistrer	Guardar
 Save a selection under this name with another variant to add one.	Eine Auswahl unter diesem Namen mit einer anderen Variante speichern, um eine hinzuzufügen.	Enregistrer une sélection sous ce nom avec une autre variante pour en ajouter une.	Guardar una selección con este nombre y otra variante para añadir una.
 Save access	Zugriff speichern	Enregistrer l'accès	Guardar acceso
 Save and release	Speichern und freigeben	Enregistrer et libérer	Guardar y liberar
@@ -2257,7 +2250,6 @@ Tutorial	Tutorial	Tutoriel	Tutorial
 Tutorial: {}	Tutorial: {}	Tutoriel : {}	Tutorial: {}
 Twin ferrules where two wires share a connection point	Zwillingsaderendhülsen, wo zwei Leitungen einen Anschlusspunkt teilen	Embouts doubles là où deux fils partagent un point de connexion	Punteras dobles donde dos cables comparten un punto de conexión
 Two fingers	Zwei Finger	Deux doigts	Dos dedos
-Two fingers on a trackpad pan, the mouse wheel zooms. Only macOS tells them apart; elsewhere scrolling zooms like the wheel.	Zwei Finger auf einem Trackpad verschieben, das Mausrad zoomt. Nur macOS unterscheidet beide; sonst zoomt Scrollen wie das Mausrad.	Deux doigts sur un pavé tactile déplacent la vue, la molette zoome. Seul macOS les distingue ; ailleurs, le défilement zoome comme la molette.	Dos dedos en un panel táctil desplazan la vista, la rueda del ratón hace zoom. Solo macOS los distingue; en otros sistemas el desplazamiento hace zoom como la rueda.
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Hier müssen zwei Verbindungslinien im rechten Winkel zusammentreffen. Bei eingeschaltetem Auto-Connect werden Anschlusspunkte, die ihren Armen gegenüberliegen, mit ihr verdrahtet.	Deux fils doivent se rejoindre ici à angle droit. Avec l'auto-connexion activée, les points de connexion face à ses bras y sont reliés.	Aquí deben unirse dos cables en ángulo recto. Con la autoconexión activada, los puntos de conexión enfrentados a sus brazos se cablean a ella.
 Type a point	Punkt eingeben	Saisir un point	Introducir un punto
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Punkt eingeben und Enter drücken: x y in mm oder @dx dy relativ zum letzten Punkt; wirkt wie ein Klick des aktuellen Werkzeugs	Saisir un point puis Entrée : x y en mm, ou @dx dy relatif au dernier point ; agit comme un clic de l'outil courant	Escriba un punto y pulse Intro: x y en mm, o @dx dy relativo al último punto; actúa como un clic de la herramienta actual
@@ -2274,7 +2266,6 @@ Unplaced	Nicht platziert	Non placés	No colocados
 Unplaced ({})	Nicht platziert ({})	Non placés ({})	No colocados ({})
 Unresolved placements ({})	Nicht aufgelöste Platzierungen ({})	Placements non résolus ({})	Colocaciones sin resolver ({})
 Up	Oben	Haut	Arriba
-Update	Aktualisieren	Mettre à jour	Actualizar
 Update all	Alle aktualisieren	Tout mettre à jour	Actualizar todo
 Update part links from Vault items	Artikelverknüpfungen aus Vault-Elementen aktualisieren	Mettre à jour les liens d'articles depuis les éléments Vault	Actualizar los vínculos de artículos desde elementos de Vault
 Update report blocks	Berichtsblöcke aktualisieren	Mettre à jour les blocs de rapport	Actualizar bloques de informe
@@ -2294,7 +2285,6 @@ Use plugin default	Plugin-Standard verwenden	Utiliser la valeur par défaut du p
 Used	Verwendet	Utilisé	Usado
 Used by {} pages	Von {} Seiten verwendet	Utilisé par {} pages	Usado por {} páginas
 Used on {} of {} pages	Auf {} von {} Seiten verwendet	Utilisé sur {} pages sur {}	Usado en {} de {} páginas
-User	Benutzer	Utilisateur	Usuario
 User / group	Benutzer / Gruppe	Utilisateur / groupe	Usuario / grupo
 User defined property	Benutzerdefinierte Eigenschaft	Propriété utilisateur	Propiedad de usuario
 User names, separated by commas	Benutzernamen, durch Kommas getrennt	Noms d'utilisateur, séparés par des virgules	Nombres de usuario, separados por comas
@@ -2348,6 +2338,7 @@ Welcome to OpenECraft	Willkommen bei OpenECraft	Bienvenue dans OpenECraft	Bienve
 What is new	Neuigkeiten	Nouveautés	Novedades
 What should be checked or changed?	Was soll geprüft oder geändert werden?	Que faut-il vérifier ou modifier ?	¿Qué hay que comprobar o cambiar?
 Wheel and touch	Mausrad und Touch	Molette et tactile	Rueda y táctil
+Wheel source	Quelle de la molette	Source de défilement	Origen del desplazamiento
 Wheel: zoom · drag: move · click on a room: its floor plan	Mausrad: Zoom · Ziehen: verschieben · Klick auf einen Raum: sein Grundriss	Molette : zoom · glisser : déplacer · clic sur une pièce : son plan	Rueda: zoom · arrastrar: mover · clic en un recinto: su planta
 Wheel: zoom · drag: move · click on a room: its floor plan · drag a corner of the plot boundary	Rad: Zoom · Ziehen: verschieben · Klick auf einen Raum: sein Grundriss · Ecke der Grundstücksgrenze ziehen	Molette : zoom · glisser : déplacer · clic sur une pièce : son plan · glisser un sommet de la limite du terrain	Rueda: zoom · arrastrar: mover · clic en una sala: su plano · arrastrar una esquina del límite de la parcela
 Wheel: zoom · right click: cancel · graphics snap to 0.5 mm, connection points to the 4 mm grid	Mausrad: Zoom · Rechtsklick: abbrechen · Grafik rastet auf 0,5 mm ein, Anschlusspunkte auf das 4-mm-Raster	Molette : zoom · clic droit : annuler · les graphiques s'alignent sur 0,5 mm, les points de connexion sur la grille de 4 mm	Rueda: zoom · clic derecho: cancelar · los gráficos se ajustan a 0,5 mm, los puntos de conexión a la cuadrícula de 4 mm
