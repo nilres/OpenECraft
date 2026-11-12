@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	用网线连接两个站的端口；这些端口上已有的连接将被替换
 Copies function texts between the single-line diagram and the schematic where one side is empty	在单线图和原理图之间复制功能文本（仅当一侧为空时）
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	以固定距离多次复制元素；设备获得新标识符，端子获得新编号
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	将元素连同安装在其上的元素复制到某个面的 x / y 处，也可复制到其他机柜；设备会被省略（设备只放置一次）
 Copper bar cutting list	铜排下料清单
 Copper bars	铜排
 Corner points in metres	角点，单位为米
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	其左侧相�
 Enclosure name (all if missing)	机柜名称（未指定时为全部）
 Enclosure part number	机柜部件编号
 Enclosure system (default: the enclosure's)	机柜系统（默认：该机柜的系统）
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	副本所放入的机柜（位置，例如 +CAB2）；省略时为同一机柜
 Enclosure {} exists already	机柜 {} 已存在
 Enclosures, panel items, accessories and panel macros	机柜、布局元件、附件和布局宏
 End brackets and end plates from the tech data of the terminal parts	根据端子部件的技术数据添加终端固定件和终端盖板
@@ -313,6 +315,7 @@ Item id	元素 ID
 Item ids	元素 ID
 Jumper number	跳线编号
 Jumper number (terminals with the same number are bridged); 0 removes it	跳线编号（编号相同的端子相互桥接）；0 表示删除
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	保持连接（默认）：相连的导线会随之伸缩，移动的导线保留在其端点所在的连接点和导线上；false 则断开它们
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	保持防护等级：使用换热器或冷却装置代替过滤风扇
 Key figures of the project and a list of its device tags	项目的关键指标及其设备标识符列表
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	项目的关键指标：页、符号、导线、设备、部件、电缆和检查结果
@@ -420,6 +423,7 @@ Measuring range or set point	测量范围或设定值
 Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
 Moves the page before this page of its section (or of the section given)	将页移到其分节（或指定分节）中此页之前
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	将分节移到其上级分节（或指定上级）中此分节之前；编号按顺序继续
@@ -488,6 +492,7 @@ None of the items is an interruption point	没有一个元素是中断点
 Not a cross-section: {} (e.g. 1.5 mm²)	不是截面积：{}（例如 1.5 mm²）
 Not a valid safety function: {}	不是有效的安全功能：{}
 Note, e.g. what the problem is	注释，例如问题是什么
+Nothing to copy: devices are placed once	没有可复制的内容：设备只放置一次
 Nothing to remove: {} {}	没有可删除的内容：{} {}
 Number of columns	列数
 Number of copies (default 1)	副本数（默认 1）
@@ -800,6 +805,7 @@ The configuration (JSON)	配置 (JSON)
 The copies would leave the page	副本将移出页面
 The counting step must be at least 1	计数步长必须至少为 1
 The devices do not fit onto rail {}	设备无法放入导轨 {}
+The end: from or to	端点：from 或 to
 The feedback (CSV with header or JSON)	反馈（带标题行的 CSV 或 JSON）
 The first page number must not be negative	起始页码不能为负数
 The items would leave the page	这些元素将移出页面
@@ -891,6 +897,7 @@ Unknown termination: {}	未知的端接方式：{}
 Unknown vertical anchor: {}	未知垂直锚点：{}
 Unknown way of opening: {}	未知的开启方式：{}
 Unknown wire colour {} (IEC 60757: {})	未知导线颜色 {}（IEC 60757：{}）
+Unknown wire end: {} (from or to)	未知的导线端：{}（from 或 to）
 Use this scheme for the marking export	将此方案用于标记导出
 Used (mm)	已用 (mm)
 Value while none is set	未设置时的值

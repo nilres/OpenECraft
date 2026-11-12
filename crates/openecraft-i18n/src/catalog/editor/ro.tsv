@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Marcaje de dispozi
 Devices ({})	Dispozitive ({})
 Devices are not copied: a device is placed once.	Dispozitivele nu se copiază: un dispozitiv se plasează o singură dată.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Dispozitivele sunt planificate cu simboluri monofilare și proiectate în schema multifilară; ambele au același identificator de dispozitiv.
+Devices back to the devices to place: {}	Dispozitive revenite la dispozitivele de plasat: {}
+Devices go back to the devices to place	Dispozitivele revin la dispozitivele de plasat
 Devices in the box: {}	Dispozitive în casetă: {}
 Devices of a channel	Dispozitivele unui canal
 Devices of the second channel; empty = like the first	Dispozitivele celui de-al doilea canal; gol = ca primul
@@ -567,6 +569,7 @@ Draft of revision {} created	Ciorna reviziei {} a fost creată
 Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
 Drag	Tragere
 Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Trageți un capăt al unui conductor selectat pentru a muta doar acel capăt. Tragerea cu Alt inversează Păstrează conexiunile.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
 Drag the core designation or the cable tag of the selected wire to place it.	Glisați denumirea firului sau identificatorul cablului firului selectat pentru a le plasa.
 Drag the name or the cross reference of the selected point to place it.	Glisați numele sau referința încrucișată a punctului selectat pentru a-l plasa.
@@ -890,7 +893,12 @@ Invalid value	Valoare nevalidă
 Invert the direction of panning by scrolling	Inversează direcția deplasării prin derulare
 Inverter or charge controller (devices with PV input data)	Invertor sau regulator de încărcare (dispozitive cu date de intrare fotovoltaică)
 Isometric	Izometric
+Items copied: {}	Elemente copiate: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Elemente copiate: {} (dispozitive omise: {}, un dispozitiv se plasează o singură dată)
+Items cut: {}	Elemente decupate: {}
+Items cut: {} (devices back to the devices to place: {})	Elemente decupate: {} (dispozitive revenite la dispozitivele de plasat: {})
 Items on the layer	Elemente pe strat
+Items pasted: {}	Elemente lipite: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementele cu ancoră o păstrează; celelalte se inserează relativ la punctul de clic.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Articole, dispozitive, plasări, conexiuni, conductoare și documente într-un singur fișier JSON pentru sistemele fără conector
 Its pages and subsections go to the section above	Paginile și subsecțiunile ei trec în secțiunea de deasupra
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Unește s
 Jumper {}	Puntea {}
 Jumps over the other:	Sare peste celălalt:
 K, Q, MM …	K, Q, MM …
+Keep connections	Păstrează conexiunile
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
 Keep the degree of protection	Menținerea gradului de protecție
 Keep this route when recalculating, as long as it is still possible	Păstrarea acestui traseu la recalculare, atât timp cât este încă posibil
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Mutarea dispozitivelor aces
 Move to section	Mută în secțiune
 Move up	Mută în sus
 Move up in the 3D view (held)	Deplasare în sus în vederea 3D (ținut apăsat)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Simbolurile mutate își trag conductoarele după ele, iar conductoarele mutate rămân pe punctele de conexiune unde se termină. Alt ținut apăsat în timpul tragerii inversează asta; tragerea unui capăt al unui conductor selectat îl deconectează
 Moves to the top level as page {}	Trece la nivelul superior ca pagina {}
 Moves to {} as page {}	Trece în {} ca pagina {}
 Moving	Mutare
@@ -1823,6 +1833,7 @@ Start	Start
 Start again when the page structure changes	Reîncepere când se schimbă structura paginii
 Start at	Început la
 Start byte	Octet de start
+Start of a move: Keep connections the other way round	Începutul unei mutări: Păstrează conexiunile invers
 Start page	Pagina de start
 Station	Stație
 Stations and racks	Stații și rack-uri

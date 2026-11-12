@@ -242,6 +242,7 @@ pub enum Role {
     AddToSelection,
     OpenLink,
     SingleItem,
+    ReverseKeepConnections,
     RotateBack,
     Faster3d,
     WheelSideways,
@@ -249,13 +250,14 @@ pub enum Role {
 }
 
 impl Role {
-    pub const ALL: [Role; 7] = [Role::AddToSelection, Role::OpenLink, Role::SingleItem, Role::RotateBack, Role::Faster3d, Role::WheelSideways, Role::WheelZoom];
+    pub const ALL: [Role; 8] = [Role::AddToSelection, Role::OpenLink, Role::SingleItem, Role::ReverseKeepConnections, Role::RotateBack, Role::Faster3d, Role::WheelSideways, Role::WheelZoom];
 
     pub fn id(self) -> &'static str {
         match self {
             Role::AddToSelection => "add_to_selection",
             Role::OpenLink => "open_link",
             Role::SingleItem => "single_item",
+            Role::ReverseKeepConnections => "reverse_keep_connections",
             Role::RotateBack => "rotate_back",
             Role::Faster3d => "faster_3d",
             Role::WheelSideways => "wheel_sideways",
@@ -268,6 +270,7 @@ impl Role {
             Role::AddToSelection => tr_const!("Click or window: add to the selection or take out of it"),
             Role::OpenLink => tr_const!("Click a text: open its link"),
             Role::SingleItem => tr_const!("Click in the panel layout: a single item of an assembly"),
+            Role::ReverseKeepConnections => tr_const!("Start of a move: Keep connections the other way round"),
             Role::RotateBack => tr_const!("Rotate what is being moved counter-clockwise"),
             Role::Faster3d => tr_const!("Move faster with the keys of the 3D view"),
             Role::WheelSideways => tr_const!("Scrolling up and down pans sideways"),
@@ -279,18 +282,22 @@ impl Role {
         match self {
             Role::AddToSelection | Role::RotateBack | Role::Faster3d | Role::WheelSideways => Some(Mod::Shift),
             Role::OpenLink | Role::WheelZoom => Some(Mod::Ctrl),
-            Role::SingleItem => Some(Mod::Alt),
+            Role::SingleItem | Role::ReverseKeepConnections => Some(Mod::Alt),
         }
     }
 
-    /// Roles used at the same time (with one click, while scrolling) need different
-    /// modifiers.
-    fn group(self) -> u8 {
+    /// When the modifier is read: roles read at the same moment need different
+    /// modifiers. A click on the page, a click in the panel layout, the start of a move
+    /// on the page, scrolling, rotating while moving, the keys of the 3D view.
+    fn moments(self) -> &'static [u8] {
         match self {
-            Role::AddToSelection | Role::OpenLink | Role::SingleItem => 0,
-            Role::WheelSideways | Role::WheelZoom => 1,
-            Role::RotateBack => 2,
-            Role::Faster3d => 3,
+            Role::AddToSelection => &[0, 1, 2],
+            Role::OpenLink => &[0],
+            Role::SingleItem => &[1],
+            Role::ReverseKeepConnections => &[2],
+            Role::WheelSideways | Role::WheelZoom => &[3],
+            Role::RotateBack => &[4],
+            Role::Faster3d => &[5],
         }
     }
 }
@@ -478,13 +485,13 @@ impl Gestures {
 }
 
 /// Two functions can be wanted with one gesture: mouse actions of the same view and kind
-/// that act with the same tools, or modifier roles of the same group.
+/// that act with the same tools, or modifier roles read at the same moment.
 fn at_once(a: &str, b: &str) -> bool {
     let mouse = |id: &str| MouseAction::ALL.into_iter().find(|a| a.id() == id);
     let role = |id: &str| Role::ALL.into_iter().find(|r| r.id() == id);
     match (mouse(a), mouse(b), role(a), role(b)) {
         (Some(x), Some(y), ..) => x.view() == y.view() && x.kind() == y.kind() && (x.tools() == Tools::All || y.tools() == Tools::All || x.tools() == y.tools()),
-        (.., Some(x), Some(y)) => x.group() == y.group(),
+        (.., Some(x), Some(y)) => x.moments().iter().any(|m| y.moments().contains(m)),
         _ => false,
     }
 }

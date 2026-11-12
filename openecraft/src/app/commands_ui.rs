@@ -15,6 +15,10 @@ impl App {
         let has_sel = !self.editor.selection.is_empty();
         let pages = self.session.prj.pages.len();
         let page = self.session.page;
+        // Cut, copy and paste act on the panel layout while it is the document worked in.
+        if self.active_doc == Pane::LayoutView && matches!(cmd, Cmd::Cut | Cmd::Copy | Cmd::Paste) {
+            return if cmd == Cmd::Paste { self.panel_ui.can_paste() } else { !self.panel_ui.selection.is_empty() };
+        }
         if commands::changes_page(cmd) && !self.page_editable() {
             return false;
         }
@@ -68,6 +72,7 @@ impl App {
         let tool = &self.editor.tool;
         let on = match cmd {
             Cmd::AutoConnect => self.editor.autoconnect,
+            Cmd::KeepConnections => self.editor.keep_connections,
             Cmd::Route => self.editor.autoroute,
             Cmd::Grid => self.editor.show_grid,
             Cmd::ConnectionPoints => self.editor.show_pins,
@@ -245,6 +250,9 @@ impl App {
             Cmd::InstallUpdate => self.restart_to_update(ctx),
             Cmd::Quit => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
             // ------------------------------------------------------------ home
+            Cmd::Cut if self.active_doc == Pane::LayoutView => self.panel_ui.cut_selection(ctx, &mut self.session.prj),
+            Cmd::Copy if self.active_doc == Pane::LayoutView => self.panel_ui.copy_selection(ctx, &self.session.prj),
+            Cmd::Paste if self.active_doc == Pane::LayoutView => self.panel_ui.paste(),
             Cmd::Cut | Cmd::Copy => {
                 let items = self.editor.items(&self.session.prj, page);
                 let mut clip = ops::copy(&self.session.prj.pages[page], &items);
@@ -358,6 +366,7 @@ impl App {
             Cmd::CommentTool => self.set_tool(Tool::Comment),
             // ------------------------------------------------------------ edit
             Cmd::AutoConnect => self.editor.autoconnect = !self.editor.autoconnect,
+            Cmd::KeepConnections => self.editor.keep_connections = !self.editor.keep_connections,
             Cmd::Route => {
                 self.editor.autoroute = !self.editor.autoroute;
                 self.editor.cancel();

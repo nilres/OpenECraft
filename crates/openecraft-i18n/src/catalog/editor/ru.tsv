@@ -507,6 +507,8 @@ Device, terminal, wire and cable markers for marking software	Маркировк
 Devices ({})	Устройства ({})
 Devices are not copied: a device is placed once.	Устройства не копируются: устройство размещается один раз.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Устройства планируются однолинейными символами и проектируются на многолинейной схеме; у обоих общее обозначение устройства.
+Devices back to the devices to place: {}	Устройств возвращено в устройства для размещения: {}
+Devices go back to the devices to place	Устройства возвращаются в устройства для размещения
 Devices in the box: {}	Устройства в рамке: {}
 Devices of a channel	Устройства канала
 Devices of the second channel; empty = like the first	Устройства второго канала; пусто = как у первого
@@ -566,6 +568,7 @@ Draft of revision {} created	Черновик ревизии {} создан
 Draft of revision {} discarded	Черновик ревизии {} отменён
 Drag	Перетаскивание
 Drag a connection point designation of the selected symbol to place it.	Перетащите обозначение точки подключения выбранного символа, чтобы разместить его.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Перетащите конец выбранного провода, чтобы переместить только этот конец. Перетаскивание с Alt меняет Сохранять соединения на противоположное.
 Drag an entry into the page, or click it and then click into the page.	Перетащите запись на лист или щёлкните её, а затем щёлкните на листе.
 Drag the core designation or the cable tag of the selected wire to place it.	Перетащите обозначение жилы или обозначение кабеля выбранного провода, чтобы разместить их.
 Drag the name or the cross reference of the selected point to place it.	Перетащите имя или перекрёстную ссылку выбранной точки, чтобы разместить их.
@@ -889,7 +892,12 @@ Invalid value	Недопустимое значение
 Invert the direction of panning by scrolling	Обратить направление сдвига прокруткой
 Inverter or charge controller (devices with PV input data)	Инвертор или контроллер заряда (устройства с данными входа ФЭ)
 Isometric	Изометрия
+Items copied: {}	Скопировано элементов: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Скопировано элементов: {} (пропущено устройств: {}, устройство размещается только один раз)
+Items cut: {}	Вырезано элементов: {}
+Items cut: {} (devices back to the devices to place: {})	Вырезано элементов: {} (устройств возвращено в устройства для размещения: {})
 Items on the layer	Объекты на слое
+Items pasted: {}	Вставлено элементов: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Элементы с привязкой сохраняют её; остальные вставляются относительно точки щелчка.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Позиции, устройства, размещения, соединения, провода и документы в одном файле JSON для систем без коннектора
 Its pages and subsections go to the section above	Его листы и подразделы переходят в родительский раздел
@@ -900,6 +908,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Объе�
 Jumper {}	Перемычка {}
 Jumps over the other:	Перескакивает через другой:
 K, Q, MM …	K, Q, MM …
+Keep connections	Сохранять соединения
 Keep sub-pages (3.a, 3.1) with the page before	Оставлять подлисты (3.a, 3.1) при предыдущем листе
 Keep the degree of protection	Сохранять степень защиты
 Keep this route when recalculating, as long as it is still possible	Сохранять эту трассу при пересчёте, пока это возможно
@@ -1063,6 +1072,7 @@ Move the devices of this page into the new structure	Переместить ус
 Move to section	Переместить в раздел
 Move up	Переместить вверх
 Move up in the 3D view (held)	Двигаться вверх в 3D-виде (удерживать)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Перемещаемые символы тянут за собой провода, а перемещаемые провода остаются на точках подключения, где они заканчиваются. Удержание Alt при перетаскивании меняет это на противоположное; перетаскивание конца выбранного провода отсоединяет его
 Moves to the top level as page {}	Переходит на верхний уровень как лист {}
 Moves to {} as page {}	Переходит в {} как лист {}
 Moving	Перемещение
@@ -1822,6 +1832,7 @@ Start	Начало
 Start again when the page structure changes	Начинать заново при изменении структуры листов
 Start at	Начать с
 Start byte	Начальный байт
+Start of a move: Keep connections the other way round	Начало перемещения: «Сохранять соединения» наоборот
 Start page	Начальная страница
 Station	Станция
 Stations and racks	Станции и стойки

@@ -1845,3 +1845,100 @@ fn cables_leaving_the_enclosure_have_their_core_ends() {
     openecraft_core::production::set_termination(&mut prj, "-X1:1", &other, Some(openecraft_core::production::Termination::Fork));
     assert!(!routing_ui::core_end(&prj, &an, "-W1", "-X1:1").is_empty());
 }
+
+#[test]
+fn items_are_copied_and_pasted_where_they_are_clicked() {
+    fn frame(ctx: &egui::Context, ui: &mut PanelUi, prj: &mut Project, an: &Analysis, time: f64, events: Vec<egui::Event>) {
+        let input = egui::RawInput {
+            screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 600.0))),
+            time: Some(time),
+            events,
+            ..Default::default()
+        };
+        ctx.run_ui(input, |ui_| ui.front_view(ui_, prj, 0, an, &PartsDb::default())).textures_delta.clear();
+    }
+    let button = |pos, button, pressed| egui::Event::PointerButton { pos, button, pressed, modifiers: Default::default() };
+    let rail = PanelItem { id: 1, kind: ItemKind::Rail, x: 100.0, y: 100.0, w: 200.0, h: 35.0, ..Default::default() };
+    let device = PanelItem { id: 2, kind: ItemKind::Device, tag: "-K1".into(), x: 400.0, y: 400.0, w: 20.0, h: 80.0, ..Default::default() };
+    let mut prj = Project { next_id: 10, ..Default::default() };
+    prj.layout.enclosures.push(Enclosure { items: vec![rail, device], mounting_origin: Some([0.0; 3]), ..Default::default() });
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { offset: egui::Vec2::ZERO, zoom: 1.0, fit_pending: false, ..Default::default() };
+    let ctx = egui::Context::default();
+    let mut t = 0.0;
+    let mut step = |ui: &mut PanelUi, prj: &mut Project, events: Vec<egui::Event>| {
+        t += 0.05;
+        frame(&ctx, ui, prj, &an, t, events);
+    };
+
+    // A right click selects the rail and opens the context menu.
+    let on_rail = egui::pos2(150.0, 117.0);
+    step(&mut ui, &mut prj, vec![egui::Event::PointerMoved(on_rail)]);
+    step(&mut ui, &mut prj, vec![button(on_rail, PointerButton::Secondary, true)]);
+    step(&mut ui, &mut prj, vec![button(on_rail, PointerButton::Secondary, false)]);
+    step(&mut ui, &mut prj, vec![]);
+    assert_eq!(ui.selection, BTreeSet::from([1]));
+    assert!(egui::Popup::is_any_open(&ctx), "context menu");
+    step(&mut ui, &mut prj, vec![egui::Event::Key { key: Key::Escape, physical_key: None, pressed: true, repeat: false, modifiers: Default::default() }]);
+    step(&mut ui, &mut prj, vec![]);
+    assert!(!egui::Popup::is_any_open(&ctx) && ui.selection.contains(&1), "Esc closes the menu only");
+
+    // Ctrl+C, Ctrl+V: the copy follows the pointer, a click places it.
+    step(&mut ui, &mut prj, vec![egui::Event::Copy]);
+    let text = ui.clip.as_ref().expect("copied").to_text();
+    step(&mut ui, &mut prj, vec![egui::Event::Paste(text.clone())]);
+    assert_eq!((ui.tool.clone(), prj.layout.enclosures[0].items.len()), (Tool::Paste, 2));
+    let at = egui::pos2(400.0, 302.0);
+    step(&mut ui, &mut prj, vec![egui::Event::PointerMoved(at)]);
+    step(&mut ui, &mut prj, vec![button(at, PointerButton::Primary, true)]);
+    step(&mut ui, &mut prj, vec![button(at, PointerButton::Primary, false)]);
+    let e = &prj.layout.enclosures[0];
+    assert_eq!((e.items.len(), ui.tool.clone()), (3, Tool::Select));
+    let copy = e.items.iter().find(|i| i.id >= 10).unwrap();
+    assert_eq!((copy.kind, copy.x, copy.y, copy.w), (ItemKind::Rail, 300.0, 285.0, 200.0));
+    assert_eq!(ui.selection, BTreeSet::from([copy.id]));
+
+    // Esc and a right click end the pasting without placing anything.
+    for cancel in [
+        vec![egui::Event::Key { key: Key::Escape, physical_key: None, pressed: true, repeat: false, modifiers: Default::default() }],
+        vec![button(at, PointerButton::Secondary, true), button(at, PointerButton::Secondary, false)],
+    ] {
+        step(&mut ui, &mut prj, vec![egui::Event::Paste(text.clone())]);
+        assert_eq!(ui.tool, Tool::Paste);
+        step(&mut ui, &mut prj, cancel);
+        assert_eq!((ui.tool.clone(), prj.layout.enclosures[0].items.len()), (Tool::Select, 3));
+    }
+
+    // Devices are placed once: they are not copied; other text is no paste.
+    ui.selection = BTreeSet::from([2]);
+    step(&mut ui, &mut prj, vec![egui::Event::Copy]);
+    assert_eq!(ui.clip.as_ref().map(|c| c.to_text()), Some(text));
+    step(&mut ui, &mut prj, vec![egui::Event::Paste("-K1".into())]);
+    assert_eq!(ui.tool, Tool::Select);
+}
+
+#[test]
+fn cut_items_leave_the_layout_and_devices_go_back_to_place() {
+    let rail = PanelItem { id: 1, kind: ItemKind::Rail, x: 100.0, y: 100.0, w: 200.0, h: 35.0, ..Default::default() };
+    let fan = PanelItem { id: 2, kind: ItemKind::Accessory, x: 120.0, y: 90.0, w: 40.0, h: 60.0, mounted_on: 1, ..Default::default() };
+    let on_rail = PanelItem { id: 3, kind: ItemKind::Device, tag: "-K1".into(), x: 200.0, y: 80.0, w: 20.0, h: 80.0, mounted_on: 1, ..Default::default() };
+    let device = PanelItem { id: 4, kind: ItemKind::Device, tag: "-K2".into(), x: 400.0, y: 400.0, w: 20.0, h: 80.0, ..Default::default() };
+    let mut prj = Project { next_id: 10, ..Default::default() };
+    prj.layout.enclosures.push(Enclosure { items: vec![rail, fan, on_rail, device], ..Default::default() });
+    let ctx = egui::Context::default();
+    // A device alone: back to the devices to place, nothing to paste.
+    let mut ui = PanelUi { selection: BTreeSet::from([4]), ..Default::default() };
+    ui.cut_selection(&ctx, &mut prj);
+    assert!(prj.layout.enclosures[0].item(4).is_none() && ui.clip.is_none() && ui.selection.is_empty());
+
+    // Ctrl+X on the rail: it goes with what is mounted on it, the device to place.
+    let an = Analysis::build(&prj);
+    ui.selection = BTreeSet::from([1]);
+    let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(800.0, 600.0))), events: vec![egui::Event::Cut], ..Default::default() };
+    ctx.run_ui(input, |ui_| ui.front_view(ui_, &mut prj, 0, &an, &PartsDb::default())).textures_delta.clear();
+    assert!(prj.layout.enclosures[0].items.is_empty());
+    let clip = ui.clip.as_ref().expect("cut");
+    let kinds: Vec<ItemKind> = clip.items.iter().map(|i| i.kind).collect();
+    assert_eq!(kinds, [ItemKind::Rail, ItemKind::Accessory]);
+    assert!(ui.can_paste());
+}

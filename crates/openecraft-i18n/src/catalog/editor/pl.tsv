@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Oznaczniki urządz
 Devices ({})	Urządzenia ({})
 Devices are not copied: a device is placed once.	Urządzenia nie są kopiowane: urządzenie jest umieszczane jeden raz.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Urządzenia są planowane za pomocą symboli jednokreskowych i projektowane na schemacie wielokreskowym; obie reprezentacje mają wspólne oznaczenie urządzenia.
+Devices back to the devices to place: {}	Urządzenia z powrotem w urządzeniach do umieszczenia: {}
+Devices go back to the devices to place	Urządzenia wracają do urządzeń do umieszczenia
 Devices in the box: {}	Urządzenia w ramce: {}
 Devices of a channel	Urządzenia kanału
 Devices of the second channel; empty = like the first	Urządzenia drugiego kanału; puste = jak w pierwszym
@@ -567,6 +569,7 @@ Draft of revision {} created	Utworzono wersję roboczą rewizji {}
 Draft of revision {} discarded	Odrzucono wersję roboczą rewizji {}
 Drag	Przeciąganie
 Drag a connection point designation of the selected symbol to place it.	Przeciągnij oznaczenie punktu połączenia zaznaczonego symbolu, aby je umieścić.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Przeciągnij koniec zaznaczonego przewodu, aby przesunąć tylko ten koniec. Przeciąganie z Alt odwraca Zachowaj połączenia.
 Drag an entry into the page, or click it and then click into the page.	Przeciągnij pozycję na stronę albo kliknij ją, a następnie kliknij na stronie.
 Drag the core designation or the cable tag of the selected wire to place it.	Przeciągnij oznaczenie żyły lub oznaczenie kabla zaznaczonego przewodu, aby je umieścić.
 Drag the name or the cross reference of the selected point to place it.	Przeciągnij nazwę lub odsyłacz zaznaczonego punktu, aby go umieścić.
@@ -890,7 +893,12 @@ Invalid value	Nieprawidłowa wartość
 Invert the direction of panning by scrolling	Odwróć kierunek przesuwania przewijaniem
 Inverter or charge controller (devices with PV input data)	Falownik lub regulator ładowania (urządzenia z danymi wejścia PV)
 Isometric	Izometryczny
+Items copied: {}	Skopiowane elementy: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Skopiowane elementy: {} (pominięte urządzenia: {}, urządzenie umieszcza się tylko raz)
+Items cut: {}	Wycięte elementy: {}
+Items cut: {} (devices back to the devices to place: {})	Wycięte elementy: {} (urządzenia z powrotem w urządzeniach do umieszczenia: {})
 Items on the layer	Elementy na warstwie
+Items pasted: {}	Wklejone elementy: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementy z zakotwiczeniem zachowują je; pozostałe są wstawiane względem miejsca kliknięcia.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Artykuły, urządzenia, umieszczenia, połączenia, przewody i dokumenty w jednym pliku JSON dla systemów bez konektora
 Its pages and subsections go to the section above	Jej strony i podsekcje przechodzą do sekcji nadrzędnej
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Scala odc
 Jumper {}	Mostek {}
 Jumps over the other:	Przeskakuje nad drugim:
 K, Q, MM …	K, Q, MM …
+Keep connections	Zachowaj połączenia
 Keep sub-pages (3.a, 3.1) with the page before	Zachowaj podstrony (3.a, 3.1) przy poprzedniej stronie
 Keep the degree of protection	Zachowaj stopień ochrony
 Keep this route when recalculating, as long as it is still possible	Zachowaj tę trasę przy ponownym obliczaniu, dopóki jest to możliwe
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Przenieś urządzenia tej s
 Move to section	Przenieś do sekcji
 Move up	Przesuń w górę
 Move up in the 3D view (held)	Ruch w górę w widoku 3D (przytrzymaj)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Przesuwane symbole ciągną za sobą przewody, a przesuwane przewody pozostają na punktach połączenia, na których się kończą. Przytrzymanie Alt podczas przeciągania to odwraca; przeciągnięcie końca zaznaczonego przewodu go odłącza
 Moves to the top level as page {}	Przechodzi na najwyższy poziom jako strona {}
 Moves to {} as page {}	Przechodzi do {} jako strona {}
 Moving	Przesuwanie
@@ -1823,6 +1833,7 @@ Start	Początek
 Start again when the page structure changes	Zacznij od nowa, gdy zmienia się struktura strony
 Start at	Rozpocznij od
 Start byte	Bajt początkowy
+Start of a move: Keep connections the other way round	Początek przesuwania: Zachowaj połączenia odwrotnie
 Start page	Strona startowa
 Station	Stacja
 Stations and racks	Stacje i kasety

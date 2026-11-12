@@ -502,6 +502,8 @@ Device, terminal, wire and cable markers for marking software	マーキングソ
 Devices ({})	デバイス ({})
 Devices are not copied: a device is placed once.	デバイスはコピーされません: デバイスは 1 回だけ配置されます。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	デバイスは単線シンボルで計画し、複線回路図で設計します。両方で同じデバイスタグを共有します。
+Devices back to the devices to place: {}	配置するデバイスに戻したデバイス: {}
+Devices go back to the devices to place	デバイスは配置するデバイスに戻ります
 Devices in the box: {}	ボックス内のデバイス: {}
 Devices of a channel	チャンネルのデバイス
 Devices of the second channel; empty = like the first	第 2 チャンネルのデバイス。空欄 = 第 1 チャンネルと同じ
@@ -561,6 +563,7 @@ Draft of revision {} created	リビジョン {} のドラフトを作成しま�
 Draft of revision {} discarded	リビジョン {} のドラフトを破棄しました
 Drag	ドラッグ
 Drag a connection point designation of the selected symbol to place it.	選択したシンボルの接続ポイントの名称をドラッグして配置します。
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	選択した電線の端をドラッグすると、その端だけを移動します。Alt を押しながらドラッグすると「接続を保持」が逆になります。
 Drag an entry into the page, or click it and then click into the page.	エントリをページにドラッグするか、クリックしてからページ内をクリックします。
 Drag the core designation or the cable tag of the selected wire to place it.	選択した電線の心線記号またはケーブルタグをドラッグして配置します。
 Drag the name or the cross reference of the selected point to place it.	選択したポイントの名前または相互参照をドラッグして配置します。
@@ -882,7 +885,12 @@ Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
 Isometric	等角
+Items copied: {}	コピーした要素: {}
+Items copied: {} (devices left out: {}, a device is placed once)	コピーした要素: {} (除外したデバイス: {}、デバイスは一度だけ配置されます)
+Items cut: {}	切り取った要素: {}
+Items cut: {} (devices back to the devices to place: {})	切り取った要素: {} (配置するデバイスに戻したデバイス: {})
 Items on the layer	レイヤー上のアイテム
+Items pasted: {}	貼り付けた要素: {}
 Items with an anchor keep it; the others are inserted relative to the click.	アンカーを持つアイテムはそれを保持し、その他はクリック位置を基準に挿入されます。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	コネクターのないシステム向けに、アイテム、デバイス、配置、接続、電線、ドキュメントを 1 つの JSON ファイルにまとめます
 Its pages and subsections go to the section above	そのページとサブセクションは上位のセクションに移ります
@@ -892,6 +900,7 @@ Joins wire pieces in a line where nothing else connects (current page)	他に何
 Jumper {}	ジャンパー {}
 Jumps over the other:	もう一方を越える:
 K, Q, MM …	K、Q、MM …
+Keep connections	接続を保持
 Keep sub-pages (3.a, 3.1) with the page before	サブページ (3.a、3.1) を前のページと一緒に維持
 Keep the degree of protection	保護等級を維持
 Keep this route when recalculating, as long as it is still possible	再計算時も、可能な限りこのルートを維持します
@@ -1052,6 +1061,7 @@ Move the devices of this page into the new structure	このページのデバイ
 Move to section	セクションへ移動
 Move up	上へ移動
 Move up in the 3D view (held)	3D ビューで上へ移動（押したまま）
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移動したシンボルは電線を引き連れ、移動した電線は端のある接続ポイントに留まります。ドラッグ中に Alt を押すと逆になります。選択した電線の端をドラッグすると切り離せます
 Moves to the top level as page {}	最上位レベルのページ {} になります
 Moves to {} as page {}	{} のページ {} になります
 Moving	移動
@@ -1803,6 +1813,7 @@ Start	開始
 Start again when the page structure changes	ページの構造が変わったら番号をリセット
 Start at	開始番号
 Start byte	開始バイト
+Start of a move: Keep connections the other way round	移動の開始時：接続を保持を逆にする
 Start page	スタートページ
 Station	ステーション
 Stations and racks	ステーションとラック

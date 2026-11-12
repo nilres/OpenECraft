@@ -244,8 +244,21 @@ pub static COMMANDS: &[Spec] = &[
             param("ids", Kind::Ids, tr_const!("Item ids")),
             param("dx", Kind::Num, tr_const!("Distance in X (mm)")),
             param("dy", Kind::Num, tr_const!("Distance in Y (mm)")),
+            optional("keep_connections", Kind::Bool, tr_const!("Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them")),
         ],
         run: move_items,
+    },
+    Spec {
+        name: "move_wire_end",
+        help: tr_const!("Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square"),
+        params: &[
+            PAGE,
+            param("id", Kind::Int, tr_const!("Item id")),
+            param("end", Kind::Str, tr_const!("The end: from or to")),
+            param("x", Kind::Num, tr_const!("X position in mm")),
+            param("y", Kind::Num, tr_const!("Y position in mm (downwards)")),
+        ],
+        run: move_wire_end,
     },
     Spec {
         name: "wire_settings",
@@ -1066,12 +1079,30 @@ fn move_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let before = prj.pages[i].clone();
     let sel = openecraft_core::device_boxes::with_points(prj, i, &selection(&prj.pages[i], a)?);
     let d = snapped(a.num("dx").unwrap_or_default(), a.num("dy").unwrap_or_default());
-    routing::move_selection(prj, i, &sel, d);
+    let keep = a.value("keep_connections").and_then(Value::as_bool).unwrap_or(true);
+    routing::move_selection_keeping(prj, i, &sel, d, keep);
     if !inside_page(prj, i) {
         prj.pages[i] = before;
         return Err(tr("The items would leave the page").to_string());
     }
     Ok(json!({ "moved": sel.len(), "dx": d.x, "dy": d.y }))
+}
+
+fn move_wire_end(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let i = editable(prj, a.req("page"))?;
+    let id = a.int("id").unwrap_or_default() as u64;
+    let is_a = match a.req("end").trim().to_ascii_lowercase().as_str() {
+        "from" => true,
+        "to" => false,
+        other => return Err(tr_fmt!("Unknown wire end: {} (from or to)", other)),
+    };
+    let (x, y) = (a.num("x").unwrap_or_default(), a.num("y").unwrap_or_default());
+    on_page(prj, i, x.into(), y.into())?;
+    if !routing::move_wire_end(prj, i, id, is_a, p(x, y)) {
+        return Err(tr_fmt!("No wire with id {}", id));
+    }
+    let wires: Vec<Value> = prj.pages[i].wires.iter().filter(|w| w.a.same(p(x, y)) || w.b.same(p(x, y))).map(|w| json!({ "id": w.id, "from": [w.a.x, w.a.y], "to": [w.b.x, w.b.y] })).collect();
+    Ok(json!({ "wires": wires }))
 }
 
 fn wire_settings(prj: &mut Project, a: &Args) -> Result<Value, String> {

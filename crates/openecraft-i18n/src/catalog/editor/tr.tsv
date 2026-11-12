@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	İşaretleme yazı
 Devices ({})	Cihazlar ({})
 Devices are not copied: a device is placed once.	Cihazlar kopyalanmaz: bir cihaz bir kez yerleştirilir.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Cihazlar tek hatlı sembollerle planlanır ve çok hatlı şemada projelendirilir; ikisi aynı cihaz etiketini paylaşır.
+Devices back to the devices to place: {}	Yerleştirilecek cihazlara geri dönen cihazlar: {}
+Devices go back to the devices to place	Cihazlar yerleştirilecek cihazlara geri döner
 Devices in the box: {}	Kutudaki cihazlar: {}
 Devices of a channel	Bir kanalın cihazları
 Devices of the second channel; empty = like the first	İkinci kanalın cihazları; boş = birinci gibi
@@ -567,6 +569,7 @@ Draft of revision {} created	Revizyon {} taslağı oluşturuldu
 Draft of revision {} discarded	Revizyon {} taslağı atıldı
 Drag	Sürükleme
 Drag a connection point designation of the selected symbol to place it.	Yerleştirmek için seçili sembolün bir bağlantı noktası tanımını sürükleyin.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Yalnızca o ucu taşımak için seçili bir telin ucunu sürükleyin. Alt ile sürüklemek Bağlantıları koru ayarını tersine çevirir.
 Drag an entry into the page, or click it and then click into the page.	Bir girişi sayfaya sürükleyin veya tıklayıp ardından sayfaya tıklayın.
 Drag the core designation or the cable tag of the selected wire to place it.	Yerleştirmek için seçili telin damar tanımını veya kablo etiketini sürükleyin.
 Drag the name or the cross reference of the selected point to place it.	Yerleştirmek için seçili noktanın adını veya çapraz referansını sürükleyin.
@@ -890,7 +893,12 @@ Invalid value	Geçersiz değer
 Invert the direction of panning by scrolling	Kaydırmayla görünüm kaydırma yönünü ters çevir
 Inverter or charge controller (devices with PV input data)	İnvertör veya şarj kontrol cihazı (PV giriş verisi olan cihazlar)
 Isometric	İzometrik
+Items copied: {}	Kopyalanan öğeler: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopyalanan öğeler: {} (atlanan cihazlar: {}, bir cihaz yalnızca bir kez yerleştirilir)
+Items cut: {}	Kesilen öğeler: {}
+Items cut: {} (devices back to the devices to place: {})	Kesilen öğeler: {} (yerleştirilecek cihazlara geri dönen cihazlar: {})
 Items on the layer	Katmandaki öğeler
+Items pasted: {}	Yapıştırılan öğeler: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Ankrajı olan öğeler ankrajlarını korur; diğerleri tıklanan noktaya göre eklenir.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Bağlayıcısı olmayan sistemler için tek bir JSON dosyasında öğeler, cihazlar, yerleşimler, bağlantılar, teller ve belgeler
 Its pages and subsections go to the section above	Sayfaları ve alt bölümleri üst bölüme geçer
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Başka hi
 Jumper {}	Köprü {}
 Jumps over the other:	Diğerinin üzerinden atlar:
 K, Q, MM …	K, Q, MM …
+Keep connections	Bağlantıları koru
 Keep sub-pages (3.a, 3.1) with the page before	Alt sayfaları (3.a, 3.1) önceki sayfayla birlikte tut
 Keep the degree of protection	Koruma derecesini koru
 Keep this route when recalculating, as long as it is still possible	Yeniden hesaplarken, mümkün olduğu sürece bu güzergâhı koru
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Bu sayfanın cihazlarını 
 Move to section	Bölüme taşı
 Move up	Yukarı taşı
 Move up in the 3D view (held)	3B görünümde yukarı git (basılı tut)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Taşınan semboller tellerini birlikte çeker, taşınan teller bittikleri bağlantı noktalarında kalır. Sürüklerken Alt basılı tutmak bunu tersine çevirir; seçili bir telin ucunu sürüklemek onu ayırır
 Moves to the top level as page {}	En üst düzeye {} sayfası olarak geçer
 Moves to {} as page {}	{} bölümüne {} sayfası olarak geçer
 Moving	Taşıma
@@ -1823,6 +1833,7 @@ Start	Başlat
 Start again when the page structure changes	Sayfa yapısı değiştiğinde yeniden başla
 Start at	Başlangıç değeri
 Start byte	Başlangıç baytı
+Start of a move: Keep connections the other way round	Taşıma başlangıcı: Bağlantıları koru tersine
 Start page	Başlangıç sayfası
 Station	İstasyon
 Stations and racks	İstasyonlar ve raflar

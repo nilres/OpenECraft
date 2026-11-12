@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Štítky přístro
 Devices ({})	Přístroje ({})
 Devices are not copied: a device is placed once.	Přístroje se nekopírují: přístroj se umisťuje jen jednou.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Přístroje se plánují jednopólovými symboly a zpracovávají ve vícepólovém schématu zapojení; obě sdílejí označení přístroje.
+Devices back to the devices to place: {}	Přístroje vrácené mezi přístroje k umístění: {}
+Devices go back to the devices to place	Přístroje se vrátí mezi přístroje k umístění
 Devices in the box: {}	Přístroje v rámečku: {}
 Devices of a channel	Přístroje kanálu
 Devices of the second channel; empty = like the first	Přístroje druhého kanálu; prázdné = jako první
@@ -567,6 +569,7 @@ Draft of revision {} created	Koncept revize {} vytvořen
 Draft of revision {} discarded	Koncept revize {} zahozen
 Drag	Tažení
 Drag a connection point designation of the selected symbol to place it.	Přetažením označení přípojného bodu vybraného symbolu jej umístíte.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Táhněte konec vybraného vodiče, chcete-li přesunout jen tento konec. Tažení s Alt obrátí Zachovat propojení.
 Drag an entry into the page, or click it and then click into the page.	Přetáhněte položku do stránky nebo na ni klikněte a potom klikněte do stránky.
 Drag the core designation or the cable tag of the selected wire to place it.	Přetažením označení žíly nebo označení kabelu vybraného vodiče je umístíte.
 Drag the name or the cross reference of the selected point to place it.	Přetažením názvu nebo křížového odkazu vybraného bodu jej umístíte.
@@ -890,7 +893,12 @@ Invalid value	Neplatná hodnota
 Invert the direction of panning by scrolling	Obrátit směr posouvání pohledu
 Inverter or charge controller (devices with PV input data)	Střídač nebo regulátor nabíjení (zařízení s daty FV vstupu)
 Isometric	Izometrický
+Items copied: {}	Zkopírované prvky: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Zkopírované prvky: {} (vynechané přístroje: {}, přístroj se umisťuje jen jednou)
+Items cut: {}	Vyjmuté prvky: {}
+Items cut: {} (devices back to the devices to place: {})	Vyjmuté prvky: {} (přístroje vrácené mezi přístroje k umístění: {})
 Items on the layer	Objekty ve vrstvě
+Items pasted: {}	Vložené prvky: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Prvky s ukotvením si je ponechají; ostatní se vloží relativně ke kliknutí.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Položky, přístroje, umístění, spojení, vodiče a dokumenty v jednom souboru JSON pro systémy bez konektoru
 Its pages and subsections go to the section above	Jeho stránky a pododdíly přejdou do nadřazeného oddílu
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Sloučí 
 Jumper {}	Propojka {}
 Jumps over the other:	Přeskakuje druhý:
 K, Q, MM …	K, Q, MM …
+Keep connections	Zachovat propojení
 Keep sub-pages (3.a, 3.1) with the page before	Ponechat podstránky (3.a, 3.1) u předchozí stránky
 Keep the degree of protection	Zachovat stupeň krytí
 Keep this route when recalculating, as long as it is still possible	Při přepočtu zachovat tuto trasu, dokud je to možné
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Přesunout přístroje tét
 Move to section	Přesunout do oddílu
 Move up	Posunout nahoru
 Move up in the 3D view (held)	Pohyb nahoru v 3D pohledu (držet)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Přesouvané symboly táhnou své vodiče s sebou a přesouvané vodiče zůstávají na přípojných bodech, kde končí. Držení Alt při tažení to obrátí; tažení konce vybraného vodiče jej odpojí
 Moves to the top level as page {}	Přejde na nejvyšší úroveň jako stránka {}
 Moves to {} as page {}	Přejde do {} jako stránka {}
 Moving	Přesouvání
@@ -1823,6 +1833,7 @@ Start	Začátek
 Start again when the page structure changes	Začít znovu, když se změní struktura stránky
 Start at	Začít od
 Start byte	Počáteční bajt
+Start of a move: Keep connections the other way round	Začátek přesunu: Zachovat propojení obráceně
 Start page	Úvodní stránka
 Station	Stanice
 Stations and racks	Stanice a nosné rámy

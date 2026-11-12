@@ -188,11 +188,16 @@ fn full_crosshair_follows_a_connection_definition_point_on_a_wire() {
 
 /// Runs one editor frame on page `page` with the given input events.
 fn frame(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, events: Vec<Event>) -> CanvasOutput {
+    frame_with(ed, ctx, prj, page, events, Modifiers::default())
+}
+
+/// A frame with the modifier keys `modifiers` held.
+fn frame_with(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, events: Vec<Event>, modifiers: Modifiers) -> CanvasOutput {
     let idx = Index::build(prj);
     let an = Analysis::build(prj);
     let input = RawInput {
         screen_rect: Some(Rect::from_min_size(pos2(0.0, 0.0), vec2(1200.0, 800.0))),
-        events,
+        events: std::iter::once(Event::ModifiersChanged(modifiers)).chain(events).collect(),
         ..Default::default()
     };
     let mut canvas = CanvasOutput::default();
@@ -525,15 +530,20 @@ fn key(key: Key) -> Event {
 
 /// Drags with the primary button from page point `a` to `b`.
 fn drag(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, a: P, b: P) {
+    drag_with(ed, ctx, prj, page, a, b, Modifiers::default());
+}
+
+/// Drags from `a` to `b` with the modifier keys `m` held.
+fn drag_with(ed: &mut Editor, ctx: &egui::Context, prj: &mut Project, page: usize, a: P, b: P, m: Modifiers) {
     let (from, to) = (ed.w2s(SCREEN, a), ed.w2s(SCREEN, b));
-    frame(ed, ctx, prj, page, vec![Event::PointerMoved(from)]);
-    frame(ed, ctx, prj, page, vec![button(from, true)]);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerMoved(from)], m);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerButton { pos: from, button: PointerButton::Primary, pressed: true, modifiers: m }], m);
     for i in 1..=5 {
         let t = i as f32 / 5.0;
-        frame(ed, ctx, prj, page, vec![Event::PointerMoved(from + (to - from) * t)]);
+        frame_with(ed, ctx, prj, page, vec![Event::PointerMoved(from + (to - from) * t)], m);
     }
-    frame(ed, ctx, prj, page, vec![button(to, false)]);
-    frame(ed, ctx, prj, page, vec![]);
+    frame_with(ed, ctx, prj, page, vec![Event::PointerButton { pos: to, button: PointerButton::Primary, pressed: false, modifiers: m }], m);
+    frame_with(ed, ctx, prj, page, vec![], m);
 }
 
 fn coil(id: u64, pos: P, tag: &str) -> SymbolInst {
@@ -1069,4 +1079,62 @@ fn polylines_are_stroked_without_miter_spikes() {
     // A closed outline along a line (an open polyline drawn closed) is no loop either.
     let flat = q(&[(0., 0.), (5., 0.), (10., 0.)]);
     assert_eq!(stroke_runs(flat, true), Runs::Open(vec![q(&[(0., 0.), (5., 0.), (10., 0.)]), q(&[(10., 0.), (0., 0.)])]));
+}
+
+/// A coil with a wire from its upper connection point straight up to a free end.
+fn coil_with_wire() -> (Project, P) {
+    let mut prj = Project::default();
+    prj.pages[0].symbols.push(coil(7, p(100.0, 100.0), "-K1"));
+    let top = prj.symbol("coil").unwrap().pin_world(0, p(100.0, 100.0), 0, false);
+    prj.pages[0].wires.push(Wire { id: 9, a: p(100.0, 40.0), b: top, ..Default::default() });
+    prj.fix_next_id();
+    (prj, top)
+}
+
+fn ends_at(prj: &Project, q: P) -> usize {
+    prj.pages[0].wires.iter().filter(|w| w.a.same(q) || w.b.same(q)).count()
+}
+
+#[test]
+fn a_dragged_wire_stays_on_its_connection_point_unless_alt_is_held() {
+    let ctx = egui::Context::default();
+    let (mut prj, top) = coil_with_wire();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    drag(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0), p(140.0, 60.0));
+    let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+    assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 0.0)), "where it was dragged to");
+    assert_eq!(ends_at(&prj, top), 1, "a leg from the connection point");
+    assert_eq!(prj.pages[0].wires.len(), 2);
+
+    for alt in [true, false] {
+        let (mut prj, top) = coil_with_wire();
+        let mut ed = Editor::default();
+        ready(&mut ed, &ctx, &mut prj);
+        ed.keep_connections = alt;
+        drag_with(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0), p(140.0, 60.0), if alt { Modifiers::ALT } else { Modifiers::default() });
+        let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+        assert_eq!((w.a, w.b), (p(140.0, 40.0), top + p(40.0, 0.0)), "alt {alt}");
+        assert_eq!(ends_at(&prj, top), 0, "alt {alt}: off the connection point");
+        assert_eq!(prj.pages[0].wires.len(), 1, "alt {alt}");
+    }
+}
+
+#[test]
+fn the_end_of_a_selected_wire_is_dragged_alone() {
+    let ctx = egui::Context::default();
+    let (mut prj, top) = coil_with_wire();
+    prj.pages[0].wires.push(Wire { id: 20, a: p(20.0, 40.0), b: p(300.0, 40.0), ..Default::default() });
+    prj.fix_next_id();
+    let mut ed = Editor::default();
+    ready(&mut ed, &ctx, &mut prj);
+    click(&mut ed, &ctx, &mut prj, 0, p(100.0, 60.0));
+    assert_eq!(ed.selection, BTreeSet::from([9]));
+    drag(&mut ed, &ctx, &mut prj, 0, top, top + p(-40.0, 0.0));
+    assert_eq!(prj.pages[0].symbols[0].pos, p(100.0, 100.0), "the coil stays");
+    assert_eq!(ends_at(&prj, top), 0, "disconnected");
+    assert!(prj.pages[0].wires.iter().all(|w| w.a.x == w.b.x || w.a.y == w.b.y), "square: {:?}", prj.pages[0].wires);
+    assert_eq!(ends_at(&prj, top + p(-40.0, 0.0)), 1);
+    let w = prj.pages[0].wires.iter().find(|w| w.id == 9).unwrap();
+    assert!(w.a.y == 40.0 || w.b.y == 40.0, "the other end stays on the rail: {w:?}");
 }

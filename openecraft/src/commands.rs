@@ -97,6 +97,7 @@ pub enum Cmd {
     Markup,
     // Edit
     AutoConnect,
+    KeepConnections,
     Route,
     AutoConnectSelection,
     JoinCollinear,
@@ -499,6 +500,9 @@ pub static ALL: &[Def] = &[
     d(C::AutoConnect, "auto_connect", tr_const!("Auto-connect"), I::AutoConnect)
         .toggle()
         .tip(tr_const!("Draw connections between facing connection points when symbols are placed or moved")),
+    d(C::KeepConnections, "keep_connections", tr_const!("Keep connections"), I::KeepConnections)
+        .toggle()
+        .tip(tr_const!("Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it")),
     d(C::Route, "route", tr_const!("Route"), I::Route).toggle().tip(tr_const!("The wire tool routes around symbols and other wires")),
     d(C::AutoConnectSelection, "auto_connect_selection", tr_const!("Auto-connect selection"), I::AutoConnect)
         .tip(tr_const!("Connects free connection points of the selected symbols with facing ones")),

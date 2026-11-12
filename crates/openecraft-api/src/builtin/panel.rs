@@ -196,6 +196,19 @@ pub static COMMANDS: &[Spec] = &[
         run: arrange_panel_items,
     },
     Spec {
+        name: "copy_panel_items",
+        help: tr_const!("Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)"),
+        params: &[
+            param("enclosure", Kind::Str, ENCLOSURE),
+            param("ids", Kind::Ids, IDS),
+            param("x", Kind::Num, tr_const!("Left edge on the face in mm")),
+            param("y", Kind::Num, tr_const!("Top edge on the face in mm")),
+            optional("face", Kind::Str, FACE),
+            optional("to", Kind::Str, tr_const!("Enclosure the copies go to (location, e.g. +CAB2); the same one without")),
+        ],
+        run: copy_panel_items,
+    },
+    Spec {
         name: "group_panel_items",
         help: tr_const!("Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies"),
         params: &[param("enclosure", Kind::Str, ENCLOSURE), param("ids", Kind::Ids, IDS), optional("name", Kind::Str, tr_const!("Name of the assembly"))],
@@ -596,6 +609,19 @@ fn arrange_panel_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let e = &prj.layout.enclosures[ei];
     let items: Vec<Value> = e.items.iter().filter(|i| ids.contains(&i.id) || created.contains(&i.id)).map(|i| item_json(prj, i)).collect();
     Ok(json!({ "items": items, "created": created }))
+}
+
+fn copy_panel_items(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let ei = enclosure_index(prj, a.req("enclosure"))?;
+    let to = a.str("to").map(|t| enclosure_index(prj, t)).transpose()?.unwrap_or(ei);
+    let clip = panel::copy_items(&prj.layout.enclosures[ei], &a.ids("ids"));
+    if clip.is_empty() {
+        return Err(tr("Nothing to copy: devices are placed once").into());
+    }
+    let face = face_arg(a, "face")?.unwrap_or(clip.items[0].face);
+    let ids = panel::paste_items(prj, to, &clip, face, p(a.num("x").unwrap_or(0.0), a.num("y").unwrap_or(0.0)));
+    let e = &prj.layout.enclosures[to];
+    Ok(json!({ "items": ids.iter().filter_map(|id| e.item(*id)).map(|i| item_json(prj, i)).collect::<Vec<_>>(), "devices_left_out": clip.devices }))
 }
 
 fn group_panel_items(prj: &mut Project, a: &Args) -> Result<Value, String> {

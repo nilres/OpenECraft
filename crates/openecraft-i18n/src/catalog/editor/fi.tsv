@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Laite-, riviliitin
 Devices ({})	Laitteet ({})
 Devices are not copied: a device is placed once.	Laitteita ei kopioida: laite sijoitetaan kerran.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Laitteet suunnitellaan yksinapaisilla symboleilla ja toteutetaan moninapaisessa piirikaaviossa; molemmilla on sama laitetunnus.
+Devices back to the devices to place: {}	Sijoitettaviin laitteisiin palautetut laitteet: {}
+Devices go back to the devices to place	Laitteet palaavat sijoitettaviin laitteisiin
 Devices in the box: {}	Laitteet laatikossa: {}
 Devices of a channel	Kanavan laitteet
 Devices of the second channel; empty = like the first	Toisen kanavan laitteet; tyhjä = kuten ensimmäinen
@@ -567,6 +569,7 @@ Draft of revision {} created	Revision {} luonnos luotu
 Draft of revision {} discarded	Revision {} luonnos hylätty
 Drag	Vedä
 Drag a connection point designation of the selected symbol to place it.	Vedä valitun symbolin liitäntäpisteen merkintää sijoittaaksesi sen.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Vedä valitun johdon päätä siirtääksesi vain sen pään. Vetäminen Alt pohjassa kääntää Säilytä liitännät -asetuksen.
 Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
 Drag the core designation or the cable tag of the selected wire to place it.	Vedä valitun johtimen johdinmerkintää tai kaapelin tunnusta sijoittaaksesi sen.
 Drag the name or the cross reference of the selected point to place it.	Vedä valitun pisteen nimeä tai ristiviittausta sijoittaaksesi sen.
@@ -890,7 +893,12 @@ Invalid value	Virheellinen arvo
 Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
 Inverter or charge controller (devices with PV input data)	Vaihtosuuntaaja tai lataussäädin (laitteet, joilla on aurinkosähkötulon tiedot)
 Isometric	Isometrinen
+Items copied: {}	Kopioidut kohteet: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopioidut kohteet: {} (pois jätetyt laitteet: {}, laite sijoitetaan vain kerran)
+Items cut: {}	Leikatut kohteet: {}
+Items cut: {} (devices back to the devices to place: {})	Leikatut kohteet: {} (sijoitettaviin laitteisiin palautetut laitteet: {})
 Items on the layer	Tason kohteet
+Items pasted: {}	Liitetyt kohteet: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Ankkuroidut kohteet säilyttävät ankkurinsa; muut lisätään suhteessa napsautukseen.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Nimikkeet, laitteet, sijoittelut, yhteydet, johdot ja asiakirjat yhdessä JSON-tiedostossa järjestelmille, joilla ei ole konnektoria
 Its pages and subsections go to the section above	Sen sivut ja alaosiot siirtyvät yläosioon
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Yhdistä�
 Jumper {}	Silta {}
 Jumps over the other:	Hyppää toisen yli:
 K, Q, MM …	K, Q, MM …
+Keep connections	Säilytä liitännät
 Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
 Keep the degree of protection	Säilytä kotelointiluokka
 Keep this route when recalculating, as long as it is still possible	Säilytä tämä reitti uudelleenlaskennassa niin kauan kuin se on mahdollista
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Siirrä tämän sivun laitt
 Move to section	Siirrä osioon
 Move up	Siirrä ylöspäin
 Move up in the 3D view (held)	Liiku ylöspäin 3D-näkymässä (pidä painettuna)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Siirretyt symbolit vetävät johtonsa mukanaan ja siirretyt johdot pysyvät liitäntäpisteissä, joihin ne päättyvät. Alt pohjassa vedettäessä kääntää tämän; valitun johdon pään vetäminen irrottaa sen
 Moves to the top level as page {}	Siirtyy ylimmälle tasolle sivuksi {}
 Moves to {} as page {}	Siirtyy osioon {} sivuksi {}
 Moving	Siirtäminen
@@ -1823,6 +1833,7 @@ Start	Aloitus
 Start again when the page structure changes	Aloita alusta, kun sivun rakenne muuttuu
 Start at	Aloita kohdasta
 Start byte	Aloitustavu
+Start of a move: Keep connections the other way round	Siirron alku: Säilytä liitännät päinvastoin
 Start page	Aloitussivu
 Station	Asema
 Stations and racks	Asemat ja telineet

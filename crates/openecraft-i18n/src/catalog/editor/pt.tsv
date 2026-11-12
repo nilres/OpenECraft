@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Marcadores de disp
 Devices ({})	Dispositivos ({})
 Devices are not copied: a device is placed once.	Os dispositivos não são copiados: um dispositivo é posicionado uma única vez.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Os dispositivos são planejados com símbolos unifilares e projetados no esquema elétrico multifilar; ambos compartilham o identificador do dispositivo.
+Devices back to the devices to place: {}	Dispositivos devolvidos aos dispositivos a posicionar: {}
+Devices go back to the devices to place	Os dispositivos voltam para os dispositivos a posicionar
 Devices in the box: {}	Dispositivos na caixa: {}
 Devices of a channel	Dispositivos de um canal
 Devices of the second channel; empty = like the first	Dispositivos do segundo canal; vazio = como o primeiro
@@ -567,6 +569,7 @@ Draft of revision {} created	Rascunho da revisão {} criado
 Draft of revision {} discarded	Rascunho da revisão {} descartado
 Drag	Arrastar
 Drag a connection point designation of the selected symbol to place it.	Arraste uma designação de conexão do símbolo selecionado para posicioná-la.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Arraste uma extremidade de um fio selecionado para mover só essa extremidade. Arrastar com Alt inverte Manter conexões.
 Drag an entry into the page, or click it and then click into the page.	Arraste uma entrada para a página ou clique nela e depois clique na página.
 Drag the core designation or the cable tag of the selected wire to place it.	Arraste a designação da veia ou o identificador do cabo do fio selecionado para posicioná-los.
 Drag the name or the cross reference of the selected point to place it.	Arraste o nome ou a referência cruzada do ponto selecionado para posicioná-lo.
@@ -890,7 +893,12 @@ Invalid value	Valor inválido
 Invert the direction of panning by scrolling	Inverter a direção do movimento da vista pela rolagem
 Inverter or charge controller (devices with PV input data)	Inversor ou controlador de carga (dispositivos com dados de entrada FV)
 Isometric	Isométrica
+Items copied: {}	Elementos copiados: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Elementos copiados: {} (dispositivos omitidos: {}, um dispositivo é posicionado uma única vez)
+Items cut: {}	Elementos recortados: {}
+Items cut: {} (devices back to the devices to place: {})	Elementos recortados: {} (dispositivos devolvidos aos dispositivos a posicionar: {})
 Items on the layer	Itens na camada
+Items pasted: {}	Elementos colados: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Os itens com ancoragem a mantêm; os demais são inseridos em relação ao clique.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Itens, dispositivos, posicionamentos, conexões, fios e documentos em um arquivo JSON para sistemas sem conector
 Its pages and subsections go to the section above	Suas páginas e subseções vão para a seção superior
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Une trech
 Jumper {}	Ponte {}
 Jumps over the other:	Salta sobre o outro:
 K, Q, MM …	K, Q, MM …
+Keep connections	Manter conexões
 Keep sub-pages (3.a, 3.1) with the page before	Manter subpáginas (3.a, 3.1) com a página anterior
 Keep the degree of protection	Manter o grau de proteção
 Keep this route when recalculating, as long as it is still possible	Manter esta rota ao recalcular, enquanto ainda for possível
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Mover os dispositivos desta
 Move to section	Mover para a seção
 Move up	Mover para cima
 Move up in the 3D view (held)	Subir na vista 3D (manter pressionado)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Símbolos movidos arrastam seus fios e fios movidos permanecem nos pontos de conexão onde terminam. Segurar Alt ao arrastar inverte isso; arrastar uma extremidade de um fio selecionado o desconecta
 Moves to the top level as page {}	Vai para o nível superior como página {}
 Moves to {} as page {}	Vai para {} como página {}
 Moving	Mover
@@ -1823,6 +1833,7 @@ Start	Início
 Start again when the page structure changes	Recomeçar quando a estrutura da página mudar
 Start at	Começar em
 Start byte	Byte inicial
+Start of a move: Keep connections the other way round	Início de um movimento: Manter conexões ao contrário
 Start page	Página inicial
 Station	Estação
 Stations and racks	Estações e racks

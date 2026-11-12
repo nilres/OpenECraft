@@ -223,11 +223,29 @@ impl Before {
     }
 }
 
+/// An end (`is_a`) of a moved wire at `at`, where something that stays connects: a
+/// connection point of a symbol that is not moved, or a wire running through (`rail`).
+struct HeldEnd {
+    wire: u64,
+    is_a: bool,
+    at: P,
+    rail: Option<u64>,
+    /// The symbols with a connection point there.
+    owners: Vec<u64>,
+    /// Ends of wires that stay with it (wire id, is end `a`).
+    with: Vec<(u64, bool)>,
+}
+
 /// A selection moving step by step (a drag). Each step squares the wires again from
 /// their stretched state, so the result depends on where the selection is, not on
 /// the way it took.
 pub struct Moving {
     attached: Vec<(u64, bool)>,
+    held: Vec<HeldEnd>,
+    /// Attached ends on a moved wire (wire id, is end `a`, moved wire id): drops from a
+    /// moved rail.
+    branches: Vec<(u64, bool, u64)>,
+    keep: bool,
     before: Before,
     stretched: Vec<Wire>,
     /// Where the connection symbols are with the stretched wires.
@@ -236,11 +254,52 @@ pub struct Moving {
 }
 
 impl Moving {
+    /// Moving that keeps the connections.
     pub fn new(prj: &Project, page: usize, sel: &BTreeSet<u64>) -> Moving {
+        Moving::keeping(prj, page, sel, true)
+    }
+
+    /// With `keep`, wires attached to the selection stretch and the moved wires stay
+    /// connected to what stays; without, the selection moves alone and leaves its
+    /// connections.
+    pub fn keeping(prj: &Project, page: usize, sel: &BTreeSet<u64>, keep: bool) -> Moving {
         let pg = &prj.pages[page];
-        let attached = ops::attached_wire_ends(&prj.symbol_table(), pg, sel);
+        let (mut attached, mut held, mut branches) = (Vec::new(), Vec::new(), Vec::new());
+        if keep {
+            let symbols = prj.symbol_table();
+            attached = ops::attached_wire_ends(&symbols, pg, sel);
+            held = held_ends(&symbols, pg, sel);
+            let end = |id: u64, is_a: bool| pg.wires.iter().find(|w| w.id == id).map(|w| if is_a { w.a } else { w.b });
+            for h in &mut held {
+                h.with = attached.iter().copied().filter(|&(id, is_a)| end(id, is_a).is_some_and(|q| q.same(h.at))).collect();
+                attached.retain(|e| !h.with.contains(e));
+            }
+            for &(id, is_a) in &attached {
+                let Some(q) = end(id, is_a) else { continue };
+                if let Some(rail) = pg.wires.iter().find(|w| sel.contains(&w.id) && on_segment_interior(q, w.a, w.b)) {
+                    branches.push((id, is_a, rail.id));
+                }
+            }
+        }
+        let mut m = Moving::with(prj, page, sel, attached, held);
+        (m.branches, m.keep) = (branches, keep);
+        m
+    }
+
+    /// Whether it keeps the connections ([`Moving::keeping`]).
+    pub fn keeps(&self) -> bool {
+        self.keep
+    }
+
+    /// Moving one end of a wire alone: it leaves what it is connected to.
+    pub fn wire_end(prj: &Project, page: usize, wire: u64, is_a: bool) -> Moving {
+        Moving::with(prj, page, &BTreeSet::new(), vec![(wire, is_a)], Vec::new())
+    }
+
+    fn with(prj: &Project, page: usize, sel: &BTreeSet<u64>, attached: Vec<(u64, bool)>, held: Vec<HeldEnd>) -> Moving {
+        let pg = &prj.pages[page];
         let spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
-        Moving { attached, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
+        Moving { attached, held, branches: Vec::new(), keep: true, before: Before::of(pg, sel), stretched: pg.wires.clone(), spots, next_id: prj.next_id }
     }
 
     /// Moves the selection `d` further; attached wires stretch and stay square.
@@ -256,13 +315,120 @@ impl Moving {
         self.stretched.clone_from(&pg.wires);
         self.spots = pg.junctions.iter().map(|j| (j.id, j.pos)).collect();
         prj.next_id = self.next_id;
+        let slides = branch_slides(&prj.pages[page], &self.before, &self.branches);
+        hold_ends(prj, page, &self.before, &self.held);
+        let pg = &mut prj.pages[page];
+        for (id, is_a, rail, to) in slides {
+            if pg.wires.iter().find(|w| w.id == rail).is_some_and(|r| on_segment_interior(to, r.a, r.b)) {
+                if let Some(w) = pg.wires.iter_mut().find(|w| w.id == id) {
+                    *(if is_a { &mut w.a } else { &mut w.b }) = to;
+                }
+            }
+        }
         square_wires(prj, page, &self.before);
     }
 }
 
+/// The part of the move `t` of the straight wire `o` across its course.
+fn across(o: &Wire, t: P) -> P {
+    if upright(o) && !level(o) {
+        p(t.x, 0.0)
+    } else if level(o) && !upright(o) {
+        p(0.0, t.y)
+    } else {
+        p(0.0, 0.0)
+    }
+}
+
+/// Where the drops from moved straight wires go: they follow the move across the
+/// wire only, sliding along it, so they keep their direction (wire id, is end `a`,
+/// moved wire, place). They follow the whole move where that is off the moved wire.
+fn branch_slides(page: &Page, before: &Before, branches: &[(u64, bool, u64)]) -> Vec<(u64, bool, u64, P)> {
+    let was = |id: u64| before.wires.iter().find(|w| w.id == id);
+    let now = |id: u64| page.wires.iter().find(|w| w.id == id);
+    branches
+        .iter()
+        .filter_map(|&(id, is_a, rail)| {
+            let (o, r, w) = (was(rail)?, now(rail)?, was(id)?);
+            Some((id, is_a, rail, (if is_a { w.a } else { w.b }) + across(o, r.a - o.a)))
+        })
+        .collect()
+}
+
 /// Moves a selection by `d`; attached wires stretch and stay square.
 pub fn move_selection(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P) {
-    Moving::new(prj, page, sel).step(prj, page, sel, d);
+    move_selection_keeping(prj, page, sel, d, true);
+}
+
+/// Moves a selection by `d`, keeping its connections or leaving them ([`Moving::keeping`]).
+pub fn move_selection_keeping(prj: &mut Project, page: usize, sel: &BTreeSet<u64>, d: P, keep: bool) {
+    Moving::keeping(prj, page, sel, keep).step(prj, page, sel, d);
+}
+
+/// Moves the end `is_a` of the wire `wire` to `to`. It leaves what it was connected
+/// to and connects to what it meets there; the wire stays square.
+pub fn move_wire_end(prj: &mut Project, page: usize, wire: u64, is_a: bool, to: P) -> bool {
+    let Some(w) = prj.pages[page].wires.iter().find(|w| w.id == wire) else { return false };
+    let d = to - if is_a { w.a } else { w.b };
+    Moving::wire_end(prj, page, wire, is_a).step(prj, page, &BTreeSet::new(), d);
+    ops::cleanup_wires(&mut prj.pages[page]);
+    true
+}
+
+/// Ends of the selected wires at what does not move: connection points of symbols
+/// not selected, and wires not selected running through.
+fn held_ends(symbols: &Symbols, page: &Page, sel: &BTreeSet<u64>) -> Vec<HeldEnd> {
+    let points: Vec<(u64, P, P)> = pins(symbols, page).into_iter().filter(|(id, _, _)| !sel.contains(id) && !page.junctions.iter().any(|j| j.id == *id)).collect();
+    let mut out = Vec::new();
+    for w in page.wires.iter().filter(|w| sel.contains(&w.id)) {
+        for (is_a, at) in [(true, w.a), (false, w.b)] {
+            let rail = page.wires.iter().find(|x| !sel.contains(&x.id) && on_segment_interior(at, x.a, x.b)).map(|x| x.id);
+            let owners: Vec<u64> = points.iter().filter(|(_, q, _)| q.same(at)).map(|x| x.0).collect();
+            if rail.is_some() || !owners.is_empty() {
+                out.push(HeldEnd { wire: w.id, is_a, at, rail, owners, with: Vec::new() });
+            }
+        }
+    }
+    out
+}
+
+/// Keeps the held ends of moved wires connected. A straight wire keeps its course
+/// and direction where it was moved to: its held end only follows the move across it,
+/// sliding along the wire it is on or with a new leg from where it was. Where that leg
+/// would touch something else, and for a slanted wire, the end stays where it was and
+/// the wire is squared afterwards. Other wires there stay with it.
+fn hold_ends(prj: &mut Project, page_i: usize, before: &Before, held: &[HeldEnd]) {
+    if held.is_empty() {
+        return;
+    }
+    let symbols = prj.symbol_table();
+    let page = &prj.pages[page_i];
+    let all: Vec<(u64, P, P)> = pins(&symbols, page).into_iter().filter(|(id, _, _)| !page.junctions.iter().any(|j| j.id == *id)).collect();
+    for h in held {
+        let page = &mut prj.pages[page_i];
+        let (Some(o), Some(w)) = (before.wires.iter().find(|o| o.id == h.wire), page.wires.iter().find(|w| w.id == h.wire).cloned()) else { continue };
+        let to = h.at + across(o, w.a - o.a);
+        let on_rail = h.rail.and_then(|r| page.wires.iter().find(|x| x.id == r)).is_some_and(|r| dist_to_segment(to, r.a, r.b) < TOUCH);
+        let clear = |page: &Page| {
+            let mid = (h.at + to) * 0.5;
+            unobstructed(&symbols, page, &all, h.at, to, &h.owners) && free(page, &all, to) && !page.wires.iter().any(|x| dist_to_segment(mid, x.a, x.b) < TOUCH)
+        };
+        let to = if to.same(h.at) || on_rail || without(page, |x| x.id == h.wire, clear) { to } else { h.at };
+        let leg = (!to.same(h.at) && !on_rail).then(|| Wire { a: h.at, b: to, labels: Vec::new(), ..w.clone() });
+        let stay = if on_rail { to } else { h.at };
+        for x in page.wires.iter_mut() {
+            if x.id == h.wire {
+                *(if h.is_a { &mut x.a } else { &mut x.b }) = to;
+            }
+            for &(_, is_a) in h.with.iter().filter(|e| e.0 == x.id) {
+                *(if is_a { &mut x.a } else { &mut x.b }) = stay;
+            }
+        }
+        if let Some(leg) = leg {
+            let id = prj.new_id();
+            prj.pages[page_i].wires.push(Wire { id, ..leg });
+        }
+    }
 }
 
 /// Rotates a selection by 90 degrees; attached wires stay square.

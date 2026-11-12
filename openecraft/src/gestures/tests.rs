@@ -83,6 +83,18 @@ fn conflicts_are_found_where_both_act_at_once() {
 }
 
 #[test]
+fn the_keep_connections_modifier_clashes_only_at_the_start_of_a_move() {
+    let mut g = Gestures::default();
+    assert!(g.held(Role::ReverseKeepConnections, Modifiers::ALT));
+    // Alt for an assembly item is read in the panel layout, not at a move on the page.
+    assert_eq!(g.conflicts(), Vec::new());
+    g.set_modifier(Role::ReverseKeepConnections, Some(Mod::Shift));
+    assert_eq!(g.conflicts(), vec![(Clash::Modifier(Mod::Shift), vec!["add_to_selection", "reverse_keep_connections"])]);
+    g.set_modifier(Role::ReverseKeepConnections, Some(Mod::Ctrl));
+    assert_eq!(g.conflicts(), Vec::new(), "Ctrl opens links on a click, not at a move");
+}
+
+#[test]
 fn modifier_roles_can_be_switched_off() {
     let mut g = Gestures::default();
     assert!(g.held(Role::AddToSelection, Modifiers::SHIFT));

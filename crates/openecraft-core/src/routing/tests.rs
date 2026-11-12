@@ -877,3 +877,173 @@ fn the_weighted_search_avoids_crossing_wires() {
     let path = search(&prj.symbol_table(), &prj.pages[0], area(), a, b, REROUTE).unwrap();
     assert_eq!(path, vec![a, p(120.0, 40.0), b]);
 }
+
+/// A wire from the upper connection point of a device to a T-junction on a rail
+/// running through, as the PE wire of a converter to the PE rail (issue 133).
+struct PeWire {
+    prj: Project,
+    pin: P,
+    rail: u64,
+    pe: u64,
+}
+
+fn pe_wire() -> PeWire {
+    let mut prj = Project::default();
+    sym(&mut prj, "no", p(40.0, 40.0));
+    let rail = wire(&mut prj, p(120.0, 0.0), p(120.0, 200.0));
+    sym(&mut prj, "no", p(200.0, 120.0));
+    wire(&mut prj, p(120.0, 116.0), p(200.0, 116.0));
+    let pe = wire(&mut prj, p(40.0, 36.0), p(120.0, 36.0));
+    let id = prj.new_id();
+    prj.pages[0].junctions.push(Junction { id, dir: TeeDir::Left, ..Junction::new(JunctionKind::Tee, p(120.0, 36.0)) });
+    PeWire { prj, pin: p(40.0, 36.0), rail, pe }
+}
+
+fn ends_at(prj: &Project, q: P) -> usize {
+    prj.pages[0].wires.iter().filter(|w| w.a.same(q) || w.b.same(q)).count()
+}
+
+#[test]
+fn a_moved_wire_stays_on_the_connection_point_with_a_new_leg() {
+    for d in [p(0.0, -16.0), p(8.0, -16.0), p(-8.0, -16.0)] {
+        let PeWire { mut prj, pin, rail, pe } = pe_wire();
+        let nets = connections(&prj);
+        move_selection(&mut prj, 0, &BTreeSet::from([pe]), d);
+        assert!(square(&prj), "{d:?}: {:?}", prj.pages[0].wires);
+        assert_eq!(connections(&prj), nets, "{d:?}");
+        let y = 36.0 + d.y;
+        assert_eq!((the_wire(&prj, pe).a, the_wire(&prj, pe).b), (p(40.0, y), p(120.0, y)), "{d:?}: the wire is where it was moved to, its ends on the leg and the rail");
+        assert_eq!(prj.pages[0].wires.len(), 4, "{d:?}: one leg");
+        assert!(prj.pages[0].wires.iter().any(|w| (w.a, w.b) == (pin, p(40.0, y))), "{d:?}: {:?}", prj.pages[0].wires);
+        assert_eq!((the_wire(&prj, rail).a, the_wire(&prj, rail).b), (p(120.0, 0.0), p(120.0, 200.0)), "the rail stays");
+        assert_eq!(prj.pages[0].junctions[0].pos, p(120.0, y), "the T-junction slides with the wire");
+    }
+    // A leg down would run through the device to its other connection point.
+    let PeWire { mut prj, pin, pe, .. } = pe_wire();
+    let nets = connections(&prj);
+    move_selection(&mut prj, 0, &BTreeSet::from([pe]), p(0.0, 16.0));
+    assert!(square(&prj));
+    assert_eq!(connections(&prj), nets);
+    assert_eq!(ends_at(&prj, pin), 1);
+    assert_eq!(ends_at(&prj, pin + p(0.0, 8.0)), 0, "{:?}", prj.pages[0].wires);
+}
+
+#[test]
+fn a_dragged_wire_keeps_its_connections_wherever_the_drag_went() {
+    let PeWire { mut prj, pe, .. } = pe_wire();
+    let sel = BTreeSet::from([pe]);
+    let (start, next_id) = (prj.pages[0].wires.clone(), prj.next_id);
+    let mut direct = prj.clone();
+    move_selection(&mut direct, 0, &sel, p(0.0, -16.0));
+    let mut moving = Moving::new(&prj, 0, &sel);
+    for d in [p(-4.0, 0.0), p(0.0, -8.0), p(4.0, -8.0)] {
+        moving.step(&mut prj, 0, &sel, d);
+    }
+    assert_eq!(prj.pages[0].wires, direct.pages[0].wires);
+    moving.step(&mut prj, 0, &sel, p(0.0, 16.0));
+    assert_eq!(prj.pages[0].wires, start, "back at the start: no leg");
+    assert_eq!(prj.next_id, next_id);
+}
+
+#[test]
+fn a_wire_between_two_connection_points_moves_across_with_two_legs() {
+    let mut prj = Project::default();
+    let (top, bottom) = (p(40.0, 44.0), p(40.0, 116.0));
+    sym(&mut prj, "no", p(40.0, 40.0));
+    sym(&mut prj, "no", p(40.0, 120.0));
+    let id = wire(&mut prj, top, bottom);
+    let nets = connections(&prj);
+    move_selection(&mut prj, 0, &BTreeSet::from([id]), p(24.0, 0.0));
+    assert!(square(&prj));
+    assert_eq!((the_wire(&prj, id).a, the_wire(&prj, id).b), (p(64.0, 44.0), p(64.0, 116.0)));
+    assert_eq!(prj.pages[0].wires.len(), 3);
+    assert_eq!(connections(&prj), nets);
+
+    let mut prj = Project::default();
+    sym(&mut prj, "no", p(40.0, 40.0));
+    sym(&mut prj, "no", p(40.0, 120.0));
+    let id = wire(&mut prj, top, bottom);
+    move_selection(&mut prj, 0, &BTreeSet::from([id]), p(0.0, 8.0));
+    assert_eq!((the_wire(&prj, id).a, the_wire(&prj, id).b), (top, bottom), "held at both ends: not along itself");
+    assert_eq!(prj.pages[0].wires.len(), 1);
+}
+
+#[test]
+fn other_wires_at_the_connection_point_stay_there() {
+    let PeWire { mut prj, pin, pe, .. } = pe_wire();
+    let other = wire(&mut prj, pin, p(0.0, 36.0));
+    move_selection(&mut prj, 0, &BTreeSet::from([pe]), p(0.0, -16.0));
+    assert_eq!((the_wire(&prj, other).a, the_wire(&prj, other).b), (pin, p(0.0, 36.0)));
+    assert_eq!(ends_at(&prj, pin), 2, "the other wire and the leg");
+}
+
+#[test]
+fn without_keeping_connections_the_selection_leaves_them() {
+    let PeWire { mut prj, pin, pe, .. } = pe_wire();
+    let wires = prj.pages[0].wires.len();
+    assert!(!Moving::keeping(&prj, 0, &BTreeSet::from([pe]), false).keeps());
+    move_selection_keeping(&mut prj, 0, &BTreeSet::from([pe]), p(0.0, -16.0), false);
+    assert_eq!((the_wire(&prj, pe).a, the_wire(&prj, pe).b), (p(40.0, 20.0), p(120.0, 20.0)));
+    assert_eq!(ends_at(&prj, pin), 0, "off the connection point");
+    assert_eq!(prj.pages[0].wires.len(), wires, "no leg");
+
+    let mut prj = Project::default();
+    let moved = sym(&mut prj, "no", p(40.0, 120.0));
+    let id = wire(&mut prj, p(40.0, 44.0), p(40.0, 116.0));
+    move_selection_keeping(&mut prj, 0, &BTreeSet::from([moved]), p(40.0, 0.0), false);
+    assert_eq!((the_wire(&prj, id).a, the_wire(&prj, id).b), (p(40.0, 44.0), p(40.0, 116.0)), "the wire stays where it is");
+}
+
+#[test]
+fn a_dragged_wire_end_leaves_its_connection_point() {
+    let PeWire { mut prj, pin, pe, .. } = pe_wire();
+    let other = wire(&mut prj, pin, p(0.0, 36.0));
+    assert!(move_wire_end(&mut prj, 0, pe, true, p(60.0, 36.0)));
+    assert_eq!((the_wire(&prj, pe).a, the_wire(&prj, pe).b), (p(60.0, 36.0), p(120.0, 36.0)));
+    assert_eq!((the_wire(&prj, other).a, the_wire(&prj, other).b), (pin, p(0.0, 36.0)), "the other wire stays");
+    let net = crate::netlist::Netlist::build(&prj, false);
+    assert_ne!(net.wire_net[&pe], net.wire_net[&other], "disconnected");
+
+    // Off the line: the wire bends to stay square and connects where the end is put.
+    assert!(move_wire_end(&mut prj, 0, pe, true, pin + p(0.0, -16.0)));
+    assert!(square(&prj), "{:?}", prj.pages[0].wires);
+    assert!(prj.pages[0].wires.iter().any(|w| w.a.same(pin + p(0.0, -16.0)) || w.b.same(pin + p(0.0, -16.0))));
+    assert!(!move_wire_end(&mut prj, 0, 999, true, pin), "no such wire");
+}
+
+#[test]
+fn drops_slide_along_a_rail_moved_along_itself() {
+    let mut prj = Project::default();
+    sym(&mut prj, "no", p(40.0, 40.0));
+    let rail = wire(&mut prj, p(40.0, 36.0), p(200.0, 36.0));
+    sym(&mut prj, "no", p(120.0, 80.0));
+    let drop = wire(&mut prj, p(120.0, 36.0), p(120.0, 76.0));
+    let nets = connections(&prj);
+    let start = prj.clone();
+    move_selection(&mut prj, 0, &BTreeSet::from([rail]), p(-16.0, 0.0));
+    assert!(square(&prj), "{:?}", prj.pages[0].wires);
+    assert_eq!((the_wire(&prj, rail).a, the_wire(&prj, rail).b), (p(40.0, 36.0), p(184.0, 36.0)), "held at the connection point");
+    assert_eq!((the_wire(&prj, drop).a, the_wire(&prj, drop).b), (p(120.0, 36.0), p(120.0, 76.0)), "the drop stays");
+    assert_eq!(connections(&prj), nets);
+
+    let mut prj = start;
+    move_selection(&mut prj, 0, &BTreeSet::from([rail]), p(-16.0, -8.0));
+    assert!(square(&prj), "{:?}", prj.pages[0].wires);
+    assert_eq!((the_wire(&prj, drop).a, the_wire(&prj, drop).b), (p(120.0, 28.0), p(120.0, 76.0)), "longer, still straight");
+    assert_eq!(connections(&prj), nets);
+}
+
+#[test]
+fn a_leg_that_would_touch_a_neighbouring_connection_point_becomes_a_jog() {
+    let mut prj = Project::default();
+    sym(&mut prj, "no", p(40.0, 80.0));
+    sym(&mut prj, "no", p(48.0, 80.0));
+    wire(&mut prj, p(0.0, 8.0), p(200.0, 8.0));
+    let id = wire(&mut prj, p(48.0, 8.0), p(48.0, 76.0));
+    let nets = connections(&prj);
+    move_selection(&mut prj, 0, &BTreeSet::from([id]), p(-8.0, 0.0));
+    assert!(square(&prj), "{:?}", prj.pages[0].wires);
+    assert_eq!(connections(&prj), nets, "{:?}", prj.pages[0].wires);
+    assert_eq!(ends_at(&prj, p(40.0, 76.0)), 0, "the neighbour stays free");
+    assert_eq!(ends_at(&prj, p(48.0, 76.0)), 1, "still on its connection point");
+}

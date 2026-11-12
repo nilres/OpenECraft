@@ -120,6 +120,7 @@ Connects two connection points with wires routed around symbols and other wires	
 Connects two ports of stations with a network cable; connections already on these ports are replaced	Collega due porte di stazioni con un cavo di rete; i collegamenti già presenti su queste porte vengono sostituiti
 Copies function texts between the single-line diagram and the schematic where one side is empty	Copia i testi di funzione tra lo schema unifilare e lo schema dove un lato è vuoto
 Copies items several times at a fixed distance; devices get new tags, terminals new numbers	Copia elementi più volte a una distanza fissa; i dispositivi ricevono nuove sigle, i morsetti nuovi numeri
+Copies items with the items mounted on them to x / y on a face, also of another enclosure; devices are left out (a device is placed once)	Copia elementi con gli elementi montati su di essi in x / y su una faccia, anche di un altro armadio; i dispositivi sono esclusi (un dispositivo si posiziona una sola volta)
 Copper bar cutting list	Lista di taglio delle barre di rame
 Copper bars	Barre di rame
 Corner points in metres	Vertici in metri
@@ -226,6 +227,7 @@ Enclosure it stands right of; empty to take it out of its line-up	Armadio alla c
 Enclosure name (all if missing)	Nome armadio (tutti se omesso)
 Enclosure part number	Codice articolo dell'armadio
 Enclosure system (default: the enclosure's)	Sistema di armadi (predefinito: quello dell'armadio)
+Enclosure the copies go to (location, e.g. +CAB2); the same one without	Armadio in cui vanno le copie (luogo, ad es. +CAB2); lo stesso se omesso
 Enclosure {} exists already	L'armadio {} esiste già
 Enclosures, panel items, accessories and panel macros	Armadi, elementi del layout, accessori e macro di layout
 End brackets and end plates from the tech data of the terminal parts	Fermi terminali e piastre terminali dai dati tecnici degli articoli dei morsetti
@@ -313,6 +315,7 @@ Item id	ID elemento
 Item ids	ID elementi
 Jumper number	Numero di ponticello
 Jumper number (terminals with the same number are bridged); 0 removes it	Numero di ponticello (i morsetti con lo stesso numero sono ponticellati); 0 lo rimuove
+Keep the connections (default): attached wires stretch, moved wires stay on the connection points and wires they end at; false leaves them	Mantiene i collegamenti (predefinito): i conduttori collegati si allungano, i conduttori spostati restano sui punti di connessione e sui conduttori in cui terminano; false li scollega
 Keep the degree of protection: heat exchanger or cooling unit instead of filter fans	Mantieni il grado di protezione: scambiatore di calore o condizionatore invece di ventilatori con filtro
 Key figures of the project and a list of its device tags	Indicatori del progetto e un elenco delle sue sigle dispositivo
 Key figures of the project: pages, symbols, wires, devices, parts, cables and check results	Indicatori del progetto: pagine, simboli, conduttori, dispositivi, articoli, cavi e risultati delle verifiche
@@ -420,6 +423,7 @@ Measuring range or set point	Campo di misura o valore di riferimento
 Message code, e.g. wires.3f9a1c	Codice del messaggio, ad es. wires.3f9a1c
 Milling feed, mm/min	Avanzamento di fresatura, mm/min
 Mirror the symbol	Specchia il simbolo
+Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Sposta un'estremità di un conduttore: lascia ciò a cui è collegata e si collega a ciò che incontra; il conduttore resta ortogonale
 Moves symbols, wires and texts; connected wire ends follow	Sposta simboli, conduttori e testi; le estremità dei conduttori collegati li seguono
 Moves the page before this page of its section (or of the section given)	Sposta la pagina prima di questa pagina della sua sezione (o della sezione indicata)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Sposta la sezione prima di questa sezione del suo padre (o del padre indicato); i numeri continuano in ordine
@@ -488,6 +492,7 @@ None of the items is an interruption point	Nessuno degli elementi è un punto di
 Not a cross-section: {} (e.g. 1.5 mm²)	Non è una sezione: {} (ad es. 1.5 mm²)
 Not a valid safety function: {}	Funzione di sicurezza non valida: {}
 Note, e.g. what the problem is	Nota, ad es. in cosa consiste il problema
+Nothing to copy: devices are placed once	Niente da copiare: i dispositivi si posizionano una sola volta
 Nothing to remove: {} {}	Niente da rimuovere: {} {}
 Number of columns	Numero di colonne
 Number of copies (default 1)	Numero di copie (predefinito 1)
@@ -800,6 +805,7 @@ The configuration (JSON)	La configurazione (JSON)
 The copies would leave the page	Le copie uscirebbero dalla pagina
 The counting step must be at least 1	Il passo di conteggio deve essere almeno 1
 The devices do not fit onto rail {}	I dispositivi non entrano sulla guida {}
+The end: from or to	L'estremità: from o to
 The feedback (CSV with header or JSON)	Il riscontro (CSV con intestazione o JSON)
 The first page number must not be negative	Il primo numero di pagina non deve essere negativo
 The items would leave the page	Gli elementi uscirebbero dalla pagina
@@ -891,6 +897,7 @@ Unknown termination: {}	Terminazione sconosciuta: {}
 Unknown vertical anchor: {}	Ancoraggio verticale sconosciuto: {}
 Unknown way of opening: {}	Modo di apertura sconosciuto: {}
 Unknown wire colour {} (IEC 60757: {})	Colore del conduttore sconosciuto {} (IEC 60757: {})
+Unknown wire end: {} (from or to)	Estremità del conduttore sconosciuta: {} (from o to)
 Use this scheme for the marking export	Usa questo schema per l'esportazione della marcatura
 Used (mm)	Utilizzato (mm)
 Value while none is set	Valore finché non ne è impostato nessuno

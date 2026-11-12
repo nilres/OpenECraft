@@ -94,6 +94,9 @@ impl App {
         if std::mem::take(&mut self.panel_ui.open_parts) {
             self.run(ctx, crate::commands::Cmd::PartsManagement);
         }
+        if std::mem::take(&mut self.panel_ui.open_properties) {
+            self.run(ctx, crate::commands::Cmd::LayoutProperties);
+        }
         if let Some(id) = self.panel_ui.add_page.take() {
             self.add_page(PageKind::Mounting(id));
             self.set_workspace(Workspace::Schematic);

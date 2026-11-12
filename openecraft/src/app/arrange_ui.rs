@@ -88,7 +88,7 @@ impl App {
             if apply && !self.editor.selection.is_empty() && self.page_editable() {
                 let (dx, dy) = self.arrange_ui.move_by;
                 let items = self.editor.items(&self.session.prj, page);
-                routing::move_selection(&mut self.session.prj, page, &items, p(dx, dy));
+                routing::move_selection_keeping(&mut self.session.prj, page, &items, p(dx, dy), self.editor.keep_connections);
             }
             self.arrange_ui.show_move = open && !apply && !cancel;
         }

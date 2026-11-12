@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Készülék-, sork
 Devices ({})	Készülékek ({})
 Devices are not copied: a device is placed once.	A készülékek nem másolódnak: egy készülék csak egyszer helyezhető el.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	A készülékeket egyvonalas szimbólumokkal tervezik, és a többvonalas kapcsolási rajzon dolgozzák ki; mindkettő ugyanazt a készülékazonosítót használja.
+Devices back to the devices to place: {}	Az elhelyezendő készülékek közé visszakerült készülékek: {}
+Devices go back to the devices to place	A készülékek visszakerülnek az elhelyezendő készülékek közé
 Devices in the box: {}	Készülékek a keretben: {}
 Devices of a channel	Egy csatorna készülékei
 Devices of the second channel; empty = like the first	A második csatorna készülékei; üres = mint az első
@@ -567,6 +569,7 @@ Draft of revision {} created	A(z) {} revízió piszkozata létrehozva
 Draft of revision {} discarded	A(z) {} revízió piszkozata elvetve
 Drag	Húzás
 Drag a connection point designation of the selected symbol to place it.	Húzza a kijelölt szimbólum egy csatlakozásmegnevezését az elhelyezéséhez.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Egy kijelölt vezeték végét húzva csak azt a véget mozgatja. Az Alt lenyomásával végzett húzás megfordítja a Kapcsolatok megtartása beállítást.
 Drag an entry into the page, or click it and then click into the page.	Húzzon egy bejegyzést az oldalra, vagy kattintson rá, majd az oldalra.
 Drag the core designation or the cable tag of the selected wire to place it.	Húzza a kijelölt vezeték érjelölését vagy kábelazonosítóját az elhelyezéséhez.
 Drag the name or the cross reference of the selected point to place it.	Húzza a kijelölt pont nevét vagy kereszthivatkozását az elhelyezéséhez.
@@ -890,7 +893,12 @@ Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
 Isometric	Izometrikus
+Items copied: {}	Másolt elemek: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Másolt elemek: {} (kihagyott készülékek: {}, egy készüléket csak egyszer lehet elhelyezni)
+Items cut: {}	Kivágott elemek: {}
+Items cut: {} (devices back to the devices to place: {})	Kivágott elemek: {} (az elhelyezendő készülékek közé visszakerült készülékek: {})
 Items on the layer	A réteg elemei
+Items pasted: {}	Beillesztett elemek: {}
 Items with an anchor keep it; the others are inserted relative to the click.	A horgonnyal rendelkező elemek megtartják azt; a többi a kattintáshoz képest kerül beszúrásra.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Tételek, készülékek, elhelyezések, összeköttetések, vezetékek és dokumentumok egyetlen JSON-fájlban az összekötő nélküli rendszerekhez
 Its pages and subsections go to the section above	Oldalai és alszakaszai a fölötte lévő szakaszba kerülnek
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Egyesíti
 Jumper {}	{} áthidalás
 Jumps over the other:	Átugorja a másikat:
 K, Q, MM …	K, Q, MM …
+Keep connections	Kapcsolatok megtartása
 Keep sub-pages (3.a, 3.1) with the page before	Az aloldalak (3.a, 3.1) az előző oldalnál maradnak
 Keep the degree of protection	A védettségi fokozat megtartása
 Keep this route when recalculating, as long as it is still possible	Újraszámításkor e nyomvonal megtartása, amíg lehetséges
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Az oldal készülékeinek �
 Move to section	Áthelyezés szakaszba
 Move up	Mozgatás felfelé
 Move up in the 3D view (held)	Fel a 3D nézetben (nyomva tartva)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Az áthelyezett szimbólumok magukkal húzzák vezetékeiket, az áthelyezett vezetékek pedig azokon a csatlakozási pontokon maradnak, ahol végződnek. Húzás közben lenyomott Alt megfordítja ezt; egy kijelölt vezeték végének húzása leválasztja azt
 Moves to the top level as page {}	A legfelső szintre kerül {} oldalként
 Moves to {} as page {}	{} szakaszba kerül {} oldalként
 Moving	Áthelyezés
@@ -1823,6 +1833,7 @@ Start	Kezdés
 Start again when the page structure changes	Újrakezdés, ha az oldalstruktúra megváltozik
 Start at	Kezdőérték
 Start byte	Kezdőbájt
+Start of a move: Keep connections the other way round	Mozgatás kezdete: Kapcsolatok megtartása fordítva
 Start page	Kezdőlap
 Station	Állomás
 Stations and racks	Állomások és modultartók

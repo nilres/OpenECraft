@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Enheds-, klem-, le
 Devices ({})	Enheder ({})
 Devices are not copied: a device is placed once.	Enheder kopieres ikke: En enhed placeres én gang.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Enheder planlægges med enstregede symboler og projekteres i det flerstregede diagram; begge deler enhedsmærkningen.
+Devices back to the devices to place: {}	Enheder tilbage blandt enheder, der skal placeres: {}
+Devices go back to the devices to place	Enhederne går tilbage til enheder, der skal placeres
 Devices in the box: {}	Enheder i boksen: {}
 Devices of a channel	Enheder i en kanal
 Devices of the second channel; empty = like the first	Enheder i den anden kanal; tom = som den første
@@ -567,6 +569,7 @@ Draft of revision {} created	Kladde til revision {} er oprettet
 Draft of revision {} discarded	Kladden til revision {} er kasseret
 Drag	Træk
 Drag a connection point designation of the selected symbol to place it.	Træk en tilslutningsbetegnelse for det markerede symbol for at placere den.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Træk i en ende af en markeret ledning for kun at flytte den ende. Trækning med Alt vender Bevar forbindelser om.
 Drag an entry into the page, or click it and then click into the page.	Træk en post ind på siden, eller klik på den, og klik derefter på siden.
 Drag the core designation or the cable tag of the selected wire to place it.	Træk lederbetegnelsen eller kabelmærkningen for den markerede leder for at placere den.
 Drag the name or the cross reference of the selected point to place it.	Træk navnet eller krydshenvisningen for det markerede punkt for at placere det.
@@ -890,7 +893,12 @@ Invalid value	Ugyldig værdi
 Invert the direction of panning by scrolling	Vend retningen for panorering med rulning
 Inverter or charge controller (devices with PV input data)	Inverter eller laderegulator (enheder med PV-indgangsdata)
 Isometric	Isometrisk
+Items copied: {}	Kopierede elementer: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopierede elementer: {} (udeladte enheder: {}, en enhed placeres kun én gang)
+Items cut: {}	Klippede elementer: {}
+Items cut: {} (devices back to the devices to place: {})	Klippede elementer: {} (enheder tilbage blandt enheder, der skal placeres: {})
 Items on the layer	Elementer på laget
+Items pasted: {}	Indsatte elementer: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Elementer med et anker beholder det; de andre indsættes i forhold til klikket.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Varer, enheder, placeringer, forbindelser, ledninger og dokumenter i én JSON-fil til systemer uden connector
 Its pages and subsections go to the section above	Dets sider og underafsnit flyttes til afsnittet ovenover
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Sammenfø
 Jumper {}	Bro {}
 Jumps over the other:	Springer over den anden:
 K, Q, MM …	K, Q, MM …
+Keep connections	Bevar forbindelser
 Keep sub-pages (3.a, 3.1) with the page before	Hold undersider (3.a, 3.1) sammen med den forrige side
 Keep the degree of protection	Bevar kapslingsklassen
 Keep this route when recalculating, as long as it is still possible	Bevar denne føring ved genberegning, så længe den stadig er mulig
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Flyt enhederne på denne si
 Move to section	Flyt til afsnit
 Move up	Flyt op
 Move up in the 3D view (held)	Flyt opad i 3D-visningen (hold nede)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Flyttede symboler trækker deres ledninger med, og flyttede ledninger bliver på de tilslutningspunkter, hvor de ender. Alt holdt nede under trækning vender det om; træk i en ende af en markeret ledning for at koble den fra
 Moves to the top level as page {}	Flyttes til øverste niveau som side {}
 Moves to {} as page {}	Flyttes til {} som side {}
 Moving	Flytning
@@ -1823,6 +1833,7 @@ Start	Start
 Start again when the page structure changes	Start forfra, når sidestrukturen ændres
 Start at	Start ved
 Start byte	Startbyte
+Start of a move: Keep connections the other way round	Start af en flytning: Bevar forbindelser omvendt
 Start page	Startside
 Station	Station
 Stations and racks	Stationer og racks

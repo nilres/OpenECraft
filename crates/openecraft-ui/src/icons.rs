@@ -76,6 +76,7 @@ pub enum Icon {
     Comment,
     Markup,
     AutoConnect,
+    KeepConnections,
     Route,
     Join,
     Layer,
@@ -170,14 +171,14 @@ pub enum Icon {
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 153] = [
+    pub const ALL: [Icon; 154] = [
         Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
         Icon::SelectAll, Icon::PageProperties, Icon::Renumber, Icon::Previous, Icon::Next, Icon::Report, Icon::Table, Icon::Symbol,
         Icon::Device, Icon::InsertCenter, Icon::Wire, Icon::ConnDef, Icon::Junction, Icon::Corner, Icon::Crossing, Icon::Bridge, Icon::CableDef, Icon::Interruption, Icon::Potential, Icon::Macro,
         Icon::Text, Icon::PathText, Icon::SpecialText, Icon::Line, Icon::Rect, Icon::Circle, Icon::Ellipse, Icon::Arc, Icon::Polyline,
-        Icon::Polygon, Icon::Image, Icon::Dimension, Icon::Comment, Icon::Markup, Icon::AutoConnect, Icon::Route, Icon::Join, Icon::Layer,
+        Icon::Polygon, Icon::Image, Icon::Dimension, Icon::Comment, Icon::Markup, Icon::AutoConnect, Icon::KeepConnections, Icon::Route, Icon::Join, Icon::Layer,
         Icon::Properties, Icon::Fit, Icon::Grid, Icon::Pins, Icon::RevisionMarks, Icon::MacroBoxes, Icon::WireColours, Icon::Panes,
         Icon::Workspace, Icon::Theme, Icon::Scale, Icon::Language, Icon::Numbering, Icon::Terminal, Icon::Plug, Icon::Plc, Icon::Parts,
         Icon::Database, Icon::Server, Icon::Vault, Icon::Structure, Icon::Preplanning, Icon::SingleLine, Icon::Cable, Icon::Harness,
@@ -261,6 +262,7 @@ impl Icon {
             Icon::Comment => "P 2 2.5 14 2.5 14 11 8 11 4.5 14 4.5 11 2 11",
             Icon::Markup => "P 2.5 13.5 3.5 10.5 11.5 2.5 13.5 4.5 5.5 12.5 ; M 10 4 12 6",
             Icon::AutoConnect => "C 3 8 1.5 ; C 13 8 1.5 ; M 4.5 8 11.5 8 ; M 8 2 8 5 ; M 8 11 8 14",
+            Icon::KeepConnections => "C 3.5 12.5 1.5 ; M 3.5 11 3.5 4 14 4 ; M 6 8 14 8 ; M 11.5 6 14 8 11.5 10",
             Icon::Route => "M 2 14 2 3 7 3 7 13 14 13 14 2",
             Icon::Join => "M 1.5 8 6 8 ; M 10 8 14.5 8 ; D 8 8 1.6",
             Icon::Layer => "P 8 2 14.5 5.5 8 9 1.5 5.5 ; M 1.5 8.5 8 12 14.5 8.5 ; M 1.5 11.5 8 15 14.5 11.5",

@@ -508,6 +508,8 @@ Device, terminal, wire and cable markers for marking software	Apparat-, plint-, 
 Devices ({})	Apparater ({})
 Devices are not copied: a device is placed once.	Apparater kopieras inte: en apparat placeras en gång.
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	Apparater planeras med enlinjesymboler och projekteras i flerlinjeschemat; båda delar apparatbeteckningen.
+Devices back to the devices to place: {}	Apparater tillbaka bland apparater att placera: {}
+Devices go back to the devices to place	Apparaterna går tillbaka till apparater att placera
 Devices in the box: {}	Apparater i rutan: {}
 Devices of a channel	Apparater i en kanal
 Devices of the second channel; empty = like the first	Apparater i den andra kanalen; tomt = som den första
@@ -567,6 +569,7 @@ Draft of revision {} created	Utkast till revision {} skapat
 Draft of revision {} discarded	Utkast till revision {} ignorerat
 Drag	Dra
 Drag a connection point designation of the selected symbol to place it.	Dra en anslutningspunktsbeteckning för den markerade symbolen för att placera den.
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Dra en ände av en markerad ledning för att bara flytta den änden. Dragning med Alt vänder på Behåll anslutningar.
 Drag an entry into the page, or click it and then click into the page.	Dra en post till sidan, eller klicka på den och klicka sedan på sidan.
 Drag the core designation or the cable tag of the selected wire to place it.	Dra ledarbeteckningen eller kabelbeteckningen för den markerade ledningen för att placera den.
 Drag the name or the cross reference of the selected point to place it.	Dra namnet eller korsreferensen för den markerade punkten för att placera den.
@@ -890,7 +893,12 @@ Invalid value	Ogiltigt värde
 Invert the direction of panning by scrolling	Vänd riktningen för panorering med rullning
 Inverter or charge controller (devices with PV input data)	Växelriktare eller laddregulator (enheter med PV-ingångsdata)
 Isometric	Isometrisk
+Items copied: {}	Kopierade element: {}
+Items copied: {} (devices left out: {}, a device is placed once)	Kopierade element: {} (utelämnade apparater: {}, en apparat placeras bara en gång)
+Items cut: {}	Urklippta element: {}
+Items cut: {} (devices back to the devices to place: {})	Urklippta element: {} (apparater tillbaka bland apparater att placera: {})
 Items on the layer	Objekt på lagret
+Items pasted: {}	Inklistrade element: {}
 Items with an anchor keep it; the others are inserted relative to the click.	Objekt med förankring behåller den; de övriga infogas relativt klicket.
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	Artiklar, apparater, placeringar, förbindelser, ledningar och dokument i en JSON-fil för system utan anslutning
 Its pages and subsections go to the section above	Dess sidor och underavsnitt flyttas till avsnittet ovanför
@@ -901,6 +909,7 @@ Joins wire pieces in a line where nothing else connects (current page)	Slår iho
 Jumper {}	Bygel {}
 Jumps over the other:	Hoppar över den andra:
 K, Q, MM …	K, Q, MM …
+Keep connections	Behåll anslutningar
 Keep sub-pages (3.a, 3.1) with the page before	Behåll undersidor (3.a, 3.1) med föregående sida
 Keep the degree of protection	Behåll kapslingsklassen
 Keep this route when recalculating, as long as it is still possible	Behåll den här dragningen vid omberäkning, så länge den fortfarande är möjlig
@@ -1064,6 +1073,7 @@ Move the devices of this page into the new structure	Flytta sidans apparater til
 Move to section	Flytta till avsnitt
 Move up	Flytta uppåt
 Move up in the 3D view (held)	Flytta uppåt i 3D-vyn (håll ned)
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	Flyttade symboler drar med sig sina ledningar och flyttade ledningar stannar kvar på anslutningspunkterna där de slutar. Alt nedtryckt under dragning vänder på det; att dra en ände av en markerad ledning kopplar loss den
 Moves to the top level as page {}	Flyttas till översta nivån som sida {}
 Moves to {} as page {}	Flyttas till {} som sida {}
 Moving	Flytta
@@ -1823,6 +1833,7 @@ Start	Start
 Start again when the page structure changes	Börja om när sidstrukturen ändras
 Start at	Börja vid
 Start byte	Startbyte
+Start of a move: Keep connections the other way round	Början av en flytt: Behåll anslutningar omvänt
 Start page	Startsida
 Station	Station
 Stations and racks	Stationer och rack

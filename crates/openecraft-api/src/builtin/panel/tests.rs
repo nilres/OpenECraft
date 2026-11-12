@@ -166,3 +166,21 @@ fn assemblies_and_macros() {
     let e = &run(&mut s, "list_enclosures", json!({ "enclosure": "+CAB1" })).unwrap()[0];
     assert!(e["assemblies"].as_array().unwrap().is_empty());
 }
+
+#[test]
+fn copying_items() {
+    let mut s = demo();
+    let e = &s.project().unwrap().layout.enclosures[0];
+    let rail = e.items.iter().find(|i| i.kind == panel::ItemKind::Rail).unwrap().id;
+    let device = e.items.iter().find(|i| i.kind == panel::ItemKind::Device).unwrap().id;
+    let before = e.items.len();
+    let r = run(&mut s, "copy_panel_items", json!({ "enclosure": "+CAB1", "ids": [rail, device], "x": 10, "y": 20, "face": "door" })).unwrap();
+    assert_eq!(r["devices_left_out"], 1);
+    let items = r["items"].as_array().unwrap();
+    assert!(items.iter().any(|i| i["kind"] == "rail") && items.iter().all(|i| i["face"] == "door" && i["kind"] != "device"));
+    let min = |k: &str| items.iter().map(|i| i[k].as_f64().unwrap()).fold(f64::INFINITY, f64::min);
+    assert_eq!((min("x"), min("y")), (10.0, 20.0));
+    assert_eq!(s.project().unwrap().layout.enclosures[0].items.len(), before + items.len());
+    assert!(run(&mut s, "copy_panel_items", json!({ "enclosure": "+CAB1", "ids": [device], "x": 0, "y": 0 })).unwrap_err().contains("Nothing to copy"));
+    assert!(run(&mut s, "copy_panel_items", json!({ "enclosure": "+CAB1", "ids": [rail], "x": 0, "y": 0, "to": "+NONE" })).is_err());
+}

@@ -125,7 +125,7 @@ pub static TABS: &[Tab] = &[
             g(
                 "routing",
                 tr_const!("Routing"),
-                &[S(C::AutoConnect), S(C::Route), S(C::AutoConnectSelection), S(C::JoinCollinear), S(C::ApplyConnDefs)],
+                &[S(C::AutoConnect), S(C::KeepConnections), S(C::Route), S(C::AutoConnectSelection), S(C::JoinCollinear), S(C::ApplyConnDefs)],
             ),
             g("layer", tr_const!("Layer"), &[L(C::ActiveLayer), S(C::LayersPane)]),
             g("properties", tr_const!("Properties"), &[L(C::Properties), S(C::PropertiesPane)]),

@@ -503,6 +503,8 @@ Device, terminal, wire and cable markers for marking software	用于标记软件
 Devices ({})	设备 ({})
 Devices are not copied: a device is placed once.	不复制设备：一个设备只放置一次。
 Devices are planned with single-line symbols and engineered in the multi-line schematic; both share the device tag.	设备用单线符号规划，在多线原理图中设计；两者共享设备标识符。
+Devices back to the devices to place: {}	回到待放置设备中的设备：{}
+Devices go back to the devices to place	设备回到待放置的设备中
 Devices in the box: {}	框内设备：{}
 Devices of a channel	通道的设备
 Devices of the second channel; empty = like the first	第二通道的设备；留空 = 与第一通道相同
@@ -562,6 +564,7 @@ Draft of revision {} created	已创建修订 {} 的草稿
 Draft of revision {} discarded	已放弃修订 {} 的草稿
 Drag	拖动
 Drag a connection point designation of the selected symbol to place it.	拖动所选符号的连接点标识以放置它。
+Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	拖动所选导线的一端可仅移动该端。按住 Alt 拖动会反转保持连接。
 Drag an entry into the page, or click it and then click into the page.	将条目拖到页中，或单击条目后在页中单击。
 Drag the core designation or the cable tag of the selected wire to place it.	拖动所选导线的芯线标识或电缆标识符以放置它。
 Drag the name or the cross reference of the selected point to place it.	拖动所选点的名称或交叉引用以放置它。
@@ -883,7 +886,12 @@ Invalid value	无效值
 Invert the direction of panning by scrolling	反转滚动平移的方向
 Inverter or charge controller (devices with PV input data)	逆变器或充电控制器（带光伏输入数据的设备）
 Isometric	等轴测
+Items copied: {}	已复制的元素：{}
+Items copied: {} (devices left out: {}, a device is placed once)	已复制的元素：{}（省略的设备：{}，设备只放置一次）
+Items cut: {}	已剪切的元素：{}
+Items cut: {} (devices back to the devices to place: {})	已剪切的元素：{}（回到待放置设备中的设备：{}）
 Items on the layer	图层上的元素
+Items pasted: {}	已粘贴的元素：{}
 Items with an anchor keep it; the others are inserted relative to the click.	带锚定的元素保留其锚定；其他元素相对于单击位置插入。
 Items, devices, placements, connections, wires and documents in one JSON file for systems without a connector	将物料、设备、放置、连接、导线和文档放在一个 JSON 文件中，供没有接口的系统使用
 Its pages and subsections go to the section above	其页和子分节移到上级分节
@@ -893,6 +901,7 @@ Joins wire pieces in a line where nothing else connects (current page)	合并一
 Jumper {}	跳线 {}
 Jumps over the other:	跳过另一条：
 K, Q, MM …	K、Q、MM …
+Keep connections	保持连接
 Keep sub-pages (3.a, 3.1) with the page before	子页 (3.a, 3.1) 保持在前一页之下
 Keep the degree of protection	保持防护等级
 Keep this route when recalculating, as long as it is still possible	重新计算时保留此布线（只要仍然可行）
@@ -1053,6 +1062,7 @@ Move the devices of this page into the new structure	将此页的设备移动到
 Move to section	移到分节
 Move up	上移
 Move up in the 3D view (held)	在 3D 视图中向上移动（按住）
+Moved symbols pull their wires along and moved wires stay on the connection points they end at. Alt held while dragging reverses it; drag an end of a selected wire to disconnect it	移动的符号会带动其导线，移动的导线会保留在其端点所在的连接点上。拖动时按住 Alt 可反转此行为；拖动所选导线的一端可将其断开
 Moves to the top level as page {}	移到最上层，成为页 {}
 Moves to {} as page {}	移到 {}，成为页 {}
 Moving	移动
@@ -1803,6 +1813,7 @@ Start	开始
 Start again when the page structure changes	页结构更改时重新开始
 Start at	起始值
 Start byte	起始字节
+Start of a move: Keep connections the other way round	开始移动时：保持连接反向
 Start page	开始页
 Station	站
 Stations and racks	站和机架
