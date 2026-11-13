@@ -362,6 +362,11 @@ pub struct PvArray {
     /// count the modules in the bill of materials.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub device: String,
+    /// Device the earthing conductor of its mounting runs to (an earthing or equipotential
+    /// bonding busbar), e.g. "=PV-PE1"; the rails or mounting bases are bonded to it at
+    /// their earthing points.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub earthing: String,
     /// The strings its modules are connected in.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub strings: Vec<PvString>,
@@ -435,6 +440,7 @@ impl Default for PvArray {
             ballast: 20.0,
             system: String::new(),
             device: String::new(),
+            earthing: String::new(),
             strings: Vec::new(),
         }
     }

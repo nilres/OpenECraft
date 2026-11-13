@@ -5,6 +5,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **PV arrays in 3D:** a click on an array opens its properties (modules and their
+  data, peak power, mounting and material, earthing, strings with their values and the
+  lengths of their leads, problems, and its settings). The cabling of the strings is
+  drawn from module to module and down to the inverter, the mounting gets roof hooks
+  and an earthing point with its clamp on each rail or row of mounting bases, bonded by
+  the earthing conductor to an earthing busbar (`set_pv_array` `earthing`). *Show ›
+  Hide PV modules* shows the mounting. A room under the roof shown alone shows the
+  arrays and the roof windows over it; roof windows are no longer covered by the roof
+  seen through from outside. Example 16 places the inverter and the bonding busbar in
+  the attic ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Moving buildings:** *Site › Move buildings* is an edit mode of the site plan in which
+  buildings are dragged to their places and turned by 90°.
+- **Outlets, switches and heating:** the menu has tabs, a search, filters by maker and
+  type and a 3D preview of the part picked; outlets and switches are drawn with their
+  models in the 3D view (frames, sockets with earthing clips, tilted rockers).
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*

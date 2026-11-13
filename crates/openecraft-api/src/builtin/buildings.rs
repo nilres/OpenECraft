@@ -62,6 +62,7 @@ const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rai
 const PV_BALLAST: &str = tr_const!("Ballast per module on a flat roof in kg");
 const PV_SYSTEM: &str = tr_const!("Mounting system: part number of its rail or mounting base, whose accessories are the hooks, clamps and ballast (empty: generic)");
 const PV_DEVICE: &str = tr_const!("Device (PV generator) the modules belong to; its parts then count them in the bill of materials");
+const PV_EARTHING: &str = tr_const!("Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none");
 const PV_ARRAY: &str = tr_const!("PV array: its name");
 const PV_SERIES: &str = tr_const!("Modules in series");
 const PV_PARALLEL: &str = tr_const!("Strings of this kind in parallel (default 1)");
@@ -300,6 +301,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("ballast", Kind::Num, PV_BALLAST),
             optional("system", Kind::Str, PV_SYSTEM),
             optional("device", Kind::Str, PV_DEVICE),
+            optional("earthing", Kind::Str, PV_EARTHING),
             optional("name", Kind::Str, tr_const!("Name (default PV1, PV2, …)")),
         ],
         run: add_pv_array,
@@ -325,6 +327,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("ballast", Kind::Num, PV_BALLAST),
             optional("system", Kind::Str, PV_SYSTEM),
             optional("device", Kind::Str, PV_DEVICE),
+            optional("earthing", Kind::Str, PV_EARTHING),
             optional("name", Kind::Str, tr_const!("New name")),
             optional("remove", Kind::Bool, tr_const!("Remove the PV array")),
         ],
@@ -876,7 +879,7 @@ fn pv_json(prj: &Project, a: &panel::PvArray) -> Value {
         "id": a.id, "name": a.name, "x": a.x, "z": a.z, "columns": a.columns, "rows": a.rows, "landscape": a.landscape,
         "module": a.module, "module_size": [a.module_width, a.module_length, a.module_height], "modules": solar::module_count(a),
         "peak_kw": solar::peak_power(prj, a), "mounting": a.mounting.key(), "tilt": a.tilt, "azimuth": a.azimuth, "row_gap": a.row_gap,
-        "span": a.span, "ballast": a.ballast, "system": a.system, "device": a.device, "material": material,
+        "span": a.span, "ballast": a.ballast, "system": a.system, "device": a.device, "earthing": a.earthing, "material": material,
         "strings": a.strings.iter().map(|s| string_json(prj, a, s)).collect::<Vec<_>>(),
     })
 }
@@ -1001,6 +1004,9 @@ fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray) -> Result<panel::PvAr
     }
     if let Some(d) = a.str("device") {
         s.device = d.trim().into();
+    }
+    if let Some(d) = a.str("earthing") {
+        s.earthing = d.trim().into();
     }
     if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
         s.name = n.into();

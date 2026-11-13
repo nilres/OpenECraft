@@ -155,6 +155,7 @@ Arc	Arc
 Archive and version	Arhivă și versiune
 Archive project…	Arhivare proiect…
 Arms	Brațe
+Array	Câmp
 As defined by the check	Așa cum este definit de verificare
 As the rules say ({})	Conform regulilor ({})
 Aspects of the pages	Aspectele paginilor
@@ -220,6 +221,9 @@ Boundary	Limită
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacitatea de rupere față de curentul de scurtcircuit la fiecare dispozitiv de protecție al rețelei, deconectarea la cel mai mic curent de defect la capătul circuitului său, rezistența la scurtcircuit a cablurilor și selectivitatea față de dispozitivul din amonte.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Punte: patru fire; conexiunea intră pe o latură și merge spre celelalte trei, întâi spre latura opusă
 Building {} added with a level at ground level	Clădirea {} adăugată cu un nivel la nivelul solului
+Building {} at x {} m, z {} m	Clădirea {} la x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Clădirea {} la x {} m, z {} m, rotită cu {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Clădirea {} la x {} m, z {} m, rotită cu {}°: se află în afara limitei terenului
 Built-in frames cannot be changed; copy one to adapt it.	Chenarele integrate nu pot fi modificate; copiați unul pentru a-l adapta.
 Built-in scheme: copy it to change it.	Schemă integrată: copiați-o pentru a o modifica.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Cartușele integrate sunt doar în citire – folosiți „Copiere ca nou” pentru a crea unul propriu.
@@ -297,6 +301,7 @@ Chooses the pages whose structure starts with this	Alege paginile a căror struc
 Circle	Cerc
 Circuits of a generic manifold	Circuitele unui distribuitor generic
 Clear	Golire
+Clear the search	Șterge căutarea
 Clearance	Distanță
 Click	Clic
 Click a text: open its link	Clic pe un text: deschiderea legăturii lui
@@ -428,6 +433,7 @@ Cross references…	Referințe încrucișate…
 Crossed wires	Conductoare intersectate
 Ctrl + click on the text opens it as well	Ctrl + clic pe text îl deschide de asemenea
 Ctrl+A	Ctrl+A
+Current at maximum power	Curent la putere maximă
 Current-carrying capacity: {} × IEC 60204-1, table 6	Capacitate de curent: {} × IEC 60204-1, tabelul 6
 Customer rule sets	Seturi de reguli ale clienților
 Customer, plant or standard	Client, fabrică sau standard
@@ -440,6 +446,7 @@ Cut length step tubes	Pas de lungime de tăiere tuburi
 Cut length step wires	Pas de lungime de tăiere conductoare
 Cutout {} × {} mm	Decupaj {} × {} mm
 Cutting allowance per end	Adaos de tăiere pe capăt
+DC leads	Cabluri CC
 DRAFT	CIORNĂ
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	CIORNĂ, PENTRU APROBARE și APROBAT în limba curentă; nimic după eliberare
 DWG import failed: {}	Importul DWG nu a reușit: {}
@@ -575,6 +582,7 @@ Draft	Ciornă
 Draft of revision {} created	Ciorna reviziei {} a fost creată
 Draft of revision {} discarded	Ciorna reviziei {} a fost eliminată
 Drag	Tragere
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Trageți o clădire pentru a o muta · R: rotește cu 90° clădirea de sub cursor · Esc: oprire
 Drag a connection point designation of the selected symbol to place it.	Glisați o denumire de punct de conexiune a simbolului selectat pentru a o plasa.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Trageți un capăt al unui conductor selectat pentru a muta doar acel capăt. Tragerea cu Alt inversează Păstrează conexiunile.
 Drag an entry into the page, or click it and then click into the page.	Trageți o intrare în pagină sau faceți clic pe ea și apoi faceți clic în pagină.
@@ -615,12 +623,16 @@ Duct fill limit	Limită de umplere a canalului
 Duplicate	Duplicare
 Each example builds on the one before and shows more of the features.	Fiecare exemplu se bazează pe cel anterior și arată mai multe funcții.
 Each point-to-point connection can belong to a harness	Fiecare conexiune punct la punct poate aparține unui cablaj
+Earthing busbar	Bară de împământare
+Earthing conductor	Conductor de împământare
+Earthing points	Puncte de împământare
 Earthing system	Sistem de legare la pământ
 Easting, northing	Coordonată est, nord
 Eaves	Streașină
 Edge length of the routing grid: smaller is finer and slower	Lungimea laturii grilei de pozare: mai mică înseamnă mai fină și mai lentă
 Edit in table	Editare în tabel
 Edit in table…	Editare în tabel…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Mod de editare: trageți clădirile la locul lor în planul de situație și rotiți-le; un clic pe o încăpere nu o mai deschide
 Editable copy of this plot frame	Copie editabilă a acestui chenar
 Editable copy of this title block	Copie editabilă a acestui cartuș
 Effective surface	Suprafață efectivă
@@ -806,6 +818,7 @@ Height of the plinth, 0 without plinth	Înălțimea soclului, 0 fără soclu
 Heights above floor (IEC 60204-1)	Înălțimi deasupra podelei (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ținută apăsat la clic, mutare sau derulare. Ctrl este Cmd pe macOS.
 Help	Ajutor
+Hide PV modules	Ascunde modulele PV
 Hide the groups you do not need and put the commands you use most into own groups.	Ascundeți grupurile de care nu aveți nevoie și puneți comenzile cele mai folosite în grupuri proprii.
 Highest phase unbalance	Cel mai mare dezechilibru de fază
 Highest short-circuit current	Cel mai mare curent de scurtcircuit
@@ -951,6 +964,7 @@ Layout space	Spațiu de montaj
 Layout spaces	Spații de montaj
 Leave out the ceilings of the rooms and the roofs in the 3D view	Omiteți tavanele încăperilor și acoperișurile în vederea 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	În vizualizarea 3D omite capacele tuturor canalelor de cabluri: firele din ele se văd
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Omite modulele câmpurilor PV în vizualizarea 3D: se văd șinele, cârligele de acoperiș, suporturile, împământarea și cablarea
 Leave repeated values of the first column blank	Lăsare necompletate a valorilor repetate din prima coloană
 Left button	Butonul stâng
 Left edges	Marginile din stânga
@@ -1020,6 +1034,7 @@ Macros ({})	Macro-uri ({})
 Macro…	Macro…
 Main	Principal
 Make the selected elements of this project equal to the compared ones	Face elementele selectate ale acestui proiect egale cu cele comparate
+Maker	Producător
 Makes the current page content of the option	Face din pagina curentă conținut al opțiunii
 Manage plugins	Gestionare pluginuri
 Management	Gestionare
@@ -1062,6 +1077,7 @@ Mixed	Mixt
 Mode	Mod
 Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
 Modifier keys	Taste modificatoare
+Module area	Suprafața modulelor
 Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
 Motors feed the short circuit	Motoarele alimentează scurtcircuitul
 Mounted on	Montat pe
@@ -1074,6 +1090,7 @@ Mouse	Mouse
 Move	Mutare
 Move ahead in the 3D view (held)	Deplasare înainte în vederea 3D (ținut apăsat)
 Move back in the 3D view (held)	Deplasare înapoi în vederea 3D (ținut apăsat)
+Move buildings	Mută clădirile
 Move down	Mută în jos
 Move down in the 3D view (held)	Deplasare în jos în vederea 3D (ținut apăsat)
 Move faster with the keys of the 3D view	Deplasare mai rapidă cu tastele vederii 3D
@@ -1186,6 +1203,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Încă nu e
 No modules: plug in PLC cards of the schematic.	Nu există module: inserați carduri PLC din schemă.
 No numbers for	Fără numere pentru
 No panel items: place the devices in the panel layout.	Niciun element de tablou: plasați dispozitivele în amplasarea în tablou.
+No part matches.	Niciun articol nu corespunde.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Încă niciun articol marcat pentru montaj pe pardoseală. Marcați unul în gestionarea articolelor: editorul de articole › Date de montaj › Montaj pe pardoseală.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Încă niciun articol marcat pentru montaj pe perete. Marcați unul în gestionarea articolelor: editorul de articole › Date de montaj › Montaj pe perete.
 No parts of the product group Cables in the parts database.	Nu există articole din grupa de produse Cabluri în baza de date de articole.
@@ -1204,6 +1222,7 @@ No segments yet: draw them in the plant layout.	Încă nu există segmente: dese
 No shortcut	Nicio comandă rapidă
 No single-line symbols and no power devices in the schematic.	Nu există simboluri monofilare și nici dispozitive de putere în schemă.
 No stations: add one or use the automatic configuration.	Nu există stații: adăugați una sau folosiți configurarea automată.
+No string yet: the modules are not connected.	Încă niciun șir: modulele nu sunt conectate.
 No subprojects were taken out of this project.	Din acest proiect nu a fost extras niciun subproiect.
 No terminal strips: place terminals in a schematic first.	Fără șiruri de borne: plasați mai întâi borne într-o schemă.
 No user symbols yet. Create one or copy a built-in symbol.	Încă nu există simboluri ale utilizatorului. Creați unul sau copiați un simbol integrat.
@@ -1267,6 +1286,7 @@ Open the selection: its properties, in the floor plan its face	Deschiderea selec
 Open to {}: wires cross beside the mounting plates	Deschis spre {}: conductoarele trec pe lângă plăcile de montaj
 Open walls and floors	Deschideți pereții și pardoselile
 Open, save, import, export, print and the settings	Deschidere, salvare, import, export, tipărire și setări
+Open-circuit voltage	Tensiune în gol
 OpenECraft page templates	Șabloane de pagină OpenECraft
 OpenECraft page templates (JSON)	Șabloane de pagină OpenECraft (JSON)
 OpenECraft project	Proiect OpenECraft
@@ -1308,6 +1328,7 @@ Other values ({})	Alte valori ({})
 Otherwise from the plant layout, or next to the other line-ups	Altfel din planul de amplasare a instalației sau lângă celelalte rânduri de carcase
 Out since {} (pages locked)	Extras de la {} (pagini blocate)
 Outer diameter (e.g. 8 mm) or DN	Diametru exterior (de ex. 8 mm) sau DN
+Outlets	Prize
 Outlets, switches, heating	Prize, întrerupătoare, încălzire
 Outline	Contur
 Outlines	Contururi
@@ -1330,6 +1351,9 @@ PLC channels	Canale PLC
 PLC hardware and bus topology	Hardware PLC și topologie de magistrală
 PLC overview	Prezentare PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Imagine bitmap PNG sau JPEG, de ex. un logo sau o fotografie
+PV array {}	Câmp PV {}
+PV array {} of building {}: {} modules	Câmpul PV {} al clădirii {}: {} module
+PV array {} of building {}: {} modules, {} kWp	Câmpul PV {} al clădirii {}: {} module, {} kWp
 PV arrays	Câmpuri fotovoltaice
 Page graphics	Grafica paginii
 Page heading	Titlul paginii
@@ -1377,6 +1401,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Text de funcție de cale
 Pattern	Model de repetare
 Pattern…	Model de repetare…
+Peak power	Putere de vârf
+Pick a part in the list.	Alegeți un articol din listă.
 Pin-out	Configurația pinilor
 Pipe run	Traseu de conducte
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Traseu de conducte pe un perete, tavan sau pardoseala încăperii, de-a lungul căruia se pozează furtunuri, tuburi și conducte: faceți clic pe colțuri, dublu clic sau Enter pentru a termina
@@ -1394,6 +1420,7 @@ Place in the building	Poziția în clădire
 Place in the plant	Loc în instalație
 Place in the room	Loc în încăpere
 Place in the site plan	Plasați în planul de situație
+Place on the wall	Plasează pe perete
 Place text	Plasare text
 Place the georeferenced point everything is measured from	Plasați punctul georeferențiat de la care se măsoară totul
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Plasați punctul georeferențiat al instalației în planul de situație; coordonatele lui se introduc în panoul Clădiri, fiecare punct se măsoară de la el
@@ -1426,6 +1453,7 @@ Plug in card	Inserare card
 Plugin commands	Comenzi plugin
 Plugins	Pluginuri
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Pluginurile adaugă comenzi, verificări, rapoarte și exporturi. Pluginurile externe sunt încărcate din folderele din variabila de mediu {} (câte un subfolder cu un plugin.json pentru fiecare plugin).
+Plus and minus leads from the modules to the inverter	Cablurile plus și minus de la module la invertor
 Points	Puncte
 Polygon	Poligon
 Polyline	Polilinie
@@ -1628,6 +1656,7 @@ Right edges	Marginile din dreapta
 Right neighbour	Vecin din dreapta
 Rights	Drepturi
 Risers	Contratrepte
+Roof pitch	Panta acoperișului
 Roof window	Fereastră de mansardă
 Roof windows	Ferestre de mansardă
 Roofs	Acoperișuri
@@ -1720,6 +1749,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Derularea mărește, și acolo unde deplasează
 Search (* and ? as placeholders)…	Căutare (* și ? ca metacaractere)…
 Search below this folder	Căutare sub acest folder
+Search number, description, maker	Caută număr, descriere, producător
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Căutați în serverul de articole după catalog, grupă de produse și date tehnice, adăugați articole și verificați baza de date pentru actualizări
 Second channel	Al doilea canal
 Section properties	Proprietățile secțiunii
@@ -1780,6 +1810,7 @@ Shielded analogue cables	Cabluri analogice ecranate
 Shielded drive cables	Cabluri de acționare ecranate
 Short circuit and selectivity	Scurtcircuit și selectivitate
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Scurtcircuit, selectivitate, sarcini, CEM, securitate funcțională și verificare față de seturi de reguli
+Short-circuit current	Curent de scurtcircuit
 Short-circuit currents	Curenți de scurtcircuit
 Short-circuit power of the network	Puterea de scurtcircuit a rețelei
 Shortest profile	Cel mai scurt profil
@@ -1892,6 +1923,7 @@ Surge protection	Protecție la supratensiune
 Swing the enclosure door open or shut (door devices and their wires move with it)	Deschiderea sau închiderea ușii carcasei (dispozitivele de pe ușă și conductoarele lor se rotesc odată cu ea)
 Switch off the check \"{}\"	Dezactivare verificare \"{}\"
 Switched off on this computer ({})	Dezactivat pe acest computer ({})
+Switches	Întrerupătoare
 Switches the options with a condition by the configurator options	Comută opțiunile cu condiție conform opțiunilor configuratorului
 Switches to this workspace with its panes at their default places	Comută la acest spațiu de lucru cu panourile la locurile lor implicite
 Switches, push buttons and room thermostats	Întrerupătoare, butoane și termostate de cameră
@@ -2093,6 +2125,7 @@ Via:	Prin:
 View	Vizualizare
 Visible	Vizibil
 Voltage (line to line)	Tensiune (între faze)
+Voltage at maximum power	Tensiune la putere maximă
 Voltage drop	Cădere de tensiune
 WGS 84, written into the site of IFC exports	WGS 84, scrisă în terenul exporturilor IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Peretele {}, {} m: trageți pentru a-l muta, dublu clic îl afișează pentru echipare
@@ -2281,6 +2314,8 @@ x y	x y
 {} (default)	{} (implicit)
 {} (first column)	{} (prima coloană)
 {} (locked by {})	{} (blocat de {})
+{} (no such device)	{} (aparat inexistent)
+{} (not placed in the layout)	{} (neplasat în amplasare)
 {} (project server, revision {})	{} (server de proiecte, revizia {})
 {} (spare)	{} (rezervă)
 {} (subproject of {})	{} (subproiect al {})
@@ -2342,6 +2377,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} nu are nicio funcție cu simbol; atribuiți-l unui dispozitiv în proprietățile acestuia
 {} has unsaved changes. Discard them?	{} are modificări nesalvate. Renunțați la ele?
 {} imported into the parts database and placed as {}	{} importat în baza de date de articole și plasat ca {}
+{} in {}	{} în {}
 {} is neither in the parts database nor on the parts server	{} nu se află nici în baza de date de articole, nici pe serverul de articole
 {} is not in the disk image	{} nu este în imaginea de disc
 {} is not made for wall mounting: place it on a mounting rail	{} nu este destinat montajului pe perete: așezați-l pe o șină
@@ -2371,6 +2407,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} din {} intrări afișate: căutați pentru a restrânge lista
 {} of {} items	{} din {} elemente
 {} of {} pages locked	{} din {} pagini blocate
+{} of {} parts · double-click: place	{} din {} articole · dublu clic: plasează
 {} of {} pins used	{} din {} pini utilizați
 {} of {} rows	{} din {} rânduri
 {} of {} wires	{} din {} conductoare
@@ -2424,6 +2461,7 @@ x y	x y
 {} wires, {} – {} mm	{} conductoare, {} – {} mm
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixeli, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
@@ -2431,6 +2469,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide
 {}: drag to move it, a double-click shows the floor	{}: trageți pentru a muta, dublu clic afișează pardoseala
+{}: drag to move, R: turn by 90°	{}: trageți pentru a muta, R: rotire cu 90°
 {}: nothing to change	{}: nimic de modificat
 {}: pin {}	{}: pin {}
 {}: strip {} mm, {}	{}: dezizolare {} mm, {}

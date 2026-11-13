@@ -213,7 +213,11 @@ or Enter), walls are dragged to move them or get a length in the room's properti
   (*Insert › Wall-mounted part*, also without a device tag).
 - **Outlets, switches and heating** (*Insert › Outlets, switches, heating*): socket
   outlets, data and antenna outlets, switches, push buttons, dimmers, room thermostats,
-  heating circuit manifolds and single-room control boxes (RTL / TH). The menu lists
+  heating circuit manifolds and single-room control boxes (RTL / TH), drawn with their
+  models in the 3D view. The menu has a tab for outlets, switches and heating, a search,
+  filters by maker and type, the list and the part picked with its 3D model (drag to
+  turn it), its size and mounting height (*Place on the wall* or a double-click places
+  it). It lists
   the generic parts of the catalog (`GEN.SOCKET-F-UP`, `GEN.SW-2WAY-UP`, …, manifolds
   `GEN.HCM-2` … `GEN.HCM-12`, the number of circuits chosen in the menu, `GEN.RTL-BOX`)
   and those of the parts database and of the shipped catalogs `gira` (System 55),
@@ -275,7 +279,9 @@ The navigator (*Enclosures and rooms*) has the **site** at its root, above the
 buildings with their levels and rooms and the rooms outside buildings. A click on a room
 keeps the 3D view when it is shown and otherwise shows the room's floor plan. A click on
 the site shows the site plan of all buildings in the Layout space (the wheel zooms,
-dragging moves it, a click on a room opens its floor plan) or, in the 3D view, all of
+dragging moves it, a click on a room opens its floor plan; in the edit mode *Site ›
+Move buildings* a building is dragged to its place and R turns it by 90° about its
+middle, with its rooms, cabinets, stairs and roofs) or, in the 3D view, all of
 the plant with its buildings, floor slabs, stairs and roofs; a click on a building shows
 the site plan with it highlighted. A level clicked while the 3D view is shown shows all
 rooms of that level side by side at their places, with the cabinets standing in them,
@@ -382,8 +388,22 @@ hips dashed) with their roof windows, and the links.
   `GEN.PV-BASE-EW10` fills in what a system lacks. The modules (unless a device, a PV
   generator, counts them) and the mounting material go into the bill of materials;
   `list_buildings` gives each array's modules, peak power and material. The site plan
-  draws the modules, the 3D view the modules with their frames, the rails, the mounting
-  bases and the wind deflectors.
+  draws the modules, the 3D view the modules with their frames and junction boxes, the
+  rails on their roof hooks, the mounting bases and the wind deflectors.
+  *Show › Hide PV modules* leaves the modules out to show the mounting. The mounting
+  has an **earthing point** with an earthing clamp (`GEN.PV-EARTH-CLAMP`, in the bill of
+  materials) on each rail or row of mounting bases; its **earthing conductor**
+  (`earthing`: the device of an earthing or equipotential bonding busbar) bonds them
+  and runs to that busbar. The 3D view draws the **cabling** of each string: the leads
+  from module to module under the modules, the plus and minus lead from its first and
+  last module along the roof, through it beside the array and under it down onto its
+  inverter, and the earthing conductor (green-yellow) down to its busbar, as far as the
+  devices are placed in the layout. A click on an array in the 3D view opens its
+  **properties**: where it is, its modules with their electrical data, peak power and
+  area, its mounting with the material and the earthing, its strings with their
+  voltages, currents and the length of their leads, its problems, and the settings of
+  the Buildings pane. A room under the roof shown alone shows the arrays over it and
+  the roof windows from outside too.
 - **PV strings** (*String* under a PV array in the pane, `add_pv_string`,
   `set_pv_string`, `pv_strings`): the modules of an array in series as strings, several
   strings of a kind in parallel, each on an MPP tracker of an inverter or charge
@@ -419,12 +439,14 @@ roof windows off their slope or across a ridge or hip, rooms the roof comes down
 floor of, cabinets higher than the sloped ceiling at their place and items on the walls
 or the ceiling above the slope, PV arrays off their roof or across a ridge, a hip or its
 edge, tilted on a pitched roof, over a roof window or over each other, and PV arrays
-whose device is missing or counts another number of modules. Example 15 (`plant_buildings`) shows a main building
+whose device is missing or counts another number of modules or whose earthing busbar
+is missing. Example 15 (`plant_buildings`) shows a main building
 with two levels and a shaft, a pump house linked by a cable trench through which a
 motor cable is routed, façade lights and a weather station on the roof; example 16
 (`office_building`) adds an office building with an attic under a gable roof, a stair
 turned at a quarter landing, roof windows, a PV array of ten LONGi modules on rails and
-roof hooks in the rear slope, outlets and switches of Gira and MDT and a COSMO heating
+roof hooks in the rear slope with its inverter and the bonding busbar of its mounting
+on the attic's gable wall, outlets and switches of Gira and MDT and a COSMO heating
 circuit manifold.
 
 **In 3D**, *Layout space › Show › Whole building* shows the building of the room shown

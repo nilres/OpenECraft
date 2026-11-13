@@ -155,6 +155,7 @@ Arc	Łuk
 Archive and version	Archiwum i wersja
 Archive project…	Archiwizuj projekt…
 Arms	Ramiona
+Array	Pole
 As defined by the check	Zgodnie z definicją kontroli
 As the rules say ({})	Według reguł ({})
 Aspects of the pages	Aspekty stron
@@ -220,6 +221,9 @@ Boundary	Granica
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Zdolność wyłączania w odniesieniu do prądu zwarciowego w każdym urządzeniu zabezpieczającym sieci, wyłączenie przy najmniejszym prądzie zwarcia na końcu jego obwodu, wytrzymałość zwarciowa kabli i selektywność względem urządzenia zabezpieczającego przed nim.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Mostek: cztery przewody; połączenie wchodzi z jednej strony i idzie do trzech pozostałych, najpierw do przeciwległej
 Building {} added with a level at ground level	Dodano budynek {} z kondygnacją na poziomie terenu
+Building {} at x {} m, z {} m	Budynek {} w x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Budynek {} w x {} m, z {} m, obrócony o {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Budynek {} w x {} m, z {} m, obrócony o {}°: stoi poza granicą działki
 Built-in frames cannot be changed; copy one to adapt it.	Wbudowanych ramek nie można zmieniać; skopiuj jedną, aby ją dostosować.
 Built-in scheme: copy it to change it.	Schemat wbudowany: skopiuj go, aby go zmienić.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Wbudowane tabliczki rysunkowe są tylko do odczytu – użyj „Kopiuj jako nowy”, aby utworzyć własną.
@@ -297,6 +301,7 @@ Chooses the pages whose structure starts with this	Wybiera strony, których stru
 Circle	Okrąg
 Circuits of a generic manifold	Obiegi rozdzielacza ogólnego
 Clear	Wyczyść
+Clear the search	Wyczyść wyszukiwanie
 Clearance	Odstęp
 Click	Kliknięcie
 Click a text: open its link	Kliknięcie tekstu: otwarcie jego łącza
@@ -428,6 +433,7 @@ Cross references…	Odsyłacze…
 Crossed wires	Przecięte przewody
 Ctrl + click on the text opens it as well	Ctrl + kliknięcie tekstu również go otwiera
 Ctrl+A	Ctrl+A
+Current at maximum power	Prąd przy mocy maksymalnej
 Current-carrying capacity: {} × IEC 60204-1, table 6	Obciążalność prądowa: {} × IEC 60204-1, tabela 6
 Customer rule sets	Zestawy reguł klienta
 Customer, plant or standard	Klient, instalacja lub norma
@@ -440,6 +446,7 @@ Cut length step tubes	Krok długości cięcia węży
 Cut length step wires	Krok długości cięcia przewodów
 Cutout {} × {} mm	Wycięcie {} × {} mm
 Cutting allowance per end	Naddatek cięcia na koniec
+DC leads	Przewody DC
 DRAFT	PROJEKT
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	PROJEKT, DO ZATWIERDZENIA i ZATWIERDZONO w bieżącym języku; nic po wydaniu
 DWG import failed: {}	Import DWG nie powiódł się: {}
@@ -575,6 +582,7 @@ Draft	Projekt
 Draft of revision {} created	Utworzono wersję roboczą rewizji {}
 Draft of revision {} discarded	Odrzucono wersję roboczą rewizji {}
 Drag	Przeciąganie
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Przeciągnij budynek, aby go przesunąć · R: obróć budynek pod wskaźnikiem o 90° · Esc: zakończ
 Drag a connection point designation of the selected symbol to place it.	Przeciągnij oznaczenie punktu połączenia zaznaczonego symbolu, aby je umieścić.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Przeciągnij koniec zaznaczonego przewodu, aby przesunąć tylko ten koniec. Przeciąganie z Alt odwraca Zachowaj połączenia.
 Drag an entry into the page, or click it and then click into the page.	Przeciągnij pozycję na stronę albo kliknij ją, a następnie kliknij na stronie.
@@ -615,12 +623,16 @@ Duct fill limit	Graniczne wypełnienie kanału
 Duplicate	Duplikuj
 Each example builds on the one before and shows more of the features.	Każdy przykład opiera się na poprzednim i pokazuje więcej funkcji.
 Each point-to-point connection can belong to a harness	Każde połączenie punkt-punkt może należeć do wiązki
+Earthing busbar	Szyna uziemiająca
+Earthing conductor	Przewód uziemiający
+Earthing points	Punkty uziemienia
 Earthing system	Układ sieci
 Easting, northing	Współrzędna wschodnia, północna
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Długość krawędzi siatki prowadzenia: mniejsza oznacza dokładniej i wolniej
 Edit in table	Edytuj w tabeli
 Edit in table…	Edytuj w tabeli…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Tryb edycji: przeciągnij budynki na ich miejsca na planie sytuacyjnym i obróć je; kliknięcie pomieszczenia już go nie otwiera
 Editable copy of this plot frame	Edytowalna kopia tej ramki rysunku
 Editable copy of this title block	Edytowalna kopia tej tabliczki rysunkowej
 Effective surface	Powierzchnia efektywna
@@ -806,6 +818,7 @@ Height of the plinth, 0 without plinth	Wysokość cokołu, 0 bez cokołu
 Heights above floor (IEC 60204-1)	Wysokości nad podłogą (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Przytrzymywany podczas klikania, przesuwania lub przewijania. Ctrl to Cmd w macOS.
 Help	Pomoc
+Hide PV modules	Ukryj moduły PV
 Hide the groups you do not need and put the commands you use most into own groups.	Ukryj grupy, których nie potrzebujesz, a najczęściej używane polecenia umieść we własnych grupach.
 Highest phase unbalance	Największa asymetria faz
 Highest short-circuit current	Największy prąd zwarciowy
@@ -951,6 +964,7 @@ Layout space	Przestrzeń montażowa
 Layout spaces	Przestrzenie montażowe
 Leave out the ceilings of the rooms and the roofs in the 3D view	Pomiń sufity pomieszczeń i dachy w widoku 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	W widoku 3D pomija pokrywy wszystkich korytek kablowych: przewody w nich są widoczne
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Pomiń moduły pól PV w widoku 3D: widać szyny, haki dachowe, wsporniki, uziemienie i okablowanie
 Leave repeated values of the first column blank	Pozostaw puste powtarzające się wartości pierwszej kolumny
 Left button	Lewy przycisk
 Left edges	Lewe krawędzie
@@ -1020,6 +1034,7 @@ Macros ({})	Makra ({})
 Macro…	Makro…
 Main	Główny
 Make the selected elements of this project equal to the compared ones	Ujednolić zaznaczone elementy tego projektu z porównywanymi
+Maker	Producent
 Makes the current page content of the option	Dodaje bieżącą stronę do zawartości opcji
 Manage plugins	Zarządzaj wtyczkami
 Management	Zarządzanie
@@ -1062,6 +1077,7 @@ Mixed	Mieszane
 Mode	Tryb
 Model of a part (2D / 3D)	Model artykułu (2D / 3D)
 Modifier keys	Klawisze modyfikujące
+Module area	Powierzchnia modułów
 Module part; its size comes from the part	Część modułu; jej rozmiar pochodzi z części
 Motors feed the short circuit	Silniki zasilają zwarcie
 Mounted on	Zamontowany na
@@ -1074,6 +1090,7 @@ Mouse	Mysz
 Move	Przesuń
 Move ahead in the 3D view (held)	Ruch do przodu w widoku 3D (przytrzymaj)
 Move back in the 3D view (held)	Ruch do tyłu w widoku 3D (przytrzymaj)
+Move buildings	Przesuń budynki
 Move down	Przesuń w dół
 Move down in the 3D view (held)	Ruch w dół w widoku 3D (przytrzymaj)
 Move faster with the keys of the 3D view	Szybszy ruch klawiszami widoku 3D
@@ -1186,6 +1203,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Brak makr. 
 No modules: plug in PLC cards of the schematic.	Brak modułów: wstaw karty PLC ze schematu.
 No numbers for	Bez numerów dla
 No panel items: place the devices in the panel layout.	Brak elementów zabudowy: umieść urządzenia w zabudowie szafy.
+No part matches.	Żadna część nie pasuje.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Brak artykułów oznaczonych do montażu na podłodze. Oznacz artykuł w zarządzaniu artykułami: edytor artykułów › Dane montażowe › Montaż na podłodze.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Brak artykułów oznaczonych do montażu naściennego. Oznacz artykuł w zarządzaniu artykułami: edytor artykułów › Dane montażowe › Montaż naścienny.
 No parts of the product group Cables in the parts database.	Brak artykułów z grupy produktów Kable w bazie danych artykułów.
@@ -1204,6 +1222,7 @@ No segments yet: draw them in the plant layout.	Brak odcinków: narysuj je na pl
 No shortcut	Brak skrótu
 No single-line symbols and no power devices in the schematic.	Brak symboli jednokreskowych i urządzeń mocy na schemacie elektrycznym.
 No stations: add one or use the automatic configuration.	Brak stacji: dodaj stację lub użyj konfiguracji automatycznej.
+No string yet: the modules are not connected.	Brak stringu: moduły nie są połączone.
 No subprojects were taken out of this project.	Z tego projektu nie wydzielono żadnych podprojektów.
 No terminal strips: place terminals in a schematic first.	Brak listew zaciskowych: najpierw umieść zaciski na schemacie.
 No user symbols yet. Create one or copy a built-in symbol.	Brak symboli użytkownika. Utwórz nowy lub skopiuj symbol wbudowany.
@@ -1267,6 +1286,7 @@ Open the selection: its properties, in the floor plan its face	Otwarcie zaznacze
 Open to {}: wires cross beside the mounting plates	Otwarte do {}: przewody przechodzą obok płyt montażowych
 Open walls and floors	Otwórz ściany i podłogi
 Open, save, import, export, print and the settings	Otwieranie, zapisywanie, import, eksport, drukowanie i ustawienia
+Open-circuit voltage	Napięcie obwodu otwartego
 OpenECraft page templates	Szablony stron OpenECraft
 OpenECraft page templates (JSON)	Szablony stron OpenECraft (JSON)
 OpenECraft project	Projekt OpenECraft
@@ -1308,6 +1328,7 @@ Other values ({})	Inne wartości ({})
 Otherwise from the plant layout, or next to the other line-ups	W przeciwnym razie z planu instalacji lub obok innych szeregów szaf
 Out since {} (pages locked)	Wydzielony od {} (strony zablokowane)
 Outer diameter (e.g. 8 mm) or DN	Średnica zewnętrzna (np. 8 mm) lub DN
+Outlets	Gniazda
 Outlets, switches, heating	Gniazda, łączniki, ogrzewanie
 Outline	Obrys
 Outlines	Obrysy
@@ -1330,6 +1351,9 @@ PLC channels	Kanały PLC
 PLC hardware and bus topology	Sprzęt PLC i topologia magistrali
 PLC overview	Przegląd PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Mapa bitowa PNG lub JPEG, np. logo lub zdjęcie
+PV array {}	Pole PV {}
+PV array {} of building {}: {} modules	Pole PV {} budynku {}: {} modułów
+PV array {} of building {}: {} modules, {} kWp	Pole PV {} budynku {}: {} modułów, {} kWp
 PV arrays	Instalacje PV
 Page graphics	Grafika strony
 Page heading	Nagłówek strony
@@ -1377,6 +1401,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Tekst funkcji ścieżki
 Pattern	Wzór
 Pattern…	Wzór…
+Peak power	Moc szczytowa
+Pick a part in the list.	Wybierz część z listy.
 Pin-out	Rozkład pinów
 Pipe run	Trasa rurociągu
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Trasa rurociągu na ścianie, suficie lub podłodze pomieszczenia, wzdłuż której prowadzi się węże, rurki i rury: kliknij narożniki, dwukrotne kliknięcie lub Enter kończy
@@ -1394,6 +1420,7 @@ Place in the building	Miejsce w budynku
 Place in the plant	Miejsce w instalacji
 Place in the room	Miejsce w pomieszczeniu
 Place in the site plan	Umieść na planie sytuacyjnym
+Place on the wall	Umieść na ścianie
 Place text	Umieść tekst
 Place the georeferenced point everything is measured from	Umieść punkt georeferencyjny, od którego wszystko jest mierzone
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Umieść punkt georeferencyjny instalacji na planie sytuacyjnym; jego współrzędne wpisz w panelu Budynki, każdy punkt jest od niego mierzony
@@ -1426,6 +1453,7 @@ Plug in card	Wstaw kartę
 Plugin commands	Polecenia wtyczek
 Plugins	Wtyczki
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Wtyczki dodają polecenia, kontrole, raporty i eksporty. Wtyczki zewnętrzne są ładowane z folderów podanych w zmiennej środowiskowej {} (jeden podfolder z plikiem plugin.json na wtyczkę).
+Plus and minus leads from the modules to the inverter	Przewody plus i minus od modułów do falownika
 Points	Punkty
 Polygon	Wielokąt
 Polyline	Polilinia
@@ -1628,6 +1656,7 @@ Right edges	Prawe krawędzie
 Right neighbour	Prawy sąsiad
 Rights	Uprawnienia
 Risers	Podstopnie
+Roof pitch	Nachylenie dachu
 Roof window	Okno dachowe
 Roof windows	Okna dachowe
 Roofs	Dachy
@@ -1720,6 +1749,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Przewijanie powiększa, także tam, gdzie przesuwa
 Search (* and ? as placeholders)…	Szukaj (* i ? jako symbole wieloznaczne)…
 Search below this folder	Szukaj poniżej tego folderu
+Search number, description, maker	Szukaj numeru, opisu, producenta
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Przeszukaj serwer artykułów według katalogu, grupy produktów i danych technicznych, dodaj artykuły i sprawdź bazę danych pod kątem aktualizacji
 Second channel	Drugi kanał
 Section properties	Właściwości sekcji
@@ -1780,6 +1810,7 @@ Shielded analogue cables	Ekranowane kable analogowe
 Shielded drive cables	Ekranowane kable napędów
 Short circuit and selectivity	Zwarcie i selektywność
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zwarcie, selektywność, obciążenia, EMC, bezpieczeństwo funkcjonalne i weryfikacja względem zestawów reguł
+Short-circuit current	Prąd zwarciowy
 Short-circuit currents	Prądy zwarciowe
 Short-circuit power of the network	Moc zwarciowa sieci
 Shortest profile	Najkrótszy profil
@@ -1892,6 +1923,7 @@ Surge protection	Ochrona przeciwprzepięciowa
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otwórz lub zamknij drzwi obudowy (urządzenia na drzwiach i ich przewody obracają się razem z nimi)
 Switch off the check \"{}\"	Wyłącz kontrolę \"{}\"
 Switched off on this computer ({})	Wyłączone na tym komputerze ({})
+Switches	Łączniki
 Switches the options with a condition by the configurator options	Przełącza opcje z warunkiem zgodnie z opcjami konfiguratora
 Switches to this workspace with its panes at their default places	Przełącza na ten obszar roboczy z panelami w ich domyślnych miejscach
 Switches, push buttons and room thermostats	Łączniki, przyciski i termostaty pokojowe
@@ -2093,6 +2125,7 @@ Via:	Przez:
 View	Widok
 Visible	Widoczna
 Voltage (line to line)	Napięcie (międzyfazowe)
+Voltage at maximum power	Napięcie przy mocy maksymalnej
 Voltage drop	Spadek napięcia
 WGS 84, written into the site of IFC exports	WGS 84, zapisywana w terenie eksportów IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Ściana {}, {} m: przeciągnij, aby przesunąć, dwuklik pokazuje ją do wyposażenia
@@ -2281,6 +2314,8 @@ x y	x y
 {} (default)	{} (domyślnie)
 {} (first column)	{} (pierwsza kolumna)
 {} (locked by {})	{} (zablokowane przez {})
+{} (no such device)	{} (brak takiego urządzenia)
+{} (not placed in the layout)	{} (nie umieszczono w zabudowie)
 {} (project server, revision {})	{} (serwer projektów, rewizja {})
 {} (spare)	{} (rezerwa)
 {} (subproject of {})	{} (podprojekt projektu {})
@@ -2342,6 +2377,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} nie ma funkcji z symbolem; przypisz go do urządzenia w jego właściwościach
 {} has unsaved changes. Discard them?	{} ma niezapisane zmiany. Odrzucić je?
 {} imported into the parts database and placed as {}	{} zaimportowano do bazy danych artykułów i umieszczono jako {}
+{} in {}	{} w {}
 {} is neither in the parts database nor on the parts server	{} nie ma ani w bazie danych artykułów, ani na serwerze artykułów
 {} is not in the disk image	{} nie ma w obrazie dysku
 {} is not made for wall mounting: place it on a mounting rail	{} nie jest przeznaczony do montażu naściennego: umieść go na szynie
@@ -2371,6 +2407,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	Wyświetlono {} z {} wpisów: wyszukaj, aby zawęzić listę
 {} of {} items	{} z {} elementów
 {} of {} pages locked	Zablokowano {} z {} stron
+{} of {} parts · double-click: place	{} z {} części · dwuklik: umieść
 {} of {} pins used	Zajęte piny: {} z {}
 {} of {} rows	{} z {} wierszy
 {} of {} wires	{} z {} przewodów
@@ -2424,6 +2461,7 @@ x y	x y
 {} wires, {} – {} mm	Przewody: {}, {} – {} mm
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pikseli, {}
 {} – {} ({} pages)	{} – {} (strony: {})
 {} – {} here (Esc cancels)	{} – {} tutaj (Esc anuluje)
@@ -2431,6 +2469,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: zaciskać razem z przewodem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: przeciągnij, aby przesunąć, R obraca, dwuklik otwiera
 {}: drag to move it, a double-click shows the floor	{}: przeciągnij, aby przesunąć, dwuklik pokazuje podłogę
+{}: drag to move, R: turn by 90°	{}: przeciągnij, aby przesunąć, R: obróć o 90°
 {}: nothing to change	{}: nic do zmiany
 {}: pin {}	{}: pin {}
 {}: strip {} mm, {}	{}: odizolować {} mm, {}

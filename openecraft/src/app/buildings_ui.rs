@@ -10,6 +10,7 @@ use crate::panel_ui::site_plan::{self, SitePlan};
 use crate::panel_ui::SiteTool;
 use egui::{vec2, RichText, Sense};
 use openecraft_core::model::Project;
+use openecraft_core::parts::vec3;
 use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, buildings as bld, plot, roofs, solar, stairs, GeoReference, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
@@ -57,6 +58,8 @@ struct PvView {
     modules: Vec<Choice>,
     systems: Vec<Choice>,
     inverters: Vec<String>,
+    /// The earthing and equipotential bonding busbars (devices).
+    busbars: Vec<String>,
     powers: Vec<Vec<String>>,
     strings: Vec<Vec<Vec<String>>>,
 }
@@ -69,6 +72,7 @@ impl PvView {
             modules: choices(prj, &["PV module"]),
             systems: choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]),
             inverters: strings::inverters(prj),
+            busbars: solar::cabling::earthing_busbars(prj),
             powers: roofs
                 .iter()
                 .map(|r| {
@@ -151,89 +155,115 @@ fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), inv
 /// The PV arrays of a roof: place, modules, mounting, mounting system and strings of
 /// each; the array to add a string to when asked.
 fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView) -> Option<usize> {
-    let (modules, systems, powers) = (&view.modules, &view.systems, &view.powers[k]);
     let mut gone = None;
     let mut add_string = None;
     for (a_k, a) in r.solar.iter_mut().enumerate() {
-        let id = (k, a_k);
-        ui.horizontal_wrapped(|ui| {
-            ui.add_space(14.0);
-            ui.add(egui::TextEdit::singleline(&mut a.name).desired_width(40.0));
-            egui::ComboBox::from_id_salt(("bldpvmount", id)).selected_text(tr(a.mounting.title())).show_ui(ui, |ui| {
-                for m in PvMounting::ALL {
-                    ui.selectable_value(&mut a.mounting, m, tr(m.title()));
-                }
-            });
-            egui::ComboBox::from_id_salt(("bldpvmodule", id)).selected_text(a.module.as_str()).width(170.0).show_ui(ui, |ui| {
-                for c in modules {
-                    if ui.selectable_label(a.module == c.number, c.number.as_str()).on_hover_text(c.description.as_str()).clicked() {
-                        a.module = c.number.clone();
-                        if c.size[0] > 0.0 && c.size[1] > 0.0 {
-                            (a.module_width, a.module_length) = (c.size[0].min(c.size[1]), c.size[0].max(c.size[1]));
-                        }
-                        if c.size[2] > 0.0 {
-                            a.module_height = c.size[2];
-                        }
-                    }
-                }
-            })
-            .response
-            .on_hover_text(tr("Module part; its size comes from the part"));
-            ui.label(powers.get(a_k).map_or("", String::as_str));
-            if icons::button(ui, Icon::Delete, tr("Delete PV array")).clicked() {
-                gone = Some(a_k);
-            }
-        });
-        ui.horizontal_wrapped(|ui| {
-            ui.add_space(28.0);
-            ui.add(egui::DragValue::new(&mut a.x).speed(10.0).prefix("x ").suffix(" mm"));
-            ui.add(egui::DragValue::new(&mut a.z).speed(10.0).prefix("z ").suffix(" mm")).on_hover_text(tr("Middle of the PV array in the floor plan of the building"));
-            ui.add(egui::DragValue::new(&mut a.columns).range(1..=200).suffix(" ×")).on_hover_text(tr("Modules side by side in a row"));
-            ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of modules (east-west: rows of pairs)"));
-            ui.checkbox(&mut a.landscape, tr("landscape")).on_hover_text(tr("The long side of the modules along the rows"));
-        });
-        ui.horizontal_wrapped(|ui| {
-            ui.add_space(28.0);
-            if a.mounting.is_tilted() {
-                ui.label(tr("Tilt"));
-                ui.add(egui::DragValue::new(&mut a.tilt).speed(0.5).range(0.0..=60.0).suffix(" °"));
-                ui.label(tr("Facing"));
-                ui.add(egui::DragValue::new(&mut a.azimuth).speed(1.0).suffix(" °")).on_hover_text(tr("Direction the modules face, counter-clockwise seen from above (0: towards the front)"));
-                ui.label(tr("Row distance"));
-                ui.add(egui::DragValue::new(&mut a.row_gap).speed(10.0).range(0.0..=20_000.0).suffix(" mm")).on_hover_text(tr("From row to row; 0: free of shade in winter"));
-                ui.label(tr("Ballast"));
-                ui.add(egui::DragValue::new(&mut a.ballast).speed(0.5).range(0.0..=500.0).suffix(" kg")).on_hover_text(tr("Ballast per module"));
-            } else {
-                ui.label(tr("Hook distance"));
-                ui.add(egui::DragValue::new(&mut a.span).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the roof hooks along a rail"));
-            }
-        });
-        ui.horizontal_wrapped(|ui| {
-            ui.add_space(28.0);
-            ui.label(tr("Mounting system"));
-            let main = if a.mounting.is_tilted() { solar::Role::Base } else { solar::Role::Rail };
-            let shown = if a.system.is_empty() { tr("Generic").to_string() } else { a.system.clone() };
-            egui::ComboBox::from_id_salt(("bldpvsystem", id)).selected_text(shown).width(150.0).show_ui(ui, |ui| {
-                ui.selectable_value(&mut a.system, String::new(), tr("Generic"));
-                for c in systems.iter().filter(|c| c.subgroup == main.subgroup()) {
-                    ui.selectable_value(&mut a.system, c.number.clone(), c.number.as_str()).on_hover_text(c.description.as_str());
-                }
-            })
-            .response
-            .on_hover_text(tr("The rail or mounting base; its accessories are the hooks, clamps and ballast"));
-            ui.label(tr("Device"));
-            ui.add(egui::TextEdit::singleline(&mut a.device).desired_width(90.0)).on_hover_text(tr("Device (PV generator) the modules belong to; its parts then count them in the bill of materials"));
-        });
-        let values = view.strings[k].get(a_k).map_or(&[][..], Vec::as_slice);
-        if pv_strings(ui, a, id, &view.inverters, values) {
+        let (delete, add) = pv_array(ui, a, (k, a_k), view);
+        if delete {
+            gone = Some(a_k);
+        }
+        if add {
             add_string = Some(a_k);
         }
-        *a = solar::checked_array(a.clone());
     }
     if let Some(a_k) = gone {
         r.solar.remove(a_k);
     }
     add_string
+}
+
+/// A PV array of roof `id.0` (its index `id.1`): place, modules, mounting, mounting
+/// system, earthing and strings; whether it is to be deleted and whether a string is to
+/// be added.
+fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view: &PvView) -> (bool, bool) {
+    let (k, a_k) = id;
+    let (modules, systems, powers) = (&view.modules, &view.systems, &view.powers[k]);
+    let mut gone = false;
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(14.0);
+        ui.add(egui::TextEdit::singleline(&mut a.name).desired_width(40.0));
+        egui::ComboBox::from_id_salt(("bldpvmount", id)).selected_text(tr(a.mounting.title())).show_ui(ui, |ui| {
+            for m in PvMounting::ALL {
+                ui.selectable_value(&mut a.mounting, m, tr(m.title()));
+            }
+        });
+        egui::ComboBox::from_id_salt(("bldpvmodule", id)).selected_text(a.module.as_str()).width(170.0).show_ui(ui, |ui| {
+            for c in modules {
+                if ui.selectable_label(a.module == c.number, c.number.as_str()).on_hover_text(c.description.as_str()).clicked() {
+                    a.module = c.number.clone();
+                    if c.size[0] > 0.0 && c.size[1] > 0.0 {
+                        (a.module_width, a.module_length) = (c.size[0].min(c.size[1]), c.size[0].max(c.size[1]));
+                    }
+                    if c.size[2] > 0.0 {
+                        a.module_height = c.size[2];
+                    }
+                }
+            }
+        })
+        .response
+        .on_hover_text(tr("Module part; its size comes from the part"));
+        ui.label(powers.get(a_k).map_or("", String::as_str));
+        if icons::button(ui, Icon::Delete, tr("Delete PV array")).clicked() {
+            gone = true;
+        }
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(28.0);
+        ui.add(egui::DragValue::new(&mut a.x).speed(10.0).prefix("x ").suffix(" mm"));
+        ui.add(egui::DragValue::new(&mut a.z).speed(10.0).prefix("z ").suffix(" mm")).on_hover_text(tr("Middle of the PV array in the floor plan of the building"));
+        ui.add(egui::DragValue::new(&mut a.columns).range(1..=200).suffix(" ×")).on_hover_text(tr("Modules side by side in a row"));
+        ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of modules (east-west: rows of pairs)"));
+        ui.checkbox(&mut a.landscape, tr("landscape")).on_hover_text(tr("The long side of the modules along the rows"));
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(28.0);
+        if a.mounting.is_tilted() {
+            ui.label(tr("Tilt"));
+            ui.add(egui::DragValue::new(&mut a.tilt).speed(0.5).range(0.0..=60.0).suffix(" °"));
+            ui.label(tr("Facing"));
+            ui.add(egui::DragValue::new(&mut a.azimuth).speed(1.0).suffix(" °")).on_hover_text(tr("Direction the modules face, counter-clockwise seen from above (0: towards the front)"));
+            ui.label(tr("Row distance"));
+            ui.add(egui::DragValue::new(&mut a.row_gap).speed(10.0).range(0.0..=20_000.0).suffix(" mm")).on_hover_text(tr("From row to row; 0: free of shade in winter"));
+            ui.label(tr("Ballast"));
+            ui.add(egui::DragValue::new(&mut a.ballast).speed(0.5).range(0.0..=500.0).suffix(" kg")).on_hover_text(tr("Ballast per module"));
+        } else {
+            ui.label(tr("Hook distance"));
+            ui.add(egui::DragValue::new(&mut a.span).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the roof hooks along a rail"));
+        }
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(28.0);
+        ui.label(tr("Mounting system"));
+        let main = if a.mounting.is_tilted() { solar::Role::Base } else { solar::Role::Rail };
+        let shown = if a.system.is_empty() { tr("Generic").to_string() } else { a.system.clone() };
+        egui::ComboBox::from_id_salt(("bldpvsystem", id)).selected_text(shown).width(150.0).show_ui(ui, |ui| {
+            ui.selectable_value(&mut a.system, String::new(), tr("Generic"));
+            for c in systems.iter().filter(|c| c.subgroup == main.subgroup()) {
+                ui.selectable_value(&mut a.system, c.number.clone(), c.number.as_str()).on_hover_text(c.description.as_str());
+            }
+        })
+        .response
+        .on_hover_text(tr("The rail or mounting base; its accessories are the hooks, clamps and ballast"));
+        ui.label(tr("Device"));
+        ui.add(egui::TextEdit::singleline(&mut a.device).desired_width(90.0)).on_hover_text(tr("Device (PV generator) the modules belong to; its parts then count them in the bill of materials"));
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.add_space(28.0);
+        ui.label(tr("Earthing busbar"));
+        let shown = if a.earthing.is_empty() { tr("None").to_string() } else { a.earthing.clone() };
+        egui::ComboBox::from_id_salt(("bldpvearth", id)).selected_text(shown).width(120.0).show_ui(ui, |ui| {
+            ui.selectable_value(&mut a.earthing, String::new(), tr("None"));
+            for t in &view.busbars {
+                ui.selectable_value(&mut a.earthing, t.clone(), t.as_str());
+            }
+        })
+        .response
+        .on_hover_text(tr("Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none"));
+    });
+    let values = view.strings[k].get(a_k).map_or(&[][..], Vec::as_slice);
+    let add = pv_strings(ui, a, id, &view.inverters, values);
+    *a = solar::checked_array(a.clone());
+    (gone, add)
 }
 
 /// The building entries of all rooms: (item id, "room – wall n").
@@ -932,4 +962,207 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
     let (size, _) = ui.allocate_exact_size(vec2(ui.available_width(), 320.0), Sense::hover());
     let plan = SitePlan { building: Some(st.sel), level: st.level, ..Default::default() };
     site_plan::paint(ui, size, prj, &plan, None);
+}
+
+/// Building, roof and index of the PV array with id `id`.
+fn find_array(prj: &Project, id: u64) -> Option<(usize, usize, usize)> {
+    prj.layout.buildings.iter().enumerate().find_map(|(bi, b)| b.roofs.iter().enumerate().find_map(|(k, r)| r.solar.iter().position(|a| a.id == id).map(|ai| (bi, k, ai))))
+}
+
+/// Metres with one decimal.
+fn metres(mm: f32) -> String {
+    format!("{:.1} m", mm / 1000.0)
+}
+
+/// A row of the properties of a PV array: its name and its value.
+fn row(ui: &mut egui::Ui, name: &str, value: impl Into<egui::WidgetText>) {
+    ui.label(RichText::new(name).weak());
+    ui.label(value);
+    ui.end_row();
+}
+
+/// Everything about PV array `ai` of roof `k` of building `bi`: where it is, its
+/// modules and power, its mounting with its material, its earthing, its strings with
+/// their values and the lengths of their leads, and its problems.
+#[allow(clippy::too_many_lines)]
+fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) {
+    let b = &prj.layout.buildings[bi];
+    let r = &b.roofs[k];
+    let a = &r.solar[ai];
+    let part = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == a.module);
+    let poses = panel::site_poses(prj);
+    let cabling = solar::cabling::cabling(prj, &poses, b, r, a);
+    let geometry = solar::geometry(r, a);
+    let placed = |tag: &str| -> String {
+        if tag.is_empty() {
+            return tr("None").to_string();
+        }
+        match solar::cabling::placed_device(prj, &poses, tag) {
+            Some((e, _)) => tr_fmt!("{} in {}", tag, prj.layout.enclosures[e].name),
+            None if prj.devices.contains_key(tag) => tr_fmt!("{} (not placed in the layout)", tag),
+            None => tr_fmt!("{} (no such device)", tag),
+        }
+    };
+    ui.label(RichText::new(tr("Array")).strong());
+    egui::Grid::new(("pvprops", a.id)).num_columns(2).striped(true).spacing([12.0, 4.0]).show(ui, |ui| {
+        row(ui, tr("Name"), a.name.as_str());
+        row(ui, tr("Building"), if b.description.is_empty() { b.name.clone() } else { format!("{} – {}", b.name, b.description) });
+        let roof = if r.name.is_empty() { tr(r.shape.title()).to_string() } else { format!("{} ({})", r.name, tr(r.shape.title())) };
+        row(ui, tr("Roof"), roof);
+        row(ui, tr("Middle"), format!("x {:.0} mm, z {:.0} mm", a.x, a.z));
+        let n = solar::module_count(a);
+        let orientation = if a.landscape { tr("landscape") } else { tr("portrait") };
+        row(ui, tr("Modules"), tr_fmt!("{} × {} = {}, {}", a.columns, a.rows, n, orientation));
+        if let Some(kw) = solar::peak_power(prj, a) {
+            row(ui, tr("Peak power"), format!("{kw:.2} kWp"));
+        }
+        let area = n as f32 * a.module_width * a.module_length / 1e6;
+        row(ui, tr("Module area"), format!("{area:.1} m²"));
+        if let Some(g) = &geometry {
+            let pitch = g.plane.slope().atan().to_degrees();
+            row(ui, tr("Roof pitch"), format!("{pitch:.0}°"));
+        }
+    });
+    ui.add_space(6.0);
+    ui.label(RichText::new(tr("Module")).strong());
+    egui::Grid::new(("pvpropsmodule", a.id)).num_columns(2).striped(true).spacing([12.0, 4.0]).show(ui, |ui| {
+        row(ui, tr("Part number"), a.module.as_str());
+        if let Some(p) = part {
+            if !p.manufacturer.is_empty() {
+                row(ui, tr("Manufacturer"), p.manufacturer.as_str());
+            }
+            row(ui, tr("Description"), p.description.as_str());
+        }
+        if let Some(w) = solar::module_power(prj, a) {
+            row(ui, tr("Power"), format!("{w:.0} Wp"));
+        }
+        row(ui, tr("Size"), format!("{:.0} × {:.0} × {:.0} mm", a.module_width, a.module_length, a.module_height));
+        if let Some(m) = solar::strings::module_data(prj, &a.module) {
+            row(ui, tr("Open-circuit voltage"), format!("{:.1} V", m.voc));
+            row(ui, tr("Short-circuit current"), format!("{:.2} A", m.isc));
+            row(ui, tr("Voltage at maximum power"), format!("{:.1} V", m.vmp));
+            row(ui, tr("Current at maximum power"), format!("{:.2} A", m.imp));
+        }
+    });
+    ui.add_space(6.0);
+    ui.label(RichText::new(tr("Mounting")).strong());
+    egui::Grid::new(("pvpropsmount", a.id)).num_columns(2).striped(true).spacing([12.0, 4.0]).show(ui, |ui| {
+        row(ui, tr("Mounting"), tr(a.mounting.title()));
+        if a.mounting.is_tilted() {
+            row(ui, tr("Tilt"), format!("{:.0}°", a.tilt));
+            row(ui, tr("Facing"), format!("{:.0}°", a.azimuth));
+            row(ui, tr("Ballast"), format!("{:.0} kg", a.ballast));
+        } else {
+            row(ui, tr("Hook distance"), format!("{:.0} mm", a.span));
+        }
+        row(ui, tr("Mounting system"), if a.system.is_empty() { tr("Generic").to_string() } else { a.system.clone() });
+        if let Some(g) = &geometry {
+            row(ui, tr("Earthing points"), g.earth.len().to_string());
+        }
+        row(ui, tr("Earthing busbar"), placed(&a.earthing));
+        if let Some(l) = cabling.iter().find(|l| l.lead == solar::cabling::Lead::Earth) {
+            row(ui, tr("Earthing conductor"), metres(vec3::path_length(&l.points)));
+        }
+        if !a.device.is_empty() {
+            row(ui, tr("Device"), a.device.as_str());
+        }
+    });
+    ui.add_space(4.0);
+    egui::Grid::new(("pvpropsmaterial", a.id)).num_columns(3).striped(true).spacing([12.0, 3.0]).show(ui, |ui| {
+        ui.label(RichText::new(tr("Part number")).weak());
+        ui.label(RichText::new(tr("Description")).weak());
+        ui.label(RichText::new(tr("Quantity")).weak());
+        ui.end_row();
+        for (number, qty) in solar::material(prj, a) {
+            let desc = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == number).map_or("", |p| p.description.as_str());
+            ui.label(number.as_str());
+            ui.add(egui::Label::new(desc).truncate()).on_hover_text(desc);
+            ui.label(if qty.fract() == 0.0 { format!("{qty:.0}") } else { format!("{qty:.2}") });
+            ui.end_row();
+        }
+    });
+    ui.add_space(6.0);
+    ui.label(RichText::new(tr("Strings")).strong());
+    if a.strings.is_empty() {
+        ui.weak(tr("No string yet: the modules are not connected."));
+    } else {
+        let m = solar::strings::module_data(prj, &a.module);
+        egui::Grid::new(("pvpropsstrings", a.id)).num_columns(6).striped(true).spacing([12.0, 3.0]).show(ui, |ui| {
+            for h in [tr("Name"), tr("Modules"), tr("Inverter"), tr("Voltage"), tr("Current"), tr("DC leads")] {
+                ui.label(RichText::new(h).weak());
+            }
+            ui.end_row();
+            for (si, s) in a.strings.iter().enumerate() {
+                ui.label(s.name.as_str());
+                ui.label(format!("{} × {}", s.series, s.parallel));
+                ui.label(format!("{}  MPPT {}", placed(&s.inverter), s.mppt));
+                match m {
+                    Some(m) => {
+                        let v = solar::strings::values(&m, &prj.layout.pv_design, s);
+                        ui.label(format!("{:.0} / {:.0} / {:.0} V", v.voc_max, v.vmp_mean, v.vmp_min)).on_hover_text(tr("Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power"));
+                        ui.label(format!("{:.1} A", v.imp));
+                    }
+                    None => {
+                        ui.label("–");
+                        ui.label("–");
+                    }
+                }
+                let leads: f32 = cabling.iter().filter(|l| l.string == Some(si) && l.lead != solar::cabling::Lead::Link).map(|l| vec3::path_length(&l.points)).sum();
+                ui.label(metres(leads)).on_hover_text(tr("Plus and minus leads from the modules to the inverter"));
+                ui.end_row();
+            }
+        });
+    }
+    // Its problems: those of the roofs naming it.
+    let issues: Vec<String> = solar::problems(prj).into_iter().chain(solar::strings::problems(prj)).map(|i| i.message()).filter(|m| m.contains(b.name.as_str()) && m.contains(a.name.as_str())).collect();
+    if !issues.is_empty() {
+        ui.add_space(6.0);
+        for m in issues {
+            ui.colored_label(crate::style::warning(), m);
+        }
+    }
+}
+
+impl App {
+    /// The properties of the PV array selected in the 3D view in a window: everything
+    /// about it, and below that the same settings as in the Buildings pane.
+    pub(super) fn pv_properties(&mut self, ctx: &egui::Context) {
+        let Some(id) = self.panel_ui.selected_array else { return };
+        let Some((bi, k, ai)) = find_array(&self.session.prj, id) else {
+            self.panel_ui.selected_array = None;
+            return;
+        };
+        let view = PvView::of(&self.session.prj, bi);
+        let mut open = true;
+        let mut add_string = false;
+        let mut delete = false;
+        let title = tr_fmt!("PV array {}", self.session.prj.layout.buildings[bi].roofs[k].solar[ai].name);
+        egui::Window::new(title).id(egui::Id::unique("pv_properties")).open(&mut open).default_width(560.0).resizable(true).show(ctx, |ui| {
+            ui.horizontal(|ui| {
+                ui.checkbox(&mut self.panel_ui.hide_pv_modules, tr("Hide PV modules")).on_hover_text(tr("Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen"));
+            });
+            ui.separator();
+            egui::ScrollArea::vertical().max_height(560.0).auto_shrink([false, true]).show(ui, |ui| {
+                pv_summary(ui, &self.session.prj, bi, k, ai);
+                ui.add_space(6.0);
+                egui::CollapsingHeader::new(RichText::new(tr("Change")).strong()).id_salt(("pvpropsedit", id)).show(ui, |ui| {
+                    let a = &mut self.session.prj.layout.buildings[bi].roofs[k].solar[ai];
+                    (delete, add_string) = pv_array(ui, a, (k, ai), &view);
+                });
+            });
+        });
+        let prj = &mut self.session.prj;
+        if add_string {
+            if let Err(e) = strings::add_string(prj, bi, k, ai) {
+                self.panel_ui.status = e;
+            }
+        }
+        if delete {
+            prj.layout.buildings[bi].roofs[k].solar.remove(ai);
+            self.panel_ui.selected_array = None;
+        }
+        if !open {
+            self.panel_ui.selected_array = None;
+        }
+    }
 }

@@ -145,9 +145,15 @@ fn pv_arrays_on_pitched_and_flat_roofs() {
     assert_eq!((a["name"].as_str(), a["mounting"].as_str(), a["modules"].as_u64()), (Some("PV1"), Some("parallel"), Some(8)));
     assert!((a["peak_kw"].as_f64().unwrap() - 3.2).abs() < 1e-4);
     let parts: Vec<&str> = a["material"].as_array().unwrap().iter().map(|m| m["part"].as_str().unwrap()).collect();
-    assert_eq!(parts, ["GEN.PV-400W-FB", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-HOOK", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"]);
+    assert_eq!(parts, ["GEN.PV-400W-FB", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-HOOK", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-EARTH-CLAMP"]);
     let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
     assert_eq!(list["problems"], json!([]), "{}", list["problems"]);
+    // Its mounting bonded to an earthing busbar: one that does not exist is reported.
+    let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "earthing": "=PV-PE1" })).unwrap();
+    assert_eq!(b["roofs"][0]["solar"][0]["earthing"], "=PV-PE1");
+    let list = run(&mut s, "list_buildings", json!({ "building": "+H1" })).unwrap();
+    assert!(list["problems"].to_string().contains("=PV-PE1"), "{}", list["problems"]);
+    run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "earthing": "" })).unwrap();
     let b = run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "pv1", "columns": 5, "rows": 1, "landscape": true })).unwrap();
     assert_eq!(b["roofs"][0]["solar"][0]["modules"], 5);
     assert!(run(&mut s, "set_pv_array", json!({ "building": "+H1", "roof": "R1", "array": "PV1", "mounting": "wall" })).unwrap_err().contains("wall"));

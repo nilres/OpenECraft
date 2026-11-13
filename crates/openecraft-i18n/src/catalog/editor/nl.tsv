@@ -155,6 +155,7 @@ Arc	Boog
 Archive and version	Archief en versie
 Archive project…	Project archiveren…
 Arms	Armen
+Array	Veld
 As defined by the check	Zoals gedefinieerd door de controle
 As the rules say ({})	Volgens de regels ({})
 Aspects of the pages	Aspecten van de pagina's
@@ -220,6 +221,9 @@ Boundary	Grens
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Uitschakelvermogen ten opzichte van de kortsluitstroom bij elk beveiligingsapparaat van het net, uitschakeling bij de laagste foutstroom aan het einde van de stroomkring, kortsluitvastheid van de kabels en selectiviteit met het voorgeschakelde apparaat.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brug: vier draden; de verbinding komt aan één zijde binnen en gaat naar de drie andere, eerst de tegenoverliggende
 Building {} added with a level at ground level	Gebouw {} toegevoegd met een verdieping op maaiveldhoogte
+Building {} at x {} m, z {} m	Gebouw {} op x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Gebouw {} op x {} m, z {} m, {}° gedraaid
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Gebouw {} op x {} m, z {} m, {}° gedraaid: het staat buiten de perceelgrens
 Built-in frames cannot be changed; copy one to adapt it.	Ingebouwde kaders kunnen niet worden gewijzigd; kopieer er een om het aan te passen.
 Built-in scheme: copy it to change it.	Ingebouwd schema: kopieer het om het te wijzigen.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Ingebouwde titelblokken zijn alleen-lezen – gebruik ‘Als nieuw kopiëren’ om je eigen titelblok te maken.
@@ -297,6 +301,7 @@ Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de 
 Circle	Cirkel
 Circuits of a generic manifold	Groepen van een generieke verdeler
 Clear	Wissen
+Clear the search	Zoekopdracht wissen
 Clearance	Vrije ruimte
 Click	Klik
 Click a text: open its link	Klik op een tekst: de koppeling openen
@@ -428,6 +433,7 @@ Cross references…	Kruisverwijzingen…
 Crossed wires	Gekruiste draden
 Ctrl + click on the text opens it as well	Ctrl + klik op de tekst opent deze ook
 Ctrl+A	Ctrl+A
+Current at maximum power	Stroom bij maximaal vermogen
 Current-carrying capacity: {} × IEC 60204-1, table 6	Stroombelastbaarheid: {} × IEC 60204-1, tabel 6
 Customer rule sets	Klantspecifieke regelsets
 Customer, plant or standard	Klant, fabriek of norm
@@ -440,6 +446,7 @@ Cut length step tubes	Lengtestap slangen
 Cut length step wires	Lengtestap draden
 Cutout {} × {} mm	Uitsparing {} × {} mm
 Cutting allowance per end	Snijtoeslag per uiteinde
+DC leads	DC-kabels
 DRAFT	CONCEPT
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	CONCEPT, TER GOEDKEURING en GOEDGEKEURD in de huidige taal; niets na vrijgave
 DWG import failed: {}	DWG-import mislukt: {}
@@ -575,6 +582,7 @@ Draft	Concept
 Draft of revision {} created	Concept van revisie {} gemaakt
 Draft of revision {} discarded	Concept van revisie {} genegeerd
 Drag	Slepen
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Sleep een gebouw om het te verplaatsen · R: gebouw onder de aanwijzer 90° draaien · Esc: stoppen
 Drag a connection point designation of the selected symbol to place it.	Sleep een aansluitbenaming van het geselecteerde symbool om deze te plaatsen.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Sleep een uiteinde van een geselecteerde draad om alleen dat uiteinde te verplaatsen. Slepen met Alt keert Verbindingen behouden om.
 Drag an entry into the page, or click it and then click into the page.	Sleep een item naar de pagina, of klik erop en klik daarna in de pagina.
@@ -615,12 +623,16 @@ Duct fill limit	Grenswaarde gootvulling
 Duplicate	Dupliceren
 Each example builds on the one before and shows more of the features.	Elk voorbeeld bouwt voort op het vorige en toont meer van de functies.
 Each point-to-point connection can belong to a harness	Elke punt-tot-puntverbinding kan bij een kabelboom horen
+Earthing busbar	Aardrail
+Earthing conductor	Aardgeleider
+Earthing points	Aardpunten
 Earthing system	Aardingsstelsel
 Easting, northing	Oostwaarde, noordwaarde
 Eaves	Dakgoot
 Edge length of the routing grid: smaller is finer and slower	Randlengte van het routeringsraster: kleiner is fijner en langzamer
 Edit in table	Bewerken in tabel
 Edit in table…	Bewerken in tabel…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bewerkmodus: sleep de gebouwen naar hun plaats in de situatietekening en draai ze; een klik op een ruimte opent die niet meer
 Editable copy of this plot frame	Bewerkbare kopie van dit plotkader
 Editable copy of this title block	Bewerkbare kopie van dit titelblok
 Effective surface	Effectief oppervlak
@@ -806,6 +818,7 @@ Height of the plinth, 0 without plinth	Hoogte van de sokkel, 0 zonder sokkel
 Heights above floor (IEC 60204-1)	Hoogten boven vloer (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ingedrukt bij klikken, verplaatsen of scrollen. Ctrl is Cmd op macOS.
 Help	Help
+Hide PV modules	PV-modules verbergen
 Hide the groups you do not need and put the commands you use most into own groups.	Verberg de groepen die u niet nodig hebt en zet de meest gebruikte opdrachten in eigen groepen.
 Highest phase unbalance	Hoogste fase-onbalans
 Highest short-circuit current	Hoogste kortsluitstroom
@@ -951,6 +964,7 @@ Layout space	Montageruimte
 Layout spaces	Montageruimten
 Leave out the ceilings of the rooms and the roofs in the 3D view	De plafonds van de ruimtes en de daken weglaten in de 3D-weergave
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	In de 3D-weergave de deksels van alle kabelgoten weglaten: de draden erin zijn zichtbaar
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	De modules van de PV-velden in de 3D-weergave weglaten: rails, dakhaken, montagevoeten, aarding en bekabeling worden zichtbaar
 Leave repeated values of the first column blank	Herhaalde waarden van de eerste kolom leeg laten
 Left button	Linkerknop
 Left edges	Linkerranden
@@ -1020,6 +1034,7 @@ Macros ({})	Macro's ({})
 Macro…	Macro…
 Main	Hoofd
 Make the selected elements of this project equal to the compared ones	De geselecteerde elementen van dit project gelijkmaken aan de vergeleken elementen
+Maker	Fabrikant
 Makes the current page content of the option	Maakt de huidige pagina tot inhoud van de optie
 Manage plugins	Plugins beheren
 Management	Beheer
@@ -1062,6 +1077,7 @@ Mixed	Gemengd
 Mode	Modus
 Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
 Modifier keys	Combinatietoetsen
+Module area	Moduleoppervlak
 Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
 Motors feed the short circuit	Motoren voeden de kortsluiting
 Mounted on	Gemonteerd op
@@ -1074,6 +1090,7 @@ Mouse	Muis
 Move	Verplaatsen
 Move ahead in the 3D view (held)	Vooruit bewegen in de 3D-weergave (ingedrukt houden)
 Move back in the 3D view (held)	Achteruit bewegen in de 3D-weergave (ingedrukt houden)
+Move buildings	Gebouwen verplaatsen
 Move down	Omlaag
 Move down in the 3D view (held)	Omlaag bewegen in de 3D-weergave (ingedrukt houden)
 Move faster with the keys of the 3D view	Sneller bewegen met de toetsen van de 3D-weergave
@@ -1186,6 +1203,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Nog geen ma
 No modules: plug in PLC cards of the schematic.	Geen modules: plaats PLC-kaarten uit het schema.
 No numbers for	Geen nummers voor
 No panel items: place the devices in the panel layout.	Geen elementen: plaats de apparaten in de kastlay-out.
+No part matches.	Geen artikel komt overeen.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Nog geen artikelen gemarkeerd voor vloermontage. Markeer er een in het artikelbeheer: artikeleditor › Montagegegevens › Vloermontage.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Nog geen artikelen gemarkeerd voor wandmontage. Markeer er een in het artikelbeheer: artikeleditor › Montagegegevens › Wandmontage.
 No parts of the product group Cables in the parts database.	Geen artikelen van de productgroep Kabels in de artikeldatabase.
@@ -1204,6 +1222,7 @@ No segments yet: draw them in the plant layout.	Nog geen segmenten: teken ze in 
 No shortcut	Geen sneltoets
 No single-line symbols and no power devices in the schematic.	Geen eenlijnige symbolen en geen vermogensapparaten in het schema.
 No stations: add one or use the automatic configuration.	Geen stations: voeg er een toe of gebruik de automatische configuratie.
+No string yet: the modules are not connected.	Nog geen string: de modules zijn niet aangesloten.
 No subprojects were taken out of this project.	Uit dit project zijn geen deelprojecten afgesplitst.
 No terminal strips: place terminals in a schematic first.	Geen klemmenstroken: plaats eerst klemmen in een schema.
 No user symbols yet. Create one or copy a built-in symbol.	Nog geen gebruikerssymbolen. Maak er een of kopieer een ingebouwd symbool.
@@ -1267,6 +1286,7 @@ Open the selection: its properties, in the floor plan its face	De selectie opene
 Open to {}: wires cross beside the mounting plates	Open naar {}: draden lopen naast de montageplaten over
 Open walls and floors	Wanden en vloeren openen
 Open, save, import, export, print and the settings	Openen, opslaan, importeren, exporteren, afdrukken en de instellingen
+Open-circuit voltage	Nullastspanning
 OpenECraft page templates	OpenECraft-paginasjablonen
 OpenECraft page templates (JSON)	OpenECraft-paginasjablonen (JSON)
 OpenECraft project	OpenECraft-project
@@ -1308,6 +1328,7 @@ Other values ({})	Overige waarden ({})
 Otherwise from the plant layout, or next to the other line-ups	Anders uit de installatielay-out, of naast de andere kastrijen
 Out since {} (pages locked)	Afgesplitst sinds {} (pagina's vergrendeld)
 Outer diameter (e.g. 8 mm) or DN	Buitendiameter (bijv. 8 mm) of DN
+Outlets	Contactdozen
 Outlets, switches, heating	Dozen, schakelaars, verwarming
 Outline	Contour
 Outlines	Contouren
@@ -1330,6 +1351,9 @@ PLC channels	PLC-kanalen
 PLC hardware and bus topology	PLC-hardware en bustopologie
 PLC overview	PLC-overzicht
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- of JPEG-bitmap, bijv. een logo of een foto
+PV array {}	PV-veld {}
+PV array {} of building {}: {} modules	PV-veld {} van gebouw {}: {} modules
+PV array {} of building {}: {} modules, {} kWp	PV-veld {} van gebouw {}: {} modules, {} kWp
 PV arrays	PV-velden
 Page graphics	Paginagrafiek
 Page heading	Paginakop
@@ -1377,6 +1401,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Padfunctietekst
 Pattern	Patroon
 Pattern…	Patroon…
+Peak power	Piekvermogen
+Pick a part in the list.	Kies een artikel in de lijst.
 Pin-out	Pinbezetting
 Pipe run	Leidingtracé
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Leidingtracé op een wand, het plafond of de vloer van de ruimte, waarlangs slangen, buizen en leidingen worden gelegd: klik de hoekpunten, dubbelklik of druk op Enter om te voltooien
@@ -1394,6 +1420,7 @@ Place in the building	Plaats in het gebouw
 Place in the plant	Plaats in de installatie
 Place in the room	Plaats in de ruimte
 Place in the site plan	In de situatietekening plaatsen
+Place on the wall	Op de wand plaatsen
 Place text	Tekst plaatsen
 Place the georeferenced point everything is measured from	Het gegeorefereerde punt plaatsen van waaruit alles wordt gemeten
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Het gegeorefereerde punt van de installatie in de situatietekening plaatsen; de coördinaten komen in het venster Gebouwen, elk punt wordt ervandaan gemeten
@@ -1426,6 +1453,7 @@ Plug in card	Kaart plaatsen
 Plugin commands	Pluginopdrachten
 Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins voegen opdrachten, controles, rapporten en exports toe. Externe plugins worden geladen uit de mappen in de omgevingsvariabele {} (één submap met een plugin.json per plugin).
+Plus and minus leads from the modules to the inverter	Plus- en minkabel van de modules naar de omvormer
 Points	Punten
 Polygon	Veelhoek
 Polyline	Polylijn
@@ -1628,6 +1656,7 @@ Right edges	Rechterranden
 Right neighbour	Rechterbuur
 Rights	Rechten
 Risers	Optreden
+Roof pitch	Dakhelling
 Roof window	Dakraam
 Roof windows	Dakramen
 Roofs	Daken
@@ -1720,6 +1749,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Scrollen zoomt, ook waar het anders verschuift
 Search (* and ? as placeholders)…	Zoeken (* en ? als jokertekens)…
 Search below this folder	Zoeken onder deze map
+Search number, description, maker	Nummer, beschrijving, fabrikant zoeken
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	De artikelserver doorzoeken op catalogus, productgroep en technische gegevens, artikelen toevoegen en de database controleren op updates
 Second channel	Tweede kanaal
 Section properties	Sectie-eigenschappen
@@ -1780,6 +1810,7 @@ Shielded analogue cables	Afgeschermde analoge kabels
 Shielded drive cables	Afgeschermde aandrijfkabels
 Short circuit and selectivity	Kortsluiting en selectiviteit
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortsluiting, selectiviteit, belastingen, EMC, functionele veiligheid en verificatie tegen regelsets
+Short-circuit current	Kortsluitstroom
 Short-circuit currents	Kortsluitstromen
 Short-circuit power of the network	Kortsluitvermogen van het net
 Shortest profile	Kortste profiel
@@ -1892,6 +1923,7 @@ Surge protection	Overspanningsbeveiliging
 Swing the enclosure door open or shut (door devices and their wires move with it)	De kastdeur open- of dichtzwaaien (deurapparaten en hun draden zwaaien mee)
 Switch off the check \"{}\"	De controle \"{}\" uitschakelen
 Switched off on this computer ({})	Uitgeschakeld op deze computer ({})
+Switches	Schakelaars
 Switches the options with a condition by the configurator options	Schakelt de opties met een voorwaarde volgens de configuratoropties
 Switches to this workspace with its panes at their default places	Schakelt naar deze werkruimte met de deelvensters op hun standaardplaats
 Switches, push buttons and room thermostats	Schakelaars, drukknoppen en ruimtethermostaten
@@ -2093,6 +2125,7 @@ Via:	Via:
 View	Beeld
 Visible	Zichtbaar
 Voltage (line to line)	Spanning (fase-fase)
+Voltage at maximum power	Spanning bij maximaal vermogen
 Voltage drop	Spanningsval
 WGS 84, written into the site of IFC exports	WGS 84, wordt in het terrein van IFC-exports geschreven
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Wand {}, {} m: slepen om te verplaatsen, dubbelklik toont hem om uit te rusten
@@ -2281,6 +2314,8 @@ x y	x y
 {} (default)	{} (standaard)
 {} (first column)	{} (eerste kolom)
 {} (locked by {})	{} (vergrendeld door {})
+{} (no such device)	{} (apparaat bestaat niet)
+{} (not placed in the layout)	{} (niet in de opbouw geplaatst)
 {} (project server, revision {})	{} (projectserver, revisie {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (deelproject van {})
@@ -2342,6 +2377,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} heeft geen functie met symbool; wijs het toe aan een apparaat in de eigenschappen daarvan
 {} has unsaved changes. Discard them?	{} heeft niet-opgeslagen wijzigingen. Verwerpen?
 {} imported into the parts database and placed as {}	{} in de artikeldatabase geïmporteerd en geplaatst als {}
+{} in {}	{} in {}
 {} is neither in the parts database nor on the parts server	{} staat niet in de artikeldatabase en niet op de artikelserver
 {} is not in the disk image	{} staat niet in de schijfkopie
 {} is not made for wall mounting: place it on a mounting rail	{} is niet bedoeld voor wandmontage: plaats het op een rail
@@ -2371,6 +2407,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} van {} items weergegeven: zoek om de lijst te verkleinen
 {} of {} items	{} van {} elementen
 {} of {} pages locked	{} van {} pagina's vergrendeld
+{} of {} parts · double-click: place	{} van {} artikelen · dubbelklik: plaatsen
 {} of {} pins used	{} van {} pennen gebruikt
 {} of {} rows	{} van {} rijen
 {} of {} wires	{} van {} draden
@@ -2424,6 +2461,7 @@ x y	x y
 {} wires, {} – {} mm	{} draden, {} – {} mm
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
@@ -2431,6 +2469,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: samen met de draad naar {} krimpen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent
 {}: drag to move it, a double-click shows the floor	{}: slepen om te verplaatsen, dubbelklik toont de vloer
+{}: drag to move, R: turn by 90°	{}: slepen om te verplaatsen, R: 90° draaien
 {}: nothing to change	{}: niets te wijzigen
 {}: pin {}	{}: pin {}
 {}: strip {} mm, {}	{}: strippen {} mm, {}

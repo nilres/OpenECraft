@@ -46,6 +46,7 @@ Catalog id	Luettelon ID
 Category	Luokka
 Centred	Keskitetty
 Certificates	Sertifikaatit
+Change	Muutos
 Channel	Kanava
 Characteristic	Ominaiskäyrä
 Check settings	Tarkistusasetukset
@@ -106,6 +107,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Laitteen liitäntäpiste
 Device description	Laitekuvaus
 Device tag	Laitetunnus
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Laite, johon telineen maadoitusjohdin kulkee (maadoitus- tai potentiaalintasauskisko); tyhjä: ei mitään
 Device {}	Laite {}
 Devices	Laitteet
 Direction	Suunta
@@ -214,6 +216,8 @@ Minimum digits of the counter (leading zeros)	Laskurin vähimmäisnumeromäärä
 Missing parameter: {}	Puuttuva parametri: {}
 Missing value for --{}	Puuttuva arvo valitsimelle --{}
 Model import failed: {}	Mallin tuonti epäonnistui: {}
+Module	Moduuli
+Modules	Moduulit
 Modules in series	Moduulit sarjassa
 Modules side by side in a row	Moduulit vierekkäin rivissä
 Mounted	Asennettu
@@ -372,6 +376,7 @@ Revision {}	Revisio {}
 Rework	Jälkityö
 Right	Oikea
 Role	Rooli
+Roof	Katto
 Rooms	Tilat
 Round	Pyöreä
 Route	Reititä
@@ -502,6 +507,7 @@ not bonded	ei liitetty
 not connected	ei liitetty
 open	avoin
 pcs	kpl
+portrait	pysty
 rejected	hylätty
 right	oikealle
 spare	vara

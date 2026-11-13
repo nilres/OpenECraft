@@ -26,6 +26,35 @@ fn level_ids(prj: &Project, bi: usize) -> Vec<u64> {
 }
 
 #[test]
+fn buildings_move_and_turn_about_their_middle_with_their_rooms() {
+    let (mut prj, bi, [r0, r1]) = building();
+    let poses = site_poses(&prj);
+    let middle = |prj: &Project| {
+        let pts: Vec<[f32; 2]> = building_footprint(prj, &site_poses(prj), bi).into_iter().flatten().collect();
+        let (lo, hi) = crate::panel::bounds(&pts);
+        [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0]
+    };
+    let before = middle(&prj);
+    move_building(&mut prj, bi, [5000.0, -2000.0], 0.0).unwrap();
+    let moved = site_poses(&prj);
+    for r in [r0, r1] {
+        assert!((moved[r].at[0] - poses[r].at[0] - 5000.0).abs() < 0.5 && (moved[r].at[2] - poses[r].at[2] + 2000.0).abs() < 0.5);
+        assert_eq!(moved[r].at[1], poses[r].at[1], "on its level");
+    }
+    // Turned by 90°: its middle stays, the 4 × 3 m rooms stand 3 × 4 m.
+    let at = middle(&prj);
+    move_building(&mut prj, bi, [0.0, 0.0], 90.0).unwrap();
+    let turned = middle(&prj);
+    assert!((turned[0] - at[0]).abs() <= 1.0 && (turned[1] - at[1]).abs() <= 1.0, "{at:?} {turned:?}");
+    assert_eq!(prj.layout.buildings[bi].site.angle, 90.0);
+    let pts = &building_footprint(&prj, &site_poses(&prj), bi)[0];
+    let (lo, hi) = crate::panel::bounds(pts);
+    assert!(((hi[0] - lo[0]) - 3000.0).abs() < 1.0 && ((hi[1] - lo[1]) - 4000.0).abs() < 1.0);
+    assert!((before[0] + 5000.0 - at[0]).abs() < 1.0);
+    assert!(move_building(&mut prj, 9, [0.0, 0.0], 0.0).is_err());
+}
+
+#[test]
 fn rooms_stand_on_the_levels_of_their_building() {
     let (mut prj, bi, [r0, r1]) = building();
     let b = &prj.layout.buildings[bi];

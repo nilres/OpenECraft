@@ -14,10 +14,11 @@ use super::SitePose;
 use crate::issue::{Issue, Severity};
 use crate::model::panel::{Building, PvArray, PvMounting, Roof};
 use crate::model::Project;
-use crate::parts::vec3::{add, cross, norm, scale, sub, V3};
+use crate::parts::vec3::{add, cross, dot, norm, scale, sub, V3};
 use crate::parts::Part;
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 
+pub mod cabling;
 pub mod strings;
 
 /// Gap between neighbouring modules (the clamps), mm.
@@ -84,10 +85,13 @@ pub enum Role {
     Base,
     Ballast,
     Deflector,
+    /// The earthing clamps that bond the rails or the rows of mounting bases to the
+    /// earthing conductor.
+    Earthing,
 }
 
 impl Role {
-    pub const ALL: [Role; 8] = [Role::Rail, Role::Hook, Role::Connector, Role::EndClamp, Role::MidClamp, Role::Base, Role::Ballast, Role::Deflector];
+    pub const ALL: [Role; 9] = [Role::Rail, Role::Hook, Role::Connector, Role::EndClamp, Role::MidClamp, Role::Base, Role::Ballast, Role::Deflector, Role::Earthing];
 
     /// The subgroup of its parts.
     pub fn subgroup(&self) -> &'static str {
@@ -100,6 +104,7 @@ impl Role {
             Role::Base => "PV mounting base",
             Role::Ballast => "Ballast",
             Role::Deflector => "Wind deflector",
+            Role::Earthing => "PV earthing clamp",
         }
     }
 
@@ -115,6 +120,7 @@ impl Role {
             Role::Base => "GEN.PV-BASE-S15",
             Role::Ballast => "GEN.PV-BALLAST",
             Role::Deflector => "GEN.PV-DEFLECTOR",
+            Role::Earthing => "GEN.PV-EARTH-CLAMP",
         }
     }
 }
@@ -129,6 +135,11 @@ pub struct PvGeometry {
     pub rails: Vec<(V3, V3)>,
     /// Mounting bases and wind deflectors as upright plates.
     pub plates: Vec<[V3; 4]>,
+    /// The roof hooks under the rails: the foot on the covering and the top under the rail.
+    pub hooks: Vec<(V3, V3)>,
+    /// The earthing points of the mounting, one on each rail or row of mounting bases,
+    /// in the order the earthing conductor bonds them.
+    pub earth: Vec<V3>,
     /// The outline of the array in the floor plan.
     pub outline: Vec<[f32; 2]>,
     /// The plane of the roof's underside under the array.
@@ -212,13 +223,15 @@ pub fn geometry(r: &Roof, a: &PvArray) -> Option<PvGeometry> {
                 }
             }
             let y = (STANDOFF - RAIL / 2.0) * sec;
+            // The rails in the floor plan: (u, v) of both ends.
+            let mut ends: Vec<([f32; 2], [f32; 2])> = Vec::new();
             if a.landscape {
                 // Two rails up the slope under each column of modules.
                 let end = RAIL_END / sec;
                 for &u0 in &lefts {
                     for k in [0.25, 0.75] {
                         let u = u0 + along * k;
-                        g.rails.push((at(u, -depth / 2.0 - end, y), at(u, depth / 2.0 + end, y)));
+                        ends.push(([u, -depth / 2.0 - end], [u, depth / 2.0 + end]));
                     }
                 }
             } else {
@@ -227,9 +240,25 @@ pub fn geometry(r: &Roof, a: &PvArray) -> Option<PvGeometry> {
                     let v0 = -depth / 2.0 + j as f32 * (run + gap);
                     for k in [0.25, 0.75] {
                         let v = v0 + run * k;
-                        g.rails.push((at(-width / 2.0 - RAIL_END, v, y), at(width / 2.0 + RAIL_END, v, y)));
+                        ends.push(([-width / 2.0 - RAIL_END, v], [width / 2.0 + RAIL_END, v]));
                     }
                 }
+            }
+            let hooks = |len: f32| ((len - 2.0 * RAIL_END) / a.span.max(300.0)).ceil().max(1.0) as usize + 1;
+            for &(p, q) in &ends {
+                g.rails.push((at(p[0], p[1], y), at(q[0], q[1], y)));
+                // The roof hooks evenly from end to end, inside the overhang of the rail.
+                let len = ((q[0] - p[0]) * (q[0] - p[0]) + (q[1] - p[1]) * (q[1] - p[1]) * sec * sec).sqrt();
+                let n = hooks(len);
+                let inset = (RAIL_END / len.max(1.0)).min(0.4);
+                for i in 0..n {
+                    let t = inset + (1.0 - 2.0 * inset) * i as f32 / (n - 1).max(1) as f32;
+                    let (u, v) = (p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t);
+                    g.hooks.push((at(u, v, 0.0), at(u, v, (STANDOFF - RAIL) * sec)));
+                }
+                // The earthing point on top of the rail, in its overhang beyond the modules.
+                let t = (RAIL_END * 0.5 / len.max(1.0)).min(0.5);
+                g.earth.push(at(p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t, STANDOFF * sec));
             }
             g.outline = vec![plan(-width / 2.0, -depth / 2.0), plan(width / 2.0, -depth / 2.0), plan(width / 2.0, depth / 2.0), plan(-width / 2.0, depth / 2.0)];
         }
@@ -260,6 +289,8 @@ pub fn geometry(r: &Roof, a: &PvArray) -> Option<PvGeometry> {
                     // The wind deflector along the high edge.
                     g.plates.push([at(-width / 2.0, v0 + run, 0.0), at(width / 2.0, v0 + run, 0.0), at(width / 2.0, v0 + run, BASE_HEIGHT + rise), at(-width / 2.0, v0 + run, BASE_HEIGHT + rise)]);
                 }
+                // The earthing point on the outer base of the row.
+                g.earth.push(at(-width / 2.0, v0 + run / 2.0, BASE_HEIGHT / 2.0));
             }
             g.outline = vec![plan(-width / 2.0, -depth / 2.0), plan(width / 2.0, -depth / 2.0), plan(width / 2.0, depth / 2.0), plan(-width / 2.0, depth / 2.0)];
         }
@@ -308,35 +339,85 @@ fn module_faces(top: &[V3; 4], depth: f32, out: &mut Vec<RoofFace>, pose: SitePo
     out.push(face(top.iter().rev().map(|&v| down(v)).collect(), RoofFaceKind::ModuleFrame, pose));
 }
 
-/// The faces of the PV arrays of a roof in the plant: modules (cells and frames), rails,
-/// mounting bases and wind deflectors.
+/// A bar of square section `size` from `p` to `q` (its axis): its four sides and its
+/// ends; `level` is a direction across it (the side faces stand square to it).
+fn bar(p: V3, q: V3, size: f32, level: V3, kind: RoofFaceKind, out: &mut Vec<RoofFace>, pose: SitePose) {
+    let along = norm(sub(q, p));
+    let mut side = norm(cross(along, level));
+    if side == [0.0; 3] {
+        side = norm(cross(along, [1.0, 0.0, 0.0]));
+    }
+    let up = norm(cross(side, along));
+    let (hs, hu) = (scale(side, size / 2.0), scale(up, size / 2.0));
+    let corners = [sub(sub(p, hs), hu), add(sub(p, hu), hs), add(add(p, hs), hu), sub(add(p, hu), hs)];
+    let off = sub(q, p);
+    for k in 0..4 {
+        let (c0, c1) = (corners[k], corners[(k + 1) % 4]);
+        out.push(face(vec![c0, c1, add(c1, off), add(c0, off)], kind, pose));
+    }
+    out.push(face(corners.iter().rev().copied().collect(), kind, pose));
+    out.push(face(corners.iter().map(|&c| add(c, off)).collect(), kind, pose));
+}
+
+/// The faces of the PV arrays of a roof in the plant: modules (cells and frames, with
+/// their junction boxes), rails, roof hooks, mounting bases, wind deflectors and the
+/// earthing clamps.
 pub fn faces(b: &Building, r: &Roof) -> Vec<RoofFace> {
+    faces_of(b, r, &r.solar)
+}
+
+/// The faces of `arrays` of roof `r` (see [`faces`]).
+pub fn faces_of(b: &Building, r: &Roof, arrays: &[PvArray]) -> Vec<RoofFace> {
     let pose = building_pose(b);
     let mut out = Vec::new();
-    for a in &r.solar {
+    for a in arrays {
         let Some(g) = geometry(r, a) else { continue };
+        let h = a.module_height.max(5.0);
         for m in &g.modules {
-            module_faces(m, a.module_height.max(5.0), &mut out, pose);
+            module_faces(m, h, &mut out, pose);
+            // The junction box on the back, near the upper edge.
+            let (n, c) = (normal_of(m), junction(m, h));
+            let top = sub(c, scale(n, JUNCTION));
+            bar(c, top, 90.0, sub(m[1], m[0]), RoofFaceKind::ModuleFrame, &mut out, pose);
         }
+        // Square to the covering, upwards.
+        let n = norm([-g.plane.a, 1.0, -g.plane.b]);
         for &(p, q) in &g.rails {
-            let along = norm(sub(q, p));
-            let side = norm(cross(along, [0.0, 1.0, 0.0]));
-            let up = norm(cross(side, along));
-            let (hs, hu) = (scale(side, RAIL / 2.0), scale(up, RAIL / 2.0));
-            let corners = [sub(sub(p, hs), hu), add(sub(p, hu), hs), add(add(p, hs), hu), sub(add(p, hu), hs)];
-            for k in 0..4 {
-                let (c0, c1) = (corners[k], corners[(k + 1) % 4]);
-                let off = sub(q, p);
-                out.push(face(vec![c0, c1, add(c1, off), add(c0, off)], RoofFaceKind::Mounting, pose));
-            }
+            bar(p, q, RAIL, [0.0, 1.0, 0.0], RoofFaceKind::Mounting, &mut out, pose);
+        }
+        for &(foot, top) in &g.hooks {
+            // The hook from the covering up to the rail and its plate on the rafter.
+            let toward = norm(sub(top, foot));
+            bar(foot, top, 30.0, if dot(toward, n).abs() > 0.99 { [1.0, 0.0, 0.0] } else { n }, RoofFaceKind::Mounting, &mut out, pose);
+            bar(foot, add(foot, scale(n, 6.0)), 70.0, [1.0, 0.0, 0.0], RoofFaceKind::Mounting, &mut out, pose);
         }
         for plate in &g.plates {
             // Seen from both sides.
             out.push(face(plate.to_vec(), RoofFaceKind::Mounting, pose));
             out.push(face(plate.iter().rev().copied().collect(), RoofFaceKind::Mounting, pose));
         }
+        for &e in &g.earth {
+            bar(e, add(e, scale(n, EARTH_CLAMP)), EARTH_CLAMP, [1.0, 0.0, 0.0], RoofFaceKind::Earthing, &mut out, pose);
+        }
     }
     out
+}
+
+/// Depth of the junction box on the back of a module, mm.
+pub const JUNCTION: f32 = 18.0;
+/// Size of an earthing clamp on a rail or a mounting base, mm.
+pub const EARTH_CLAMP: f32 = 30.0;
+
+/// The point of the back of a module (`top` its upper face, `h` its height) where its
+/// junction box sits: in the middle, a fifth of the way from its upper edge.
+fn junction(top: &[V3; 4], h: f32) -> V3 {
+    let n = normal_of(top);
+    let m = [0, 1, 2].map(|k| top.iter().map(|p| p[k]).sum::<f32>() / 4.0);
+    // The upper edge: the one of the two pairs of opposite edges whose middle is highest.
+    let mids: Vec<V3> = (0..4).map(|k| scale(add(top[k], top[(k + 1) % 4]), 0.5)).collect();
+    let high = mids.iter().copied().max_by(|a, b| a[1].total_cmp(&b[1])).unwrap_or(m);
+    let c = add(m, scale(sub(high, m), 0.6));
+    sub(c, scale(n, h))
 }
 
 /// A part of the project or of the built-in catalog.
@@ -399,6 +480,7 @@ pub fn mounting(prj: &Project, a: &PvArray) -> Vec<(Role, f32)> {
             out.push((Role::Hook, rails * ((length - 2.0 * RAIL_END) / a.span.max(300.0)).ceil().max(1.0) + rails));
             out.push((Role::EndClamp, 2.0 * rails));
             out.push((Role::MidClamp, rails * (on_rail - 1.0)));
+            out.push((Role::Earthing, rails));
         }
         PvMounting::Tilted | PvMounting::EastWest => {
             let pair = a.mounting == PvMounting::EastWest;
@@ -413,6 +495,7 @@ pub fn mounting(prj: &Project, a: &PvArray) -> Vec<(Role, f32)> {
             if !pair {
                 out.push((Role::Deflector, modules));
             }
+            out.push((Role::Earthing, rows));
         }
     }
     out.retain(|(_, q)| *q > 0.0);
@@ -551,6 +634,9 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
                     if other.as_ref().is_some_and(|o| overlap(&g.outline, o) > 1.0) {
                         out.push(crate::issue!(Severity::Warning, None, "{}: PV arrays {} and {} lie over each other", b.name, a.name, r.solar[j].name));
                     }
+                }
+                if !a.earthing.is_empty() && !prj.devices.contains_key(&a.earthing) {
+                    out.push(crate::issue!(Severity::Warning, None, "{}: the earthing busbar {} of PV array {} does not exist", b.name, a.earthing, a.name));
                 }
                 if !a.device.is_empty() {
                     match prj.devices.get(&a.device) {

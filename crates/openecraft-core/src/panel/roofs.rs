@@ -436,8 +436,10 @@ pub enum RoofFaceKind {
     Module,
     /// The frame of a PV module.
     ModuleFrame,
-    /// Rails, mounting bases and wind deflectors of a PV array.
+    /// Rails, roof hooks, mounting bases and wind deflectors of a PV array.
     Mounting,
+    /// The earthing clamps of the mounting of a PV array.
+    Earthing,
 }
 
 pub(super) fn normal_of(pts: &[V3]) -> V3 {

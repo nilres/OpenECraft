@@ -155,6 +155,7 @@ Arc	Arco
 Archive and version	Arquivo compactado e versão
 Archive project…	Arquivar projeto…
 Arms	Braços
+Array	Arranjo
 As defined by the check	Conforme definido pela verificação
 As the rules say ({})	Conforme as regras ({})
 Aspects of the pages	Aspectos das páginas
@@ -220,6 +221,9 @@ Boundary	Limite
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Capacidade de interrupção em relação à corrente de curto-circuito em cada dispositivo de proteção da rede, seccionamento com a menor corrente de falta no fim de seu circuito, suportabilidade a curto-circuito dos cabos e seletividade com o dispositivo a montante.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Ponte: quatro fios; a conexão entra por um lado e vai para os outros três, primeiro para o lado oposto
 Building {} added with a level at ground level	Edifício {} adicionado com um piso ao nível do solo
+Building {} at x {} m, z {} m	Edifício {} em x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Edifício {} em x {} m, z {} m, girado {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Edifício {} em x {} m, z {} m, girado {}°: está fora do limite do terreno
 Built-in frames cannot be changed; copy one to adapt it.	As molduras integradas não podem ser alteradas; copie uma para adaptá-la.
 Built-in scheme: copy it to change it.	Esquema integrado: copie-o para alterá-lo.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Os selos integrados são somente leitura – use “Copiar como novo” para criar o seu próprio.
@@ -297,6 +301,7 @@ Chooses the pages whose structure starts with this	Escolhe as páginas cuja estr
 Circle	Círculo
 Circuits of a generic manifold	Circuitos de um coletor genérico
 Clear	Limpar
+Clear the search	Limpar a pesquisa
 Clearance	Folga
 Click	Clique
 Click a text: open its link	Clique em um texto: abrir seu link
@@ -428,6 +433,7 @@ Cross references…	Referências cruzadas…
 Crossed wires	Fios cruzados
 Ctrl + click on the text opens it as well	Ctrl + clique no texto também o abre
 Ctrl+A	Ctrl+A
+Current at maximum power	Corrente na potência máxima
 Current-carrying capacity: {} × IEC 60204-1, table 6	Capacidade de condução de corrente: {} × IEC 60204-1, tabela 6
 Customer rule sets	Conjuntos de regras de clientes
 Customer, plant or standard	Cliente, planta ou norma
@@ -440,6 +446,7 @@ Cut length step tubes	Passo do comprimento de corte dos tubos
 Cut length step wires	Passo do comprimento de corte dos fios
 Cutout {} × {} mm	Recorte {} × {} mm
 Cutting allowance per end	Sobremedida de corte por extremidade
+DC leads	Cabos CC
 DRAFT	RASCUNHO
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	RASCUNHO, PARA APROVAÇÃO e APROVADO no idioma atual; nada depois de liberado
 DWG import failed: {}	Falha na importação DWG: {}
@@ -575,6 +582,7 @@ Draft	Rascunho
 Draft of revision {} created	Rascunho da revisão {} criado
 Draft of revision {} discarded	Rascunho da revisão {} descartado
 Drag	Arrastar
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Arraste um edifício para movê-lo · R: girar 90° o edifício sob o ponteiro · Esc: parar
 Drag a connection point designation of the selected symbol to place it.	Arraste uma designação de conexão do símbolo selecionado para posicioná-la.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Arraste uma extremidade de um fio selecionado para mover só essa extremidade. Arrastar com Alt inverte Manter conexões.
 Drag an entry into the page, or click it and then click into the page.	Arraste uma entrada para a página ou clique nela e depois clique na página.
@@ -615,12 +623,16 @@ Duct fill limit	Limite de ocupação da canaleta
 Duplicate	Duplicar
 Each example builds on the one before and shows more of the features.	Cada exemplo se baseia no anterior e mostra mais funções.
 Each point-to-point connection can belong to a harness	Cada conexão ponto a ponto pode pertencer a um chicote
+Earthing busbar	Barramento de aterramento
+Earthing conductor	Condutor de aterramento
+Earthing points	Pontos de aterramento
 Earthing system	Esquema de aterramento
 Easting, northing	Coordenada leste, norte
 Eaves	Beiral
 Edge length of the routing grid: smaller is finer and slower	Comprimento da aresta da grade de roteamento: menor é mais fino e mais lento
 Edit in table	Editar em tabela
 Edit in table…	Editar em tabela…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Modo de edição: arraste os edifícios para os seus lugares na planta de situação e gire-os; um clique num ambiente não o abre mais
 Editable copy of this plot frame	Cópia editável desta moldura de plotagem
 Editable copy of this title block	Cópia editável deste selo
 Effective surface	Superfície efetiva
@@ -806,6 +818,7 @@ Height of the plinth, 0 without plinth	Altura da base, 0 sem base
 Heights above floor (IEC 60204-1)	Alturas acima do piso (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Mantida ao clicar, mover ou rolar. Ctrl é Cmd no macOS.
 Help	Ajuda
+Hide PV modules	Ocultar módulos FV
 Hide the groups you do not need and put the commands you use most into own groups.	Oculte os grupos de que você não precisa e coloque os comandos mais usados em grupos próprios.
 Highest phase unbalance	Maior desequilíbrio de fases
 Highest short-circuit current	Maior corrente de curto-circuito
@@ -951,6 +964,7 @@ Layout space	Espaço de montagem
 Layout spaces	Espaços de montagem
 Leave out the ceilings of the rooms and the roofs in the 3D view	Omitir os tetos das salas e os telhados na vista 3D
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Na vista 3D, omitir as tampas de todas as canaletas: os fios nelas ficam visíveis
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Omitir os módulos dos arranjos FV na vista 3D: veem-se os trilhos, ganchos de telhado, suportes, o aterramento e o cabeamento
 Leave repeated values of the first column blank	Deixar em branco os valores repetidos da primeira coluna
 Left button	Botão esquerdo
 Left edges	Bordas esquerdas
@@ -1020,6 +1034,7 @@ Macros ({})	Macros ({})
 Macro…	Macro…
 Main	Principal
 Make the selected elements of this project equal to the compared ones	Igualar os elementos selecionados deste projeto aos comparados
+Maker	Fabricante
 Makes the current page content of the option	Torna a página atual conteúdo da opção
 Manage plugins	Gerenciar plug-ins
 Management	Gerenciamento
@@ -1062,6 +1077,7 @@ Mixed	Misto
 Mode	Modo
 Model of a part (2D / 3D)	Modelo de uma peça (2D / 3D)
 Modifier keys	Teclas modificadoras
+Module area	Área dos módulos
 Module part; its size comes from the part	Peça do módulo; seu tamanho vem da peça
 Motors feed the short circuit	Os motores alimentam o curto-circuito
 Mounted on	Montado em
@@ -1074,6 +1090,7 @@ Mouse	Mouse
 Move	Mover
 Move ahead in the 3D view (held)	Avançar na vista 3D (manter pressionado)
 Move back in the 3D view (held)	Recuar na vista 3D (manter pressionado)
+Move buildings	Mover edifícios
 Move down	Mover para baixo
 Move down in the 3D view (held)	Descer na vista 3D (manter pressionado)
 Move faster with the keys of the 3D view	Mover mais rápido com as teclas da vista 3D
@@ -1186,6 +1203,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Ainda não 
 No modules: plug in PLC cards of the schematic.	Nenhum módulo: insira cartões de CLP do esquema elétrico.
 No numbers for	Sem números para
 No panel items: place the devices in the panel layout.	Nenhum item do painel: posicione os dispositivos no layout do painel.
+No part matches.	Nenhuma peça corresponde.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Ainda não há peças marcadas para montagem no piso. Marque uma no gerenciamento de peças: editor de peças › Dados de montagem › Montagem no piso.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Ainda não há peças marcadas para montagem na parede. Marque uma no gerenciamento de peças: editor de peças › Dados de montagem › Montagem na parede.
 No parts of the product group Cables in the parts database.	Nenhuma peça do grupo de produtos Cabos no banco de dados de peças.
@@ -1204,6 +1222,7 @@ No segments yet: draw them in the plant layout.	Ainda não há trechos: desenhe-
 No shortcut	Nenhum atalho
 No single-line symbols and no power devices in the schematic.	Nenhum símbolo unifilar e nenhum dispositivo de potência no esquema elétrico.
 No stations: add one or use the automatic configuration.	Nenhuma estação: adicione uma ou use a configuração automática.
+No string yet: the modules are not connected.	Ainda sem string: os módulos não estão conectados.
 No subprojects were taken out of this project.	Nenhum subprojeto foi retirado deste projeto.
 No terminal strips: place terminals in a schematic first.	Nenhuma régua de bornes: posicione primeiro bornes em um esquema elétrico.
 No user symbols yet. Create one or copy a built-in symbol.	Ainda não há símbolos do usuário. Crie um ou copie um símbolo integrado.
@@ -1267,6 +1286,7 @@ Open the selection: its properties, in the floor plan its face	Abrir a seleção
 Open to {}: wires cross beside the mounting plates	Aberto para {}: os fios passam ao lado das placas de montagem
 Open walls and floors	Abrir paredes e pisos
 Open, save, import, export, print and the settings	Abrir, salvar, importar, exportar, imprimir e as configurações
+Open-circuit voltage	Tensão de circuito aberto
 OpenECraft page templates	Modelos de página do OpenECraft
 OpenECraft page templates (JSON)	Modelos de página do OpenECraft (JSON)
 OpenECraft project	Projeto do OpenECraft
@@ -1308,6 +1328,7 @@ Other values ({})	Outros valores ({})
 Otherwise from the plant layout, or next to the other line-ups	Caso contrário, a partir do layout da planta ou ao lado das outras fileiras
 Out since {} (pages locked)	Retirado desde {} (páginas bloqueadas)
 Outer diameter (e.g. 8 mm) or DN	Diâmetro externo (por exemplo, 8 mm) ou DN
+Outlets	Tomadas
 Outlets, switches, heating	Tomadas, interruptores, aquecimento
 Outline	Contorno
 Outlines	Contornos
@@ -1330,6 +1351,9 @@ PLC channels	Canais de CLP
 PLC hardware and bus topology	Hardware de CLP e topologia de barramento
 PLC overview	Visão geral do CLP
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmap PNG ou JPEG, por exemplo, um logotipo ou uma foto
+PV array {}	Arranjo FV {}
+PV array {} of building {}: {} modules	Arranjo FV {} do edifício {}: {} módulos
+PV array {} of building {}: {} modules, {} kWp	Arranjo FV {} do edifício {}: {} módulos, {} kWp
 PV arrays	Sistemas fotovoltaicos
 Page graphics	Gráficos da página
 Page heading	Título da página
@@ -1377,6 +1401,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Texto de função do caminho
 Pattern	Padrão
 Pattern…	Padrão…
+Peak power	Potência de pico
+Pick a part in the list.	Escolha uma peça na lista.
 Pin-out	Pinagem
 Pipe run	Percurso de tubulação
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Percurso de tubulação em uma parede, no teto ou no piso da sala, ao longo do qual mangueiras, tubos e tubulações são roteados: clique nos cantos, clique duplo ou Enter para concluir
@@ -1394,6 +1420,7 @@ Place in the building	Posição no edifício
 Place in the plant	Posição na instalação
 Place in the room	Local no ambiente
 Place in the site plan	Colocar na planta de situação
+Place on the wall	Colocar na parede
 Place text	Posicionar texto
 Place the georeferenced point everything is measured from	Colocar o ponto georreferenciado a partir do qual tudo é medido
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Colocar o ponto georreferenciado da instalação na planta de situação; suas coordenadas vão para o painel Edifícios e cada ponto é medido a partir dele
@@ -1426,6 +1453,7 @@ Plug in card	Inserir cartão
 Plugin commands	Comandos de plug-in
 Plugins	Plug-ins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Os plug-ins adicionam comandos, verificações, relatórios e exportações. Plug-ins externos são carregados das pastas da variável de ambiente {} (uma subpasta com um plugin.json por plug-in).
+Plus and minus leads from the modules to the inverter	Cabos positivo e negativo dos módulos ao inversor
 Points	Pontos
 Polygon	Polígono
 Polyline	Polilinha
@@ -1628,6 +1656,7 @@ Right edges	Bordas direitas
 Right neighbour	Vizinho à direita
 Rights	Direitos
 Risers	Espelhos
+Roof pitch	Inclinação do telhado
 Roof window	Janela de telhado
 Roof windows	Janelas de telhado
 Roofs	Telhados
@@ -1720,6 +1749,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Rolar aplica zoom, também onde moveria a vista
 Search (* and ? as placeholders)…	Pesquisar (* e ? como curingas)…
 Search below this folder	Pesquisar abaixo desta pasta
+Search number, description, maker	Pesquisar número, descrição, fabricante
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Pesquisar no servidor de peças por catálogo, grupo de produtos e dados técnicos, adicionar peças e verificar se há atualizações no banco de dados
 Second channel	Segundo canal
 Section properties	Propriedades da seção
@@ -1780,6 +1810,7 @@ Shielded analogue cables	Cabos analógicos blindados
 Shielded drive cables	Cabos de acionamento blindados
 Short circuit and selectivity	Curto-circuito e seletividade
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Curto-circuito, seletividade, cargas, EMC, segurança funcional e verificação com base em conjuntos de regras
+Short-circuit current	Corrente de curto-circuito
 Short-circuit currents	Correntes de curto-circuito
 Short-circuit power of the network	Potência de curto-circuito da rede
 Shortest profile	Perfil mais curto
@@ -1892,6 +1923,7 @@ Surge protection	Proteção contra surtos
 Swing the enclosure door open or shut (door devices and their wires move with it)	Abrir ou fechar a porta do gabinete (os dispositivos da porta e seus fios acompanham)
 Switch off the check \"{}\"	Desativar a verificação \"{}\"
 Switched off on this computer ({})	Desativado neste computador ({})
+Switches	Interruptores
 Switches the options with a condition by the configurator options	Comuta as opções com condição de acordo com as opções do configurador
 Switches to this workspace with its panes at their default places	Muda para este espaço de trabalho com os painéis nas posições padrão
 Switches, push buttons and room thermostats	Interruptores, pulsadores e termostatos de ambiente
@@ -2093,6 +2125,7 @@ Via:	Via:
 View	Exibir
 Visible	Visível
 Voltage (line to line)	Tensão (entre fases)
+Voltage at maximum power	Tensão na potência máxima
 Voltage drop	Queda de tensão
 WGS 84, written into the site of IFC exports	WGS 84, gravada no terreno das exportações IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Parede {}, {} m: arraste para movê-la, clique duplo para mostrá-la e equipá-la
@@ -2281,6 +2314,8 @@ x y	x y
 {} (default)	{} (padrão)
 {} (first column)	{} (primeira coluna)
 {} (locked by {})	{} (bloqueado por {})
+{} (no such device)	{} (dispositivo inexistente)
+{} (not placed in the layout)	{} (não colocado no layout)
 {} (project server, revision {})	{} (servidor de projetos, revisão {})
 {} (spare)	{} (reserva)
 {} (subproject of {})	{} (subprojeto de {})
@@ -2342,6 +2377,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} não tem função com símbolo; atribua-a a um dispositivo nas propriedades dele
 {} has unsaved changes. Discard them?	{} tem alterações não salvas. Descartá-las?
 {} imported into the parts database and placed as {}	{} importada para o banco de dados de peças e posicionada como {}
+{} in {}	{} em {}
 {} is neither in the parts database nor on the parts server	{} não está no banco de dados de peças nem no servidor de peças
 {} is not in the disk image	{} não está na imagem de disco
 {} is not made for wall mounting: place it on a mounting rail	{} não é feito para montagem na parede: coloque-o em um trilho
@@ -2371,6 +2407,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} de {} entradas mostradas: pesquise para restringir a lista
 {} of {} items	{} de {} itens
 {} of {} pages locked	{} de {} páginas bloqueadas
+{} of {} parts · double-click: place	{} de {} peças · clique duplo: colocar
 {} of {} pins used	{} de {} pinos usados
 {} of {} rows	{} de {} linhas
 {} of {} wires	{} de {} fios
@@ -2424,6 +2461,7 @@ x y	x y
 {} wires, {} – {} mm	{} fios, {} – {} mm
 {} °C (max. {} °C)	{} °C (máx. {} °C)
 {} °C (max.)	{} °C (máx.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} páginas)
 {} – {} here (Esc cancels)	{} – {} aqui (Esc cancela)
@@ -2431,6 +2469,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: crimpar junto com o fio para {}
 {}: drag to move it, R turns it, a double-click opens it	{}: arraste para mover, R para girar, clique duplo para abrir
 {}: drag to move it, a double-click shows the floor	{}: arraste para mover, clique duplo para mostrar o piso
+{}: drag to move, R: turn by 90°	{}: arrastar para mover, R: girar 90°
 {}: nothing to change	{}: nada a alterar
 {}: pin {}	{}: pino {}
 {}: strip {} mm, {}	{}: desencapar {} mm, {}

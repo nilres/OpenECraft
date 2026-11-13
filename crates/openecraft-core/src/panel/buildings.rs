@@ -104,6 +104,56 @@ pub fn building_rooms(layout: &Layout, bi: usize) -> Vec<usize> {
     layout.buildings.get(bi).map_or_else(Vec::new, |b| b.levels.iter().flat_map(|l| rooms_on(layout, l.id)).collect())
 }
 
+/// The floor plan of building `bi` in the plant (x, z): the outline of each of its rooms
+/// and of each of its roofs (`poses`: [`site_poses`]).
+pub fn building_footprint(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<Vec<[f32; 2]>> {
+    let layout = &prj.layout;
+    let Some(b) = layout.buildings.get(bi) else { return Vec::new() };
+    let mut out: Vec<Vec<[f32; 2]>> = building_rooms(layout, bi)
+        .into_iter()
+        .map(|ri| {
+            outline(&layout.enclosures[ri])
+                .into_iter()
+                .map(|[x, z]| {
+                    let q = poses[ri].apply([x, 0.0, z]);
+                    [q[0], q[2]]
+                })
+                .collect()
+        })
+        .collect();
+    let bp = building_pose(b);
+    out.extend(b.roofs.iter().map(|r| {
+        super::roofs::region(r)
+            .into_iter()
+            .map(|[x, z]| {
+                let q = bp.apply([x, 0.0, z]);
+                [q[0], q[2]]
+            })
+            .collect()
+    }));
+    out
+}
+
+/// Moves building `bi` by `by` (x, z, mm) and turns it by `degrees` counter-clockwise
+/// seen from above about the middle of its floor plan: its place in the plant, rounded
+/// to the millimetre; its rooms, the cabinets in them, stairs and roofs go with it.
+pub fn move_building(prj: &mut Project, bi: usize, by: [f32; 2], degrees: f32) -> Result<(), String> {
+    let poses = site_poses(prj);
+    let pts: Vec<[f32; 2]> = building_footprint(prj, &poses, bi).into_iter().flatten().collect();
+    let b = prj.layout.buildings.get_mut(bi).ok_or_else(|| tr("No such building").to_string())?;
+    let old = building_pose(b);
+    let c = if pts.is_empty() { [b.site.x, b.site.z] } else {
+        let (lo, hi) = super::bounds(&pts);
+        [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0]
+    };
+    let local = old.local([c[0], 0.0, c[1]]);
+    b.site.angle = (b.site.angle + degrees).rem_euclid(360.0);
+    let turned = building_pose(b).apply(local);
+    b.site.x = (b.site.x + c[0] - turned[0] + by[0]).round();
+    b.site.z = (b.site.z + c[1] - turned[2] + by[1]).round();
+    Ok(())
+}
+
 /// Floor plan corners (x, z in the plant) of everything standing in the plant, and of
 /// the rooms of building `except` not.
 fn placed_corners(prj: &Project, except: Option<usize>) -> Vec<[f32; 2]> {

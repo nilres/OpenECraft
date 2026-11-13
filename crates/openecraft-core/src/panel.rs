@@ -1109,8 +1109,17 @@ pub fn device_mesh_painted(prj: &Project, it: &PanelItem) -> Option<Vec<(Tri, Op
     // wall it sits in, the locknut and the end of the thread from the inner surface on
     // into the enclosure ([`crate::parts::GLAND_GAP`]), whatever the wall's thickness.
     if it.kind == ItemKind::Accessory {
-        let part = part_by_number(prj, &it.part).filter(|p| p.subgroup == "Cable gland")?;
+        let part = part_by_number(prj, &it.part)?;
         let mesh = part.model_3d.as_ref()?;
+        // Outlets, switches, manifolds and the other parts of a room with their models in
+        // their boxes.
+        if part.subgroup != "Cable gland" {
+            if !prj.layout.enclosures.iter().any(|e| e.is_room() && e.item(it.id).is_some()) {
+                return None;
+            }
+            let tris = painted(mesh, place_mesh(mesh, it));
+            return (!tris.is_empty()).then_some(tris);
+        }
         let wall = prj.layout.enclosures.iter().find(|e| e.item(it.id).is_some()).map_or(0.0, |e| e.wall());
         let (min, size) = (mesh.bounds().0, mesh.size());
         let out = tech_number(part, "Outside").filter(|o| *o > 0.0).unwrap_or(size[2]).min(size[2]);

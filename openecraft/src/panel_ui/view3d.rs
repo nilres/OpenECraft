@@ -272,14 +272,24 @@ impl PanelUi {
     /// Selects what was clicked at `ptr`: a device, a wire, a cable or tube, another item.
     /// True when the status shows what was picked.
     fn pick_3d(&mut self, prj: &Project, an: &Analysis, scene: &Scene3d, prims: &[Prim], project_view: &dyn Fn(V3) -> Option<(Pos2, f32)>, ptr: Pos2) -> bool {
-        // Faces are in drawing order: the last one under the pointer is visible.
-        let hit = prims.iter().rev().find_map(|prim| match prim {
-            Prim::Face { pts, z, n, item: Some(item), .. } if point_in_convex(ptr, &pts[..*n as usize]) => Some((*item, depth_at(ptr, &pts[..*n as usize], z))),
+        // Faces are in drawing order: the last one under the pointer is visible. A PV array
+        // (on the roof, drawn with it) nearer to the eye than that one is in front of it.
+        let under = |prim: &Prim| match prim {
+            Prim::Face { pts, z, n, item, pv, .. } if (item.is_some() || pv.is_some()) && point_in_convex(ptr, &pts[..*n as usize]) => Some((*item, *pv, depth_at(ptr, &pts[..*n as usize], z))),
             _ => None,
-        });
+        };
+        let last = prims.iter().rev().find_map(under);
+        let nearest_pv = prims.iter().filter_map(under).filter(|t| t.1.is_some()).min_by(|a, b| a.2.total_cmp(&b.2));
+        let top = match (last, nearest_pv) {
+            (Some(l), Some(p)) if p.2 < l.2 => Some(p),
+            (l, p) => l.or(p),
+        };
+        let array = top.and_then(|t| t.1);
+        let hit = top.and_then(|(item, _, z)| item.map(|i| (i, z)));
         let on_device = hit.and_then(|((k, id), _)| prj.layout.enclosures[k].item(id)).map(|i| i.kind == ItemKind::Device).unwrap_or(false);
-        // Wires, cables and tubes in front of a device clicked are picked, those behind it not.
-        let device_depth = hit.filter(|_| on_device).map(|(_, z)| z);
+        // Wires, cables and tubes in front of a device or a PV array clicked are picked,
+        // those behind it not.
+        let device_depth = top.filter(|_| on_device || array.is_some()).map(|t| t.2);
         let hit = hit.map(|(item, _)| item);
         let mut candidates: Vec<(usize, f32)> = Vec::new();
         let mut near_route: Option<(&str, f32)> = None;
@@ -319,6 +329,10 @@ impl PanelUi {
                 self.switch_enclosure(k);
                 self.select_item(id);
             }
+            (None, None) if array.is_some() => {
+                self.select_array(prj, array.unwrap_or_default());
+                return true;
+            }
             (None, None) => self.deselect(),
         }
         false
@@ -328,7 +342,8 @@ impl PanelUi {
 /// A projected face or line of one frame.
 pub(super) enum Prim {
     /// `item`: enclosure and item id for picking; `z`: depth of the corners.
-    Face { pts: [Pos2; 4], z: [f32; 4], n: u8, color: Color32, item: Option<(usize, u64)>, outline: bool },
+    /// `pv`: the PV array (id) for picking.
+    Face { pts: [Pos2; 4], z: [f32; 4], n: u8, color: Color32, item: Option<(usize, u64)>, outline: bool, pv: Option<u64> },
     Line { a: Pos2, b: Pos2, color: Color32, width: f32 },
 }
 
@@ -446,7 +461,7 @@ pub(super) fn project(scene: &Scene3d, camera: &Camera, rect: Rect, opacity: f32
         let glass = face.side.is_some_and(|s| scene.sides[s].glass);
         let color = if glass { face.color.gamma_multiply(super::scene3d::GLASS_ALPHA) } else if layer == OUTER_WALLS { face.color.gamma_multiply(opacity) } else { face.color };
         let k = key(layer, face.obj.map(|o| (o, 1)), depth / n as f32);
-        push(&mut prims, k, Prim::Face { pts, z: zs, n: face.n, color, item: face.item, outline: face.outline });
+        push(&mut prims, k, Prim::Face { pts, z: zs, n: face.n, color, item: face.item, outline: face.outline, pv: face.pv });
     }
     for l in &scene.lines {
         if let (Some(pa), Some(pb)) = (project_view(l.a), project_view(l.b)) {

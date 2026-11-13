@@ -576,4 +576,14 @@ fn office_building_has_its_roof_stair_and_installation() {
     let v = strings[0].values.unwrap();
     assert_eq!((strings.len(), strings[0].string.series, strings[0].string.inverter.as_str()), (1, 10, "=PV-T1"));
     assert!((v.voc_max - 422.8).abs() < 0.1 && v.vmp_min > 160.0, "{v:?}");
+    // The string runs down to the inverter on the attic's gable wall, the earthing
+    // conductor of the rails to the bonding busbar under it; each rail has its clamp.
+    let lines = crate::panel::solar::cabling::cabling(&prj, &crate::panel::site_poses(&prj), b, &b.roofs[0], a);
+    use crate::panel::solar::cabling::Lead;
+    for (lead, to) in [(Lead::Plus, "=PV-T1"), (Lead::Minus, "=PV-T1"), (Lead::Earth, "=PV-PE1")] {
+        assert!(lines.iter().any(|l| l.lead == lead && l.to == to && l.reached), "{lead:?} to {to}");
+    }
+    assert_eq!(lines.iter().filter(|l| l.lead == Lead::Link).count(), 9);
+    assert!(material.iter().any(|(p, q, _)| p == "GEN.PV-EARTH-CLAMP" && *q == 4.0));
+    assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-T1") && prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-PE1"));
 }

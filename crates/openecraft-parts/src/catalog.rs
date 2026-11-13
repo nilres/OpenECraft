@@ -161,6 +161,8 @@ fn solar_mounting(c: &mut C) {
         ("GEN.PV-CLAMP-MID", "Middle clamp aluminium for framed PV modules 30 - 40 mm, with hammer-head bolt M8, earthing pin", "PV middle clamp", 2.3, (40.0, 40.0, 45.0, 0.06), clamps),
         ("GEN.PV-BALLAST", "Ballast concrete block 400 x 250 x 50 mm, 12.5 kg, for flat roof mounting bases", "Ballast", 3.5, (400.0, 250.0, 50.0, 12.5), "Material: concrete"),
         ("GEN.PV-DEFLECTOR", "Wind deflector aluminium for south-facing flat roof mounting, for one module in landscape", "Wind deflector", 19.0, (1134.0, 400.0, 2.0, 1.6), "Material: aluminium"),
+        ("GEN.PV-EARTH-CLAMP", "Earthing clamp stainless steel for PV mounting rails and mounting bases, for the earthing conductor 6 - 16 mm² Cu or round wire Ø 8 mm, with hammer-head bolt M8", "PV earthing clamp", 6.8, (30.0, 30.0, 30.0, 0.08), "Material: stainless steel A2
+Conductor: 6 - 16 mm² Cu, round wire Ø 8 mm"),
     ] {
         let p = c.add(number, desc, m, subgroup, "", price, dims, &[]);
         p.mounting = "Roof".into();
@@ -170,7 +172,7 @@ fn solar_mounting(c: &mut C) {
     let p = c.add("GEN.PV-RAIL-40", "PV mounting rail aluminium 40 x 40 mm, length 4.2 m, for module clamps and roof hooks", m, "PV mounting rail", "", 38.0, (4200.0, 40.0, 40.0, 3.4), &[]);
     p.mounting = "Roof".into();
     p.tech_data = "Material: aluminium EN AW-6063 T66\nMax. span: 1.5 m".into();
-    p.accessories = ["GEN.PV-HOOK", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID"].map(String::from).to_vec();
+    p.accessories = ["GEN.PV-HOOK", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-EARTH-CLAMP"].map(String::from).to_vec();
     for (number, desc, price, tech) in [
         ("GEN.PV-BASE-S15", "Flat roof mounting base south 15° aluminium, for framed modules in landscape, with protective mat and ballast tray", 24.0, "Tilt: 15°\nOrientation: south\nFastening: ballast"),
         ("GEN.PV-BASE-EW10", "Flat roof mounting base east-west 10° aluminium, for framed modules in landscape, with protective mat and ballast tray", 29.0, "Tilt: 10°\nOrientation: east-west\nFastening: ballast"),
@@ -178,7 +180,7 @@ fn solar_mounting(c: &mut C) {
         let p = c.add(number, desc, m, "PV mounting base", "", price, (1300.0, 400.0, 350.0, 2.2), &[]);
         p.mounting = "Roof".into();
         p.tech_data = tech.into();
-        let mut acc = vec!["GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-BALLAST"];
+        let mut acc = vec!["GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-BALLAST", "GEN.PV-EARTH-CLAMP"];
         if number == "GEN.PV-BASE-S15" {
             acc.push("GEN.PV-DEFLECTOR");
         }
@@ -492,7 +494,8 @@ Breaking capacity: 100 kA".into();
     p.power = "40 kW".into();
     p.mounting = "Wall".into();
     p.tech_data = "Max. PV input voltage: 1100 V\nMPPT voltage range: 200 - 1000 V\nMPP trackers: 4\nMax. input current per MPPT: 32 A\nMax. short-circuit current per MPPT: 40 A\nMax. PV power: 60 kWp".into();
-    let p = c.add("GEN.INV-PV-10KW", "PV inverter 3-phase 10 kW, 2 MPP trackers, 400 V AC, wall-mounted", "Power supplies, transformers", "Inverter", "TB", 1650.0, (0.0, 0.0, 0.0, 17.0), &[(PowerSupply, "L1 L2 L3 N PE")]);
+    let p = c.add("GEN.INV-PV-10KW", "PV inverter 3-phase 10 kW, 2 MPP trackers, 400 V AC, wall-mounted", "Power supplies, transformers", "Inverter", "TB", 1650.0, (480.0, 560.0, 200.0, 17.0), &[(PowerSupply, "L1 L2 L3 N PE")]);
+    p.mounting_data.wall_mount = true;
     p.voltage = "3 x 230/400 V AC".into();
     p.current = "16 A".into();
     p.power = "10 kW".into();

@@ -55,6 +55,7 @@ impl App {
     /// After the panes: the requests of the panel layout and the assistants.
     pub(super) fn layout_requests(&mut self, ctx: &egui::Context, idx: &Index) {
         self.panel_ui.dialogs(ctx, &mut self.session.prj, &self.parts_db);
+        self.pv_properties(ctx);
         if std::mem::take(&mut self.mounting_ui.export) {
             let content = openecraft_core::mounting::csv(&self.session.prj, self.mounting_ui.enclosure);
             self.export(ctx, "mounting.csv".into(), ("CSV", "csv"), content);

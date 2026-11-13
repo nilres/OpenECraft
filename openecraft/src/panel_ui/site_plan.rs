@@ -156,6 +156,15 @@ pub(crate) fn coordinates(prj: &Project, q: [f32; 2]) -> String {
     }
 }
 
+/// The building whose rooms or roofs lie under `p` in the site plan, or whose name
+/// is written there (the last one of them).
+pub(crate) fn building_at(prj: &Project, poses: &[panel::SitePose], frame: &Frame, p: Pos2) -> Option<usize> {
+    (0..prj.layout.buildings.len()).rev().find(|&bi| {
+        let b = &prj.layout.buildings[bi];
+        bld::building_footprint(prj, poses, bi).iter().any(|poly| inside(&poly.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)) || frame.at([b.site.x, b.site.z]).distance(p) <= 10.0
+    })
+}
+
 /// Whether `p` lies inside the polygon `pts`.
 fn inside(pts: &[Pos2], p: Pos2) -> bool {
     let mut odd = false;

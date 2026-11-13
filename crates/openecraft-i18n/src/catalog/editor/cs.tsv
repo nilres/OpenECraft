@@ -155,6 +155,7 @@ Arc	Oblouk
 Archive and version	Archiv a verze
 Archive project…	Archivovat projekt…
 Arms	Ramena
+Array	Pole
 As defined by the check	Podle definice kontroly
 As the rules say ({})	Podle pravidel ({})
 Aspects of the pages	Aspekty stránek
@@ -220,6 +221,9 @@ Boundary	Hranice
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Vypínací schopnost vůči zkratovému proudu u každého ochranného přístroje sítě, odpojení při nejnižším poruchovém proudu na konci jeho obvodu, zkratová odolnost kabelů a selektivita s předřazeným přístrojem.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Most: čtyři vodiče; spojení přichází z jedné strany a jde ke třem ostatním, nejprve k protilehlé
 Building {} added with a level at ground level	Budova {} přidána s podlažím v úrovni terénu
+Building {} at x {} m, z {} m	Budova {} na x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Budova {} na x {} m, z {} m, otočená o {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Budova {} na x {} m, z {} m, otočená o {}°: stojí mimo hranici pozemku
 Built-in frames cannot be changed; copy one to adapt it.	Vestavěné rámečky nelze měnit; chcete-li některý upravit, zkopírujte jej.
 Built-in scheme: copy it to change it.	Vestavěné schéma: chcete-li jej změnit, zkopírujte jej.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Vestavěná rohová razítka jsou jen pro čtení – pomocí „Kopírovat jako nové“ vytvoříte vlastní.
@@ -297,6 +301,7 @@ Chooses the pages whose structure starts with this	Vybere stránky, jejichž str
 Circle	Kružnice
 Circuits of a generic manifold	Okruhy obecného rozdělovače
 Clear	Vymazat
+Clear the search	Vymazat hledání
 Clearance	Odstup
 Click	Klepnutí
 Click a text: open its link	Klepnutí na text: otevřít jeho odkaz
@@ -428,6 +433,7 @@ Cross references…	Křížové odkazy…
 Crossed wires	Překřížené vodiče
 Ctrl + click on the text opens it as well	Ctrl + kliknutí na text jej také otevře
 Ctrl+A	Ctrl+A
+Current at maximum power	Proud při maximálním výkonu
 Current-carrying capacity: {} × IEC 60204-1, table 6	Proudová zatížitelnost: {} × IEC 60204-1, tabulka 6
 Customer rule sets	Zákaznické sady pravidel
 Customer, plant or standard	Zákazník, závod nebo norma
@@ -440,6 +446,7 @@ Cut length step tubes	Krok délky řezu trubek
 Cut length step wires	Krok délky řezu vodičů
 Cutout {} × {} mm	Výřez {} × {} mm
 Cutting allowance per end	Přídavek na řez na každý konec
+DC leads	Vodiče DC
 DRAFT	NÁVRH
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	NÁVRH, KE SCHVÁLENÍ a SCHVÁLENO v aktuálním jazyce; po uvolnění nic
 DWG import failed: {}	Import DWG selhal: {}
@@ -575,6 +582,7 @@ Draft	Návrh
 Draft of revision {} created	Koncept revize {} vytvořen
 Draft of revision {} discarded	Koncept revize {} zahozen
 Drag	Tažení
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Přetáhněte budovu pro přesun · R: otočit budovu pod ukazatelem o 90° · Esc: konec
 Drag a connection point designation of the selected symbol to place it.	Přetažením označení přípojného bodu vybraného symbolu jej umístíte.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Táhněte konec vybraného vodiče, chcete-li přesunout jen tento konec. Tažení s Alt obrátí Zachovat propojení.
 Drag an entry into the page, or click it and then click into the page.	Přetáhněte položku do stránky nebo na ni klikněte a potom klikněte do stránky.
@@ -615,12 +623,16 @@ Duct fill limit	Mez zaplnění kanálu
 Duplicate	Duplikovat
 Each example builds on the one before and shows more of the features.	Každý příklad navazuje na předchozí a ukazuje více funkcí.
 Each point-to-point connection can belong to a harness	Každé spojení bod–bod může patřit ke kabelovému svazku
+Earthing busbar	Uzemňovací přípojnice
+Earthing conductor	Uzemňovací vodič
+Earthing points	Body uzemnění
 Earthing system	Soustava uzemnění
 Easting, northing	Východní, severní souřadnice
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Délka hrany rastru vedení: menší je jemnější a pomalejší
 Edit in table	Upravit v tabulce
 Edit in table…	Upravit v tabulce…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Režim úprav: přetáhněte budovy na jejich místa v situačním plánu a otočte je; kliknutí na místnost ji už neotevře
 Editable copy of this plot frame	Upravitelná kopie tohoto rámečku výkresu
 Editable copy of this title block	Upravitelná kopie tohoto rohového razítka
 Effective surface	Účinná plocha
@@ -806,6 +818,7 @@ Height of the plinth, 0 without plinth	Výška soklu, 0 bez soklu
 Heights above floor (IEC 60204-1)	Výšky nad podlahou (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Drží se při klepnutí, přesouvání nebo posouvání. Ctrl je v macOS Cmd.
 Help	Nápověda
+Hide PV modules	Skrýt FV moduly
 Hide the groups you do not need and put the commands you use most into own groups.	Skryjte skupiny, které nepotřebujete, a nejpoužívanější příkazy dejte do vlastních skupin.
 Highest phase unbalance	Nejvyšší nesymetrie fází
 Highest short-circuit current	Nejvyšší zkratový proud
@@ -951,6 +964,7 @@ Layout space	Montážní prostor
 Layout spaces	Montážní prostory
 Leave out the ceilings of the rooms and the roofs in the 3D view	Vynechat stropy místností a střechy ve 3D zobrazení
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Ve 3D zobrazení vynechá víka všech kabelových kanálů: vodiče v nich jsou vidět
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Vynechat moduly FV polí ve 3D pohledu: jsou vidět lišty, střešní háky, podpěry, uzemnění a kabeláž
 Leave repeated values of the first column blank	Opakované hodnoty prvního sloupce ponechat prázdné
 Left button	Levé tlačítko
 Left edges	Levé hrany
@@ -1020,6 +1034,7 @@ Macros ({})	Makra ({})
 Macro…	Makro…
 Main	Hlavní
 Make the selected elements of this project equal to the compared ones	Sladit vybrané prvky tohoto projektu s porovnávanými
+Maker	Výrobce
 Makes the current page content of the option	Udělá z aktuální stránky obsah volby
 Manage plugins	Spravovat pluginy
 Management	Správa
@@ -1062,6 +1077,7 @@ Mixed	Smíšené
 Mode	Režim
 Model of a part (2D / 3D)	Model artiklu (2D / 3D)
 Modifier keys	Modifikační klávesy
+Module area	Plocha modulů
 Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
 Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
@@ -1074,6 +1090,7 @@ Mouse	Myš
 Move	Posunout
 Move ahead in the 3D view (held)	Pohyb vpřed v 3D pohledu (držet)
 Move back in the 3D view (held)	Pohyb vzad v 3D pohledu (držet)
+Move buildings	Přesunout budovy
 Move down	Posunout dolů
 Move down in the 3D view (held)	Pohyb dolů v 3D pohledu (držet)
 Move faster with the keys of the 3D view	Rychlejší pohyb klávesami 3D pohledu
@@ -1186,6 +1203,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Zatím žá
 No modules: plug in PLC cards of the schematic.	Žádné moduly: zasuňte karty PLC ze schématu.
 No numbers for	Bez čísel pro
 No panel items: place the devices in the panel layout.	Žádné prvky rozváděče: umístěte přístroje v rozvržení rozváděče.
+No part matches.	Žádný díl neodpovídá.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Zatím žádné artikly označené pro montáž na podlahu. Označte artikl ve správě artiklů: editor artiklů › Montážní data › Montáž na podlahu.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Zatím žádné artikly označené pro montáž na stěnu. Označte artikl ve správě artiklů: editor artiklů › Montážní data › Montáž na stěnu.
 No parts of the product group Cables in the parts database.	V databázi artiklů nejsou žádné artikly skupiny produktů Kabely.
@@ -1204,6 +1222,7 @@ No segments yet: draw them in the plant layout.	Zatím žádné úseky: nakresle
 No shortcut	Bez klávesové zkratky
 No single-line symbols and no power devices in the schematic.	Žádné jednopólové symboly a žádné silové přístroje ve schématu zapojení.
 No stations: add one or use the automatic configuration.	Žádné stanice: přidejte stanici nebo použijte automatickou konfiguraci.
+No string yet: the modules are not connected.	Zatím žádný string: moduly nejsou zapojeny.
 No subprojects were taken out of this project.	Z tohoto projektu nebyly vyčleněny žádné podprojekty.
 No terminal strips: place terminals in a schematic first.	Žádné svorkovnice: nejprve umístěte svorky do schématu.
 No user symbols yet. Create one or copy a built-in symbol.	Zatím žádné uživatelské symboly. Vytvořte nový nebo zkopírujte vestavěný symbol.
@@ -1267,6 +1286,7 @@ Open the selection: its properties, in the floor plan its face	Otevřít výběr
 Open to {}: wires cross beside the mounting plates	Otevřeno do {}: vodiče přecházejí vedle montážních desek
 Open walls and floors	Otevřít stěny a podlahy
 Open, save, import, export, print and the settings	Otevřít, uložit, importovat, exportovat, tisknout a nastavení
+Open-circuit voltage	Napětí naprázdno
 OpenECraft page templates	Šablony stránek OpenECraft
 OpenECraft page templates (JSON)	Šablony stránek OpenECraft (JSON)
 OpenECraft project	Projekt OpenECraft
@@ -1308,6 +1328,7 @@ Other values ({})	Další hodnoty ({})
 Otherwise from the plant layout, or next to the other line-ups	Jinak z dispozice zařízení nebo vedle ostatních řad skříní
 Out since {} (pages locked)	Vyčleněno od {} (stránky zamčeny)
 Outer diameter (e.g. 8 mm) or DN	Vnější průměr (např. 8 mm) nebo DN
+Outlets	Zásuvky
 Outlets, switches, heating	Zásuvky, spínače, topení
 Outline	Obrys
 Outlines	Obrysy
@@ -1330,6 +1351,9 @@ PLC channels	Kanály PLC
 PLC hardware and bus topology	Hardware PLC a topologie sběrnice
 PLC overview	Přehled PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmapa PNG nebo JPEG, např. logo nebo fotografie
+PV array {}	FV pole {}
+PV array {} of building {}: {} modules	FV pole {} budovy {}: {} modulů
+PV array {} of building {}: {} modules, {} kWp	FV pole {} budovy {}: {} modulů, {} kWp
 PV arrays	FV pole
 Page graphics	Grafika stránky
 Page heading	Nadpis stránky
@@ -1377,6 +1401,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Text funkce cesty
 Pattern	Vzor
 Pattern…	Vzor…
+Peak power	Špičkový výkon
+Pick a part in the list.	Vyberte díl ze seznamu.
 Pin-out	Zapojení pinů
 Pipe run	Potrubní trasa
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Potrubní trasa na stěně, stropu nebo podlaze místnosti, podél které se vedou hadice, trubky a potrubí: klikněte na rohy, poklikáním nebo Enter ukončíte
@@ -1394,6 +1420,7 @@ Place in the building	Umístění v budově
 Place in the plant	Umístění v zařízení
 Place in the room	Místo v místnosti
 Place in the site plan	Umístit v situačním plánu
+Place on the wall	Umístit na stěnu
 Place text	Umístit text
 Place the georeferenced point everything is measured from	Umístit georeferencovaný bod, od kterého se vše měří
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Umístěte georeferencovaný bod zařízení do situačního plánu; jeho souřadnice se zadávají v panelu Budovy, každý bod se pak měří od něj
@@ -1426,6 +1453,7 @@ Plug in card	Zasunout kartu
 Plugin commands	Příkazy pluginů
 Plugins	Pluginy
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Pluginy přidávají příkazy, kontroly, výkazy a exporty. Externí pluginy se načítají ze složek v proměnné prostředí {} (jedna podsložka se souborem plugin.json pro každý plugin).
+Plus and minus leads from the modules to the inverter	Kladný a záporný vodič od modulů ke střídači
 Points	Body
 Polygon	Mnohoúhelník
 Polyline	Lomená čára
@@ -1628,6 +1656,7 @@ Right edges	Pravé hrany
 Right neighbour	Pravý soused
 Rights	Práva
 Risers	Podstupnice
+Roof pitch	Sklon střechy
 Roof window	Střešní okno
 Roof windows	Střešní okna
 Roofs	Střechy
@@ -1720,6 +1749,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Posouvání přibližuje, i tam, kde jinak posouvá
 Search (* and ? as placeholders)…	Hledat (* a ? jako zástupné znaky)…
 Search below this folder	Hledat pod touto složkou
+Search number, description, maker	Hledat číslo, popis, výrobce
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Prohledávat server artiklů podle katalogu, skupiny produktů a technických údajů, přidávat artikly a kontrolovat aktualizace databáze
 Second channel	Druhý kanál
 Section properties	Vlastnosti oddílu
@@ -1780,6 +1810,7 @@ Shielded analogue cables	Stíněné analogové kabely
 Shielded drive cables	Stíněné kabely pohonů
 Short circuit and selectivity	Zkrat a selektivita
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Zkrat, selektivita, zatížení, EMC, funkční bezpečnost a ověření podle sad pravidel
+Short-circuit current	Zkratový proud
 Short-circuit currents	Zkratové proudy
 Short-circuit power of the network	Zkratový výkon sítě
 Shortest profile	Nejkratší profil
@@ -1892,6 +1923,7 @@ Surge protection	Přepěťová ochrana
 Swing the enclosure door open or shut (door devices and their wires move with it)	Otevřít nebo zavřít dveře skříně (přístroje ve dveřích a jejich vodiče se otáčejí s nimi)
 Switch off the check \"{}\"	Vypnout kontrolu \"{}\"
 Switched off on this computer ({})	Vypnuto na tomto počítači ({})
+Switches	Spínače
 Switches the options with a condition by the configurator options	Přepne volby s podmínkou podle voleb konfigurátoru
 Switches to this workspace with its panes at their default places	Přepne do tohoto pracovního prostoru s panely na jejich výchozích místech
 Switches, push buttons and room thermostats	Spínače, tlačítka a prostorové termostaty
@@ -2093,6 +2125,7 @@ Via:	Přes:
 View	Zobrazení
 Visible	Viditelná
 Voltage (line to line)	Napětí (sdružené)
+Voltage at maximum power	Napětí při maximálním výkonu
 Voltage drop	Úbytek napětí
 WGS 84, written into the site of IFC exports	WGS 84, zapisuje se do pozemku exportů IFC
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Stěna {}, {} m: přetažením ji přesunete, dvojklik ji zobrazí k osazení
@@ -2281,6 +2314,8 @@ x y	x y
 {} (default)	{} (výchozí)
 {} (first column)	{} (první sloupec)
 {} (locked by {})	{} (uzamkl {})
+{} (no such device)	{} (zařízení neexistuje)
+{} (not placed in the layout)	{} (není umístěno v rozvržení)
 {} (project server, revision {})	{} (projektový server, revize {})
 {} (spare)	{} (rezerva)
 {} (subproject of {})	{} (podprojekt projektu {})
@@ -2342,6 +2377,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} nemá funkci se symbolem; přiřaďte jej přístroji v jeho vlastnostech
 {} has unsaved changes. Discard them?	{} obsahuje neuložené změny. Zahodit je?
 {} imported into the parts database and placed as {}	{} importován do databáze artiklů a umístěn jako {}
+{} in {}	{} v {}
 {} is neither in the parts database nor on the parts server	{} není v databázi artiklů ani na serveru artiklů
 {} is not in the disk image	{} není v obrazu disku
 {} is not made for wall mounting: place it on a mounting rail	{} není určen pro montáž na stěnu: umístěte jej na lištu
@@ -2371,6 +2407,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	Zobrazeno {} z {} položek: zúžte seznam hledáním
 {} of {} items	{} z {} prvků
 {} of {} pages locked	Uzamčeno {} z {} stránek
+{} of {} parts · double-click: place	{} z {} dílů · dvojklik: umístit
 {} of {} pins used	Obsazeno {} z {} kolíků
 {} of {} rows	{} z {} řádků
 {} of {} wires	{} z {} vodičů
@@ -2424,6 +2461,7 @@ x y	x y
 {} wires, {} – {} mm	Vodiče: {}, {} – {} mm
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixelů, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
@@ -2431,6 +2469,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře
 {}: drag to move it, a double-click shows the floor	{}: přetažením přesunete, dvojklik zobrazí podlahu
+{}: drag to move, R: turn by 90°	{}: přetáhnout pro přesun, R: otočit o 90°
 {}: nothing to change	{}: není co měnit
 {}: pin {}	{}: pin {}
 {}: strip {} mm, {}	{}: odizolovat {} mm, {}

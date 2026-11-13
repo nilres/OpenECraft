@@ -3,7 +3,8 @@
 //! the attic floor, so the attic's ceiling slopes down to 1.2 m at its long walls; a
 //! stair turned once at a quarter landing leads up, two roof windows sit in the front
 //! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one,
-//! one string on a 10 kW inverter.
+//! one string on a 10 kW inverter on the attic's gable wall, the rails bonded to an
+//! equipotential bonding busbar under it.
 //! The rooms get Gira socket outlets, a network outlet and a switch, an MDT KNX push
 //! button and room temperature controller, a TV outlet, a COSMO heating circuit manifold
 //! for six circuits and a single-room control box.
@@ -72,6 +73,12 @@ pub(super) fn project() -> Project {
     inverter.parts.push(crate::parts::PartRef { number: "GEN.INV-PV-10KW".into(), count: 1, total: false });
     prj.devices.insert("=PV-T1".into(), inverter);
     solar::strings::add_string(&mut prj, b3, 0, 0).expect("house");
+    // The rails bonded to an equipotential bonding busbar under the inverter.
+    crate::parts::ensure_in_project(&mut prj, &db, "GEN.MET-BAR-10");
+    let mut bar = crate::model::DeviceData::default();
+    bar.parts.push(crate::parts::PartRef { number: "GEN.MET-BAR-10".into(), count: 1, total: false });
+    prj.devices.insert("=PV-PE1".into(), bar);
+    prj.layout.buildings[b3].roofs[0].solar[0].earthing = "=PV-PE1".into();
 
     // The installation: outlets and switches at their mounting heights, the manifold
     // and the control box of the underfloor heating.
@@ -95,5 +102,10 @@ pub(super) fn project() -> Project {
     place(&mut prj, attic, "GIRA.418803", Face::Wall(0), 2000.0, 0.0);
     place(&mut prj, attic, "COSMO.CBRTLTH", Face::Wall(0), 4000.0, 0.0);
     place(&mut prj, attic, "MDT.SCN-RTR55S.01", Face::Wall(1), 3000.0, 0.0);
+    // The inverter on the gable wall towards the rear slope with the PV array, the
+    // bonding busbar under it: the strings and the earthing conductor come down to them.
+    let h = prj.layout.enclosures[attic].height;
+    panel::place_device_on(&mut prj, attic, "=PV-T1", p(1200.0, h - 1900.0), Face::Wall(1)).expect("house");
+    panel::place_device_on(&mut prj, attic, "=PV-PE1", p(1300.0, h - 1150.0), Face::Wall(1)).expect("house");
     prj
 }

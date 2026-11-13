@@ -46,6 +46,7 @@ Catalog id	ID каталога
 Category	Категория
 Centred	По центру
 Certificates	Сертификаты
+Change	Изменение
 Channel	Канал
 Characteristic	Характеристика
 Check settings	Настройки проверки
@@ -106,6 +107,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Точка подключения устройства
 Device description	Описание устройства
 Device tag	Обозначение устройства
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Устройство, к которому идёт заземляющий проводник конструкции (шина заземления или уравнивания потенциалов); пусто: нет
 Device {}	Устройство {}
 Devices	Устройства
 Direction	Направление
@@ -214,6 +216,8 @@ Minimum digits of the counter (leading zeros)	Минимальное число 
 Missing parameter: {}	Отсутствует параметр: {}
 Missing value for --{}	Отсутствует значение для --{}
 Model import failed: {}	Ошибка импорта модели: {}
+Module	Модуль
+Modules	Модули
 Modules in series	Модули последовательно
 Modules side by side in a row	Модули рядом в ряду
 Mounted	Смонтировано
@@ -372,6 +376,7 @@ Revision {}	Ревизия {}
 Rework	Доработка
 Right	Справа
 Role	Роль
+Roof	Крыша
 Rooms	Помещения
 Round	Круглый
 Route	Обход
@@ -502,6 +507,7 @@ not bonded	не подключён
 not connected	не подключено
 open	открыто
 pcs	шт.
+portrait	книжная
 rejected	отклонено
 right	вправо
 spare	резерв

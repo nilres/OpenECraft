@@ -1785,16 +1785,138 @@ fn pv_arrays_lie_on_the_roof_of_the_whole_building() {
         ui.scene_3d(&egui::Context::default(), prj, &an, attic, &shown).faces.len()
     };
     let before = faces(&mut ui, &prj);
-    // Two rows of four modules on the rear slope: each module ten faces, each rail four.
+    // Two rows of four modules on the rear slope: each module ten faces and its junction
+    // box six, each rail six, its five roof hooks twelve each (with their plates) and its
+    // earthing clamp six.
     panel::solar::add_array(&mut prj, 0, 0, Some([4000.0, 1500.0])).unwrap();
     assert!(panel::solar::problems(&prj).is_empty());
-    assert_eq!(faces(&mut ui, &prj), before + 8 * 10 + 4 * 4);
+    assert_eq!(faces(&mut ui, &prj), before + 8 * (10 + 6) + 4 * (6 + 5 * 12 + 6));
+    // The modules hidden: the mounting stays.
+    ui.hide_pv_modules = true;
+    assert_eq!(faces(&mut ui, &prj), before + 4 * (6 + 5 * 12 + 6));
+    ui.hide_pv_modules = false;
     // Hidden with the roof.
     ui.hide_ceiling = true;
     let (mut bare, _) = house();
     bare.layout.buildings[0].roofs[0].solar.clear();
     let hidden = faces(&mut ui, &prj);
     assert_eq!(hidden, faces(&mut ui, &bare));
+}
+
+#[test]
+fn pv_arrays_are_picked_selected_and_drawn_with_their_cabling() {
+    let (mut prj, attic) = house();
+    let id = panel::solar::add_array(&mut prj, 0, 0, Some([4000.0, 1500.0])).unwrap();
+    // One string of the eight modules on an inverter on the attic's gable wall.
+    for (tag, part) in [("=PV-T1", "GEN.INV-PV-10KW"), ("=PV-PE1", "GEN.MET-BAR-10")] {
+        let mut d = openecraft_core::model::DeviceData::default();
+        d.parts.push(openecraft_core::parts::PartRef { number: part.into(), count: 1, total: false });
+        prj.devices.insert(tag.into(), d);
+        prj.parts.push(openecraft_core::parts::catalog().iter().find(|p| p.number == part).unwrap().clone());
+    }
+    panel::solar::strings::add_string(&mut prj, 0, 0, 0).unwrap();
+    prj.layout.buildings[0].roofs[0].solar[0].earthing = "=PV-PE1".into();
+    let h = prj.layout.enclosures[attic].height;
+    panel::place_device_on(&mut prj, attic, "=PV-T1", openecraft_core::geom::p(2000.0, h - 1600.0), Face::Wall(1)).unwrap();
+    panel::place_device_on(&mut prj, attic, "=PV-PE1", openecraft_core::geom::p(2000.0, h - 900.0), Face::Wall(1)).unwrap();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    ui.toggle_building();
+    let scene = |ui: &mut PanelUi| {
+        let shown = ui.shown_3d(&prj, attic);
+        ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown)
+    };
+    let s = scene(&mut ui);
+    // Its faces are picked as the array; the leads (seven links, plus and minus) and the
+    // earthing conductor are drawn, the earthing one green with a yellow stripe.
+    let own = s.faces.iter().filter(|f| f.pv == Some(id)).count();
+    assert_eq!(own, 8 * (10 + 6) + 4 * (6 + 5 * 12 + 6));
+    assert!(s.wires.iter().any(|w| w.line.stripe.is_some()), "the earthing conductor");
+    let red = s.wires.iter().filter(|w| w.line.color == egui::Color32::from_rgb(205, 40, 36)).count();
+    assert!(red >= 3, "the plus lead down to the inverter: {red}");
+    // Selected: its cells in the colour of the selection.
+    ui.selected_array = Some(id);
+    let s = scene(&mut ui);
+    assert!(s.faces.iter().any(|f| f.pv == Some(id) && f.color.r() > 200 && f.color.b() < 120));
+    // The attic alone: the array over it with its cabling, the roof window seen from
+    // outside on its ceiling too.
+    ui.toggle_building();
+    ui.selected_array = None;
+    let alone = scene(&mut ui);
+    assert_eq!(alone.faces.iter().filter(|f| f.pv == Some(id)).count(), own);
+    assert!(!alone.wires.is_empty());
+    let up = alone.faces.iter().filter(|f| f.decal && f.layer == 0 && f.normal[1] > 0.1).count();
+    assert!(up >= 2, "the frame and the glass of the roof window outside: {up}");
+    // The room below shows no array.
+    let below = prj.layout.enclosures.iter().position(|e| e.name == "+R0").unwrap();
+    let shown = ui.shown_3d(&prj, below);
+    let low = ui.scene_3d(&egui::Context::default(), &prj, &an, below, &shown);
+    assert!(!low.faces.iter().any(|f| f.pv.is_some()));
+}
+
+#[test]
+fn roof_windows_are_drawn_with_the_slope_they_lie_in() {
+    let (prj, attic) = house();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    ui.toggle_building();
+    let shown = ui.shown_3d(&prj, attic);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    // The glass (decal faces of the roof) shares the side of the covering under it, after
+    // it: seen through from outside, the slope is not painted over it.
+    let glass: Vec<&super::scene3d::SceneFace> = s.faces.iter().filter(|f| f.decal && f.layer == 0 && f.side.is_some()).collect();
+    assert!(!glass.is_empty());
+    for g in glass {
+        let side = g.side.unwrap();
+        let first = s.faces.iter().position(|f| f.side == Some(side)).unwrap();
+        assert!(!s.faces[first].decal, "the covering first");
+    }
+}
+
+#[test]
+fn buildings_are_dragged_and_turned_in_the_edit_mode_of_the_site_plan() {
+    let (mut prj, attic) = house();
+    let mut ui = PanelUi::default();
+    ui.choose_site_tool(SiteTool::Move);
+    assert_eq!((ui.site, ui.site_tool), (true, SiteTool::Move));
+    let rect = egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(800.0, 600.0));
+    ui.site_plan.extent = Some(site_plan::extent(&prj));
+    let frame = site_plan::frame(rect, &prj, &ui.site_plan);
+    let poses = panel::site_poses(&prj);
+    let middle = poses[attic].apply([4000.0, 0.0, 3000.0]);
+    let at = frame.at([middle[0], middle[2]]);
+    assert_eq!(site_plan::building_at(&prj, &poses, &frame, at), Some(0));
+    // Dragged 100 points to the right: the building and its rooms follow.
+    let before = prj.layout.buildings[0].site;
+    let ctx = egui::Context::default();
+    let step = |prj: &mut Project, ui: &mut PanelUi, t: f64, events: Vec<egui::Event>| {
+        let input = egui::RawInput { screen_rect: Some(rect), time: Some(t), events, ..Default::default() };
+        ctx.run_ui(input, |ui_| {
+            let (r, resp) = ui_.allocate_exact_size(rect.size(), egui::Sense::click_and_drag());
+            ui.site_tools(ui_, r, &resp, prj);
+        })
+        .textures_delta
+        .clear();
+    };
+    let to = at + egui::vec2(100.0, 0.0);
+    let press = |pos, pressed| egui::Event::PointerButton { pos, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+    step(&mut prj, &mut ui, 0.0, vec![egui::Event::PointerMoved(at)]);
+    step(&mut prj, &mut ui, 0.1, vec![press(at, true)]);
+    for k in 1..=5 {
+        step(&mut prj, &mut ui, 0.1 + 0.05 * k as f64, vec![egui::Event::PointerMoved(at + egui::vec2(20.0 * k as f32, 0.0))]);
+    }
+    assert!(ui.busy(), "a gesture while dragged");
+    step(&mut prj, &mut ui, 0.5, vec![press(to, false)]);
+    let after = prj.layout.buildings[0].site;
+    assert!(((after.x - before.x) - 100.0 / frame.scale).abs() <= 10.0, "{after:?} {before:?}");
+    assert_eq!(after.z, before.z);
+    assert!(!ui.busy() && ui.status.contains("+H1"), "{}", ui.status);
+    // R turns the building under the pointer by 90°.
+    step(&mut prj, &mut ui, 0.7, vec![egui::Event::PointerMoved(to), egui::Event::Key { key: egui::Key::R, physical_key: None, pressed: true, repeat: false, modifiers: Default::default() }]);
+    assert_eq!(prj.layout.buildings[0].site.angle, 90.0);
+    // Chosen again, the edit mode stops; a click on a room opens it only outside it.
+    ui.choose_site_tool(SiteTool::Move);
+    assert_eq!(ui.site_tool, SiteTool::Select);
 }
 
 #[test]

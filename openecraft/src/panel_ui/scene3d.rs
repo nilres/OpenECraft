@@ -11,7 +11,7 @@ use super::{PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
-use openecraft_core::panel::solar;
+use openecraft_core::panel::solar::{self, cabling::Lead};
 use openecraft_core::panel::{self, buildings as bld, stairs, Face, ItemKind, Opening, Role, SitePose, PLATE_MARGIN, PLATE_Z};
 use openecraft_core::parts::vec3::{self, cross, dot, norm, sub, V3};
 use openecraft_core::production::{self, EndPiece, EndShape};
@@ -194,6 +194,8 @@ pub(super) struct SceneFace {
     pub outline: bool,
     /// Lies on another face (a cutout on the plate): drawn in front of it.
     pub decal: bool,
+    /// The PV array it belongs to (its id), for picking.
+    pub pv: Option<u64>,
 }
 
 /// A wall, door or wall cutout that is painted over the equipment (translucent) when
@@ -578,7 +580,7 @@ fn openings(s: &mut Scene3d, prj: &Project, e: &panel::Enclosure, it: &panel::Pa
         let half = OPENING / 2.0;
         let normal = pose.turn([a[0], -a[1], a[2]]);
         let pts = [at(-half, -half), at(half, -half), at(half, half), at(-half, half)];
-        s.faces.push(SceneFace { pts, n: 4, normal, color: lit(OPENING_COLOR, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: true });
+        s.faces.push(SceneFace { pts, n: 4, normal, color: lit(OPENING_COLOR, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: true, pv: None });
     }
 }
 
@@ -665,6 +667,7 @@ const WINDOW_FRAME: Color32 = Color32::from_rgb(80, 84, 90);
 const PV_CELLS: Color32 = Color32::from_rgb(28, 40, 78);
 const PV_FRAME: Color32 = Color32::from_rgb(58, 60, 66);
 const PV_MOUNTING: Color32 = Color32::from_rgb(176, 180, 186);
+const PV_EARTH: Color32 = Color32::from_rgb(70, 170, 80);
 const STAIR: Color32 = Color32::from_rgb(196, 184, 160);
 const SLAB: Color32 = Color32::from_rgb(168, 168, 172);
 
@@ -686,7 +689,7 @@ fn face_normal(pts: &[V3]) -> V3 {
 /// A flat face of any number of corners (in the order of its normal) as faces of the
 /// scene: itself, or the triangles of a fan.
 fn add_poly(s: &mut Scene3d, pts: &[V3], normal: V3, color: Color32, layer: u8, side: Option<usize>, decal: bool) {
-    let face = |q: [V3; 4], n: u8| SceneFace { pts: q, n, normal, color, layer, side, obj: None, item: None, outline: pts.len() <= 4, decal };
+    let face = |q: [V3; 4], n: u8| SceneFace { pts: q, n, normal, color, layer, side, obj: None, item: None, outline: pts.len() <= 4, decal, pv: None };
     match pts.len() {
         0..=2 => {}
         3 => s.faces.push(face([pts[0], pts[1], pts[2], pts[2]], 3)),
@@ -726,6 +729,7 @@ impl PanelUi {
         let to_view = |q: V3| frame.map_or(q, |f| f.local(q));
         let turn = |n: V3| frame.map_or(n, |f| f.unturn(n));
         let layout = &prj.layout;
+        let plant = panel::site_poses(prj);
         for bi in self.buildings_3d(prj, ei) {
             let b = &layout.buildings[bi];
             let bp = bld::building_pose(b);
@@ -741,7 +745,7 @@ impl PanelUi {
             for &(k, pose) in shown.iter().filter(|(k, _)| bld::building_of(layout, *k) == Some(bi)) {
                 let e = &layout.enclosures[k];
                 let Some(level) = bld::level_by_id(layout, e.level) else { continue };
-                let room = panel::site_poses(prj)[k];
+                let room = plant[k];
                 let holes: Vec<([f32; 2], [f32; 2])> = geos
                     .iter()
                     .filter(|g| g.from < level.elevation - 0.5 && g.to >= level.elevation - 0.5)
@@ -785,9 +789,12 @@ impl PanelUi {
                 continue;
             }
             // The roofs: translucent from outside like the walls, behind everything from
-            // the attic.
+            // the attic. A roof window lies on its slope: drawn with it (after it), so the
+            // slope seen through never covers it.
             for r in &b.roofs {
-                for f in roofs::roof_faces(b, r) {
+                let faces = roofs::roof_faces(b, r);
+                let mut tops: Vec<(usize, Vec<[f32; 2]>)> = Vec::new();
+                for f in &faces {
                     let base = match f.kind {
                         RoofFaceKind::Top => ROOF_TOP,
                         RoofFaceKind::Underside => ROOF_UNDERSIDE,
@@ -798,25 +805,28 @@ impl PanelUi {
                         RoofFaceKind::Module => PV_CELLS,
                         RoofFaceKind::ModuleFrame => PV_FRAME,
                         RoofFaceKind::Mounting => PV_MOUNTING,
+                        RoofFaceKind::Earthing => PV_EARTH,
                     };
                     let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
                     let n = turn(f.normal);
                     let centre = [0, 1, 2].map(|i| pts.iter().map(|q| q[i]).sum::<f32>() / pts.len() as f32);
-                    s.sides.push(SceneSide { normal: turn(f.outward), at: centre, inside: 0, hideable: true, decal: false, glass: false });
-                    let side = Some(s.sides.len() - 1);
-                    add_poly(s, &pts, n, lit(base, n), 0, side, matches!(f.kind, RoofFaceKind::Glass | RoofFaceKind::Frame));
-                }
-                // The PV arrays on it, solid.
-                for f in solar::faces(b, r) {
-                    let base = match f.kind {
-                        RoofFaceKind::Module => PV_CELLS,
-                        RoofFaceKind::ModuleFrame => PV_FRAME,
-                        _ => PV_MOUNTING,
+                    let window = matches!(f.kind, RoofFaceKind::Glass | RoofFaceKind::Frame);
+                    let plan = [0, 1, 2].map(|i| f.pts.iter().map(|q| q[i]).sum::<f32>() / f.pts.len() as f32);
+                    let on = tops.iter().find(|(_, poly)| window && inside_plan(poly, [plan[0], plan[2]])).map(|t| t.0);
+                    let side = match on {
+                        Some(side) => side,
+                        None => {
+                            s.sides.push(SceneSide { normal: turn(f.outward), at: centre, inside: 0, hideable: true, decal: false, glass: false });
+                            s.sides.len() - 1
+                        }
                     };
-                    let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
-                    let n = turn(f.normal);
-                    add_poly(s, &pts, n, lit(base, n), 0, None, false);
+                    if f.kind == RoofFaceKind::Top {
+                        tops.push((side, f.pts.iter().map(|q| [q[0], q[2]]).collect()));
+                    }
+                    add_poly(s, &pts, n, lit(base, n), 0, Some(side), window);
                 }
+                // The PV arrays on it, solid, with their cabling.
+                self.pv_arrays_3d(s, prj, &plant, b, r, r.solar.iter(), &to_view, &turn, lit);
             }
         }
         // All of the plant: the plot boundary on the ground and the reference point as a
@@ -854,6 +864,93 @@ fn outside_of(p: &[[f32; 2]], hole: &[[f32; 2]]) -> Vec<Vec<[f32; 2]>> {
         }
     }
     out
+}
+
+/// Whether the point `q` lies in the polygon `poly` of the floor plan.
+fn inside_plan(poly: &[[f32; 2]], q: [f32; 2]) -> bool {
+    let mut odd = false;
+    for k in 0..poly.len() {
+        let (a, b) = (poly[k], poly[(k + 1) % poly.len()]);
+        if (a[1] > q[1]) != (b[1] > q[1]) && q[0] < a[0] + (q[1] - a[1]) / (b[1] - a[1]) * (b[0] - a[0]) {
+            odd = !odd;
+        }
+    }
+    odd
+}
+
+/// Colour and stripe of a line of the cabling of a PV array.
+fn lead_look(lead: Lead) -> (Color32, Option<Color32>) {
+    match lead {
+        Lead::Link => (Color32::from_rgb(44, 44, 50), None),
+        Lead::Plus => (Color32::from_rgb(205, 40, 36), None),
+        Lead::Minus => (Color32::from_rgb(40, 84, 200), None),
+        Lead::Earth => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40))),
+    }
+}
+
+impl PanelUi {
+    /// The PV arrays `arrays` of roof `r` of building `b`: modules (left out while they
+    /// are hidden; the selected array's in the colour of the selection), mounting with its
+    /// earthing clamps, picked as their array, and their cabling; `to_view` and `turn` take
+    /// points and directions of the plant into the view.
+    #[allow(clippy::too_many_arguments)]
+    fn pv_arrays_3d<'a>(&self, s: &mut Scene3d, prj: &Project, plant: &[SitePose], b: &panel::Building, r: &panel::Roof, arrays: impl Iterator<Item = &'a panel::PvArray>, to_view: &dyn Fn(V3) -> V3, turn: &dyn Fn(V3) -> V3, lit: &dyn Fn(Color32, V3) -> Color32) {
+        for a in arrays {
+            let selected = self.selected_array == Some(a.id);
+            let first = s.faces.len();
+            for f in solar::faces_of(b, r, std::slice::from_ref(a)) {
+                let base = match f.kind {
+                    RoofFaceKind::Module | RoofFaceKind::ModuleFrame if self.hide_pv_modules => continue,
+                    RoofFaceKind::Module if selected => Color32::from_rgb(255, 150, 40),
+                    RoofFaceKind::Module => PV_CELLS,
+                    RoofFaceKind::ModuleFrame => PV_FRAME,
+                    RoofFaceKind::Earthing => PV_EARTH,
+                    _ if selected => Color32::from_rgb(240, 175, 110),
+                    _ => PV_MOUNTING,
+                };
+                let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
+                let n = turn(f.normal);
+                add_poly(s, &pts, n, lit(base, n), 0, None, false);
+            }
+            for face in &mut s.faces[first..] {
+                face.pv = Some(a.id);
+            }
+            for line in solar::cabling::cabling(prj, plant, b, r, a) {
+                let (color, stripe) = lead_look(line.lead);
+                let diameter = if line.lead == Lead::Earth { 8.0 } else { 6.0 };
+                let pts: Vec<V3> = line.points.iter().map(|&q| to_view(q)).collect();
+                for w in pts.windows(2) {
+                    s.wires.push(SceneWire { line: SceneLine { a: w[0], b: w[1], color, stripe, least: 1.5, diameter, tube: false }, inside: None });
+                }
+            }
+        }
+    }
+
+    /// A room under a roof shown alone: the roof windows over it seen from outside on its
+    /// ceiling, and the PV arrays over it with their cabling.
+    fn roof_over_room(&self, s: &mut Scene3d, prj: &Project, ei: usize, lit: &dyn Fn(Color32, V3) -> Color32) {
+        let layout = &prj.layout;
+        let Some(bi) = bld::building_of(layout, ei) else { return };
+        let plant = panel::site_poses(prj);
+        let Some(frame) = self.view_frame(prj, ei) else { return };
+        let to_view = |q: V3| frame.local(q);
+        let turn = |n: V3| frame.unturn(n);
+        let b = &layout.buildings[bi];
+        let bp = bld::building_pose(b);
+        // The room's floor plan in the building's.
+        let e = &layout.enclosures[ei];
+        let room: Vec<[f32; 2]> = panel::outline(e)
+            .into_iter()
+            .map(|[x, z]| {
+                let v = bp.local(plant[ei].apply([x, 0.0, z]));
+                [v[0], v[2]]
+            })
+            .collect();
+        for r in &b.roofs {
+            let over: Vec<&panel::PvArray> = r.solar.iter().filter(|a| inside_plan(&room, [a.x, a.z])).collect();
+            self.pv_arrays_3d(s, prj, &plant, b, r, over.into_iter(), &to_view, &turn, lit);
+        }
+    }
 }
 
 fn bounds(pts: &[V3]) -> (V3, V3) {
@@ -896,6 +993,7 @@ impl PanelUi {
         self.wire_index(an).hash(&mut h);
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
         (self.whole_site(), self.level_3d(), self.show_building, self.show_zones, self.open_walls).hash(&mut h);
+        (self.hide_pv_modules, self.selected_array).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);
@@ -924,7 +1022,7 @@ impl PanelUi {
                     Some(stripe) if side < sides / 3 => stripe,
                     _ => color,
                 };
-                tubes.push(SceneFace { pts: [tri[0], tri[1], tri[2], tri[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj: None, item: None, outline: false, decal: false });
+                tubes.push(SceneFace { pts: [tri[0], tri[1], tri[2], tri[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj: None, item: None, outline: false, decal: false, pv: None });
             }
         };
         // The fingers of the cable ducts (the duct, their faces, their box) and the
@@ -1006,7 +1104,7 @@ impl PanelUi {
                         n
                     };
                     let normal = pose.turn(n);
-                    s.faces.push(SceneFace { pts: pts.map(|q| pose.apply(q)), n: 4, normal, color: lit(base, normal), layer, side, obj, item: item.map(|id| (k, id)), outline: true, decal });
+                    s.faces.push(SceneFace { pts: pts.map(|q| pose.apply(q)), n: 4, normal, color: lit(base, normal), layer, side, obj, item: item.map(|id| (k, id)), outline: true, decal, pv: None });
                 }
             };
             // The enclosure's components: walls, side panels, frame, plinth, mounting
@@ -1029,6 +1127,7 @@ impl PanelUi {
             // Door leaf on its hinge: seen from the outside it covers the equipment
             // (translucent), seen from the inside it is behind the door devices.
             let mut door_side = None;
+            let mut ceiling_side = None;
             for c in panel::components(e) {
                 let [r, g, b] = openecraft_core::export3d::component_color(c.role);
                 let color = Color32::from_rgb(r, g, b);
@@ -1046,6 +1145,9 @@ impl PanelUi {
                         Role::RoomWall(Face::Roof) if self.hide_ceiling => {}
                         Role::RoomWall(face) if ceiling.is_some() => {
                             let side = wall_side(&mut s, face, bx, true, false);
+                            if face == Face::Roof {
+                                ceiling_side = side;
+                            }
                             let c = ceiling.as_ref().unwrap_or_else(|| unreachable!());
                             for (pts, n) in cut_room_box(c, (min, max), face == Face::Roof, t) {
                                 add_poly(&mut s, &pts.iter().map(|&q| pose.apply(q)).collect::<Vec<V3>>(), pose.turn(n), lit(color, pose.turn(n)), 0, side, false);
@@ -1079,14 +1181,26 @@ impl PanelUi {
                     add_poly(&mut s, &back, [-n[0], -n[1], -n[2]], base, 0, side, true);
                 }
             }
-            // The roof windows over a sloped ceiling, seen from inside.
+            // The roof windows over a sloped ceiling, seen from inside; a room shown without
+            // its building's roof shows them on its ceiling from outside too, with their
+            // frames (drawn with the ceiling, after it).
             if ceiling.is_some() && !self.hide_ceiling {
+                let outside = !self.whole_site() && !self.show_building;
                 for quad in roofs::windows_in_room(prj, &plant, k) {
                     let pts: Vec<V3> = quad.iter().map(|&q| pose.apply(q)).collect();
                     let n = face_normal(&pts);
-                    let pts = if n[1] > 0.0 { pts.into_iter().rev().collect() } else { pts };
+                    let pts: Vec<V3> = if n[1] > 0.0 { pts.into_iter().rev().collect() } else { pts };
                     let n = face_normal(&pts);
                     add_poly(&mut s, &pts, n, lit(GLASS, n), 1, None, true);
+                    if outside {
+                        let up: Vec<V3> = quad.iter().rev().map(|&q| pose.apply([q[0], q[1] + t + 10.0, q[2]])).collect();
+                        let up: Vec<V3> = if face_normal(&up)[1] < 0.0 { up.into_iter().rev().collect() } else { up };
+                        let n = face_normal(&up);
+                        let m = [0, 1, 2].map(|i| up.iter().map(|q| q[i]).sum::<f32>() / 4.0);
+                        let glass: Vec<V3> = up.iter().map(|q| [0, 1, 2].map(|i| m[i] + (q[i] - m[i]) * 0.85 + n[i] * 5.0)).collect();
+                        add_poly(&mut s, &up, n, lit(WINDOW_FRAME, n), 0, ceiling_side, true);
+                        add_poly(&mut s, &glass, n, lit(GLASS, n), 0, ceiling_side, true);
+                    }
                 }
             }
             let to3 = |x: f32, y: f32, z: f32| [PLATE_MARGIN + x, h - PLATE_MARGIN - y, PLATE_Z + z];
@@ -1175,7 +1289,7 @@ impl PanelUi {
                         }
                         let normal = pose.turn(n);
                         let w = w.map(|q| pose.apply(q));
-                        s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: false });
+                        s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, it.id)), outline: false, decal: false, pv: None });
                     }
                     openings(&mut s, prj, e, it, &pose, obj, k, &lit);
                     continue;
@@ -1253,7 +1367,7 @@ impl PanelUi {
                     let normal = pose.turn(n);
                     let base = if selected { Color32::from_rgb(255, 150, 40) } else { Color32::from_rgb(r, g, b) };
                     let w = w.map(|q| pose.apply(q));
-                    s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, d.machine)), outline: false, decal: false });
+                    s.faces.push(SceneFace { pts: [w[0], w[1], w[2], w[2]], n: 3, normal, color: lit(base, normal), layer: EQUIPMENT, side: None, obj, item: Some((k, d.machine)), outline: false, decal: false, pv: None });
                 }
             }
             // Wires inside the ducts; the selected one is drawn on top of everything.
@@ -1562,7 +1676,7 @@ impl PanelUi {
                 }
                 for tri in flat {
                     let normal = norm(cross(sub(tri[1], tri[0]), sub(tri[2], tri[0])));
-                    s.tubes.push(SceneFace { pts: [tri[0], tri[1], tri[2], tri[2]], n: 3, normal, color: lit(color, normal), layer: EQUIPMENT, side: None, obj: None, item: None, outline: false, decal: false });
+                    s.tubes.push(SceneFace { pts: [tri[0], tri[1], tri[2], tri[2]], n: 3, normal, color: lit(color, normal), layer: EQUIPMENT, side: None, obj: None, item: None, outline: false, decal: false, pv: None });
                 }
                 for seg in path.windows(2) {
                     let l = SceneLine { a: seg[0], b: seg[1], color, stripe, least: t.width, diameter, tube: true };
@@ -1596,6 +1710,10 @@ impl PanelUi {
             }
         }
         self.building_faces(&mut s, prj, ei, shown, &lit);
+        // A room under its roof shown alone: the PV arrays over it.
+        if !self.whole_site() && !self.show_building && !self.hide_ceiling && prj.layout.enclosures.get(ei).is_some_and(|e| e.is_room()) && roofs::ceiling_with(prj, &plant, ei).is_some() {
+            self.roof_over_room(&mut s, prj, ei, &lit);
+        }
         let hit = fingers_hit(&fingers, &tube_ways, &s.objects);
         if !hit.is_empty() {
             let mut keep = vec![true; s.faces.len()];

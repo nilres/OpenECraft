@@ -518,6 +518,10 @@ pub struct PanelUi {
     pub site_tool: SiteTool,
     site_points: Vec<[f32; 2]>,
     site_drag: Option<(usize, Vec<[f32; 2]>)>,
+    /// The building dragged in the edit mode of the site plan: its index, the point of
+    /// the plant it was taken at and its place then; and the building under the pointer.
+    site_move: Option<(usize, [f32; 2], panel::SitePlace)>,
+    site_hover: Option<usize>,
     /// The 3D view of a room in a building shows the whole building: its rooms, floor
     /// slabs, stairs and roofs.
     pub show_building: bool,
@@ -533,6 +537,10 @@ pub struct PanelUi {
     pub hide_ceiling: bool,
     /// The 3D view leaves out the covers of the cable ducts.
     pub open_ducts: bool,
+    /// The 3D view leaves out the modules of the PV arrays: their mounting is seen.
+    pub hide_pv_modules: bool,
+    /// The PV array selected in the 3D view (its id): its properties are shown.
+    pub selected_array: Option<u64>,
     /// Opacity of the walls seen from the outside in the 3D view, 0 … 1.
     pub wall_opacity: f32,
     /// The 3D view is drawn by the graphics card where it can (set by the application).
@@ -603,14 +611,27 @@ pub struct PanelUi {
     nav_level: Option<u64>,
     /// Circuits of the generic heating circuit manifold chosen in the installation menu.
     manifold_circuits: usize,
+    installation: InstallationPick,
 }
 
-/// The groups of the installation menu: title and the subgroups of their parts.
-const INSTALLATION: [(&str, &[&str]); 3] = [
-    (tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
-    (tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
-    (tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
+/// The tabs of the installation menu: title, what it holds and the subgroups of their
+/// parts.
+const INSTALLATION: [(&str, &str, &[&str]); 3] = [
+    (tr_const!("Outlets"), tr_const!("Socket outlets, data and antenna outlets"), &["Socket outlet", "Data outlet", "Antenna outlet"]),
+    (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
+    (tr_const!("Heating"), tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
 ];
+
+/// What the installation menu shows: its tab, the search, the maker and the type
+/// chosen, and the part picked (its number).
+#[derive(Clone, Debug, Default)]
+struct InstallationPick {
+    tab: usize,
+    search: String,
+    maker: String,
+    subgroup: String,
+    focus: String,
+}
 
 /// The parts of the catalogs shipped with OpenECraft, read once.
 fn bundled_parts() -> &'static [parts::Part] {
@@ -676,12 +697,16 @@ impl Default for PanelUi {
             site_tool: SiteTool::Select,
             site_points: Vec::new(),
             site_drag: None,
+            site_move: None,
+            site_hover: None,
             show_building: false,
             show_zones: false,
             open_walls: false,
             hide_front_walls: false,
             hide_ceiling: false,
             open_ducts: false,
+            hide_pv_modules: false,
+            selected_array: None,
             wall_opacity: WALL_OPACITY,
             gpu_3d: false,
             gpu: gpu3d::Gpu::default(),
@@ -724,6 +749,7 @@ impl Default for PanelUi {
             plan_inner: None,
             nav_level: None,
             manifold_circuits: 6,
+            installation: InstallationPick::default(),
         }
     }
 }
@@ -789,13 +815,29 @@ impl PanelUi {
 
     /// True while a gesture is in progress (no undo step yet).
     pub fn busy(&self) -> bool {
-        self.start.is_some() || self.drag.is_some() || !self.path_points.is_empty() || !self.wall_points.is_empty() || self.plan_drag.is_some()
+        self.start.is_some() || self.drag.is_some() || !self.path_points.is_empty() || !self.wall_points.is_empty() || self.plan_drag.is_some() || self.site_move.is_some()
     }
 
     fn select_item(&mut self, id: u64) {
         self.selection = [id].into_iter().collect();
         self.selected_wire = None;
         self.selected_route = None;
+        self.selected_array = None;
+    }
+
+    /// Selects a PV array (its id): its properties are shown.
+    fn select_array(&mut self, prj: &Project, id: u64) {
+        self.selection.clear();
+        self.selected_wire = None;
+        self.selected_route = None;
+        self.selected_array = Some(id);
+        let found = prj.layout.buildings.iter().find_map(|b| b.roofs.iter().find_map(|r| r.solar.iter().find(|a| a.id == id)).map(|a| (b, a)));
+        if let Some((b, a)) = found {
+            self.status = match panel::solar::peak_power(prj, a) {
+                Some(kw) => tr_fmt!("PV array {} of building {}: {} modules, {} kWp", a.name, b.name, panel::solar::module_count(a), format!("{kw:.2}")),
+                None => tr_fmt!("PV array {} of building {}: {} modules", a.name, b.name, panel::solar::module_count(a)),
+            };
+        }
     }
 
     /// Selects an item with the other members of its assembly.
@@ -923,6 +965,7 @@ impl PanelUi {
         self.selection.clear();
         self.selected_wire = None;
         self.selected_route = None;
+        self.selected_array = None;
     }
 
     /// Index of the selected wire in the current analysis.
@@ -2885,9 +2928,14 @@ impl PanelUi {
                 SiteTool::Boundary => tr("Click the corners of the plot boundary · click the first one, double-click or Enter: close · Backspace: back · Esc: stop"),
                 SiteTool::Reference => tr("Click where the reference point is"),
                 SiteTool::Measure => tr("Click two points to measure from one to the other · Esc: stop"),
+                SiteTool::Move => tr("Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop"),
             };
             ui.weak(hint);
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
+                let editing = self.site_tool == SiteTool::Move;
+                if ui.add(egui::Button::selectable(editing, tr("Move buildings"))).on_hover_text(tr("Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it")).clicked() {
+                    self.choose_site_tool(SiteTool::Move);
+                }
                 let what = match self.site_plan.building.and_then(|b| prj.layout.buildings.get(b)) {
                     Some(b) => tr_fmt!("Site plan, building {}", b.name),
                     None => tr("Site plan").to_string(),
@@ -3085,45 +3133,161 @@ impl PanelUi {
 
     /// Outlets and switches of a room and heating circuit manifolds with their control
     /// boxes, from the parts database, the project, the catalog and the manufacturer
-    /// catalogs shipped with OpenECraft; chosen, a part of a shipped catalog comes into
-    /// the project, then a click on the wall places it at its mounting height.
+    /// catalogs shipped with OpenECraft: a tab per kind, a search, filters by maker and
+    /// type, the list and the part picked with its 3D model and data. Placed, a part of a
+    /// shipped catalog comes into the project, then a click on the wall places it at its
+    /// mounting height.
+    #[allow(clippy::too_many_lines)]
     pub fn installation_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project, db: &PartsDb) {
         if !self.in_room {
             ui.weak(tr("Choose a room first: outlets, switches and heating circuit manifolds go on its walls."));
             return;
         }
-        let mut chosen: Option<parts::Part> = None;
-        egui::ScrollArea::vertical().max_height(480.0).show(ui, |ui| {
-            for (title, subgroups) in INSTALLATION {
-                ui.label(RichText::new(tr(title)).strong());
+        let all: Vec<Vec<&parts::Part>> = INSTALLATION
+            .iter()
+            .map(|(_, _, subgroups)| {
                 let mut list: Vec<&parts::Part> = Vec::new();
                 for p in db.parts.iter().chain(prj.parts.iter()).chain(parts::catalog()).chain(bundled_parts()) {
                     if p.wall_mountable() && subgroups.contains(&p.subgroup.as_str()) && !list.iter().any(|x| x.number == p.number) {
                         list.push(p);
                     }
                 }
-                list.sort_by(|a, b| a.manufacturer.cmp(&b.manufacturer).then(natural_cmp(&a.number, &b.number)));
-                for p in list {
-                    let active = self.tool == Tool::Accessory(p.number.clone());
-                    let tip = p.tech_value("Mounting height").map_or_else(String::new, |h| tr_fmt!("Mounting height: {}", h));
-                    if ui.selectable_label(active, format!("{} – {}", p.number, p.description)).on_hover_text(tip).clicked() {
-                        chosen = Some(p.clone());
-                        ui.close();
+                list.sort_by(|a, b| a.manufacturer.cmp(&b.manufacturer).then(a.subgroup.cmp(&b.subgroup)).then(natural_cmp(&a.number, &b.number)));
+                list
+            })
+            .collect();
+        let pick = &mut self.installation;
+        pick.tab = pick.tab.min(INSTALLATION.len() - 1);
+        let mut chosen: Option<parts::Part> = None;
+        ui.set_width(720.0);
+        // The kinds, with how many parts each has.
+        ui.horizontal(|ui| {
+            for (k, (title, long, _)) in INSTALLATION.iter().enumerate() {
+                let text = format!("{}  ({})", tr(title), all[k].len());
+                if ui.add(egui::Button::selectable(pick.tab == k, RichText::new(text).strong())).on_hover_text(tr(long)).clicked() && pick.tab != k {
+                    pick.tab = k;
+                    pick.subgroup.clear();
+                    pick.maker.clear();
+                }
+            }
+        });
+        ui.separator();
+        ui.horizontal(|ui| {
+            ui.add(egui::TextEdit::singleline(&mut pick.search).hint_text(tr("Search number, description, maker")).desired_width(260.0));
+            if !pick.search.is_empty() && icons::button(ui, Icon::Close, tr("Clear the search")).clicked() {
+                pick.search.clear();
+            }
+        });
+        let list = &all[pick.tab];
+        // Filters: the makers and the types of the kind shown.
+        let mut makers: Vec<&str> = list.iter().map(|p| p.manufacturer.as_str()).collect();
+        makers.dedup();
+        makers.sort_unstable();
+        makers.dedup();
+        let subgroups: Vec<&str> = INSTALLATION[pick.tab].2.iter().copied().filter(|s| list.iter().any(|p| p.subgroup == *s)).collect();
+        let chips = |ui: &mut egui::Ui, label: &str, value: &mut String, options: &[&str]| {
+            ui.horizontal_wrapped(|ui| {
+                ui.label(RichText::new(label).weak());
+                if ui.add(egui::Button::selectable(value.is_empty(), tr("All"))).clicked() {
+                    value.clear();
+                }
+                for o in options {
+                    let shown = if o.is_empty() { tr("Generic").to_string() } else { o.to_string() };
+                    if ui.add(egui::Button::selectable(value == o, shown)).clicked() {
+                        *value = o.to_string();
                     }
                 }
+            });
+        };
+        if makers.len() > 1 {
+            chips(ui, tr("Maker"), &mut pick.maker, &makers);
+        }
+        if subgroups.len() > 1 {
+            chips(ui, tr("Type"), &mut pick.subgroup, &subgroups);
+        }
+        let needle = pick.search.trim().to_lowercase();
+        let shown: Vec<&parts::Part> = list
+            .iter()
+            .copied()
+            .filter(|p| pick.maker.is_empty() || p.manufacturer == pick.maker)
+            .filter(|p| pick.subgroup.is_empty() || p.subgroup == pick.subgroup)
+            .filter(|p| needle.is_empty() || [&p.number, &p.description, &p.manufacturer, &p.subgroup].iter().any(|t| t.to_lowercase().contains(&needle)))
+            .collect();
+        if !shown.iter().any(|p| p.number == pick.focus) {
+            pick.focus = shown.first().map(|p| p.number.clone()).unwrap_or_default();
+        }
+        ui.separator();
+        ui.horizontal_top(|ui| {
+            // The list: number and description, the mounting height at the right.
+            ui.vertical(|ui| {
+                ui.set_width(400.0);
+                egui::ScrollArea::vertical().id_salt("installation_list").max_height(330.0).auto_shrink([false, false]).show(ui, |ui| {
+                    if shown.is_empty() {
+                        ui.weak(tr("No part matches."));
+                    }
+                    for p in &shown {
+                        let active = self.tool == Tool::Accessory(p.number.clone());
+                        let focused = pick.focus == p.number;
+                        let height = p.tech_value("Mounting height").map(|h| h.trim().to_string()).unwrap_or_default();
+                        let r = ui
+                            .horizontal(|ui| {
+                                let r = ui.add_sized([300.0, 20.0], egui::Button::selectable(focused || active, RichText::new(format!("{}   {}", p.number, p.description))).truncate());
+                                ui.weak(height);
+                                r
+                            })
+                            .inner;
+                        let r = r.on_hover_text(format!("{}\n{}", p.number, p.description));
+                        if r.clicked() {
+                            pick.focus = p.number.clone();
+                        }
+                        if r.double_clicked() {
+                            chosen = Some((*p).clone());
+                        }
+                    }
+                });
+                ui.weak(tr_fmt!("{} of {} parts · double-click: place", shown.len(), list.len()));
+            });
+            ui.separator();
+            // The part picked: its model (drag to turn it) and its data.
+            ui.vertical(|ui| {
+                ui.set_width(290.0);
+                let Some(p) = shown.iter().find(|p| p.number == pick.focus) else {
+                    ui.weak(tr("Pick a part in the list."));
+                    return;
+                };
+                match p.model_3d.as_ref() {
+                    Some(mesh) => openecraft_ui::part_editor::mesh_preview(ui, mesh, vec2(290.0, 170.0)),
+                    None => openecraft_ui::part_editor::model_2d_preview(ui, p.model_2d.as_deref(), vec2(290.0, 170.0)),
+                }
+                ui.label(RichText::new(p.number.as_str()).strong());
+                if !p.manufacturer.is_empty() {
+                    ui.weak(format!("{} · {}", p.manufacturer, p.subgroup));
+                }
+                ui.add(egui::Label::new(p.description.as_str()).wrap());
+                ui.weak(format!("{:.0} × {:.0} × {:.0} mm", p.width, p.height, p.depth));
+                if let Some(h) = p.tech_value("Mounting height") {
+                    ui.label(tr_fmt!("Mounting height: {}", h.trim()));
+                }
                 ui.add_space(4.0);
-            }
+                if ui.add(egui::Button::new(RichText::new(tr("Place on the wall")).strong()).min_size(vec2(290.0, 26.0))).clicked() {
+                    chosen = Some((*p).clone());
+                }
+            });
+        });
+        // Heating: a generic manifold of any number of circuits.
+        if INSTALLATION[pick.tab].2.contains(&"Heating circuit manifold") {
+            ui.separator();
             ui.horizontal(|ui| {
                 ui.label(tr("Circuits of a generic manifold"));
                 ui.add(egui::DragValue::new(&mut self.manifold_circuits).range(2..=12));
                 if ui.button(tr("Choose")).clicked() {
                     let number = format!("GEN.HCM-{}", self.manifold_circuits);
                     chosen = parts::catalog().iter().find(|p| p.number == number).cloned();
-                    ui.close();
                 }
             });
-        });
+        }
         let Some(p) = chosen else { return };
+        ui.close();
         let known = |prj: &Project, n: &str| prj.parts.iter().any(|x| x.number == n) || db.get(n).is_some() || parts::catalog().iter().any(|x| x.number == n);
         if !known(prj, &p.number) {
             // From a shipped catalog: into the project with its accessories.
