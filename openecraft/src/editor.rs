@@ -1287,7 +1287,7 @@ impl Editor {
         if let Some(w) = world {
             if let (Some(sn), true) = (snapped, editable) {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
-                self.previews(&mut g, prj, &prj.pages[page_i], w, sn);
+                self.previews(&mut g, prj, page_i, w, sn);
             }
             let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
                 || resp.dnd_hover_payload::<PartDrag>().is_some();
@@ -1387,7 +1387,8 @@ impl Editor {
         out
     }
 
-    fn previews(&mut self, g: &mut EguiDraw<'_>, prj: &Project, page: &Page, world: P, sn: P) {
+    fn previews(&mut self, g: &mut EguiDraw<'_>, prj: &Project, page_i: usize, world: P, sn: P) {
+        let page = &prj.pages[page_i];
         match self.tool.clone() {
             Tool::Place(key) => {
                 if let Some(def) = prj.symbol(key) {
@@ -1458,6 +1459,8 @@ impl Editor {
             Tool::CableDef => {
                 if let Some(&a) = self.pts.first() {
                     g.line(a, sn, render::SYMBOL_W, Ink::Ghost, false);
+                    let preview = cabledef::plan(prj, page_i, a, sn, &self.cable_target);
+                    g.text(sn + p(2.0, 3.0), &preview.summary(), render::SMALL_SIZE, Anchor::Left, VAnchor::Top, Ink::Ghost);
                     for id in cabledef::crossed_wires(page, a, sn) {
                         if let Some(w) = page.wires.iter().find(|w| w.id == id) {
                             g.line(w.a, w.b, render::WIRE_W * 2.0, Ink::Ghost, false);
@@ -1701,8 +1704,8 @@ impl Editor {
             Tool::CableDef => {
                 let id = cabledef::add(prj, page_i, pts[0], pts[1], &self.cable_target);
                 if let Some(c) = prj.pages[page_i].cable_defs.iter().find(|c| c.id == id) {
-                    let n = prj.pages[page_i].wires.iter().filter(|w| w.cable == c.cable).count();
-                    out.message = Some(tr_fmt!("Cable {}: {} cores assigned", c.cable, n));
+                    let result = cabledef::plan(prj, page_i, c.a, c.b, &c.cable);
+                    out.message = Some(result.summary());
                     self.cable_target = c.cable.clone();
                 }
                 self.selection = BTreeSet::from([id]);

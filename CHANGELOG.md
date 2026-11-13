@@ -5,6 +5,13 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Cable core assignment** (#173): preview crossed wires, free cores and the
+  assignment order from the line start. Insufficient cores or conflicting wire
+  assignments leave all pending assignments unchanged and show a persistent
+  check warning. Correct the cable/core list before assigning again. Existing
+  assignments and cores used on other pages are preserved. CLI/MCP can inspect
+  `preview_cable_definition` and explicitly `apply_cable_definition`.
+
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*

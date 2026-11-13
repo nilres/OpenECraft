@@ -663,8 +663,26 @@ impl App {
                 }
             });
         }
+        let preview = cabledef::plan(&self.session.prj, pi, def.a, def.b, &def.cable);
+        ui.label(preview.summary());
+        if !preview.can_apply() && preview.unassigned() > 0 {
+            ui.colored_label(crate::style::warning(), tr_fmt!("{} additional cores required; {} conflicting assignments. No wire assignments will be changed.", preview.missing.len(), preview.conflicts.len()));
+            ui.label(tr("Edit the cable's core list or select another cable, then assign the crossed wires. Existing assignments must be changed explicitly in the wire properties."));
+        }
+        ui.collapsing(tr("Assignment order from line start"), |ui| {
+            ui.label(tr("Order follows the line start. Existing assignments stay in place."));
+            for (index, wid) in preview.crossed.iter().enumerate() {
+                let Some(wire) = self.session.prj.pages[pi].wires.iter().find(|w| w.id == *wid) else { continue };
+                let core = preview.assignments.iter().find(|(id, _)| id == wid).map(|(_, core)| core.as_str()).unwrap_or(&wire.core);
+                ui.horizontal(|ui| {
+                    ui.label(format!("{}. {}", index + 1, core));
+                    if preview.conflicts.contains(wid) { ui.label(&wire.cable); }
+                    if preview.missing.contains(wid) { ui.weak(tr("No free core")); }
+                });
+            }
+        });
         ui.horizontal_wrapped(|ui| {
-            if ui.button(tr("Assign crossed wires")).on_hover_text(tr("The crossed wires get free cores of the cable in order")).clicked() {
+            if ui.add_enabled(preview.can_apply(), egui::Button::new(tr("Assign crossed wires"))).on_hover_text(tr("The crossed wires get free cores of the cable in order")).clicked() {
                 apply = true;
             }
             if ui.button(tr("Draw another line for this cable")).clicked() {
@@ -673,12 +691,14 @@ impl App {
             }
         });
         if let Some(c) = self.session.prj.pages[pi].cable_defs.iter_mut().find(|c| c.id == id) {
-            *c = def;
+            *c = def.clone();
         }
         if apply {
-            let n = cabledef::apply(&mut self.session.prj, pi, id);
+            cabledef::apply(&mut self.session.prj, pi, id);
+            let result = cabledef::plan(&self.session.prj, pi, def.a, def.b, &def.cable);
             let ctx = ui.ctx().clone();
-            self.notify(&ctx, tr_fmt!("{} wires are cores of the cable", n));
+            if result.unassigned() > 0 { self.notify_warning(&ctx, result.summary()); }
+            else { self.notify(&ctx, result.summary()); }
         }
     }
 

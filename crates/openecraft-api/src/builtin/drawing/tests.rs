@@ -1,6 +1,41 @@
 use super::*;
 
 #[test]
+fn cable_definition_preview_and_apply_report_shortage_without_partial_changes() {
+    let mut session = new_session();
+    let prj = session.project_mut().unwrap();
+    for i in 0..5 {
+        prj.pages[0].wires.push(Wire { id: 100 + i, a: p(40. + i as f32 * 8., 40.), b: p(40. + i as f32 * 8., 100.), ..Default::default() });
+    }
+    prj.cables.push(Cable { id: 90, tag: "-W1".into(), cores: "BN BK GY GNYE".into(), ..Default::default() });
+    prj.fix_next_id();
+    let before = prj.clone();
+    let args = json!({"page":"1", "points":[[36,60],[76,60]], "cable":"-W1"});
+    let preview = run(&mut session, "preview_cable_definition", args.clone()).unwrap();
+    assert_eq!(preview["crossed"], 5);
+    assert_eq!(preview["free_cores"], 4);
+    assert_eq!(preview["additional_cores"], 1);
+    assert_eq!(preview["can_apply"], false);
+    assert_eq!(session.project().unwrap(), &before);
+    let result = run(&mut session, "add_cable_definition", args.clone()).unwrap();
+    assert_eq!(result["assignment"]["unassigned"], 5);
+    assert_eq!(session.project().unwrap().pages[0].wires, before.pages[0].wires);
+    let apply = json!({"page":"1", "id":result["id"]});
+    assert_eq!(run(&mut session, "apply_cable_definition", apply.clone()).unwrap()["changed"], false);
+    session.project_mut().unwrap().pages[0].locked = true;
+    assert!(run(&mut session, "preview_cable_definition", args).is_ok(), "preview can inspect released pages");
+    assert!(run(&mut session, "apply_cable_definition", apply.clone()).is_err());
+    session.project_mut().unwrap().pages[0].locked = false;
+    session.project_mut().unwrap().cables[0].cores = "BN BK GY BU GNYE".into();
+    let applied = run(&mut session, "apply_cable_definition", apply).unwrap();
+    assert_eq!(applied["changed"], true);
+    assert_eq!(applied["assignment"]["unassigned"], 0);
+    assert_eq!(applied["assignment"]["assigned"], 5);
+    let prj = session.project().unwrap();
+    assert_eq!(Project::from_json(&prj.to_json()).unwrap(), *prj);
+}
+
+#[test]
 fn macro_accessory_intent_resolves_parameters_and_preserves_existing_material() {
     let mut s=new_session();
     s.project_mut().unwrap().devices.insert("-X7".into(),openecraft_core::model::DeviceData {parts:vec![openecraft_core::model::PartRef {number:"LOCAL".into(),count:3,total:false}],..Default::default()});
