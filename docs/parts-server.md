@@ -25,7 +25,8 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
 
 - Configuration file (`--config <file>` or `OPENECRAFT_PARTS_SERVER_CONFIG`): a TOML
   file with the settings of the command line options under their names (`bind`,
-  `storage`, `data`, `token`, `admin_user`, `install_catalogs`, `access`; see
+  `storage`, `data`, `token`, `admin_user`, `install_catalogs`, `access`,
+  `registration`, `dashboard`; see
   [`parts-server/parts-server.example.toml`](../parts-server/parts-server.example.toml)).
   Options on the command line or in the environment win; relative paths are relative to
   the file; unknown keys stop the server with an error. `--migrate-from` is a command
@@ -64,7 +65,19 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   parts nobody changed are updated, parts changed or deleted by users are kept. Parts
   without models get generated ones from their mounting dimensions. Only add data
   that may be redistributed (facts from public data sheets, no copied texts, images
-  or models).
+  or models). Each bundled catalog has a logo, `catalogs/logos/<id>.svg`, which it
+  gets when it is installed while it has no logo: the company's logo from Wikimedia
+  Commons (public domain or CC BY-SA 4.0, sources and licences in
+  `catalogs/logos/README.md`; the logos are trademarks of their owners), or a neutral
+  badge with the name where Commons has no freely licensed one (COSMO, Janitza, MDT,
+  Pylontech).
+- Logos: every catalog can have the logo of its company (PNG, JPEG, GIF, WebP or SVG,
+  at most 512 kB), shown on the catalog cards, in the catalog list of the
+  administration and on the parts of the catalog. Who may change a catalog changes
+  its logo in *Administration › Catalogs › Edit* (`PUT` / `DELETE
+  /api/v1/catalogs/{id}/logo?name=`, `GET` serves it with a sandboxing content
+  security policy, so that an SVG runs no scripts). Saving a catalog keeps its logo;
+  the logo file is stored with the parts' files and is part of backups.
 - Libraries: JSON documents shared by all projects (`GET` / `PUT /api/v1/libraries/{name}`),
   so far `forms`, the company's title blocks, report schemes and plot frames that the
   editor (*Forms › Title blocks › Company library*) and the command line publish and
@@ -102,9 +115,28 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   of a grant. A registered name also stands before a directory user of the same name
   who has not signed in yet: on servers with directories, grant by groups.
 - Access control (`<data>.access.json`, `--access`): sign-in with Active Directory or
-  LDAP directories next to the local accounts, roles defined by administrators and
-  grants of roles to users and groups per manufacturer, with deny grants; anonymous
-  reading can be switched off. See [docs/access-control.md](access-control.md).
+  LDAP directories next to the local accounts, groups of users, roles defined by
+  administrators and grants of roles to users and groups per manufacturer or per
+  catalog, with deny grants; anonymous reading can be switched off. See
+  [docs/access-control.md](access-control.md).
+- Dashboard: the web page's *Dashboard* shows the number of parts, catalogs,
+  manufacturers and files and graphs of the parts per manufacturer, product group,
+  catalog, top group and lifecycle, the last changes per month, how many parts have a
+  description, price, dimensions, models, files and data sheets, the users per role
+  (administrators) and the parts changed last; its bars open the parts they count
+  (`GET /api/v1/dashboard`). Administrators hide it in *Administration › Overview*
+  (`"dashboard": false` in the access settings, `PUT /api/v1/dashboard/settings`); the
+  start option `--dashboard true|false`, `OPENECRAFT_DASHBOARD` or `dashboard` in the
+  configuration file fix it.
+- Exports carry the version of the server, so that a later version can convert them
+  when they are imported: `GET /export.json` is an object with `export` (`format`,
+  `format_version`, `server`, `server_version`, `revision`, `exported`) and `parts`
+  (`/import` and the editors read it as before), `GET /export.csv` starts with a line
+  `# format=openecraft-parts;format_version=1;server_version=…` (the CSV import skips
+  such lines before the header), backups keep the fields as `export.<name>` in their
+  `meta` table, the catalogs and access settings exported on the web page have an
+  `export` object and the users CSV the same first line. The answers also carry the
+  header `X-OpenECraft-Server-Version`.
 - Parts are checked before they are stored: part numbers have at most 128 characters,
   the other fields at most 256 (description, note, technical data, certificates and
   data sheet 20000), the catalog a part names must exist, and an import refuses a file
@@ -120,10 +152,17 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   manufacturer, catalog, lifecycle and technical data (voltage, current, power and the
   `Name: value` lines of the technical data), sorted and paged, with facets that count
   the matching parts per value.
-- Web page: `http://<server>:8090/` – search with facets, part details with files and
-  history, catalogs, sign-in and favorites, in English, German, French and Spanish. The
-  address keeps the search and the open part (bookmarks, the browser's back button);
-  `?lang=de` chooses the language.
+- Web page: `http://<server>:8090/` – dashboard, search with facets, part details with
+  files and history, catalogs, sign-in and favorites, in English, German, French and
+  Spanish. The logo and the title at the top left lead back to the start page (all
+  parts, no filters). The list shows 10, 25, 50, 100 or 200 parts per page (*Per page*,
+  kept by the browser). The address keeps the search and the open part (bookmarks, the
+  browser's back button); `?lang=de` chooses the language.
+- New parts on the web page: users who may change parts of some manufacturer or catalog
+  get *New part* above the list and *Edit* / *Delete* on the parts they may change; the
+  form holds the general, technical, commercial and mounting data, offers the catalogs
+  the user may add parts to and never replaces an existing part (`PUT /parts/{number}`
+  with `If-None-Match: *` answers `409`).
 - Administration on the web page (*Administration*, shown to administrators and to
   users who may change catalogs or parts; sign in with a user or, on a new server,
   with the administrator token): an overview of the server (storage, revision, users
@@ -131,8 +170,11 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   local users (role, manufacturer, groups, new password), see their last sign-in and
   open sessions and sign them out everywhere; *Access rights* – the role of requests
   without sign-in, defined roles with their rights and the grants to users and groups
-  per manufacturer, the directories of the server; *Catalogs* – create, change and
-  delete catalogs and install or update the bundled catalogs; *Import parts* (CSV,
+  per manufacturer or catalog; *Groups* – groups of users with their members;
+  *Directories* – the Active Directory and LDAP connections with a test of the
+  connection and of a sign-in; *Catalogs* – create, change and delete catalogs, the
+  permissions of users and groups on each catalog, and install or update the bundled
+  catalogs; *Import parts* (CSV,
   JSON, BMEcat, EPLAN XML); *Export and backup* – the parts as CSV or JSON, the
   catalogs, the users (CSV, without passwords) and the access settings (JSON, which
   restore again), and a backup of the whole database. The page only offers what the
@@ -156,7 +198,9 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   `POST /register`, `GET|PUT /registration`, `POST /users/{name}/approval`,
   `POST /logout`, `GET|PUT /favorites`, `GET /users` (with their open sessions and last
   sign-in), `PUT|DELETE /users/{name}`, `DELETE /users/{name}/sessions` (sign out
-  everywhere), `GET|PUT /access`.
+  everywhere), `GET|PUT /access`, `GET|PUT|DELETE /catalogs/{id}/logo`, `GET|PUT /catalogs/{id}/grants`, `GET /groups`,
+  `PUT|DELETE /groups/{name}`, `GET /directories`, `PUT|DELETE /directories/{id}`,
+  `POST /directories/{id}/test`, `GET /dashboard`, `GET|PUT /dashboard/settings`.
 - In the editor: *Master data › Data portal* – search the server, see the details with
   the front view and the 3D model, add parts to the local database, save their files, add their macros to the macro library and check the
   database for newer versions, phased out and discontinued parts. *Devices › Parts
