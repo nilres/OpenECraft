@@ -5,8 +5,9 @@
 
 use super::checks::{data_number, item_name, CheckKind};
 use super::{part_by_number, Enclosure, Face, ItemKind};
+use crate::geom::R;
 use crate::model::Project;
-use crate::production::{holes_on, openings, Opening};
+use crate::production::{holes_on, openings, Hole, Opening};
 use crate::issue::Severity;
 use openecraft_i18n::tr_fmt;
 use std::collections::BTreeSet;
@@ -48,6 +49,28 @@ fn device_weight(prj: &Project, tag: &str) -> f32 {
         .get(tag)
         .map(|d| d.parts.iter().filter_map(|r| part_by_number(prj, &r.number).map(|p| p.weight * r.quantity() as f32)).sum())
         .unwrap_or(0.0)
+}
+
+/// Cutouts and holes of a face in the restricted cut-out areas of the enclosure (its
+/// maker's data); touching an area's edge is allowed.
+fn restricted_cutouts(prj: &Project, e: &Enclosure, face: Face, opens: &[Opening], holes: &[Hole], push: &mut impl FnMut(CheckKind, Severity, Vec<u64>, String)) {
+    let areas: Vec<R> = super::restricted_areas(prj, e, face, crate::parts::Restriction::Cutout).into_iter().map(|a| a.expand(-0.05)).collect();
+    if areas.is_empty() {
+        return;
+    }
+    let name = |id: u64| item_name(e, id);
+    let mut reported = BTreeSet::new();
+    for o in opens.iter().filter(|o| areas.iter().any(|a| a.overlaps(&o.bounds()))) {
+        if reported.insert(o.item) {
+            push(CheckKind::Manufacturing, Severity::Warning, vec![o.item], tr_fmt!("{}: cutout of {} on the {} lies in a restricted cut-out area", e.name, name(o.item), face.title()));
+        }
+    }
+    for h in holes {
+        let r = R::from_points(h.pos, h.pos).expand(h.diameter / 2.0);
+        if areas.iter().any(|a| a.overlaps(&r)) && reported.insert(h.item) {
+            push(CheckKind::Manufacturing, Severity::Warning, vec![h.item], tr_fmt!("{}: hole of {} on the {} lies in a restricted cut-out area", e.name, name(h.item), face.title()));
+        }
+    }
 }
 
 pub(super) fn check(prj: &Project, e: &Enclosure, push: &mut impl FnMut(CheckKind, Severity, Vec<u64>, String)) {
@@ -107,6 +130,7 @@ pub(super) fn check(prj: &Project, e: &Enclosure, push: &mut impl FnMut(CheckKin
                 }
             }
         }
+        restricted_cutouts(prj, e, face, &opens, &holes, push);
         // The free edge of the door and the walls (frame, reinforcement, hinges) takes no
         // cutout either.
         let edge_web = if matches!(face, Face::Plate | Face::Bottom | Face::Roof) { rules.cutout_web } else { rules.cutout_web.max(e.flange()) };

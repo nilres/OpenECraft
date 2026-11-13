@@ -259,6 +259,7 @@ fn typed_text_row(ui: &mut egui::Ui, part: &str, label: &str, data: &mut Mountin
 
 const HOLES_HINT: &str = "M4: 6,8; 42,8";
 const CUTOUT_HINT: &str = "Ø22.5; 92 x 92 @ 0/-6.5 R3 15°";
+const RESTRICTED_HINT: &str = "placing plate 0/0 550 x 20; cutout left 10/20 30 x 40";
 
 /// Typed mounting data: clearances, holes, cutouts, power loss, fastening.
 fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
@@ -281,6 +282,7 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
         typed_text_row(ui, &number, tr("Mounting holes"), m, "Mounting holes", HOLES_HINT);
         typed_text_row(ui, &number, tr("Door cutout"), m, "Door cutout", CUTOUT_HINT);
         typed_text_row(ui, &number, tr("Cutout"), m, "Cutout", CUTOUT_HINT);
+        typed_text_row(ui, &number, tr("Restricted areas"), m, "Restricted areas", RESTRICTED_HINT);
         text_row(ui, tr("Fastening"), &mut m.fastening);
         text_row(ui, tr("Faces"), &mut m.faces);
         text_row(ui, tr("Collision class"), &mut m.collision_class);

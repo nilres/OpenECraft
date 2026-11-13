@@ -6,13 +6,13 @@
 //! configured product: it gets the files, the preview of the macro as its picture, the
 //! bodies of the macro ([`crate::layout`]) or else the STEP model without its
 //! restricted areas as its 3D model, the place of its mounting plate (part data
-//! `Mounting origin`) and its restricted areas (`source_data.restricted_areas`, corners
-//! in the frame of the enclosure); the others are its components.
+//! `Mounting origin`) and its restricted areas on the faces of its enclosures
+//! (`mounting_data.restricted`); the others are its components.
 
 use crate::archive::{text, Edz, EdzFile};
 use openecraft_i18n::tr;
 use openecraft_parts::portal::AttachmentKind;
-use openecraft_parts::{Component, Mesh3d, Part, TopGroup};
+use openecraft_parts::{Component, Mesh3d, Part, RestrictedArea, Restriction, TopGroup};
 use serde_json::json;
 
 /// Reads a STEP model without the products whose name the filter accepts
@@ -115,24 +115,34 @@ fn mm(v: f32) -> String {
 /// Kind of the mounting surface on the front of the mounting plate.
 const PLATE_FRONT: u32 = 10002;
 
-/// The macro of an enclosure in the frame of the enclosure: x to the right, y up, z
-/// towards the front, from the left, bottom and rear of its housing.
-struct Enclosure<'a, F: Fn([f32; 3]) -> [f32; 3]> {
+/// Largest distance of a restricted area from the plane of the face it is put on, mm
+/// (sheets and the door are thinner; the front frame around the door is farther).
+const ON_FACE: f32 = 3.0;
+
+fn dot(a: [f32; 3], b: [f32; 3]) -> f32 {
+    a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+}
+
+/// The macro of an enclosure in the coordinates of the panel layout's enclosures: x to
+/// the right from the left, y down from the top and z towards the front from the rear
+/// of its housing.
+struct Housing<'a, F: Fn([f32; 3]) -> [f32; 3]> {
     layout: &'a crate::layout::Layout,
     turn: &'a F,
     min: [f32; 3],
+    top: f32,
 }
 
-impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Enclosure<'a, F> {
+impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Housing<'a, F> {
     fn of(layout: &'a crate::layout::Layout, turn: &'a F) -> Option<Self> {
         let (a, b) = layout.main_bounds()?;
         let (a, b) = (turn(a), turn(b));
-        Some(Enclosure { layout, turn, min: std::array::from_fn(|k| a[k].min(b[k])) })
+        Some(Housing { layout, turn, min: std::array::from_fn(|k| a[k].min(b[k])), top: a[1].max(b[1]) })
     }
 
     fn point(&self, v: [f32; 3]) -> [f32; 3] {
         let t = (self.turn)(v);
-        std::array::from_fn(|k| t[k] - self.min[k])
+        [t[0] - self.min[0], self.top - t[1], t[2] - self.min[2]]
     }
 
     /// The four corners of a rectangle on a surface.
@@ -141,28 +151,48 @@ impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Enclosure<'a, F> {
         [at(0.0, 0.0), at(size[0], 0.0), at(size[0], size[1]), at(0.0, size[1])]
     }
 
-    /// The lower left corner of the front of the mounting plate (`Enclosure::mounting_origin`).
+    /// The top left corner of the front of the mounting plate
+    /// (`Enclosure::mounting_origin`).
     fn mounting_origin(&self) -> Option<[f32; 3]> {
         let s = self.layout.surfaces.iter().find(|s| s.kind == PLATE_FRONT)?;
         let c = self.corners(s.origin, s.x, s.y, s.size);
         Some(std::array::from_fn(|k| c.iter().map(|p| p[k]).fold(f32::INFINITY, f32::min)))
     }
 
-    /// The restricted areas with their corners.
-    fn areas(&self) -> Vec<serde_json::Value> {
+    /// The restricted areas on the faces of an enclosure of the part (that of the
+    /// panel layout), each put on the face whose plane it lies in; areas on no face
+    /// (the frame around the door) are left out.
+    fn areas(&self, enclosure: &openecraft_core::panel::Enclosure) -> Vec<RestrictedArea> {
+        use openecraft_core::panel::{face_frame, Face};
+        let frames: Vec<(Face, [[f32; 3]; 4])> = Face::ALL.into_iter().map(|f| (f, face_frame(enclosure, f))).collect();
         let r = |v: f32| (v * 100.0).round() / 100.0;
-        self.layout
-            .areas
-            .iter()
-            .map(|a| {
-                let kind = match a.kind {
-                    crate::layout::AreaKind::Placing => "placing",
-                    crate::layout::AreaKind::Cutout => "cutout",
-                };
-                let corners: Vec<[f32; 3]> = self.corners(a.origin, a.x, a.y, a.size).iter().map(|c| c.map(r)).collect();
-                json!({"kind": kind, "surface": a.surface, "corners": corners})
-            })
-            .collect()
+        let mut out = Vec::new();
+        for a in &self.layout.areas {
+            let c = self.corners(a.origin, a.x, a.y, a.size);
+            let rel = |q: [f32; 3], o: [f32; 3]| [q[0] - o[0], q[1] - o[1], q[2] - o[2]];
+            let (e1, e2) = (rel(c[1], c[0]), rel(c[3], c[0]));
+            let normal = [e1[1] * e2[2] - e1[2] * e2[1], e1[2] * e2[0] - e1[0] * e2[2], e1[0] * e2[1] - e1[1] * e2[0]];
+            let len = dot(normal, normal).sqrt();
+            if len <= 0.0 {
+                continue;
+            }
+            let face = frames
+                .iter()
+                .filter(|(_, [_, _, _, n])| dot(normal, *n).abs() > 0.99 * len)
+                .map(|(f, [o, u, w, n])| (c.iter().map(|q| dot(rel(*q, *o), *n).abs()).fold(0.0f32, f32::max), *f, *o, *u, *w))
+                .min_by(|a, b| a.0.total_cmp(&b.0));
+            let Some((_, face, o, u, w)) = face.filter(|f| f.0 <= ON_FACE) else { continue };
+            let xs = c.map(|q| dot(rel(q, o), u));
+            let ys = c.map(|q| dot(rel(q, o), w));
+            let (x0, x1) = (xs.iter().copied().fold(f32::INFINITY, f32::min), xs.iter().copied().fold(f32::NEG_INFINITY, f32::max));
+            let (y0, y1) = (ys.iter().copied().fold(f32::INFINITY, f32::min), ys.iter().copied().fold(f32::NEG_INFINITY, f32::max));
+            let kind = match a.kind {
+                crate::layout::AreaKind::Placing => Restriction::Placing,
+                crate::layout::AreaKind::Cutout => Restriction::Cutout,
+            };
+            out.push(RestrictedArea { kind, face: face.key().to_string(), x: r(x0), y: r(y0), w: r(x1 - x0), h: r(y1 - y0) });
+        }
+        out
     }
 }
 
@@ -254,18 +284,21 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
         (None, Some(read), Some(model)) => read(model, &is_restricted_area).map_err(|e| model_error = Some(e)).ok(),
         _ => None,
     };
-    let mut areas = Vec::new();
     if let Some(mut mesh) = mesh {
         let size = mesh.size();
         // Lying on its back (the height along z, the front towards -y): stood upright.
         let lying = first.height > 0.0 && (size[1] - first.depth).abs() < (size[1] - first.height).abs();
         let turn = |v: [f32; 3]| if lying { [v[0], v[2], -v[1]] } else { v };
-        if let Some(enclosure) = layout.as_ref().and_then(|l| Enclosure::of(l, &turn)) {
-            if let Some(origin) = enclosure.mounting_origin() {
+        if let Some(housing) = layout.as_ref().and_then(|l| Housing::of(l, &turn)) {
+            if let Some(origin) = housing.mounting_origin() {
                 let sep = if first.tech_data.is_empty() { "" } else { "\n" };
                 first.tech_data = format!("{}{sep}Mounting origin: {}", first.tech_data, origin.map(mm).join("/"));
             }
-            areas = enclosure.areas();
+            // The faces of an enclosure of the part, as the panel layout makes it.
+            let mut prj = openecraft_core::model::Project::default();
+            prj.parts.push(first.clone());
+            let enclosure = openecraft_core::panel::new_enclosure(&mut prj, &first.number, "");
+            first.mounting_data.restricted = housing.areas(&enclosure);
         }
         for v in &mut mesh.vertices {
             *v = turn(*v);
@@ -282,7 +315,6 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
             "configuration": configuration,
             "bill_of_material": rows.iter().map(|r| json!({"number": r.number, "quantity": r.quantity, "unit": r.unit, "description": r.description, "ean": r.ean})).collect::<Vec<_>>(),
             "model_error": model_error,
-            "restricted_areas": areas,
         })
         .into(),
     );

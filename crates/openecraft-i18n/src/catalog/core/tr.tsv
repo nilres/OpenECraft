@@ -1996,6 +1996,7 @@ yellow	sarı
 {}: cross-section {} below the {} mm² of power circuits	{}: {} kesiti, güç devreleri için gereken {} mm² değerinin altında
 {}: cross-section {} differs from the potential definition ({})	{}: {} kesiti potansiyel tanımından farklı ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2} üzerindeki {1} kesimi kenardan {3} mm uzakta, en az {4} mm gerekli
+{}: cutout of {} on the {} lies in a restricted cut-out area	{0}: {2} üzerindeki {1} kesimi kesim yasak alanında
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: {} kesimi {} üzerinde ön yüzünü {} mm aşıyor
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} üzerindeki {1} ve {2} kesimleri birbirine çok yakın ({4} mm ara, en az {5} mm)
 {}: designation '{}' used more than once	{}: '{}' tanımı birden fazla kez kullanılıyor
@@ -2003,6 +2004,7 @@ yellow	sarı
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: {} A arıza akımı ({} noktasında) {} s içinde açma yapmıyor ({} A gerekli)
 {}: function texts differ in the single-line diagram and the schematic	{}: fonksiyon metinleri tek hat şeması ile şemada farklı
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {1} deliği, {3} üzerindeki {2} kesimine çok yakın
+{}: hole of {} on the {} lies in a restricted cut-out area	{0}: {2} üzerindeki {1} deliği kesim yasak alanında
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2} üzerindeki {1} Ø{3} deliği kenardan {4} mm uzakta, en az {5} mm gerekli
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} üzerindeki {1} ve {2} delikleri birbirine çok yakın ({4} mm ara, en az {5} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{0}: montaj plakasının x = {2} mm, y = {3} mm noktasında yaklaşık {1} °C sıcak nokta (iç sıcaklık en fazla {4} °C)
@@ -2089,6 +2091,7 @@ yellow	sarı
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} duvara montaj için uygun değil, bir raya monte edin
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} zeminden {} … {} mm yukarıda, izin verilen {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{0}: {2} üzerindeki {1} kg, {3} kg taşıma yükünü aşıyor
+{}: {} lies in a restricted placing area of the {}	{0}: {1}, {2} üzerinde yerleştirme yasak alanında
 {}: {} modules of PV array {} are not connected to a string	{0}: PV dizisi {2} içindeki {1} modül bir diziye bağlı değil
 {}: {} modules, the head has {} slots	{}: {} modül, kafa modülünde {} slot var
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) {} mm stok uzunluğundan uzun ve eklenmesi gerekiyor

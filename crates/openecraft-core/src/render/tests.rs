@@ -713,3 +713,39 @@ fn cable_cores_line_up_at_the_cable_definition_line_and_keep_their_offset() {
     prj.pages[0].cable_defs.clear();
     assert!((cores(&prj)[4].x - (100.0 + 0.3 * 120.0)).abs() < 1e-3, "without a cable definition line at 30 %");
 }
+
+#[test]
+fn hatches_stay_in_their_rectangle() {
+    for rising in [true, false] {
+        let mut d = Rec::default();
+        hatch(&mut d, R::from_points(p(10.0, 20.0), p(30.0, 25.0)), 2.5, rising);
+        assert!(d.line_positions.len() >= 9, "{}", d.line_positions.len());
+        for (a, b) in &d.line_positions {
+            for q in [a, b] {
+                assert!((9.99..=30.01).contains(&q.x) && (19.99..=25.01).contains(&q.y), "{q:?}");
+            }
+            // 45°: rising to the right goes up (y down).
+            let slope = (b.y - a.y) / (b.x - a.x);
+            assert!((slope - if rising { -1.0 } else { 1.0 }).abs() < 1e-4, "{slope}");
+        }
+    }
+    let mut d = Rec::default();
+    hatch(&mut d, R::from_points(p(0.0, 0.0), p(0.0, 5.0)), 2.5, true);
+    assert!(d.line_positions.is_empty());
+}
+
+#[test]
+fn restricted_areas_are_drawn_on_their_face() {
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "ENC".into(), ..Default::default() };
+    part.mounting_data.restricted = vec![crate::parts::RestrictedArea { kind: crate::parts::Restriction::Cutout, face: "door".into(), x: 0.0, y: 0.0, w: 20.0, h: 20.0 }];
+    prj.parts.push(part);
+    let count = |part: &str, face: Face| {
+        let e = Enclosure { part: part.into(), ..Default::default() };
+        let mut d = Rec::default();
+        draw_enclosure(&mut d, &e, face, false, p(0.0, 0.0), 1.0, &BTreeSet::new(), &BTreeSet::new(), &prj);
+        d.lines.iter().filter(|i| matches!(i, Ink::Frame)).count()
+    };
+    assert!(count("ENC", Face::Door) > count("", Face::Door) + 4, "outline and hatch");
+    assert_eq!(count("ENC", Face::Plate), count("", Face::Plate));
+}

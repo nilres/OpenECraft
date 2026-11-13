@@ -674,12 +674,24 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
             e.build.plinth_included = true;
         }
         // The mounting plate of the maker's enclosure (part data `Mounting origin:
-        // 25/12.5/20`: its lower left front corner from the left, bottom and rear, mm).
+        // 25/12.5/20`: its top left front corner from the left, top and rear, mm).
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
         }
     }
     e
+}
+
+/// The restricted areas of `kind` of the enclosure's part on a face (its maker's
+/// data), in face coordinates.
+pub fn restricted_areas(prj: &Project, e: &Enclosure, face: Face, kind: crate::parts::Restriction) -> Vec<R> {
+    let Some(part) = part_by_number(prj, &e.part) else { return Vec::new() };
+    part.mounting_data
+        .restricted
+        .iter()
+        .filter(|a| a.kind == kind && a.face == face.key())
+        .map(|a| R::from_points(p(a.x, a.y), p(a.x + a.w, a.y + a.h)))
+        .collect()
 }
 
 /// `x/y/z` in mm.

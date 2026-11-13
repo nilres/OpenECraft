@@ -35,7 +35,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   (or else the STEP model) as 3D model, the place of its mounting plate (part data
   `Mounting origin`, used by new enclosures of the part) and its restricted areas, and
   the macro, EPLAN project, STEP file and PDFs as attachments
-  ([parts](docs/features/parts.md)). The 3D macros of EDZ files give their parts a 3D
+  ([parts](docs/features/parts.md)). **Restricted areas** of enclosure parts (mounting
+  data, on the faces of the enclosure) are drawn hatched in the panel layout, which
+  reports devices in a placing area and cutouts and holes in a cut-out area
+  ([panel layout](docs/features/panel-layout.md#restricted-areas)). An enclosure of a
+  maker's part that names its system keeps that part instead of the catalog's body. The 3D macros of EDZ files give their parts a 3D
   model. STEP files whose arcs are given by their vertices
   only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
   longer fails the whole model.

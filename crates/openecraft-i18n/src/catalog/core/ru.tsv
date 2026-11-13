@@ -1996,6 +1996,7 @@ yellow	жёлтый
 {}: cross-section {} below the {} mm² of power circuits	{}: сечение {} меньше {} мм², требуемых для силовых цепей
 {}: cross-section {} differs from the potential definition ({})	{}: сечение {} отличается от определения потенциала ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: вырез {} на {} находится в {} мм от края, требуется не менее {} мм
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: вырез {} на {} находится в зоне, запрещённой для вырезов
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: вырез {} на {} выступает за его переднюю панель на {} мм
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: вырезы {} и {} на {} расположены слишком близко (перемычка {} мм, требуется не менее {} мм)
 {}: designation '{}' used more than once	{}: обозначение '{}' используется более одного раза
@@ -2003,6 +2004,7 @@ yellow	жёлтый
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: ток замыкания {} A на {} не отключается в течение {} s (требуется {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: тексты функций на однолинейной схеме и на схеме различаются
 {}: hole of {} is too close to the cutout of {} on the {}	{}: отверстие {} расположено слишком близко к вырезу {} на {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: отверстие {} на {} находится в зоне, запрещённой для вырезов
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: отверстие Ø{} устройства {} на {} находится в {} мм от края, требуется не менее {} мм
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: отверстия {} и {} на {} расположены слишком близко (перемычка {} мм, требуется не менее {} мм)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: горячая точка около {} °C при x = {} мм, y = {} мм монтажной панели (внутренняя температура не более {} °C)
@@ -2089,6 +2091,7 @@ yellow	жёлтый
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} не предназначен для настенного монтажа, установите его на рейку
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} находится на высоте {} … {} мм над полом, допустимо {} … {} мм
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg на {} превышают допустимую нагрузку {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} находится в зоне, запрещённой для размещения, на {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} модулей фотоэлектрического поля {} не подключены к цепочке
 {}: {} modules, the head has {} slots	{}: модулей – {}, у головного модуля слотов – {}
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} длиной {} мм длиннее складской длины {} мм и требует стыковки

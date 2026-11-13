@@ -124,8 +124,9 @@ fn the_macro_gives_model_plate_and_restricted_areas() {
     let p = &edz.parts[0];
     assert_eq!(p.model_3d.as_ref().unwrap().size(), [600.0, 600.0, 350.0]);
     assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
-    let areas = &p.source_data.as_ref().unwrap()["restricted_areas"];
-    assert_eq!(*areas, serde_json::json!([{"kind": "cutout", "surface": 10002, "corners": [[25.0, 12.5, 20.0], [35.0, 12.5, 20.0], [35.0, 32.5, 20.0], [25.0, 32.5, 20.0]]}]));
+    // The area 10 × 20 mm at the lower left corner of the plate, in plate coordinates
+    // (y down from the plate's top).
+    assert_eq!(p.mounting_data.restricted, [RestrictedArea { kind: Restriction::Cutout, face: "plate".into(), x: 0.0, y: 555.0, w: 10.0, h: 20.0 }]);
     // The macro wins over the STEP model.
     let edz = read(&package_with(&layout_ema()), Some(step)).unwrap();
     assert_eq!(edz.parts[0].model_3d.as_ref().unwrap().triangles.len(), 2);
@@ -175,5 +176,21 @@ fn rittal_package() {
     let size = p.model_3d.as_ref().unwrap().size();
     assert!((size[1] - 600.0).abs() < 1.0 && (350.0..360.0).contains(&size[2]), "{size:?}");
     assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
-    assert_eq!(p.source_data.as_ref().unwrap()["restricted_areas"].as_array().unwrap().len(), 181);
+    // All areas but the three on the frame around the door, on all faces.
+    let areas = &p.mounting_data.restricted;
+    let faces: std::collections::BTreeMap<(&str, &str), usize> = areas.iter().fold(Default::default(), |mut m, a| {
+        *m.entry((a.face.as_str(), a.kind.key())).or_default() += 1;
+        m
+    });
+    eprintln!("{} areas: {faces:?}", areas.len());
+    assert_eq!(areas.len(), 178);
+    assert!(openecraft_parts::ENCLOSURE_FACES.iter().all(|f| areas.iter().any(|a| a.face == *f)), "{faces:?}");
+    // Each within its face of an enclosure of the part.
+    let mut prj = openecraft_core::model::Project::default();
+    prj.parts.push(p.clone());
+    let e = openecraft_core::panel::new_enclosure(&mut prj, &p.number, "+A1");
+    for a in areas {
+        let (w, h) = e.face_size(openecraft_core::panel::Face::from_key(&a.face).unwrap());
+        assert!(a.x >= -1.0 && a.y >= -1.0 && a.x + a.w <= w + 1.0 && a.y + a.h <= h + 1.0, "{} on {w} x {h}", a.text());
+    }
 }

@@ -1507,6 +1507,24 @@ fn draw_lineup(d: &mut dyn Draw, boxes: &[crate::report_blocks::LineupBox], orig
 
 // ---------------------------------------------------------------------- panel layout
 
+/// Hatches a rectangle with lines at 45°, `step` apart (page mm): rising to the right
+/// or falling.
+fn hatch(d: &mut dyn Draw, r: R, step: f32, rising: bool) {
+    let (a, b) = (r.min, r.max);
+    if step <= 0.0 || b.x - a.x < 0.01 || b.y - a.y < 0.01 {
+        return;
+    }
+    // Rising lines are x + y = c (y down), falling ones x - y = c.
+    let (from, to) = if rising { (a.x + a.y, b.x + b.y) } else { (a.x - b.y, b.x - a.y) };
+    let mut c = from + step / 2.0;
+    while c < to {
+        let (x0, x1) = if rising { ((c - b.y).max(a.x), (c - a.y).min(b.x)) } else { ((c + a.y).max(a.x), (c + b.y).min(b.x)) };
+        let y = |x: f32| if rising { c - x } else { x - c };
+        d.line(p(x0, y(x0)), p(x1, y(x1)), 0.1, Ink::Frame, false);
+        c += step;
+    }
+}
+
 /// Draws an enclosure in front view: its mounting plate or its door (seen from the
 /// front). `origin` is the page position of the enclosure's top left corner, `k` the
 /// scale (page mm per real mm). From the front, the cable ducts behind the door are
@@ -1599,6 +1617,17 @@ pub fn draw_enclosure(
                 if vw > 2.0 * g && vh > 2.0 * g {
                     d.rect(tf(g, g / 2.0), tf(vw - g, vh - g / 2.0), 0.2, Ink::Frame, false);
                 }
+            }
+        }
+    }
+    // The restricted areas of the enclosure (its maker's data): placing areas hatched
+    // rising, cut-out areas falling.
+    for (kind, rising) in [(crate::parts::Restriction::Placing, true), (crate::parts::Restriction::Cutout, false)] {
+        for a in panel::restricted_areas(prj, e, face, kind) {
+            let (s, t) = (tf(a.min.x, a.min.y), tf(a.max.x, a.max.y));
+            hatch(d, R::from_points(s, t), 2.5, rising);
+            for (u, v) in [(s, p(t.x, s.y)), (p(t.x, s.y), t), (t, p(s.x, t.y)), (p(s.x, t.y), s)] {
+                d.line(u, v, 0.1, Ink::Frame, true);
             }
         }
     }

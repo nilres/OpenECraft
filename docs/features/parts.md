@@ -148,11 +148,12 @@ the device. Floor-standing parts stand upright on the floor of a room.
   (Parts Manager and the editor; `parts_import` only attaches the STEP file). The
   front of the mounting plate gives the part data `Mounting origin: 25/12.5/20`, so
   that an enclosure of the part gets that plate (see [panel layout](panel-layout.md)).
-  The restricted areas are kept in the part's source data
-  (`restricted_areas`: kind `placing` or `cutout`, surface kind and corners in mm from
-  the left, bottom and rear of the housing); they are not checked yet. The macro, the
-  EPLAN project (`.zw1`), the STEP file and the PDF documents are stored as
-  attachments.
+  The restricted areas of the macro become the part's *Restricted areas* (mounting
+  data, `placing plate 0/0 550 x 20; cutout left 10/20 30 x 40`: kind, face, place and
+  size in the face's coordinates), each on the face whose plane it lies in; those on
+  the frame around the door are left out. The panel layout draws and checks them (see
+  [panel layout](panel-layout.md#restricted-areas)). The macro, the EPLAN project
+  (`.zw1`), the STEP file and the PDF documents are stored as attachments.
 
 ### Placing an EPLAN symbol
 

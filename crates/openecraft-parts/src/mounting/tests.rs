@@ -187,3 +187,26 @@ fn cutouts_survive_the_app_storage() {
     assert_eq!(old.cutouts, [PlacedCutout::centered(Cutout::Rect { w: 177.0, h: 177.0 })]);
     assert!(old.door_cutouts.is_empty());
 }
+
+#[test]
+fn restricted_areas_round_trip_through_text_and_csv() {
+    let a = RestrictedArea { kind: Restriction::Cutout, face: "left".into(), x: 10.0, y: 20.5, w: 30.0, h: 40.0 };
+    assert_eq!(a.text(), "cutout left 10/20.5 30 x 40");
+    assert_eq!(RestrictedArea::parse(&a.text()), Some(a.clone()));
+    assert_eq!(RestrictedArea::parse("Placing PLATE 0/0 550x20 mm").map(|p| (p.kind, p.face, p.w, p.h)), Some((Restriction::Placing, "plate".into(), 550.0, 20.0)));
+    for bad in ["hole plate 0/0 1 x 1", "cutout wall 0/0 1 x 1", "cutout door 0 1 x 1", "cutout door 0/0 0 x 1", "cutout door 0/0 1"] {
+        assert_eq!(RestrictedArea::parse(bad), None, "{bad}");
+    }
+    let mut m = MountingData::default();
+    assert!(m.set("Restricted areas", "placing plate 0/0 550 x 20; cutout left 10/20.5 30 x 40"));
+    assert_eq!(m.restricted.len(), 2);
+    assert_eq!(m.get("restricted areas").as_deref(), Some("placing plate 0/0 550 x 20; cutout left 10/20.5 30 x 40"));
+    assert!(!m.set("Restricted areas", "placing nowhere 0/0 1 x 1"));
+    assert_eq!(m.restricted.len(), 2, "a bad list leaves the areas");
+    assert!(m.set("Restricted areas", ""));
+    assert!(m.restricted.is_empty());
+    let mut p = Part { number: "RIT.1".into(), ..Default::default() };
+    p.mounting_data.restricted = vec![a];
+    let csv = crate::csv::to_csv(std::slice::from_ref(&p));
+    assert_eq!(crate::csv::from_csv(&csv).unwrap()[0].mounting_data.restricted, p.mounting_data.restricted);
+}

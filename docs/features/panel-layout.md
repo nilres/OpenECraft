@@ -126,6 +126,17 @@ equipment of the mounting plate; their wires are routed over the hinge; the moun
 layout page shows the plate and every face with items (door, side walls, rear wall,
 roof, bottom) side by side.
 
+## Restricted areas
+
+An enclosure part can keep areas of its faces free (*Restricted areas* in the part's
+mounting data, imported with the enclosure packages of the Rittal configurator):
+*placing* areas take no devices, rails, ducts or busbars, *cut-out* areas no cutouts
+or holes, e.g. the hinges, the lock and the stiffening of the door, or the fixing
+points of the mounting plate. The faces show them hatched (placing areas rising,
+cut-out areas falling), in the editor and on the mounting layout pages. The check
+reports an item lying in a placing area (*Outside*) and the cutouts and holes in a
+cut-out area (*Manufacturing*); touching an area's edge is allowed.
+
 ## Drilling pattern and NC data
 
 Rails, ducts and busbar holders get tapped holes along their length, devices screwed
@@ -456,10 +467,13 @@ A manufacturer's enclosure part that comes with its plinth says so in its data
 (`Plinth: 200`): a new enclosure of it stands on the plinth, which is drawn and
 exported but is no part of its own in the bill of materials (the Hager univers
 cabinet `HAG.FR25S2`, 1850 mm + 200 mm plinth, five fields, protection class II).
-Its mounting plate is placed by `Mounting origin: 25/12.5/20` (the lower left corner
-of the plate's front from the left, the bottom and the rear of the enclosure, mm; the
-plate keeps the same distance on the right and at the top), as the enclosure packages
-of the Rittal configurator give it ([parts](parts.md)).
+Its mounting plate is placed by `Mounting origin: 25/12.5/20` (the top left corner
+of the plate's front from the left, the top and the rear of the enclosure, mm; the
+plate keeps the same distance on the right and at the bottom), as the enclosure
+packages of the Rittal configurator give it ([parts](parts.md)). A maker's enclosure
+part that names its system (`Enclosure system: compact`) gets that system's walls and
+data but stays the part of the enclosure; only enclosures of the built-in catalog
+follow their size with the system's body.
 Distribution systems build the cabinet from component modules: a module the device
 stands on is an accessory mounted *under the part* (`HAG.UE31E1B` under the NH1 fuse
 switch disconnector `HAG.LT153`, `HAG.UE31SS400` under the current transformers), so

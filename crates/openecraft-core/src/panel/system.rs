@@ -245,10 +245,14 @@ pub fn apply_system(e: &mut Enclosure, system: &str, size: Option<(f32, f32, f32
     sync_part(e);
 }
 
-/// Keeps the part of a system enclosure in step with its size.
+/// Keeps the part of a system enclosure in step with its size: no part or one of the
+/// built-in catalog becomes the system's body of that size; a maker's enclosure (an
+/// imported part declaring its system) stays.
 pub fn sync_part(e: &mut Enclosure) {
     if let Some(s) = e.system() {
-        e.part = mechanics::body_number(s.data, e.width, e.height, e.depth);
+        if e.part.is_empty() || crate::parts::catalog().iter().any(|p| p.number == e.part) {
+            e.part = mechanics::body_number(s.data, e.width, e.height, e.depth);
+        }
     }
 }
 

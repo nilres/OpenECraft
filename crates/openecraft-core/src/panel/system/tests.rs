@@ -84,6 +84,23 @@ fn resizing_follows_the_part_number() {
     assert_eq!(e.part, "GEN.TS-1200X2000X600");
     apply_system(&mut e, "", None);
     assert!(e.system().is_none());
+    // A plain enclosure of the catalog becomes the system's body.
+    let mut plain = Enclosure { part: crate::panel::ENCLOSURE_PART.into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    apply_system(&mut plain, "compact", None);
+    assert_eq!(plain.part, "GEN.CE-600X600X350");
+}
+
+#[test]
+fn a_makers_enclosure_keeps_its_part() {
+    let mut prj = crate::model::Project::default();
+    let mut part = crate::parts::Part { number: "RIT.1360000".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    part.tech_data = "Enclosure system: compact".into();
+    prj.parts.push(part);
+    let mut e = new_enclosure(&mut prj, "RIT.1360000", "+A1");
+    assert_eq!((e.part.as_str(), e.build.system.as_str()), ("RIT.1360000", "compact"));
+    e.width = 800.0;
+    sync_part(&mut e);
+    assert_eq!(e.part, "RIT.1360000");
 }
 
 #[test]

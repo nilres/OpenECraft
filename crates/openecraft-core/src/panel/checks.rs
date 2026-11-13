@@ -5,6 +5,7 @@
 //! ([`super::thermal`]). Manufacturability: [`super::manufacturing`].
 
 use super::{collisions, item_box, outside, part_by_number, Enclosure, Face, ItemKind, PanelItem, PLATE_MARGIN};
+use crate::geom::R;
 use crate::model::Project;
 use crate::parts::{kind_of_symbol, FnKind, Part};
 use crate::issue::Severity;
@@ -303,6 +304,16 @@ pub fn validate(prj: &Project, e: &Enclosure) -> Vec<Finding> {
     }
     for id in outside(e) {
         push(CheckKind::Outside, Severity::Warning, vec![id], tr_fmt!("{}: {} outside the mounting plate / enclosure", e.name, name(id)));
+    }
+    // The restricted placing areas of the enclosure (its maker's data); touching an
+    // edge is no overlap.
+    for face in Face::ALL {
+        let areas: Vec<R> = super::restricted_areas(prj, e, face, crate::parts::Restriction::Placing).into_iter().map(|a| a.expand(-0.05)).collect();
+        for it in e.items.iter().filter(|i| i.face == face && !matches!(i.kind, ItemKind::Cutout | ItemKind::MountingPlate)) {
+            if areas.iter().any(|a| a.overlaps(&it.rect())) {
+                push(CheckKind::Outside, Severity::Warning, vec![it.id], tr_fmt!("{}: {} lies in a restricted placing area of the {}", e.name, name(it.id), face.title()));
+            }
+        }
     }
     let boxes: Vec<_> = e.items.iter().map(|i| item_box(e, i)).collect();
     let classes: Vec<String> = e.items.iter().map(|i| item_class(prj, &kinds, i)).collect();
