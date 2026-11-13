@@ -315,6 +315,21 @@ impl PanelUi {
         }
         candidates.sort_by(|a, b| a.1.total_cmp(&b.1).then(a.0.cmp(&b.0)));
         let candidates: Vec<usize> = candidates.into_iter().map(|c| c.0).collect();
+        // Earth electrodes, conductors and rods of the lightning protection near the
+        // pointer and not behind what was clicked.
+        let mut near_earthing: Option<((usize, panel::lightning::Owner), f32)> = None;
+        for (a, b, target) in &scene.earthing_picks {
+            let (Some(pa), Some(pb)) = (project_view(*a), project_view(*b)) else { continue };
+            let d = openecraft_core::geom::dist_to_segment(p(ptr.x, ptr.y), p(pa.0.x, pa.0.y), p(pb.0.x, pb.0.y));
+            let ab = pb.0 - pa.0;
+            let t = if ab.length_sq() > 0.0 { ((ptr - pa.0).dot(ab) / ab.length_sq()).clamp(0.0, 1.0) } else { 0.0 };
+            if d > 6.0 || device_depth.is_some_and(|dz| pa.1 + (pb.1 - pa.1) * t > dz - 1.0) {
+                continue;
+            }
+            if near_earthing.is_none_or(|(_, n)| d < n) {
+                near_earthing = Some((*target, d));
+            }
+        }
         match (hit, near_route) {
             _ if !candidates.is_empty() => {
                 self.pick_wire(an, &candidates);
@@ -323,6 +338,12 @@ impl PanelUi {
             // Cables and tubes of the 3D routing.
             (_, Some((key, _))) => {
                 self.select_route(an, key);
+                return true;
+            }
+            (_, None) if near_earthing.is_some() => {
+                if let Some((target, _)) = near_earthing {
+                    self.select_earthing(prj, target);
+                }
                 return true;
             }
             (Some((k, id)), None) => {

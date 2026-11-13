@@ -68,6 +68,8 @@ const ELECTRODE_DEPTH: &str = tr_const!("Ring: depth below the ground level, rod
 const ELECTRODE_MESH: &str = tr_const!("Foundation earth electrode: its largest mesh, mm (default 20000)");
 const ELECTRODE_PART: &str = tr_const!("Part of its strip, wire or rod (empty: generic)");
 const ELECTRODE_BUSBAR: &str = tr_const!("Main earthing busbar (device) it is connected to; empty: none");
+const MATERIAL: &str = tr_const!("Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium");
+const ELECTRODE_DIAMETER: &str = tr_const!("Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm");
 const ROD_X: &str = tr_const!("x of the foot of the rod in the floor plan of the building, mm");
 const ROD_Z: &str = tr_const!("z of the foot of the rod in the floor plan of the building, mm");
 const ROD_HEIGHT: &str = tr_const!("Height of the rod above the covering, mm (default 1500)");
@@ -482,6 +484,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("distance", Kind::Num, ELECTRODE_DISTANCE),
             optional("depth", Kind::Num, ELECTRODE_DEPTH),
             optional("mesh", Kind::Num, ELECTRODE_MESH),
+            optional("material", Kind::Str, MATERIAL),
+            optional("diameter", Kind::Num, ELECTRODE_DIAMETER),
             optional("part", Kind::Str, ELECTRODE_PART),
             optional("busbar", Kind::Str, ELECTRODE_BUSBAR),
             optional("name", Kind::Str, tr_const!("Name (default E1, E2, …)")),
@@ -500,6 +504,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("distance", Kind::Num, ELECTRODE_DISTANCE),
             optional("depth", Kind::Num, ELECTRODE_DEPTH),
             optional("mesh", Kind::Num, ELECTRODE_MESH),
+            optional("material", Kind::Str, MATERIAL),
+            optional("diameter", Kind::Num, ELECTRODE_DIAMETER),
             optional("part", Kind::Str, ELECTRODE_PART),
             optional("busbar", Kind::Str, ELECTRODE_BUSBAR),
             optional("name", Kind::Str, tr_const!("New name")),
@@ -514,7 +520,13 @@ pub static COMMANDS: &[Spec] = &[
             param("building", Kind::Str, BUILDING),
             optional("class", Kind::Int, tr_const!("Class of the lightning protection system, 1 … 4 (I … IV; default III)")),
             optional("down_conductors", Kind::Int, tr_const!("Number of down conductors (0: as many as the class needs for the walls)")),
+            optional("material", Kind::Str, MATERIAL),
+            optional("diameter", Kind::Num, tr_const!("Diameter of the conductors, mm (default 8)")),
             optional("part", Kind::Str, tr_const!("Part of the conductors (round wire; empty: generic)")),
+            optional("roof_holder", Kind::Str, tr_const!("Part of the conductor holders on the roof (empty: generic)")),
+            optional("wall_holder", Kind::Str, tr_const!("Part of the conductor holders on the walls (empty: generic)")),
+            optional("holder_spacing", Kind::Num, tr_const!("Greatest distance of the conductor holders, mm (default 1000)")),
+            optional("test_joint", Kind::Num, tr_const!("Height of the test joints above the ground, mm (default 1000)")),
             optional("remove", Kind::Bool, tr_const!("Remove the lightning protection system")),
         ],
         run: set_lightning_protection,
@@ -527,6 +539,10 @@ pub static COMMANDS: &[Spec] = &[
             optional("x", Kind::Num, ROD_X),
             optional("z", Kind::Num, ROD_Z),
             optional("height", Kind::Num, ROD_HEIGHT),
+            optional("material", Kind::Str, MATERIAL),
+            optional("diameter", Kind::Num, tr_const!("Diameter of the rod, mm (default 16)")),
+            optional("base", Kind::Str, tr_const!("holder (a rod holder on the roof) or concrete_base (on flat roofs)")),
+            optional("part", Kind::Str, tr_const!("Part of the rod (empty: the one of its material and diameter)")),
             optional("name", Kind::Str, tr_const!("Name (default F1, F2, …)")),
         ],
         run: add_air_rod,
@@ -540,6 +556,10 @@ pub static COMMANDS: &[Spec] = &[
             optional("x", Kind::Num, ROD_X),
             optional("z", Kind::Num, ROD_Z),
             optional("height", Kind::Num, ROD_HEIGHT),
+            optional("material", Kind::Str, MATERIAL),
+            optional("diameter", Kind::Num, tr_const!("Diameter of the rod, mm (default 16)")),
+            optional("base", Kind::Str, tr_const!("holder (a rod holder on the roof) or concrete_base (on flat roofs)")),
+            optional("part", Kind::Str, tr_const!("Part of the rod (empty: the one of its material and diameter)")),
             optional("name", Kind::Str, tr_const!("New name")),
             optional("remove", Kind::Bool, tr_const!("Remove the air-termination rod")),
         ],
@@ -652,7 +672,7 @@ fn electrode_json(prj: &Project, poses: &[panel::SitePose], bi: usize, e: &panel
     let lines = earthing::paths(prj, poses, bi, e);
     json!({
         "id": e.id, "name": e.name, "kind": e.kind.key(), "distance": e.distance, "depth": e.depth, "mesh": e.mesh,
-        "x": e.x, "z": e.z, "length": e.length, "part": earthing::part_of(e), "busbar": e.busbar,
+        "x": e.x, "z": e.z, "length": e.length, "part": earthing::part_of(prj, e), "material": earthing::material_of(e).key(), "diameter": earthing::diameter_of(e), "busbar": e.busbar,
         "conductor_length": earthing::length(&lines) / 1000.0, "meshes": lines.len().saturating_sub(1),
     })
 }
@@ -661,10 +681,10 @@ fn lightning_json(prj: &Project, poses: &[panel::SitePose], bi: usize) -> Value 
     let Some(lp) = &prj.layout.buildings[bi].lightning else { return Value::Null };
     let g = lightning::geometry(prj, poses, bi);
     let len = |k: lightning::LpsKind| g.as_ref().map_or(0.0, |g| g.length(k) / 1000.0);
-    let rods: Vec<Value> = lp.rods.iter().map(|r| json!({ "id": r.id, "name": r.name, "x": r.x, "z": r.z, "height": r.height })).collect();
+    let rods: Vec<Value> = lp.rods.iter().map(|r| json!({ "id": r.id, "name": r.name, "x": r.x, "z": r.z, "height": r.height, "material": lightning::rod_material(r).key(), "diameter": r.diameter, "base": if r.base == panel::RodBase::ConcreteBase { "concrete_base" } else { "holder" }, "part": lightning::rod_part(prj, r) })).collect();
     json!({
         "class": lp.class, "class_name": lightning::class_name(lp.class), "down_conductors": g.as_ref().map_or(0, |g| g.count(lightning::LpsKind::Down)),
-        "down_spacing": lightning::down_spacing(lp.class), "mesh": lightning::mesh(lp.class), "part": lightning::conductor(lp),
+        "down_spacing": lightning::down_spacing(lp.class), "mesh": lightning::mesh(lp.class), "part": lightning::conductor(prj, lp), "conductor_material": lightning::material_of(lp).key(), "diameter": lp.diameter, "roof_holder": lightning::holders(lp).0, "wall_holder": lightning::holders(lp).1, "holder_spacing": lp.holder_spacing, "test_joint": lp.test_joint,
         "air_termination_length": len(lightning::LpsKind::AirTermination), "roof_conductor_length": len(lightning::LpsKind::Roof), "down_conductor_length": len(lightning::LpsKind::Down),
         "rods": rods, "unprotected_pv_arrays": lightning::unprotected_arrays(prj, poses, bi),
         "material": lightning::material(prj, poses, bi).into_iter().map(|(part, qty)| json!({ "part": part, "qty": qty })).collect::<Vec<_>>(),
@@ -685,6 +705,10 @@ fn electrode_args(a: &Args, mut e: panel::Electrode) -> Result<panel::Electrode,
     e.distance = num_in(a, "distance", 0.0, 10_000.0)?.unwrap_or(e.distance);
     e.depth = num_in(a, "depth", 0.0, 5000.0)?.unwrap_or(e.depth);
     e.mesh = num_in(a, "mesh", 2000.0, 50_000.0)?.unwrap_or(e.mesh);
+    e.diameter = num_in(a, "diameter", 0.0, 60.0)?.unwrap_or(e.diameter);
+    if let Some(m) = a.str("material") {
+        e.material = Some(panel::Material::from_key(m).ok_or_else(|| tr_fmt!("Unknown material: {}", m))?);
+    }
     if let Some(p) = a.str("part") {
         e.part = p.trim().into();
     }
@@ -737,6 +761,10 @@ fn set_lightning_protection(prj: &mut Project, a: &Args) -> Result<Value, String
     }
     let class = int_in(a, "class", 1, 4)?;
     let downs = int_in(a, "down_conductors", 0, 200)?;
+    let material = a.str("material").map(|m| panel::Material::from_key(m).ok_or_else(|| tr_fmt!("Unknown material: {}", m))).transpose()?;
+    let diameter = num_in(a, "diameter", 5.0, 20.0)?;
+    let spacing = num_in(a, "holder_spacing", 300.0, 3000.0)?;
+    let joint = num_in(a, "test_joint", 300.0, 2000.0)?;
     let b = &mut prj.layout.buildings[bi];
     let lp = b.lightning.get_or_insert_with(panel::Lightning::default);
     if let Some(c) = class {
@@ -747,6 +775,18 @@ fn set_lightning_protection(prj: &mut Project, a: &Args) -> Result<Value, String
     }
     if let Some(p) = a.str("part") {
         lp.part = p.trim().into();
+    }
+    if let Some(m) = material {
+        lp.material = Some(m);
+    }
+    lp.diameter = diameter.unwrap_or(lp.diameter);
+    lp.holder_spacing = spacing.unwrap_or(lp.holder_spacing);
+    lp.test_joint = joint.unwrap_or(lp.test_joint);
+    if let Some(p) = a.str("roof_holder") {
+        lp.roof_holder = p.trim().into();
+    }
+    if let Some(p) = a.str("wall_holder") {
+        lp.wall_holder = p.trim().into();
     }
     *lp = lightning::checked(lp.clone());
     Ok(building_json(prj, bi))
@@ -763,6 +803,20 @@ fn rod_args(a: &Args, mut r: panel::AirRod) -> Result<panel::AirRod, String> {
     r.x = a.num("x").unwrap_or(r.x);
     r.z = a.num("z").unwrap_or(r.z);
     r.height = num_in(a, "height", 100.0, 20_000.0)?.unwrap_or(r.height);
+    r.diameter = num_in(a, "diameter", 8.0, 40.0)?.unwrap_or(r.diameter);
+    if let Some(m) = a.str("material") {
+        r.material = Some(panel::Material::from_key(m).ok_or_else(|| tr_fmt!("Unknown material: {}", m))?);
+    }
+    if let Some(b) = a.str("base") {
+        r.base = match b.trim() {
+            "holder" => panel::RodBase::Holder,
+            "concrete_base" | "concrete-base" => panel::RodBase::ConcreteBase,
+            other => return Err(tr_fmt!("Unknown base: {}", other)),
+        };
+    }
+    if let Some(p) = a.str("part") {
+        r.part = p.trim().into();
+    }
     if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
         r.name = n.into();
     }

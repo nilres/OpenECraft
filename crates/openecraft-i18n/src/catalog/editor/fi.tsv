@@ -186,6 +186,7 @@ Automatic ({})	Automaattinen ({})
 Automatic accessories	Automaattiset tarvikkeet
 Automatic configuration	Automaattinen kokoonpano
 Automatic placement	Automaattinen sijoittelu
+Automatic: {}	Automaattinen: {}
 Automation	Automaatio
 Aux	Apu
 Avoid:	Vältä:
@@ -389,9 +390,11 @@ Compare and baselines	Vertailu ja lähtötasot
 Compare with	Vertaa kohteeseen
 Compare with a baseline, a revision or another project file and take differences over	Vertaa lähtötasoon, revisioon tai toiseen projektitiedostoon ja ota erot käyttöön
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Täydellinen tunnus: {}\nTästä puuttuvat aspektit otetaan sivulta (=toiminto +sijainti) tai rakennelaatikosta, jossa symboli on.
+Concrete base	Betonijalka
 Condition	Ehto
 Condition (OPTION=value & …)	Ehto (OPTION=arvo & …)
 Conductive frame	Johtava runko
+Conductor	Johdin
 Conflicts	Ristiriidat
 Connected devices	Liitetyt laitteet
 Connected to:	Yhdistetty kohteeseen:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Laitteet
 Dew point	Kastepiste
 Diameter	Halkaisija
 Diameter / bends	Halkaisija / taivutukset
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Pyörölangan halkaisija; 0: lattarauta 30 x 3,5 mm
+Diameter of the rod	Tangon halkaisija
 Dictionary for translators: one column per language	Sanakirja kääntäjille: yksi sarake kieltä kohden
 Digits	Numeroita
 Dimension	Mitoitus
@@ -812,6 +817,7 @@ Go to page	Siirry sivulle
 Graphic line	Grafiikkaviiva
 Graphic rectangle	Grafiikkasuorakulmio
 Graphical form	Graafinen lomake
+Greatest distance of the conductor holders on the roof and on the walls	Johdinpidikkeiden suurin väli katolla ja seinillä
 Greatest distance of the roof hooks along a rail	Kattokoukkujen suurin väli kiskoa pitkin
 Grid	Ruudukko
 Grid north	Karttapohjoinen
@@ -836,6 +842,7 @@ Height above the mounting plate	Korkeus asennuslevyn yläpuolella
 Height above the plate	Korkeus levyn yläpuolella
 Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
 Height of the rod above the covering	Tangon korkeus katteen yläpuolella
+Height of the test joints above the ground	Mittausliitosten korkeus maanpinnasta
 Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Pidetään painettuna napsautettaessa, siirrettäessä tai vieritettäessä. Ctrl on macOS:ssä Cmd.
 Help	Ohje
@@ -845,6 +852,9 @@ Highest phase unbalance	Suurin vaiheiden epäsymmetria
 Highest short-circuit current	Suurin oikosulkuvirta
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Suurin jännite (tyhjäkäynti alimmassa lämpötilassa), keskimääräinen ja pienin jännite (maksimiteholla keski- ja korkeimmassa lämpötilassa), virta maksimiteholla, huipputeho
 Highest: the lowest voltage	Korkein: pienin jännite
+Holder distance	Pidikeväli
+Holders on the roof	Pidikkeet katolla
+Holders on the walls	Pidikkeet seinillä
 Hole to sheet edge	Reiän etäisyys levyn reunasta
 Home	Aloitus
 Hook distance	Koukkujen väli
@@ -1008,6 +1018,7 @@ Level {} of building {}	Rakennuksen {1} kerros {0}
 Levels	Kerrokset
 Library	Kirjasto
 Lightning protection	Ukkossuojaus
+Lightning protection of building {}	Rakennuksen {} ukkossuojaus
 Like two fingers	Kuten kaksi sormea
 Limits	Raja-arvot
 Limits in effect	Voimassa olevat raja-arvot
@@ -1058,6 +1069,7 @@ Macros	Makrot
 Macros ({})	Makrot ({})
 Macro…	Makro…
 Main	Pää
+Main earthing busbar	Päämaadoituskisko
 Make the selected elements of this project equal to the compared ones	Tee tämän projektin valituista elementeistä samanlaiset kuin vertailtavat
 Maker	Valmistaja
 Makes the current page content of the option	Tekee nykyisestä sivusta vaihtoehdon sisältöä
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	PLC-laitteisto ja väylätopologia
 PLC overview	PLC-yleiskatsaus
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- tai JPEG-bittikarttakuva, esim. logo tai valokuva
 PV array {}	Aurinkopaneelikenttä {}
+PV array {} lies outside the protection of the air-termination system	Aurinkopaneelikenttä {} on sieppausjärjestelmän suojan ulkopuolella
 PV array {} of building {}: {} modules	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia
 PV array {} of building {}: {} modules, {} kWp	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia, {} kWp
 PV arrays	Aurinkopaneelikentät
@@ -1683,6 +1696,7 @@ Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
 Rights	Oikeudet
 Risers	Nousut
+Rod holder	Tangon pidike
 Roof pitch	Katon kaltevuus
 Roof window	Kattoikkuna
 Roof windows	Kattoikkunat
@@ -2001,6 +2015,7 @@ Terminals at least	Riviliittimet vähintään
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Riviliittimet, joilla on sama siltanumero, on silloitettu (sama potentiaali). Varariviliittimet lasketaan mukaan osaluetteloon.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Ehdot merkillä ';' erotettuina: avain=arvo (yhtä kuin), avain~teksti (sisältää) tai teksti missä tahansa
 Test connection	Testaa yhteys
+Test joints	Mittausliitokset
 Text offset	Tekstin siirtymä
 Text size	Tekstin koko
 Texts	Tekstit
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} johtoa muutettu
 {} wires, {} cables and {} tubes routed	{} johtoa, {} kaapelia ja {} putkea reititetty
 {} wires, {} – {} mm	{} johtoa, {} – {} mm
+{} {} of building {}	{} {}, rakennus {}
 {} °C (max. {} °C)	{} °C (enint. {} °C)
 {} °C (max.)	{} °C (enint.)
 {} × {} = {}, {}	{} × {} = {}, {}

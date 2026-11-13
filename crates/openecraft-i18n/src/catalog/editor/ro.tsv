@@ -186,6 +186,7 @@ Automatic ({})	Automat ({})
 Automatic accessories	Accesorii automate
 Automatic configuration	Configurare automată
 Automatic placement	Plasare automată
+Automatic: {}	Automat: {}
 Automation	Automatizare
 Aux	Aux
 Avoid:	Evitare:
@@ -389,9 +390,11 @@ Compare and baselines	Comparare și versiuni de referință
 Compare with	Comparare cu
 Compare with a baseline, a revision or another project file and take differences over	Comparare cu o versiune de referință, o revizie sau alt fișier de proiect și preluarea diferențelor
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Identificator complet: {}\nAspectele care lipsesc aici se preiau de la pagină (=funcție +loc de montare) sau de la caseta de structură în care se află simbolul.
+Concrete base	Bază din beton
 Condition	Condiție
 Condition (OPTION=value & …)	Condiție (OPTION=valoare & …)
 Conductive frame	Cadru conductor
+Conductor	Conductor
 Conflicts	Conflicte
 Connected devices	Dispozitive conectate
 Connected to:	Conectat la:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Dispozit
 Dew point	Punct de rouă
 Diameter	Diametru
 Diameter / bends	Diametru / curburi
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Diametrul unei sârme rotunde; 0: o platbandă 30 x 3,5 mm
+Diameter of the rod	Diametrul tijei
 Dictionary for translators: one column per language	Dicționar pentru traducători: o coloană pentru fiecare limbă
 Digits	Cifre
 Dimension	Cotă
@@ -812,6 +817,7 @@ Go to page	Salt la pagină
 Graphic line	Linie grafică
 Graphic rectangle	Dreptunghi grafic
 Graphical form	Formular grafic
+Greatest distance of the conductor holders on the roof and on the walls	Distanța maximă a suporturilor de conductor pe acoperiș și pe pereți
 Greatest distance of the roof hooks along a rail	Distanța maximă a cârligelor de acoperiș de-a lungul unei șine
 Grid	Grilă
 Grid north	Nordul rețelei
@@ -836,6 +842,7 @@ Height above the mounting plate	Înălțime deasupra plăcii de montaj
 Height above the plate	Înălțime deasupra plăcii
 Height of the plinth, 0 without plinth	Înălțimea soclului, 0 fără soclu
 Height of the rod above the covering	Înălțimea tijei deasupra învelitorii
+Height of the test joints above the ground	Înălțimea pieselor de separație deasupra terenului
 Heights above floor (IEC 60204-1)	Înălțimi deasupra podelei (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ținută apăsat la clic, mutare sau derulare. Ctrl este Cmd pe macOS.
 Help	Ajutor
@@ -845,6 +852,9 @@ Highest phase unbalance	Cel mai mare dezechilibru de fază
 Highest short-circuit current	Cel mai mare curent de scurtcircuit
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Tensiunea cea mai mare (în gol la temperatura cea mai scăzută), tensiunea medie și cea mai mică (la putere maximă la temperatura medie și cea mai ridicată), curentul la putere maximă, puterea de vârf
 Highest: the lowest voltage	Cea mai ridicată: tensiunea cea mai mică
+Holder distance	Distanța suporturilor
+Holders on the roof	Suporturi pe acoperiș
+Holders on the walls	Suporturi pe pereți
 Hole to sheet edge	Gaură față de marginea tablei
 Home	Pornire
 Hook distance	Distanța cârligelor
@@ -1008,6 +1018,7 @@ Level {} of building {}	Nivelul {} al clădirii {}
 Levels	Niveluri
 Library	Bibliotecă
 Lightning protection	Protecție contra trăsnetului
+Lightning protection of building {}	Protecția contra trăsnetului a clădirii {}
 Like two fingers	Ca două degete
 Limits	Limite
 Limits in effect	Limite în vigoare
@@ -1058,6 +1069,7 @@ Macros	Macro-uri
 Macros ({})	Macro-uri ({})
 Macro…	Macro…
 Main	Principal
+Main earthing busbar	Bara principală de împământare
 Make the selected elements of this project equal to the compared ones	Face elementele selectate ale acestui proiect egale cu cele comparate
 Maker	Producător
 Makes the current page content of the option	Face din pagina curentă conținut al opțiunii
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	Hardware PLC și topologie de magistrală
 PLC overview	Prezentare PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Imagine bitmap PNG sau JPEG, de ex. un logo sau o fotografie
 PV array {}	Câmp PV {}
+PV array {} lies outside the protection of the air-termination system	Câmpul PV {} se află în afara protecției sistemului de captare
 PV array {} of building {}: {} modules	Câmpul PV {} al clădirii {}: {} module
 PV array {} of building {}: {} modules, {} kWp	Câmpul PV {} al clădirii {}: {} module, {} kWp
 PV arrays	Câmpuri fotovoltaice
@@ -1683,6 +1696,7 @@ Right edges	Marginile din dreapta
 Right neighbour	Vecin din dreapta
 Rights	Drepturi
 Risers	Contratrepte
+Rod holder	Suport de tijă
 Roof pitch	Panta acoperișului
 Roof window	Fereastră de mansardă
 Roof windows	Ferestre de mansardă
@@ -2001,6 +2015,7 @@ Terminals at least	Borne cel puțin
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Bornele cu același număr de punte sunt legate prin punte (același potențial). Bornele de rezervă sunt incluse în lista de materiale.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termeni separați prin ';': cheie=valoare (egal), cheie~text (conține) sau text găsit oriunde
 Test connection	Testare conexiune
+Test joints	Piese de separație
 Text offset	Decalaj text
 Text size	Dimensiune text
 Texts	Texte
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} conductoare modificate
 {} wires, {} cables and {} tubes routed	{} conductoare, {} cabluri și {} tuburi pozate
 {} wires, {} – {} mm	{} conductoare, {} – {} mm
+{} {} of building {}	{} {} al clădirii {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}

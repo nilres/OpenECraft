@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Přístroje, vodiče, potenciály, kabely, svorkovnice, PLC, rozváděč, tekutiny, elektrické výpočty, struktura a překlady
 Diameter in mm	Průměr v mm
 Diameter of a hole at both ends (0: none)	Průměr otvoru na obou koncích (0: žádný)
+Diameter of the conductors, mm (default 8)	Průměr vodičů, mm (výchozí 8)
+Diameter of the rod, mm (default 16)	Průměr tyče, mm (výchozí 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Směr stopky: left, right, up nebo down (výchozí: podle vodičů v místě)
 Distance between power and signal or fluid in mm	Vzdálenost mezi silovými a signálními obvody nebo tekutinami v mm
 Distance from devices, rails and busbars in mm	Vzdálenost od přístrojů, lišt a přípojnic v mm
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Vygeneruje program stroje na zpracování přípojnic: řezy, děrované otvory a ohyby
 Give a device tag or a part number	Zadejte označení přístroje nebo číslo dílu
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dá budově ochranu před bleskem nebo ji změní: třídu, počet svodů a díl vodičů; jímací vedení na hřebenech a nárožích (mřížová soustava na plochých střechách), svody se zkušebními svorkami k zemničům; nebo ji odstraní
+Greatest distance of the conductor holders, mm (default 1000)	Největší vzdálenost podpěr vedení, mm (výchozí 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Seskupí prvky do sestavy, která se vybírá a přesouvá společně; bez názvu prvky opustí své sestavy
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Předá programy skříně do výroby jako zakázku: manifest a programy všech jejích ploch a měděných přípojnic
 Has a divider between power and signal cables	Má přepážku mezi silovými a signálními kabely
@@ -294,6 +297,7 @@ Height in mm	Výška v mm
 Height in mm without plinth; negative: unknown (wall mounted)	Výška v mm bez soklu; záporná: neznámá (montáž na stěnu)
 Height in mm; the logo keeps its aspect ratio inside	Výška v mm; logo si v ní zachová poměr stran
 Height of the rod above the covering, mm (default 1500)	Výška tyče nad krytinou, mm (výchozí 1500)
+Height of the test joints above the ground, mm (default 1000)	Výška zkušebních svorek nad terénem, mm (výchozí 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspekt nadřazeného produktu (-) stránky; přístroje na stránce se přesunou s ním
 Highest actuator on the door above the floor (0: not checked)	Nejvyšší ovládací prvek na dveřích nad podlahou (0: nekontroluje se)
 Highest air temperature at devices without data (0: not checked)	Nejvyšší teplota vzduchu u přístrojů bez údajů (0: nekontroluje se)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Výrobní balíček (programy CNC, JS
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Popisy oddělené čárkou: device, terminal, wire, cable (prázdné: vše)
 Marks a panel item as mounted or as a problem, or as open again	Označí prvek rozváděče jako namontovaný, jako problém nebo znovu jako otevřený
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Označí vedený vodič jako zapojený nebo jako problém, nebo znovu jako otevřený; vodič se zadává svými dvěma konci
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiál: galvanised_steel, stainless_steel, copper, copper_bonded_steel nebo aluminium
 Maximum fill of a carrier in percent	Maximální zaplnění nosné konstrukce v procentech
 Maximum operating pressure in bar	Maximální provozní tlak v bar
 Measuring range or set point	Měřicí rozsah nebo žádaná hodnota
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Číslo artiklu hadice / trubky / potrubí
 Part number of the upstream device	Číslo artiklu předřazeného přístroje
 Part number, e.g. GEN.LMP-GN-24	Číslo artiklu, např. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Díl jeho pásku, drátu nebo tyče (prázdné: obecný)
+Part of the conductor holders on the roof (empty: generic)	Díl podpěr vedení na střeše (prázdné: obecný)
+Part of the conductor holders on the walls (empty: generic)	Díl podpěr vedení na stěnách (prázdné: obecný)
 Part of the conductors (round wire; empty: generic)	Díl vodičů (kulatý drát; prázdné: obecný)
 Part of the key or name	Část klíče nebo názvu
+Part of the rod (empty: the one of its material and diameter)	Díl tyče (prázdné: podle jejího materiálu a průměru)
 Part {} has no function with a symbol	Artikl {} nemá funkci se symbolem
 Parts phased out or discontinued	Dobíhající artikly nebo artikly s ukončenou výrobou
 Pass ids or pages	Zadejte ID nebo stránky
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Decentrální periferie: stanice řídicí
 Remove the air-termination rod	Odstranit jímací tyč
 Remove the earth electrode	Odstranit zemnič
 Remove the entry of upstream and downstream	Odebrat položku upstream a downstream
-Remove the lightning protection system	Odstranit ochranu před bleskem
 Remove the profile	Odebrat profil
 Remove the scheme from the project	Odebrat schéma z projektu
 Remove unused definitions (default: false)	Odebrat nepoužívané definice (výchozí: false)
@@ -707,6 +714,7 @@ Rest (mm)	Zbytek (mm)
 Reuse failed searches during one routing calculation	Znovu použít neúspěšná hledání během jednoho výpočtu tras
 Right side bayed (no side panel)	Pravá strana spojená do řady (bez boční stěny)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Obvodový: hloubka pod terénem, tyčový: hloubka horního konce, mm (výchozí 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Tyčový zemnič: jeho průměr (výchozí 20), základový a obvodový: kulatého drátu, 0 pro pásek, mm
 Room {} exists already	Místnost {} již existuje
 Rotation in degrees clockwise: 0, 90, 180 or 270	Otočení ve stupních ve směru hodinových ručiček: 0, 90, 180 nebo 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Otočení ve stupních, proti směru hodinových ručiček (90 se čte zdola nahoru)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Neznámé schéma adresování: {}
 Unknown alignment: {}	Neznámé zarovnání: {}
 Unknown anchor: {}	Neznámé ukotvení: {}
 Unknown aspect: {}	Neznámý aspekt: {}
+Unknown base: {}	Neznámý podstavec: {}
 Unknown bonding kind: {}	Neznámý druh pospojování: {}
 Unknown bonding point: {}	Neznámý bod pospojování: {}
 Unknown bus system: {}	Neznámý sběrnicový systém: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring nebo rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted nebo middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) nebo product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker nebo other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (držák tyče na střeše) nebo concrete_base (na plochých střechách)
 hose, tube or pipe	hose, tube nebo pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (stroje, fázové vodiče BK) nebo iec60445 (fázové vodiče BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (výchozí), power, control, signal nebo fluid

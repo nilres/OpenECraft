@@ -186,6 +186,7 @@ Automatic ({})	Otomatik ({})
 Automatic accessories	Otomatik aksesuarlar
 Automatic configuration	Otomatik yapılandırma
 Automatic placement	Otomatik yerleştirme
+Automatic: {}	Otomatik: {}
 Automation	Otomasyon
 Aux	Yrd.
 Avoid:	Kaçın:
@@ -389,9 +390,11 @@ Compare and baselines	Karşılaştırma ve referans sürümler
 Compare with	Karşılaştır
 Compare with a baseline, a revision or another project file and take differences over	Bir referans sürümle, bir revizyonla veya başka bir proje dosyasıyla karşılaştır ve farklılıkları aktar
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Tam etiket: {}\nBurada eksik olan yönler sayfadan (=fonksiyon +konum) veya sembolün bulunduğu yapı kutusundan alınır.
+Concrete base	Beton taban
 Condition	Koşul
 Condition (OPTION=value & …)	Koşul (SEÇENEK=değer & …)
 Conductive frame	İletken şasi
+Conductor	İletken
 Conflicts	Çakışmalar
 Connected devices	Bağlı cihazlar
 Connected to:	Şuna bağlı:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Cihazlar
 Dew point	Çiğ noktası
 Diameter	Çap
 Diameter / bends	Çap / bükümler
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Yuvarlak telin çapı; 0: 30 x 3,5 mm şerit
+Diameter of the rod	Çubuğun çapı
 Dictionary for translators: one column per language	Çevirmenler için sözlük: dil başına bir sütun
 Digits	Basamak
 Dimension	Ölçü
@@ -812,6 +817,7 @@ Go to page	Sayfaya git
 Graphic line	Grafik çizgi
 Graphic rectangle	Grafik dikdörtgen
 Graphical form	Grafik form
+Greatest distance of the conductor holders on the roof and on the walls	Çatıda ve duvarlarda iletken tutucularının en büyük aralığı
 Greatest distance of the roof hooks along a rail	Bir ray boyunca çatı kancalarının en büyük aralığı
 Grid	Izgara
 Grid north	Grid kuzeyi
@@ -836,6 +842,7 @@ Height above the mounting plate	Montaj plakası üzerindeki yükseklik
 Height above the plate	Plaka üzerindeki yükseklik
 Height of the plinth, 0 without plinth	Kaidenin yüksekliği, kaide yoksa 0
 Height of the rod above the covering	Çubuğun çatı kaplamasının üstündeki yüksekliği
+Height of the test joints above the ground	Ölçü klemenslerinin zeminden yüksekliği
 Heights above floor (IEC 60204-1)	Zeminden yükseklikler (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tıklarken, taşırken veya kaydırırken basılı tutulur. macOS'ta Ctrl, Cmd'dir.
 Help	Yardım
@@ -845,6 +852,9 @@ Highest phase unbalance	En yüksek faz dengesizliği
 Highest short-circuit current	En yüksek kısa devre akımı
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	En yüksek gerilim (en düşük sıcaklıkta açık devre), ortalama ve en düşük gerilim (ortalama ve en yüksek sıcaklıkta maksimum güçte), maksimum güçteki akım, tepe gücü
 Highest: the lowest voltage	En yüksek: en düşük gerilim
+Holder distance	Tutucu aralığı
+Holders on the roof	Çatıdaki tutucular
+Holders on the walls	Duvarlardaki tutucular
 Hole to sheet edge	Delikten sac kenarına
 Home	Giriş
 Hook distance	Kanca aralığı
@@ -1008,6 +1018,7 @@ Level {} of building {}	{1} binasının {0} katı
 Levels	Katlar
 Library	Kütüphane
 Lightning protection	Yıldırımdan korunma
+Lightning protection of building {}	{} binasının yıldırımdan korunması
 Like two fingers	İki parmak gibi
 Limits	Sınırlar
 Limits in effect	Geçerli sınırlar
@@ -1058,6 +1069,7 @@ Macros	Makrolar
 Macros ({})	Makrolar ({})
 Macro…	Makro…
 Main	Ana
+Main earthing busbar	Ana topraklama barası
 Make the selected elements of this project equal to the compared ones	Bu projenin seçili öğelerini karşılaştırılanlarla aynı yap
 Maker	Üretici
 Makes the current page content of the option	Geçerli sayfayı seçeneğin içeriği yapar
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	PLC donanımı ve bus topolojisi
 PLC overview	PLC genel bakışı
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG veya JPEG bit eşlem, ör. bir logo veya fotoğraf
 PV array {}	PV dizisi {}
+PV array {} lies outside the protection of the air-termination system	PV dizisi {} yakalama sisteminin koruma alanı dışında
 PV array {} of building {}: {} modules	{1} binasının PV dizisi {0}: {2} modül
 PV array {} of building {}: {} modules, {} kWp	{1} binasının PV dizisi {0}: {2} modül, {3} kWp
 PV arrays	PV dizileri
@@ -1683,6 +1696,7 @@ Right edges	Sağ kenarlar
 Right neighbour	Sağ komşu
 Rights	Haklar
 Risers	Rıhtlar
+Rod holder	Çubuk tutucu
 Roof pitch	Çatı eğimi
 Roof window	Çatı penceresi
 Roof windows	Çatı pencereleri
@@ -2001,6 +2015,7 @@ Terminals at least	Klemensler en az
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Aynı köprü numarasına sahip klemensler köprülenir (aynı potansiyel). Yedek klemensler malzeme listesinde sayılır.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	';' ile ayrılmış terimler: anahtar=değer (eşit), anahtar~metin (içerir) veya herhangi bir yerde bulunan metin
 Test connection	Bağlantıyı test et
+Test joints	Ölçü klemensleri
 Text offset	Metin kaydırması
 Text size	Metin boyutu
 Texts	Metinler
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} tel değiştirildi
 {} wires, {} cables and {} tubes routed	{} tel, {} kablo ve {} tüp yönlendirildi
 {} wires, {} – {} mm	{} tel, {} – {} mm
+{} {} of building {}	{2} binasının {0} {1}
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)
 {} × {} = {}, {}	{} × {} = {}, {}

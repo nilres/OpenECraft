@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	장치, 전선, 전위, 케이블, 단자대, PLC, 패널, 유체, 전기 계산, 구조 및 번역
 Diameter in mm	직경(mm)
 Diameter of a hole at both ends (0: none)	양쪽 끝 구멍의 직경(0: 없음)
+Diameter of the conductors, mm (default 8)	도체 직경, mm (기본값 8)
+Diameter of the rod, mm (default 16)	피뢰침 직경, mm (기본값 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	줄기의 방향: left, right, up 또는 down (기본: 해당 지점의 연결선에 따라)
 Distance between power and signal or fluid in mm	전력과 신호 또는 유체 간의 거리(mm)
 Distance from devices, rails and busbars in mm	장치, 레일 및 부스바와의 거리(mm)
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	부스바 가공기 프로그램(절단, 펀칭 구멍 및 굽힘)을 생성합니다
 Give a device tag or a part number	장치 태그 또는 부품 번호를 입력하십시오
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	건물에 피뢰 시스템을 설정하거나 변경합니다: 등급, 인하 도선 수 및 도체 부품; 용마루와 추녀마루의 수뢰 도체(평지붕에서는 메시), 시험 단자가 있는 인하 도선이 접지극까지; 또는 삭제합니다
+Greatest distance of the conductor holders, mm (default 1000)	도체 지지대 최대 간격, mm (기본값 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	항목을 함께 선택되고 이동되는 어셈블리로 그룹화합니다. 이름이 없으면 항목이 어셈블리에서 해제됩니다
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	외함의 프로그램을 작업으로 생산에 인계합니다: 모든 면과 동바의 매니페스트 및 프로그램
 Has a divider between power and signal cables	전력 케이블과 신호 케이블 사이에 구분판이 있음
@@ -294,6 +297,7 @@ Height in mm	높이(mm)
 Height in mm without plinth; negative: unknown (wall mounted)	받침대를 제외한 높이(mm). 음수: 알 수 없음(벽 장착)
 Height in mm; the logo keeps its aspect ratio inside	높이(mm). 로고는 그 안에서 가로세로 비율을 유지합니다
 Height of the rod above the covering, mm (default 1500)	지붕재 위 피뢰침 높이, mm (기본값 1500)
+Height of the test joints above the ground, mm (default 1000)	시험 단자의 지면 위 높이, mm (기본값 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	페이지의 상위 제품 측면(-). 페이지의 장치가 함께 이동합니다
 Highest actuator on the door above the floor (0: not checked)	바닥으로부터 도어의 가장 높은 조작부 높이(0: 검사 안 함)
 Highest air temperature at devices without data (0: not checked)	데이터가 없는 장치 주변의 최고 공기 온도(0: 검사 안 함)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	제조 패키지(CNC 프로그램, JS
 Markers, comma separated: device, terminal, wire, cable (empty: all)	마커(쉼표로 구분): device, terminal, wire, cable(비워 두면 모두)
 Marks a panel item as mounted or as a problem, or as open again	패널 항목을 장착됨, 문제 또는 다시 미완료로 표시합니다
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	배선 경로가 지정된 전선을 배선 완료, 문제 또는 다시 미완료로 표시합니다. 전선은 양쪽 끝으로 지정합니다
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	재질: galvanised_steel, stainless_steel, copper, copper_bonded_steel 또는 aluminium
 Maximum fill of a carrier in percent	케이블 지지대의 최대 충전율(%)
 Maximum operating pressure in bar	최대 작동 압력(bar)
 Measuring range or set point	측정 범위 또는 설정값
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	호스 / 튜브 / 배관의 부품 번호
 Part number of the upstream device	상위 장치의 부품 번호
 Part number, e.g. GEN.LMP-GN-24	부품 번호, 예: GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	띠, 선 또는 봉의 부품 (비어 있음: 일반)
+Part of the conductor holders on the roof (empty: generic)	지붕 위 도체 지지대의 부품 (비어 있음: 일반)
+Part of the conductor holders on the walls (empty: generic)	벽의 도체 지지대의 부품 (비어 있음: 일반)
 Part of the conductors (round wire; empty: generic)	도체의 부품 (원형 선; 비어 있음: 일반)
 Part of the key or name	키 또는 이름의 일부
+Part of the rod (empty: the one of its material and diameter)	피뢰침의 부품 (비어 있음: 재질과 직경에 맞는 것)
 Part {} has no function with a symbol	부품 {}에는 기호가 있는 기능이 없습니다
 Parts phased out or discontinued	단종 예정 또는 단종된 부품
 Pass ids or pages	ID 또는 페이지를 지정하세요
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	원격 I/O: 컨트롤러의 스테이션
 Remove the air-termination rod	피뢰침 삭제
 Remove the earth electrode	접지극 삭제
 Remove the entry of upstream and downstream	upstream 및 downstream 항목 제거
-Remove the lightning protection system	피뢰 시스템 삭제
 Remove the profile	프로필 제거
 Remove the scheme from the project	프로젝트에서 스키마 제거
 Remove unused definitions (default: false)	사용하지 않는 정의 제거(기본값: false)
@@ -707,6 +714,7 @@ Rest (mm)	잔량(mm)
 Reuse failed searches during one routing calculation	하나의 배선 경로 계산 내에서 실패한 검색 결과 재사용
 Right side bayed (no side panel)	오른쪽 측면 결합(측면 패널 없음)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	환상: 지면 아래 깊이, 접지봉: 윗단 깊이, mm (기본값 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	접지봉: 직경 (기본값 20), 기초 및 환상 접지극: 원형 선의 직경, 평형 띠는 0, mm
 Room {} exists already	방 {}이(가) 이미 있습니다
 Rotation in degrees clockwise: 0, 90, 180 or 270	시계 방향 회전 각도: 0, 90, 180 또는 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	회전 각도(도), 시계 반대 방향(90이면 아래에서 위로 읽음)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	알 수 없는 주소 체계: {}
 Unknown alignment: {}	알 수 없는 맞춤: {}
 Unknown anchor: {}	알 수 없는 앵커: {}
 Unknown aspect: {}	알 수 없는 측면: {}
+Unknown base: {}	알 수 없는 받침: {}
 Unknown bonding kind: {}	알 수 없는 본딩 종류: {}
 Unknown bonding point: {}	알 수 없는 본딩 지점: {}
 Unknown bus system: {}	알 수 없는 버스 시스템: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring 또는 rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted 또는 middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function(=), installation(++), location(+) 또는 product(-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 또는 other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (지붕 위 피뢰침 지지대) 또는 concrete_base (평지붕)
 hose, tube or pipe	hose, tube 또는 pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204(기계, 선도체 BK) 또는 iec60445(선도체 BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout(기본값), power, control, signal 또는 fluid

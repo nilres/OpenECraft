@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Пристрої, проводи, потенціали, кабелі, клемні колодки, ПЛК, шафа, гідропневматика, електричні розрахунки, структура та переклади
 Diameter in mm	Діаметр у мм
 Diameter of a hole at both ends (0: none)	Діаметр отвору на обох кінцях (0: немає)
+Diameter of the conductors, mm (default 8)	Діаметр провідників, мм (типово 8)
+Diameter of the rod, mm (default 16)	Діаметр стрижня, мм (типово 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Напрямок ніжки: left, right, up або down (типово: за проводами в цій точці)
 Distance between power and signal or fluid in mm	Відстань між силовими та сигнальними або гідропневматичними лініями в мм
 Distance from devices, rails and busbars in mm	Відстань від пристроїв, рейок і збірних шин у мм
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Генерує програму верстата для обробки шин: різи, пробиті отвори та згини
 Give a device tag or a part number	Вкажіть позначення пристрою або номер виробу
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Дає будівлі блискавкозахист або змінює його: клас, кількість струмовідводів і виріб провідників; блискавкоприймальні провідники на гребенях і ребрах (сітка на плоских дахах), струмовідводи з контрольними з'єднаннями до заземлювачів; або видаляє його
+Greatest distance of the conductor holders, mm (default 1000)	Найбільша відстань між тримачами провідника, мм (типово 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Групує елементи у збірку, яка вибирається й переміщується разом; без назви елементи виходять зі своїх збірок
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передає програми корпусу у виробництво як завдання: маніфест і програми всіх його граней і мідних шин
 Has a divider between power and signal cables	Має розділювальну перегородку між силовими та сигнальними кабелями
@@ -294,6 +297,7 @@ Height in mm	Висота в мм
 Height in mm without plinth; negative: unknown (wall mounted)	Висота в мм без цоколя; від’ємне значення: невідомо (настінний монтаж)
 Height in mm; the logo keeps its aspect ratio inside	Висота в мм; логотип зберігає всередині свої пропорції
 Height of the rod above the covering, mm (default 1500)	Висота стрижня над покрівлею, мм (типово 1500)
+Height of the test joints above the ground, mm (default 1000)	Висота контрольних з'єднань над землею, мм (типово 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Аспект виробу вищого рівня (-) сторінки; пристрої сторінки переміщуються разом із нею
 Highest actuator on the door above the floor (0: not checked)	Найвищий орган керування на дверцятах над підлогою (0: не перевіряється)
 Highest air temperature at devices without data (0: not checked)	Найвища температура повітря біля пристроїв без даних (0: не перевіряється)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Виробничий пакет (пр
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Маркери через кому: device, terminal, wire, cable (порожньо: усі)
 Marks a panel item as mounted or as a problem, or as open again	Позначає елемент компонування як встановлений, як проблемний або знову як відкритий
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Позначає прокладений провід як змонтований, як проблему або знову як відкритий; провід задається двома кінцями
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Матеріал: galvanised_steel, stainless_steel, copper, copper_bonded_steel або aluminium
 Maximum fill of a carrier in percent	Максимальне заповнення кабельної конструкції у відсотках
 Maximum operating pressure in bar	Максимальний робочий тиск у bar
 Measuring range or set point	Діапазон вимірювання або уставка
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Номер виробу шланга / т�
 Part number of the upstream device	Номер виробу попереднього пристрою
 Part number, e.g. GEN.LMP-GN-24	Номер виробу, наприклад GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Виріб його смуги, дроту чи стрижня (порожньо: типовий)
+Part of the conductor holders on the roof (empty: generic)	Виріб тримачів провідника на даху (порожньо: типовий)
+Part of the conductor holders on the walls (empty: generic)	Виріб тримачів провідника на стінах (порожньо: типовий)
 Part of the conductors (round wire; empty: generic)	Виріб провідників (круглий дріт; порожньо: типовий)
 Part of the key or name	Частина ключа або назви
+Part of the rod (empty: the one of its material and diameter)	Виріб стрижня (порожньо: за його матеріалом і діаметром)
 Part {} has no function with a symbol	Виріб {} не має функції із символом
 Parts phased out or discontinued	Вироби, що знімаються або зняті з виробництва
 Pass ids or pages	Укажіть ідентифікатори або сторінки
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Розподілений ввід/виві
 Remove the air-termination rod	Видалити блискавкоприймальний стрижень
 Remove the earth electrode	Видалити заземлювач
 Remove the entry of upstream and downstream	Вилучити запис для upstream і downstream
-Remove the lightning protection system	Видалити блискавкозахист
 Remove the profile	Вилучити профіль
 Remove the scheme from the project	Вилучити схему з проєкту
 Remove unused definitions (default: false)	Вилучити невикористані визначення (за замовчуванням: false)
@@ -707,6 +714,7 @@ Rest (mm)	Залишок (мм)
 Reuse failed searches during one routing calculation	Повторно використовувати невдалі пошуки в межах одного розрахунку трас
 Right side bayed (no side panel)	Права сторона приєднана (без бічної стінки)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Кільцевий: глибина під землею, вертикальний: глибина верхнього кінця, мм (типово 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Вертикальний заземлювач: його діаметр (типово 20), фундаментний і кільцевий: круглого дроту, 0 для смуги, мм
 Room {} exists already	Приміщення {} вже існує
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот у градусах за годинниковою стрілкою: 0, 90, 180 або 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот у градусах проти годинникової стрілки (90 – читається знизу вгору)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Невідома схема адресації: {}
 Unknown alignment: {}	Невідоме вирівнювання: {}
 Unknown anchor: {}	Невідома прив’язка: {}
 Unknown aspect: {}	Невідомий аспект: {}
+Unknown base: {}	Невідома основа: {}
 Unknown bonding kind: {}	Невідомий тип вирівнювання потенціалів: {}
 Unknown bonding point: {}	Невідома точка підключення вирівнювання потенціалів: {}
 Unknown bus system: {}	Невідома шинна система: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring або rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted або middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) або product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker або other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (тримач стрижня на даху) або concrete_base (на плоских дахах)
 hose, tube or pipe	hose, tube або pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (машини, фази BK) або iec60445 (фази BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (за замовчуванням), power, control, signal або fluid

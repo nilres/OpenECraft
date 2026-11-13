@@ -186,6 +186,7 @@ Automatic ({})	Automatikus ({})
 Automatic accessories	Automatikus tartozékok
 Automatic configuration	Automatikus konfiguráció
 Automatic placement	Automatikus elhelyezés
+Automatic: {}	Automatikus: {}
 Automation	Automatizálás
 Aux	Segéd
 Avoid:	Kerülendő:
@@ -389,9 +390,11 @@ Compare and baselines	Összehasonlítás és alapállapotok
 Compare with	Összehasonlítás ezzel
 Compare with a baseline, a revision or another project file and take differences over	Összehasonlítás egy alapállapottal, revízióval vagy másik projektfájllal, és a különbségek átvétele
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Teljes azonosító: {}\nAz itt hiányzó aspektusok az oldalról (=funkció +szerelési hely) vagy abból a struktúrakeretből származnak, amelyben a szimbólum van.
+Concrete base	Betontalp
 Condition	Feltétel
 Condition (OPTION=value & …)	Feltétel (OPTION=érték & …)
 Conductive frame	Vezetőképes váz
+Conductor	Vezető
 Conflicts	Ütközések
 Connected devices	Csatlakoztatott készülékek
 Connected to:	Csatlakoztatva ehhez:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Készül
 Dew point	Harmatpont
 Diameter	Átmérő
 Diameter / bends	Átmérő / hajlítások
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Körhuzal átmérője; 0: 30 x 3,5 mm-es szalag
+Diameter of the rod	A rúd átmérője
 Dictionary for translators: one column per language	Szótár fordítóknak: nyelvenként egy oszlop
 Digits	Számjegyek
 Dimension	Méretezés
@@ -812,6 +817,7 @@ Go to page	Ugrás az oldalra
 Graphic line	Grafikus vonal
 Graphic rectangle	Grafikus téglalap
 Graphical form	Grafikus űrlap
+Greatest distance of the conductor holders on the roof and on the walls	A vezetőtartók legnagyobb távolsága a tetőn és a falakon
 Greatest distance of the roof hooks along a rail	A tetőkampók legnagyobb távolsága egy sín mentén
 Grid	Rács
 Grid north	Hálózati észak
@@ -836,6 +842,7 @@ Height above the mounting plate	Magasság a szerelőlap fölött
 Height above the plate	Magasság a lap fölött
 Height of the plinth, 0 without plinth	A lábazat magassága, 0 lábazat nélkül
 Height of the rod above the covering	A rúd magassága a tetőfedés felett
+Height of the test joints above the ground	A mérési csatlakozók magassága a terep felett
 Heights above floor (IEC 60204-1)	Padló feletti magasságok (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Kattintás, mozgatás vagy görgetés közben nyomva tartva. macOS-en a Ctrl a Cmd.
 Help	Súgó
@@ -845,6 +852,9 @@ Highest phase unbalance	Legnagyobb fázisaszimmetria
 Highest short-circuit current	Legnagyobb zárlati áram
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Legnagyobb feszültség (üresjárás a legalacsonyabb hőmérsékleten), átlagos és legkisebb feszültség (maximális teljesítménynél az átlagos és a legmagasabb hőmérsékleten), áram maximális teljesítménynél, csúcsteljesítmény
 Highest: the lowest voltage	Legmagasabb: a legkisebb feszültség
+Holder distance	Tartótávolság
+Holders on the roof	Tartók a tetőn
+Holders on the walls	Tartók a falakon
 Hole to sheet edge	Furat a lemezszéltől
 Home	Kezdőlap
 Hook distance	Kampótávolság
@@ -1008,6 +1018,7 @@ Level {} of building {}	{1} épület {0} szintje
 Levels	Szintek
 Library	Könyvtár
 Lightning protection	Villámvédelem
+Lightning protection of building {}	A(z) {} épület villámvédelme
 Like two fingers	Mint két ujj
 Limits	Határértékek
 Limits in effect	Érvényes határértékek
@@ -1058,6 +1069,7 @@ Macros	Makrók
 Macros ({})	Makrók ({})
 Macro…	Makró…
 Main	Fő
+Main earthing busbar	Fő földelősín
 Make the selected elements of this project equal to the compared ones	A projekt kijelölt elemeinek az összehasonlítottakhoz igazítása
 Maker	Gyártó
 Makes the current page content of the option	Az aktuális oldalt az opció tartalmává teszi
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	PLC-hardver és busztopológia
 PLC overview	PLC-áttekintés
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG vagy JPEG bitkép, pl. logó vagy fénykép
 PV array {}	{} PV mező
+PV array {} lies outside the protection of the air-termination system	A(z) {} PV mező a felfogó rendszer védelmén kívül van
 PV array {} of building {}: {} modules	{} PV mező, {} épület: {} modul
 PV array {} of building {}: {} modules, {} kWp	{} PV mező, {} épület: {} modul, {} kWp
 PV arrays	PV-mezők
@@ -1683,6 +1696,7 @@ Right edges	Jobb élek
 Right neighbour	Jobb oldali szomszéd
 Rights	Jogosultságok
 Risers	Fellépők
+Rod holder	Rúdtartó
 Roof pitch	Tetőhajlásszög
 Roof window	Tetőablak
 Roof windows	Tetőablakok
@@ -2001,6 +2015,7 @@ Terminals at least	Sorkapcsok legalább
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Az azonos áthidalásszámú sorkapcsok össze vannak kötve (azonos potenciál). A tartalék sorkapcsok beszámítanak az anyagjegyzékbe.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Kifejezések ';' karakterrel elválasztva: kulcs=érték (egyenlő), kulcs~szöveg (tartalmazza) vagy bárhol előforduló szöveg
 Test connection	Kapcsolat tesztelése
+Test joints	Mérési csatlakozók
 Text offset	Szöveg eltolása
 Text size	Szövegméret
 Texts	Szövegek
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} vezeték módosítva
 {} wires, {} cables and {} tubes routed	{} vezeték, {} kábel és {} cső fektetve
 {} wires, {} – {} mm	{} vezeték, {} – {} mm
+{} {} of building {}	{} {}, {} épület
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}

@@ -186,6 +186,7 @@ Automatic ({})	Автоматически ({})
 Automatic accessories	Автоматические принадлежности
 Automatic configuration	Автоматическая конфигурация
 Automatic placement	Автоматическое размещение
+Automatic: {}	Автоматически: {}
 Automation	Автоматизация
 Aux	Вспом.
 Avoid:	Избегать:
@@ -388,9 +389,11 @@ Compare and baselines	Сравнение и базовые версии
 Compare with	Сравнить с
 Compare with a baseline, a revision or another project file and take differences over	Сравнить с базовой версией, ревизией или другим файлом проекта и принять различия
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Полное обозначение: {}\nНедостающие аспекты берутся из листа (=функц. назначение +место установки) или из рамки структуры, в которой лежит символ.
+Concrete base	Бетонное основание
 Condition	Условие
 Condition (OPTION=value & …)	Условие (OPTION=значение & …)
 Conductive frame	Проводящая конструкция
+Conductor	Проводник
 Conflicts	Конфликты
 Connected devices	Подключённые устройства
 Connected to:	Соединено с:
@@ -547,6 +550,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Устр
 Dew point	Точка росы
 Diameter	Диаметр
 Diameter / bends	Диаметр / изгибы
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Диаметр круглого провода; 0: полоса 30 x 3,5 мм
+Diameter of the rod	Диаметр стержня
 Dictionary for translators: one column per language	Словарь для переводчиков: один столбец на язык
 Digits	Разряды
 Dimension	Размер
@@ -811,6 +816,7 @@ Go to page	Перейти к листу
 Graphic line	Графическая линия
 Graphic rectangle	Графический прямоугольник
 Graphical form	Графическая форма
+Greatest distance of the conductor holders on the roof and on the walls	Наибольшее расстояние между держателями проводника на крыше и на стенах
 Greatest distance of the roof hooks along a rail	Наибольшее расстояние кровельных крюков вдоль рейки
 Grid	Сетка
 Grid north	Север сетки
@@ -835,6 +841,7 @@ Height above the mounting plate	Высота над монтажной пане�
 Height above the plate	Высота над панелью
 Height of the plinth, 0 without plinth	Высота цоколя, 0 – без цоколя
 Height of the rod above the covering	Высота стержня над кровлей
+Height of the test joints above the ground	Высота контрольных соединений над землёй
 Heights above floor (IEC 60204-1)	Высоты над полом (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Удерживается при щелчке, перемещении или прокрутке. Ctrl в macOS — Cmd.
 Help	Справка
@@ -844,6 +851,9 @@ Highest phase unbalance	Наибольшая несимметрия фаз
 Highest short-circuit current	Наибольший ток короткого замыкания
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Наибольшее напряжение (холостого хода при самой низкой температуре), среднее и наименьшее напряжение (при максимальной мощности при средней и самой высокой температуре), ток при максимальной мощности, пиковая мощность
 Highest: the lowest voltage	Наивысшая: наименьшее напряжение
+Holder distance	Шаг держателей
+Holders on the roof	Держатели на крыше
+Holders on the walls	Держатели на стенах
 Hole to sheet edge	Отверстие до края листа
 Home	Главная
 Hook distance	Шаг крюков
@@ -1007,6 +1017,7 @@ Level {} of building {}	Этаж {} здания {}
 Levels	Уровни
 Library	Библиотека
 Lightning protection	Молниезащита
+Lightning protection of building {}	Молниезащита здания {}
 Like two fingers	Как два пальца
 Limits	Пределы
 Limits in effect	Действующие пределы
@@ -1057,6 +1068,7 @@ Macros	Макросы
 Macros ({})	Макросы ({})
 Macro…	Макрос…
 Main	Главн.
+Main earthing busbar	Главная заземляющая шина
 Make the selected elements of this project equal to the compared ones	Сделать выбранные элементы этого проекта такими же, как сравниваемые
 Maker	Производитель
 Makes the current page content of the option	Делает текущий лист содержимым опции
@@ -1378,6 +1390,7 @@ PLC hardware and bus topology	Аппаратура ПЛК и топология 
 PLC overview	Обзор ПЛК
 PNG or JPEG bitmap, e.g. a logo or a photo	Растровое изображение PNG или JPEG, например логотип или фотография
 PV array {}	Фотоэлектрическое поле {}
+PV array {} lies outside the protection of the air-termination system	Фотоэлектрическое поле {} вне зоны защиты молниеприёмника
 PV array {} of building {}: {} modules	Фотоэлектрическое поле {} здания {}: {} модулей
 PV array {} of building {}: {} modules, {} kWp	Фотоэлектрическое поле {} здания {}: {} модулей, {} кВт пик
 PV arrays	Фотоэлектрические поля
@@ -1682,6 +1695,7 @@ Right edges	По правому краю
 Right neighbour	Сосед справа
 Rights	Права
 Risers	Подъёмы
+Rod holder	Держатель стержня
 Roof pitch	Уклон крыши
 Roof window	Мансардное окно
 Roof windows	Мансардные окна
@@ -2000,6 +2014,7 @@ Terminals at least	Клеммы не ниже
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Клеммы с одинаковым номером перемычки соединены (один потенциал). Резервные клеммы учитываются в спецификации.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Условия через ';': ключ=значение (равно), ключ~текст (содержит) или текст в любом месте
 Test connection	Проверить подключение
+Test joints	Контрольные соединения
 Text offset	Смещение текста
 Text size	Размер текста
 Texts	Тексты
@@ -2491,6 +2506,7 @@ x y	x y
 {} wires changed	Изменено проводов: {}
 {} wires, {} cables and {} tubes routed	Проложено проводов: {}, кабелей: {}, трубок: {}
 {} wires, {} – {} mm	Проводов: {}, {} – {} мм
+{} {} of building {}	{} {} здания {}
 {} °C (max. {} °C)	{} °C (макс. {} °C)
 {} °C (max.)	{} °C (макс.)
 {} × {} = {}, {}	{} × {} = {}, {}

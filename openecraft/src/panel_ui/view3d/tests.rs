@@ -86,3 +86,21 @@ fn a_device_clicked_in_another_cabinet_shows_that_cabinet_fitted() {
     ui.pick_3d(&prj, &an, &Scene3d::default(), &prims, &|_| None, Pos2::new(50.0, 50.0));
     assert!(ui.cam.is_some() && !ui.fit_pending);
 }
+
+#[test]
+fn earth_electrodes_and_lightning_protection_are_picked_in_3d() {
+    let prj = openecraft_core::sample::example("office_building").unwrap();
+    let an = Analysis::build(&prj);
+    let bi = prj.layout.buildings.iter().position(|b| b.name == "+B3").unwrap();
+    let id = prj.layout.buildings[bi].electrodes[0].id;
+    let mut scene = Scene3d::default();
+    scene.earthing_picks.push(([0.0, 50.0, 900.0], [100.0, 50.0, 900.0], (bi, panel::lightning::Owner::Electrode(id))));
+    let view = |q: V3| Some((Pos2::new(q[0], q[1]), q[2]));
+    let mut ui = PanelUi::default();
+    assert!(ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(50.0, 52.0)));
+    assert_eq!(ui.selected_earthing, Some((bi, panel::lightning::Owner::Electrode(id))));
+    assert!(ui.status.contains("E1") && ui.status.contains("+B3"), "{}", ui.status);
+    // Too far from it: nothing.
+    ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(50.0, 80.0));
+    assert_eq!(ui.selected_earthing, None);
+}

@@ -304,6 +304,9 @@ pub(super) struct Scene3d {
     pub branches: Vec<V3>,
     /// Segments of the wires and routes for picking.
     pub picks: Vec<(V3, V3, RouteRef)>,
+    /// Segments of the earth electrodes and the lightning protection for picking: the
+    /// building and what they belong to.
+    pub earthing_picks: Vec<(V3, V3, (usize, lightning::Owner))>,
     /// The tubes drawn: the way of each, its radius and what it is.
     pub tube_paths: Vec<(Vec<V3>, f32, RouteRef)>,
     /// How far each of them runs straight out of its first and its last point (its
@@ -789,19 +792,25 @@ impl PanelUi {
             // The earth electrodes and the lightning protection (on the roofs only with
             // them).
             if level.is_none() {
-                for (pts, what) in lightning::plant_lines(prj, &plant, bi) {
-                    let on_roof = matches!(what, lightning::Line::Lps(LpsKind::AirTermination | LpsKind::Roof | LpsKind::Rod));
+                for line in lightning::plant_lines(prj, &plant, bi) {
+                    let on_roof = matches!(line.what, lightning::Line::Lps(LpsKind::AirTermination | LpsKind::Roof | LpsKind::Rod));
                     if on_roof && self.hide_ceiling {
                         continue;
                     }
-                    let (color, stripe, diameter, least) = earthing_look(what);
-                    let pts: Vec<V3> = pts.iter().map(|&q| to_view(q)).collect();
+                    let (mut color, stripe, least) = earthing_look(line.what);
+                    let selected = self.selected_earthing == Some((bi, line.owner));
+                    if selected {
+                        color = Color32::from_rgb(255, 150, 40);
+                    }
+                    let (diameter, least) = (line.diameter, if selected { least + 1.5 } else { least });
+                    let mut pts: Vec<V3> = line.points.iter().map(|&q| to_view(q)).collect();
                     if let [q] = pts[..] {
                         // A test joint: a short thick piece of the down conductor.
-                        s.wires.push(SceneWire { line: SceneLine { a: [q[0], q[1] - 40.0, q[2]], b: [q[0], q[1] + 40.0, q[2]], color, stripe, least, diameter, tube: false }, inside: None });
+                        pts = vec![[q[0], q[1] - 40.0, q[2]], [q[0], q[1] + 40.0, q[2]]];
                     }
                     for w in pts.windows(2) {
-                        s.wires.push(SceneWire { line: SceneLine { a: w[0], b: w[1], color, stripe, least, diameter, tube: false }, inside: None });
+                        s.wires.push(SceneWire { line: SceneLine { a: w[0], b: w[1], color, stripe: stripe.filter(|_| !selected), least, diameter, tube: false }, inside: None });
+                        s.earthing_picks.push((w[0], w[1], (bi, line.owner)));
                     }
                 }
             }
@@ -898,29 +907,28 @@ fn inside_plan(poly: &[[f32; 2]], q: [f32; 2]) -> bool {
     odd
 }
 
-/// Colour, stripe, diameter (mm) and least width (pixels) of a line of the earth
-/// electrodes and the lightning protection.
-fn earthing_look(what: lightning::Line) -> (Color32, Option<Color32>, f32, f32) {
+/// Colour, stripe and least width (pixels) of a line of the earth electrodes and the
+/// lightning protection.
+fn earthing_look(what: lightning::Line) -> (Color32, Option<Color32>, f32) {
     use lightning::Line;
     use openecraft_core::panel::ElectrodeKind;
     match what {
-        Line::Electrode(ElectrodeKind::Foundation) => (Color32::from_rgb(96, 100, 106), None, 30.0, 2.0),
-        Line::Electrode(_) => (Color32::from_rgb(60, 140, 80), None, 30.0, 2.0),
-        Line::Busbar => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40)), 10.0, 1.5),
-        Line::Lps(LpsKind::Rod) => (Color32::from_rgb(225, 228, 232), None, 16.0, 2.5),
-        Line::Lps(LpsKind::Entry) => (Color32::from_rgb(150, 154, 160), None, 16.0, 2.0),
-        Line::Lps(_) => (Color32::from_rgb(205, 210, 216), None, 8.0, 2.0),
-        Line::Joint => (Color32::from_rgb(50, 50, 56), None, 50.0, 5.0),
+        Line::Electrode(ElectrodeKind::Foundation) => (Color32::from_rgb(96, 100, 106), None, 2.0),
+        Line::Electrode(_) => (Color32::from_rgb(60, 140, 80), None, 2.0),
+        Line::Busbar => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40)), 1.5),
+        Line::Lps(LpsKind::Rod) => (Color32::from_rgb(225, 228, 232), None, 2.5),
+        Line::Lps(LpsKind::Entry) => (Color32::from_rgb(150, 154, 160), None, 2.0),
+        Line::Lps(_) => (Color32::from_rgb(205, 210, 216), None, 2.0),
+        Line::Joint => (Color32::from_rgb(50, 50, 56), None, 5.0),
     }
 }
 
 /// Colour and stripe of a line of the cabling of a PV array.
 fn lead_look(lead: Lead) -> (Color32, Option<Color32>) {
     match lead {
-        Lead::Link => (Color32::from_rgb(44, 44, 50), None),
-        Lead::Plus => (Color32::from_rgb(205, 40, 36), None),
-        Lead::Minus => (Color32::from_rgb(40, 84, 200), None),
-        Lead::Main => (Color32::from_rgb(30, 30, 34), None),
+        Lead::Plus | Lead::MainPlus => (Color32::from_rgb(205, 40, 36), None),
+        Lead::Minus | Lead::MainMinus => (Color32::from_rgb(28, 28, 32), None),
+        Lead::Connector => (Color32::from_rgb(90, 94, 102), None),
         Lead::Earth => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40))),
     }
 }
@@ -967,7 +975,8 @@ impl PanelUi {
                 let (color, stripe) = lead_look(line.lead);
                 let diameter = match line.lead {
                     Lead::Earth => 8.0,
-                    Lead::Main => 12.0,
+                    Lead::MainPlus | Lead::MainMinus => 10.0,
+                    Lead::Connector => 16.0,
                     _ => 6.0,
                 };
                 let pts: Vec<V3> = line.points.iter().map(|&q| to_view(q)).collect();
@@ -1045,7 +1054,7 @@ impl PanelUi {
         self.wire_index(an).hash(&mut h);
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
         (self.whole_site(), self.level_3d(), self.show_building, self.show_zones, self.open_walls).hash(&mut h);
-        (self.hide_pv_modules, self.see_through_pv, self.selected_array).hash(&mut h);
+        (self.hide_pv_modules, self.see_through_pv, self.selected_array, self.selected_earthing).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);

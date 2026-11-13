@@ -186,6 +186,7 @@ Automatic ({})	Automático ({})
 Automatic accessories	Acessórios automáticos
 Automatic configuration	Configuração automática
 Automatic placement	Posicionamento automático
+Automatic: {}	Automático: {}
 Automation	Automação
 Aux	Aux.
 Avoid:	Evitar:
@@ -389,9 +390,11 @@ Compare and baselines	Comparação e linhas de base
 Compare with	Comparar com
 Compare with a baseline, a revision or another project file and take differences over	Comparar com uma linha de base, uma revisão ou outro arquivo de projeto e aplicar as diferenças
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Identificador completo: {}\nOs aspectos ausentes aqui são obtidos da página (=função +localização) ou da caixa de estrutura em que o símbolo está.
+Concrete base	Base de concreto
 Condition	Condição
 Condition (OPTION=value & …)	Condição (OPTION=valor & …)
 Conductive frame	Estrutura condutora
+Conductor	Condutor
 Conflicts	Conflitos
 Connected devices	Dispositivos conectados
 Connected to:	Conectado a:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Disposit
 Dew point	Ponto de orvalho
 Diameter	Diâmetro
 Diameter / bends	Diâmetro / curvas
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Diâmetro de um fio redondo; 0: uma fita 30 x 3,5 mm
+Diameter of the rod	Diâmetro da haste
 Dictionary for translators: one column per language	Dicionário para tradutores: uma coluna por idioma
 Digits	Dígitos
 Dimension	Cota
@@ -812,6 +817,7 @@ Go to page	Ir para a página
 Graphic line	Linha gráfica
 Graphic rectangle	Retângulo gráfico
 Graphical form	Formulário gráfico
+Greatest distance of the conductor holders on the roof and on the walls	Maior distância dos suportes de condutor no telhado e nas paredes
 Greatest distance of the roof hooks along a rail	Maior distância dos ganchos de telhado ao longo de um trilho
 Grid	Grade
 Grid north	Norte da quadrícula
@@ -836,6 +842,7 @@ Height above the mounting plate	Altura acima da placa de montagem
 Height above the plate	Altura acima da placa
 Height of the plinth, 0 without plinth	Altura da base, 0 sem base
 Height of the rod above the covering	Altura da haste acima da cobertura
+Height of the test joints above the ground	Altura das conexões de medição acima do solo
 Heights above floor (IEC 60204-1)	Alturas acima do piso (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Mantida ao clicar, mover ou rolar. Ctrl é Cmd no macOS.
 Help	Ajuda
@@ -845,6 +852,9 @@ Highest phase unbalance	Maior desequilíbrio de fases
 Highest short-circuit current	Maior corrente de curto-circuito
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Tensão mais alta (circuito aberto à temperatura mais baixa), tensão média e mais baixa (à potência máxima à temperatura média e à mais alta), corrente à potência máxima, potência de pico
 Highest: the lowest voltage	Mais alta: a tensão mais baixa
+Holder distance	Distância dos suportes
+Holders on the roof	Suportes no telhado
+Holders on the walls	Suportes nas paredes
 Hole to sheet edge	Furo até a borda da chapa
 Home	Início
 Hook distance	Distância dos ganchos
@@ -1008,6 +1018,7 @@ Level {} of building {}	Pavimento {} do edifício {}
 Levels	Pavimentos
 Library	Biblioteca
 Lightning protection	Proteção contra descargas atmosféricas
+Lightning protection of building {}	Proteção contra descargas atmosféricas do edifício {}
 Like two fingers	Como dois dedos
 Limits	Limites
 Limits in effect	Limites em vigor
@@ -1058,6 +1069,7 @@ Macros	Macros
 Macros ({})	Macros ({})
 Macro…	Macro…
 Main	Principal
+Main earthing busbar	Barramento de equipotencialização principal
 Make the selected elements of this project equal to the compared ones	Igualar os elementos selecionados deste projeto aos comparados
 Maker	Fabricante
 Makes the current page content of the option	Torna a página atual conteúdo da opção
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	Hardware de CLP e topologia de barramento
 PLC overview	Visão geral do CLP
 PNG or JPEG bitmap, e.g. a logo or a photo	Bitmap PNG ou JPEG, por exemplo, um logotipo ou uma foto
 PV array {}	Arranjo FV {}
+PV array {} lies outside the protection of the air-termination system	O arranjo FV {} fica fora da proteção do subsistema de captação
 PV array {} of building {}: {} modules	Arranjo FV {} do edifício {}: {} módulos
 PV array {} of building {}: {} modules, {} kWp	Arranjo FV {} do edifício {}: {} módulos, {} kWp
 PV arrays	Sistemas fotovoltaicos
@@ -1683,6 +1696,7 @@ Right edges	Bordas direitas
 Right neighbour	Vizinho à direita
 Rights	Direitos
 Risers	Espelhos
+Rod holder	Suporte de haste
 Roof pitch	Inclinação do telhado
 Roof window	Janela de telhado
 Roof windows	Janelas de telhado
@@ -2001,6 +2015,7 @@ Terminals at least	Bornes no mínimo
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Bornes com o mesmo número de ponte são interligados (mesmo potencial). Os bornes de reserva são contados na lista de materiais.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termos separados por ';': chave=valor (igual), chave~texto (contém) ou texto encontrado em qualquer lugar
 Test connection	Testar conexão
+Test joints	Conexões de medição
 Text offset	Deslocamento do texto
 Text size	Tamanho do texto
 Texts	Textos
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} fios alterados
 {} wires, {} cables and {} tubes routed	{} fios, {} cabos e {} tubos roteados
 {} wires, {} – {} mm	{} fios, {} – {} mm
+{} {} of building {}	{} {} do edifício {}
 {} °C (max. {} °C)	{} °C (máx. {} °C)
 {} °C (max.)	{} °C (máx.)
 {} × {} = {}, {}	{} × {} = {}, {}

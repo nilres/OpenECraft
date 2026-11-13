@@ -88,3 +88,29 @@ fn an_electrode_is_led_up_to_its_busbar() {
     assert!(lead[2][1] > 300.0 && lead[2][1] < 700.0, "up to the bottom of the busbar: {lead:?}");
     assert!(problems(&prj).is_empty());
 }
+
+#[test]
+fn the_parts_follow_the_material_and_the_diameter() {
+    let (mut prj, bi) = building();
+    let rod = add_electrode(&mut prj, bi, ElectrodeKind::Rod, None).unwrap();
+    let ring = add_electrode(&mut prj, bi, ElectrodeKind::Ring, None).unwrap();
+    let part = |prj: &Project, id: u64| part_of(prj, prj.layout.buildings[bi].electrodes.iter().find(|e| e.id == id).unwrap());
+    // By default a galvanised rod of 20 mm and a stainless strip.
+    assert_eq!((part(&prj, rod), part(&prj, ring)), ("GEN.ER-ROD-1500".to_string(), "GEN.ER-STRIP-V4A30".to_string()));
+    let set = |prj: &mut Project, id: u64, m: Material, d: f32| {
+        let e = prj.layout.buildings[bi].electrodes.iter_mut().find(|e| e.id == id).unwrap();
+        (e.material, e.diameter) = (Some(m), d);
+    };
+    set(&mut prj, rod, Material::StainlessSteel, 20.0);
+    assert_eq!(part(&prj, rod), "GEN.ER-ROD-V4A-1500");
+    set(&mut prj, rod, Material::CopperBondedSteel, 17.0);
+    assert_eq!(part(&prj, rod), "GEN.ER-ROD-CU-1500");
+    set(&mut prj, rod, Material::GalvanisedSteel, 25.0);
+    assert_eq!(part(&prj, rod), "GEN.ER-ROD-FE25-1500");
+    // A round copper wire instead of the strip; a part of its own wins.
+    set(&mut prj, ring, Material::Copper, 8.0);
+    assert_eq!(part(&prj, ring), "GEN.ER-WIRE-CU8");
+    prj.layout.buildings[bi].electrodes.iter_mut().find(|e| e.id == ring).unwrap().part = "X.MY-WIRE".into();
+    assert_eq!(part(&prj, ring), "X.MY-WIRE");
+    assert_eq!(Material::from_key("copper-bonded steel"), Some(Material::CopperBondedSteel));
+}

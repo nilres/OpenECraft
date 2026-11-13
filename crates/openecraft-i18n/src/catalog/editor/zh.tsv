@@ -185,6 +185,7 @@ Automatic ({})	自动 ({})
 Automatic accessories	自动附件
 Automatic configuration	自动组态
 Automatic placement	自动放置
+Automatic: {}	自动：{}
 Automation	自动化
 Aux	辅助
 Avoid:	避开：
@@ -386,9 +387,11 @@ Compare and baselines	比较和基线
 Compare with	比较对象
 Compare with a baseline, a revision or another project file and take differences over	与基线、修订或其他项目文件进行比较，并采用差异
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	完整标识符：{}\n此处缺少的结构部分取自页 (=功能 +位置) 或符号所在的结构框。
+Concrete base	混凝土底座
 Condition	条件
 Condition (OPTION=value & …)	条件（OPTION=值 & …）
 Conductive frame	导电框架
+Conductor	导体
 Conflicts	冲突
 Connected devices	已连接的设备
 Connected to:	连接到：
@@ -543,6 +546,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	设备�
 Dew point	露点
 Diameter	直径
 Diameter / bends	直径 / 弯曲
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	圆导线的直径；0：扁钢 30 x 3.5 mm
+Diameter of the rod	接闪杆直径
 Dictionary for translators: one column per language	供翻译人员使用的词典：每种语言一列
 Digits	位数
 Dimension	尺寸标注
@@ -805,6 +810,7 @@ Go to page	转到页
 Graphic line	图形线
 Graphic rectangle	图形矩形
 Graphical form	图形表格
+Greatest distance of the conductor holders on the roof and on the walls	屋顶和墙上导体支架的最大间距
 Greatest distance of the roof hooks along a rail	沿导轨的屋面挂钩最大间距
 Grid	栅格
 Grid north	坐标北
@@ -829,6 +835,7 @@ Height above the mounting plate	安装板以上高度
 Height above the plate	板以上高度
 Height of the plinth, 0 without plinth	底座高度，0 表示无底座
 Height of the rod above the covering	接闪杆高出屋面的高度
+Height of the test joints above the ground	测试接头距地面的高度
 Heights above floor (IEC 60204-1)	离地高度 (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	在单击、移动或滚动时按住。在 macOS 上 Ctrl 为 Cmd。
 Help	帮助
@@ -838,6 +845,9 @@ Highest phase unbalance	最大相不平衡度
 Highest short-circuit current	最大短路电流
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高电压（最低温度下的开路电压），平均和最低电压（平均和最高温度下的最大功率点电压），最大功率点电流，峰值功率
 Highest: the lowest voltage	最高：最低电压
+Holder distance	支架间距
+Holders on the roof	屋顶上的支架
+Holders on the walls	墙上的支架
 Hole to sheet edge	孔到板边距离
 Home	开始
 Hook distance	挂钩间距
@@ -998,6 +1008,7 @@ Level {} added to building {}; new rooms go onto it	已向建筑物 {1} 添加�
 Level {} of building {}	建筑 {1} 的楼层 {0}
 Library	库
 Lightning protection	防雷
+Lightning protection of building {}	建筑物 {} 的防雷
 Like two fingers	与双指相同
 Limits	限值
 Limits in effect	生效的限值
@@ -1047,6 +1058,7 @@ Macros	宏
 Macros ({})	宏 ({})
 Macro…	宏…
 Main	主
+Main earthing busbar	总接地母线
 Make the selected elements of this project equal to the compared ones	使此项目中的所选元素与比较对象一致
 Maker	制造商
 Makes the current page content of the option	将当前页设为该选项的内容
@@ -1366,6 +1378,7 @@ PLC hardware and bus topology	PLC 硬件和总线拓扑
 PLC overview	PLC 概览
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 或 JPEG 位图，例如徽标或照片
 PV array {}	光伏阵列 {}
+PV array {} lies outside the protection of the air-termination system	光伏阵列 {} 位于接闪器保护范围之外
 PV array {} of building {}: {} modules	建筑物 {1} 的光伏阵列 {0}：{2} 块组件
 PV array {} of building {}: {} modules, {} kWp	建筑物 {1} 的光伏阵列 {0}：{2} 块组件，{3} kWp
 PV arrays	光伏阵列
@@ -1666,6 +1679,7 @@ Right edges	右边缘
 Right neighbour	右侧相邻机柜
 Rights	权限
 Risers	踏步数
+Rod holder	接闪杆支架
 Roof pitch	屋顶坡度
 Roof window	屋顶窗
 Roof windows	屋顶窗
@@ -1981,6 +1995,7 @@ Terminals at least	端子最低
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	跳线编号相同的端子相互桥接（电位相同）。备用端子计入物料清单。
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	各条件以 ';' 分隔：键=值（等于）、键~文本（包含）或任意位置出现的文本
 Test connection	测试连接
+Test joints	测试接头
 Text offset	文本偏移
 Text size	文本大小
 Texts	文本
@@ -2463,6 +2478,7 @@ x y	x y
 {} wires changed	已更改 {} 条导线
 {} wires, {} cables and {} tubes routed	已布线 {} 条导线、{} 根电缆和 {} 根管子
 {} wires, {} – {} mm	{} 条导线，{} – {} mm
+{} {} of building {}	建筑物 {2} 的{0} {1}
 {} °C (max. {} °C)	{} °C（最高 {} °C）
 {} °C (max.)	{} °C（最高）
 {} × {} = {}, {}	{} × {} = {}，{}

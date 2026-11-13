@@ -185,6 +185,7 @@ Automatic ({})	自動 ({})
 Automatic accessories	自動付属品
 Automatic configuration	自動構成
 Automatic placement	自動配置
+Automatic: {}	自動: {}
 Automation	自動化
 Aux	補助
 Avoid:	回避:
@@ -386,9 +387,11 @@ Compare and baselines	比較とベースライン
 Compare with	比較対象
 Compare with a baseline, a revision or another project file and take differences over	ベースライン、リビジョン、または別のプロジェクトファイルと比較して、相違点を反映します
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	完全なタグ: {}\nここで不足しているアスペクトは、ページ (=機能 +取付場所) またはシンボルがある構造ボックスから取得されます。
+Concrete base	コンクリート台座
 Condition	条件
 Condition (OPTION=value & …)	条件 (OPTION=値 & …)
 Conductive frame	導電性フレーム
+Conductor	導体
 Conflicts	競合
 Connected devices	接続されたデバイス
 Connected to:	接続先:
@@ -542,6 +545,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	デバ�
 Dew point	露点
 Diameter	直径
 Diameter / bends	直径 / 曲げ
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	丸線の直径。0: 帯板 30 x 3.5 mm
+Diameter of the rod	突針の直径
 Dictionary for translators: one column per language	翻訳者用の辞書: 言語ごとに 1 列
 Digits	桁数
 Dimension	寸法
@@ -804,6 +809,7 @@ Go to page	ページへ移動
 Graphic line	図形線
 Graphic rectangle	図形四角形
 Graphical form	グラフィカルフォーム
+Greatest distance of the conductor holders on the roof and on the walls	屋根と壁の導体支持金具の最大間隔
 Greatest distance of the roof hooks along a rail	レールに沿った屋根フックの最大間隔
 Grid	グリッド
 Grid north	座標北
@@ -828,6 +834,7 @@ Height above the mounting plate	取付板からの高さ
 Height above the plate	板からの高さ
 Height of the plinth, 0 without plinth	台座の高さ (0 は台座なし)
 Height of the rod above the covering	屋根葺き材からの突針の高さ
+Height of the test joints above the ground	試験用接続端子の地表からの高さ
 Heights above floor (IEC 60204-1)	床面からの高さ (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	クリック、移動、スクロールの間押したままにします。macOS では Ctrl は Cmd です。
 Help	ヘルプ
@@ -837,6 +844,9 @@ Highest phase unbalance	最大相不平衡
 Highest short-circuit current	最大短絡電流
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	最高電圧（最低温度での開放電圧）、平均・最低電圧（平均・最高温度での最大出力時）、最大出力時の電流、ピーク出力
 Highest: the lowest voltage	最高：最低電圧
+Holder distance	支持金具の間隔
+Holders on the roof	屋根の支持金具
+Holders on the walls	壁の支持金具
 Hole to sheet edge	穴から板端まで
 Home	ホーム
 Hook distance	フック間隔
@@ -997,6 +1007,7 @@ Level {} added to building {}; new rooms go onto it	建物 {1} に階 {0} を追
 Level {} of building {}	建物 {1} の階 {0}
 Library	ライブラリ
 Lightning protection	雷保護
+Lightning protection of building {}	建物 {} の雷保護
 Like two fingers	2 本指と同じ
 Limits	制限値
 Limits in effect	適用中の制限値
@@ -1046,6 +1057,7 @@ Macros	マクロ
 Macros ({})	マクロ ({})
 Macro…	マクロ…
 Main	メイン
+Main earthing busbar	主接地ブスバー
 Make the selected elements of this project equal to the compared ones	このプロジェクトの選択した要素を比較対象と同じにします
 Maker	メーカー
 Makes the current page content of the option	現在のページをオプションの内容にします
@@ -1365,6 +1377,7 @@ PLC hardware and bus topology	PLC ハードウェアとバストポロジー
 PLC overview	PLC 概要
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG または JPEG のビットマップ (例: ロゴや写真)
 PV array {}	PVアレイ {}
+PV array {} lies outside the protection of the air-termination system	PVアレイ {} は受雷部の保護範囲外にあります
 PV array {} of building {}: {} modules	建物 {1} の PVアレイ {0}：{2} 枚のモジュール
 PV array {} of building {}: {} modules, {} kWp	建物 {1} の PVアレイ {0}：{2} 枚のモジュール、{3} kWp
 PV arrays	PVアレイ
@@ -1665,6 +1678,7 @@ Right edges	右端
 Right neighbour	右隣
 Rights	権限
 Risers	蹴上げ数
+Rod holder	突針支持金具
 Roof pitch	屋根勾配
 Roof window	天窓
 Roof windows	天窓
@@ -1981,6 +1995,7 @@ Terminals at least	端子の最低高さ
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	同じジャンパー番号の端子はジャンパー接続されます (同電位)。予備端子は部品表に計上されます。
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	条件は ';' で区切ります: キー=値 (一致)、キー~テキスト (含む)、または任意の位置にあるテキスト
 Test connection	接続をテスト
+Test joints	試験用接続端子
 Text offset	テキストのオフセット
 Text size	テキストサイズ
 Texts	テキスト
@@ -2464,6 +2479,7 @@ x y	x y
 {} wires changed	{} 本の電線を変更しました
 {} wires, {} cables and {} tubes routed	電線 {} 本、ケーブル {} 本、チューブ {} 本を配線しました
 {} wires, {} – {} mm	電線 {} 本、{} – {} mm
+{} {} of building {}	建物 {2} の{0} {1}
 {} °C (max. {} °C)	{} °C (最大 {} °C)
 {} °C (max.)	{} °C (最大)
 {} × {} = {}, {}	{} × {} = {}、{}

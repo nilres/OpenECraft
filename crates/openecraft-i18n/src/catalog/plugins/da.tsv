@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Enheder, ledninger, potentialer, kabler, klemrækker, PLC, tavle, fluid, elektriske beregninger, struktur og oversættelser
 Diameter in mm	Diameter i mm
 Diameter of a hole at both ends (0: none)	Diameter af et hul i begge ender (0: intet)
+Diameter of the conductors, mm (default 8)	Ledernes diameter, mm (standard 8)
+Diameter of the rod, mm (default 16)	Stangens diameter, mm (standard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Stammens retning: left, right, up eller down (standard: efter lederne der)
 Distance between power and signal or fluid in mm	Afstand mellem kraft og signal eller fluid i mm
 Distance from devices, rails and busbars in mm	Afstand fra enheder, skinner og samleskinner i mm
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Genererer programmet til skinnebearbejdningsmaskinen: snit, stansede huller og bukninger
 Give a device tag or a part number	Angiv en enhedsbetegnelse eller et artikelnummer
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Giver en bygning en lynbeskyttelse eller ændrer den: klasse, antal nedledere og ledernes del; fangledere på rygninger og grater (en maske på flade tage), nedledere med målesamlinger til jordelektroderne; eller fjerner den
+Greatest distance of the conductor holders, mm (default 1000)	Største afstand mellem lederholderne, mm (standard 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperer elementer i en samling, der markeres og flyttes samlet; uden navn forlader elementerne deres samlinger
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Overdrager en kapslings programmer til produktionen som en ordre: manifest og programmer for alle dens flader og kobberskinner
 Has a divider between power and signal cables	Har en skillevæg mellem effekt- og signalkabler
@@ -294,6 +297,7 @@ Height in mm	Højde i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Højde i mm uden sokkel; negativ: ukendt (vægmonteret)
 Height in mm; the logo keeps its aspect ratio inside	Højde i mm; logoet bevarer sit billedformat indeni
 Height of the rod above the covering, mm (default 1500)	Stangens højde over tagdækningen, mm (standard 1500)
+Height of the test joints above the ground, mm (default 1000)	Målesamlingernes højde over terræn, mm (standard 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspektet overordnet produkt (-) for siden; enhederne på siden flytter med
 Highest actuator on the door above the floor (0: not checked)	Højeste betjeningselement på døren over gulvet (0: kontrolleres ikke)
 Highest air temperature at devices without data (0: not checked)	Højeste lufttemperatur ved enheder uden data (0: kontrolleres ikke)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Produktionspakke (CNC-programmer, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Mærkater, kommasepareret: device, terminal, wire, cable (tom: alle)
 Marks a panel item as mounted or as a problem, or as open again	Markerer et layoutelement som monteret, som et problem eller som åbent igen
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markerer en ført ledning som trukket eller som et problem eller som åben igen; ledningen angives ved dens to ender
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiale: galvanised_steel, stainless_steel, copper, copper_bonded_steel eller aluminium
 Maximum fill of a carrier in percent	Maksimal fyldning af en kabelbærer i procent
 Maximum operating pressure in bar	Maksimalt driftstryk i bar
 Measuring range or set point	Måleområde eller sætpunkt
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Artikelnummer for slangen / røret / rørl
 Part number of the upstream device	Artikelnummer for den forankoblede enhed
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, f.eks. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Del til dens bånd, tråd eller spyd (tom: generisk)
+Part of the conductor holders on the roof (empty: generic)	Del til lederholderne på taget (tom: generisk)
+Part of the conductor holders on the walls (empty: generic)	Del til lederholderne på væggene (tom: generisk)
 Part of the conductors (round wire; empty: generic)	Ledernes del (rundtråd; tom: generisk)
 Part of the key or name	Del af nøglen eller navnet
+Part of the rod (empty: the one of its material and diameter)	Del til stangen (tom: den til dens materiale og diameter)
 Part {} has no function with a symbol	Artiklen {} har ingen funktion med symbol
 Parts phased out or discontinued	Artikler, der udfases eller er udgået
 Pass ids or pages	Angiv id'er eller sider
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Decentral I/O: controllerens station
 Remove the air-termination rod	Fjern fangstangen
 Remove the earth electrode	Fjern jordelektroden
 Remove the entry of upstream and downstream	Fjern posten for upstream og downstream
-Remove the lightning protection system	Fjern lynbeskyttelsen
 Remove the profile	Fjern profilen
 Remove the scheme from the project	Fjern skemaet fra projektet
 Remove unused definitions (default: false)	Fjern ubrugte definitioner (standard: false)
@@ -707,6 +714,7 @@ Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Genbrug mislykkede søgninger under én ruteberegning
 Right side bayed (no side panel)	Højre side sammenbygget (ingen sideplade)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: dybde under terræn, spyd: dybde for øverste ende, mm (standard 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Jordspyd: dets diameter (standard 20), fundament- og ringjord: en rundtråds, 0 for et bånd, mm
 Room {} exists already	Rummet {} findes allerede
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader med uret: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotation i grader, mod uret (90 læses nedefra og op)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Ukendt adresseskema: {}
 Unknown alignment: {}	Ukendt justering: {}
 Unknown anchor: {}	Ukendt anker: {}
 Unknown aspect: {}	Ukendt aspekt: {}
+Unknown base: {}	Ukendt fod: {}
 Unknown bonding kind: {}	Ukendt type udligning: {}
 Unknown bonding point: {}	Ukendt udligningspunkt: {}
 Unknown bus system: {}	Ukendt bussystem: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring eller rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted eller middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) eller product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker eller other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (en stangholder på taget) eller concrete_base (på flade tage)
 hose, tube or pipe	hose, tube eller pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (maskiner, faseledere BK) eller iec60445 (faseledere BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (standard), power, control, signal eller fluid

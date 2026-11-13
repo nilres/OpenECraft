@@ -1,9 +1,10 @@
-//! The cabling of a PV array as lines in the plant: the leads from module to module of
-//! each string under the modules, the plus and minus leads of each string from its
-//! first and last module to the generator junction box of the array (otherwise to its
-//! inverter), the DC main cables from the generator junction box to the inverters, and
-//! the earthing conductor that bonds the earthing points of the mounting to the
-//! earthing busbar.
+//! The cabling of a PV array as lines in the plant. Every module has a plus lead (red)
+//! and a minus lead (black) out of its junction box; in a string the plus lead of a
+//! module meets the minus lead of the next one at a connector between them. The minus
+//! lead of the first module and the plus lead of the last one of each string run to the
+//! generator junction box of the array (otherwise to its inverter), a DC main cable
+//! (plus and minus) from the generator junction box to the inverters, and the earthing
+//! conductor bonds the earthing points of the mounting to the earthing busbar.
 //!
 //! The leads to a device leave the array at the point of its edge nearest to the device,
 //! run on the covering to a cable entry just beside it, through the roof and under it
@@ -28,18 +29,26 @@ pub const UNDER_ROOF: f32 = 60.0;
 pub const LEAD_GAP: f32 = 30.0;
 /// How far the DC main cable rises above the generator junction box and the inverter, mm.
 pub const MAIN_RISE: f32 = 200.0;
+/// How far apart the plus and the minus lead leave the junction box of a module, mm.
+pub const BOX_GAP: f32 = 40.0;
 
 /// What a line of the cabling of a PV array is.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum Lead {
-    /// From the junction box of one module to that of the next one in its string.
-    Link,
-    /// The plus lead of a string to its inverter.
+    /// The plus lead of a module: to the connector with the next module of its string,
+    /// or (with a device in `to`) the plus lead of the string to its generator junction
+    /// box or inverter.
     Plus,
-    /// The minus lead of a string to its inverter.
+    /// The minus lead of a module (to the connector with the module before it, or the
+    /// minus lead of the string).
     Minus,
-    /// The DC main cable from the generator junction box to an inverter.
-    Main,
+    /// The connector (plug and socket) where the plus lead of a module meets the minus
+    /// lead of the next one.
+    Connector,
+    /// The plus and the minus conductor of the DC main cable from the generator junction
+    /// box to an inverter.
+    MainPlus,
+    MainMinus,
     /// The earthing conductor of the mounting to the earthing busbar.
     Earth,
 }
@@ -49,7 +58,7 @@ pub enum Lead {
 pub struct PvLine {
     pub points: Vec<V3>,
     pub lead: Lead,
-    /// The device a lead runs to (empty for the links between modules), and whether it
+    /// The device a lead runs to (empty for the leads between modules), and whether it
     /// reaches it (the device is placed in the layout).
     pub to: String,
     pub reached: bool,
@@ -152,19 +161,38 @@ pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &Pv
     let strings = string_modules(&g, a);
     // The leads side by side: each string's minus and plus lead a gap apart.
     let leads = 2 * strings.len();
+    let line = |points: Vec<V3>, lead: Lead, si: usize| PvLine { points: to_plant(points), lead, to: String::new(), reached: true, string: Some(si) };
     for (k, (si, modules)) in strings.iter().enumerate() {
         let (si, s) = (*si, &a.strings[*si]);
-        for w in modules.windows(2) {
-            let (p, q) = (boxes[w[0]], boxes[w[1]]);
-            out.push(PvLine { points: to_plant(vec![p, low(p), low(q), q]), lead: Lead::Link, to: String::new(), reached: true, string: Some(si) });
+        // Along the string at each module (towards the next one; at the last one from the
+        // one before): the plus lead leaves the box on that side, the minus lead on the other.
+        let along = |i: usize| {
+            let (a, b) = if i + 1 < modules.len() { (i, i + 1) } else if i > 0 { (i - 1, i) } else { (i, i) };
+            let d = sub(boxes[modules[b]], boxes[modules[a]]);
+            let d = [d[0], 0.0, d[2]];
+            if crate::parts::vec3::length(d) < 1.0 {
+                let m = &g.modules[modules[i]];
+                crate::parts::vec3::norm(sub(m[1], m[0]))
+            } else {
+                crate::parts::vec3::norm(d)
+            }
+        };
+        let plus = |i: usize| crate::parts::vec3::add(boxes[modules[i]], scale(along(i), BOX_GAP / 2.0));
+        let minus = |i: usize| sub(boxes[modules[i]], scale(along(i), BOX_GAP / 2.0));
+        for i in 0..modules.len().saturating_sub(1) {
+            let (p, q) = (plus(i), minus(i + 1));
+            let c = scale(crate::parts::vec3::add(low(p), low(q)), 0.5);
+            out.push(line(vec![p, low(p), c], Lead::Plus, si));
+            out.push(line(vec![q, low(q), c], Lead::Minus, si));
+            let d = along(i);
+            out.push(line(vec![sub(c, scale(d, 25.0)), crate::parts::vec3::add(c, scale(d, 25.0))], Lead::Connector, si));
         }
         let (to, device) = match combiner {
             Some(gak) => (a.combiner.clone(), gak),
             None => (s.inverter.clone(), target(&s.inverter)),
         };
-        let (first, last) = (modules[0], modules[modules.len() - 1]);
-        for (lead, m, j) in [(Lead::Minus, first, 2 * k), (Lead::Plus, last, 2 * k + 1)] {
-            let p = boxes[m];
+        let n = modules.len();
+        for (lead, p, j) in [(Lead::Minus, minus(0), 2 * k), (Lead::Plus, plus(n - 1), 2 * k + 1)] {
             let side = (j as f32 - (leads as f32 - 1.0) / 2.0) * LEAD_GAP;
             let mut pts = vec![p, low(p)];
             pts.extend(run_down(r, &g, low(p), device, side, &cover));
@@ -183,8 +211,11 @@ pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &Pv
             done.push(tag);
             let Some(inv) = target(tag) else { continue };
             let y = gak[1].max(inv[1]) + MAIN_RISE;
-            let pts = vec![gak, [gak[0], y, gak[2]], [inv[0], y, inv[2]], inv];
-            out.push(PvLine { points: to_plant(pts), lead: Lead::Main, to: tag.into(), reached: true, string: Some(*si) });
+            for (lead, dx) in [(Lead::MainMinus, -LEAD_GAP / 2.0), (Lead::MainPlus, LEAD_GAP / 2.0)] {
+                let (a, b) = ([gak[0] + dx, gak[1], gak[2]], [inv[0] + dx, inv[1], inv[2]]);
+                let pts = vec![a, [a[0], y + dx, a[2]], [b[0], y + dx, b[2]], b];
+                out.push(PvLine { points: to_plant(pts), lead, to: tag.into(), reached: true, string: Some(*si) });
+            }
         }
     }
     // The earthing conductor from earthing point to earthing point, then to the busbar.

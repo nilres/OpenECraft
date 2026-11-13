@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Dispositivos, fios, potenciais, cabos, réguas de bornes, CLP, painel, fluidos, cálculos elétricos, estrutura e traduções
 Diameter in mm	Diâmetro em mm
 Diameter of a hole at both ends (0: none)	Diâmetro de um furo em ambas as extremidades (0: nenhum)
+Diameter of the conductors, mm (default 8)	Diâmetro dos condutores, mm (padrão 8)
+Diameter of the rod, mm (default 16)	Diâmetro da haste, mm (padrão 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Direção da haste: left, right, up ou down (padrão: conforme os fios no local)
 Distance between power and signal or fluid in mm	Distância entre potência e sinal ou fluido em mm
 Distance from devices, rails and busbars in mm	Distância de dispositivos, trilhos e barramentos em mm
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Gera o programa da máquina de processamento de barramentos: cortes, furos puncionados e dobras
 Give a device tag or a part number	Informe uma identificação de dispositivo ou um número de peça
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dá a um edifício um SPDA ou altera-o: a sua classe, o número de descidas e a peça dos condutores; condutores de captação nas cumeeiras e espigões (uma malha em telhados planos), descidas com conexões de medição até os eletrodos de aterramento; ou remove-o
+Greatest distance of the conductor holders, mm (default 1000)	Maior distância dos suportes de condutor, mm (padrão 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Agrupa itens em um conjunto que é selecionado e movido junto; sem nome, os itens saem de seus conjuntos
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Entrega os programas de um gabinete à produção como ordem: manifesto e programas de todas as suas faces e barras de cobre
 Has a divider between power and signal cables	Tem um separador entre cabos de potência e de sinal
@@ -294,6 +297,7 @@ Height in mm	Altura em mm
 Height in mm without plinth; negative: unknown (wall mounted)	Altura em mm sem base; negativo: desconhecido (montagem em parede)
 Height in mm; the logo keeps its aspect ratio inside	Altura em mm; o logotipo mantém sua proporção dentro dela
 Height of the rod above the covering, mm (default 1500)	Altura da haste acima da cobertura, mm (padrão 1500)
+Height of the test joints above the ground, mm (default 1000)	Altura das conexões de medição acima do solo, mm (padrão 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspecto de produto de nível superior (-) da página; os dispositivos da página acompanham
 Highest actuator on the door above the floor (0: not checked)	Atuador mais alto na porta acima do piso (0: não verificado)
 Highest air temperature at devices without data (0: not checked)	Temperatura do ar máxima em dispositivos sem dados (0: não verificado)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Pacote de fabricação (programas CNC
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Marcadores, separados por vírgula: device, terminal, wire, cable (vazio: todos)
 Marks a panel item as mounted or as a problem, or as open again	Marca um item do painel como montado, como problema ou novamente como aberto
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Marca um fio roteado como fiado ou como problema, ou novamente como aberto; o fio é indicado por suas duas extremidades
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel ou aluminium
 Maximum fill of a carrier in percent	Preenchimento máximo de um suporte em porcentagem
 Maximum operating pressure in bar	Pressão de operação máxima em bar
 Measuring range or set point	Faixa de medição ou ponto de ajuste
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Número da peça da mangueira / do tubo / 
 Part number of the upstream device	Número de peça do dispositivo a montante
 Part number, e.g. GEN.LMP-GN-24	Número da peça, p. ex. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Peça da sua fita, fio ou haste (vazio: genérica)
+Part of the conductor holders on the roof (empty: generic)	Peça dos suportes de condutor no telhado (vazio: genérica)
+Part of the conductor holders on the walls (empty: generic)	Peça dos suportes de condutor nas paredes (vazio: genérica)
 Part of the conductors (round wire; empty: generic)	Peça dos condutores (fio redondo; vazio: genérica)
 Part of the key or name	Parte da chave ou do nome
+Part of the rod (empty: the one of its material and diameter)	Peça da haste (vazio: a do seu material e diâmetro)
 Part {} has no function with a symbol	A peça {} não tem função com símbolo
 Parts phased out or discontinued	Peças em descontinuação ou descontinuadas
 Pass ids or pages	Informe IDs ou páginas
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	E/S remota: estação do controlador
 Remove the air-termination rod	Remover o captor tipo haste
 Remove the earth electrode	Remover o eletrodo de aterramento
 Remove the entry of upstream and downstream	Remover a entrada de upstream e downstream
-Remove the lightning protection system	Remover o SPDA
 Remove the profile	Remover o perfil
 Remove the scheme from the project	Remover o esquema do projeto
 Remove unused definitions (default: false)	Remover definições não usadas (padrão: false)
@@ -707,6 +714,7 @@ Rest (mm)	Sobra (mm)
 Reuse failed searches during one routing calculation	Reutilizar pesquisas sem sucesso durante o mesmo cálculo de encaminhamento
 Right side bayed (no side panel)	Lado direito acoplado (sem painel lateral)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Anel: profundidade abaixo do solo, haste: profundidade do topo, mm (padrão 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Haste: o seu diâmetro (padrão 20), fundação e anel: o de um fio redondo, 0 para uma fita, mm
 Room {} exists already	A sala {} já existe
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotação em graus no sentido horário: 0, 90, 180 ou 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotação em graus, no sentido anti-horário (90 é lido de baixo para cima)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Esquema de endereçamento desconhecido: {}
 Unknown alignment: {}	Alinhamento desconhecido: {}
 Unknown anchor: {}	Ancoragem desconhecida: {}
 Unknown aspect: {}	Aspecto desconhecido: {}
+Unknown base: {}	Base desconhecida: {}
 Unknown bonding kind: {}	Tipo de equipotencialização desconhecido: {}
 Unknown bonding point: {}	Ponto de equipotencialização desconhecido: {}
 Unknown bus system: {}	Sistema de barramento desconhecido: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring ou rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted ou middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) ou product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker ou other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (um suporte de haste no telhado) ou concrete_base (em telhados planos)
 hose, tube or pipe	hose, tube ou pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (máquinas, fases BK) ou iec60445 (fases BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (padrão), power, control, signal ou fluid

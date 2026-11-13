@@ -61,7 +61,7 @@ pub use rooms::{
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{AirRod, Building, Electrode, ElectrodeKind, Lightning, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
+pub use crate::model::panel::{AirRod, Building, Electrode, ElectrodeKind, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;

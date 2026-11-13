@@ -581,10 +581,10 @@ fn office_building_has_its_roof_stair_and_installation() {
     // conductor of the rails to the bonding busbar under it; each rail has its clamp.
     let lines = crate::panel::solar::cabling::cabling(&prj, &crate::panel::site_poses(&prj), b, &b.roofs[0], a);
     use crate::panel::solar::cabling::Lead;
-    for (lead, to) in [(Lead::Plus, "=PV-U1"), (Lead::Minus, "=PV-U1"), (Lead::Main, "=PV-T1"), (Lead::Earth, "=PV-PE1")] {
+    for (lead, to) in [(Lead::Plus, "=PV-U1"), (Lead::Minus, "=PV-U1"), (Lead::MainPlus, "=PV-T1"), (Lead::MainMinus, "=PV-T1"), (Lead::Earth, "=PV-PE1")] {
         assert!(lines.iter().any(|l| l.lead == lead && l.to == to && l.reached), "{lead:?} to {to}");
     }
-    assert_eq!(lines.iter().filter(|l| l.lead == Lead::Link).count(), 9);
+    assert_eq!(lines.iter().filter(|l| l.lead == Lead::Connector).count(), 9, "ten modules in series");
     assert!(material.iter().any(|(p, q, _)| p == "GEN.PV-EARTH-CLAMP" && *q == 4.0));
     assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-T1") && prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-PE1"));
     // Earthed by a foundation earth electrode on the main earthing busbar and a ring

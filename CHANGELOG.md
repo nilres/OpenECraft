@@ -9,8 +9,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   data, peak power, mounting and material, earthing, strings with their values and the
   lengths of their leads, problems, and its settings). The cabling of the strings is
   drawn from module to module and down to the generator junction box (`combiner`) with
-  the DC main cable on to the inverter; *Show › See-through PV modules* shows it under
-  the modules. The mounting gets roof hooks
+  the DC main cable on to the inverter: every module's plus lead (red) meets the next
+  module's minus lead (black) at a connector; *Show › See-through PV modules* shows it
+  under the modules. The mounting gets roof hooks
   and an earthing point with its clamp on each rail or row of mounting bases, bonded by
   the earthing conductor to an earthing busbar (`set_pv_array` `earthing`). *Show ›
   Hide PV modules* shows the mounting. A room under the roof shown alone shows the
@@ -22,7 +23,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   earthing busbar) and a lightning protection system of class I - IV (air-termination
   conductors on ridges and hips or as a mesh on flat roofs, air-termination rods, down
   conductors with test joints into the electrodes), added in *Site › Earthing and
-  lightning protection* (rods clicked into the site plan), drawn in 3D and in the site plan,
+  lightning protection* (rods clicked into the site plan), with their material,
+  diameter and mounting hardware (conductor holders, rod holders or concrete bases),
+  selected by a click in 3D or the site plan and set in their properties, drawn in 3D and in the site plan,
   their material in the bill of materials, checked (down conductors per class, PV
   arrays in the protection angle). Commands: `add_earth_electrode`,
   `set_earth_electrode`, `set_lightning_protection`, `add_air_rod`, `set_air_rod`

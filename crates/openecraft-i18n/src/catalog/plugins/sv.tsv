@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Apparater, ledningar, potentialer, kablar, plintrader, PLC, skåp, fluid, elektriska beräkningar, struktur och översättningar
 Diameter in mm	Diameter i mm
 Diameter of a hole at both ends (0: none)	Diameter för ett hål i båda ändarna (0: inget)
+Diameter of the conductors, mm (default 8)	Ledarnas diameter, mm (standard 8)
+Diameter of the rod, mm (default 16)	Stavens diameter, mm (standard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Stammens riktning: left, right, up eller down (standard: efter ledarna där)
 Distance between power and signal or fluid in mm	Avstånd mellan kraft och signal eller fluid i mm
 Distance from devices, rails and busbars in mm	Avstånd från apparater, skenor och samlingsskenor i mm
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Genererar programmet för skenbearbetningsmaskinen: kapningar, stansade hål och bockningar
 Give a device tag or a part number	Ange en enhetsbeteckning eller ett artikelnummer
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Ger en byggnad ett åskskydd eller ändrar det: klass, antal nedledare och ledarnas artikel; uppfångningsledare på nockar och valmar (en maska på platta tak), nedledare med provklämmor till jordtagen; eller tar bort det
+Greatest distance of the conductor holders, mm (default 1000)	Största avstånd mellan ledarhållarna, mm (standard 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperar objekt till en byggrupp som markeras och flyttas tillsammans; utan namn lämnar objekten sina byggrupper
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Lämnar över programmen för en kapsling till produktionen som en order: manifest och program för alla dess ytor och kopparskenor
 Has a divider between power and signal cables	Har en skiljevägg mellan kraft- och signalkablar
@@ -294,6 +297,7 @@ Height in mm	Höjd i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Höjd i mm utan sockel; negativ: okänd (väggmonterad)
 Height in mm; the logo keeps its aspect ratio inside	Höjd i mm; logotypen behåller sitt bildförhållande inuti
 Height of the rod above the covering, mm (default 1500)	Stavens höjd över taktäckningen, mm (standard 1500)
+Height of the test joints above the ground, mm (default 1000)	Provklämmornas höjd över mark, mm (standard 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Sidans aspekt för överordnad produkt (-); apparaterna på sidan följer med
 Highest actuator on the door above the floor (0: not checked)	Högsta manöverdon i dörren över golvet (0: kontrolleras inte)
 Highest air temperature at devices without data (0: not checked)	Högsta lufttemperatur vid apparater utan data (0: kontrolleras inte)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Tillverkningspaket (CNC-program, JSON
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Märkningar, kommaavgränsade: device, terminal, wire, cable (tomt: alla)
 Marks a panel item as mounted or as a problem, or as open again	Markerar ett layoutobjekt som monterat eller som ett problem, eller som öppet igen
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markerar en dragen ledning som inkopplad eller som ett problem, eller som öppen igen; ledningen anges med sina två ändar
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel eller aluminium
 Maximum fill of a carrier in percent	Högsta fyllnadsgrad för en kabelbärare i procent
 Maximum operating pressure in bar	Maximalt drifttryck i bar
 Measuring range or set point	Mätområde eller börvärde
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Artikelnummer för slangen / röret / rör
 Part number of the upstream device	Artikelnummer för den överordnade apparaten
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, t.ex. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Artikel för dess band, tråd eller spett (tom: generisk)
+Part of the conductor holders on the roof (empty: generic)	Artikel för ledarhållarna på taket (tom: generisk)
+Part of the conductor holders on the walls (empty: generic)	Artikel för ledarhållarna på väggarna (tom: generisk)
 Part of the conductors (round wire; empty: generic)	Ledarnas artikel (rundtråd; tom: generisk)
 Part of the key or name	Del av nyckeln eller namnet
+Part of the rod (empty: the one of its material and diameter)	Artikel för staven (tom: den för dess material och diameter)
 Part {} has no function with a symbol	Artikeln {} har ingen funktion med symbol
 Parts phased out or discontinued	Artiklar som fasas ut eller har utgått
 Pass ids or pages	Ange ID:n eller sidor
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Distribuerad I/O: styrenhetens station
 Remove the air-termination rod	Ta bort spetsledaren
 Remove the earth electrode	Ta bort jordtaget
 Remove the entry of upstream and downstream	Ta bort posten för upstream och downstream
-Remove the lightning protection system	Ta bort åskskyddet
 Remove the profile	Ta bort profilen
 Remove the scheme from the project	Ta bort schemat från projektet
 Remove unused definitions (default: false)	Ta bort oanvända definitioner (standard: false)
@@ -707,6 +714,7 @@ Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Återanvänd misslyckade sökningar inom samma ruttberäkning
 Right side bayed (no side panel)	Höger sida sammanbyggd (ingen sidovägg)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: djup under mark, spett: djup för övre änden, mm (standard 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Jordspett: dess diameter (standard 20), grund- och ringjordtag: en rundtråds, 0 för ett band, mm
 Room {} exists already	Rummet {} finns redan
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader medurs: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Vridning i grader, moturs (90 läses nerifrån och upp)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Okänt adresschema: {}
 Unknown alignment: {}	Okänd justering: {}
 Unknown anchor: {}	Okänd förankring: {}
 Unknown aspect: {}	Okänd aspekt: {}
+Unknown base: {}	Okänd fot: {}
 Unknown bonding kind: {}	Okänd typ av potentialutjämning: {}
 Unknown bonding point: {}	Okänd anslutningspunkt för potentialutjämning: {}
 Unknown bus system: {}	Okänt bussystem: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring eller rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted eller middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) eller product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker eller other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (en stavhållare på taket) eller concrete_base (på platta tak)
 hose, tube or pipe	hose, tube eller pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (maskiner, fasledare BK) eller iec60445 (fasledare BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (standard), power, control, signal eller fluid

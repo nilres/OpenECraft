@@ -200,6 +200,31 @@ pub struct Building {
     pub lightning: Option<Lightning>,
 }
 
+/// Material of an earth electrode or of the conductors and rods of a lightning
+/// protection system.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum Material {
+    /// Hot-dip galvanised steel.
+    #[default]
+    GalvanisedSteel,
+    /// Stainless steel V4A.
+    StainlessSteel,
+    Copper,
+    /// Copper-bonded steel (earth rods).
+    CopperBondedSteel,
+    Aluminium,
+}
+
+/// How an air-termination rod stands.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum RodBase {
+    /// Held by a rod holder on the roof or on the ridge.
+    #[default]
+    Holder,
+    /// On a concrete base (flat roofs, without piercing the covering).
+    ConcreteBase,
+}
+
 /// What an earth electrode is.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ElectrodeKind {
@@ -231,7 +256,13 @@ pub struct Electrode {
     pub x: f32,
     pub z: f32,
     pub length: f32,
-    /// Part of its strip, wire or rod; empty: generic.
+    /// Its material; none: that of its kind (foundation galvanised steel, ring and rod
+    /// stainless steel).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub material: Option<Material>,
+    /// Rod: its diameter; foundation and ring: of a round wire, 0 for a flat strip, mm.
+    pub diameter: f32,
+    /// Part of its strip, wire or rod; empty: the one of its material and diameter.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub part: String,
     /// Device (main earthing busbar) it is connected to, e.g. "=GRID+HR-X1".
@@ -241,7 +272,7 @@ pub struct Electrode {
 
 impl Default for Electrode {
     fn default() -> Self {
-        Electrode { id: 0, name: String::new(), kind: ElectrodeKind::Foundation, distance: 100.0, depth: 500.0, mesh: 20_000.0, x: 0.0, z: 0.0, length: 3000.0, part: String::new(), busbar: String::new() }
+        Electrode { id: 0, name: String::new(), kind: ElectrodeKind::Foundation, distance: 100.0, depth: 500.0, mesh: 20_000.0, x: 0.0, z: 0.0, length: 3000.0, material: None, diameter: 0.0, part: String::new(), busbar: String::new() }
     }
 }
 
@@ -255,16 +286,30 @@ pub struct Lightning {
     pub class: u8,
     /// Number of down conductors; 0: as many as the class needs for the perimeter.
     pub down_conductors: u32,
-    /// Part of the conductors (round wire); empty: generic.
+    /// Material of the conductors; none: aluminium.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub material: Option<Material>,
+    /// Diameter of the conductors (round wire), mm.
+    pub diameter: f32,
+    /// Part of the conductors (round wire); empty: the one of their material and diameter.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub part: String,
+    /// Mounting hardware: the parts of the conductor holders on the roof and on the walls
+    /// (empty: generic) and their greatest distance, mm.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub roof_holder: String,
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub wall_holder: String,
+    pub holder_spacing: f32,
+    /// Height of the test joints above the ground, mm.
+    pub test_joint: f32,
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub rods: Vec<AirRod>,
 }
 
 impl Default for Lightning {
     fn default() -> Self {
-        Lightning { class: 3, down_conductors: 0, part: String::new(), rods: Vec::new() }
+        Lightning { class: 3, down_conductors: 0, material: None, diameter: 8.0, part: String::new(), roof_holder: String::new(), wall_holder: String::new(), holder_spacing: 1000.0, test_joint: 1000.0, rods: Vec::new() }
     }
 }
 
@@ -279,11 +324,19 @@ pub struct AirRod {
     pub z: f32,
     /// Height above the covering, mm.
     pub height: f32,
+    /// Its material (none: aluminium) and diameter, mm.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub material: Option<Material>,
+    pub diameter: f32,
+    pub base: RodBase,
+    /// Its part; empty: the one of its material and diameter.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub part: String,
 }
 
 impl Default for AirRod {
     fn default() -> Self {
-        AirRod { id: 0, name: String::new(), x: 0.0, z: 0.0, height: 1500.0 }
+        AirRod { id: 0, name: String::new(), x: 0.0, z: 0.0, height: 1500.0, material: None, diameter: 16.0, base: RodBase::Holder, part: String::new() }
     }
 }
 

@@ -186,6 +186,7 @@ Automatic ({})	Automatycznie ({})
 Automatic accessories	Akcesoria automatyczne
 Automatic configuration	Konfiguracja automatyczna
 Automatic placement	Automatyczne rozmieszczenie
+Automatic: {}	Automatycznie: {}
 Automation	Automatyzacja
 Aux	Pomocn.
 Avoid:	Omijaj:
@@ -389,9 +390,11 @@ Compare and baselines	Porównanie i wersje bazowe
 Compare with	Porównaj z
 Compare with a baseline, a revision or another project file and take differences over	Porównaj z wersją bazową, rewizją lub innym plikiem projektu i przejmij różnice
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Pełne oznaczenie: {}\nBrakujące tu aspekty są przejmowane ze strony (=funkcja +miejsce montażu) lub z ramki struktury, w której leży symbol.
+Concrete base	Podstawa betonowa
 Condition	Warunek
 Condition (OPTION=value & …)	Warunek (OPTION=wartość & …)
 Conductive frame	Rama przewodząca
+Conductor	Przewód
 Conflicts	Konflikty
 Connected devices	Podłączone urządzenia
 Connected to:	Połączono z:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Urządze
 Dew point	Punkt rosy
 Diameter	Średnica
 Diameter / bends	Średnica / zagięcia
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Średnica drutu okrągłego; 0: bednarka 30 x 3,5 mm
+Diameter of the rod	Średnica iglicy
 Dictionary for translators: one column per language	Słownik dla tłumaczy: jedna kolumna na język
 Digits	Cyfry
 Dimension	Wymiar
@@ -812,6 +817,7 @@ Go to page	Przejdź do strony
 Graphic line	Linia graficzna
 Graphic rectangle	Prostokąt graficzny
 Graphical form	Formularz graficzny
+Greatest distance of the conductor holders on the roof and on the walls	Największy odstęp uchwytów przewodu na dachu i na ścianach
 Greatest distance of the roof hooks along a rail	Największy odstęp haków dachowych wzdłuż szyny
 Grid	Siatka
 Grid north	Północ siatki
@@ -836,6 +842,7 @@ Height above the mounting plate	Wysokość nad płytą montażową
 Height above the plate	Wysokość nad płytą
 Height of the plinth, 0 without plinth	Wysokość cokołu, 0 bez cokołu
 Height of the rod above the covering	Wysokość iglicy nad pokryciem
+Height of the test joints above the ground	Wysokość złączy kontrolnych nad terenem
 Heights above floor (IEC 60204-1)	Wysokości nad podłogą (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Przytrzymywany podczas klikania, przesuwania lub przewijania. Ctrl to Cmd w macOS.
 Help	Pomoc
@@ -845,6 +852,9 @@ Highest phase unbalance	Największa asymetria faz
 Highest short-circuit current	Największy prąd zwarciowy
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Najwyższe napięcie (jałowe przy najniższej temperaturze), średnie i najniższe napięcie (przy mocy maksymalnej w średniej i najwyższej temperaturze), prąd przy mocy maksymalnej, moc szczytowa
 Highest: the lowest voltage	Najwyższa: najniższe napięcie
+Holder distance	Odstęp uchwytów
+Holders on the roof	Uchwyty na dachu
+Holders on the walls	Uchwyty na ścianach
 Hole to sheet edge	Otwór od krawędzi blachy
 Home	Narzędzia główne
 Hook distance	Odstęp haków
@@ -1008,6 +1018,7 @@ Level {} of building {}	Kondygnacja {} budynku {}
 Levels	Kondygnacje
 Library	Biblioteka
 Lightning protection	Ochrona odgromowa
+Lightning protection of building {}	Ochrona odgromowa budynku {}
 Like two fingers	Jak dwa palce
 Limits	Wartości graniczne
 Limits in effect	Obowiązujące wartości graniczne
@@ -1058,6 +1069,7 @@ Macros	Makra
 Macros ({})	Makra ({})
 Macro…	Makro…
 Main	Główny
+Main earthing busbar	Główna szyna uziemiająca
 Make the selected elements of this project equal to the compared ones	Ujednolić zaznaczone elementy tego projektu z porównywanymi
 Maker	Producent
 Makes the current page content of the option	Dodaje bieżącą stronę do zawartości opcji
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	Sprzęt PLC i topologia magistrali
 PLC overview	Przegląd PLC
 PNG or JPEG bitmap, e.g. a logo or a photo	Mapa bitowa PNG lub JPEG, np. logo lub zdjęcie
 PV array {}	Pole PV {}
+PV array {} lies outside the protection of the air-termination system	Pole PV {} leży poza ochroną urządzenia piorunochronnego
 PV array {} of building {}: {} modules	Pole PV {} budynku {}: {} modułów
 PV array {} of building {}: {} modules, {} kWp	Pole PV {} budynku {}: {} modułów, {} kWp
 PV arrays	Instalacje PV
@@ -1683,6 +1696,7 @@ Right edges	Prawe krawędzie
 Right neighbour	Prawy sąsiad
 Rights	Uprawnienia
 Risers	Podstopnie
+Rod holder	Uchwyt iglicy
 Roof pitch	Nachylenie dachu
 Roof window	Okno dachowe
 Roof windows	Okna dachowe
@@ -2001,6 +2015,7 @@ Terminals at least	Zaciski co najmniej
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Zaciski o tym samym numerze mostka są zmostkowane (ten sam potencjał). Zaciski rezerwowe są liczone w zestawieniu materiałów.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Terminy rozdzielone znakiem ';': klucz=wartość (równe), klucz~tekst (zawiera) lub tekst w dowolnym miejscu
 Test connection	Testuj połączenie
+Test joints	Złącza kontrolne
 Text offset	Przesunięcie tekstu
 Text size	Rozmiar tekstu
 Texts	Teksty
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	Zmienione przewody: {}
 {} wires, {} cables and {} tubes routed	Poprowadzone przewody: {}, kable: {}, węże: {}
 {} wires, {} – {} mm	Przewody: {}, {} – {} mm
+{} {} of building {}	{} {} budynku {}
 {} °C (max. {} °C)	{} °C (maks. {} °C)
 {} °C (max.)	{} °C (maks.)
 {} × {} = {}, {}	{} × {} = {}, {}

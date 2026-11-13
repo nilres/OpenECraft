@@ -265,3 +265,20 @@ fn earth_electrodes_and_lightning_protection() {
     let b = run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "remove": true })).unwrap();
     assert!(b["lightning"].is_null());
 }
+
+#[test]
+fn materials_diameters_and_mounting_of_earthing_and_lightning_protection() {
+    let mut s = demo_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 30000, "z": 0 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 10000, "depth": 8000 })).unwrap();
+    run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable", "pitch": 35 })).unwrap();
+    let b = run(&mut s, "add_earth_electrode", json!({ "building": "+H1", "kind": "rod", "x": -2000, "z": -2000, "material": "stainless_steel" })).unwrap();
+    assert_eq!((b["electrodes"][0]["part"].as_str(), b["electrodes"][0]["diameter"].as_f64()), (Some("GEN.ER-ROD-V4A-1500"), Some(20.0)));
+    assert!(run(&mut s, "set_earth_electrode", json!({ "building": "+H1", "electrode": "E1", "material": "gold" })).unwrap_err().contains("gold"));
+    let b = run(&mut s, "set_lightning_protection", json!({ "building": "+H1", "material": "copper", "diameter": 8, "wall_holder": "GEN.LP-HOLDER-WALL-SPACER", "test_joint": 500 })).unwrap();
+    let lp = &b["lightning"];
+    assert_eq!((lp["conductor_material"].as_str(), lp["part"].as_str(), lp["wall_holder"].as_str(), lp["test_joint"].as_f64()), (Some("copper"), Some("GEN.LP-WIRE-CU8"), Some("GEN.LP-HOLDER-WALL-SPACER"), Some(500.0)));
+    let b = run(&mut s, "add_air_rod", json!({ "building": "+H1", "material": "copper", "base": "concrete_base" })).unwrap();
+    assert_eq!((b["lightning"]["rods"][0]["part"].as_str(), b["lightning"]["rods"][0]["base"].as_str()), (Some("GEN.LP-ROD-CU16"), Some("concrete_base")));
+    assert!(run(&mut s, "set_air_rod", json!({ "building": "+H1", "rod": "F1", "base": "magic" })).unwrap_err().contains("magic"));
+}

@@ -13,7 +13,8 @@ use super::buildings::{building_pose, building_rooms, SLAB};
 use super::solar::cabling::placed_device;
 use super::{outline, SitePose};
 use crate::issue::{Issue, Severity};
-use crate::model::panel::{Building, Electrode, ElectrodeKind};
+use crate::model::panel::{Building, Electrode, ElectrodeKind, Material};
+use crate::parts::Part;
 use crate::model::Project;
 use crate::parts::vec3::{dist, V3};
 use openecraft_i18n::{tr, tr_const};
@@ -24,6 +25,92 @@ pub const COVER: f32 = 50.0;
 pub const SPACER: f32 = 2000.0;
 /// Length of a section of an earth rod, mm.
 pub const ROD_SECTION: f32 = 1500.0;
+
+impl Material {
+    pub const ALL: [Material; 5] = [Material::GalvanisedSteel, Material::StainlessSteel, Material::Copper, Material::CopperBondedSteel, Material::Aluminium];
+
+    pub fn key(&self) -> &'static str {
+        match self {
+            Material::GalvanisedSteel => "galvanised_steel",
+            Material::StainlessSteel => "stainless_steel",
+            Material::Copper => "copper",
+            Material::CopperBondedSteel => "copper_bonded_steel",
+            Material::Aluminium => "aluminium",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<Material> {
+        let key = key.trim().replace(['-', ' '], "_");
+        Self::ALL.into_iter().find(|m| m.key().eq_ignore_ascii_case(&key))
+    }
+
+    /// Untranslated title (`tr` where shown).
+    pub fn title(&self) -> &'static str {
+        match self {
+            Material::GalvanisedSteel => tr_const!("Steel, hot-dip galvanised"),
+            Material::StainlessSteel => tr_const!("Stainless steel V4A"),
+            Material::Copper => tr_const!("Copper"),
+            Material::CopperBondedSteel => tr_const!("Copper-bonded steel"),
+            Material::Aluminium => tr_const!("Aluminium"),
+        }
+    }
+
+    /// Whether the technical value `Material` of a part names this material.
+    pub fn names(&self, text: &str) -> bool {
+        let t = text.to_lowercase();
+        match self {
+            Material::GalvanisedSteel => t.contains("galvanised"),
+            Material::StainlessSteel => t.contains("stainless"),
+            Material::Copper => t.contains("copper") && !t.contains("copper-bonded"),
+            Material::CopperBondedSteel => t.contains("copper-bonded"),
+            Material::Aluminium => t.contains("aluminium"),
+        }
+    }
+}
+
+/// The diameter a part has by its technical data ("Diameter: 17.2 mm"), mm.
+pub fn part_diameter(p: &Part) -> Option<f32> {
+    let v = p.tech_value("Diameter")?;
+    v.trim().split(|c: char| !(c.is_ascii_digit() || c == '.')).find(|t| !t.is_empty())?.parse().ok()
+}
+
+/// The part of the project or the built-in catalog of `subgroup` of `material` nearest to
+/// `diameter` (`0`: one without a diameter, a flat strip); one of another material
+/// where there is none of it.
+pub fn pick_part(prj: &Project, subgroup: &str, material: Material, diameter: f32) -> Option<String> {
+    let mut seen: Vec<&Part> = Vec::new();
+    for p in prj.parts.iter().chain(crate::parts::catalog()) {
+        if p.subgroup == subgroup && !seen.iter().any(|q| q.number == p.number) {
+            seen.push(p);
+        }
+    }
+    let of = |p: &&Part| p.tech_value("Material").is_some_and(|m| material.names(m));
+    let cost = |p: &&Part| match (part_diameter(p), diameter > 0.0) {
+        (Some(d), true) => (d - diameter).abs(),
+        (None, false) => 0.0,
+        _ => 1000.0,
+    };
+    let best = |list: Vec<&Part>| list.into_iter().min_by(|a, b| cost(a).total_cmp(&cost(b))).map(|p| p.number.clone());
+    best(seen.iter().copied().filter(of).collect()).or_else(|| best(seen))
+}
+
+/// The material of electrode `e`: its own, otherwise galvanised steel for foundation
+/// earth electrodes and rods, stainless steel for rings in the soil.
+pub fn material_of(e: &Electrode) -> Material {
+    e.material.unwrap_or(match e.kind {
+        ElectrodeKind::Ring => Material::StainlessSteel,
+        _ => Material::GalvanisedSteel,
+    })
+}
+
+/// The diameter of electrode `e`: a rod's (20 mm unless given), that of a round wire
+/// or 0 for a flat strip, mm.
+pub fn diameter_of(e: &Electrode) -> f32 {
+    match e.kind {
+        ElectrodeKind::Rod if e.diameter <= 0.0 => 20.0,
+        _ => e.diameter.max(0.0),
+    }
+}
 
 impl ElectrodeKind {
     pub const ALL: [ElectrodeKind; 3] = [ElectrodeKind::Foundation, ElectrodeKind::Ring, ElectrodeKind::Rod];
@@ -55,6 +142,14 @@ impl ElectrodeKind {
             ElectrodeKind::Foundation => "GEN.ER-STRIP-FE30",
             ElectrodeKind::Ring => "GEN.ER-STRIP-V4A30",
             ElectrodeKind::Rod => "GEN.ER-ROD-1500",
+        }
+    }
+
+    /// The subgroup of the parts of its strip, wire or rod.
+    pub fn subgroup(&self) -> &'static str {
+        match self {
+            ElectrodeKind::Rod => "Earth rod",
+            _ => "Earth electrode material",
         }
     }
 
@@ -167,6 +262,7 @@ pub fn checked(mut e: Electrode) -> Electrode {
     e.depth = e.depth.clamp(0.0, 5000.0);
     e.mesh = e.mesh.clamp(2000.0, 50_000.0);
     e.length = e.length.clamp(500.0, 30_000.0);
+    e.diameter = e.diameter.clamp(0.0, 60.0);
     e.part = e.part.trim().into();
     e.busbar = e.busbar.trim().into();
     e
@@ -181,13 +277,18 @@ pub fn add_electrode(prj: &mut Project, bi: usize, kind: ElectrodeKind, at: Opti
     let b = prj.layout.buildings.get_mut(bi).ok_or_else(|| tr("No such building").to_string())?;
     let name = (1..).map(|k| format!("E{k}")).find(|c| !b.electrodes.iter().any(|e| &e.name == c)).unwrap_or_default();
     let [x, z] = at.unwrap_or(corner);
-    b.electrodes.push(checked(Electrode { id, name, kind, distance: kind.default_distance(), x, z, ..Default::default() }));
+    let diameter = if kind == ElectrodeKind::Rod { 20.0 } else { 0.0 };
+    b.electrodes.push(checked(Electrode { id, name, kind, distance: kind.default_distance(), x, z, diameter, ..Default::default() }));
     Ok(id)
 }
 
-/// The part of electrode `e`'s strip, wire or rod.
-pub fn part_of(e: &Electrode) -> String {
-    if e.part.is_empty() { e.kind.generic().to_string() } else { e.part.clone() }
+/// The part of electrode `e`'s strip, wire or rod: its own, otherwise the one of its
+/// material and diameter.
+pub fn part_of(prj: &Project, e: &Electrode) -> String {
+    if !e.part.is_empty() {
+        return e.part.clone();
+    }
+    pick_part(prj, e.kind.subgroup(), material_of(e), diameter_of(e)).unwrap_or_else(|| e.kind.generic().to_string())
 }
 
 /// The material of the electrodes of building `bi`, with their quantities: strips and
@@ -211,13 +312,13 @@ pub fn material(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<(String, f3
         match e.kind {
             ElectrodeKind::Rod => {
                 let sections = (e.length / ROD_SECTION).ceil().max(1.0);
-                add(&part_of(e), sections);
+                add(&part_of(prj, e), sections);
                 add("GEN.ER-ROD-TIP", 1.0);
                 add("GEN.ER-CLAMP-ROD", 1.0);
             }
             ElectrodeKind::Foundation | ElectrodeKind::Ring => {
                 let mm = length(&lines);
-                add(&part_of(e), (mm / 1000.0 * 100.0).ceil() / 100.0);
+                add(&part_of(prj, e), (mm / 1000.0 * 100.0).ceil() / 100.0);
                 // The strips across meet the ring at both ends and each other.
                 let across = lines.len().saturating_sub(1) as f32;
                 let xs = lines.iter().skip(1).filter(|l| (l[0][0] - l[1][0]).abs() < 0.5).count() as f32;

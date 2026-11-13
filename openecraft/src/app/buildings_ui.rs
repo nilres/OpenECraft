@@ -1233,7 +1233,7 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
                         ui.label("–");
                     }
                 }
-                let leads: f32 = cabling.iter().filter(|l| l.string == Some(si) && l.lead != solar::cabling::Lead::Link).map(|l| vec3::path_length(&l.points)).sum();
+                let leads: f32 = cabling.iter().filter(|l| l.string == Some(si) && !l.to.is_empty() && matches!(l.lead, solar::cabling::Lead::Plus | solar::cabling::Lead::Minus)).map(|l| vec3::path_length(&l.points)).sum();
                 ui.label(metres(leads)).on_hover_text(tr("Plus and minus leads from the modules to the inverter"));
                 ui.end_row();
             }
@@ -1290,6 +1290,313 @@ impl App {
         }
         if !open {
             self.panel_ui.selected_array = None;
+        }
+    }
+}
+
+/// The parts of the project and the catalog of `subgroup` (whose technical value
+/// `Mounting` is `mounting` where given): their numbers and descriptions.
+fn parts_of(prj: &Project, subgroup: &str, mounting: Option<&str>) -> Vec<(String, String)> {
+    let mut out: Vec<(String, String)> = Vec::new();
+    for p in prj.parts.iter().chain(openecraft_core::parts::catalog()) {
+        let fits = p.subgroup == subgroup && mounting.is_none_or(|m| p.tech_value("Mounting").is_some_and(|v| v.trim().eq_ignore_ascii_case(m)));
+        if fits && !out.iter().any(|x| x.0 == p.number) {
+            out.push((p.number.clone(), p.description.clone()));
+        }
+    }
+    out
+}
+
+/// A choice of a part: empty for the one chosen automatically (`auto`, shown).
+fn part_combo(ui: &mut egui::Ui, salt: impl std::hash::Hash + std::fmt::Debug, value: &mut String, auto: &str, parts: &[(String, String)]) {
+    let shown = if value.is_empty() { tr_fmt!("Automatic: {}", auto) } else { value.clone() };
+    egui::ComboBox::from_id_salt(salt).selected_text(shown).width(230.0).show_ui(ui, |ui| {
+        ui.selectable_value(value, String::new(), tr_fmt!("Automatic: {}", auto));
+        for (n, d) in parts {
+            ui.selectable_value(value, n.clone(), n.as_str()).on_hover_text(d.as_str());
+        }
+    });
+}
+
+/// A choice of a material.
+fn material_combo(ui: &mut egui::Ui, salt: impl std::hash::Hash + std::fmt::Debug, value: &mut Option<panel::Material>, current: panel::Material) {
+    egui::ComboBox::from_id_salt(salt).selected_text(tr(current.title())).width(230.0).show_ui(ui, |ui| {
+        for m in panel::Material::ALL {
+            if ui.selectable_label(current == m, tr(m.title())).clicked() {
+                *value = Some(m);
+            }
+        }
+    });
+}
+
+/// The material list of `rows` (part, quantity, description).
+fn material_rows(ui: &mut egui::Ui, salt: impl std::hash::Hash + std::fmt::Debug, rows: &[(String, f32, String)]) {
+    egui::Grid::new(salt).num_columns(3).striped(true).spacing([12.0, 3.0]).show(ui, |ui| {
+        ui.label(RichText::new(tr("Part number")).weak());
+        ui.label(RichText::new(tr("Description")).weak());
+        ui.label(RichText::new(tr("Quantity")).weak());
+        ui.end_row();
+        for (number, qty, desc) in rows {
+            ui.label(number.as_str());
+            ui.add(egui::Label::new(desc.as_str()).truncate()).on_hover_text(desc.as_str());
+            ui.label(if qty.fract() == 0.0 { format!("{qty:.0}") } else { format!("{qty:.2}") });
+            ui.end_row();
+        }
+    });
+}
+
+impl App {
+    /// The properties of the earth electrode, the lightning protection or the
+    /// air-termination rod selected in the 3D view or the site plan, in a window: what it
+    /// is and its material, and all its settings.
+    #[allow(clippy::too_many_lines)]
+    pub(super) fn earthing_properties(&mut self, ctx: &egui::Context) {
+        use panel::lightning::{self as lps, Owner};
+        let Some((bi, owner)) = self.panel_ui.selected_earthing else { return };
+        let prj = &mut self.session.prj;
+        let Some(b) = prj.layout.buildings.get(bi) else {
+            self.panel_ui.selected_earthing = None;
+            return;
+        };
+        let exists = match owner {
+            Owner::Electrode(id) => b.electrodes.iter().any(|e| e.id == id),
+            Owner::Lightning => b.lightning.is_some(),
+            Owner::AirRod(id) => b.lightning.as_ref().is_some_and(|lp| lp.rods.iter().any(|r| r.id == id)),
+        };
+        if !exists {
+            self.panel_ui.selected_earthing = None;
+            return;
+        }
+        let poses = panel::site_poses(prj);
+        let busbars = solar::cabling::earthing_busbars(prj);
+        let title = match owner {
+            Owner::Electrode(id) => b.electrodes.iter().find(|e| e.id == id).map_or_else(String::new, |e| format!("{} {}  ·  {}", tr(e.kind.title()), e.name, b.name)),
+            Owner::Lightning => tr_fmt!("Lightning protection of building {}", b.name),
+            Owner::AirRod(id) => b.lightning.as_ref().and_then(|lp| lp.rods.iter().find(|r| r.id == id)).map_or_else(String::new, |r| format!("{} {}  ·  {}", tr("Air-termination rod"), r.name, b.name)),
+        };
+        // What the window shows besides the settings, worked out before they change.
+        let material: Vec<(String, f32)> = match owner {
+            Owner::Electrode(id) => {
+                let mut one = prj.clone();
+                one.layout.buildings[bi].electrodes.retain(|e| e.id == id);
+                one.layout.buildings[bi].lightning = None;
+                earthing::material(&one, &poses, bi)
+            }
+            _ => lps::material(prj, &poses, bi),
+        };
+        let material: Vec<(String, f32, String)> = material
+            .into_iter()
+            .map(|(n, q)| {
+                let d = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == n).map_or_else(String::new, |p| p.description.clone());
+                (n, q, d)
+            })
+            .collect();
+        let electrode_parts = |kind: panel::ElectrodeKind| parts_of(prj, kind.subgroup(), None);
+        let (rod_parts, wire_parts) = (electrode_parts(panel::ElectrodeKind::Rod), electrode_parts(panel::ElectrodeKind::Ring));
+        let (conductor_parts, roof_holders, wall_holders, air_rods) = (
+            parts_of(prj, "Lightning protection conductor", None),
+            parts_of(prj, "Conductor holder", Some("roof")),
+            parts_of(prj, "Conductor holder", Some("wall")),
+            parts_of(prj, "Air-termination rod", None),
+        );
+        let geometry = lps::geometry(prj, &poses, bi);
+        let unprotected = lps::unprotected_arrays(prj, &poses, bi);
+        let lengths: Vec<(u64, f32)> = b.electrodes.iter().map(|e| (e.id, earthing::length(&earthing::paths(prj, &poses, bi, e)))).collect();
+        let auto_parts: Vec<(u64, String)> = b.electrodes.iter().map(|e| (e.id, earthing::part_of(prj, &panel::Electrode { part: String::new(), ..e.clone() }))).collect();
+        let auto_conductor = b.lightning.as_ref().map(|lp| lps::conductor(prj, &panel::Lightning { part: String::new(), ..lp.clone() })).unwrap_or_default();
+        let auto_rods: Vec<(u64, String)> = b.lightning.as_ref().map(|lp| lp.rods.iter().map(|r| (r.id, lps::rod_part(prj, &panel::AirRod { part: String::new(), ..r.clone() }))).collect()).unwrap_or_default();
+        let mut open = true;
+        let mut remove = false;
+        let b = &mut prj.layout.buildings[bi];
+        egui::Window::new(title).id(egui::Id::unique("earthing_properties")).open(&mut open).default_width(520.0).resizable(true).show(ctx, |ui| {
+            egui::ScrollArea::vertical().max_height(560.0).auto_shrink([false, true]).show(ui, |ui| {
+                let row = |ui: &mut egui::Ui, name: String| {
+                    ui.label(RichText::new(name).weak());
+                };
+                match owner {
+                    Owner::Electrode(id) => {
+                        let Some(e) = b.electrodes.iter_mut().find(|e| e.id == id) else { return };
+                        egui::Grid::new(("earthprops", id)).num_columns(2).striped(true).spacing([12.0, 5.0]).show(ui, |ui| {
+                            row(ui, tr("Name").into());
+                            ui.text_edit_singleline(&mut e.name);
+                            ui.end_row();
+                            row(ui, tr("Material").into());
+                            let current = earthing::material_of(e);
+                            material_combo(ui, ("earthmat", id), &mut e.material, current);
+                            ui.end_row();
+                            row(ui, tr("Diameter").into());
+                            let rod = e.kind == panel::ElectrodeKind::Rod;
+                            ui.add(egui::DragValue::new(&mut e.diameter).speed(0.5).range(if rod { 10.0..=40.0 } else { 0.0..=20.0 }).suffix(" mm")).on_hover_text(if rod { tr("Diameter of the rod") } else { tr("Diameter of a round wire; 0: a flat strip 30 x 3.5 mm") });
+                            ui.end_row();
+                            match e.kind {
+                                panel::ElectrodeKind::Rod => {
+                                    row(ui, tr("Length of the rod").into());
+                                    ui.add(egui::DragValue::new(&mut e.length).speed(10.0).range(500.0..=30_000.0).suffix(" mm"));
+                                    ui.end_row();
+                                    row(ui, tr("Depth of its top below the ground").into());
+                                    ui.add(egui::DragValue::new(&mut e.depth).speed(10.0).range(0.0..=5000.0).suffix(" mm"));
+                                    ui.end_row();
+                                    row(ui, tr("Place").into());
+                                    ui.horizontal(|ui| {
+                                        ui.add(egui::DragValue::new(&mut e.x).speed(10.0).prefix("x ").suffix(" mm"));
+                                        ui.add(egui::DragValue::new(&mut e.z).speed(10.0).prefix("z ").suffix(" mm"));
+                                    });
+                                    ui.end_row();
+                                }
+                                panel::ElectrodeKind::Ring => {
+                                    row(ui, tr("How far outside the outer walls").into());
+                                    ui.add(egui::DragValue::new(&mut e.distance).speed(10.0).range(0.0..=10_000.0).suffix(" mm"));
+                                    ui.end_row();
+                                    row(ui, tr("Depth below the ground").into());
+                                    ui.add(egui::DragValue::new(&mut e.depth).speed(10.0).range(0.0..=5000.0).suffix(" mm"));
+                                    ui.end_row();
+                                }
+                                panel::ElectrodeKind::Foundation => {
+                                    row(ui, tr("How far inside the outer walls").into());
+                                    ui.add(egui::DragValue::new(&mut e.distance).speed(10.0).range(0.0..=10_000.0).suffix(" mm"));
+                                    ui.end_row();
+                                    row(ui, tr("Largest mesh").into());
+                                    ui.add(egui::DragValue::new(&mut e.mesh).speed(100.0).range(2000.0..=50_000.0).suffix(" mm"));
+                                    ui.end_row();
+                                }
+                            }
+                            row(ui, tr("Part").into());
+                            let auto = auto_parts.iter().find(|a| a.0 == id).map_or("", |a| a.1.as_str());
+                            part_combo(ui, ("earthpart", id), &mut e.part, auto, if rod { &rod_parts } else { &wire_parts });
+                            ui.end_row();
+                            row(ui, tr("Main earthing busbar").into());
+                            let shown = if e.busbar.is_empty() { tr("No busbar").to_string() } else { e.busbar.clone() };
+                            egui::ComboBox::from_id_salt(("earthbus", id)).selected_text(shown).width(230.0).show_ui(ui, |ui| {
+                                ui.selectable_value(&mut e.busbar, String::new(), tr("No busbar"));
+                                for t in &busbars {
+                                    ui.selectable_value(&mut e.busbar, t.clone(), t.as_str());
+                                }
+                            });
+                            ui.end_row();
+                            if !rod {
+                                row(ui, tr("Length").into());
+                                ui.label(format!("{:.1} m", lengths.iter().find(|l| l.0 == id).map_or(0.0, |l| l.1) / 1000.0));
+                                ui.end_row();
+                            }
+                        });
+                        *e = earthing::checked(e.clone());
+                        ui.add_space(6.0);
+                        material_rows(ui, ("earthmatrows", id), &material);
+                        ui.add_space(4.0);
+                        if icons::text_button(ui, Icon::Delete, tr("Delete earth electrode")).clicked() {
+                            remove = true;
+                        }
+                    }
+                    Owner::Lightning => {
+                        let Some(lp) = b.lightning.as_mut() else { return };
+                        egui::Grid::new(("lpsprops", bi)).num_columns(2).striped(true).spacing([12.0, 5.0]).show(ui, |ui| {
+                            row(ui, tr("Class").into());
+                            egui::ComboBox::from_id_salt(("lpsclass", bi)).selected_text(tr_fmt!("Class {}", lps::class_name(lp.class))).show_ui(ui, |ui| {
+                                for c in 1..=4u8 {
+                                    ui.selectable_value(&mut lp.class, c, tr_fmt!("Class {}", lps::class_name(c)));
+                                }
+                            });
+                            ui.end_row();
+                            row(ui, tr("Down conductors").into());
+                            ui.add(egui::DragValue::new(&mut lp.down_conductors).range(0..=200)).on_hover_text(tr("Number of down conductors (0: as many as the class needs for the walls)"));
+                            ui.end_row();
+                            row(ui, tr("Material").into());
+                            let current = lps::material_of(lp);
+                            material_combo(ui, ("lpsmat", bi), &mut lp.material, current);
+                            ui.end_row();
+                            row(ui, tr("Diameter").into());
+                            ui.add(egui::DragValue::new(&mut lp.diameter).speed(0.5).range(5.0..=20.0).suffix(" mm"));
+                            ui.end_row();
+                            row(ui, tr("Conductor").into());
+                            part_combo(ui, ("lpspart", bi), &mut lp.part, &auto_conductor, &conductor_parts);
+                            ui.end_row();
+                            row(ui, tr("Holders on the roof").into());
+                            part_combo(ui, ("lpsroofh", bi), &mut lp.roof_holder, "GEN.LP-HOLDER-ROOF", &roof_holders);
+                            ui.end_row();
+                            row(ui, tr("Holders on the walls").into());
+                            part_combo(ui, ("lpswallh", bi), &mut lp.wall_holder, "GEN.LP-HOLDER-WALL", &wall_holders);
+                            ui.end_row();
+                            row(ui, tr("Holder distance").into());
+                            ui.add(egui::DragValue::new(&mut lp.holder_spacing).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the conductor holders on the roof and on the walls"));
+                            ui.end_row();
+                            row(ui, tr("Test joints").into());
+                            ui.add(egui::DragValue::new(&mut lp.test_joint).speed(10.0).range(300.0..=2000.0).suffix(" mm")).on_hover_text(tr("Height of the test joints above the ground"));
+                            ui.end_row();
+                            if let Some(g) = &geometry {
+                                row(ui, tr("Down conductors").into());
+                                ui.label(tr_fmt!("{} down conductors with test joints, {} m of conductors", g.count(lps::LpsKind::Down), format!("{:.1}", (g.length(lps::LpsKind::AirTermination) + g.length(lps::LpsKind::Roof) + g.length(lps::LpsKind::Down)) / 1000.0)));
+                                ui.end_row();
+                            }
+                        });
+                        *lp = lps::checked(lp.clone());
+                        for a in &unprotected {
+                            ui.colored_label(crate::style::warning(), tr_fmt!("PV array {} lies outside the protection of the air-termination system", a));
+                        }
+                        ui.add_space(6.0);
+                        material_rows(ui, ("lpsmatrows", bi), &material);
+                        ui.add_space(4.0);
+                        if icons::text_button(ui, Icon::Delete, tr("Remove the lightning protection system")).clicked() {
+                            remove = true;
+                        }
+                    }
+                    Owner::AirRod(id) => {
+                        let Some(lp) = b.lightning.as_mut() else { return };
+                        let Some(r) = lp.rods.iter_mut().find(|r| r.id == id) else { return };
+                        egui::Grid::new(("rodprops", id)).num_columns(2).striped(true).spacing([12.0, 5.0]).show(ui, |ui| {
+                            row(ui, tr("Name").into());
+                            ui.text_edit_singleline(&mut r.name);
+                            ui.end_row();
+                            row(ui, tr("Place").into());
+                            ui.horizontal(|ui| {
+                                ui.add(egui::DragValue::new(&mut r.x).speed(10.0).prefix("x ").suffix(" mm"));
+                                ui.add(egui::DragValue::new(&mut r.z).speed(10.0).prefix("z ").suffix(" mm"));
+                            });
+                            ui.end_row();
+                            row(ui, tr("Height of the rod above the covering").into());
+                            ui.add(egui::DragValue::new(&mut r.height).speed(10.0).range(100.0..=20_000.0).suffix(" mm"));
+                            ui.end_row();
+                            row(ui, tr("Material").into());
+                            let current = lps::rod_material(r);
+                            material_combo(ui, ("rodmat", id), &mut r.material, current);
+                            ui.end_row();
+                            row(ui, tr("Diameter").into());
+                            ui.add(egui::DragValue::new(&mut r.diameter).speed(0.5).range(8.0..=40.0).suffix(" mm"));
+                            ui.end_row();
+                            row(ui, tr("Mounting").into());
+                            ui.horizontal(|ui| {
+                                ui.selectable_value(&mut r.base, panel::RodBase::Holder, tr("Rod holder"));
+                                ui.selectable_value(&mut r.base, panel::RodBase::ConcreteBase, tr("Concrete base"));
+                            });
+                            ui.end_row();
+                            row(ui, tr("Part").into());
+                            let auto = auto_rods.iter().find(|a| a.0 == id).map_or("", |a| a.1.as_str());
+                            part_combo(ui, ("rodpart", id), &mut r.part, auto, &air_rods);
+                            ui.end_row();
+                        });
+                        ui.add_space(4.0);
+                        if icons::text_button(ui, Icon::Delete, tr("Delete air-termination rod")).clicked() {
+                            remove = true;
+                        }
+                        *lp = lps::checked(lp.clone());
+                    }
+                }
+            });
+        });
+        let b = &mut self.session.prj.layout.buildings[bi];
+        if remove {
+            match owner {
+                Owner::Electrode(id) => b.electrodes.retain(|e| e.id != id),
+                Owner::Lightning => b.lightning = None,
+                Owner::AirRod(id) => {
+                    if let Some(lp) = b.lightning.as_mut() {
+                        lp.rods.retain(|r| r.id != id);
+                    }
+                }
+            }
+            self.panel_ui.selected_earthing = None;
+        }
+        if !open {
+            self.panel_ui.selected_earthing = None;
         }
     }
 }

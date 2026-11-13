@@ -103,3 +103,29 @@ fn missing_electrodes_and_too_few_downs_are_reported() {
     add_rod(&mut prj, bi, Some([50_000.0, 0.0])).unwrap();
     assert!(problems(&prj).iter().any(|i| i.message().contains("off the roofs")));
 }
+
+#[test]
+fn conductors_rods_and_holders_follow_their_material_and_mounting() {
+    let (mut prj, bi) = building(RoofShape::Gable);
+    let id = add_rod(&mut prj, bi, Some([15_000.0, 6000.0])).unwrap();
+    let poses = site_poses(&prj);
+    let qty = |prj: &Project, part: &str| material(prj, &poses, bi).iter().find(|x| x.0 == part).map(|x| x.1);
+    assert_eq!((qty(&prj, "GEN.LP-WIRE-AL8").is_some(), qty(&prj, "GEN.LP-ROD-AL16"), qty(&prj, "GEN.LP-ROD-HOLDER")), (true, Some(1.0), Some(1.0)));
+    let roof_holders = qty(&prj, "GEN.LP-HOLDER-ROOF").unwrap();
+    {
+        let lp = prj.layout.buildings[bi].lightning.as_mut().unwrap();
+        (lp.material, lp.diameter, lp.holder_spacing) = (Some(Material::Copper), 8.0, 500.0);
+        lp.roof_holder = "GEN.LP-HOLDER-RIDGE".into();
+        let r = lp.rods.iter_mut().find(|r| r.id == id).unwrap();
+        (r.material, r.base) = (Some(Material::StainlessSteel), RodBase::ConcreteBase);
+    }
+    assert!(qty(&prj, "GEN.LP-WIRE-CU8").is_some() && qty(&prj, "GEN.LP-WIRE-AL8").is_none());
+    assert_eq!((qty(&prj, "GEN.LP-ROD-V4A16"), qty(&prj, "GEN.LP-ROD-BASE"), qty(&prj, "GEN.LP-HOLDER-ROOF")), (Some(1.0), Some(1.0), None));
+    // Twice as many holders at half the distance.
+    let ridge = qty(&prj, "GEN.LP-HOLDER-RIDGE").unwrap();
+    assert!((ridge - 2.0 * roof_holders).abs() <= 2.0, "{ridge} {roof_holders}");
+    // The lines know what they belong to: the rod and its lead, the conductors.
+    let lines = plant_lines(&prj, &poses, bi);
+    assert_eq!(lines.iter().filter(|l| l.owner == Owner::AirRod(id)).count(), 2);
+    assert!(lines.iter().any(|l| l.owner == Owner::Lightning && l.what == Line::Lps(LpsKind::Down) && (l.diameter - 8.0).abs() < 0.01));
+}

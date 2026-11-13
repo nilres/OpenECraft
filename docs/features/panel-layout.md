@@ -397,10 +397,12 @@ hips dashed) with their roof windows, and the links.
   materials) on each rail or row of mounting bases; its **earthing conductor**
   (`earthing`: the device of an earthing or equipotential bonding busbar) bonds them
   and runs to that busbar. The 3D view draws the **cabling** of each string: the leads
-  from module to module under the modules, the plus and minus lead from its first and
-  last module along the roof, through it beside the array and under it down onto the
+  of every module: its plus lead (red) and its minus lead (black) out of its junction
+  box, the plus lead of a module meeting the minus lead of the next one at a connector
+  under the modules, and the minus lead of the first module and the plus lead of the
+  last one along the roof, through it beside the array and under it down onto the
   **generator junction box** of the array (`combiner`, a device such as `GEN.GAK-2S`)
-  and from there a DC main cable to each inverter (without a generator junction box
+  and from there a DC main cable (plus and minus) to each inverter (without a generator junction box
   down onto the inverter), and the earthing conductor (green-yellow) down to its
   busbar, as far as the devices are placed in the layout. A click on an array in the 3D view opens its
   **properties**: where it is, its modules with their electrical data, peak power and
@@ -435,7 +437,11 @@ hips dashed) with their roof windows, and the links.
   spacers every 2 m and cross connectors), a **ring earth electrode** in the soil a
   metre outside the walls and half a metre deep (`GEN.ER-STRIP-V4A30`), and **earth
   rods** at a place of the floor plan, driven from half a metre down (sections
-  `GEN.ER-ROD-1500`, tip and clamp). The outer walls are the rectangle the roofs cover,
+  `GEN.ER-ROD-1500`, tip and clamp). Each electrode has a **material** (hot-dip
+  galvanised steel, stainless steel V4A, copper, copper-bonded steel) and a
+  **diameter** (of a rod, or of a round wire instead of a flat strip); its part is the
+  one of the parts database or the catalog of that material and diameter (by the
+  technical data `Material` and `Diameter`) unless one is chosen. The outer walls are the rectangle the roofs cover,
   otherwise that of the rooms. An electrode connected to a main earthing busbar (a
   device) runs up to it with a connection lug. All of it goes into the bill of
   materials.
@@ -447,9 +453,15 @@ hips dashed) with their roof windows, and the links.
   or as many as given), each from under the eaves to its **test joint** a metre above
   the ground and on into the soil to the ring earth electrode (otherwise the
   foundation earth electrode or the earth rods), the roof conductor from the eaves
-  over the roof to the air-termination system. The round wire, its holders on the roof
-  and the walls, the rods, test joints, earth entries and clamps go into the bill of
-  materials. The PV arrays on the roofs have to lie in its protection by the
+  over the roof to the air-termination system. The **material** and **diameter** of
+  the conductors and of each rod choose their parts, the **mounting hardware** is the
+  conductor holders on the roof and on the walls (roof, ridge or flat roof holders,
+  wall holders with or without a spacer) at a distance of their own, a rod stands in a
+  rod holder or on a concrete base; the height of the test joints is set too. The
+  round wire, its holders, the rods with their holders or bases, test joints, earth
+  entries and clamps go into the bill of materials. A click on an electrode, a
+  conductor or a rod in the 3D view or the site plan opens its **properties** with all
+  of these settings. The PV arrays on the roofs have to lie in its protection by the
   **protection angle** of the class (70 - 79° up to 2 m above the surface, down to 23°
   at the radius of the rolling sphere). The 3D view and the site plan draw the
   electrodes and the system. *Site › Earthing and lightning protection* adds them to

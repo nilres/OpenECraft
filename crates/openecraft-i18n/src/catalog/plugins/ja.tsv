@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	デバイス、電線、電位、ケーブル、端子台、PLC、盤、流体、電気計算、構造、翻訳
 Diameter in mm	直径 (mm)
 Diameter of a hole at both ends (0: none)	両端の穴の直径 (0: なし)
+Diameter of the conductors, mm (default 8)	導体の直径、mm (既定 8)
+Diameter of the rod, mm (default 16)	突針の直径、mm (既定 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	軸の方向：left、right、up または down（既定：その位置の接続線から）
 Distance between power and signal or fluid in mm	動力と信号または流体の間の距離 (mm)
 Distance from devices, rails and busbars in mm	デバイス、レール、ブスバーからの距離 (mm)
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	ブスバー加工機のプログラム (切断、パンチ穴、曲げ) を生成します
 Give a device tag or a part number	機器記号または部品番号を指定してください
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	建物に雷保護システムを設定または変更します。クラス、引下げ導線の数、導体の部品。棟と隅棟の受雷導体 (陸屋根では網目)、接地極までの試験用接続端子付き引下げ導線。削除もできます
+Greatest distance of the conductor holders, mm (default 1000)	導体支持金具の最大間隔、mm (既定 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	アイテムをアセンブリにグループ化し、まとめて選択、移動できるようにします。名前を指定しない場合、アイテムはアセンブリから外れます
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	エンクロージャーのプログラムをジョブとして製造に引き渡します: すべての面と銅バーのマニフェストとプログラム
 Has a divider between power and signal cables	動力ケーブルと信号ケーブルの間にセパレーターあり
@@ -294,6 +297,7 @@ Height in mm	高さ (mm)
 Height in mm without plinth; negative: unknown (wall mounted)	台座を除く高さ (mm)。負の値: 不明 (壁掛け)
 Height in mm; the logo keeps its aspect ratio inside	高さ（mm）。ロゴはその中で縦横比を保ちます
 Height of the rod above the covering, mm (default 1500)	屋根葺き材からの突針の高さ、mm (既定 1500)
+Height of the test joints above the ground, mm (default 1000)	試験用接続端子の地表からの高さ、mm (既定 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	ページの上位製品アスペクト (-)。ページ上のデバイスも一緒に移動します
 Highest actuator on the door above the floor (0: not checked)	床面からの扉の操作部の最高高さ (0: チェックしない)
 Highest air temperature at devices without data (0: not checked)	データのないデバイス周囲の最高空気温度 (0: チェックしない)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	製造パッケージ (CNC プログ�
 Markers, comma separated: device, terminal, wire, cable (empty: all)	マーカー (カンマ区切り): device、terminal、wire、cable (空欄: すべて)
 Marks a panel item as mounted or as a problem, or as open again	盤アイテムを取付済み、問題あり、または未完了としてマークします
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	配線ルートが設定された電線を配線済み、問題あり、または再び未完了としてマークします。電線はその両端で指定します
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	材料: galvanised_steel, stainless_steel, copper, copper_bonded_steel または aluminium
 Maximum fill of a carrier in percent	支持材の最大占有率 (%)
 Maximum operating pressure in bar	最大使用圧力 (bar)
 Measuring range or set point	測定範囲または設定値
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	ホース / チューブ / 配管の部品
 Part number of the upstream device	上位デバイスの部品番号
 Part number, e.g. GEN.LMP-GN-24	部品番号 (例: GEN.LMP-GN-24)
 Part of its strip, wire or rod (empty: generic)	帯板、線、または棒の部品 (空欄: 汎用)
+Part of the conductor holders on the roof (empty: generic)	屋根の導体支持金具の部品 (空欄: 汎用)
+Part of the conductor holders on the walls (empty: generic)	壁の導体支持金具の部品 (空欄: 汎用)
 Part of the conductors (round wire; empty: generic)	導体の部品 (丸線、空欄: 汎用)
 Part of the key or name	キーまたは名前の一部
+Part of the rod (empty: the one of its material and diameter)	突針の部品 (空欄: 材料と直径に合うもの)
 Part {} has no function with a symbol	部品 {} にはシンボル付きの機能がありません
 Parts phased out or discontinued	生産終了予定または生産終了の部品
 Pass ids or pages	ID またはページを指定してください
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	リモート I/O: コントローラーの
 Remove the air-termination rod	突針を削除
 Remove the earth electrode	接地極を削除
 Remove the entry of upstream and downstream	upstream と downstream のエントリを削除
-Remove the lightning protection system	雷保護システムを削除
 Remove the profile	プロファイルを削除
 Remove the scheme from the project	スキームをプロジェクトから削除
 Remove unused definitions (default: false)	未使用の定義を削除する (既定: false)
@@ -707,6 +714,7 @@ Rest (mm)	残り (mm)
 Reuse failed searches during one routing calculation	同じ配線経路計算内で失敗した検索結果を再利用する
 Right side bayed (no side panel)	右側を連結 (側板なし)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	環状：地表からの深さ、接地棒：上端の深さ、mm (既定 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	接地棒: その直径 (既定 20)、基礎接地極と環状接地極: 丸線の直径、帯板は 0、mm
 Room {} exists already	部屋 {} は既に存在します
 Rotation in degrees clockwise: 0, 90, 180 or 270	時計回りの回転角度 (度): 0、90、180、270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	回転角度 (度、反時計回り。90 で下から上に読む向き)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	不明なアドレス方式: {}
 Unknown alignment: {}	不明な配置: {}
 Unknown anchor: {}	不明なアンカー: {}
 Unknown aspect: {}	不明なアスペクト: {}
+Unknown base: {}	不明な台座: {}
 Unknown bonding kind: {}	不明なボンディングの種類: {}
 Unknown bonding point: {}	不明なボンディング点: {}
 Unknown bus system: {}	不明なバスシステム: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation、ring または rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted、または middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+)、または product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland、emc_gland、connector、strain_relief、shield_clamp、protective_hose、end_sleeve、marker または other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (屋根の突針支持金具) または concrete_base (陸屋根)
 hose, tube or pipe	hose、tube、または pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (機械、相導体 BK) または iec60445 (相導体 BN、BK、GY)
 keepout (default), power, control, signal or fluid	keepout (既定)、power、control、signal、または fluid

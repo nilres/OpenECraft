@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	设备、导线、电位、电缆、端子排、PLC、机柜、流体、电气计算、结构和翻译
 Diameter in mm	直径 (mm)
 Diameter of a hole at both ends (0: none)	两端孔的直径（0：无）
+Diameter of the conductors, mm (default 8)	导体直径，mm（默认 8）
+Diameter of the rod, mm (default 16)	接闪杆直径，mm（默认 16）
 Direction of the stem: left, right, up or down (default: from the wires there)	主干方向：left、right、up 或 down（默认：按该处的连接线）
 Distance between power and signal or fluid in mm	动力与信号或流体之间的距离 (mm)
 Distance from devices, rails and busbars in mm	与设备、导轨和母线的距离 (mm)
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	生成母线加工机的程序：切割、冲孔和折弯
 Give a device tag or a part number	请给出设备标识或部件号
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	为建筑物设置或更改防雷系统：类别、引下线数量和导体部件；屋脊和斜脊上的接闪导体（平屋顶上为网格），带测试接头通往接地极的引下线；或将其删除
+Greatest distance of the conductor holders, mm (default 1000)	导体支架的最大间距，mm（默认 1000）
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	将元素组合为可一起选择和移动的组件；不指定名称时，元素将脱离其组件
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	将机柜的程序作为作业移交生产：所有面和铜排的清单和程序
 Has a divider between power and signal cables	动力电缆与信号电缆之间有隔板
@@ -294,6 +297,7 @@ Height in mm	高度 (mm)
 Height in mm without plinth; negative: unknown (wall mounted)	高度，单位 mm，不含底座；负值：未知（壁挂安装）
 Height in mm; the logo keeps its aspect ratio inside	高度（毫米）；标志在其中保持原比例
 Height of the rod above the covering, mm (default 1500)	接闪杆高出屋面的高度，mm（默认 1500）
+Height of the test joints above the ground, mm (default 1000)	测试接头距地面的高度，mm（默认 1000）
 Higher-level product aspect (-) of the page; the devices on the page move along	页的上级产品方面 (-)；页上的设备随之移动
 Highest actuator on the door above the floor (0: not checked)	柜门上操作元件的最高离地高度（0：不检查）
 Highest air temperature at devices without data (0: not checked)	无数据设备处的最高空气温度（0：不检查）
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	制造包（CNC 程序，JSON）
 Markers, comma separated: device, terminal, wire, cable (empty: all)	标记，以逗号分隔：device, terminal, wire, cable（留空：全部）
 Marks a panel item as mounted or as a problem, or as open again	将布局元件标记为已安装、有问题或重新标记为未完成
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	将已布线的导线标记为已接线、有问题或重新标记为待完成；导线由其两端指定
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	材料：galvanised_steel, stainless_steel, copper, copper_bonded_steel 或 aluminium
 Maximum fill of a carrier in percent	电缆桥架的最大填充率，单位为百分比
 Maximum operating pressure in bar	最大工作压力 (bar)
 Measuring range or set point	测量范围或设定值
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	软管 / 管子 / 管道的部件编号
 Part number of the upstream device	上级设备的部件编号
 Part number, e.g. GEN.LMP-GN-24	部件编号，例如 GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	其扁钢、导线或接地极的部件（空：通用）
+Part of the conductor holders on the roof (empty: generic)	屋顶导体支架的部件（空：通用）
+Part of the conductor holders on the walls (empty: generic)	墙上导体支架的部件（空：通用）
 Part of the conductors (round wire; empty: generic)	导体的部件（圆线；空：通用）
 Part of the key or name	键或名称的一部分
+Part of the rod (empty: the one of its material and diameter)	接闪杆的部件（空：按其材料和直径选择）
 Part {} has no function with a symbol	部件 {} 没有带符号的功能
 Parts phased out or discontinued	即将停产或已停产的部件
 Pass ids or pages	请指定 ID 或页
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	分布式 I/O：控制器所在的站
 Remove the air-termination rod	删除接闪杆
 Remove the earth electrode	删除接地极
 Remove the entry of upstream and downstream	删除 upstream 和 downstream 的条目
-Remove the lightning protection system	删除防雷系统
 Remove the profile	删除配置文件
 Remove the scheme from the project	从项目中删除该方案
 Remove unused definitions (default: false)	移除未使用的定义（默认：false）
@@ -707,6 +714,7 @@ Rest (mm)	剩余 (mm)
 Reuse failed searches during one routing calculation	在同一次布线计算中复用失败的搜索结果
 Right side bayed (no side panel)	右侧并柜（无侧板）
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	环形：地面以下深度，垂直接地极：顶端深度，mm（默认 500）
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	垂直接地极：其直径（默认 20），基础和环形接地极：圆导线的直径，扁钢为 0，mm
 Room {} exists already	房间 {} 已存在
 Rotation in degrees clockwise: 0, 90, 180 or 270	顺时针旋转角度：0、90、180 或 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	旋转角度（度），逆时针（90 表示从下往上读）
@@ -896,6 +904,7 @@ Unknown address scheme: {}	未知地址方案：{}
 Unknown alignment: {}	未知对齐方式：{}
 Unknown anchor: {}	未知锚定：{}
 Unknown aspect: {}	未知方面：{}
+Unknown base: {}	未知底座：{}
 Unknown bonding kind: {}	未知等电位联结类型：{}
 Unknown bonding point: {}	未知联结点：{}
 Unknown bus system: {}	未知总线系统：{}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation、ring 或 rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted 或 middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+) 或 product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 或 other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder（屋顶上的接闪杆支架）或 concrete_base（平屋顶上）
 hose, tube or pipe	hose、tube 或 pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204（机械，相线 BK）或 iec60445（相线 BN、BK、GY）
 keepout (default), power, control, signal or fluid	keepout（默认）、power、control、signal 或 fluid

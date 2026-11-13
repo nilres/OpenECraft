@@ -16,18 +16,19 @@ use super::roofs;
 use super::solar;
 use super::SitePose;
 use crate::issue::{Issue, Severity};
-use crate::model::panel::{AirRod, Building, ElectrodeKind, Lightning, Roof};
+use crate::model::panel::{AirRod, Building, ElectrodeKind, Lightning, Material, Roof, RodBase};
 use crate::model::Project;
 use crate::parts::vec3::{dist, V3};
 use openecraft_i18n::tr;
 
-/// Height of the test joints of the down conductors above the ground, mm.
+/// Height of the test joints of the down conductors above the ground unless set
+/// otherwise, mm.
 pub const TEST_JOINT: f32 = 1000.0;
 /// Distance of the down conductors from the outer walls, mm.
 pub const WALL_GAP: f32 = 100.0;
 /// Height of the air-termination conductors above the covering, mm.
 pub const CLEARANCE: f32 = 50.0;
-/// Distance of the conductor holders on the roof and on the walls, mm.
+/// Distance of the conductor holders on the roof and on the walls unless set otherwise, mm.
 pub const HOLDER: f32 = 1000.0;
 /// How far inside the edge of a flat roof its edge conductor runs, mm.
 pub const EDGE: f32 = 100.0;
@@ -53,6 +54,8 @@ pub enum LpsKind {
 pub struct LpsLine {
     pub points: Vec<V3>,
     pub kind: LpsKind,
+    /// The air-termination rod it belongs to (the rod and its lead).
+    pub rod: Option<u64>,
 }
 
 /// The lines of a lightning protection system and its test joints.
@@ -205,17 +208,17 @@ pub fn geometry(prj: &Project, poses: &[SitePose], bi: usize) -> Option<LpsGeome
     let (lo, hi) = walls(prj, poses, bi)?;
     let mut g = LpsGeometry::default();
     let air: Vec<Vec<V3>> = b.roofs.iter().flat_map(|r| air_termination(b, r, lp.class)).collect();
-    g.lines.extend(air.iter().map(|l| LpsLine { points: l.clone(), kind: LpsKind::AirTermination }));
+    g.lines.extend(air.iter().map(|l| LpsLine { points: l.clone(), kind: LpsKind::AirTermination, rod: None }));
     // The air-termination rods, each joined to the nearest air-termination conductor.
     for rod in &lp.rods {
         let Some(y) = cover(b, [rod.x, rod.z]) else { continue };
         let foot = [rod.x, y, rod.z];
-        g.lines.push(LpsLine { points: vec![foot, [rod.x, y + rod.height.max(100.0), rod.z]], kind: LpsKind::Rod });
+        g.lines.push(LpsLine { points: vec![foot, [rod.x, y + rod.height.max(100.0), rod.z]], kind: LpsKind::Rod, rod: Some(rod.id) });
         if let Some(n) = nearest_plan(&air, [rod.x, rod.z]) {
             let mut lead = vec![[foot[0], foot[1] + CLEARANCE, foot[2]]];
             lead.extend(over_roof(b, [rod.x, rod.z], [n[0], n[2]]).into_iter().skip(1));
             if lead.len() >= 2 {
-                g.lines.push(LpsLine { points: lead, kind: LpsKind::Roof });
+                g.lines.push(LpsLine { points: lead, kind: LpsKind::Roof, rod: Some(rod.id) });
             }
         }
     }
@@ -229,14 +232,15 @@ pub fn geometry(prj: &Project, poses: &[SitePose], bi: usize) -> Option<LpsGeome
         .map(|kind| b.electrodes.iter().filter(|e| e.kind == kind).flat_map(|e| earthing::paths(prj, poses, bi, e)).collect::<Vec<_>>())
         .find(|l| !l.is_empty())
         .unwrap_or_default();
+    let joint = if lp.test_joint > 0.0 { lp.test_joint } else { TEST_JOINT };
     for (w, out) in down_places(lo, hi, n) {
         let p = [w[0] + out[0] * WALL_GAP, w[1] + out[1] * WALL_GAP];
         // Up the wall under the overhang, round its edge onto the covering and over it
         // to the air-termination system.
         let roof = b.roofs.iter().find(|r| roofs::underside_at(r, p).is_some());
         let top = roof.and_then(|r| roofs::underside_at(r, p)).map_or(top_floor, |u| u - 30.0);
-        g.lines.push(LpsLine { points: vec![[p[0], top, p[1]], [p[0], TEST_JOINT, p[1]]], kind: LpsKind::Down });
-        g.joints.push([p[0], TEST_JOINT, p[1]]);
+        g.lines.push(LpsLine { points: vec![[p[0], top, p[1]], [p[0], joint, p[1]]], kind: LpsKind::Down, rod: None });
+        g.joints.push([p[0], joint, p[1]]);
         let mut over: Vec<V3> = vec![[p[0], top, p[1]]];
         if let Some(r) = roof {
             let (rlo, rhi) = super::bounds(&roofs::region(r));
@@ -252,11 +256,11 @@ pub fn geometry(prj: &Project, poses: &[SitePose], bi: usize) -> Option<LpsGeome
             over.extend(over_roof(b, p, [n[0], n[2]]));
         }
         if over.len() >= 2 {
-            g.lines.push(LpsLine { points: over, kind: LpsKind::Roof });
+            g.lines.push(LpsLine { points: over, kind: LpsKind::Roof, rod: None });
         }
         // From the test joint into the soil and to the earth electrode.
         if let Some(e) = earthing::nearest(&electrode_lines, [p[0], 0.0, p[1]]) {
-            g.lines.push(LpsLine { points: vec![[p[0], TEST_JOINT, p[1]], [p[0], e[1].min(0.0), p[1]], e], kind: LpsKind::Entry });
+            g.lines.push(LpsLine { points: vec![[p[0], joint, p[1]], [p[0], e[1].min(0.0), p[1]], e], kind: LpsKind::Entry, rod: None });
         }
     }
     Some(g)
@@ -316,8 +320,12 @@ pub fn checked(mut lp: Lightning) -> Lightning {
     lp.class = lp.class.clamp(1, 4);
     lp.down_conductors = lp.down_conductors.min(200);
     lp.part = lp.part.trim().into();
+    lp.diameter = if lp.diameter > 0.0 { lp.diameter.clamp(5.0, 20.0) } else { 8.0 };
+    lp.holder_spacing = if lp.holder_spacing > 0.0 { lp.holder_spacing.clamp(300.0, 3000.0) } else { HOLDER };
+    lp.test_joint = if lp.test_joint > 0.0 { lp.test_joint.clamp(300.0, 2000.0) } else { TEST_JOINT };
     for r in &mut lp.rods {
         r.height = r.height.clamp(100.0, 20_000.0);
+        r.diameter = if r.diameter > 0.0 { r.diameter.clamp(8.0, 40.0) } else { 16.0 };
     }
     lp
 }
@@ -336,9 +344,38 @@ pub fn add_rod(prj: &mut Project, bi: usize, at: Option<[f32; 2]>) -> Result<u64
     Ok(id)
 }
 
-/// The part of the conductors.
-pub fn conductor(lp: &Lightning) -> String {
-    if lp.part.is_empty() { "GEN.LP-WIRE-AL8".into() } else { lp.part.clone() }
+/// The material of the conductors (aluminium unless set otherwise).
+pub fn material_of(lp: &Lightning) -> Material {
+    lp.material.unwrap_or(Material::Aluminium)
+}
+
+/// The material of an air-termination rod (aluminium unless set otherwise).
+pub fn rod_material(r: &AirRod) -> Material {
+    r.material.unwrap_or(Material::Aluminium)
+}
+
+/// The part of the conductors: their own, otherwise the round wire of their material
+/// and diameter.
+pub fn conductor(prj: &Project, lp: &Lightning) -> String {
+    if !lp.part.is_empty() {
+        return lp.part.clone();
+    }
+    earthing::pick_part(prj, "Lightning protection conductor", material_of(lp), if lp.diameter > 0.0 { lp.diameter } else { 8.0 }).unwrap_or_else(|| "GEN.LP-WIRE-AL8".into())
+}
+
+/// The part of an air-termination rod: its own, otherwise the rod of its material and
+/// diameter.
+pub fn rod_part(prj: &Project, r: &AirRod) -> String {
+    if !r.part.is_empty() {
+        return r.part.clone();
+    }
+    earthing::pick_part(prj, "Air-termination rod", rod_material(r), if r.diameter > 0.0 { r.diameter } else { 16.0 }).unwrap_or_else(|| "GEN.LP-ROD-AL16".into())
+}
+
+/// The parts of the conductor holders on the roof and on the walls.
+pub fn holders(lp: &Lightning) -> (String, String) {
+    let or = |p: &str, generic: &str| if p.trim().is_empty() { generic.to_string() } else { p.trim().to_string() };
+    (or(&lp.roof_holder, "GEN.LP-HOLDER-ROOF"), or(&lp.wall_holder, "GEN.LP-HOLDER-WALL"))
 }
 
 /// The material of the lightning protection system of building `bi`, with its
@@ -351,16 +388,28 @@ pub fn material(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<(String, f3
     let (air, roof, down) = (g.length(LpsKind::AirTermination), g.length(LpsKind::Roof), g.length(LpsKind::Down));
     let downs = g.count(LpsKind::Down) as f32;
     let rods = g.count(LpsKind::Rod) as f32;
-    let mut out: Vec<(String, f32)> = vec![
-        (conductor(lp), ((air + roof + down) / 1000.0 * 100.0).ceil() / 100.0),
-        ("GEN.LP-HOLDER-ROOF".into(), ((air + roof) / HOLDER).ceil()),
-        ("GEN.LP-HOLDER-WALL".into(), g.lines.iter().filter(|l| l.kind == LpsKind::Down).map(|l| (dist(l.points[0], l.points[1]) / HOLDER).ceil()).sum()),
-        ("GEN.LP-ROD-AL16".into(), rods),
-        ("GEN.LP-TEST-JOINT".into(), downs),
-        ("GEN.LP-EARTH-ENTRY".into(), g.count(LpsKind::Entry) as f32),
-        ("GEN.LP-CLAMP-MV".into(), downs + g.count(LpsKind::Entry) as f32 + rods),
-    ];
-    out.retain(|(_, q)| *q > 0.0);
+    let spacing = if lp.holder_spacing > 0.0 { lp.holder_spacing } else { HOLDER };
+    let (roof_holder, wall_holder) = holders(lp);
+    let mut out: Vec<(String, f32)> = Vec::new();
+    let mut add = |part: String, qty: f32| {
+        if qty <= 0.0 {
+            return;
+        }
+        match out.iter_mut().find(|x| x.0 == part) {
+            Some(x) => x.1 += qty,
+            None => out.push((part, qty)),
+        }
+    };
+    add(conductor(prj, lp), ((air + roof + down) / 1000.0 * 100.0).ceil() / 100.0);
+    add(roof_holder, ((air + roof) / spacing).ceil());
+    add(wall_holder, g.lines.iter().filter(|l| l.kind == LpsKind::Down).map(|l| (dist(l.points[0], l.points[1]) / spacing).ceil()).sum());
+    for r in lp.rods.iter().filter(|r| g.lines.iter().any(|l| l.kind == LpsKind::Rod && l.rod == Some(r.id))) {
+        add(rod_part(prj, r), 1.0);
+        add(if r.base == RodBase::ConcreteBase { "GEN.LP-ROD-BASE".into() } else { "GEN.LP-ROD-HOLDER".into() }, 1.0);
+    }
+    add("GEN.LP-TEST-JOINT".into(), downs);
+    add("GEN.LP-EARTH-ENTRY".into(), g.count(LpsKind::Entry) as f32);
+    add("GEN.LP-CLAMP-MV".into(), downs + g.count(LpsKind::Entry) as f32 + rods);
     out
 }
 
@@ -395,24 +444,57 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
     out
 }
 
+/// A line of the lightning protection system or the electrodes of a building in the
+/// plant ([`plant_lines`]): its points, what it is, what it belongs to and its diameter.
+#[derive(Clone, Debug, PartialEq)]
+pub struct PlantLine {
+    pub points: Vec<V3>,
+    pub what: Line,
+    pub owner: Owner,
+    /// mm.
+    pub diameter: f32,
+}
+
+/// What a line of the earthing and lightning protection belongs to.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+pub enum Owner {
+    /// An earth electrode (its id).
+    Electrode(u64),
+    /// The conductors of the lightning protection system.
+    Lightning,
+    /// An air-termination rod (its id).
+    AirRod(u64),
+}
+
 /// The lines of the lightning protection system and the electrodes of building `bi` in
 /// the plant, with what each is: for the 3D view and the site plan.
-pub fn plant_lines(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<(Vec<V3>, Line)> {
+pub fn plant_lines(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<PlantLine> {
     let Some(b) = prj.layout.buildings.get(bi) else { return Vec::new() };
     let bp = building_pose(b);
     let to_plant = |p: &[V3]| p.iter().map(|&q| bp.apply(q)).collect::<Vec<V3>>();
     let mut out = Vec::new();
     for e in &b.electrodes {
+        let d = earthing::diameter_of(e);
+        let owner = Owner::Electrode(e.id);
         for p in earthing::paths(prj, poses, bi, e) {
-            out.push((to_plant(&p), Line::Electrode(e.kind)));
+            out.push(PlantLine { points: to_plant(&p), what: Line::Electrode(e.kind), owner, diameter: if d > 0.0 { d } else { 30.0 } });
         }
         if let Some(p) = earthing::busbar_lead(prj, poses, bi, e) {
-            out.push((to_plant(&p), Line::Busbar));
+            out.push(PlantLine { points: to_plant(&p), what: Line::Busbar, owner, diameter: 10.0 });
         }
     }
-    if let Some(g) = geometry(prj, poses, bi) {
-        out.extend(g.lines.iter().map(|l| (to_plant(&l.points), Line::Lps(l.kind))));
-        out.extend(g.joints.iter().map(|&j| (to_plant(&[j]), Line::Joint)));
+    if let (Some(lp), Some(g)) = (&b.lightning, geometry(prj, poses, bi)) {
+        for l in &g.lines {
+            let rod = l.rod.and_then(|id| lp.rods.iter().find(|r| r.id == id));
+            let owner = rod.map_or(Owner::Lightning, |r| Owner::AirRod(r.id));
+            let diameter = match (l.kind, rod) {
+                (LpsKind::Rod, Some(r)) => r.diameter,
+                (LpsKind::Entry, _) => 16.0,
+                _ => lp.diameter,
+            };
+            out.push(PlantLine { points: to_plant(&l.points), what: Line::Lps(l.kind), owner, diameter });
+        }
+        out.extend(g.joints.iter().map(|&j| PlantLine { points: to_plant(&[j]), what: Line::Joint, owner: Owner::Lightning, diameter: 50.0 }));
     }
     out
 }

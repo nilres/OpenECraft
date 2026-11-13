@@ -186,6 +186,7 @@ Automatic ({})	Automatisk ({})
 Automatic accessories	Automatiska tillbehör
 Automatic configuration	Automatisk konfiguration
 Automatic placement	Automatisk placering
+Automatic: {}	Automatiskt: {}
 Automation	Automatisering
 Aux	Hjälp
 Avoid:	Undvik:
@@ -389,9 +390,11 @@ Compare and baselines	Jämför och baslinjer
 Compare with	Jämför med
 Compare with a baseline, a revision or another project file and take differences over	Jämför med en baslinje, en revision eller en annan projektfil och överför skillnader
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Fullständig beteckning: {}\nAspekter som saknas här hämtas från sidan (=funktion +placering) eller från strukturrutan som symbolen ligger i.
+Concrete base	Betongfot
 Condition	Villkor
 Condition (OPTION=value & …)	Villkor (OPTION=värde & …)
 Conductive frame	Ledande stativ
+Conductor	Ledare
 Conflicts	Konflikter
 Connected devices	Anslutna apparater
 Connected to:	Ansluten till:
@@ -548,6 +551,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Apparate
 Dew point	Daggpunkt
 Diameter	Diameter
 Diameter / bends	Diameter / böjar
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Diameter på en rundtråd; 0: ett band 30 x 3,5 mm
+Diameter of the rod	Stavens diameter
 Dictionary for translators: one column per language	Ordlista för översättare: en kolumn per språk
 Digits	Siffror
 Dimension	Måttsättning
@@ -812,6 +817,7 @@ Go to page	Gå till sidan
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafiskt formulär
+Greatest distance of the conductor holders on the roof and on the walls	Största avstånd mellan ledarhållarna på taket och på väggarna
 Greatest distance of the roof hooks along a rail	Största avstånd mellan takkrokarna längs en skena
 Grid	Rutnät
 Grid north	Gridnorr
@@ -836,6 +842,7 @@ Height above the mounting plate	Höjd över monteringsplåten
 Height above the plate	Höjd över plåten
 Height of the plinth, 0 without plinth	Sockelns höjd, 0 utan sockel
 Height of the rod above the covering	Stavens höjd över taktäckningen
+Height of the test joints above the ground	Provklämmornas höjd över mark
 Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Hålls ned vid klick, flytt eller rullning. Ctrl är Cmd i macOS.
 Help	Hjälp
@@ -845,6 +852,9 @@ Highest phase unbalance	Högsta fasobalans
 Highest short-circuit current	Högsta kortslutningsström
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Högsta spänning (tomgång vid lägsta temperatur), medel- och lägsta spänning (vid maximal effekt vid medel- och högsta temperatur), ström vid maximal effekt, toppeffekt
 Highest: the lowest voltage	Högsta: den lägsta spänningen
+Holder distance	Hållaravstånd
+Holders on the roof	Hållare på taket
+Holders on the walls	Hållare på väggarna
 Hole to sheet edge	Hål till plåtkant
 Home	Start
 Hook distance	Krokavstånd
@@ -1008,6 +1018,7 @@ Level {} of building {}	Plan {} i byggnad {}
 Levels	Våningar
 Library	Bibliotek
 Lightning protection	Åskskydd
+Lightning protection of building {}	Åskskydd för byggnad {}
 Like two fingers	Som två fingrar
 Limits	Gränsvärden
 Limits in effect	Gällande gränsvärden
@@ -1058,6 +1069,7 @@ Macros	Makron
 Macros ({})	Makron ({})
 Macro…	Makro…
 Main	Huvud
+Main earthing busbar	Huvudjordningsskena
 Make the selected elements of this project equal to the compared ones	Gör de markerade elementen i det här projektet lika med de jämförda
 Maker	Tillverkare
 Makes the current page content of the option	Gör den aktuella sidan till innehåll i alternativet
@@ -1379,6 +1391,7 @@ PLC hardware and bus topology	PLC-hårdvara och busstopologi
 PLC overview	PLC-översikt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmapp, t.ex. en logotyp eller ett foto
 PV array {}	Solcellsfält {}
+PV array {} lies outside the protection of the air-termination system	Solcellsfält {} ligger utanför uppfångningssystemets skydd
 PV array {} of building {}: {} modules	Solcellsfält {} i byggnad {}: {} moduler
 PV array {} of building {}: {} modules, {} kWp	Solcellsfält {} i byggnad {}: {} moduler, {} kWp
 PV arrays	Solcellsfält
@@ -1683,6 +1696,7 @@ Right edges	Högerkanter
 Right neighbour	Granne till höger
 Rights	Behörigheter
 Risers	Sättsteg
+Rod holder	Stavhållare
 Roof pitch	Taklutning
 Roof window	Takfönster
 Roof windows	Takfönster
@@ -2001,6 +2015,7 @@ Terminals at least	Plintar minst
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Plintar med samma bygelnummer är byglade (samma potential). Reservplintar räknas i stycklistan.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termer åtskilda med ';': nyckel=värde (lika med), nyckel~text (innehåller) eller text var som helst
 Test connection	Testa anslutning
+Test joints	Provklämmor
 Text offset	Textförskjutning
 Text size	Textstorlek
 Texts	Texter
@@ -2492,6 +2507,7 @@ x y	x y
 {} wires changed	{} ledningar ändrade
 {} wires, {} cables and {} tubes routed	{} ledningar, {} kablar och {} slangar dragna
 {} wires, {} – {} mm	{} ledningar, {} – {} mm
+{} {} of building {}	{} {} i byggnad {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}

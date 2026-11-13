@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Apparaten, draden, potentialen, kabels, klemmenstroken, PLC, kast, fluïdtechniek, elektrische berekeningen, structuur en vertalingen
 Diameter in mm	Diameter in mm
 Diameter of a hole at both ends (0: none)	Diameter van een boring aan beide einden (0: geen)
+Diameter of the conductors, mm (default 8)	Diameter van de geleiders, mm (standaard 8)
+Diameter of the rod, mm (default 16)	Diameter van de staaf, mm (standaard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Richting van de steel: left, right, up of down (standaard: volgens de draden daar)
 Distance between power and signal or fluid in mm	Afstand tussen vermogen en signaal of fluïdum in mm
 Distance from devices, rails and busbars in mm	Afstand tot apparaten, rails en stroomrails in mm
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Genereert het programma van de railbewerkingsmachine: snedes, geponste gaten en buigingen
 Give a device tag or a part number	Geef een apparaataanduiding of een artikelnummer op
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Geeft een gebouw een bliksembeveiliging of wijzigt die: de klasse, het aantal afleidingen en het artikel van de geleiders; opvanggeleiders op de nokken en hoekkepers (een maas op platte daken), afleidingen met meetverbindingen naar de aardelektroden; of verwijdert die
+Greatest distance of the conductor holders, mm (default 1000)	Grootste afstand van de geleiderhouders, mm (standaard 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Groepeert elementen tot een samenstel dat samen wordt geselecteerd en verplaatst; zonder naam verlaten de elementen hun samenstellen
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Draagt de programma's van een behuizing als opdracht over aan de productie: manifest en programma's van alle vlakken en koperrails
 Has a divider between power and signal cables	Heeft een scheidingsschot tussen vermogens- en signaalkabels
@@ -294,6 +297,7 @@ Height in mm	Hoogte in mm
 Height in mm without plinth; negative: unknown (wall mounted)	Hoogte in mm zonder sokkel; negatief: onbekend (wandmontage)
 Height in mm; the logo keeps its aspect ratio inside	Hoogte in mm; het logo behoudt daarbinnen zijn beeldverhouding
 Height of the rod above the covering, mm (default 1500)	Hoogte van de staaf boven de dakbedekking, mm (standaard 1500)
+Height of the test joints above the ground, mm (default 1000)	Hoogte van de meetverbindingen boven maaiveld, mm (standaard 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspect bovenliggend product (-) van de pagina; de apparaten op de pagina gaan mee
 Highest actuator on the door above the floor (0: not checked)	Hoogste bedieningselement in de deur boven de vloer (0: niet gecontroleerd)
 Highest air temperature at devices without data (0: not checked)	Hoogste luchttemperatuur bij apparaten zonder gegevens (0: niet gecontroleerd)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Productiepakket (CNC-programma's, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Markeringen, gescheiden door komma's: device, terminal, wire, cable (leeg: alle)
 Marks a panel item as mounted or as a problem, or as open again	Markeert een element als gemonteerd of als probleem, of weer als open
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Markeert een gerouteerde draad als bedraad of als probleem, of weer als open; de draad wordt opgegeven met zijn twee uiteinden
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Materiaal: galvanised_steel, stainless_steel, copper, copper_bonded_steel of aluminium
 Maximum fill of a carrier in percent	Maximale vulling van een kabeldrager in procent
 Maximum operating pressure in bar	Maximale werkdruk in bar
 Measuring range or set point	Meetbereik of setpoint
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	Artikelnummer van de slang / buis / pijple
 Part number of the upstream device	Artikelnummer van het voorgeschakelde apparaat
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, bijv. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	Artikel van de strip, draad of pen (leeg: generiek)
+Part of the conductor holders on the roof (empty: generic)	Artikel van de geleiderhouders op het dak (leeg: generiek)
+Part of the conductor holders on the walls (empty: generic)	Artikel van de geleiderhouders aan de muren (leeg: generiek)
 Part of the conductors (round wire; empty: generic)	Artikel van de geleiders (ronddraad; leeg: generiek)
 Part of the key or name	Deel van de sleutel of naam
+Part of the rod (empty: the one of its material and diameter)	Artikel van de staaf (leeg: dat van zijn materiaal en diameter)
 Part {} has no function with a symbol	Artikel {} heeft geen functie met symbool
 Parts phased out or discontinued	Uitlopende of niet meer leverbare artikelen
 Pass ids or pages	Geef ID's of pagina's op
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Decentrale I/O: station van de controller
 Remove the air-termination rod	De opvangstaaf verwijderen
 Remove the earth electrode	De aardelektrode verwijderen
 Remove the entry of upstream and downstream	Het item van upstream en downstream verwijderen
-Remove the lightning protection system	De bliksembeveiliging verwijderen
 Remove the profile	Het profiel verwijderen
 Remove the scheme from the project	Het schema uit het project verwijderen
 Remove unused definitions (default: false)	Ongebruikte definities verwijderen (standaard: false)
@@ -707,6 +714,7 @@ Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Mislukte zoekacties binnen één routeringsberekening hergebruiken
 Right side bayed (no side panel)	Rechterzijde gekoppeld (geen zijwand)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: diepte onder maaiveld, pen: diepte van de bovenkant, mm (standaard 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Aardpen: zijn diameter (standaard 20), fundering en ring: die van een ronddraad, 0 voor een strip, mm
 Room {} exists already	Ruimte {} bestaat al
 Rotation in degrees clockwise: 0, 90, 180 or 270	Draaiing in graden met de klok mee: 0, 90, 180 of 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Draaiing in graden, linksom (90 leest van onder naar boven)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Onbekend adresschema: {}
 Unknown alignment: {}	Onbekende uitlijning: {}
 Unknown anchor: {}	Onbekende verankering: {}
 Unknown aspect: {}	Onbekend aspect: {}
+Unknown base: {}	Onbekende voet: {}
 Unknown bonding kind: {}	Onbekende soort potentiaalvereffening: {}
 Unknown bonding point: {}	Onbekend aansluitpunt van de potentiaalvereffening: {}
 Unknown bus system: {}	Onbekend bussysteem: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring of rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted of middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) of product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker of other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (een staafhouder op het dak) of concrete_base (op platte daken)
 hose, tube or pipe	hose, tube of pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (machines, fasegeleiders BK) of iec60445 (fasegeleiders BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (standaard), power, control, signal of fluid

@@ -543,6 +543,9 @@ pub struct PanelUi {
     pub see_through_pv: bool,
     /// The PV array selected in the 3D view (its id): its properties are shown.
     pub selected_array: Option<u64>,
+    /// The earth electrode, the lightning protection or the air-termination rod selected
+    /// in the 3D view or the site plan (its building and what): its properties are shown.
+    pub selected_earthing: Option<(usize, panel::lightning::Owner)>,
     /// Opacity of the walls seen from the outside in the 3D view, 0 … 1.
     pub wall_opacity: f32,
     /// The 3D view is drawn by the graphics card where it can (set by the application).
@@ -625,6 +628,11 @@ const INSTALLATION: [(&str, &str, &[&str]); 3] = [
     (tr_const!("Switches"), tr_const!("Switches, push buttons and room thermostats"), &["Switch", "Push button", "Blind switch", "Dimmer", "Glass push button", "Room thermostat"]),
     (tr_const!("Heating"), tr_const!("Heating circuit manifolds and control boxes"), &["Heating circuit manifold", "Control box"]),
 ];
+
+/// Width of the installation menu, of its list and of the part picked beside it, points.
+const INSTALLATION_WIDTH: f32 = 720.0;
+const INSTALLATION_PART: f32 = 250.0;
+const INSTALLATION_LIST: f32 = INSTALLATION_WIDTH - INSTALLATION_PART - 20.0;
 
 /// What the installation menu shows: its tab, the search, the maker and the type
 /// chosen, and the part picked (its number).
@@ -712,6 +720,7 @@ impl Default for PanelUi {
             hide_pv_modules: false,
             see_through_pv: false,
             selected_array: None,
+            selected_earthing: None,
             wall_opacity: WALL_OPACITY,
             gpu_3d: false,
             gpu: gpu3d::Gpu::default(),
@@ -829,6 +838,23 @@ impl PanelUi {
         self.selected_wire = None;
         self.selected_route = None;
         self.selected_array = None;
+        self.selected_earthing = None;
+    }
+
+    /// Selects an earth electrode, the lightning protection or an air-termination rod of
+    /// building `target.0`: its properties are shown.
+    pub(super) fn select_earthing(&mut self, prj: &Project, target: (usize, panel::lightning::Owner)) {
+        self.selection.clear();
+        self.selected_wire = None;
+        self.selected_route = None;
+        self.selected_array = None;
+        self.selected_earthing = Some(target);
+        let Some(b) = prj.layout.buildings.get(target.0) else { return };
+        self.status = match target.1 {
+            panel::lightning::Owner::Electrode(id) => b.electrodes.iter().find(|e| e.id == id).map_or_else(String::new, |e| tr_fmt!("{} {} of building {}", tr(e.kind.title()), e.name, b.name)),
+            panel::lightning::Owner::AirRod(id) => b.lightning.as_ref().and_then(|lp| lp.rods.iter().find(|r| r.id == id)).map_or_else(String::new, |r| tr_fmt!("{} {} of building {}", tr("Air-termination rod"), r.name, b.name)),
+            panel::lightning::Owner::Lightning => tr_fmt!("Lightning protection of building {}", b.name),
+        };
     }
 
     /// Selects a PV array (its id): its properties are shown.
@@ -837,6 +863,7 @@ impl PanelUi {
         self.selected_wire = None;
         self.selected_route = None;
         self.selected_array = Some(id);
+        self.selected_earthing = None;
         let found = prj.layout.buildings.iter().find_map(|b| b.roofs.iter().find_map(|r| r.solar.iter().find(|a| a.id == id)).map(|a| (b, a)));
         if let Some((b, a)) = found {
             self.status = match panel::solar::peak_power(prj, a) {
@@ -972,6 +999,7 @@ impl PanelUi {
         self.selected_wire = None;
         self.selected_route = None;
         self.selected_array = None;
+        self.selected_earthing = None;
     }
 
     /// Index of the selected wire in the current analysis.
@@ -2987,8 +3015,23 @@ impl PanelUi {
             self.site_plan.pan = Vec2::ZERO;
             self.fit_pending = false;
         }
-        let hovered = site_plan::paint(ui, rect, prj, &self.site_plan, resp.hover_pos()).filter(|_| self.site_tool == SiteTool::Select && !dragging_corner);
+        let plan = site_plan::SitePlan { earthing: self.selected_earthing, ..self.site_plan };
+        let hovered = site_plan::paint(ui, rect, prj, &plan, resp.hover_pos()).filter(|_| self.site_tool == SiteTool::Select && !dragging_corner);
         self.paint_site_tools(ui, rect, prj, resp.hover_pos());
+        // An earth electrode or a part of the lightning protection under the pointer:
+        // selected by a click (before the room under it).
+        if self.site_tool == SiteTool::Select && !dragging_corner {
+            let frame = site_plan::frame(rect, prj, &self.site_plan);
+            let poses = panel::site_poses(prj);
+            if let Some(target) = resp.hover_pos().and_then(|p| site_plan::earthing_at(prj, &poses, &frame, p)) {
+                ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
+                if resp.clicked() {
+                    self.select_earthing(prj, target);
+                    return;
+                }
+                return;
+            }
+        }
         if let Some(ri) = hovered {
             ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
             if resp.clicked() {
@@ -3157,8 +3200,8 @@ impl PanelUi {
         // Not justified like the other menus and of a fixed width, so that it does not
         // grow with what it shows.
         let chosen = ui
-            .allocate_ui_with_layout(vec2(720.0, 0.0), egui::Layout::top_down(egui::Align::Min), |ui| {
-                ui.set_width(720.0);
+            .allocate_ui_with_layout(vec2(INSTALLATION_WIDTH, 0.0), egui::Layout::top_down(egui::Align::Min), |ui| {
+                ui.set_width(INSTALLATION_WIDTH);
                 self.installation_picker(ui, prj, db)
             })
             .inner;
@@ -3258,25 +3301,26 @@ impl PanelUi {
         }
         ui.separator();
         ui.horizontal_top(|ui| {
-            // The list: number and description, the mounting height at the right.
+            // The list: the number and the description of each part over the whole width
+            // the part picked leaves, as tall as its parts (at most 320 points).
             ui.vertical(|ui| {
-                ui.set_width(400.0);
-                egui::ScrollArea::vertical().id_salt("installation_list").max_height(330.0).auto_shrink([false, false]).show(ui, |ui| {
+                ui.set_width(INSTALLATION_LIST);
+                egui::ScrollArea::vertical().id_salt("installation_list").max_height(320.0).auto_shrink([false, true]).show(ui, |ui| {
                     if shown.is_empty() {
                         ui.weak(tr("No part matches."));
                     }
                     for p in &shown {
                         let active = self.tool == Tool::Accessory(p.number.clone());
                         let focused = pick.focus == p.number;
-                        let height = p.tech_value("Mounting height").map(|h| h.trim().to_string()).unwrap_or_default();
-                        let r = ui
-                            .horizontal(|ui| {
-                                let r = ui.add_sized([300.0, 20.0], egui::Button::selectable(focused || active, RichText::new(format!("{}   {}", p.number, p.description))).truncate());
-                                ui.weak(height);
-                                r
-                            })
-                            .inner;
-                        let r = r.on_hover_text(format!("{}\n{}", p.number, p.description));
+                        let text = egui::text::LayoutJob::simple_singleline(format!("{}  ", p.number), egui::FontId::proportional(13.0), ui.visuals().strong_text_color());
+                        let mut text = text;
+                        text.append(&p.description, 0.0, egui::TextFormat { color: ui.visuals().text_color(), font_id: egui::FontId::proportional(13.0), ..Default::default() });
+                        let r = ui.add_sized([ui.available_width(), 22.0], egui::Button::selectable(focused || active, text).truncate());
+                        let tip = match p.tech_value("Mounting height") {
+                            Some(h) => format!("{}\n{}\n{}", p.number, p.description, tr_fmt!("Mounting height: {}", h.trim())),
+                            None => format!("{}\n{}", p.number, p.description),
+                        };
+                        let r = r.on_hover_text(tip);
                         if r.clicked() {
                             pick.focus = p.number.clone();
                         }
@@ -3290,14 +3334,15 @@ impl PanelUi {
             ui.separator();
             // The part picked: its model (drag to turn it) and its data.
             ui.vertical(|ui| {
-                ui.set_width(290.0);
+                ui.set_width(INSTALLATION_PART);
                 let Some(p) = shown.iter().find(|p| p.number == pick.focus) else {
                     ui.weak(tr("Pick a part in the list."));
                     return;
                 };
+                let size = vec2(INSTALLATION_PART, 140.0);
                 match p.model_3d.as_ref() {
-                    Some(mesh) => openecraft_ui::part_editor::mesh_preview(ui, mesh, vec2(290.0, 170.0)),
-                    None => openecraft_ui::part_editor::model_2d_preview(ui, p.model_2d.as_deref(), vec2(290.0, 170.0)),
+                    Some(mesh) => openecraft_ui::part_editor::mesh_preview(ui, mesh, size),
+                    None => openecraft_ui::part_editor::model_2d_preview(ui, p.model_2d.as_deref(), size),
                 }
                 ui.label(RichText::new(p.number.as_str()).strong());
                 if !p.manufacturer.is_empty() {
@@ -3309,7 +3354,7 @@ impl PanelUi {
                     ui.label(tr_fmt!("Mounting height: {}", h.trim()));
                 }
                 ui.add_space(4.0);
-                if ui.add(egui::Button::new(RichText::new(tr("Place on the wall")).strong()).min_size(vec2(290.0, 26.0))).clicked() {
+                if ui.add(egui::Button::new(RichText::new(tr("Place on the wall")).strong()).min_size(vec2(INSTALLATION_PART, 26.0))).clicked() {
                     chosen = Some((*p).clone());
                 }
             });

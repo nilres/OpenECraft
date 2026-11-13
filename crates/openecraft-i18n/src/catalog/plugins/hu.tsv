@@ -204,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	Készülékek, vezetékek, potenciálok, kábelek, sorkapocslécek, PLC, szekrény, fluid, villamos számítások, struktúra és fordítások
 Diameter in mm	Átmérő mm-ben
 Diameter of a hole at both ends (0: none)	Furat átmérője mindkét végen (0: nincs)
+Diameter of the conductors, mm (default 8)	A vezetők átmérője, mm (alapértelmezés 8)
+Diameter of the rod, mm (default 16)	A rúd átmérője, mm (alapértelmezés 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	A szár iránya: left, right, up vagy down (alapértelmezés: az ottani vezetékek szerint)
 Distance between power and signal or fluid in mm	Távolság az erősáram és a jel vagy fluid között mm-ben
 Distance from devices, rails and busbars in mm	Távolság a készülékektől, sínektől és gyűjtősínektől mm-ben
@@ -285,6 +287,7 @@ Generates the multi-line schematic (power symbols, conductors, contactor coils) 
 Generates the program of the busbar machine: cuts, punched holes and bends	Generálja a sínmegmunkáló gép programját: vágások, lyukasztott furatok és hajlítások
 Give a device tag or a part number	Adjon meg készülékjelet vagy cikkszámot
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Villámvédelmet ad egy épületnek vagy módosítja: osztály, a levezetők száma és a vezetők alkatrésze; felfogó vezetők a gerinceken és élgerinceken (háló a lapostetőkön), levezetők mérési csatlakozókkal a földelőkig; vagy eltávolítja
+Greatest distance of the conductor holders, mm (default 1000)	A vezetőtartók legnagyobb távolsága, mm (alapértelmezés 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Elemeket csoportosít egy együtt kijelölt és mozgatott szerelvénybe; név nélkül az elemek kilépnek a szerelvényeikből
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Átadja egy szekrény programjait megbízásként a gyártásnak: az összes felület és rézsín manifestje és programjai
 Has a divider between power and signal cables	Elválasztó van a teljesítmény- és jelkábelek között
@@ -294,6 +297,7 @@ Height in mm	Magasság mm-ben
 Height in mm without plinth; negative: unknown (wall mounted)	Magasság mm-ben lábazat nélkül; negatív: ismeretlen (falra szerelt)
 Height in mm; the logo keeps its aspect ratio inside	Magasság mm-ben; a logó megtartja benne a méretarányát
 Height of the rod above the covering, mm (default 1500)	A rúd magassága a tetőfedés felett, mm (alapértelmezés 1500)
+Height of the test joints above the ground, mm (default 1000)	A mérési csatlakozók magassága a terep felett, mm (alapértelmezés 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	Az oldal felettestermék-aspektusa (-); az oldalon lévő készülékek vele mozognak
 Highest actuator on the door above the floor (0: not checked)	A legmagasabb kezelőelem az ajtón a padló felett (0: nincs ellenőrzés)
 Highest air temperature at devices without data (0: not checked)	A legmagasabb léghőmérséklet adatok nélküli készülékeknél (0: nincs ellenőrzés)
@@ -441,6 +445,7 @@ Manufacturing package (CNC programs, JSON)	Gyártási csomag (CNC-programok, JSO
 Markers, comma separated: device, terminal, wire, cable (empty: all)	Jelölők, vesszővel elválasztva: device, terminal, wire, cable (üres: mind)
 Marks a panel item as mounted or as a problem, or as open again	Egy elrendezési elemet felszereltként, problémásként vagy ismét nyitottként jelöl meg
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	Egy fektetett vezetéket bekötöttként, problémásként vagy ismét nyitottként jelöl meg; a vezetéket a két vége adja meg
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	Anyag: galvanised_steel, stainless_steel, copper, copper_bonded_steel vagy aluminium
 Maximum fill of a carrier in percent	Kábeltartó maximális telítettsége százalékban
 Maximum operating pressure in bar	Maximális üzemi nyomás bar-ban
 Measuring range or set point	Méréstartomány vagy alapjel
@@ -590,8 +595,11 @@ Part number of the hose / tube / pipe	A tömlő / cső / csővezeték cikkszáma
 Part number of the upstream device	Az előtét készülék cikkszáma
 Part number, e.g. GEN.LMP-GN-24	Cikkszám, pl. GEN.LMP-GN-24
 Part of its strip, wire or rod (empty: generic)	A szalag, huzal vagy rúd alkatrésze (üres: általános)
+Part of the conductor holders on the roof (empty: generic)	A tetőn lévő vezetőtartók alkatrésze (üres: általános)
+Part of the conductor holders on the walls (empty: generic)	A falakon lévő vezetőtartók alkatrésze (üres: általános)
 Part of the conductors (round wire; empty: generic)	A vezetők alkatrésze (körhuzal; üres: általános)
 Part of the key or name	A kulcs vagy a név része
+Part of the rod (empty: the one of its material and diameter)	A rúd alkatrésze (üres: az anyagának és átmérőjének megfelelő)
 Part {} has no function with a symbol	A(z) {} alkatrésznek nincs szimbólummal rendelkező funkciója
 Parts phased out or discontinued	Kifutó vagy megszűnt alkatrészek
 Pass ids or pages	Adjon meg azonosítókat vagy oldalakat
@@ -675,7 +683,6 @@ Remote I/O: station of the controller	Decentralizált periféria: a vezérlő á
 Remove the air-termination rod	Felfogórúd eltávolítása
 Remove the earth electrode	Földelő eltávolítása
 Remove the entry of upstream and downstream	Az upstream és downstream bejegyzésének eltávolítása
-Remove the lightning protection system	Villámvédelem eltávolítása
 Remove the profile	A profil eltávolítása
 Remove the scheme from the project	A séma eltávolítása a projektből
 Remove unused definitions (default: false)	A nem használt definíciók eltávolítása (alapértelmezés: false)
@@ -707,6 +714,7 @@ Rest (mm)	Maradék (mm)
 Reuse failed searches during one routing calculation	Sikertelen keresések újrafelhasználása egy útvonalszámításon belül
 Right side bayed (no side panel)	Jobb oldal sorolva (nincs oldalfal)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Kör: mélység a terepszint alatt, rúd: a felső vég mélysége, mm (alapértelmezés 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Rúdföldelő: átmérője (alapértelmezés 20), alap- és körföldelő: a körhuzalé, szalagnál 0, mm
 Room {} exists already	A(z) {} helyiség már létezik
 Rotation in degrees clockwise: 0, 90, 180 or 270	Elforgatás fokban, az óramutató járásával megegyezően: 0, 90, 180 vagy 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Elforgatás fokban, az óramutató járásával ellentétesen (90: alulról felfelé olvasható)
@@ -896,6 +904,7 @@ Unknown address scheme: {}	Ismeretlen címséma: {}
 Unknown alignment: {}	Ismeretlen igazítás: {}
 Unknown anchor: {}	Ismeretlen horgony: {}
 Unknown aspect: {}	Ismeretlen aspektus: {}
+Unknown base: {}	Ismeretlen talp: {}
 Unknown bonding kind: {}	Ismeretlen potenciálkiegyenlítés-típus: {}
 Unknown bonding point: {}	Ismeretlen potenciálkiegyenlítési pont: {}
 Unknown bus system: {}	Ismeretlen buszrendszer: {}
@@ -1000,6 +1009,7 @@ foundation, ring or rod	foundation, ring vagy rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted vagy middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) vagy product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker vagy other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (rúdtartó a tetőn) vagy concrete_base (lapostetőkön)
 hose, tube or pipe	hose, tube vagy pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (gépek, fázisvezetők BK) vagy iec60445 (fázisvezetők BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout (alapértelmezés), power, control, signal vagy fluid
