@@ -203,7 +203,10 @@ ghcr.io/nilres/openecraft-parts-server` (see [installation](installation.md)).
   `POST /directories/{id}/test`, `GET /dashboard`, `GET|PUT /dashboard/settings`.
 - In the editor: *Master data › Data portal* – search the server, see the details with
   the front view and the 3D model, add parts to the local database, save their files, add their macros to the macro library and check the
-  database for newer versions, phased out and discontinued parts. *Devices › Parts
+  database for newer versions, phased out and discontinued parts. The details show the
+  part's catalog with its logo (hidden with *Settings › Appearance › Data portal*). Logos
+  are drawn on a white plate; SVG logos are rendered with `resvg` and the editor's own
+  font, so they look the same on the desktop and in the browser. *Devices › Parts
   management › 🌐 Parts server* downloads all parts or uploads parts. The project check
   warns about devices with discontinued parts; `use_successor_parts` changes them over.
 - The server speaks plain HTTP, so tokens and passwords cross the network unencrypted.
@@ -304,5 +307,7 @@ Enter the server URL and the access token (kept in memory only) and click *Conne
 sign in with a user name and password. Changes are saved to the server with *Save*
 (`Ctrl+S`); the editor asks before unsaved changes are discarded and before a part is
 deleted. *Files and history* above the part editor uploads and removes the files of a
-part and shows its changes; *Catalogs* maintains the manufacturer catalogs and *Users*
-(administrators) the accounts and roles.
+part and shows its changes; *Catalogs* maintains the manufacturer catalogs (with their
+logos: *Choose logo…*, *Remove logo*, for a catalog without unsaved changes) and *Users*
+(administrators) the accounts and roles. *Logos* beside the language menu shows or hides
+the logos in the list of catalogs (remembered).

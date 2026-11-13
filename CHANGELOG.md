@@ -24,7 +24,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   **Catalogs have company logos** (*Administration › Catalogs › Edit*,
   `/api/v1/catalogs/{id}/logo`), shown on the catalog cards and on their parts; the
   bundled catalogs bring the manufacturers' logos (from Wikimedia Commons, name badges
-  for COSMO, Janitza, MDT and Pylontech) ([parts server](docs/parts-server.md), [access control](docs/access-control.md)).
+  for COSMO, Janitza, MDT and Pylontech). The editor's *Data portal* shows the logo of a
+  part's catalog and the parts manager the logos of its catalogs, where they are also
+  changed or removed; *Settings › Appearance › Data portal* (editor) and *Logos* (parts
+  manager) hide them ([parts server](docs/parts-server.md), [access control](docs/access-control.md)).
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*
