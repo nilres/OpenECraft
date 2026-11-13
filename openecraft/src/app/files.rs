@@ -443,17 +443,8 @@ impl App {
             Ok(list) => {
                 let n = list.len();
                 for p in list {
-                    if !p.eplan_variants.is_empty() {
-                        if let Some(old) = self.session.prj.parts.iter_mut().find(|old| old.number == p.number) {
-                            old.eplan_variants = p.eplan_variants.clone();
-                            old.mounting_data.rail = p.mounting_data.rail;
-                        }
-                    }
-                    if !p.picture.is_empty() {
-                        if let Some(old) = self.session.prj.parts.iter_mut().find(|old| old.number == p.number) {
-                            old.picture.clone_from(&p.picture);
-                        }
-                    }
+                    // A part the project has already takes what the import brings.
+                    parts::refresh_in_project(&mut self.session.prj, &p);
                     self.parts_db.upsert(p);
                 }
                 self.parts_db.sort();

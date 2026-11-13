@@ -12,11 +12,13 @@ Add connection point	Dodaj punkt połączenia
 Add cutout	Dodaj wycięcie
 Add function	Dodaj funkcję
 Add marked parts to the parts database ({})	Dodaj oznaczone artykuły do bazy danych artykułów ({})
+Add restricted area	Dodaj obszar zastrzeżony
 Add to the parts database	Dodaj do bazy danych artykułów
 Adds the macros of the file to the macro library	Dodaje makra z pliku do biblioteki makr
 All parts are up to date	Wszystkie artykuły są aktualne
 Already in the parts database	Już w bazie danych artykułów
 Apply {} updates	Zastosuj aktualizacje ({})
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Obszary obudowy wolne od urządzeń (montaż) lub od wycięć i otworów (wycięcie); położenie i rozmiar we współrzędnych powierzchni, jak jej elementy.
 Check the parts database for updates	Sprawdź aktualizacje bazy danych artykułów
 Checking for part updates…	Sprawdzanie aktualizacji artykułów…
 Clearance front	Odstęp przedni
@@ -28,6 +30,7 @@ Connect to a parts server and search.	Połącz się z serwerem artykułów i wys
 Connected: {} {} – {} parts, revision {}, {}	Połączono: {} {} – artykuły: {}, rewizja {}, {}
 Connection designations	Oznaczenia połączeń
 Corner radius	Promień narożnika
+Cut-out	Wycięcie
 Datasheet (URL)	Karta katalogowa (URL)
 Deleted catalog {}	Usunięto katalog {}
 Deleted part {}	Usunięto artykuł {}
@@ -83,13 +86,14 @@ Parts server: {}	Serwer artykułów: {}
 Parts this part is assembled from; the bill of materials lists them under it	Artykuły, z których składa się ten artykuł; zestawienie materiałów wymienia je pod nim
 Personal access token	Osobisty token dostępu
 Place by clicking into the view	Umieść, klikając w widoku
+Placing	Montaż
 Prices / other	Ceny / inne
 Remove all	Usuń wszystko
 Remove picture	Usuń obraz
 Removing the file…	Usuwanie pliku…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Zastępuje punkty połączeń zgodnie z konwencją IEC: oznaczenia nieparzyste u góry, parzyste u dołu
 Reset filter	Resetuj filtr
-Restricted areas	Obszary zastrzeżone
+Restricted areas: {}	Obszary zastrzeżone: {}
 Rotate 90°:	Obróć o 90°:
 Save the file	Zapisz plik
 Saved part {}	Zapisano artykuł {}

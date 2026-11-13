@@ -8,7 +8,7 @@ use egui::{vec2, Color32, Pos2, RichText, Sense, Shape, Stroke};
 use openecraft_parts::vec3::{cross, dot, norm, sub, Orbit};
 use openecraft_parts::{
     default_connection_points, distinct_values, parse_mesh, parse_svg, natural_cmp, ConnectionPoint, Exit, FnKind, FunctionTemplate, Grouping,
-    Component, Cutout, Mesh3d, Model2d, MountingData, Part, PartFilter, PlacedCutout, Prim2d, TopGroup, MOUNTING_KEYS, PRODUCT_GROUPS,
+    Component, Cutout, Mesh3d, Model2d, MountingData, Part, PartFilter, PlacedCutout, Prim2d, RestrictedArea, Restriction, TopGroup, ENCLOSURE_FACES, MOUNTING_KEYS, PRODUCT_GROUPS,
 };
 use openecraft_parts::portal::{Attachment, Lifecycle};
 use openecraft_parts::{date_from_unix, productgroups};
@@ -259,7 +259,6 @@ fn typed_text_row(ui: &mut egui::Ui, part: &str, label: &str, data: &mut Mountin
 
 const HOLES_HINT: &str = "M4: 6,8; 42,8";
 const CUTOUT_HINT: &str = "Ø22.5; 92 x 92 @ 0/-6.5 R3 15°";
-const RESTRICTED_HINT: &str = "placing plate 0/0 550 x 20; cutout left 10/20 30 x 40";
 
 /// Typed mounting data: clearances, holes, cutouts, power loss, fastening.
 fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
@@ -282,7 +281,6 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
         typed_text_row(ui, &number, tr("Mounting holes"), m, "Mounting holes", HOLES_HINT);
         typed_text_row(ui, &number, tr("Door cutout"), m, "Door cutout", CUTOUT_HINT);
         typed_text_row(ui, &number, tr("Cutout"), m, "Cutout", CUTOUT_HINT);
-        typed_text_row(ui, &number, tr("Restricted areas"), m, "Restricted areas", RESTRICTED_HINT);
         text_row(ui, tr("Fastening"), &mut m.fastening);
         text_row(ui, tr("Faces"), &mut m.faces);
         text_row(ui, tr("Collision class"), &mut m.collision_class);
@@ -312,6 +310,69 @@ fn mounting_data(ui: &mut egui::Ui, part: &mut Part) {
     cutout_table(ui, "pcut", &mut part.mounting_data.cutouts);
     ui.label(RichText::new(tr("Door cutouts")).strong().color(DOOR_CUTOUT)).on_hover_text(tr("In the door, when they differ from the cutouts"));
     cutout_table(ui, "pdcut", &mut part.mounting_data.door_cutouts);
+    if part.subgroup == "Enclosure" || !part.mounting_data.restricted.is_empty() {
+        restricted_table(ui, &mut part.mounting_data.restricted);
+    }
+}
+
+/// Title of an enclosure face by its key ([`openecraft_parts::ENCLOSURE_FACES`]).
+fn face_title(key: &str) -> &'static str {
+    match key {
+        "plate" => tr("Mounting plate"),
+        "door" => tr("Door"),
+        "left" => tr("Left side"),
+        "right" => tr("Right side"),
+        "rear" => tr("Rear wall"),
+        "roof" => tr("Roof"),
+        _ => tr("Bottom"),
+    }
+}
+
+/// The restricted areas of an enclosure part: kind, face, place and size.
+fn restricted_table(ui: &mut egui::Ui, list: &mut Vec<RestrictedArea>) {
+    let header = egui::CollapsingHeader::new(RichText::new(tr_fmt!("Restricted areas: {}", list.len())).strong()).id_salt("prestricted");
+    header.show(ui, |ui| {
+        ui.weak(tr("Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them."));
+        let mut remove = None;
+        egui::ScrollArea::vertical().id_salt("prestricted_rows").max_height(260.0).show(ui, |ui| {
+            egui::Grid::new("prestricted_grid").num_columns(7).striped(true).spacing([6.0, 4.0]).show(ui, |ui| {
+                for h in [tr("Kind"), tr("Face"), "X", "Y", tr("Width"), tr("Height"), ""] {
+                    ui.label(RichText::new(h).strong());
+                }
+                ui.end_row();
+                for (i, a) in list.iter_mut().enumerate() {
+                    let kind = |k: Restriction| if k == Restriction::Placing { tr("Placing") } else { tr("Cut-out") };
+                    egui::ComboBox::from_id_salt(("prestricted_kind", i)).selected_text(kind(a.kind)).width(80.0).show_ui(ui, |ui| {
+                        for k in [Restriction::Placing, Restriction::Cutout] {
+                            ui.selectable_value(&mut a.kind, k, kind(k));
+                        }
+                    });
+                    egui::ComboBox::from_id_salt(("prestricted_face", i)).selected_text(face_title(&a.face)).width(110.0).show_ui(ui, |ui| {
+                        for f in ENCLOSURE_FACES {
+                            if ui.selectable_label(a.face == f, face_title(f)).clicked() {
+                                a.face = f.to_string();
+                            }
+                        }
+                    });
+                    for v in [&mut a.x, &mut a.y] {
+                        ui.add(egui::DragValue::new(v).speed(0.5).range(-5000.0..=5000.0).suffix(" mm"));
+                    }
+                    ui.add(cutout_size(&mut a.w));
+                    ui.add(cutout_size(&mut a.h));
+                    if icons::button(ui, Icon::Delete, tr("Remove")).clicked() {
+                        remove = Some(i);
+                    }
+                    ui.end_row();
+                }
+            });
+        });
+        if let Some(i) = remove {
+            list.remove(i);
+        }
+        if icons::text_button(ui, Icon::Plus, tr("Add restricted area")).clicked() {
+            list.push(RestrictedArea { face: "plate".into(), w: 50.0, h: 50.0, ..Default::default() });
+        }
+    });
 }
 
 fn cutout_size(v: &mut f32) -> egui::DragValue<'_> {

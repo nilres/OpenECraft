@@ -12,12 +12,14 @@ Add connection point	Anschluss hinzufügen	Ajouter un point de connexion	Añadir
 Add cutout	Ausschnitt hinzufügen	Ajouter une découpe	Añadir recorte
 Add function	Funktion hinzufügen	Ajouter une fonction	Añadir función
 Add marked parts to the parts database ({})	Markierte Artikel in die Artikeldatenbank übernehmen ({})	Ajouter les articles marqués à la base d'articles ({})	Añadir los artículos marcados a la base de datos de artículos ({})
+Add restricted area	Sperrfläche hinzufügen	Ajouter une zone interdite	Añadir zona restringida
 Add to the parts database	In die Artikeldatenbank übernehmen	Ajouter à la base d'articles	Añadir a la base de datos de artículos
 Adds the macros of the file to the macro library	Fügt die Makros der Datei der Makrobibliothek hinzu	Ajoute les macros du fichier à la bibliothèque de macros	Añade las macros del archivo a la biblioteca de macros
 After a successful connection test, save the token securely for OpenECraft and MCP under this Windows user.	Nach erfolgreichem Verbindungstest den Token für OpenECraft und MCP unter diesem Windows-Benutzer sicher speichern.	Après un test de connexion réussi, enregistrer le jeton en toute sécurité pour OpenECraft et MCP sous cet utilisateur Windows.	Tras una prueba de conexión correcta, guardar el token de forma segura para OpenECraft y MCP con este usuario de Windows.
 All parts are up to date	Alle Artikel sind aktuell	Tous les articles sont à jour	Todos los artículos están actualizados
 Already in the parts database	Bereits in der Artikeldatenbank	Déjà dans la base d'articles	Ya está en la base de datos de artículos
 Apply {} updates	{} Aktualisierungen übernehmen	Appliquer {} mises à jour	Aplicar {} actualizaciones
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Flächen des Gehäuses, die frei von Geräten (Platzierung) oder von Ausschnitten und Bohrungen (Ausschnitt) bleiben; Lage und Größe in den Koordinaten der Fläche, wie ihre Elemente sie haben.	Zones de l'enveloppe libres d'appareils (placement) ou de découpes et de trous (découpe) ; position et taille dans les coordonnées de la face, comme ses éléments.	Zonas de la envolvente libres de aparatos (colocación) o de recortes y agujeros (recorte); posición y tamaño en las coordenadas de la cara, como sus elementos.
 Assume Windows trackpad	Windows-Trackpad annehmen	Supposer un pavé tactile Windows	Suponer panel táctil de Windows
 Can be mounted directly on the wall or ceiling of a room, without a rail	Kann ohne Tragschiene direkt an Wand oder Decke eines Raums montiert werden	Peut être monté directement sur le mur ou le plafond d'une salle, sans rail	Puede montarse directamente en la pared o el techo de una sala, sin carril
 Check the parts database for updates	Artikeldatenbank auf Aktualisierungen prüfen	Vérifier les mises à jour de la base d'articles	Comprobar actualizaciones de la base de datos de artículos
@@ -31,6 +33,7 @@ Connect to a parts server and search.	Verbinden Sie sich mit einem Artikelserver
 Connected: {} {} – {} parts, revision {}, {}	Verbunden: {} {} – {} Artikel, Revision {}, {}	Connecté : {} {} – {} articles, révision {}, {}	Conectado: {} {} – {} artículos, revisión {}, {}
 Connection designations	Verbindungsbezeichnungen	Désignations des liaisons	Designaciones de conexión
 Corner radius	Eckenradius	Rayon d'angle	Radio de esquina
+Cut-out	Ausschnitt	Découpe	Recorte
 Datasheet (URL)	Datenblatt (URL)	Fiche technique (URL)	Hoja de datos (URL)
 Deleted catalog {}	Katalog {} gelöscht	Catalogue {} supprimé	Catálogo {} eliminado
 Deleted part {}	Artikel {} gelöscht	Article {} supprimé	Artículo {} eliminado
@@ -89,6 +92,7 @@ Parts server: {}	Artikelserver: {}	Serveur d'articles : {}	Servidor de artículo
 Parts this part is assembled from; the bill of materials lists them under it	Artikel, aus denen dieser Artikel zusammengesetzt ist; die Stückliste führt sie darunter auf	Articles dont cet article est composé ; la nomenclature les liste en dessous	Artículos de los que se compone este artículo; la lista de materiales los muestra debajo
 Personal access token	Persönliches Zugriffstoken	Jeton d'accès personnel	Token de acceso personal
 Place by clicking into the view	Durch Klick in die Ansicht platzieren	Placer en cliquant dans la vue	Colocar haciendo clic en la vista
+Placing	Platzierung	Placement	Colocación
 Prices / other	Preise / Sonstiges	Prix / divers	Precios / otros
 Remember token on this computer	Token auf diesem Computer speichern	Mémoriser le jeton sur cet ordinateur	Recordar el token en este equipo
 Remove all	Alle entfernen	Tout supprimer	Quitar todos
@@ -96,7 +100,7 @@ Remove picture	Bild entfernen	Supprimer l'image	Quitar la imagen
 Removing the file…	Datei wird entfernt…	Suppression du fichier…	Quitando el archivo…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Ersetzt die Anschlüsse nach IEC-Konvention: ungerade Bezeichnungen oben, gerade unten	Remplace les points de connexion selon la convention CEI : désignations impaires en haut, paires en bas	Sustituye los puntos de conexión según la convención IEC: designaciones impares arriba, pares abajo
 Reset filter	Filter zurücksetzen	Réinitialiser le filtre	Restablecer el filtro
-Restricted areas	Sperrflächen	Zones interdites	Zonas restringidas
+Restricted areas: {}	Sperrflächen: {}	Zones interdites : {}	Zonas restringidas: {}
 Rotate 90°:	Um 90° drehen:	Pivoter de 90° :	Girar 90°:
 Save the file	Datei speichern	Enregistrer le fichier	Guardar el archivo
 Saved Data Portal token removed	Gespeichertes Data-Portal-Token entfernt	Jeton Data Portal enregistré supprimé	Token de Data Portal guardado eliminado

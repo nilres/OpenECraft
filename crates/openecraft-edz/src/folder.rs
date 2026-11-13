@@ -90,6 +90,12 @@ fn catalog_root(path: &Path) -> Option<&Path> {
 /// The picture files the parts of an EPLAN parts XML text name (`P_ARTICLE_PICTUREFILE`):
 /// part number and picture reference.
 fn picture_refs(text: &str) -> Vec<(String, String)> {
+    article_refs(text, "P_ARTICLE_PICTUREFILE")
+}
+
+/// The files the parts of an EPLAN parts XML text name in `attribute` (on the part or
+/// a variant): part number and reference.
+fn article_refs(text: &str, attribute: &str) -> Vec<(String, String)> {
     let Ok(root) = openecraft_parts::xml::parse(text.trim_start_matches('\u{feff}')) else { return Vec::new() };
     let mut parts = Vec::new();
     root.descendants("part", &mut parts);
@@ -97,7 +103,7 @@ fn picture_refs(text: &str) -> Vec<(String, String)> {
         .into_iter()
         .filter_map(|p| {
             let number = openecraft_parts::language_text(p.attribute("P_ARTICLE_PARTNR")?);
-            let picture = p.attribute("P_ARTICLE_PICTUREFILE").or_else(|| p.all("variant").find_map(|v| v.attribute("P_ARTICLE_PICTUREFILE")))?;
+            let picture = p.attribute(attribute).or_else(|| p.all("variant").find_map(|v| v.attribute(attribute)))?;
             Some((number, picture.to_string()))
         })
         .collect()
@@ -138,7 +144,8 @@ pub fn read_with_library(path: &Path, data: &[u8], mappings: &[openecraft_core::
     };
     let mut files = Vec::new();
     let pictures = if local { picture_refs(&source) } else { Vec::new() };
-    if local && (parts.iter().any(|p| !p.eplan_macro.is_empty()) || !pictures.is_empty()) {
+    let models = if local { article_refs(&source, "P_ARTICLE_MACRO") } else { Vec::new() };
+    if local && (parts.iter().any(|p| !p.eplan_macro.is_empty()) || !pictures.is_empty() || !models.is_empty()) {
         let parent = path.parent().ok_or("Missing catalog directory")?;
         let root = catalog_root(path).unwrap_or(parent);
         let mut catalog = if root != parent { index(root)? } else { Folder::default() };
@@ -163,6 +170,16 @@ pub fn read_with_library(path: &Path, data: &[u8], mappings: &[openecraft_core::
                 part.picture = picture;
             }
             files.push(EdzFile { part: number.clone(), name: file.file_name().unwrap_or_default().to_string_lossy().into_owned(), kind: AttachmentKind::Image, data });
+        }
+        // The 3D macros of the parts give their models.
+        for (number, reference) in &models {
+            let Some(part) = parts.iter_mut().find(|p| &p.number == number && p.model_3d.is_none()) else { continue };
+            let Ok(file) = catalog.resolve(reference, path) else { continue };
+            match crate::layout::model(&text(&bytes(file)?)) {
+                Ok(Some(mesh)) => part.model_3d = Some(mesh.into()),
+                Ok(None) => {}
+                Err(error) => part.eplan_variants.push(serde_json::json!({"source": reference, "error": error}).into()),
+            }
         }
         let mut cache = std::collections::BTreeMap::new();
         for part in parts.iter_mut().filter(|p| !p.eplan_macro.is_empty()) {
@@ -273,6 +290,15 @@ impl Folder {
         if let Some((_, reference)) = picture_refs(&article).into_iter().find(|(n, _)| n == number) {
             if let Some(data) = Self::pick(&self.pictures, &reference, "$(md_img)/", source).ok().and_then(|p| bytes(p).ok()) {
                 part.picture = crate::picture::thumbnail(&data).unwrap_or_default();
+            }
+        }
+        if let Some((_, reference)) = article_refs(&article, "P_ARTICLE_MACRO").into_iter().find(|(n, _)| n == number).filter(|_| part.model_3d.is_none()) {
+            if let Ok(file) = self.resolve(&reference, source) {
+                match crate::layout::model(&text(&bytes(file)?)) {
+                    Ok(Some(mesh)) => part.model_3d = Some(mesh.into()),
+                    Ok(None) => {}
+                    Err(error) => part.eplan_variants.push(serde_json::json!({"source": reference, "error": error}).into()),
+                }
             }
         }
         if !conflicting.is_empty() {

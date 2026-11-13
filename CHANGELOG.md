@@ -38,8 +38,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   ([parts](docs/features/parts.md)). **Restricted areas** of enclosure parts (mounting
   data, on the faces of the enclosure) are drawn hatched in the panel layout, which
   reports devices in a placing area and cutouts and holes in a cut-out area
-  ([panel layout](docs/features/panel-layout.md#restricted-areas)). An enclosure of a
-  maker's part that names its system keeps that part instead of the catalog's body. The 3D macros of EDZ files give their parts a 3D
+  ([panel layout](docs/features/panel-layout.md#restricted-areas)), shown in the 3D view
+  and edited in a table of the part editor. An enclosure of a maker's part that names
+  its system keeps that part instead of the catalog's body (also in the bill of
+  materials), and the **3D view and 3D exports show the maker's model** of the
+  enclosure. Mounting plates that are not centred get their size (`Mounting size`,
+  `mounting_size`). Importing a part again refreshes the project's copy with what the
+  import brings (models, mounting data, technical data). Unpacked EDZ files and vendor
+  folders take 3D models from their 3D macros, and macros with bodies in a form not
+  read are reported. The 3D macros of EDZ files give their parts a 3D
   model. STEP files whose arcs are given by their vertices
   only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
   longer fails the whole model.

@@ -1625,7 +1625,8 @@ pub fn draw_enclosure(
     for (kind, rising) in [(crate::parts::Restriction::Placing, true), (crate::parts::Restriction::Cutout, false)] {
         for a in panel::restricted_areas(prj, e, face, kind) {
             let (s, t) = (tf(a.min.x, a.min.y), tf(a.max.x, a.max.y));
-            hatch(d, R::from_points(s, t), 2.5, rising);
+            // 10 mm of the enclosure apart: as wide on screen as on paper.
+            hatch(d, R::from_points(s, t), 10.0 * k, rising);
             for (u, v) in [(s, p(t.x, s.y)), (p(t.x, s.y), t), (t, p(s.x, t.y)), (p(s.x, t.y), s)] {
                 d.line(u, v, 0.1, Ink::Frame, true);
             }

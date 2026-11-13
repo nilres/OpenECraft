@@ -72,6 +72,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("assembly", Kind::Bool, tr_const!("Open mounting assembly without enclosure walls")),
             optional("implicit_plate",Kind::Bool,tr_const!("Generate a default mounting plate when no explicit plate is placed")),
             optional("mounting_origin",Kind::Object,tr_const!("Mounting-face origin as x, y and z; empty object restores the default")),
+            optional("mounting_size",Kind::Object,tr_const!("Mounting plate size as width and height; empty object restores the centred plate")),
         ],
         run: add_enclosure,
     },
@@ -83,6 +84,7 @@ pub static COMMANDS: &[Spec] = &[
             optional("assembly", Kind::Bool, tr_const!("Open mounting assembly without enclosure walls")),
             optional("implicit_plate",Kind::Bool,tr_const!("Generate a default mounting plate when no explicit plate is placed")),
             optional("mounting_origin",Kind::Object,tr_const!("Mounting-face origin as x, y and z; empty object restores the default")),
+            optional("mounting_size",Kind::Object,tr_const!("Mounting plate size as width and height; empty object restores the centred plate")),
             optional("system", Kind::Str, tr_const!("compact, baying, terminal_box, plastic, house_connection or rack19; empty for none")),
             optional("part", Kind::Str, tr_const!("Enclosure part number")),
             optional("device_tag",Kind::Str,tr_const!("Device tag assigned to this enclosure body")),
@@ -313,6 +315,7 @@ fn enclosure_json(prj: &Project, e: &Enclosure) -> Value {
         "kind":format!("{:?}",e.kind).to_lowercase(),
         "implicit_plate":!e.no_implicit_plate,
         "mounting_origin":e.mounting_origin,
+        "mounting_size":e.mounting_size,
         "mounting_frame":panel::face_frame(e,Face::Plate),
         "lineup": lineup_json(prj, ei),
         "system": e.build.system,
@@ -355,6 +358,7 @@ fn add_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     resize(&mut e, a);
     if a.value("mounting_origin").is_some() {e.mounting_origin=mounting_origin(a)?;}
+    if a.value("mounting_size").is_some() {e.mounting_size=mounting_size(a)?;}
     if let Some(implicit)=bool_arg(a,"implicit_plate") {e.no_implicit_plate = !implicit;}
     if a.flag("assembly") {e.kind=panel::EnclosureKind::Assembly;e.part.clear();e.build=Default::default();}
     if let Some(tag)=a.str("device_tag") {e.device_tag=tag.into();}
@@ -388,6 +392,7 @@ fn set_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let ei = enclosure_index(prj, a.req("enclosure"))?;
     check_size(a)?;
     let origin=mounting_origin(a)?;
+    let size=mounting_size(a)?;
     let old_part=prj.layout.enclosures[ei].part.clone();let old_tag=prj.layout.enclosures[ei].device_tag.clone();
     if a.num("plinth").is_some_and(|v| !(v >= 0.0 && v.is_finite())) {
         return Err(tr("The plinth height must not be negative").to_string());
@@ -407,6 +412,7 @@ fn set_enclosure(prj: &mut Project, a: &Args) -> Result<Value, String> {
     }
     if let Some(implicit)=bool_arg(a,"implicit_plate") {e.no_implicit_plate = !implicit;}
     if a.value("mounting_origin").is_some() {e.mounting_origin=origin;}
+    if a.value("mounting_size").is_some() {e.mounting_size=size;}
     if let Some(v) = a.num("plinth") {
         e.build.plinth = v;
     }
@@ -432,6 +438,17 @@ fn mounting_origin(a:&Args)->Result<Option<[f32;3]>,String> {
     match coordinates {
         [Some(x),Some(y),Some(z)] if [x,y,z].iter().all(|v|v.is_finite())=>Ok(Some([x,y,z])),
         _=>Err(tr("Mounting origin must contain finite x, y and z coordinates").into()),
+    }
+}
+
+fn mounting_size(a: &Args) -> Result<Option<[f32; 2]>, String> {
+    let Some(value) = a.value("mounting_size") else { return Ok(None) };
+    if value.as_object().is_some_and(|o| o.is_empty()) {
+        return Ok(None);
+    }
+    match ["width", "height"].map(|key| value.get(key).and_then(Value::as_f64).map(|v| v as f32)) {
+        [Some(w), Some(h)] if [w, h].iter().all(|v| v.is_finite() && *v > 0.0) => Ok(Some([w, h])),
+        _ => Err(tr("Mounting size must contain a positive width and height").into()),
     }
 }
 

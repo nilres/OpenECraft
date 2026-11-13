@@ -129,8 +129,10 @@ the device. Floor-standing parts stand upright on the floor of a room.
   macros become project symbols. The product picture is kept with the part as a small
   JPEG (at most 192 px) and shown in the part details with its mounting data
   (mounting, holes, cutout, clearances) and the wires its connection points take.
-  A 3D macro of the part (EPLAN Pro Panel, `…_3D.ema`) gives it its 3D model when it
-  has none.
+  A 3D macro of the part (EPLAN Pro Panel, `…_3D.ema`, `P_ARTICLE_MACRO`) gives it
+  its 3D model when it has none, also for the parts XML of an unpacked EDZ file or a
+  vendor folder; a macro whose bodies are in a form this version does not read is
+  reported in the part's EPLAN diagnostics.
   Parts Manager and `parts_import` also store the original files as attachments. The
   project and server part records carry the converted definitions and diagnostics.
   The part XML of an unpacked EDZ file (`items/partxml/…part.xml`) is read the same
@@ -146,7 +148,9 @@ the device. Floor-standing parts stand upright on the floor of a room.
   become its 3D model, stood upright with the front towards +z; a macro without
   bodies leaves it to the STEP model, without its restricted cut-out and placing areas
   (Parts Manager and the editor; `parts_import` only attaches the STEP file). The
-  front of the mounting plate gives the part data `Mounting origin: 25/12.5/20`, so
+  front of the mounting plate (or else the largest surface facing the front in the rear
+  half of the housing) gives the part data `Mounting origin: 25/12.5/20` and
+  `Mounting size: 550 x 575`, so
   that an enclosure of the part gets that plate (see [panel layout](panel-layout.md)).
   The restricted areas of the macro become the part's *Restricted areas* (mounting
   data, `placing plate 0/0 550 x 20; cutout left 10/20 30 x 40`: kind, face, place and

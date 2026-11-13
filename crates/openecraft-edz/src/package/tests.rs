@@ -124,6 +124,10 @@ fn the_macro_gives_model_plate_and_restricted_areas() {
     let p = &edz.parts[0];
     assert_eq!(p.model_3d.as_ref().unwrap().size(), [600.0, 600.0, 350.0]);
     assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
+    assert_eq!(p.tech_value("Mounting size"), Some("550 x 575"));
+    // Without a surface of the plate's kind: the largest one facing the front.
+    let other = read(&package_with(&layout_ema().replace("A2486=\"10002\"", "A2486=\"10099\"")), None).unwrap();
+    assert_eq!(other.parts[0].tech_value("Mounting origin"), Some("25/12.5/20"));
     // The area 10 × 20 mm at the lower left corner of the plate, in plate coordinates
     // (y down from the plate's top).
     assert_eq!(p.mounting_data.restricted, [RestrictedArea { kind: Restriction::Cutout, face: "plate".into(), x: 0.0, y: 555.0, w: 10.0, h: 20.0 }]);

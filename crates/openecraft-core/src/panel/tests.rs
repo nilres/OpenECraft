@@ -1023,4 +1023,32 @@ fn the_mounting_plate_comes_from_the_enclosure_part() {
         assert_eq!(new_enclosure(&mut prj, "RIT.1360000", "+CAB1").mounting_origin, None, "{bad}");
     }
     assert_eq!(mounting_origin(" 25 / 12.5 / 20 mm"), Some([25.0, 12.5, 20.0]));
+    // A plate that is not centred.
+    prj.parts[0].tech_data = "Mounting origin: 25/12.5/20\nMounting size: 500 x 575 mm".into();
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!((e.mounting_size, e.plate_size()), (Some([500.0, 575.0]), (500.0, 575.0)));
+    assert_eq!(mounting_size("0 x 5"), None);
+}
+
+#[test]
+fn restricted_areas_lie_on_their_faces_in_3d() {
+    use crate::parts::{RestrictedArea, Restriction};
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "ENC".into(), width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    part.mounting_data.restricted = vec![
+        RestrictedArea { kind: Restriction::Cutout, face: "door".into(), x: 10.0, y: 20.0, w: 30.0, h: 40.0 },
+        RestrictedArea { kind: Restriction::Placing, face: "left".into(), x: 0.0, y: 0.0, w: 50.0, h: 60.0 },
+    ];
+    prj.parts.push(part);
+    let e = Enclosure { part: "ENC".into(), width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    let quads = restricted_quads(&prj, &e);
+    assert_eq!(quads.len(), 2);
+    let (kind, face, door) = quads[0];
+    assert_eq!((kind, face), (Restriction::Cutout, Face::Door));
+    assert_eq!((door[0], door[2]), ([10.0, 20.0, 250.0], [40.0, 60.0, 250.0]));
+    // The left wall: face x along the depth, on its inside.
+    let (_, face, left) = quads[1];
+    assert_eq!(face, Face::Left);
+    assert!(left.iter().all(|q| (q[0] - e.wall()).abs() < 1e-4), "{left:?}");
+    assert_eq!((left[2][1], left[2][2]), (60.0, 50.0));
 }

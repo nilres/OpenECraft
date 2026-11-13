@@ -89,6 +89,48 @@ pub fn kind_of_symbol(key: &str) -> Option<FnKind> {
 
 // ---------------------------------------------------------------------- project
 
+/// Takes a part imported again into the project's copy of it: what the import brings
+/// (description, size, technical and mounting data, models, picture, connection
+/// points, components, EPLAN representations, source data) replaces the copy's; what
+/// it lacks (a CSV file has no models) stays. Returns false if the project has no copy.
+pub fn refresh_in_project(prj: &mut Project, new: &Part) -> bool {
+    let Some(old) = prj.parts.iter_mut().find(|p| p.number == new.number) else { return false };
+    let text = |old: &mut String, new: &String| {
+        if !new.is_empty() {
+            old.clone_from(new);
+        }
+    };
+    text(&mut old.description, &new.description);
+    text(&mut old.tech_data, &new.tech_data);
+    text(&mut old.picture, &new.picture);
+    text(&mut old.eplan_macro, &new.eplan_macro);
+    if new.width > 0.0 && new.height > 0.0 {
+        (old.width, old.height, old.depth) = (new.width, new.height, new.depth);
+    }
+    if !new.mounting_data.is_empty() {
+        old.mounting_data.clone_from(&new.mounting_data);
+    }
+    if new.model_2d.is_some() {
+        old.model_2d.clone_from(&new.model_2d);
+    }
+    if new.model_3d.is_some() {
+        old.model_3d.clone_from(&new.model_3d);
+    }
+    if new.source_data.is_some() {
+        old.source_data.clone_from(&new.source_data);
+    }
+    if !new.connection_points.is_empty() {
+        old.connection_points.clone_from(&new.connection_points);
+    }
+    if !new.components.is_empty() {
+        old.components.clone_from(&new.components);
+    }
+    if !new.eplan_variants.is_empty() {
+        old.eplan_variants.clone_from(&new.eplan_variants);
+    }
+    true
+}
+
 /// Copies a part from the database (or the built-in catalog) into the project parts
 /// (if not there yet).
 pub fn ensure_in_project(prj: &mut Project, db: &PartsDb, number: &str) {

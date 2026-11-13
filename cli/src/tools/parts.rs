@@ -627,11 +627,7 @@ fn import_eplan_symbols(s: &mut Session, a: &Args) -> Result<Value, String> {
         .collect();
     let numbers: Vec<_> = parts.iter().map(|p| p.number.clone()).collect();
     for part in parts {
-        if let Some(old) = project.parts.iter_mut().find(|p| p.number == part.number) {
-            old.eplan_variants = part.eplan_variants;
-            old.mounting_data.rail = part.mounting_data.rail;
-            old.eplan_macro = part.eplan_macro;
-        } else {
+        if !openecraft_core::parts::refresh_in_project(project, &part) {
             project.parts.push(part);
         }
     }

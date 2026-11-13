@@ -57,6 +57,17 @@ fn objects_are_placed_in_their_parents() {
 }
 
 #[test]
+fn bodies_without_a_readable_mesh_are_counted() {
+    let other = "#,1,1{19,8,16,1>{}{}0}";
+    let file = macro_file().replacen(SQUARE, other, 1);
+    let layout = decode(&file).unwrap();
+    assert_eq!((layout.bodies.len(), layout.unread), (0, 2), "both bodies use the group");
+    assert_eq!(model(&file), Err(unread(2)));
+    assert!(model(&macro_file()).unwrap().is_some());
+    assert_eq!(model(&macro_file().replace("MacroFuncType=\"10\"", "MacroFuncType=\"1\"")), Ok(None));
+}
+
+#[test]
 fn other_macros_have_no_layout() {
     assert!(decode(&macro_file().replace("MacroFuncType=\"10\"", "MacroFuncType=\"1\"")).is_none());
     assert!(decode("not xml").is_none());

@@ -135,6 +135,12 @@ fn the_3d_macro_gives_the_model() {
     // As it is (x across the front, y up, z towards the front), at the origin.
     assert_eq!(mesh.size(), [71.5, 90.0, 44.0]);
     assert_eq!(mesh.vertices[2], [71.5, 90.0, 44.0]);
+    // A macro whose body is in a form not read says so.
+    let ema = ema.replace(stream, "#,1,1{19,8,16,1>{}{}0}");
+    let bytes = archive(&[("manifest.xml", MANIFEST.as_bytes()), ("items/partxml/SIE.LOGO.part.xml", PART.as_bytes()), ("items/macro/Siemens/LOGO/LOGO_3D.ema", ema.as_bytes())]);
+    let p = read(&bytes).unwrap().parts.remove(0);
+    assert!(p.model_3d.is_none());
+    assert!(p.eplan_variants.iter().any(|v| v["error"] == crate::layout::unread(1)), "{:?}", p.eplan_variants);
 }
 
 #[test]

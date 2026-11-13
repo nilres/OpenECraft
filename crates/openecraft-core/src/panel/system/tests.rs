@@ -119,3 +119,38 @@ fn a_plinth_delivered_with_the_enclosure_is_no_part_of_its_own() {
     plain.build.plinth = 100.0;
     assert_eq!(components(&plain).iter().find(|c| c.role == Role::Plinth).unwrap().part, "GEN.PL-600X250-100");
 }
+
+/// A maker's enclosure part with a model of 600 × 600 × 350 mm: its left wall, the door
+/// leaf in front and the mounting plate inside.
+fn maker_project() -> crate::model::Project {
+    use crate::parts::vec3::box_triangles;
+    let mut prj = crate::model::Project::default();
+    let mut part = crate::parts::Part { number: "RIT.1360000".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    part.tech_data = "Enclosure system: compact".into();
+    let mut mesh = crate::parts::Mesh3d::default();
+    for tri in [box_triangles([0.0, 0.0, 0.0], [1.5, 600.0, 345.0]), box_triangles([2.0, 2.0, 334.0], [598.0, 598.0, 350.0]), box_triangles([25.0, 12.5, 17.5], [575.0, 587.5, 20.0])].concat() {
+        let base = mesh.vertices.len() as u32;
+        mesh.vertices.extend(tri);
+        mesh.triangles.push([base, base + 1, base + 2]);
+    }
+    part.model_3d = Some(mesh.into());
+    prj.parts.push(part);
+    prj
+}
+
+#[test]
+fn the_makers_model_goes_with_walls_door_and_inside() {
+    let mut prj = maker_project();
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+A1");
+    let model = maker_model(&prj, &e).unwrap();
+    let count = |f: Option<Face>| model.iter().filter(|(g, _)| *g == f).count();
+    // The wall's front edge lies in the front that opens with the door.
+    assert_eq!((count(Some(Face::Left)), count(Some(Face::Door)), count(None)), (10, 14, 12));
+    // The body is the maker's part, also in the bill of materials.
+    assert_eq!(components(&e).iter().find(|c| c.role == Role::Body).map(|c| c.part.as_str()), Some("RIT.1360000"));
+    // Not for catalog enclosures or a model of another size.
+    let mut other = e.clone();
+    other.width = 800.0;
+    assert!(maker_model(&prj, &other).is_none());
+    assert!(maker_model(&prj, &baying()).is_none());
+}

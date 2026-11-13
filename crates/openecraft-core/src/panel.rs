@@ -58,7 +58,7 @@ pub use rooms::{
     penetration_link, wall_links, WallLink, Via, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP, is_outside, outside_building, through_wall,
 };
 pub(crate) use rooms::inner_footprint;
-pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
+pub use system::{apply_system, components, maker_model, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
 pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
@@ -350,6 +350,7 @@ impl Default for Enclosure {
             depth: 250.0,
             no_implicit_plate:false,
             mounting_origin:None,
+            mounting_size: None,
             door_clearance: 0.0,
             items: Vec::new(),
             climate: Default::default(),
@@ -406,6 +407,9 @@ impl Enclosure {
     }
 
     pub fn plate_size(&self) -> (f32, f32) {
+        if let Some([w, h]) = self.mounting_size.filter(|_| !self.is_assembly()) {
+            return (w.max(10.0), h.max(10.0));
+        }
         let offset=self.face_offset(Face::Plate);
         ((self.width - 2.0 * offset.x).max(10.0), (self.height - 2.0 * offset.y).max(10.0))
     }
@@ -677,6 +681,8 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
         // 25/12.5/20`: its top left front corner from the left, top and rear, mm).
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
+            // Its size when it is not centred (`Mounting size: 550 x 575`).
+            e.mounting_size = pd.tech_value("Mounting size").and_then(mounting_size);
         }
     }
     e
@@ -692,6 +698,28 @@ pub fn restricted_areas(prj: &Project, e: &Enclosure, face: Face, kind: crate::p
         .filter(|a| a.kind == kind && a.face == face.key())
         .map(|a| R::from_points(p(a.x, a.y), p(a.x + a.w, a.y + a.h)))
         .collect()
+}
+
+/// The restricted areas of the enclosure's part as quadrilaterals on their faces'
+/// mounting surfaces, in enclosure coordinates, with their kind and face.
+pub fn restricted_quads(prj: &Project, e: &Enclosure) -> Vec<(crate::parts::Restriction, Face, [V3; 4])> {
+    let mut out = Vec::new();
+    for face in Face::ALL {
+        for kind in [crate::parts::Restriction::Placing, crate::parts::Restriction::Cutout] {
+            for r in restricted_areas(prj, e, face, kind) {
+                let corners = [(r.min.x, r.min.y), (r.max.x, r.min.y), (r.max.x, r.max.y), (r.min.x, r.max.y)].map(|(x, y)| face_point(e, face, [x, y, 0.0]));
+                out.push((kind, face, corners));
+            }
+        }
+    }
+    out
+}
+
+/// `width x height` in mm, both positive.
+fn mounting_size(text: &str) -> Option<[f32; 2]> {
+    let (w, h) = text.trim().trim_end_matches("mm").split_once(['x', 'X'])?;
+    let n = |v: &str| v.trim().parse::<f32>().ok().filter(|v| v.is_finite() && *v > 0.0);
+    Some([n(w)?, n(h)?])
 }
 
 /// `x/y/z` in mm.

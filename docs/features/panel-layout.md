@@ -133,9 +133,22 @@ mounting data, imported with the enclosure packages of the Rittal configurator):
 *placing* areas take no devices, rails, ducts or busbars, *cut-out* areas no cutouts
 or holes, e.g. the hinges, the lock and the stiffening of the door, or the fixing
 points of the mounting plate. The faces show them hatched (placing areas rising,
-cut-out areas falling), in the editor and on the mounting layout pages. The check
-reports an item lying in a placing area (*Outside*) and the cutouts and holes in a
-cut-out area (*Manufacturing*); touching an area's edge is allowed.
+cut-out areas falling), in the editor and on the mounting layout pages, and the 3D
+view as translucent areas (placing blue, cut-out orange) that go with their wall or
+the door. The check reports an item lying in a placing area (*Outside*) and the
+cutouts and holes in a cut-out area (*Manufacturing*); touching an area's edge is
+allowed. The part editor lists them under *Mounting data › Restricted areas* (kind,
+face, place and size), where they are added, changed and removed.
+
+## Maker's enclosure models
+
+An enclosure whose part is a maker's part (not one of the built-in catalog) with a 3D
+model of the enclosure's width and height, as the enclosure packages of the Rittal
+configurator bring it, shows that model in the 3D view and the 3D exports instead of
+the generic body, walls, door and plates. Its triangles go with the wall whose plane
+they lie in (hidden with it when the walls in front are hidden), with the door when
+they lie in the front 20 mm (translucent, opening with it) or stay inside (mounting
+plate, gland plate, flanges). Plinths, baying kits and 19-inch rails stay generic.
 
 ## Drilling pattern and NC data
 
@@ -470,7 +483,9 @@ cabinet `HAG.FR25S2`, 1850 mm + 200 mm plinth, five fields, protection class II)
 Its mounting plate is placed by `Mounting origin: 25/12.5/20` (the top left corner
 of the plate's front from the left, the top and the rear of the enclosure, mm; the
 plate keeps the same distance on the right and at the bottom), as the enclosure
-packages of the Rittal configurator give it ([parts](parts.md)). A maker's enclosure
+packages of the Rittal configurator give it ([parts](parts.md)). A plate that is not centred
+also gives its size (`Mounting size: 500 x 575`; `mounting_size` of `add_enclosure` /
+`set_enclosure`). A maker's enclosure
 part that names its system (`Enclosure system: compact`) gets that system's walls and
 data but stays the part of the enclosure; only enclosures of the built-in catalog
 follow their size with the system's body.

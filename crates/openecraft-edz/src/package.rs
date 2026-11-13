@@ -151,12 +151,30 @@ impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Housing<'a, F> {
         [at(0.0, 0.0), at(size[0], 0.0), at(size[0], size[1]), at(0.0, size[1])]
     }
 
-    /// The top left corner of the front of the mounting plate
-    /// (`Enclosure::mounting_origin`).
-    fn mounting_origin(&self) -> Option<[f32; 3]> {
-        let s = self.layout.surfaces.iter().find(|s| s.kind == PLATE_FRONT)?;
-        let c = self.corners(s.origin, s.x, s.y, s.size);
-        Some(std::array::from_fn(|k| c.iter().map(|p| p[k]).fold(f32::INFINITY, f32::min)))
+    /// The front of the mounting plate: its top left corner (`Enclosure::mounting_origin`)
+    /// and its width and height. The surface of that kind, otherwise the largest
+    /// surface facing the front in the rear half of the housing.
+    fn plate(&self) -> Option<([f32; 3], [f32; 2])> {
+        let rect = |s: &crate::layout::Surface| {
+            let c = self.corners(s.origin, s.x, s.y, s.size);
+            let min: [f32; 3] = std::array::from_fn(|k| c.iter().map(|p| p[k]).fold(f32::INFINITY, f32::min));
+            let max: [f32; 3] = std::array::from_fn(|k| c.iter().map(|p| p[k]).fold(f32::NEG_INFINITY, f32::max));
+            (min, max)
+        };
+        let depth = self.layout.main_bounds().map(|(a, b)| {
+            let (a, b) = ((self.turn)(a), (self.turn)(b));
+            (a[2] - b[2]).abs()
+        })?;
+        let facing_front = |s: &&crate::layout::Surface| {
+            let (x, y) = (s.x, s.y);
+            let n = (self.turn)([x[1] * y[2] - x[2] * y[1], x[2] * y[0] - x[0] * y[2], x[0] * y[1] - x[1] * y[0]]);
+            let (min, max) = rect(s);
+            n[2] > 0.99 && min[2] > 1.0 && max[2] < depth / 2.0
+        };
+        let area = |s: &&crate::layout::Surface| s.size[0] * s.size[1];
+        let s = self.layout.surfaces.iter().find(|s| s.kind == PLATE_FRONT).or_else(|| self.layout.surfaces.iter().filter(facing_front).max_by(|a, b| area(a).total_cmp(&area(b))))?;
+        let (min, max) = rect(s);
+        Some((min, [max[0] - min[0], max[1] - min[1]]))
     }
 
     /// The restricted areas on the faces of an enclosure of the part (that of the
@@ -276,9 +294,10 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
     }
     // The model: the bodies of the EPLAN macro, otherwise the STEP model. A model that
     // cannot be read leaves the part without one; the file is kept.
-    let layout = ema.as_deref().and_then(crate::layout::decode).filter(|l| !l.bodies.is_empty());
+    let decoded = ema.as_deref().and_then(crate::layout::decode);
+    let mut model_error = decoded.as_ref().filter(|l| l.bodies.is_empty() && l.unread > 0).map(|l| crate::layout::unread(l.unread));
+    let layout = decoded.filter(|l| !l.bodies.is_empty());
     let step_file = files.iter().find(|(p, _)| lower(p).ends_with(".stp") || lower(p).ends_with(".step")).map(|(_, d)| d);
-    let mut model_error = None;
     let mesh = match (&layout, step, step_file) {
         (Some(layout), ..) => Some(layout.mesh()),
         (None, Some(read), Some(model)) => read(model, &is_restricted_area).map_err(|e| model_error = Some(e)).ok(),
@@ -290,9 +309,9 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
         let lying = first.height > 0.0 && (size[1] - first.depth).abs() < (size[1] - first.height).abs();
         let turn = |v: [f32; 3]| if lying { [v[0], v[2], -v[1]] } else { v };
         if let Some(housing) = layout.as_ref().and_then(|l| Housing::of(l, &turn)) {
-            if let Some(origin) = housing.mounting_origin() {
+            if let Some((origin, [w, h])) = housing.plate() {
                 let sep = if first.tech_data.is_empty() { "" } else { "\n" };
-                first.tech_data = format!("{}{sep}Mounting origin: {}", first.tech_data, origin.map(mm).join("/"));
+                first.tech_data = format!("{}{sep}Mounting origin: {}\nMounting size: {} x {}", first.tech_data, origin.map(mm).join("/"), mm(w), mm(h));
             }
             // The faces of an enclosure of the part, as the panel layout makes it.
             let mut prj = openecraft_core::model::Project::default();

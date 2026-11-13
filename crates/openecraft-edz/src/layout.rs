@@ -72,6 +72,8 @@ pub struct Layout {
     pub bodies: Vec<Body>,
     pub surfaces: Vec<Surface>,
     pub areas: Vec<Area>,
+    /// Bodies whose mesh is in a form not read (another kind of stream).
+    pub unread: usize,
 }
 
 impl Layout {
@@ -255,7 +257,11 @@ pub fn decode(text_of_file: &str) -> Option<Layout> {
     for el in &variant.children {
         match el.name.as_str() {
             "O180" => {
-                let Some(mesh) = el.attribute("R9").and_then(|g| objects.by_id.get(g)).and_then(|g| stream(g)).and_then(mesh) else { continue };
+                let Some(stream) = el.attribute("R9").and_then(|g| objects.by_id.get(g)).and_then(|g| stream(g)) else { continue };
+                let Some(mesh) = mesh(stream) else {
+                    layout.unread += 1;
+                    continue;
+                };
                 let frames = objects.frames(el);
                 let vertices = mesh.vertices.iter().map(|v| f32s(place(&frames, v.map(f64::from)))).collect();
                 let parent = el.attribute("R2481").and_then(|id| objects.by_id.get(id));
@@ -299,7 +305,25 @@ pub fn decode(text_of_file: &str) -> Option<Layout> {
             _ => {}
         }
     }
-    (!layout.bodies.is_empty() || !layout.surfaces.is_empty()).then_some(layout)
+    (!layout.bodies.is_empty() || !layout.surfaces.is_empty() || layout.unread > 0).then_some(layout)
+}
+
+/// The 3D model of a part from its 3D macro, at the origin (devices: x across the
+/// front, y up, z towards the front, as EPLAN's device macros are); `Err` for a
+/// macro whose bodies could not be read, `Ok(None)` for other macros.
+pub fn model(text_of_file: &str) -> Result<Option<Mesh3d>, String> {
+    let Some(layout) = decode(text_of_file) else { return Ok(None) };
+    if layout.bodies.is_empty() {
+        return if layout.unread > 0 { Err(unread(layout.unread)) } else { Ok(None) };
+    }
+    let mut mesh = layout.mesh();
+    mesh.normalize();
+    Ok(Some(mesh))
+}
+
+/// Diagnostic of a macro with bodies in a form not read.
+pub fn unread(n: usize) -> String {
+    format!("{n} bodies of the 3D macro have no mesh this version reads")
 }
 
 #[cfg(test)]
