@@ -9,7 +9,7 @@ use super::{PanelUi, View};
 use egui::{vec2, Key, Pos2, Rect, Response, Stroke};
 use openecraft_core::model::Project;
 use openecraft_core::panel::{self, plot, GeoReference};
-use openecraft_i18n::tr_fmt;
+use openecraft_i18n::{tr, tr_fmt};
 
 /// What a click in the site plan does.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -25,6 +25,10 @@ pub enum SiteTool {
     Measure,
     /// Edit mode: the buildings are dragged to their places and turned.
     Move,
+    /// Places earth rods of a building where clicked.
+    EarthRod,
+    /// Places air-termination rods on the roofs of a building where clicked.
+    AirRod,
 }
 
 /// A measure written out: distance, how far east and north, the direction.
@@ -66,6 +70,7 @@ impl PanelUi {
                     Err(e) => self.status = e,
                 }
             }
+            SiteTool::EarthRod | SiteTool::AirRod => self.place_rod(prj, q),
             SiteTool::Measure => {
                 if self.site_points.len() >= 2 {
                     self.site_points.clear();
@@ -76,6 +81,36 @@ impl PanelUi {
                 }
             }
         }
+    }
+
+    /// An earth rod or an air-termination rod at `q` (the plant) for the building there,
+    /// otherwise the building of the earthing menu.
+    fn place_rod(&mut self, prj: &mut Project, q: [f32; 2]) {
+        let poses = panel::site_poses(prj);
+        let Some(bi) = panel::buildings::building_at(prj, &poses, q).or(self.earthing_building(prj)) else {
+            self.status = tr("Choose the building.").to_string();
+            return;
+        };
+        let local = panel::buildings::building_pose(&prj.layout.buildings[bi]).local([q[0], 0.0, q[1]]);
+        let at = [local[0].round(), local[2].round()];
+        let name = prj.layout.buildings[bi].name.clone();
+        if self.site_tool == SiteTool::AirRod {
+            let b = &prj.layout.buildings[bi];
+            if !b.roofs.iter().any(|r| panel::roofs::covering_at(r, at).is_some()) {
+                self.status = tr_fmt!("Click on a roof of building {}", name);
+                return;
+            }
+            match panel::lightning::add_rod(prj, bi, Some(at)) {
+                Ok(_) => self.status = tr_fmt!("Air-termination rod placed on building {}; click for the next one · Esc: stop", name),
+                Err(e) => self.status = e,
+            }
+        } else {
+            match panel::earthing::add_electrode(prj, bi, panel::ElectrodeKind::Rod, Some(at)) {
+                Ok(_) => self.status = tr_fmt!("Earth rod placed at building {}; click for the next one · Esc: stop", name),
+                Err(e) => self.status = e,
+            }
+        }
+        self.earthing_target = Some(bi);
     }
 
     /// Closes the boundary drawn: it becomes the plot's (or stays to be corrected).
@@ -198,9 +233,9 @@ impl PanelUi {
         }
         if let (Some((bi, from, place)), Some(p)) = (self.site_move, resp.interact_pointer_pos()) {
             let q = frame.plant(p);
-            if let Some(b) = prj.layout.buildings.get_mut(bi) {
-                b.site.x = ((place.x + q[0] - from[0]) / 10.0).round() * 10.0;
-                b.site.z = ((place.z + q[1] - from[1]) / 10.0).round() * 10.0;
+            let site = panel::SitePlace { x: ((place.x + q[0] - from[0]) / 10.0).round() * 10.0, z: ((place.z + q[1] - from[1]) / 10.0).round() * 10.0, ..place };
+            if panel::buildings::place_building(prj, bi, site).is_ok() {
+                let b = &prj.layout.buildings[bi];
                 self.status = tr_fmt!("Building {} at x {} m, z {} m", b.name, format!("{:.2}", b.site.x / 1000.0), format!("{:.2}", b.site.z / 1000.0));
             }
         }

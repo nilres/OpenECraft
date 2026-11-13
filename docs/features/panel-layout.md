@@ -281,7 +281,8 @@ keeps the 3D view when it is shown and otherwise shows the room's floor plan. A 
 the site shows the site plan of all buildings in the Layout space (the wheel zooms,
 dragging moves it, a click on a room opens its floor plan; in the edit mode *Site ›
 Move buildings* a building is dragged to its place and R turns it by 90° about its
-middle, with its rooms, cabinets, stairs and roofs) or, in the 3D view, all of
+middle, with its rooms, cabinets, stairs and roofs and the rooms standing in it without
+being on one of its levels) or, in the 3D view, all of
 the plant with its buildings, floor slabs, stairs and roofs; a click on a building shows
 the site plan with it highlighted. A level clicked while the 3D view is shown shows all
 rooms of that level side by side at their places, with the cabinets standing in them,
@@ -390,15 +391,18 @@ hips dashed) with their roof windows, and the links.
   `list_buildings` gives each array's modules, peak power and material. The site plan
   draws the modules, the 3D view the modules with their frames and junction boxes, the
   rails on their roof hooks, the mounting bases and the wind deflectors.
-  *Show › Hide PV modules* leaves the modules out to show the mounting. The mounting
+  *Show › Hide PV modules* leaves the modules out to show the mounting, *Show ›
+  See-through PV modules* shows them see-through with the wiring under them. The mounting
   has an **earthing point** with an earthing clamp (`GEN.PV-EARTH-CLAMP`, in the bill of
   materials) on each rail or row of mounting bases; its **earthing conductor**
   (`earthing`: the device of an earthing or equipotential bonding busbar) bonds them
   and runs to that busbar. The 3D view draws the **cabling** of each string: the leads
   from module to module under the modules, the plus and minus lead from its first and
-  last module along the roof, through it beside the array and under it down onto its
-  inverter, and the earthing conductor (green-yellow) down to its busbar, as far as the
-  devices are placed in the layout. A click on an array in the 3D view opens its
+  last module along the roof, through it beside the array and under it down onto the
+  **generator junction box** of the array (`combiner`, a device such as `GEN.GAK-2S`)
+  and from there a DC main cable to each inverter (without a generator junction box
+  down onto the inverter), and the earthing conductor (green-yellow) down to its
+  busbar, as far as the devices are placed in the layout. A click on an array in the 3D view opens its
   **properties**: where it is, its modules with their electrical data, peak power and
   area, its mounting with the material and the earthing, its strings with their
   voltages, currents and the length of their leads, its problems, and the settings of
@@ -448,7 +452,9 @@ hips dashed) with their roof windows, and the links.
   materials. The PV arrays on the roofs have to lie in its protection by the
   **protection angle** of the class (70 - 79° up to 2 m above the surface, down to 23°
   at the radius of the rolling sphere). The 3D view and the site plan draw the
-  electrodes and the system.
+  electrodes and the system. *Site › Earthing and lightning protection* adds them to
+  a building: foundation and ring earth electrodes, earth rods and air-termination
+  rods clicked into the site plan, lightning protection with its class.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall

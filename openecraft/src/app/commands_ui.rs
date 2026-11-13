@@ -55,7 +55,7 @@ impl App {
             Cmd::LayoutBuilding => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
             Cmd::LayoutZones => self.panel_ui.in_room,
             Cmd::LayoutOpenWalls => self.panel_ui.view == crate::panel_ui::View::ThreeD && self.panel_ui.in_room,
-            Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutHidePvModules | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
+            Cmd::LayoutLineup | Cmd::LayoutSite | Cmd::LayoutHideFrontWalls | Cmd::LayoutHideCeiling | Cmd::LayoutHidePvModules | Cmd::LayoutSeeThroughPv | Cmd::LayoutOpenDucts => self.panel_ui.view == crate::panel_ui::View::ThreeD,
             _ => true,
         }
     }
@@ -142,6 +142,7 @@ impl App {
             Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls,
             Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling,
             Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts,
             Cmd::WiringMode => !self.mounting_ui.active,
             Cmd::MountingMode => self.mounting_ui.active,
@@ -493,6 +494,7 @@ impl App {
             Cmd::LayoutHideFrontWalls => self.panel_ui.hide_front_walls = !self.panel_ui.hide_front_walls,
             Cmd::LayoutHideCeiling => self.panel_ui.hide_ceiling = !self.panel_ui.hide_ceiling,
             Cmd::LayoutHidePvModules => self.panel_ui.hide_pv_modules = !self.panel_ui.hide_pv_modules,
+            Cmd::LayoutSeeThroughPv => self.panel_ui.see_through_pv = !self.panel_ui.see_through_pv,
             Cmd::LayoutOpenDucts => self.panel_ui.open_ducts = !self.panel_ui.open_ducts,
             Cmd::LayoutFit => self.panel_ui.fit(),
             Cmd::LayoutReports => {
@@ -731,6 +733,10 @@ impl App {
             Cmd::Layout3dMacro => self.panel_ui.macro_menu(ui, &mut self.session.prj),
             Cmd::LayoutWallPart => self.panel_ui.wall_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutInstallation => self.panel_ui.installation_menu(ui, &mut self.session.prj, &self.parts_db),
+            Cmd::LayoutEarthing => {
+                self.set_workspace(Workspace::Panel);
+                self.panel_ui.earthing_menu(ui, &mut self.session.prj);
+            }
             Cmd::LayoutRackPart => self.panel_ui.rack_part_menu(ui, &mut self.session.prj, &self.parts_db),
             Cmd::LayoutFloorPart => self.panel_ui.floor_part_menu(ui, &self.session.prj, &self.parts_db),
             Cmd::LayoutWalls => self.panel_ui.walls_menu(ui, &self.session.prj),

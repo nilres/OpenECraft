@@ -52,6 +52,36 @@ fn buildings_move_and_turn_about_their_middle_with_their_rooms() {
     assert!(((hi[0] - lo[0]) - 3000.0).abs() < 1.0 && ((hi[1] - lo[1]) - 4000.0).abs() < 1.0);
     assert!((before[0] + 5000.0 - at[0]).abs() < 1.0);
     assert!(move_building(&mut prj, 9, [0.0, 0.0], 0.0).is_err());
+    // Found at a point inside it.
+    let at = middle(&prj);
+    assert_eq!(building_at(&prj, &site_poses(&prj), at), Some(bi));
+    assert_eq!(building_at(&prj, &site_poses(&prj), [at[0] + 100_000.0, at[1]]), None);
+}
+
+#[test]
+fn rooms_standing_in_a_building_without_its_levels_move_with_it() {
+    let (mut prj, bi, [r0, _]) = building();
+    // A room outside the buildings, standing in the floor plan of +B1, and one far away.
+    let poses = site_poses(&prj);
+    let at = poses[r0].at;
+    for (name, x) in [("+FREE", at[0] + 500.0), ("+AWAY", at[0] + 50_000.0)] {
+        let mut room = new_room(&mut prj, name, 2000.0, 1500.0, 2500.0);
+        room.site = Some(SitePlace { x, z: at[2] + 500.0, angle: 0.0 });
+        prj.layout.enclosures.push(room);
+    }
+    let (free, away) = (prj.layout.enclosures.len() - 2, prj.layout.enclosures.len() - 1);
+    assert_eq!(building_of(&prj.layout, free), None);
+    let before = site_poses(&prj);
+    move_building(&mut prj, bi, [3000.0, 1000.0], 0.0).unwrap();
+    let after = site_poses(&prj);
+    for k in [r0, free] {
+        assert!((after[k].at[0] - before[k].at[0] - 3000.0).abs() < 1.0 && (after[k].at[2] - before[k].at[2] - 1000.0).abs() < 1.0, "{}", prj.layout.enclosures[k].name);
+    }
+    assert_eq!(after[away].at, before[away].at, "the room far away stays");
+    // Turned, it turns with the building.
+    move_building(&mut prj, bi, [0.0, 0.0], 90.0).unwrap();
+    let turned = site_poses(&prj);
+    assert!((turned[free].angle - turned[r0].angle).abs() < 1e-4);
 }
 
 #[test]

@@ -112,6 +112,7 @@ Air temperature at the devices	Léghőmérséklet a készülékeknél
 Air temperature {} … {} °C	Léghőmérséklet {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Felfogó vezetők a gerinceken és élgerinceken (háló a lapostetőkön), levezetők a külső falak mentén mérési csatlakozókkal, a földelőkön végződve
 Air-termination rod	Felfogórúd
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Felfogórúd elhelyezve a(z) {} épületen; kattintson a következőért · Esc: vége
 Align	Igazítás
 Aligned	Igazított
 Alignment	Igazítás
@@ -299,6 +300,7 @@ Choose another project	Másik projekt választása
 Choose file…	Fájl kiválasztása…
 Choose image…	Kép kiválasztása…
 Choose pages	Oldalak kiválasztása
+Choose the building.	Válassza ki az épületet.
 Chooses the pages whose structure starts with this	Kiválasztja azokat az oldalakat, amelyek struktúrája ezzel kezdődik
 Circle	Kör
 Circuits of a generic manifold	Általános osztó körei
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Kattintson a középpontra, majd a kör
 Click in the panel layout: a single item of an assembly	Kattintás a szekrényelrendezésben: egy szerelvény egyetlen eleme
 Click into the page to place the image	Kattintson az oldalra a kép elhelyezéséhez
 Click into the page to place {}	Kattintson az oldalra a(z) {} elhelyezéséhez
+Click on a roof of building {}	Kattintson a(z) {} épület egyik tetejére
 Click on a wall	Kattintson egy falra
 Click on a wire to place the connection definition point	Kattintson egy vezetékre az összeköttetés-definíciós pont elhelyezéséhez
 Click on the 4 mm grid	Kattintson a 4 mm-es rácsra
@@ -338,8 +341,12 @@ Click two corners	Kattintson két sarokra
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Kattintson a struktúrakeret két sarkára, majd adja meg azonosítóit a tulajdonságokban · Esc vagy jobb kattintás a befejezéshez
 Click two nodes to connect them	Kattintson két csomópontra az összekötésükhöz
 Click two points to measure from one to the other · Esc: stop	Kattintson két pontra a mérésükhöz · Esc: befejezés
+Click where an air-termination rod goes on a roof · Esc: stop	Kattintson oda, ahol a felfogórúd áll a tetőn · Esc: vége
+Click where an earth rod goes, at or round a building · Esc: stop	Kattintson oda, ahol a rúdföldelő van az épület mellett vagy körül · Esc: vége
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Kattintson oda, ahol négy vezeték találkozik: a híd a kapcsolatot egy oldalról a három másikhoz vezeti, először a szemköztihez · {} elforgatja · Esc vagy jobb kattintás befejezi
 Click where it is in the site plan	Kattintson a helyére a helyszínrajzon
+Click where the air-termination rods go on the roofs in the site plan	Kattintson a helyszínrajzon oda, ahol a felfogórudak állnak a tetőkön
+Click where the earth rods go in the site plan	Kattintson a helyszínrajzon oda, ahol a rúdföldelők vannak
 Click where the reference point is	Kattintson oda, ahol a referenciapont van
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kattintson oda, ahol három vezeték találkozik: a T-elem megadja, melyik készülékből indulnak a vezetékek, és a céljaik sorrendjét · {} elforgatja, ahol még nem találkoznak vezetékek · Esc vagy jobb kattintás befejezi
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték keresztezi egymást: a kereszteződés összeköti őket, és vonalának mindkét végét először egyenesen, majd keresztben vezeti · {} elforgatja · Esc vagy jobb kattintás befejezi
@@ -632,6 +639,9 @@ Duct fill limit	Csatornatöltöttség határértéke
 Duplicate	Kettőzés
 Each example builds on the one before and shows more of the features.	Minden példa az előzőre épül, és több funkciót mutat be.
 Each point-to-point connection can belong to a harness	Minden pont-pont összeköttetés tartozhat egy kábelköteghez
+Earth electrodes	Földelők
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Egy épület földelői (alap- és körföldelő, a helyszínrajzra kattintott rúdföldelők) és villámvédelme a tetőkre kattintott felfogórudakkal
+Earth rod placed at building {}; click for the next one · Esc: stop	Rúdföldelő elhelyezve a(z) {} épületnél; kattintson a következőért · Esc: vége
 Earthing and lightning protection	Földelés és villámvédelem
 Earthing busbar	Földelősín
 Earthing conductor	Földelővezető
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Generált oldal – szerkesztés az 
 Generates the pages of all report blocks again	Újragenerálja az összes kimutatásblokk oldalait
 Generates {} pages	{} oldalt generál
 Generation failed: {}	Sikertelen generálás: {}
+Generator junction box	Generátor csatlakozódoboz
 Generic	Általános
 German zones (DIN 18015-3)	Német zónák (DIN 18015-3)
 Getting started	Első lépések
@@ -1774,6 +1785,7 @@ Second channel	Második csatorna
 Section properties	Szakasz tulajdonságai
 Section properties…	Szakasz tulajdonságai…
 Section {} is now section {}	A(z) {} szakasz most a(z) {} szakasz
+See-through PV modules	Átlátszó PV modulok
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	A csatlakozó felületek felől nézve; a színek a lábakon lévő vezetékek és kábelerek színei.
 Segment {}	{} szegmens
 Segments	Szakaszok
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Panelek megjelenítése vagy
 Show project manager	Projektkezelő megjelenítése
 Show the enclosures bayed to this one as well	Az ehhez sorolt szekrények megjelenítése is
 Show the messages accepted as checked	Az ellenőrzöttként elfogadott üzenetek megjelenítése
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	A PV mezők moduljainak átlátszó megjelenítése a 3D nézetben: látszik alattuk a modulok egymás közötti huzalozása
 Show the other wires	A többi vezeték megjelenítése
 Show the pane as a window	A panel megjelenítése ablakként
 Show the ribbon	A menüszalag megjelenítése
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	A webes verzió a saját szerverén fr
 The wire tool routes around symbols and other wires	A vezetékeszköz kikerüli a szimbólumokat és más vezetékeket
 The wires get the free cores of the cable in order (left to right)	A vezetékek sorrendben (balról jobbra) megkapják a kábel szabad ereit
 The wires of the connection take these values again	Az összeköttetés vezetékei ismét átveszik ezeket az értékeket
+Their places, sizes and busbars are set in the Buildings pane.	Helyük, méreteik és sínjeik az Épületek panelen állíthatók be.
 Theme	Téma
 These settings are edited in their panes:	Ezek a beállítások a saját paneljükön szerkeszthetők:
 Thickness	Vastagság
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-funkciószöveg frissítve
 {} Vault items found for the project parts	{} Vault-elem található a projektalkatrészekhez
 {} Vault items found: review the changes in the integration window	{} Vault-elem található: tekintse át a változásokat az integrációs ablakban
+{} added to building {}	{} hozzáadva a(z) {} épülethez
 {} addresses changed	{} cím módosítva
+{} air-termination rods	{} felfogórúd
 {} bundles, {} branch points	{} köteg, {} elágazási pont
 {} bus cables created	{} buszkábel létrehozva
 {} bus connections	{} buszkapcsolat

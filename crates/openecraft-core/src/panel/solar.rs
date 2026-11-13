@@ -635,6 +635,9 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
                         out.push(crate::issue!(Severity::Warning, None, "{}: PV arrays {} and {} lie over each other", b.name, a.name, r.solar[j].name));
                     }
                 }
+                if !a.combiner.is_empty() && !prj.devices.contains_key(&a.combiner) {
+                    out.push(crate::issue!(Severity::Warning, None, "{}: the generator junction box {} of PV array {} does not exist", b.name, a.combiner, a.name));
+                }
                 if !a.earthing.is_empty() && !prj.devices.contains_key(&a.earthing) {
                     out.push(crate::issue!(Severity::Warning, None, "{}: the earthing busbar {} of PV array {} does not exist", b.name, a.earthing, a.name));
                 }

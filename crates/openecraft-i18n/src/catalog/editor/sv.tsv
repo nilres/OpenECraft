@@ -112,6 +112,7 @@ Air temperature at the devices	Lufttemperatur vid apparaterna
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Uppfångningsledare på nockar och valmar (en maska på platta tak), nedledare längs ytterväggarna med provklämmor som slutar i jordtagen
 Air-termination rod	Spetsledare
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Spetsledare placerad på byggnad {}; klicka för nästa · Esc: avsluta
 Align	Justera
 Aligned	Justerad
 Alignment	Justering
@@ -299,6 +300,7 @@ Choose another project	Välj ett annat projekt
 Choose file…	Välj fil…
 Choose image…	Välj bild…
 Choose pages	Välj sidor
+Choose the building.	Välj byggnaden.
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
 Circuits of a generic manifold	Kretsar för en generisk fördelare
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en
 Click in the panel layout: a single item of an assembly	Klick i skåplayouten: en enskild del av en sammansättning
 Click into the page to place the image	Klicka på sidan för att placera bilden
 Click into the page to place {}	Klicka på sidan för att placera {}
+Click on a roof of building {}	Klicka på ett tak på byggnad {}
 Click on a wall	Klicka på en vägg
 Click on a wire to place the connection definition point	Klicka på en ledning för att placera förbindelsedefinitionspunkten
 Click on the 4 mm grid	Klicka på 4 mm-rutnätet
@@ -338,8 +341,12 @@ Click two corners	Klicka på två hörn
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klicka på två hörn av strukturrutan och ange sedan dess beteckningar i egenskaperna · Esc eller högerklick avslutar
 Click two nodes to connect them	Klicka på två noder för att förbinda dem
 Click two points to measure from one to the other · Esc: stop	Klicka på två punkter för att mäta från den ena till den andra · Esc: sluta
+Click where an air-termination rod goes on a roof · Esc: stop	Klicka där en spetsledare ska stå på ett tak · Esc: avsluta
+Click where an earth rod goes, at or round a building · Esc: stop	Klicka där ett jordspett ska sitta, vid eller runt en byggnad · Esc: avsluta
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klicka där fyra ledare möts: bryggan leder förbindelsen från en sida till de tre andra, den motsatta först · {} vrider den · Esc eller högerklick avslutar
 Click where it is in the site plan	Klicka där den ligger i situationsplanen
+Click where the air-termination rods go on the roofs in the site plan	Klicka i situationsplanen där spetsledarna ska stå på taken
+Click where the earth rods go in the site plan	Klicka i situationsplanen där jordspetten ska sitta
 Click where the reference point is	Klicka där referenspunkten ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicka där tre ledare möts: T-stycket anger den apparat som ledarna utgår från och ordningen på deras mål · {} vrider det där inga ledare möts ännu · Esc eller högerklick avslutar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicka där två ledare korsar varandra: korsningen förbinder dem och leder varje ände av sin linje först rakt fram, sedan tvärs över · {} vrider den · Esc eller högerklick avslutar
@@ -632,6 +639,9 @@ Duct fill limit	Gräns för kanalfyllnad
 Duplicate	Duplicera
 Each example builds on the one before and shows more of the features.	Varje exempel bygger på det föregående och visar fler av funktionerna.
 Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-förbindelse kan tillhöra en kabelstam
+Earth electrodes	Jordtag
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En byggnads jordtag (grund- och ringjordtag, jordspett klickade i situationsplanen) och dess åskskydd med spetsledarna klickade på taken
+Earth rod placed at building {}; click for the next one · Esc: stop	Jordspett placerat vid byggnad {}; klicka för nästa · Esc: avsluta
 Earthing and lightning protection	Jordning och åskskydd
 Earthing busbar	Jordningsskena
 Earthing conductor	Jordledare
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Genererad sida – redigera via side
 Generates the pages of all report blocks again	Genererar sidorna för alla rapportblock på nytt
 Generates {} pages	Genererar {} sidor
 Generation failed: {}	Genereringen misslyckades: {}
+Generator junction box	Generatoranslutningslåda
 Generic	Generisk
 German zones (DIN 18015-3)	Tyska zoner (DIN 18015-3)
 Getting started	Kom igång
@@ -1774,6 +1785,7 @@ Second channel	Andra kanalen
 Section properties	Avsnittsegenskaper
 Section properties…	Avsnittsegenskaper…
 Section {} is now section {}	Avsnitt {} är nu avsnitt {}
+See-through PV modules	Genomskinliga solcellsmoduler
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Sett mot anslutningssidorna; färgerna är ledarnas och kabelledarnas vid stiften.
 Segment {}	Segment {}
 Segments	Avsnitt
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Visa eller dölj paneler; dr
 Show project manager	Visa projekthanteraren
 Show the enclosures bayed to this one as well	Visa även de kapslingar som är sammanbyggda med den här
 Show the messages accepted as checked	Visa de meddelanden som godkänts som kontrollerade
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Visa solcellsfältens moduler genomskinliga i 3D-vyn: modulernas inbördes ledningar under dem syns
 Show the other wires	Visa de andra ledningarna
 Show the pane as a window	Visa panelen som ett fönster
 Show the ribbon	Visa menyfliksområdet
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Webbversionen uppdateras på sin serve
 The wire tool routes around symbols and other wires	Ledningsverktyget drar runt symboler och andra ledningar
 The wires get the free cores of the cable in order (left to right)	Ledningarna får kabelns lediga ledare i ordning (från vänster till höger)
 The wires of the connection take these values again	Förbindelsens ledningar får de här värdena igen
+Their places, sizes and busbars are set in the Buildings pane.	Deras platser, mått och skenor ställs in i fönstret Byggnader.
 Theme	Tema
 These settings are edited in their panes:	Dessa inställningar redigeras i sina paneler:
 Thickness	Tjocklek
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-funktionstexter uppdaterade
 {} Vault items found for the project parts	{} Vault-objekt hittades för projektartiklarna
 {} Vault items found: review the changes in the integration window	{} Vault-objekt hittades: granska ändringarna i integrationsfönstret
+{} added to building {}	{} tillagd i byggnad {}
 {} addresses changed	{} adresser ändrade
+{} air-termination rods	{} spetsledare
 {} bundles, {} branch points	{} knippen, {} förgreningspunkter
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar

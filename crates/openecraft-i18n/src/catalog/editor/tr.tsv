@@ -112,6 +112,7 @@ Air temperature at the devices	Cihazlardaki hava sıcaklığı
 Air temperature {} … {} °C	Hava sıcaklığı {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Mahyalarda ve kırma çizgilerinde yakalama iletkenleri (düz çatılarda bir göz ağı), dış duvarlar boyunca ölçü klemensli ve topraklama elektrotlarında biten iniş iletkenleri
 Air-termination rod	Paratoner çubuğu
+Air-termination rod placed on building {}; click for the next one · Esc: stop	{} binasına paratoner çubuğu yerleştirildi; sonraki için tıklayın · Esc: dur
 Align	Hizala
 Aligned	Hizalı
 Alignment	Hizalama
@@ -299,6 +300,7 @@ Choose another project	Başka bir proje seç
 Choose file…	Dosya seç…
 Choose image…	Görüntü seç…
 Choose pages	Sayfaları seç
+Choose the building.	Binayı seçin.
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
 Circle	Daire
 Circuits of a generic manifold	Genel bir kollektörün devreleri
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Merkeze, ardından dairenin üzerindeki
 Click in the panel layout: a single item of an assembly	Pano yerleşiminde tıklama: bir montajın tek öğesi
 Click into the page to place the image	Görüntüyü yerleştirmek için sayfaya tıklayın
 Click into the page to place {}	{} öğesini yerleştirmek için sayfaya tıklayın
+Click on a roof of building {}	{} binasının bir çatısına tıklayın
 Click on a wall	Bir duvara tıklayın
 Click on a wire to place the connection definition point	Bağlantı tanım noktasını yerleştirmek için bir tele tıklayın
 Click on the 4 mm grid	4 mm ızgarada tıklayın
@@ -338,8 +341,12 @@ Click two corners	İki köşeye tıklayın
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Yapı kutusunun iki köşesine tıklayın, ardından tanımlayıcılarını özelliklerde belirleyin · Bitirmek için Esc veya sağ tık
 Click two nodes to connect them	Bağlamak için iki düğüme tıklayın
 Click two points to measure from one to the other · Esc: stop	Birinden diğerine ölçmek için iki noktaya tıklayın · Esc: dur
+Click where an air-termination rod goes on a roof · Esc: stop	Paratoner çubuğunun çatıda duracağı yere tıklayın · Esc: dur
+Click where an earth rod goes, at or round a building · Esc: stop	Topraklama kazığının binanın yanında veya çevresinde duracağı yere tıklayın · Esc: dur
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Dört telin birleştiği yere tıklayın: köprü bağlantıyı bir taraftan diğer üçüne götürür, önce karşı tarafa · {} döndürür · Bitirmek için Esc veya sağ tık
 Click where it is in the site plan	Vaziyet planında yerine tıklayın
+Click where the air-termination rods go on the roofs in the site plan	Vaziyet planında paratoner çubuklarının çatılarda duracağı yere tıklayın
+Click where the earth rods go in the site plan	Vaziyet planında topraklama kazıklarının duracağı yere tıklayın
 Click where the reference point is	Referans noktasının olduğu yere tıklayın
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Üç telin birleştiği yere tıklayın: T parçası tellerin çıktığı cihazı ve hedeflerinin sırasını belirler · {} henüz tel birleşmeyen yerde döndürür · Bitirmek için Esc veya sağ tık
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	İki telin kesiştiği yere tıklayın: kesişme onları bağlar ve çizgisinin her ucunu önce düz, sonra enine götürür · {} döndürür · Bitirmek için Esc veya sağ tık
@@ -632,6 +639,9 @@ Duct fill limit	Kanal doluluk sınırı
 Duplicate	Çoğalt
 Each example builds on the one before and shows more of the features.	Her örnek bir öncekinin üzerine kurulur ve özelliklerin daha fazlasını gösterir.
 Each point-to-point connection can belong to a harness	Her noktadan noktaya bağlantı bir kablo demetine ait olabilir
+Earth electrodes	Topraklama elektrotları
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Bir binanın topraklama elektrotları (temel ve halka topraklama, vaziyet planına tıklanan kazıklar) ve çatılarına tıklanarak yerleştirilen paratoner çubuklarıyla yıldırımdan korunması
+Earth rod placed at building {}; click for the next one · Esc: stop	{} binasına topraklama kazığı yerleştirildi; sonraki için tıklayın · Esc: dur
 Earthing and lightning protection	Topraklama ve yıldırımdan korunma
 Earthing busbar	Topraklama barası
 Earthing conductor	Topraklama iletkeni
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Oluşturulan sayfa – sayfa özelli
 Generates the pages of all report blocks again	Tüm rapor bloklarının sayfalarını yeniden oluşturur
 Generates {} pages	{} sayfa oluşturur
 Generation failed: {}	Oluşturma başarısız oldu: {}
+Generator junction box	Jeneratör bağlantı kutusu
 Generic	Genel
 German zones (DIN 18015-3)	Alman bölgeleri (DIN 18015-3)
 Getting started	Başlarken
@@ -1774,6 +1785,7 @@ Second channel	İkinci kanal
 Section properties	Bölüm özellikleri
 Section properties…	Bölüm özellikleri…
 Section {} is now section {}	{} bölümü artık {} bölümü
+See-through PV modules	Saydam PV modülleri
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Eşleşme yüzlerinden görünüm; renkler pinlerdeki tellerin ve kablo damarlarının renkleridir.
 Segment {}	Segment {}
 Segments	Segmentler
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Panelleri göster veya gizle
 Show project manager	Proje yöneticisini göster
 Show the enclosures bayed to this one as well	Buna yan yana bağlı panoları da göster
 Show the messages accepted as checked	Kontrol edildi olarak kabul edilen mesajları göster
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D görünümde PV dizilerinin modüllerini saydam göster: altlarındaki modüller arası kablolama görünür
 Show the other wires	Diğer telleri göster
 Show the pane as a window	Paneli pencere olarak göster
 Show the ribbon	Şeridi göster
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Web sürümü kendi sunucusunda günce
 The wire tool routes around symbols and other wires	Tel aracı sembollerin ve diğer tellerin etrafından yönlendirir
 The wires get the free cores of the cable in order (left to right)	Teller kablonun boş damarlarını sırayla (soldan sağa) alır
 The wires of the connection take these values again	Bağlantının telleri bu değerleri yeniden alır
+Their places, sizes and busbars are set in the Buildings pane.	Yerleri, ölçüleri ve baraları Binalar bölmesinde ayarlanır.
 Theme	Tema
 These settings are edited in their panes:	Bu ayarlar kendi panellerinde düzenlenir:
 Thickness	Kalınlık
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC fonksiyon metni güncellendi
 {} Vault items found for the project parts	Proje parçaları için {} Vault öğesi bulundu
 {} Vault items found: review the changes in the integration window	{} Vault öğesi bulundu: değişiklikleri entegrasyon penceresinde inceleyin
+{} added to building {}	{1} binasına {0} eklendi
 {} addresses changed	{} adres değiştirildi
+{} air-termination rods	{} paratoner çubuğu
 {} bundles, {} branch points	{} demet, {} dallanma noktası
 {} bus cables created	{} bus kablosu oluşturuldu
 {} bus connections	{} bus bağlantısı

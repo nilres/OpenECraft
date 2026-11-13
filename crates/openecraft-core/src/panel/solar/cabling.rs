@@ -1,7 +1,9 @@
 //! The cabling of a PV array as lines in the plant: the leads from module to module of
 //! each string under the modules, the plus and minus leads of each string from its
-//! first and last module to its inverter, and the earthing conductor that bonds the
-//! earthing points of the mounting to the earthing busbar.
+//! first and last module to the generator junction box of the array (otherwise to its
+//! inverter), the DC main cables from the generator junction box to the inverters, and
+//! the earthing conductor that bonds the earthing points of the mounting to the
+//! earthing busbar.
 //!
 //! The leads to a device leave the array at the point of its edge nearest to the device,
 //! run on the covering to a cable entry just beside it, through the roof and under it
@@ -24,6 +26,8 @@ pub const ENTRY: f32 = 200.0;
 pub const UNDER_ROOF: f32 = 60.0;
 /// Distance between the plus and the minus lead of a string, mm.
 pub const LEAD_GAP: f32 = 30.0;
+/// How far the DC main cable rises above the generator junction box and the inverter, mm.
+pub const MAIN_RISE: f32 = 200.0;
 
 /// What a line of the cabling of a PV array is.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -34,6 +38,8 @@ pub enum Lead {
     Plus,
     /// The minus lead of a string to its inverter.
     Minus,
+    /// The DC main cable from the generator junction box to an inverter.
+    Main,
     /// The earthing conductor of the mounting to the earthing busbar.
     Earth,
 }
@@ -74,13 +80,19 @@ pub fn placed_device(prj: &Project, poses: &[SitePose], tag: &str) -> Option<(us
 /// The devices that are earthing or equipotential bonding busbars (by the subgroup of
 /// their parts), by tag: what the earthing conductor of a mounting runs to.
 pub fn earthing_busbars(prj: &Project) -> Vec<String> {
-    let busbar = |number: &str| {
-        prj.parts.iter().chain(crate::parts::catalog()).find(|p| p.number == number).is_some_and(|p| {
-            let s = p.subgroup.to_lowercase();
-            s.contains("earthing busbar") || s.contains("bonding")
-        })
-    };
-    prj.devices.iter().filter(|(_, d)| d.parts.iter().any(|r| busbar(&r.number))).map(|(t, _)| t.clone()).collect()
+    devices_of(prj, |s| s.contains("earthing busbar") || s.contains("bonding"))
+}
+
+/// The devices that are generator junction boxes (by the subgroup of their parts), by
+/// tag: what the strings of an array run to.
+pub fn junction_boxes(prj: &Project) -> Vec<String> {
+    devices_of(prj, |s| s.contains("generator junction box"))
+}
+
+/// The devices one of whose parts has a subgroup (lower case) that `wanted` accepts.
+fn devices_of(prj: &Project, wanted: impl Fn(&str) -> bool) -> Vec<String> {
+    let fits = |number: &str| prj.parts.iter().chain(crate::parts::catalog()).find(|p| p.number == number).is_some_and(|p| wanted(&p.subgroup.to_lowercase()));
+    prj.devices.iter().filter(|(_, d)| d.parts.iter().any(|r| fits(&r.number))).map(|(t, _)| t.clone()).collect()
 }
 
 /// The modules of an array in the order its strings take them: row by row, every other
@@ -136,19 +148,43 @@ pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &Pv
     let target = |tag: &str| placed_device(prj, poses, tag).map(|(_, (lo, hi))| bp.local([(lo[0] + hi[0]) / 2.0, hi[1], (lo[2] + hi[2]) / 2.0]));
     let mut out = Vec::new();
     let to_plant = |pts: Vec<V3>| pts.into_iter().map(|q| bp.apply(q)).collect::<Vec<V3>>();
-    for (si, modules) in string_modules(&g, a) {
-        let s = &a.strings[si];
+    let combiner = (!a.combiner.is_empty()).then(|| target(&a.combiner));
+    let strings = string_modules(&g, a);
+    // The leads side by side: each string's minus and plus lead a gap apart.
+    let leads = 2 * strings.len();
+    for (k, (si, modules)) in strings.iter().enumerate() {
+        let (si, s) = (*si, &a.strings[*si]);
         for w in modules.windows(2) {
             let (p, q) = (boxes[w[0]], boxes[w[1]]);
             out.push(PvLine { points: to_plant(vec![p, low(p), low(q), q]), lead: Lead::Link, to: String::new(), reached: true, string: Some(si) });
         }
-        let device = target(&s.inverter);
+        let (to, device) = match combiner {
+            Some(gak) => (a.combiner.clone(), gak),
+            None => (s.inverter.clone(), target(&s.inverter)),
+        };
         let (first, last) = (modules[0], modules[modules.len() - 1]);
-        for (lead, m, side) in [(Lead::Minus, first, -0.5), (Lead::Plus, last, 0.5)] {
+        for (lead, m, j) in [(Lead::Minus, first, 2 * k), (Lead::Plus, last, 2 * k + 1)] {
             let p = boxes[m];
+            let side = (j as f32 - (leads as f32 - 1.0) / 2.0) * LEAD_GAP;
             let mut pts = vec![p, low(p)];
-            pts.extend(run_down(r, &g, low(p), device, side * LEAD_GAP, &cover));
-            out.push(PvLine { points: to_plant(pts), lead, to: s.inverter.clone(), reached: device.is_some(), string: Some(si) });
+            pts.extend(run_down(r, &g, low(p), device, side, &cover));
+            out.push(PvLine { points: to_plant(pts), lead, to: to.clone(), reached: device.is_some(), string: Some(si) });
+        }
+    }
+    // From the generator junction box a DC main cable to each inverter: up out of its top,
+    // across above them and down onto the inverter.
+    if let Some(Some(gak)) = combiner {
+        let mut done: Vec<&str> = Vec::new();
+        for (si, _) in &strings {
+            let tag = a.strings[*si].inverter.as_str();
+            if tag.is_empty() || done.contains(&tag) {
+                continue;
+            }
+            done.push(tag);
+            let Some(inv) = target(tag) else { continue };
+            let y = gak[1].max(inv[1]) + MAIN_RISE;
+            let pts = vec![gak, [gak[0], y, gak[2]], [inv[0], y, inv[2]], inv];
+            out.push(PvLine { points: to_plant(pts), lead: Lead::Main, to: tag.into(), reached: true, string: Some(*si) });
         }
     }
     // The earthing conductor from earthing point to earthing point, then to the busbar.

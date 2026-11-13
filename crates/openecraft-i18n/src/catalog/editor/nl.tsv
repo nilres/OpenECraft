@@ -112,6 +112,7 @@ Air temperature at the devices	Luchttemperatuur bij de apparaten
 Air temperature {} … {} °C	Luchttemperatuur {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Opvanggeleiders op de nokken en hoekkepers (een maas op platte daken), afleidingen langs de buitenmuren met meetverbindingen, eindigend op de aardelektroden
 Air-termination rod	Opvangstaaf
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Opvangstaaf op gebouw {} geplaatst; klik voor de volgende · Esc: stoppen
 Align	Uitlijnen
 Aligned	Uitgelijnd
 Alignment	Uitlijning
@@ -299,6 +300,7 @@ Choose another project	Ander project kiezen
 Choose file…	Bestand kiezen…
 Choose image…	Afbeelding kiezen…
 Choose pages	Pagina's kiezen
+Choose the building.	Kies het gebouw.
 Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de structuur hiermee begint
 Circle	Cirkel
 Circuits of a generic manifold	Groepen van een generieke verdeler
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Klik op het middelpunt en daarna op een
 Click in the panel layout: a single item of an assembly	Klik in de kastlay-out: één onderdeel van een samenstelling
 Click into the page to place the image	Klik in de pagina om de afbeelding te plaatsen
 Click into the page to place {}	Klik in de pagina om {} te plaatsen
+Click on a roof of building {}	Klik op een dak van gebouw {}
 Click on a wall	Klik op een wand
 Click on a wire to place the connection definition point	Klik op een draad om het verbindingsdefinitiepunt te plaatsen
 Click on the 4 mm grid	Klik op het raster van 4 mm
@@ -338,8 +341,12 @@ Click two corners	Klik op twee hoeken
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klik op twee hoeken van het structuurkader en stel daarna de aanduidingen in bij de eigenschappen · Esc of rechtsklik om te beëindigen
 Click two nodes to connect them	Klik op twee knooppunten om ze te verbinden
 Click two points to measure from one to the other · Esc: stop	Klik op twee punten om van het ene naar het andere te meten · Esc: stoppen
+Click where an air-termination rod goes on a roof · Esc: stop	Klik waar een opvangstaaf op een dak komt · Esc: stoppen
+Click where an earth rod goes, at or round a building · Esc: stop	Klik waar een aardpen komt, bij of rond een gebouw · Esc: stoppen
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klik waar vier draden samenkomen: de brug leidt de verbinding van één zijde naar de drie andere, eerst de tegenoverliggende · {} draait hem · Esc of rechtsklik om te beëindigen
 Click where it is in the site plan	Klik op de plek in de situatietekening
+Click where the air-termination rods go on the roofs in the site plan	Klik in de situatietekening waar de opvangstaven op de daken komen
+Click where the earth rods go in the site plan	Klik in de situatietekening waar de aardpennen komen
 Click where the reference point is	Klik waar het referentiepunt ligt
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik waar drie draden samenkomen: het T-stuk benoemt het apparaat waar de draden beginnen en de volgorde van hun doelen · {} draait het waar nog geen draden samenkomen · Esc of rechtsklik om te beëindigen
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik waar twee draden kruisen: de kruising verbindt ze en leidt elk uiteinde van zijn lijn eerst rechtdoor, dan dwars · {} draait hem · Esc of rechtsklik om te beëindigen
@@ -632,6 +639,9 @@ Duct fill limit	Grenswaarde gootvulling
 Duplicate	Dupliceren
 Each example builds on the one before and shows more of the features.	Elk voorbeeld bouwt voort op het vorige en toont meer van de functies.
 Each point-to-point connection can belong to a harness	Elke punt-tot-puntverbinding kan bij een kabelboom horen
+Earth electrodes	Aardelektroden
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Aardelektroden van een gebouw (funderings- en ringaarde, aardpennen met een klik in de situatietekening) en zijn bliksembeveiliging met de opvangstaven die met een klik op de daken worden geplaatst
+Earth rod placed at building {}; click for the next one · Esc: stop	Aardpen bij gebouw {} geplaatst; klik voor de volgende · Esc: stoppen
 Earthing and lightning protection	Aarding en bliksembeveiliging
 Earthing busbar	Aardrail
 Earthing conductor	Aardgeleider
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Gegenereerde pagina – bewerken via
 Generates the pages of all report blocks again	Genereert de pagina's van alle rapportblokken opnieuw
 Generates {} pages	Genereert {} pagina's
 Generation failed: {}	Genereren mislukt: {}
+Generator junction box	Generatoraansluitkast
 Generic	Generiek
 German zones (DIN 18015-3)	Duitse zones (DIN 18015-3)
 Getting started	Aan de slag
@@ -1774,6 +1785,7 @@ Second channel	Tweede kanaal
 Section properties	Sectie-eigenschappen
 Section properties…	Sectie-eigenschappen…
 Section {} is now section {}	Sectie {} is nu sectie {}
+See-through PV modules	Doorzichtige PV-modules
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Gezien op de steekzijden; de kleuren zijn die van de draden en kabeladers aan de pinnen.
 Segment {}	Segment {}
 Segments	Segmenten
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Panelen tonen of verbergen; 
 Show project manager	Projectbeheer tonen
 Show the enclosures bayed to this one as well	Ook de behuizingen weergeven die aan deze zijn gekoppeld
 Show the messages accepted as checked	De als gecontroleerd geaccepteerde meldingen weergeven
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	De modules van de PV-velden doorzichtig tonen in de 3D-weergave: de bedrading van de modules onderling eronder wordt zichtbaar
 Show the other wires	De andere draden weergeven
 Show the pane as a window	Het paneel als venster tonen
 Show the ribbon	Het lint tonen
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	De webversie wordt op haar server bijg
 The wire tool routes around symbols and other wires	Het draadgereedschap routeert om symbolen en andere draden heen
 The wires get the free cores of the cable in order (left to right)	De draden krijgen op volgorde (van links naar rechts) de vrije aders van de kabel
 The wires of the connection take these values again	De draden van de verbinding nemen deze waarden opnieuw over
+Their places, sizes and busbars are set in the Buildings pane.	Hun plaatsen, maten en rails worden in het deelvenster Gebouwen ingesteld.
 Theme	Thema
 These settings are edited in their panes:	Deze instellingen worden in hun panelen bewerkt:
 Thickness	Dikte
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-functieteksten bijgewerkt
 {} Vault items found for the project parts	{} Vault-items gevonden voor de projectartikelen
 {} Vault items found: review the changes in the integration window	{} Vault-items gevonden: beoordeel de wijzigingen in het integratievenster
+{} added to building {}	{} toegevoegd aan gebouw {}
 {} addresses changed	{} adressen gewijzigd
+{} air-termination rods	{} opvangstaven
 {} bundles, {} branch points	{} bundels, {} aftakpunten
 {} bus cables created	{} buskabels gemaakt
 {} bus connections	{} busverbindingen

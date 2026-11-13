@@ -461,6 +461,10 @@ pub struct PvArray {
     /// their earthing points.
     #[serde(skip_serializing_if = "String::is_empty")]
     pub earthing: String,
+    /// Generator junction box (device) its strings run to, e.g. "=PV-U1"; from there a
+    /// DC main cable runs to each inverter. Empty: the strings run to their inverters.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub combiner: String,
     /// The strings its modules are connected in.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub strings: Vec<PvString>,
@@ -535,6 +539,7 @@ impl Default for PvArray {
             system: String::new(),
             device: String::new(),
             earthing: String::new(),
+            combiner: String::new(),
             strings: Vec::new(),
         }
     }

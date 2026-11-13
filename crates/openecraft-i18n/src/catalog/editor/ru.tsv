@@ -112,6 +112,7 @@ Air temperature at the devices	Температура воздуха у устр
 Air temperature {} … {} °C	Температура воздуха {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Молниеприёмные проводники на коньках и рёбрах (сетка на плоских крышах), токоотводы вдоль наружных стен с контрольными соединениями, заканчивающиеся на заземлителях
 Air-termination rod	Молниеприёмный стержень
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Молниеприёмный стержень установлен на здании {}; щёлкните для следующего · Esc: стоп
 Align	Выровнять
 Aligned	Параллельный
 Alignment	Выравнивание
@@ -299,6 +300,7 @@ Choose another project	Выбрать другой проект
 Choose file…	Выбрать файл…
 Choose image…	Выбрать изображение…
 Choose pages	Выбрать листы
+Choose the building.	Выберите здание.
 Chooses the pages whose structure starts with this	Выбирает листы, структура которых начинается с этого
 Circle	Окружность
 Circuits of a generic manifold	Контуры типового распределителя
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Щёлкните центр, затем
 Click in the panel layout: a single item of an assembly	Щелчок в компоновке шкафа: отдельный элемент сборки
 Click into the page to place the image	Щёлкните на листе, чтобы разместить изображение
 Click into the page to place {}	Щёлкните на листе, чтобы разместить {}
+Click on a roof of building {}	Щёлкните по крыше здания {}
 Click on a wall	Щёлкните по стене
 Click on a wire to place the connection definition point	Щёлкните провод, чтобы разместить точку определения соединения
 Click on the 4 mm grid	Щёлкните по сетке 4 мм
@@ -338,8 +341,12 @@ Click two corners	Щёлкните два угла
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Щёлкните два угла рамки структуры, затем задайте её идентификаторы в свойствах · Esc или правый щелчок для завершения
 Click two nodes to connect them	Щёлкните два узла, чтобы соединить их
 Click two points to measure from one to the other · Esc: stop	Щёлкните две точки, чтобы измерить от одной до другой · Esc: стоп
+Click where an air-termination rod goes on a roof · Esc: stop	Щёлкните, где стоит молниеприёмный стержень на крыше · Esc: стоп
+Click where an earth rod goes, at or round a building · Esc: stop	Щёлкните, где находится вертикальный заземлитель у здания или вокруг него · Esc: стоп
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Щёлкните, где сходятся четыре провода: мост ведёт соединение с одной стороны к трём другим, сначала к противоположной · {} поворачивает его · Esc или правая кнопка завершает
 Click where it is in the site plan	Щёлкните по его месту на генплане
+Click where the air-termination rods go on the roofs in the site plan	Щёлкните на ситуационном плане, где стоят молниеприёмные стержни на крышах
+Click where the earth rods go in the site plan	Щёлкните на ситуационном плане, где находятся вертикальные заземлители
 Click where the reference point is	Щёлкните там, где находится опорная точка
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Щёлкните, где сходятся три провода: Т-образный узел задаёт устройство, от которого идут провода, и порядок их целей · {} поворачивает его, где провода ещё не сходятся · Esc или правая кнопка завершает
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Щёлкните, где пересекаются два провода: пересечение соединяет их и ведёт каждый конец своей линии сначала прямо, затем поперёк · {} поворачивает его · Esc или правая кнопка завершает
@@ -631,6 +638,9 @@ Duct fill limit	Предел заполнения канала
 Duplicate	Дублировать
 Each example builds on the one before and shows more of the features.	Каждый пример основан на предыдущем и показывает больше функций.
 Each point-to-point connection can belong to a harness	Каждое соединение «точка – точка» может входить в жгут
+Earth electrodes	Заземлители
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Заземлители здания (фундаментный и кольцевой, вертикальные заземлители щелчком на ситуационном плане) и его молниезащита с молниеприёмными стержнями, установленными щелчком на крышах
+Earth rod placed at building {}; click for the next one · Esc: stop	Вертикальный заземлитель установлен у здания {}; щёлкните для следующего · Esc: стоп
 Earthing and lightning protection	Заземление и молниезащита
 Earthing busbar	Шина заземления
 Earthing conductor	Заземляющий проводник
@@ -792,6 +802,7 @@ Generated page – edit via page properties	Созданный лист – из
 Generates the pages of all report blocks again	Заново создаёт листы всех блоков отчётов
 Generates {} pages	Создаёт листов: {}
 Generation failed: {}	Ошибка создания: {}
+Generator junction box	Генераторная соединительная коробка
 Generic	Универсальный
 German zones (DIN 18015-3)	Немецкие зоны (DIN 18015-3)
 Getting started	Начало работы
@@ -1773,6 +1784,7 @@ Second channel	Второй канал
 Section properties	Свойства раздела
 Section properties…	Свойства раздела…
 Section {} is now section {}	Раздел {} теперь раздел {}
+See-through PV modules	Прозрачные модули ФЭ
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Вид со стороны сочленения; цвета соответствуют проводам и жилам кабелей на контактах.
 Segment {}	Сегмент {}
 Segments	Участки
@@ -1848,6 +1860,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Показать или ск
 Show project manager	Показать менеджер проектов
 Show the enclosures bayed to this one as well	Показать также шкафы, пристыкованные к этому
 Show the messages accepted as checked	Показать сообщения, принятые как проверенные
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Показывать модули фотоэлектрических полей прозрачными в 3D-виде: видна разводка модулей между собой под ними
 Show the other wires	Показать остальные провода
 Show the pane as a window	Показать панель в отдельном окне
 Show the ribbon	Показать ленту
@@ -2046,6 +2059,7 @@ The web version is updated on its server.	Веб-версия обновляет
 The wire tool routes around symbols and other wires	Инструмент «Провод» обходит символы и другие провода
 The wires get the free cores of the cable in order (left to right)	Провода по порядку (слева направо) получают свободные жилы кабеля
 The wires of the connection take these values again	Провода соединения снова получают эти значения
+Their places, sizes and busbars are set in the Buildings pane.	Их места, размеры и шины задаются на панели «Здания».
 Theme	Тема
 These settings are edited in their panes:	Эти настройки изменяются в их панелях:
 Thickness	Толщина
@@ -2343,7 +2357,9 @@ x y	x y
 {} PLC function texts updated	Обновлено текстов функций ПЛК: {}
 {} Vault items found for the project parts	Найдено элементов Vault для изделий проекта: {}
 {} Vault items found: review the changes in the integration window	Найдено элементов Vault: {}; проверьте изменения в окне интеграции
+{} added to building {}	{} добавлен к зданию {}
 {} addresses changed	Изменено адресов: {}
+{} air-termination rods	Молниеприёмных стержней: {}
 {} bundles, {} branch points	Пучков: {}, точек ответвления: {}
 {} bus cables created	Создано шинных кабелей: {}
 {} bus connections	Шинных соединений: {}

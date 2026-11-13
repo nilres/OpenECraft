@@ -539,6 +539,8 @@ pub struct PanelUi {
     pub open_ducts: bool,
     /// The 3D view leaves out the modules of the PV arrays: their mounting is seen.
     pub hide_pv_modules: bool,
+    /// The 3D view shows the modules of the PV arrays see-through: their wiring is seen.
+    pub see_through_pv: bool,
     /// The PV array selected in the 3D view (its id): its properties are shown.
     pub selected_array: Option<u64>,
     /// Opacity of the walls seen from the outside in the 3D view, 0 … 1.
@@ -612,6 +614,8 @@ pub struct PanelUi {
     /// Circuits of the generic heating circuit manifold chosen in the installation menu.
     manifold_circuits: usize,
     installation: InstallationPick,
+    /// The building chosen in the earthing menu (index).
+    earthing_target: Option<usize>,
 }
 
 /// The tabs of the installation menu: title, what it holds and the subgroups of their
@@ -706,6 +710,7 @@ impl Default for PanelUi {
             hide_ceiling: false,
             open_ducts: false,
             hide_pv_modules: false,
+            see_through_pv: false,
             selected_array: None,
             wall_opacity: WALL_OPACITY,
             gpu_3d: false,
@@ -750,6 +755,7 @@ impl Default for PanelUi {
             nav_level: None,
             manifold_circuits: 6,
             installation: InstallationPick::default(),
+            earthing_target: None,
         }
     }
 }
@@ -2929,8 +2935,10 @@ impl PanelUi {
                 SiteTool::Reference => tr("Click where the reference point is"),
                 SiteTool::Measure => tr("Click two points to measure from one to the other · Esc: stop"),
                 SiteTool::Move => tr("Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop"),
+                SiteTool::EarthRod => tr("Click where an earth rod goes, at or round a building · Esc: stop"),
+                SiteTool::AirRod => tr("Click where an air-termination rod goes on a roof · Esc: stop"),
             };
-            ui.weak(hint);
+            // The hint in the room the title and the edit button leave, cut short there.
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 let editing = self.site_tool == SiteTool::Move;
                 if ui.add(egui::Button::selectable(editing, tr("Move buildings"))).on_hover_text(tr("Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it")).clicked() {
@@ -2941,6 +2949,9 @@ impl PanelUi {
                     None => tr("Site plan").to_string(),
                 };
                 ui.weak(format!("{}  ·  {}", tr("Site"), what));
+                ui.with_layout(egui::Layout::left_to_right(egui::Align::Center), |ui| {
+                    ui.add(egui::Label::new(RichText::new(hint).weak()).truncate()).on_hover_text(hint);
+                });
             });
         });
         ui.separator();
@@ -3143,6 +3154,36 @@ impl PanelUi {
             ui.weak(tr("Choose a room first: outlets, switches and heating circuit manifolds go on its walls."));
             return;
         }
+        // Not justified like the other menus and of a fixed width, so that it does not
+        // grow with what it shows.
+        let chosen = ui
+            .allocate_ui_with_layout(vec2(720.0, 0.0), egui::Layout::top_down(egui::Align::Min), |ui| {
+                ui.set_width(720.0);
+                self.installation_picker(ui, prj, db)
+            })
+            .inner;
+        let Some(p) = chosen else { return };
+        ui.close();
+        let known = |prj: &Project, n: &str| prj.parts.iter().any(|x| x.number == n) || db.get(n).is_some() || parts::catalog().iter().any(|x| x.number == n);
+        if !known(prj, &p.number) {
+            // From a shipped catalog: into the project with its accessories.
+            for a in &p.accessories {
+                if !known(prj, a) {
+                    if let Some(acc) = bundled_parts().iter().find(|x| &x.number == a) {
+                        prj.parts.push(acc.clone());
+                    }
+                }
+            }
+            prj.parts.push(p.clone());
+        }
+        self.view = View::Front;
+        self.set_tool(Tool::Accessory(p.number));
+        self.status = tr("Click on the wall: the part goes there at its mounting height").to_string();
+    }
+
+    /// The tabs, filters, list and part of the installation menu; the part chosen.
+    #[allow(clippy::too_many_lines)]
+    fn installation_picker(&mut self, ui: &mut egui::Ui, prj: &Project, db: &PartsDb) -> Option<parts::Part> {
         let all: Vec<Vec<&parts::Part>> = INSTALLATION
             .iter()
             .map(|(_, _, subgroups)| {
@@ -3159,7 +3200,6 @@ impl PanelUi {
         let pick = &mut self.installation;
         pick.tab = pick.tab.min(INSTALLATION.len() - 1);
         let mut chosen: Option<parts::Part> = None;
-        ui.set_width(720.0);
         // The kinds, with how many parts each has.
         ui.horizontal(|ui| {
             for (k, (title, long, _)) in INSTALLATION.iter().enumerate() {
@@ -3286,23 +3326,108 @@ impl PanelUi {
                 }
             });
         }
-        let Some(p) = chosen else { return };
-        ui.close();
-        let known = |prj: &Project, n: &str| prj.parts.iter().any(|x| x.number == n) || db.get(n).is_some() || parts::catalog().iter().any(|x| x.number == n);
-        if !known(prj, &p.number) {
-            // From a shipped catalog: into the project with its accessories.
-            for a in &p.accessories {
-                if !known(prj, a) {
-                    if let Some(acc) = bundled_parts().iter().find(|x| &x.number == a) {
-                        prj.parts.push(acc.clone());
+        chosen
+    }
+
+    /// The building the earthing menu and the rod tools work on: the one chosen in the
+    /// menu, the one highlighted in the site plan, that of the room shown, the only one.
+    pub(super) fn earthing_building(&self, prj: &Project) -> Option<usize> {
+        let n = prj.layout.buildings.len();
+        self.earthing_target
+            .filter(|&b| b < n)
+            .or(self.site_plan.building.filter(|&b| b < n))
+            .or_else(|| panel::buildings::building_of(&prj.layout, self.enclosure))
+            .or((n == 1).then_some(0))
+    }
+
+    /// Earthing and lightning protection of a building (Layout space › Site): the
+    /// building, its earth electrodes to add (earth rods clicked into the site plan) or
+    /// delete, its lightning protection with its class and the air-termination rods
+    /// clicked onto its roofs.
+    #[allow(clippy::too_many_lines)]
+    pub fn earthing_menu(&mut self, ui: &mut egui::Ui, prj: &mut Project) {
+        if prj.layout.buildings.is_empty() {
+            ui.weak(tr("No building yet: create one with New building, then put rooms on its levels."));
+            return;
+        }
+        let target = self.earthing_building(prj);
+        ui.set_min_width(360.0);
+        ui.horizontal_wrapped(|ui| {
+            ui.label(RichText::new(tr("Building")).weak());
+            for (bi, b) in prj.layout.buildings.iter().enumerate() {
+                if ui.add(egui::Button::selectable(target == Some(bi), b.name.as_str())).clicked() {
+                    self.earthing_target = Some(bi);
+                }
+            }
+        });
+        let Some(bi) = self.earthing_building(prj) else {
+            ui.weak(tr("Choose the building."));
+            return;
+        };
+        ui.separator();
+        ui.label(RichText::new(tr("Earth electrodes")).strong());
+        ui.horizontal_wrapped(|ui| {
+            for kind in [panel::ElectrodeKind::Foundation, panel::ElectrodeKind::Ring] {
+                if icons::text_button(ui, Icon::Plus, tr(kind.title())).clicked() {
+                    match panel::earthing::add_electrode(prj, bi, kind, None) {
+                        Ok(_) => self.status = tr_fmt!("{} added to building {}", tr(kind.title()), prj.layout.buildings[bi].name),
+                        Err(e) => self.status = e,
                     }
                 }
             }
-            prj.parts.push(p.clone());
+            if icons::text_button(ui, Icon::Pin, tr(panel::ElectrodeKind::Rod.title())).on_hover_text(tr("Click where the earth rods go in the site plan")).clicked() {
+                self.earthing_target = Some(bi);
+                self.choose_site_tool(SiteTool::EarthRod);
+                ui.close();
+            }
+        });
+        let mut gone = None;
+        for (k, e) in prj.layout.buildings[bi].electrodes.iter().enumerate() {
+            ui.horizontal(|ui| {
+                ui.label(format!("{}  {}", e.name, tr(e.kind.title())));
+                if !e.busbar.is_empty() {
+                    ui.weak(e.busbar.as_str());
+                }
+                if icons::button(ui, Icon::Delete, tr("Delete earth electrode")).clicked() {
+                    gone = Some(k);
+                }
+            });
         }
-        self.view = View::Front;
-        self.set_tool(Tool::Accessory(p.number));
-        self.status = tr("Click on the wall: the part goes there at its mounting height").to_string();
+        if let Some(k) = gone {
+            prj.layout.buildings[bi].electrodes.remove(k);
+        }
+        ui.separator();
+        let b = &mut prj.layout.buildings[bi];
+        let mut on = b.lightning.is_some();
+        if ui.checkbox(&mut on, RichText::new(tr("Lightning protection")).strong()).on_hover_text(tr("Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes")).changed() {
+            b.lightning = on.then(panel::Lightning::default);
+        }
+        if let Some(lp) = b.lightning.as_mut() {
+            ui.horizontal(|ui| {
+                for c in 1..=4u8 {
+                    if ui.add(egui::Button::selectable(lp.class == c, tr_fmt!("Class {}", panel::lightning::class_name(c)))).clicked() {
+                        lp.class = c;
+                    }
+                }
+            });
+        }
+        let rods = b.lightning.as_ref().map_or(0, |lp| lp.rods.len());
+        ui.horizontal(|ui| {
+            if icons::text_button(ui, Icon::Pin, tr("Air-termination rod")).on_hover_text(tr("Click where the air-termination rods go on the roofs in the site plan")).clicked() {
+                self.earthing_target = Some(bi);
+                self.choose_site_tool(SiteTool::AirRod);
+                ui.close();
+            }
+            if rods > 0 {
+                ui.weak(tr_fmt!("{} air-termination rods", rods));
+            }
+        });
+        let poses = panel::site_poses(prj);
+        if let Some(g) = panel::lightning::geometry(prj, &poses, bi) {
+            ui.weak(tr_fmt!("{} down conductors with test joints, {} m of conductors", g.count(panel::lightning::LpsKind::Down), format!("{:.1}", (g.length(panel::lightning::LpsKind::AirTermination) + g.length(panel::lightning::LpsKind::Roof) + g.length(panel::lightning::LpsKind::Down)) / 1000.0)));
+        }
+        ui.separator();
+        ui.weak(tr("Their places, sizes and busbars are set in the Buildings pane."));
     }
 
     /// 19-inch parts (technical data `Rack units`) of the parts database, the project

@@ -112,6 +112,7 @@ Air temperature at the devices	Teplota vzduchu u přístrojů
 Air temperature {} … {} °C	Teplota vzduchu {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Jímací vedení na hřebenech a nárožích (mřížová soustava na plochých střechách), svody podél obvodových zdí se zkušebními svorkami, končící na zemničích
 Air-termination rod	Jímací tyč
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Jímací tyč umístěna na budově {}; klikněte pro další · Esc: konec
 Align	Zarovnat
 Aligned	Zarovnaná
 Alignment	Zarovnání
@@ -299,6 +300,7 @@ Choose another project	Vybrat jiný projekt
 Choose file…	Vybrat soubor…
 Choose image…	Vybrat obrázek…
 Choose pages	Vybrat stránky
+Choose the building.	Vyberte budovu.
 Chooses the pages whose structure starts with this	Vybere stránky, jejichž struktura tímto začíná
 Circle	Kružnice
 Circuits of a generic manifold	Okruhy obecného rozdělovače
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Klikněte na střed, pak na bod kružni
 Click in the panel layout: a single item of an assembly	Klepnutí v rozvržení rozváděče: jediná položka sestavy
 Click into the page to place the image	Kliknutím do stránky umístíte obrázek
 Click into the page to place {}	Kliknutím do stránky umístíte {}
+Click on a roof of building {}	Klikněte na střechu budovy {}
 Click on a wall	Klikněte na stěnu
 Click on a wire to place the connection definition point	Kliknutím na vodič umístíte bod definice spojení
 Click on the 4 mm grid	Klikněte na rastr 4 mm
@@ -338,8 +341,12 @@ Click two corners	Klikněte na dva rohy
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klikněte na dva rohy rámečku struktury a poté nastavte jeho identifikátory ve vlastnostech · Esc nebo pravé tlačítko ukončí
 Click two nodes to connect them	Klikněte na dva uzly, které chcete propojit
 Click two points to measure from one to the other · Esc: stop	Klikněte na dva body pro měření od jednoho k druhému · Esc: ukončit
+Click where an air-termination rod goes on a roof · Esc: stop	Klikněte, kde stojí jímací tyč na střeše · Esc: konec
+Click where an earth rod goes, at or round a building · Esc: stop	Klikněte, kde je tyčový zemnič u budovy nebo kolem ní · Esc: konec
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají čtyři vodiče: most vede spojení z jedné strany ke třem ostatním, nejprve k protilehlé · {} jej otočí · Esc nebo pravé tlačítko ukončí
 Click where it is in the site plan	Klikněte na jeho místo v situačním plánu
+Click where the air-termination rods go on the roofs in the site plan	Klikněte v situačním plánu, kde stojí jímací tyče na střechách
+Click where the earth rods go in the site plan	Klikněte v situačním plánu, kde jsou tyčové zemniče
 Click where the reference point is	Klikněte tam, kde leží referenční bod
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klepněte, kde se stýkají tři vodiče: T-kus určuje přístroj, od něhož vodiče vycházejí, a pořadí jejich cílů · {} jej otočí, kde se vodiče ještě nestýkají · Esc nebo pravé tlačítko ukončí
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klepněte, kde se kříží dva vodiče: křížení je spojí a vede každý konec své čáry nejprve rovně, pak napříč · {} jej otočí · Esc nebo pravé tlačítko ukončí
@@ -632,6 +639,9 @@ Duct fill limit	Mez zaplnění kanálu
 Duplicate	Duplikovat
 Each example builds on the one before and shows more of the features.	Každý příklad navazuje na předchozí a ukazuje více funkcí.
 Each point-to-point connection can belong to a harness	Každé spojení bod–bod může patřit ke kabelovému svazku
+Earth electrodes	Zemniče
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Zemniče budovy (základový a obvodový, tyčové zemniče klikané do situačního plánu) a její ochrana před bleskem s jímacími tyčemi klikanými na střechy
+Earth rod placed at building {}; click for the next one · Esc: stop	Tyčový zemnič umístěn u budovy {}; klikněte pro další · Esc: konec
 Earthing and lightning protection	Uzemnění a ochrana před bleskem
 Earthing busbar	Uzemňovací přípojnice
 Earthing conductor	Uzemňovací vodič
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Vygenerovaná stránka – upravte v
 Generates the pages of all report blocks again	Znovu vytvoří stránky všech bloků výkazů
 Generates {} pages	Vytvoří stránky: {}
 Generation failed: {}	Vytvoření se nezdařilo: {}
+Generator junction box	Generátorová přípojková skříň
 Generic	Obecné
 German zones (DIN 18015-3)	Německé zóny (DIN 18015-3)
 Getting started	Začínáme
@@ -1774,6 +1785,7 @@ Second channel	Druhý kanál
 Section properties	Vlastnosti oddílu
 Section properties…	Vlastnosti oddílu…
 Section {} is now section {}	Oddíl {} je nyní oddíl {}
+See-through PV modules	Průhledné FV moduly
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Pohled na čelní strany konektorů; barvy jsou barvy vodičů a žil kabelů na pinech.
 Segment {}	Segment {}
 Segments	Úseky
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Zobrazit nebo skrýt panely;
 Show project manager	Zobrazit správce projektů
 Show the enclosures bayed to this one as well	Zobrazit i skříně připojené do řady k této
 Show the messages accepted as checked	Zobrazit hlášení přijatá jako zkontrolovaná
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Zobrazit moduly FV polí ve 3D pohledu průhledně: je vidět propojení modulů pod nimi
 Show the other wires	Zobrazit ostatní vodiče
 Show the pane as a window	Zobrazit panel jako okno
 Show the ribbon	Zobrazit pás karet
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Webová verze se aktualizuje na svém 
 The wire tool routes around symbols and other wires	Nástroj pro vodiče vede vodiče kolem symbolů a jiných vodičů
 The wires get the free cores of the cable in order (left to right)	Vodiče dostanou postupně (zleva doprava) volné žíly kabelu
 The wires of the connection take these values again	Vodiče spojení znovu převezmou tyto hodnoty
+Their places, sizes and busbars are set in the Buildings pane.	Jejich místa, rozměry a přípojnice se nastavují v panelu Budovy.
 Theme	Motiv
 These settings are edited in their panes:	Tato nastavení se upravují v jejich panelech:
 Thickness	Tloušťka
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	Aktualizováno textů funkcí PLC: {}
 {} Vault items found for the project parts	Nalezené položky Vault pro artikly projektu: {}
 {} Vault items found: review the changes in the integration window	Nalezené položky Vault: {}; zkontrolujte změny v okně integrace
+{} added to building {}	{} přidán k budově {}
 {} addresses changed	Změněno adres: {}
+{} air-termination rods	{} jímacích tyčí
 {} bundles, {} branch points	Svazky: {}, body odbočení: {}
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}

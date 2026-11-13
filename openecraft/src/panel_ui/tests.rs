@@ -1834,6 +1834,12 @@ fn pv_arrays_are_picked_selected_and_drawn_with_their_cabling() {
     assert!(s.wires.iter().any(|w| w.line.stripe.is_some()), "the earthing conductor");
     let red = s.wires.iter().filter(|w| w.line.color == egui::Color32::from_rgb(205, 40, 36)).count();
     assert!(red >= 3, "the plus lead down to the inverter: {red}");
+    // See-through: the modules glass (seen through from everywhere), the mounting solid.
+    ui.see_through_pv = true;
+    let s = scene(&mut ui);
+    let glass = s.faces.iter().filter(|f| f.pv == Some(id) && f.side.is_some_and(|k| s.sides[k].glass)).count();
+    assert_eq!(glass, 8 * (10 + 6));
+    ui.see_through_pv = false;
     // Selected: its cells in the colour of the selection.
     ui.selected_array = Some(id);
     let s = scene(&mut ui);
@@ -1952,6 +1958,32 @@ fn buildings_are_dragged_and_turned_in_the_edit_mode_of_the_site_plan() {
     // Chosen again, the edit mode stops; a click on a room opens it only outside it.
     ui.choose_site_tool(SiteTool::Move);
     assert_eq!(ui.site_tool, SiteTool::Select);
+}
+
+#[test]
+fn earth_rods_and_air_termination_rods_are_clicked_into_the_site_plan() {
+    let (mut prj, attic) = house();
+    let mut ui = PanelUi::default();
+    let poses = panel::site_poses(&prj);
+    let on_roof = poses[attic].apply([4000.0, 0.0, 3000.0]);
+    let beside = poses[attic].apply([-1500.0, 0.0, -1500.0]);
+    // An air-termination rod on the roof; one off the roofs is refused.
+    ui.earthing_target = Some(0);
+    ui.choose_site_tool(SiteTool::AirRod);
+    ui.site_click(&mut prj, [on_roof[0], on_roof[2]], false);
+    let lp = prj.layout.buildings[0].lightning.as_ref().expect("lightning protection with the rod");
+    assert_eq!(lp.rods.len(), 1);
+    ui.site_click(&mut prj, [beside[0] - 20_000.0, beside[2]], false);
+    assert_eq!(prj.layout.buildings[0].lightning.as_ref().unwrap().rods.len(), 1);
+    assert!(ui.status.contains("+H1"), "{}", ui.status);
+    // Earth rods beside the building, for the building chosen.
+    ui.choose_site_tool(SiteTool::EarthRod);
+    ui.site_click(&mut prj, [beside[0], beside[2]], false);
+    ui.site_click(&mut prj, [beside[0] + 3000.0, beside[2]], false);
+    let rods: Vec<&panel::Electrode> = prj.layout.buildings[0].electrodes.iter().filter(|e| e.kind == panel::ElectrodeKind::Rod).collect();
+    assert_eq!(rods.len(), 2);
+    assert!(panel::earthing::problems(&prj).is_empty(), "outside the walls");
+    assert_eq!(ui.earthing_building(&prj), Some(0));
 }
 
 #[test]
@@ -2177,4 +2209,34 @@ fn cut_items_leave_the_layout_and_devices_go_back_to_place() {
     let kinds: Vec<ItemKind> = clip.items.iter().map(|i| i.kind).collect();
     assert_eq!(kinds, [ItemKind::Rail, ItemKind::Accessory]);
     assert!(ui.can_paste());
+}
+
+#[test]
+fn the_installation_menu_keeps_its_size_on_every_tab() {
+    // Opened from a button like the ribbon's menus (a justified menu popup), frame after
+    // frame while the pointer moves over it: it does not grow with what it shows.
+    let (mut prj, _) = house();
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    let screen = egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(1600.0, 1000.0));
+    for tab in 0..INSTALLATION.len() {
+        let ctx = egui::Context::default();
+        ui.installation.tab = tab;
+        let mut sizes = Vec::new();
+        for frame in 0..16 {
+            let pos = egui::pos2(60.0 + 40.0 * frame as f32, 120.0 + 25.0 * frame as f32);
+            let input = egui::RawInput { screen_rect: Some(screen), time: Some(frame as f64 * 0.05), events: vec![egui::Event::PointerMoved(pos)], ..Default::default() };
+            let mut size = egui::Vec2::ZERO;
+            ctx.run_ui(input, |ui_| {
+                let button = ui_.button("menu");
+                let shown = egui::Popup::menu(&button).open(true).close_behavior(egui::PopupCloseBehavior::CloseOnClickOutside).show(|menu| ui.installation_menu(menu, &mut prj, &PartsDb::default()));
+                size = shown.map_or(egui::Vec2::ZERO, |r| r.response.rect.size());
+            })
+            .textures_delta
+            .clear();
+            sizes.push(size);
+        }
+        let last = sizes[sizes.len() - 1];
+        assert!(last.x > 700.0 && last.x < 800.0 && last.y < 700.0, "tab {tab}: {sizes:?}");
+        assert!(sizes[3..].iter().all(|s| (s.x - last.x).abs() < 1.0 && (s.y - last.y).abs() < 1.0), "tab {tab}: {sizes:?}");
+    }
 }

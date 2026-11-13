@@ -112,6 +112,7 @@ Air temperature at the devices	장치 주변 공기 온도
 Air temperature {} … {} °C	공기 온도 {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	용마루와 추녀마루의 수뢰 도체(평지붕에서는 메시), 외벽을 따라 시험 단자가 있는 인하 도선으로 접지극에서 끝납니다
 Air-termination rod	피뢰침
+Air-termination rod placed on building {}; click for the next one · Esc: stop	건물 {}에 피뢰침을 배치했습니다. 다음 것은 클릭 · Esc: 종료
 Align	맞춤
 Aligned	정렬
 Alignment	정렬
@@ -295,6 +296,7 @@ Choose another project	다른 프로젝트 선택
 Choose file…	파일 선택…
 Choose image…	이미지 선택…
 Choose pages	페이지 선택
+Choose the building.	건물을 선택하세요.
 Chooses the pages whose structure starts with this	구조가 이 값으로 시작하는 페이지를 선택합니다
 Circle	원
 Circuits of a generic manifold	일반 분배기의 회로 수
@@ -310,6 +312,7 @@ Click centre, then a point on the circle	중심을 클릭한 후 원 위의 점�
 Click in the panel layout: a single item of an assembly	패널 레이아웃에서 클릭: 어셈블리의 단일 항목
 Click into the page to place the image	페이지를 클릭하여 이미지를 배치하세요
 Click into the page to place {}	페이지를 클릭하여 {}을(를) 배치하세요
+Click on a roof of building {}	건물 {}의 지붕을 클릭하세요
 Click on a wire to place the connection definition point	전선을 클릭하여 연결 정의점 배치
 Click on the 4 mm grid	4mm 그리드를 클릭하세요
 Click on the wall: the part goes there at its mounting height	벽을 클릭하십시오: 부품이 설치 높이에 놓입니다
@@ -333,8 +336,12 @@ Click two corners	두 모서리를 클릭하세요
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	구조 박스의 두 모서리를 클릭한 다음 속성에서 식별자를 설정합니다 · Esc 또는 오른쪽 클릭으로 종료
 Click two nodes to connect them	두 노드를 클릭하여 연결
 Click two points to measure from one to the other · Esc: stop	두 점을 클릭하여 한 점에서 다른 점까지 측정 · Esc: 중지
+Click where an air-termination rod goes on a roof · Esc: stop	지붕 위 피뢰침 위치를 클릭 · Esc: 종료
+Click where an earth rod goes, at or round a building · Esc: stop	건물 옆이나 주위의 접지봉 위치를 클릭 · Esc: 종료
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	네 연결선이 만나는 지점을 클릭: 브리지는 연결을 한쪽에서 다른 세 쪽으로, 먼저 반대쪽으로 이끕니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
 Click where it is in the site plan	배치도에서 해당 위치를 클릭하십시오
+Click where the air-termination rods go on the roofs in the site plan	배치도에서 지붕 위 피뢰침 위치를 클릭합니다
+Click where the earth rods go in the site plan	배치도에서 접지봉 위치를 클릭합니다
 Click where the reference point is	기준점이 있는 곳을 클릭하십시오
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	세 연결선이 만나는 지점을 클릭: T분기점은 전선이 출발하는 장치와 대상의 순서를 지정합니다 · 아직 연결선이 만나지 않는 곳에서는 {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	두 연결선이 교차하는 지점을 클릭: 교차는 둘을 연결하고 선의 각 끝을 먼저 직진으로, 다음에 가로로 이끕니다 · {} 로 회전 · Esc 또는 오른쪽 클릭으로 종료
@@ -624,6 +631,9 @@ Duct fill limit	덕트 충전율 한계
 Duplicate	복제
 Each example builds on the one before and shows more of the features.	각 예제는 이전 예제를 기반으로 더 많은 기능을 표시합니다.
 Each point-to-point connection can belong to a harness	각 점대점 연결은 하네스에 속할 수 있습니다
+Earth electrodes	접지극
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	건물의 접지극 (기초 및 환상 접지극, 배치도에서 클릭해 놓는 접지봉)과 지붕에 클릭해 놓는 피뢰침을 포함한 피뢰
+Earth rod placed at building {}; click for the next one · Esc: stop	건물 {}에 접지봉을 배치했습니다. 다음 것은 클릭 · Esc: 종료
 Earthing and lightning protection	접지 및 피뢰
 Earthing busbar	접지 부스바
 Earthing conductor	접지 도체
@@ -783,6 +793,7 @@ Generated page – edit via page properties	생성된 페이지 – 페이지 �
 Generates the pages of all report blocks again	모든 보고서 블록의 페이지를 다시 생성합니다
 Generates {} pages	페이지 {}개 생성
 Generation failed: {}	생성 실패: {}
+Generator junction box	접속함
 Generic	일반
 German zones (DIN 18015-3)	독일 구역 (DIN 18015-3)
 Getting started	시작하기
@@ -1753,6 +1764,7 @@ Second channel	두 번째 채널
 Section properties	구역 속성
 Section properties…	구역 속성…
 Section {} is now section {}	구역 {}은(는) 이제 구역 {}입니다
+See-through PV modules	태양광 모듈 투명하게
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	결합면에서 본 모습입니다. 색상은 핀에 연결된 전선과 케이블 심선의 색상입니다.
 Segment {}	세그먼트 {}
 Segments	구간
@@ -1827,6 +1839,7 @@ Show or hide panes; drag a tab to dock it elsewhere	창 표시 또는 숨기기.
 Show project manager	프로젝트 관리자 표시
 Show the enclosures bayed to this one as well	이 외함에 결합된 외함도 표시
 Show the messages accepted as checked	확인됨으로 승인된 메시지 표시
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D 보기에서 태양광 어레이의 모듈을 투명하게 표시합니다: 그 아래 모듈 간 배선이 보입니다
 Show the other wires	다른 전선 표시
 Show the pane as a window	창을 별도 창으로 표시
 Show the ribbon	리본 표시
@@ -2023,6 +2036,7 @@ The vertical wire	세로 전선
 The web version is updated on its server.	웹 버전은 해당 서버에서 업데이트됩니다.
 The wires get the free cores of the cable in order (left to right)	전선은 케이블의 빈 심선을 순서대로(왼쪽에서 오른쪽) 받습니다
 The wires of the connection take these values again	연결의 전선이 이 값을 다시 받습니다
+Their places, sizes and busbars are set in the Buildings pane.	위치, 치수 및 부스바는 건물 창에서 설정합니다.
 Theme	테마
 These settings are edited in their panes:	이 설정은 각 창에서 편집합니다:
 Thickness	두께
@@ -2313,7 +2327,9 @@ x y	x y
 {} PLC function texts updated	PLC 기능 텍스트 {}개 업데이트됨
 {} Vault items found for the project parts	프로젝트 부품에 대한 Vault 항목 {}개를 찾았습니다
 {} Vault items found: review the changes in the integration window	Vault 항목 {}개를 찾았습니다. 통합 창에서 변경 내용을 검토하세요
+{} added to building {}	{0}이(가) 건물 {1}에 추가되었습니다
 {} addresses changed	주소 {}개 변경됨
+{} air-termination rods	피뢰침 {}개
 {} bundles, {} branch points	번들 {}개, 분기점 {}개
 {} bus cables created	버스 케이블 {}개 만들어짐
 {} bus connections	버스 연결 {}개

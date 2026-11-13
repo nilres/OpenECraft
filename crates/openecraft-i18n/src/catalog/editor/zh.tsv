@@ -112,6 +112,7 @@ Air temperature at the devices	设备处的空气温度
 Air temperature {} … {} °C	空气温度 {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	屋脊和斜脊上的接闪导体（平屋顶上为网格），沿外墙带测试接头的引下线，终止于接地极
 Air-termination rod	接闪杆
+Air-termination rod placed on building {}; click for the next one · Esc: stop	接闪杆已放置在建筑物 {} 上；单击放置下一个 · Esc：结束
 Align	对齐
 Aligned	对齐
 Alignment	对齐
@@ -296,6 +297,7 @@ Choose another project	选择其他项目
 Choose file…	选择文件…
 Choose image…	选择图像…
 Choose pages	选择页
+Choose the building.	请选择建筑物。
 Chooses the pages whose structure starts with this	选择结构以此开头的页
 Circle	圆
 Circuits of a generic manifold	通用分配器的回路数
@@ -311,6 +313,7 @@ Click centre, then a point on the circle	单击圆心，然后单击圆上的一
 Click in the panel layout: a single item of an assembly	在安装板布局中单击：组件中的单个项
 Click into the page to place the image	在页中单击以放置图像
 Click into the page to place {}	在页中单击以放置 {}
+Click on a roof of building {}	请单击建筑物 {} 的屋顶
 Click on a wall	请点击墙
 Click on a wire to place the connection definition point	单击导线以放置连接定义点
 Click on the 4 mm grid	在 4 mm 栅格上单击
@@ -335,8 +338,12 @@ Click two corners	单击两个角点
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	单击结构框的两个角，然后在属性中设置其标识符 · Esc 或右键结束
 Click two nodes to connect them	单击两个节点以连接它们
 Click two points to measure from one to the other · Esc: stop	单击两点以从一点测量到另一点 · Esc：停止
+Click where an air-termination rod goes on a roof · Esc: stop	单击接闪杆在屋顶上的位置 · Esc：结束
+Click where an earth rod goes, at or round a building · Esc: stop	单击垂直接地极在建筑物旁或周围的位置 · Esc：结束
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	在四条连接线相交处单击：桥接将连接从一侧引向另外三侧，先到对侧 · {} 可旋转 · Esc 或右键结束
 Click where it is in the site plan	在总平面图中单击其位置
+Click where the air-termination rods go on the roofs in the site plan	在总平面图中单击接闪杆在屋顶上的位置
+Click where the earth rods go in the site plan	在总平面图中单击垂直接地极的位置
 Click where the reference point is	单击参考点所在位置
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	在三条连接线相交处单击：T型节点指定导线出发的设备以及目标的顺序 · 在尚无连接线相交处 {} 可旋转 · Esc 或右键结束
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	在两条连接线交叉处单击：交叉连接二者，并将其直线的每一端先直通再横向引出 · {} 可旋转 · Esc 或右键结束
@@ -627,6 +634,9 @@ Duct fill limit	线槽填充限值
 Duplicate	复制
 Each example builds on the one before and shows more of the features.	每个示例都以前一个为起点，并展示更多功能。
 Each point-to-point connection can belong to a harness	每个点对点连接都可以属于一个线束
+Earth electrodes	接地极
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	建筑物的接地极（基础接地极和环形接地极，在总平面图中单击放置的垂直接地极）及其防雷，包括在屋顶上单击放置的接闪杆
+Earth rod placed at building {}; click for the next one · Esc: stop	垂直接地极已放置在建筑物 {} 处；单击放置下一个 · Esc：结束
 Earthing and lightning protection	接地和防雷
 Earthing busbar	接地母线
 Earthing conductor	接地导体
@@ -786,6 +796,7 @@ Generated page – edit via page properties	生成的页 – 通过页属性编�
 Generates the pages of all report blocks again	重新生成所有报表块的页
 Generates {} pages	生成 {} 页
 Generation failed: {}	生成失败：{}
+Generator junction box	光伏汇流箱
 Generic	通用
 German zones (DIN 18015-3)	德国安装区（DIN 18015-3）
 Getting started	入门
@@ -1756,6 +1767,7 @@ Second channel	第二通道
 Section properties	分节属性
 Section properties…	分节属性…
 Section {} is now section {}	分节 {} 现在是分节 {}
+See-through PV modules	透明光伏组件
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	从插合面看；颜色为引脚上导线和电缆芯线的颜色。
 Segment {}	规划段 {}
 Segments	布线段
@@ -1830,6 +1842,7 @@ Show or hide panes; drag a tab to dock it elsewhere	显示或隐藏窗格；拖�
 Show project manager	显示项目管理器
 Show the enclosures bayed to this one as well	同时显示与此机柜并柜的机柜
 Show the messages accepted as checked	显示已接受为已检查的消息
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	在 3D 视图中透明显示光伏阵列的组件：可看到其下方组件之间的接线
 Show the other wires	显示其他导线
 Show the pane as a window	将窗格显示为窗口
 Show the ribbon	显示功能区
@@ -2027,6 +2040,7 @@ The web version is updated on its server.	网页版在其服务器上更新。
 The wire tool routes around symbols and other wires	导线工具绕开符号和其他导线布线
 The wires get the free cores of the cable in order (left to right)	导线按顺序（从左到右）获得电缆的空闲芯线
 The wires of the connection take these values again	连接的导线重新采用这些值
+Their places, sizes and busbars are set in the Buildings pane.	其位置、尺寸和母线在“建筑物”窗格中设置。
 Theme	主题
 These settings are edited in their panes:	这些设置在各自的窗格中编辑：
 Thickness	厚度
@@ -2316,7 +2330,9 @@ x y	x y
 {} PLC function texts updated	已更新 {} 个 PLC 功能文本
 {} Vault items found for the project parts	找到 {} 个与项目部件对应的 Vault 项
 {} Vault items found: review the changes in the integration window	找到 {} 个 Vault 项：请在集成窗口中审阅更改
+{} added to building {}	{0} 已添加到建筑物 {1}
 {} addresses changed	已更改 {} 个地址
+{} air-termination rods	{} 根接闪杆
 {} bundles, {} branch points	{} 个线缆束，{} 个分支点
 {} bus cables created	已创建 {} 根总线电缆
 {} bus connections	{} 个总线连接

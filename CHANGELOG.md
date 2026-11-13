@@ -8,7 +8,9 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **PV arrays in 3D:** a click on an array opens its properties (modules and their
   data, peak power, mounting and material, earthing, strings with their values and the
   lengths of their leads, problems, and its settings). The cabling of the strings is
-  drawn from module to module and down to the inverter, the mounting gets roof hooks
+  drawn from module to module and down to the generator junction box (`combiner`) with
+  the DC main cable on to the inverter; *Show › See-through PV modules* shows it under
+  the modules. The mounting gets roof hooks
   and an earthing point with its clamp on each rail or row of mounting bases, bonded by
   the earthing conductor to an earthing busbar (`set_pv_array` `earthing`). *Show ›
   Hide PV modules* shows the mounting. A room under the roof shown alone shows the
@@ -19,13 +21,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   earth electrode in meshes, ring earth electrode, earth rods; connected to a main
   earthing busbar) and a lightning protection system of class I - IV (air-termination
   conductors on ridges and hips or as a mesh on flat roofs, air-termination rods, down
-  conductors with test joints into the electrodes), drawn in 3D and in the site plan,
+  conductors with test joints into the electrodes), added in *Site › Earthing and
+  lightning protection* (rods clicked into the site plan), drawn in 3D and in the site plan,
   their material in the bill of materials, checked (down conductors per class, PV
   arrays in the protection angle). Commands: `add_earth_electrode`,
   `set_earth_electrode`, `set_lightning_protection`, `add_air_rod`, `set_air_rod`
   ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
 - **Moving buildings:** *Site › Move buildings* is an edit mode of the site plan in which
-  buildings are dragged to their places and turned by 90°.
+  buildings are dragged to their places and turned by 90°, with the rooms standing in
+  them.
 - **Outlets, switches and heating:** the menu has tabs, a search, filters by maker and
   type and a 3D preview of the part picked; outlets and switches are drawn with their
   models in the 3D view (frames, sockets with earthing clips, tilted rockers).

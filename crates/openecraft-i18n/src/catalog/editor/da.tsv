@@ -112,6 +112,7 @@ Air temperature at the devices	Lufttemperatur ved enhederne
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Fangledere på rygninger og grater (en maske på flade tage), nedledere langs ydervæggene med målesamlinger, der ender i jordelektroderne
 Air-termination rod	Fangstang
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Fangstang placeret på bygning {}; klik for den næste · Esc: stop
 Align	Justér
 Aligned	Justeret
 Alignment	Justering
@@ -299,6 +300,7 @@ Choose another project	Vælg et andet projekt
 Choose file…	Vælg fil…
 Choose image…	Vælg billede…
 Choose pages	Vælg sider
+Choose the building.	Vælg bygningen.
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
 Circuits of a generic manifold	Kredse i en generisk fordeler
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Klik på centrum og derefter på et pun
 Click in the panel layout: a single item of an assembly	Klik i tavlelayoutet: et enkelt element i en samling
 Click into the page to place the image	Klik på siden for at placere billedet
 Click into the page to place {}	Klik på siden for at placere {}
+Click on a roof of building {}	Klik på et tag på bygning {}
 Click on a wall	Klik på en væg
 Click on a wire to place the connection definition point	Klik på en ledning for at placere forbindelsesdefinitionspunktet
 Click on the 4 mm grid	Klik på 4 mm-gitteret
@@ -338,8 +341,12 @@ Click two corners	Klik på to hjørner
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klik på to hjørner af strukturboksen, og angiv derefter dens betegnelser i egenskaberne · Esc eller højreklik afslutter
 Click two nodes to connect them	Klik på to knuder for at forbinde dem
 Click two points to measure from one to the other · Esc: stop	Klik på to punkter for at måle fra det ene til det andet · Esc: stop
+Click where an air-termination rod goes on a roof · Esc: stop	Klik hvor en fangstang skal stå på et tag · Esc: stop
+Click where an earth rod goes, at or round a building · Esc: stop	Klik hvor et jordspyd skal sidde, ved eller rundt om en bygning · Esc: stop
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klik hvor fire ledere mødes: broen fører forbindelsen fra én side til de tre andre, den modsatte først · {} drejer den · Esc eller højreklik afslutter
 Click where it is in the site plan	Klik, hvor det ligger i situationsplanen
+Click where the air-termination rods go on the roofs in the site plan	Klik i situationsplanen hvor fangstængerne skal stå på tagene
+Click where the earth rods go in the site plan	Klik i situationsplanen hvor jordspydene skal sidde
 Click where the reference point is	Klik, hvor referencepunktet ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik hvor tre ledere mødes: T-stykket angiver den enhed, lederne udgår fra, og rækkefølgen af deres mål · {} drejer det, hvor ingen ledere mødes endnu · Esc eller højreklik afslutter
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik hvor to ledere krydser hinanden: krydsningen forbinder dem og fører hver ende af sin linje først ligeud, derefter på tværs · {} drejer den · Esc eller højreklik afslutter
@@ -632,6 +639,9 @@ Duct fill limit	Grænse for kanalfyldning
 Duplicate	Dupliker
 Each example builds on the one before and shows more of the features.	Hvert eksempel bygger på det forrige og viser flere af funktionerne.
 Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forbindelse kan høre til et ledningsnet
+Earth electrodes	Jordelektroder
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En bygnings jordelektroder (fundament- og ringjord, jordspyd klikket ind i situationsplanen) og dens lynbeskyttelse med fangstængerne klikket på tagene
+Earth rod placed at building {}; click for the next one · Esc: stop	Jordspyd placeret ved bygning {}; klik for det næste · Esc: stop
 Earthing and lightning protection	Jording og lynbeskyttelse
 Earthing busbar	Jordskinne
 Earthing conductor	Jordleder
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Genereret side – rediger via sidee
 Generates the pages of all report blocks again	Genererer siderne for alle rapportblokke igen
 Generates {} pages	Genererer {} sider
 Generation failed: {}	Genereringen mislykkedes: {}
+Generator junction box	Generatortilslutningsboks
 Generic	Generisk
 German zones (DIN 18015-3)	Tyske zoner (DIN 18015-3)
 Getting started	Kom i gang
@@ -1774,6 +1785,7 @@ Second channel	Anden kanal
 Section properties	Afsnitsegenskaber
 Section properties…	Afsnitsegenskaber…
 Section {} is now section {}	Afsnit {} er nu afsnit {}
+See-through PV modules	Gennemsigtige solcellemoduler
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Set mod stiksiderne; farverne er ledernes og kabellederes ved benene.
 Segment {}	Segment {}
 Segments	Afsnit
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Vis eller skjul paneler; tr�
 Show project manager	Vis projektstyring
 Show the enclosures bayed to this one as well	Vis også de kapslinger, der er sammenbygget med denne
 Show the messages accepted as checked	Vis de meddelelser, der er accepteret som kontrolleret
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Vis solcellefelternes moduler gennemsigtige i 3D-visningen: modulernes indbyrdes ledningsføring under dem ses
 Show the other wires	Vis de andre ledninger
 Show the pane as a window	Vis panelet som et vindue
 Show the ribbon	Vis båndet
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Webversionen opdateres på sin server.
 The wire tool routes around symbols and other wires	Ledningsværktøjet fører uden om symboler og andre ledninger
 The wires get the free cores of the cable in order (left to right)	Ledningerne får kablets ledige ledere i rækkefølge (fra venstre mod højre)
 The wires of the connection take these values again	Forbindelsens ledninger overtager disse værdier igen
+Their places, sizes and busbars are set in the Buildings pane.	Deres placeringer, mål og skinner indstilles i ruden Bygninger.
 Theme	Tema
 These settings are edited in their panes:	Disse indstillinger redigeres i deres paneler:
 Thickness	Tykkelse
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-funktionstekster opdateret
 {} Vault items found for the project parts	{} Vault-elementer fundet for projektartiklerne
 {} Vault items found: review the changes in the integration window	{} Vault-elementer fundet: gennemgå ændringerne i integrationsvinduet
+{} added to building {}	{} tilføjet til bygning {}
 {} addresses changed	{} adresser ændret
+{} air-termination rods	{} fangstænger
 {} bundles, {} branch points	{} bundter, {} forgreningspunkter
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser

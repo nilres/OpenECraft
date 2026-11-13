@@ -134,23 +134,80 @@ pub fn building_footprint(prj: &Project, poses: &[SitePose], bi: usize) -> Vec<V
     out
 }
 
+/// The building whose rooms or roofs stand at point `q` of the plant (x, z), the last
+/// one of them.
+pub fn building_at(prj: &Project, poses: &[SitePose], q: [f32; 2]) -> Option<usize> {
+    let inside = |poly: &[[f32; 2]]| {
+        let mut odd = false;
+        for k in 0..poly.len() {
+            let (a, b) = (poly[k], poly[(k + 1) % poly.len()]);
+            if (a[1] > q[1]) != (b[1] > q[1]) && q[0] < a[0] + (q[1] - a[1]) / (b[1] - a[1]) * (b[0] - a[0]) {
+                odd = !odd;
+            }
+        }
+        odd
+    };
+    (0..prj.layout.buildings.len()).rev().find(|&bi| building_footprint(prj, poses, bi).iter().any(|p| inside(p)))
+}
+
 /// Moves building `bi` by `by` (x, z, mm) and turns it by `degrees` counter-clockwise
 /// seen from above about the middle of its floor plan: its place in the plant, rounded
 /// to the millimetre; its rooms, the cabinets in them, stairs and roofs go with it.
 pub fn move_building(prj: &mut Project, bi: usize, by: [f32; 2], degrees: f32) -> Result<(), String> {
     let poses = site_poses(prj);
     let pts: Vec<[f32; 2]> = building_footprint(prj, &poses, bi).into_iter().flatten().collect();
-    let b = prj.layout.buildings.get_mut(bi).ok_or_else(|| tr("No such building").to_string())?;
+    let b = prj.layout.buildings.get(bi).ok_or_else(|| tr("No such building").to_string())?;
     let old = building_pose(b);
     let c = if pts.is_empty() { [b.site.x, b.site.z] } else {
         let (lo, hi) = super::bounds(&pts);
         [(lo[0] + hi[0]) / 2.0, (lo[1] + hi[1]) / 2.0]
     };
     let local = old.local([c[0], 0.0, c[1]]);
-    b.site.angle = (b.site.angle + degrees).rem_euclid(360.0);
-    let turned = building_pose(b).apply(local);
-    b.site.x = (b.site.x + c[0] - turned[0] + by[0]).round();
-    b.site.z = (b.site.z + c[1] - turned[2] + by[1]).round();
+    let mut site = b.site;
+    site.angle = (site.angle + degrees).rem_euclid(360.0);
+    let turned = building_pose(&Building { site, ..Default::default() }).apply(local);
+    site.x = (site.x + c[0] - turned[0] + by[0]).round();
+    site.z = (site.z + c[1] - turned[2] + by[1]).round();
+    place_building(prj, bi, site)
+}
+
+/// Puts building `bi` at `site` in the plant. Its rooms, the cabinets in them, its
+/// stairs and roofs go with it, and so do the rooms standing in its floor plan without
+/// being on one of its levels.
+pub fn place_building(prj: &mut Project, bi: usize, site: SitePlace) -> Result<(), String> {
+    let poses = site_poses(prj);
+    let b = prj.layout.buildings.get(bi).ok_or_else(|| tr("No such building").to_string())?;
+    let old = building_pose(b);
+    let new = building_pose(&Building { site, ..Default::default() });
+    // Rooms outside the buildings whose middle stands in its floor plan.
+    let inside = |poly: &[[f32; 2]], q: [f32; 2]| {
+        let mut odd = false;
+        for k in 0..poly.len() {
+            let (a, b) = (poly[k], poly[(k + 1) % poly.len()]);
+            if (a[1] > q[1]) != (b[1] > q[1]) && q[0] < a[0] + (q[1] - a[1]) / (b[1] - a[1]) * (b[0] - a[0]) {
+                odd = !odd;
+            }
+        }
+        odd
+    };
+    let footprint = building_footprint(prj, &poses, bi);
+    let layout = &prj.layout;
+    let free: Vec<usize> = rooms(layout)
+        .into_iter()
+        .filter(|&ri| building_of(layout, ri).is_none())
+        .filter(|&ri| {
+            let (lo, hi) = super::bounds(&outline(&layout.enclosures[ri]));
+            let m = poses[ri].apply([(lo[0] + hi[0]) / 2.0, 0.0, (lo[1] + hi[1]) / 2.0]);
+            footprint.iter().any(|p| inside(p, [m[0], m[2]]))
+        })
+        .collect();
+    let turn = new.angle - old.angle;
+    for ri in free {
+        let at = new.apply(old.local(poses[ri].at));
+        let e = &mut prj.layout.enclosures[ri];
+        e.site = Some(SitePlace { x: at[0].round(), z: at[2].round(), angle: (poses[ri].angle + turn).to_degrees().rem_euclid(360.0) });
+    }
+    prj.layout.buildings[bi].site = site;
     Ok(())
 }
 

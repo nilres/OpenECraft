@@ -58,8 +58,10 @@ struct PvView {
     modules: Vec<Choice>,
     systems: Vec<Choice>,
     inverters: Vec<String>,
-    /// The earthing and equipotential bonding busbars (devices).
+    /// The earthing and equipotential bonding busbars and the generator junction boxes
+    /// (devices).
     busbars: Vec<String>,
+    junction_boxes: Vec<String>,
     powers: Vec<Vec<String>>,
     strings: Vec<Vec<Vec<String>>>,
 }
@@ -73,6 +75,7 @@ impl PvView {
             systems: choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]),
             inverters: strings::inverters(prj),
             busbars: solar::cabling::earthing_busbars(prj),
+            junction_boxes: solar::cabling::junction_boxes(prj),
             powers: roofs
                 .iter()
                 .map(|r| {
@@ -259,6 +262,16 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
         })
         .response
         .on_hover_text(tr("Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none"));
+        ui.label(tr("Generator junction box"));
+        let shown = if a.combiner.is_empty() { tr("None").to_string() } else { a.combiner.clone() };
+        egui::ComboBox::from_id_salt(("bldpvgak", id)).selected_text(shown).width(120.0).show_ui(ui, |ui| {
+            ui.selectable_value(&mut a.combiner, String::new(), tr("None"));
+            for t in &view.junction_boxes {
+                ui.selectable_value(&mut a.combiner, t.clone(), t.as_str());
+            }
+        })
+        .response
+        .on_hover_text(tr("Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none"));
     });
     let values = view.strings[k].get(a_k).map_or(&[][..], Vec::as_slice);
     let add = pv_strings(ui, a, id, &view.inverters, values);
@@ -1172,6 +1185,7 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
             row(ui, tr("Earthing points"), g.earth.len().to_string());
         }
         row(ui, tr("Earthing busbar"), placed(&a.earthing));
+        row(ui, tr("Generator junction box"), placed(&a.combiner));
         if let Some(l) = cabling.iter().find(|l| l.lead == solar::cabling::Lead::Earth) {
             row(ui, tr("Earthing conductor"), metres(vec3::path_length(&l.points)));
         }
@@ -1252,6 +1266,7 @@ impl App {
         egui::Window::new(title).id(egui::Id::unique("pv_properties")).open(&mut open).default_width(560.0).resizable(true).show(ctx, |ui| {
             ui.horizontal(|ui| {
                 ui.checkbox(&mut self.panel_ui.hide_pv_modules, tr("Hide PV modules")).on_hover_text(tr("Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen"));
+                ui.checkbox(&mut self.panel_ui.see_through_pv, tr("See-through PV modules")).on_hover_text(tr("Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen"));
             });
             ui.separator();
             egui::ScrollArea::vertical().max_height(560.0).auto_shrink([false, true]).show(ui, |ui| {

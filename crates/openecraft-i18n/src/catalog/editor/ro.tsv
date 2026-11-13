@@ -112,6 +112,7 @@ Air temperature at the devices	Temperatura aerului la dispozitive
 Air temperature {} … {} °C	Temperatura aerului {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Conductoare de captare pe coame și muchii (o rețea pe acoperișurile plate), conductoare de coborâre de-a lungul pereților exteriori cu piese de separație, care se termină pe prizele de pământ
 Air-termination rod	Tijă de captare
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Tijă de captare plasată pe clădirea {}; clic pentru următoarea · Esc: oprire
 Align	Aliniere
 Aligned	Aliniat
 Alignment	Aliniere
@@ -299,6 +300,7 @@ Choose another project	Alege alt proiect
 Choose file…	Alegere fișier…
 Choose image…	Alege imaginea…
 Choose pages	Alegere pagini
+Choose the building.	Alegeți clădirea.
 Chooses the pages whose structure starts with this	Alege paginile a căror structură începe cu aceasta
 Circle	Cerc
 Circuits of a generic manifold	Circuitele unui distribuitor generic
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Faceți clic pe centru, apoi pe un punc
 Click in the panel layout: a single item of an assembly	Clic în amplasarea în tablou: un singur element al unui ansamblu
 Click into the page to place the image	Faceți clic în pagină pentru a plasa imaginea
 Click into the page to place {}	Faceți clic în pagină pentru a plasa {}
+Click on a roof of building {}	Faceți clic pe un acoperiș al clădirii {}
 Click on a wall	Faceți clic pe un perete
 Click on a wire to place the connection definition point	Faceți clic pe un conductor pentru a plasa punctul de definire a conexiunii
 Click on the 4 mm grid	Faceți clic pe grila de 4 mm
@@ -338,8 +341,12 @@ Click two corners	Faceți clic pe două colțuri
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Faceți clic pe două colțuri ale casetei de structură, apoi stabiliți identificatorii ei în proprietăți · Esc sau clic dreapta pentru a termina
 Click two nodes to connect them	Faceți clic pe două noduri pentru a le conecta
 Click two points to measure from one to the other · Esc: stop	Faceți clic pe două puncte pentru a măsura de la unul la celălalt · Esc: oprire
+Click where an air-termination rod goes on a roof · Esc: stop	Faceți clic unde stă o tijă de captare pe un acoperiș · Esc: oprire
+Click where an earth rod goes, at or round a building · Esc: stop	Faceți clic unde se află un electrod vertical, lângă sau în jurul unei clădiri · Esc: oprire
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Faceți clic unde se întâlnesc patru fire: puntea duce conexiunea de pe o latură spre celelalte trei, întâi spre cea opusă · {} o rotește · Esc sau clic dreapta pentru a termina
 Click where it is in the site plan	Faceți clic pe locul lui în planul de situație
+Click where the air-termination rods go on the roofs in the site plan	Faceți clic în planul de situație unde stau tijele de captare pe acoperișuri
+Click where the earth rods go in the site plan	Faceți clic în planul de situație unde se află electrozii verticali
 Click where the reference point is	Faceți clic unde se află punctul de referință
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Faceți clic unde se întâlnesc trei fire: piesa T indică aparatul de la care pornesc firele și ordinea țintelor lor · {} o rotește unde încă nu se întâlnesc fire · Esc sau clic dreapta pentru a termina
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Faceți clic unde două fire se încrucișează: încrucișarea le leagă și duce fiecare capăt al liniei sale întâi drept înainte, apoi transversal · {} o rotește · Esc sau clic dreapta pentru a termina
@@ -632,6 +639,9 @@ Duct fill limit	Limită de umplere a canalului
 Duplicate	Duplicare
 Each example builds on the one before and shows more of the features.	Fiecare exemplu se bazează pe cel anterior și arată mai multe funcții.
 Each point-to-point connection can belong to a harness	Fiecare conexiune punct la punct poate aparține unui cablaj
+Earth electrodes	Prize de pământ
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Prizele de pământ ale unei clădiri (de fundație și inelare, electrozi verticali plasați cu clic în planul de situație) și protecția ei contra trăsnetului cu tijele de captare plasate cu clic pe acoperișuri
+Earth rod placed at building {}; click for the next one · Esc: stop	Electrod vertical plasat la clădirea {}; clic pentru următorul · Esc: oprire
 Earthing and lightning protection	Împământare și protecție contra trăsnetului
 Earthing busbar	Bară de împământare
 Earthing conductor	Conductor de împământare
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Pagină generată – editați prin 
 Generates the pages of all report blocks again	Generează din nou paginile tuturor blocurilor de raport
 Generates {} pages	Generează {} pagini
 Generation failed: {}	Generarea nu a reușit: {}
+Generator junction box	Cutie de joncțiune a generatorului
 Generic	Generic
 German zones (DIN 18015-3)	Zone germane (DIN 18015-3)
 Getting started	Primii pași
@@ -1774,6 +1785,7 @@ Second channel	Al doilea canal
 Section properties	Proprietățile secțiunii
 Section properties…	Proprietățile secțiunii…
 Section {} is now section {}	Secțiunea {} este acum secțiunea {}
+See-through PV modules	Module PV transparente
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Văzut pe fețele de cuplare; culorile sunt cele ale firelor și conductorilor de cablu la pini.
 Segment {}	Segmentul {}
 Segments	Segmente
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Afișare sau ascundere panou
 Show project manager	Afișează managerul de proiecte
 Show the enclosures bayed to this one as well	Afișare și a carcaselor alăturate acesteia
 Show the messages accepted as checked	Afișare mesaje acceptate ca verificate
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Afișează transparent modulele câmpurilor PV în vizualizarea 3D: se vede cablarea modulelor între ele sub ele
 Show the other wires	Afișare celelalte conductoare
 Show the pane as a window	Afișarea panoului ca fereastră
 Show the ribbon	Afișarea panglicii
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Versiunea web este actualizată pe ser
 The wire tool routes around symbols and other wires	Instrumentul de conductor ocolește simbolurile și alte conductoare
 The wires get the free cores of the cable in order (left to right)	Conductoarele primesc pe rând firele libere ale cablului (de la stânga la dreapta)
 The wires of the connection take these values again	Conductoarele conexiunii preiau din nou aceste valori
+Their places, sizes and busbars are set in the Buildings pane.	Locurile, dimensiunile și barele lor se setează în panoul Clădiri.
 Theme	Temă
 These settings are edited in their panes:	Aceste setări se editează în panourile lor:
 Thickness	Grosime
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	S-au actualizat {} texte de funcție PLC
 {} Vault items found for the project parts	{} elemente Vault găsite pentru articolele proiectului
 {} Vault items found: review the changes in the integration window	{} elemente Vault găsite: examinați modificările în fereastra de integrare
+{} added to building {}	{} adăugat la clădirea {}
 {} addresses changed	{} adrese modificate
+{} air-termination rods	{} tije de captare
 {} bundles, {} branch points	{} mănunchiuri, {} puncte de ramificație
 {} bus cables created	{} cabluri de magistrală create
 {} bus connections	{} conexiuni de magistrală

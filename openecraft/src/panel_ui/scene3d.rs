@@ -920,20 +920,31 @@ fn lead_look(lead: Lead) -> (Color32, Option<Color32>) {
         Lead::Link => (Color32::from_rgb(44, 44, 50), None),
         Lead::Plus => (Color32::from_rgb(205, 40, 36), None),
         Lead::Minus => (Color32::from_rgb(40, 84, 200), None),
+        Lead::Main => (Color32::from_rgb(30, 30, 34), None),
         Lead::Earth => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40))),
     }
 }
 
 impl PanelUi {
     /// The PV arrays `arrays` of roof `r` of building `b`: modules (left out while they
-    /// are hidden; the selected array's in the colour of the selection), mounting with its
-    /// earthing clamps, picked as their array, and their cabling; `to_view` and `turn` take
-    /// points and directions of the plant into the view.
+    /// are hidden, seen through while they are see-through; the selected array's in the
+    /// colour of the selection), mounting with its earthing clamps, picked as their array,
+    /// and their cabling; `to_view` and `turn` take points and directions of the plant
+    /// into the view.
     #[allow(clippy::too_many_arguments)]
     fn pv_arrays_3d<'a>(&self, s: &mut Scene3d, prj: &Project, plant: &[SitePose], b: &panel::Building, r: &panel::Roof, arrays: impl Iterator<Item = &'a panel::PvArray>, to_view: &dyn Fn(V3) -> V3, turn: &dyn Fn(V3) -> V3, lit: &dyn Fn(Color32, V3) -> Color32) {
         for a in arrays {
             let selected = self.selected_array == Some(a.id);
             let first = s.faces.len();
+            // Seen through: the modules of the array as glass, the wiring under them seen.
+            let glass = self.see_through_pv.then(|| {
+                let c = solar::geometry(r, a).map_or([0.0; 3], |g| {
+                    let n = g.modules.len().max(1) as f32;
+                    [0, 1, 2].map(|i| g.modules.iter().flatten().map(|q| q[i]).sum::<f32>() / (4.0 * n))
+                });
+                s.sides.push(SceneSide { normal: [0.0, 1.0, 0.0], at: to_view(bld::building_pose(b).apply(c)), inside: 0, hideable: false, decal: false, glass: true });
+                s.sides.len() - 1
+            });
             for f in solar::faces_of(b, r, std::slice::from_ref(a)) {
                 let base = match f.kind {
                     RoofFaceKind::Module | RoofFaceKind::ModuleFrame if self.hide_pv_modules => continue,
@@ -946,14 +957,19 @@ impl PanelUi {
                 };
                 let pts: Vec<V3> = f.pts.iter().map(|&q| to_view(q)).collect();
                 let n = turn(f.normal);
-                add_poly(s, &pts, n, lit(base, n), 0, None, false);
+                let side = glass.filter(|_| matches!(f.kind, RoofFaceKind::Module | RoofFaceKind::ModuleFrame));
+                add_poly(s, &pts, n, lit(base, n), 0, side, false);
             }
             for face in &mut s.faces[first..] {
                 face.pv = Some(a.id);
             }
             for line in solar::cabling::cabling(prj, plant, b, r, a) {
                 let (color, stripe) = lead_look(line.lead);
-                let diameter = if line.lead == Lead::Earth { 8.0 } else { 6.0 };
+                let diameter = match line.lead {
+                    Lead::Earth => 8.0,
+                    Lead::Main => 12.0,
+                    _ => 6.0,
+                };
                 let pts: Vec<V3> = line.points.iter().map(|&q| to_view(q)).collect();
                 for w in pts.windows(2) {
                     s.wires.push(SceneWire { line: SceneLine { a: w[0], b: w[1], color, stripe, least: 1.5, diameter, tube: false }, inside: None });
@@ -1029,7 +1045,7 @@ impl PanelUi {
         self.wire_index(an).hash(&mut h);
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
         (self.whole_site(), self.level_3d(), self.show_building, self.show_zones, self.open_walls).hash(&mut h);
-        (self.hide_pv_modules, self.selected_array).hash(&mut h);
+        (self.hide_pv_modules, self.see_through_pv, self.selected_array).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);

@@ -112,6 +112,7 @@ Air temperature at the devices	デバイス周囲の空気温度
 Air temperature {} … {} °C	空気温度 {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	棟と隅棟の受雷導体 (陸屋根では網目)、外壁に沿った試験用接続端子付きの引下げ導線で、接地極で終わります
 Air-termination rod	突針
+Air-termination rod placed on building {}; click for the next one · Esc: stop	建物 {} に突針を配置しました。次の突針はクリック · Esc：終了
 Align	整列
 Aligned	平行
 Alignment	整列
@@ -296,6 +297,7 @@ Choose another project	別のプロジェクトを選択
 Choose file…	ファイルを選択…
 Choose image…	画像を選択…
 Choose pages	ページを選択
+Choose the building.	建物を選択してください。
 Chooses the pages whose structure starts with this	構造がこれで始まるページを選択します
 Circle	円
 Circuits of a generic manifold	汎用ヘッダーの回路数
@@ -311,6 +313,7 @@ Click centre, then a point on the circle	中心をクリックし、次に円周
 Click in the panel layout: a single item of an assembly	盤レイアウトでクリック：アセンブリの単一の項目
 Click into the page to place the image	ページ内をクリックして画像を配置します
 Click into the page to place {}	ページ内をクリックして {} を配置します
+Click on a roof of building {}	建物 {} の屋根をクリックしてください
 Click on a wall	壁をクリック
 Click on a wire to place the connection definition point	電線をクリックして接続定義ポイントを配置します
 Click on the 4 mm grid	4 mm グリッド上をクリックします
@@ -335,8 +338,12 @@ Click two corners	2 つのコーナーをクリックします
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	構造ボックスの 2 つの角をクリックし、プロパティで識別子を設定します · Esc または右クリックで終了
 Click two nodes to connect them	2 つのノードをクリックして接続します
 Click two points to measure from one to the other · Esc: stop	2点をクリックして一方から他方まで測定 · Esc：終了
+Click where an air-termination rod goes on a roof · Esc: stop	屋根の上で突針を置く場所をクリック · Esc：終了
+Click where an earth rod goes, at or round a building · Esc: stop	建物のそばや周囲で接地棒を打つ場所をクリック · Esc：終了
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	4本の接続線が交わる点をクリック：ブリッジは接続を一方の側から他の3方向へ、まず反対側へ導きます · {} で回転 · Esc または右クリックで終了
 Click where it is in the site plan	配置図でその位置をクリックします
+Click where the air-termination rods go on the roofs in the site plan	配置図で屋根の上の突針の位置をクリックします
+Click where the earth rods go in the site plan	配置図で接地棒の位置をクリックします
 Click where the reference point is	基準点の位置をクリックします
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	3本の接続線が交わる点をクリック：T分岐は電線が出る機器と目標の順序を指定します · まだ接続線が交わらない場所では {} で回転 · Esc または右クリックで終了
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	2本の接続線が交わる点をクリック：交差は両者を接続し、線の各端をまず直進、次に横方向へ導きます · {} で回転 · Esc または右クリックで終了
@@ -626,6 +633,9 @@ Duct fill limit	ダクト充填率の上限
 Duplicate	複製
 Each example builds on the one before and shows more of the features.	各サンプルは前のものを基にしており、より多くの機能を示します。
 Each point-to-point connection can belong to a harness	各ポイントツーポイント接続は 1 つのハーネスに属することができます
+Earth electrodes	接地極
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	建物の接地極 (基礎接地極と環状接地極、配置図でクリックして置く接地棒) と、屋根の上にクリックして置く突針を含む雷保護
+Earth rod placed at building {}; click for the next one · Esc: stop	建物 {} に接地棒を配置しました。次の接地棒はクリック · Esc：終了
 Earthing and lightning protection	接地と雷保護
 Earthing busbar	接地ブスバー
 Earthing conductor	接地導体
@@ -785,6 +795,7 @@ Generated page – edit via page properties	生成されたページ – ペー�
 Generates the pages of all report blocks again	すべてのレポートブロックのページを再生成します
 Generates {} pages	{} ページを生成します
 Generation failed: {}	生成に失敗しました: {}
+Generator junction box	接続箱
 Generic	汎用
 German zones (DIN 18015-3)	ドイツのゾーン (DIN 18015-3)
 Getting started	はじめに使う
@@ -1756,6 +1767,7 @@ Second channel	第 2 チャンネル
 Section properties	セクションのプロパティ
 Section properties…	セクションのプロパティ…
 Section {} is now section {}	セクション {} はセクション {} になりました
+See-through PV modules	PVモジュールを透過表示
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	嵌合面から見た図。色はピンの電線とケーブル心線の色です。
 Segment {}	セグメント {}
 Segments	区間
@@ -1830,6 +1842,7 @@ Show or hide panes; drag a tab to dock it elsewhere	ペインの表示と非表�
 Show project manager	プロジェクトマネージャーを表示
 Show the enclosures bayed to this one as well	このエンクロージャーに連結されたエンクロージャーも表示
 Show the messages accepted as checked	確認済みとして承認したメッセージを表示
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	3D ビューで PVアレイのモジュールを透過表示します。下にあるモジュール間の配線が見えます
 Show the other wires	他の電線を表示
 Show the pane as a window	ペインをウィンドウとして表示
 Show the ribbon	リボンを表示
@@ -2027,6 +2040,7 @@ The web version is updated on its server.	Web 版はそのサーバー上で更�
 The wire tool routes around symbols and other wires	電線ツールはシンボルや他の電線を回避してルートを決めます
 The wires get the free cores of the cable in order (left to right)	電線にはケーブルの空き心線が順番に (左から右へ) 割り当てられます
 The wires of the connection take these values again	接続の電線がこれらの値を再び引き継ぎます
+Their places, sizes and busbars are set in the Buildings pane.	位置、寸法、ブスバーは建物ペインで設定します。
 Theme	テーマ
 These settings are edited in their panes:	これらの設定は各ペインで編集します:
 Thickness	厚さ
@@ -2317,7 +2331,9 @@ x y	x y
 {} PLC function texts updated	{} 件の PLC 機能テキストを更新しました
 {} Vault items found for the project parts	プロジェクト部品の Vault アイテムが {} 件見つかりました
 {} Vault items found: review the changes in the integration window	Vault アイテムが {} 件見つかりました: 統合ウィンドウで変更を確認してください
+{} added to building {}	{0} を建物 {1} に追加しました
 {} addresses changed	{} 個のアドレスを変更しました
+{} air-termination rods	突針 {} 本
 {} bundles, {} branch points	束 {} 個、分岐点 {} 個
 {} bus cables created	{} 本のバスケーブルを作成しました
 {} bus connections	{} 件のバス接続

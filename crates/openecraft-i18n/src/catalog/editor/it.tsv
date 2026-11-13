@@ -112,6 +112,7 @@ Air temperature at the devices	Temperatura dell'aria sui dispositivi
 Air temperature {} … {} °C	Temperatura dell'aria {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Conduttori di captazione sui colmi e sulle displuviali (una maglia sui tetti piani), calate lungo i muri esterni con giunti di misura, che terminano sui dispersori
 Air-termination rod	Asta di captazione
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Asta di captazione posizionata sull'edificio {}; fare clic per la successiva · Esc: fine
 Align	Allinea
 Aligned	Allineata
 Alignment	Allineamento
@@ -299,6 +300,7 @@ Choose another project	Scegli un altro progetto
 Choose file…	Scegli file…
 Choose image…	Scegli immagine…
 Choose pages	Scegli pagine
+Choose the building.	Scegliere l'edificio.
 Chooses the pages whose structure starts with this	Sceglie le pagine la cui struttura inizia con questo
 Circle	Cerchio
 Circuits of a generic manifold	Circuiti di un collettore generico
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Fai clic sul centro, poi su un punto de
 Click in the panel layout: a single item of an assembly	Clic nel layout del quadro: un singolo elemento di un gruppo
 Click into the page to place the image	Fai clic nella pagina per posizionare l'immagine
 Click into the page to place {}	Fai clic nella pagina per posizionare {}
+Click on a roof of building {}	Fare clic su un tetto dell'edificio {}
 Click on a wall	Fare clic su una parete
 Click on a wire to place the connection definition point	Fai clic su un conduttore per posizionare il punto di definizione collegamento
 Click on the 4 mm grid	Fai clic sulla griglia da 4 mm
@@ -338,8 +341,12 @@ Click two corners	Fai clic su due angoli
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Fai clic su due angoli del riquadro di struttura, poi imposta i suoi identificatori nelle proprietà · Esc o clic destro per terminare
 Click two nodes to connect them	Fai clic su due nodi per collegarli
 Click two points to measure from one to the other · Esc: stop	Clicca due punti per misurare dall'uno all'altro · Esc: termina
+Click where an air-termination rod goes on a roof · Esc: stop	Fare clic dove va un'asta di captazione su un tetto · Esc: fine
+Click where an earth rod goes, at or round a building · Esc: stop	Fare clic dove va un picchetto, presso o attorno a un edificio · Esc: fine
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Fai clic dove si incontrano quattro conduttori: il ponte porta il collegamento da un lato agli altri tre, prima all'opposto · {} lo ruota · Esc o clic destro per terminare
 Click where it is in the site plan	Clicca nella sua posizione nella planimetria
+Click where the air-termination rods go on the roofs in the site plan	Fare clic nella planimetria dove vanno le aste di captazione sui tetti
+Click where the earth rods go in the site plan	Fare clic nella planimetria dove vanno i picchetti
 Click where the reference point is	Clicca dove si trova il punto di riferimento
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Fai clic dove si incontrano tre conduttori: il pezzo a T indica il dispositivo da cui partono i fili e l'ordine dei loro obiettivi · {} lo ruota dove non si incontrano ancora conduttori · Esc o clic destro per terminare
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Fai clic dove due conduttori si incrociano: l'incrocio li collega e porta ciascuna estremità della sua linea prima dritta e poi trasversalmente · {} lo ruota · Esc o clic destro per terminare
@@ -632,6 +639,9 @@ Duct fill limit	Limite di riempimento canalina
 Duplicate	Duplica
 Each example builds on the one before and shows more of the features.	Ogni esempio si basa sul precedente e mostra più funzioni.
 Each point-to-point connection can belong to a harness	Ogni collegamento punto-punto può appartenere a un cablaggio
+Earth electrodes	Dispersori
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Dispersori di un edificio (di fondazione e ad anello, picchetti posizionati con un clic nella planimetria) e la sua protezione contro i fulmini con le aste di captazione posizionate con un clic sui tetti
+Earth rod placed at building {}; click for the next one · Esc: stop	Picchetto posizionato presso l'edificio {}; fare clic per il successivo · Esc: fine
 Earthing and lightning protection	Messa a terra e protezione contro i fulmini
 Earthing busbar	Barra di terra
 Earthing conductor	Conduttore di terra
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Pagina generata – modificala trami
 Generates the pages of all report blocks again	Rigenera le pagine di tutti i blocchi di report
 Generates {} pages	Genera {} pagine
 Generation failed: {}	Generazione non riuscita: {}
+Generator junction box	Quadro di campo
 Generic	Generico
 German zones (DIN 18015-3)	Zone tedesche (DIN 18015-3)
 Getting started	Primi passi
@@ -1774,6 +1785,7 @@ Second channel	Secondo canale
 Section properties	Proprietà della sezione
 Section properties…	Proprietà della sezione…
 Section {} is now section {}	La sezione {} è ora la sezione {}
+See-through PV modules	Moduli FV trasparenti
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Vista sulle facce di accoppiamento; i colori sono quelli dei fili e dei conduttori del cavo ai pin.
 Segment {}	Segmento {}
 Segments	Tratti
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Mostra o nascondi riquadri; 
 Show project manager	Mostra il gestore dei progetti
 Show the enclosures bayed to this one as well	Mostra anche gli armadi affiancati a questo
 Show the messages accepted as checked	Mostra i messaggi accettati come verificati
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Mostrare trasparenti i moduli dei campi FV nella vista 3D: si vede il cablaggio dei moduli tra loro sotto di essi
 Show the other wires	Mostra gli altri conduttori
 Show the pane as a window	Mostra il riquadro come finestra
 Show the ribbon	Mostra la barra multifunzione
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	La versione web viene aggiornata sul s
 The wire tool routes around symbols and other wires	Lo strumento conduttore instrada attorno ai simboli e agli altri conduttori
 The wires get the free cores of the cable in order (left to right)	I conduttori ricevono in ordine (da sinistra a destra) le anime libere del cavo
 The wires of the connection take these values again	I conduttori del collegamento assumono di nuovo questi valori
+Their places, sizes and busbars are set in the Buildings pane.	Posizioni, misure e barre si impostano nel pannello Edifici.
 Theme	Tema
 These settings are edited in their panes:	Queste impostazioni si modificano nei rispettivi riquadri:
 Thickness	Spessore
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} testi funzione PLC aggiornati
 {} Vault items found for the project parts	{} elementi di Vault trovati per gli articoli del progetto
 {} Vault items found: review the changes in the integration window	{} elementi di Vault trovati: esamina le modifiche nella finestra di integrazione
+{} added to building {}	{} aggiunto all'edificio {}
 {} addresses changed	{} indirizzi modificati
+{} air-termination rods	{} aste di captazione
 {} bundles, {} branch points	{} fasci, {} punti di derivazione
 {} bus cables created	{} cavi bus creati
 {} bus connections	{} collegamenti bus

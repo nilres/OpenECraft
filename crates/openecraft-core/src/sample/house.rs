@@ -3,7 +3,7 @@
 //! the attic floor, so the attic's ceiling slopes down to 1.2 m at its long walls; a
 //! stair turned once at a quarter landing leads up, two roof windows sit in the front
 //! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one,
-//! one string on a 10 kW inverter on the attic's gable wall, the rails bonded to an
+//! one string through a generator junction box to a 10 kW inverter on the attic's gable wall, the rails bonded to an
 //! equipotential bonding busbar under it. The building is earthed by a foundation earth
 //! electrode on the main earthing busbar of the office and a ring earth electrode, on
 //! which the down conductors of its lightning protection (class III) end.
@@ -82,6 +82,13 @@ pub(super) fn project() -> Project {
     bar.parts.push(crate::parts::PartRef { number: "GEN.MET-BAR-10".into(), count: 1, total: false });
     prj.devices.insert("=PV-PE1".into(), bar);
     prj.layout.buildings[b3].roofs[0].solar[0].earthing = "=PV-PE1".into();
+    // The strings run to a generator junction box, from there the DC main cable to the
+    // inverter.
+    crate::parts::ensure_in_project(&mut prj, &db, "GEN.GAK-2S");
+    let mut gak = crate::model::DeviceData::default();
+    gak.parts.push(crate::parts::PartRef { number: "GEN.GAK-2S".into(), count: 1, total: false });
+    prj.devices.insert("=PV-U1".into(), gak);
+    prj.layout.buildings[b3].roofs[0].solar[0].combiner = "=PV-U1".into();
 
     // The installation: outlets and switches at their mounting heights, the manifold
     // and the control box of the underfloor heating.
@@ -110,6 +117,7 @@ pub(super) fn project() -> Project {
     let h = prj.layout.enclosures[attic].height;
     panel::place_device_on(&mut prj, attic, "=PV-T1", p(1200.0, h - 1900.0), Face::Wall(1)).expect("house");
     panel::place_device_on(&mut prj, attic, "=PV-PE1", p(1300.0, h - 1150.0), Face::Wall(1)).expect("house");
+    panel::place_device_on(&mut prj, attic, "=PV-U1", p(1900.0, h - 1800.0), Face::Wall(1)).expect("house");
     // Earthing: the foundation earth electrode to the main earthing busbar in the office,
     // a ring earth electrode for the lightning protection (class III) whose down
     // conductors end on it, an air-termination rod on the ridge beside the PV array.

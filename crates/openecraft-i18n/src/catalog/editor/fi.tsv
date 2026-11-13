@@ -112,6 +112,7 @@ Air temperature at the devices	Ilman lämpötila laitteiden luona
 Air temperature {} … {} °C	Ilman lämpötila {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Sieppausjohtimet harjoilla ja taitteilla (silmukka tasakatoilla), alastulojohtimet ulkoseinillä mittausliitoksin, päättyen maadoituselektrodeihin
 Air-termination rod	Ukkosenjohdatintanko
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Ukkosenjohdatintanko sijoitettu rakennukseen {}; napsauta seuraavaa varten · Esc: lopeta
 Align	Tasaa
 Aligned	Kohdistettu
 Alignment	Tasaus
@@ -299,6 +300,7 @@ Choose another project	Valitse toinen projekti
 Choose file…	Valitse tiedosto…
 Choose image…	Valitse kuva…
 Choose pages	Valitse sivut
+Choose the building.	Valitse rakennus.
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
 Circle	Ympyrä
 Circuits of a generic manifold	Yleisen jakotukin piirit
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Napsauta keskipistettä ja sitten ympyr
 Click in the panel layout: a single item of an assembly	Napsautus kaappiasennuksessa: kokoonpanon yksittäinen osa
 Click into the page to place the image	Napsauta sivua sijoittaaksesi kuvan
 Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
+Click on a roof of building {}	Napsauta rakennuksen {} kattoa
 Click on a wall	Napsauta seinää
 Click on a wire to place the connection definition point	Napsauta johtoa sijoittaaksesi yhteyden määrityspisteen
 Click on the 4 mm grid	Napsauta 4 mm:n ruudukkoon
@@ -338,8 +341,12 @@ Click two corners	Napsauta kahta kulmaa
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Napsauta rakennelaatikon kahta kulmaa ja aseta sen tunnukset ominaisuuksissa · Esc tai hiiren oikea painike lopettaa
 Click two nodes to connect them	Yhdistä kaksi solmua napsauttamalla niitä
 Click two points to measure from one to the other · Esc: stop	Napsauta kahta pistettä mitataksesi toisesta toiseen · Esc: lopeta
+Click where an air-termination rod goes on a roof · Esc: stop	Napsauta kohtaa, johon ukkosenjohdatintanko tulee katolla · Esc: lopeta
+Click where an earth rod goes, at or round a building · Esc: stop	Napsauta kohtaa, johon maadoitussauva tulee rakennuksen vieressä tai ympärillä · Esc: lopeta
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa neljä johdinta kohtaa: silta vie liitoksen yhdeltä sivulta kolmelle muulle, ensin vastakkaiselle · {} kääntää sen · Esc tai oikea painike lopettaa
 Click where it is in the site plan	Napsauta sen kohtaa asemapiirroksessa
+Click where the air-termination rods go on the roofs in the site plan	Napsauta asemapiirroksessa kohtia, joihin ukkosenjohdatintangot tulevat katoille
+Click where the earth rods go in the site plan	Napsauta asemapiirroksessa kohtia, joihin maadoitussauvat tulevat
 Click where the reference point is	Napsauta vertailupisteen kohtaa
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
@@ -632,6 +639,9 @@ Duct fill limit	Johtokourun täyttöraja
 Duplicate	Monista
 Each example builds on the one before and shows more of the features.	Jokainen esimerkki rakentuu edellisen päälle ja näyttää enemmän toiminnoista.
 Each point-to-point connection can belong to a harness	Jokainen pisteestä pisteeseen -yhteys voi kuulua johtosarjaan
+Earth electrodes	Maadoituselektrodit
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Rakennuksen maadoituselektrodit (perustus- ja rengasmaadoitus, asemapiirrokseen napsautetut maadoitussauvat) ja sen ukkossuojaus katoille napsautettuine ukkosenjohdatintankoineen
+Earth rod placed at building {}; click for the next one · Esc: stop	Maadoitussauva sijoitettu rakennukseen {}; napsauta seuraavaa varten · Esc: lopeta
 Earthing and lightning protection	Maadoitus ja ukkossuojaus
 Earthing busbar	Maadoituskisko
 Earthing conductor	Maadoitusjohdin
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Luotu sivu – muokkaa sivun ominais
 Generates the pages of all report blocks again	Luo kaikkien raporttilohkojen sivut uudelleen
 Generates {} pages	Luo {} sivua
 Generation failed: {}	Luonti epäonnistui: {}
+Generator junction box	Generaattorin liitäntäkotelo
 Generic	Yleinen
 German zones (DIN 18015-3)	Saksalaiset vyöhykkeet (DIN 18015-3)
 Getting started	Aloitus
@@ -1774,6 +1785,7 @@ Second channel	Toinen kanava
 Section properties	Osion ominaisuudet
 Section properties…	Osion ominaisuudet…
 Section {} is now section {}	Osio {} on nyt osio {}
+See-through PV modules	Läpinäkyvät aurinkopaneelit
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Nähtynä liitinpinnoilta; värit ovat nastojen johtimien ja kaapelijohtimien värit.
 Segment {}	Segmentti {}
 Segments	Osuudet
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Näytä tai piilota ruutuja;
 Show project manager	Näytä projektienhallinta
 Show the enclosures bayed to this one as well	Näytä myös tähän rivitetyt kotelot
 Show the messages accepted as checked	Näytä tarkistetuiksi hyväksytyt ilmoitukset
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Näytä aurinkopaneelikenttien moduulit läpinäkyvinä 3D-näkymässä: moduulien väliset johdotukset niiden alla näkyvät
 Show the other wires	Näytä muut johdot
 Show the pane as a window	Näytä ruutu ikkunana
 Show the ribbon	Näytä valintanauha
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Verkkoversio päivitetään sen palvel
 The wire tool routes around symbols and other wires	Johtotyökalu reitittää symbolien ja muiden johtojen ympäri
 The wires get the free cores of the cable in order (left to right)	Johdot saavat kaapelin vapaat johtimet järjestyksessä (vasemmalta oikealle)
 The wires of the connection take these values again	Yhteyden johdot saavat nämä arvot uudelleen
+Their places, sizes and busbars are set in the Buildings pane.	Niiden paikat, mitat ja kiskot asetetaan Rakennukset-paneelissa.
 Theme	Teema
 These settings are edited in their panes:	Näitä asetuksia muokataan omissa ruuduissaan:
 Thickness	Paksuus
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-toimintotekstiä päivitetty
 {} Vault items found for the project parts	Projektin osille löytyi {} Vault-nimikettä
 {} Vault items found: review the changes in the integration window	{} Vault-nimikettä löytyi: tarkista muutokset integraatioikkunassa
+{} added to building {}	{} lisätty rakennukseen {}
 {} addresses changed	{} osoitetta muutettu
+{} air-termination rods	{} ukkosenjohdatintankoa
 {} bundles, {} branch points	{} nippua, {} haarautumispistettä
 {} bus cables created	{} väyläkaapelia luotu
 {} bus connections	{} väyläyhteyttä

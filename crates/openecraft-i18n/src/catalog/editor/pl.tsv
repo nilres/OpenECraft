@@ -112,6 +112,7 @@ Air temperature at the devices	Temperatura powietrza przy urządzeniach
 Air temperature {} … {} °C	Temperatura powietrza {} … {} °C
 Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Zwody na kalenicach i narożach (siatka na dachach płaskich), przewody odprowadzające wzdłuż ścian zewnętrznych ze złączami kontrolnymi, kończące się na uziomach
 Air-termination rod	Iglica odgromowa
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Iglica odgromowa umieszczona na budynku {}; kliknij dla następnej · Esc: zakończ
 Align	Wyrównaj
 Aligned	Wyrównany
 Alignment	Wyrównanie
@@ -299,6 +300,7 @@ Choose another project	Wybierz inny projekt
 Choose file…	Wybierz plik…
 Choose image…	Wybierz obraz…
 Choose pages	Wybierz strony
+Choose the building.	Wybierz budynek.
 Chooses the pages whose structure starts with this	Wybiera strony, których struktura zaczyna się od tego
 Circle	Okrąg
 Circuits of a generic manifold	Obiegi rozdzielacza ogólnego
@@ -314,6 +316,7 @@ Click centre, then a point on the circle	Kliknij środek, a następnie punkt na 
 Click in the panel layout: a single item of an assembly	Kliknięcie w zabudowie szafy: pojedynczy element zespołu
 Click into the page to place the image	Kliknij na stronie, aby umieścić obraz
 Click into the page to place {}	Kliknij na stronie, aby umieścić {}
+Click on a roof of building {}	Kliknij dach budynku {}
 Click on a wall	Kliknij ścianę
 Click on a wire to place the connection definition point	Kliknij przewód, aby umieścić punkt definicji połączenia
 Click on the 4 mm grid	Kliknij na siatce 4 mm
@@ -338,8 +341,12 @@ Click two corners	Kliknij dwa narożniki
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Kliknij dwa narożniki ramki struktury, a następnie ustaw jej identyfikatory we właściwościach · Esc lub prawy przycisk kończy
 Click two nodes to connect them	Kliknij dwa węzły, aby je połączyć
 Click two points to measure from one to the other · Esc: stop	Kliknij dwa punkty, aby zmierzyć od jednego do drugiego · Esc: zakończ
+Click where an air-termination rod goes on a roof · Esc: stop	Kliknij, gdzie stoi iglica odgromowa na dachu · Esc: zakończ
+Click where an earth rod goes, at or round a building · Esc: stop	Kliknij, gdzie jest uziom pionowy, przy budynku lub wokół niego · Esc: zakończ
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Kliknij tam, gdzie spotykają się cztery przewody: mostek prowadzi połączenie z jednej strony do trzech pozostałych, najpierw do przeciwległej · {} obraca go · Esc lub prawy przycisk kończy
 Click where it is in the site plan	Kliknij jego miejsce na planie sytuacyjnym
+Click where the air-termination rods go on the roofs in the site plan	Kliknij na planie sytuacyjnym, gdzie stoją iglice odgromowe na dachach
+Click where the earth rods go in the site plan	Kliknij na planie sytuacyjnym, gdzie są uziomy pionowe
 Click where the reference point is	Kliknij w miejscu punktu odniesienia
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kliknij tam, gdzie spotykają się trzy przewody: trójnik wskazuje urządzenie, od którego wychodzą przewody, i kolejność ich celów · {} obraca go tam, gdzie przewody jeszcze się nie spotykają · Esc lub prawy przycisk kończy
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kliknij tam, gdzie krzyżują się dwa przewody: skrzyżowanie łączy je i prowadzi każdy koniec swojej linii najpierw na wprost, potem poprzecznie · {} obraca je · Esc lub prawy przycisk kończy
@@ -632,6 +639,9 @@ Duct fill limit	Graniczne wypełnienie kanału
 Duplicate	Duplikuj
 Each example builds on the one before and shows more of the features.	Każdy przykład opiera się na poprzednim i pokazuje więcej funkcji.
 Each point-to-point connection can belong to a harness	Każde połączenie punkt-punkt może należeć do wiązki
+Earth electrodes	Uziomy
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Uziomy budynku (fundamentowy i otokowy, uziomy pionowe klikane na planie sytuacyjnym) i jego ochrona odgromowa z iglicami klikanymi na dachach
+Earth rod placed at building {}; click for the next one · Esc: stop	Uziom pionowy umieszczony przy budynku {}; kliknij dla następnego · Esc: zakończ
 Earthing and lightning protection	Uziemienie i ochrona odgromowa
 Earthing busbar	Szyna uziemiająca
 Earthing conductor	Przewód uziemiający
@@ -793,6 +803,7 @@ Generated page – edit via page properties	Strona wygenerowana – edytuj we w�
 Generates the pages of all report blocks again	Ponownie generuje strony wszystkich bloków raportów
 Generates {} pages	Generuje strony: {}
 Generation failed: {}	Generowanie nie powiodło się: {}
+Generator junction box	Skrzynka przyłączeniowa generatora
 Generic	Ogólne
 German zones (DIN 18015-3)	Strefy niemieckie (DIN 18015-3)
 Getting started	Pierwsze kroki
@@ -1774,6 +1785,7 @@ Second channel	Drugi kanał
 Section properties	Właściwości sekcji
 Section properties…	Właściwości sekcji…
 Section {} is now section {}	Sekcja {} jest teraz sekcją {}
+See-through PV modules	Przezroczyste moduły PV
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Widok od strony styku; kolory to kolory przewodów i żył kabla na pinach.
 Segment {}	Segment {}
 Segments	Odcinki
@@ -1849,6 +1861,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Pokaż lub ukryj panele; prz
 Show project manager	Pokaż menedżera projektów
 Show the enclosures bayed to this one as well	Pokaż także obudowy szeregowane z tą obudową
 Show the messages accepted as checked	Pokaż komunikaty zaakceptowane jako sprawdzone
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Pokaż moduły pól PV jako przezroczyste w widoku 3D: widać okablowanie modułów między sobą pod nimi
 Show the other wires	Pokaż pozostałe przewody
 Show the pane as a window	Pokaż panel jako okno
 Show the ribbon	Pokaż wstążkę
@@ -2047,6 +2060,7 @@ The web version is updated on its server.	Wersja internetowa jest aktualizowana 
 The wire tool routes around symbols and other wires	Narzędzie przewodu prowadzi wokół symboli i innych przewodów
 The wires get the free cores of the cable in order (left to right)	Przewody otrzymują kolejno (od lewej do prawej) wolne żyły kabla
 The wires of the connection take these values again	Przewody połączenia ponownie przejmują te wartości
+Their places, sizes and busbars are set in the Buildings pane.	Ich miejsca, wymiary i szyny ustawia się w panelu Budynki.
 Theme	Motyw
 These settings are edited in their panes:	Te ustawienia edytuje się w ich panelach:
 Thickness	Grubość
@@ -2344,7 +2358,9 @@ x y	x y
 {} PLC function texts updated	Zaktualizowano teksty funkcji PLC: {}
 {} Vault items found for the project parts	Znalezione elementy Vault dla artykułów projektu: {}
 {} Vault items found: review the changes in the integration window	Znalezione elementy Vault: {}; przejrzyj zmiany w oknie integracji
+{} added to building {}	{} dodano do budynku {}
 {} addresses changed	Zmienione adresy: {}
+{} air-termination rods	{} iglic odgromowych
 {} bundles, {} branch points	Wiązki: {}, punkty rozgałęzień: {}
 {} bus cables created	Utworzone kable magistrali: {}
 {} bus connections	Połączenia magistrali: {}
