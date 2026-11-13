@@ -110,6 +110,8 @@ Air at devices at most	장치 주변 공기 최대 온도
 Air temperature	공기 온도
 Air temperature at the devices	장치 주변 공기 온도
 Air temperature {} … {} °C	공기 온도 {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	용마루와 추녀마루의 수뢰 도체(평지붕에서는 메시), 외벽을 따라 시험 단자가 있는 인하 도선으로 접지극에서 끝납니다
+Air-termination rod	피뢰침
 Align	맞춤
 Aligned	정렬
 Alignment	정렬
@@ -154,6 +156,7 @@ Arc	호
 Archive and version	아카이브 및 버전
 Archive project…	프로젝트 아카이브…
 Arms	가지
+Array	어레이
 As defined by the check	검사에서 정의한 대로
 As the rules say ({})	규칙에 따름 ({})
 Aspects of the pages	페이지의 측면
@@ -218,6 +221,9 @@ Boundary	경계
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	전원의 각 보호 장치에서 단락 전류 대비 차단 용량, 회로 끝의 최소 고장 전류에서의 차단, 케이블의 단락 내량 및 상위 장치와의 선택 차단.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	브리지: 네 연결선. 연결은 한쪽에서 들어와 다른 세 쪽으로, 먼저 반대쪽으로 갑니다
 Building {} added with a level at ground level	지상층 하나로 건물 {}을(를) 추가했습니다
+Building {} at x {} m, z {} m	건물 {} 위치 x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	건물 {} 위치 x {} m, z {} m, {}° 회전
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	건물 {} 위치 x {} m, z {} m, {}° 회전: 부지 경계 밖에 있습니다
 Built-in frames cannot be changed; copy one to adapt it.	기본 제공 프레임은 변경할 수 없습니다. 수정하려면 복사하세요.
 Built-in scheme: copy it to change it.	기본 제공 스키마: 변경하려면 복사하세요.
 Built-in title blocks are read only – use “Copy as new” to make your own.	기본 제공 표제란은 읽기 전용입니다. 고유 표제란을 만들려면 “새로 복사”를 사용하세요.
@@ -292,7 +298,10 @@ Choose pages	페이지 선택
 Chooses the pages whose structure starts with this	구조가 이 값으로 시작하는 페이지를 선택합니다
 Circle	원
 Circuits of a generic manifold	일반 분배기의 회로 수
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	피뢰 시스템 등급: 인하 도선 간격, 평지붕 메시 및 보호각
+Class {}	등급 {}
 Clear	지우기
+Clear the search	검색 지우기
 Clearance	이격 거리
 Click	클릭
 Click a text: open its link	텍스트 클릭: 링크 열기
@@ -423,6 +432,7 @@ Cross references…	상호 참조…
 Crossed wires	교차된 전선
 Ctrl + click on the text opens it as well	텍스트를 Ctrl + 클릭해도 열립니다
 Ctrl+A	Ctrl+A
+Current at maximum power	최대 전력 시 전류
 Current-carrying capacity: {} × IEC 60204-1, table 6	허용 전류: {} × IEC 60204-1, 표 6
 Customer rule sets	고객 규칙 세트
 Customer, plant or standard	고객, 공장 또는 표준
@@ -435,6 +445,7 @@ Cut length step tubes	튜브 절단 길이 단위
 Cut length step wires	전선 절단 길이 단위
 Cutout {} × {} mm	컷아웃 {} × {} mm
 Cutting allowance per end	끝당 절단 여유
+DC leads	직류 케이블
 DRAFT	초안
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	현재 언어의 '초안', '승인 대기', '승인됨'. 릴리스 후에는 없음
 DWG import failed: {}	DWG 가져오기 실패: {}
@@ -458,9 +469,11 @@ Define all used	사용된 항목 모두 정의
 Defined potentials	정의된 전위
 Del	Del
 Delete PV array	태양광 어레이 삭제
+Delete air-termination rod	피뢰침 삭제
 Delete cable (its wires are removed from it)	케이블 삭제(케이블의 전선은 케이블에서 제거됨)
 Delete comment	주석 삭제
 Delete connection point	연결 지점 삭제
+Delete earth electrode	접지극 삭제
 Delete element	요소 삭제
 Delete enclosure	외함 삭제
 Delete enclosure {} with everything placed in it?	외함 {}을(를) 그 안에 배치된 모든 것과 함께 삭제하시겠습니까?
@@ -485,8 +498,10 @@ Delete this workspace	이 작업 공간 삭제
 Delete variant	변형 삭제
 Delete zone	구역 삭제
 Depth / mounted at	깊이 / 장착 위치
+Depth below the ground	지면 아래 깊이
 Depth from / to	깊이 시작 / 끝
 Depth in the floor	바닥 안 깊이
+Depth of its top below the ground	윗단의 지면 아래 깊이
 Derive project definition	프로젝트 정의 파생
 Descriptions	설명
 Deselect	선택 해제
@@ -558,6 +573,7 @@ Door cutouts (CSV)	도어 컷아웃(CSV)
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
 Double-click	두 번 클릭
+Down conductors	인하 도선
 Download into database	데이터베이스로 다운로드
 Download project	프로젝트 다운로드
 Downloaded {} (version {})	{}을(를) 다운로드했습니다(버전 {})
@@ -568,6 +584,7 @@ Draft	초안
 Draft of revision {} created	개정 {}의 초안 만들어짐
 Draft of revision {} discarded	개정 {}의 초안 취소됨
 Drag	끌기
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	건물을 드래그하여 이동 · R: 포인터 아래 건물을 90° 회전 · Esc: 종료
 Drag a connection point designation of the selected symbol to place it.	선택한 심볼의 연결 지점 명칭을 끌어서 배치하세요.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	선택한 전선의 끝을 드래그하면 그 끝만 이동합니다. Alt를 누른 채 드래그하면 연결 유지가 반대로 됩니다.
 Drag an entry into the page, or click it and then click into the page.	항목을 페이지로 끌어 놓거나, 항목을 클릭한 다음 페이지를 클릭하세요.
@@ -607,12 +624,17 @@ Duct fill limit	덕트 충전율 한계
 Duplicate	복제
 Each example builds on the one before and shows more of the features.	각 예제는 이전 예제를 기반으로 더 많은 기능을 표시합니다.
 Each point-to-point connection can belong to a harness	각 점대점 연결은 하네스에 속할 수 있습니다
+Earthing and lightning protection	접지 및 피뢰
+Earthing busbar	접지 부스바
+Earthing conductor	접지 도체
+Earthing points	접지점
 Earthing system	접지 계통
 Easting, northing	동쪽 좌표, 북쪽 좌표
 Eaves	처마
 Edge length of the routing grid: smaller is finer and slower	배선 경로 그리드의 모서리 길이: 작을수록 정밀하지만 느려짐
 Edit in table	표에서 편집
 Edit in table…	표에서 편집…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	편집 모드: 배치도에서 건물을 제자리로 드래그하고 회전합니다. 방을 클릭해도 더 이상 열리지 않습니다
 Editable copy of this plot frame	이 플롯 프레임의 편집 가능한 복사본
 Editable copy of this title block	이 표제란의 편집 가능한 복사본
 Effective surface	유효 표면적
@@ -793,9 +815,11 @@ Height above the floor	바닥으로부터의 높이
 Height above the mounting plate	장착 플레이트 위 높이
 Height above the plate	플레이트 위 높이
 Height of the plinth, 0 without plinth	받침대 높이, 0이면 받침대 없음
+Height of the rod above the covering	지붕재 위 피뢰침 높이
 Heights above floor (IEC 60204-1)	바닥으로부터의 높이(IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	클릭, 이동 또는 스크롤하는 동안 누릅니다. macOS에서 Ctrl은 Cmd입니다.
 Help	도움말
+Hide PV modules	태양광 모듈 숨기기
 Hide the groups you do not need and put the commands you use most into own groups.	필요 없는 그룹은 숨기고 자주 쓰는 명령은 자체 그룹에 넣습니다.
 Highest phase unbalance	최대 상 불평형
 Highest short-circuit current	최대 단락 전류
@@ -815,6 +839,8 @@ Hose defaults and PCT loops of the pre-planning	사전 계획의 호스 기본�
 Hose number	호스 번호
 Hoses and pipes	호스 및 배관
 Hoses rated below it are errors; 0 = not checked	정격이 이보다 낮은 호스는 오류입니다. 0 = 검사 안 함
+How far inside the outer walls	외벽 안쪽 거리
+How far outside the outer walls	외벽 바깥쪽 거리
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	문짝이 열리는 방식: 왼쪽 또는 오른쪽 가장자리에 경첩(실내에서 볼 때), 실내 쪽 또는 바깥쪽으로 열림, 또는 벽을 따라 미닫이
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	이 끝단에서 전선을 마감하는 방식. 기본값은 연결점 또는 그 장치에 선택한 것, 없으면 레이아웃의 페룰 설정을 따릅니다
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	전선이 교차하는 전선을 넘는 방식, T 연결을 표시하는 방식, 이동한 항목의 연결을 다시 배선할지 여부
@@ -927,6 +953,7 @@ Labeling scheme	라벨링 스키마
 Landscape	가로
 Large dot	큰 점
 Larger texts and buttons for a touch screen at the workbench	작업대 터치스크린을 위한 더 큰 글자와 버튼
+Largest mesh	최대 메시
 Latitude, longitude	위도, 경도
 Layer	레이어
 Layer {}	레이어 {}
@@ -940,6 +967,7 @@ Layout space	레이아웃 공간
 Layout spaces	레이아웃 공간
 Leave out the ceilings of the rooms and the roofs in the 3D view	3D 보기에서 방의 천장과 지붕 생략
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	3D 보기에서 모든 케이블 덕트의 덮개를 생략합니다: 안의 전선이 보입니다
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	3D 보기에서 태양광 어레이의 모듈을 숨깁니다: 레일, 지붕 후크, 가대, 접지 및 케이블이 보입니다
 Leave repeated values of the first column blank	첫 번째 열의 반복 값을 비워 둠
 Left button	왼쪽 단추
 Left edges	왼쪽 가장자리
@@ -947,6 +975,7 @@ Legend plates (door devices)	명판(도어 장치)
 Length from the node to the device	노드에서 장치까지의 길이
 Length inside an enclosure	외함 내부 길이
 Length of a shield pigtail where there is no shield clamp	차폐 클램프가 없는 곳의 차폐 피그테일 길이
+Length of the rod	접지봉 길이
 Length of wires that are not routed in the panel layout	패널 레이아웃에서 배선 경로가 지정되지 않은 전선의 길이
 Length {} mm	길이 {} mm
 Letters, digits, space, - _ . (up to 64 characters)	문자, 숫자, 공백, - _ .(최대 64자)
@@ -955,6 +984,7 @@ Level of this kind of message	이 메시지 종류의 수준
 Level {} added to building {}; new rooms go onto it	건물 {1}에 층 {0}을(를) 추가했습니다. 새 실은 이 층에 놓입니다
 Level {} of building {}	건물 {1}의 {0}층
 Library	라이브러리
+Lightning protection	피뢰
 Like two fingers	두 손가락과 같게
 Limits	한계값
 Limits in effect	적용되는 한계값
@@ -1006,6 +1036,7 @@ Macros ({})	매크로 ({})
 Macro…	매크로…
 Main	주
 Make the selected elements of this project equal to the compared ones	이 프로젝트의 선택한 요소를 비교 대상과 같게 만듭니다
+Maker	제조업체
 Makes the current page content of the option	현재 페이지를 옵션의 내용으로 지정합니다
 Manage plugins	플러그인 관리
 Management	관리
@@ -1048,6 +1079,7 @@ Mixed	혼합
 Mode	모드
 Model of a part (2D / 3D)	부품의 모델(2D / 3D)
 Modifier keys	보조키
+Module area	모듈 면적
 Module part; its size comes from the part	모듈 부품; 크기는 부품에서 가져옴
 Motors feed the short circuit	모터가 단락 전류를 공급함
 Mounted on	장착 대상
@@ -1060,6 +1092,7 @@ Mouse	마우스
 Move	이동
 Move ahead in the 3D view (held)	3D 보기에서 앞으로 이동(누른 채로)
 Move back in the 3D view (held)	3D 보기에서 뒤로 이동(누른 채로)
+Move buildings	건물 이동
 Move down	아래로 이동
 Move down in the 3D view (held)	3D 보기에서 아래로 이동(누른 채로)
 Move faster with the keys of the 3D view	3D 보기 키로 더 빠르게 이동
@@ -1147,6 +1180,7 @@ No PLC cards in the project.	프로젝트에 PLC 카드가 없습니다.
 No PLC inputs / outputs placed.	배치된 PLC 입력 / 출력이 없습니다.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	부속품이 없습니다. 글랜드, 커넥터, 차폐 클램프 등은 부품 목록에 포함되며 케이블과 대조하여 검사됩니다.
 No bus systems.	버스 시스템이 없습니다.
+No busbar	부스바 없음
 No cable passage to {}: wires to it are not routed	{}(으)로의 케이블 통로 없음: 그쪽 전선은 배선 경로가 지정되지 않음
 No cables defined.	정의된 케이블이 없습니다.
 No cables yet. Draw a cable definition across wires or add a cable.	아직 케이블이 없습니다. 전선을 가로질러 케이블 정의를 그리거나 케이블을 추가하세요.
@@ -1158,6 +1192,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	{}와(과) 차이점이 없습니다.
 No document embedded	포함된 문서 없음
 No dot: plain T	점 없음: 단순 T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	아직 접지극이 없습니다: 기초 슬래브의 기초 접지극, 벽 주위의 환상 접지극 또는 접지봉.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	아직 외함이 없습니다 – 새 외함으로 만들거나 새 방으로 외함용 방을 만드십시오.
 No field cables: place the enclosures and field devices at nodes of the route network.	필드 케이블이 없습니다. 외함과 필드 장치를 경로 네트워크의 노드에 배치하세요.
 No filter fans: an air/air heat exchanger or a cooling unit	필터 팬 없음: 공기/공기 열교환기 또는 냉각 장치
@@ -1170,6 +1205,7 @@ No macros yet. Select items in a schematic and save them as a macro.	아직 매�
 No modules: plug in PLC cards of the schematic.	모듈이 없습니다. 회로도의 PLC 카드를 장착하세요.
 No numbers for	번호를 붙이지 않을 대상
 No panel items: place the devices in the panel layout.	패널 항목이 없습니다. 패널 레이아웃에 장치를 배치하세요.
+No part matches.	일치하는 부품이 없습니다.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	아직 바닥 설치로 표시된 부품이 없습니다. 부품 관리에서 표시하십시오: 부품 편집기 › 장착 데이터 › 바닥 설치.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	아직 벽 설치로 표시된 부품이 없습니다. 부품 관리에서 표시하십시오: 부품 편집기 › 장착 데이터 › 벽 설치.
 No parts of the product group Cables in the parts database.	부품 데이터베이스에 제품 그룹 케이블의 부품이 없습니다.
@@ -1188,6 +1224,7 @@ No segments yet: draw them in the plant layout.	아직 구간이 없습니다. �
 No shortcut	바로 가기 키 없음
 No single-line symbols and no power devices in the schematic.	회로도에 단선 심볼과 전력 장치가 없습니다.
 No stations: add one or use the automatic configuration.	스테이션이 없습니다. 스테이션을 추가하거나 자동 구성을 사용하세요.
+No string yet: the modules are not connected.	아직 스트링이 없습니다: 모듈이 연결되지 않았습니다.
 No subprojects were taken out of this project.	이 프로젝트에서 반출된 하위 프로젝트가 없습니다.
 No terminal strips: place terminals in a schematic first.	단자대 없음: 먼저 회로도에 단자를 배치하세요.
 No user symbols yet. Create one or copy a built-in symbol.	아직 사용자 심볼이 없습니다. 새로 만들거나 기본 제공 심볼을 복사하세요.
@@ -1224,6 +1261,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	터치스크린과 트랙패드에 적용됩니다. 이동만: 핀치로 확대/축소하지 않습니다. 확대/축소만: 시스템이 트랙패드를 구별하는 경우 트랙패드에서 두 손가락 스크롤도 확대/축소합니다. 한 손가락은 마우스 왼쪽 단추처럼 작동합니다.
 On a touch screen; trackpads leave three-finger gestures to the system.	터치스크린에 적용됩니다. 트랙패드의 세 손가락 제스처는 시스템이 사용합니다.
 On startup	시작할 때
+On the roof, joined to the air-termination conductors; move it to its place	지붕 위에서 수뢰 도체에 연결됩니다. 제자리로 옮기세요
 One row per label	라벨당 한 행
 Only devices on the current page	현재 페이지의 장치만
 Only frames no page uses can be deleted	어떤 페이지도 사용하지 않는 프레임만 삭제할 수 있습니다
@@ -1251,6 +1289,7 @@ Open the selection: its properties, in the floor plan its face	선택 항목 열
 Open to {}: wires cross beside the mounting plates	{}(으)로 개방됨: 전선이 장착 플레이트 옆으로 지나감
 Open walls and floors	벽과 바닥 열기
 Open, save, import, export, print and the settings	열기, 저장, 가져오기, 내보내기, 인쇄 및 설정
+Open-circuit voltage	개방 전압
 OpenECraft page templates	OpenECraft 페이지 템플릿
 OpenECraft page templates (JSON)	OpenECraft 페이지 템플릿(JSON)
 OpenECraft project	OpenECraft 프로젝트
@@ -1292,6 +1331,7 @@ Other values ({})	기타 값({})
 Otherwise from the plant layout, or next to the other line-ups	그렇지 않으면 플랜트 레이아웃에서 가져오거나 다른 열 배치 옆에 배치
 Out since {} (pages locked)	{}부터 반출됨(페이지 잠김)
 Outer diameter (e.g. 8 mm) or DN	외경(예: 8 mm) 또는 DN
+Outlets	콘센트
 Outlets, switches, heating	콘센트, 스위치, 난방
 Outline	외곽선
 Outlines	외곽선
@@ -1314,6 +1354,9 @@ PLC channels	PLC 채널
 PLC hardware and bus topology	PLC 하드웨어 및 버스 토폴로지
 PLC overview	PLC 개요
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 또는 JPEG 비트맵(예: 로고 또는 사진)
+PV array {}	태양광 어레이 {}
+PV array {} of building {}: {} modules	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개
+PV array {} of building {}: {} modules, {} kWp	건물 {1}의 태양광 어레이 {0}: 모듈 {2}개, {3} kWp
 PV arrays	태양광 어레이
 Page graphics	페이지 그래픽
 Page heading	페이지 제목
@@ -1361,6 +1404,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	경로 기능 텍스트
 Pattern	패턴
 Pattern…	패턴…
+Peak power	피크 전력
+Pick a part in the list.	목록에서 부품을 선택하세요.
 Pin-out	핀 배치
 Pipe run	배관 경로
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	방의 벽, 천장 또는 바닥에 있는 배관 경로로, 호스, 튜브, 배관이 이를 따라 배선됩니다: 모서리를 클릭하고 두 번 클릭하거나 Enter로 완료
@@ -1377,6 +1422,7 @@ Place in schematic	회로도에 배치
 Place in the plant	플랜트 내 위치
 Place in the room	공간 내 위치
 Place in the site plan	배치도에 배치
+Place on the wall	벽에 배치
 Place the georeferenced point everything is measured from	모든 측정의 기준이 되는 지리 참조점을 배치합니다
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	설비의 지리 참조점을 배치도에 배치합니다. 좌표는 건물 창에 입력하며 모든 점은 이 점에서 측정됩니다
 Placed	배치됨
@@ -1408,6 +1454,7 @@ Plug in card	카드 장착
 Plugin commands	플러그인 명령
 Plugins	플러그인
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	플러그인은 명령, 검사, 보고서 및 내보내기를 추가합니다. 외부 플러그인은 환경 변수 {}의 폴더에서 로드됩니다(플러그인마다 plugin.json이 있는 하위 폴더 하나).
+Plus and minus leads from the modules to the inverter	모듈에서 인버터까지의 플러스 및 마이너스 케이블
 Points	점
 Polygon	다각형
 Polyline	폴리라인
@@ -1607,6 +1654,7 @@ Right edges	오른쪽 가장자리
 Right neighbour	오른쪽 인접 외함
 Rights	권한
 Risers	단 수
+Roof pitch	지붕 경사
 Roof window	천창
 Roof windows	천창
 Roofs	지붕
@@ -1699,6 +1747,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	스크롤로 확대/축소(이동하는 곳에서도)
 Search (* and ? as placeholders)…	검색 (* 와 ? 는 와일드카드)…
 Search below this folder	이 폴더 아래에서 검색
+Search number, description, maker	번호, 설명, 제조업체 검색
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	카탈로그, 제품 그룹 및 기술 데이터로 부품 서버를 검색하고, 부품을 추가하며, 데이터베이스의 업데이트를 확인합니다
 Second channel	두 번째 채널
 Section properties	구역 속성
@@ -1758,6 +1807,7 @@ Shielded analogue cables	차폐된 아날로그 케이블
 Shielded drive cables	차폐된 드라이브 케이블
 Short circuit and selectivity	단락 및 선택 차단
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	단락, 선택 차단, 부하, EMC, 기능 안전 및 규칙 세트에 대한 검증
+Short-circuit current	단락 전류
 Short-circuit currents	단락 전류
 Short-circuit power of the network	계통의 단락 용량
 Shortest profile	최단 프로파일
@@ -1869,6 +1919,7 @@ Surge protection	서지 보호
 Swing the enclosure door open or shut (door devices and their wires move with it)	외함 도어를 열거나 닫습니다(도어 장치와 해당 전선이 함께 움직임)
 Switch off the check \"{}\"	\"{}\" 검사 끄기
 Switched off on this computer ({})	이 PC에서 꺼져 있습니다({})
+Switches	스위치
 Switches the options with a condition by the configurator options	조건이 있는 옵션을 컨피규레이터 옵션에 따라 전환합니다
 Switches to this workspace with its panes at their default places	이 작업 공간으로 전환하고 창을 기본 위치로 되돌립니다
 Switches, push buttons and room thermostats	스위치, 푸시 버튼 및 실내 온도 조절기
@@ -2068,6 +2119,7 @@ Via:	경유:
 View	보기
 Visible	표시
 Voltage (line to line)	전압(선간)
+Voltage at maximum power	최대 전력 시 전압
 Voltage drop	전압 강하
 WGS 84, written into the site of IFC exports	WGS 84, IFC 내보내기의 부지에 기록됩니다
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	벽 {}, {} m: 드래그하여 이동, 두 번 클릭하면 장착할 수 있도록 표시
@@ -2250,6 +2302,8 @@ x y	x y
 {} (default)	{}(기본값)
 {} (first column)	{}(첫 번째 열)
 {} (locked by {})	{}(잠금: {})
+{} (no such device)	{} (장치가 없음)
+{} (not placed in the layout)	{} (레이아웃에 배치되지 않음)
 {} (project server, revision {})	{}(프로젝트 서버, 개정 {})
 {} (spare)	{}(예비)
 {} (subproject of {})	{}({}의 하위 프로젝트)
@@ -2297,6 +2351,7 @@ x y	x y
 {} devices renamed	장치 {}개의 이름을 바꿨습니다
 {} differences to {}	{1}와(과)의 차이점 {0}개
 {} doors	문 {}개
+{} down conductors with test joints, {} m of conductors	시험 단자가 있는 인하 도선 {}개, 도체 {} m
 {} entries in {}	{1}의 항목 {0}개
 {} errors	오류 {}개
 {} errors, {} warnings	오류 {}개, 경고 {}개
@@ -2311,6 +2366,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{}에는 기호가 있는 기능이 없습니다. 장치 속성에서 장치에 할당하십시오
 {} has unsaved changes. Discard them?	{}에 저장되지 않은 변경 내용이 있습니다. 취소할까요?
 {} imported into the parts database and placed as {}	{}을(를) 부품 데이터베이스로 가져와 {}(으)로 배치했습니다
+{} in {}	{1}의 {0}
 {} is neither in the parts database nor on the parts server	{}은(는) 부품 데이터베이스와 부품 서버 어디에도 없습니다
 {} is not in the disk image	디스크 이미지에 {}이(가) 없습니다
 {} is used by: {}	{}을(를) 사용하는 항목: {}
@@ -2339,6 +2395,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	항목 {}/{}개 표시됨. 목록을 좁히려면 검색하세요
 {} of {} items	항목 {}/{}개
 {} of {} pages locked	페이지 {1}개 중 {0}개 잠김
+{} of {} parts · double-click: place	{} / {}개 부품 · 두 번 클릭: 배치
 {} of {} pins used	핀 {1}개 중 {0}개 사용됨
 {} of {} rows	행 {1}개 중 {0}개
 {} of {} wires	전선 {1}개 중 {0}개
@@ -2390,6 +2447,7 @@ x y	x y
 {} wires, {} – {} mm	전선 {}개, {} – {} mm
 {} °C (max. {} °C)	{} °C(최대 {} °C)
 {} °C (max.)	{} °C(최대)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} 픽셀, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
 {} – {} here (Esc cancels)	{} – 여기에서 {}(Esc는 취소)
@@ -2397,6 +2455,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: {}(으)로 가는 전선과 함께 압착
 {}: drag to move it, R turns it, a double-click opens it	{}: 드래그하여 이동, R로 회전, 두 번 클릭하여 열기
 {}: drag to move it, a double-click shows the floor	{}: 드래그하여 이동, 두 번 클릭하여 바닥 표시
+{}: drag to move, R: turn by 90°	{}: 드래그하여 이동, R: 90° 회전
 {}: nothing to change	{}: 변경할 항목 없음
 {}: pin {}	{}: 핀 {}
 {}: strip {} mm, {}	{}: 피복 제거 {} mm, {}

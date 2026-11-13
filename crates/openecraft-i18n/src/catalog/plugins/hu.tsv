@@ -26,6 +26,8 @@ Adds a text to a page	Szöveget ad hozzá egy oldalhoz
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	A projektszövegek összes sorát hozzáadja a szótárhoz, igény szerint eltávolítva a már nem használt bejegyzéseket
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Tartozékot ad egy kábelvéghez: tömszelence, EMC-tömszelence, csatlakozó, húzásmentesítő, árnyékolásbilincs, védőtömlő, kábelvéghüvely, jelölő
 Adds an accessory to a device; it must fit one of the device's parts	Tartozékot ad egy készülékhez; illeszkednie kell a készülék valamelyik cikkéhez
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Felfogórudat ad egy épület tetőire, a felfogó vezetőihez kötve; az épület III. osztályú villámvédelmet kap, ha nincs neki
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Földelőt ad egy épülethez: alapföldelőt a legalsó szint alaplemezében a külső falak mentén hálósan, körföldelőt a talajban a falak körül vagy rúdföldelőt; anyaga az anyagjegyzékbe kerül
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Szekrényt ad hozzá: egy rendszerből annak egyik méretében (vagy egyéni méretben), vagy egy szekrényalkatrészből
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Potenciálkiegyenlítő vezetőt ad hozzá két potenciálkiegyenlítési pont között (fő földelősín, szekrények, vezetőképes körvonalak, fém kábeltartók)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Hozzáad vagy módosít egy projektbeli feliratozási sémát, eltávolítja, vagy kiválasztja a feliratozási exporthoz használt sémát
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Egy sablon készülékeit adja hozzá egy szegmenshez
 Adds the outline of a machine, building or area to the plant layout	Egy gép, épület vagy terület körvonalát adja a létesítmény-elrendezéshez
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Profilt ad hozzá, cserél le vagy távolít el: egy összekötő a másik rendszer által használt oszlopnevekkel
+Air-termination rod: its name	Felfogórúd: a neve
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Elemeket igazít, egyenletesen eloszt, készülékeket sorakoztat fel egy sínen, vagy elemeket másol mintában
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Szimbólumokat, szövegeket és grafikákat igazít egy közös élhez vagy középvonalhoz; a csatlakoztatott vezetékvégek követik őket
 Allow renaming onto an identifier in use: both become one	Átnevezés engedélyezése egy használt azonosítóra: a kettő eggyé válik
@@ -70,6 +73,7 @@ Between page and column (default .)	Az oldal és az oszlop között (alapértelm
 Bonding point	Potenciálkiegyenlítési pont
 Border around the text	Szegély a szöveg körül
 Both classes are needed	Mindkét osztály szükséges
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	A létesítmény épületei szintekkel, aknákkal, lépcsőkkel és PV mezős tetőkkel, földelőkkel és villámvédelemmel, a szinteken lévő helyiségekkel és az épületek közötti kapcsolatokkal
 Bus system name	Buszrendszer neve
 Bus system name, e.g. PN/IE_1	Buszrendszer neve, pl. PN/IE_1
 Busbar machine program (CSV)	Sínmegmunkáló gép programja (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Módosítja egy helyiség ajtaját vagy ablakát: hogyan nyílik (zsanér balra vagy jobbra, befelé vagy kifelé, vagy toló), helyét a fal mentén, méretét és parapetjét
 Changes a placed symbol; when it moves, connected wire ends follow	Módosít egy elhelyezett szimbólumot; ha elmozdul, a csatlakozó vezetékvégek követik
 Changes a text (only the given properties)	Módosít egy szöveget (csak a megadott tulajdonságokat)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Módosítja egy épület földelőjét: hely, hossz, falaktól mért távolság, mélység, háló, alkatrész vagy sín; átnevezi vagy eltávolítja
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	A kifutó vagy megszűnt alkatrészeket használó készülékeket átállítja az utódalkatrészekre (az utódoknak projektalkatrészeknek kell lenniük)
 Changes name, description or structure of a page	Módosítja egy oldal nevét, leírását vagy struktúráját
 Changes name, description, function, location or parent of a segment	Módosítja egy szegmens nevét, leírását, funkcióját, szerelési helyét vagy szülőjét
@@ -100,6 +105,7 @@ Check {} failed: {}	A(z) {} ellenőrzés sikertelen: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Ellenőrzi a szekrényelrendezést: ütközések, szabad terek (szerelési, szellőzési, EMC), szervizterület, padló feletti magasságok, ütközési osztályok, hőmérsékletek és gyárthatóság
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Kiválasztja a vezetékvégek lezárását: csupaszon, érvéghüvellyel vagy krimpelt sarúval; egy csatlakozási ponton, egy eszköz összes csatlakozási pontján vagy csak egy vezetékhez
 Chosen value	Választott érték
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	A villámvédelem osztálya, 1 … 4 (I … IV; alapértelmezés III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	A szekrényelrendezés szabad terei, szervizterülete, magasságai, ütközési osztályai, termikus szimulációja és gyárthatósága
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	A szekrények klimatizálása (IEC/TR 60890): veszteségi teljesítmény, belső hőmérséklet, szükséges ventilátor vagy hűtőegység és fűtés; igény szerint módosítja egy szekrény beállításait
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Ütközési osztály: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, saját osztály vagy * bármelyikhez
@@ -222,6 +228,10 @@ Draws a wire through two or more points	Vezetéket rajzol két vagy több ponton
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	A vezetékeket a kapcsolásirajz-oldalakon és a PDF- / SVG-exportban a saját színükben vagy feketén rajzolja
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Vezetékeket rajzol egymással szemközti szimbólumok szabad csatlakozási pontjai között, valamint a T-elemek és sarkok szabad karjaihoz
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	A kábelek EMC-osztályai (hajtáskimenet, analóg, erősáram, jel, árnyékolás) és az EMC-problémák
+Earth electrode: its name	Földelő: a neve
+Earth rod: its length, mm (default 3000)	Rúdföldelő: a hossza, mm (alapértelmezés 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Rúdföldelő: helyének x koordinátája az épület alaprajzán, mm
+Earth rod: z of its place in the floor plan of the building, mm	Rúdföldelő: helyének z koordinátája az épület alaprajzán, mm
 Edge length of the routing grid in mm	A nyomvonalrács élhossza mm-ben
 Electrical device tags separated by commas or blanks (empty = remove the links)	Villamos készülékazonosítók vesszővel vagy szóközzel elválasztva (üres = a kapcsolatok eltávolítása)
 Electrical engineering	Villamosmérnöki terület
@@ -256,6 +266,8 @@ First port as station:port, e.g. PLC1:X1 P2	Első port állomás:port alakban, p
 First row with the column names	Első sor az oszlopnevekkel
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	A készüléknév formátuma: {letter}, {n} (számláló), {page}, {column}, {row}; alapértelmezés: {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	A format séma formátuma: {n} (számláló), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Alapföldelő: mennyivel a külső falakon belül (alapértelmezés 100), kör: mennyivel kívül (alapértelmezés 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Alapföldelő: legnagyobb hálója, mm (alapértelmezés 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kiinduló keret új keret esetén (alapértelmezés: A3 landscape)
 Free space in front of every device on the plate	Szabad hely a lapon lévő minden készülék előtt
 Freezes routes for production (kept by the recalculation while possible) or releases them	Rögzíti a nyomvonalakat a gyártáshoz (az újraszámítás megtartja, amíg lehetséges), vagy feloldja őket
@@ -272,6 +284,7 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Generálja a többvonalas kapcsolási rajzot (erősáramú szimbólumok, vezetők, mágneskapcsoló-tekercsek) egy oldal egyvonalas szimbólumaihoz, egy utána következő új oldalon
 Generates the program of the busbar machine: cuts, punched holes and bends	Generálja a sínmegmunkáló gép programját: vágások, lyukasztott furatok és hajlítások
 Give a device tag or a part number	Adjon meg készülékjelet vagy cikkszámot
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Villámvédelmet ad egy épületnek vagy módosítja: osztály, a levezetők száma és a vezetők alkatrésze; felfogó vezetők a gerinceken és élgerinceken (háló a lapostetőkön), levezetők mérési csatlakozókkal a földelőkig; vagy eltávolítja
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Elemeket csoportosít egy együtt kijelölt és mozgatott szerelvénybe; név nélkül az elemek kilépnek a szerelvényeikből
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Átadja egy szekrény programjait megbízásként a gyártásnak: az összes felület és rézsín manifestje és programjai
 Has a divider between power and signal cables	Elválasztó van a teljesítmény- és jelkábelek között
@@ -280,6 +293,7 @@ Height above the mounting plate in mm (default 50)	Magasság a szerelőlap föl�
 Height in mm	Magasság mm-ben
 Height in mm without plinth; negative: unknown (wall mounted)	Magasság mm-ben lábazat nélkül; negatív: ismeretlen (falra szerelt)
 Height in mm; the logo keeps its aspect ratio inside	Magasság mm-ben; a logó megtartja benne a méretarányát
+Height of the rod above the covering, mm (default 1500)	A rúd magassága a tetőfedés felett, mm (alapértelmezés 1500)
 Higher-level product aspect (-) of the page; the devices on the page move along	Az oldal felettestermék-aspektusa (-); az oldalon lévő készülékek vele mozognak
 Highest actuator on the door above the floor (0: not checked)	A legmagasabb kezelőelem az ajtón a padló felett (0: nincs ellenőrzés)
 Highest air temperature at devices without data (0: not checked)	A legmagasabb léghőmérséklet adatok nélküli készülékeknél (0: nincs ellenőrzés)
@@ -433,11 +447,14 @@ Measuring range or set point	Méréstartomány vagy alapjel
 Message code, e.g. wires.3f9a1c	Üzenetkód, pl. wires.3f9a1c
 Milling feed, mm/min	Marási előtolás, mm/min
 Mirror the symbol	Szimbólum tükrözése
+Moves an air-termination rod, changes its height, renames or removes it	Áthelyez egy felfogórudat, módosítja a magasságát, átnevezi vagy eltávolítja
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Egy vezeték egyik végét mozgatja: leválik arról, amihez csatlakozik, és csatlakozik ahhoz, amibe ütközik; a vezeték derékszögű marad
 Moves symbols, wires and texts; connected wire ends follow	Szimbólumokat, vezetékeket és szövegeket mozgat; a csatlakozó vezetékvégek követik
 Moves the page before this page of its section (or of the section given)	Áthelyezi az oldalt a szakasza (vagy a megadott szakasz) ezen oldala elé
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Áthelyezi a szakaszt a szülője (vagy a megadott szülő) ezen szakasza elé; a számok sorrendben folytatódnak
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Egy kábelköteg szögestábla-elrendezése: az elágazások a közös csomóponttól a csatlakozókig hosszal, iránnyal, kötegátmérővel és érintkezőtűkkel, valamint a rajz méretaránya
+Name (default E1, E2, …)	Név (alapértelmezés E1, E2, …)
+Name (default F1, F2, …)	Név (alapértelmezés F1, F2, …)
 Name of the assembly	A szerelvény neve
 Name of the bar, e.g. L1 -Q1	A sín neve, pl. L1 -Q1
 Name of the check	Az ellenőrzés neve
@@ -461,6 +478,7 @@ New page name	Új oldalnév
 New parent segment (empty: top level)	Új szülőszegmens (üres: legfelső szint)
 New value	Új érték
 No PCT loop {}	Nincs {} PCT-kör
+No air-termination rod {} on building {}	Nincs {} felfogórúd a(z) {} épületen
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Nincs {} nevű beépített ellenőrzés: a beállítás egy ilyen nevű bővítmény ellenőrzésére vonatkozik (list_checks)
 No bus system {}	Nincs {} buszrendszer
 No connection point {} on this page	Nincs {} csatlakozási pont ezen az oldalon
@@ -468,6 +486,7 @@ No connection symbol with id {}	Nincs {} azonosítójú kapcsolati szimbólum
 No copper bar {}	Nincs ilyen rézsín: {}
 No device description {}	Nincs {} eszközleírás
 No device group {}	Nincs {} készülékcsoport
+No earth electrode {} in building {}	Nincs {} földelő a(z) {} épületben
 No enclosure named {}	Nincs {} nevű szekrény
 No entry for {} and {}	Nincs bejegyzés ehhez: {} és {}
 No hose {}	Nincs {} tömlő
@@ -570,6 +589,8 @@ Part number of the downstream device	Az utána kapcsolt készülék cikkszáma
 Part number of the hose / tube / pipe	A tömlő / cső / csővezeték cikkszáma
 Part number of the upstream device	Az előtét készülék cikkszáma
 Part number, e.g. GEN.LMP-GN-24	Cikkszám, pl. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	A szalag, huzal vagy rúd alkatrésze (üres: általános)
+Part of the conductors (round wire; empty: generic)	A vezetők alkatrésze (körhuzal; üres: általános)
 Part of the key or name	A kulcs vagy a név része
 Part {} has no function with a symbol	A(z) {} alkatrésznek nincs szimbólummal rendelkező funkciója
 Parts phased out or discontinued	Kifutó vagy megszűnt alkatrészek
@@ -651,7 +672,10 @@ Relative humidity of the ambient air in % (0: no condensation check)	A környeze
 Release instead of freeze	Feloldás rögzítés helyett
 Released pages keep their names: {}	A kiadott oldalak megtartják a nevüket: {}
 Remote I/O: station of the controller	Decentralizált periféria: a vezérlő állomása
+Remove the air-termination rod	Felfogórúd eltávolítása
+Remove the earth electrode	Földelő eltávolítása
 Remove the entry of upstream and downstream	Az upstream és downstream bejegyzésének eltávolítása
+Remove the lightning protection system	Villámvédelem eltávolítása
 Remove the profile	A profil eltávolítása
 Remove the scheme from the project	A séma eltávolítása a projektből
 Remove unused definitions (default: false)	A nem használt definíciók eltávolítása (alapértelmezés: false)
@@ -682,6 +706,7 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Maradék (mm)
 Reuse failed searches during one routing calculation	Sikertelen keresések újrafelhasználása egy útvonalszámításon belül
 Right side bayed (no side panel)	Jobb oldal sorolva (nincs oldalfal)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Kör: mélység a terepszint alatt, rúd: a felső vég mélysége, mm (alapértelmezés 500)
 Room {} exists already	A(z) {} helyiség már létezik
 Rotation in degrees clockwise: 0, 90, 180 or 270	Elforgatás fokban, az óramutató járásával megegyezően: 0, 90, 180 vagy 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Elforgatás fokban, az óramutató járásával ellentétesen (90: alulról felfelé olvasható)
@@ -879,6 +904,7 @@ Unknown check: {}	Ismeretlen ellenőrzés: {}
 Unknown class: {}	Ismeretlen osztály: {}
 Unknown data type: {}	Ismeretlen adattípus: {}
 Unknown direction {}: left, right, up or down	Ismeretlen irány {}: left, right, up vagy down
+Unknown earth electrode: {}	Ismeretlen földelő: {}
 Unknown earthing system: {}	Ismeretlen földelési rendszer: {}
 Unknown face {}	Ismeretlen felület: {}
 Unknown fastening: {}	Ismeretlen rögzítés: {}
@@ -970,6 +996,7 @@ device (default), position, cross_section or number	device (alapértelmezés), p
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages vagy parts
 error, warning, info, off, or default to take the change back	error, warning, info, off, vagy default a módosítás visszavonásához
 false takes the acceptance back (default true)	false visszavonja az elfogadást (alapértelmezés: true)
+foundation, ring or rod	foundation, ring vagy rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted vagy middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) vagy product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker vagy other
@@ -999,6 +1026,8 @@ too long	túl hosszú
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (alapértelmezett), ladder, trunking, conduit, drag_chain, buried vagy free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit vagy other
 wired, problem or open	wired, problem vagy open
+x of the foot of the rod in the floor plan of the building, mm	A rúd talppontjának x koordinátája az épület alaprajzán, mm
+z of the foot of the rod in the floor plan of the building, mm	A rúd talppontjának z koordinátája az épület alaprajzán, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} és {} ugyanannak a funkciónak a két vége: a vezeték rövidre zárná
 {} and {} are needed together	{} és {} csak együtt adható meg
 {} cannot be bayed to itself	{} nem sorolható önmagához

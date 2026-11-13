@@ -1981,6 +1981,7 @@ yellow	giallo
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: un conduttore da {} mm² è più sottile di quanto accetti il punto di connessione (almeno {} mm²)
 {}: accessory {} fits none of the device's parts	{}: l'accessorio {} non è compatibile con nessun articolo del dispositivo
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: l'attuatore {} è a {} mm dal pavimento, consigliati {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: l'asta di captazione {} è fuori dai tetti
 {}: auxiliary function(s) without main function	{}: funzioni ausiliarie senza funzione principale
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: potere di interruzione {} kA inferiore alla corrente di cortocircuito {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: canalina a {} mm riempita al {} % (limite {} %)
@@ -2001,6 +2002,8 @@ yellow	giallo
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: le forature di {} e {} su {} sono troppo vicine ({} mm di nervatura, almeno {} mm)
 {}: designation '{}' used more than once	{}: designazione '{}' usata più volte
 {}: device tag without device name	{}: sigla dispositivo senza nome dispositivo
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: il dispersore {} non ha muri da seguire: l'edificio non ha locali né tetti
+{}: earth rod {} stands inside the walls of the building	{}: il picchetto {} è all'interno dei muri dell'edificio
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: la corrente di guasto {} A in {} non provoca l'interruzione entro {} s (richiesti {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: i testi di funzione differiscono tra schema unifilare e schema
 {}: hole of {} is too close to the cutout of {} on the {}	{}: il foro di {} è troppo vicino alla foratura di {} su {}
@@ -2061,9 +2064,11 @@ yellow	giallo
 {}: terminal {} uses {} levels, its part {} has {}	{}: il morsetto {} usa {} livelli, il suo articolo {} ne ha {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: i morsetti {} sono a {} mm dal pavimento, sono richiesti almeno {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: il sistema di sbarre con {} barre unisce {} conduttori ({}): cortocircuito
+{}: the busbar {} of earth electrode {} does not exist	{}: la barra {} del dispersore {} non esiste
 {}: the device {} of PV array {} does not exist	{}: il dispositivo {} del campo fotovoltaico {} non esiste
 {}: the earthing busbar {} of PV array {} does not exist	{}: la barra di terra {} del campo FV {} non esiste
 {}: the lightning protection has no earth electrode	{}: la protezione contro i fulmini non ha dispersore
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: la protezione contro i fulmini non ha muri da seguire: l'edificio non ha locali né tetti
 {}: the module {} of PV array {} has no electrical data	{}: il modulo {} del campo fotovoltaico {} non ha dati elettrici
 {}: the station has no port {}	{}: la stazione non ha la porta {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: le stringhe del campo fotovoltaico {} collegano {} moduli, il campo ne ha {}
@@ -2080,6 +2085,7 @@ yellow	giallo
 {}: {} carries {} A, the load {} needs {} A	{}: {} porta {} A, l'utenza {} richiede {} A
 {}: {} changed after it was mounted	{}: {} è stato modificato dopo il montaggio
 {}: {} collides with {}	{}: {} collide con {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} calate, la classe {} ne richiede {} attorno all'edificio
 {}: {} inputs used, the module has {}	{}: {} ingressi utilizzati, il modulo ne ha {}
 {}: {} is a fluid device, not an electrical one	{}: {} è un dispositivo fluidico, non elettrico
 {}: {} is closer than {} mm to a cable duct	{}: {} è a meno di {} mm da una canalina

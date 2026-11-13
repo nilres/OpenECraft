@@ -426,6 +426,7 @@ ERP item master and bill of materials (CSV)	ERP 품목 마스터 및 부품 목�
 ERP number	ERP 번호
 ETIM class	ETIM 클래스
 Earth electrode	접지극
+Earth rod	접지봉
 East-west on a flat roof	평지붕에 동서 방향
 Edit pages	페이지 편집
 Edit project data	프로젝트 데이터 편집
@@ -543,6 +544,7 @@ Foot switch NO (NFPA)	풋 스위치 a접점(NFPA)
 Force	힘
 Fork terminal	Y형 단자
 Format (placeholders)	형식(자리 표시자)
+Foundation earth electrode	기초 접지극
 Frame size	프레임 크기
 Free	자유
 Free air (mm)	자유 공간(mm)
@@ -1332,6 +1334,7 @@ Revision table: description of the last revision (2: the one before …)	개정 
 Revision table: index of the last revision (2: the one before …)	개정 표: 마지막 개정의 색인(2: 그 이전 …)
 Right side	오른쪽 측면
 Right side panel	오른쪽 측면 패널
+Ring earth electrode	환상 접지극
 Ring terminal	링 단자
 Rivet nut	리벳 너트
 RoHS compliant	RoHS 준수
@@ -1954,6 +1957,7 @@ yellow	노랑
 {}: PV array {} covers a roof window	{}: 태양광 어레이 {}이(가) 지붕창을 덮습니다
 {}: PV array {} has {} modules, its device {} has {}	{}: 태양광 어레이 {}의 모듈은 {}개, 그 장치 {}의 모듈은 {}개
 {}: PV array {} is mounted tilted on a pitched roof	{}: 태양광 어레이 {}이(가) 경사 지붕에 기울여 설치되어 있습니다
+{}: PV array {} lies outside the protection of the air-termination system	{}: 태양광 어레이 {}이(가) 수뢰부의 보호 범위 밖에 있습니다
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: 지붕 {2}의 태양광 어레이 {1}이(가) 용마루, 추녀마루 또는 지붕 가장자리에 걸쳐 있습니다
 {}: PV array {} of roof {} lies outside the roof	{0}: 지붕 {2}의 태양광 어레이 {1}이(가) 지붕 밖에 있습니다
 {}: PV arrays {} and {} lie over each other	{}: 태양광 어레이 {}와(과) {}이(가) 겹칩니다
@@ -1963,6 +1967,7 @@ yellow	노랑
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: {} mm² 전선이 연결 지점이 받는 것보다 작습니다 (최소 {} mm²)
 {}: accessory {} fits none of the device's parts	{}: 액세서리 {}은(는) 장치의 어떤 부품에도 맞지 않습니다
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: 조작부 {}이(가) 바닥에서 {} mm 높이에 있습니다. 권장 {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: 피뢰침 {}이(가) 지붕 밖에 있습니다
 {}: auxiliary function(s) without main function	{}: 주 기능 없는 보조 기능
 {}: breaking capacity {} kA below the short-circuit current {} kA	{0}: 차단 용량 {1} kA가 단락 전류 {2} kA보다 작음
 {}: cable duct at {} mm filled {} % (limit {} %)	{0}: {1} mm 위치의 케이블 덕트 충전율 {2} %(한계 {3} %)
@@ -1983,6 +1988,8 @@ yellow	노랑
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3}에 있는 {1}과(와) {2}의 컷아웃이 너무 가깝습니다(웹 {4} mm, 최소 {5} mm)
 {}: designation '{}' used more than once	{}: 명칭 '{}'이(가) 두 번 이상 사용됨
 {}: device tag without device name	{}: 장치 이름 없는 장치 태그
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: 접지극 {}이(가) 따라갈 벽이 없습니다: 건물에 방이나 지붕이 없습니다
+{}: earth rod {} stands inside the walls of the building	{}: 접지봉 {}이(가) 건물 벽 안쪽에 있습니다
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {2}의 고장 전류 {1} A로는 {3} s 이내에 차단되지 않음({4} A 필요)
 {}: function texts differ in the single-line diagram and the schematic	{}: 단선도와 회로도의 기능 텍스트가 다릅니다
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {1}의 구멍이 {3}에 있는 {2}의 컷아웃에 너무 가깝습니다
@@ -2042,7 +2049,11 @@ yellow	노랑
 {}: terminal {} is on level {}, but no terminal block is before it	{}: 단자 {}이(가) {}단에 있지만 그 앞에 단자 블록이 없습니다
 {}: terminal {} uses {} levels, its part {} has {}	{}: 단자 {}은(는) {}단을 사용하지만 해당 부품 {}은(는) {}단입니다
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: 단자 {}이(가) 바닥에서 {} mm 높이에 있습니다. 최소 {} mm가 필요합니다
+{}: the busbar {} of earth electrode {} does not exist	{0}: 접지극 {2}의 부스바 {1}이(가) 없습니다
 {}: the device {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 장치 {1}이(가) 없습니다
+{}: the earthing busbar {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 접지 부스바 {1}이(가) 없습니다
+{}: the lightning protection has no earth electrode	{}: 피뢰에 접지극이 없습니다
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: 피뢰가 따라갈 벽이 없습니다: 건물에 방이나 지붕이 없습니다
 {}: the module {} of PV array {} has no electrical data	{0}: 태양광 어레이 {2}의 모듈 {1}에 전기 데이터가 없습니다
 {}: the station has no port {}	{0}: 스테이션에 포트 {1}이(가) 없습니다
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: 태양광 어레이 {}의 스트링이 모듈 {}개를 연결하지만 어레이에는 {}개가 있습니다
@@ -2059,6 +2070,7 @@ yellow	노랑
 {}: {} carries {} A, the load {} needs {} A	{0}: {1}의 허용 전류는 {2} A이며, 부하 {3}에는 {4} A가 필요합니다
 {}: {} changed after it was mounted	{}: 장착 후 {}이(가) 변경되었습니다
 {}: {} collides with {}	{0}: {1}이(가) {2}와(과) 충돌함
+{}: {} down conductors, class {} needs {} round the building	{}: 인하 도선 {}개, 등급 {}에는 건물 주위에 {}개가 필요합니다
 {}: {} inputs used, the module has {}	{0}: 입력 {1}개 사용됨, 모듈의 입력은 {2}개
 {}: {} is a fluid device, not an electrical one	{0}: {1}은(는) 전기 장치가 아니라 유체 장치입니다
 {}: {} is closer than {} mm to a cable duct	{}: {}이(가) 케이블 덕트에 {} mm보다 가깝게 있습니다

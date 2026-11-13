@@ -424,6 +424,7 @@ ERP item master and bill of materials (CSV)	ERP 物料主数据和物料清单 (
 ERP number	ERP 编号
 ETIM class	ETIM 类别
 Earth electrode	接地极
+Earth rod	垂直接地极
 East-west on a flat roof	平屋顶上东西向
 Edit pages	编辑页
 Edit project data	编辑项目数据
@@ -541,6 +542,7 @@ Foot switch NO (NFPA)	脚踏开关，常开 (NFPA)
 Force	力
 Fork terminal	叉形端子
 Format (placeholders)	格式（占位符）
+Foundation earth electrode	基础接地极
 Frame size	机座号
 Free	自由
 Free air (mm)	自由布线 (mm)
@@ -1330,6 +1332,7 @@ Revision table: description of the last revision (2: the one before …)	修订�
 Revision table: index of the last revision (2: the one before …)	修订表：最近一次修订的索引（2：再前一次 …）
 Right side	右侧
 Right side panel	右侧板
+Ring earth electrode	环形接地极
 Ring terminal	环形端子
 Rivet nut	拉铆螺母
 RoHS compliant	符合 RoHS
@@ -1952,6 +1955,7 @@ yellow	黄色
 {}: PV array {} covers a roof window	{}：光伏阵列 {} 遮挡了一扇屋顶窗
 {}: PV array {} has {} modules, its device {} has {}	{}：光伏阵列 {} 有 {} 块组件，其设备 {} 有 {} 块
 {}: PV array {} is mounted tilted on a pitched roof	{}：光伏阵列 {} 在坡屋顶上倾斜安装
+{}: PV array {} lies outside the protection of the air-termination system	{}：光伏阵列 {} 位于接闪器保护范围之外
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}：屋顶 {2} 的光伏阵列 {1} 跨过屋脊、斜脊或屋顶边缘
 {}: PV array {} of roof {} lies outside the roof	{0}：屋顶 {2} 的光伏阵列 {1} 位于屋顶之外
 {}: PV arrays {} and {} lie over each other	{}：光伏阵列 {} 与 {} 相互重叠
@@ -1961,6 +1965,7 @@ yellow	黄色
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}：{} mm² 的导线比连接点可接的细（至少 {} mm²）
 {}: accessory {} fits none of the device's parts	{}：附件 {} 不适配设备的任何部件
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}：操作元件 {} 离地 {} mm，建议 {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}：接闪杆 {} 不在屋顶上
 {}: auxiliary function(s) without main function	{}：辅助功能没有主功能
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}：分断能力 {} kA 低于短路电流 {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}：位于 {} mm 处的线槽填充率为 {} %（限值 {} %）
@@ -1981,6 +1986,8 @@ yellow	黄色
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}：{3} 上 {1} 和 {2} 的开孔距离太近（筋宽 {4} mm，至少 {5} mm）
 {}: designation '{}' used more than once	{}：标识“{}”被多次使用
 {}: device tag without device name	{}：设备标识符没有设备名称
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}：接地极 {} 没有可沿着敷设的墙：建筑物没有房间或屋顶
+{}: earth rod {} stands inside the walls of the building	{}：垂直接地极 {} 位于建筑物墙体以内
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}：{2} 处的故障电流 {1} A 无法在 {3} s 内切断（需要 {4} A）
 {}: function texts differ in the single-line diagram and the schematic	{}：单线图和原理图中的功能文本不同
 {}: hole of {} is too close to the cutout of {} on the {}	{0}：{1} 的孔距离 {3} 上 {2} 的开孔太近
@@ -2040,7 +2047,11 @@ yellow	黄色
 {}: terminal {} is on level {}, but no terminal block is before it	{}：端子 {} 位于第 {} 层，但其前面没有端子块
 {}: terminal {} uses {} levels, its part {} has {}	{}：端子 {} 使用 {} 层，其部件 {} 有 {} 层
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}：端子 {} 离地 {} mm，至少需要 {} mm
+{}: the busbar {} of earth electrode {} does not exist	{0}：接地极 {2} 的母线 {1} 不存在
 {}: the device {} of PV array {} does not exist	{0}：光伏阵列 {2} 的设备 {1} 不存在
+{}: the earthing busbar {} of PV array {} does not exist	{0}：光伏阵列 {2} 的接地母线 {1} 不存在
+{}: the lightning protection has no earth electrode	{}：防雷没有接地极
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}：防雷没有可沿着敷设的墙：建筑物没有房间或屋顶
 {}: the module {} of PV array {} has no electrical data	{0}：光伏阵列 {2} 的组件 {1} 没有电气数据
 {}: the station has no port {}	{}：该站没有端口 {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}：光伏阵列 {} 的组串连接了 {} 块组件，阵列共有 {} 块
@@ -2057,6 +2068,7 @@ yellow	黄色
 {}: {} carries {} A, the load {} needs {} A	{}：{} 的载流量为 {} A，负载 {} 需要 {} A
 {}: {} changed after it was mounted	{}：{} 在安装后已更改
 {}: {} collides with {}	{}：{} 与 {} 碰撞
+{}: {} down conductors, class {} needs {} round the building	{}：{} 根引下线，类别 {} 需要在建筑物周围设置 {} 根
 {}: {} inputs used, the module has {}	{}：已使用 {} 个输入，模块只有 {} 个
 {}: {} is a fluid device, not an electrical one	{}：{} 是流体设备，而不是电气设备
 {}: {} is closer than {} mm to a cable duct	{}：{} 与线槽的距离小于 {} mm

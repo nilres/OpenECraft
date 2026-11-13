@@ -26,6 +26,8 @@ Adds a text to a page	Aggiunge un testo a una pagina
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Aggiunge al dizionario tutte le righe dei testi del progetto, rimuovendo facoltativamente le voci non più utilizzate
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Aggiunge un accessorio a un'estremità del cavo: pressacavo, pressacavo EMC, connettore, fermacavo, morsetto di schermatura, guaina protettiva, manicotto terminale, marcatore
 Adds an accessory to a device; it must fit one of the device's parts	Aggiunge un accessorio a un dispositivo; deve essere compatibile con uno degli articoli del dispositivo
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Aggiunge un'asta di captazione sui tetti di un edificio, collegata ai suoi conduttori di captazione; l'edificio riceve una protezione contro i fulmini di classe III se non ne ha
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Aggiunge un dispersore a un edificio: un dispersore di fondazione nella platea del suo livello più basso lungo i muri esterni a maglie, un dispersore ad anello nel terreno attorno ai muri o un picchetto; il suo materiale va nella distinta base
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Aggiunge un armadio: di un sistema in una delle sue dimensioni (o in una dimensione personalizzata) oppure da un articolo armadio
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Aggiunge un conduttore equipotenziale tra due punti di collegamento equipotenziale (collettore principale di terra, armadi, contorni conduttivi, supporti portacavi metallici)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Aggiunge o modifica uno schema di marcatura del progetto, lo rimuove o seleziona lo schema usato per l'esportazione della marcatura
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Aggiunge i dispositivi di un modello a un segmento
 Adds the outline of a machine, building or area to the plant layout	Aggiunge il contorno di una macchina, di un edificio o di un'area al layout dell'impianto
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Aggiunge, sostituisce o rimuove un profilo: un connettore con i nomi delle colonne usati dall'altro sistema
+Air-termination rod: its name	Asta di captazione: il suo nome
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Allinea gli elementi, li distribuisce uniformemente, allinea i dispositivi su una guida o copia gli elementi in una matrice
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Allinea simboli, testi e grafica a un bordo o centro comune; le estremità dei conduttori collegati seguono
 Allow renaming onto an identifier in use: both become one	Consenti di rinominare in un identificatore in uso: i due diventano uno
@@ -70,6 +73,7 @@ Between page and column (default .)	Tra pagina e colonna (predefinito .)
 Bonding point	Punto di collegamento equipotenziale
 Border around the text	Bordo attorno al testo
 Both classes are needed	Sono richieste entrambe le classi
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Edifici dell'impianto con livelli, cavedi, scale e tetti con campi FV, dispersori e protezione contro i fulmini, locali sui livelli e collegamenti tra edifici
 Bus system name	Nome del sistema bus
 Bus system name, e.g. PN/IE_1	Nome del sistema bus, ad es. PN/IE_1
 Busbar machine program (CSV)	Programma della macchina per la lavorazione delle barre (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Modifica una porta o una finestra di un locale: come si apre (cerniere a sinistra o a destra, verso l'interno o l'esterno, o scorrevole), la sua posizione lungo la parete, le dimensioni e il davanzale
 Changes a placed symbol; when it moves, connected wire ends follow	Modifica un simbolo posizionato; quando viene spostato, le estremità dei conduttori collegati lo seguono
 Changes a text (only the given properties)	Modifica un testo (solo le proprietà indicate)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Modifica un dispersore di un edificio: posizione, lunghezza, distanza dai muri, profondità, maglia, articolo o barra; lo rinomina o lo rimuove
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Converte i dispositivi con articoli in dismissione o fuori produzione agli articoli successori (i successori devono essere articoli del progetto)
 Changes name, description or structure of a page	Modifica nome, descrizione o struttura di una pagina
 Changes name, description, function, location or parent of a segment	Modifica nome, descrizione, funzione, luogo o segmento superiore di un segmento
@@ -100,6 +105,7 @@ Check {} failed: {}	Verifica {} non riuscita: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Verifica il layout del quadro: collisioni, distanze (montaggio, ventilazione, EMC), spazio di servizio, altezze dal pavimento, classi di collisione, temperature e producibilità
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Sceglie come sono terminate le estremità dei fili: spelate, con puntalino o capocorda crimpato; a un punto di connessione, a tutti i punti di connessione di un dispositivo o solo per un filo
 Chosen value	Valore scelto
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Classe del sistema di protezione contro i fulmini, 1 … 4 (I … IV; predefinita III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Distanze, spazio di servizio, altezze, classi di collisione, simulazione termica e producibilità del layout del quadro
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Climatizzazione degli armadi (IEC/TR 60890): potenza dissipata, temperatura interna, ventilatore o condizionatore e riscaldamento necessari; facoltativamente modifica le impostazioni di un armadio
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Classe di collisione: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, una classe propria o * per qualsiasi
@@ -222,6 +228,10 @@ Draws a wire through two or more points	Disegna un conduttore attraverso due o p
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Disegna i conduttori nel loro colore sulle pagine di schema e nell'esportazione PDF / SVG, oppure in nero
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Disegna conduttori tra punti di collegamento liberi di simboli che si fronteggiano e verso i bracci liberi di pezzi a T e angoli
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Classi EMC dei cavi (uscita azionamento, analogico, potenza, segnale, schermo) e problemi EMC
+Earth electrode: its name	Dispersore: il suo nome
+Earth rod: its length, mm (default 3000)	Picchetto: la sua lunghezza, mm (predefinita 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Picchetto: x della sua posizione nella pianta dell'edificio, mm
+Earth rod: z of its place in the floor plan of the building, mm	Picchetto: z della sua posizione nella pianta dell'edificio, mm
 Edge length of the routing grid in mm	Lato della griglia di instradamento in mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Sigle dei dispositivi elettrici separate da virgole o spazi (vuoto = rimuovi i collegamenti)
 Electrical engineering	Elettrotecnica
@@ -256,6 +266,8 @@ First port as station:port, e.g. PLC1:X1 P2	Prima porta come stazione:porta, ad 
 First row with the column names	Prima riga con i nomi delle colonne
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato del nome del dispositivo: {letter}, {n} (contatore), {page}, {column}, {row}; predefinito {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato dello schema format: {n} (contatore), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Dispersore di fondazione: quanto all'interno dei muri esterni (predefinito 100), anello: quanto all'esterno (predefinito 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Dispersore di fondazione: la sua maglia più grande, mm (predefinita 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Cornice di partenza quando la cornice è nuova (predefinito: A3 landscape)
 Free space in front of every device on the plate	Spazio libero davanti a ogni dispositivo sulla piastra
 Freezes routes for production (kept by the recalculation while possible) or releases them	Congela i percorsi per la produzione (mantenuti dal ricalcolo finché possibile) o li sblocca
@@ -272,6 +284,7 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genera lo schema multifilare (simboli di potenza, conduttori, bobine dei contattori) per i simboli unifilari di una pagina su una nuova pagina successiva
 Generates the program of the busbar machine: cuts, punched holes and bends	Genera il programma della macchina per la lavorazione delle barre: tagli, fori punzonati e piegature
 Give a device tag or a part number	Indicare una sigla del dispositivo o un codice articolo
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dà a un edificio un sistema di protezione contro i fulmini o lo modifica: la classe, il numero di calate e l'articolo dei conduttori; conduttori di captazione sui colmi e sulle displuviali (una maglia sui tetti piani), calate con giunti di misura verso i dispersori; o lo rimuove
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Raggruppa gli elementi in un assieme che viene selezionato e spostato insieme; senza nome gli elementi escono dai loro assiemi
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Consegna i programmi di un armadio alla produzione come commessa: manifest e programmi di tutte le sue facce e barre di rame
 Has a divider between power and signal cables	Ha un setto separatore tra cavi di potenza e di segnale
@@ -280,6 +293,7 @@ Height above the mounting plate in mm (default 50)	Altezza sopra la piastra di m
 Height in mm	Altezza in mm
 Height in mm without plinth; negative: unknown (wall mounted)	Altezza in mm senza zoccolo; negativa: sconosciuta (montaggio a parete)
 Height in mm; the logo keeps its aspect ratio inside	Altezza in mm; il logo vi mantiene le proporzioni
+Height of the rod above the covering, mm (default 1500)	Altezza dell'asta sopra la copertura, mm (predefinita 1500)
 Higher-level product aspect (-) of the page; the devices on the page move along	Aspetto prodotto di livello superiore (-) della pagina; i dispositivi della pagina lo seguono
 Highest actuator on the door above the floor (0: not checked)	Attuatore più alto sulla porta dal pavimento (0: non verificato)
 Highest air temperature at devices without data (0: not checked)	Temperatura dell'aria massima sui dispositivi senza dati (0: non verificato)
@@ -433,11 +447,14 @@ Measuring range or set point	Campo di misura o valore di riferimento
 Message code, e.g. wires.3f9a1c	Codice del messaggio, ad es. wires.3f9a1c
 Milling feed, mm/min	Avanzamento di fresatura, mm/min
 Mirror the symbol	Specchia il simbolo
+Moves an air-termination rod, changes its height, renames or removes it	Sposta un'asta di captazione, ne modifica l'altezza, la rinomina o la rimuove
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Sposta un'estremità di un conduttore: lascia ciò a cui è collegata e si collega a ciò che incontra; il conduttore resta ortogonale
 Moves symbols, wires and texts; connected wire ends follow	Sposta simboli, conduttori e testi; le estremità dei conduttori collegati li seguono
 Moves the page before this page of its section (or of the section given)	Sposta la pagina prima di questa pagina della sua sezione (o della sezione indicata)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Sposta la sezione prima di questa sezione del suo padre (o del padre indicato); i numeri continuano in ordine
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Layout della tavola chiodata di un cablaggio: le diramazioni dal nodo comune ai connettori con lunghezza, direzione, diametro del fascio e pin, e la scala del disegno
+Name (default E1, E2, …)	Nome (predefinito E1, E2, …)
+Name (default F1, F2, …)	Nome (predefinito F1, F2, …)
 Name of the assembly	Nome dell'assieme
 Name of the bar, e.g. L1 -Q1	Nome della barra, ad es. L1 -Q1
 Name of the check	Nome della verifica
@@ -461,6 +478,7 @@ New page name	Nuovo nome pagina
 New parent segment (empty: top level)	Nuovo segmento superiore (vuoto: livello superiore)
 New value	Nuovo valore
 No PCT loop {}	Nessun loop PCT {}
+No air-termination rod {} on building {}	Nessuna asta di captazione {} sull'edificio {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Nessuna verifica integrata si chiama {}: l'impostazione vale per una verifica di un plugin con questo nome (list_checks)
 No bus system {}	Nessun sistema bus {}
 No connection point {} on this page	Nessun punto di connessione {} in questa pagina
@@ -468,6 +486,7 @@ No connection symbol with id {}	Nessun simbolo di collegamento con id {}
 No copper bar {}	Nessuna barra di rame {}
 No device description {}	Nessuna descrizione dispositivo {}
 No device group {}	Nessun gruppo di dispositivi {}
+No earth electrode {} in building {}	Nessun dispersore {} nell'edificio {}
 No enclosure named {}	Nessun armadio denominato {}
 No entry for {} and {}	Nessuna voce per {} e {}
 No hose {}	Nessun tubo flessibile {}
@@ -570,6 +589,8 @@ Part number of the downstream device	Codice articolo del dispositivo a valle
 Part number of the hose / tube / pipe	Codice articolo del tubo flessibile / tubo / tubazione
 Part number of the upstream device	Codice articolo del dispositivo a monte
 Part number, e.g. GEN.LMP-GN-24	Codice articolo, ad es. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Articolo della sua bandella, del filo o del picchetto (vuoto: generico)
+Part of the conductors (round wire; empty: generic)	Articolo dei conduttori (tondino; vuoto: generico)
 Part of the key or name	Parte della chiave o del nome
 Part {} has no function with a symbol	L'articolo {} non ha funzioni con simbolo
 Parts phased out or discontinued	Articoli in dismissione o fuori produzione
@@ -651,7 +672,10 @@ Relative humidity of the ambient air in % (0: no condensation check)	Umidità re
 Release instead of freeze	Sblocca invece di congelare
 Released pages keep their names: {}	Le pagine rilasciate mantengono il loro nome: {}
 Remote I/O: station of the controller	I/O decentrati: stazione del controllore
+Remove the air-termination rod	Rimuovi l'asta di captazione
+Remove the earth electrode	Rimuovi il dispersore
 Remove the entry of upstream and downstream	Rimuovi la voce di upstream e downstream
+Remove the lightning protection system	Rimuovi il sistema di protezione contro i fulmini
 Remove the profile	Rimuovi il profilo
 Remove the scheme from the project	Rimuovi lo schema dal progetto
 Remove unused definitions (default: false)	Rimuovi le definizioni non utilizzate (predefinito: false)
@@ -682,6 +706,7 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Resto (mm)
 Reuse failed searches during one routing calculation	Riutilizza le ricerche non riuscite durante uno stesso calcolo dei percorsi
 Right side bayed (no side panel)	Lato destro affiancato (senza parete laterale)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Anello: profondità sotto il terreno, picchetto: profondità della sommità, mm (predefinita 500)
 Room {} exists already	Il locale {} esiste già
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotazione in gradi in senso orario: 0, 90, 180 o 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotazione in gradi, in senso antiorario (90 si legge dal basso verso l'alto)
@@ -879,6 +904,7 @@ Unknown check: {}	Verifica sconosciuta: {}
 Unknown class: {}	Classe sconosciuta: {}
 Unknown data type: {}	Tipo di dati sconosciuto: {}
 Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
+Unknown earth electrode: {}	Dispersore sconosciuto: {}
 Unknown earthing system: {}	Sistema di distribuzione sconosciuto: {}
 Unknown face {}	Faccia sconosciuta {}
 Unknown fastening: {}	Fissaggio sconosciuto: {}
@@ -970,6 +996,7 @@ device (default), position, cross_section or number	device (predefinito), positi
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages o parts
 error, warning, info, off, or default to take the change back	error, warning, info, off o default per annullare la modifica
 false takes the acceptance back (default true)	false annulla l'accettazione (predefinito true)
+foundation, ring or rod	foundation, ring o rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted o middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) o product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker o other
@@ -999,6 +1026,8 @@ too long	troppo lungo
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (predefinito), ladder, trunking, conduit, drag_chain, buried o free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit o other
 wired, problem or open	wired, problem o open
+x of the foot of the rod in the floor plan of the building, mm	x del piede dell'asta nella pianta dell'edificio, mm
+z of the foot of the rod in the floor plan of the building, mm	z del piede dell'asta nella pianta dell'edificio, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} e {} sono le due estremità di una funzione: il conduttore la cortocircuiterebbe
 {} and {} are needed together	{} e {} sono richiesti insieme
 {} cannot be bayed to itself	{} non può essere affiancato a se stesso

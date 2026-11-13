@@ -26,6 +26,8 @@ Adds a text to a page	Додає текст на сторінку
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Додає всі рядки текстів проєкту до словника, за бажанням вилучаючи записи, які більше не використовуються
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Додає аксесуар до кінця кабелю: ввід, ввід ЕМС, роз’єм, розвантаження від натягу, затискач екрана, захисний рукав, кінцеву втулку, маркер
 Adds an accessory to a device; it must fit one of the device's parts	Додає приладдя до пристрою; воно має підходити до одного з виробів пристрою
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Додає блискавкоприймальний стрижень на дахи будівлі, з'єднаний з її блискавкоприймальними провідниками; будівля отримує блискавкозахист класу III, якщо його немає
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Додає заземлювач до будівлі: фундаментний заземлювач у фундаментній плиті нижнього рівня вздовж зовнішніх стін з комірками, кільцевий заземлювач у ґрунті навколо стін або вертикальний заземлювач; його матеріал потрапляє до специфікації
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Додає корпус: системи в одному з її розмірів (або довільного розміру) чи з виробу корпусу
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Додає провідник вирівнювання потенціалів між двома точками підключення (головна заземлювальна шина, шафи, струмопровідні контури, металеві кабельні конструкції)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Додає або змінює схему маркування проєкту, вилучає її або вибирає схему для експорту маркування
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Додає пристрої шаблону до сегмента
 Adds the outline of a machine, building or area to the plant layout	Додає контур машини, будівлі або зони до плану установки
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Додає, замінює або вилучає профіль: конектор із назвами стовпців, які використовує інша система
+Air-termination rod: its name	Блискавкоприймальний стрижень: його назва
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Вирівнює елементи, розподіляє їх рівномірно, шикує пристрої на рейці або копіює елементи масивом
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Вирівнює символи, тексти й графіку за спільним краєм або центром; під’єднані кінці проводів переміщуються разом
 Allow renaming onto an identifier in use: both become one	Дозволити перейменування на використовуване позначення: обидва стануть одним
@@ -70,6 +73,7 @@ Between page and column (default .)	Між сторінкою і стовпце�
 Bonding point	Точка підключення вирівнювання потенціалів
 Border around the text	Обрамлення навколо тексту
 Both classes are needed	Потрібні обидва класи
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Будівлі установки з рівнями, шахтами, сходами й дахами з фотоелектричними полями, заземлювачами та блискавкозахистом, приміщеннями на рівнях і зв'язками між будівлями
 Bus system name	Назва шинної системи
 Bus system name, e.g. PN/IE_1	Назва шинної системи, напр. PN/IE_1
 Busbar machine program (CSV)	Програма верстата для обробки шин (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Змінює двері чи вікно приміщення: як відчиняється (петлі зліва чи справа, всередину чи назовні, або розсувні), положення вздовж стіни, розмір і підвіконня
 Changes a placed symbol; when it moves, connected wire ends follow	Змінює розміщений символ; коли він переміщується, кінці підключених проводів слідують за ним
 Changes a text (only the given properties)	Змінює текст (лише задані властивості)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Змінює заземлювач будівлі: місце, довжину, відстань від стін, глибину, комірку, виріб або шину; перейменовує чи видаляє його
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Переводить пристрої з виробами, що знімаються або зняті з виробництва, на вироби-наступники (наступники мають бути виробами проєкту)
 Changes name, description or structure of a page	Змінює назву, опис або структуру сторінки
 Changes name, description, function, location or parent of a segment	Змінює назву, опис, функцію, місце або батьківський сегмент сегмента
@@ -100,6 +105,7 @@ Check {} failed: {}	Помилка перевірки {}: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Перевіряє компонування шафи: колізії, відстані (монтажні, для вентиляції, ЕМС), простір для обслуговування, висоти над підлогою, класи колізій, температури та технологічність
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Вибирає оконцювання проводів: зачищений кінець, наконечник-гільза або опресований наконечник; у точці підключення, в усіх точках підключення пристрою або лише для одного проводу
 Chosen value	Вибране значення
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Клас блискавкозахисту, 1 … 4 (I … IV; типово III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Відстані, простір для обслуговування, висоти, класи колізій, теплове моделювання та технологічність компонування шафи
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Тепловий режим корпусів (IEC/TR 60890): втрати потужності, внутрішня температура, потрібний вентилятор або холодильний агрегат і обігрів; за бажанням змінює параметри одного корпусу
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Клас колізій: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, власний клас або * для будь-якого
@@ -222,6 +228,10 @@ Draws a wire through two or more points	Малює провід через дв�
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Малює проводи на сторінках схем і в експорті PDF / SVG їхнім кольором або чорним
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Проводить проводи між вільними точками підключення символів, розташованими навпроти, і до вільних плечей Т-подібних вузлів і кутів
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	Класи ЕМС кабелів (вихід приводу, аналогові, силові, сигнальні, екран) і проблеми ЕМС
+Earth electrode: its name	Заземлювач: його назва
+Earth rod: its length, mm (default 3000)	Вертикальний заземлювач: його довжина, мм (типово 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Вертикальний заземлювач: x його місця на плані будівлі, мм
+Earth rod: z of its place in the floor plan of the building, mm	Вертикальний заземлювач: z його місця на плані будівлі, мм
 Edge length of the routing grid in mm	Довжина ребра сітки прокладання в мм
 Electrical device tags separated by commas or blanks (empty = remove the links)	Позначення електричних пристроїв, розділені комами або пробілами (порожньо = вилучити зв’язки)
 Electrical engineering	Електротехніка
@@ -256,6 +266,8 @@ First port as station:port, e.g. PLC1:X1 P2	Перший порт у форма�
 First row with the column names	Перший рядок із назвами стовпців
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат назви пристрою: {letter}, {n} (лічильник), {page}, {column}, {row}; за замовчуванням {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схеми format: {n} (лічильник), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Фундаментний заземлювач: наскільки всередині зовнішніх стін (типово 100), кільцевий: наскільки зовні (типово 1000), мм
+Foundation earth electrode: its largest mesh, mm (default 20000)	Фундаментний заземлювач: його найбільша комірка, мм (типово 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Вихідна рамка для нової рамки (за замовчуванням: A3 landscape)
 Free space in front of every device on the plate	Вільний простір перед кожним пристроєм на панелі
 Freezes routes for production (kept by the recalculation while possible) or releases them	Фіксує траси для виробництва (зберігаються під час перерахунку, доки це можливо) або розблоковує їх
@@ -272,6 +284,7 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Генерує багатолінійну схему (силові символи, провідники, котушки контакторів) для однолінійних символів сторінки на новій сторінці після неї
 Generates the program of the busbar machine: cuts, punched holes and bends	Генерує програму верстата для обробки шин: різи, пробиті отвори та згини
 Give a device tag or a part number	Вкажіть позначення пристрою або номер виробу
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Дає будівлі блискавкозахист або змінює його: клас, кількість струмовідводів і виріб провідників; блискавкоприймальні провідники на гребенях і ребрах (сітка на плоских дахах), струмовідводи з контрольними з'єднаннями до заземлювачів; або видаляє його
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Групує елементи у збірку, яка вибирається й переміщується разом; без назви елементи виходять зі своїх збірок
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передає програми корпусу у виробництво як завдання: маніфест і програми всіх його граней і мідних шин
 Has a divider between power and signal cables	Має розділювальну перегородку між силовими та сигнальними кабелями
@@ -280,6 +293,7 @@ Height above the mounting plate in mm (default 50)	Висота над монт�
 Height in mm	Висота в мм
 Height in mm without plinth; negative: unknown (wall mounted)	Висота в мм без цоколя; від’ємне значення: невідомо (настінний монтаж)
 Height in mm; the logo keeps its aspect ratio inside	Висота в мм; логотип зберігає всередині свої пропорції
+Height of the rod above the covering, mm (default 1500)	Висота стрижня над покрівлею, мм (типово 1500)
 Higher-level product aspect (-) of the page; the devices on the page move along	Аспект виробу вищого рівня (-) сторінки; пристрої сторінки переміщуються разом із нею
 Highest actuator on the door above the floor (0: not checked)	Найвищий орган керування на дверцятах над підлогою (0: не перевіряється)
 Highest air temperature at devices without data (0: not checked)	Найвища температура повітря біля пристроїв без даних (0: не перевіряється)
@@ -433,11 +447,14 @@ Measuring range or set point	Діапазон вимірювання або ус
 Message code, e.g. wires.3f9a1c	Код повідомлення, напр. wires.3f9a1c
 Milling feed, mm/min	Подача фрезерування, мм/хв
 Mirror the symbol	Віддзеркалити символ
+Moves an air-termination rod, changes its height, renames or removes it	Переміщує блискавкоприймальний стрижень, змінює його висоту, перейменовує чи видаляє його
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Переміщує один кінець проводу: він від'єднується від того, до чого підключений, і підключається до того, чого торкається; провід залишається прямокутним
 Moves symbols, wires and texts; connected wire ends follow	Переміщує символи, проводи й тексти; кінці підключених проводів слідують за ними
 Moves the page before this page of its section (or of the section given)	Переміщує сторінку перед цією сторінкою її розділу (або вказаного розділу)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Переміщує розділ перед цим розділом його батьківського розділу (або вказаного); номери йдуть по порядку
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Компонування шаблону джгута: відгалуження від спільного вузла до роз’ємів із довжиною, напрямком, діаметром джгута й штирями, а також масштаб креслення
+Name (default E1, E2, …)	Назва (типово E1, E2, …)
+Name (default F1, F2, …)	Назва (типово F1, F2, …)
 Name of the assembly	Назва збірки
 Name of the bar, e.g. L1 -Q1	Назва шини, напр. L1 -Q1
 Name of the check	Назва перевірки
@@ -461,6 +478,7 @@ New page name	Нова назва сторінки
 New parent segment (empty: top level)	Новий батьківський сегмент (порожньо: верхній рівень)
 New value	Нове значення
 No PCT loop {}	Немає контуру КВПіА {}
+No air-termination rod {} on building {}	Немає блискавкоприймального стрижня {} на будівлі {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Вбудованої перевірки з назвою {} немає: налаштування стосується перевірки плагіна з цією назвою (list_checks)
 No bus system {}	Немає шинної системи {}
 No connection point {} on this page	На цій сторінці немає точки підключення {}
@@ -468,6 +486,7 @@ No connection symbol with id {}	Немає символу з'єднання з i
 No copper bar {}	Немає мідної шини {}
 No device description {}	Немає опису пристрою {}
 No device group {}	Немає групи пристроїв {}
+No earth electrode {} in building {}	Немає заземлювача {} у будівлі {}
 No enclosure named {}	Немає корпусу з назвою {}
 No entry for {} and {}	Немає запису для {} і {}
 No hose {}	Немає шланга {}
@@ -570,6 +589,8 @@ Part number of the downstream device	Номер виробу наступног�
 Part number of the hose / tube / pipe	Номер виробу шланга / трубки / трубопроводу
 Part number of the upstream device	Номер виробу попереднього пристрою
 Part number, e.g. GEN.LMP-GN-24	Номер виробу, наприклад GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Виріб його смуги, дроту чи стрижня (порожньо: типовий)
+Part of the conductors (round wire; empty: generic)	Виріб провідників (круглий дріт; порожньо: типовий)
 Part of the key or name	Частина ключа або назви
 Part {} has no function with a symbol	Виріб {} не має функції із символом
 Parts phased out or discontinued	Вироби, що знімаються або зняті з виробництва
@@ -651,7 +672,10 @@ Relative humidity of the ambient air in % (0: no condensation check)	Відно�
 Release instead of freeze	Розблокувати замість фіксації
 Released pages keep their names: {}	Затверджені сторінки зберігають свої назви: {}
 Remote I/O: station of the controller	Розподілений ввід/вивід: станція контролера
+Remove the air-termination rod	Видалити блискавкоприймальний стрижень
+Remove the earth electrode	Видалити заземлювач
 Remove the entry of upstream and downstream	Вилучити запис для upstream і downstream
+Remove the lightning protection system	Видалити блискавкозахист
 Remove the profile	Вилучити профіль
 Remove the scheme from the project	Вилучити схему з проєкту
 Remove unused definitions (default: false)	Вилучити невикористані визначення (за замовчуванням: false)
@@ -682,6 +706,7 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Залишок (мм)
 Reuse failed searches during one routing calculation	Повторно використовувати невдалі пошуки в межах одного розрахунку трас
 Right side bayed (no side panel)	Права сторона приєднана (без бічної стінки)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Кільцевий: глибина під землею, вертикальний: глибина верхнього кінця, мм (типово 500)
 Room {} exists already	Приміщення {} вже існує
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот у градусах за годинниковою стрілкою: 0, 90, 180 або 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот у градусах проти годинникової стрілки (90 – читається знизу вгору)
@@ -879,6 +904,7 @@ Unknown check: {}	Невідома перевірка: {}
 Unknown class: {}	Невідомий клас: {}
 Unknown data type: {}	Невідомий тип даних: {}
 Unknown direction {}: left, right, up or down	Невідомий напрямок {}: left, right, up або down
+Unknown earth electrode: {}	Невідомий заземлювач: {}
 Unknown earthing system: {}	Невідомий тип системи заземлення: {}
 Unknown face {}	Невідома грань {}
 Unknown fastening: {}	Невідоме кріплення: {}
@@ -970,6 +996,7 @@ device (default), position, cross_section or number	device (за замовчу�
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages або parts
 error, warning, info, off, or default to take the change back	error, warning, info, off або default, щоб скасувати зміну
 false takes the acceptance back (default true)	false скасовує прийняття (за замовчуванням true)
+foundation, ring or rod	foundation, ring або rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted або middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) або product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker або other
@@ -999,6 +1026,8 @@ too long	задовга
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (за замовчуванням), ladder, trunking, conduit, drag_chain, buried або free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit або other
 wired, problem or open	wired, problem або open
+x of the foot of the rod in the floor plan of the building, mm	x основи стрижня на плані будівлі, мм
+z of the foot of the rod in the floor plan of the building, mm	z основи стрижня на плані будівлі, мм
 {} and {} are both ends of one function: the wire would short-circuit it	{} і {} — обидва кінці однієї функції: провід замкнув би її накоротко
 {} and {} are needed together	{} і {} потрібні разом
 {} cannot be bayed to itself	{} не можна приєднати до самого себе

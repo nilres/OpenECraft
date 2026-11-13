@@ -1981,6 +1981,7 @@ yellow	sárga
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: egy {} mm²-es vezeték vékonyabb, mint amit a csatlakozási pont befogad (legalább {} mm²)
 {}: accessory {} fits none of the device's parts	{}: a(z) {} tartozék a készülék egyik cikkéhez sem illeszkedik
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: a(z) {} kezelőelem {} mm-rel van a padló felett, ajánlott {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: a(z) {} felfogórúd a tetőkön kívül áll
 {}: auxiliary function(s) without main function	{}: segédfunkció(k) főfunkció nélkül
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: a(z) {} kA megszakítóképesség kisebb a(z) {} kA zárlati áramnál
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: a kábelcsatorna {} mm-nél {} %-ban telített (határérték: {} %)
@@ -2001,6 +2002,8 @@ yellow	sárga
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: {} és {} kivágásai ezen: {} túl közel vannak ({} mm anyaghíd, legalább {} mm)
 {}: designation '{}' used more than once	{}: a(z) '{}' megnevezés többször szerepel
 {}: device tag without device name	{}: készülékazonosító készüléknév nélkül
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: a(z) {} földelőnek nincsenek falai, amelyek mentén futhatna: az épületnek nincsenek helyiségei vagy tetői
+{}: earth rod {} stands inside the walls of the building	{}: a(z) {} rúdföldelő az épület falain belül áll
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a(z) {} A hibaáram a(z) {} helyen nem kapcsol le {} s-on belül ({} A szükséges)
 {}: function texts differ in the single-line diagram and the schematic	{}: a funkciószövegek eltérnek az egyvonalas rajzon és a kapcsolási rajzon
 {}: hole of {} is too close to the cutout of {} on the {}	{}: {} furata túl közel van {} kivágásához ezen: {}
@@ -2061,9 +2064,11 @@ yellow	sárga
 {}: terminal {} uses {} levels, its part {} has {}	{}: a(z) {} sorkapocs {} szintet használ, a(z) {} alkatrésze {} szintes
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: a(z) {} sorkapcsok {} mm-rel vannak a padló felett, legalább {} mm szükséges
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: a(z) {} sínes gyűjtősín-rendszer {} vezetőt köt össze ({}): rövidzárlat
+{}: the busbar {} of earth electrode {} does not exist	{}: a(z) {} sín a(z) {} földelőhöz nem létezik
 {}: the device {} of PV array {} does not exist	{}: a(z) {} eszköz a(z) {} PV-mezőhöz nem létezik
 {}: the earthing busbar {} of PV array {} does not exist	{}: a(z) {} földelősín a(z) {} PV mezőhöz nem létezik
 {}: the lightning protection has no earth electrode	{}: a villámvédelemnek nincs földelője
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: a villámvédelemnek nincsenek falai, amelyek mentén futhatna: az épületnek nincsenek helyiségei vagy tetői
 {}: the module {} of PV array {} has no electrical data	{0}: a(z) {2} PV-mező {1} moduljának nincsenek elektromos adatai
 {}: the station has no port {}	{}: az állomásnak nincs {} portja
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: a(z) {} PV-mező stringjei {} modult kötnek be, a mezőnek {} van
@@ -2080,6 +2085,7 @@ yellow	sárga
 {}: {} carries {} A, the load {} needs {} A	{}: a(z) {} {} A-t visel el, a(z) {} fogyasztónak {} A szükséges
 {}: {} changed after it was mounted	{}: {} módosult a felszerelése után
 {}: {} collides with {}	{}: {} ütközik ezzel: {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} levezető, a(z) {} osztály {} levezetőt követel az épület körül
 {}: {} inputs used, the module has {}	{}: {} bemenet használatban, a modulnak {} van
 {}: {} is a fluid device, not an electrical one	{}: {} fluidkészülék, nem villamos
 {}: {} is closer than {} mm to a cable duct	{}: {} egy kábelcsatornához {} mm-nél közelebb van

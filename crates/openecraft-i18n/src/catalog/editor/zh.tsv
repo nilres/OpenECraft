@@ -110,6 +110,8 @@ Air at devices at most	设备处空气温度最高
 Air temperature	空气温度
 Air temperature at the devices	设备处的空气温度
 Air temperature {} … {} °C	空气温度 {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	屋脊和斜脊上的接闪导体（平屋顶上为网格），沿外墙带测试接头的引下线，终止于接地极
+Air-termination rod	接闪杆
 Align	对齐
 Aligned	对齐
 Alignment	对齐
@@ -154,6 +156,7 @@ Arc	圆弧
 Archive and version	归档和版本
 Archive project…	归档项目…
 Arms	分支
+Array	阵列
 As defined by the check	按检查的定义
 As the rules say ({})	按规则（{}）
 Aspects of the pages	页的方面
@@ -218,6 +221,9 @@ Boundary	边界
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	电网中每个保护设备的分断能力与短路电流的对比、其电路末端最小故障电流时的切断、电缆的短路耐受能力以及与上级设备的选择性。
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	桥接：四条连接线；连接从一侧进入并通往另外三侧，先到对侧
 Building {} added with a level at ground level	已添加建筑物 {}，含一个地面层
+Building {} at x {} m, z {} m	建筑物 {} 位于 x {} m，z {} m
+Building {} at x {} m, z {} m, turned {}°	建筑物 {} 位于 x {} m，z {} m，旋转 {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	建筑物 {} 位于 x {} m，z {} m，旋转 {}°：它位于场地边界之外
 Built-in frames cannot be changed; copy one to adapt it.	内置图框无法更改；请复制一个进行调整。
 Built-in scheme: copy it to change it.	内置方案：复制后才能更改。
 Built-in title blocks are read only – use “Copy as new” to make your own.	内置标题栏为只读 – 使用“复制为新项”创建自己的标题栏。
@@ -293,7 +299,10 @@ Choose pages	选择页
 Chooses the pages whose structure starts with this	选择结构以此开头的页
 Circle	圆
 Circuits of a generic manifold	通用分配器的回路数
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	防雷系统的类别：引下线间距、平屋顶网格和保护角
+Class {}	类别 {}
 Clear	清除
+Clear the search	清除搜索
 Clearance	间距
 Click	单击
 Click a text: open its link	单击文本：打开其链接
@@ -425,6 +434,7 @@ Cross references…	交叉引用…
 Crossed wires	穿过的导线
 Ctrl + click on the text opens it as well	按 Ctrl + 单击文本也可将其打开
 Ctrl+A	Ctrl+A
+Current at maximum power	最大功率点电流
 Current-carrying capacity: {} × IEC 60204-1, table 6	载流量：{} × IEC 60204-1，表 6
 Customer rule sets	客户规则集
 Customer, plant or standard	客户、工厂或标准
@@ -437,6 +447,7 @@ Cut length step tubes	管子下料步长
 Cut length step wires	导线下料步长
 Cutout {} × {} mm	开孔 {} × {} mm
 Cutting allowance per end	每端下料余量
+DC leads	直流电缆
 DRAFT	草稿
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	当前语言的“草稿”“待批准”“已批准”；发布后不显示
 DWG import failed: {}	DWG 导入失败：{}
@@ -460,9 +471,11 @@ Define all used	定义所有已使用的
 Defined potentials	已定义的电位
 Del	Del
 Delete PV array	删除光伏阵列
+Delete air-termination rod	删除接闪杆
 Delete cable (its wires are removed from it)	删除电缆（其导线将从中移除）
 Delete comment	删除批注
 Delete connection point	删除连接点
+Delete earth electrode	删除接地极
 Delete element	删除元素
 Delete enclosure	删除机柜
 Delete enclosure {} with everything placed in it?	删除机柜 {} 及其中放置的所有内容？
@@ -487,8 +500,10 @@ Delete this workspace	删除此工作区
 Delete variant	删除变体
 Delete zone	删除安装区
 Depth / mounted at	深度 / 安装于
+Depth below the ground	地面以下深度
 Depth from / to	深度从 / 到
 Depth in the floor	地面内深度
+Depth of its top below the ground	顶端在地面以下的深度
 Derive project definition	派生项目定义
 Descriptions	描述
 Deselect	取消选择
@@ -560,6 +575,7 @@ Door cutouts (CSV)	柜门开孔 (CSV)
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
 Double-click	双击
+Down conductors	引下线
 Download into database	下载到数据库
 Download project	下载项目
 Downloaded {} (version {})	已下载 {}（版本 {}）
@@ -570,6 +586,7 @@ Draft	草稿
 Draft of revision {} created	已创建修订 {} 的草稿
 Draft of revision {} discarded	已放弃修订 {} 的草稿
 Drag	拖动
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	拖动建筑物以移动 · R：将指针下的建筑物旋转 90° · Esc：结束
 Drag a connection point designation of the selected symbol to place it.	拖动所选符号的连接点标识以放置它。
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	拖动所选导线的一端可仅移动该端。按住 Alt 拖动会反转保持连接。
 Drag an entry into the page, or click it and then click into the page.	将条目拖到页中，或单击条目后在页中单击。
@@ -610,12 +627,17 @@ Duct fill limit	线槽填充限值
 Duplicate	复制
 Each example builds on the one before and shows more of the features.	每个示例都以前一个为起点，并展示更多功能。
 Each point-to-point connection can belong to a harness	每个点对点连接都可以属于一个线束
+Earthing and lightning protection	接地和防雷
+Earthing busbar	接地母线
+Earthing conductor	接地导体
+Earthing points	接地点
 Earthing system	接地系统
 Easting, northing	东坐标、北坐标
 Eaves	檐口
 Edge length of the routing grid: smaller is finer and slower	布线栅格的边长：越小越精细，但越慢
 Edit in table	在表格中编辑
 Edit in table…	在表格中编辑…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	编辑模式：在总平面图中将建筑物拖到其位置并旋转；单击房间不再打开它
 Editable copy of this plot frame	此图框的可编辑副本
 Editable copy of this title block	此标题栏的可编辑副本
 Effective surface	有效表面积
@@ -796,9 +818,11 @@ Height above the floor	离地高度
 Height above the mounting plate	安装板以上高度
 Height above the plate	板以上高度
 Height of the plinth, 0 without plinth	底座高度，0 表示无底座
+Height of the rod above the covering	接闪杆高出屋面的高度
 Heights above floor (IEC 60204-1)	离地高度 (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	在单击、移动或滚动时按住。在 macOS 上 Ctrl 为 Cmd。
 Help	帮助
+Hide PV modules	隐藏光伏组件
 Hide the groups you do not need and put the commands you use most into own groups.	隐藏不需要的组，并将最常用的命令放入自定义组。
 Highest phase unbalance	最大相不平衡度
 Highest short-circuit current	最大短路电流
@@ -818,6 +842,8 @@ Hose defaults and PCT loops of the pre-planning	软管默认值和预规划的 P
 Hose number	软管编号
 Hoses and pipes	软管和管道
 Hoses rated below it are errors; 0 = not checked	额定压力低于此值的软管视为错误；0 = 不检查
+How far inside the outer walls	在外墙以内的距离
+How far outside the outer walls	在外墙以外的距离
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	门扇的开启方式：铰链在左侧或右侧边缘（从房间内看），向房间内或向外开，或沿墙推拉
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	导线在此端的端接方式；默认按连接点或其设备的选择，否则按布局的管型端子设置
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	导线如何跳过所交叉的导线、T 形连接如何标记，以及移动的项目是否重新布线其连接
@@ -930,6 +956,7 @@ Labeling scheme	标记方案
 Landscape	横向
 Large dot	大圆点
 Larger texts and buttons for a touch screen at the workbench	为工作台触摸屏提供更大的文字和按钮
+Largest mesh	最大网格
 Latitude, longitude	纬度、经度
 Layer	图层
 Layer {}	图层 {}
@@ -943,6 +970,7 @@ Layout space	布局空间
 Layout spaces	布局空间
 Leave out the ceilings of the rooms and the roofs in the 3D view	在三维视图中省略房间顶棚和屋顶
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	在 3D 视图中省略所有线槽的盖板：可以看到其中的导线
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	在 3D 视图中隐藏光伏阵列的组件：可看到导轨、屋顶挂钩、支架底座、接地和电缆
 Leave repeated values of the first column blank	第一列中重复的值留空
 Left button	左键
 Left edges	左边缘
@@ -950,6 +978,7 @@ Legend plates (door devices)	铭牌（柜门设备）
 Length from the node to the device	节点到设备的长度
 Length inside an enclosure	机柜内长度
 Length of a shield pigtail where there is no shield clamp	没有屏蔽夹时屏蔽辫线的长度
+Length of the rod	接地极长度
 Length of wires that are not routed in the panel layout	未在安装板布局中布线的导线长度
 Length {} mm	长度 {} mm
 Letters, digits, space, - _ . (up to 64 characters)	字母、数字、空格、- _ .（最多 64 个字符）
@@ -958,6 +987,7 @@ Level of this kind of message	此类消息的级别
 Level {} added to building {}; new rooms go onto it	已向建筑物 {1} 添加楼层 {0}；新房间将放在该层
 Level {} of building {}	建筑 {1} 的楼层 {0}
 Library	库
+Lightning protection	防雷
 Like two fingers	与双指相同
 Limits	限值
 Limits in effect	生效的限值
@@ -1009,6 +1039,7 @@ Macros ({})	宏 ({})
 Macro…	宏…
 Main	主
 Make the selected elements of this project equal to the compared ones	使此项目中的所选元素与比较对象一致
+Maker	制造商
 Makes the current page content of the option	将当前页设为该选项的内容
 Manage plugins	管理插件
 Management	管理
@@ -1051,6 +1082,7 @@ Mixed	混合
 Mode	模式
 Model of a part (2D / 3D)	部件的模型 (2D / 3D)
 Modifier keys	组合键
+Module area	组件面积
 Module part; its size comes from the part	组件部件；尺寸来自部件
 Motors feed the short circuit	电机馈入短路
 Mounted on	安装在
@@ -1063,6 +1095,7 @@ Mouse	鼠标
 Move	移动
 Move ahead in the 3D view (held)	在 3D 视图中前进（按住）
 Move back in the 3D view (held)	在 3D 视图中后退（按住）
+Move buildings	移动建筑物
 Move down	下移
 Move down in the 3D view (held)	在 3D 视图中向下移动（按住）
 Move faster with the keys of the 3D view	使用 3D 视图的按键更快移动
@@ -1150,6 +1183,7 @@ No PLC cards in the project.	项目中没有 PLC 卡件。
 No PLC inputs / outputs placed.	未放置 PLC 输入 / 输出。
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	无附件：密封接头、连接器、屏蔽夹 … 会计入物料清单，并根据电缆进行检查。
 No bus systems.	没有总线系统。
+No busbar	无母线
 No cable passage to {}: wires to it are not routed	没有到 {} 的电缆过孔：到该机柜的导线不布线
 No cables defined.	未定义电缆。
 No cables yet. Draw a cable definition across wires or add a cable.	尚无电缆。在导线上绘制电缆定义或添加电缆。
@@ -1161,6 +1195,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	与 {} 无差异。
 No document embedded	未嵌入文档
 No dot: plain T	无圆点：普通 T 形
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	尚无接地极：基础底板内的基础接地极、墙体周围的环形接地极或垂直接地极。
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	还没有机柜 – 使用“新建机柜”创建，或使用“新建房间”创建放置机柜的房间。
 No field cables: place the enclosures and field devices at nodes of the route network.	没有现场电缆：请将机柜和现场设备放置在布线网络的节点上。
 No filter fans: an air/air heat exchanger or a cooling unit	不使用过滤风扇：使用空气/空气换热器或冷却装置
@@ -1173,6 +1208,7 @@ No macros yet. Select items in a schematic and save them as a macro.	尚无宏�
 No modules: plug in PLC cards of the schematic.	没有模块：请插入原理图中的 PLC 卡件。
 No numbers for	不编号
 No panel items: place the devices in the panel layout.	没有布局元件：请在安装板布局中放置设备。
+No part matches.	没有匹配的部件。
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	尚无标记为落地安装的部件。请在部件管理中标记：部件编辑器 › 安装数据 › 落地安装。
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	尚无标记为墙面安装的部件。请在部件管理中标记：部件编辑器 › 安装数据 › 墙面安装。
 No parts of the product group Cables in the parts database.	部件数据库中没有产品组“电缆”的部件。
@@ -1191,6 +1227,7 @@ No segments yet: draw them in the plant layout.	尚无布线段：请在工厂�
 No shortcut	无快捷方式
 No single-line symbols and no power devices in the schematic.	原理图中没有单线符号，也没有动力设备。
 No stations: add one or use the automatic configuration.	没有站：请添加一个站或使用自动组态。
+No string yet: the modules are not connected.	尚无组串：组件未连接。
 No subprojects were taken out of this project.	尚未从此项目中移出任何子项目。
 No terminal strips: place terminals in a schematic first.	无端子排：请先在原理图中放置端子。
 No user symbols yet. Create one or copy a built-in symbol.	尚无用户符号。创建一个符号或复制内置符号。
@@ -1227,6 +1264,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	适用于触摸屏和触控板。仅平移：捏合不缩放；仅缩放：在系统能区分触控板时，双指在触控板上滚动也会缩放。单指的作用与鼠标左键相同。
 On a touch screen; trackpads leave three-finger gestures to the system.	适用于触摸屏；触控板的三指操作由系统处理。
 On startup	启动时
+On the roof, joined to the air-termination conductors; move it to its place	在屋顶上，连接到接闪导体；将其移到所需位置
 One row per label	每个标签一行
 Only devices on the current page	仅限当前页上的设备
 Only frames no page uses can be deleted	只能删除没有页使用的图框
@@ -1254,6 +1292,7 @@ Open the selection: its properties, in the floor plan its face	打开所选内�
 Open to {}: wires cross beside the mounting plates	向 {} 开放：导线在安装板旁边穿过
 Open walls and floors	打开墙壁和地面
 Open, save, import, export, print and the settings	打开、保存、导入、导出、打印和设置
+Open-circuit voltage	开路电压
 OpenECraft page templates	OpenECraft 页模板
 OpenECraft page templates (JSON)	OpenECraft 页模板 (JSON)
 OpenECraft project	OpenECraft 项目
@@ -1295,6 +1334,7 @@ Other values ({})	其他值 ({})
 Otherwise from the plant layout, or next to the other line-ups	否则根据工厂布局放置，或放在其他柜排旁边
 Out since {} (pages locked)	自 {} 起已移出（页已锁定）
 Outer diameter (e.g. 8 mm) or DN	外径（例如 8 mm）或 DN
+Outlets	插座
 Outlets, switches, heating	插座、开关、供暖
 Outline	轮廓
 Outlines	轮廓
@@ -1317,6 +1357,9 @@ PLC channels	PLC 通道
 PLC hardware and bus topology	PLC 硬件和总线拓扑
 PLC overview	PLC 概览
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG 或 JPEG 位图，例如徽标或照片
+PV array {}	光伏阵列 {}
+PV array {} of building {}: {} modules	建筑物 {1} 的光伏阵列 {0}：{2} 块组件
+PV array {} of building {}: {} modules, {} kWp	建筑物 {1} 的光伏阵列 {0}：{2} 块组件，{3} kWp
 PV arrays	光伏阵列
 Page graphics	页图形
 Page heading	页标题
@@ -1364,6 +1407,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	路径功能文本
 Pattern	阵列
 Pattern…	阵列…
+Peak power	峰值功率
+Pick a part in the list.	请在列表中选择部件。
 Pin-out	引脚分配
 Pipe run	管道走线
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	房间墙面、顶部或地面上的管道走线，软管、管子和管道沿其布线：单击各个角点，双击或按 Enter 完成
@@ -1380,6 +1425,7 @@ Place in schematic	放置到原理图中
 Place in the plant	在工厂中的位置
 Place in the room	房间中的位置
 Place in the site plan	在总平面图中放置
+Place on the wall	放置到墙上
 Place text	放置文本
 Place the georeferenced point everything is measured from	放置用于测量一切的地理参考点
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	在总平面图中放置设施的地理参考点；其坐标在建筑窗格中输入，所有点都从它测量
@@ -1412,6 +1458,7 @@ Plug in card	插入卡件
 Plugin commands	插件命令
 Plugins	插件
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	插件可添加命令、检查、报表和导出。外部插件从环境变量 {} 中的文件夹加载（每个插件一个包含 plugin.json 的子文件夹）。
+Plus and minus leads from the modules to the inverter	从组件到逆变器的正极和负极电缆
 Points	点
 Polygon	多边形
 Polyline	多段线
@@ -1611,6 +1658,7 @@ Right edges	右边缘
 Right neighbour	右侧相邻机柜
 Rights	权限
 Risers	踏步数
+Roof pitch	屋顶坡度
 Roof window	屋顶窗
 Roof windows	屋顶窗
 Roofs	屋顶
@@ -1702,6 +1750,7 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	滚动时缩放，在平移处也是如此
 Search (* and ? as placeholders)…	搜索（* 和 ? 作为通配符）…
 Search below this folder	在此文件夹下搜索
+Search number, description, maker	搜索编号、描述、制造商
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	按目录、产品组和技术数据搜索部件服务器，添加部件并检查数据库更新
 Second channel	第二通道
 Section properties	分节属性
@@ -1761,6 +1810,7 @@ Shielded analogue cables	屏蔽的模拟量电缆
 Shielded drive cables	屏蔽的驱动电缆
 Short circuit and selectivity	短路和选择性
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	短路、选择性、负载、EMC、功能安全以及根据规则集进行验证
+Short-circuit current	短路电流
 Short-circuit currents	短路电流
 Short-circuit power of the network	电网短路容量
 Shortest profile	最短型材
@@ -1872,6 +1922,7 @@ Surge protection	浪涌保护
 Swing the enclosure door open or shut (door devices and their wires move with it)	打开或关闭机柜柜门（柜门设备及其导线随之摆动）
 Switch off the check \"{}\"	关闭检查 \"{}\"
 Switched off on this computer ({})	已在此计算机上关闭（{}）
+Switches	开关
 Switches the options with a condition by the configurator options	根据配置器选项切换带条件的选项
 Switches to this workspace with its panes at their default places	切换到此工作区，并将其窗格恢复到默认位置
 Switches, push buttons and room thermostats	开关、按钮和室内温控器
@@ -2072,6 +2123,7 @@ Via:	经过：
 View	视图
 Visible	可见
 Voltage (line to line)	电压（线电压）
+Voltage at maximum power	最大功率点电压
 Voltage drop	电压降
 WGS 84, written into the site of IFC exports	WGS 84，写入 IFC 导出的场地
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	墙 {}，{} m：拖动以移动，双击显示以进行布置
@@ -2253,6 +2305,8 @@ x y	x y
 {} (default)	{}（默认）
 {} (first column)	{}（第一列）
 {} (locked by {})	{}（已被 {} 锁定）
+{} (no such device)	{}（设备不存在）
+{} (not placed in the layout)	{}（未放置在布局中）
 {} (project server, revision {})	{}（项目服务器，修订 {}）
 {} (spare)	{}（备用）
 {} (subproject of {})	{}（{} 的子项目）
@@ -2300,6 +2354,7 @@ x y	x y
 {} devices renamed	已重命名 {} 个设备
 {} differences to {}	与 {1} 有 {0} 处差异
 {} doors	{} 扇门
+{} down conductors with test joints, {} m of conductors	{} 根带测试接头的引下线，{} m 导体
 {} entries in {}	{1} 中有 {0} 个条目
 {} errors	{} 个错误
 {} errors, {} warnings	{} 个错误，{} 个警告
@@ -2314,6 +2369,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} 没有带符号的功能；请在设备属性中将其分配给设备
 {} has unsaved changes. Discard them?	{} 有未保存的更改。是否放弃？
 {} imported into the parts database and placed as {}	{} 已导入部件数据库并放置为 {}
+{} in {}	{1} 中的 {0}
 {} is neither in the parts database nor on the parts server	{} 不在部件数据库中，也不在部件服务器上
 {} is not in the disk image	磁盘映像中没有 {}
 {} is not made for wall mounting: place it on a mounting rail	{} 不适合墙面安装：请将其放在安装导轨上
@@ -2343,6 +2399,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	显示 {} / {} 个条目：请搜索以缩小列表范围
 {} of {} items	{} / {} 个元件
 {} of {} pages locked	已锁定 {} / {} 页
+{} of {} parts · double-click: place	{} / {} 个部件 · 双击：放置
 {} of {} pins used	已使用 {} / {} 个插针
 {} of {} rows	{} / {} 行
 {} of {} wires	{} / {} 条导线
@@ -2394,6 +2451,7 @@ x y	x y
 {} wires, {} – {} mm	{} 条导线，{} – {} mm
 {} °C (max. {} °C)	{} °C（最高 {} °C）
 {} °C (max.)	{} °C（最高）
+{} × {} = {}, {}	{} × {} = {}，{}
 {} × {} pixels, {}	{} × {} 像素，{}
 {} – {} ({} pages)	{} – {}（{} 页）
 {} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
@@ -2401,6 +2459,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}：与通往 {} 的导线一起压接
 {}: drag to move it, R turns it, a double-click opens it	{}：拖动以移动，R 旋转，双击打开
 {}: drag to move it, a double-click shows the floor	{}：拖动以移动，双击显示地面
+{}: drag to move, R: turn by 90°	{}：拖动以移动，R：旋转 90°
 {}: nothing to change	{}：无需更改
 {}: pin {}	{}：引脚 {}
 {}: strip {} mm, {}	{}：剥线 {} mm，{}

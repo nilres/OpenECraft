@@ -105,6 +105,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	设备连接点
 Device description	设备描述
 Device tag	设备标识符
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	支架接地导体所连接的设备（接地母线或等电位连接母线）；空：无
 Device {}	设备 {}
 Devices	设备
 Direction	方向
@@ -200,6 +201,7 @@ Location	位置
 Location (+)	位置 (+)
 MTTFd (years)	MTTFd（年）
 Machine	机器
+Main earthing busbar (device) it is connected to; empty: none	所连接的总接地母线（设备）；空：无
 Main earthing terminal	总接地端子
 Main switch	主开关
 Manufacturer	制造商
@@ -266,6 +268,7 @@ Not in the schematic	不在原理图中
 Note	注释
 Notes	备注
 Number	编号
+Number of down conductors (0: as many as the class needs for the walls)	引下线数量（0：按类别对墙体所需的数量）
 Number the sections 1, 2, 3 … on every level first	先在每一级将分节编号为 1, 2, 3 …
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	按结构和标识字母以原理图顺序（页、列、从上到下）为设备标识符编号
 Only rows containing this text	仅包含此文本的行

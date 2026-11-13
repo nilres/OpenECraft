@@ -26,6 +26,8 @@ Adds a text to a page	Lägger till en text på en sida
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	Lägger till alla rader i projekttexterna i ordlistan och tar valfritt bort poster som inte längre används
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	Lägger till tillbehör på en kabelände: förskruvning, EMC-förskruvning, kontaktdon, dragavlastning, skärmklämma, skyddsslang, ändhylsa, märkning
 Adds an accessory to a device; it must fit one of the device's parts	Lägger till ett tillbehör till en enhet; det måste passa till en av enhetens artiklar
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	Lägger till en spetsledare på en byggnads tak, förbunden med dess uppfångningsledare; byggnaden får ett åskskydd av klass III om den saknar ett
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	Lägger till ett jordtag i en byggnad: ett grundjordtag i bottenplattan på den lägsta nivån längs ytterväggarna i maskor, ett ringjordtag i marken runt väggarna eller ett jordspett; materialet hamnar i materiallistan
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	Lägger till en kapsling: från ett system i en av dess storlekar (eller en anpassad storlek), eller från en kapslingsartikel
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	Lägger till en potentialutjämningsledare mellan två anslutningspunkter (huvudjordningsskena, kapslingar, ledande konturer, metalliska kabelbärare)
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	Lägger till eller ändrar ett märkningsschema i projektet, tar bort det eller väljer det schema som används för märkningsexporten
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	Lägger till apparaterna från en mall i ett segment
 Adds the outline of a machine, building or area to the plant layout	Lägger till konturen av en maskin, en byggnad eller ett område i anläggningslayouten
 Adds, replaces or removes a profile: a connector with the column names the other system uses	Lägger till, ersätter eller tar bort en profil: en anslutning med de kolumnnamn som det andra systemet använder
+Air-termination rod: its name	Spetsledare: dess namn
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	Justerar objekt, fördelar dem jämnt, radar upp apparater på en skena eller kopierar objekt i ett mönster
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	Justerar symboler, texter och grafik mot en gemensam kant eller mittlinje; anslutna ledningsändar följer med
 Allow renaming onto an identifier in use: both become one	Tillåt namnbyte till en beteckning som används: båda blir en
@@ -70,6 +73,7 @@ Between page and column (default .)	Mellan sida och kolumn (standard .)
 Bonding point	Anslutningspunkt för potentialutjämning
 Border around the text	Kantlinje runt texten
 Both classes are needed	Båda klasserna behövs
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Anläggningens byggnader med nivåer, schakt, trappor och tak med solcellsfält, jordtag och åskskydd, rum på nivåerna och förbindelser mellan byggnader
 Bus system name	Bussystemets namn
 Bus system name, e.g. PN/IE_1	Bussystemets namn, t.ex. PN/IE_1
 Busbar machine program (CSV)	Program för skenbearbetningsmaskin (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	Ändrar en dörr eller ett fönster i ett rum: hur det öppnas (gångjärn till vänster eller höger, inåt eller utåt, eller skjutbart), dess plats längs väggen, storlek och bröstning
 Changes a placed symbol; when it moves, connected wire ends follow	Ändrar en placerad symbol; när den flyttas följer anslutna ledningsändar med
 Changes a text (only the given properties)	Ändrar en text (endast de angivna egenskaperna)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	Ändrar ett jordtag i en byggnad: plats, längd, avstånd från väggarna, djup, maska, artikel eller skena; byter namn på det eller tar bort det
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	Byter apparater med artiklar som fasas ut eller har utgått till efterföljande artiklar (efterföljarna måste vara projektartiklar)
 Changes name, description or structure of a page	Ändrar namn, beskrivning eller struktur för en sida
 Changes name, description, function, location or parent of a segment	Ändrar namn, beskrivning, funktion, placering eller överordnat segment för ett segment
@@ -100,6 +105,7 @@ Check {} failed: {}	Kontrollen {} misslyckades: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	Kontrollerar skåplayouten: kollisioner, avstånd (montering, ventilation, EMC), serviceutrymme, höjder över golvet, kollisionsklasser, temperaturer och tillverkningsbarhet
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	Väljer hur ledarändar avslutas: avskalade, med ändhylsa eller pressad kabelsko; vid en anslutningspunkt, vid alla anslutningspunkter på en enhet eller bara för en ledare
 Chosen value	Valt värde
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	Åskskyddets klass, 1 … 4 (I … IV; standard III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	Avstånd, serviceutrymme, höjder, kollisionsklasser, termisk simulering och tillverkningsbarhet för skåplayouten
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	Kapslingarnas klimat (IEC/TR 60890): effektförlust, innertemperatur, fläkt eller kylaggregat och värme som behövs; ändrar valfritt inställningarna för en av dem
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	Kollisionsklass: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, en egen klass eller * för valfri
@@ -222,6 +228,10 @@ Draws a wire through two or more points	Ritar en ledning genom två eller fler p
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	Ritar ledningarna i deras färg på schemasidorna och i PDF- / SVG-exporten, eller i svart
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	Ritar ledare mellan fria anslutningspunkter på symboler som är vända mot varandra och till de fria armarna på T-stycken och hörn
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	EMC-klasser för kablarna (drivutgång, analog, kraft, signal, skärm) och EMC-problemen
+Earth electrode: its name	Jordtag: dess namn
+Earth rod: its length, mm (default 3000)	Jordspett: dess längd, mm (standard 3000)
+Earth rod: x of its place in the floor plan of the building, mm	Jordspett: x för dess plats i byggnadens planritning, mm
+Earth rod: z of its place in the floor plan of the building, mm	Jordspett: z för dess plats i byggnadens planritning, mm
 Edge length of the routing grid in mm	Kantlängd för dragningsrutnätet i mm
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriska apparatbeteckningar åtskilda med kommatecken eller blanksteg (tomt = ta bort länkarna)
 Electrical engineering	Elektroteknik
@@ -256,6 +266,8 @@ First port as station:port, e.g. PLC1:X1 P2	Första port som station:port, t.ex.
 First row with the column names	Första raden med kolumnnamnen
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format för apparatnamnet: {letter}, {n} (räknare), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format för schemat format: {n} (räknare), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Grundjordtag: hur långt innanför ytterväggarna (standard 100), ring: hur långt utanför (standard 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	Grundjordtag: dess största maska, mm (standard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ram att utgå från när ramen är ny (standard: A3 landscape)
 Free space in front of every device on the plate	Fritt utrymme framför varje apparat på plåten
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fryser dragningar för tillverkning (behålls av omberäkningen så länge det är möjligt) eller frigör dem
@@ -272,6 +284,7 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	Genererar flerlinjeschemat (kraftsymboler, ledare, kontaktorspolar) för enlinjesymbolerna på en sida, på en ny sida efter den
 Generates the program of the busbar machine: cuts, punched holes and bends	Genererar programmet för skenbearbetningsmaskinen: kapningar, stansade hål och bockningar
 Give a device tag or a part number	Ange en enhetsbeteckning eller ett artikelnummer
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Ger en byggnad ett åskskydd eller ändrar det: klass, antal nedledare och ledarnas artikel; uppfångningsledare på nockar och valmar (en maska på platta tak), nedledare med provklämmor till jordtagen; eller tar bort det
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperar objekt till en byggrupp som markeras och flyttas tillsammans; utan namn lämnar objekten sina byggrupper
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Lämnar över programmen för en kapsling till produktionen som en order: manifest och program för alla dess ytor och kopparskenor
 Has a divider between power and signal cables	Har en skiljevägg mellan kraft- och signalkablar
@@ -280,6 +293,7 @@ Height above the mounting plate in mm (default 50)	Höjd över monteringsplåten
 Height in mm	Höjd i mm
 Height in mm without plinth; negative: unknown (wall mounted)	Höjd i mm utan sockel; negativ: okänd (väggmonterad)
 Height in mm; the logo keeps its aspect ratio inside	Höjd i mm; logotypen behåller sitt bildförhållande inuti
+Height of the rod above the covering, mm (default 1500)	Stavens höjd över taktäckningen, mm (standard 1500)
 Higher-level product aspect (-) of the page; the devices on the page move along	Sidans aspekt för överordnad produkt (-); apparaterna på sidan följer med
 Highest actuator on the door above the floor (0: not checked)	Högsta manöverdon i dörren över golvet (0: kontrolleras inte)
 Highest air temperature at devices without data (0: not checked)	Högsta lufttemperatur vid apparater utan data (0: kontrolleras inte)
@@ -433,11 +447,14 @@ Measuring range or set point	Mätområde eller börvärde
 Message code, e.g. wires.3f9a1c	Meddelandekod, t.ex. wires.3f9a1c
 Milling feed, mm/min	Fräsmatning, mm/min
 Mirror the symbol	Spegelvänd symbolen
+Moves an air-termination rod, changes its height, renames or removes it	Flyttar en spetsledare, ändrar dess höjd, byter namn på den eller tar bort den
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flyttar en ände av en ledning: den lämnar det den är ansluten till och ansluts till det den möter; ledningen förblir vinkelrät
 Moves symbols, wires and texts; connected wire ends follow	Flyttar symboler, ledningar och texter; anslutna ledningsändar följer med
 Moves the page before this page of its section (or of the section given)	Flyttar sidan före denna sida i dess avsnitt (eller i det angivna avsnittet)
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	Flyttar avsnittet före detta avsnitt i dess överordnade avsnitt (eller i det angivna); numren fortsätter i ordning
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Spikbrädeslayout för en kabelstam: grenarna från den gemensamma noden till kontaktdonen med längd, riktning, knippediameter och stift, samt ritningsskalan
+Name (default E1, E2, …)	Namn (standard E1, E2, …)
+Name (default F1, F2, …)	Namn (standard F1, F2, …)
 Name of the assembly	Byggruppens namn
 Name of the bar, e.g. L1 -Q1	Skenans namn, t.ex. L1 -Q1
 Name of the check	Kontrollens namn
@@ -461,6 +478,7 @@ New page name	Nytt sidnamn
 New parent segment (empty: top level)	Nytt överordnat segment (tomt: översta nivån)
 New value	Nytt värde
 No PCT loop {}	Ingen instrumentslinga {}
+No air-termination rod {} on building {}	Ingen spetsledare {} på byggnad {}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	Ingen inbyggd kontroll heter {}: inställningen gäller en kontroll i ett plugin med det namnet (list_checks)
 No bus system {}	Inget bussystem {}
 No connection point {} on this page	Ingen anslutningspunkt {} på den här sidan
@@ -468,6 +486,7 @@ No connection symbol with id {}	Ingen förbindelsesymbol med id {}
 No copper bar {}	Ingen kopparskena {}
 No device description {}	Ingen enhetsbeskrivning {}
 No device group {}	Ingen apparatgrupp {}
+No earth electrode {} in building {}	Inget jordtag {} i byggnad {}
 No enclosure named {}	Ingen kapsling med namnet {}
 No entry for {} and {}	Ingen post för {} och {}
 No hose {}	Ingen slang {}
@@ -570,6 +589,8 @@ Part number of the downstream device	Artikelnummer för den underordnade apparat
 Part number of the hose / tube / pipe	Artikelnummer för slangen / röret / rörledningen
 Part number of the upstream device	Artikelnummer för den överordnade apparaten
 Part number, e.g. GEN.LMP-GN-24	Artikelnummer, t.ex. GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	Artikel för dess band, tråd eller spett (tom: generisk)
+Part of the conductors (round wire; empty: generic)	Ledarnas artikel (rundtråd; tom: generisk)
 Part of the key or name	Del av nyckeln eller namnet
 Part {} has no function with a symbol	Artikeln {} har ingen funktion med symbol
 Parts phased out or discontinued	Artiklar som fasas ut eller har utgått
@@ -651,7 +672,10 @@ Relative humidity of the ambient air in % (0: no condensation check)	Omgivningsl
 Release instead of freeze	Frigör i stället för att frysa
 Released pages keep their names: {}	Frisläppta sidor behåller sina namn: {}
 Remote I/O: station of the controller	Distribuerad I/O: styrenhetens station
+Remove the air-termination rod	Ta bort spetsledaren
+Remove the earth electrode	Ta bort jordtaget
 Remove the entry of upstream and downstream	Ta bort posten för upstream och downstream
+Remove the lightning protection system	Ta bort åskskyddet
 Remove the profile	Ta bort profilen
 Remove the scheme from the project	Ta bort schemat från projektet
 Remove unused definitions (default: false)	Ta bort oanvända definitioner (standard: false)
@@ -682,6 +706,7 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	Rest (mm)
 Reuse failed searches during one routing calculation	Återanvänd misslyckade sökningar inom samma ruttberäkning
 Right side bayed (no side panel)	Höger sida sammanbyggd (ingen sidovägg)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: djup under mark, spett: djup för övre änden, mm (standard 500)
 Room {} exists already	Rummet {} finns redan
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader medurs: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Vridning i grader, moturs (90 läses nerifrån och upp)
@@ -879,6 +904,7 @@ Unknown check: {}	Okänd kontroll: {}
 Unknown class: {}	Okänd klass: {}
 Unknown data type: {}	Okänd datatyp: {}
 Unknown direction {}: left, right, up or down	Okänd riktning {}: left, right, up eller down
+Unknown earth electrode: {}	Okänt jordtag: {}
 Unknown earthing system: {}	Okänt jordningssystem: {}
 Unknown face {}	Okänd yta {}
 Unknown fastening: {}	Okänd fastsättning: {}
@@ -970,6 +996,7 @@ device (default), position, cross_section or number	device (standard), position,
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages eller parts
 error, warning, info, off, or default to take the change back	error, warning, info, off eller default för att ta tillbaka ändringen
 false takes the acceptance back (default true)	false tar tillbaka godkännandet (standard true)
+foundation, ring or rod	foundation, ring eller rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted eller middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=), installation (++), location (+) eller product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker eller other
@@ -999,6 +1026,8 @@ too long	för lång
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (standard), ladder, trunking, conduit, drag_chain, buried eller free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit eller other
 wired, problem or open	wired, problem eller open
+x of the foot of the rod in the floor plan of the building, mm	x för stavens fot i byggnadens planritning, mm
+z of the foot of the rod in the floor plan of the building, mm	z för stavens fot i byggnadens planritning, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} och {} är båda ändarna av en funktion: ledningen skulle kortsluta den
 {} and {} are needed together	{} och {} krävs tillsammans
 {} cannot be bayed to itself	{} kan inte byggas samman med sig själv

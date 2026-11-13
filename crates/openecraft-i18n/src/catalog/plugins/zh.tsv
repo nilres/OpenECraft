@@ -26,6 +26,8 @@ Adds a text to a page	向页添加文本
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	将项目文本的所有行添加到词典，并可选择移除不再使用的条目
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	向电缆端添加附件：密封接头、EMC 密封接头、连接器、拉力释放、屏蔽夹、保护软管、冷压端子、标记
 Adds an accessory to a device; it must fit one of the device's parts	向设备添加附件；它必须适配设备的某个部件
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	在建筑物屋顶上添加接闪杆，连接到其接闪导体；若建筑物尚无防雷系统，则获得 III 类防雷系统
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	为建筑物添加接地极：在最低楼层基础底板内沿外墙成网格敷设的基础接地极、在墙体周围土壤中的环形接地极或垂直接地极；其材料计入材料清单
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	添加机柜：某一系统的某个尺寸（或自定义尺寸），或来自机柜部件
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	在两个联结点之间添加等电位联结导体（总接地端子、机柜、导电轮廓、金属电缆桥架）
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	添加、更改或删除项目的标记方案，或选择用于标记导出的方案
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	将模板中的设备添加到规划段
 Adds the outline of a machine, building or area to the plant layout	向工厂布局添加机器、建筑物或区域的轮廓
 Adds, replaces or removes a profile: a connector with the column names the other system uses	添加、替换或删除配置文件：使用其他系统列名的接口
+Air-termination rod: its name	接闪杆：其名称
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	对齐元素、均匀分布元素、在导轨上排列设备或按阵列复制元素
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	将符号、文本和图形对齐到共同的边缘或中心；连接的导线端点随之移动
 Allow renaming onto an identifier in use: both become one	允许重命名为已使用的标识符：两者合而为一
@@ -70,6 +73,7 @@ Between page and column (default .)	页与列之间（默认 .）
 Bonding point	联结点
 Border around the text	文本周围的边框
 Both classes are needed	需要两个类别
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	设施的建筑物，包括楼层、竖井、楼梯和带光伏阵列的屋顶、接地极和防雷、楼层上的房间以及建筑物之间的连接
 Bus system name	总线系统名称
 Bus system name, e.g. PN/IE_1	总线系统名称，例如 PN/IE_1
 Busbar machine program (CSV)	母线加工机程序 (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	更改房间的门或窗：开启方式（左侧或右侧铰链、向内或向外开、或推拉）、沿墙的位置、尺寸和窗台
 Changes a placed symbol; when it moves, connected wire ends follow	更改已放置的符号；移动符号时，所连接的导线端会跟随移动
 Changes a text (only the given properties)	更改文本（仅更改给定的属性）
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	更改建筑物的接地极：位置、长度、与墙的距离、深度、网格、部件或母线；重命名或删除
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	将使用即将停产或已停产部件的设备切换为后续部件（后续部件必须是项目部件）
 Changes name, description or structure of a page	更改页的名称、描述或结构
 Changes name, description, function, location or parent of a segment	更改规划段的名称、描述、功能、位置或上级规划段
@@ -100,6 +105,7 @@ Check {} failed: {}	检查 {} 失败：{}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	检查安装板布局：碰撞、间距（安装、通风、EMC）、维护空间、离地高度、碰撞类别、温度和可制造性
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	选择导线端头的端接方式：剥线、管型端子或压接端子；用于一个连接点、设备的所有连接点或仅一根导线
 Chosen value	所选值
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	防雷系统的类别，1 … 4（I … IV；默认 III）
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	安装板布局的间距、维护空间、高度、碰撞类别、热仿真和可制造性
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	机柜温控 (IEC/TR 60890)：功率损耗、内部温度、所需的风扇或冷却装置以及加热；也可更改某一机柜的设置
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	碰撞类别：power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory、自有类别或 * 表示任意
@@ -222,6 +228,10 @@ Draws a wire through two or more points	绘制经过两个或多个点的导线
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	在原理图页和 PDF / SVG 导出中按导线颜色绘制导线，或以黑色绘制
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	在相对的符号空闲连接点之间以及到T型节点和拐角的空闲分支绘制连接线
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	电缆的 EMC 类别（驱动输出、模拟量、动力、信号、屏蔽）以及 EMC 问题
+Earth electrode: its name	接地极：其名称
+Earth rod: its length, mm (default 3000)	垂直接地极：长度，mm（默认 3000）
+Earth rod: x of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 x，mm
+Earth rod: z of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 z，mm
 Edge length of the routing grid in mm	布线栅格的边长 (mm)
 Electrical device tags separated by commas or blanks (empty = remove the links)	电气设备标识符，以逗号或空格分隔（空 = 移除关联）
 Electrical engineering	电气工程
@@ -256,6 +266,8 @@ First port as station:port, e.g. PLC1:X1 P2	第一个端口，格式为 station:
 First row with the column names	包含列名的第一行
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	设备名称格式：{letter}、{n}（计数器）、{page}、{column}、{row}；默认 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 方案的格式：{n}（计数器）、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	基础接地极：在外墙以内的距离（默认 100），环形：在外墙以外的距离（默认 1000），mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	基础接地极：最大网格，mm（默认 20000）
 Frame to start from when the frame is new (default: A3 landscape)	新建图框时的起始图框（默认：A3 landscape）
 Free space in front of every device on the plate	安装板上每个设备前方的空闲空间
 Freezes routes for production (kept by the recalculation while possible) or releases them	为生产冻结布线（只要可行，重新计算时保留）或将其释放
@@ -272,6 +284,7 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	为某页的单线符号生成多线原理图（动力符号、导线、接触器线圈），放在该页之后的新页上
 Generates the program of the busbar machine: cuts, punched holes and bends	生成母线加工机的程序：切割、冲孔和折弯
 Give a device tag or a part number	请给出设备标识或部件号
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	为建筑物设置或更改防雷系统：类别、引下线数量和导体部件；屋脊和斜脊上的接闪导体（平屋顶上为网格），带测试接头通往接地极的引下线；或将其删除
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	将元素组合为可一起选择和移动的组件；不指定名称时，元素将脱离其组件
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	将机柜的程序作为作业移交生产：所有面和铜排的清单和程序
 Has a divider between power and signal cables	动力电缆与信号电缆之间有隔板
@@ -280,6 +293,7 @@ Height above the mounting plate in mm (default 50)	安装板以上高度 (mm)（
 Height in mm	高度 (mm)
 Height in mm without plinth; negative: unknown (wall mounted)	高度，单位 mm，不含底座；负值：未知（壁挂安装）
 Height in mm; the logo keeps its aspect ratio inside	高度（毫米）；标志在其中保持原比例
+Height of the rod above the covering, mm (default 1500)	接闪杆高出屋面的高度，mm（默认 1500）
 Higher-level product aspect (-) of the page; the devices on the page move along	页的上级产品方面 (-)；页上的设备随之移动
 Highest actuator on the door above the floor (0: not checked)	柜门上操作元件的最高离地高度（0：不检查）
 Highest air temperature at devices without data (0: not checked)	无数据设备处的最高空气温度（0：不检查）
@@ -433,11 +447,14 @@ Measuring range or set point	测量范围或设定值
 Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
+Moves an air-termination rod, changes its height, renames or removes it	移动接闪杆，更改其高度，重命名或删除
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
 Moves the page before this page of its section (or of the section given)	将页移到其分节（或指定分节）中此页之前
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	将分节移到其上级分节（或指定上级）中此分节之前；编号按顺序继续
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	线束的钉板布局：从公共节点到各连接器的分支（含长度、方向、线束直径和插针）以及图纸比例
+Name (default E1, E2, …)	名称（默认 E1、E2、…）
+Name (default F1, F2, …)	名称（默认 F1、F2、…）
 Name of the assembly	组件名称
 Name of the bar, e.g. L1 -Q1	铜排名称，例如 L1 -Q1
 Name of the check	检查的名称
@@ -461,6 +478,7 @@ New page name	新页名
 New parent segment (empty: top level)	新的上级规划段（留空：顶层）
 New value	新值
 No PCT loop {}	没有 PCT 回路 {}
+No air-termination rod {} on building {}	建筑物 {1} 上没有接闪杆 {0}
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	没有名为 {} 的内置检查：该设置适用于同名插件的检查 (list_checks)
 No bus system {}	没有总线系统 {}
 No connection point {} on this page	此页上没有连接点 {}
@@ -468,6 +486,7 @@ No connection symbol with id {}	没有 id 为 {} 的连接符号
 No copper bar {}	铜排 {} 不存在
 No device description {}	没有设备描述 {}
 No device group {}	没有设备组 {}
+No earth electrode {} in building {}	建筑物 {1} 中没有接地极 {0}
 No enclosure named {}	没有名为 {} 的机柜
 No entry for {} and {}	没有 {} 和 {} 的条目
 No hose {}	没有软管 {}
@@ -570,6 +589,8 @@ Part number of the downstream device	下级设备的部件编号
 Part number of the hose / tube / pipe	软管 / 管子 / 管道的部件编号
 Part number of the upstream device	上级设备的部件编号
 Part number, e.g. GEN.LMP-GN-24	部件编号，例如 GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	其扁钢、导线或接地极的部件（空：通用）
+Part of the conductors (round wire; empty: generic)	导体的部件（圆线；空：通用）
 Part of the key or name	键或名称的一部分
 Part {} has no function with a symbol	部件 {} 没有带符号的功能
 Parts phased out or discontinued	即将停产或已停产的部件
@@ -651,7 +672,10 @@ Relative humidity of the ambient air in % (0: no condensation check)	环境空�
 Release instead of freeze	释放而不是冻结
 Released pages keep their names: {}	已发布页保留其名称：{}
 Remote I/O: station of the controller	分布式 I/O：控制器所在的站
+Remove the air-termination rod	删除接闪杆
+Remove the earth electrode	删除接地极
 Remove the entry of upstream and downstream	删除 upstream 和 downstream 的条目
+Remove the lightning protection system	删除防雷系统
 Remove the profile	删除配置文件
 Remove the scheme from the project	从项目中删除该方案
 Remove unused definitions (default: false)	移除未使用的定义（默认：false）
@@ -682,6 +706,7 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	剩余 (mm)
 Reuse failed searches during one routing calculation	在同一次布线计算中复用失败的搜索结果
 Right side bayed (no side panel)	右侧并柜（无侧板）
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	环形：地面以下深度，垂直接地极：顶端深度，mm（默认 500）
 Room {} exists already	房间 {} 已存在
 Rotation in degrees clockwise: 0, 90, 180 or 270	顺时针旋转角度：0、90、180 或 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	旋转角度（度），逆时针（90 表示从下往上读）
@@ -879,6 +904,7 @@ Unknown check: {}	未知检查：{}
 Unknown class: {}	未知类别：{}
 Unknown data type: {}	未知数据类型：{}
 Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
+Unknown earth electrode: {}	未知接地极：{}
 Unknown earthing system: {}	未知接地系统：{}
 Unknown face {}	未知面 {}
 Unknown fastening: {}	未知紧固方式：{}
@@ -970,6 +996,7 @@ device (default), position, cross_section or number	device（默认）、positio
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 或 parts
 error, warning, info, off, or default to take the change back	error, warning, info, off，或 default 以撤销更改
 false takes the acceptance back (default true)	false 撤销接受（默认 true）
+foundation, ring or rod	foundation、ring 或 rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted 或 middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+) 或 product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 或 other
@@ -999,6 +1026,8 @@ too long	过长
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray（默认）, ladder, trunking, conduit, drag_chain, buried 或 free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal、service_unit、manifold、power_unit 或 other
 wired, problem or open	wired、problem 或 open
+x of the foot of the rod in the floor plan of the building, mm	接闪杆底部在建筑物平面图中的 x，mm
+z of the foot of the rod in the floor plan of the building, mm	接闪杆底部在建筑物平面图中的 z，mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} 和 {} 是同一功能的两端：该导线会使其短路
 {} and {} are needed together	{} 和 {} 需要同时指定
 {} cannot be bayed to itself	{} 不能与自身并柜

@@ -105,6 +105,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	장치 연결 지점
 Device description	장치 설명
 Device tag	장치 태그
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	가대의 접지 도체가 연결되는 장치 (접지 또는 등전위 본딩 부스바); 비어 있음: 없음
 Device {}	장치 {}
 Devices	장치
 Direction	방향
@@ -200,6 +201,7 @@ Location	위치
 Location (+)	위치 (+)
 MTTFd (years)	MTTFd(년)
 Machine	기계
+Main earthing busbar (device) it is connected to; empty: none	연결된 주 접지 부스바 (장치); 비어 있음: 없음
 Main earthing terminal	주 접지 단자
 Main switch	주 스위치
 Manufacturer	제조업체
@@ -266,6 +268,7 @@ Not in the schematic	회로도에 없음
 Note	참고
 Notes	메모
 Number	번호
+Number of down conductors (0: as many as the class needs for the walls)	인하 도선 수 (0: 등급이 벽에 요구하는 만큼)
 Number the sections 1, 2, 3 … on every level first	먼저 각 수준의 구역에 1, 2, 3 … 번호 매기기
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	구조 및 식별 문자별로 회로도 순서(페이지, 열, 위에서 아래)에 따라 장치 태그에 번호를 매깁니다
 Only rows containing this text	이 텍스트가 포함된 행만
