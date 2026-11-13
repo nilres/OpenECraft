@@ -162,6 +162,13 @@ pub(crate) fn read_with_library(bytes: &[u8], mappings: &[openecraft_core::symli
                 Ok(variants) => part.eplan_variants.extend(variants.iter().map(|v| openecraft_parts::Shared::new(serde_json::json!(v)))),
                 Err(error) => part.eplan_variants.push(serde_json::json!({"source": file.name, "error": error}).into()),
             }
+            // The 3D macro of a device (x across its front, y up, z towards the front).
+            if part.model_3d.is_none() {
+                if let Some(mut mesh) = crate::layout::decode(&source).filter(|l| !l.bodies.is_empty()).map(|l| l.mesh()) {
+                    mesh.normalize();
+                    part.model_3d = Some(mesh.into());
+                }
+            }
         }
     }
     for part in &mut parts {

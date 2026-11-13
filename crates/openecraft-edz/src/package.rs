@@ -3,9 +3,11 @@
 //! EAN, without header), the configuration id (`ConfigurationId.txt`), EPLAN Pro Panel
 //! data (a 3D window macro `.ema` and an EPLAN project `.zw1`), a STEP model and PDF
 //! documents. The parts come from the bill of materials. The first one is the
-//! configured product: it gets the files, the preview of the macro as its picture and
-//! the STEP model without its restricted areas as its 3D model; the others are its
-//! components.
+//! configured product: it gets the files, the preview of the macro as its picture, the
+//! bodies of the macro ([`crate::layout`]) or else the STEP model without its
+//! restricted areas as its 3D model, the place of its mounting plate (part data
+//! `Mounting origin`) and its restricted areas (`source_data.restricted_areas`, corners
+//! in the frame of the enclosure); the others are its components.
 
 use crate::archive::{text, Edz, EdzFile};
 use openecraft_i18n::tr;
@@ -104,13 +106,64 @@ fn preview(ema: &str) -> Option<Vec<u8>> {
     numbers.get(start..start + len)?.iter().map(|n| n.parse().ok()).collect()
 }
 
-/// Turns a model with the height along z (as CAD models of enclosures are) so that the
-/// height is along y and the front, which faced -y, faces +z.
-fn upright(mesh: &mut Mesh3d) {
-    for v in &mut mesh.vertices {
-        *v = [v[0], v[2], -v[1]];
+/// Millimetres with at most one decimal.
+fn mm(v: f32) -> String {
+    let r = (v * 10.0).round() / 10.0;
+    format!("{}", if r == 0.0 { 0.0 } else { r })
+}
+
+/// Kind of the mounting surface on the front of the mounting plate.
+const PLATE_FRONT: u32 = 10002;
+
+/// The macro of an enclosure in the frame of the enclosure: x to the right, y up, z
+/// towards the front, from the left, bottom and rear of its housing.
+struct Enclosure<'a, F: Fn([f32; 3]) -> [f32; 3]> {
+    layout: &'a crate::layout::Layout,
+    turn: &'a F,
+    min: [f32; 3],
+}
+
+impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Enclosure<'a, F> {
+    fn of(layout: &'a crate::layout::Layout, turn: &'a F) -> Option<Self> {
+        let (a, b) = layout.main_bounds()?;
+        let (a, b) = (turn(a), turn(b));
+        Some(Enclosure { layout, turn, min: std::array::from_fn(|k| a[k].min(b[k])) })
     }
-    mesh.normalize();
+
+    fn point(&self, v: [f32; 3]) -> [f32; 3] {
+        let t = (self.turn)(v);
+        std::array::from_fn(|k| t[k] - self.min[k])
+    }
+
+    /// The four corners of a rectangle on a surface.
+    fn corners(&self, origin: [f32; 3], x: [f32; 3], y: [f32; 3], size: [f32; 2]) -> [[f32; 3]; 4] {
+        let at = |u: f32, v: f32| self.point(std::array::from_fn(|k| origin[k] + u * x[k] + v * y[k]));
+        [at(0.0, 0.0), at(size[0], 0.0), at(size[0], size[1]), at(0.0, size[1])]
+    }
+
+    /// The lower left corner of the front of the mounting plate (`Enclosure::mounting_origin`).
+    fn mounting_origin(&self) -> Option<[f32; 3]> {
+        let s = self.layout.surfaces.iter().find(|s| s.kind == PLATE_FRONT)?;
+        let c = self.corners(s.origin, s.x, s.y, s.size);
+        Some(std::array::from_fn(|k| c.iter().map(|p| p[k]).fold(f32::INFINITY, f32::min)))
+    }
+
+    /// The restricted areas with their corners.
+    fn areas(&self) -> Vec<serde_json::Value> {
+        let r = |v: f32| (v * 100.0).round() / 100.0;
+        self.layout
+            .areas
+            .iter()
+            .map(|a| {
+                let kind = match a.kind {
+                    crate::layout::AreaKind::Placing => "placing",
+                    crate::layout::AreaKind::Cutout => "cutout",
+                };
+                let corners: Vec<[f32; 3]> = self.corners(a.origin, a.x, a.y, a.size).iter().map(|c| c.map(r)).collect();
+                json!({"kind": kind, "surface": a.surface, "corners": corners})
+            })
+            .collect()
+    }
 }
 
 fn file_name(path: &str) -> &str {
@@ -130,8 +183,8 @@ fn kind(name: &str) -> Option<AttachmentKind> {
     }
 }
 
-/// Reads an enclosure package; the 3D model is read with `step` (none: the STEP file
-/// is only kept as a file of the part).
+/// Reads an enclosure package; a macro without bodies leaves the 3D model to the STEP
+/// file, read with `step` (none: the STEP file is only kept as a file of the part).
 pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
     let files: Vec<(String, Vec<u8>)> = openecraft_core::zip::read_zip(bytes)?.into_iter().map(|(path, data)| (path.replace('\\', "/"), data)).collect();
     let lower = |path: &str| file_name(path).to_lowercase();
@@ -191,23 +244,37 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
     if let Some(picture) = ema.as_deref().and_then(preview).and_then(|png| crate::picture::thumbnail(&png)) {
         first.picture = picture;
     }
-    // A model that cannot be read leaves the part without one; the file is kept.
+    // The model: the bodies of the EPLAN macro, otherwise the STEP model. A model that
+    // cannot be read leaves the part without one; the file is kept.
+    let layout = ema.as_deref().and_then(crate::layout::decode).filter(|l| !l.bodies.is_empty());
+    let step_file = files.iter().find(|(p, _)| lower(p).ends_with(".stp") || lower(p).ends_with(".step")).map(|(_, d)| d);
     let mut model_error = None;
-    if let (Some(read), Some((_, model))) = (step, files.iter().find(|(p, _)| lower(p).ends_with(".stp") || lower(p).ends_with(".step"))) {
-        match read(model, &is_restricted_area) {
-            Ok(mut mesh) => {
-                let size = mesh.size();
-                // Lying on its back: the depth along y.
-                if first.height > 0.0 && (size[1] - first.depth).abs() < (size[1] - first.height).abs() {
-                    upright(&mut mesh);
-                }
-                if first.width <= 0.0 {
-                    [first.width, first.height, first.depth] = mesh.size();
-                }
-                first.model_3d = Some(mesh.into());
+    let mesh = match (&layout, step, step_file) {
+        (Some(layout), ..) => Some(layout.mesh()),
+        (None, Some(read), Some(model)) => read(model, &is_restricted_area).map_err(|e| model_error = Some(e)).ok(),
+        _ => None,
+    };
+    let mut areas = Vec::new();
+    if let Some(mut mesh) = mesh {
+        let size = mesh.size();
+        // Lying on its back (the height along z, the front towards -y): stood upright.
+        let lying = first.height > 0.0 && (size[1] - first.depth).abs() < (size[1] - first.height).abs();
+        let turn = |v: [f32; 3]| if lying { [v[0], v[2], -v[1]] } else { v };
+        if let Some(enclosure) = layout.as_ref().and_then(|l| Enclosure::of(l, &turn)) {
+            if let Some(origin) = enclosure.mounting_origin() {
+                let sep = if first.tech_data.is_empty() { "" } else { "\n" };
+                first.tech_data = format!("{}{sep}Mounting origin: {}", first.tech_data, origin.map(mm).join("/"));
             }
-            Err(e) => model_error = Some(e),
+            areas = enclosure.areas();
         }
+        for v in &mut mesh.vertices {
+            *v = turn(*v);
+        }
+        mesh.normalize();
+        if first.width <= 0.0 {
+            [first.width, first.height, first.depth] = mesh.size();
+        }
+        first.model_3d = Some(mesh.into());
     }
     first.source_data = Some(
         json!({
@@ -215,6 +282,7 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
             "configuration": configuration,
             "bill_of_material": rows.iter().map(|r| json!({"number": r.number, "quantity": r.quantity, "unit": r.unit, "description": r.description, "ean": r.ean})).collect::<Vec<_>>(),
             "model_error": model_error,
+            "restricted_areas": areas,
         })
         .into(),
     );

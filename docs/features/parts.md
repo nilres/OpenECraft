@@ -129,6 +129,8 @@ the device. Floor-standing parts stand upright on the floor of a room.
   macros become project symbols. The product picture is kept with the part as a small
   JPEG (at most 192 px) and shown in the part details with its mounting data
   (mounting, holes, cutout, clearances) and the wires its connection points take.
+  A 3D macro of the part (EPLAN Pro Panel, `…_3D.ema`) gives it its 3D model when it
+  has none.
   Parts Manager and `parts_import` also store the original files as attachments. The
   project and server part records carry the converted definitions and diagnostics.
   The part XML of an unpacked EDZ file (`items/partxml/…part.xml`) is read the same
@@ -139,12 +141,18 @@ the device. Floor-standing parts stand upright on the floor of a room.
   first one is the configured enclosure (manufacturer prefix and name from the EPLAN
   macro, e.g. `RIT.1360000`, size from *WHD: 600x600x350 mm*, GTIN, configuration id
   and compact enclosure system in its technical data) with the further lines as its
-  components. The preview of the EPLAN Pro Panel macro becomes its picture, and the
-  STEP model, without its restricted cut-out and placing areas and stood upright with
-  the front towards +z, its 3D model (Parts Manager and the editor; `parts_import`
-  attaches the STEP file instead). The macro, the EPLAN project (`.zw1`), the STEP
-  file and the PDF documents are stored as attachments. The 3D content of the macro
-  (mounting surfaces, restricted areas) is not read yet.
+  components. The preview of the EPLAN Pro Panel macro becomes its picture. The
+  bodies of the macro (housing, door, mounting plate, gland plate, hinges and lock)
+  become its 3D model, stood upright with the front towards +z; a macro without
+  bodies leaves it to the STEP model, without its restricted cut-out and placing areas
+  (Parts Manager and the editor; `parts_import` only attaches the STEP file). The
+  front of the mounting plate gives the part data `Mounting origin: 25/12.5/20`, so
+  that an enclosure of the part gets that plate (see [panel layout](panel-layout.md)).
+  The restricted areas are kept in the part's source data
+  (`restricted_areas`: kind `placing` or `cutout`, surface kind and corners in mm from
+  the left, bottom and rear of the housing); they are not checked yet. The macro, the
+  EPLAN project (`.zw1`), the STEP file and the PDF documents are stored as
+  attachments.
 
 ### Placing an EPLAN symbol
 

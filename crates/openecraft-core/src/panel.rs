@@ -673,8 +673,20 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
             e.build.plinth = h;
             e.build.plinth_included = true;
         }
+        // The mounting plate of the maker's enclosure (part data `Mounting origin:
+        // 25/12.5/20`: its lower left front corner from the left, bottom and rear, mm).
+        if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
+            e.mounting_origin = Some(origin);
+        }
     }
     e
+}
+
+/// `x/y/z` in mm.
+fn mounting_origin(text: &str) -> Option<[f32; 3]> {
+    let mut it = text.trim().trim_end_matches("mm").split('/').map(|v| v.trim().parse::<f32>().ok().filter(|v| v.is_finite() && *v >= 0.0));
+    let origin = [it.next()??, it.next()??, it.next()??];
+    it.next().is_none().then_some(origin)
 }
 
 /// Rail or duct between two points (orientation by the dominant direction).

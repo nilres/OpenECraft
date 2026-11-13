@@ -121,6 +121,23 @@ fn the_part_of_an_edz_file_is_read_with_its_data() {
 }
 
 #[test]
+fn the_3d_macro_gives_the_model() {
+    assert!(read(&logo()).unwrap().parts[0].model_3d.is_none(), "a macro without bodies");
+    // A device body from -10/-5/-36 to 61.5/85/8 (front bezel in front of z = 0).
+    let stream = "#,1,1{20,2,16,1>{}{}9,4,-10/-5/-36,61.5/-5/-36,61.5/85/8,-10/85/8,0,1,84,2,16842751,*,2,0,3,1,4,2,5,0,3,2,5,3,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0}";
+    let ema = format!(r#"<EplanPxfRoot><MacroVariant MacroFuncType="10" VariantId="0"><O161 A1="161/1"><Stream Id="62491">{stream}</Stream></O161><O180 A1="180/2" R9="161/1" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0"/></MacroVariant></EplanPxfRoot>"#);
+    let bytes = archive(&[
+        ("manifest.xml", MANIFEST.as_bytes()),
+        ("items/partxml/SIE.LOGO.part.xml", PART.as_bytes()),
+        ("items/macro/Siemens/LOGO/LOGO_3D.ema", ema.as_bytes()),
+    ]);
+    let mesh = read(&bytes).unwrap().parts.remove(0).model_3d.unwrap();
+    // As it is (x across the front, y up, z towards the front), at the origin.
+    assert_eq!(mesh.size(), [71.5, 90.0, 44.0]);
+    assert_eq!(mesh.vertices[2], [71.5, 90.0, 44.0]);
+}
+
+#[test]
 fn without_manifest_the_files_belong_to_the_only_part() {
     let bytes = archive(&[("items/partxml/p.part.xml", PART.as_bytes()), ("items/picture/x/logo.png", b"PNG")]);
     let edz = read(&bytes).unwrap();

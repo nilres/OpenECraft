@@ -27,12 +27,35 @@ fn ema() -> String {
 
 const BOM: &str = "\u{feff}Number;Quantity;Unit;Description;EAN\n1360000;1;Pc(s.);AX Compact enclosure, WHD: 600x600x350 mm, sheet steel;4028177813168\n2500100;2;Pc(s.);SZ Wall mounting bracket;4028177000001\n";
 
+/// The 3D macro of an enclosure of 600 × 600 × 350 mm lying on its back (height along
+/// z, front towards -y), with the front of its mounting plate (550 × 575 mm, 20 mm in
+/// front of the rear) and a restricted cut-out area on it.
+fn layout_ema() -> String {
+    let housing = "#,1,1{20,2,16,1>{}{}9,4,-300/-175/0,300/-175/0,300/175/600,-300/175/600,0,1,84,2,16842751,*,2,0,3,1,4,2,5,0,3,2,5,3,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0}";
+    format!(
+        r#"<?xml version="1.0" encoding="utf-8" ?>
+<EplanPxfRoot Name="Configurated_Enclosure_1_1360000" Type="WindowMacro">
+ <MacroVariant MacroFuncType="10" VariantId="0">
+  <O179 A1="179/1" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0"><P11 P20100_1="RIT.398580"/><P2605 P22001="RIT.398580"/></O179>
+  <O161 A1="161/2"><Stream Id="62491">{housing}</Stream></O161>
+  <O180 A1="180/3" R9="161/2" R2481="179/1" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0"><P11 P20468="Rittal\Items\398580_3D.ema"/></O180>
+  <O170 A1="170/4" R2481="180/3" A2482="-275/155/12.5" A2483="1/0/0" A2484="0/0/1" A2486="10002" A2601="550/575"/>
+  <O175 A1="175/5" R2481="170/4" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0" A2488="572" A2606="10/20"/>
+ </MacroVariant>
+</EplanPxfRoot>"#
+    )
+}
+
 /// A package like the one of the Rittal configurator (paths with backslashes).
 fn package() -> Vec<u8> {
+    package_with(&ema())
+}
+
+fn package_with(ema: &str) -> Vec<u8> {
     let mut zip = ZipWriter::new("2026-11-11");
     zip.add("CSV_article_list\\bill-of-material.csv", BOM.as_bytes());
     zip.add("ConfigurationId.txt", b"R136000AX01T9K6KQ0");
-    zip.add("EPLAN_Pro_Panel_data\\Configurated_Enclosure_1_1360000.ema", ema().as_bytes());
+    zip.add("EPLAN_Pro_Panel_data\\Configurated_Enclosure_1_1360000.ema", ema.as_bytes());
     zip.add("EPLAN_Pro_Panel_data\\EplanProPanelProject.zw1", b"7z");
     zip.add("EPLAN_Pro_Panel_data\\ReadMe.txt", b"Attention!");
     zip.add("Product_description\\Product_Description.pdf", b"%PDF-1.7");
@@ -95,6 +118,20 @@ fn the_step_model_stands_upright() {
 }
 
 #[test]
+fn the_macro_gives_model_plate_and_restricted_areas() {
+    // No STEP reader is needed (the command line has none).
+    let edz = read(&package_with(&layout_ema()), None).unwrap();
+    let p = &edz.parts[0];
+    assert_eq!(p.model_3d.as_ref().unwrap().size(), [600.0, 600.0, 350.0]);
+    assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
+    let areas = &p.source_data.as_ref().unwrap()["restricted_areas"];
+    assert_eq!(*areas, serde_json::json!([{"kind": "cutout", "surface": 10002, "corners": [[25.0, 12.5, 20.0], [35.0, 12.5, 20.0], [35.0, 32.5, 20.0], [25.0, 32.5, 20.0]]}]));
+    // The macro wins over the STEP model.
+    let edz = read(&package_with(&layout_ema()), Some(step)).unwrap();
+    assert_eq!(edz.parts[0].model_3d.as_ref().unwrap().triangles.len(), 2);
+}
+
+#[test]
 fn an_unreadable_model_keeps_the_part() {
     fn broken(_: &[u8], _: &dyn Fn(&str) -> bool) -> Result<Mesh3d, String> {
         Err("a circle without range".into())
@@ -134,6 +171,9 @@ fn rittal_package() {
     eprintln!("{} {} {:?} picture {} files {:?}", p.number, p.manufacturer, p.model_3d.as_ref().map(|m| (m.triangles.len(), m.size())), p.picture.len(), edz.files.iter().map(|f| &f.name).collect::<Vec<_>>());
     assert_eq!(p.manufacturer, "Rittal");
     assert!(!p.picture.is_empty());
+    // The bodies of the macro, with the door's hinges and lock in front of the housing.
     let size = p.model_3d.as_ref().unwrap().size();
-    assert!((size[1] - 600.0).abs() < 1.0 && (size[2] - 350.0).abs() < 1.0, "{size:?}");
+    assert!((size[1] - 600.0).abs() < 1.0 && (350.0..360.0).contains(&size[2]), "{size:?}");
+    assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
+    assert_eq!(p.source_data.as_ref().unwrap()["restricted_areas"].as_array().unwrap().len(), 181);
 }

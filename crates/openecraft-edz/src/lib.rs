@@ -10,6 +10,7 @@
 
 mod archive;
 pub mod folder;
+pub mod layout;
 pub mod package;
 pub mod picture;
 

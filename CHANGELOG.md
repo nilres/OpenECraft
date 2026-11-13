@@ -31,9 +31,12 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 - **Enclosure packages of configurators** (#176): *Import parts* (editor, Parts
   Manager, `parts_import`) reads the ZIP archive of the Rittal configurator: the parts
   of its bill of materials, the configured enclosure with size, GTIN, configuration id,
-  the preview of its EPLAN macro as picture and its STEP model as 3D model, and the
-  macro, EPLAN project, STEP file and PDFs as attachments
-  ([parts](docs/features/parts.md)). STEP files whose arcs are given by their vertices
+  the preview of its EPLAN macro as picture, the bodies of the EPLAN Pro Panel macro
+  (or else the STEP model) as 3D model, the place of its mounting plate (part data
+  `Mounting origin`, used by new enclosures of the part) and its restricted areas, and
+  the macro, EPLAN project, STEP file and PDFs as attachments
+  ([parts](docs/features/parts.md)). The 3D macros of EDZ files give their parts a 3D
+  model. STEP files whose arcs are given by their vertices
   only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
   longer fails the whole model.
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image

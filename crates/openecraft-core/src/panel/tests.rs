@@ -1007,3 +1007,20 @@ fn a_short_section_of_a_wide_busbar_system_lies_along_its_bars() {
     let plain = PanelItem { kind: ItemKind::Busbar, w: 100.0, h: 300.0, ..Default::default() };
     assert!(!bars_along_x(&prj.parts, &plain));
 }
+
+#[test]
+fn the_mounting_plate_comes_from_the_enclosure_part() {
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "RIT.1360000".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    part.tech_data = "Enclosure system: compact\nMounting origin: 25/12.5/20".into();
+    prj.parts.push(part);
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!(e.mounting_origin, Some([25.0, 12.5, 20.0]));
+    assert_eq!((e.plate_size(), e.mounting_z()), ((550.0, 575.0), 20.0));
+    // Values that are no place leave the default plate.
+    for bad in ["25/12.5", "25/x/20", "-5/0/20", "1/2/3/4"] {
+        prj.parts[0].tech_data = format!("Mounting origin: {bad}");
+        assert_eq!(new_enclosure(&mut prj, "RIT.1360000", "+CAB1").mounting_origin, None, "{bad}");
+    }
+    assert_eq!(mounting_origin(" 25 / 12.5 / 20 mm"), Some([25.0, 12.5, 20.0]));
+}

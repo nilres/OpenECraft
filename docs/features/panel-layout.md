@@ -456,6 +456,10 @@ A manufacturer's enclosure part that comes with its plinth says so in its data
 (`Plinth: 200`): a new enclosure of it stands on the plinth, which is drawn and
 exported but is no part of its own in the bill of materials (the Hager univers
 cabinet `HAG.FR25S2`, 1850 mm + 200 mm plinth, five fields, protection class II).
+Its mounting plate is placed by `Mounting origin: 25/12.5/20` (the lower left corner
+of the plate's front from the left, the bottom and the rear of the enclosure, mm; the
+plate keeps the same distance on the right and at the top), as the enclosure packages
+of the Rittal configurator give it ([parts](parts.md)).
 Distribution systems build the cabinet from component modules: a module the device
 stands on is an accessory mounted *under the part* (`HAG.UE31E1B` under the NH1 fuse
 switch disconnector `HAG.LT153`, `HAG.UE31SS400` under the current transformers), so
