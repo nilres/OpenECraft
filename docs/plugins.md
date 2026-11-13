@@ -1,5 +1,14 @@
 # Plugins
 
+`preview_core_labels` previews alignment for one cable definition: `page`, its
+`id`, optional `before` (above/left, default true) and `gap` (minimum clearance in
+mm, 0.5–10, default 0.8). It is read-only, including on released pages, and returns
+`labels` (wire id, text, x/y and conflict), `conflicts` and `can_apply`.
+`align_core_labels` takes the same arguments, requires an editable page and
+returns `applied` plus the `preview`. It changes only crossed core text offsets,
+only when the entire preview has no conflicts. Existing manual positions are
+replaced deliberately; geometry, assignments and other pages are unaffected.
+
 OpenECraft is extended through the `openecraft-api` crate. A plugin adds
 
 | Extension | What it is | Editor | Command line / MCP |

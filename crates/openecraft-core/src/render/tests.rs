@@ -696,20 +696,21 @@ fn cable_cores_line_up_at_the_cable_definition_line_and_keep_their_offset() {
         ["L1", "L2", "L3", "N", "PE"].map(|c| d.texts.iter().find(|t| t.1 == c).map(|t| t.0).expect(c))
     };
     let at = cores(&prj);
-    assert!(at.iter().all(|q| (q.x - 130.0).abs() < 1e-3), "cores at the cable definition line: {at:?}");
+    assert!(at.iter().all(|q| q.x < 130.), "cores clear of the definition line: {at:?}");
     let w = &prj.pages[0].wires[2];
-    assert!(core_text_bounds(&prj.pages[0], w, CoreText::Core).is_some_and(|r| r.contains(at[2])));
-    assert!(core_text_bounds(&prj.pages[0], w, CoreText::Cable).is_none(), "the cable tag is on the first wire only");
-    assert!(core_text_bounds(&prj.pages[0], &prj.pages[0].wires[0], CoreText::Cable).is_some_and(|r| (r.center().x - 130.0).abs() < 1e-3));
+    assert!(core_text_bounds(&prj, 0, w, CoreText::Core).is_some_and(|r| r.contains(at[2])));
+    assert!(core_text_bounds(&prj, 0, w, CoreText::Cable).is_none(), "the cable tag is on the first wire only");
+    assert!(core_text_bounds(&prj, 0, &prj.pages[0].wires[0], CoreText::Cable).is_some_and(|r| r.max.x < 130.));
 
     prj.pages[0].wires[2].core_offset = Some(p(3.0, 1.5));
     let moved = cores(&prj);
-    assert_eq!(moved[2], at[2] + p(3.0, 1.5));
+    let legacy = wire_text_place(&prj.pages[0].wires[2], 0.375, true).0;
+    assert_eq!(moved[2], legacy + p(3.0, 1.5), "existing manual offsets retain their legacy meaning");
     assert_eq!(moved[1], at[1], "the other cores stay");
     // The offset follows the cable definition line.
     prj.pages[0].cable_defs[0].a.x = 120.0;
     prj.pages[0].cable_defs[0].b.x = 120.0;
-    assert_eq!(cores(&prj)[2], at[2] + p(-7.0, 1.5));
+    assert_eq!(cores(&prj)[2], moved[2] + p(-10., 0.));
     prj.pages[0].cable_defs.clear();
     assert!((cores(&prj)[4].x - (100.0 + 0.3 * 120.0)).abs() < 1e-3, "without a cable definition line at 30 %");
 }

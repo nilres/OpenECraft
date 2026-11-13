@@ -1,5 +1,15 @@
 use super::*;
 
+#[test]
+fn annotation_bounds_include_render_scale_and_wide_glyphs() {
+    let size=1.8;
+    let expected=(778.+722.+667.+667.)*size*1.25/1000.;
+    assert!((annotation_width("GNYE",size)-expected).abs()<0.001);
+    assert!(annotation_width("WWWW",size)>annotation_width("IIII",size));
+    assert!(annotation_width("WWWW",size)>4.*size*1.25*0.94);
+    assert!(annotation_width("GNYE",size)>est_width("GNYE",size)*1.4);
+}
+
 fn close(a: P, b: P) -> bool {
     (a.x - b.x).abs() < 0.01 && (a.y - b.y).abs() < 0.01
 }

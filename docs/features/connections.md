@@ -32,6 +32,28 @@ used twice or not in the cable.
 
 ## Connection and cable definitions
 
+Cable core labels keep clear of the definition line and their wire automatically.
+Layout checks estimated text areas, other cable labels, wires, nearby symbol
+graphics, pin/property/tag texts and free texts. It tries a bounded set of nearby
+positions in a deterministic order; it does not guarantee that every crowded
+drawing has a free place. Remaining conflicts have a red outline in the editor.
+Existing manual offsets retain their original meaning and are never silently reset.
+
+Hover a core text or the cable tag beside a wire to see its drag target. Drag it
+directly to move only the text, without first selecting the wire; this also works
+with a previous multiple selection. Wire ends remain separate geometry handles.
+Released pages and projects opened read-only cannot be changed this way.
+
+Select a cable definition and choose **Align core labels…** in its context menu,
+the Connections ribbon or its properties. Choose above/left or below/right and a
+minimum clearance. The page shows a preview; nothing changes until **Apply**.
+The crossed core labels of that cable on this page are aligned together, using a
+common clearance increased when needed to avoid obstacles. Applying deliberately
+replaces their manual positions in one undo step. Cable tag positions, wire
+geometry, cable/core assignments and other pages stay unchanged. If no clear
+placement is found, change the options or place the texts individually. Stored
+positions survive save/reopen and use the same rendering path for SVG/PDF export.
+
 A connection definition point on a wire sets
 number, colour and cross-section of the whole connection and the core of its wire; a
 cable definition line drawn across wires makes them cores of a cable (new cable with

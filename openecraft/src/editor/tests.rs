@@ -1095,12 +1095,74 @@ fn cable_core_texts_of_a_selected_wire_are_dragged_into_place() {
     ed.selection.insert(7);
     let before = prj.pages[0].wires[0].clone();
     for which in [render::CoreText::Core, render::CoreText::Cable] {
-        let at = render::core_text_bounds(&prj.pages[0], &prj.pages[0].wires[0], which).unwrap().center();
+        let orig = render::core_labels(&prj, 0).into_iter().find(|l| l.wire == 7 && l.which == which).unwrap().offset;
+        let at = render::core_text_bounds(&prj, 0, &prj.pages[0].wires[0], which).unwrap().center();
         drag(&mut ed, &ctx, &mut prj, 0, at, at + p(6.0, 4.0));
         let w = &prj.pages[0].wires[0];
         let o = which.offset(w).expect("text placed");
-        assert!(o.dist(p(6.0, 4.0)) < 0.6, "{which:?} {o:?}");
+        assert!(o.dist(orig + p(6.0, 4.0)) < 0.6, "{which:?} {o:?}");
         assert_eq!((w.a, w.b, &w.cable, &w.core), (before.a, before.b, &before.cable, &before.core), "the wire and its core stay");
+    }
+}
+
+#[test]
+fn cable_core_texts_drag_directly_without_selecting_the_wire_first() {
+    for which in [render::CoreText::Core, render::CoreText::Cable] {
+        for multiple in [false,true] {
+            let mut prj=Project::default();
+            prj.pages[0].wires.push(Wire {id:7,a:p(100.,60.),b:p(100.,140.),..Default::default()});
+            prj.fix_next_id(); cabledef::add(&mut prj,0,p(90.,100.),p(120.,100.),"");
+            let ctx=egui::Context::default();
+            let mut ed=Editor::default();ready(&mut ed,&ctx,&mut prj);
+            if multiple { ed.selection=BTreeSet::from([999,998]); }
+            let original=prj.pages[0].wires[0].clone();
+            let label=render::core_labels(&prj,0).into_iter().find(|l|l.which==which).unwrap();
+            let at=label.bounds.center();
+            drag(&mut ed,&ctx,&mut prj,0,at,at+p(6.,4.));
+            let w=&prj.pages[0].wires[0];
+            assert!(which.offset(w).unwrap().dist(label.offset+p(6.,4.))<0.6);
+            assert_eq!((w.a,w.b,&w.cable,&w.core),(original.a,original.b,&original.cable,&original.core));
+            assert_eq!(ed.selection,BTreeSet::from([7]));
+        }
+    }
+}
+
+#[test]
+fn cable_core_text_drag_respects_released_and_remote_read_only_pages() {
+    for released in [true,false] {
+        let mut prj=Project::default();
+        prj.pages[0].wires.push(Wire{id:7,a:p(100.,60.),b:p(100.,140.),..Default::default()});
+        prj.fix_next_id();cabledef::add(&mut prj,0,p(90.,100.),p(120.,100.),"");
+        prj.pages[0].locked=released;
+        let original=prj.clone();
+        let ctx=egui::Context::default();
+        let mut ed=Editor{read_only:!released,..Default::default()};ready(&mut ed,&ctx,&mut prj);
+        let at=render::core_labels(&prj,0).into_iter().find(|l|l.which==render::CoreText::Core).unwrap().bounds.center();
+        drag(&mut ed,&ctx,&mut prj,0,at,at+p(6.,4.));
+        assert_eq!(prj,original);
+    }
+}
+
+#[test]
+fn cable_core_text_drag_targets_match_the_drawn_galley_at_different_scales() {
+    for pixels in [1.,1.25,1.5,2.] {
+        for which in [render::CoreText::Core,render::CoreText::Cable] {
+            let mut prj=Project::default();
+            prj.pages[0].wires.push(Wire{id:7,a:p(100.,60.),b:p(100.,140.),..Default::default()});
+            prj.fix_next_id();cabledef::add(&mut prj,0,p(90.,100.),p(120.,100.),"");
+            prj.pages[0].wires[0].core="BK-WWWW".into();
+            let ctx=egui::Context::default();ctx.set_pixels_per_point(pixels);
+            let mut ed=Editor{zoom:5.,fit_pending:false,..Default::default()};
+            ready(&mut ed,&ctx,&mut prj);
+            let r=ed.core_label_hits.iter().find(|(id,k,_)|*id==7&&*k==which).unwrap().2;
+            // Grab near the end of the actual drawn text, with no selection.
+            let at=p(r.max.x-0.05,r.center().y);
+            let original=prj.pages[0].wires[0].clone();
+            drag(&mut ed,&ctx,&mut prj,0,at,at+p(4.,-3.));
+            let w=&prj.pages[0].wires[0];
+            assert!(which.offset(w).is_some(),"{pixels} {which:?}");
+            assert_eq!((w.a,w.b,&w.cable,&w.core),(original.a,original.b,&original.cable,&original.core));
+        }
     }
 }
 

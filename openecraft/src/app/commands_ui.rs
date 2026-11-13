@@ -29,6 +29,7 @@ impl App {
             Cmd::Rotate => has_sel || matches!(self.editor.tool, Tool::Place(_) | Tool::Junction(_)),
             Cmd::Cut | Cmd::Copy | Cmd::Delete | Cmd::Mirror | Cmd::MoveBy | Cmd::MultipleCopy | Cmd::SaveSelectionAsMacro | Cmd::AutoConnectSelection => has_sel,
             Cmd::Paste => self.editor.clip.is_some(),
+            Cmd::AlignCoreLabels => self.core_label_definition().is_some(),
             Cmd::Align => self.editor.selection.len() >= 2,
             Cmd::Distribute => self.editor.selection.len() >= 3,
             Cmd::PreviousPage => page > 0,
@@ -275,6 +276,7 @@ impl App {
             }
             Cmd::MultipleCopy => self.arrange_ui.show_copy = true,
             Cmd::MoveBy => self.arrange_ui.show_move = true,
+            Cmd::AlignCoreLabels => self.start_core_label_alignment(),
             Cmd::NewSchematicPage => self.add_page(PageKind::Schematic),
             Cmd::NewSubPage => {
                 let at = ops::add_subpage(&mut self.session.prj, page);

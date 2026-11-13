@@ -5,6 +5,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Cable core labels** (#172): automatic text clearance from definition lines,
+  wires, nearby symbols and labels; direct text dragging without selecting the
+  wire first, with a hover target. Align the crossed core labels of a definition
+  with a page preview, common side and clearance. Applying replaces only those
+  label positions in one undo step; manual offsets retain their original meaning.
+  Unresolved placement conflicts are outlined in the editor and block alignment.
+  The same positions are used by screen, SVG and PDF, and by the registered
+  `preview_core_labels` / `align_core_labels` commands.
+
 - **Parts server: groups, catalog permissions, directories and a dashboard.** Users
   are gathered in **groups** of the server (*Administration › Groups*, `/api/v1/groups`;
   the groups of local accounts become such groups at startup), and grants to a group

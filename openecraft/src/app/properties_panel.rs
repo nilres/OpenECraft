@@ -465,7 +465,7 @@ impl App {
                             w.cable_offset = None;
                         }
                     } else {
-                        ui.weak(tr("Drag the core designation or the cable tag of the selected wire to place it."));
+                        ui.weak(tr("Drag a core designation or cable tag directly to move only the text; no prior wire selection is needed."));
                     }
                 });
             }

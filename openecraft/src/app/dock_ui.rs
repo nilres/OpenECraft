@@ -483,6 +483,7 @@ impl App {
         let editable = self.page_editable();
         let shown = |c: Cmd| editable || !crate::commands::changes_page(c);
         if has_sel {
+            if editable && self.core_label_definition().is_some() { self.cmd_button(ui, Cmd::AlignCoreLabels); }
             if self.selected_tag().is_some() {
                 for c in [Cmd::Properties, Cmd::RenameDevice, Cmd::PartSelection].into_iter().filter(|c| shown(*c)) {
                     self.cmd_button(ui, c);

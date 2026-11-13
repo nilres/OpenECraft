@@ -98,6 +98,9 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
     d.link(p(x0, pos.y - size * 0.7), p(x0 + w, pos.y + size * 0.7), page);
 }
 
+mod cable_labels;
+pub use cable_labels::{core_labels, core_text_bounds, preview_core_labels, align_core_labels, CoreLabel};
+
 mod interruption;
 pub mod jumps;
 mod pin_labels;
@@ -794,42 +797,6 @@ fn cabled_wires(page: &Page) -> Vec<(&Wire, bool)> {
         .collect()
 }
 
-/// Text, position and alignment of a cable core text of wire `w` (`tagged`: the wire
-/// shows the cable tag); None when the wire does not show it. The stroke is where a
-/// cable definition line of the cable crosses the wire (`cabledef::core_position`), a
-/// text placed by hand keeps its offset from there.
-fn core_text(page: &Page, w: &Wire, tagged: bool, which: CoreText) -> Option<(String, P, Anchor, VAnchor)> {
-    let text = match which {
-        CoreText::Core => w.core.clone(),
-        CoreText::Cable if tagged => structure::relative(page, &w.cable),
-        CoreText::Cable => String::new(),
-    };
-    if w.cable.is_empty() || w.hide_labels || text.is_empty() {
-        return None;
-    }
-    let (q, anchor, v) = wire_text_place(w, crate::cabledef::core_position(page, w), which == CoreText::Core);
-    Some((text, q + which.offset(w).unwrap_or_default(), anchor, v))
-}
-
-/// Area of a cable core text of wire `w` (the handle to drag it); None when the wire
-/// does not show it.
-pub fn core_text_bounds(page: &Page, w: &Wire, which: CoreText) -> Option<R> {
-    let tagged = which == CoreText::Cable && cabled_wires(page).iter().any(|(x, first)| *first && x.id == w.id);
-    let (text, q, anchor, v) = core_text(page, w, tagged, which)?;
-    let wd = text_width(&text, SMALL_SIZE).max(SMALL_SIZE);
-    let x0 = match anchor {
-        Anchor::Left => q.x,
-        Anchor::Center => q.x - wd / 2.0,
-        Anchor::Right => q.x - wd,
-    };
-    let (y0, y1) = match v {
-        VAnchor::Top => (q.y, q.y + SMALL_SIZE * 1.2),
-        VAnchor::Middle => (q.y - SMALL_SIZE * 0.6, q.y + SMALL_SIZE * 0.6),
-        VAnchor::Bottom => (q.y - SMALL_SIZE * 1.2, q.y),
-    };
-    Some(R::from_points(p(x0, y0), p(x0 + wd, y1)))
-}
-
 /// Wire numbers (once per connection and page, on its longest wire) and cable cores
 /// (a stroke across the wire, the core and once per page the cable tag).
 fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usize) {
@@ -871,15 +838,13 @@ fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usiz
             wire_text(d, w, t.clamp(0.0, 1.0), &number, false, Ink::Text);
         }
     }
-    for (w, tagged) in cabled_wires(page) {
+    for (w, _) in cabled_wires(page) {
         let t = crate::cabledef::core_position(page, w);
         let q = p(w.a.x + (w.b.x - w.a.x) * t, w.a.y + (w.b.y - w.a.y) * t);
         d.line(q + p(-1.0, 0.8), q + p(1.0, -0.8), SYMBOL_W, Ink::Line, false);
-        for which in [CoreText::Cable, CoreText::Core] {
-            if let Some((text, q, anchor, v)) = core_text(page, w, tagged, which) {
-                d.text(q, &text, SMALL_SIZE, anchor, v, Ink::CrossRef);
-            }
-        }
+    }
+    for label in core_labels(prj, page_i) {
+        d.text(label.pos, &label.text, SMALL_SIZE, label.anchor, label.v, Ink::CrossRef);
     }
 }
 

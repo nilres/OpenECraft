@@ -2,6 +2,23 @@ use super::*;
 use crate::geom::p;
 use crate::model::*;
 use crate::symbols::Anchor;
+use crate::render;
+
+#[test]
+fn cable_core_label_positions_match_the_shared_layout_after_reopen() {
+    let mut prj=Project::default();
+    for i in 0..5 { prj.pages[0].wires.push(Wire{id:20+i,a:p(80.+i as f32*12.,60.),b:p(80.+i as f32*12.,140.),..Default::default()}); }
+    prj.fix_next_id();
+    let id=crate::cabledef::add(&mut prj,0,p(70.,100.),p(140.,100.),"");
+    assert_eq!(render::align_core_labels(&mut prj,0,id,false,2.),5);
+    let reopened=Project::from_json(&prj.to_json()).unwrap();
+    let svg=page_svg(&reopened,0);
+    for label in render::core_labels(&reopened,0) {
+        let dy=match label.v { render::VAnchor::Top=>render::SMALL_SIZE*0.95,render::VAnchor::Middle=>render::SMALL_SIZE*0.35,render::VAnchor::Bottom=>-render::SMALL_SIZE*0.1 };
+        let prefix=format!("<text x=\"{:.2}\" y=\"{:.2}\"",label.pos.x,label.pos.y+dy);
+        assert!(svg.lines().any(|line|line.starts_with(&prefix)&&line.ends_with(&format!(">{}</text>",label.text))),"missing exported label {label:?}");
+    }
+}
 
 #[test]
 fn symbol_bitmap_preserves_affine_corners_in_svg() {
