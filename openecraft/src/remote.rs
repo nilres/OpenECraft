@@ -234,7 +234,7 @@ impl Remote {
             return;
         }
         self.fetching = true;
-        let req = self.endpoint().snapshot(&sh.name);
+        let req = self.endpoint().session_snapshot(&sh.name, &sh.session);
         let s = self.session_id();
         self.send(req, tr("Loading changes…").into(), move |r| Reply::Snapshot(s, decode(r).map(Box::new)));
     }

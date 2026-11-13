@@ -5,6 +5,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Quick cable rename** (#174): select a cable definition or its label and use
+  *Rename cable…* in the context menu, the properties or the cable navigator.
+  The dialog selects the complete tag, validates it before applying and updates
+  references across pages in one undo step. Shared projects acquire all affected
+  locks first. Also available as the `rename_cable` CLI/MCP/plugin command.
+  Canvas context menus stay open during a left-button press so their commands
+  actually run on release.
+  Session-bound snapshots keep own locks identifiable when loading concurrent
+  page changes; update the editor and project server together for shared editing.
+
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*

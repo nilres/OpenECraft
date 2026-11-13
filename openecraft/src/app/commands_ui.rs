@@ -40,6 +40,7 @@ impl App {
             Cmd::PdfInLanguage => !self.session.prj.languages.targets.is_empty(),
             Cmd::UpdateReportBlocks => !self.session.prj.report_blocks.is_empty(),
             Cmd::RenameDevice | Cmd::PartSelection => self.selected_tag().is_some(),
+            Cmd::RenameCable => self.selected_cable().is_some() && self.page_editable() && !self.remote.viewer(),
             Cmd::ShowInLayout | Cmd::ShowIn3d => self.selected_tag().is_some_and(|t| openecraft_core::panel::locate(&self.session.prj, &t).is_some()),
             Cmd::Quit => FileIo::has_own_window(),
             Cmd::CheckForUpdates => crate::updater::supported() && !self.updater.busy(),
@@ -386,6 +387,9 @@ impl App {
                 self.notify(ctx, tr_fmt!("{} wires changed", n));
             }
             Cmd::Properties => self.open_properties(ctx),
+            Cmd::RenameCable => {
+                if let Some(id) = self.selected_cable() { self.open_cable_rename(id); }
+            }
             Cmd::RenameDevice => {
                 if let Some(tag) = self.selected_tag() {
                     self.rename_device = Some((tag.clone(), tag));

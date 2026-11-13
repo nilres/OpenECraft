@@ -14,6 +14,11 @@ fn requests_of_the_api() {
     assert_eq!(e.info().url, "http://host:8091/api/v1/info");
     assert_eq!(e.list().url, "http://host:8091/api/v1/projects");
     assert_eq!(e.snapshot("Plant 1").url, "http://host:8091/api/v1/projects/Plant%201");
+    let snapshot = e.session_snapshot("Plant 1", &session());
+    assert_eq!(snapshot.url, "http://host:8091/api/v1/projects/Plant%201/snapshot");
+    assert_eq!(snapshot.method, ehttp::Method::POST);
+    assert_eq!(serde_json::from_slice::<Session>(&snapshot.body).unwrap(), session());
+    assert_eq!(snapshot.headers.get("Authorization"), Some("Bearer secret"));
     assert_eq!(e.open("Plant 1", "anna").url, "http://host:8091/api/v1/projects/Plant%201/open");
     assert_eq!(e.status("p", &session()).url, "http://host:8091/api/v1/projects/p/status");
     assert_eq!(e.release("p", &session(), Vec::new()).url, "http://host:8091/api/v1/projects/p/release");

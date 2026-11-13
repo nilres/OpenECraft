@@ -61,6 +61,11 @@ impl ProjectEndpoint {
         self.get(&project_path(name))
     }
 
+    /// Loads a snapshot with this session's own locks left identifiable.
+    pub fn session_snapshot(&self, name: &str, session: &Session) -> ehttp::Request {
+        self.json("POST", &format!("{}/snapshot", project_path(name)), session)
+    }
+
     /// POST /api/v1/projects/{name}/open
     pub fn open(&self, name: &str, user: &str) -> ehttp::Request {
         self.json("POST", &format!("{}/open", project_path(name)), &OpenRequest { user: user.into() })

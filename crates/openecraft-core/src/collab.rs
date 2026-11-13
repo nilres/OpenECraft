@@ -20,6 +20,7 @@
 //! | PUT | `/api/v1/projects/{name}` | [`SaveRequest`] → [`Snapshot`] |
 //! | POST | `/api/v1/projects/{name}/open` | [`OpenRequest`] → [`Opened`] |
 //! | POST | `/api/v1/projects/{name}/status` | [`Session`] → [`Status`] (keeps the session alive) |
+//! | POST | `/api/v1/projects/{name}/snapshot` | [`Session`] → [`Snapshot`] (identifies own locks; foreign session ids stay hidden) |
 //! | POST | `/api/v1/projects/{name}/lock` | [`LockRequest`] → [`Status`] |
 //! | POST | `/api/v1/projects/{name}/release` | [`LockRequest`] → [`Status`] |
 //! | POST | `/api/v1/projects/{name}/close` | [`Session`] → [`Status`] (releases all locks) |

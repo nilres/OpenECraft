@@ -167,7 +167,7 @@ pub static TABS: &[Tab] = &[
         context: false,
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::DevicesPane), S(C::StripsPane), S(C::PlcPane)]),
-            g("numbering", tr_const!("Numbering"), &[L(C::DeviceNumbering), S(C::RenameDevice)]),
+            g("numbering", tr_const!("Numbering"), &[L(C::DeviceNumbering), S(C::RenameDevice), S(C::RenameCable)]),
             g("terminals", tr_const!("Terminals"), &[L(C::TerminalStrips)]),
             g("plugs", tr_const!("Plugs"), &[L(C::Plugs)]),
             g("plc", tr_const!("PLC"), &[L(C::PlcOverview), S(C::PlcHardware)]),

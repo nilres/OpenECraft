@@ -621,6 +621,9 @@ impl App {
         ui.label(RichText::new(tr("Cable definition")).strong());
         let Some(mut def) = self.session.prj.pages[pi].cable_defs.iter().find(|c| c.id == id).cloned() else { return };
         let crossed = cabledef::crossed_wires(&self.session.prj.pages[pi], def.a, def.b);
+        if let Some(cable) = self.session.prj.cable(&def.cable).map(|c| c.id) {
+            if ui.button(tr("Rename cable…")).clicked() { self.open_cable_rename(cable); }
+        }
         let mut apply = false;
         egui::Grid::new("cbdprops").num_columns(2).show(ui, |ui| {
             ui.label(tr("Cable"));
@@ -1009,6 +1012,7 @@ impl App {
             .collect();
         let mut jump = None;
         let mut draw = None;
+        let mut rename = None;
         egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
             for c in &self.session.prj.cables {
                 let used = cores.get(c.tag.as_str()).cloned().unwrap_or_default();
@@ -1038,6 +1042,10 @@ impl App {
                     }
                 });
                 header.header_response.context_menu(|ui| {
+                    if ui.button(tr("Rename cable…")).clicked() {
+                        rename = Some(c.id);
+                        ui.close();
+                    }
                     if ui.button(tr("Draw cable definition")).clicked() {
                         draw = Some(c.tag.clone());
                     }
@@ -1051,6 +1059,7 @@ impl App {
             self.editor.cable_target = tag;
             self.editor.set_tool(Tool::CableDef);
         }
+        if let Some(id) = rename { self.open_cable_rename(id); }
         if let Some((pg, id)) = jump {
             self.goto(pg, id);
         }

@@ -419,6 +419,7 @@ impl App {
     pub(super) fn parts_management_and_part_selection_window(&mut self, ctx: &egui::Context) {
         self.parts_ui.selector(ctx, &self.parts_db, &mut self.session.prj);
         self.rename_device_window(ctx);
+        self.rename_cable_window(ctx);
         self.numbering_windows(ctx);
         self.arrange_windows(ctx);
         self.save_macro_dialog(ctx);

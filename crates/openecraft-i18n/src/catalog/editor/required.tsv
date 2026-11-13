@@ -110,6 +110,7 @@ Above the project name	Über dem Projektnamen	Au-dessus du nom du projet	Encima 
 Accept as checked	Als geprüft akzeptieren	Accepter comme vérifié	Aceptar como revisado
 Accepted ({})	Akzeptiert ({})	Acceptés ({})	Aceptados ({})
 Accepted messages ({})	Akzeptierte Meldungen ({})	Messages acceptés ({})	Mensajes aceptados ({})
+Acquiring locks for the cable rename…	Sperren zum Umbenennen des Kabels werden angefordert…	Acquisition des verrous pour renommer le câble…	Solicitando bloqueos para renombrar el cable…
 Active	Aktiv	Active	Activa
 Actuators on the door	Bedienteile in der Tür	Organes de commande sur la porte	Actuadores en la puerta
 Add	Hinzufügen	Ajouter	Añadir
@@ -498,6 +499,7 @@ Core designations separated by blanks	Aderbezeichnungen, durch Leerzeichen getre
 Core labels placed by hand	Aderbeschriftung von Hand platziert	Repères d'âmes placés manuellement	Rótulos de conductores colocados a mano
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Adern 1, 2, 3 … für die gekreuzten Verbindungen, dazu GNYE	Conducteurs 1, 2, 3 … pour les fils croisés, plus GNYE	Conductores 1, 2, 3 … para los cables cruzados, más GNYE
 Corner: two wires at a right angle; with Auto-connect on, connection points facing its arms are wired to it	Ecke: zwei Verbindungslinien im rechten Winkel; bei eingeschaltetem Auto-Connect werden Anschlusspunkte, die ihren Armen gegenüberliegen, mit ihr verdrahtet	Coin : deux fils à angle droit ; avec l'auto-connexion activée, les points de connexion face à ses bras y sont reliés	Esquina: dos cables en ángulo recto; con la autoconexión activada, los puntos de conexión enfrentados a sus brazos se cablean a ella
+Could not acquire all locks. The cable was not renamed.	Nicht alle Sperren konnten übernommen werden. Das Kabel wurde nicht umbenannt.	Impossible d'obtenir tous les verrous. Le câble n'a pas été renommé.	No se pudieron obtener todos los bloqueos. El cable no se ha renombrado.
 Could not prepare the recovery data.	Die Wiederherstellungsdaten konnten nicht vorbereitet werden.	Impossible de préparer les données de récupération.	No se pudieron preparar los datos de recuperación.
 Counter-clockwise, e.g. 90 for texts running upwards	Gegen den Uhrzeigersinn, z. B. 90 für nach oben laufende Texte	Dans le sens antihoraire, p. ex. 90 pour des textes montants	En sentido antihorario, p. ej. 90 para textos que suben
 Cover sheet, overview, graphics, report, mounting layout or a page template	Deckblatt, Übersicht, Grafik, Bericht, Montageaufbau oder eine Seitenvorlage	Page de garde, vue d'ensemble, graphique, rapport, implantation ou modèle de page	Portada, vista general, gráficos, informe, montaje o una plantilla de página
@@ -1713,6 +1715,7 @@ Rear left corner of the room on the floor, as in the 3D view with all enclosures
 Recent projects	Zuletzt verwendete Projekte	Projets récents	Proyectos recientes
 Recently used	Zuletzt verwendet	Utilisés récemment	Usados recientemente
 Recommended height of manual actuators (10.1.2)	Empfohlene Höhe von Bedienteilen (10.1.2)	Hauteur recommandée des organes de commande manuels (10.1.2)	Altura recomendada de los actuadores manuales (10.1.2)
+Reconnect to the project server before renaming this cable.	Verbinden Sie sich erneut mit dem Projektserver, bevor Sie dieses Kabel umbenennen.	Reconnectez-vous au serveur de projets avant de renommer ce câble.	Vuelva a conectarse al servidor de proyectos antes de renombrar este cable.
 Record	Aufnehmen	Enregistrer	Grabar
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Aufnehmen: die Geste im erscheinenden Feld ausführen, auf Wunsch mit gedrückter Zusatztaste (Esc bricht ab). Hinzufügen behält die vorhandenen Gesten. Rechtsklick im Auswahlwerkzeug öffnet das Kontextmenü.	Enregistrer : faites le geste dans le champ qui apparaît, en maintenant une touche de modification si souhaité (Échap annule). Ajouter conserve les gestes existants. Le clic droit dans l'outil de sélection ouvre le menu contextuel.	Grabar: haga el gesto en el campo que aparece, con una tecla modificadora pulsada si lo desea (Esc cancela). Añadir conserva los gestos existentes. El clic derecho en la herramienta de selección abre el menú contextual.
 Record: press the new key with its modifiers (Esc cancels). Esc and copy / cut / paste stay fixed.	Aufnehmen: die neue Taste mit ihren Zusatztasten drücken (Esc bricht ab). Esc und Kopieren / Ausschneiden / Einfügen bleiben fest.	Enregistrer : appuyez sur la nouvelle touche avec ses modificateurs (Échap annule). Échap et copier / couper / coller restent fixes.	Grabar: pulse la nueva tecla con sus modificadores (Esc cancela). Esc y copiar / cortar / pegar no cambian.
@@ -1765,6 +1768,7 @@ Removes the definitions no page or device uses	Entfernt die Definitionen, die ke
 Removes the option; its content stays in the project	Entfernt die Option; ihr Inhalt bleibt im Projekt	Supprime l'option ; son contenu reste dans le projet	Quita la opción; su contenido permanece en el proyecto
 Rename	Umbenennen	Renommer	Renombrar
 Rename cable	Kabel umbenennen	Renommer le câble	Renombrar cable
+Rename cable…	Kabel umbenennen…	Renommer le câble…	Renombrar cable…
 Rename device	Betriebsmittel umbenennen	Renommer l'appareil	Renombrar dispositivo
 Rename device…	Betriebsmittel umbenennen…	Renommer l'appareil…	Renombrar dispositivo…
 Rename in the whole project	Im ganzen Projekt umbenennen	Renommer dans tout le projet	Renombrar en todo el proyecto
@@ -1772,6 +1776,7 @@ Rename property	Eigenschaft umbenennen	Renommer la propriété	Renombrar propied
 Renames the devices (all their functions, also on other pages)	Benennt die Betriebsmittel um (alle ihre Funktionen, auch auf anderen Seiten)	Renomme les appareils (toutes leurs fonctions, y compris sur d'autres pages)	Renombra los dispositivos (todas sus funciones, también en otras páginas)
 Renames the identifier on all pages and in all device tags	Benennt das Kennzeichen auf allen Seiten und in allen Betriebsmittelkennzeichen um	Renomme l'identificateur sur toutes les pages et dans tous les repères d'appareils	Renombra el identificador en todas las páginas y en todas las referencias de dispositivos
 Rename…	Umbenennen…	Renommer…	Renombrar…
+Renaming this cable requires permission to edit the project data and all affected pages.	Zum Umbenennen dieses Kabels benötigen Sie Bearbeitungsrechte für die Projektdaten und alle betroffenen Seiten.	Le renommage de ce câble nécessite le droit de modifier les données du projet et toutes les pages concernées.	Para renombrar este cable se necesita permiso para editar los datos del proyecto y todas las páginas afectadas.
 Renumber 1 … n	Neu nummerieren 1 … n	Renuméroter 1 … n	Renumerar 1 … n
 Renumber contact	Kontakt neu nummerieren	Renuméroter le contact	Renumerar contacto
 Renumber pages	Seiten neu nummerieren	Renuméroter les pages	Renumerar páginas
@@ -2184,6 +2189,7 @@ The Insert center finds symbols, macros, devices and unplaced functions; favorit
 The accessory fits none of the device's parts	Das Zubehör passt zu keinem Artikel des Geräts	L'accessoire ne convient à aucun article de l'appareil	El accesorio no es compatible con ningún artículo del equipo
 The aspect ratio is kept.	Das Seitenverhältnis bleibt erhalten.	Les proportions sont conservées.	Se mantiene la relación de aspecto.
 The bundle with protections, fixings and connectors in 3D	Das Bündel mit Schutz, Befestigungen und Steckverbindern in 3D	Le faisceau avec protections, fixations et connecteurs en 3D	El mazo con protecciones, fijaciones y conectores en 3D
+The cable changed while this dialog was open. Reopen it to rename the cable.	Das Kabel wurde bei geöffnetem Dialog geändert. Öffnen Sie den Dialog erneut.	Le câble a changé pendant que cette boîte de dialogue était ouverte. Rouvrez-la pour le renommer.	El cable cambió mientras este diálogo estaba abierto. Vuelva a abrirlo para renombrarlo.
 The check warns about cable ducts filled above this level	Die Prüfung warnt vor Kabelkanälen, die stärker gefüllt sind	La vérification avertit des goulottes plus remplies que ce taux	La comprobación avisa de canaletas más llenas que este nivel
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Die Prüfungen halten die Abstände zwischen Klassen ein und lassen Klassen überlappen, wie in Aufbauprüfungen eingestellt	Les contrôles respectent les distances entre classes et laissent les classes se chevaucher comme réglé dans Contrôles d'implantation	Las comprobaciones mantienen las distancias entre clases y permiten solapes según lo ajustado en Comprobaciones de disposición
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Die Befehle aller Plugins nach Plugin, mit Suche; der Stern heftet einen Befehl an die Registerkarte Plugins	Les commandes de tous les plugins par plugin, avec une recherche ; l'étoile épingle une commande dans l'onglet Plugins	Los comandos de todos los plugins por plugin, con búsqueda; la estrella fija un comando en la pestaña Plugins
