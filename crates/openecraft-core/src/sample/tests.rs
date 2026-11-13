@@ -586,4 +586,19 @@ fn office_building_has_its_roof_stair_and_installation() {
     assert_eq!(lines.iter().filter(|l| l.lead == Lead::Link).count(), 9);
     assert!(material.iter().any(|(p, q, _)| p == "GEN.PV-EARTH-CLAMP" && *q == 4.0));
     assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-T1") && prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-PE1"));
+    // Earthed by a foundation earth electrode on the main earthing busbar and a ring
+    // earth electrode; the lightning protection (class III) with two down conductors for
+    // its 28 m of walls, ending on the ring, the PV array in its protection.
+    let bi = prj.layout.buildings.iter().position(|x| x.name == "+B3").unwrap();
+    let poses = crate::panel::site_poses(&prj);
+    let kinds: Vec<_> = b.electrodes.iter().map(|e| e.kind).collect();
+    assert_eq!(kinds, vec![crate::panel::ElectrodeKind::Foundation, crate::panel::ElectrodeKind::Ring]);
+    assert!(crate::panel::earthing::busbar_lead(&prj, &poses, bi, &b.electrodes[0]).is_some());
+    let g = crate::panel::lightning::geometry(&prj, &poses, bi).unwrap();
+    use crate::panel::lightning::LpsKind;
+    assert_eq!((g.count(LpsKind::Down), g.count(LpsKind::Entry), g.count(LpsKind::Rod)), (2, 2, 1));
+    assert!(crate::panel::lightning::unprotected_arrays(&prj, &poses, bi).is_empty());
+    for part in ["GEN.ER-STRIP-FE30", "GEN.ER-STRIP-V4A30", "GEN.LP-WIRE-AL8", "GEN.LP-TEST-JOINT", "GEN.LP-ROD-AL16"] {
+        assert!(material.iter().any(|(p, ..)| p == part), "{part}");
+    }
 }

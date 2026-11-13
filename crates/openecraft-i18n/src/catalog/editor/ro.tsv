@@ -110,6 +110,7 @@ Air at devices at most	Aer la dispozitive cel mult
 Air temperature	Temperatura aerului
 Air temperature at the devices	Temperatura aerului la dispozitive
 Air temperature {} … {} °C	Temperatura aerului {} … {} °C
+Air-termination rod	Tijă de captare
 Align	Aliniere
 Aligned	Aliniat
 Alignment	Aliniere
@@ -300,6 +301,7 @@ Choose pages	Alegere pagini
 Chooses the pages whose structure starts with this	Alege paginile a căror structură începe cu aceasta
 Circle	Cerc
 Circuits of a generic manifold	Circuitele unui distribuitor generic
+Class {}	Clasa {}
 Clear	Golire
 Clear the search	Șterge căutarea
 Clearance	Distanță
@@ -470,9 +472,11 @@ Define all used	Definire toți cei utilizați
 Defined potentials	Potențiale definite
 Del	Del
 Delete PV array	Ștergeți câmpul fotovoltaic
+Delete air-termination rod	Șterge tija de captare
 Delete cable (its wires are removed from it)	Ștergere cablu (conductoarele sale sunt eliminate din el)
 Delete comment	Ștergere comentariu
 Delete connection point	Ștergere punct de conexiune
+Delete earth electrode	Șterge priza de pământ
 Delete element	Ștergere element
 Delete enclosure	Ștergere carcasă
 Delete enclosure {} with everything placed in it?	Ștergeți carcasa {} cu tot ce este plasat în ea?
@@ -499,8 +503,10 @@ Delete this workspace	Ștergerea acestui spațiu de lucru
 Delete variant	Ștergere variantă
 Delete zone	Ștergeți zona
 Depth / mounted at	Adâncime / montat la
+Depth below the ground	Adâncime sub teren
 Depth from / to	Adâncime de la / până la
 Depth in the floor	Adâncime în pardoseală
+Depth of its top below the ground	Adâncimea capătului superior sub teren
 Derive project definition	Derivare definiție de proiect
 Descriptions	Descrieri
 Deselect	Deselectare
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Decupaje ușă (CSV)
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
 Double-click	Dublu clic
+Down conductors	Conductoare de coborâre
 Download into database	Descărcare în baza de date
 Download project	Descărcare proiect
 Downloaded {} (version {})	{} descărcat (versiunea {})
@@ -623,6 +630,7 @@ Duct fill limit	Limită de umplere a canalului
 Duplicate	Duplicare
 Each example builds on the one before and shows more of the features.	Fiecare exemplu se bazează pe cel anterior și arată mai multe funcții.
 Each point-to-point connection can belong to a harness	Fiecare conexiune punct la punct poate aparține unui cablaj
+Earthing and lightning protection	Împământare și protecție contra trăsnetului
 Earthing busbar	Bară de împământare
 Earthing conductor	Conductor de împământare
 Earthing points	Puncte de împământare
@@ -815,6 +823,7 @@ Height above the floor	Înălțime deasupra podelei
 Height above the mounting plate	Înălțime deasupra plăcii de montaj
 Height above the plate	Înălțime deasupra plăcii
 Height of the plinth, 0 without plinth	Înălțimea soclului, 0 fără soclu
+Height of the rod above the covering	Înălțimea tijei deasupra învelitorii
 Heights above floor (IEC 60204-1)	Înălțimi deasupra podelei (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ținută apăsat la clic, mutare sau derulare. Ctrl este Cmd pe macOS.
 Help	Ajutor
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Valori implicite pentru furtunur
 Hose number	Număr furtun
 Hoses and pipes	Furtunuri și conducte
 Hoses rated below it are errors; 0 = not checked	Furtunurile dimensionate sub aceasta sunt erori; 0 = neverificat
+How far inside the outer walls	Cât de mult în interiorul pereților exteriori
+How far outside the outer walls	Cât de mult în afara pereților exteriori
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Cum se deschide canatul: balamale pe marginea stângă sau dreaptă (văzut din interiorul încăperii), spre interior sau spre exterior, sau glisant de-a lungul peretelui
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Cum este terminat conductorul la acest capăt; implicit cum s-a ales pentru punctul de conectare sau echipamentul său, altfel după setarea manșoanelor din amplasare
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Cum sar firele peste firele pe care le încrucișează, cum sunt marcate joncțiunile în T și dacă elementele mutate își retrasează conexiunile
@@ -951,6 +962,7 @@ Labeling scheme	Schemă de marcare
 Landscape	Vedere
 Large dot	Punct mare
 Larger texts and buttons for a touch screen at the workbench	Texte și butoane mai mari pentru un ecran tactil la banca de lucru
+Largest mesh	Cel mai mare ochi
 Latitude, longitude	Latitudine, longitudine
 Layer	Strat
 Layer {}	Stratul {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Plăcuțe de identificare (dispozitive de ușă)
 Length from the node to the device	Lungimea de la nod la dispozitiv
 Length inside an enclosure	Lungime în interiorul unei carcase
 Length of a shield pigtail where there is no shield clamp	Lungimea unui pigtail de ecran acolo unde nu există clemă de ecran
+Length of the rod	Lungimea electrodului
 Length of wires that are not routed in the panel layout	Lungimea conductoarelor care nu sunt trasate în amplasarea în tablou
 Length {} mm	Lungime {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Litere, cifre, spațiu, - _ . (până la 64 de caractere)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Nivelul {} adăugat la clăd
 Level {} of building {}	Nivelul {} al clădirii {}
 Levels	Niveluri
 Library	Bibliotecă
+Lightning protection	Protecție contra trăsnetului
 Like two fingers	Ca două degete
 Limits	Limite
 Limits in effect	Limite în vigoare
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Nu există carduri PLC în proiect.
 No PLC inputs / outputs placed.	Nu sunt plasate intrări / ieșiri PLC.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Niciun accesoriu: presetupele, conectorii, clemele de ecran … intră în lista de materiale și sunt verificate în raport cu cablul.
 No bus systems.	Nu există sisteme de magistrală.
+No busbar	Fără bară
 No cable passage to {}: wires to it are not routed	Nicio trecere de cabluri spre {}: conductoarele spre aceasta nu sunt pozate
 No cables defined.	Nu sunt definite cabluri.
 No cables yet. Draw a cable definition across wires or add a cable.	Încă nu există cabluri. Desenați o definire de cablu peste conductoare sau adăugați un cablu.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} dispozitive redenumite
 {} differences to {}	{} diferențe față de {}
 {} doors	{} uși
+{} down conductors with test joints, {} m of conductors	{} conductoare de coborâre cu piese de separație, {} m de conductoare
 {} entries in {}	{} intrări în {}
 {} errors	Erori: {}
 {} errors, {} warnings	{} erori, {} avertismente

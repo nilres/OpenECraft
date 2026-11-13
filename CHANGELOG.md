@@ -15,6 +15,15 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   arrays and the roof windows over it; roof windows are no longer covered by the roof
   seen through from outside. Example 16 places the inverter and the bonding busbar in
   the attic ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Earthing and lightning protection:** buildings get earth electrodes (foundation
+  earth electrode in meshes, ring earth electrode, earth rods; connected to a main
+  earthing busbar) and a lightning protection system of class I - IV (air-termination
+  conductors on ridges and hips or as a mesh on flat roofs, air-termination rods, down
+  conductors with test joints into the electrodes), drawn in 3D and in the site plan,
+  their material in the bill of materials, checked (down conductors per class, PV
+  arrays in the protection angle). Commands: `add_earth_electrode`,
+  `set_earth_electrode`, `set_lightning_protection`, `add_air_rod`, `set_air_rod`
+  ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
 - **Moving buildings:** *Site › Move buildings* is an edit mode of the site plan in which
   buildings are dragged to their places and turned by 90°.
 - **Outlets, switches and heating:** the menu has tabs, a search, filters by maker and

@@ -110,6 +110,7 @@ Air at devices at most	Luft vid apparater högst
 Air temperature	Lufttemperatur
 Air temperature at the devices	Lufttemperatur vid apparaterna
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
+Air-termination rod	Spetsledare
 Align	Justera
 Aligned	Justerad
 Alignment	Justering
@@ -300,6 +301,7 @@ Choose pages	Välj sidor
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
 Circuits of a generic manifold	Kretsar för en generisk fördelare
+Class {}	Klass {}
 Clear	Rensa
 Clear the search	Rensa sökningen
 Clearance	Frigång
@@ -470,9 +472,11 @@ Define all used	Definiera alla använda
 Defined potentials	Definierade potentialer
 Del	Del
 Delete PV array	Ta bort solcellsfält
+Delete air-termination rod	Ta bort spetsledare
 Delete cable (its wires are removed from it)	Ta bort kabel (dess ledningar tas bort från den)
 Delete comment	Ta bort kommentar
 Delete connection point	Ta bort anslutningspunkt
+Delete earth electrode	Ta bort jordtag
 Delete element	Ta bort element
 Delete enclosure	Ta bort kapsling
 Delete enclosure {} with everything placed in it?	Ta bort kapslingen {} med allt som är placerat i den?
@@ -499,8 +503,10 @@ Delete this workspace	Ta bort den här arbetsytan
 Delete variant	Ta bort variant
 Delete zone	Ta bort zon
 Depth / mounted at	Djup / monterad vid
+Depth below the ground	Djup under mark
 Depth from / to	Djup från / till
 Depth in the floor	Djup i golvet
+Depth of its top below the ground	Djup för övre änden under mark
 Derive project definition	Härled projektdefinition
 Descriptions	Beskrivningar
 Deselect	Avmarkera
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Dörrurtag (CSV)
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
 Double-click	Dubbelklick
+Down conductors	Nedledare
 Download into database	Ladda ned till databasen
 Download project	Ladda ned projekt
 Downloaded {} (version {})	{} nedladdad (version {})
@@ -623,6 +630,7 @@ Duct fill limit	Gräns för kanalfyllnad
 Duplicate	Duplicera
 Each example builds on the one before and shows more of the features.	Varje exempel bygger på det föregående och visar fler av funktionerna.
 Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-förbindelse kan tillhöra en kabelstam
+Earthing and lightning protection	Jordning och åskskydd
 Earthing busbar	Jordningsskena
 Earthing conductor	Jordledare
 Earthing points	Jordningspunkter
@@ -815,6 +823,7 @@ Height above the floor	Höjd över golvet
 Height above the mounting plate	Höjd över monteringsplåten
 Height above the plate	Höjd över plåten
 Height of the plinth, 0 without plinth	Sockelns höjd, 0 utan sockel
+Height of the rod above the covering	Stavens höjd över taktäckningen
 Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Hålls ned vid klick, flytt eller rullning. Ctrl är Cmd i macOS.
 Help	Hjälp
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Standardvärden för slangar och
 Hose number	Slangnummer
 Hoses and pipes	Slangar och rör
 Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
+How far inside the outer walls	Hur långt innanför ytterväggarna
+How far outside the outer walls	Hur långt utanför ytterväggarna
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hur bladet öppnas: gångjärn i vänster eller höger kant (sett inifrån rummet), in i eller ut ur rummet, eller skjutbart längs väggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hur ledaren avslutas i denna ände; som standard som valt för anslutningspunkten eller dess enhet, annars enligt layoutens inställning för ändhylsor
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hur ledningar hoppar över ledningarna de korsar, hur T-förbindelser markeras och om flyttade objekt får sina förbindelser dragna på nytt
@@ -951,6 +962,7 @@ Labeling scheme	Märkningsschema
 Landscape	Liggande
 Large dot	Stor punkt
 Larger texts and buttons for a touch screen at the workbench	Större texter och knappar för en pekskärm vid arbetsbänken
+Largest mesh	Största maska
 Latitude, longitude	Latitud, longitud
 Layer	Lager
 Layer {}	Lager {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Märkskyltar (dörrapparater)
 Length from the node to the device	Längd från noden till apparaten
 Length inside an enclosure	Längd inne i en kapsling
 Length of a shield pigtail where there is no shield clamp	Längd på en skärm-pigtail där det inte finns någon skärmklämma
+Length of the rod	Spettets längd
 Length of wires that are not routed in the panel layout	Längd på ledningar som inte är dragna i skåplayouten
 Length {} mm	Längd {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Bokstäver, siffror, blanksteg, - _ . (upp till 64 tecken)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Våning {} tillagd i byggnad
 Level {} of building {}	Plan {} i byggnad {}
 Levels	Våningar
 Library	Bibliotek
+Lightning protection	Åskskydd
 Like two fingers	Som två fingrar
 Limits	Gränsvärden
 Limits in effect	Gällande gränsvärden
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Inga PLC-kort i projektet.
 No PLC inputs / outputs placed.	Inga PLC-ingångar / -utgångar placerade.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Inga tillbehör: förskruvningar, kontaktdon, skärmklämmor … ingår i stycklistan och kontrolleras mot kabeln.
 No bus systems.	Inga bussystem.
+No busbar	Ingen skena
 No cable passage to {}: wires to it are not routed	Ingen kabelgenomföring till {}: ledningar dit dras inte
 No cables defined.	Inga kablar definierade.
 No cables yet. Draw a cable definition across wires or add a cable.	Inga kablar ännu. Rita en kabeldefinition tvärs över ledningar eller lägg till en kabel.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} apparater har bytt namn
 {} differences to {}	{} skillnader mot {}
 {} doors	{} dörrar
+{} down conductors with test joints, {} m of conductors	{} nedledare med provklämmor, {} m ledare
 {} entries in {}	{} poster i {}
 {} errors	{} fel
 {} errors, {} warnings	{} fel, {} varningar

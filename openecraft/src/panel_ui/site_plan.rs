@@ -14,6 +14,9 @@ type Outline = Vec<[f32; 2]>;
 
 /// Glass of roof windows.
 const GLASS: Color32 = Color32::from_rgba_premultiplied(60, 100, 140, 120);
+/// Earth electrodes and the conductors of the lightning protection.
+const EARTH: Color32 = Color32::from_rgb(60, 150, 80);
+const LPS: Color32 = Color32::from_rgb(150, 156, 168);
 /// PV modules.
 pub(crate) const PV_MODULE: Color32 = Color32::from_rgba_premultiplied(20, 30, 70, 200);
 
@@ -313,6 +316,34 @@ pub(crate) fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, p
     for m in &pv_modules {
         let pts: Vec<Pos2> = m.iter().map(|&q| at(q)).collect();
         painter.add(egui::Shape::convex_polygon(pts, PV_MODULE, Stroke::new(0.5, weak)));
+    }
+    // The earth electrodes (dashed) and the lightning protection: its conductors, the
+    // air-termination rods and the test joints of the down conductors.
+    for (bi, _) in &shown {
+        for (pts, what) in panel::lightning::plant_lines(prj, &poses, *bi) {
+            let p: Vec<Pos2> = pts.iter().map(|q| at([q[0], q[2]])).collect();
+            match what {
+                panel::lightning::Line::Electrode(_) | panel::lightning::Line::Busbar => {
+                    for w in p.windows(2) {
+                        painter.extend(egui::Shape::dashed_line(&[w[0], w[1]], Stroke::new(1.5, EARTH), 4.0, 3.0));
+                    }
+                    if p.len() == 2 && (p[0] - p[1]).length() < 2.0 {
+                        // An earth rod seen from above.
+                        painter.circle_stroke(p[0], 4.0, Stroke::new(1.5, EARTH));
+                        painter.circle_filled(p[0], 1.5, EARTH);
+                    }
+                }
+                panel::lightning::Line::Lps(panel::lightning::LpsKind::Rod) => {
+                    painter.circle_filled(p[0], 3.0, LPS);
+                }
+                panel::lightning::Line::Lps(_) => {
+                    painter.add(egui::Shape::line(p, Stroke::new(1.2, LPS)));
+                }
+                panel::lightning::Line::Joint => {
+                    painter.rect_filled(Rect::from_center_size(p[0], vec2(5.0, 5.0)), 0.0, LPS);
+                }
+            }
+        }
     }
     // The stairs reaching the level shown: their steps and the walking line with its arrow.
     for (pieces, walk) in &stair_lines {

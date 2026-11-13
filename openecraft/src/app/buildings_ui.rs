@@ -12,7 +12,7 @@ use egui::{vec2, RichText, Sense};
 use openecraft_core::model::Project;
 use openecraft_core::parts::vec3;
 use openecraft_core::panel::solar::strings;
-use openecraft_core::panel::{self, buildings as bld, plot, roofs, solar, stairs, GeoReference, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
+use openecraft_core::panel::{self, buildings as bld, earthing, lightning, plot, roofs, solar, stairs, ElectrodeKind, GeoReference, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
 
@@ -266,6 +266,116 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
     (gone, add)
 }
 
+/// The earth electrodes of a building (foundation and ring earth electrodes, earth
+/// rods) and its lightning protection system with its class, down conductors and
+/// air-termination rods.
+#[allow(clippy::too_many_lines)]
+fn earthing_section(ui: &mut egui::Ui, prj: &mut Project, bi: usize) {
+    let poses = panel::site_poses(prj);
+    ui.horizontal_wrapped(|ui| {
+        ui.label(RichText::new(tr("Earthing and lightning protection")).strong());
+        for kind in ElectrodeKind::ALL {
+            if icons::text_button(ui, Icon::Plus, tr(kind.title())).clicked() {
+                let _ = earthing::add_electrode(prj, bi, kind, None);
+            }
+        }
+    });
+    let busbars = solar::cabling::earthing_busbars(prj);
+    let lengths: Vec<f32> = prj.layout.buildings[bi].electrodes.iter().map(|e| earthing::length(&earthing::paths(prj, &poses, bi, e))).collect();
+    let b = &mut prj.layout.buildings[bi];
+    if b.electrodes.is_empty() {
+        ui.weak(tr("No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods."));
+    }
+    let mut remove = None;
+    for (k, e) in b.electrodes.iter_mut().enumerate() {
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(14.0);
+            ui.add(egui::TextEdit::singleline(&mut e.name).desired_width(30.0));
+            ui.label(tr(e.kind.title()));
+            match e.kind {
+                ElectrodeKind::Rod => {
+                    ui.add(egui::DragValue::new(&mut e.x).speed(10.0).prefix("x ").suffix(" mm"));
+                    ui.add(egui::DragValue::new(&mut e.z).speed(10.0).prefix("z ").suffix(" mm"));
+                    ui.add(egui::DragValue::new(&mut e.length).speed(10.0).range(500.0..=30_000.0).suffix(" mm")).on_hover_text(tr("Length of the rod"));
+                    ui.add(egui::DragValue::new(&mut e.depth).speed(10.0).range(0.0..=5000.0).suffix(" mm")).on_hover_text(tr("Depth of its top below the ground"));
+                }
+                ElectrodeKind::Ring => {
+                    ui.add(egui::DragValue::new(&mut e.distance).speed(10.0).range(0.0..=10_000.0).suffix(" mm")).on_hover_text(tr("How far outside the outer walls"));
+                    ui.add(egui::DragValue::new(&mut e.depth).speed(10.0).range(0.0..=5000.0).suffix(" mm")).on_hover_text(tr("Depth below the ground"));
+                }
+                ElectrodeKind::Foundation => {
+                    ui.add(egui::DragValue::new(&mut e.distance).speed(10.0).range(0.0..=10_000.0).suffix(" mm")).on_hover_text(tr("How far inside the outer walls"));
+                    ui.add(egui::DragValue::new(&mut e.mesh).speed(100.0).range(2000.0..=50_000.0).suffix(" mm")).on_hover_text(tr("Largest mesh"));
+                }
+            }
+            if e.kind != ElectrodeKind::Rod {
+                ui.weak(format!("{:.1} m", lengths.get(k).copied().unwrap_or_default() / 1000.0));
+            }
+            let shown = if e.busbar.is_empty() { tr("No busbar").to_string() } else { e.busbar.clone() };
+            egui::ComboBox::from_id_salt(("bldelectrode", k)).selected_text(shown).width(110.0).show_ui(ui, |ui| {
+                ui.selectable_value(&mut e.busbar, String::new(), tr("No busbar"));
+                for t in &busbars {
+                    ui.selectable_value(&mut e.busbar, t.clone(), t.as_str());
+                }
+            })
+            .response
+            .on_hover_text(tr("Main earthing busbar (device) it is connected to; empty: none"));
+            if icons::button(ui, Icon::Delete, tr("Delete earth electrode")).clicked() {
+                remove = Some(k);
+            }
+        });
+        *e = earthing::checked(e.clone());
+    }
+    if let Some(k) = remove {
+        b.electrodes.remove(k);
+    }
+    // The lightning protection system.
+    let mut on = b.lightning.is_some();
+    ui.horizontal_wrapped(|ui| {
+        if ui.checkbox(&mut on, tr("Lightning protection")).on_hover_text(tr("Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes")).changed() {
+            b.lightning = on.then(panel::Lightning::default);
+        }
+        let Some(lp) = b.lightning.as_mut() else { return };
+        egui::ComboBox::from_id_salt(("bldlpsclass", bi)).selected_text(tr_fmt!("Class {}", lightning::class_name(lp.class))).show_ui(ui, |ui| {
+            for c in 1..=4u8 {
+                ui.selectable_value(&mut lp.class, c, tr_fmt!("Class {}", lightning::class_name(c)));
+            }
+        })
+        .response
+        .on_hover_text(tr("Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle"));
+        ui.label(tr("Down conductors"));
+        ui.add(egui::DragValue::new(&mut lp.down_conductors).range(0..=200)).on_hover_text(tr("Number of down conductors (0: as many as the class needs for the walls)"));
+        if icons::text_button(ui, Icon::Plus, tr("Air-termination rod")).on_hover_text(tr("On the roof, joined to the air-termination conductors; move it to its place")).clicked() {
+            let middle = b.roofs.first().map_or([0.0, 0.0], |r| [r.x + r.width / 2.0, r.z + r.depth / 2.0]);
+            let id = lp.rods.iter().map(|r| r.id).max().unwrap_or_default() + 1;
+            let name = (1..).map(|k| format!("F{k}")).find(|c| !lp.rods.iter().any(|r| &r.name == c)).unwrap_or_default();
+            lp.rods.push(panel::AirRod { id, name, x: middle[0], z: middle[1], ..Default::default() });
+        }
+    });
+    let Some(lp) = b.lightning.as_mut() else { return };
+    let mut gone = None;
+    for (k, r) in lp.rods.iter_mut().enumerate() {
+        ui.horizontal_wrapped(|ui| {
+            ui.add_space(14.0);
+            ui.add(egui::TextEdit::singleline(&mut r.name).desired_width(30.0));
+            ui.add(egui::DragValue::new(&mut r.x).speed(10.0).prefix("x ").suffix(" mm"));
+            ui.add(egui::DragValue::new(&mut r.z).speed(10.0).prefix("z ").suffix(" mm"));
+            ui.add(egui::DragValue::new(&mut r.height).speed(10.0).range(100.0..=20_000.0).suffix(" mm")).on_hover_text(tr("Height of the rod above the covering"));
+            if icons::button(ui, Icon::Delete, tr("Delete air-termination rod")).clicked() {
+                gone = Some(k);
+            }
+        });
+    }
+    if let Some(k) = gone {
+        lp.rods.remove(k);
+    }
+    *lp = lightning::checked(lp.clone());
+    if let Some(g) = lightning::geometry(prj, &poses, bi) {
+        let len = (g.length(lightning::LpsKind::AirTermination) + g.length(lightning::LpsKind::Roof) + g.length(lightning::LpsKind::Down)) / 1000.0;
+        ui.weak(tr_fmt!("{} down conductors with test joints, {} m of conductors", g.count(lightning::LpsKind::Down), format!("{len:.1}")));
+    }
+}
+
 /// The building entries of all rooms: (item id, "room – wall n").
 fn entry_choices(prj: &Project) -> Vec<(u64, String)> {
     let layout = &prj.layout;
@@ -342,6 +452,8 @@ impl App {
             stairs_section(ui, prj, st, bi);
             ui.separator();
             roofs_section(ui, prj, st, bi);
+            ui.separator();
+            earthing_section(ui, prj, bi);
             ui.separator();
             links_section(ui, prj, st);
             ui.separator();

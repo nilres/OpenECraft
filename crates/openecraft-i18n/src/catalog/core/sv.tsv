@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	ERP-artikelregister och stycklista (
 ERP number	ERP-nummer
 ETIM class	ETIM-klass
 Earth electrode	Jordelektrod
+Earth rod	Jordspett
 East-west on a flat roof	Öst-väst på platt tak
 Edit pages	Redigera sidor
 Edit project data	Redigera projektdata
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Fotbrytare, slutande (NFPA)
 Force	Kraft
 Fork terminal	Gaffelkabelsko
 Format (placeholders)	Format (platshållare)
+Foundation earth electrode	Grundjordtag
 Frame size	Byggstorlek
 Free	Fri
 Free air (mm)	Fri förläggning (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Revisio
 Revision table: index of the last revision (2: the one before …)	Revisionstabell: index för den senaste revisionen (2: den före …)
 Right side	Höger sida
 Right side panel	Höger sidovägg
+Ring earth electrode	Ringjordtag
 Ring terminal	Ringkabelsko
 Rivet nut	Nitmutter
 RoHS compliant	RoHS-kompatibel
@@ -1968,6 +1971,7 @@ yellow	gul
 {}: PV array {} covers a roof window	{}: solcellsfält {} täcker ett takfönster
 {}: PV array {} has {} modules, its device {} has {}	{}: solcellsfält {} har {} moduler, dess enhet {} har {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: solcellsfält {} är monterat lutat på ett lutande tak
+{}: PV array {} lies outside the protection of the air-termination system	{}: solcellsfält {} ligger utanför uppfångningssystemets skydd
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: solcellsfält {} på tak {} ligger över en nock, en valmkant eller takkanten
 {}: PV array {} of roof {} lies outside the roof	{}: solcellsfält {} på tak {} ligger utanför taket
 {}: PV arrays {} and {} lie over each other	{}: solcellsfälten {} och {} ligger över varandra
@@ -2059,6 +2063,7 @@ yellow	gul
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skensystemet med {} skenor förbinder {} ledare ({}): kortslutning
 {}: the device {} of PV array {} does not exist	{}: enheten {} för solcellsfält {} finns inte
 {}: the earthing busbar {} of PV array {} does not exist	{}: jordningsskenan {} för solcellsfält {} finns inte
+{}: the lightning protection has no earth electrode	{}: åskskyddet har inget jordtag
 {}: the module {} of PV array {} has no electrical data	{}: modulen {} i solcellsfält {} har inga elektriska data
 {}: the station has no port {}	{}: stationen har ingen port {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: strängarna i solcellsfält {} kopplar {} moduler, fältet har {}

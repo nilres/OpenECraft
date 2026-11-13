@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	Довідник номенклат�
 ERP number	Номер ERP
 ETIM class	Клас ETIM
 Earth electrode	Заземлювач
+Earth rod	Вертикальний заземлювач
 East-west on a flat roof	Схід-захід на плоскому даху
 Edit pages	Редагувати сторінки
 Edit project data	Редагувати дані проєкту
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Педальний вимикач, замикальний 
 Force	Сила
 Fork terminal	Вилковий наконечник
 Format (placeholders)	Формат (заповнювачі)
+Foundation earth electrode	Фундаментний заземлювач
 Frame size	Типорозмір
 Free	Вільно
 Free air (mm)	Вільне прокладання (мм)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Таб�
 Revision table: index of the last revision (2: the one before …)	Таблиця змін: індекс останньої зміни (2: попередньої …)
 Right side	Права сторона
 Right side panel	Права бічна стінка
+Ring earth electrode	Кільцевий заземлювач
 Ring terminal	Кільцевий наконечник
 Rivet nut	Заклепкова гайка
 RoHS compliant	Відповідає RoHS
@@ -1968,6 +1971,7 @@ yellow	жовтий
 {}: PV array {} covers a roof window	{}: фотоелектричне поле {} закриває мансардне вікно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоелектричне поле {} має {} модулів, його пристрій {} — {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: фотоелектричне поле {} змонтоване з нахилом на скатному даху
+{}: PV array {} lies outside the protection of the air-termination system	{}: фотоелектричне поле {} поза зоною захисту блискавкоприймача
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоелектричне поле {} даху {} лежить поперек гребеня, ребра або краю даху
 {}: PV array {} of roof {} lies outside the roof	{}: фотоелектричне поле {} даху {} лежить поза дахом
 {}: PV arrays {} and {} lie over each other	{}: фотоелектричні поля {} і {} перекриваються
@@ -2059,6 +2063,7 @@ yellow	жовтий
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система збірних шин з {} шинами з'єднує {} провідники ({}): коротке замикання
 {}: the device {} of PV array {} does not exist	{}: пристрій {} фотоелектричного поля {} не існує
 {}: the earthing busbar {} of PV array {} does not exist	{}: шини заземлення {} фотоелектричного поля {} не існує
+{}: the lightning protection has no earth electrode	{}: у блискавкозахисту немає заземлювача
 {}: the module {} of PV array {} has no electrical data	{}: модуль {} фотоелектричного поля {} не має електричних даних
 {}: the station has no port {}	{}: станція не має порту {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: ланцюжки фотоелектричного поля {} з'єднують {} модулів, у полі {}

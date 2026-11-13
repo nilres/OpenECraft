@@ -191,6 +191,100 @@ pub struct Building {
     /// `crate::panel::roofs`).
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub roofs: Vec<Roof>,
+    /// Earth electrodes: foundation and ring earth electrodes, earth rods (see
+    /// `crate::panel::earthing`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub electrodes: Vec<Electrode>,
+    /// Lightning protection system (see `crate::panel::lightning`).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub lightning: Option<Lightning>,
+}
+
+/// What an earth electrode is.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum ElectrodeKind {
+    /// In the concrete of the foundation slab of the lowest level: a closed ring along
+    /// the outer walls, divided into meshes.
+    #[default]
+    Foundation,
+    /// In the soil round the building, outside its walls.
+    Ring,
+    /// An earth rod driven vertically into the soil.
+    Rod,
+}
+
+/// An earth electrode of a building.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Electrode {
+    pub id: u64,
+    /// Name, e.g. "E1".
+    pub name: String,
+    pub kind: ElectrodeKind,
+    /// Foundation: how far inside the outer walls, ring: how far outside them, mm.
+    pub distance: f32,
+    /// Ring: depth below the ground level; rod: depth of its top, mm.
+    pub depth: f32,
+    /// Foundation: the largest mesh, mm.
+    pub mesh: f32,
+    /// Rod: its place in the building's floor plan and its length, mm.
+    pub x: f32,
+    pub z: f32,
+    pub length: f32,
+    /// Part of its strip, wire or rod; empty: generic.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub part: String,
+    /// Device (main earthing busbar) it is connected to, e.g. "=GRID+HR-X1".
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub busbar: String,
+}
+
+impl Default for Electrode {
+    fn default() -> Self {
+        Electrode { id: 0, name: String::new(), kind: ElectrodeKind::Foundation, distance: 100.0, depth: 500.0, mesh: 20_000.0, x: 0.0, z: 0.0, length: 3000.0, part: String::new(), busbar: String::new() }
+    }
+}
+
+/// The lightning protection system of a building: air-termination conductors on the
+/// ridges and hips (a mesh on flat roofs) and air-termination rods, down conductors
+/// along the outer walls with test joints, connected to the earth electrodes.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct Lightning {
+    /// Class of the lightning protection system, I … IV (1 … 4).
+    pub class: u8,
+    /// Number of down conductors; 0: as many as the class needs for the perimeter.
+    pub down_conductors: u32,
+    /// Part of the conductors (round wire); empty: generic.
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub part: String,
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub rods: Vec<AirRod>,
+}
+
+impl Default for Lightning {
+    fn default() -> Self {
+        Lightning { class: 3, down_conductors: 0, part: String::new(), rods: Vec::new() }
+    }
+}
+
+/// An air-termination rod on a roof.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct AirRod {
+    pub id: u64,
+    pub name: String,
+    /// Its foot in the building's floor plan, mm.
+    pub x: f32,
+    pub z: f32,
+    /// Height above the covering, mm.
+    pub height: f32,
+}
+
+impl Default for AirRod {
+    fn default() -> Self {
+        AirRod { id: 0, name: String::new(), x: 0.0, z: 0.0, height: 1500.0 }
+    }
 }
 
 /// How a stair runs from its foot to its head.

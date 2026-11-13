@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	ERP malzeme ana verileri ve malzeme 
 ERP number	ERP numarası
 ETIM class	ETIM sınıfı
 Earth electrode	Topraklama elektrodu
+Earth rod	Topraklama kazığı
 East-west on a flat roof	Düz çatıda doğu-batı
 Edit pages	Sayfaları düzenle
 Edit project data	Proje verilerini düzenle
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Ayak şalteri NA (NFPA)
 Force	Kuvvet
 Fork terminal	Çatal kablo pabucu
 Format (placeholders)	Format (yer tutucular)
+Foundation earth electrode	Temel topraklaması
 Frame size	Yapı boyutu
 Free	Serbest
 Free air (mm)	Serbest hava (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Revizyo
 Revision table: index of the last revision (2: the one before …)	Revizyon tablosu: son revizyonun indeksi (2: bir öncekinin …)
 Right side	Sağ taraf
 Right side panel	Sağ yan panel
+Ring earth electrode	Halka topraklama
 Ring terminal	Halka kablo pabucu
 Rivet nut	Perçin somun
 RoHS compliant	RoHS uyumlu
@@ -1968,6 +1971,7 @@ yellow	sarı
 {}: PV array {} covers a roof window	{}: PV dizisi {} bir çatı penceresini örtüyor
 {}: PV array {} has {} modules, its device {} has {}	{}: PV dizisi {} {} modüle sahip, cihazı {} ise {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: PV dizisi {} eğimli bir çatıya eğik monte edilmiş
+{}: PV array {} lies outside the protection of the air-termination system	{}: PV dizisi {} yakalama sisteminin koruma alanı dışında
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: {2} çatısının PV dizisi {1} bir mahya, kırma veya çatı kenarı üzerinden geçiyor
 {}: PV array {} of roof {} lies outside the roof	{0}: {2} çatısının PV dizisi {1} çatının dışında
 {}: PV arrays {} and {} lie over each other	{}: PV dizileri {} ve {} üst üste biniyor
@@ -2059,6 +2063,7 @@ yellow	sarı
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: {} baralı bara sistemi {} iletkeni birleştiriyor ({}): kısa devre
 {}: the device {} of PV array {} does not exist	{0}: PV dizisi {2} için {1} cihazı mevcut değil
 {}: the earthing busbar {} of PV array {} does not exist	{0}: PV dizisi {2} için topraklama barası {1} yok
+{}: the lightning protection has no earth electrode	{}: yıldırımdan korunmanın topraklama elektrodu yok
 {}: the module {} of PV array {} has no electrical data	{0}: PV dizisi {2} içindeki {1} modülünün elektrik verisi yok
 {}: the station has no port {}	{}: istasyonda {} portu yok
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: PV dizisi {} içindeki diziler {} modül bağlıyor, dizide {} var

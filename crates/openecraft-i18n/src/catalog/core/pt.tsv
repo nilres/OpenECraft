@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	Cadastro de itens e lista de materia
 ERP number	Número ERP
 ETIM class	Classe ETIM
 Earth electrode	Eletrodo de aterramento
+Earth rod	Haste de aterramento
 East-west on a flat roof	Leste-oeste em telhado plano
 Edit pages	Editar páginas
 Edit project data	Editar dados do projeto
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Pedal NA (NFPA)
 Force	Força
 Fork terminal	Terminal garfo
 Format (placeholders)	Formato (espaços reservados)
+Foundation earth electrode	Eletrodo de fundação
 Frame size	Tamanho construtivo
 Free	Livre
 Free air (mm)	Ao ar livre (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Tabela 
 Revision table: index of the last revision (2: the one before …)	Tabela de revisões: índice da última revisão (2: a anterior …)
 Right side	Lado direito
 Right side panel	Painel lateral direito
+Ring earth electrode	Anel de aterramento
 Ring terminal	Terminal olhal
 Rivet nut	Porca rebite
 RoHS compliant	Em conformidade com RoHS
@@ -1968,6 +1971,7 @@ yellow	amarelo
 {}: PV array {} covers a roof window	{}: o sistema fotovoltaico {} cobre uma janela de telhado
 {}: PV array {} has {} modules, its device {} has {}	{}: o sistema fotovoltaico {} tem {} módulos, o seu dispositivo {} tem {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: o sistema fotovoltaico {} está montado inclinado num telhado inclinado
+{}: PV array {} lies outside the protection of the air-termination system	{}: o arranjo FV {} fica fora da proteção do subsistema de captação
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: o sistema fotovoltaico {} do telhado {} passa sobre uma cumeeira, um espigão ou a borda do telhado
 {}: PV array {} of roof {} lies outside the roof	{}: o sistema fotovoltaico {} do telhado {} está fora do telhado
 {}: PV arrays {} and {} lie over each other	{}: os sistemas fotovoltaicos {} e {} sobrepõem-se
@@ -2059,6 +2063,7 @@ yellow	amarelo
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: o sistema de barramentos com {} barras une {} condutores ({}): curto-circuito
 {}: the device {} of PV array {} does not exist	{}: o dispositivo {} do sistema fotovoltaico {} não existe
 {}: the earthing busbar {} of PV array {} does not exist	{}: o barramento de aterramento {} do arranjo FV {} não existe
+{}: the lightning protection has no earth electrode	{}: a proteção contra descargas atmosféricas não tem eletrodo de aterramento
 {}: the module {} of PV array {} has no electrical data	{}: o módulo {} do sistema fotovoltaico {} não tem dados elétricos
 {}: the station has no port {}	{}: a estação não tem a porta {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: as strings do sistema fotovoltaico {} ligam {} módulos, o sistema tem {}

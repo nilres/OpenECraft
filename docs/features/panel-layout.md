@@ -424,6 +424,31 @@ hips dashed) with their roof windows, and the links.
   trackers the inverter does not have, trackers whose strings together exceed their
   short-circuit or input current or differ in voltage, and arrays with more modules in
   strings than they have or modules in no string.
+- **Earth electrodes** (*Earthing and lightning protection* in the pane,
+  `add_earth_electrode`, `set_earth_electrode`): a **foundation earth electrode** in the
+  foundation slab of the lowest level, a closed ring 100 mm inside the outer walls
+  divided by strips across into meshes of at most 20 × 20 m (`GEN.ER-STRIP-FE30`, its
+  spacers every 2 m and cross connectors), a **ring earth electrode** in the soil a
+  metre outside the walls and half a metre deep (`GEN.ER-STRIP-V4A30`), and **earth
+  rods** at a place of the floor plan, driven from half a metre down (sections
+  `GEN.ER-ROD-1500`, tip and clamp). The outer walls are the rectangle the roofs cover,
+  otherwise that of the rooms. An electrode connected to a main earthing busbar (a
+  device) runs up to it with a connection lug. All of it goes into the bill of
+  materials.
+- **Lightning protection** (`set_lightning_protection`, `add_air_rod`, `set_air_rod`):
+  of class I to IV, an **air-termination system** of conductors on the ridges and hips
+  of pitched roofs and round the edge and as a mesh (5, 10, 15 or 20 m by class) on
+  flat and shed roofs, and **air-termination rods** joined to them; **down
+  conductors** round the outer walls at most 10, 10, 15 or 20 m apart (at least two,
+  or as many as given), each from under the eaves to its **test joint** a metre above
+  the ground and on into the soil to the ring earth electrode (otherwise the
+  foundation earth electrode or the earth rods), the roof conductor from the eaves
+  over the roof to the air-termination system. The round wire, its holders on the roof
+  and the walls, the rods, test joints, earth entries and clamps go into the bill of
+  materials. The PV arrays on the roofs have to lie in its protection by the
+  **protection angle** of the class (70 - 79° up to 2 m above the surface, down to 23°
+  at the radius of the rolling sphere). The 3D view and the site plan draw the
+  electrodes and the system.
 - **Links between buildings** (`add_site_link`, `set_site_link`): a cable trench, a
   conduit or a cable bridge from a building entry of a room to a building entry of a
   room in another building, through corners in the plant. Routes pass them like a wall
@@ -440,14 +465,19 @@ floor of, cabinets higher than the sloped ceiling at their place and items on th
 or the ceiling above the slope, PV arrays off their roof or across a ridge, a hip or its
 edge, tilted on a pitched roof, over a roof window or over each other, and PV arrays
 whose device is missing or counts another number of modules or whose earthing busbar
-is missing. Example 15 (`plant_buildings`) shows a main building
+is missing, earth electrodes whose busbar is missing, earth rods inside the walls,
+lightning protection without earth electrode or with fewer down conductors than its
+class needs, air-termination rods off the roofs and PV arrays outside the protection
+of the air-termination system. Example 15 (`plant_buildings`) shows a main building
 with two levels and a shaft, a pump house linked by a cable trench through which a
 motor cable is routed, façade lights and a weather station on the roof; example 16
 (`office_building`) adds an office building with an attic under a gable roof, a stair
 turned at a quarter landing, roof windows, a PV array of ten LONGi modules on rails and
 roof hooks in the rear slope with its inverter and the bonding busbar of its mounting
-on the attic's gable wall, outlets and switches of Gira and MDT and a COSMO heating
-circuit manifold.
+on the attic's gable wall, a foundation earth electrode on the main earthing busbar, a
+ring earth electrode and a lightning protection system of class III with an
+air-termination rod, outlets and switches of Gira and MDT and a COSMO heating circuit
+manifold.
 
 **In 3D**, *Layout space › Show › Whole building* shows the building of the room shown
 with all its levels and rooms, their floor slabs, the stairs and the roofs; *All

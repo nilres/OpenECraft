@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	Основные данные поз
 ERP number	Номер ERP
 ETIM class	Класс ETIM
 Earth electrode	Заземлитель
+Earth rod	Вертикальный заземлитель
 East-west on a flat roof	Восток-запад на плоской крыше
 Edit pages	Редактирование листов
 Edit project data	Редактирование данных проекта
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Ножной выключатель, замыкающий 
 Force	Усилие
 Fork terminal	Вилочный наконечник
 Format (placeholders)	Формат (заполнители)
+Foundation earth electrode	Фундаментный заземлитель
 Frame size	Типоразмер
 Free	Свободно
 Free air (mm)	Открытая прокладка (мм)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Таб�
 Revision table: index of the last revision (2: the one before …)	Таблица изменений: индекс последнего изменения (2: предыдущего …)
 Right side	Правая сторона
 Right side panel	Правая боковая стенка
+Ring earth electrode	Кольцевой заземлитель
 Ring terminal	Кольцевой наконечник
 Rivet nut	Заклёпочная гайка
 RoHS compliant	Соответствует RoHS
@@ -1968,6 +1971,7 @@ yellow	жёлтый
 {}: PV array {} covers a roof window	{}: фотоэлектрическое поле {} закрывает мансардное окно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоэлектрическое поле {} имеет {} модулей, его устройство {} — {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: фотоэлектрическое поле {} смонтировано с наклоном на скатной крыше
+{}: PV array {} lies outside the protection of the air-termination system	{}: фотоэлектрическое поле {} вне зоны защиты молниеприёмника
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоэлектрическое поле {} крыши {} лежит поперёк конька, ребра или края крыши
 {}: PV array {} of roof {} lies outside the roof	{}: фотоэлектрическое поле {} крыши {} лежит вне крыши
 {}: PV arrays {} and {} lie over each other	{}: фотоэлектрические поля {} и {} перекрываются
@@ -2059,6 +2063,7 @@ yellow	жёлтый
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
 {}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
 {}: the earthing busbar {} of PV array {} does not exist	{}: шины заземления {} фотоэлектрического поля {} не существует
+{}: the lightning protection has no earth electrode	{}: у молниезащиты нет заземлителя
 {}: the module {} of PV array {} has no electrical data	{}: у модуля {} фотоэлектрического поля {} нет электрических данных
 {}: the station has no port {}	{}: у станции нет порта {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: цепочки фотоэлектрического поля {} соединяют {} модулей, в поле {}

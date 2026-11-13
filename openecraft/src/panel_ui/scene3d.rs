@@ -11,6 +11,7 @@ use super::{PanelUi, OUTER_WALLS, WIRE_HIGHLIGHT};
 use openecraft_core::analysis::Analysis;
 use openecraft_core::model::Project;
 use openecraft_core::panel::roofs::{self, Ceiling, Lin, RoofFaceKind};
+use openecraft_core::panel::lightning::{self, LpsKind};
 use openecraft_core::panel::solar::{self, cabling::Lead};
 use openecraft_core::panel::{self, buildings as bld, stairs, Face, ItemKind, Opening, Role, SitePose, PLATE_MARGIN, PLATE_Z};
 use openecraft_core::parts::vec3::{self, cross, dot, norm, sub, V3};
@@ -785,6 +786,25 @@ impl PanelUi {
                     }
                 }
             }
+            // The earth electrodes and the lightning protection (on the roofs only with
+            // them).
+            if level.is_none() {
+                for (pts, what) in lightning::plant_lines(prj, &plant, bi) {
+                    let on_roof = matches!(what, lightning::Line::Lps(LpsKind::AirTermination | LpsKind::Roof | LpsKind::Rod));
+                    if on_roof && self.hide_ceiling {
+                        continue;
+                    }
+                    let (color, stripe, diameter, least) = earthing_look(what);
+                    let pts: Vec<V3> = pts.iter().map(|&q| to_view(q)).collect();
+                    if let [q] = pts[..] {
+                        // A test joint: a short thick piece of the down conductor.
+                        s.wires.push(SceneWire { line: SceneLine { a: [q[0], q[1] - 40.0, q[2]], b: [q[0], q[1] + 40.0, q[2]], color, stripe, least, diameter, tube: false }, inside: None });
+                    }
+                    for w in pts.windows(2) {
+                        s.wires.push(SceneWire { line: SceneLine { a: w[0], b: w[1], color, stripe, least, diameter, tube: false }, inside: None });
+                    }
+                }
+            }
             if self.hide_ceiling || level.is_some() {
                 continue;
             }
@@ -876,6 +896,22 @@ fn inside_plan(poly: &[[f32; 2]], q: [f32; 2]) -> bool {
         }
     }
     odd
+}
+
+/// Colour, stripe, diameter (mm) and least width (pixels) of a line of the earth
+/// electrodes and the lightning protection.
+fn earthing_look(what: lightning::Line) -> (Color32, Option<Color32>, f32, f32) {
+    use lightning::Line;
+    use openecraft_core::panel::ElectrodeKind;
+    match what {
+        Line::Electrode(ElectrodeKind::Foundation) => (Color32::from_rgb(96, 100, 106), None, 30.0, 2.0),
+        Line::Electrode(_) => (Color32::from_rgb(60, 140, 80), None, 30.0, 2.0),
+        Line::Busbar => (Color32::from_rgb(40, 160, 70), Some(Color32::from_rgb(235, 205, 40)), 10.0, 1.5),
+        Line::Lps(LpsKind::Rod) => (Color32::from_rgb(225, 228, 232), None, 16.0, 2.5),
+        Line::Lps(LpsKind::Entry) => (Color32::from_rgb(150, 154, 160), None, 16.0, 2.0),
+        Line::Lps(_) => (Color32::from_rgb(205, 210, 216), None, 8.0, 2.0),
+        Line::Joint => (Color32::from_rgb(50, 50, 56), None, 50.0, 5.0),
+    }
 }
 
 /// Colour and stripe of a line of the cabling of a PV array.

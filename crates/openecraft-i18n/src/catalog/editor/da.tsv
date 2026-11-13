@@ -110,6 +110,7 @@ Air at devices at most	Luft ved enheder højst
 Air temperature	Lufttemperatur
 Air temperature at the devices	Lufttemperatur ved enhederne
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
+Air-termination rod	Fangstang
 Align	Justér
 Aligned	Justeret
 Alignment	Justering
@@ -300,6 +301,7 @@ Choose pages	Vælg sider
 Chooses the pages whose structure starts with this	Vælger de sider, hvis struktur begynder med dette
 Circle	Cirkel
 Circuits of a generic manifold	Kredse i en generisk fordeler
+Class {}	Klasse {}
 Clear	Ryd
 Clear the search	Ryd søgningen
 Clearance	Frigang
@@ -470,9 +472,11 @@ Define all used	Definer alle brugte
 Defined potentials	Definerede potentialer
 Del	Del
 Delete PV array	Slet solcelleanlæg
+Delete air-termination rod	Slet fangstang
 Delete cable (its wires are removed from it)	Slet kabel (dets ledninger fjernes fra det)
 Delete comment	Slet kommentar
 Delete connection point	Slet tilslutningspunkt
+Delete earth electrode	Slet jordelektrode
 Delete element	Slet element
 Delete enclosure	Slet kapsling
 Delete enclosure {} with everything placed in it?	Slet kapslingen {} med alt, der er placeret i den?
@@ -499,8 +503,10 @@ Delete this workspace	Slet dette arbejdsområde
 Delete variant	Slet variant
 Delete zone	Slet zone
 Depth / mounted at	Dybde / monteret ved
+Depth below the ground	Dybde under terræn
 Depth from / to	Dybde fra / til
 Depth in the floor	Dybde i gulvet
+Depth of its top below the ground	Dybde for øverste ende under terræn
 Derive project definition	Afled projektdefinition
 Descriptions	Beskrivelser
 Deselect	Fravælg
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Dørudskæringer (CSV)
 Door: {} devices, {} cutouts	Dør: {} enheder, {} udskæringer
 Dot	Punkt
 Double-click	Dobbeltklik
+Down conductors	Nedledere
 Download into database	Download til database
 Download project	Download projekt
 Downloaded {} (version {})	{} er downloadet (version {})
@@ -623,6 +630,7 @@ Duct fill limit	Grænse for kanalfyldning
 Duplicate	Dupliker
 Each example builds on the one before and shows more of the features.	Hvert eksempel bygger på det forrige og viser flere af funktionerne.
 Each point-to-point connection can belong to a harness	Hver punkt-til-punkt-forbindelse kan høre til et ledningsnet
+Earthing and lightning protection	Jording og lynbeskyttelse
 Earthing busbar	Jordskinne
 Earthing conductor	Jordleder
 Earthing points	Jordingspunkter
@@ -815,6 +823,7 @@ Height above the floor	Højde over gulvet
 Height above the mounting plate	Højde over monteringspladen
 Height above the plate	Højde over pladen
 Height of the plinth, 0 without plinth	Soklens højde, 0 uden sokkel
+Height of the rod above the covering	Stangens højde over tagdækningen
 Heights above floor (IEC 60204-1)	Højder over gulv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Holdes nede ved klik, flytning eller rulning. Ctrl er Cmd på macOS.
 Help	Hjælp
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Standardværdier for slanger og 
 Hose number	Slangenummer
 Hoses and pipes	Slanger og rør
 Hoses rated below it are errors; 0 = not checked	Slanger med lavere trykklasse er fejl; 0 = kontrolleres ikke
+How far inside the outer walls	Hvor langt inden for ydervæggene
+How far outside the outer walls	Hvor langt uden for ydervæggene
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hvordan fløjen åbner: hængsler i venstre eller højre kant (set inde fra rummet), ind i eller ud af rummet, eller skydes langs væggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hvordan lederen afsluttes i denne ende; som standard som valgt for tilslutningspunktet eller dets enhed, ellers efter layoutets indstilling for terminalrør
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hvordan ledninger springer over de ledninger, de krydser, hvordan T-forbindelser markeres, og om flyttede elementer får deres forbindelser trukket på ny
@@ -951,6 +962,7 @@ Labeling scheme	Mærkningsskema
 Landscape	Liggende
 Large dot	Stor prik
 Larger texts and buttons for a touch screen at the workbench	Større tekster og knapper til en berøringsskærm ved arbejdsbordet
+Largest mesh	Største maske
 Latitude, longitude	Bredde, længde
 Layer	Lag
 Layer {}	Lag {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Betegnelsesskilte (dørenheder)
 Length from the node to the device	Længde fra knuden til enheden
 Length inside an enclosure	Længde inde i en kapsling
 Length of a shield pigtail where there is no shield clamp	Længde af en skærmpigtail, hvor der ikke er en skærmklemme
+Length of the rod	Spydets længde
 Length of wires that are not routed in the panel layout	Længde af ledninger, der ikke er trukket i tavlelayoutet
 Length {} mm	Længde {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Bogstaver, cifre, mellemrum, - _ . (op til 64 tegn)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Etage {} tilføjet til bygni
 Level {} of building {}	Etage {} i bygning {}
 Levels	Etager
 Library	Bibliotek
+Lightning protection	Lynbeskyttelse
 Like two fingers	Som to fingre
 Limits	Grænser
 Limits in effect	Gældende grænser
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Ingen PLC-kort i projektet.
 No PLC inputs / outputs placed.	Ingen PLC-indgange / -udgange placeret.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Intet tilbehør: forskruninger, stikforbindere, skærmklemmer … indgår i styklisten og kontrolleres mod kablet.
 No bus systems.	Ingen bussystemer.
+No busbar	Ingen skinne
 No cable passage to {}: wires to it are not routed	Ingen kabelgennemføring til {}: Ledninger dertil føres ikke
 No cables defined.	Ingen kabler defineret.
 No cables yet. Draw a cable definition across wires or add a cable.	Endnu ingen kabler. Tegn en kabeldefinition hen over ledninger, eller tilføj et kabel.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} enheder omdøbt
 {} differences to {}	{} forskelle i forhold til {}
 {} doors	{} døre
+{} down conductors with test joints, {} m of conductors	{} nedledere med målesamlinger, {} m ledere
 {} entries in {}	{} poster i {}
 {} errors	{} fejl
 {} errors, {} warnings	{} fejl, {} advarsler

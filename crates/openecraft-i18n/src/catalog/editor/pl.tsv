@@ -110,6 +110,7 @@ Air at devices at most	Powietrze przy urządzeniach maks.
 Air temperature	Temperatura powietrza
 Air temperature at the devices	Temperatura powietrza przy urządzeniach
 Air temperature {} … {} °C	Temperatura powietrza {} … {} °C
+Air-termination rod	Iglica odgromowa
 Align	Wyrównaj
 Aligned	Wyrównany
 Alignment	Wyrównanie
@@ -300,6 +301,7 @@ Choose pages	Wybierz strony
 Chooses the pages whose structure starts with this	Wybiera strony, których struktura zaczyna się od tego
 Circle	Okrąg
 Circuits of a generic manifold	Obiegi rozdzielacza ogólnego
+Class {}	Klasa {}
 Clear	Wyczyść
 Clear the search	Wyczyść wyszukiwanie
 Clearance	Odstęp
@@ -470,9 +472,11 @@ Define all used	Zdefiniuj wszystkie używane
 Defined potentials	Zdefiniowane potencjały
 Del	Del
 Delete PV array	Usuń instalację PV
+Delete air-termination rod	Usuń iglicę odgromową
 Delete cable (its wires are removed from it)	Usuń kabel (jego przewody zostaną z niego usunięte)
 Delete comment	Usuń komentarz
 Delete connection point	Usuń punkt połączenia
+Delete earth electrode	Usuń uziom
 Delete element	Usuń element
 Delete enclosure	Usuń obudowę
 Delete enclosure {} with everything placed in it?	Usunąć obudowę {} ze wszystkim, co w niej umieszczono?
@@ -499,8 +503,10 @@ Delete this workspace	Usuń ten obszar roboczy
 Delete variant	Usuń wariant
 Delete zone	Usuń strefę
 Depth / mounted at	Głębokość / montaż na
+Depth below the ground	Głębokość pod terenem
 Depth from / to	Głębokość od / do
 Depth in the floor	Głębokość w podłodze
+Depth of its top below the ground	Głębokość górnego końca pod terenem
 Derive project definition	Wyprowadź definicję projektu
 Descriptions	Opisy
 Deselect	Usuń zaznaczenie
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
 Double-click	Dwukrotne kliknięcie
+Down conductors	Przewody odprowadzające
 Download into database	Pobierz do bazy danych
 Download project	Pobierz projekt
 Downloaded {} (version {})	Pobrano {} (wersja {})
@@ -623,6 +630,7 @@ Duct fill limit	Graniczne wypełnienie kanału
 Duplicate	Duplikuj
 Each example builds on the one before and shows more of the features.	Każdy przykład opiera się na poprzednim i pokazuje więcej funkcji.
 Each point-to-point connection can belong to a harness	Każde połączenie punkt-punkt może należeć do wiązki
+Earthing and lightning protection	Uziemienie i ochrona odgromowa
 Earthing busbar	Szyna uziemiająca
 Earthing conductor	Przewód uziemiający
 Earthing points	Punkty uziemienia
@@ -815,6 +823,7 @@ Height above the floor	Wysokość nad podłogą
 Height above the mounting plate	Wysokość nad płytą montażową
 Height above the plate	Wysokość nad płytą
 Height of the plinth, 0 without plinth	Wysokość cokołu, 0 bez cokołu
+Height of the rod above the covering	Wysokość iglicy nad pokryciem
 Heights above floor (IEC 60204-1)	Wysokości nad podłogą (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Przytrzymywany podczas klikania, przesuwania lub przewijania. Ctrl to Cmd w macOS.
 Help	Pomoc
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Domyślne wartości węży i pę
 Hose number	Numer węża
 Hoses and pipes	Węże i rury
 Hoses rated below it are errors; 0 = not checked	Węże o niższej klasie ciśnienia są błędami; 0 = bez sprawdzania
+How far inside the outer walls	Jak daleko wewnątrz ścian zewnętrznych
+How far outside the outer walls	Jak daleko na zewnątrz ścian zewnętrznych
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak otwiera się skrzydło: zawiasy przy lewej lub prawej krawędzi (patrząc z wnętrza pomieszczenia), do wewnątrz lub na zewnątrz pomieszczenia, albo przesuwnie wzdłuż ściany
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak przewód jest zakończony na tym końcu; domyślnie jak wybrano dla punktu przyłączenia lub jego urządzenia, w przeciwnym razie według ustawienia tulejek w układzie
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak przewody przeskakują nad krzyżowanymi przewodami, jak oznaczane są połączenia T i czy przesunięte elementy prowadzą swoje połączenia na nowo
@@ -951,6 +962,7 @@ Labeling scheme	Schemat oznaczania
 Landscape	Poziomo
 Large dot	Duża kropka
 Larger texts and buttons for a touch screen at the workbench	Większe teksty i przyciski dla ekranu dotykowego przy stole roboczym
+Largest mesh	Największe oczko
 Latitude, longitude	Szerokość, długość geograficzna
 Layer	Warstwa
 Layer {}	Warstwa {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Tabliczki opisowe (urządzenia na drzwiach)
 Length from the node to the device	Długość od węzła do urządzenia
 Length inside an enclosure	Długość wewnątrz obudowy
 Length of a shield pigtail where there is no shield clamp	Długość pigtailu ekranu tam, gdzie nie ma zacisku ekranu
+Length of the rod	Długość uziomu
 Length of wires that are not routed in the panel layout	Długość przewodów, które nie są poprowadzone w zabudowie szafy
 Length {} mm	Długość {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Litery, cyfry, spacja, - _ . (do 64 znaków)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Dodano kondygnację {} do bu
 Level {} of building {}	Kondygnacja {} budynku {}
 Levels	Kondygnacje
 Library	Biblioteka
+Lightning protection	Ochrona odgromowa
 Like two fingers	Jak dwa palce
 Limits	Wartości graniczne
 Limits in effect	Obowiązujące wartości graniczne
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Brak kart PLC w projekcie.
 No PLC inputs / outputs placed.	Nie umieszczono wejść / wyjść PLC.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Brak akcesoriów: dławiki, złącza, zaciski ekranu … trafiają do zestawienia materiałów i są sprawdzane względem kabla.
 No bus systems.	Brak systemów magistral.
+No busbar	Brak szyny
 No cable passage to {}: wires to it are not routed	Brak przepustu kablowego do {}: przewody do niej nie są prowadzone
 No cables defined.	Nie zdefiniowano kabli.
 No cables yet. Draw a cable definition across wires or add a cable.	Brak kabli. Narysuj definicję kabla przez przewody lub dodaj kabel.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	Zmieniono nazwy urządzeń: {}
 {} differences to {}	Różnice w stosunku do {1}: {0}
 {} doors	Drzwi: {}
+{} down conductors with test joints, {} m of conductors	{} przewodów odprowadzających ze złączami kontrolnymi, {} m przewodów
 {} entries in {}	Wpisy w {1}: {0}
 {} errors	Błędy: {}
 {} errors, {} warnings	Błędy: {}, ostrzeżenia: {}

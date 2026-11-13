@@ -110,6 +110,7 @@ Air at devices at most	Cihazlarda hava en fazla
 Air temperature	Hava sıcaklığı
 Air temperature at the devices	Cihazlardaki hava sıcaklığı
 Air temperature {} … {} °C	Hava sıcaklığı {} … {} °C
+Air-termination rod	Paratoner çubuğu
 Align	Hizala
 Aligned	Hizalı
 Alignment	Hizalama
@@ -300,6 +301,7 @@ Choose pages	Sayfaları seç
 Chooses the pages whose structure starts with this	Yapısı bununla başlayan sayfaları seçer
 Circle	Daire
 Circuits of a generic manifold	Genel bir kollektörün devreleri
+Class {}	Sınıf {}
 Clear	Temizle
 Clear the search	Aramayı temizle
 Clearance	Açıklık mesafesi
@@ -470,9 +472,11 @@ Define all used	Kullanılanların tümünü tanımla
 Defined potentials	Tanımlı potansiyeller
 Del	Del
 Delete PV array	PV dizisini sil
+Delete air-termination rod	Paratoner çubuğunu sil
 Delete cable (its wires are removed from it)	Kabloyu sil (telleri kablodan çıkarılır)
 Delete comment	Yorumu sil
 Delete connection point	Bağlantı noktasını sil
+Delete earth electrode	Topraklama elektrodunu sil
 Delete element	Öğeyi sil
 Delete enclosure	Panoyu sil
 Delete enclosure {} with everything placed in it?	{} panosu içine yerleştirilen her şeyle birlikte silinsin mi?
@@ -499,8 +503,10 @@ Delete this workspace	Bu çalışma alanını sil
 Delete variant	Varyantı sil
 Delete zone	Bölgeyi sil
 Depth / mounted at	Derinlik / montaj konumu
+Depth below the ground	Zeminin altındaki derinlik
 Depth from / to	Derinlik başlangıç / bitiş
 Depth in the floor	Zemindeki derinlik
+Depth of its top below the ground	Üst ucunun zeminin altındaki derinliği
 Derive project definition	Proje tanımı türet
 Descriptions	Açıklamalar
 Deselect	Seçimi kaldır
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Kapı kesimleri (CSV)
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
 Double-click	Çift tıklama
+Down conductors	İniş iletkenleri
 Download into database	Veritabanına indir
 Download project	Projeyi indir
 Downloaded {} (version {})	{} indirildi (sürüm {})
@@ -623,6 +630,7 @@ Duct fill limit	Kanal doluluk sınırı
 Duplicate	Çoğalt
 Each example builds on the one before and shows more of the features.	Her örnek bir öncekinin üzerine kurulur ve özelliklerin daha fazlasını gösterir.
 Each point-to-point connection can belong to a harness	Her noktadan noktaya bağlantı bir kablo demetine ait olabilir
+Earthing and lightning protection	Topraklama ve yıldırımdan korunma
 Earthing busbar	Topraklama barası
 Earthing conductor	Topraklama iletkeni
 Earthing points	Topraklama noktaları
@@ -815,6 +823,7 @@ Height above the floor	Zeminden yükseklik
 Height above the mounting plate	Montaj plakası üzerindeki yükseklik
 Height above the plate	Plaka üzerindeki yükseklik
 Height of the plinth, 0 without plinth	Kaidenin yüksekliği, kaide yoksa 0
+Height of the rod above the covering	Çubuğun çatı kaplamasının üstündeki yüksekliği
 Heights above floor (IEC 60204-1)	Zeminden yükseklikler (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tıklarken, taşırken veya kaydırırken basılı tutulur. macOS'ta Ctrl, Cmd'dir.
 Help	Yardım
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Ön planlamanın hortum varsayı
 Hose number	Hortum numarası
 Hoses and pipes	Hortumlar ve borular
 Hoses rated below it are errors; 0 = not checked	Bunun altında derecelendirilmiş hortumlar hatadır; 0 = kontrol edilmez
+How far inside the outer walls	Dış duvarların ne kadar içinde
+How far outside the outer walls	Dış duvarların ne kadar dışında
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Kanadın açılışı: sol veya sağ kenarında menteşeli (odanın içinden bakıldığında), odaya doğru veya dışarı, ya da duvar boyunca sürgülü
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Telin bu uçta nasıl sonlandırıldığı; varsayılan olarak bağlantı noktası veya cihazı için seçildiği gibi, aksi halde yerleşimin yüksük ayarına göre
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Tellerin kesiştikleri tellerin üzerinden nasıl atladığı, T bağlantılarının nasıl işaretlendiği ve taşınan öğelerin bağlantılarının yeniden yönlendirilip yönlendirilmediği
@@ -951,6 +962,7 @@ Labeling scheme	Etiketleme şeması
 Landscape	Yatay
 Large dot	Büyük nokta
 Larger texts and buttons for a touch screen at the workbench	Tezgâhtaki dokunmatik ekran için daha büyük metinler ve düğmeler
+Largest mesh	En büyük göz
 Latitude, longitude	Enlem, boylam
 Layer	Katman
 Layer {}	Katman {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Tanıtım plakaları (kapı cihazları)
 Length from the node to the device	Düğümden cihaza uzunluk
 Length inside an enclosure	Pano içi uzunluk
 Length of a shield pigtail where there is no shield clamp	Ekran kelepçesi olmayan yerlerde ekran pigtail uzunluğu
+Length of the rod	Kazığın uzunluğu
 Length of wires that are not routed in the panel layout	Pano yerleşiminde yönlendirilmemiş tellerin uzunluğu
 Length {} mm	Uzunluk {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Harfler, rakamlar, boşluk, - _ . (en fazla 64 karakter)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	{1} binasına {0} katı ekle
 Level {} of building {}	{1} binasının {0} katı
 Levels	Katlar
 Library	Kütüphane
+Lightning protection	Yıldırımdan korunma
 Like two fingers	İki parmak gibi
 Limits	Sınırlar
 Limits in effect	Geçerli sınırlar
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Projede PLC kartı yok.
 No PLC inputs / outputs placed.	Yerleştirilmiş PLC girişi / çıkışı yok.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Aksesuar yok: rakorlar, konnektörler, ekran kelepçeleri … malzeme listesine girer ve kabloya göre kontrol edilir.
 No bus systems.	Bus sistemi yok.
+No busbar	Bara yok
 No cable passage to {}: wires to it are not routed	{} ile kablo geçişi yok: oraya giden teller yönlendirilmez
 No cables defined.	Tanımlı kablo yok.
 No cables yet. Draw a cable definition across wires or add a cable.	Henüz kablo yok. Tellerin üzerinden bir kablo tanımı çizin veya bir kablo ekleyin.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} cihaz yeniden adlandırıldı
 {} differences to {}	{} ile {} fark
 {} doors	{} kapı
+{} down conductors with test joints, {} m of conductors	Ölçü klemensli {} iniş iletkeni, {} m iletken
 {} entries in {}	{1} içinde {0} giriş
 {} errors	{} hata
 {} errors, {} warnings	{} hata, {} uyarı

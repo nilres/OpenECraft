@@ -110,6 +110,7 @@ Air at devices at most	Vzduch u přístrojů nejvýše
 Air temperature	Teplota vzduchu
 Air temperature at the devices	Teplota vzduchu u přístrojů
 Air temperature {} … {} °C	Teplota vzduchu {} … {} °C
+Air-termination rod	Jímací tyč
 Align	Zarovnat
 Aligned	Zarovnaná
 Alignment	Zarovnání
@@ -300,6 +301,7 @@ Choose pages	Vybrat stránky
 Chooses the pages whose structure starts with this	Vybere stránky, jejichž struktura tímto začíná
 Circle	Kružnice
 Circuits of a generic manifold	Okruhy obecného rozdělovače
+Class {}	Třída {}
 Clear	Vymazat
 Clear the search	Vymazat hledání
 Clearance	Odstup
@@ -470,9 +472,11 @@ Define all used	Definovat všechny použité
 Defined potentials	Definované potenciály
 Del	Del
 Delete PV array	Smazat FV pole
+Delete air-termination rod	Smazat jímací tyč
 Delete cable (its wires are removed from it)	Odstranit kabel (jeho vodiče z něj budou odebrány)
 Delete comment	Odstranit komentář
 Delete connection point	Odstranit přípojný bod
+Delete earth electrode	Smazat zemnič
 Delete element	Odstranit prvek
 Delete enclosure	Odstranit skříň
 Delete enclosure {} with everything placed in it?	Odstranit skříň {} se vším, co je v ní umístěno?
@@ -499,8 +503,10 @@ Delete this workspace	Odstranit tento pracovní prostor
 Delete variant	Odstranit variantu
 Delete zone	Smazat zónu
 Depth / mounted at	Hloubka / montáž na
+Depth below the ground	Hloubka pod terénem
 Depth from / to	Hloubka od / do
 Depth in the floor	Hloubka v podlaze
+Depth of its top below the ground	Hloubka horního konce pod terénem
 Derive project definition	Odvodit projektovou definici
 Descriptions	Popisy
 Deselect	Zrušit výběr
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Výřezy ve dveřích (CSV)
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double-click	Dvojklik
+Down conductors	Svody
 Download into database	Stáhnout do databáze
 Download project	Stáhnout projekt
 Downloaded {} (version {})	Staženo {} (verze {})
@@ -623,6 +630,7 @@ Duct fill limit	Mez zaplnění kanálu
 Duplicate	Duplikovat
 Each example builds on the one before and shows more of the features.	Každý příklad navazuje na předchozí a ukazuje více funkcí.
 Each point-to-point connection can belong to a harness	Každé spojení bod–bod může patřit ke kabelovému svazku
+Earthing and lightning protection	Uzemnění a ochrana před bleskem
 Earthing busbar	Uzemňovací přípojnice
 Earthing conductor	Uzemňovací vodič
 Earthing points	Body uzemnění
@@ -815,6 +823,7 @@ Height above the floor	Výška nad podlahou
 Height above the mounting plate	Výška nad montážní deskou
 Height above the plate	Výška nad deskou
 Height of the plinth, 0 without plinth	Výška soklu, 0 bez soklu
+Height of the rod above the covering	Výška tyče nad krytinou
 Heights above floor (IEC 60204-1)	Výšky nad podlahou (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Drží se při klepnutí, přesouvání nebo posouvání. Ctrl je v macOS Cmd.
 Help	Nápověda
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Výchozí hodnoty hadic a smyčk
 Hose number	Číslo hadice
 Hoses and pipes	Hadice a potrubí
 Hoses rated below it are errors; 0 = not checked	Hadice dimenzované na nižší tlak jsou chyby; 0 = nekontroluje se
+How far inside the outer walls	Jak daleko uvnitř obvodových zdí
+How far outside the outer walls	Jak daleko vně obvodových zdí
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Jak se otevírá křídlo: závěsy na levé nebo pravé hraně (při pohledu z místnosti), dovnitř nebo ven z místnosti, nebo posuvně podél stěny
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Jak je vodič na tomto konci zakončen; výchozí je volba pro připojovací bod nebo jeho zařízení, jinak podle nastavení dutinek v rozvržení
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Jak vodiče přeskakují křížené vodiče, jak se značí spojení T a zda přesunuté prvky vedou svá spojení znovu
@@ -951,6 +962,7 @@ Labeling scheme	Schéma popisování
 Landscape	Na šířku
 Large dot	Velká tečka
 Larger texts and buttons for a touch screen at the workbench	Větší texty a tlačítka pro dotykovou obrazovku u pracovního stolu
+Largest mesh	Největší oko
 Latitude, longitude	Zeměpisná šířka, délka
 Layer	Vrstva
 Layer {}	Vrstva {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Popisné štítky (přístroje ve dveřích)
 Length from the node to the device	Délka od uzlu k přístroji
 Length inside an enclosure	Délka uvnitř skříně
 Length of a shield pigtail where there is no shield clamp	Délka pigtailu stínění tam, kde není svorka stínění
+Length of the rod	Délka zemniče
 Length of wires that are not routed in the panel layout	Délka vodičů, které nejsou vedeny v rozvržení rozváděče
 Length {} mm	Délka {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Písmena, číslice, mezera, - _ . (až 64 znaků)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Podlaží {} přidáno do bu
 Level {} of building {}	Podlaží {} budovy {}
 Levels	Podlaží
 Library	Knihovna
+Lightning protection	Ochrana před bleskem
 Like two fingers	Jako dva prsty
 Limits	Mezní hodnoty
 Limits in effect	Platné mezní hodnoty
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	V projektu nejsou žádné karty PLC.
 No PLC inputs / outputs placed.	Nejsou umístěny žádné vstupy / výstupy PLC.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Žádné příslušenství: vývodky, konektory, stínicí svorky … se zahrnou do kusovníku a zkontrolují vůči kabelu.
 No bus systems.	Žádné sběrnicové systémy.
+No busbar	Bez přípojnice
 No cable passage to {}: wires to it are not routed	Žádná kabelová průchodka do {}: vodiče tam se nevedou
 No cables defined.	Nejsou definovány žádné kabely.
 No cables yet. Draw a cable definition across wires or add a cable.	Zatím žádné kabely. Nakreslete definici kabelu přes vodiče nebo přidejte kabel.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	Přejmenováno {} přístrojů
 {} differences to {}	Rozdíly oproti {1}: {0}
 {} doors	Dveře: {}
+{} down conductors with test joints, {} m of conductors	{} svodů se zkušebními svorkami, {} m vodičů
 {} entries in {}	Položky v {1}: {0}
 {} errors	Chyby: {}
 {} errors, {} warnings	Chyby: {}, upozornění: {}

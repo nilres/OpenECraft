@@ -110,6 +110,7 @@ Air at devices at most	Lucht bij apparaten maximaal
 Air temperature	Luchttemperatuur
 Air temperature at the devices	Luchttemperatuur bij de apparaten
 Air temperature {} … {} °C	Luchttemperatuur {} … {} °C
+Air-termination rod	Opvangstaaf
 Align	Uitlijnen
 Aligned	Uitgelijnd
 Alignment	Uitlijning
@@ -300,6 +301,7 @@ Choose pages	Pagina's kiezen
 Chooses the pages whose structure starts with this	Kiest de pagina's waarvan de structuur hiermee begint
 Circle	Cirkel
 Circuits of a generic manifold	Groepen van een generieke verdeler
+Class {}	Klasse {}
 Clear	Wissen
 Clear the search	Zoekopdracht wissen
 Clearance	Vrije ruimte
@@ -470,9 +472,11 @@ Define all used	Alle gebruikte definiëren
 Defined potentials	Gedefinieerde potentialen
 Del	Del
 Delete PV array	PV-veld verwijderen
+Delete air-termination rod	Opvangstaaf verwijderen
 Delete cable (its wires are removed from it)	Kabel verwijderen (de draden worden eruit verwijderd)
 Delete comment	Opmerking verwijderen
 Delete connection point	Aansluitpunt verwijderen
+Delete earth electrode	Aardelektrode verwijderen
 Delete element	Element verwijderen
 Delete enclosure	Behuizing verwijderen
 Delete enclosure {} with everything placed in it?	Behuizing {} verwijderen met alles wat erin geplaatst is?
@@ -499,8 +503,10 @@ Delete this workspace	Deze werkruimte verwijderen
 Delete variant	Variant verwijderen
 Delete zone	Zone verwijderen
 Depth / mounted at	Diepte / gemonteerd op
+Depth below the ground	Diepte onder maaiveld
 Depth from / to	Diepte van / tot
 Depth in the floor	Diepte in de vloer
+Depth of its top below the ground	Diepte van de bovenkant onder maaiveld
 Derive project definition	Projectdefinitie afleiden
 Descriptions	Beschrijvingen
 Deselect	Selectie opheffen
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Deuruitsparingen (CSV)
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
 Double-click	Dubbelklik
+Down conductors	Afleidingen
 Download into database	Downloaden naar database
 Download project	Project downloaden
 Downloaded {} (version {})	{} gedownload (versie {})
@@ -623,6 +630,7 @@ Duct fill limit	Grenswaarde gootvulling
 Duplicate	Dupliceren
 Each example builds on the one before and shows more of the features.	Elk voorbeeld bouwt voort op het vorige en toont meer van de functies.
 Each point-to-point connection can belong to a harness	Elke punt-tot-puntverbinding kan bij een kabelboom horen
+Earthing and lightning protection	Aarding en bliksembeveiliging
 Earthing busbar	Aardrail
 Earthing conductor	Aardgeleider
 Earthing points	Aardpunten
@@ -815,6 +823,7 @@ Height above the floor	Hoogte boven de vloer
 Height above the mounting plate	Hoogte boven de montageplaat
 Height above the plate	Hoogte boven de plaat
 Height of the plinth, 0 without plinth	Hoogte van de sokkel, 0 zonder sokkel
+Height of the rod above the covering	Hoogte van de staaf boven de dakbedekking
 Heights above floor (IEC 60204-1)	Hoogten boven vloer (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Ingedrukt bij klikken, verplaatsen of scrollen. Ctrl is Cmd op macOS.
 Help	Help
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Standaardwaarden voor slangen en
 Hose number	Slangnummer
 Hoses and pipes	Slangen en buizen
 Hoses rated below it are errors; 0 = not checked	Slangen met een lagere drukklasse zijn fouten; 0 = niet gecontroleerd
+How far inside the outer walls	Hoe ver binnen de buitenmuren
+How far outside the outer walls	Hoe ver buiten de buitenmuren
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hoe het blad opent: scharnieren aan de linker- of rechterrand (gezien vanuit de ruimte), de ruimte in of uit, of schuivend langs de wand
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hoe de draad aan dit uiteinde wordt afgewerkt; standaard zoals gekozen voor het aansluitpunt of zijn apparaat, anders zoals de layout adereindhulzen instelt
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hoe draden over de gekruiste draden springen, hoe T-verbindingen gemarkeerd worden en of verplaatste elementen hun verbindingen opnieuw leggen
@@ -951,6 +962,7 @@ Labeling scheme	Markeringsschema
 Landscape	Liggend
 Large dot	Grote punt
 Larger texts and buttons for a touch screen at the workbench	Grotere teksten en knoppen voor een aanraakscherm aan de werkbank
+Largest mesh	Grootste maas
 Latitude, longitude	Breedtegraad, lengtegraad
 Layer	Laag
 Layer {}	Laag {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Tekstplaatjes (deurapparaten)
 Length from the node to the device	Lengte van het knooppunt tot het apparaat
 Length inside an enclosure	Lengte in de behuizing
 Length of a shield pigtail where there is no shield clamp	Lengte van een afschermingspigtail waar geen afschermingsklem is
+Length of the rod	Lengte van de pen
 Length of wires that are not routed in the panel layout	Lengte van draden die niet in de kastlay-out zijn gerouteerd
 Length {} mm	Lengte {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Letters, cijfers, spatie, - _ . (maximaal 64 tekens)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Verdieping {} toegevoegd aan
 Level {} of building {}	Verdieping {} van gebouw {}
 Levels	Verdiepingen
 Library	Bibliotheek
+Lightning protection	Bliksembeveiliging
 Like two fingers	Zoals twee vingers
 Limits	Grenswaarden
 Limits in effect	Geldende grenswaarden
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Geen PLC-kaarten in het project.
 No PLC inputs / outputs placed.	Geen PLC-in- / uitgangen geplaatst.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Geen toebehoren: wartels, connectors, afschermklemmen … komen in de stuklijst en worden gecontroleerd op de kabel.
 No bus systems.	Geen bussystemen.
+No busbar	Geen rail
 No cable passage to {}: wires to it are not routed	Geen kabeldoorvoer naar {}: draden daarheen worden niet gerouteerd
 No cables defined.	Geen kabels gedefinieerd.
 No cables yet. Draw a cable definition across wires or add a cable.	Nog geen kabels. Teken een kabeldefinitie over draden of voeg een kabel toe.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} apparaten hernoemd
 {} differences to {}	{} verschillen met {}
 {} doors	{} deuren
+{} down conductors with test joints, {} m of conductors	{} afleidingen met meetverbindingen, {} m geleiders
 {} entries in {}	{} items in {}
 {} errors	{} fouten
 {} errors, {} warnings	{} fouten, {} waarschuwingen

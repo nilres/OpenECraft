@@ -188,6 +188,35 @@ Conductor: 6 - 16 mm² Cu, round wire Ø 8 mm"),
     }
 }
 
+/// The material of earth electrodes (foundation and ring earth electrodes, earth rods)
+/// and of lightning protection systems (round wire, holders, air-termination rods, test
+/// joints, earth entries and clamps).
+fn earthing_and_lightning(c: &mut C) {
+    let g = "Mounting";
+    for (number, desc, subgroup, price, dims, metre, tech) in [
+        ("GEN.ER-STRIP-FE30", "Steel strip 30 x 3.5 mm hot-dip galvanised, for foundation earth electrodes in concrete", "Earth electrode material", 2.6, (1000.0, 30.0, 3.5, 0.82), true, "Material: steel, hot-dip galvanised\nCross-section: 105 mm²\nFor: concrete"),
+        ("GEN.ER-STRIP-V4A30", "Stainless steel strip V4A 30 x 3.5 mm, for ring earth electrodes in the soil", "Earth electrode material", 9.8, (1000.0, 30.0, 3.5, 0.82), true, "Material: stainless steel V4A (1.4404)\nCross-section: 105 mm²\nFor: soil"),
+        ("GEN.ER-ROD-1500", "Earth rod section steel Ø 20 mm, 1500 mm, hot-dip galvanised, with coupling, for driven earth electrodes", "Earth rod", 24.0, (20.0, 1500.0, 20.0, 3.7), false, "Material: steel, hot-dip galvanised\nLength: 1500 mm\nCoupling: integrated"),
+        ("GEN.ER-ROD-TIP", "Driving tip for earth rods Ø 20 mm", "Earth rod", 3.9, (20.0, 60.0, 20.0, 0.1), false, "Material: steel"),
+        ("GEN.ER-CLAMP-ROD", "Connection clamp for earth rods Ø 20 mm to flat strip 30 x 3.5 mm and round wire Ø 8 - 10 mm", "Earth rod", 8.5, (60.0, 60.0, 40.0, 0.2), false, "Material: stainless steel V4A"),
+        ("GEN.ER-CROSS", "Cross connector stainless steel V4A for flat strip 30 x 3.5 mm and round wire Ø 8 - 10 mm", "Earth electrode material", 6.9, (60.0, 60.0, 20.0, 0.2), false, "Material: stainless steel V4A"),
+        ("GEN.ER-SPACER", "Spacer for foundation earth electrodes, holds the strip upright on the reinforcement", "Earth electrode material", 1.4, (60.0, 120.0, 20.0, 0.1), false, "Material: steel"),
+        ("GEN.LP-WIRE-AL8", "Round wire aluminium Ø 8 mm, for air-termination and down conductors", "Lightning protection conductor", 1.9, (1000.0, 8.0, 8.0, 0.14), true, "Material: aluminium\nCross-section: 50 mm²"),
+        ("GEN.LP-HOLDER-ROOF", "Roof conductor holder for round wire Ø 8 mm, for ridge and roof tiles", "Conductor holder", 3.2, (40.0, 120.0, 60.0, 0.1), false, "Material: stainless steel"),
+        ("GEN.LP-HOLDER-WALL", "Conductor holder for round wire Ø 8 mm on the wall, with dowel", "Conductor holder", 1.8, (30.0, 40.0, 60.0, 0.05), false, "Material: stainless steel"),
+        ("GEN.LP-ROD-AL16", "Air-termination rod aluminium Ø 16 mm, 1500 mm, with rod holder", "Air-termination rod", 32.0, (16.0, 1500.0, 16.0, 0.8), false, "Material: aluminium\nLength: 1500 mm"),
+        ("GEN.LP-TEST-JOINT", "Test joint stainless steel for round wire Ø 8 - 10 mm and flat strip", "Test joint", 7.5, (50.0, 50.0, 30.0, 0.15), false, "Material: stainless steel"),
+        ("GEN.LP-EARTH-ENTRY", "Earth entry rod stainless steel V4A Ø 16 mm, 1500 mm, from the test joint into the soil", "Earth entry", 29.0, (16.0, 1500.0, 16.0, 2.4), false, "Material: stainless steel V4A\nLength: 1500 mm"),
+        ("GEN.LP-CLAMP-MV", "MV clamp for round wire Ø 8 - 10 mm, parallel and cross connection", "Lightning protection clamp", 4.6, (50.0, 50.0, 30.0, 0.12), false, "Material: stainless steel"),
+    ] {
+        let p = c.add(number, desc, g, subgroup, "", price, dims, &[]);
+        if metre {
+            p.quantity_unit = "m".into();
+        }
+        p.tech_data = tech.into();
+    }
+}
+
 /// Generic example catalog with function templates.
 pub fn default_catalog() -> Vec<Part> {
     use FnKind::*;
@@ -528,6 +557,7 @@ Breaking capacity: 100 kA".into();
     p.mounting = "Roof".into();
     p.tech_data = "Open-circuit voltage: 39.2 V\nShort-circuit current: 13.9 A\nVoltage at maximum power: 32.6 V\nCurrent at maximum power: 13.2 A\nEfficiency: 22 %\nMax. system voltage: 1500 V DC\nTemperature coefficient of Pmax: -0.30 %/K\nTemperature coefficient of Voc: -0.25 %/K\nTemperature coefficient of Isc: +0.046 %/K".into();
     solar_mounting(&mut c);
+    earthing_and_lightning(&mut c);
     let p = c.add("GEN.PLC-CPU", "PLC CPU 24 V DC, 2 x Ethernet (Modbus TCP, EtherCAT master), 1 MB work memory", "PLC", "CPU", "A", 690.0, (60.0, 100.0, 75.0, 0.3), &[(Generic, "L+ M"), (Generic, "X1 X2")]);
     p.voltage = "24 V DC".into();
     p.tech_data = "Power loss: 6 W\nCurrent consumption: 250 mA".into();

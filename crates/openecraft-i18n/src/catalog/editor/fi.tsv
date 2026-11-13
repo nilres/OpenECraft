@@ -110,6 +110,7 @@ Air at devices at most	Ilma laitteiden luona enintään
 Air temperature	Ilman lämpötila
 Air temperature at the devices	Ilman lämpötila laitteiden luona
 Air temperature {} … {} °C	Ilman lämpötila {} … {} °C
+Air-termination rod	Ukkosenjohdatintanko
 Align	Tasaa
 Aligned	Kohdistettu
 Alignment	Tasaus
@@ -300,6 +301,7 @@ Choose pages	Valitse sivut
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
 Circle	Ympyrä
 Circuits of a generic manifold	Yleisen jakotukin piirit
+Class {}	Luokka {}
 Clear	Tyhjennä
 Clear the search	Tyhjennä haku
 Clearance	Vapaa etäisyys
@@ -470,9 +472,11 @@ Define all used	Määritä kaikki käytetyt
 Defined potentials	Määritetyt potentiaalit
 Del	Del
 Delete PV array	Poista aurinkopaneelikenttä
+Delete air-termination rod	Poista ukkosenjohdatintanko
 Delete cable (its wires are removed from it)	Poista kaapeli (sen johdot poistetaan siitä)
 Delete comment	Poista kommentti
 Delete connection point	Poista liitäntäpiste
+Delete earth electrode	Poista maadoituselektrodi
 Delete element	Poista elementti
 Delete enclosure	Poista kotelo
 Delete enclosure {} with everything placed in it?	Poistetaanko kotelo {} kaikkineen, mitä siihen on sijoitettu?
@@ -499,8 +503,10 @@ Delete this workspace	Poista tämä työtila
 Delete variant	Poista muunnelma
 Delete zone	Poista vyöhyke
 Depth / mounted at	Syvyys / asennettu kohtaan
+Depth below the ground	Syvyys maanpinnan alla
 Depth from / to	Syvyys mistä / mihin
 Depth in the floor	Syvyys lattiassa
+Depth of its top below the ground	Yläpään syvyys maanpinnan alla
 Derive project definition	Johda projektin määrittely
 Descriptions	Kuvaukset
 Deselect	Poista valinta
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Oviaukot (CSV)
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
 Double-click	Kaksoisnapsautus
+Down conductors	Alastulojohtimet
 Download into database	Lataa tietokantaan
 Download project	Lataa projekti
 Downloaded {} (version {})	{} ladattiin (versio {})
@@ -623,6 +630,7 @@ Duct fill limit	Johtokourun täyttöraja
 Duplicate	Monista
 Each example builds on the one before and shows more of the features.	Jokainen esimerkki rakentuu edellisen päälle ja näyttää enemmän toiminnoista.
 Each point-to-point connection can belong to a harness	Jokainen pisteestä pisteeseen -yhteys voi kuulua johtosarjaan
+Earthing and lightning protection	Maadoitus ja ukkossuojaus
 Earthing busbar	Maadoituskisko
 Earthing conductor	Maadoitusjohdin
 Earthing points	Maadoituspisteet
@@ -815,6 +823,7 @@ Height above the floor	Korkeus lattiasta
 Height above the mounting plate	Korkeus asennuslevyn yläpuolella
 Height above the plate	Korkeus levyn yläpuolella
 Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
+Height of the rod above the covering	Tangon korkeus katteen yläpuolella
 Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Pidetään painettuna napsautettaessa, siirrettäessä tai vieritettäessä. Ctrl on macOS:ssä Cmd.
 Help	Ohje
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Letkujen oletusarvot ja esisuunn
 Hose number	Letkun numero
 Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
+How far inside the outer walls	Kuinka paljon ulkoseinien sisäpuolella
+How far outside the outer walls	Kuinka paljon ulkoseinien ulkopuolella
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Miten johtimet hyppäävät risteämiensä johtimien yli, miten T-liitokset merkitään ja reititetäänkö siirrettyjen kohteiden yhteydet uudelleen
@@ -951,6 +962,7 @@ Labeling scheme	Merkintäskeema
 Landscape	Vaakasuunta
 Large dot	Suuri piste
 Larger texts and buttons for a touch screen at the workbench	Suuremmat tekstit ja painikkeet työpenkin kosketusnäytölle
+Largest mesh	Suurin silmä
 Latitude, longitude	Leveys, pituus
 Layer	Taso
 Layer {}	Taso {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Nimikilvet (ovilaitteet)
 Length from the node to the device	Pituus solmusta laitteeseen
 Length inside an enclosure	Pituus kotelon sisällä
 Length of a shield pigtail where there is no shield clamp	Suojavaipan punoksen pituus, jos suojavaipan kiinnitintä ei ole
+Length of the rod	Sauvan pituus
 Length of wires that are not routed in the panel layout	Niiden johtojen pituus, joita ei ole reititetty kaappiasennuksessa
 Length {} mm	Pituus {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Kirjaimet, numerot, välilyönti, - _ . (enintään 64 merkkiä)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Kerros {0} lisätty rakennuk
 Level {} of building {}	Rakennuksen {1} kerros {0}
 Levels	Kerrokset
 Library	Kirjasto
+Lightning protection	Ukkossuojaus
 Like two fingers	Kuten kaksi sormea
 Limits	Raja-arvot
 Limits in effect	Voimassa olevat raja-arvot
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Projektissa ei ole PLC-kortteja.
 No PLC inputs / outputs placed.	PLC-tuloja / -lähtöjä ei ole sijoitettu.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Ei tarvikkeita: läpiviennit, liittimet, suojavaippapuristimet … menevät osaluetteloon ja tarkistetaan kaapelia vasten.
 No bus systems.	Ei väyläjärjestelmiä.
+No busbar	Ei kiskoa
 No cable passage to {}: wires to it are not routed	Ei kaapelin läpivientiaukkoa kohteeseen {}: sinne meneviä johtoja ei reititetä
 No cables defined.	Kaapeleita ei ole määritetty.
 No cables yet. Draw a cable definition across wires or add a cable.	Ei vielä kaapeleita. Piirrä kaapelimääritys johtojen poikki tai lisää kaapeli.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} laitetta nimettiin uudelleen
 {} differences to {}	{} eroa kohteeseen {}
 {} doors	{} ovea
+{} down conductors with test joints, {} m of conductors	{} alastulojohdinta mittausliitoksin, {} m johtimia
 {} entries in {}	{} merkintää kohteessa {}
 {} errors	Virheitä: {}
 {} errors, {} warnings	{} virhettä, {} varoitusta

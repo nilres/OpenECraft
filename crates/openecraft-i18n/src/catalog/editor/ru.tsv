@@ -110,6 +110,7 @@ Air at devices at most	Воздух у устройств не более
 Air temperature	Температура воздуха
 Air temperature at the devices	Температура воздуха у устройств
 Air temperature {} … {} °C	Температура воздуха {} … {} °C
+Air-termination rod	Молниеприёмный стержень
 Align	Выровнять
 Aligned	Параллельный
 Alignment	Выравнивание
@@ -300,6 +301,7 @@ Choose pages	Выбрать листы
 Chooses the pages whose structure starts with this	Выбирает листы, структура которых начинается с этого
 Circle	Окружность
 Circuits of a generic manifold	Контуры типового распределителя
+Class {}	Класс {}
 Clear	Очистить
 Clear the search	Очистить поиск
 Clearance	Зазор
@@ -469,9 +471,11 @@ Define all used	Определить все используемые
 Defined potentials	Определённые потенциалы
 Del	Del
 Delete PV array	Удалить фотоэлектрическое поле
+Delete air-termination rod	Удалить молниеприёмный стержень
 Delete cable (its wires are removed from it)	Удалить кабель (его провода отвязываются от него)
 Delete comment	Удалить комментарий
 Delete connection point	Удалить точку подключения
+Delete earth electrode	Удалить заземлитель
 Delete element	Удалить элемент
 Delete enclosure	Удалить корпус
 Delete enclosure {} with everything placed in it?	Удалить корпус {} со всем, что в нём размещено?
@@ -498,8 +502,10 @@ Delete this workspace	Удалить это рабочее пространст�
 Delete variant	Удалить вариант
 Delete zone	Удалить зону
 Depth / mounted at	Глубина / монтаж на
+Depth below the ground	Глубина под землёй
 Depth from / to	Глубина от / до
 Depth in the floor	Глубина в полу
+Depth of its top below the ground	Глубина верхнего конца под землёй
 Derive project definition	Создать производное определение проекта
 Descriptions	Описания
 Deselect	Снять выбор
@@ -571,6 +577,7 @@ Door cutouts (CSV)	Вырезы в двери (CSV)
 Door: {} devices, {} cutouts	Дверь: устройств – {}, вырезов – {}
 Dot	Точка
 Double-click	Двойной щелчок
+Down conductors	Токоотводы
 Download into database	Загрузить в базу данных
 Download project	Скачать проект
 Downloaded {} (version {})	{} скачан (версия {})
@@ -622,6 +629,7 @@ Duct fill limit	Предел заполнения канала
 Duplicate	Дублировать
 Each example builds on the one before and shows more of the features.	Каждый пример основан на предыдущем и показывает больше функций.
 Each point-to-point connection can belong to a harness	Каждое соединение «точка – точка» может входить в жгут
+Earthing and lightning protection	Заземление и молниезащита
 Earthing busbar	Шина заземления
 Earthing conductor	Заземляющий проводник
 Earthing points	Точки заземления
@@ -814,6 +822,7 @@ Height above the floor	Высота над полом
 Height above the mounting plate	Высота над монтажной панелью
 Height above the plate	Высота над панелью
 Height of the plinth, 0 without plinth	Высота цоколя, 0 – без цоколя
+Height of the rod above the covering	Высота стержня над кровлей
 Heights above floor (IEC 60204-1)	Высоты над полом (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Удерживается при щелчке, перемещении или прокрутке. Ctrl в macOS — Cmd.
 Help	Справка
@@ -837,6 +846,8 @@ Hose defaults and PCT loops of the pre-planning	Параметры шланго�
 Hose number	Номер шланга
 Hoses and pipes	Шланги и трубы
 Hoses rated below it are errors; 0 = not checked	Шланги, рассчитанные на меньшее давление, – ошибки; 0 = не проверяется
+How far inside the outer walls	Насколько внутри наружных стен
+How far outside the outer walls	Насколько снаружи наружных стен
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Как открывается створка: петли у левого или правого края (вид изнутри помещения), внутрь или наружу помещения, или сдвигается вдоль стены
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Как провод оконцован на этом конце; по умолчанию как выбрано для точки подключения или её устройства, иначе по настройке наконечников компоновки
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Как провода перескакивают через пересекаемые провода, как обозначаются T-соединения и прокладываются ли соединения перемещённых элементов заново
@@ -950,6 +961,7 @@ Labeling scheme	Схема маркировки
 Landscape	Альбомная
 Large dot	Крупная точка
 Larger texts and buttons for a touch screen at the workbench	Более крупные тексты и кнопки для сенсорного экрана на рабочем месте
+Largest mesh	Наибольшая ячейка
 Latitude, longitude	Широта, долгота
 Layer	Слой
 Layer {}	Слой {}
@@ -971,6 +983,7 @@ Legend plates (door devices)	Шильдики (устройства на две�
 Length from the node to the device	Длина от узла до устройства
 Length inside an enclosure	Длина внутри корпуса
 Length of a shield pigtail where there is no shield clamp	Длина косички экрана там, где нет экранного зажима
+Length of the rod	Длина заземлителя
 Length of wires that are not routed in the panel layout	Длина проводов, не проложенных в компоновке шкафа
 Length {} mm	Длина {} мм
 Letters, digits, space, - _ . (up to 64 characters)	Буквы, цифры, пробел, - _ . (до 64 символов)
@@ -981,6 +994,7 @@ Level {} added to building {}; new rooms go onto it	Этаж {} добавлен
 Level {} of building {}	Этаж {} здания {}
 Levels	Уровни
 Library	Библиотека
+Lightning protection	Молниезащита
 Like two fingers	Как два пальца
 Limits	Пределы
 Limits in effect	Действующие пределы
@@ -1179,6 +1193,7 @@ No PLC cards in the project.	В проекте нет плат ПЛК.
 No PLC inputs / outputs placed.	Входы / выходы ПЛК не размещены.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Нет принадлежностей: кабельные вводы, разъёмы, зажимы экрана … включаются в спецификацию и проверяются на соответствие кабелю.
 No bus systems.	Шинных систем нет.
+No busbar	Без шины
 No cable passage to {}: wires to it are not routed	Нет кабельного прохода к {}: провода туда не прокладываются
 No cables defined.	Кабели не определены.
 No cables yet. Draw a cable definition across wires or add a cable.	Кабелей пока нет. Нарисуйте определение кабеля через провода или добавьте кабель.
@@ -2362,6 +2377,7 @@ x y	x y
 {} devices renamed	Переименовано устройств: {}
 {} differences to {}	Различий с {1}: {0}
 {} doors	Двери: {}
+{} down conductors with test joints, {} m of conductors	{} токоотводов с контрольными соединениями, {} м проводников
 {} entries in {}	Записей в {1}: {0}
 {} errors	Ошибок: {}
 {} errors, {} warnings	Ошибок: {}, предупреждений: {}

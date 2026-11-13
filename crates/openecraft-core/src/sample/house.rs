@@ -4,7 +4,9 @@
 //! stair turned once at a quarter landing leads up, two roof windows sit in the front
 //! slope and a PV array of ten LONGi modules on rails and roof hooks in the rear one,
 //! one string on a 10 kW inverter on the attic's gable wall, the rails bonded to an
-//! equipotential bonding busbar under it.
+//! equipotential bonding busbar under it. The building is earthed by a foundation earth
+//! electrode on the main earthing busbar of the office and a ring earth electrode, on
+//! which the down conductors of its lightning protection (class III) end.
 //! The rooms get Gira socket outlets, a network outlet and a switch, an MDT KNX push
 //! button and room temperature controller, a TV outlet, a COSMO heating circuit manifold
 //! for six circuits and a single-room control box.
@@ -12,7 +14,7 @@
 use super::*;
 use crate::geom::p;
 use crate::model::panel::{Opening, SitePlace};
-use crate::panel::{self, buildings as bld, roofs, solar, stairs, Face, RoofShape, StairKind};
+use crate::panel::{self, buildings as bld, earthing, lightning, roofs, solar, stairs, ElectrodeKind, Face, Lightning, RoofShape, StairKind};
 
 /// Height of the knee wall of the attic: the eaves above its floor, mm.
 const KNEE_WALL: f32 = 1000.0;
@@ -24,6 +26,7 @@ pub(super) fn project() -> Project {
     prj.structures.define(crate::structure::Aspect::Location, "OF1", "Office");
     prj.structures.define(crate::structure::Aspect::Location, "AT1", "Attic");
     prj.structures.define(crate::structure::Aspect::Function, "PV", "Photovoltaics");
+    prj.structures.define(crate::structure::Aspect::Function, "PE", "Earthing");
     let db = PartsDb { parts: crate::parts::bundled::default_parts() };
 
     // The office building beside the plant: two levels, a room of 8 × 6 m on each.
@@ -107,5 +110,20 @@ pub(super) fn project() -> Project {
     let h = prj.layout.enclosures[attic].height;
     panel::place_device_on(&mut prj, attic, "=PV-T1", p(1200.0, h - 1900.0), Face::Wall(1)).expect("house");
     panel::place_device_on(&mut prj, attic, "=PV-PE1", p(1300.0, h - 1150.0), Face::Wall(1)).expect("house");
+    // Earthing: the foundation earth electrode to the main earthing busbar in the office,
+    // a ring earth electrode for the lightning protection (class III) whose down
+    // conductors end on it, an air-termination rod on the ridge beside the PV array.
+    let mut bar = crate::model::DeviceData::default();
+    bar.parts.push(crate::parts::PartRef { number: "GEN.MET-BAR-10".into(), count: 1, total: false });
+    prj.devices.insert("=PE-X1".into(), bar);
+    let h = prj.layout.enclosures[office].height;
+    panel::place_device_on(&mut prj, office, "=PE-X1", p(600.0, h - 600.0), Face::Wall(3)).expect("house");
+    let fe = earthing::add_electrode(&mut prj, b3, ElectrodeKind::Foundation, None).expect("house");
+    earthing::add_electrode(&mut prj, b3, ElectrodeKind::Ring, None).expect("house");
+    if let Some(e) = prj.layout.buildings[b3].electrodes.iter_mut().find(|e| e.id == fe) {
+        e.busbar = "=PE-X1".into();
+    }
+    prj.layout.buildings[b3].lightning = Some(Lightning::default());
+    lightning::add_rod(&mut prj, b3, Some([6500.0, 3000.0])).expect("house");
     prj
 }

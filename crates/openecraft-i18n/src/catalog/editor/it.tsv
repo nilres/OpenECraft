@@ -110,6 +110,7 @@ Air at devices at most	Aria sui dispositivi al massimo
 Air temperature	Temperatura dell'aria
 Air temperature at the devices	Temperatura dell'aria sui dispositivi
 Air temperature {} … {} °C	Temperatura dell'aria {} … {} °C
+Air-termination rod	Asta di captazione
 Align	Allinea
 Aligned	Allineata
 Alignment	Allineamento
@@ -300,6 +301,7 @@ Choose pages	Scegli pagine
 Chooses the pages whose structure starts with this	Sceglie le pagine la cui struttura inizia con questo
 Circle	Cerchio
 Circuits of a generic manifold	Circuiti di un collettore generico
+Class {}	Classe {}
 Clear	Cancella
 Clear the search	Cancella la ricerca
 Clearance	Distanza minima
@@ -470,9 +472,11 @@ Define all used	Definisci tutti quelli usati
 Defined potentials	Potenziali definiti
 Del	Del
 Delete PV array	Elimina campo fotovoltaico
+Delete air-termination rod	Elimina asta di captazione
 Delete cable (its wires are removed from it)	Elimina cavo (i suoi conduttori vengono rimossi)
 Delete comment	Elimina commento
 Delete connection point	Elimina punto di connessione
+Delete earth electrode	Elimina dispersore
 Delete element	Elimina elemento
 Delete enclosure	Elimina armadio
 Delete enclosure {} with everything placed in it?	Eliminare l'armadio {} con tutto ciò che vi è posizionato?
@@ -499,8 +503,10 @@ Delete this workspace	Elimina questa area di lavoro
 Delete variant	Elimina variante
 Delete zone	Elimina zona
 Depth / mounted at	Profondità / montato a
+Depth below the ground	Profondità sotto il terreno
 Depth from / to	Profondità da / a
 Depth in the floor	Profondità nel pavimento
+Depth of its top below the ground	Profondità della sommità sotto il terreno
 Derive project definition	Deriva definizione di progetto
 Descriptions	Descrizioni
 Deselect	Deseleziona
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Aperture porta (CSV)
 Door: {} devices, {} cutouts	Porta: {} dispositivi, {} aperture
 Dot	Punto
 Double-click	Doppio clic
+Down conductors	Calate
 Download into database	Scarica nel database
 Download project	Scarica progetto
 Downloaded {} (version {})	{} scaricato (versione {})
@@ -623,6 +630,7 @@ Duct fill limit	Limite di riempimento canalina
 Duplicate	Duplica
 Each example builds on the one before and shows more of the features.	Ogni esempio si basa sul precedente e mostra più funzioni.
 Each point-to-point connection can belong to a harness	Ogni collegamento punto-punto può appartenere a un cablaggio
+Earthing and lightning protection	Messa a terra e protezione contro i fulmini
 Earthing busbar	Barra di terra
 Earthing conductor	Conduttore di terra
 Earthing points	Punti di messa a terra
@@ -815,6 +823,7 @@ Height above the floor	Altezza dal pavimento
 Height above the mounting plate	Altezza sopra la piastra di montaggio
 Height above the plate	Altezza sopra la piastra
 Height of the plinth, 0 without plinth	Altezza dello zoccolo, 0 senza zoccolo
+Height of the rod above the covering	Altezza dell'asta sopra la copertura
 Heights above floor (IEC 60204-1)	Altezze dal pavimento (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Tenuto premuto mentre si fa clic, si sposta o si scorre. Ctrl è Cmd su macOS.
 Help	Guida
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Valori predefiniti dei tubi fles
 Hose number	Numero tubo flessibile
 Hoses and pipes	Tubi flessibili e tubazioni
 Hoses rated below it are errors; 0 = not checked	I tubi flessibili con pressione nominale inferiore sono errori; 0 = non verificato
+How far inside the outer walls	Distanza all'interno dei muri esterni
+How far outside the outer walls	Distanza all'esterno dei muri esterni
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Come si apre l'anta: cerniere sul bordo sinistro o destro (visto dall'interno del locale), verso l'interno o l'esterno del locale, o scorrevole lungo la parete
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Come il filo è terminato a questa estremità; per impostazione predefinita come scelto per il punto di connessione o il suo dispositivo, altrimenti secondo l'impostazione dei puntalini del layout
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Come i fili saltano sopra i fili che incrociano, come sono contrassegnate le giunzioni a T e se gli elementi spostati ritracciano i loro collegamenti
@@ -951,6 +962,7 @@ Labeling scheme	Schema di marcatura
 Landscape	Orizzontale
 Large dot	Punto grande
 Larger texts and buttons for a touch screen at the workbench	Testi e pulsanti più grandi per un touch screen al banco di lavoro
+Largest mesh	Maglia massima
 Latitude, longitude	Latitudine, longitudine
 Layer	Livello
 Layer {}	Livello {}
@@ -972,6 +984,7 @@ Legend plates (door devices)	Targhette di identificazione (dispositivi sulla por
 Length from the node to the device	Lunghezza dal nodo al dispositivo
 Length inside an enclosure	Lunghezza all'interno di un armadio
 Length of a shield pigtail where there is no shield clamp	Lunghezza di un pigtail dello schermo dove non c'è una fascetta di schermatura
+Length of the rod	Lunghezza del picchetto
 Length of wires that are not routed in the panel layout	Lunghezza dei conduttori non instradati nel layout quadro
 Length {} mm	Lunghezza {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Lettere, cifre, spazio, - _ . (fino a 64 caratteri)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	Piano {} aggiunto all'edific
 Level {} of building {}	Piano {} dell'edificio {}
 Levels	Piani
 Library	Libreria
+Lightning protection	Protezione contro i fulmini
 Like two fingers	Come due dita
 Limits	Limiti
 Limits in effect	Limiti in vigore
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Nessuna scheda PLC nel progetto.
 No PLC inputs / outputs placed.	Nessun ingresso / uscita PLC posizionato.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Nessun accessorio: pressacavi, connettori, morsetti di schermatura … entrano nella distinta base e vengono verificati rispetto al cavo.
 No bus systems.	Nessun sistema bus.
+No busbar	Nessuna barra
 No cable passage to {}: wires to it are not routed	Nessun passaggio cavi verso {}: i conduttori verso di esso non vengono instradati
 No cables defined.	Nessun cavo definito.
 No cables yet. Draw a cable definition across wires or add a cable.	Ancora nessun cavo. Traccia una definizione cavo attraverso i conduttori o aggiungi un cavo.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} dispositivi rinominati
 {} differences to {}	{} differenze rispetto a {}
 {} doors	{} porte
+{} down conductors with test joints, {} m of conductors	{} calate con giunti di misura, {} m di conduttori
 {} entries in {}	{} voci in {}
 {} errors	{} errori
 {} errors, {} warnings	{} errori, {} avvisi

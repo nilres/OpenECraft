@@ -110,6 +110,7 @@ Air at devices at most	Повітря біля пристроїв не біль�
 Air temperature	Температура повітря
 Air temperature at the devices	Температура повітря біля пристроїв
 Air temperature {} … {} °C	Температура повітря {} … {} °C
+Air-termination rod	Блискавкоприймальний стрижень
 Align	Вирівняти
 Aligned	Вирівняний
 Alignment	Вирівнювання
@@ -300,6 +301,7 @@ Choose pages	Вибрати сторінки
 Chooses the pages whose structure starts with this	Вибирає сторінки, структура яких починається з цього
 Circle	Коло
 Circuits of a generic manifold	Контури типового розподільника
+Class {}	Клас {}
 Clear	Очистити
 Clear the search	Очистити пошук
 Clearance	Відступ
@@ -469,9 +471,11 @@ Define all used	Визначити всі використані
 Defined potentials	Визначені потенціали
 Del	Del
 Delete PV array	Видалити фотоелектричне поле
+Delete air-termination rod	Видалити блискавкоприймальний стрижень
 Delete cable (its wires are removed from it)	Видалити кабель (його проводи буде вилучено з нього)
 Delete comment	Видалити коментар
 Delete connection point	Видалити точку підключення
+Delete earth electrode	Видалити заземлювач
 Delete element	Видалити елемент
 Delete enclosure	Видалити корпус
 Delete enclosure {} with everything placed in it?	Видалити корпус {} з усім, що в ньому розміщено?
@@ -498,8 +502,10 @@ Delete this workspace	Видалити цей робочий простір
 Delete variant	Видалити варіант
 Delete zone	Видалити зону
 Depth / mounted at	Глибина / монтаж на
+Depth below the ground	Глибина під землею
 Depth from / to	Глибина від / до
 Depth in the floor	Глибина в підлозі
+Depth of its top below the ground	Глибина верхнього кінця під землею
 Derive project definition	Створити похідне визначення проєкту
 Descriptions	Описи
 Deselect	Скасувати вибір
@@ -571,6 +577,7 @@ Door cutouts (CSV)	Вирізи дверей (CSV)
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
 Double-click	Подвійне клацання
+Down conductors	Струмовідводи
 Download into database	Завантажити до бази даних
 Download project	Завантажити проєкт
 Downloaded {} (version {})	{} завантажено (версія {})
@@ -622,6 +629,7 @@ Duct fill limit	Межа заповнення каналу
 Duplicate	Дублювати
 Each example builds on the one before and shows more of the features.	Кожен приклад ґрунтується на попередньому та показує більше функцій.
 Each point-to-point connection can belong to a harness	Кожне з’єднання «точка–точка» може належати до джгута
+Earthing and lightning protection	Заземлення та блискавкозахист
 Earthing busbar	Шина заземлення
 Earthing conductor	Заземлювальний провідник
 Earthing points	Точки заземлення
@@ -814,6 +822,7 @@ Height above the floor	Висота над підлогою
 Height above the mounting plate	Висота над монтажною панеллю
 Height above the plate	Висота над панеллю
 Height of the plinth, 0 without plinth	Висота цоколя, 0 – без цоколя
+Height of the rod above the covering	Висота стрижня над покрівлею
 Heights above floor (IEC 60204-1)	Висоти над підлогою (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Утримується під час клацання, переміщення чи прокручування. Ctrl у macOS — Cmd.
 Help	Довідка
@@ -837,6 +846,8 @@ Hose defaults and PCT loops of the pre-planning	Параметри шлангі�
 Hose number	Номер шланга
 Hoses and pipes	Шланги й трубопроводи
 Hoses rated below it are errors; 0 = not checked	Шланги з меншим номінальним тиском – помилки; 0 = не перевіряється
+How far inside the outer walls	Наскільки всередині зовнішніх стін
+How far outside the outer walls	Наскільки зовні зовнішніх стін
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Як відчиняється стулка: петлі біля лівого чи правого краю (вигляд зсередини приміщення), всередину чи назовні приміщення, або зсувається вздовж стіни
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Як провід оконцьовано на цьому кінці; за замовчуванням як вибрано для точки підключення або її пристрою, інакше за налаштуванням наконечників компонування
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Як проводи перескакують через проводи, які вони перетинають, як позначаються T-з'єднання та чи прокладаються з'єднання переміщених елементів заново
@@ -950,6 +961,7 @@ Labeling scheme	Схема маркування
 Landscape	Альбомна
 Large dot	Велика крапка
 Larger texts and buttons for a touch screen at the workbench	Більші тексти й кнопки для сенсорного екрана на робочому місці
+Largest mesh	Найбільша комірка
 Latitude, longitude	Широта, довгота
 Layer	Шар
 Layer {}	Шар {}
@@ -971,6 +983,7 @@ Legend plates (door devices)	Таблички з написами (пристр�
 Length from the node to the device	Довжина від вузла до пристрою
 Length inside an enclosure	Довжина всередині шафи
 Length of a shield pigtail where there is no shield clamp	Довжина косички екрана там, де немає затискача екрана
+Length of the rod	Довжина заземлювача
 Length of wires that are not routed in the panel layout	Довжина проводів, не прокладених у компонуванні шафи
 Length {} mm	Довжина {} мм
 Letters, digits, space, - _ . (up to 64 characters)	Літери, цифри, пробіл, - _ . (до 64 символів)
@@ -981,6 +994,7 @@ Level {} added to building {}; new rooms go onto it	Поверх {} додано
 Level {} of building {}	Поверх {} будівлі {}
 Levels	Поверхи
 Library	Бібліотека
+Lightning protection	Блискавкозахист
 Like two fingers	Як два пальці
 Limits	Граничні значення
 Limits in effect	Чинні граничні значення
@@ -1179,6 +1193,7 @@ No PLC cards in the project.	У проєкті немає плат ПЛК.
 No PLC inputs / outputs placed.	Входи / виходи ПЛК не розміщено.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Немає аксесуарів: вводи, роз’єми, затискачі екрана … потрапляють до специфікації та перевіряються щодо кабелю.
 No bus systems.	Немає шинних систем.
+No busbar	Без шини
 No cable passage to {}: wires to it are not routed	Немає кабельного проходу до {}: проводи до нього не прокладаються
 No cables defined.	Кабелі не визначено.
 No cables yet. Draw a cable definition across wires or add a cable.	Кабелів ще немає. Намалюйте визначення кабелю через проводи або додайте кабель.
@@ -2362,6 +2377,7 @@ x y	x y
 {} devices renamed	Перейменовано пристроїв: {}
 {} differences to {}	Відмінностей від {}: {}
 {} doors	Двері: {}
+{} down conductors with test joints, {} m of conductors	{} струмовідводів з контрольними з'єднаннями, {} м провідників
 {} entries in {}	Записів у {1}: {0}
 {} errors	Помилок: {}
 {} errors, {} warnings	Помилок: {}, попереджень: {}

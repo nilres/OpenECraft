@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	ERP-cikktörzs és anyagjegyzék (CS
 ERP number	ERP-szám
 ETIM class	ETIM-osztály
 Earth electrode	Földelő
+Earth rod	Rúdföldelő
 East-west on a flat roof	Kelet-nyugat lapostetőn
 Edit pages	Oldalak szerkesztése
 Edit project data	Projektadatok szerkesztése
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Lábkapcsoló, záróérintkező (NFPA)
 Force	Erő
 Fork terminal	Villás saru
 Format (placeholders)	Formátum (helyőrzők)
+Foundation earth electrode	Alapföldelő
 Frame size	Építési méret
 Free	Szabad
 Free air (mm)	Szabad vezetés (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Revízi
 Revision table: index of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió indexe (2: az azt megelőzőé …)
 Right side	Jobb oldal
 Right side panel	Jobb oldalfal
+Ring earth electrode	Körföldelő
 Ring terminal	Gyűrűs saru
 Rivet nut	Szegecsanya
 RoHS compliant	RoHS-megfelelő
@@ -1968,6 +1971,7 @@ yellow	sárga
 {}: PV array {} covers a roof window	{}: a(z) {} PV-mező eltakar egy tetőablakot
 {}: PV array {} has {} modules, its device {} has {}	{}: a(z) {} PV-mezőnek {} modulja van, a(z) {} eszközének {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: a(z) {} PV-mező döntve van szerelve egy magastetőre
+{}: PV array {} lies outside the protection of the air-termination system	{}: a(z) {} PV mező a felfogó rendszer védelmén kívül van
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: a(z) {2} tető {1} PV-mezője átnyúlik egy gerincen, élgerincen vagy a tető szélén
 {}: PV array {} of roof {} lies outside the roof	{0}: a(z) {2} tető {1} PV-mezője a tetőn kívül van
 {}: PV arrays {} and {} lie over each other	{}: a(z) {} és {} PV-mezők egymásra fekszenek
@@ -2059,6 +2063,7 @@ yellow	sárga
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: a(z) {} sínes gyűjtősín-rendszer {} vezetőt köt össze ({}): rövidzárlat
 {}: the device {} of PV array {} does not exist	{}: a(z) {} eszköz a(z) {} PV-mezőhöz nem létezik
 {}: the earthing busbar {} of PV array {} does not exist	{}: a(z) {} földelősín a(z) {} PV mezőhöz nem létezik
+{}: the lightning protection has no earth electrode	{}: a villámvédelemnek nincs földelője
 {}: the module {} of PV array {} has no electrical data	{0}: a(z) {2} PV-mező {1} moduljának nincsenek elektromos adatai
 {}: the station has no port {}	{}: az állomásnak nincs {} portja
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: a(z) {} PV-mező stringjei {} modult kötnek be, a mezőnek {} van

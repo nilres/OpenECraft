@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	ERP-nimikerekisteri ja osaluettelo (
 ERP number	ERP-numero
 ETIM class	ETIM-luokka
 Earth electrode	Maadoituselektrodi
+Earth rod	Maadoitussauva
 East-west on a flat roof	Itä-länsi tasakatolla
 Edit pages	Muokkaa sivuja
 Edit project data	Muokkaa projektitietoja
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Jalkakytkin, sulkeutuva (NFPA)
 Force	Voima
 Fork terminal	Haarukkakaapelikenkä
 Format (placeholders)	Muoto (paikkamerkit)
+Foundation earth electrode	Perustusmaadoitus
 Frame size	Runkokoko
 Free	Vapaa
 Free air (mm)	Vapaa reititys (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Revisio
 Revision table: index of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision tunnus (2: sitä edellisen …)
 Right side	Oikea puoli
 Right side panel	Oikea sivuseinä
+Ring earth electrode	Rengasmaadoitus
 Ring terminal	Rengaskaapelikenkä
 Rivet nut	Niittimutteri
 RoHS compliant	RoHS-yhteensopiva
@@ -1968,6 +1971,7 @@ yellow	keltainen
 {}: PV array {} covers a roof window	{}: aurinkopaneelikenttä {} peittää kattoikkunan
 {}: PV array {} has {} modules, its device {} has {}	{}: aurinkopaneelikentässä {} on {} moduulia, sen laitteessa {} on {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: aurinkopaneelikenttä {} on asennettu kallistettuna harjakatolle
+{}: PV array {} lies outside the protection of the air-termination system	{}: aurinkopaneelikenttä {} on sieppausjärjestelmän suojan ulkopuolella
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{0}: katon {2} aurinkopaneelikenttä {1} on harjan, aumaharjan tai katon reunan yli
 {}: PV array {} of roof {} lies outside the roof	{0}: katon {2} aurinkopaneelikenttä {1} on katon ulkopuolella
 {}: PV arrays {} and {} lie over each other	{}: aurinkopaneelikentät {} ja {} ovat päällekkäin
@@ -2059,6 +2063,7 @@ yellow	keltainen
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: kiskojärjestelmä, jossa on {} kiskoa, yhdistää {} johdinta ({}): oikosulku
 {}: the device {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} laitetta {1} ei ole
 {}: the earthing busbar {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} maadoituskiskoa {1} ei ole
+{}: the lightning protection has no earth electrode	{}: ukkossuojauksella ei ole maadoituselektrodia
 {}: the module {} of PV array {} has no electrical data	{0}: aurinkopaneelikentän {2} moduulilla {1} ei ole sähkötietoja
 {}: the station has no port {}	{}: asemalla ei ole porttia {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: aurinkopaneelikentän {} merkkijonot kytkevät {} moduulia, kentässä on {}

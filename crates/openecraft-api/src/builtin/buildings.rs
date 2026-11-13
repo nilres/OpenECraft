@@ -12,7 +12,7 @@ use super::{add_commands, info, Spec};
 use openecraft_core::model::Project;
 use openecraft_core::panel::buildings::{self as bld, SHAFT_SIZE};
 use openecraft_core::panel::solar::strings;
-use openecraft_core::panel::{self, plot, roofs, solar, stairs, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
+use openecraft_core::panel::{self, earthing, lightning, plot, roofs, solar, stairs, ElectrodeKind, LinkKind, Opening, PvMounting, RoofShape, SitePlace, StairKind, Turn};
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde_json::{json, Value};
 
@@ -20,7 +20,7 @@ pub struct Buildings;
 
 impl Plugin for Buildings {
     fn info(&self) -> Info {
-        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, rooms on the levels and links between buildings"))
+        info("buildings", tr_const!("Buildings"), tr_const!("Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings"))
     }
 
     fn register(&self, reg: &mut Registry) -> Result<(), String> {
@@ -60,6 +60,17 @@ const PV_AZIMUTH: &str = tr_const!("Flat roofs: direction the modules face in de
 const PV_ROW_GAP: &str = tr_const!("Distance from row to row on a flat roof in mm (0: free of shade in winter)");
 const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rail in mm");
 const PV_BALLAST: &str = tr_const!("Ballast per module on a flat roof in kg");
+const ELECTRODE_X: &str = tr_const!("Earth rod: x of its place in the floor plan of the building, mm");
+const ELECTRODE_Z: &str = tr_const!("Earth rod: z of its place in the floor plan of the building, mm");
+const ELECTRODE_LENGTH: &str = tr_const!("Earth rod: its length, mm (default 3000)");
+const ELECTRODE_DISTANCE: &str = tr_const!("Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm");
+const ELECTRODE_DEPTH: &str = tr_const!("Ring: depth below the ground level, rod: depth of its top, mm (default 500)");
+const ELECTRODE_MESH: &str = tr_const!("Foundation earth electrode: its largest mesh, mm (default 20000)");
+const ELECTRODE_PART: &str = tr_const!("Part of its strip, wire or rod (empty: generic)");
+const ELECTRODE_BUSBAR: &str = tr_const!("Main earthing busbar (device) it is connected to; empty: none");
+const ROD_X: &str = tr_const!("x of the foot of the rod in the floor plan of the building, mm");
+const ROD_Z: &str = tr_const!("z of the foot of the rod in the floor plan of the building, mm");
+const ROD_HEIGHT: &str = tr_const!("Height of the rod above the covering, mm (default 1500)");
 const PV_SYSTEM: &str = tr_const!("Mounting system: part number of its rail or mounting base, whose accessories are the hooks, clamps and ballast (empty: generic)");
 const PV_DEVICE: &str = tr_const!("Device (PV generator) the modules belong to; its parts then count them in the bill of materials");
 const PV_EARTHING: &str = tr_const!("Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none");
@@ -456,6 +467,81 @@ pub static COMMANDS: &[Spec] = &[
         params: &[param("points", Kind::Points, tr_const!("The two points in the plant (x, z in mm)"))],
         run: measure,
     },
+    Spec {
+        name: "add_earth_electrode",
+        help: tr_const!("Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("kind", Kind::Str, tr_const!("foundation, ring or rod")),
+            optional("x", Kind::Num, ELECTRODE_X),
+            optional("z", Kind::Num, ELECTRODE_Z),
+            optional("length", Kind::Num, ELECTRODE_LENGTH),
+            optional("distance", Kind::Num, ELECTRODE_DISTANCE),
+            optional("depth", Kind::Num, ELECTRODE_DEPTH),
+            optional("mesh", Kind::Num, ELECTRODE_MESH),
+            optional("part", Kind::Str, ELECTRODE_PART),
+            optional("busbar", Kind::Str, ELECTRODE_BUSBAR),
+            optional("name", Kind::Str, tr_const!("Name (default E1, E2, …)")),
+        ],
+        run: add_earth_electrode,
+    },
+    Spec {
+        name: "set_earth_electrode",
+        help: tr_const!("Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("electrode", Kind::Str, tr_const!("Earth electrode: its name")),
+            optional("x", Kind::Num, ELECTRODE_X),
+            optional("z", Kind::Num, ELECTRODE_Z),
+            optional("length", Kind::Num, ELECTRODE_LENGTH),
+            optional("distance", Kind::Num, ELECTRODE_DISTANCE),
+            optional("depth", Kind::Num, ELECTRODE_DEPTH),
+            optional("mesh", Kind::Num, ELECTRODE_MESH),
+            optional("part", Kind::Str, ELECTRODE_PART),
+            optional("busbar", Kind::Str, ELECTRODE_BUSBAR),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the earth electrode")),
+        ],
+        run: set_earth_electrode,
+    },
+    Spec {
+        name: "set_lightning_protection",
+        help: tr_const!("Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            optional("class", Kind::Int, tr_const!("Class of the lightning protection system, 1 … 4 (I … IV; default III)")),
+            optional("down_conductors", Kind::Int, tr_const!("Number of down conductors (0: as many as the class needs for the walls)")),
+            optional("part", Kind::Str, tr_const!("Part of the conductors (round wire; empty: generic)")),
+            optional("remove", Kind::Bool, tr_const!("Remove the lightning protection system")),
+        ],
+        run: set_lightning_protection,
+    },
+    Spec {
+        name: "add_air_rod",
+        help: tr_const!("Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            optional("x", Kind::Num, ROD_X),
+            optional("z", Kind::Num, ROD_Z),
+            optional("height", Kind::Num, ROD_HEIGHT),
+            optional("name", Kind::Str, tr_const!("Name (default F1, F2, …)")),
+        ],
+        run: add_air_rod,
+    },
+    Spec {
+        name: "set_air_rod",
+        help: tr_const!("Moves an air-termination rod, changes its height, renames or removes it"),
+        params: &[
+            param("building", Kind::Str, BUILDING),
+            param("rod", Kind::Str, tr_const!("Air-termination rod: its name")),
+            optional("x", Kind::Num, ROD_X),
+            optional("z", Kind::Num, ROD_Z),
+            optional("height", Kind::Num, ROD_HEIGHT),
+            optional("name", Kind::Str, tr_const!("New name")),
+            optional("remove", Kind::Bool, tr_const!("Remove the air-termination rod")),
+        ],
+        run: set_air_rod,
+    },
 ];
 
 fn building_arg(prj: &Project, a: &Args, name: &str) -> Result<usize, String> {
@@ -554,7 +640,166 @@ fn building_json(prj: &Project, bi: usize) -> Value {
         "shafts": shafts,
         "stairs": stairs,
         "roofs": roof_list,
+        "electrodes": b.electrodes.iter().map(|e| electrode_json(prj, &poses, bi, e)).collect::<Vec<_>>(),
+        "lightning": lightning_json(prj, &poses, bi),
     })
+}
+
+fn electrode_json(prj: &Project, poses: &[panel::SitePose], bi: usize, e: &panel::Electrode) -> Value {
+    let lines = earthing::paths(prj, poses, bi, e);
+    json!({
+        "id": e.id, "name": e.name, "kind": e.kind.key(), "distance": e.distance, "depth": e.depth, "mesh": e.mesh,
+        "x": e.x, "z": e.z, "length": e.length, "part": earthing::part_of(e), "busbar": e.busbar,
+        "conductor_length": earthing::length(&lines) / 1000.0, "meshes": lines.len().saturating_sub(1),
+    })
+}
+
+fn lightning_json(prj: &Project, poses: &[panel::SitePose], bi: usize) -> Value {
+    let Some(lp) = &prj.layout.buildings[bi].lightning else { return Value::Null };
+    let g = lightning::geometry(prj, poses, bi);
+    let len = |k: lightning::LpsKind| g.as_ref().map_or(0.0, |g| g.length(k) / 1000.0);
+    let rods: Vec<Value> = lp.rods.iter().map(|r| json!({ "id": r.id, "name": r.name, "x": r.x, "z": r.z, "height": r.height })).collect();
+    json!({
+        "class": lp.class, "class_name": lightning::class_name(lp.class), "down_conductors": g.as_ref().map_or(0, |g| g.count(lightning::LpsKind::Down)),
+        "down_spacing": lightning::down_spacing(lp.class), "mesh": lightning::mesh(lp.class), "part": lightning::conductor(lp),
+        "air_termination_length": len(lightning::LpsKind::AirTermination), "roof_conductor_length": len(lightning::LpsKind::Roof), "down_conductor_length": len(lightning::LpsKind::Down),
+        "rods": rods, "unprotected_pv_arrays": lightning::unprotected_arrays(prj, poses, bi),
+        "material": lightning::material(prj, poses, bi).into_iter().map(|(part, qty)| json!({ "part": part, "qty": qty })).collect::<Vec<_>>(),
+    })
+}
+
+fn electrode_arg(prj: &Project, bi: usize, a: &Args) -> Result<usize, String> {
+    let key = a.req("electrode").trim();
+    let b = &prj.layout.buildings[bi];
+    b.electrodes.iter().position(|e| e.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No earth electrode {} in building {}", key, b.name))
+}
+
+/// Applies the optional arguments of an earth electrode command.
+fn electrode_args(a: &Args, mut e: panel::Electrode) -> Result<panel::Electrode, String> {
+    e.x = a.num("x").unwrap_or(e.x);
+    e.z = a.num("z").unwrap_or(e.z);
+    e.length = num_in(a, "length", 500.0, 30_000.0)?.unwrap_or(e.length);
+    e.distance = num_in(a, "distance", 0.0, 10_000.0)?.unwrap_or(e.distance);
+    e.depth = num_in(a, "depth", 0.0, 5000.0)?.unwrap_or(e.depth);
+    e.mesh = num_in(a, "mesh", 2000.0, 50_000.0)?.unwrap_or(e.mesh);
+    if let Some(p) = a.str("part") {
+        e.part = p.trim().into();
+    }
+    if let Some(d) = a.str("busbar") {
+        e.busbar = d.trim().into();
+    }
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        e.name = n.into();
+    }
+    Ok(earthing::checked(e))
+}
+
+fn add_earth_electrode(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let key = a.req("kind");
+    let kind = ElectrodeKind::from_key(key).ok_or_else(|| tr_fmt!("Unknown earth electrode: {}", key))?;
+    let at = match (a.num("x"), a.num("z")) {
+        (Some(x), Some(z)) => Some([x, z]),
+        _ => None,
+    };
+    let id = earthing::add_electrode(prj, bi, kind, at)?;
+    let i = prj.layout.buildings[bi].electrodes.iter().position(|e| e.id == id).unwrap_or_default();
+    match electrode_args(a, prj.layout.buildings[bi].electrodes[i].clone()) {
+        Ok(e) => prj.layout.buildings[bi].electrodes[i] = e,
+        Err(e) => {
+            prj.layout.buildings[bi].electrodes.remove(i);
+            return Err(e);
+        }
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_earth_electrode(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let i = electrode_arg(prj, bi, a)?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].electrodes.remove(i);
+    } else {
+        let e = electrode_args(a, prj.layout.buildings[bi].electrodes[i].clone())?;
+        prj.layout.buildings[bi].electrodes[i] = e;
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_lightning_protection(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    if a.flag("remove") {
+        prj.layout.buildings[bi].lightning = None;
+        return Ok(building_json(prj, bi));
+    }
+    let class = int_in(a, "class", 1, 4)?;
+    let downs = int_in(a, "down_conductors", 0, 200)?;
+    let b = &mut prj.layout.buildings[bi];
+    let lp = b.lightning.get_or_insert_with(panel::Lightning::default);
+    if let Some(c) = class {
+        lp.class = c as u8;
+    }
+    if let Some(n) = downs {
+        lp.down_conductors = n as u32;
+    }
+    if let Some(p) = a.str("part") {
+        lp.part = p.trim().into();
+    }
+    *lp = lightning::checked(lp.clone());
+    Ok(building_json(prj, bi))
+}
+
+fn rod_arg(prj: &Project, bi: usize, a: &Args) -> Result<usize, String> {
+    let key = a.req("rod").trim();
+    let b = &prj.layout.buildings[bi];
+    b.lightning.as_ref().and_then(|lp| lp.rods.iter().position(|r| r.name.eq_ignore_ascii_case(key))).ok_or_else(|| tr_fmt!("No air-termination rod {} on building {}", key, b.name))
+}
+
+/// Applies the optional arguments of an air-termination rod command.
+fn rod_args(a: &Args, mut r: panel::AirRod) -> Result<panel::AirRod, String> {
+    r.x = a.num("x").unwrap_or(r.x);
+    r.z = a.num("z").unwrap_or(r.z);
+    r.height = num_in(a, "height", 100.0, 20_000.0)?.unwrap_or(r.height);
+    if let Some(n) = a.str("name").map(str::trim).filter(|n| !n.is_empty()) {
+        r.name = n.into();
+    }
+    Ok(r)
+}
+
+fn add_air_rod(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let at = match (a.num("x"), a.num("z")) {
+        (Some(x), Some(z)) => Some([x, z]),
+        _ => None,
+    };
+    let had = prj.layout.buildings[bi].lightning.is_some();
+    let id = lightning::add_rod(prj, bi, at)?;
+    let lp = prj.layout.buildings[bi].lightning.as_mut().ok_or_else(String::new)?;
+    let i = lp.rods.iter().position(|r| r.id == id).unwrap_or_default();
+    match rod_args(a, lp.rods[i].clone()) {
+        Ok(r) => lp.rods[i] = r,
+        Err(e) => {
+            lp.rods.remove(i);
+            if !had {
+                prj.layout.buildings[bi].lightning = None;
+            }
+            return Err(e);
+        }
+    }
+    Ok(building_json(prj, bi))
+}
+
+fn set_air_rod(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let bi = building_arg(prj, a, "building")?;
+    let i = rod_arg(prj, bi, a)?;
+    let lp = prj.layout.buildings[bi].lightning.as_mut().ok_or_else(String::new)?;
+    if a.flag("remove") {
+        lp.rods.remove(i);
+    } else {
+        let r = rod_args(a, lp.rods[i].clone())?;
+        lp.rods[i] = r;
+    }
+    Ok(building_json(prj, bi))
 }
 
 fn link_json(prj: &Project, link: &openecraft_core::panel::SiteLink) -> Value {

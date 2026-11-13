@@ -110,6 +110,7 @@ Air at devices at most	Levegő a készülékeknél legfeljebb
 Air temperature	Léghőmérséklet
 Air temperature at the devices	Léghőmérséklet a készülékeknél
 Air temperature {} … {} °C	Léghőmérséklet {} … {} °C
+Air-termination rod	Felfogórúd
 Align	Igazítás
 Aligned	Igazított
 Alignment	Igazítás
@@ -300,6 +301,7 @@ Choose pages	Oldalak kiválasztása
 Chooses the pages whose structure starts with this	Kiválasztja azokat az oldalakat, amelyek struktúrája ezzel kezdődik
 Circle	Kör
 Circuits of a generic manifold	Általános osztó körei
+Class {}	{}. osztály
 Clear	Törlés
 Clear the search	Keresés törlése
 Clearance	Szabad tér
@@ -470,9 +472,11 @@ Define all used	Az összes használt definiálása
 Defined potentials	Definiált potenciálok
 Del	Del
 Delete PV array	PV-mező törlése
+Delete air-termination rod	Felfogórúd törlése
 Delete cable (its wires are removed from it)	Kábel törlése (a vezetékei lekerülnek róla)
 Delete comment	Megjegyzés törlése
 Delete connection point	Csatlakozási pont törlése
+Delete earth electrode	Földelő törlése
 Delete element	Elem törlése
 Delete enclosure	Szekrény törlése
 Delete enclosure {} with everything placed in it?	Törli a(z) {} szekrényt mindennel, ami benne van?
@@ -499,8 +503,10 @@ Delete this workspace	A munkaterület törlése
 Delete variant	Változat törlése
 Delete zone	Zóna törlése
 Depth / mounted at	Mélység / szerelve itt
+Depth below the ground	Mélység a terepszint alatt
 Depth from / to	Mélység ettől / eddig
 Depth in the floor	Mélység a padlóban
+Depth of its top below the ground	Felső vég mélysége a terepszint alatt
 Derive project definition	Projektdefiníció származtatása
 Descriptions	Leírások
 Deselect	Kijelölés megszüntetése
@@ -572,6 +578,7 @@ Door cutouts (CSV)	Ajtókivágások (CSV)
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
 Double-click	Dupla kattintás
+Down conductors	Levezetők
 Download into database	Letöltés az adatbázisba
 Download project	Projekt letöltése
 Downloaded {} (version {})	{} letöltve ({} verzió)
@@ -623,6 +630,7 @@ Duct fill limit	Csatornatöltöttség határértéke
 Duplicate	Kettőzés
 Each example builds on the one before and shows more of the features.	Minden példa az előzőre épül, és több funkciót mutat be.
 Each point-to-point connection can belong to a harness	Minden pont-pont összeköttetés tartozhat egy kábelköteghez
+Earthing and lightning protection	Földelés és villámvédelem
 Earthing busbar	Földelősín
 Earthing conductor	Földelővezető
 Earthing points	Földelési pontok
@@ -815,6 +823,7 @@ Height above the floor	Padló feletti magasság
 Height above the mounting plate	Magasság a szerelőlap fölött
 Height above the plate	Magasság a lap fölött
 Height of the plinth, 0 without plinth	A lábazat magassága, 0 lábazat nélkül
+Height of the rod above the covering	A rúd magassága a tetőfedés felett
 Heights above floor (IEC 60204-1)	Padló feletti magasságok (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Kattintás, mozgatás vagy görgetés közben nyomva tartva. macOS-en a Ctrl a Cmd.
 Help	Súgó
@@ -838,6 +847,8 @@ Hose defaults and PCT loops of the pre-planning	Tömlő-alapértékek és az el�
 Hose number	Tömlőszám
 Hoses and pipes	Tömlők és csövek
 Hoses rated below it are errors; 0 = not checked	Az ennél kisebb névleges nyomású tömlők hibának számítanak; 0 = nincs ellenőrzés
+How far inside the outer walls	Mennyivel a külső falakon belül
+How far outside the outer walls	Mennyivel a külső falakon kívül
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hogyan nyílik a szárny: a bal vagy jobb élén zsanérral (a helyiség belsejéből nézve), a helyiség felé vagy kifelé, vagy a fal mentén tolva
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hogyan van a vezeték ezen a végén lezárva; alapértelmezés szerint a csatlakozási ponthoz vagy eszközéhez választott módon, egyébként az elrendezés érvéghüvely-beállítása szerint
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hogyan ugorják át a vezetékek az általuk keresztezett vezetékeket, hogyan jelölik a T-csatlakozásokat, és újravezetik-e az áthelyezett elemek a kapcsolataikat
@@ -951,6 +962,7 @@ Labeling scheme	Feliratozási séma
 Landscape	Fekvő
 Large dot	Nagy pont
 Larger texts and buttons for a touch screen at the workbench	Nagyobb szövegek és gombok a munkapad érintőképernyőjéhez
+Largest mesh	Legnagyobb háló
 Latitude, longitude	Szélesség, hosszúság
 Layer	Réteg
 Layer {}	{} réteg
@@ -972,6 +984,7 @@ Legend plates (door devices)	Feliratos táblák (ajtókészülékek)
 Length from the node to the device	Hossz a csomóponttól a készülékig
 Length inside an enclosure	Hossz a szekrényen belül
 Length of a shield pigtail where there is no shield clamp	Az árnyékolás-pigtail hossza ott, ahol nincs árnyékolásbilincs
+Length of the rod	A rúdföldelő hossza
 Length of wires that are not routed in the panel layout	A szekrényelrendezésben nem vezetett vezetékek hossza
 Length {} mm	Hossz: {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Betűk, számjegyek, szóköz, - _ . (legfeljebb 64 karakter)
@@ -982,6 +995,7 @@ Level {} added to building {}; new rooms go onto it	A(z) {0} szint hozzáadva a(
 Level {} of building {}	{1} épület {0} szintje
 Levels	Szintek
 Library	Könyvtár
+Lightning protection	Villámvédelem
 Like two fingers	Mint két ujj
 Limits	Határértékek
 Limits in effect	Érvényes határértékek
@@ -1180,6 +1194,7 @@ No PLC cards in the project.	Nincsenek PLC-kártyák a projektben.
 No PLC inputs / outputs placed.	Nincsenek elhelyezett PLC-bemenetek / -kimenetek.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Nincsenek tartozékok: a tömszelencék, csatlakozók, árnyékolásbilincsek … bekerülnek az anyagjegyzékbe, és a kábelhez képest ellenőrzésre kerülnek.
 No bus systems.	Nincsenek buszrendszerek.
+No busbar	Nincs sín
 No cable passage to {}: wires to it are not routed	Nincs kábelátvezetés ehhez: {}: az oda menő vezetékek nincsenek fektetve
 No cables defined.	Nincsenek definiált kábelek.
 No cables yet. Draw a cable definition across wires or add a cable.	Még nincsenek kábelek. Rajzoljon kábeldefiníciót vezetékeken keresztül, vagy adjon hozzá egy kábelt.
@@ -2363,6 +2378,7 @@ x y	x y
 {} devices renamed	{} készülék átnevezve
 {} differences to {}	{0} különbség ehhez képest: {1}
 {} doors	{} ajtó
+{} down conductors with test joints, {} m of conductors	{} levezető mérési csatlakozókkal, {} m vezető
 {} entries in {}	{} bejegyzés itt: {}
 {} errors	Hibák: {}
 {} errors, {} warnings	{} hiba, {} figyelmeztetés

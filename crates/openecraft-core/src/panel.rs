@@ -31,6 +31,8 @@ mod macros;
 mod manufacturing;
 mod mounting;
 mod placement;
+pub mod earthing;
+pub mod lightning;
 pub mod plot;
 mod points;
 pub mod rack;
@@ -59,7 +61,7 @@ pub use rooms::{
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{Building, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
+pub use crate::model::panel::{AirRod, Building, Electrode, ElectrodeKind, Lightning, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -2376,6 +2378,13 @@ pub fn layout_material(prj: &Project) -> Vec<(String, f32, Vec<String>)> {
         let holders = crate::production::busbar_holders(e);
         if holders > 0 {
             add(&mut out, crate::production::BUSBAR_HOLDER, holders as f32, e.name.clone());
+        }
+    }
+    // The earth electrodes and the lightning protection of the buildings.
+    let poses = site_poses(prj);
+    for (bi, b) in prj.layout.buildings.iter().enumerate() {
+        for (part, qty) in earthing::material(prj, &poses, bi).into_iter().chain(lightning::material(prj, &poses, bi)) {
+            add(&mut out, &part, qty, b.name.clone());
         }
     }
     // The modules and the mounting of the PV arrays on the roofs.

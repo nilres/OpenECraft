@@ -433,6 +433,7 @@ ERP item master and bill of materials (CSV)	Kmenová data položek ERP a kusovn�
 ERP number	Číslo ERP
 ETIM class	Třída ETIM
 Earth electrode	Zemnič
+Earth rod	Tyčový zemnič
 East-west on a flat roof	Východ-západ na ploché střeše
 Edit pages	Upravovat stránky
 Edit project data	Upravovat data projektu
@@ -550,6 +551,7 @@ Foot switch NO (NFPA)	Nožní spínač, spínací (NFPA)
 Force	Síla
 Fork terminal	Vidlicové oko
 Format (placeholders)	Formát (zástupné symboly)
+Foundation earth electrode	Základový zemnič
 Frame size	Konstrukční velikost
 Free	Volné
 Free air (mm)	Volné vedení (mm)
@@ -1343,6 +1345,7 @@ Revision table: description of the last revision (2: the one before …)	Tabulka
 Revision table: index of the last revision (2: the one before …)	Tabulka revizí: index poslední revize (2: předchozí …)
 Right side	Pravá strana
 Right side panel	Pravá boční stěna
+Ring earth electrode	Obvodový zemnič
 Ring terminal	Kabelové oko
 Rivet nut	Nýtovací matice
 RoHS compliant	Vyhovuje RoHS
@@ -1968,6 +1971,7 @@ yellow	žlutá
 {}: PV array {} covers a roof window	{}: FV pole {} zakrývá střešní okno
 {}: PV array {} has {} modules, its device {} has {}	{}: FV pole {} má {} modulů, jeho zařízení {} má {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: FV pole {} je namontováno skloněně na šikmé střeše
+{}: PV array {} lies outside the protection of the air-termination system	{}: FV pole {} leží mimo ochranu jímací soustavy
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: FV pole {} střechy {} leží přes hřeben, nároží nebo okraj střechy
 {}: PV array {} of roof {} lies outside the roof	{}: FV pole {} střechy {} leží mimo střechu
 {}: PV arrays {} and {} lie over each other	{}: FV pole {} a {} se překrývají
@@ -2059,6 +2063,7 @@ yellow	žlutá
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: přípojnicový systém s {} přípojnicemi spojuje {} vodiče ({}): zkrat
 {}: the device {} of PV array {} does not exist	{}: zařízení {} FV pole {} neexistuje
 {}: the earthing busbar {} of PV array {} does not exist	{}: uzemňovací přípojnice {} FV pole {} neexistuje
+{}: the lightning protection has no earth electrode	{}: ochrana před bleskem nemá zemnič
 {}: the module {} of PV array {} has no electrical data	{}: modul {} FV pole {} nemá elektrická data
 {}: the station has no port {}	{}: stanice nemá port {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: stringy FV pole {} spojují {} modulů, pole má {}

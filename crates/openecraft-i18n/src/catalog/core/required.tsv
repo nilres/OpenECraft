@@ -471,6 +471,7 @@ ERP item master and bill of materials (CSV)	ERP-Artikelstamm und Stückliste (CS
 ERP number	ERP-Nummer	Numéro ERP	Número ERP
 ETIM class	ETIM-Klasse	Classe ETIM	Clase ETIM
 Earth electrode	Erder	Prise de terre	Electrodo de tierra
+Earth rod	Tiefenerder	Piquet de terre	Pica de tierra
 East-west on a flat roof	Ost-West auf einem Flachdach	Est-ouest sur un toit plat	Este-oeste en una cubierta plana
 Edit pages	Seiten bearbeiten	Modifier les pages	Editar páginas
 Edit project data	Projektdaten bearbeiten	Modifier les données du projet	Editar datos del proyecto
@@ -594,6 +595,7 @@ Foot switch NO (NFPA)	Fußschalter Schließer (NFPA)	Interrupteur à pied NO (NF
 Force	Kraft	Force	Fuerza
 Fork terminal	Gabelkabelschuh	Cosse à fourche	Terminal de horquilla
 Format (placeholders)	Format (Platzhalter)	Format (espaces réservés)	Formato (marcadores)
+Foundation earth electrode	Fundamenterder	Prise de terre de fondation	Electrodo de cimentación
 Frame size	Baugröße	Taille de carcasse	Tamaño constructivo
 Free	Frei	Libre	Libre
 Free air (mm)	Freie Verlegung (mm)	Air libre (mm)	Aire libre (mm)
@@ -1446,6 +1448,7 @@ Revision table: description of the last revision (2: the one before …)	Revisio
 Revision table: index of the last revision (2: the one before …)	Revisionstabelle: Index der letzten Revision (2: die davor …)	Tableau des révisions : indice de la dernière révision (2 : la précédente …)	Tabla de revisiones: índice de la última revisión (2: la anterior …)
 Right side	Rechte Seite	Côté droit	Lado derecho
 Right side panel	Rechte Seitenwand	Paroi latérale droite	Panel lateral derecho
+Ring earth electrode	Ringerder	Boucle de terre	Anillo de tierra
 Ring terminal	Ringkabelschuh	Cosse à œillet	Terminal de ojal
 Rivet nut	Einnietmutter	Écrou à sertir	Tuerca remachable
 RoHS compliant	RoHS-konform	Conforme RoHS	Conforme a RoHS
@@ -2115,6 +2118,7 @@ yellow	gelb	jaune	amarillo
 {}: PV array {} covers a roof window	{}: PV-Anlage {} verdeckt ein Dachfenster	{} : le champ photovoltaïque {} couvre une fenêtre de toit	{}: el campo fotovoltaico {} cubre una ventana de tejado
 {}: PV array {} has {} modules, its device {} has {}	{}: PV-Anlage {} hat {} Module, ihr Betriebsmittel {} hat {}	{} : le champ photovoltaïque {} a {} modules, son appareil {} en a {}	{}: el campo fotovoltaico {} tiene {} módulos, su dispositivo {} tiene {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: PV-Anlage {} ist auf einem geneigten Dach aufgeständert	{} : le champ photovoltaïque {} est monté incliné sur un toit en pente	{}: el campo fotovoltaico {} está montado inclinado en una cubierta inclinada
+{}: PV array {} lies outside the protection of the air-termination system	{}: PV-Anlage {} liegt außerhalb des Schutzbereichs der Fangeinrichtung	{} : le champ photovoltaïque {} est hors de la zone protégée par le dispositif de capture	{}: el campo fotovoltaico {} está fuera de la protección del sistema captador
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: PV-Anlage {} des Dachs {} liegt über einem First, einem Grat oder dem Dachrand	{} : le champ photovoltaïque {} du toit {} passe sur un faîtage, une arête ou le bord du toit	{}: el campo fotovoltaico {} de la cubierta {} pasa sobre una cumbrera, una limatesa o el borde de la cubierta
 {}: PV array {} of roof {} lies outside the roof	{}: PV-Anlage {} des Dachs {} liegt außerhalb des Dachs	{} : le champ photovoltaïque {} du toit {} est hors du toit	{}: el campo fotovoltaico {} de la cubierta {} está fuera de la cubierta
 {}: PV arrays {} and {} lie over each other	{}: PV-Anlagen {} und {} liegen übereinander	{} : les champs photovoltaïques {} et {} se superposent	{}: los campos fotovoltaicos {} y {} se superponen
@@ -2126,6 +2130,7 @@ yellow	gelb	jaune	amarillo
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: Ein Leiter mit {} mm² ist dünner, als der Anschluss aufnimmt (mindestens {} mm²)	{} : un fil de {} mm² est plus fin que ce qu'accepte le point de connexion (au moins {} mm²)	{}: un cable de {} mm² es más fino de lo que admite el punto de conexión (al menos {} mm²)
 {}: accessory {} fits none of the device's parts	{}: Zubehör {} passt zu keinem Artikel des Geräts	{} : l'accessoire {} ne convient à aucun article de l'appareil	{}: el accesorio {} no es compatible con ningún artículo del equipo
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: Bedienteil {} liegt {} mm über dem Boden, empfohlen {} … {} mm	{} : l'organe de commande {} est à {} mm au-dessus du sol, recommandé {} … {} mm	{}: el actuador {} está a {} mm sobre el suelo, recomendado {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: Fangstange {} steht neben den Dächern	{} : la tige captrice {} est hors des toits	{}: la punta captadora {} está fuera de los tejados
 {}: auxiliary function(s) without main function	{}: Hilfsfunktion(en) ohne Hauptfunktion	{} : fonction(s) auxiliaire(s) sans fonction principale	{}: función(es) auxiliar(es) sin función principal
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: Schaltvermögen {} kA unter dem Kurzschlussstrom {} kA	{} : pouvoir de coupure {} kA inférieur au courant de court-circuit {} kA	{}: poder de corte {} kA inferior a la corriente de cortocircuito {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: Kabelkanal bei {} mm zu {} % gefüllt (Grenzwert {} %)	{} : goulotte à {} mm remplie à {} % (limite {} %)	{}: canaleta en {} mm llena al {} % (límite {} %)
@@ -2149,6 +2154,8 @@ yellow	gelb	jaune	amarillo
 {}: device box extends or shows a device that is not placed	{}: Gerätebox erweitert oder zeigt ein Betriebsmittel, das nicht platziert ist	{} : la boîte d'appareil étend ou montre un appareil qui n'est pas placé	{}: la caja de dispositivo amplía o muestra un dispositivo que no está colocado
 {}: device box shows connection point '{}' that the device does not have	{}: Gerätebox zeigt Anschlusspunkt '{}', den das Betriebsmittel nicht hat	{} : la boîte d'appareil montre le point de connexion '{}' que l'appareil n'a pas	{}: la caja de dispositivo muestra el punto de conexión '{}' que el dispositivo no tiene
 {}: device tag without device name	{}: Betriebsmittelkennzeichen ohne Betriebsmittelname	{} : repère d'appareil sans nom d'appareil	{}: designación de dispositivo sin nombre de dispositivo
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: Erder {} hat keine Wände, an denen er verläuft: das Gebäude hat keine Räume oder Dächer	{} : la prise de terre {} n'a pas de murs à suivre : le bâtiment n'a ni pièces ni toits	{}: el electrodo de tierra {} no tiene muros que seguir: el edificio no tiene locales ni tejados
+{}: earth rod {} stands inside the walls of the building	{}: Tiefenerder {} steht innerhalb der Wände des Gebäudes	{} : le piquet de terre {} est à l'intérieur des murs du bâtiment	{}: la pica de tierra {} está dentro de los muros del edificio
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: Fehlerstrom {} A an {} schaltet nicht innerhalb von {} s ab (benötigt {} A)	{} : le courant de défaut {} A à {} ne coupe pas en {} s (il faut {} A)	{}: la corriente de defecto {} A en {} no desconecta en {} s (necesita {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: Funktionstexte in Übersichtsschaltplan und Stromlaufplan unterscheiden sich	{} : les textes de fonction diffèrent entre le schéma unifilaire et le schéma développé	{}: los textos de función difieren entre el esquema unifilar y el esquema desarrollado
 {}: hole of {} is too close to the cutout of {} on the {}	{}: Bohrung von {} liegt zu nah am Ausschnitt von {} auf {}	{} : le perçage de {} est trop proche de la découpe de {} sur {}	{}: el taladro de {} está demasiado cerca del recorte de {} en {}
@@ -2216,9 +2223,12 @@ yellow	gelb	jaune	amarillo
 {}: terminal {} uses {} levels, its part {} has {}	{}: Klemme {} nutzt {} Etagen, ihr Artikel {} hat {}	{} : la borne {} utilise {} étages, son article {} en a {}	{}: el borne {} usa {} pisos, su artículo {} tiene {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: Klemmen {} liegen {} mm über dem Boden, mindestens {} mm erforderlich	{} : les bornes {} sont à {} mm au-dessus du sol, au moins {} mm requis	{}: los bornes {} están a {} mm sobre el suelo, se requieren al menos {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: Das Sammelschienensystem mit {} Schienen verbindet {} Leiter ({}): Kurzschluss	{} : le système de jeu de barres à {} barres relie {} conducteurs ({}) : court-circuit	{}: el sistema de embarrado con {} barras une {} conductores ({}): cortocircuito
+{}: the busbar {} of earth electrode {} does not exist	{}: die Schiene {} des Erders {} existiert nicht	{} : la barrette {} de la prise de terre {} n'existe pas	{}: la barra {} del electrodo de tierra {} no existe
 {}: the device {} of PV array {} does not exist	{}: das Betriebsmittel {} der PV-Anlage {} gibt es nicht	{} : l'appareil {} du champ photovoltaïque {} n'existe pas	{}: el dispositivo {} del campo fotovoltaico {} no existe
 {}: the earthing busbar {} of PV array {} does not exist	{}: die Erdungsschiene {} der PV-Anlage {} existiert nicht	{} : la barre de terre {} du champ photovoltaïque {} n'existe pas	{}: la barra de tierra {} del campo fotovoltaico {} no existe
 {}: the level of the room no longer exists	{}: die Ebene des Raums existiert nicht mehr	{} : le niveau de la pièce n'existe plus	{}: el nivel de la sala ya no existe
+{}: the lightning protection has no earth electrode	{}: der Blitzschutz hat keinen Erder	{} : la protection contre la foudre n'a pas de prise de terre	{}: la protección contra el rayo no tiene electrodo de tierra
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: der Blitzschutz hat keine Wände, an denen er verläuft: das Gebäude hat keine Räume oder Dächer	{} : la protection contre la foudre n'a pas de murs à suivre : le bâtiment n'a ni pièces ni toits	{}: la protección contra el rayo no tiene muros que seguir: el edificio no tiene locales ni tejados
 {}: the module {} of PV array {} has no electrical data	{}: das Modul {} der PV-Anlage {} hat keine elektrischen Daten	{} : le module {} du champ photovoltaïque {} n'a pas de données électriques	{}: el módulo {} del campo fotovoltaico {} no tiene datos eléctricos
 {}: the station has no port {}	{}: Die Station hat keinen Port {}	{} : la station n'a pas de port {}	{}: la estación no tiene el puerto {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: die Strings der PV-Anlage {} verschalten {} Module, die Anlage hat {}	{} : les chaînes du champ photovoltaïque {} raccordent {} modules, le champ en a {}	{}: los strings del campo fotovoltaico {} conectan {} módulos, el campo tiene {}
@@ -2235,6 +2245,7 @@ yellow	gelb	jaune	amarillo
 {}: {} carries {} A, the load {} needs {} A	{}: {} trägt {} A, der Verbraucher {} braucht {} A	{} : {} supporte {} A, la charge {} demande {} A	{}: {} soporta {} A, la carga {} necesita {} A
 {}: {} changed after it was mounted	{}: {} wurde nach der Montage geändert	{} : {} a été modifié après le montage	{}: {} se modificó después del montaje
 {}: {} collides with {}	{}: {} kollidiert mit {}	{} : {} entre en collision avec {}	{}: {} colisiona con {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} Ableitungen, Klasse {} braucht {} rund um das Gebäude	{} : {} conducteurs de descente, la classe {} en exige {} autour du bâtiment	{}: {} bajantes, la clase {} necesita {} alrededor del edificio
 {}: {} inputs used, the module has {}	{}: {} Eingänge verwendet, die Baugruppe hat {}	{} : {} entrées utilisées, le module en a {}	{}: {} entradas usadas, el módulo tiene {}
 {}: {} is a fluid device, not an electrical one	{}: {} ist ein Fluidgerät, kein elektrisches	{} : {} est un appareil fluidique, pas électrique	{}: {} es un dispositivo de fluidos, no eléctrico
 {}: {} is closer than {} mm to a cable duct	{}: {} ist näher als {} mm an einem Kabelkanal	{} : {} est à moins de {} mm d'une goulotte	{}: {} está a menos de {} mm de una canaleta

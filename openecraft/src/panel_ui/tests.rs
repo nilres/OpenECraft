@@ -1855,6 +1855,41 @@ fn pv_arrays_are_picked_selected_and_drawn_with_their_cabling() {
 }
 
 #[test]
+fn earth_electrodes_and_lightning_protection_are_drawn_with_the_building() {
+    let (mut prj, attic) = house();
+    panel::earthing::add_electrode(&mut prj, 0, panel::ElectrodeKind::Ring, None).unwrap();
+    prj.layout.buildings[0].lightning = Some(panel::Lightning::default());
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, ..Default::default() };
+    ui.toggle_building();
+    let scene = |ui: &mut PanelUi| {
+        let shown = ui.shown_3d(&prj, attic);
+        ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown)
+    };
+    let ring = egui::Color32::from_rgb(60, 140, 80);
+    let conductor = egui::Color32::from_rgb(205, 210, 216);
+    let s = scene(&mut ui);
+    let count = |s: &super::scene3d::Scene3d, c: egui::Color32| s.wires.iter().filter(|w| w.line.color == c).count();
+    assert_eq!(count(&s, ring), 4, "the ring round the walls");
+    let on_roof = count(&s, conductor);
+    assert!(on_roof > 10, "ridge, roof and down conductors: {on_roof}");
+    // Without the roofs: the down conductors and the ring stay.
+    ui.hide_ceiling = true;
+    let s = scene(&mut ui);
+    assert_eq!(count(&s, ring), 4);
+    assert_eq!(count(&s, conductor), 2, "the two down conductors");
+    // The site plan draws them too.
+    let ctx = egui::Context::default();
+    let rect = egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(800.0, 600.0));
+    let input = egui::RawInput { screen_rect: Some(rect), ..Default::default() };
+    ctx.run_ui(input, |ui_| {
+        site_plan::paint(ui_, rect, &prj, &site_plan::SitePlan::default(), None);
+    })
+    .textures_delta
+    .clear();
+}
+
+#[test]
 fn roof_windows_are_drawn_with_the_slope_they_lie_in() {
     let (prj, attic) = house();
     let an = Analysis::build(&prj);
