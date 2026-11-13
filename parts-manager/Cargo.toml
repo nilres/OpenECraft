@@ -24,6 +24,7 @@ egui = { version = "0.37", features = ["monochrome_emoji_fonts"] }
 serde_json = "1"
 log = "0.4"
 openecraft-edz = { path = "../crates/openecraft-edz" }
+openecraft-step = { path = "../crates/openecraft-step" }
 openecraft-parts = { path = "../crates/openecraft-parts" }
 openecraft-i18n = { path = "../crates/openecraft-i18n" }
 openecraft-ui = { path = "../crates/openecraft-ui" }
@@ -35,3 +36,6 @@ env_logger = "0.11"
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"
 web-sys = { version = "0.3", features = ["Window", "Document", "Element", "HtmlCanvasElement", "Navigator"] }
+
+[dev-dependencies]
+openecraft-core = { path = "../crates/openecraft-core" }

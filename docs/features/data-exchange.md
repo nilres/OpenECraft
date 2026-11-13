@@ -69,7 +69,7 @@ models are exchanged with the PDM system directly instead of through files.
   account) and *Sign in*. Browse the folders and search the file properties below the
   folder shown.
 - **Import**: a selected file is opened as the project (`.oec`, `.oecz`), imported into
-  the parts database (CSV, JSON, BMEcat, EPLAN XML, EDZ), assigned as 2D / 3D model of a
+  the parts database (CSV, JSON, BMEcat, EPLAN XML, EDZ, enclosure packages as ZIP), assigned as 2D / 3D model of a
   part (SVG, STEP, IGES, Parasolid, JT, IFC, STL, OBJ – e.g. models of the mechanical design kept
   in the vault), inserted as a page (DXF, DWG) or as a document page (PDF, Office files,
   images), read with a connector of the enterprise integration layer, or saved as a

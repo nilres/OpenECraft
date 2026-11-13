@@ -23,7 +23,7 @@ pub enum Purpose {
 impl FileKind for Purpose {
     fn filter(self) -> (&'static str, &'static [&'static str]) {
         match self {
-            Purpose::Parts => (tr("Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ)"), &["csv", "json", "xml", "txt", "edz"]),
+            Purpose::Parts => (tr("Parts (CSV, JSON, BMEcat, EPLAN XML, EDZ, ZIP)"), &["csv", "json", "xml", "txt", "edz", "zip"]),
             Purpose::Model(kind) => kind.filter(),
             Purpose::Attachment => (
                 tr("Part files (documents, images, models, macros)"),
@@ -138,7 +138,7 @@ impl ManagerApp {
 
     fn loaded(&mut self, ctx: &egui::Context, loaded: Loaded<Purpose>) {
         match loaded.purpose {
-            Purpose::Parts if openecraft_edz::is_edz(&loaded.bytes) || (loaded.name.to_ascii_lowercase().ends_with(".xml") && openecraft_parts::is_eplan_xml(&loaded.text())) => match self.session.import_package(&loaded.name,&loaded.bytes) {
+            Purpose::Parts if openecraft_edz::is_edz(&loaded.bytes) || openecraft_edz::package::is_zip(&loaded.bytes) || (loaded.name.to_ascii_lowercase().ends_with(".xml") && openecraft_parts::is_eplan_xml(&loaded.text())) => match self.session.import_package(&loaded.name,&loaded.bytes) {
                 Ok(parts) => self.client.upload(ctx, &parts),
                 Err(e) => self.client.status = tr_fmt!("Parts import failed: {}", e),
             },

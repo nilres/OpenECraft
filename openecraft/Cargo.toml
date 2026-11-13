@@ -30,6 +30,7 @@ serde_json = "1"
 log = "0.4"
 image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
 openecraft-edz = { path = "../crates/openecraft-edz" }
+openecraft-step = { path = "../crates/openecraft-step" }
 openecraft-parts = { path = "../crates/openecraft-parts" }
 openecraft-i18n = { path = "../crates/openecraft-i18n" }
 openecraft-ui = { path = "../crates/openecraft-ui" }

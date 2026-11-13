@@ -134,6 +134,17 @@ the device. Floor-standing parts stand upright on the floor of a room.
   The part XML of an unpacked EDZ file (`items/partxml/…part.xml`) is read the same
   way: with the connection point and drilling pattern files next to it and the macros
   and pictures below `items/`.
+- **Enclosure packages** (ZIP archives of enclosure configurators such as the Rittal
+  configurator): the bill of materials (`bill-of-material.csv`) gives the parts, the
+  first one is the configured enclosure (manufacturer prefix and name from the EPLAN
+  macro, e.g. `RIT.1360000`, size from *WHD: 600x600x350 mm*, GTIN, configuration id
+  and compact enclosure system in its technical data) with the further lines as its
+  components. The preview of the EPLAN Pro Panel macro becomes its picture, and the
+  STEP model, without its restricted cut-out and placing areas and stood upright with
+  the front towards +z, its 3D model (Parts Manager and the editor; `parts_import`
+  attaches the STEP file instead). The macro, the EPLAN project (`.zw1`), the STEP
+  file and the PDF documents are stored as attachments. The 3D content of the macro
+  (mounting surfaces, restricted areas) is not read yet.
 
 ### Placing an EPLAN symbol
 

@@ -227,6 +227,17 @@ fn files_of_an_edz_file_are_attached_after_its_parts_are_uploaded() {
 }
 
 #[test]
+fn enclosure_packages_are_imported_with_their_files() {
+    let mut zip = openecraft_core::zip::ZipWriter::new("2026-11-11");
+    zip.add("CSV_article_list\\bill-of-material.csv", b"1360000;1;Pc(s.);AX Compact enclosure, WHD: 600x600x350 mm, sheet steel;4028177813168\n");
+    zip.add("Product_description\\Product_Description.pdf", b"%PDF-1.7");
+    let mut s = Session::default();
+    let parts = s.import_package("geos.zip", &zip.finish()).unwrap();
+    assert_eq!((parts[0].number.as_str(), parts[0].height), ("1360000", 600.0));
+    assert_eq!(s.pending_files.iter().map(|f| (f.part.as_str(), f.name.as_str())).collect::<Vec<_>>(), [("1360000", "Product_Description.pdf")]);
+}
+
+#[test]
 fn parts_are_only_editable_with_the_right_to_change_them() {
     use openecraft_parts::access::{Access, Grant, Policy, Subject};
     use openecraft_parts::portal::PartsRight;

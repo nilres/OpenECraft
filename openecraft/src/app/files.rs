@@ -421,14 +421,19 @@ impl App {
         }
     }
 
-    /// Imports a parts file (CSV, JSON, BMEcat, EPLAN XML or EDZ) into the database; it
-    /// is read on another thread.
+    /// Imports a parts file (CSV, JSON, BMEcat, EPLAN XML, EDZ or the ZIP package of an
+    /// enclosure configurator) into the database; it is read on another thread.
     pub(super) fn import_parts(&mut self, ctx: &egui::Context, name: &str, data: &[u8]) {
         let bytes = data.to_vec();
         let path = name.to_owned();
         let mappings: Vec<_> = self.session.prj.symbols.iter().filter(|s| s.key.starts_with("user:eplan-lib:")).cloned().collect();
         self.jobs.push(Job::start(tr("Reading the parts file").to_string(), ctx, move || {
-            Done::Parts(openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings).map(|package| package.parts))
+            let package = if openecraft_edz::package::is_zip(&bytes) {
+                openecraft_edz::package::read(&bytes, Some(openecraft_step::parse_step_without))
+            } else {
+                openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings)
+            };
+            Done::Parts(package.map(|package| package.parts))
         }));
     }
 
