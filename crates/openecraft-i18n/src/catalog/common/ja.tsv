@@ -1,6 +1,7 @@
 # English<TAB>日本語 – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(すべて)
 (no entries)	(エントリなし)
+(no structure)	(構造なし)
 --json needs a JSON object	--json には JSON オブジェクトが必要です
 3D model	3D モデル
 3D routing	3D 配線ルート
@@ -16,11 +17,13 @@ Add	追加
 Add a PDF of all pages	全ページの PDF を追加
 Add to favorites	お気に入りに追加
 Address	アドレス
+Administrator	管理者
 Angle	角度
 Apply	適用
 Approve	承認
 Approvers	承認者
 Automatic	自動
+Aux	補助
 Below	下
 Bold	太字
 Bottom	底板
@@ -123,6 +126,7 @@ Downloading {}…	{} をダウンロードしています…
 Drag to turn the model	ドラッグしてモデルを回転
 EMC clearance	EMC クリアランス
 Edit	編集
+Editor	編集者
 Electro-fluid cross reference	電気-流体相互参照
 Enclosure	エンクロージャー
 Enclosures	エンクロージャー
@@ -142,6 +146,8 @@ Field wiring	フィールド配線
 File	ファイル
 Files	ファイル
 Filter	フィルター
+Filter devices…	デバイスをフィルター…
+Fit	全体表示
 Fits	適合先
 Fitting at the end	終端の継手
 Fitting at the start	始端の継手
@@ -163,6 +169,7 @@ Gives up a subproject: its pages are unlocked again	サブプロジェクトを�
 Gland plate	グランドプレート
 Graphics	図形
 Group	グループ
+Group the pages by structure	ページを構造でグループ化
 Groups	グループ
 Harness	ハーネス
 Harness data	ハーネスデータ
@@ -205,9 +212,12 @@ Load	負荷
 Loaded circuits bunched together	束ねられた負荷回路数
 Location	取付場所
 Location (+)	取付場所 (+)
+Locked	ロック
+Locked by {}	{} がロック中
 Logo	ロゴ
 MTTFd (years)	MTTFd (年)
 Machine	機械
+Main	メイン
 Main earthing busbar (device) it is connected to; empty: none	接続先の主接地ブスバー (デバイス)。空欄: なし
 Main earthing terminal	主接地端子
 Main switch	主開閉器
@@ -350,9 +360,11 @@ Product subgroup	製品サブグループ
 Product top group	製品トップグループ
 Profile	プロファイル
 Project	プロジェクト
+Project data	プロジェクトデータ
 Project languages	プロジェクト言語
 Project logo	プロジェクトのロゴ
 Project management	プロジェクト管理
+Project manager	プロジェクトマネージャー
 Project name	プロジェクト名
 Project properties	プロジェクトプロパティ
 Properties	プロパティ
@@ -369,6 +381,7 @@ Rated power	定格出力
 Rear wall	背板
 Rectangle	四角形
 Rectangular	四角形
+Refresh	最新の情報に更新
 Reject	却下
 Relative humidity	相対湿度
 Relay	リレー
@@ -384,6 +397,7 @@ Report blocks	レポートブロック
 Report: {}	レポート: {}
 Required	必要
 Reserve	予備
+Reviewer	レビュー担当者
 Revision	リビジョン
 Revision {}	リビジョン {}
 Rework	手直し
@@ -427,6 +441,7 @@ Sign in	サインイン
 Sign out	サインアウト
 Signed in as {}	{} としてサインイン中
 Signed in as {} ({})	{} ({}) としてサインイン中
+Signed out	サインアウトしました
 Signing in…	サインインしています…
 Single-line / multi-line	単線 / 複線
 Size	サイズ
@@ -434,6 +449,7 @@ Socket side	ソケット側
 Solenoid not linked	ソレノイド未リンク
 Sort by	並べ替え
 Source	ソース
+Started	開始済み
 State	状態
 Status	ステータス
 String	ストリング
@@ -497,6 +513,7 @@ User	ユーザー
 User name	ユーザー名
 Users	ユーザー
 Version	バージョン
+Viewer	ビューアー
 Voltage	電圧
 Warning	警告
 Warnings	警告
@@ -537,6 +554,7 @@ yes	はい
 {} exists already	{} は既に存在します
 {} is not a PNG or JPEG image	{} は PNG または JPEG 画像ではありません
 {} parts	{} 個の部品
+{} users	ユーザー {} 人
 {} wires	{} 本の電線
 {}, together with the wire to {}	{}、{} への電線と共用
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} は床置きではありません。床置き部品を選択してください

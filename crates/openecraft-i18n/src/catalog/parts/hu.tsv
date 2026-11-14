@@ -7,6 +7,7 @@ A grant needs a user or a group	Egy hozzárendeléshez felhasználó vagy csopor
 A group name must not be empty or contain ':'	A csoport neve nem lehet üres és nem tartalmazhat ':' karaktert
 A manufacturer user needs a manufacturer	A gyártói felhasználóhoz gyártó szükséges
 A part number must not be empty or start or end with blanks	A cikkszám nem lehet üres, és nem kezdődhet vagy végződhet szóközzel
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak projektekre (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	A szerepkör jogok halmaza. A hozzárendelések egy felhasználónak vagy csoportnak szerepkört adnak egy gyártó alkatrészeire (* és ? helyettesítő karakterként, * mindegyikre); a megtagadó hozzárendelés elveszi a szerepkör jogait, bármit adnak is más hozzárendelések.
 A user name must not be empty or contain blanks	A felhasználónév nem lehet üres, és nem tartalmazhat szóközt
 Accept any certificate (test installations only)	Bármely tanúsítvány elfogadása (csak teszttelepítések)
@@ -23,6 +24,7 @@ Administration	Adminisztráció
 All manufacturers	Minden gyártó
 All parts	Összes alkatrész
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Az összes alkatrész az adataival, táblázatkezelőhöz vagy egy másik szerverre való importáláshoz. A fájljaik csak az adatbázis biztonsági mentésében vannak.
+All projects	Minden projekt
 Allowed groups	Engedélyezett csoportok
 Also groups of groups (Active Directory)	Csoportok csoportjai is (Active Directory)
 Amplifiers, controllers	Erősítők, szabályozók
@@ -76,6 +78,7 @@ Check flap	Visszacsapó csappantyú
 Chimney	Kémény
 Choose logo…	Logó kiválasztása…
 Circuit breaker	Kismegszakító
+Closed	Bezárva
 Coil	Tekercs
 Complete power units	Komplett aggregátok
 Compressed air filters	Sűrítettlevegő-szűrők
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Törli a(z) {} csoportot? A hozz�
 Delete part {} from the server? This cannot be undone.	Törli a(z) {} alkatrészt a szerverről? Ez nem vonható vissza.
 Delete part {}?	Törli a(z) {} alkatrészt?
 Delete parts	Alkatrészek törlése
+Delete user {}? Their open projects are closed.	Törli a(z) {} felhasználót? A megnyitott projektjei bezárulnak.
 Delete user {}? Their sessions and favorites are removed.	Törli a(z) {} felhasználót? A munkamenetei és kedvencei eltávolításra kerülnek.
 Deleted	Törölve
 Digital sensor, general	Digitális érzékelő, általános
@@ -140,6 +144,7 @@ Drawings box	Rajztartó
 Dryer	Szárító
 Dummy plate	Vakkarima
 Duplex switch filters	Kettős átkapcsolható szűrők
+Duration	Időtartam
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	{} katalógus szerkesztése
 Edit catalogs	Katalógusok szerkesztése
@@ -158,6 +163,8 @@ Enclosure cooling devices	Kapcsolószekrény-hűtőkészülékek
 Enclosure heater	Kapcsolószekrény-fűtés
 Encryption	Titkosítás
 End clamp	Végbak
+Ended	Befejeződött
+Ended by	Befejezés módja
 Ends the session and forgets the token	Befejezi a munkamenetet, és elveti a tokent
 Engine	Hajtógép
 Enter the address of an openecraft-parts-server and click Connect.	Adja meg egy openecraft-parts-server címét, és kattintson a Csatlakozás gombra.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Környezeti válto
 Evaporator	Elpárologtató
 Everybody who may read the parts sees it.	Mindenki látja, aki olvashatja az alkatrészeket.
 Exhaust valves	Légtelenítő szelepek
+Expired	Lejárt
 Export (CSV)	Exportálás (CSV)
 Export and backup	Exportálás és biztonsági mentés
 Export the parts, catalogs and settings, or download a backup of the whole database.	Exportálja az alkatrészeket, a katalógusokat és a beállításokat, vagy töltse le a teljes adatbázis biztonsági mentését.
@@ -175,6 +183,8 @@ Female insert	Hüvelyes betét
 Field distribution device	Terepi elosztó
 Files and history ({} files)	Fájlok és előzmények ({} fájl)
 Filter fan	Szűrős ventilátor
+Filter projects…	Projektek szűrése…
+Filter sessions…	Munkamenetek szűrése…
 Filters	Szűrők
 Fixed displacement pumps	Állandó lökettérfogatú szivattyúk
 Flange pair	Karimapár
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Képek (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Importálás / exportálás
 Import parts	Alkatrészek importálása
 Imported {} parts (revision {})	{} alkatrész importálva ({}. revízió)
+In use by	Használja
+In use by {}	Használja: {}
 Inductors	Induktivitások
 Install	Telepítés
 Install again	Újratelepítés
@@ -224,6 +236,7 @@ KNX actuator	KNX aktor
 KNX system device	KNX rendszereszköz
 Key switch	Kulcsos kapcsoló
 Kneader	Dagasztó
+Last activity	Utolsó tevékenység
 Last changes per month	Utolsó módosítások havonta
 Last sign-in	Utolsó bejelentkezés
 Legend plate	Feliratos tábla
@@ -245,6 +258,7 @@ Logic items	Logikai elemek
 Logos	Logók
 Looks the users up; empty: users bind with their own name (below)	Megkeresi a felhasználókat; üres: a felhasználók saját nevükkel kötődnek (lent)
 Male insert	Dugós betét
+Managers of a project give rights on it themselves (Permissions on the project).	A projektvezetők maguk adnak jogokat a projektjükre (A projekt engedélyei).
 Measurement system	Mérőberendezés
 Measuring connection points	Mérőcsatlakozások
 Measuring couplings	Mérőcsatlakozók
@@ -270,11 +284,18 @@ New role	Új szerepkör
 New user	Új felhasználó
 Newer version	Újabb verzió
 Next	Következő
+No devices found	Nem található készülék
+No ended sessions	Nincsenek befejezett munkamenetek
 No grants: the rights by manufacturer apply	Nincsenek hozzárendelések: a gyártó szerinti jogok érvényesek
+No grants: the roles of the users apply	Nincsenek hozzárendelések: a felhasználók szerepkörei érvényesek
 No grants: users have the rights of their role	Nincsenek hozzárendelések: a felhasználók a szerepkörük jogaival rendelkeznek
 No groups	Nincsenek csoportok
+No open sessions	Nincsenek nyitott munkamenetek
+No projects found	Nem található projekt
 No users	Nincsenek felhasználók
+Nobody works on a project	Senki sem dolgozik projekten
 Non-return valves	Visszacsapó szelepek
+None (only grants)	Nincs (csak hozzárendelések)
 Not mounted	Nincs felszerelve
 Nut	Anya
 On the front	Elöl
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Csak alkatrész nélküli katalóguso
 Only empty catalogs can be deleted	Csak üres katalógusok törölhetők
 Only local accounts	Csak helyi fiókok
 Only their members sign in; empty: all users	Csak tagjaik jelentkezhetnek be; üres: minden felhasználó
+Open sessions	Nyitott munkamenetek
 Open sessions: {}	Nyitott munkamenetek: {}
 OpenECraft data portal	OpenECraft adatportál
 OpenECraft parts manager	OpenECraft alkatrészkezelő
 OpenECraft parts server	OpenECraft alkatrészszerver
+OpenECraft project server	OpenECraft projektszerver
 Other file	Egyéb fájl
 Other labels	Egyéb címkék
 Others	Egyéb
@@ -324,6 +347,7 @@ Password variable	Jelszóváltozó
 Per page	Oldalanként
 Permissions	Engedélyek
 Permissions of catalog {}	A(z) {} katalógus engedélyei
+Permissions of project {}	A(z) {} projekt engedélyei
 Phase-out	Kifutó
 Pipes	Csövek
 Piping part	Csővezeték-elem
@@ -349,6 +373,9 @@ Pressure switches	Nyomáskapcsolók
 Pressure valves	Nyomásszelepek
 Previous	Előző
 Progressive feeders	Progresszív elosztók
+Project {} not found	A(z) {} projekt nem található
+Projects	Projektek
+Projects in use	Használatban lévő projektek
 Protection devices	Védőkészülékek
 Proximity switches	Közelítéskapcsolók
 Pump brackets	Szivattyútartók
@@ -381,6 +408,7 @@ Replaced by {}	Helyettesítője: {}
 Resistors	Ellenállások
 Restore from a file	Visszaállítás fájlból
 Return flushing filters, all-autom.	Visszaöblítő szűrők, teljesen automatikus
+Revision {} on the server	Revízió a szerveren: {}
 Ribbon cables	Szalagkábelek
 Roles	Szerepkörök
 Roof hook	Tetőkampó
@@ -395,6 +423,7 @@ Save the catalog first	Előbb mentse a katalógust
 Save the part first	Előbb mentse az alkatrészt
 Saved directory {}	{} címtár mentve
 Saved group {}	{} csoport mentve
+Saves	Mentések
 Screw connections	Csavarkötések
 Screw pumps	Csavarorsós szivattyúk
 Screw spindle compressors	Csavarorsós kompresszorok
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Érzékelők, kapcsolók és nyomógombok
 Sensors - pressure gauges	Érzékelők – nyomásmérők
 Serial sub-plates	Soros csatlakozólapok
 Service account	Szolgáltatásfiók
+Sessions	Munkamenetek
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	A kiszolgáló indítási beállításai határozzák meg (--dashboard vagy OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	A szerver indítási beállításai határozzák meg (--registration vagy OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Rövid név szóközök nélkül; minősíti a csoportokat (id:csoport)
@@ -424,11 +454,13 @@ Sight glass	Kémlelőüveg
 Sign in as an administrator to manage the server	Jelentkezzen be rendszergazdaként a szerver kezeléséhez
 Sign in or connect with the access token to change parts	Jelentkezzen be, vagy csatlakozzon a hozzáférési tokennel az alkatrészek módosításához
 Sign in to keep favorites	Jelentkezzen be a kedvencek megőrzéséhez
+Sign in to see the projects	Jelentkezzen be a projektek megtekintéséhez
 Sign in with a user account	Bejelentkezés felhasználói fiókkal
 Sign in with the access token of the server	Bejelentkezés a szerver hozzáférési tokenjével
 Sign out everywhere	Kijelentkeztetés mindenhol
 Sign out {} on all devices?	Kijelentkezteti a(z) {} felhasználót minden eszközön?
 Sign-in needed to read	Az olvasáshoz bejelentkezés szükséges
+Sign-in needed to view	A megtekintéshez bejelentkezés szükséges
 Signal device	Jelzőkészülék
 Signal device, acoustic	Jelzőkészülék, akusztikus
 Signal device, optical	Jelzőkészülék, optikai
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Az utolsó rendszer
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	A cég logója: PNG, JPEG, GIF, WebP vagy SVG, legfeljebb 512 kB
 The password needs at least {} characters	A jelszónak legalább {} karakterből kell állnia
 The passwords do not match	A jelszavak nem egyeznek
+The project has no devices	A projektben nincsenek készülékek
+The project has no pages	A projektben nincsenek oldalak
 The project has no parts	A projektnek nincsenek alkatrészei
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	A projektek, amelyekre a szerepkör vonatkozik (* és ? helyettesítő karakterként), vesszővel elválasztva; üres: mind
 The registration is closed	A regisztráció le van zárva
 The registration is open	A regisztráció nyitva van
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Az itt adott szerepkörök erre a katalógusra és alkatrészeire vonatkoznak, gyártótól függetlenül; a megtagadás elveszi a szerepkör jogait. Az olvasás az egész kiszolgáló joga.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Az itt adott szerepkörök erre a projektre vonatkoznak; a megtagadás elveszi a szerepkör jogait. Megtagadást csak rendszergazdák oldhatnak fel.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	A szerepkörök, a hozzárendelések, a csoportok és a bejelentkezés nélküli hozzáférés, a kiszolgáló verziójával. A visszaállítás lecseréli a szerepköröket és hozzárendeléseket, és hozzáadja a csoportokat; a címtárak úgy maradnak, ahogy a kiszolgálón be vannak állítva.
 The server cannot be reached	A szerver nem érhető el
+The server keeps the last {} ended sessions.	A szerver az utolsó {} befejezett munkamenetet őrzi meg.
 The server sent no text	A szerver nem küldött szöveget
 The test failed	A teszt nem sikerült
 The test succeeded	A teszt sikerült
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	{} feltöltése a Vaultba ({} %)…
 Uploading {} to Vault…	{} feltöltése a Vaultba…
 User account	Felhasználói fiók
 User bind	Felhasználói kötés
+User deleted	Felhasználó törölve
 User filter	Felhasználószűrő
 User or group	Felhasználó vagy csoport
 User {} exists already. Change it?	A(z) {} felhasználó már létezik. Módosítja?
@@ -536,6 +574,7 @@ Variable displacement pumps	Változtatható lökettérfogatú szivattyúk
 Vault did not continue the upload	A Vault nem folytatta a feltöltést
 Ventilation filters	Szellőzőszűrők
 Ventilator	Ventilátor
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	A megtekintők csak olvasásra nyitják meg a projekteket, a véleményezők véleményezéseket is mentenek, a szerkesztők módosítják és létrehozzák a projekteket, a projektvezetők törölhetik is őket és jogokat adnak rájuk, a rendszergazdák kezelik a szervert.
 Voltage source	Feszültségforrás
 Voltage source and generator	Feszültségforrás és generátor
 Waiting accounts cannot sign in; approve or reject them in Users.	A várakozó fiókok nem tudnak bejelentkezni; a Felhasználók részben hagyhatja jóvá vagy utasíthatja el őket.
@@ -549,8 +588,10 @@ Without sign-in	Bejelentkezés nélkül
 Wrong access token	Hibás hozzáférési token
 Wrong user name or password	Hibás felhasználónév vagy jelszó
 You may not change parts of manufacturer {}	Nem módosíthatja a(z) {} gyártó alkatrészeit
+You may not see any project	Egyetlen projektet sem láthat
 Your account awaits the approval of an administrator	A fiókja rendszergazdai jóváhagyásra vár
 Your account was created. An administrator has to approve it before you can sign in.	A fiókja létrejött. Egy rendszergazdának jóvá kell hagynia, mielőtt bejelentkezhet.
+Your rights	Az Ön jogai
 access denied – check the personal access token	hozzáférés megtagadva – ellenőrizze a személyes hozzáférési tokent
 by file name	fájlnév szerint
 changed, not saved	módosítva, nincs mentve
@@ -574,6 +615,7 @@ you	Ön
 {} has no checksum in SHA256SUMS	A(z) {} fájlnak nincs ellenőrzőösszege az SHA256SUMS fájlban
 {} parts in {} catalogs, revision {}	{} alkatrész {} katalógusban, {}. revízió
 {} parts, {} catalogs, {}	{} alkatrész, {} katalógus, {}
+{} projects	{} projekt
 {} – save to upload it	{} – a feltöltéshez mentse
 {}: a logo has at most 512 kB	{}: egy logó legfeljebb 512 kB
 {}: the catalog is no longer open	{}: a katalógus már nincs megnyitva

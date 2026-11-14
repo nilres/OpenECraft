@@ -3524,6 +3524,7 @@ dependencies = [
  "openecraft-parts",
  "openecraft-step",
  "openecraft-ui",
+ "openecraft-view",
  "serde",
  "serde_json",
  "wasm-bindgen",
@@ -3678,6 +3679,7 @@ dependencies = [
  "openecraft-auth",
  "openecraft-i18n",
  "openecraft-parts",
+ "openecraft-web",
  "rusqlite",
  "serde",
  "serde_json",
@@ -3697,7 +3699,10 @@ dependencies = [
  "log",
  "openecraft-auth",
  "openecraft-core",
+ "openecraft-i18n",
  "openecraft-parts",
+ "openecraft-view",
+ "openecraft-web",
  "serde",
  "serde_json",
  "tokio",
@@ -3742,6 +3747,26 @@ dependencies = [
  "wasm-bindgen",
  "wasm-bindgen-futures",
  "web-sys",
+]
+
+[[package]]
+name = "openecraft-view"
+version = "0.1.1"
+dependencies = [
+ "openecraft-core",
+ "openecraft-i18n",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "openecraft-web"
+version = "0.1.1"
+dependencies = [
+ "axum",
+ "openecraft-i18n",
+ "openecraft-parts",
+ "serde",
 ]
 
 [[package]]

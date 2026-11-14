@@ -1,6 +1,7 @@
 # English<TAB>Suomi – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(kaikki)
 (no entries)	(ei merkintöjä)
+(no structure)	(ei rakennetta)
 --json needs a JSON object	--json vaatii JSON-objektin
 3D model	3D-malli
 3D routing	3D-reititys
@@ -16,11 +17,13 @@ Add	Lisää
 Add a PDF of all pages	Lisää kaikista sivuista PDF
 Add to favorites	Lisää suosikkeihin
 Address	Osoite
+Administrator	Järjestelmänvalvoja
 Angle	Kulma
 Apply	Käytä
 Approve	Hyväksy
 Approvers	Hyväksyjät
 Automatic	Automaattinen
+Aux	Apu
 Below	Alapuolella
 Bold	Lihavointi
 Bottom	Pohja
@@ -125,6 +128,7 @@ Downloading {}…	Ladataan {}…
 Drag to turn the model	Käännä mallia vetämällä
 EMC clearance	EMC-etäisyys
 Edit	Muokkaa
+Editor	Muokkaaja
 Electro-fluid cross reference	Sähkö-fluidi-ristiviittaukset
 Enclosure	Kotelo
 Enclosures	Kotelot
@@ -144,6 +148,8 @@ Field wiring	Kenttäjohdotus
 File	Tiedosto
 Files	Tiedostot
 Filter	Suodatin
+Filter devices…	Suodata laitteita…
+Fit	Sovita
 Fits	Sopii
 Fitting at the end	Putkiliitin lopussa
 Fitting at the start	Putkiliitin alussa
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Hylkää aliprojektin: sen s
 Gland plate	Läpivientilevy
 Graphics	Grafiikka
 Group	Ryhmä
+Group the pages by structure	Ryhmittele sivut rakenteen mukaan
 Groups	Ryhmät
 Harness	Johtosarja
 Harness data	Johtosarjan tiedot
@@ -207,9 +214,12 @@ Load	Kuorma
 Loaded circuits bunched together	Yhteen niputetut kuormitetut piirit
 Location	Sijainti
 Location (+)	Sijainti (+)
+Locked	Lukittu
+Locked by {}	Lukinnut: {}
 Logo	Logo
 MTTFd (years)	MTTFd (vuotta)
 Machine	Kone
+Main	Pää
 Main earthing busbar (device) it is connected to; empty: none	Päämaadoituskisko (laite), johon se on liitetty; tyhjä: ei mitään
 Main earthing terminal	Päämaadoituskisko
 Main switch	Pääkytkin
@@ -352,9 +362,11 @@ Product subgroup	Tuotealaryhmä
 Product top group	Tuotepääryhmä
 Profile	Profiili
 Project	Projekti
+Project data	Projektitiedot
 Project languages	Projektin kielet
 Project logo	Projektin logo
 Project management	Projektinhallinta
+Project manager	Projektipäällikkö
 Project name	Projektin nimi
 Project properties	Projektin ominaisuudet
 Properties	Ominaisuudet
@@ -371,6 +383,7 @@ Rated power	Mitoitusteho
 Rear wall	Takaseinä
 Rectangle	Suorakulmio
 Rectangular	Suorakulmainen
+Refresh	Päivitä
 Reject	Hylkää
 Relative humidity	Suhteellinen kosteus
 Relay	Rele
@@ -386,6 +399,7 @@ Report blocks	Raporttilohkot
 Report: {}	Raportti: {}
 Required	Vaadittu
 Reserve	Varaus
+Reviewer	Tarkastaja
 Revision	Revisio
 Revision {}	Revisio {}
 Rework	Jälkityö
@@ -429,6 +443,7 @@ Sign in	Kirjaudu sisään
 Sign out	Kirjaudu ulos
 Signed in as {}	Kirjautunut käyttäjänä {}
 Signed in as {} ({})	Kirjautunut käyttäjänä {} ({})
+Signed out	Kirjauduttu ulos
 Signing in…	Kirjaudutaan sisään…
 Single-line / multi-line	Yksinapainen / moninapainen
 Size	Koko
@@ -436,6 +451,7 @@ Socket side	Holkkipuoli
 Solenoid not linked	Magneettikelaa ei linkitetty
 Sort by	Lajitteluperuste
 Source	Lähde
+Started	Aloitettu
 State	Tila
 Status	Tila
 String	Merkkijono
@@ -499,6 +515,7 @@ User	Käyttäjä
 User name	Käyttäjänimi
 Users	Käyttäjät
 Version	Versio
+Viewer	Katselija
 Voltage	Jännite
 Warning	Varoitus
 Warnings	Varoitukset
@@ -541,6 +558,7 @@ yes	kyllä
 {} exists already	{} on jo olemassa
 {} is not a PNG or JPEG image	{} ei ole PNG- tai JPEG-kuva
 {} parts	{} osaa
+{} users	{} käyttäjää
 {} wires	{} johtoa
 {}, together with the wire to {}	{}, yhdessä johtimen {} kanssa
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} ei seiso lattialla, valitse lattialle sijoitettava osa

@@ -16,12 +16,19 @@
 //! settings (`--access`, default `access.json` in the data directory). Their rights per
 //! project come from their built-in role and the grants to them and their groups;
 //! `--admin-user` creates the first administrator.
+//!
+//! `--web` (or `OPENECRAFT_PROJECT_WEB`) serves a web page: the projects the user may
+//! see, read only (pages, devices), and the administration of the users, the access
+//! rights and the directories (`web`).
 
+mod history;
 mod routes;
 mod sessions;
 mod settings;
 mod store;
 mod users;
+mod views;
+mod web;
 
 use clap::Parser;
 use std::sync::{Arc, Mutex};
@@ -80,8 +87,15 @@ async fn main() {
     if token.is_none() && users.accounts.is_empty() && access.config.directories.is_empty() {
         log::warn!("no access token, user accounts or directories: everyone who reaches the server can change its projects");
     }
-    let server = routes::Server { store, sessions: Default::default(), users, access, throttle: Default::default() };
-    let state = routes::AppState { server: Arc::new(Mutex::new(server)), token };
+    let history = match history::History::open(&args.data) {
+        Ok(h) => h,
+        Err(e) => {
+            log::error!("cannot read the history of the sessions: {e}");
+            std::process::exit(1);
+        }
+    };
+    let server = routes::Server { store, sessions: sessions::Sessions::with_history(history), users, access, throttle: Default::default(), views: Default::default() };
+    let state = routes::AppState { server: Arc::new(Mutex::new(server)), token, web: args.web };
     let listener = match tokio::net::TcpListener::bind(args.bind).await {
         Ok(l) => l,
         Err(e) => {
@@ -89,7 +103,7 @@ async fn main() {
             std::process::exit(1);
         }
     };
-    log::info!("listening on http://{}", args.bind);
+    log::info!("listening on http://{}{}", args.bind, if args.web { " (web page on)" } else { "" });
     let shutdown = async {
         tokio::signal::ctrl_c().await.ok();
         log::info!("shutting down");

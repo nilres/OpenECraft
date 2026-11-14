@@ -7,6 +7,7 @@ A grant needs a user or a group	권한 부여에는 사용자 또는 그룹이 �
 A group name must not be empty or contain ':'	그룹 이름은 비워 둘 수 없으며 ':'를 포함할 수 없습니다
 A manufacturer user needs a manufacturer	제조업체 사용자에게는 제조업체가 필요합니다
 A part number must not be empty or start or end with blanks	부품 번호는 비워 둘 수 없으며 공백으로 시작하거나 끝날 수 없습니다
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	역할은 권한의 집합입니다. 권한 부여는 사용자 또는 그룹에 프로젝트에 대한 역할을 제공합니다(* 및 ?는 와일드카드, *는 전체). 거부 권한 부여는 다른 권한 부여와 관계없이 역할의 권한을 회수합니다.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	역할은 권한의 집합입니다. 권한 부여는 사용자 또는 그룹에 제조업체의 부품에 대한 역할을 제공합니다(* 및 ?는 와일드카드, *는 전체). 거부 권한 부여는 다른 권한 부여와 관계없이 역할의 권한을 회수합니다.
 A user name must not be empty or contain blanks	사용자 이름은 비어 있거나 공백을 포함할 수 없습니다
 Accept any certificate (test installations only)	모든 인증서 허용(테스트 설치 전용)
@@ -23,6 +24,7 @@ Administration	관리
 All manufacturers	모든 제조업체
 All parts	모든 부품
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	모든 부품과 해당 데이터로, 스프레드시트에 사용하거나 다른 서버로 가져올 수 있습니다. 파일은 데이터베이스 백업에만 포함됩니다.
+All projects	모든 프로젝트
 Allowed groups	허용된 그룹
 Also groups of groups (Active Directory)	그룹의 그룹도 포함(Active Directory)
 Amplifiers, controllers	증폭기, 컨트롤러
@@ -75,6 +77,7 @@ Check flap	체크 플랩
 Chimney	굴뚝
 Choose logo…	로고 선택…
 Circuit breaker	차단기
+Closed	닫힘
 Coil	코일
 Complete power units	완성형 동력 장치
 Compressed air filters	압축 공기 필터
@@ -118,6 +121,7 @@ Delete group {}? The grants to it are removed.	그룹 {}을(를) 삭제하시겠
 Delete part {} from the server? This cannot be undone.	서버에서 부품 {}을(를) 삭제하시겠습니까? 이 작업은 실행 취소할 수 없습니다.
 Delete part {}?	부품 {}을(를) 삭제하시겠습니까?
 Delete parts	부품 삭제
+Delete user {}? Their open projects are closed.	사용자 {}을(를) 삭제하시겠습니까? 해당 사용자가 연 프로젝트가 닫힙니다.
 Delete user {}? Their sessions and favorites are removed.	사용자 {}을(를) 삭제하시겠습니까? 해당 사용자의 세션과 즐겨찾기가 제거됩니다.
 Deleted	삭제됨
 Digital sensor, general	디지털 센서, 일반
@@ -139,6 +143,7 @@ Drawings box	도면 보관함
 Dryer	건조기
 Dummy plate	블라인드 플레이트
 Duplex switch filters	듀플렉스 전환 필터
+Duration	지속 시간
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	카탈로그 {} 편집
 Edit catalogs	카탈로그 편집
@@ -157,6 +162,8 @@ Enclosure cooling devices	외함 냉각 장치
 Enclosure heater	외함 히터
 Encryption	암호화
 End clamp	엔드 클램프
+Ended	종료됨
+Ended by	종료 방식
 Ends the session and forgets the token	세션을 종료하고 토큰을 삭제합니다
 Engine	원동기
 Enter the address of an openecraft-parts-server and click Connect.	openecraft-parts-server의 주소를 입력하고 연결을 클릭하세요.
@@ -164,6 +171,7 @@ Environment variable with the password of the service account	서비스 계정�
 Evaporator	증발기
 Everybody who may read the parts sees it.	부품을 읽을 수 있는 모든 사람이 볼 수 있습니다.
 Exhaust valves	배기 밸브
+Expired	만료됨
 Export (CSV)	내보내기(CSV)
 Export and backup	내보내기 및 백업
 Export the parts, catalogs and settings, or download a backup of the whole database.	부품, 카탈로그 및 설정을 내보내거나 전체 데이터베이스의 백업을 다운로드합니다.
@@ -174,6 +182,8 @@ Female insert	암 인서트
 Field distribution device	필드 분배 장치
 Files and history ({} files)	파일 및 기록(파일 {}개)
 Filter fan	필터 팬
+Filter projects…	프로젝트 필터…
+Filter sessions…	세션 필터…
 Filters	필터
 Fixed displacement pumps	정용량 펌프
 Flange pair	플랜지 쌍
@@ -214,6 +224,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	이미지(PNG, JPEG, GIF, WebP, SVG)
 Import / export	가져오기 / 내보내기
 Import parts	부품 가져오기
 Imported {} parts (revision {})	부품 {}개를 가져왔습니다(개정 {})
+In use by	사용 중인 사용자
+In use by {}	{}이(가) 사용 중
 Inductors	인덕터
 Install	설치
 Install again	다시 설치
@@ -223,6 +235,7 @@ KNX actuator	KNX 액추에이터
 KNX system device	KNX 시스템 장치
 Key switch	키 스위치
 Kneader	니더
+Last activity	마지막 활동
 Last changes per month	최근 변경 추이
 Last sign-in	마지막 로그인
 Legend plate	명판
@@ -244,6 +257,7 @@ Logic items	논리 소자
 Logos	로고
 Looks the users up; empty: users bind with their own name (below)	사용자를 조회합니다. 비어 있으면 사용자가 자신의 이름으로 바인딩합니다(아래)
 Male insert	수 인서트
+Managers of a project give rights on it themselves (Permissions on the project).	프로젝트 관리자가 직접 프로젝트에 권한을 부여합니다(프로젝트의 권한).
 Measurement system	측정 시스템
 Measuring connection points	측정 연결점
 Measuring couplings	측정 커플링
@@ -269,11 +283,18 @@ New role	새 역할
 New user	새 사용자
 Newer version	최신 버전
 Next	다음
+No devices found	장치를 찾을 수 없음
+No ended sessions	종료된 세션 없음
 No grants: the rights by manufacturer apply	권한 부여 없음: 제조업체별 권한이 적용됩니다
+No grants: the roles of the users apply	권한 부여 없음: 사용자의 역할이 적용됩니다
 No grants: users have the rights of their role	권한 부여 없음: 사용자는 자신의 역할 권한을 가집니다
 No groups	그룹 없음
+No open sessions	열린 세션 없음
+No projects found	프로젝트를 찾을 수 없음
 No users	사용자 없음
+Nobody works on a project	프로젝트에서 작업 중인 사람이 없습니다
 Non-return valves	논리턴 밸브
+None (only grants)	없음(권한 부여만)
 Not mounted	장착 안 함
 Nut	너트
 On the front	앞면
@@ -286,10 +307,12 @@ Only catalogs without parts can be deleted	부품이 없는 카탈로그만 삭�
 Only empty catalogs can be deleted	빈 카탈로그만 삭제할 수 있습니다
 Only local accounts	로컬 계정만
 Only their members sign in; empty: all users	구성원만 로그인합니다. 비어 있음: 모든 사용자
+Open sessions	열린 세션
 Open sessions: {}	열린 세션: {}
 OpenECraft data portal	OpenECraft 데이터 포털
 OpenECraft parts manager	OpenECraft 부품 관리자
 OpenECraft parts server	OpenECraft 부품 서버
+OpenECraft project server	OpenECraft 프로젝트 서버
 Other file	기타 파일
 Other labels	기타 라벨
 Others	기타
@@ -323,6 +346,7 @@ Password variable	암호 변수
 Per page	페이지당
 Permissions	권한
 Permissions of catalog {}	카탈로그 {}의 권한
+Permissions of project {}	프로젝트 {}의 권한
 Phase-out	단종 예정
 Pipes	파이프
 Piping part	배관 부품
@@ -348,6 +372,9 @@ Pressure switches	압력 스위치
 Pressure valves	압력 밸브
 Previous	이전
 Progressive feeders	프로그레시브 분배기
+Project {} not found	프로젝트 {}을(를) 찾을 수 없음
+Projects	프로젝트
+Projects in use	사용 중인 프로젝트
 Protection devices	보호 장치
 Proximity switches	근접 스위치
 Pump brackets	펌프 브래킷
@@ -380,6 +407,7 @@ Replaced by {}	{}(으)로 대체됨
 Resistors	저항기
 Restore from a file	파일에서 복원
 Return flushing filters, all-autom.	역세척 필터, 전자동
+Revision {} on the server	서버의 개정 {}
 Ribbon cables	리본 케이블
 Roles	역할
 Roof hook	지붕 후크
@@ -394,6 +422,7 @@ Save the catalog first	먼저 카탈로그를 저장하십시오
 Save the part first	먼저 부품을 저장하세요
 Saved directory {}	디렉터리 서비스 {} 저장됨
 Saved group {}	그룹 {} 저장됨
+Saves	저장 횟수
 Screw connections	나사 연결부
 Screw pumps	스크류 펌프
 Screw spindle compressors	스크류 스핀들 압축기
@@ -409,6 +438,7 @@ Sensor, switch, and pushbutton	센서, 스위치 및 푸시버튼
 Sensors - pressure gauges	센서 - 압력계
 Serial sub-plates	직렬 서브플레이트
 Service account	서비스 계정
+Sessions	세션
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	서버 시작 옵션으로 설정됨(--dashboard 또는 OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	서버 시작 옵션으로 설정되었습니다(--registration 또는 OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	공백 없는 짧은 이름. 그룹을 한정합니다(id:그룹)
@@ -423,11 +453,13 @@ Sight glass	사이트 글라스
 Sign in as an administrator to manage the server	서버를 관리하려면 관리자로 로그인하십시오
 Sign in or connect with the access token to change parts	부품을 변경하려면 로그인하거나 액세스 토큰으로 연결하십시오
 Sign in to keep favorites	즐겨찾기를 유지하려면 로그인하세요
+Sign in to see the projects	프로젝트를 보려면 로그인하십시오
 Sign in with a user account	사용자 계정으로 로그인
 Sign in with the access token of the server	서버의 액세스 토큰으로 로그인
 Sign out everywhere	모든 곳에서 로그아웃
 Sign out {} on all devices?	모든 기기에서 {}을(를) 로그아웃하시겠습니까?
 Sign-in needed to read	읽으려면 로그인 필요
+Sign-in needed to view	보려면 로그인 필요
 Signal device	신호 장치
 Signal device, acoustic	신호 장치, 음향
 Signal device, optical	신호 장치, 광학
@@ -483,12 +515,17 @@ The last administrator cannot lose the right to manage users	마지막 관리자
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	회사 로고: PNG, JPEG, GIF, WebP 또는 SVG, 최대 512 kB
 The password needs at least {} characters	암호는 {}자 이상이어야 합니다
 The passwords do not match	암호가 일치하지 않습니다
+The project has no devices	프로젝트에 장치가 없습니다
+The project has no pages	프로젝트에 페이지가 없습니다
 The project has no parts	프로젝트에 부품이 없습니다
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	역할이 적용되는 프로젝트(* 및 ?는 와일드카드), 쉼표로 구분, 비어 있으면 전체
 The registration is closed	가입이 열려 있지 않습니다
 The registration is open	가입이 열려 있습니다
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	여기에서 부여한 역할은 제조업체와 관계없이 이 카탈로그와 그 부품에 적용됩니다. 거부는 역할의 권한을 회수합니다. 읽기는 서버 전체의 권한입니다.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	여기에서 부여한 역할은 이 프로젝트에 적용됩니다. 거부는 역할의 권한을 회수합니다. 거부는 관리자만 해제할 수 있습니다.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	역할, 권한 부여, 그룹 및 로그인 없는 액세스(서버 버전 포함). 복원하면 역할과 권한 부여가 대체되고 그룹이 추가됩니다. 디렉터리 서비스는 서버에 설정된 대로 유지됩니다.
 The server cannot be reached	서버에 연결할 수 없습니다
+The server keeps the last {} ended sessions.	서버는 종료된 세션을 최근 {}개까지 보관합니다.
 The server sent no text	서버가 텍스트를 보내지 않았습니다
 The test failed	테스트에 실패했습니다
 The test succeeded	테스트에 성공했습니다
@@ -518,6 +555,7 @@ Uploading {} to Vault ({} %)…	{}을(를) Vault에 업로드하는 중({} %)…
 Uploading {} to Vault…	{}을(를) Vault에 업로드하는 중…
 User account	사용자 계정
 User bind	사용자 바인딩
+User deleted	사용자 삭제됨
 User filter	사용자 필터
 User or group	사용자 또는 그룹
 User {} exists already. Change it?	사용자 {}이(가) 이미 있습니다. 변경하시겠습니까?
@@ -534,6 +572,7 @@ Variable displacement pumps	가변 용량 펌프
 Vault did not continue the upload	Vault에서 업로드를 계속하지 않았습니다
 Ventilation filters	통기 필터
 Ventilator	송풍기
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	뷰어는 프로젝트를 읽기 전용으로 열고, 검토자는 검토도 저장하며, 편집자는 프로젝트를 변경하고 생성하며, 프로젝트 관리자는 프로젝트를 삭제하고 권한도 부여하며, 관리자는 서버를 관리합니다.
 Voltage source	전압원
 Voltage source and generator	전압원 및 발전기
 Waiting accounts cannot sign in; approve or reject them in Users.	대기 중인 계정은 로그인할 수 없습니다. 사용자에서 승인하거나 거부하십시오.
@@ -547,8 +586,10 @@ Without sign-in	로그인 없이
 Wrong access token	액세스 토큰이 잘못되었습니다
 Wrong user name or password	사용자 이름 또는 암호가 잘못되었습니다
 You may not change parts of manufacturer {}	제조업체 {}의 부품은 변경할 수 없습니다
+You may not see any project	볼 수 있는 프로젝트가 없습니다
 Your account awaits the approval of an administrator	계정이 관리자의 승인을 기다리고 있습니다
 Your account was created. An administrator has to approve it before you can sign in.	계정을 만들었습니다. 로그인하려면 관리자의 승인이 필요합니다.
+Your rights	내 권한
 access denied – check the personal access token	액세스 거부됨 – 개인 액세스 토큰을 확인하세요
 by file name	파일 이름 기준
 changed, not saved	변경됨, 저장되지 않음
@@ -572,6 +613,7 @@ you	나
 {} has no checksum in SHA256SUMS	SHA256SUMS에 {}의 SHA-256 값이 없습니다
 {} parts in {} catalogs, revision {}	부품 {}개, 카탈로그 {}개, 개정 {}
 {} parts, {} catalogs, {}	부품 {}개, 카탈로그 {}개, {}
+{} projects	프로젝트 {}개
 {} – save to upload it	{} – 업로드하려면 저장하세요
 {}: a logo has at most 512 kB	{}: 로고는 최대 512 kB입니다
 {}: the catalog is no longer open	{}: 카탈로그가 더 이상 열려 있지 않습니다

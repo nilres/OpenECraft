@@ -1,6 +1,7 @@
 # English<TAB>한국어 – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(모두)
 (no entries)	(항목 없음)
+(no structure)	(구조 없음)
 --json needs a JSON object	--json에는 JSON 개체가 필요합니다
 3D model	3D 모델
 3D routing	3D 배선 경로
@@ -16,11 +17,13 @@ Add	추가
 Add a PDF of all pages	모든 페이지의 PDF 추가
 Add to favorites	즐겨찾기에 추가
 Address	주소
+Administrator	관리자
 Angle	각도
 Apply	적용
 Approve	승인
 Approvers	승인자
 Automatic	자동
+Aux	보조
 Below	아래
 Bold	굵게
 Bottom	바닥
@@ -123,6 +126,7 @@ Downloading {}…	{} 다운로드 중…
 Drag to turn the model	끌어서 모델 회전
 EMC clearance	EMC 이격 거리
 Edit	편집
+Editor	편집자
 Electro-fluid cross reference	전기-유체 상호 참조
 Enclosure	외함
 Enclosures	외함
@@ -142,6 +146,8 @@ Field wiring	필드 배선
 File	파일
 Files	파일
 Filter	필터
+Filter devices…	장치 필터…
+Fit	맞춤
 Fits	호환 대상
 Fitting at the end	끝 쪽 피팅
 Fitting at the start	시작 쪽 피팅
@@ -163,6 +169,7 @@ Gives up a subproject: its pages are unlocked again	하위 프로젝트를 포�
 Gland plate	글랜드 플레이트
 Graphics	그래픽
 Group	그룹
+Group the pages by structure	구조별로 페이지 그룹화
 Groups	그룹
 Harness	하네스
 Harness data	하네스 데이터
@@ -205,9 +212,12 @@ Load	부하
 Loaded circuits bunched together	함께 묶인 부하 회로
 Location	위치
 Location (+)	위치 (+)
+Locked	잠김
+Locked by {}	{}이(가) 잠금
 Logo	로고
 MTTFd (years)	MTTFd(년)
 Machine	기계
+Main	주
 Main earthing busbar (device) it is connected to; empty: none	연결된 주 접지 부스바 (장치); 비어 있음: 없음
 Main earthing terminal	주 접지 단자
 Main switch	주 스위치
@@ -350,9 +360,11 @@ Product subgroup	제품 하위 그룹
 Product top group	제품 상위 그룹
 Profile	프로필
 Project	프로젝트
+Project data	프로젝트 데이터
 Project languages	프로젝트 언어
 Project logo	프로젝트 로고
 Project management	프로젝트 관리
+Project manager	프로젝트 관리자
 Project name	프로젝트 이름
 Project properties	프로젝트 속성
 Properties	속성
@@ -369,6 +381,7 @@ Rated power	정격 전력
 Rear wall	후면벽
 Rectangle	사각형
 Rectangular	사각형
+Refresh	새로 고침
 Reject	거부
 Relative humidity	상대 습도
 Relay	릴레이
@@ -384,6 +397,7 @@ Report blocks	보고서 블록
 Report: {}	보고서: {}
 Required	필요
 Reserve	예비
+Reviewer	검토자
 Revision	개정
 Revision {}	개정 {}
 Rework	재작업
@@ -427,6 +441,7 @@ Sign in	로그인
 Sign out	로그아웃
 Signed in as {}	{}(으)로 로그인됨
 Signed in as {} ({})	{}({})(으)로 로그인됨
+Signed out	로그아웃됨
 Signing in…	로그인 중…
 Single-line / multi-line	단선 / 복선
 Size	크기
@@ -434,6 +449,7 @@ Socket side	소켓 측
 Solenoid not linked	솔레노이드 연결되지 않음
 Sort by	정렬 기준
 Source	원본
+Started	시작됨
 State	상태
 Status	상태
 String	스트링
@@ -497,6 +513,7 @@ User	사용자
 User name	사용자 이름
 Users	사용자
 Version	버전
+Viewer	뷰어
 Voltage	전압
 Warning	경고
 Warnings	경고
@@ -538,6 +555,7 @@ yes	예
 {} exists already	{}이(가) 이미 있습니다
 {} is not a PNG or JPEG image	{}은(는) PNG 또는 JPEG 이미지가 아닙니다
 {} parts	부품 {}개
+{} users	사용자 {}개
 {} wires	전선 {}개
 {}, together with the wire to {}	{}, {}(으)로 가는 전선과 함께
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {}은(는) 바닥 설치형이 아닙니다. 바닥 설치형 부품을 선택하십시오

@@ -657,7 +657,7 @@ impl Remote {
                 Reply::Saved(_, Ok(s)) if !s.ignored.is_empty() => tr_fmt!("Partly saved to the project server (revision {})", s.revision),
                 Reply::Saved(_, Ok(s)) => tr_fmt!("Saved to the project server (revision {})", s.revision),
                 Reply::Login(Ok(r)) => match r.user.role {
-                    Some(role) => tr_fmt!("Signed in as {} ({})", r.user.name, role.title()),
+                    Some(role) => tr_fmt!("Signed in as {} ({})", r.user.name, tr(role.title())),
                     None => tr_fmt!("Signed in as {}", r.user.name),
                 },
                 Reply::Login(Err(e)) => tr_fmt!("Project server: {}", e),

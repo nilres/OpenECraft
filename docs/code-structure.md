@@ -14,6 +14,8 @@ Where the code of each feature lives. [architecture.md](architecture.md) describ
 | `crates/openecraft-xt` | Parasolid XT writer: triangle meshes as faceted solid and sheet bodies (transmit text, schema V13, own implementation) |
 | `crates/openecraft-client` | Requests to the parts and project servers and to Autodesk Vault (Vault Data API, uploads and check-ins, item lookup) and decoding of their answers, shared by the applications and the command line; wrapper of the EPLAN Data Portal API (`eplan`) |
 | `crates/openecraft-ui` | Shared egui library: part editor and previews, parts server client, data portal browser, file dialogs |
+| `crates/openecraft-view` | Read-only views of a project shared by the editor's navigator and the project server's web page: pages by structure, devices and their places, page icons, `ProjectView` |
+| `crates/openecraft-web` | What the web pages of the parts server and the project server share: sign-in, texts and requests (`common.js`), the administration of roles, grants and directories (`access.js`), styles, logo, `WebTexts` |
 | `crates/openecraft-api` | Extension API: plugins with commands, checks, reports and exports for all front ends; external plugins over JSON |
 | `parts-server/` | `openecraft-parts-server`: data portal server (REST API, SQLite or JSON storage, users, web page) |
 | `project-server/` | `openecraft-project-server`: shared projects with page locks for several users |
