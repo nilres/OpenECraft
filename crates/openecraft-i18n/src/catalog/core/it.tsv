@@ -188,6 +188,7 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperature d
 Centre horizontally	Centra orizzontalmente
 Centre vertically	Centra verticalmente
 Centrifugal pump	Pompa centrifuga
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Modificato nella cartella del progetto da un altro programma e anche nel progetto aperto: {}{}. Salvare il progetto con un altro nome, oppure riaprirlo e ripetere le modifiche
 Changed since mounted	Modificato dopo il montaggio
 Changed since wired	Modificato dopo la cablatura
 Changeover contact	Contatto di scambio
@@ -1586,6 +1587,7 @@ The archive contains no project	L'archivio non contiene alcun progetto
 The archive has no manifest	L'archivio non ha un manifest
 The archive is damaged	L'archivio è danneggiato
 The archive unpacks to more than {} MB	L'archivio si decomprime in più di {} MB
+The archive was written by a newer version (archive version {})	L'archivio è stato scritto da una versione più recente (versione dell'archivio {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Il costruttore del quadro deve essere indicato (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Gli armadi affiancati nel loro locale: pianta a L, parete interna, porta e finestra, gli armadi al loro posto, una guida con una presa su una parete, una lampada di emergenza a parete e una passerella portacavi sotto il soffitto.
 The configuration is not a JSON object	La configurazione non è un oggetto JSON
@@ -1598,7 +1600,10 @@ The embedded document {} is damaged	Il documento incorporato {} è danneggiato
 The file is empty	Il file è vuoto
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Il file è stato scritto da una versione più recente (formato {}): i dati che questa versione non conosce vanno persi al salvataggio
 The first column must be Key	La prima colonna deve essere Key
+The folder {} already holds the project {}: a split project needs a folder of its own	La cartella {} contiene già il progetto {}: un progetto suddiviso richiede una cartella propria
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	La cartella {} contiene file che non appartengono a nessun progetto ({}): un progetto suddiviso richiede una cartella propria
 The function definition needs a key and a name	La definizione di funzione richiede una chiave e un nome
+The index of the project names no file layout: it was not written by OpenECraft	L'indice del progetto non indica alcuna struttura dei file: non è stato scritto da OpenECraft
 The last page cannot be deleted	L'ultima pagina non può essere eliminata
 The macro box has no items left	Il riquadro macro non ha più elementi
 The next free id is already in use	Il prossimo ID libero è già in uso
@@ -1608,7 +1613,10 @@ The pages were changed after the submission; submit the revision again	Le pagine
 The plot boundary crosses itself	Il confine del lotto si interseca
 The plot boundary encloses no area	Il confine del lotto non racchiude alcuna superficie
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Il confine del lotto non è un poligono: si interseca o ha meno di tre vertici
+The project cannot be written as files: {}	Il progetto non può essere scritto come file: {}
+The project file {} is missing	Il file di progetto {} è mancante
 The project has no panel layout	Il progetto non ha un layout del quadro
+The project was written by a newer version (file layout {})	Il progetto è stato scritto da una versione più recente (struttura dei file {})
 The property needs a name	La proprietà richiede un nome
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	La stazione di pompaggio montata in due armadi a pavimento affiancati: sistema di sbarre, guide e canaline, apparecchi sulla porta e maniglie, ventilatore con filtro, lampada, barra di terra, pressacavi, un passaggio cavi, calcolo della climatizzazione, riempimento delle canaline e instradamento 3D.
 The revision is already released	La revisione è già rilasciata
@@ -1927,6 +1935,7 @@ yellow	giallo
 {} has no MTTFd, B10d, PL or PFHd	{} non ha né MTTFd, né B10d, né PL, né PFHd
 {} has no door or window {}	{} non ha porta né finestra {}
 {} has nothing to manufacture	{} non ha nulla da produrre
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} contiene un conflitto di merge di git non risolto: il file è stato unito come testo. Prendere una versione del file (git checkout --ours o --theirs), quindi configurare il driver di merge per i progetti suddivisi (merge_project_file) prima di unire di nuovo
 {} is a built-in function definition	{} è una definizione di funzione predefinita
 {} is a built-in property	{} è una proprietà predefinita
 {} is a built-in scheme	{} è uno schema predefinito

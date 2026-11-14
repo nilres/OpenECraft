@@ -63,7 +63,7 @@ fn projects_are_archived_converted_and_verified() {
 
     let path = dir.join("demo.oecz").display().to_string();
     let out = run(&mut s, "archive_project", json!({ "path": path, "comment": "Handover", "compact": true })).unwrap();
-    assert_eq!(out["files"][0], "project.oec");
+    assert_eq!(out["files"][0], "project.oecp");
     let info = run(&mut s, "archive_info", json!({ "path": path })).unwrap();
     assert_eq!((info["name"].as_str(), info["comment"].as_str()), (Some("Demo conveyor"), Some("Handover")));
     let opened = run(&mut s, "open_project", json!({ "path": path, "discard": true })).unwrap();
@@ -77,6 +77,80 @@ fn projects_are_archived_converted_and_verified() {
     assert!(std::fs::read_to_string(&old).unwrap().contains(&format!("\"format\": {}", openecraft_core::model::FORMAT)));
     let c = run(&mut s, "convert_project", json!({ "path": path })).unwrap();
     assert!(c["output"].as_str().unwrap().ends_with("demo.oec"));
+}
+
+#[test]
+fn projects_are_converted_between_file_split_folder_and_archive() {
+    let dir = temp_dir("mgmt-split");
+    let mut s = session();
+    let demo = openecraft_core::sample::demo_project();
+    let file = dir.join("demo.oec");
+    std::fs::write(&file, demo.to_json()).unwrap();
+
+    // A split project gets a folder of its own next to the file.
+    let c = run(&mut s, "convert_project", json!({ "path": file.display().to_string(), "format": "oecp" })).unwrap();
+    let index = dir.join("demo").join("demo.oecp");
+    assert_eq!(c["output"], index.display().to_string());
+    assert!(dir.join("demo/pages").is_dir());
+    let opened = run(&mut s, "open_project", json!({ "path": index.display().to_string() })).unwrap();
+    assert_eq!(opened["file"], index.display().to_string());
+    assert!(s.project().unwrap() == &demo);
+
+    // Back to a project file and into an archive: by format or by the extension.
+    let c = run(&mut s, "convert_project", json!({ "path": index.display().to_string(), "format": "oec" })).unwrap();
+    let back = dir.join("demo").join("demo.oec");
+    assert_eq!(c["output"], back.display().to_string());
+    assert!(Project::from_json(&std::fs::read_to_string(&back).unwrap()).unwrap() == demo);
+    let archive = dir.join("demo.oecz").display().to_string();
+    run(&mut s, "convert_project", json!({ "path": index.display().to_string(), "output": archive })).unwrap();
+    assert_eq!(run(&mut s, "archive_info", json!({ "path": archive })).unwrap()["name"], demo.info.name.as_str());
+    let other = dir.join("other").join("p.oecp").display().to_string();
+    run(&mut s, "convert_project", json!({ "path": archive, "output": other })).unwrap();
+    assert!(openecraft_core::storage::folder::open(Path::new(&other)).unwrap().0 == demo);
+    assert!(run(&mut s, "convert_project", json!({ "path": file.display().to_string(), "format": "zip" })).unwrap_err().contains("zip"));
+
+    // Split projects are found and changed like project files.
+    std::fs::remove_file(&back).unwrap();
+    let found = run(&mut s, "search_projects", json!({ "folder": dir.join("demo").display().to_string(), "query": "" })).unwrap();
+    assert_eq!(found.as_array().unwrap().len(), 1);
+    assert_eq!((found[0]["path"].as_str(), found[0]["pages"].as_u64()), (index.to_str(), Some(demo.pages.len() as u64)));
+    let out = run(&mut s, "batch_project_properties", json!({ "files": index.display().to_string(), "set": { "creator": "NS" } })).unwrap();
+    assert_eq!(out[0]["written"], true);
+    assert_eq!(openecraft_core::storage::folder::open(&index).unwrap().0.info.creator, "NS");
+    let out = run(&mut s, "batch_project_properties", json!({ "files": index.display().to_string(), "set": { "creator": "NS" } })).unwrap();
+    assert_eq!(out[0]["written"], false);
+
+    // A template may be a split project.
+    run(&mut s, "new_project", json!({ "template": index.display().to_string(), "discard": true })).unwrap();
+    assert_eq!(s.project().unwrap().pages.len(), demo.pages.len());
+}
+
+#[test]
+fn files_of_a_split_project_are_merged_for_git() {
+    let dir = temp_dir("mgmt-merge");
+    let file = |name: &str, content: &str| {
+        let path = dir.join(name);
+        std::fs::write(&path, content).unwrap();
+        path.display().to_string()
+    };
+    let mut s = session();
+    let base = file("base", r#"{"id":1,"name":"1","symbols":[{"id":2,"tag":"-K1"}]}"#);
+    let ours = file("ours", r#"{"id":1,"name":"2","symbols":[{"id":2,"tag":"-K1"}]}"#);
+    let theirs = file("theirs", r#"{"id":1,"name":"1","symbols":[{"id":2,"tag":"-Q1"}]}"#);
+    let out = run(&mut s, "merge_project_file", json!({ "base": base, "ours": ours, "theirs": theirs, "name": "pages/1.json" })).unwrap();
+    assert_eq!(out["conflicts"], json!([]));
+    assert_eq!(std::fs::read_to_string(&ours).unwrap(), "{\"id\":1,\"name\":\"2\",\"symbols\":[{\"id\":2,\"tag\":\"-Q1\"}]}\n");
+
+    // A conflict fails the command (git then marks the file); the file keeps our value.
+    let theirs = file("theirs", r#"{"id":1,"name":"3","symbols":[{"id":2,"tag":"-Q1"}]}"#);
+    let err = run(&mut s, "merge_project_file", json!({ "base": base, "ours": ours, "theirs": theirs, "name": "pages/1.json" })).unwrap_err();
+    assert!(err.contains("pages/1.json") && err.contains("name"), "{err}");
+    assert!(std::fs::read_to_string(&ours).unwrap().contains("\"name\":\"2\""));
+
+    // The name of the file says what it is: the id counter takes the larger value.
+    let (base, ours, theirs) = (file("base", "10\n"), file("ours", "15\n"), file("theirs", "12\n"));
+    run(&mut s, "merge_project_file", json!({ "base": base, "ours": ours, "theirs": theirs, "name": "data/next_id.json" })).unwrap();
+    assert_eq!(std::fs::read_to_string(&ours).unwrap(), "15\n");
 }
 
 #[test]

@@ -188,6 +188,7 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperaturile
 Centre horizontally	Centrare pe orizontală
 Centre vertically	Centrare pe verticală
 Centrifugal pump	Pompă centrifugă
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Modificat în dosarul proiectului de alt program și, de asemenea, în proiectul deschis: {}{}. Salvați proiectul sub alt nume sau deschideți-l din nou și repetați modificările
 Changed since mounted	Modificat de la montare
 Changed since wired	Modificat de la cablare
 Changeover contact	Contact comutator
@@ -1586,6 +1587,7 @@ The archive contains no project	Arhiva nu conține niciun proiect
 The archive has no manifest	Arhiva nu are manifest
 The archive is damaged	Arhiva este deteriorată
 The archive unpacks to more than {} MB	Arhiva se dezarhivează la mai mult de {} MB
+The archive was written by a newer version (archive version {})	Arhiva a fost scrisă de o versiune mai nouă (versiunea arhivei {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Producătorul ansamblului trebuie să fie indicat (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Șirul de dulapuri în camera sa: plan în formă de L, perete interior, ușă și fereastră, șirul de dulapuri la locul său, o șină cu o priză pe un perete, un corp de iluminat de siguranță montat pe perete și un jgheab de cabluri sub tavan.
 The configuration is not a JSON object	Configurația nu este un obiect JSON
@@ -1598,7 +1600,10 @@ The embedded document {} is damaged	Documentul încorporat {} este deteriorat
 The file is empty	Fișierul este gol
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Fișierul a fost scris de o versiune mai nouă (format {}): datele pe care această versiune nu le cunoaște se pierd la salvare
 The first column must be Key	Prima coloană trebuie să fie Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Dosarul {} conține deja proiectul {}: un proiect divizat are nevoie de un dosar propriu
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Dosarul {} conține fișiere care nu aparțin niciunui proiect ({}): un proiect divizat are nevoie de un dosar propriu
 The function definition needs a key and a name	Definiția de funcție necesită o cheie și un nume
+The index of the project names no file layout: it was not written by OpenECraft	Indexul proiectului nu indică nicio structură a fișierelor: nu a fost scris de OpenECraft
 The last page cannot be deleted	Ultima pagină nu poate fi ștearsă
 The macro box has no items left	Caseta macro nu mai are elemente
 The next free id is already in use	Următorul ID liber este deja utilizat
@@ -1608,7 +1613,10 @@ The pages were changed after the submission; submit the revision again	Paginile 
 The plot boundary crosses itself	Limita terenului se intersectează cu ea însăși
 The plot boundary encloses no area	Limita terenului nu înconjoară nicio suprafață
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Limita terenului nu este un poligon: se intersectează sau are mai puțin de trei colțuri
+The project cannot be written as files: {}	Proiectul nu poate fi scris ca fișiere: {}
+The project file {} is missing	Fișierul de proiect {} lipsește
 The project has no panel layout	Proiectul nu are amplasare în tablou
+The project was written by a newer version (file layout {})	Proiectul a fost scris de o versiune mai nouă (structura fișierelor {})
 The property needs a name	Proprietatea necesită un nume
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Stația de pompare montată în două dulapuri de podea alăturate: sistem de bare, șine și canale de cablu, aparate pe ușă și mânere, ventilator cu filtru, iluminat, bară PE, presetupe, o trecere de cabluri, calculul climatizării, gradul de umplere al canalelor și rutare 3D.
 The revision is already released	Revizia este deja aprobată
@@ -1927,6 +1935,7 @@ yellow	galben
 {} has no MTTFd, B10d, PL or PFHd	{} nu are MTTFd, B10d, PL sau PFHd
 {} has no door or window {}	{} nu are ușa sau fereastra {}
 {} has nothing to manufacture	{} nu are nimic de fabricat
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} conține un conflict de îmbinare git nerezolvat: fișierul a fost îmbinat ca text. Luați o versiune a fișierului (git checkout --ours sau --theirs), apoi configurați driverul de îmbinare pentru proiecte divizate (merge_project_file) înainte de a îmbina din nou
 {} is a built-in function definition	{} este o definiție de funcție integrată
 {} is a built-in property	{} este o proprietate integrată
 {} is a built-in scheme	{} este o schemă integrată
