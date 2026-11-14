@@ -282,3 +282,37 @@ fn materials_diameters_and_mounting_of_earthing_and_lightning_protection() {
     assert_eq!((b["lightning"]["rods"][0]["part"].as_str(), b["lightning"]["rods"][0]["base"].as_str()), (Some("GEN.LP-ROD-CU16"), Some("concrete_base")));
     assert!(run(&mut s, "set_air_rod", json!({ "building": "+H1", "rod": "F1", "base": "magic" })).unwrap_err().contains("magic"));
 }
+
+#[test]
+fn freestanding_pv_arrays_on_the_plot() {
+    let mut s = new_session();
+    run(&mut s, "add_building", json!({ "name": "+H1", "x": 0, "z": 0 })).unwrap();
+    run(&mut s, "add_room", json!({ "name": "+EG", "building": "+H1", "level": "L0", "x": 0, "z": 0, "width": 8000, "depth": 6000 })).unwrap();
+    // Without building and roof: on posts on the plot, in front of the building.
+    let p = run(&mut s, "add_pv_array", json!({ "columns": 6, "stack": 3, "clearance": 1000, "landscape": true })).unwrap();
+    let a = &p["solar"][0];
+    assert_eq!((a["name"].as_str(), a["mounting"].as_str(), a["modules"].as_u64(), a["stack"].as_u64(), a["clearance"].as_f64()), (Some("PV1"), Some("ground"), Some(36), Some(3), Some(1000.0)));
+    assert!(a["z"].as_f64().unwrap() > 6000.0, "in front of the building: {}", a["z"]);
+    let parts: Vec<&str> = a["material"].as_array().unwrap().iter().map(|m| m["part"].as_str().unwrap()).collect();
+    assert!(parts.contains(&"GEN.PV-POST-RAM") && parts.contains(&"GEN.PV-TABLE-BEAM"), "{parts:?}");
+    // Freestanding arrays stand on posts; roofs take none.
+    assert!(run(&mut s, "set_pv_array", json!({ "array": "PV1", "mounting": "tilted" })).unwrap_err().contains("posts"));
+    run(&mut s, "add_roof", json!({ "building": "+H1", "shape": "gable" })).unwrap();
+    assert!(run(&mut s, "add_pv_array", json!({ "building": "+H1", "roof": "R1", "mounting": "ground" })).unwrap_err().contains("east_west"));
+    assert!(run(&mut s, "add_pv_array", json!({ "building": "+H1" })).unwrap_err().contains("neither"));
+    let p = run(&mut s, "set_pv_array", json!({ "array": "pv1", "x": 4000, "z": 20000, "rows": 1, "tilt": 30 })).unwrap();
+    assert_eq!((p["solar"][0]["x"].as_f64(), p["solar"][0]["rows"].as_u64(), p["solar"][0]["modules"].as_u64()), (Some(4000.0), Some(1), Some(18)));
+    assert!(run(&mut s, "set_pv_array", json!({ "array": "PV9" })).unwrap_err().contains("PV9"));
+    // A string on it, listed with the plot.
+    let a = run(&mut s, "add_pv_string", json!({ "array": "PV1" })).unwrap();
+    assert_eq!(a["strings"][0]["series"], 18);
+    let list = run(&mut s, "pv_strings", json!({})).unwrap();
+    let row = &list["strings"][0];
+    assert_eq!((row["freestanding"].as_bool(), row["roof"].is_null(), row["array"].as_str()), (Some(true), true, Some("PV1")));
+    let a = run(&mut s, "set_pv_string", json!({ "array": "PV1", "string": "S1", "series": 9, "parallel": 2 })).unwrap();
+    assert_eq!(a["strings"][0]["modules"], 18);
+    let list = run(&mut s, "list_buildings", json!({})).unwrap();
+    assert_eq!(list["plot"]["solar"][0]["name"], "PV1");
+    let p = run(&mut s, "set_pv_array", json!({ "array": "PV1", "remove": true })).unwrap();
+    assert_eq!(p["solar"], json!([]));
+}

@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Numer artykułu akcesorium, np. GEN.GL
 Activates (shows) or deactivates (hides) the content of a project option	Aktywuje (pokazuje) lub dezaktywuje (ukrywa) zawartość opcji projektu
 Additional power loss in W	Dodatkowe straty mocy w W
 Address scheme: siemens, iec or rockwell	Schemat adresowania: siemens, iec lub rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Dodaje pole PV do dachu: rzędy modułów na szynach i hakach dachowych równolegle do połaci albo na dachu płaskim pochylone lub wschód-zachód na balastowanych podstawach montażowych; bez x i z na środku przedniej lub prawej połaci. Bez budynku i dachu naziemne pole na działce: rzędy pochylonych stołów na wbijanych słupach, bez x i z przed tym, co stoi w instalacji. Moduły i materiał montażowy trafiają do zestawienia materiałów
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Dodaje giętą i wierconą szynę miedzianą (lub zastępuje szynę o tej samej nazwie w obudowie)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Dodaje przepust kablowy do prawego sąsiada: okrągłe wycięcia naprzeciw siebie w obu ścianach bocznych; przewody między obudowami przechodzą przez niego
 Adds a configurator rule: insert a page macro when the condition holds	Dodaje regułę konfiguratora: wstaw makro strony, gdy warunek jest spełniony
@@ -73,6 +74,7 @@ Between page and column (default .)	Między stroną a kolumną (domyślnie .)
 Bonding point	Punkt połączenia wyrównawczego
 Border around the text	Obramowanie wokół tekstu
 Both classes are needed	Wymagane są obie klasy
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Budynek (miejsce, np. +B1); bez budynku i dachu: naziemne pole na działce
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Budynki instalacji z poziomami, szachtami, schodami i dachami z polami PV, uziomami i ochroną odgromową, pomieszczeniami na poziomach i połączeniami między budynkami
 Bus system name	Nazwa systemu magistrali
 Bus system name, e.g. PN/IE_1	Nazwa systemu magistrali, np. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Średnica iglicy, mm (domyślnie 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Kierunek trzonu: left, right, up lub down (domyślnie: według przewodów w tym miejscu)
 Distance between power and signal or fluid in mm	Odległość między obwodami mocy a sygnałem lub płynem w mm
 Distance from devices, rails and busbars in mm	Odległość od urządzeń, szyn i szyn zbiorczych w mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Odstęp między rzędami na dachu płaskim lub w polu naziemnym w mm (0: bez zacienienia zimą)
 Distance from the face in mm (rails: standoff height)	Odległość od ściany w mm (szyny: wysokość dystansu)
 Distance in X (mm)	Odległość w X (mm)
 Distance in Y (mm)	Odległość w Y (mm)
@@ -266,12 +269,16 @@ First counter value (default 1)	Pierwsza wartość licznika (domyślnie 1)
 First page number (default 1)	Pierwszy numer strony (domyślnie 1)
 First port as station:port, e.g. PLC1:X1 P2	Pierwszy port jako stacja:port, np. PLC1:X1 P2
 First row with the column names	Pierwszy wiersz z nazwami kolumn
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Dachy płaskie i pola naziemne: kierunek, w którym zwrócone są moduły, w stopniach, przeciwnie do ruchu wskazówek zegara patrząc z góry (0: w stronę +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format nazwy urządzenia: {letter}, {n} (licznik), {page}, {column}, {row}; domyślnie {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format schematu format: {n} (licznik), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Uziom fundamentowy: jak daleko wewnątrz ścian zewnętrznych (domyślnie 100), otokowy: jak daleko na zewnątrz (domyślnie 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Uziom fundamentowy: jego największe oczko, mm (domyślnie 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ramka wyjściowa dla nowej ramki (domyślnie: A3 landscape)
 Free space in front of every device on the plate	Wolna przestrzeń przed każdym urządzeniem na płycie
+Freestanding PV arrays stand on posts (mounting ground)	Naziemne pola PV stoją na słupach (montaż ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Pole naziemne: wysokość dolnej krawędzi modułów nad gruntem w mm (domyślnie 800)
+Freestanding: modules on top of each other on a table (default 2)	Pole naziemne: moduły jeden nad drugim na stole (domyślnie 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Zamraża trasy na potrzeby produkcji (zachowywane przez ponowne obliczanie, dopóki to możliwe) lub je zwalnia
 Frequency in Hz	Częstotliwość w Hz
 Function (= without the sign; empty: the parent's)	Funkcja (= bez znaku; puste: funkcja elementu nadrzędnego)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Podaj oznaczenie urządzenia lub numer części
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Nadaje budynkowi ochronę odgromową lub ją zmienia: klasę, liczbę przewodów odprowadzających i część przewodów; zwody na kalenicach i narożach (siatka na dachach płaskich), przewody odprowadzające ze złączami kontrolnymi do uziomów; albo ją usuwa
 Greatest distance of the conductor holders, mm (default 1000)	Największy odstęp uchwytów przewodu, mm (domyślnie 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Największy odstęp haków dachowych wzdłuż szyny (pole naziemne: słupów wzdłuż stołu) w mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupuje elementy w zespół, który jest zaznaczany i przesuwany razem; bez nazwy elementy opuszczają swoje zespoły
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Przekazuje programy obudowy do produkcji jako zlecenie: manifest i programy wszystkich jej powierzchni i szyn miedzianych
 Has a divider between power and signal cables	Ma przegrodę między kablami mocy i sygnałowymi
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	Maksymalne wypełnienie nośnika kabli w pr
 Maximum operating pressure in bar	Maksymalne ciśnienie robocze w bar
 Measuring range or set point	Zakres pomiarowy lub wartość zadana
 Message code, e.g. wires.3f9a1c	Kod komunikatu, np. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Środek pola PV w rzucie budynku (pole naziemne: w instalacji), x w mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Środek pola PV w rzucie budynku (pole naziemne: w instalacji), z w mm
 Milling feed, mm/min	Posuw frezowania, mm/min
 Mirror the symbol	Odbij symbol
 Moves an air-termination rod, changes its height, renames or removes it	Przesuwa iglicę odgromową, zmienia jej wysokość, nazwę lub ją usuwa
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Układ deski montażowej wiązki: odgałęzienia od wspólnego węzła do złączy z długością, kierunkiem, średnicą wiązki i pinami oraz skala rysunku
 Name (default E1, E2, …)	Nazwa (domyślnie E1, E2, …)
 Name (default F1, F2, …)	Nazwa (domyślnie F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Podaj zarówno budynek, jak i dach, albo żadne z nich dla naziemnego pola PV
 Name of the assembly	Nazwa zespołu
 Name of the bar, e.g. L1 -Q1	Nazwa szyny, np. L1 -Q1
 Name of the check	Nazwa kontroli
@@ -494,6 +505,7 @@ No device group {}	Brak grupy urządzeń {}
 No earth electrode {} in building {}	Brak uziomu {} w budynku {}
 No enclosure named {}	Brak obudowy o nazwie {}
 No entry for {} and {}	Brak wpisu dla {} i {}
+No freestanding PV array {}	Brak naziemnego pola PV {}
 No hose {}	Brak węża {}
 No identifier {} in the project	Brak identyfikatora {} w projekcie
 No item with id {}	Brak elementu o identyfikatorze {}
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Długości zewnę
 Overlap of nibbling hits (0 … 0.9)	Nakładanie się uderzeń przy nadkrawaniu (0 … 0.9)
 PCT loop {} already exists	Pętla AKPiA {} już istnieje
 PLC hardware: stations, cards, bus systems and port connections	Sprzęt PLC: stacje, karty, systemy magistral i połączenia portów
+PV arrays on roofs are mounted parallel, tilted or east_west	Pola PV na dachach montuje się parallel, tilted lub east_west
 Page macro name	Nazwa makra strony
 Page macro that generates its schematic	Makro strony, które generuje jego schemat
 Page name (default: all pages)	Nazwa strony (domyślnie: wszystkie strony)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	Ponownie używaj nieudanych
 Right side bayed (no side panel)	Prawa strona szeregowana (bez ściany bocznej)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Otokowy: głębokość pod terenem, pionowy: głębokość górnego końca, mm (domyślnie 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Uziom pionowy: jego średnica (domyślnie 20), fundamentowy i otokowy: drutu okrągłego, 0 dla bednarki, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Dach: jego nazwa; bez budynku i dachu: naziemne pole na działce
 Room {} exists already	Pomieszczenie {} już istnieje
 Rotation in degrees clockwise: 0, 90, 180 or 270	Obrót w stopniach zgodnie z ruchem wskazówek zegara: 0, 90, 180 lub 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Obrót w stopniach, przeciwnie do ruchu wskazówek zegara (90 czyta się od dołu do góry)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	Przewód, który przeskakuje: vertic
 The wrap width must not be negative	Szerokość zawijania nie może być ujemna
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Symulacja termiczna płyty montażowej: temperatury powietrza, gorący punkt, źródła ciepła i temperatura przy każdym urządzeniu
 Thickest sheet or bar, mm	Najgrubsza blacha lub szyna, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Nachylenie modułów na dachu płaskim lub stołów pola naziemnego w stopniach
 Time per drilling, punching or bending operation, s	Czas na operację wiercenia, wykrawania lub gięcia, s
 Time per tool change, s	Czas na wymianę narzędzia, s
 Title block (list_title_blocks); empty = the project default	Tabliczka rysunkowa (list_title_blocks); pusta = domyślna projektu
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main (domyślnie), supplementary lub
 mounted, problem or open	mounted, problem lub open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond lub accessory
 numbers or letters	numbers lub letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (na hakach dachowych), tilted (pochylone) lub east_west (wschód-zachód, dachy płaskie); pole naziemne: ground (na słupach)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof lub bottom
 plug_in, saddle or wire	plug_in, saddle lub wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp lub canopen

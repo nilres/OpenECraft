@@ -350,12 +350,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Clique na sua posição na planta de situação
 Click where the air-termination rods go on the roofs in the site plan	Clique na planta de situação onde vão os captores tipo haste nos telhados
 Click where the earth rods go in the site plan	Clique na planta de situação onde vão as hastes de aterramento
+Click where the middle of a freestanding PV array goes in the site plan	Clique na planta de situação onde fica o centro de um arranjo FV no solo
+Click where the middle of a freestanding PV array goes · Esc: stop	Clique onde fica o centro de um arranjo FV no solo · Esc: parar
 Click where the reference point is	Clique onde está o ponto de referência
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Clique onde três fios se encontram: a peça em T indica o dispositivo de onde partem os fios e a ordem dos seus destinos · {} gira-a onde ainda não se encontram fios · Esc ou clique direito para terminar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Clique onde dois fios se cruzam: o cruzamento liga-os e leva cada extremidade da sua linha primeiro em linha reta e depois transversalmente · {} gira-o · Esc ou clique direito para terminar
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Clique onde dois fios se encontram em ângulo reto, ou onde pontos de conexão se defrontam através do canto: com a autoconexão ativa, desenham-se fios até ele · {} gira-o · Esc ou clique direito para terminar
 Click while moving	Clique ao mover
 Click, or drag it into the page	Clique ou arraste para a página
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Clicado em x {} mm, z {} mm na planta do edifício: uma nova janela de telhado ou um novo arranjo FV vai para lá.
 Climate (IEC 60890)	Climatização (IEC 60890)
 Clipboard	Área de transferência
 Close	Fechar
@@ -777,6 +780,12 @@ Frame of all pages that do not choose one	Moldura de todas as páginas que não 
 Free air	Ao ar livre
 Free air factor	Fator ao ar livre
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Espaço livre à frente de cada dispositivo na placa até a porta; as peças acrescentam o seu (Service space)
+Freestanding	No solo
+Freestanding PV array {}	Arranjo FV no solo {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Arranjo FV no solo {} colocado; clique para o próximo · Esc: parar
+Freestanding PV array {}: {} modules	Arranjo FV no solo {}: {} módulos
+Freestanding PV array {}: {} modules, {} kWp	Arranjo FV no solo {}: {} módulos, {} kWp
+Freestanding PV arrays	Arranjos FV no solo
 Freeze all routes	Congelar todas as rotas
 Freeze route	Congelar rota
 Frequency	Frequência
@@ -821,6 +830,7 @@ Graphic line	Linha gráfica
 Graphic rectangle	Retângulo gráfico
 Graphical form	Formulário gráfico
 Greatest distance of the conductor holders on the roof and on the walls	Maior distância dos suportes de condutor no telhado e nas paredes
+Greatest distance of the posts along a table	Maior distância das estacas ao longo de uma mesa
 Greatest distance of the roof hooks along a rail	Maior distância dos ganchos de telhado ao longo de um trilho
 Grid	Grade
 Grid north	Norte da quadrícula
@@ -843,6 +853,7 @@ Height above sea level	Altitude
 Height above the floor	Altura acima do piso
 Height above the mounting plate	Altura acima da placa de montagem
 Height above the plate	Altura acima da placa
+Height of the lower edge of the modules above the ground	Altura da borda inferior dos módulos acima do solo
 Height of the plinth, 0 without plinth	Altura da base, 0 sem base
 Height of the rod above the covering	Altura da haste acima da cobertura
 Height of the test joints above the ground	Altura das conexões de medição acima do solo
@@ -1062,6 +1073,7 @@ Look for updates when OpenECraft starts	Procurar atualizações ao iniciar o Ope
 Looking for updates…	Procurando atualizações…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Procura uma nova versão do OpenECraft no GitHub e a instala em segundo plano
 Loop	Malha
+Lower edge	Borda inferior
 Lowest fault current	Menor corrente de falta
 Lowest: the highest open-circuit voltage	Mais baixa: a tensão de circuito aberto mais alta
 Macro boxes	Caixas de macro
@@ -1109,6 +1121,7 @@ Messages of this session	Mensagens desta sessão
 Middle	Centro
 Middle button	Botão do meio
 Middle of the PV array in the floor plan of the building	Centro do sistema fotovoltaico na planta do edifício
+Middle of the PV array in the plant	Centro do arranjo FV na instalação
 Min. bend radius	Raio mín. de curvatura
 Minimize the ribbon	Minimizar a faixa de opções
 Mirror	Espelhar
@@ -1119,6 +1132,7 @@ Model of a part (2D / 3D)	Modelo de uma peça (2D / 3D)
 Modifier keys	Teclas modificadoras
 Module area	Área dos módulos
 Module part; its size comes from the part	Peça do módulo; seu tamanho vem da peça
+Modules on top of each other on a table	Módulos um sobre o outro numa mesa
 Motors feed the short circuit	Os motores alimentam o curto-circuito
 Mounted on	Montado em
 Mounting assistant: the panel items in mounting order with their place and part	Assistente de montagem: os itens do painel na ordem de montagem com seu local e peça
@@ -1235,6 +1249,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ainda não há gabinete – crie um com Novo gabinete, ou uma sala para armários com Nova sala.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nenhum cabo de campo: posicione os gabinetes e dispositivos de campo em nós da rede de rotas.
 No filter fans: an air/air heat exchanger or a cooling unit	Sem ventiladores com filtro: um trocador de calor ar/ar ou uma unidade de resfriamento
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Ainda nenhum arranjo FV no solo: fileiras de mesas inclinadas sobre estacas cravadas no terreno.
 No gesture	Nenhum gesto
 No harnesses defined.	Nenhum chicote definido.
 No inverter	Sem inversor
@@ -1487,7 +1502,6 @@ Plant layout	Layout da planta
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Layout da planta, rede de rotas, planejamento de cabos de campo, equipotencialização e acessórios de cabo
 Plant segments with planned devices before the schematic	Segmentos da planta com dispositivos planejados antes do esquema elétrico
 Plate outline, holes per diameter, cutouts	Contorno da placa, furos por diâmetro, recortes
-Plot	Terreno
 Plot boundary	Limite do terreno
 Plot boundary drawn: {} m²	Limite do terreno desenhado: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Limite do terreno desenhado: {} m²; fora dele: {}
@@ -1510,6 +1524,8 @@ Position of the cursor	Posição do cursor
 Position of the device tag (instead of the tag block)	Posição do identificador de dispositivo (em vez do bloco de identificador)
 Position of the label (terminal number, address …)	Posição do rótulo (número do borne, endereço …)
 Positions are relative to the lower right corner of the symbol.	As posições são relativas ao canto inferior direito do símbolo.
+Post distance	Distância das estacas
+Posts	Estacas
 Potential {}	Potencial {}
 Potential: {}	Potencial: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Potência e corrente das cargas da rede (motores, acionamentos, aquecedores, fontes de alimentação, transformadores), a carga de cada dispositivo de proteção, a demanda com o fator de simultaneidade e o balanço de carga das fontes de alimentação.
@@ -1704,6 +1720,8 @@ Rod holder	Suporte de haste
 Roof pitch	Inclinação do telhado
 Roof window	Janela de telhado
 Roof windows	Janelas de telhado
+Roof {} of building {}	Telhado {} do edifício {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Telhado {} do edifício {}: as propriedades do layout adicionam um arranjo FV ou uma janela de telhado onde foi clicado
 Roofs	Telhados
 Room	Sala
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Sala adicionada no pavimento {}: arraste as paredes ou desenhe novas na planta, coloque armários nela pelas propriedades deles
@@ -1730,6 +1748,8 @@ Row	Linha
 Row distance	Distância entre fileiras
 Row drawing	Desenho de linha
 Row labels	Rótulos de linhas
+Rows of tables behind each other	Fileiras de mesas uma atrás da outra
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Fileiras de mesas inclinadas sobre estacas à frente do que existe na instalação, voltadas para a frente; mova-o para o seu lugar
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	As linhas em páginas liberadas não podem ser alteradas. Uma quebra de linha em um texto é escrita como \\n.
 Rows per page	Linhas por página
 Rule libraries	Bibliotecas de regras
@@ -2056,6 +2076,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	As páginas geradas por ele permanecem
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	O banco de dados de peças é compartilhado por todos os projetos. As peças são copiadas para um projeto quando são atribuídas a um dispositivo.
 The point's coordinates in the coordinate reference system	As coordenadas do ponto no sistema de referência de coordenadas
+The post; its accessories are the table beams, rails and clamps	A estaca; seus acessórios são as vigas da mesa, os trilhos e as braçadeiras
 The project changed since the search.	O projeto foi alterado desde a pesquisa.
 The project check	A verificação do projeto
 The project database needs the desktop version: the browser cannot search folders.	O banco de dados de projetos precisa da versão desktop: o navegador não pode pesquisar pastas.
@@ -2199,6 +2220,7 @@ When it differs from the page	Quando difere da página
 Where	Posição
 Where neither wire has a termination chosen for it	Onde nenhum dos dois fios tem uma terminação escolhida
 Where the point is in the plant; y: its height above the ground level of the plant	Onde o ponto está na instalação; y: sua altura acima do nível do solo da instalação
+Where the roof was clicked in the 3D view	Onde o telhado foi clicado na vista 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De onde vem a estrutura do dispositivo: aspectos iguais à estrutura em torno do símbolo são herdados e acompanham quando ele entra ou sai de uma caixa de estrutura; os outros aspectos são do próprio dispositivo e permanecem.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Onde o fio começa e termina: um ponto de conexão dos dados da peça, um gerado a partir do modelo de função ou o centro do dispositivo, se nenhum ponto de conexão corresponder
 Whole building	Edifício inteiro
@@ -2237,6 +2259,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Espaço de fiação entre dispositivos e canaletas
 With a user account of the server; replaces the access token	Com uma conta de usuário do servidor; substitui o token de acesso
 With everything below it	Com tudo abaixo dele
+With its middle where the roof was clicked in the 3D view	Com o centro onde o telhado foi clicado na vista 3D
 With the current pages; the approvals so far become void	Com as páginas atuais; as aprovações até agora perdem a validade
 With values only	Somente com valores
 Withdraw	Retirar
@@ -2493,6 +2516,7 @@ x y	x y
 {} renamed: {} pages and devices	{} renomeado: {} páginas e dispositivos
 {} report pages output to {}	{} páginas de relatório emitidas para {}
 {} routes frozen	{} rotas congeladas
+{} rows of tables of {} × {} = {}, {}	{} fileiras de mesas de {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segmentos criados, {} dispositivos adicionados, {} atualizados
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} estações, {} sistemas de barramento, {} cartões atribuídos, {} endereços alterados, {} conexões, {} cabos
 {} stopped with an error: {}	{} parou com um erro: {}
@@ -2521,6 +2545,7 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} páginas)
 {} – {} here (Esc cancels)	{} – {} aqui (Esc cancela)
+{}, freestanding	{}, no solo
 {}: click to show its floor plan	{}: clique para mostrar a sua planta
 {}: crimp together with the wire to {}	{}: crimpar junto com o fio para {}
 {}: drag to move it, R turns it, a double-click opens it	{}: arraste para mover, R para girar, clique duplo para abrir

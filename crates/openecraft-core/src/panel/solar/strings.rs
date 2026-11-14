@@ -12,7 +12,8 @@
 //! short-circuit current per tracker.
 
 use crate::issue::{Issue, Severity};
-use crate::model::panel::{Building, PvArray, PvDesign, PvString, Roof};
+use super::{all_arrays, place_name, ArrayRef, Support};
+use crate::model::panel::{PvArray, PvDesign, PvString};
 use crate::model::Project;
 use crate::parts::Part;
 use openecraft_i18n::tr;
@@ -170,8 +171,9 @@ pub fn values(m: &ModuleData, d: &PvDesign, s: &PvString) -> StringValues {
 
 /// A string where it is, with its values (`None` without module data).
 pub struct StringRow<'a> {
-    pub building: &'a Building,
-    pub roof: &'a Roof,
+    /// What its array stands on and where the array is.
+    pub support: Support<'a>,
+    pub at: ArrayRef,
     pub array: &'a PvArray,
     pub string: &'a PvString,
     pub values: Option<StringValues>,
@@ -181,14 +183,10 @@ pub struct StringRow<'a> {
 pub fn all_strings(prj: &Project) -> Vec<StringRow<'_>> {
     let d = &prj.layout.pv_design;
     let mut out = Vec::new();
-    for b in &prj.layout.buildings {
-        for r in &b.roofs {
-            for a in &r.solar {
-                let m = module_data(prj, &a.module);
-                for s in &a.strings {
-                    out.push(StringRow { building: b, roof: r, array: a, string: s, values: m.map(|m| values(&m, d, s)) });
-                }
-            }
+    for (at, support, a) in all_arrays(&prj.layout) {
+        let m = module_data(prj, &a.module);
+        for s in &a.strings {
+            out.push(StringRow { support, at, array: a, string: s, values: m.map(|m| values(&m, d, s)) });
         }
     }
     out
@@ -207,12 +205,12 @@ pub fn checked_string(mut s: PvString) -> PvString {
     s
 }
 
-/// A new string on PV array `ai` of roof `k` of building `bi`: the modules no string
-/// takes yet in series, on the first inverter of the project; its id.
-pub fn add_string(prj: &mut Project, bi: usize, k: usize, ai: usize) -> Result<u64, String> {
+/// A new string on the PV array at `at`: the modules no string takes yet in series, on
+/// the first inverter of the project; its id.
+pub fn add_string(prj: &mut Project, at: ArrayRef) -> Result<u64, String> {
     let inverter = inverters(prj).into_iter().next().unwrap_or_default();
     let id = prj.new_id().max(1);
-    let a = prj.layout.buildings.get_mut(bi).and_then(|b| b.roofs.get_mut(k)).and_then(|r| r.solar.get_mut(ai)).ok_or_else(|| tr("No such PV array").to_string())?;
+    let a = super::array_mut(&mut prj.layout, at).ok_or_else(|| tr("No such PV array").to_string())?;
     let free = super::module_count(a).saturating_sub(connected(a));
     let n = a.strings.len() + 1;
     let name = (n..).map(|k| format!("S{k}")).find(|c| !a.strings.iter().any(|s| &s.name == c)).unwrap_or_default();
@@ -237,48 +235,48 @@ fn amps(x: f32) -> String {
 pub fn problems(prj: &Project) -> Vec<Issue> {
     let mut out = Vec::new();
     let d = &prj.layout.pv_design;
-    for b in &prj.layout.buildings {
-        for a in b.roofs.iter().flat_map(|r| &r.solar).filter(|a| !a.strings.is_empty()) {
-            let (n, have) = (connected(a), super::module_count(a));
-            if n > have {
-                out.push(crate::issue!(Severity::Error, None, "{}: the strings of PV array {} connect {} modules, the array has {}", b.name, a.name, n, have));
-            } else if n < have {
-                out.push(crate::issue!(Severity::Warning, None, "{}: {} modules of PV array {} are not connected to a string", b.name, have - n, a.name));
-            }
-            if module_data(prj, &a.module).is_none() {
-                out.push(crate::issue!(Severity::Warning, None, "{}: the module {} of PV array {} has no electrical data", b.name, a.module, a.name));
-            }
+    for (_, support, a) in all_arrays(&prj.layout).into_iter().filter(|t| !t.2.strings.is_empty()) {
+        let place = place_name(&prj.layout, support);
+        let (n, have) = (connected(a), super::module_count(a));
+        if n > have {
+            out.push(crate::issue!(Severity::Error, None, "{}: the strings of PV array {} connect {} modules, the array has {}", place, a.name, n, have));
+        } else if n < have {
+            out.push(crate::issue!(Severity::Warning, None, "{}: {} modules of PV array {} are not connected to a string", place, have - n, a.name));
+        }
+        if module_data(prj, &a.module).is_none() {
+            out.push(crate::issue!(Severity::Warning, None, "{}: the module {} of PV array {} has no electrical data", place, a.module, a.name));
         }
     }
     // Each string against its modules and its inverter, then each tracker.
     let mut trackers: BTreeMap<(String, u32), Vec<(String, StringValues)>> = BTreeMap::new();
     for row in all_strings(prj) {
-        let (b, a, s) = (row.building, row.array, row.string);
+        let (a, s) = (row.array, row.string);
         let Some(val) = row.values else { continue };
+        let b = place_name(&prj.layout, row.support);
         let max_system = module_data(prj, &a.module).and_then(|m| m.max_system);
         if let Some(max) = max_system.filter(|m| val.voc_max > *m) {
-            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules", b.name, s.name, a.name, v(val.voc_max), v(d.t_min), v(max)));
+            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V system voltage of its modules", b, s.name, a.name, v(val.voc_max), v(d.t_min), v(max)));
         }
         if s.inverter.is_empty() {
-            out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} is connected to no inverter", b.name, s.name, a.name));
+            out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} is connected to no inverter", b, s.name, a.name));
             continue;
         }
         let Some(input) = pv_input(prj, &s.inverter) else {
-            out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {}: {} is no device with PV input data", b.name, s.name, a.name, s.inverter));
+            out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {}: {} is no device with PV input data", b, s.name, a.name, s.inverter));
             continue;
         };
         if s.mppt > input.trackers {
-            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {}: {} has only {} MPP trackers", b.name, s.name, a.name, s.inverter, input.trackers));
+            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {}: {} has only {} MPP trackers", b, s.name, a.name, s.inverter, input.trackers));
         }
         if let Some(max) = input.max_voltage.filter(|m| val.voc_max > *m) {
-            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes", b.name, s.name, a.name, v(val.voc_max), v(d.t_min), v(max), s.inverter));
+            out.push(crate::issue!(Severity::Error, None, "{}: string {} of PV array {} reaches {} V at {} °C, more than the {} V {} takes", b, s.name, a.name, v(val.voc_max), v(d.t_min), v(max), s.inverter));
         }
         if let Some((lo, hi)) = input.mppt_range {
             if val.vmp_min < lo {
-                out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)", b.name, s.name, a.name, v(val.vmp_min), v(d.t_max), s.inverter, v(lo), v(hi)));
+                out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} drops to {} V at {} °C, below the MPP range of {} ({} - {} V)", b, s.name, a.name, v(val.vmp_min), v(d.t_max), s.inverter, v(lo), v(hi)));
             }
             if val.vmp_max > hi {
-                out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)", b.name, s.name, a.name, v(val.vmp_max), v(d.t_min), s.inverter, v(lo), v(hi)));
+                out.push(crate::issue!(Severity::Warning, None, "{}: string {} of PV array {} reaches {} V at maximum power at {} °C, above the MPP range of {} ({} - {} V)", b, s.name, a.name, v(val.vmp_max), v(d.t_min), s.inverter, v(lo), v(hi)));
             }
         }
         trackers.entry((s.inverter.clone(), s.mppt)).or_default().push((format!("{} {}", a.name, s.name), val));

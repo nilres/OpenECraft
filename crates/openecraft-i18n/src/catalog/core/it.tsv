@@ -557,6 +557,7 @@ Frame size	Grandezza costruttiva
 Free	Libero
 Free air (mm)	Aria libera (mm)
 Free run	Posa libera
+Freestanding on posts	A terra su pali
 Frequency converter	Convertitore di frequenza
 Frequency meter	Frequenzimetro
 From end	Dalla fine
@@ -939,7 +940,6 @@ No plugs	Nessun connettore
 No report block {}	Nessun blocco di report {}
 No segment template named {}	Nessun modello di segmento denominato {}
 No subproject {}	Nessun sottoprogetto {}
-No such PV array	Campo fotovoltaico inesistente
 No such object: {}	Oggetto inesistente: {}
 No surge protective device at the supply (IEC 60364-4-44)	Nessun limitatore di sovratensione sull'alimentazione (IEC 60364-4-44)
 No terminal {}	Nessun morsetto {}
@@ -2077,6 +2077,8 @@ yellow	giallo
 {}: the busbar {} of earth electrode {} does not exist	{}: la barra {} del dispersore {} non esiste
 {}: the device {} of PV array {} does not exist	{}: il dispositivo {} del campo fotovoltaico {} non esiste
 {}: the earthing busbar {} of PV array {} does not exist	{}: la barra di terra {} del campo FV {} non esiste
+{}: the freestanding PV array {} stands on {}	{}: il campo FV a terra {} si trova su {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: i campi FV a terra {} e {} si sovrappongono
 {}: the generator junction box {} of PV array {} does not exist	{}: il quadro di campo {} del campo FV {} non esiste
 {}: the lightning protection has no earth electrode	{}: la protezione contro i fulmini non ha dispersore
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: la protezione contro i fulmini non ha muri da seguire: l'edificio non ha locali né tetti

@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Номер виробу аксесуа
 Activates (shows) or deactivates (hides) the content of a project option	Активує (показує) або деактивує (приховує) вміст опції проєкту
 Additional power loss in W	Додаткові втрати потужності у W
 Address scheme: siemens, iec or rockwell	Схема адресації: siemens, iec або rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Додає фотоелектричне поле на дах: ряди модулів на рейках і покрівельних гаках паралельно схилу або на плоскому даху з нахилом чи за схемою схід-захід на баластних монтажних основах; без x і z посередині переднього або правого схилу. Без будівлі й даху — наземне поле на ділянці: ряди похилих столів на забивних стійках, без x і z перед тим, що стоїть в установці. Модулі й монтажний матеріал потрапляють до специфікації
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Додає зігнуту й просвердлену мідну шину (або замінює однойменну в корпусі)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Додає кабельний прохід до сусіда праворуч: круглі вирізи один навпроти одного в обох бічних стінках; проводи між корпусами проходять крізь нього
 Adds a configurator rule: insert a page macro when the condition holds	Додає правило конфігуратора: вставити макрос сторінки, коли умова виконується
@@ -73,6 +74,7 @@ Between page and column (default .)	Між сторінкою і стовпце�
 Bonding point	Точка підключення вирівнювання потенціалів
 Border around the text	Обрамлення навколо тексту
 Both classes are needed	Потрібні обидва класи
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Будівля (місце, напр. +B1); без будівлі й даху: наземне поле на ділянці
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Будівлі установки з рівнями, шахтами, сходами й дахами з фотоелектричними полями, заземлювачами та блискавкозахистом, приміщеннями на рівнях і зв'язками між будівлями
 Bus system name	Назва шинної системи
 Bus system name, e.g. PN/IE_1	Назва шинної системи, напр. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Діаметр стрижня, мм (тип
 Direction of the stem: left, right, up or down (default: from the wires there)	Напрямок ніжки: left, right, up або down (типово: за проводами в цій точці)
 Distance between power and signal or fluid in mm	Відстань між силовими та сигнальними або гідропневматичними лініями в мм
 Distance from devices, rails and busbars in mm	Відстань від пристроїв, рейок і збірних шин у мм
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Відстань між рядами на плоскому даху або для наземного поля в мм (0: без затінення взимку)
 Distance from the face in mm (rails: standoff height)	Відстань від грані в мм (рейки: висота дистанційних стійок)
 Distance in X (mm)	Відстань по X (мм)
 Distance in Y (mm)	Відстань по Y (мм)
@@ -266,12 +269,16 @@ First counter value (default 1)	Перше значення лічильника
 First page number (default 1)	Номер першої сторінки (за замовчуванням 1)
 First port as station:port, e.g. PLC1:X1 P2	Перший порт у форматі станція:порт, напр. PLC1:X1 P2
 First row with the column names	Перший рядок із назвами стовпців
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Пласкі дахи й наземні поля: напрямок, куди звернені модулі, у градусах, проти годинникової стрілки, якщо дивитися згори (0: до +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат назви пристрою: {letter}, {n} (лічильник), {page}, {column}, {row}; за замовчуванням {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схеми format: {n} (лічильник), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Фундаментний заземлювач: наскільки всередині зовнішніх стін (типово 100), кільцевий: наскільки зовні (типово 1000), мм
 Foundation earth electrode: its largest mesh, mm (default 20000)	Фундаментний заземлювач: його найбільша комірка, мм (типово 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Вихідна рамка для нової рамки (за замовчуванням: A3 landscape)
 Free space in front of every device on the plate	Вільний простір перед кожним пристроєм на панелі
+Freestanding PV arrays stand on posts (mounting ground)	Наземні фотоелектричні поля стоять на стійках (монтаж ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Наземне поле: висота нижнього краю модулів над землею в мм (типово 800)
+Freestanding: modules on top of each other on a table (default 2)	Наземне поле: модулі один над одним на столі (типово 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Фіксує траси для виробництва (зберігаються під час перерахунку, доки це можливо) або розблоковує їх
 Frequency in Hz	Частота в Hz
 Function (= without the sign; empty: the parent's)	Функція (= без знака; порожньо: функція батьківського сегмента)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Ге�
 Give a device tag or a part number	Вкажіть позначення пристрою або номер виробу
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Дає будівлі блискавкозахист або змінює його: клас, кількість струмовідводів і виріб провідників; блискавкоприймальні провідники на гребенях і ребрах (сітка на плоских дахах), струмовідводи з контрольними з'єднаннями до заземлювачів; або видаляє його
 Greatest distance of the conductor holders, mm (default 1000)	Найбільша відстань між тримачами провідника, мм (типово 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Найбільша відстань між покрівельними гаками вздовж рейки (наземне поле: між стійками вздовж стола) в мм
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Групує елементи у збірку, яка вибирається й переміщується разом; без назви елементи виходять зі своїх збірок
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передає програми корпусу у виробництво як завдання: маніфест і програми всіх його граней і мідних шин
 Has a divider between power and signal cables	Має розділювальну перегородку між силовими та сигнальними кабелями
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	Максимальне заповнення
 Maximum operating pressure in bar	Максимальний робочий тиск у bar
 Measuring range or set point	Діапазон вимірювання або уставка
 Message code, e.g. wires.3f9a1c	Код повідомлення, напр. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Середина фотоелектричного поля на плані будівлі (наземне поле: в установці), x в мм
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Середина фотоелектричного поля на плані будівлі (наземне поле: в установці), z в мм
 Milling feed, mm/min	Подача фрезерування, мм/хв
 Mirror the symbol	Віддзеркалити символ
 Moves an air-termination rod, changes its height, renames or removes it	Переміщує блискавкоприймальний стрижень, змінює його висоту, перейменовує чи видаляє його
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Компонування шаблону джгута: відгалуження від спільного вузла до роз’ємів із довжиною, напрямком, діаметром джгута й штирями, а також масштаб креслення
 Name (default E1, E2, …)	Назва (типово E1, E2, …)
 Name (default F1, F2, …)	Назва (типово F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Укажіть і будівлю, і дах або нічого з них для наземного фотоелектричного поля
 Name of the assembly	Назва збірки
 Name of the bar, e.g. L1 -Q1	Назва шини, напр. L1 -Q1
 Name of the check	Назва перевірки
@@ -494,6 +505,7 @@ No device group {}	Немає групи пристроїв {}
 No earth electrode {} in building {}	Немає заземлювача {} у будівлі {}
 No enclosure named {}	Немає корпусу з назвою {}
 No entry for {} and {}	Немає запису для {} і {}
+No freestanding PV array {}	Немає наземного фотоелектричного поля {}
 No hose {}	Немає шланга {}
 No identifier {} in the project	У проєкті немає позначення {}
 No item with id {}	Немає елемента з ідентифікатором {}
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Зовнішні 
 Overlap of nibbling hits (0 … 0.9)	Перекриття ударів висічки (0 … 0.9)
 PCT loop {} already exists	Контур КВПіА {} вже існує
 PLC hardware: stations, cards, bus systems and port connections	Апаратне забезпечення ПЛК: станції, плати, шинні системи та з’єднання портів
+PV arrays on roofs are mounted parallel, tilted or east_west	Фотоелектричні поля на дахах монтуються parallel, tilted або east_west
 Page macro name	Назва макросу сторінки
 Page macro that generates its schematic	Макрос сторінки, що генерує його схему
 Page name (default: all pages)	Назва сторінки (типово: усі сторінки)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	Повторно викор
 Right side bayed (no side panel)	Права сторона приєднана (без бічної стінки)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Кільцевий: глибина під землею, вертикальний: глибина верхнього кінця, мм (типово 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Вертикальний заземлювач: його діаметр (типово 20), фундаментний і кільцевий: круглого дроту, 0 для смуги, мм
+Roof: its name; without building and roof: a freestanding array on the plot	Дах: його назва; без будівлі й даху: наземне поле на ділянці
 Room {} exists already	Приміщення {} вже існує
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот у градусах за годинниковою стрілкою: 0, 90, 180 або 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот у градусах проти годинникової стрілки (90 – читається знизу вгору)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	Провід, що перескак�
 The wrap width must not be negative	Ширина перенесення не може бути від'ємною
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Теплове моделювання монтажної панелі: температури повітря, гаряча точка, джерела тепла й температура біля кожного пристрою
 Thickest sheet or bar, mm	Найбільша товщина листа або шини, мм
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Нахил модулів на плоскому даху або столів наземного поля в градусах
 Time per drilling, punching or bending operation, s	Час на одну операцію свердління, пробивання чи згинання, с
 Time per tool change, s	Час на зміну інструмента, с
 Title block (list_title_blocks); empty = the project default	Основний напис (list_title_blocks); порожньо = типовий напис проєкту
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main (за замовчування�
 mounted, problem or open	mounted, problem або open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond або accessory
 numbers or letters	numbers або letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (на покрівельних гаках), tilted (з нахилом) або east_west (схід-захід, пласкі дахи); наземне поле: ground (на стійках)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof або bottom
 plug_in, saddle or wire	plug_in, saddle або wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp або canopen

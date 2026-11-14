@@ -557,6 +557,7 @@ Frame size	Építési méret
 Free	Szabad
 Free air (mm)	Szabad vezetés (mm)
 Free run	Szabad fektetés
+Freestanding on posts	Szabadföldi, oszlopokon
 Frequency converter	Frekvenciaváltó
 Frequency meter	Frekvenciamérő
 From end	A végétől
@@ -939,7 +940,6 @@ No plugs	Nincsenek csatlakozók
 No report block {}	Nincs {} kimutatásblokk
 No segment template named {}	Nincs ilyen nevű szegmenssablon: {}
 No subproject {}	Nincs ilyen alprojekt: {}
-No such PV array	Nincs ilyen PV-mező
 No such object: {}	Nincs ilyen objektum: {}
 No surge protective device at the supply (IEC 60364-4-44)	Nincs túlfeszültség-védelmi eszköz a betáplálásnál (IEC 60364-4-44)
 No terminal {}	Nincs {} sorkapocs
@@ -2077,6 +2077,8 @@ yellow	sárga
 {}: the busbar {} of earth electrode {} does not exist	{}: a(z) {} sín a(z) {} földelőhöz nem létezik
 {}: the device {} of PV array {} does not exist	{}: a(z) {} eszköz a(z) {} PV-mezőhöz nem létezik
 {}: the earthing busbar {} of PV array {} does not exist	{}: a(z) {} földelősín a(z) {} PV mezőhöz nem létezik
+{}: the freestanding PV array {} stands on {}	{}: a(z) {} szabadföldi PV-mező ezen áll: {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: a(z) {} és {} szabadföldi PV-mezők átfedik egymást
 {}: the generator junction box {} of PV array {} does not exist	{}: a(z) {} generátor csatlakozódoboz a(z) {} PV mezőhöz nem létezik
 {}: the lightning protection has no earth electrode	{}: a villámvédelemnek nincs földelője
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: a villámvédelemnek nincsenek falai, amelyek mentén futhatna: az épületnek nincsenek helyiségei vagy tetői

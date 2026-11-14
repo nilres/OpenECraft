@@ -5,6 +5,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Freestanding PV arrays:** ground-mounted PV arrays on the plot, added in the
+  Buildings pane (*Freestanding PV arrays*) or clicked into the site plan: rows of
+  tilted tables with modules on top of each other, on rails over table beams on rammed
+  posts (generic `GEN.PV-POST-RAM` and `GEN.PV-TABLE-BEAM`), free of shade in winter.
+  Their modules and mounting go into the bill of materials, they have strings like the
+  arrays on the roofs, their leads run through a cable trench to the devices, and the
+  site plan and the 3D view draw them. Checked for arrays on each other, on a room and
+  outside the plot boundary. Commands `add_pv_array` / `set_pv_array` without building
+  and roof, with `stack` and `clearance`
+  ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Roofs picked in 3D:** a click on a roof in the 3D view shows it in the Layout
+  properties, where a PV array or a roof window is added at the point clicked.
 - **Cable core labels** (#172): automatic text clearance from definition lines,
   wires, nearby symbols and labels; direct text dragging without selecting the
   wire first, with a hover target. Align the crossed core labels of a definition

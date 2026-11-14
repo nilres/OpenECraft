@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Tilbehørets artikelnummer, f.eks. GEN
 Activates (shows) or deactivates (hides) the content of a project option	Aktiverer (viser) eller deaktiverer (skjuler) indholdet af en projektoption
 Additional power loss in W	Yderligere effekttab i W
 Address scheme: siemens, iec or rockwell	Adresseskema: siemens, iec eller rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Tilføjer et solcellefelt til et tag: rækker af moduler på skinner og tagkroge parallelt med en tagflade, eller på et fladt tag skråt eller øst-vest på ballasterede monteringsfødder; uden x og z midt på den forreste eller højre tagflade. Uden bygning og tag et jordmonteret felt på grunden: rækker af skrå borde på rammede stolper, uden x og z foran det, der står i anlægget. Modulerne og monteringsmaterialet kommer i styklisten
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Tilføjer en bukket og boret kobberskinne (eller erstatter den med samme navn i kapslingen)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Tilføjer en kabelgennemføring til højre nabo: runde udskæringer over for hinanden i begge sidevægge; ledninger mellem kapslingerne føres igennem den
 Adds a configurator rule: insert a page macro when the condition holds	Tilføjer en konfiguratorregel: Indsæt en sidemakro, når betingelsen er opfyldt
@@ -73,6 +74,7 @@ Between page and column (default .)	Mellem side og kolonne (standard .)
 Bonding point	Udligningspunkt
 Border around the text	Kant omkring teksten
 Both classes are needed	Begge klasser er påkrævet
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Bygning (placering, f.eks. +B1); uden bygning og tag: et jordmonteret felt på grunden
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Anlæggets bygninger med niveauer, skakte, trapper og tage med solcellefelter, jordelektroder og lynbeskyttelse, rum på niveauerne og forbindelser mellem bygninger
 Bus system name	Bussystemets navn
 Bus system name, e.g. PN/IE_1	Bussystemets navn, f.eks. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Stangens diameter, mm (standard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Stammens retning: left, right, up eller down (standard: efter lederne der)
 Distance between power and signal or fluid in mm	Afstand mellem kraft og signal eller fluid i mm
 Distance from devices, rails and busbars in mm	Afstand fra enheder, skinner og samleskinner i mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Afstand fra række til række på et fladt tag eller jordmonteret i mm (0: skyggefri om vinteren)
 Distance from the face in mm (rails: standoff height)	Afstand fra fladen i mm (skinner: afstandshøjde)
 Distance in X (mm)	Afstand i X (mm)
 Distance in Y (mm)	Afstand i Y (mm)
@@ -266,12 +269,16 @@ First counter value (default 1)	Første tællerværdi (standard 1)
 First page number (default 1)	Første sidenummer (standard 1)
 First port as station:port, e.g. PLC1:X1 P2	Første port som station:port, f.eks. PLC1:X1 P2
 First row with the column names	Første række med kolonnenavnene
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Flade tage og jordmonteret: retning, modulerne vender mod, i grader, mod uret set ovenfra (0: mod +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format for enhedsnavnet: {letter}, {n} (tæller), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format for skemaet format: {n} (tæller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Fundamentjord: hvor langt inden for ydervæggene (standard 100), ring: hvor langt uden for dem (standard 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Fundamentjord: dens største maske, mm (standard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ramme, der tages udgangspunkt i, når rammen er ny (standard: A3 landscape)
 Free space in front of every device on the plate	Fri plads foran hver enhed på pladen
+Freestanding PV arrays stand on posts (mounting ground)	Jordmonterede solcellefelter står på stolper (montering ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Jordmonteret: højde af modulernes underkant over jorden i mm (standard 800)
+Freestanding: modules on top of each other on a table (default 2)	Jordmonteret: moduler over hinanden på et bord (standard 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fastlåser føringer til produktion (bevares af genberegningen, så længe det er muligt) eller frigiver dem
 Frequency in Hz	Frekvens i Hz
 Function (= without the sign; empty: the parent's)	Funktion (= uden tegnet; tom: det overordnede segments)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Angiv en enhedsbetegnelse eller et artikelnummer
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Giver en bygning en lynbeskyttelse eller ændrer den: klasse, antal nedledere og ledernes del; fangledere på rygninger og grater (en maske på flade tage), nedledere med målesamlinger til jordelektroderne; eller fjerner den
 Greatest distance of the conductor holders, mm (default 1000)	Største afstand mellem lederholderne, mm (standard 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Største afstand mellem tagkrogene langs en skinne (jordmonteret: mellem stolperne langs et bord) i mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperer elementer i en samling, der markeres og flyttes samlet; uden navn forlader elementerne deres samlinger
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Overdrager en kapslings programmer til produktionen som en ordre: manifest og programmer for alle dens flader og kobberskinner
 Has a divider between power and signal cables	Har en skillevæg mellem effekt- og signalkabler
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	Maksimal fyldning af en kabelbærer i proce
 Maximum operating pressure in bar	Maksimalt driftstryk i bar
 Measuring range or set point	Måleområde eller sætpunkt
 Message code, e.g. wires.3f9a1c	Meddelelseskode, f.eks. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Midten af solcellefeltet i bygningens plantegning (jordmonteret: i anlægget), x i mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Midten af solcellefeltet i bygningens plantegning (jordmonteret: i anlægget), z i mm
 Milling feed, mm/min	Fræsetilspænding, mm/min
 Mirror the symbol	Spejl symbolet
 Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Sømbrætlayout af et ledningsnet: grenene fra den fælles knude til stikkene med længde, retning, bundtdiameter og ben samt tegningens målestok
 Name (default E1, E2, …)	Navn (standard E1, E2, …)
 Name (default F1, F2, …)	Navn (standard F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Angiv både bygningen og taget, eller ingen af dem for et jordmonteret solcellefelt
 Name of the assembly	Samlingens navn
 Name of the bar, e.g. L1 -Q1	Skinnens navn, f.eks. L1 -Q1
 Name of the check	Kontrollens navn
@@ -494,6 +505,7 @@ No device group {}	Ingen enhedsgruppe {}
 No earth electrode {} in building {}	Ingen jordelektrode {} i bygning {}
 No enclosure named {}	Ingen kapsling med navnet {}
 No entry for {} and {}	Ingen post for {} og {}
+No freestanding PV array {}	Intet jordmonteret solcellefelt {}
 No hose {}	Ingen slange {}
 No identifier {} in the project	Ingen betegnelse {} i projektet
 No item with id {}	Intet element med id {}
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Udvendige længde
 Overlap of nibbling hits (0 … 0.9)	Overlapning af niblingsslag (0 … 0.9)
 PCT loop {} already exists	PCT-sløjfen {} findes allerede
 PLC hardware: stations, cards, bus systems and port connections	PLC-hardware: stationer, kort, bussystemer og portforbindelser
+PV arrays on roofs are mounted parallel, tilted or east_west	Solcellefelter på tage monteres parallel, tilted eller east_west
 Page macro name	Navn på sidemakro
 Page macro that generates its schematic	Sidemakro, der genererer dens diagram
 Page name (default: all pages)	Sidenavn (standard: alle sider)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	Genbrug mislykkede søgning
 Right side bayed (no side panel)	Højre side sammenbygget (ingen sideplade)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: dybde under terræn, spyd: dybde for øverste ende, mm (standard 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Jordspyd: dets diameter (standard 20), fundament- og ringjord: en rundtråds, 0 for et bånd, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Tag: dets navn; uden bygning og tag: et jordmonteret felt på grunden
 Room {} exists already	Rummet {} findes allerede
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader med uret: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotation i grader, mod uret (90 læses nedefra og op)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	Ledningen, der springer: vertical el
 The wrap width must not be negative	Ombrydningsbredden må ikke være negativ
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Termisk simulering af monteringspladen: lufttemperaturer, varmepunkt, varmekilder og temperaturen ved hver enhed
 Thickest sheet or bar, mm	Tykkeste plade eller skinne, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Hældning af modulerne på et fladt tag eller af jordmonterede borde i grader
 Time per drilling, punching or bending operation, s	Tid pr. bore-, stanse- eller bukkeoperation, s
 Time per tool change, s	Tid pr. værktøjsskift, s
 Title block (list_title_blocks); empty = the project default	Tegningshoved (list_title_blocks); tom = projektets standard
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main (standard), supplementary eller
 mounted, problem or open	mounted, problem eller open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond eller accessory
 numbers or letters	numbers eller letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (på tagkroge), tilted (skråt) eller east_west (øst-vest, flade tage); jordmonteret: ground (på stolper)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof eller bottom
 plug_in, saddle or wire	plug_in, saddle eller wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp eller canopen

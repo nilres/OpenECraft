@@ -547,6 +547,7 @@ Frame size	机座号
 Free	自由
 Free air (mm)	自由布线 (mm)
 Free run	自由敷设
+Freestanding on posts	立柱上的地面安装
 Frequency converter	变频器
 Frequency meter	频率表
 From end	从终点
@@ -927,7 +928,6 @@ No plugs	没有插头
 No report block {}	没有报表块 {}
 No segment template named {}	没有名为 {} 的规划段模板
 No subproject {}	子项目 {} 不存在
-No such PV array	没有此光伏阵列
 No such object: {}	对象不存在：{}
 No surge protective device at the supply (IEC 60364-4-44)	电源进线处没有浪涌保护器 (IEC 60364-4-44)
 No terminal {}	没有端子 {}
@@ -2053,6 +2053,8 @@ yellow	黄色
 {}: the busbar {} of earth electrode {} does not exist	{0}：接地极 {2} 的母线 {1} 不存在
 {}: the device {} of PV array {} does not exist	{0}：光伏阵列 {2} 的设备 {1} 不存在
 {}: the earthing busbar {} of PV array {} does not exist	{0}：光伏阵列 {2} 的接地母线 {1} 不存在
+{}: the freestanding PV array {} stands on {}	{}：地面光伏阵列 {} 位于 {} 上
+{}: the freestanding PV arrays {} and {} stand on each other	{}：地面光伏阵列 {} 和 {} 相互重叠
 {}: the generator junction box {} of PV array {} does not exist	{0}：光伏阵列 {2} 的光伏汇流箱 {1} 不存在
 {}: the lightning protection has no earth electrode	{}：防雷没有接地极
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}：防雷没有可沿着敷设的墙：建筑物没有房间或屋顶

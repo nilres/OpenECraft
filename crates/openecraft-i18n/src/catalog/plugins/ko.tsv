@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	부속품 부품 번호(예: GEN.GLAND
 Activates (shows) or deactivates (hides) the content of a project option	프로젝트 옵션의 내용을 활성화(표시)하거나 비활성화(숨기기)합니다
 Additional power loss in W	추가 전력 손실(W)
 Address scheme: siemens, iec or rockwell	주소 체계: siemens, iec 또는 rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	지붕에 태양광 어레이를 추가합니다: 경사 지붕면과 평행하게 레일과 지붕 후크 위에 모듈 열을 놓거나, 평지붕에는 기울여 또는 동서 방향으로 밸러스트 가대 위에 놓습니다. x와 z가 없으면 앞쪽 또는 오른쪽 지붕면의 가운데에 놓습니다. 건물과 지붕이 없으면 부지에 지상형 어레이를 만듭니다: 항타 말뚝 위에 기울어진 가대를 열로 놓으며, x와 z가 없으면 설비에 있는 것의 앞에 놓습니다. 모듈과 설치 자재는 자재 명세서에 들어갑니다
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	굽힘 및 드릴 가공된 동바를 추가합니다(또는 외함에서 같은 이름의 동바를 대체합니다)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	오른쪽 인접 외함으로의 케이블 통로를 추가합니다: 양쪽 측벽에 서로 마주 보는 원형 컷아웃. 외함 사이의 전선이 이를 통과합니다
 Adds a configurator rule: insert a page macro when the condition holds	컨피규레이터 규칙을 추가합니다: 조건이 충족되면 페이지 매크로 삽입
@@ -73,6 +74,7 @@ Between page and column (default .)	페이지와 열 사이(기본값 .)
 Bonding point	본딩 지점
 Border around the text	텍스트 주위 테두리
 Both classes are needed	두 클래스가 모두 필요합니다
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	건물 (위치, 예: +B1); 건물과 지붕이 없으면: 부지의 지상형 어레이
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	설비의 건물: 층, 샤프트, 계단, 태양광 어레이가 있는 지붕, 접지극과 피뢰, 층의 방, 건물 간 연결
 Bus system name	버스 시스템 이름
 Bus system name, e.g. PN/IE_1	버스 시스템 이름(예: PN/IE_1)
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	피뢰침 직경, mm (기본값 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	줄기의 방향: left, right, up 또는 down (기본: 해당 지점의 연결선에 따라)
 Distance between power and signal or fluid in mm	전력과 신호 또는 유체 간의 거리(mm)
 Distance from devices, rails and busbars in mm	장치, 레일 및 부스바와의 거리(mm)
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	평지붕 또는 지상형의 열 간격 (mm) (0: 겨울에 그늘 없음)
 Distance from the face in mm (rails: standoff height)	면으로부터의 거리(mm, 레일: 스탠드오프 높이)
 Distance in X (mm)	X 거리(mm)
 Distance in Y (mm)	Y 거리(mm)
@@ -266,12 +269,16 @@ First counter value (default 1)	첫 카운터 값(기본값 1)
 First page number (default 1)	첫 페이지 번호(기본값 1)
 First port as station:port, e.g. PLC1:X1 P2	station:port 형식의 첫 번째 포트(예: PLC1:X1 P2)
 First row with the column names	열 이름이 있는 첫 행
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	평지붕과 지상형: 모듈이 향하는 방향 (도), 위에서 보아 반시계 방향 (0: +z 방향)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	장치 이름 형식: {letter}, {n}(카운터), {page}, {column}, {row}. 기본값 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 체계의 형식: {n}(카운터), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	기초 접지극: 외벽 안쪽 거리 (기본값 100), 환상: 바깥쪽 거리 (기본값 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	기초 접지극: 최대 메시, mm (기본값 20000)
 Frame to start from when the frame is new (default: A3 landscape)	프레임이 새것일 때 시작할 프레임(기본값: A3 landscape)
 Free space in front of every device on the plate	플레이트의 각 장치 앞 여유 공간
+Freestanding PV arrays stand on posts (mounting ground)	지상형 태양광 어레이는 말뚝 위에 섭니다 (설치 ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	지상형: 지면에서 모듈 아래쪽 가장자리까지의 높이 (mm) (기본값 800)
+Freestanding: modules on top of each other on a table (default 2)	지상형: 가대 하나에 위아래로 놓이는 모듈 (기본값 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	생산을 위해 경로를 고정하거나(가능한 한 다시 계산 시 유지) 고정을 해제합니다
 Frequency in Hz	주파수(Hz)
 Function (= without the sign; empty: the parent's)	기능(= 기호 제외, 비워 두면 상위 세그먼트의 기능)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	부�
 Give a device tag or a part number	장치 태그 또는 부품 번호를 입력하십시오
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	건물에 피뢰 시스템을 설정하거나 변경합니다: 등급, 인하 도선 수 및 도체 부품; 용마루와 추녀마루의 수뢰 도체(평지붕에서는 메시), 시험 단자가 있는 인하 도선이 접지극까지; 또는 삭제합니다
 Greatest distance of the conductor holders, mm (default 1000)	도체 지지대 최대 간격, mm (기본값 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	레일을 따라 지붕 후크의 최대 간격 (지상형: 가대를 따라 말뚝의 최대 간격) (mm)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	항목을 함께 선택되고 이동되는 어셈블리로 그룹화합니다. 이름이 없으면 항목이 어셈블리에서 해제됩니다
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	외함의 프로그램을 작업으로 생산에 인계합니다: 모든 면과 동바의 매니페스트 및 프로그램
 Has a divider between power and signal cables	전력 케이블과 신호 케이블 사이에 구분판이 있음
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	케이블 지지대의 최대 충전율(%)
 Maximum operating pressure in bar	최대 작동 압력(bar)
 Measuring range or set point	측정 범위 또는 설정값
 Message code, e.g. wires.3f9a1c	메시지 코드(예: wires.3f9a1c)
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	건물 평면도에서 태양광 어레이의 중심 (지상형: 설비 안), x (mm)
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	건물 평면도에서 태양광 어레이의 중심 (지상형: 설비 안), z (mm)
 Milling feed, mm/min	밀링 이송(mm/min)
 Mirror the symbol	심볼 대칭
 Moves an air-termination rod, changes its height, renames or removes it	피뢰침을 이동하고 높이를 변경하며 이름을 바꾸거나 삭제합니다
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	하네스의 네일보드 레이아웃: 공통 노드에서 커넥터까지의 분기(길이, 방향, 번들 직경 및 핀 포함)와 도면 축척
 Name (default E1, E2, …)	이름 (기본값 E1, E2, …)
 Name (default F1, F2, …)	이름 (기본값 F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	건물과 지붕을 모두 지정하거나, 지상형 태양광 어레이에는 둘 다 지정하지 마십시오
 Name of the assembly	어셈블리 이름
 Name of the bar, e.g. L1 -Q1	바 이름(예: L1 -Q1)
 Name of the check	검사 이름
@@ -494,6 +505,7 @@ No device group {}	장치 그룹 {} 없음
 No earth electrode {} in building {}	건물 {1}에 접지극 {0}이(가) 없습니다
 No enclosure named {}	이름이 {}인 외함 없음
 No entry for {} and {}	{}과(와) {}에 대한 항목이 없습니다
+No freestanding PV array {}	지상형 태양광 어레이 {}이(가) 없습니다
 No hose {}	호스 {} 없음
 No identifier {} in the project	프로젝트에 식별자 {}이(가) 없습니다
 No item with id {}	ID가 {}인 항목 없음
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	직선 구간의 
 Overlap of nibbling hits (0 … 0.9)	니블링 타격 겹침(0 … 0.9)
 PCT loop {} already exists	PCT 루프 {}이(가) 이미 있습니다
 PLC hardware: stations, cards, bus systems and port connections	PLC 하드웨어: 스테이션, 카드, 버스 시스템 및 포트 연결
+PV arrays on roofs are mounted parallel, tilted or east_west	지붕의 태양광 어레이는 parallel, tilted 또는 east_west로 설치됩니다
 Page macro name	페이지 매크로 이름
 Page macro that generates its schematic	회로도를 생성하는 페이지 매크로
 Page name (default: all pages)	페이지 이름 (기본: 모든 페이지)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	하나의 배선 경로 계
 Right side bayed (no side panel)	오른쪽 측면 결합(측면 패널 없음)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	환상: 지면 아래 깊이, 접지봉: 윗단 깊이, mm (기본값 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	접지봉: 직경 (기본값 20), 기초 및 환상 접지극: 원형 선의 직경, 평형 띠는 0, mm
+Roof: its name; without building and roof: a freestanding array on the plot	지붕: 그 이름; 건물과 지붕이 없으면: 부지의 지상형 어레이
 Room {} exists already	방 {}이(가) 이미 있습니다
 Rotation in degrees clockwise: 0, 90, 180 or 270	시계 방향 회전 각도: 0, 90, 180 또는 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	회전 각도(도), 시계 반대 방향(90이면 아래에서 위로 읽음)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	점프하는 전선: vertical 또는
 The wrap width must not be negative	줄 바꿈 너비는 음수일 수 없습니다
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	장착 플레이트의 열 시뮬레이션: 공기 온도, 핫스팟, 열원 및 각 장치의 온도
 Thickest sheet or bar, mm	최대 판금 또는 바 두께(mm)
+Tilt of the modules on a flat roof or of freestanding tables in degrees	평지붕 모듈 또는 지상형 가대의 기울기 (도)
 Time per drilling, punching or bending operation, s	드릴링, 펀칭 또는 굽힘 작업당 시간(s)
 Time per tool change, s	공구 교환당 시간(s)
 Title block (list_title_blocks); empty = the project default	표제란(list_title_blocks). 비어 있음 = 프로젝트 기본값
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main(기본값), supplementary 또�
 mounted, problem or open	mounted, problem 또는 open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond 또는 accessory
 numbers or letters	numbers 또는 letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (지붕 후크 위), tilted (기울임) 또는 east_west (동서, 평지붕); 지상형: ground (말뚝 위)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof 또는 bottom
 plug_in, saddle or wire	plug_in, saddle 또는 wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp 또는 canopen

@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	A tartozék cikkszáma, pl. GEN.GLAND-
 Activates (shows) or deactivates (hides) the content of a project option	Aktiválja (megjeleníti) vagy deaktiválja (elrejti) egy projektopció tartalmát
 Additional power loss in W	További veszteségi teljesítmény W-ban
 Address scheme: siemens, iec or rockwell	Címséma: siemens, iec vagy rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	PV-mezőt ad egy tetőhöz: modulsorok síneken és tetőkampókon egy tetősíkkal párhuzamosan, vagy lapostetőn döntve vagy kelet-nyugati elrendezésben ballasztolt szerelőtalpakon; x és z nélkül az elülső vagy a jobb oldali tetősík közepén. Épület és tető nélkül szabadföldi mező a telken: döntött asztalok sorai vert oszlopokon, x és z nélkül a létesítményben állók előtt. A modulok és a szerelési anyag az anyagjegyzékbe kerülnek
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Hajlított és fúrt rézsínt ad hozzá (vagy lecseréli a szekrényben lévő azonos nevűt)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Kábelátvezetést ad hozzá a jobb oldali szomszédhoz: egymással szemben lévő kerek kivágások mindkét oldalfalban; a szekrények közötti vezetékek ezen át futnak
 Adds a configurator rule: insert a page macro when the condition holds	Konfigurátorszabályt ad hozzá: oldalmakró beszúrása, ha a feltétel teljesül
@@ -73,6 +74,7 @@ Between page and column (default .)	Az oldal és az oszlop között (alapértelm
 Bonding point	Potenciálkiegyenlítési pont
 Border around the text	Szegély a szöveg körül
 Both classes are needed	Mindkét osztály szükséges
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Épület (hely, pl. +B1); épület és tető nélkül: szabadföldi mező a telken
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	A létesítmény épületei szintekkel, aknákkal, lépcsőkkel és PV mezős tetőkkel, földelőkkel és villámvédelemmel, a szinteken lévő helyiségekkel és az épületek közötti kapcsolatokkal
 Bus system name	Buszrendszer neve
 Bus system name, e.g. PN/IE_1	Buszrendszer neve, pl. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	A rúd átmérője, mm (alapértelmezés 16
 Direction of the stem: left, right, up or down (default: from the wires there)	A szár iránya: left, right, up vagy down (alapértelmezés: az ottani vezetékek szerint)
 Distance between power and signal or fluid in mm	Távolság az erősáram és a jel vagy fluid között mm-ben
 Distance from devices, rails and busbars in mm	Távolság a készülékektől, sínektől és gyűjtősínektől mm-ben
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Sortávolság lapostetőn vagy szabadföldi mezőnél mm-ben (0: télen árnyékmentes)
 Distance from the face in mm (rails: standoff height)	Távolság a felülettől mm-ben (síneknél: távtartó magassága)
 Distance in X (mm)	Távolság X irányban (mm)
 Distance in Y (mm)	Távolság Y irányban (mm)
@@ -266,12 +269,16 @@ First counter value (default 1)	Első számlálóérték (alapértelmezés: 1)
 First page number (default 1)	Első oldalszám (alapértelmezés: 1)
 First port as station:port, e.g. PLC1:X1 P2	Első port állomás:port alakban, pl. PLC1:X1 P2
 First row with the column names	Első sor az oszlopnevekkel
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Lapostetők és szabadföldi mezők: az irány, amerre a modulok néznek, fokban, felülről nézve az óramutató járásával ellentétesen (0: +z felé)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	A készüléknév formátuma: {letter}, {n} (számláló), {page}, {column}, {row}; alapértelmezés: {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	A format séma formátuma: {n} (számláló), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Alapföldelő: mennyivel a külső falakon belül (alapértelmezés 100), kör: mennyivel kívül (alapértelmezés 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Alapföldelő: legnagyobb hálója, mm (alapértelmezés 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kiinduló keret új keret esetén (alapértelmezés: A3 landscape)
 Free space in front of every device on the plate	Szabad hely a lapon lévő minden készülék előtt
+Freestanding PV arrays stand on posts (mounting ground)	A szabadföldi PV-mezők oszlopokon állnak (szerelés ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Szabadföldi: a modulok alsó élének magassága a talaj felett mm-ben (alapértelmezés 800)
+Freestanding: modules on top of each other on a table (default 2)	Szabadföldi: egymás fölötti modulok egy asztalon (alapértelmezés 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Rögzíti a nyomvonalakat a gyártáshoz (az újraszámítás megtartja, amíg lehetséges), vagy feloldja őket
 Frequency in Hz	Frekvencia Hz-ben
 Function (= without the sign; empty: the parent's)	Funkció (= jel nélkül; üres: a szülőé)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Adjon meg készülékjelet vagy cikkszámot
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Villámvédelmet ad egy épületnek vagy módosítja: osztály, a levezetők száma és a vezetők alkatrésze; felfogó vezetők a gerinceken és élgerinceken (háló a lapostetőkön), levezetők mérési csatlakozókkal a földelőkig; vagy eltávolítja
 Greatest distance of the conductor holders, mm (default 1000)	A vezetőtartók legnagyobb távolsága, mm (alapértelmezés 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	A tetőkampók legnagyobb távolsága egy sín mentén (szabadföldi: az oszlopoké egy asztal mentén) mm-ben
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Elemeket csoportosít egy együtt kijelölt és mozgatott szerelvénybe; név nélkül az elemek kilépnek a szerelvényeikből
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Átadja egy szekrény programjait megbízásként a gyártásnak: az összes felület és rézsín manifestje és programjai
 Has a divider between power and signal cables	Elválasztó van a teljesítmény- és jelkábelek között
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	Kábeltartó maximális telítettsége szá
 Maximum operating pressure in bar	Maximális üzemi nyomás bar-ban
 Measuring range or set point	Méréstartomány vagy alapjel
 Message code, e.g. wires.3f9a1c	Üzenetkód, pl. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	A PV-mező közepe az épület alaprajzán (szabadföldi: a létesítményben), x mm-ben
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	A PV-mező közepe az épület alaprajzán (szabadföldi: a létesítményben), z mm-ben
 Milling feed, mm/min	Marási előtolás, mm/min
 Mirror the symbol	Szimbólum tükrözése
 Moves an air-termination rod, changes its height, renames or removes it	Áthelyez egy felfogórudat, módosítja a magasságát, átnevezi vagy eltávolítja
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Egy kábelköteg szögestábla-elrendezése: az elágazások a közös csomóponttól a csatlakozókig hosszal, iránnyal, kötegátmérővel és érintkezőtűkkel, valamint a rajz méretaránya
 Name (default E1, E2, …)	Név (alapértelmezés E1, E2, …)
 Name (default F1, F2, …)	Név (alapértelmezés F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Adja meg az épületet és a tetőt is, vagy egyiket sem egy szabadföldi PV-mezőhöz
 Name of the assembly	A szerelvény neve
 Name of the bar, e.g. L1 -Q1	A sín neve, pl. L1 -Q1
 Name of the check	Az ellenőrzés neve
@@ -494,6 +505,7 @@ No device group {}	Nincs {} készülékcsoport
 No earth electrode {} in building {}	Nincs {} földelő a(z) {} épületben
 No enclosure named {}	Nincs {} nevű szekrény
 No entry for {} and {}	Nincs bejegyzés ehhez: {} és {}
+No freestanding PV array {}	Nincs {} szabadföldi PV-mező
 No hose {}	Nincs {} tömlő
 No identifier {} in the project	A projektben nincs {} azonosító
 No item with id {}	Nincs {} azonosítójú elem
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Az egyenes szakas
 Overlap of nibbling hits (0 … 0.9)	A nibbelési ütések átfedése (0 … 0.9)
 PCT loop {} already exists	A(z) {} PCT-kör már létezik
 PLC hardware: stations, cards, bus systems and port connections	PLC-hardver: állomások, kártyák, buszrendszerek és portkapcsolatok
+PV arrays on roofs are mounted parallel, tilted or east_west	A tetőkön lévő PV-mezők szerelése parallel, tilted vagy east_west
 Page macro name	Oldalmakró neve
 Page macro that generates its schematic	A kapcsolási rajzát generáló oldalmakró
 Page name (default: all pages)	Lapnév (alapértelmezés: minden lap)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	Sikertelen keresések újra
 Right side bayed (no side panel)	Jobb oldal sorolva (nincs oldalfal)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Kör: mélység a terepszint alatt, rúd: a felső vég mélysége, mm (alapértelmezés 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Rúdföldelő: átmérője (alapértelmezés 20), alap- és körföldelő: a körhuzalé, szalagnál 0, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Tető: a neve; épület és tető nélkül: szabadföldi mező a telken
 Room {} exists already	A(z) {} helyiség már létezik
 Rotation in degrees clockwise: 0, 90, 180 or 270	Elforgatás fokban, az óramutató járásával megegyezően: 0, 90, 180 vagy 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Elforgatás fokban, az óramutató járásával ellentétesen (90: alulról felfelé olvasható)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	Az átugró vezeték: vertical vagy 
 The wrap width must not be negative	A tördelési szélesség nem lehet negatív
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	A szerelőlap termikus szimulációja: léghőmérsékletek, forró pont, hőforrások és a hőmérséklet minden készüléknél
 Thickest sheet or bar, mm	Legvastagabb lemez vagy sín, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	A modulok dőlésszöge lapostetőn vagy a szabadföldi asztaloké fokban
 Time per drilling, punching or bending operation, s	Idő fúrási, lyukasztási vagy hajlítási műveletenként, s
 Time per tool change, s	Idő szerszámcserénként, s
 Title block (list_title_blocks); empty = the project default	Szövegmező (list_title_blocks); üres = a projekt alapértelmezése
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main (alapértelmezett), supplementa
 mounted, problem or open	mounted, problem vagy open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond vagy accessory
 numbers or letters	numbers vagy letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (tetőkampókon), tilted (döntve) vagy east_west (kelet-nyugat, lapostetők); szabadföldi: ground (oszlopokon)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof vagy bottom
 plug_in, saddle or wire	plug_in, saddle vagy wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp vagy canopen

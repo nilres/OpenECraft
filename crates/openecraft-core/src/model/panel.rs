@@ -127,6 +127,10 @@ pub struct Plot {
     /// The georeferenced point everything is measured from.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reference: Option<GeoReference>,
+    /// Freestanding (ground-mounted) PV arrays on it, their places in the plant (see
+    /// `crate::panel::solar`).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub solar: Vec<PvArray>,
 }
 
 impl Plot {
@@ -464,21 +468,32 @@ pub enum PvMounting {
     /// Flat roofs: pairs of modules tilted towards both sides (east-west) on ballasted
     /// mounting bases.
     EastWest,
+    /// Freestanding on the ground: rows of tilted tables, each on rails over table beams
+    /// on rammed posts.
+    Ground,
 }
 
-/// A solar (PV) array on a roof: rows of modules on one slope with their mounting.
+/// A solar (PV) array on a roof (rows of modules on one slope with their mounting) or
+/// freestanding on the plot (rows of tables).
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct PvArray {
     pub id: u64,
     pub name: String,
-    /// Its middle in the building's floor plan, mm.
+    /// Its middle in the building's floor plan (freestanding: in the plant), mm.
     pub x: f32,
     pub z: f32,
     /// Modules side by side in a row (along the eaves, or across the direction they face).
     pub columns: u32,
-    /// Rows of modules (up the slope, or behind each other; east-west: rows of pairs).
+    /// Rows of modules (up the slope, or behind each other; east-west: rows of pairs;
+    /// freestanding: rows of tables).
     pub rows: u32,
+    /// Freestanding: modules on top of each other on a table (up its slope).
+    #[serde(skip_serializing_if = "is_default_stack")]
+    pub stack: u32,
+    /// Freestanding: height of the lower edge of the modules above the ground, mm.
+    #[serde(skip_serializing_if = "is_default_clearance")]
+    pub clearance: f32,
     /// The long side of the modules along the rows instead of up the slope.
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub landscape: bool,
@@ -497,7 +512,8 @@ pub struct PvArray {
     /// Distance from row to row (tilted and east-west mounting), mm; 0: so that a row
     /// does not shade the next one in winter.
     pub row_gap: f32,
-    /// Greatest distance of the roof hooks or mounting bases along a rail, mm.
+    /// Greatest distance of the roof hooks or mounting bases along a rail (freestanding:
+    /// of the posts along a table), mm.
     pub span: f32,
     /// Ballast per module (tilted and east-west mounting), kg.
     pub ballast: f32,
@@ -521,6 +537,19 @@ pub struct PvArray {
     /// The strings its modules are connected in.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub strings: Vec<PvString>,
+}
+
+/// Modules on top of each other on a table of a freestanding PV array unless set.
+pub const DEFAULT_STACK: u32 = 2;
+/// Height of the lower edge of freestanding modules above the ground unless set, mm.
+pub const DEFAULT_CLEARANCE: f32 = 800.0;
+
+fn is_default_stack(n: &u32) -> bool {
+    *n == DEFAULT_STACK
+}
+
+fn is_default_clearance(h: &f32) -> bool {
+    *h == DEFAULT_CLEARANCE
 }
 
 /// A string of a PV array: modules in series, possibly several such strings in
@@ -578,6 +607,8 @@ impl Default for PvArray {
             z: 0.0,
             columns: 4,
             rows: 2,
+            stack: DEFAULT_STACK,
+            clearance: DEFAULT_CLEARANCE,
             landscape: false,
             module: "GEN.PV-430W".into(),
             module_width: 1134.0,

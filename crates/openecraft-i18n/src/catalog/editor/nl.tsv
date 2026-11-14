@@ -350,12 +350,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Klik op de plek in de situatietekening
 Click where the air-termination rods go on the roofs in the site plan	Klik in de situatietekening waar de opvangstaven op de daken komen
 Click where the earth rods go in the site plan	Klik in de situatietekening waar de aardpennen komen
+Click where the middle of a freestanding PV array goes in the site plan	Klik in de situatietekening waar het midden van een vrijstaand PV-veld komt
+Click where the middle of a freestanding PV array goes · Esc: stop	Klik waar het midden van een vrijstaand PV-veld komt · Esc: stoppen
 Click where the reference point is	Klik waar het referentiepunt ligt
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik waar drie draden samenkomen: het T-stuk benoemt het apparaat waar de draden beginnen en de volgorde van hun doelen · {} draait het waar nog geen draden samenkomen · Esc of rechtsklik om te beëindigen
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik waar twee draden kruisen: de kruising verbindt ze en leidt elk uiteinde van zijn lijn eerst rechtdoor, dan dwars · {} draait hem · Esc of rechtsklik om te beëindigen
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klik waar twee draden in een rechte hoek samenkomen, of waar aansluitpunten over de hoek tegenover elkaar liggen: met Auto-connect aan worden er draden naartoe getekend · {} draait hem · Esc of rechtsklik om te beëindigen
 Click while moving	Klik tijdens het verplaatsen
 Click, or drag it into the page	Klik erop of sleep het naar de pagina
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Geklikt bij x {} mm, z {} mm in de plattegrond van het gebouw: daar komt een nieuw dakraam of PV-veld.
 Climate (IEC 60890)	Klimaatbeheersing (IEC 60890)
 Clipboard	Klembord
 Close	Sluiten
@@ -777,6 +780,12 @@ Frame of all pages that do not choose one	Kader van alle pagina's die er geen ki
 Free air	Vrij in de lucht
 Free air factor	Factor vrij in de lucht
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Vrije ruimte voor elk apparaat op de plaat tot aan de deur; artikelen voegen hun eigen ruimte toe (Service space)
+Freestanding	Vrijstaand
+Freestanding PV array {}	Vrijstaand PV-veld {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Vrijstaand PV-veld {} geplaatst; klik voor het volgende · Esc: stoppen
+Freestanding PV array {}: {} modules	Vrijstaand PV-veld {}: {} modules
+Freestanding PV array {}: {} modules, {} kWp	Vrijstaand PV-veld {}: {} modules, {} kWp
+Freestanding PV arrays	Vrijstaande PV-velden
 Freeze all routes	Alle routes bevriezen
 Freeze route	Route bevriezen
 Frequency	Frequentie
@@ -821,6 +830,7 @@ Graphic line	Grafische lijn
 Graphic rectangle	Grafische rechthoek
 Graphical form	Grafisch formulier
 Greatest distance of the conductor holders on the roof and on the walls	Grootste afstand van de geleiderhouders op het dak en aan de muren
+Greatest distance of the posts along a table	Grootste afstand van de palen langs een tafel
 Greatest distance of the roof hooks along a rail	Grootste afstand van de dakhaken langs een rail
 Grid	Raster
 Grid north	Roosternoorden
@@ -843,6 +853,7 @@ Height above sea level	Hoogte boven zeeniveau
 Height above the floor	Hoogte boven de vloer
 Height above the mounting plate	Hoogte boven de montageplaat
 Height above the plate	Hoogte boven de plaat
+Height of the lower edge of the modules above the ground	Hoogte van de onderrand van de modules boven de grond
 Height of the plinth, 0 without plinth	Hoogte van de sokkel, 0 zonder sokkel
 Height of the rod above the covering	Hoogte van de staaf boven de dakbedekking
 Height of the test joints above the ground	Hoogte van de meetverbindingen boven maaiveld
@@ -1062,6 +1073,7 @@ Look for updates when OpenECraft starts	Bij het starten van OpenECraft op update
 Looking for updates…	Zoeken naar updates…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Zoekt op GitHub naar een nieuwe versie van OpenECraft en installeert die op de achtergrond
 Loop	Lus
+Lower edge	Onderrand
 Lowest fault current	Laagste foutstroom
 Lowest: the highest open-circuit voltage	Laagste: de hoogste nullastspanning
 Macro boxes	Macrokaders
@@ -1109,6 +1121,7 @@ Messages of this session	Meldingen van deze sessie
 Middle	Midden
 Middle button	Middelste knop
 Middle of the PV array in the floor plan of the building	Midden van het PV-veld in de plattegrond van het gebouw
+Middle of the PV array in the plant	Midden van het PV-veld in de installatie
 Min. bend radius	Min. buigradius
 Minimize the ribbon	Het lint minimaliseren
 Mirror	Spiegelen
@@ -1119,6 +1132,7 @@ Model of a part (2D / 3D)	Model van een artikel (2D / 3D)
 Modifier keys	Combinatietoetsen
 Module area	Moduleoppervlak
 Module part; its size comes from the part	Moduleartikel; de grootte komt van het artikel
+Modules on top of each other on a table	Modules boven elkaar op een tafel
 Motors feed the short circuit	Motoren voeden de kortsluiting
 Mounted on	Gemonteerd op
 Mounting assistant: the panel items in mounting order with their place and part	Montageassistent: de elementen van de kastlay-out in montagevolgorde met hun plaats en artikel
@@ -1235,6 +1249,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Nog geen behuizing – maak er een met Nieuwe behuizing, of een ruimte voor kasten met Nieuwe ruimte.
 No field cables: place the enclosures and field devices at nodes of the route network.	Geen veldkabels: plaats de behuizingen en veldapparaten bij knooppunten van het tracénetwerk.
 No filter fans: an air/air heat exchanger or a cooling unit	Geen filterventilatoren: een lucht/lucht-warmtewisselaar of een koelaggregaat
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Nog geen vrijstaand PV-veld: rijen schuine tafels op geheide palen op het perceel.
 No gesture	Geen gebaar
 No harnesses defined.	Geen kabelbomen gedefinieerd.
 No inverter	Geen omvormer
@@ -1487,7 +1502,6 @@ Plant layout	Installatielay-out
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Installatielay-out, tracénetwerk, veldkabelplanning, potentiaalvereffening en kabeltoebehoren
 Plant segments with planned devices before the schematic	Installatiesegmenten met geplande apparaten vóór het schema
 Plate outline, holes per diameter, cutouts	Plaatcontour, boringen per diameter, uitsparingen
-Plot	Perceel
 Plot boundary	Perceelgrens
 Plot boundary drawn: {} m²	Perceelgrens getekend: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Perceelgrens getekend: {} m²; erbuiten: {}
@@ -1510,6 +1524,8 @@ Position of the cursor	Positie van de cursor
 Position of the device tag (instead of the tag block)	Positie van de apparaataanduiding (in plaats van het aanduidingsblok)
 Position of the label (terminal number, address …)	Positie van het label (klemnummer, adres …)
 Positions are relative to the lower right corner of the symbol.	Posities zijn relatief ten opzichte van de rechteronderhoek van het symbool.
+Post distance	Paalafstand
+Posts	Palen
 Potential {}	Potentiaal {}
 Potential: {}	Potentiaal: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Vermogen en stroom van de belastingen van het net (motoren, aandrijvingen, verwarmingen, voedingen, transformatoren), de belasting van elk beveiligingsapparaat, de vraag met de gelijktijdigheidsfactor en het belastingsbudget van de voedingen.
@@ -1704,6 +1720,8 @@ Rod holder	Staafhouder
 Roof pitch	Dakhelling
 Roof window	Dakraam
 Roof windows	Dakramen
+Roof {} of building {}	Dak {} van gebouw {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Dak {} van gebouw {}: de lay-outeigenschappen voegen een PV-veld of dakraam toe waar is geklikt
 Roofs	Daken
 Room	Ruimte
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Ruimte toegevoegd op verdieping {}: sleep de wanden of teken nieuwe in de plattegrond, plaats kasten erin via hun eigenschappen
@@ -1730,6 +1748,8 @@ Row	Rij
 Row distance	Rijafstand
 Row drawing	Rijtekening
 Row labels	Rijlabels
+Rows of tables behind each other	Rijen tafels achter elkaar
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rijen schuine tafels op palen vóór wat er in de installatie staat, naar voren gericht; verplaats het naar zijn plek
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rijen op vrijgegeven pagina's kunnen niet worden gewijzigd. Een regeleinde in een tekst wordt geschreven als \\n.
 Rows per page	Rijen per pagina
 Rule libraries	Regelbibliotheken
@@ -2056,6 +2076,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	De gegenereerde pagina's blijven behouden
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	De artikeldatabase wordt door alle projecten gedeeld. Artikelen worden naar een project gekopieerd wanneer ze aan een apparaat worden toegewezen.
 The point's coordinates in the coordinate reference system	De coördinaten van het punt in het coördinatenreferentiesysteem
+The post; its accessories are the table beams, rails and clamps	De paal; de toebehoren zijn de tafelliggers, rails en klemmen
 The project changed since the search.	Het project is gewijzigd sinds de zoekopdracht.
 The project check	De projectcontrole
 The project database needs the desktop version: the browser cannot search folders.	De projectdatabase vereist de desktopversie: de browser kan geen mappen doorzoeken.
@@ -2199,6 +2220,7 @@ When it differs from the page	Wanneer deze afwijkt van de pagina
 Where	Plaats
 Where neither wire has a termination chosen for it	Waar voor geen van beide draden een afwerking is gekozen
 Where the point is in the plant; y: its height above the ground level of the plant	Waar het punt in de installatie ligt; y: de hoogte boven het maaiveld van de installatie
+Where the roof was clicked in the 3D view	Waar in de 3D-weergave op het dak is geklikt
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Waar de structuur van het apparaat vandaan komt: aspecten die gelijk zijn aan de structuur rond het symbool zijn geërfd en volgen wanneer het in of uit een structuurkader wordt verplaatst; andere aspecten zijn van het apparaat zelf en blijven.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Waar de draad begint en eindigt: een aansluitpunt uit de artikelgegevens, een aansluitpunt gegenereerd uit de functiesjabloon, of het midden van het apparaat als geen aansluitpunt overeenkomt
 Whole building	Heel gebouw
@@ -2237,6 +2259,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Bedradingsruimte tussen apparaten en goten
 With a user account of the server; replaces the access token	Met een gebruikersaccount van de server; vervangt het toegangstoken
 With everything below it	Met alles eronder
+With its middle where the roof was clicked in the 3D view	Met het midden waar in de 3D-weergave op het dak is geklikt
 With the current pages; the approvals so far become void	Met de huidige pagina's; de goedkeuringen tot nu toe vervallen
 With values only	Alleen met waarden
 Withdraw	Intrekken
@@ -2493,6 +2516,7 @@ x y	x y
 {} renamed: {} pages and devices	{} hernoemd: {} pagina's en apparaten
 {} report pages output to {}	{} rapportpagina's uitgevoerd naar {}
 {} routes frozen	{} routes bevroren
+{} rows of tables of {} × {} = {}, {}	{} rijen tafels van {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segmenten gemaakt, {} apparaten toegevoegd, {} bijgewerkt
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stations, {} bussystemen, {} kaarten toegewezen, {} adressen gewijzigd, {} verbindingen, {} kabels
 {} stopped with an error: {}	{} gestopt met een fout: {}
@@ -2521,6 +2545,7 @@ x y	x y
 {} × {} pixels, {}	{} × {} pixels, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
+{}, freestanding	{}, vrijstaand
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen
 {}: crimp together with the wire to {}	{}: samen met de draad naar {} krimpen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent

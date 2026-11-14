@@ -350,12 +350,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Vaziyet planında yerine tıklayın
 Click where the air-termination rods go on the roofs in the site plan	Vaziyet planında paratoner çubuklarının çatılarda duracağı yere tıklayın
 Click where the earth rods go in the site plan	Vaziyet planında topraklama kazıklarının duracağı yere tıklayın
+Click where the middle of a freestanding PV array goes in the site plan	Vaziyet planında arazi tipi bir PV dizisinin ortasının geleceği yere tıklayın
+Click where the middle of a freestanding PV array goes · Esc: stop	Arazi tipi bir PV dizisinin ortasının geleceği yere tıklayın · Esc: dur
 Click where the reference point is	Referans noktasının olduğu yere tıklayın
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Üç telin birleştiği yere tıklayın: T parçası tellerin çıktığı cihazı ve hedeflerinin sırasını belirler · {} henüz tel birleşmeyen yerde döndürür · Bitirmek için Esc veya sağ tık
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	İki telin kesiştiği yere tıklayın: kesişme onları bağlar ve çizgisinin her ucunu önce düz, sonra enine götürür · {} döndürür · Bitirmek için Esc veya sağ tık
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	İki telin dik açıyla birleştiği veya bağlantı noktalarının köşe üzerinden birbirine baktığı yere tıklayın: otomatik bağlama açıkken ona teller çizilir · {} döndürür · Bitirmek için Esc veya sağ tık
 Click while moving	Taşırken tıklama
 Click, or drag it into the page	Tıklayın veya sayfaya sürükleyin
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Bina planında x {} mm, z {} mm konumuna tıklandı: yeni bir çatı penceresi veya PV dizisi oraya gelir.
 Climate (IEC 60890)	İklimlendirme (IEC 60890)
 Clipboard	Pano
 Close	Kapat
@@ -777,6 +780,12 @@ Frame of all pages that do not choose one	Kendi çerçevesini seçmeyen tüm say
 Free air	Serbest havada
 Free air factor	Serbest hava faktörü
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Plakadaki her cihazın önünde kapıya kadar boş alan; parçalar kendi alanlarını ekler (Service space)
+Freestanding	Arazi tipi
+Freestanding PV array {}	Arazi tipi PV dizisi {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Arazi tipi PV dizisi {} yerleştirildi; sonraki için tıklayın · Esc: dur
+Freestanding PV array {}: {} modules	Arazi tipi PV dizisi {}: {} modül
+Freestanding PV array {}: {} modules, {} kWp	Arazi tipi PV dizisi {}: {} modül, {} kWp
+Freestanding PV arrays	Arazi tipi PV dizileri
 Freeze all routes	Tüm güzergâhları dondur
 Freeze route	Güzergâhı dondur
 Frequency	Frekans
@@ -821,6 +830,7 @@ Graphic line	Grafik çizgi
 Graphic rectangle	Grafik dikdörtgen
 Graphical form	Grafik form
 Greatest distance of the conductor holders on the roof and on the walls	Çatıda ve duvarlarda iletken tutucularının en büyük aralığı
+Greatest distance of the posts along a table	Bir masa boyunca direklerin en büyük aralığı
 Greatest distance of the roof hooks along a rail	Bir ray boyunca çatı kancalarının en büyük aralığı
 Grid	Izgara
 Grid north	Grid kuzeyi
@@ -843,6 +853,7 @@ Height above sea level	Deniz seviyesinden yükseklik
 Height above the floor	Zeminden yükseklik
 Height above the mounting plate	Montaj plakası üzerindeki yükseklik
 Height above the plate	Plaka üzerindeki yükseklik
+Height of the lower edge of the modules above the ground	Modüllerin alt kenarının zeminden yüksekliği
 Height of the plinth, 0 without plinth	Kaidenin yüksekliği, kaide yoksa 0
 Height of the rod above the covering	Çubuğun çatı kaplamasının üstündeki yüksekliği
 Height of the test joints above the ground	Ölçü klemenslerinin zeminden yüksekliği
@@ -1062,6 +1073,7 @@ Look for updates when OpenECraft starts	OpenECraft başlarken güncellemeleri ar
 Looking for updates…	Güncellemeler aranıyor…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub'da OpenECraft'ın yeni sürümünü arar ve arka planda yükler
 Loop	Döngü
+Lower edge	Alt kenar
 Lowest fault current	En düşük arıza akımı
 Lowest: the highest open-circuit voltage	En düşük: en yüksek açık devre gerilimi
 Macro boxes	Makro kutuları
@@ -1109,6 +1121,7 @@ Messages of this session	Bu oturumun mesajları
 Middle	Orta
 Middle button	Orta düğme
 Middle of the PV array in the floor plan of the building	PV dizisinin bina planındaki ortası
+Middle of the PV array in the plant	PV dizisinin tesisteki ortası
 Min. bend radius	Min. bükme yarıçapı
 Minimize the ribbon	Şeridi küçült
 Mirror	Yansıt
@@ -1119,6 +1132,7 @@ Model of a part (2D / 3D)	Bir parçanın modeli (2D / 3D)
 Modifier keys	Değiştirici tuşlar
 Module area	Modül alanı
 Module part; its size comes from the part	Modül parçası; boyutu parçadan gelir
+Modules on top of each other on a table	Bir masada üst üste modüller
 Motors feed the short circuit	Motorlar kısa devreyi besler
 Mounted on	Montaj yeri
 Mounting assistant: the panel items in mounting order with their place and part	Montaj yardımcısı: montaj sırasına göre pano öğeleri, yerleri ve parçalarıyla
@@ -1235,6 +1249,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Henüz pano yok – Yeni pano ile bir pano veya Yeni oda ile panolar için bir oda oluşturun.
 No field cables: place the enclosures and field devices at nodes of the route network.	Saha kablosu yok: panoları ve saha cihazlarını güzergâh ağının düğümlerine yerleştirin.
 No filter fans: an air/air heat exchanger or a cooling unit	Filtreli fan yok: hava/hava ısı eşanjörü veya soğutma ünitesi
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Henüz arazi tipi PV dizisi yok: arsada çakma direkler üzerinde eğimli masa sıraları.
 No gesture	Hareket yok
 No harnesses defined.	Tanımlı kablo demeti yok.
 No inverter	İnvertör yok
@@ -1487,7 +1502,6 @@ Plant layout	Tesis yerleşimi
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Tesis yerleşimi, güzergâh ağı, saha kablosu planlaması, eş potansiyel kuşaklama ve kablo aksesuarları
 Plant segments with planned devices before the schematic	Şemadan önce planlanmış cihazlarla tesis segmentleri
 Plate outline, holes per diameter, cutouts	Plaka dış hattı, çapa göre delikler, kesimler
-Plot	Arsa
 Plot boundary	Arsa sınırı
 Plot boundary drawn: {} m²	Arsa sınırı çizildi: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Arsa sınırı çizildi: {} m²; dışında: {}
@@ -1510,6 +1524,8 @@ Position of the cursor	İmlecin konumu
 Position of the device tag (instead of the tag block)	Cihaz etiketinin konumu (etiket bloğu yerine)
 Position of the label (terminal number, address …)	Yazının konumu (klemens numarası, adres …)
 Positions are relative to the lower right corner of the symbol.	Konumlar sembolün sağ alt köşesine göredir.
+Post distance	Direk aralığı
+Posts	Direkler
 Potential {}	Potansiyel {}
 Potential: {}	Potansiyel: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Şebeke yüklerinin (motorlar, sürücüler, ısıtıcılar, güç kaynakları, transformatörler) gücü ve akımı, her koruma cihazının yükü, eş zamanlılık faktörüyle talep ve güç kaynaklarının yük bilançosu.
@@ -1704,6 +1720,8 @@ Rod holder	Çubuk tutucu
 Roof pitch	Çatı eğimi
 Roof window	Çatı penceresi
 Roof windows	Çatı pencereleri
+Roof {} of building {}	{1} binasının {0} çatısı
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	{1} binasının {0} çatısı: yerleşim özellikleri tıklanan yere bir PV dizisi veya çatı penceresi ekler
 Roofs	Çatılar
 Room	Oda
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Oda {} katına eklendi: duvarlarını sürükleyin veya kat planında yenilerini çizin, panoları özelliklerinden içine yerleştirin
@@ -1730,6 +1748,8 @@ Row	Satır
 Row distance	Sıra aralığı
 Row drawing	Satır çizimi
 Row labels	Satır yazıları
+Rows of tables behind each other	Arka arkaya masa sıraları
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Tesiste duranların önünde, direkler üzerinde öne bakan eğimli masa sıraları; yerine taşıyın
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Yayımlanmış sayfalardaki satırlar değiştirilemez. Metindeki satır sonu \\n olarak yazılır.
 Rows per page	Sayfa başına satır
 Rule libraries	Kural kütüphaneleri
@@ -2056,6 +2076,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Oluşturduğu sayfalar kalır
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Parça veritabanı tüm projeler tarafından paylaşılır. Parçalar bir cihaza atandığında projeye kopyalanır.
 The point's coordinates in the coordinate reference system	Noktanın koordinat referans sistemindeki koordinatları
+The post; its accessories are the table beams, rails and clamps	Direk; aksesuarları masa kirişleri, raylar ve kelepçelerdir
 The project changed since the search.	Proje aramadan bu yana değişti.
 The project check	Proje kontrolü
 The project database needs the desktop version: the browser cannot search folders.	Proje veritabanı için masaüstü sürümü gerekir: tarayıcı klasörlerde arama yapamaz.
@@ -2199,6 +2220,7 @@ When it differs from the page	Sayfadan farklı olduğunda
 Where	Konum
 Where neither wire has a termination chosen for it	Hiçbir tel için sonlandırma seçilmemişse
 Where the point is in the plant; y: its height above the ground level of the plant	Noktanın tesisteki yeri; y: tesisin zemin seviyesinin üzerindeki yüksekliği
+Where the roof was clicked in the 3D view	3B görünümde çatıya tıklanan yer
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Cihazın yapısının kaynağı: sembolün çevresindeki yapıya eşit olan yönler devralınır ve sembol bir yapı kutusuna girdiğinde veya çıktığında değişir; diğer yönler cihazın kendisine aittir ve korunur.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Telin başladığı ve bittiği yer: parça verilerinden bir bağlantı noktası, fonksiyon şablonundan oluşturulan bir nokta veya eşleşen bağlantı noktası yoksa cihaz merkezi
 Whole building	Tüm bina
@@ -2237,6 +2259,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Cihazlar ve kanallar arasındaki kablolama alanı
 With a user account of the server; replaces the access token	Sunucunun bir kullanıcı hesabıyla; erişim belirtecinin yerini alır
 With everything below it	Altındaki her şeyle birlikte
+With its middle where the roof was clicked in the 3D view	Ortası 3B görünümde çatıya tıklanan yerde
 With the current pages; the approvals so far become void	Geçerli sayfalarla; şimdiye kadarki onaylar geçersiz olur
 With values only	Yalnızca değerli olanlar
 Withdraw	Geri çek
@@ -2493,6 +2516,7 @@ x y	x y
 {} renamed: {} pages and devices	{} yeniden adlandırıldı: {} sayfa ve cihaz
 {} report pages output to {}	{} rapor sayfası {} hedefine çıktı olarak verildi
 {} routes frozen	{} güzergâh donduruldu
+{} rows of tables of {} × {} = {}, {}	{} sıra masa, {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segment oluşturuldu, {} cihaz eklendi, {} güncellendi
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} istasyon, {} bus sistemi, {} kart atandı, {} adres değiştirildi, {} bağlantı, {} kablo
 {} stopped with an error: {}	{} bir hatayla durdu: {}
@@ -2521,6 +2545,7 @@ x y	x y
 {} × {} pixels, {}	{} × {} piksel, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
+{}, freestanding	{}, arazi tipi
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın
 {}: crimp together with the wire to {}	{}: {} yönündeki telle birlikte sıkıştırın
 {}: drag to move it, R turns it, a double-click opens it	{}: taşımak için sürükleyin, R döndürür, çift tıklama açar

@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Artikelnummer van het toebehoren, bijv
 Activates (shows) or deactivates (hides) the content of a project option	Activeert (toont) of deactiveert (verbergt) de inhoud van een projectoptie
 Additional power loss in W	Extra vermogensverlies in W
 Address scheme: siemens, iec or rockwell	Adresschema: siemens, iec of rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Voegt een PV-veld aan een dak toe: rijen modules op rails en dakhaken evenwijdig aan een dakvlak, of op een plat dak schuin of oost-west op geballaste montagevoeten; zonder x en z in het midden van het voorste of rechter dakvlak. Zonder gebouw en dak een vrijstaand veld op het perceel: rijen schuine tafels op geheide palen, zonder x en z vóór wat er in de installatie staat. De modules en het montagemateriaal komen in de stuklijst
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Voegt een gebogen en geboorde koperrail toe (of vervangt die met dezelfde naam in de behuizing)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Voegt een kabeldoorvoer naar de rechterbuur toe: ronde uitsparingen tegenover elkaar in beide zijwanden; draden tussen de behuizingen lopen erdoorheen
 Adds a configurator rule: insert a page macro when the condition holds	Voegt een configuratorregel toe: een paginamacro invoegen als aan de voorwaarde is voldaan
@@ -73,6 +74,7 @@ Between page and column (default .)	Tussen pagina en kolom (standaard .)
 Bonding point	Aansluitpunt van de potentiaalvereffening
 Border around the text	Rand rond de tekst
 Both classes are needed	Beide klassen zijn vereist
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Gebouw (locatie, bijv. +B1); zonder gebouw en dak: een vrijstaand veld op het perceel
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Gebouwen van de installatie met niveaus, schachten, trappen en daken met PV-velden, aardelektroden en bliksembeveiliging, ruimten op de niveaus en verbindingen tussen gebouwen
 Bus system name	Naam van het bussysteem
 Bus system name, e.g. PN/IE_1	Naam van het bussysteem, bijv. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Diameter van de staaf, mm (standaard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Richting van de steel: left, right, up of down (standaard: volgens de draden daar)
 Distance between power and signal or fluid in mm	Afstand tussen vermogen en signaal of fluïdum in mm
 Distance from devices, rails and busbars in mm	Afstand tot apparaten, rails en stroomrails in mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Afstand van rij tot rij op een plat dak of vrijstaand in mm (0: in de winter schaduwvrij)
 Distance from the face in mm (rails: standoff height)	Afstand tot het vlak in mm (rails: afstandshoogte)
 Distance in X (mm)	Afstand in X (mm)
 Distance in Y (mm)	Afstand in Y (mm)
@@ -266,12 +269,16 @@ First counter value (default 1)	Eerste tellerwaarde (standaard 1)
 First page number (default 1)	Eerste paginanummer (standaard 1)
 First port as station:port, e.g. PLC1:X1 P2	Eerste poort als station:poort, bijv. PLC1:X1 P2
 First row with the column names	Eerste rij met de kolomnamen
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Platte daken en vrijstaand: richting waarin de modules wijzen in graden, tegen de klok in van bovenaf gezien (0: naar +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Indeling van de apparaatnaam: {letter}, {n} (teller), {page}, {column}, {row}; standaard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Indeling van het schema format: {n} (teller), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Funderingsaarde: hoe ver binnen de buitenmuren (standaard 100), ring: hoe ver erbuiten (standaard 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Funderingsaarde: de grootste maas, mm (standaard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kader om mee te beginnen als het kader nieuw is (standaard: A3 landscape)
 Free space in front of every device on the plate	Vrije ruimte voor elk apparaat op de plaat
+Freestanding PV arrays stand on posts (mounting ground)	Vrijstaande PV-velden staan op palen (montage ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Vrijstaand: hoogte van de onderrand van de modules boven de grond in mm (standaard 800)
+Freestanding: modules on top of each other on a table (default 2)	Vrijstaand: modules boven elkaar op een tafel (standaard 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Bevriest routes voor de productie (door de herberekening behouden zolang mogelijk) of geeft ze vrij
 Frequency in Hz	Frequentie in Hz
 Function (= without the sign; empty: the parent's)	Functie (= zonder het teken; leeg: die van het bovenliggende segment)
@@ -288,6 +295,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Geef een apparaataanduiding of een artikelnummer op
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Geeft een gebouw een bliksembeveiliging of wijzigt die: de klasse, het aantal afleidingen en het artikel van de geleiders; opvanggeleiders op de nokken en hoekkepers (een maas op platte daken), afleidingen met meetverbindingen naar de aardelektroden; of verwijdert die
 Greatest distance of the conductor holders, mm (default 1000)	Grootste afstand van de geleiderhouders, mm (standaard 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Grootste afstand van de dakhaken langs een rail (vrijstaand: van de palen langs een tafel) in mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Groepeert elementen tot een samenstel dat samen wordt geselecteerd en verplaatst; zonder naam verlaten de elementen hun samenstellen
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Draagt de programma's van een behuizing als opdracht over aan de productie: manifest en programma's van alle vlakken en koperrails
 Has a divider between power and signal cables	Heeft een scheidingsschot tussen vermogens- en signaalkabels
@@ -450,6 +458,8 @@ Maximum fill of a carrier in percent	Maximale vulling van een kabeldrager in pro
 Maximum operating pressure in bar	Maximale werkdruk in bar
 Measuring range or set point	Meetbereik of setpoint
 Message code, e.g. wires.3f9a1c	Meldingscode, bijv. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Midden van het PV-veld in de plattegrond van het gebouw (vrijstaand: in de installatie), x in mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Midden van het PV-veld in de plattegrond van het gebouw (vrijstaand: in de installatie), z in mm
 Milling feed, mm/min	Freesvoeding, mm/min
 Mirror the symbol	Het symbool spiegelen
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
@@ -460,6 +470,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Spijkerbordindeling van een kabelboom: de aftakkingen van het gemeenschappelijke knooppunt naar de connectors met lengte, richting, bundeldiameter en pinnen, en de tekenschaal
 Name (default E1, E2, …)	Naam (standaard E1, E2, …)
 Name (default F1, F2, …)	Naam (standaard F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Geef zowel het gebouw als het dak op, of geen van beide voor een vrijstaand PV-veld
 Name of the assembly	Naam van het samenstel
 Name of the bar, e.g. L1 -Q1	Naam van de rail, bijv. L1 -Q1
 Name of the check	Naam van de controle
@@ -494,6 +505,7 @@ No device group {}	Geen apparaatgroep {}
 No earth electrode {} in building {}	Geen aardelektrode {} in gebouw {}
 No enclosure named {}	Geen behuizing met de naam {}
 No entry for {} and {}	Geen item voor {} en {}
+No freestanding PV array {}	Geen vrijstaand PV-veld {}
 No hose {}	Geen slang {}
 No identifier {} in the project	Geen aanduiding {} in het project
 No item with id {}	Geen element met id {}
@@ -575,6 +587,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Buitenmaten van d
 Overlap of nibbling hits (0 … 0.9)	Overlapping van de nibbelslagen (0 … 0.9)
 PCT loop {} already exists	PCT-lus {} bestaat al
 PLC hardware: stations, cards, bus systems and port connections	PLC-hardware: stations, kaarten, bussystemen en poortverbindingen
+PV arrays on roofs are mounted parallel, tilted or east_west	PV-velden op daken worden parallel, tilted of east_west gemonteerd
 Page macro name	Naam van de paginamacro
 Page macro that generates its schematic	Paginamacro die het schema ervan genereert
 Page name (default: all pages)	Paginanaam (standaard: alle pagina's)
@@ -715,6 +728,7 @@ Reuse failed searches during one routing calculation	Mislukte zoekacties binnen 
 Right side bayed (no side panel)	Rechterzijde gekoppeld (geen zijwand)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: diepte onder maaiveld, pen: diepte van de bovenkant, mm (standaard 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Aardpen: zijn diameter (standaard 20), fundering en ring: die van een ronddraad, 0 voor een strip, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Dak: de naam ervan; zonder gebouw en dak: een vrijstaand veld op het perceel
 Room {} exists already	Ruimte {} bestaat al
 Rotation in degrees clockwise: 0, 90, 180 or 270	Draaiing in graden met de klok mee: 0, 90, 180 of 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Draaiing in graden, linksom (90 leest van onder naar boven)
@@ -884,6 +898,7 @@ The wire that jumps: vertical or horizontal	De draad die springt: vertical of ho
 The wrap width must not be negative	De terugloopbreedte mag niet negatief zijn
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Thermische simulatie van de montageplaat: luchttemperaturen, hotspot, warmtebronnen en de temperatuur bij elk apparaat
 Thickest sheet or bar, mm	Dikste plaat of rail, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Hellingshoek van de modules op een plat dak of van vrijstaande tafels in graden
 Time per drilling, punching or bending operation, s	Tijd per boor-, pons- of buigbewerking, s
 Time per tool change, s	Tijd per gereedschapswissel, s
 Title block (list_title_blocks); empty = the project default	Titelblok (list_title_blocks); leeg = de projectstandaard
@@ -1021,6 +1036,7 @@ main (default), supplementary or functional	main (standaard), supplementary of f
 mounted, problem or open	mounted, problem of open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond of accessory
 numbers or letters	numbers of letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (op dakhaken), tilted (schuin) of east_west (oost-west, platte daken); vrijstaand: ground (op palen)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof of bottom
 plug_in, saddle or wire	plug_in, saddle of wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp of canopen

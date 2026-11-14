@@ -29,6 +29,15 @@ pub(crate) mod site_plan;
 mod site_tools;
 mod terminations;
 pub use site_tools::SiteTool;
+
+/// A roof picked in the 3D view: its building, its id and the point clicked on it in the
+/// building's floor plan (mm); the layout properties show it.
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct RoofTarget {
+    pub building: usize,
+    pub roof: u64,
+    pub at: [f32; 2],
+}
 mod view3d;
 
 #[derive(Clone, Debug, PartialEq)]
@@ -546,6 +555,9 @@ pub struct PanelUi {
     /// The earth electrode, the lightning protection or the air-termination rod selected
     /// in the 3D view or the site plan (its building and what): its properties are shown.
     pub selected_earthing: Option<(usize, panel::lightning::Owner)>,
+    /// The roof picked in the 3D view: the layout properties show it, a PV array or a roof
+    /// window is added where it was clicked.
+    pub selected_roof: Option<RoofTarget>,
     /// Opacity of the walls seen from the outside in the 3D view, 0 … 1.
     pub wall_opacity: f32,
     /// The 3D view is drawn by the graphics card where it can (set by the application).
@@ -721,6 +733,7 @@ impl Default for PanelUi {
             see_through_pv: false,
             selected_array: None,
             selected_earthing: None,
+            selected_roof: None,
             wall_opacity: WALL_OPACITY,
             gpu_3d: false,
             gpu: gpu3d::Gpu::default(),
@@ -839,6 +852,7 @@ impl PanelUi {
         self.selected_route = None;
         self.selected_array = None;
         self.selected_earthing = None;
+        self.selected_roof = None;
     }
 
     /// Selects an earth electrode, the lightning protection or an air-termination rod of
@@ -848,6 +862,7 @@ impl PanelUi {
         self.selected_wire = None;
         self.selected_route = None;
         self.selected_array = None;
+        self.selected_roof = None;
         self.selected_earthing = Some(target);
         let Some(b) = prj.layout.buildings.get(target.0) else { return };
         self.status = match target.1 {
@@ -864,12 +879,31 @@ impl PanelUi {
         self.selected_route = None;
         self.selected_array = Some(id);
         self.selected_earthing = None;
-        let found = prj.layout.buildings.iter().find_map(|b| b.roofs.iter().find_map(|r| r.solar.iter().find(|a| a.id == id)).map(|a| (b, a)));
-        if let Some((b, a)) = found {
-            self.status = match panel::solar::peak_power(prj, a) {
-                Some(kw) => tr_fmt!("PV array {} of building {}: {} modules, {} kWp", a.name, b.name, panel::solar::module_count(a), format!("{kw:.2}")),
-                None => tr_fmt!("PV array {} of building {}: {} modules", a.name, b.name, panel::solar::module_count(a)),
-            };
+        self.selected_roof = None;
+        let Some(at) = panel::solar::find(&prj.layout, id) else { return };
+        let Some(a) = panel::solar::array(&prj.layout, at) else { return };
+        let n = panel::solar::module_count(a);
+        let kw = panel::solar::peak_power(prj, a).map(|kw| format!("{kw:.2}"));
+        self.status = match (at.roof.and_then(|(bi, _)| prj.layout.buildings.get(bi)), kw) {
+            (Some(b), Some(kw)) => tr_fmt!("PV array {} of building {}: {} modules, {} kWp", a.name, b.name, n, kw),
+            (Some(b), None) => tr_fmt!("PV array {} of building {}: {} modules", a.name, b.name, n),
+            (None, Some(kw)) => tr_fmt!("Freestanding PV array {}: {} modules, {} kWp", a.name, n, kw),
+            (None, None) => tr_fmt!("Freestanding PV array {}: {} modules", a.name, n),
+        };
+    }
+
+    /// Selects a roof picked in the 3D view: the layout properties show it.
+    fn select_roof(&mut self, prj: &Project, target: RoofTarget) {
+        self.selection.clear();
+        self.selected_wire = None;
+        self.selected_route = None;
+        self.selected_array = None;
+        self.selected_earthing = None;
+        self.selected_roof = Some(target);
+        self.open_properties = true;
+        let Some(b) = prj.layout.buildings.get(target.building) else { return };
+        if let Some(r) = b.roofs.iter().find(|r| r.id == target.roof) {
+            self.status = tr_fmt!("Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked", r.name, b.name);
         }
     }
 
@@ -1000,6 +1034,7 @@ impl PanelUi {
         self.selected_route = None;
         self.selected_array = None;
         self.selected_earthing = None;
+        self.selected_roof = None;
     }
 
     /// Index of the selected wire in the current analysis.
@@ -2965,6 +3000,7 @@ impl PanelUi {
                 SiteTool::Move => tr("Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop"),
                 SiteTool::EarthRod => tr("Click where an earth rod goes, at or round a building · Esc: stop"),
                 SiteTool::AirRod => tr("Click where an air-termination rod goes on a roof · Esc: stop"),
+                SiteTool::PvArray => tr("Click where the middle of a freestanding PV array goes · Esc: stop"),
             };
             // The hint in the room the title and the edit button leave, cut short there.
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
@@ -3015,7 +3051,7 @@ impl PanelUi {
             self.site_plan.pan = Vec2::ZERO;
             self.fit_pending = false;
         }
-        let plan = site_plan::SitePlan { earthing: self.selected_earthing, ..self.site_plan };
+        let plan = site_plan::SitePlan { earthing: self.selected_earthing, array: self.selected_array, ..self.site_plan };
         let hovered = site_plan::paint(ui, rect, prj, &plan, resp.hover_pos()).filter(|_| self.site_tool == SiteTool::Select && !dragging_corner);
         self.paint_site_tools(ui, rect, prj, resp.hover_pos());
         // An earth electrode or a part of the lightning protection under the pointer:
@@ -3028,6 +3064,14 @@ impl PanelUi {
                 if resp.clicked() {
                     self.select_earthing(prj, target);
                     return;
+                }
+                return;
+            }
+            // A freestanding PV array: its properties by a click.
+            if let Some(id) = resp.hover_pos().and_then(|p| site_plan::ground_array_at(prj, &frame, p)) {
+                ui.ctx().set_cursor_icon(egui::CursorIcon::PointingHand);
+                if resp.clicked() {
+                    self.select_array(prj, id);
                 }
                 return;
             }

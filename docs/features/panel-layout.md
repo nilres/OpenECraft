@@ -409,7 +409,30 @@ hips dashed) with their roof windows, and the links.
   area, its mounting with the material and the earthing, its strings with their
   voltages, currents and the length of their leads, its problems, and the settings of
   the Buildings pane. A room under the roof shown alone shows the arrays over it and
-  the roof windows from outside too.
+  the roof windows from outside too. A **click on a roof** in the 3D view shows the roof
+  in the *Layout properties*: its shape, eaves, pitch, roof windows and PV arrays; a
+  roof window or a PV array added there goes where the roof was clicked, and the new
+  array is selected with its properties.
+- **Freestanding PV arrays** (*Freestanding PV arrays* in the pane: *PV array* in front
+  of what stands in the plant, *Place in the site plan* where clicked; `add_pv_array`
+  and `set_pv_array` without `building` and `roof`): ground-mounted arrays on the plot,
+  their middle in the plant. They stand in rows of **tables** facing the direction given
+  (25° unless set otherwise): `stack` modules on top of each other on a table (2), the
+  lower edge `clearance` above the ground (800 mm), two rails under each row of modules
+  on table beams, each beam on a front and a rear rammed post at most the post distance
+  apart along the table (`span`, 2.5 m), the tables so far apart that they do not shade
+  each other at a winter sun of 17° (or at the row distance given). The generic system
+  is the post `GEN.PV-POST-RAM` with the table beam `GEN.PV-TABLE-BEAM`, the rails, rail
+  connectors, module clamps and the earthing clamp (on the first front post of each
+  table) as its accessories; a mounting system of the parts database (subgroup *PV
+  ground post*) brings its own. The modules and the mounting go into the bill of
+  materials named after the plot; the site plan and the 3D view of the whole site draw
+  them, a click on one in either opens its properties. Their strings are those of the
+  arrays on the roofs; their leads (and the earthing conductor) run on the back of the
+  modules, down into a cable trench 0.7 m deep and up onto the generator junction box,
+  the inverter or the busbar. `plot` and `list_buildings` list them with the plot; the
+  checks report freestanding arrays on each other, on a room or cabinet, and outside the
+  plot boundary.
 - **PV strings** (*String* under a PV array in the pane, `add_pv_string`,
   `set_pv_string`, `pv_strings`): the modules of an array in series as strings, several
   strings of a kind in parallel, each on an MPP tracker of an inverter or charge
@@ -481,7 +504,8 @@ links whose building entries are gone, stairs without valid levels, with a rise 
 roof windows off their slope or across a ridge or hip, rooms the roof comes down to the
 floor of, cabinets higher than the sloped ceiling at their place and items on the walls
 or the ceiling above the slope, PV arrays off their roof or across a ridge, a hip or its
-edge, tilted on a pitched roof, over a roof window or over each other, and PV arrays
+edge, tilted on a pitched roof, over a roof window or over each other, freestanding PV
+arrays on each other, on a room or outside the plot boundary, and PV arrays
 whose device is missing or counts another number of modules or whose earthing busbar
 is missing, earth electrodes whose busbar is missing, earth rods inside the walls,
 lightning protection without earth electrode or with fewer down conductors than its
