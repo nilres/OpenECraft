@@ -266,7 +266,8 @@ Change request	Değişiklik talebi
 Change requests	Değişiklik talepleri
 Change requests (CSV, JSON)	Değişiklik talepleri (CSV, JSON)
 Changed against the frozen routes:	Dondurulmuş güzergâhlara göre değişenler:
-Changed by another user in the meantime, your change was replaced: {}	Bu arada başka bir kullanıcı tarafından değiştirildi, değişikliğinizin yerine o değişiklik geçti: {}
+Changed by another user before you got the lock	Siz kilidi almadan önce başka bir kullanıcı tarafından değiştirildi
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Bu arada başka bir kullanıcı tarafından değiştirildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Buradan dışa aktarılmış bir CSV veya Excel dosyasının değiştirilen hücreleri (satırlar anahtarlarına göre)
 Changed message levels ({})	Değiştirilen mesaj seviyeleri ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Montajdan sonra değişti: X {} mm, Y {} mm konumundaydı, parça {}
@@ -389,6 +390,7 @@ Comments ({})	Yorumlar ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Bir incelemecinin projenin PDF dışa aktarımına eklediği yorumlar (Acrobat veya başka bir PDF görüntüleyici)
 Comments and markup	Yorumlar ve işaretlemeler
 Company library	Şirket kütüphanesi
+Compare	Karşılaştır
 Compare and baselines	Karşılaştırma ve referans sürümler
 Compare with	Karşılaştır
 Compare with a baseline, a revision or another project file and take differences over	Bir referans sürümle, bir revizyonla veya başka bir proje dosyasıyla karşılaştır ve farklılıkları aktar
@@ -516,6 +518,7 @@ Delete the property and all its values	Özelliği ve tüm değerlerini sil
 Delete this workspace	Bu çalışma alanını sil
 Delete variant	Varyantı sil
 Delete zone	Bölgeyi sil
+Deletes this copy of your changes for good	Değişikliklerinizin bu kopyasını kalıcı olarak siler
 Depth / mounted at	Derinlik / montaj konumu
 Depth below the ground	Zeminin altındaki derinlik
 Depth from / to	Derinlik başlangıç / bitiş
@@ -974,6 +977,7 @@ Keep connections	Bağlantıları koru
 Keep sub-pages (3.a, 3.1) with the page before	Alt sayfaları (3.a, 3.1) önceki sayfayla birlikte tut
 Keep the degree of protection	Koruma derecesini koru
 Keep this route when recalculating, as long as it is still possible	Yeniden hesaplarken, mümkün olduğu sürece bu güzergâhı koru
+Kept changes	Saklanan değişiklikler
 Key tips of the ribbon	Şeridin erişim tuşları
 Key: {}	Anahtar: {}
 Keyboard shortcuts	Klavye kısayolları
@@ -1052,6 +1056,7 @@ Lock page	Sayfayı kilitle
 Lock project data	Proje verilerini kilitle
 Locked	Kilitli
 Locked by other users	Diğer kullanıcılar tarafından kilitlenenler
+Locked by {}	{} tarafından kilitlendi
 Locked by {} on the project server – read only	Proje sunucusunda {} tarafından kilitli – salt okunur
 Locked by {} – read only	{} tarafından kilitlendi – salt okunur
 Locking…	Kilitleniyor…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Yok – bir sayfayı veya 
 Not a page template file: {}	Sayfa şablonu dosyası değil: {}
 Not a point: type x y or @dx dy	Nokta değil: x y veya @dx dy yazın
 Not a symbol library: {}	Sembol kütüphanesi değil: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Değiştirilmedi, kilit reddedildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Not changed: {}	Değiştirilmedi: {}
+Not changed: {}. Your version is kept in the Project server pane.	Değiştirilmedi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
-Not saved, locked or changed by another user: {}	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi: {}
+Not saved, locked or changed by another user	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Alınmadı: tek başına sol düğme seçer, çizer ve taşır; bir değiştirici tuşu basılı tutun veya başka bir düğme kullanın.
 Not the shared project: changes are saved locally until it is opened on the project server again	Paylaşılan proje değil: proje sunucusunda yeniden açılana kadar değişiklikler yerel olarak kaydedilir
 Nothing exchanged yet.	Henüz hiçbir şey değiş tokuş edilmedi.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	Profilin parça
 Part selection from the parts database	Parça veritabanından parça seçimi
 Part selection – {}	Parça seçimi – {}
 Part selection…	Parça seçimi…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Kısmen kaydedildi (revizyon {}). Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
+Partly saved to the project server (revision {})	Proje sunucusuna kısmen kaydedildi (revizyon {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Parçalar yalnızca değiştirilebilen sayfalara bırakılabilir; bu sayfa yayınlanmış, kilitli veya oluşturulmuş
 Parts management	Parça yönetimi
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Zemine montaj için işaretlenmiş parçalar (pompalar, tanklar, kompresörler): birini seçin, ardından odanın zemininde duracağı yere tıklayın
@@ -1648,11 +1657,14 @@ Replace	Değiştir
 Replace all	Tümünü değiştir
 Replace text	Metni değiştir
 Replace with	Şununla değiştir
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Proje sunucusundaki sürümle değiştirildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Replaced when the configurator generates again; switch off to keep the page	Yapılandırıcı yeniden oluşturduğunda değiştirilir; sayfayı korumak için kapatın
+Replaced while you held no lock	Kilidiniz yokken değiştirildi
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Serbest metinlerde, fonksiyon metinlerinde, sayfa, cihaz ve kablo açıklamalarında değiştirir; yayımlanmış sayfalar olduğu gibi kalır
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Veritabanındaki GEN.* parçalarını geçerli örnek katalogla değiştirir (modeller dahil)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Şirket kütüphanesini projenin kendi antetleri, rapor şemaları ve çizim çerçeveleriyle değiştirir (parça sunucusunun düzenleyicileri)
 Replaces the content of the macro boxes whose macro changed in the library	Makrosu kütüphanede değişen makro kutularının içeriğini değiştirir
+Replaces the current version with yours as a change you can undo; the next save stores it	Geçerli sürümü geri alınabilir bir değişiklik olarak sizinkiyle değiştirir; sonraki kaydetme onu saklar
 Replaces the pages of this block	Bu bloğun sayfalarını değiştirir
 Reply	Yanıtla
 Reply…	Yanıtla…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Yerleştirilen 
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Projeyi revizyonlar, referans sürümler, inceleme ve kablolama işaretleri olmadan yeni projeler için şablon olarak kaydeder
 Saves the project's own properties, function definitions and schemes for other projects	Projenin kendi özelliklerini, fonksiyon tanımlarını ve şemalarını diğer projeler için kaydeder
 Saves the workspace, the arrangement of the panels and the open windows	Çalışma alanını, panellerin düzenini ve açık pencereleri kaydeder
+Saves your version of the whole project as a project file	Projenin tamamının sizin sürümünüzü proje dosyası olarak kaydeder
 Saving failed: {}	Kaydetme başarısız oldu: {}
 Saving the project access…	Proje erişimi kaydediliyor…
 Saving to the project server…	Proje sunucusuna kaydediliyor…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	Ölçülen değer yerine gösterilir
 Shown now: {}	Şu anda gösterilen: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Kapak sayfasında ve proje logosunu gösteren antetlerin görüntü öğelerinde gösterilir
 Shows	Gösterir
+Shows the differences of your version to the open project; selected ones can be taken over	Sürümünüzün açık projeden farklarını gösterir; seçilenler alınabilir
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Dışarıdan görülen yan duvarlar, arka duvar, üst ve taban: fanlar, kablo rakorları, kesimler
 Sign in in the Project server pane; the project opens afterwards	Proje sunucusu bölmesinde oturum açın; proje ardından açılır
 Sign in…	Oturum aç…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Kumanda devrelerinin en küçük kesi
 Smallest cross-section of power circuits	Güç devrelerinin en küçük kesiti
 Socket outlets, data and antenna outlets	Prizler, veri ve anten prizleri
 Solid	Düz
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Değişikliklerinizin bir kısmı proje sunucusu tarafından alınmadı. Sürümünüz, attıktan sonra da Proje sunucusu bölmesinde kalır.
 Some wires have no length: place their devices in the panel layout or set the field length.	Bazı tellerin uzunluğu yok: cihazlarını pano yerleşimine yerleştirin veya alan uzunluğunu ayarlayın.
 Sort by designation	Tanıma göre sırala
 Sort order	Sıralama
@@ -1998,6 +2013,7 @@ Tag placed by hand	Etiket elle yerleştirildi
 Take out a subproject	Alt proje dışarı al
 Take out of the building	Binadan çıkar
 Take out {} pages…	{} sayfayı dışarı al…
+Take over again	Yeniden al
 Take over cut lengths	Kesim uzunluklarını devral
 Take over selected ({})	Seçilenleri aktar ({})
 Take over {} changes	{} değişikliği devral
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Pano sol tarafıyla seçilen panonun sağ tarafına dayanır; teller aralarında kablo geçişlerinden geçer
 The horizontal wire	Yatay tel
 The items are selected and moved together	Öğeler birlikte seçilir ve taşınır
+The lock was refused	Kilit reddedildi
 The logo is fitted into this area keeping its aspect ratio	Logo, en boy oranı korunarak bu alana sığdırılır
 The logo of the project properties, e.g. the customer's	Proje özelliklerindeki logo, ör. müşterinin logosu
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Parça sunucusundaki üretici kataloglarının logoları, bir parçanın ayrıntılarının yanında
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Makro k
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tekerleğin yana kaydırmasını veya yakınlaştırmasını sağlayan değiştiriciler Değiştirici tuşlar altında ayarlanır.
 The modules no string takes yet in series, on the first inverter	Henüz hiçbir dizinin almadığı modüller, seri olarak, ilk invertörde
 The names of its pages follow	Sayfalarının adları da değişir
+The open project already has your version	Açık projede zaten sizin sürümünüz var
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Açık proje yerel bir kurtarma kopyasıdır. Değişiklikleri proje sunucusuna kaydedilmedi; paylaşılan proje açılmadan önce bunları yerel olarak kaydetmeye veya atmaya siz karar verirsiniz.
 The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	YYYY-AA-GG
 You may only view this project.	Bu projeyi yalnızca görüntüleyebilirsiniz.
 You may review this project: comments, markup and approvals, no other changes.	Bu projeyi inceleyebilirsiniz: yorumlar, işaretlemeler ve onaylar, başka değişiklik yok.
 Your unsaved changes of it are taken back	Bu öğedeki kaydedilmemiş değişiklikleriniz geri alınır
+Your version of {}	{} tarihli sürümünüz
+Your version taken over: {}. Save to store it on the project server.	Sürümünüz alındı: {}. Proje sunucusunda saklamak için kaydedin.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Proje sunucusundaki sürümle değiştirilen değişikliklerin sizin sürümleriniz. Siz atana kadar burada kalırlar.
 Zoom	Yakınlaştır
 Zoom in in the 3D view (held)	3B görünümü yakınlaştır (basılı tut)
 Zoom out in the 3D view (held)	3B görünümü uzaklaştır (basılı tut)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{} / {} tel
 {} of {} wires assigned to cores of {}	{} / {} tel, {} kablosunun damarlarına atandı
 {} on released pages were left as they are	Yayımlanmış sayfalardaki {} tanesi olduğu gibi bırakıldı
+{} on {}	{} ({})
 {} options switched	{} seçenek değiştirildi
 {} pages generated	{} sayfa oluşturuldu
 {} pages generated; page macros not found: {}	{} sayfa oluşturuldu; bulunamayan sayfa makroları: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (maks.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} piksel, {}
+{} – revision {}, {}	{} – revizyon {}, {}
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın

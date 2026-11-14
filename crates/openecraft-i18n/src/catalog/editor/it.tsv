@@ -266,7 +266,8 @@ Change request	Richiesta di modifica
 Change requests	Richieste di modifica
 Change requests (CSV, JSON)	Richieste di modifica (CSV, JSON)
 Changed against the frozen routes:	Modificato rispetto ai percorsi congelati:
-Changed by another user in the meantime, your change was replaced: {}	Modificato nel frattempo da un altro utente, la tua modifica è stata sostituita: {}
+Changed by another user before you got the lock	Modificato da un altro utente prima che tu ottenessi il blocco
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Modificato nel frattempo da un altro utente: {}. La tua versione resta nel pannello Server di progetto.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Celle modificate di un file CSV o Excel esportato qui (righe tramite la loro chiave)
 Changed message levels ({})	Livelli dei messaggi modificati ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Modificato dopo il montaggio: era a X {} mm, Y {} mm con l'articolo {}
@@ -389,6 +390,7 @@ Comments ({})	Commenti ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Commenti che un revisore ha inserito in un'esportazione PDF del progetto (Acrobat o un altro visualizzatore PDF)
 Comments and markup	Commenti e marcature
 Company library	Libreria aziendale
+Compare	Confronta
 Compare and baselines	Confronto e baseline
 Compare with	Confronta con
 Compare with a baseline, a revision or another project file and take differences over	Confronta con una baseline, una revisione o un altro file di progetto e acquisisci le differenze
@@ -516,6 +518,7 @@ Delete the property and all its values	Elimina la proprietà e tutti i suoi valo
 Delete this workspace	Elimina questa area di lavoro
 Delete variant	Elimina variante
 Delete zone	Elimina zona
+Deletes this copy of your changes for good	Elimina definitivamente questa copia delle tue modifiche
 Depth / mounted at	Profondità / montato a
 Depth below the ground	Profondità sotto il terreno
 Depth from / to	Profondità da / a
@@ -974,6 +977,7 @@ Keep connections	Mantieni collegamenti
 Keep sub-pages (3.a, 3.1) with the page before	Mantieni le sottopagine (3.a, 3.1) con la pagina precedente
 Keep the degree of protection	Mantieni il grado di protezione
 Keep this route when recalculating, as long as it is still possible	Mantieni questo percorso durante il ricalcolo, finché è ancora possibile
+Kept changes	Modifiche conservate
 Key tips of the ribbon	Tasti di accesso della barra multifunzione
 Key: {}	Chiave: {}
 Keyboard shortcuts	Tasti di scelta rapida
@@ -1052,6 +1056,7 @@ Lock page	Blocca pagina
 Lock project data	Blocca dati del progetto
 Locked	Bloccato
 Locked by other users	Bloccato da altri utenti
+Locked by {}	Bloccato da {}
 Locked by {} on the project server – read only	Bloccato da {} sul server dei progetti – sola lettura
 Locked by {} – read only	Bloccato da {} – sola lettura
 Locking…	Blocco in corso…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Nessuno – la modifica di
 Not a page template file: {}	Non è un file di modelli di pagina: {}
 Not a point: type x y or @dx dy	Non è un punto: digita x y o @dx dy
 Not a symbol library: {}	Non è una libreria di simboli: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Non modificato, il blocco è stato rifiutato: {}. La tua versione resta nel pannello Server di progetto.
 Not changed: {}	Non modificato: {}
+Not changed: {}. Your version is kept in the Project server pane.	Non modificato: {}. La tua versione resta nel pannello Server di progetto.
 Not found: {}	Non trovato: {}
 Not in the project parts – synchronize in parts management	Non presente negli articoli del progetto – sincronizza in Gestione articoli
 Not on a wire	Non su un conduttore
-Not saved, locked or changed by another user: {}	Non salvato, bloccato o modificato da un altro utente: {}
+Not saved, locked or changed by another user	Non salvato, bloccato o modificato da un altro utente
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Non accettato: il tasto sinistro da solo seleziona, disegna e sposta; tenere premuto un modificatore o usare un altro tasto.
 Not the shared project: changes are saved locally until it is opened on the project server again	Non è il progetto condiviso: le modifiche vengono salvate in locale finché non viene riaperto sul server dei progetti
 Nothing exchanged yet.	Ancora nessuno scambio.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	Articolo del pr
 Part selection from the parts database	Selezione articoli dal database articoli
 Part selection – {}	Selezione articoli – {}
 Part selection…	Selezione articolo…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Salvato in parte (revisione {}). Non salvato, bloccato o modificato da un altro utente: {}. La tua versione resta nel pannello Server di progetto.
+Partly saved to the project server (revision {})	Salvato in parte sul server di progetto (revisione {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Gli articoli possono essere rilasciati solo su pagine modificabili; questa è rilasciata, bloccata o generata
 Parts management	Gestione articoli
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Articoli contrassegnati per il montaggio a pavimento (pompe, serbatoi, compressori): scegline uno, poi fai clic dove va sul pavimento del locale
@@ -1648,11 +1657,14 @@ Replace	Sostituisci
 Replace all	Sostituisci tutto
 Replace text	Sostituisci testo
 Replace with	Sostituisci con
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Sostituito dalla versione sul server di progetto: {}. La tua versione resta nel pannello Server di progetto.
 Replaced when the configurator generates again; switch off to keep the page	Viene sostituita quando il configuratore genera di nuovo; disattiva per mantenere la pagina
+Replaced while you held no lock	Sostituito mentre non avevi alcun blocco
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Sostituisce in testi liberi, testi di funzione, descrizioni di pagine, dispositivi e cavi; le pagine rilasciate restano invariate
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Sostituisce gli articoli GEN.* nel database con il catalogo di esempio attuale (modelli inclusi)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Sostituisce la libreria aziendale con i cartigli, gli schemi di report e le cornici del progetto (editori del server articoli)
 Replaces the content of the macro boxes whose macro changed in the library	Sostituisce il contenuto dei riquadri macro la cui macro è cambiata nella libreria
+Replaces the current version with yours as a change you can undo; the next save stores it	Sostituisce la versione attuale con la tua come modifica annullabile; il prossimo salvataggio la memorizza
 Replaces the pages of this block	Sostituisce le pagine di questo blocco
 Reply	Rispondi
 Reply…	Rispondi…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Salva le propri
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Salva il progetto senza revisioni, baseline, riesame e contrassegni di cablatura come modello per nuovi progetti
 Saves the project's own properties, function definitions and schemes for other projects	Salva le proprietà, le definizioni di funzione e gli schemi propri del progetto per altri progetti
 Saves the workspace, the arrangement of the panels and the open windows	Salva l'area di lavoro, la disposizione dei riquadri e le finestre aperte
+Saves your version of the whole project as a project file	Salva la tua versione dell'intero progetto come file di progetto
 Saving failed: {}	Salvataggio non riuscito: {}
 Saving the project access…	Salvataggio dell'accesso al progetto…
 Saving to the project server…	Salvataggio sul server di progetto…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	Mostrato al posto del valore misurato
 Shown now: {}	Mostrato ora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Mostrato nel frontespizio e dagli elementi immagine dei cartigli che mostrano il logo del progetto
 Shows	Mostra
+Shows the differences of your version to the open project; selected ones can be taken over	Mostra le differenze della tua versione rispetto al progetto aperto; quelle selezionate possono essere riprese
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Pareti laterali, parete posteriore, tetto e fondo visti dall'esterno: ventilatori, pressacavi, aperture
 Sign in in the Project server pane; the project opens afterwards	Accedi nel riquadro Server dei progetti; poi il progetto si apre
 Sign in…	Accedi…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Sezione minima dei circuiti di comand
 Smallest cross-section of power circuits	Sezione minima dei circuiti di potenza
 Socket outlets, data and antenna outlets	Prese di corrente, dati e antenna
 Solid	Continuo
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Alcune tue modifiche non sono state accettate dal server di progetto. La tua versione resta nel pannello Server di progetto, anche dopo averle scartate.
 Some wires have no length: place their devices in the panel layout or set the field length.	Alcuni conduttori non hanno una lunghezza: posiziona i relativi dispositivi nel layout quadro o imposta la lunghezza campo.
 Sort by designation	Ordina per designazione
 Sort order	Ordinamento
@@ -1998,6 +2013,7 @@ Tag placed by hand	Sigla posizionata manualmente
 Take out a subproject	Estrai un sottoprogetto
 Take out of the building	Togli dall'edificio
 Take out {} pages…	Estrai {} pagine…
+Take over again	Riprendi
 Take over cut lengths	Applica lunghezze di taglio
 Take over selected ({})	Acquisisci selezionati ({})
 Take over {} changes	Applica {} modifiche
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	L'armadio è posizionato con il lato sinistro contro il lato destro di quello scelto; i conduttori passano tra di essi attraverso passaggi cavi
 The horizontal wire	Il filo orizzontale
 The items are selected and moved together	Gli elementi vengono selezionati e spostati insieme
+The lock was refused	Il blocco è stato rifiutato
 The logo is fitted into this area keeping its aspect ratio	Il logo viene adattato a quest'area mantenendo le proporzioni
 The logo of the project properties, e.g. the customer's	Il logo delle proprietà del progetto, ad es. quello del cliente
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	I loghi dei cataloghi dei produttori sul server degli articoli, accanto ai dettagli di un articolo
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	La libr
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	I modificatori che fanno spostare la rotella di lato o eseguire lo zoom si impostano in Tasti modificatori.
 The modules no string takes yet in series, on the first inverter	I moduli che nessuna stringa prende ancora, in serie, sul primo inverter
 The names of its pages follow	I nomi delle sue pagine si adeguano
+The open project already has your version	Il progetto aperto ha già la tua versione
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Il progetto aperto è una copia di ripristino locale. Le sue modifiche non sono salvate sul server dei progetti; prima che il progetto condiviso si apra, decidi se salvarle in locale o scartarle.
 The page name gets the section number	Il nome della pagina riceve il numero della sezione
 The page type, plot frame, title block, structure, description and the whole content are saved.	Vengono salvati tipo di pagina, cornice di stampa, cartiglio, struttura, descrizione e l'intero contenuto.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	AAAA-MM-GG
 You may only view this project.	Puoi solo visualizzare questo progetto.
 You may review this project: comments, markup and approvals, no other changes.	Puoi eseguire il riesame di questo progetto: commenti, annotazioni e approvazioni, nessun'altra modifica.
 Your unsaved changes of it are taken back	Le tue modifiche non salvate vengono annullate
+Your version of {}	La tua versione del {}
+Your version taken over: {}. Save to store it on the project server.	La tua versione ripresa: {}. Salva per memorizzarla sul server di progetto.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Le tue versioni delle modifiche sostituite dalla versione sul server di progetto. Restano qui finché non le scarti.
 Zoom	Zoom
 Zoom in in the 3D view (held)	Ingrandire la vista 3D (tenere premuto)
 Zoom out in the 3D view (held)	Ridurre la vista 3D (tenere premuto)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{} di {} conduttori
 {} of {} wires assigned to cores of {}	{} di {} conduttori assegnati alle anime di {}
 {} on released pages were left as they are	{} su pagine rilasciate sono stati lasciati invariati
+{} on {}	{} su {}
 {} options switched	{} opzioni commutate
 {} pages generated	{} pagine generate
 {} pages generated; page macros not found: {}	{} pagine generate; macro di pagina non trovate: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixel, {}
+{} – revision {}, {}	{} – revisione {}, {}
 {} – {} ({} pages)	{} – {} ({} pagine)
 {} – {} here (Esc cancels)	{} – {} qui (Esc annulla)
 {}: click to show its floor plan	{}: clic per mostrarne la pianta

@@ -266,7 +266,8 @@ Change request	Запрос на изменение
 Change requests	Запросы на изменение
 Change requests (CSV, JSON)	Запросы на изменение (CSV, JSON)
 Changed against the frozen routes:	Изменено по сравнению с зафиксированными трассами:
-Changed by another user in the meantime, your change was replaced: {}	Тем временем изменено другим пользователем, ваше изменение заменено: {}
+Changed by another user before you got the lock	Изменено другим пользователем до получения вами блокировки
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Тем временем изменено другим пользователем: {}. Ваша версия сохранена на панели «Сервер проектов».
 Changed cells of a CSV or Excel file exported here (rows by their key)	Измененные ячейки файла CSV или Excel, экспортированного отсюда (строки по их ключу)
 Changed message levels ({})	Измененные уровни сообщений ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Изменено после монтажа: было X {} мм, Y {} мм с изделием {}
@@ -388,6 +389,7 @@ Comments ({})	Комментарии ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Комментарии рецензента в PDF-экспорте проекта (Acrobat или другое средство просмотра PDF)
 Comments and markup	Комментарии и пометки
 Company library	Библиотека компании
+Compare	Сравнить
 Compare and baselines	Сравнение и базовые версии
 Compare with	Сравнить с
 Compare with a baseline, a revision or another project file and take differences over	Сравнить с базовой версией, ревизией или другим файлом проекта и принять различия
@@ -515,6 +517,7 @@ Delete the property and all its values	Удалить свойство со вс
 Delete this workspace	Удалить это рабочее пространство
 Delete variant	Удалить вариант
 Delete zone	Удалить зону
+Deletes this copy of your changes for good	Окончательно удаляет эту копию ваших изменений
 Depth / mounted at	Глубина / монтаж на
 Depth below the ground	Глубина под землёй
 Depth from / to	Глубина от / до
@@ -973,6 +976,7 @@ Keep connections	Сохранять соединения
 Keep sub-pages (3.a, 3.1) with the page before	Оставлять подлисты (3.a, 3.1) при предыдущем листе
 Keep the degree of protection	Сохранять степень защиты
 Keep this route when recalculating, as long as it is still possible	Сохранять эту трассу при пересчёте, пока это возможно
+Kept changes	Сохранённые изменения
 Key tips of the ribbon	Клавиши доступа ленты
 Key: {}	Ключ: {}
 Keyboard shortcuts	Сочетания клавиш
@@ -1051,6 +1055,7 @@ Lock page	Заблокировать лист
 Lock project data	Заблокировать данные проекта
 Locked	Заблокирован
 Locked by other users	Заблокировано другими пользователями
+Locked by {}	Заблокировано: {}
 Locked by {} on the project server – read only	Заблокировано пользователем {} на сервере проектов – только чтение
 Locked by {} – read only	Заблокировано пользователем {} – только чтение
 Locking…	Блокировка…
@@ -1273,11 +1278,13 @@ None – editing a page or the project data locks it.	Нет – изменен�
 Not a page template file: {}	Не файл шаблонов листов: {}
 Not a point: type x y or @dx dy	Не точка: введите x y или @dx dy
 Not a symbol library: {}	Не библиотека символов: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Не изменено, блокировка отклонена: {}. Ваша версия сохранена на панели «Сервер проектов».
 Not changed: {}	Не изменено: {}
+Not changed: {}. Your version is kept in the Project server pane.	Не изменено: {}. Ваша версия сохранена на панели «Сервер проектов».
 Not found: {}	Не найдено: {}
 Not in the project parts – synchronize in parts management	Нет в изделиях проекта – синхронизируйте в управлении изделиями
 Not on a wire	Не на проводе
-Not saved, locked or changed by another user: {}	Не сохранено, заблокировано или изменено другим пользователем: {}
+Not saved, locked or changed by another user	Не сохранено, заблокировано или изменено другим пользователем
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не принято: одна левая кнопка выбирает, рисует и перемещает; удерживайте модификатор или используйте другую кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Это не общий проект: изменения сохраняются локально, пока он снова не будет открыт на сервере проектов
 Nothing exchanged yet.	Обмена ещё не было.
@@ -1431,6 +1438,8 @@ Part of the profile: generic types or parts from the parts store	Изделие 
 Part selection from the parts database	Выбор изделия из базы данных изделий
 Part selection – {}	Выбор изделия – {}
 Part selection…	Выбор изделия…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Частично сохранено (ревизия {}). Не сохранено, заблокировано или изменено другим пользователем: {}. Ваша версия сохранена на панели «Сервер проектов».
+Partly saved to the project server (revision {})	Частично сохранено на сервере проектов (ревизия {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Изделия можно перетаскивать только на изменяемые страницы; эта выпущена, заблокирована или сгенерирована
 Parts management	Управление изделиями
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Изделия с отметкой напольного монтажа (насосы, баки, компрессоры): выберите одно, затем щёлкните место на полу помещения
@@ -1647,11 +1656,14 @@ Replace	Заменить
 Replace all	Заменить все
 Replace text	Заменить текст
 Replace with	Заменить на
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Заменено версией с сервера проектов: {}. Ваша версия сохранена на панели «Сервер проектов».
 Replaced when the configurator generates again; switch off to keep the page	Заменяется при следующем создании конфигуратором; выключите, чтобы сохранить лист
+Replaced while you held no lock	Заменено, пока у вас не было блокировки
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Заменяет в свободных текстах, текстах функций, описаниях листов, устройств и кабелей; выпущенные листы не изменяются
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Заменяет изделия GEN.* в базе данных текущим примером каталога (включая модели)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Заменяет библиотеку компании собственными основными надписями, схемами отчётов и рамками проекта (редакторы сервера изделий)
 Replaces the content of the macro boxes whose macro changed in the library	Заменяет содержимое рамок макросов, макрос которых изменился в библиотеке
+Replaces the current version with yours as a change you can undo; the next save stores it	Заменяет текущую версию вашей как изменение, которое можно отменить; следующее сохранение запишет её
 Replaces the pages of this block	Заменяет листы этого блока
 Reply	Ответить
 Reply…	Ответить…
@@ -1780,6 +1792,7 @@ Saves the placed properties as a placement scheme of the project	Сохраня�
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Сохраняет проект без ревизий, базовых версий, рецензирования и отметок проводки как шаблон для новых проектов
 Saves the project's own properties, function definitions and schemes for other projects	Сохраняет собственные свойства, определения функций и схемы проекта для других проектов
 Saves the workspace, the arrangement of the panels and the open windows	Сохраняет рабочее пространство, расположение панелей и открытые окна
+Saves your version of the whole project as a project file	Сохраняет вашу версию всего проекта в файл проекта
 Saving failed: {}	Ошибка сохранения: {}
 Saving the project access…	Сохранение доступа к проекту…
 Saving to the project server…	Сохранение на сервере проектов…
@@ -1891,6 +1904,7 @@ Shown instead of the measured value	Отображается вместо изм
 Shown now: {}	Сейчас показывается: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показывается на титульном листе и в элементах изображения основных надписей, показывающих логотип проекта
 Shows	Показывает
+Shows the differences of your version to the open project; selected ones can be taken over	Показывает отличия вашей версии от открытого проекта; выбранные можно перенять
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Боковые стенки, задняя стенка, крыша и дно снаружи: вентиляторы, кабельные вводы, вырезы
 Sign in in the Project server pane; the project opens afterwards	Войдите в панели «Сервер проектов»; затем проект откроется
 Sign in…	Войти…
@@ -1909,6 +1923,7 @@ Smallest cross-section of control circuits	Наименьшее сечение �
 Smallest cross-section of power circuits	Наименьшее сечение силовых цепей
 Socket outlets, data and antenna outlets	Розетки, информационные и антенные розетки
 Solid	Сплошная
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Сервер проектов принял не все ваши изменения. Ваша версия остаётся на панели «Сервер проектов», даже после отказа.
 Some wires have no length: place their devices in the panel layout or set the field length.	У некоторых проводов нет длины: разместите их устройства в компоновке шкафа или задайте длину поля.
 Sort by designation	Сортировать по обозначению
 Sort order	Порядок сортировки
@@ -1997,6 +2012,7 @@ Tag placed by hand	Обозначение размещено вручную
 Take out a subproject	Вынести подпроект
 Take out of the building	Вывести из здания
 Take out {} pages…	Вынести листы ({})…
+Take over again	Перенять снова
 Take over cut lengths	Принять длины отрезков
 Take over selected ({})	Перенести выбранные ({})
 Take over {} changes	Принять изменения ({})
@@ -2042,6 +2058,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Шкаф стоит левой стороной к правой стороне выбранного; провода проходят между ними через кабельные проходы
 The horizontal wire	Горизонтальный провод
 The items are selected and moved together	Элементы выделяются и перемещаются вместе
+The lock was refused	Блокировка отклонена
 The logo is fitted into this area keeping its aspect ratio	Логотип вписывается в эту область с сохранением пропорций
 The logo of the project properties, e.g. the customer's	Логотип из свойств проекта, например логотип заказчика
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Логотипы каталогов производителей на сервере изделий, рядом со сведениями об изделии
@@ -2049,6 +2066,7 @@ The macro library has no page macros (Macros › Save page as macro…).	В би
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модификаторы, с которыми колесо сдвигает вбок или масштабирует, задаются в разделе «Клавиши-модификаторы».
 The modules no string takes yet in series, on the first inverter	Модули, не занятые ни одной цепочкой, последовательно, на первом инверторе
 The names of its pages follow	Имена его листов меняются вместе с ним
+The open project already has your version	Открытый проект уже содержит вашу версию
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Открытый проект – локальная копия восстановления. Его изменения не сохранены на сервере проектов; перед открытием общего проекта вы решаете, сохранить их локально или отбросить.
 The page name gets the section number	Имя листа получает номер раздела
 The page type, plot frame, title block, structure, description and the whole content are saved.	Сохраняются тип листа, рамка, основная надпись, структура, описание и всё содержимое.
@@ -2256,6 +2274,9 @@ YYYY-MM-DD	ГГГГ-ММ-ДД
 You may only view this project.	Вы можете только просматривать этот проект.
 You may review this project: comments, markup and approvals, no other changes.	Вы можете рецензировать этот проект: комментарии, пометки и согласования, без других изменений.
 Your unsaved changes of it are taken back	Ваши несохранённые изменения в нём будут отменены
+Your version of {}	Ваша версия от {}
+Your version taken over: {}. Save to store it on the project server.	Ваша версия перенята: {}. Сохраните, чтобы записать её на сервер проектов.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Ваши версии изменений, замененных версией с сервера проектов. Они остаются здесь, пока вы их не отбросите.
 Zoom	Масштаб
 Zoom in in the 3D view (held)	Приблизить 3D-вид (удерживать)
 Zoom out in the 3D view (held)	Отдалить 3D-вид (удерживать)
@@ -2467,6 +2488,7 @@ x y	x y
 {} of {} wires	{} из {} проводов
 {} of {} wires assigned to cores of {}	{} из {} проводов назначены жилам {}
 {} on released pages were left as they are	На выпущенных листах оставлено без изменений: {}
+{} on {}	{} на {}
 {} options switched	Переключено опций: {}
 {} pages generated	Создано листов: {}
 {} pages generated; page macros not found: {}	Создано листов: {}; макросы листов не найдены: {}
@@ -2518,6 +2540,7 @@ x y	x y
 {} °C (max.)	{} °C (макс.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} пикселей, {}
+{} – revision {}, {}	{} – ревизия {}, {}
 {} – {} ({} pages)	{} – {} (листов: {})
 {} – {} here (Esc cancels)	{} – {} здесь (Esc отменяет)
 {}: click to show its floor plan	{}: щёлкните, чтобы показать план

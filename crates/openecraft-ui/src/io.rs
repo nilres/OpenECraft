@@ -257,11 +257,21 @@ pub fn set_title(ctx: &egui::Context, title: &str) {
 
 /// Today's date `YYYY-MM-DD` (UTC).
 pub fn today() -> String {
+    openecraft_parts::date_from_unix(unix_now())
+}
+
+/// Date and time now, `YYYY-MM-DD HH:MM UTC`.
+pub fn now_text() -> String {
+    let secs = unix_now();
+    format!("{} {:02}:{:02} UTC", openecraft_parts::date_from_unix(secs), secs % 86_400 / 3_600, secs % 3_600 / 60)
+}
+
+fn unix_now() -> u64 {
     #[cfg(not(target_arch = "wasm32"))]
     let secs = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
     #[cfg(target_arch = "wasm32")]
     let secs = (js_sys::Date::now() / 1000.0) as u64;
-    openecraft_parts::date_from_unix(secs)
+    secs
 }
 
 /// The local file system can be searched and written by path (desktop, not the

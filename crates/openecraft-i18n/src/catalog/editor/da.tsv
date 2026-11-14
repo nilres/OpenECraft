@@ -266,7 +266,8 @@ Change request	Ændringsanmodning
 Change requests	Ændringsanmodninger
 Change requests (CSV, JSON)	Ændringsanmodninger (CSV, JSON)
 Changed against the frozen routes:	Ændret i forhold til de fastlåste føringer:
-Changed by another user in the meantime, your change was replaced: {}	Ændret af en anden bruger i mellemtiden, din ændring blev erstattet: {}
+Changed by another user before you got the lock	Ændret af en anden bruger, før du fik låsen
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Ændret af en anden bruger i mellemtiden: {}. Din version gemmes i ruden Projektserver.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Ændrede celler i en CSV- eller Excel-fil, der er eksporteret herfra (rækker via deres nøgle)
 Changed message levels ({})	Ændrede meddelelsesniveauer ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Ændret siden montering: var ved X {} mm, Y {} mm med artikel {}
@@ -389,6 +390,7 @@ Comments ({})	Kommentarer ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Kommentarer, som en korrekturlæser har lavet i en PDF-eksport af projektet (Acrobat eller en anden PDF-fremviser)
 Comments and markup	Kommentarer og markeringer
 Company library	Firmabibliotek
+Compare	Sammenlign
 Compare and baselines	Sammenligning og baselines
 Compare with	Sammenlign med
 Compare with a baseline, a revision or another project file and take differences over	Sammenlign med en baseline, en revision eller en anden projektfil, og overtag forskelle
@@ -516,6 +518,7 @@ Delete the property and all its values	Slet egenskaben og alle dens værdier
 Delete this workspace	Slet dette arbejdsområde
 Delete variant	Slet variant
 Delete zone	Slet zone
+Deletes this copy of your changes for good	Sletter denne kopi af dine ændringer for altid
 Depth / mounted at	Dybde / monteret ved
 Depth below the ground	Dybde under terræn
 Depth from / to	Dybde fra / til
@@ -974,6 +977,7 @@ Keep connections	Bevar forbindelser
 Keep sub-pages (3.a, 3.1) with the page before	Hold undersider (3.a, 3.1) sammen med den forrige side
 Keep the degree of protection	Bevar kapslingsklassen
 Keep this route when recalculating, as long as it is still possible	Bevar denne føring ved genberegning, så længe den stadig er mulig
+Kept changes	Gemte ændringer
 Key tips of the ribbon	Båndets genvejstaster
 Key: {}	Nøgle: {}
 Keyboard shortcuts	Tastaturgenveje
@@ -1052,6 +1056,7 @@ Lock page	Lås side
 Lock project data	Lås projektdata
 Locked	Låst
 Locked by other users	Låst af andre brugere
+Locked by {}	Låst af {}
 Locked by {} on the project server – read only	Låst af {} på projektserveren – skrivebeskyttet
 Locked by {} – read only	Låst af {} – skrivebeskyttet
 Locking…	Låser…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Ingen – når du redigere
 Not a page template file: {}	Ikke en sideskabelonfil: {}
 Not a point: type x y or @dx dy	Ikke et punkt: skriv x y eller @dx dy
 Not a symbol library: {}	Ikke et symbolbibliotek: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Ikke ændret, låsen blev afvist: {}. Din version gemmes i ruden Projektserver.
 Not changed: {}	Ikke ændret: {}
+Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: {}. Din version gemmes i ruden Projektserver.
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
-Not saved, locked or changed by another user: {}	Ikke gemt, låst eller ændret af en anden bruger: {}
+Not saved, locked or changed by another user	Ikke gemt, låst eller ændret af en anden bruger
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ikke taget: venstre knap alene markerer, tegner og flytter; hold en modifikatortast nede eller brug en anden knap.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ikke det delte projekt: ændringer gemmes lokalt, indtil det åbnes på projektserveren igen
 Nothing exchanged yet.	Der er endnu ikke udvekslet noget.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	Profilens artik
 Part selection from the parts database	Artikelvalg fra artikeldatabasen
 Part selection – {}	Artikelvalg – {}
 Part selection…	Artikelvalg…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Delvist gemt (revision {}). Ikke gemt, låst eller ændret af en anden bruger: {}. Din version gemmes i ruden Projektserver.
+Partly saved to the project server (revision {})	Delvist gemt på projektserveren (revision {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikler kan kun slippes på sider, der kan ændres; denne er frigivet, låst eller genereret
 Parts management	Artikelstyring
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artikler markeret til gulvmontage (pumper, tanke, kompressorer): vælg en, og klik, hvor den skal stå på rummets gulv
@@ -1648,11 +1657,14 @@ Replace	Erstat
 Replace all	Erstat alle
 Replace text	Erstat tekst
 Replace with	Erstat med
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Erstattet af versionen på projektserveren: {}. Din version gemmes i ruden Projektserver.
 Replaced when the configurator generates again; switch off to keep the page	Erstattes, når konfiguratoren genererer igen; slå fra for at beholde siden
+Replaced while you held no lock	Erstattet, mens du ikke havde nogen lås
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Erstatter i frie tekster, funktionstekster, side-, enheds- og kabelbeskrivelser; frigivne sider bevares
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Erstatter GEN.*-artiklerne i databasen med det aktuelle eksempelkatalog (inklusive modeller)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Erstatter firmabiblioteket med projektets egne tegningshoveder, rapportskemaer og tegningsrammer (redaktører af komponentserveren)
 Replaces the content of the macro boxes whose macro changed in the library	Erstatter indholdet af de makrobokse, hvis makro er ændret i biblioteket
+Replaces the current version with yours as a change you can undo; the next save stores it	Erstatter den aktuelle version med din som en ændring, der kan fortrydes; næste gem gemmer den
 Replaces the pages of this block	Erstatter siderne i denne blok
 Reply	Svar
 Reply…	Svar…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Gemmer de place
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Gemmer projektet uden revisioner, baselines, gennemsyn og ledningsmarkeringer som en skabelon til nye projekter
 Saves the project's own properties, function definitions and schemes for other projects	Gemmer projektets egne egenskaber, funktionsdefinitioner og skemaer til andre projekter
 Saves the workspace, the arrangement of the panels and the open windows	Gemmer arbejdsområdet, panelernes arrangement og de åbne vinduer
+Saves your version of the whole project as a project file	Gemmer din version af hele projektet som en projektfil
 Saving failed: {}	Lagringen mislykkedes: {}
 Saving the project access…	Gemmer projektadgangen…
 Saving to the project server…	Gemmer på projektserveren…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	Vises i stedet for den målte værdi
 Shown now: {}	Vises nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Vises på forsiden og af billedelementerne i tegningshoveder, der viser projektets logo
 Shows	Viser
+Shows the differences of your version to the open project; selected ones can be taken over	Viser forskellene mellem din version og det åbne projekt; de valgte kan overtages
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidevægge, bagvæg, tag og bund set udefra: ventilatorer, kabelforskruninger, udskæringer
 Sign in in the Project server pane; the project opens afterwards	Log ind i ruden Projektserver; derefter åbnes projektet
 Sign in…	Log ind…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Mindste tværsnit for styrekredse
 Smallest cross-section of power circuits	Mindste tværsnit for kraftkredse
 Socket outlets, data and antenna outlets	Stikkontakter, data- og antennestik
 Solid	Fuldt optrukket
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Nogle af dine ændringer blev ikke overtaget af projektserveren. Din version bliver i ruden Projektserver, også efter kassering.
 Some wires have no length: place their devices in the panel layout or set the field length.	Nogle ledninger har ingen længde: Placer deres enheder i tavlelayoutet, eller angiv feltlængden.
 Sort by designation	Sortér efter betegnelse
 Sort order	Sorteringsrækkefølge
@@ -1998,6 +2013,7 @@ Tag placed by hand	Mærkning placeret manuelt
 Take out a subproject	Udtag et delprojekt
 Take out of the building	Tag ud af bygningen
 Take out {} pages…	Udtag {} sider…
+Take over again	Overtag igen
 Take over cut lengths	Overtag afkortningslængder
 Take over selected ({})	Overtag valgte ({})
 Take over {} changes	Overtag {} ændringer
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin venstre side mod den valgtes højre side; ledninger føres mellem dem gennem kabelgennemføringer
 The horizontal wire	Den vandrette ledning
 The items are selected and moved together	Elementerne markeres og flyttes samlet
+The lock was refused	Låsen blev afvist
 The logo is fitted into this area keeping its aspect ratio	Logoet tilpasses dette område med bevaret billedformat
 The logo of the project properties, e.g. the customer's	Logoet fra projektegenskaberne, f.eks. kundens
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Logoerne for producenternes kataloger på artikelserveren, ved siden af en artikels detaljer
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Makrobi
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifikatortasterne, der får hjulet til at panorere sidelæns eller zoome, indstilles under Modifikatortaster.
 The modules no string takes yet in series, on the first inverter	Modulerne, som ingen streng tager endnu, i serie, på den første inverter
 The names of its pages follow	Navnene på dets sider følger med
+The open project already has your version	Det åbne projekt har allerede din version
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det åbne projekt er en lokal gendannelseskopi. Dets ændringer er ikke gemt på projektserveren; før det delte projekt åbnes, beslutter du, om de skal gemmes lokalt eller kasseres.
 The page name gets the section number	Sidenavnet får afsnitsnummeret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidetype, plotramme, tegningshoved, struktur, beskrivelse og hele indholdet gemmes.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	ÅÅÅÅ-MM-DD
 You may only view this project.	Du må kun se dette projekt.
 You may review this project: comments, markup and approvals, no other changes.	Du må gennemse dette projekt: kommentarer, markeringer og godkendelser, ingen andre ændringer.
 Your unsaved changes of it are taken back	Dine ikke-gemte ændringer af den tilbageføres
+Your version of {}	Din version fra {}
+Your version taken over: {}. Save to store it on the project server.	Din version overtaget: {}. Gem for at lagre den på projektserveren.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Dine versioner af ændringer, der blev erstattet af versionen på projektserveren. De bliver her, indtil du kasserer dem.
 Zoom	Zoom
 Zoom in in the 3D view (held)	Zoom ind i 3D-visningen (hold nede)
 Zoom out in the 3D view (held)	Zoom ud i 3D-visningen (hold nede)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{} af {} ledninger
 {} of {} wires assigned to cores of {}	{} af {} ledninger tildelt ledere i {}
 {} on released pages were left as they are	{} på frigivne sider blev ikke ændret
+{} on {}	{} på {}
 {} options switched	{} optioner skiftet
 {} pages generated	{} sider genereret
 {} pages generated; page macros not found: {}	{} sider genereret; sidemakroer ikke fundet: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (maks.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixel, {}
+{} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
 {}: click to show its floor plan	{}: klik for at vise plantegningen

@@ -266,7 +266,8 @@ Change request	Cerere de modificare
 Change requests	Cereri de modificare
 Change requests (CSV, JSON)	Cereri de modificare (CSV, JSON)
 Changed against the frozen routes:	Modificat față de traseele fixate:
-Changed by another user in the meantime, your change was replaced: {}	Modificat între timp de alt utilizator, modificarea dvs. a fost înlocuită: {}
+Changed by another user before you got the lock	Modificat de alt utilizator înainte să obțineți blocarea
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Modificat între timp de alt utilizator: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Celulele modificate ale unui fișier CSV sau Excel exportat de aici (rânduri după cheia lor)
 Changed message levels ({})	Niveluri de mesaj modificate ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Modificat de la montare: era la X {} mm, Y {} mm cu articolul {}
@@ -389,6 +390,7 @@ Comments ({})	Comentarii ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Comentarii făcute de un examinator într-un export PDF al proiectului (Acrobat sau alt vizualizator PDF)
 Comments and markup	Comentarii și marcaje
 Company library	Biblioteca firmei
+Compare	Comparare
 Compare and baselines	Comparare și versiuni de referință
 Compare with	Comparare cu
 Compare with a baseline, a revision or another project file and take differences over	Comparare cu o versiune de referință, o revizie sau alt fișier de proiect și preluarea diferențelor
@@ -516,6 +518,7 @@ Delete the property and all its values	Ștergerea proprietății și a tuturor v
 Delete this workspace	Ștergerea acestui spațiu de lucru
 Delete variant	Ștergere variantă
 Delete zone	Ștergeți zona
+Deletes this copy of your changes for good	Șterge definitiv această copie a modificărilor dvs.
 Depth / mounted at	Adâncime / montat la
 Depth below the ground	Adâncime sub teren
 Depth from / to	Adâncime de la / până la
@@ -974,6 +977,7 @@ Keep connections	Păstrează conexiunile
 Keep sub-pages (3.a, 3.1) with the page before	Păstrarea subpaginilor (3.a, 3.1) cu pagina anterioară
 Keep the degree of protection	Menținerea gradului de protecție
 Keep this route when recalculating, as long as it is still possible	Păstrarea acestui traseu la recalculare, atât timp cât este încă posibil
+Kept changes	Modificări păstrate
 Key tips of the ribbon	Tastele de acces ale panglicii
 Key: {}	Cheie: {}
 Keyboard shortcuts	Comenzi rapide de la tastatură
@@ -1052,6 +1056,7 @@ Lock page	Blocare pagină
 Lock project data	Blocare date proiect
 Locked	Blocat
 Locked by other users	Blocate de alți utilizatori
+Locked by {}	Blocat de {}
 Locked by {} on the project server – read only	Blocat de {} pe serverul de proiecte – doar citire
 Locked by {} – read only	Blocat de {} – doar în citire
 Locking…	Se blochează…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Niciuna – editarea unei 
 Not a page template file: {}	Nu este un fișier de șabloane de pagină: {}
 Not a point: type x y or @dx dy	Nu este un punct: introduceți x y sau @dx dy
 Not a symbol library: {}	Nu este o bibliotecă de simboluri: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nemodificat, blocarea a fost refuzată: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Not changed: {}	Nemodificat: {}
+Not changed: {}. Your version is kept in the Project server pane.	Nemodificat: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Not found: {}	Negăsit: {}
 Not in the project parts – synchronize in parts management	Nu se află în articolele proiectului – sincronizați în gestionarea articolelor
 Not on a wire	Nu se află pe un conductor
-Not saved, locked or changed by another user: {}	Nesalvat, blocat sau modificat de alt utilizator: {}
+Not saved, locked or changed by another user	Nesalvat, blocat sau modificat de alt utilizator
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepreluat: butonul stâng singur selectează, desenează și mută; țineți apăsată o tastă modificatoare sau folosiți alt buton.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nu este proiectul partajat: modificările sunt salvate local până când este redeschis pe serverul de proiecte
 Nothing exchanged yet.	Încă nu s-a schimbat nimic.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	Articolul profi
 Part selection from the parts database	Selecție articol din baza de date de articole
 Part selection – {}	Selecție articol – {}
 Part selection…	Selecție articol…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Salvat parțial (revizia {}). Nesalvat, blocat sau modificat de alt utilizator: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
+Partly saved to the project server (revision {})	Salvat parțial pe serverul de proiecte (revizia {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Articolele pot fi plasate doar pe pagini care pot fi modificate; aceasta este eliberată, blocată sau generată
 Parts management	Gestionare articole
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Articole marcate pentru montaj pe pardoseală (pompe, rezervoare, compresoare): alegeți unul, apoi faceți clic unde stă pe pardoseala încăperii
@@ -1648,11 +1657,14 @@ Replace	Înlocuire
 Replace all	Înlocuire totală
 Replace text	Înlocuire text
 Replace with	Înlocuire cu
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Înlocuit cu versiunea de pe serverul de proiecte: {}. Versiunea dvs. este păstrată în panoul Server de proiecte.
 Replaced when the configurator generates again; switch off to keep the page	Se înlocuiește când configuratorul generează din nou; dezactivați pentru a păstra pagina
+Replaced while you held no lock	Înlocuit în timp ce nu dețineați nicio blocare
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Înlocuiește în textele libere, textele de funcție, descrierile paginilor, dispozitivelor și cablurilor; paginile aprobate rămân neschimbate
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Înlocuiește articolele GEN.* din baza de date cu catalogul exemplu actual (inclusiv modelele)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Înlocuiește biblioteca firmei cu cartușele, schemele de rapoarte și chenarele proprii ale proiectului (editorii serverului de piese)
 Replaces the content of the macro boxes whose macro changed in the library	Înlocuiește conținutul casetelor macro al căror macro s-a modificat în bibliotecă
+Replaces the current version with yours as a change you can undo; the next save stores it	Înlocuiește versiunea curentă cu a dvs. ca modificare care poate fi anulată; următoarea salvare o stochează
 Replaces the pages of this block	Înlocuiește paginile acestui bloc
 Reply	Răspuns
 Reply…	Răspuns…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Salvează propr
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Salvează proiectul fără revizii, versiuni de referință, examinare și marcaje de cablare ca șablon pentru proiecte noi
 Saves the project's own properties, function definitions and schemes for other projects	Salvează proprietățile, definițiile de funcție și schemele proprii ale proiectului pentru alte proiecte
 Saves the workspace, the arrangement of the panels and the open windows	Salvează spațiul de lucru, aranjarea panourilor și ferestrele deschise
+Saves your version of the whole project as a project file	Salvează versiunea dvs. a întregului proiect ca fișier de proiect
 Saving failed: {}	Salvarea nu a reușit: {}
 Saving the project access…	Se salvează accesul la proiect…
 Saving to the project server…	Se salvează pe serverul de proiecte…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	Afișat în locul valorii măsurate
 Shown now: {}	Afișat acum: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Afișată pe copertă și de elementele imagine ale cartușelor care arată sigla proiectului
 Shows	Afișează
+Shows the differences of your version to the open project; selected ones can be taken over	Arată diferențele versiunii dvs. față de proiectul deschis; cele selectate pot fi preluate
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Pereții laterali, peretele din spate, plafonul și baza văzute din exterior: ventilatoare, presetupe, decupaje
 Sign in in the Project server pane; the project opens afterwards	Autentificați-vă în panoul Server de proiecte; apoi proiectul se deschide
 Sign in…	Autentificare…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Cea mai mică secțiune a circuitelor
 Smallest cross-section of power circuits	Cea mai mică secțiune a circuitelor de putere
 Socket outlets, data and antenna outlets	Prize, prize de date și de antenă
 Solid	Continuu
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Unele modificări ale dvs. nu au fost preluate de serverul de proiecte. Versiunea dvs. rămâne în panoul Server de proiecte, și după eliminare.
 Some wires have no length: place their devices in the panel layout or set the field length.	Unele conductoare nu au lungime: plasați dispozitivele lor în amplasarea în tablou sau setați lungimea câmpului.
 Sort by designation	Sortare după denumire
 Sort order	Ordine de sortare
@@ -1998,6 +2013,7 @@ Tag placed by hand	Identificator plasat manual
 Take out a subproject	Extragere subproiect
 Take out of the building	Scoateți din clădire
 Take out {} pages…	Extragere {} pagini…
+Take over again	Preluare din nou
 Take over cut lengths	Preluare lungimi de tăiere
 Take over selected ({})	Preluare selecție ({})
 Take over {} changes	Preluare {} modificări
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
 The horizontal wire	Firul orizontal
 The items are selected and moved together	Elementele se selectează și se mută împreună
+The lock was refused	Blocarea a fost refuzată
 The logo is fitted into this area keeping its aspect ratio	Sigla este încadrată în această zonă păstrând proporțiile
 The logo of the project properties, e.g. the customer's	Sigla din proprietățile proiectului, de ex. cea a clientului
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Logourile cataloagelor producătorilor de pe serverul de articole, lângă detaliile unui articol
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Bibliot
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tastele modificatoare cu care rotița deplasează lateral sau mărește se setează la Taste modificatoare.
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
 The names of its pages follow	Numele paginilor ei se schimbă odată cu ea
+The open project already has your version	Proiectul deschis are deja versiunea dvs.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Proiectul deschis este o copie locală de recuperare. Modificările sale nu sunt salvate pe serverul de proiecte; înainte ca proiectul partajat să se deschidă, decideți dacă le salvați local sau le renunțați.
 The page name gets the section number	Numele paginii primește numărul secțiunii
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	AAAA-LL-ZZ
 You may only view this project.	Puteți doar vizualiza acest proiect.
 You may review this project: comments, markup and approvals, no other changes.	Puteți examina acest proiect: comentarii, adnotări și avize, fără alte modificări.
 Your unsaved changes of it are taken back	Modificările dvs. nesalvate ale acesteia sunt anulate
+Your version of {}	Versiunea dvs. din {}
+Your version taken over: {}. Save to store it on the project server.	Versiunea dvs. preluată: {}. Salvați pentru a o stoca pe serverul de proiecte.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Versiunile dvs. ale modificărilor înlocuite cu versiunea de pe serverul de proiecte. Rămân aici până le eliminați.
 Zoom	Zoom
 Zoom in in the 3D view (held)	Mărire în vederea 3D (ținut apăsat)
 Zoom out in the 3D view (held)	Micșorare în vederea 3D (ținut apăsat)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{} din {} conductoare
 {} of {} wires assigned to cores of {}	{} din {} conductoare atribuite firelor lui {}
 {} on released pages were left as they are	{} de pe pagini aprobate au fost lăsate neschimbate
+{} on {}	{} pe {}
 {} options switched	{} opțiuni comutate
 {} pages generated	{} pagini generate
 {} pages generated; page macros not found: {}	{} pagini generate; macro-uri de pagină negăsite: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixeli, {}
+{} – revision {}, {}	{} – revizia {}, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
 {}: click to show its floor plan	{}: clic pentru a afișa planul

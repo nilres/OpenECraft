@@ -325,7 +325,8 @@ Change request	Änderungsantrag	Demande de modification	Solicitud de cambio
 Change requests	Änderungsanträge	Demandes de modification	Solicitudes de cambio
 Change requests (CSV, JSON)	Änderungsanträge (CSV, JSON)	Demandes de modification (CSV, JSON)	Solicitudes de cambio (CSV, JSON)
 Changed against the frozen routes:	Geändert gegenüber den eingefrorenen Verlegungen:	Modifié par rapport aux tracés figés :	Cambiado respecto a los recorridos congelados:
-Changed by another user in the meantime, your change was replaced: {}	Inzwischen von einem anderen Benutzer geändert, Ihre Änderung wurde ersetzt: {}	Modifié entre-temps par un autre utilisateur, votre modification a été remplacée : {}	Modificado mientras tanto por otro usuario, su cambio fue reemplazado: {}
+Changed by another user before you got the lock	Von einem anderen Benutzer geändert, bevor Sie die Sperre erhielten	Modifié par un autre utilisateur avant que vous obteniez le verrou	Modificado por otro usuario antes de que obtuviera el bloqueo
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Inzwischen von einem anderen Benutzer geändert: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Modifié entre-temps par un autre utilisateur : {}. Votre version est conservée dans le volet Serveur de projets.	Modificado mientras tanto por otro usuario: {}. Su versión se conserva en el panel Servidor de proyectos.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Geänderte Zellen einer hier exportierten CSV- oder Excel-Datei (Zeilen über ihren Schlüssel)	Cellules modifiées d'un fichier CSV ou Excel exporté ici (lignes par leur clé)	Celdas cambiadas de un archivo CSV o Excel exportado aquí (filas por su clave)
 Changed message levels ({})	Geänderte Meldungsstufen ({})	Niveaux de message modifiés ({})	Niveles de mensaje cambiados ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Seit Montage geändert: war bei X {} mm, Y {} mm mit Artikel {}	Modifié depuis le montage : était à X {} mm, Y {} mm avec l'article {}	Modificado desde el montaje: estaba en X {} mm, Y {} mm con el artículo {}
@@ -478,6 +479,7 @@ Comments ({})	Kommentare ({})	Commentaires ({})	Comentarios ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Kommentare, die ein Prüfer in einem PDF-Export des Projekts gemacht hat (Acrobat oder ein anderer PDF-Betrachter)	Commentaires qu'un réviseur a faits dans un export PDF du projet (Acrobat ou une autre visionneuse PDF)	Comentarios que un revisor hizo en una exportación PDF del proyecto (Acrobat u otro visor de PDF)
 Comments and markup	Kommentare und Markierungen	Commentaires et annotations	Comentarios y marcados
 Company library	Firmenbibliothek	Bibliothèque de l'entreprise	Biblioteca de la empresa
+Compare	Vergleichen	Comparer	Comparar
 Compare and baselines	Vergleichen und Baselines	Comparer et références	Comparar y líneas base
 Compare with	Vergleichen mit	Comparer avec	Comparar con
 Compare with a baseline, a revision or another project file and take differences over	Mit einer Baseline, einer Revision oder einer anderen Projektdatei vergleichen und Unterschiede übernehmen	Comparer avec une référence, une révision ou un autre fichier de projet et reprendre les différences	Comparar con una línea base, una revisión u otro archivo de proyecto y adoptar diferencias
@@ -617,6 +619,7 @@ Delete the workspace {}?	Arbeitsbereich {} löschen?	Supprimer l'espace de trava
 Delete this workspace	Diesen Arbeitsbereich löschen	Supprimer cet espace de travail	Eliminar este espacio de trabajo
 Delete variant	Variante löschen	Supprimer la variante	Eliminar variante
 Delete zone	Zone löschen	Supprimer la zone	Eliminar zona
+Deletes this copy of your changes for good	Löscht diese Kopie Ihrer Änderungen endgültig	Supprime définitivement cette copie de vos modifications	Elimina definitivamente esta copia de sus cambios
 Depth / mounted at	Tiefe / Montage bei	Profondeur / montage à	Profundidad / montaje a
 Depth below the ground	Tiefe unter dem Gelände	Profondeur sous le sol	Profundidad bajo el terreno
 Depth from / to	Tiefe von / bis	Profondeur de / à	Profundidad de / a
@@ -1132,6 +1135,7 @@ Keep connections	Verbindungen halten	Conserver les connexions	Mantener conexione
 Keep sub-pages (3.a, 3.1) with the page before	Unterseiten (3.a, 3.1) bei der vorherigen Seite lassen	Garder les sous-pages (3.a, 3.1) avec la page précédente	Mantener las subpáginas (3.a, 3.1) con la página anterior
 Keep the degree of protection	Schutzart erhalten	Conserver l'indice de protection	Mantener el grado de protección
 Keep this route when recalculating, as long as it is still possible	Diese Verlegung beim Neuberechnen beibehalten, solange sie möglich ist	Conserver ce tracé lors du recalcul tant qu'il reste possible	Mantener este recorrido al recalcular mientras siga siendo posible
+Kept changes	Aufbewahrte Änderungen	Modifications conservées	Cambios conservados
 Key tips of the ribbon	Zugriffstasten des Menübands	Touches d'accès du ruban	Teclas de acceso de la cinta
 Key: {}	Schlüssel: {}	Clé : {}	Clave: {}
 Keyboard shortcuts	Tastenkürzel	Raccourcis clavier	Atajos de teclado
@@ -1217,6 +1221,7 @@ Lock page	Seite sperren	Verrouiller la page	Bloquear página
 Lock project data	Projektdaten sperren	Verrouiller les données du projet	Bloquear los datos del proyecto
 Locked	Gesperrt	Verrouillé	Bloqueada
 Locked by other users	Von anderen Benutzern gesperrt	Verrouillé par d'autres utilisateurs	Bloqueado por otros usuarios
+Locked by {}	Gesperrt von {}	Verrouillé par {}	Bloqueado por {}
 Locked by {} on the project server – read only	Auf dem Projektserver von {} gesperrt – schreibgeschützt	Verrouillé par {} sur le serveur de projets – lecture seule	Bloqueado por {} en el servidor de proyectos – solo lectura
 Locked by {} – read only	Gesperrt von {} – schreibgeschützt	Verrouillé par {} – lecture seule	Bloqueado por {} – solo lectura
 Locking…	Sperren…	Verrouillage…	Bloqueando…
@@ -1459,13 +1464,15 @@ None – editing a page or the project data locks it.	Keine – das Bearbeiten e
 Not a page template file: {}	Keine Seitenvorlagen-Datei: {}	Pas un fichier de modèles de page : {}	No es un archivo de plantillas de página: {}
 Not a point: type x y or @dx dy	Kein Punkt: x y oder @dx dy eingeben	Pas un point : saisir x y ou @dx dy	No es un punto: escriba x y o @dx dy
 Not a symbol library: {}	Keine Symbolbibliothek: {}	Ce n'est pas une bibliothèque de symboles : {}	No es una biblioteca de símbolos: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nicht geändert, die Sperre wurde abgelehnt: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Non modifié, le verrou a été refusé : {}. Votre version est conservée dans le volet Serveur de projets.	No modificado, el bloqueo fue rechazado: {}. Su versión se conserva en el panel Servidor de proyectos.
 Not changed: {}	Nicht geändert: {}	Non modifié : {}	No modificado: {}
+Not changed: {}. Your version is kept in the Project server pane.	Nicht geändert: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Non modifié : {}. Votre version est conservée dans le volet Serveur de projets.	No modificado: {}. Su versión se conserva en el panel Servidor de proyectos.
 Not found: {}	Nicht gefunden: {}	Introuvable : {}	No encontrado: {}
 Not in the project parts – synchronize in parts management	Nicht in den Projektartikeln – in der Artikelverwaltung synchronisieren	Absent des articles du projet – synchroniser dans la gestion des articles	No está en los artículos del proyecto – sincroniza en la gestión de artículos
 Not on a page	Nicht auf einer Seite	Pas sur une page	No está en una página
 Not on a page: shows it in its pane	Nicht auf einer Seite: zeigt es in seinem Bereich	Pas sur une page : l'affiche dans son volet	No está en una página: lo muestra en su panel
 Not on a wire	Nicht auf einer Verbindung	Pas sur un fil	No está sobre un cable
-Not saved, locked or changed by another user: {}	Nicht gespeichert, von einem anderen Benutzer gesperrt oder geändert: {}	Non enregistré, verrouillé ou modifié par un autre utilisateur : {}	No guardado, bloqueado o modificado por otro usuario: {}
+Not saved, locked or changed by another user	Nicht gespeichert, von einem anderen Benutzer gesperrt oder geändert	Non enregistré, verrouillé ou modifié par un autre utilisateur	No guardado, bloqueado o modificado por otro usuario
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nicht übernommen: die linke Taste allein wählt aus, zeichnet und verschiebt; eine Zusatztaste halten oder eine andere Taste nehmen.	Non retenu : le bouton gauche seul sélectionne, dessine et déplace ; maintenez une touche de modification ou utilisez un autre bouton.	No aceptado: el botón izquierdo solo selecciona, dibuja y mueve; mantenga una tecla modificadora o use otro botón.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nicht das gemeinsame Projekt: Änderungen werden lokal gespeichert, bis es wieder auf dem Projektserver geöffnet wird	Ce n'est pas le projet partagé : les modifications sont enregistrées en local jusqu'à sa réouverture sur le serveur de projets	No es el proyecto compartido: los cambios se guardan localmente hasta que se vuelva a abrir en el servidor de proyectos
 Nothing exchanged yet.	Noch nichts ausgetauscht.	Rien n'a encore été échangé.	Todavía no se ha intercambiado nada.
@@ -1628,6 +1635,8 @@ Part of the profile: generic types or parts from the parts store	Artikel des Pro
 Part selection from the parts database	Artikelauswahl aus der Artikeldatenbank	Sélection d'article dans la base d'articles	Selección de artículo de la base de datos de artículos
 Part selection – {}	Artikelauswahl – {}	Sélection d'article – {}	Selección de artículo – {}
 Part selection…	Artikelauswahl…	Sélection d'article…	Selección de artículo…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Teilweise gespeichert (Revision {}). Nicht gespeichert, von einem anderen Benutzer gesperrt oder geändert: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Enregistré en partie (révision {}). Non enregistré, verrouillé ou modifié par un autre utilisateur : {}. Votre version est conservée dans le volet Serveur de projets.	Guardado en parte (revisión {}). No guardado, bloqueado o modificado por otro usuario: {}. Su versión se conserva en el panel Servidor de proyectos.
+Partly saved to the project server (revision {})	Teilweise auf dem Projektserver gespeichert (Revision {})	Enregistré en partie sur le serveur de projets (révision {})	Guardado en parte en el servidor de proyectos (revisión {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikel können nur auf änderbare Seiten gezogen werden; diese ist freigegeben, gesperrt oder generiert	Les articles ne peuvent être déposés que sur des pages modifiables ; celle-ci est validée, verrouillée ou générée	Los artículos solo se pueden soltar en páginas que se pueden cambiar; esta está liberada, bloqueada o generada
 Parts management	Artikelverwaltung	Gestion des articles	Gestión de artículos
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Für Bodenmontage gekennzeichnete Artikel (Pumpen, Behälter, Kompressoren): einen wählen, dann an die Stelle auf dem Boden des Raums klicken	Articles marqués pour le montage au sol (pompes, réservoirs, compresseurs) : en choisir un, puis cliquer à son emplacement sur le sol de la salle	Artículos marcados para montaje en suelo (bombas, depósitos, compresores): elija uno y haga clic donde va en el suelo de la sala
@@ -1870,11 +1879,14 @@ Replace	Ersetzen	Remplacer	Reemplazar
 Replace all	Alle ersetzen	Tout remplacer	Reemplazar todo
 Replace text	Text ersetzen	Remplacer du texte	Reemplazar texto
 Replace with	Ersetzen durch	Remplacer par	Reemplazar por
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Durch die Fassung auf dem Projektserver ersetzt: {}. Ihre Fassung bleibt im Bereich Projektserver erhalten.	Remplacé par la version du serveur de projets : {}. Votre version est conservée dans le volet Serveur de projets.	Reemplazado por la versión del servidor de proyectos: {}. Su versión se conserva en el panel Servidor de proyectos.
 Replaced when the configurator generates again; switch off to keep the page	Wird beim nächsten Erzeugen ersetzt; ausschalten, um die Seite zu behalten	Remplacée lors de la prochaine génération ; désactiver pour garder la page	Se reemplaza al volver a generar; desactivar para conservar la página
+Replaced while you held no lock	Ersetzt, während Sie keine Sperre hielten	Remplacé alors que vous ne déteniez aucun verrou	Reemplazado mientras no tenía ningún bloqueo
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Ersetzt in freien Texten, Funktionstexten, Seiten-, Betriebsmittel- und Kabelbeschreibungen; freigegebene Seiten bleiben	Remplace dans les textes libres, textes de fonction, descriptions de pages, d'appareils et de câbles ; les pages validées restent	Reemplaza en textos libres, textos de función, descripciones de páginas, dispositivos y cables; las páginas liberadas se mantienen
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Ersetzt die GEN.*-Artikel in der Datenbank durch den aktuellen Beispielkatalog (inklusive Modelle)	Remplace les articles GEN.* de la base par le catalogue d'exemple actuel (modèles inclus)	Reemplaza los artículos GEN.* de la base de datos por el catálogo de ejemplo actual (incluidos los modelos)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Ersetzt die Firmenbibliothek durch die eigenen Schriftfelder, Auswertungsschemata und Zeichnungsrahmen des Projekts (Bearbeiter des Artikelservers)	Remplace la bibliothèque de l'entreprise par les cartouches, schémas d'évaluation et cadres de dessin du projet (éditeurs du serveur d'articles)	Sustituye la biblioteca de la empresa por los cajetines, esquemas de informe y marcos de dibujo propios del proyecto (editores del servidor de artículos)
 Replaces the content of the macro boxes whose macro changed in the library	Ersetzt den Inhalt der Makrokästen, deren Makro sich in der Bibliothek geändert hat	Remplace le contenu des boîtes de macro dont la macro a changé dans la bibliothèque	Sustituye el contenido de las cajas de macro cuya macro cambió en la biblioteca
+Replaces the current version with yours as a change you can undo; the next save stores it	Ersetzt die aktuelle Fassung durch Ihre, als Änderung, die Sie rückgängig machen können; das nächste Speichern sichert sie	Remplace la version actuelle par la vôtre, comme une modification annulable ; le prochain enregistrement la conserve	Reemplaza la versión actual por la suya como un cambio que se puede deshacer; el próximo guardado la almacena
 Replaces the pages of this block	Ersetzt die Seiten dieses Blocks	Remplace les pages de ce bloc	Reemplaza las páginas de este bloque
 Reply	Antworten	Répondre	Responder
 Reply…	Antworten…	Répondre…	Responder…
@@ -2009,6 +2021,7 @@ Saves the placed properties as a placement scheme of the project	Speichert die p
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Speichert das Projekt ohne Revisionen, Stände, Prüfung und Verdrahtungsmarken als Vorlage für neue Projekte	Enregistre le projet sans révisions, états de référence, revue ni marques de câblage comme modèle de nouveaux projets	Guarda el proyecto sin revisiones, líneas base, revisión ni marcas de cableado como plantilla para nuevos proyectos
 Saves the project's own properties, function definitions and schemes for other projects	Speichert die eigenen Eigenschaften, Funktionsdefinitionen und Schemata des Projekts für andere Projekte	Enregistre les propriétés, définitions de fonction et schémas propres au projet pour d'autres projets	Guarda las propiedades, definiciones de función y esquemas propios del proyecto para otros proyectos
 Saves the workspace, the arrangement of the panels and the open windows	Speichert den Arbeitsbereich, die Anordnung der Fenster und die geöffneten Dialoge	Enregistre l'espace de travail, la disposition des panneaux et les fenêtres ouvertes	Guarda el espacio de trabajo, la disposición de los paneles y las ventanas abiertas
+Saves your version of the whole project as a project file	Speichert Ihre Fassung des ganzen Projekts als Projektdatei	Enregistre votre version du projet entier dans un fichier de projet	Guarda su versión de todo el proyecto como archivo de proyecto
 Saving failed: {}	Speichern fehlgeschlagen: {}	Échec de l'enregistrement : {}	Error al guardar: {}
 Saving the parts database	Artikeldatenbank wird gespeichert	Enregistrement de la base de données d’articles	Guardando la base de datos de artículos
 Saving the project access…	Projektzugriff wird gespeichert…	Enregistrement de l'accès au projet…	Guardando el acceso al proyecto…
@@ -2136,6 +2149,7 @@ Shown instead of the measured value	Wird statt des gemessenen Werts angezeigt	Af
 Shown now: {}	Jetzt angezeigt: {}	Affiché actuellement : {}	Mostrado ahora: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Wird auf dem Deckblatt und von den Bildelementen der Schriftfelder gezeigt, die das Projektlogo zeigen	Affiché sur la page de garde et par les éléments image des cartouches qui affichent le logo du projet	Se muestra en la portada y en los elementos de imagen de los cajetines que muestran el logotipo del proyecto
 Shows	Zeigt	Affiche	Muestra
+Shows the differences of your version to the open project; selected ones can be taken over	Zeigt die Unterschiede Ihrer Fassung zum geöffneten Projekt; ausgewählte können übernommen werden	Affiche les différences entre votre version et le projet ouvert ; celles sélectionnées peuvent être reprises	Muestra las diferencias de su versión con el proyecto abierto; las seleccionadas se pueden adoptar
 Side contact directions	Seitliche Kontaktrichtungen	Directions des contacts latéraux	Direcciones de contacto lateral
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Seitenwände, Rückwand, Dach und Boden von außen gesehen: Lüfter, Kabelverschraubungen, Ausschnitte	Parois latérales, paroi arrière, toit et fond vus de l'extérieur : ventilateurs, presse-étoupes, découpes	Paredes laterales, pared trasera, techo y fondo vistos desde fuera: ventiladores, prensaestopas, recortes
 Sign in in the Project server pane; the project opens afterwards	Im Bereich Projektserver anmelden; danach öffnet das Projekt	Connectez-vous dans le volet Serveur de projets ; le projet s'ouvre ensuite	Inicie sesión en el panel Servidor de proyectos; después se abre el proyecto
@@ -2156,6 +2170,7 @@ Smallest cross-section of power circuits	Kleinster Querschnitt von Hauptstromkre
 Socket outlets, data and antenna outlets	Steckdosen, Daten- und Antennendosen	Prises de courant, prises réseau et d'antenne	Tomas de corriente, de datos y de antena
 Socket outlets, data and antenna outlets, switches, push buttons and room thermostats, heating circuit manifolds and control boxes: generic ones or from the catalogs (Gira, MDT, COSMO, …); choose one, then click on the wall: it goes at its mounting height	Steckdosen, Daten- und Antennendosen, Schalter, Taster und Raumthermostate, Heizkreisverteiler und Regelboxen: generisch oder aus den Katalogen (Gira, MDT, COSMO, …); eines wählen, dann auf die Wand klicken: es sitzt auf seiner Montagehöhe	Prises de courant, prises réseau et d'antenne, interrupteurs, boutons-poussoirs et thermostats d'ambiance, collecteurs de chauffage et boîtiers de régulation : génériques ou des catalogues (Gira, MDT, COSMO, …) ; choisissez-en un, puis cliquez sur le mur : il se place à sa hauteur de pose	Tomas de corriente, de datos y de antena, interruptores, pulsadores y termostatos de ambiente, colectores de calefacción y cajas de regulación: genéricos o de los catálogos (Gira, MDT, COSMO, …); elija uno y haga clic en la pared: se coloca a su altura de montaje
 Solid	Durchgezogen	Continu	Continuo
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Einige Ihrer Änderungen wurden vom Projektserver nicht übernommen. Ihre Fassung bleibt im Bereich Projektserver erhalten, auch nach dem Verwerfen.	Certaines de vos modifications n'ont pas été reprises par le serveur de projets. Votre version reste dans le volet Serveur de projets, même après abandon.	Algunos de sus cambios no fueron aceptados por el servidor de proyectos. Su versión permanece en el panel Servidor de proyectos, también después de descartar.
 Some wires have no length: place their devices in the panel layout or set the field length.	Einige Leitungen haben keine Länge: Platzieren Sie ihre Betriebsmittel im Schaltschrank-Layout oder setzen Sie die Feldlänge.	Certains fils n'ont pas de longueur : placez leurs appareils dans l'implantation de l'armoire ou définissez la longueur sur site.	Algunos hilos no tienen longitud: coloca sus dispositivos en la distribución del armario o define la longitud en campo.
 Sort by designation	Nach Bezeichnung sortieren	Trier par désignation	Ordenar por designación
 Sort order	Sortierung	Ordre de tri	Orden
@@ -2249,6 +2264,7 @@ Tag placed by hand	Kennzeichen von Hand platziert	Repère placé manuellement	Id
 Take out a subproject	Teilprojekt auslagern	Extraire un sous-projet	Extraer un subproyecto
 Take out of the building	Aus dem Gebäude nehmen	Retirer du bâtiment	Sacar del edificio
 Take out {} pages…	{} Seiten auslagern…	Extraire {} pages…	Extraer {} páginas…
+Take over again	Wieder übernehmen	Reprendre	Volver a adoptar
 Take over cut lengths	Schnittlängen übernehmen	Reprendre les longueurs de coupe	Adoptar longitudes de corte
 Take over selected ({})	Ausgewählte übernehmen ({})	Reprendre la sélection ({})	Adoptar seleccionadas ({})
 Take over {} changes	{} Änderungen übernehmen	Reprendre {} modifications	Aplicar {} cambios
@@ -2303,6 +2319,7 @@ The first hour	Die erste Stunde	La première heure	La primera hora
 The horizontal wire	Die waagerechte Leitung	Le fil horizontal	El cable horizontal
 The items are selected and moved together	Die Elemente werden gemeinsam ausgewählt und verschoben	Les éléments sont sélectionnés et déplacés ensemble	Los elementos se seleccionan y se mueven juntos
 The level of a building the room is on (Layout space › Buildings); it moves with the building and its level	Die Ebene eines Gebäudes, auf der der Raum liegt (Layoutraum › Gebäude); er bewegt sich mit dem Gebäude und seiner Ebene	Le niveau d'un bâtiment sur lequel se trouve la pièce (Espace de montage › Bâtiments) ; elle suit le bâtiment et son niveau	El nivel de un edificio en el que está la sala (Espacio de montaje › Edificios); se mueve con el edificio y su nivel
+The lock was refused	Die Sperre wurde abgelehnt	Le verrou a été refusé	El bloqueo fue rechazado
 The logo is fitted into this area keeping its aspect ratio	Das Logo wird mit seinem Seitenverhältnis in diesen Bereich eingepasst	Le logo est ajusté à cette zone en conservant ses proportions	El logotipo se ajusta a esta área manteniendo su relación de aspecto
 The logo of the project properties, e.g. the customer's	Das Logo aus den Projekteigenschaften, z. B. das des Kunden	Le logo des propriétés du projet, p. ex. celui du client	El logotipo de las propiedades del proyecto, p. ej. el del cliente
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Die Logos der Herstellerkataloge auf dem Artikelserver, neben den Details eines Artikels	Les logos des catalogues des fabricants sur le serveur d'articles, à côté des détails d'un article	Los logotipos de los catálogos de los fabricantes en el servidor de artículos, junto a los detalles de un artículo
@@ -2312,6 +2329,7 @@ The modifiers that turn the wheel sideways or make it zoom are set under Modifie
 The modules no string takes yet in series, on the first inverter	Die Module, die noch kein String nimmt, in Reihe, am ersten Wechselrichter	Les modules qu'aucune chaîne ne prend encore, en série, sur le premier onduleur	Los módulos que ningún string toma aún, en serie, en el primer inversor
 The names of its pages follow	Die Namen seiner Seiten ändern sich mit	Les noms de ses pages suivent	Los nombres de sus páginas cambian con ella
 The next symbol is placed with this routing; placed symbols keep theirs · {} next routing · {} turns it	Das nächste Symbol wird mit dieser Verlegung platziert; platzierte Symbole behalten ihre · {} nächste Verlegung · {} dreht es	Le prochain symbole est placé avec ce cheminement ; les symboles placés gardent le leur · {} cheminement suivant · {} le tourne	El siguiente símbolo se coloca con este tendido; los símbolos colocados conservan el suyo · {} siguiente tendido · {} lo gira
+The open project already has your version	Das geöffnete Projekt hat bereits Ihre Fassung	Le projet ouvert contient déjà votre version	El proyecto abierto ya tiene su versión
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Das geöffnete Projekt ist eine lokale Wiederherstellungskopie. Seine Änderungen sind nicht auf dem Projektserver gespeichert; bevor das gemeinsame Projekt öffnet, entscheiden Sie, ob Sie sie lokal speichern oder verwerfen.	Le projet ouvert est une copie de récupération locale. Ses modifications ne sont pas enregistrées sur le serveur de projets ; avant l'ouverture du projet partagé, vous décidez de les enregistrer en local ou de les abandonner.	El proyecto abierto es una copia de recuperación local. Sus cambios no están guardados en el servidor de proyectos; antes de abrir el proyecto compartido, usted decide si guardarlos localmente o descartarlos.
 The page is read only	Die Seite ist schreibgeschützt	La page est en lecture seule	La página es de solo lectura
 The page name gets the section number	Der Seitenname erhält die Abschnittsnummer	Le nom de la page reçoit le numéro de la section	El nombre de la página recibe el número de la sección
@@ -2550,6 +2568,9 @@ YYYY-MM-DD	JJJJ-MM-TT	AAAA-MM-JJ	AAAA-MM-DD
 You may only view this project.	Sie dürfen dieses Projekt nur ansehen.	Vous pouvez seulement consulter ce projet.	Solo puede ver este proyecto.
 You may review this project: comments, markup and approvals, no other changes.	Sie dürfen dieses Projekt prüfen: Kommentare, Markierungen und Freigaben, keine anderen Änderungen.	Vous pouvez réviser ce projet : commentaires, annotations et approbations, aucune autre modification.	Puede revisar este proyecto: comentarios, marcas y aprobaciones, ningún otro cambio.
 Your unsaved changes of it are taken back	Ihre ungespeicherten Änderungen daran werden zurückgenommen	Vos modifications non enregistrées sont annulées	Sus cambios no guardados se deshacen
+Your version of {}	Ihre Fassung vom {}	Votre version du {}	Su versión del {}
+Your version taken over: {}. Save to store it on the project server.	Ihre Fassung übernommen: {}. Speichern Sie, um sie auf dem Projektserver abzulegen.	Votre version reprise : {}. Enregistrez pour la stocker sur le serveur de projets.	Su versión adoptada: {}. Guarde para almacenarla en el servidor de proyectos.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Ihre Fassungen von Änderungen, die durch die Fassung auf dem Projektserver ersetzt wurden. Sie bleiben hier, bis Sie sie verwerfen.	Vos versions des modifications remplacées par la version du serveur de projets. Elles restent ici jusqu'à ce que vous les supprimiez.	Sus versiones de cambios que fueron reemplazados por la versión del servidor de proyectos. Permanecen aquí hasta que las descarte.
 Zoom	Zoom	Zoom	Zoom
 Zoom 100 %	Zoom 100 %	Zoom 100 %	Zoom 100 %
 Zoom in	Vergrößern	Zoom avant	Acercar
@@ -2779,6 +2800,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} of {} wires	{} von {} Drähten	{} fils sur {}	{} de {} cables
 {} of {} wires assigned to cores of {}	{} von {} Leitungen den Adern von {} zugewiesen	{} fils sur {} affectés aux âmes de {}	{} de {} hilos asignados a los núcleos de {}
 {} on released pages were left as they are	{} auf freigegebenen Seiten blieben unverändert	{} sur des pages libérées sont restées inchangées	{} en páginas liberadas se dejaron como estaban
+{} on {}	{} auf {}	{} sur {}	{} en {}
 {} options switched	{} Optionen geschaltet	{} options commutées	{} opciones conmutadas
 {} pages generated	{} Seiten erzeugt	{} pages générées	{} páginas generadas
 {} pages generated; page macros not found: {}	{} Seiten erzeugt; Seitenmakros nicht gefunden: {}	{} pages générées ; macros de page introuvables : {}	{} páginas generadas; macros de página no encontradas: {}
@@ -2833,6 +2855,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} × {} mm	{} × {} mm	{} × {} mm	{} × {} mm
 {} × {} mm, {} walls	{} × {} mm, {} Wände	{} × {} mm, {} murs	{} × {} mm, {} paredes
 {} × {} pixels, {}	{} × {} Pixel, {}	{} × {} pixels, {}	{} × {} píxeles, {}
+{} – revision {}, {}	{} – Revision {}, {}	{} – révision {}, {}	{} – revisión {}, {}
 {} – {} ({} pages)	{} – {} ({} Seiten)	{} – {} ({} pages)	{} – {} ({} páginas)
 {} – {} here (Esc cancels)	{} – hier {} (Esc bricht ab)	{} – {} ici (Échap annule)	{} – {} aquí (Esc cancela)
 {}: a double-click opens its floor plan	{}: ein Doppelklick öffnet seinen Grundriss	{} : un double-clic ouvre son plan	{}: un doble clic abre su planta

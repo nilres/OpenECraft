@@ -50,6 +50,9 @@ use openecraft_parts::api::encode_component;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
+mod kept;
+pub use kept::{keep, restore, Kept, KeptReason, MAX_KEPT};
+
 pub const API_PREFIX: &str = "/api/v1";
 pub const DEFAULT_PORT: u16 = 8091;
 /// Object ids reserved for a session when it opens a project, so that users never
@@ -874,8 +877,9 @@ impl Shared {
     /// Takes a newer server state. Returns the fresh locks whose target another user
     /// changed in the meantime (the local change of them is replaced), and the
     /// function that brings a local version of the project (the edited one and the
-    /// undo steps) up to date: it keeps what this session owns, the rest comes from
-    /// the server.
+    /// undo steps) up to date: it keeps what this session owns or is requesting, the
+    /// rest comes from the server. What it replaces of the edited project is found with
+    /// [`Kept::capture`].
     pub fn update(&mut self, mut snapshot: Snapshot) -> (Vec<Target>, impl Fn(&Project) -> Project) {
         snapshot.project.normalize();
         let changed = changes(&self.base, &snapshot.project);
@@ -883,6 +887,11 @@ impl Shared {
         let mut owned = Owned::of(&snapshot.locks, &self.session.session);
         for t in &lost {
             owned.remove(*t);
+        }
+        // A lock still being requested: the local change waits for the answer, unless
+        // another user changed the target meanwhile.
+        for t in self.requested.iter().filter(|t| !changed.contains(t)) {
+            owned.add(*t);
         }
         self.fresh.clear();
         self.revision = snapshot.revision;

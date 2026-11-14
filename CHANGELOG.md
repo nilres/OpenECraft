@@ -5,6 +5,17 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Shared saves keep conflicting local edits** (#181): when the project server
+  leaves changes out of a save (locked or changed by another user), when a lock
+  is refused or lost, or when another user changed a target first, the editor
+  keeps your version before it shows the server's. *Project server › Kept changes*
+  lists these copies to compare with the open project, take over again as an
+  undoable edit (not while another user holds the lock), export as a project file
+  or discard; they are stored and survive closing the app or reopening the
+  project. A partial save is reported as such and never marks the project as
+  saved; the unsaved-changes question mentions the kept copies. Changes still
+  waiting for their lock are no longer replaced by a refresh.
+
 - **Cable core labels** (#172): automatic text clearance from definition lines,
   wires, nearby symbols and labels; direct text dragging without selecting the
   wire first, with a hover target. Align the crossed core labels of a definition

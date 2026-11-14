@@ -266,7 +266,8 @@ Change request	Módosítási kérelem
 Change requests	Módosítási kérelmek
 Change requests (CSV, JSON)	Módosítási kérelmek (CSV, JSON)
 Changed against the frozen routes:	Módosult a rögzített nyomvonalakhoz képest:
-Changed by another user in the meantime, your change was replaced: {}	Időközben egy másik felhasználó módosította, az Ön módosítása lecserélődött: {}
+Changed by another user before you got the lock	Egy másik felhasználó módosította, mielőtt megkapta a zárolást
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Időközben egy másik felhasználó módosította: {}. Az Ön változata megmarad a Projektszerver panelen.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Egy innen exportált CSV- vagy Excel-fájl módosított cellái (sorok a kulcsuk alapján)
 Changed message levels ({})	Módosított üzenetszintek ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Módosult a szerelés óta: korábban X {} mm, Y {} mm helyen volt, alkatrész: {}
@@ -389,6 +390,7 @@ Comments ({})	Megjegyzések ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Egy véleményező által a projekt PDF-exportjában készített megjegyzések (Acrobat vagy más PDF-megjelenítő)
 Comments and markup	Megjegyzések és jelölések
 Company library	Céges könyvtár
+Compare	Összehasonlítás
 Compare and baselines	Összehasonlítás és alapállapotok
 Compare with	Összehasonlítás ezzel
 Compare with a baseline, a revision or another project file and take differences over	Összehasonlítás egy alapállapottal, revízióval vagy másik projektfájllal, és a különbségek átvétele
@@ -516,6 +518,7 @@ Delete the property and all its values	Tulajdonság törlése az összes érték
 Delete this workspace	A munkaterület törlése
 Delete variant	Változat törlése
 Delete zone	Zóna törlése
+Deletes this copy of your changes for good	Véglegesen törli a módosításai e másolatát
 Depth / mounted at	Mélység / szerelve itt
 Depth below the ground	Mélység a terepszint alatt
 Depth from / to	Mélység ettől / eddig
@@ -974,6 +977,7 @@ Keep connections	Kapcsolatok megtartása
 Keep sub-pages (3.a, 3.1) with the page before	Az aloldalak (3.a, 3.1) az előző oldalnál maradnak
 Keep the degree of protection	A védettségi fokozat megtartása
 Keep this route when recalculating, as long as it is still possible	Újraszámításkor e nyomvonal megtartása, amíg lehetséges
+Kept changes	Megőrzött módosítások
 Key tips of the ribbon	A menüszalag gyorsbillentyűi
 Key: {}	Kulcs: {}
 Keyboard shortcuts	Billentyűparancsok
@@ -1052,6 +1056,7 @@ Lock page	Oldal zárolása
 Lock project data	Projektadatok zárolása
 Locked	Zárolt
 Locked by other users	Más felhasználók által zárolva
+Locked by {}	Zárolta: {}
 Locked by {} on the project server – read only	{} zárolta a projektkiszolgálón – csak olvasható
 Locked by {} – read only	Zárolta: {} – csak olvasható
 Locking…	Zárolás…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Nincs – egy oldal vagy a
 Not a page template file: {}	Nem oldalsablonfájl: {}
 Not a point: type x y or @dx dy	Nem pont: írja be: x y vagy @dx dy
 Not a symbol library: {}	Nem szimbólumkönyvtár: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nem módosult, a zárolást elutasították: {}. Az Ön változata megmarad a Projektszerver panelen.
 Not changed: {}	Nem módosult: {}
+Not changed: {}. Your version is kept in the Project server pane.	Nem módosult: {}. Az Ön változata megmarad a Projektszerver panelen.
 Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
 Not on a wire	Nincs vezetéken
-Not saved, locked or changed by another user: {}	Nincs mentve, egy másik felhasználó zárolta vagy módosította: {}
+Not saved, locked or changed by another user	Nincs mentve, egy másik felhasználó zárolta vagy módosította
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nincs átvéve: a bal gomb önmagában kijelöl, rajzol és mozgat; tartson nyomva egy módosítóbillentyűt, vagy használjon másik gombot.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nem a megosztott projekt: a módosítások helyben mentődnek, amíg újra meg nem nyitják a projektkiszolgálón
 Nothing exchanged yet.	Még nem történt adatcsere.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	A profil alkatr
 Part selection from the parts database	Alkatrész kiválasztása az alkatrész-adatbázisból
 Part selection – {}	Alkatrész kiválasztása – {}
 Part selection…	Alkatrész kiválasztása…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Részben mentve ({}. revízió). Nincs mentve, egy másik felhasználó zárolta vagy módosította: {}. Az Ön változata megmarad a Projektszerver panelen.
+Partly saved to the project server (revision {})	Részben mentve a projektszerverre ({}. revízió)
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Alkatrészt csak módosítható oldalra lehet ejteni; ez az oldal kiadott, zárolt vagy generált
 Parts management	Alkatrészkezelés
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Padlóra szerelésre jelölt alkatrészek (szivattyúk, tartályok, kompresszorok): válasszon egyet, majd kattintson a helyére a helyiség padlóján
@@ -1648,11 +1657,14 @@ Replace	Csere
 Replace all	Az összes cseréje
 Replace text	Szöveg cseréje
 Replace with	Csere erre
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Lecserélve a projektszerveren lévő változatra: {}. Az Ön változata megmarad a Projektszerver panelen.
 Replaced when the configurator generates again; switch off to keep the page	A konfigurátor következő generálásakor lecserélődik; kapcsolja ki az oldal megtartásához
+Replaced while you held no lock	Lecserélve, amikor nem volt zárolása
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Csere a szabad szövegekben, funkciószövegekben, valamint az oldal-, készülék- és kábelleírásokban; a kiadott oldalak változatlanok maradnak
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Lecseréli az adatbázis GEN.* alkatrészeit az aktuális példakatalógusra (a modellekkel együtt)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	A céges könyvtárat a projekt saját szövegmezőire, jelentéssémáira és rajzkereteire cseréli (az alkatrészkiszolgáló szerkesztői)
 Replaces the content of the macro boxes whose macro changed in the library	Lecseréli azoknak a makródobozoknak a tartalmát, amelyek makrója megváltozott a könyvtárban
+Replaces the current version with yours as a change you can undo; the next save stores it	A jelenlegi változatot az Önével cseréli le visszavonható módosításként; a következő mentés eltárolja
 Replaces the pages of this block	Lecseréli a blokk oldalait
 Reply	Válasz
 Reply…	Válasz…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Elmenti az elhe
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Revíziók, alapállapotok, véleményezés és huzalozási jelölések nélkül menti a projektet sablonként új projektekhez
 Saves the project's own properties, function definitions and schemes for other projects	Elmenti a projekt saját tulajdonságait, funkciódefinícióit és sémáit más projektek számára
 Saves the workspace, the arrangement of the panels and the open windows	Menti a munkaterületet, a panelek elrendezését és a megnyitott ablakokat
+Saves your version of the whole project as a project file	Az egész projekt Ön által módosított változatát projektfájlba menti
 Saving failed: {}	Sikertelen mentés: {}
 Saving the project access…	A projekthozzáférés mentése…
 Saving to the project server…	Mentés a projektszerverre…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	A mért érték helyett jelenik meg
 Shown now: {}	Most megjelenik: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	A fedlapon és azon szövegmezők képelemeiben jelenik meg, amelyek a projekt logóját mutatják
 Shows	Megjelenítés
+Shows the differences of your version to the open project; selected ones can be taken over	Megmutatja a változata eltéréseit a megnyitott projekttől; a kijelöltek átvehetők
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Oldalfalak, hátfal, tető és fenék kívülről nézve: ventilátorok, kábeltömszelencék, kivágások
 Sign in in the Project server pane; the project opens afterwards	Jelentkezzen be a Projektkiszolgáló panelen; utána megnyílik a projekt
 Sign in…	Bejelentkezés…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Vezérlőáramkörök legkisebb keres
 Smallest cross-section of power circuits	Erősáramú áramkörök legkisebb keresztmetszete
 Socket outlets, data and antenna outlets	Dugaszolóaljzatok, adat- és antennaaljzatok
 Solid	Folytonos
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	A projektszerver nem vette át néhány módosítását. Az Ön változata a Projektszerver panelen marad, elvetés után is.
 Some wires have no length: place their devices in the panel layout or set the field length.	Egyes vezetékeknek nincs hossza: helyezze el a készülékeiket a szekrényelrendezésben, vagy adja meg a mezőhosszt.
 Sort by designation	Rendezés megnevezés szerint
 Sort order	Rendezés
@@ -1998,6 +2013,7 @@ Tag placed by hand	Kézzel elhelyezett azonosító
 Take out a subproject	Alprojekt kiemelése
 Take out of the building	Kivétel az épületből
 Take out {} pages…	{} oldal kiemelése…
+Take over again	Újra átvétel
 Take over cut lengths	Vágási hosszak átvétele
 Take over selected ({})	Kijelöltek átvétele ({})
 Take over {} changes	{} változás átvétele
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	A szekrény bal oldalával a kiválasztott szekrény jobb oldalához áll; a vezetékek kábelátvezetéseken át futnak közöttük
 The horizontal wire	A vízszintes vezeték
 The items are selected and moved together	Az elemek kijelölése és mozgatása együtt történik
+The lock was refused	A zárolást elutasították
 The logo is fitted into this area keeping its aspect ratio	A logó a méretarány megtartásával illeszkedik erre a területre
 The logo of the project properties, e.g. the customer's	A projekt tulajdonságaiban megadott logó, pl. az ügyfélé
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	A gyártói katalógusok logói az alkatrész-kiszolgálón, egy alkatrész részletei mellett
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	A makr�
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	A módosítóbillentyűk, amelyekkel a görgő oldalra mozgat vagy nagyít, a Módosítóbillentyűk részben állíthatók be.
 The modules no string takes yet in series, on the first inverter	A még egy stringhez sem tartozó modulok sorba kötve, az első inverteren
 The names of its pages follow	Oldalainak neve is változik
+The open project already has your version	A megnyitott projekt már az Ön változatát tartalmazza
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	A megnyitott projekt helyi helyreállítási másolat. A módosításai nincsenek mentve a projektkiszolgálón; mielőtt a megosztott projekt megnyílik, eldöntheti, hogy helyben menti vagy elveti őket.
 The page name gets the section number	Az oldal neve megkapja a szakasz számát
 The page type, plot frame, title block, structure, description and the whole content are saved.	Az oldal típusa, rajzkerete, szövegmezője, struktúrája, leírása és teljes tartalma mentésre kerül.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	ÉÉÉÉ-HH-NN
 You may only view this project.	Ezt a projektet csak megtekintheti.
 You may review this project: comments, markup and approvals, no other changes.	Ezt a projektet véleményezheti: megjegyzések, korrektúrák és jóváhagyások, más módosítás nem.
 Your unsaved changes of it are taken back	Az ezen végzett, nem mentett változtatásai visszavonásra kerülnek
+Your version of {}	Az Ön változata ({})
+Your version taken over: {}. Save to store it on the project server.	Az Ön változata átvéve: {}. Mentse a projektszerverre.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Az Ön változatai azokról a módosításokról, amelyeket a projektszerveren lévő változat lecserélt. Itt maradnak, amíg el nem veti őket.
 Zoom	Nagyítás
 Zoom in in the 3D view (held)	Nagyítás a 3D nézetben (nyomva tartva)
 Zoom out in the 3D view (held)	Kicsinyítés a 3D nézetben (nyomva tartva)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{} / {} vezeték
 {} of {} wires assigned to cores of {}	{0} / {1} vezeték hozzárendelve a(z) {2} ereihez
 {} on released pages were left as they are	{} a kiadott oldalakon változatlan maradt
+{} on {}	{} – {}
 {} options switched	{} opció átkapcsolva
 {} pages generated	{} oldal generálva
 {} pages generated; page macros not found: {}	{} oldal generálva; nem található oldalmakrók: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} képpont, {}
+{} – revision {}, {}	{} – {}. revízió, {}
 {} – {} ({} pages)	{} – {} ({} oldal)
 {} – {} here (Esc cancels)	{} – {} itt (Esc megszakítja)
 {}: click to show its floor plan	{}: kattintson az alaprajz megjelenítéséhez

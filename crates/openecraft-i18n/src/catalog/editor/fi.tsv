@@ -266,7 +266,8 @@ Change request	Muutospyyntö
 Change requests	Muutospyynnöt
 Change requests (CSV, JSON)	Muutospyynnöt (CSV, JSON)
 Changed against the frozen routes:	Muuttunut lukittuihin reitteihin verrattuna:
-Changed by another user in the meantime, your change was replaced: {}	Toinen käyttäjä muutti tätä sillä välin, muutoksesi korvattiin: {}
+Changed by another user before you got the lock	Toinen käyttäjä muutti ennen kuin sait lukituksen
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Toinen käyttäjä muutti tätä sillä välin: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Täältä viedyn CSV- tai Excel-tiedoston muutetut solut (rivit avaimensa mukaan)
 Changed message levels ({})	Muutetut ilmoitustasot ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Muuttunut asennuksen jälkeen: oli kohdassa X {} mm, Y {} mm osalla {}
@@ -389,6 +390,7 @@ Comments ({})	Kommentit ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Tarkastajan projektin PDF-vientiin tekemät kommentit (Acrobat tai muu PDF-katseluohjelma)
 Comments and markup	Kommentit ja merkinnät
 Company library	Yrityksen kirjasto
+Compare	Vertaa
 Compare and baselines	Vertailu ja lähtötasot
 Compare with	Vertaa kohteeseen
 Compare with a baseline, a revision or another project file and take differences over	Vertaa lähtötasoon, revisioon tai toiseen projektitiedostoon ja ota erot käyttöön
@@ -516,6 +518,7 @@ Delete the property and all its values	Poista ominaisuus ja kaikki sen arvot
 Delete this workspace	Poista tämä työtila
 Delete variant	Poista muunnelma
 Delete zone	Poista vyöhyke
+Deletes this copy of your changes for good	Poistaa tämän muutostesi kopion pysyvästi
 Depth / mounted at	Syvyys / asennettu kohtaan
 Depth below the ground	Syvyys maanpinnan alla
 Depth from / to	Syvyys mistä / mihin
@@ -974,6 +977,7 @@ Keep connections	Säilytä liitännät
 Keep sub-pages (3.a, 3.1) with the page before	Pidä alasivut (3.a, 3.1) edellisen sivun yhteydessä
 Keep the degree of protection	Säilytä kotelointiluokka
 Keep this route when recalculating, as long as it is still possible	Säilytä tämä reitti uudelleenlaskennassa niin kauan kuin se on mahdollista
+Kept changes	Säilytetyt muutokset
 Key tips of the ribbon	Valintanauhan pikanäppäimet
 Key: {}	Avain: {}
 Keyboard shortcuts	Pikanäppäimet
@@ -1052,6 +1056,7 @@ Lock page	Lukitse sivu
 Lock project data	Lukitse projektin tiedot
 Locked	Lukittu
 Locked by other users	Muiden käyttäjien lukitsemat
+Locked by {}	Lukinnut: {}
 Locked by {} on the project server – read only	{} on lukinnut projektipalvelimella – vain luku
 Locked by {} – read only	Lukinnut {} – vain luku
 Locking…	Lukitaan…
@@ -1274,11 +1279,13 @@ None – editing a page or the project data locks it.	Ei mitään – sivun tai 
 Not a page template file: {}	Ei sivumallitiedosto: {}
 Not a point: type x y or @dx dy	Ei piste: kirjoita x y tai @dx dy
 Not a symbol library: {}	Ei symbolikirjasto: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Ei muutettu, lukitus evättiin: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Not changed: {}	Ei muutettu: {}
+Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
-Not saved, locked or changed by another user: {}	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}
+Not saved, locked or changed by another user	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ei otettu: pelkkä vasen painike valitsee, piirtää ja siirtää; pidä muokkausnäppäin painettuna tai käytä toista painiketta.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ei jaettu projekti: muutokset tallennetaan paikallisesti, kunnes se avataan uudelleen projektipalvelimella
 Nothing exchanged yet.	Mitään ei ole vielä siirretty.
@@ -1432,6 +1439,8 @@ Part of the profile: generic types or parts from the parts store	Profiilin osa: 
 Part selection from the parts database	Osan valinta osatietokannasta
 Part selection – {}	Osan valinta – {}
 Part selection…	Osan valinta…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Tallennettu osittain (revisio {}). Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}. Versiosi säilyy Projektipalvelin-ruudussa.
+Partly saved to the project server (revision {})	Tallennettu osittain projektipalvelimelle (revisio {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Osia voi pudottaa vain muokattaville sivuille; tämä on julkaistu, lukittu tai luotu
 Parts management	Osien hallinta
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Lattia-asennukseen merkityt osat (pumput, säiliöt, kompressorit): valitse yksi ja napsauta kohtaa huoneen lattialla
@@ -1648,11 +1657,14 @@ Replace	Korvaa
 Replace all	Korvaa kaikki
 Replace text	Korvaa teksti
 Replace with	Korvaa tekstillä
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Korvattu projektipalvelimen versiolla: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Replaced when the configurator generates again; switch off to keep the page	Korvataan, kun konfiguraattori luo uudelleen; poista käytöstä säilyttääksesi sivun
+Replaced while you held no lock	Korvattu, kun sinulla ei ollut lukitusta
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Korvaa vapaissa teksteissä, toimintoteksteissä sekä sivujen, laitteiden ja kaapelien kuvauksissa; vapautetut sivut säilyvät ennallaan
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Korvaa tietokannan GEN.*-osat nykyisellä esimerkkiluettelolla (mallit mukaan lukien)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Korvaa yrityksen kirjaston projektin omilla nimiöillä, raporttimalleilla ja piirustuskehyksillä (osapalvelimen muokkaajat)
 Replaces the content of the macro boxes whose macro changed in the library	Korvaa niiden makrolaatikoiden sisällön, joiden makro on muuttunut kirjastossa
+Replaces the current version with yours as a change you can undo; the next save stores it	Korvaa nykyisen version omallasi muutoksena, jonka voi kumota; seuraava tallennus tallentaa sen
 Replaces the pages of this block	Korvaa tämän lohkon sivut
 Reply	Vastaa
 Reply…	Vastaa…
@@ -1781,6 +1793,7 @@ Saves the placed properties as a placement scheme of the project	Tallentaa sijoi
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Tallentaa projektin ilman revisioita, vertailutiloja, tarkastusta ja johdotusmerkintöjä mallina uusia projekteja varten
 Saves the project's own properties, function definitions and schemes for other projects	Tallentaa projektin omat ominaisuudet, toimintomäärittelyt ja skeemat muita projekteja varten
 Saves the workspace, the arrangement of the panels and the open windows	Tallentaa työtilan, paneelien järjestyksen ja avoimet ikkunat
+Saves your version of the whole project as a project file	Tallentaa versiosi koko projektista projektitiedostoksi
 Saving failed: {}	Tallennus epäonnistui: {}
 Saving the project access…	Tallennetaan projektin käyttöoikeuksia…
 Saving to the project server…	Tallennetaan projektipalvelimelle…
@@ -1892,6 +1905,7 @@ Shown instead of the measured value	Näytetään mitatun arvon sijaan
 Shown now: {}	Näytetään nyt: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Näytetään kansilehdellä ja niiden nimiöiden kuvaelementeissä, jotka näyttävät projektin logon
 Shows	Näyttää
+Shows the differences of your version to the open project; selected ones can be taken over	Näyttää versiosi erot avoimeen projektiin; valitut voidaan ottaa käyttöön
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sivuseinät, takaseinä, katto ja pohja ulkoa katsottuna: tuulettimet, kaapeliläpiviennit, aukot
 Sign in in the Project server pane; the project opens afterwards	Kirjaudu sisään Projektipalvelin-ruudussa; projekti avautuu sen jälkeen
 Sign in…	Kirjaudu sisään…
@@ -1910,6 +1924,7 @@ Smallest cross-section of control circuits	Ohjauspiirien pienin poikkipinta-ala
 Smallest cross-section of power circuits	Tehopiirien pienin poikkipinta-ala
 Socket outlets, data and antenna outlets	Pistorasiat, data- ja antennirasiat
 Solid	Yhtenäinen
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Projektipalvelin ei ottanut kaikkia muutoksiasi. Versiosi säilyy Projektipalvelin-ruudussa myös hylkäämisen jälkeen.
 Some wires have no length: place their devices in the panel layout or set the field length.	Joillakin johdoilla ei ole pituutta: sijoita niiden laitteet kaappiasennukseen tai aseta kentän pituus.
 Sort by designation	Lajittele nimityksen mukaan
 Sort order	Lajittelujärjestys
@@ -1998,6 +2013,7 @@ Tag placed by hand	Tunnus sijoitettu käsin
 Take out a subproject	Irrota aliprojekti
 Take out of the building	Poista rakennuksesta
 Take out {} pages…	Irrota {} sivua…
+Take over again	Ota uudelleen käyttöön
 Take over cut lengths	Ota katkaisupituudet käyttöön
 Take over selected ({})	Ota valitut käyttöön ({})
 Take over {} changes	Ota käyttöön {} muutosta
@@ -2043,6 +2059,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
 The horizontal wire	Vaakasuora johdin
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
+The lock was refused	Lukitus evättiin
 The logo is fitted into this area keeping its aspect ratio	Logo sovitetaan tälle alueelle kuvasuhde säilyttäen
 The logo of the project properties, e.g. the customer's	Projektin ominaisuuksien logo, esim. asiakkaan
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Valmistajien luetteloiden logot osapalvelimella osan tietojen vieressä
@@ -2050,6 +2067,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Makroki
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Muokkausnäppäimet, joilla rulla panoroi sivuttain tai zoomaa, asetetaan kohdassa Muokkausnäppäimet.
 The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
 The names of its pages follow	Sen sivujen nimet muuttuvat mukana
+The open project already has your version	Avoimessa projektissa on jo versiosi
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Avoin projekti on paikallinen palautuskopio. Sen muutoksia ei ole tallennettu projektipalvelimelle; ennen kuin jaettu projekti avautuu, päätät, tallennetaanko ne paikallisesti vai hylätäänkö ne.
 The page name gets the section number	Sivun nimi saa osion numeron
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
@@ -2257,6 +2275,9 @@ YYYY-MM-DD	VVVV-KK-PP
 You may only view this project.	Voit vain katsella tätä projektia.
 You may review this project: comments, markup and approvals, no other changes.	Voit tarkastaa tämän projektin: kommentit, merkinnät ja hyväksynnät, ei muita muutoksia.
 Your unsaved changes of it are taken back	Siihen tekemäsi tallentamattomat muutokset perutaan
+Your version of {}	Versiosi ajalta {}
+Your version taken over: {}. Save to store it on the project server.	Versiosi otettu käyttöön: {}. Tallenna se projektipalvelimelle.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Versiosi muutoksista, jotka korvattiin projektipalvelimen versiolla. Ne säilyvät täällä, kunnes hylkäät ne.
 Zoom	Zoomaus
 Zoom in in the 3D view (held)	Lähennä 3D-näkymää (pidä painettuna)
 Zoom out in the 3D view (held)	Loitonna 3D-näkymää (pidä painettuna)
@@ -2468,6 +2489,7 @@ x y	x y
 {} of {} wires	{}/{} johtoa
 {} of {} wires assigned to cores of {}	{}/{} johtoa määritetty kaapelin {} johtimille
 {} on released pages were left as they are	{} vapautetuilla sivuilla jätettiin ennalleen
+{} on {}	{} palvelimella {}
 {} options switched	{} vaihtoehtoa kytketty
 {} pages generated	{} sivua luotiin
 {} pages generated; page macros not found: {}	{} sivua luotiin; sivumakroja ei löytynyt: {}
@@ -2519,6 +2541,7 @@ x y	x y
 {} °C (max.)	{} °C (enint.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pikseliä, {}
+{} – revision {}, {}	{} – revisio {}, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
 {} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
