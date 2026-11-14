@@ -4,6 +4,58 @@ use openecraft_core::sample::demo_project;
 use egui::{Event, Modifiers, RawInput};
 
 #[test]
+fn context_menu_stays_present_while_pressing_its_command() {
+    let ctx = egui::Context::default();
+    let mut prj = Project::default();
+    let idx = Index::build(&prj);
+    let an = Analysis::build(&prj);
+    let mut ed = Editor::default();
+    let mut frame = |events: Vec<Event>, open: bool| {
+        let mut response = false;
+        let mut button = Rect::NOTHING;
+        let mut clicked = false;
+        let input = RawInput { screen_rect: Some(Rect::from_min_size(Pos2::ZERO, vec2(1000., 700.))), events, ..Default::default() };
+        ctx.run_ui(input, |ui| {
+            let out = ed.ui(ui, &mut prj, 0, &idx, &an);
+            response = out.response.is_some();
+            if let Some(resp) = out.response {
+                let mut popup = egui::Popup::context_menu(&resp);
+                if open { popup = popup.open_memory(egui::SetOpenCommand::Bool(true)); }
+                popup.show(|ui| {
+                    let r = ui.button(tr("Rename cable…"));
+                    button = r.rect;
+                    if r.clicked() { clicked = true; ui.close(); }
+                });
+            }
+        }).drop_without_applying_deltas();
+        (response, button, clicked)
+    };
+    frame(vec![Event::PointerMoved(pos2(200., 200.))], true);
+    let (_, bounds, _) = frame(vec![], false);
+    assert!(bounds.is_finite());
+    let at = bounds.center();
+    frame(vec![Event::PointerMoved(at)], false);
+    let (present, _, clicked) = frame(vec![button(at, true)], false);
+    assert!(present, "the menu must still be drawn while its command is pressed");
+    assert!(!clicked);
+    assert!(frame(vec![button(at, false)], false).2, "releasing activates the menu command");
+}
+
+#[test]
+fn cable_definition_labels_are_selectable_in_both_directions_and_orientations() {
+    let mut prj = Project::default();
+    prj.cables.push(Cable { id: 10, tag: "=A+CC-W1".into(), cores: "BN BU GNYE".into(), cable_type: "NYM-J".into(), cross_section: "1.5".into(), ..Default::default() });
+    let ed = Editor { zoom: 8., ..Default::default() };
+    for (a, b) in [(p(40., 60.), p(80., 60.)), (p(80., 60.), p(40., 60.)), (p(60., 40.), p(60., 80.)), (p(60., 80.), p(60., 40.))] {
+        prj.pages[0].cable_defs = vec![CableDef { id: 30, a, b, cable: "=A+CC-W1".into(), shield: false }];
+        let bounds = render::cable_def_text_bounds(&prj, &prj.pages[0], &prj.pages[0].cable_defs[0]);
+        assert_eq!(bounds.len(), 3);
+        for r in bounds { assert_eq!(ed.hit(&prj, 0, r.center()), Some(30)); }
+        assert_eq!(ed.hit(&prj, 0, p(200., 200.)), None);
+    }
+}
+
+#[test]
 fn cable_definition_tool_reports_all_crossings_and_leaves_shortage_unassigned() {
     let mut prj = Project::default();
     for i in 0..5 {

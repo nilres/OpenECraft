@@ -32,6 +32,20 @@ used twice or not in the cable.
 
 ## Connection and cable definitions
 
+To rename a cable, right-click its definition line or label and choose **Rename
+cable…**. The same action is in the cable navigator and in the properties opened
+with F2 or a double-click. The dialog selects the full tag: type the new tag and
+press Enter, or press Escape to cancel. References on all pages follow the rename,
+which can be undone in one step. Duplicate tags and changes to released pages are
+rejected. Shared projects acquire the project and affected page locks before
+applying the change. Cancelling releases only the locks newly requested by the
+dialog, after their request finishes; locks protecting other local edits remain.
+The action is also in *Connections › Cables*. Automation can use `rename_cable`
+with `cable` (current full tag) and `tag` (new full tag).
+Older project servers are supported: if the session snapshot endpoint is absent,
+the editor combines the older snapshot with the session's lock status at the same
+revision. A newer revision during loading is retried instead of mixing states.
+
 Drawing a cable definition previews the crossed wires and free cores. Its
 properties show assigned/unassigned counts and the assignment order, starting at
 the first point of the line. Reversing the line reverses the order for free cores;

@@ -9,6 +9,38 @@ use tower::ServiceExt;
 
 const TOKEN: &str = "secret-token";
 
+#[tokio::test]
+async fn session_snapshot_keeps_own_locks_and_never_exposes_another_sessions_id() {
+    let app = app(Some(TOKEN));
+    let mut tokens = Vec::new();
+    for user in ["anna", "ben"] {
+        let update = UserUpdate { password: Some(format!("{user}-password")), role: Some(ProjectRole::Editor), ..Default::default() };
+        assert!(with(&app, "PUT", &format!("/api/v1/users/{user}"), TOKEN, &update).await.0.is_success());
+        let (_, body) = with(&app, "POST", "/api/v1/login", TOKEN, &LoginRequest { user: user.into(), password: format!("{user}-password"), ..Default::default() }).await;
+        tokens.push(serde_json::from_str::<LoginResponse>(&body).unwrap().token);
+    }
+    let (_, body) = with(&app, "POST", "/api/v1/projects", &tokens[0], &CreateRequest { name: "Snapshot test".into(), user: "anna".into(), project: two_pages() }).await;
+    let anna: Opened = serde_json::from_str(&body).unwrap();
+    let path = "/api/v1/projects/Snapshot%20test";
+    let (_, body) = with(&app, "POST", &format!("{path}/open"), &tokens[1], &OpenRequest { user: "ben".into() }).await;
+    let ben: Opened = serde_json::from_str(&body).unwrap();
+    for (opened, token, target) in [(&anna, &tokens[0], Target::Project), (&ben, &tokens[1], Target::Page(anna.snapshot.project.pages[1].id))] {
+        assert!(with(&app, "POST", &format!("{path}/lock"), token, &LockRequest { session: opened.session.clone(), targets: vec![target] }).await.0.is_success());
+    }
+    let (code, body) = with(&app, "POST", &format!("{path}/snapshot"), &tokens[0], &anna.session).await;
+    assert!(code.is_success());
+    let snap: Snapshot = serde_json::from_str(&body).unwrap();
+    assert!(snap.locks.iter().any(|l| l.target == Target::Project && l.session == anna.session.session));
+    assert!(snap.locks.iter().filter(|l| l.user == "ben").all(|l| l.session != ben.session.session));
+    assert!(!body.contains(&ben.session.session));
+    let (_, body) = with(&app, "GET", path, &tokens[0], &()).await;
+    assert!(!body.contains(&anna.session.session));
+    assert!(!body.contains(&ben.session.session));
+    assert_eq!(with(&app, "POST", &format!("{path}/snapshot"), &tokens[0], &ben.session).await.0, StatusCode::FORBIDDEN);
+    let invalid = Session { session: "not-a-session".into(), ..anna.session };
+    assert!(!with(&app, "POST", &format!("{path}/snapshot"), &tokens[0], &invalid).await.0.is_success());
+}
+
 fn app(token: Option<&str>) -> Router {
     let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default() };
     router(AppState { server: Arc::new(Mutex::new(server)), token: token.map(String::from) })

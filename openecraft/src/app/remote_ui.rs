@@ -71,6 +71,7 @@ impl App {
                 Reply::List(_) | Reply::Login(Err(_)) | Reply::Access(_, Ok(_)) | Reply::Closed => {}
             }
         }
+        self.remote.release_cancelled(&self.session.prj);
     }
 
     /// The server project of the start could not be opened: try again, sign in, choose

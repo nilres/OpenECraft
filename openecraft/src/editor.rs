@@ -942,6 +942,9 @@ impl Editor {
         if let Some((_, id)) = best {
             return Some(id);
         }
+        for c in page.cable_defs.iter().rev() {
+            if render::cable_def_text_bounds(prj, page, c).iter().any(|r| r.contains(q)) { return Some(c.id); }
+        }
         if let Some(c) = page.conn_defs.iter().rev().find(|c| c.pos.dist(q) <= tol.max(1.2)) {
             return Some(c.id);
         }
@@ -1183,7 +1186,9 @@ impl Editor {
                     }
                 }
             }
-            if !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
+            // An open menu must remain drawn during its command's press/release.
+            let menu_open = egui::Popup::is_id_open(ui.ctx(), egui::Popup::default_response_id(&resp));
+            if menu_open || !ui.input(|i| i.pointer.button_down(PointerButton::Primary)) {
                 out.response = Some(resp.clone());
             }
         }

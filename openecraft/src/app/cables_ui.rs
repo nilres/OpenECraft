@@ -14,7 +14,7 @@ const FORMAT_HINT: &str = "{page}.{column}.{n}";
 fn cable_tag_input(ui:&mut egui::Ui,cable:&Cable)->Option<String> {
     let key=ui.make_persistent_id(("cable_tag",cable.id,cable.tag.as_str()));
     let mut text=ui.data(|data|data.get_temp::<String>(key)).unwrap_or_else(||cable.tag.clone());
-    let response=ui.add_sized([100.,20.],egui::TextEdit::singleline(&mut text).id(key).font(egui::TextStyle::Monospace))
+    let response=ui.add_sized([240.,20.],egui::TextEdit::singleline(&mut text).id(key).font(egui::TextStyle::Monospace))
         .on_hover_text(tr("Cable tag, e.g. -W20"));
     if (response.has_focus() || response.lost_focus()) && ui.input(|input|input.key_pressed(egui::Key::Escape)) {
         ui.data_mut(|data|data.remove_temp::<String>(key));response.surrender_focus();return None

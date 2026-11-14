@@ -5,6 +5,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Quick cable rename** (#174): select a cable definition or its label and use
+  *Rename cable…* in the context menu, the properties or the cable navigator.
+  The dialog selects the complete tag, validates it before applying and updates
+  references across pages in one undo step. Shared projects acquire all affected
+  locks first. Also available as the `rename_cable` CLI/MCP/plugin command.
+  Canvas context menus stay open during a left-button press so their commands
+  actually run on release.
+  Session-bound snapshots keep own locks identifiable when loading concurrent
+  page changes. Older servers use their GET snapshot and an authenticated status
+  at the same revision, preserving own locks without guessing from user names.
+  Cancelling an in-flight rename releases its new locks after the request has
+  finished; existing locks and locks protecting other local edits are kept.
+
 - **Cable core assignment** (#173): preview crossed wires, free cores and the
   assignment order from the line start. Insufficient cores or conflicting wire
   assignments leave all pending assignments unchanged and show a persistent

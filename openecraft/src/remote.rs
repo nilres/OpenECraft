@@ -70,6 +70,7 @@ pub struct Remote {
     pub saving_rev: u64,
     ctx: Option<egui::Context>,
     inbox: Arc<Mutex<Vec<Reply>>>,
+    cancelled_locks: Vec<(String, Vec<Target>)>,
 }
 
 impl Default for Remote {
@@ -98,6 +99,7 @@ impl Default for Remote {
             saving_rev: 0,
             ctx: None,
             inbox: Arc::default(),
+            cancelled_locks: Vec::new(),
         }
     }
 }
@@ -112,18 +114,23 @@ impl Remote {
     }
 
     fn send(&mut self, request: ehttp::Request, status: String, wrap: impl 'static + Send + FnOnce(ehttp::Result<ehttp::Response>) -> Reply) {
+        let receive = self.receiver(status);
+        ehttp::fetch(request, move |result| receive(wrap(result)));
+    }
+
+    fn receiver(&mut self, status: String) -> impl FnOnce(Reply) + Send + 'static {
         self.status = status;
         self.pending += 1;
         let inbox = self.inbox.clone();
         let ctx = self.ctx.clone();
-        ehttp::fetch(request, move |result| {
+        move |reply| {
             if let Ok(mut inbox) = inbox.lock() {
-                inbox.push(wrap(result));
+                inbox.push(reply);
             }
             if let Some(ctx) = ctx {
                 ctx.request_repaint();
             }
-        });
+        }
     }
 
     /// Answers wake up the window from the start on.
@@ -220,6 +227,33 @@ impl Remote {
         self.send(req, tr("Releasing…").into(), move |r| Reply::Status(s, decode(r)));
     }
 
+    /// A cancelled operation may still have a lock request in flight.
+    pub fn cancel_locks(&mut self, session: &str, targets: Vec<Target>) {
+        if targets.is_empty() || session != self.session_id() { return; }
+        self.cancelled_locks.push((session.into(), targets));
+        if let Some(ctx) = &self.ctx { ctx.request_repaint(); }
+    }
+
+    /// Called after lock answers and snapshots were applied. Keep locks protecting
+    /// local edits, and never release a lock before its request has finished.
+    pub fn release_cancelled(&mut self, project: &Project) {
+        if self.cancelled_locks.is_empty() { return; }
+        let Some(sh) = &self.shared else { self.cancelled_locks.clear(); return; };
+        let changed = openecraft_core::collab::changes(&sh.base, project);
+        let fetching = self.fetching;
+        let mut release = std::collections::BTreeSet::new();
+        self.cancelled_locks.retain_mut(|(session, targets)| {
+            if *session != sh.session.session { return false; }
+            targets.retain(|target| {
+                if sh.requested.contains(target) || fetching && sh.fresh.contains(target) { return true; }
+                if sh.owns(*target) && !changed.contains(target) { release.insert(*target); }
+                false
+            });
+            !targets.is_empty()
+        });
+        if !release.is_empty() { self.release(release.into_iter().collect()); }
+    }
+
     /// Ends the session (releases its locks); the project stays open locally.
     pub fn close(&mut self) {
         let Some(sh) = self.shared.take() else { return };
@@ -234,9 +268,12 @@ impl Remote {
             return;
         }
         self.fetching = true;
-        let req = self.endpoint().snapshot(&sh.name);
+        let endpoint = self.endpoint();
+        let name = sh.name.clone();
+        let session = sh.session.clone();
         let s = self.session_id();
-        self.send(req, tr("Loading changes…").into(), move |r| Reply::Snapshot(s, decode(r).map(Box::new)));
+        let receive = self.receiver(tr("Loading changes…").into());
+        endpoint.fetch_session_snapshot(&name, &session, move |result| receive(Reply::Snapshot(s, result.map(Box::new))));
     }
 
     /// Takes the finished requests (of the open session) and keeps the session alive.
