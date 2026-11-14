@@ -36,13 +36,23 @@ flow. Unsaved edits and undo history remain available; signing in does not mark
 them as saved or replace the project with a fresh copy.
 
 **Sign out** removes the remembered credential and asks the server to revoke the
-account token. **Change user** additionally clears the selected user name. An open
-shared project and its undo history remain as a local recovery copy, including
+account token after outstanding saves and project closes have been answered.
+**Change user** releases the project session and clears the selected user name,
+but keeps that account's remembered sign-in for switching back. An open shared
+project and its undo history remain as a local recovery copy, including
 unsaved changes. Local sign-out works offline; the pane reports separately if the
 server session could not be ended or protected storage could not be changed.
 OS operations run in order, including deletion after an already-running save;
 normal application closing waits for their results. Replies from a previous
 server/account selection never restore its identity or replace the open project.
+A delayed save confirmation still belongs to the same retained project during
+reauthentication; it advances the saved revision without changing the new sign-in.
+Background revocation does not disable the next sign-in while waiting for a server.
+
+Invalid-token cleanup compares the rejected token before deleting it. It never
+writes a new opt-out: another window may already have remembered a newer sign-in.
+Directory logins keep their opt-in under the account name confirmed by the server,
+including when the typed name was domain-qualified or a user principal name.
 
 The browser, macOS and Linux currently offer session-only sign-in. Their checkbox
 is disabled with an explanation; there is no token/password fallback in local

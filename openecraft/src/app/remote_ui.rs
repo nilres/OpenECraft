@@ -121,7 +121,7 @@ impl App {
                 // Failures of the connection are told once, when its state changes.
                 Reply::Snapshot(_, Err(e)) if e.why == Failure::Refused => self.notify_error(ctx, self.remote.status.clone()),
                 Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Reopened(_, Err(_)) => {}
-                Reply::List(_) | Reply::SignedOut(_) | Reply::Restored(..) | Reply::Access(_, Ok(_)) | Reply::Closed => {}
+                Reply::List(_) | Reply::SignedOut(_) | Reply::Restored(..) | Reply::Access(_, Ok(_)) | Reply::Closed(_) => {}
             }
         }
         self.remote.release_cancelled(&self.session.prj);
@@ -341,11 +341,7 @@ impl App {
             if retry_token { self.remote.retry(); }
             if login { self.remote.sign_in(); }
             if remember_changed { self.remote.remember_changed(); }
-            if self.remote.can_remember() {
-                ui.weak(tr("Optional on this computer: the sign-in token is protected by Windows Credential Manager. Your password is never saved; the server expiry still applies."));
-            } else {
-                ui.weak(tr("Persistent sign-in is available on Windows. Browser and other desktop sessions stay signed in only while the app is open."));
-            }
+            ui.weak(self.remote.remember_hint());
             ui.horizontal_wrapped(|ui| {
                 let can_sign_out = self.remote.sign_in.signed_in || !self.remote.token.is_empty() || self.remote.busy();
                 if ui.add_enabled(can_sign_out, egui::Button::new(tr("Sign out"))).clicked() {
@@ -383,8 +379,8 @@ impl App {
         self.session.commit(true);
         if let Some(project) = self.remote.project() { self.recovery = Some(project); }
         self.reconnect = None;
-        self.remote.sign_out();
-        if change_user { self.remote.user.clear(); }
+        if change_user { self.remote.change_user(); }
+        else { self.remote.sign_out(); }
     }
 
     fn projects_section(&mut self, ui: &mut egui::Ui) {

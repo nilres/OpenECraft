@@ -67,3 +67,22 @@ fn concurrent_conditional_delete_cannot_remove_a_newer_token() {
         assert_eq!(load(&fixture.0).unwrap().as_deref(), Some("synthetic-new-token"));
     }
 }
+
+#[test]
+fn independent_credential_entries_survive_concurrent_os_access() {
+    let barrier = Arc::new(Barrier::new(8));
+    let workers: Vec<_> = (0..8).map(|_| {
+        let barrier = barrier.clone();
+        std::thread::spawn(move || {
+            let fixture = Fixture::new();
+            barrier.wait();
+            for _ in 0..32 {
+                assert!(save(&fixture.0, "synthetic-parallel-token", "synthetic-user").unwrap());
+                assert_eq!(load(&fixture.0).unwrap().as_deref(), Some("synthetic-parallel-token"));
+                assert!(!forget_if(&fixture.0, "different-fixture").unwrap());
+                assert_eq!(load(&fixture.0).unwrap().as_deref(), Some("synthetic-parallel-token"));
+            }
+        })
+    }).collect();
+    for worker in workers { worker.join().unwrap(); }
+}

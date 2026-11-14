@@ -8,12 +8,24 @@ use zeroize::{Zeroize, Zeroizing};
 fn wide(value: &str) -> Vec<u16> { value.encode_utf16().chain(Some(0)).collect() }
 fn error(operation: Operation) -> CredentialError { CredentialError { operation, code: unsafe { GetLastError() } } }
 
-struct TargetLock { handle: HANDLE, owned: bool }
+struct NativeLock { handle: HANDLE, owned: bool }
+
+struct TargetLock { _target: NativeLock, _store: NativeLock }
 
 impl TargetLock {
     fn acquire(target: &str, operation: Operation) -> Result<Self, CredentialError> {
         // Credential Manager compares target names without ASCII case.
         let name = wide(&format!("Local\\OpenECraft.Credentials.{}", crate::update::sha256(target.to_ascii_lowercase().as_bytes())));
+        // Serialize changes to the shared credential set, retaining the target
+        // lock for cooperation with clients that only lock individual entries.
+        let store = NativeLock::named(&wide("Local\\OpenECraft.Credentials.Store"), operation)?;
+        let target = NativeLock::named(&name, operation)?;
+        Ok(Self { _target: target, _store: store })
+    }
+}
+
+impl NativeLock {
+    fn named(name: &[u16], operation: Operation) -> Result<Self, CredentialError> {
         let handle = unsafe { CreateMutexW(ptr::null(), 0, name.as_ptr()) };
         if handle.is_null() { return Err(error(operation)); }
         let mut lock = Self { handle, owned: false };
@@ -27,7 +39,7 @@ impl TargetLock {
     }
 }
 
-impl Drop for TargetLock {
+impl Drop for NativeLock {
     fn drop(&mut self) {
         unsafe {
             if self.owned { ReleaseMutex(self.handle); }

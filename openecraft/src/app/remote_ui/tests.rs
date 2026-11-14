@@ -295,3 +295,36 @@ fn same_account_sign_in_keeps_the_shared_session_unsaved_work_and_undo() {
     app.session.redo();
     assert_eq!(app.session.prj, before);
 }
+
+
+#[cfg(windows)]
+#[test]
+fn review193_change_user_keeps_the_old_accounts_remembered_token() {
+    use openecraft_client::project_credentials::{Account, CredentialStore, SystemCredentialStore};
+    let (mut app, _, _) = shared_app();
+    let unique = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+    app.remote.url = format!("http://127.0.0.1:9/change-user-{unique}");
+    let account = Account::new(&app.remote.url, &app.remote.user).unwrap();
+    struct Cleanup(Account);
+    impl Drop for Cleanup { fn drop(&mut self) { let _ = SystemCredentialStore.forget(&self.0); } }
+    let _cleanup = Cleanup(account.clone());
+    app.remote.sign_in.remember = true;
+    app.remote.remember_changed();
+    let deadline = std::time::Instant::now() + std::time::Duration::from_secs(5);
+    while app.remote.sign_in.credential_changes_pending() {
+        app.remote.poll_credentials();
+        assert!(std::time::Instant::now() < deadline);
+        std::thread::sleep(std::time::Duration::from_millis(1));
+    }
+    assert!(SystemCredentialStore.load(&account).unwrap().is_some());
+    app.sign_out_remote(true);
+    while app.remote.sign_in.credential_changes_pending() {
+        app.remote.poll_credentials();
+        assert!(std::time::Instant::now() < deadline);
+        std::thread::sleep(std::time::Duration::from_millis(1));
+    }
+    assert!(app.remote.user.is_empty());
+    assert_eq!(SystemCredentialStore.load(&account).unwrap().as_deref(), Some("synthetic-token"));
+    app.remote.user = account.user().into();
+    assert!(app.remote.has_saved_sign_in());
+}

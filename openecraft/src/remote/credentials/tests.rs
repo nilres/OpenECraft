@@ -57,6 +57,7 @@ fn a_forget_waits_for_the_running_save_and_cannot_be_overtaken_by_a_load() {
     let forgotten = execute(forgetting.generation, forgetting.job, &store, true);
     assert_eq!(forgotten.kind, Kind::Forget);
     assert_eq!(forgotten.generation, 2);
+    assert!(forgotten.removed);
     assert!(forgotten.result.unwrap().is_none());
     let loading = queue.next().unwrap();
     let loaded = execute(loading.generation, loading.job, &store, true);
@@ -89,6 +90,7 @@ fn results_keep_the_original_generation_and_account() {
 fn forgetting_an_already_absent_entry_succeeds_on_a_supported_backend() {
     let store = MemoryStore::default();
     let finished = execute(1, Job::Forget(account()), &store, true);
+    assert!(!finished.removed);
     assert!(finished.result.unwrap().is_none());
     assert_eq!(*store.calls.borrow(), [Kind::Forget]);
 }
@@ -150,7 +152,7 @@ fn a_finished_save_keeps_closing_blocked_until_the_ui_has_persisted_its_preferen
     // busy check; the queued answer still has to update the opt-in metadata.
     assert!(credentials.poll().is_empty());
     credentials.inbox.lock().unwrap().push(Finished {
-        generation: 1, account: account(), kind: Kind::Save, result: Ok(None),
+        generation: 1, account: account(), kind: Kind::Save, result: Ok(None), removed: false,
     });
     assert!(!credentials.queue.lock().unwrap().busy());
     assert!(credentials.busy());
@@ -170,6 +172,7 @@ fn conditional_forget_removes_only_the_matching_account_token() {
     let finished = execute(7, Job::ForgetIf(alice.clone(), "expected-fixture".into()), &store, true);
     assert_eq!(finished.kind, Kind::ForgetIf);
     assert_eq!(finished.generation, 7);
+    assert!(finished.removed);
     assert!(finished.result.unwrap().is_none());
     assert!(!store.values.borrow().contains_key(&alice));
     assert_eq!(store.values.borrow().get(&bob).map(String::as_str), Some("other-account-fixture"));
@@ -182,6 +185,7 @@ fn conditional_forget_preserves_a_newer_token_and_tolerates_an_absent_entry() {
     let alice = account();
     store.values.borrow_mut().insert(alice.clone(), "newer-fixture".into());
     let finished = execute(1, Job::ForgetIf(alice.clone(), "older-fixture".into()), &store, true);
+    assert!(!finished.removed);
     assert!(finished.result.unwrap().is_none());
     assert_eq!(store.values.borrow().get(&alice).map(String::as_str), Some("newer-fixture"));
     store.values.borrow_mut().clear();

@@ -43,7 +43,7 @@ fn default_login_never_opts_into_persistence_and_profile_json_has_no_secrets() {
 }
 
 #[test]
-fn editing_the_account_clears_identity_and_cached_projects_and_advances_generation() {
+fn editing_the_account_clears_identity_but_preserves_the_typed_password() {
     let mut remote = remote();
     let previous = (remote.url.clone(), remote.user.clone(), remote.token.clone());
     remote.token = "old-token".into();
@@ -62,7 +62,8 @@ fn editing_the_account_clears_identity_and_cached_projects_and_advances_generati
     remote.credentials_edited(&previous.0, &previous.1, &previous.2);
     assert_eq!(remote.user, "Bob");
     assert_eq!(remote.sign_in.generation, generation + 1);
-    assert!(remote.token.is_empty() && remote.password.is_empty());
+    assert!(remote.token.is_empty());
+    assert_eq!(remote.password, "unsent-password");
     assert!(remote.role.is_none() && remote.rights.is_empty() && remote.access.is_none());
     assert!(remote.projects.is_empty() && remote.shared.is_none());
     assert!(!remote.sign_in.signed_in && !remote.sign_in.restoring);
@@ -194,7 +195,7 @@ fn a_restored_identity_must_match_the_expected_account_and_use_the_fresh_role() 
     assert!(remote.finish_restore(account(), "wrong-identity-token".into(), Ok(wrong)).is_err());
     assert!(!remote.sign_in.remember);
     assert!(remote.token.is_empty());
-    assert!(!remote.sign_in.credentials.busy());
+    while remote.sign_in.credentials.busy() { remote.poll_credentials(); std::thread::yield_now(); }
 
     let current = CurrentAccount { user: login().user, access: Access::default() };
     let restored = remote.finish_restore(account(), "valid-saved-token".into(), Ok(current.clone())).ok().unwrap();
@@ -318,6 +319,14 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
             _ => panic!("synthetic HTTP check did not finish"),
         }
     }
+    fn request<T: serde::de::DeserializeOwned + Send + 'static>(request: ehttp::Request) -> T {
+        let (tx, rx) = mpsc::channel();
+        ehttp::fetch(request, move |r| { let _ = tx.send(decode::<T>(r)); });
+        match rx.recv_timeout(Duration::from_secs(10)) {
+            Ok(Ok(value)) => value,
+            _ => panic!("synthetic JSON request failed"),
+        }
+    }
     fn wait_shared(remote: &mut Remote, session: &mut crate::session::Session, ctx: &egui::Context, done: impl Fn(&Remote) -> bool) {
         let deadline = Instant::now() + Duration::from_secs(20);
         loop {
@@ -415,13 +424,23 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     restored.restore_sign_in();
     wait(&mut restored, &ctx, |remote| remote.sign_in.signed_in);
     restored.sign_out();
-    wait(&mut restored, &ctx, |remote| remote.token.is_empty());
+    wait(&mut restored, &ctx, |remote| remote.token.is_empty() && status(ProjectEndpoint { url: url.clone(), token: first_token.clone() }.current_account()) == 401);
     assert!(stored(&alice).is_none(), "sign-out must remove only its own OS credential");
     assert!(status(ProjectEndpoint { url: url.clone(), token: first_token.clone() }.current_account()) == 401, "signed-out token must be refused by the real server");
     let mut second_restart = fixture(&url, &other_user, &directory, &ctx);
     second_restart.restore_sign_in();
     wait(&mut second_restart, &ctx, |remote| remote.sign_in.signed_in);
     assert!(second_restart.token == second_token, "sign-out in another window must preserve this account's opt-in");
+    second_restart.change_user();
+    assert!(second_restart.user.is_empty());
+    assert_eq!(stored(&bob).as_deref(), Some(second_token.as_str()));
+    assert_eq!(status(ProjectEndpoint { url: url.clone(), token: second_token.clone() }.current_account()), 200);
+    second_restart.user = other_user.clone();
+    second_restart.credentials_edited(&url, "", "");
+    second_restart.restore_sign_in();
+    wait(&mut second_restart, &ctx, |remote| remote.sign_in.signed_in);
+    assert_eq!(second_restart.token, second_token);
+    println!("PASS: Change user keeps the remembered token valid and switching back restores it without a password");
     println!("PASS: two accounts and simultaneous windows keep separate credentials and opt-in preferences; logout revokes the old token");
 
     let mut revoked = fixture(&url, &user, &directory, &ctx);
@@ -437,7 +456,7 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     wait(&mut rejected, &ctx, |remote| !remote.sign_in.restoring && !remote.has_saved_sign_in());
     assert!(rejected.token.is_empty() && !rejected.sign_in.signed_in, "revoked credential must never restore a login");
     assert!(stored(&alice).is_none(), "revoked credential must be forgotten locally");
-    println!("PASS: server-side revocation causes 401 and removes the saved account opt-in");
+    println!("PASS: server-side revocation causes 401 and removes only the rejected saved token");
 
     let mut cancelling = fixture(&url, &user, &directory, &ctx);
     cancelling.password = password.clone();
@@ -450,7 +469,7 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     cancelled.restore_sign_in();
     assert!(cancelled.sign_in.restoring, "restore must have started before cancellation");
     cancelled.sign_out();
-    wait(&mut cancelled, &ctx, |remote| remote.token.is_empty() && !remote.sign_in.restoring);
+    wait(&mut cancelled, &ctx, |remote| remote.token.is_empty() && !remote.sign_in.restoring && status(ProjectEndpoint { url: url.clone(), token: cancelled_token.clone() }.current_account()) == 401);
     assert!(!cancelled.sign_in.signed_in && !cancelled.has_saved_sign_in(), "late OS and HTTP replies must not sign back in");
     assert!(stored(&alice).is_none(), "cancelled restore must forget its protected credential");
     assert!(status(ProjectEndpoint { url: url.clone(), token: cancelled_token }.current_account()) == 401, "sign-out during restore must still revoke the real server token");
@@ -488,12 +507,34 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     assert_eq!(session.prj.pages[0].description, "Synthetic baseline");
     session.redo();
     assert_eq!(session.prj.pages[0].description, "Synthetic unsaved reauthentication draft");
-    reauth.sign_out();
-    wait(&mut reauth, &ctx, |remote| remote.token.is_empty());
     println!("PASS: revoked authentication returns 401, same-account sign-in reopens the shared project and preserves its unsaved draft and undo/redo");
 
+    let observer = second_restart.endpoint();
+    let observer_open: Opened = request(observer.open(&name, &other_user));
+    let endpoint = reauth.endpoint();
+    let sent = reauth.begin_save(&session.prj, Vec::new()).unwrap();
+    let delayed = reauth.receiver("synthetic delayed save".into());
+    let shared = reauth.shared.as_ref().unwrap();
+    let snapshot: openecraft_core::collab::Snapshot = request(endpoint.save(&name, &shared.session, &sent.project, sent.release.clone(), sent.revision));
+    assert_eq!(snapshot.revision, 2);
+    assert!(!snapshot.locks.is_empty(), "the real save must hold a lock before logout");
+    reauth.sign_out();
+    reauth.poll(&ctx);
+    assert!(!reauth.busy(), "waiting for save/close/logout must not block the local sign-in pane");
+    assert_eq!(status(endpoint.current_account()), 200, "the token is needed until deferred close completes");
+    delayed(Reply::Saved(Box::new(sent), Ok(Box::new(snapshot))));
+    wait(&mut reauth, &ctx, |remote| remote.token.is_empty() && status(endpoint.current_account()) == 401);
+    let released: openecraft_core::collab::Status = request(observer.status(&name, &observer_open.session));
+    assert!(released.locks.is_empty(), "logout must release the actual server locks");
+    let readback: Opened = request(observer.open(&name, &other_user));
+    assert_eq!(readback.snapshot.revision, 2);
+    assert_eq!(readback.snapshot.project.pages[0].description, "Synthetic unsaved reauthentication draft");
+    assert_eq!(status(observer.close(&name, &observer_open.session)), 200);
+    assert_eq!(status(observer.close(&name, &readback.session)), 200);
+    println!("PASS: delayed real Save -> Close answer -> Logout; observer confirms revision 2, expected contents and zero server locks");
+
     second_restart.sign_out();
-    wait(&mut second_restart, &ctx, |remote| remote.token.is_empty());
+    wait(&mut second_restart, &ctx, |remote| remote.token.is_empty() && status(ProjectEndpoint { url: url.clone(), token: second_token.clone() }.current_account()) == 401);
     assert!(stored(&bob).is_none(), "second synthetic credential must be cleaned up");
     assert!(status(ProjectEndpoint { url, token: second_token }.current_account()) == 401, "second sign-out must revoke only that synthetic token");
 }
@@ -562,4 +603,159 @@ fn canonical_login_name_preserves_the_intent_for_case_insensitive_server_account
     let restored = remote.finish_restore(typed, "synthetic-restored-token".into(), Ok(current)).ok().unwrap();
     assert_eq!(restored.user.name, "Alice", "the UI keeps the server's canonical display name");
     assert!(!remote.sign_in.credentials.busy());
+}
+
+
+#[test]
+fn review193_correcting_identity_preserves_typed_password_and_opt_in() {
+    for change_server in [false, true] {
+        let mut r = remote();
+        r.password = "synthetic-typed-password".into();
+        r.sign_in.remember = true;
+        let old = (r.url.clone(), r.user.clone(), r.token.clone());
+        if change_server { r.url.push_str("-corrected"); } else { r.user = "Corrected".into(); }
+        r.credentials_edited(&old.0, &old.1, &old.2);
+        assert_eq!(r.password, "synthetic-typed-password");
+        assert!(r.sign_in.remember);
+        assert!(r.token.is_empty());
+    }
+}
+
+#[test]
+fn review193_offline_logout_does_not_block_the_next_sign_in() {
+    let mut r = remote();
+    r.token = "synthetic-token".into();
+    r.sign_in.signed_in = true;
+    r.sign_out();
+    assert!(!r.busy(), "revocation must not disable sign-in while the host is unreachable");
+    assert!(r.token.is_empty());
+}
+
+#[cfg(windows)]
+#[test]
+fn review193_unremembered_login_does_not_delete_or_create_preferences() {
+    let mut r = remote();
+    r.url = format!("http://127.0.0.1:9/review193-{}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos());
+    r.password = "synthetic".into();
+    r.sign_in();
+    assert!(r.sign_in.notice.is_empty(), "no removal notice for an account that was never remembered");
+    assert!(!r.sign_in.credentials.busy(), "no OS deletion for an account without a profile");
+}
+
+#[test]
+fn review193_directory_login_moves_the_opt_in_to_the_canonical_name() {
+    for typed_name in [r"DOMAIN\Alice", "alice@example.test"] {
+        let mut r = remote();
+        r.url = format!("http://127.0.0.1:9/canonical-{}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos());
+        r.user = typed_name.into();
+        r.sign_in.remember = true;
+        let typed = Account::new(&r.url, &r.user).unwrap();
+        let canonical = Account::new(&r.url, "Alice").unwrap();
+        #[cfg(windows)]
+        struct Cleanup(Account);
+        #[cfg(windows)]
+        impl Drop for Cleanup {
+            fn drop(&mut self) {
+                use openecraft_client::project_credentials::CredentialStore;
+                let _ = SystemCredentialStore.forget(&self.0);
+            }
+        }
+        #[cfg(windows)]
+        let _cleanup = Cleanup(canonical.clone());
+        r.sign_in.set_profile(&typed, true);
+        r.accept_login(&login(), false);
+        assert!(r.sign_in.remember, "the server's account name must retain the explicit opt-in");
+        assert!(!r.sign_in.remembered(&typed));
+        assert!(r.sign_in.remembered(&canonical));
+        review193_drain_credentials(&mut r);
+        #[cfg(windows)] {
+            use openecraft_client::project_credentials::CredentialStore;
+            assert_eq!(SystemCredentialStore.load(&canonical).unwrap().as_deref(), Some("synthetic-session-token"));
+        }
+    }
+}
+
+fn review193_drain_credentials(r: &mut Remote) {
+    let deadline = std::time::Instant::now() + std::time::Duration::from_secs(5);
+    while r.sign_in.credentials.busy() {
+        r.poll_credentials();
+        assert!(std::time::Instant::now() < deadline, "synthetic credential operation timed out");
+        std::thread::sleep(std::time::Duration::from_millis(1));
+    }
+}
+
+#[cfg(windows)]
+#[test]
+fn review193_rejected_old_restore_cannot_delete_a_new_windows_token_or_preference() {
+    use openecraft_client::project_credentials::CredentialStore;
+    let unique = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos();
+    let url = format!("http://127.0.0.1:9/stale-{unique}");
+    let account = Account::new(&url, "synthetic-Alice").unwrap();
+    let directory = std::env::temp_dir().join(format!("openecraft-review193-{unique}"));
+    std::fs::create_dir(&directory).unwrap();
+    struct Cleanup(Account, std::path::PathBuf);
+    impl Drop for Cleanup {
+        fn drop(&mut self) {
+            let _ = SystemCredentialStore.forget(&self.0);
+            for key in [PROFILES_KEY.to_string(), Profile::of(&self.0).key()] { let _ = std::fs::remove_file(self.1.join(key)); }
+            let _ = std::fs::remove_dir(&self.1);
+        }
+    }
+    let _cleanup = Cleanup(account.clone(), directory.clone());
+    let fixture = || {
+        let mut r = Remote { url: url.clone(), user: "synthetic-Alice".into(), ..Default::default() };
+        r.sign_in.store = Some(Store::at(directory.to_string_lossy()));
+        r.sign_in.loaded = true;
+        r
+    };
+    let ctx = egui::Context::default();
+    let mut old = fixture();
+    old.sign_in.set_profile(&account, true);
+    SystemCredentialStore.save(&account, "old-fixture").unwrap();
+    let mut new = fixture();
+    new.sign_in.set_profile(&account, true);
+    SystemCredentialStore.save(&account, "new-fixture").unwrap();
+    let revision = new.sign_in.load_selected(&account, &ctx);
+    let failure = checked_account(response(401, Vec::new())).err().unwrap();
+    assert!(old.finish_restore(account.clone(), "old-fixture".into(), Err(failure)).is_err());
+    review193_drain_credentials(&mut old);
+    assert_eq!(SystemCredentialStore.load(&account).unwrap().as_deref(), Some("new-fixture"));
+    assert_eq!(new.sign_in.load_selected(&account, &ctx), revision);
+    assert!(new.sign_in.remembered(&account));
+
+    // A Load(None) completed before the newer window saved. Deliver it last.
+    old.take_credentials(vec![super::super::credentials::Finished {
+        generation: old.sign_in.generation, account: account.clone(),
+        result: Ok(None), kind: Kind::Load, removed: false,
+    }]);
+    assert_eq!(SystemCredentialStore.load(&account).unwrap().as_deref(), Some("new-fixture"));
+    assert_eq!(new.sign_in.load_selected(&account, &ctx), revision);
+    assert!(new.sign_in.remembered(&account));
+}
+
+#[test]
+fn review193_remember_hint_distinguishes_windows_input_from_platform_support() {
+    let mut r = remote();
+    r.user.clear();
+    if cfg!(windows) { assert!(r.remember_hint().contains("Enter a user name")); }
+    else { assert!(r.remember_hint().contains("Browser")); }
+    r.user = "Alice".into();
+    r.url = "server-without-scheme".into();
+    if cfg!(windows) { assert!(r.remember_hint().contains("HTTP or HTTPS")); }
+    r.url = "http://127.0.0.1:9".into();
+    if cfg!(windows) { assert!(r.remember_hint().contains("Windows Credential Manager")); }
+}
+
+
+#[test]
+fn review193_no_removal_notice_for_an_already_absent_entry() {
+    let mut r = remote();
+    for removed in [false, true] {
+        r.sign_in.notice = "Removing the saved sign-in…".into();
+        r.take_credentials(vec![super::super::credentials::Finished {
+            generation: r.sign_in.generation, account: account(),
+            result: Ok(None), kind: Kind::Forget, removed,
+        }]);
+        assert_eq!(!r.sign_in.notice.is_empty(), removed);
+    }
 }

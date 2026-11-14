@@ -44,6 +44,10 @@ pub struct SignIn {
     credentials: Credentials,
     /// Explicit sign-out still revokes a token whose restore was cancelled.
     revoking: Vec<(u64, Account)>,
+    /// Includes deferred and already sent closes, across identity changes.
+    closes: Vec<(u64, ProjectEndpoint)>,
+    logouts: Vec<(ProjectEndpoint, u64)>,
+    next_close: u64,
     /// A later opt-in/out in another window supersedes this window's old save.
     intent: Option<(Account, String)>,
     store: Option<Store>,
@@ -173,6 +177,8 @@ impl Remote {
     /// Reauthentication changes credentials, not the open project or its base.
     fn reset_sign_in(&mut self, keep_project: bool) {
         let shared = if keep_project { self.shared.take() } else { None };
+        let saving = self.saving.take();
+        let queued = self.queued.take();
         let rights = std::mem::take(&mut self.rights);
         let access = self.access.take();
         let save_error = self.save_error.take();
@@ -181,6 +187,8 @@ impl Remote {
             // The old generation's lock answers will no longer be applied.
             shared.requested.clear();
             self.shared = Some(shared);
+            self.saving = saving;
+            self.queued = queued;
             self.rights = rights;
             self.access = access;
             self.save_error = save_error;
@@ -194,10 +202,13 @@ impl Remote {
         let identity_changed = self.url != url || self.user != user;
         if !identity_changed && self.token == token { return; }
         let typed_token = (!identity_changed).then(|| self.token.clone());
+        let password = std::mem::take(&mut self.password);
+        let remember = self.sign_in.remember;
         self.reset_sign_in(!identity_changed && self.shared.is_some() && self.link == Link::SignedOut);
+        self.password = password;
+        self.sign_in.remember = remember;
         if let Some(token) = typed_token { self.token = token; }
         self.sign_in.checked = !self.token.is_empty();
-        self.sign_in.remember = Account::new(&self.url, &self.user).is_some_and(|a| self.sign_in.remembered(&a));
     }
 
     /// Startup/settings select the final server before any credential is loaded.
@@ -258,6 +269,8 @@ impl Remote {
                 self.sign_in.profiles.retain(|p| *p != Profile::of(&account));
                 return;
             }
+            let ctx = self.ctx.clone().unwrap_or_default();
+            if !self.sign_in.remembered(&account) && self.sign_in.load_selected(&account, &ctx).is_none() { return; }
             self.sign_in.set_profile(&account, false);
             self.sign_in.notice = tr("Removing the saved sign-in…").into();
             self.sign_in.credentials.enqueue(self.sign_in.generation, Job::Forget(account), self.ctx.clone());
@@ -283,7 +296,71 @@ impl Remote {
         self.forget_selected();
         self.status = tr("Signed out on this device.").into();
         if signed_in {
-            self.send(endpoint.logout(), self.status.clone(), |r| Reply::SignedOut(openecraft_client::check(r).map(|_| ())));
+            self.revoke_after_close(endpoint);
+        }
+    }
+
+    /// Leave this account available for a later switch back. Its project locks
+    /// are released, but the remembered account token is not revoked or deleted.
+    pub fn change_user(&mut self) {
+        self.close();
+        self.clear_identity();
+        self.sign_in.remember = false;
+        self.sign_in.checked = true;
+        self.user.clear();
+    }
+
+    pub(super) fn track_close(&mut self, endpoint: ProjectEndpoint) -> u64 {
+        self.sign_in.next_close += 1;
+        let id = self.sign_in.next_close;
+        self.sign_in.closes.push((id, endpoint));
+        id
+    }
+
+    pub(super) fn finish_close(&mut self, id: u64) {
+        self.sign_in.closes.retain(|(close, _)| *close != id);
+        self.flush_logouts();
+    }
+
+    fn revoke_after_close(&mut self, endpoint: ProjectEndpoint) {
+        self.sign_in.logouts.push((endpoint, self.sign_in.generation));
+        self.flush_logouts();
+    }
+
+    fn flush_logouts(&mut self) {
+        let mut waiting = Vec::new();
+        for (endpoint, generation) in std::mem::take(&mut self.sign_in.logouts) {
+            if self.sign_in.closes.iter().any(|(_, e)| e.token == endpoint.token && (e.url == endpoint.url
+                || Account::new(&e.url, "_").is_some_and(|a| Some(a) == Account::new(&endpoint.url, "_")))) {
+                waiting.push((endpoint, generation));
+            } else {
+                let inbox = self.inbox.clone();
+                let ctx = self.ctx.clone();
+                ehttp::fetch(endpoint.logout(), move |result| {
+                    let reply = Reply::SignedOut(openecraft_client::check(result).map(|_| ()));
+                    if let Ok(mut inbox) = inbox.lock() {
+                        inbox.push(Answer { generation, counted: false, endpoint, project: None, reply });
+                    }
+                    if let Some(ctx) = ctx { ctx.request_repaint(); }
+                });
+            }
+        }
+        self.sign_in.logouts = waiting;
+    }
+
+    pub(super) fn kept_save(&self, answer: &Answer) -> bool {
+        matches!(&answer.reply, Reply::Saved(sent, _) if self.saving.as_ref() == Some(&sent.session)
+            && self.shared.as_ref().is_some_and(|sh| sh.session.session == sent.session && answer.project.as_ref() == Some(&sh.name))
+            && answer.endpoint.url == self.url)
+    }
+
+    pub fn remember_hint(&self) -> &'static str {
+        if !cfg!(windows) {
+            tr("Persistent sign-in is available on Windows. Browser and other desktop sessions stay signed in only while the app is open.")
+        } else if !self.can_remember() {
+            tr("Enter a user name and a valid HTTP or HTTPS server address to remember this sign-in.")
+        } else {
+            tr("Optional on this computer: the sign-in token is protected by Windows Credential Manager. Your password is never saved; the server expiry still applies.")
         }
     }
 
@@ -319,21 +396,23 @@ impl Remote {
     }
 
     pub(crate) fn poll_credentials(&mut self) {
-        for finished in self.sign_in.credentials.poll() {
+        let finished = self.sign_in.credentials.poll();
+        self.take_credentials(finished);
+    }
+
+    fn take_credentials(&mut self, finished: Vec<super::credentials::Finished>) {
+        for finished in finished {
             if finished.kind == Kind::Load {
                 if let Some(i) = self.sign_in.revoking.iter().position(|(generation, account)| *generation == finished.generation && *account == finished.account) {
                     self.sign_in.revoking.remove(i);
                     match finished.result {
                         Ok(Some(token)) => {
                             let endpoint = ProjectEndpoint { url: finished.account.server().into(), token };
-                            if finished.generation == self.sign_in.generation {
-                                self.send(endpoint.logout(), self.status.clone(), |r| Reply::SignedOut(openecraft_client::check(r).map(|_| ())));
-                            } else {
-                                ehttp::fetch(endpoint.logout(), |_| {});
-                            }
+                            self.sign_in.logouts.push((endpoint, finished.generation));
+                            self.flush_logouts();
                         }
                         Err(e) if finished.generation == self.sign_in.generation => {
-                            let receive = self.receiver(self.status.clone());
+                            let receive = self.answer_receiver(false);
                             receive(Reply::SignedOut(Err(e)));
                         }
                         _ => {}
@@ -354,7 +433,10 @@ impl Remote {
                     let message = match result {
                         Err(e) => e,
                         _ => {
-                            self.sign_in.set_profile(&finished.account, false);
+                            // A missing read can be older than another window's
+                            // new opt-in. Never write an opt-out for it.
+                            self.sign_in.profiles.retain(|p| *p != Profile::of(&finished.account));
+                            self.sign_in.remember = false;
                             tr("No saved sign-in is available. Sign in with your password.").into()
                         }
                     };
@@ -371,8 +453,10 @@ impl Remote {
                         }
                     }
                 }
-                (Kind::Forget, Ok(_)) => self.sign_in.notice = tr("The saved sign-in was removed from this device.").into(),
-                (Kind::ForgetIf, Ok(_)) => self.sign_in.notice = tr("The sign-in preference was changed in another window.").into(),
+                (Kind::Forget, Ok(_)) => {
+                    self.sign_in.notice = if finished.removed { tr("The saved sign-in was removed from this device.").into() } else { String::new() };
+                }
+                (Kind::ForgetIf, Ok(_)) => {}
                 (_, Err(e)) => {
                     self.sign_in.remember = false;
                     if finished.kind == Kind::Save && self.sign_in.intent_matches(&finished.account, &self.ctx.clone().unwrap_or_default()) {
@@ -393,7 +477,10 @@ impl Remote {
                 let failure = result.err().unwrap_or_else(|| RestoreFailure { message: tr("The saved sign-in belongs to a different account. Sign in again.").into(), invalid: true });
                 if failure.invalid {
                     self.sign_in.remember = false;
-                    self.forget_selected();
+                    self.sign_in.profiles.retain(|p| *p != Profile::of(&account));
+                    // Automatic cleanup is not a new user opt-out. Keep the
+                    // preference untouched, even if a new login follows deletion.
+                    self.sign_in.credentials.enqueue(self.sign_in.generation, Job::ForgetIf(account, token), self.ctx.clone());
                 }
                 Err(failure.message)
             }
@@ -410,6 +497,17 @@ impl Remote {
             self.fetching = false;
             self.reopening = false;
             if let Some(shared) = &mut self.shared { shared.requested.clear(); }
+        }
+        if !restored && self.sign_in.remember {
+            if let (Some(typed), Some(canonical)) = (Account::new(&self.url, &self.user), Account::new(&self.url, &login.user.name)) {
+                if typed != canonical {
+                    let ctx = self.ctx.clone().unwrap_or_default();
+                    if self.sign_in.intent_matches(&typed, &ctx) {
+                        let moved = self.sign_in.set_profile(&typed, false) && self.sign_in.set_profile(&canonical, true);
+                        self.sign_in.remember = moved;
+                    } else { self.sign_in.remember = false; }
+                }
+            }
         }
         self.token = login.token.clone();
         self.user = login.user.name.clone();
@@ -457,9 +555,10 @@ impl Remote {
             Reply::Saved(sent, _) => {
                 // Keep #182's close-after-save order even after the account was
                 // changed. The request already carries its original endpoint.
-                if let Some(i) = self.closing.iter().position(|(session, _, _)| *session == sent.session) {
-                    let (_, request, _) = self.closing.remove(i);
-                    ehttp::fetch(request, |_| {});
+                if let Some(i) = self.closing.iter().position(|(session, _, _, _)| *session == sent.session) {
+                    let (_, request, _, close) = self.closing.remove(i);
+                    let receive = self.answer_receiver(false);
+                    ehttp::fetch(request, move |_| receive(Reply::Closed(close)));
                 }
             }
             _ => {}

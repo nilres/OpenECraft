@@ -20,6 +20,7 @@ use openecraft_core::model::{Page, PageKind};
 fn deliver(remote: &Remote, reply: Reply) {
     remote.inbox.lock().unwrap().push(Answer {
         generation: remote.sign_in.generation,
+        counted: true,
         endpoint: remote.endpoint(),
         project: remote.shared.as_ref().map(|shared| shared.name.clone()),
         reply,
@@ -1033,4 +1034,114 @@ fn a_stale_reopened_answer_closes_only_its_original_server_project_and_session()
     assert_eq!(header("Authorization"), Some("Bearer synthetic-old-token"));
     let session: Session = serde_json::from_slice(&bytes[header_end..header_end + length]).unwrap();
     assert_eq!(session.session, "synthetic-reopened-session");
+}
+
+
+#[test]
+fn review193_reauthentication_applies_a_delayed_successful_save_to_the_kept_project() {
+    for (answer_after_login, later_edit) in [(false, false), (true, false), (true, true)] {
+        let mut server = Server::new();
+        let (mut r, mut session) = server.open("anna");
+        r.url = "http://127.0.0.1:9/?review193".into();
+        edit(&mut session, 0, "saved before reauthentication");
+        let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+        let reply = answered(&mut server, &r, sent);
+        let delayed = r.receiver("saving".into());
+        if later_edit { edit(&mut session, 0, "newer unsaved edit"); }
+        r.link = Link::SignedOut;
+        r.password = "synthetic".into();
+        r.sign_in();
+        if answer_after_login {
+            r.accept_login(&LoginResponse { token: "new-fixture".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() }, false);
+        }
+        delayed(reply);
+        for reply in r.poll(&egui::Context::default()) {
+            if let Reply::Saved(sent, Ok(snapshot)) = reply {
+                r.take_snapshot(&mut session, *snapshot, Some(&sent), "now".into());
+            }
+        }
+        assert_eq!(r.shared.as_ref().unwrap().revision, server.revision, "the client's revision must advance with the server's acknowledged save");
+        assert_eq!(session.dirty(), later_edit);
+        if !answer_after_login { assert_eq!(r.link, Link::SignedOut, "a save answer cannot restore authentication"); }
+        if later_edit {
+            assert_eq!(session.prj.pages[0].description, "newer unsaved edit");
+            let taken = save(&mut server, &mut r, &mut session, &[]);
+            assert!(!taken.lost && taken.kept.is_empty(), "the user's earlier save must not conflict with their newer edit");
+            assert_eq!(server.project().pages[0].description, "newer unsaved edit");
+            assert!(!session.dirty());
+            continue;
+        }
+        session.undo();
+        assert_ne!(session.prj.pages[0].description, "saved before reauthentication");
+        session.redo();
+        assert_eq!(session.prj.pages[0].description, "saved before reauthentication");
+    }
+}
+
+
+#[test]
+fn review193_logout_waits_for_an_already_sent_close_response() {
+    use std::{io::{Read, Write}, net::TcpListener, time::{Duration, Instant}};
+    let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+    listener.set_nonblocking(true).unwrap();
+    let mut r = opened();
+    r.url = format!("http://{}", listener.local_addr().unwrap());
+    r.token = "synthetic-fixture".into();
+    r.sign_in.signed_in = true;
+    r.close();
+    let deadline = Instant::now() + Duration::from_secs(5);
+    let mut close = loop {
+        if let Ok((stream, _)) = listener.accept() { break stream; }
+        assert!(Instant::now() < deadline);
+        std::thread::sleep(Duration::from_millis(1));
+    };
+    close.set_nonblocking(false).unwrap();
+    close.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+    let mut bytes = [0; 4096];
+    let count = close.read(&mut bytes).unwrap();
+    assert!(String::from_utf8_lossy(&bytes[..count]).contains("/close"));
+    r.sign_out();
+    assert!(!r.busy());
+    let held_until = Instant::now() + Duration::from_millis(200);
+    while Instant::now() < held_until {
+        assert!(matches!(listener.accept(), Err(e) if e.kind() == std::io::ErrorKind::WouldBlock), "logout arrived before the close was answered");
+        r.poll(&egui::Context::default());
+        std::thread::sleep(Duration::from_millis(2));
+    }
+    close.write_all(b"HTTP/1.1 204 No Content\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").unwrap();
+    drop(close);
+    let mut logout = loop {
+        r.poll(&egui::Context::default());
+        if let Ok((stream, _)) = listener.accept() { break stream; }
+        assert!(Instant::now() < deadline, "logout did not follow the close response");
+        std::thread::sleep(Duration::from_millis(1));
+    };
+    logout.set_nonblocking(false).unwrap();
+    logout.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+    let count = logout.read(&mut bytes).unwrap();
+    assert!(String::from_utf8_lossy(&bytes[..count]).contains("/logout"));
+    logout.write_all(b"HTTP/1.1 204 No Content\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").unwrap();
+}
+
+
+#[test]
+fn review193_old_save_failure_stays_visible_without_revoking_the_new_login() {
+    let mut server = Server::new();
+    let (mut r, mut session) = server.open("anna");
+    r.url = "http://127.0.0.1:9/?review193-old-failure".into();
+    edit(&mut session, 0, "unsaved fixture");
+    let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+    let delayed = r.receiver("old save".into());
+    r.link = Link::SignedOut;
+    r.password = "fixture".into();
+    r.sign_in();
+    r.accept_login(&LoginResponse { token: "new-fixture".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() }, false);
+    delayed(Reply::Saved(Box::new(sent), Err(failed(Failure::SignedOut, "synthetic old save failure"))));
+    r.poll(&egui::Context::default());
+    assert!(r.sign_in.signed_in);
+    assert_ne!(r.link, Link::SignedOut);
+    assert_eq!(r.token, "new-fixture");
+    assert!(session.dirty());
+    assert!(r.status.contains("synthetic old save failure"));
+    assert_eq!(r.save_error.as_deref(), Some("synthetic old save failure"));
 }

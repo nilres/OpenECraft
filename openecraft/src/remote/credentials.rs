@@ -25,6 +25,7 @@ pub struct Finished {
     pub account: Account,
     pub result: Result<Option<String>, String>,
     pub kind: Kind,
+    pub removed: bool,
 }
 
 struct Pending {
@@ -102,19 +103,20 @@ fn unavailable() -> String { tr("Remembering this sign-in is not available on th
 
 fn execute(generation: u64, job: Job, store: &impl CredentialStore, available: bool) -> Finished {
     let account = job.account().clone();
+    let mut removed = false;
     let (kind, result) = match job {
         Job::Load(_) => (Kind::Load, store.load(&account).map_err(|error| error.to_string())),
         Job::Save(_, token) => (Kind::Save, store.save(&account, &token).map_err(|error| error.to_string())
             .and_then(|saved| if saved { Ok(None) } else { Err(unavailable()) })),
         Job::Forget(_) => (Kind::Forget, if available {
             // Windows also returns false when the entry is already absent.
-            store.forget(&account).map(|_| None).map_err(|error| error.to_string())
+            store.forget(&account).map(|did_remove| { removed = did_remove; None }).map_err(|error| error.to_string())
         } else { Err(unavailable()) }),
         Job::ForgetIf(_, expected) => (Kind::ForgetIf, if available {
-            store.forget_if(&account, &expected).map(|_| None).map_err(|error| error.to_string())
+            store.forget_if(&account, &expected).map(|did_remove| { removed = did_remove; None }).map_err(|error| error.to_string())
         } else { Err(unavailable()) }),
     };
-    Finished { generation, account, result, kind }
+    Finished { generation, account, result, kind, removed }
 }
 
 #[cfg(test)]

@@ -11,11 +11,12 @@ pub(crate) mod windows;
 pub(crate) use windows as native;
 
 #[cfg(not(windows))]
-mod native {
+pub(crate) mod native {
     use super::CredentialError;
     pub fn load(_: &str) -> Result<Option<String>, CredentialError> { Ok(None) }
     pub fn save(_: &str, _: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
     pub fn forget(_: &str) -> Result<bool, CredentialError> { Ok(false) }
+    pub fn forget_if(_: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
 }
 
 /// Errors deliberately contain no credential, URL or OS-provided error detail.
@@ -31,9 +32,9 @@ pub enum Operation { Read, Save, Forget }
 impl std::fmt::Display for CredentialError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let message = match self.operation {
-            Operation::Read => tr_fmt!("Could not read the shared Data Portal token (Windows error {})", self.code),
-            Operation::Save => tr_fmt!("Could not save the shared Data Portal token (Windows error {})", self.code),
-            Operation::Forget => tr_fmt!("Could not remove the shared Data Portal token (Windows error {})", self.code),
+            Operation::Read => tr_fmt!("Could not read the saved credential (system error {})", self.code),
+            Operation::Save => tr_fmt!("Could not save the credential (system error {})", self.code),
+            Operation::Forget => tr_fmt!("Could not remove the saved credential (system error {})", self.code),
         };
         f.write_str(&message)
     }

@@ -1,45 +1,9 @@
 //! Opt-in project-server sign-ins. Only the OS credential store persists session
 //! tokens; account metadata contains no password or token.
 
-use openecraft_i18n::tr_fmt;
+pub use crate::credentials::{CredentialError, Operation};
+use crate::credentials::native;
 use url::{Host, Url};
-
-#[cfg(windows)]
-mod native {
-    use super::{CredentialError, Operation};
-    use crate::credentials::{self, Operation as SourceOperation};
-
-    fn error(error: credentials::CredentialError) -> CredentialError {
-        let operation = match error.operation {
-            SourceOperation::Read => Operation::Read,
-            SourceOperation::Save => Operation::Save,
-            SourceOperation::Forget => Operation::Forget,
-        };
-        CredentialError { operation, code: error.code }
-    }
-
-    pub fn load(target: &str) -> Result<Option<String>, CredentialError> {
-        credentials::native::load(target).map_err(error)
-    }
-    pub fn save(target: &str, token: &str, user: &str) -> Result<bool, CredentialError> {
-        credentials::native::save(target, token, user).map_err(error)
-    }
-    pub fn forget(target: &str) -> Result<bool, CredentialError> {
-        credentials::native::forget(target).map_err(error)
-    }
-    pub fn forget_if(target: &str, expected: &str) -> Result<bool, CredentialError> {
-        credentials::native::forget_if(target, expected).map_err(error)
-    }
-}
-
-#[cfg(not(windows))]
-mod native {
-    use super::CredentialError;
-    pub fn load(_: &str) -> Result<Option<String>, CredentialError> { Ok(None) }
-    pub fn save(_: &str, _: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
-    pub fn forget(_: &str) -> Result<bool, CredentialError> { Ok(false) }
-    pub fn forget_if(_: &str, _: &str) -> Result<bool, CredentialError> { Ok(false) }
-}
 
 /// A server and account binding, never a credential. Account names use ASCII
 /// lowercase to match the project server's case-insensitive account lookup.
@@ -88,29 +52,6 @@ impl Account {
         format!("OpenECraft/ProjectServer/Session/v1/{}", crate::update::sha256(&binding))
     }
 }
-
-/// Only an operation and a numeric system code leave the native backend.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub struct CredentialError {
-    pub operation: Operation,
-    pub code: u32,
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum Operation { Read, Save, Forget }
-
-impl std::fmt::Display for CredentialError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let message = match self.operation {
-            Operation::Read => tr_fmt!("Could not read the saved project-server sign-in (system error {})", self.code),
-            Operation::Save => tr_fmt!("Could not save the project-server sign-in (system error {})", self.code),
-            Operation::Forget => tr_fmt!("Could not remove the saved project-server sign-in (system error {})", self.code),
-        };
-        f.write_str(&message)
-    }
-}
-
-impl std::error::Error for CredentialError {}
 
 /// Tests can use an isolated store without reading the user's credentials.
 pub trait CredentialStore {
