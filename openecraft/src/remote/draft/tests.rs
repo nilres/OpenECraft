@@ -1,6 +1,6 @@
 use super::*;
 use crate::remote::Answer;
-use openecraft_core::collab::{CopySource, Opened, Session, Snapshot};
+use openecraft_core::collab::{Opened, Session, Snapshot};
 
 fn listed(names: &[&str]) -> Vec<ProjectSummary> {
     names.iter().map(|n| ProjectSummary { name: n.to_string(), title: "Old title".into(), ..Default::default() }).collect()
@@ -9,7 +9,7 @@ fn listed(names: &[&str]) -> Vec<ProjectSummary> {
 fn properties(revision: u64, rights: &[ProjectRight]) -> ProjectProperties {
     let mut info = ProjectInfo { name: "Press line".into(), company: "ACME".into(), creator: "Anna".into(), date: "2026-11-02".into(), revision: "B".into(), ..Default::default() };
     info.properties.insert("Customer".into(), "Bolt Ltd".into());
-    ProjectProperties { name: "Plant 1".into(), revision, info, locked_by: None, rights: rights.to_vec(), created: None }
+    ProjectProperties { name: "Plant 1".into(), revision, info, locked_by: None, rights: rights.to_vec(), ..Default::default() }
 }
 
 const EDITOR: &[ProjectRight] = &[ProjectRight::View, ProjectRight::EditPages, ProjectRight::EditProject];
@@ -120,10 +120,13 @@ fn the_properties_come_from_the_server_not_from_the_list() {
 
     // Saved: the list shows the new title, the dialog is done.
     let mut saved = properties(5, EDITOR);
+    saved.meta = ProjectMeta::created("anna", 7);
+    saved.meta.changed("ben", 9);
     saved.info.name = "Press line 2".into();
     assert!(answer(&mut r, vec![Reply::PropertiesSaved("Plant 1".into(), Ok(saved))]).is_empty());
     assert!(r.draft.is_none());
     assert_eq!((r.projects[0].title.as_str(), r.projects[0].revision), ("Press line 2", 5));
+    assert_eq!((r.projects[0].meta.changed_by.as_str(), r.projects[0].meta.changed_at), ("ben", 9));
     assert!(r.status.contains("revision 5"), "{}", r.status);
 }
 
@@ -154,7 +157,7 @@ fn opened(name: &str) -> Box<Opened> {
 #[test]
 fn a_created_copy_is_opened_and_a_refused_one_leaves_the_draft() {
     let mut r = remote(true);
-    answer(&mut r, vec![Reply::Properties("Plant 1".into(), Ok(ProjectProperties { created: Some(Created { by: "anna".into(), at: 1, from: Some(CopySource::default()) }), ..properties(4, EDITOR) }))]);
+    answer(&mut r, vec![Reply::Properties("Plant 1".into(), Ok(properties(4, EDITOR)))]);
     let name = r.draft.as_ref().unwrap().name.clone();
     assert_eq!(name, "Plant 1 copy");
 
@@ -175,6 +178,8 @@ fn a_created_copy_is_opened_and_a_refused_one_leaves_the_draft() {
     assert_eq!(r.rights, vec![ProjectRight::View, ProjectRight::ManageAccess]);
     assert_eq!(r.projects.iter().map(|p| (p.name.as_str(), p.title.as_str())).collect::<Vec<_>>(), [("Plant 1", "Old title"), ("Plant 1 copy", "Mine")]);
     assert!(r.status.contains("Plant 1 copy") && r.status.contains("copy of Plant 1"), "{}", r.status);
+    let listed = &r.projects[1];
+    assert_eq!((listed.meta.created_by.as_str(), listed.copied_from.clone()), ("ben", Some(CopySource { name: "Plant 1".into(), revision: 4 })));
     // The message of the next project opened is the usual one.
     answer(&mut r, vec![Reply::Opened("Plant 1".into(), Ok(opened("Press line")))]);
     assert!(!r.status.contains("copy of"), "{}", r.status);

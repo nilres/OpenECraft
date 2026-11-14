@@ -13,7 +13,7 @@ use axum::{Json, Router};
 use openecraft_auth::admin::{self, DirectoryEntry, DirectoryTestRequest};
 use openecraft_auth::{AccessFile, ClientIp, Directory, SignInError, Throttle};
 use openecraft_core::collab::{
-    changes, copy_of, merge, save_plan, valid_name, Access, CopyRequest, CopySource, CreateRequest, Created, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse,
+    changes, copy_of, merge, save_plan, valid_name, Access, CopyRequest, CopySource, CreateRequest, CurrentAccount, Grant, Lock, LockRequest, LoginRequest, LoginResponse,
     OpenRequest, Opened, Owned, Policy, ProjectAccess, ProjectProperties, ProjectRight, ProjectRole, ProjectSummary, ProjectUser, PropertiesUpdate, Right, SaveRequest, ServerInfo, Session, SessionList, Settings, Snapshot, Status, Subject,
     Target, UserUpdate, API_PREFIX, SERVER,
 };
@@ -424,7 +424,8 @@ async fn list(State(state): State<AppState>, headers: HeaderMap) -> Result<Json<
             revision: e.revision,
             users: server.sessions.users(name),
             rights: caller.rights(name).into_iter().collect(),
-            created: e.created.clone(),
+            meta: e.meta.clone(),
+            copied_from: e.copied_from.clone(),
         })
         .collect();
     Ok(Json(list))
@@ -454,8 +455,7 @@ impl Server {
     /// Stores `project` as the new project `name` (checked and free) and opens it for
     /// `user`. If a step fails, the project is not left on the server.
     fn create(&mut self, caller: &mut Caller, headers: &HeaderMap, name: &str, user: &str, project: Project, from: Option<CopySource>) -> Result<Opened> {
-        let created = Created { by: user.to_string(), at: openecraft_auth::unix_now(), from };
-        self.store.create(name, project, Some(created))?;
+        self.store.create(name, project, user, openecraft_auth::unix_now(), from)?;
         // A signed-in user manages the projects they create.
         if let Some(owner) = caller.user.clone().filter(|_| !caller.may(name, ProjectRight::ManageAccess)) {
             let mut policy = self.access.config.policy.clone();
@@ -482,7 +482,8 @@ impl Server {
             info: entry.project.info.clone(),
             locked_by: self.sessions.locks(name).into_iter().find(|l| l.target == Target::Project).map(|l| l.user),
             rights: caller.rights(name).into_iter().collect(),
-            created: entry.created.clone(),
+            meta: entry.meta.clone(),
+            copied_from: entry.copied_from.clone(),
         })
     }
 }
@@ -505,6 +506,7 @@ async fn save_properties(State(state): State<AppState>, headers: HeaderMap, Path
     let (mut server, caller) = server(&state, &headers)?;
     let name = canonical(&server, name);
     caller.need(&name, ProjectRight::EditProject)?;
+    let user = caller.name(&req.user, &server.users)?;
     let entry = server.store.get(&name).ok_or_else(|| not_found(&name))?;
     if let Some(l) = server.sessions.locks(&name).into_iter().find(|l| l.target == Target::Project) {
         return Err(AppError(StatusCode::CONFLICT, format!("the project data is locked by {}", l.user)));
@@ -514,8 +516,8 @@ async fn save_properties(State(state): State<AppState>, headers: HeaderMap, Path
     }
     let mut project = entry.project.clone();
     project.info = req.info;
-    let revision = server.store.save(&name, project)?;
-    log::info!("{} changed the properties of {name} (revision {revision})", caller.user.as_deref().unwrap_or("token"));
+    let revision = server.store.save(&name, project, &user, openecraft_auth::unix_now())?;
+    log::info!("{user} changed the properties of {name} (revision {revision})");
     Ok(Json(server.properties(&name, &caller)?))
 }
 
@@ -636,7 +638,9 @@ async fn save(State(state): State<AppState>, headers: HeaderMap, Path(name): Pat
         caller.need(&name, ProjectRight::EditPages)?;
     }
     let merged = merge(&stored, &req.project, &owned);
-    let revision = server.store.save(&name, merged)?;
+    // The signed-in user, otherwise the user the session was opened as (not the one sent).
+    let user = caller.user.clone().or_else(|| server.sessions.user(&req.session.session).map(String::from)).unwrap_or_default();
+    let revision = server.store.save(&name, merged, &user, openecraft_auth::unix_now())?;
     server.sessions.saved(&req.session.session);
     log::info!("{} saved {name} (revision {revision})", req.session.user);
     server.sessions.release(&name, &req.session, &req.release, Instant::now())?;

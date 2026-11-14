@@ -12,6 +12,7 @@ fn dates() {
     assert_eq!(date_from_unix(0), "1970-01-01");
     assert_eq!(date_from_unix(951_782_400), "2000-02-29");
     assert_eq!(date_from_unix(1_792_713_600), "2026-10-23");
+    assert_eq!(date_time_from_unix(1_792_713_600 + 3723), "2026-10-23 01:02");
     assert_eq!(unix_from_date("1970-01-01"), Some(0));
     assert_eq!(unix_from_date("2000-02-29"), Some(951_782_400));
     assert_eq!(unix_from_date("2026-10-23T01:02:03+02:00"), Some(1_792_713_600 + 3723));

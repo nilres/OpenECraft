@@ -9,7 +9,8 @@ use super::App;
 use openecraft_core::history::History;
 use crate::remote::{Blocked, Link, NameError, Remote, Reply, Sent};
 use egui::{Color32, RichText};
-use openecraft_core::collab::{restore, valid_name, Created, Failure, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_core::collab::{restore, valid_name, CopySource, Failure, Grant, KeptReason, ProjectMeta, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_parts::date_time_from_unix;
 use openecraft_i18n::{tr, tr_fmt};
 use crate::startup::ReconnectState;
 
@@ -23,13 +24,16 @@ enum DraftAction {
 }
 
 /// Who created a project on the server and when, and what it was copied from; none
-/// for projects older than this record.
-fn created_text(created: Option<&Created>) -> Option<String> {
-    let c = created?;
-    let when = openecraft_ui::io::time_text(c.at);
-    Some(match &c.from {
-        Some(from) => tr_fmt!("{}, {} (copy of {}, revision {})", c.by, when, from.name, from.revision),
-        None => format!("{}, {when}", c.by),
+/// if the server has no record (projects of earlier servers).
+fn created_text(meta: &ProjectMeta, from: Option<&CopySource>) -> Option<String> {
+    if meta.created_by.is_empty() && meta.created_at == 0 {
+        return None;
+    }
+    let by = if meta.created_by.is_empty() { tr("Unknown") } else { meta.created_by.as_str() };
+    let when = if meta.created_at == 0 { tr("Unknown").to_string() } else { utc(meta.created_at) };
+    Some(match from {
+        Some(from) => tr_fmt!("{}, {} (copy of {}, revision {})", by, when, from.name, from.revision),
+        None => format!("{by}, {when}"),
     })
 }
 
@@ -40,6 +44,17 @@ enum KeptAction {
     TakeOver,
     Export,
     Discard,
+}
+
+/// Created by, last changed by and last changed at as the project list shows them:
+/// what the server does not know (projects of earlier servers) is named so.
+fn meta_texts(meta: &ProjectMeta) -> [String; 3] {
+    let known = |name: &str| if name.is_empty() { tr("Unknown").to_string() } else { name.to_string() };
+    [known(&meta.created_by), known(&meta.changed_by), if meta.changed_at == 0 { tr("Unknown").to_string() } else { utc(meta.changed_at) }]
+}
+
+fn utc(secs: u64) -> String {
+    format!("{} UTC", date_time_from_unix(secs))
 }
 
 impl App {
@@ -414,12 +429,13 @@ impl App {
         let mut select = None;
         let selected = self.remote.selected.clone().filter(|s| self.remote.projects.iter().any(|p| &p.name == s));
         egui::ScrollArea::vertical().max_height(260.0).show(ui, |ui| {
-            egui::Grid::new("remote_projects").striped(true).num_columns(4).show(ui, |ui| {
-                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users")] {
+            egui::Grid::new("remote_projects").striped(true).num_columns(7).show(ui, |ui| {
+                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users"), tr("Created by"), tr("Last changed by"), tr("Last changed")] {
                     ui.strong(h);
                 }
                 ui.end_row();
                 for p in &self.remote.projects {
+                    let [created_by, changed_by, changed_at] = meta_texts(&p.meta);
                     let r = ui.selectable_label(selected.as_deref() == Some(p.name.as_str()), &p.name);
                     if r.clicked() {
                         select = Some(p.name.clone());
@@ -430,6 +446,12 @@ impl App {
                     ui.label(&p.title);
                     ui.label(p.pages.to_string());
                     ui.label(p.users.join(", "));
+                    let created = ui.label(created_by);
+                    if p.meta.created_at > 0 {
+                        created.on_hover_text(tr_fmt!("Created {}", utc(p.meta.created_at)));
+                    }
+                    ui.label(changed_by);
+                    ui.label(changed_at);
                     ui.end_row();
                 }
             });
@@ -697,9 +719,9 @@ impl App {
                     ui.label(tr_fmt!("{} (revision {})", d.source, d.revision));
                     ui.end_row();
                     ui.label(tr("Created on the server")).on_hover_text(tr("Who created the project on the project server and when; not the drawing author below"));
-                    match created_text(d.created.as_ref()) {
+                    match created_text(&d.meta, d.copied_from.as_ref()) {
                         Some(text) => ui.label(text),
-                        None => ui.weak(tr("Not recorded")),
+                        None => ui.weak(tr("Unknown")),
                     };
                     ui.end_row();
                 }

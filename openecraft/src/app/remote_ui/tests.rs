@@ -387,6 +387,21 @@ fn the_dialog_shows_every_state_of_a_draft_and_keeps_it_until_asked() {
         show(&mut app);
         assert!(app.remote.draft.is_some());
     }
+    // Who created the project and what it is a copy of, or nothing without a record.
+    assert_eq!(created_text(&ProjectMeta::default(), None), None);
+    let meta = ProjectMeta::created("anna", 1_792_713_600 + 3723);
+    assert_eq!(created_text(&meta, None).as_deref(), Some("anna, 2026-10-23 01:02 UTC"));
+    let from = CopySource { name: "Plant 1".into(), revision: 4 };
+    assert_eq!(created_text(&meta, Some(&from)), Some(tr_fmt!("{}, {} (copy of {}, revision {})", "anna", "2026-10-23 01:02 UTC", "Plant 1", 4)));
     // Nothing was sent and the open project is as it was.
     assert!(!app.remote.busy() && app.remote.shared.is_some() && app.discard.pending().is_none());
+}
+
+#[test]
+fn project_list_names_unknown_metadata() {
+    let unknown = meta_texts(&ProjectMeta::default());
+    assert!(unknown.iter().all(|t| *t == tr("Unknown")));
+    let mut meta = ProjectMeta::created("anna", 1_792_713_600);
+    meta.changed("ben", 1_792_713_600 + 3723);
+    assert_eq!(meta_texts(&meta), ["anna", "ben", "2026-10-23 01:02 UTC"]);
 }

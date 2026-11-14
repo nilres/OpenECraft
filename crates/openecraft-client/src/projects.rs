@@ -177,9 +177,9 @@ impl ProjectEndpoint {
         self.get(&properties_path(name))
     }
 
-    /// PUT /api/v1/projects/{name}/properties: changes the project info loaded at `revision`.
-    pub fn save_properties(&self, name: &str, revision: u64, info: &ProjectInfo) -> ehttp::Request {
-        self.json("PUT", &properties_path(name), &PropertiesUpdate { revision, info: info.clone() })
+    /// PUT /api/v1/projects/{name}/properties: `user` changes the project info loaded at `revision`.
+    pub fn save_properties(&self, name: &str, user: &str, revision: u64, info: &ProjectInfo) -> ehttp::Request {
+        self.json("PUT", &properties_path(name), &PropertiesUpdate { user: user.into(), revision, info: info.clone() })
     }
 
     /// POST /api/v1/projects/{name}/copy: a new project from the saved state, opened.

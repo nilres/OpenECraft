@@ -17,8 +17,8 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   copy belongs to who created it and starts without the original's review records,
   released revisions and baselines unless asked for. Unsaved changes of the open
   project are asked about first; a project changed on the server meanwhile is
-  reported before the copy is made. The server records who created a project and
-  what it was copied from. Needs the updated project server.
+  reported before the copy is made. The server records the project and revision a copy
+  was made from. Needs the updated project server.
 
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
@@ -27,6 +27,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   by 90°, go back to the starting view or show everything. It replaces the buttons
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
+
+- **Who created and last changed a shared project**: the project list of the
+  *Project server* pane and of the server's web page shows *Created by*, *Last
+  changed by* and *Last changed* for each project (`created_by`, `created_at`,
+  `changed_by`, `changed_at` of `GET /api/v1/projects`). The project server records
+  the signed-in user of the creation and of every save that changes the project;
+  opening, keeping a session alive and saving unchanged content do not count.
+  Projects of earlier versions show *Unknown* until their next change.
 
 - **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
   web editor with nginx on port 8080, built by `installer/docker/Dockerfile`

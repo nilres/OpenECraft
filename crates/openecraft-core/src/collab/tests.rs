@@ -414,8 +414,14 @@ fn names_of_copies_are_free_and_valid() {
 fn older_servers_and_clients_understand_each_other() {
     // A list entry of a server without creation records.
     let old: ProjectSummary = serde_json::from_str(r#"{"name":"p","title":"P","pages":2,"revision":3,"users":[],"rights":["view"]}"#).unwrap();
-    assert_eq!(old.created, None);
-    assert!(!serde_json::to_string(&old).unwrap().contains("created"));
+    assert_eq!((old.meta.clone(), old.copied_from.clone()), (ProjectMeta::default(), None));
+    let json = serde_json::to_string(&old).unwrap();
+    assert!(!json.contains("created") && !json.contains("copied_from"), "{json}");
+    // The answer about the properties has the record of the list, flat.
+    let props = ProjectProperties { meta: ProjectMeta::created("anna", 5), copied_from: Some(CopySource { name: "p".into(), revision: 3 }), ..Default::default() };
+    let json = serde_json::to_value(&props).unwrap();
+    assert_eq!((json["created_by"].as_str(), json["copied_from"]["revision"].as_u64()), (Some("anna"), Some(3)));
+    assert_eq!(serde_json::from_value::<ProjectProperties>(json).unwrap(), props);
     let copy = CopyRequest { name: "p copy".into(), user: "ben".into(), ..Default::default() };
     assert_eq!(serde_json::to_string(&copy).unwrap(), r#"{"name":"p copy","user":"ben"}"#);
 }

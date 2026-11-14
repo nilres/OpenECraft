@@ -4,7 +4,7 @@
 
 use super::{Remote, Reply};
 use openecraft_client::{decode, ehttp};
-use openecraft_core::collab::{copy_name, name_key, valid_name, CopyRequest, Created, ProjectProperties, ProjectRight, ProjectSummary, CHANGED_STATUS};
+use openecraft_core::collab::{copy_name, name_key, valid_name, CopyRequest, CopySource, ProjectMeta, ProjectProperties, ProjectRight, ProjectSummary, CHANGED_STATUS};
 use openecraft_core::model::ProjectInfo;
 use openecraft_i18n::tr_fmt;
 
@@ -57,8 +57,10 @@ pub struct Draft {
     pub revision: u64,
     pub locked_by: Option<String>,
     pub rights: Vec<ProjectRight>,
-    /// Who created the source on the server.
-    pub created: Option<Created>,
+    /// Who created and last changed the project on the server.
+    pub meta: ProjectMeta,
+    /// The project it was copied from.
+    pub copied_from: Option<CopySource>,
     /// The copy also gets the review and release records of the source.
     pub records: bool,
     /// A request is under way.
@@ -86,7 +88,8 @@ impl Draft {
         self.revision = p.revision;
         self.locked_by = p.locked_by;
         self.rights = p.rights;
-        self.created = p.created;
+        self.meta = p.meta;
+        self.copied_from = p.copied_from;
         self.loaded = true;
         self.busy = false;
         self.changed = false;
@@ -168,11 +171,12 @@ impl Remote {
     /// Saves the changed properties of the draft's project.
     pub fn save_properties(&mut self) {
         let endpoint = self.endpoint();
+        let user = self.user.trim().to_string();
         let Some(d) = self.draft.as_mut().filter(|d| !d.copy && d.loaded && !d.busy) else { return };
         d.busy = true;
         d.error.clear();
         let name = d.source.clone();
-        let req = endpoint.save_properties(&name, d.revision, &d.info);
+        let req = endpoint.save_properties(&name, &user, d.revision, &d.info);
         self.send(req, tr_fmt!("Saving the properties of {}…", name), move |r| Reply::PropertiesSaved(name, Refusal::of(r)));
     }
 
@@ -207,6 +211,7 @@ impl Remote {
                 if let Some(listed) = self.projects.iter_mut().find(|l| l.name == name) {
                     listed.title = p.info.name.clone();
                     listed.revision = p.revision;
+                    listed.meta = p.meta.clone();
                 }
                 if self.draft.as_ref().is_some_and(|d| !d.copy && d.source == name) {
                     self.draft = None;
@@ -221,7 +226,7 @@ impl Remote {
                 None
             }
             Reply::Copied(name, Ok(opened)) => {
-                let source = self.draft.take().map(|d| d.source).unwrap_or_default();
+                let (source, revision) = self.draft.take().map(|d| (d.source, d.revision)).unwrap_or_default();
                 let project = &opened.snapshot.project;
                 self.projects.push(ProjectSummary {
                     name: name.clone(),
@@ -230,7 +235,9 @@ impl Remote {
                     revision: opened.snapshot.revision,
                     users: vec![opened.session.user.clone()],
                     rights: opened.rights.clone(),
-                    created: None,
+                    // The server's times come with the next list.
+                    meta: ProjectMeta { created_by: opened.session.user.clone(), changed_by: opened.session.user.clone(), ..Default::default() },
+                    copied_from: Some(CopySource { name: source.clone(), revision }),
                 });
                 self.copied = Some(source);
                 Some(Reply::Opened(name, Ok(opened)))
