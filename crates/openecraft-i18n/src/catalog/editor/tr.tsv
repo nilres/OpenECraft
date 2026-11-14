@@ -591,6 +591,7 @@ Door NC data (DWG)	Kapı NC verileri (DWG)
 Door NC data (DXF)	Kapı NC verileri (DXF)
 Door clearance	Kapı boşluğu
 Door cutouts (CSV)	Kapı kesimleri (CSV)
+Door hinge	Kapı menteşesi
 Door: {} devices, {} cutouts	Kapı: {} cihaz, {} kesim
 Dot	Nokta
 Double-click	Çift tıklama
@@ -657,6 +658,7 @@ Earthing system	Topraklama sistemi
 Easting, northing	Doğu, kuzey koordinatı
 Eaves	Saçak
 Edge length of the routing grid: smaller is finer and slower	Yönlendirme ızgarasının kenar uzunluğu: küçük değer daha hassas ve daha yavaştır
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Kapının menteşeli olduğu kenar, önden bakıldığında: 3B görünüm kapıyı orada açar ve kapı kabloları oradan geçer
 Edit in table	Tabloda düzenle
 Edit in table…	Tabloda düzenle…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Düzenleme modu: binaları vaziyet planında yerlerine sürükleyin ve döndürün; bir odaya tıklamak artık onu açmaz
@@ -907,6 +909,7 @@ Import symbol library…	Sembol kütüphanesini içe aktar…
 Import symbol table…	Sembol tablosunu içe aktar…
 Imported	İçe aktarılan
 Imported {} entries of the property library	Özellik kütüphanesinin {} girişi içe aktarıldı
+Imported {} into the parts database	{}, parça veritabanına aktarıldı
 Imported {} macros	{} makro içe aktarıldı
 Imported {} page templates	{} sayfa şablonu içe aktarıldı
 Imported {} parts into the database	{} parça veritabanına aktarıldı
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Geçerli sayfa {} seçeneğine ait.
 The devices do not fit onto the rail	Cihazlar raya sığmıyor
 The dictionary is empty: collect the texts from the project.	Sözlük boş: metinleri projeden toplayın.
 The door seen from the front: door devices and cutouts	Önden görülen kapı: kapı cihazları ve kesimler
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	İçeriden görülen kapı (menteşeler sağda): kablo kanalları ve kapının arkasındaki kablolama
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	İçeriden görülen kapı (aynalanmış): kablo kanalları ve kapının arkasındaki kablolama
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Öğe yalnızca yer tutucularıyla bu metin boş değilse çizilir, ör. bir revizyon tablosunun satırları
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Pano sol tarafıyla seçilen panonun sağ tarafına dayanır; teller aralarında kablo geçişlerinden geçer
 The horizontal wire	Yatay tel

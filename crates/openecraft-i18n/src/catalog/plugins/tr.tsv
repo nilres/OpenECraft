@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Topraklama kazığı: uzunluğu, mm (va
 Earth rod: x of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin x'i, mm
 Earth rod: z of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin z'si, mm
 Edge length of the routing grid in mm	mm cinsinden yönlendirme ızgarasının kenar uzunluğu
+Edge the door is hinged at, seen from the front: left or right	Kapının menteşeli olduğu kenar, önden bakıldığında: left veya right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Virgül veya boşlukla ayrılmış elektrik cihazı etiketleri (boş = ilişkileri kaldır)
 Electrical engineering	Elektrik mühendisliği
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Antet alanının sol üst köşesinden mm cinsinden öğeler (Line, Rect, Text, Image), items dizisinde
@@ -915,6 +916,7 @@ Unknown check: {}	Bilinmeyen kontrol: {}
 Unknown class: {}	Bilinmeyen sınıf: {}
 Unknown data type: {}	Bilinmeyen veri türü: {}
 Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
+Unknown door hinge: {}	Bilinmeyen menteşe tarafı: {}
 Unknown earth electrode: {}	Bilinmeyen topraklama elektrodu: {}
 Unknown earthing system: {}	Bilinmeyen topraklama sistemi: {}
 Unknown face {}	Bilinmeyen yüzey {}

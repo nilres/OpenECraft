@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Picchetto: la sua lunghezza, mm (predef
 Earth rod: x of its place in the floor plan of the building, mm	Picchetto: x della sua posizione nella pianta dell'edificio, mm
 Earth rod: z of its place in the floor plan of the building, mm	Picchetto: z della sua posizione nella pianta dell'edificio, mm
 Edge length of the routing grid in mm	Lato della griglia di instradamento in mm
+Edge the door is hinged at, seen from the front: left or right	Bordo su cui è incernierata la porta, visto dal davanti: left o right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Sigle dei dispositivi elettrici separate da virgole o spazi (vuoto = rimuovi i collegamenti)
 Electrical engineering	Elettrotecnica
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementi (Line, Rect, Text, Image) in mm dall'angolo superiore sinistro dell'area del cartiglio in un array items
@@ -915,6 +916,7 @@ Unknown check: {}	Verifica sconosciuta: {}
 Unknown class: {}	Classe sconosciuta: {}
 Unknown data type: {}	Tipo di dati sconosciuto: {}
 Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
+Unknown door hinge: {}	Lato cerniere sconosciuto: {}
 Unknown earth electrode: {}	Dispersore sconosciuto: {}
 Unknown earthing system: {}	Sistema di distribuzione sconosciuto: {}
 Unknown face {}	Faccia sconosciuta {}

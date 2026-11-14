@@ -154,3 +154,16 @@ fn the_makers_model_goes_with_walls_door_and_inside() {
     assert!(maker_model(&prj, &other).is_none());
     assert!(maker_model(&prj, &baying()).is_none());
 }
+
+#[test]
+fn a_painted_door_goes_with_the_door_only() {
+    // The model marks its door: the wall's front edge stays with the wall.
+    let mut prj = maker_project();
+    let mut mesh = crate::parts::Mesh3d::clone(prj.parts[0].model_3d.as_ref().unwrap());
+    mesh.colors = (0..mesh.triangles.len()).map(|i| if (12..24).contains(&i) { crate::parts::DOOR_PAINT } else { crate::parts::UNPAINTED }).collect();
+    prj.parts[0].model_3d = Some(mesh.into());
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+A1");
+    let model = maker_model(&prj, &e).unwrap();
+    let count = |f: Option<Face>| model.iter().filter(|(g, _)| *g == f).count();
+    assert_eq!((count(Some(Face::Left)), count(Some(Face::Door)), count(None)), (12, 12, 12));
+}

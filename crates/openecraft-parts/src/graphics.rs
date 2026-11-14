@@ -45,6 +45,11 @@ pub struct Mesh3d {
 /// Colour of the triangles of a painted mesh that were not painted.
 pub const UNPAINTED: [u8; 3] = [200, 204, 210];
 
+/// Colour of the door of an enclosure's model (with what is mounted on it: hinge
+/// leaves, lock, seal): the panel layout opens the triangles of this colour with the
+/// door.
+pub const DOOR_PAINT: [u8; 3] = [190, 194, 200];
+
 impl Mesh3d {
     /// Axis aligned bounding box (min, max).
     pub fn bounds(&self) -> ([f32; 3], [f32; 3]) {

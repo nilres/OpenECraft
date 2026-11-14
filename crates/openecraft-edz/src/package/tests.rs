@@ -46,6 +46,20 @@ fn layout_ema() -> String {
     )
 }
 
+/// [`layout_ema`] with a door hung on the housing's front and a hinge block beside it
+/// on the right.
+fn layout_ema_with_door() -> String {
+    let block = "#,1,1{20,2,16,1>{}{}9,4,0/0/0,10/0/0,10/10/0,0/10/0,0,1,84,2,16842751,*,2,0,3,1,4,2,5,0,3,2,5,3,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0}";
+    let door = format!(
+        r#"  <O161 A1="161/9"><Stream Id="62491">{block}</Stream></O161>
+  <O170 A1="170/10" R2481="180/3" A2482="-300/-175/0" A2483="1/0/0" A2484="0/0/1" A2486="10039" A2601="600/600"/>
+  <O180 A1="180/11" R9="161/9" R2481="170/10" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0"><P144 P20013="enclosure_door"/></O180>
+  <O180 A1="180/12" R9="161/9" R2481="170/10" A2482="580/100/0" A2483="1/0/0" A2484="0/1/0"/>
+ </MacroVariant>"#
+    );
+    layout_ema().replace(" </MacroVariant>", &door)
+}
+
 /// A package like the one of the Rittal configurator (paths with backslashes).
 fn package() -> Vec<u8> {
     package_with(&ema())
@@ -131,6 +145,12 @@ fn the_macro_gives_model_plate_and_restricted_areas() {
     // The area 10 × 20 mm at the lower left corner of the plate, in plate coordinates
     // (y down from the plate's top).
     assert_eq!(p.mounting_data.restricted, [RestrictedArea { kind: Restriction::Cutout, face: "plate".into(), x: 0.0, y: 555.0, w: 10.0, h: 20.0 }]);
+    assert_eq!(p.tech_value("Door hinge"), None, "no door");
+    // The hinge block on the right: the door is hinged there.
+    let edz = read(&package_with(&layout_ema_with_door()), None).unwrap();
+    assert_eq!(edz.parts[0].tech_value("Door hinge"), Some("right"));
+    let left = read(&package_with(&layout_ema_with_door().replace("A2482=\"580/100/0\"", "A2482=\"10/100/0\"")), None).unwrap();
+    assert_eq!(left.parts[0].tech_value("Door hinge"), None);
     // The macro wins over the STEP model.
     let edz = read(&package_with(&layout_ema()), Some(step)).unwrap();
     assert_eq!(edz.parts[0].model_3d.as_ref().unwrap().triangles.len(), 2);
@@ -180,6 +200,7 @@ fn rittal_package() {
     let size = p.model_3d.as_ref().unwrap().size();
     assert!((size[1] - 600.0).abs() < 1.0 && (350.0..360.0).contains(&size[2]), "{size:?}");
     assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
+    assert_eq!(p.tech_value("Door hinge"), Some("right"), "the AX door is hinged on the right");
     // All areas but the three on the frame around the door, on all faces.
     let areas = &p.mounting_data.restricted;
     let faces: std::collections::BTreeMap<(&str, &str), usize> = areas.iter().fold(Default::default(), |mut m, a| {

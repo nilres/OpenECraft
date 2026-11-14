@@ -749,3 +749,17 @@ fn restricted_areas_are_drawn_on_their_face() {
     assert!(count("ENC", Face::Door) > count("", Face::Door) + 4, "outline and hatch");
     assert_eq!(count("ENC", Face::Plate), count("", Face::Plate));
 }
+
+#[test]
+fn the_door_shows_its_hinges_on_the_hinge_side() {
+    let prj = Project::default();
+    let hinges = |hinge: panel::DoorHinge| {
+        let e = Enclosure { width: 600.0, height: 800.0, door_hinge: hinge, ..Default::default() };
+        let mut d = Rec::default();
+        draw_enclosure(&mut d, &e, Face::Door, false, p(0.0, 0.0), 1.0, &BTreeSet::new(), &BTreeSet::new(), &prj);
+        // The hinges: 6 mm wide on the door's edge.
+        d.rects.iter().filter(|(a, b)| (b.x - a.x - 6.0).abs() < 1e-3).map(|(a, _)| a.x).collect::<Vec<f32>>()
+    };
+    assert_eq!(hinges(panel::DoorHinge::Left), [-3.0, -3.0]);
+    assert_eq!(hinges(panel::DoorHinge::Right), [597.0, 597.0]);
+}

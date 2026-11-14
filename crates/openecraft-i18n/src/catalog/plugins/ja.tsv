@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	接地棒：長さ、mm (既定 3000)
 Earth rod: x of its place in the floor plan of the building, mm	接地棒：建物の平面図での位置の x、mm
 Earth rod: z of its place in the floor plan of the building, mm	接地棒：建物の平面図での位置の z、mm
 Edge length of the routing grid in mm	配線グリッドの辺の長さ (mm)
+Edge the door is hinged at, seen from the front: left or right	正面から見た扉のヒンジ側の端: left または right
 Electrical device tags separated by commas or blanks (empty = remove the links)	電気デバイスのタグ (カンマまたはスペース区切り、空 = リンクを削除)
 Electrical engineering	電気工学
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	要素（Line、Rect、Text、Image）。表題欄領域の左上隅からの mm 単位で、items 配列に指定します
@@ -915,6 +916,7 @@ Unknown check: {}	不明なチェック: {}
 Unknown class: {}	不明なクラス: {}
 Unknown data type: {}	不明なデータ型: {}
 Unknown direction {}: left, right, up or down	不明な方向 {}：left、right、up または down
+Unknown door hinge: {}	不明なヒンジ側: {}
 Unknown earth electrode: {}	不明な接地極: {}
 Unknown earthing system: {}	不明な系統接地方式: {}
 Unknown face {}	不明な面 {}

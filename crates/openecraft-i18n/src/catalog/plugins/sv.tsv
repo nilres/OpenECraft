@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Jordspett: dess längd, mm (standard 30
 Earth rod: x of its place in the floor plan of the building, mm	Jordspett: x för dess plats i byggnadens planritning, mm
 Earth rod: z of its place in the floor plan of the building, mm	Jordspett: z för dess plats i byggnadens planritning, mm
 Edge length of the routing grid in mm	Kantlängd för dragningsrutnätet i mm
+Edge the door is hinged at, seen from the front: left or right	Kanten där dörren är hängd, sett framifrån: left eller right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriska apparatbeteckningar åtskilda med kommatecken eller blanksteg (tomt = ta bort länkarna)
 Electrical engineering	Elektroteknik
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Element (Line, Rect, Text, Image) i mm från namnrutans övre vänstra hörn i en matris items
@@ -915,6 +916,7 @@ Unknown check: {}	Okänd kontroll: {}
 Unknown class: {}	Okänd klass: {}
 Unknown data type: {}	Okänd datatyp: {}
 Unknown direction {}: left, right, up or down	Okänd riktning {}: left, right, up eller down
+Unknown door hinge: {}	Okänd gångjärnssida: {}
 Unknown earth electrode: {}	Okänt jordtag: {}
 Unknown earthing system: {}	Okänt jordningssystem: {}
 Unknown face {}	Okänd yta {}

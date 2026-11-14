@@ -584,6 +584,7 @@ Door NC data (DWG)	도어 NC 데이터(DWG)
 Door NC data (DXF)	도어 NC 데이터(DXF)
 Door clearance	도어 이격 거리
 Door cutouts (CSV)	도어 컷아웃(CSV)
+Door hinge	도어 힌지
 Door: {} devices, {} cutouts	도어: 장치 {}개, 컷아웃 {}개
 Dot	점
 Double-click	두 번 클릭
@@ -649,6 +650,7 @@ Earthing system	접지 계통
 Easting, northing	동쪽 좌표, 북쪽 좌표
 Eaves	처마
 Edge length of the routing grid: smaller is finer and slower	배선 경로 그리드의 모서리 길이: 작을수록 정밀하지만 느려짐
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	정면에서 본 도어 힌지 쪽 가장자리: 3D 보기는 그곳에서 도어를 열고 도어 배선은 그곳을 지나갑니다
 Edit in table	표에서 편집
 Edit in table…	표에서 편집…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	편집 모드: 배치도에서 건물을 제자리로 드래그하고 회전합니다. 방을 클릭해도 더 이상 열리지 않습니다
@@ -897,6 +899,7 @@ Import symbol library…	심볼 라이브러리 가져오기…
 Import symbol table…	심볼 테이블 가져오기…
 Imported	가져옴
 Imported {} entries of the property library	속성 라이브러리 항목 {}개를 가져왔습니다
+Imported {} into the parts database	{}을(를) 부품 데이터베이스로 가져옴
 Imported {} macros	매크로 {}개 가져옴
 Imported {} page templates	페이지 템플릿 {}개 가져옴
 Imported {} parts into the database	부품 {}개를 데이터베이스로 가져옴
@@ -2013,7 +2016,7 @@ The current page belongs to option {}.	현재 페이지는 옵션 {}에 속합�
 The devices do not fit onto the rail	장치가 레일에 맞지 않습니다
 The dictionary is empty: collect the texts from the project.	사전이 비어 있습니다. 프로젝트에서 텍스트를 수집하세요.
 The door seen from the front: door devices and cutouts	앞에서 본 도어: 도어 장치 및 컷아웃
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	안쪽에서 본 도어(힌지 오른쪽): 케이블 덕트 및 도어 뒤 배선
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	안쪽에서 본 도어(좌우 반전): 케이블 덕트 및 도어 뒤 배선
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	자리 표시자가 포함된 이 텍스트가 비어 있지 않을 때만 요소를 그립니다(예: 개정 표의 행)
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
 The horizontal wire	가로 전선

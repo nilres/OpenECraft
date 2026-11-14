@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	垂直接地极：长度，mm（默认 
 Earth rod: x of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 x，mm
 Earth rod: z of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 z，mm
 Edge length of the routing grid in mm	布线栅格的边长 (mm)
+Edge the door is hinged at, seen from the front: left or right	从正面看柜门铰链所在的边：left 或 right
 Electrical device tags separated by commas or blanks (empty = remove the links)	电气设备标识符，以逗号或空格分隔（空 = 移除关联）
 Electrical engineering	电气工程
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	元素（Line、Rect、Text、Image），以毫米为单位，从标题栏区域左上角起，放在 items 数组中
@@ -915,6 +916,7 @@ Unknown check: {}	未知检查：{}
 Unknown class: {}	未知类别：{}
 Unknown data type: {}	未知数据类型：{}
 Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
+Unknown door hinge: {}	未知的铰链侧：{}
 Unknown earth electrode: {}	未知接地极：{}
 Unknown earthing system: {}	未知接地系统：{}
 Unknown face {}	未知面 {}

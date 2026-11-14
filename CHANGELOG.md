@@ -112,7 +112,10 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   import brings (models, mounting data, technical data). Unpacked EDZ files and vendor
   folders take 3D models from their 3D macros, and macros with bodies in a form not
   read are reported. The 3D macros of EDZ files give their parts a 3D
-  model. STEP files whose arcs are given by their vertices
+  model. *Import parts* tells its result in a box at the bottom right. Cabinet doors
+  can be hinged on the right (*Door hinge*, `door_hinge`, part data `Door hinge`; the
+  Rittal import finds it from the hinge blocks): the door view, the 3D view and the
+  door wiring follow it. STEP files whose arcs are given by their vertices
   only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
   longer fails the whole model.
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image

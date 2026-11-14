@@ -72,6 +72,11 @@ fn explicit_physical_frames_and_unnumbered_parts_round_trip_through_the_api() {
     assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_size":{"width":0,"height":1}})).is_err());
     let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_size":{}})).unwrap();
     assert!(e["mounting_size"].is_null());
+    // The door hinged on the right.
+    assert_eq!(e["door_hinge"],"left");
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"right"})).unwrap();
+    assert_eq!(e["door_hinge"],"right");
+    assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"top"})).is_err());
 }
 
 #[test]

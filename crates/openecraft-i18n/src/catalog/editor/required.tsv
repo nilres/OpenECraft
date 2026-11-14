@@ -695,6 +695,7 @@ Door NC data (DWG)	Tür-NC-Daten (DWG)	Données CN de la porte (DWG)	Datos NC de
 Door NC data (DXF)	Tür-NC-Daten (DXF)	Données CN de la porte (DXF)	Datos NC de la puerta (DXF)
 Door clearance	Türfreiraum	Dégagement de porte	Espacio libre de la puerta
 Door cutouts (CSV)	Türausschnitte (CSV)	Découpes de porte (CSV)	Recortes de puerta (CSV)
+Door hinge	Türanschlag	Charnières de la porte	Bisagras de la puerta
 Door in a wall of the room: click on the wall in the floor plan or in the view of the wall	Tür in einer Wand des Raums: im Grundriss oder in der Ansicht der Wand auf die Wand klicken	Porte dans un mur de la salle : cliquez sur le mur dans le plan ou dans la vue du mur	Puerta en una pared de la sala: haga clic en la pared en el plano o en la vista de la pared
 Door: {} devices, {} cutouts	Tür: {} Betriebsmittel, {} Ausschnitte	Porte : {} appareils, {} découpes	Puerta: {} dispositivos, {} recortes
 Dot	Punkt	Point	Punto
@@ -773,6 +774,7 @@ Earthing system	Netzform	Schéma de liaison à la terre	Esquema de conexión a t
 Easting, northing	Ostwert, Nordwert	Coordonnée est, nord	Coordenada este, norte
 Eaves	Traufe	Égout	Alero
 Edge length of the routing grid: smaller is finer and slower	Kantenlänge des Verlegerasters: kleiner ist feiner und langsamer	Longueur d'arête de la grille de routage : plus petit est plus fin et plus lent	Longitud de arista de la rejilla de tendido: más pequeña es más fina y más lenta
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Kante, an der die Tür angeschlagen ist, von vorn gesehen: die 3D-Ansicht öffnet die Tür dort, und die Türleitungen laufen darüber	Bord où la porte est montée sur charnières, vu de face : la vue 3D ouvre la porte de ce côté et les fils de la porte passent par là	Borde en el que la puerta tiene las bisagras, visto de frente: la vista 3D abre la puerta por ahí y los cables de la puerta pasan por él
 Edit in table	In Tabelle bearbeiten	Modifier dans un tableau	Editar en tabla
 Edit in table…	In Tabelle bearbeiten…	Modifier dans un tableau…	Editar en tabla…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bearbeitungsmodus: Gebäude im Lageplan an ihren Platz ziehen und drehen; ein Klick auf einen Raum öffnet ihn dann nicht mehr	Mode édition : faire glisser les bâtiments à leur place dans le plan de situation et les tourner ; un clic sur une pièce ne l'ouvre plus	Modo de edición: arrastre los edificios a su sitio en el plano de situación y gírelos; un clic en un local ya no lo abre
@@ -1053,6 +1055,7 @@ Import symbol library…	Symbolbibliothek importieren…	Importer une bibliothè
 Import symbol table…	Symboltabelle importieren…	Importer la table de symboles…	Importar tabla de símbolos…
 Imported	Importiert	Importé	Importado
 Imported {} entries of the property library	{} Einträge der Eigenschaftsbibliothek importiert	{} entrées de la bibliothèque de propriétés importées	Se importaron {} entradas de la biblioteca de propiedades
+Imported {} into the parts database	{} in die Artikeldatenbank importiert	{} importé dans la base d'articles	{} importado en la base de datos de artículos
 Imported {} macros	{} Makros importiert	{} macros importées	{} macros importadas
 Imported {} page templates	{} Seitenvorlagen importiert	{} modèles de page importés	{} plantillas de página importadas
 Imported {} parts into the database	{} Artikel in die Datenbank importiert	{} articles importés dans la base de données	{} artículos importados en la base de datos
@@ -2278,7 +2281,7 @@ The device this function belongs to. Another tag moves the function to that devi
 The devices do not fit onto the rail	Die Geräte passen nicht auf die Schiene	Les appareils ne tiennent pas sur le rail	Los aparatos no caben en el carril
 The dictionary is empty: collect the texts from the project.	Das Wörterbuch ist leer: Sammeln Sie die Texte aus dem Projekt.	Le dictionnaire est vide : collectez les textes du projet.	El diccionario está vacío: recopile los textos del proyecto.
 The door seen from the front: door devices and cutouts	Die Tür von vorn: Türgeräte und Ausschnitte	La porte vue de face : appareils de porte et découpes	La puerta vista de frente: equipos de la puerta y recortes
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Die Tür von innen (Scharniere rechts): Kabelkanäle und die Verdrahtung hinter der Tür	La porte vue de l'intérieur (charnières à droite) : goulottes et câblage derrière la porte	La puerta vista desde dentro (bisagras a la derecha): canaletas y cableado detrás de la puerta
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Die Tür von innen (gespiegelt): Kabelkanäle und die Verdrahtung hinter der Tür	La porte vue de l'intérieur (en miroir) : goulottes et câblage derrière la porte	La puerta vista desde dentro (reflejada): canaletas y cableado detrás de la puerta
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Das Element wird nur gezeichnet, wenn dieser Text mit seinen Platzhaltern nicht leer ist, z. B. die Zeilen einer Revisionstabelle	L'élément n'est dessiné que si ce texte avec ses variables n'est pas vide, p. ex. les lignes d'un tableau des révisions	El elemento solo se dibuja si este texto con sus marcadores no está vacío, p. ej. las filas de una tabla de revisiones
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Der Schrank steht mit seiner linken Seite an der rechten Seite des gewählten; Drähte laufen durch Kabeldurchführungen hinüber	L'armoire est placée avec son côté gauche contre le côté droit de celle choisie ; les fils passent par des passages de câbles	El armario se coloca con su lado izquierdo contra el lado derecho del elegido; los cables pasan por pasos de cables
 The file could not be opened as an OpenECraft project.	Die Datei konnte nicht als OpenECraft-Projekt geöffnet werden.	Le fichier n'a pas pu être ouvert comme projet OpenECraft.	El archivo no se ha podido abrir como proyecto de OpenECraft.

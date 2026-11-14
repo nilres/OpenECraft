@@ -586,6 +586,7 @@ Door NC data (DWG)	柜门 NC 数据 (DWG)
 Door NC data (DXF)	柜门 NC 数据 (DXF)
 Door clearance	柜门间隙
 Door cutouts (CSV)	柜门开孔 (CSV)
+Door hinge	柜门铰链
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
 Double-click	双击
@@ -652,6 +653,7 @@ Earthing system	接地系统
 Easting, northing	东坐标、北坐标
 Eaves	檐口
 Edge length of the routing grid: smaller is finer and slower	布线栅格的边长：越小越精细，但越慢
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	从正面看柜门铰链所在的边：3D 视图从此边打开柜门，柜门导线经过此边
 Edit in table	在表格中编辑
 Edit in table…	在表格中编辑…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	编辑模式：在总平面图中将建筑物拖到其位置并旋转；单击房间不再打开它
@@ -900,6 +902,7 @@ Import symbol library…	导入符号库…
 Import symbol table…	导入符号表…
 Imported	已导入
 Imported {} entries of the property library	已导入属性库的 {} 个条目
+Imported {} into the parts database	已将 {} 导入部件数据库
 Imported {} macros	已导入 {} 个宏
 Imported {} page templates	已导入 {} 个页模板
 Imported {} parts into the database	已将 {} 个部件导入数据库
@@ -2016,7 +2019,7 @@ The current page belongs to option {}.	当前页属于选项 {}。
 The devices do not fit onto the rail	设备无法放入导轨
 The dictionary is empty: collect the texts from the project.	词典为空：请从项目中收集文本。
 The door seen from the front: door devices and cutouts	从正面看柜门：柜门设备和开孔
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	从内侧看柜门（铰链在右侧）：线槽和柜门后的接线
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	从内侧看柜门（镜像）：线槽和柜门后的接线
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	仅当此文字（含占位符）不为空时才绘制该元素，例如修订表的行
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	该机柜的左侧紧靠所选机柜的右侧；导线通过电缆过孔在它们之间穿过
 The horizontal wire	水平导线

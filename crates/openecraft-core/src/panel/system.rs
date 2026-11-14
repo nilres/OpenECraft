@@ -263,16 +263,17 @@ fn is_catalog_body(part: &str) -> bool {
     part.is_empty() || crate::parts::catalog().iter().any(|p| p.number == part)
 }
 
-/// Depth of the front of a maker's enclosure that opens with the door (door leaf,
-/// hinges, lock and the frame around the opening), mm.
+/// Depth of the front of a maker's enclosure that opens with the door when its model
+/// does not mark the door ([`crate::parts::DOOR_PAINT`]), mm.
 const DOOR_ZONE: f32 = 20.0;
 
 /// The maker's model of an enclosure: the 3D model of its part (imported with the
 /// enclosure packages of the Rittal configurator), when the part is no part of the
 /// built-in catalog and its model has the enclosure's width and height. Triangles in
 /// the 3D view's coordinates (x right, y up, z towards the door), each with the wall it
-/// belongs to: the face whose plane it lies in, [`Face::Door`] for the front that
-/// opens with the door, `None` inside (mounting plate, gland plate, flanges).
+/// belongs to: [`Face::Door`] for the door (painted [`crate::parts::DOOR_PAINT`],
+/// otherwise the front [`DOOR_ZONE`]), the face whose plane it lies in, `None` inside
+/// (mounting plate, gland plate, flanges).
 pub fn maker_model(prj: &crate::model::Project, e: &Enclosure) -> Option<Vec<(Option<Face>, crate::parts::vec3::Tri)>> {
     if e.is_room() || e.is_assembly() || is_catalog_body(&e.part) {
         return None;
@@ -285,10 +286,13 @@ pub fn maker_model(prj: &crate::model::Project, e: &Enclosure) -> Option<Vec<(Op
     }
     let (w, h, d) = (e.width, e.height, e.depth);
     let wall = e.wall() + 3.0;
-    let face_of = |t: &crate::parts::vec3::Tri| {
+    // The door as the model marks it (its bodies), otherwise the front.
+    let marked = mesh.colors.len() == mesh.triangles.len() && mesh.colors.contains(&crate::parts::DOOR_PAINT);
+    let face_of = |i: usize, t: &crate::parts::vec3::Tri| {
         let c: [f32; 3] = std::array::from_fn(|k| (t[0][k] + t[1][k] + t[2][k]) / 3.0);
         let flat = |k: usize, at: f32| t.iter().all(|v| (v[k] - at).abs() <= wall);
-        if c[2] >= d - DOOR_ZONE {
+        let door = if marked { mesh.colors[i] == crate::parts::DOOR_PAINT } else { c[2] >= d - DOOR_ZONE };
+        if door {
             Some(Face::Door)
         } else if flat(0, 0.0) {
             Some(Face::Left)
@@ -308,7 +312,8 @@ pub fn maker_model(prj: &crate::model::Project, e: &Enclosure) -> Option<Vec<(Op
         mesh.triangles
             .iter()
             .map(|t| t.map(|k| mesh.vertices[k as usize]))
-            .map(|t| (face_of(&t), t))
+            .enumerate()
+            .map(|(i, t)| (face_of(i, &t), t))
             .collect(),
     )
 }

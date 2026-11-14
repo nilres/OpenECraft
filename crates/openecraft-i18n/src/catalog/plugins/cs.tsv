@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Tyčový zemnič: jeho délka, mm (výc
 Earth rod: x of its place in the floor plan of the building, mm	Tyčový zemnič: x jeho místa v půdorysu budovy, mm
 Earth rod: z of its place in the floor plan of the building, mm	Tyčový zemnič: z jeho místa v půdorysu budovy, mm
 Edge length of the routing grid in mm	Délka hrany rastru vedení v mm
+Edge the door is hinged at, seen from the front: left or right	Hrana, na které jsou dveře zavěšeny, při pohledu zepředu: left nebo right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Označení elektrických přístrojů oddělená čárkami nebo mezerami (prázdné = odebrat propojení)
 Electrical engineering	Elektrotechnika
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Prvky (Line, Rect, Text, Image) v mm od levého horního rohu oblasti razítka v poli items
@@ -915,6 +916,7 @@ Unknown check: {}	Neznámá kontrola: {}
 Unknown class: {}	Neznámá třída: {}
 Unknown data type: {}	Neznámý datový typ: {}
 Unknown direction {}: left, right, up or down	Neznámý směr {}: left, right, up nebo down
+Unknown door hinge: {}	Neznámá strana závěsů: {}
 Unknown earth electrode: {}	Neznámý zemnič: {}
 Unknown earthing system: {}	Neznámá soustava uzemnění: {}
 Unknown face {}	Neznámá plocha {}

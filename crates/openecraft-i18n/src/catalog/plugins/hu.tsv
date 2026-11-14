@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Rúdföldelő: a hossza, mm (alapértel
 Earth rod: x of its place in the floor plan of the building, mm	Rúdföldelő: helyének x koordinátája az épület alaprajzán, mm
 Earth rod: z of its place in the floor plan of the building, mm	Rúdföldelő: helyének z koordinátája az épület alaprajzán, mm
 Edge length of the routing grid in mm	A nyomvonalrács élhossza mm-ben
+Edge the door is hinged at, seen from the front: left or right	Az él, amelyen az ajtó zsanérjai vannak, elölről nézve: left vagy right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Villamos készülékazonosítók vesszővel vagy szóközzel elválasztva (üres = a kapcsolatok eltávolítása)
 Electrical engineering	Villamosmérnöki terület
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elemek (Line, Rect, Text, Image) mm-ben a szövegmező területének bal felső sarkától egy items tömbben
@@ -915,6 +916,7 @@ Unknown check: {}	Ismeretlen ellenőrzés: {}
 Unknown class: {}	Ismeretlen osztály: {}
 Unknown data type: {}	Ismeretlen adattípus: {}
 Unknown direction {}: left, right, up or down	Ismeretlen irány {}: left, right, up vagy down
+Unknown door hinge: {}	Ismeretlen zsanéroldal: {}
 Unknown earth electrode: {}	Ismeretlen földelő: {}
 Unknown earthing system: {}	Ismeretlen földelési rendszer: {}
 Unknown face {}	Ismeretlen felület: {}

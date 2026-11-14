@@ -590,6 +590,7 @@ Door NC data (DWG)	Дані ЧПК дверцят (DWG)
 Door NC data (DXF)	Дані ЧПК дверей (DXF)
 Door clearance	Вільний простір дверей
 Door cutouts (CSV)	Вирізи дверей (CSV)
+Door hinge	Петлі дверей
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
 Double-click	Подвійне клацання
@@ -656,6 +657,7 @@ Earthing system	Тип системи заземлення
 Easting, northing	Східна, північна координата
 Eaves	Карниз
 Edge length of the routing grid: smaller is finer and slower	Довжина ребра сітки прокладання: менше – точніше й повільніше
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Край, на якому навішені двері, вигляд спереду: 3D-вигляд відчиняє двері там, і проводи дверей проходять через нього
 Edit in table	Редагувати в таблиці
 Edit in table…	Редагувати в таблиці…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Режим редагування: перетягуйте будівлі на їхні місця на ситуаційному плані й повертайте їх; клацання по приміщенню більше не відкриває його
@@ -906,6 +908,7 @@ Import symbol library…	Імпорт бібліотеки символів…
 Import symbol table…	Імпортувати таблицю символів…
 Imported	Імпортовано
 Imported {} entries of the property library	Імпортовано записів бібліотеки властивостей: {}
+Imported {} into the parts database	Імпортовано до бази виробів: {}
 Imported {} macros	Імпортовано макросів: {}
 Imported {} page templates	Імпортовано шаблонів сторінок: {}
 Imported {} parts into the database	Імпортовано виробів до бази даних: {}
@@ -2037,7 +2040,7 @@ The current page belongs to option {}.	Поточна сторінка нале�
 The devices do not fit onto the rail	Пристрої не вміщуються на рейці
 The dictionary is empty: collect the texts from the project.	Словник порожній: зберіть тексти з проєкту.
 The door seen from the front: door devices and cutouts	Двері спереду: пристрої на дверях і вирізи
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Двері зсередини (петлі праворуч): кабельні канали та монтаж проводів за дверима
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Двері зсередини (дзеркально): кабельні канали та монтаж проводів за дверима
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Елемент малюється, лише якщо цей текст із заповнювачами не порожній, наприклад рядки таблиці змін
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Корпус стоїть лівою стороною впритул до правої сторони вибраного; проводи проходять між ними через кабельні проходи
 The horizontal wire	Горизонтальний провід

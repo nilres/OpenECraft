@@ -745,7 +745,7 @@ pub static ALL: &[Def] = &[
     d(C::LayoutDoor, "layout_door", tr_const!("Door (front)"), I::Door).toggle().tip(tr_const!("The door seen from the front: door devices and cutouts")),
     d(C::LayoutDoorInside, "layout_door_inside", tr_const!("Door (inside)"), I::Door)
         .toggle()
-        .tip(tr_const!("The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door")),
+        .tip(tr_const!("The door seen from the inside (mirrored): cable ducts and the wiring behind the door")),
     d(C::LayoutWalls, "layout_walls", tr_const!("Walls"), I::Wall)
         .menu()
         .tip(tr_const!("Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts")),

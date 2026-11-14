@@ -16,7 +16,7 @@ fn macro_file() -> String {
   <O161 A1="161/2"><Stream Id="62491">{SQUARE}</Stream></O161>
   <O180 A1="180/3" R9="161/2" R2481="179/1" A2482="0/0/0" A2483="1/0/0" A2484="0/0/1"><P11 P20468="Rittal\Items\1_3D.ema"/></O180>
   <O170 A1="170/4" R2481="180/3" A2482="10/20/30" A2483="1/0/0" A2484="0/1/0" A2486="10039" A2601="600/500"><P11 P20045="??_??@Front outside;"/></O170>
-  <O180 A1="180/5" R9="161/2" R2481="170/4" A2482="5/5/0" A2483="1/0/0" A2484="0/1/0"><P2605 P22001="RIT.2"/></O180>
+  <O180 A1="180/5" R9="161/2" R2481="170/4" A2482="5/5/0" A2483="1/0/0" A2484="0/1/0"><P144 P20013="enclosure_door"/><P2605 P22001="RIT.2"/></O180>
   <O175 A1="175/6" R9="161/7" R2481="170/4" A2482="1/2/0" A2483="1/0/0" A2484="0/1/0" A2488="571" A2606="11/11"/>
   <O175 A1="175/8" R2481="170/4" A2482="0/0/0" A2483="1/0/0" A2484="0/1/0" A2488="560" A2606="11/11"/>
  </MacroVariant>
@@ -42,6 +42,7 @@ fn objects_are_placed_in_their_parents() {
     assert_eq!(layout.bodies.len(), 2);
     let (housing, door) = (&layout.bodies[0], &layout.bodies[1]);
     assert!(housing.main && !door.main);
+    assert!(!housing.door && door.door, "the door is marked");
     assert_eq!((housing.part.as_str(), housing.source.as_str()), ("", r"Rittal\Items\1_3D.ema"));
     // The housing's y is the macro's z, its z (x × y) the macro's -y.
     assert_eq!(housing.mesh.vertices[2], [1.0, 0.0, 1.0]);
@@ -52,7 +53,10 @@ fn objects_are_placed_in_their_parents() {
     assert_eq!(door.part, "RIT.2");
     assert_eq!(door.mesh.vertices[0], [15.0, -30.0, 25.0]);
     assert_eq!(layout.areas, [Area { kind: AreaKind::Placing, surface: 10039, origin: [11.0, -30.0, 22.0], x: [1.0, 0.0, 0.0], y: [0.0, 0.0, 1.0], size: [11.0, 11.0] }]);
-    assert_eq!(layout.mesh().triangles.len(), 4);
+    // The door's triangles painted as the door.
+    let mesh = layout.mesh();
+    assert_eq!(mesh.triangles.len(), 4);
+    assert_eq!(mesh.colors, [UNPAINTED, UNPAINTED, DOOR_PAINT, DOOR_PAINT]);
     assert_eq!(layout.main_bounds(), Some(([0.0, 0.0, 0.0], [1.0, 0.0, 1.0])));
 }
 
@@ -83,6 +87,11 @@ fn rittal_macro() {
     eprintln!("{} bodies, {} triangles, {} surfaces, {} areas ({placing} placing), main {:?}", layout.bodies.len(), layout.mesh().triangles.len(), layout.surfaces.len(), layout.areas.len(), layout.main_bounds());
     assert_eq!((layout.bodies.len(), layout.surfaces.len(), layout.areas.len(), placing), (17, 20, 181, 105));
     let (min, max) = layout.main_bounds().unwrap();
+    // The door with the six bodies mounted on it (lock inserts and cams, seals).
+    let door: Vec<&Body> = layout.bodies.iter().filter(|b| b.door).collect();
+    assert_eq!((door.len(), door[0].part.as_str()), (7, "RIT.398818"));
+    let mesh = layout.mesh();
+    assert_eq!(mesh.colors.iter().filter(|c| **c == DOOR_PAINT).count(), door.iter().map(|b| b.mesh.triangles.len()).sum::<usize>());
     for (got, want) in min.iter().chain(&max).zip([-300.0, -170.1, 0.0, 300.0, 175.0, 600.0]) {
         assert!((got - want).abs() < 0.01, "{min:?} {max:?}");
     }

@@ -61,7 +61,7 @@ pub use rooms::{
 };
 pub(crate) use rooms::inner_footprint;
 pub use system::{apply_system, components, maker_model, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{AirRod, Building, Electrode, ElectrodeKind, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
+pub use crate::model::panel::{AirRod, Building, DoorHinge, Electrode, ElectrodeKind, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -354,6 +354,7 @@ impl Default for Enclosure {
             mounting_origin:None,
             mounting_size: None,
             door_clearance: 0.0,
+            door_hinge: DoorHinge::Left,
             items: Vec::new(),
             climate: Default::default(),
             build: Default::default(),
@@ -681,6 +682,10 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
         }
         // The mounting plate of the maker's enclosure (part data `Mounting origin:
         // 25/12.5/20`: its top left front corner from the left, top and rear, mm).
+        // The door of the maker's enclosure hinged on the right (`Door hinge: right`).
+        if let Some(hinge) = pd.tech_value("Door hinge").and_then(DoorHinge::from_key) {
+            e.door_hinge = hinge;
+        }
         if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
             e.mounting_origin = Some(origin);
             // Its size when it is not centred (`Mounting size: 550 x 575`).
@@ -2319,7 +2324,8 @@ pub fn door_path(e: &Enclosure, at: V3, route: &Route, plate: V3) -> (Vec<V3>, u
 
 /// Where a wire of a device joins the wiring on the plate, and the length from its
 /// connection point to there: down to the plate, or for door devices along the door
-/// (through its cable ducts) to the hinge (left) and across the hinge loop; door
+/// (through its cable ducts) to the hinge ([`Enclosure::door_hinge`]) and across the
+/// hinge loop, joining the plate at its edge on that side; door
 /// devices also return their route on the door. Without a connection point the wire
 /// starts at the device centre, at its front.
 pub fn wiring_end(e: &Enclosure, it: &PanelItem, point: Option<&PlacedPoint>) -> (WireEnd, f32, Option<Route>) {
@@ -2330,11 +2336,12 @@ pub fn wiring_end(e: &Enclosure, it: &PanelItem, point: Option<&PlacedPoint>) ->
     match it.face {
         Face::Plate => (WireEnd { pos: at, exit: point.map(|pt| pt.exit) }, height, None),
         Face::Door => {
-            let (_, ph) = e.plate_size();
-            let r = route_door(e, at, p(DOOR_FRAME / 2.0, at.y));
+            let (pw, ph) = e.plate_size();
+            let right = e.door_hinge == DoorHinge::Right;
+            let r = route_door(e, at, p(if right { e.width - DOOR_FRAME / 2.0 } else { DOOR_FRAME / 2.0 }, at.y));
             let hinge = r.points.last().copied().unwrap_or(at);
             let length = r.plate_length + height + DOOR_LOOP + (e.depth - PLATE_Z);
-            (WireEnd::at(p(0.0, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
+            (WireEnd::at(p(if right { pw } else { 0.0 }, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
         }
         wall => {
             // Devices on the walls (fans, lights): straight to the nearest plate edge.

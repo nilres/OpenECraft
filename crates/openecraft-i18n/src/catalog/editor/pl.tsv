@@ -591,6 +591,7 @@ Door NC data (DWG)	Dane NC drzwi (DWG)
 Door NC data (DXF)	Dane NC drzwi (DXF)
 Door clearance	Wolna przestrzeń drzwi
 Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
+Door hinge	Zawiasy drzwi
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
 Double-click	Dwukrotne kliknięcie
@@ -657,6 +658,7 @@ Earthing system	Układ sieci
 Easting, northing	Współrzędna wschodnia, północna
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Długość krawędzi siatki prowadzenia: mniejsza oznacza dokładniej i wolniej
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Krawędź, na której zawieszone są drzwi, widziana z przodu: widok 3D otwiera tam drzwi, a przewody drzwi biegną przez nią
 Edit in table	Edytuj w tabeli
 Edit in table…	Edytuj w tabeli…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Tryb edycji: przeciągnij budynki na ich miejsca na planie sytuacyjnym i obróć je; kliknięcie pomieszczenia już go nie otwiera
@@ -907,6 +909,7 @@ Import symbol library…	Importuj bibliotekę symboli…
 Import symbol table…	Importuj tablicę symboli…
 Imported	Zaimportowane
 Imported {} entries of the property library	Zaimportowano {} wpisów biblioteki właściwości
+Imported {} into the parts database	Zaimportowano do bazy artykułów: {}
 Imported {} macros	Zaimportowano makra: {}
 Imported {} page templates	Zaimportowano szablony stron: {}
 Imported {} parts into the database	Zaimportowano artykuły do bazy danych: {}
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Bieżąca strona należy do opcji {}.
 The devices do not fit onto the rail	Urządzenia nie mieszczą się na szynie
 The dictionary is empty: collect the texts from the project.	Słownik jest pusty: zbierz teksty z projektu.
 The door seen from the front: door devices and cutouts	Drzwi widziane z przodu: urządzenia na drzwiach i wycięcia
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Drzwi widziane od wewnątrz (zawiasy po prawej): kanały kablowe i okablowanie za drzwiami
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Drzwi widziane od wewnątrz (lustrzane odbicie): kanały kablowe i okablowanie za drzwiami
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Element jest rysowany tylko, gdy ten tekst z symbolami zastępczymi nie jest pusty, np. wiersze tabeli rewizji
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Obudowa przylega lewą stroną do prawej strony wybranej obudowy; przewody przechodzą między nimi przez przepusty kablowe
 The horizontal wire	Przewód poziomy

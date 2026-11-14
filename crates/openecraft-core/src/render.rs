@@ -1576,19 +1576,26 @@ pub fn draw_enclosure(
             d.rect(tf(0.0, 0.0), tf(pw, ph), 0.25, Ink::Frame, false);
         }
         Face::Door => {
-            // Door frame, hinges on the left, handle on the right.
+            // Door frame, hinges on the hinge side, handle on the other.
             let f = panel::DOOR_FRAME;
             let (a, b) = (tf(f, f), tf(e.width - f, e.height - f));
             for (s, t) in [(a, p(b.x, a.y)), (p(b.x, a.y), b), (b, p(a.x, b.y)), (p(a.x, b.y), a)] {
                 d.line(s, t, 0.15, Ink::Frame, true);
             }
+            // x from the hinge edge.
+            let right = e.door_hinge == panel::DoorHinge::Right;
+            let x = |from_hinge: f32| if right { e.width - from_hinge } else { from_hinge };
+            // A rectangle between two distances from the hinge edge, its corners in order.
+            let rect = |a: f32, b: f32, y0: f32, y1: f32| (tf(x(a).min(x(b)), y0), tf(x(a).max(x(b)), y1));
             for y in [0.15, 0.85] {
                 let hy = e.height * y;
-                d.rect(tf(-3.0, hy - 25.0), tf(3.0, hy + 25.0), 0.25, Ink::Frame, false);
+                let (s, t) = rect(-3.0, 3.0, hy - 25.0, hy + 25.0);
+                d.rect(s, t, 0.25, Ink::Frame, false);
             }
             let hy = e.height / 2.0;
-            d.rect(tf(e.width - 32.0, hy - 50.0), tf(e.width - 14.0, hy + 50.0), 0.0, Ink::Fill, true);
-            d.rect(tf(e.width - 32.0, hy - 50.0), tf(e.width - 14.0, hy + 50.0), 0.25, Ink::Line, false);
+            let (h0, h1) = rect(e.width - 32.0, e.width - 14.0, hy - 50.0, hy + 50.0);
+            d.rect(h0, h1, 0.0, Ink::Fill, true);
+            d.rect(h0, h1, 0.25, Ink::Line, false);
         }
         wall => {
             // The sheet, its mounting area inside the flanges (dashed) and, for walls

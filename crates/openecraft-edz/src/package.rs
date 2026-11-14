@@ -131,13 +131,23 @@ struct Housing<'a, F: Fn([f32; 3]) -> [f32; 3]> {
     turn: &'a F,
     min: [f32; 3],
     top: f32,
+    width: f32,
 }
 
 impl<'a, F: Fn([f32; 3]) -> [f32; 3]> Housing<'a, F> {
     fn of(layout: &'a crate::layout::Layout, turn: &'a F) -> Option<Self> {
         let (a, b) = layout.main_bounds()?;
         let (a, b) = (turn(a), turn(b));
-        Some(Housing { layout, turn, min: std::array::from_fn(|k| a[k].min(b[k])), top: a[1].max(b[1]) })
+        Some(Housing { layout, turn, min: std::array::from_fn(|k| a[k].min(b[k])), top: a[1].max(b[1]), width: (a[0] - b[0]).abs() })
+    }
+
+    /// The door is hinged on the right: the parts placed beside the door on the surface
+    /// it hangs on (the hinge blocks on the housing) lie in the right half.
+    fn hinged_right(&self) -> bool {
+        let bodies = &self.layout.bodies;
+        let hung_on: Vec<&str> = bodies.iter().filter(|b| b.door && !b.parent.is_empty()).map(|b| b.parent.as_str()).collect();
+        let xs: Vec<f32> = bodies.iter().filter(|b| !b.door && !b.main && hung_on.contains(&b.parent.as_str())).flat_map(|b| b.mesh.vertices.iter().map(|v| self.point(*v)[0])).collect();
+        !xs.is_empty() && xs.iter().sum::<f32>() / xs.len() as f32 > self.width / 2.0
     }
 
     fn point(&self, v: [f32; 3]) -> [f32; 3] {
@@ -312,6 +322,10 @@ pub fn read(bytes: &[u8], step: Option<StepReader>) -> Result<Edz, String> {
             if let Some((origin, [w, h])) = housing.plate() {
                 let sep = if first.tech_data.is_empty() { "" } else { "\n" };
                 first.tech_data = format!("{}{sep}Mounting origin: {}\nMounting size: {} x {}", first.tech_data, origin.map(mm).join("/"), mm(w), mm(h));
+            }
+            if housing.hinged_right() {
+                let sep = if first.tech_data.is_empty() { "" } else { "\n" };
+                first.tech_data = format!("{}{sep}Door hinge: right", first.tech_data);
             }
             // The faces of an enclosure of the part, as the panel layout makes it.
             let mut prj = openecraft_core::model::Project::default();

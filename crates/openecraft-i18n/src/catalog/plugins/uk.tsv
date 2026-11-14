@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Вертикальний заземлю
 Earth rod: x of its place in the floor plan of the building, mm	Вертикальний заземлювач: x його місця на плані будівлі, мм
 Earth rod: z of its place in the floor plan of the building, mm	Вертикальний заземлювач: z його місця на плані будівлі, мм
 Edge length of the routing grid in mm	Довжина ребра сітки прокладання в мм
+Edge the door is hinged at, seen from the front: left or right	Край, на якому навішені двері, вигляд спереду: left або right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Позначення електричних пристроїв, розділені комами або пробілами (порожньо = вилучити зв’язки)
 Electrical engineering	Електротехніка
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Елементи (Line, Rect, Text, Image) у мм від лівого верхнього кута області основного напису в масиві items
@@ -915,6 +916,7 @@ Unknown check: {}	Невідома перевірка: {}
 Unknown class: {}	Невідомий клас: {}
 Unknown data type: {}	Невідомий тип даних: {}
 Unknown direction {}: left, right, up or down	Невідомий напрямок {}: left, right, up або down
+Unknown door hinge: {}	Невідома сторона петель: {}
 Unknown earth electrode: {}	Невідомий заземлювач: {}
 Unknown earthing system: {}	Невідомий тип системи заземлення: {}
 Unknown face {}	Невідома грань {}

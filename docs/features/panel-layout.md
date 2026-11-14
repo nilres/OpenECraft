@@ -126,6 +126,13 @@ equipment of the mounting plate; their wires are routed over the hinge; the moun
 layout page shows the plate and every face with items (door, side walls, rear wall,
 roof, bottom) side by side.
 
+The door is hinged on the left or the right (*Door hinge* in the enclosure's
+properties, `door_hinge` of `add_enclosure` / `set_enclosure`, part data
+`Door hinge: right` of a maker's enclosure part): the door view shows the hinges and
+the handle on their sides, the 3D view opens the door about that edge, and the door
+wires run along the door to that edge, over the hinge loop and into the plate's edge
+on that side.
+
 ## Restricted areas
 
 An enclosure part can keep areas of its faces free (*Restricted areas* in the part's
@@ -145,10 +152,13 @@ face, place and size), where they are added, changed and removed.
 An enclosure whose part is a maker's part (not one of the built-in catalog) with a 3D
 model of the enclosure's width and height, as the enclosure packages of the Rittal
 configurator bring it, shows that model in the 3D view and the 3D exports instead of
-the generic body, walls, door and plates. Its triangles go with the wall whose plane
-they lie in (hidden with it when the walls in front are hidden), with the door when
-they lie in the front 20 mm (translucent, opening with it) or stay inside (mounting
-plate, gland plate, flanges). Plinths, baying kits and 19-inch rails stay generic.
+the generic body, walls, door and plates. The door and what is mounted on it (hinge
+leaves, locks, seals), as the maker's macro marks them, are translucent and open with
+the door; a model without that mark opens its front 20 mm. The other triangles go
+with the wall whose plane they lie in (hidden with it when the walls in front are
+hidden) or stay inside (mounting plate, gland plate, flanges). Plinths, baying kits
+and 19-inch rails stay generic. The door opens on its hinge side (the Rittal AX is
+hinged on the right, see [Enclosure door](#enclosure-door)).
 
 ## Drilling pattern and NC data
 

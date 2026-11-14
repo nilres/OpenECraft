@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Jordspyd: dets længde, mm (standard 30
 Earth rod: x of its place in the floor plan of the building, mm	Jordspyd: x for dets placering i bygningens plan, mm
 Earth rod: z of its place in the floor plan of the building, mm	Jordspyd: z for dets placering i bygningens plan, mm
 Edge length of the routing grid in mm	Kantlængde for føringsgitteret i mm
+Edge the door is hinged at, seen from the front: left or right	Kanten, døren er hængslet ved, set forfra: left eller right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriske enhedsmærkninger adskilt af kommaer eller mellemrum (tom = fjern tilknytningerne)
 Electrical engineering	Elektroteknik
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementer (Line, Rect, Text, Image) i mm fra tegningshovedets øverste venstre hjørne i et array items
@@ -915,6 +916,7 @@ Unknown check: {}	Ukendt kontrol: {}
 Unknown class: {}	Ukendt klasse: {}
 Unknown data type: {}	Ukendt datatype: {}
 Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
+Unknown door hinge: {}	Ukendt hængselside: {}
 Unknown earth electrode: {}	Ukendt jordelektrode: {}
 Unknown earthing system: {}	Ukendt jordingssystem: {}
 Unknown face {}	Ukendt flade {}

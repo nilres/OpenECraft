@@ -1052,3 +1052,26 @@ fn restricted_areas_lie_on_their_faces_in_3d() {
     assert!(left.iter().all(|q| (q[0] - e.wall()).abs() < 1e-4), "{left:?}");
     assert_eq!((left[2][1], left[2][2]), (60.0, 50.0));
 }
+
+#[test]
+fn door_wires_run_over_the_hinge_side() {
+    let mut e = Enclosure { width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    let lamp = PanelItem { id: 1, face: Face::Door, x: 290.0, y: 100.0, w: 22.0, h: 22.0, d: 40.0, ..Default::default() };
+    let (end, _, route) = wiring_end(&e, &lamp, None);
+    assert_eq!(end.pos.x, 0.0, "the plate's left edge");
+    assert!((route.unwrap().points.last().unwrap().x - DOOR_FRAME / 2.0).abs() < 1e-3);
+    // Hinged on the right: over the right frame to the plate's right edge.
+    e.door_hinge = DoorHinge::Right;
+    let (end, _, route) = wiring_end(&e, &lamp, None);
+    assert_eq!(end.pos.x, e.plate_size().0);
+    assert!((route.unwrap().points.last().unwrap().x - (600.0 - DOOR_FRAME / 2.0)).abs() < 1e-3);
+    // From the part data of a maker's enclosure, and as a key.
+    let mut prj = Project::default();
+    prj.parts.push(crate::parts::Part { number: "RIT.1".into(), width: 600.0, height: 600.0, depth: 350.0, tech_data: "Door hinge: right".into(), ..Default::default() });
+    assert_eq!(new_enclosure(&mut prj, "RIT.1", "+A1").door_hinge, DoorHinge::Right);
+    assert_eq!((DoorHinge::from_key(" Right "), DoorHinge::from_key("top")), (Some(DoorHinge::Right), None));
+    // Saved only when not the default.
+    let json = serde_json::to_value(&e).unwrap();
+    assert_eq!(json["door_hinge"], "right");
+    assert!(serde_json::to_value(Enclosure::default()).unwrap().get("door_hinge").is_none());
+}

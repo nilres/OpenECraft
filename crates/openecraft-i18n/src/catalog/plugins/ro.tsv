@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Electrod vertical: lungimea lui, mm (im
 Earth rod: x of its place in the floor plan of the building, mm	Electrod vertical: x al locului lui în planul clădirii, mm
 Earth rod: z of its place in the floor plan of the building, mm	Electrod vertical: z al locului lui în planul clădirii, mm
 Edge length of the routing grid in mm	Lungimea laturii grilei de pozare în mm
+Edge the door is hinged at, seen from the front: left or right	Marginea pe care este prinsă ușa în balamale, văzută din față: left sau right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Identificatorii dispozitivelor electrice separați prin virgule sau spații (gol = eliminare legături)
 Electrical engineering	Electrotehnică
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elemente (Line, Rect, Text, Image) în mm de la colțul stânga sus al zonei cartușului într-o matrice items
@@ -915,6 +916,7 @@ Unknown check: {}	Verificare necunoscută: {}
 Unknown class: {}	Clasă necunoscută: {}
 Unknown data type: {}	Tip de date necunoscut: {}
 Unknown direction {}: left, right, up or down	Direcție necunoscută {}: left, right, up sau down
+Unknown door hinge: {}	Parte necunoscută a balamalelor: {}
 Unknown earth electrode: {}	Priză de pământ necunoscută: {}
 Unknown earthing system: {}	Sistem de legare la pământ necunoscut: {}
 Unknown face {}	Față necunoscută {}

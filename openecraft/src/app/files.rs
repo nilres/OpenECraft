@@ -494,6 +494,17 @@ impl App {
         match list {
             Ok(list) => {
                 let n = list.len();
+                // One part by its number and description, more by their count and numbers.
+                let (text, detail) = match &list[..] {
+                    [p] => (tr_fmt!("Imported {} into the parts database", p.number), p.description.clone()),
+                    more => {
+                        let mut numbers: Vec<&str> = more.iter().take(5).map(|p| p.number.as_str()).collect();
+                        if more.len() > 5 {
+                            numbers.push("…");
+                        }
+                        (tr_fmt!("Imported {} parts into the database", n), numbers.join(", "))
+                    }
+                };
                 for p in list {
                     // A part the project has already takes what the import brings.
                     parts::refresh_in_project(&mut self.session.prj, &p);
@@ -502,9 +513,9 @@ impl App {
                 self.parts_db.sort();
                 parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
                 self.session.prj.refresh_rail_mounts();
-                self.notify(ctx, tr_fmt!("Imported {} parts into the database", n));
+                self.notify_popup(ctx, Message { text, detail, level: crate::style::Level::Ok });
             }
-            Err(e) => self.notify_error(ctx, tr_fmt!("Parts import failed: {}", e)),
+            Err(e) => self.notify_popup(ctx, Message { text: tr_fmt!("Parts import failed: {}", e), detail: String::new(), level: crate::style::Level::Error }),
         }
     }
 

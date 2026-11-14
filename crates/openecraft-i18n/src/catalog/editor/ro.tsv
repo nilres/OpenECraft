@@ -591,6 +591,7 @@ Door NC data (DWG)	Date NC ușă (DWG)
 Door NC data (DXF)	Date NC ușă (DXF)
 Door clearance	Distanță liberă față de ușă
 Door cutouts (CSV)	Decupaje ușă (CSV)
+Door hinge	Balamalele ușii
 Door: {} devices, {} cutouts	Ușă: {} dispozitive, {} decupaje
 Dot	Punct
 Double-click	Dublu clic
@@ -657,6 +658,7 @@ Earthing system	Sistem de legare la pământ
 Easting, northing	Coordonată est, nord
 Eaves	Streașină
 Edge length of the routing grid: smaller is finer and slower	Lungimea laturii grilei de pozare: mai mică înseamnă mai fină și mai lentă
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Marginea pe care este prinsă ușa în balamale, văzută din față: vederea 3D deschide ușa acolo, iar firele ușii trec peste ea
 Edit in table	Editare în tabel
 Edit in table…	Editare în tabel…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Mod de editare: trageți clădirile la locul lor în planul de situație și rotiți-le; un clic pe o încăpere nu o mai deschide
@@ -907,6 +909,7 @@ Import symbol library…	Import bibliotecă de simboluri…
 Import symbol table…	Import tabel de simboluri…
 Imported	Importat
 Imported {} entries of the property library	{} intrări din biblioteca de proprietăți au fost importate
+Imported {} into the parts database	{} a fost importat în baza de date de articole
 Imported {} macros	S-au importat {} macro-uri
 Imported {} page templates	S-au importat {} șabloane de pagină
 Imported {} parts into the database	S-au importat {} articole în baza de date
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Pagina curentă aparține opțiunii {}.
 The devices do not fit onto the rail	Dispozitivele nu încap pe șină
 The dictionary is empty: collect the texts from the project.	Dicționarul este gol: colectați textele din proiect.
 The door seen from the front: door devices and cutouts	Ușa văzută din față: dispozitive de ușă și decupaje
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ușa văzută din interior (balamale în dreapta): canale de cablu și cablarea din spatele ușii
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Ușa văzută din interior (în oglindă): canale de cablu și cablarea din spatele ușii
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementul este desenat doar când acest text cu substituenții săi nu este gol, de ex. rândurile unui tabel de revizii
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Carcasa stă cu partea stângă lipită de partea dreaptă a celei alese; conductoarele trec între ele prin treceri de cabluri
 The horizontal wire	Firul orizontal

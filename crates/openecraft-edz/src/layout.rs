@@ -10,7 +10,7 @@
 //! (vertex, point) index pairs, followed by neighbours and outline edges.
 
 use openecraft_parts::xml::{self, Element};
-use openecraft_parts::{Mesh3d, MAX_TRIANGLES};
+use openecraft_parts::{Mesh3d, DOOR_PAINT, MAX_TRIANGLES, UNPAINTED};
 use std::collections::HashMap;
 
 type V3 = [f64; 3];
@@ -25,6 +25,10 @@ pub struct Body {
     /// Placed in the macro itself (the housing of an enclosure), not on a mounting
     /// surface of another body.
     pub main: bool,
+    /// The door of an enclosure (`enclosure_door`) or placed on it (hinge leaves, lock).
+    pub door: bool,
+    /// Id of the object it is placed on (`R2481`), empty in the macro itself.
+    pub parent: String,
     /// The mesh in the frame of the macro, mm.
     pub mesh: Mesh3d,
 }
@@ -77,9 +81,12 @@ pub struct Layout {
 }
 
 impl Layout {
-    /// All bodies in one mesh; bodies beyond [`MAX_TRIANGLES`] are left out.
+    /// All bodies in one mesh; bodies beyond [`MAX_TRIANGLES`] are left out. With a
+    /// door the triangles are painted: the door's [`DOOR_PAINT`], the others
+    /// [`UNPAINTED`].
     pub fn mesh(&self) -> Mesh3d {
         let mut out = Mesh3d::default();
+        let painted = self.bodies.iter().any(|b| b.door);
         for body in &self.bodies {
             if out.triangles.len() + body.mesh.triangles.len() > MAX_TRIANGLES {
                 continue;
@@ -87,6 +94,9 @@ impl Layout {
             let base = out.vertices.len() as u32;
             out.vertices.extend(&body.mesh.vertices);
             out.triangles.extend(body.mesh.triangles.iter().map(|t| t.map(|k| k + base)));
+            if painted {
+                out.colors.extend(std::iter::repeat_n(if body.door { DOOR_PAINT } else { UNPAINTED }, body.mesh.triangles.len()));
+            }
         }
         out
     }
@@ -154,6 +164,16 @@ struct Objects<'a> {
 }
 
 impl<'a> Objects<'a> {
+    /// The object and its parents, innermost first.
+    fn chain(&self, el: &'a Element) -> Vec<&'a Element> {
+        let mut out = vec![el];
+        // Placements nest a few levels; a cycle in a damaged file ends the walk.
+        while let Some(parent) = out.last().and_then(|e| e.attribute("R2481")).and_then(|id| self.by_id.get(id).copied()).filter(|_| out.len() < 32) {
+            out.push(parent);
+        }
+        out
+    }
+
     fn frames(&self, el: &Element) -> Vec<Frame> {
         let mut out = Vec::new();
         let mut at = Some(el);
@@ -265,10 +285,14 @@ pub fn decode(text_of_file: &str) -> Option<Layout> {
                 let frames = objects.frames(el);
                 let vertices = mesh.vertices.iter().map(|v| f32s(place(&frames, v.map(f64::from)))).collect();
                 let parent = el.attribute("R2481").and_then(|id| objects.by_id.get(id));
+                // The door, or a body placed on it.
+                let door = objects.chain(el).iter().any(|o| o.name == "O180" && property(o, "P20013") == Some("enclosure_door"));
                 layout.bodies.push(Body {
                     part: property(el, "P22001").unwrap_or_default().to_string(),
                     source: property(el, "P20468").unwrap_or_default().to_string(),
                     main: parent.is_none_or(|p| p.name == "O179"),
+                    door,
+                    parent: el.attribute("R2481").unwrap_or_default().to_string(),
                     mesh: Mesh3d { vertices, ..mesh },
                 });
             }

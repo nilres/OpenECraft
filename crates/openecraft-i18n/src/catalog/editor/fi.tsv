@@ -591,6 +591,7 @@ Door NC data (DWG)	Oven NC-tiedot (DWG)
 Door NC data (DXF)	Oven NC-tiedot (DXF)
 Door clearance	Oven vapaa tila
 Door cutouts (CSV)	Oviaukot (CSV)
+Door hinge	Oven saranat
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
 Double-click	Kaksoisnapsautus
@@ -657,6 +658,7 @@ Earthing system	Maadoitusjärjestelmä
 Easting, northing	Itäkoordinaatti, pohjoiskoordinaatti
 Eaves	Räystäs
 Edge length of the routing grid: smaller is finer and slower	Reititysruudukon sivun pituus: pienempi on tarkempi ja hitaampi
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Reuna, johon ovi on saranoitu, edestä katsottuna: 3D-näkymä avaa oven siitä ja oven johdot kulkevat sen yli
 Edit in table	Muokkaa taulukossa
 Edit in table…	Muokkaa taulukossa…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Muokkaustila: vedä rakennukset paikoilleen asemapiirroksessa ja käännä niitä; huoneen napsautus ei enää avaa sitä
@@ -907,6 +909,7 @@ Import symbol library…	Tuo symbolikirjasto…
 Import symbol table…	Tuo symbolitaulukko…
 Imported	Tuotu
 Imported {} entries of the property library	Ominaisuuskirjastosta tuotiin {} merkintää
+Imported {} into the parts database	{} tuotu osatietokantaan
 Imported {} macros	Tuotu {} makroa
 Imported {} page templates	Tuotu {} sivumallia
 Imported {} parts into the database	Tuotu {} osaa tietokantaan
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Nykyinen sivu kuuluu vaihtoehtoon {}.
 The devices do not fit onto the rail	Laitteet eivät mahdu kiskolle
 The dictionary is empty: collect the texts from the project.	Sanakirja on tyhjä: kerää tekstit projektista.
 The door seen from the front: door devices and cutouts	Ovi edestä katsottuna: ovilaitteet ja aukot
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Ovi sisältä katsottuna (saranat oikealla): johtokourut ja johdotus oven takana
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Ovi sisältä katsottuna (peilattuna): johtokourut ja johdotus oven takana
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementti piirretään vain, kun tämä teksti paikkamerkkeineen ei ole tyhjä, esim. revisiotaulukon rivit
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
 The horizontal wire	Vaakasuora johdin

@@ -1140,9 +1140,21 @@ impl PanelUi {
             let e = &prj.layout.enclosures[k];
             // A room under a roof that slopes its ceiling: its walls and ceiling cut.
             let ceiling = if e.is_room() { roofs::ceiling_with(prj, &plant, k) } else { None };
+            // The door turns about its hinge edge: the left front edge, or the right one
+            // (mirrored).
+            let right = e.door_hinge == panel::DoorHinge::Right;
+            let swing_dir = |v: V3| {
+                if right {
+                    let r = swing_dir([-v[0], v[1], v[2]]);
+                    [-r[0], r[1], r[2]]
+                } else {
+                    swing_dir(v)
+                }
+            };
+            let hinge_x = if right { e.width } else { 0.0 };
             let swing = |q: V3| {
-                let r = swing_dir([q[0], q[1], q[2] - e.depth]);
-                [r[0], r[1], r[2] + e.depth]
+                let r = swing_dir([q[0] - hinge_x, q[1], q[2] - e.depth]);
+                [r[0] + hinge_x, r[1], r[2] + e.depth]
             };
             let problems = panel::problems_of(&self.findings(prj, an, k));
             #[allow(clippy::too_many_arguments)]

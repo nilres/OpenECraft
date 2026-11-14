@@ -150,7 +150,8 @@ the device. Floor-standing parts stand upright on the floor of a room.
   (Parts Manager and the editor; `parts_import` only attaches the STEP file). The
   front of the mounting plate (or else the largest surface facing the front in the rear
   half of the housing) gives the part data `Mounting origin: 25/12.5/20` and
-  `Mounting size: 550 x 575`, so
+  `Mounting size: 550 x 575`, the side of the hinge blocks beside the door
+  `Door hinge: right`, so
   that an enclosure of the part gets that plate (see [panel layout](panel-layout.md)).
   The restricted areas of the macro become the part's *Restricted areas* (mounting
   data, `placing plate 0/0 550 x 20; cutout left 10/20 30 x 40`: kind, face, place and
@@ -161,7 +162,7 @@ the device. Floor-standing parts stand upright on the floor of a room.
 
 ### Placing an EPLAN symbol
 
-Open **Import parts** and select the EDZ or the vendor's article XML. On desktop, article XML can load a companion EMA from the same directory. Under **Insert center → Devices**, search for the part, select it, then select the variant before placing it. Each row has a preview and lists unresolved properties or library references. A loose EMA can also be opened using **Import symbol library**. Explicitly tagged multi-device windows can be placed as native macros.
+Open **Import parts** and select the EDZ or the vendor's article XML; a box at the bottom right tells the result (the part's number and description, or how many parts) and closes after a few seconds or on a click. On desktop, article XML can load a companion EMA from the same directory. Under **Insert center → Devices**, search for the part, select it, then select the variant before placing it. Each row has a preview and lists unresolved properties or library references. A loose EMA can also be opened using **Import symbol library**. Explicitly tagged multi-device windows can be placed as native macros.
 
 The decoder reads PXF window macros, embedded drawing blocks, affine transforms, basic vector graphics, text and selected property fields. Its built-in SPECIAL mappings cover PLC and device contacts 13, 17 and 20, plug and bus contact forms 34, 35 and 37, two-sided form 22 with a common designation, and overview form 40. These forms use the contact drawings in the 2007 EPLAN IEC symbol overview, pp. 1–2. Physical XYZ connection points continue to belong to the panel model.
 
