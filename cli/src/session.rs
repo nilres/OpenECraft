@@ -8,14 +8,17 @@ use openecraft_core::archive::{self, Conversion};
 use openecraft_api::Plugins;
 use openecraft_core::history::History;
 use openecraft_core::model::Project;
+use openecraft_core::storage::folder;
 use openecraft_i18n::{tr, tr_fmt};
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 pub struct Session {
     project: Option<Project>,
     pub path: Option<PathBuf>,
     /// Archive the project was read from: saving writes a project file, not the archive.
     pub archive: Option<PathBuf>,
+    /// The files of a split project as they were when it was opened or last saved.
+    tracked: Option<folder::Tracked>,
     /// Project as last opened / saved; `None` if it was never saved.
     saved: Option<Project>,
     history: Option<History>,
@@ -38,6 +41,7 @@ impl Session {
             project: None,
             path: None,
             archive: None,
+            tracked: None,
             saved: None,
             history: None,
             server,
@@ -57,8 +61,20 @@ impl Session {
     }
 
     /// Replaces the project. `path` is the file it was read from (counts as saved).
-    pub fn replace(&mut self, mut prj: Project, path: Option<PathBuf>) {
+    pub fn replace(&mut self, prj: Project, path: Option<PathBuf>) {
+        // Not read from that folder: nothing is known of its files, so a save
+        // replaces none that differs from the project.
+        let tracked = path.as_deref().filter(|p| folder::is_index(p)).map(folder::Tracked::unknown);
+        self.replace_tracked(prj, path, tracked);
+    }
+
+    /// Like [`Session::replace`], with the files of a split project as they were read.
+    fn replace_tracked(&mut self, mut prj: Project, path: Option<PathBuf>, tracked: Option<folder::Tracked>) {
         prj.normalize();
+        if path.as_deref().is_some_and(folder::is_index) {
+            prj.scatter_ids();
+        }
+        self.tracked = tracked;
         self.history = Some(History::new(&prj));
         self.saved = path.is_some().then(|| prj.clone());
         self.path = path;
@@ -68,10 +84,13 @@ impl Session {
 
     /// Opens a project file or archive (converted to the current file format).
     pub fn open(&mut self, path: &str) -> Result<Conversion, String> {
-        let bytes = std::fs::read(path).map_err(|e| tr_fmt!("Cannot read {}: {}", path, openecraft_i18n::io_error(&e)))?;
-        let (prj, conv) = archive::read_project(&bytes)?;
+        if folder::is_index(Path::new(path)) {
+            let (prj, conv, tracked) = folder::open_tracked(Path::new(path))?;
+            self.replace_tracked(prj, Some(PathBuf::from(path)), Some(tracked));
+            return Ok(conv);
+        }
+        let (prj, conv, is_archive) = read_project(Path::new(path))?;
         // Saving writes a project file, not the archive.
-        let is_archive = archive::is_archive(&bytes);
         let file = (!is_archive).then(|| PathBuf::from(path));
         self.replace(prj, file);
         if is_archive {
@@ -84,14 +103,32 @@ impl Session {
 
     /// Saves to `path`, or to the file of the project. Returns the file.
     pub fn save(&mut self, path: Option<&str>) -> Result<PathBuf, String> {
-        let prj = self.project()?;
+        let prj = self.project.as_ref().ok_or_else(no_project)?;
         let no_file = || match &self.archive {
             Some(a) => tr_fmt!("{} is an archive: pass a path to save the project as a project file", a.display()),
             None => tr("The project has no file yet: pass a path").to_string(),
         };
         let path = path.map(PathBuf::from).or_else(|| self.path.clone()).ok_or_else(no_file)?;
-        std::fs::write(&path, prj.to_json()).map_err(|e| tr_fmt!("Cannot write {}: {}", path.display(), openecraft_i18n::io_error(&e)))?;
-        self.saved = Some(prj.clone());
+        if !folder::is_index(&path) {
+            std::fs::write(&path, prj.to_json()).map_err(|e| tr_fmt!("Cannot write {}: {}", path.display(), openecraft_i18n::io_error(&e)))?;
+            self.saved = Some(prj.clone());
+            self.path = Some(path.clone());
+            return Ok(path);
+        }
+        let saved = folder::save_tracked(&path, prj, &mut self.tracked)?;
+        if saved.foreign > 0 {
+            // Another program changed files of the folder meanwhile (git): they were
+            // kept and are taken over into the project and its undo steps, which
+            // must not take back the changes of others.
+            let names = self.tracked.as_ref().map(|t| t.foreign().clone()).unwrap_or_default();
+            let (disk, _, tracked) = folder::open_tracked(&path)?;
+            if let (Some(history), Some(prj)) = (&mut self.history, &mut self.project) {
+                history.rebase(prj, |p| openecraft_core::storage::take_over(p, &disk, &names));
+            }
+            self.tracked = Some(tracked);
+        }
+        self.project_mut()?.scatter_ids();
+        self.saved = self.project.clone();
         self.path = Some(path.clone());
         Ok(path)
     }
@@ -156,6 +193,17 @@ impl Session {
         h.redo(prj);
         Ok(can)
     }
+}
+
+/// Reads a project file, the index of a split project or an archive (`true`).
+pub fn read_project(path: &Path) -> Result<(Project, Conversion, bool), String> {
+    if folder::is_index(path) {
+        let (prj, conv) = folder::open(path)?;
+        return Ok((prj, conv, false));
+    }
+    let bytes = std::fs::read(path).map_err(|e| tr_fmt!("Cannot read {}: {}", path.display(), openecraft_i18n::io_error(&e)))?;
+    let (prj, conv) = archive::read_project(&bytes)?;
+    Ok((prj, conv, archive::is_archive(&bytes)))
 }
 
 fn no_project() -> String {

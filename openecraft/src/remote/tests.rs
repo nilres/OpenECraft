@@ -90,3 +90,75 @@ fn a_failed_status_marks_the_connection_lost() {
     assert!(!r.lost);
     assert_eq!(r.project(), Some(crate::startup::ServerProject { url: "http://srv:8091".into(), name: "plant".into() }));
 }
+
+fn cancelled() -> (Remote, Project) {
+    let mut r = opened();
+    r.url = "http://127.0.0.1:9".into();
+    let project = Project { pages: vec![Page::new(4, "1", "original", PageKind::Schematic)], ..Default::default() };
+    r.shared.as_mut().unwrap().base = project.clone();
+    (r, project)
+}
+
+#[test]
+fn cancelling_waits_for_the_lock_answer_before_releasing() {
+    use openecraft_core::collab::Lock;
+    let (mut r, project) = cancelled();
+    let target = Target::Page(4);
+    r.shared.as_mut().unwrap().requested.insert(target);
+    r.cancel_locks("s1", vec![target]);
+    r.release_cancelled(&project);
+    assert!(!r.busy(), "sending release first could leave a later lock held forever");
+    assert_eq!(r.cancelled_locks.len(), 1);
+    r.take_status(Status { revision: 0, locks: vec![Lock { target, user: "anna".into(), session: "s1".into() }] }, &[target]);
+    r.release_cancelled(&project);
+    assert!(r.busy(), "the acquired unused lock is now released");
+    assert!(r.cancelled_locks.is_empty());
+}
+
+#[test]
+fn cancellation_never_releases_locks_protecting_other_local_edits() {
+    use openecraft_core::collab::Lock;
+    let (mut r, mut project) = cancelled();
+    let target = Target::Page(4);
+    r.shared.as_mut().unwrap().locks.push(Lock { target, user: "anna".into(), session: "s1".into() });
+    project.pages[0].description = "unrelated local edit".into();
+    r.cancel_locks("s1", vec![target]);
+    r.release_cancelled(&project);
+    assert!(!r.busy());
+    assert!(r.shared.as_ref().unwrap().owns(target));
+    assert!(r.cancelled_locks.is_empty());
+}
+
+#[test]
+fn failed_requests_and_old_sessions_cannot_release_current_locks() {
+    let (mut r, project) = cancelled();
+    r.cancel_locks("old", vec![Target::Page(4)]);
+    assert!(r.cancelled_locks.is_empty());
+    r.shared.as_mut().unwrap().requested.insert(Target::Page(4));
+    r.cancel_locks("s1", vec![Target::Page(4)]);
+    r.shared.as_mut().unwrap().denied(&[Target::Page(4)]);
+    r.release_cancelled(&project);
+    assert!(!r.busy());
+    assert!(r.cancelled_locks.is_empty());
+    r.cancel_locks("s1", vec![Target::Page(4)]);
+    r.shared.as_mut().unwrap().session.session = "s2".into();
+    r.release_cancelled(&project);
+    assert!(!r.busy() && r.cancelled_locks.is_empty());
+}
+
+#[test]
+fn a_failed_refresh_does_not_hold_unused_fresh_locks_forever() {
+    use openecraft_core::collab::Lock;
+    let (mut r, project) = cancelled();
+    let target = Target::Page(4);
+    let sh = r.shared.as_mut().unwrap();
+    sh.locks.push(Lock { target, user: "anna".into(), session: "s1".into() });
+    sh.fresh.insert(target);
+    r.fetching = true;
+    r.cancel_locks("s1", vec![target]);
+    r.release_cancelled(&project);
+    assert!(!r.busy() && !r.cancelled_locks.is_empty());
+    r.fetching = false;
+    r.release_cancelled(&project);
+    assert!(r.busy() && r.cancelled_locks.is_empty());
+}

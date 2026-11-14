@@ -606,6 +606,7 @@ fn with_data(out: &mut Project, src: &Project) {
         preplanning,
         review: _,
         next_id: _,
+        id_floor: _,
         symbol_cache: _,
     } = src;
     out.info = info.clone();
@@ -702,6 +703,7 @@ fn same_data(a: &Project, b: &Project) -> bool {
         preplanning,
         review: _,
         next_id: _,
+        id_floor: _,
         symbol_cache: _,
     } = a;
     pages.iter().map(|p| p.id).eq(b.pages.iter().map(|p| p.id))

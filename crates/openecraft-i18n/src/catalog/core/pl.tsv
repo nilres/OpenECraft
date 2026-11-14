@@ -189,6 +189,7 @@ Centre horizontally	Wyśrodkuj w poziomie
 Centre vertically	Wyśrodkuj w pionie
 Centrifugal pump	Pompa odśrodkowa
 Change	Zmiana
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Zmienione w folderze projektu przez inny program, a także w otwartym projekcie: {}{}. Zapisz projekt pod inną nazwą albo otwórz go ponownie i powtórz zmiany
 Changed since mounted	Zmienione od montażu
 Changed since wired	Zmienione od podłączenia
 Changeover contact	Styk przełączny
@@ -1584,6 +1585,7 @@ The archive contains no project	Archiwum nie zawiera projektu
 The archive has no manifest	Archiwum nie ma manifestu
 The archive is damaged	Archiwum jest uszkodzone
 The archive unpacks to more than {} MB	Archiwum po rozpakowaniu zajmuje ponad {} MB
+The archive was written by a newer version (archive version {})	Archiwum zostało zapisane przez nowszą wersję (wersja archiwum {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Należy podać producenta zestawu (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Szereg szaf w swoim pomieszczeniu: rzut w kształcie litery L, ściana wewnętrzna, drzwi i okno, szereg szaf na swoim miejscu, szyna z gniazdem na ścianie, oprawa awaryjna montowana na ścianie i korytko kablowe pod sufitem.
 The configuration is not a JSON object	Konfiguracja nie jest obiektem JSON
@@ -1596,7 +1598,10 @@ The embedded document {} is damaged	Osadzony dokument {} jest uszkodzony
 The file is empty	Plik jest pusty
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Plik został zapisany przez nowszą wersję (format {}): dane nieznane tej wersji zostaną utracone podczas zapisywania
 The first column must be Key	Pierwsza kolumna musi być Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Folder {} zawiera już projekt {}: projekt podzielony wymaga własnego folderu
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Folder {} zawiera pliki, które nie należą do żadnego projektu ({}): projekt podzielony wymaga własnego folderu
 The function definition needs a key and a name	Definicja funkcji wymaga klucza i nazwy
+The index of the project names no file layout: it was not written by OpenECraft	Indeks projektu nie podaje układu plików: nie został zapisany przez OpenECraft
 The last page cannot be deleted	Nie można usunąć ostatniej strony
 The macro box has no items left	Ramka makra nie zawiera już żadnych elementów
 The next free id is already in use	Następny wolny identyfikator jest już zajęty
@@ -1606,7 +1611,10 @@ The pages were changed after the submission; submit the revision again	Strony zo
 The plot boundary crosses itself	Granica działki przecina samą siebie
 The plot boundary encloses no area	Granica działki nie obejmuje żadnej powierzchni
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Granica działki nie jest wielokątem: przecina samą siebie lub ma mniej niż trzy narożniki
+The project cannot be written as files: {}	Projektu nie można zapisać jako plików: {}
+The project file {} is missing	Brak pliku projektu {}
 The project has no panel layout	Projekt nie ma zabudowy szafy
+The project was written by a newer version (file layout {})	Projekt został zapisany przez nowszą wersję (układ plików {})
 The property needs a name	Właściwość wymaga nazwy
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Przepompownia zabudowana w dwóch szeregowanych szafach stojących: system szyn zbiorczych, szyny i korytka, urządzenia na drzwiach i uchwyty, wentylator z filtrem, oświetlenie, szyna PE, dławnice kablowe, przepust kablowy, obliczenia klimatyzacji, zapełnienie korytek i trasowanie 3D.
 The revision is already released	Rewizja jest już wydana
@@ -1926,6 +1934,7 @@ yellow	żółty
 {} has no MTTFd, B10d, PL or PFHd	{} nie ma MTTFd, B10d, PL ani PFHd
 {} has no door or window {}	{} nie ma drzwi ani okna {}
 {} has nothing to manufacture	{} nie ma nic do wyprodukowania
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} zawiera nierozwiązany konflikt scalania git: plik został scalony jako tekst. Wybierz jedną wersję pliku (git checkout --ours lub --theirs), a następnie skonfiguruj sterownik scalania dla projektów podzielonych (merge_project_file) przed ponownym scaleniem
 {} is a built-in function definition	{} jest wbudowaną definicją funkcji
 {} is a built-in property	{} jest wbudowaną właściwością
 {} is a built-in scheme	{} jest wbudowanym schematem

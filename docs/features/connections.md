@@ -38,23 +38,13 @@ with F2 or a double-click. The dialog selects the full tag: type the new tag and
 press Enter, or press Escape to cancel. References on all pages follow the rename,
 which can be undone in one step. Duplicate tags and changes to released pages are
 rejected. Shared projects acquire the project and affected page locks before
-applying the change. Automation can use `rename_cable` with `cable` and `tag`.
-For shared editing, update both editor and project server together: the editor
-uses `POST /api/v1/projects/{name}/snapshot` with its session to load newer pages
-without losing the identity of its own locks. Older servers lack this endpoint;
-a failed refresh leaves the rename unapplied. The existing GET snapshot remains
-available and keeps all session identifiers redacted.
-
-The HTTP multi-user regression test can be run on Windows with PowerShell 7:
-`./scripts/test-cable-rename.ps1` (Rust toolchain on PATH). It builds and starts a
-disposable server bound to loopback on a free port, creates two editors and a
-viewer with random credentials, and runs the actual editor dialog against it.
-It checks lock conflicts, newer server pages, another user's rename, viewer
-permissions, undo/redo, saved references and a failed transport connection.
-The server is stopped afterwards; logs and synthetic server data are kept under
-`target/rename-multiuser`. No existing project server is contacted. The live test
-is ignored in the ordinary suite because it needs this external server; the script
-runs it explicitly with `--ignored`.
+applying the change. Cancelling releases only the locks newly requested by the
+dialog, after their request finishes; locks protecting other local edits remain.
+The action is also in *Connections › Cables*. Automation can use `rename_cable`
+with `cable` (current full tag) and `tag` (new full tag).
+Older project servers are supported: if the session snapshot endpoint is absent,
+the editor combines the older snapshot with the session's lock status at the same
+revision. A newer revision during loading is retried instead of mixing states.
 
 A connection definition point on a wire sets
 number, colour and cross-section of the whole connection and the core of its wire; a

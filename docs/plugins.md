@@ -1,9 +1,5 @@
 # Plugins
 
-Cable tags can be changed with the built-in `rename_cable` command (parameters
-`cable`: current full tag, `tag`: new full tag). It uses the same validation and
-reference updates as the editor, including duplicate names and released pages.
-
 OpenECraft is extended through the `openecraft-api` crate. A plugin adds
 
 | Extension | What it is | Editor | Command line / MCP |

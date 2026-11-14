@@ -13,11 +13,12 @@ pub(super) struct Draft {
     focus: bool,
     waiting: bool,
     error: Option<String>,
+    locks: Option<(String, Vec<Target>)>,
 }
 
 impl Draft {
     fn new(cable: &Cable) -> Self {
-        Self { id: cable.id, old: cable.tag.clone(), text: cable.tag.clone(), focus: true, waiting: false, error: None }
+        Self { id: cable.id, old: cable.tag.clone(), text: cable.tag.clone(), focus: true, waiting: false, error: None, locks: None }
     }
 
     fn prepare(&self, prj: &Project) -> Result<Project, String> {
@@ -27,6 +28,19 @@ impl Draft {
         let mut next = prj.clone();
         ops::rename_project_cable(&mut next, self.id, &self.text)?;
         Ok(next)
+    }
+
+    fn cancel(&mut self, remote: &mut Remote) {
+        if let Some((session, targets)) = self.locks.take() { remote.cancel_locks(&session, targets); }
+    }
+
+    fn request_locks(&mut self, remote: &mut Remote, targets: Vec<Target>) {
+        if let Some(sh) = &remote.shared {
+            let acquired = targets.iter().copied().filter(|t| !sh.owns(*t) && !sh.requested.contains(t)).collect();
+            self.locks = Some((sh.session.session.clone(), acquired));
+        }
+        remote.lock(targets);
+        self.waiting = true;
     }
 }
 
@@ -64,13 +78,14 @@ impl App {
     }
 
     pub(super) fn open_cable_rename(&mut self, id: u64) {
+        if let Some(mut draft) = self.rename_cable.take() { draft.cancel(&mut self.remote); }
         self.rename_cable = self.session.prj.cables.iter().find(|c| c.id == id).map(Draft::new);
     }
 
     pub(super) fn rename_cable_window(&mut self, ctx: &egui::Context) {
         let Some(mut draft) = self.rename_cable.take() else { return; };
         let (window, esc) = self.dialogs.window(ctx, tr("Rename cable"), "rename_cable", None);
-        if esc { return; }
+        if esc { draft.cancel(&mut self.remote); return; }
         let mut open = true;
         let mut submit = draft.waiting && !self.remote.busy();
         let mut cancel = false;
@@ -100,7 +115,7 @@ impl App {
             });
             if submit || cancel { output.response.surrender_focus(); }
         });
-        if !open || cancel { return; }
+        if !open || cancel { draft.cancel(&mut self.remote); return; }
         if submit {
             let result = draft.prepare(&self.session.prj).and_then(|next| locks(&self.remote, &self.session.prj, &next).map(|free| (next, free)));
             match result {
@@ -110,14 +125,14 @@ impl App {
                     return;
                 }
                 Ok((_, free)) if !draft.waiting => {
-                    self.remote.lock(free);
-                    draft.waiting = true;
+                    draft.request_locks(&mut self.remote, free);
                 }
                 Ok(_) => {
+                    draft.cancel(&mut self.remote);
                     draft.waiting = false;
                     draft.error = Some(tr("Could not acquire all locks. The cable was not renamed.").into());
                 }
-                Err(error) => { draft.waiting = false; draft.error = Some(error); }
+                Err(error) => { draft.cancel(&mut self.remote); draft.waiting = false; draft.error = Some(error); }
             }
         }
         self.rename_cable = Some(draft);

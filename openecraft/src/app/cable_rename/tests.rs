@@ -2,8 +2,13 @@ use super::*;
 use openecraft_core::{collab::{Lock, Opened, Shared, Snapshot}, geom::p};
 
 fn live_frame(app: &mut App, ctx: &egui::Context, enter: bool) {
-    let events = if enter { vec![egui::Event::Key { key: egui::Key::Enter, physical_key: None, pressed: true, repeat: false, modifiers: egui::Modifiers::NONE }] } else { Vec::new() };
+    live_frame_key(app, ctx, enter.then_some(egui::Key::Enter));
+}
+
+fn live_frame_key(app: &mut App, ctx: &egui::Context, key: Option<egui::Key>) {
+    let events = key.into_iter().map(|key| egui::Event::Key { key, physical_key: None, pressed: true, repeat: false, modifiers: egui::Modifiers::NONE }).collect();
     ctx.run_ui(egui::RawInput { time: Some(0.), screen_rect: Some(egui::Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(1000., 700.))), events, ..Default::default() }, |ui| {
+        app.dialogs.begin(ui.input(|i| i.key_pressed(egui::Key::Escape)), &[]);
         app.poll_remote(ui.ctx());
         app.rename_cable_window(ui.ctx());
     }).drop_without_applying_deltas();
@@ -31,7 +36,7 @@ fn live_rename(app: &mut App, ctx: &egui::Context, tag: &str) {
 /// Run explicitly against a disposable loopback server with three authenticated
 /// accounts; never points at a user's project server or uses customer data.
 #[test]
-#[ignore = "requires a disposable loopback project server and OPENECRAFT_RENAME_TEST_* credentials; see docs/features/connections.md"]
+#[ignore = "requires a disposable loopback project server and OPENECRAFT_RENAME_TEST_* credentials; see scripts/test-cable-rename.ps1"]
 fn live_http_multiuser_rename_is_atomic_and_preserves_other_users_changes() {
     let url = std::env::var("OPENECRAFT_RENAME_TEST_URL").expect("test server URL");
     assert!(url.starts_with("http://127.0.0.1:"), "only disposable loopback servers are permitted");
@@ -55,6 +60,28 @@ fn live_http_multiuser_rename_is_atomic_and_preserves_other_users_changes() {
     assert_ne!(alice.remote.shared.as_ref().unwrap().session, bob.remote.shared.as_ref().unwrap().session);
     assert!(alice.remote.may(ProjectRight::EditProject));
     assert!(bob.remote.may(ProjectRight::EditPages));
+
+    // Cancel after sending the request, before the UI has processed its answer.
+    // A pre-existing page lock belongs to the user, not to this dialog.
+    alice.remote.lock(vec![Target::Page(1)]); live_idle(&mut alice, &a);
+    let before_cancel = alice.session.prj.clone();
+    alice.open_cable_rename(10);
+    alice.rename_cable.as_mut().unwrap().text = "-Cancelled".into();
+    live_frame(&mut alice, &a, false); live_frame(&mut alice, &a, false);
+    live_frame(&mut alice, &a, true);
+    assert!(alice.rename_cable.as_ref().unwrap().waiting);
+    live_frame_key(&mut alice, &a, Some(egui::Key::Escape)); live_idle(&mut alice, &a);
+    assert!(alice.rename_cable.is_none());
+    assert_eq!(alice.session.prj, before_cancel);
+    let shared = alice.remote.shared.as_ref().unwrap();
+    assert!(shared.owns(Target::Page(1)));
+    assert!(!shared.owns(Target::Project) && !shared.owns(Target::Page(2)));
+    bob.remote.lock(vec![Target::Project, Target::Page(2)]); live_idle(&mut bob, &b);
+    let shared = bob.remote.shared.as_ref().unwrap();
+    assert!(shared.owns(Target::Project) && shared.owns(Target::Page(2)));
+    bob.remote.release(vec![Target::Project, Target::Page(2)]); live_idle(&mut bob, &b);
+    alice.remote.release(vec![Target::Page(1)]); live_idle(&mut alice, &a);
+    println!("PASS: cancelling a pending rename releases new locks and keeps existing locks");
 
     // Alice has an older snapshot and does not yet know Bob holds page 2.
     bob.remote.lock(vec![Target::Page(2)]); live_idle(&mut bob, &b);
@@ -262,4 +289,23 @@ fn escape_and_switching_projects_discard_the_dialog() {
     app.open_cable_rename(10);
     app.replace_project(project(), None);
     assert!(app.rename_cable.is_none());
+}
+
+#[test]
+fn a_cancelled_draft_only_owns_its_new_requests() {
+    let prj = project();
+    let mut remote = remote(&prj);
+    remote.url = "http://127.0.0.1:9".into();
+    let sh = remote.shared.as_mut().unwrap();
+    sh.locks.push(Lock { target: Target::Project, user: "tester".into(), session: "mine".into() });
+    sh.fresh.insert(Target::Project);
+    sh.requested.insert(Target::Page(1));
+    let mut draft = Draft::new(&prj.cables[0]);
+    draft.request_locks(&mut remote, vec![Target::Project, Target::Page(1), Target::Page(2)]);
+    assert_eq!(draft.locks, Some(("mine".into(), vec![Target::Page(2)])));
+    draft.cancel(&mut remote);
+    assert!(draft.locks.is_none());
+    // An unrelated in-flight page request is not this dialog's to release.
+    remote.release_cancelled(&prj);
+    assert!(remote.shared.as_ref().unwrap().requested.contains(&Target::Page(1)));
 }

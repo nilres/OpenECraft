@@ -1,3 +1,13 @@
+<#
+Run with PowerShell 7 and a Rust toolchain on PATH:
+    ./scripts/test-cable-rename.ps1
+Builds and starts a disposable loopback server on a free port with two editors
+and a viewer, using random credentials and synthetic projects only. Runs the
+ignored HTTP test explicitly: conflicts, cancellation while a lock is pending,
+other users' changes, stale drafts, permissions, undo/redo and failed transport.
+Stops its server afterwards; keeps logs/data in target/rename-multiuser.
+No existing project server is contacted.
+#>
 param([string]$LogDirectory = (Join-Path $PSScriptRoot '../target/rename-multiuser'))
 $ErrorActionPreference = 'Stop'
 $repo = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path

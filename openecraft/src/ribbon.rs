@@ -167,7 +167,7 @@ pub static TABS: &[Tab] = &[
         context: false,
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::DevicesPane), S(C::StripsPane), S(C::PlcPane)]),
-            g("numbering", tr_const!("Numbering"), &[L(C::DeviceNumbering), S(C::RenameDevice), S(C::RenameCable)]),
+            g("numbering", tr_const!("Numbering"), &[L(C::DeviceNumbering), S(C::RenameDevice)]),
             g("terminals", tr_const!("Terminals"), &[L(C::TerminalStrips)]),
             g("plugs", tr_const!("Plugs"), &[L(C::Plugs)]),
             g("plc", tr_const!("PLC"), &[L(C::PlcOverview), S(C::PlcHardware)]),
@@ -186,7 +186,7 @@ pub static TABS: &[Tab] = &[
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::ConnectionsPane), S(C::CablesPane)]),
             g("numbering", tr_const!("Numbering"), &[L(C::WireNumbering)]),
-            g("cables", tr_const!("Cables"), &[L(C::CableEditor)]),
+            g("cables", tr_const!("Cables"), &[L(C::CableEditor), S(C::RenameCable)]),
             g("potentials", tr_const!("Potentials"), &[L(C::Potentials)]),
             g("harnesses", tr_const!("Harnesses"), &[L(C::Harnesses)]),
             g("field", tr_const!("Field wiring"), &[L(C::FieldWiring)]),
@@ -360,6 +360,7 @@ pub static BACKSTAGE: &[Entry] = &[
     Entry::Page(Page::Open),
     Entry::Command(C::Save),
     Entry::Command(C::SaveAs),
+    Entry::Command(C::SaveAsSplit),
     Entry::Command(C::SaveAsProjectTemplate),
     Entry::Page(Page::Import),
     Entry::Page(Page::Export),
