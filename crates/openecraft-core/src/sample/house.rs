@@ -75,7 +75,7 @@ pub(super) fn project() -> Project {
     let mut inverter = crate::model::DeviceData::default();
     inverter.parts.push(crate::parts::PartRef { number: "GEN.INV-PV-10KW".into(), count: 1, total: false });
     prj.devices.insert("=PV-T1".into(), inverter);
-    solar::strings::add_string(&mut prj, b3, 0, 0).expect("house");
+    solar::strings::add_string(&mut prj, solar::ArrayRef { roof: Some((b3, 0)), index: 0 }).expect("house");
     // The rails bonded to an equipotential bonding busbar under the inverter.
     crate::parts::ensure_in_project(&mut prj, &db, "GEN.MET-BAR-10");
     let mut bar = crate::model::DeviceData::default();

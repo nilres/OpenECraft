@@ -348,12 +348,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	配置図でその位置をクリックします
 Click where the air-termination rods go on the roofs in the site plan	配置図で屋根の上の突針の位置をクリックします
 Click where the earth rods go in the site plan	配置図で接地棒の位置をクリックします
+Click where the middle of a freestanding PV array goes in the site plan	配置図で野立てPVアレイの中心の位置をクリックします
+Click where the middle of a freestanding PV array goes · Esc: stop	野立てPVアレイの中心の位置をクリック · Esc：終了
 Click where the reference point is	基準点の位置をクリックします
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	3本の接続線が交わる点をクリック：T分岐は電線が出る機器と目標の順序を指定します · まだ接続線が交わらない場所では {} で回転 · Esc または右クリックで終了
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	2本の接続線が交わる点をクリック：交差は両者を接続し、線の各端をまず直進、次に横方向へ導きます · {} で回転 · Esc または右クリックで終了
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	2本の接続線が直角に交わる点、または接続点がコーナーをはさんで向き合う点をクリック：自動接続が有効なときはここへ接続線が描かれます · {} で回転 · Esc または右クリックで終了
 Click while moving	移動中にクリック
 Click, or drag it into the page	クリックするか、ページにドラッグします
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	建物の平面図の x {} mm、z {} mm をクリックしました。新しい天窓またはPVアレイがそこに置かれます。
 Climate (IEC 60890)	温度管理 (IEC 60890)
 Clipboard	クリップボード
 Close	閉じる
@@ -774,6 +777,12 @@ Frame of all pages that do not choose one	図枠を選択していないすべ�
 Free air	空中
 Free air factor	空中係数
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	取付板上の各デバイスの前面から扉までの空きスペース。部品は独自の値を加算します (Service space)
+Freestanding	野立て
+Freestanding PV array {}	野立てPVアレイ {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	野立てPVアレイ {} を配置しました。次はクリック · Esc：終了
+Freestanding PV array {}: {} modules	野立てPVアレイ {}：{} 枚のモジュール
+Freestanding PV array {}: {} modules, {} kWp	野立てPVアレイ {}：{} 枚のモジュール、{} kWp
+Freestanding PV arrays	野立てPVアレイ
 Freeze all routes	すべてのルートを固定
 Freeze route	ルートを固定
 Frequency	周波数
@@ -818,6 +827,7 @@ Graphic line	図形線
 Graphic rectangle	図形四角形
 Graphical form	グラフィカルフォーム
 Greatest distance of the conductor holders on the roof and on the walls	屋根と壁の導体支持金具の最大間隔
+Greatest distance of the posts along a table	架台に沿った杭の最大間隔
 Greatest distance of the roof hooks along a rail	レールに沿った屋根フックの最大間隔
 Grid	グリッド
 Grid north	座標北
@@ -840,6 +850,7 @@ Height above sea level	標高
 Height above the floor	床面からの高さ
 Height above the mounting plate	取付板からの高さ
 Height above the plate	板からの高さ
+Height of the lower edge of the modules above the ground	地面からのモジュール下端の高さ
 Height of the plinth, 0 without plinth	台座の高さ (0 は台座なし)
 Height of the rod above the covering	屋根葺き材からの突針の高さ
 Height of the test joints above the ground	試験用接続端子の地表からの高さ
@@ -1058,6 +1069,7 @@ Look for updates when OpenECraft starts	OpenECraft の起動時に更新を確�
 Looking for updates…	更新を確認しています…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	GitHub で OpenECraft の新しいリリースを探し、バックグラウンドでインストールします
 Loop	ループ
+Lower edge	下端
 Lowest fault current	最小故障電流
 Lowest: the highest open-circuit voltage	最低：最高開放電圧
 Macro boxes	マクロボックス
@@ -1105,6 +1117,7 @@ Messages of this session	このセッションのメッセージ
 Middle	中央
 Middle button	中ボタン
 Middle of the PV array in the floor plan of the building	建物の平面図におけるPVアレイの中心
+Middle of the PV array in the plant	施設内のPVアレイの中心
 Min. bend radius	最小曲げ半径
 Minimize the ribbon	リボンを最小化
 Mirror	反転
@@ -1115,6 +1128,7 @@ Model of a part (2D / 3D)	部品のモデル (2D / 3D)
 Modifier keys	モディファイアキー
 Module area	モジュール面積
 Module part; its size comes from the part	モジュール部品。サイズは部品から取得
+Modules on top of each other on a table	1 つの架台に上下に並ぶモジュール
 Motors feed the short circuit	モーターが短絡電流を供給
 Mounted on	取付先
 Mounting assistant: the panel items in mounting order with their place and part	取付アシスタント: 盤アイテムを取付順に位置と部品とともに表示
@@ -1229,6 +1243,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	エンクロージャーがまだありません – 「新しいエンクロージャー」で作成するか、「新しい部屋」でキャビネット用の部屋を作成します。
 No field cables: place the enclosures and field devices at nodes of the route network.	フィールドケーブルがありません。エンクロージャーとフィールドデバイスをルートネットワークのノードに配置してください。
 No filter fans: an air/air heat exchanger or a cooling unit	フィルターファンなし: 空気/空気熱交換器またはクーラー
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	野立てPVアレイはまだありません。敷地上の打込み杭に傾斜した架台を列に並べます。
 No gesture	ジェスチャーなし
 No harnesses defined.	ハーネスが定義されていません。
 No inverter	インバーターなし
@@ -1484,7 +1499,6 @@ Plant layout	プラントレイアウト
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	プラントレイアウト、ルートネットワーク、フィールドケーブル計画、等電位ボンディング、ケーブル付属品
 Plant segments with planned devices before the schematic	回路図作成前の、計画済みデバイスを含むプラントセグメント
 Plate outline, holes per diameter, cutouts	板の外形、直径ごとの穴、切り欠き
-Plot	敷地
 Plot boundary	敷地境界
 Plot boundary drawn: {} m²	敷地境界を描きました：{} m²
 Plot boundary drawn: {} m²; outside it: {}	敷地境界を描きました：{} m²。外側：{}
@@ -1507,6 +1521,8 @@ Position of the cursor	カーソルの位置
 Position of the device tag (instead of the tag block)	デバイスタグの位置 (タグブロックの代わり)
 Position of the label (terminal number, address …)	ラベルの位置 (端子番号、アドレス …)
 Positions are relative to the lower right corner of the symbol.	位置はシンボルの右下隅を基準とします。
+Post distance	杭の間隔
+Posts	杭
 Potential {}	電位 {}
 Potential: {}	電位: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	電源系統の負荷 (モーター、ドライブ、ヒーター、電源装置、変圧器) の電力と電流、各保護機器の負荷、分散率を考慮した需要、電源装置の負荷バジェット。
@@ -1701,6 +1717,8 @@ Rod holder	突針支持金具
 Roof pitch	屋根勾配
 Roof window	天窓
 Roof windows	天窓
+Roof {} of building {}	建物 {1} の屋根 {0}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	建物 {1} の屋根 {0}：レイアウトのプロパティで、クリックした位置にPVアレイまたは天窓を追加します
 Roofs	屋根
 Room	部屋
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	フロア {} に部屋を追加しました: 平面図で壁をドラッグするか新しい壁を描き、キャビネットはそのプロパティで部屋に入れます
@@ -1727,6 +1745,8 @@ Row	行
 Row distance	列間隔
 Row drawing	行図形
 Row labels	行ラベル
+Rows of tables behind each other	前後に並ぶ架台の列
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	施設内にあるものの手前に、杭の上の傾斜した架台を前向きに列に並べます。所定の位置へ移動してください
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	リリース済みのページ上の行は変更できません。テキスト内の改行は \\n と記述します。
 Rows per page	ページあたりの行数
 Rule libraries	ルールライブラリ
@@ -2055,6 +2075,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	生成されたページは残ります
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部品データベースはすべてのプロジェクトで共有されます。部品はデバイスに割り当てられたときにプロジェクトにコピーされます。
 The point's coordinates in the coordinate reference system	座標参照系での点の座標
+The post; its accessories are the table beams, rails and clamps	杭。付属品は架台の梁、レール、クランプです
 The project changed since the search.	検索後にプロジェクトが変更されました。
 The project check	プロジェクトのチェック
 The project database needs the desktop version: the browser cannot search folders.	プロジェクトデータベースにはデスクトップ版が必要です。ブラウザーではフォルダーを検索できません。
@@ -2197,6 +2218,7 @@ When it differs from the page	ページと異なる場合
 Where	位置
 Where neither wire has a termination chosen for it	どちらの電線にも端末処理が選ばれていない場合
 Where the point is in the plant; y: its height above the ground level of the plant	設備内の点の位置。y：設備の地盤面からの高さ
+Where the roof was clicked in the 3D view	3D ビューで屋根をクリックした位置
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	デバイスの構造の由来: シンボル周囲の構造と等しいアスペクトは継承され、構造ボックスへの出し入れに追従します。その他のアスペクトはデバイス固有のもので、変わりません。
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	電線の始点と終点: 部品データの接続ポイント、機能テンプレートから生成された接続ポイント、または一致する接続ポイントがない場合はデバイスの中心
 Whole building	建物全体
@@ -2235,6 +2257,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	デバイスとダクトの間の配線スペース
 With a user account of the server; replaces the access token	サーバーのユーザーアカウントを使用 (アクセストークンの代わり)
 With everything below it	下位のすべてを含む
+With its middle where the roof was clicked in the 3D view	中心を 3D ビューで屋根をクリックした位置に置く
 With the current pages; the approvals so far become void	現在のページで再提出します。これまでの承認は無効になります
 With values only	値があるもののみ
 Withdraw	取り下げ
@@ -2489,6 +2512,7 @@ x y	x y
 {} renamed: {} pages and devices	{} の名前を変更しました: {} 個のページとデバイス
 {} report pages output to {}	{} ページのレポートページを {} に出力しました
 {} routes frozen	{} 件のルートを固定しました
+{} rows of tables of {} × {} = {}, {}	架台 {} 列、{} × {} = {}、{}
 {} segments created, {} devices added, {} updated	セグメント {} 個を作成、デバイス {} 個を追加、{} 個を更新しました
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	ステーション {} 個、バスシステム {} 個、割り当てたカード {} 個、変更したアドレス {} 個、接続 {} 件、ケーブル {} 本
 {} structure identifiers added	{} 個の構造識別子を追加しました
@@ -2517,6 +2541,7 @@ x y	x y
 {} – revision {}, {}	{} – リビジョン {}、{}
 {} – {} ({} pages)	{} – {} ({} ページ)
 {} – {} here (Esc cancels)	{} – ここで{}（Esc でキャンセル）
+{}, freestanding	{}、野立て
 {}: click to show its floor plan	{}：クリックで平面図を表示
 {}: crimp together with the wire to {}	{}: {} への電線と一緒に圧着
 {}: drag to move it, R turns it, a double-click opens it	{}: ドラッグで移動、R で回転、ダブルクリックで開く

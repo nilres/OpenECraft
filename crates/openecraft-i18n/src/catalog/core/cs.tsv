@@ -557,6 +557,7 @@ Frame size	Konstrukční velikost
 Free	Volné
 Free air (mm)	Volné vedení (mm)
 Free run	Volné uložení
+Freestanding on posts	Pozemní na sloupcích
 Frequency converter	Frekvenční měnič
 Frequency meter	Frekvenční měřič
 From end	Od konce
@@ -938,7 +939,6 @@ No plugs	Žádné konektory
 No report block {}	Žádný blok výkazů {}
 No segment template named {}	Žádná šablona segmentu s názvem {}
 No subproject {}	Žádný podprojekt {}
-No such PV array	Takové FV pole neexistuje
 No such object: {}	Žádný takový objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Na přívodu není přepěťová ochrana (IEC 60364-4-44)
 No terminal {}	Žádná svorka {}
@@ -2076,6 +2076,8 @@ yellow	žlutá
 {}: the busbar {} of earth electrode {} does not exist	{}: přípojnice {} zemniče {} neexistuje
 {}: the device {} of PV array {} does not exist	{}: zařízení {} FV pole {} neexistuje
 {}: the earthing busbar {} of PV array {} does not exist	{}: uzemňovací přípojnice {} FV pole {} neexistuje
+{}: the freestanding PV array {} stands on {}	{}: pozemní FV pole {} stojí na {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: pozemní FV pole {} a {} se překrývají
 {}: the generator junction box {} of PV array {} does not exist	{}: generátorová přípojková skříň {} FV pole {} neexistuje
 {}: the lightning protection has no earth electrode	{}: ochrana před bleskem nemá zemnič
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: ochrana před bleskem nemá zdi, podél kterých by vedla: budova nemá místnosti ani střechy

@@ -1,5 +1,5 @@
 use super::*;
-use crate::model::panel::RoofShape;
+use crate::model::panel::{Roof, RoofShape};
 use crate::panel::buildings::add_building;
 
 /// A building with a gable roof and a PV array of `columns` × `rows` generic 430 W
@@ -53,12 +53,12 @@ fn string_values_follow_the_temperatures() {
 #[test]
 fn new_strings_take_the_free_modules() {
     let mut prj = plant(4, 2);
-    let id = add_string(&mut prj, 0, 0, 0).unwrap();
+    let id = add_string(&mut prj, ArrayRef { roof: Some((0, 0)), index: 0 }).unwrap();
     let a = &prj.layout.buildings[0].roofs[0].solar[0];
     let s = a.strings.iter().find(|s| s.id == id).unwrap();
     assert_eq!((s.name.as_str(), s.series, s.parallel, s.inverter.as_str(), s.mppt), ("S1", 8, 1, "=PV-T1", 1));
     assert!(problems(&prj).is_empty(), "{:?}", messages(&prj));
-    add_string(&mut prj, 0, 0, 0).unwrap();
+    add_string(&mut prj, ArrayRef { roof: Some((0, 0)), index: 0 }).unwrap();
     let s2 = &prj.layout.buildings[0].roofs[0].solar[0].strings[1];
     assert_eq!((s2.name.as_str(), s2.series, s2.mppt), ("S2", 1, 2), "on the next tracker");
 }
@@ -105,4 +105,18 @@ fn the_report_lists_every_string_with_its_values() {
     assert_eq!(t.rows[0][7..], ["171", "130", "113", "13.2", "14.2", "1.72"]);
     assert_eq!((t.rows[2][0].as_str(), t.rows[2][12].as_str()), ("Total", "3.44"));
     assert!(t.rows[3][0].contains("-10 °C"));
+}
+
+#[test]
+fn freestanding_arrays_have_strings_too() {
+    let mut prj = plant(4, 2);
+    crate::panel::solar::add_ground_array(&mut prj, Some([0.0, 40_000.0])).unwrap();
+    let at = ArrayRef { roof: None, index: 0 };
+    add_string(&mut prj, at).unwrap();
+    // All 40 modules in series: far above what the inverter takes, named after the plot.
+    let rows = all_strings(&prj);
+    let row = rows.iter().find(|r| r.at == at).expect("the string of the freestanding array");
+    assert_eq!((row.string.series, row.string.inverter.as_str()), (40, "=PV-T1"));
+    let texts: Vec<String> = problems(&prj).iter().map(|i| i.message()).collect();
+    assert!(texts.iter().any(|t| t.starts_with("Plot: string S1 of PV array PV1 reaches")), "{texts:?}");
 }

@@ -27,7 +27,9 @@ impl App {
 
     pub(super) fn layout_properties_pane(&mut self, ui: &mut egui::Ui) {
         egui::ScrollArea::vertical().id_salt("panel_props").auto_shrink([false, false]).show(ui, |ui| {
-            self.panel_ui.properties(ui, &mut self.session.prj, &self.session.analysis, &self.parts_db);
+            if !self.roof_properties(ui) {
+                self.panel_ui.properties(ui, &mut self.session.prj, &self.session.analysis, &self.parts_db);
+            }
         });
     }
 

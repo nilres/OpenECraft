@@ -351,12 +351,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Щёлкните по его месту на генплане
 Click where the air-termination rods go on the roofs in the site plan	Щёлкните на ситуационном плане, где стоят молниеприёмные стержни на крышах
 Click where the earth rods go in the site plan	Щёлкните на ситуационном плане, где находятся вертикальные заземлители
+Click where the middle of a freestanding PV array goes in the site plan	Щёлкните на генплане, где находится середина наземного фотоэлектрического поля
+Click where the middle of a freestanding PV array goes · Esc: stop	Щёлкните, где находится середина наземного фотоэлектрического поля · Esc: стоп
 Click where the reference point is	Щёлкните там, где находится опорная точка
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Щёлкните, где сходятся три провода: Т-образный узел задаёт устройство, от которого идут провода, и порядок их целей · {} поворачивает его, где провода ещё не сходятся · Esc или правая кнопка завершает
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Щёлкните, где пересекаются два провода: пересечение соединяет их и ведёт каждый конец своей линии сначала прямо, затем поперёк · {} поворачивает его · Esc или правая кнопка завершает
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Щёлкните, где два провода сходятся под прямым углом, или где точки подключения расположены напротив друг друга через угол: при включённом автосоединении к нему проводятся провода · {} поворачивает его · Esc или правая кнопка завершает
 Click while moving	Щелчок при перемещении
 Click, or drag it into the page	Щёлкните или перетащите на лист
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Щелчок в точке x {} мм, z {} мм на плане здания: туда помещается новое мансардное окно или новое фотоэлектрическое поле.
 Climate (IEC 60890)	Климат (IEC 60890)
 Clipboard	Буфер обмена
 Close	Закрыть
@@ -781,6 +784,12 @@ Frame of all pages that do not choose one	Рамка всех листов, дл
 Free air	Открытая прокладка
 Free air factor	Коэффициент открытой прокладки
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Свободное пространство перед каждым устройством на панели до двери; изделия добавляют своё (Service space)
+Freestanding	Наземное
+Freestanding PV array {}	Наземное фотоэлектрическое поле {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Наземное фотоэлектрическое поле {} размещено; щёлкните для следующего · Esc: стоп
+Freestanding PV array {}: {} modules	Наземное фотоэлектрическое поле {}: {} модулей
+Freestanding PV array {}: {} modules, {} kWp	Наземное фотоэлектрическое поле {}: {} модулей, {} кВт пик
+Freestanding PV arrays	Наземные фотоэлектрические поля
 Freeze all routes	Зафиксировать все трассы
 Freeze route	Зафиксировать трассу
 Frequency	Частота
@@ -825,6 +834,7 @@ Graphic line	Графическая линия
 Graphic rectangle	Графический прямоугольник
 Graphical form	Графическая форма
 Greatest distance of the conductor holders on the roof and on the walls	Наибольшее расстояние между держателями проводника на крыше и на стенах
+Greatest distance of the posts along a table	Наибольшее расстояние между стойками вдоль стола
 Greatest distance of the roof hooks along a rail	Наибольшее расстояние кровельных крюков вдоль рейки
 Grid	Сетка
 Grid north	Север сетки
@@ -847,6 +857,7 @@ Height above sea level	Высота над уровнем моря
 Height above the floor	Высота над полом
 Height above the mounting plate	Высота над монтажной панелью
 Height above the plate	Высота над панелью
+Height of the lower edge of the modules above the ground	Высота нижнего края модулей над землёй
 Height of the plinth, 0 without plinth	Высота цоколя, 0 – без цоколя
 Height of the rod above the covering	Высота стержня над кровлей
 Height of the test joints above the ground	Высота контрольных соединений над землёй
@@ -1069,6 +1080,7 @@ Look for updates when OpenECraft starts	Искать обновления при
 Looking for updates…	Поиск обновлений…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Ищет новую версию OpenECraft на GitHub и устанавливает её в фоновом режиме
 Loop	Контур
+Lower edge	Нижний край
 Lowest fault current	Наименьший ток замыкания
 Lowest: the highest open-circuit voltage	Наименьшая: наибольшее напряжение холостого хода
 Macro boxes	Рамки макросов
@@ -1116,6 +1128,7 @@ Messages of this session	Сообщения этого сеанса
 Middle	Посередине
 Middle button	Средняя кнопка
 Middle of the PV array in the floor plan of the building	Середина фотоэлектрического поля на плане здания
+Middle of the PV array in the plant	Середина фотоэлектрического поля в установке
 Min. bend radius	Мин. радиус изгиба
 Minimize the ribbon	Свернуть ленту
 Mirror	Отразить
@@ -1126,6 +1139,7 @@ Model of a part (2D / 3D)	Модель изделия (2D / 3D)
 Modifier keys	Клавиши-модификаторы
 Module area	Площадь модулей
 Module part; its size comes from the part	Изделие модуля; его размер берётся из изделия
+Modules on top of each other on a table	Модули друг над другом на столе
 Motors feed the short circuit	Двигатели подпитывают короткое замыкание
 Mounted on	Установлено на
 Mounting assistant: the panel items in mounting order with their place and part	Помощник монтажа: элементы компоновки в порядке монтажа с местом и изделием
@@ -1242,6 +1256,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Корпусов пока нет – создайте корпус командой Новый корпус или помещение для шкафов командой Новое помещение.
 No field cables: place the enclosures and field devices at nodes of the route network.	Нет полевых кабелей: разместите корпуса и полевые устройства в узлах сети трасс.
 No filter fans: an air/air heat exchanger or a cooling unit	Без вентиляторов с фильтром: теплообменник воздух/воздух или холодильный агрегат
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Наземного фотоэлектрического поля ещё нет: ряды наклонных столов на забивных стойках на участке.
 No gesture	Без жеста
 No harnesses defined.	Жгуты не определены.
 No inverter	Без инвертора
@@ -1498,7 +1513,6 @@ Plant layout	План установки
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	План установки, сеть трасс, планирование полевых кабелей, уравнивание потенциалов и кабельные принадлежности
 Plant segments with planned devices before the schematic	Сегменты установки с запланированными устройствами до создания схемы
 Plate outline, holes per diameter, cutouts	Контур панели, отверстия по диаметрам, вырезы
-Plot	Участок
 Plot boundary	Граница участка
 Plot boundary drawn: {} m²	Граница участка нарисована: {} м²
 Plot boundary drawn: {} m²; outside it: {}	Граница участка нарисована: {} м²; за ней: {}
@@ -1521,6 +1535,8 @@ Position of the cursor	Положение курсора
 Position of the device tag (instead of the tag block)	Положение обозначения устройства (вместо блока обозначения)
 Position of the label (terminal number, address …)	Положение надписи (номер клеммы, адрес …)
 Positions are relative to the lower right corner of the symbol.	Положения отсчитываются от правого нижнего угла символа.
+Post distance	Шаг стоек
+Posts	Стойки
 Potential {}	Потенциал {}
 Potential: {}	Потенциал: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Мощность и ток нагрузок сети (двигатели, приводы, нагреватели, блоки питания, трансформаторы), нагрузка каждого защитного устройства, расчётная нагрузка с коэффициентом одновременности и баланс нагрузки блоков питания.
@@ -1718,6 +1734,8 @@ Rod holder	Держатель стержня
 Roof pitch	Уклон крыши
 Roof window	Мансардное окно
 Roof windows	Мансардные окна
+Roof {} of building {}	Крыша {} здания {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Крыша {} здания {}: свойства компоновки добавляют фотоэлектрическое поле или мансардное окно там, где щёлкнули
 Roofs	Крыши
 Room	Помещение
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Помещение добавлено на уровне {}: перетащите его стены или нарисуйте новые на плане, поставьте в него шкафы в их свойствах
@@ -1744,6 +1762,8 @@ Row	Строка
 Row distance	Расстояние между рядами
 Row drawing	Чертёж строки
 Row labels	Подписи строк
+Rows of tables behind each other	Ряды столов друг за другом
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Ряды наклонных столов на стойках перед тем, что стоит в установке, обращённые вперёд; переместите поле на его место
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Строки на выпущенных листах нельзя изменять. Разрыв строки в тексте записывается как \\n.
 Rows per page	Строк на листе
 Rule libraries	Библиотеки правил
@@ -2076,6 +2096,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Созданные им листы остаются
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	База данных изделий общая для всех проектов. Изделия копируются в проект, когда их назначают устройству.
 The point's coordinates in the coordinate reference system	Координаты точки в системе координат
+The post; its accessories are the table beams, rails and clamps	Стойка; её принадлежности — балки стола, рейки и зажимы
 The project changed since the search.	Проект изменился после поиска.
 The project check	Проверка проекта
 The project database needs the desktop version: the browser cannot search folders.	Для базы данных проектов требуется настольная версия: браузер не может просматривать папки.
@@ -2219,6 +2240,7 @@ When it differs from the page	Если отличается от листа
 Where	Положение
 Where neither wire has a termination chosen for it	Если ни для одного из проводов не выбрано оконцевание
 Where the point is in the plant; y: its height above the ground level of the plant	Где точка находится в установке; y: её высота над уровнем земли установки
+Where the roof was clicked in the 3D view	Где в 3D-виде щёлкнули по крыше
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Откуда берётся структура устройства: аспекты, равные структуре вокруг символа, наследуются и меняются при перемещении в рамку структуры или из неё; остальные аспекты принадлежат устройству и сохраняются.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Где провод начинается и заканчивается: точка подключения из данных изделия, точка, созданная из шаблона функций, или центр устройства, если ни одна точка подключения не подходит
 Whole building	Всё здание
@@ -2257,6 +2279,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Пространство для монтажа проводов между устройствами и каналами
 With a user account of the server; replaces the access token	С учётной записью пользователя сервера; заменяет маркер доступа
 With everything below it	Со всем, что находится под ним
+With its middle where the roof was clicked in the 3D view	Серединой там, где в 3D-виде щёлкнули по крыше
 With the current pages; the approvals so far become void	С текущими листами; полученные утверждения аннулируются
 With values only	Только со значениями
 Withdraw	Отозвать
@@ -2517,6 +2540,7 @@ x y	x y
 {} renamed: {} pages and devices	{} переименован: листов и устройств – {}
 {} report pages output to {}	Выведено листов отчётов: {} в {}
 {} routes frozen	Зафиксировано трасс: {}
+{} rows of tables of {} × {} = {}, {}	{} рядов столов по {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	Создано сегментов: {}, добавлено устройств: {}, обновлено: {}
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	Станций: {}, шинных систем: {}, назначено плат: {}, изменено адресов: {}, соединений: {}, кабелей: {}
 {} stopped with an error: {}	{} остановлено с ошибкой: {}
@@ -2546,6 +2570,7 @@ x y	x y
 {} – revision {}, {}	{} – ревизия {}, {}
 {} – {} ({} pages)	{} – {} (листов: {})
 {} – {} here (Esc cancels)	{} – {} здесь (Esc отменяет)
+{}, freestanding	{}, наземное
 {}: click to show its floor plan	{}: щёлкните, чтобы показать план
 {}: crimp together with the wire to {}	{}: обжать вместе с проводом к {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетащите, чтобы переместить, R поворачивает, двойной щелчок открывает

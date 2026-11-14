@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Codice articolo dell'accessorio, ad es
 Activates (shows) or deactivates (hides) the content of a project option	Attiva (mostra) o disattiva (nasconde) il contenuto di un'opzione di progetto
 Additional power loss in W	Potenza dissipata aggiuntiva in W
 Address scheme: siemens, iec or rockwell	Schema di indirizzamento: siemens, iec o rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Aggiunge un campo fotovoltaico a un tetto: file di moduli su guide e ganci da tetto parallele a una falda, oppure su un tetto piano inclinati o est-ovest su basi di montaggio zavorrate; senza x e z al centro della falda anteriore o destra. Senza edificio e tetto, un campo a terra sul lotto: file di tavoli inclinati su pali infissi, senza x e z davanti a ciò che si trova nell'impianto. I moduli e il materiale di montaggio entrano nella distinta base
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Aggiunge una barra di rame piegata e forata (o sostituisce quella con lo stesso nome nell'armadio)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Aggiunge un passaggio cavi verso il vicino a destra: aperture rotonde affacciate in entrambe le pareti laterali; i conduttori tra gli armadi passano attraverso di esso
 Adds a configurator rule: insert a page macro when the condition holds	Aggiunge una regola del configuratore: inserisce una macro di pagina quando la condizione è soddisfatta
@@ -73,6 +74,7 @@ Between page and column (default .)	Tra pagina e colonna (predefinito .)
 Bonding point	Punto di collegamento equipotenziale
 Border around the text	Bordo attorno al testo
 Both classes are needed	Sono richieste entrambe le classi
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Edificio (luogo, ad es. +B1); senza edificio e tetto: un campo a terra sul lotto
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Edifici dell'impianto con livelli, cavedi, scale e tetti con campi FV, dispersori e protezione contro i fulmini, locali sui livelli e collegamenti tra edifici
 Bus system name	Nome del sistema bus
 Bus system name, e.g. PN/IE_1	Nome del sistema bus, ad es. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Diametro dell'asta, mm (predefinito 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Direzione del gambo: left, right, up o down (predefinito: dai conduttori presenti)
 Distance between power and signal or fluid in mm	Distanza tra potenza e segnale o fluido in mm
 Distance from devices, rails and busbars in mm	Distanza da dispositivi, guide e sbarre in mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Distanza tra le file su un tetto piano o a terra in mm (0: senza ombre in inverno)
 Distance from the face in mm (rails: standoff height)	Distanza dalla faccia in mm (guide: altezza distanziali)
 Distance in X (mm)	Distanza in X (mm)
 Distance in Y (mm)	Distanza in Y (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	Primo valore del contatore (predefinito 1)
 First page number (default 1)	Primo numero di pagina (predefinito 1)
 First port as station:port, e.g. PLC1:X1 P2	Prima porta come stazione:porta, ad es. PLC1:X1 P2
 First row with the column names	Prima riga con i nomi delle colonne
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Tetti piani e campi a terra: direzione verso cui sono rivolti i moduli in gradi, in senso antiorario visto dall'alto (0: verso +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formato del nome del dispositivo: {letter}, {n} (contatore), {page}, {column}, {row}; predefinito {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formato dello schema format: {n} (contatore), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Dispersore di fondazione: quanto all'interno dei muri esterni (predefinito 100), anello: quanto all'esterno (predefinito 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Dispersore di fondazione: la sua maglia più grande, mm (predefinita 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Cornice di partenza quando la cornice è nuova (predefinito: A3 landscape)
 Free space in front of every device on the plate	Spazio libero davanti a ogni dispositivo sulla piastra
+Freestanding PV arrays stand on posts (mounting ground)	I campi FV a terra poggiano su pali (montaggio ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	A terra: altezza del bordo inferiore dei moduli dal suolo in mm (predefinito 800)
+Freestanding: modules on top of each other on a table (default 2)	A terra: moduli uno sopra l'altro su un tavolo (predefinito 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Congela i percorsi per la produzione (mantenuti dal ricalcolo finché possibile) o li sblocca
 Frequency in Hz	Frequenza in Hz
 Function (= without the sign; empty: the parent's)	Funzione (= senza il segno; vuoto: quella del segmento superiore)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Indicare una sigla del dispositivo o un codice articolo
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dà a un edificio un sistema di protezione contro i fulmini o lo modifica: la classe, il numero di calate e l'articolo dei conduttori; conduttori di captazione sui colmi e sulle displuviali (una maglia sui tetti piani), calate con giunti di misura verso i dispersori; o lo rimuove
 Greatest distance of the conductor holders, mm (default 1000)	Distanza massima dei supporti del conduttore, mm (predefinita 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Distanza massima dei ganci da tetto lungo una guida (a terra: dei pali lungo un tavolo) in mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Raggruppa gli elementi in un assieme che viene selezionato e spostato insieme; senza nome gli elementi escono dai loro assiemi
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Consegna i programmi di un armadio alla produzione come commessa: manifest e programmi di tutte le sue facce e barre di rame
 Has a divider between power and signal cables	Ha un setto separatore tra cavi di potenza e di segnale
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Riempimento massimo di un supporto portacav
 Maximum operating pressure in bar	Pressione di esercizio massima in bar
 Measuring range or set point	Campo di misura o valore di riferimento
 Message code, e.g. wires.3f9a1c	Codice del messaggio, ad es. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Centro del campo FV nella pianta dell'edificio (a terra: nell'impianto), x in mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Centro del campo FV nella pianta dell'edificio (a terra: nell'impianto), z in mm
 Milling feed, mm/min	Avanzamento di fresatura, mm/min
 Mirror the symbol	Specchia il simbolo
 Mounting plate size as width and height; empty object restores the centred plate	Dimensioni della piastra di montaggio come larghezza e altezza; un oggetto vuoto ripristina la piastra centrata
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Layout della tavola chiodata di un cablaggio: le diramazioni dal nodo comune ai connettori con lunghezza, direzione, diametro del fascio e pin, e la scala del disegno
 Name (default E1, E2, …)	Nome (predefinito E1, E2, …)
 Name (default F1, F2, …)	Nome (predefinito F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Indicare sia l'edificio sia il tetto, oppure nessuno dei due per un campo FV a terra
 Name of the assembly	Nome dell'assieme
 Name of the bar, e.g. L1 -Q1	Nome della barra, ad es. L1 -Q1
 Name of the check	Nome della verifica
@@ -497,6 +508,7 @@ No device group {}	Nessun gruppo di dispositivi {}
 No earth electrode {} in building {}	Nessun dispersore {} nell'edificio {}
 No enclosure named {}	Nessun armadio denominato {}
 No entry for {} and {}	Nessuna voce per {} e {}
+No freestanding PV array {}	Nessun campo FV a terra {}
 No hose {}	Nessun tubo flessibile {}
 No identifier {} in the project	Nessun identificatore {} nel progetto
 No item with id {}	Nessun elemento con ID {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Lunghezze esterne
 Overlap of nibbling hits (0 … 0.9)	Sovrapposizione dei colpi di roditura (0 … 0.9)
 PCT loop {} already exists	Il loop PCT {} esiste già
 PLC hardware: stations, cards, bus systems and port connections	Hardware PLC: stazioni, schede, sistemi bus e collegamenti delle porte
+PV arrays on roofs are mounted parallel, tilted or east_west	I campi FV sui tetti sono montati parallel, tilted o east_west
 Page macro name	Nome macro di pagina
 Page macro that generates its schematic	Macro di pagina che genera il suo schema
 Page name (default: all pages)	Nome della pagina (predefinito: tutte le pagine)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Riutilizza le ricerche non 
 Right side bayed (no side panel)	Lato destro affiancato (senza parete laterale)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Anello: profondità sotto il terreno, picchetto: profondità della sommità, mm (predefinita 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Picchetto: il suo diametro (predefinito 20), fondazione e anello: quello di un tondino, 0 per una bandella, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Tetto: il suo nome; senza edificio e tetto: un campo a terra sul lotto
 Room {} exists already	Il locale {} esiste già
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotazione in gradi in senso orario: 0, 90, 180 o 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotazione in gradi, in senso antiorario (90 si legge dal basso verso l'alto)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Il filo che salta: vertical o horizo
 The wrap width must not be negative	La larghezza di a capo non deve essere negativa
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulazione termica della piastra di montaggio: temperature dell'aria, punto caldo, sorgenti di calore e temperatura su ogni dispositivo
 Thickest sheet or bar, mm	Lamiera o barra più spessa, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Inclinazione dei moduli su un tetto piano o dei tavoli a terra in gradi
 Time per drilling, punching or bending operation, s	Tempo per operazione di foratura, punzonatura o piegatura, s
 Time per tool change, s	Tempo per cambio utensile, s
 Title block (list_title_blocks); empty = the project default	Cartiglio (list_title_blocks); vuoto = quello predefinito del progetto
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (predefinito), supplementary o 
 mounted, problem or open	mounted, problem o open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond o accessory
 numbers or letters	numbers o letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (su ganci da tetto), tilted (inclinato) o east_west (est-ovest, tetti piani); a terra: ground (su pali)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof o bottom
 plug_in, saddle or wire	plug_in, saddle o wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp o canopen

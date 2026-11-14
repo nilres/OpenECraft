@@ -144,8 +144,9 @@ fn room_installation(c: &mut C) {
 
 /// A further PV module and the mounting material of PV arrays: rails, roof hooks, rail
 /// connectors and module clamps for mounting parallel to the roof, ballasted mounting
-/// bases (south and east-west), ballast and wind deflectors for flat roofs. The rail and
-/// the bases list the rest as their accessories.
+/// bases (south and east-west), ballast and wind deflectors for flat roofs, rammed posts
+/// and table beams for freestanding tables. The rail, the bases and the post list the
+/// rest as their accessories.
 fn solar_mounting(c: &mut C) {
     let p = c.add("GEN.PV-400W-FB", "PV module 400 Wp, monocrystalline, full black, glass-film, black frame, 1722 x 1134 mm", "Power supplies, transformers", "PV module", "G", 109.0, (1134.0, 1722.0, 30.0, 21.0), &[(FnKind::PvGenerator, "+ -")]);
     p.current = "13.6 A (Isc)".into();
@@ -186,6 +187,14 @@ Conductor: 6 - 16 mm² Cu, round wire Ø 8 mm"),
         }
         p.accessories = acc.into_iter().map(String::from).collect();
     }
+    let p = c.add("GEN.PV-TABLE-BEAM", "Table beam aluminium for freestanding PV tables, length 4.4 m, for two rows of modules in portrait or four in landscape, with post connectors", m, "PV table beam", "", 68.0, (4400.0, 80.0, 60.0, 7.9), &[]);
+    p.mounting = "Ground".into();
+    p.accessory = true;
+    p.tech_data = "Material: aluminium EN AW-6063 T66\nTilt: 10 - 35°".into();
+    let p = c.add("GEN.PV-POST-RAM", "Ram post steel C profile 100 x 50 mm, length 2.5 m, hot-dip galvanised, for freestanding PV tables, rammed 1.2 - 1.6 m deep", m, "PV ground post", "", 54.0, (100.0, 2500.0, 50.0, 14.5), &[]);
+    p.mounting = "Ground".into();
+    p.tech_data = "Material: steel S350GD, hot-dip galvanised\nRamming depth: 1.2 - 1.6 m\nMax. post distance: 3 m".into();
+    p.accessories = ["GEN.PV-TABLE-BEAM", "GEN.PV-RAIL-40", "GEN.PV-RAIL-CONN", "GEN.PV-CLAMP-END", "GEN.PV-CLAMP-MID", "GEN.PV-EARTH-CLAMP"].map(String::from).to_vec();
 }
 
 /// The material of earth electrodes (foundation and ring earth electrodes, earth rods)

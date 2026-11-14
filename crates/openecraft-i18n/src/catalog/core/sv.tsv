@@ -557,6 +557,7 @@ Frame size	Byggstorlek
 Free	Fri
 Free air (mm)	Fri förläggning (mm)
 Free run	Fri förläggning
+Freestanding on posts	Markmonterat på stolpar
 Frequency converter	Frekvensomriktare
 Frequency meter	Frekvensmätare
 From end	Från slutet
@@ -938,7 +939,6 @@ No plugs	Inga kontakter
 No report block {}	Inget rapportblock {}
 No segment template named {}	Ingen segmentmall med namnet {}
 No subproject {}	Inget delprojekt {}
-No such PV array	Inget sådant solcellsfält
 No such object: {}	Inget sådant objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Inget överspänningsskydd vid matningen (IEC 60364-4-44)
 No terminal {}	Ingen plint {}
@@ -2076,6 +2076,8 @@ yellow	gul
 {}: the busbar {} of earth electrode {} does not exist	{}: skenan {} för jordtag {} finns inte
 {}: the device {} of PV array {} does not exist	{}: enheten {} för solcellsfält {} finns inte
 {}: the earthing busbar {} of PV array {} does not exist	{}: jordningsskenan {} för solcellsfält {} finns inte
+{}: the freestanding PV array {} stands on {}	{}: det markmonterade solcellsfältet {} står på {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: de markmonterade solcellsfälten {} och {} överlappar varandra
 {}: the generator junction box {} of PV array {} does not exist	{}: generatoranslutningslådan {} för solcellsfält {} finns inte
 {}: the lightning protection has no earth electrode	{}: åskskyddet har inget jordtag
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: åskskyddet har inga väggar att löpa längs: byggnaden har inga rum eller tak

@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	附件部件编号，例如 GEN.GLAND-
 Activates (shows) or deactivates (hides) the content of a project option	激活（显示）或停用（隐藏）项目选项的内容
 Additional power loss in W	附加功率损耗 (W)
 Address scheme: siemens, iec or rockwell	地址方案：siemens、iec 或 rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	向屋顶添加光伏阵列：组件行安装在导轨和屋面挂钩上并与坡面平行，或在平屋顶上倾斜或东西向安装在配重式安装底座上；未给出 x 和 z 时位于前坡面或右坡面的中间。未给出建筑物和屋顶时为场地上的地面阵列：打入式立柱上的倾斜支架排，未给出 x 和 z 时位于设施中已有对象的前方。组件和安装材料计入物料清单
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	添加折弯并钻孔的铜排（或替换机柜中同名的铜排）
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	添加到右侧相邻机柜的电缆过孔：两侧板上相对的圆形开孔；机柜之间的导线从中穿过
 Adds a configurator rule: insert a page macro when the condition holds	添加配置器规则：在条件成立时插入页宏
@@ -73,6 +74,7 @@ Between page and column (default .)	页与列之间（默认 .）
 Bonding point	联结点
 Border around the text	文本周围的边框
 Both classes are needed	需要两个类别
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	建筑物（位置，例如 +B1）；未给出建筑物和屋顶时：场地上的地面阵列
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	设施的建筑物，包括楼层、竖井、楼梯和带光伏阵列的屋顶、接地极和防雷、楼层上的房间以及建筑物之间的连接
 Bus system name	总线系统名称
 Bus system name, e.g. PN/IE_1	总线系统名称，例如 PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	接闪杆直径，mm（默认 16）
 Direction of the stem: left, right, up or down (default: from the wires there)	主干方向：left、right、up 或 down（默认：按该处的连接线）
 Distance between power and signal or fluid in mm	动力与信号或流体之间的距离 (mm)
 Distance from devices, rails and busbars in mm	与设备、导轨和母线的距离 (mm)
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	平屋顶或地面安装时的行间距，单位 mm（0：冬季无遮挡）
 Distance from the face in mm (rails: standoff height)	距面的距离 (mm)（导轨：支撑高度）
 Distance in X (mm)	X 方向距离 (mm)
 Distance in Y (mm)	Y 方向距离 (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	计数器起始值（默认 1）
 First page number (default 1)	起始页号（默认 1）
 First port as station:port, e.g. PLC1:X1 P2	第一个端口，格式为 station:port，例如 PLC1:X1 P2
 First row with the column names	包含列名的第一行
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	平屋顶和地面安装：组件朝向的方向，单位为度，从上方看逆时针（0：朝向 +z）
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	设备名称格式：{letter}、{n}（计数器）、{page}、{column}、{row}；默认 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 方案的格式：{n}（计数器）、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	基础接地极：在外墙以内的距离（默认 100），环形：在外墙以外的距离（默认 1000），mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	基础接地极：最大网格，mm（默认 20000）
 Frame to start from when the frame is new (default: A3 landscape)	新建图框时的起始图框（默认：A3 landscape）
 Free space in front of every device on the plate	安装板上每个设备前方的空闲空间
+Freestanding PV arrays stand on posts (mounting ground)	地面光伏阵列安装在立柱上（安装方式 ground）
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	地面安装：组件下边缘距地面的高度，单位 mm（默认 800）
+Freestanding: modules on top of each other on a table (default 2)	地面安装：一个支架上上下叠放的组件数（默认 2）
 Freezes routes for production (kept by the recalculation while possible) or releases them	为生产冻结布线（只要可行，重新计算时保留）或将其释放
 Frequency in Hz	频率 (Hz)
 Function (= without the sign; empty: the parent's)	功能（不含 = 号；留空：使用上级规划段的功能）
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	生�
 Give a device tag or a part number	请给出设备标识或部件号
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	为建筑物设置或更改防雷系统：类别、引下线数量和导体部件；屋脊和斜脊上的接闪导体（平屋顶上为网格），带测试接头通往接地极的引下线；或将其删除
 Greatest distance of the conductor holders, mm (default 1000)	导体支架的最大间距，mm（默认 1000）
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	屋面挂钩沿导轨的最大间距（地面安装：立柱沿支架的最大间距），单位 mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	将元素组合为可一起选择和移动的组件；不指定名称时，元素将脱离其组件
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	将机柜的程序作为作业移交生产：所有面和铜排的清单和程序
 Has a divider between power and signal cables	动力电缆与信号电缆之间有隔板
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	电缆桥架的最大填充率，单位为�
 Maximum operating pressure in bar	最大工作压力 (bar)
 Measuring range or set point	测量范围或设定值
 Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	光伏阵列在建筑物平面图中的中心（地面安装：在设施中），x，单位 mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	光伏阵列在建筑物平面图中的中心（地面安装：在设施中），z，单位 mm
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
 Mounting plate size as width and height; empty object restores the centred plate	安装板尺寸（宽度和高度）；空对象恢复居中的安装板
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	线束的钉板布局：从公共节点到各连接器的分支（含长度、方向、线束直径和插针）以及图纸比例
 Name (default E1, E2, …)	名称（默认 E1、E2、…）
 Name (default F1, F2, …)	名称（默认 F1、F2、…）
+Name both the building and the roof, or neither for a freestanding PV array	请同时指定建筑物和屋顶，或者对地面光伏阵列两者都不指定
 Name of the assembly	组件名称
 Name of the bar, e.g. L1 -Q1	铜排名称，例如 L1 -Q1
 Name of the check	检查的名称
@@ -497,6 +508,7 @@ No device group {}	没有设备组 {}
 No earth electrode {} in building {}	建筑物 {1} 中没有接地极 {0}
 No enclosure named {}	没有名为 {} 的机柜
 No entry for {} and {}	没有 {} 和 {} 的条目
+No freestanding PV array {}	没有地面光伏阵列 {}
 No hose {}	没有软管 {}
 No identifier {} in the project	项目中没有标识符 {}
 No item with id {}	没有 ID 为 {} 的元素
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	直线段的外�
 Overlap of nibbling hits (0 … 0.9)	步冲冲程的重叠率 (0 … 0.9)
 PCT loop {} already exists	PCT 回路 {} 已存在
 PLC hardware: stations, cards, bus systems and port connections	PLC 硬件：站、卡件、总线系统和端口连接
+PV arrays on roofs are mounted parallel, tilted or east_west	屋顶上的光伏阵列以 parallel、tilted 或 east_west 方式安装
 Page macro name	页宏名称
 Page macro that generates its schematic	生成其原理图的页宏
 Page name (default: all pages)	页面名称（默认：所有页面）
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	在同一次布线计算中
 Right side bayed (no side panel)	右侧并柜（无侧板）
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	环形：地面以下深度，垂直接地极：顶端深度，mm（默认 500）
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	垂直接地极：其直径（默认 20），基础和环形接地极：圆导线的直径，扁钢为 0，mm
+Roof: its name; without building and roof: a freestanding array on the plot	屋顶：其名称；未给出建筑物和屋顶时：场地上的地面阵列
 Room {} exists already	房间 {} 已存在
 Rotation in degrees clockwise: 0, 90, 180 or 270	顺时针旋转角度：0、90、180 或 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	旋转角度（度），逆时针（90 表示从下往上读）
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	跳线的导线：vertical 或 horiz
 The wrap width must not be negative	换行宽度不能为负数
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	安装板热仿真：空气温度、热点、热源以及每个设备处的温度
 Thickest sheet or bar, mm	最厚板材或铜排，mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	平屋顶上组件或地面支架的倾角，单位为度
 Time per drilling, punching or bending operation, s	每次钻孔、冲孔或折弯操作的时间，s
 Time per tool change, s	每次换刀时间，s
 Title block (list_title_blocks); empty = the project default	标题栏（list_title_blocks）；空 = 项目默认
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main（默认）, supplementary 或 
 mounted, problem or open	mounted, problem 或 open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond 或 accessory
 numbers or letters	numbers 或 letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel（在屋面挂钩上）、tilted（倾斜）或 east_west（东西向，平屋顶）；地面安装：ground（在立柱上）
 plate, door, left, right, rear, roof or bottom	plate、door、left、right、rear、roof 或 bottom
 plug_in, saddle or wire	plug_in, saddle 或 wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet、ethercat、ethernet_ip、profibus_dp、modbus_tcp 或 canopen

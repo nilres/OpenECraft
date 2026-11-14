@@ -36,11 +36,13 @@ pub(crate) struct SitePlan {
     pub extent: Option<([f32; 2], [f32; 2])>,
     /// The earth electrode or lightning protection part highlighted (building and what).
     pub earthing: Option<(usize, panel::lightning::Owner)>,
+    /// The PV array highlighted (its id).
+    pub array: Option<u64>,
 }
 
 impl Default for SitePlan {
     fn default() -> Self {
-        SitePlan { building: None, level: 0, zoom: 1.0, pan: Vec2::ZERO, extent: None, earthing: None }
+        SitePlan { building: None, level: 0, zoom: 1.0, pan: Vec2::ZERO, extent: None, earthing: None, array: None }
     }
 }
 
@@ -122,7 +124,7 @@ pub(crate) fn snap_points(prj: &Project, skip: Option<usize>) -> Vec<[f32; 2]> {
     let poses = panel::site_poses(prj);
     let mut v: Vec<[f32; 2]> = layout.plot.outline.iter().enumerate().filter(|(k, _)| Some(*k) != skip).map(|(_, q)| *q).collect();
     v.extend(room_outlines(prj, &poses).into_iter().flat_map(|r| r.1));
-    v.extend(plot::footprints(prj).into_iter().filter(|f| matches!(f.0, plot::Standing::Room(_))).flat_map(|f| f.1));
+    v.extend(plot::footprints(prj).into_iter().filter(|f| matches!(f.0, plot::Standing::Room(_) | plot::Standing::PvArray(_))).flat_map(|f| f.1));
     v.extend(layout.buildings.iter().flat_map(|b| b.shafts.iter().flat_map(move |s| bld::shaft_corners(b, s))));
     v.extend(layout.plot.reference.iter().map(|r| [r.x, r.z]));
     v
@@ -192,6 +194,11 @@ pub(crate) fn earthing_at(prj: &Project, poses: &[panel::SitePose], frame: &Fram
     best.map(|b| b.0)
 }
 
+/// The freestanding PV array under `p` in the site plan (its id).
+pub(crate) fn ground_array_at(prj: &Project, frame: &Frame, p: Pos2) -> Option<u64> {
+    prj.layout.plot.solar.iter().rev().find(|a| inside(&solar::ground_geometry(a).outline.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)).map(|a| a.id)
+}
+
 /// Whether `p` lies inside the polygon `pts`.
 fn inside(pts: &[Pos2], p: Pos2) -> bool {
     let mut odd = false;
@@ -228,11 +235,13 @@ pub(crate) fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, p
         .iter()
         .flat_map(|b| b.roofs.iter().flat_map(move |r| r.windows.iter().filter_map(move |w| roofs::window_corners(r, w)).map(move |(c, _)| c.iter().map(|v| to_plant(b, [v[0], v[2]])).collect())))
         .collect();
-    let pv_modules: Vec<Outline> = layout
+    // The modules of the PV arrays on the roofs and on the plot, with their array.
+    let mut pv_modules: Vec<(u64, Outline)> = layout
         .buildings
         .iter()
-        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.solar.iter().flat_map(move |a| solar::module_outlines(r, a)).map(move |m| m.iter().map(|&q| to_plant(b, q)).collect())))
+        .flat_map(|b| b.roofs.iter().flat_map(move |r| r.solar.iter().flat_map(move |a| solar::module_outlines(r, a).into_iter().map(move |m| (a.id, m.iter().map(|&q| to_plant(b, q)).collect())))))
         .collect();
+    pv_modules.extend(layout.plot.solar.iter().flat_map(|a| solar::ground_module_outlines(a).into_iter().map(move |m| (a.id, m.to_vec()))));
     let stair_lines: Vec<(Vec<Outline>, Outline)> = shown
         .iter()
         .flat_map(|(_, b)| {
@@ -337,9 +346,10 @@ pub(crate) fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, p
         let pts: Vec<Pos2> = w.iter().map(|&q| at(q)).collect();
         painter.add(egui::Shape::convex_polygon(pts, GLASS, Stroke::new(1.0, line)));
     }
-    for m in &pv_modules {
+    for (id, m) in &pv_modules {
         let pts: Vec<Pos2> = m.iter().map(|&q| at(q)).collect();
-        painter.add(egui::Shape::convex_polygon(pts, PV_MODULE, Stroke::new(0.5, weak)));
+        let stroke = if plan.array == Some(*id) { Stroke::new(1.5, accent) } else { Stroke::new(0.5, weak) };
+        painter.add(egui::Shape::convex_polygon(pts, PV_MODULE, stroke));
     }
     // The earth electrodes (dashed) and the lightning protection: its conductors, the
     // air-termination rods and the test joints of the down conductors.

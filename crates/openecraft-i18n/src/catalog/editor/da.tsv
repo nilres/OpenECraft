@@ -351,12 +351,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Klik, hvor det ligger i situationsplanen
 Click where the air-termination rods go on the roofs in the site plan	Klik i situationsplanen hvor fangstængerne skal stå på tagene
 Click where the earth rods go in the site plan	Klik i situationsplanen hvor jordspydene skal sidde
+Click where the middle of a freestanding PV array goes in the site plan	Klik i situationsplanen, hvor midten af et jordmonteret solcellefelt skal ligge
+Click where the middle of a freestanding PV array goes · Esc: stop	Klik, hvor midten af et jordmonteret solcellefelt skal ligge · Esc: stop
 Click where the reference point is	Klik, hvor referencepunktet ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klik hvor tre ledere mødes: T-stykket angiver den enhed, lederne udgår fra, og rækkefølgen af deres mål · {} drejer det, hvor ingen ledere mødes endnu · Esc eller højreklik afslutter
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klik hvor to ledere krydser hinanden: krydsningen forbinder dem og fører hver ende af sin linje først ligeud, derefter på tværs · {} drejer den · Esc eller højreklik afslutter
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klik hvor to ledere mødes i ret vinkel, eller hvor tilslutningspunkter vender mod hinanden over hjørnet: med automatisk forbindelse slået til tegnes ledere til det · {} drejer det · Esc eller højreklik afslutter
 Click while moving	Klik under flytning
 Click, or drag it into the page	Klik, eller træk den ind på siden
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Klikket ved x {} mm, z {} mm i bygningens plantegning: et nyt ovenlysvindue eller solcellefelt kommer dertil.
 Climate (IEC 60890)	Klimatisering (IEC 60890)
 Clipboard	Udklipsholder
 Close	Luk
@@ -782,6 +785,12 @@ Frame of all pages that do not choose one	Ramme for alle sider, der ikke vælger
 Free air	Fri luft
 Free air factor	Faktor for fri luft
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Fri plads foran hver enhed på pladen op til døren; artikler tilføjer deres egen (Service space)
+Freestanding	Jordmonteret
+Freestanding PV array {}	Jordmonteret solcellefelt {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Jordmonteret solcellefelt {} placeret; klik for det næste · Esc: stop
+Freestanding PV array {}: {} modules	Jordmonteret solcellefelt {}: {} moduler
+Freestanding PV array {}: {} modules, {} kWp	Jordmonteret solcellefelt {}: {} moduler, {} kWp
+Freestanding PV arrays	Jordmonterede solcellefelter
 Freeze all routes	Fastlås alle føringer
 Freeze route	Fastlås føring
 Frequency	Frekvens
@@ -826,6 +835,7 @@ Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafisk formular
 Greatest distance of the conductor holders on the roof and on the walls	Største afstand mellem lederholderne på taget og på væggene
+Greatest distance of the posts along a table	Største afstand mellem stolperne langs et bord
 Greatest distance of the roof hooks along a rail	Største afstand mellem tagkrogene langs en skinne
 Grid	Gitter
 Grid north	Gitternord
@@ -848,6 +858,7 @@ Height above sea level	Højde over havet
 Height above the floor	Højde over gulvet
 Height above the mounting plate	Højde over monteringspladen
 Height above the plate	Højde over pladen
+Height of the lower edge of the modules above the ground	Højde af modulernes underkant over jorden
 Height of the plinth, 0 without plinth	Soklens højde, 0 uden sokkel
 Height of the rod above the covering	Stangens højde over tagdækningen
 Height of the test joints above the ground	Målesamlingernes højde over terræn
@@ -1070,6 +1081,7 @@ Look for updates when OpenECraft starts	Søg efter opdateringer, når OpenECraft
 Looking for updates…	Søger efter opdateringer…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Søger efter en ny version af OpenECraft på GitHub og installerer den i baggrunden
 Loop	Sløjfe
+Lower edge	Underkant
 Lowest fault current	Laveste fejlstrøm
 Lowest: the highest open-circuit voltage	Laveste: den højeste tomgangsspænding
 Macro boxes	Makrobokse
@@ -1117,6 +1129,7 @@ Messages of this session	Meddelelser fra denne session
 Middle	Midt
 Middle button	Midterste knap
 Middle of the PV array in the floor plan of the building	Midten af solcelleanlægget i bygningens plantegning
+Middle of the PV array in the plant	Midten af solcellefeltet i anlægget
 Min. bend radius	Min. bøjningsradius
 Minimize the ribbon	Minimér båndet
 Mirror	Spejl
@@ -1127,6 +1140,7 @@ Model of a part (2D / 3D)	Model af en artikel (2D / 3D)
 Modifier keys	Modifikatortaster
 Module area	Modulareal
 Module part; its size comes from the part	Moduldel; dens størrelse kommer fra delen
+Modules on top of each other on a table	Moduler over hinanden på et bord
 Motors feed the short circuit	Motorer føder kortslutningen
 Mounted on	Monteret på
 Mounting assistant: the panel items in mounting order with their place and part	Monteringsassistent: layoutelementerne i monteringsrækkefølge med deres plads og artikel
@@ -1243,6 +1257,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling endnu – opret en med Ny kapsling, eller et rum til skabe med Nyt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ingen feltkabler: placer kapslingerne og feltenhederne ved knuder i føringsnettet.
 No filter fans: an air/air heat exchanger or a cooling unit	Ingen filterventilatorer: en luft/luft-varmeveksler eller en køleenhed
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Endnu intet jordmonteret solcellefelt: rækker af skrå borde på rammede stolper på grunden.
 No gesture	Ingen bevægelse
 No harnesses defined.	Ingen ledningsnet defineret.
 No inverter	Ingen inverter
@@ -1499,7 +1514,6 @@ Plant layout	Anlægslayout
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Anlægslayout, føringsnet, planlægning af feltkabler, potentialudligning og kabeltilbehør
 Plant segments with planned devices before the schematic	Anlægssegmenter med planlagte enheder før diagrammet
 Plate outline, holes per diameter, cutouts	Pladekontur, huller pr. diameter, udskæringer
-Plot	Grund
 Plot boundary	Grundgrænse
 Plot boundary drawn: {} m²	Grundgrænse tegnet: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Grundgrænse tegnet: {} m²; uden for: {}
@@ -1522,6 +1536,8 @@ Position of the cursor	Markørens position
 Position of the device tag (instead of the tag block)	Position af enhedsmærkningen (i stedet for mærkningsblokken)
 Position of the label (terminal number, address …)	Position af etiketten (klemnummer, adresse …)
 Positions are relative to the lower right corner of the symbol.	Positionerne er relative til symbolets nederste højre hjørne.
+Post distance	Stolpeafstand
+Posts	Stolper
 Potential {}	Potentiale {}
 Potential: {}	Potentiale: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Effekt og strøm for forsyningsnettets belastninger (motorer, drev, varmelegemer, strømforsyninger, transformere), belastningen af hver beskyttelsesenhed, behovet med samtidighedsfaktoren og strømforsyningernes belastningsbudget.
@@ -1719,6 +1735,8 @@ Rod holder	Stangholder
 Roof pitch	Taghældning
 Roof window	Ovenlysvindue
 Roof windows	Ovenlysvinduer
+Roof {} of building {}	Tag {} på bygning {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Tag {} på bygning {}: layoutegenskaberne tilføjer et solcellefelt eller et ovenlysvindue, hvor der blev klikket
 Roofs	Tage
 Room	Rum
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Rum tilføjet på etage {}: træk dets vægge eller tegn nye i plantegningen, placer skabe i det via deres egenskaber
@@ -1745,6 +1763,8 @@ Row	Række
 Row distance	Rækkeafstand
 Row drawing	Rækketegning
 Row labels	Rækkeetiketter
+Rows of tables behind each other	Rækker af borde bag hinanden
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rækker af skrå borde på stolper foran det, der står i anlægget, vendt fremad; flyt det på plads
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rækker på frigivne sider kan ikke ændres. Et linjeskift i en tekst skrives som \\n.
 Rows per page	Rækker pr. side
 Rule libraries	Regelbiblioteker
@@ -2077,6 +2097,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	De sider, den har genereret, bevares
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Artikeldatabasen deles af alle projekter. Artikler kopieres til et projekt, når de tildeles en enhed.
 The point's coordinates in the coordinate reference system	Punktets koordinater i referencesystemet
+The post; its accessories are the table beams, rails and clamps	Stolpen; dens tilbehør er bordbjælker, skinner og klemmer
 The project changed since the search.	Projektet er ændret siden søgningen.
 The project check	Projektkontrollen
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kræver desktopversionen: browseren kan ikke gennemsøge mapper.
@@ -2220,6 +2241,7 @@ When it differs from the page	Når den afviger fra siden
 Where	Placering
 Where neither wire has a termination chosen for it	Hvor ingen af lederne har en valgt afslutning
 Where the point is in the plant; y: its height above the ground level of the plant	Hvor punktet ligger i anlægget; y: dets højde over anlæggets terræn
+Where the roof was clicked in the 3D view	Hvor der blev klikket på taget i 3D-visningen
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Hvor enhedens struktur kommer fra: aspekter, der er lig med strukturen omkring symbolet, arves og følger med, når det flyttes ind i eller ud af en strukturboks; andre aspekter er enhedens egne og bliver.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Hvor ledningen starter og slutter: et tilslutningspunkt fra artikeldataene, et genereret fra funktionsskabelonen eller enhedens midte, hvis intet tilslutningspunkt passer
 Whole building	Hele bygningen
@@ -2258,6 +2280,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Ledningsplads mellem enheder og kanaler
 With a user account of the server; replaces the access token	Med en brugerkonto på serveren; erstatter adgangstokenet
 With everything below it	Med alt under det
+With its middle where the roof was clicked in the 3D view	Med midten, hvor der blev klikket på taget i 3D-visningen
 With the current pages; the approvals so far become void	Med de aktuelle sider; de hidtidige godkendelser bortfalder
 With values only	Kun med værdier
 Withdraw	Træk tilbage
@@ -2518,6 +2541,7 @@ x y	x y
 {} renamed: {} pages and devices	{} omdøbt: {} sider og enheder
 {} report pages output to {}	{} rapportsider udskrevet til {}
 {} routes frozen	{} føringer fastlåst
+{} rows of tables of {} × {} = {}, {}	{} rækker af borde med {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segmenter oprettet, {} enheder tilføjet, {} opdateret
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stationer, {} bussystemer, {} kort tildelt, {} adresser ændret, {} forbindelser, {} kabler
 {} stopped with an error: {}	{} stoppede med en fejl: {}
@@ -2547,6 +2571,7 @@ x y	x y
 {} – revision {}, {}	{} – revision {}, {}
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
+{}, freestanding	{}, jordmonteret
 {}: click to show its floor plan	{}: klik for at vise plantegningen
 {}: crimp together with the wire to {}	{}: krymp sammen med lederen til {}
 {}: drag to move it, R turns it, a double-click opens it	{}: træk for at flytte, R drejer, dobbeltklik åbner
