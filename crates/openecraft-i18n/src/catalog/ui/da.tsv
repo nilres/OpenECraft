@@ -24,6 +24,7 @@ Checking for part updates…	Søger efter opdateringer af artikler…
 Clearance front	Afstand foran
 Clearance left	Afstand til venstre
 Clearance right	Afstand til højre
+Click a face, edge or corner to look from there; drag to orbit	Klik på en flade, kant eller et hjørne for at se derfra; træk for at rotere
 Compared with {} parts of the server	Sammenlignet med {} artikler på serveren
 Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	Sammenligner de lokale artikler med artikelserveren: nyere versioner, udfasede, udgåede og fjernede artikler
 Connect to a parts server and search.	Opret forbindelse til en artikelserver, og søg.
@@ -56,6 +57,7 @@ Import STL / OBJ / STEP / IGES / IFC / JT…	Importér STL / OBJ / STEP / IGES /
 Import SVG…	Importér SVG…
 In the door, when they differ from the cutouts	I døren, når de afviger fra udskæringerne
 Internal values of the EPLAN part exchange (0: undefined)	Interne værdier for EPLAN-artikeludvekslingen (0: udefineret)
+Isometric view, everything shown	Isometrisk visning, alt vist
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Det virker kun monteret på en af de artikler, det passer til; projektkontrollen melder det på en enhed uden en sådan artikel
 Largest conductor the clamp takes (0: not known)	Største leder, klemmen tager (0: ukendt)
 Loaded the library {}	Biblioteket {} er indlæst
@@ -88,6 +90,7 @@ Personal access token	Personligt adgangstoken
 Place by clicking into the view	Placer ved at klikke i visningen
 Placing	Placering
 Prices / other	Priser / andet
+Rear	Bagside
 Remove all	Fjern alle
 Remove picture	Fjern billede
 Removing the file…	Fjerner filen…
@@ -104,7 +107,7 @@ Scale ×	Skala ×
 Select a part to see its details.	Vælg en artikel for at se dens detaljer.
 Select a row, then click into the view to place it.	Vælg en række, og klik derefter i visningen for at placere den.
 Server revision	Serverrevision
-Signed out	Logget af
+Show everything (Home)	Vis alt (Home)
 Signing out…	Logger af…
 Smallest conductor the clamp takes (0: not known)	Mindste leder, klemmen tager (0: ukendt)
 Stands on the floor of a room	Står på gulvet i et rum
@@ -120,6 +123,8 @@ This part is an accessory	Denne artikel er tilbehør
 Top group	Hovedgruppe
 Top group {}, product group {}, subgroup {}	Hovedgruppe {}, produktgruppe {}, undergruppe {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Drej modellen, så forsiden vender mod beskueren (+Z), og oversiden er +Y
+Turn the view 90° to the left	Drej visningen 90° til venstre
+Turn the view 90° to the right	Drej visningen 90° til højre
 Uploaded {} parts, server revision {}	{} artikler uploadet, serverrevision {}
 Uploading parts file…	Uploader artikelfil…
 Uploading {} parts…	Uploader {} artikler…
@@ -164,7 +169,6 @@ up to {} mm²	op til {} mm²
 {} mm right	{} mm til højre
 {} of {} parts	{} af {} artikler
 {} parts found	{} artikler fundet
-{} users	{} brugere
 {} wires per connection point	{} ledninger pr. tilslutningspunkt
 {} × {} mm, {} elements	{} × {} mm, {} elementer
 {} × {} × {} mm	{} × {} × {} mm

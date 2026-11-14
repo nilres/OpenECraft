@@ -7,6 +7,7 @@ A grant needs a user or a group	Přidělení potřebuje uživatele nebo skupinu
 A group name must not be empty or contain ':'	Název skupiny nesmí být prázdný ani obsahovat ':'
 A manufacturer user needs a manufacturer	Uživatel výrobce potřebuje výrobce
 A part number must not be empty or start or end with blanks	Číslo artiklu nesmí být prázdné ani začínat či končit mezerami
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Role je sada práv. Přidělení dávají uživateli nebo skupině roli pro projekty (* a ? jako zástupné znaky, * pro všechny); odepírající přidělení práva role odebere bez ohledu na jiná přidělení.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Role je sada práv. Přidělení dávají uživateli nebo skupině roli pro artikly výrobce (* a ? jako zástupné znaky, * pro všechny); odepírající přidělení práva role odebere bez ohledu na jiná přidělení.
 A user name must not be empty or contain blanks	Uživatelské jméno nesmí být prázdné ani obsahovat mezery
 Accept any certificate (test installations only)	Přijmout jakýkoli certifikát (jen testovací instalace)
@@ -23,6 +24,7 @@ Administration	Správa
 All manufacturers	Všichni výrobci
 All parts	Všechny artikly
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Všechny artikly s jejich daty, pro tabulkové procesory nebo k importu do jiného serveru. Jejich soubory jsou jen v záloze databáze.
+All projects	Všechny projekty
 Allowed groups	Povolené skupiny
 Also groups of groups (Active Directory)	I skupiny skupin (Active Directory)
 Amplifiers, controllers	Zesilovače, regulátory
@@ -76,6 +78,7 @@ Check flap	Zpětná klapka
 Chimney	Komín
 Choose logo…	Vybrat logo…
 Circuit breaker	Jistič
+Closed	Zavřena
 Coil	Cívka
 Complete power units	Kompletní agregáty
 Compressed air filters	Filtry stlačeného vzduchu
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Smazat skupinu {}? Její přiděl
 Delete part {} from the server? This cannot be undone.	Odstranit artikl {} ze serveru? Tuto akci nelze vrátit zpět.
 Delete part {}?	Smazat artikl {}?
 Delete parts	Odstraňovat artikly
+Delete user {}? Their open projects are closed.	Odstranit uživatele {}? Jeho otevřené projekty budou zavřeny.
 Delete user {}? Their sessions and favorites are removed.	Odstranit uživatele {}? Jeho relace a oblíbené položky budou odebrány.
 Deleted	Odstraněno
 Digital sensor, general	Digitální senzor, obecně
@@ -140,6 +144,7 @@ Drawings box	Kapsa na výkresy
 Dryer	Sušárna
 Dummy plate	Zaslepovací deska
 Duplex switch filters	Zdvojené přepínatelné filtry
+Duration	Doba trvání
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Upravit katalog {}
 Edit catalogs	Upravovat katalogy
@@ -158,6 +163,8 @@ Enclosure cooling devices	Chladicí jednotky rozváděčů
 Enclosure heater	Topení rozváděče
 Encryption	Šifrování
 End clamp	Koncová zarážka
+Ended	Ukončena
+Ended by	Způsob ukončení
 Ends the session and forgets the token	Ukončí relaci a zapomene token
 Engine	Hnací stroj
 Enter the address of an openecraft-parts-server and click Connect.	Zadejte adresu serveru openecraft-parts-server a klikněte na Připojit.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Proměnná prostř
 Evaporator	Odparka
 Everybody who may read the parts sees it.	Vidí jej každý, kdo smí číst artikly.
 Exhaust valves	Odvzdušňovací ventily
+Expired	Vypršela
 Export (CSV)	Export (CSV)
 Export and backup	Export a záloha
 Export the parts, catalogs and settings, or download a backup of the whole database.	Exportujte artikly, katalogy a nastavení, nebo stáhněte zálohu celé databáze.
@@ -175,6 +183,8 @@ Female insert	Dutinková vložka
 Field distribution device	Polní rozbočovač
 Files and history ({} files)	Soubory a historie (soubory: {})
 Filter fan	Filtrační ventilátor
+Filter projects…	Filtrovat projekty…
+Filter sessions…	Filtrovat relace…
 Filters	Filtry
 Fixed displacement pumps	Čerpadla s konstantním průtokem
 Flange pair	Pár přírub
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Obrázky (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / export
 Import parts	Importovat artikly
 Imported {} parts (revision {})	Importováno artiklů: {} (revize {})
+In use by	Používá
+In use by {}	Používá {}
 Inductors	Induktory
 Install	Nainstalovat
 Install again	Znovu nainstalovat
@@ -224,6 +236,7 @@ KNX actuator	Akční člen KNX
 KNX system device	Systémové zařízení KNX
 Key switch	Spínač na klíč
 Kneader	Hnětač
+Last activity	Poslední aktivita
 Last changes per month	Poslední změny podle měsíce
 Last sign-in	Poslední přihlášení
 Legend plate	Popisný štítek
@@ -245,6 +258,7 @@ Logic items	Logické prvky
 Logos	Loga
 Looks the users up; empty: users bind with their own name (below)	Vyhledává uživatele; prázdné: uživatelé se vážou vlastním jménem (níže)
 Male insert	Kolíková vložka
+Managers of a project give rights on it themselves (Permissions on the project).	Vedoucí projektu sami udělují práva na svůj projekt (Oprávnění projektu).
 Measurement system	Měřicí zařízení
 Measuring connection points	Měřicí přípojky
 Measuring couplings	Měřicí spojky
@@ -270,11 +284,18 @@ New role	Nová role
 New user	Nový uživatel
 Newer version	Novější verze
 Next	Další
+No devices found	Nebyly nalezeny žádné přístroje
+No ended sessions	Žádné ukončené relace
 No grants: the rights by manufacturer apply	Žádná přidělení: platí práva podle výrobce
+No grants: the roles of the users apply	Žádná přidělení: platí role uživatelů
 No grants: users have the rights of their role	Žádná přidělení: uživatelé mají práva své role
 No groups	Žádné skupiny
+No open sessions	Žádné otevřené relace
+No projects found	Nebyly nalezeny žádné projekty
 No users	Žádní uživatelé
+Nobody works on a project	Na žádném projektu nikdo nepracuje
 Non-return valves	Zpětné ventily
+None (only grants)	Žádná (jen přidělení)
 Not mounted	Nemontováno
 Nut	Matice
 On the front	Vpředu
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Odstranit lze pouze katalogy bez arti
 Only empty catalogs can be deleted	Odstranit lze jen prázdné katalogy
 Only local accounts	Pouze místní účty
 Only their members sign in; empty: all users	Přihlašují se jen jejich členové; prázdné: všichni uživatelé
+Open sessions	Otevřené relace
 Open sessions: {}	Otevřené relace: {}
 OpenECraft data portal	Datový portál OpenECraft
 OpenECraft parts manager	Správce artiklů OpenECraft
 OpenECraft parts server	Server artiklů OpenECraft
+OpenECraft project server	Projektový server OpenECraft
 Other file	Jiný soubor
 Other labels	Další štítky
 Others	Ostatní
@@ -324,6 +347,7 @@ Password variable	Proměnná hesla
 Per page	Na stránku
 Permissions	Oprávnění
 Permissions of catalog {}	Oprávnění katalogu {}
+Permissions of project {}	Oprávnění projektu {}
 Phase-out	Dobíhající
 Pipes	Trubky
 Piping part	Potrubní díl
@@ -349,6 +373,9 @@ Pressure switches	Tlakové spínače
 Pressure valves	Tlakové ventily
 Previous	Předchozí
 Progressive feeders	Progresivní rozdělovače
+Project {} not found	Projekt {} nebyl nalezen
+Projects	Projekty
+Projects in use	Používané projekty
 Protection devices	Ochranná zařízení
 Proximity switches	Přibližovací spínače
 Pump brackets	Konzoly čerpadel
@@ -381,6 +408,7 @@ Replaced by {}	Nahrazeno artiklem {}
 Resistors	Rezistory
 Restore from a file	Obnovit ze souboru
 Return flushing filters, all-autom.	Samočisticí filtry se zpětným proplachem, plně automatické
+Revision {} on the server	Revize {} na serveru
 Ribbon cables	Plochý kabel
 Roles	Role
 Roof hook	Střešní hák
@@ -395,6 +423,7 @@ Save the catalog first	Nejprve uložte katalog
 Save the part first	Nejprve uložte artikl
 Saved directory {}	Adresářová služba {} uložena
 Saved group {}	Skupina {} uložena
+Saves	Uložení
 Screw connections	Šroubení
 Screw pumps	Šroubová čerpadla
 Screw spindle compressors	Šroubové kompresory
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Senzory, spínače a tlačítka
 Sensors - pressure gauges	Snímače – manometry
 Serial sub-plates	Řadové připojovací desky
 Service account	Servisní účet
+Sessions	Relace
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Nastaveno spouštěcími volbami serveru (--dashboard nebo OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Nastaveno spouštěcími volbami serveru (--registration nebo OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Krátký název bez mezer; kvalifikuje skupiny (id:skupina)
@@ -424,11 +454,13 @@ Sight glass	Průhledítko
 Sign in as an administrator to manage the server	Přihlaste se jako správce, abyste mohli spravovat server
 Sign in or connect with the access token to change parts	Přihlaste se nebo se připojte pomocí přístupového tokenu, abyste mohli měnit díly
 Sign in to keep favorites	Chcete-li ukládat oblíbené, přihlaste se
+Sign in to see the projects	Přihlaste se, abyste viděli projekty
 Sign in with a user account	Přihlásit se uživatelským účtem
 Sign in with the access token of the server	Přihlásit se přístupovým tokenem serveru
 Sign out everywhere	Odhlásit všude
 Sign out {} on all devices?	Odhlásit {} na všech zařízeních?
 Sign-in needed to read	Čtení vyžaduje přihlášení
+Sign-in needed to view	Zobrazení vyžaduje přihlášení
 Signal device	Signalizační přístroj
 Signal device, acoustic	Signalizační zařízení, akustické
 Signal device, optical	Signalizační zařízení, optické
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Poslední správce 
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Logo firmy: PNG, JPEG, GIF, WebP nebo SVG, nejvýše 512 kB
 The password needs at least {} characters	Heslo musí mít alespoň {} znaků
 The passwords do not match	Hesla se neshodují
+The project has no devices	Projekt nemá žádné přístroje
+The project has no pages	Projekt nemá žádné stránky
 The project has no parts	Projekt nemá žádné artikly
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Projekty, pro které role platí (* a ? jako zástupné znaky), oddělené čárkami; prázdné: všechny
 The registration is closed	Registrace je uzavřená
 The registration is open	Registrace je otevřená
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Zde přidělené role platí pro tento katalog a jeho artikly bez ohledu na výrobce; odepřít odebírá práva role. Čtení je právo celého serveru.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Zde přidělené role platí pro tento projekt; odepřít odebírá práva role. Odepření ruší jen správci.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Role, přidělení, skupiny a přístup bez přihlášení, s verzí serveru. Obnovení nahradí role a přidělení a přidá skupiny; adresářové služby zůstanou, jak jsou nastaveny na serveru.
 The server cannot be reached	Server není dostupný
+The server keeps the last {} ended sessions.	Server uchovává poslední ukončené relace, nejvýše {}.
 The server sent no text	Server neposlal žádný text
 The test failed	Test selhal
 The test succeeded	Test proběhl úspěšně
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Nahrávání {} do Vault ({} %)…
 Uploading {} to Vault…	Nahrávání {} do Vault…
 User account	Uživatelský účet
 User bind	Vazba uživatele
+User deleted	Uživatel odstraněn
 User filter	Filtr uživatelů
 User or group	Uživatel nebo skupina
 User {} exists already. Change it?	Uživatel {} již existuje. Změnit ho?
@@ -536,6 +574,7 @@ Variable displacement pumps	Regulační čerpadla
 Vault did not continue the upload	Vault nepokračoval v nahrávání
 Ventilation filters	Odvzdušňovací filtry
 Ventilator	Ventilátor
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Prohlížející otevírají projekty jen pro čtení, kontroloři také ukládají komentáře, editoři mění a vytvářejí projekty, vedoucí projektu je také odstraňují a udělují na ně práva, správci spravují server.
 Voltage source	Zdroj napětí
 Voltage source and generator	Zdroj napětí a generátor
 Waiting accounts cannot sign in; approve or reject them in Users.	Čekající účty se nemohou přihlásit; schvalte je nebo odmítněte v části Uživatelé.
@@ -549,8 +588,10 @@ Without sign-in	Bez přihlášení
 Wrong access token	Nesprávný přístupový token
 Wrong user name or password	Nesprávné uživatelské jméno nebo heslo
 You may not change parts of manufacturer {}	Nesmíte měnit artikly výrobce {}
+You may not see any project	Nesmíte vidět žádný projekt
 Your account awaits the approval of an administrator	Váš účet čeká na schválení správcem
 Your account was created. An administrator has to approve it before you can sign in.	Váš účet byl vytvořen. Než se budete moci přihlásit, musí jej schválit správce.
+Your rights	Vaše práva
 access denied – check the personal access token	přístup odepřen – zkontrolujte osobní přístupový token
 by file name	podle názvu souboru
 changed, not saved	změněno, neuloženo
@@ -574,6 +615,7 @@ you	vy
 {} has no checksum in SHA256SUMS	{} nemá kontrolní součet v SHA256SUMS
 {} parts in {} catalogs, revision {}	Artikly: {}, katalogy: {}, revize {}
 {} parts, {} catalogs, {}	Artikly: {}, katalogy: {}, {}
+{} projects	Projekty: {}
 {} – save to upload it	{} – uložením jej nahrajete
 {}: a logo has at most 512 kB	{}: logo má nejvýše 512 kB
 {}: the catalog is no longer open	{}: katalog již není otevřen

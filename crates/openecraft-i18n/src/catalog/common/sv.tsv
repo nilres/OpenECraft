@@ -1,6 +1,7 @@
 # English<TAB>Svenska – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(alla)
 (no entries)	(inga poster)
+(no structure)	(ingen struktur)
 --json needs a JSON object	--json kräver ett JSON-objekt
 3D model	3D-modell
 3D routing	3D-dragning
@@ -16,11 +17,13 @@ Add	Lägg till
 Add a PDF of all pages	Lägg till en PDF med alla sidor
 Add to favorites	Lägg till i favoriter
 Address	Adress
+Administrator	Administratör
 Angle	Vinkel
 Apply	Verkställ
 Approve	Godkänn
 Approvers	Godkännare
 Automatic	Automatisk
+Aux	Hjälp
 Below	Nedanför
 Bold	Fet
 Bottom	Botten
@@ -125,6 +128,7 @@ Downloading {}…	Laddar ned {}…
 Drag to turn the model	Dra för att vrida modellen
 EMC clearance	EMC-avstånd
 Edit	Redigera
+Editor	Redigerare
 Electro-fluid cross reference	Elektro-fluid-korsreferens
 Enclosure	Kapsling
 Enclosures	Kapslingar
@@ -144,6 +148,8 @@ Field wiring	Fältkablage
 File	Arkiv
 Files	Filer
 Filter	Filter
+Filter devices…	Filtrera apparater…
+Fit	Anpassa
 Fits	Passar till
 Fitting at the end	Koppling i slutet
 Fitting at the start	Koppling i början
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Överger ett delprojekt: des
 Gland plate	Genomföringsplåt
 Graphics	Grafik
 Group	Grupp
+Group the pages by structure	Gruppera sidorna efter struktur
 Groups	Grupper
 Harness	Kabelstam
 Harness data	Kabelstamsdata
@@ -207,9 +214,12 @@ Load	Last
 Loaded circuits bunched together	Belastade kretsar förlagda tillsammans
 Location	Placering
 Location (+)	Placering (+)
+Locked	Låst
+Locked by {}	Låst av {}
 Logo	Logotyp
 MTTFd (years)	MTTFd (år)
 Machine	Maskin
+Main	Huvud
 Main earthing busbar (device) it is connected to; empty: none	Huvudjordningsskena (apparat) som det är anslutet till; tom: ingen
 Main earthing terminal	Huvudjordningsskena
 Main switch	Huvudbrytare
@@ -352,9 +362,11 @@ Product subgroup	Produktundergrupp
 Product top group	Produkthuvudgrupp
 Profile	Profil
 Project	Projekt
+Project data	Projektdata
 Project languages	Projektspråk
 Project logo	Projektets logotyp
 Project management	Projekthantering
+Project manager	Projektledare
 Project name	Projektnamn
 Project properties	Projektegenskaper
 Properties	Egenskaper
@@ -371,6 +383,7 @@ Rated power	Märkeffekt
 Rear wall	Bakvägg
 Rectangle	Rektangel
 Rectangular	Rektangulär
+Refresh	Uppdatera
 Reject	Avvisa
 Relative humidity	Relativ luftfuktighet
 Relay	Relä
@@ -386,6 +399,7 @@ Report blocks	Rapportblock
 Report: {}	Rapport: {}
 Required	Krävs
 Reserve	Reserv
+Reviewer	Granskare
 Revision	Revision
 Revision {}	Revision {}
 Rework	Omarbetning
@@ -429,6 +443,7 @@ Sign in	Logga in
 Sign out	Logga ut
 Signed in as {}	Inloggad som {}
 Signed in as {} ({})	Inloggad som {} ({})
+Signed out	Utloggad
 Signing in…	Loggar in…
 Single-line / multi-line	Enlinje / flerlinje
 Size	Storlek
@@ -436,6 +451,7 @@ Socket side	Hylssida
 Solenoid not linked	Magnetspole inte länkad
 Sort by	Sortera efter
 Source	Källa
+Started	Påbörjad
 State	Tillstånd
 Status	Status
 String	Sträng
@@ -472,6 +488,7 @@ Time	Tid
 Title block	Namnruta
 To	Till
 Tools	Verktyg
+Top	Överkant
 Total	Totalt
 Transformer	Transformator
 Type	Typ
@@ -498,6 +515,7 @@ User	Användare
 User name	Användarnamn
 Users	Användare
 Version	Version
+Viewer	Visare
 Voltage	Spänning
 Warning	Varning
 Warnings	Varningar
@@ -540,6 +558,7 @@ yes	ja
 {} exists already	{} finns redan
 {} is not a PNG or JPEG image	{} är inte en PNG- eller JPEG-bild
 {} parts	{} artiklar
+{} users	{} användare
 {} wires	{} ledningar
 {}, together with the wire to {}	{}, tillsammans med ledaren till {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} står inte på golvet, välj en golvstående artikel

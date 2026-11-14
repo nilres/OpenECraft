@@ -33,16 +33,8 @@ impl App {
                         .collect();
                     if self.page_tree {
                         // Groups by structure, in the order they first occur.
-                        let mut groups: Vec<(String, Vec<usize>)> = Vec::new();
-                        for &i in &shown {
-                            let st = structure::page_structure(&self.session.prj.pages[i]);
-                            match groups.iter_mut().find(|g| g.0 == st) {
-                                Some(g) => g.1.push(i),
-                                None => groups.push((st, vec![i])),
-                            }
-                        }
-                        for (st, pages) in groups {
-                            let title = if st.is_empty() { tr("(no structure)").to_string() } else { self.structure_title(&st) };
+                        for (st, pages) in openecraft_view::structure_groups(&self.session.prj, &shown) {
+                            let title = if st.is_empty() { tr("(no structure)").to_string() } else { openecraft_view::structure_title(&self.session.prj, &st) };
                             egui::CollapsingHeader::new(title).id_salt(("ptree", st.as_str())).default_open(true).show(ui, |ui| {
                                 for i in pages {
                                     action = std::mem::replace(&mut action, PageAction::None).or(self.page_row(ui, i, &mut probe));
@@ -107,16 +99,8 @@ impl App {
                     let mut jump = None;
                     let f = self.device_filter.to_lowercase();
                     // Devices grouped by structure (=function+location).
-                    let mut groups: Vec<(String, Vec<&String>)> = Vec::new();
                     let tags = idx.sorted_tags().into_iter().filter(|t| area.as_ref().is_none_or(|w| w.shows_device(t)));
-                    for tag in tags.filter(|t| f.is_empty() || t.to_lowercase().contains(&f)) {
-                        let st = Dt::parse(tag).structure();
-                        match groups.iter_mut().find(|g| g.0 == st) {
-                            Some(g) => g.1.push(tag),
-                            None => groups.push((st, vec![tag])),
-                        }
-                    }
-                    groups.sort_by(|a, b| natural_cmp(&a.0, &b.0));
+                    let groups = openecraft_view::device_groups(tags.filter(|t| f.is_empty() || t.to_lowercase().contains(&f)));
                     let structured = groups.iter().any(|g| !g.0.is_empty());
                     let prj = &self.session.prj;
                     let placing = self.editor.place_tag.clone();
@@ -125,7 +109,7 @@ impl App {
                     let mut menu: Option<(String, drawing_ui::DeviceAction)> = None;
                     let mut device = |ui: &mut egui::Ui, tag: &String| {
                         let dev = &idx.devices[tag];
-                        let title = if structured { Dt::parse(tag).name } else { tag.clone() };
+                        let title = openecraft_view::device_title(tag, structured);
                         let title = if placing.as_deref() == Some(tag.as_str()) { format!("{title}  ✏") } else { title };
                         let is_sel = selected.as_deref() == Some(tag.as_str());
                         let mut text = RichText::new(title).monospace().strong();
@@ -133,16 +117,9 @@ impl App {
                             text = text.background_color(ui.visuals().selection.bg_fill);
                         }
                         let header = egui::CollapsingHeader::new(text).id_salt(tag).show(ui, |ui| {
-                            for (kind, locs) in [(tr("Main"), &dev.mains), (tr("Aux"), &dev.auxs), ("", &dev.others)] {
-                                for loc in locs {
-                                    let inst = prj.pages[loc.page].symbols.iter().find(|s| s.id == loc.sym_id);
-                                    let Some(inst) = inst else { continue };
-                                    let name = self.session.prj.symbol(&inst.sym).map(|d| tr(d.name)).unwrap_or("?");
-                                    let extra = if inst.label.is_empty() { inst.pins.join("-") } else { inst.label.clone() };
-                                    let text = format!("{} {kind} {name} {extra}", loc.reference(prj));
-                                    if ui.link(text.trim()).clicked() {
-                                        jump = Some((loc.page, loc.sym_id));
-                                    }
+                            for place in openecraft_view::places(prj, dev) {
+                                if ui.link(place.text(tr)).clicked() {
+                                    jump = Some((place.loc.page, place.loc.sym_id));
                                 }
                             }
                         });
@@ -252,27 +229,11 @@ impl PageAction {
 }
 
 impl App {
-    /// `=A1+CAB1  Pump station` (descriptions from the structure management).
-    fn structure_title(&self, st: &str) -> String {
-        let dt = Dt::parse_structure(st);
-        let s = &self.session.prj.structures;
-        let desc: Vec<String> = openecraft_core::structure::Aspect::ALL
-            .into_iter()
-            .filter_map(|a| s.entry(a, dt.get(a)).map(|e| e.description.clone()))
-            .filter(|d| !d.is_empty())
-            .collect();
-        if desc.is_empty() {
-            st.to_string()
-        } else {
-            format!("{st}  {}", desc.join(", "))
-        }
-    }
-
     /// One page of the page list; it is dragged to move it between pages or onto a
     /// section.
     pub(super) fn page_row(&self, ui: &mut egui::Ui, i: usize, probe: &mut page_dnd::Probe) -> PageAction {
         let pg = &self.session.prj.pages[i];
-        let icon = Self::page_icon(pg.kind);
+        let icon = openecraft_view::page_icon(pg.kind);
         let mut text = egui::text::LayoutJob::default();
         let dragged = probe.dragged == Some(page_dnd::Dragged::Page(i));
         let color = if dragged { ui.visuals().weak_text_color() } else { ui.visuals().text_color() };

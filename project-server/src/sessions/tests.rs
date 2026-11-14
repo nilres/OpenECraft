@@ -70,3 +70,35 @@ fn signing_out_and_deleting_the_user_end_their_sessions() {
     assert_eq!(s.close_user("ben"), 1);
     assert_eq!(s.touch("p", &ben, now), Err(LockError::Expired));
 }
+
+#[test]
+fn ended_sessions_go_to_the_history_with_how_they_ended() {
+    let start = Instant::now();
+    let mut s = Sessions::default();
+    let anna = s.open("p", "anna", start);
+    let ben = s.open("p", "ben", start);
+    let cleo = s.open("q", "cleo", start);
+    let dan = s.open("q", "dan", start);
+    s.set_owner(&cleo.session, "token-c".into());
+    s.lock("p", &anna, &[Target::Page(1)], start).unwrap();
+    s.saved(&anna.session);
+    s.saved(&anna.session);
+    let active = s.active(start);
+    assert_eq!(active.iter().map(|r| r.user.as_str()).collect::<Vec<_>>(), ["dan", "cleo", "ben", "anna"], "newest first");
+    assert_eq!((active[3].saves, active[3].locks.clone()), (2, vec![Target::Page(1)]));
+    assert!(!format!("{active:?}").contains(&anna.session), "the key of a session is never shown");
+
+    s.close("p", &anna).unwrap();
+    s.close_owned("token-c");
+    s.close_user("DAN");
+    assert_eq!(s.touch("q", &dan, start), Err(LockError::Expired));
+    s.touch("p", &ben, start).unwrap();
+    s.expire(start + Duration::from_secs(SESSION_TIMEOUT_SECS + 1));
+    assert!(s.active(start).is_empty());
+    let history = s.history.recent(10);
+    let ends: Vec<(&str, Option<SessionEnd>)> = history.iter().map(|r| (r.user.as_str(), r.end)).collect();
+    assert_eq!(ends, [("ben", Some(SessionEnd::Expired)), ("dan", Some(SessionEnd::UserDeleted)), ("cleo", Some(SessionEnd::SignedOut)), ("anna", Some(SessionEnd::Closed))]);
+    let anna = &history[3];
+    assert_eq!((anna.project.as_str(), anna.saves, anna.number), ("p", 2, 1));
+    assert!(anna.locks.is_empty() && anna.ended.is_some_and(|e| e >= anna.started));
+}

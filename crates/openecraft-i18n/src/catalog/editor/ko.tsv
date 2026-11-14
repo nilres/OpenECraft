@@ -8,7 +8,6 @@
 (empty)	(비어 있음)
 (included)	(포함됨)
 (no cable highlighted)	(강조 표시된 케이블 없음)
-(no structure)	(구조 없음)
 (none)	(없음)
 (project default)	(프로젝트 기본값)
 (repairable)	(복구 가능)
@@ -190,7 +189,6 @@ Automatic configuration	자동 구성
 Automatic placement	자동 배치
 Automatic: {}	자동: {}
 Automation	자동화
-Aux	보조
 Avoid:	회피:
 Back	뒤로
 Back to the project (Esc)	프로젝트로 돌아가기 (Esc)
@@ -735,7 +733,6 @@ Fill	채우기
 Fill level	충전율
 Filled	채움
 Filter connections…	연결 필터…
-Filter devices…	장치 필터…
 Filter…	필터…
 Find	찾기
 Find a command	명령 찾기
@@ -748,7 +745,6 @@ Find…	찾기…
 Finish a wire, polyline, polygon or wall	전선, 폴리선, 다각형 또는 벽 마치기
 Finish or cancel the drawing, then back to selecting	그리기를 끝내거나 취소한 뒤 선택으로 돌아가기
 First row	첫 행
-Fit	맞춤
 Fit page	페이지 맞춤
 Fits {}	{}에 호환
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	가로세로 비율을 유지하며 사각형에 맞춤(PNG, JPEG)
@@ -834,7 +830,6 @@ Grid {} mm	그리드 {} mm
 Group as assembly	어셈블리로 그룹화
 Group column	그룹 열
 Group in the symbol list, e.g. your company	심볼 목록의 그룹(예: 회사 이름)
-Group the pages by structure	구조별로 페이지 그룹화
 Groups shown	표시되는 그룹
 HEATER=yes	HEATER=yes
 Hardware configuration and PLC tags for TIA Portal and other PLC tools	TIA Portal 및 기타 PLC 도구용 하드웨어 구성 및 PLC 태그
@@ -960,7 +955,6 @@ Introduction	소개
 Invalid value	잘못된 값
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
 Inverter or charge controller (devices with PV input data)	인버터 또는 충전 컨트롤러 (태양광 입력 데이터가 있는 장치)
-Isometric	등각
 Items copied: {}	복사한 요소: {}
 Items copied: {} (devices left out: {}, a device is placed once)	복사한 요소: {} (제외된 장치: {}, 장치는 한 번만 배치됩니다)
 Items cut: {}	잘라낸 요소: {}
@@ -1054,9 +1048,7 @@ Lock all pages	모든 페이지 잠금
 Lock current page	현재 페이지 잠금
 Lock page	페이지 잠금
 Lock project data	프로젝트 데이터 잠금
-Locked	잠김
 Locked by other users	다른 사용자가 잠금
-Locked by {}	{}이(가) 잠금
 Locked by {} on the project server – read only	프로젝트 서버에서 {}이(가) 잠금 – 읽기 전용
 Locked by {} – read only	잠금: {} – 읽기 전용
 Locking…	잠그는 중…
@@ -1077,7 +1069,6 @@ Macro {} saved	매크로 {} 저장됨
 Macros	매크로
 Macros ({})	매크로 ({})
 Macro…	매크로…
-Main	주
 Main earthing busbar	주 접지 부스바
 Make the selected elements of this project equal to the compared ones	이 프로젝트의 선택한 요소를 비교 대상과 같게 만듭니다
 Maker	제조업체
@@ -1544,7 +1535,6 @@ Profile name	프로필 이름
 Profiles	프로필
 Project access	프로젝트 액세스
 Project and user settings in one dialog	프로젝트 설정과 사용자 설정을 한 대화 상자에서
-Project data	프로젝트 데이터
 Project database	프로젝트 데이터베이스
 Project database, batch changes of project properties, subprojects, options, archives and verification	프로젝트 데이터베이스, 프로젝트 속성 일괄 변경, 하위 프로젝트, 옵션, 아카이브 및 검증
 Project default: {}	프로젝트 기본값: {}
@@ -1587,7 +1577,6 @@ Read a file of the other system (CSV or JSON) and review the changes	다른 시�
 Readdress card	카드 주소 재지정
 Reading the folder…	폴더를 읽는 중…
 Real length per millimetre on the page, e.g. 10 for a 1:10 drawing	페이지의 밀리미터당 실제 길이(예: 1:10 도면은 10)
-Rear	뒤
 Rear left corner of the line-up on the floor, as in the 3D view with all enclosures	바닥에 있는 열 배치의 왼쪽 뒤 모서리(모든 외함이 있는 3D 보기 기준)
 Recent projects	최근 프로젝트
 Recently used	최근 사용
@@ -1598,7 +1587,6 @@ Redline: to be changed · Greenline: changed as built	레드라인: 변경 예�
 Redo	다시 실행
 Reference point	기준점
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	기준점을 x {} m, z {} m에 배치했습니다. 건물 창에서 좌표를 입력하십시오
-Refresh	새로 고침
 Refresh example catalog parts (GEN.*)	예제 카탈로그 부품(GEN.*) 새로 고침
 Rejected and closed ones too	거부 및 종료된 항목 포함
 Relative column width	상대 열 너비
@@ -1882,7 +1870,6 @@ Show as tiles	타일로 표시
 Show connection point designations	연결 지점 명칭 표시
 Show connectors	커넥터 표시
 Show device tag and cross references	장치 태그 및 상호 참조 표시
-Show everything (Home)	모두 표시 (Home)
 Show in panel layout ({})	패널 레이아웃에서 표시({})
 Show in schematic	회로도에서 표시
 Show in the schematic	회로도에서 표시
@@ -2118,7 +2105,6 @@ Title blocks, report schemes and plot frames shared by all projects on the parts
 To do	할 일
 Toggle corner direction while drawing wires	전선을 그리는 동안 꺾임 방향 전환
 Toggle routing around symbols (wire tool)	심볼 우회 경로 설정 켜기/끄기(전선 도구)
-Top	위쪽
 Top edges	위쪽 가장자리
 Top left	왼쪽 위
 Top right	오른쪽 위

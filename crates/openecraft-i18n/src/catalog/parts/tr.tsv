@@ -7,6 +7,7 @@ A grant needs a user or a group	Bir yetki atamasının bir kullanıcıya veya gr
 A group name must not be empty or contain ':'	Grup adı boş olamaz ve ':' içeremez
 A manufacturer user needs a manufacturer	Üretici kullanıcısı için bir üretici gerekir
 A part number must not be empty or start or end with blanks	Parça numarası boş olamaz, boşlukla başlayamaz veya bitemez
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba projeler üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rol, bir haklar kümesidir. Yetki atamaları bir kullanıcıya veya gruba bir üreticinin parçaları üzerinde bir rol verir (joker karakter olarak * ve ?, tümü için *); reddeden bir atama, diğer atamalar ne verirse versin rolün haklarını geri alır.
 A user name must not be empty or contain blanks	Kullanıcı adı boş olamaz veya boşluk içeremez
 Accept any certificate (test installations only)	Her sertifikayı kabul et (yalnızca test kurulumları)
@@ -23,6 +24,7 @@ Administration	Yönetim
 All manufacturers	Tüm üreticiler
 All parts	Tüm parçalar
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Tüm parçalar verileriyle birlikte; elektronik tablolar için veya başka bir sunucuya aktarmak için. Dosyaları yalnızca veritabanı yedeğindedir.
+All projects	Tüm projeler
 Allowed groups	İzin verilen gruplar
 Also groups of groups (Active Directory)	Grupların grupları da (Active Directory)
 Amplifiers, controllers	Yükselteçler, kontrolörler
@@ -76,6 +78,7 @@ Check flap	Çek klape
 Chimney	Baca
 Choose logo…	Logo seç…
 Circuit breaker	Minyatür devre kesici
+Closed	Kapatıldı
 Coil	Bobin
 Complete power units	Komple güç üniteleri
 Compressed air filters	Basınçlı hava filtreleri
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	{} grubu silinsin mi? Gruba yapı
 Delete part {} from the server? This cannot be undone.	{} parçası sunucudan silinsin mi? Bu işlem geri alınamaz.
 Delete part {}?	{} parçası silinsin mi?
 Delete parts	Parçaları sil
+Delete user {}? Their open projects are closed.	{} kullanıcısı silinsin mi? Açık projeleri kapatılır.
 Delete user {}? Their sessions and favorites are removed.	{} kullanıcısı silinsin mi? Oturumları ve sık kullanılanları kaldırılır.
 Deleted	Silindi
 Digital sensor, general	Dijital sensör, genel
@@ -140,6 +144,7 @@ Drawings box	Çizim kutusu
 Dryer	Kurutucu
 Dummy plate	Kör flanş
 Duplex switch filters	Çift değiştirmeli filtreler
+Duration	Süre
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	{} kataloğunu düzenle
 Edit catalogs	Katalogları düzenle
@@ -158,6 +163,8 @@ Enclosure cooling devices	Pano soğutma cihazları
 Enclosure heater	Pano ısıtıcısı
 Encryption	Şifreleme
 End clamp	Uç tutucu
+Ended	Sona erdi
+Ended by	Bitiş şekli
 Ends the session and forgets the token	Oturumu sonlandırır ve belirteci unutur
 Engine	Tahrik makinesi
 Enter the address of an openecraft-parts-server and click Connect.	Bir openecraft-parts-server adresini girin ve Bağlan'a tıklayın.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Hizmet hesabının
 Evaporator	Evaporatör
 Everybody who may read the parts sees it.	Parçaları okuyabilen herkes görür.
 Exhaust valves	Tahliye valfleri
+Expired	Süresi doldu
 Export (CSV)	Dışa aktar (CSV)
 Export and backup	Dışa aktarma ve yedekleme
 Export the parts, catalogs and settings, or download a backup of the whole database.	Parçaları, katalogları ve ayarları dışa aktarın veya tüm veritabanının yedeğini indirin.
@@ -175,6 +183,8 @@ Female insert	Dişi uç
 Field distribution device	Saha dağıtım cihazı
 Files and history ({} files)	Dosyalar ve geçmiş ({} dosya)
 Filter fan	Filtreli fan
+Filter projects…	Projeleri filtrele…
+Filter sessions…	Oturumları filtrele…
 Filters	Filtreler
 Fixed displacement pumps	Sabit deplasmanlı pompalar
 Flange pair	Flanş çifti
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Görüntüler (PNG, JPEG, GIF, WebP, SVG)
 Import / export	İçe / dışa aktarma
 Import parts	Parçaları içe aktar
 Imported {} parts (revision {})	{} parça içe aktarıldı (revizyon {})
+In use by	Kullanan
+In use by {}	Kullanan: {}
 Inductors	Endüktanslar
 Install	Yükle
 Install again	Yeniden yükle
@@ -224,6 +236,7 @@ KNX actuator	KNX aktüatörü
 KNX system device	KNX sistem cihazı
 Key switch	Anahtarlı şalter
 Kneader	Yoğurucu
+Last activity	Son etkinlik
 Last changes per month	Aylara göre son değişiklikler
 Last sign-in	Son oturum açma
 Legend plate	Etiket plakası
@@ -245,6 +258,7 @@ Logic items	Lojik öğeler
 Logos	Logolar
 Looks the users up; empty: users bind with their own name (below)	Kullanıcıları arar; boş: kullanıcılar kendi adlarıyla bağlanır (aşağıda)
 Male insert	Erkek uç
+Managers of a project give rights on it themselves (Permissions on the project).	Bir projenin yöneticileri, proje üzerindeki hakları kendileri verir (Projenin izinleri).
 Measurement system	Ölçüm sistemi
 Measuring connection points	Ölçüm bağlantı noktaları
 Measuring couplings	Ölçüm kaplinleri
@@ -270,11 +284,18 @@ New role	Yeni rol
 New user	Yeni kullanıcı
 Newer version	Daha yeni sürüm
 Next	İleri
+No devices found	Cihaz bulunamadı
+No ended sessions	Sona eren oturum yok
 No grants: the rights by manufacturer apply	Yetki ataması yok: üreticiye göre haklar geçerlidir
+No grants: the roles of the users apply	Yetki ataması yok: kullanıcıların rolleri geçerlidir
 No grants: users have the rights of their role	Yetki ataması yok: kullanıcılar rollerinin haklarına sahiptir
 No groups	Grup yok
+No open sessions	Açık oturum yok
+No projects found	Proje bulunamadı
 No users	Kullanıcı yok
+Nobody works on a project	Hiç kimse bir proje üzerinde çalışmıyor
 Non-return valves	Çek valfler
+None (only grants)	Yok (yalnızca yetki atamaları)
 Not mounted	Monte edilmez
 Nut	Somun
 On the front	Önde
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Yalnızca parça içermeyen katalogla
 Only empty catalogs can be deleted	Yalnızca boş kataloglar silinebilir
 Only local accounts	Yalnızca yerel hesaplar
 Only their members sign in; empty: all users	Yalnızca üyeleri oturum açar; boş: tüm kullanıcılar
+Open sessions	Açık oturumlar
 Open sessions: {}	Açık oturumlar: {}
 OpenECraft data portal	OpenECraft veri portalı
 OpenECraft parts manager	OpenECraft parça yöneticisi
 OpenECraft parts server	OpenECraft parça sunucusu
+OpenECraft project server	OpenECraft proje sunucusu
 Other file	Diğer dosya
 Other labels	Diğer etiketler
 Others	Diğerleri
@@ -324,6 +347,7 @@ Password variable	Parola değişkeni
 Per page	Sayfa başına
 Permissions	İzinler
 Permissions of catalog {}	{} kataloğunun izinleri
+Permissions of project {}	{} projesinin izinleri
 Phase-out	Üretimden kalkıyor
 Pipes	Borular
 Piping part	Boru hattı parçası
@@ -349,6 +373,9 @@ Pressure switches	Basınç şalterleri
 Pressure valves	Basınç valfleri
 Previous	Geri
 Progressive feeders	Progresif dağıtıcılar
+Project {} not found	{} projesi bulunamadı
+Projects	Projeler
+Projects in use	Kullanımdaki projeler
 Protection devices	Koruma cihazları
 Proximity switches	Yaklaşım şalterleri
 Pump brackets	Pompa braketleri
@@ -381,6 +408,7 @@ Replaced by {}	{} ile değiştirildi
 Resistors	Dirençler
 Restore from a file	Bir dosyadan geri yükle
 Return flushing filters, all-autom.	Geri yıkamalı filtreler, tam otomatik
+Revision {} on the server	Sunucudaki revizyon: {}
 Ribbon cables	Yassı kablolar
 Roles	Roller
 Roof hook	Çatı kancası
@@ -395,6 +423,7 @@ Save the catalog first	Önce kataloğu kaydedin
 Save the part first	Önce parçayı kaydedin
 Saved directory {}	{} dizin hizmeti kaydedildi
 Saved group {}	{} grubu kaydedildi
+Saves	Kaydetmeler
 Screw connections	Vidalı bağlantılar
 Screw pumps	Vidalı pompalar
 Screw spindle compressors	Vidalı kompresörler
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Sensör, şalter ve buton
 Sensors - pressure gauges	Sensörler - manometreler
 Serial sub-plates	Seri alt plakalar
 Service account	Hizmet hesabı
+Sessions	Oturumlar
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Sunucunun başlatma seçenekleriyle ayarlandı (--dashboard veya OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Sunucunun başlatma seçenekleriyle ayarlanmıştır (--registration veya OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Boşluksuz kısa ad; grupları niteler (id:grup)
@@ -424,11 +454,13 @@ Sight glass	Gözetleme camı
 Sign in as an administrator to manage the server	Sunucuyu yönetmek için yönetici olarak oturum açın
 Sign in or connect with the access token to change parts	Parçaları değiştirmek için oturum açın veya erişim belirteciyle bağlanın
 Sign in to keep favorites	Sık kullanılanları saklamak için oturum açın
+Sign in to see the projects	Projeleri görmek için oturum açın
 Sign in with a user account	Kullanıcı hesabıyla oturum aç
 Sign in with the access token of the server	Sunucunun erişim belirteciyle oturum aç
 Sign out everywhere	Her yerde oturumu kapat
 Sign out {} on all devices?	{} kullanıcısının tüm cihazlardaki oturumu kapatılsın mı?
 Sign-in needed to read	Okumak için oturum açmak gerekir
+Sign-in needed to view	Görüntülemek için oturum açmak gerekir
 Signal device	Sinyal cihazı
 Signal device, acoustic	Sinyal cihazı, akustik
 Signal device, optical	Sinyal cihazı, optik
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Son yönetici, kull
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Şirketin logosu: PNG, JPEG, GIF, WebP veya SVG, en fazla 512 kB
 The password needs at least {} characters	Parola en az {} karakter olmalıdır
 The passwords do not match	Parolalar eşleşmiyor
+The project has no devices	Projede cihaz yok
+The project has no pages	Projede sayfa yok
 The project has no parts	Projede parça yok
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Rolün geçerli olduğu projeler (joker karakter olarak * ve ?), virgülle ayrılmış; boş: tümü
 The registration is closed	Kayıt kapalı
 The registration is open	Kayıt açık
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Burada verilen roller, üreticileri ne olursa olsun bu katalog ve parçaları için geçerlidir; reddet rolün haklarını alır. Okuma tüm sunucunun hakkıdır.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Burada verilen roller bu proje için geçerlidir; reddet rolün haklarını alır. Bir reddi yalnızca yöneticiler kaldırabilir.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Roller, yetki atamaları, gruplar ve oturum açmadan erişim, sunucunun sürümüyle. Geri yükleme rolleri ve yetki atamalarını değiştirir ve grupları ekler; dizin hizmetleri sunucuda ayarlandığı gibi kalır.
 The server cannot be reached	Sunucuya ulaşılamıyor
+The server keeps the last {} ended sessions.	Sunucu sona eren son {} oturumu saklar.
 The server sent no text	Sunucu metin göndermedi
 The test failed	Test başarısız oldu
 The test succeeded	Test başarılı oldu
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	{} Vault'a yükleniyor ({} %)…
 Uploading {} to Vault…	{} Vault'a yükleniyor…
 User account	Kullanıcı hesabı
 User bind	Kullanıcı bağlama
+User deleted	Kullanıcı silindi
 User filter	Kullanıcı filtresi
 User or group	Kullanıcı veya grup
 User {} exists already. Change it?	{} kullanıcısı zaten var. Değiştirilsin mi?
@@ -536,6 +574,7 @@ Variable displacement pumps	Değişken deplasmanlı pompalar
 Vault did not continue the upload	Vault karşıya yüklemeye devam etmedi
 Ventilation filters	Havalandırma filtreleri
 Ventilator	Vantilatör
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Görüntüleyiciler projeleri salt okunur açar, incelemeciler incelemeleri de kaydeder, düzenleyiciler projeleri değiştirir ve oluşturur, proje yöneticileri bunları ayrıca siler ve üzerlerinde hak verir, yöneticiler sunucuyu yönetir.
 Voltage source	Gerilim kaynağı
 Voltage source and generator	Gerilim kaynağı ve jeneratör
 Waiting accounts cannot sign in; approve or reject them in Users.	Bekleyen hesaplar oturum açamaz; onları Kullanıcılar bölümünde onaylayın veya reddedin.
@@ -549,8 +588,10 @@ Without sign-in	Oturum açmadan
 Wrong access token	Yanlış erişim belirteci
 Wrong user name or password	Yanlış kullanıcı adı veya parola
 You may not change parts of manufacturer {}	{} üreticisinin parçalarını değiştiremezsiniz
+You may not see any project	Hiçbir projeyi göremezsiniz
 Your account awaits the approval of an administrator	Hesabınız bir yöneticinin onayını bekliyor
 Your account was created. An administrator has to approve it before you can sign in.	Hesabınız oluşturuldu. Oturum açabilmeniz için bir yöneticinin onaylaması gerekir.
+Your rights	Haklarınız
 access denied – check the personal access token	erişim reddedildi – kişisel erişim belirtecini kontrol edin
 by file name	dosya adına göre
 changed, not saved	değiştirildi, kaydedilmedi
@@ -574,6 +615,7 @@ you	siz
 {} has no checksum in SHA256SUMS	{} için SHA256SUMS içinde sağlama toplamı yok
 {} parts in {} catalogs, revision {}	{} katalogda {} parça, revizyon {}
 {} parts, {} catalogs, {}	{} parça, {} katalog, {}
+{} projects	{} proje
 {} – save to upload it	{} – karşıya yüklemek için kaydedin
 {}: a logo has at most 512 kB	{}: bir logo en fazla 512 kB olabilir
 {}: the catalog is no longer open	{}: katalog artık açık değil

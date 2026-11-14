@@ -7,6 +7,7 @@ A grant needs a user or a group	En tilldelning behöver en användare eller en g
 A group name must not be empty or contain ':'	Ett gruppnamn får inte vara tomt eller innehålla ':'
 A manufacturer user needs a manufacturer	En tillverkaranvändare behöver en tillverkare
 A part number must not be empty or start or end with blanks	Ett artikelnummer får inte vara tomt eller börja eller sluta med mellanslag
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för projekt (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En roll är en uppsättning rättigheter. Tilldelningar ger en användare eller grupp en roll för en tillverkares artiklar (* och ? som jokertecken, * för alla); en nekande tilldelning tar bort rollens rättigheter, oavsett vad andra tilldelningar ger.
 A user name must not be empty or contain blanks	Ett användarnamn får inte vara tomt eller innehålla blanksteg
 Accept any certificate (test installations only)	Acceptera alla certifikat (endast testinstallationer)
@@ -23,6 +24,7 @@ Administration	Administration
 All manufacturers	Alla tillverkare
 All parts	Alla artiklar
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Alla artiklar med sina data, för kalkylblad eller för import till en annan server. Deras filer finns bara i databasens säkerhetskopia.
+All projects	Alla projekt
 Allowed groups	Tillåtna grupper
 Also groups of groups (Active Directory)	Även grupper av grupper (Active Directory)
 Amplifiers, controllers	Förstärkare, regulatorer
@@ -76,6 +78,7 @@ Check flap	Backspjäll
 Chimney	Skorsten
 Choose logo…	Välj logotyp…
 Circuit breaker	Dvärgbrytare
+Closed	Stängd
 Coil	Spole
 Complete power units	Kompletta aggregat
 Compressed air filters	Tryckluftsfilter
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Ta bort grupp {}? Tilldelningarna
 Delete part {} from the server? This cannot be undone.	Vill du ta bort artikeln {} från servern? Det går inte att ångra.
 Delete part {}?	Ta bort artikel {}?
 Delete parts	Ta bort artiklar
+Delete user {}? Their open projects are closed.	Vill du ta bort användaren {}? Användarens öppna projekt stängs.
 Delete user {}? Their sessions and favorites are removed.	Vill du ta bort användaren {}? Användarens sessioner och favoriter tas bort.
 Deleted	Borttagen
 Digital sensor, general	Digital givare, allmän
@@ -140,6 +144,7 @@ Drawings box	Ritningsfack
 Dryer	Tork
 Dummy plate	Blindbricka
 Duplex switch filters	Dubbla omkopplingsfilter
+Duration	Varaktighet
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Redigera katalogen {}
 Edit catalogs	Redigera kataloger
@@ -158,6 +163,8 @@ Enclosure cooling devices	Kylaggregat för apparatskåp
 Enclosure heater	Skåpvärmare
 Encryption	Kryptering
 End clamp	Ändstöd
+Ended	Avslutad
+Ended by	Avslutad av
 Ends the session and forgets the token	Avslutar sessionen och glömmer token
 Engine	Drivmaskin
 Enter the address of an openecraft-parts-server and click Connect.	Ange adressen till en openecraft-parts-server och klicka på Anslut.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Miljövariabel med
 Evaporator	Förångare
 Everybody who may read the parts sees it.	Alla som får läsa artiklarna ser den.
 Exhaust valves	Avluftningsventiler
+Expired	Utgången
 Export (CSV)	Export (CSV)
 Export and backup	Export och säkerhetskopia
 Export the parts, catalogs and settings, or download a backup of the whole database.	Exportera artiklarna, katalogerna och inställningarna, eller ladda ned en säkerhetskopia av hela databasen.
@@ -175,6 +183,8 @@ Female insert	Hylsinsats
 Field distribution device	Fältfördelare
 Files and history ({} files)	Filer och historik ({} filer)
 Filter fan	Filterfläkt
+Filter projects…	Filtrera projekt…
+Filter sessions…	Filtrera sessioner…
 Filters	Filter
 Fixed displacement pumps	Konstantpumpar
 Flange pair	Flänspar
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Bilder (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / export
 Import parts	Importera artiklar
 Imported {} parts (revision {})	{} artiklar importerade (revision {})
+In use by	Används av
+In use by {}	Används av {}
 Inductors	Induktorer
 Install	Installera
 Install again	Installera igen
@@ -224,6 +236,7 @@ KNX actuator	KNX-aktor
 KNX system device	KNX-systemenhet
 Key switch	Nyckelbrytare
 Kneader	Knådare
+Last activity	Senaste aktivitet
 Last changes per month	Senaste ändringar per månad
 Last sign-in	Senaste inloggning
 Legend plate	Skylt
@@ -245,6 +258,7 @@ Logic items	Logikkomponenter
 Logos	Logotyper
 Looks the users up; empty: users bind with their own name (below)	Söker upp användarna; tomt: användarna binder med sitt eget namn (nedan)
 Male insert	Stiftinsats
+Managers of a project give rights on it themselves (Permissions on the project).	Projektledare ger själva rättigheter till sitt projekt (Behörigheter för projektet).
 Measurement system	Mätanordning
 Measuring connection points	Mätanslutningar
 Measuring couplings	Mätkopplingar
@@ -270,11 +284,18 @@ New role	Ny roll
 New user	Ny användare
 Newer version	Nyare version
 Next	Nästa
+No devices found	Inga apparater hittades
+No ended sessions	Inga avslutade sessioner
 No grants: the rights by manufacturer apply	Inga tilldelningar: rättigheterna per tillverkare gäller
+No grants: the roles of the users apply	Inga tilldelningar: användarnas roller gäller
 No grants: users have the rights of their role	Inga tilldelningar: användarna har sin rolls rättigheter
 No groups	Inga grupper
+No open sessions	Inga öppna sessioner
+No projects found	Inga projekt hittades
 No users	Inga användare
+Nobody works on a project	Ingen arbetar med något projekt
 Non-return valves	Backventiler
+None (only grants)	Ingen (endast tilldelningar)
 Not mounted	Inte monterat
 Nut	Mutter
 On the front	På framsidan
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Endast kataloger utan artiklar kan ta
 Only empty catalogs can be deleted	Endast tomma kataloger kan tas bort
 Only local accounts	Endast lokala konton
 Only their members sign in; empty: all users	Endast deras medlemmar loggar in; tomt: alla användare
+Open sessions	Öppna sessioner
 Open sessions: {}	Öppna sessioner: {}
 OpenECraft data portal	OpenECraft-dataportal
 OpenECraft parts manager	OpenECraft artikelhanterare
 OpenECraft parts server	OpenECraft-artikelserver
+OpenECraft project server	OpenECraft-projektserver
 Other file	Annan fil
 Other labels	Övriga skyltar
 Others	Övriga
@@ -324,6 +347,7 @@ Password variable	Lösenordsvariabel
 Per page	Per sida
 Permissions	Behörigheter
 Permissions of catalog {}	Behörigheter för katalogen {}
+Permissions of project {}	Behörigheter för projekt {}
 Phase-out	Utgående
 Pipes	Rör
 Piping part	Rörledningsdel
@@ -349,6 +373,9 @@ Pressure switches	Tryckvakter
 Pressure valves	Tryckventiler
 Previous	Föregående
 Progressive feeders	Progressiva fördelare
+Project {} not found	Projektet {} hittades inte
+Projects	Projekt
+Projects in use	Projekt som används
 Protection devices	Skyddsanordningar
 Proximity switches	Närhetsbrytare
 Pump brackets	Pumpfästen
@@ -381,6 +408,7 @@ Replaced by {}	Ersatt av {}
 Resistors	Resistorer
 Restore from a file	Återställ från en fil
 Return flushing filters, all-autom.	Backspolningsfilter, helautomatiska
+Revision {} on the server	Revision {} på servern
 Ribbon cables	Flatkablar
 Roles	Roller
 Roof hook	Takkrok
@@ -395,6 +423,7 @@ Save the catalog first	Spara katalogen först
 Save the part first	Spara artikeln först
 Saved directory {}	Katalogtjänsten {} sparad
 Saved group {}	Gruppen {} sparad
+Saves	Sparningar
 Screw connections	Förskruvningar
 Screw pumps	Skruvpumpar
 Screw spindle compressors	Skruvkompressorer
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Givare, brytare och tryckknappar
 Sensors - pressure gauges	Givare – manometrar
 Serial sub-plates	Seriella anslutningsplattor
 Service account	Tjänstekonto
+Sessions	Sessioner
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Inställt av serverns startalternativ (--dashboard eller OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Anges av serverns startalternativ (--registration eller OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Kort namn utan mellanslag; kvalificerar grupperna (id:grupp)
@@ -424,11 +454,13 @@ Sight glass	Synglas
 Sign in as an administrator to manage the server	Logga in som administratör för att hantera servern
 Sign in or connect with the access token to change parts	Logga in eller anslut med åtkomsttoken för att ändra artiklar
 Sign in to keep favorites	Logga in för att spara favoriter
+Sign in to see the projects	Logga in för att se projekten
 Sign in with a user account	Logga in med ett användarkonto
 Sign in with the access token of the server	Logga in med serverns åtkomsttoken
 Sign out everywhere	Logga ut överallt
 Sign out {} on all devices?	Logga ut {} på alla enheter?
 Sign-in needed to read	Inloggning krävs för att läsa
+Sign-in needed to view	Inloggning krävs för att visa
 Signal device	Signalapparat
 Signal device, acoustic	Signaldon, akustiskt
 Signal device, optical	Signaldon, optiskt
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Den sista administr
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Företagets logotyp: PNG, JPEG, GIF, WebP eller SVG, högst 512 kB
 The password needs at least {} characters	Lösenordet måste ha minst {} tecken
 The passwords do not match	Lösenorden matchar inte
+The project has no devices	Projektet har inga apparater
+The project has no pages	Projektet har inga sidor
 The project has no parts	Projektet har inga artiklar
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Projekten som rollen gäller (* och ? som jokertecken), avgränsade med kommatecken; tomt: alla
 The registration is closed	Registreringen är stängd
 The registration is open	Registreringen är öppen
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Rollerna som ges här gäller denna katalog och dess artiklar, oavsett tillverkare; neka tar bort rollens rättigheter. Läsning är en rättighet för hela servern.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Rollerna som ges här gäller detta projekt; neka tar bort rollens rättigheter. Endast administratörer häver ett nekande.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Rollerna, tilldelningarna, grupperna och åtkomsten utan inloggning, med serverns version. Återställning ersätter rollerna och tilldelningarna och lägger till grupperna; katalogtjänsterna förblir som de är inställda på servern.
 The server cannot be reached	Servern kan inte nås
+The server keeps the last {} ended sessions.	Servern behåller de senaste {} avslutade sessionerna.
 The server sent no text	Servern skickade ingen text
 The test failed	Testet misslyckades
 The test succeeded	Testet lyckades
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Laddar upp {} till Vault ({} %)…
 Uploading {} to Vault…	Laddar upp {} till Vault…
 User account	Användarkonto
 User bind	Användarbindning
+User deleted	Användare borttagen
 User filter	Användarfilter
 User or group	Användare eller grupp
 User {} exists already. Change it?	Användaren {} finns redan. Vill du ändra den?
@@ -536,6 +574,7 @@ Variable displacement pumps	Variabla pumpar
 Vault did not continue the upload	Vault fortsatte inte uppladdningen
 Ventilation filters	Ventilationsfilter
 Ventilator	Fläkt
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Visare öppnar projekt skrivskyddat, granskare sparar även granskningar, redigerare ändrar och skapar projekt, projektledare tar även bort dem och ger rättigheter till dem, administratörer hanterar servern.
 Voltage source	Spänningskälla
 Voltage source and generator	Spänningskälla och generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Väntande konton kan inte logga in; godkänn eller avvisa dem under Användare.
@@ -549,8 +588,10 @@ Without sign-in	Utan inloggning
 Wrong access token	Fel åtkomsttoken
 Wrong user name or password	Fel användarnamn eller lösenord
 You may not change parts of manufacturer {}	Du får inte ändra artiklar från tillverkaren {}
+You may not see any project	Du får inte se något projekt
 Your account awaits the approval of an administrator	Ditt konto väntar på godkännande av en administratör
 Your account was created. An administrator has to approve it before you can sign in.	Ditt konto har skapats. En administratör måste godkänna det innan du kan logga in.
+Your rights	Dina rättigheter
 access denied – check the personal access token	åtkomst nekad – kontrollera den personliga åtkomsttoken
 by file name	efter filnamn
 changed, not saved	ändrad, inte sparad
@@ -574,6 +615,7 @@ you	du
 {} has no checksum in SHA256SUMS	{} har ingen kontrollsumma i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artiklar i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artiklar, {} kataloger, {}
+{} projects	{} projekt
 {} – save to upload it	{} – spara för att ladda upp den
 {}: a logo has at most 512 kB	{}: en logotyp är högst 512 kB
 {}: the catalog is no longer open	{}: katalogen är inte längre öppen

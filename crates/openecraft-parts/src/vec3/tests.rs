@@ -22,6 +22,38 @@ fn orbit_from_the_front_looks_down_minus_z() {
 }
 
 #[test]
+fn views_from_the_cube_look_from_its_faces_edges_and_corners() {
+    let eye = |d: [i8; 3], yaw: f32| {
+        let (yaw, pitch) = view_from(d, yaw);
+        Orbit { yaw, pitch, dist: 1.0, target: [0.0; 3] }.basis().0
+    };
+    for d in [[0, 0, 1], [0, 0, -1], [1, 0, 0], [-1, 0, 0], [1, 0, 1], [-1, 1, -1], [0, -1, 1], [1, 1, 1]] {
+        let want = norm(d.map(f32::from));
+        assert!(close(eye(d, 2.0), want), "{d:?}: {:?}", eye(d, 2.0));
+    }
+    // Straight from above the side looked at stays at the bottom of the view.
+    assert!(close(eye([0, 1, 0], 0.0), [0.0, 1.0, 0.0]));
+    assert_eq!(view_from([0, 1, 0], 0.3), (0.0, std::f32::consts::FRAC_PI_2));
+    let (yaw, pitch) = view_from([0, -1, 0], 1.4);
+    assert!((yaw - std::f32::consts::FRAC_PI_2).abs() < 1e-6 && pitch < -1.57);
+    // A corner is seen at the true isometric angle.
+    assert!((view_from([1, 1, 1], 0.0).1 - (1.0f32 / 2f32.sqrt()).atan()).abs() < 1e-6);
+}
+
+#[test]
+fn quarter_turns_snap_first() {
+    use std::f32::consts::{FRAC_PI_2, FRAC_PI_4, PI};
+    assert_eq!(quarter_turn(0.3, 0), 0.0);
+    // From a corner to the next corner, not past a side.
+    assert!((quarter_turn(-FRAC_PI_4, -1) + 3.0 * FRAC_PI_4).abs() < 1e-6);
+    assert!((quarter_turn(-0.7, 1) - FRAC_PI_4).abs() < 1e-6);
+    assert_eq!(quarter_turn(0.3, 1), FRAC_PI_2);
+    assert!((quarter_turn(1.4, -1)).abs() < 1e-6);
+    assert!((quarter_turn(-3.0, 2) - 0.0).abs() < 1e-6);
+    assert!((quarter_turn(PI, 0) - PI).abs() < 1e-6);
+}
+
+#[test]
 fn segments_and_triangles() {
     let t = [[0.0, 0.0, 0.0], [10.0, 0.0, 0.0], [0.0, 10.0, 0.0]];
     assert!(segment_crosses_triangle([2.0, 2.0, -1.0], [2.0, 2.0, 1.0], &t));

@@ -13,7 +13,9 @@ openecraft-parts ─┼─► openecraft-jt / openecraft-xt / openecraft-step / 
                   └─► openecraft-core ─► openecraft-api ─► editor, cli
                            │                 ▲
 openecraft-client ─► openecraft-ui ──────────┘ (editor, parts-manager)
+openecraft-core ─► openecraft-view (read-only project views) ─► editor, project-server
 openecraft-auth (parts) ─► parts-server (parts, i18n), project-server (core, parts)
+openecraft-web (parts, i18n; the servers' web pages) ─► parts-server, project-server
 ```
 
 - Library crates live under `crates/`; executables are `openecraft/` (editor),
@@ -30,6 +32,17 @@ openecraft-auth (parts) ─► parts-server (parts, i18n), project-server (core,
   session tokens, sign-in with directories (Active Directory, LDAP), the access
   settings file and reading the configuration files of the servers (`--config`,
   `server_config`). See [access-control.md](access-control.md).
+- `openecraft-view` holds the read-only views of a project that the editor and the
+  project server's web page both show: the pages grouped by structure, the devices
+  grouped by structure with their places, the icons of the page kinds and the
+  serializable `ProjectView` the web page reads. The editor's navigator draws them with
+  egui; nothing in it depends on a window.
+- `openecraft-web` holds what the web pages of the two servers share: `common.js`
+  (texts, requests, language, sign-in, the rights of the session), `access.js` (the
+  administration of roles, grants, directories and the grants on one scope),
+  `web.css`, the logo, the page policy (`PAGE_CSP`) and `WebTexts` (the translations a
+  page loads from `/api/v1/texts`). The servers add their own pages and scripts; the
+  handlers of the directories live in `openecraft_auth::admin`.
 - Autodesk Vault is a server of another vendor: its requests, answer types and the
   operations of several requests (`Job`: uploads with checkout and check-in, the item
   lookup) live in `openecraft_client::vault`. The editor (`openecraft/src/vault.rs`) runs

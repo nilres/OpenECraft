@@ -1,13 +1,12 @@
 //! Moving the camera of the 3D view: orbit, pan, zoom at the pointer (walking on into
-//! a room once close to the orbit centre), moving with the keyboard, the standard views
-//! and the camera gliding to a new view.
+//! a room once close to the orbit centre), moving with the keyboard and the camera
+//! gliding to a new view.
 
 use openecraft_core::parts::vec3::{add, length, norm, scale, sub, Orbit, V3};
-use openecraft_i18n::tr_const;
 use crate::shortcuts::{Action, Shortcuts};
 use egui::{InputState, Vec2};
 use openecraft_ui::nav::Mod;
-use std::f32::consts::{FRAC_PI_2, PI, TAU};
+use std::f32::consts::{PI, TAU};
 
 /// Nearest the camera comes to its orbit centre (mm); zooming in further walks on.
 pub(super) const MIN_DIST: f32 = 150.0;
@@ -129,44 +128,8 @@ pub(super) fn look_at(cam: &Orbit, at: V3) -> Orbit {
     }
 }
 
-/// Standard directions of the 3D view.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub(super) enum Side {
-    Front,
-    Left,
-    Right,
-    Rear,
-    Top,
-    Iso,
-}
-
-impl Side {
-    pub const ALL: [Side; 6] = [Side::Front, Side::Left, Side::Right, Side::Rear, Side::Top, Side::Iso];
-
-    /// English title, translated where shown.
-    pub fn title(self) -> &'static str {
-        match self {
-            Side::Front => tr_const!("Front"),
-            Side::Left => tr_const!("Left"),
-            Side::Right => tr_const!("Right"),
-            Side::Rear => tr_const!("Rear"),
-            Side::Top => tr_const!("Top"),
-            Side::Iso => tr_const!("Isometric"),
-        }
-    }
-
-    /// Yaw and pitch of the camera (the door faces +z).
-    pub fn angles(self) -> (f32, f32) {
-        match self {
-            Side::Front => (0.0, 0.0),
-            Side::Left => (-FRAC_PI_2, 0.0),
-            Side::Right => (FRAC_PI_2, 0.0),
-            Side::Rear => (PI, 0.0),
-            Side::Top => (0.0, MAX_PITCH),
-            Side::Iso => (0.55, 0.3),
-        }
-    }
-}
+/// Yaw and pitch of the starting view, from the front right and a little above.
+pub(super) const ISO: (f32, f32) = (0.55, 0.3);
 
 #[cfg(test)]
 mod tests;

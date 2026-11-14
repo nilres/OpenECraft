@@ -513,5 +513,25 @@ impl Orbit {
     }
 }
 
+/// `yaw` turned to the nearest eighth turn (a side or a corner of a view cube), then
+/// `quarters` quarter turns further: a side to the next side, a corner to the next corner.
+pub fn quarter_turn(yaw: f32, quarters: i32) -> f32 {
+    let e = std::f32::consts::FRAC_PI_4;
+    ((yaw / e).round() + 2.0 * quarters as f32) * e
+}
+
+/// Yaw and pitch of an [`Orbit`] looking from the direction `d` (a face, edge or corner
+/// of a view cube: each component -1, 0 or 1; front +z, y up). Straight from above or
+/// below keeps the side that `yaw` faces most at the bottom of the view.
+pub fn view_from(d: [i8; 3], yaw: f32) -> (f32, f32) {
+    let [x, y, z] = d.map(f32::from);
+    if x == 0.0 && z == 0.0 {
+        let q = std::f32::consts::FRAC_PI_2;
+        ((yaw / q).round() * q, y.signum() * q)
+    } else {
+        (x.atan2(z), y.atan2(x.hypot(z)))
+    }
+}
+
 #[cfg(test)]
 mod tests;

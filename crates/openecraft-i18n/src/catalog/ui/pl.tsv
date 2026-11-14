@@ -24,6 +24,7 @@ Checking for part updates…	Sprawdzanie aktualizacji artykułów…
 Clearance front	Odstęp przedni
 Clearance left	Odstęp lewy
 Clearance right	Odstęp prawy
+Click a face, edge or corner to look from there; drag to orbit	Kliknij ścianę, krawędź lub narożnik, aby patrzeć stamtąd; przeciągnij, aby obracać
 Compared with {} parts of the server	Porównano z artykułami serwera: {}
 Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	Porównuje lokalne artykuły z serwerem artykułów: nowsze wersje, artykuły wycofywane, wycofane i usunięte
 Connect to a parts server and search.	Połącz się z serwerem artykułów i wyszukaj.
@@ -56,6 +57,7 @@ Import STL / OBJ / STEP / IGES / IFC / JT…	Importuj STL / OBJ / STEP / IGES / 
 Import SVG…	Importuj SVG…
 In the door, when they differ from the cutouts	W drzwiach, gdy różnią się od wycięć
 Internal values of the EPLAN part exchange (0: undefined)	Wartości wewnętrzne wymiany artykułów EPLAN (0: niezdefiniowane)
+Isometric view, everything shown	Widok izometryczny, wszystko widoczne
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Działa tylko zamocowane na jednej z części, do których pasuje; kontrola projektu zgłasza je w urządzeniu bez takiej części
 Largest conductor the clamp takes (0: not known)	Największy przewód, jaki przyjmuje zacisk (0: nieznany)
 Loaded the library {}	Wczytano bibliotekę {}
@@ -88,6 +90,7 @@ Personal access token	Osobisty token dostępu
 Place by clicking into the view	Umieść, klikając w widoku
 Placing	Montaż
 Prices / other	Ceny / inne
+Rear	Tył
 Remove all	Usuń wszystko
 Remove picture	Usuń obraz
 Removing the file…	Usuwanie pliku…
@@ -104,7 +107,7 @@ Scale ×	Skala ×
 Select a part to see its details.	Wybierz artykuł, aby zobaczyć szczegóły.
 Select a row, then click into the view to place it.	Wybierz wiersz, a następnie kliknij w widoku, aby go umieścić.
 Server revision	Rewizja serwera
-Signed out	Wylogowano
+Show everything (Home)	Pokaż wszystko (Home)
 Signing out…	Wylogowywanie…
 Smallest conductor the clamp takes (0: not known)	Najmniejszy przewód, jaki przyjmuje zacisk (0: nieznany)
 Stands on the floor of a room	Stoi na podłodze pomieszczenia
@@ -120,6 +123,8 @@ This part is an accessory	Ta część jest akcesorium
 Top group	Grupa główna
 Top group {}, product group {}, subgroup {}	Grupa główna {}, grupa produktów {}, podgrupa {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Obróć model tak, aby jego przód był skierowany do obserwatora (+Z), a góra była +Y
+Turn the view 90° to the left	Obróć widok o 90° w lewo
+Turn the view 90° to the right	Obróć widok o 90° w prawo
 Uploaded {} parts, server revision {}	Przesłano artykuły: {}, rewizja serwera {}
 Uploading parts file…	Przesyłanie pliku artykułów…
 Uploading {} parts…	Przesyłanie artykułów ({})…
@@ -164,7 +169,6 @@ up to {} mm²	do {} mm²
 {} mm right	{} mm z prawej
 {} of {} parts	{} z {} artykułów
 {} parts found	Znalezione artykuły: {}
-{} users	Użytkownicy: {}
 {} wires per connection point	{} przewodów na punkt połączenia
 {} × {} mm, {} elements	{} × {} mm, elementy: {}
 {} × {} × {} mm	{} × {} × {} mm

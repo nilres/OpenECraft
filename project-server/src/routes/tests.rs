@@ -42,8 +42,12 @@ async fn session_snapshot_keeps_own_locks_and_never_exposes_another_sessions_id(
 }
 
 fn app(token: Option<&str>) -> Router {
-    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default() };
-    router(AppState { server: Arc::new(Mutex::new(server)), token: token.map(String::from) })
+    app_with(token, false)
+}
+
+fn app_with(token: Option<&str>, web: bool) -> Router {
+    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
+    router(AppState { server: Arc::new(Mutex::new(server)), token: token.map(String::from), web })
 }
 
 async fn call(app: &Router, method: &str, uri: &str, token: Option<&str>, body: String) -> (StatusCode, String) {
@@ -384,7 +388,7 @@ async fn create_with(app: &Router, token: &str) {
 
 #[tokio::test]
 async fn directory_sign_in() {
-    let mut server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default() };
+    let mut server = Server { store: Store::in_memory(), sessions: Sessions::default(), users: Users::default(), access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
     let corp = openecraft_auth::Directory {
         id: "corp".into(),
         url: "ldap://127.0.0.1:1".into(),
@@ -395,7 +399,7 @@ async fn directory_sign_in() {
     };
     server.access.config.directories.push(corp);
     server.users.set_admin("root", "root-password").unwrap();
-    let app = router(AppState { server: Arc::new(Mutex::new(server)), token: None });
+    let app = router(AppState { server: Arc::new(Mutex::new(server)), token: None, web: false });
     // A directory alone makes the server private.
     let (s, _) = call(&app, "GET", "/api/v1/projects", None, String::new()).await;
     assert_eq!(s, StatusCode::UNAUTHORIZED);
@@ -741,8 +745,8 @@ async fn current_account_does_not_renew_tokens_and_rejects_expired_sessions() {
     let accounts = vec![valid, expired];
     let mut users = Users::default();
     users.accounts = accounts.clone();
-    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users, access: AccessFile::in_memory(Default::default()), throttle: Throttle::default() };
-    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()) };
+    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users, access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
+    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()), web: false };
     let app = router(state.clone());
     for _ in 0..2 {
         let request = Request::builder().uri("/api/v1/session").header(header::AUTHORIZATION, format!("Bearer {token}")).body(Body::empty()).unwrap();
@@ -755,4 +759,157 @@ async fn current_account_does_not_renew_tokens_and_rejects_expired_sessions() {
     }
     assert_eq!(with(&app, "GET", "/api/v1/session", &expired_token, &()).await.0, StatusCode::UNAUTHORIZED);
     assert_eq!(lock_server(&state).users.accounts, accounts);
+}
+
+async fn get(app: &Router, uri: &str, token: Option<&str>) -> (StatusCode, HeaderMap, String) {
+    let mut req = Request::builder().uri(uri);
+    if let Some(t) = token {
+        req = req.header(header::AUTHORIZATION, format!("Bearer {t}"));
+    }
+    let resp = app.clone().oneshot(req.body(Body::empty()).unwrap()).await.unwrap();
+    let (status, headers) = (resp.status(), resp.headers().clone());
+    let bytes = resp.into_body().collect().await.unwrap().to_bytes();
+    (status, headers, String::from_utf8_lossy(&bytes).to_string())
+}
+
+#[tokio::test]
+async fn the_web_page_is_served_only_with_the_option() {
+    let off = app(Some(TOKEN));
+    let (status, _, text) = get(&off, "/", None).await;
+    assert!(status.is_success() && text.contains("--web"), "{text}");
+    for uri in ["/project.js", "/common.js", "/api/v1/texts", "/api/v1/projects/Plant/view"] {
+        assert_eq!(get(&off, uri, Some(TOKEN)).await.0, StatusCode::NOT_FOUND, "{uri}");
+    }
+    let on = app_with(Some(TOKEN), true);
+    let (status, headers, page) = get(&on, "/", None).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(headers[header::CONTENT_SECURITY_POLICY], openecraft_web::PAGE_CSP);
+    assert!(page.contains("<script src=\"/project.js\"></script>"));
+    for (uri, kind) in [("/project.js", "text/javascript"), ("/admin.js", "text/javascript"), ("/common.js", "text/javascript"), ("/access.js", "text/javascript"), ("/web.css", "text/css"), ("/logo.svg", "image/svg+xml")] {
+        let (status, headers, _) = get(&on, uri, None).await;
+        assert_eq!(status, StatusCode::OK, "{uri}");
+        assert!(headers[header::CONTENT_TYPE].to_str().unwrap().starts_with(kind), "{uri}");
+    }
+    let (_, _, texts) = get(&on, "/api/v1/texts?lang=de", None).await;
+    let texts: openecraft_web::WebTexts = serde_json::from_str(&texts).unwrap();
+    assert_eq!(texts.lang, "de");
+    let info: ServerInfo = serde_json::from_str(&get(&on, "/api/v1/info", None).await.2).unwrap();
+    assert!(info.web);
+    assert!(!serde_json::from_str::<ServerInfo>(&get(&off, "/api/v1/info", None).await.2).unwrap().web);
+}
+
+#[tokio::test]
+async fn info_tells_who_calls_and_what_they_may_do() {
+    let app = app_with(Some(TOKEN), true);
+    let tokens = sign_in(&app, &[("vic", Some(ProjectRole::Viewer), &[])]).await;
+    let info: ServerInfo = serde_json::from_str(&get(&app, "/api/v1/info", Some(TOKEN)).await.2).unwrap();
+    let admin = info.user.expect("the token signs in as administrator");
+    assert_eq!(admin.role, Some(ProjectRole::Admin));
+    assert!(info.access.allows(SERVER, ProjectRight::Administer));
+    let info: ServerInfo = serde_json::from_str(&get(&app, "/api/v1/info", Some(&tokens[0])).await.2).unwrap();
+    assert_eq!(info.user.map(|u| u.name).as_deref(), Some("vic"));
+    assert!(info.access.allows("Any", ProjectRight::View) && !info.access.allows("Any", ProjectRight::EditPages));
+    let info: ServerInfo = serde_json::from_str(&get(&app, "/api/v1/info", Some("wrong")).await.2).unwrap();
+    assert!(info.user.is_none() && info.access.is_empty());
+}
+
+#[tokio::test]
+async fn the_view_shows_projects_read_only_to_who_may_see_them() {
+    let app = app_with(Some(TOKEN), true);
+    let tokens = sign_in(&app, &[("vic", Some(ProjectRole::Viewer), &[]), ("nobody", None, &["Somewhere"])]).await;
+    let demo = openecraft_core::sample::demo_project();
+    let req = CreateRequest { name: "Demo".into(), user: "admin".into(), project: demo.clone() };
+    let (s, text) = with(&app, "POST", "/api/v1/projects", TOKEN, &req).await;
+    assert!(s.is_success(), "{text}");
+    let opened: Opened = serde_json::from_str(&text).unwrap();
+    let page = opened.snapshot.project.pages[1].id;
+    let lock = LockRequest { session: opened.session.clone(), targets: vec![Target::Page(page)] };
+    assert!(with(&app, "POST", "/api/v1/projects/Demo/lock", TOKEN, &lock).await.0.is_success());
+
+    let (status, _, text) = get(&app, "/api/v1/projects/demo/view?lang=de", Some(&tokens[0])).await;
+    assert_eq!(status, StatusCode::OK, "{text}");
+    let view: serde_json::Value = serde_json::from_str(&text).unwrap();
+    assert_eq!(view["name"], "Demo", "found in any case");
+    assert_eq!(view["title"], demo.info.name.as_str());
+    assert_eq!(view["pages"].as_array().unwrap().len(), demo.pages.len());
+    assert_eq!(view["rights"], serde_json::json!(["view"]));
+    assert_eq!(view["users"], serde_json::json!(["admin"]));
+    assert_eq!(view["locks"][0]["target"]["page"], page);
+    assert!(!text.contains(&opened.session.session), "the key of the session stays hidden");
+
+    let (status, headers, svg) = get(&app, &format!("/api/v1/projects/Demo/pages/{page}/svg"), Some(&tokens[0])).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(headers[header::CONTENT_TYPE], "image/svg+xml");
+    assert!(svg.starts_with("<svg"));
+    assert_eq!(get(&app, "/api/v1/projects/Demo/pages/999999/svg", Some(&tokens[0])).await.0, StatusCode::NOT_FOUND);
+    // Projects the caller may not see do not exist for them; without sign-in nothing.
+    assert_eq!(get(&app, "/api/v1/projects/Demo/view", Some(&tokens[1])).await.0, StatusCode::NOT_FOUND);
+    assert_eq!(get(&app, &format!("/api/v1/projects/Demo/pages/{page}/svg"), Some(&tokens[1])).await.0, StatusCode::NOT_FOUND);
+    assert_eq!(get(&app, "/api/v1/projects/Demo/view", None).await.0, StatusCode::UNAUTHORIZED);
+
+    // A save is a new revision: the view follows it.
+    let mut changed = opened.snapshot.project.clone();
+    changed.pages[1].description = "Changed on the server".into();
+    let save = SaveRequest { session: opened.session.clone(), project: changed, ..Default::default() };
+    assert!(with(&app, "PUT", "/api/v1/projects/Demo", TOKEN, &save).await.0.is_success());
+    let view: serde_json::Value = serde_json::from_str(&get(&app, "/api/v1/projects/Demo/view", Some(&tokens[0])).await.2).unwrap();
+    assert_eq!(view["server_revision"], opened.snapshot.revision + 1);
+    assert_eq!(view["pages"][1]["description"], "Changed on the server");
+}
+
+#[tokio::test]
+async fn directories_are_managed_by_administrators() {
+    let app = app(Some(TOKEN));
+    let tokens = sign_in(&app, &[("vic", Some(ProjectRole::Viewer), &[])]).await;
+    let corp = Directory { id: "corp".into(), url: "ldaps://dc1.corp.example".into(), base_dn: "DC=corp".into(), bind_dn: "CN=svc".into(), bind_password: "secret".into(), ..Default::default() };
+    assert_eq!(with(&app, "PUT", "/api/v1/directories/corp", &tokens[0], &corp).await.0, StatusCode::FORBIDDEN);
+    let (s, text) = with(&app, "PUT", "/api/v1/directories/corp", TOKEN, &corp).await;
+    assert!(s.is_success(), "{text}");
+    let (_, _, list) = get(&app, "/api/v1/directories", Some(TOKEN)).await;
+    let list: Vec<serde_json::Value> = serde_json::from_str(&list).unwrap();
+    assert_eq!((list[0]["id"].as_str(), list[0]["password_set"].as_bool()), (Some("corp"), Some(true)));
+    assert!(list[0]["bind_password"].as_str().unwrap_or_default().is_empty(), "the password stays on the server");
+    // An empty password keeps the stored one.
+    let renamed = Directory { title: "Corporate".into(), bind_password: String::new(), ..corp.clone() };
+    assert!(with(&app, "PUT", "/api/v1/directories/CORP", TOKEN, &renamed).await.0.is_success());
+    let (_, _, settings) = get(&app, "/api/v1/access", Some(TOKEN)).await;
+    assert!(settings.contains("Corporate"));
+    assert_eq!(get(&app, "/api/v1/directories", Some(&tokens[0])).await.0, StatusCode::FORBIDDEN);
+    assert_eq!(with(&app, "DELETE", "/api/v1/directories/corp", TOKEN, &()).await.0, StatusCode::NO_CONTENT);
+    assert_eq!(with(&app, "DELETE", "/api/v1/directories/corp", TOKEN, &()).await.0, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
+async fn administrators_see_the_open_sessions_and_the_ended_ones() {
+    let app = app(Some(TOKEN));
+    let tokens = sign_in(&app, &[("anna", Some(ProjectRole::Editor), &[]), ("vic", Some(ProjectRole::Viewer), &[])]).await;
+    let (_, text) = with(&app, "POST", "/api/v1/projects", &tokens[0], &CreateRequest { name: "Plant 1".into(), user: "anna".into(), project: two_pages() }).await;
+    let anna: Opened = serde_json::from_str(&text).unwrap();
+    let page = anna.snapshot.project.pages[0].id;
+    let lock = LockRequest { session: anna.session.clone(), targets: vec![Target::Page(page), Target::Project] };
+    assert!(with(&app, "POST", "/api/v1/projects/Plant%201/lock", &tokens[0], &lock).await.0.is_success());
+    let mut changed = anna.snapshot.project.clone();
+    changed.pages[0].description = "Changed".into();
+    let save = SaveRequest { session: anna.session.clone(), project: changed, ..Default::default() };
+    assert!(with(&app, "PUT", "/api/v1/projects/Plant%201", &tokens[0], &save).await.0.is_success());
+
+    assert_eq!(get(&app, "/api/v1/sessions", Some(&tokens[1])).await.0, StatusCode::FORBIDDEN, "administrators only");
+    let (status, _, text) = get(&app, "/api/v1/sessions", Some(TOKEN)).await;
+    assert_eq!(status, StatusCode::OK, "{text}");
+    assert!(!text.contains(&anna.session.session), "the key of the session stays hidden");
+    let list: SessionList = serde_json::from_str(&text).unwrap();
+    let open = &list.active[0];
+    assert_eq!((open.user.as_str(), open.project.as_str(), open.saves), ("anna", "Plant 1", 1));
+    assert_eq!(open.pages, [anna.snapshot.project.pages[0].name.clone()]);
+    assert!(open.locks.contains(&Target::Project));
+    assert!(list.history.is_empty());
+
+    assert!(with(&app, "POST", "/api/v1/projects/Plant%201/close", &tokens[0], &anna.session).await.0.is_success());
+    let list: SessionList = serde_json::from_str(&get(&app, "/api/v1/sessions?limit=5", Some(TOKEN)).await.2).unwrap();
+    assert!(list.active.is_empty());
+    assert_eq!(list.history.len(), 1);
+    let ended = &list.history[0];
+    assert_eq!((ended.user.as_str(), ended.end, ended.saves), ("anna", Some(openecraft_core::collab::SessionEnd::Closed), 1));
+    assert!(ended.locks.is_empty() && ended.ended.is_some());
+    assert_eq!(list.kept, crate::history::KEPT);
 }

@@ -24,6 +24,7 @@ Checking for part updates…	正在检查部件更新…
 Clearance front	前部间距
 Clearance left	左侧间距
 Clearance right	右侧间距
+Click a face, edge or corner to look from there; drag to orbit	单击面、边或角从该方向查看；拖动以环绕
 Compared with {} parts of the server	已与服务器的 {} 个部件比较
 Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	将本地部件与部件服务器进行比较：更新版本、即将停产、已停产和已删除的部件
 Connect to a parts server and search.	请连接到部件服务器并进行搜索。
@@ -56,6 +57,7 @@ Import STL / OBJ / STEP / IGES / IFC / JT…	导入 STL / OBJ / STEP / IGES / IF
 Import SVG…	导入 SVG…
 In the door, when they differ from the cutouts	在柜门上，当与开孔不同时
 Internal values of the EPLAN part exchange (0: undefined)	EPLAN 部件交换的内部值（0：未定义）
+Isometric view, everything shown	等轴测视图，显示全部
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	它只有安装在其适配的部件上才能工作；项目检查会在没有此类部件的设备上报告它
 Largest conductor the clamp takes (0: not known)	端子可接的最大导线（0：未知）
 Loaded the library {}	已加载库 {}
@@ -87,6 +89,7 @@ Personal access token	个人访问令牌
 Place by clicking into the view	在视图中单击以放置
 Placing	放置
 Prices / other	价格 / 其他
+Rear	后
 Remove all	全部移除
 Remove picture	删除图片
 Removing the file…	正在删除文件…
@@ -103,7 +106,7 @@ Scale ×	比例 ×
 Select a part to see its details.	选择部件以查看其详细信息。
 Select a row, then click into the view to place it.	选择一行，然后在视图中单击以放置。
 Server revision	服务器修订
-Signed out	已注销
+Show everything (Home)	显示全部 (Home)
 Signing out…	正在注销…
 Smallest conductor the clamp takes (0: not known)	端子可接的最小导线（0：未知）
 Stands on the floor of a room	立于房间地面
@@ -119,6 +122,8 @@ This part is an accessory	此部件是附件
 Top group	主组
 Top group {}, product group {}, subgroup {}	主组 {}，产品组 {}，子组 {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	旋转模型，使其正面朝向观察者 (+Z)，顶面为 +Y
+Turn the view 90° to the left	将视图向左旋转 90°
+Turn the view 90° to the right	将视图向右旋转 90°
 Uploaded {} parts, server revision {}	已上传 {} 个部件，服务器修订 {}
 Uploading parts file…	正在上传部件文件…
 Uploading {} parts…	正在上传 {} 个部件…
@@ -163,7 +168,6 @@ up to {} mm²	最多 {} mm²
 {} mm right	右侧 {} mm
 {} of {} parts	{} / {} 个部件
 {} parts found	找到 {} 个部件
-{} users	{} 个用户
 {} wires per connection point	每个连接点 {} 根导线
 {} × {} mm, {} elements	{} × {} mm，{} 个元素
 {} × {} × {} mm	{} × {} × {} mm

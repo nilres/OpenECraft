@@ -1,6 +1,7 @@
 # English<TAB>Dansk – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(alle)
 (no entries)	(ingen poster)
+(no structure)	(ingen struktur)
 --json needs a JSON object	--json kræver et JSON-objekt
 3D model	3D-model
 3D routing	3D-føring
@@ -16,11 +17,13 @@ Add	Tilføj
 Add a PDF of all pages	Tilføj en PDF med alle sider
 Add to favorites	Føj til favoritter
 Address	Adresse
+Administrator	Administrator
 Angle	Vinkel
 Apply	Anvend
 Approve	Godkend
 Approvers	Godkendere
 Automatic	Automatisk
+Aux	Hjælpe
 Below	Under
 Bold	Fed
 Bottom	Bund
@@ -125,6 +128,7 @@ Downloading {}…	Downloader {}…
 Drag to turn the model	Træk for at dreje modellen
 EMC clearance	EMC-afstand
 Edit	Rediger
+Editor	Redaktør
 Electro-fluid cross reference	Elektro-fluid-krydsreference
 Enclosure	Kapsling
 Enclosures	Kapslinger
@@ -144,6 +148,8 @@ Field wiring	Feltledningsføring
 File	Filer
 Files	Filer
 Filter	Filter
+Filter devices…	Filtrer enheder…
+Fit	Tilpas
 Fits	Passer til
 Fitting at the end	Fitting i slutningen
 Fitting at the start	Fitting i starten
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Opgiver et delprojekt: dets 
 Gland plate	Flangeplade
 Graphics	Grafik
 Group	Gruppe
+Group the pages by structure	Gruppér siderne efter struktur
 Groups	Grupper
 Harness	Ledningsnet
 Harness data	Ledningsnetdata
@@ -207,9 +214,12 @@ Load	Belastning
 Loaded circuits bunched together	Belastede kredse samlet i bundt
 Location	Placering
 Location (+)	Placering (+)
+Locked	Låst
+Locked by {}	Låst af {}
 Logo	Logo
 MTTFd (years)	MTTFd (år)
 Machine	Maskine
+Main	Hoved
 Main earthing busbar (device) it is connected to; empty: none	Hovedjordskinne (apparat), som den er tilsluttet; tom: ingen
 Main earthing terminal	Hovedjordskinne
 Main switch	Hovedafbryder
@@ -352,9 +362,11 @@ Product subgroup	Produktundergruppe
 Product top group	Produkthovedgruppe
 Profile	Profil
 Project	Projekt
+Project data	Projektdata
 Project languages	Projektsprog
 Project logo	Projektets logo
 Project management	Projektstyring
+Project manager	Projektleder
 Project name	Projektnavn
 Project properties	Projektegenskaber
 Properties	Egenskaber
@@ -371,6 +383,7 @@ Rated power	Mærkeeffekt
 Rear wall	Bagvæg
 Rectangle	Rektangel
 Rectangular	Rektangulær
+Refresh	Opdater
 Reject	Afvis
 Relative humidity	Relativ luftfugtighed
 Relay	Relæ
@@ -386,6 +399,7 @@ Report blocks	Rapportblokke
 Report: {}	Rapport: {}
 Required	Påkrævet
 Reserve	Reserve
+Reviewer	Korrekturlæser
 Revision	Revision
 Revision {}	Revision {}
 Rework	Efterbearbejdning
@@ -429,6 +443,7 @@ Sign in	Log på
 Sign out	Log af
 Signed in as {}	Logget på som {}
 Signed in as {} ({})	Logget på som {} ({})
+Signed out	Logget af
 Signing in…	Logger på…
 Single-line / multi-line	Enstreget / flerstreget
 Size	Størrelse
@@ -436,6 +451,7 @@ Socket side	Bøsningsside
 Solenoid not linked	Magnetspole ikke tilknyttet
 Sort by	Sortér efter
 Source	Kilde
+Started	Startet
 State	Tilstand
 Status	Status
 String	Streng
@@ -472,6 +488,7 @@ Time	Tid
 Title block	Tegningshoved
 To	Til
 Tools	Værktøjer
+Top	Øverst
 Total	I alt
 Transformer	Transformer
 Type	Type
@@ -498,6 +515,7 @@ User	Bruger
 User name	Brugernavn
 Users	Brugere
 Version	Version
+Viewer	Fremviser
 Voltage	Spænding
 Warning	Advarsel
 Warnings	Advarsler
@@ -540,6 +558,7 @@ yes	ja
 {} exists already	{} findes allerede
 {} is not a PNG or JPEG image	{} er ikke et PNG- eller JPEG-billede
 {} parts	{} artikler
+{} users	{} brugere
 {} wires	{} ledninger
 {}, together with the wire to {}	{}, sammen med lederen til {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} står ikke på gulvet, vælg en gulvstående artikel

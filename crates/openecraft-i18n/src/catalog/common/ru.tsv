@@ -1,6 +1,7 @@
 # English<TAB>Русский – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(все)
 (no entries)	(нет записей)
+(no structure)	(без структуры)
 --json needs a JSON object	--json требует объект JSON
 3D model	3D-модель
 3D routing	3D-прокладка
@@ -16,11 +17,13 @@ Add	Добавить
 Add a PDF of all pages	Добавить PDF всех листов
 Add to favorites	Добавить в избранное
 Address	Адрес
+Administrator	Администратор
 Angle	Угол
 Apply	Применить
 Approve	Утвердить
 Approvers	Утверждающие
 Automatic	Автоматически
+Aux	Вспом.
 Below	Снизу
 Bold	Полужирный
 Bottom	Дно
@@ -125,6 +128,7 @@ Downloading {}…	Скачивание {}…
 Drag to turn the model	Перетащите, чтобы повернуть модель
 EMC clearance	Зазор ЭМС
 Edit	Правка
+Editor	Редактор
 Electro-fluid cross reference	Перекрёстные ссылки электрика – гидропневматика
 Enclosure	Корпус
 Enclosures	Корпуса
@@ -144,6 +148,8 @@ Field wiring	Полевой монтаж
 File	Файл
 Files	Файлы
 Filter	Фильтр
+Filter devices…	Фильтр устройств…
+Fit	Вписать
 Fits	Подходит к
 Fitting at the end	Фитинг в конце
 Fitting at the start	Фитинг в начале
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Отменяет подпр�
 Gland plate	Кабельный ввод (фланец)
 Graphics	Графика
 Group	Группа
+Group the pages by structure	Группировать листы по структуре
 Groups	Группы
 Harness	Жгут
 Harness data	Данные жгута
@@ -207,9 +214,12 @@ Load	Нагрузка
 Loaded circuits bunched together	Нагруженные цепи, проложенные пучком
 Location	Место установки
 Location (+)	Место установки (+)
+Locked	Заблокирован
+Locked by {}	Заблокировано: {}
 Logo	Логотип
 MTTFd (years)	MTTFd (лет)
 Machine	Машина
+Main	Главн.
 Main earthing busbar (device) it is connected to; empty: none	Главная заземляющая шина (устройство), к которой он подключён; пусто: нет
 Main earthing terminal	Главная заземляющая шина
 Main switch	Главный выключатель
@@ -352,9 +362,11 @@ Product subgroup	Подгруппа продуктов
 Product top group	Основная группа продуктов
 Profile	Профиль
 Project	Проект
+Project data	Данные проекта
 Project languages	Языки проекта
 Project logo	Логотип проекта
 Project management	Управление проектами
+Project manager	Руководитель проекта
 Project name	Имя проекта
 Project properties	Свойства проекта
 Properties	Свойства
@@ -371,6 +383,7 @@ Rated power	Номинальная мощность
 Rear wall	Задняя стенка
 Rectangle	Прямоугольник
 Rectangular	Прямоугольный
+Refresh	Обновить
 Reject	Отклонить
 Relative humidity	Относительная влажность
 Relay	Реле
@@ -386,6 +399,7 @@ Report blocks	Блоки отчётов
 Report: {}	Отчёт: {}
 Required	Требуется
 Reserve	Резерв
+Reviewer	Рецензент
 Revision	Ревизия
 Revision {}	Ревизия {}
 Rework	Доработка
@@ -429,6 +443,7 @@ Sign in	Войти
 Sign out	Выйти
 Signed in as {}	Вход выполнен как {}
 Signed in as {} ({})	Вход выполнен как {} ({})
+Signed out	Выход выполнен
 Signing in…	Вход…
 Single-line / multi-line	Однолинейная / многолинейная
 Size	Размер
@@ -436,6 +451,7 @@ Socket side	Сторона гнёзд
 Solenoid not linked	Катушка не связана
 Sort by	Сортировать по
 Source	Источник
+Started	Начато
 State	Состояние
 Status	Состояние
 String	Цепочка
@@ -472,6 +488,7 @@ Time	Время
 Title block	Основная надпись
 To	К
 Tools	Инструменты
+Top	Сверху
 Total	Итого
 Transformer	Трансформатор
 Type	Тип
@@ -498,6 +515,7 @@ User	Пользователь
 User name	Имя пользователя
 Users	Пользователи
 Version	Версия
+Viewer	Наблюдатель
 Voltage	Напряжение
 Warning	Предупреждение
 Warnings	Предупреждения
@@ -540,6 +558,7 @@ yes	да
 {} exists already	{} уже существует
 {} is not a PNG or JPEG image	{} не является изображением PNG или JPEG
 {} parts	Изделий: {}
+{} users	Пользователей: {}
 {} wires	Проводов: {}
 {}, together with the wire to {}	{}, вместе с проводом к {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} не устанавливается на пол, выберите напольное изделие

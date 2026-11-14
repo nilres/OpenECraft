@@ -5,6 +5,35 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
+  in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
+  click on a face, edge or corner of the cube turns the camera to look from there
+  (26 views, the corners isometric), a drag on it orbits; its buttons turn the view
+  by 90°, go back to the starting view or show everything. It replaces the buttons
+  of the standard views. The 3D previews of parts (part editor, data portal,
+  installation) have a small cube without labels and glide to the view clicked.
+
+- **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
+  web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
+  (target `editor-web`) and published with the server images;
+  `installer/docker/compose.yaml` starts it with both servers
+  ([installation](docs/installation.md#docker-image-of-the-web-editor)).
+- **Web page of the project server**: started with `--web` (or
+  `OPENECRAFT_PROJECT_WEB=true`, `web = true` in its configuration file), the project
+  server serves a web page with the projects the user may see and a read-only view of
+  each: the pages by section or by structure, the devices with their places and the
+  pages drawn as on paper, with the locks of the users working on them. Project
+  managers edit the permissions of their projects; administrators get an
+  administration area for the users, the access rights (access without sign-in,
+  roles, grants) and the directories (Active Directory, LDAP, with a test), and a
+  view of the open sessions (user, project, saves, locked pages) with the history of
+  the ended ones, which the server keeps in `sessions.jsonl` of its data directory. The
+  server also offers the directories over its API (`/api/v1/directories`) and tells
+  the caller's user and rights in `/api/v1/info`. The page shares its sign-in, access
+  administration and styles with the parts server's data portal (new crate
+  `openecraft-web`), and its project views with the editor's navigator (new crate
+  `openecraft-view`).
+
 - **Shared projects recover expired sessions** (#183): the editor tells a server
   that does not answer, an ended project session (expired, or the server restarted)
   and an invalid sign-in apart. An ended session opens the project again with the
@@ -17,7 +46,6 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   whether your changes are saved on the server, and a restored connection clears the
   old connection error but not an unsaved failed save. *Keep working on a local
   copy* ends the shared session and keeps the project with your changes locally.
-
 
 - **Freestanding PV arrays:** ground-mounted PV arrays on the plot, added in the
   Buildings pane (*Freestanding PV arrays*) or clicked into the site plan: rows of

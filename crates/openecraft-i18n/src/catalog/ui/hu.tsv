@@ -24,6 +24,7 @@ Checking for part updates…	Alkatrészfrissítések keresése…
 Clearance front	Szabad tér elöl
 Clearance left	Szabad tér balra
 Clearance right	Szabad tér jobbra
+Click a face, edge or corner to look from there; drag to orbit	Kattintson egy lapra, élre vagy sarokra, hogy onnan nézzen; húzza a forgatáshoz
 Compared with {} parts of the server	Összehasonlítva a szerver {} alkatrészével
 Compares the local parts with the parts server: newer versions, phase-out, discontinued and removed parts	Összehasonlítja a helyi alkatrészeket az alkatrészszerverrel: újabb verziók, kifutó, megszűnt és eltávolított alkatrészek
 Connect to a parts server and search.	Csatlakozzon egy alkatrészszerverhez, és keressen.
@@ -56,6 +57,7 @@ Import STL / OBJ / STEP / IGES / IFC / JT…	STL / OBJ / STEP / IGES / IFC / JT 
 Import SVG…	SVG importálása…
 In the door, when they differ from the cutouts	Az ajtóban, ha eltérnek a kivágásoktól
 Internal values of the EPLAN part exchange (0: undefined)	Az EPLAN-alkatrészcsere belső értékei (0: nem definiált)
+Isometric view, everything shown	Izometrikus nézet, minden látható
 It only works attached to one of the parts it fits; the project check reports it on a device without such a part	Csak az egyik illeszkedő cikkre szerelve működik; a projektellenőrzés jelzi az ilyen cikk nélküli készüléknél
 Largest conductor the clamp takes (0: not known)	A kapocs által befogadott legnagyobb vezető (0: ismeretlen)
 Loaded the library {}	{} könyvtár betöltve
@@ -88,6 +90,7 @@ Personal access token	Személyes hozzáférési token
 Place by clicking into the view	Elhelyezés a nézetbe kattintással
 Placing	Elhelyezés
 Prices / other	Árak / egyéb
+Rear	Hátul
 Remove all	Összes eltávolítása
 Remove picture	Kép eltávolítása
 Removing the file…	A fájl eltávolítása…
@@ -104,7 +107,7 @@ Scale ×	Lépték ×
 Select a part to see its details.	Válasszon ki egy alkatrészt a részletei megtekintéséhez.
 Select a row, then click into the view to place it.	Jelöljön ki egy sort, majd kattintson a nézetbe az elhelyezéséhez.
 Server revision	Szerverrevízió
-Signed out	Kijelentkezve
+Show everything (Home)	Minden megjelenítése (Home)
 Signing out…	Kijelentkezés…
 Smallest conductor the clamp takes (0: not known)	A kapocs által befogadott legkisebb vezető (0: ismeretlen)
 Stands on the floor of a room	Egy helyiség padlóján áll
@@ -120,6 +123,8 @@ This part is an accessory	Ez a cikk tartozék
 Top group	Főcsoport
 Top group {}, product group {}, subgroup {}	Főcsoport: {}, termékcsoport: {}, alcsoport: {}
 Turn the model so that its front faces the viewer (+Z) and its top is +Y	Forgassa el a modellt úgy, hogy az eleje a néző felé nézzen (+Z), a teteje pedig +Y legyen
+Turn the view 90° to the left	Nézet forgatása 90°-kal balra
+Turn the view 90° to the right	Nézet forgatása 90°-kal jobbra
 Uploaded {} parts, server revision {}	{} alkatrész feltöltve, szerverrevízió: {}
 Uploading parts file…	Alkatrészfájl feltöltése…
 Uploading {} parts…	{} alkatrész feltöltése…
@@ -164,7 +169,6 @@ up to {} mm²	legfeljebb {} mm²
 {} mm right	{} mm jobbra
 {} of {} parts	{} / {} alkatrész
 {} parts found	{} alkatrész található
-{} users	{} felhasználó
 {} wires per connection point	{} vezeték csatlakozási pontonként
 {} × {} mm, {} elements	{} × {} mm, {} elem
 {} × {} × {} mm	{} × {} × {} mm

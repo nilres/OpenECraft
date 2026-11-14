@@ -1,6 +1,7 @@
 # English<TAB>Türkçe – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(tümü)
 (no entries)	(girdi yok)
+(no structure)	(yapı yok)
 --json needs a JSON object	--json bir JSON nesnesi gerektirir
 3D model	3D model
 3D routing	3D yönlendirme
@@ -16,11 +17,13 @@ Add	Ekle
 Add a PDF of all pages	Tüm sayfaların PDF'ini ekle
 Add to favorites	Sık kullanılanlara ekle
 Address	Adres
+Administrator	Yönetici
 Angle	Açı
 Apply	Uygula
 Approve	Onayla
 Approvers	Onaylayıcılar
 Automatic	Otomatik
+Aux	Yrd.
 Below	Altta
 Bold	Kalın
 Bottom	Taban
@@ -125,6 +128,7 @@ Downloading {}…	{} indiriliyor…
 Drag to turn the model	Modeli döndürmek için sürükleyin
 EMC clearance	EMC mesafesi
 Edit	Düzen
+Editor	Düzenleyici
 Electro-fluid cross reference	Elektro-akışkan çapraz referansı
 Enclosure	Pano
 Enclosures	Panolar
@@ -144,6 +148,8 @@ Field wiring	Saha kablolaması
 File	Dosya
 Files	Dosyalar
 Filter	Filtre
+Filter devices…	Cihazları filtrele…
+Fit	Sığdır
 Fits	Uyumlu
 Fitting at the end	Sondaki rakor
 Fitting at the start	Başlangıçtaki rakor
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Bir alt projeden vazgeçer: 
 Gland plate	Rakor plakası
 Graphics	Grafik
 Group	Grup
+Group the pages by structure	Sayfaları yapıya göre grupla
 Groups	Gruplar
 Harness	Kablo demeti
 Harness data	Kablo demeti verileri
@@ -207,9 +214,12 @@ Load	Yük
 Loaded circuits bunched together	Bir arada gruplanmış yüklü devreler
 Location	Konum
 Location (+)	Konum (+)
+Locked	Kilitli
+Locked by {}	{} tarafından kilitlendi
 Logo	Logo
 MTTFd (years)	MTTFd (yıl)
 Machine	Makine
+Main	Ana
 Main earthing busbar (device) it is connected to; empty: none	Bağlı olduğu ana topraklama barası (cihaz); boş: yok
 Main earthing terminal	Ana topraklama barası
 Main switch	Ana şalter
@@ -352,9 +362,11 @@ Product subgroup	Ürün alt grubu
 Product top group	Ürün ana grubu
 Profile	Profil
 Project	Proje
+Project data	Proje verileri
 Project languages	Proje dilleri
 Project logo	Proje logosu
 Project management	Proje yönetimi
+Project manager	Proje yöneticisi
 Project name	Proje adı
 Project properties	Proje özellikleri
 Properties	Özellikler
@@ -371,6 +383,7 @@ Rated power	Anma gücü
 Rear wall	Arka duvar
 Rectangle	Dikdörtgen
 Rectangular	Dikdörtgen
+Refresh	Yenile
 Reject	Reddet
 Relative humidity	Bağıl nem
 Relay	Röle
@@ -386,6 +399,7 @@ Report blocks	Rapor blokları
 Report: {}	Rapor: {}
 Required	Gerekli
 Reserve	Yedek
+Reviewer	İncelemeci
 Revision	Revizyon
 Revision {}	Revizyon {}
 Rework	Yeniden işleme
@@ -429,6 +443,7 @@ Sign in	Oturum aç
 Sign out	Oturumu kapat
 Signed in as {}	{} olarak oturum açıldı
 Signed in as {} ({})	{} ({}) olarak oturum açıldı
+Signed out	Oturum kapatıldı
 Signing in…	Oturum açılıyor…
 Single-line / multi-line	Tek hatlı / çok hatlı
 Size	Boyut
@@ -436,6 +451,7 @@ Socket side	Soket tarafı
 Solenoid not linked	Solenoid ilişkilendirilmemiş
 Sort by	Sıralama ölçütü
 Source	Kaynak
+Started	Başladı
 State	Durum
 Status	Durum
 String	Dizi
@@ -472,6 +488,7 @@ Time	Zaman
 Title block	Antet
 To	Hedef
 Tools	Takımlar
+Top	Üst
 Total	Genel toplam
 Transformer	Transformatör
 Type	Tip
@@ -498,6 +515,7 @@ User	Kullanıcı
 User name	Kullanıcı adı
 Users	Kullanıcılar
 Version	Sürüm
+Viewer	Görüntüleyici
 Voltage	Gerilim
 Warning	Uyarı
 Warnings	Uyarılar
@@ -540,6 +558,7 @@ yes	evet
 {} exists already	{} zaten var
 {} is not a PNG or JPEG image	{} bir PNG veya JPEG görüntüsü değil
 {} parts	{} parça
+{} users	{} kullanıcı
 {} wires	{} tel
 {}, together with the wire to {}	{}, {} yönündeki telle birlikte
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} zemine konmaz, zemine konan bir parça seçin

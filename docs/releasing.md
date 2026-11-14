@@ -44,7 +44,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | Tool | Where |
 | --- | --- |
 | Rust | `dtolnay/rust-toolchain@<version>` in `.github/workflows/ci.yml`; `ARG RUST_VERSION` in `installer/docker/Dockerfile` |
-| cargo-about, trunk | `tool: cargo-about@…`, `trunk@…` in `ci.yml`; `cargo install cargo-about@…` in `installer/docker/Dockerfile`; the install hints of the installer scripts, `installer/web/` and the docs |
+| cargo-about, trunk | `tool: cargo-about@…`, `trunk@…` in `ci.yml`; `cargo install cargo-about@…`, `trunk@…` in `installer/docker/Dockerfile`; the install hints of the installer scripts, `installer/web/` and the docs |
 | appimagetool, AppImage runtime | versions and SHA-256 at `build_appimage` in `installer/linux/build.sh`; a new runtime needs `installer/linux/appimage/RUNTIME-LICENSES.txt` checked (its components and their versions) |
 
 ## Release files
@@ -57,7 +57,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | `OpenECraft-<version>-macos.dmg` | `installer/macos/build.sh` |
 | `OpenECraft-<version>-web.zip`, `OpenECraft-Parts-Manager-<version>-web.zip` | `trunk build --release` |
 | `THIRD-PARTY-LICENSES.html`, `SHA256SUMS` | the workflow |
-| `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
+| `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>`, `ghcr.io/nilres/openecraft-web:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
 
 The editor updates itself from the latest published release (no drafts, no
 pre-releases): it needs `SHA256SUMS` and the file names above, so keep them when

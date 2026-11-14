@@ -1,6 +1,7 @@
 # English<TAB>Italiano – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(tutti)
 (no entries)	(nessuna voce)
+(no structure)	(nessuna struttura)
 --json needs a JSON object	--json richiede un oggetto JSON
 3D model	Modello 3D
 3D routing	Instradamento 3D
@@ -16,11 +17,13 @@ Add	Aggiungi
 Add a PDF of all pages	Aggiungi un PDF di tutte le pagine
 Add to favorites	Aggiungi ai preferiti
 Address	Indirizzo
+Administrator	Amministratore
 Angle	Angolo
 Apply	Applica
 Approve	Approva
 Approvers	Approvatori
 Automatic	Automatico
+Aux	Aus.
 Below	Sotto
 Bold	Grassetto
 Bottom	Fondo
@@ -125,6 +128,7 @@ Downloading {}…	Download di {}…
 Drag to turn the model	Trascina per ruotare il modello
 EMC clearance	Distanza EMC
 Edit	Modifica
+Editor	Editor
 Electro-fluid cross reference	Riferimenti incrociati elettro-fluidici
 Enclosure	Armadio
 Enclosures	Armadi
@@ -144,6 +148,8 @@ Field wiring	Cablatura di campo
 File	File
 Files	File
 Filter	Filtro
+Filter devices…	Filtra dispositivi…
+Fit	Adatta
 Fits	Compatibile con
 Fitting at the end	Raccordo alla fine
 Fitting at the start	Raccordo all'inizio
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Abbandona un sottoprogetto: 
 Gland plate	Piastra passacavi
 Graphics	Grafica
 Group	Gruppo
+Group the pages by structure	Raggruppa le pagine per struttura
 Groups	Gruppi
 Harness	Cablaggio
 Harness data	Dati cablaggio
@@ -207,9 +214,12 @@ Load	Utenza
 Loaded circuits bunched together	Circuiti caricati raggruppati
 Location	Luogo
 Location (+)	Luogo (+)
+Locked	Bloccato
+Locked by {}	Bloccato da {}
 Logo	Logo
 MTTFd (years)	MTTFd (anni)
 Machine	Macchina
+Main	Princ.
 Main earthing busbar (device) it is connected to; empty: none	Collettore principale di terra (apparecchio) a cui è collegato; vuoto: nessuno
 Main earthing terminal	Collettore principale di terra
 Main switch	Interruttore generale
@@ -352,9 +362,11 @@ Product subgroup	Sottogruppo prodotti
 Product top group	Gruppo prodotti principale
 Profile	Profilo
 Project	Progetto
+Project data	Dati di progetto
 Project languages	Lingue del progetto
 Project logo	Logo del progetto
 Project management	Gestione progetti
+Project manager	Capo progetto
 Project name	Nome progetto
 Project properties	Proprietà progetto
 Properties	Proprietà
@@ -371,6 +383,7 @@ Rated power	Potenza nominale
 Rear wall	Parete posteriore
 Rectangle	Rettangolo
 Rectangular	Rettangolare
+Refresh	Aggiorna
 Reject	Rifiuta
 Relative humidity	Umidità relativa
 Relay	Relè
@@ -386,6 +399,7 @@ Report blocks	Blocchi di report
 Report: {}	Report: {}
 Required	Richiesto
 Reserve	Riserva
+Reviewer	Revisore
 Revision	Revisione
 Revision {}	Revisione {}
 Rework	Rilavorazione
@@ -429,6 +443,7 @@ Sign in	Accedi
 Sign out	Esci
 Signed in as {}	Accesso eseguito come {}
 Signed in as {} ({})	Accesso eseguito come {} ({})
+Signed out	Disconnesso
 Signing in…	Accesso in corso…
 Single-line / multi-line	Unifilare / multifilare
 Size	Dimensione
@@ -436,6 +451,7 @@ Socket side	Lato femmina
 Solenoid not linked	Bobina non collegata
 Sort by	Ordina per
 Source	Fonte
+Started	Avviato
 State	Stato
 Status	Stato
 String	Stringa
@@ -472,6 +488,7 @@ Time	Tempo
 Title block	Cartiglio
 To	A
 Tools	Utensili
+Top	In alto
 Total	Totale
 Transformer	Trasformatore
 Type	Tipo
@@ -498,6 +515,7 @@ User	Utente
 User name	Nome utente
 Users	Utenti
 Version	Versione
+Viewer	Visualizzatore
 Voltage	Tensione
 Warning	Avviso
 Warnings	Avvisi
@@ -540,6 +558,7 @@ yes	sì
 {} exists already	{} esiste già
 {} is not a PNG or JPEG image	{} non è un'immagine PNG o JPEG
 {} parts	{} articoli
+{} users	{} utenti
 {} wires	{} conduttori
 {}, together with the wire to {}	{}, insieme al conduttore verso {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} non poggia sul pavimento, scegli un articolo a pavimento

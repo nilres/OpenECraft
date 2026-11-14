@@ -1,6 +1,7 @@
 # English<TAB>简体中文 – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	（全部）
 (no entries)	（无条目）
+(no structure)	（无结构）
 --json needs a JSON object	--json 需要一个 JSON 对象
 3D model	3D 模型
 3D routing	3D 布线
@@ -16,11 +17,13 @@ Add	添加
 Add a PDF of all pages	添加所有页的 PDF
 Add to favorites	添加到收藏夹
 Address	地址
+Administrator	管理员
 Angle	角度
 Apply	应用
 Approve	批准
 Approvers	审批人
 Automatic	自动
+Aux	辅助
 Below	下方
 Bold	粗体
 Bottom	底板
@@ -123,6 +126,7 @@ Downloading {}…	正在下载 {}…
 Drag to turn the model	拖动以旋转模型
 EMC clearance	EMC 间距
 Edit	编辑
+Editor	编辑者
 Electro-fluid cross reference	电气-流体交叉引用
 Enclosure	机柜
 Enclosures	机柜
@@ -142,6 +146,8 @@ Field wiring	现场接线
 File	文件
 Files	文件
 Filter	筛选
+Filter devices…	筛选设备…
+Fit	适合窗口
 Fits	适配
 Fitting at the end	末端接头
 Fitting at the start	起始端接头
@@ -163,6 +169,7 @@ Gives up a subproject: its pages are unlocked again	放弃子项目：其页重�
 Gland plate	法兰板
 Graphics	图形
 Group	组
+Group the pages by structure	按结构对页分组
 Groups	组
 Harness	线束
 Harness data	线束数据
@@ -205,9 +212,12 @@ Load	负载
 Loaded circuits bunched together	成束敷设的带负载回路数
 Location	位置
 Location (+)	位置 (+)
+Locked	已锁定
+Locked by {}	已被 {} 锁定
 Logo	标志
 MTTFd (years)	MTTFd（年）
 Machine	机器
+Main	主
 Main earthing busbar (device) it is connected to; empty: none	所连接的总接地母线（设备）；空：无
 Main earthing terminal	总接地端子
 Main switch	主开关
@@ -350,9 +360,11 @@ Product subgroup	产品子组
 Product top group	产品主组
 Profile	配置文件
 Project	项目
+Project data	项目数据
 Project languages	项目语言
 Project logo	项目标志
 Project management	项目管理
+Project manager	项目经理
 Project name	项目名称
 Project properties	项目属性
 Properties	属性
@@ -369,6 +381,7 @@ Rated power	额定功率
 Rear wall	后板
 Rectangle	矩形
 Rectangular	矩形
+Refresh	刷新
 Reject	拒绝
 Relative humidity	相对湿度
 Relay	继电器
@@ -384,6 +397,7 @@ Report blocks	报表块
 Report: {}	报表：{}
 Required	要求
 Reserve	备用
+Reviewer	审阅者
 Revision	修订
 Revision {}	修订 {}
 Rework	返工
@@ -427,6 +441,7 @@ Sign in	登录
 Sign out	注销
 Signed in as {}	已作为 {} 登录
 Signed in as {} ({})	已作为 {} ({}) 登录
+Signed out	已注销
 Signing in…	正在登录…
 Single-line / multi-line	单线 / 多线
 Size	大小
@@ -434,6 +449,7 @@ Socket side	插孔侧
 Solenoid not linked	电磁线圈未关联
 Sort by	排序方式
 Source	来源
+Started	已开始
 State	状态
 Status	状态
 String	组串
@@ -470,6 +486,7 @@ Time	时间
 Title block	标题栏
 To	到
 Tools	刀具
+Top	顶部
 Total	合计
 Transformer	变压器
 Type	类型
@@ -496,6 +513,7 @@ User	用户
 User name	用户名
 Users	用户
 Version	版本
+Viewer	查看者
 Voltage	电压
 Warning	警告
 Warnings	警告
@@ -537,6 +555,7 @@ yes	是
 {} exists already	{} 已存在
 {} is not a PNG or JPEG image	{} 不是 PNG 或 JPEG 图像
 {} parts	{} 个部件
+{} users	{} 个用户
 {} wires	{} 条导线
 {}, together with the wire to {}	{}，与通往 {} 的导线共用
 {}: {} does not stand on the floor, choose a floor-standing part	{}：{} 不是落地式，请选择落地式部件

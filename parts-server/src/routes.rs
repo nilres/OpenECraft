@@ -12,6 +12,7 @@ use axum::middleware::Next;
 use axum::response::{IntoResponse, Response};
 use axum::routing::{delete, get, post};
 use axum::{Json, Router};
+use openecraft_auth::admin::{self, DirectoryEntry, DirectoryTestRequest};
 use openecraft_auth::{AccessConfig, AccessFile, ClientIp, Directory, SignInError, Throttle};
 use openecraft_parts::access::{groups_of, with_groups, Access, Grant, Group, Policy, Right, Settings, Subject, SERVER};
 use openecraft_parts::api::{
@@ -21,7 +22,7 @@ use openecraft_parts::api::{
 use openecraft_parts::dashboard::Dashboard;
 use openecraft_parts::portal::{catalog_scope, content_type, scopes, AttachmentKind, Catalog, HistoryEntry, PartsRight, Role, SearchResult, User};
 use openecraft_parts::{import, to_csv, Part};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use std::sync::{Arc, Mutex, MutexGuard};
 use std::time::Instant;
 use tower_http::cors::{Any, CorsLayer};
@@ -128,8 +129,8 @@ pub fn router(state: AppState) -> Router {
         .route("/admin.js", get(web::admin_script))
         .route("/edit.js", get(web::edit_script))
         .route("/dashboard.js", get(web::dashboard_script))
-        .route("/logo.svg", get(web::logo))
         .route(&api("/texts"), get(web::texts))
+        .merge(openecraft_web::routes())
         .route(&api("/info"), get(info))
         .route(&api("/parts"), get(list))
         .route(&api("/search"), post(search).layer(DefaultBodyLimit::max(SMALL_BODY)))
@@ -1256,102 +1257,37 @@ async fn delete_group(State(state): State<AppState>, headers: HeaderMap, Path(na
     Ok(StatusCode::NO_CONTENT)
 }
 
-/// A directory as administrators see it: without the password of its service account.
-#[derive(Serialize)]
-struct DirectoryEntry {
-    #[serde(flatten)]
-    directory: Directory,
-    /// The password of the service account is set (in the file or its variable).
-    password_set: bool,
-}
-
-fn directory_entry(d: &Directory) -> DirectoryEntry {
-    DirectoryEntry { password_set: d.has_bind_password(), directory: Directory { bind_password: String::new(), ..d.clone() } }
-}
-
 async fn directories(State(state): State<AppState>, headers: HeaderMap) -> Result<Json<Vec<DirectoryEntry>>> {
     with_right(&state, &headers, PartsRight::Administer, SERVER)?;
-    Ok(Json(access_file(&state).config.directories.iter().map(directory_entry).collect()))
-}
-
-/// The directory of a request with the id of the address; an empty password is the
-/// stored one.
-fn directory_of(state: &AppState, id: &str, mut d: Directory) -> Result<Directory> {
-    if d.id.trim().is_empty() {
-        d.id = id.to_string();
-    }
-    if !d.id.trim().eq_ignore_ascii_case(id.trim()) {
-        return Err(bad("directory id in URL and body differ"));
-    }
-    d.id = d.id.trim().to_string();
-    if d.bind_password.is_empty() {
-        if let Some(old) = access_file(state).config.directories.iter().find(|o| o.id.trim().eq_ignore_ascii_case(&d.id)) {
-            d.bind_password = old.bind_password.clone();
-        }
-    }
-    Ok(d)
+    Ok(Json(access_file(&state).config.directories.iter().map(DirectoryEntry::of).collect()))
 }
 
 /// Creates or changes a directory users sign in with.
 async fn put_directory(State(state): State<AppState>, headers: HeaderMap, Path(id): Path<String>, Json(d): Json<Directory>) -> Result<Json<DirectoryEntry>> {
     let (admin, _) = with_right(&state, &headers, PartsRight::Administer, SERVER)?;
-    let d = directory_of(&state, &id, d)?;
     let mut file = access_file(&state);
-    let mut list = file.config.directories.clone();
-    match list.iter_mut().find(|o| o.id.trim().eq_ignore_ascii_case(&d.id)) {
-        Some(old) => *old = d.clone(),
-        None => list.push(d.clone()),
-    }
+    let d = admin::directory_of(&file.config.directories, &id, d).map_err(bad)?;
+    let list = admin::with_directory(&file.config.directories, d.clone());
     file.set_directories(list).map_err(bad)?;
     log::info!("saved directory {} ({})", d.id, admin.name);
-    Ok(Json(directory_entry(&d)))
+    Ok(Json(DirectoryEntry::of(&d)))
 }
 
 /// Removes a directory; its users keep their accounts but cannot sign in.
 async fn delete_directory(State(state): State<AppState>, headers: HeaderMap, Path(id): Path<String>) -> Result<StatusCode> {
     let (admin, _) = with_right(&state, &headers, PartsRight::Administer, SERVER)?;
     let mut file = access_file(&state);
-    let mut list = file.config.directories.clone();
-    let before = list.len();
-    list.retain(|d| !d.id.trim().eq_ignore_ascii_case(id.trim()));
-    if list.len() == before {
-        return Err(not_found(format!("directory '{id}' not found")));
-    }
+    let list = admin::without_directory(&file.config.directories, &id).ok_or_else(|| not_found(format!("directory '{id}' not found")))?;
     file.set_directories(list).map_err(bad)?;
     log::info!("deleted directory {id} ({})", admin.name);
     Ok(StatusCode::NO_CONTENT)
 }
 
-/// Settings of a directory to test and, optionally, a user to sign in with.
-#[derive(Deserialize, Default)]
-#[serde(default)]
-struct DirectoryTestRequest {
-    directory: Directory,
-    name: String,
-    password: String,
-}
-
-/// Tests the settings of a directory (saved or not): connects and binds with the
-/// service account or, with a user, signs them in and reads their groups.
+/// Tests the settings of a directory (saved or not).
 async fn test_directory(State(state): State<AppState>, headers: HeaderMap, Path(id): Path<String>, Json(req): Json<DirectoryTestRequest>) -> Result<Json<DirectoryTest>> {
     with_right(&state, &headers, PartsRight::Administer, SERVER)?;
-    let d = directory_of(&state, &id, req.directory)?;
-    let result = if req.name.trim().is_empty() {
-        d.test_connection().await.map(|message| (message, None))
-    } else {
-        d.authenticate(&req.name, &req.password).await.map(|i| (format!("signed in as {} with {} groups", i.name, i.groups.len()), Some(i)))
-    };
-    Ok(Json(match result {
-        Ok((message, identity)) => DirectoryTest { ok: true, message, identity },
-        Err(e) => {
-            let message = match e {
-                SignInError::Unknown => "the directory does not know the user".into(),
-                SignInError::Refused => "wrong password, or the user may not sign in".into(),
-                SignInError::Unavailable(e) => e,
-            };
-            DirectoryTest { ok: false, message, identity: None }
-        }
-    }))
+    let d = admin::directory_of(&access_file(&state).config.directories, &id, req.directory).map_err(bad)?;
+    Ok(Json(admin::test_directory(&d, &req.name, &req.password).await))
 }
 
 /// Figures and distributions of the parts for the dashboard of the web page; the

@@ -1,6 +1,7 @@
 # English<TAB>Magyar – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(összes)
 (no entries)	(nincsenek bejegyzések)
+(no structure)	(nincs struktúra)
 --json needs a JSON object	A --json JSON-objektumot vár
 3D model	3D-modell
 3D routing	3D nyomvonalvezetés
@@ -16,11 +17,13 @@ Add	Hozzáadás
 Add a PDF of all pages	PDF hozzáadása az összes oldalról
 Add to favorites	Hozzáadás a kedvencekhez
 Address	Cím
+Administrator	Rendszergazda
 Angle	Szög
 Apply	Alkalmaz
 Approve	Jóváhagyás
 Approvers	Jóváhagyók
 Automatic	Automatikus
+Aux	Segéd
 Below	Alul
 Bold	Félkövér
 Bottom	Fenék
@@ -125,6 +128,7 @@ Downloading {}…	{} letöltése…
 Drag to turn the model	Húzással forgathatja a modellt
 EMC clearance	EMC-távolság
 Edit	Szerkesztés
+Editor	Szerkesztő
 Electro-fluid cross reference	Elektro-fluid kereszthivatkozások
 Enclosure	Szekrény
 Enclosures	Szekrények
@@ -144,6 +148,8 @@ Field wiring	Terepi huzalozás
 File	Fájl
 Files	Fájlok
 Filter	Szűrő
+Filter devices…	Készülékek szűrése…
+Fit	Illesztés
 Fits	Illeszkedik
 Fitting at the end	Csatlakozószerelvény a végén
 Fitting at the start	Csatlakozószerelvény az elején
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Elvet egy alprojektet: oldal
 Gland plate	Kábelbevezető lemez
 Graphics	Grafika
 Group	Csoport
+Group the pages by structure	Oldalak csoportosítása struktúra szerint
 Groups	Csoportok
 Harness	Kábelköteg
 Harness data	Kábelköteg-adatok
@@ -207,9 +214,12 @@ Load	Fogyasztó
 Loaded circuits bunched together	Együtt fektetett terhelt áramkörök
 Location	Szerelési hely
 Location (+)	Szerelési hely (+)
+Locked	Zárolt
+Locked by {}	Zárolta: {}
 Logo	Logó
 MTTFd (years)	MTTFd (év)
 Machine	Gép
+Main	Fő
 Main earthing busbar (device) it is connected to; empty: none	Fő földelősín (eszköz), amelyhez csatlakozik; üres: nincs
 Main earthing terminal	Fő földelősín
 Main switch	Főkapcsoló
@@ -352,9 +362,11 @@ Product subgroup	Termék-alcsoport
 Product top group	Termék-főcsoport
 Profile	Profil
 Project	Projekt
+Project data	Projektadatok
 Project languages	Projektnyelvek
 Project logo	Projektlogó
 Project management	Projektkezelés
+Project manager	Projektvezető
 Project name	Projektnév
 Project properties	Projekttulajdonságok
 Properties	Tulajdonságok
@@ -371,6 +383,7 @@ Rated power	Névleges teljesítmény
 Rear wall	Hátfal
 Rectangle	Téglalap
 Rectangular	Téglalap alakú
+Refresh	Frissítés
 Reject	Elutasítás
 Relative humidity	Relatív páratartalom
 Relay	Relé
@@ -386,6 +399,7 @@ Report blocks	Kimutatásblokkok
 Report: {}	Kimutatás: {}
 Required	Előírt
 Reserve	Tartalék
+Reviewer	Véleményező
 Revision	Revízió
 Revision {}	{}. revízió
 Rework	Utómunka
@@ -429,6 +443,7 @@ Sign in	Bejelentkezés
 Sign out	Kijelentkezés
 Signed in as {}	Bejelentkezve mint {}
 Signed in as {} ({})	Bejelentkezve mint {} ({})
+Signed out	Kijelentkezve
 Signing in…	Bejelentkezés…
 Single-line / multi-line	Egyvonalas / többvonalas
 Size	Méret
@@ -436,6 +451,7 @@ Socket side	Hüvelyoldal
 Solenoid not linked	A mágnestekercs nincs kapcsolva
 Sort by	Rendezés
 Source	Forrás
+Started	Elkezdve
 State	Állapot
 Status	Állapot
 String	String
@@ -472,6 +488,7 @@ Time	Idő
 Title block	Szövegmező
 To	Cél
 Tools	Szerszámok
+Top	Fent
 Total	Összesen
 Transformer	Transzformátor
 Type	Típus
@@ -498,6 +515,7 @@ User	Felhasználó
 User name	Felhasználónév
 Users	Felhasználók
 Version	Verzió
+Viewer	Megtekintő
 Voltage	Feszültség
 Warning	Figyelmeztetés
 Warnings	Figyelmeztetések
@@ -540,6 +558,7 @@ yes	igen
 {} exists already	{} már létezik
 {} is not a PNG or JPEG image	{} nem PNG- vagy JPEG-kép
 {} parts	{} alkatrész
+{} users	{} felhasználó
 {} wires	{} vezeték
 {}, together with the wire to {}	{}, a(z) {} felé menő vezetékkel együtt
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} nem a padlón áll, válasszon padlón álló alkatrészt

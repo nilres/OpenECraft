@@ -8,7 +8,6 @@
 (empty)	(üres)
 (included)	(tartalmazza)
 (no cable highlighted)	(nincs kiemelt kábel)
-(no structure)	(nincs struktúra)
 (none)	(nincs)
 (project default)	(projekt alapértelmezése)
 (repairable)	(javítható)
@@ -191,7 +190,6 @@ Automatic configuration	Automatikus konfiguráció
 Automatic placement	Automatikus elhelyezés
 Automatic: {}	Automatikus: {}
 Automation	Automatizálás
-Aux	Segéd
 Avoid:	Kerülendő:
 Back	Vissza
 Back to the project (Esc)	Vissza a projekthez (Esc)
@@ -744,7 +742,6 @@ Fill	Kitöltés
 Fill level	Töltöttség
 Filled	Kitöltött
 Filter connections…	Összeköttetések szűrése…
-Filter devices…	Készülékek szűrése…
 Filter…	Szűrés…
 Find	Keresés
 Find a command	Parancs keresése
@@ -757,7 +754,6 @@ Find…	Keresés…
 Finish a wire, polyline, polygon or wall	Vezeték, vonallánc, sokszög vagy fal befejezése
 Finish or cancel the drawing, then back to selecting	A rajzolás befejezése vagy megszakítása, majd vissza a kijelöléshez
 First row	Első sor
-Fit	Illesztés
 Fit page	Oldal méretre igazítása
 Fits {}	Illeszkedik ehhez: {}
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	A téglalapba illesztve, a méretarány megtartásával (PNG, JPEG)
@@ -844,7 +840,6 @@ Grid {} mm	Rács {} mm
 Group as assembly	Csoportosítás szerelvényként
 Group column	Csoportosító oszlop
 Group in the symbol list, e.g. your company	Csoport a szimbólumlistában, pl. az Ön cége
-Group the pages by structure	Oldalak csoportosítása struktúra szerint
 Groups shown	Megjelenített csoportok
 HEATER=yes	FUTES=igen
 Hardware configuration and PLC tags for TIA Portal and other PLC tools	Hardverkonfiguráció és PLC-változók a TIA Portalhoz és más PLC-eszközökhöz
@@ -970,7 +965,6 @@ Introduction	Bevezetés
 Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
 Inverter or charge controller (devices with PV input data)	Inverter vagy töltésszabályozó (PV-bemeneti adatokkal rendelkező eszközök)
-Isometric	Izometrikus
 Items copied: {}	Másolt elemek: {}
 Items copied: {} (devices left out: {}, a device is placed once)	Másolt elemek: {} (kihagyott készülékek: {}, egy készüléket csak egyszer lehet elhelyezni)
 Items cut: {}	Kivágott elemek: {}
@@ -1068,9 +1062,7 @@ Lock all pages	Összes oldal zárolása
 Lock current page	Aktuális oldal zárolása
 Lock page	Oldal zárolása
 Lock project data	Projektadatok zárolása
-Locked	Zárolt
 Locked by other users	Más felhasználók által zárolva
-Locked by {}	Zárolta: {}
 Locked by {} on the project server – read only	{} zárolta a projektkiszolgálón – csak olvasható
 Locked by {} – read only	Zárolta: {} – csak olvasható
 Locking…	Zárolás…
@@ -1091,7 +1083,6 @@ Macro {} saved	A(z) {} makró mentve
 Macros	Makrók
 Macros ({})	Makrók ({})
 Macro…	Makró…
-Main	Fő
 Main earthing busbar	Fő földelősín
 Make the selected elements of this project equal to the compared ones	A projekt kijelölt elemeinek az összehasonlítottakhoz igazítása
 Maker	Gyártó
@@ -1562,7 +1553,6 @@ Profile name	Profilnév
 Profiles	Profilok
 Project access	Projekthozzáférés
 Project and user settings in one dialog	Projekt- és felhasználói beállítások egy párbeszédablakban
-Project data	Projektadatok
 Project database	Projektadatbázis
 Project database, batch changes of project properties, subprojects, options, archives and verification	Projektadatbázis, projekttulajdonságok tömeges módosítása, alprojektek, opciók, archívumok és ellenőrzés
 Project default: {}	Projekt alapértelmezése: {}
@@ -1608,7 +1598,6 @@ Reading the folder…	A mappa olvasása…
 Reading the parts file	Alkatrészfájl beolvasása
 Reading {}	{} beolvasása
 Real length per millimetre on the page, e.g. 10 for a 1:10 drawing	Valós hossz az oldal milliméterenként, pl. 10 egy 1:10 léptékű rajznál
-Rear	Hátul
 Rear left corner of the line-up on the floor, as in the 3D view with all enclosures	A szekrénysor hátsó bal sarka a padlón, mint az összes szekrényt mutató 3D-nézetben
 Recent projects	Legutóbbi projektek
 Recently used	Legutóbb használt
@@ -1619,7 +1608,6 @@ Redline: to be changed · Greenline: changed as built	Redline: módosítandó ·
 Redo	Mégis
 Reference point	Referenciapont
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Referenciapont elhelyezve: x {} m, z {} m; adja meg koordinátáit az Épületek panelen
-Refresh	Frissítés
 Refresh example catalog parts (GEN.*)	Példakatalógus-alkatrészek frissítése (GEN.*)
 Rejected and closed ones too	Az elutasítottak és lezártak is
 Relative column width	Relatív oszlopszélesség
@@ -1906,7 +1894,6 @@ Show as tiles	Megjelenítés csempékként
 Show connection point designations	Csatlakozásmegnevezések megjelenítése
 Show connectors	Csatlakozók megjelenítése
 Show device tag and cross references	Készülékazonosító és kereszthivatkozások megjelenítése
-Show everything (Home)	Minden megjelenítése (Home)
 Show in panel layout ({})	Megjelenítés a szekrényelrendezésben ({})
 Show in schematic	Megjelenítés a kapcsolási rajzon
 Show in the schematic	Megjelenítés a kapcsolási rajzon
@@ -2144,7 +2131,6 @@ Title blocks, report schemes and plot frames shared by all projects on the parts
 To do	Teendő
 Toggle corner direction while drawing wires	Sarokirány váltása vezetékrajzolás közben
 Toggle routing around symbols (wire tool)	Szimbólumok kikerülésének be- és kikapcsolása (vezetékeszköz)
-Top	Fent
 Top edges	Felső élek
 Top left	Bal felső
 Top right	Jobb felső

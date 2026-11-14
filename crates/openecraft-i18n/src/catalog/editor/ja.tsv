@@ -8,7 +8,6 @@
 (empty)	(空)
 (included)	(付属)
 (no cable highlighted)	(強調表示されたケーブルなし)
-(no structure)	(構造なし)
 (none)	(なし)
 (project default)	(プロジェクトの既定値)
 (repairable)	(修復可能)
@@ -190,7 +189,6 @@ Automatic configuration	自動構成
 Automatic placement	自動配置
 Automatic: {}	自動: {}
 Automation	自動化
-Aux	補助
 Avoid:	回避:
 Back	戻る
 Back to the project (Esc)	プロジェクトに戻る (Esc)
@@ -737,7 +735,6 @@ Fill	入力
 Fill level	充填率
 Filled	塗りつぶし
 Filter connections…	接続をフィルター…
-Filter devices…	デバイスをフィルター…
 Filter…	フィルター…
 Find	検索
 Find a command	コマンドを検索
@@ -750,7 +747,6 @@ Find…	検索…
 Finish a wire, polyline, polygon or wall	配線、ポリライン、多角形、壁を終了
 Finish or cancel the drawing, then back to selecting	描画を終了またはキャンセルし、選択に戻る
 First row	最初の行
-Fit	全体表示
 Fit page	ページに合わせる
 Fits {}	{} に適合
 Fitted into the rectangle keeping its aspect ratio (PNG, JPEG)	縦横比を保って四角形に収めます（PNG、JPEG）
@@ -836,7 +832,6 @@ Grid {} mm	グリッド {} mm
 Group as assembly	アセンブリとしてグループ化
 Group column	グループ列
 Group in the symbol list, e.g. your company	シンボルリストのグループ (例: 自社名)
-Group the pages by structure	ページを構造でグループ化
 Groups shown	表示するグループ
 HEATER=yes	HEATER=yes
 Hardware configuration and PLC tags for TIA Portal and other PLC tools	TIA Portal やその他の PLC ツール用のハードウェア構成と PLC タグ
@@ -962,7 +957,6 @@ Introduction	はじめに
 Invalid value	無効な値
 Invert the direction of panning by scrolling	スクロールによるパンの方向を反転する
 Inverter or charge controller (devices with PV input data)	インバーターまたは充電コントローラー（PV入力データのある機器）
-Isometric	等角
 Items copied: {}	コピーした要素: {}
 Items copied: {} (devices left out: {}, a device is placed once)	コピーした要素: {} (除外したデバイス: {}、デバイスは一度だけ配置されます)
 Items cut: {}	切り取った要素: {}
@@ -1056,9 +1050,7 @@ Lock all pages	すべてのページをロック
 Lock current page	現在のページをロック
 Lock page	ページをロック
 Lock project data	プロジェクトデータをロック
-Locked	ロック
 Locked by other users	他のユーザーがロック中
-Locked by {}	{} がロック中
 Locked by {} on the project server – read only	プロジェクトサーバーで {} がロック中 – 読み取り専用
 Locked by {} – read only	{} がロック中 – 読み取り専用
 Locking…	ロックしています…
@@ -1079,7 +1071,6 @@ Macro {} saved	マクロ {} を保存しました
 Macros	マクロ
 Macros ({})	マクロ ({})
 Macro…	マクロ…
-Main	メイン
 Main earthing busbar	主接地ブスバー
 Make the selected elements of this project equal to the compared ones	このプロジェクトの選択した要素を比較対象と同じにします
 Maker	メーカー
@@ -1547,7 +1538,6 @@ Profile name	プロファイル名
 Profiles	プロファイル
 Project access	プロジェクトへのアクセス
 Project and user settings in one dialog	プロジェクトとユーザーの設定を 1 つのダイアログで
-Project data	プロジェクトデータ
 Project database	プロジェクトデータベース
 Project database, batch changes of project properties, subprojects, options, archives and verification	プロジェクトデータベース、プロジェクトプロパティの一括変更、サブプロジェクト、オプション、アーカイブ、検証
 Project default: {}	プロジェクトの既定値: {}
@@ -1590,7 +1580,6 @@ Read a file of the other system (CSV or JSON) and review the changes	相手シ�
 Readdress card	カードのアドレスを再設定
 Reading the folder…	フォルダーを読み込んでいます…
 Real length per millimetre on the page, e.g. 10 for a 1:10 drawing	ページ上の 1 mm あたりの実長 (例: 1:10 の図面では 10)
-Rear	背面
 Rear left corner of the line-up on the floor, as in the 3D view with all enclosures	床面上の列盤の左後隅 (すべてのエンクロージャーの 3D ビューと同じ)
 Recent projects	最近のプロジェクト
 Recently used	最近使用したもの
@@ -1601,7 +1590,6 @@ Redline: to be changed · Greenline: changed as built	レッドライン: 変更
 Redo	やり直し
 Reference point	基準点
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	基準点を x {} m、z {} m に配置しました。建物ペインで座標を入力してください
-Refresh	最新の情報に更新
 Refresh example catalog parts (GEN.*)	サンプルカタログの部品 (GEN.*) を更新
 Rejected and closed ones too	却下済みとクローズ済みも表示
 Relative column width	相対列幅
@@ -1885,7 +1873,6 @@ Show as tiles	タイルで表示
 Show connection point designations	接続ポイントの名称を表示
 Show connectors	コネクターを表示
 Show device tag and cross references	デバイスタグと相互参照を表示
-Show everything (Home)	すべて表示 (Home)
 Show in panel layout ({})	盤レイアウトで表示 ({})
 Show in schematic	回路図で表示
 Show in the schematic	回路図で表示
@@ -2122,7 +2109,6 @@ Title blocks, report schemes and plot frames shared by all projects on the parts
 To do	未完了
 Toggle corner direction while drawing wires	電線描画中にコーナーの向きを切り替え
 Toggle routing around symbols (wire tool)	シンボル回避ルーティングの切り替え (電線ツール)
-Top	上
 Top edges	上端
 Top left	左上
 Top right	右上
