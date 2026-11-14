@@ -13,6 +13,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
 
+- **Who created and last changed a shared project**: the project list of the
+  *Project server* pane and of the server's web page shows *Created by*, *Last
+  changed by* and *Last changed* for each project (`created_by`, `created_at`,
+  `changed_by`, `changed_at` of `GET /api/v1/projects`). The project server records
+  the signed-in user of the creation and of every save that changes the project;
+  opening, keeping a session alive and saving unchanged content do not count.
+  Projects of earlier versions show *Unknown* until their next change.
+
 - **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
   web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
   (target `editor-web`) and published with the server images;

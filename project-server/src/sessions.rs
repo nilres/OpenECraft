@@ -86,6 +86,11 @@ impl Sessions {
         }
     }
 
+    /// The user of a session.
+    pub fn user(&self, session: &str) -> Option<&str> {
+        self.sessions.get(session).map(|e| e.user.as_str())
+    }
+
     /// Starts a session of `user` on `project`.
     pub fn open(&mut self, project: &str, user: &str, now: Instant) -> Session {
         self.counter += 1;

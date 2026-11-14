@@ -1,10 +1,10 @@
 //! Project storage: per project a folder with a split project (`<name>/<name>.oecp`
 //! with one file per page and record, see `openecraft_core::storage`; it opens in the
-//! editor like any other project) and a state file (`<name>.state.json`: revision and
-//! id counter) in the data directory. A change writes only the files it concerns,
+//! editor like any other project) and a state file (`<name>.state.json`: revision,
+//! id counter, who created and last changed it) in the data directory. A change writes only the files it concerns,
 //! each atomically.
 
-use openecraft_core::collab::{name_key, stored_name, ID_BLOCK};
+use openecraft_core::collab::{name_key, stored_name, ProjectMeta, ID_BLOCK};
 use openecraft_core::model::Project;
 use openecraft_core::storage::folder::{self, Tracked};
 use openecraft_core::storage::INDEX_EXT;
@@ -24,6 +24,9 @@ pub const KEPT_REVISIONS: usize = 16;
 struct State {
     revision: u64,
     next_id: u64,
+    /// Missing in the state files of earlier versions: not known.
+    #[serde(flatten)]
+    meta: ProjectMeta,
 }
 
 #[derive(Clone, Debug, PartialEq)]
@@ -33,6 +36,8 @@ pub struct Entry {
     pub revision: u64,
     /// First object id not given to a session yet.
     pub next_id: u64,
+    /// Who created and last changed the project.
+    pub meta: ProjectMeta,
 }
 
 pub struct Store {
@@ -108,7 +113,7 @@ impl Store {
                 Err(e) => return Err(e),
             };
             let next_id = state.next_id.max(project.next_id);
-            projects.insert(name, Entry { project, revision: state.revision.max(1), next_id });
+            projects.insert(name, Entry { project, revision: state.revision.max(1), next_id, meta: state.meta });
         }
         Ok(Store { dir: Some(dir.to_path_buf()), projects, past: BTreeMap::new(), tracked })
     }
@@ -148,22 +153,24 @@ impl Store {
                     folder::save_tracked(&path, &entry.project, files).map_err(io::Error::other)?;
                 }
             }
-            let state = State { revision: entry.revision, next_id: entry.next_id };
+            let state = State { revision: entry.revision, next_id: entry.next_id, meta: entry.meta.clone() };
             write(&dir.join(format!("{name}.{STATE_EXT}")), &serde_json::to_string_pretty(&state).map_err(io::Error::other)?)?;
         }
         self.projects.insert(name.to_string(), entry);
         Ok(())
     }
 
-    /// Adds a new project (the caller checks that the name is free).
-    pub fn create(&mut self, name: &str, mut project: Project) -> io::Result<()> {
+    /// Adds a new project of `user` (the caller checks that the name is free); `now`
+    /// in seconds since 1970.
+    pub fn create(&mut self, name: &str, mut project: Project, user: &str, now: u64) -> io::Result<()> {
         project.normalize();
         let next_id = project.next_id;
-        self.put(name, Entry { project, revision: 1, next_id })
+        self.put(name, Entry { project, revision: 1, next_id, meta: ProjectMeta::created(user, now) })
     }
 
-    /// Replaces the project; a new revision if it changed. Returns the revision.
-    pub fn save(&mut self, name: &str, project: Project) -> io::Result<u64> {
+    /// Replaces the project; a new revision, last changed by `user` at `now`, if it
+    /// changed. Returns the revision.
+    pub fn save(&mut self, name: &str, project: Project, user: &str, now: u64) -> io::Result<u64> {
         let Some(old) = self.projects.get(name) else {
             return Err(io::Error::new(io::ErrorKind::NotFound, name.to_string()));
         };
@@ -173,7 +180,9 @@ impl Store {
             return Ok(old.revision);
         }
         let before = (old.revision, old.project.clone());
-        let entry = Entry { project, revision: old.revision + 1, next_id: old.next_id };
+        let mut meta = old.meta.clone();
+        meta.changed(user, now);
+        let entry = Entry { project, revision: old.revision + 1, next_id: old.next_id, meta };
         let revision = entry.revision;
         self.put(name, entry)?;
         let past = self.past.entry(name.to_string()).or_default();

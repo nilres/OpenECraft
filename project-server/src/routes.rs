@@ -422,6 +422,7 @@ async fn list(State(state): State<AppState>, headers: HeaderMap) -> Result<Json<
             revision: e.revision,
             users: server.sessions.users(name),
             rights: caller.rights(name).into_iter().collect(),
+            meta: e.meta.clone(),
         })
         .collect();
     Ok(Json(list))
@@ -443,7 +444,7 @@ async fn create(State(state): State<AppState>, headers: HeaderMap, Json(body): J
     if let Some(existing) = server.store.taken(&req.name) {
         return Err(AppError(StatusCode::CONFLICT, format!("project '{existing}' already exists")));
     }
-    server.store.create(&req.name, req.project)?;
+    server.store.create(&req.name, req.project, &user, openecraft_auth::unix_now())?;
     log::info!("{user} created {}", req.name);
     // A signed-in user manages the projects they create.
     if let Some(owner) = caller.user.clone().filter(|_| !caller.may(&req.name, ProjectRight::ManageAccess)) {
@@ -547,7 +548,9 @@ async fn save(State(state): State<AppState>, headers: HeaderMap, Path(name): Pat
         caller.need(&name, ProjectRight::EditPages)?;
     }
     let merged = merge(&stored, &req.project, &owned);
-    let revision = server.store.save(&name, merged)?;
+    // The signed-in user, otherwise the user the session was opened as (not the one sent).
+    let user = caller.user.clone().or_else(|| server.sessions.user(&req.session.session).map(String::from)).unwrap_or_default();
+    let revision = server.store.save(&name, merged, &user, openecraft_auth::unix_now())?;
     server.sessions.saved(&req.session.session);
     log::info!("{} saved {name} (revision {revision})", req.session.user);
     server.sessions.release(&name, &req.session, &req.release, Instant::now())?;

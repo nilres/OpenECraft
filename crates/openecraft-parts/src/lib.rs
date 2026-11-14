@@ -53,4 +53,4 @@ pub use mounting::{cutout_outline, cutouts_text, parse_cutouts, Cutout, Mounting
 pub use graphics::{parse_mesh, parse_obj, parse_stl, parse_svg, Mesh3d, MeshBuilder, Model2d, Prim2d, DOOR_PAINT, MAX_TRIANGLES, UNPAINTED};
 pub use part::*;
 pub use shared::Shared;
-pub use text::{date_from_unix, natural_cmp, unix_from_date, wildcard};
+pub use text::{date_from_unix, date_time_from_unix, natural_cmp, unix_from_date, wildcard};

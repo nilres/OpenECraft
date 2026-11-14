@@ -9,7 +9,8 @@ use super::App;
 use openecraft_core::history::History;
 use crate::remote::{Link, Remote, Reply, Sent};
 use egui::{Color32, RichText};
-use openecraft_core::collab::{restore, valid_name, Failure, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_core::collab::{restore, valid_name, Failure, Grant, KeptReason, ProjectMeta, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_parts::date_time_from_unix;
 use openecraft_i18n::{tr, tr_fmt};
 use crate::startup::ReconnectState;
 
@@ -20,6 +21,17 @@ enum KeptAction {
     TakeOver,
     Export,
     Discard,
+}
+
+/// Created by, last changed by and last changed at as the project list shows them:
+/// what the server does not know (projects of earlier servers) is named so.
+fn meta_texts(meta: &ProjectMeta) -> [String; 3] {
+    let known = |name: &str| if name.is_empty() { tr("Unknown").to_string() } else { name.to_string() };
+    [known(&meta.created_by), known(&meta.changed_by), if meta.changed_at == 0 { tr("Unknown").to_string() } else { utc(meta.changed_at) }]
+}
+
+fn utc(secs: u64) -> String {
+    format!("{} UTC", date_time_from_unix(secs))
 }
 
 impl App {
@@ -390,16 +402,23 @@ impl App {
         }
         let mut open = None;
         egui::ScrollArea::vertical().max_height(260.0).show(ui, |ui| {
-            egui::Grid::new("remote_projects").striped(true).num_columns(5).show(ui, |ui| {
-                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users"), ""] {
+            egui::Grid::new("remote_projects").striped(true).num_columns(8).show(ui, |ui| {
+                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users"), tr("Created by"), tr("Last changed by"), tr("Last changed"), ""] {
                     ui.strong(h);
                 }
                 ui.end_row();
                 for p in &self.remote.projects {
+                    let [created_by, changed_by, changed_at] = meta_texts(&p.meta);
                     ui.label(&p.name);
                     ui.label(&p.title);
                     ui.label(p.pages.to_string());
                     ui.label(p.users.join(", "));
+                    let created = ui.label(created_by);
+                    if p.meta.created_at > 0 {
+                        created.on_hover_text(tr_fmt!("Created {}", utc(p.meta.created_at)));
+                    }
+                    ui.label(changed_by);
+                    ui.label(changed_at);
                     if ui.add_enabled(has_user, egui::Button::new(tr("Open project"))).clicked() {
                         open = Some(p.name.clone());
                     }
