@@ -216,6 +216,36 @@ fn decoded_current_account_preserves_its_fresh_identity_and_permissions() {
 }
 
 #[test]
+fn same_account_reauthentication_preserves_the_shared_project_and_ignores_old_401_answers() {
+    let mut remote = remote();
+    let opened = Opened {
+        session: openecraft_core::collab::Session { user: "Alice".into(), session: "old-page-session".into() },
+        ..Default::default()
+    };
+    remote.shared = Some(openecraft_core::collab::Shared::open("synthetic-project", opened).0);
+    remote.link = super::super::Link::SignedOut;
+    remote.password = "synthetic-password".into();
+    let generation = remote.sign_in.generation;
+    remote.sign_in();
+    assert!(remote.sign_in.generation > generation);
+    assert_eq!(remote.shared.as_ref().unwrap().session.session, "old-page-session");
+    let stale = remote.receiver("old status".into());
+    let generation = remote.sign_in.generation;
+    remote.accept_login(&login(), false);
+    assert!(remote.sign_in.generation > generation);
+    assert!(remote.sign_in.signed_in);
+    assert_eq!(remote.shared.as_ref().unwrap().name, "synthetic-project");
+    assert_eq!(remote.shared.as_ref().unwrap().session.session, "old-page-session");
+    assert!(remote.sign_in.after.is_none());
+    stale(Reply::Status("old-page-session".into(), Err(openecraft_core::collab::Failed {
+        why: openecraft_core::collab::Failure::SignedOut, error: "old 401".into(),
+    })));
+    remote.poll(&egui::Context::default());
+    assert!(remote.sign_in.signed_in);
+    assert_eq!(remote.token, login().token);
+}
+
+#[test]
 fn a_further_account_switch_keeps_pending_old_account_revocation_and_preference_warnings() {
     let mut remote = remote();
     let cleanup_generation = remote.sign_in.generation;
@@ -255,6 +285,7 @@ fn disabling_a_profile_removes_only_that_server_account_from_nonsecret_metadata(
 #[ignore = "requires disposable loopback server; scripts/test-project-sign-in.ps1"]
 fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_during_restore() {
     use openecraft_client::project_credentials::CredentialStore;
+    use openecraft_core::model::{Page, PageKind, Project};
     use std::{sync::mpsc, time::{Duration, Instant}};
 
     fn setting(key: &str) -> String { std::env::var(key).unwrap_or_else(|_| panic!("synthetic test setting is required")) }
@@ -285,6 +316,26 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
         match rx.recv_timeout(Duration::from_secs(10)) {
             Ok(Ok(status)) => status,
             _ => panic!("synthetic HTTP check did not finish"),
+        }
+    }
+    fn wait_shared(remote: &mut Remote, session: &mut crate::session::Session, ctx: &egui::Context, done: impl Fn(&Remote) -> bool) {
+        let deadline = Instant::now() + Duration::from_secs(20);
+        loop {
+            for reply in remote.poll(ctx) {
+                match reply {
+                    Reply::Opened(name, Ok(opened)) => {
+                        let (shared, project) = openecraft_core::collab::Shared::open(&name, *opened);
+                        *session = crate::session::Session::new(project, None);
+                        remote.shared = Some(shared);
+                    }
+                    Reply::Reopened(_, Ok(opened)) => { remote.take_reopened(session, *opened, "synthetic reauthentication".into()); }
+                    Reply::Status(_, Ok(status)) => remote.take_status(status, &[]),
+                    _ => {}
+                }
+            }
+            if done(remote) && !remote.busy() { return; }
+            assert!(Instant::now() < deadline, "synthetic shared reauthentication did not finish");
+            std::thread::sleep(Duration::from_millis(10));
         }
     }
     fn stored(account: &Account) -> Option<String> {
@@ -389,7 +440,7 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     println!("PASS: server-side revocation causes 401 and removes the saved account opt-in");
 
     let mut cancelling = fixture(&url, &user, &directory, &ctx);
-    cancelling.password = password;
+    cancelling.password = password.clone();
     cancelling.sign_in.remember = true;
     cancelling.sign_in();
     wait(&mut cancelling, &ctx, |remote| remote.sign_in.signed_in && remote.has_saved_sign_in());
@@ -404,6 +455,42 @@ fn live_auth_http_remembered_project_sign_in_is_isolated_revocable_and_safe_duri
     assert!(stored(&alice).is_none(), "cancelled restore must forget its protected credential");
     assert!(status(ProjectEndpoint { url: url.clone(), token: cancelled_token }.current_account()) == 401, "sign-out during restore must still revoke the real server token");
     println!("PASS: immediate sign-out during restore loads, revokes and forgets in order without signing back in");
+
+    let mut reauth = fixture(&url, &user, &directory, &ctx);
+    reauth.password = password.clone();
+    reauth.sign_in();
+    wait(&mut reauth, &ctx, |remote| remote.sign_in.signed_in);
+    let mut project = Project { pages: vec![Page::new(1, "1", "Synthetic baseline", PageKind::Schematic)], ..Default::default() };
+    project.normalize();
+    let name = format!("reauth-{}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos());
+    let mut session = crate::session::Session::new(project.clone(), None);
+    reauth.create(&name, &project);
+    wait_shared(&mut reauth, &mut session, &ctx, |remote| remote.shared.is_some());
+    let old_session = reauth.shared.as_ref().unwrap().session.session.clone();
+    session.prj.pages[0].description = "Synthetic unsaved reauthentication draft".into();
+    assert!(session.commit(true));
+    let before = session.prj.clone();
+    let history = (session.history.state(), session.history.rev);
+    assert_eq!(status(reauth.endpoint().logout()), 204);
+    reauth.heartbeat(0.0);
+    wait(&mut reauth, &ctx, |remote| remote.link == super::super::Link::SignedOut);
+    assert!(!reauth.sign_in.signed_in);
+    assert_eq!(reauth.shared.as_ref().unwrap().session.session, old_session);
+    reauth.password = password;
+    reauth.sign_in();
+    assert_eq!(reauth.shared.as_ref().unwrap().session.session, old_session);
+    assert_eq!(session.prj, before);
+    assert_eq!((session.history.state(), session.history.rev), history);
+    wait_shared(&mut reauth, &mut session, &ctx, |remote| remote.online() && remote.shared.as_ref().is_some_and(|shared| shared.session.session != old_session));
+    assert_eq!(session.prj.pages[0].description, "Synthetic unsaved reauthentication draft");
+    assert!(session.dirty());
+    session.undo();
+    assert_eq!(session.prj.pages[0].description, "Synthetic baseline");
+    session.redo();
+    assert_eq!(session.prj.pages[0].description, "Synthetic unsaved reauthentication draft");
+    reauth.sign_out();
+    wait(&mut reauth, &ctx, |remote| remote.token.is_empty());
+    println!("PASS: revoked authentication returns 401, same-account sign-in reopens the shared project and preserves its unsaved draft and undo/redo");
 
     second_restart.sign_out();
     wait(&mut second_restart, &ctx, |remote| remote.token.is_empty());

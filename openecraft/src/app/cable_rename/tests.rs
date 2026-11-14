@@ -241,7 +241,7 @@ fn shared_rename_needs_every_changed_target_before_committing() {
     assert!(locks(&remote, &prj, &after).is_err(), "project data permission required");
     remote.rights = vec![ProjectRight::View, ProjectRight::EditProject];
     assert!(locks(&remote, &prj, &after).is_err(), "page permission required");
-    remote.lost = true;
+    remote.link = crate::remote::Link::Offline;
     assert!(locks(&remote, &prj, &after).is_err());
 }
 

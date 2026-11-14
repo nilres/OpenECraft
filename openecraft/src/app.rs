@@ -736,7 +736,7 @@ impl App {
     fn origin(&self) -> crate::startup::Origin<'_> {
         use crate::startup::Origin;
         if let Some(sh) = &self.remote.shared {
-            Origin::Server { url: &self.remote.url, name: &sh.name, connected: !self.remote.lost }
+            Origin::Server { url: &self.remote.url, name: &sh.name, link: self.remote.link }
         } else if let Some(f) = &self.session.file_name {
             Origin::File(f)
         } else if let Some(p) = &self.recovery {

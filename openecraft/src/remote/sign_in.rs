@@ -1,7 +1,7 @@
 //! Account selection and opt-in remembered sign-ins. Project/history ownership
 //! stays with the app; this module never replaces an open project.
 
-use super::{Answer, Remote, Reply};
+use super::{Answer, Link, Remote, Reply};
 use super::credentials::{Credentials, Job, Kind};
 use openecraft_client::{decode, ehttp, ProjectEndpoint};
 use openecraft_client::project_credentials::{Account, SystemCredentialStore};
@@ -163,8 +163,29 @@ impl Remote {
         self.queued = None;
         self.refetch = None;
         self.cancelled_locks.clear();
-        self.lost = false;
+        self.link = Link::Online;
+        self.save_error = None;
+        self.reopening = false;
+        self.due = false;
         self.status.clear();
+    }
+
+    /// Reauthentication changes credentials, not the open project or its base.
+    fn reset_sign_in(&mut self, keep_project: bool) {
+        let shared = if keep_project { self.shared.take() } else { None };
+        let rights = std::mem::take(&mut self.rights);
+        let access = self.access.take();
+        let save_error = self.save_error.take();
+        self.clear_identity();
+        if let Some(mut shared) = shared {
+            // The old generation's lock answers will no longer be applied.
+            shared.requested.clear();
+            self.shared = Some(shared);
+            self.rights = rights;
+            self.access = access;
+            self.save_error = save_error;
+            self.link = Link::SignedOut;
+        }
     }
 
     /// Called after the user edits the disconnected server/account/token fields.
@@ -173,7 +194,7 @@ impl Remote {
         let identity_changed = self.url != url || self.user != user;
         if !identity_changed && self.token == token { return; }
         let typed_token = (!identity_changed).then(|| self.token.clone());
-        self.clear_identity();
+        self.reset_sign_in(!identity_changed && self.shared.is_some() && self.link == Link::SignedOut);
         if let Some(token) = typed_token { self.token = token; }
         self.sign_in.checked = !self.token.is_empty();
         self.sign_in.remember = Account::new(&self.url, &self.user).is_some_and(|a| self.sign_in.remembered(&a));
@@ -199,7 +220,7 @@ impl Remote {
     pub fn sign_in(&mut self) {
         let password = std::mem::take(&mut self.password);
         let remember = self.sign_in.remember && self.can_remember();
-        self.clear_identity();
+        self.reset_sign_in(self.shared.is_some() && self.link == Link::SignedOut);
         self.sign_in.checked = true;
         self.sign_in.remember = remember;
         if remember {
@@ -267,6 +288,7 @@ impl Remote {
     }
 
     pub fn use_saved_sign_in(&mut self) {
+        if self.shared.is_some() && self.link == Link::SignedOut { self.reset_sign_in(true); }
         self.sign_in.checked = false;
         self.list();
     }
@@ -379,6 +401,16 @@ impl Remote {
     }
 
     pub(super) fn accept_login(&mut self, login: &LoginResponse, restored: bool) {
+        let reauthenticated = self.shared.is_some() && self.link == Link::SignedOut;
+        if reauthenticated {
+            // Requests sent before the new token must not undo its authentication.
+            self.sign_in.generation += 1;
+            self.pending = 0;
+            self.polling = false;
+            self.fetching = false;
+            self.reopening = false;
+            if let Some(shared) = &mut self.shared { shared.requested.clear(); }
+        }
         self.token = login.token.clone();
         self.user = login.user.name.clone();
         self.role = login.user.role;
@@ -386,6 +418,12 @@ impl Remote {
         self.sign_in.checked = true;
         if !restored && self.sign_in.remember {
             if let Some(account) = Account::new(&self.url, &self.user) { self.save_remembered_login(account); }
+        }
+        if reauthenticated {
+            self.sign_in.after = None;
+            self.link = Link::Offline;
+            self.due = true;
+            return;
         }
         if !matches!(self.sign_in.after, Some(After::Open(_))) {
             self.sign_in.after = None;
@@ -411,6 +449,11 @@ impl Remote {
                 ehttp::fetch(endpoint.logout(), |_| {});
             }
             Reply::Opened(name, Ok(opened)) => ehttp::fetch(answer.endpoint.close(&name, &opened.session), |_| {}),
+            Reply::Reopened(_, Ok(opened)) => {
+                if let Some(name) = answer.project {
+                    ehttp::fetch(answer.endpoint.close(&name, &opened.session), |_| {});
+                }
+            }
             Reply::Saved(sent, _) => {
                 // Keep #182's close-after-save order even after the account was
                 // changed. The request already carries its original endpoint.

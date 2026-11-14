@@ -30,6 +30,11 @@ is unaffected. Older servers without this endpoint require manual sign-in; their
 404 does not delete a possibly valid remembered credential. Connection failures
 also retain the opt-in for a later retry.
 
+If an account token expires while a shared project is open, signing in again with
+the same server and account continues that project through the session recovery
+flow. Unsaved edits and undo history remain available; signing in does not mark
+them as saved or replace the project with a fresh copy.
+
 **Sign out** removes the remembered credential and asks the server to revoke the
 account token. **Change user** additionally clears the selected user name. An open
 shared project and its undo history remain as a local recovery copy, including

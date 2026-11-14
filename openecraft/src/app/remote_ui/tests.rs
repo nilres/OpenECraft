@@ -273,3 +273,25 @@ fn changing_user_clears_only_the_account_and_keeps_local_work_and_undo() {
     app.session.redo();
     assert_eq!(app.session.prj, before);
 }
+
+#[test]
+fn same_account_sign_in_keeps_the_shared_session_unsaved_work_and_undo() {
+    let (mut app, baseline, _) = shared_app();
+    app.remote.link = crate::remote::Link::SignedOut;
+    app.remote.sign_in.signed_in = false;
+    let before = app.session.prj.clone();
+    let history = (app.session.history.state(), app.session.history.rev);
+    let shared = app.remote.shared.as_ref().unwrap().clone();
+    app.remote.sign_in();
+    let retained = app.remote.shared.as_ref().expect("reauthentication must keep the open shared project");
+    assert_eq!(retained.session, shared.session);
+    assert_eq!(retained.base, shared.base);
+    assert_eq!(retained.revision, shared.revision);
+    assert_eq!(app.session.prj, before);
+    assert_eq!((app.session.history.state(), app.session.history.rev), history);
+    assert!(app.session.dirty());
+    app.session.undo();
+    assert_eq!(app.session.prj, baseline);
+    app.session.redo();
+    assert_eq!(app.session.prj, before);
+}
