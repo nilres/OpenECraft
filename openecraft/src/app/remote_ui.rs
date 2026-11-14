@@ -7,11 +7,35 @@
 use openecraft_ui::icons::{self, Icon};
 use super::App;
 use openecraft_core::history::History;
-use crate::remote::{Link, Remote, Reply, Sent};
+use crate::remote::{Blocked, Link, NameError, Remote, Reply, Sent};
 use egui::{Color32, RichText};
-use openecraft_core::collab::{restore, valid_name, Failure, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_core::collab::{restore, valid_name, CopySource, Failure, Grant, KeptReason, ProjectMeta, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_parts::date_time_from_unix;
 use openecraft_i18n::{tr, tr_fmt};
 use crate::startup::ReconnectState;
+
+/// What the dialog of a server project's properties asks for.
+#[derive(Clone, Copy)]
+enum DraftAction {
+    /// Create the copy, or save the changed properties.
+    Confirm,
+    Reload,
+    Close,
+}
+
+/// Who created a project on the server and when, and what it was copied from; none
+/// if the server has no record (projects of earlier servers).
+fn created_text(meta: &ProjectMeta, from: Option<&CopySource>) -> Option<String> {
+    if meta.created_by.is_empty() && meta.created_at == 0 {
+        return None;
+    }
+    let by = if meta.created_by.is_empty() { tr("Unknown") } else { meta.created_by.as_str() };
+    let when = if meta.created_at == 0 { tr("Unknown").to_string() } else { utc(meta.created_at) };
+    Some(match from {
+        Some(from) => tr_fmt!("{}, {} (copy of {}, revision {})", by, when, from.name, from.revision),
+        None => format!("{by}, {when}"),
+    })
+}
 
 /// What to do with a kept copy of local changes.
 #[derive(Clone, Copy)]
@@ -20,6 +44,17 @@ enum KeptAction {
     TakeOver,
     Export,
     Discard,
+}
+
+/// Created by, last changed by and last changed at as the project list shows them:
+/// what the server does not know (projects of earlier servers) is named so.
+fn meta_texts(meta: &ProjectMeta) -> [String; 3] {
+    let known = |name: &str| if name.is_empty() { tr("Unknown").to_string() } else { name.to_string() };
+    [known(&meta.created_by), known(&meta.changed_by), if meta.changed_at == 0 { tr("Unknown").to_string() } else { utc(meta.changed_at) }]
+}
+
+fn utc(secs: u64) -> String {
+    format!("{} UTC", date_time_from_unix(secs))
 }
 
 impl App {
@@ -54,14 +89,16 @@ impl App {
                         r.state = ReconnectState::Failed(e);
                     }
                 }
-                Reply::Login(Ok(_)) => {
-                    // Signed in for the project of the start: open it now.
-                    if let Some(r) = self.reconnect.as_mut().filter(|r| r.state == ReconnectState::SignIn) {
-                        r.state = ReconnectState::Connecting;
-                        let name = r.project.name.clone();
+                Reply::Login(Ok(_)) if self.remote.shared.is_none() => {
+                    let open = self.remote.take_authenticated_open().or_else(|| {
+                        self.reconnect.as_ref().filter(|r| r.state == ReconnectState::SignIn && r.project.url == self.remote.url).map(|r| r.project.name.clone())
+                    });
+                    if let Some(name) = open {
+                        if let Some(r) = &mut self.reconnect { r.state = ReconnectState::Connecting; }
                         self.request_replace(ctx, super::Replace::Shared(name));
                     }
                 }
+                Reply::Login(Ok(_)) => {}
                 Reply::Saved(sent, Ok(snapshot)) => {
                     // Changes the server left out: locked or changed by another user.
                     let ignored: Vec<String> = snapshot.ignored.iter().map(|t| Remote::describe(&self.session.prj, *t)).collect();
@@ -111,10 +148,17 @@ impl App {
                 Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Access(_, Err(_)) => {
                     self.notify_error(ctx, self.remote.status.clone());
                 }
+                Reply::Login(Err(_)) => {
+                    if let Some(r) = self.reconnect.as_mut().filter(|r| r.state == ReconnectState::Connecting) {
+                        r.state = ReconnectState::Failed(self.remote.status.clone());
+                    }
+                }
                 // Failures of the connection are told once, when its state changes.
                 Reply::Snapshot(_, Err(e)) if e.why == Failure::Refused => self.notify_error(ctx, self.remote.status.clone()),
                 Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Reopened(_, Err(_)) => {}
-                Reply::List(_) | Reply::Login(Err(_)) | Reply::Access(_, Ok(_)) | Reply::Closed => {}
+                Reply::List(_) | Reply::SignedOut(_) | Reply::Restored(..) | Reply::Access(_, Ok(_)) | Reply::Closed(_) => {}
+                // Taken by the draft (`Remote::take_draft`).
+                Reply::Properties(..) | Reply::PropertiesSaved(..) | Reply::Copied(..) => {}
             }
         }
         self.remote.release_cancelled(&self.session.prj);
@@ -284,14 +328,18 @@ impl App {
     pub(super) fn remote_pane(&mut self, ui: &mut egui::Ui) {
         ui.scope(|ui| {
             let connected = self.remote.shared.is_some();
-            // Signing in again keeps the open project (same server and user).
-            let sign_in = !connected || self.remote.link == Link::SignedOut;
+            let editable = !connected && !self.remote.sign_in.signed_in;
+            let previous = (self.remote.url.clone(), self.remote.user.clone(), self.remote.token.clone());
+            let mut login = false;
+            let mut remember_changed = false;
+            let sign_in = editable || self.remote.link == Link::SignedOut;
+            let mut retry_token = false;
             egui::Grid::new("remote_login").num_columns(2).show(ui, |ui| {
                 ui.label(tr("Server"));
-                ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.url).desired_width(300.0));
+                ui.add_enabled(editable, egui::TextEdit::singleline(&mut self.remote.url).desired_width(300.0));
                 ui.end_row();
                 ui.label(tr("User name"));
-                ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.user).desired_width(300.0));
+                ui.add_enabled(editable, egui::TextEdit::singleline(&mut self.remote.user).desired_width(300.0));
                 ui.end_row();
                 ui.label(tr("Password"));
                 ui.horizontal(|ui| {
@@ -299,14 +347,18 @@ impl App {
                     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
                     let can = sign_in && !self.remote.password.is_empty() && !self.remote.user.trim().is_empty() && !self.remote.busy();
                     if (ui.add_enabled(can, egui::Button::new(tr("Sign in"))).on_hover_text(tr("With a user account of the server; replaces the access token")).clicked() || enter) && can {
-                        self.remote.sign_in();
+                        login = true;
                     }
                 });
+                ui.end_row();
+                ui.label(tr("Sign-in"));
+                let can_remember = self.remote.can_remember();
+                remember_changed = ui.add_enabled_ui(can_remember && !self.remote.busy(), |ui| ui.checkbox(&mut self.remote.sign_in.remember, tr("Keep me signed in"))).inner.changed();
                 ui.end_row();
                 ui.label(tr("Access token"));
                 let token = ui.add_enabled(sign_in, egui::TextEdit::singleline(&mut self.remote.token).password(true).desired_width(300.0));
                 if connected && token.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
-                    self.remote.retry();
+                    retry_token = true;
                 }
                 ui.end_row();
                 if let Some(role) = self.remote.role {
@@ -321,6 +373,26 @@ impl App {
                     ui.end_row();
                 }
             });
+            if previous.0 != self.remote.url { self.reconnect = None; }
+            self.remote.credentials_edited(&previous.0, &previous.1, &previous.2);
+            if retry_token { self.remote.retry(); }
+            if login { self.remote.sign_in(); }
+            if remember_changed { self.remote.remember_changed(); }
+            ui.weak(self.remote.remember_hint());
+            ui.horizontal_wrapped(|ui| {
+                let can_sign_out = self.remote.sign_in.signed_in || !self.remote.token.is_empty() || self.remote.busy();
+                if ui.add_enabled(can_sign_out, egui::Button::new(tr("Sign out"))).clicked() {
+                    self.sign_out_remote(false);
+                }
+                if ui.add_enabled(can_sign_out || !self.remote.user.is_empty(), egui::Button::new(tr("Change user…"))).clicked() {
+                    self.sign_out_remote(true);
+                }
+                if !self.remote.sign_in.signed_in && self.remote.has_saved_sign_in() && ui.add_enabled(!self.remote.busy(), egui::Button::new(tr("Use saved sign-in"))).clicked() {
+                    self.remote.use_saved_sign_in();
+                }
+            });
+            if !self.remote.sign_in.notice.is_empty() { ui.label(&self.remote.sign_in.notice); }
+            if !self.remote.sign_in.preference_error.is_empty() { ui.colored_label(crate::style::error(), &self.remote.sign_in.preference_error); }
             ui.horizontal(|ui| {
                 if ui.add_enabled_ui(!self.remote.busy(), |ui| icons::text_button(ui, Icon::Rotate, tr("List projects"))).inner.clicked() {
                     self.remote.list();
@@ -339,30 +411,81 @@ impl App {
         });
     }
 
+    /// Authentication never discards the open work or its undo history.
+    fn sign_out_remote(&mut self, change_user: bool) {
+        self.session.commit(true);
+        if let Some(project) = self.remote.project() { self.recovery = Some(project); }
+        self.reconnect = None;
+        if change_user { self.remote.change_user(); }
+        else { self.remote.sign_out(); }
+    }
+
     fn projects_section(&mut self, ui: &mut egui::Ui) {
         let has_user = !self.remote.user.trim().is_empty();
         if !has_user {
             ui.colored_label(crate::style::lock(), tr("Enter a user name: other users see it on your locks."));
         }
         let mut open = None;
+        let mut select = None;
+        let selected = self.remote.selected.clone().filter(|s| self.remote.projects.iter().any(|p| &p.name == s));
         egui::ScrollArea::vertical().max_height(260.0).show(ui, |ui| {
-            egui::Grid::new("remote_projects").striped(true).num_columns(5).show(ui, |ui| {
-                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users"), ""] {
+            egui::Grid::new("remote_projects").striped(true).num_columns(7).show(ui, |ui| {
+                for h in [tr("Name"), tr("Project"), tr("Pages"), tr("Users"), tr("Created by"), tr("Last changed by"), tr("Last changed")] {
                     ui.strong(h);
                 }
                 ui.end_row();
                 for p in &self.remote.projects {
-                    ui.label(&p.name);
+                    let [created_by, changed_by, changed_at] = meta_texts(&p.meta);
+                    let r = ui.selectable_label(selected.as_deref() == Some(p.name.as_str()), &p.name);
+                    if r.clicked() {
+                        select = Some(p.name.clone());
+                    }
+                    if r.double_clicked() && has_user {
+                        open = Some(p.name.clone());
+                    }
                     ui.label(&p.title);
                     ui.label(p.pages.to_string());
                     ui.label(p.users.join(", "));
-                    if ui.add_enabled(has_user, egui::Button::new(tr("Open project"))).clicked() {
-                        open = Some(p.name.clone());
+                    let created = ui.label(created_by);
+                    if p.meta.created_at > 0 {
+                        created.on_hover_text(tr_fmt!("Created {}", utc(p.meta.created_at)));
                     }
+                    ui.label(changed_by);
+                    ui.label(changed_at);
                     ui.end_row();
                 }
             });
         });
+        // What is done with the selected project.
+        let mut show = None;
+        ui.horizontal_wrapped(|ui| {
+            let none = tr("Select a project in the list");
+            if ui.add_enabled(has_user && selected.is_some(), egui::Button::new(tr("Open project"))).on_disabled_hover_text(none).clicked() {
+                open = selected.clone();
+            }
+            if ui
+                .add_enabled(selected.is_some(), egui::Button::new(tr("Properties…")))
+                .on_hover_text(tr("Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data"))
+                .on_disabled_hover_text(none)
+                .clicked()
+            {
+                show = Some(false);
+            }
+            if ui
+                .add_enabled(has_user && selected.is_some(), egui::Button::new(tr("Copy project…")))
+                .on_hover_text(tr("Creates a new project on the server from the saved state of this one; you set its name and properties first"))
+                .on_disabled_hover_text(none)
+                .clicked()
+            {
+                show = Some(true);
+            }
+        });
+        if select.is_some() {
+            self.remote.selected = select;
+        }
+        if let (Some(copy), Some(name)) = (show, &selected) {
+            self.remote.show_properties(name, copy);
+        }
         if let Some(name) = open {
             self.request_replace(&ui.ctx().clone(), super::Replace::Shared(name));
         }
@@ -524,8 +647,173 @@ impl App {
             self.access_section(ui);
         }
         ui.separator();
-        if ui.button(tr("Close shared project")).on_hover_text(tr("Releases all locks; the project stays open as a local copy")).clicked() {
+        let mut close = false;
+        ui.horizontal_wrapped(|ui| {
+            if ui.button(tr("Properties…")).on_hover_text(tr("The properties of the open project; changing them locks the project data")).clicked() {
+                self.show_project = true;
+            }
+            if ui.button(tr("Copy project…")).on_hover_text(tr("Creates a new project on the server from the saved state of this one; you set its name and properties first")).clicked() {
+                if let Some(name) = self.remote.shared.as_ref().map(|sh| sh.name.clone()) {
+                    self.remote.show_properties(&name, true);
+                }
+            }
+            close = ui.button(tr("Close shared project")).on_hover_text(tr("Releases all locks; the project stays open as a local copy")).clicked();
+        });
+        if close {
             self.work_locally();
+        }
+    }
+
+    /// The properties of a project of the server (`Remote::draft`), loaded from it:
+    /// those of an existing project to change, or of a copy to create and open. The
+    /// copy exists only in this dialog until it is confirmed.
+    pub(super) fn server_project_window(&mut self, ctx: &egui::Context) {
+        let Some(d) = &self.remote.draft else { return };
+        let (copy, source) = (d.copy, d.source.clone());
+        // What the open project has to do with the source of the copy.
+        let connected = self.remote.shared.as_ref().is_some_and(|sh| sh.name == source);
+        let unsaved = copy && connected && self.session.dirty();
+        let recovery = copy && self.remote.shared.is_none() && self.recovery.as_ref().is_some_and(|r| r.url == self.remote.url && r.name == source);
+        let has_user = !self.remote.user.trim().is_empty();
+        let (title, salt) = if copy { (tr("Copy project"), "server_project_copy") } else { (tr("Server project properties"), "server_project_properties") };
+        let (window, esc) = self.dialogs.window(ctx, title, salt, None);
+        let mut open = !esc;
+        let mut action = None;
+        window.open(&mut open).default_width(520.0).min_width(380.0).show(ctx, |ui| {
+            let Remote { draft: Some(d), projects, .. } = &mut self.remote else { return };
+            let c = crate::style::colors(ui.visuals().dark_mode);
+            if !d.loaded {
+                if d.busy {
+                    ui.horizontal(|ui| {
+                        ui.spinner();
+                        ui.label(tr_fmt!("Loading the properties of {}…", d.source));
+                    });
+                } else {
+                    ui.colored_label(c.error, tr_fmt!("Project server: {}", d.error));
+                }
+                ui.horizontal(|ui| {
+                    if !d.busy && icons::text_button(ui, Icon::Rotate, tr("Try again")).clicked() {
+                        action = Some(DraftAction::Reload);
+                    }
+                    if ui.button(tr("Cancel")).clicked() {
+                        action = Some(DraftAction::Close);
+                    }
+                });
+                return;
+            }
+            let blocked = d.blocked();
+            egui::Grid::new("server_project").num_columns(2).show(ui, |ui| {
+                if d.copy {
+                    ui.label(tr("Copy of"));
+                    if d.revision > 0 {
+                        ui.label(tr_fmt!("{} (revision {})", d.source, d.revision));
+                    } else {
+                        ui.label(&d.source);
+                    }
+                    ui.end_row();
+                    ui.label(tr("Name on the server"));
+                    ui.add(egui::TextEdit::singleline(&mut d.name).desired_width(f32::INFINITY)).on_hover_text(tr("Letters, digits, space, - _ . (up to 64 characters)"));
+                    ui.end_row();
+                } else {
+                    ui.label(tr("Name on the server"));
+                    ui.label(tr_fmt!("{} (revision {})", d.source, d.revision));
+                    ui.end_row();
+                    ui.label(tr("Created on the server")).on_hover_text(tr("Who created the project on the project server and when; not the drawing author below"));
+                    match created_text(&d.meta, d.copied_from.as_ref()) {
+                        Some(text) => ui.label(text),
+                        None => ui.weak(tr("Unknown")),
+                    };
+                    ui.end_row();
+                }
+                if blocked.is_some() {
+                    ui.disable();
+                }
+                super::windows::info_rows(ui, &mut d.info);
+            });
+            ui.separator();
+            ui.add_enabled_ui(blocked.is_none(), |ui| super::windows::property_list(ui, &mut d.info.properties, 140.0));
+            ui.separator();
+            match &blocked {
+                Some(Blocked::Rights) => {
+                    ui.colored_label(crate::style::lock(), tr("You may only view this project."));
+                }
+                Some(Blocked::Locked(user)) => {
+                    ui.colored_label(crate::style::lock(), tr_fmt!("The project data is locked by {}: the properties cannot be changed now.", user));
+                }
+                None => {}
+            }
+            if d.copy {
+                match d.name_error(projects) {
+                    Some(NameError::Invalid) => {
+                        ui.colored_label(c.error, tr("The name on the server needs letters, digits, space, - _ . (up to 64 characters)."));
+                    }
+                    Some(NameError::Taken(name)) => {
+                        ui.colored_label(c.error, tr_fmt!("{} already exists on the project server.", name));
+                    }
+                    None => {}
+                }
+                ui.checkbox(&mut d.records, tr("Also copy revisions, baselines and review records"))
+                    .on_hover_text(tr("Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project."));
+                ui.weak(tr("The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is."));
+                if unsaved {
+                    ui.colored_label(c.warning, tr("The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy."));
+                }
+                if recovery {
+                    ui.colored_label(c.warning, tr("The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy."));
+                }
+                if d.changed {
+                    ui.colored_label(c.warning, tr_fmt!("{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.", d.source));
+                }
+                if !has_user {
+                    ui.colored_label(crate::style::lock(), tr("Enter a user name: other users see it on your locks."));
+                }
+            } else if d.changed {
+                ui.colored_label(c.warning, tr("The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced."));
+            }
+            if !d.error.is_empty() {
+                ui.colored_label(c.error, tr_fmt!("Project server: {}", d.error));
+            }
+            ui.horizontal(|ui| {
+                if d.copy {
+                    if ui.add_enabled(has_user && d.ready(projects), egui::Button::new(tr("Create and open"))).clicked() {
+                        action = Some(DraftAction::Confirm);
+                    }
+                } else {
+                    if blocked.is_none() && ui.add_enabled(d.ready(projects), egui::Button::new(tr("Save"))).clicked() {
+                        action = Some(DraftAction::Confirm);
+                    }
+                    if ui.add_enabled_ui(!d.busy, |ui| icons::text_button(ui, Icon::Rotate, tr("Reload"))).inner.clicked() {
+                        action = Some(DraftAction::Reload);
+                    }
+                }
+                // A copy being created is opened when the server answers.
+                if ui.add_enabled(!d.creating, egui::Button::new(tr("Cancel"))).clicked() {
+                    action = Some(DraftAction::Close);
+                }
+                if d.busy {
+                    ui.spinner();
+                }
+            });
+        });
+        if !open && action.is_none() {
+            action = Some(DraftAction::Close);
+        }
+        match action {
+            Some(DraftAction::Close) => {
+                if self.remote.draft.as_ref().is_some_and(|d| !d.creating) {
+                    self.remote.draft = None;
+                }
+            }
+            Some(DraftAction::Reload) => self.remote.load_properties(),
+            Some(DraftAction::Confirm) if copy => {
+                // What is saved first is decided by the question about the unsaved changes.
+                if let Some(d) = self.remote.draft.as_mut().filter(|_| unsaved) {
+                    d.revision = 0;
+                }
+                self.request_replace(ctx, super::Replace::Copy);
+            }
+            Some(DraftAction::Confirm) => self.remote.save_properties(),
+            None => {}
         }
     }
 

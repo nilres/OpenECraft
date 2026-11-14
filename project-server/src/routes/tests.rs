@@ -2,6 +2,7 @@ use super::*;
 use axum::body::Body;
 use axum::http::Request;
 use http_body_util::BodyExt;
+use openecraft_core::collab::ProjectMeta;
 use openecraft_core::model::{Page, PageKind, Project};
 use serde::de::DeserializeOwned;
 use serde::Serialize;
@@ -678,6 +679,89 @@ async fn the_last_administrator_stays_also_by_grant_and_access_settings() {
     assert!(with(&app, "GET", "/api/v1/users", &anna, &()).await.0.is_success());
 }
 
+#[tokio::test]
+async fn current_account_has_fresh_identity_and_rights_without_credentials() {
+    let app = app(Some(TOKEN));
+    let tokens = sign_in(&app, &[("Anna", Some(ProjectRole::Editor), &["qa"])]).await;
+    let token = &tokens[0];
+    let (code, body) = with(&app, "GET", "/api/v1/session", token, &()).await;
+    assert_eq!(code, StatusCode::OK, "{body}");
+    let current: CurrentAccount = serde_json::from_str(&body).unwrap();
+    assert_eq!(current.user.name, "Anna");
+    assert_eq!(current.user.role, Some(ProjectRole::Editor));
+    assert_eq!(current.user.groups, ["qa"]);
+    assert!(current.access.allows("Plant 1", ProjectRight::EditPages));
+    let json: serde_json::Value = serde_json::from_str(&body).unwrap();
+    assert!(json.get("token").is_none());
+    assert!(!body.contains(token));
+    assert!(!body.contains("password"));
+
+    let update = UserUpdate { role: Some(ProjectRole::Viewer), projects: vec!["Plant 1".into()], ..Default::default() };
+    assert_eq!(with(&app, "PUT", "/api/v1/users/anna", TOKEN, &update).await.0, StatusCode::OK);
+    let (code, body) = with(&app, "GET", "/api/v1/session", token, &()).await;
+    assert_eq!(code, StatusCode::OK, "{body}");
+    let current: CurrentAccount = serde_json::from_str(&body).unwrap();
+    assert_eq!(current.user.name, "Anna");
+    assert_eq!(current.user.role, Some(ProjectRole::Viewer));
+    assert_eq!(current.user.projects, ["Plant 1"]);
+    assert!(current.access.allows("Plant 1", ProjectRight::View));
+    assert!(!current.access.allows("Plant 1", ProjectRight::EditPages));
+    assert!(!current.access.allows("Other", ProjectRight::View));
+
+    assert_eq!(with(&app, "POST", "/api/v1/logout", token, &()).await.0, StatusCode::NO_CONTENT);
+    assert_eq!(with(&app, "GET", "/api/v1/session", token, &()).await.0, StatusCode::UNAUTHORIZED);
+}
+
+#[tokio::test]
+async fn current_account_refuses_root_open_anonymous_and_invalid_tokens() {
+    let open = app(None);
+    assert_eq!(call(&open, "GET", "/api/v1/projects", None, String::new()).await.0, StatusCode::OK);
+    assert_eq!(call(&open, "GET", "/api/v1/session", None, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    assert_eq!(with(&open, "GET", "/api/v1/session", "wrong", &()).await.0, StatusCode::UNAUTHORIZED);
+
+    let app = app(Some(TOKEN));
+    for token in [None, Some(TOKEN), Some("wrong")] {
+        assert_eq!(call(&app, "GET", "/api/v1/session", token, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    }
+    let policy = Policy::<ProjectRight> { anonymous: "viewer".into(), ..Default::default() };
+    assert_eq!(with(&app, "PUT", "/api/v1/access", TOKEN, &policy).await.0, StatusCode::OK);
+    assert_eq!(call(&app, "GET", "/api/v1/projects", None, String::new()).await.0, StatusCode::OK);
+    for token in [None, Some(TOKEN), Some("wrong")] {
+        assert_eq!(call(&app, "GET", "/api/v1/session", token, String::new()).await.0, StatusCode::UNAUTHORIZED);
+    }
+}
+
+#[tokio::test]
+async fn current_account_does_not_renew_tokens_and_rejects_expired_sessions() {
+    let now = openecraft_auth::unix_now();
+    let mut sessions = Vec::new();
+    let token = openecraft_auth::start_session(&mut sessions, now - 60);
+    let valid = Account {
+        user: ProjectUser { name: "DirectoryUser".into(), provider: "corp".into(), groups: vec!["corp:qa".into()], ..Default::default() },
+        password: String::new(), sessions,
+    };
+    let mut sessions = Vec::new();
+    let expired_token = openecraft_auth::start_session(&mut sessions, now - openecraft_auth::SESSION_LIFETIME_SECS);
+    let expired = Account { user: ProjectUser { name: "expired".into(), ..Default::default() }, password: String::new(), sessions };
+    let accounts = vec![valid, expired];
+    let mut users = Users::default();
+    users.accounts = accounts.clone();
+    let server = Server { store: Store::in_memory(), sessions: Sessions::default(), users, access: AccessFile::in_memory(Default::default()), throttle: Throttle::default(), views: Views::default() };
+    let state = AppState { server: Arc::new(Mutex::new(server)), token: Some(TOKEN.into()), web: false };
+    let app = router(state.clone());
+    for _ in 0..2 {
+        let request = Request::builder().uri("/api/v1/session").header(header::AUTHORIZATION, format!("Bearer {token}")).body(Body::empty()).unwrap();
+        let response = app.clone().oneshot(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(response.headers().get(header::CACHE_CONTROL).unwrap(), "no-store");
+        let body = response.into_body().collect().await.unwrap().to_bytes();
+        let current: CurrentAccount = serde_json::from_slice(&body).unwrap();
+        assert_eq!(current.user, accounts[0].user);
+    }
+    assert_eq!(with(&app, "GET", "/api/v1/session", &expired_token, &()).await.0, StatusCode::UNAUTHORIZED);
+    assert_eq!(lock_server(&state).users.accounts, accounts);
+}
+
 async fn get(app: &Router, uri: &str, token: Option<&str>) -> (StatusCode, HeaderMap, String) {
     let mut req = Request::builder().uri(uri);
     if let Some(t) = token {
@@ -829,4 +913,231 @@ async fn administrators_see_the_open_sessions_and_the_ended_ones() {
     assert_eq!((ended.user.as_str(), ended.end, ended.saves), ("anna", Some(openecraft_core::collab::SessionEnd::Closed), 1));
     assert!(ended.locks.is_empty() && ended.ended.is_some());
     assert_eq!(list.kept, crate::history::KEPT);
+}
+
+async fn properties(app: &Router, name: &str) -> ProjectProperties {
+    ok(app, "GET", &format!("/api/v1/projects/{name}/properties"), &()).await
+}
+
+#[tokio::test]
+async fn a_copy_is_a_project_of_its_own_from_the_saved_state() {
+    let app = app(None);
+    let anna = create(&app, "anna").await;
+    // Anna holds a lock and has a review record and a released revision saved.
+    let page = anna.snapshot.project.pages[0].id;
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: anna.session.clone(), targets: vec![Target::Page(page), Target::Project] }).await;
+    let mut prj = anna.snapshot.project.clone();
+    prj.pages[0].description = "Saved".into();
+    prj.info.company = "ACME".into();
+    prj.revisions.push(openecraft_core::model::revision::Revision { name: "A".into(), ..Default::default() });
+    prj.review.comments.push(openecraft_core::model::review::Comment { id: 7, text: "check".into(), ..Default::default() });
+    let saved: Snapshot = ok(&app, "PUT", "/api/v1/projects/Plant%201", &SaveRequest { session: anna.session.clone(), project: prj, ..Default::default() }).await;
+
+    let before = properties(&app, "Plant%201").await;
+    assert_eq!((before.revision, before.info.company.as_str(), before.locked_by.as_deref()), (saved.revision, "ACME", Some("anna")));
+    let mut info = before.info.clone();
+    info.name = "Plant 2".into();
+    info.properties.insert("Customer".into(), "Bolt Ltd".into());
+    let req = CopyRequest { name: "Plant 2".into(), user: "ben".into(), revision: before.revision, info: Some(info.clone()), records: false };
+    let (status, text) = call(&app, "POST", "/api/v1/projects/Plant%201/copy", None, serde_json::to_string(&req).unwrap()).await;
+    assert_eq!(status, StatusCode::CREATED, "{text}");
+    let copy: Opened = serde_json::from_str(&text).unwrap();
+    // The saved pages with the properties of the draft, opened for Ben without locks.
+    assert_eq!(copy.snapshot.project.pages[0].description, "Saved");
+    assert_eq!(copy.snapshot.project.info, info);
+    assert_eq!((copy.snapshot.revision, copy.session.user.as_str()), (1, "ben"));
+    assert!(copy.snapshot.locks.is_empty());
+    // No review or release records of the source.
+    assert!(copy.snapshot.project.review.is_empty() && copy.snapshot.project.revisions.is_empty());
+
+    // The source is unchanged, its sessions and locks too.
+    let after = properties(&app, "Plant%201").await;
+    assert_eq!(after, before);
+    let list: Vec<ProjectSummary> = ok(&app, "GET", "/api/v1/projects", &()).await;
+    let (source, new) = (&list[0], &list[1]);
+    assert_eq!((source.name.as_str(), source.users.clone()), ("Plant 1", vec!["anna".to_string()]));
+    assert_eq!((new.name.as_str(), new.title.as_str(), new.users.clone()), ("Plant 2", "Plant 2", vec!["ben".to_string()]));
+    // Creation records: who and from what, apart from the drawing author.
+    assert_eq!((source.meta.created_by.as_str(), source.meta.changed_by.as_str(), &source.copied_from), ("anna", "anna", &None));
+    assert_eq!((new.meta.created_by.as_str(), new.meta.changed_by.as_str()), ("ben", "ben"));
+    assert!(new.meta.created_at > 0);
+    assert_eq!(new.copied_from, Some(CopySource { name: "Plant 1".into(), revision: before.revision }));
+    assert_eq!(properties(&app, "Plant%202").await.copied_from, new.copied_from);
+
+    // With the records on request.
+    let req = CopyRequest { name: "Plant 3".into(), user: "ben".into(), records: true, ..Default::default() };
+    let full: Opened = ok(&app, "POST", "/api/v1/projects/Plant%201/copy", &req).await;
+    assert_eq!((full.snapshot.project.review.comments.len(), full.snapshot.project.revisions.len()), (1, 1));
+    assert_eq!(full.snapshot.project.info.company, "ACME");
+}
+
+#[tokio::test]
+async fn a_refused_copy_leaves_no_project() {
+    let app = app(None);
+    let anna = create(&app, "anna").await;
+    let copy = |name: &str, revision: u64| CopyRequest { name: name.into(), user: "ben".into(), revision, ..Default::default() };
+    let uri = "/api/v1/projects/Plant%201/copy";
+    // The name is taken (also in another case), invalid or missing.
+    let (status, text) = error(&app, "POST", uri, &copy("plant 1", 0)).await;
+    assert_eq!((status, text.as_str()), (StatusCode::CONFLICT, "project 'Plant 1' already exists"));
+    assert_eq!(error(&app, "POST", uri, &copy("../x", 0)).await.0, StatusCode::BAD_REQUEST);
+    assert_eq!(error(&app, "POST", uri, &copy("", 0)).await.0, StatusCode::BAD_REQUEST);
+    assert_eq!(error(&app, "POST", "/api/v1/projects/nope/copy", &copy("x", 0)).await.0, StatusCode::NOT_FOUND);
+
+    // The source changed since the copy was prepared.
+    let page = anna.snapshot.project.pages[0].id;
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: anna.session.clone(), targets: vec![Target::Page(page)] }).await;
+    let mut prj = anna.snapshot.project.clone();
+    prj.pages[0].description = "Changed".into();
+    let _: Snapshot = ok(&app, "PUT", "/api/v1/projects/Plant%201", &SaveRequest { session: anna.session.clone(), project: prj, ..Default::default() }).await;
+    let (status, text) = error(&app, "POST", uri, &copy("Plant 2", 1)).await;
+    assert_eq!((status, text.as_str()), (StatusCode::PRECONDITION_FAILED, "project 'Plant 1' was changed meanwhile (revision 2)"));
+
+    let list: Vec<ProjectSummary> = ok(&app, "GET", "/api/v1/projects", &()).await;
+    assert_eq!(list.iter().map(|p| p.name.as_str()).collect::<Vec<_>>(), ["Plant 1"]);
+    // Confirmed for the current state, the copy has it.
+    let done: Opened = ok(&app, "POST", uri, &copy("Plant 2", 2)).await;
+    assert_eq!(done.snapshot.project.pages[0].description, "Changed");
+}
+
+#[tokio::test]
+async fn properties_change_only_the_info_and_respect_locks_and_newer_changes() {
+    let app = app(None);
+    let anna = create(&app, "anna").await;
+    let uri = "/api/v1/projects/Plant%201/properties";
+    let loaded = properties(&app, "Plant%201").await;
+    assert_eq!((loaded.name.as_str(), loaded.revision, loaded.locked_by.clone()), ("Plant 1", 1, None));
+    assert!(loaded.rights.contains(&ProjectRight::EditProject));
+
+    // Anna saves a page meanwhile: the info is the same, the change still applies and
+    // keeps her page.
+    let page = anna.snapshot.project.pages[0].id;
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: anna.session.clone(), targets: vec![Target::Page(page)] }).await;
+    let mut prj = anna.snapshot.project.clone();
+    prj.pages[0].description = "Anna".into();
+    let _: Snapshot = ok(&app, "PUT", "/api/v1/projects/Plant%201", &SaveRequest { session: anna.session.clone(), project: prj.clone(), release: vec![Target::Page(page)], ..Default::default() }).await;
+    let mut info = loaded.info.clone();
+    info.description = "Line 4".into();
+    let saved: ProjectProperties = ok(&app, "PUT", uri, &PropertiesUpdate { user: "ben".into(), revision: loaded.revision, info: info.clone() }).await;
+    assert_eq!((saved.revision, saved.info.description.as_str()), (3, "Line 4"));
+    // The change of the properties counts as the last change, by who made it.
+    assert_eq!((saved.meta.created_by.as_str(), saved.meta.changed_by.as_str()), ("anna", "ben"));
+    let stored: Snapshot = ok(&app, "GET", "/api/v1/projects/Plant%201", &()).await;
+    assert_eq!((stored.project.pages[0].description.as_str(), stored.project.info.description.as_str()), ("Anna", "Line 4"));
+    // The same info again is no new revision.
+    let again: ProjectProperties = ok(&app, "PUT", uri, &PropertiesUpdate { user: "ben".into(), revision: saved.revision, info: info.clone() }).await;
+    assert_eq!(again.revision, 3);
+
+    // Entries made from the info before that change would overwrite it: refused.
+    info.company = "Stale".into();
+    let (status, _) = error(&app, "PUT", uri, &PropertiesUpdate { user: "ben".into(), revision: loaded.revision, info: info.clone() }).await;
+    assert_eq!(status, StatusCode::PRECONDITION_FAILED);
+    assert_eq!(error(&app, "PUT", uri, &PropertiesUpdate { user: "ben".into(), revision: 0, info: info.clone() }).await.0, StatusCode::PRECONDITION_FAILED);
+
+    // While someone has locked the project data, nobody else changes the info.
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: anna.session.clone(), targets: vec![Target::Project] }).await;
+    assert_eq!(properties(&app, "Plant%201").await.locked_by.as_deref(), Some("anna"));
+    let (status, text) = error(&app, "PUT", uri, &PropertiesUpdate { user: "ben".into(), revision: 3, info }).await;
+    assert_eq!((status, text.as_str()), (StatusCode::CONFLICT, "the project data is locked by anna"));
+    assert_eq!(properties(&app, "Plant%201").await.info.company, "");
+}
+
+#[tokio::test]
+async fn viewers_read_properties_and_copy_only_where_they_may_create() {
+    let app = app(Some(TOKEN));
+    let t = sign_in(&app, &[("olga", Some(ProjectRole::Editor), &[]), ("vera", Some(ProjectRole::Viewer), &[]), ("rita", None, &["qa"])]).await;
+    let (olga, vera, rita) = (&t[0], &t[1], &t[2]);
+    let req = CreateRequest { name: "Plant 1".into(), user: String::new(), project: two_pages() };
+    assert_eq!(with(&app, "POST", "/api/v1/projects", olga, &req).await.0, StatusCode::CREATED);
+    let uri = "/api/v1/projects/Plant%201/properties";
+
+    let (s, text) = with(&app, "GET", uri, vera, &()).await;
+    assert!(s.is_success(), "{text}");
+    let seen: ProjectProperties = serde_json::from_str(&text).unwrap();
+    assert_eq!(seen.rights, vec![ProjectRight::View]);
+    assert_eq!(seen.meta.created_by, "olga");
+    assert_eq!(with(&app, "PUT", uri, vera, &PropertiesUpdate { user: String::new(), revision: 1, info: seen.info.clone() }).await.0, StatusCode::FORBIDDEN);
+    let copy = CopyRequest { name: "Plant 2".into(), ..Default::default() };
+    assert_eq!(with(&app, "POST", "/api/v1/projects/Plant%201/copy", vera, &copy).await.0, StatusCode::FORBIDDEN);
+    // Projects one may not see do not exist.
+    assert_eq!(with(&app, "GET", uri, rita, &()).await.0, StatusCode::NOT_FOUND);
+    assert_eq!(with(&app, "POST", "/api/v1/projects/Plant%201/copy", rita, &copy).await.0, StatusCode::NOT_FOUND);
+
+    // Olga's copy is hers: she manages it; the grants on the source are not copied.
+    let (s, text) = with(&app, "POST", "/api/v1/projects/Plant%201/copy", olga, &copy).await;
+    assert_eq!(s, StatusCode::CREATED, "{text}");
+    let opened: Opened = serde_json::from_str(&text).unwrap();
+    assert!(opened.rights.contains(&ProjectRight::ManageAccess));
+    assert_eq!(opened.session.user, "olga");
+    let (_, text) = with(&app, "GET", "/api/v1/projects/Plant%202/access", olga, &()).await;
+    let access: ProjectAccess = serde_json::from_str(&text).unwrap();
+    assert_eq!(access.grants, vec![Grant::new(Subject::User("olga".into()), "manager", "Plant 2")]);
+}
+
+async fn meta_of(app: &Router, token: &str) -> ProjectMeta {
+    serde_json::from_str::<Vec<ProjectSummary>>(&with(app, "GET", "/api/v1/projects", token, &()).await.1).unwrap()[0].meta.clone()
+}
+
+#[tokio::test]
+async fn list_names_who_created_and_last_changed() {
+    let app = app(Some(TOKEN));
+    let mut tokens = Vec::new();
+    for (user, role) in [("anna", ProjectRole::Editor), ("ben", ProjectRole::Editor), ("vera", ProjectRole::Viewer)] {
+        let update = UserUpdate { password: Some(format!("{user}-password")), role: Some(role), ..Default::default() };
+        assert!(with(&app, "PUT", &format!("/api/v1/users/{user}"), TOKEN, &update).await.0.is_success());
+        let (_, body) = with(&app, "POST", "/api/v1/login", TOKEN, &LoginRequest { user: user.into(), password: format!("{user}-password"), ..Default::default() }).await;
+        tokens.push(serde_json::from_str::<LoginResponse>(&body).unwrap().token);
+    }
+    // The signed-in user counts, not the name sent or the creator of the project info.
+    let mut project = two_pages();
+    project.info.creator = "Drawn by someone".into();
+    let (_, body) = with(&app, "POST", "/api/v1/projects", &tokens[0], &CreateRequest { name: "Plant 1".into(), user: "someone".into(), project }).await;
+    let anna: Opened = serde_json::from_str(&body).unwrap();
+    let created = meta_of(&app, &tokens[0]).await;
+    assert_eq!((created.created_by.as_str(), created.changed_by.as_str()), ("anna", "anna"));
+    assert!(created.created_at > 0 && created.changed_at == created.created_at);
+    let path = "/api/v1/projects/Plant%201";
+    assert!(with(&app, "POST", &format!("{path}/close"), &tokens[0], &anna.session).await.0.is_success());
+
+    // Opening, the status, a lock and saving the same content change nothing.
+    let (_, body) = with(&app, "POST", &format!("{path}/open"), &tokens[1], &OpenRequest { user: "ben".into() }).await;
+    let ben: Opened = serde_json::from_str(&body).unwrap();
+    assert!(with(&app, "POST", &format!("{path}/status"), &tokens[1], &ben.session).await.0.is_success());
+    assert!(with(&app, "POST", &format!("{path}/lock"), &tokens[1], &LockRequest { session: ben.session.clone(), targets: vec![Target::Project] }).await.0.is_success());
+    let same = SaveRequest { session: ben.session.clone(), project: ben.snapshot.project.clone(), ..Default::default() };
+    assert!(with(&app, "PUT", path, &tokens[1], &same).await.0.is_success());
+    let (_, body) = with(&app, "POST", &format!("{path}/open"), &tokens[2], &OpenRequest { user: "vera".into() }).await;
+    assert!(serde_json::from_str::<Opened>(&body).is_ok());
+    // A viewer sees the same.
+    assert_eq!(meta_of(&app, &tokens[2]).await, created);
+
+    let mut project = ben.snapshot.project.clone();
+    project.info.name = "Changed".into();
+    let (code, body) = with(&app, "PUT", path, &tokens[1], &SaveRequest { session: ben.session.clone(), project, ..Default::default() }).await;
+    assert!(code.is_success(), "{body}");
+    let changed = meta_of(&app, &tokens[2]).await;
+    assert_eq!((changed.created_by.as_str(), changed.created_at, changed.changed_by.as_str()), ("anna", created.created_at, "ben"));
+    assert!(changed.changed_at >= created.changed_at);
+}
+
+#[tokio::test]
+async fn open_servers_name_the_user_of_the_session() {
+    let app = app(None);
+    create(&app, "anna").await;
+    let ben = open(&app, "ben").await;
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: ben.session.clone(), targets: vec![Target::Project] }).await;
+    let mut project = ben.snapshot.project.clone();
+    project.info.name = "Changed".into();
+    let _: Snapshot = ok(&app, "PUT", "/api/v1/projects/Plant%201", &SaveRequest { session: ben.session.clone(), project, ..Default::default() }).await;
+    let list: Vec<ProjectSummary> = ok(&app, "GET", "/api/v1/projects", &()).await;
+    assert_eq!((list[0].meta.created_by.as_str(), list[0].meta.changed_by.as_str()), ("anna", "ben"));
+}
+
+#[test]
+fn summaries_of_older_servers_have_no_metadata() {
+    let old: ProjectSummary = serde_json::from_str(r#"{"name":"p","title":"","pages":1,"revision":2,"users":[],"rights":[]}"#).unwrap();
+    assert_eq!(old.meta, ProjectMeta::default());
+    let json = serde_json::to_value(ProjectSummary { name: "p".into(), meta: ProjectMeta::created("anna", 5), ..Default::default() }).unwrap();
+    assert_eq!((json["created_by"].as_str(), json["changed_at"].as_u64()), (Some("anna"), Some(5)));
+    assert!(serde_json::to_value(ProjectSummary::default()).unwrap().get("created_by").is_none());
 }

@@ -369,3 +369,59 @@ fn reopening_keeps_local_changes_nobody_else_made() {
     let kept = Kept::capture(&sh.base, &prj, &out, KeptReason::Changed).unwrap();
     assert_eq!(kept.targets, vec![Target::Project, Target::Page(b)]);
 }
+
+#[test]
+fn a_copy_starts_without_the_records_of_the_source() {
+    let mut source = project();
+    source.info.name = "Source".into();
+    source.workflow.approvers = vec!["anna".into()];
+    source.revisions.push(crate::model::revision::Revision { name: "A".into(), ..Default::default() });
+    source.baselines.push(Default::default());
+    source.review.comments.push(crate::model::review::Comment { id: 9, text: "check".into(), ..Default::default() });
+
+    let mut info = source.info.clone();
+    info.name = "Copy".into();
+    let copy = copy_of(&source, Some(info), false);
+    assert_eq!(copy.info.name, "Copy");
+    assert_eq!(copy.pages, source.pages);
+    assert!(copy.review.is_empty() && copy.revisions.is_empty() && copy.baselines.is_empty());
+    assert_eq!(copy.workflow, source.workflow, "settings stay");
+    // The same but for the info and the records.
+    let mut same = copy.clone();
+    same.info = source.info.clone();
+    same.review = source.review.clone();
+    same.revisions = source.revisions.clone();
+    same.baselines = source.baselines.clone();
+    assert_eq!(same, source);
+
+    assert_eq!(copy_of(&source, None, true), source);
+}
+
+#[test]
+fn names_of_copies_are_free_and_valid() {
+    assert_eq!(copy_name("Plant 1", &["Plant 1"]), "Plant 1 copy");
+    assert_eq!(copy_name("Plant 1", &["Plant 1", "plant 1 COPY", "Plant 1 copy 2"]), "Plant 1 copy 3");
+    // At most 64 characters.
+    let long = "x".repeat(64);
+    let name = copy_name(&long, &[&long]);
+    assert_eq!(name, format!("{} copy", "x".repeat(59)));
+    assert!(valid_name(&name));
+    assert_eq!(properties_path("Plant 1"), "/api/v1/projects/Plant%201/properties");
+    assert_eq!(copy_path("Plant 1"), "/api/v1/projects/Plant%201/copy");
+}
+
+#[test]
+fn older_servers_and_clients_understand_each_other() {
+    // A list entry of a server without creation records.
+    let old: ProjectSummary = serde_json::from_str(r#"{"name":"p","title":"P","pages":2,"revision":3,"users":[],"rights":["view"]}"#).unwrap();
+    assert_eq!((old.meta.clone(), old.copied_from.clone()), (ProjectMeta::default(), None));
+    let json = serde_json::to_string(&old).unwrap();
+    assert!(!json.contains("created") && !json.contains("copied_from"), "{json}");
+    // The answer about the properties has the record of the list, flat.
+    let props = ProjectProperties { meta: ProjectMeta::created("anna", 5), copied_from: Some(CopySource { name: "p".into(), revision: 3 }), ..Default::default() };
+    let json = serde_json::to_value(&props).unwrap();
+    assert_eq!((json["created_by"].as_str(), json["copied_from"]["revision"].as_u64()), (Some("anna"), Some(3)));
+    assert_eq!(serde_json::from_value::<ProjectProperties>(json).unwrap(), props);
+    let copy = CopyRequest { name: "p copy".into(), user: "ben".into(), ..Default::default() };
+    assert_eq!(serde_json::to_string(&copy).unwrap(), r#"{"name":"p copy","user":"ben"}"#);
+}

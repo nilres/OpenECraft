@@ -16,5 +16,5 @@ openecraft-core = { path = "../openecraft-core" }
 openecraft-i18n = { path = "../openecraft-i18n" }
 
 [target.'cfg(windows)'.dependencies]
-windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Credentials"] }
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Credentials", "Win32_System_Threading"] }
 zeroize = "1"

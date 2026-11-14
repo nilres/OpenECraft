@@ -129,6 +129,7 @@ All pages	所有页
 All report pages	所有报表页
 All user symbols as library file	所有用户符号作为库文件
 All wires of this potential are highlighted.	此电位的所有导线均已突出显示。
+Also copy revisions, baselines and review records	同时复制修订、基线和审阅记录
 Also the groups that do not fit the function definition	包括不符合功能定义的组
 Altitude	海拔
 Always	始终
@@ -428,6 +429,9 @@ Copy	复制
 Copy / cut / paste (devices get new tags)	复制 / 剪切 / 粘贴（设备获得新标识符）
 Copy as new	复制为新项
 Copy built-in…	复制内置项…
+Copy of	复制自
+Copy project	复制项目
+Copy project…	复制项目…
 Core designations separated by blanks	以空格分隔的芯线标识
 Core labels placed by hand	手动放置的芯线标注
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	穿过的导线使用芯线 1、2、3 …，另加 GNYE
@@ -439,10 +443,16 @@ Covers what is behind the text	遮盖文本后面的内容
 Create	创建
 Create an enclosure in the panel layout first.	请先在安装板布局中创建一个机柜。
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	创建机柜或房间（布局空间 › 新建机柜、新建房间）以开始布局。
+Create and open	创建并打开
 Create baseline	创建基线
 Create bus cables	创建总线电缆
 Create draft	创建草稿
 Create revision	创建修订
+Created on the server	在服务器上创建
+Created {}	创建于 {}
+Created {} as a copy of {} and opened it	已将 {} 创建为 {} 的副本并打开
+Creates a new project on the server from the saved state of this one; you set its name and properties first	根据此项目已保存的状态在服务器上创建新项目；您先设置其名称和属性
+Creating {} as a copy of {}…	正在将 {} 创建为 {} 的副本…
 Cross references…	交叉引用…
 Crossed wires	穿过的导线
 Ctrl + click on the text opens it as well	按 Ctrl + 单击文本也可将其打开
@@ -1039,6 +1049,7 @@ Load reserve	负载余量
 Load template…	加载模板…
 Loading changes…	正在加载更改…
 Loading the project access…	正在加载项目访问权限…
+Loading the properties of {}…	正在加载 {} 的属性…
 Loads	负载
 Local file	本地文件
 Local file: {}	本地文件：{}
@@ -1598,6 +1609,7 @@ Release: lock all pages	发布：锁定所有页
 Released page – read only	已发布页 – 只读
 Released pages in it keep their names	其中已发布的页保留名称
 Released pages keep their name.	已发布页保留其名称。
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	原项目的已发布修订、基线、批注、标记、批准和变更请求。不复制它们时，副本作为新项目开始。
 Releases all locks; the project stays open as a local copy	释放所有锁定；项目作为本地副本保持打开
 Releasing…	正在释放…
 Remove from cable	从电缆中移除
@@ -1772,6 +1784,7 @@ Save to project server: {}	保存到项目服务器：{}
 Save to project server: {} – the connection is lost, saving tries again	保存到项目服务器：{} – 连接已断开，保存将重试
 Save workspace	保存工作区
 Save workspace…	保存工作区…
+Saved the properties of {} (revision {})	已保存 {} 的属性（修订 {}）
 Saved to	保存位置
 Saved to the project server (revision {})	已保存到项目服务器（修订 {}）
 Saved workspaces	已保存的工作区
@@ -1782,6 +1795,7 @@ Saves the workspace, the arrangement of the panels and the open windows	保存�
 Saves your version of the whole project as a project file	将你的整个项目版本保存为项目文件
 Saving failed: {}	保存失败：{}
 Saving the project access…	正在保存项目访问权限…
+Saving the properties of {}…	正在保存 {} 的属性…
 Saving to the project server…	正在保存到项目服务器…
 Scheme	方案
 Scheme name	方案名称
@@ -1813,6 +1827,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	选择一个宏。
 Select a part. Double click adds it to the device.	选择一个部件。双击可将其添加到设备。
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	选择放置方案。方案将属性放置在符号旁；方案更改时，使用它的符号会随之更新。
+Select a project in the list	请在列表中选择一个项目
 Select a report block.	选择一个报表块。
 Select a request.	选择一个请求。
 Select a segment.	请选择规划段。
@@ -1834,6 +1849,7 @@ Semicolon	分号
 Separator	分离器
 Server URL	服务器 URL
 Server address and sign-in	服务器地址和登录
+Server project properties	服务器项目属性
 Server type	服务器类型
 Servers	服务器
 Service space in front	前方维护空间
@@ -1888,6 +1904,7 @@ Shown now: {}	当前显示：{}
 Shown on the cover page and by the image elements of title blocks that show the project logo	显示在封面上以及显示项目标志的标题栏图像元素中
 Shows	显示
 Shows the differences of your version to the open project; selected ones can be taken over	显示你的版本与打开的项目之间的差异；可以接受所选的差异
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	显示项目服务器上保存的属性；如果您有权限且没有人锁定项目数据，可在此处更改
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	从外部看到的侧板、后板、顶板和底板：风扇、电缆密封接头、开孔
 Sign in in the Project server pane; the project opens afterwards	在“项目服务器”窗格中登录；之后项目将打开
 Sign in…	登录…
@@ -2029,6 +2046,7 @@ The aspect ratio is kept.	保持纵横比。
 The check warns about cable ducts filled above this level	线槽填充率超过此值时检查会发出警告
 The checks keep the distances between classes and let classes overlap as set in Layout checks	检查会保持类别之间的距离，并按“布局检查”中的设置允许类别重叠
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	按插件列出所有插件的命令并可搜索；点击星标可将命令固定到插件选项卡
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	副本根据项目服务器上保存的状态创建。其他用户尚未保存的更改不包含在内。会话、锁定和访问权限不会被复制；原项目保持不变。
 The crossed wires get free cores of the cable in order	穿过的导线按顺序获得电缆的空闲芯线
 The current page belongs to option {}.	当前页属于选项 {}。
 The devices do not fit onto the rail	设备无法放入导轨
@@ -2046,8 +2064,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	宏库没有页宏（宏 › 将页另存为宏…）。
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	使滚轮横向平移或缩放的组合键在“组合键”中设置。
 The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	服务器上的名称由字母、数字、空格、- _ . 组成（最多 64 个字符）。
 The names of its pages follow	其页的名称随之改变
 The open project already has your version	打开的项目已包含你的版本
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	打开的项目有尚未保存到项目服务器的更改。系统会询问是否先保存；只有已保存的更改才包含在副本中。
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	打开的项目是此项目的本地恢复副本。其更改不在项目服务器上，也不包含在副本中。
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	打开的项目是本地恢复副本。其更改未保存在项目服务器上；在打开共享项目之前，由您决定将其保存到本地还是放弃。
 The page name gets the section number	页名称获得分节号
 The page type, plot frame, title block, structure, description and the whole content are saved.	将保存页类型、图框、标题栏、结构、描述和全部内容。
@@ -2057,13 +2078,16 @@ The point's coordinates in the coordinate reference system	该点在坐标参考
 The post; its accessories are the table beams, rails and clamps	立柱；其附件为支架横梁、导轨和夹具
 The project changed since the search.	自搜索以来项目已更改。
 The project check	项目检查
+The project data is locked by {}: the properties cannot be changed now.	项目数据已被 {} 锁定：现在无法更改属性。
 The project database needs the desktop version: the browser cannot search folders.	项目数据库需要桌面版：浏览器无法搜索文件夹。
 The project server does not answer: changes are not saved on it until the connection is back	项目服务器无响应：在连接恢复之前，更改不会保存到服务器上
 The project server {} could not open {}.	项目服务器 {} 无法打开 {}。
 The project's own page templates as a file	项目自己的页模板，作为文件
 The project's own title blocks	项目自己的标题栏
 The project's own title blocks and report schemes	项目自己的标题栏和报表方案
+The properties of the open project; changing them locks the project data	打开的项目的属性；更改它们会锁定项目数据
 The properties of the selection in a window beside the page	在页面旁的窗口中显示所选内容的属性
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	属性已在项目服务器上被更改。重新加载会显示它们；您输入的内容将被替换。
 The rail or mounting base; its accessories are the hooks, clamps and ballast	导轨或安装底座；其附件为挂钩、压块和压载
 The recalculation keeps frozen routes as long as they are still possible	只要仍然可行，重新计算会保留冻结的布线
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	带“文件”选项卡的功能区取代了菜单；Ctrl+Shift+P 可查找任意命令。
@@ -2108,6 +2132,7 @@ Total selectivity	完全选择性
 Touch screen	触摸屏
 Transfer project parts to database	将项目部件传输到数据库
 Translate the project texts; documentation per language	翻译项目文本；按语言生成文档
+Try again	重试
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	绕垂直轴旋转，从上方看为逆时针（90 °：正面朝右）
 Turn the 3D view to the point	将 3D 视图转向该点
 Twin ferrules where two wires share a connection point	两根导线共用一个连接点时使用双线管型端子
@@ -2196,6 +2221,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	在 3D 视图中单击屋顶的位置
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	设备结构的来源：与符号周围结构相同的结构部分为继承，符号移入或移出结构框时随之改变；其他结构部分属于设备本身，保持不变。
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	导线的起点和终点：部件数据中的连接点、由功能模板生成的连接点，或在没有匹配的连接点时使用设备中心
+Who created the project on the project server and when; not the drawing author below	谁在何时在项目服务器上创建了该项目；不是下方的图纸作者
 Whole building	整个建筑
 Whole words	全字匹配
 Width / going	宽度 / 踏步
@@ -2363,6 +2389,7 @@ x y	x y
 {} (no such device)	{}（设备不存在）
 {} (not placed in the layout)	{}（未放置在布局中）
 {} (project server, revision {})	{}（项目服务器，修订 {}）
+{} (revision {})	{}（修订 {}）
 {} (spare)	{}（备用）
 {} (subproject of {})	{}（{} 的子项目）
 {} (unused)	{}（未使用）
@@ -2374,6 +2401,7 @@ x y	x y
 {} added to building {}	{0} 已添加到建筑物 {1}
 {} addresses changed	已更改 {} 个地址
 {} air-termination rods	{} 根接闪杆
+{} already exists on the project server.	{} 已存在于项目服务器上。
 {} bundles, {} branch points	{} 个线缆束，{} 个分支点
 {} bus cables created	已创建 {} 根总线电缆
 {} bus connections	{} 个总线连接
@@ -2501,6 +2529,7 @@ x y	x y
 {} unused structure identifiers removed	已移除 {} 个未使用的结构标识符
 {} values taken over	已采用 {} 个值
 {} warnings	{} 个警告
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} 已在项目服务器上被更改。您输入的内容已保留；请再次创建副本以复制当前保存的状态。
 {} was imported into the parts database; its page no longer exists	{} 已导入部件数据库；其页面已不存在
 {} windows	{} 个窗口
 {} wire pieces joined	已合并 {} 段导线
@@ -2517,6 +2546,7 @@ x y	x y
 {} – {} ({} pages)	{} – {}（{} 页）
 {} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
 {}, freestanding	{}，地面安装
+{}, {} (copy of {}, revision {})	{}，{}（{} 的副本，修订 {}）
 {}: click to show its floor plan	{}：单击以显示其平面图
 {}: crimp together with the wire to {}	{}：与通往 {} 的导线一起压接
 {}: drag to move it, R turns it, a double-click opens it	{}：拖动以移动，R 旋转，双击打开

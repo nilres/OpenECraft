@@ -130,6 +130,7 @@ All pages	Všechny stránky
 All report pages	Všechny stránky výkazů
 All user symbols as library file	Všechny uživatelské symboly jako soubor knihovny
 All wires of this potential are highlighted.	Všechny vodiče tohoto potenciálu jsou zvýrazněny.
+Also copy revisions, baselines and review records	Kopírovat také revize, základní verze a záznamy z revizí
 Also the groups that do not fit the function definition	I skupiny, které neodpovídají definici funkce
 Altitude	Nadmořská výška
 Always	Vždy
@@ -431,6 +432,9 @@ Copy	Kopírovat
 Copy / cut / paste (devices get new tags)	Kopírovat / vyjmout / vložit (přístroje dostanou nová označení)
 Copy as new	Kopírovat jako nové
 Copy built-in…	Kopírovat vestavěné…
+Copy of	Kopie projektu
+Copy project	Kopírovat projekt
+Copy project…	Kopírovat projekt…
 Core designations separated by blanks	Označení žil oddělená mezerami
 Core labels placed by hand	Popisy žil umístěny ručně
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Žíly 1, 2, 3 … pro překřížené vodiče, plus GNYE
@@ -442,10 +446,16 @@ Covers what is behind the text	Zakryje to, co je za textem
 Create	Vytvořit
 Create an enclosure in the panel layout first.	Nejprve vytvořte skříň v rozvržení rozváděče.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Vytvořte skříň nebo místnost (Montážní prostor › Nová skříň, Nová místnost) a začněte s montážním uspořádáním.
+Create and open	Vytvořit a otevřít
 Create baseline	Vytvořit základní verzi
 Create bus cables	Vytvořit sběrnicové kabely
 Create draft	Vytvořit koncept
 Create revision	Vytvořit revizi
+Created on the server	Vytvořeno na serveru
+Created {}	Vytvořeno {}
+Created {} as a copy of {} and opened it	{} vytvořen jako kopie {} a otevřen
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Vytvoří na serveru nový projekt z uloženého stavu tohoto projektu; nejprve nastavíte jeho název a vlastnosti
+Creating {} as a copy of {}…	Vytváření {} jako kopie {}…
 Cross references…	Křížové odkazy…
 Crossed wires	Překřížené vodiče
 Ctrl + click on the text opens it as well	Ctrl + kliknutí na text jej také otevře
@@ -1050,6 +1060,7 @@ Load reserve	Rezerva zatížení
 Load template…	Načíst šablonu…
 Loading changes…	Načítání změn…
 Loading the project access…	Načítání přístupu k projektu…
+Loading the properties of {}…	Načítání vlastností {}…
 Loads	Spotřebiče
 Local file	Místní soubor
 Local file: {}	Místní soubor: {}
@@ -1615,6 +1626,7 @@ Release: lock all pages	Uvolnit: uzamknout všechny stránky
 Released page – read only	Uvolněná stránka – jen pro čtení
 Released pages in it keep their names	Uvolněné stránky v něm si ponechají své názvy
 Released pages keep their name.	Uvolněné stránky si ponechají název.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Uvolněné revize, základní verze, komentáře, značky, schválení a požadavky na změnu originálu. Bez nich kopie začíná jako nový projekt.
 Releases all locks; the project stays open as a local copy	Uvolní všechny zámky; projekt zůstane otevřený jako místní kopie
 Releasing…	Uvolňování…
 Remove from cable	Odebrat z kabelu
@@ -1789,6 +1801,7 @@ Save to project server: {}	Uložit na server projektů: {}
 Save to project server: {} – the connection is lost, saving tries again	Uložit na server projektů: {} – spojení je ztraceno, ukládání to zkusí znovu
 Save workspace	Uložit pracovní prostor
 Save workspace…	Uložit pracovní prostor…
+Saved the properties of {} (revision {})	Vlastnosti {} uloženy (revize {})
 Saved to	Uloženo do
 Saved to the project server (revision {})	Uloženo na projektový server (revize {})
 Saved workspaces	Uložené pracovní prostory
@@ -1801,6 +1814,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Uloží 
 Saves your version of the whole project as a project file	Uloží vaši verzi celého projektu jako soubor projektu
 Saving failed: {}	Uložení se nezdařilo: {}
 Saving the project access…	Ukládání přístupu k projektu…
+Saving the properties of {}…	Ukládání vlastností {}…
 Saving to the project server…	Ukládání na projektový server…
 Schematic crosshair	Křížový kurzor schématu
 Scheme	Schéma
@@ -1833,6 +1847,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Vyberte makro.
 Select a part. Double click adds it to the device.	Vyberte artikl. Poklikáním jej přidáte k přístroji.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Vyberte schéma umístění. Schéma umísťuje vlastnosti vedle symbolů; symboly, které ho používají, se při jeho změně aktualizují.
+Select a project in the list	Vyberte projekt v seznamu
 Select a report block.	Vyberte blok výkazů.
 Select a request.	Vyberte požadavek.
 Select a segment.	Vyberte segment.
@@ -1854,6 +1869,7 @@ Semicolon	Středník
 Separator	Odlučovač
 Server URL	Adresa URL serveru
 Server address and sign-in	Adresa serveru a přihlášení
+Server project properties	Vlastnosti projektu na serveru
 Server type	Typ serveru
 Servers	Servery
 Service space in front	Servisní prostor vpředu
@@ -1909,6 +1925,7 @@ Shown now: {}	Nyní zobrazeno: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Zobrazuje se na titulním listu a v obrázkových prvcích razítek, které zobrazují logo projektu
 Shows	Zobrazuje
 Shows the differences of your version to the open project; selected ones can be taken over	Zobrazí rozdíly vaší verze oproti otevřenému projektu; vybrané lze převzít
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Zobrazí vlastnosti uložené na projektovém serveru; změníte je zde, pokud smíte a nikdo nezamkl data projektu
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Boční stěny, zadní stěna, střecha a dno při pohledu zvenku: ventilátory, kabelové vývodky, výřezy
 Sign in in the Project server pane; the project opens afterwards	Přihlaste se v podokně Server projektů; poté se projekt otevře
 Sign in…	Přihlásit se…
@@ -2050,6 +2067,7 @@ The aspect ratio is kept.	Poměr stran se zachová.
 The check warns about cable ducts filled above this level	Kontrola upozorní na kabelové kanály zaplněné nad tuto mez
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Kontroly dodržují vzdálenosti mezi třídami a nechávají třídy překrývat podle nastavení v Kontrolách rozvržení
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Příkazy všech pluginů podle pluginu, s vyhledáváním; hvězdička připne příkaz na kartu Pluginy
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopie vzniká ze stavu uloženého na projektovém serveru. Změny, které ostatní uživatelé ještě neuložili, do ní nepatří. Relace, zámky a přístupová práva se nekopírují; originál zůstává, jak je.
 The crossed wires get free cores of the cable in order	Překřížené vodiče dostanou postupně volné žíly kabelu
 The current page belongs to option {}.	Aktuální stránka patří k volbě {}.
 The devices do not fit onto the rail	Přístroje se na lištu nevejdou
@@ -2067,8 +2085,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Knihovna maker neobsahuje žádná makra stránek (Makra › Uložit stránku jako makro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifikační klávesy, se kterými kolečko posouvá do strany nebo přibližuje, se nastavují v části Modifikační klávesy.
 The modules no string takes yet in series, on the first inverter	Moduly, které ještě žádný string nebere, v sérii, na prvním střídači
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Název na serveru se skládá z písmen, číslic, mezer, - _ . (nejvýše 64 znaků).
 The names of its pages follow	Názvy jeho stránek se změní s ním
 The open project already has your version	Otevřený projekt již obsahuje vaši verzi
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Otevřený projekt má změny, které ještě nejsou uloženy na projektovém serveru. Budete dotázáni, zda je nejprve uložit; do kopie patří jen uložené změny.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Otevřený projekt je místní obnovovací kopie tohoto projektu. Jeho změny nejsou na projektovém serveru a nepatří do kopie.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otevřený projekt je místní obnovovací kopie. Jeho změny nejsou uloženy na serveru projektů; než se sdílený projekt otevře, rozhodnete, zda je uložit místně, nebo zahodit.
 The page name gets the section number	Název stránky dostane číslo oddílu
 The page type, plot frame, title block, structure, description and the whole content are saved.	Uloží se typ stránky, rámeček výkresu, rohové razítko, struktura, popis a celý obsah.
@@ -2078,13 +2099,16 @@ The point's coordinates in the coordinate reference system	Souřadnice bodu v so
 The post; its accessories are the table beams, rails and clamps	Sloupek; jeho příslušenstvím jsou nosníky stolu, lišty a svorky
 The project changed since the search.	Projekt se od hledání změnil.
 The project check	Kontrola projektu
+The project data is locked by {}: the properties cannot be changed now.	Data projektu zamkl uživatel {}: vlastnosti nyní nelze změnit.
 The project database needs the desktop version: the browser cannot search folders.	Databáze projektů vyžaduje desktopovou verzi: prohlížeč nemůže prohledávat složky.
 The project server does not answer: changes are not saved on it until the connection is back	Server projektů neodpovídá: změny se na něj neukládají, dokud se spojení neobnoví
 The project server {} could not open {}.	Server projektů {} nemohl otevřít {}.
 The project's own page templates as a file	Vlastní šablony stránek projektu jako soubor
 The project's own title blocks	Vlastní rohová razítka projektu
 The project's own title blocks and report schemes	Vlastní rohová razítka a schémata výkazů projektu
+The properties of the open project; changing them locks the project data	Vlastnosti otevřeného projektu; jejich změna zamkne data projektu
 The properties of the selection in a window beside the page	Vlastnosti výběru v okně vedle stránky
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Vlastnosti byly mezitím na projektovém serveru změněny. Načíst znovu je zobrazí; vaše zadání budou nahrazena.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Lišta nebo montážní podstavec; jeho příslušenstvím jsou háky, svorky a zátěž
 The recalculation keeps frozen routes as long as they are still possible	Přepočet zachová zmrazené trasy, dokud jsou možné
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Pás karet s kartou Soubor nahrazuje nabídky; Ctrl+Shift+P najde libovolný příkaz.
@@ -2129,6 +2153,7 @@ Total selectivity	Úplná selektivita
 Touch screen	Dotyková obrazovka
 Transfer project parts to database	Převzít artikly projektu do databáze
 Translate the project texts; documentation per language	Překlad textů projektu; dokumentace pro každý jazyk
+Try again	Zkusit znovu
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Otočení kolem svislé osy, proti směru hodinových ručiček při pohledu shora (90 °: čela směřují doprava)
 Turn the 3D view to the point	Natočit 3D pohled na bod
 Twin ferrules where two wires share a connection point	Dvojité dutinky tam, kde dva vodiče sdílejí přípojný bod
@@ -2219,6 +2244,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Kde se ve 3D pohledu kliklo na střechu
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Odkud pochází struktura přístroje: aspekty shodné se strukturou kolem symbolu jsou zděděné a mění se, když se přesune do rámečku struktury nebo z něj; ostatní aspekty patří přístroji a zůstávají.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Kde vodič začíná a končí: přípojný bod z dat artiklu, bod vygenerovaný ze šablony funkce, nebo střed přístroje, pokud žádný přípojný bod neodpovídá
+Who created the project on the project server and when; not the drawing author below	Kdo a kdy vytvořil projekt na projektovém serveru; nejde o autora výkresu níže
 Whole building	Celá budova
 Whole words	Celá slova
 Width / going	Šířka / stupeň
@@ -2391,6 +2417,7 @@ x y	x y
 {} (no such device)	{} (zařízení neexistuje)
 {} (not placed in the layout)	{} (není umístěno v rozvržení)
 {} (project server, revision {})	{} (projektový server, revize {})
+{} (revision {})	{} (revize {})
 {} (spare)	{} (rezerva)
 {} (subproject of {})	{} (podprojekt projektu {})
 {} (unused)	{} (nepoužito)
@@ -2402,6 +2429,7 @@ x y	x y
 {} added to building {}	{} přidán k budově {}
 {} addresses changed	Změněno adres: {}
 {} air-termination rods	{} jímacích tyčí
+{} already exists on the project server.	{} na projektovém serveru již existuje.
 {} bundles, {} branch points	Svazky: {}, body odbočení: {}
 {} bus cables created	Vytvořeno sběrnicových kabelů: {}
 {} bus connections	Sběrnicová spojení: {}
@@ -2531,6 +2559,7 @@ x y	x y
 {} unused structure identifiers removed	Odebráno nepoužívaných identifikátorů struktury: {}
 {} values taken over	Převzato {} hodnot
 {} warnings	Varování: {}
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} byl mezitím na projektovém serveru změněn. Vaše zadání zůstávají; vytvořte kopii znovu, aby se zkopíroval aktuálně uložený stav.
 {} was imported into the parts database; its page no longer exists	{} byl importován do databáze artiklů; jeho stránka už neexistuje
 {} windows	Okna: {}
 {} wire pieces joined	Sloučeno úseků vodičů: {}
@@ -2547,6 +2576,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
 {}, freestanding	{}, pozemní
+{}, {} (copy of {}, revision {})	{}, {} (kopie {}, revize {})
 {}: click to show its floor plan	{}: kliknutím zobrazíte půdorys
 {}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře

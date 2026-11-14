@@ -76,6 +76,12 @@ pub fn date_from_unix(secs: u64) -> String {
     format!("{y:04}-{m:02}-{d:02}")
 }
 
+/// Date and time `YYYY-MM-DD HH:MM` (UTC) of a Unix time.
+pub fn date_time_from_unix(secs: u64) -> String {
+    let day = secs % 86_400;
+    format!("{} {:02}:{:02}", date_from_unix(secs), day / 3600, day % 3600 / 60)
+}
+
 /// Unix time of an ISO 8601 date or date and time (`2026-10-23`,
 /// `2026-10-23T08:30:00+02:00`); the time zone is ignored. `None` if it is no date.
 pub fn unix_from_date(text: &str) -> Option<u64> {

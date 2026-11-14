@@ -214,6 +214,8 @@ enum Replace {
     Path(String),
     /// A project of the project server.
     Shared(String),
+    /// The copy of a project of the project server (`Remote::draft`), created and opened.
+    Copy,
     /// A project file of the vault.
     Vault(Box<openecraft_client::vault::FileVersion>),
     /// The window closes; with `restart` the editor starts again, updated.
@@ -685,6 +687,7 @@ impl App {
             Some(path) => self.open_at_start(crate::startup::Target::File(path)),
             None => self.apply_startup(),
         }
+        self.remote.restore_sign_in();
         self
     }
 
@@ -717,10 +720,11 @@ impl App {
                     self.io.open_path(&path, Purpose::Project);
                 }
             }
-            crate::startup::Target::Server(project) => {
+            crate::startup::Target::Server(mut project) => {
                 if !project.url.trim().is_empty() {
-                    self.remote.url = project.url.clone();
+                    self.remote.select_server(&project.url);
                 }
+                project.url = self.remote.url.clone();
                 let name = project.name.clone();
                 self.reconnect = Some(crate::startup::Reconnect { project, state: crate::startup::ReconnectState::Connecting });
                 if let Some(Replace::Shared(name)) = self.discard.request(self.session.dirty(), Replace::Shared(name)) {
@@ -811,6 +815,7 @@ impl App {
                 self.backstage = None;
             }
             Replace::Shared(name) => self.remote.open(&name),
+            Replace::Copy => self.remote.copy(),
             Replace::Vault(file) => self.vault.download(*file, crate::vault::Use::Project),
             Replace::Close { restart } => {
                 self.updater.restart = restart;

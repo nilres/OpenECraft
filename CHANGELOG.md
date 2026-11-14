@@ -15,6 +15,21 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   shell tables, document state and drawing views moved into the library crates
   `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
 
+- **Properties and copies of server projects** (#186): the project list of the
+  *Project server* pane selects a project; *Properties…* shows its properties as
+  saved on the server and changes them without opening the project (for who may
+  change the project data, while nobody has locked it; only the properties are
+  written, never the whole project). *Copy project…* shows the properties of the copy
+  at once: a free name on the server and the title, description, company, author,
+  date, revision and project properties of the original to adjust; *Create and open*
+  creates the copy from the saved state and opens it, *Cancel* leaves nothing on the
+  server. The original, its sessions, locks and access rights stay untouched; the
+  copy belongs to who created it and starts without the original's review records,
+  released revisions and baselines unless asked for. Unsaved changes of the open
+  project are asked about first; a project changed on the server meanwhile is
+  reported before the copy is made. The server records the project and revision a copy
+  was made from. Needs the updated project server.
+
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
   click on a face, edge or corner of the cube turns the camera to look from there
@@ -22,6 +37,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   by 90°, go back to the starting view or show everything. It replaces the buttons
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
+
+- **Who created and last changed a shared project**: the project list of the
+  *Project server* pane and of the server's web page shows *Created by*, *Last
+  changed by* and *Last changed* for each project (`created_by`, `created_at`,
+  `changed_by`, `changed_at` of `GET /api/v1/projects`). The project server records
+  the signed-in user of the creation and of every save that changes the project;
+  opening, keeping a session alive and saving unchanged content do not count.
+  Projects of earlier versions show *Unknown* until their next change.
 
 - **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
   web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
@@ -79,6 +102,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   releases nothing more, and closing or replacing a shared project ends its
   session only after the save under way. The live project server tests run with
   `scripts/test-project-server-live.ps1` (formerly `test-cable-rename.ps1`).
+
+- **Keep me signed in** (#184): optional project-server sign-in persistence on
+  Windows using Credential Manager, separately for each server and account. The
+  editor validates the saved session and reads current account rights before
+  using it. Sign out preserves open work as a local recovery copy, removes the
+  remembered credential and ends the account session after pending project closes.
+  Change user keeps the remembered sign-in for switching back. Reauthentication
+  retains pending save confirmations; stale windows cannot delete newer tokens.
+  Browser, macOS and
+  Linux sign-ins remain in memory only; remembering does not extend server expiry.
+  Remembered sign-in requires the updated project server; older servers still
+  support manual sign-in.
 
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock

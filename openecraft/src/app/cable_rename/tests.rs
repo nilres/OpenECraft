@@ -45,6 +45,7 @@ fn live_http_multiuser_rename_is_atomic_and_preserves_other_users_changes() {
         let ctx = egui::Context::default();
         let mut app = App::new(&eframe::CreationContext::_new_kittest(ctx.clone()));
         app.replace_project(project(), None);
+        app.remote = crate::remote::Remote::default();
         app.remote.url = url.clone();
         app.remote.user = user.into();
         app.remote.token = std::env::var(format!("OPENECRAFT_LIVE_TEST_{}", user.to_uppercase())).expect("test account token");

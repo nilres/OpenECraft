@@ -21,8 +21,8 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   as for the parts server.
 - **Web page** (optional: `--web`, `--web true`, `OPENECRAFT_PROJECT_WEB=true` or
   `web = true` in the configuration file; off by default): `http://<server>:8091/`
-  lists the projects the user may see (with the pages, the revision, who works on them
-  and the user's rights) and shows each of them read only: the pages by section or
+  lists the projects the user may see (with the pages, the revision, who created and
+  last changed them, who works on them and the user's rights) and shows each of them read only: the pages by section or
   grouped by structure, the devices with the places they are shown on, and the pages
   drawn as on paper (zoom, drag to move, arrow keys or Page up / Page down for the
   next page). Pages locked by other users are marked with 🔒 and the user; the page
@@ -39,14 +39,26 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   sign-in). The page is in all languages of the app; it uses the API below, so the
   server checks every request as for the editor. Without `--web` the server answers
   `/` with a short text and has no page routes.
+- **Created by, last changed by, last changed**: the server keeps for each project
+  who created it and who saved the last change to it, and when; the project list of
+  the editor (*Project server* pane), the web page and `GET /api/v1/projects`
+  (`created_by`, `created_at`, `changed_by`, `changed_at`; seconds since 1970, UTC)
+  show them to everyone who may view the project. The name is the signed-in user; on
+  a server without accounts (or with the server token) it is the user name the
+  session was opened with. It is independent of *Created by* in the project
+  properties, which the users edit. Only a save that changes the project counts:
+  opening or reading a project, the status requests that keep a session alive, locks
+  and saving unchanged content leave it as it is. Projects of earlier server versions
+  show *Unknown* until their next change (the creation stays unknown), and a project
+  uploaded as a copy of another one is a new project of the user who uploaded it.
 - Project names differing only in case are one name (Windows and macOS do not tell
   their files apart): requests find a project under any case of its name; Windows device names (`CON`, `NUL`, `COM1` …) and names ending
   with a dot are refused.
 - Each project is stored as a split project in a folder of its own
   (`<name>/<name>.oecp` with one small file per page, device and part; it opens in the
   desktop editor and can be kept under version control) next to `<name>.state.json`
-  (revision, id counter) in the data directory. A save writes only the files that
-  changed. Project files of earlier versions (`<name>.oec`) are converted at the
+  (revision, id counter, who created and last changed the project) in the data
+  directory. A save writes only the files that changed. Project files of earlier versions (`<name>.oec`) are converted at the
   first start and kept as `<name>.oec.bak`.
 - With `--token` (or `OPENECRAFT_PROJECT_TOKEN`) every request needs
   `Authorization: Bearer <token>`; without it, user accounts and directories everyone
@@ -113,6 +125,30 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   Project: …* (*connection lost* while the server does not answer its status); a
   project restored from the last session or closed on the server shows as *Local
   recovery copy of server project: …* and is saved to a local file.
+- The project list selects a project (a double click opens it). *Properties…* loads its
+  properties from the server (never from the list) and shows who created it on the
+  server and when (*Unknown* for projects created before the server kept that;
+  this is not the *Created by* of the drawing, which users edit). Who may edit the
+  project data changes them there without opening the project, unless a session has
+  locked the project data; the server then replaces only the project info, and refuses
+  if it was changed since it was loaded (*Reload* shows the newer one). For the open
+  shared project, *Properties…* is the usual dialog, which locks the project data.
+- *Copy project…* (for the selected or the open shared project) shows the properties
+  of the copy at once: a free name on the server (*… copy*) and the title,
+  description, company, author, date, revision and project properties of the original,
+  all to be changed. Nothing exists on the server until *Create and open*; *Cancel*
+  leaves nothing behind, and a refused copy (name taken, no right to create it) keeps
+  the entries to correct. The copy is made on the server from the saved state:
+  changes nobody has saved yet, also those of other users, are not part of it. With
+  unsaved changes in the open project the editor asks first whether to save them. If
+  the original was changed on the server after the dialog loaded it, the copy is not
+  made until confirmed again. Sessions, page locks and access rights are not copied:
+  the copy is opened in a new session and a signed-in user manages it like any project
+  they create. Comments, markup, approvals (with their signatures), change requests,
+  released revisions and baselines are left out unless *Also copy revisions, baselines
+  and review records* is ticked; the approvers of the release workflow stay like all
+  settings. The server records who created the copy, when, and from which project and
+  revision.
 - *File › Settings › On startup* decides what the editor opens when it starts: the
   start page with local files and server projects, the last project (a server project
   is opened on the server again), the project list of the server or a chosen file or
@@ -123,6 +159,14 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   caller may see; answered without token too), `GET|POST /projects` (`POST` needs the
   `project`), `GET|PUT|DELETE /projects/{name}`,
   `POST /projects/{name}/open|status|lock|release|close`, `GET|PUT /projects/{name}/access`,
+  `GET|PUT /projects/{name}/properties` (the project info with the revision, who has
+  locked the project data, the caller's rights, who created and last changed the project and what it was copied from; `PUT`
+  takes `user`, `revision` and `info`, counts as the last change, needs the right to edit the project data, answers `409`
+  while the project data is locked and `412` if the info changed since `revision`),
+  `POST /projects/{name}/copy` (`name` and `user` of the copy, optionally the
+  `revision` the source must still have – `412` otherwise –, its `info` and `records`;
+  needs the right to view the source and to create the new name, answers like opening
+  a project),
   `POST /login` (`user` and `password`; `name` is taken for `user`, as on the parts
   server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`,
   `GET /directories`, `PUT|DELETE /directories/{id}`, `POST /directories/{id}/test`

@@ -130,6 +130,7 @@ All pages	Tüm sayfalar
 All report pages	Tüm rapor sayfaları
 All user symbols as library file	Kütüphane dosyası olarak tüm kullanıcı sembolleri
 All wires of this potential are highlighted.	Bu potansiyelin tüm telleri vurgulanır.
+Also copy revisions, baselines and review records	Revizyonları, referans sürümleri ve inceleme kayıtlarını da kopyala
 Also the groups that do not fit the function definition	Fonksiyon tanımına uymayan gruplar da
 Altitude	Rakım
 Always	Her zaman
@@ -431,6 +432,9 @@ Copy	Kopyala
 Copy / cut / paste (devices get new tags)	Kopyala / kes / yapıştır (cihazlar yeni etiket alır)
 Copy as new	Yeni olarak kopyala
 Copy built-in…	Yerleşik olanı kopyala…
+Copy of	Şunun kopyası
+Copy project	Projeyi kopyala
+Copy project…	Projeyi kopyala…
 Core designations separated by blanks	Boşlukla ayrılmış damar tanımları
 Core labels placed by hand	Damar etiketleri elle yerleştirildi
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Kesişen teller için 1, 2, 3 … damarları, artı GNYE
@@ -442,10 +446,16 @@ Covers what is behind the text	Metnin arkasında kalanı örter
 Create	Oluştur
 Create an enclosure in the panel layout first.	Önce pano yerleşiminde bir pano oluşturun.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Montaj yerleşimine başlamak için bir pano veya oda oluşturun (Montaj alanı › Yeni pano, Yeni oda).
+Create and open	Oluştur ve aç
 Create baseline	Referans sürüm oluştur
 Create bus cables	Bus kabloları oluştur
 Create draft	Taslak oluştur
 Create revision	Revizyon oluştur
+Created on the server	Sunucuda oluşturuldu
+Created {}	Oluşturulma: {}
+Created {} as a copy of {} and opened it	{}, {} projesinin kopyası olarak oluşturuldu ve açıldı
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Bu projenin kayıtlı durumundan sunucuda yeni bir proje oluşturur; önce adını ve özelliklerini belirlersiniz
+Creating {} as a copy of {}…	{}, {} projesinin kopyası olarak oluşturuluyor…
 Cross references…	Çapraz referanslar…
 Crossed wires	Kesişen teller
 Ctrl + click on the text opens it as well	Metne Ctrl + tıklama da onu açar
@@ -1050,6 +1060,7 @@ Load reserve	Yük rezervi
 Load template…	Şablon yükle…
 Loading changes…	Değişiklikler yükleniyor…
 Loading the project access…	Proje erişimi yükleniyor…
+Loading the properties of {}…	{} özellikleri yükleniyor…
 Loads	Yükler
 Local file	Yerel dosya
 Local file: {}	Yerel dosya: {}
@@ -1615,6 +1626,7 @@ Release: lock all pages	Yayımla: tüm sayfaları kilitle
 Released page – read only	Yayımlanmış sayfa – salt okunur
 Released pages in it keep their names	İçindeki yayımlanmış sayfalar adlarını korur
 Released pages keep their name.	Yayımlanmış sayfalar adlarını korur.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Aslının yayımlanmış revizyonları, referans sürümleri, yorumları, işaretlemeleri, onayları ve değişiklik talepleri. Bunlar olmadan kopya yeni bir proje olarak başlar.
 Releases all locks; the project stays open as a local copy	Tüm kilitleri kaldırır; proje yerel kopya olarak açık kalır
 Releasing…	Kilit kaldırılıyor…
 Remove from cable	Kablodan çıkar
@@ -1789,6 +1801,7 @@ Save to project server: {}	Proje sunucusuna kaydet: {}
 Save to project server: {} – the connection is lost, saving tries again	Proje sunucusuna kaydet: {} – bağlantı kesildi, kaydetme yeniden dener
 Save workspace	Çalışma alanını kaydet
 Save workspace…	Çalışma alanını kaydet…
+Saved the properties of {} (revision {})	{} özellikleri kaydedildi (revizyon {})
 Saved to	Kaydedildiği yer
 Saved to the project server (revision {})	Proje sunucusuna kaydedildi (revizyon {})
 Saved workspaces	Kaydedilmiş çalışma alanları
@@ -1801,6 +1814,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Çalış
 Saves your version of the whole project as a project file	Projenin tamamının sizin sürümünüzü proje dosyası olarak kaydeder
 Saving failed: {}	Kaydetme başarısız oldu: {}
 Saving the project access…	Proje erişimi kaydediliyor…
+Saving the properties of {}…	{} özellikleri kaydediliyor…
 Saving to the project server…	Proje sunucusuna kaydediliyor…
 Schematic crosshair	Şematik artı işareti
 Scheme	Düzen
@@ -1833,6 +1847,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Bir makro seçin.
 Select a part. Double click adds it to the device.	Bir parça seçin. Çift tıklama parçayı cihaza ekler.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Bir yerleştirme şeması seçin. Şema, özellikleri sembollerin yanına yerleştirir; şema değiştiğinde onu kullanan semboller güncellenir.
+Select a project in the list	Listeden bir proje seçin
 Select a report block.	Bir rapor bloğu seçin.
 Select a request.	Bir talep seçin.
 Select a segment.	Bir segment seçin.
@@ -1854,6 +1869,7 @@ Semicolon	Noktalı virgül
 Separator	Ayırıcı
 Server URL	Sunucu URL'si
 Server address and sign-in	Sunucu adresi ve oturum açma
+Server project properties	Sunucu projesinin özellikleri
 Server type	Sunucu türü
 Servers	Sunucular
 Service space in front	Öndeki servis alanı
@@ -1909,6 +1925,7 @@ Shown now: {}	Şu anda gösterilen: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Kapak sayfasında ve proje logosunu gösteren antetlerin görüntü öğelerinde gösterilir
 Shows	Gösterir
 Shows the differences of your version to the open project; selected ones can be taken over	Sürümünüzün açık projeden farklarını gösterir; seçilenler alınabilir
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Proje sunucusunda kayıtlı özellikleri gösterir; yetkiniz varsa ve kimse proje verilerini kilitlememişse bunları burada değiştirirsiniz
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Dışarıdan görülen yan duvarlar, arka duvar, üst ve taban: fanlar, kablo rakorları, kesimler
 Sign in in the Project server pane; the project opens afterwards	Proje sunucusu bölmesinde oturum açın; proje ardından açılır
 Sign in…	Oturum aç…
@@ -2050,6 +2067,7 @@ The aspect ratio is kept.	En boy oranı korunur.
 The check warns about cable ducts filled above this level	Kontrol, bu düzeyin üzerinde dolu kablo kanalları için uyarır
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Kontroller, Yerleşim kontrollerinde ayarlandığı gibi sınıflar arasındaki mesafeleri korur ve sınıfların üst üste binmesine izin verir
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Tüm eklentilerin komutları eklentiye göre, aramayla; yıldız bir komutu Eklentiler sekmesine sabitler
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopya, proje sunucusunda kayıtlı durumdan oluşturulur. Diğer kullanıcıların henüz kaydetmediği değişiklikler kopyaya dahil değildir. Oturumlar, kilitler ve erişim hakları kopyalanmaz; aslı olduğu gibi kalır.
 The crossed wires get free cores of the cable in order	Kesişen teller kablonun boş damarlarını sırayla alır
 The current page belongs to option {}.	Geçerli sayfa {} seçeneğine ait.
 The devices do not fit onto the rail	Cihazlar raya sığmıyor
@@ -2067,8 +2085,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Makro kütüphanesinde sayfa makrosu yok (Makrolar › Sayfayı makro olarak kaydet…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tekerleğin yana kaydırmasını veya yakınlaştırmasını sağlayan değiştiriciler Değiştirici tuşlar altında ayarlanır.
 The modules no string takes yet in series, on the first inverter	Henüz hiçbir dizinin almadığı modüller, seri olarak, ilk invertörde
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Sunucudaki ad harf, rakam, boşluk, - _ . içerebilir (en çok 64 karakter).
 The names of its pages follow	Sayfalarının adları da değişir
 The open project already has your version	Açık projede zaten sizin sürümünüz var
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Açık projede henüz proje sunucusuna kaydedilmemiş değişiklikler var. Önce kaydedilip kaydedilmeyeceği sorulur; kopyaya yalnızca kaydedilmiş değişiklikler dahildir.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Açık proje, bu projenin yerel kurtarma kopyasıdır. Değişiklikleri proje sunucusunda değildir ve kopyaya dahil değildir.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Açık proje yerel bir kurtarma kopyasıdır. Değişiklikleri proje sunucusuna kaydedilmedi; paylaşılan proje açılmadan önce bunları yerel olarak kaydetmeye veya atmaya siz karar verirsiniz.
 The page name gets the section number	Sayfa adı bölüm numarasını alır
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sayfa tipi, çizim çerçevesi, antet, yapı, açıklama ve tüm içerik kaydedilir.
@@ -2078,13 +2099,16 @@ The point's coordinates in the coordinate reference system	Noktanın koordinat r
 The post; its accessories are the table beams, rails and clamps	Direk; aksesuarları masa kirişleri, raylar ve kelepçelerdir
 The project changed since the search.	Proje aramadan bu yana değişti.
 The project check	Proje kontrolü
+The project data is locked by {}: the properties cannot be changed now.	Proje verileri {} tarafından kilitlendi: özellikler şu anda değiştirilemez.
 The project database needs the desktop version: the browser cannot search folders.	Proje veritabanı için masaüstü sürümü gerekir: tarayıcı klasörlerde arama yapamaz.
 The project server does not answer: changes are not saved on it until the connection is back	Proje sunucusu yanıt vermiyor: bağlantı geri gelene kadar değişiklikler orada kaydedilmez
 The project server {} could not open {}.	Proje sunucusu {} şunu açamadı: {}.
 The project's own page templates as a file	Projenin kendi sayfa şablonları dosya olarak
 The project's own title blocks	Projenin kendi antetleri
 The project's own title blocks and report schemes	Projenin kendi antetleri ve rapor düzenleri
+The properties of the open project; changing them locks the project data	Açık projenin özellikleri; bunları değiştirmek proje verilerini kilitler
 The properties of the selection in a window beside the page	Seçimin özellikleri sayfanın yanındaki bir pencerede
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Özellikler bu arada proje sunucusunda değiştirildi. Yeniden yükle bunları gösterir; girdikleriniz değiştirilir.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Ray veya montaj tabanı; aksesuarları kancalar, kelepçeler ve balasttır
 The recalculation keeps frozen routes as long as they are still possible	Yeniden hesaplama, mümkün olduğu sürece dondurulmuş güzergâhları korur
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Dosya sekmeli şerit menülerin yerini alır; Ctrl+Shift+P her komutu bulur.
@@ -2129,6 +2153,7 @@ Total selectivity	Tam seçicilik
 Touch screen	Dokunmatik ekran
 Transfer project parts to database	Proje parçalarını veritabanına aktar
 Translate the project texts; documentation per language	Proje metinlerini çevir; dil başına dokümantasyon
+Try again	Yeniden dene
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90 °: ön yüzler sağa bakar)
 Turn the 3D view to the point	3B görünümü noktaya çevir
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
@@ -2219,6 +2244,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	3B görünümde çatıya tıklanan yer
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Cihazın yapısının kaynağı: sembolün çevresindeki yapıya eşit olan yönler devralınır ve sembol bir yapı kutusuna girdiğinde veya çıktığında değişir; diğer yönler cihazın kendisine aittir ve korunur.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Telin başladığı ve bittiği yer: parça verilerinden bir bağlantı noktası, fonksiyon şablonundan oluşturulan bir nokta veya eşleşen bağlantı noktası yoksa cihaz merkezi
+Who created the project on the project server and when; not the drawing author below	Projeyi proje sunucusunda kimin ne zaman oluşturduğu; aşağıdaki çizim yazarı değildir
 Whole building	Tüm bina
 Whole words	Tam sözcükler
 Width / going	Genişlik / basamak
@@ -2391,6 +2417,7 @@ x y	x y
 {} (no such device)	{} (böyle bir cihaz yok)
 {} (not placed in the layout)	{} (yerleşime konmamış)
 {} (project server, revision {})	{} (proje sunucusu, revizyon {})
+{} (revision {})	{} (revizyon {})
 {} (spare)	{} (yedek)
 {} (subproject of {})	{0} ({1} alt projesi)
 {} (unused)	{} (kullanılmıyor)
@@ -2402,6 +2429,7 @@ x y	x y
 {} added to building {}	{1} binasına {0} eklendi
 {} addresses changed	{} adres değiştirildi
 {} air-termination rods	{} paratoner çubuğu
+{} already exists on the project server.	{} proje sunucusunda zaten var.
 {} bundles, {} branch points	{} demet, {} dallanma noktası
 {} bus cables created	{} bus kablosu oluşturuldu
 {} bus connections	{} bus bağlantısı
@@ -2531,6 +2559,7 @@ x y	x y
 {} unused structure identifiers removed	{} kullanılmayan yapı tanımlayıcısı kaldırıldı
 {} values taken over	{} değer devralındı
 {} warnings	{} uyarı
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} bu arada proje sunucusunda değiştirildi. Girdikleriniz korunur; geçerli kayıtlı durumu kopyalamak için kopyayı yeniden oluşturun.
 {} was imported into the parts database; its page no longer exists	{} parça veritabanına aktarıldı; sayfası artık yok
 {} windows	{} pencere
 {} wire pieces joined	{} tel parçası birleştirildi
@@ -2547,6 +2576,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} sayfa)
 {} – {} here (Esc cancels)	{} – burada {} (Esc iptal eder)
 {}, freestanding	{}, arazi tipi
+{}, {} (copy of {}, revision {})	{}, {} ({} kopyası, revizyon {})
 {}: click to show its floor plan	{}: kat planını göstermek için tıklayın
 {}: crimp together with the wire to {}	{}: {} yönündeki telle birlikte sıkıştırın
 {}: drag to move it, R turns it, a double-click opens it	{}: taşımak için sürükleyin, R döndürür, çift tıklama açar

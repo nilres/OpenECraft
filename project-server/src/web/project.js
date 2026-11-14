@@ -85,15 +85,18 @@ async function showProjects() {
   const draw = () => {
     const f = filter.trim().toLowerCase();
     const rows = list.filter(p => !f || p.name.toLowerCase().includes(f) || (p.title || "").toLowerCase().includes(f));
-    let html = '<table><thead><tr><th>' + esc(t("Project")) + '</th><th class="hide-narrow">' + esc(t("Description")) + '</th><th class="num">' + esc(t("Pages")) + '</th><th class="num hide-narrow">' + esc(t("Revision")) + "</th><th>" +
+    let html = '<table><thead><tr><th>' + esc(t("Project")) + '</th><th class="hide-narrow">' + esc(t("Description")) + '</th><th class="num">' + esc(t("Pages")) + '</th><th class="num hide-narrow">' + esc(t("Revision")) + '</th><th class="hide-narrow">' +
+      esc(t("Created by")) + '</th><th class="hide-narrow">' + esc(t("Last changed by")) + '</th><th class="hide-narrow">' + esc(t("Last changed")) + "</th><th>" +
       esc(t("In use by")) + '</th><th class="hide-narrow">' + esc(t("Your rights")) + "</th></tr></thead><tbody>";
     for (const p of rows) {
       html += '<tr data-name="' + esc(p.name) + '"><td><a href="#' + esc(new URLSearchParams({ project: p.name }).toString()) + '"><strong>' + esc(p.name) + "</strong></a></td>" +
-        '<td class="hide-narrow">' + esc(p.title && p.title !== p.name ? p.title : "") + '</td><td class="num">' + p.pages + '</td><td class="num hide-narrow">' + p.revision + "</td><td>" +
+        '<td class="hide-narrow">' + esc(p.title && p.title !== p.name ? p.title : "") + '</td><td class="num">' + p.pages + '</td><td class="num hide-narrow">' + p.revision + "</td>" +
+        '<td class="hide-narrow"' + (p.created_at ? ' title="' + esc(dateTime(p.created_at)) + '"' : "") + ">" + known(p.created_by) + '</td><td class="hide-narrow">' + known(p.changed_by) +
+        '</td><td class="hide-narrow">' + known(dateTime(p.changed_at)) + "</td><td>" +
         (p.users.length ? '<span class="badge locked">' + esc(p.users.join(", ")) + "</span>" : "") + '</td><td class="hide-narrow"><div class="rights">' +
         rightsBadges(p.rights) + "</div></td></tr>";
     }
-    if (!rows.length) html += '<tr><td colspan="6" class="muted">' + esc(list.length ? t("No projects found") : session ? t("You may not see any project") : t("Sign in to see the projects")) + "</td></tr>";
+    if (!rows.length) html += '<tr><td colspan="9" class="muted">' + esc(list.length ? t("No projects found") : session ? t("You may not see any project") : t("Sign in to see the projects")) + "</td></tr>";
     document.getElementById("project-list").innerHTML = html + "</tbody></table>";
     document.querySelectorAll("tr[data-name]").forEach(r => r.onclick = e => { if (e.target.closest("a")) return; openProject(r.dataset.name); });
   };
@@ -102,6 +105,9 @@ async function showProjects() {
   document.getElementById("filter").oninput = e => { filter = e.target.value; draw(); };
   draw();
 }
+
+/// A value of the server, or that it is not known (projects of earlier servers).
+function known(text) { return text ? esc(text) : '<span class="muted">' + esc(t("Unknown")) + "</span>"; }
 
 function openProject(name, page) {
   view = "project";

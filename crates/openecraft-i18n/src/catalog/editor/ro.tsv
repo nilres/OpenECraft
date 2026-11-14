@@ -130,6 +130,7 @@ All pages	Toate paginile
 All report pages	Toate paginile de raport
 All user symbols as library file	Toate simbolurile utilizatorului ca fișier de bibliotecă
 All wires of this potential are highlighted.	Toate conductoarele acestui potențial sunt evidențiate.
+Also copy revisions, baselines and review records	Copiază și reviziile, versiunile de referință și înregistrările de revizuire
 Also the groups that do not fit the function definition	Inclusiv grupele care nu corespund definiției de funcție
 Altitude	Altitudine
 Always	Întotdeauna
@@ -431,6 +432,9 @@ Copy	Copiere
 Copy / cut / paste (devices get new tags)	Copiere / decupare / lipire (dispozitivele primesc identificatori noi)
 Copy as new	Copiere ca nou
 Copy built-in…	Copiere element integrat…
+Copy of	Copie a
+Copy project	Copiere proiect
+Copy project…	Copiere proiect…
 Core designations separated by blanks	Denumirile firelor, separate prin spații
 Core labels placed by hand	Etichetele firelor plasate manual
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Fire 1, 2, 3 … pentru conductoarele intersectate, plus GNYE
@@ -442,10 +446,16 @@ Covers what is behind the text	Acoperă ce se află în spatele textului
 Create	Creare
 Create an enclosure in the panel layout first.	Creați mai întâi o carcasă în amplasarea în tablou.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Creați o carcasă sau o încăpere (Spațiu de montaj › Carcasă nouă, Încăpere nouă) pentru a începe dispunerea.
+Create and open	Creare și deschidere
 Create baseline	Creare versiune de referință
 Create bus cables	Creare cabluri de magistrală
 Create draft	Creare ciornă
 Create revision	Creare revizie
+Created on the server	Creat pe server
+Created {}	Creat la {}
+Created {} as a copy of {} and opened it	{} a fost creat ca o copie a {} și deschis
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Creează pe server un proiect nou din starea salvată a acestuia; mai întâi îi stabiliți numele și proprietățile
+Creating {} as a copy of {}…	Se creează {} ca o copie a {}…
 Cross references…	Referințe încrucișate…
 Crossed wires	Conductoare intersectate
 Ctrl + click on the text opens it as well	Ctrl + clic pe text îl deschide de asemenea
@@ -1050,6 +1060,7 @@ Load reserve	Rezervă de sarcină
 Load template…	Încărcare șablon…
 Loading changes…	Se încarcă modificările…
 Loading the project access…	Se încarcă accesul la proiect…
+Loading the properties of {}…	Se încarcă proprietățile {}…
 Loads	Consumatori
 Local file	Fișier local
 Local file: {}	Fișier local: {}
@@ -1615,6 +1626,7 @@ Release: lock all pages	Aprobare: blocare toate paginile
 Released page – read only	Pagină aprobată – doar în citire
 Released pages in it keep their names	Paginile aprobate din ea își păstrează numele
 Released pages keep their name.	Paginile aprobate își păstrează numele.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Reviziile aprobate, versiunile de referință, comentariile, marcajele, aprobările și cererile de modificare ale originalului. Fără ele, copia începe ca proiect nou.
 Releases all locks; the project stays open as a local copy	Eliberează toate blocările; proiectul rămâne deschis ca copie locală
 Releasing…	Se eliberează…
 Remove from cable	Eliminare din cablu
@@ -1789,6 +1801,7 @@ Save to project server: {}	Salvează pe serverul de proiecte: {}
 Save to project server: {} – the connection is lost, saving tries again	Salvează pe serverul de proiecte: {} – conexiunea s-a pierdut, salvarea încearcă din nou
 Save workspace	Salvare spațiu de lucru
 Save workspace…	Salvare spațiu de lucru…
+Saved the properties of {} (revision {})	Proprietățile {} au fost salvate (revizia {})
 Saved to	Salvat în
 Saved to the project server (revision {})	Salvat pe serverul de proiecte (revizia {})
 Saved workspaces	Spații de lucru salvate
@@ -1801,6 +1814,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Salveaz�
 Saves your version of the whole project as a project file	Salvează versiunea dvs. a întregului proiect ca fișier de proiect
 Saving failed: {}	Salvarea nu a reușit: {}
 Saving the project access…	Se salvează accesul la proiect…
+Saving the properties of {}…	Se salvează proprietățile {}…
 Saving to the project server…	Se salvează pe serverul de proiecte…
 Schematic crosshair	Reticulul schemei electrice
 Scheme	Schemă
@@ -1833,6 +1847,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Selectați un macro.
 Select a part. Double click adds it to the device.	Selectați un articol. Dublu clic îl adaugă la dispozitiv.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Selectați o schemă de plasare. O schemă plasează proprietăți lângă simboluri; simbolurile care o folosesc sunt actualizate când se modifică.
+Select a project in the list	Selectați un proiect din listă
 Select a report block.	Selectați un bloc de raport.
 Select a request.	Selectați o cerere.
 Select a segment.	Selectați un segment.
@@ -1854,6 +1869,7 @@ Semicolon	Punct și virgulă
 Separator	Separator
 Server URL	URL server
 Server address and sign-in	Adresa serverului și autentificare
+Server project properties	Proprietățile proiectului de pe server
 Server type	Tip de server
 Servers	Servere
 Service space in front	Spațiu de service în față
@@ -1909,6 +1925,7 @@ Shown now: {}	Afișat acum: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Afișată pe copertă și de elementele imagine ale cartușelor care arată sigla proiectului
 Shows	Afișează
 Shows the differences of your version to the open project; selected ones can be taken over	Arată diferențele versiunii dvs. față de proiectul deschis; cele selectate pot fi preluate
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Afișează proprietățile salvate pe serverul de proiecte; le modificați aici dacă aveți dreptul și nimeni nu a blocat datele proiectului
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Pereții laterali, peretele din spate, plafonul și baza văzute din exterior: ventilatoare, presetupe, decupaje
 Sign in in the Project server pane; the project opens afterwards	Autentificați-vă în panoul Server de proiecte; apoi proiectul se deschide
 Sign in…	Autentificare…
@@ -2050,6 +2067,7 @@ The aspect ratio is kept.	Raportul de aspect se păstrează.
 The check warns about cable ducts filled above this level	Verificarea avertizează despre canalele de cablu umplute peste acest nivel
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Verificările respectă distanțele dintre clase și permit suprapunerea claselor conform setărilor din Verificări de amplasare
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Comenzile tuturor pluginurilor, pe pluginuri, cu căutare; steaua fixează o comandă în fila Pluginuri
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Copia este creată din starea salvată pe serverul de proiecte. Modificările pe care alți utilizatori nu le-au salvat încă nu fac parte din ea. Sesiunile, blocările și drepturile de acces nu se copiază; originalul rămâne așa cum este.
 The crossed wires get free cores of the cable in order	Conductoarele intersectate primesc pe rând fire libere ale cablului
 The current page belongs to option {}.	Pagina curentă aparține opțiunii {}.
 The devices do not fit onto the rail	Dispozitivele nu încap pe șină
@@ -2067,8 +2085,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Biblioteca de macro-uri nu are macro-uri de pagină (Macro-uri › Salvare pagină ca macro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Tastele modificatoare cu care rotița deplasează lateral sau mărește se setează la Taste modificatoare.
 The modules no string takes yet in series, on the first inverter	Modulele pe care încă nu le ia niciun șir, în serie, pe primul invertor
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Numele de pe server este format din litere, cifre, spații, - _ . (cel mult 64 de caractere).
 The names of its pages follow	Numele paginilor ei se schimbă odată cu ea
 The open project already has your version	Proiectul deschis are deja versiunea dvs.
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Proiectul deschis are modificări care nu sunt încă salvate pe serverul de proiecte. Veți fi întrebat dacă să fie salvate mai întâi; numai modificările salvate fac parte din copie.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Proiectul deschis este o copie locală de recuperare a acestui proiect. Modificările sale nu sunt pe serverul de proiecte și nu fac parte din copie.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Proiectul deschis este o copie locală de recuperare. Modificările sale nu sunt salvate pe serverul de proiecte; înainte ca proiectul partajat să se deschidă, decideți dacă le salvați local sau le renunțați.
 The page name gets the section number	Numele paginii primește numărul secțiunii
 The page type, plot frame, title block, structure, description and the whole content are saved.	Se salvează tipul paginii, chenarul, cartușul, structura, descrierea și întregul conținut.
@@ -2078,13 +2099,16 @@ The point's coordinates in the coordinate reference system	Coordonatele punctulu
 The post; its accessories are the table beams, rails and clamps	Stâlpul; accesoriile lui sunt grinzile mesei, șinele și clemele
 The project changed since the search.	Proiectul s-a modificat de la căutare.
 The project check	Verificarea proiectului
+The project data is locked by {}: the properties cannot be changed now.	Datele proiectului sunt blocate de {}: proprietățile nu pot fi modificate acum.
 The project database needs the desktop version: the browser cannot search folders.	Baza de date de proiecte necesită versiunea desktop: browserul nu poate căuta în foldere.
 The project server does not answer: changes are not saved on it until the connection is back	Serverul de proiecte nu răspunde: modificările nu sunt salvate pe el până nu revine conexiunea
 The project server {} could not open {}.	Serverul de proiecte {} nu a putut deschide {}.
 The project's own page templates as a file	Șabloanele de pagină proprii ale proiectului ca fișier
 The project's own title blocks	Cartușele proprii ale proiectului
 The project's own title blocks and report schemes	Cartușele și schemele de raport proprii ale proiectului
+The properties of the open project; changing them locks the project data	Proprietățile proiectului deschis; modificarea lor blochează datele proiectului
 The properties of the selection in a window beside the page	Proprietățile selecției într-o fereastră lângă pagină
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Între timp, proprietățile au fost modificate pe serverul de proiecte. Reîncărcarea le afișează; ce ați introdus este înlocuit.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Șina sau baza de montaj; accesoriile ei sunt cârligele, clemele și balastul
 The recalculation keeps frozen routes as long as they are still possible	Recalcularea păstrează traseele fixate atât timp cât sunt încă posibile
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Panglica cu fila Fișier înlocuiește meniurile; Ctrl+Shift+P găsește orice comandă.
@@ -2129,6 +2153,7 @@ Total selectivity	Selectivitate totală
 Touch screen	Ecran tactil
 Transfer project parts to database	Transfer articole proiect în baza de date
 Translate the project texts; documentation per language	Traducerea textelor proiectului; documentație pe limbi
+Try again	Reîncercare
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotire în jurul verticalei, în sens antiorar văzut de sus (90 °: fețele frontale sunt orientate spre dreapta)
 Turn the 3D view to the point	Întoarcerea vederii 3D spre punct
 Twin ferrules where two wires share a connection point	Manșoane duble unde două conductoare împart un punct de conexiune
@@ -2219,6 +2244,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Unde s-a dat clic pe acoperiș în vederea 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De unde provine structura dispozitivului: aspectele egale cu structura din jurul simbolului sunt moștenite și se schimbă când acesta este mutat într-o casetă de structură sau în afara ei; celelalte aspecte sunt ale dispozitivului și rămân.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Unde începe și se termină conductorul: un punct de conexiune din datele articolului, unul generat din șablonul de funcție sau centrul dispozitivului dacă niciun punct de conexiune nu corespunde
+Who created the project on the project server and when; not the drawing author below	Cine a creat proiectul pe serverul de proiecte și când; nu autorul desenului de mai jos
 Whole building	Întreaga clădire
 Whole words	Cuvinte întregi
 Width / going	Lățime / treaptă
@@ -2391,6 +2417,7 @@ x y	x y
 {} (no such device)	{} (aparat inexistent)
 {} (not placed in the layout)	{} (neplasat în amplasare)
 {} (project server, revision {})	{} (server de proiecte, revizia {})
+{} (revision {})	{} (revizia {})
 {} (spare)	{} (rezervă)
 {} (subproject of {})	{} (subproiect al {})
 {} (unused)	{} (neutilizat)
@@ -2402,6 +2429,7 @@ x y	x y
 {} added to building {}	{} adăugat la clădirea {}
 {} addresses changed	{} adrese modificate
 {} air-termination rods	{} tije de captare
+{} already exists on the project server.	{} există deja pe serverul de proiecte.
 {} bundles, {} branch points	{} mănunchiuri, {} puncte de ramificație
 {} bus cables created	{} cabluri de magistrală create
 {} bus connections	{} conexiuni de magistrală
@@ -2531,6 +2559,7 @@ x y	x y
 {} unused structure identifiers removed	{} identificatori de structură neutilizați eliminați
 {} values taken over	{} valori preluate
 {} warnings	Avertismente: {}
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	Între timp, {} a fost modificat pe serverul de proiecte. Ce ați introdus se păstrează; creați din nou copia pentru a copia starea salvată curentă.
 {} was imported into the parts database; its page no longer exists	{} a fost importat în baza de date de articole; pagina sa nu mai există
 {} windows	{} ferestre
 {} wire pieces joined	{} segmente de conductor unite
@@ -2547,6 +2576,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} pagini)
 {} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
 {}, freestanding	{}, la sol
+{}, {} (copy of {}, revision {})	{}, {} (copie a {}, revizia {})
 {}: click to show its floor plan	{}: clic pentru a afișa planul
 {}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide

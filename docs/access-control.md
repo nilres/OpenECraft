@@ -10,6 +10,60 @@ and what they may do comes from **roles** given to them or their **groups** by
 - Rights and built-in roles: `openecraft_core::collab::{ProjectRight, ProjectRole}` and
   `openecraft_parts::portal::{PartsRight, Role}`
 
+## Remembered project-server sign-ins
+
+In the editor's **Project server** pane, **Keep me signed in** is an explicit,
+optional setting for the selected server and account. On Windows, only the account
+session token goes into Windows Credential Manager. Passwords are never persisted.
+App settings contain only server/account metadata and the opt-in, independently
+per account so another editor window cannot disable a different account's sign-in.
+The complete server identity includes scheme, host, effective port and base path;
+credentials never move to another server. HTTP and HTTPS remain distinct, and this
+feature does not change or encrypt the existing transport.
+
+On startup, `GET /api/v1/session` validates the remembered account token and returns
+`CurrentAccount { user, access }`, with current rights and no token or password.
+Root tokens, anonymous access, invalid and expired account tokens are refused with
+401. This request does not renew the token or touch page locks. The account session
+currently expires 30 days after sign-in; the separate 90-second idle project session
+is unaffected. Older servers without this endpoint require manual sign-in; their
+404 does not delete a possibly valid remembered credential. Connection failures
+also retain the opt-in for a later retry.
+
+If an account token expires while a shared project is open, signing in again with
+the same server and account continues that project through the session recovery
+flow. Unsaved edits and undo history remain available; signing in does not mark
+them as saved or replace the project with a fresh copy.
+
+**Sign out** removes the remembered credential and asks the server to revoke the
+account token after outstanding saves and project closes have been answered.
+**Change user** releases the project session and clears the selected user name,
+but keeps that account's remembered sign-in for switching back. An open shared
+project and its undo history remain as a local recovery copy, including
+unsaved changes. Local sign-out works offline; the pane reports separately if the
+server session could not be ended or protected storage could not be changed.
+OS operations run in order, including deletion after an already-running save;
+normal application closing waits for their results. Replies from a previous
+server/account selection never restore its identity or replace the open project.
+A delayed save confirmation still belongs to the same retained project during
+reauthentication; it advances the saved revision without changing the new sign-in.
+Background revocation does not disable the next sign-in while waiting for a server.
+
+Invalid-token cleanup compares the rejected token before deleting it. It never
+writes a new opt-out: another window may already have remembered a newer sign-in.
+Directory logins keep their opt-in under the account name confirmed by the server,
+including when the typed name was domain-qualified or a user principal name.
+
+The browser, macOS and Linux currently offer session-only sign-in. Their checkbox
+is disabled with an explanation; there is no token/password fallback in local
+storage, IndexedDB, ordinary settings or project files. Windows support reuses the
+existing OS credential backend also used for EPLAN PATs, with a separate namespace.
+These session/platform functions do not change project commands or the plugin API.
+
+The isolated live check is `scripts/test-project-sign-in.ps1` (PowerShell 7,
+Windows). It uses a disposable loopback project server, synthetic accounts, its
+own metadata folder and unique credential keys, which the test removes afterwards.
+
 ## Rights and built-in roles
 
 Project server (the scope of a grant is a project name):

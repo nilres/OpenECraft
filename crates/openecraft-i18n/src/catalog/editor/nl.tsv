@@ -130,6 +130,7 @@ All pages	Alle pagina's
 All report pages	Alle rapportpagina's
 All user symbols as library file	Alle gebruikerssymbolen als bibliotheekbestand
 All wires of this potential are highlighted.	Alle draden van deze potentiaal zijn gemarkeerd.
+Also copy revisions, baselines and review records	Ook revisies, baselines en reviewgegevens kopiëren
 Also the groups that do not fit the function definition	Ook de groepen die niet bij de functiedefinitie passen
 Altitude	Opstellingshoogte
 Always	Altijd
@@ -431,6 +432,9 @@ Copy	Kopiëren
 Copy / cut / paste (devices get new tags)	Kopiëren / knippen / plakken (apparaten krijgen nieuwe aanduidingen)
 Copy as new	Als nieuw kopiëren
 Copy built-in…	Ingebouwd kopiëren…
+Copy of	Kopie van
+Copy project	Project kopiëren
+Copy project…	Project kopiëren…
 Core designations separated by blanks	Aderbenamingen, gescheiden door spaties
 Core labels placed by hand	Aderopschriften handmatig geplaatst
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Aders 1, 2, 3 … voor de gekruiste draden, plus GNYE
@@ -442,10 +446,16 @@ Covers what is behind the text	Bedekt wat achter de tekst ligt
 Create	Maken
 Create an enclosure in the panel layout first.	Maak eerst een behuizing in de kastlay-out.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Maak een behuizing of een ruimte (Montageruimte › Nieuwe behuizing, Nieuwe ruimte) om met de montage-indeling te beginnen.
+Create and open	Aanmaken en openen
 Create baseline	Baseline maken
 Create bus cables	Buskabels maken
 Create draft	Concept maken
 Create revision	Revisie maken
+Created on the server	Aangemaakt op de server
+Created {}	Gemaakt op {}
+Created {} as a copy of {} and opened it	{} aangemaakt als kopie van {} en geopend
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Maakt op de server een nieuw project van de opgeslagen toestand van dit project; je legt eerst de naam en de eigenschappen vast
+Creating {} as a copy of {}…	{} wordt aangemaakt als kopie van {}…
 Cross references…	Kruisverwijzingen…
 Crossed wires	Gekruiste draden
 Ctrl + click on the text opens it as well	Ctrl + klik op de tekst opent deze ook
@@ -1050,6 +1060,7 @@ Load reserve	Belastingsreserve
 Load template…	Sjabloon laden…
 Loading changes…	Wijzigingen laden…
 Loading the project access…	Projecttoegang laden…
+Loading the properties of {}…	Eigenschappen van {} laden…
 Loads	Belastingen
 Local file	Lokaal bestand
 Local file: {}	Lokaal bestand: {}
@@ -1615,6 +1626,7 @@ Release: lock all pages	Vrijgeven: alle pagina's vergrendelen
 Released page – read only	Vrijgegeven pagina – alleen-lezen
 Released pages in it keep their names	Vrijgegeven pagina's erin behouden hun naam
 Released pages keep their name.	Vrijgegeven pagina's behouden hun naam.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Vrijgegeven revisies, baselines, opmerkingen, markeringen, goedkeuringen en wijzigingsverzoeken van het origineel. Zonder deze begint de kopie als een nieuw project.
 Releases all locks; the project stays open as a local copy	Geeft alle vergrendelingen vrij; het project blijft geopend als lokale kopie
 Releasing…	Vrijgeven…
 Remove from cable	Uit kabel verwijderen
@@ -1789,6 +1801,7 @@ Save to project server: {}	Opslaan op projectserver: {}
 Save to project server: {} – the connection is lost, saving tries again	Opslaan op projectserver: {} – de verbinding is verbroken, opslaan probeert het opnieuw
 Save workspace	Werkruimte opslaan
 Save workspace…	Werkruimte opslaan…
+Saved the properties of {} (revision {})	Eigenschappen van {} opgeslagen (revisie {})
 Saved to	Opgeslagen in
 Saved to the project server (revision {})	Opgeslagen op de projectserver (revisie {})
 Saved workspaces	Opgeslagen werkruimten
@@ -1801,6 +1814,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Slaat de
 Saves your version of the whole project as a project file	Slaat jouw versie van het hele project op als projectbestand
 Saving failed: {}	Opslaan mislukt: {}
 Saving the project access…	Projecttoegang opslaan…
+Saving the properties of {}…	Eigenschappen van {} opslaan…
 Saving to the project server…	Opslaan op de projectserver…
 Schematic crosshair	Kruisdraad van het schema
 Scheme	Schema
@@ -1833,6 +1847,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Selecteer een macro.
 Select a part. Double click adds it to the device.	Selecteer een artikel. Dubbelklikken voegt het toe aan het apparaat.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Selecteer een plaatsingsschema. Een schema plaatst eigenschappen naast symbolen; symbolen die het gebruiken, worden bijgewerkt wanneer het wijzigt.
+Select a project in the list	Selecteer een project in de lijst
 Select a report block.	Selecteer een rapportblok.
 Select a request.	Selecteer een verzoek.
 Select a segment.	Selecteer een segment.
@@ -1854,6 +1869,7 @@ Semicolon	Puntkomma
 Separator	Afscheider
 Server URL	Server-URL
 Server address and sign-in	Serveradres en aanmelding
+Server project properties	Eigenschappen van het serverproject
 Server type	Servertype
 Servers	Servers
 Service space in front	Serviceruimte ervoor
@@ -1909,6 +1925,7 @@ Shown now: {}	Nu getoond: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Getoond op het voorblad en door de afbeeldingselementen van titelblokken die het projectlogo tonen
 Shows	Toont
 Shows the differences of your version to the open project; selected ones can be taken over	Toont de verschillen van je versie met het geopende project; geselecteerde kunnen worden overgenomen
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Toont de eigenschappen die op de projectserver zijn opgeslagen; je wijzigt ze hier als je dat mag en niemand de projectgegevens heeft vergrendeld
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Zijwanden, achterwand, dak en bodem gezien van buiten: ventilatoren, kabelwartels, uitsparingen
 Sign in in the Project server pane; the project opens afterwards	Meld u aan in het deelvenster Projectserver; daarna opent het project
 Sign in…	Aanmelden…
@@ -2050,6 +2067,7 @@ The aspect ratio is kept.	De hoogte-breedteverhouding blijft behouden.
 The check warns about cable ducts filled above this level	De controle waarschuwt voor kabelgoten die boven deze waarde gevuld zijn
 The checks keep the distances between classes and let classes overlap as set in Layout checks	De controles houden de afstanden tussen klassen aan en laten klassen overlappen zoals ingesteld in Lay-outcontroles
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	De opdrachten van alle plugins per plugin, met zoeken; de ster zet een opdracht vast op het tabblad Plugins
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	De kopie wordt gemaakt van de toestand die op de projectserver is opgeslagen. Wijzigingen die andere gebruikers nog niet hebben opgeslagen, horen er niet bij. Sessies, vergrendelingen en toegangsrechten worden niet gekopieerd; het origineel blijft zoals het is.
 The crossed wires get free cores of the cable in order	De gekruiste draden krijgen op volgorde vrije aders van de kabel
 The current page belongs to option {}.	De huidige pagina hoort bij optie {}.
 The devices do not fit onto the rail	De apparaten passen niet op de rail
@@ -2067,8 +2085,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	De macrobibliotheek heeft geen paginamacro's (Macro's › Pagina opslaan als macro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	De combinatietoetsen waarmee het wiel zijwaarts verschuift of zoomt, stelt u in onder Combinatietoetsen.
 The modules no string takes yet in series, on the first inverter	De modules die nog geen string neemt, in serie, op de eerste omvormer
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	De naam op de server bestaat uit letters, cijfers, spaties, - _ . (maximaal 64 tekens).
 The names of its pages follow	De namen van de pagina's veranderen mee
 The open project already has your version	Het geopende project heeft je versie al
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Het geopende project heeft wijzigingen die nog niet op de projectserver zijn opgeslagen. Je krijgt de vraag of ze eerst moeten worden opgeslagen; alleen opgeslagen wijzigingen horen bij de kopie.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Het geopende project is een lokale herstelkopie van dit project. De wijzigingen ervan staan niet op de projectserver en horen niet bij de kopie.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Het geopende project is een lokale herstelkopie. De wijzigingen ervan zijn niet op de projectserver opgeslagen; voordat het gedeelde project opent, beslist u of u ze lokaal opslaat of verwerpt.
 The page name gets the section number	De paginanaam krijgt het sectienummer
 The page type, plot frame, title block, structure, description and the whole content are saved.	Het paginatype, het plotkader, het titelblok, de structuur, de beschrijving en de volledige inhoud worden opgeslagen.
@@ -2078,13 +2099,16 @@ The point's coordinates in the coordinate reference system	De coördinaten van h
 The post; its accessories are the table beams, rails and clamps	De paal; de toebehoren zijn de tafelliggers, rails en klemmen
 The project changed since the search.	Het project is gewijzigd sinds de zoekopdracht.
 The project check	De projectcontrole
+The project data is locked by {}: the properties cannot be changed now.	De projectgegevens zijn vergrendeld door {}: de eigenschappen kunnen nu niet worden gewijzigd.
 The project database needs the desktop version: the browser cannot search folders.	De projectdatabase vereist de desktopversie: de browser kan geen mappen doorzoeken.
 The project server does not answer: changes are not saved on it until the connection is back	De projectserver antwoordt niet: wijzigingen worden daar pas opgeslagen als de verbinding terug is
 The project server {} could not open {}.	De projectserver {} kon {} niet openen.
 The project's own page templates as a file	De eigen paginasjablonen van het project als bestand
 The project's own title blocks	De eigen titelblokken van het project
 The project's own title blocks and report schemes	De eigen titelblokken en rapportschema's van het project
+The properties of the open project; changing them locks the project data	De eigenschappen van het geopende project; wijzigen vergrendelt de projectgegevens
 The properties of the selection in a window beside the page	De eigenschappen van de selectie in een venster naast de pagina
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	De eigenschappen zijn intussen op de projectserver gewijzigd. Opnieuw laden toont ze; je invoer wordt vervangen.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	De rail of montagevoet; zijn toebehoren zijn de haken, klemmen en ballast
 The recalculation keeps frozen routes as long as they are still possible	De herberekening behoudt bevroren routes zolang deze nog mogelijk zijn
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Het lint met het tabblad Bestand vervangt de menu's; Ctrl+Shift+P vindt elke opdracht.
@@ -2129,6 +2153,7 @@ Total selectivity	Volledige selectiviteit
 Touch screen	Touchscreen
 Transfer project parts to database	Projectartikelen overnemen in de database
 Translate the project texts; documentation per language	De projectteksten vertalen; documentatie per taal
+Try again	Opnieuw proberen
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Draaiing om de verticale as, van boven gezien linksom (90 °: de fronten wijzen naar rechts)
 Turn the 3D view to the point	De 3D-weergave naar het punt draaien
 Twin ferrules where two wires share a connection point	Dubbele adereindhulzen waar twee draden een aansluitpunt delen
@@ -2219,6 +2244,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Waar in de 3D-weergave op het dak is geklikt
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Waar de structuur van het apparaat vandaan komt: aspecten die gelijk zijn aan de structuur rond het symbool zijn geërfd en volgen wanneer het in of uit een structuurkader wordt verplaatst; andere aspecten zijn van het apparaat zelf en blijven.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Waar de draad begint en eindigt: een aansluitpunt uit de artikelgegevens, een aansluitpunt gegenereerd uit de functiesjabloon, of het midden van het apparaat als geen aansluitpunt overeenkomt
+Who created the project on the project server and when; not the drawing author below	Wie het project op de projectserver heeft aangemaakt en wanneer; niet de auteur van de tekening hieronder
 Whole building	Heel gebouw
 Whole words	Hele woorden
 Width / going	Breedte / aantrede
@@ -2391,6 +2417,7 @@ x y	x y
 {} (no such device)	{} (apparaat bestaat niet)
 {} (not placed in the layout)	{} (niet in de opbouw geplaatst)
 {} (project server, revision {})	{} (projectserver, revisie {})
+{} (revision {})	{} (revisie {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (deelproject van {})
 {} (unused)	{} (ongebruikt)
@@ -2402,6 +2429,7 @@ x y	x y
 {} added to building {}	{} toegevoegd aan gebouw {}
 {} addresses changed	{} adressen gewijzigd
 {} air-termination rods	{} opvangstaven
+{} already exists on the project server.	{} bestaat al op de projectserver.
 {} bundles, {} branch points	{} bundels, {} aftakpunten
 {} bus cables created	{} buskabels gemaakt
 {} bus connections	{} busverbindingen
@@ -2531,6 +2559,7 @@ x y	x y
 {} unused structure identifiers removed	{} ongebruikte structuuraanduidingen verwijderd
 {} values taken over	{} waarden overgenomen
 {} warnings	{} waarschuwingen
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} is intussen op de projectserver gewijzigd. Je invoer blijft behouden; maak de kopie opnieuw aan om de nu opgeslagen toestand te kopiëren.
 {} was imported into the parts database; its page no longer exists	{} is in de artikeldatabase geïmporteerd; de pagina bestaat niet meer
 {} windows	{} vensters
 {} wire pieces joined	{} draadstukken samengevoegd
@@ -2547,6 +2576,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
 {}, freestanding	{}, vrijstaand
+{}, {} (copy of {}, revision {})	{}, {} (kopie van {}, revisie {})
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen
 {}: crimp together with the wire to {}	{}: samen met de draad naar {} krimpen
 {}: drag to move it, R turns it, a double-click opens it	{}: slepen om te verplaatsen, R draait, dubbelklik opent

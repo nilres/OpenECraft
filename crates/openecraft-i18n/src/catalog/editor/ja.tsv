@@ -129,6 +129,7 @@ All pages	すべてのページ
 All report pages	すべてのレポートページ
 All user symbols as library file	すべてのユーザーシンボル (ライブラリファイル)
 All wires of this potential are highlighted.	この電位のすべての電線が強調表示されています。
+Also copy revisions, baselines and review records	リビジョン、ベースライン、レビュー記録もコピー
 Also the groups that do not fit the function definition	機能定義に適合しないグループも含める
 Altitude	標高
 Always	常に
@@ -428,6 +429,9 @@ Copy	コピー
 Copy / cut / paste (devices get new tags)	コピー / 切り取り / 貼り付け (デバイスには新しいタグが付きます)
 Copy as new	新規としてコピー
 Copy built-in…	組み込みをコピー…
+Copy of	コピー元
+Copy project	プロジェクトをコピー
+Copy project…	プロジェクトをコピー…
 Core designations separated by blanks	スペース区切りの心線名称
 Core labels placed by hand	手動で配置した心線ラベル
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	横切った電線に心線 1、2、3 …、さらに GNYE
@@ -439,10 +443,16 @@ Covers what is behind the text	テキストの背後にあるものを隠しま�
 Create	作成
 Create an enclosure in the panel layout first.	最初に盤レイアウトでエンクロージャーを作成してください。
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	エンクロージャーまたは部屋を作成して (レイアウト空間 › 新しいエンクロージャー、新しい部屋) レイアウトを開始します。
+Create and open	作成して開く
 Create baseline	ベースラインを作成
 Create bus cables	バスケーブルを作成
 Create draft	ドラフトを作成
 Create revision	リビジョンを作成
+Created on the server	サーバーでの作成
+Created {}	作成: {}
+Created {} as a copy of {} and opened it	{} を {} のコピーとして作成し、開きました
+Creates a new project on the server from the saved state of this one; you set its name and properties first	このプロジェクトの保存済みの状態からサーバーに新しいプロジェクトを作成します。先に名前とプロパティを設定します
+Creating {} as a copy of {}…	{} を {} のコピーとして作成しています…
 Cross references…	相互参照…
 Crossed wires	横切った電線
 Ctrl + click on the text opens it as well	テキストを Ctrl + クリックしても開きます
@@ -1038,6 +1048,7 @@ Load reserve	負荷余裕
 Load template…	テンプレートを読み込む…
 Loading changes…	変更を読み込んでいます…
 Loading the project access…	プロジェクトへのアクセスを読み込んでいます…
+Loading the properties of {}…	{} のプロパティを読み込んでいます…
 Loads	負荷
 Local file	ローカルファイル
 Local file: {}	ローカルファイル：{}
@@ -1597,6 +1608,7 @@ Release: lock all pages	リリース: すべてのページをロック
 Released page – read only	リリース済みのページ – 読み取り専用
 Released pages in it keep their names	その中のリリース済みページは名前を保持します
 Released pages keep their name.	リリース済みのページは名前を維持します。
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	元のプロジェクトのリリース済みリビジョン、ベースライン、コメント、マークアップ、承認、変更依頼。これらがない場合、コピーは新しいプロジェクトとして始まります。
 Releases all locks; the project stays open as a local copy	すべてのロックを解放します。プロジェクトはローカルコピーとして開いたままになります
 Releasing…	解放しています…
 Remove from cable	ケーブルから削除
@@ -1771,6 +1783,7 @@ Save to project server: {}	プロジェクトサーバーに保存：{}
 Save to project server: {} – the connection is lost, saving tries again	プロジェクトサーバーに保存：{} – 接続が切れています。保存は再試行します
 Save workspace	ワークスペースを保存
 Save workspace…	ワークスペースを保存…
+Saved the properties of {} (revision {})	{} のプロパティを保存しました (リビジョン {})
 Saved to	保存先
 Saved to the project server (revision {})	プロジェクトサーバーに保存しました (リビジョン {})
 Saved workspaces	保存されたワークスペース
@@ -1781,6 +1794,7 @@ Saves the workspace, the arrangement of the panels and the open windows	ワー�
 Saves your version of the whole project as a project file	プロジェクト全体のあなたの版をプロジェクトファイルとして保存します
 Saving failed: {}	保存に失敗しました: {}
 Saving the project access…	プロジェクトへのアクセスを保存しています…
+Saving the properties of {}…	{} のプロパティを保存しています…
 Saving to the project server…	プロジェクトサーバーに保存しています…
 Schematic crosshair	回路図のクロスヘア
 Scheme	スキーム
@@ -1813,6 +1827,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	マクロを選択してください。
 Select a part. Double click adds it to the device.	部品を選択してください。ダブルクリックするとデバイスに追加されます。
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	配置スキームを選択してください。スキームはシンボルの横にプロパティを配置します。スキームを変更すると、使用しているシンボルが更新されます。
+Select a project in the list	一覧からプロジェクトを選択してください
 Select a report block.	レポートブロックを選択してください。
 Select a request.	依頼を選択してください。
 Select a segment.	セグメントを選択してください。
@@ -1834,6 +1849,7 @@ Semicolon	セミコロン
 Separator	分離器
 Server URL	サーバー URL
 Server address and sign-in	サーバーのアドレスとサインイン
+Server project properties	サーバープロジェクトのプロパティ
 Server type	サーバーの種類
 Servers	サーバー
 Service space in front	前面のサービススペース
@@ -1888,6 +1904,7 @@ Shown now: {}	現在の表示: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	表紙と、プロジェクトのロゴを表示する表題欄の画像要素に表示されます
 Shows	表示
 Shows the differences of your version to the open project; selected ones can be taken over	あなたの版と開いているプロジェクトの差分を表示します。選択したものを取り込めます
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	プロジェクトサーバーに保存されているプロパティを表示します。権限があり、誰もプロジェクトデータをロックしていなければ、ここで変更できます
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	外側から見た側板、背板、天板、底板: ファン、ケーブルグランド、切り欠き
 Sign in in the Project server pane; the project opens afterwards	「プロジェクトサーバー」ペインでサインインしてください。その後プロジェクトが開きます
 Sign in…	サインイン…
@@ -2029,6 +2046,7 @@ The aspect ratio is kept.	縦横比は維持されます。
 The check warns about cable ducts filled above this level	この充填率を超えた配線ダクトについてチェックで警告します
 The checks keep the distances between classes and let classes overlap as set in Layout checks	チェックでは、レイアウトチェックの設定に従ってクラス間の距離を確保し、クラスの重なりを許可します
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	すべてのプラグインのコマンドをプラグインごとに検索付きで表示します。星を付けるとコマンドがプラグインタブに固定されます
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	コピーはプロジェクトサーバーに保存されている状態から作成されます。他のユーザーがまだ保存していない変更は含まれません。セッション、ロック、アクセス権はコピーされません。元のプロジェクトはそのままです。
 The crossed wires get free cores of the cable in order	横切った電線にケーブルの空き心線が順番に割り当てられます
 The current page belongs to option {}.	現在のページはオプション {} に属しています。
 The devices do not fit onto the rail	デバイスがレールに収まりません
@@ -2046,8 +2064,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	マクロライブラリにページマクロがありません (マクロ › ページをマクロとして保存…)。
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	ホイールで横にパンまたはズームするモディファイアキーは「モディファイアキー」で設定します。
 The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	サーバー上の名前には、文字、数字、スペース、- _ . を使用します (最大 64 文字)。
 The names of its pages follow	そのページの名前も変わります
 The open project already has your version	開いているプロジェクトには既にあなたの版があります
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	開いているプロジェクトには、まだプロジェクトサーバーに保存されていない変更があります。先に保存するかどうかを確認します。コピーに含まれるのは保存済みの変更だけです。
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	開いているプロジェクトは、このプロジェクトのローカル復元コピーです。その変更はプロジェクトサーバーになく、コピーにも含まれません。
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	開いているプロジェクトはローカル復元コピーです。その変更はプロジェクトサーバーに保存されていません。共有プロジェクトを開く前に、ローカルに保存するか破棄するかを決めます。
 The page name gets the section number	ページ名にセクション番号が付きます
 The page type, plot frame, title block, structure, description and the whole content are saved.	ページタイプ、図枠、表題欄、構造、説明、すべての内容が保存されます。
@@ -2057,13 +2078,16 @@ The point's coordinates in the coordinate reference system	座標参照系での
 The post; its accessories are the table beams, rails and clamps	杭。付属品は架台の梁、レール、クランプです
 The project changed since the search.	検索後にプロジェクトが変更されました。
 The project check	プロジェクトのチェック
+The project data is locked by {}: the properties cannot be changed now.	プロジェクトデータは {} によってロックされています: 現在プロパティは変更できません。
 The project database needs the desktop version: the browser cannot search folders.	プロジェクトデータベースにはデスクトップ版が必要です。ブラウザーではフォルダーを検索できません。
 The project server does not answer: changes are not saved on it until the connection is back	プロジェクトサーバーが応答しません：接続が戻るまで変更はサーバーに保存されません
 The project server {} could not open {}.	プロジェクトサーバー {} は {} を開けませんでした。
 The project's own page templates as a file	プロジェクト独自のページテンプレート (ファイル)
 The project's own title blocks	プロジェクト独自の表題欄
 The project's own title blocks and report schemes	プロジェクト独自の表題欄とレポートスキーム
+The properties of the open project; changing them locks the project data	開いているプロジェクトのプロパティ。変更するとプロジェクトデータがロックされます
 The properties of the selection in a window beside the page	ページの横のウィンドウに選択範囲のプロパティ
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	その間にプロジェクトサーバーでプロパティが変更されました。再読み込みすると表示されます。入力した内容は置き換えられます。
 The rail or mounting base; its accessories are the hooks, clamps and ballast	レールまたは架台。付属品はフック、クランプ、バラスト
 The recalculation keeps frozen routes as long as they are still possible	再計算では、可能な限り固定されたルートが維持されます
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	ファイルタブ付きのリボンがメニューに代わります。Ctrl+Shift+P で任意のコマンドを検索できます。
@@ -2108,6 +2132,7 @@ Total selectivity	完全選択遮断
 Touch screen	タッチスクリーン
 Transfer project parts to database	プロジェクト部品をデータベースに転送
 Translate the project texts; documentation per language	プロジェクトテキストを翻訳します。言語ごとのドキュメント
+Try again	再試行
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	鉛直軸まわりの回転 (上から見て反時計回り、90 °: 正面が右向き)
 Turn the 3D view to the point	3D ビューをその点に向ける
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
@@ -2197,6 +2222,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	3D ビューで屋根をクリックした位置
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	デバイスの構造の由来: シンボル周囲の構造と等しいアスペクトは継承され、構造ボックスへの出し入れに追従します。その他のアスペクトはデバイス固有のもので、変わりません。
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	電線の始点と終点: 部品データの接続ポイント、機能テンプレートから生成された接続ポイント、または一致する接続ポイントがない場合はデバイスの中心
+Who created the project on the project server and when; not the drawing author below	プロジェクトサーバーでプロジェクトを作成したユーザーと日時。下の図面作成者ではありません
 Whole building	建物全体
 Whole words	単語単位
 Width / going	幅 / 踏面
@@ -2364,6 +2390,7 @@ x y	x y
 {} (no such device)	{} (デバイスが存在しません)
 {} (not placed in the layout)	{} (レイアウトに配置されていません)
 {} (project server, revision {})	{} (プロジェクトサーバー、リビジョン {})
+{} (revision {})	{} (リビジョン {})
 {} (spare)	{} (予備)
 {} (subproject of {})	{} ({} のサブプロジェクト)
 {} (unused)	{} (未使用)
@@ -2375,6 +2402,7 @@ x y	x y
 {} added to building {}	{0} を建物 {1} に追加しました
 {} addresses changed	{} 個のアドレスを変更しました
 {} air-termination rods	突針 {} 本
+{} already exists on the project server.	{} はプロジェクトサーバーに既に存在します。
 {} bundles, {} branch points	束 {} 個、分岐点 {} 個
 {} bus cables created	{} 本のバスケーブルを作成しました
 {} bus connections	{} 件のバス接続
@@ -2502,6 +2530,7 @@ x y	x y
 {} unused structure identifiers removed	{} 個の未使用の構造識別子を削除しました
 {} values taken over	{} 件の値を反映しました
 {} warnings	{} 件の警告
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	その間に {} がプロジェクトサーバーで変更されました。入力した内容は保持されます。現在保存されている状態をコピーするには、もう一度コピーを作成してください。
 {} was imported into the parts database; its page no longer exists	{} を部品データベースにインポートしました。ページはもう存在しません
 {} windows	ウィンドウ {} 個
 {} wire pieces joined	{} 個の電線部分を結合しました
@@ -2518,6 +2547,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} ページ)
 {} – {} here (Esc cancels)	{} – ここで{}（Esc でキャンセル）
 {}, freestanding	{}、野立て
+{}, {} (copy of {}, revision {})	{}、{} ({} のコピー、リビジョン {})
 {}: click to show its floor plan	{}：クリックで平面図を表示
 {}: crimp together with the wire to {}	{}: {} への電線と一緒に圧着
 {}: drag to move it, R turns it, a double-click opens it	{}: ドラッグで移動、R で回転、ダブルクリックで開く

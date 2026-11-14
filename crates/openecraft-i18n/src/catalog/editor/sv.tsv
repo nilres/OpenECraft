@@ -130,6 +130,7 @@ All pages	Alla sidor
 All report pages	Alla rapportsidor
 All user symbols as library file	Alla användarsymboler som biblioteksfil
 All wires of this potential are highlighted.	Alla ledningar med den här potentialen är markerade.
+Also copy revisions, baselines and review records	Kopiera även revisioner, baslinjer och granskningsposter
 Also the groups that do not fit the function definition	Även de grupper som inte passar funktionsdefinitionen
 Altitude	Höjd över havet
 Always	Alltid
@@ -431,6 +432,9 @@ Copy	Kopiera
 Copy / cut / paste (devices get new tags)	Kopiera / klipp ut / klistra in (apparater får nya beteckningar)
 Copy as new	Kopiera som ny
 Copy built-in…	Kopiera inbyggd…
+Copy of	Kopia av
+Copy project	Kopiera projekt
+Copy project…	Kopiera projekt…
 Core designations separated by blanks	Ledarbeteckningar åtskilda med blanksteg
 Core labels placed by hand	Ledarbeteckningar placerade manuellt
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Ledare 1, 2, 3 … för de korsade ledningarna, plus GNYE
@@ -442,10 +446,16 @@ Covers what is behind the text	Täcker det som ligger bakom texten
 Create	Skapa
 Create an enclosure in the panel layout first.	Skapa först en kapsling i skåplayouten.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Skapa en kapsling eller ett rum (Monteringsutrymme › Ny kapsling, Nytt rum) för att börja montagelayouten.
+Create and open	Skapa och öppna
 Create baseline	Skapa baslinje
 Create bus cables	Skapa busskablar
 Create draft	Skapa utkast
 Create revision	Skapa revision
+Created on the server	Skapat på servern
+Created {}	Skapad {}
+Created {} as a copy of {} and opened it	{} skapades som kopia av {} och öppnades
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Skapar ett nytt projekt på servern från det sparade läget för det här projektet; du anger först dess namn och egenskaper
+Creating {} as a copy of {}…	Skapar {} som kopia av {}…
 Cross references…	Korsreferenser…
 Crossed wires	Korsade ledningar
 Ctrl + click on the text opens it as well	Ctrl + klick på texten öppnar den också
@@ -1050,6 +1060,7 @@ Load reserve	Lastreserv
 Load template…	Läs in mall…
 Loading changes…	Läser in ändringar…
 Loading the project access…	Läser in projektåtkomsten…
+Loading the properties of {}…	Läser in egenskaperna för {}…
 Loads	Laster
 Local file	Lokal fil
 Local file: {}	Lokal fil: {}
@@ -1615,6 +1626,7 @@ Release: lock all pages	Frisläpp: lås alla sidor
 Released page – read only	Frisläppt sida – skrivskyddad
 Released pages in it keep their names	Frisläppta sidor i det behåller sina namn
 Released pages keep their name.	Frisläppta sidor behåller sitt namn.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Originalets frisläppta revisioner, baslinjer, kommentarer, markeringar, godkännanden och ändringsbegäranden. Utan dem börjar kopian som ett nytt projekt.
 Releases all locks; the project stays open as a local copy	Släpper alla lås; projektet förblir öppet som en lokal kopia
 Releasing…	Låser upp…
 Remove from cable	Ta bort från kabel
@@ -1789,6 +1801,7 @@ Save to project server: {}	Spara på projektservern: {}
 Save to project server: {} – the connection is lost, saving tries again	Spara på projektservern: {} – anslutningen är förlorad, sparandet försöker igen
 Save workspace	Spara arbetsyta
 Save workspace…	Spara arbetsyta…
+Saved the properties of {} (revision {})	Egenskaperna för {} sparades (revision {})
 Saved to	Sparat i
 Saved to the project server (revision {})	Sparat på projektservern (revision {})
 Saved workspaces	Sparade arbetsytor
@@ -1801,6 +1814,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Sparar a
 Saves your version of the whole project as a project file	Sparar din version av hela projektet som en projektfil
 Saving failed: {}	Det gick inte att spara: {}
 Saving the project access…	Sparar projektåtkomsten…
+Saving the properties of {}…	Sparar egenskaperna för {}…
 Saving to the project server…	Sparar på projektservern…
 Schematic crosshair	Hårkors i schemat
 Scheme	Schema
@@ -1833,6 +1847,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Välj ett makro.
 Select a part. Double click adds it to the device.	Välj en artikel. Dubbelklick lägger till den i apparaten.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Välj ett placeringsschema. Ett schema placerar egenskaper bredvid symboler; symboler som använder det uppdateras när det ändras.
+Select a project in the list	Välj ett projekt i listan
 Select a report block.	Välj ett rapportblock.
 Select a request.	Välj en begäran.
 Select a segment.	Välj ett segment.
@@ -1854,6 +1869,7 @@ Semicolon	Semikolon
 Separator	Avskiljare
 Server URL	Server-URL
 Server address and sign-in	Serveradress och inloggning
+Server project properties	Egenskaper för serverprojektet
 Server type	Servertyp
 Servers	Servrar
 Service space in front	Serviceutrymme framför
@@ -1909,6 +1925,7 @@ Shown now: {}	Visas nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Visas på försättsbladet och av bildelementen i namnrutor som visar projektets logotyp
 Shows	Visar
 Shows the differences of your version to the open project; selected ones can be taken over	Visar skillnaderna mellan din version och det öppna projektet; valda kan tas över
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Visar egenskaperna som är sparade på projektservern; du ändrar dem här om du får och ingen har låst projektdata
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidoväggar, bakvägg, tak och botten sedda utifrån: fläktar, kabelförskruvningar, urtag
 Sign in in the Project server pane; the project opens afterwards	Logga in i fönstret Projektserver; sedan öppnas projektet
 Sign in…	Logga in…
@@ -2050,6 +2067,7 @@ The aspect ratio is kept.	Proportionerna behålls.
 The check warns about cable ducts filled above this level	Kontrollen varnar för kabelkanaler som är fyllda över den här nivån
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Kontrollerna håller avstånden mellan klasser och låter klasser överlappa enligt inställningarna i Layoutkontroller
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Kommandona för alla plugins per plugin, med sökning; stjärnan fäster ett kommando på fliken Plugins
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopian skapas från det läge som är sparat på projektservern. Ändringar som andra användare ännu inte har sparat ingår inte. Sessioner, lås och åtkomsträttigheter kopieras inte; originalet förblir som det är.
 The crossed wires get free cores of the cable in order	De korsade ledningarna får kabelns lediga ledare i ordning
 The current page belongs to option {}.	Den aktuella sidan hör till alternativ {}.
 The devices do not fit onto the rail	Apparaterna får inte plats på skenan
@@ -2067,8 +2085,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har inga sidmakron (Makron › Spara sida som makro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifieringstangenterna som får hjulet att panorera i sidled eller zooma ställs in under Modifieringstangenter.
 The modules no string takes yet in series, on the first inverter	Modulerna som ingen sträng tar ännu, i serie, på den första växelriktaren
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Namnet på servern består av bokstäver, siffror, blanksteg, - _ . (högst 64 tecken).
 The names of its pages follow	Namnen på dess sidor följer med
 The open project already has your version	Det öppna projektet har redan din version
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Det öppna projektet har ändringar som ännu inte är sparade på projektservern. Du får frågan om de ska sparas först; endast sparade ändringar ingår i kopian.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Det öppna projektet är en lokal återställningskopia av det här projektet. Dess ändringar finns inte på projektservern och ingår inte i kopian.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det öppna projektet är en lokal återställningskopia. Dess ändringar är inte sparade på projektservern; innan det delade projektet öppnas bestämmer du om de ska sparas lokalt eller förkastas.
 The page name gets the section number	Sidnamnet får avsnittsnumret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidtyp, ritningsram, namnruta, struktur, beskrivning och hela innehållet sparas.
@@ -2078,13 +2099,16 @@ The point's coordinates in the coordinate reference system	Punktens koordinater 
 The post; its accessories are the table beams, rails and clamps	Stolpen; dess tillbehör är bordsbalkar, skenor och klämmor
 The project changed since the search.	Projektet har ändrats sedan sökningen.
 The project check	Projektkontrollen
+The project data is locked by {}: the properties cannot be changed now.	Projektdata är låsta av {}: egenskaperna kan inte ändras nu.
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kräver skrivbordsversionen: webbläsaren kan inte söka i mappar.
 The project server does not answer: changes are not saved on it until the connection is back	Projektservern svarar inte: ändringar sparas inte där förrän anslutningen är tillbaka
 The project server {} could not open {}.	Projektservern {} kunde inte öppna {}.
 The project's own page templates as a file	Projektets egna sidmallar som en fil
 The project's own title blocks	Projektets egna namnrutor
 The project's own title blocks and report schemes	Projektets egna namnrutor och rapportscheman
+The properties of the open project; changing them locks the project data	Egenskaperna för det öppna projektet; att ändra dem låser projektdata
 The properties of the selection in a window beside the page	Markeringens egenskaper i ett fönster bredvid sidan
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Egenskaperna har under tiden ändrats på projektservern. Läs in igen visar dem; dina inmatningar ersätts.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Skenan eller monteringsfoten; dess tillbehör är krokar, klämmor och ballast
 The recalculation keeps frozen routes as long as they are still possible	Omberäkningen behåller frysta dragningar så länge de fortfarande är möjliga
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Menyfliksområdet med fliken Arkiv ersätter menyerna; Ctrl+Shift+P hittar alla kommandon.
@@ -2129,6 +2153,7 @@ Total selectivity	Total selektivitet
 Touch screen	Pekskärm
 Transfer project parts to database	Överför projektartiklar till databasen
 Translate the project texts; documentation per language	Översätt projekttexterna; dokumentation per språk
+Try again	Försök igen
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Vridning kring lodlinjen, moturs sett ovanifrån (90 °: fronterna pekar åt höger)
 Turn the 3D view to the point	Vänd 3D-vyn mot punkten
 Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
@@ -2219,6 +2244,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Där taket klickades i 3D-vyn
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Varifrån apparatens struktur kommer: aspekter som är lika med strukturen runt symbolen ärvs och följer med när den flyttas in i eller ut ur en strukturruta; andra aspekter är apparatens egna och står kvar.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Var ledningen börjar och slutar: en anslutningspunkt från artikeldata, en som genererats från funktionsmallen eller apparatens mitt om ingen anslutningspunkt matchar
+Who created the project on the project server and when; not the drawing author below	Vem som skapade projektet på projektservern och när; inte ritningens författare nedan
 Whole building	Hela byggnaden
 Whole words	Hela ord
 Width / going	Bredd / steg
@@ -2391,6 +2417,7 @@ x y	x y
 {} (no such device)	{} (ingen sådan apparat)
 {} (not placed in the layout)	{} (inte placerad i layouten)
 {} (project server, revision {})	{} (projektserver, revision {})
+{} (revision {})	{} (revision {})
 {} (spare)	{} (reserv)
 {} (subproject of {})	{} (delprojekt av {})
 {} (unused)	{} (oanvänd)
@@ -2402,6 +2429,7 @@ x y	x y
 {} added to building {}	{} tillagd i byggnad {}
 {} addresses changed	{} adresser ändrade
 {} air-termination rods	{} spetsledare
+{} already exists on the project server.	{} finns redan på projektservern.
 {} bundles, {} branch points	{} knippen, {} förgreningspunkter
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar
@@ -2531,6 +2559,7 @@ x y	x y
 {} unused structure identifiers removed	{} oanvända strukturbeteckningar borttagna
 {} values taken over	{} värden överförda
 {} warnings	{} varningar
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} har under tiden ändrats på projektservern. Dina inmatningar behålls; skapa kopian igen för att kopiera det nu sparade läget.
 {} was imported into the parts database; its page no longer exists	{} importerades till artikeldatabasen; dess sida finns inte längre
 {} windows	{} fönster
 {} wire pieces joined	{} ledningsdelar sammanslagna
@@ -2547,6 +2576,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} sidor)
 {} – {} here (Esc cancels)	{} – {} här (Esc avbryter)
 {}, freestanding	{}, markmonterat
+{}, {} (copy of {}, revision {})	{}, {} (kopia av {}, revision {})
 {}: click to show its floor plan	{}: klicka för att visa planritningen
 {}: crimp together with the wire to {}	{}: krimpa tillsammans med ledaren till {}
 {}: drag to move it, R turns it, a double-click opens it	{}: dra för att flytta, R vrider, dubbelklick öppnar
