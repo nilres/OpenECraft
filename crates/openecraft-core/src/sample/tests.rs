@@ -576,4 +576,30 @@ fn office_building_has_its_roof_stair_and_installation() {
     let v = strings[0].values.unwrap();
     assert_eq!((strings.len(), strings[0].string.series, strings[0].string.inverter.as_str()), (1, 10, "=PV-T1"));
     assert!((v.voc_max - 422.8).abs() < 0.1 && v.vmp_min > 160.0, "{v:?}");
+    // The string runs down to the generator junction box on the attic's gable wall, the
+    // DC main cable on to the inverter beside it, the earthing
+    // conductor of the rails to the bonding busbar under it; each rail has its clamp.
+    let lines = crate::panel::solar::cabling::cabling(&prj, &crate::panel::site_poses(&prj), b, &b.roofs[0], a);
+    use crate::panel::solar::cabling::Lead;
+    for (lead, to) in [(Lead::Plus, "=PV-U1"), (Lead::Minus, "=PV-U1"), (Lead::MainPlus, "=PV-T1"), (Lead::MainMinus, "=PV-T1"), (Lead::Earth, "=PV-PE1")] {
+        assert!(lines.iter().any(|l| l.lead == lead && l.to == to && l.reached), "{lead:?} to {to}");
+    }
+    assert_eq!(lines.iter().filter(|l| l.lead == Lead::Connector).count(), 9, "ten modules in series");
+    assert!(material.iter().any(|(p, q, _)| p == "GEN.PV-EARTH-CLAMP" && *q == 4.0));
+    assert!(prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-T1") && prj.layout.enclosures[attic].items.iter().any(|i| i.tag == "=PV-PE1"));
+    // Earthed by a foundation earth electrode on the main earthing busbar and a ring
+    // earth electrode; the lightning protection (class III) with two down conductors for
+    // its 28 m of walls, ending on the ring, the PV array in its protection.
+    let bi = prj.layout.buildings.iter().position(|x| x.name == "+B3").unwrap();
+    let poses = crate::panel::site_poses(&prj);
+    let kinds: Vec<_> = b.electrodes.iter().map(|e| e.kind).collect();
+    assert_eq!(kinds, vec![crate::panel::ElectrodeKind::Foundation, crate::panel::ElectrodeKind::Ring]);
+    assert!(crate::panel::earthing::busbar_lead(&prj, &poses, bi, &b.electrodes[0]).is_some());
+    let g = crate::panel::lightning::geometry(&prj, &poses, bi).unwrap();
+    use crate::panel::lightning::LpsKind;
+    assert_eq!((g.count(LpsKind::Down), g.count(LpsKind::Entry), g.count(LpsKind::Rod)), (2, 2, 1));
+    assert!(crate::panel::lightning::unprotected_arrays(&prj, &poses, bi).is_empty());
+    for part in ["GEN.ER-STRIP-FE30", "GEN.ER-STRIP-V4A30", "GEN.LP-WIRE-AL8", "GEN.LP-TEST-JOINT", "GEN.LP-ROD-AL16"] {
+        assert!(material.iter().any(|(p, ..)| p == part), "{part}");
+    }
 }

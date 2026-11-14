@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Temperaturile
 Centre horizontally	Centrare pe orizontală
 Centre vertically	Centrare pe verticală
 Centrifugal pump	Pompă centrifugă
-Change	Modificare
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Modificat în dosarul proiectului de alt program și, de asemenea, în proiectul deschis: {}{}. Salvați proiectul sub alt nume sau deschideți-l din nou și repetați modificările
 Changed since mounted	Modificat de la montare
 Changed since wired	Modificat de la cablare
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Bara de cupru {}: {} mm depășește lungimea de stoc de {} mm
 Copper bar {}: {} mm are too thick for {}	Bara de cupru {}: {} mm este prea gros pentru {}
 Copper bar {}: {} segments need {} bends	Bara de cupru {}: {} segmente necesită {} îndoiri
+Copper-bonded steel	Oțel cuprat
 Cores used	Fire utilizate
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Colțul de pe pagina {} nu se potrivește firelor sale: are nevoie de un fir în fiecare dintre cele două direcții și niciun punct de conexiune acolo
 Counter contact NC	Contact de contor NÎ
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Date de bază ale articolelor ERP ș
 ERP number	Număr ERP
 ETIM class	Clasă ETIM
 Earth electrode	Electrod de pământare
+Earth rod	Electrod vertical de pământ
 East-west on a flat roof	Est-vest pe acoperiș plat
 Edit pages	Editare pagini
 Edit project data	Editare date proiect
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Comutator de picior ND (NFPA)
 Force	Forță
 Fork terminal	Papuc furcă
 Format (placeholders)	Format (substituenți)
+Foundation earth electrode	Priză de pământ de fundație
 Frame size	Mărime constructivă
 Free	Liber
 Free air (mm)	Pozare liberă (mm)
@@ -848,8 +850,6 @@ Minimum operating temperature	Temperatură minimă de funcționare
 Mirror contacts	Contacte oglindă
 Mirrored	Oglindit
 Mission time	Durată de misiune
-Module	Modul
-Modules	Module
 Moisture	Umiditate
 Moment of inertia	Moment de inerție
 Motion detector	Detector de mișcare
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Tabel d
 Revision table: index of the last revision (2: the one before …)	Tabel de revizii: indicele ultimei revizii (2: a celei dinainte …)
 Right side	Partea dreaptă
 Right side panel	Perete lateral dreapta
+Ring earth electrode	Priză de pământ inelară
 Ring terminal	Papuc inel
 Rivet nut	Piuliță nituită
 RoHS compliant	Conform RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Comutator cu rolă NÎ
 Roller switch NO	Comutator cu rolă ND
-Roof	Plafon
 Roof top	Acoperiș
 Room floor	Pardoseala încăperii
 Room {} stands outside the plot boundary	Încăperea {} se află în afara limitei terenului
@@ -1484,6 +1484,7 @@ Spare terminal	Bornă de rezervă
 Speed	Turație
 Spiral	În spirală
 Stainless steel	Oțel inoxidabil
+Stainless steel V4A	Oțel inoxidabil V4A
 Standard	Standard
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Circuit pornire / oprire cu un releu: bobina și contactele formează un aparat cu referințe încrucișate și imaginea contactelor, șir de cleme, numere de fire, schema șirului de cleme și lista conexiunilor.
 Start date	Data de început
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Numele de stație {} este folosit de {} ori
 Station {} is not connected to bus {}	Stația {} nu este conectată la magistrala {}
 Station {}: bus system {} does not exist	Stația {}: sistemul de magistrală {} nu există
 Steam	Abur
+Steel, hot-dip galvanised	Oțel zincat la cald
 Stock	Stoc
 Stop category	Categorie de oprire
 Storage temperature range	Domeniu de temperatură de depozitare
@@ -1896,7 +1898,6 @@ page properties	proprietăți pagină
 pigtail {} mm	pigtail {} mm
 pilot	pilotare
 pink	roz
-portrait	portret
 pressure	presiune
 red	roșu
 released	aprobat
@@ -1980,6 +1981,7 @@ yellow	galben
 {}: PV array {} covers a roof window	{}: câmpul fotovoltaic {} acoperă o fereastră de acoperiș
 {}: PV array {} has {} modules, its device {} has {}	{}: câmpul fotovoltaic {} are {} module, dispozitivul său {} are {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: câmpul fotovoltaic {} este montat înclinat pe un acoperiș înclinat
+{}: PV array {} lies outside the protection of the air-termination system	{}: câmpul PV {} se află în afara protecției sistemului de captare
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: câmpul fotovoltaic {} al acoperișului {} trece peste o coamă, o muchie sau marginea acoperișului
 {}: PV array {} of roof {} lies outside the roof	{}: câmpul fotovoltaic {} al acoperișului {} se află în afara acoperișului
 {}: PV arrays {} and {} lie over each other	{}: câmpurile fotovoltaice {} și {} se suprapun
@@ -1989,6 +1991,7 @@ yellow	galben
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: un conductor de {} mm² este mai subțire decât primește punctul de conexiune (cel puțin {} mm²)
 {}: accessory {} fits none of the device's parts	{}: accesoriul {} nu se potrivește cu niciun articol al aparatului
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: elementul de acționare {} este la {} mm deasupra podelei, recomandat {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: tija de captare {} stă în afara acoperișurilor
 {}: auxiliary function(s) without main function	{}: funcție (funcții) auxiliară (auxiliare) fără funcție principală
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: capacitatea de rupere {} kA este sub curentul de scurtcircuit {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: canalul de cablu la {} mm este umplut {} % (limită {} %)
@@ -2009,6 +2012,8 @@ yellow	galben
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: decupajele {} și {} pe {} sunt prea apropiate (punte de material de {} mm, cel puțin {} mm)
 {}: designation '{}' used more than once	{}: denumirea '{}' este folosită de mai multe ori
 {}: device tag without device name	{}: identificator de dispozitiv fără nume de dispozitiv
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: priza de pământ {} nu are pereți de-a lungul cărora să meargă: clădirea nu are încăperi sau acoperișuri
+{}: earth rod {} stands inside the walls of the building	{}: electrodul vertical {} stă în interiorul pereților clădirii
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: curentul de defect {} A la {} nu deconectează în {} s (necesită {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: textele de funcție diferă între schema monofilară și schemă
 {}: hole of {} is too close to the cutout of {} on the {}	{}: gaura {} este prea aproape de decupajul {} pe {}
@@ -2069,7 +2074,12 @@ yellow	galben
 {}: terminal {} uses {} levels, its part {} has {}	{}: borna {} folosește {} niveluri, articolul său {} are {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: bornele {} sunt la {} mm deasupra podelei, sunt necesari cel puțin {} mm
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: sistemul de bare cu {} bare unește {} conductoare ({}): scurtcircuit
+{}: the busbar {} of earth electrode {} does not exist	{}: bara {} a prizei de pământ {} nu există
 {}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
+{}: the earthing busbar {} of PV array {} does not exist	{}: bara de împământare {} a câmpului PV {} nu există
+{}: the generator junction box {} of PV array {} does not exist	{}: cutia de joncțiune a generatorului {} a câmpului PV {} nu există
+{}: the lightning protection has no earth electrode	{}: protecția contra trăsnetului nu are priză de pământ
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: protecția contra trăsnetului nu are pereți de-a lungul cărora să meargă: clădirea nu are încăperi sau acoperișuri
 {}: the module {} of PV array {} has no electrical data	{}: modulul {} al câmpului fotovoltaic {} nu are date electrice
 {}: the station has no port {}	{}: stația nu are portul {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: șirurile câmpului fotovoltaic {} conectează {} module, câmpul are {}
@@ -2086,6 +2096,7 @@ yellow	galben
 {}: {} carries {} A, the load {} needs {} A	{}: {} suportă {} A, consumatorul {} necesită {} A
 {}: {} changed after it was mounted	{}: {} a fost modificat după montare
 {}: {} collides with {}	{}: {} intră în coliziune cu {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} conductoare de coborâre, clasa {} cere {} în jurul clădirii
 {}: {} inputs used, the module has {}	{}: {} intrări utilizate, modulul are {}
 {}: {} is a fluid device, not an electrical one	{}: {} este un dispozitiv de fluid, nu unul electric
 {}: {} is closer than {} mm to a cable duct	{}: {} este la mai puțin de {} mm de un canal de cablu

@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Celltemperatu
 Centre horizontally	Centrera horisontellt
 Centre vertically	Centrera vertikalt
 Centrifugal pump	Centrifugalpump
-Change	Ändring
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Ändrat i projektmappen av ett annat program och även i det öppna projektet: {}{}. Spara projektet under ett annat namn, eller öppna det igen och upprepa ändringarna
 Changed since mounted	Ändrad sedan monteringen
 Changed since wired	Ändrad sedan inkoppling
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Kopparskena {}: {} mm är längre än lagerlängden på {} mm
 Copper bar {}: {} mm are too thick for {}	Kopparskena {}: {} mm är för tjockt för {}
 Copper bar {}: {} segments need {} bends	Kopparskena {}: {} avsnitt kräver {} bockningar
+Copper-bonded steel	Förkopprat stål
 Cores used	Använda ledare
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Hörnet på sida {} passar inte sina ledare: det behöver en ledare i var och en av sina två riktningar och ingen anslutningspunkt där
 Counter contact NC	Räknarkontakt, brytande
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-artikelregister och stycklista (
 ERP number	ERP-nummer
 ETIM class	ETIM-klass
 Earth electrode	Jordelektrod
+Earth rod	Jordspett
 East-west on a flat roof	Öst-väst på platt tak
 Edit pages	Redigera sidor
 Edit project data	Redigera projektdata
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Fotbrytare, slutande (NFPA)
 Force	Kraft
 Fork terminal	Gaffelkabelsko
 Format (placeholders)	Format (platshållare)
+Foundation earth electrode	Grundjordtag
 Frame size	Byggstorlek
 Free	Fri
 Free air (mm)	Fri förläggning (mm)
@@ -848,8 +850,6 @@ Minimum operating temperature	Lägsta drifttemperatur
 Mirror contacts	Spegelkontakter
 Mirrored	Speglad
 Mission time	Uppdragstid
-Module	Modul
-Modules	Moduler
 Moisture	Fukt
 Moment of inertia	Tröghetsmoment
 Motion detector	Rörelsedetektor
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Revisio
 Revision table: index of the last revision (2: the one before …)	Revisionstabell: index för den senaste revisionen (2: den före …)
 Right side	Höger sida
 Right side panel	Höger sidovägg
+Ring earth electrode	Ringjordtag
 Ring terminal	Ringkabelsko
 Rivet nut	Nitmutter
 RoHS compliant	RoHS-kompatibel
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Rullbrytare, brytande
 Roller switch NO	Rullbrytare, slutande
-Roof	Tak
 Roof top	Tak
 Room floor	Rummets golv
 Room {} stands outside the plot boundary	Rum {} står utanför tomtgränsen
@@ -1484,6 +1484,7 @@ Spare terminal	Reservplint
 Speed	Varvtal
 Spiral	Spiraltrappa
 Stainless steel	Rostfritt stål
+Stainless steel V4A	Rostfritt stål V4A
 Standard	Standard
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/stoppkrets med ett relä: spole och kontakter bildar en apparat med korsreferenser och kontaktbild, plint, ledningsnummer, plintschema och förbindningslista.
 Start date	Startdatum
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Stationsnamnet {} används {} gånger
 Station {} is not connected to bus {}	Station {} är inte ansluten till buss {}
 Station {}: bus system {} does not exist	Station {}: bussystemet {} finns inte
 Steam	Ånga
+Steel, hot-dip galvanised	Varmförzinkat stål
 Stock	Lager
 Stop category	Stoppkategori
 Storage temperature range	Lagringstemperaturområde
@@ -1896,7 +1898,6 @@ page properties	sidegenskaper
 pigtail {} mm	pigtail {} mm
 pilot	styr
 pink	rosa
-portrait	stående
 pressure	tryck
 red	röd
 released	frisläppt
@@ -1980,6 +1981,7 @@ yellow	gul
 {}: PV array {} covers a roof window	{}: solcellsfält {} täcker ett takfönster
 {}: PV array {} has {} modules, its device {} has {}	{}: solcellsfält {} har {} moduler, dess enhet {} har {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: solcellsfält {} är monterat lutat på ett lutande tak
+{}: PV array {} lies outside the protection of the air-termination system	{}: solcellsfält {} ligger utanför uppfångningssystemets skydd
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: solcellsfält {} på tak {} ligger över en nock, en valmkant eller takkanten
 {}: PV array {} of roof {} lies outside the roof	{}: solcellsfält {} på tak {} ligger utanför taket
 {}: PV arrays {} and {} lie over each other	{}: solcellsfälten {} och {} ligger över varandra
@@ -1989,6 +1991,7 @@ yellow	gul
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: en ledning på {} mm² är klenare än anslutningspunkten tar (minst {} mm²)
 {}: accessory {} fits none of the device's parts	{}: tillbehöret {} passar inte till någon av enhetens artiklar
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: manöverdonet {} ligger {} mm över golvet, rekommenderat {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: spetsledare {} står utanför taken
 {}: auxiliary function(s) without main function	{}: hjälpfunktion(er) utan huvudfunktion
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: brytförmåga {} kA under kortslutningsströmmen {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: kabelkanal vid {} mm fylld till {} % (gräns {} %)
@@ -2009,6 +2012,8 @@ yellow	gul
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: urtagen för {} och {} på {} ligger för nära varandra ({} mm material, minst {} mm)
 {}: designation '{}' used more than once	{}: beteckningen '{}' används mer än en gång
 {}: device tag without device name	{}: apparatbeteckning utan apparatnamn
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: jordtag {} har inga väggar att löpa längs: byggnaden har inga rum eller tak
+{}: earth rod {} stands inside the walls of the building	{}: jordspett {} står innanför byggnadens väggar
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: felströmmen {} A vid {} kopplar inte från inom {} s (kräver {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: funktionstexterna skiljer sig mellan enlinjeschemat och kretsschemat
 {}: hole of {} is too close to the cutout of {} on the {}	{}: hålet för {} ligger för nära urtaget för {} på {}
@@ -2069,7 +2074,12 @@ yellow	gul
 {}: terminal {} uses {} levels, its part {} has {}	{}: plint {} använder {} våningar, dess artikel {} har {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: plintarna {} ligger {} mm över golvet, minst {} mm krävs
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: skensystemet med {} skenor förbinder {} ledare ({}): kortslutning
+{}: the busbar {} of earth electrode {} does not exist	{}: skenan {} för jordtag {} finns inte
 {}: the device {} of PV array {} does not exist	{}: enheten {} för solcellsfält {} finns inte
+{}: the earthing busbar {} of PV array {} does not exist	{}: jordningsskenan {} för solcellsfält {} finns inte
+{}: the generator junction box {} of PV array {} does not exist	{}: generatoranslutningslådan {} för solcellsfält {} finns inte
+{}: the lightning protection has no earth electrode	{}: åskskyddet har inget jordtag
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: åskskyddet har inga väggar att löpa längs: byggnaden har inga rum eller tak
 {}: the module {} of PV array {} has no electrical data	{}: modulen {} i solcellsfält {} har inga elektriska data
 {}: the station has no port {}	{}: stationen har ingen port {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: strängarna i solcellsfält {} kopplar {} moduler, fältet har {}
@@ -2086,6 +2096,7 @@ yellow	gul
 {}: {} carries {} A, the load {} needs {} A	{}: {} klarar {} A, lasten {} behöver {} A
 {}: {} changed after it was mounted	{}: {} har ändrats efter att det monterades
 {}: {} collides with {}	{}: {} kolliderar med {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} nedledare, klass {} kräver {} runt byggnaden
 {}: {} inputs used, the module has {}	{}: {} ingångar används, modulen har {}
 {}: {} is a fluid device, not an electrical one	{}: {} är en fluidapparat, inte en elektrisk
 {}: {} is closer than {} mm to a cable duct	{}: {} är närmare än {} mm till en kabelkanal

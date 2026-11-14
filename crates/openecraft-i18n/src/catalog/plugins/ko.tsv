@@ -26,6 +26,8 @@ Adds a text to a page	페이지에 텍스트를 추가합니다
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	프로젝트 텍스트의 모든 줄을 사전에 추가하고, 선택적으로 더 이상 사용하지 않는 항목을 제거합니다
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	케이블 끝에 부속품(글랜드, EMC 글랜드, 커넥터, 장력 완화, 차폐 클램프, 보호 호스, 엔드 슬리브, 마커)을 추가합니다
 Adds an accessory to a device; it must fit one of the device's parts	장치에 액세서리를 추가합니다. 장치의 부품 중 하나에 맞아야 합니다
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	건물 지붕에 피뢰침을 추가하고 수뢰 도체에 연결합니다. 건물에 피뢰 시스템이 없으면 등급 III 시스템이 추가됩니다
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	건물에 접지극을 추가합니다: 최하층 기초 슬래브에 외벽을 따라 메시로 설치하는 기초 접지극, 벽 주위 토양의 환상 접지극 또는 접지봉이며, 그 자재는 자재 명세서에 들어갑니다
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	외함을 추가합니다: 시스템의 크기(또는 사용자 지정 크기) 중 하나 또는 외함 부품에서
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	두 본딩 지점(주 접지 단자, 외함, 도전성 외곽선, 금속 케이블 지지대) 사이에 등전위 본딩 도체를 추가합니다
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	프로젝트의 라벨링 스키마를 추가, 변경 또는 제거하거나 마킹 내보내기에 사용할 스키마를 선택합니다
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	템플릿의 장치를 세그먼트에 추가합니다
 Adds the outline of a machine, building or area to the plant layout	플랜트 레이아웃에 기계, 건물 또는 구역의 외곽선을 추가합니다
 Adds, replaces or removes a profile: a connector with the column names the other system uses	프로필(다른 시스템에서 사용하는 열 이름을 가진 커넥터)을 추가, 대체 또는 제거합니다
+Air-termination rod: its name	피뢰침: 이름
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	항목을 정렬하거나, 균등 간격으로 배치하거나, 레일에 장치를 정렬하거나, 패턴으로 항목을 복사합니다
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	심볼, 텍스트 및 그래픽을 공통 가장자리 또는 가운데에 맞춥니다. 연결된 전선 끝이 따라 움직입니다
 Allow renaming onto an identifier in use: both become one	사용 중인 식별자로 이름 바꾸기 허용: 둘이 하나가 됩니다
@@ -70,6 +73,7 @@ Between page and column (default .)	페이지와 열 사이(기본값 .)
 Bonding point	본딩 지점
 Border around the text	텍스트 주위 테두리
 Both classes are needed	두 클래스가 모두 필요합니다
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	설비의 건물: 층, 샤프트, 계단, 태양광 어레이가 있는 지붕, 접지극과 피뢰, 층의 방, 건물 간 연결
 Bus system name	버스 시스템 이름
 Bus system name, e.g. PN/IE_1	버스 시스템 이름(예: PN/IE_1)
 Busbar machine program (CSV)	부스바 가공기 프로그램(CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	실의 문 또는 창을 변경합니다: 열림 방식(왼쪽 또는 오른쪽 경첩, 안쪽 또는 바깥쪽으로 열림, 또는 미닫이), 벽을 따른 위치, 크기와 창대
 Changes a placed symbol; when it moves, connected wire ends follow	배치된 심볼을 변경합니다. 심볼을 이동하면 연결된 전선 끝이 따라갑니다
 Changes a text (only the given properties)	텍스트를 변경합니다(지정한 속성만)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	건물의 접지극을 변경합니다: 위치, 길이, 벽과의 거리, 깊이, 메시, 부품 또는 부스바; 이름을 바꾸거나 삭제합니다
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	단종 예정 또는 단종된 부품을 사용하는 장치를 후속 부품으로 전환합니다(후속 부품은 프로젝트 부품이어야 함)
 Changes name, description or structure of a page	페이지의 이름, 설명 또는 구조를 변경합니다
 Changes name, description, function, location or parent of a segment	세그먼트의 이름, 설명, 기능, 위치 또는 상위 세그먼트를 변경합니다
@@ -100,6 +105,7 @@ Check {} failed: {}	검사 {} 실패: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	패널 레이아웃을 검사합니다(충돌, 이격 거리(장착, 환기, EMC), 서비스 공간, 바닥으로부터의 높이, 충돌 클래스, 온도 및 제조 가능성)
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	전선 끝단 마감 방식 선택: 피복 제거, 페룰 또는 압착 단자; 연결점, 장치의 모든 연결점 또는 전선 하나에만
 Chosen value	선택한 값
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	피뢰 시스템 등급, 1 … 4 (I … IV, 기본값 III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	패널 레이아웃의 이격 거리, 서비스 공간, 높이, 충돌 클래스, 열 시뮬레이션 및 제조 가능성
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	외함의 온도 관리(IEC/TR 60890): 전력 손실, 내부 온도, 필요한 팬 또는 냉각 장치와 히터. 선택적으로 한 외함의 설정을 변경합니다
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	충돌 클래스: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, 자체 클래스 또는 모두는 *
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	장치, 전선, 전위, 케이블, 단자대, PLC, 패널, 유체, 전기 계산, 구조 및 번역
 Diameter in mm	직경(mm)
 Diameter of a hole at both ends (0: none)	양쪽 끝 구멍의 직경(0: 없음)
+Diameter of the conductors, mm (default 8)	도체 직경, mm (기본값 8)
+Diameter of the rod, mm (default 16)	피뢰침 직경, mm (기본값 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	줄기의 방향: left, right, up 또는 down (기본: 해당 지점의 연결선에 따라)
 Distance between power and signal or fluid in mm	전력과 신호 또는 유체 간의 거리(mm)
 Distance from devices, rails and busbars in mm	장치, 레일 및 부스바와의 거리(mm)
@@ -222,6 +230,10 @@ Draws a wire through two or more points	두 개 이상의 점을 지나는 전�
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	회로도 페이지와 PDF / SVG 내보내기에서 전선을 해당 색상 또는 검정으로 그립니다
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	서로 마주하는 기호의 빈 접속점 사이와 T분기점 및 모서리의 빈 가지까지 연결선을 그립니다
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	케이블의 EMC 클래스(드라이브 출력, 아날로그, 전력, 신호, 차폐) 및 EMC 문제
+Earth electrode: its name	접지극: 이름
+Earth rod: its length, mm (default 3000)	접지봉: 길이, mm (기본값 3000)
+Earth rod: x of its place in the floor plan of the building, mm	접지봉: 건물 평면도에서 위치의 x, mm
+Earth rod: z of its place in the floor plan of the building, mm	접지봉: 건물 평면도에서 위치의 z, mm
 Edge length of the routing grid in mm	배선 경로 그리드의 모서리 길이(mm)
 Electrical device tags separated by commas or blanks (empty = remove the links)	쉼표나 공백으로 구분된 전기 장치 태그(비우면 연결 제거)
 Electrical engineering	전기 공학
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	station:port 형식의 첫 번째 �
 First row with the column names	열 이름이 있는 첫 행
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	장치 이름 형식: {letter}, {n}(카운터), {page}, {column}, {row}. 기본값 {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	format 체계의 형식: {n}(카운터), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	기초 접지극: 외벽 안쪽 거리 (기본값 100), 환상: 바깥쪽 거리 (기본값 1000), mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	기초 접지극: 최대 메시, mm (기본값 20000)
 Frame to start from when the frame is new (default: A3 landscape)	프레임이 새것일 때 시작할 프레임(기본값: A3 landscape)
 Free space in front of every device on the plate	플레이트의 각 장치 앞 여유 공간
 Freezes routes for production (kept by the recalculation while possible) or releases them	생산을 위해 경로를 고정하거나(가능한 한 다시 계산 시 유지) 고정을 해제합니다
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	페이지의 단선 심볼에 대해 그 다음의 새 페이지에 복선 회로도(전력 심볼, 도체, 접촉기 코일)를 생성합니다
 Generates the program of the busbar machine: cuts, punched holes and bends	부스바 가공기 프로그램(절단, 펀칭 구멍 및 굽힘)을 생성합니다
 Give a device tag or a part number	장치 태그 또는 부품 번호를 입력하십시오
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	건물에 피뢰 시스템을 설정하거나 변경합니다: 등급, 인하 도선 수 및 도체 부품; 용마루와 추녀마루의 수뢰 도체(평지붕에서는 메시), 시험 단자가 있는 인하 도선이 접지극까지; 또는 삭제합니다
+Greatest distance of the conductor holders, mm (default 1000)	도체 지지대 최대 간격, mm (기본값 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	항목을 함께 선택되고 이동되는 어셈블리로 그룹화합니다. 이름이 없으면 항목이 어셈블리에서 해제됩니다
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	외함의 프로그램을 작업으로 생산에 인계합니다: 모든 면과 동바의 매니페스트 및 프로그램
 Has a divider between power and signal cables	전력 케이블과 신호 케이블 사이에 구분판이 있음
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	장착 플레이트 위 높�
 Height in mm	높이(mm)
 Height in mm without plinth; negative: unknown (wall mounted)	받침대를 제외한 높이(mm). 음수: 알 수 없음(벽 장착)
 Height in mm; the logo keeps its aspect ratio inside	높이(mm). 로고는 그 안에서 가로세로 비율을 유지합니다
+Height of the rod above the covering, mm (default 1500)	지붕재 위 피뢰침 높이, mm (기본값 1500)
+Height of the test joints above the ground, mm (default 1000)	시험 단자의 지면 위 높이, mm (기본값 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	페이지의 상위 제품 측면(-). 페이지의 장치가 함께 이동합니다
 Highest actuator on the door above the floor (0: not checked)	바닥으로부터 도어의 가장 높은 조작부 높이(0: 검사 안 함)
 Highest air temperature at devices without data (0: not checked)	데이터가 없는 장치 주변의 최고 공기 온도(0: 검사 안 함)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	제조 패키지(CNC 프로그램, JS
 Markers, comma separated: device, terminal, wire, cable (empty: all)	마커(쉼표로 구분): device, terminal, wire, cable(비워 두면 모두)
 Marks a panel item as mounted or as a problem, or as open again	패널 항목을 장착됨, 문제 또는 다시 미완료로 표시합니다
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	배선 경로가 지정된 전선을 배선 완료, 문제 또는 다시 미완료로 표시합니다. 전선은 양쪽 끝으로 지정합니다
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	재질: galvanised_steel, stainless_steel, copper, copper_bonded_steel 또는 aluminium
 Maximum fill of a carrier in percent	케이블 지지대의 최대 충전율(%)
 Maximum operating pressure in bar	최대 작동 압력(bar)
 Measuring range or set point	측정 범위 또는 설정값
 Message code, e.g. wires.3f9a1c	메시지 코드(예: wires.3f9a1c)
 Milling feed, mm/min	밀링 이송(mm/min)
 Mirror the symbol	심볼 대칭
+Moves an air-termination rod, changes its height, renames or removes it	피뢰침을 이동하고 높이를 변경하며 이름을 바꾸거나 삭제합니다
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	전선의 한쪽 끝을 이동합니다. 끝은 연결된 대상에서 떨어지고 만나는 대상에 연결됩니다. 전선은 직각을 유지합니다
 Moves symbols, wires and texts; connected wire ends follow	심볼, 전선 및 텍스트를 이동합니다. 연결된 전선 끝이 따라갑니다
 Moves the page before this page of its section (or of the section given)	페이지를 해당 구역(또는 지정한 구역)의 이 페이지 앞으로 이동합니다
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	구역을 상위 구역(또는 지정한 상위 구역)의 이 구역 앞으로 이동합니다. 번호는 순서대로 이어집니다
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	하네스의 네일보드 레이아웃: 공통 노드에서 커넥터까지의 분기(길이, 방향, 번들 직경 및 핀 포함)와 도면 축척
+Name (default E1, E2, …)	이름 (기본값 E1, E2, …)
+Name (default F1, F2, …)	이름 (기본값 F1, F2, …)
 Name of the assembly	어셈블리 이름
 Name of the bar, e.g. L1 -Q1	바 이름(예: L1 -Q1)
 Name of the check	검사 이름
@@ -461,6 +483,7 @@ New page name	새 페이지 이름
 New parent segment (empty: top level)	새 상위 세그먼트(비워 두면 최상위 수준)
 New value	새 값
 No PCT loop {}	PCT 루프 {} 없음
+No air-termination rod {} on building {}	건물 {1}에 피뢰침 {0}이(가) 없습니다
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{}(이)라는 기본 제공 검사가 없습니다: 이 설정은 같은 이름의 플러그인 검사에 적용됩니다(list_checks)
 No bus system {}	버스 시스템 {} 없음
 No connection point {} on this page	이 페이지에 연결 지점 {}이(가) 없습니다
@@ -468,6 +491,7 @@ No connection symbol with id {}	id {}인 연결 기호가 없습니다
 No copper bar {}	동바 {}이(가) 없습니다
 No device description {}	장치 설명 {} 없음
 No device group {}	장치 그룹 {} 없음
+No earth electrode {} in building {}	건물 {1}에 접지극 {0}이(가) 없습니다
 No enclosure named {}	이름이 {}인 외함 없음
 No entry for {} and {}	{}과(와) {}에 대한 항목이 없습니다
 No hose {}	호스 {} 없음
@@ -570,7 +594,12 @@ Part number of the downstream device	하위 장치의 부품 번호
 Part number of the hose / tube / pipe	호스 / 튜브 / 배관의 부품 번호
 Part number of the upstream device	상위 장치의 부품 번호
 Part number, e.g. GEN.LMP-GN-24	부품 번호, 예: GEN.LMP-GN-24
+Part of its strip, wire or rod (empty: generic)	띠, 선 또는 봉의 부품 (비어 있음: 일반)
+Part of the conductor holders on the roof (empty: generic)	지붕 위 도체 지지대의 부품 (비어 있음: 일반)
+Part of the conductor holders on the walls (empty: generic)	벽의 도체 지지대의 부품 (비어 있음: 일반)
+Part of the conductors (round wire; empty: generic)	도체의 부품 (원형 선; 비어 있음: 일반)
 Part of the key or name	키 또는 이름의 일부
+Part of the rod (empty: the one of its material and diameter)	피뢰침의 부품 (비어 있음: 재질과 직경에 맞는 것)
 Part {} has no function with a symbol	부품 {}에는 기호가 있는 기능이 없습니다
 Parts phased out or discontinued	단종 예정 또는 단종된 부품
 Pass ids or pages	ID 또는 페이지를 지정하세요
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	주위 공�
 Release instead of freeze	고정 대신 고정 해제
 Released pages keep their names: {}	릴리스된 페이지는 이름을 유지합니다: {}
 Remote I/O: station of the controller	원격 I/O: 컨트롤러의 스테이션
+Remove the air-termination rod	피뢰침 삭제
+Remove the earth electrode	접지극 삭제
 Remove the entry of upstream and downstream	upstream 및 downstream 항목 제거
 Remove the profile	프로필 제거
 Remove the scheme from the project	프로젝트에서 스키마 제거
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	잔량(mm)
 Reuse failed searches during one routing calculation	하나의 배선 경로 계산 내에서 실패한 검색 결과 재사용
 Right side bayed (no side panel)	오른쪽 측면 결합(측면 패널 없음)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	환상: 지면 아래 깊이, 접지봉: 윗단 깊이, mm (기본값 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	접지봉: 직경 (기본값 20), 기초 및 환상 접지극: 원형 선의 직경, 평형 띠는 0, mm
 Room {} exists already	방 {}이(가) 이미 있습니다
 Rotation in degrees clockwise: 0, 90, 180 or 270	시계 방향 회전 각도: 0, 90, 180 또는 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	회전 각도(도), 시계 반대 방향(90이면 아래에서 위로 읽음)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	알 수 없는 주소 체계: {}
 Unknown alignment: {}	알 수 없는 맞춤: {}
 Unknown anchor: {}	알 수 없는 앵커: {}
 Unknown aspect: {}	알 수 없는 측면: {}
+Unknown base: {}	알 수 없는 받침: {}
 Unknown bonding kind: {}	알 수 없는 본딩 종류: {}
 Unknown bonding point: {}	알 수 없는 본딩 지점: {}
 Unknown bus system: {}	알 수 없는 버스 시스템: {}
@@ -879,6 +913,7 @@ Unknown check: {}	알 수 없는 검사: {}
 Unknown class: {}	알 수 없는 클래스: {}
 Unknown data type: {}	알 수 없는 데이터 유형: {}
 Unknown direction {}: left, right, up or down	알 수 없는 방향 {}: left, right, up 또는 down
+Unknown earth electrode: {}	알 수 없는 접지극: {}
 Unknown earthing system: {}	알 수 없는 접지 계통: {}
 Unknown face {}	알 수 없는 면 {}
 Unknown fastening: {}	알 수 없는 고정 방식: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device(기본값), position,
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages 또는 parts
 error, warning, info, off, or default to take the change back	error, warning, info, off 또는 변경을 되돌리려면 default
 false takes the acceptance back (default true)	false이면 승인을 취소합니다(기본값 true)
+foundation, ring or rod	foundation, ring 또는 rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted 또는 middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function(=), installation(++), location(+) 또는 product(-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker 또는 other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (지붕 위 피뢰침 지지대) 또는 concrete_base (평지붕)
 hose, tube or pipe	hose, tube 또는 pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204(기계, 선도체 BK) 또는 iec60445(선도체 BN, BK, GY)
 keepout (default), power, control, signal or fluid	keepout(기본값), power, control, signal 또는 fluid
@@ -999,6 +1036,8 @@ too long	너무 김
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray(기본값), ladder, trunking, conduit, drag_chain, buried 또는 free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal, service_unit, manifold, power_unit 또는 other
 wired, problem or open	wired, problem 또는 open
+x of the foot of the rod in the floor plan of the building, mm	건물 평면도에서 피뢰침 밑동의 x, mm
+z of the foot of the rod in the floor plan of the building, mm	건물 평면도에서 피뢰침 밑동의 z, mm
 {} and {} are both ends of one function: the wire would short-circuit it	{}과(와) {}은(는) 한 기능의 양 끝입니다: 이 전선은 그 기능을 단락시킵니다
 {} and {} are needed together	{}과(와) {}은(는) 함께 필요합니다
 {} cannot be bayed to itself	{}은(는) 자신에게 결합할 수 없습니다

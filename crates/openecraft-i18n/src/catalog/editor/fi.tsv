@@ -112,6 +112,9 @@ Air at devices at most	Ilma laitteiden luona enintään
 Air temperature	Ilman lämpötila
 Air temperature at the devices	Ilman lämpötila laitteiden luona
 Air temperature {} … {} °C	Ilman lämpötila {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Sieppausjohtimet harjoilla ja taitteilla (silmukka tasakatoilla), alastulojohtimet ulkoseinillä mittausliitoksin, päättyen maadoituselektrodeihin
+Air-termination rod	Ukkosenjohdatintanko
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Ukkosenjohdatintanko sijoitettu rakennukseen {}; napsauta seuraavaa varten · Esc: lopeta
 Align	Tasaa
 Aligned	Kohdistettu
 Alignment	Tasaus
@@ -157,6 +160,7 @@ Arc	Kaari
 Archive and version	Arkisto ja versio
 Archive project…	Arkistoi projekti…
 Arms	Haarat
+Array	Kenttä
 As defined by the check	Tarkistuksen määrittämä
 As the rules say ({})	Sääntöjen mukaan ({})
 Aspects of the pages	Sivujen aspektit
@@ -185,6 +189,7 @@ Automatic ({})	Automaattinen ({})
 Automatic accessories	Automaattiset tarvikkeet
 Automatic configuration	Automaattinen kokoonpano
 Automatic placement	Automaattinen sijoittelu
+Automatic: {}	Automaattinen: {}
 Automation	Automaatio
 Aux	Apu
 Avoid:	Vältä:
@@ -222,6 +227,9 @@ Boundary	Raja
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Katkaisukyky oikosulkuvirtaa vastaan verkon jokaisessa suojalaitteessa, poiskytkentä pienimmällä vikavirralla piirin lopussa, kaapelien oikosulkukestoisuus ja selektiivisyys edeltävään laitteeseen.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Silta: neljä johdinta; liitos tulee yhdeltä sivulta ja jatkuu kolmelle muulle, ensin vastakkaiselle
 Building {} added with a level at ground level	Rakennus {} lisätty, kerros maan tasolla
+Building {} at x {} m, z {} m	Rakennus {} kohdassa x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Rakennus {} kohdassa x {} m, z {} m, käännetty {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Rakennus {} kohdassa x {} m, z {} m, käännetty {}°: se on tontin rajan ulkopuolella
 Built-in frames cannot be changed; copy one to adapt it.	Sisäisiä kehyksiä ei voi muuttaa; kopioi kehys mukauttaaksesi sitä.
 Built-in scheme: copy it to change it.	Sisäinen skeema: kopioi se muuttaaksesi sitä.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Sisäiset nimiöt ovat vain luku -tilassa – tee oma käyttämällä toimintoa ”Kopioi uutena”.
@@ -295,10 +303,14 @@ Choose another project	Valitse toinen projekti
 Choose file…	Valitse tiedosto…
 Choose image…	Valitse kuva…
 Choose pages	Valitse sivut
+Choose the building.	Valitse rakennus.
 Chooses the pages whose structure starts with this	Valitsee sivut, joiden rakenne alkaa tällä
 Circle	Ympyrä
 Circuits of a generic manifold	Yleisen jakotukin piirit
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Ukkossuojauksen luokka: alastulojohtimien väli, tasakattojen silmä ja suojakulma
+Class {}	Luokka {}
 Clear	Tyhjennä
+Clear the search	Tyhjennä haku
 Clearance	Vapaa etäisyys
 Click	Napsautus
 Click a text: open its link	Tekstin napsautus: avaa sen linkki
@@ -307,6 +319,7 @@ Click centre, then a point on the circle	Napsauta keskipistettä ja sitten ympyr
 Click in the panel layout: a single item of an assembly	Napsautus kaappiasennuksessa: kokoonpanon yksittäinen osa
 Click into the page to place the image	Napsauta sivua sijoittaaksesi kuvan
 Click into the page to place {}	Napsauta sivua sijoittaaksesi kohteen {}
+Click on a roof of building {}	Napsauta rakennuksen {} kattoa
 Click on a wall	Napsauta seinää
 Click on a wire to place the connection definition point	Napsauta johtoa sijoittaaksesi yhteyden määrityspisteen
 Click on the 4 mm grid	Napsauta 4 mm:n ruudukkoon
@@ -331,8 +344,12 @@ Click two corners	Napsauta kahta kulmaa
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Napsauta rakennelaatikon kahta kulmaa ja aseta sen tunnukset ominaisuuksissa · Esc tai hiiren oikea painike lopettaa
 Click two nodes to connect them	Yhdistä kaksi solmua napsauttamalla niitä
 Click two points to measure from one to the other · Esc: stop	Napsauta kahta pistettä mitataksesi toisesta toiseen · Esc: lopeta
+Click where an air-termination rod goes on a roof · Esc: stop	Napsauta kohtaa, johon ukkosenjohdatintanko tulee katolla · Esc: lopeta
+Click where an earth rod goes, at or round a building · Esc: stop	Napsauta kohtaa, johon maadoitussauva tulee rakennuksen vieressä tai ympärillä · Esc: lopeta
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa neljä johdinta kohtaa: silta vie liitoksen yhdeltä sivulta kolmelle muulle, ensin vastakkaiselle · {} kääntää sen · Esc tai oikea painike lopettaa
 Click where it is in the site plan	Napsauta sen kohtaa asemapiirroksessa
+Click where the air-termination rods go on the roofs in the site plan	Napsauta asemapiirroksessa kohtia, joihin ukkosenjohdatintangot tulevat katoille
+Click where the earth rods go in the site plan	Napsauta asemapiirroksessa kohtia, joihin maadoitussauvat tulevat
 Click where the reference point is	Napsauta vertailupisteen kohtaa
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
@@ -376,9 +393,11 @@ Compare and baselines	Vertailu ja lähtötasot
 Compare with	Vertaa kohteeseen
 Compare with a baseline, a revision or another project file and take differences over	Vertaa lähtötasoon, revisioon tai toiseen projektitiedostoon ja ota erot käyttöön
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Täydellinen tunnus: {}\nTästä puuttuvat aspektit otetaan sivulta (=toiminto +sijainti) tai rakennelaatikosta, jossa symboli on.
+Concrete base	Betonijalka
 Condition	Ehto
 Condition (OPTION=value & …)	Ehto (OPTION=arvo & …)
 Conductive frame	Johtava runko
+Conductor	Johdin
 Conflicts	Ristiriidat
 Connected devices	Liitetyt laitteet
 Connected to:	Yhdistetty kohteeseen:
@@ -430,6 +449,7 @@ Cross references…	Ristiviittaukset…
 Crossed wires	Ristityt johdot
 Ctrl + click on the text opens it as well	Ctrl + napsautus tekstiin avaa sen myös
 Ctrl+A	Ctrl+A
+Current at maximum power	Virta maksimiteholla
 Current-carrying capacity: {} × IEC 60204-1, table 6	Virrankestoisuus: {} × IEC 60204-1, taulukko 6
 Customer rule sets	Asiakkaiden sääntökokoelmat
 Customer, plant or standard	Asiakas, laitos tai standardi
@@ -442,6 +462,7 @@ Cut length step tubes	Katkaisupituuden askel putket
 Cut length step wires	Katkaisupituuden askel johdot
 Cutout {} × {} mm	Aukko {} × {} mm
 Cutting allowance per end	Katkaisuvara päätä kohden
+DC leads	DC-johtimet
 DRAFT	LUONNOS
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	LUONNOS, HYVÄKSYTTÄVÄNÄ ja HYVÄKSYTTY nykyisellä kielellä; ei mitään julkaisun jälkeen
 DWG import failed: {}	DWG-tuonti epäonnistui: {}
@@ -465,9 +486,11 @@ Define all used	Määritä kaikki käytetyt
 Defined potentials	Määritetyt potentiaalit
 Del	Del
 Delete PV array	Poista aurinkopaneelikenttä
+Delete air-termination rod	Poista ukkosenjohdatintanko
 Delete cable (its wires are removed from it)	Poista kaapeli (sen johdot poistetaan siitä)
 Delete comment	Poista kommentti
 Delete connection point	Poista liitäntäpiste
+Delete earth electrode	Poista maadoituselektrodi
 Delete element	Poista elementti
 Delete enclosure	Poista kotelo
 Delete enclosure {} with everything placed in it?	Poistetaanko kotelo {} kaikkineen, mitä siihen on sijoitettu?
@@ -494,8 +517,10 @@ Delete this workspace	Poista tämä työtila
 Delete variant	Poista muunnelma
 Delete zone	Poista vyöhyke
 Depth / mounted at	Syvyys / asennettu kohtaan
+Depth below the ground	Syvyys maanpinnan alla
 Depth from / to	Syvyys mistä / mihin
 Depth in the floor	Syvyys lattiassa
+Depth of its top below the ground	Yläpään syvyys maanpinnan alla
 Derive project definition	Johda projektin määrittely
 Descriptions	Kuvaukset
 Deselect	Poista valinta
@@ -529,6 +554,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Laitteet
 Dew point	Kastepiste
 Diameter	Halkaisija
 Diameter / bends	Halkaisija / taivutukset
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Pyörölangan halkaisija; 0: lattarauta 30 x 3,5 mm
+Diameter of the rod	Tangon halkaisija
 Dictionary for translators: one column per language	Sanakirja kääntäjille: yksi sarake kieltä kohden
 Digits	Numeroita
 Dimension	Mitoitus
@@ -567,6 +594,7 @@ Door cutouts (CSV)	Oviaukot (CSV)
 Door: {} devices, {} cutouts	Ovi: {} laitetta, {} aukkoa
 Dot	Piste
 Double-click	Kaksoisnapsautus
+Down conductors	Alastulojohtimet
 Download into database	Lataa tietokantaan
 Download project	Lataa projekti
 Downloaded {} (version {})	{} ladattiin (versio {})
@@ -577,6 +605,7 @@ Draft	Luonnos
 Draft of revision {} created	Revision {} luonnos luotu
 Draft of revision {} discarded	Revision {} luonnos hylätty
 Drag	Vedä
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Siirrä rakennusta vetämällä · R: käännä osoittimen alla olevaa rakennusta 90° · Esc: lopeta
 Drag a connection point designation of the selected symbol to place it.	Vedä valitun symbolin liitäntäpisteen merkintää sijoittaaksesi sen.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Vedä valitun johdon päätä siirtääksesi vain sen pään. Vetäminen Alt pohjassa kääntää Säilytä liitännät -asetuksen.
 Drag an entry into the page, or click it and then click into the page.	Vedä merkintä sivulle tai napsauta sitä ja sitten sivua.
@@ -617,12 +646,20 @@ Duct fill limit	Johtokourun täyttöraja
 Duplicate	Monista
 Each example builds on the one before and shows more of the features.	Jokainen esimerkki rakentuu edellisen päälle ja näyttää enemmän toiminnoista.
 Each point-to-point connection can belong to a harness	Jokainen pisteestä pisteeseen -yhteys voi kuulua johtosarjaan
+Earth electrodes	Maadoituselektrodit
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	Rakennuksen maadoituselektrodit (perustus- ja rengasmaadoitus, asemapiirrokseen napsautetut maadoitussauvat) ja sen ukkossuojaus katoille napsautettuine ukkosenjohdatintankoineen
+Earth rod placed at building {}; click for the next one · Esc: stop	Maadoitussauva sijoitettu rakennukseen {}; napsauta seuraavaa varten · Esc: lopeta
+Earthing and lightning protection	Maadoitus ja ukkossuojaus
+Earthing busbar	Maadoituskisko
+Earthing conductor	Maadoitusjohdin
+Earthing points	Maadoituspisteet
 Earthing system	Maadoitusjärjestelmä
 Easting, northing	Itäkoordinaatti, pohjoiskoordinaatti
 Eaves	Räystäs
 Edge length of the routing grid: smaller is finer and slower	Reititysruudukon sivun pituus: pienempi on tarkempi ja hitaampi
 Edit in table	Muokkaa taulukossa
 Edit in table…	Muokkaa taulukossa…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Muokkaustila: vedä rakennukset paikoilleen asemapiirroksessa ja käännä niitä; huoneen napsautus ei enää avaa sitä
 Editable copy of this plot frame	Tämän piirustuskehyksen muokattava kopio
 Editable copy of this title block	Tämän nimiön muokattava kopio
 Effective surface	Tehollinen pinta-ala
@@ -773,6 +810,7 @@ Generated page – edit via page properties	Luotu sivu – muokkaa sivun ominais
 Generates the pages of all report blocks again	Luo kaikkien raporttilohkojen sivut uudelleen
 Generates {} pages	Luo {} sivua
 Generation failed: {}	Luonti epäonnistui: {}
+Generator junction box	Generaattorin liitäntäkotelo
 Generic	Yleinen
 German zones (DIN 18015-3)	Saksalaiset vyöhykkeet (DIN 18015-3)
 Getting started	Aloitus
@@ -782,6 +820,7 @@ Go to page	Siirry sivulle
 Graphic line	Grafiikkaviiva
 Graphic rectangle	Grafiikkasuorakulmio
 Graphical form	Graafinen lomake
+Greatest distance of the conductor holders on the roof and on the walls	Johdinpidikkeiden suurin väli katolla ja seinillä
 Greatest distance of the roof hooks along a rail	Kattokoukkujen suurin väli kiskoa pitkin
 Grid	Ruudukko
 Grid north	Karttapohjoinen
@@ -805,14 +844,20 @@ Height above the floor	Korkeus lattiasta
 Height above the mounting plate	Korkeus asennuslevyn yläpuolella
 Height above the plate	Korkeus levyn yläpuolella
 Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
+Height of the rod above the covering	Tangon korkeus katteen yläpuolella
+Height of the test joints above the ground	Mittausliitosten korkeus maanpinnasta
 Heights above floor (IEC 60204-1)	Korkeudet lattiasta (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Pidetään painettuna napsautettaessa, siirrettäessä tai vieritettäessä. Ctrl on macOS:ssä Cmd.
 Help	Ohje
+Hide PV modules	Piilota aurinkopaneelit
 Hide the groups you do not need and put the commands you use most into own groups.	Piilota ryhmät, joita et tarvitse, ja kokoa useimmin käyttämäsi komennot omiin ryhmiin.
 Highest phase unbalance	Suurin vaiheiden epäsymmetria
 Highest short-circuit current	Suurin oikosulkuvirta
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Suurin jännite (tyhjäkäynti alimmassa lämpötilassa), keskimääräinen ja pienin jännite (maksimiteholla keski- ja korkeimmassa lämpötilassa), virta maksimiteholla, huipputeho
 Highest: the lowest voltage	Korkein: pienin jännite
+Holder distance	Pidikeväli
+Holders on the roof	Pidikkeet katolla
+Holders on the walls	Pidikkeet seinillä
 Hole to sheet edge	Reiän etäisyys levyn reunasta
 Home	Aloitus
 Hook distance	Koukkujen väli
@@ -827,6 +872,8 @@ Hose defaults and PCT loops of the pre-planning	Letkujen oletusarvot ja esisuunn
 Hose number	Letkun numero
 Hoses and pipes	Letkut ja putket
 Hoses rated below it are errors; 0 = not checked	Sitä pienemmälle paineelle mitoitetut letkut ovat virheitä; 0 = ei tarkisteta
+How far inside the outer walls	Kuinka paljon ulkoseinien sisäpuolella
+How far outside the outer walls	Kuinka paljon ulkoseinien ulkopuolella
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Miten lehti avautuu: saranat vasemmassa tai oikeassa reunassa (huoneen sisältä katsottuna), huoneeseen päin tai siitä ulos, tai liukuen seinää pitkin
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Miten johdin päätetään tässä päässä; oletuksena liitäntäpisteelle tai sen laitteelle valitulla tavalla, muuten asettelun pääteholkkiasetuksen mukaan
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Miten johtimet hyppäävät risteämiensä johtimien yli, miten T-liitokset merkitään ja reititetäänkö siirrettyjen kohteiden yhteydet uudelleen
@@ -940,6 +987,7 @@ Labeling scheme	Merkintäskeema
 Landscape	Vaakasuunta
 Large dot	Suuri piste
 Larger texts and buttons for a touch screen at the workbench	Suuremmat tekstit ja painikkeet työpenkin kosketusnäytölle
+Largest mesh	Suurin silmä
 Latitude, longitude	Leveys, pituus
 Layer	Taso
 Layer {}	Taso {}
@@ -953,6 +1001,7 @@ Layout space	Asennustila
 Layout spaces	Asennustilat
 Leave out the ceilings of the rooms and the roofs in the 3D view	Jätä tilojen katot ja yläpohjat pois 3D-näkymästä
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Jätä kaikkien johtokanavien kannet pois 3D-näkymästä: niissä olevat johtimet näkyvät
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Jätä aurinkopaneelikenttien moduulit pois 3D-näkymästä: kiskot, kattokoukut, telineet, maadoitus ja kaapelointi näkyvät
 Leave repeated values of the first column blank	Jätä ensimmäisen sarakkeen toistuvat arvot tyhjiksi
 Left button	Vasen painike
 Left edges	Vasemmat reunat
@@ -960,6 +1009,7 @@ Legend plates (door devices)	Nimikilvet (ovilaitteet)
 Length from the node to the device	Pituus solmusta laitteeseen
 Length inside an enclosure	Pituus kotelon sisällä
 Length of a shield pigtail where there is no shield clamp	Suojavaipan punoksen pituus, jos suojavaipan kiinnitintä ei ole
+Length of the rod	Sauvan pituus
 Length of wires that are not routed in the panel layout	Niiden johtojen pituus, joita ei ole reititetty kaappiasennuksessa
 Length {} mm	Pituus {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Kirjaimet, numerot, välilyönti, - _ . (enintään 64 merkkiä)
@@ -970,6 +1020,8 @@ Level {} added to building {}; new rooms go onto it	Kerros {0} lisätty rakennuk
 Level {} of building {}	Rakennuksen {1} kerros {0}
 Levels	Kerrokset
 Library	Kirjasto
+Lightning protection	Ukkossuojaus
+Lightning protection of building {}	Rakennuksen {} ukkossuojaus
 Like two fingers	Kuten kaksi sormea
 Limits	Raja-arvot
 Limits in effect	Voimassa olevat raja-arvot
@@ -1020,7 +1072,9 @@ Macros	Makrot
 Macros ({})	Makrot ({})
 Macro…	Makro…
 Main	Pää
+Main earthing busbar	Päämaadoituskisko
 Make the selected elements of this project equal to the compared ones	Tee tämän projektin valituista elementeistä samanlaiset kuin vertailtavat
+Maker	Valmistaja
 Makes the current page content of the option	Tekee nykyisestä sivusta vaihtoehdon sisältöä
 Manage plugins	Hallitse laajennuksia
 Management	Hallinta
@@ -1063,6 +1117,7 @@ Mixed	Sekalainen
 Mode	Tila
 Model of a part (2D / 3D)	Osan malli (2D / 3D)
 Modifier keys	Muokkausnäppäimet
+Module area	Moduulien pinta-ala
 Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
 Motors feed the short circuit	Moottorit syöttävät oikosulkua
 Mounted on	Asennettu kohteeseen
@@ -1075,6 +1130,7 @@ Mouse	Hiiri
 Move	Siirrä
 Move ahead in the 3D view (held)	Liiku eteenpäin 3D-näkymässä (pidä painettuna)
 Move back in the 3D view (held)	Liiku taaksepäin 3D-näkymässä (pidä painettuna)
+Move buildings	Siirrä rakennuksia
 Move down	Siirrä alaspäin
 Move down in the 3D view (held)	Liiku alaspäin 3D-näkymässä (pidä painettuna)
 Move faster with the keys of the 3D view	Liiku nopeammin 3D-näkymän näppäimillä
@@ -1163,6 +1219,7 @@ No PLC cards in the project.	Projektissa ei ole PLC-kortteja.
 No PLC inputs / outputs placed.	PLC-tuloja / -lähtöjä ei ole sijoitettu.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Ei tarvikkeita: läpiviennit, liittimet, suojavaippapuristimet … menevät osaluetteloon ja tarkistetaan kaapelia vasten.
 No bus systems.	Ei väyläjärjestelmiä.
+No busbar	Ei kiskoa
 No cable passage to {}: wires to it are not routed	Ei kaapelin läpivientiaukkoa kohteeseen {}: sinne meneviä johtoja ei reititetä
 No cables defined.	Kaapeleita ei ole määritetty.
 No cables yet. Draw a cable definition across wires or add a cable.	Ei vielä kaapeleita. Piirrä kaapelimääritys johtojen poikki tai lisää kaapeli.
@@ -1174,6 +1231,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	Ei eroja kohteeseen {}.
 No document embedded	Dokumenttia ei ole upotettu
 No dot: plain T	Ei pistettä: tavallinen T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	Ei vielä maadoituselektrodia: perustusmaadoitus pohjalaattaan, rengasmaadoitus seinien ympärille tai maadoitussauvoja.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
@@ -1186,6 +1244,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Ei vielä m
 No modules: plug in PLC cards of the schematic.	Ei moduuleja: asenna piirikaavion PLC-kortteja.
 No numbers for	Ei numeroita kohteille
 No panel items: place the devices in the panel layout.	Ei asennusosia: sijoita laitteet kaappiasennukseen.
+No part matches.	Mikään osa ei vastaa.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Lattia-asennukseen merkittyjä osia ei vielä ole. Merkitse osa osien hallinnassa: osaeditori › Asennustiedot › Lattia-asennus.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Seinäasennukseen merkittyjä osia ei vielä ole. Merkitse osa osien hallinnassa: osaeditori › Asennustiedot › Seinäasennus.
 No parts of the product group Cables in the parts database.	Osatietokannassa ei ole tuoteryhmän Kaapelit osia.
@@ -1204,6 +1263,7 @@ No segments yet: draw them in the plant layout.	Ei vielä osuuksia: piirrä ne l
 No shortcut	Ei pikanäppäintä
 No single-line symbols and no power devices in the schematic.	Ei yksinapaisia symboleita eikä tehopiirin laitteita piirikaaviossa.
 No stations: add one or use the automatic configuration.	Ei asemia: lisää asema tai käytä automaattista kokoonpanoa.
+No string yet: the modules are not connected.	Ei vielä ketjua: moduuleja ei ole kytketty.
 No subprojects were taken out of this project.	Tästä projektista ei ole irrotettu aliprojekteja.
 No terminal strips: place terminals in a schematic first.	Ei riviliitinrimoja: sijoita ensin riviliittimiä piirikaavioon.
 No user symbols yet. Create one or copy a built-in symbol.	Ei vielä käyttäjän symboleja. Luo symboli tai kopioi sisäinen symboli.
@@ -1240,6 +1300,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	Kosketusnäytöllä ja kosketuslevyllä. Vain panorointi: nipistys ei zoomaa; vain zoomaus: vieritys kahdella sormella kosketuslevyllä zoomaa myös, jos järjestelmä tunnistaa kosketuslevyt. Yksi sormi toimii kuin hiiren vasen painike.
 On a touch screen; trackpads leave three-finger gestures to the system.	Kosketusnäytöllä; kosketuslevyt jättävät kolmen sormen eleet järjestelmälle.
 On startup	Käynnistettäessä
+On the roof, joined to the air-termination conductors; move it to its place	Katolla, yhdistetty sieppausjohtimiin; siirrä se paikalleen
 One row per label	Yksi rivi merkintäkilpeä kohden
 Only devices on the current page	Vain nykyisen sivun laitteet
 Only frames no page uses can be deleted	Vain kehykset, joita mikään sivu ei käytä, voi poistaa
@@ -1267,6 +1328,7 @@ Open the selection: its properties, in the floor plan its face	Avaa valinta: sen
 Open to {}: wires cross beside the mounting plates	Avoin kohteeseen {}: johdot kulkevat asennuslevyjen vierestä
 Open walls and floors	Avaa seinät ja lattiat
 Open, save, import, export, print and the settings	Avaa, tallenna, tuo, vie, tulosta ja asetukset
+Open-circuit voltage	Tyhjäkäyntijännite
 OpenECraft page templates	OpenECraft-sivumallit
 OpenECraft page templates (JSON)	OpenECraft-sivumallit (JSON)
 OpenECraft project	OpenECraft-projekti
@@ -1309,6 +1371,7 @@ Other values ({})	Muut arvot ({})
 Otherwise from the plant layout, or next to the other line-ups	Muuten laitoksen sijoituskuvasta tai muiden kaappirivien viereen
 Out since {} (pages locked)	Irrotettu {} alkaen (sivut lukittu)
 Outer diameter (e.g. 8 mm) or DN	Ulkohalkaisija (esim. 8 mm) tai DN
+Outlets	Pistorasiat
 Outlets, switches, heating	Rasiat, kytkimet, lämmitys
 Outline	Ääriviiva
 Outlines	Ääriviivat
@@ -1331,6 +1394,10 @@ PLC channels	PLC-kanavat
 PLC hardware and bus topology	PLC-laitteisto ja väylätopologia
 PLC overview	PLC-yleiskatsaus
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- tai JPEG-bittikarttakuva, esim. logo tai valokuva
+PV array {}	Aurinkopaneelikenttä {}
+PV array {} lies outside the protection of the air-termination system	Aurinkopaneelikenttä {} on sieppausjärjestelmän suojan ulkopuolella
+PV array {} of building {}: {} modules	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia
+PV array {} of building {}: {} modules, {} kWp	Aurinkopaneelikenttä {}, rakennus {}: {} moduulia, {} kWp
 PV arrays	Aurinkopaneelikentät
 Page graphics	Sivun grafiikka
 Page heading	Sivun otsikko
@@ -1378,6 +1445,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Polun toimintoteksti
 Pattern	Kuvio
 Pattern…	Kuvio…
+Peak power	Huipputeho
+Pick a part in the list.	Valitse osa luettelosta.
 Pin-out	Nastajärjestys
 Pipe run	Putkireitti
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Putkireitti huoneen seinällä, katossa tai lattialla, jota pitkin letkut, putket ja putkistot reititetään: napsauta kulmat, lopeta kaksoisnapsautuksella tai Enterillä
@@ -1395,6 +1464,7 @@ Place in the building	Paikka rakennuksessa
 Place in the plant	Paikka laitoksessa
 Place in the room	Paikka huoneessa
 Place in the site plan	Sijoita asemapiirrokseen
+Place on the wall	Sijoita seinälle
 Place text	Sijoita teksti
 Place the georeferenced point everything is measured from	Sijoita georeferoitu piste, josta kaikki mitataan
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Sijoita laitoksen georeferoitu piste asemapiirrokseen; sen koordinaatit annetaan Rakennukset-paneelissa, ja jokainen piste mitataan siitä
@@ -1427,6 +1497,7 @@ Plug in card	Asenna kortti
 Plugin commands	Laajennusten komennot
 Plugins	Laajennukset
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Laajennukset lisäävät komentoja, tarkistuksia, raportteja ja vientejä. Ulkoiset laajennukset ladataan ympäristömuuttujan {} kansioista (yksi alikansio, jossa plugin.json, kutakin laajennusta kohden).
+Plus and minus leads from the modules to the inverter	Plus- ja miinusjohtimet moduuleilta vaihtosuuntaajalle
 Points	Pisteet
 Polygon	Monikulmio
 Polyline	Murtoviiva
@@ -1629,6 +1700,8 @@ Right edges	Oikeat reunat
 Right neighbour	Oikea naapuri
 Rights	Oikeudet
 Risers	Nousut
+Rod holder	Tangon pidike
+Roof pitch	Katon kaltevuus
 Roof window	Kattoikkuna
 Roof windows	Kattoikkunat
 Roofs	Katot
@@ -1724,11 +1797,13 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Vieritys zoomaa myös siellä, missä se panoroi
 Search (* and ? as placeholders)…	Hae (* ja ? jokerimerkkeinä)…
 Search below this folder	Hae tämän kansion alta
+Search number, description, maker	Hae numeroa, kuvausta, valmistajaa
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
 Second channel	Toinen kanava
 Section properties	Osion ominaisuudet
 Section properties…	Osion ominaisuudet…
 Section {} is now section {}	Osio {} on nyt osio {}
+See-through PV modules	Läpinäkyvät aurinkopaneelit
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Nähtynä liitinpinnoilta; värit ovat nastojen johtimien ja kaapelijohtimien värit.
 Segment {}	Segmentti {}
 Segments	Osuudet
@@ -1784,6 +1859,7 @@ Shielded analogue cables	Suojavaipalliset analogiakaapelit
 Shielded drive cables	Suojavaipalliset käyttökaapelit
 Short circuit and selectivity	Oikosulku ja selektiivisyys
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Oikosulku, selektiivisyys, kuormat, EMC, toiminnallinen turvallisuus ja validointi sääntökokoelmia vasten
+Short-circuit current	Oikosulkuvirta
 Short-circuit currents	Oikosulkuvirrat
 Short-circuit power of the network	Verkon oikosulkuteho
 Shortest profile	Lyhyin profiili
@@ -1803,6 +1879,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Näytä tai piilota ruutuja;
 Show project manager	Näytä projektienhallinta
 Show the enclosures bayed to this one as well	Näytä myös tähän rivitetyt kotelot
 Show the messages accepted as checked	Näytä tarkistetuiksi hyväksytyt ilmoitukset
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Näytä aurinkopaneelikenttien moduulit läpinäkyvinä 3D-näkymässä: moduulien väliset johdotukset niiden alla näkyvät
 Show the other wires	Näytä muut johdot
 Show the pane as a window	Näytä ruutu ikkunana
 Show the ribbon	Näytä valintanauha
@@ -1896,6 +1973,7 @@ Surge protection	Ylijännitesuojaus
 Swing the enclosure door open or shut (door devices and their wires move with it)	Avaa tai sulje kotelon ovi (ovilaitteet ja niiden johdot liikkuvat mukana)
 Switch off the check \"{}\"	Poista tarkistus \"{}\" käytöstä
 Switched off on this computer ({})	Poistettu käytöstä tässä tietokoneessa ({})
+Switches	Kytkimet
 Switches the options with a condition by the configurator options	Kytkee ehdolliset vaihtoehdot konfiguraattorin vaihtoehtojen mukaan
 Switches to this workspace with its panes at their default places	Vaihtaa tähän työtilaan ja palauttaa sen paneelit oletuspaikoilleen
 Switches, push buttons and room thermostats	Kytkimet, painikkeet ja huonetermostaatit
@@ -1944,6 +2022,7 @@ Terminals at least	Riviliittimet vähintään
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Riviliittimet, joilla on sama siltanumero, on silloitettu (sama potentiaali). Varariviliittimet lasketaan mukaan osaluetteloon.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Ehdot merkillä ';' erotettuina: avain=arvo (yhtä kuin), avain~teksti (sisältää) tai teksti missä tahansa
 Test connection	Testaa yhteys
+Test joints	Mittausliitokset
 Text offset	Tekstin siirtymä
 Text size	Tekstin koko
 Texts	Tekstit
@@ -2001,6 +2080,7 @@ The web version is updated on its server.	Verkkoversio päivitetään sen palvel
 The wire tool routes around symbols and other wires	Johtotyökalu reitittää symbolien ja muiden johtojen ympäri
 The wires get the free cores of the cable in order (left to right)	Johdot saavat kaapelin vapaat johtimet järjestyksessä (vasemmalta oikealle)
 The wires of the connection take these values again	Yhteyden johdot saavat nämä arvot uudelleen
+Their places, sizes and busbars are set in the Buildings pane.	Niiden paikat, mitat ja kiskot asetetaan Rakennukset-paneelissa.
 Theme	Teema
 These settings are edited in their panes:	Näitä asetuksia muokataan omissa ruuduissaan:
 Thickness	Paksuus
@@ -2098,6 +2178,7 @@ Via:	Kautta:
 View	Näytä
 Visible	Näkyvä
 Voltage (line to line)	Jännite (pääjännite)
+Voltage at maximum power	Jännite maksimiteholla
 Voltage drop	Jännitteenalenema
 WGS 84, written into the site of IFC exports	WGS 84, kirjoitetaan IFC-vientien tonttiin
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Seinä {}, {} m: siirrä vetämällä, kaksoisnapsautus näyttää sen varustettavaksi
@@ -2285,6 +2366,8 @@ x y	x y
 {} (default)	{} (oletus)
 {} (first column)	{} (ensimmäinen sarake)
 {} (locked by {})	{} (lukinnut {})
+{} (no such device)	{} (laitetta ei ole)
+{} (not placed in the layout)	{} (ei sijoitettu asennukseen)
 {} (project server, revision {})	{} (projektipalvelin, revisio {})
 {} (spare)	{} (vara)
 {} (subproject of {})	{} (projektin {} aliprojekti)
@@ -2294,7 +2377,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-toimintotekstiä päivitetty
 {} Vault items found for the project parts	Projektin osille löytyi {} Vault-nimikettä
 {} Vault items found: review the changes in the integration window	{} Vault-nimikettä löytyi: tarkista muutokset integraatioikkunassa
+{} added to building {}	{} lisätty rakennukseen {}
 {} addresses changed	{} osoitetta muutettu
+{} air-termination rods	{} ukkosenjohdatintankoa
 {} bundles, {} branch points	{} nippua, {} haarautumispistettä
 {} bus cables created	{} väyläkaapelia luotu
 {} bus connections	{} väyläyhteyttä
@@ -2332,6 +2417,7 @@ x y	x y
 {} devices renamed	{} laitetta nimettiin uudelleen
 {} differences to {}	{} eroa kohteeseen {}
 {} doors	{} ovea
+{} down conductors with test joints, {} m of conductors	{} alastulojohdinta mittausliitoksin, {} m johtimia
 {} entries in {}	{} merkintää kohteessa {}
 {} errors	Virheitä: {}
 {} errors, {} warnings	{} virhettä, {} varoitusta
@@ -2346,6 +2432,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	Osalla {} ei ole symbolillista toimintoa; liitä se laitteeseen laitteen ominaisuuksissa
 {} has unsaved changes. Discard them?	Kohteessa {} on tallentamattomia muutoksia. Hylätäänkö ne?
 {} imported into the parts database and placed as {}	{} tuotiin osatietokantaan ja sijoitettiin nimellä {}
+{} in {}	{} ({})
 {} is neither in the parts database nor on the parts server	{} ei ole osatietokannassa eikä osapalvelimella
 {} is not in the disk image	{} ei ole levykuvassa
 {} is not made for wall mounting: place it on a mounting rail	{} ei ole tarkoitettu seinäasennukseen: aseta se asennuskiskoon
@@ -2375,6 +2462,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} / {} merkintää näytetään: rajaa luetteloa hakemalla
 {} of {} items	{} / {} kohdetta
 {} of {} pages locked	{}/{} sivua lukittu
+{} of {} parts · double-click: place	{} / {} osaa · kaksoisnapsautus: sijoita
 {} of {} pins used	{}/{} nastaa käytössä
 {} of {} rows	{}/{} riviä
 {} of {} wires	{}/{} johtoa
@@ -2426,8 +2514,10 @@ x y	x y
 {} wires changed	{} johtoa muutettu
 {} wires, {} cables and {} tubes routed	{} johtoa, {} kaapelia ja {} putkea reititetty
 {} wires, {} – {} mm	{} johtoa, {} – {} mm
+{} {} of building {}	{} {}, rakennus {}
 {} °C (max. {} °C)	{} °C (enint. {} °C)
 {} °C (max.)	{} °C (enint.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pikseliä, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
 {} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
@@ -2435,6 +2525,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: puristetaan yhdessä johtimen {} kanssa
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa
 {}: drag to move it, a double-click shows the floor	{}: siirrä vetämällä, kaksoisnapsautus näyttää lattian
+{}: drag to move, R: turn by 90°	{}: siirrä vetämällä, R: käännä 90°
 {}: nothing to change	{}: ei muutettavaa
 {}: pin {}	{}: nasta {}
 {}: strip {} mm, {}	{}: kuori {} mm, {}

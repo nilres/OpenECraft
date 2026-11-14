@@ -263,7 +263,11 @@ impl App {
                     let def = commands::def(c);
                     if def.kind == Kind::Menu {
                         let enabled = self.cmd_enabled(c);
-                        ui.add_enabled_ui(enabled, |ui| ui.menu_button(tr(def.title), |ui| self.cmd_menu(ui, c)));
+                        ui.add_enabled_ui(enabled, |ui| {
+                            let button = egui::containers::menu::SubMenuButton::new(tr(def.title));
+                            let button = if commands::stays_open(c) { button.config(egui::containers::menu::MenuConfig::new().close_behavior(egui::PopupCloseBehavior::CloseOnClickOutside)) } else { button };
+                            button.ui(ui, |ui| self.cmd_menu(ui, c));
+                        });
                     } else {
                         self.cmd_button(ui, c);
                     }
@@ -390,7 +394,9 @@ impl App {
         });
         if def.kind == Kind::Menu {
             if self.cmd_enabled(cmd) {
-                egui::Popup::menu(&resp).show(|ui| self.cmd_menu(ui, cmd));
+                let popup = egui::Popup::menu(&resp);
+                let popup = if commands::stays_open(cmd) { popup.close_behavior(egui::PopupCloseBehavior::CloseOnClickOutside) } else { popup };
+                popup.show(|ui| self.cmd_menu(ui, cmd));
             }
         } else if resp.clicked() {
             let ctx = ui.ctx().clone();
