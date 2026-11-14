@@ -1,14 +1,17 @@
 <#
-Run with PowerShell 7 and a Rust toolchain on PATH:
-    ./scripts/test-cable-rename.ps1
+Run with Windows PowerShell 5.1 or PowerShell 7 and a Rust toolchain on PATH:
+    ./scripts/test-project-server-live.ps1
 Builds and starts a disposable loopback server on a free port with two editors
 and a viewer, using random credentials and synthetic projects only. Runs the
-ignored HTTP test explicitly: conflicts, cancellation while a lock is pending,
-other users' changes, stale drafts, permissions, undo/redo and failed transport.
-Stops its server afterwards; keeps logs/data in target/rename-multiuser.
+ignored HTTP tests (`live_http_*`) explicitly: cable renames (conflicts,
+cancellation while a lock is pending, other users' changes, stale drafts,
+permissions, undo/redo, failed transport) and shared saves (repeated saves,
+edits and undo while saving, save and release, failed transport, the
+unsaved-changes question, closing while saving).
+Stops its server afterwards; keeps logs/data in target/project-server-live.
 No existing project server is contacted.
 #>
-param([string]$LogDirectory = (Join-Path $PSScriptRoot '../target/rename-multiuser'))
+param([string]$LogDirectory = (Join-Path $PSScriptRoot '../target/project-server-live'))
 $ErrorActionPreference = 'Stop'
 $repo = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 Set-Location $repo
@@ -30,9 +33,8 @@ $start.UseShellExecute = $false
 $start.CreateNoWindow = $true
 $start.RedirectStandardOutput = $true
 $start.RedirectStandardError = $true
-$start.ArgumentList.Add('--bind'); $start.ArgumentList.Add("127.0.0.1:$port")
-$start.ArgumentList.Add('--data'); $start.ArgumentList.Add((Join-Path $runDir 'data'))
-$start.Environment['OPENECRAFT_PROJECT_TOKEN'] = $secret
+$start.Arguments = "--bind 127.0.0.1:$port --data `"$(Join-Path $runDir 'data')`""
+$start.EnvironmentVariables['OPENECRAFT_PROJECT_TOKEN'] = $secret
 $server = [Diagnostics.Process]::Start($start)
 $stdout = $server.StandardOutput.ReadToEndAsync()
 $stderr = $server.StandardError.ReadToEndAsync()
@@ -48,17 +50,20 @@ try {
         $body = @{password=$password;role=$role;projects=@()} | ConvertTo-Json
         $null = Invoke-RestMethod "$url/api/v1/users/$user" -Method Put -Headers $headers -ContentType 'application/json' -Body $body
         $login = Invoke-RestMethod "$url/api/v1/login" -Method Post -ContentType 'application/json' -Body (@{user=$user;password=$password}|ConvertTo-Json)
-        [Environment]::SetEnvironmentVariable("OPENECRAFT_RENAME_TEST_$($user.ToUpper())",$login.token,'Process')
+        [Environment]::SetEnvironmentVariable("OPENECRAFT_LIVE_TEST_$($user.ToUpper())",$login.token,'Process')
     }
-    $env:OPENECRAFT_RENAME_TEST_URL = $url
+    $env:OPENECRAFT_LIVE_TEST_URL = $url
     Set-Location $repo
-    & cargo test -p openecraft live_http_multiuser_rename --locked -- --ignored --nocapture > (Join-Path $out 'multiuser-live.log') 2>&1
+    # Windows PowerShell stops at the first line cargo writes to stderr otherwise.
+    $ErrorActionPreference = 'Continue'
+    & cargo test -p openecraft live_http_ --locked -- --ignored --nocapture --test-threads 1 > (Join-Path $out 'live.log') 2>&1
     $testExit = $LASTEXITCODE
-    Get-Content (Join-Path $out 'multiuser-live.log') -Tail 55
-    if ($testExit -ne 0) {throw 'Multiuser live test failed'}
-    Write-Output 'PASS: live HTTP multiuser test'
+    $ErrorActionPreference = 'Stop'
+    Get-Content (Join-Path $out 'live.log') -Tail 80
+    if ($testExit -ne 0) {throw 'Live project server tests failed'}
+    Write-Output 'PASS: live project server tests'
 } finally {
     if (-not $server.HasExited) {$server.Kill(); $server.WaitForExit()}
     [IO.File]::WriteAllText((Join-Path $runDir 'server.log'),$stdout.GetAwaiter().GetResult()+$stderr.GetAwaiter().GetResult())
-    foreach ($name in @('ALICE','BOB','VIEWER','URL')) {[Environment]::SetEnvironmentVariable("OPENECRAFT_RENAME_TEST_$name",$null,'Process')}
+    foreach ($name in @('ALICE','BOB','VIEWER','URL')) {[Environment]::SetEnvironmentVariable("OPENECRAFT_LIVE_TEST_$name",$null,'Process')}
 }

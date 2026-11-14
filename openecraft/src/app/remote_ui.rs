@@ -7,7 +7,7 @@
 use openecraft_ui::icons::{self, Icon};
 use super::App;
 use openecraft_core::history::History;
-use crate::remote::{Link, Remote, Reply};
+use crate::remote::{Link, Remote, Reply, Sent};
 use egui::{Color32, RichText};
 use openecraft_core::collab::{restore, valid_name, Failure, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
 use openecraft_i18n::{tr, tr_fmt};
@@ -62,13 +62,14 @@ impl App {
                         self.request_replace(ctx, super::Replace::Shared(name));
                     }
                 }
-                Reply::Saved(_, Ok(snapshot)) => {
+                Reply::Saved(sent, Ok(snapshot)) => {
                     // Changes the server left out: locked or changed by another user.
                     let ignored: Vec<String> = snapshot.ignored.iter().map(|t| Remote::describe(&self.session.prj, *t)).collect();
                     let revision = snapshot.revision;
-                    self.take_snapshot(ctx, *snapshot, true);
+                    let status = self.remote.status.clone();
+                    self.take_snapshot(ctx, *snapshot, Some(&sent));
                     if ignored.is_empty() {
-                        self.notify_ok(ctx, self.remote.status.clone());
+                        self.notify_ok(ctx, status);
                     } else {
                         self.notify_warning(
                             ctx,
@@ -87,7 +88,7 @@ impl App {
                         );
                     }
                 }
-                Reply::Snapshot(_, Ok(snapshot)) => self.take_snapshot(ctx, *snapshot, false),
+                Reply::Snapshot(_, Ok(snapshot)) => self.take_snapshot(ctx, *snapshot, None),
                 Reply::Status(_, Ok(status)) => self.remote.take_status(status, &[]),
                 Reply::Locked(_, targets, Ok(status)) => self.remote.take_status(status, &targets),
                 // No answer, or the session ended: the change waits for the lock until
@@ -117,6 +118,7 @@ impl App {
             }
         }
         self.remote.release_cancelled(&self.session.prj);
+        self.remote.flush(&self.session);
     }
 
     /// Tells once what a change of the connection's state means for the open project.
@@ -189,9 +191,9 @@ impl App {
 
     /// Takes a newer state of the server (`Remote::take_snapshot`) and tells what of
     /// the local changes it replaced; a save that left changes out is reported by the caller.
-    fn take_snapshot(&mut self, ctx: &egui::Context, snapshot: Snapshot, saved: bool) {
-        let left_out = saved && !snapshot.ignored.is_empty();
-        let taken = self.remote.take_snapshot(&mut self.session, snapshot, saved, openecraft_ui::io::now_text());
+    fn take_snapshot(&mut self, ctx: &egui::Context, snapshot: Snapshot, sent: Option<&Sent>) {
+        let left_out = sent.is_some() && !snapshot.ignored.is_empty();
+        let taken = self.remote.take_snapshot(&mut self.session, snapshot, sent, openecraft_ui::io::now_text());
         if taken.kept.is_empty() || left_out {
             return;
         }
@@ -230,7 +232,6 @@ impl App {
     /// Saves to the project server; `release` locks are released afterwards. Returns
     /// false without a session to save with (`Remote::status` tells why).
     pub(super) fn save_remote(&mut self, release: Vec<Target>) -> bool {
-        self.remote.saving_rev = self.session.history.rev;
         self.remote.save(&self.session.prj, release)
     }
 
@@ -628,3 +629,6 @@ impl App {
         }
     }
 }
+
+#[cfg(test)]
+mod tests;

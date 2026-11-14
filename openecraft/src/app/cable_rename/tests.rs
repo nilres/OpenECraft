@@ -36,9 +36,9 @@ fn live_rename(app: &mut App, ctx: &egui::Context, tag: &str) {
 /// Run explicitly against a disposable loopback server with three authenticated
 /// accounts; never points at a user's project server or uses customer data.
 #[test]
-#[ignore = "requires a disposable loopback project server and OPENECRAFT_RENAME_TEST_* credentials; see scripts/test-cable-rename.ps1"]
+#[ignore = "requires a disposable loopback project server and OPENECRAFT_LIVE_TEST_* credentials; see scripts/test-project-server-live.ps1"]
 fn live_http_multiuser_rename_is_atomic_and_preserves_other_users_changes() {
-    let url = std::env::var("OPENECRAFT_RENAME_TEST_URL").expect("test server URL");
+    let url = std::env::var("OPENECRAFT_LIVE_TEST_URL").expect("test server URL");
     assert!(url.starts_with("http://127.0.0.1:"), "only disposable loopback servers are permitted");
     let name = format!("rename-test-{}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos());
     let connect = |user: &str| {
@@ -47,7 +47,7 @@ fn live_http_multiuser_rename_is_atomic_and_preserves_other_users_changes() {
         app.replace_project(project(), None);
         app.remote.url = url.clone();
         app.remote.user = user.into();
-        app.remote.token = std::env::var(format!("OPENECRAFT_RENAME_TEST_{}", user.to_uppercase())).expect("test account token");
+        app.remote.token = std::env::var(format!("OPENECRAFT_LIVE_TEST_{}", user.to_uppercase())).expect("test account token");
         (app, ctx)
     };
     let (mut alice, a) = connect("alice");

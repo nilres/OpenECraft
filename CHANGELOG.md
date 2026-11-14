@@ -18,6 +18,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   old connection error but not an unsaved failed save. *Keep working on a local
   copy* ends the shared session and keeps the project with your changes locally.
 
+- **Shared saves one at a time** (#182): a save to the project server waits for
+  the answer to the one before it (Save or Ctrl+S again sends the project as it is
+  then), and an answer marks only what its request sent as saved: edits or Undo
+  made while saving stay unsaved. Save and release keeps a page edited again
+  while saving and requests its lock again. Answers that arrive out of order no
+  longer take the project back to an older revision, a failed save sends and
+  releases nothing more, and closing or replacing a shared project ends its
+  session only after the save under way. The live project server tests run with
+  `scripts/test-project-server-live.ps1` (formerly `test-cable-rename.ps1`).
+
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor

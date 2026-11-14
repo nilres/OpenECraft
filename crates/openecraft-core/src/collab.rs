@@ -901,8 +901,23 @@ impl Shared {
                 self.fresh.insert(*t);
             }
         }
-        self.locks = status.locks;
+        if status.revision < self.revision {
+            // Answered before a newer state this session already took (answers out of
+            // order): its locks are out of date, only the granted ones are taken.
+            for l in status.locks.into_iter().filter(|l| granted.contains(&l.target) && l.session == self.session.session) {
+                if !self.locks.iter().any(|m| m.target == l.target) {
+                    self.locks.push(l);
+                }
+            }
+        } else {
+            self.locks = status.locks;
+        }
         newer
+    }
+
+    /// `prj` is the server's project as this session knows it: nothing to save.
+    pub fn in_sync(&self, prj: &Project) -> bool {
+        self.base.review == prj.review && changes(&self.base, prj).is_empty()
     }
 
     /// A new session of the project after this one ended on the server (it expired or
@@ -944,7 +959,14 @@ impl Shared {
     /// undo steps) up to date: it keeps what this session owns or is requesting, the
     /// rest comes from the server. What it replaces of the edited project is found with
     /// [`Kept::capture`].
-    pub fn update(&mut self, mut snapshot: Snapshot) -> (Vec<Target>, impl Fn(&Project) -> Project) {
+    pub fn update(&mut self, snapshot: Snapshot) -> (Vec<Target>, impl Fn(&Project) -> Project) {
+        self.update_keeping(snapshot, &[])
+    }
+
+    /// [`Shared::update`] that also keeps the local version of `keep`: targets the save
+    /// answered by `snapshot` released, changed again while it was under way (their
+    /// lock is requested again).
+    pub fn update_keeping(&mut self, mut snapshot: Snapshot, keep: &[Target]) -> (Vec<Target>, impl Fn(&Project) -> Project) {
         snapshot.project.normalize();
         let changed = changes(&self.base, &snapshot.project);
         let lost: Vec<Target> = self.fresh.iter().copied().filter(|t| changed.contains(t)).collect();
@@ -954,7 +976,7 @@ impl Shared {
         }
         // A lock still being requested: the local change waits for the answer, unless
         // another user changed the target meanwhile.
-        for t in self.requested.iter().filter(|t| !changed.contains(t)) {
+        for t in self.requested.iter().filter(|t| !changed.contains(t)).chain(keep) {
             owned.add(*t);
         }
         self.fresh.clear();
