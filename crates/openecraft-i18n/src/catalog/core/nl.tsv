@@ -555,6 +555,7 @@ Frame size	Bouwgrootte
 Free	Vrij
 Free air (mm)	Vrij in de lucht (mm)
 Free run	Vrije installatie
+Freestanding on posts	Vrijstaand op palen
 Frequency converter	Frequentieomvormer
 Frequency meter	Frequentiemeter
 From end	Vanaf einde
@@ -936,7 +937,6 @@ No plugs	Geen connectoren
 No report block {}	Geen rapportblok {}
 No segment template named {}	Geen segmentsjabloon met de naam {}
 No subproject {}	Geen deelproject {}
-No such PV array	Geen dergelijk PV-veld
 No such object: {}	Object bestaat niet: {}
 No surge protective device at the supply (IEC 60364-4-44)	Geen overspanningsbeveiliging bij de voeding (IEC 60364-4-44)
 No terminal {}	Geen klem {}
@@ -2070,6 +2070,8 @@ yellow	geel
 {}: the busbar {} of earth electrode {} does not exist	{}: de rail {} van aardelektrode {} bestaat niet
 {}: the device {} of PV array {} does not exist	{}: het apparaat {} van PV-veld {} bestaat niet
 {}: the earthing busbar {} of PV array {} does not exist	{}: de aardrail {} van PV-veld {} bestaat niet
+{}: the freestanding PV array {} stands on {}	{}: het vrijstaande PV-veld {} staat op {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: de vrijstaande PV-velden {} en {} overlappen elkaar
 {}: the generator junction box {} of PV array {} does not exist	{}: de generatoraansluitkast {} van PV-veld {} bestaat niet
 {}: the lightning protection has no earth electrode	{}: de bliksembeveiliging heeft geen aardelektrode
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: de bliksembeveiliging heeft geen muren om langs te lopen: het gebouw heeft geen ruimten of daken

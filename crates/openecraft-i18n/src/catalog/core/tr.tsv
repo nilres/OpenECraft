@@ -555,6 +555,7 @@ Frame size	Yapı boyutu
 Free	Serbest
 Free air (mm)	Serbest hava (mm)
 Free run	Serbest döşeme
+Freestanding on posts	Direkler üzerinde arazi tipi
 Frequency converter	Frekans konvertörü
 Frequency meter	Frekansmetre
 From end	Sondan
@@ -936,7 +937,6 @@ No plugs	Konnektör yok
 No report block {}	{} rapor bloğu yok
 No segment template named {}	{} adlı segment şablonu yok
 No subproject {}	{} alt projesi yok
-No such PV array	Böyle bir PV dizisi yok
 No such object: {}	Böyle bir nesne yok: {}
 No surge protective device at the supply (IEC 60364-4-44)	Beslemede aşırı gerilim koruma cihazı yok (IEC 60364-4-44)
 No terminal {}	{} klemensi yok
@@ -2070,6 +2070,8 @@ yellow	sarı
 {}: the busbar {} of earth electrode {} does not exist	{0}: topraklama elektrodu {2} için {1} barası yok
 {}: the device {} of PV array {} does not exist	{0}: PV dizisi {2} için {1} cihazı mevcut değil
 {}: the earthing busbar {} of PV array {} does not exist	{0}: PV dizisi {2} için topraklama barası {1} yok
+{}: the freestanding PV array {} stands on {}	{}: arazi tipi PV dizisi {}, {} üzerinde duruyor
+{}: the freestanding PV arrays {} and {} stand on each other	{}: arazi tipi PV dizileri {} ve {} üst üste duruyor
 {}: the generator junction box {} of PV array {} does not exist	{0}: PV dizisi {2} için jeneratör bağlantı kutusu {1} yok
 {}: the lightning protection has no earth electrode	{}: yıldırımdan korunmanın topraklama elektrodu yok
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: yıldırımdan korunmanın boyunca uzanacağı duvarlar yok: binada oda veya çatı yok

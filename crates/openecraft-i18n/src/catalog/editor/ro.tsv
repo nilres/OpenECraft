@@ -349,12 +349,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Faceți clic pe locul lui în planul de situație
 Click where the air-termination rods go on the roofs in the site plan	Faceți clic în planul de situație unde stau tijele de captare pe acoperișuri
 Click where the earth rods go in the site plan	Faceți clic în planul de situație unde se află electrozii verticali
+Click where the middle of a freestanding PV array goes in the site plan	Faceți clic în planul de situație unde vine mijlocul unui câmp PV la sol
+Click where the middle of a freestanding PV array goes · Esc: stop	Faceți clic unde vine mijlocul unui câmp PV la sol · Esc: oprire
 Click where the reference point is	Faceți clic unde se află punctul de referință
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Faceți clic unde se întâlnesc trei fire: piesa T indică aparatul de la care pornesc firele și ordinea țintelor lor · {} o rotește unde încă nu se întâlnesc fire · Esc sau clic dreapta pentru a termina
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Faceți clic unde două fire se încrucișează: încrucișarea le leagă și duce fiecare capăt al liniei sale întâi drept înainte, apoi transversal · {} o rotește · Esc sau clic dreapta pentru a termina
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Faceți clic unde două fire se întâlnesc în unghi drept, sau unde puncte de conexiune se află față în față peste colț: cu conectarea automată activă se desenează fire către el · {} îl rotește · Esc sau clic dreapta pentru a termina
 Click while moving	Clic în timpul mutării
 Click, or drag it into the page	Faceți clic sau trageți în pagină
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Clic la x {} mm, z {} mm în planul clădirii: acolo vine o nouă fereastră de mansardă sau un nou câmp PV.
 Climate (IEC 60890)	Climatizare (IEC 60890)
 Clipboard	Clipboard
 Close	Închidere
@@ -778,6 +781,12 @@ Frame of all pages that do not choose one	Chenarul tuturor paginilor care nu î�
 Free air	Pozare liberă
 Free air factor	Factor de pozare liberă
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Spațiu liber în fața fiecărui dispozitiv de pe placă până la ușă; articolele îl adaugă pe al lor (Service space)
+Freestanding	La sol
+Freestanding PV array {}	Câmp PV la sol {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Câmp PV la sol {} plasat; clic pentru următorul · Esc: oprire
+Freestanding PV array {}: {} modules	Câmp PV la sol {}: {} module
+Freestanding PV array {}: {} modules, {} kWp	Câmp PV la sol {}: {} module, {} kWp
+Freestanding PV arrays	Câmpuri PV la sol
 Freeze all routes	Fixare toate traseele
 Freeze route	Fixare traseu
 Frequency	Frecvență
@@ -822,6 +831,7 @@ Graphic line	Linie grafică
 Graphic rectangle	Dreptunghi grafic
 Graphical form	Formular grafic
 Greatest distance of the conductor holders on the roof and on the walls	Distanța maximă a suporturilor de conductor pe acoperiș și pe pereți
+Greatest distance of the posts along a table	Cea mai mare distanță a stâlpilor de-a lungul unei mese
 Greatest distance of the roof hooks along a rail	Distanța maximă a cârligelor de acoperiș de-a lungul unei șine
 Grid	Grilă
 Grid north	Nordul rețelei
@@ -843,6 +853,7 @@ Height above sea level	Altitudine
 Height above the floor	Înălțime deasupra podelei
 Height above the mounting plate	Înălțime deasupra plăcii de montaj
 Height above the plate	Înălțime deasupra plăcii
+Height of the lower edge of the modules above the ground	Înălțimea marginii inferioare a modulelor deasupra solului
 Height of the plinth, 0 without plinth	Înălțimea soclului, 0 fără soclu
 Height of the rod above the covering	Înălțimea tijei deasupra învelitorii
 Height of the test joints above the ground	Înălțimea pieselor de separație deasupra terenului
@@ -1063,6 +1074,7 @@ Look for updates when OpenECraft starts	Caută actualizări la pornirea OpenECra
 Looking for updates…	Se caută actualizări…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Caută o versiune nouă a OpenECraft pe GitHub și o instalează în fundal
 Loop	Buclă
+Lower edge	Margine inferioară
 Lowest fault current	Cel mai mic curent de defect
 Lowest: the highest open-circuit voltage	Cea mai scăzută: tensiunea în gol cea mai mare
 Macro boxes	Casete macro
@@ -1109,6 +1121,7 @@ Messages of this session	Mesajele acestei sesiuni
 Middle	Mijloc
 Middle button	Butonul din mijloc
 Middle of the PV array in the floor plan of the building	Mijlocul câmpului fotovoltaic în planul clădirii
+Middle of the PV array in the plant	Mijlocul câmpului PV în instalație
 Min. bend radius	Rază min. de curbură
 Minimize the ribbon	Minimizarea panglicii
 Mirror	Oglindire
@@ -1119,6 +1132,7 @@ Model of a part (2D / 3D)	Model al unui articol (2D / 3D)
 Modifier keys	Taste modificatoare
 Module area	Suprafața modulelor
 Module part; its size comes from the part	Piesa modulului; dimensiunea ei vine din piesă
+Modules on top of each other on a table	Module unul peste altul pe o masă
 Motors feed the short circuit	Motoarele alimentează scurtcircuitul
 Mounted on	Montat pe
 Mounting assistant: the panel items in mounting order with their place and part	Asistent de montaj: elementele de tablou în ordinea de montaj, cu locul și articolul lor
@@ -1235,6 +1249,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Încă nicio carcasă – creați una cu Carcasă nouă sau o încăpere pentru dulapuri cu Încăpere nouă.
 No field cables: place the enclosures and field devices at nodes of the route network.	Niciun cablu de câmp: plasați carcasele și dispozitivele de câmp la nodurile rețelei de trasee.
 No filter fans: an air/air heat exchanger or a cooling unit	Fără ventilatoare cu filtru: un schimbător de căldură aer/aer sau un agregat de răcire
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Încă niciun câmp PV la sol: rânduri de mese înclinate pe stâlpi bătuți pe teren.
 No gesture	Niciun gest
 No harnesses defined.	Nu sunt definite cablaje.
 No inverter	Fără invertor
@@ -1491,7 +1506,6 @@ Plant layout	Plan de amplasare a instalației
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Plan de amplasare a instalației, rețea de trasee, planificarea cablurilor de câmp, legătură echipotențială și accesorii de cablu
 Plant segments with planned devices before the schematic	Segmente de instalație cu dispozitive planificate înainte de schemă
 Plate outline, holes per diameter, cutouts	Contur placă, găuri pe diametru, decupaje
-Plot	Teren
 Plot boundary	Limita terenului
 Plot boundary drawn: {} m²	Limita terenului desenată: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Limita terenului desenată: {} m²; în afara ei: {}
@@ -1514,6 +1528,8 @@ Position of the cursor	Poziția cursorului
 Position of the device tag (instead of the tag block)	Poziția identificatorului de dispozitiv (în locul blocului de identificator)
 Position of the label (terminal number, address …)	Poziția etichetei (număr de bornă, adresă …)
 Positions are relative to the lower right corner of the symbol.	Pozițiile sunt relative la colțul din dreapta jos al simbolului.
+Post distance	Distanța stâlpilor
+Posts	Stâlpi
 Potential {}	Potențial {}
 Potential: {}	Potențial: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Puterea și curentul consumatorilor rețelei (motoare, acționări, încălzitoare, surse de alimentare, transformatoare), sarcina fiecărui dispozitiv de protecție, necesarul cu factorul de simultaneitate și bilanțul de sarcină al surselor de alimentare.
@@ -1709,6 +1725,8 @@ Rod holder	Suport de tijă
 Roof pitch	Panta acoperișului
 Roof window	Fereastră de mansardă
 Roof windows	Ferestre de mansardă
+Roof {} of building {}	Acoperișul {} al clădirii {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Acoperișul {} al clădirii {}: proprietățile amplasării adaugă un câmp PV sau o fereastră de mansardă unde s-a dat clic
 Roofs	Acoperișuri
 Room	Încăpere
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Încăpere adăugată la nivelul {}: trageți pereții sau desenați alții noi în plan, așezați dulapuri în ea din proprietățile lor
@@ -1735,6 +1753,8 @@ Row	Rând
 Row distance	Distanța dintre rânduri
 Row drawing	Desen de rând
 Row labels	Etichete de rânduri
+Rows of tables behind each other	Rânduri de mese una în spatele alteia
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rânduri de mese înclinate pe stâlpi în fața a ceea ce se află în instalație, orientate în față; mutați-l la locul lui
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Rândurile de pe paginile aprobate nu pot fi modificate. Un salt de rând într-un text se scrie ca \\n.
 Rows per page	Rânduri pe pagină
 Rule libraries	Biblioteci de reguli
@@ -2067,6 +2087,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Paginile generate de acesta rămân
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza de date de articole este partajată de toate proiectele. Articolele se copiază într-un proiect atunci când sunt atribuite unui dispozitiv.
 The point's coordinates in the coordinate reference system	Coordonatele punctului în sistemul de coordonate de referință
+The post; its accessories are the table beams, rails and clamps	Stâlpul; accesoriile lui sunt grinzile mesei, șinele și clemele
 The project changed since the search.	Proiectul s-a modificat de la căutare.
 The project check	Verificarea proiectului
 The project database needs the desktop version: the browser cannot search folders.	Baza de date de proiecte necesită versiunea desktop: browserul nu poate căuta în foldere.
@@ -2210,6 +2231,7 @@ When it differs from the page	Când diferă de pagină
 Where	Poziție
 Where neither wire has a termination chosen for it	Unde niciunul dintre conductoare nu are o terminație aleasă
 Where the point is in the plant; y: its height above the ground level of the plant	Unde se află punctul în instalație; y: înălțimea lui deasupra nivelului solului instalației
+Where the roof was clicked in the 3D view	Unde s-a dat clic pe acoperiș în vederea 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	De unde provine structura dispozitivului: aspectele egale cu structura din jurul simbolului sunt moștenite și se schimbă când acesta este mutat într-o casetă de structură sau în afara ei; celelalte aspecte sunt ale dispozitivului și rămân.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Unde începe și se termină conductorul: un punct de conexiune din datele articolului, unul generat din șablonul de funcție sau centrul dispozitivului dacă niciun punct de conexiune nu corespunde
 Whole building	Întreaga clădire
@@ -2248,6 +2270,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Spațiu de cablare între dispozitive și canale
 With a user account of the server; replaces the access token	Cu un cont de utilizator al serverului; înlocuiește tokenul de acces
 With everything below it	Cu tot ce se află sub el
+With its middle where the roof was clicked in the 3D view	Cu mijlocul unde s-a dat clic pe acoperiș în vederea 3D
 With the current pages; the approvals so far become void	Cu paginile curente; avizele de până acum devin nule
 With values only	Numai cu valori
 Withdraw	Retragere
@@ -2508,6 +2531,7 @@ x y	x y
 {} renamed: {} pages and devices	{} redenumit: {} pagini și dispozitive
 {} report pages output to {}	{} pagini de raport transmise în {}
 {} routes frozen	{} trasee fixate
+{} rows of tables of {} × {} = {}, {}	{} rânduri de mese de {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segmente create, {} dispozitive adăugate, {} actualizate
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} stații, {} sisteme de magistrală, {} carduri atribuite, {} adrese modificate, {} conexiuni, {} cabluri
 {} stopped with an error: {}	{} s-a oprit cu o eroare: {}
@@ -2537,6 +2561,7 @@ x y	x y
 {} – revision {}, {}	{} – revizia {}, {}
 {} – {} ({} pages)	{} – {} ({} pagini)
 {} – {} here (Esc cancels)	{} – {} aici (Esc anulează)
+{}, freestanding	{}, la sol
 {}: click to show its floor plan	{}: clic pentru a afișa planul
 {}: crimp together with the wire to {}	{}: se sertizează împreună cu conductorul spre {}
 {}: drag to move it, R turns it, a double-click opens it	{}: trageți pentru a muta, R rotește, dublu clic deschide

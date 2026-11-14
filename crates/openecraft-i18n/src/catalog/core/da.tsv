@@ -555,6 +555,7 @@ Frame size	Byggestørrelse
 Free	Fri
 Free air (mm)	Fri luft (mm)
 Free run	Fri føring
+Freestanding on posts	Jordmonteret på stolper
 Frequency converter	Frekvensomformer
 Frequency meter	Frekvensmåler
 From end	Fra slut
@@ -936,7 +937,6 @@ No plugs	Ingen stik
 No report block {}	Ingen rapportblok {}
 No segment template named {}	Ingen segmentskabelon med navnet {}
 No subproject {}	Intet delprojekt {}
-No such PV array	Intet sådant solcelleanlæg
 No such object: {}	Intet sådant objekt: {}
 No surge protective device at the supply (IEC 60364-4-44)	Ingen overspændingsbeskyttelse ved forsyningen (IEC 60364-4-44)
 No terminal {}	Ingen klemme {}
@@ -2070,6 +2070,8 @@ yellow	gul
 {}: the busbar {} of earth electrode {} does not exist	{}: skinnen {} til jordelektrode {} findes ikke
 {}: the device {} of PV array {} does not exist	{}: enheden {} for solcelleanlæg {} findes ikke
 {}: the earthing busbar {} of PV array {} does not exist	{}: jordskinnen {} for solcellefelt {} findes ikke
+{}: the freestanding PV array {} stands on {}	{}: det jordmonterede solcellefelt {} står på {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: de jordmonterede solcellefelter {} og {} overlapper hinanden
 {}: the generator junction box {} of PV array {} does not exist	{}: generatortilslutningsboksen {} for solcellefelt {} findes ikke
 {}: the lightning protection has no earth electrode	{}: lynbeskyttelsen har ingen jordelektrode
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: lynbeskyttelsen har ingen vægge at løbe langs: bygningen har ingen rum eller tage

@@ -547,6 +547,7 @@ Frame size	フレームサイズ
 Free	自由
 Free air (mm)	空中 (mm)
 Free run	フリー敷設
+Freestanding on posts	杭の上の野立て
 Frequency converter	インバーター
 Frequency meter	周波数計
 From end	終点から
@@ -926,7 +927,6 @@ No plugs	プラグがありません
 No report block {}	レポートブロック {} はありません
 No segment template named {}	{} という名前のセグメントテンプレートはありません
 No subproject {}	サブプロジェクト {} がありません
-No such PV array	そのPVアレイはありません
 No such object: {}	該当するオブジェクトがありません: {}
 No surge protective device at the supply (IEC 60364-4-44)	電源供給部にサージ防護デバイスがありません (IEC 60364-4-44)
 No terminal {}	端子 {} はありません
@@ -2048,6 +2048,8 @@ yellow	黄
 {}: the busbar {} of earth electrode {} does not exist	{0}：接地極 {2} のブスバー {1} は存在しません
 {}: the device {} of PV array {} does not exist	{0}：PVアレイ {2} の機器 {1} は存在しません
 {}: the earthing busbar {} of PV array {} does not exist	{0}：PVアレイ {2} の接地ブスバー {1} は存在しません
+{}: the freestanding PV array {} stands on {}	{}: 野立てPVアレイ {} が {} の上にあります
+{}: the freestanding PV arrays {} and {} stand on each other	{}: 野立てPVアレイ {} と {} が重なっています
 {}: the generator junction box {} of PV array {} does not exist	{0}：PVアレイ {2} の接続箱 {1} は存在しません
 {}: the lightning protection has no earth electrode	{}：雷保護に接地極がありません
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}：雷保護には沿うべき壁がありません。建物に部屋も屋根もありません

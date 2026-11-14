@@ -11,7 +11,7 @@ use crate::commands::Cmd;
 use crate::gestures::{MouseAction, Role};
 use super::routing_ui::RouteRef;
 use super::scene3d::{Scene3d, EQUIPMENT, ON_TOP};
-use super::{PanelUi, DOOR_OPEN_ANGLE, OUTER_WALLS};
+use super::{PanelUi, RoofTarget, DOOR_OPEN_ANGLE, OUTER_WALLS};
 use openecraft_core::geom::p;
 use openecraft_core::model::Project;
 use openecraft_core::panel::{self, ItemKind, SitePose};
@@ -354,7 +354,13 @@ impl PanelUi {
                 self.select_array(prj, array.unwrap_or_default());
                 return true;
             }
-            (None, None) => self.deselect(),
+            (None, None) => match roof_at(scene, project_view, ptr) {
+                Some(target) => {
+                    self.select_roof(prj, target);
+                    return true;
+                }
+                None => self.deselect(),
+            },
         }
         false
     }
@@ -605,6 +611,38 @@ fn depth_under(prims: &[Prim], q: Pos2, items_first: bool) -> Option<f32> {
 }
 
 /// Depth at `q` of a convex face with the corners `pts` at the depths `z`.
+/// The roof whose top is nearest to the eye at `ptr`, with the point there in the
+/// building's floor plan.
+fn roof_at(scene: &Scene3d, project_view: &dyn Fn(V3) -> Option<(Pos2, f32)>, ptr: Pos2) -> Option<RoofTarget> {
+    let mut best: Option<(f32, RoofTarget)> = None;
+    for r in &scene.roof_picks {
+        let Some(seen) = r.pts.iter().map(|&q| project_view(q)).collect::<Option<Vec<(Pos2, f32)>>>() else { continue };
+        // The triangles of the face from its first corner: the barycentric weights of the
+        // pointer, corrected for the perspective.
+        for i in 1..seen.len().saturating_sub(1) {
+            let ((a, za), (b, zb), (c, zc)) = (seen[0], seen[i], seen[i + 1]);
+            let det = (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
+            if det.abs() < 1e-6 {
+                continue;
+            }
+            let u = ((ptr.x - a.x) * (c.y - a.y) - (c.x - a.x) * (ptr.y - a.y)) / det;
+            let v = ((b.x - a.x) * (ptr.y - a.y) - (ptr.x - a.x) * (b.y - a.y)) / det;
+            if u < 0.0 || v < 0.0 || u + v > 1.0 {
+                continue;
+            }
+            let w = [(1.0 - u - v) / za, u / zb, v / zc];
+            let sum = w[0] + w[1] + w[2];
+            let depth = 1.0 / sum;
+            let at: [f32; 3] = std::array::from_fn(|k| (w[0] * r.plan[0][k] + w[1] * r.plan[i][k] + w[2] * r.plan[i + 1][k]) / sum);
+            if best.is_none_or(|(d, _)| depth < d) {
+                best = Some((depth, RoofTarget { building: r.building, roof: r.roof, at: [at[0].round(), at[2].round()] }));
+            }
+            break;
+        }
+    }
+    best.map(|b| b.1)
+}
+
 fn depth_at(q: Pos2, pts: &[Pos2], z: &[f32; 4]) -> f32 {
     for i in 1..pts.len().saturating_sub(1) {
         let (a, b, c) = (pts[0], pts[i], pts[i + 1]);

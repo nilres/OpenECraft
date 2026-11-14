@@ -547,6 +547,7 @@ Frame size	프레임 크기
 Free	자유
 Free air (mm)	자유 공간(mm)
 Free run	자유 포설
+Freestanding on posts	말뚝 위 지상형
 Frequency converter	주파수 변환기
 Frequency meter	주파수계
 From end	끝부터
@@ -926,7 +927,6 @@ No plugs	플러그 없음
 No report block {}	보고서 블록 {} 없음
 No segment template named {}	이름이 {}인 세그먼트 템플릿이 없습니다
 No subproject {}	하위 프로젝트 {}이(가) 없습니다
-No such PV array	해당 태양광 어레이 없음
 No such object: {}	해당 개체가 없습니다: {}
 No surge protective device at the supply (IEC 60364-4-44)	전원 공급부에 서지 보호 장치가 없습니다(IEC 60364-4-44)
 No terminal {}	단자 {} 없음
@@ -2048,6 +2048,8 @@ yellow	노랑
 {}: the busbar {} of earth electrode {} does not exist	{0}: 접지극 {2}의 부스바 {1}이(가) 없습니다
 {}: the device {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 장치 {1}이(가) 없습니다
 {}: the earthing busbar {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 접지 부스바 {1}이(가) 없습니다
+{}: the freestanding PV array {} stands on {}	{}: 지상형 태양광 어레이 {}이(가) {} 위에 있습니다
+{}: the freestanding PV arrays {} and {} stand on each other	{}: 지상형 태양광 어레이 {}와(과) {}이(가) 겹칩니다
 {}: the generator junction box {} of PV array {} does not exist	{0}: 태양광 어레이 {2}의 접속함 {1}이(가) 없습니다
 {}: the lightning protection has no earth electrode	{}: 피뢰에 접지극이 없습니다
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: 피뢰가 따라갈 벽이 없습니다: 건물에 방이나 지붕이 없습니다

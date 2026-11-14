@@ -47,11 +47,18 @@ fn the_origin_tells_where_the_project_is_saved() {
         let p = plant();
         assert_eq!(Origin::File("C:\\work\\a.oec").label(), "Local file: a.oec");
         assert_eq!(Origin::File("C:\\work\\a.oec").save_tip(), "Save locally to a.oec");
-        let open = Origin::Server { url: &p.url, name: &p.name, connected: true };
+        let open = Origin::Server { url: &p.url, name: &p.name, link: Link::Online };
         assert_eq!(open.label(), "Project server: http://srv:8091 / Project: plant");
         assert_eq!(open.save_tip(), "Save to project server: plant");
-        let lost = Origin::Server { url: &p.url, name: &p.name, connected: false };
+        let lost = Origin::Server { url: &p.url, name: &p.name, link: Link::Offline };
         assert!(lost.label().ends_with("connection lost"));
+        // An ended session, a lost sign-in and a refused project read differently.
+        let ended = Origin::Server { url: &p.url, name: &p.name, link: Link::Ended };
+        assert!(ended.label().ends_with("reconnecting") && ended.save_tip().contains("opened again"));
+        let signed_out = Origin::Server { url: &p.url, name: &p.name, link: Link::SignedOut };
+        assert!(signed_out.label().ends_with("sign-in required") && signed_out.save_tip().contains("sign in again"));
+        let refused = Origin::Server { url: &p.url, name: &p.name, link: Link::Refused };
+        assert!(refused.label().ends_with("not available") && refused.save_tip().contains("local copy"));
         // A local copy never reads like the server project.
         let copy = Origin::Recovery(&p);
         assert_eq!(copy.label(), "Local recovery copy of server project: plant");

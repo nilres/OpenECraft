@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Tarvikkeen osanumero, esim. GEN.GLAND-
 Activates (shows) or deactivates (hides) the content of a project option	Aktivoi (näyttää) tai poistaa käytöstä (piilottaa) projektivaihtoehdon sisällön
 Additional power loss in W	Lisähäviöteho W:na
 Address scheme: siemens, iec or rockwell	Osoitemalli: siemens, iec tai rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Lisää aurinkopaneelikentän katolle: moduulirivejä kiskoilla ja kattokoukuilla lappeen suuntaisesti tai tasakatolla kallistettuna tai itä-länsi-suuntaisesti painotetuilla asennusjaloilla; ilman x:ää ja z:aa etu- tai oikean lappeen keskelle. Ilman rakennusta ja kattoa maa-asennettu kenttä tontille: kallistettujen pöytien rivejä lyöntipaaluilla, ilman x:ää ja z:aa laitoksessa olevien kohteiden eteen. Moduulit ja asennustarvikkeet menevät osaluetteloon
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lisää taivutetun ja poratun kuparikiskon (tai korvaa samannimisen kiskon kotelossa)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lisää kaapelin läpivientiaukon oikeaan naapuriin: pyöreät aukot vastakkain molemmissa sivuseinissä; kotelojen väliset johdot kulkevat sen läpi
 Adds a configurator rule: insert a page macro when the condition holds	Lisää konfiguraattorin säännön: lisää sivumakro, kun ehto täyttyy
@@ -73,6 +74,7 @@ Between page and column (default .)	Sivun ja sarakkeen välissä (oletus .)
 Bonding point	Potentiaalintasauksen liitäntäpiste
 Border around the text	Reunus tekstin ympärillä
 Both classes are needed	Molemmat luokat tarvitaan
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Rakennus (sijainti, esim. +B1); ilman rakennusta ja kattoa: maa-asennettu kenttä tontilla
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Laitoksen rakennukset kerroksineen, kuiluineen, portaineen ja aurinkopaneelikenttäisine katoineen, maadoituselektrodeineen ja ukkossuojauksineen, kerrosten huoneineen ja rakennusten välisine yhteyksineen
 Bus system name	Väyläjärjestelmän nimi
 Bus system name, e.g. PN/IE_1	Väyläjärjestelmän nimi, esim. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Tangon halkaisija, mm (oletus 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Rungon suunta: left, right, up tai down (oletus: paikan johtimien mukaan)
 Distance between power and signal or fluid in mm	Tehon ja signaalin tai fluidin välinen etäisyys millimetreinä
 Distance from devices, rails and busbars in mm	Etäisyys laitteista, kiskoista ja kokoojakiskoista millimetreinä
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Riviväli tasakatolla tai maa-asennuksessa mm (0: varjoton talvella)
 Distance from the face in mm (rails: standoff height)	Etäisyys pinnasta millimetreinä (kiskot: välikekorkeus)
 Distance in X (mm)	Etäisyys X-suunnassa (mm)
 Distance in Y (mm)	Etäisyys Y-suunnassa (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	Laskurin ensimmäinen arvo (oletus 1)
 First page number (default 1)	Ensimmäinen sivunumero (oletus 1)
 First port as station:port, e.g. PLC1:X1 P2	Ensimmäinen portti muodossa asema:portti, esim. PLC1:X1 P2
 First row with the column names	Ensimmäinen rivi sarakkeiden nimillä
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Tasakatot ja maa-asennus: suunta, johon moduulit osoittavat, asteina, vastapäivään ylhäältä katsottuna (0: kohti +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Laitteen nimen muoto: {letter}, {n} (laskuri), {page}, {column}, {row}; oletus {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Skeeman format muoto: {n} (laskuri), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Perustusmaadoitus: kuinka paljon ulkoseinien sisäpuolella (oletus 100), rengas: kuinka paljon ulkopuolella (oletus 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Perustusmaadoitus: sen suurin silmä, mm (oletus 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Kehys, josta aloitetaan, kun kehys on uusi (oletus: A3 landscape)
 Free space in front of every device on the plate	Vapaa tila jokaisen levyllä olevan laitteen edessä
+Freestanding PV arrays stand on posts (mounting ground)	Maa-asennetut aurinkopaneelikentät seisovat paaluilla (asennus ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Maa-asennus: moduulien alareunan korkeus maasta mm (oletus 800)
+Freestanding: modules on top of each other on a table (default 2)	Maa-asennus: moduulit päällekkäin pöydällä (oletus 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Lukitsee reitit tuotantoa varten (uudelleenlaskenta säilyttää ne, kun mahdollista) tai vapauttaa ne
 Frequency in Hz	Taajuus hertseinä
 Function (= without the sign; empty: the parent's)	Toiminto (= ilman merkkiä; tyhjä: ylätason toiminto)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Luo k
 Give a device tag or a part number	Anna laitetunnus tai osanumero
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Antaa rakennukselle ukkossuojauksen tai muuttaa sitä: luokka, alastulojohtimien määrä ja johtimien osa; sieppausjohtimet harjoilla ja taitteilla (silmukka tasakatoilla), alastulojohtimet mittausliitoksin maadoituselektrodeille; tai poistaa sen
 Greatest distance of the conductor holders, mm (default 1000)	Johdinpidikkeiden suurin väli, mm (oletus 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Kattokoukkujen suurin väli kiskoa pitkin (maa-asennus: paalujen pöytää pitkin) mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Ryhmittää kohteet kokoonpanoksi, joka valitaan ja siirretään yhdessä; ilman nimeä kohteet poistuvat kokoonpanoistaan
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Luovuttaa kotelon ohjelmat tuotantoon työnä: kaikkien sen pintojen ja kuparikiskojen manifesti ja ohjelmat
 Has a divider between power and signal cables	Teho- ja signaalikaapelien välissä on erotin
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Kannattimen suurin täyttöaste prosenttein
 Maximum operating pressure in bar	Suurin käyttöpaine bareina
 Measuring range or set point	Mittausalue tai asetusarvo
 Message code, e.g. wires.3f9a1c	Ilmoituskoodi, esim. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa (maa-asennus: laitoksessa), x mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa (maa-asennus: laitoksessa), z mm
 Milling feed, mm/min	Jyrsintäsyöttö, mm/min
 Mirror the symbol	Peilaa symboli
 Mounting plate size as width and height; empty object restores the centred plate	Asennuslevyn koko leveytenä ja korkeutena; tyhjä objekti palauttaa keskitetyn levyn
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Johtosarjan naulalautaesitys: haarat yhteisestä solmusta liittimiin pituuksineen, suuntineen, nipun halkaisijoineen ja nastoineen sekä piirustuksen mittakaava
 Name (default E1, E2, …)	Nimi (oletus E1, E2, …)
 Name (default F1, F2, …)	Nimi (oletus F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Anna sekä rakennus että katto, tai ei kumpaakaan maa-asennetulle aurinkopaneelikentälle
 Name of the assembly	Kokoonpanon nimi
 Name of the bar, e.g. L1 -Q1	Kiskon nimi, esim. L1 -Q1
 Name of the check	Tarkistuksen nimi
@@ -497,6 +508,7 @@ No device group {}	Ei laiteryhmää {}
 No earth electrode {} in building {}	Ei maadoituselektrodia {} rakennuksessa {}
 No enclosure named {}	Ei koteloa nimeltä {}
 No entry for {} and {}	Ei merkintää kohteille {} ja {}
+No freestanding PV array {}	Ei maa-asennettua aurinkopaneelikenttää {}
 No hose {}	Ei letkua {}
 No identifier {} in the project	Projektissa ei ole tunnusta {}
 No item with id {}	Ei kohdetta tunnisteella {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Suorien osuuksien
 Overlap of nibbling hits (0 … 0.9)	Nakerrusiskujen limitys (0 … 0.9)
 PCT loop {} already exists	Instrumentointipiiri {} on jo olemassa
 PLC hardware: stations, cards, bus systems and port connections	PLC-laitteisto: asemat, kortit, väyläjärjestelmät ja porttiyhteydet
+PV arrays on roofs are mounted parallel, tilted or east_west	Katoilla olevat aurinkopaneelikentät asennetaan parallel, tilted tai east_west
 Page macro name	Sivumakron nimi
 Page macro that generates its schematic	Sivumakro, joka luo sen piirikaavion
 Page name (default: all pages)	Sivun nimi (oletus: kaikki sivut)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Käytä epäonnistuneita ha
 Right side bayed (no side panel)	Oikea puoli rivitetty (ei sivuseinää)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Rengas: syvyys maanpinnan alla, sauva: yläpään syvyys, mm (oletus 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Maadoitussauva: sen halkaisija (oletus 20), perustus- ja rengasmaadoitus: pyörölangan, 0 lattaraudalle, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Katto: sen nimi; ilman rakennusta ja kattoa: maa-asennettu kenttä tontilla
 Room {} exists already	Tila {} on jo olemassa
 Rotation in degrees clockwise: 0, 90, 180 or 270	Kierto asteina myötäpäivään: 0, 90, 180 tai 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Kierto asteina vastapäivään (90 luetaan alhaalta ylöspäin)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Hyppäävä johdin: vertical tai hor
 The wrap width must not be negative	Rivityksen leveys ei saa olla negatiivinen
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Asennuslevyn lämpösimulaatio: ilman lämpötilat, kuuma kohta, lämmönlähteet ja lämpötila jokaisen laitteen kohdalla
 Thickest sheet or bar, mm	Paksuin levy tai kisko, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Moduulien kallistus tasakatolla tai maa-asennettujen pöytien kallistus asteina
 Time per drilling, punching or bending operation, s	Aika poraus-, lävistys- tai taivutustoimenpidettä kohden, s
 Time per tool change, s	Aika työkalunvaihtoa kohden, s
 Title block (list_title_blocks); empty = the project default	Nimiö (list_title_blocks); tyhjä = projektin oletus
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (oletus), supplementary tai fun
 mounted, problem or open	mounted, problem tai open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond tai accessory
 numbers or letters	numbers tai letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (kattokoukuilla), tilted (kallistettuna) tai east_west (itä-länsi, tasakatot); maa-asennus: ground (paaluilla)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof tai bottom
 plug_in, saddle or wire	plug_in, saddle tai wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp tai canopen

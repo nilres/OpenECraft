@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	付属品の部品番号 (例: GEN.GLA
 Activates (shows) or deactivates (hides) the content of a project option	プロジェクトオプションの内容を有効化 (表示) または無効化 (非表示) します
 Additional power loss in W	追加の損失電力 (W)
 Address scheme: siemens, iec or rockwell	アドレス方式: siemens、iec、または rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	屋根にPVアレイを追加します。勾配屋根では屋根面に平行にレールと屋根フックの上にモジュールの列を、陸屋根では傾斜または東西向きにバラスト式架台の上に設置します。x と z がなければ前面または右側の屋根面の中央に置きます。建物と屋根がなければ敷地上の野立てアレイになります。打込み杭の上に傾斜した架台を列に並べ、x と z がなければ施設内にあるものの手前に置きます。モジュールと取付材料は部品表に入ります
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	曲げと穴あけを施した銅バーを追加します (またはエンクロージャー内の同名の銅バーを置き換えます)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	右隣へのケーブル貫通口を追加します: 両側板に向かい合う円形の切り欠き。エンクロージャー間の電線はここを通ります
 Adds a configurator rule: insert a page macro when the condition holds	コンフィギュレータールールを追加します: 条件が満たされたときにページマクロを挿入
@@ -73,6 +74,7 @@ Between page and column (default .)	ページと列の間 (既定 .)
 Bonding point	ボンディング点
 Border around the text	テキストの外枠
 Both classes are needed	両方のクラスが必要です
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	建物 (場所、例 +B1)。建物と屋根がなければ敷地上の野立てアレイ
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	施設の建物: 階、シャフト、階段、PVアレイ付きの屋根、接地極と雷保護、階の部屋、建物間の接続
 Bus system name	バスシステム名
 Bus system name, e.g. PN/IE_1	バスシステム名 (例: PN/IE_1)
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	突針の直径、mm (既定 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	軸の方向：left、right、up または down（既定：その位置の接続線から）
 Distance between power and signal or fluid in mm	動力と信号または流体の間の距離 (mm)
 Distance from devices, rails and busbars in mm	デバイス、レール、ブスバーからの距離 (mm)
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	陸屋根または野立てでの列間隔 (mm) (0：冬に影がかからない間隔)
 Distance from the face in mm (rails: standoff height)	面からの距離 (mm、レール: スタンドオフの高さ)
 Distance in X (mm)	X 方向の距離 (mm)
 Distance in Y (mm)	Y 方向の距離 (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	カウンターの開始値 (既定 1)
 First page number (default 1)	最初のページ番号 (既定 1)
 First port as station:port, e.g. PLC1:X1 P2	1 つ目のポート (ステーション:ポート、例: PLC1:X1 P2)
 First row with the column names	最初の行に列名を含める
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	陸屋根と野立て：モジュールが向く方向 (度)、上から見て反時計回り (0：+z 方向)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	デバイス名の書式: {letter}、{n} (カウンター)、{page}、{column}、{row}。既定は {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	スキーム format の書式: {n} (カウンター)、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	基礎接地極：外壁の内側への距離 (既定 100)、環状：外側への距離 (既定 1000)、mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	基礎接地極：最大の網目、mm (既定 20000)
 Frame to start from when the frame is new (default: A3 landscape)	新しい図枠の場合の元になる図枠 (既定: A3 landscape)
 Free space in front of every device on the plate	取付板上の各デバイスの前面の空きスペース
+Freestanding PV arrays stand on posts (mounting ground)	野立てPVアレイは杭の上に立ちます (取付 ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	野立て：地面からのモジュール下端の高さ (mm) (既定 800)
+Freestanding: modules on top of each other on a table (default 2)	野立て：1 つの架台に上下に並ぶモジュール数 (既定 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	製造用にルートを固定するか (再計算でも可能な限り維持)、固定を解除します
 Frequency in Hz	周波数 (Hz)
 Function (= without the sign; empty: the parent's)	機能 (= 記号なし。空欄: 親の機能)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	ブ�
 Give a device tag or a part number	機器記号または部品番号を指定してください
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	建物に雷保護システムを設定または変更します。クラス、引下げ導線の数、導体の部品。棟と隅棟の受雷導体 (陸屋根では網目)、接地極までの試験用接続端子付き引下げ導線。削除もできます
 Greatest distance of the conductor holders, mm (default 1000)	導体支持金具の最大間隔、mm (既定 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	レールに沿った屋根フックの最大間隔 (野立て：架台に沿った杭の最大間隔) (mm)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	アイテムをアセンブリにグループ化し、まとめて選択、移動できるようにします。名前を指定しない場合、アイテムはアセンブリから外れます
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	エンクロージャーのプログラムをジョブとして製造に引き渡します: すべての面と銅バーのマニフェストとプログラム
 Has a divider between power and signal cables	動力ケーブルと信号ケーブルの間にセパレーターあり
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	支持材の最大占有率 (%)
 Maximum operating pressure in bar	最大使用圧力 (bar)
 Measuring range or set point	測定範囲または設定値
 Message code, e.g. wires.3f9a1c	メッセージコード (例: wires.3f9a1c)
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	建物の平面図におけるPVアレイの中心 (野立て：施設内)、x (mm)
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	建物の平面図におけるPVアレイの中心 (野立て：施設内)、z (mm)
 Milling feed, mm/min	フライス送り速度 (mm/min)
 Mirror the symbol	シンボルを反転
 Mounting plate size as width and height; empty object restores the centred plate	取付板のサイズ（幅と高さ）。空のオブジェクトで中央の取付板に戻します
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	ハーネスの布線板レイアウト: 共通ノードからコネクターまでの分岐 (長さ、方向、束径、ピン) と図面の縮尺
 Name (default E1, E2, …)	名前 (既定 E1、E2、…)
 Name (default F1, F2, …)	名前 (既定 F1、F2、…)
+Name both the building and the roof, or neither for a freestanding PV array	建物と屋根の両方を指定するか、野立てPVアレイではどちらも指定しないでください
 Name of the assembly	アセンブリの名前
 Name of the bar, e.g. L1 -Q1	バーの名前 (例: L1 -Q1)
 Name of the check	チェックの名前
@@ -497,6 +508,7 @@ No device group {}	デバイスグループ {} はありません
 No earth electrode {} in building {}	建物 {1} に接地極 {0} はありません
 No enclosure named {}	{} という名前のエンクロージャーはありません
 No entry for {} and {}	{} と {} のエントリがありません
+No freestanding PV array {}	野立てPVアレイ {} はありません
 No hose {}	ホース {} はありません
 No identifier {} in the project	プロジェクトに識別子 {} はありません
 No item with id {}	ID {} のアイテムはありません
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	直線区間の�
 Overlap of nibbling hits (0 … 0.9)	ニブリングのヒットの重なり (0 … 0.9)
 PCT loop {} already exists	計装ループ {} は既に存在します
 PLC hardware: stations, cards, bus systems and port connections	PLC ハードウェア: ステーション、カード、バスシステム、ポート接続
+PV arrays on roofs are mounted parallel, tilted or east_west	屋根上のPVアレイは parallel、tilted または east_west で取り付けます
 Page macro name	ページマクロ名
 Page macro that generates its schematic	回路図を生成するページマクロ
 Page name (default: all pages)	ページ名（既定：すべてのページ）
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	同じ配線経路計算内
 Right side bayed (no side panel)	右側を連結 (側板なし)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	環状：地表からの深さ、接地棒：上端の深さ、mm (既定 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	接地棒: その直径 (既定 20)、基礎接地極と環状接地極: 丸線の直径、帯板は 0、mm
+Roof: its name; without building and roof: a freestanding array on the plot	屋根：その名前。建物と屋根がなければ敷地上の野立てアレイ
 Room {} exists already	部屋 {} は既に存在します
 Rotation in degrees clockwise: 0, 90, 180 or 270	時計回りの回転角度 (度): 0、90、180、270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	回転角度 (度、反時計回り。90 で下から上に読む向き)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	ジャンプする配線: vertical �
 The wrap width must not be negative	折り返し幅に負の値は指定できません
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	取付板の熱シミュレーション: 空気温度、ホットスポット、熱源、各デバイスの温度
 Thickest sheet or bar, mm	最大の板厚またはバー厚 (mm)
+Tilt of the modules on a flat roof or of freestanding tables in degrees	陸屋根上のモジュールまたは野立て架台の傾斜角 (度)
 Time per drilling, punching or bending operation, s	穴あけ、パンチング、曲げ 1 回あたりの時間 (s)
 Time per tool change, s	工具交換 1 回あたりの時間 (s)
 Title block (list_title_blocks); empty = the project default	表題欄（list_title_blocks）。空 = プロジェクトの既定
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (既定)、supplementary また
 mounted, problem or open	mounted、problem または open
 node, segment, place, outline, bond or accessory	node、segment、place、outline、bond または accessory
 numbers or letters	numbers または letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (屋根フック上)、tilted (傾斜) または east_west (東西、陸屋根)。野立て：ground (杭の上)
 plate, door, left, right, rear, roof or bottom	plate、door、left、right、rear、roof、または bottom
 plug_in, saddle or wire	plug_in、saddle または wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet、ethercat、ethernet_ip、profibus_dp、modbus_tcp、または canopen

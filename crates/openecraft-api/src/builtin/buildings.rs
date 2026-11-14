@@ -48,17 +48,21 @@ const ROOF_ALONG_Z: &str = tr_const!("The ridge (or the slope of a shed roof) ru
 const ROOF_FLIP: &str = tr_const!("Shed roof: the low eaves at the rear or left instead of the front or right");
 const WINDOW_X: &str = tr_const!("Middle of the window in the floor plan of the building, x in mm");
 const WINDOW_Z: &str = tr_const!("Middle of the window in the floor plan of the building, z in mm");
-const PV_X: &str = tr_const!("Middle of the PV array in the floor plan of the building, x in mm");
-const PV_Z: &str = tr_const!("Middle of the PV array in the floor plan of the building, z in mm");
+const PV_BUILDING: &str = tr_const!("Building (location, e.g. +B1); without building and roof: a freestanding array on the plot");
+const PV_ROOF: &str = tr_const!("Roof: its name; without building and roof: a freestanding array on the plot");
+const PV_X: &str = tr_const!("Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm");
+const PV_Z: &str = tr_const!("Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm");
 const PV_COLUMNS: &str = tr_const!("Modules side by side in a row");
 const PV_ROWS: &str = tr_const!("Rows of modules (east-west: rows of pairs)");
 const PV_LANDSCAPE: &str = tr_const!("The long side of the modules along the rows");
 const PV_MODULE: &str = tr_const!("Part number of the module (its size comes from the part)");
-const PV_MOUNTING: &str = tr_const!("parallel (on roof hooks), tilted or east_west (flat roofs)");
-const PV_TILT: &str = tr_const!("Tilt of the modules on a flat roof in degrees");
-const PV_AZIMUTH: &str = tr_const!("Flat roofs: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)");
-const PV_ROW_GAP: &str = tr_const!("Distance from row to row on a flat roof in mm (0: free of shade in winter)");
-const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rail in mm");
+const PV_MOUNTING: &str = tr_const!("parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)");
+const PV_TILT: &str = tr_const!("Tilt of the modules on a flat roof or of freestanding tables in degrees");
+const PV_AZIMUTH: &str = tr_const!("Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)");
+const PV_ROW_GAP: &str = tr_const!("Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)");
+const PV_SPAN: &str = tr_const!("Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm");
+const PV_STACK: &str = tr_const!("Freestanding: modules on top of each other on a table (default 2)");
+const PV_CLEARANCE: &str = tr_const!("Freestanding: height of the lower edge of the modules above the ground in mm (default 800)");
 const PV_BALLAST: &str = tr_const!("Ballast per module on a flat roof in kg");
 const ELECTRODE_X: &str = tr_const!("Earth rod: x of its place in the floor plan of the building, mm");
 const ELECTRODE_Z: &str = tr_const!("Earth rod: z of its place in the floor plan of the building, mm");
@@ -297,10 +301,10 @@ pub static COMMANDS: &[Spec] = &[
     },
     Spec {
         name: "add_pv_array",
-        help: tr_const!("Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. The modules and the mounting material go into the bill of materials"),
+        help: tr_const!("Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials"),
         params: &[
-            param("building", Kind::Str, BUILDING),
-            param("roof", Kind::Str, ROOF),
+            optional("building", Kind::Str, PV_BUILDING),
+            optional("roof", Kind::Str, PV_ROOF),
             optional("x", Kind::Num, PV_X),
             optional("z", Kind::Num, PV_Z),
             optional("columns", Kind::Int, PV_COLUMNS),
@@ -313,6 +317,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("row_gap", Kind::Num, PV_ROW_GAP),
             optional("span", Kind::Num, PV_SPAN),
             optional("ballast", Kind::Num, PV_BALLAST),
+            optional("stack", Kind::Int, PV_STACK),
+            optional("clearance", Kind::Num, PV_CLEARANCE),
             optional("system", Kind::Str, PV_SYSTEM),
             optional("device", Kind::Str, PV_DEVICE),
             optional("earthing", Kind::Str, PV_EARTHING),
@@ -325,8 +331,8 @@ pub static COMMANDS: &[Spec] = &[
         name: "set_pv_array",
         help: tr_const!("Moves a PV array, changes its modules, their number and orientation, its mounting or mounting system, renames or removes it"),
         params: &[
-            param("building", Kind::Str, BUILDING),
-            param("roof", Kind::Str, ROOF),
+            optional("building", Kind::Str, PV_BUILDING),
+            optional("roof", Kind::Str, PV_ROOF),
             param("array", Kind::Str, PV_ARRAY),
             optional("x", Kind::Num, PV_X),
             optional("z", Kind::Num, PV_Z),
@@ -340,6 +346,8 @@ pub static COMMANDS: &[Spec] = &[
             optional("row_gap", Kind::Num, PV_ROW_GAP),
             optional("span", Kind::Num, PV_SPAN),
             optional("ballast", Kind::Num, PV_BALLAST),
+            optional("stack", Kind::Int, PV_STACK),
+            optional("clearance", Kind::Num, PV_CLEARANCE),
             optional("system", Kind::Str, PV_SYSTEM),
             optional("device", Kind::Str, PV_DEVICE),
             optional("earthing", Kind::Str, PV_EARTHING),
@@ -353,8 +361,8 @@ pub static COMMANDS: &[Spec] = &[
         name: "add_pv_string",
         help: tr_const!("Connects modules of a PV array as a string: modules in series, strings of this kind in parallel, on an MPP tracker of an inverter or charge controller; without series the modules no string takes yet, without inverter the first device with PV input data"),
         params: &[
-            param("building", Kind::Str, BUILDING),
-            param("roof", Kind::Str, ROOF),
+            optional("building", Kind::Str, PV_BUILDING),
+            optional("roof", Kind::Str, PV_ROOF),
             param("array", Kind::Str, PV_ARRAY),
             optional("series", Kind::Int, PV_SERIES),
             optional("parallel", Kind::Int, PV_PARALLEL),
@@ -368,8 +376,8 @@ pub static COMMANDS: &[Spec] = &[
         name: "set_pv_string",
         help: tr_const!("Changes the modules in series or in parallel of a string, its inverter or MPP tracker, renames or removes it"),
         params: &[
-            param("building", Kind::Str, BUILDING),
-            param("roof", Kind::Str, ROOF),
+            optional("building", Kind::Str, PV_BUILDING),
+            optional("roof", Kind::Str, PV_ROOF),
             param("array", Kind::Str, PV_ARRAY),
             param("string", Kind::Str, tr_const!("String: its name")),
             optional("series", Kind::Int, PV_SERIES),
@@ -1182,7 +1190,7 @@ fn pv_json(prj: &Project, a: &panel::PvArray) -> Value {
         "id": a.id, "name": a.name, "x": a.x, "z": a.z, "columns": a.columns, "rows": a.rows, "landscape": a.landscape,
         "module": a.module, "module_size": [a.module_width, a.module_length, a.module_height], "modules": solar::module_count(a),
         "peak_kw": solar::peak_power(prj, a), "mounting": a.mounting.key(), "tilt": a.tilt, "azimuth": a.azimuth, "row_gap": a.row_gap,
-        "span": a.span, "ballast": a.ballast, "system": a.system, "device": a.device, "earthing": a.earthing, "combiner": a.combiner, "material": material,
+        "span": a.span, "ballast": a.ballast, "stack": a.stack, "clearance": a.clearance, "system": a.system, "device": a.device, "earthing": a.earthing, "combiner": a.combiner, "material": material,
         "strings": a.strings.iter().map(|s| string_json(prj, a, s)).collect::<Vec<_>>(),
     })
 }
@@ -1198,12 +1206,32 @@ fn string_json(prj: &Project, a: &panel::PvArray, s: &panel::PvString) -> Value 
     json!({ "id": s.id, "name": s.name, "series": s.series, "parallel": s.parallel, "modules": s.series * s.parallel, "inverter": s.inverter, "mppt": s.mppt, "values": values })
 }
 
-/// The array named by `array` on the roof named by `roof` of the building `building`.
-fn array_args(prj: &Project, a: &Args) -> Result<(usize, usize, usize), String> {
-    let bi = building_arg(prj, a, "building")?;
-    let k = roof_arg(prj, bi, a)?;
-    let i = pv_arg(prj, bi, k, a)?;
-    Ok((bi, k, i))
+/// The roof named by `roof` of the building `building` (building, roof), or `None`
+/// without both: the freestanding arrays of the plot.
+fn array_place(prj: &Project, a: &Args) -> Result<Option<(usize, usize)>, String> {
+    match (a.str("building").is_some(), a.str("roof").is_some()) {
+        (false, false) => Ok(None),
+        (true, true) => {
+            let bi = building_arg(prj, a, "building")?;
+            Ok(Some((bi, roof_arg(prj, bi, a)?)))
+        }
+        _ => Err(tr("Name both the building and the roof, or neither for a freestanding PV array").to_string()),
+    }
+}
+
+/// The array named by `array` on the roof named by `roof` of the building `building`,
+/// or a freestanding one.
+fn array_args(prj: &Project, a: &Args) -> Result<solar::ArrayRef, String> {
+    let roof = array_place(prj, a)?;
+    Ok(solar::ArrayRef { roof, index: pv_arg(prj, roof, a)? })
+}
+
+/// What a PV array command answers: the building of the roof, or the plot.
+fn place_json(prj: &Project, roof: Option<(usize, usize)>) -> Value {
+    match roof {
+        Some((bi, _)) => building_json(prj, bi),
+        None => plot_json(prj),
+    }
 }
 
 /// Applies the optional arguments of a string command.
@@ -1220,10 +1248,15 @@ fn string_args(a: &Args, mut s: panel::PvString) -> Result<panel::PvString, Stri
     Ok(strings::checked_string(s))
 }
 
+/// The PV array at `at` (found by the argument helpers).
+fn pv_at(prj: &mut Project, at: solar::ArrayRef) -> Result<&mut panel::PvArray, String> {
+    solar::array_mut(&mut prj.layout, at).ok_or_else(|| tr("No such PV array").to_string())
+}
+
 fn add_pv_string(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let (bi, k, i) = array_args(prj, a)?;
-    let id = strings::add_string(prj, bi, k, i)?;
-    let list = &mut prj.layout.buildings[bi].roofs[k].solar[i].strings;
+    let at = array_args(prj, a)?;
+    let id = strings::add_string(prj, at)?;
+    let list = &mut pv_at(prj, at)?.strings;
     let j = list.iter().position(|s| s.id == id).unwrap_or_default();
     match string_args(a, list[j].clone()) {
         Ok(s) => list[j] = s,
@@ -1232,21 +1265,20 @@ fn add_pv_string(prj: &mut Project, a: &Args) -> Result<Value, String> {
             return Err(e);
         }
     }
-    Ok(pv_json(prj, &prj.layout.buildings[bi].roofs[k].solar[i]))
+    solar::array(&prj.layout, at).map(|arr| pv_json(prj, arr)).ok_or_else(|| tr("No such PV array").to_string())
 }
 
 fn set_pv_string(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let (bi, k, i) = array_args(prj, a)?;
+    let at = array_args(prj, a)?;
     let key = a.req("string").trim();
-    let arr = &prj.layout.buildings[bi].roofs[k].solar[i];
+    let arr = pv_at(prj, at)?;
     let j = arr.strings.iter().position(|s| s.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No string {} in PV array {}", key, arr.name))?;
     if a.flag("remove") {
-        prj.layout.buildings[bi].roofs[k].solar[i].strings.remove(j);
+        arr.strings.remove(j);
     } else {
-        let s = string_args(a, arr.strings[j].clone())?;
-        prj.layout.buildings[bi].roofs[k].solar[i].strings[j] = s;
+        arr.strings[j] = string_args(a, arr.strings[j].clone())?;
     }
-    Ok(pv_json(prj, &prj.layout.buildings[bi].roofs[k].solar[i]))
+    solar::array(&prj.layout, at).map(|arr| pv_json(prj, arr)).ok_or_else(|| tr("No such PV array").to_string())
 }
 
 fn pv_strings(prj: &mut Project, a: &Args) -> Result<Value, String> {
@@ -1262,8 +1294,12 @@ fn pv_strings(prj: &mut Project, a: &Args) -> Result<Value, String> {
         .into_iter()
         .map(|r| {
             let mut v = string_json(prj, r.array, r.string);
-            v["building"] = json!(r.building.name);
-            v["roof"] = json!(r.roof.name);
+            v["building"] = json!(solar::place_name(&prj.layout, r.support));
+            v["roof"] = match r.support {
+                solar::Support::Roof(_, roof) => json!(roof.name),
+                solar::Support::Ground => Value::Null,
+            };
+            v["freestanding"] = json!(r.at.roof.is_none());
             v["array"] = json!(r.array.name);
             v
         })
@@ -1272,15 +1308,19 @@ fn pv_strings(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(json!({ "t_min": d.t_min, "t_mean": d.t_mean, "t_max": d.t_max, "strings": list, "inverters": strings::inverters(prj), "problems": problems }))
 }
 
-/// The PV array of roof `k` of building `bi` named by `array`.
-fn pv_arg(prj: &Project, bi: usize, k: usize, a: &Args) -> Result<usize, String> {
+/// The PV array named by `array` of roof `roof` (building, roof), or a freestanding one.
+fn pv_arg(prj: &Project, roof: Option<(usize, usize)>, a: &Args) -> Result<usize, String> {
     let key = a.req("array").trim();
-    let r = &prj.layout.buildings[bi].roofs[k];
-    r.solar.iter().position(|s| s.name.eq_ignore_ascii_case(key)).ok_or_else(|| tr_fmt!("No PV array {} on roof {}", key, r.name))
+    let found = solar::arrays_at(&prj.layout, roof).and_then(|list| list.iter().position(|s| s.name.eq_ignore_ascii_case(key)));
+    match roof {
+        Some((bi, k)) => found.ok_or_else(|| tr_fmt!("No PV array {} on roof {}", key, prj.layout.buildings[bi].roofs[k].name)),
+        None => found.ok_or_else(|| tr_fmt!("No freestanding PV array {}", key)),
+    }
 }
 
-/// Applies the optional arguments of a PV array command.
-fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray) -> Result<panel::PvArray, String> {
+/// Applies the optional arguments of a PV array command (`freestanding`: of an array on
+/// the plot).
+fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray, freestanding: bool) -> Result<panel::PvArray, String> {
     s.x = a.num("x").unwrap_or(s.x);
     s.z = a.num("z").unwrap_or(s.z);
     s.columns = int_in(a, "columns", 1, 200)?.map_or(s.columns, |n| n as u32);
@@ -1293,12 +1333,20 @@ fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray) -> Result<panel::PvAr
     }
     if let Some(m) = a.str("mounting") {
         s.mounting = PvMounting::from_key(m).ok_or_else(|| tr_fmt!("Unknown mounting: {}", m))?;
+        if freestanding && s.mounting != PvMounting::Ground {
+            return Err(tr("Freestanding PV arrays stand on posts (mounting ground)").to_string());
+        }
+        if !freestanding && s.mounting == PvMounting::Ground {
+            return Err(tr("PV arrays on roofs are mounted parallel, tilted or east_west").to_string());
+        }
     }
     s.tilt = num_in(a, "tilt", 0.0, 60.0)?.unwrap_or(s.tilt);
     s.azimuth = a.num("azimuth").unwrap_or(s.azimuth);
     s.row_gap = num_in(a, "row_gap", 0.0, 20_000.0)?.unwrap_or(s.row_gap);
     s.span = num_in(a, "span", 300.0, 3000.0)?.unwrap_or(s.span);
     s.ballast = num_in(a, "ballast", 0.0, 500.0)?.unwrap_or(s.ballast);
+    s.stack = int_in(a, "stack", 1, 10)?.map_or(s.stack, |n| n as u32);
+    s.clearance = num_in(a, "clearance", 300.0, 5000.0)?.unwrap_or(s.clearance);
     if let Some(p) = a.str("system").map(str::trim) {
         if !p.is_empty() && !prj.parts.iter().chain(openecraft_core::parts::catalog()).any(|q| q.number == p) {
             return Err(tr_fmt!("No part {} in the project", p));
@@ -1321,35 +1369,41 @@ fn pv_args(prj: &Project, a: &Args, mut s: panel::PvArray) -> Result<panel::PvAr
 }
 
 fn add_pv_array(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let bi = building_arg(prj, a, "building")?;
-    let k = roof_arg(prj, bi, a)?;
+    let roof = array_place(prj, a)?;
     let at = match (a.num("x"), a.num("z")) {
         (Some(x), Some(z)) => Some([x, z]),
         _ => None,
     };
-    let id = solar::add_array(prj, bi, k, at)?;
-    let i = prj.layout.buildings[bi].roofs[k].solar.iter().position(|s| s.id == id).unwrap_or_default();
-    match pv_args(prj, a, prj.layout.buildings[bi].roofs[k].solar[i].clone()) {
-        Ok(s) => prj.layout.buildings[bi].roofs[k].solar[i] = s,
+    let id = match roof {
+        Some((bi, k)) => solar::add_array(prj, bi, k, at)?,
+        None => solar::add_ground_array(prj, at)?,
+    };
+    let list = solar::arrays_at(&prj.layout, roof).ok_or_else(|| tr("No such PV array").to_string())?;
+    let i = list.iter().position(|s| s.id == id).unwrap_or_default();
+    let changed = pv_args(prj, a, list[i].clone(), roof.is_none());
+    let list = solar::arrays_at_mut(&mut prj.layout, roof).ok_or_else(|| tr("No such PV array").to_string())?;
+    match changed {
+        Ok(s) => list[i] = s,
         Err(e) => {
-            prj.layout.buildings[bi].roofs[k].solar.remove(i);
+            list.remove(i);
             return Err(e);
         }
     }
-    Ok(building_json(prj, bi))
+    Ok(place_json(prj, roof))
 }
 
 fn set_pv_array(prj: &mut Project, a: &Args) -> Result<Value, String> {
-    let bi = building_arg(prj, a, "building")?;
-    let k = roof_arg(prj, bi, a)?;
-    let i = pv_arg(prj, bi, k, a)?;
-    if a.flag("remove") {
-        prj.layout.buildings[bi].roofs[k].solar.remove(i);
-    } else {
-        let s = pv_args(prj, a, prj.layout.buildings[bi].roofs[k].solar[i].clone())?;
-        prj.layout.buildings[bi].roofs[k].solar[i] = s;
+    let at = array_args(prj, a)?;
+    let list = solar::arrays_at(&prj.layout, at.roof).ok_or_else(|| tr("No such PV array").to_string())?;
+    let changed = if a.flag("remove") { None } else { Some(pv_args(prj, a, list[at.index].clone(), at.roof.is_none())?) };
+    let list = solar::arrays_at_mut(&mut prj.layout, at.roof).ok_or_else(|| tr("No such PV array").to_string())?;
+    match changed {
+        Some(s) => list[at.index] = s,
+        None => {
+            list.remove(at.index);
+        }
     }
-    Ok(building_json(prj, bi))
+    Ok(place_json(prj, at.roof))
 }
 
 /// A building entry of room `ri`: the one with id `entry`, otherwise its first one.
@@ -1404,12 +1458,14 @@ fn set_site_link(prj: &mut Project, a: &Args) -> Result<Value, String> {
     Ok(link_json(prj, &link))
 }
 
-/// What stands, by name: a room, a cabinet or a roof ("+B1 R1").
+/// What stands, by name: a room, a cabinet, a roof ("+B1 R1") or a freestanding PV
+/// array.
 fn standing_name(prj: &Project, s: plot::Standing) -> String {
     let layout = &prj.layout;
     match s {
         plot::Standing::Room(i) | plot::Standing::Cabinet(i) => layout.enclosures[i].name.clone(),
         plot::Standing::Roof(bi, k) => format!("{} {}", layout.buildings[bi].name, layout.buildings[bi].roofs[k].name),
+        plot::Standing::PvArray(k) => layout.plot.solar[k].name.clone(),
     }
 }
 
@@ -1436,6 +1492,7 @@ fn plot_json(prj: &Project) -> Value {
         "perimeter": (plot::perimeter(&p.outline) * 1000.0).round() / 1000.0,
         "reference": reference,
         "outside": outside,
+        "solar": p.solar.iter().map(|a| pv_json(prj, a)).collect::<Vec<_>>(),
     })
 }
 

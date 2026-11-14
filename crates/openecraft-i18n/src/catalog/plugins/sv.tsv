@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Tillbehörets artikelnummer, t.ex. GEN
 Activates (shows) or deactivates (hides) the content of a project option	Aktiverar (visar) eller inaktiverar (döljer) innehållet i ett projektalternativ
 Additional power loss in W	Ytterligare effektförlust i W
 Address scheme: siemens, iec or rockwell	Adresschema: siemens, iec eller rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Lägger till ett solcellsfält på ett tak: modulrader på skenor och takkrokar parallellt med ett takfall, eller på ett platt tak lutade eller öst-väst på ballasterade monteringsfötter; utan x och z mitt på det främre eller högra takfallet. Utan byggnad och tak ett markmonterat fält på tomten: rader av lutade bord på nedslagna stolpar, utan x och z framför det som står i anläggningen. Modulerna och monteringsmaterialet hamnar i stycklistan
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Lägger till en bockad och borrad kopparskena (eller ersätter den med samma namn i kapslingen)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Lägger till en kabelgenomföring till grannen till höger: runda urtag mitt emot varandra i båda sidoväggarna; ledningar mellan kapslingarna går genom den
 Adds a configurator rule: insert a page macro when the condition holds	Lägger till en konfiguratorregel: infoga ett sidmakro när villkoret är uppfyllt
@@ -73,6 +74,7 @@ Between page and column (default .)	Mellan sida och kolumn (standard .)
 Bonding point	Anslutningspunkt för potentialutjämning
 Border around the text	Kantlinje runt texten
 Both classes are needed	Båda klasserna behövs
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Byggnad (plats, t.ex. +B1); utan byggnad och tak: ett markmonterat fält på tomten
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Anläggningens byggnader med nivåer, schakt, trappor och tak med solcellsfält, jordtag och åskskydd, rum på nivåerna och förbindelser mellan byggnader
 Bus system name	Bussystemets namn
 Bus system name, e.g. PN/IE_1	Bussystemets namn, t.ex. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Stavens diameter, mm (standard 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Stammens riktning: left, right, up eller down (standard: efter ledarna där)
 Distance between power and signal or fluid in mm	Avstånd mellan kraft och signal eller fluid i mm
 Distance from devices, rails and busbars in mm	Avstånd från apparater, skenor och samlingsskenor i mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Avstånd från rad till rad på ett platt tak eller markmonterat i mm (0: skuggfritt på vintern)
 Distance from the face in mm (rails: standoff height)	Avstånd från ytan i mm (skenor: distanshöjd)
 Distance in X (mm)	Avstånd i X (mm)
 Distance in Y (mm)	Avstånd i Y (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	Första räknarvärde (standard 1)
 First page number (default 1)	Första sidnummer (standard 1)
 First port as station:port, e.g. PLC1:X1 P2	Första port som station:port, t.ex. PLC1:X1 P2
 First row with the column names	Första raden med kolumnnamnen
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Platta tak och markmonterat: riktning som modulerna vetter mot i grader, moturs sett ovanifrån (0: mot +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Format för apparatnamnet: {letter}, {n} (räknare), {page}, {column}, {row}; standard {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Format för schemat format: {n} (räknare), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Grundjordtag: hur långt innanför ytterväggarna (standard 100), ring: hur långt utanför (standard 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Grundjordtag: dess största maska, mm (standard 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Ram att utgå från när ramen är ny (standard: A3 landscape)
 Free space in front of every device on the plate	Fritt utrymme framför varje apparat på plåten
+Freestanding PV arrays stand on posts (mounting ground)	Markmonterade solcellsfält står på stolpar (montering ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Markmonterat: höjd för modulernas nederkant över marken i mm (standard 800)
+Freestanding: modules on top of each other on a table (default 2)	Markmonterat: moduler ovanpå varandra på ett bord (standard 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fryser dragningar för tillverkning (behålls av omberäkningen så länge det är möjligt) eller frigör dem
 Frequency in Hz	Frekvens i Hz
 Function (= without the sign; empty: the parent's)	Funktion (= utan tecknet; tomt: det överordnades)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Ange en enhetsbeteckning eller ett artikelnummer
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Ger en byggnad ett åskskydd eller ändrar det: klass, antal nedledare och ledarnas artikel; uppfångningsledare på nockar och valmar (en maska på platta tak), nedledare med provklämmor till jordtagen; eller tar bort det
 Greatest distance of the conductor holders, mm (default 1000)	Största avstånd mellan ledarhållarna, mm (standard 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Största avstånd mellan takkrokarna längs en skena (markmonterat: mellan stolparna längs ett bord) i mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupperar objekt till en byggrupp som markeras och flyttas tillsammans; utan namn lämnar objekten sina byggrupper
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Lämnar över programmen för en kapsling till produktionen som en order: manifest och program för alla dess ytor och kopparskenor
 Has a divider between power and signal cables	Har en skiljevägg mellan kraft- och signalkablar
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Högsta fyllnadsgrad för en kabelbärare i
 Maximum operating pressure in bar	Maximalt drifttryck i bar
 Measuring range or set point	Mätområde eller börvärde
 Message code, e.g. wires.3f9a1c	Meddelandekod, t.ex. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Mitten av solcellsfältet i byggnadens planritning (markmonterat: i anläggningen), x i mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Mitten av solcellsfältet i byggnadens planritning (markmonterat: i anläggningen), z i mm
 Milling feed, mm/min	Fräsmatning, mm/min
 Mirror the symbol	Spegelvänd symbolen
 Mounting plate size as width and height; empty object restores the centred plate	Monteringsplåtens storlek som bredd och höjd; ett tomt objekt återställer den centrerade plåten
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Spikbrädeslayout för en kabelstam: grenarna från den gemensamma noden till kontaktdonen med längd, riktning, knippediameter och stift, samt ritningsskalan
 Name (default E1, E2, …)	Namn (standard E1, E2, …)
 Name (default F1, F2, …)	Namn (standard F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Ange både byggnaden och taket, eller ingetdera för ett markmonterat solcellsfält
 Name of the assembly	Byggruppens namn
 Name of the bar, e.g. L1 -Q1	Skenans namn, t.ex. L1 -Q1
 Name of the check	Kontrollens namn
@@ -497,6 +508,7 @@ No device group {}	Ingen apparatgrupp {}
 No earth electrode {} in building {}	Inget jordtag {} i byggnad {}
 No enclosure named {}	Ingen kapsling med namnet {}
 No entry for {} and {}	Ingen post för {} och {}
+No freestanding PV array {}	Inget markmonterat solcellsfält {}
 No hose {}	Ingen slang {}
 No identifier {} in the project	Ingen beteckning {} i projektet
 No item with id {}	Inget objekt med ID {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Yttermått för d
 Overlap of nibbling hits (0 … 0.9)	Överlappning för nibblingsslagen (0 … 0.9)
 PCT loop {} already exists	Instrumentslinga {} finns redan
 PLC hardware: stations, cards, bus systems and port connections	PLC-hårdvara: stationer, kort, bussystem och portförbindelser
+PV arrays on roofs are mounted parallel, tilted or east_west	Solcellsfält på tak monteras parallel, tilted eller east_west
 Page macro name	Sidmakronamn
 Page macro that generates its schematic	Sidmakro som genererar dess kretsschema
 Page name (default: all pages)	Sidnamn (standard: alla sidor)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Återanvänd misslyckade s�
 Right side bayed (no side panel)	Höger sida sammanbyggd (ingen sidovägg)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Ring: djup under mark, spett: djup för övre änden, mm (standard 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Jordspett: dess diameter (standard 20), grund- och ringjordtag: en rundtråds, 0 för ett band, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Tak: dess namn; utan byggnad och tak: ett markmonterat fält på tomten
 Room {} exists already	Rummet {} finns redan
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotation i grader medurs: 0, 90, 180 eller 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Vridning i grader, moturs (90 läses nerifrån och upp)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Ledningen som hoppar: vertical eller
 The wrap width must not be negative	Radbrytningsbredden får inte vara negativ
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Termisk simulering av monteringsplåten: lufttemperaturer, varm punkt, värmekällor och temperaturen vid varje apparat
 Thickest sheet or bar, mm	Tjockaste plåt eller skena, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Lutning för modulerna på ett platt tak eller för markmonterade bord i grader
 Time per drilling, punching or bending operation, s	Tid per borrning, stansning eller bockning, s
 Time per tool change, s	Tid per verktygsbyte, s
 Title block (list_title_blocks); empty = the project default	Namnruta (list_title_blocks); tom = projektets standard
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (standard), supplementary eller
 mounted, problem or open	mounted, problem eller open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond eller accessory
 numbers or letters	numbers eller letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (på takkrokar), tilted (lutat) eller east_west (öst-väst, platta tak); markmonterat: ground (på stolpar)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof eller bottom
 plug_in, saddle or wire	plug_in, saddle eller wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp eller canopen

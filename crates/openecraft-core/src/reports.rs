@@ -246,7 +246,7 @@ fn pv_strings(prj: &Project) -> Table {
                 vec![format!("{:.0}", v.voc_max), format!("{:.0}", v.vmp_mean), format!("{:.0}", v.vmp_min), format!("{:.1}", v.imp), format!("{:.1}", v.isc_max), format!("{:.2}", v.power / 1000.0)]
             },
         );
-        let mut cells = vec![row.building.name.clone(), row.array.name.clone(), s.name.clone(), format!("{} × {}", s.series, s.parallel), row.array.module.clone(), s.inverter.clone(), s.mppt.to_string()];
+        let mut cells = vec![crate::panel::solar::place_name(&prj.layout, row.support), row.array.name.clone(), s.name.clone(), format!("{} × {}", s.series, s.parallel), row.array.module.clone(), s.inverter.clone(), s.mppt.to_string()];
         cells.extend(nums);
         t.push(cells, None);
     }

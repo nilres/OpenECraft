@@ -555,6 +555,7 @@ Frame size	Mărime constructivă
 Free	Liber
 Free air (mm)	Pozare liberă (mm)
 Free run	Pozare liberă
+Freestanding on posts	La sol pe stâlpi
 Frequency converter	Convertizor de frecvență
 Frequency meter	Frecvențmetru
 From end	De la sfârșit
@@ -936,7 +937,6 @@ No plugs	Niciun conector
 No report block {}	Niciun bloc de raport {}
 No segment template named {}	Niciun șablon de segment cu numele {}
 No subproject {}	Nu există subproiectul {}
-No such PV array	Nu există un astfel de câmp fotovoltaic
 No such object: {}	Nu există obiectul: {}
 No surge protective device at the supply (IEC 60364-4-44)	Niciun dispozitiv de protecție la supratensiune la alimentare (IEC 60364-4-44)
 No terminal {}	Nicio bornă {}
@@ -2070,6 +2070,8 @@ yellow	galben
 {}: the busbar {} of earth electrode {} does not exist	{}: bara {} a prizei de pământ {} nu există
 {}: the device {} of PV array {} does not exist	{}: dispozitivul {} al câmpului fotovoltaic {} nu există
 {}: the earthing busbar {} of PV array {} does not exist	{}: bara de împământare {} a câmpului PV {} nu există
+{}: the freestanding PV array {} stands on {}	{}: câmpul PV la sol {} stă pe {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: câmpurile PV la sol {} și {} se suprapun
 {}: the generator junction box {} of PV array {} does not exist	{}: cutia de joncțiune a generatorului {} a câmpului PV {} nu există
 {}: the lightning protection has no earth electrode	{}: protecția contra trăsnetului nu are priză de pământ
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: protecția contra trăsnetului nu are pereți de-a lungul cărora să meargă: clădirea nu are încăperi sau acoperișuri

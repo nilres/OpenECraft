@@ -555,6 +555,7 @@ Frame size	Wielkość mechaniczna
 Free	Swobodnie
 Free air (mm)	Swobodnie w powietrzu (mm)
 Free run	Ułożenie swobodne
+Freestanding on posts	Naziemne na słupach
 Frequency converter	Przemiennik częstotliwości
 Frequency meter	Częstościomierz
 From end	Od końca
@@ -936,7 +937,6 @@ No plugs	Brak złączy
 No report block {}	Brak bloku raportu {}
 No segment template named {}	Brak szablonu segmentu o nazwie {}
 No subproject {}	Brak podprojektu {}
-No such PV array	Brak takiej instalacji PV
 No such object: {}	Brak obiektu: {}
 No surge protective device at the supply (IEC 60364-4-44)	Brak ogranicznika przepięć na zasilaniu (IEC 60364-4-44)
 No terminal {}	Brak zacisku {}
@@ -2070,6 +2070,8 @@ yellow	żółty
 {}: the busbar {} of earth electrode {} does not exist	{}: szyna {} uziomu {} nie istnieje
 {}: the device {} of PV array {} does not exist	{}: urządzenie {} instalacji PV {} nie istnieje
 {}: the earthing busbar {} of PV array {} does not exist	{}: szyna uziemiająca {} pola PV {} nie istnieje
+{}: the freestanding PV array {} stands on {}	{}: naziemne pole PV {} stoi na {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: naziemne pola PV {} i {} nachodzą na siebie
 {}: the generator junction box {} of PV array {} does not exist	{}: skrzynka przyłączeniowa generatora {} pola PV {} nie istnieje
 {}: the lightning protection has no earth electrode	{}: ochrona odgromowa nie ma uziomu
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: ochrona odgromowa nie ma ścian, wzdłuż których biegnie: budynek nie ma pomieszczeń ani dachów

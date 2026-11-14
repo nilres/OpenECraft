@@ -15,6 +15,7 @@ use openecraft_core::panel::solar::strings;
 use openecraft_core::panel::{self, buildings as bld, earthing, lightning, plot, roofs, solar, stairs, ElectrodeKind, GeoReference, LinkKind, Opening, PvMounting, RoofShape, StairKind, Turn};
 use openecraft_i18n::{tr, tr_fmt};
 use openecraft_ui::icons::{self, Icon};
+use std::collections::HashMap;
 
 #[derive(Default)]
 pub struct BuildingsUi {
@@ -51,9 +52,8 @@ fn choices(prj: &Project, subgroups: &[&str]) -> Vec<Choice> {
     out
 }
 
-/// What the PV arrays of the roofs of a building show besides their own data: the parts
-/// to choose, the inverters, and per roof and array its power and the values of its
-/// strings.
+/// What the PV arrays show besides their own data: the parts to choose, the inverters,
+/// and per array (its id) its power and the values of its strings.
 struct PvView {
     modules: Vec<Choice>,
     systems: Vec<Choice>,
@@ -62,61 +62,47 @@ struct PvView {
     /// (devices).
     busbars: Vec<String>,
     junction_boxes: Vec<String>,
-    powers: Vec<Vec<String>>,
-    strings: Vec<Vec<Vec<String>>>,
+    powers: HashMap<u64, String>,
+    strings: HashMap<u64, Vec<String>>,
 }
 
 impl PvView {
-    fn of(prj: &Project, bi: usize) -> PvView {
-        let roofs = &prj.layout.buildings[bi].roofs;
+    fn of(prj: &Project) -> PvView {
         let d = &prj.layout.pv_design;
+        let arrays = solar::all_arrays(&prj.layout);
+        let power = |a: &panel::PvArray| match solar::peak_power(prj, a) {
+            Some(kw) => tr_fmt!("{} modules, {} kWp", solar::module_count(a), format!("{kw:.2}")),
+            None => tr_fmt!("{} modules", solar::module_count(a)),
+        };
+        let values = |a: &panel::PvArray| {
+            let m = strings::module_data(prj, &a.module);
+            a.strings
+                .iter()
+                .map(|s| match m {
+                    Some(m) => {
+                        let v = strings::values(&m, d, s);
+                        let f = |x: f32| format!("{x:.0}");
+                        tr_fmt!("U {} / {} / {} V, I {} A, {} kWp", f(v.voc_max), f(v.vmp_mean), f(v.vmp_min), format!("{:.1}", v.imp), format!("{:.2}", v.power / 1000.0))
+                    }
+                    None => tr("no electrical data of the module").to_string(),
+                })
+                .collect()
+        };
         PvView {
             modules: choices(prj, &["PV module"]),
-            systems: choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup()]),
+            systems: choices(prj, &[solar::Role::Rail.subgroup(), solar::Role::Base.subgroup(), solar::Role::Post.subgroup()]),
             inverters: strings::inverters(prj),
             busbars: solar::cabling::earthing_busbars(prj),
             junction_boxes: solar::cabling::junction_boxes(prj),
-            powers: roofs
-                .iter()
-                .map(|r| {
-                    r.solar
-                        .iter()
-                        .map(|a| match solar::peak_power(prj, a) {
-                            Some(kw) => tr_fmt!("{} modules, {} kWp", solar::module_count(a), format!("{kw:.2}")),
-                            None => tr_fmt!("{} modules", solar::module_count(a)),
-                        })
-                        .collect()
-                })
-                .collect(),
-            strings: roofs
-                .iter()
-                .map(|r| {
-                    r.solar
-                        .iter()
-                        .map(|a| {
-                            let m = strings::module_data(prj, &a.module);
-                            a.strings
-                                .iter()
-                                .map(|s| match m {
-                                    Some(m) => {
-                                        let v = strings::values(&m, d, s);
-                                        let f = |x: f32| format!("{x:.0}");
-                                        tr_fmt!("U {} / {} / {} V, I {} A, {} kWp", f(v.voc_max), f(v.vmp_mean), f(v.vmp_min), format!("{:.1}", v.imp), format!("{:.2}", v.power / 1000.0))
-                                    }
-                                    None => tr("no electrical data of the module").to_string(),
-                                })
-                                .collect()
-                        })
-                        .collect()
-                })
-                .collect(),
+            powers: arrays.iter().map(|(_, _, a)| (a.id, power(a))).collect(),
+            strings: arrays.iter().map(|(_, _, a)| (a.id, values(a))).collect(),
         }
     }
 }
 
 /// The strings of a PV array: modules in series and in parallel, inverter and tracker,
 /// their values; whether a string is to be added.
-fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), inverters: &[String], values: &[String]) -> bool {
+fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, inverters: &[String], values: &[String]) -> bool {
     let mut add = false;
     ui.horizontal_wrapped(|ui| {
         ui.add_space(28.0);
@@ -126,6 +112,7 @@ fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), inv
         }
     });
     let mut gone = None;
+    let id = a.id;
     for (s_k, s) in a.strings.iter_mut().enumerate() {
         ui.horizontal_wrapped(|ui| {
             ui.add_space(42.0);
@@ -155,13 +142,13 @@ fn pv_strings(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), inv
     add
 }
 
-/// The PV arrays of a roof: place, modules, mounting, mounting system and strings of
-/// each; the array to add a string to when asked.
-fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView) -> Option<usize> {
+/// The PV arrays of a roof or (`freestanding`) of the plot: place, modules, mounting,
+/// mounting system and strings of each; the array to add a string to when asked.
+fn pv_arrays(ui: &mut egui::Ui, arrays: &mut Vec<panel::PvArray>, freestanding: bool, view: &PvView) -> Option<usize> {
     let mut gone = None;
     let mut add_string = None;
-    for (a_k, a) in r.solar.iter_mut().enumerate() {
-        let (delete, add) = pv_array(ui, a, (k, a_k), view);
+    for (a_k, a) in arrays.iter_mut().enumerate() {
+        let (delete, add) = pv_array(ui, a, freestanding, view);
         if delete {
             gone = Some(a_k);
         }
@@ -170,26 +157,31 @@ fn pv_arrays(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView) ->
         }
     }
     if let Some(a_k) = gone {
-        r.solar.remove(a_k);
+        arrays.remove(a_k);
     }
     add_string
 }
 
-/// A PV array of roof `id.0` (its index `id.1`): place, modules, mounting, mounting
-/// system, earthing and strings; whether it is to be deleted and whether a string is to
-/// be added.
-fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view: &PvView) -> (bool, bool) {
-    let (k, a_k) = id;
-    let (modules, systems, powers) = (&view.modules, &view.systems, &view.powers[k]);
+/// A PV array on a roof or (`freestanding`) on the plot: place, modules, mounting,
+/// mounting system, earthing and strings; whether it is to be deleted and whether a
+/// string is to be added.
+#[allow(clippy::too_many_lines)]
+fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, freestanding: bool, view: &PvView) -> (bool, bool) {
+    let id = a.id;
+    let (modules, systems) = (&view.modules, &view.systems);
     let mut gone = false;
     ui.horizontal_wrapped(|ui| {
         ui.add_space(14.0);
         ui.add(egui::TextEdit::singleline(&mut a.name).desired_width(40.0));
-        egui::ComboBox::from_id_salt(("bldpvmount", id)).selected_text(tr(a.mounting.title())).show_ui(ui, |ui| {
-            for m in PvMounting::ALL {
-                ui.selectable_value(&mut a.mounting, m, tr(m.title()));
-            }
-        });
+        if freestanding {
+            ui.label(tr(PvMounting::Ground.title()));
+        } else {
+            egui::ComboBox::from_id_salt(("bldpvmount", id)).selected_text(tr(a.mounting.title())).show_ui(ui, |ui| {
+                for m in PvMounting::ROOF {
+                    ui.selectable_value(&mut a.mounting, m, tr(m.title()));
+                }
+            });
+        }
         egui::ComboBox::from_id_salt(("bldpvmodule", id)).selected_text(a.module.as_str()).width(170.0).show_ui(ui, |ui| {
             for c in modules {
                 if ui.selectable_label(a.module == c.number, c.number.as_str()).on_hover_text(c.description.as_str()).clicked() {
@@ -205,17 +197,24 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
         })
         .response
         .on_hover_text(tr("Module part; its size comes from the part"));
-        ui.label(powers.get(a_k).map_or("", String::as_str));
+        ui.label(view.powers.get(&id).map_or("", String::as_str));
         if icons::button(ui, Icon::Delete, tr("Delete PV array")).clicked() {
             gone = true;
         }
     });
+    let ground = a.mounting == PvMounting::Ground;
     ui.horizontal_wrapped(|ui| {
         ui.add_space(28.0);
         ui.add(egui::DragValue::new(&mut a.x).speed(10.0).prefix("x ").suffix(" mm"));
-        ui.add(egui::DragValue::new(&mut a.z).speed(10.0).prefix("z ").suffix(" mm")).on_hover_text(tr("Middle of the PV array in the floor plan of the building"));
+        let middle = if freestanding { tr("Middle of the PV array in the plant") } else { tr("Middle of the PV array in the floor plan of the building") };
+        ui.add(egui::DragValue::new(&mut a.z).speed(10.0).prefix("z ").suffix(" mm")).on_hover_text(middle);
         ui.add(egui::DragValue::new(&mut a.columns).range(1..=200).suffix(" ×")).on_hover_text(tr("Modules side by side in a row"));
-        ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of modules (east-west: rows of pairs)"));
+        if ground {
+            ui.add(egui::DragValue::new(&mut a.stack).range(1..=10).suffix(" ×")).on_hover_text(tr("Modules on top of each other on a table"));
+            ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of tables behind each other"));
+        } else {
+            ui.add(egui::DragValue::new(&mut a.rows).range(1..=100)).on_hover_text(tr("Rows of modules (east-west: rows of pairs)"));
+        }
         ui.checkbox(&mut a.landscape, tr("landscape")).on_hover_text(tr("The long side of the modules along the rows"));
     });
     ui.horizontal_wrapped(|ui| {
@@ -227,8 +226,15 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
             ui.add(egui::DragValue::new(&mut a.azimuth).speed(1.0).suffix(" °")).on_hover_text(tr("Direction the modules face, counter-clockwise seen from above (0: towards the front)"));
             ui.label(tr("Row distance"));
             ui.add(egui::DragValue::new(&mut a.row_gap).speed(10.0).range(0.0..=20_000.0).suffix(" mm")).on_hover_text(tr("From row to row; 0: free of shade in winter"));
-            ui.label(tr("Ballast"));
-            ui.add(egui::DragValue::new(&mut a.ballast).speed(0.5).range(0.0..=500.0).suffix(" kg")).on_hover_text(tr("Ballast per module"));
+            if ground {
+                ui.label(tr("Lower edge"));
+                ui.add(egui::DragValue::new(&mut a.clearance).speed(10.0).range(300.0..=5000.0).suffix(" mm")).on_hover_text(tr("Height of the lower edge of the modules above the ground"));
+                ui.label(tr("Post distance"));
+                ui.add(egui::DragValue::new(&mut a.span).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the posts along a table"));
+            } else {
+                ui.label(tr("Ballast"));
+                ui.add(egui::DragValue::new(&mut a.ballast).speed(0.5).range(0.0..=500.0).suffix(" kg")).on_hover_text(tr("Ballast per module"));
+            }
         } else {
             ui.label(tr("Hook distance"));
             ui.add(egui::DragValue::new(&mut a.span).speed(10.0).range(300.0..=3000.0).suffix(" mm")).on_hover_text(tr("Greatest distance of the roof hooks along a rail"));
@@ -237,8 +243,9 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
     ui.horizontal_wrapped(|ui| {
         ui.add_space(28.0);
         ui.label(tr("Mounting system"));
-        let main = if a.mounting.is_tilted() { solar::Role::Base } else { solar::Role::Rail };
+        let main = a.mounting.main_role();
         let shown = if a.system.is_empty() { tr("Generic").to_string() } else { a.system.clone() };
+        let hint = if ground { tr("The post; its accessories are the table beams, rails and clamps") } else { tr("The rail or mounting base; its accessories are the hooks, clamps and ballast") };
         egui::ComboBox::from_id_salt(("bldpvsystem", id)).selected_text(shown).width(150.0).show_ui(ui, |ui| {
             ui.selectable_value(&mut a.system, String::new(), tr("Generic"));
             for c in systems.iter().filter(|c| c.subgroup == main.subgroup()) {
@@ -246,7 +253,7 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
             }
         })
         .response
-        .on_hover_text(tr("The rail or mounting base; its accessories are the hooks, clamps and ballast"));
+        .on_hover_text(hint);
         ui.label(tr("Device"));
         ui.add(egui::TextEdit::singleline(&mut a.device).desired_width(90.0)).on_hover_text(tr("Device (PV generator) the modules belong to; its parts then count them in the bill of materials"));
     });
@@ -273,10 +280,56 @@ fn pv_array(ui: &mut egui::Ui, a: &mut panel::PvArray, id: (usize, usize), view:
         .response
         .on_hover_text(tr("Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none"));
     });
-    let values = view.strings[k].get(a_k).map_or(&[][..], Vec::as_slice);
-    let add = pv_strings(ui, a, id, &view.inverters, values);
+    let values = view.strings.get(&id).map_or(&[][..], Vec::as_slice);
+    let add = pv_strings(ui, a, &view.inverters, values);
     *a = solar::checked_array(a.clone());
     (gone, add)
+}
+
+/// The cell temperatures the strings of all PV arrays are designed for.
+fn pv_design_row(ui: &mut egui::Ui, prj: &mut Project) {
+    let d = &mut prj.layout.pv_design;
+    ui.horizontal_wrapped(|ui| {
+        ui.label(RichText::new(tr("Cell temperatures of the strings")).weak());
+        ui.add(egui::DragValue::new(&mut d.t_min).speed(0.5).range(-60.0..=40.0).suffix(" °C")).on_hover_text(tr("Lowest: the highest open-circuit voltage"));
+        ui.add(egui::DragValue::new(&mut d.t_mean).speed(0.5).range(-40.0..=70.0).suffix(" °C")).on_hover_text(tr("Mean: typical operation"));
+        ui.add(egui::DragValue::new(&mut d.t_max).speed(0.5).range(0.0..=110.0).suffix(" °C")).on_hover_text(tr("Highest: the lowest voltage"));
+    });
+    d.t_mean = d.t_mean.clamp(d.t_min, d.t_max.max(d.t_min));
+}
+
+/// The freestanding PV arrays on the plot (rows of tables on posts), each with its
+/// strings; the tool of the site plan to choose.
+fn ground_section(ui: &mut egui::Ui, prj: &mut Project) -> Option<SiteTool> {
+    let mut tool = None;
+    let view = PvView::of(prj);
+    egui::CollapsingHeader::new(RichText::new(tr("Freestanding PV arrays")).strong()).id_salt("bldgroundpv").default_open(true).show(ui, |ui| {
+        let mut add = false;
+        ui.horizontal_wrapped(|ui| {
+            if icons::text_button(ui, Icon::Plus, tr("PV array")).on_hover_text(tr("Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place")).clicked() {
+                add = true;
+            }
+            if icons::text_button(ui, Icon::Pin, tr("Place in the site plan")).on_hover_text(tr("Click where the middle of a freestanding PV array goes in the site plan")).clicked() {
+                tool = Some(SiteTool::PvArray);
+            }
+        });
+        if prj.layout.plot.solar.is_empty() {
+            ui.weak(tr("No freestanding PV array yet: rows of tilted tables on rammed posts on the plot."));
+        }
+        let string = pv_arrays(ui, &mut prj.layout.plot.solar, true, &view);
+        if add {
+            let _ = solar::add_ground_array(prj, None);
+        }
+        if let Some(index) = string {
+            let _ = strings::add_string(prj, solar::ArrayRef { roof: None, index });
+        }
+        // The temperatures here unless the roofs show them.
+        let on_roofs = prj.layout.buildings.iter().flat_map(|b| &b.roofs).any(|r| !r.solar.is_empty());
+        if !on_roofs && !prj.layout.plot.solar.is_empty() {
+            pv_design_row(ui, prj);
+        }
+    });
+    tool
 }
 
 /// The earth electrodes of a building (foundation and ring earth electrodes, earth
@@ -436,6 +489,9 @@ impl App {
         if let Some(tool) = plot_section(ui, prj) {
             self.panel_ui.choose_site_tool(tool);
         }
+        if let Some(tool) = ground_section(ui, prj) {
+            self.panel_ui.choose_site_tool(tool);
+        }
         ui.separator();
         if prj.layout.buildings.is_empty() {
             ui.weak(tr("No building yet: create one with New building, then put rooms on its levels."));
@@ -488,6 +544,7 @@ fn plot_section(ui: &mut egui::Ui, prj: &mut Project) -> Option<SiteTool> {
         .map(|s| match s {
             plot::Standing::Room(i) | plot::Standing::Cabinet(i) => prj.layout.enclosures[i].name.clone(),
             plot::Standing::Roof(bi, k) => format!("{} {}", prj.layout.buildings[bi].name, prj.layout.buildings[bi].roofs[k].name),
+            plot::Standing::PvArray(k) => prj.layout.plot.solar[k].name.clone(),
         })
         .collect();
     let p = &mut prj.layout.plot;
@@ -887,110 +944,19 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
             Some(tr_fmt!("{}: {} – {} m", e.name, format!("{:.2}", lo / 1000.0), format!("{:.2}", hi / 1000.0)))
         })
         .collect();
-    let view = PvView::of(prj, bi);
-    let mut remove = None;
-    let mut add_window = None;
-    let mut add_pv = None;
-    let mut add_string = None;
-    let b = &mut prj.layout.buildings[bi];
-    for (k, r) in b.roofs.iter_mut().enumerate() {
-        ui.group(|ui| {
-            ui.horizontal_wrapped(|ui| {
-                ui.add(egui::TextEdit::singleline(&mut r.name).desired_width(40.0));
-                egui::ComboBox::from_id_salt(("bldroof", k)).selected_text(tr(r.shape.title())).show_ui(ui, |ui| {
-                    for shape in RoofShape::ALL {
-                        ui.selectable_value(&mut r.shape, shape, tr(shape.title()));
-                    }
-                });
-                if matches!(r.shape, RoofShape::Gable | RoofShape::Shed) {
-                    ui.checkbox(&mut r.along_z, tr("along z")).on_hover_text(tr("The ridge (or the slope of a shed roof) runs along z instead of x"));
-                }
-                if r.shape == RoofShape::Shed {
-                    ui.checkbox(&mut r.flip, tr("low side at the rear")).on_hover_text(tr("The low eaves at the rear or left instead of the front or right"));
-                }
-                ui.label(tr_fmt!("ridge {} m", format!("{:.2}", roofs::ridge_height(r) / 1000.0)));
-                if icons::button(ui, Icon::Delete, tr("Delete roof")).clicked() {
-                    remove = Some(k);
-                }
-            });
-            ui.horizontal_wrapped(|ui| {
-                ui.label(tr("Covers"));
-                ui.add(egui::DragValue::new(&mut r.x).speed(10.0).prefix("x ").suffix(" mm"));
-                ui.add(egui::DragValue::new(&mut r.z).speed(10.0).prefix("z ").suffix(" mm"));
-                ui.add(egui::DragValue::new(&mut r.width).speed(10.0).range(500.0..=200_000.0).prefix("w "));
-                ui.add(egui::DragValue::new(&mut r.depth).speed(10.0).range(500.0..=200_000.0).prefix("d ").suffix(" mm"));
-            })
-            .response
-            .on_hover_text(tr("Rear left corner and size of the rectangle it covers (the outer walls) in the building's floor plan"));
-            ui.horizontal_wrapped(|ui| {
-                ui.label(tr("Eaves"));
-                ui.add(egui::DragValue::new(&mut r.eaves).speed(10.0).suffix(" mm")).on_hover_text(tr("Height of the underside of the roof over the walls above the ground level of the building; below the ceiling of a level it slopes the ceilings of the rooms there"));
-                if r.shape != RoofShape::Flat {
-                    ui.label(tr("Pitch"));
-                    ui.add(egui::DragValue::new(&mut r.pitch).speed(0.5).range(1.0..=75.0).suffix(" °"));
-                }
-                ui.label(tr("Overhang"));
-                ui.add(egui::DragValue::new(&mut r.overhang).speed(10.0).range(0.0..=3000.0).suffix(" mm"));
-                ui.label(tr("Thickness"));
-                ui.add(egui::DragValue::new(&mut r.thickness).speed(5.0).range(50.0..=1000.0).suffix(" mm"));
-            });
-            ui.horizontal_wrapped(|ui| {
-                ui.label(RichText::new(tr("Roof windows")).weak());
-                if icons::text_button(ui, Icon::Plus, tr("Roof window")).on_hover_text(tr("Halfway up the front or right slope; move it to its place")).clicked() {
-                    add_window = Some(k);
-                }
-            });
-            let mut gone = None;
-            for (w_k, w) in r.windows.iter_mut().enumerate() {
-                ui.horizontal(|ui| {
-                    ui.add_space(14.0);
-                    ui.add(egui::DragValue::new(&mut w.x).speed(10.0).prefix("x ").suffix(" mm"));
-                    ui.add(egui::DragValue::new(&mut w.z).speed(10.0).prefix("z ").suffix(" mm"));
-                    ui.add(egui::DragValue::new(&mut w.width).speed(5.0).range(200.0..=5000.0).prefix("w "));
-                    ui.add(egui::DragValue::new(&mut w.length).speed(5.0).range(200.0..=5000.0).prefix("l ").suffix(" mm"))
-                        .on_hover_text(tr("Width along the eaves and length up the slope"));
-                    if icons::button(ui, Icon::Delete, tr("Delete roof window")).clicked() {
-                        gone = Some(w_k);
-                    }
-                });
-            }
-            if let Some(w_k) = gone {
-                r.windows.remove(w_k);
-            }
-            ui.horizontal_wrapped(|ui| {
-                ui.label(RichText::new(tr("PV arrays")).weak());
-                if icons::text_button(ui, Icon::Plus, tr("PV array")).on_hover_text(tr("In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place")).clicked() {
-                    add_pv = Some(k);
-                }
-            });
-            if let Some(a_k) = pv_arrays(ui, r, k, &view) {
-                add_string = Some((k, a_k));
-            }
-        });
+    let view = PvView::of(prj);
+    let mut asked: Vec<(usize, RoofAsks)> = Vec::new();
+    for (k, r) in prj.layout.buildings[bi].roofs.iter_mut().enumerate() {
+        let asks = ui.group(|ui| roof_editor(ui, r, k, &view, false)).inner;
         *r = roofs::checked_roof(r.clone());
+        asked.push((k, asks));
     }
-    if let Some(k) = remove {
-        b.roofs.remove(k);
+    // Back to front, so that removing a roof leaves the indices of the others.
+    for (k, asks) in asked.into_iter().rev() {
+        apply_roof_asks(prj, bi, k, &asks, None);
     }
-    if let Some(k) = add_window {
-        let _ = roofs::add_window(prj, bi, k, None);
-    }
-    if let Some(k) = add_pv {
-        let _ = solar::add_array(prj, bi, k, None);
-    }
-    if let Some((k, a_k)) = add_string {
-        let _ = strings::add_string(prj, bi, k, a_k);
-    }
-    // The cell temperatures the strings of all arrays are designed for.
     if prj.layout.buildings.iter().flat_map(|b| &b.roofs).any(|r| !r.solar.is_empty()) {
-        let d = &mut prj.layout.pv_design;
-        ui.horizontal_wrapped(|ui| {
-            ui.label(RichText::new(tr("Cell temperatures of the strings")).weak());
-            ui.add(egui::DragValue::new(&mut d.t_min).speed(0.5).range(-60.0..=40.0).suffix(" °C")).on_hover_text(tr("Lowest: the highest open-circuit voltage"));
-            ui.add(egui::DragValue::new(&mut d.t_mean).speed(0.5).range(-40.0..=70.0).suffix(" °C")).on_hover_text(tr("Mean: typical operation"));
-            ui.add(egui::DragValue::new(&mut d.t_max).speed(0.5).range(0.0..=110.0).suffix(" °C")).on_hover_text(tr("Highest: the lowest voltage"));
-        });
-        d.t_mean = d.t_mean.clamp(d.t_min, d.t_max.max(d.t_min));
+        pv_design_row(ui, prj);
     }
     if !sloped.is_empty() {
         ui.label(RichText::new(tr("Rooms under sloped ceilings (lowest – highest ceiling)")).weak());
@@ -998,6 +964,115 @@ fn roofs_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi, bi:
             ui.label(line);
         }
     }
+}
+
+/// What was asked of a roof in its editor: to remove it, to add a roof window or a PV
+/// array, to add a string to one of its arrays (its index).
+#[derive(Default)]
+struct RoofAsks {
+    remove: bool,
+    window: bool,
+    pv: bool,
+    string: Option<usize>,
+}
+
+/// Does what was asked of roof `k` of building `bi`; `at`: where a new roof window or PV
+/// array goes (the building's floor plan), otherwise where they go by default. The id of
+/// a new PV array.
+fn apply_roof_asks(prj: &mut Project, bi: usize, k: usize, asks: &RoofAsks, at: Option<[f32; 2]>) -> Option<u64> {
+    if asks.remove {
+        prj.layout.buildings[bi].roofs.remove(k);
+        return None;
+    }
+    if asks.window {
+        let _ = roofs::add_window(prj, bi, k, at);
+    }
+    if let Some(index) = asks.string {
+        let _ = strings::add_string(prj, solar::ArrayRef { roof: Some((bi, k)), index });
+    }
+    if asks.pv { solar::add_array(prj, bi, k, at).ok() } else { None }
+}
+
+/// A roof: its name, shape, the rectangle it covers, eaves, pitch, overhang and
+/// thickness, its roof windows and its PV arrays with their strings. `at_click`: a new
+/// window or array goes where the roof was clicked in the 3D view.
+fn roof_editor(ui: &mut egui::Ui, r: &mut panel::Roof, k: usize, view: &PvView, at_click: bool) -> RoofAsks {
+    let mut asks = RoofAsks::default();
+    ui.horizontal_wrapped(|ui| {
+        ui.add(egui::TextEdit::singleline(&mut r.name).desired_width(40.0));
+        egui::ComboBox::from_id_salt(("bldroof", k)).selected_text(tr(r.shape.title())).show_ui(ui, |ui| {
+            for shape in RoofShape::ALL {
+                ui.selectable_value(&mut r.shape, shape, tr(shape.title()));
+            }
+        });
+        if matches!(r.shape, RoofShape::Gable | RoofShape::Shed) {
+            ui.checkbox(&mut r.along_z, tr("along z")).on_hover_text(tr("The ridge (or the slope of a shed roof) runs along z instead of x"));
+        }
+        if r.shape == RoofShape::Shed {
+            ui.checkbox(&mut r.flip, tr("low side at the rear")).on_hover_text(tr("The low eaves at the rear or left instead of the front or right"));
+        }
+        ui.label(tr_fmt!("ridge {} m", format!("{:.2}", roofs::ridge_height(r) / 1000.0)));
+        if icons::button(ui, Icon::Delete, tr("Delete roof")).clicked() {
+            asks.remove = true;
+        }
+    });
+    ui.horizontal_wrapped(|ui| {
+        ui.label(tr("Covers"));
+        ui.add(egui::DragValue::new(&mut r.x).speed(10.0).prefix("x ").suffix(" mm"));
+        ui.add(egui::DragValue::new(&mut r.z).speed(10.0).prefix("z ").suffix(" mm"));
+        ui.add(egui::DragValue::new(&mut r.width).speed(10.0).range(500.0..=200_000.0).prefix("w "));
+        ui.add(egui::DragValue::new(&mut r.depth).speed(10.0).range(500.0..=200_000.0).prefix("d ").suffix(" mm"));
+    })
+    .response
+    .on_hover_text(tr("Rear left corner and size of the rectangle it covers (the outer walls) in the building's floor plan"));
+    ui.horizontal_wrapped(|ui| {
+        ui.label(tr("Eaves"));
+        ui.add(egui::DragValue::new(&mut r.eaves).speed(10.0).suffix(" mm")).on_hover_text(tr("Height of the underside of the roof over the walls above the ground level of the building; below the ceiling of a level it slopes the ceilings of the rooms there"));
+        if r.shape != RoofShape::Flat {
+            ui.label(tr("Pitch"));
+            ui.add(egui::DragValue::new(&mut r.pitch).speed(0.5).range(1.0..=75.0).suffix(" °"));
+        }
+        ui.label(tr("Overhang"));
+        ui.add(egui::DragValue::new(&mut r.overhang).speed(10.0).range(0.0..=3000.0).suffix(" mm"));
+        ui.label(tr("Thickness"));
+        ui.add(egui::DragValue::new(&mut r.thickness).speed(5.0).range(50.0..=1000.0).suffix(" mm"));
+    });
+    let (window_hint, pv_hint) = if at_click {
+        (tr("Where the roof was clicked in the 3D view"), tr("With its middle where the roof was clicked in the 3D view"))
+    } else {
+        (tr("Halfway up the front or right slope; move it to its place"), tr("In the middle of the front or right slope, on a flat roof tilted towards the front; move it to its place"))
+    };
+    ui.horizontal_wrapped(|ui| {
+        ui.label(RichText::new(tr("Roof windows")).weak());
+        if icons::text_button(ui, Icon::Plus, tr("Roof window")).on_hover_text(window_hint).clicked() {
+            asks.window = true;
+        }
+    });
+    let mut gone = None;
+    for (w_k, w) in r.windows.iter_mut().enumerate() {
+        ui.horizontal(|ui| {
+            ui.add_space(14.0);
+            ui.add(egui::DragValue::new(&mut w.x).speed(10.0).prefix("x ").suffix(" mm"));
+            ui.add(egui::DragValue::new(&mut w.z).speed(10.0).prefix("z ").suffix(" mm"));
+            ui.add(egui::DragValue::new(&mut w.width).speed(5.0).range(200.0..=5000.0).prefix("w "));
+            ui.add(egui::DragValue::new(&mut w.length).speed(5.0).range(200.0..=5000.0).prefix("l ").suffix(" mm"))
+                .on_hover_text(tr("Width along the eaves and length up the slope"));
+            if icons::button(ui, Icon::Delete, tr("Delete roof window")).clicked() {
+                gone = Some(w_k);
+            }
+        });
+    }
+    if let Some(w_k) = gone {
+        r.windows.remove(w_k);
+    }
+    ui.horizontal_wrapped(|ui| {
+        ui.label(RichText::new(tr("PV arrays")).weak());
+        if icons::text_button(ui, Icon::Plus, tr("PV array")).on_hover_text(pv_hint).clicked() {
+            asks.pv = true;
+        }
+    });
+    asks.string = pv_arrays(ui, &mut r.solar, false, view);
+    asks
 }
 
 fn links_section(ui: &mut egui::Ui, prj: &mut Project, st: &mut BuildingsUi) {
@@ -1089,11 +1164,6 @@ fn site_plan_section(ui: &mut egui::Ui, prj: &Project, st: &mut BuildingsUi) {
     site_plan::paint(ui, size, prj, &plan, None);
 }
 
-/// Building, roof and index of the PV array with id `id`.
-fn find_array(prj: &Project, id: u64) -> Option<(usize, usize, usize)> {
-    prj.layout.buildings.iter().enumerate().find_map(|(bi, b)| b.roofs.iter().enumerate().find_map(|(k, r)| r.solar.iter().position(|a| a.id == id).map(|ai| (bi, k, ai))))
-}
-
 /// Metres with one decimal.
 fn metres(mm: f32) -> String {
     format!("{:.1} m", mm / 1000.0)
@@ -1106,18 +1176,18 @@ fn row(ui: &mut egui::Ui, name: &str, value: impl Into<egui::WidgetText>) {
     ui.end_row();
 }
 
-/// Everything about PV array `ai` of roof `k` of building `bi`: where it is, its
-/// modules and power, its mounting with its material, its earthing, its strings with
-/// their values and the lengths of their leads, and its problems.
+/// Everything about the PV array at `at`: where it is, its modules and power, its
+/// mounting with its material, its earthing, its strings with their values and the
+/// lengths of their leads, and its problems; whether a string is to be added.
 #[allow(clippy::too_many_lines)]
-fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) {
-    let b = &prj.layout.buildings[bi];
-    let r = &b.roofs[k];
-    let a = &r.solar[ai];
+fn pv_summary(ui: &mut egui::Ui, prj: &Project, at: solar::ArrayRef) -> bool {
+    let (Some(on), Some(a)) = (solar::support(&prj.layout, at.roof), solar::array(&prj.layout, at)) else { return false };
+    let place = solar::place_name(&prj.layout, on);
     let part = prj.parts.iter().chain(openecraft_core::parts::catalog()).find(|p| p.number == a.module);
     let poses = panel::site_poses(prj);
-    let cabling = solar::cabling::cabling(prj, &poses, b, r, a);
-    let geometry = solar::geometry(r, a);
+    let cabling = solar::cabling::cabling(prj, &poses, on, a);
+    let geometry = on.geometry(a);
+    let ground = a.mounting == PvMounting::Ground;
     let placed = |tag: &str| -> String {
         if tag.is_empty() {
             return tr("None").to_string();
@@ -1131,19 +1201,28 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
     ui.label(RichText::new(tr("Array")).strong());
     egui::Grid::new(("pvprops", a.id)).num_columns(2).striped(true).spacing([12.0, 4.0]).show(ui, |ui| {
         row(ui, tr("Name"), a.name.as_str());
-        row(ui, tr("Building"), if b.description.is_empty() { b.name.clone() } else { format!("{} – {}", b.name, b.description) });
-        let roof = if r.name.is_empty() { tr(r.shape.title()).to_string() } else { format!("{} ({})", r.name, tr(r.shape.title())) };
-        row(ui, tr("Roof"), roof);
+        match on {
+            solar::Support::Roof(b, r) => {
+                row(ui, tr("Building"), if b.description.is_empty() { b.name.clone() } else { format!("{} – {}", b.name, b.description) });
+                let roof = if r.name.is_empty() { tr(r.shape.title()).to_string() } else { format!("{} ({})", r.name, tr(r.shape.title())) };
+                row(ui, tr("Roof"), roof);
+            }
+            solar::Support::Ground => row(ui, tr("Plot"), if prj.layout.plot.name.is_empty() { tr("Freestanding").to_string() } else { tr_fmt!("{}, freestanding", prj.layout.plot.name) }),
+        }
         row(ui, tr("Middle"), format!("x {:.0} mm, z {:.0} mm", a.x, a.z));
         let n = solar::module_count(a);
         let orientation = if a.landscape { tr("landscape") } else { tr("portrait") };
-        row(ui, tr("Modules"), tr_fmt!("{} × {} = {}, {}", a.columns, a.rows, n, orientation));
+        if ground {
+            row(ui, tr("Modules"), tr_fmt!("{} rows of tables of {} × {} = {}, {}", a.rows, a.columns, a.stack, n, orientation));
+        } else {
+            row(ui, tr("Modules"), tr_fmt!("{} × {} = {}, {}", a.columns, a.rows, n, orientation));
+        }
         if let Some(kw) = solar::peak_power(prj, a) {
             row(ui, tr("Peak power"), format!("{kw:.2} kWp"));
         }
         let area = n as f32 * a.module_width * a.module_length / 1e6;
         row(ui, tr("Module area"), format!("{area:.1} m²"));
-        if let Some(g) = &geometry {
+        if let (Some(g), solar::Support::Roof(..)) = (&geometry, on) {
             let pitch = g.plane.slope().atan().to_degrees();
             row(ui, tr("Roof pitch"), format!("{pitch:.0}°"));
         }
@@ -1176,7 +1255,15 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
         if a.mounting.is_tilted() {
             row(ui, tr("Tilt"), format!("{:.0}°", a.tilt));
             row(ui, tr("Facing"), format!("{:.0}°", a.azimuth));
-            row(ui, tr("Ballast"), format!("{:.0} kg", a.ballast));
+            if ground {
+                row(ui, tr("Lower edge"), format!("{:.0} mm", a.clearance));
+                row(ui, tr("Post distance"), format!("{:.0} mm", a.span));
+                if let Some(g) = &geometry {
+                    row(ui, tr("Posts"), g.posts.len().to_string());
+                }
+            } else {
+                row(ui, tr("Ballast"), format!("{:.0} kg", a.ballast));
+            }
         } else {
             row(ui, tr("Hook distance"), format!("{:.0} mm", a.span));
         }
@@ -1208,7 +1295,13 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
         }
     });
     ui.add_space(6.0);
-    ui.label(RichText::new(tr("Strings")).strong());
+    let mut add_string = false;
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(tr("Strings")).strong());
+        if icons::text_button(ui, Icon::Plus, tr("String")).on_hover_text(tr("The modules no string takes yet in series, on the first inverter")).clicked() {
+            add_string = true;
+        }
+    });
     if a.strings.is_empty() {
         ui.weak(tr("No string yet: the modules are not connected."));
     } else {
@@ -1239,30 +1332,38 @@ fn pv_summary(ui: &mut egui::Ui, prj: &Project, bi: usize, k: usize, ai: usize) 
             }
         });
     }
-    // Its problems: those of the roofs naming it.
-    let issues: Vec<String> = solar::problems(prj).into_iter().chain(solar::strings::problems(prj)).map(|i| i.message()).filter(|m| m.contains(b.name.as_str()) && m.contains(a.name.as_str())).collect();
+    // Its problems: those of the arrays naming its place and it; of a freestanding one
+    // also lying outside the plot boundary.
+    let mut issues: Vec<String> = solar::problems(prj).into_iter().chain(solar::strings::problems(prj)).map(|i| i.message()).filter(|m| m.contains(place.as_str()) && m.contains(a.name.as_str())).collect();
+    if at.roof.is_none() && plot::outside(prj).contains(&plot::Standing::PvArray(at.index)) {
+        issues.push(tr_fmt!("The freestanding PV array {} stands outside the plot boundary", a.name));
+    }
     if !issues.is_empty() {
         ui.add_space(6.0);
         for m in issues {
             ui.colored_label(crate::style::warning(), m);
         }
     }
+    add_string
 }
 
 impl App {
-    /// The properties of the PV array selected in the 3D view in a window: everything
-    /// about it, and below that the same settings as in the Buildings pane.
+    /// The properties of the PV array selected in the 3D view or the site plan in a
+    /// window: everything about it, and below that the same settings as in the
+    /// Buildings pane.
     pub(super) fn pv_properties(&mut self, ctx: &egui::Context) {
         let Some(id) = self.panel_ui.selected_array else { return };
-        let Some((bi, k, ai)) = find_array(&self.session.prj, id) else {
+        let Some(at) = solar::find(&self.session.prj.layout, id) else {
             self.panel_ui.selected_array = None;
             return;
         };
-        let view = PvView::of(&self.session.prj, bi);
+        let view = PvView::of(&self.session.prj);
         let mut open = true;
         let mut add_string = false;
+        let mut add_listed = false;
         let mut delete = false;
-        let title = tr_fmt!("PV array {}", self.session.prj.layout.buildings[bi].roofs[k].solar[ai].name);
+        let name = solar::array(&self.session.prj.layout, at).map(|a| a.name.clone()).unwrap_or_default();
+        let title = if at.roof.is_some() { tr_fmt!("PV array {}", name) } else { tr_fmt!("Freestanding PV array {}", name) };
         egui::Window::new(title).id(egui::Id::unique("pv_properties")).open(&mut open).default_width(560.0).resizable(true).show(ctx, |ui| {
             ui.horizontal(|ui| {
                 ui.checkbox(&mut self.panel_ui.hide_pv_modules, tr("Hide PV modules")).on_hover_text(tr("Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen"));
@@ -1270,27 +1371,59 @@ impl App {
             });
             ui.separator();
             egui::ScrollArea::vertical().max_height(560.0).auto_shrink([false, true]).show(ui, |ui| {
-                pv_summary(ui, &self.session.prj, bi, k, ai);
+                add_listed = pv_summary(ui, &self.session.prj, at);
                 ui.add_space(6.0);
                 egui::CollapsingHeader::new(RichText::new(tr("Change")).strong()).id_salt(("pvpropsedit", id)).show(ui, |ui| {
-                    let a = &mut self.session.prj.layout.buildings[bi].roofs[k].solar[ai];
-                    (delete, add_string) = pv_array(ui, a, (k, ai), &view);
+                    if let Some(a) = solar::array_mut(&mut self.session.prj.layout, at) {
+                        ui.push_id("pvpropsarray", |ui| (delete, add_string) = pv_array(ui, a, at.roof.is_none(), &view));
+                    }
                 });
             });
         });
         let prj = &mut self.session.prj;
-        if add_string {
-            if let Err(e) = strings::add_string(prj, bi, k, ai) {
+        if add_string || add_listed {
+            if let Err(e) = strings::add_string(prj, at) {
                 self.panel_ui.status = e;
             }
         }
         if delete {
-            prj.layout.buildings[bi].roofs[k].solar.remove(ai);
+            if let Some(list) = solar::arrays_at_mut(&mut prj.layout, at.roof) {
+                list.remove(at.index);
+            }
             self.panel_ui.selected_array = None;
         }
         if !open {
             self.panel_ui.selected_array = None;
         }
+    }
+
+    /// The roof picked in the 3D view in the layout properties: its settings, its roof
+    /// windows and PV arrays; a new roof window or PV array goes where it was clicked
+    /// and the new array is selected. False when no roof is picked.
+    pub(super) fn roof_properties(&mut self, ui: &mut egui::Ui) -> bool {
+        let Some(t) = self.panel_ui.selected_roof else { return false };
+        let prj = &mut self.session.prj;
+        let Some(k) = prj.layout.buildings.get(t.building).and_then(|b| b.roofs.iter().position(|r| r.id == t.roof)) else {
+            self.panel_ui.selected_roof = None;
+            return false;
+        };
+        let bi = t.building;
+        let view = PvView::of(prj);
+        ui.heading(tr("Properties"));
+        let b = &mut prj.layout.buildings[bi];
+        ui.label(RichText::new(tr_fmt!("Roof {} of building {}", b.roofs[k].name, b.name)).strong());
+        ui.weak(tr_fmt!("Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.", format!("{:.0}", t.at[0]), format!("{:.0}", t.at[1])));
+        ui.add_space(4.0);
+        let r = &mut b.roofs[k];
+        let asks = ui.push_id("roofprops", |ui| roof_editor(ui, r, k, &view, true)).inner;
+        *r = roofs::checked_roof(r.clone());
+        if let Some(id) = apply_roof_asks(prj, bi, k, &asks, Some(t.at)) {
+            self.panel_ui.selected_array = Some(id);
+        }
+        if asks.remove {
+            self.panel_ui.selected_roof = None;
+        }
+        true
     }
 }
 

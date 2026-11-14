@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Номер изделия принад
 Activates (shows) or deactivates (hides) the content of a project option	Активирует (показывает) или деактивирует (скрывает) содержимое опции проекта
 Additional power loss in W	Дополнительные потери мощности в W
 Address scheme: siemens, iec or rockwell	Схема адресации: siemens, iec или rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Добавляет фотоэлектрическое поле на крышу: ряды модулей на рейках и кровельных крюках параллельно скату или на плоской крыше с наклоном или по схеме восток-запад на балластных монтажных основаниях; без x и z посередине переднего или правого ската. Без здания и крыши — наземное поле на участке: ряды наклонных столов на забивных стойках, без x и z перед тем, что стоит в установке. Модули и монтажный материал попадают в спецификацию
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Добавляет гнутую и просверленную медную шину (или заменяет одноимённую в корпусе)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Добавляет кабельный проход к соседу справа: круглые вырезы друг напротив друга в обеих боковых стенках; провода между шкафами проходят через него
 Adds a configurator rule: insert a page macro when the condition holds	Добавляет правило конфигуратора: вставить макрос листа, если условие выполнено
@@ -73,6 +74,7 @@ Between page and column (default .)	Между листом и столбцом 
 Bonding point	Точка подключения уравнивания потенциалов
 Border around the text	Граница вокруг текста
 Both classes are needed	Требуются оба класса
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Здание (место, напр. +B1); без здания и крыши: наземное поле на участке
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Здания установки с уровнями, шахтами, лестницами и крышами с фотоэлектрическими полями, заземлителями и молниезащитой, помещениями на уровнях и связями между зданиями
 Bus system name	Имя шинной системы
 Bus system name, e.g. PN/IE_1	Имя шинной системы, например PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Диаметр стержня, мм (по �
 Direction of the stem: left, right, up or down (default: from the wires there)	Направление ножки: left, right, up или down (по умолчанию: по проводам в этой точке)
 Distance between power and signal or fluid in mm	Расстояние между силовыми и сигнальными линиями или гидропневматикой в мм
 Distance from devices, rails and busbars in mm	Расстояние от устройств, реек и шин в мм
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Расстояние между рядами на плоской крыше или у наземного поля в мм (0: без затенения зимой)
 Distance from the face in mm (rails: standoff height)	Расстояние от поверхности в мм (рейки: высота стоек)
 Distance in X (mm)	Расстояние по X (мм)
 Distance in Y (mm)	Расстояние по Y (мм)
@@ -267,12 +270,16 @@ First counter value (default 1)	Первое значение счётчика (
 First page number (default 1)	Номер первого листа (по умолчанию 1)
 First port as station:port, e.g. PLC1:X1 P2	Первый порт в виде станция:порт, например PLC1:X1 P2
 First row with the column names	Первая строка с именами столбцов
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Плоские крыши и наземные поля: направление, куда обращены модули, в градусах, против часовой стрелки при виде сверху (0: к +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Формат имени устройства: {letter}, {n} (счётчик), {page}, {column}, {row}; по умолчанию {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Формат для схемы format: {n} (счётчик), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Фундаментный заземлитель: насколько внутри наружных стен (по умолчанию 100), кольцевой: насколько снаружи (по умолчанию 1000), мм
 Foundation earth electrode: its largest mesh, mm (default 20000)	Фундаментный заземлитель: его наибольшая ячейка, мм (по умолчанию 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Исходная рамка для новой рамки (по умолчанию: A3 landscape)
 Free space in front of every device on the plate	Свободное пространство перед каждым устройством на панели
+Freestanding PV arrays stand on posts (mounting ground)	Наземные фотоэлектрические поля стоят на стойках (монтаж ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Наземное поле: высота нижнего края модулей над землёй в мм (по умолчанию 800)
+Freestanding: modules on top of each other on a table (default 2)	Наземное поле: модули друг над другом на столе (по умолчанию 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Фиксирует трассы для производства (сохраняются при пересчёте, пока это возможно) или освобождает их
 Frequency in Hz	Частота в Hz
 Function (= without the sign; empty: the parent's)	Функциональное назначение (= без знака; пусто: как у родительского)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Со�
 Give a device tag or a part number	Укажите обозначение устройства или номер изделия
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Даёт зданию молниезащиту или изменяет её: класс, число токоотводов и изделие проводников; молниеприёмные проводники на коньках и рёбрах (сетка на плоских крышах), токоотводы с контрольными соединениями к заземлителям; или удаляет её
 Greatest distance of the conductor holders, mm (default 1000)	Наибольшее расстояние между держателями проводника, мм (по умолчанию 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Наибольшее расстояние между кровельными крюками вдоль рейки (наземное поле: между стойками вдоль стола) в мм
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Группирует элементы в сборку, которая выделяется и перемещается целиком; без имени элементы выходят из своих сборок
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Передаёт программы корпуса в производство как задание: манифест и программы всех его поверхностей и медных шин
 Has a divider between power and signal cables	Есть разделительная перегородка между силовыми и сигнальными кабелями
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Максимальное заполнени
 Maximum operating pressure in bar	Максимальное рабочее давление в bar
 Measuring range or set point	Диапазон измерения или уставка
 Message code, e.g. wires.3f9a1c	Код сообщения, например wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Середина фотоэлектрического поля на плане здания (наземное поле: в установке), x в мм
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Середина фотоэлектрического поля на плане здания (наземное поле: в установке), z в мм
 Milling feed, mm/min	Подача при фрезеровании, мм/мин
 Mirror the symbol	Отразить символ
 Mounting plate size as width and height; empty object restores the centred plate	Размер монтажной панели как ширина и высота; пустой объект восстанавливает панель по центру
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Компоновка плаза жгута: ответвления от общего узла к разъёмам с длиной, направлением, диаметром пучка и контактами, а также масштаб чертежа
 Name (default E1, E2, …)	Имя (по умолчанию E1, E2, …)
 Name (default F1, F2, …)	Имя (по умолчанию F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Укажите и здание, и крышу или ни то ни другое для наземного фотоэлектрического поля
 Name of the assembly	Имя сборки
 Name of the bar, e.g. L1 -Q1	Имя шины, например L1 -Q1
 Name of the check	Имя проверки
@@ -497,6 +508,7 @@ No device group {}	Нет группы устройств {}
 No earth electrode {} in building {}	Нет заземлителя {} в здании {}
 No enclosure named {}	Нет корпуса с именем {}
 No entry for {} and {}	Нет записи для {} и {}
+No freestanding PV array {}	Нет наземного фотоэлектрического поля {}
 No hose {}	Нет шланга {}
 No identifier {} in the project	В проекте нет идентификатора {}
 No item with id {}	Нет элемента с ID {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Наружные 
 Overlap of nibbling hits (0 … 0.9)	Перекрытие ударов высечки (0 … 0.9)
 PCT loop {} already exists	Контур КИПиА {} уже существует
 PLC hardware: stations, cards, bus systems and port connections	Аппаратная часть ПЛК: станции, платы, шинные системы и соединения портов
+PV arrays on roofs are mounted parallel, tilted or east_west	Фотоэлектрические поля на крышах монтируются parallel, tilted или east_west
 Page macro name	Имя макроса листа
 Page macro that generates its schematic	Макрос листа, создающий его схему
 Page name (default: all pages)	Имя страницы (по умолчанию: все страницы)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Повторно испол
 Right side bayed (no side panel)	Правая сторона пристыкована (без боковой стенки)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Кольцевой: глубина под землёй, вертикальный: глубина верхнего конца, мм (по умолчанию 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Вертикальный заземлитель: его диаметр (по умолчанию 20), фундаментный и кольцевой: круглого провода, 0 для полосы, мм
+Roof: its name; without building and roof: a freestanding array on the plot	Крыша: её имя; без здания и крыши: наземное поле на участке
 Room {} exists already	Помещение {} уже существует
 Rotation in degrees clockwise: 0, 90, 180 or 270	Поворот в градусах по часовой стрелке: 0, 90, 180 или 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Поворот в градусах против часовой стрелки (при 90 текст читается снизу вверх)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Провод, который пер�
 The wrap width must not be negative	Ширина переноса не может быть отрицательной
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Тепловое моделирование монтажной панели: температуры воздуха, горячая точка, источники тепла и температура у каждого устройства
 Thickest sheet or bar, mm	Максимальная толщина листа или шины, мм
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Наклон модулей на плоской крыше или столов наземного поля в градусах
 Time per drilling, punching or bending operation, s	Время на операцию сверления, пробивки или гибки, s
 Time per tool change, s	Время на смену инструмента, s
 Title block (list_title_blocks); empty = the project default	Основная надпись (list_title_blocks); пусто = надпись проекта по умолчанию
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (по умолчанию), supp
 mounted, problem or open	mounted, problem или open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond или accessory
 numbers or letters	numbers или letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (на кровельных крюках), tilted (с наклоном) или east_west (восток-запад, плоские крыши); наземное поле: ground (на стойках)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof или bottom
 plug_in, saddle or wire	plug_in, saddle или wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp или canopen

@@ -349,12 +349,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Kattintson a helyére a helyszínrajzon
 Click where the air-termination rods go on the roofs in the site plan	Kattintson a helyszínrajzon oda, ahol a felfogórudak állnak a tetőkön
 Click where the earth rods go in the site plan	Kattintson a helyszínrajzon oda, ahol a rúdföldelők vannak
+Click where the middle of a freestanding PV array goes in the site plan	Kattintson a helyszínrajzon oda, ahová egy szabadföldi PV-mező közepe kerül
+Click where the middle of a freestanding PV array goes · Esc: stop	Kattintson oda, ahová egy szabadföldi PV-mező közepe kerül · Esc: vége
 Click where the reference point is	Kattintson oda, ahol a referenciapont van
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kattintson oda, ahol három vezeték találkozik: a T-elem megadja, melyik készülékből indulnak a vezetékek, és a céljaik sorrendjét · {} elforgatja, ahol még nem találkoznak vezetékek · Esc vagy jobb kattintás befejezi
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték keresztezi egymást: a kereszteződés összeköti őket, és vonalának mindkét végét először egyenesen, majd keresztben vezeti · {} elforgatja · Esc vagy jobb kattintás befejezi
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kattintson oda, ahol két vezeték derékszögben találkozik, vagy ahol csatlakozási pontok a sarkon át szemben állnak: bekapcsolt automatikus csatlakoztatással vezetékek rajzolódnak hozzá · {} elforgatja · Esc vagy jobb kattintás befejezi
 Click while moving	Kattintás mozgatás közben
 Click, or drag it into the page	Kattintson rá, vagy húzza az oldalra
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Kattintás itt: x {} mm, z {} mm az épület alaprajzán; oda kerül egy új tetőablak vagy PV-mező.
 Climate (IEC 60890)	Klimatizálás (IEC 60890)
 Clipboard	Vágólap
 Close	Bezárás
@@ -778,6 +781,12 @@ Frame of all pages that do not choose one	Az összes olyan oldal kerete, amely n
 Free air	Szabad vezetés
 Free air factor	Szabad vezetés tényezője
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Szabad hely a lapon lévő minden készülék előtt az ajtóig; az alkatrészek hozzáadják a sajátjukat (Service space)
+Freestanding	Szabadföldi
+Freestanding PV array {}	{} szabadföldi PV-mező
+Freestanding PV array {} placed; click for the next one · Esc: stop	{} szabadföldi PV-mező elhelyezve; kattintson a következőért · Esc: vége
+Freestanding PV array {}: {} modules	{} szabadföldi PV-mező: {} modul
+Freestanding PV array {}: {} modules, {} kWp	{} szabadföldi PV-mező: {} modul, {} kWp
+Freestanding PV arrays	Szabadföldi PV-mezők
 Freeze all routes	Összes nyomvonal rögzítése
 Freeze route	Nyomvonal rögzítése
 Frequency	Frekvencia
@@ -822,6 +831,7 @@ Graphic line	Grafikus vonal
 Graphic rectangle	Grafikus téglalap
 Graphical form	Grafikus űrlap
 Greatest distance of the conductor holders on the roof and on the walls	A vezetőtartók legnagyobb távolsága a tetőn és a falakon
+Greatest distance of the posts along a table	Az oszlopok legnagyobb távolsága egy asztal mentén
 Greatest distance of the roof hooks along a rail	A tetőkampók legnagyobb távolsága egy sín mentén
 Grid	Rács
 Grid north	Hálózati észak
@@ -843,6 +853,7 @@ Height above sea level	Tengerszint feletti magasság
 Height above the floor	Padló feletti magasság
 Height above the mounting plate	Magasság a szerelőlap fölött
 Height above the plate	Magasság a lap fölött
+Height of the lower edge of the modules above the ground	A modulok alsó élének magassága a talaj felett
 Height of the plinth, 0 without plinth	A lábazat magassága, 0 lábazat nélkül
 Height of the rod above the covering	A rúd magassága a tetőfedés felett
 Height of the test joints above the ground	A mérési csatlakozók magassága a terep felett
@@ -1063,6 +1074,7 @@ Look for updates when OpenECraft starts	Frissítések keresése az OpenECraft in
 Looking for updates…	Frissítések keresése…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Új OpenECraft-verziót keres a GitHubon, és a háttérben telepíti
 Loop	Kör
+Lower edge	Alsó él
 Lowest fault current	Legkisebb hibaáram
 Lowest: the highest open-circuit voltage	Legalacsonyabb: a legnagyobb üresjárási feszültség
 Macro boxes	Makródobozok
@@ -1109,6 +1121,7 @@ Messages of this session	A munkamenet üzenetei
 Middle	Középen
 Middle button	Középső gomb
 Middle of the PV array in the floor plan of the building	A PV-mező közepe az épület alaprajzán
+Middle of the PV array in the plant	A PV-mező közepe a létesítményben
 Min. bend radius	Min. hajlítási sugár
 Minimize the ribbon	A menüszalag kis méretre állítása
 Mirror	Tükrözés
@@ -1119,6 +1132,7 @@ Model of a part (2D / 3D)	Alkatrész modellje (2D / 3D)
 Modifier keys	Módosítóbillentyűk
 Module area	Modulfelület
 Module part; its size comes from the part	Modul alkatrész; mérete az alkatrészből származik
+Modules on top of each other on a table	Egymás fölötti modulok egy asztalon
 Motors feed the short circuit	A motorok táplálják a zárlatot
 Mounted on	Szerelve erre
 Mounting assistant: the panel items in mounting order with their place and part	Szerelési asszisztens: az elrendezési elemek szerelési sorrendben, helyükkel és alkatrészükkel
@@ -1235,6 +1249,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Még nincs szekrény – hozzon létre egyet az Új szekrény paranccsal, vagy helyiséget a szekrényeknek az Új helyiség paranccsal.
 No field cables: place the enclosures and field devices at nodes of the route network.	Nincsenek terepi kábelek: helyezze el a szekrényeket és a terepi készülékeket a nyomvonalhálózat csomópontjain.
 No filter fans: an air/air heat exchanger or a cooling unit	Nincsenek szűrős ventilátorok: levegő/levegő hőcserélő vagy hűtőkészülék
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Még nincs szabadföldi PV-mező: döntött asztalok sorai vert oszlopokon a telken.
 No gesture	Nincs kézmozdulat
 No harnesses defined.	Nincsenek definiált kábelkötegek.
 No inverter	Nincs inverter
@@ -1491,7 +1506,6 @@ Plant layout	Létesítmény-elrendezés
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Létesítmény-elrendezés, nyomvonalhálózat, terepi kábeltervezés, potenciálkiegyenlítés és kábeltartozékok
 Plant segments with planned devices before the schematic	Létesítményszegmensek tervezett készülékekkel a kapcsolási rajz előtt
 Plate outline, holes per diameter, cutouts	Lap körvonala, furatok átmérőnként, kivágások
-Plot	Telek
 Plot boundary	Telekhatár
 Plot boundary drawn: {} m²	Telekhatár megrajzolva: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Telekhatár megrajzolva: {} m²; kívül: {}
@@ -1514,6 +1528,8 @@ Position of the cursor	A kurzor helyzete
 Position of the device tag (instead of the tag block)	A készülékazonosító pozíciója (az azonosítóblokk helyett)
 Position of the label (terminal number, address …)	A felirat pozíciója (sorkapocsszám, cím …)
 Positions are relative to the lower right corner of the symbol.	A pozíciók a szimbólum jobb alsó sarkához viszonyítottak.
+Post distance	Oszloptávolság
+Posts	Oszlopok
 Potential {}	Potenciál: {}
 Potential: {}	Potenciál: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	A hálózat fogyasztóinak (motorok, hajtások, fűtések, tápegységek, transzformátorok) teljesítménye és árama, az egyes védőkészülékek terhelése, az igény az egyidejűségi tényezővel és a tápegységek terhelési mérlege.
@@ -1709,6 +1725,8 @@ Rod holder	Rúdtartó
 Roof pitch	Tetőhajlásszög
 Roof window	Tetőablak
 Roof windows	Tetőablakok
+Roof {} of building {}	{} tető, {} épület
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	{} tető, {} épület: az elrendezés tulajdonságai PV-mezőt vagy tetőablakot adnak hozzá a kattintás helyén
 Roofs	Tetők
 Room	Helyiség
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Helyiség hozzáadva a(z) {} szinten: húzza a falait, vagy rajzoljon újakat az alaprajzon, a szekrényeket azok tulajdonságaiban helyezze bele
@@ -1735,6 +1753,8 @@ Row	Sor
 Row distance	Sortávolság
 Row drawing	Sorrajz
 Row labels	Sorfeliratok
+Rows of tables behind each other	Egymás mögötti asztalsorok
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Döntött asztalok sorai oszlopokon a létesítményben állók előtt, előre nézve; helyezze a helyére
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	A kiadott oldalakon lévő sorok nem módosíthatók. A szövegben a sortörést \\n jelöli.
 Rows per page	Sorok oldalanként
 Rule libraries	Szabálykönyvtárak
@@ -2067,6 +2087,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Az általa generált oldalak megmaradnak
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Az alkatrész-adatbázis minden projekt számára közös. Az alkatrészek akkor kerülnek be egy projektbe, amikor egy készülékhez rendelik őket.
 The point's coordinates in the coordinate reference system	A pont koordinátái a koordináta-rendszerben
+The post; its accessories are the table beams, rails and clamps	Az oszlop; tartozékai az asztalgerendák, a sínek és a szorítók
 The project changed since the search.	A projekt a keresés óta megváltozott.
 The project check	A projekt ellenőrzése
 The project database needs the desktop version: the browser cannot search folders.	A projektadatbázishoz az asztali verzió szükséges: a böngésző nem tud mappákban keresni.
@@ -2210,6 +2231,7 @@ When it differs from the page	Ha eltér az oldaltól
 Where	Hely
 Where neither wire has a termination chosen for it	Ahol egyik vezetékhez sincs lezárás kiválasztva
 Where the point is in the plant; y: its height above the ground level of the plant	Hol van a pont a létesítményben; y: magassága a létesítmény terepszintje felett
+Where the roof was clicked in the 3D view	Ahol a 3D nézetben a tetőre kattintottak
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Honnan származik a készülék struktúrája: a szimbólum körüli struktúrával egyező aspektusok öröklődnek, és követik, ha a szimbólum struktúrakeretbe kerül vagy kikerül onnan; a többi aspektus a készülék sajátja és megmarad.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	A vezeték kezdete és vége: az alkatrészadatokból származó csatlakozási pont, a funkciósablonból generált pont, vagy a készülék közepe, ha egyik csatlakozási pont sem egyezik
 Whole building	Egész épület
@@ -2248,6 +2270,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Huzalozási hely a készülékek és a csatornák között
 With a user account of the server; replaces the access token	A szerver felhasználói fiókjával; felváltja a hozzáférési tokent
 With everything below it	Mindazzal együtt, ami alatta van
+With its middle where the roof was clicked in the 3D view	A közepével ott, ahol a 3D nézetben a tetőre kattintottak
 With the current pages; the approvals so far become void	Az aktuális oldalakkal; az eddigi jóváhagyások érvényüket vesztik
 With values only	Csak értékkel rendelkezők
 Withdraw	Visszavonás
@@ -2508,6 +2531,7 @@ x y	x y
 {} renamed: {} pages and devices	{} átnevezve: {} oldal és készülék
 {} report pages output to {}	{0} kimutatásoldal kiadva ide: {1}
 {} routes frozen	{} nyomvonal rögzítve
+{} rows of tables of {} × {} = {}, {}	{} asztalsor, {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} szegmens létrehozva, {} készülék hozzáadva, {} frissítve
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} állomás, {} buszrendszer, {} kártya hozzárendelve, {} cím módosítva, {} kapcsolat, {} kábel
 {} stopped with an error: {}	{} hibával leállt: {}
@@ -2537,6 +2561,7 @@ x y	x y
 {} – revision {}, {}	{} – {}. revízió, {}
 {} – {} ({} pages)	{} – {} ({} oldal)
 {} – {} here (Esc cancels)	{} – {} itt (Esc megszakítja)
+{}, freestanding	{}, szabadföldi
 {}: click to show its floor plan	{}: kattintson az alaprajz megjelenítéséhez
 {}: crimp together with the wire to {}	{}: a(z) {} felé menő vezetékkel együtt krimpelendő
 {}: drag to move it, R turns it, a double-click opens it	{}: húzással mozgatható, R elforgatja, dupla kattintás megnyitja
