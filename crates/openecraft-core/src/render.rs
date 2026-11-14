@@ -515,19 +515,37 @@ fn draw_cable_def(d: &mut dyn Draw, prj: &Project, page: &Page, cd: &CableDef, i
         d.poly(&pts, true, SYMBOL_W * 0.7, ink, false);
     }
     let text_ink = if ink == Ink::Line { Ink::CrossRef } else { ink };
+    for (t, q, size, anchor) in cable_def_texts(prj, page, cd) {
+        d.text(q, &t, size, anchor, VAnchor::Middle, text_ink);
+    }
+}
+
+fn cable_def_texts(prj: &Project, page: &Page, cd: &CableDef) -> Vec<(String, P, f32, Anchor)> {
+    let v = cd.b - cd.a;
+    if v.len() < 0.1 { return Vec::new(); }
+    let u = v * (1.0 / v.len());
     let lines = crate::cabledef::label(prj, page, cd);
     let horizontal = u.x.abs() >= u.y.abs();
-    for (i, t) in lines.iter().enumerate() {
+    lines.iter().enumerate().map(|(i, t)| {
         let size = if i == 0 { TAG_SIZE } else { SMALL_SIZE };
         if horizontal {
             let anchor = if u.x >= 0.0 { Anchor::Left } else { Anchor::Right };
             let q = cd.b + u * 1.2 + p(0.0, i as f32 * 3.0 - (lines.len() as f32 - 1.0) * 1.5);
-            d.text(q, t, size, anchor, VAnchor::Middle, text_ink);
+            (t.clone(), q, size, anchor)
         } else {
             let q = cd.b + u * 2.0 + p(0.0, if u.y >= 0.0 { i as f32 * 3.0 + 1.0 } else { -((lines.len() - 1 - i) as f32) * 3.0 - 1.0 });
-            d.text(q, t, size, Anchor::Center, VAnchor::Middle, text_ink);
+            (t.clone(), q, size, Anchor::Center)
         }
-    }
+    }).collect()
+}
+
+/// The same label positions used by the canvas and exports, for picking a cable.
+pub fn cable_def_text_bounds(prj: &Project, page: &Page, cd: &CableDef) -> Vec<R> {
+    cable_def_texts(prj, page, cd).into_iter().map(|(text, q, size, anchor)| {
+        let width = text_width(&text, size).max(size);
+        let x = match anchor { Anchor::Left => q.x, Anchor::Center => q.x - width / 2.0, Anchor::Right => q.x - width };
+        R::from_points(p(x, q.y - size * 0.6), p(x + width, q.y + size * 0.6))
+    }).collect()
 }
 
 /// Draws only the symbol graphics (used for canvas, ghost and library previews).

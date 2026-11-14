@@ -1,6 +1,30 @@
 use super::*;
 
 #[test]
+fn cable_label_hit_areas_follow_the_drawn_text_without_changing_its_layout() {
+    let mut prj = Project::default();
+    prj.cables.push(Cable { id: 10, tag: "-W1".into(), cable_type: "NYM-J".into(), cores: "BN BU GNYE".into(), cross_section: "1.5".into(), ..Default::default() });
+    for (a, b) in [(p(40., 60.), p(80., 60.)), (p(80., 60.), p(40., 60.)), (p(60., 40.), p(60., 80.)), (p(60., 80.), p(60., 40.))] {
+        let cd = CableDef { id: 20, a, b, cable: "-W1".into(), shield: false };
+        let mut draw = Rec::default();
+        draw_cable_def(&mut draw, &prj, &prj.pages[0], &cd, Ink::Line);
+        let areas = cable_def_text_bounds(&prj, &prj.pages[0], &cd);
+        assert_eq!(draw.texts.len(), 3);
+        assert_eq!(draw.line_positions, [(a, b)]);
+        for ((q, text, size, anchor), area) in draw.texts.iter().zip(&areas) {
+            let width = text_width(text, *size).max(*size);
+            let offset = match anchor { Anchor::Left => width / 2., Anchor::Center => 0., Anchor::Right => -width / 2. };
+            assert!(area.center().dist(*q + p(offset, 0.)) < 0.001);
+        }
+        if a == p(40., 60.) {
+            assert_eq!(draw.texts[0].0, p(81.2, 57.));
+            assert_eq!(draw.texts[1].0, p(81.2, 60.));
+            assert_eq!(draw.texts[2].0, p(81.2, 63.));
+        }
+    }
+}
+
+#[test]
 fn frame_artwork_uses_live_page_properties_without_page_objects() {
     use crate::symbols::{PropertyBlock,BlockAlign};
     let mut project=Project::default();

@@ -32,6 +32,7 @@ use std::collections::HashMap;
 mod arrange_ui;
 mod backstage;
 mod cables_ui;
+mod cable_rename;
 mod check_ui;
 mod command_search;
 mod commands_ui;
@@ -256,6 +257,7 @@ pub struct App {
     report_filter: String,
     /// Rename device dialog: old tag and the tag entered.
     rename_device: Option<(String, String)>,
+    rename_cable: Option<cable_rename::Draft>,
     /// Active work area (name); empty = the whole project.
     work_area: String,
     structure_ui: structure_ui::StructureUi,
@@ -537,6 +539,7 @@ impl App {
             connection_filter: String::new(),
             report_filter: String::new(),
             rename_device: None,
+            rename_cable: None,
             work_area: String::new(),
             structure_ui: Default::default(),
             properties_ui: Default::default(),
@@ -808,6 +811,7 @@ impl App {
     }
 
     fn replace_project(&mut self, prj: Project, file_name: Option<String>) {
+        self.rename_cable = None;
         self.remote.close();
         self.recovery = None;
         // Another project must not be checked in as a version of the vault's file.

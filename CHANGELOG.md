@@ -19,6 +19,29 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Saved manual offsets retain their positions. Page drawing reuses the caller's
   index and the editor shares one label layout for drawing and pointer targets.
 
+- **Quick cable rename** (#174): select a cable definition or its label and use
+  *Rename cable…* in the context menu, the properties or the cable navigator.
+  The dialog selects the complete tag, validates it before applying and updates
+  references across pages in one undo step. Shared projects acquire all affected
+  locks first. Also available as the `rename_cable` CLI/MCP/plugin command.
+  Canvas context menus stay open during a left-button press so their commands
+  actually run on release.
+  Session-bound snapshots keep own locks identifiable when loading concurrent
+  page changes. Older servers use their GET snapshot and an authenticated status
+  at the same revision, preserving own locks without guessing from user names.
+  Cancelling an in-flight rename releases its new locks after the request has
+  finished; existing locks and locks protecting other local edits are kept.
+
+- **Cable core assignment** (#173): preview crossed wires, free cores and the
+  assignment order from the line start. Insufficient cores or conflicting wire
+  assignments leave all pending assignments unchanged and show a persistent
+  check warning. Correct the cable/core list before assigning again. Existing
+  assignments and cores used on other pages are preserved. CLI/MCP can inspect
+  `preview_cable_definition` and explicitly `apply_cable_definition`.
+  Rejected new definitions do not create unused cables. Imported core names
+  without a cable are preserved as conflicts; disabled assignment buttons explain
+  the reason. Interactive previews reuse the session index.
+
 - **PV arrays in 3D:** a click on an array opens its properties (modules and their
   data, peak power, mounting and material, earthing, strings with their values and the
   lengths of their leads, problems, and its settings). The cabling of the strings is

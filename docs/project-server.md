@@ -76,6 +76,11 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   the last 16 revisions per project in memory; a save from an older revision (or
   without `base_revision`) saves only what is locked.
 - Each session gets its own range of object ids, so users never create the same id.
+- Editors prefer the session-bound `POST /projects/{name}/snapshot`. On 404 or
+  405 only, they use the older GET snapshot followed by the current session's
+  status. Both must name the same revision before the snapshot is applied; the
+  status supplies own lock identities. Authentication failures do not trigger
+  this fallback. A project changed during loading is loaded again.
 - In the editor: *Tools › Project server…* – enter the server URL, your user name and the
   token, list the projects and open one, or upload the current project. While a shared
   project is open, *Save* (`Ctrl+S`) saves to the server; the window and the page list's

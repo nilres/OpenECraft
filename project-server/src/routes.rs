@@ -218,6 +218,7 @@ pub fn router(state: AppState) -> Router {
         .route(&format!("{API_PREFIX}/projects"), get(list).post(create))
         .route(&project, get(snapshot).put(save).delete(delete_project))
         .route(&format!("{project}/open"), post(open))
+        .route(&format!("{project}/snapshot"), post(session_snapshot))
         .route(&format!("{project}/status"), post(status))
         .route(&format!("{project}/lock"), post(lock))
         .route(&format!("{project}/release"), post(release))
@@ -534,6 +535,16 @@ async fn status(State(state): State<AppState>, headers: HeaderMap, Path(name): P
     server.exists(&name)?;
     server.sessions.touch(&name, &session, Instant::now())?;
     Ok(Json(server.status(&name, Some(&session.session))?))
+}
+
+async fn session_snapshot(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(session): Json<Session>) -> Result<Json<Snapshot>> {
+    let (mut server, caller) = server(&state, &headers)?;
+    let name = canonical(&server, name);
+    caller.see(&name)?;
+    caller.owns(&session)?;
+    server.exists(&name)?;
+    server.sessions.touch(&name, &session, Instant::now())?;
+    Ok(Json(server.snapshot(&name, Some(&session.session))?))
 }
 
 async fn lock(State(state): State<AppState>, headers: HeaderMap, Path(name): Path<String>, Json(req): Json<LockRequest>) -> Result<Json<Status>> {

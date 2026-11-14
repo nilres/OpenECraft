@@ -186,7 +186,7 @@ pub static TABS: &[Tab] = &[
         groups: &[
             g("navigators", tr_const!("Navigators"), &[S(C::ConnectionsPane), S(C::CablesPane)]),
             g("numbering", tr_const!("Numbering"), &[L(C::WireNumbering)]),
-            g("cables", tr_const!("Cables"), &[L(C::CableEditor), S(C::AlignCoreLabels)]),
+            g("cables", tr_const!("Cables"), &[L(C::CableEditor), S(C::RenameCable), S(C::AlignCoreLabels)]),
             g("potentials", tr_const!("Potentials"), &[L(C::Potentials)]),
             g("harnesses", tr_const!("Harnesses"), &[L(C::Harnesses)]),
             g("field", tr_const!("Field wiring"), &[L(C::FieldWiring)]),

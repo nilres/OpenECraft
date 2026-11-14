@@ -1,6 +1,22 @@
 use super::*;
 
 #[test]
+fn cable_rename_is_available_through_the_registry_and_rejects_duplicates() {
+    use openecraft_core::model::{Cable, Wire};
+    let mut s = new_session();
+    let prj = s.project_mut().unwrap();
+    prj.cables = vec![Cable { id: 10, tag: "-W1".into(), ..Default::default() }, Cable { id: 11, tag: "-W2".into(), ..Default::default() }];
+    prj.pages[0].wires.push(Wire { id: 20, cable: "-W1".into(), core: "BN".into(), ..Default::default() });
+    let before = prj.clone();
+    assert!(run(&mut s, "rename_cable", json!({"cable":"-W1","tag":"-W2"})).is_err());
+    assert_eq!(s.project_mut().unwrap(), &before);
+    let result = run(&mut s, "rename_cable", json!({"cable":"-W1","tag":" -4W1 "})).unwrap();
+    assert_eq!(result["tag"], "-4W1"); assert_eq!(result["changed"], true);
+    assert_eq!(s.project_mut().unwrap().pages[0].wires[0].cable, "-4W1");
+    assert!(run(&mut s, "rename_cable", json!({"cable":"-Missing","tag":"-W9"})).is_err());
+}
+
+#[test]
 fn live_function_references_are_read_only_and_queryable_through_the_registry() {
     let mut s = new_session();
     run(&mut s, "place_symbol", json!({"page":"1","symbol":"coil","tag":"-K1","x":40,"y":40})).unwrap();

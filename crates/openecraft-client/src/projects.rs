@@ -1,7 +1,8 @@
 use crate::endpoint::with_content_type;
+use openecraft_i18n::tr;
 use openecraft_core::collab::{
     access_path, project_path, user_path, CreateRequest, Grant, LockRequest, LoginRequest, OpenRequest, Policy, ProjectRight, SaveRequest, Session, Target,
-    UserUpdate, API_PREFIX, DEFAULT_PORT,
+    Snapshot, Status, UserUpdate, API_PREFIX, DEFAULT_PORT,
 };
 use openecraft_core::model::Project;
 use openecraft_parts::api;
@@ -22,6 +23,36 @@ impl Default for ProjectEndpoint {
 }
 
 impl ProjectEndpoint {
+    /// Loads a session snapshot, also from servers predating the session endpoint.
+    /// A legacy snapshot is paired with the session's status at the same revision,
+    /// so redacted lock identities never replace the client's own locks.
+    pub fn fetch_session_snapshot(&self, name: &str, session: &Session, done: impl FnOnce(Result<Snapshot, String>) + Send + 'static) {
+        let endpoint = self.clone();
+        let name = name.to_string();
+        let session = session.clone();
+        ehttp::fetch(self.session_snapshot(&name, &session), move |result| {
+            if !result.as_ref().is_ok_and(|r| matches!(r.status, 404 | 405)) {
+                done(crate::decode(result));
+                return;
+            }
+            ehttp::fetch(endpoint.snapshot(&name), move |result| {
+                let mut snapshot: Snapshot = match crate::decode(result) {
+                    Ok(snapshot) => snapshot,
+                    Err(error) => { done(Err(error)); return; }
+                };
+                ehttp::fetch(endpoint.status(&name, &session), move |result| {
+                    done(crate::decode::<Status>(result).and_then(|status| {
+                        if status.revision != snapshot.revision {
+                            return Err(tr("The project changed while loading. Its changes will be loaded again.").into());
+                        }
+                        snapshot.locks = status.locks;
+                        Ok(snapshot)
+                    }));
+                });
+            });
+        });
+    }
+
     fn request(&self, mut req: ehttp::Request) -> ehttp::Request {
         if !self.token.trim().is_empty() {
             req.headers.insert("Authorization", format!("Bearer {}", self.token.trim()));
@@ -59,6 +90,11 @@ impl ProjectEndpoint {
     /// GET /api/v1/projects/{name}
     pub fn snapshot(&self, name: &str) -> ehttp::Request {
         self.get(&project_path(name))
+    }
+
+    /// Loads a snapshot with this session's own locks left identifiable.
+    pub fn session_snapshot(&self, name: &str, session: &Session) -> ehttp::Request {
+        self.json("POST", &format!("{}/snapshot", project_path(name)), session)
     }
 
     /// POST /api/v1/projects/{name}/open

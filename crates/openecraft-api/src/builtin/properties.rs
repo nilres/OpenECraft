@@ -27,6 +27,15 @@ impl Plugin for Properties {
 
 pub static COMMANDS: &[Spec] = &[
     Spec {
+        name: "rename_cable",
+        help: tr_const!("Renames a cable and updates its references throughout the project"),
+        params: &[
+            param("cable", Kind::Str, tr_const!("Cable tag")),
+            param("tag", Kind::Str, tr_const!("New tag")),
+        ],
+        run: rename_cable,
+    },
+    Spec {
         name: "list_function_parts",
         help: tr_const!("Lists the selected part and editable attribute values of every placed function"),
         params: &[],
@@ -409,6 +418,13 @@ fn place_property(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let sym = &prj.pages[pi].symbols[si];
     let text = props::text(prj, pi, sym, sym.props.last().unwrap());
     Ok(json!({ "id": id, "key": key, "text": text, "placed": sym.props.len() }))
+}
+
+fn rename_cable(prj: &mut Project, a: &Args) -> Result<Value, String> {
+    let tag = a.req("cable");
+    let id = prj.cable(tag).ok_or_else(|| tr_fmt!("No cable {}", tag))?.id;
+    let changed = openecraft_core::ops::rename_project_cable(prj, id, a.req("tag"))?;
+    Ok(json!({ "id": id, "tag": a.req("tag").trim(), "changed": changed }))
 }
 
 fn list_function_parts(prj: &mut Project, _: &Args) -> Result<Value, String> {

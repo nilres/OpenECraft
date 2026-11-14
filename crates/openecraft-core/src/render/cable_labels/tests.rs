@@ -129,3 +129,30 @@ fn shared_index_lays_out_a_synthetic_hundred_page_project_without_mutating_it() 
     eprintln!("100 synthetic pages, {count} labels, one shared index: {:?}", start.elapsed());
     assert_eq!(prj, original);
 }
+
+
+#[test]
+fn new_assignments_take_automatic_layout_and_keep_rejected_offsets() {
+    let mut prj = five(false, false);
+    let id = prj.pages[0].cable_defs[0].id;
+    for w in &mut prj.pages[0].wires {
+        w.cable.clear(); w.core.clear();
+        w.core_offset = Some(p(5., 6.)); w.cable_offset = Some(p(-5., -6.));
+    }
+    prj.cables[0].cores = "BN BK GY GNYE".into();
+    let before = prj.clone();
+    assert_eq!(crate::cabledef::apply(&mut prj, 0, id), 0);
+    assert_eq!(prj, before, "a shortage keeps all previous offsets and assignments");
+    prj.cables[0].cores.push_str(" BU");
+    assert_eq!(crate::cabledef::apply(&mut prj, 0, id), 5);
+    assert!(prj.pages[0].wires.iter().all(|w| w.core_offset.is_none() && w.cable_offset.is_none()));
+    let idx = Index::build(&prj);
+    let labels = core_labels_with_index(&prj, &idx, 0);
+    let cores: Vec<_> = labels.iter().filter(|l| l.which == CoreText::Core).collect();
+    assert_eq!(cores.len(), 5);
+    assert!(labels.iter().all(|l| !l.conflict));
+    assert!(cores.iter().all(|l| (l.pos.x - cores[0].pos.x).abs() < 1e-4));
+    let reopened = Project::from_json(&prj.to_json()).unwrap();
+    assert_eq!(reopened, prj);
+    assert_eq!(core_labels_with_index(&reopened, &Index::build(&reopened), 0).iter().map(|l| l.pos).collect::<Vec<_>>(), labels.iter().map(|l| l.pos).collect::<Vec<_>>());
+}
