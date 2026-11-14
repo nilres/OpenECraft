@@ -557,6 +557,7 @@ Frame size	Runkokoko
 Free	Vapaa
 Free air (mm)	Vapaa reititys (mm)
 Free run	Vapaa asennus
+Freestanding on posts	Maa-asennus paaluilla
 Frequency converter	Taajuusmuuttaja
 Frequency meter	Taajuusmittari
 From end	Lopusta
@@ -938,7 +939,6 @@ No plugs	Ei liittimiä
 No report block {}	Ei raporttilohkoa {}
 No segment template named {}	Segmenttimallia nimeltä {} ei ole
 No subproject {}	Aliprojektia {} ei ole
-No such PV array	Ei tällaista aurinkopaneelikenttää
 No such object: {}	Objektia ei ole: {}
 No surge protective device at the supply (IEC 60364-4-44)	Syötössä ei ole ylijännitesuojaa (IEC 60364-4-44)
 No terminal {}	Ei riviliitintä {}
@@ -2076,6 +2076,8 @@ yellow	keltainen
 {}: the busbar {} of earth electrode {} does not exist	{0}: maadoituselektrodin {2} kiskoa {1} ei ole
 {}: the device {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} laitetta {1} ei ole
 {}: the earthing busbar {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} maadoituskiskoa {1} ei ole
+{}: the freestanding PV array {} stands on {}	{}: maa-asennettu aurinkopaneelikenttä {} on kohteen {} päällä
+{}: the freestanding PV arrays {} and {} stand on each other	{}: maa-asennetut aurinkopaneelikentät {} ja {} ovat päällekkäin
 {}: the generator junction box {} of PV array {} does not exist	{0}: aurinkopaneelikentän {2} generaattorin liitäntäkoteloa {1} ei ole
 {}: the lightning protection has no earth electrode	{}: ukkossuojauksella ei ole maadoituselektrodia
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: ukkossuojauksella ei ole seiniä, joita seurata: rakennuksessa ei ole huoneita eikä kattoja

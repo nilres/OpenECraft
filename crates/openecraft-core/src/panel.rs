@@ -2446,12 +2446,11 @@ pub fn layout_material(prj: &Project) -> Vec<(String, f32, Vec<String>)> {
             add(&mut out, &part, qty, b.name.clone());
         }
     }
-    // The modules and the mounting of the PV arrays on the roofs.
-    for b in &prj.layout.buildings {
-        for a in b.roofs.iter().flat_map(|r| &r.solar) {
-            for (part, qty) in solar::material(prj, a) {
-                add(&mut out, &part, qty, format!("{} {}", b.name, a.name));
-            }
+    // The modules and the mounting of the PV arrays on the roofs and on the plot.
+    for (_, s, a) in solar::all_arrays(&prj.layout) {
+        let place = solar::place_name(&prj.layout, s);
+        for (part, qty) in solar::material(prj, a) {
+            add(&mut out, &part, qty, format!("{} {}", place, a.name));
         }
     }
     if prj.layout.hardware {

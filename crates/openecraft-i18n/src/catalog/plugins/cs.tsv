@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Číslo artiklu příslušenství, nap
 Activates (shows) or deactivates (hides) the content of a project option	Aktivuje (zobrazí) nebo deaktivuje (skryje) obsah projektové volby
 Additional power loss in W	Dodatečný ztrátový výkon ve W
 Address scheme: siemens, iec or rockwell	Schéma adresování: siemens, iec nebo rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Přidá FV pole na střechu: řady modulů na lištách a střešních hácích rovnoběžně se střešní plochou, nebo na ploché střeše skloněně nebo východ-západ na zatížených montážních podstavcích; bez x a z uprostřed přední nebo pravé střešní plochy. Bez budovy a střechy pozemní pole na pozemku: řady skloněných stolů na beraněných sloupcích, bez x a z před tím, co stojí v zařízení. Moduly a montážní materiál jdou do kusovníku
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Přidá ohnutou a vrtanou měděnou přípojnici (nebo nahradí stejnojmennou ve skříni)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Přidá kabelovou průchodku k pravému sousedovi: kruhové výřezy proti sobě v obou bočních stěnách; vodiče mezi skříněmi jí procházejí
 Adds a configurator rule: insert a page macro when the condition holds	Přidá pravidlo konfigurátoru: vložit makro stránky, je-li splněna podmínka
@@ -73,6 +74,7 @@ Between page and column (default .)	Mezi stránkou a sloupcem (výchozí .)
 Bonding point	Bod pospojování
 Border around the text	Ohraničení kolem textu
 Both classes are needed	Jsou potřeba obě třídy
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Budova (místo, např. +B1); bez budovy a střechy: pozemní pole na pozemku
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Budovy zařízení s podlažími, šachtami, schodišti a střechami s FV poli, zemniči a ochranou před bleskem, místnostmi v podlažích a spojeními mezi budovami
 Bus system name	Název sběrnicového systému
 Bus system name, e.g. PN/IE_1	Název sběrnicového systému, např. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Průměr tyče, mm (výchozí 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Směr stopky: left, right, up nebo down (výchozí: podle vodičů v místě)
 Distance between power and signal or fluid in mm	Vzdálenost mezi silovými a signálními obvody nebo tekutinami v mm
 Distance from devices, rails and busbars in mm	Vzdálenost od přístrojů, lišt a přípojnic v mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Vzdálenost mezi řadami na ploché střeše nebo u pozemního pole v mm (0: v zimě bez zastínění)
 Distance from the face in mm (rails: standoff height)	Vzdálenost od plochy v mm (lišty: výška distančních sloupků)
 Distance in X (mm)	Vzdálenost v X (mm)
 Distance in Y (mm)	Vzdálenost v Y (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	První hodnota čítače (výchozí 1)
 First page number (default 1)	Číslo první stránky (výchozí 1)
 First port as station:port, e.g. PLC1:X1 P2	První port jako stanice:port, např. PLC1:X1 P2
 First row with the column names	První řádek s názvy sloupců
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Ploché střechy a pozemní pole: směr, kterým moduly hledí, ve stupních, proti směru hodinových ručiček při pohledu shora (0: směrem k +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formát názvu přístroje: {letter}, {n} (čítač), {page}, {column}, {row}; výchozí {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formát schématu format: {n} (čítač), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Základový zemnič: jak daleko uvnitř obvodových zdí (výchozí 100), obvodový: jak daleko vně (výchozí 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Základový zemnič: jeho největší oko, mm (výchozí 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Výchozí rámeček pro nový rámeček (výchozí: A3 landscape)
 Free space in front of every device on the plate	Volný prostor před každým přístrojem na desce
+Freestanding PV arrays stand on posts (mounting ground)	Pozemní FV pole stojí na sloupcích (montáž ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	Pozemní pole: výška spodní hrany modulů nad terénem v mm (výchozí 800)
+Freestanding: modules on top of each other on a table (default 2)	Pozemní pole: moduly nad sebou na stole (výchozí 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Zmrazí trasy pro výrobu (přepočet je zachová, dokud je to možné) nebo je uvolní
 Frequency in Hz	Kmitočet v Hz
 Function (= without the sign; empty: the parent's)	Funkce (= bez znaménka; prázdné: funkce nadřazeného segmentu)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Vygen
 Give a device tag or a part number	Zadejte označení přístroje nebo číslo dílu
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dá budově ochranu před bleskem nebo ji změní: třídu, počet svodů a díl vodičů; jímací vedení na hřebenech a nárožích (mřížová soustava na plochých střechách), svody se zkušebními svorkami k zemničům; nebo ji odstraní
 Greatest distance of the conductor holders, mm (default 1000)	Největší vzdálenost podpěr vedení, mm (výchozí 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Největší vzdálenost střešních háků podél lišty (pozemní pole: sloupků podél stolu) v mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Seskupí prvky do sestavy, která se vybírá a přesouvá společně; bez názvu prvky opustí své sestavy
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Předá programy skříně do výroby jako zakázku: manifest a programy všech jejích ploch a měděných přípojnic
 Has a divider between power and signal cables	Má přepážku mezi silovými a signálními kabely
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Maximální zaplnění nosné konstrukce v 
 Maximum operating pressure in bar	Maximální provozní tlak v bar
 Measuring range or set point	Měřicí rozsah nebo žádaná hodnota
 Message code, e.g. wires.3f9a1c	Kód hlášení, např. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Střed FV pole v půdorysu budovy (pozemní pole: v zařízení), x v mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Střed FV pole v půdorysu budovy (pozemní pole: v zařízení), z v mm
 Milling feed, mm/min	Posuv frézování, mm/min
 Mirror the symbol	Zrcadlit symbol
 Mounting plate size as width and height; empty object restores the centred plate	Velikost montážní desky jako šířka a výška; prázdný objekt obnoví vystředěnou desku
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Rozvržení formovací desky kabelového svazku: větve od společného uzlu ke konektorům s délkou, směrem, průměrem svazku a kolíky a měřítko výkresu
 Name (default E1, E2, …)	Název (výchozí E1, E2, …)
 Name (default F1, F2, …)	Název (výchozí F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Zadejte budovu i střechu, nebo ani jedno pro pozemní FV pole
 Name of the assembly	Název sestavy
 Name of the bar, e.g. L1 -Q1	Název přípojnice, např. L1 -Q1
 Name of the check	Název kontroly
@@ -497,6 +508,7 @@ No device group {}	Žádná skupina přístrojů {}
 No earth electrode {} in building {}	Žádný zemnič {} v budově {}
 No enclosure named {}	Žádná skříň s názvem {}
 No entry for {} and {}	Žádná položka pro {} a {}
+No freestanding PV array {}	Žádné pozemní FV pole {}
 No hose {}	Žádná hadice {}
 No identifier {} in the project	V projektu není identifikátor {}
 No item with id {}	Žádný prvek s ID {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Vnější délky 
 Overlap of nibbling hits (0 … 0.9)	Překrytí zdvihů při prostřihování (0 … 0.9)
 PCT loop {} already exists	Smyčka MaR {} již existuje
 PLC hardware: stations, cards, bus systems and port connections	Hardware PLC: stanice, karty, sběrnicové systémy a spojení portů
+PV arrays on roofs are mounted parallel, tilted or east_west	FV pole na střechách se montují parallel, tilted nebo east_west
 Page macro name	Název makra stránky
 Page macro that generates its schematic	Makro stránky, které generuje jeho schéma
 Page name (default: all pages)	Název strany (výchozí: všechny strany)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Znovu použít neúspěšn�
 Right side bayed (no side panel)	Pravá strana spojená do řady (bez boční stěny)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Obvodový: hloubka pod terénem, tyčový: hloubka horního konce, mm (výchozí 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Tyčový zemnič: jeho průměr (výchozí 20), základový a obvodový: kulatého drátu, 0 pro pásek, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Střecha: její název; bez budovy a střechy: pozemní pole na pozemku
 Room {} exists already	Místnost {} již existuje
 Rotation in degrees clockwise: 0, 90, 180 or 270	Otočení ve stupních ve směru hodinových ručiček: 0, 90, 180 nebo 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Otočení ve stupních, proti směru hodinových ručiček (90 se čte zdola nahoru)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Vodič, který přeskakuje: vertical
 The wrap width must not be negative	Šířka zalomení nesmí být záporná
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Tepelná simulace montážní desky: teploty vzduchu, horké místo, zdroje tepla a teplota u každého přístroje
 Thickest sheet or bar, mm	Nejsilnější plech nebo přípojnice, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Sklon modulů na ploché střeše nebo stolů pozemního pole ve stupních
 Time per drilling, punching or bending operation, s	Čas na jednu operaci vrtání, děrování nebo ohybu, s
 Time per tool change, s	Čas na jednu výměnu nástroje, s
 Title block (list_title_blocks); empty = the project default	Rohové razítko (list_title_blocks); prázdné = výchozí razítko projektu
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (výchozí), supplementary nebo
 mounted, problem or open	mounted, problem nebo open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond nebo accessory
 numbers or letters	numbers nebo letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (na střešních hácích), tilted (skloněně) nebo east_west (východ-západ, ploché střechy); pozemní pole: ground (na sloupcích)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof nebo bottom
 plug_in, saddle or wire	plug_in, saddle nebo wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp nebo canopen

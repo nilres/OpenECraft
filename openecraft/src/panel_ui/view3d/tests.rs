@@ -104,3 +104,24 @@ fn earth_electrodes_and_lightning_protection_are_picked_in_3d() {
     ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(50.0, 80.0));
     assert_eq!(ui.selected_earthing, None);
 }
+
+#[test]
+fn a_roof_clicked_is_selected_with_the_point_on_it() {
+    let mut prj = Project::default();
+    let bi = panel::buildings::add_building(&mut prj, "+B1").unwrap();
+    prj.layout.buildings[bi].roofs.push(panel::Roof { id: 5, name: "R1".into(), ..Default::default() });
+    let an = Analysis::build(&prj);
+    // The top of the roof as a square in view, 1000 mm away, over 0 … 10 m of the
+    // building's floor plan in x and z.
+    let mut scene = Scene3d::default();
+    let plan = vec![[0.0, 3000.0, 0.0], [10_000.0, 3000.0, 0.0], [10_000.0, 3000.0, 10_000.0], [0.0, 3000.0, 10_000.0]];
+    scene.roof_picks.push(super::super::scene3d::RoofPick { pts: vec![[0.0, 0.0, 1000.0], [100.0, 0.0, 1000.0], [100.0, 100.0, 1000.0], [0.0, 100.0, 1000.0]], plan, building: bi, roof: 5 });
+    let view = |q: V3| Some((Pos2::new(q[0], q[1]), q[2]));
+    let mut ui = PanelUi { selected_array: Some(9), ..Default::default() };
+    assert!(ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(25.0, 75.0)));
+    assert_eq!(ui.selected_roof, Some(RoofTarget { building: bi, roof: 5, at: [2500.0, 7500.0] }));
+    assert!(ui.selected_array.is_none() && ui.open_properties && ui.status.contains("R1"), "{}", ui.status);
+    // Beside it: nothing picked.
+    ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(150.0, 50.0));
+    assert!(ui.selected_roof.is_none());
+}

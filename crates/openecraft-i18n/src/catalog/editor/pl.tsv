@@ -351,12 +351,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Kliknij jego miejsce na planie sytuacyjnym
 Click where the air-termination rods go on the roofs in the site plan	Kliknij na planie sytuacyjnym, gdzie stoją iglice odgromowe na dachach
 Click where the earth rods go in the site plan	Kliknij na planie sytuacyjnym, gdzie są uziomy pionowe
+Click where the middle of a freestanding PV array goes in the site plan	Kliknij na planie sytuacyjnym, gdzie ma być środek naziemnego pola PV
+Click where the middle of a freestanding PV array goes · Esc: stop	Kliknij, gdzie ma być środek naziemnego pola PV · Esc: zakończ
 Click where the reference point is	Kliknij w miejscu punktu odniesienia
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Kliknij tam, gdzie spotykają się trzy przewody: trójnik wskazuje urządzenie, od którego wychodzą przewody, i kolejność ich celów · {} obraca go tam, gdzie przewody jeszcze się nie spotykają · Esc lub prawy przycisk kończy
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Kliknij tam, gdzie krzyżują się dwa przewody: skrzyżowanie łączy je i prowadzi każdy koniec swojej linii najpierw na wprost, potem poprzecznie · {} obraca je · Esc lub prawy przycisk kończy
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Kliknij tam, gdzie dwa przewody spotykają się pod kątem prostym, lub gdzie punkty przyłączenia leżą naprzeciw siebie przez narożnik: przy włączonym automatycznym łączeniu rysowane są do niego przewody · {} obraca go · Esc lub prawy przycisk kończy
 Click while moving	Kliknięcie podczas przesuwania
 Click, or drag it into the page	Kliknij lub przeciągnij na stronę
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Kliknięto w x {} mm, z {} mm w rzucie budynku: tam trafi nowe okno dachowe lub nowe pole PV.
 Climate (IEC 60890)	Klimatyzacja (IEC 60890)
 Clipboard	Schowek
 Close	Zamknij
@@ -782,6 +785,12 @@ Frame of all pages that do not choose one	Ramka wszystkich stron, które nie wyb
 Free air	Swobodnie w powietrzu
 Free air factor	Współczynnik swobodnego prowadzenia
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Wolna przestrzeń przed każdym urządzeniem na płycie aż do drzwi; artykuły dodają własną (Service space)
+Freestanding	Naziemne
+Freestanding PV array {}	Naziemne pole PV {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Naziemne pole PV {} umieszczone; kliknij dla następnego · Esc: zakończ
+Freestanding PV array {}: {} modules	Naziemne pole PV {}: {} modułów
+Freestanding PV array {}: {} modules, {} kWp	Naziemne pole PV {}: {} modułów, {} kWp
+Freestanding PV arrays	Naziemne pola PV
 Freeze all routes	Zamroź wszystkie trasy
 Freeze route	Zamroź trasę
 Frequency	Częstotliwość
@@ -826,6 +835,7 @@ Graphic line	Linia graficzna
 Graphic rectangle	Prostokąt graficzny
 Graphical form	Formularz graficzny
 Greatest distance of the conductor holders on the roof and on the walls	Największy odstęp uchwytów przewodu na dachu i na ścianach
+Greatest distance of the posts along a table	Największy odstęp słupów wzdłuż stołu
 Greatest distance of the roof hooks along a rail	Największy odstęp haków dachowych wzdłuż szyny
 Grid	Siatka
 Grid north	Północ siatki
@@ -848,6 +858,7 @@ Height above sea level	Wysokość nad poziomem morza
 Height above the floor	Wysokość nad podłogą
 Height above the mounting plate	Wysokość nad płytą montażową
 Height above the plate	Wysokość nad płytą
+Height of the lower edge of the modules above the ground	Wysokość dolnej krawędzi modułów nad gruntem
 Height of the plinth, 0 without plinth	Wysokość cokołu, 0 bez cokołu
 Height of the rod above the covering	Wysokość iglicy nad pokryciem
 Height of the test joints above the ground	Wysokość złączy kontrolnych nad terenem
@@ -1070,6 +1081,7 @@ Look for updates when OpenECraft starts	Szukaj aktualizacji przy uruchamianiu Op
 Looking for updates…	Szukanie aktualizacji…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Szuka nowej wersji OpenECraft w serwisie GitHub i instaluje ją w tle
 Loop	Pętla
+Lower edge	Dolna krawędź
 Lowest fault current	Najmniejszy prąd zwarcia
 Lowest: the highest open-circuit voltage	Najniższa: najwyższe napięcie jałowe
 Macro boxes	Ramki makr
@@ -1117,6 +1129,7 @@ Messages of this session	Komunikaty tej sesji
 Middle	Środek
 Middle button	Środkowy przycisk
 Middle of the PV array in the floor plan of the building	Środek instalacji PV w rzucie budynku
+Middle of the PV array in the plant	Środek pola PV w instalacji
 Min. bend radius	Min. promień gięcia
 Minimize the ribbon	Minimalizuj wstążkę
 Mirror	Odbij
@@ -1127,6 +1140,7 @@ Model of a part (2D / 3D)	Model artykułu (2D / 3D)
 Modifier keys	Klawisze modyfikujące
 Module area	Powierzchnia modułów
 Module part; its size comes from the part	Część modułu; jej rozmiar pochodzi z części
+Modules on top of each other on a table	Moduły jeden nad drugim na stole
 Motors feed the short circuit	Silniki zasilają zwarcie
 Mounted on	Zamontowany na
 Mounting assistant: the panel items in mounting order with their place and part	Asystent montażu: elementy zabudowy w kolejności montażu z miejscem i artykułem
@@ -1243,6 +1257,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Brak obudowy – utwórz ją poleceniem Nowa obudowa lub pomieszczenie na szafy poleceniem Nowe pomieszczenie.
 No field cables: place the enclosures and field devices at nodes of the route network.	Brak kabli obiektowych: umieść obudowy i urządzenia obiektowe w węzłach sieci tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez wentylatorów z filtrem: wymiennik ciepła powietrze/powietrze lub chłodziarka
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Jeszcze brak naziemnego pola PV: rzędy pochylonych stołów na wbijanych słupach na działce.
 No gesture	Brak gestu
 No harnesses defined.	Nie zdefiniowano wiązek.
 No inverter	Brak falownika
@@ -1499,7 +1514,6 @@ Plant layout	Plan instalacji
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Plan instalacji, sieć tras, planowanie kabli obiektowych, połączenia wyrównawcze i akcesoria kablowe
 Plant segments with planned devices before the schematic	Segmenty instalacji z zaplanowanymi urządzeniami przed schematem
 Plate outline, holes per diameter, cutouts	Obrys płyty, otwory wg średnicy, wycięcia
-Plot	Działka
 Plot boundary	Granica działki
 Plot boundary drawn: {} m²	Narysowano granicę działki: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Narysowano granicę działki: {} m²; poza nią: {}
@@ -1522,6 +1536,8 @@ Position of the cursor	Położenie kursora
 Position of the device tag (instead of the tag block)	Pozycja oznaczenia urządzenia (zamiast bloku oznaczenia)
 Position of the label (terminal number, address …)	Pozycja etykiety (numer zacisku, adres …)
 Positions are relative to the lower right corner of the symbol.	Pozycje odnoszą się do prawego dolnego rogu symbolu.
+Post distance	Odstęp słupów
+Posts	Słupy
 Potential {}	Potencjał {}
 Potential: {}	Potencjał: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Moc i prąd odbiorników sieci (silniki, napędy, grzejniki, zasilacze, transformatory), obciążenie każdego urządzenia zabezpieczającego, zapotrzebowanie ze współczynnikiem jednoczesności i bilans obciążenia zasilaczy.
@@ -1719,6 +1735,8 @@ Rod holder	Uchwyt iglicy
 Roof pitch	Nachylenie dachu
 Roof window	Okno dachowe
 Roof windows	Okna dachowe
+Roof {} of building {}	Dach {} budynku {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Dach {} budynku {}: właściwości zabudowy dodają pole PV lub okno dachowe w miejscu kliknięcia
 Roofs	Dachy
 Room	Pomieszczenie
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Dodano pomieszczenie na kondygnacji {}: przeciągnij jego ściany lub narysuj nowe na rzucie, wstaw do niego szafy w ich właściwościach
@@ -1745,6 +1763,8 @@ Row	Wiersz
 Row distance	Odstęp rzędów
 Row drawing	Rysunek wiersza
 Row labels	Etykiety wierszy
+Rows of tables behind each other	Rzędy stołów jeden za drugim
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Rzędy pochylonych stołów na słupach przed tym, co stoi w instalacji, zwrócone do przodu; przesuń je na miejsce
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Nie można zmieniać wierszy na wydanych stronach. Podział wiersza w tekście zapisuje się jako \\n.
 Rows per page	Wiersze na stronę
 Rule libraries	Biblioteki reguł
@@ -2077,6 +2097,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Wygenerowane przez niego strony pozostają
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Baza danych artykułów jest wspólna dla wszystkich projektów. Artykuły są kopiowane do projektu, gdy zostaną przypisane do urządzenia.
 The point's coordinates in the coordinate reference system	Współrzędne punktu w układzie odniesienia współrzędnych
+The post; its accessories are the table beams, rails and clamps	Słup; jego akcesoria to belki stołu, szyny i zaciski
 The project changed since the search.	Projekt zmienił się od czasu wyszukiwania.
 The project check	Kontrola projektu
 The project database needs the desktop version: the browser cannot search folders.	Baza danych projektów wymaga wersji desktopowej: przeglądarka nie może przeszukiwać folderów.
@@ -2220,6 +2241,7 @@ When it differs from the page	Gdy różni się od strony
 Where	Położenie
 Where neither wire has a termination chosen for it	Tam, gdzie dla żadnego z przewodów nie wybrano zakończenia
 Where the point is in the plant; y: its height above the ground level of the plant	Położenie punktu w instalacji; y: jego wysokość nad poziomem terenu instalacji
+Where the roof was clicked in the 3D view	Miejsce kliknięcia dachu w widoku 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Skąd pochodzi struktura urządzenia: aspekty równe strukturze wokół symbolu są dziedziczone i zmieniają się, gdy przesuwa się on do ramki struktury lub z niej; pozostałe aspekty należą do urządzenia i pozostają.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Gdzie przewód zaczyna się i kończy: punkt połączenia z danych artykułu, punkt wygenerowany z szablonu funkcji lub środek urządzenia, jeśli żaden punkt połączenia nie pasuje
 Whole building	Cały budynek
@@ -2258,6 +2280,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Przestrzeń na okablowanie między urządzeniami a kanałami
 With a user account of the server; replaces the access token	Z kontem użytkownika serwera; zastępuje token dostępu
 With everything below it	Wraz z całą zawartością poniżej
+With its middle where the roof was clicked in the 3D view	Ze środkiem w miejscu kliknięcia dachu w widoku 3D
 With the current pages; the approvals so far become void	Z bieżącymi stronami; dotychczasowe zatwierdzenia tracą ważność
 With values only	Tylko z wartościami
 Withdraw	Wycofaj
@@ -2518,6 +2541,7 @@ x y	x y
 {} renamed: {} pages and devices	Zmieniono nazwę {}: strony i urządzenia: {}
 {} report pages output to {}	Wyprowadzono strony raportów ({}) do {}
 {} routes frozen	Zamrożone trasy: {}
+{} rows of tables of {} × {} = {}, {}	{} rzędów stołów po {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	Utworzone segmenty: {}, dodane urządzenia: {}, zaktualizowane: {}
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	Stacje: {}, systemy magistral: {}, przypisane karty: {}, zmienione adresy: {}, połączenia: {}, kable: {}
 {} stopped with an error: {}	{} przerwano z błędem: {}
@@ -2547,6 +2571,7 @@ x y	x y
 {} – revision {}, {}	{} – rewizja {}, {}
 {} – {} ({} pages)	{} – {} (strony: {})
 {} – {} here (Esc cancels)	{} – {} tutaj (Esc anuluje)
+{}, freestanding	{}, naziemne
 {}: click to show its floor plan	{}: kliknij, aby pokazać jego rzut
 {}: crimp together with the wire to {}	{}: zaciskać razem z przewodem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: przeciągnij, aby przesunąć, R obraca, dwuklik otwiera

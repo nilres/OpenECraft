@@ -437,12 +437,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Im Lageplan an seine Stelle klicken	Cliquer à son emplacement sur le plan de masse	Haga clic en su posición en el plano de situación
 Click where the air-termination rods go on the roofs in the site plan	Im Lageplan klicken, wo die Fangstangen auf den Dächern stehen	Cliquer dans le plan de situation à l'emplacement des tiges captrices sur les toits	Haga clic en el plano de situación donde van las puntas captadoras en los tejados
 Click where the earth rods go in the site plan	Im Lageplan klicken, wo die Tiefenerder stehen	Cliquer dans le plan de situation à l'emplacement des piquets de terre	Haga clic en el plano de situación donde van las picas de tierra
+Click where the middle of a freestanding PV array goes in the site plan	Im Lageplan klicken, wo die Mitte einer Freiflächenanlage liegt	Cliquer sur le plan de masse à l'emplacement du milieu d'un champ au sol	Haga clic en el plano de situación donde va el centro de un campo sobre suelo
+Click where the middle of a freestanding PV array goes · Esc: stop	Klicken, wo die Mitte einer Freiflächenanlage liegt · Esc: beenden	Cliquer à l'emplacement du milieu d'un champ au sol · Échap : arrêter	Haga clic donde va el centro de un campo sobre suelo · Esc: terminar
 Click where the reference point is	Dort klicken, wo der Bezugspunkt liegt	Cliquer à l'emplacement du point de référence	Haga clic donde está el punto de referencia
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicken, wo drei Verbindungslinien zusammentreffen: das T-Stück benennt das Gerät, von dem die Drähte ausgehen, und die Reihenfolge ihrer Ziele · {} dreht es, wo noch keine Linien zusammentreffen · Esc oder Rechtsklick beendet	Cliquez là où trois fils se rejoignent : la pièce en T nomme l'appareil d'où partent les fils et l'ordre de leurs cibles · {} la tourne là où aucun fil ne se rejoint encore · Échap ou clic droit pour terminer	Haga clic donde se unen tres cables: la pieza en T indica el dispositivo del que parten los hilos y el orden de sus destinos · {} la gira donde aún no se unen cables · Esc o clic derecho para terminar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicken, wo sich zwei Verbindungslinien kreuzen: die Kreuzung verbindet sie und führt jedes Ende ihrer Linie zuerst geradeaus, dann quer · {} dreht sie · Esc oder Rechtsklick beendet	Cliquez là où deux fils se croisent : le croisement les relie et mène chaque extrémité de sa ligne tout droit d'abord, puis en travers · {} le tourne · Échap ou clic droit pour terminer	Haga clic donde se cruzan dos cables: el cruce los conecta y lleva cada extremo de su línea primero en línea recta y después transversalmente · {} lo gira · Esc o clic derecho para terminar
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klicken, wo zwei Verbindungslinien im rechten Winkel zusammentreffen oder wo Anschlusspunkte über die Ecke einander gegenüberliegen: bei eingeschaltetem Auto-Connect werden Linien zu ihr gezeichnet · {} dreht sie · Esc oder Rechtsklick beendet	Cliquez là où deux fils se rejoignent à angle droit, ou là où des points de connexion se font face à travers le coin : avec l'auto-connexion activée, des fils y sont tracés · {} le tourne · Échap ou clic droit pour terminer	Haga clic donde dos cables se unen en ángulo recto, o donde puntos de conexión se enfrentan a través de la esquina: con la autoconexión activada se dibujan cables hacia ella · {} la gira · Esc o clic derecho para terminar
 Click while moving	Klicken beim Verschieben	Clic pendant le déplacement	Clic al mover
 Click, or drag it into the page	Anklicken oder in die Seite ziehen	Cliquez, ou faites-le glisser dans la page	Haga clic o arrástrelo a la página
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Geklickt bei x {} mm, z {} mm im Grundriss des Gebäudes: ein neues Dachfenster oder eine neue PV-Anlage kommt dorthin.	Clic à x {} mm, z {} mm dans le plan du bâtiment : une nouvelle fenêtre de toit ou un nouveau champ photovoltaïque y est placé.	Clic en x {} mm, z {} mm en la planta del edificio: una nueva ventana de tejado o un nuevo campo fotovoltaico va allí.
 Climate (IEC 60890)	Klimatisierung (IEC 60890)	Climatisation (CEI 60890)	Climatización (IEC 60890)
 Clipboard	Zwischenablage	Presse-papiers	Portapapeles
 Close	Schließen	Fermer	Cerrar
@@ -923,6 +926,12 @@ Frame of all pages that do not choose one	Rahmen aller Seiten, die keinen eigene
 Free air	Freie Verlegung	Air libre	Aire libre
 Free air factor	Faktor freie Verlegung	Facteur air libre	Factor aire libre
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Freiraum vor jedem Gerät auf der Platte bis zur Tür; Artikel ergänzen ihren eigenen (Service space)	Espace libre devant chaque appareil de la plaque jusqu'à la porte ; les articles ajoutent le leur (Service space)	Espacio libre delante de cada aparato de la placa hasta la puerta; los artículos añaden el suyo (Service space)
+Freestanding	Freifläche	Au sol	Sobre suelo
+Freestanding PV array {}	Freiflächenanlage {}	Champ au sol {}	Campo sobre suelo {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Freiflächenanlage {} gesetzt; für die nächste klicken · Esc: beenden	Champ au sol {} placé ; cliquer pour le suivant · Échap : arrêter	Campo sobre suelo {} colocado; haga clic para el siguiente · Esc: terminar
+Freestanding PV array {}: {} modules	Freiflächenanlage {}: {} Module	Champ au sol {} : {} modules	Campo sobre suelo {}: {} módulos
+Freestanding PV array {}: {} modules, {} kWp	Freiflächenanlage {}: {} Module, {} kWp	Champ au sol {} : {} modules, {} kWc	Campo sobre suelo {}: {} módulos, {} kWp
+Freestanding PV arrays	Freiflächenanlagen	Champs photovoltaïques au sol	Campos fotovoltaicos sobre suelo
 Freeze all routes	Alle Verlegungen einfrieren	Figer tous les tracés	Congelar todos los recorridos
 Freeze route	Verlegung einfrieren	Figer le tracé	Congelar el recorrido
 Frequency	Frequenz	Fréquence	Frecuencia
@@ -971,6 +980,7 @@ Graphic line	Grafische Linie	Ligne graphique	Línea gráfica
 Graphic rectangle	Grafisches Rechteck	Rectangle graphique	Rectángulo gráfico
 Graphical form	Grafisches Formular	Formulaire graphique	Formulario gráfico
 Greatest distance of the conductor holders on the roof and on the walls	Größter Abstand der Leitungshalter auf dem Dach und an den Wänden	Plus grande distance des supports de conducteur sur le toit et sur les murs	Distancia máxima de los soportes de conductor en el tejado y en los muros
+Greatest distance of the posts along a table	Größter Abstand der Pfosten entlang eines Modultischs	Plus grande distance des pieux le long d'une table	Mayor distancia de los postes a lo largo de una mesa
 Greatest distance of the roof hooks along a rail	Größter Abstand der Dachhaken entlang einer Schiene	Plus grande distance des crochets de toit le long d'un rail	Mayor distancia de los ganchos de tejado a lo largo de un perfil
 Grid	Raster	Grille	Cuadrícula
 Grid north	Gitternord	Nord du quadrillage	Norte de cuadrícula
@@ -995,6 +1005,7 @@ Height above sea level	Höhe über dem Meeresspiegel	Altitude	Altura sobre el ni
 Height above the floor	Höhe über dem Boden	Hauteur au-dessus du sol	Altura sobre el suelo
 Height above the mounting plate	Höhe über der Montageplatte	Hauteur au-dessus de la plaque de montage	Altura sobre la placa de montaje
 Height above the plate	Höhe über der Platte	Hauteur au-dessus de la plaque	Altura sobre la placa
+Height of the lower edge of the modules above the ground	Höhe der Unterkante der Module über dem Boden	Hauteur du bord inférieur des modules au-dessus du sol	Altura del borde inferior de los módulos sobre el terreno
 Height of the plinth, 0 without plinth	Höhe des Sockels, 0 ohne Sockel	Hauteur du socle, 0 sans socle	Altura del zócalo, 0 sin zócalo
 Height of the rod above the covering	Höhe der Stange über der Dacheindeckung	Hauteur de la tige au-dessus de la couverture	Altura de la punta sobre la cubierta
 Height of the sill (bottom edge) above the floor	Höhe der Brüstung (Unterkante) über dem Boden	Hauteur de l'allège (bord inférieur) au-dessus du sol	Altura del alféizar (borde inferior) sobre el suelo
@@ -1235,6 +1246,7 @@ Look for updates when OpenECraft starts	Beim Start von OpenECraft nach Updates s
 Looking for updates…	Suche nach Updates…	Recherche de mises à jour…	Buscando actualizaciones…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Sucht auf GitHub nach einer neuen Version von OpenECraft und installiert sie im Hintergrund	Recherche une nouvelle version d'OpenECraft sur GitHub et l'installe en arrière-plan	Busca una nueva versión de OpenECraft en GitHub y la instala en segundo plano
 Loop	Stelle	Boucle	Lazo
+Lower edge	Unterkante	Bord inférieur	Borde inferior
 Lowest fault current	Kleinster Fehlerstrom	Courant de défaut minimal	Corriente de defecto mínima
 Lowest: the highest open-circuit voltage	Niedrigste: die höchste Leerlaufspannung	La plus basse : la tension à vide la plus haute	Más baja: la tensión de circuito abierto más alta
 Macro boxes	Makrokästen	Boîtes de macro	Cajas de macro
@@ -1282,6 +1294,7 @@ Messages of this session	Meldungen dieser Sitzung	Messages de cette session	Mens
 Middle	Mitte	Milieu	Centro
 Middle button	Mittlere Taste	Bouton du milieu	Botón central
 Middle of the PV array in the floor plan of the building	Mitte der PV-Anlage im Grundriss des Gebäudes	Milieu du champ photovoltaïque dans le plan du bâtiment	Centro del campo fotovoltaico en la planta del edificio
+Middle of the PV array in the plant	Mitte der PV-Anlage in der Anlage	Milieu du champ photovoltaïque dans l'installation	Centro del campo fotovoltaico en la instalación
 Middle of the front edge of the lowest step in the building's floor plan, and the direction of the first flight	Mitte der Vorderkante der untersten Stufe im Grundriss des Gebäudes und die Richtung des ersten Laufs	Milieu du nez de la marche la plus basse dans le plan du bâtiment, et la direction de la première volée	Centro del borde delantero del peldaño más bajo en la planta del edificio, y la dirección del primer tramo
 Min. bend radius	Min. Biegeradius	Rayon de courbure min.	Radio de curvatura mín.
 Minimize the ribbon	Menüband minimieren	Réduire le ruban	Minimizar la cinta de opciones
@@ -1293,6 +1306,7 @@ Model of a part (2D / 3D)	Modell eines Artikels (2D / 3D)	Modèle d'un article (
 Modifier keys	Zusatztasten	Touches de modification	Teclas modificadoras
 Module area	Modulfläche	Surface des modules	Superficie de módulos
 Module part; its size comes from the part	Modulartikel; seine Größe kommt vom Artikel	Article du module ; sa taille vient de l'article	Artículo del módulo; su tamaño viene del artículo
+Modules on top of each other on a table	Module übereinander auf einem Modultisch	Modules superposés sur une table	Módulos uno encima de otro en una mesa
 Motors feed the short circuit	Motoren speisen den Kurzschluss	Les moteurs alimentent le court-circuit	Los motores alimentan el cortocircuito
 Mounted on	Montiert auf	Monté sur	Montado en
 Mounting assistant: the panel items in mounting order with their place and part	Montageassistent: die Teile des Schaltschranks in Montagereihenfolge mit Platz und Artikel	Assistant de montage : les éléments de l'armoire dans l'ordre de montage avec leur position et leur article	Asistente de montaje: los elementos del armario en orden de montaje con su posición y artículo
@@ -1422,6 +1436,7 @@ No enclosure yet – create one with New enclosure, or a room for cabinets with 
 No field cables: place the enclosures and field devices at nodes of the route network.	Keine Feldkabel: Schaltschränke und Feldgeräte an Knoten des Trassennetzes platzieren.	Aucun câble de terrain : placez les armoires et les appareils de terrain sur des nœuds du réseau.	No hay cables de campo: coloque los armarios y aparatos de campo en nodos de la red de recorridos.
 No filter fans: an air/air heat exchanger or a cooling unit	Keine Filterlüfter: ein Luft/Luft-Wärmetauscher oder ein Kühlgerät	Pas de ventilateurs à filtre : un échangeur thermique air/air ou un climatiseur	Sin ventiladores con filtro: un intercambiador de calor aire/aire o un equipo de refrigeración
 No free core	Keine freie Ader	Aucun conducteur libre	No hay conductor libre
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Noch keine Freiflächenanlage: Reihen geneigter Modultische auf Rammpfosten auf dem Grundstück.	Pas encore de champ au sol : rangées de tables inclinées sur pieux battus sur le terrain.	Todavía no hay ningún campo sobre suelo: filas de mesas inclinadas sobre postes hincados en la parcela.
 No gesture	Keine Geste	Aucun geste	Sin gesto
 No harnesses defined.	Keine Kabelbäume definiert.	Aucun faisceau défini.	No hay mazos definidos.
 No harnesses yet – Connections › Harnesses	Noch keine Kabelbäume – Verbindungen › Kabelbäume	Pas encore de faisceaux – Liaisons › Faisceaux	Aún no hay mazos – Conexiones › Mazos
@@ -1698,7 +1713,6 @@ Plant layout	Anlagenlayout	Plan d'installation	Plano de la instalación
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Anlagenlayout, Trassennetz, Feldkabelplanung, Potentialausgleich und Kabelzubehör	Plan d'installation, réseau de cheminement, planification des câbles de terrain, liaison équipotentielle et accessoires de câble	Plano de la instalación, red de recorridos, planificación de cables de campo, conexión equipotencial y accesorios de cable
 Plant segments with planned devices before the schematic	Anlagensegmente mit geplanten Geräten vor dem Schaltplan	Segments d'installation avec les appareils planifiés avant le schéma	Segmentos de la planta con los equipos planificados antes del esquema
 Plate outline, holes per diameter, cutouts	Plattenumriss, Bohrungen je Durchmesser, Ausschnitte	Contour de la plaque, perçages par diamètre, découpes	Contorno de la placa, taladros por diámetro, recortes
-Plot	Grundstück	Terrain	Parcela
 Plot boundary	Grundstücksgrenze	Limite du terrain	Límite de la parcela
 Plot boundary drawn: {} m²	Grundstücksgrenze gezeichnet: {} m²	Limite du terrain dessinée : {} m²	Límite de la parcela dibujado: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Grundstücksgrenze gezeichnet: {} m²; außerhalb: {}	Limite du terrain dessinée : {} m² ; à l'extérieur : {}	Límite de la parcela dibujado: {} m²; fuera: {}
@@ -1723,6 +1737,8 @@ Position of the cursor	Position des Mauszeigers	Position du curseur	Posición de
 Position of the device tag (instead of the tag block)	Position des Betriebsmittelkennzeichens (anstelle des Kennzeichenblocks)	Position du repère d'appareil (au lieu du bloc de repère)	Posición de la designación del dispositivo (en lugar del bloque de designación)
 Position of the label (terminal number, address …)	Position der Beschriftung (Klemmennummer, Adresse …)	Position du libellé (numéro de borne, adresse …)	Posición de la etiqueta (número de borne, dirección …)
 Positions are relative to the lower right corner of the symbol.	Positionen beziehen sich auf die rechte untere Ecke des Symbols.	Les positions sont relatives au coin inférieur droit du symbole.	Las posiciones son relativas a la esquina inferior derecha del símbolo.
+Post distance	Pfostenabstand	Distance des pieux	Distancia de postes
+Posts	Pfosten	Pieux	Postes
 Potential {}	Potenzial {}	Potentiel {}	Potencial {}
 Potential: {}	Potenzial: {}	Potentiel : {}	Potencial: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Leistung und Strom der Verbraucher des Netzes (Motoren, Antriebe, Heizungen, Netzgeräte, Transformatoren), die Last jedes Schutzorgans, der Bedarf mit Gleichzeitigkeitsfaktor und die Lastbilanz der Netzgeräte.	Puissance et courant des charges du réseau (moteurs, variateurs, chauffages, alimentations, transformateurs), charge de chaque appareil de protection, demande avec facteur de simultanéité et bilan de charge des alimentations.	Potencia y corriente de las cargas de la red (motores, accionamientos, calefactores, fuentes de alimentación, transformadores), carga de cada dispositivo de protección, demanda con factor de simultaneidad y balance de carga de las fuentes de alimentación.
@@ -1943,6 +1959,8 @@ Rod holder	Stangenhalter	Support de tige	Soporte de punta
 Roof pitch	Dachneigung	Pente du toit	Pendiente del tejado
 Roof window	Dachfenster	Fenêtre de toit	Ventana de tejado
 Roof windows	Dachfenster	Fenêtres de toit	Ventanas de tejado
+Roof {} of building {}	Dach {} von Gebäude {}	Toit {} du bâtiment {}	Cubierta {} del edificio {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Dach {} von Gebäude {}: die Layout-Eigenschaften fügen dort, wo geklickt wurde, eine PV-Anlage oder ein Dachfenster hinzu	Toit {} du bâtiment {} : les propriétés de l'implantation ajoutent un champ photovoltaïque ou une fenêtre de toit là où il a été cliqué	Cubierta {} del edificio {}: las propiedades del montaje añaden un campo fotovoltaico o una ventana de tejado donde se hizo clic
 Roofs	Dächer	Toits	Cubiertas
 Room	Raum	Salle	Sala
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Raum auf Ebene {} hinzugefügt: im Grundriss seine Wände ziehen oder neue zeichnen, Schaltschränke in ihren Eigenschaften hineinstellen	Salle ajoutée au niveau {} : faites glisser ses murs ou dessinez-en de nouveaux dans le plan, placez-y des armoires dans leurs propriétés	Sala añadida en el nivel {}: arrastre sus paredes o dibuje otras nuevas en el plano, coloque armarios en ella desde sus propiedades
@@ -1973,6 +1991,8 @@ Row distance	Reihenabstand	Distance entre rangées	Distancia entre filas
 Row drawing	Zeilenzeichnung	Dessin de ligne	Dibujo de fila
 Row labels	Zeilenbeschriftung	Repères de lignes	Rótulos de filas
 Row step	Zeilenabstand	Pas des lignes	Paso de filas
+Rows of tables behind each other	Reihen von Modultischen hintereinander	Rangées de tables les unes derrière les autres	Filas de mesas una detrás de otra
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Reihen geneigter Modultische auf Pfosten vor dem, was in der Anlage steht, nach vorn ausgerichtet; an ihren Platz verschieben	Rangées de tables inclinées sur pieux devant ce qui se trouve dans l'installation, orientées vers l'avant ; déplacez-le à sa place	Filas de mesas inclinadas sobre postes delante de lo que hay en la instalación, orientadas hacia delante; muévalo a su sitio
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Zeilen auf freigegebenen Seiten können nicht geändert werden. Ein Zeilenumbruch in einem Text wird als \\n geschrieben.	Les lignes sur des pages validées ne peuvent pas être modifiées. Un saut de ligne dans un texte s'écrit \\n.	Las filas en páginas liberadas no se pueden cambiar. Un salto de línea en un texto se escribe como \\n.
 Rows per page	Zeilen pro Seite	Lignes par page	Filas por página
 Rule libraries	Regelbibliotheken	Bibliothèques de règles	Bibliotecas de reglas
@@ -2340,6 +2360,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Die erzeugten Seiten bleiben	Les pages générées restent	Las páginas generadas se mantienen
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Die Artikeldatenbank wird von allen Projekten gemeinsam genutzt. Artikel werden in ein Projekt kopiert, wenn sie einem Betriebsmittel zugewiesen werden.	La base d'articles est partagée par tous les projets. Les articles sont copiés dans un projet lorsqu'ils sont affectés à un appareil.	La base de datos de artículos es común a todos los proyectos. Los artículos se copian en un proyecto cuando se asignan a un dispositivo.
 The point's coordinates in the coordinate reference system	Die Koordinaten des Punkts im Koordinatenreferenzsystem	Les coordonnées du point dans le système de coordonnées de référence	Las coordenadas del punto en el sistema de referencia de coordenadas
+The post; its accessories are the table beams, rails and clamps	Der Pfosten; sein Zubehör sind Tischträger, Schienen und Klemmen	Le pieu ; ses accessoires sont les poutres de table, les rails et les brides	El poste; sus accesorios son las vigas de mesa, los perfiles y las grapas
 The project changed since the search.	Das Projekt hat sich seit der Suche geändert.	Le projet a changé depuis la recherche.	El proyecto ha cambiado desde la búsqueda.
 The project check	Die Projektprüfung	Le contrôle du projet	La revisión del proyecto
 The project database needs the desktop version: the browser cannot search folders.	Die Projektdatenbank braucht die Desktop-Version: Der Browser kann keine Ordner durchsuchen.	La base de données de projets nécessite la version de bureau : le navigateur ne peut pas parcourir les dossiers.	La base de datos de proyectos necesita la versión de escritorio: el navegador no puede buscar en carpetas.
@@ -2507,6 +2528,7 @@ When it differs from the page	Wenn sie von der Seite abweicht	Si elle diffère d
 Where	Lage	Emplacement	Ubicación
 Where neither wire has a termination chosen for it	Wo für keine der beiden Leitungen ein Abschluss gewählt ist	Là où aucun des deux fils n'a de terminaison choisie	Donde ninguno de los dos cables tiene una terminación elegida
 Where the point is in the plant; y: its height above the ground level of the plant	Wo der Punkt in der Anlage liegt; y: seine Höhe über der Geländehöhe der Anlage	Emplacement du point dans l'installation ; y : sa hauteur au-dessus du niveau du sol de l'installation	Dónde está el punto en la instalación; y: su altura sobre el nivel del suelo de la instalación
+Where the roof was clicked in the 3D view	Wo in der 3D-Ansicht auf das Dach geklickt wurde	Là où le toit a été cliqué dans la vue 3D	Donde se hizo clic en la cubierta en la vista 3D
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Woher die Struktur des Betriebsmittels kommt: Aspekte, die der Struktur um das Symbol herum entsprechen, sind geerbt und folgen, wenn es in einen Strukturkasten hinein- oder aus ihm herausbewegt wird; andere Aspekte gehören dem Betriebsmittel selbst und bleiben.	Origine de la structure de l'appareil : les aspects égaux à la structure autour du symbole sont hérités et suivent lorsqu'il entre dans un cadre de structure ou en sort ; les autres aspects sont propres à l'appareil et restent.	De dónde viene la estructura del dispositivo: los aspectos iguales a la estructura alrededor del símbolo se heredan y cambian cuando entra en un recuadro de estructura o sale de él; los demás aspectos son propios del dispositivo y se mantienen.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Wo die Verbindung beginnt und endet: ein Anschluss aus den Artikeldaten, ein aus der Funktionsschablone erzeugter oder die Gerätemitte, wenn kein Anschluss passt	Où le fil commence et se termine : un point de connexion des données de l'article, un point généré à partir du modèle de fonctions ou le centre de l'appareil si aucun point ne correspond	Dónde empieza y termina el cable: un punto de conexión de los datos del artículo, uno generado a partir de la plantilla de funciones o el centro del equipo si no coincide ningún punto
 Whole building	Ganzes Gebäude	Bâtiment entier	Edificio completo
@@ -2551,6 +2573,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Verdrahtungsraum zwischen Geräten und Kanälen	Espace de câblage entre appareils et goulottes	Espacio de cableado entre aparatos y canaletas
 With a user account of the server; replaces the access token	Mit einem Benutzerkonto des Servers; ersetzt den Zugriffstoken	Avec un compte utilisateur du serveur ; remplace le jeton d'accès	Con una cuenta de usuario del servidor; reemplaza el token de acceso
 With everything below it	Mit allem darunter	Avec tout ce qui se trouve en dessous	Con todo lo que hay debajo
+With its middle where the roof was clicked in the 3D view	Mit ihrer Mitte dort, wo in der 3D-Ansicht auf das Dach geklickt wurde	Avec son milieu là où le toit a été cliqué dans la vue 3D	Con su centro donde se hizo clic en la cubierta en la vista 3D
 With the current pages; the approvals so far become void	Mit den aktuellen Seiten; die bisherigen Genehmigungen verfallen	Avec les pages actuelles ; les approbations précédentes deviennent caduques	Con las páginas actuales; las aprobaciones anteriores quedan anuladas
 With values only	Nur mit Werten	Uniquement avec valeurs	Solo con valores
 Withdraw	Zurückziehen	Retirer	Retirar
@@ -2830,6 +2853,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} renamed: {} pages and devices	{} umbenannt: {} Seiten und Betriebsmittel	{} renommé : {} pages et appareils	{} renombrado: {} páginas y dispositivos
 {} report pages output to {}	{} Auswertungsseiten ausgegeben nach {}	{} pages de rapport sorties dans {}	{} páginas de informe emitidas a {}
 {} routes frozen	{} Verlegungen eingefroren	{} tracés figés	{} recorridos congelados
+{} rows of tables of {} × {} = {}, {}	{} Reihen von Modultischen mit {} × {} = {}, {}	{} rangées de tables de {} × {} = {}, {}	{} filas de mesas de {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} Segmente angelegt, {} Geräte hinzugefügt, {} geändert	{} segments créés, {} appareils ajoutés, {} modifiés	{} segmentos creados, {} equipos añadidos, {} actualizados
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} Stationen, {} Bussysteme, {} Karten zugeordnet, {} Adressen geändert, {} Verbindungen, {} Kabel	{} stations, {} systèmes de bus, {} cartes affectées, {} adresses modifiées, {} liaisons, {} câbles	{} estaciones, {} sistemas de bus, {} tarjetas asignadas, {} direcciones cambiadas, {} conexiones, {} cables
 {} stopped with an error: {}	{} mit einem Fehler abgebrochen: {}	{} interrompu par une erreur : {}	{} se detuvo con un error: {}
@@ -2861,6 +2885,7 @@ x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm	x {} mm, z {} mm
 {} – revision {}, {}	{} – Revision {}, {}	{} – révision {}, {}	{} – revisión {}, {}
 {} – {} ({} pages)	{} – {} ({} Seiten)	{} – {} ({} pages)	{} – {} ({} páginas)
 {} – {} here (Esc cancels)	{} – hier {} (Esc bricht ab)	{} – {} ici (Échap annule)	{} – {} aquí (Esc cancela)
+{}, freestanding	{}, Freifläche	{}, au sol	{}, sobre suelo
 {}: a double-click opens its floor plan	{}: ein Doppelklick öffnet seinen Grundriss	{} : un double-clic ouvre son plan	{}: un doble clic abre su planta
 {}: click to show its floor plan	{}: Klicken zeigt seinen Grundriss	{} : cliquer pour afficher son plan	{}: haga clic para mostrar su planta
 {}: crimp together with the wire to {}	{}: zusammen mit der Leitung nach {} crimpen	{} : sertir avec le fil vers {}	{}: engastar junto con el cable hacia {}

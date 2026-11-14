@@ -9,12 +9,12 @@
 //! The leads to a device leave the array at the point of its edge nearest to the device,
 //! run on the covering to a cable entry just beside it, through the roof and under it
 //! to above the device and down onto it. A device that is not placed in the layout ends
-//! them just under the roof.
+//! them just under the roof. The leads of a freestanding array run on the back of its
+//! modules, down into a cable trench, along it to below the device and up onto it.
 
-use super::{geometry, junction, PvGeometry};
-use crate::model::panel::{Building, ItemKind, PvArray, Roof};
+use super::{junction, PvGeometry, Support};
+use crate::model::panel::{ItemKind, PvArray, Roof};
 use crate::model::Project;
-use crate::panel::buildings::building_pose;
 use crate::panel::roofs::{self, normal_of};
 use crate::panel::SitePose;
 use crate::parts::vec3::{norm, scale, sub, V3};
@@ -31,6 +31,8 @@ pub const LEAD_GAP: f32 = 30.0;
 pub const MAIN_RISE: f32 = 200.0;
 /// How far apart the plus and the minus lead leave the junction box of a module, mm.
 pub const BOX_GAP: f32 = 40.0;
+/// Depth of the cable trench of freestanding arrays below the ground, mm.
+pub const TRENCH: f32 = 700.0;
 
 /// What a line of the cabling of a PV array is.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -139,20 +141,34 @@ pub fn string_modules(g: &PvGeometry, a: &PvArray) -> Vec<(usize, Vec<usize>)> {
     out
 }
 
-/// The cabling of array `a` on roof `r` of building `b` in the plant.
-pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &PvArray) -> Vec<PvLine> {
-    let Some(g) = geometry(r, a) else { return Vec::new() };
-    let bp = building_pose(b);
+/// The cabling of array `a` standing on `s` in the plant.
+pub fn cabling(prj: &Project, poses: &[SitePose], s: Support, a: &PvArray) -> Vec<PvLine> {
+    let Some(g) = s.geometry(a) else { return Vec::new() };
+    let bp = s.pose();
     let h = a.module_height.max(5.0);
     let sec = (1.0 + g.plane.slope() * g.plane.slope()).sqrt();
-    let lift = r.thickness.max(1.0) * sec;
+    let lift = match s {
+        Support::Roof(_, r) => r.thickness.max(1.0) * sec,
+        Support::Ground => 0.0,
+    };
     let cover = |q: [f32; 2]| g.plane.at(q) + lift;
-    // The junction box of a module (on its back) and the point under it the leads run at.
+    // The junction box of a module (on its back) and the point under it the leads run at:
+    // on the covering of a roof, on the back of freestanding modules.
     let boxes: Vec<V3> = g.modules.iter().map(|m| {
         let n = normal_of(m);
         sub(junction(m, h), scale(n, super::JUNCTION))
     }).collect();
-    let low = |p: V3| [p[0], cover([p[0], p[2]]) + LEAD_HEIGHT, p[2]];
+    let back = g.modules.first().map_or([0.0, 1.0, 0.0], |m| normal_of(m));
+    let low = |p: V3| match s {
+        Support::Roof(..) => [p[0], cover([p[0], p[2]]) + LEAD_HEIGHT, p[2]],
+        Support::Ground => sub(p, scale(back, LEAD_HEIGHT)),
+    };
+    // From a point under the modules to a device (building coordinates), `side` to the
+    // right of the way.
+    let way = |from: V3, device: Option<V3>, side: f32| match s {
+        Support::Roof(_, r) => run_down(r, &g, from, device, side, &cover),
+        Support::Ground => run_ground(from, device, side),
+    };
     // A device in the building's coordinates: the middle of its top.
     let target = |tag: &str| placed_device(prj, poses, tag).map(|(_, (lo, hi))| bp.local([(lo[0] + hi[0]) / 2.0, hi[1], (lo[2] + hi[2]) / 2.0]));
     let mut out = Vec::new();
@@ -195,7 +211,7 @@ pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &Pv
         for (lead, p, j) in [(Lead::Minus, minus(0), 2 * k), (Lead::Plus, plus(n - 1), 2 * k + 1)] {
             let side = (j as f32 - (leads as f32 - 1.0) / 2.0) * LEAD_GAP;
             let mut pts = vec![p, low(p)];
-            pts.extend(run_down(r, &g, low(p), device, side, &cover));
+            pts.extend(way(low(p), device, side));
             out.push(PvLine { points: to_plant(pts), lead, to: to.clone(), reached: device.is_some(), string: Some(si) });
         }
     }
@@ -222,12 +238,32 @@ pub fn cabling(prj: &Project, poses: &[SitePose], b: &Building, r: &Roof, a: &Pv
     if let Some(&last) = g.earth.last() {
         let device = target(&a.earthing);
         let mut pts: Vec<V3> = g.earth.clone();
-        let down = [last[0], cover([last[0], last[2]]) + LEAD_HEIGHT * 0.5, last[2]];
-        pts.push(down);
-        pts.extend(run_down(r, &g, down, device, 0.0, &cover));
+        // On a roof down onto the covering; on a post from where it is.
+        let down = match s {
+            Support::Roof(..) => {
+                let down = [last[0], cover([last[0], last[2]]) + LEAD_HEIGHT * 0.5, last[2]];
+                pts.push(down);
+                down
+            }
+            Support::Ground => last,
+        };
+        pts.extend(way(down, device, 0.0));
         out.push(PvLine { points: to_plant(pts), lead: Lead::Earth, to: a.earthing.clone(), reached: device.is_some(), string: None });
     }
     out
+}
+
+/// From `from` (under a freestanding table) down into the cable trench, along it to
+/// below `device` (the middle of its top) and up onto it, otherwise down to the ground;
+/// `side`: how far to the right of the way it runs.
+fn run_ground(from: V3, device: Option<V3>, side: f32) -> Vec<V3> {
+    let Some(t) = device else { return vec![[from[0], 0.0, from[2]]] };
+    let d = [t[0] - from[0], t[2] - from[2]];
+    let l = d[0].hypot(d[1]).max(1e-6);
+    let right = [-d[1] / l, d[0] / l];
+    let shift = |q: [f32; 2]| [q[0] + right[0] * side, q[1] + right[1] * side];
+    let (a, b) = (shift([from[0], from[2]]), shift([t[0], t[2]]));
+    vec![[a[0], from[1], a[1]], [a[0], -TRENCH, a[1]], [b[0], -TRENCH, b[1]], [b[0], t[1], b[1]]]
 }
 
 /// From `from` (on the covering) to the cable entry beside the array nearest to

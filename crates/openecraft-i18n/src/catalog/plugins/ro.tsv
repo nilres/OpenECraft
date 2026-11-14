@@ -13,6 +13,7 @@ Accessory part number, e.g. GEN.GLAND-M25	Numărul de articol al accesoriului, d
 Activates (shows) or deactivates (hides) the content of a project option	Activează (afișează) sau dezactivează (ascunde) conținutul unei opțiuni de proiect
 Additional power loss in W	Putere disipată suplimentară în W
 Address scheme: siemens, iec or rockwell	Schemă de adresare: siemens, iec sau rockwell
+Adds a PV array to a roof: rows of modules on rails and roof hooks parallel to a slope, or on a flat roof tilted or east-west on ballasted mounting bases; without x and z in the middle of the front or right slope. Without building and roof a freestanding array on the plot: rows of tilted tables on rammed posts, without x and z in front of what stands in the plant. The modules and the mounting material go into the bill of materials	Adaugă un câmp PV pe un acoperiș: rânduri de module pe șine și cârlige de acoperiș paralele cu o pantă, sau pe un acoperiș plat înclinate sau est-vest pe suporturi de montaj lestate; fără x și z în mijlocul pantei din față sau din dreapta. Fără clădire și acoperiș, un câmp la sol pe teren: rânduri de mese înclinate pe stâlpi bătuți, fără x și z în fața a ceea ce se află în instalație. Modulele și materialul de montaj intră în lista de materiale
 Adds a bent and drilled copper bar (or replaces the one of the same name in the enclosure)	Adaugă o bară de cupru îndoită și găurită (sau o înlocuiește pe cea cu același nume din carcasă)
 Adds a cable passage to the right neighbour: round cutouts facing each other in both side walls; wires between the enclosures run through it	Adaugă o trecere de cabluri spre vecinul din dreapta: decupaje rotunde față în față în ambii pereți laterali; conductoarele dintre carcase trec prin ea
 Adds a configurator rule: insert a page macro when the condition holds	Adaugă o regulă de configurator: inserează un macro de pagină când condiția este îndeplinită
@@ -73,6 +74,7 @@ Between page and column (default .)	Între pagină și coloană (implicit .)
 Bonding point	Punct de legătură echipotențială
 Border around the text	Bordură în jurul textului
 Both classes are needed	Sunt necesare ambele clase
+Building (location, e.g. +B1); without building and roof: a freestanding array on the plot	Clădire (loc, de ex. +B1); fără clădire și acoperiș: un câmp la sol pe teren
 Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	Clădirile instalației cu niveluri, puțuri, scări și acoperișuri cu câmpuri PV, prize de pământ și protecție contra trăsnetului, încăperi pe niveluri și legături între clădiri
 Bus system name	Nume sistem de magistrală
 Bus system name, e.g. PN/IE_1	Nume sistem de magistrală, de ex. PN/IE_1
@@ -209,6 +211,7 @@ Diameter of the rod, mm (default 16)	Diametrul tijei, mm (implicit 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	Direcția tijei: left, right, up sau down (implicit: după firele de acolo)
 Distance between power and signal or fluid in mm	Distanța dintre putere și semnal sau fluid în mm
 Distance from devices, rails and busbars in mm	Distanța față de dispozitive, șine și bare colectoare în mm
+Distance from row to row on a flat roof or freestanding in mm (0: free of shade in winter)	Distanța dintre rânduri pe un acoperiș plat sau la sol în mm (0: fără umbră iarna)
 Distance from the face in mm (rails: standoff height)	Distanța de la față în mm (șine: înălțimea distanțierului)
 Distance in X (mm)	Distanță pe X (mm)
 Distance in Y (mm)	Distanță pe Y (mm)
@@ -267,12 +270,16 @@ First counter value (default 1)	Prima valoare a contorului (implicit 1)
 First page number (default 1)	Numărul primei pagini (implicit 1)
 First port as station:port, e.g. PLC1:X1 P2	Primul port ca stație:port, de ex. PLC1:X1 P2
 First row with the column names	Primul rând cu numele coloanelor
+Flat roofs and freestanding: direction the modules face in degrees, counter-clockwise seen from above (0: towards +z)	Acoperișuri plate și la sol: direcția în care sunt orientate modulele în grade, în sens antiorar văzut de sus (0: spre +z)
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	Formatul numelui dispozitivului: {letter}, {n} (contor), {page}, {column}, {row}; implicit {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	Formatul schemei format: {n} (contor), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}
 Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	Priză de fundație: cât de mult în interiorul pereților exteriori (implicit 100), inelară: cât de mult în afara lor (implicit 1000), mm
 Foundation earth electrode: its largest mesh, mm (default 20000)	Priză de fundație: cel mai mare ochi al ei, mm (implicit 20000)
 Frame to start from when the frame is new (default: A3 landscape)	Chenarul de pornire când chenarul este nou (implicit: A3 landscape)
 Free space in front of every device on the plate	Spațiu liber în fața fiecărui dispozitiv de pe placă
+Freestanding PV arrays stand on posts (mounting ground)	Câmpurile PV la sol stau pe stâlpi (montaj ground)
+Freestanding: height of the lower edge of the modules above the ground in mm (default 800)	La sol: înălțimea marginii inferioare a modulelor deasupra solului în mm (implicit 800)
+Freestanding: modules on top of each other on a table (default 2)	La sol: module unul peste altul pe o masă (implicit 2)
 Freezes routes for production (kept by the recalculation while possible) or releases them	Fixează traseele pentru producție (păstrate de recalculare cât timp este posibil) sau le eliberează
 Frequency in Hz	Frecvența în Hz
 Function (= without the sign; empty: the parent's)	Funcție (= fără semn; gol: cea a părintelui)
@@ -289,6 +296,7 @@ Generates the program of the busbar machine: cuts, punched holes and bends	Gener
 Give a device tag or a part number	Indicați o identificare de aparat sau un număr de articol
 Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	Dă unei clădiri o protecție contra trăsnetului sau o modifică: clasa, numărul conductoarelor de coborâre și articolul conductoarelor; conductoare de captare pe coame și muchii (o rețea pe acoperișurile plate), conductoare de coborâre cu piese de separație până la prizele de pământ; sau o elimină
 Greatest distance of the conductor holders, mm (default 1000)	Distanța maximă a suporturilor de conductor, mm (implicit 1000)
+Greatest distance of the roof hooks along a rail (freestanding: of the posts along a table) in mm	Cea mai mare distanță a cârligelor de acoperiș de-a lungul unei șine (la sol: a stâlpilor de-a lungul unei mese) în mm
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	Grupează elemente într-un ansamblu care se selectează și se mută împreună; fără nume, elementele își părăsesc ansamblurile
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	Predă programele unei carcase către producție ca o comandă de lucru: manifestul și programele tuturor fețelor și barelor de cupru
 Has a divider between power and signal cables	Are un separator între cablurile de putere și cele de semnal
@@ -451,6 +459,8 @@ Maximum fill of a carrier in percent	Grad maxim de umplere a unui suport de cabl
 Maximum operating pressure in bar	Presiunea de lucru maximă în bar
 Measuring range or set point	Domeniu de măsură sau valoare prescrisă
 Message code, e.g. wires.3f9a1c	Cod de mesaj, de ex. wires.3f9a1c
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), x in mm	Mijlocul câmpului PV în planul clădirii (la sol: în instalație), x în mm
+Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Mijlocul câmpului PV în planul clădirii (la sol: în instalație), z în mm
 Milling feed, mm/min	Avans de frezare, mm/min
 Mirror the symbol	Oglindire simbol
 Mounting plate size as width and height; empty object restores the centred plate	Dimensiunea plăcii de montaj ca lățime și înălțime; un obiect gol restabilește placa centrată
@@ -463,6 +473,7 @@ Moves the section before this section of its parent (or of the parent given); th
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	Amplasarea pe planșetă a unui cablaj: ramificațiile de la nodul comun la conectori, cu lungime, direcție, diametrul fasciculului și pini, precum și scara desenului
 Name (default E1, E2, …)	Nume (implicit E1, E2, …)
 Name (default F1, F2, …)	Nume (implicit F1, F2, …)
+Name both the building and the roof, or neither for a freestanding PV array	Indicați atât clădirea, cât și acoperișul, sau niciuna dintre ele pentru un câmp PV la sol
 Name of the assembly	Numele ansamblului
 Name of the bar, e.g. L1 -Q1	Numele barei, de ex. L1 -Q1
 Name of the check	Numele verificării
@@ -497,6 +508,7 @@ No device group {}	Niciun grup de dispozitive {}
 No earth electrode {} in building {}	Nicio priză de pământ {} în clădirea {}
 No enclosure named {}	Nicio carcasă cu numele {}
 No entry for {} and {}	Nicio intrare pentru {} și {}
+No freestanding PV array {}	Niciun câmp PV la sol {}
 No hose {}	Niciun furtun {}
 No identifier {} in the project	Niciun identificator {} în proiect
 No item with id {}	Niciun element cu ID-ul {}
@@ -578,6 +590,7 @@ Outer lengths of the straight segments, mm, e.g. 200, 150, 300	Lungimile exterio
 Overlap of nibbling hits (0 … 0.9)	Suprapunerea loviturilor de nibelare (0 … 0.9)
 PCT loop {} already exists	Bucla AMC {} există deja
 PLC hardware: stations, cards, bus systems and port connections	Hardware PLC: stații, carduri, sisteme de magistrală și conexiuni de port
+PV arrays on roofs are mounted parallel, tilted or east_west	Câmpurile PV pe acoperișuri se montează parallel, tilted sau east_west
 Page macro name	Nume macro de pagină
 Page macro that generates its schematic	Macro de pagină care generează schema sa
 Page name (default: all pages)	Numele paginii (implicit: toate paginile)
@@ -718,6 +731,7 @@ Reuse failed searches during one routing calculation	Reutilizează căutările n
 Right side bayed (no side panel)	Partea dreaptă alăturată (fără perete lateral)
 Ring: depth below the ground level, rod: depth of its top, mm (default 500)	Inelară: adâncime sub teren, verticală: adâncimea capătului superior, mm (implicit 500)
 Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	Electrod vertical: diametrul lui (implicit 20), fundație și inel: al unei sârme rotunde, 0 pentru platbandă, mm
+Roof: its name; without building and roof: a freestanding array on the plot	Acoperiș: numele lui; fără clădire și acoperiș: un câmp la sol pe teren
 Room {} exists already	Încăperea {} există deja
 Rotation in degrees clockwise: 0, 90, 180 or 270	Rotație în grade, în sensul acelor de ceasornic: 0, 90, 180 sau 270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	Rotire în grade, în sens antiorar (90 se citește de jos în sus)
@@ -887,6 +901,7 @@ The wire that jumps: vertical or horizontal	Firul care sare: vertical sau horizo
 The wrap width must not be negative	Lățimea de încadrare nu trebuie să fie negativă
 Thermal simulation of the mounting plate: air temperatures, hot spot, heat sources and the temperature at every device	Simulare termică a plăcii de montaj: temperaturile aerului, punct fierbinte, surse de căldură și temperatura la fiecare dispozitiv
 Thickest sheet or bar, mm	Cea mai groasă tablă sau bară, mm
+Tilt of the modules on a flat roof or of freestanding tables in degrees	Înclinarea modulelor pe un acoperiș plat sau a meselor la sol în grade
 Time per drilling, punching or bending operation, s	Timp per operație de găurire, poansonare sau îndoire, s
 Time per tool change, s	Timp per schimbare de sculă, s
 Title block (list_title_blocks); empty = the project default	Cartuș (list_title_blocks); gol = cartușul implicit al proiectului
@@ -1025,6 +1040,7 @@ main (default), supplementary or functional	main (implicit), supplementary sau f
 mounted, problem or open	mounted, problem sau open
 node, segment, place, outline, bond or accessory	node, segment, place, outline, bond sau accessory
 numbers or letters	numbers sau letters
+parallel (on roof hooks), tilted or east_west (flat roofs); freestanding: ground (on posts)	parallel (pe cârlige de acoperiș), tilted (înclinat) sau east_west (est-vest, acoperișuri plate); la sol: ground (pe stâlpi)
 plate, door, left, right, rear, roof or bottom	plate, door, left, right, rear, roof sau bottom
 plug_in, saddle or wire	plug_in, saddle sau wire
 profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp or canopen	profinet, ethercat, ethernet_ip, profibus_dp, modbus_tcp sau canopen

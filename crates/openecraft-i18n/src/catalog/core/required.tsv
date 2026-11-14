@@ -603,6 +603,7 @@ Frame size	Baugröße	Taille de carcasse	Tamaño constructivo
 Free	Frei	Libre	Libre
 Free air (mm)	Freie Verlegung (mm)	Air libre (mm)	Aire libre (mm)
 Free run	Freie Verlegung	Pose libre	Tendido libre
+Freestanding on posts	Freiflächenanlage auf Pfosten	Au sol sur pieux	Sobre suelo en postes
 Frequency converter	Frequenzumrichter	Variateur de fréquence	Variador de frecuencia
 Frequency meter	Frequenzmesser	Fréquencemètre	Frecuencímetro
 From end	Vom Ende	Depuis la fin	Desde el final
@@ -1024,7 +1025,6 @@ No plugs	Keine Stecker	Aucun connecteur	Sin conectores
 No report block {}	Kein Auswertungsblock {}	Aucun bloc de rapports {}	Ningún bloque de informes {}
 No segment template named {}	Keine Segmentvorlage namens {}	Aucun modèle de segment nommé {}	No hay ninguna plantilla de segmento llamada {}
 No subproject {}	Kein Teilprojekt {}	Aucun sous-projet {}	No hay ningún subproyecto {}
-No such PV array	Keine solche PV-Anlage	Pas de tel champ photovoltaïque	No existe tal campo fotovoltaico
 No such building	Kein solches Gebäude	Bâtiment introuvable	No existe ese edificio
 No such inner wall	Keine solche Innenwand	Aucun mur intérieur de ce type	No existe esa pared interior
 No such object: {}	Kein solches Objekt: {}	Objet inexistant : {}	No existe el objeto: {}
@@ -2238,6 +2238,8 @@ yellow	gelb	jaune	amarillo
 {}: the busbar {} of earth electrode {} does not exist	{}: die Schiene {} des Erders {} existiert nicht	{} : la barrette {} de la prise de terre {} n'existe pas	{}: la barra {} del electrodo de tierra {} no existe
 {}: the device {} of PV array {} does not exist	{}: das Betriebsmittel {} der PV-Anlage {} gibt es nicht	{} : l'appareil {} du champ photovoltaïque {} n'existe pas	{}: el dispositivo {} del campo fotovoltaico {} no existe
 {}: the earthing busbar {} of PV array {} does not exist	{}: die Erdungsschiene {} der PV-Anlage {} existiert nicht	{} : la barre de terre {} du champ photovoltaïque {} n'existe pas	{}: la barra de tierra {} del campo fotovoltaico {} no existe
+{}: the freestanding PV array {} stands on {}	{}: die Freiflächenanlage {} steht auf {}	{} : le champ au sol {} se trouve sur {}	{}: el campo sobre suelo {} está sobre {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: die Freiflächenanlagen {} und {} stehen übereinander	{} : les champs au sol {} et {} se superposent	{}: los campos sobre suelo {} y {} se superponen
 {}: the generator junction box {} of PV array {} does not exist	{}: der Generatoranschlusskasten {} der PV-Anlage {} existiert nicht	{} : la boîte de jonction générateur {} du champ photovoltaïque {} n'existe pas	{}: la caja de conexión del generador {} del campo fotovoltaico {} no existe
 {}: the level of the room no longer exists	{}: die Ebene des Raums existiert nicht mehr	{} : le niveau de la pièce n'existe plus	{}: el nivel de la sala ya no existe
 {}: the lightning protection has no earth electrode	{}: der Blitzschutz hat keinen Erder	{} : la protection contre la foudre n'a pas de prise de terre	{}: la protección contra el rayo no tiene electrodo de tierra
