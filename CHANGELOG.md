@@ -18,6 +18,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   Cancelling an in-flight rename releases its new locks after the request has
   finished; existing locks and locks protecting other local edits are kept.
 
+- **Cable core assignment** (#173): preview crossed wires, free cores and the
+  assignment order from the line start. Insufficient cores or conflicting wire
+  assignments leave all pending assignments unchanged and show a persistent
+  check warning. Correct the cable/core list before assigning again. Existing
+  assignments and cores used on other pages are preserved. CLI/MCP can inspect
+  `preview_cable_definition` and explicitly `apply_cable_definition`.
+  Rejected new definitions do not create unused cables. Imported core names
+  without a cable are preserved as conflicts; disabled assignment buttons explain
+  the reason. Interactive previews reuse the session index.
+
 - **PV arrays in 3D:** a click on an array opens its properties (modules and their
   data, peak power, mounting and material, earthing, strings with their values and the
   lengths of their leads, problems, and its settings). The cabling of the strings is

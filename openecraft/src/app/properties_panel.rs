@@ -503,7 +503,7 @@ impl App {
                 openecraft_core::harness::assign(&mut self.session.prj, &a, &b, &tag);
             }
         } else {
-            self.graphic_properties(ui, id);
+            self.graphic_properties(ui, idx, id);
         }
     }
 
