@@ -2,6 +2,7 @@
 //! project comes from: a local file, a project open on the project server or the local
 //! copy of a server project. The status bar and Save show it ([`Origin`]).
 
+use crate::remote::Link;
 use openecraft_i18n::{tr, tr_const, tr_fmt};
 use serde::{Deserialize, Serialize};
 
@@ -108,8 +109,8 @@ pub enum Origin<'a> {
     /// Not saved yet (new project, demo, example).
     New,
     File(&'a str),
-    /// Open on the project server; `connected` is false while the server does not answer.
-    Server { url: &'a str, name: &'a str, connected: bool },
+    /// Open on the project server; `link` is the state of its connection.
+    Server { url: &'a str, name: &'a str, link: Link },
     /// A local copy of a server project: restored from the last session or closed on the server.
     Recovery(&'a ServerProject),
 }
@@ -120,8 +121,11 @@ impl Origin<'_> {
         match self {
             Origin::New => tr("New project, not saved yet").to_string(),
             Origin::File(path) => tr_fmt!("Local file: {}", crate::io::short_name(path)),
-            Origin::Server { url, name, connected: true } => tr_fmt!("Project server: {} / Project: {}", url, name),
-            Origin::Server { url, name, connected: false } => tr_fmt!("Project server: {} / Project: {} – connection lost", url, name),
+            Origin::Server { url, name, link: Link::Online } => tr_fmt!("Project server: {} / Project: {}", url, name),
+            Origin::Server { url, name, link: Link::Offline } => tr_fmt!("Project server: {} / Project: {} – connection lost", url, name),
+            Origin::Server { url, name, link: Link::Ended } => tr_fmt!("Project server: {} / Project: {} – reconnecting", url, name),
+            Origin::Server { url, name, link: Link::SignedOut } => tr_fmt!("Project server: {} / Project: {} – sign-in required", url, name),
+            Origin::Server { url, name, link: Link::Refused } => tr_fmt!("Project server: {} / Project: {} – not available", url, name),
             Origin::Recovery(p) => tr_fmt!("Local recovery copy of server project: {}", p.name),
         }
     }
@@ -131,8 +135,11 @@ impl Origin<'_> {
         match self {
             Origin::New => tr("Save locally").to_string(),
             Origin::File(path) => tr_fmt!("Save locally to {}", crate::io::short_name(path)),
-            Origin::Server { name, connected: true, .. } => tr_fmt!("Save to project server: {}", name),
-            Origin::Server { name, connected: false, .. } => tr_fmt!("Save to project server: {} – the connection is lost, saving tries again", name),
+            Origin::Server { name, link: Link::Online, .. } => tr_fmt!("Save to project server: {}", name),
+            Origin::Server { name, link: Link::Offline, .. } => tr_fmt!("Save to project server: {} – the connection is lost, saving tries again", name),
+            Origin::Server { name, link: Link::Ended, .. } => tr_fmt!("Save to project server: {} – the project is being opened again first", name),
+            Origin::Server { name, link: Link::SignedOut, .. } => tr_fmt!("Save to project server: {} – sign in again first", name),
+            Origin::Server { name, link: Link::Refused, .. } => tr_fmt!("Save to project server: {} – not available, keep working on a local copy", name),
             Origin::Recovery(p) => tr_fmt!("Save locally; {} on the project server stays unchanged", p.name),
         }
     }

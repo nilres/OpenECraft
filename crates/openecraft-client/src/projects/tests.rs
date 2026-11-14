@@ -75,7 +75,7 @@ fn account_requests() {
 
 /// Tiny scripted loopback peer: checks the real request order and credentials,
 /// without contacting a configured server or relying on the production router.
-fn snapshot_peer(script: Vec<(&str, u16, String)>) -> Result<openecraft_core::collab::Snapshot, String> {
+fn snapshot_peer(script: Vec<(&str, u16, String)>) -> Result<openecraft_core::collab::Snapshot, Failed> {
     use std::io::{Read, Write};
     use std::time::{Duration, Instant};
     let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
@@ -163,8 +163,9 @@ fn older_servers_load_foreign_edits_and_keep_own_locks_without_guessing_names() 
 
 #[test]
 fn snapshot_authentication_and_other_errors_never_downgrade_to_get() {
-    for status in [401, 403, 410, 500] {
-        assert!(snapshot_peer(vec![("POST /api/v1/projects/plant/snapshot", status, r#"{"error":"refused"}"#.into())]).is_err());
+    for (status, why) in [(401, Failure::SignedOut), (403, Failure::Refused), (410, Failure::SessionEnded), (500, Failure::Refused), (503, Failure::Unreachable)] {
+        let failed = snapshot_peer(vec![("POST /api/v1/projects/plant/snapshot", status, r#"{"error":"refused"}"#.into())]).unwrap_err();
+        assert_eq!((failed.why, failed.error.as_str()), (why, "refused"));
     }
 }
 
@@ -177,16 +178,39 @@ fn legacy_snapshots_never_mix_revisions_or_ignore_a_failed_session_check() {
         ("GET /api/v1/projects/plant", 200, serde_json::to_string(&snapshot).unwrap()),
         ("POST /api/v1/projects/plant/status", 200, serde_json::to_string(&status).unwrap()),
     ]);
-    assert!(result.unwrap_err().contains("changed while loading"));
-    for code in [401, 410] {
-        assert!(snapshot_peer(vec![
+    assert!(result.unwrap_err().error.contains("changed while loading"));
+    for (code, why) in [(401, Failure::SignedOut), (410, Failure::SessionEnded)] {
+        let failed = snapshot_peer(vec![
             ("POST /api/v1/projects/plant/snapshot", 404, "{}".into()),
             ("GET /api/v1/projects/plant", 200, serde_json::to_string(&snapshot).unwrap()),
             ("POST /api/v1/projects/plant/status", code, r#"{"error":"expired"}"#.into()),
-        ]).is_err());
+        ]).unwrap_err();
+        assert_eq!(failed.why, why);
     }
     assert!(snapshot_peer(vec![
         ("POST /api/v1/projects/plant/snapshot", 404, "{}".into()),
         ("GET /api/v1/projects/plant", 403, r#"{"error":"refused"}"#.into()),
     ]).is_err());
+}
+
+#[test]
+fn failures_tell_an_outage_from_an_ended_session_and_a_lost_sign_in() {
+    let answer = |status: u16, body: &str| Ok(ehttp::Response {
+        url: String::new(),
+        ok: (200..300).contains(&status),
+        status,
+        status_text: String::new(),
+        headers: Default::default(),
+        bytes: body.as_bytes().to_vec(),
+    });
+    let why = |result: ehttp::Result<ehttp::Response>| decode_failure::<Status>(result).unwrap_err().why;
+    assert_eq!(why(Err("io: connection refused".into())), Failure::Unreachable);
+    assert_eq!(why(answer(502, "")), Failure::Unreachable);
+    assert_eq!(why(answer(410, r#"{"error":"the session has expired, open the project again"}"#)), Failure::SessionEnded);
+    assert_eq!(why(answer(401, r#"{"error":"missing or wrong access token"}"#)), Failure::SignedOut);
+    assert_eq!(why(answer(409, r#"{"error":"locked"}"#)), Failure::Refused);
+    assert_eq!(why(answer(200, "not json")), Failure::Refused);
+    let failed = decode_failure::<Status>(answer(410, r#"{"error":"expired"}"#)).unwrap_err();
+    assert_eq!(failed.to_string(), "expired");
+    assert_eq!(decode_failure::<Status>(answer(200, r#"{"revision":3}"#)).unwrap().revision, 3);
 }

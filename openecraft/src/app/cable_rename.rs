@@ -59,7 +59,7 @@ fn selected(prj: &Project, page: usize, ids: &BTreeSet<u64>) -> Option<u64> {
 /// cannot leave a renamed inventory with references under the old name.
 fn locks(remote: &Remote, before: &Project, after: &Project) -> Result<Vec<Target>, String> {
     let Some(shared) = &remote.shared else { return Ok(Vec::new()); };
-    if remote.lost { return Err(tr("Reconnect to the project server before renaming this cable.").into()); }
+    if !remote.online() { return Err(tr("Reconnect to the project server before renaming this cable.").into()); }
     let mut free = Vec::new();
     for target in collab::changes(before, after) {
         let right = match target { Target::Project => ProjectRight::EditProject, Target::Page(_) => ProjectRight::EditPages };

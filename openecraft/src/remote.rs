@@ -2,8 +2,10 @@
 //! shared projects, page locks. Requests run in the background; [`Remote::poll`]
 //! collects the answers. The rules of shared editing are in `openecraft_core::collab`.
 
-use openecraft_client::{decode, ehttp, ProjectEndpoint};
-use openecraft_core::collab::{self, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target};
+use openecraft_client::{decode, decode_failure, ehttp, ProjectEndpoint};
+use openecraft_core::collab::{
+    self, Failed, Failure, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target,
+};
 use crate::session::Session;
 use openecraft_core::model::Project;
 use openecraft_i18n::{tr, tr_fmt};
@@ -22,6 +24,23 @@ pub struct Taken {
     pub kept: Vec<String>,
 }
 
+/// State of the connection of the open shared project.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum Link {
+    #[default]
+    Online,
+    /// The server does not answer; the session is tried again with every heartbeat.
+    Offline,
+    /// The session ended on the server (it expired or the server restarted): the
+    /// project is opened again with the sign-in, until the server answers.
+    Ended,
+    /// The access token or the sign-in is no longer valid: after signing in, the
+    /// session goes on (or the project is opened again).
+    SignedOut,
+    /// The server no longer opens the project (removed, or no longer allowed).
+    Refused,
+}
+
 /// A save request: what it sent, so that its answer confirms only that.
 #[derive(Clone, Debug, Default)]
 pub struct Sent {
@@ -38,14 +57,16 @@ pub enum Reply {
     List(Result<Vec<ProjectSummary>, String>),
     /// Name on the server and the opened project.
     Opened(String, Result<Box<Opened>, String>),
-    Saved(Box<Sent>, Result<Box<Snapshot>, String>),
-    Snapshot(String, Result<Box<Snapshot>, String>),
-    Status(String, Result<Status, String>),
+    /// The open project opened again (for the ended session) in a new session.
+    Reopened(String, Result<Box<Opened>, Failed>),
+    Saved(Box<Sent>, Result<Box<Snapshot>, Failed>),
+    Snapshot(String, Result<Box<Snapshot>, Failed>),
+    Status(String, Result<Status, Failed>),
     /// Requested targets and the answer.
-    Locked(String, Vec<Target>, Result<Status, String>),
+    Locked(String, Vec<Target>, Result<Status, Failed>),
     Login(Result<LoginResponse, String>),
     /// Grants on the open project (loaded or saved).
-    Access(String, Result<ProjectAccess, String>),
+    Access(String, Result<ProjectAccess, Failed>),
     Closed,
 }
 
@@ -53,7 +74,18 @@ impl Reply {
     fn session(&self) -> Option<&str> {
         match self {
             Reply::Saved(sent, _) => Some(&sent.session),
-            Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) => Some(s),
+            Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) | Reply::Reopened(s, _) => Some(s),
+            Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Closed => None,
+        }
+    }
+
+    /// Answer of a request of the open session: Ok, or why it failed.
+    fn outcome(&self) -> Option<Result<(), &Failed>> {
+        match self {
+            Reply::Reopened(_, r) => Some(r.as_ref().map(|_| ())),
+            Reply::Saved(_, r) | Reply::Snapshot(_, r) => Some(r.as_ref().map(|_| ())),
+            Reply::Status(_, r) | Reply::Locked(_, _, r) => Some(r.as_ref().map(|_| ())),
+            Reply::Access(_, r) => Some(r.as_ref().map(|_| ())),
             Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Closed => None,
         }
     }
@@ -81,11 +113,17 @@ pub struct Remote {
     pub new_name: String,
     pub status: String,
     pub window: bool,
-    /// The open shared project's server stopped answering (the last status failed).
-    pub lost: bool,
+    /// State of the connection of the open shared project.
+    pub link: Link,
+    /// Error of the last save, until a save succeeds (the changes are not on the server).
+    pub save_error: Option<String>,
     pending: usize,
     /// A status request is under way.
     polling: bool,
+    /// The project is being opened again (`Link::Ended`).
+    reopening: bool,
+    /// Send the next status or reopen request now, not after the heartbeat interval.
+    due: bool,
     /// A newer project is being loaded.
     fetching: bool,
     last_status: f64,
@@ -132,9 +170,12 @@ impl Default for Remote {
             new_name: String::new(),
             status: String::new(),
             window: false,
-            lost: false,
+            link: Link::Online,
+            save_error: None,
             pending: 0,
             polling: false,
+            reopening: false,
+            due: false,
             fetching: false,
             last_status: 0.0,
             checked_rev: 0,
@@ -293,6 +334,34 @@ impl Remote {
         Taken { lost: !lost.is_empty(), kept: kept.iter().map(|t| Remote::describe(&before, *t)).collect() }
     }
 
+    /// Takes the new session of the open project after the old one ended on the server
+    /// (`Shared::reopen`): local changes stay unless another user changed the same
+    /// target meanwhile; those are kept and replaced by the server's version. The local
+    /// changes request their locks again.
+    pub fn take_reopened(&mut self, session: &mut Session, opened: Opened, time: String) -> Taken {
+        let Some(old) = self.shared.take() else { return Taken::default() };
+        let clean = !session.dirty();
+        self.rights = opened.rights.clone();
+        self.access = None;
+        let (shared, apply) = old.reopen(opened, &session.prj);
+        let before = session.prj.clone();
+        session.history.rebase(&mut session.prj, apply);
+        self.shared = Some(shared);
+        let kept = self.keep(&old.base, &before, &session.prj, KeptReason::Changed, time);
+        self.unconfirmed = None;
+        // The new session has the current project: nothing to load, no save queued
+        // for the ended one.
+        self.queued = None;
+        self.refetch = None;
+        // Changes without a lock request it (`App::check_locks`).
+        self.checked_rev = 0;
+        if clean && kept.is_empty() {
+            session.mark_saved();
+        }
+        session.clamp_page();
+        Taken { lost: !kept.is_empty(), kept: kept.iter().map(|t| Remote::describe(&before, *t)).collect() }
+    }
+
     fn store_kept(&self) {
         if let Some(store) = self.kept_store.as_ref().filter(|_| self.kept_loaded) {
             store.store(KEPT_KEY, serde_json::to_vec(&self.kept).unwrap_or_default());
@@ -354,7 +423,7 @@ impl Remote {
         let Some(sh) = &self.shared else { return };
         let req = self.endpoint().project_access(&sh.name);
         let s = self.session_id();
-        self.send(req, tr("Loading the project access…").into(), move |r| Reply::Access(s, decode(r)));
+        self.send(req, tr("Loading the project access…").into(), move |r| Reply::Access(s, decode_failure(r)));
     }
 
     /// Replaces the grants on the open project.
@@ -362,7 +431,7 @@ impl Remote {
         let Some(sh) = &self.shared else { return };
         let req = self.endpoint().save_project_access(&sh.name, grants);
         let s = self.session_id();
-        self.send(req, tr("Saving the project access…").into(), move |r| Reply::Access(s, decode(r)));
+        self.send(req, tr("Saving the project access…").into(), move |r| Reply::Access(s, decode_failure(r)));
     }
 
     /// Lists the projects of the server.
@@ -384,12 +453,42 @@ impl Remote {
         self.send(req, tr_fmt!("Uploading {}…", name), move |r| Reply::Opened(n, decode(r).map(Box::new)));
     }
 
+    /// The open shared project's server answers its session.
+    pub fn online(&self) -> bool {
+        self.link == Link::Online
+    }
+
     /// Saves what this session has locked, then releases `release`. While a save is
-    /// under way the next one waits for its answer.
-    pub fn save(&mut self, prj: &Project, release: Vec<Target>) {
-        if let Some(sent) = self.begin_save(prj, release) {
-            self.send_save(sent);
+    /// under way the next one waits for its answer. Returns false without a session
+    /// to save with (`status` tells why).
+    pub fn save(&mut self, prj: &Project, release: Vec<Target>) -> bool {
+        if self.shared.is_none() {
+            return false;
         }
+        self.status = match self.link {
+            Link::Online | Link::Offline => {
+                if let Some(sent) = self.begin_save(prj, release) {
+                    self.send_save(sent);
+                }
+                return true;
+            }
+            Link::Ended => {
+                self.due = true;
+                tr("Not saved: the project session has ended. The project is being opened again with your changes; save again afterwards.").into()
+            }
+            Link::SignedOut => tr("Not saved: sign in to the project server again. Your changes are kept.").into(),
+            Link::Refused => tr("Not saved: the project server no longer opens this project. Keep working on a local copy to save your changes.").into(),
+        };
+        false
+    }
+
+    /// Tries the connection again now: the status of the session, or opening the
+    /// project again when the session ended or was refused.
+    pub fn retry(&mut self) {
+        if self.link == Link::Refused {
+            self.link = Link::Ended;
+        }
+        self.due = true;
     }
 
     /// The save to send now, or none: queued behind the one under way.
@@ -413,13 +512,13 @@ impl Remote {
     fn send_save(&mut self, sent: Sent) {
         let Some(sh) = &self.shared else { return };
         let req = self.endpoint().save(&sh.name, &sh.session, &sent.project, sent.release.clone(), sent.revision);
-        self.send(req, tr("Saving to the project server…").into(), move |r| Reply::Saved(Box::new(sent), decode(r).map(Box::new)));
+        self.send(req, tr("Saving to the project server…").into(), move |r| Reply::Saved(Box::new(sent), decode_failure(r).map(Box::new)));
     }
 
     /// The queued save, once the one before it is answered; none if it has nothing
-    /// left to do.
+    /// left to do or no session to save with.
     fn next_save(&mut self, session: &Session) -> Option<Sent> {
-        if self.saving.is_some() {
+        if self.saving.is_some() || !matches!(self.link, Link::Online | Link::Offline) {
             return None;
         }
         let release = self.queued.take()?;
@@ -447,7 +546,7 @@ impl Remote {
         sh.requested.extend(targets.iter().copied());
         let req = endpoint.lock(&sh.name, &sh.session, targets.clone());
         let s = self.session_id();
-        self.send(req, tr("Locking…").into(), move |r| Reply::Locked(s, targets, decode(r)));
+        self.send(req, tr("Locking…").into(), move |r| Reply::Locked(s, targets, decode_failure(r)));
     }
 
     /// Releases locks without saving.
@@ -455,7 +554,7 @@ impl Remote {
         let Some(sh) = &self.shared else { return };
         let req = self.endpoint().release(&sh.name, &sh.session, targets);
         let s = self.session_id();
-        self.send(req, tr("Releasing…").into(), move |r| Reply::Status(s, decode(r)));
+        self.send(req, tr("Releasing…").into(), move |r| Reply::Status(s, decode_failure(r)));
     }
 
     /// A cancelled operation may still have a lock request in flight.
@@ -489,7 +588,10 @@ impl Remote {
     /// under way is answered first: the session ends after it.
     pub fn close(&mut self) {
         let Some(sh) = self.shared.take() else { return };
-        self.lost = false;
+        self.link = Link::Online;
+        self.save_error = None;
+        self.reopening = false;
+        self.due = false;
         self.queued = None;
         self.refetch = None;
         let req = self.endpoint().close(&sh.name, &sh.session);
@@ -528,6 +630,7 @@ impl Remote {
             match &reply {
                 Reply::Status(..) => self.polling = false,
                 Reply::Snapshot(..) => self.fetching = false,
+                Reply::Reopened(..) => self.reopening = false,
                 Reply::Saved(sent, result) => {
                     if self.saving.as_ref() == Some(&sent.session) {
                         self.saving = None;
@@ -550,6 +653,7 @@ impl Remote {
                 Reply::List(Ok(list)) if list.len() == 1 => tr("1 project on the server").to_string(),
                 Reply::List(Ok(list)) => tr_fmt!("{} projects on the server", list.len()),
                 Reply::Opened(name, Ok(_)) => tr_fmt!("Opened {} from the project server", name),
+                Reply::Reopened(_, Ok(_)) => tr("Opened the project again on the project server: a new session").into(),
                 Reply::Saved(_, Ok(s)) if !s.ignored.is_empty() => tr_fmt!("Partly saved to the project server (revision {})", s.revision),
                 Reply::Saved(_, Ok(s)) => tr_fmt!("Saved to the project server (revision {})", s.revision),
                 Reply::Login(Ok(r)) => match r.user.role {
@@ -560,20 +664,23 @@ impl Remote {
                 Reply::Access(_, Ok(a)) => tr_fmt!("{} grants on the project", a.grants.len()),
                 // The "Locking…" of the request is over.
                 Reply::Locked(_, _, Ok(_)) => String::new(),
-                Reply::Access(_, Err(e)) => tr_fmt!("Project server: {}", e),
-                Reply::List(Err(e))
-                | Reply::Opened(_, Err(e))
+                Reply::List(Err(e)) | Reply::Opened(_, Err(e)) => tr_fmt!("Project server: {}", e),
+                Reply::Access(_, Err(e))
+                | Reply::Reopened(_, Err(e))
                 | Reply::Saved(_, Err(e))
                 | Reply::Snapshot(_, Err(e))
                 | Reply::Status(_, Err(e))
                 | Reply::Locked(_, _, Err(e)) => tr_fmt!("Project server: {}", e),
                 _ => std::mem::take(&mut self.status),
             };
-            match &reply {
-                Reply::Status(_, Err(_)) => self.lost = true,
-                Reply::Status(_, Ok(_)) | Reply::Saved(_, Ok(_)) | Reply::Snapshot(_, Ok(_)) | Reply::Locked(_, _, Ok(_)) | Reply::Opened(_, Ok(_)) => self.lost = false,
-                _ => {}
+            if let Reply::Saved(_, r) = &reply {
+                self.save_error = r.as_ref().err().map(|e| e.error.clone());
             }
+            if let Reply::Opened(_, Ok(_)) = &reply {
+                self.link = Link::Online;
+                self.save_error = None;
+            }
+            self.follow(&reply);
             if let Reply::List(Ok(list)) = &reply {
                 self.projects = list.clone();
             }
@@ -582,6 +689,11 @@ impl Remote {
                 self.user = r.user.name.clone();
                 self.role = r.user.role;
                 self.list();
+                // Signed in again: the session goes on, or the project is opened again.
+                if self.shared.is_some() && self.link == Link::SignedOut {
+                    self.link = Link::Offline;
+                    self.due = true;
+                }
             }
             if let Reply::Opened(_, Ok(o)) = &reply {
                 self.rights = o.rights.clone();
@@ -594,22 +706,73 @@ impl Remote {
         }
         if self.shared.is_some() {
             let now = ctx.input(|i| i.time);
-            if !self.polling && now - self.last_status >= openecraft_core::collab::HEARTBEAT_SECS {
-                self.heartbeat(now);
+            let due = self.due || now - self.last_status >= openecraft_core::collab::HEARTBEAT_SECS;
+            match self.link {
+                Link::Ended if due && !self.reopening => self.reopen(now),
+                Link::Online | Link::Offline if due && !self.polling => self.heartbeat(now),
+                Link::SignedOut if self.due && !self.polling => self.heartbeat(now),
+                _ => {}
             }
             ctx.request_repaint_after(std::time::Duration::from_secs_f64(openecraft_core::collab::HEARTBEAT_SECS));
         }
         out
     }
 
+    /// The state of the connection after an answer of the open session. An answer
+    /// shows the server is back; the error of the connection is no longer shown then,
+    /// unless a save failed (its changes are not on the server).
+    fn follow(&mut self, reply: &Reply) {
+        let Some(outcome) = reply.outcome() else { return };
+        let status = matches!(reply, Reply::Status(..));
+        match outcome {
+            Ok(()) if self.link != Link::Online => {
+                self.link = Link::Online;
+                // Changes made meanwhile request their locks.
+                self.checked_rev = 0;
+                if matches!(reply, Reply::Status(..) | Reply::Locked(..) | Reply::Snapshot(..)) {
+                    self.status = match &self.save_error {
+                        Some(_) => tr("Connection to the project server restored. The last save failed: save again.").into(),
+                        None => tr("Connection to the project server restored").into(),
+                    };
+                }
+            }
+            Ok(()) => {}
+            Err(e) => match e.why {
+                Failure::Unreachable if self.link == Link::Online => self.link = Link::Offline,
+                Failure::Unreachable => {}
+                Failure::SessionEnded => {
+                    if self.link != Link::Ended {
+                        self.due = true;
+                    }
+                    self.link = Link::Ended;
+                }
+                Failure::SignedOut => self.link = Link::SignedOut,
+                Failure::Refused if status || matches!(reply, Reply::Reopened(..)) => self.link = Link::Refused,
+                Failure::Refused => {}
+            },
+        }
+    }
+
+    /// Opens the open project again, its session ended on the server.
+    fn reopen(&mut self, now: f64) {
+        let Some(sh) = &self.shared else { return };
+        self.reopening = true;
+        self.due = false;
+        self.last_status = now;
+        let req = self.endpoint().open(&sh.name, &sh.session.user);
+        let s = self.session_id();
+        self.send(req, tr("The project session has ended: opening the project again…").into(), move |r| Reply::Reopened(s, decode_failure(r).map(Box::new)));
+    }
+
     fn heartbeat(&mut self, now: f64) {
         let Some(sh) = &self.shared else { return };
         self.polling = true;
+        self.due = false;
         self.last_status = now;
         let req = self.endpoint().status(&sh.name, &sh.session);
         let s = self.session_id();
         let status = std::mem::take(&mut self.status);
-        self.send(req, status, move |r| Reply::Status(s, decode(r)));
+        self.send(req, status, move |r| Reply::Status(s, decode_failure(r)));
     }
 
     /// Answer to a status or lock request: loads the newer project if there is one.

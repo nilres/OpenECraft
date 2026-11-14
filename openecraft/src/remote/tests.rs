@@ -1,5 +1,20 @@
 use super::*;
 use openecraft_core::collab::{Opened, Session};
+
+fn failed(why: Failure, error: &str) -> Failed {
+    Failed { why, error: error.into() }
+}
+
+fn offline() -> Failed {
+    failed(Failure::Unreachable, "connection failed: the server refuses the connection")
+}
+
+/// Takes `replies` as answers of requests sent before.
+fn answer(r: &mut Remote, ctx: &egui::Context, replies: Vec<Reply>) -> Vec<Reply> {
+    r.pending += replies.len();
+    r.inbox.lock().unwrap().extend(replies);
+    r.poll(ctx)
+}
 use openecraft_core::model::{Page, PageKind};
 
 fn opened() -> Remote {
@@ -30,7 +45,7 @@ fn errors_are_shown() {
     let mut r = opened();
     let ctx = egui::Context::default();
     r.pending = 1;
-    r.inbox.lock().unwrap().push(Reply::Locked("s1".into(), vec![Target::Project], Err("project data is locked by ben".into())));
+    r.inbox.lock().unwrap().push(Reply::Locked("s1".into(), vec![Target::Project], Err(failed(Failure::Refused, "project data is locked by ben"))));
     r.poll(&ctx);
     assert!(r.status.contains("locked by ben"), "{}", r.status);
 }
@@ -81,13 +96,16 @@ fn a_failed_status_marks_the_connection_lost() {
     r.url = "http://srv:8091".into();
     let ctx = egui::Context::default();
     r.pending = 1;
-    r.inbox.lock().unwrap().push(Reply::Status("s1".into(), Err("connection refused".into())));
+    r.inbox.lock().unwrap().push(Reply::Status("s1".into(), Err(offline())));
     r.poll(&ctx);
-    assert!(r.lost);
+    assert_eq!(r.link, Link::Offline);
+    assert!(r.status.contains("refuses the connection"));
     r.pending = 1;
     r.inbox.lock().unwrap().push(Reply::Status("s1".into(), Ok(Status::default())));
     r.poll(&ctx);
-    assert!(!r.lost);
+    assert!(r.online());
+    assert!(!r.status.contains("refuses the connection"), "the error of the connection is no longer shown: {}", r.status);
+    assert_eq!(r.checked_rev, 0, "changes made meanwhile request their locks");
     assert_eq!(r.project(), Some(crate::startup::ServerProject { url: "http://srv:8091".into(), name: "plant".into() }));
 }
 
@@ -374,9 +392,10 @@ fn a_strict_save_or_transport_error_changes_nothing() {
     assert_eq!(server.revision, before.0);
     let ctx = egui::Context::default();
     ben.pending = 1;
-    ben.inbox.lock().unwrap().push(Reply::Saved(sent("s2"), Err("connection refused".into())));
+    ben.inbox.lock().unwrap().push(Reply::Saved(sent("s2"), Err(offline())));
     assert_eq!(ben.poll(&ctx).len(), 1);
-    assert!(ben.status.contains("connection refused"));
+    assert!(ben.status.contains("refuses the connection"));
+    assert_eq!(ben.link, Link::Offline, "a failed save alone shows the lost connection");
     assert_eq!(b.prj, before.1);
     assert!(b.dirty() && ben.kept.is_empty());
 }
@@ -631,7 +650,7 @@ fn a_failed_save_sends_and_releases_nothing_more() {
     let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
     edit(&mut b, 1, "second");
     assert!(ben.begin_save(&b.prj, vec![Target::Page(2)]).is_none());
-    let (_, next) = deliver(&mut ben, &mut b, Reply::Saved(Box::new(sent), Err("connection refused".into())));
+    let (_, next) = deliver(&mut ben, &mut b, Reply::Saved(Box::new(sent), Err(offline())));
     assert!(next.is_none() && ben.queued.is_none() && ben.saving.is_none());
     assert!(b.dirty());
     assert!(ben.shared.as_ref().unwrap().owns(Target::Page(2)) && !server.locks.is_empty());
@@ -703,4 +722,214 @@ fn a_newer_project_announced_while_saving_is_loaded_after_the_save() {
     ben.saving = None;
     ben.flush(&b);
     assert!(ben.fetching && ben.refetch.is_none());
+}
+
+impl Server {
+    /// The server restarted (or the sessions expired): no session and no lock is left.
+    fn restart(&mut self) {
+        self.locks.clear();
+    }
+
+    /// Opens the project again for `r` in a new session with a new id range.
+    fn reopen(&mut self, r: &Remote, rights: Vec<ProjectRight>) -> Opened {
+        self.next_session += 1;
+        let user = r.shared.as_ref().unwrap().session.user.clone();
+        Opened {
+            session: Session { user, session: format!("s{}", self.next_session) },
+            first_id: self.next_session * openecraft_core::collab::ID_BLOCK,
+            snapshot: self.snapshot(),
+            rights,
+        }
+    }
+}
+
+#[test]
+fn a_failed_save_stays_shown_after_the_connection_is_back() {
+    let mut r = opened();
+    let ctx = egui::Context::default();
+    answer(&mut r, &ctx, vec![Reply::Saved(sent("s1"), Err(offline()))]);
+    assert_eq!(r.link, Link::Offline);
+    assert!(r.save_error.is_some());
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Ok(Status::default()))]);
+    assert!(r.online());
+    assert!(r.save_error.is_some(), "the changes are still not on the server");
+    assert!(r.status.contains("save again"), "{}", r.status);
+    answer(&mut r, &ctx, vec![Reply::Saved(sent("s1"), Ok(Box::default()))]);
+    assert!(r.save_error.is_none());
+}
+
+#[test]
+fn an_outage_keeps_the_session_and_goes_on_with_it() {
+    let mut r = opened();
+    let ctx = egui::Context::default();
+    // Status, lock and save requests fail without answer: the same session goes on.
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Err(offline())), Reply::Locked("s1".into(), vec![Target::Page(1)], Err(offline()))]);
+    assert_eq!(r.link, Link::Offline);
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Err(offline()))]);
+    assert_eq!(r.link, Link::Offline, "repeated failures change nothing");
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Ok(Status::default()))]);
+    assert!(r.online() && !r.reopening);
+    assert_eq!(r.session_id(), "s1");
+}
+
+#[test]
+fn an_ended_session_is_opened_again_but_a_lost_sign_in_waits() {
+    let mut r = opened();
+    r.url = "http://127.0.0.1:9".into();
+    let ctx = egui::Context::default();
+    let ended = || failed(Failure::SessionEnded, "the session has expired, open the project again");
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Err(ended()))]);
+    assert_eq!(r.link, Link::Ended);
+    assert!(r.reopening, "the project is opened again at once");
+    // Without answer the project is opened again with the next heartbeat.
+    answer(&mut r, &ctx, vec![Reply::Reopened("s1".into(), Err(offline()))]);
+    assert_eq!(r.link, Link::Ended);
+    assert!(!r.reopening);
+    assert!(!r.save(&Project::default(), Vec::new()), "nothing is saved with the ended session");
+    assert!(r.due);
+
+    // 401: the sign-in is gone. Nothing is sent until the user signs in again.
+    let mut r = opened();
+    r.url = "http://127.0.0.1:9".into();
+    answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Err(failed(Failure::SignedOut, "missing or wrong access token")))]);
+    assert_eq!(r.link, Link::SignedOut);
+    assert!(!r.polling && !r.reopening);
+    assert!(!r.save(&Project::default(), Vec::new()));
+    let login = LoginResponse { token: "new".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() };
+    answer(&mut r, &ctx, vec![Reply::Login(Ok(login))]);
+    assert_eq!(r.token, "new");
+    assert!(r.polling, "the session is checked with the new sign-in");
+    assert_eq!(r.link, Link::Offline);
+}
+
+#[test]
+fn a_project_the_server_no_longer_opens_offers_a_retry() {
+    let mut r = opened();
+    r.url = "http://127.0.0.1:9".into();
+    let ctx = egui::Context::default();
+    r.link = Link::Ended;
+    r.reopening = true;
+    answer(&mut r, &ctx, vec![Reply::Reopened("s1".into(), Err(failed(Failure::Refused, "project 'plant' not found")))]);
+    assert_eq!(r.link, Link::Refused);
+    assert!(!r.reopening && !r.polling, "nothing is tried again by itself");
+    r.retry();
+    r.poll(&ctx);
+    assert_eq!(r.link, Link::Ended);
+    assert!(r.reopening);
+}
+
+/// Ben edits pages 1 and 2 while the server restarts; the session is gone.
+fn restarted() -> (Server, Remote, crate::session::Session) {
+    let mut server = Server::new();
+    let (mut ben, mut b) = server.open("ben");
+    edit(&mut b, 0, "Ben 1");
+    edit(&mut b, 1, "Ben 2");
+    let status = server.lock(&ben, &[Target::Page(1), Target::Page(2)]).unwrap();
+    ben.take_status(status, &[Target::Page(1), Target::Page(2)]);
+    server.restart();
+    ben.link = Link::Ended;
+    (server, ben, b)
+}
+
+#[test]
+fn reopening_keeps_unsaved_edits_with_a_new_session_and_id_range() {
+    let (mut server, mut ben, mut b) = restarted();
+    let old_end = ben.shared.as_ref().unwrap().id_end;
+    let mine = b.prj.new_id();
+    assert!(mine < old_end);
+    let opened = server.reopen(&ben, Vec::new());
+    let taken = ben.take_reopened(&mut b, opened, "now".into());
+    assert_eq!(taken, Taken::default());
+    let sh = ben.shared.as_ref().unwrap();
+    assert_eq!(sh.session.session, "s2");
+    assert_eq!(b.prj.pages[0].description, "Ben 1");
+    assert_eq!(b.prj.pages[1].description, "Ben 2");
+    assert!(b.dirty(), "the edits are not saved yet");
+    assert_eq!(ben.checked_rev, 0);
+    assert_eq!(sh.unlocked_changes(&b.prj), vec![Target::Page(1), Target::Page(2)], "the edits lock again");
+    let id = b.prj.new_id();
+    assert!(id >= 2 * openecraft_core::collab::ID_BLOCK && id < sh.id_end, "new objects get ids of the new range");
+    // Undo goes back without leaving the new range or the server's project.
+    b.undo();
+    assert_eq!(b.prj.pages[1].description, "Motors");
+    assert!(b.prj.next_id >= 2 * openecraft_core::collab::ID_BLOCK);
+    b.redo();
+
+    // Locked again, the edits are saved.
+    let targets = sh.unlocked_changes(&b.prj);
+    let status = server.lock(&ben, &targets).unwrap();
+    ben.take_status(status, &targets);
+    let taken = save(&mut server, &mut ben, &mut b, &[]);
+    assert!(taken.kept.is_empty());
+    assert_eq!(server.project().pages[1].description, "Ben 2");
+    assert!(!b.dirty());
+}
+
+#[test]
+fn reopening_never_puts_stale_edits_over_foreign_work() {
+    let (mut server, mut ben, mut b) = restarted();
+    // Anna changed page 1 while Ben was away.
+    let (mut anna, mut a) = server.open("anna");
+    edit(&mut a, 0, "Anna");
+    save(&mut server, &mut anna, &mut a, &[Target::Page(1)]);
+    let opened = server.reopen(&ben, Vec::new());
+    let taken = ben.take_reopened(&mut b, opened, "now".into());
+    assert!(taken.lost);
+    assert_eq!(taken.kept.len(), 1, "{taken:?}");
+    assert_eq!(b.prj.pages[0].description, "Anna", "the foreign change is not overwritten");
+    assert_eq!(b.prj.pages[1].description, "Ben 2");
+    let kept = &ben.kept[ben.kept_here()[0]];
+    assert_eq!((kept.reason, kept.targets.clone()), (KeptReason::Changed, vec![Target::Page(1)]));
+    assert_eq!(kept.project.pages[0].description, "Ben 1");
+    // Undo keeps the foreign change.
+    b.undo();
+    assert_eq!(b.prj.pages[0].description, "Anna");
+    assert!(b.dirty());
+}
+
+#[test]
+fn reopening_keeps_a_copy_of_edits_of_a_removed_page() {
+    let (mut server, mut ben, mut b) = restarted();
+    let (mut anna, mut a) = server.open("anna");
+    a.prj.pages.remove(1);
+    assert!(a.commit(true));
+    save(&mut server, &mut anna, &mut a, &[Target::Project]);
+    assert_eq!(server.project().pages.len(), 1);
+    let opened = server.reopen(&ben, Vec::new());
+    let taken = ben.take_reopened(&mut b, opened, "now".into());
+    assert_eq!(b.prj.pages.len(), 1);
+    assert_eq!(b.prj.pages[0].description, "Ben 1");
+    assert!(taken.lost);
+    let kept = &ben.kept[ben.kept_here()[0]];
+    assert_eq!(kept.targets, vec![Target::Page(2)]);
+    assert_eq!(kept.project.pages[1].description, "Ben 2");
+}
+
+#[test]
+fn reopening_without_edits_is_clean_and_takes_the_rights() {
+    let mut server = Server::new();
+    let (mut ben, mut b) = server.open("ben");
+    server.restart();
+    let (mut anna, mut a) = server.open("anna");
+    edit(&mut a, 0, "Anna");
+    save(&mut server, &mut anna, &mut a, &[Target::Page(1)]);
+    let opened = server.reopen(&ben, vec![ProjectRight::View]);
+    let taken = ben.take_reopened(&mut b, opened, "now".into());
+    assert_eq!(taken, Taken::default());
+    assert_eq!(b.prj.pages[0].description, "Anna");
+    assert!(!b.dirty());
+    assert!(ben.viewer(), "a read-only user stays read-only");
+    assert!(ben.kept.is_empty());
+}
+
+#[test]
+fn answers_of_the_ended_session_are_dropped_after_reopening() {
+    let (mut server, mut ben, mut b) = restarted();
+    let opened = server.reopen(&ben, Vec::new());
+    ben.take_reopened(&mut b, opened, "now".into());
+    let ctx = egui::Context::default();
+    ben.link = Link::Online;
+    let replies = answer(&mut ben, &ctx, vec![Reply::Saved(sent("s1"), Err(failed(Failure::SessionEnded, "expired")))]);
+    assert!(replies.is_empty());
+    assert!(ben.online() && ben.save_error.is_none());
 }

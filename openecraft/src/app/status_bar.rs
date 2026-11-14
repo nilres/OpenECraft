@@ -4,6 +4,7 @@
 
 use super::*;
 use crate::commands::Cmd;
+use crate::remote::Link;
 
 impl App {
     /// The box of a result the user waits for ([`App::notify_popup`]) at the bottom
@@ -215,15 +216,26 @@ impl App {
         let origin = self.origin();
         let c = crate::style::colors(self.dark);
         let (color, tip) = match origin {
-            Origin::Server { connected: false, .. } => (c.error, tr("The project server does not answer: changes are not saved on it until the connection is back").to_string()),
+            Origin::Server { link: Link::Offline, .. } => (c.error, tr("The project server does not answer: changes are not saved on it until the connection is back").to_string()),
+            Origin::Server { link: Link::Ended, .. } => (c.warning, tr("The project session has ended (it expired or the server restarted). The project is opened again with your sign-in; your changes are kept.").to_string()),
+            Origin::Server { link: Link::SignedOut, .. } => (c.error, tr("Your sign-in to the project server is no longer valid. Sign in again in the Project server pane; your changes are kept.").to_string()),
+            Origin::Server { link: Link::Refused, .. } => (c.error, tr("The project server does not open this project again. Try again, or keep working on a local copy.").to_string()),
             Origin::Server { name, .. } => (ui.visuals().text_color(), tr_fmt!("{} (project server, revision {})", name, self.remote.shared.as_ref().map_or(0, |s| s.revision))),
             Origin::Recovery(_) => (c.warning, tr("Not the shared project: changes are saved locally until it is opened on the project server again").to_string()),
             Origin::File(path) => (ui.visuals().text_color(), path.to_string()),
             Origin::New => (ui.visuals().weak_text_color(), tr("Save asks for a file").to_string()),
         };
+        // Whether the changes are on the server, apart from the connection.
+        let tip = match (origin, &self.remote.save_error) {
+            (Origin::Server { .. }, Some(_)) => format!("{tip}\n{}", tr("The last save failed: the changes are not saved on the project server")),
+            (Origin::Server { .. }, None) if self.session.dirty() => format!("{tip}\n{}", tr("Changes not saved on the project server yet")),
+            (Origin::Server { .. }, None) => format!("{tip}\n{}", tr("All changes are saved on the project server")),
+            _ => tip,
+        };
         let icon = match origin {
-            Origin::Server { connected: false, .. } => Some(Icon::Error),
-            Origin::Server { .. } => Some(Icon::Server),
+            Origin::Server { link: Link::Online, .. } => Some(Icon::Server),
+            Origin::Server { link: Link::Ended, .. } => Some(Icon::Warning),
+            Origin::Server { .. } => Some(Icon::Error),
             Origin::Recovery(_) => Some(Icon::Warning),
             _ => None,
         };

@@ -5,6 +5,20 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Shared projects recover expired sessions** (#183): the editor tells a server
+  that does not answer, an ended project session (expired, or the server restarted)
+  and an invalid sign-in apart. An ended session opens the project again with the
+  existing sign-in, without asking for the password; your unsaved changes are put
+  onto the server's current project and lock again, while changes another user
+  made meanwhile (or pages they removed) win and your version is kept in
+  *Project server › Kept changes*. After an invalid sign-in, signing in again in the
+  Project server pane continues the project. A failed save now shows the lost
+  connection at once; the pane and the status bar show the connection apart from
+  whether your changes are saved on the server, and a restored connection clears the
+  old connection error but not an unsaved failed save. *Keep working on a local
+  copy* ends the shared session and keeps the project with your changes locally.
+
+
 - **Freestanding PV arrays:** ground-mounted PV arrays on the plot, added in the
   Buildings pane (*Freestanding PV arrays*) or clicked into the site plan: rows of
   tilted tables with modules on top of each other, on rails over table beams on rammed

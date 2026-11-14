@@ -327,3 +327,45 @@ fn older_save_requests_still_parse() {
     let json = serde_json::to_string(&Snapshot::default()).unwrap();
     assert!(!json.contains("ignored"), "{json}");
 }
+
+#[test]
+fn failures_tell_the_state_of_the_connection() {
+    assert_eq!(Failure::of(None), Failure::Unreachable);
+    assert_eq!(Failure::of(Some(503)), Failure::Unreachable);
+    assert_eq!(Failure::of(Some(410)), Failure::SessionEnded);
+    assert_eq!(Failure::of(Some(401)), Failure::SignedOut);
+    for status in [403, 404, 409, 500] {
+        assert_eq!(Failure::of(Some(status)), Failure::Refused);
+    }
+    assert_eq!(Failed { why: Failure::Refused, error: "locked".into() }.to_string(), "locked");
+}
+
+#[test]
+fn reopening_keeps_local_changes_nobody_else_made() {
+    let (sh, mut prj) = shared(Vec::new());
+    let (a, b) = ids(&prj);
+    prj.pages[0].description = "mine A".into();
+    prj.pages[1].description = "mine B".into();
+    prj.info.name = "mine".into();
+    // Meanwhile another user changed page B and the project data.
+    let mut theirs = sh.base.clone();
+    theirs.pages[1].description = "theirs B".into();
+    theirs.info.name = "theirs".into();
+    let opened = Opened {
+        session: Session { user: "me".into(), session: "s2".into() },
+        first_id: 5_000_000,
+        snapshot: Snapshot { revision: 7, project: theirs, locks: vec![lock(Target::Page(a), "s9")], ..Default::default() },
+        rights: Vec::new(),
+    };
+    let (new, apply) = sh.reopen(opened, &prj);
+    assert_eq!((new.name.as_str(), new.session.session.as_str(), new.revision, new.id_end), ("plant", "s2", 7, 5_000_000 + ID_BLOCK));
+    assert!(new.locks.iter().all(|l| l.session != "s2"), "the new session holds no lock yet");
+    let out = apply(&prj);
+    assert_eq!(out.pages[0].description, "mine A", "a change nobody else made stays (it locks again)");
+    assert_eq!(out.pages[1].description, "theirs B");
+    assert_eq!(out.info.name, "theirs");
+    assert_eq!(out.next_id, 5_000_000);
+    assert_eq!(new.unlocked_changes(&out), vec![Target::Page(a)]);
+    let kept = Kept::capture(&sh.base, &prj, &out, KeptReason::Changed).unwrap();
+    assert_eq!(kept.targets, vec![Target::Project, Target::Page(b)]);
+}
