@@ -1,4 +1,5 @@
-# Both OpenECraft servers with the images CI publishes (docs/installation.md):
+# Both OpenECraft servers and the web editor with the images CI publishes
+# (docs/installation.md):
 #
 #   OPENECRAFT_TOKEN=<secret> OPENECRAFT_PROJECT_TOKEN=<secret> docker compose -f installer/docker/compose.yaml up -d
 #
@@ -6,7 +7,9 @@
 # other machines reach them (docs/project-server.md). Set OPENECRAFT_TAG to a version
 # (0.1.0) instead of latest to pin the images. OPENECRAFT_ADMIN_USER and
 # OPENECRAFT_ADMIN_PASSWORD (OPENECRAFT_PROJECT_ADMIN_USER / _PASSWORD for the project
-# server) create an administrator account, or reset its password, at every start.
+# server) create an administrator account, or reset its password, at every start. The
+# web editor is on http://127.0.0.1:8080; in it the servers are http://127.0.0.1:8090 and
+# http://127.0.0.1:8091, as the browser reaches them.
 services:
   parts-server:
     image: ghcr.io/nilres/openecraft-parts-server:${OPENECRAFT_TAG:-latest}
@@ -33,6 +36,12 @@ services:
       OPENECRAFT_PROJECT_ADMIN_PASSWORD: ${OPENECRAFT_PROJECT_ADMIN_PASSWORD:-}
     volumes:
       - projects:/data
+
+  editor-web:
+    image: ghcr.io/nilres/openecraft-web:${OPENECRAFT_TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
 
 volumes:
   parts:
