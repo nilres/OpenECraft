@@ -685,6 +685,7 @@ impl App {
             Some(path) => self.open_at_start(crate::startup::Target::File(path)),
             None => self.apply_startup(),
         }
+        self.remote.restore_sign_in();
         self
     }
 
@@ -717,10 +718,11 @@ impl App {
                     self.io.open_path(&path, Purpose::Project);
                 }
             }
-            crate::startup::Target::Server(project) => {
+            crate::startup::Target::Server(mut project) => {
                 if !project.url.trim().is_empty() {
-                    self.remote.url = project.url.clone();
+                    self.remote.select_server(&project.url);
                 }
+                project.url = self.remote.url.clone();
                 let name = project.name.clone();
                 self.reconnect = Some(crate::startup::Reconnect { project, state: crate::startup::ReconnectState::Connecting });
                 if let Some(Replace::Shared(name)) = self.discard.request(self.session.dirty(), Replace::Shared(name)) {

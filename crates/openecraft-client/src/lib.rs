@@ -8,6 +8,7 @@
 
 mod connection;
 pub mod credentials;
+pub mod project_credentials;
 pub mod eplan;
 mod endpoint;
 mod projects;

@@ -84,6 +84,11 @@ impl ProjectEndpoint {
         self.get(&format!("{API_PREFIX}/info"))
     }
 
+    /// GET /api/v1/session: validates a user sign-in and reads its current identity.
+    pub fn current_account(&self) -> ehttp::Request {
+        self.get(&format!("{API_PREFIX}/session"))
+    }
+
     /// GET /api/v1/projects
     pub fn list(&self) -> ehttp::Request {
         self.get(&format!("{API_PREFIX}/projects"))

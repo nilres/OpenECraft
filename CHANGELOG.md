@@ -70,6 +70,18 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   session only after the save under way. The live project server tests run with
   `scripts/test-project-server-live.ps1` (formerly `test-cable-rename.ps1`).
 
+- **Keep me signed in** (#184): optional project-server sign-in persistence on
+  Windows using Credential Manager, separately for each server and account. The
+  editor validates the saved session and reads current account rights before
+  using it. Sign out preserves open work as a local recovery copy, removes the
+  remembered credential and ends the account session after pending project closes.
+  Change user keeps the remembered sign-in for switching back. Reauthentication
+  retains pending save confirmations; stale windows cannot delete newer tokens.
+  Browser, macOS and
+  Linux sign-ins remain in memory only; remembering does not extend server expiry.
+  Remembered sign-in requires the updated project server; older servers still
+  support manual sign-in.
+
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor

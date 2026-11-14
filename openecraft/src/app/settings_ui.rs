@@ -299,7 +299,8 @@ impl App {
         if list {
             if let Startup::Project(Target::Server(p)) = &self.shell.startup {
                 if self.remote.shared.is_none() {
-                    self.remote.url = p.url.clone();
+                    if self.remote.url != p.url { self.reconnect = None; }
+                    self.remote.select_server(&p.url);
                 }
             }
             self.remote.list();

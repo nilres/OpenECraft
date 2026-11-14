@@ -67,6 +67,10 @@ fn account_requests() {
     assert_eq!((login.method, login.url.as_str()), (ehttp::Method::POST, "http://server:8091/api/v1/login"));
     assert!(String::from_utf8_lossy(&login.body).contains("\"password\":\"pw\""));
     assert_eq!(e.logout().url, "http://server:8091/api/v1/logout");
+    let current = e.current_account();
+    assert_eq!((current.method, current.url.as_str()), (ehttp::Method::GET, "http://server:8091/api/v1/session"));
+    assert_eq!(current.headers.get("Authorization"), Some("Bearer t"));
+    assert!(current.body.is_empty());
     assert_eq!(e.users().url, "http://server:8091/api/v1/users");
     let del = e.delete_user("anna b");
     assert_eq!((del.method, del.url.as_str()), (ehttp::Method::DELETE, "http://server:8091/api/v1/users/anna%20b"));

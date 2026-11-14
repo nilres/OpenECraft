@@ -54,14 +54,16 @@ impl App {
                         r.state = ReconnectState::Failed(e);
                     }
                 }
-                Reply::Login(Ok(_)) => {
-                    // Signed in for the project of the start: open it now.
-                    if let Some(r) = self.reconnect.as_mut().filter(|r| r.state == ReconnectState::SignIn) {
-                        r.state = ReconnectState::Connecting;
-                        let name = r.project.name.clone();
+                Reply::Login(Ok(_)) if self.remote.shared.is_none() => {
+                    let open = self.remote.take_authenticated_open().or_else(|| {
+                        self.reconnect.as_ref().filter(|r| r.state == ReconnectState::SignIn && r.project.url == self.remote.url).map(|r| r.project.name.clone())
+                    });
+                    if let Some(name) = open {
+                        if let Some(r) = &mut self.reconnect { r.state = ReconnectState::Connecting; }
                         self.request_replace(ctx, super::Replace::Shared(name));
                     }
                 }
+                Reply::Login(Ok(_)) => {}
                 Reply::Saved(sent, Ok(snapshot)) => {
                     // Changes the server left out: locked or changed by another user.
                     let ignored: Vec<String> = snapshot.ignored.iter().map(|t| Remote::describe(&self.session.prj, *t)).collect();
@@ -111,10 +113,15 @@ impl App {
                 Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Access(_, Err(_)) => {
                     self.notify_error(ctx, self.remote.status.clone());
                 }
+                Reply::Login(Err(_)) => {
+                    if let Some(r) = self.reconnect.as_mut().filter(|r| r.state == ReconnectState::Connecting) {
+                        r.state = ReconnectState::Failed(self.remote.status.clone());
+                    }
+                }
                 // Failures of the connection are told once, when its state changes.
                 Reply::Snapshot(_, Err(e)) if e.why == Failure::Refused => self.notify_error(ctx, self.remote.status.clone()),
                 Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Reopened(_, Err(_)) => {}
-                Reply::List(_) | Reply::Login(Err(_)) | Reply::Access(_, Ok(_)) | Reply::Closed => {}
+                Reply::List(_) | Reply::SignedOut(_) | Reply::Restored(..) | Reply::Access(_, Ok(_)) | Reply::Closed(_) => {}
             }
         }
         self.remote.release_cancelled(&self.session.prj);
@@ -284,14 +291,18 @@ impl App {
     pub(super) fn remote_pane(&mut self, ui: &mut egui::Ui) {
         ui.scope(|ui| {
             let connected = self.remote.shared.is_some();
-            // Signing in again keeps the open project (same server and user).
-            let sign_in = !connected || self.remote.link == Link::SignedOut;
+            let editable = !connected && !self.remote.sign_in.signed_in;
+            let previous = (self.remote.url.clone(), self.remote.user.clone(), self.remote.token.clone());
+            let mut login = false;
+            let mut remember_changed = false;
+            let sign_in = editable || self.remote.link == Link::SignedOut;
+            let mut retry_token = false;
             egui::Grid::new("remote_login").num_columns(2).show(ui, |ui| {
                 ui.label(tr("Server"));
-                ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.url).desired_width(300.0));
+                ui.add_enabled(editable, egui::TextEdit::singleline(&mut self.remote.url).desired_width(300.0));
                 ui.end_row();
                 ui.label(tr("User name"));
-                ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.user).desired_width(300.0));
+                ui.add_enabled(editable, egui::TextEdit::singleline(&mut self.remote.user).desired_width(300.0));
                 ui.end_row();
                 ui.label(tr("Password"));
                 ui.horizontal(|ui| {
@@ -299,14 +310,18 @@ impl App {
                     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
                     let can = sign_in && !self.remote.password.is_empty() && !self.remote.user.trim().is_empty() && !self.remote.busy();
                     if (ui.add_enabled(can, egui::Button::new(tr("Sign in"))).on_hover_text(tr("With a user account of the server; replaces the access token")).clicked() || enter) && can {
-                        self.remote.sign_in();
+                        login = true;
                     }
                 });
+                ui.end_row();
+                ui.label(tr("Sign-in"));
+                let can_remember = self.remote.can_remember();
+                remember_changed = ui.add_enabled_ui(can_remember && !self.remote.busy(), |ui| ui.checkbox(&mut self.remote.sign_in.remember, tr("Keep me signed in"))).inner.changed();
                 ui.end_row();
                 ui.label(tr("Access token"));
                 let token = ui.add_enabled(sign_in, egui::TextEdit::singleline(&mut self.remote.token).password(true).desired_width(300.0));
                 if connected && token.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
-                    self.remote.retry();
+                    retry_token = true;
                 }
                 ui.end_row();
                 if let Some(role) = self.remote.role {
@@ -321,6 +336,26 @@ impl App {
                     ui.end_row();
                 }
             });
+            if previous.0 != self.remote.url { self.reconnect = None; }
+            self.remote.credentials_edited(&previous.0, &previous.1, &previous.2);
+            if retry_token { self.remote.retry(); }
+            if login { self.remote.sign_in(); }
+            if remember_changed { self.remote.remember_changed(); }
+            ui.weak(self.remote.remember_hint());
+            ui.horizontal_wrapped(|ui| {
+                let can_sign_out = self.remote.sign_in.signed_in || !self.remote.token.is_empty() || self.remote.busy();
+                if ui.add_enabled(can_sign_out, egui::Button::new(tr("Sign out"))).clicked() {
+                    self.sign_out_remote(false);
+                }
+                if ui.add_enabled(can_sign_out || !self.remote.user.is_empty(), egui::Button::new(tr("Change user…"))).clicked() {
+                    self.sign_out_remote(true);
+                }
+                if !self.remote.sign_in.signed_in && self.remote.has_saved_sign_in() && ui.add_enabled(!self.remote.busy(), egui::Button::new(tr("Use saved sign-in"))).clicked() {
+                    self.remote.use_saved_sign_in();
+                }
+            });
+            if !self.remote.sign_in.notice.is_empty() { ui.label(&self.remote.sign_in.notice); }
+            if !self.remote.sign_in.preference_error.is_empty() { ui.colored_label(crate::style::error(), &self.remote.sign_in.preference_error); }
             ui.horizontal(|ui| {
                 if ui.add_enabled_ui(!self.remote.busy(), |ui| icons::text_button(ui, Icon::Rotate, tr("List projects"))).inner.clicked() {
                     self.remote.list();
@@ -337,6 +372,15 @@ impl App {
                 self.projects_section(ui);
             }
         });
+    }
+
+    /// Authentication never discards the open work or its undo history.
+    fn sign_out_remote(&mut self, change_user: bool) {
+        self.session.commit(true);
+        if let Some(project) = self.remote.project() { self.recovery = Some(project); }
+        self.reconnect = None;
+        if change_user { self.remote.change_user(); }
+        else { self.remote.sign_out(); }
     }
 
     fn projects_section(&mut self, ui: &mut egui::Ui) {

@@ -12,13 +12,23 @@ fn offline() -> Failed {
 /// Takes `replies` as answers of requests sent before.
 fn answer(r: &mut Remote, ctx: &egui::Context, replies: Vec<Reply>) -> Vec<Reply> {
     r.pending += replies.len();
-    r.inbox.lock().unwrap().extend(replies);
+    for reply in replies { deliver(r, reply); }
     r.poll(ctx)
 }
 use openecraft_core::model::{Page, PageKind};
 
+fn deliver(remote: &Remote, reply: Reply) {
+    remote.inbox.lock().unwrap().push(Answer {
+        generation: remote.sign_in.generation,
+        counted: true,
+        endpoint: remote.endpoint(),
+        project: remote.shared.as_ref().map(|shared| shared.name.clone()),
+        reply,
+    });
+}
+
 fn opened() -> Remote {
-    let mut r = Remote::default();
+    let mut r = Remote { user: "anna".into(), ..Default::default() };
     let opened = Opened { session: Session { user: "anna".into(), session: "s1".into() }, first_id: 100, snapshot: Snapshot::default(), rights: Vec::new() };
     r.shared = Some(Shared::open("plant", opened).0);
     r
@@ -29,11 +39,11 @@ fn answers_of_old_sessions_are_dropped() {
     let mut r = opened();
     let ctx = egui::Context::default();
     r.pending = 3;
-    r.inbox.lock().unwrap().extend([
+    for reply in [
         Reply::Status("old".into(), Ok(Status::default())),
         Reply::Status("s1".into(), Ok(Status::default())),
         Reply::List(Ok(vec![ProjectSummary { name: "p".into(), ..Default::default() }])),
-    ]);
+    ] { deliver(&r, reply); }
     let replies = r.poll(&ctx);
     assert_eq!(replies.len(), 2);
     assert!(matches!(replies[0], Reply::Status(ref s, _) if s == "s1"));
@@ -45,7 +55,7 @@ fn errors_are_shown() {
     let mut r = opened();
     let ctx = egui::Context::default();
     r.pending = 1;
-    r.inbox.lock().unwrap().push(Reply::Locked("s1".into(), vec![Target::Project], Err(failed(Failure::Refused, "project data is locked by ben"))));
+    deliver(&r, Reply::Locked("s1".into(), vec![Target::Project], Err(failed(Failure::Refused, "project data is locked by ben"))));
     r.poll(&ctx);
     assert!(r.status.contains("locked by ben"), "{}", r.status);
 }
@@ -84,7 +94,7 @@ fn rights_decide_what_may_be_changed() {
     let opened = Opened { rights: vec![ProjectRight::View, ProjectRight::ManageAccess], ..Default::default() };
     let access = ProjectAccess { grants: vec![Grant::default()], roles: vec!["viewer".into()] };
     r.pending = 2;
-    r.inbox.lock().unwrap().extend([Reply::Opened("p".into(), Ok(Box::new(opened))), Reply::Access("s1".into(), Ok(access.clone()))]);
+    for reply in [Reply::Opened("p".into(), Ok(Box::new(opened))), Reply::Access("s1".into(), Ok(access.clone()))] { deliver(&r, reply); }
     r.poll(&ctx);
     assert_eq!(r.rights, [ProjectRight::View, ProjectRight::ManageAccess]);
     assert_eq!(r.access, Some(access));
@@ -96,12 +106,12 @@ fn a_failed_status_marks_the_connection_lost() {
     r.url = "http://srv:8091".into();
     let ctx = egui::Context::default();
     r.pending = 1;
-    r.inbox.lock().unwrap().push(Reply::Status("s1".into(), Err(offline())));
+    deliver(&r, Reply::Status("s1".into(), Err(offline())));
     r.poll(&ctx);
     assert_eq!(r.link, Link::Offline);
     assert!(r.status.contains("refuses the connection"));
     r.pending = 1;
-    r.inbox.lock().unwrap().push(Reply::Status("s1".into(), Ok(Status::default())));
+    deliver(&r, Reply::Status("s1".into(), Ok(Status::default())));
     r.poll(&ctx);
     assert!(r.online());
     assert!(!r.status.contains("refuses the connection"), "the error of the connection is no longer shown: {}", r.status);
@@ -217,7 +227,7 @@ impl Server {
             snapshot: self.snapshot(),
             rights: Vec::new(),
         };
-        let mut r = Remote { url: "http://srv:8091".into(), ..Remote::default() };
+        let mut r = Remote { url: "http://srv:8091".into(), user: user.into(), ..Remote::default() };
         let (shared, prj) = Shared::open("plant", opened);
         r.shared = Some(shared);
         let session = crate::session::Session::new(prj, None);
@@ -275,14 +285,14 @@ fn edit(session: &mut crate::session::Session, page: usize, text: &str) {
 fn save(server: &mut Server, r: &mut Remote, session: &mut crate::session::Session, release: &[Target]) -> Taken {
     let sent = r.begin_save(&session.prj, release.to_vec()).expect("no save under way");
     let snapshot = server.answer(r, &sent);
-    deliver(r, session, Reply::Saved(Box::new(sent), Ok(Box::new(snapshot)))).0
+    apply_reply(r, session, Reply::Saved(Box::new(sent), Ok(Box::new(snapshot)))).0
 }
 
 /// Takes an answer as the editor does (`App::poll_remote`): returns what it did and
 /// the queued save it sends next.
-fn deliver(r: &mut Remote, session: &mut crate::session::Session, reply: Reply) -> (Taken, Option<Sent>) {
+fn apply_reply(r: &mut Remote, session: &mut crate::session::Session, reply: Reply) -> (Taken, Option<Sent>) {
     r.pending += 1;
-    r.inbox.lock().unwrap().push(reply);
+    deliver(r, reply);
     let mut taken = Taken::default();
     for reply in r.poll(&egui::Context::default()) {
         match reply {
@@ -392,7 +402,7 @@ fn a_strict_save_or_transport_error_changes_nothing() {
     assert_eq!(server.revision, before.0);
     let ctx = egui::Context::default();
     ben.pending = 1;
-    ben.inbox.lock().unwrap().push(Reply::Saved(sent("s2"), Err(offline())));
+    deliver(&ben, Reply::Saved(sent("s2"), Err(offline())));
     assert_eq!(ben.poll(&ctx).len(), 1);
     assert!(ben.status.contains("refuses the connection"));
     assert_eq!(ben.link, Link::Offline, "a failed save alone shows the lost connection");
@@ -472,10 +482,10 @@ fn a_partial_save_is_told_apart() {
     let mut r = opened();
     let ctx = egui::Context::default();
     r.pending = 2;
-    r.inbox.lock().unwrap().push(Reply::Saved(sent("s1"), Ok(Box::new(Snapshot { revision: 7, ignored: vec![Target::Page(1)], ..Default::default() }))));
+    deliver(&r, Reply::Saved(sent("s1"), Ok(Box::new(Snapshot { revision: 7, ignored: vec![Target::Page(1)], ..Default::default() }))));
     r.poll(&ctx);
     assert!(r.status.starts_with("Partly saved") && r.status.contains('7'), "{}", r.status);
-    r.inbox.lock().unwrap().push(Reply::Saved(sent("s1"), Ok(Box::new(Snapshot { revision: 8, ..Default::default() }))));
+    deliver(&r, Reply::Saved(sent("s1"), Ok(Box::new(Snapshot { revision: 8, ..Default::default() }))));
     r.poll(&ctx);
     assert!(r.status.starts_with("Saved") && r.status.contains('8'), "{}", r.status);
 }
@@ -533,7 +543,7 @@ fn a_save_answer_does_not_mark_later_edits_saved() {
     edit(&mut b, 1, "B");
     assert!(ben.begin_save(&b.prj, Vec::new()).is_none(), "one save at a time");
     let reply = answered(&mut server, &ben, first);
-    let (taken, next) = deliver(&mut ben, &mut b, reply);
+    let (taken, next) = apply_reply(&mut ben, &mut b, reply);
     assert_eq!(taken, Taken::default());
     assert_eq!(server.project().pages[1].description, "A");
     assert_eq!(b.prj.pages[1].description, "B");
@@ -541,7 +551,7 @@ fn a_save_answer_does_not_mark_later_edits_saved() {
     let next = next.expect("the queued save follows");
     assert_eq!((next.project.pages[1].description.as_str(), next.revision), ("B", 2));
     let reply = answered(&mut server, &ben, next);
-    let (_, after) = deliver(&mut ben, &mut b, reply);
+    let (_, after) = apply_reply(&mut ben, &mut b, reply);
     assert!(after.is_none());
     assert_eq!(server.project().pages[1].description, "B");
     assert!(!b.dirty());
@@ -556,7 +566,7 @@ fn repeated_saves_without_changes_send_one_request() {
     assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
     assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
     let reply = answered(&mut server, &ben, first);
-    let (_, next) = deliver(&mut ben, &mut b, reply);
+    let (_, next) = apply_reply(&mut ben, &mut b, reply);
     assert!(next.is_none() && ben.queued.is_none() && ben.saving.is_none());
     assert_eq!(server.revision, 2);
     assert!(!b.dirty());
@@ -570,7 +580,7 @@ fn undo_while_saving_stays_unsaved() {
     let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
     b.undo();
     let reply = answered(&mut server, &ben, sent);
-    deliver(&mut ben, &mut b, reply);
+    apply_reply(&mut ben, &mut b, reply);
     assert_eq!(server.project().pages[1].description, "A");
     assert_eq!(b.prj.pages[1].description, "Motors");
     assert!(b.dirty(), "the undone state differs from the saved one");
@@ -589,10 +599,10 @@ fn an_older_snapshot_does_not_roll_the_revision_back() {
     let old = server.snapshot();
     edit(&mut a, 0, "two");
     save(&mut server, &mut anna, &mut a, &[]);
-    deliver(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(server.snapshot()))));
+    apply_reply(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(server.snapshot()))));
     assert_eq!((ben.shared.as_ref().unwrap().revision, b.prj.pages[0].description.as_str()), (3, "two"));
     let rev = b.history.rev;
-    let (taken, _) = deliver(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(old))));
+    let (taken, _) = apply_reply(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(old))));
     assert_eq!(taken, Taken::default());
     assert_eq!((ben.shared.as_ref().unwrap().revision, b.prj.pages[0].description.as_str()), (3, "two"));
     assert_eq!(b.history.rev, rev, "nothing was taken");
@@ -610,9 +620,9 @@ fn a_save_answered_after_a_newer_state_is_saved_when_nothing_differs() {
     edit(&mut a, 0, "Anna");
     save(&mut server, &mut anna, &mut a, &[]);
     // A refresh sent before the save is answered first, with both changes.
-    deliver(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(server.snapshot()))));
+    apply_reply(&mut ben, &mut b, Reply::Snapshot("s2".into(), Ok(Box::new(server.snapshot()))));
     assert!(b.dirty());
-    let (taken, next) = deliver(&mut ben, &mut b, reply);
+    let (taken, next) = apply_reply(&mut ben, &mut b, reply);
     assert!(taken.kept.is_empty() && next.is_none());
     assert_eq!(ben.shared.as_ref().unwrap().revision, 3);
     assert_eq!((b.prj.pages[0].description.as_str(), b.prj.pages[1].description.as_str()), ("Anna", "Ben 2"));
@@ -631,7 +641,7 @@ fn save_and_release_keeps_an_edit_made_while_saving() {
     edit(&mut b, 1, "second");
     let reply = answered(&mut server, &ben, sent);
     assert!(server.locks.is_empty(), "released by the save");
-    let (taken, _) = deliver(&mut ben, &mut b, reply);
+    let (taken, _) = apply_reply(&mut ben, &mut b, reply);
     assert!(taken.kept.is_empty(), "{taken:?}");
     assert_eq!(server.project().pages[1].description, "first");
     assert_eq!(b.prj.pages[1].description, "second");
@@ -650,7 +660,7 @@ fn a_failed_save_sends_and_releases_nothing_more() {
     let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
     edit(&mut b, 1, "second");
     assert!(ben.begin_save(&b.prj, vec![Target::Page(2)]).is_none());
-    let (_, next) = deliver(&mut ben, &mut b, Reply::Saved(Box::new(sent), Err(offline())));
+    let (_, next) = apply_reply(&mut ben, &mut b, Reply::Saved(Box::new(sent), Err(offline())));
     assert!(next.is_none() && ben.queued.is_none() && ben.saving.is_none());
     assert!(b.dirty());
     assert!(ben.shared.as_ref().unwrap().owns(Target::Page(2)) && !server.locks.is_empty());
@@ -672,7 +682,7 @@ fn closing_waits_for_the_save_under_way() {
     let opened = Opened { session: Session { user: "ben".into(), session: "s9".into() }, snapshot: server.snapshot(), ..Default::default() };
     ben.shared = Some(Shared::open("plant", opened).0);
     assert!(ben.begin_save(&b.prj, Vec::new()).is_some());
-    let (taken, _) = deliver(&mut ben, &mut b, reply);
+    let (taken, _) = apply_reply(&mut ben, &mut b, reply);
     assert_eq!(taken, Taken::default());
     assert_eq!(ben.saving.as_deref(), Some("s9"));
     assert!(ben.closing.is_empty() && ben.busy(), "the close is sent now");
@@ -690,12 +700,12 @@ fn the_unsaved_changes_question_waits_for_the_queued_save() {
     guard.save();
     assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
     let reply = answered(&mut server, &ben, first);
-    let (_, next) = deliver(&mut ben, &mut b, reply);
+    let (_, next) = apply_reply(&mut ben, &mut b, reply);
     let next = next.expect("B is saved next");
     assert_eq!(guard.after_save(b.dirty(), ben.saving.is_some()), None);
     assert!(guard.saving());
     let reply = answered(&mut server, &ben, next);
-    deliver(&mut ben, &mut b, reply);
+    apply_reply(&mut ben, &mut b, reply);
     assert_eq!(guard.after_save(b.dirty(), ben.saving.is_some()), Some("replace"));
     assert_eq!(server.project().pages[1].description, "B");
 }
@@ -710,7 +720,7 @@ fn a_newer_project_announced_while_saving_is_loaded_after_the_save() {
     ben.take_status(Status { revision: 2, locks: Vec::new() }, &[]);
     assert!(!ben.fetching && ben.refetch == Some(2));
     let reply = answered(&mut server, &ben, sent);
-    deliver(&mut ben, &mut b, reply);
+    apply_reply(&mut ben, &mut b, reply);
     // The answer of the save brought revision 2: nothing more to load.
     ben.flush(&b);
     assert!(!ben.fetching && ben.refetch.is_none());
@@ -722,6 +732,35 @@ fn a_newer_project_announced_while_saving_is_loaded_after_the_save() {
     ben.saving = None;
     ben.flush(&b);
     assert!(ben.fetching && ben.refetch.is_none());
+}
+
+#[test]
+fn an_old_save_answer_closes_its_original_session_after_an_account_switch() {
+    let (mut remote, project) = cancelled();
+    remote.url = "http://127.0.0.1:9/original".into();
+    remote.user = "anna".into();
+    remote.token = "synthetic-old-token".into();
+    let sent = remote.begin_save(&project, Vec::new()).unwrap();
+    let receive = remote.receiver("old save in progress".into());
+    remote.close();
+    assert_eq!(remote.closing.len(), 1);
+    let request = &remote.closing[0].1;
+    assert_eq!(request.url, "http://127.0.0.1:9/original/api/v1/projects/plant/close");
+    assert_eq!(request.headers.get("Authorization"), Some("Bearer synthetic-old-token"));
+    let previous = (remote.url.clone(), remote.user.clone(), remote.token.clone());
+    remote.url = "http://127.0.0.1:9/other".into();
+    remote.user = "ben".into();
+    remote.credentials_edited(&previous.0, &previous.1, &previous.2);
+    remote.token = "synthetic-new-token".into();
+    remote.status = "new account selected".into();
+    receive(Reply::Saved(Box::new(sent), Ok(Box::new(Snapshot { project, revision: 9, ..Default::default() }))));
+    assert!(remote.poll(&egui::Context::default()).is_empty(), "the old save must never reach the app's project replacement logic");
+    assert!(remote.closing.is_empty());
+    assert!(remote.shared.is_none());
+    assert_eq!(remote.token, "synthetic-new-token");
+    assert_eq!(remote.status, "new account selected");
+    assert!(remote.saving.is_none() && remote.queued.is_none() && remote.refetch.is_none());
+    assert_eq!(remote.pending, 0);
 }
 
 impl Server {
@@ -791,8 +830,10 @@ fn an_ended_session_is_opened_again_but_a_lost_sign_in_waits() {
     // 401: the sign-in is gone. Nothing is sent until the user signs in again.
     let mut r = opened();
     r.url = "http://127.0.0.1:9".into();
+    r.sign_in.signed_in = true;
     answer(&mut r, &ctx, vec![Reply::Status("s1".into(), Err(failed(Failure::SignedOut, "missing or wrong access token")))]);
     assert_eq!(r.link, Link::SignedOut);
+    assert!(!r.sign_in.signed_in, "an expired sign-in must make same-account authentication available again");
     assert!(!r.polling && !r.reopening);
     assert!(!r.save(&Project::default(), Vec::new()));
     let login = LoginResponse { token: "new".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() };
@@ -932,4 +973,175 @@ fn answers_of_the_ended_session_are_dropped_after_reopening() {
     let replies = answer(&mut ben, &ctx, vec![Reply::Saved(sent("s1"), Err(failed(Failure::SessionEnded, "expired")))]);
     assert!(replies.is_empty());
     assert!(ben.online() && ben.save_error.is_none());
+}
+
+#[test]
+fn a_stale_reopened_answer_closes_only_its_original_server_project_and_session() {
+    use std::{io::{Read, Write}, net::TcpListener, time::{Duration, Instant}};
+    let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+    listener.set_nonblocking(true).unwrap();
+    let mut remote = opened();
+    remote.url = format!("http://{}/original", listener.local_addr().unwrap());
+    remote.token = "synthetic-old-token".into();
+    let receive = remote.receiver("old reopen".into());
+    let previous = (remote.url.clone(), remote.user.clone(), remote.token.clone());
+    remote.url = "http://127.0.0.1:9/new-server".into();
+    remote.user = "ben".into();
+    remote.credentials_edited(&previous.0, &previous.1, &previous.2);
+    remote.token = "synthetic-new-token".into();
+    remote.status = "new account selected".into();
+    receive(Reply::Reopened("s1".into(), Ok(Box::new(Opened {
+        session: Session { user: "anna".into(), session: "synthetic-reopened-session".into() },
+        ..Default::default()
+    }))));
+    assert!(remote.poll(&egui::Context::default()).is_empty());
+    assert!(remote.shared.is_none());
+    assert_eq!(remote.token, "synthetic-new-token");
+    assert_eq!(remote.status, "new account selected");
+
+    let deadline = Instant::now() + Duration::from_secs(5);
+    let mut stream = loop {
+        match listener.accept() {
+            Ok((stream, _)) => break stream,
+            Err(error) if error.kind() == std::io::ErrorKind::WouldBlock => {
+                assert!(Instant::now() < deadline, "the abandoned session was not closed at its original server");
+                std::thread::sleep(Duration::from_millis(5));
+            }
+            Err(error) => panic!("synthetic cleanup listener failed: {error}"),
+        }
+    };
+    stream.set_nonblocking(false).unwrap();
+    stream.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+    let mut bytes = Vec::new();
+    let header_end = loop {
+        let mut chunk = [0; 1024];
+        let read = stream.read(&mut chunk).unwrap();
+        assert!(read > 0);
+        bytes.extend_from_slice(&chunk[..read]);
+        if let Some(end) = bytes.windows(4).position(|window| window == b"\r\n\r\n") { break end + 4; }
+    };
+    let headers = std::str::from_utf8(&bytes[..header_end]).unwrap().to_owned();
+    let header = |name: &str| headers.lines().filter_map(|line| line.split_once(':')).find(|(key, _)| key.eq_ignore_ascii_case(name)).map(|(_, value)| value.trim());
+    let length: usize = header("Content-Length").unwrap().parse().unwrap();
+    while bytes.len() < header_end + length {
+        let mut chunk = [0; 1024];
+        let read = stream.read(&mut chunk).unwrap();
+        assert!(read > 0);
+        bytes.extend_from_slice(&chunk[..read]);
+    }
+    stream.write_all(b"HTTP/1.1 204 No Content\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").unwrap();
+    assert!(headers.starts_with("POST /original/api/v1/projects/plant/close "));
+    assert_eq!(header("Authorization"), Some("Bearer synthetic-old-token"));
+    let session: Session = serde_json::from_slice(&bytes[header_end..header_end + length]).unwrap();
+    assert_eq!(session.session, "synthetic-reopened-session");
+}
+
+
+#[test]
+fn review193_reauthentication_applies_a_delayed_successful_save_to_the_kept_project() {
+    for (answer_after_login, later_edit) in [(false, false), (true, false), (true, true)] {
+        let mut server = Server::new();
+        let (mut r, mut session) = server.open("anna");
+        r.url = "http://127.0.0.1:9/?review193".into();
+        edit(&mut session, 0, "saved before reauthentication");
+        let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+        let reply = answered(&mut server, &r, sent);
+        let delayed = r.receiver("saving".into());
+        if later_edit { edit(&mut session, 0, "newer unsaved edit"); }
+        r.link = Link::SignedOut;
+        r.password = "synthetic".into();
+        r.sign_in();
+        if answer_after_login {
+            r.accept_login(&LoginResponse { token: "new-fixture".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() }, false);
+        }
+        delayed(reply);
+        for reply in r.poll(&egui::Context::default()) {
+            if let Reply::Saved(sent, Ok(snapshot)) = reply {
+                r.take_snapshot(&mut session, *snapshot, Some(&sent), "now".into());
+            }
+        }
+        assert_eq!(r.shared.as_ref().unwrap().revision, server.revision, "the client's revision must advance with the server's acknowledged save");
+        assert_eq!(session.dirty(), later_edit);
+        if !answer_after_login { assert_eq!(r.link, Link::SignedOut, "a save answer cannot restore authentication"); }
+        if later_edit {
+            assert_eq!(session.prj.pages[0].description, "newer unsaved edit");
+            let taken = save(&mut server, &mut r, &mut session, &[]);
+            assert!(!taken.lost && taken.kept.is_empty(), "the user's earlier save must not conflict with their newer edit");
+            assert_eq!(server.project().pages[0].description, "newer unsaved edit");
+            assert!(!session.dirty());
+            continue;
+        }
+        session.undo();
+        assert_ne!(session.prj.pages[0].description, "saved before reauthentication");
+        session.redo();
+        assert_eq!(session.prj.pages[0].description, "saved before reauthentication");
+    }
+}
+
+
+#[test]
+fn review193_logout_waits_for_an_already_sent_close_response() {
+    use std::{io::{Read, Write}, net::TcpListener, time::{Duration, Instant}};
+    let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+    listener.set_nonblocking(true).unwrap();
+    let mut r = opened();
+    r.url = format!("http://{}", listener.local_addr().unwrap());
+    r.token = "synthetic-fixture".into();
+    r.sign_in.signed_in = true;
+    r.close();
+    let deadline = Instant::now() + Duration::from_secs(5);
+    let mut close = loop {
+        if let Ok((stream, _)) = listener.accept() { break stream; }
+        assert!(Instant::now() < deadline);
+        std::thread::sleep(Duration::from_millis(1));
+    };
+    close.set_nonblocking(false).unwrap();
+    close.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+    let mut bytes = [0; 4096];
+    let count = close.read(&mut bytes).unwrap();
+    assert!(String::from_utf8_lossy(&bytes[..count]).contains("/close"));
+    r.sign_out();
+    assert!(!r.busy());
+    let held_until = Instant::now() + Duration::from_millis(200);
+    while Instant::now() < held_until {
+        assert!(matches!(listener.accept(), Err(e) if e.kind() == std::io::ErrorKind::WouldBlock), "logout arrived before the close was answered");
+        r.poll(&egui::Context::default());
+        std::thread::sleep(Duration::from_millis(2));
+    }
+    close.write_all(b"HTTP/1.1 204 No Content\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").unwrap();
+    drop(close);
+    let mut logout = loop {
+        r.poll(&egui::Context::default());
+        if let Ok((stream, _)) = listener.accept() { break stream; }
+        assert!(Instant::now() < deadline, "logout did not follow the close response");
+        std::thread::sleep(Duration::from_millis(1));
+    };
+    logout.set_nonblocking(false).unwrap();
+    logout.set_read_timeout(Some(Duration::from_secs(5))).unwrap();
+    let count = logout.read(&mut bytes).unwrap();
+    assert!(String::from_utf8_lossy(&bytes[..count]).contains("/logout"));
+    logout.write_all(b"HTTP/1.1 204 No Content\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").unwrap();
+}
+
+
+#[test]
+fn review193_old_save_failure_stays_visible_without_revoking_the_new_login() {
+    let mut server = Server::new();
+    let (mut r, mut session) = server.open("anna");
+    r.url = "http://127.0.0.1:9/?review193-old-failure".into();
+    edit(&mut session, 0, "unsaved fixture");
+    let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+    let delayed = r.receiver("old save".into());
+    r.link = Link::SignedOut;
+    r.password = "fixture".into();
+    r.sign_in();
+    r.accept_login(&LoginResponse { token: "new-fixture".into(), user: openecraft_core::collab::ProjectUser { name: "anna".into(), ..Default::default() }, ..Default::default() }, false);
+    delayed(Reply::Saved(Box::new(sent), Err(failed(Failure::SignedOut, "synthetic old save failure"))));
+    r.poll(&egui::Context::default());
+    assert!(r.sign_in.signed_in);
+    assert_ne!(r.link, Link::SignedOut);
+    assert_eq!(r.token, "new-fixture");
+    assert!(session.dirty());
+    assert!(r.status.contains("synthetic old save failure"));
+    assert_eq!(r.save_error.as_deref(), Some("synthetic old save failure"));
 }
