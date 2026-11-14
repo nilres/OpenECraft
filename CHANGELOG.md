@@ -5,6 +5,19 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Shared projects recover expired sessions** (#183): the editor tells a server
+  that does not answer, an ended project session (expired, or the server restarted)
+  and an invalid sign-in apart. An ended session opens the project again with the
+  existing sign-in, without asking for the password; your unsaved changes are put
+  onto the server's current project and lock again, while changes another user
+  made meanwhile (or pages they removed) win and your version is kept in
+  *Project server › Kept changes*. After an invalid sign-in, signing in again in the
+  Project server pane continues the project. A failed save now shows the lost
+  connection at once; the pane and the status bar show the connection apart from
+  whether your changes are saved on the server, and a restored connection clears the
+  old connection error but not an unsaved failed save. *Keep working on a local
+  copy* ends the shared session and keeps the project with your changes locally.
+
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor

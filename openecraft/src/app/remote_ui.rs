@@ -7,9 +7,9 @@
 use openecraft_ui::icons::{self, Icon};
 use super::App;
 use openecraft_core::history::History;
-use crate::remote::{Remote, Reply};
+use crate::remote::{Link, Remote, Reply};
 use egui::{Color32, RichText};
-use openecraft_core::collab::{restore, valid_name, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_core::collab::{restore, valid_name, Failure, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
 use openecraft_i18n::{tr, tr_fmt};
 use crate::startup::ReconnectState;
 
@@ -25,7 +25,12 @@ enum KeptAction {
 impl App {
     /// Handles the answers of the project server.
     pub(super) fn poll_remote(&mut self, ctx: &egui::Context) {
-        for reply in self.remote.poll(ctx) {
+        let link = self.remote.link;
+        let replies = self.remote.poll(ctx);
+        if self.remote.link != link {
+            self.link_changed(ctx, link);
+        }
+        for reply in replies {
             match reply {
                 Reply::Opened(name, Ok(opened)) => {
                     let (shared, prj) = Shared::open(&name, *opened);
@@ -71,9 +76,27 @@ impl App {
                         );
                     }
                 }
+                Reply::Reopened(_, Ok(opened)) => {
+                    let taken = self.remote.take_reopened(&mut self.session, *opened, openecraft_ui::io::now_text());
+                    if taken.kept.is_empty() {
+                        self.notify_ok(ctx, tr("The project is open on the project server again (a new session). Your changes are kept and lock again as needed."));
+                    } else {
+                        self.notify_warning(
+                            ctx,
+                            tr_fmt!("The project is open on the project server again. Changed by another user meanwhile: {}. Your version is kept in the Project server pane.", taken.kept.join(", ")),
+                        );
+                    }
+                }
                 Reply::Snapshot(_, Ok(snapshot)) => self.take_snapshot(ctx, *snapshot, false),
                 Reply::Status(_, Ok(status)) => self.remote.take_status(status, &[]),
                 Reply::Locked(_, targets, Ok(status)) => self.remote.take_status(status, &targets),
+                // No answer, or the session ended: the change waits for the lock until
+                // the connection is back.
+                Reply::Locked(_, targets, Err(e)) if e.why != Failure::Refused => {
+                    if let Some(sh) = &mut self.remote.shared {
+                        sh.denied(&targets);
+                    }
+                }
                 Reply::Locked(_, targets, Err(_)) => {
                     self.notify(ctx, self.remote.status.clone());
                     if let Some(sh) = &mut self.remote.shared {
@@ -84,13 +107,31 @@ impl App {
                         self.notify_warning(ctx, tr_fmt!("Not changed, the lock was refused: {}. Your version is kept in the Project server pane.", kept.join(", ")));
                     }
                 }
-                Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Access(_, Err(_)) => {
+                Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Access(_, Err(_)) => {
                     self.notify_error(ctx, self.remote.status.clone());
                 }
+                // Failures of the connection are told once, when its state changes.
+                Reply::Snapshot(_, Err(e)) if e.why == Failure::Refused => self.notify_error(ctx, self.remote.status.clone()),
+                Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Reopened(_, Err(_)) => {}
                 Reply::List(_) | Reply::Login(Err(_)) | Reply::Access(_, Ok(_)) | Reply::Closed => {}
             }
         }
         self.remote.release_cancelled(&self.session.prj);
+    }
+
+    /// Tells once what a change of the connection's state means for the open project.
+    fn link_changed(&mut self, ctx: &egui::Context, before: Link) {
+        match self.remote.link {
+            // A reopened project is told with its new session; after signing in again
+            // the session is checked first.
+            Link::Online if before == Link::Ended => {}
+            Link::Offline if before == Link::SignedOut => {}
+            Link::Online => self.notify_ok(ctx, self.remote.status.clone()),
+            Link::Offline => self.notify_error(ctx, tr("Connection lost: the server does not answer. It is tried again every 15 s; your changes stay here.")),
+            Link::Ended => self.notify(ctx, tr("The project session has ended (it expired or the server restarted). The project is opened again with your sign-in; your changes are kept.")),
+            Link::SignedOut => self.notify_error(ctx, tr("Your sign-in to the project server is no longer valid. Sign in again in the Project server pane; your changes are kept.")),
+            Link::Refused => self.notify_error(ctx, tr("The project server does not open this project again. Try again, or keep working on a local copy.")),
+        }
     }
 
     /// The server project of the start could not be opened: try again, sign in, choose
@@ -186,10 +227,17 @@ impl App {
         }
     }
 
-    /// Saves to the project server; `release` locks are released afterwards.
-    pub(super) fn save_remote(&mut self, release: Vec<Target>) {
+    /// Saves to the project server; `release` locks are released afterwards. Returns
+    /// false without a session to save with (`Remote::status` tells why).
+    pub(super) fn save_remote(&mut self, release: Vec<Target>) -> bool {
         self.remote.saving_rev = self.session.history.rev;
-        self.remote.save(&self.session.prj, release);
+        self.remote.save(&self.session.prj, release)
+    }
+
+    /// Ends the shared session; the project stays open as a local recovery copy.
+    fn work_locally(&mut self) {
+        self.recovery = self.remote.project();
+        self.remote.close();
     }
 
     fn my_locks(&self) -> Vec<Target> {
@@ -235,6 +283,8 @@ impl App {
     pub(super) fn remote_pane(&mut self, ui: &mut egui::Ui) {
         ui.scope(|ui| {
             let connected = self.remote.shared.is_some();
+            // Signing in again keeps the open project (same server and user).
+            let sign_in = !connected || self.remote.link == Link::SignedOut;
             egui::Grid::new("remote_login").num_columns(2).show(ui, |ui| {
                 ui.label(tr("Server"));
                 ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.url).desired_width(300.0));
@@ -244,16 +294,19 @@ impl App {
                 ui.end_row();
                 ui.label(tr("Password"));
                 ui.horizontal(|ui| {
-                    let r = ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.password).password(true).desired_width(200.0));
+                    let r = ui.add_enabled(sign_in, egui::TextEdit::singleline(&mut self.remote.password).password(true).desired_width(200.0));
                     let enter = r.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter));
-                    let can = !connected && !self.remote.password.is_empty() && !self.remote.user.trim().is_empty() && !self.remote.busy();
+                    let can = sign_in && !self.remote.password.is_empty() && !self.remote.user.trim().is_empty() && !self.remote.busy();
                     if (ui.add_enabled(can, egui::Button::new(tr("Sign in"))).on_hover_text(tr("With a user account of the server; replaces the access token")).clicked() || enter) && can {
                         self.remote.sign_in();
                     }
                 });
                 ui.end_row();
                 ui.label(tr("Access token"));
-                ui.add_enabled(!connected, egui::TextEdit::singleline(&mut self.remote.token).password(true).desired_width(300.0));
+                let token = ui.add_enabled(sign_in, egui::TextEdit::singleline(&mut self.remote.token).password(true).desired_width(300.0));
+                if connected && token.lost_focus() && ui.input(|i| i.key_pressed(egui::Key::Enter)) {
+                    self.remote.retry();
+                }
                 ui.end_row();
                 if let Some(role) = self.remote.role {
                     ui.label(tr("Role"));
@@ -417,6 +470,8 @@ impl App {
         let mine = self.my_locks();
         let others: Vec<(Target, String)> = sh.locks.iter().filter(|l| l.session != sh.session.session).map(|l| (l.target, l.user.clone())).collect();
         let page_id = self.session.prj.pages.get(self.session.page).map(|p| p.id);
+        self.connection_state(ui);
+        ui.add_space(4.0);
         ui.horizontal_wrapped(|ui| {
             if icons::text_button(ui, Icon::Save, tr("Save")).clicked() {
                 self.save_remote(Vec::new());
@@ -469,8 +524,40 @@ impl App {
         }
         ui.separator();
         if ui.button(tr("Close shared project")).on_hover_text(tr("Releases all locks; the project stays open as a local copy")).clicked() {
-            self.recovery = self.remote.project();
-            self.remote.close();
+            self.work_locally();
+        }
+    }
+
+    /// The state of the connection and, apart from it, whether the local changes are
+    /// saved on the server; ways on when the session cannot go on by itself.
+    fn connection_state(&mut self, ui: &mut egui::Ui) {
+        let c = crate::style::colors(ui.visuals().dark_mode);
+        let (color, text) = match self.remote.link {
+            Link::Online => (c.ok, tr("Connected to the project server").to_string()),
+            Link::Offline => (c.error, tr("Connection lost: the server does not answer. It is tried again every 15 s; your changes stay here.").to_string()),
+            Link::Ended => (c.warning, tr("The project session has ended (it expired or the server restarted). The project is opened again with your sign-in; your changes are kept.").to_string()),
+            Link::SignedOut => (c.error, tr("Your sign-in to the project server is no longer valid. Sign in again in the Project server pane; your changes are kept.").to_string()),
+            Link::Refused => (c.error, tr("The project server does not open this project again. Try again, or keep working on a local copy.").to_string()),
+        };
+        ui.colored_label(color, text);
+        let (color, saved) = match &self.remote.save_error {
+            Some(e) => (c.error, tr_fmt!("The last save failed: {}. Your changes are not saved on the project server.", e)),
+            None if self.session.dirty() => (c.warning, tr("Changes not saved on the project server yet").to_string()),
+            None => (ui.visuals().weak_text_color(), tr("All changes are saved on the project server").to_string()),
+        };
+        ui.colored_label(color, saved);
+        if self.remote.online() {
+            return;
+        }
+        let mut local = false;
+        ui.horizontal_wrapped(|ui| {
+            if self.remote.link != Link::SignedOut && icons::text_button(ui, Icon::Rotate, tr("Try again now")).clicked() {
+                self.remote.retry();
+            }
+            local = ui.button(tr("Keep working on a local copy")).on_hover_text(tr("Ends the shared session; the project with your changes stays open as a local recovery copy, Save saves it to a file")).clicked();
+        });
+        if local {
+            self.work_locally();
         }
     }
 
