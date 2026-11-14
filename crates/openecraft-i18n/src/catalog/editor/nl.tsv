@@ -266,7 +266,8 @@ Change request	Wijzigingsverzoek
 Change requests	Wijzigingsverzoeken
 Change requests (CSV, JSON)	Wijzigingsverzoeken (CSV, JSON)
 Changed against the frozen routes:	Gewijzigd ten opzichte van de bevroren routes:
-Changed by another user in the meantime, your change was replaced: {}	Ondertussen gewijzigd door een andere gebruiker, je wijziging is vervangen: {}
+Changed by another user before you got the lock	Gewijzigd door een andere gebruiker voordat je de vergrendeling kreeg
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Ondertussen gewijzigd door een andere gebruiker: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Gewijzigde cellen van een hier geëxporteerd CSV- of Excel-bestand (rijen op basis van hun sleutel)
 Changed message levels ({})	Gewijzigde meldingsniveaus ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Gewijzigd sinds montage: was op X {} mm, Y {} mm met artikel {}
@@ -389,6 +390,7 @@ Comments ({})	Opmerkingen ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Opmerkingen die een reviewer in een PDF-export van het project heeft gemaakt (Acrobat of een andere PDF-viewer)
 Comments and markup	Opmerkingen en markeringen
 Company library	Bedrijfsbibliotheek
+Compare	Vergelijken
 Compare and baselines	Vergelijken en baselines
 Compare with	Vergelijken met
 Compare with a baseline, a revision or another project file and take differences over	Vergelijken met een baseline, een revisie of een ander projectbestand en verschillen overnemen
@@ -516,6 +518,7 @@ Delete the property and all its values	Eigenschap met alle waarden verwijderen
 Delete this workspace	Deze werkruimte verwijderen
 Delete variant	Variant verwijderen
 Delete zone	Zone verwijderen
+Deletes this copy of your changes for good	Verwijdert deze kopie van je wijzigingen definitief
 Depth / mounted at	Diepte / gemonteerd op
 Depth below the ground	Diepte onder maaiveld
 Depth from / to	Diepte van / tot
@@ -977,6 +980,7 @@ Keep connections	Verbindingen behouden
 Keep sub-pages (3.a, 3.1) with the page before	Subpagina's (3.a, 3.1) bij de vorige pagina houden
 Keep the degree of protection	Beschermingsgraad behouden
 Keep this route when recalculating, as long as it is still possible	Deze route behouden bij het herberekenen, zolang dat nog mogelijk is
+Kept changes	Bewaarde wijzigingen
 Key tips of the ribbon	Toegangstoetsen van het lint
 Key: {}	Sleutel: {}
 Keyboard shortcuts	Sneltoetsen
@@ -1055,6 +1059,7 @@ Lock page	Pagina vergrendelen
 Lock project data	Projectgegevens vergrendelen
 Locked	Vergrendeld
 Locked by other users	Vergrendeld door andere gebruikers
+Locked by {}	Vergrendeld door {}
 Locked by {} on the project server – read only	Vergrendeld door {} op de projectserver – alleen-lezen
 Locked by {} – read only	Vergrendeld door {} – alleen-lezen
 Locking…	Vergrendelen…
@@ -1277,11 +1282,13 @@ None – editing a page or the project data locks it.	Geen – als je een pagina
 Not a page template file: {}	Geen paginasjabloonbestand: {}
 Not a point: type x y or @dx dy	Geen punt: typ x y of @dx dy
 Not a symbol library: {}	Geen symboolbibliotheek: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Niet gewijzigd, de vergrendeling is geweigerd: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Not changed: {}	Niet gewijzigd: {}
+Not changed: {}. Your version is kept in the Project server pane.	Niet gewijzigd: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Not found: {}	Niet gevonden: {}
 Not in the project parts – synchronize in parts management	Niet in de projectartikelen – synchroniseer in het artikelbeheer
 Not on a wire	Niet op een draad
-Not saved, locked or changed by another user: {}	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker: {}
+Not saved, locked or changed by another user	Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Niet overgenomen: de linkerknop alleen selecteert, tekent en verplaatst; houd een combinatietoets ingedrukt of gebruik een andere knop.
 Not the shared project: changes are saved locally until it is opened on the project server again	Niet het gedeelde project: wijzigingen worden lokaal opgeslagen tot het opnieuw op de projectserver wordt geopend
 Nothing exchanged yet.	Nog niets uitgewisseld.
@@ -1435,6 +1442,8 @@ Part of the profile: generic types or parts from the parts store	Artikel van het
 Part selection from the parts database	Artikelselectie uit de artikeldatabase
 Part selection – {}	Artikelselectie – {}
 Part selection…	Artikelkeuze…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Gedeeltelijk opgeslagen (revisie {}). Niet opgeslagen, vergrendeld of gewijzigd door een andere gebruiker: {}. Je versie blijft bewaard in het deelvenster Projectserver.
+Partly saved to the project server (revision {})	Gedeeltelijk opgeslagen op de projectserver (revisie {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikelen kunnen alleen op wijzigbare pagina's worden neergezet; deze is vrijgegeven, vergrendeld of gegenereerd
 Parts management	Artikelbeheer
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artikelen gemarkeerd voor vloermontage (pompen, tanks, compressoren): kies er een en klik waar het op de vloer van de ruimte staat
@@ -1651,11 +1660,14 @@ Replace	Vervangen
 Replace all	Alles vervangen
 Replace text	Tekst vervangen
 Replace with	Vervangen door
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Vervangen door de versie op de projectserver: {}. Je versie blijft bewaard in het deelvenster Projectserver.
 Replaced when the configurator generates again; switch off to keep the page	Wordt vervangen wanneer de configurator opnieuw genereert; schakel uit om de pagina te behouden
+Replaced while you held no lock	Vervangen terwijl je geen vergrendeling had
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Vervangt in vrije teksten, functieteksten, pagina-, apparaat- en kabelbeschrijvingen; vrijgegeven pagina's blijven ongewijzigd
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Vervangt de GEN.*-artikelen in de database door de huidige voorbeeldcatalogus (inclusief modellen)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Vervangt de bedrijfsbibliotheek door de eigen titelblokken, rapportschema's en plotkaders van het project (bewerkers van de onderdelenserver)
 Replaces the content of the macro boxes whose macro changed in the library	Vervangt de inhoud van de macrokaders waarvan de macro in de bibliotheek is gewijzigd
+Replaces the current version with yours as a change you can undo; the next save stores it	Vervangt de huidige versie door de jouwe als een wijziging die je ongedaan kunt maken; de volgende keer opslaan bewaart hem
 Replaces the pages of this block	Vervangt de pagina's van dit blok
 Reply	Beantwoorden
 Reply…	Beantwoorden…
@@ -1784,6 +1796,7 @@ Saves the placed properties as a placement scheme of the project	Slaat de geplaa
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Slaat het project zonder revisies, basisversies, review en bedradingsmarkeringen op als sjabloon voor nieuwe projecten
 Saves the project's own properties, function definitions and schemes for other projects	Slaat de eigen eigenschappen, functiedefinities en schema's van het project op voor andere projecten
 Saves the workspace, the arrangement of the panels and the open windows	Slaat de werkruimte, de indeling van de deelvensters en de geopende vensters op
+Saves your version of the whole project as a project file	Slaat jouw versie van het hele project op als projectbestand
 Saving failed: {}	Opslaan mislukt: {}
 Saving the project access…	Projecttoegang opslaan…
 Saving to the project server…	Opslaan op de projectserver…
@@ -1895,6 +1908,7 @@ Shown instead of the measured value	Wordt weergegeven in plaats van de gemeten w
 Shown now: {}	Nu getoond: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Getoond op het voorblad en door de afbeeldingselementen van titelblokken die het projectlogo tonen
 Shows	Toont
+Shows the differences of your version to the open project; selected ones can be taken over	Toont de verschillen van je versie met het geopende project; geselecteerde kunnen worden overgenomen
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Zijwanden, achterwand, dak en bodem gezien van buiten: ventilatoren, kabelwartels, uitsparingen
 Sign in in the Project server pane; the project opens afterwards	Meld u aan in het deelvenster Projectserver; daarna opent het project
 Sign in…	Aanmelden…
@@ -1913,6 +1927,7 @@ Smallest cross-section of control circuits	Kleinste doorsnede van stuurstroomkri
 Smallest cross-section of power circuits	Kleinste doorsnede van hoofdstroomkringen
 Socket outlets, data and antenna outlets	Wandcontactdozen, data- en antennedozen
 Solid	Doorgetrokken
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Sommige van je wijzigingen zijn niet door de projectserver overgenomen. Je versie blijft in het deelvenster Projectserver, ook na verwerpen.
 Some wires have no length: place their devices in the panel layout or set the field length.	Sommige draden hebben geen lengte: plaats hun apparaten in de kastlay-out of stel de veldlengte in.
 Sort by designation	Sorteren op benaming
 Sort order	Sorteervolgorde
@@ -2001,6 +2016,7 @@ Tag placed by hand	Aanduiding handmatig geplaatst
 Take out a subproject	Deelproject afsplitsen
 Take out of the building	Uit het gebouw halen
 Take out {} pages…	{} pagina's afsplitsen…
+Take over again	Opnieuw overnemen
 Take over cut lengths	Snijlengten overnemen
 Take over selected ({})	Geselecteerde overnemen ({})
 Take over {} changes	{} wijzigingen overnemen
@@ -2046,6 +2062,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	De behuizing staat met haar linkerzijde tegen de rechterzijde van de gekozen behuizing; draden lopen ertussen door kabeldoorvoeren
 The horizontal wire	De horizontale draad
 The items are selected and moved together	De elementen worden samen geselecteerd en verplaatst
+The lock was refused	De vergrendeling is geweigerd
 The logo is fitted into this area keeping its aspect ratio	Het logo wordt met behoud van de beeldverhouding in dit gebied ingepast
 The logo of the project properties, e.g. the customer's	Het logo uit de projecteigenschappen, bijv. dat van de klant
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	De logo's van de catalogi van de fabrikanten op de artikelserver, naast de details van een artikel
@@ -2053,6 +2070,7 @@ The macro library has no page macros (Macros › Save page as macro…).	De macr
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	De combinatietoetsen waarmee het wiel zijwaarts verschuift of zoomt, stelt u in onder Combinatietoetsen.
 The modules no string takes yet in series, on the first inverter	De modules die nog geen string neemt, in serie, op de eerste omvormer
 The names of its pages follow	De namen van de pagina's veranderen mee
+The open project already has your version	Het geopende project heeft je versie al
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Het geopende project is een lokale herstelkopie. De wijzigingen ervan zijn niet op de projectserver opgeslagen; voordat het gedeelde project opent, beslist u of u ze lokaal opslaat of verwerpt.
 The page name gets the section number	De paginanaam krijgt het sectienummer
 The page type, plot frame, title block, structure, description and the whole content are saved.	Het paginatype, het plotkader, het titelblok, de structuur, de beschrijving en de volledige inhoud worden opgeslagen.
@@ -2260,6 +2278,9 @@ YYYY-MM-DD	JJJJ-MM-DD
 You may only view this project.	Je mag dit project alleen bekijken.
 You may review this project: comments, markup and approvals, no other changes.	Je mag dit project reviewen: opmerkingen, markeringen en goedkeuringen, geen andere wijzigingen.
 Your unsaved changes of it are taken back	Je niet-opgeslagen wijzigingen daaraan worden teruggedraaid
+Your version of {}	Jouw versie van {}
+Your version taken over: {}. Save to store it on the project server.	Jouw versie overgenomen: {}. Sla op om hem op de projectserver te bewaren.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Jouw versies van wijzigingen die door de versie op de projectserver zijn vervangen. Ze blijven hier tot je ze verwijdert.
 Zoom	Zoom
 Zoom in in the 3D view (held)	Inzoomen in de 3D-weergave (ingedrukt houden)
 Zoom out in the 3D view (held)	Uitzoomen in de 3D-weergave (ingedrukt houden)
@@ -2471,6 +2492,7 @@ x y	x y
 {} of {} wires	{} van {} draden
 {} of {} wires assigned to cores of {}	{} van {} draden toegewezen aan aders van {}
 {} on released pages were left as they are	{} op vrijgegeven pagina's zijn ongewijzigd gelaten
+{} on {}	{} op {}
 {} options switched	{} opties geschakeld
 {} pages generated	{} pagina's gegenereerd
 {} pages generated; page macros not found: {}	{} pagina's gegenereerd; paginamacro's niet gevonden: {}
@@ -2522,6 +2544,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixels, {}
+{} – revision {}, {}	{} – revisie {}, {}
 {} – {} ({} pages)	{} – {} ({} pagina's)
 {} – {} here (Esc cancels)	{} – hier {} (Esc annuleert)
 {}: click to show its floor plan	{}: klik om de plattegrond te tonen

@@ -3,10 +3,24 @@
 //! collects the answers. The rules of shared editing are in `openecraft_core::collab`.
 
 use openecraft_client::{decode, ehttp, ProjectEndpoint};
-use openecraft_core::collab::{Grant, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target};
+use openecraft_core::collab::{self, Grant, Kept, KeptReason, LoginResponse, Opened, ProjectAccess, ProjectRight, ProjectRole, ProjectSummary, Shared, Snapshot, Status, Target};
+use crate::session::Session;
 use openecraft_core::model::Project;
 use openecraft_i18n::{tr, tr_fmt};
+use openecraft_ui::io::Store;
 use std::sync::{Arc, Mutex};
+
+/// Key of the kept local changes in the app's store.
+const KEPT_KEY: &str = "shared_kept";
+
+/// What taking a state of the server did to the edited project.
+#[derive(Debug, Default, PartialEq)]
+pub struct Taken {
+    /// Another user changed a target before this session's lock on it was used.
+    pub lost: bool,
+    /// Local changes replaced by the server's version (as text), kept in `Remote::kept`.
+    pub kept: Vec<String>,
+}
 
 /// Answer of a request. Answers for a session that is no longer open are dropped.
 #[derive(Debug)]
@@ -68,6 +82,16 @@ pub struct Remote {
     pub checked_rev: u64,
     /// History revision of the last save request.
     pub saving_rev: u64,
+    /// Local changes replaced by the server's version (of every shared project), until
+    /// the user discards them.
+    pub kept: Vec<Kept>,
+    /// Where `kept` is stored (none in tests).
+    kept_store: Option<Store>,
+    /// `kept` was read from the store: written only from then on.
+    kept_loaded: bool,
+    /// History state after a save that left changes out: it is not the saved state
+    /// until their copies are discarded.
+    pub unconfirmed: Option<u64>,
     ctx: Option<egui::Context>,
     inbox: Arc<Mutex<Vec<Reply>>>,
     cancelled_locks: Vec<(String, Vec<Target>)>,
@@ -97,6 +121,10 @@ impl Default for Remote {
             last_status: 0.0,
             checked_rev: 0,
             saving_rev: 0,
+            kept: Vec::new(),
+            kept_store: None,
+            kept_loaded: false,
+            unconfirmed: None,
             ctx: None,
             inbox: Arc::default(),
             cancelled_locks: Vec::new(),
@@ -133,9 +161,118 @@ impl Remote {
         }
     }
 
-    /// Answers wake up the window from the start on.
+    /// Answers wake up the window from the start on; the kept local changes are read.
     pub fn attach(&mut self, ctx: &egui::Context) {
         self.ctx = Some(ctx.clone());
+        if self.kept_store.is_none() {
+            let store = Store::new("OpenECraft");
+            store.load(ctx, KEPT_KEY);
+            self.kept_store = Some(store);
+        }
+    }
+
+    /// Keeps a copy of the local changes (`before`, edited from the server's `base`)
+    /// that `after` replaces. Returns the targets kept.
+    pub fn keep(&mut self, base: &Project, before: &Project, after: &Project, reason: KeptReason, time: String) -> Vec<Target> {
+        let Some(sh) = &self.shared else { return Vec::new() };
+        let Some(mut kept) = Kept::capture(base, before, after, reason) else { return Vec::new() };
+        kept.server = self.url.clone();
+        kept.name = sh.name.clone();
+        kept.user = sh.session.user.clone();
+        kept.revision = sh.revision;
+        kept.time = time;
+        let targets = kept.targets.clone();
+        if collab::keep(&mut self.kept, kept) {
+            self.store_kept();
+        }
+        targets
+    }
+
+    /// Indexes of the copies kept of the open shared project.
+    pub fn kept_here(&self) -> Vec<usize> {
+        let Some(sh) = &self.shared else { return Vec::new() };
+        (0..self.kept.len()).filter(|i| self.kept[*i].of(&self.url, &sh.name)).collect()
+    }
+
+    /// Deletes a kept copy. After a save that left changes out, the project is saved
+    /// once no copy of them is left (and nothing was changed since).
+    pub fn discard_kept(&mut self, i: usize, session: &mut Session) {
+        if i < self.kept.len() {
+            self.kept.remove(i);
+            self.store_kept();
+        }
+        if self.kept_here().is_empty() && self.unconfirmed == Some(session.history.state()) {
+            session.mark_saved();
+            self.unconfirmed = None;
+        }
+    }
+
+    /// Takes back the local changes of `targets` (the server's version); they are kept.
+    /// Returns the kept targets as text.
+    pub fn revert(&mut self, prj: &mut Project, targets: &[Target], reason: KeptReason, time: String) -> Vec<String> {
+        let Some(sh) = &self.shared else { return Vec::new() };
+        let (base, after) = (sh.base.clone(), sh.revert(prj, targets));
+        let before = std::mem::replace(prj, after);
+        self.keep(&base, &before, prj, reason, time).iter().map(|t| Remote::describe(&before, *t)).collect()
+    }
+
+    /// Takes a newer state of the server (`saved`: the answer to a save); undo steps
+    /// keep the changes of others. Local changes it replaces are kept, and with them
+    /// the project is not marked saved.
+    pub fn take_snapshot(&mut self, session: &mut Session, snapshot: Snapshot, saved: bool, time: String) -> Taken {
+        let complete = saved && session.history.rev == self.saving_rev;
+        let clean = !session.dirty() || complete;
+        let left_out = saved && !snapshot.ignored.is_empty();
+        let Some(sh) = &mut self.shared else { return Taken::default() };
+        let base = sh.base.clone();
+        let (lost, apply) = sh.update(snapshot);
+        let before = session.prj.clone();
+        session.history.rebase(&mut session.prj, apply);
+        let reason = if left_out {
+            KeptReason::NotSaved
+        } else if !lost.is_empty() {
+            KeptReason::Changed
+        } else {
+            KeptReason::NoLock
+        };
+        let kept = self.keep(&base, &before, &session.prj, reason, time);
+        self.checked_rev = session.history.rev;
+        if clean && kept.is_empty() {
+            session.mark_saved();
+            self.unconfirmed = None;
+        } else if complete {
+            // Saved, but not all of it: discarding the copies confirms this state.
+            self.unconfirmed = Some(session.history.state());
+        }
+        session.clamp_page();
+        Taken { lost: !lost.is_empty(), kept: kept.iter().map(|t| Remote::describe(&before, *t)).collect() }
+    }
+
+    fn store_kept(&self) {
+        if let Some(store) = self.kept_store.as_ref().filter(|_| self.kept_loaded) {
+            store.store(KEPT_KEY, serde_json::to_vec(&self.kept).unwrap_or_default());
+        }
+    }
+
+    /// Takes the stored copies once they are read; those kept meanwhile stay.
+    fn load_kept(&mut self) {
+        let Some(store) = &self.kept_store else { return };
+        while let Some((key, value)) = store.poll() {
+            if key != KEPT_KEY || self.kept_loaded {
+                continue;
+            }
+            let mut stored: Vec<Kept> = value.and_then(|v| serde_json::from_slice(&v).ok()).unwrap_or_default();
+            let since = std::mem::take(&mut self.kept);
+            let changed = !since.is_empty();
+            for k in since {
+                collab::keep(&mut stored, k);
+            }
+            self.kept = stored;
+            self.kept_loaded = true;
+            if changed {
+                self.store_kept();
+            }
+        }
     }
 
     /// The open shared project with the address of its server.
@@ -279,6 +416,7 @@ impl Remote {
     /// Takes the finished requests (of the open session) and keeps the session alive.
     pub fn poll(&mut self, ctx: &egui::Context) -> Vec<Reply> {
         self.ctx = Some(ctx.clone());
+        self.load_kept();
         let replies: Vec<Reply> = self.inbox.lock().map(|mut i| std::mem::take(&mut *i)).unwrap_or_default();
         let current = self.session_id();
         let mut out = Vec::new();
@@ -296,6 +434,7 @@ impl Remote {
                 Reply::List(Ok(list)) if list.len() == 1 => tr("1 project on the server").to_string(),
                 Reply::List(Ok(list)) => tr_fmt!("{} projects on the server", list.len()),
                 Reply::Opened(name, Ok(_)) => tr_fmt!("Opened {} from the project server", name),
+                Reply::Saved(_, Ok(s)) if !s.ignored.is_empty() => tr_fmt!("Partly saved to the project server (revision {})", s.revision),
                 Reply::Saved(_, Ok(s)) => tr_fmt!("Saved to the project server (revision {})", s.revision),
                 Reply::Login(Ok(r)) => match r.user.role {
                     Some(role) => tr_fmt!("Signed in as {} ({})", r.user.name, role.title()),

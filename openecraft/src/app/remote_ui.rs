@@ -1,15 +1,26 @@
 //! Project server window and shared editing: opening and saving projects on the
 //! project server, locks on pages and on the project data. Changes without a lock
-//! request it; changes of what another user has locked are taken back.
+//! request it; changes of what another user has locked are taken back. Local changes
+//! replaced by the server's version are kept (`Remote::kept`) to be compared, exported
+//! or taken over again.
 
 use openecraft_ui::icons::{self, Icon};
 use super::App;
 use openecraft_core::history::History;
 use crate::remote::{Remote, Reply};
 use egui::{Color32, RichText};
-use openecraft_core::collab::{valid_name, Grant, ProjectRight, Right, Shared, Snapshot, Subject, Target};
+use openecraft_core::collab::{restore, valid_name, Grant, KeptReason, ProjectRight, Right, Shared, Snapshot, Subject, Target};
 use openecraft_i18n::{tr, tr_fmt};
 use crate::startup::ReconnectState;
+
+/// What to do with a kept copy of local changes.
+#[derive(Clone, Copy)]
+enum KeptAction {
+    Compare,
+    TakeOver,
+    Export,
+    Discard,
+}
 
 impl App {
     /// Handles the answers of the project server.
@@ -49,21 +60,29 @@ impl App {
                 Reply::Saved(_, Ok(snapshot)) => {
                     // Changes the server left out: locked or changed by another user.
                     let ignored: Vec<String> = snapshot.ignored.iter().map(|t| Remote::describe(&self.session.prj, *t)).collect();
+                    let revision = snapshot.revision;
                     self.take_snapshot(ctx, *snapshot, true);
-                    self.notify(ctx, self.remote.status.clone());
-                    if !ignored.is_empty() {
-                        self.notify_warning(ctx, tr_fmt!("Not saved, locked or changed by another user: {}", ignored.join(", ")));
+                    if ignored.is_empty() {
+                        self.notify_ok(ctx, self.remote.status.clone());
+                    } else {
+                        self.notify_warning(
+                            ctx,
+                            tr_fmt!("Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.", revision, ignored.join(", ")),
+                        );
                     }
                 }
                 Reply::Snapshot(_, Ok(snapshot)) => self.take_snapshot(ctx, *snapshot, false),
                 Reply::Status(_, Ok(status)) => self.remote.take_status(status, &[]),
                 Reply::Locked(_, targets, Ok(status)) => self.remote.take_status(status, &targets),
                 Reply::Locked(_, targets, Err(_)) => {
+                    self.notify(ctx, self.remote.status.clone());
                     if let Some(sh) = &mut self.remote.shared {
                         sh.denied(&targets);
-                        self.session.prj = sh.revert(&self.session.prj, &targets);
                     }
-                    self.notify(ctx, self.remote.status.clone());
+                    let kept = self.remote.revert(&mut self.session.prj, &targets, KeptReason::Refused, openecraft_ui::io::now_text());
+                    if !kept.is_empty() {
+                        self.notify_warning(ctx, tr_fmt!("Not changed, the lock was refused: {}. Your version is kept in the Project server pane.", kept.join(", ")));
+                    }
                 }
                 Reply::Opened(_, Err(_)) | Reply::Saved(_, Err(_)) | Reply::Snapshot(_, Err(_)) | Reply::Status(_, Err(_)) | Reply::Access(_, Err(_)) => {
                     self.notify_error(ctx, self.remote.status.clone());
@@ -127,20 +146,18 @@ impl App {
         }
     }
 
-    /// Takes a newer state of the server; undo steps keep the changes of others.
+    /// Takes a newer state of the server (`Remote::take_snapshot`) and tells what of
+    /// the local changes it replaced; a save that left changes out is reported by the caller.
     fn take_snapshot(&mut self, ctx: &egui::Context, snapshot: Snapshot, saved: bool) {
-        let clean = !self.session.dirty() || (saved && self.session.history.rev == self.remote.saving_rev);
-        let Some(sh) = &mut self.remote.shared else { return };
-        let (lost, apply) = sh.update(snapshot);
-        let lost: Vec<String> = lost.iter().map(|t| Remote::describe(&self.session.prj, *t)).collect();
-        self.session.history.rebase(&mut self.session.prj, apply);
-        self.remote.checked_rev = self.session.history.rev;
-        if clean {
-            self.session.mark_saved();
+        let left_out = saved && !snapshot.ignored.is_empty();
+        let taken = self.remote.take_snapshot(&mut self.session, snapshot, saved, openecraft_ui::io::now_text());
+        if taken.kept.is_empty() || left_out {
+            return;
         }
-        self.session.page = self.session.page.min(self.session.prj.pages.len().saturating_sub(1));
-        if !lost.is_empty() {
-            self.notify_warning(ctx, tr_fmt!("Changed by another user in the meantime, your change was replaced: {}", lost.join(", ")));
+        if taken.lost {
+            self.notify_warning(ctx, tr_fmt!("Changed by another user in the meantime: {}. Your version is kept in the Project server pane.", taken.kept.join(", ")));
+        } else {
+            self.notify_warning(ctx, tr_fmt!("Replaced by the version on the project server: {}. Your version is kept in the Project server pane.", taken.kept.join(", ")));
         }
     }
 
@@ -158,8 +175,11 @@ impl App {
                 .iter()
                 .map(|t| tr_fmt!("{} (locked by {})", Remote::describe(&self.session.prj, *t), sh.holder(*t).map(|l| l.user.as_str()).unwrap_or_default()))
                 .collect();
-            self.session.prj = sh.revert(&self.session.prj, &held);
-            self.notify_warning(ctx, tr_fmt!("Not changed: {}", who.join(", ")));
+            if self.remote.revert(&mut self.session.prj, &held, KeptReason::Refused, openecraft_ui::io::now_text()).is_empty() {
+                self.notify_warning(ctx, tr_fmt!("Not changed: {}", who.join(", ")));
+            } else {
+                self.notify_warning(ctx, tr_fmt!("Not changed: {}. Your version is kept in the Project server pane.", who.join(", ")));
+            }
         }
         if !free.is_empty() {
             self.remote.lock(free);
@@ -305,6 +325,85 @@ impl App {
                 self.remote.create(&name, &self.session.prj);
             }
         });
+        self.kept_section(ui, false);
+    }
+
+    /// Your versions of changes the server's version replaced: of the open project
+    /// (`here`) to compare and take over again, otherwise of every shared project to
+    /// export or discard.
+    fn kept_section(&mut self, ui: &mut egui::Ui, here: bool) {
+        let list: Vec<usize> = if here { self.remote.kept_here() } else { (0..self.remote.kept.len()).collect() };
+        if list.is_empty() {
+            return;
+        }
+        ui.separator();
+        ui.strong(tr("Kept changes"));
+        ui.weak(tr("Your versions of changes that were replaced by the version on the project server. They stay here until you discard them."));
+        let mut action = None;
+        for &i in list.iter().rev() {
+            let k = &self.remote.kept[i];
+            let what: Vec<String> = k.targets.iter().map(|t| Remote::describe(&k.project, *t)).collect();
+            let reason = match k.reason {
+                KeptReason::NotSaved => tr("Not saved, locked or changed by another user"),
+                KeptReason::Changed => tr("Changed by another user before you got the lock"),
+                KeptReason::Refused => tr("The lock was refused"),
+                KeptReason::NoLock => tr("Replaced while you held no lock"),
+            };
+            ui.group(|ui| {
+                if !here {
+                    ui.label(RichText::new(tr_fmt!("{} on {}", k.name, k.server)).strong());
+                }
+                ui.label(what.join(", "));
+                ui.weak(tr_fmt!("{} – revision {}, {}", reason, k.revision, k.time));
+                ui.horizontal_wrapped(|ui| {
+                    if let Some(sh) = self.remote.shared.as_ref().filter(|_| here) {
+                        if ui.button(tr("Compare")).on_hover_text(tr("Shows the differences of your version to the open project; selected ones can be taken over")).clicked() {
+                            action = Some((i, KeptAction::Compare));
+                        }
+                        let differing = k.differing(&self.session.prj);
+                        let held: Vec<String> = differing.iter().filter_map(|t| sh.holder(*t).map(|l| l.user.clone())).collect();
+                        let hover = if differing.is_empty() {
+                            tr("The open project already has your version").to_string()
+                        } else if !held.is_empty() {
+                            tr_fmt!("Locked by {}", held.join(", "))
+                        } else {
+                            tr("Replaces the current version with yours as a change you can undo; the next save stores it").to_string()
+                        };
+                        let can = !differing.is_empty() && held.is_empty() && !self.remote.viewer();
+                        if ui.add_enabled(can, egui::Button::new(tr("Take over again"))).on_hover_text(&hover).on_disabled_hover_text(&hover).clicked() {
+                            action = Some((i, KeptAction::TakeOver));
+                        }
+                    }
+                    if ui.button(tr("Export…")).on_hover_text(tr("Saves your version of the whole project as a project file")).clicked() {
+                        action = Some((i, KeptAction::Export));
+                    }
+                    if icons::text_button(ui, Icon::Delete, tr("Discard")).on_hover_text(tr("Deletes this copy of your changes for good")).clicked() {
+                        action = Some((i, KeptAction::Discard));
+                    }
+                });
+            });
+        }
+        let Some((i, action)) = action else { return };
+        let ctx = ui.ctx().clone();
+        let k = self.remote.kept[i].clone();
+        match action {
+            KeptAction::Compare => self.compare_ui.set_kept(tr_fmt!("Your version of {}", k.time), k.project),
+            KeptAction::TakeOver => {
+                let targets = k.differing(&self.session.prj);
+                self.session.prj = restore(&self.session.prj, &k.project, &targets);
+                let what: Vec<String> = targets.iter().map(|t| Remote::describe(&k.project, *t)).collect();
+                self.notify(&ctx, tr_fmt!("Your version taken over: {}. Save to store it on the project server.", what.join(", ")));
+            }
+            KeptAction::Export => {
+                let name = format!("{} r{}.{}", k.name, k.revision, crate::io::PROJECT_EXT);
+                match self.io.save_as(&name, (tr("OpenECraft project"), crate::io::PROJECT_EXT), &k.project.to_json()) {
+                    Ok(Some(path)) => self.notify_ok(&ctx, tr_fmt!("Saved {}", crate::io::short_name(&path))),
+                    Ok(None) => {}
+                    Err(e) => self.notify_error(&ctx, e),
+                }
+            }
+            KeptAction::Discard => self.remote.discard_kept(i, &mut self.session),
+        }
     }
 
     fn shared_section(&mut self, ui: &mut egui::Ui) {
@@ -363,6 +462,7 @@ impl App {
         for (t, user) in &others {
             ui.label(format!("🔒 {} – {}", Remote::describe(&self.session.prj, *t), user));
         }
+        self.kept_section(ui, true);
         if self.remote.may(ProjectRight::ManageAccess) && !self.remote.rights.is_empty() {
             ui.separator();
             self.access_section(ui);

@@ -32,6 +32,12 @@ impl CompareUi {
         self.open = true;
     }
 
+    /// Compares with a kept version of local changes of a shared project.
+    pub fn set_kept(&mut self, name: String, prj: Project) {
+        self.set_source(name, prj);
+        self.open = true;
+    }
+
     fn set_source(&mut self, name: String, prj: Project) {
         self.source = Some((name, prj));
         self.diff_rev = 0;

@@ -262,7 +262,8 @@ Change request	변경 요청
 Change requests	변경 요청
 Change requests (CSV, JSON)	변경 요청(CSV, JSON)
 Changed against the frozen routes:	고정된 경로 대비 변경됨:
-Changed by another user in the meantime, your change was replaced: {}	그동안 다른 사용자가 변경하여 내 변경 내용이 교체되었습니다: {}
+Changed by another user before you got the lock	잠금을 받기 전에 다른 사용자가 변경함
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	그동안 다른 사용자가 변경함: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Changed cells of a CSV or Excel file exported here (rows by their key)	여기에서 내보낸 CSV 또는 Excel 파일의 변경된 셀(행은 키로 식별)
 Changed message levels ({})	변경된 메시지 수준({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	장착 후 변경됨: 이전 위치 X {} mm, Y {} mm, 부품 {}
@@ -384,6 +385,7 @@ Comments ({})	주석({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	검토자가 프로젝트의 PDF 내보내기에 작성한 주석(Acrobat 또는 다른 PDF 뷰어)
 Comments and markup	주석과 마크업
 Company library	회사 라이브러리
+Compare	비교
 Compare and baselines	비교 및 기준선
 Compare with	비교 대상
 Compare with a baseline, a revision or another project file and take differences over	기준선, 개정 또는 다른 프로젝트 파일과 비교하고 차이점 가져오기
@@ -509,6 +511,7 @@ Delete the property and all its values	속성 및 모든 값 삭제
 Delete this workspace	이 작업 공간 삭제
 Delete variant	변형 삭제
 Delete zone	구역 삭제
+Deletes this copy of your changes for good	이 변경 내용의 사본을 영구히 삭제합니다
 Depth / mounted at	깊이 / 장착 위치
 Depth below the ground	지면 아래 깊이
 Depth from / to	깊이 시작 / 끝
@@ -966,6 +969,7 @@ Keep connections	연결 유지
 Keep sub-pages (3.a, 3.1) with the page before	하위 페이지(3.a, 3.1)를 이전 페이지와 함께 유지
 Keep the degree of protection	보호 등급 유지
 Keep this route when recalculating, as long as it is still possible	다시 계산할 때 가능한 한 이 경로를 유지
+Kept changes	보관된 변경 내용
 Key tips of the ribbon	리본의 액세스 키
 Key: {}	키: {}
 Keyboard shortcuts	바로 가기 키
@@ -1041,6 +1045,7 @@ Lock page	페이지 잠금
 Lock project data	프로젝트 데이터 잠금
 Locked	잠김
 Locked by other users	다른 사용자가 잠금
+Locked by {}	{}이(가) 잠금
 Locked by {} on the project server – read only	프로젝트 서버에서 {}이(가) 잠금 – 읽기 전용
 Locked by {} – read only	잠금: {} – 읽기 전용
 Locking…	잠그는 중…
@@ -1261,11 +1266,13 @@ None – editing a page or the project data locks it.	없음 – 페이지나 �
 Not a page template file: {}	페이지 템플릿 파일이 아님: {}
 Not a point: type x y or @dx dy	점이 아닙니다. x y 또는 @dx dy를 입력하세요
 Not a symbol library: {}	심볼 라이브러리가 아님: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	잠금이 거부되어 변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Not changed: {}	변경되지 않음: {}
+Not changed: {}. Your version is kept in the Project server pane.	변경되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
-Not saved, locked or changed by another user: {}	저장되지 않음, 다른 사용자가 잠그거나 변경함: {}
+Not saved, locked or changed by another user	다른 사용자가 잠그거나 변경하여 저장되지 않음
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	적용 안 됨: 왼쪽 단추만으로는 선택, 그리기, 이동을 합니다. 보조키를 누르거나 다른 단추를 사용하세요.
 Not the shared project: changes are saved locally until it is opened on the project server again	공유 프로젝트가 아닙니다: 프로젝트 서버에서 다시 열 때까지 변경 사항은 로컬에 저장됩니다
 Nothing exchanged yet.	아직 교환된 내용이 없습니다.
@@ -1419,6 +1426,8 @@ Part of the profile: generic types or parts from the parts store	프로필의 �
 Part selection from the parts database	부품 데이터베이스에서 부품 선택
 Part selection – {}	부품 선택 – {}
 Part selection…	부품 선택…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	일부 저장됨(개정 {}). 다른 사용자가 잠그거나 변경하여 저장되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
+Partly saved to the project server (revision {})	프로젝트 서버에 일부 저장됨(개정 {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	부품은 변경할 수 있는 페이지에만 놓을 수 있습니다. 이 페이지는 릴리스되었거나 잠겨 있거나 생성된 페이지입니다
 Parts management	부품 관리
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	바닥 설치로 표시된 부품(펌프, 탱크, 압축기): 하나를 선택한 다음 방 바닥에서 설치할 위치를 클릭하십시오
@@ -1630,11 +1639,14 @@ Replace	바꾸기
 Replace all	모두 바꾸기
 Replace text	텍스트 바꾸기
 Replace with	바꿀 텍스트
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	프로젝트 서버의 버전으로 교체됨: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Replaced when the configurator generates again; switch off to keep the page	컨피규레이터가 다시 생성하면 교체됩니다. 페이지를 유지하려면 끄세요
+Replaced while you held no lock	잠금이 없는 동안 교체됨
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	자유 텍스트, 기능 텍스트, 페이지, 장치 및 케이블 설명에서 바꿉니다. 릴리스된 페이지는 그대로 유지됩니다
 Replaces the GEN.* parts in the database with the current example catalog (including models)	데이터베이스의 GEN.* 부품을 현재 예제 카탈로그로 교체합니다(모델 포함)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	회사 라이브러리를 프로젝트 자체의 표제란, 보고서 체계, 플롯 프레임으로 바꿉니다(부품 서버 편집자)
 Replaces the content of the macro boxes whose macro changed in the library	라이브러리에서 매크로가 변경된 매크로 박스의 내용을 대체합니다
+Replaces the current version with yours as a change you can undo; the next save stores it	현재 버전을 내 버전으로 바꿉니다(실행 취소 가능한 변경). 다음 저장 때 저장됩니다
 Replaces the pages of this block	이 블록의 페이지를 교체합니다
 Reply	회신
 Reply…	회신…
@@ -1761,6 +1773,7 @@ Saves the placed properties as a placement scheme of the project	배치된 속�
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	개정, 기준선, 검토 및 배선 표시 없이 프로젝트를 새 프로젝트용 템플릿으로 저장합니다
 Saves the project's own properties, function definitions and schemes for other projects	프로젝트 고유의 속성, 기능 정의 및 스키마를 다른 프로젝트용으로 저장합니다
 Saves the workspace, the arrangement of the panels and the open windows	작업 공간, 창 배치 및 열린 대화 상자를 저장합니다
+Saves your version of the whole project as a project file	전체 프로젝트의 내 버전을 프로젝트 파일로 저장합니다
 Saving failed: {}	저장 실패: {}
 Saving the project access…	프로젝트 액세스를 저장하는 중…
 Saving to the project server…	프로젝트 서버에 저장 중…
@@ -1871,6 +1884,7 @@ Shown instead of the measured value	측정값 대신 표시됨
 Shown now: {}	현재 표시: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	표지와 프로젝트 로고를 표시하는 표제란의 이미지 요소에 표시됩니다
 Shows	표시
+Shows the differences of your version to the open project; selected ones can be taken over	내 버전과 열린 프로젝트의 차이를 표시합니다. 선택한 항목을 가져올 수 있습니다
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	밖에서 본 측벽, 후면벽, 지붕 및 바닥: 팬, 케이블 글랜드, 컷아웃
 Sign in in the Project server pane; the project opens afterwards	프로젝트 서버 창에서 로그인하세요. 이후 프로젝트가 열립니다
 Sign in…	로그인…
@@ -1888,6 +1902,7 @@ Smallest cross-section of control circuits	제어 회로의 최소 단면적
 Smallest cross-section of power circuits	전력 회로의 최소 단면적
 Socket outlets, data and antenna outlets	전원 콘센트, 데이터 및 안테나 콘센트
 Solid	실선
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	일부 변경 내용이 프로젝트 서버에 반영되지 않았습니다. 버린 후에도 내 버전은 프로젝트 서버 창에 남습니다.
 Some wires have no length: place their devices in the panel layout or set the field length.	일부 전선에 길이가 없습니다. 패널 레이아웃에 해당 장치를 배치하거나 필드 길이를 설정하세요.
 Sort by designation	명칭순 정렬
 Sort order	정렬 순서
@@ -1976,6 +1991,7 @@ Tag placed by hand	수동으로 배치된 태그
 Take out a subproject	하위 프로젝트 반출
 Take out of the building	건물에서 제외
 Take out {} pages…	페이지 {}개 반출…
+Take over again	다시 가져오기
 Take over cut lengths	절단 길이 적용
 Take over selected ({})	선택 항목 가져오기({})
 Take over {} changes	변경 내용 {}개 적용
@@ -2021,6 +2037,7 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
 The horizontal wire	가로 전선
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
+The lock was refused	잠금이 거부됨
 The logo is fitted into this area keeping its aspect ratio	로고는 가로세로 비율을 유지하며 이 영역에 맞춰집니다
 The logo of the project properties, e.g. the customer's	프로젝트 속성의 로고(예: 고객의 로고)
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	부품 서버에 있는 제조업체 카탈로그의 로고를 부품 세부 정보 옆에 표시
@@ -2028,6 +2045,7 @@ The macro library has no page macros (Macros › Save page as macro…).	매크�
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	휠로 옆으로 이동하거나 확대/축소하는 보조키는 보조키에서 설정합니다.
 The modules no string takes yet in series, on the first inverter	아직 어느 스트링에도 속하지 않은 모듈을 직렬로, 첫 번째 인버터에
 The names of its pages follow	페이지 이름도 함께 변경됩니다
+The open project already has your version	열린 프로젝트에 이미 내 버전이 있습니다
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	열린 프로젝트는 로컬 복구 사본입니다. 변경 사항은 프로젝트 서버에 저장되지 않았습니다. 공유 프로젝트를 열기 전에 로컬에 저장할지 버릴지 결정합니다.
 The page name gets the section number	페이지 이름에 구역 번호가 붙습니다
 The page type, plot frame, title block, structure, description and the whole content are saved.	페이지 유형, 플롯 프레임, 표제란, 구조, 설명 및 전체 내용이 저장됩니다.
@@ -2233,6 +2251,9 @@ YYYY-MM-DD	YYYY-MM-DD
 You may only view this project.	이 프로젝트를 보기만 할 수 있습니다.
 You may review this project: comments, markup and approvals, no other changes.	이 프로젝트를 검토할 수 있습니다. 주석, 마크업 및 승인만 가능하며 다른 변경은 할 수 없습니다.
 Your unsaved changes of it are taken back	저장되지 않은 변경 내용이 취소됩니다
+Your version of {}	{}의 내 버전
+Your version taken over: {}. Save to store it on the project server.	내 버전을 가져옴: {}. 프로젝트 서버에 저장하세요.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	프로젝트 서버의 버전으로 교체된 변경 내용의 내 버전입니다. 버릴 때까지 여기에 남습니다.
 Zoom	확대/축소
 Zoom in in the 3D view (held)	3D 보기 확대(누른 채로)
 Zoom out in the 3D view (held)	3D 보기 축소(누른 채로)
@@ -2438,6 +2459,7 @@ x y	x y
 {} of {} wires	전선 {1}개 중 {0}개
 {} of {} wires assigned to cores of {}	전선 {1}개 중 {0}개가 {2}의 심선에 지정됨
 {} on released pages were left as they are	릴리스된 페이지의 {}개는 그대로 두었습니다
+{} on {}	{}({})
 {} options switched	옵션 {}개를 전환했습니다
 {} pages generated	페이지 {}개를 생성했습니다
 {} pages generated; page macros not found: {}	페이지 {}개를 생성했습니다. 찾을 수 없는 페이지 매크로: {}
@@ -2487,6 +2509,7 @@ x y	x y
 {} °C (max.)	{} °C(최대)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} 픽셀, {}
+{} – revision {}, {}	{} – 개정 {}, {}
 {} – {} ({} pages)	{} – {}(페이지 {}개)
 {} – {} here (Esc cancels)	{} – 여기에서 {}(Esc는 취소)
 {}: click to show its floor plan	{}: 클릭하면 평면도를 표시합니다

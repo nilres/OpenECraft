@@ -121,6 +121,9 @@ impl App {
             } else if self.discard.not_saved {
                 ui.colored_label(crate::style::error(), tr("The project was not saved."));
             }
+            if !self.remote.kept_here().is_empty() {
+                ui.label(tr("Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding."));
+            }
             ui.add_space(8.0);
             ui.add_enabled_ui(!saving, |ui| {
                 ui.horizontal(|ui| {
