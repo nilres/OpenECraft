@@ -73,11 +73,12 @@ jobs:
             echo
             echo '### Docker images'
             echo
-            echo 'The parts server and the project server as containers (`docs/installation.md`):'
+            echo 'The parts server, the project server and the web editor as containers (`docs/installation.md`):'
             echo
             echo '```bash'
             echo "docker pull ghcr.io/${OWNER,,}/openecraft-parts-server:$version"
             echo "docker pull ghcr.io/${OWNER,,}/openecraft-project-server:$version"
+            echo "docker pull ghcr.io/${OWNER,,}/openecraft-web:$version"
             echo '```'
             if [ -z "$WINDOWS_CERTIFICATE" ]; then
               echo

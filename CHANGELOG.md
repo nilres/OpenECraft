@@ -13,6 +13,11 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
 
+- **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
+  web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
+  (target `editor-web`) and published with the server images;
+  `installer/docker/compose.yaml` starts it with both servers
+  ([installation](docs/installation.md#docker-image-of-the-web-editor)).
 - **Web page of the project server**: started with `--web` (or
   `OPENECRAFT_PROJECT_WEB=true`, `web = true` in its configuration file), the project
   server serves a web page with the projects the user may see and a read-only view of

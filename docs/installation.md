@@ -165,7 +165,7 @@ docker build -f installer/docker/Dockerfile --target project-server -t openecraf
 
 CI builds both images on every push, starts them once and checks that they answer;
 on `master` and for a release tag it pushes them to the GitHub Container Registry
-(job `docker`).
+(job `docker`), together with the image of the web editor (below).
 
 ## Web (WebAssembly)
 
@@ -182,6 +182,25 @@ on Windows `licenses.ps1`, run by trunk after the build); keep these files when 
 the page.
 
 In the browser "Save" downloads the project file and "Open" uses the file picker.
+
+### Docker image of the web editor
+
+`ghcr.io/nilres/openecraft-web` (same tags as the server images) serves the release
+build of the web editor with nginx on port 8080, as an unprivileged user, with the
+license files next to the page; `installer/docker/compose.yaml` starts it with the
+servers. The servers are reached from the browser, not from the container: in the
+editor give them with the address the browser uses (`http://127.0.0.1:8090` with the
+compose file); both servers allow requests from every origin.
+
+```bash
+docker run -d --name openecraft-web -p 127.0.0.1:8080:8080 ghcr.io/nilres/openecraft-web
+docker build -f installer/docker/Dockerfile --target editor-web -t openecraft-web .
+```
+
+The nginx site is `installer/docker/editor-web.conf` (mount your own at
+`/etc/nginx/conf.d/default.conf`): `index.html` is checked at every visit, the scripts
+and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
+proxy in front of it for other machines, as for the servers.
 
 ## Tests
 

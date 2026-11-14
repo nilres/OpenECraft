@@ -1,14 +1,18 @@
-# Images of the OpenECraft parts server and project server, built from the repository root:
+# Images of the OpenECraft parts server, project server and web editor, built from the
+# repository root:
 #
 #   docker build -f installer/docker/Dockerfile --target parts-server -t openecraft-parts-server .
 #   docker build -f installer/docker/Dockerfile --target project-server -t openecraft-project-server .
+#   docker build -f installer/docker/Dockerfile --target editor-web -t openecraft-web .
 #
-# CI builds them on every push and publishes them to ghcr.io/<owner>/openecraft-parts-server
-# and ghcr.io/<owner>/openecraft-project-server on master and for release tags
-# (docs/installation.md). The Rust version is the one pinned in .github/workflows/ci.yml,
-# cargo-about the one of the installer scripts (docs/releasing.md).
+# CI builds them on every push and publishes them to ghcr.io/<owner>/openecraft-parts-server,
+# ghcr.io/<owner>/openecraft-project-server and ghcr.io/<owner>/openecraft-web on master
+# and for release tags (docs/installation.md). The Rust version is the one pinned in
+# .github/workflows/ci.yml, cargo-about and trunk the ones of the installer scripts and
+# the job `web` (docs/releasing.md).
 
 ARG RUST_VERSION=1.97.0
+ARG NGINX_VERSION=1.28
 
 FROM rust:${RUST_VERSION}-bookworm AS tools
 RUN cargo install cargo-about@0.9.3 --locked --features cli
@@ -57,3 +61,22 @@ COPY installer/docker/project-server.toml /etc/openecraft/project-server.toml
 ENV OPENECRAFT_PROJECT_SERVER_CONFIG=/etc/openecraft/project-server.toml
 EXPOSE 8091
 ENTRYPOINT ["openecraft-project-server"]
+
+# The web editor: the release build of trunk (as in the job `web`), with the license
+# files next to the page (installer/web/licenses.sh, run by trunk).
+FROM tools AS web-build
+RUN rustup target add wasm32-unknown-unknown \
+    && cargo install trunk@0.22.1 --locked
+WORKDIR /src
+COPY . .
+RUN cargo fetch --locked \
+    && cd openecraft \
+    && trunk build --release
+
+# Static files served by nginx as an unprivileged user on port 8080. The page reaches the
+# parts and project servers from the browser: give their addresses in the editor (the
+# servers allow requests from every origin).
+FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS editor-web
+COPY installer/docker/editor-web.conf /etc/nginx/conf.d/default.conf
+COPY --from=web-build /src/openecraft/dist/ /usr/share/nginx/html/
+EXPOSE 8080
