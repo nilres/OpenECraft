@@ -139,6 +139,8 @@ struct ShellState {
     wheel_source_policy_migrated: bool,
     /// What the editor opens when it starts.
     startup: crate::startup::Startup,
+    /// Automatic saving of shared projects to the project server.
+    server_autosave: crate::server_save::Settings,
 }
 
 impl Default for ShellState {
@@ -163,6 +165,7 @@ impl Default for ShellState {
             nav: openecraft_ui::nav::Settings::default(),
             wheel_source_policy_migrated: false,
             startup: crate::startup::Startup::default(),
+            server_autosave: crate::server_save::Settings::default(),
         }
     }
 }
@@ -366,6 +369,8 @@ pub struct App {
     plugins_ui: plugins_ui::PluginsUi,
     /// The autosaved project and parts database (IndexedDB in the browser).
     autosave: crate::autosave::Autosave,
+    /// The timer of the automatic save to the project server.
+    server_auto: crate::server_save::Auto,
     /// Ribbon: active tab, customisation, key tips.
     ribbon: ribbon_ui::RibbonUi,
     /// Open page of the backstage (File tab).
@@ -620,6 +625,7 @@ impl App {
             plugins,
             plugins_ui: plugins_ui::PluginsUi::with_folders(plugin_folders),
             autosave,
+            server_auto: crate::server_save::Auto::default(),
             ribbon,
             backstage: None,
             recent,
@@ -1223,6 +1229,7 @@ impl eframe::App for App {
             self.perform(&ctx, r);
         }
         self.check_locks(&ctx);
+        self.autosave_remote(&ctx, can_commit);
 
         let mut title = format!(
             "OpenECraft – {}{}",

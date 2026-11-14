@@ -104,3 +104,41 @@ fn later_saves_are_written_on_another_thread() {
     assert!(next.poll(&mut restored, &mut PartsDb::default()));
     assert_eq!(restored.prj.info.name, "third");
 }
+
+#[test]
+fn a_recovery_copy_is_claimed_only_once_it_is_written() {
+    let ctx = egui::Context::default();
+    let mut autosave = Autosave::start(store("backup"), &ctx, &PartsDb::default());
+    let mut session = Session::new(named("work"), None);
+    let mut parts = PartsDb::default();
+    assert!(autosave.backup().is_none());
+    // Before the stored values arrived nothing is written.
+    autosave.save(&session, &parts);
+    autosave.finish();
+    assert!(autosave.backup().is_none());
+    autosave.poll(&mut session, &mut parts);
+    autosave.save(&session, &parts);
+    autosave.finish();
+    let state = session.history.state();
+    assert_eq!(autosave.backup().map(|(s, _)| *s), Some(state));
+    // A later change is not in it until the next write.
+    session.prj.info.name = "more".into();
+    session.commit(true);
+    assert_ne!(autosave.backup().map(|(s, _)| *s), Some(session.history.state()));
+}
+
+#[test]
+fn a_failed_write_is_no_recovery_copy() {
+    // A file where the folder of the store should be: nothing can be written.
+    let file = std::env::temp_dir().join(format!("openecraft-autosave-blocked-{}", std::process::id()));
+    std::fs::write(&file, b"x").unwrap();
+    let ctx = egui::Context::default();
+    let mut autosave = Autosave::start(Store::at(file.display().to_string()), &ctx, &PartsDb::default());
+    let mut session = Session::new(named("work"), None);
+    let mut parts = PartsDb::default();
+    autosave.poll(&mut session, &mut parts);
+    assert!(!autosave.save(&session, &parts));
+    autosave.finish();
+    assert!(autosave.backup().is_none());
+    let _ = std::fs::remove_file(file);
+}

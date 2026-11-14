@@ -32,6 +32,7 @@ mod remote;
 mod ribbon;
 mod style;
 mod vault;
+mod server_save;
 mod session;
 mod updater;
 mod wiring_ui;

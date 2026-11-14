@@ -19,6 +19,10 @@ pub struct Autosave {
     awaiting_parts: Option<PartsDb>,
     /// The write of the last `save` on another thread.
     writing: Option<std::thread::JoinHandle<()>>,
+    /// History state of the project given to the last write, until it is known written.
+    handed: Option<u64>,
+    /// History state and time (`now_text`) of the last project known to be written.
+    backup: Option<(u64, String)>,
 }
 
 impl Autosave {
@@ -32,7 +36,7 @@ impl Autosave {
     pub fn start(store: Store, ctx: &egui::Context, parts: &PartsDb) -> Autosave {
         store.load(ctx, PROJECT);
         store.load(ctx, PARTS);
-        Autosave { store, awaiting_project: true, awaiting_parts: Some(parts.clone()), writing: None }
+        Autosave { store, awaiting_project: true, awaiting_parts: Some(parts.clone()), writing: None, handed: None, backup: None }
     }
 
     /// Takes values that finished loading. Returns true if the project was replaced.
@@ -77,6 +81,9 @@ impl Autosave {
     /// before has finished), so that the editor does not wait for it.
     pub fn save(&mut self, session: &Session, parts: &PartsDb) -> bool {
         let project = (!self.awaiting_project).then(|| session.prj.clone());
+        if project.is_some() {
+            self.handed = Some(session.history.state());
+        }
         let parts = self.awaiting_parts.is_none().then(|| parts.clone());
         let store = self.store.clone();
         let write = move || {
@@ -94,6 +101,18 @@ impl Autosave {
             self.writing = Some(std::thread::spawn(write));
         }
         !self.awaiting_project && self.awaiting_parts.is_none() && self.store.works()
+    }
+
+    /// The history state and the time of the last project that was actually written to
+    /// the store: a recovery copy is claimed only for it. A write under way, one that
+    /// failed and the fallback to eframe's storage do not count.
+    pub fn backup(&mut self) -> Option<&(u64, String)> {
+        if self.writing.as_ref().is_none_or(|w| w.is_finished()) && self.store.stored(PROJECT) {
+            if let Some(state) = self.handed.take() {
+                self.backup = Some((state, openecraft_ui::io::now_text()));
+            }
+        }
+        self.backup.as_ref()
     }
 
     /// Waits for the write on another thread (before the app ends).

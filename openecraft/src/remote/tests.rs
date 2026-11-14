@@ -283,7 +283,7 @@ fn edit(session: &mut crate::session::Session, page: usize, text: &str) {
 
 /// Saves as the editor does and takes the answer.
 fn save(server: &mut Server, r: &mut Remote, session: &mut crate::session::Session, release: &[Target]) -> Taken {
-    let sent = r.begin_save(&session.prj, release.to_vec()).expect("no save under way");
+    let sent = r.begin_save(&session.prj, release.to_vec(), false).expect("no save under way");
     let snapshot = server.answer(r, &sent);
     apply_reply(r, session, Reply::Saved(Box::new(sent), Ok(Box::new(snapshot)))).0
 }
@@ -539,9 +539,9 @@ fn a_save_answer_does_not_mark_later_edits_saved() {
     let mut server = Server::new();
     let (mut ben, mut b) = server.open("ben");
     edit(&mut b, 1, "A");
-    let first = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let first = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     edit(&mut b, 1, "B");
-    assert!(ben.begin_save(&b.prj, Vec::new()).is_none(), "one save at a time");
+    assert!(ben.begin_save(&b.prj, Vec::new(), false).is_none(), "one save at a time");
     let reply = answered(&mut server, &ben, first);
     let (taken, next) = apply_reply(&mut ben, &mut b, reply);
     assert_eq!(taken, Taken::default());
@@ -562,9 +562,9 @@ fn repeated_saves_without_changes_send_one_request() {
     let mut server = Server::new();
     let (mut ben, mut b) = server.open("ben");
     edit(&mut b, 1, "A");
-    let first = ben.begin_save(&b.prj, Vec::new()).unwrap();
-    assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
-    assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
+    let first = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
+    assert!(ben.begin_save(&b.prj, Vec::new(), false).is_none());
+    assert!(ben.begin_save(&b.prj, Vec::new(), false).is_none());
     let reply = answered(&mut server, &ben, first);
     let (_, next) = apply_reply(&mut ben, &mut b, reply);
     assert!(next.is_none() && ben.queued.is_none() && ben.saving.is_none());
@@ -577,7 +577,7 @@ fn undo_while_saving_stays_unsaved() {
     let mut server = Server::new();
     let (mut ben, mut b) = server.open("ben");
     edit(&mut b, 1, "A");
-    let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let sent = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     b.undo();
     let reply = answered(&mut server, &ben, sent);
     apply_reply(&mut ben, &mut b, reply);
@@ -615,7 +615,7 @@ fn a_save_answered_after_a_newer_state_is_saved_when_nothing_differs() {
     let (mut anna, mut a) = server.open("anna");
     let (mut ben, mut b) = server.open("ben");
     edit(&mut b, 1, "Ben 2");
-    let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let sent = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     let reply = answered(&mut server, &ben, sent);
     edit(&mut a, 0, "Anna");
     save(&mut server, &mut anna, &mut a, &[]);
@@ -637,7 +637,7 @@ fn save_and_release_keeps_an_edit_made_while_saving() {
     let status = server.lock(&ben, &[Target::Page(2)]).unwrap();
     ben.take_status(status, &[Target::Page(2)]);
     edit(&mut b, 1, "first");
-    let sent = ben.begin_save(&b.prj, vec![Target::Page(2)]).unwrap();
+    let sent = ben.begin_save(&b.prj, vec![Target::Page(2)], false).unwrap();
     edit(&mut b, 1, "second");
     let reply = answered(&mut server, &ben, sent);
     assert!(server.locks.is_empty(), "released by the save");
@@ -657,15 +657,15 @@ fn a_failed_save_sends_and_releases_nothing_more() {
     let status = server.lock(&ben, &[Target::Page(2)]).unwrap();
     ben.take_status(status, &[Target::Page(2)]);
     edit(&mut b, 1, "first");
-    let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let sent = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     edit(&mut b, 1, "second");
-    assert!(ben.begin_save(&b.prj, vec![Target::Page(2)]).is_none());
+    assert!(ben.begin_save(&b.prj, vec![Target::Page(2)], false).is_none());
     let (_, next) = apply_reply(&mut ben, &mut b, Reply::Saved(Box::new(sent), Err(offline())));
     assert!(next.is_none() && ben.queued.is_none() && ben.saving.is_none());
     assert!(b.dirty());
     assert!(ben.shared.as_ref().unwrap().owns(Target::Page(2)) && !server.locks.is_empty());
     // The next save is sent at once.
-    assert!(ben.begin_save(&b.prj, vec![Target::Page(2)]).is_some());
+    assert!(ben.begin_save(&b.prj, vec![Target::Page(2)], false).is_some());
 }
 
 #[test]
@@ -674,14 +674,14 @@ fn closing_waits_for_the_save_under_way() {
     let (mut ben, mut b) = server.open("ben");
     ben.url = "http://127.0.0.1:9".into();
     edit(&mut b, 1, "A");
-    let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let sent = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     let reply = answered(&mut server, &ben, sent);
     ben.close();
     assert!(!ben.busy() && ben.closing.len() == 1, "the session ends after the save");
     // Another session saves at once; the old answer leaves its save alone.
     let opened = Opened { session: Session { user: "ben".into(), session: "s9".into() }, snapshot: server.snapshot(), ..Default::default() };
     ben.shared = Some(Shared::open("plant", opened).0);
-    assert!(ben.begin_save(&b.prj, Vec::new()).is_some());
+    assert!(ben.begin_save(&b.prj, Vec::new(), false).is_some());
     let (taken, _) = apply_reply(&mut ben, &mut b, reply);
     assert_eq!(taken, Taken::default());
     assert_eq!(ben.saving.as_deref(), Some("s9"));
@@ -694,11 +694,11 @@ fn the_unsaved_changes_question_waits_for_the_queued_save() {
     let (mut ben, mut b) = server.open("ben");
     let mut guard = crate::session::Guard::default();
     edit(&mut b, 1, "A");
-    let first = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let first = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     edit(&mut b, 1, "B");
     assert!(guard.request(b.dirty(), "replace").is_none());
     guard.save();
-    assert!(ben.begin_save(&b.prj, Vec::new()).is_none());
+    assert!(ben.begin_save(&b.prj, Vec::new(), false).is_none());
     let reply = answered(&mut server, &ben, first);
     let (_, next) = apply_reply(&mut ben, &mut b, reply);
     let next = next.expect("B is saved next");
@@ -716,7 +716,7 @@ fn a_newer_project_announced_while_saving_is_loaded_after_the_save() {
     let (mut ben, mut b) = server.open("ben");
     ben.url = "http://127.0.0.1:9".into();
     edit(&mut b, 1, "A");
-    let sent = ben.begin_save(&b.prj, Vec::new()).unwrap();
+    let sent = ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     ben.take_status(Status { revision: 2, locks: Vec::new() }, &[]);
     assert!(!ben.fetching && ben.refetch == Some(2));
     let reply = answered(&mut server, &ben, sent);
@@ -725,7 +725,7 @@ fn a_newer_project_announced_while_saving_is_loaded_after_the_save() {
     ben.flush(&b);
     assert!(!ben.fetching && ben.refetch.is_none());
     // Announced newer than the answer: loaded once the save is answered.
-    ben.begin_save(&b.prj, Vec::new()).unwrap();
+    ben.begin_save(&b.prj, Vec::new(), false).unwrap();
     ben.take_status(Status { revision: 9, locks: Vec::new() }, &[]);
     ben.flush(&b);
     assert!(!ben.fetching);
@@ -740,7 +740,7 @@ fn an_old_save_answer_closes_its_original_session_after_an_account_switch() {
     remote.url = "http://127.0.0.1:9/original".into();
     remote.user = "anna".into();
     remote.token = "synthetic-old-token".into();
-    let sent = remote.begin_save(&project, Vec::new()).unwrap();
+    let sent = remote.begin_save(&project, Vec::new(), false).unwrap();
     let receive = remote.receiver("old save in progress".into());
     remote.close();
     assert_eq!(remote.closing.len(), 1);
@@ -1044,7 +1044,7 @@ fn review193_reauthentication_applies_a_delayed_successful_save_to_the_kept_proj
         let (mut r, mut session) = server.open("anna");
         r.url = "http://127.0.0.1:9/?review193".into();
         edit(&mut session, 0, "saved before reauthentication");
-        let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+        let sent = r.begin_save(&session.prj, Vec::new(), false).unwrap();
         let reply = answered(&mut server, &r, sent);
         let delayed = r.receiver("saving".into());
         if later_edit { edit(&mut session, 0, "newer unsaved edit"); }
@@ -1130,7 +1130,7 @@ fn review193_old_save_failure_stays_visible_without_revoking_the_new_login() {
     let (mut r, mut session) = server.open("anna");
     r.url = "http://127.0.0.1:9/?review193-old-failure".into();
     edit(&mut session, 0, "unsaved fixture");
-    let sent = r.begin_save(&session.prj, Vec::new()).unwrap();
+    let sent = r.begin_save(&session.prj, Vec::new(), false).unwrap();
     let delayed = r.receiver("old save".into());
     r.link = Link::SignedOut;
     r.password = "fixture".into();
@@ -1144,4 +1144,64 @@ fn review193_old_save_failure_stays_visible_without_revoking_the_new_login() {
     assert!(session.dirty());
     assert!(r.status.contains("synthetic old save failure"));
     assert_eq!(r.save_error.as_deref(), Some("synthetic old save failure"));
+}
+
+#[test]
+fn the_automatic_save_never_queues_and_releases_no_lock() {
+    let mut server = Server::new();
+    let (mut r, mut session) = server.open("anna");
+    r.url = "http://127.0.0.1:9".into();
+    edit(&mut session, 0, "A");
+    assert!(r.autosave(&session.prj));
+    assert!(r.saving());
+    edit(&mut session, 0, "B");
+    assert!(!r.autosave(&session.prj), "one save at a time");
+    assert!(r.queued.is_none(), "the next automatic save comes with the next interval");
+    // Ctrl+S meanwhile is still queued behind it.
+    assert!(r.save(&session.prj, Vec::new()));
+    assert!(r.queued.is_some());
+}
+
+#[test]
+fn the_automatic_save_is_marked_and_keeps_the_locks() {
+    let mut server = Server::new();
+    let (mut r, mut session) = server.open("anna");
+    edit(&mut session, 0, "A");
+    let sent = r.begin_save(&session.prj, Vec::new(), true).unwrap();
+    assert!(sent.auto && sent.release.is_empty());
+    let snapshot = server.answer(&r, &sent);
+    let (taken, next) = apply_reply(&mut r, &mut session, Reply::Saved(Box::new(sent), Ok(Box::new(snapshot))));
+    assert_eq!(taken, Taken::default());
+    assert!(next.is_none());
+    assert!(!session.dirty());
+    assert!(r.shared.as_ref().unwrap().owns(Target::Page(1)), "the lock of the saved page stays");
+    assert!(r.last_saved.is_some());
+}
+
+#[test]
+fn the_automatic_save_waits_for_the_session() {
+    for link in [Link::Offline, Link::Ended, Link::SignedOut, Link::Refused] {
+        let mut r = opened();
+        r.link = link;
+        assert!(!r.autosave(&Project::default()), "{link:?}");
+        assert!(!r.saving() && !r.busy(), "{link:?}: nothing was sent");
+    }
+    let mut closed = Remote::default();
+    assert!(!closed.autosave(&Project::default()));
+}
+
+#[test]
+fn only_a_confirmed_save_is_timed_and_failures_are_counted() {
+    let mut r = opened();
+    let ctx = egui::Context::default();
+    assert!(r.last_saved.is_none());
+    answer(&mut r, &ctx, vec![Reply::Saved(sent("s1"), Err(failed(Failure::Refused, "disk full")))]);
+    answer(&mut r, &ctx, vec![Reply::Saved(sent("s1"), Err(failed(Failure::Refused, "disk full")))]);
+    assert_eq!(r.save_failures, 2);
+    assert!(r.last_saved.is_none(), "a failed save confirms nothing");
+    answer(&mut r, &ctx, vec![Reply::Saved(sent("s1"), Ok(Box::default()))]);
+    assert_eq!(r.save_failures, 0);
+    assert!(r.last_saved.is_some() && r.save_error.is_none());
+    r.close();
+    assert!(r.last_saved.is_none(), "the time belongs to the session");
 }

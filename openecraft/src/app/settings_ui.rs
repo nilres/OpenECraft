@@ -213,6 +213,10 @@ impl App {
     }
 
     fn server_links(&mut self, ui: &mut egui::Ui) {
+        ui.strong(tr("Project server"));
+        self.server_autosave_setting(ui);
+        ui.weak(tr("The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server."));
+        ui.add_space(8.0);
         ui.weak(tr("Addresses and sign-in of the servers are set in their panes:"));
         for c in [Cmd::DataPortal, Cmd::ProjectServer, Cmd::Vault, Cmd::ManagePlugins] {
             let d = commands::def(c);
