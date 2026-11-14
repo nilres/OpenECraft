@@ -6,7 +6,7 @@
 
 use openecraft_i18n::{tr, tr_fmt};
 use super::gpu3d::{Camera, Frame};
-use super::nav3d::{self, Side};
+use super::nav3d;
 use crate::commands::Cmd;
 use crate::gestures::{MouseAction, Role};
 use super::routing_ui::RouteRef;
@@ -17,7 +17,7 @@ use openecraft_core::model::Project;
 use openecraft_core::panel::{self, ItemKind, SitePose};
 use openecraft_core::parts::vec3::{self, dot, sub, Orbit, V3};
 use openecraft_core::analysis::Analysis;
-use openecraft_ui::icons::{self, Icon};
+use openecraft_ui::view_cube::{self, Action, ViewCube};
 use egui::{vec2, Color32, PointerButton, Pos2, Rect, Sense, Stroke, Vec2};
 
 impl PanelUi {
@@ -220,21 +220,8 @@ impl PanelUi {
             });
             ui.ctx().request_repaint_after(std::time::Duration::from_millis(100));
         }
-        // Standard views and fitting, from the direction looked in.
-        let mut view = None;
-        let mut bar = ui.new_child(egui::UiBuilder::new().max_rect(rect.shrink(8.0)).layout(egui::Layout::right_to_left(egui::Align::Min)));
-        egui::Frame::popup(bar.style()).inner_margin(4.0).show(&mut bar, |ui| {
-            ui.spacing_mut().item_spacing.x = 2.0;
-            if icons::button(ui, Icon::Fit, tr("Show everything (Home)")).clicked() {
-                view = Some(Orbit { yaw: cam.yaw, pitch: cam.pitch, ..fitted });
-            }
-            for side in Side::ALL.into_iter().rev() {
-                if ui.small_button(tr(side.title())).clicked() {
-                    let (yaw, pitch) = side.angles();
-                    view = Some(Orbit { yaw, pitch, ..fitted });
-                }
-            }
-        });
+        let mut view = self.view_cube(ui, rect, resp.id, cam, fitted);
+        view_cube::axes(&painter, rect.left_bottom() + vec2(34.0, -58.0), cam.yaw, cam.pitch, 20.0);
         // Double-click: the camera turns to what is under the pointer and closes in.
         if let Some(ptr) = resp.interact_pointer_pos().filter(|_| focusing) {
             if let Some(z) = depth_under(&prims, ptr, opacity < 0.99) {
@@ -266,6 +253,35 @@ impl PanelUi {
             } else {
                 format!("{}  {:.0} × {:.0} × {:.0} mm", e.name, e.width, e.height, e.depth)
             };
+        }
+    }
+
+    /// The view cube in the top right corner of `rect`: looking from a side, an edge or a
+    /// corner, quarter turns, the starting view and fitting (turns start from where a
+    /// glide is heading); gives the view to glide to. A drag on it orbits at once.
+    fn view_cube(&mut self, ui: &mut egui::Ui, rect: Rect, id: egui::Id, cam: Orbit, fitted: Orbit) -> Option<Orbit> {
+        let cube = ViewCube::full();
+        let centre = rect.right_top() + vec2(-cube.size().x / 2.0 - 6.0, cube.size().y / 2.0 + 6.0);
+        let aim = self.cam_goal.map_or(cam, |(g, _)| g);
+        match cube.show(ui, id.with("view_cube"), centre, cam.yaw, cam.pitch)? {
+            Action::Look(d) => {
+                let (yaw, pitch) = vec3::view_from(d, aim.yaw);
+                Some(Orbit { yaw, pitch: pitch.clamp(-nav3d::MAX_PITCH, nav3d::MAX_PITCH), ..aim })
+            }
+            Action::Turn(q) => Some(Orbit { yaw: vec3::quarter_turn(aim.yaw, q), ..aim }),
+            Action::Orbit(dl) => {
+                if let Some(c) = self.cam.as_mut() {
+                    nav3d::orbit(c, dl);
+                }
+                self.cam_goal = None;
+                ui.ctx().request_repaint();
+                None
+            }
+            Action::Home => {
+                let (yaw, pitch) = nav3d::ISO;
+                Some(Orbit { yaw, pitch, ..fitted })
+            }
+            Action::Fit => Some(Orbit { yaw: aim.yaw, pitch: aim.pitch, ..fitted }),
         }
     }
 
@@ -594,7 +610,7 @@ pub(super) fn default_cam(prj: &Project, shown: &[(usize, SitePose)]) -> Orbit {
     }
     let target = [0, 1, 2].map(|i| (min[i] + max[i]) / 2.0);
     let size = (max[0] - min[0]).max(max[1] - min[1]).max(max[2] - min[2]);
-    let (yaw, pitch) = Side::Iso.angles();
+    let (yaw, pitch) = nav3d::ISO;
     Orbit { yaw, pitch, dist: size * 1.9, target }
 }
 

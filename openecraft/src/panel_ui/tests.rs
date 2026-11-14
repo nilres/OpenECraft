@@ -1,6 +1,7 @@
 use super::*;
 use openecraft_core::panel::buildings as bld;
 use openecraft_core::parts::vec3;
+use openecraft_ui::view_cube::ViewCube;
 
 /// A building with two levels and a room outside it.
 fn building_and_room() -> (Project, [u64; 2], usize) {
@@ -866,10 +867,11 @@ fn room_frame(ui: &mut PanelUi, prj: &mut Project, an: &openecraft_core::analysi
     let mut out = ctx.run_ui(input, |ui_| ui.view_3d(ui_, prj, room, an));
     out.textures_delta.clear();
     let mut alpha = 255;
+    let cube = egui::Rect::from_min_max(egui::pos2(1200.0 - ViewCube::full().size().x - 6.0, 0.0), egui::pos2(1200.0, ViewCube::full().size().y + 6.0));
     for s in &out.shapes {
-        // Unfilled paths are outlines (the icons of the view bar), not faces.
+        // Unfilled paths are outlines, not faces; the view cube is no face of the room.
         if let egui::Shape::Path(p) = &s.shape {
-            if p.fill.a() > 0 {
+            if p.fill.a() > 0 && !cube.contains_rect(p.visual_bounding_rect()) {
                 alpha = alpha.min(p.fill.a());
             }
         }
@@ -884,7 +886,8 @@ fn the_camera_glides_to_a_standard_view_over_the_frames() {
     let mut ui = PanelUi::default();
     room_frame(&mut ui, &mut prj, &an);
     let start = ui.cam.unwrap();
-    let (yaw, pitch) = nav3d::Side::Top.angles();
+    let (yaw, pitch) = openecraft_core::parts::vec3::view_from([0, 1, 0], start.yaw);
+    let pitch = pitch.min(nav3d::MAX_PITCH);
     let goal = Orbit { yaw, pitch, ..start };
     ui.cam_goal = Some((goal, start));
     let room = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
@@ -897,6 +900,32 @@ fn the_camera_glides_to_a_standard_view_over_the_frames() {
         }
     }
     assert_eq!(ui.cam, Some(goal), "arrived at the view from above");
+}
+
+#[test]
+fn the_view_cube_turns_the_camera_to_the_face_clicked() {
+    let mut prj = openecraft_core::sample::example("pump_room").unwrap();
+    let an = openecraft_core::analysis::Analysis::build(&prj);
+    let mut ui = PanelUi::default();
+    room_frame(&mut ui, &mut prj, &an);
+    let start = ui.cam.unwrap();
+    let room = prj.layout.enclosures.iter().position(|e| e.is_room()).unwrap();
+    let cube = ViewCube::full();
+    let centre = egui::pos2(1200.0 - cube.size().x / 2.0 - 6.0, cube.size().y / 2.0 + 6.0);
+    // The middle of the front face, lower left of the middle of the cube seen from the front right.
+    let proj = openecraft_ui::view_cube::Projection::new(start.yaw, start.pitch, centre, cube.half);
+    let front = proj.regions().into_iter().find(|r| r.dir == [0, 0, 1]).unwrap();
+    let at = (front.pts.iter().fold(egui::Vec2::ZERO, |s, p| s + p.to_vec2()) / 4.0).to_pos2();
+    let press = |pressed| egui::Event::PointerButton { pos: at, button: egui::PointerButton::Primary, pressed, modifiers: Default::default() };
+    let ctx = egui::Context::default();
+    let mut events = vec![vec![], vec![egui::Event::PointerMoved(at)], vec![press(true)], vec![press(false)]];
+    events.extend((0..200).map(|_| vec![]));
+    for ev in events {
+        let input = egui::RawInput { screen_rect: Some(egui::Rect::from_min_size(egui::pos2(0.0, 0.0), egui::vec2(1200.0, 800.0))), predicted_dt: 1.0 / 60.0, events: ev, ..Default::default() };
+        ctx.run_ui(input, |ui_| ui.view_3d(ui_, &mut prj, room, &an)).textures_delta.clear();
+    }
+    assert!(ui.cam_goal.is_none(), "arrived");
+    assert_eq!(ui.cam, Some(Orbit { yaw: 0.0, pitch: 0.0, ..start }), "seen from the front, nothing else changed");
 }
 
 #[test]

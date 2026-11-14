@@ -18,3 +18,4 @@ pub mod logos;
 pub mod nav;
 pub mod part_editor;
 pub mod portal;
+pub mod view_cube;

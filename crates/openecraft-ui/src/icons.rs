@@ -167,11 +167,13 @@ pub enum Icon {
     DeviceBox,
     DeviceConnection,
     StructureBox,
+    TurnLeft,
+    TurnRight,
 }
 
 impl Icon {
     /// Every icon, for the tests.
-    pub const ALL: [Icon; 154] = [
+    pub const ALL: [Icon; 156] = [
         Icon::File, Icon::FileNew, Icon::FolderOpen, Icon::Save, Icon::SaveAs, Icon::Download, Icon::Upload, Icon::Print, Icon::Template,
         Icon::Info, Icon::Settings, Icon::Help, Icon::Quit, Icon::Home, Icon::Undo, Icon::Redo, Icon::Cut, Icon::Copy, Icon::Paste,
         Icon::Delete, Icon::Rotate, Icon::Mirror, Icon::Align, Icon::Distribute, Icon::Move, Icon::MultiCopy, Icon::Find, Icon::Select,
@@ -194,6 +196,8 @@ impl Icon {
         Icon::DeviceBox,
         Icon::DeviceConnection,
         Icon::StructureBox,
+        Icon::TurnLeft,
+        Icon::TurnRight,
     ];
 
     /// The path of the icon (see the module documentation).
@@ -353,6 +357,8 @@ impl Icon {
             Icon::DeviceBox => "M 2 5 4 5 ; M 6 5 10 5 ; M 12 5 14 5 ; M 14 7 14 9 ; M 2 7 2 9 ; M 2 11 4 11 ; M 6 11 10 11 ; M 12 11 14 11 ; M 5 1.5 5 5 ; M 11 1.5 11 5 ; M 8 11 8 14.5",
             Icon::DeviceConnection => "M 1.5 11 4 11 ; M 6.5 11 9.5 11 ; M 12 11 14.5 11 ; M 8 11 8 3.5 ; D 8 3.5 1.3",
             Icon::StructureBox => "M 1.5 1.5 6 1.5 ; M 7.5 1.5 8.5 1.5 ; M 10 1.5 14.5 1.5 14.5 6 ; M 14.5 7.5 14.5 8.5 ; M 14.5 10 14.5 14.5 10 14.5 ; M 8.5 14.5 7.5 14.5 ; M 6 14.5 1.5 14.5 1.5 10 ; M 1.5 8.5 1.5 7.5 ; M 1.5 6 1.5 1.5 ; M 4 4.5 7.5 4.5 ; M 4 6.5 7.5 6.5 ; R 8 9 4 3",
+            Icon::TurnLeft => "A 8 9 5.5 200 340 ; M 5.6 5.4 2.8 7.1 1.8 4",
+            Icon::TurnRight => "A 8 9 5.5 200 340 ; M 10.4 5.4 13.2 7.1 14.2 4",
         }
     }
 }

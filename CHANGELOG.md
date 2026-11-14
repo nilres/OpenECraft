@@ -5,6 +5,14 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
+  in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
+  click on a face, edge or corner of the cube turns the camera to look from there
+  (26 views, the corners isometric), a drag on it orbits; its buttons turn the view
+  by 90°, go back to the starting view or show everything. It replaces the buttons
+  of the standard views. The 3D previews of parts (part editor, data portal,
+  installation) have a small cube without labels and glide to the view clicked.
+
 - **Docker image of the web editor:** `ghcr.io/nilres/openecraft-web` serves the
   web editor with nginx on port 8080, built by `installer/docker/Dockerfile`
   (target `editor-web`) and published with the server images;
