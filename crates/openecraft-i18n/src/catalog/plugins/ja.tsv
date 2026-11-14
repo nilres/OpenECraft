@@ -26,6 +26,8 @@ Adds a text to a page	ページにテキストを追加します
 Adds all lines of the project texts to the dictionary, optionally removing entries no longer used	プロジェクトテキストのすべての行を辞書に追加し、必要に応じて使用されなくなったエントリを削除します
 Adds an accessory to a cable end: gland, EMC gland, connector, strain relief, shield clamp, protective hose, end sleeve, marker	ケーブル端に付属品 (グランド、EMC グランド、コネクター、ストレインリリーフ、シールドクランプ、保護ホース、棒端子、マーカー) を追加します
 Adds an accessory to a device; it must fit one of the device's parts	機器にアクセサリを追加します。機器のいずれかの部品に適合する必要があります
+Adds an air-termination rod on the roofs of a building, joined to its air-termination conductors; the building gets a lightning protection system of class III if it has none	建物の屋根に突針を追加し、受雷導体に接続します。建物に雷保護システムがない場合はクラス III のシステムが追加されます
+Adds an earth electrode to a building: a foundation earth electrode in the foundation slab of its lowest level along the outer walls in meshes, a ring earth electrode in the soil round its walls, or an earth rod; its material goes into the bill of materials	建物に接地極を追加します。最下階の基礎スラブ内に外壁に沿って網目状に敷設する基礎接地極、壁の周囲の土中の環状接地極、または接地棒です。その材料は部品表に入ります
 Adds an enclosure: of a system in one of its sizes (or a custom size), or from an enclosure part	エンクロージャーを追加します: システムのいずれかのサイズ (またはカスタムサイズ)、またはエンクロージャー部品から
 Adds an equipotential bonding conductor between two bonding points (main earthing terminal, enclosures, conductive outlines, metal carriers)	2 つのボンディング点 (主接地端子、エンクロージャー、導電性の輪郭、金属製支持材) の間に等電位ボンディング導体を追加します
 Adds or changes a labeling scheme of the project, removes it, or selects the scheme used for the marking export	プロジェクトのラベリングスキームを追加、変更、または削除するか、マーキングのエクスポートに使用するスキームを選択します
@@ -33,6 +35,7 @@ Adds or changes a machine of the project (a built-in machine of the same id is r
 Adds the devices of a template to a segment	テンプレートのデバイスをセグメントに追加します
 Adds the outline of a machine, building or area to the plant layout	機械、建物、またはエリアの輪郭をプラントレイアウトに追加します
 Adds, replaces or removes a profile: a connector with the column names the other system uses	プロファイル (相手システムで使用される列名を持つコネクター) を追加、置換、または削除します
+Air-termination rod: its name	突針：その名前
 Aligns items, spaces them evenly, lines devices up on a rail or copies items in a pattern	アイテムの整列、均等配置、レール上へのデバイスの整列、パターンでのアイテムのコピーを行います
 Aligns symbols, texts and graphics to a common edge or centre; connected wire ends follow	シンボル、テキスト、グラフィックを共通の端または中央に揃えます。接続された電線の端も追従します
 Allow renaming onto an identifier in use: both become one	使用中の識別子への名前変更を許可: 両方が 1 つになります
@@ -70,6 +73,7 @@ Between page and column (default .)	ページと列の間 (既定 .)
 Bonding point	ボンディング点
 Border around the text	テキストの外枠
 Both classes are needed	両方のクラスが必要です
+Buildings of the plant with levels, shafts, stairs and roofs with PV arrays, earth electrodes and lightning protection, rooms on the levels and links between buildings	施設の建物: 階、シャフト、階段、PVアレイ付きの屋根、接地極と雷保護、階の部屋、建物間の接続
 Bus system name	バスシステム名
 Bus system name, e.g. PN/IE_1	バスシステム名 (例: PN/IE_1)
 Busbar machine program (CSV)	ブスバー加工機プログラム (CSV)
@@ -88,6 +92,7 @@ Changes a cell of a table: device tag, function text, description, part; wire nu
 Changes a door or a window of a room: how it opens (hinged left or right, inwards or outwards, or sliding), its place along the wall, its size and sill	部屋のドアまたは窓を変更します：開き方（左または右吊り元、内開きまたは外開き、または引き戸）、壁に沿った位置、寸法、窓台
 Changes a placed symbol; when it moves, connected wire ends follow	配置済みのシンボルを変更します。移動すると、接続された電線端が追従します
 Changes a text (only the given properties)	テキストを変更します (指定したプロパティのみ)
+Changes an earth electrode of a building: its place, length, distance from the walls, depth, mesh, part or busbar; renames or removes it	建物の接地極を変更します。位置、長さ、壁からの距離、深さ、網目、部品、ブスバー。名前の変更や削除もできます
 Changes devices with phased out or discontinued parts over to the successor parts (the successors must be project parts)	生産終了予定または生産終了の部品を使用しているデバイスを後継部品に切り替えます (後継品はプロジェクト部品である必要があります)
 Changes name, description or structure of a page	ページの名前、説明、または構造を変更します
 Changes name, description, function, location or parent of a segment	セグメントの名前、説明、機能、取付場所、または親を変更します
@@ -100,6 +105,7 @@ Check {} failed: {}	チェック {} が失敗しました: {}
 Checks the panel layout: collisions, clearances (mounting, ventilation, EMC), service space, heights above the floor, collision classes, temperatures and manufacturability	盤レイアウトをチェックします: 干渉、クリアランス (取付、換気、EMC)、サービススペース、床面からの高さ、干渉クラス、温度、製造性
 Chooses how wire ends are terminated: bare, with a ferrule or a crimped terminal; at a connection point, at all connection points of a device or for one wire only	電線端末の処理を選びます：被覆除去のみ、フェルール、圧着端子。接続点ごと、機器の全接続点、または1本の電線のみ
 Chosen value	選択した値
+Class of the lightning protection system, 1 … 4 (I … IV; default III)	雷保護システムのクラス、1 … 4 (I … IV、既定 III)
 Clearances, service space, heights, collision classes, thermal simulation and manufacturability of the panel layout	盤レイアウトのクリアランス、サービススペース、高さ、干渉クラス、熱シミュレーション、製造性
 Climate of the enclosures (IEC/TR 60890): power loss, inside temperature, fan or cooling unit and heating needed; optionally changes the settings of one	エンクロージャーの温度管理 (IEC/TR 60890): 損失電力、内部温度、必要なファンまたはクーラーとヒーター。必要に応じてエンクロージャーの設定を変更します
 Collision class: power, drive, control, signal, terminal, rail, duct, busbar, cutout, accessory, an own class or * for any	干渉クラス: power、drive、control、signal、terminal、rail、duct、busbar、cutout、accessory、独自のクラス、またはすべての場合は *
@@ -198,6 +204,8 @@ Devices with parts that are phased out or discontinued, and their change to the 
 Devices, wires, potentials, cables, terminal strips, PLC, panel, fluid, electrical calculations, structure and translations	デバイス、電線、電位、ケーブル、端子台、PLC、盤、流体、電気計算、構造、翻訳
 Diameter in mm	直径 (mm)
 Diameter of a hole at both ends (0: none)	両端の穴の直径 (0: なし)
+Diameter of the conductors, mm (default 8)	導体の直径、mm (既定 8)
+Diameter of the rod, mm (default 16)	突針の直径、mm (既定 16)
 Direction of the stem: left, right, up or down (default: from the wires there)	軸の方向：left、right、up または down（既定：その位置の接続線から）
 Distance between power and signal or fluid in mm	動力と信号または流体の間の距離 (mm)
 Distance from devices, rails and busbars in mm	デバイス、レール、ブスバーからの距離 (mm)
@@ -222,6 +230,10 @@ Draws a wire through two or more points	2 つ以上の点を通る電線を描�
 Draws the wires in their colour on the schematic pages and in PDF / SVG export, or in black	回路図ページと PDF / SVG エクスポートで電線を色付きまたは黒で描画します
 Draws wires between free connection points of symbols that face each other, and to the free arms of T-junctions and corners	向き合うシンボルの空き接続点の間、およびT分岐とコーナーの空いている側へ接続線を描きます
 EMC classes of the cables (drive output, analogue, power, signal, shield) and the EMC problems	ケーブルの EMC クラス (ドライブ出力、アナログ、動力、信号、シールド) と EMC の問題
+Earth electrode: its name	接地極：その名前
+Earth rod: its length, mm (default 3000)	接地棒：長さ、mm (既定 3000)
+Earth rod: x of its place in the floor plan of the building, mm	接地棒：建物の平面図での位置の x、mm
+Earth rod: z of its place in the floor plan of the building, mm	接地棒：建物の平面図での位置の z、mm
 Edge length of the routing grid in mm	配線グリッドの辺の長さ (mm)
 Electrical device tags separated by commas or blanks (empty = remove the links)	電気デバイスのタグ (カンマまたはスペース区切り、空 = リンクを削除)
 Electrical engineering	電気工学
@@ -256,6 +268,8 @@ First port as station:port, e.g. PLC1:X1 P2	1 つ目のポート (ステーシ�
 First row with the column names	最初の行に列名を含める
 Format of the device name: {letter}, {n} (counter), {page}, {column}, {row}; default {letter}{n}	デバイス名の書式: {letter}、{n} (カウンター)、{page}、{column}、{row}。既定は {letter}{n}
 Format of the scheme format: {n} (counter), {page}, {column}, {row}, {potential}, {kind}, {color}, {cross_section}	スキーム format の書式: {n} (カウンター)、{page}、{column}、{row}、{potential}、{kind}、{color}、{cross_section}
+Foundation earth electrode: how far inside the outer walls (default 100), ring: how far outside them (default 1000), mm	基礎接地極：外壁の内側への距離 (既定 100)、環状：外側への距離 (既定 1000)、mm
+Foundation earth electrode: its largest mesh, mm (default 20000)	基礎接地極：最大の網目、mm (既定 20000)
 Frame to start from when the frame is new (default: A3 landscape)	新しい図枠の場合の元になる図枠 (既定: A3 landscape)
 Free space in front of every device on the plate	取付板上の各デバイスの前面の空きスペース
 Freezes routes for production (kept by the recalculation while possible) or releases them	製造用にルートを固定するか (再計算でも可能な限り維持)、固定を解除します
@@ -272,6 +286,8 @@ Generates the CNC program of a face for its machine (ISO G-code, Heidenhain, pun
 Generates the multi-line schematic (power symbols, conductors, contactor coils) for the single-line symbols of a page on a new page after it	ページの単線シンボルに対する複線回路図 (動力シンボル、導体、電磁接触器コイル) をその後の新しいページに生成します
 Generates the program of the busbar machine: cuts, punched holes and bends	ブスバー加工機のプログラム (切断、パンチ穴、曲げ) を生成します
 Give a device tag or a part number	機器記号または部品番号を指定してください
+Gives a building a lightning protection system or changes it: its class, the number of its down conductors and the part of its conductors; air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors with test joints to the earth electrodes; or removes it	建物に雷保護システムを設定または変更します。クラス、引下げ導線の数、導体の部品。棟と隅棟の受雷導体 (陸屋根では網目)、接地極までの試験用接続端子付き引下げ導線。削除もできます
+Greatest distance of the conductor holders, mm (default 1000)	導体支持金具の最大間隔、mm (既定 1000)
 Groups items into an assembly that is selected and moved together; without a name the items leave their assemblies	アイテムをアセンブリにグループ化し、まとめて選択、移動できるようにします。名前を指定しない場合、アイテムはアセンブリから外れます
 Hands the programs of an enclosure off to production as a job: manifest and programs of all its faces and copper bars	エンクロージャーのプログラムをジョブとして製造に引き渡します: すべての面と銅バーのマニフェストとプログラム
 Has a divider between power and signal cables	動力ケーブルと信号ケーブルの間にセパレーターあり
@@ -280,6 +296,8 @@ Height above the mounting plate in mm (default 50)	取付板からの高さ (mm�
 Height in mm	高さ (mm)
 Height in mm without plinth; negative: unknown (wall mounted)	台座を除く高さ (mm)。負の値: 不明 (壁掛け)
 Height in mm; the logo keeps its aspect ratio inside	高さ（mm）。ロゴはその中で縦横比を保ちます
+Height of the rod above the covering, mm (default 1500)	屋根葺き材からの突針の高さ、mm (既定 1500)
+Height of the test joints above the ground, mm (default 1000)	試験用接続端子の地表からの高さ、mm (既定 1000)
 Higher-level product aspect (-) of the page; the devices on the page move along	ページの上位製品アスペクト (-)。ページ上のデバイスも一緒に移動します
 Highest actuator on the door above the floor (0: not checked)	床面からの扉の操作部の最高高さ (0: チェックしない)
 Highest air temperature at devices without data (0: not checked)	データのないデバイス周囲の最高空気温度 (0: チェックしない)
@@ -427,17 +445,21 @@ Manufacturing package (CNC programs, JSON)	製造パッケージ (CNC プログ�
 Markers, comma separated: device, terminal, wire, cable (empty: all)	マーカー (カンマ区切り): device、terminal、wire、cable (空欄: すべて)
 Marks a panel item as mounted or as a problem, or as open again	盤アイテムを取付済み、問題あり、または未完了としてマークします
 Marks a routed wire as wired or as a problem, or as open again; the wire is given by its two ends	配線ルートが設定された電線を配線済み、問題あり、または再び未完了としてマークします。電線はその両端で指定します
+Material: galvanised_steel, stainless_steel, copper, copper_bonded_steel or aluminium	材料: galvanised_steel, stainless_steel, copper, copper_bonded_steel または aluminium
 Maximum fill of a carrier in percent	支持材の最大占有率 (%)
 Maximum operating pressure in bar	最大使用圧力 (bar)
 Measuring range or set point	測定範囲または設定値
 Message code, e.g. wires.3f9a1c	メッセージコード (例: wires.3f9a1c)
 Milling feed, mm/min	フライス送り速度 (mm/min)
 Mirror the symbol	シンボルを反転
+Moves an air-termination rod, changes its height, renames or removes it	突針を移動し、高さを変更し、名前を変更または削除します
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	電線の一方の端を移動します。端は接続先から離れ、接触したものに接続されます。電線は直角のままです
 Moves symbols, wires and texts; connected wire ends follow	シンボル、電線、テキストを移動します。接続された電線端が追従します
 Moves the page before this page of its section (or of the section given)	ページをそのセクション（または指定したセクション）のこのページの前に移動します
 Moves the section before this section of its parent (or of the parent given); the numbers keep counting in order	セクションをその親（または指定した親）のこのセクションの前に移動します。番号は順に続きます
 Nailboard layout of a harness: the branches from the common node to the connectors with length, direction, bundle diameter and pins, and the drawing scale	ハーネスの布線板レイアウト: 共通ノードからコネクターまでの分岐 (長さ、方向、束径、ピン) と図面の縮尺
+Name (default E1, E2, …)	名前 (既定 E1、E2、…)
+Name (default F1, F2, …)	名前 (既定 F1、F2、…)
 Name of the assembly	アセンブリの名前
 Name of the bar, e.g. L1 -Q1	バーの名前 (例: L1 -Q1)
 Name of the check	チェックの名前
@@ -461,6 +483,7 @@ New page name	新しいページ名
 New parent segment (empty: top level)	新しい親セグメント (空欄: 最上位)
 New value	新しい値
 No PCT loop {}	計装ループ {} はありません
+No air-termination rod {} on building {}	建物 {1} に突針 {0} はありません
 No built-in check is named {}: it applies to a check of a plugin of that name (list_checks)	{} という名前の組み込みチェックはありません: 設定は同じ名前のプラグインのチェックに適用されます (list_checks)
 No bus system {}	バスシステム {} はありません
 No connection point {} on this page	このページに接続ポイント {} はありません
@@ -468,6 +491,7 @@ No connection symbol with id {}	id {} の接続シンボルはありません
 No copper bar {}	銅バー {} がありません
 No device description {}	デバイス記述 {} はありません
 No device group {}	デバイスグループ {} はありません
+No earth electrode {} in building {}	建物 {1} に接地極 {0} はありません
 No enclosure named {}	{} という名前のエンクロージャーはありません
 No entry for {} and {}	{} と {} のエントリがありません
 No hose {}	ホース {} はありません
@@ -570,7 +594,12 @@ Part number of the downstream device	下位デバイスの部品番号
 Part number of the hose / tube / pipe	ホース / チューブ / 配管の部品番号
 Part number of the upstream device	上位デバイスの部品番号
 Part number, e.g. GEN.LMP-GN-24	部品番号 (例: GEN.LMP-GN-24)
+Part of its strip, wire or rod (empty: generic)	帯板、線、または棒の部品 (空欄: 汎用)
+Part of the conductor holders on the roof (empty: generic)	屋根の導体支持金具の部品 (空欄: 汎用)
+Part of the conductor holders on the walls (empty: generic)	壁の導体支持金具の部品 (空欄: 汎用)
+Part of the conductors (round wire; empty: generic)	導体の部品 (丸線、空欄: 汎用)
 Part of the key or name	キーまたは名前の一部
+Part of the rod (empty: the one of its material and diameter)	突針の部品 (空欄: 材料と直径に合うもの)
 Part {} has no function with a symbol	部品 {} にはシンボル付きの機能がありません
 Parts phased out or discontinued	生産終了予定または生産終了の部品
 Pass ids or pages	ID またはページを指定してください
@@ -651,6 +680,8 @@ Relative humidity of the ambient air in % (0: no condensation check)	周囲空�
 Release instead of freeze	固定ではなく解除する
 Released pages keep their names: {}	リリース済みのページは名前を保持します: {}
 Remote I/O: station of the controller	リモート I/O: コントローラーのステーション
+Remove the air-termination rod	突針を削除
+Remove the earth electrode	接地極を削除
 Remove the entry of upstream and downstream	upstream と downstream のエントリを削除
 Remove the profile	プロファイルを削除
 Remove the scheme from the project	スキームをプロジェクトから削除
@@ -682,6 +713,8 @@ Reserves space over the mounting plate: kept free of routes, or for one class on
 Rest (mm)	残り (mm)
 Reuse failed searches during one routing calculation	同じ配線経路計算内で失敗した検索結果を再利用する
 Right side bayed (no side panel)	右側を連結 (側板なし)
+Ring: depth below the ground level, rod: depth of its top, mm (default 500)	環状：地表からの深さ、接地棒：上端の深さ、mm (既定 500)
+Rod: its diameter (default 20), foundation and ring: of a round wire, 0 for a flat strip, mm	接地棒: その直径 (既定 20)、基礎接地極と環状接地極: 丸線の直径、帯板は 0、mm
 Room {} exists already	部屋 {} は既に存在します
 Rotation in degrees clockwise: 0, 90, 180 or 270	時計回りの回転角度 (度): 0、90、180、270
 Rotation in degrees, counter-clockwise (90 reads from bottom to top)	回転角度 (度、反時計回り。90 で下から上に読む向き)
@@ -871,6 +904,7 @@ Unknown address scheme: {}	不明なアドレス方式: {}
 Unknown alignment: {}	不明な配置: {}
 Unknown anchor: {}	不明なアンカー: {}
 Unknown aspect: {}	不明なアスペクト: {}
+Unknown base: {}	不明な台座: {}
 Unknown bonding kind: {}	不明なボンディングの種類: {}
 Unknown bonding point: {}	不明なボンディング点: {}
 Unknown bus system: {}	不明なバスシステム: {}
@@ -879,6 +913,7 @@ Unknown check: {}	不明なチェック: {}
 Unknown class: {}	不明なクラス: {}
 Unknown data type: {}	不明なデータ型: {}
 Unknown direction {}: left, right, up or down	不明な方向 {}：left、right、up または down
+Unknown earth electrode: {}	不明な接地極: {}
 Unknown earthing system: {}	不明な系統接地方式: {}
 Unknown face {}	不明な面 {}
 Unknown fastening: {}	不明な固定方法: {}
@@ -970,9 +1005,11 @@ device (default), position, cross_section or number	device (既定)、position�
 devices, connections, terminals, cables, plugs, plc, pages or parts	devices, connections, terminals, cables, plugs, plc, pages または parts
 error, warning, info, off, or default to take the change back	error、warning、info、off、または変更を取り消す場合は default
 false takes the acceptance back (default true)	false で承認を取り消します (既定 true)
+foundation, ring or rod	foundation、ring または rod
 free_standing, wall_mounted, end_free_standing, end_wall_mounted, middle_free_standing, middle_wall_mounted or middle_wall_mounted_covered	free_standing、wall_mounted、end_free_standing、end_wall_mounted、middle_free_standing、middle_wall_mounted、または middle_wall_mounted_covered
 function (=), installation (++), location (+) or product (-)	function (=)、installation (++)、location (+)、または product (-)
 gland, emc_gland, connector, strain_relief, shield_clamp, protective_hose, end_sleeve, marker or other	gland、emc_gland、connector、strain_relief、shield_clamp、protective_hose、end_sleeve、marker または other
+holder (a rod holder on the roof) or concrete_base (on flat roofs)	holder (屋根の突針支持金具) または concrete_base (陸屋根)
 hose, tube or pipe	hose、tube、または pipe
 iec60204 (machinery, phases BK) or iec60445 (phases BN, BK, GY)	iec60204 (機械、相導体 BK) または iec60445 (相導体 BN、BK、GY)
 keepout (default), power, control, signal or fluid	keepout (既定)、power、control、signal、または fluid
@@ -999,6 +1036,8 @@ too long	長すぎます
 tray (default), ladder, trunking, conduit, drag_chain, buried or free	tray (既定)、ladder、trunking、conduit、drag_chain、buried または free
 valve_terminal, service_unit, manifold, power_unit or other	valve_terminal、service_unit、manifold、power_unit、または other
 wired, problem or open	wired、problem、または open
+x of the foot of the rod in the floor plan of the building, mm	建物の平面図での突針の足元の x、mm
+z of the foot of the rod in the floor plan of the building, mm	建物の平面図での突針の足元の z、mm
 {} and {} are both ends of one function: the wire would short-circuit it	{} と {} は同じ機能の両端です: この電線はそれを短絡させます
 {} and {} are needed together	{} と {} は同時に指定する必要があります
 {} cannot be bayed to itself	{} は自分自身に連結できません

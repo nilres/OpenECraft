@@ -248,10 +248,14 @@ pub enum Cmd {
     LayoutPlotBoundary,
     LayoutReferencePoint,
     LayoutMeasure,
+    LayoutMoveBuildings,
+    LayoutEarthing,
     LayoutZones,
     LayoutOpenWalls,
     LayoutHideFrontWalls,
     LayoutHideCeiling,
+    LayoutHidePvModules,
+    LayoutSeeThroughPv,
     LayoutOpenDucts,
     LayoutFit,
     LayoutNcData,
@@ -698,6 +702,12 @@ pub static ALL: &[Def] = &[
     d(C::LayoutMeasure, "layout_measure", tr_const!("Measure"), I::Dimension)
         .toggle()
         .tip(tr_const!("Measure in the site plan: click two points for the distance, how far east and north and the direction from north")),
+    d(C::LayoutMoveBuildings, "layout_move_buildings", tr_const!("Move buildings"), I::Move)
+        .toggle()
+        .tip(tr_const!("Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it")),
+    d(C::LayoutEarthing, "layout_earthing", tr_const!("Earthing and lightning protection"), I::Building)
+        .menu()
+        .tip(tr_const!("Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs")),
     d(C::LayoutDrawWalls, "layout_draw_walls", tr_const!("Draw walls"), I::Polyline)
         .toggle()
         .tip(tr_const!("Draw the walls of the room: click the corners, walls run at right angles; click the first corner or press Enter to close")),
@@ -756,6 +766,12 @@ pub static ALL: &[Def] = &[
         .toggle()
         .tip(tr_const!("Leave out the walls between the eye and the inside of the room or enclosure in the 3D view")),
     d(C::LayoutHideCeiling, "layout_hide_ceiling", tr_const!("Hide ceiling"), I::Enclosure).toggle().tip(tr_const!("Leave out the ceilings of the rooms and the roofs in the 3D view")),
+    d(C::LayoutHidePvModules, "layout_hide_pv_modules", tr_const!("Hide PV modules"), I::Grid)
+        .toggle()
+        .tip(tr_const!("Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen")),
+    d(C::LayoutSeeThroughPv, "layout_see_through_pv", tr_const!("See-through PV modules"), I::Eye)
+        .toggle()
+        .tip(tr_const!("Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen")),
     d(C::LayoutZones, "layout_zones", tr_const!("Installation zones"), I::Grid)
         .toggle()
         .tip(tr_const!("Show the installation zones of the rooms see-through: on the walls in the 3D view and the views of the walls, in the floor in the floor plan")),
@@ -808,11 +824,19 @@ pub fn acts_in_layout_view(cmd: Cmd) -> bool {
             | C::LayoutBuilding
             | C::LayoutHideFrontWalls
             | C::LayoutHideCeiling
+            | C::LayoutHidePvModules
+            | C::LayoutSeeThroughPv
             | C::LayoutZones
             | C::LayoutOpenWalls
             | C::LayoutOpenDucts
             | C::LayoutFit
     )
+}
+
+/// Menu commands whose menu stays open while it is used (its tabs, filters and
+/// fields are clicked); it closes when a choice is made or on a click outside it.
+pub fn stays_open(cmd: Cmd) -> bool {
+    matches!(cmd, Cmd::LayoutInstallation | Cmd::LayoutEarthing)
 }
 
 /// The definition of a command.

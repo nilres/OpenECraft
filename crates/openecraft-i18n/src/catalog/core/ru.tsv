@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Темпер�
 Centre horizontally	Центрировать по горизонтали
 Centre vertically	Центрировать по вертикали
 Centrifugal pump	Центробежный насос
-Change	Изменение
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Изменено в папке проекта другой программой, а также в открытом проекте: {}{}. Сохраните проект под другим именем или откройте его заново и повторите изменения
 Changed since mounted	Изменено после монтажа
 Changed since wired	Изменённые после монтажа
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Медная шина {}: длина {} мм больше складской длины {} мм
 Copper bar {}: {} mm are too thick for {}	Медная шина {}: толщина {} мм слишком велика для {}
 Copper bar {}: {} segments need {} bends	Медная шина {}: для участков ({}) требуется гибов: {}
+Copper-bonded steel	Омеднённая сталь
 Cores used	Занято жил
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	Угол на странице {} не соответствует своим проводам: нужен один провод в каждом из его двух направлений и никакой точки подключения там
 Counter contact NC	Контакт счётчика, размыкающий
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	Основные данные поз
 ERP number	Номер ERP
 ETIM class	Класс ETIM
 Earth electrode	Заземлитель
+Earth rod	Вертикальный заземлитель
 East-west on a flat roof	Восток-запад на плоской крыше
 Edit pages	Редактирование листов
 Edit project data	Редактирование данных проекта
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Ножной выключатель, замыкающий 
 Force	Усилие
 Fork terminal	Вилочный наконечник
 Format (placeholders)	Формат (заполнители)
+Foundation earth electrode	Фундаментный заземлитель
 Frame size	Типоразмер
 Free	Свободно
 Free air (mm)	Открытая прокладка (мм)
@@ -848,8 +850,6 @@ Minimum operating temperature	Минимальная рабочая темпер
 Mirror contacts	Зеркальные контакты
 Mirrored	Отражено
 Mission time	Срок эксплуатации
-Module	Модуль
-Modules	Модули
 Moisture	Влажность
 Moment of inertia	Момент инерции
 Motion detector	Датчик движения
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Таб�
 Revision table: index of the last revision (2: the one before …)	Таблица изменений: индекс последнего изменения (2: предыдущего …)
 Right side	Правая сторона
 Right side panel	Правая боковая стенка
+Ring earth electrode	Кольцевой заземлитель
 Ring terminal	Кольцевой наконечник
 Rivet nut	Заклёпочная гайка
 RoHS compliant	Соответствует RoHS
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Роликовый выключатель, размыкающий контакт
 Roller switch NO	Роликовый выключатель, замыкающий контакт
-Roof	Крыша
 Roof top	Кровля
 Room floor	Пол помещения
 Room {} stands outside the plot boundary	Помещение {} находится за границей участка
@@ -1484,6 +1484,7 @@ Spare terminal	Резервная клемма
 Speed	Частота вращения
 Spiral	Винтовая
 Stainless steel	Нержавеющая сталь
+Stainless steel V4A	Нержавеющая сталь V4A
 Standard	Стандарт
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Схема пуска / останова с реле: катушка и контакты образуют одно устройство с перекрёстными ссылками и зеркалом контактов, клеммник, номера проводов, схема клеммника и перечень соединений.
 Start date	Дата начала
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Имя станции {} используетс
 Station {} is not connected to bus {}	Станция {} не подключена к шине {}
 Station {}: bus system {} does not exist	Станция {}: шинная система {} не существует
 Steam	Пар
+Steel, hot-dip galvanised	Сталь горячеоцинкованная
 Stock	Складской запас
 Stop category	Категория останова
 Storage temperature range	Диапазон температуры хранения
@@ -1896,7 +1898,6 @@ page properties	свойства листа
 pigtail {} mm	косичка {} мм
 pilot	управление
 pink	розовый
-portrait	книжная
 pressure	давление
 red	красный
 released	выпущена
@@ -1980,6 +1981,7 @@ yellow	жёлтый
 {}: PV array {} covers a roof window	{}: фотоэлектрическое поле {} закрывает мансардное окно
 {}: PV array {} has {} modules, its device {} has {}	{}: фотоэлектрическое поле {} имеет {} модулей, его устройство {} — {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: фотоэлектрическое поле {} смонтировано с наклоном на скатной крыше
+{}: PV array {} lies outside the protection of the air-termination system	{}: фотоэлектрическое поле {} вне зоны защиты молниеприёмника
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: фотоэлектрическое поле {} крыши {} лежит поперёк конька, ребра или края крыши
 {}: PV array {} of roof {} lies outside the roof	{}: фотоэлектрическое поле {} крыши {} лежит вне крыши
 {}: PV arrays {} and {} lie over each other	{}: фотоэлектрические поля {} и {} перекрываются
@@ -1989,6 +1991,7 @@ yellow	жёлтый
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: провод {} мм² тоньше, чем принимает точка подключения (не менее {} мм²)
 {}: accessory {} fits none of the device's parts	{}: принадлежность {} не подходит ни к одному изделию устройства
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: орган управления {} находится на высоте {} мм над полом, рекомендуется {} … {} мм
+{}: air-termination rod {} stands off the roofs	{}: молниеприёмный стержень {} стоит вне крыш
 {}: auxiliary function(s) without main function	{}: вспомогательные функции без главной функции
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: отключающая способность {} kA ниже тока короткого замыкания {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: кабельный канал на {} мм заполнен на {} % (предел {} %)
@@ -2009,6 +2012,8 @@ yellow	жёлтый
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: вырезы {} и {} на {} расположены слишком близко (перемычка {} мм, требуется не менее {} мм)
 {}: designation '{}' used more than once	{}: обозначение '{}' используется более одного раза
 {}: device tag without device name	{}: обозначение устройства без имени устройства
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: у заземлителя {} нет стен, вдоль которых он проходит: у здания нет помещений и крыш
+{}: earth rod {} stands inside the walls of the building	{}: вертикальный заземлитель {} стоит внутри стен здания
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: ток замыкания {} A на {} не отключается в течение {} s (требуется {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: тексты функций на однолинейной схеме и на схеме различаются
 {}: hole of {} is too close to the cutout of {} on the {}	{}: отверстие {} расположено слишком близко к вырезу {} на {}
@@ -2069,7 +2074,12 @@ yellow	жёлтый
 {}: terminal {} uses {} levels, its part {} has {}	{}: клемма {} занимает ярусов: {}, а у её изделия {}: {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: клеммы {} находятся на высоте {} мм над полом, требуется не менее {} мм
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: система сборных шин с {} шинами соединяет {} проводника ({}): короткое замыкание
+{}: the busbar {} of earth electrode {} does not exist	{}: шины {} заземлителя {} не существует
 {}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
+{}: the earthing busbar {} of PV array {} does not exist	{}: шины заземления {} фотоэлектрического поля {} не существует
+{}: the generator junction box {} of PV array {} does not exist	{}: генераторной соединительной коробки {} фотоэлектрического поля {} не существует
+{}: the lightning protection has no earth electrode	{}: у молниезащиты нет заземлителя
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: у молниезащиты нет стен, вдоль которых она проходит: у здания нет помещений и крыш
 {}: the module {} of PV array {} has no electrical data	{}: у модуля {} фотоэлектрического поля {} нет электрических данных
 {}: the station has no port {}	{}: у станции нет порта {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: цепочки фотоэлектрического поля {} соединяют {} модулей, в поле {}
@@ -2086,6 +2096,7 @@ yellow	жёлтый
 {}: {} carries {} A, the load {} needs {} A	{}: {} выдерживает {} A, нагрузке {} нужно {} A
 {}: {} changed after it was mounted	{}: {} изменён после монтажа
 {}: {} collides with {}	{}: {} сталкивается с {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} токоотводов, классу {} нужно {} вокруг здания
 {}: {} inputs used, the module has {}	{}: используется входов – {}, у модуля – {}
 {}: {} is a fluid device, not an electrical one	{}: {} – устройство гидропневматики, а не электрическое
 {}: {} is closer than {} mm to a cable duct	{}: {} ближе {} мм к кабельному каналу

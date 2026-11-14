@@ -188,7 +188,6 @@ Cell temperatures: {} °C (U max), {} °C (U mean), {} °C (U min)	Celtemperatur
 Centre horizontally	Horizontaal centreren
 Centre vertically	Verticaal centreren
 Centrifugal pump	Centrifugaalpomp
-Change	Wijziging
 Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	In de projectmap door een ander programma en ook in het geopende project gewijzigd: {}{}. Sla het project onder een andere naam op, of open het opnieuw en herhaal de wijzigingen
 Changed since mounted	Gewijzigd sinds montage
 Changed since wired	Gewijzigd sinds bedraden
@@ -294,6 +293,7 @@ Copper bar {}: segment {} is {} mm straight, at least {} mm are needed for bendi
 Copper bar {}: {} mm are longer than the stock length of {} mm	Koperrail {}: {} mm is langer dan de voorraadlengte van {} mm
 Copper bar {}: {} mm are too thick for {}	Koperrail {}: {} mm is te dik voor {}
 Copper bar {}: {} segments need {} bends	Koperrail {}: {} segmenten hebben {} buigingen nodig
+Copper-bonded steel	Verkoperd staal
 Cores used	Gebruikte aders
 Corner on page {} does not fit its wires: it needs one wire in each of its two directions and no connection point there	De hoek op pagina {} past niet bij zijn draden: hij heeft één draad in elk van zijn twee richtingen en geen aansluitpunt daar nodig
 Counter contact NC	Tellercontact verbreekcontact
@@ -434,6 +434,7 @@ ERP item master and bill of materials (CSV)	ERP-artikelstamgegevens en stuklijst
 ERP number	ERP-nummer
 ETIM class	ETIM-klasse
 Earth electrode	Aardelektrode
+Earth rod	Aardpen
 East-west on a flat roof	Oost-west op een plat dak
 Edit pages	Pagina's bewerken
 Edit project data	Projectgegevens bewerken
@@ -551,6 +552,7 @@ Foot switch NO (NFPA)	Voetschakelaar maakcontact (NFPA)
 Force	Kracht
 Fork terminal	Vorkkabelschoen
 Format (placeholders)	Indeling (tijdelijke aanduidingen)
+Foundation earth electrode	Funderingsaarde
 Frame size	Bouwgrootte
 Free	Vrij
 Free air (mm)	Vrij in de lucht (mm)
@@ -848,8 +850,6 @@ Minimum operating temperature	Minimale bedrijfstemperatuur
 Mirror contacts	Spiegelcontacten
 Mirrored	Gespiegeld
 Mission time	Gebruiksduur
-Module	Module
-Modules	Modules
 Moisture	Vochtigheid
 Moment of inertia	Traagheidsmoment
 Motion detector	Bewegingsmelder
@@ -1345,13 +1345,13 @@ Revision table: description of the last revision (2: the one before …)	Revisie
 Revision table: index of the last revision (2: the one before …)	Revisietabel: index van de laatste revisie (2: die daarvoor …)
 Right side	Rechterzijde
 Right side panel	Rechterzijwand
+Ring earth electrode	Ringaarde
 Ring terminal	Ringkabelschoen
 Rivet nut	Blindklinkmoer
 RoHS compliant	RoHS-conform
 Rockwell (Local:1:I.Data.0)	Rockwell (Local:1:I.Data.0)
 Roller switch NC	Rolschakelaar verbreekcontact
 Roller switch NO	Rolschakelaar maakcontact
-Roof	Dak
 Roof top	Dak
 Room floor	Vloer van de ruimte
 Room {} stands outside the plot boundary	Ruimte {} staat buiten de perceelgrens
@@ -1484,6 +1484,7 @@ Spare terminal	Reserveklem
 Speed	Toerental
 Spiral	Wenteltrap
 Stainless steel	Roestvrij staal
+Stainless steel V4A	Roestvast staal V4A
 Standard	Norm
 Start / stop circuit with a relay: coil and contacts form one device with cross references and contact image, terminal strip, wire numbers, terminal diagram and connection list.	Start-/stopschakeling met een relais: spoel en contacten vormen één apparaat met kruisverwijzingen en contactbeeld, klemmenstrook, draadnummers, klemmenschema en verbindingslijst.
 Start date	Begindatum
@@ -1496,6 +1497,7 @@ Station name {} is used {} times	Stationsnaam {} wordt {} keer gebruikt
 Station {} is not connected to bus {}	Station {} is niet verbonden met bus {}
 Station {}: bus system {} does not exist	Station {}: bussysteem {} bestaat niet
 Steam	Stoom
+Steel, hot-dip galvanised	Staal, thermisch verzinkt
 Stock	Voorraad
 Stop category	Stopcategorie
 Storage temperature range	Opslagtemperatuurbereik
@@ -1896,7 +1898,6 @@ page properties	pagina-eigenschappen
 pigtail {} mm	pigtail {} mm
 pilot	stuur
 pink	roze
-portrait	staand
 pressure	druk
 red	rood
 released	vrijgegeven
@@ -1980,6 +1981,7 @@ yellow	geel
 {}: PV array {} covers a roof window	{}: PV-veld {} bedekt een dakraam
 {}: PV array {} has {} modules, its device {} has {}	{}: PV-veld {} heeft {} modules, zijn apparaat {} heeft er {}
 {}: PV array {} is mounted tilted on a pitched roof	{}: PV-veld {} is schuin gemonteerd op een hellend dak
+{}: PV array {} lies outside the protection of the air-termination system	{}: PV-veld {} ligt buiten de bescherming van de opvanginrichting
 {}: PV array {} of roof {} lies across a ridge, a hip or the edge of the roof	{}: PV-veld {} van dak {} ligt over een nok, een hoekkeper of de dakrand
 {}: PV array {} of roof {} lies outside the roof	{}: PV-veld {} van dak {} ligt buiten het dak
 {}: PV arrays {} and {} lie over each other	{}: PV-velden {} en {} liggen over elkaar
@@ -1989,6 +1991,7 @@ yellow	geel
 {}: a wire of {} mm² is thinner than the connection point takes (at least {} mm²)	{}: een draad van {} mm² is dunner dan het aansluitpunt opneemt (minstens {} mm²)
 {}: accessory {} fits none of the device's parts	{}: toebehoren {} past op geen enkel artikel van het apparaat
 {}: actuator {} is {} mm above the floor, recommended {} … {} mm	{}: bedieningselement {} ligt {} mm boven de vloer, aanbevolen {} … {} mm
+{}: air-termination rod {} stands off the roofs	{}: opvangstaaf {} staat naast de daken
 {}: auxiliary function(s) without main function	{}: hulpfunctie(s) zonder hoofdfunctie
 {}: breaking capacity {} kA below the short-circuit current {} kA	{}: uitschakelvermogen {} kA lager dan de kortsluitstroom {} kA
 {}: cable duct at {} mm filled {} % (limit {} %)	{}: kabelgoot bij {} mm voor {} % gevuld (grenswaarde {} %)
@@ -2009,6 +2012,8 @@ yellow	geel
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: uitsparingen van {} en {} op {} liggen te dicht bij elkaar ({} mm brug, minimaal {} mm)
 {}: designation '{}' used more than once	{}: benaming '{}' meer dan eens gebruikt
 {}: device tag without device name	{}: apparaataanduiding zonder apparaatnaam
+{}: earth electrode {} has no walls to run along: the building has no rooms or roofs	{}: aardelektrode {} heeft geen muren om langs te lopen: het gebouw heeft geen ruimten of daken
+{}: earth rod {} stands inside the walls of the building	{}: aardpen {} staat binnen de muren van het gebouw
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: foutstroom {} A bij {} schakelt niet binnen {} s uit (vereist {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: functieteksten verschillen in het eenlijnschema en het schema
 {}: hole of {} is too close to the cutout of {} on the {}	{}: boring van {} ligt te dicht bij de uitsparing van {} op {}
@@ -2069,7 +2074,12 @@ yellow	geel
 {}: terminal {} uses {} levels, its part {} has {}	{}: klem {} gebruikt {} etages, het artikel {} ervan heeft er {}
 {}: terminals {} are {} mm above the floor, at least {} mm required	{}: klemmen {} liggen {} mm boven de vloer, minimaal {} mm vereist
 {}: the busbar system with {} bars joins {} conductors ({}): short circuit	{}: het railsysteem met {} rails verbindt {} geleiders ({}): kortsluiting
+{}: the busbar {} of earth electrode {} does not exist	{}: de rail {} van aardelektrode {} bestaat niet
 {}: the device {} of PV array {} does not exist	{}: het apparaat {} van PV-veld {} bestaat niet
+{}: the earthing busbar {} of PV array {} does not exist	{}: de aardrail {} van PV-veld {} bestaat niet
+{}: the generator junction box {} of PV array {} does not exist	{}: de generatoraansluitkast {} van PV-veld {} bestaat niet
+{}: the lightning protection has no earth electrode	{}: de bliksembeveiliging heeft geen aardelektrode
+{}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: de bliksembeveiliging heeft geen muren om langs te lopen: het gebouw heeft geen ruimten of daken
 {}: the module {} of PV array {} has no electrical data	{}: de module {} van PV-veld {} heeft geen elektrische gegevens
 {}: the station has no port {}	{}: het station heeft geen poort {}
 {}: the strings of PV array {} connect {} modules, the array has {}	{}: de strings van PV-veld {} verbinden {} modules, het veld heeft er {}
@@ -2086,6 +2096,7 @@ yellow	geel
 {}: {} carries {} A, the load {} needs {} A	{}: {} voert {} A, de belasting {} heeft {} A nodig
 {}: {} changed after it was mounted	{}: {} is gewijzigd nadat het is gemonteerd
 {}: {} collides with {}	{}: {} botst met {}
+{}: {} down conductors, class {} needs {} round the building	{}: {} afleidingen, klasse {} heeft er {} nodig rond het gebouw
 {}: {} inputs used, the module has {}	{}: {} ingangen gebruikt, de module heeft er {}
 {}: {} is a fluid device, not an electrical one	{}: {} is een vloeistoftechnisch apparaat, geen elektrisch apparaat
 {}: {} is closer than {} mm to a cable duct	{}: {} ligt dichter dan {} mm bij een kabelgoot

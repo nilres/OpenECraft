@@ -48,6 +48,7 @@ Catalog id	ID do catálogo
 Category	Categoria
 Centred	Centralizado
 Certificates	Certificados
+Change	Alteração
 Channel	Canal
 Characteristic	Característica
 Check settings	Configurações de verificação
@@ -109,6 +110,7 @@ Device (PV generator) the modules belong to; its parts then count them in the bi
 Device connection point	Ponto de conexão do dispositivo
 Device description	Descrição de dispositivo
 Device tag	Identificador de dispositivo
+Device the earthing conductor of the mounting runs to (earthing or equipotential bonding busbar); empty: none	Dispositivo ao qual vai o condutor de aterramento da estrutura (barramento de aterramento ou de equipotencialização); vazio: nenhum
 Device {}	Dispositivo {}
 Devices	Dispositivos
 Dimensions	Dimensões
@@ -158,6 +160,7 @@ Function text	Texto de função
 Functional safety	Segurança funcional
 Functions	Funções
 General	Geral
+Generator junction box (device) the strings run to, from there a DC main cable to each inverter; empty: none	Caixa de junção do gerador (dispositivo) para onde vão as strings, daí um cabo principal CC para cada inversor; vazio: nenhuma
 Gives up a subproject: its pages are unlocked again	Descarta um subprojeto: suas páginas são desbloqueadas novamente
 Gland plate	Placa de entrada de cabos
 Graphics	Gráficos
@@ -206,6 +209,7 @@ Location (+)	Localização (+)
 Logo	Logotipo
 MTTFd (years)	MTTFd (anos)
 Machine	Máquina
+Main earthing busbar (device) it is connected to; empty: none	Barramento de equipotencialização principal (dispositivo) ao qual está ligado; vazio: nenhum
 Main earthing terminal	Barramento de aterramento principal
 Main switch	Chave geral
 Manufacturer	Fabricante
@@ -220,6 +224,8 @@ Minimum digits of the counter (leading zeros)	Mínimo de dígitos do contador (z
 Missing parameter: {}	Parâmetro ausente: {}
 Missing value for --{}	Valor ausente para --{}
 Model import failed: {}	Falha na importação do modelo: {}
+Module	Módulo
+Modules	Módulos
 Modules in series	Módulos em série
 Modules side by side in a row	Módulos lado a lado numa fileira
 Mounted	Montado
@@ -272,6 +278,7 @@ Not in the schematic	Não está no esquema elétrico
 Note	Nota
 Notes	Notas
 Number	Número
+Number of down conductors (0: as many as the class needs for the walls)	Número de descidas (0: tantas quanto a classe exige para as paredes)
 Number the sections 1, 2, 3 … on every level first	Numerar primeiro as seções 1, 2, 3 … em cada nível
 Numbers the device tags per structure and identifying letter in schematic order (page, column, top to bottom)	Numera os identificadores de dispositivo por estrutura e letra de identificação na ordem do esquema elétrico (página, coluna, de cima para baixo)
 Only rows containing this text	Apenas linhas que contêm este texto
@@ -368,6 +375,7 @@ Released pages cannot be moved	Páginas liberadas não podem ser movidas
 Remove	Remover
 Remove from favorites	Remover dos favoritos
 Remove the boundary	Remover o limite
+Remove the lightning protection system	Remover o SPDA
 Remove the reference point	Remover o ponto de referência
 Report	Relatório
 Report blocks	Blocos de relatório
@@ -379,6 +387,7 @@ Revision {}	Revisão {}
 Rework	Retrabalho
 Right	Direita
 Role	Função
+Roof	Teto
 Rooms	Salas
 Round	Redondo
 Route	Rotear
@@ -511,6 +520,7 @@ not bonded	não equipotencializado
 not connected	não conectado
 open	aberto
 pcs	un.
+portrait	retrato
 rejected	rejeitado
 right	para a direita
 spare	reserva

@@ -112,6 +112,9 @@ Air at devices at most	Luft vid apparater högst
 Air temperature	Lufttemperatur
 Air temperature at the devices	Lufttemperatur vid apparaterna
 Air temperature {} … {} °C	Lufttemperatur {} … {} °C
+Air-termination conductors on the ridges and hips (a mesh on flat roofs), down conductors along the outer walls with test joints, ending on the earth electrodes	Uppfångningsledare på nockar och valmar (en maska på platta tak), nedledare längs ytterväggarna med provklämmor som slutar i jordtagen
+Air-termination rod	Spetsledare
+Air-termination rod placed on building {}; click for the next one · Esc: stop	Spetsledare placerad på byggnad {}; klicka för nästa · Esc: avsluta
 Align	Justera
 Aligned	Justerad
 Alignment	Justering
@@ -157,6 +160,7 @@ Arc	Båge
 Archive and version	Arkiv och version
 Archive project…	Arkivera projekt…
 Arms	Armar
+Array	Fält
 As defined by the check	Som kontrollen definierar
 As the rules say ({})	Enligt reglerna ({})
 Aspects of the pages	Sidornas aspekter
@@ -185,6 +189,7 @@ Automatic ({})	Automatisk ({})
 Automatic accessories	Automatiska tillbehör
 Automatic configuration	Automatisk konfiguration
 Automatic placement	Automatisk placering
+Automatic: {}	Automatiskt: {}
 Automation	Automatisering
 Aux	Hjälp
 Avoid:	Undvik:
@@ -222,6 +227,9 @@ Boundary	Gräns
 Breaking capacity against the short-circuit current at each protective device of the mains, disconnection at the lowest fault current at the end of its circuit, short-circuit withstand of the cables and selectivity with the device upstream.	Brytförmåga mot kortslutningsströmmen vid varje skyddsdon i nätet, frånkoppling vid den lägsta felströmmen i slutet av dess krets, kablarnas kortslutningshållfasthet och selektivitet mot skyddsdonet före.
 Bridge: four wires; the connection comes in at one side and goes to the three others, the opposite side first	Brygga: fyra ledare; förbindelsen kommer in på en sida och går till de tre andra, den motsatta sidan först
 Building {} added with a level at ground level	Byggnad {} tillagd med en våning i marknivå
+Building {} at x {} m, z {} m	Byggnad {} vid x {} m, z {} m
+Building {} at x {} m, z {} m, turned {}°	Byggnad {} vid x {} m, z {} m, vriden {}°
+Building {} at x {} m, z {} m, turned {}°: it stands outside the plot boundary	Byggnad {} vid x {} m, z {} m, vriden {}°: den står utanför tomtgränsen
 Built-in frames cannot be changed; copy one to adapt it.	Inbyggda ramar kan inte ändras; kopiera en för att anpassa den.
 Built-in scheme: copy it to change it.	Inbyggt schema: kopiera det för att ändra det.
 Built-in title blocks are read only – use “Copy as new” to make your own.	Inbyggda namnrutor är skrivskyddade – använd ”Kopiera som ny” för att skapa en egen.
@@ -295,10 +303,14 @@ Choose another project	Välj ett annat projekt
 Choose file…	Välj fil…
 Choose image…	Välj bild…
 Choose pages	Välj sidor
+Choose the building.	Välj byggnaden.
 Chooses the pages whose structure starts with this	Väljer de sidor vars struktur börjar med det här
 Circle	Cirkel
 Circuits of a generic manifold	Kretsar för en generisk fördelare
+Class of the lightning protection system: the distance of its down conductors, the mesh of flat roofs and the protection angle	Åskskyddets klass: avståndet mellan nedledarna, maskan på platta tak och skyddsvinkeln
+Class {}	Klass {}
 Clear	Rensa
+Clear the search	Rensa sökningen
 Clearance	Frigång
 Click	Klick
 Click a text: open its link	Klick på en text: öppna dess länk
@@ -307,6 +319,7 @@ Click centre, then a point on the circle	Klicka på mittpunkten och sedan på en
 Click in the panel layout: a single item of an assembly	Klick i skåplayouten: en enskild del av en sammansättning
 Click into the page to place the image	Klicka på sidan för att placera bilden
 Click into the page to place {}	Klicka på sidan för att placera {}
+Click on a roof of building {}	Klicka på ett tak på byggnad {}
 Click on a wall	Klicka på en vägg
 Click on a wire to place the connection definition point	Klicka på en ledning för att placera förbindelsedefinitionspunkten
 Click on the 4 mm grid	Klicka på 4 mm-rutnätet
@@ -331,8 +344,12 @@ Click two corners	Klicka på två hörn
 Click two corners of the structure box, then set its identifiers in the properties · Esc or right click to finish	Klicka på två hörn av strukturrutan och ange sedan dess beteckningar i egenskaperna · Esc eller högerklick avslutar
 Click two nodes to connect them	Klicka på två noder för att förbinda dem
 Click two points to measure from one to the other · Esc: stop	Klicka på två punkter för att mäta från den ena till den andra · Esc: sluta
+Click where an air-termination rod goes on a roof · Esc: stop	Klicka där en spetsledare ska stå på ett tak · Esc: avsluta
+Click where an earth rod goes, at or round a building · Esc: stop	Klicka där ett jordspett ska sitta, vid eller runt en byggnad · Esc: avsluta
 Click where four wires meet: the bridge leads the connection from one side to the three others, the opposite side first · {} turns it · Esc or right click to finish	Klicka där fyra ledare möts: bryggan leder förbindelsen från en sida till de tre andra, den motsatta först · {} vrider den · Esc eller högerklick avslutar
 Click where it is in the site plan	Klicka där den ligger i situationsplanen
+Click where the air-termination rods go on the roofs in the site plan	Klicka i situationsplanen där spetsledarna ska stå på taken
+Click where the earth rods go in the site plan	Klicka i situationsplanen där jordspetten ska sitta
 Click where the reference point is	Klicka där referenspunkten ligger
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klicka där tre ledare möts: T-stycket anger den apparat som ledarna utgår från och ordningen på deras mål · {} vrider det där inga ledare möts ännu · Esc eller högerklick avslutar
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klicka där två ledare korsar varandra: korsningen förbinder dem och leder varje ände av sin linje först rakt fram, sedan tvärs över · {} vrider den · Esc eller högerklick avslutar
@@ -376,9 +393,11 @@ Compare and baselines	Jämför och baslinjer
 Compare with	Jämför med
 Compare with a baseline, a revision or another project file and take differences over	Jämför med en baslinje, en revision eller en annan projektfil och överför skillnader
 Complete tag: {}\nAspects missing here are taken from the page (=function +location) or the structure box the symbol lies in.	Fullständig beteckning: {}\nAspekter som saknas här hämtas från sidan (=funktion +placering) eller från strukturrutan som symbolen ligger i.
+Concrete base	Betongfot
 Condition	Villkor
 Condition (OPTION=value & …)	Villkor (OPTION=värde & …)
 Conductive frame	Ledande stativ
+Conductor	Ledare
 Conflicts	Konflikter
 Connected devices	Anslutna apparater
 Connected to:	Ansluten till:
@@ -430,6 +449,7 @@ Cross references…	Korsreferenser…
 Crossed wires	Korsade ledningar
 Ctrl + click on the text opens it as well	Ctrl + klick på texten öppnar den också
 Ctrl+A	Ctrl+A
+Current at maximum power	Ström vid maximal effekt
 Current-carrying capacity: {} × IEC 60204-1, table 6	Strömbelastningsförmåga: {} × IEC 60204-1, tabell 6
 Customer rule sets	Kundregelverk
 Customer, plant or standard	Kund, anläggning eller standard
@@ -442,6 +462,7 @@ Cut length step tubes	Kaplängdssteg slangar
 Cut length step wires	Kaplängdssteg ledningar
 Cutout {} × {} mm	Urtag {} × {} mm
 Cutting allowance per end	Kaptillägg per ände
+DC leads	DC-ledare
 DRAFT	UTKAST
 DRAFT, FOR APPROVAL and APPROVED in the current language; nothing once released	UTKAST, FÖR GODKÄNNANDE och GODKÄND på det aktuella språket; inget när det har släppts
 DWG import failed: {}	DWG-importen misslyckades: {}
@@ -465,9 +486,11 @@ Define all used	Definiera alla använda
 Defined potentials	Definierade potentialer
 Del	Del
 Delete PV array	Ta bort solcellsfält
+Delete air-termination rod	Ta bort spetsledare
 Delete cable (its wires are removed from it)	Ta bort kabel (dess ledningar tas bort från den)
 Delete comment	Ta bort kommentar
 Delete connection point	Ta bort anslutningspunkt
+Delete earth electrode	Ta bort jordtag
 Delete element	Ta bort element
 Delete enclosure	Ta bort kapsling
 Delete enclosure {} with everything placed in it?	Ta bort kapslingen {} med allt som är placerat i den?
@@ -494,8 +517,10 @@ Delete this workspace	Ta bort den här arbetsytan
 Delete variant	Ta bort variant
 Delete zone	Ta bort zon
 Depth / mounted at	Djup / monterad vid
+Depth below the ground	Djup under mark
 Depth from / to	Djup från / till
 Depth in the floor	Djup i golvet
+Depth of its top below the ground	Djup för övre änden under mark
 Derive project definition	Härled projektdefinition
 Descriptions	Beskrivningar
 Deselect	Avmarkera
@@ -529,6 +554,8 @@ Devices, connections and terminals: filter, fill, find and replace, CSV	Apparate
 Dew point	Daggpunkt
 Diameter	Diameter
 Diameter / bends	Diameter / böjar
+Diameter of a round wire; 0: a flat strip 30 x 3.5 mm	Diameter på en rundtråd; 0: ett band 30 x 3,5 mm
+Diameter of the rod	Stavens diameter
 Dictionary for translators: one column per language	Ordlista för översättare: en kolumn per språk
 Digits	Siffror
 Dimension	Måttsättning
@@ -567,6 +594,7 @@ Door cutouts (CSV)	Dörrurtag (CSV)
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
 Double-click	Dubbelklick
+Down conductors	Nedledare
 Download into database	Ladda ned till databasen
 Download project	Ladda ned projekt
 Downloaded {} (version {})	{} nedladdad (version {})
@@ -577,6 +605,7 @@ Draft	Utkast
 Draft of revision {} created	Utkast till revision {} skapat
 Draft of revision {} discarded	Utkast till revision {} ignorerat
 Drag	Dra
+Drag a building to move it · R: turn the building under the pointer by 90° · Esc: stop	Dra en byggnad för att flytta den · R: vrid byggnaden under pekaren 90° · Esc: avsluta
 Drag a connection point designation of the selected symbol to place it.	Dra en anslutningspunktsbeteckning för den markerade symbolen för att placera den.
 Drag an end of a selected wire to move only that end. Alt-drag reverses Keep connections.	Dra en ände av en markerad ledning för att bara flytta den änden. Dragning med Alt vänder på Behåll anslutningar.
 Drag an entry into the page, or click it and then click into the page.	Dra en post till sidan, eller klicka på den och klicka sedan på sidan.
@@ -617,12 +646,20 @@ Duct fill limit	Gräns för kanalfyllnad
 Duplicate	Duplicera
 Each example builds on the one before and shows more of the features.	Varje exempel bygger på det föregående och visar fler av funktionerna.
 Each point-to-point connection can belong to a harness	Varje punkt-till-punkt-förbindelse kan tillhöra en kabelstam
+Earth electrodes	Jordtag
+Earth electrodes of a building (foundation and ring earth electrodes, earth rods clicked into the site plan) and its lightning protection with the air-termination rods clicked onto its roofs	En byggnads jordtag (grund- och ringjordtag, jordspett klickade i situationsplanen) och dess åskskydd med spetsledarna klickade på taken
+Earth rod placed at building {}; click for the next one · Esc: stop	Jordspett placerat vid byggnad {}; klicka för nästa · Esc: avsluta
+Earthing and lightning protection	Jordning och åskskydd
+Earthing busbar	Jordningsskena
+Earthing conductor	Jordledare
+Earthing points	Jordningspunkter
 Earthing system	Jordningssystem
 Easting, northing	Östkoordinat, nordkoordinat
 Eaves	Takfot
 Edge length of the routing grid: smaller is finer and slower	Kantlängd för dragningsrutnätet: mindre är finare och långsammare
 Edit in table	Redigera i tabell
 Edit in table…	Redigera i tabell…
+Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Redigeringsläge: dra byggnaderna till sina platser i situationsplanen och vrid dem; ett klick på ett rum öppnar det inte längre
 Editable copy of this plot frame	Redigerbar kopia av den här ritningsramen
 Editable copy of this title block	Redigerbar kopia av den här namnrutan
 Effective surface	Effektiv yta
@@ -773,6 +810,7 @@ Generated page – edit via page properties	Genererad sida – redigera via side
 Generates the pages of all report blocks again	Genererar sidorna för alla rapportblock på nytt
 Generates {} pages	Genererar {} sidor
 Generation failed: {}	Genereringen misslyckades: {}
+Generator junction box	Generatoranslutningslåda
 Generic	Generisk
 German zones (DIN 18015-3)	Tyska zoner (DIN 18015-3)
 Getting started	Kom igång
@@ -782,6 +820,7 @@ Go to page	Gå till sidan
 Graphic line	Grafisk linje
 Graphic rectangle	Grafisk rektangel
 Graphical form	Grafiskt formulär
+Greatest distance of the conductor holders on the roof and on the walls	Största avstånd mellan ledarhållarna på taket och på väggarna
 Greatest distance of the roof hooks along a rail	Största avstånd mellan takkrokarna längs en skena
 Grid	Rutnät
 Grid north	Gridnorr
@@ -805,14 +844,20 @@ Height above the floor	Höjd över golvet
 Height above the mounting plate	Höjd över monteringsplåten
 Height above the plate	Höjd över plåten
 Height of the plinth, 0 without plinth	Sockelns höjd, 0 utan sockel
+Height of the rod above the covering	Stavens höjd över taktäckningen
+Height of the test joints above the ground	Provklämmornas höjd över mark
 Heights above floor (IEC 60204-1)	Höjder över golv (IEC 60204-1)
 Held while clicking, moving or scrolling. Ctrl is Cmd on macOS.	Hålls ned vid klick, flytt eller rullning. Ctrl är Cmd i macOS.
 Help	Hjälp
+Hide PV modules	Dölj solcellsmoduler
 Hide the groups you do not need and put the commands you use most into own groups.	Dölj de grupper du inte behöver och lägg de mest använda kommandona i egna grupper.
 Highest phase unbalance	Högsta fasobalans
 Highest short-circuit current	Högsta kortslutningsström
 Highest voltage (open circuit at the lowest temperature), mean and lowest voltage (at maximum power at the mean and the highest temperature), current at maximum power, peak power	Högsta spänning (tomgång vid lägsta temperatur), medel- och lägsta spänning (vid maximal effekt vid medel- och högsta temperatur), ström vid maximal effekt, toppeffekt
 Highest: the lowest voltage	Högsta: den lägsta spänningen
+Holder distance	Hållaravstånd
+Holders on the roof	Hållare på taket
+Holders on the walls	Hållare på väggarna
 Hole to sheet edge	Hål till plåtkant
 Home	Start
 Hook distance	Krokavstånd
@@ -827,6 +872,8 @@ Hose defaults and PCT loops of the pre-planning	Standardvärden för slangar och
 Hose number	Slangnummer
 Hoses and pipes	Slangar och rör
 Hoses rated below it are errors; 0 = not checked	Slangar som är dimensionerade under det här värdet är fel; 0 = kontrolleras inte
+How far inside the outer walls	Hur långt innanför ytterväggarna
+How far outside the outer walls	Hur långt utanför ytterväggarna
 How the leaf opens: hinged at its left or right edge (seen from inside the room), into or out of the room, or sliding along the wall	Hur bladet öppnas: gångjärn i vänster eller höger kant (sett inifrån rummet), in i eller ut ur rummet, eller skjutbart längs väggen
 How the wire is terminated at this end; by default as chosen for the connection point or its device, otherwise as the layout sets ferrules	Hur ledaren avslutas i denna ände; som standard som valt för anslutningspunkten eller dess enhet, annars enligt layoutens inställning för ändhylsor
 How wires jump over the wires they cross, how T-connections are marked and whether moved items route their connections anew	Hur ledningar hoppar över ledningarna de korsar, hur T-förbindelser markeras och om flyttade objekt får sina förbindelser dragna på nytt
@@ -940,6 +987,7 @@ Labeling scheme	Märkningsschema
 Landscape	Liggande
 Large dot	Stor punkt
 Larger texts and buttons for a touch screen at the workbench	Större texter och knappar för en pekskärm vid arbetsbänken
+Largest mesh	Största maska
 Latitude, longitude	Latitud, longitud
 Layer	Lager
 Layer {}	Lager {}
@@ -953,6 +1001,7 @@ Layout space	Monteringsutrymme
 Layout spaces	Monteringsutrymmen
 Leave out the ceilings of the rooms and the roofs in the 3D view	Utelämna rummens tak och yttertaken i 3D-vyn
 Leave out the covers of all cable ducts in the 3D view: the wires in them are seen	Utelämna locken på alla kabelkanaler i 3D-vyn: ledarna i dem syns
+Leave out the modules of the PV arrays in the 3D view: their rails, roof hooks, mounting bases, earthing and cabling are seen	Utelämna solcellsfältens moduler i 3D-vyn: skenor, takkrokar, stativ, jordning och kablage syns
 Leave repeated values of the first column blank	Lämna upprepade värden i den första kolumnen tomma
 Left button	Vänster knapp
 Left edges	Vänsterkanter
@@ -960,6 +1009,7 @@ Legend plates (door devices)	Märkskyltar (dörrapparater)
 Length from the node to the device	Längd från noden till apparaten
 Length inside an enclosure	Längd inne i en kapsling
 Length of a shield pigtail where there is no shield clamp	Längd på en skärm-pigtail där det inte finns någon skärmklämma
+Length of the rod	Spettets längd
 Length of wires that are not routed in the panel layout	Längd på ledningar som inte är dragna i skåplayouten
 Length {} mm	Längd {} mm
 Letters, digits, space, - _ . (up to 64 characters)	Bokstäver, siffror, blanksteg, - _ . (upp till 64 tecken)
@@ -970,6 +1020,8 @@ Level {} added to building {}; new rooms go onto it	Våning {} tillagd i byggnad
 Level {} of building {}	Plan {} i byggnad {}
 Levels	Våningar
 Library	Bibliotek
+Lightning protection	Åskskydd
+Lightning protection of building {}	Åskskydd för byggnad {}
 Like two fingers	Som två fingrar
 Limits	Gränsvärden
 Limits in effect	Gällande gränsvärden
@@ -1020,7 +1072,9 @@ Macros	Makron
 Macros ({})	Makron ({})
 Macro…	Makro…
 Main	Huvud
+Main earthing busbar	Huvudjordningsskena
 Make the selected elements of this project equal to the compared ones	Gör de markerade elementen i det här projektet lika med de jämförda
+Maker	Tillverkare
 Makes the current page content of the option	Gör den aktuella sidan till innehåll i alternativet
 Manage plugins	Hantera plugins
 Management	Hantering
@@ -1063,6 +1117,7 @@ Mixed	Blandat
 Mode	Läge
 Model of a part (2D / 3D)	Modell för en artikel (2D / 3D)
 Modifier keys	Modifieringstangenter
+Module area	Modulyta
 Module part; its size comes from the part	Modulartikel; dess storlek kommer från artikeln
 Motors feed the short circuit	Motorer matar kortslutningen
 Mounted on	Monterad på
@@ -1075,6 +1130,7 @@ Mouse	Mus
 Move	Flytta
 Move ahead in the 3D view (held)	Flytta framåt i 3D-vyn (håll ned)
 Move back in the 3D view (held)	Flytta bakåt i 3D-vyn (håll ned)
+Move buildings	Flytta byggnader
 Move down	Flytta nedåt
 Move down in the 3D view (held)	Flytta nedåt i 3D-vyn (håll ned)
 Move faster with the keys of the 3D view	Flytta snabbare med tangenterna i 3D-vyn
@@ -1163,6 +1219,7 @@ No PLC cards in the project.	Inga PLC-kort i projektet.
 No PLC inputs / outputs placed.	Inga PLC-ingångar / -utgångar placerade.
 No accessories: glands, connectors, shield clamps … go into the bill of materials and are checked against the cable.	Inga tillbehör: förskruvningar, kontaktdon, skärmklämmor … ingår i stycklistan och kontrolleras mot kabeln.
 No bus systems.	Inga bussystem.
+No busbar	Ingen skena
 No cable passage to {}: wires to it are not routed	Ingen kabelgenomföring till {}: ledningar dit dras inte
 No cables defined.	Inga kablar definierade.
 No cables yet. Draw a cable definition across wires or add a cable.	Inga kablar ännu. Rita en kabeldefinition tvärs över ledningar eller lägg till en kabel.
@@ -1174,6 +1231,7 @@ No device has mounting data yet: assign parts with dimensions to the devices (Pr
 No differences to {}.	Inga skillnader mot {}.
 No document embedded	Inget dokument inbäddat
 No dot: plain T	Ingen punkt: enkelt T
+No earth electrode yet: a foundation earth electrode in the foundation slab, a ring earth electrode round the walls or earth rods.	Inget jordtag ännu: ett grundjordtag i bottenplattan, ett ringjordtag runt väggarna eller jordspett.
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ingen kapsling ännu – skapa en med Ny kapsling, eller ett rum för skåp med Nytt rum.
 No field cables: place the enclosures and field devices at nodes of the route network.	Inga fältkablar: placera kapslingarna och fältapparaterna vid noder i kabelvägsnätet.
 No filter fans: an air/air heat exchanger or a cooling unit	Inga filterfläktar: en luft/luft-värmeväxlare eller ett kylaggregat
@@ -1186,6 +1244,7 @@ No macros yet. Select items in a schematic and save them as a macro.	Inga makron
 No modules: plug in PLC cards of the schematic.	Inga moduler: sätt i PLC-kort från schemat.
 No numbers for	Inga nummer för
 No panel items: place the devices in the panel layout.	Inga layoutobjekt: placera apparaterna i skåplayouten.
+No part matches.	Ingen artikel matchar.
 No parts marked for floor mounting yet. Mark one in the parts management: part editor › Mounting data › Floor mounting.	Inga artiklar är märkta för golvmontage ännu. Märk en i artikelhanteringen: artikelredigeraren › Monteringsdata › Golvmontage.
 No parts marked for wall mounting yet. Mark one in the parts management: part editor › Mounting data › Wall mounting.	Inga artiklar är märkta för väggmontage ännu. Märk en i artikelhanteringen: artikelredigeraren › Monteringsdata › Väggmontage.
 No parts of the product group Cables in the parts database.	Inga artiklar i produktgruppen Kablar i artikeldatabasen.
@@ -1204,6 +1263,7 @@ No segments yet: draw them in the plant layout.	Inga avsnitt ännu: rita dem i a
 No shortcut	Inget kortkommando
 No single-line symbols and no power devices in the schematic.	Inga enlinjesymboler och inga kraftapparater i kretsschemat.
 No stations: add one or use the automatic configuration.	Inga stationer: lägg till en eller använd den automatiska konfigurationen.
+No string yet: the modules are not connected.	Ingen sträng ännu: modulerna är inte anslutna.
 No subprojects were taken out of this project.	Inga delprojekt har lyfts ut ur det här projektet.
 No terminal strips: place terminals in a schematic first.	Inga plintrader: placera först plintar i ett schema.
 No user symbols yet. Create one or copy a built-in symbol.	Inga användarsymboler ännu. Skapa en eller kopiera en inbyggd symbol.
@@ -1240,6 +1300,7 @@ Offset from one row to the next: downwards for lists, sideways for rows side by 
 On a touch screen and a trackpad. Pan only: pinching does not zoom; zoom only: scrolling with two fingers on a trackpad zooms too, where the system tells trackpads apart. One finger works like the left mouse button.	På pekskärm och styrplatta. Endast panorera: nypning zoomar inte; endast zooma: rullning med två fingrar på styrplattan zoomar också, där systemet skiljer ut styrplattor. Ett finger fungerar som vänster musknapp.
 On a touch screen; trackpads leave three-finger gestures to the system.	På pekskärm; styrplattor lämnar gester med tre fingrar åt systemet.
 On startup	Vid start
+On the roof, joined to the air-termination conductors; move it to its place	På taket, förbunden med uppfångningsledarna; flytta den till sin plats
 One row per label	En rad per etikett
 Only devices on the current page	Endast apparater på den aktuella sidan
 Only frames no page uses can be deleted	Endast ramar som ingen sida använder kan tas bort
@@ -1267,6 +1328,7 @@ Open the selection: its properties, in the floor plan its face	Öppna markeringe
 Open to {}: wires cross beside the mounting plates	Öppen mot {}: ledningar går över bredvid monteringsplåtarna
 Open walls and floors	Öppna väggar och golv
 Open, save, import, export, print and the settings	Öppna, spara, importera, exportera, skriva ut och inställningarna
+Open-circuit voltage	Tomgångsspänning
 OpenECraft page templates	OpenECraft-sidmallar
 OpenECraft page templates (JSON)	OpenECraft-sidmallar (JSON)
 OpenECraft project	OpenECraft-projekt
@@ -1309,6 +1371,7 @@ Other values ({})	Övriga värden ({})
 Otherwise from the plant layout, or next to the other line-ups	Annars från anläggningslayouten, eller bredvid de andra skåpsraderna
 Out since {} (pages locked)	Utlyft sedan {} (sidorna är låsta)
 Outer diameter (e.g. 8 mm) or DN	Ytterdiameter (t.ex. 8 mm) eller DN
+Outlets	Uttag
 Outlets, switches, heating	Uttag, brytare, värme
 Outline	Kontur
 Outlines	Konturer
@@ -1331,6 +1394,10 @@ PLC channels	PLC-kanaler
 PLC hardware and bus topology	PLC-hårdvara och busstopologi
 PLC overview	PLC-översikt
 PNG or JPEG bitmap, e.g. a logo or a photo	PNG- eller JPEG-bitmapp, t.ex. en logotyp eller ett foto
+PV array {}	Solcellsfält {}
+PV array {} lies outside the protection of the air-termination system	Solcellsfält {} ligger utanför uppfångningssystemets skydd
+PV array {} of building {}: {} modules	Solcellsfält {} i byggnad {}: {} moduler
+PV array {} of building {}: {} modules, {} kWp	Solcellsfält {} i byggnad {}: {} moduler, {} kWp
 PV arrays	Solcellsfält
 Page graphics	Sidgrafik
 Page heading	Sidrubrik
@@ -1378,6 +1445,8 @@ Path for cables, tubes or wires over the plate: click the corners, double-click 
 Path function text	Strömvägens funktionstext
 Pattern	Mönster
 Pattern…	Mönster…
+Peak power	Toppeffekt
+Pick a part in the list.	Välj en artikel i listan.
 Pin-out	Stiftbeläggning
 Pipe run	Rörgata
 Pipe run on a wall, the ceiling or the floor of the room, along which hoses, tubes and pipes are routed: click the corners, double-click or Enter to finish	Rörgata på en vägg, i taket eller på golvet i rummet, längs vilken slangar, rör och rörledningar dras: klicka på hörnen, dubbelklicka eller tryck på Enter för att avsluta
@@ -1395,6 +1464,7 @@ Place in the building	Plats i byggnaden
 Place in the plant	Plats i anläggningen
 Place in the room	Plats i rummet
 Place in the site plan	Placera i situationsplanen
+Place on the wall	Placera på väggen
 Place text	Placera text
 Place the georeferenced point everything is measured from	Placera den georefererade punkten som allt mäts från
 Place the georeferenced point of the plant in the site plan; its coordinates go into the Buildings pane, every point is then measured from it	Placera anläggningens georefererade punkt i situationsplanen; dess koordinater anges i panelen Byggnader, varje punkt mäts sedan från den
@@ -1427,6 +1497,7 @@ Plug in card	Sätt i kort
 Plugin commands	Plugin-kommandon
 Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins lägger till kommandon, kontroller, rapporter och exporter. Externa plugins läses in från mapparna i miljövariabeln {} (en undermapp med en plugin.json per plugin).
+Plus and minus leads from the modules to the inverter	Plus- och minusledare från modulerna till växelriktaren
 Points	Punkter
 Polygon	Polygon
 Polyline	Polylinje
@@ -1629,6 +1700,8 @@ Right edges	Högerkanter
 Right neighbour	Granne till höger
 Rights	Behörigheter
 Risers	Sättsteg
+Rod holder	Stavhållare
+Roof pitch	Taklutning
 Roof window	Takfönster
 Roof windows	Takfönster
 Roofs	Tak
@@ -1724,11 +1797,13 @@ Scrolling up and down zooms at the pointer, sideways (horizontal wheel, Shift + 
 Scrolling zooms, also where it pans	Rullning zoomar, även där den panorerar
 Search (* and ? as placeholders)…	Sök (* och ? som jokertecken)…
 Search below this folder	Sök under den här mappen
+Search number, description, maker	Sök nummer, beskrivning, tillverkare
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Sök på artikelservern efter katalog, produktgrupp och tekniska data, lägg till artiklar och kontrollera om databasen har uppdateringar
 Second channel	Andra kanalen
 Section properties	Avsnittsegenskaper
 Section properties…	Avsnittsegenskaper…
 Section {} is now section {}	Avsnitt {} är nu avsnitt {}
+See-through PV modules	Genomskinliga solcellsmoduler
 Seen on the mating faces; the colours are those of the wires and cable cores at the pins.	Sett mot anslutningssidorna; färgerna är ledarnas och kabelledarnas vid stiften.
 Segment {}	Segment {}
 Segments	Avsnitt
@@ -1784,6 +1859,7 @@ Shielded analogue cables	Skärmade analogkablar
 Shielded drive cables	Skärmade drivkablar
 Short circuit and selectivity	Kortslutning och selektivitet
 Short circuit, selectivity, loads, EMC, functional safety and verification against rule sets	Kortslutning, selektivitet, laster, EMC, funktionssäkerhet och kontroll mot regelverk
+Short-circuit current	Kortslutningsström
 Short-circuit currents	Kortslutningsströmmar
 Short-circuit power of the network	Nätets kortslutningseffekt
 Shortest profile	Kortaste profil
@@ -1803,6 +1879,7 @@ Show or hide panes; drag a tab to dock it elsewhere	Visa eller dölj paneler; dr
 Show project manager	Visa projekthanteraren
 Show the enclosures bayed to this one as well	Visa även de kapslingar som är sammanbyggda med den här
 Show the messages accepted as checked	Visa de meddelanden som godkänts som kontrollerade
+Show the modules of the PV arrays see-through in the 3D view: the wiring of the modules to each other under them is seen	Visa solcellsfältens moduler genomskinliga i 3D-vyn: modulernas inbördes ledningar under dem syns
 Show the other wires	Visa de andra ledningarna
 Show the pane as a window	Visa panelen som ett fönster
 Show the ribbon	Visa menyfliksområdet
@@ -1896,6 +1973,7 @@ Surge protection	Överspänningsskydd
 Swing the enclosure door open or shut (door devices and their wires move with it)	Sväng upp eller stäng kapslingsdörren (dörrapparater och deras ledningar följer med)
 Switch off the check \"{}\"	Stäng av kontrollen \"{}\"
 Switched off on this computer ({})	Avstängt på den här datorn ({})
+Switches	Strömbrytare
 Switches the options with a condition by the configurator options	Kopplar alternativen med villkor enligt konfiguratoralternativen
 Switches to this workspace with its panes at their default places	Växlar till den här arbetsytan med panelerna på sina standardplatser
 Switches, push buttons and room thermostats	Brytare, tryckknappar och rumstermostater
@@ -1944,6 +2022,7 @@ Terminals at least	Plintar minst
 Terminals with the same jumper number are bridged (same potential). Spare terminals are counted in the bill of materials.	Plintar med samma bygelnummer är byglade (samma potential). Reservplintar räknas i stycklistan.
 Terms separated by ';': key=value (equal), key~text (contains) or text found anywhere	Termer åtskilda med ';': nyckel=värde (lika med), nyckel~text (innehåller) eller text var som helst
 Test connection	Testa anslutning
+Test joints	Provklämmor
 Text offset	Textförskjutning
 Text size	Textstorlek
 Texts	Texter
@@ -2001,6 +2080,7 @@ The web version is updated on its server.	Webbversionen uppdateras på sin serve
 The wire tool routes around symbols and other wires	Ledningsverktyget drar runt symboler och andra ledningar
 The wires get the free cores of the cable in order (left to right)	Ledningarna får kabelns lediga ledare i ordning (från vänster till höger)
 The wires of the connection take these values again	Förbindelsens ledningar får de här värdena igen
+Their places, sizes and busbars are set in the Buildings pane.	Deras platser, mått och skenor ställs in i fönstret Byggnader.
 Theme	Tema
 These settings are edited in their panes:	Dessa inställningar redigeras i sina paneler:
 Thickness	Tjocklek
@@ -2098,6 +2178,7 @@ Via:	Via:
 View	Visa
 Visible	Synligt
 Voltage (line to line)	Spänning (huvudspänning)
+Voltage at maximum power	Spänning vid maximal effekt
 Voltage drop	Spänningsfall
 WGS 84, written into the site of IFC exports	WGS 84, skrivs in i tomten vid IFC-export
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Vägg {}, {} m: dra för att flytta, dubbelklick visar den för att utrusta den
@@ -2285,6 +2366,8 @@ x y	x y
 {} (default)	{} (standard)
 {} (first column)	{} (första kolumnen)
 {} (locked by {})	{} (låst av {})
+{} (no such device)	{} (ingen sådan apparat)
+{} (not placed in the layout)	{} (inte placerad i layouten)
 {} (project server, revision {})	{} (projektserver, revision {})
 {} (spare)	{} (reserv)
 {} (subproject of {})	{} (delprojekt av {})
@@ -2294,7 +2377,9 @@ x y	x y
 {} PLC function texts updated	{} PLC-funktionstexter uppdaterade
 {} Vault items found for the project parts	{} Vault-objekt hittades för projektartiklarna
 {} Vault items found: review the changes in the integration window	{} Vault-objekt hittades: granska ändringarna i integrationsfönstret
+{} added to building {}	{} tillagd i byggnad {}
 {} addresses changed	{} adresser ändrade
+{} air-termination rods	{} spetsledare
 {} bundles, {} branch points	{} knippen, {} förgreningspunkter
 {} bus cables created	{} busskablar skapade
 {} bus connections	{} bussanslutningar
@@ -2332,6 +2417,7 @@ x y	x y
 {} devices renamed	{} apparater har bytt namn
 {} differences to {}	{} skillnader mot {}
 {} doors	{} dörrar
+{} down conductors with test joints, {} m of conductors	{} nedledare med provklämmor, {} m ledare
 {} entries in {}	{} poster i {}
 {} errors	{} fel
 {} errors, {} warnings	{} fel, {} varningar
@@ -2346,6 +2432,7 @@ x y	x y
 {} has no function with a symbol; assign it to a device in its properties	{} har ingen funktion med symbol; tilldela den till en apparat i apparatens egenskaper
 {} has unsaved changes. Discard them?	{} har osparade ändringar. Släng dem?
 {} imported into the parts database and placed as {}	{} importerad till artikeldatabasen och placerad som {}
+{} in {}	{} i {}
 {} is neither in the parts database nor on the parts server	{} finns varken i artikeldatabasen eller på artikelservern
 {} is not in the disk image	{} finns inte i skivavbilden
 {} is not made for wall mounting: place it on a mounting rail	{} är inte avsedd för väggmontage: placera den på en skena
@@ -2375,6 +2462,7 @@ x y	x y
 {} of {} entries shown: search to narrow the list	{} av {} poster visas: sök för att begränsa listan
 {} of {} items	{} av {} objekt
 {} of {} pages locked	{} av {} sidor låsta
+{} of {} parts · double-click: place	{} av {} artiklar · dubbelklick: placera
 {} of {} pins used	{} av {} stift använda
 {} of {} rows	{} av {} rader
 {} of {} wires	{} av {} ledningar
@@ -2426,8 +2514,10 @@ x y	x y
 {} wires changed	{} ledningar ändrade
 {} wires, {} cables and {} tubes routed	{} ledningar, {} kablar och {} slangar dragna
 {} wires, {} – {} mm	{} ledningar, {} – {} mm
+{} {} of building {}	{} {} i byggnad {}
 {} °C (max. {} °C)	{} °C (max. {} °C)
 {} °C (max.)	{} °C (max.)
+{} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} bildpunkter, {}
 {} – {} ({} pages)	{} – {} ({} sidor)
 {} – {} here (Esc cancels)	{} – {} här (Esc avbryter)
@@ -2435,6 +2525,7 @@ x y	x y
 {}: crimp together with the wire to {}	{}: krimpa tillsammans med ledaren till {}
 {}: drag to move it, R turns it, a double-click opens it	{}: dra för att flytta, R vrider, dubbelklick öppnar
 {}: drag to move it, a double-click shows the floor	{}: dra för att flytta, dubbelklick visar golvet
+{}: drag to move, R: turn by 90°	{}: dra för att flytta, R: vrid 90°
 {}: nothing to change	{}: inget att ändra
 {}: pin {}	{}: stift {}
 {}: strip {} mm, {}	{}: skala {} mm, {}

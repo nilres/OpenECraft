@@ -758,7 +758,10 @@ fn build(p: &Part) -> Option<(Model2d, Mesh3d, Option<Shaft>, Vec<Nozzle>)> {
 
 /// A room outlet: the frame flush on the wall and, per gang, what is in it.
 fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32; 3]) {
-    m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.35 * d], WHITE);
+    // The cover frame: a flat base and a raised top a little smaller (its bevel).
+    let bevel = 0.04 * w.min(h);
+    m.add_painted_box([0.0, 0.0, 0.0], [w, h, 0.2 * d], WHITE);
+    m.add_painted_box([bevel, bevel, 0.2 * d], [w - bevel, h - bevel, 0.35 * d], WHITE);
     let gangs = match kind {
         Outlet::Socket { gangs, .. } => gangs,
         _ => ((w / h).round() as usize).max(1),
@@ -767,53 +770,82 @@ fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32
     for g in 0..gangs {
         let (cx, cy) = (cell * (g as f32 + 0.5), h / 2.0);
         let s = 0.8 * cell.min(h);
+        // The gap round the insert in the opening of the frame.
+        m.add_painted_box([cx - s / 2.0, cy - s / 2.0, 0.3 * d], [cx + s / 2.0, cy + s / 2.0, 0.36 * d], [200, 202, 206]);
+        let s = 0.94 * s;
         let inner = |m: &mut Mesh3d, z0: f32, z1: f32, c: [u8; 3]| m.add_painted_box([cx - s / 2.0, cy - s / 2.0, z0], [cx + s / 2.0, cy + s / 2.0, z1], c);
         match kind {
             Outlet::Socket { lid, usb, .. } => {
-                inner(m, 0.35 * d, 0.5 * d, [226, 228, 230]);
-                let r = 0.3 * s;
-                m.add_cylinder([cx, cy, 0.5 * d], 2, r, if lid { 0.2 * d } else { 0.5 * d }, ROUND, [214, 216, 218]);
-                for dx in [-0.35 * r, 0.35 * r] {
-                    m.add_cylinder([cx + dx, cy, 0.5 * d], 2, 0.08 * r, if lid { 0.21 * d } else { 0.51 * d }, 8, BLACK);
+                // The central plate with the round socket in it: its white rim, the darker
+                // floor of the well with the two contact holes and the earthing clips at
+                // the top and bottom.
+                inner(m, 0.36 * d, 0.45 * d, [230, 232, 234]);
+                let r = 0.36 * s;
+                let top = if lid { 0.62 * d } else { 0.82 * d };
+                m.add_cylinder([cx, cy, 0.45 * d], 2, r, top - 0.45 * d, ROUND + 8, [238, 240, 242]);
+                m.add_cylinder([cx, cy, top], 2, 0.86 * r, 0.02 * d, ROUND + 8, [190, 193, 198]);
+                for dx in [-0.4 * r, 0.4 * r] {
+                    m.add_cylinder([cx + dx, cy, top], 2, 0.085 * r, 0.03 * d, 10, BLACK);
+                }
+                for sy in [-1.0, 1.0] {
+                    let y = cy + sy * 0.78 * r;
+                    m.add_painted_box([cx - 0.2 * r, y - 0.07 * r, top], [cx + 0.2 * r, y + 0.07 * r, top + 0.04 * d], STEEL);
                 }
                 if usb {
-                    m.add_painted_box([cx - 0.12 * s, cy - 0.46 * s, 0.5 * d], [cx + 0.12 * s, cy - 0.4 * s, 0.6 * d], BLACK);
+                    m.add_painted_box([cx - 0.14 * s, cy - 0.47 * s, 0.45 * d], [cx + 0.14 * s, cy - 0.41 * s, 0.55 * d], BLACK);
                 }
                 if lid {
-                    m.add_painted_box([cx - 0.46 * s, cy - 0.46 * s, 0.7 * d], [cx + 0.46 * s, cy + 0.46 * s, d], [222, 224, 226]);
+                    // The hinged lid over it, with its grip at the bottom.
+                    m.add_painted_box([cx - 0.47 * s, cy - 0.47 * s, 0.7 * d], [cx + 0.47 * s, cy + 0.47 * s, 0.96 * d], [224, 226, 228]);
+                    m.add_painted_box([cx - 0.2 * s, cy - 0.47 * s, 0.96 * d], [cx + 0.2 * s, cy - 0.4 * s, d], [214, 216, 220]);
+                } else {
+                    // The child protection shutter and the fixing screw over the well.
+                    m.add_cylinder([cx, cy + 0.6 * r, 0.82 * d], 2, 0.05 * s, 0.18 * d, 8, [210, 212, 215]);
                 }
                 prims.push(Prim2d::Circle { c: [cx, cy], r, fill: false });
             }
             Outlet::Data(ports) => {
-                inner(m, 0.35 * d, d, [226, 228, 230]);
+                // The cover with the ports, their label fields above them.
+                inner(m, 0.36 * d, 0.85 * d, [230, 232, 234]);
                 for k in 0..ports {
-                    let x = cx + (k as f32 - (ports - 1) as f32 / 2.0) * 0.36 * s;
-                    m.add_painted_box([x - 0.12 * s, cy - 0.1 * s, 0.8 * d], [x + 0.12 * s, cy + 0.1 * s, d], BLACK);
-                    prims.push(Prim2d::Rect { min: [x - 0.12 * s, cy - 0.1 * s], max: [x + 0.12 * s, cy + 0.1 * s], fill: false });
+                    let x = cx + (k as f32 - (ports - 1) as f32 / 2.0) * 0.38 * s;
+                    m.add_painted_box([x - 0.13 * s, cy - 0.22 * s, 0.85 * d], [x + 0.13 * s, cy + 0.02 * s, d], [222, 224, 226]);
+                    m.add_painted_box([x - 0.1 * s, cy - 0.18 * s, 0.98 * d], [x + 0.1 * s, cy - 0.02 * s, d], BLACK);
+                    m.add_painted_box([x - 0.1 * s, cy + 0.12 * s, 0.85 * d], [x + 0.1 * s, cy + 0.2 * s, 0.9 * d], [200, 204, 210]);
+                    prims.push(Prim2d::Rect { min: [x - 0.1 * s, h - (cy - 0.02 * s)], max: [x + 0.1 * s, h - (cy - 0.18 * s)], fill: false });
                 }
             }
             Outlet::Antenna(n) => {
-                inner(m, 0.35 * d, 0.6 * d, [226, 228, 230]);
+                inner(m, 0.36 * d, 0.6 * d, [230, 232, 234]);
                 for k in 0..n {
                     let x = cx + (k as f32 - (n - 1) as f32 / 2.0) * 0.3 * s;
-                    m.add_cylinder([x, cy, 0.6 * d], 2, 0.08 * s, 0.4 * d, ROUND, STEEL);
-                    prims.push(Prim2d::Circle { c: [x, cy], r: 0.08 * s, fill: false });
+                    m.add_cylinder([x, cy, 0.6 * d], 2, 0.1 * s, 0.25 * d, ROUND, [214, 216, 218]);
+                    m.add_cylinder([x, cy, 0.85 * d], 2, 0.06 * s, 0.15 * d, ROUND, STEEL);
+                    prims.push(Prim2d::Circle { c: [x, cy], r: 0.1 * s, fill: false });
                 }
             }
             Outlet::Rockers(n) => {
-                // Rockers side by side, in two rows from four on.
+                // Rockers side by side, in two rows from four on; each tilted, its upper
+                // half proud of its lower one, with the line between them.
                 let (cols, rows) = if n >= 4 { (n.div_ceil(2), 2) } else { (n.max(1), 1) };
                 let (rw, rh) = (s / cols as f32, s / rows as f32);
                 for k in 0..cols * rows {
-                    let (x0, y0) = (cx - s / 2.0 + rw * (k % cols) as f32, cy - s / 2.0 + rh * (k / cols) as f32);
-                    m.add_painted_box([x0 + 0.03 * s, y0 + 0.03 * s, 0.35 * d], [x0 + rw - 0.03 * s, y0 + rh - 0.03 * s, d], [228, 230, 232]);
-                    prims.push(Prim2d::Rect { min: [x0 + 0.03 * s, h - (y0 + rh - 0.03 * s)], max: [x0 + rw - 0.03 * s, h - (y0 + 0.03 * s)], fill: false });
+                    let (x0, y0) = (cx - s / 2.0 + rw * (k % cols) as f32 + 0.025 * s, cy - s / 2.0 + rh * (k / cols) as f32 + 0.025 * s);
+                    let (x1, y1) = (x0 + rw - 0.05 * s, y0 + rh - 0.05 * s);
+                    let ym = (y0 + y1) / 2.0;
+                    m.add_painted_box([x0, y0, 0.36 * d], [x1, ym, 0.8 * d], [232, 234, 236]);
+                    m.add_painted_box([x0, ym, 0.36 * d], [x1, y1, d], [238, 240, 242]);
+                    m.add_painted_box([x0 + 0.3 * (x1 - x0), ym - 0.012 * s, 0.8 * d], [x1 - 0.3 * (x1 - x0), ym + 0.012 * s, 0.86 * d], [206, 208, 212]);
+                    prims.push(Prim2d::Rect { min: [x0, h - y1], max: [x1, h - y0], fill: false });
                 }
             }
             Outlet::Dimmer => {
-                inner(m, 0.35 * d, 0.5 * d, [226, 228, 230]);
-                m.add_cylinder([cx, cy, 0.5 * d], 2, 0.3 * s, 0.5 * d, ROUND, [220, 222, 224]);
-                prims.push(Prim2d::Circle { c: [cx, cy], r: 0.3 * s, fill: false });
+                // The knob on its plate, with its mark.
+                inner(m, 0.36 * d, 0.5 * d, [230, 232, 234]);
+                m.add_frustum([cx, cy, 0.5 * d], 2, 0.34 * s, 0.3 * s, 0.45 * d, ROUND + 8, [224, 226, 228]);
+                m.add_cylinder([cx, cy, 0.95 * d], 2, 0.26 * s, 0.05 * d, ROUND + 8, [236, 238, 240]);
+                m.add_painted_box([cx - 0.015 * s, cy + 0.12 * s, 0.95 * d], [cx + 0.015 * s, cy + 0.26 * s, d], DARK);
+                prims.push(Prim2d::Circle { c: [cx, cy], r: 0.34 * s, fill: false });
             }
             Outlet::Glass => {
                 m.add_painted_box([0.0, 0.0, 0.35 * d], [w, h, d], BLACK);
@@ -823,9 +855,13 @@ fn outlet(m: &mut Mesh3d, prims: &mut Vec<Prim2d>, kind: Outlet, [w, h, d]: [f32
                 }
             }
             Outlet::Thermostat => {
-                inner(m, 0.35 * d, d, [226, 228, 230]);
-                m.add_painted_box([cx - 0.3 * s, cy, 0.95 * d], [cx + 0.3 * s, cy + 0.3 * s, d], DISPLAY);
-                prims.push(Prim2d::Rect { min: [cx - 0.3 * s, h - cy - 0.3 * s], max: [cx + 0.3 * s, h - cy], fill: false });
+                // The display in the upper half, the buttons under it.
+                inner(m, 0.36 * d, 0.96 * d, [230, 232, 234]);
+                m.add_painted_box([cx - 0.32 * s, cy - 0.02 * s, 0.96 * d], [cx + 0.32 * s, cy + 0.34 * s, d], DISPLAY);
+                for dx in [-0.22 * s, 0.0, 0.22 * s] {
+                    m.add_painted_box([cx + dx - 0.08 * s, cy - 0.3 * s, 0.96 * d], [cx + dx + 0.08 * s, cy - 0.16 * s, 0.99 * d], [214, 216, 220]);
+                }
+                prims.push(Prim2d::Rect { min: [cx - 0.32 * s, h - cy - 0.34 * s], max: [cx + 0.32 * s, h - cy + 0.02 * s], fill: false });
             }
         }
     }

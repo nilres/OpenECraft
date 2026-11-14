@@ -28,7 +28,7 @@ fn a_cable_in_front_of_a_device_is_picked_one_behind_it_not() {
     let an = Analysis::build(&prj);
     // A device face around the pointer, 1000 mm away; a cable across it in front or behind.
     let pts = [Pos2::new(0.0, 0.0), Pos2::new(100.0, 0.0), Pos2::new(100.0, 100.0), Pos2::new(0.0, 100.0)];
-    let prims = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: Some((0, 7)), outline: false }];
+    let prims = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: Some((0, 7)), outline: false, pv: None }];
     let view = |q: V3| Some((Pos2::new(q[0], q[1]), q[2]));
     for (depth, cable) in [(900.0, true), (1100.0, false)] {
         let mut scene = Scene3d::default();
@@ -41,6 +41,31 @@ fn a_cable_in_front_of_a_device_is_picked_one_behind_it_not() {
 }
 
 #[test]
+fn a_pv_array_clicked_is_selected_with_its_properties() {
+    let prj = openecraft_core::sample::example("office_building").unwrap();
+    let an = Analysis::build(&prj);
+    let id = prj.layout.buildings.iter().flat_map(|b| &b.roofs).flat_map(|r| &r.solar).next().unwrap().id;
+    let pts = [Pos2::new(0.0, 0.0), Pos2::new(100.0, 0.0), Pos2::new(100.0, 100.0), Pos2::new(0.0, 100.0)];
+    let prims = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: None, outline: false, pv: Some(id) }];
+    let mut ui = PanelUi::default();
+    ui.selection.insert(7);
+    assert!(ui.pick_3d(&prj, &an, &Scene3d::default(), &prims, &|_| None, Pos2::new(50.0, 50.0)));
+    assert_eq!(ui.selected_array, Some(id));
+    assert!(ui.selection.is_empty() && ui.status.contains("PV1") && ui.status.contains("kWp"), "{}", ui.status);
+    // A click into the air or on an item drops it.
+    ui.pick_3d(&prj, &an, &Scene3d::default(), &[], &|_| None, Pos2::new(50.0, 50.0));
+    assert_eq!(ui.selected_array, None);
+    ui.selected_array = Some(id);
+    ui.select_item(7);
+    assert_eq!(ui.selected_array, None);
+    // In front of an item under the roof drawn after it (an outlet in the attic below).
+    let behind = Prim::Face { pts, z: [2000.0; 4], n: 4, color: Color32::GRAY, item: Some((0, 1_234_567)), outline: false, pv: None };
+    let both = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: None, outline: false, pv: Some(id) }, behind];
+    ui.pick_3d(&prj, &an, &Scene3d::default(), &both, &|_| None, Pos2::new(50.0, 50.0));
+    assert_eq!(ui.selected_array, Some(id));
+}
+
+#[test]
 fn a_device_clicked_in_another_cabinet_shows_that_cabinet_fitted() {
     use openecraft_core::panel::PanelItem;
     let mut prj = openecraft_core::sample::example("building_services").unwrap();
@@ -49,7 +74,7 @@ fn a_device_clicked_in_another_cabinet_shows_that_cabinet_fitted() {
     prj.layout.enclosures[cabinet].items.push(PanelItem { id: 9_999, kind: ItemKind::Device, ..Default::default() });
     let an = Analysis::build(&prj);
     let pts = [Pos2::new(0.0, 0.0), Pos2::new(100.0, 0.0), Pos2::new(100.0, 100.0), Pos2::new(0.0, 100.0)];
-    let prims = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: Some((cabinet, 9_999)), outline: false }];
+    let prims = [Prim::Face { pts, z: [1000.0; 4], n: 4, color: Color32::GRAY, item: Some((cabinet, 9_999)), outline: false, pv: None }];
     let mut ui = PanelUi { enclosure: room, fit_pending: false, ..Default::default() };
     ui.cam = Some(default_cam(&prj, &ui.shown_3d(&prj, room)));
     ui.pick_3d(&prj, &an, &Scene3d::default(), &prims, &|_| None, Pos2::new(50.0, 50.0));
@@ -60,4 +85,22 @@ fn a_device_clicked_in_another_cabinet_shows_that_cabinet_fitted() {
     ui.fit_pending = false;
     ui.pick_3d(&prj, &an, &Scene3d::default(), &prims, &|_| None, Pos2::new(50.0, 50.0));
     assert!(ui.cam.is_some() && !ui.fit_pending);
+}
+
+#[test]
+fn earth_electrodes_and_lightning_protection_are_picked_in_3d() {
+    let prj = openecraft_core::sample::example("office_building").unwrap();
+    let an = Analysis::build(&prj);
+    let bi = prj.layout.buildings.iter().position(|b| b.name == "+B3").unwrap();
+    let id = prj.layout.buildings[bi].electrodes[0].id;
+    let mut scene = Scene3d::default();
+    scene.earthing_picks.push(([0.0, 50.0, 900.0], [100.0, 50.0, 900.0], (bi, panel::lightning::Owner::Electrode(id))));
+    let view = |q: V3| Some((Pos2::new(q[0], q[1]), q[2]));
+    let mut ui = PanelUi::default();
+    assert!(ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(50.0, 52.0)));
+    assert_eq!(ui.selected_earthing, Some((bi, panel::lightning::Owner::Electrode(id))));
+    assert!(ui.status.contains("E1") && ui.status.contains("+B3"), "{}", ui.status);
+    // Too far from it: nothing.
+    ui.pick_3d(&prj, &an, &scene, &[], &view, Pos2::new(50.0, 80.0));
+    assert_eq!(ui.selected_earthing, None);
 }
