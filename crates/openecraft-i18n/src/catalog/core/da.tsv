@@ -189,6 +189,7 @@ Centre horizontally	Centrer vandret
 Centre vertically	Centrer lodret
 Centrifugal pump	Centrifugalpumpe
 Change	Ændring
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Ændret i projektmappen af et andet program og også i det åbne projekt: {}{}. Gem projektet under et andet navn, eller åbn det igen og gentag ændringerne
 Changed since mounted	Ændret siden montering
 Changed since wired	Ændret siden trækning
 Changeover contact	Skiftekontakt
@@ -1584,6 +1585,7 @@ The archive contains no project	Arkivet indeholder intet projekt
 The archive has no manifest	Arkivet har intet manifest
 The archive is damaged	Arkivet er beskadiget
 The archive unpacks to more than {} MB	Arkivet udpakkes til mere end {} MB
+The archive was written by a newer version (archive version {})	Arkivet er skrevet af en nyere version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tavlefabrikanten skal være angivet (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Tavlerækken i sit rum: L-formet plan, indervæg, dør og vindue, tavlerækken på sin plads, en skinne med en stikkontakt på en væg, en vægmonteret nødbelysning og en kabelbakke under loftet.
 The configuration is not a JSON object	Konfigurationen er ikke et JSON-objekt
@@ -1596,7 +1598,10 @@ The embedded document {} is damaged	Det integrerede dokument {} er beskadiget
 The file is empty	Filen er tom
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Filen er skrevet af en nyere version (format {}): data, som denne version ikke kender, går tabt ved lagring
 The first column must be Key	Den første kolonne skal være Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Mappen {} indeholder allerede projektet {}: et opdelt projekt skal have sin egen mappe
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Mappen {} indeholder filer, der ikke hører til noget projekt ({}): et opdelt projekt skal have sin egen mappe
 The function definition needs a key and a name	Funktionsdefinitionen skal have en nøgle og et navn
+The index of the project names no file layout: it was not written by OpenECraft	Projektets indeks angiver intet fillayout: det er ikke skrevet af OpenECraft
 The last page cannot be deleted	Den sidste side kan ikke slettes
 The macro box has no items left	Makroboksen har ikke flere elementer
 The next free id is already in use	Det næste ledige id er allerede i brug
@@ -1606,7 +1611,10 @@ The pages were changed after the submission; submit the revision again	Siderne b
 The plot boundary crosses itself	Grundgrænsen krydser sig selv
 The plot boundary encloses no area	Grundgrænsen omslutter intet areal
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Grundgrænsen er ingen polygon: den krydser sig selv eller har færre end tre hjørner
+The project cannot be written as files: {}	Projektet kan ikke skrives som filer: {}
+The project file {} is missing	Projektfilen {} mangler
 The project has no panel layout	Projektet har intet tavlelayout
+The project was written by a newer version (file layout {})	Projektet er skrevet af en nyere version (fillayout {})
 The property needs a name	Egenskaben skal have et navn
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Pumpestationen bygget ind i to sammenbyggede gulvskabe: skinnesystem, skinner og kabelkanaler, dørkomponenter og greb, filterventilator, lys, PE-skinne, kabelforskruninger, en kabelgennemføring, klimaberegning, kanalfyldning og 3D-føring.
 The revision is already released	Revisionen er allerede frigivet
@@ -1926,6 +1934,7 @@ yellow	gul
 {} has no MTTFd, B10d, PL or PFHd	{} har hverken MTTFd, B10d, PL eller PFHd
 {} has no door or window {}	{} har ingen dør eller vindue {}
 {} has nothing to manufacture	{} har intet at producere
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} indeholder en uløst flettekonflikt fra git: filen blev flettet som tekst. Tag én version af filen (git checkout --ours eller --theirs), og sæt derefter flettedriveren til opdelte projekter op (merge_project_file), før du fletter igen
 {} is a built-in function definition	{} er en indbygget funktionsdefinition
 {} is a built-in property	{} er en indbygget egenskab
 {} is a built-in scheme	{} er et indbygget skema

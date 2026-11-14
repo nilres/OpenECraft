@@ -123,7 +123,7 @@ fn replacing_the_project_starts_a_new_history() {
     s.prj.info.name = "Changed, then discarded".into();
     s.commit(true);
     let rev = s.history.rev;
-    s.replace(Project::default(), None);
+    s.replace(Project::default(), None, None);
     assert_eq!((s.page, s.file_name.as_deref(), s.dirty()), (0, None, false));
     // Undo would put the discarded project under the new name (and saving would
     // overwrite the new file with it).
@@ -193,7 +193,7 @@ fn an_opened_project_is_analysed_in_the_background() {
     }
     opened(&mut s, &plugins);
     assert!(!s.analysis.index.devices.is_empty());
-    s.replace(demo_project(), Some("demo.oec".into()));
+    s.replace(demo_project(), Some("demo.oec".into()), None);
     s.refresh(&plugins, false);
     if openecraft_core::analysis::threads() > 1 {
         assert!(s.opening().is_some());
@@ -213,9 +213,9 @@ fn an_opened_project_is_analysed_in_the_background() {
 fn a_project_replaced_while_opening_gets_its_own_analysis() {
     let plugins = Plugins::new(Vec::<String>::new());
     let mut s = Session::new(Project::new_default(), None);
-    s.replace(demo_project(), None);
+    s.replace(demo_project(), None, None);
     s.refresh(&plugins, false);
-    s.replace(Project::new_default(), None);
+    s.replace(Project::new_default(), None, None);
     s.refresh(&plugins, false);
     opened(&mut s, &plugins);
     assert_eq!(s.analysis.index.devices.len(), Index::build(&s.prj).devices.len());
@@ -304,4 +304,51 @@ fn a_device_moved_into_a_structure_box_takes_its_structure_in_the_same_undo_step
     assert_eq!(std::mem::take(&mut s.structure_kept).len(), 1);
     s.commit(true);
     assert!(s.structure_kept.is_empty());
+}
+
+#[test]
+fn files_of_another_program_are_taken_over_and_undo_keeps_them() {
+    use openecraft_core::storage::folder;
+    let dir = std::env::temp_dir().join(format!("openecraft-session-foreign-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    let index = dir.join("p.oecp");
+    folder::save(&index, &demo_project()).unwrap();
+    let path = index.display().to_string();
+    let (prj, _, read) = folder::open_tracked(&index).unwrap();
+    let mut s = Session::new(Project::default(), None);
+    s.replace(prj, Some(path.clone()), Some(read));
+    assert!(s.tracked.as_ref().is_some_and(|t| t.is_for(&index)));
+    // An edit of ours, committed as an undo step.
+    s.prj.pages[0].description = "Ours".into();
+    assert!(s.history.track(&s.prj, true));
+    // Another program changes another page; our save keeps it.
+    let mut theirs = demo_project();
+    theirs.pages[1].description = "Theirs".into();
+    let name = format!("pages/{}.json", theirs.pages[1].id);
+    std::fs::write(dir.join(&name), &openecraft_core::storage::split(&theirs).unwrap()[&name]).unwrap();
+    let saved = folder::save_tracked(&index, &s.prj, &mut s.tracked).unwrap();
+    assert_eq!((saved.changed, saved.foreign), (1, 1));
+    let names = s.tracked.as_ref().unwrap().foreign().clone();
+    let (disk, _, read) = folder::open_tracked(&index).unwrap();
+    s.take_over(&disk, &names, read);
+    assert!(s.prj == disk && !s.dirty());
+    assert_eq!((s.prj.pages[0].description.as_str(), s.prj.pages[1].description.as_str()), ("Ours", "Theirs"));
+    // Undo takes back our edit and leaves theirs; the project then differs from its files.
+    assert!(s.history.can_undo());
+    s.history.undo(&mut s.prj);
+    assert_eq!((s.prj.pages[0].description == "Ours", s.prj.pages[1].description.as_str()), (false, "Theirs"));
+    assert!(s.dirty());
+
+    // A restored project takes the stamps of the last run, if they are of its file.
+    let stamps = folder::track(&index).unwrap();
+    let mut restored = Session::new(demo_project(), Some(path));
+    assert!(restored.tracked.as_ref() == Some(&folder::Tracked::unknown(&index)));
+    restored.restore_tracked(Some(folder::track(&dir.join("other.oecp")).unwrap_or_default()));
+    assert!(restored.tracked.as_ref() == Some(&folder::Tracked::unknown(&index)));
+    restored.restore_tracked(Some(stamps.clone()));
+    assert!(restored.tracked.as_ref() == Some(&stamps));
+    let mut file = Session::new(demo_project(), Some("demo.oec".into()));
+    file.restore_tracked(Some(stamps));
+    assert!(file.tracked.is_none());
+    let _ = std::fs::remove_dir_all(&dir);
 }

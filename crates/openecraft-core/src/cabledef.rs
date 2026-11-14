@@ -65,16 +65,21 @@ pub fn numbered_cores(n: usize, pe: bool) -> String {
 
 /// Preview existing or newly created cable cores without changing the project.
 pub fn plan(prj: &Project, page: usize, a: P, b: P, tag: &str) -> AssignmentPlan {
+    let used: Vec<_> = if prj.cable(tag).is_some() {
+        prj.pages.iter().enumerate().flat_map(|(pi, pg)| pg.wires.iter().filter(move |w| w.cable == tag).map(move |w| (pi, w.id, w.core.clone()))).collect()
+    } else { Vec::new() };
+    plan_with_uses(prj, page, a, b, tag, &used)
+}
+
+/// Preview using the caller's cable assignments (page, wire id, core). The caller
+/// refreshes them after edits and undo; applying always uses a fresh plan.
+pub fn plan_with_uses(prj: &Project, page: usize, a: P, b: P, tag: &str, uses: &[(usize, u64, String)]) -> AssignmentPlan {
     let crossed = crossed_wires(&prj.pages[page], a, b);
     let cable = prj.cable(tag);
     let mut cores = cable.map(Cable::core_list).unwrap_or_else(|| (1..=crossed.len().max(1)).map(|n| n.to_string()).collect());
-    let used: Vec<String> = prj
-        .pages
-        .iter()
-        .enumerate()
-        .flat_map(|(pi, pg)| pg.wires.iter().map(move |w| (pi, w)))
-        .filter(|(pi, w)| cable.is_some() && w.cable == tag && !(*pi == page && crossed.contains(&w.id)))
-        .map(|(_, w)| w.core.clone())
+    let used: Vec<&str> = uses.iter()
+        .filter(|(pi, id, _)| cable.is_some() && !(*pi == page && crossed.contains(id)))
+        .map(|(_, _, core)| core.as_str())
         .collect();
     let kept: Vec<u64> = prj.pages[page]
         .wires
@@ -84,13 +89,13 @@ pub fn plan(prj: &Project, page: usize, a: P, b: P, tag: &str) -> AssignmentPlan
         .collect();
     let kept_cores: Vec<&str> = prj.pages[page].wires.iter().filter(|w| kept.contains(&w.id)).map(|w| w.core.as_str()).collect();
     let mut unique = std::collections::BTreeSet::new();
-    cores.retain(|c| !used.contains(c) && !kept_cores.contains(&c.as_str()) && unique.insert(c.clone()));
+    cores.retain(|c| !used.contains(&c.as_str()) && !kept_cores.contains(&c.as_str()) && unique.insert(c.clone()));
     let mut result = AssignmentPlan { crossed: crossed.clone(), kept, free_cores: cores.clone(), ..Default::default() };
     let mut free = cores.into_iter();
     for wid in &crossed {
         let Some(w) = prj.pages[page].wires.iter().find(|w| w.id == *wid) else { continue };
         if result.kept.contains(wid) { continue; }
-        if !w.core.is_empty() || (!w.cable.is_empty() && w.cable != tag) {
+        if !w.core.is_empty() || (!w.cable.is_empty() && (w.cable != tag || cable.is_none())) {
             result.conflicts.push(*wid);
         } else if let Some(core) = free.next() {
             result.assignments.push((*wid, core));
@@ -117,17 +122,17 @@ pub fn apply(prj: &mut Project, page: usize, id: u64) -> usize {
     plan.kept.len() + plan.assignments.len()
 }
 
-/// Adds a cable definition line, creating a cable when `cable` is empty or unknown;
-/// its cores are numbered for the wires crossed. Returns the id of the line.
+/// Adds a correctable definition line. A new cable is created only when the crossed
+/// wires have no conflicting assignments; its cores are numbered for the crossings.
 pub fn add(prj: &mut Project, page: usize, a: P, b: P, cable: &str) -> u64 {
-    let crossed = crossed_wires(&prj.pages[page], a, b).len();
-    let tag = if prj.cable(cable).is_some() {
+    let preview = plan(prj, page, a, b, cable);
+    let tag = if prj.cable(cable).is_some() || !preview.conflicts.is_empty() {
         cable.to_string()
     } else {
         let st = crate::structure::Dt::of_page(&prj.pages[page]).structure();
         let tag = crate::ops::add_cable(prj, &st);
         if let Some(c) = prj.cables.iter_mut().find(|c| c.tag == tag) {
-            c.cores = numbered_cores(crossed.max(1), false);
+            c.cores = numbered_cores(preview.crossed.len().max(1), false);
         }
         tag
     };
@@ -158,7 +163,9 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
     for (pi, pg) in prj.pages.iter().enumerate() {
         for def in &pg.cable_defs {
             let target = Some((pi, def.id));
-            if prj.cable(&def.cable).is_none() {
+            if def.cable.is_empty() {
+                v.push(crate::issue!(Severity::Error, target, "Cable definition on page {} has no cable. Select a cable before assigning crossed wires.", pg.name));
+            } else if prj.cable(&def.cable).is_none() {
                 v.push(crate::issue!(Severity::Error, target, "Cable definition on page {} refers to the unknown cable {}", pg.name, def.cable));
             } else if crossed_wires(pg, def.a, def.b).is_empty() {
                 v.push(crate::issue!(Severity::Warning, target, "Cable definition {} on page {} crosses no wire", def.cable, pg.name));

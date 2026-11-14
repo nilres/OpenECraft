@@ -189,6 +189,7 @@ Centre horizontally	Центрировать по горизонтали
 Centre vertically	Центрировать по вертикали
 Centrifugal pump	Центробежный насос
 Change	Изменение
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Изменено в папке проекта другой программой, а также в открытом проекте: {}{}. Сохраните проект под другим именем или откройте его заново и повторите изменения
 Changed since mounted	Изменено после монтажа
 Changed since wired	Изменённые после монтажа
 Changeover contact	Переключающий контакт
@@ -1584,6 +1585,7 @@ The archive contains no project	Архив не содержит проекта
 The archive has no manifest	В архиве нет манифеста
 The archive is damaged	Архив повреждён
 The archive unpacks to more than {} MB	Архив распаковывается более чем в {} МБ
+The archive was written by a newer version (archive version {})	Архив записан более новой версией (версия архива {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Должен быть указан изготовитель комплектного устройства (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Ряд шкафов в своём помещении: Г-образный план, внутренняя стена, дверь и окно, ряд шкафов на своём месте, рейка с розеткой на стене, настенный аварийный светильник и кабельный лоток под потолком.
 The configuration is not a JSON object	Конфигурация не является объектом JSON
@@ -1596,7 +1598,10 @@ The embedded document {} is damaged	Встроенный документ {} п�
 The file is empty	Файл пуст
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Файл записан более новой версией (формат {}): данные, неизвестные этой версии, будут потеряны при сохранении
 The first column must be Key	Первый столбец должен быть Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Папка {} уже содержит проект {}: разделённому проекту нужна собственная папка
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Папка {} содержит файлы, не относящиеся ни к одному проекту ({}): разделённому проекту нужна собственная папка
 The function definition needs a key and a name	Для определения функции требуются ключ и имя
+The index of the project names no file layout: it was not written by OpenECraft	Индекс проекта не указывает структуру файлов: он записан не OpenECraft
 The last page cannot be deleted	Последний лист нельзя удалить
 The macro box has no items left	В рамке макроса не осталось элементов
 The next free id is already in use	Следующий свободный идентификатор уже занят
@@ -1606,7 +1611,10 @@ The pages were changed after the submission; submit the revision again	Лист�
 The plot boundary crosses itself	Граница участка пересекает сама себя
 The plot boundary encloses no area	Граница участка не охватывает площади
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Граница участка не является многоугольником: она пересекает сама себя или имеет менее трёх углов
+The project cannot be written as files: {}	Проект нельзя записать в виде файлов: {}
+The project file {} is missing	Файл проекта {} отсутствует
 The project has no panel layout	В проекте нет компоновки шкафа
+The project was written by a newer version (file layout {})	Проект записан более новой версией (структура файлов {})
 The property needs a name	Для свойства требуется имя
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Насосная станция в двух соединённых напольных шкафах: система сборных шин, рейки и кабель-каналы, устройства на двери и ручки, вентилятор с фильтром, светильник, шина PE, кабельные вводы, кабельный проход, расчёт климата, заполнение кабель-каналов и 3D-трассировка.
 The revision is already released	Ревизия уже выпущена
@@ -1926,6 +1934,7 @@ yellow	жёлтый
 {} has no MTTFd, B10d, PL or PFHd	У {} нет MTTFd, B10d, PL или PFHd
 {} has no door or window {}	У {} нет двери или окна {}
 {} has nothing to manufacture	{}: нечего изготавливать
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} содержит неразрешённый конфликт слияния git: файл был объединён как текст. Возьмите одну версию файла (git checkout --ours или --theirs), затем настройте драйвер слияния для разделённых проектов (merge_project_file) перед повторным слиянием
 {} is a built-in function definition	{} – встроенное определение функции
 {} is a built-in property	{} – встроенное свойство
 {} is a built-in scheme	{} – встроенная схема

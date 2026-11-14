@@ -311,7 +311,7 @@ impl App {
 
     /// Properties of texts, graphics, dimensions, images, definitions and structure
     /// boxes. Returns false if `id` is none of them.
-    pub(super) fn graphic_properties(&mut self, ui: &mut egui::Ui, id: u64) -> bool {
+    pub(super) fn graphic_properties(&mut self, ui: &mut egui::Ui, idx: &openecraft_core::index::Index, id: u64) -> bool {
         let pi = self.session.page;
         if self.session.prj.pages[pi].structure_boxes.iter().any(|b| b.id == id) {
             self.structure_box_properties(ui, pi, id);
@@ -434,7 +434,7 @@ impl App {
             return true;
         }
         if pg.cable_defs.iter().any(|c| c.id == id) {
-            self.cable_def_properties(ui, id, &cables);
+            self.cable_def_properties(ui, idx, id, &cables);
             return true;
         }
         if pg.junctions.iter().any(|j| j.id == id) {
@@ -616,7 +616,7 @@ impl App {
         }
     }
 
-    fn cable_def_properties(&mut self, ui: &mut egui::Ui, id: u64, cables: &[(String, Vec<String>)]) {
+    fn cable_def_properties(&mut self, ui: &mut egui::Ui, idx: &openecraft_core::index::Index, id: u64, cables: &[(String, Vec<String>)]) {
         let pi = self.session.page;
         ui.label(RichText::new(tr("Cable definition")).strong());
         let Some(mut def) = self.session.prj.pages[pi].cable_defs.iter().find(|c| c.id == id).cloned() else { return };
@@ -663,7 +663,7 @@ impl App {
                 }
             });
         }
-        let preview = cabledef::plan(&self.session.prj, pi, def.a, def.b, &def.cable);
+        let preview = cabledef::plan_with_uses(&self.session.prj, pi, def.a, def.b, &def.cable, idx.cable_cores.get(&def.cable).map_or(&[][..], Vec::as_slice));
         ui.label(preview.summary());
         if !preview.can_apply() && preview.unassigned() > 0 {
             ui.colored_label(crate::style::warning(), tr_fmt!("{} additional cores required; {} conflicting assignments. No wire assignments will be changed.", preview.missing.len(), preview.conflicts.len()));
@@ -682,7 +682,9 @@ impl App {
             }
         });
         ui.horizontal_wrapped(|ui| {
-            if ui.add_enabled(preview.can_apply(), egui::Button::new(tr("Assign crossed wires"))).on_hover_text(tr("The crossed wires get free cores of the cable in order")).clicked() {
+            if ui.add_enabled(self.session.prj.cable(&def.cable).is_some() && preview.can_apply(), egui::Button::new(tr("Assign crossed wires")))
+                .on_hover_text(tr("The crossed wires get free cores of the cable in order"))
+                .on_disabled_hover_text(tr_fmt!("{} additional cores required; {} conflicting assignments. No wire assignments will be changed.", preview.missing.len(), preview.conflicts.len())).clicked() {
                 apply = true;
             }
             if ui.button(tr("Draw another line for this cable")).clicked() {

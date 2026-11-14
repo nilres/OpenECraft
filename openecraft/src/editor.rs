@@ -1287,7 +1287,7 @@ impl Editor {
         if let Some(w) = world {
             if let (Some(sn), true) = (snapped, editable) {
                 let mut g = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: Some(Ink::Ghost), mirror: None, textures: None };
-                self.previews(&mut g, prj, page_i, w, sn);
+                self.previews(&mut g, prj, idx, page_i, w, sn);
             }
             let placement_drag = resp.dnd_hover_payload::<PlacePayload>().is_some()
                 || resp.dnd_hover_payload::<PartDrag>().is_some();
@@ -1387,7 +1387,7 @@ impl Editor {
         out
     }
 
-    fn previews(&mut self, g: &mut EguiDraw<'_>, prj: &Project, page_i: usize, world: P, sn: P) {
+    fn previews(&mut self, g: &mut EguiDraw<'_>, prj: &Project, idx: &Index, page_i: usize, world: P, sn: P) {
         let page = &prj.pages[page_i];
         match self.tool.clone() {
             Tool::Place(key) => {
@@ -1459,7 +1459,7 @@ impl Editor {
             Tool::CableDef => {
                 if let Some(&a) = self.pts.first() {
                     g.line(a, sn, render::SYMBOL_W, Ink::Ghost, false);
-                    let preview = cabledef::plan(prj, page_i, a, sn, &self.cable_target);
+                    let preview = cabledef::plan_with_uses(prj, page_i, a, sn, &self.cable_target, idx.cable_cores.get(&self.cable_target).map_or(&[][..], Vec::as_slice));
                     g.text(sn + p(2.0, 3.0), &preview.summary(), render::SMALL_SIZE, Anchor::Left, VAnchor::Top, Ink::Ghost);
                     for id in cabledef::crossed_wires(page, a, sn) {
                         if let Some(w) = page.wires.iter().find(|w| w.id == id) {

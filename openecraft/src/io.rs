@@ -2,7 +2,11 @@
 //! implemented in `openecraft_ui::io`.
 
 pub use openecraft_ui::io::short_name;
+use openecraft_core::archive::{self, Conversion};
+use openecraft_core::model::Project;
+use openecraft_core::storage::folder::{self, Tracked};
 use openecraft_i18n::tr;
+use std::path::Path;
 use openecraft_ui::io::FileKind;
 use openecraft_ui::part_editor::ModelKind;
 
@@ -77,9 +81,10 @@ pub enum Purpose {
 impl FileKind for Purpose {
     fn filter(self) -> (&'static str, &'static [&'static str]) {
         match self {
-            Purpose::Project => (tr("OpenECraft project or archive"), &[PROJECT_EXT, "oecz", "json"]),
-            Purpose::ProjectTemplate => (tr("OpenECraft project template"), &[PROJECT_EXT, "oecz", "json"]),
-            Purpose::OutputTarget | Purpose::Compare | Purpose::Subproject => (tr("OpenECraft project"), &[PROJECT_EXT, "json"]),
+            Purpose::Project => (tr("OpenECraft project or archive"), &[PROJECT_EXT, "oecz", INDEX_EXT, "json"]),
+            Purpose::ProjectTemplate => (tr("OpenECraft project template"), &[PROJECT_EXT, "oecz", INDEX_EXT, "json"]),
+            Purpose::Compare | Purpose::Subproject => (tr("OpenECraft project"), &[PROJECT_EXT, INDEX_EXT, "json"]),
+            Purpose::OutputTarget => (tr("OpenECraft project"), &[PROJECT_EXT, "json"]),
             Purpose::ChangeRequests => (tr("Change requests (CSV, JSON)"), &["csv", "json", "txt"]),
             Purpose::PdfComments => (tr("PDF with comments"), &["pdf"]),
             Purpose::Preplanning => (tr("Pre-planning (CSV, Excel)"), &["csv", "xlsx", "txt"]),
@@ -113,3 +118,44 @@ pub type FileIo = openecraft_ui::io::FileIo<Purpose>;
 pub type Loaded = openecraft_ui::io::Loaded<Purpose>;
 
 pub const PROJECT_EXT: &str = "oec";
+pub use openecraft_core::storage::INDEX_EXT;
+
+/// The path names the index file of a split project.
+pub fn is_split(path: &str) -> bool {
+    folder::is_index(Path::new(path))
+}
+
+/// The project of a file the user opened: a project file or an archive (`true`)
+/// from its content, a split project from the folder of its index file.
+pub fn read_project(name: &str, bytes: &[u8]) -> Result<(Project, Conversion, bool), String> {
+    open_project(name, bytes).map(|(prj, conv, archive, _)| (prj, conv, archive))
+}
+
+/// Like [`read_project`], for the project to edit: with the files of a split
+/// project as they were read, for saving it.
+pub fn open_project(name: &str, bytes: &[u8]) -> Result<(Project, Conversion, bool, Option<Tracked>), String> {
+    if !is_split(name) {
+        let (prj, conv) = archive::read_project(bytes)?;
+        return Ok((prj, conv, archive::is_archive(bytes), None));
+    }
+    if !openecraft_ui::io::has_file_system() {
+        return Err(tr("A split project is a folder of files: the browser cannot open it. Convert it to a project file (.oec) or an archive (.oecz) first.").into());
+    }
+    let (prj, conv, tracked) = folder::open_tracked(Path::new(name))?;
+    Ok((prj, conv, false, Some(tracked)))
+}
+
+/// Writes the project to `path`: a project file, or for an index file the changes
+/// to the folder of a split project (`tracked`: its files as the project was read,
+/// see [`folder::save_tracked`]). Returns the number of files of the folder another
+/// program changed meanwhile: they were kept and are not in `prj`.
+pub fn write_project(io: &FileIo, path: &str, prj: &Project, tracked: &mut Option<Tracked>) -> Result<usize, String> {
+    if is_split(path) {
+        folder::save_tracked(Path::new(path), prj, tracked).map(|saved| saved.foreign)
+    } else {
+        io.save_to(path, &prj.to_json()).map(|_| 0)
+    }
+}
+
+#[cfg(test)]
+mod tests;

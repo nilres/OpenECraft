@@ -1,13 +1,5 @@
 # Plugins
 
-Cable-definition commands use the same guarded assignment plan in every front end.
-`preview_cable_definition` is read-only, including on released pages, and returns
-crossed/assigned/unassigned counts, free cores, shortages, conflicts and ordered
-candidates. `apply_cable_definition` requires an editable page and only changes
-pending assignments when the complete plan fits. `add_cable_definition` adds an
-`assignment` object to its existing result. A rejected assignment leaves wires
-unchanged; the definition stays available for deliberate correction.
-
 OpenECraft is extended through the `openecraft-api` crate. A plugin adds
 
 | Extension | What it is | Editor | Command line / MCP |

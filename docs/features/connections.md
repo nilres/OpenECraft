@@ -47,6 +47,14 @@ assignments must be changed explicitly in the wire properties; another cable is
 never overwritten silently. The physical cable/core list is never enlarged
 automatically to make a mismatch disappear.
 
+When creating a new cable is blocked by a conflicting assignment, only the
+definition line is kept: no unused cable is created. Select a cable in its
+properties after correcting the conflict. An imported core designation without
+a cable is also a conflict; clear or change it explicitly in the wire properties.
+The disabled **Assign crossed wires** button explains shortages and conflicts
+when hovered. Interactive previews reuse the session's assignment index; applying
+always checks the current project again.
+
 Automation uses `preview_cable_definition` with `page`, two `points` and an
 optional `cable` for a read-only preview. `apply_cable_definition` takes `page` and
 the definition `id`, and reports `changed` plus its resulting `assignment`.

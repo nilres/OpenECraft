@@ -1282,7 +1282,7 @@ fn add_cable_definition(prj: &mut Project, a: &Args) -> Result<Value, String> {
     let cable = a.str("cable").unwrap_or_default();
     let id = cabledef::add(prj, i, from, to, cable);
     let def = prj.pages[i].cable_defs.iter().find(|c| c.id == id).cloned().unwrap_or_default();
-    let cores: Vec<Value> = prj.pages[i].wires.iter().filter(|w| w.cable == def.cable).map(|w| json!({ "wire": w.id, "core": w.core })).collect();
+    let cores: Vec<Value> = prj.pages[i].wires.iter().filter(|w| !def.cable.is_empty() && w.cable == def.cable).map(|w| json!({ "wire": w.id, "core": w.core })).collect();
     let assignment = cabledef::plan(prj, i, def.a, def.b, &def.cable);
     Ok(json!({ "id": id, "cable": def.cable, "cores": cores, "assignment": assignment_json(&assignment) }))
 }

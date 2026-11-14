@@ -21,6 +21,81 @@ fn five_wires() -> Project {
 }
 
 #[test]
+fn a_rejected_new_cable_keeps_a_correctable_definition_without_inventing_a_cable() {
+    for target in ["", "-Unknown"] {
+        let mut prj = project();
+        prj.pages[0].wires[0].cable = "-Other".into();
+        prj.pages[0].wires[0].core = "BN".into();
+        let before = prj.clone();
+        let id = add(&mut prj, 0, p(16., 50.), p(40., 50.), target);
+        assert_eq!(prj.cables, before.cables);
+        assert_eq!(prj.pages[0].wires, before.pages[0].wires);
+        assert_eq!(prj.pages[0].cable_defs[0].cable, target);
+        assert_eq!(problems(&prj)[0].target, Some((0, id)));
+        assert_eq!(Project::from_json(&prj.to_json()).unwrap(), prj);
+        // The user can select a real cable and explicitly clear the conflict.
+        prj.cables.push(Cable { id: 90, tag: "-W1".into(), cores: "1 2 3".into(), ..Default::default() });
+        prj.pages[0].cable_defs[0].cable = "-W1".into();
+        prj.pages[0].wires[0].cable.clear();
+        prj.pages[0].wires[0].core.clear();
+        assert_eq!(apply(&mut prj, 0, id), 3);
+        assert!(problems(&prj).is_empty());
+    }
+}
+
+#[test]
+fn an_imported_core_without_a_cable_is_a_conflict_and_is_never_overwritten() {
+    let mut prj = project();
+    prj.pages[0].wires[0].core = "Imported".into();
+    let wires = prj.pages[0].wires.clone();
+    let preview = plan(&prj, 0, p(16., 50.), p(40., 50.), "");
+    assert_eq!(preview.conflicts, [10]);
+    assert!(!preview.can_apply());
+    let id = add(&mut prj, 0, p(16., 50.), p(40., 50.), "");
+    assert_eq!(apply(&mut prj, 0, id), 0);
+    assert!(prj.cables.is_empty());
+    assert_eq!(prj.pages[0].wires, wires);
+}
+
+#[test]
+fn an_imported_unknown_cable_reference_does_not_create_an_unrelated_unused_cable() {
+    let mut prj = project();
+    prj.pages[0].wires[0].cable = "-Unknown".into();
+    let wires = prj.pages[0].wires.clone();
+    let preview = plan(&prj, 0, p(16., 50.), p(40., 50.), "-Unknown");
+    assert_eq!(preview.conflicts, [10]);
+    let id = add(&mut prj, 0, p(16., 50.), p(40., 50.), "-Unknown");
+    assert!(prj.cables.is_empty());
+    assert_eq!(prj.pages[0].wires, wires);
+    assert_eq!(prj.pages[0].cable_defs[0].id, id);
+    assert_eq!(prj.pages[0].cable_defs[0].cable, "-Unknown");
+}
+
+#[test]
+fn indexed_previews_follow_other_pages_edits_and_undo() {
+    let mut prj = five_wires();
+    let mut other = Page::new(100, "2", "", PageKind::Schematic);
+    other.wires.push(Wire { id: 101, cable: "-W1".into(), core: "BN".into(), ..Default::default() });
+    prj.pages.push(other);
+    let mut history = crate::history::History::new(&prj);
+    let check = |prj: &Project| {
+        let idx = crate::index::Index::build(prj);
+        for b in [p(32., 50.), p(56., 50.)] {
+            assert_eq!(plan_with_uses(prj, 0, p(16., 50.), b, "-W1", idx.cable_cores.get("-W1").unwrap()), plan(prj, 0, p(16., 50.), b, "-W1"));
+        }
+        plan_with_uses(prj, 0, p(16., 50.), p(32., 50.), "-W1", idx.cable_cores.get("-W1").unwrap()).free_cores
+    };
+    assert!(!check(&prj).contains(&"BN".into()));
+    prj.pages[1].wires[0].core = "BK".into();
+    history.track(&prj, true);
+    assert!(!check(&prj).contains(&"BK".into()));
+    history.undo(&mut prj);
+    assert!(!check(&prj).contains(&"BN".into()));
+    history.redo(&mut prj);
+    assert!(!check(&prj).contains(&"BK".into()));
+}
+
+#[test]
 fn five_crossings_need_five_cores_and_never_partially_assign_in_either_direction() {
     for (a, b) in [(p(16., 50.), p(56., 50.)), (p(56., 50.), p(16., 50.))] {
         let mut prj = five_wires();

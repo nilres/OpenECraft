@@ -189,6 +189,7 @@ Centre horizontally	Centrera horisontellt
 Centre vertically	Centrera vertikalt
 Centrifugal pump	Centrifugalpump
 Change	Ändring
+Changed in the project folder by another program and also in the open project: {}{}. Save the project under another name, or open it again and repeat the changes	Ändrat i projektmappen av ett annat program och även i det öppna projektet: {}{}. Spara projektet under ett annat namn, eller öppna det igen och upprepa ändringarna
 Changed since mounted	Ändrad sedan monteringen
 Changed since wired	Ändrad sedan inkoppling
 Changeover contact	Växlande kontakt
@@ -1584,6 +1585,7 @@ The archive contains no project	Arkivet innehåller inget projekt
 The archive has no manifest	Arkivet har inget manifest
 The archive is damaged	Arkivet är skadat
 The archive unpacks to more than {} MB	Arkivet packas upp till mer än {} MB
+The archive was written by a newer version (archive version {})	Arkivet har skrivits av en nyare version (arkivversion {})
 The assembly manufacturer must be named (IEC 61439-1, 6.1)	Tillverkaren av kopplingsutrustningen måste anges (IEC 61439-1, 6.1)
 The cabinet line-up in its room: L-shaped floor plan, inner wall, door and window, the line-up at its place, a mounting rail with a socket outlet on a wall, a wall-mounted emergency light and a cable tray under the ceiling.	Skåpraden i sitt rum: L-format planritning, innervägg, dörr och fönster, skåpraden på sin plats, en skena med ett vägguttag, en väggmonterad nödbelysning och en kabelstege under taket.
 The configuration is not a JSON object	Konfigurationen är inte ett JSON-objekt
@@ -1596,7 +1598,10 @@ The embedded document {} is damaged	Det inbäddade dokumentet {} är skadat
 The file is empty	Filen är tom
 The file was written by a newer version (format {}): data this version does not know is lost when saving	Filen skrevs av en nyare version (format {}): data som den här versionen inte känner till går förlorade vid sparande
 The first column must be Key	Den första kolumnen måste vara Key
+The folder {} already holds the project {}: a split project needs a folder of its own	Mappen {} innehåller redan projektet {}: ett delat projekt behöver en egen mapp
+The folder {} holds files that belong to no project ({}): a split project needs a folder of its own	Mappen {} innehåller filer som inte hör till något projekt ({}): ett delat projekt behöver en egen mapp
 The function definition needs a key and a name	Funktionsdefinitionen behöver en nyckel och ett namn
+The index of the project names no file layout: it was not written by OpenECraft	Projektets index anger ingen fillayout: det har inte skrivits av OpenECraft
 The last page cannot be deleted	Den sista sidan kan inte tas bort
 The macro box has no items left	Makrorutan har inga objekt kvar
 The next free id is already in use	Nästa lediga ID används redan
@@ -1606,7 +1611,10 @@ The pages were changed after the submission; submit the revision again	Sidorna �
 The plot boundary crosses itself	Tomtgränsen korsar sig själv
 The plot boundary encloses no area	Tomtgränsen omsluter ingen yta
 The plot boundary is no polygon: it crosses itself or has fewer than three corners	Tomtgränsen är ingen polygon: den korsar sig själv eller har färre än tre hörn
+The project cannot be written as files: {}	Projektet kan inte skrivas som filer: {}
+The project file {} is missing	Projektfilen {} saknas
 The project has no panel layout	Projektet har ingen skåplayout
+The project was written by a newer version (file layout {})	Projektet har skrivits av en nyare version (fillayout {})
 The property needs a name	Egenskapen behöver ett namn
 The pump station built into two bayed floor-standing enclosures: busbar system, rails and ducts, door devices and handles, filter fan, light, PE bar, cable glands, a cable passage, climate calculation, duct fill and 3D routing.	Pumpstationen inbyggd i två sammanbyggda golvskåp: skensystem, skenor och kabelkanaler, dörrapparater och handtag, filterfläkt, belysning, PE-skena, kabelförskruvningar, en kabelgenomföring, klimatberäkning, kanalfyllnad och 3D-dragning.
 The revision is already released	Revisionen är redan frisläppt
@@ -1926,6 +1934,7 @@ yellow	gul
 {} has no MTTFd, B10d, PL or PFHd	{} har varken MTTFd, B10d, PL eller PFHd
 {} has no door or window {}	{} har ingen dörr eller fönster {}
 {} has nothing to manufacture	{} har inget att tillverka
+{} holds an unresolved merge conflict of git: the file was merged as text. Take one version of the file (git checkout --ours or --theirs), then set up the merge driver for split projects (merge_project_file) before merging again	{} innehåller en olöst sammanslagningskonflikt från git: filen slogs ihop som text. Ta en version av filen (git checkout --ours eller --theirs) och ställ sedan in sammanslagningsdrivrutinen för delade projekt (merge_project_file) innan du slår ihop igen
 {} is a built-in function definition	{} är en inbyggd funktionsdefinition
 {} is a built-in property	{} är en inbyggd egenskap
 {} is a built-in scheme	{} är ett inbyggt schema

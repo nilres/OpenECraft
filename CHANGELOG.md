@@ -11,7 +11,44 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   check warning. Correct the cable/core list before assigning again. Existing
   assignments and cores used on other pages are preserved. CLI/MCP can inspect
   `preview_cable_definition` and explicitly `apply_cable_definition`.
+  Rejected new definitions do not create unused cables. Imported core names
+  without a cable are preserved as conflicts; disabled assignment buttons explain
+  the reason. Interactive previews reuse the session index.
 
+- **Split projects for version control.** A project can be stored as
+  a folder of small files instead of one `.oec` file: the index `<name>.oecp`, one file
+  per page, one per device, part, cable and other record of the project-wide data, and
+  the embedded documents and images as plain files named by their hash. Every JSON
+  file is one line and depends only on the content, so a change touches only the files
+  it concerns and two people editing different pages do not conflict. `convert_project
+  --format oec|oecp|oecz` converts between the project file, the split project and the
+  archive; `--project <name>.oecp`, `open_project`, `save_project`, templates,
+  subprojects, the project index and batch changes read and write split projects. In
+  the desktop editor *File › Save as split project…* writes one (into a folder of its
+  own when the chosen folder holds other files), *Open*, the recent files, templates,
+  the comparison, subprojects and the project database read them, *Save* rewrites only
+  the changed files, and the installers open `.oecp` files with the editor. The web
+  version cannot open folders and keeps `.oec` and `.oecz`. **Archives (`.oecz`) are
+  written in version 2**: they hold the files of a split project instead of one
+  `project.oec`, so an embedded file used several times is stored once; the manifest
+  names the version (`version`), archives of version 1 are still read, and versions
+  of OpenECraft before this one cannot read the new archives. The **project server
+  stores its projects as split projects** (`<name>/<name>.oecp` in the data
+  directory) and writes only the files a save changed; project files of earlier
+  versions are converted at the first start and kept as `<name>.oec.bak`. For **git**,
+  saving writes a `.gitattributes` that keeps the files unconverted, and the merge
+  driver `merge_project_file` merges the JSON files record by record (fields of a
+  record, records by their id, the order of pages and records, the id counter);
+  `check_project_data --repair` renumbers ids two branches gave twice
+  (`docs/command-line.md`). Copies of a split project start the ids of their new
+  objects at different random places, so that this is rare. A save writes only the
+  files this side changed: what another program changed in the folder meanwhile (a
+  `git pull`) is kept and read in, and a file changed by both is not overwritten.
+  A file git merged as text is named when the project is opened. Large split
+  projects stay fast: the records of a kind are spread over 16 folders, a save
+  writes only the pages and data that changed, the folder is read once on all
+  threads, and a save is one step that a crash either leaves undone or the next
+  access finishes (journal `.oecp-save`). The `.oec` file stays the default (#149).
 - **Parts server: groups, catalog permissions, directories and a dashboard.** Users
   are gathered in **groups** of the server (*Administration › Groups*, `/api/v1/groups`;
   the groups of local accounts become such groups at startup), and grants to a group

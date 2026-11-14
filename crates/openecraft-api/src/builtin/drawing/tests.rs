@@ -1,6 +1,24 @@
 use super::*;
 
 #[test]
+fn conflicting_new_cable_definition_reports_no_created_cable_or_assigned_cores() {
+    let mut session = new_session();
+    let prj = session.project_mut().unwrap();
+    prj.pages[0].wires.push(Wire { id: 100, a: p(40., 40.), b: p(40., 100.), core: "Imported".into(), ..Default::default() });
+    prj.fix_next_id();
+    let before = prj.clone();
+    let result = run(&mut session, "add_cable_definition", json!({"page":"1", "points":[[36,60],[44,60]]})).unwrap();
+    assert_eq!(result["cable"], "");
+    assert_eq!(result["cores"], json!([]));
+    assert_eq!(result["assignment"]["conflicts"], 1);
+    assert_eq!(result["assignment"]["can_apply"], false);
+    let prj = session.project().unwrap();
+    assert_eq!(prj.cables, before.cables);
+    assert_eq!(prj.pages[0].wires, before.pages[0].wires);
+    assert_eq!(prj.pages[0].cable_defs.len(), 1);
+}
+
+#[test]
 fn cable_definition_preview_and_apply_report_shortage_without_partial_changes() {
     let mut session = new_session();
     let prj = session.project_mut().unwrap();
