@@ -120,6 +120,40 @@ pub struct ProjectSummary {
     pub users: Vec<String>,
     /// What the caller may do with the project.
     pub rights: Vec<ProjectRight>,
+    /// Who created and last changed the project; nothing from older servers.
+    #[serde(flatten)]
+    pub meta: ProjectMeta,
+}
+
+/// Who created a shared project and who changed it last, as the server saw it: the
+/// signed-in user (on servers without accounts the user name of the session), never
+/// `ProjectInfo::creator`, which the users edit. Empty names and times of 0 are not
+/// known (projects of earlier servers). Times are seconds since 1970 (UTC).
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct ProjectMeta {
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub created_by: String,
+    #[serde(skip_serializing_if = "is_zero")]
+    pub created_at: u64,
+    /// The user of the last save that changed the project (its creator before that).
+    #[serde(skip_serializing_if = "String::is_empty")]
+    pub changed_by: String,
+    #[serde(skip_serializing_if = "is_zero")]
+    pub changed_at: u64,
+}
+
+impl ProjectMeta {
+    /// A project created by `user` at `now`.
+    pub fn created(user: &str, now: u64) -> ProjectMeta {
+        ProjectMeta { created_by: user.into(), created_at: now, changed_by: user.into(), changed_at: now }
+    }
+
+    /// The project was changed by `user` at `now`.
+    pub fn changed(&mut self, user: &str, now: u64) {
+        self.changed_by = user.into();
+        self.changed_at = now;
+    }
 }
 
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]

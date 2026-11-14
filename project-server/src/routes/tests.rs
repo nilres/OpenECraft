@@ -2,6 +2,7 @@ use super::*;
 use axum::body::Body;
 use axum::http::Request;
 use http_body_util::BodyExt;
+use openecraft_core::collab::ProjectMeta;
 use openecraft_core::model::{Page, PageKind, Project};
 use serde::de::DeserializeOwned;
 use serde::Serialize;
@@ -912,4 +913,72 @@ async fn administrators_see_the_open_sessions_and_the_ended_ones() {
     assert_eq!((ended.user.as_str(), ended.end, ended.saves), ("anna", Some(openecraft_core::collab::SessionEnd::Closed), 1));
     assert!(ended.locks.is_empty() && ended.ended.is_some());
     assert_eq!(list.kept, crate::history::KEPT);
+}
+
+async fn meta_of(app: &Router, token: &str) -> ProjectMeta {
+    serde_json::from_str::<Vec<ProjectSummary>>(&with(app, "GET", "/api/v1/projects", token, &()).await.1).unwrap()[0].meta.clone()
+}
+
+#[tokio::test]
+async fn list_names_who_created_and_last_changed() {
+    let app = app(Some(TOKEN));
+    let mut tokens = Vec::new();
+    for (user, role) in [("anna", ProjectRole::Editor), ("ben", ProjectRole::Editor), ("vera", ProjectRole::Viewer)] {
+        let update = UserUpdate { password: Some(format!("{user}-password")), role: Some(role), ..Default::default() };
+        assert!(with(&app, "PUT", &format!("/api/v1/users/{user}"), TOKEN, &update).await.0.is_success());
+        let (_, body) = with(&app, "POST", "/api/v1/login", TOKEN, &LoginRequest { user: user.into(), password: format!("{user}-password"), ..Default::default() }).await;
+        tokens.push(serde_json::from_str::<LoginResponse>(&body).unwrap().token);
+    }
+    // The signed-in user counts, not the name sent or the creator of the project info.
+    let mut project = two_pages();
+    project.info.creator = "Drawn by someone".into();
+    let (_, body) = with(&app, "POST", "/api/v1/projects", &tokens[0], &CreateRequest { name: "Plant 1".into(), user: "someone".into(), project }).await;
+    let anna: Opened = serde_json::from_str(&body).unwrap();
+    let created = meta_of(&app, &tokens[0]).await;
+    assert_eq!((created.created_by.as_str(), created.changed_by.as_str()), ("anna", "anna"));
+    assert!(created.created_at > 0 && created.changed_at == created.created_at);
+    let path = "/api/v1/projects/Plant%201";
+    assert!(with(&app, "POST", &format!("{path}/close"), &tokens[0], &anna.session).await.0.is_success());
+
+    // Opening, the status, a lock and saving the same content change nothing.
+    let (_, body) = with(&app, "POST", &format!("{path}/open"), &tokens[1], &OpenRequest { user: "ben".into() }).await;
+    let ben: Opened = serde_json::from_str(&body).unwrap();
+    assert!(with(&app, "POST", &format!("{path}/status"), &tokens[1], &ben.session).await.0.is_success());
+    assert!(with(&app, "POST", &format!("{path}/lock"), &tokens[1], &LockRequest { session: ben.session.clone(), targets: vec![Target::Project] }).await.0.is_success());
+    let same = SaveRequest { session: ben.session.clone(), project: ben.snapshot.project.clone(), ..Default::default() };
+    assert!(with(&app, "PUT", path, &tokens[1], &same).await.0.is_success());
+    let (_, body) = with(&app, "POST", &format!("{path}/open"), &tokens[2], &OpenRequest { user: "vera".into() }).await;
+    assert!(serde_json::from_str::<Opened>(&body).is_ok());
+    // A viewer sees the same.
+    assert_eq!(meta_of(&app, &tokens[2]).await, created);
+
+    let mut project = ben.snapshot.project.clone();
+    project.info.name = "Changed".into();
+    let (code, body) = with(&app, "PUT", path, &tokens[1], &SaveRequest { session: ben.session.clone(), project, ..Default::default() }).await;
+    assert!(code.is_success(), "{body}");
+    let changed = meta_of(&app, &tokens[2]).await;
+    assert_eq!((changed.created_by.as_str(), changed.created_at, changed.changed_by.as_str()), ("anna", created.created_at, "ben"));
+    assert!(changed.changed_at >= created.changed_at);
+}
+
+#[tokio::test]
+async fn open_servers_name_the_user_of_the_session() {
+    let app = app(None);
+    create(&app, "anna").await;
+    let ben = open(&app, "ben").await;
+    let _: Status = ok(&app, "POST", "/api/v1/projects/Plant%201/lock", &LockRequest { session: ben.session.clone(), targets: vec![Target::Project] }).await;
+    let mut project = ben.snapshot.project.clone();
+    project.info.name = "Changed".into();
+    let _: Snapshot = ok(&app, "PUT", "/api/v1/projects/Plant%201", &SaveRequest { session: ben.session.clone(), project, ..Default::default() }).await;
+    let list: Vec<ProjectSummary> = ok(&app, "GET", "/api/v1/projects", &()).await;
+    assert_eq!((list[0].meta.created_by.as_str(), list[0].meta.changed_by.as_str()), ("anna", "ben"));
+}
+
+#[test]
+fn summaries_of_older_servers_have_no_metadata() {
+    let old: ProjectSummary = serde_json::from_str(r#"{"name":"p","title":"","pages":1,"revision":2,"users":[],"rights":[]}"#).unwrap();
+    assert_eq!(old.meta, ProjectMeta::default());
+    let json = serde_json::to_value(ProjectSummary { name: "p".into(), meta: ProjectMeta::created("anna", 5), ..Default::default() }).unwrap();
+    assert_eq!((json["created_by"].as_str(), json["changed_at"].as_u64()), (Some("anna"), Some(5)));
+    assert!(serde_json::to_value(ProjectSummary::default()).unwrap().get("created_by").is_none());
 }

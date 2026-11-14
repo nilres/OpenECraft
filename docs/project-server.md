@@ -21,8 +21,8 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   as for the parts server.
 - **Web page** (optional: `--web`, `--web true`, `OPENECRAFT_PROJECT_WEB=true` or
   `web = true` in the configuration file; off by default): `http://<server>:8091/`
-  lists the projects the user may see (with the pages, the revision, who works on them
-  and the user's rights) and shows each of them read only: the pages by section or
+  lists the projects the user may see (with the pages, the revision, who created and
+  last changed them, who works on them and the user's rights) and shows each of them read only: the pages by section or
   grouped by structure, the devices with the places they are shown on, and the pages
   drawn as on paper (zoom, drag to move, arrow keys or Page up / Page down for the
   next page). Pages locked by other users are marked with 🔒 and the user; the page
@@ -39,14 +39,26 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   sign-in). The page is in all languages of the app; it uses the API below, so the
   server checks every request as for the editor. Without `--web` the server answers
   `/` with a short text and has no page routes.
+- **Created by, last changed by, last changed**: the server keeps for each project
+  who created it and who saved the last change to it, and when; the project list of
+  the editor (*Project server* pane), the web page and `GET /api/v1/projects`
+  (`created_by`, `created_at`, `changed_by`, `changed_at`; seconds since 1970, UTC)
+  show them to everyone who may view the project. The name is the signed-in user; on
+  a server without accounts (or with the server token) it is the user name the
+  session was opened with. It is independent of *Created by* in the project
+  properties, which the users edit. Only a save that changes the project counts:
+  opening or reading a project, the status requests that keep a session alive, locks
+  and saving unchanged content leave it as it is. Projects of earlier server versions
+  show *Unknown* until their next change (the creation stays unknown), and a project
+  uploaded as a copy of another one is a new project of the user who uploaded it.
 - Project names differing only in case are one name (Windows and macOS do not tell
   their files apart): requests find a project under any case of its name; Windows device names (`CON`, `NUL`, `COM1` …) and names ending
   with a dot are refused.
 - Each project is stored as a split project in a folder of its own
   (`<name>/<name>.oecp` with one small file per page, device and part; it opens in the
   desktop editor and can be kept under version control) next to `<name>.state.json`
-  (revision, id counter) in the data directory. A save writes only the files that
-  changed. Project files of earlier versions (`<name>.oec`) are converted at the
+  (revision, id counter, who created and last changed the project) in the data
+  directory. A save writes only the files that changed. Project files of earlier versions (`<name>.oec`) are converted at the
   first start and kept as `<name>.oec.bak`.
 - With `--token` (or `OPENECRAFT_PROJECT_TOKEN`) every request needs
   `Authorization: Bearer <token>`; without it, user accounts and directories everyone

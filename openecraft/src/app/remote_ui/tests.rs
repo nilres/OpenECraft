@@ -431,3 +431,12 @@ fn a_viewer_sends_no_automatic_save() {
     tick(&mut app, 531.0, true);
     assert!(app.remote.saving());
 }
+
+#[test]
+fn project_list_names_unknown_metadata() {
+    let unknown = meta_texts(&ProjectMeta::default());
+    assert!(unknown.iter().all(|t| *t == tr("Unknown")));
+    let mut meta = ProjectMeta::created("anna", 1_792_713_600);
+    meta.changed("ben", 1_792_713_600 + 3723);
+    assert_eq!(meta_texts(&meta), ["anna", "ben", "2026-10-23 01:02 UTC"]);
+}
