@@ -351,12 +351,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Klikněte na jeho místo v situačním plánu
 Click where the air-termination rods go on the roofs in the site plan	Klikněte v situačním plánu, kde stojí jímací tyče na střechách
 Click where the earth rods go in the site plan	Klikněte v situačním plánu, kde jsou tyčové zemniče
+Click where the middle of a freestanding PV array goes in the site plan	Klikněte v situačním plánu, kde je střed pozemního FV pole
+Click where the middle of a freestanding PV array goes · Esc: stop	Klikněte, kde je střed pozemního FV pole · Esc: konec
 Click where the reference point is	Klikněte tam, kde leží referenční bod
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Klepněte, kde se stýkají tři vodiče: T-kus určuje přístroj, od něhož vodiče vycházejí, a pořadí jejich cílů · {} jej otočí, kde se vodiče ještě nestýkají · Esc nebo pravé tlačítko ukončí
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Klepněte, kde se kříží dva vodiče: křížení je spojí a vede každý konec své čáry nejprve rovně, pak napříč · {} jej otočí · Esc nebo pravé tlačítko ukončí
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Klepněte, kde se stýkají dva vodiče v pravém úhlu, nebo kde připojovací body leží naproti sobě přes roh: při zapnutém automatickém spojování se k němu nakreslí vodiče · {} jej otočí · Esc nebo pravé tlačítko ukončí
 Click while moving	Klepnutí při přesouvání
 Click, or drag it into the page	Klikněte nebo přetáhněte do stránky
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Kliknuto na x {} mm, z {} mm v půdorysu budovy: přijde tam nové střešní okno nebo FV pole.
 Climate (IEC 60890)	Klimatizace (IEC 60890)
 Clipboard	Schránka
 Close	Zavřít
@@ -782,6 +785,12 @@ Frame of all pages that do not choose one	Rámeček všech stránek, které si n
 Free air	Volné vedení
 Free air factor	Faktor volného vedení
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Volný prostor před každým přístrojem na desce až ke dveřím; artikly přidávají svůj vlastní (Service space)
+Freestanding	Pozemní
+Freestanding PV array {}	Pozemní FV pole {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Pozemní FV pole {} umístěno; klikněte pro další · Esc: konec
+Freestanding PV array {}: {} modules	Pozemní FV pole {}: {} modulů
+Freestanding PV array {}: {} modules, {} kWp	Pozemní FV pole {}: {} modulů, {} kWp
+Freestanding PV arrays	Pozemní FV pole
 Freeze all routes	Zmrazit všechny trasy
 Freeze route	Zmrazit trasu
 Frequency	Kmitočet
@@ -826,6 +835,7 @@ Graphic line	Grafická čára
 Graphic rectangle	Grafický obdélník
 Graphical form	Grafický formulář
 Greatest distance of the conductor holders on the roof and on the walls	Největší vzdálenost podpěr vedení na střeše a na stěnách
+Greatest distance of the posts along a table	Největší vzdálenost sloupků podél stolu
 Greatest distance of the roof hooks along a rail	Největší vzdálenost střešních háků podél lišty
 Grid	Rastr
 Grid north	Sever sítě
@@ -848,6 +858,7 @@ Height above sea level	Nadmořská výška
 Height above the floor	Výška nad podlahou
 Height above the mounting plate	Výška nad montážní deskou
 Height above the plate	Výška nad deskou
+Height of the lower edge of the modules above the ground	Výška spodní hrany modulů nad terénem
 Height of the plinth, 0 without plinth	Výška soklu, 0 bez soklu
 Height of the rod above the covering	Výška tyče nad krytinou
 Height of the test joints above the ground	Výška zkušebních svorek nad terénem
@@ -1069,6 +1080,7 @@ Look for updates when OpenECraft starts	Hledat aktualizace při spuštění Open
 Looking for updates…	Hledání aktualizací…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Vyhledá na GitHubu novou verzi OpenECraft a nainstaluje ji na pozadí
 Loop	Smyčka
+Lower edge	Spodní hrana
 Lowest fault current	Nejnižší poruchový proud
 Lowest: the highest open-circuit voltage	Nejnižší: nejvyšší napětí naprázdno
 Macro boxes	Rámečky maker
@@ -1116,6 +1128,7 @@ Messages of this session	Zprávy této relace
 Middle	Uprostřed
 Middle button	Prostřední tlačítko
 Middle of the PV array in the floor plan of the building	Střed FV pole v půdorysu budovy
+Middle of the PV array in the plant	Střed FV pole v zařízení
 Min. bend radius	Min. poloměr ohybu
 Minimize the ribbon	Minimalizovat pás karet
 Mirror	Zrcadlit
@@ -1126,6 +1139,7 @@ Model of a part (2D / 3D)	Model artiklu (2D / 3D)
 Modifier keys	Modifikační klávesy
 Module area	Plocha modulů
 Module part; its size comes from the part	Díl modulu; jeho velikost pochází z dílu
+Modules on top of each other on a table	Moduly nad sebou na stole
 Motors feed the short circuit	Motory napájejí zkrat
 Mounted on	Namontováno na
 Mounting assistant: the panel items in mounting order with their place and part	Asistent montáže: prvky rozváděče v pořadí montáže s místem a artiklem
@@ -1242,6 +1256,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Zatím žádná skříň – vytvořte ji pomocí Nová skříň, nebo místnost pro rozváděče pomocí Nová místnost.
 No field cables: place the enclosures and field devices at nodes of the route network.	Žádné polní kabely: umístěte skříně a polní přístroje do uzlů sítě tras.
 No filter fans: an air/air heat exchanger or a cooling unit	Bez filtračních ventilátorů: výměník tepla vzduch/vzduch nebo chladicí jednotka
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Zatím žádné pozemní FV pole: řady skloněných stolů na beraněných sloupcích na pozemku.
 No gesture	Žádné gesto
 No harnesses defined.	Nejsou definovány žádné kabelové svazky.
 No inverter	Žádný střídač
@@ -1498,7 +1513,6 @@ Plant layout	Dispozice zařízení
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Dispozice zařízení, síť tras, plánování polních kabelů, ochranné pospojování a kabelové příslušenství
 Plant segments with planned devices before the schematic	Segmenty zařízení s plánovanými přístroji před schématem zapojení
 Plate outline, holes per diameter, cutouts	Obrys desky, otvory podle průměru, výřezy
-Plot	Pozemek
 Plot boundary	Hranice pozemku
 Plot boundary drawn: {} m²	Hranice pozemku nakreslena: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Hranice pozemku nakreslena: {} m²; mimo ni: {}
@@ -1521,6 +1535,8 @@ Position of the cursor	Poloha kurzoru
 Position of the device tag (instead of the tag block)	Poloha označení přístroje (místo bloku označení)
 Position of the label (terminal number, address …)	Poloha popisku (číslo svorky, adresa …)
 Positions are relative to the lower right corner of the symbol.	Polohy se vztahují k pravému dolnímu rohu symbolu.
+Post distance	Vzdálenost sloupků
+Posts	Sloupky
 Potential {}	Potenciál {}
 Potential: {}	Potenciál: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Výkon a proud spotřebičů sítě (motory, pohony, topení, napájecí zdroje, transformátory), zatížení každého ochranného přístroje, odběr se součinitelem soudobosti a bilance zatížení napájecích zdrojů.
@@ -1717,6 +1733,8 @@ Rod holder	Držák tyče
 Roof pitch	Sklon střechy
 Roof window	Střešní okno
 Roof windows	Střešní okna
+Roof {} of building {}	Střecha {} budovy {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Střecha {} budovy {}: vlastnosti rozvržení přidají FV pole nebo střešní okno tam, kde se kliklo
 Roofs	Střechy
 Room	Místnost
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Místnost přidána v podlaží {}: přetáhněte její stěny nebo nakreslete nové v půdorysu, rozváděče do ní umístěte v jejich vlastnostech
@@ -1743,6 +1761,8 @@ Row	Řádek
 Row distance	Vzdálenost řad
 Row drawing	Kresba řádku
 Row labels	Popisky řádků
+Rows of tables behind each other	Řady stolů za sebou
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Řady skloněných stolů na sloupcích před tím, co stojí v zařízení, natočené dopředu; přesuňte je na místo
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Řádky na uvolněných stránkách nelze měnit. Zalomení řádku v textu se zapisuje jako \\n.
 Rows per page	Řádků na stránku
 Rule libraries	Knihovny pravidel
@@ -2074,6 +2094,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Stránky, které vytvořil, zůstanou
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Databázi artiklů sdílejí všechny projekty. Artikly se zkopírují do projektu, když jsou přiřazeny k přístroji.
 The point's coordinates in the coordinate reference system	Souřadnice bodu v souřadnicovém referenčním systému
+The post; its accessories are the table beams, rails and clamps	Sloupek; jeho příslušenstvím jsou nosníky stolu, lišty a svorky
 The project changed since the search.	Projekt se od hledání změnil.
 The project check	Kontrola projektu
 The project database needs the desktop version: the browser cannot search folders.	Databáze projektů vyžaduje desktopovou verzi: prohlížeč nemůže prohledávat složky.
@@ -2216,6 +2237,7 @@ When it differs from the page	Pokud se liší od stránky
 Where	Poloha
 Where neither wire has a termination chosen for it	Tam, kde ani jeden vodič nemá zvolené zakončení
 Where the point is in the plant; y: its height above the ground level of the plant	Kde bod leží v zařízení; y: jeho výška nad úrovní terénu zařízení
+Where the roof was clicked in the 3D view	Kde se ve 3D pohledu kliklo na střechu
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Odkud pochází struktura přístroje: aspekty shodné se strukturou kolem symbolu jsou zděděné a mění se, když se přesune do rámečku struktury nebo z něj; ostatní aspekty patří přístroji a zůstávají.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Kde vodič začíná a končí: přípojný bod z dat artiklu, bod vygenerovaný ze šablony funkce, nebo střed přístroje, pokud žádný přípojný bod neodpovídá
 Whole building	Celá budova
@@ -2254,6 +2276,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Prostor pro zapojení mezi přístroji a kanály
 With a user account of the server; replaces the access token	S uživatelským účtem serveru; nahrazuje přístupový token
 With everything below it	Se vším, co je pod ním
+With its middle where the roof was clicked in the 3D view	Se středem tam, kde se ve 3D pohledu kliklo na střechu
 With the current pages; the approvals so far become void	S aktuálními stránkami; dosavadní schválení pozbudou platnosti
 With values only	Pouze s hodnotami
 Withdraw	Stáhnout zpět
@@ -2514,6 +2537,7 @@ x y	x y
 {} renamed: {} pages and devices	{} přejmenováno: stránky a přístroje: {}
 {} report pages output to {}	Stránky výkazů ({}) vydány do {}
 {} routes frozen	Zmrazeno tras: {}
+{} rows of tables of {} × {} = {}, {}	{} řad stolů po {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	Vytvořeno segmentů: {}, přidáno přístrojů: {}, aktualizováno: {}
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	Stanice: {}, sběrnicové systémy: {}, přiřazené karty: {}, změněné adresy: {}, spojení: {}, kabely: {}
 {} stopped with an error: {}	{} skončilo chybou: {}
@@ -2543,6 +2567,7 @@ x y	x y
 {} – revision {}, {}	{} – revize {}, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
+{}, freestanding	{}, pozemní
 {}: click to show its floor plan	{}: kliknutím zobrazíte půdorys
 {}: crimp together with the wire to {}	{}: krimpovat společně s vodičem do {}
 {}: drag to move it, R turns it, a double-click opens it	{}: přetažením přesunete, R otočí, dvojklik otevře

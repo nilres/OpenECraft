@@ -46,10 +46,12 @@ pub struct Kept {
 
 impl Kept {
     /// The copy of the local changes (`before`, edited from the server's `base`) that
-    /// `after` replaced; none if no local change was lost.
+    /// `after` replaced; none if no local change was lost. A changed page that `after`
+    /// no longer has (another user removed it) is lost too.
     pub fn capture(base: &Project, before: &Project, after: &Project, reason: KeptReason) -> Option<Kept> {
-        let local = changes(base, before);
-        let targets: Vec<Target> = changes(after, before).into_iter().filter(|t| local.contains(t)).collect();
+        let differ = changes(after, before);
+        let removed = |t: &Target| matches!(t, Target::Page(id) if page(after, *id).is_none());
+        let targets: Vec<Target> = changes(base, before).into_iter().filter(|t| differ.contains(t) || removed(t)).collect();
         (!targets.is_empty()).then(|| Kept { reason, targets, project: before.clone(), ..Default::default() })
     }
 

@@ -19,4 +19,4 @@ pub use ehttp;
 pub use endpoint::{check, decode, decode_found, origin, same_origin, text, Endpoint};
 pub(crate) use endpoint::reason;
 pub use eplan::EplanEndpoint;
-pub use projects::ProjectEndpoint;
+pub use projects::{decode_failure, ProjectEndpoint};

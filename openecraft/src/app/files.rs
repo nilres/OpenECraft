@@ -28,7 +28,9 @@ impl App {
 
     pub(super) fn save(&mut self, ctx: &egui::Context, save_as: bool) {
         if self.remote.shared.is_some() && !save_as {
-            self.save_remote(Vec::new());
+            if !self.save_remote(Vec::new()) {
+                self.notify_warning(ctx, self.remote.status.clone());
+            }
             return;
         }
         // A project opened from the vault (and not saved locally since) goes back to it.

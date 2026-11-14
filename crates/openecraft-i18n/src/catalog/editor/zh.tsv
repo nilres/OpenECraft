@@ -348,12 +348,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	在总平面图中单击其位置
 Click where the air-termination rods go on the roofs in the site plan	在总平面图中单击接闪杆在屋顶上的位置
 Click where the earth rods go in the site plan	在总平面图中单击垂直接地极的位置
+Click where the middle of a freestanding PV array goes in the site plan	在总平面图中单击地面光伏阵列中心所在的位置
+Click where the middle of a freestanding PV array goes · Esc: stop	单击地面光伏阵列中心所在的位置 · Esc：结束
 Click where the reference point is	单击参考点所在位置
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	在三条连接线相交处单击：T型节点指定导线出发的设备以及目标的顺序 · 在尚无连接线相交处 {} 可旋转 · Esc 或右键结束
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	在两条连接线交叉处单击：交叉连接二者，并将其直线的每一端先直通再横向引出 · {} 可旋转 · Esc 或右键结束
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	在两条连接线直角相交处或连接点隔着拐角相对处单击：开启自动连接时会向它绘制连接线 · {} 可旋转 · Esc 或右键结束
 Click while moving	移动时单击
 Click, or drag it into the page	单击，或将其拖到页中
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	在建筑物平面图中单击于 x {} mm，z {} mm：新的屋顶窗或光伏阵列将放在该处。
 Climate (IEC 60890)	温控 (IEC 60890)
 Clipboard	剪贴板
 Close	关闭
@@ -775,6 +778,12 @@ Frame of all pages that do not choose one	所有未选择图框的页使用的�
 Free air	自由布线
 Free air factor	自由布线系数
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	安装板上每个设备前方至柜门的空闲空间；部件可添加各自的值 (Service space)
+Freestanding	地面安装
+Freestanding PV array {}	地面光伏阵列 {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	已放置地面光伏阵列 {}；单击放置下一个 · Esc：结束
+Freestanding PV array {}: {} modules	地面光伏阵列 {}：{} 块组件
+Freestanding PV array {}: {} modules, {} kWp	地面光伏阵列 {}：{} 块组件，{} kWp
+Freestanding PV arrays	地面光伏阵列
 Freeze all routes	冻结所有布线
 Freeze route	冻结布线
 Frequency	频率
@@ -819,6 +828,7 @@ Graphic line	图形线
 Graphic rectangle	图形矩形
 Graphical form	图形表格
 Greatest distance of the conductor holders on the roof and on the walls	屋顶和墙上导体支架的最大间距
+Greatest distance of the posts along a table	立柱沿支架的最大间距
 Greatest distance of the roof hooks along a rail	沿导轨的屋面挂钩最大间距
 Grid	栅格
 Grid north	坐标北
@@ -841,6 +851,7 @@ Height above sea level	海拔高度
 Height above the floor	离地高度
 Height above the mounting plate	安装板以上高度
 Height above the plate	板以上高度
+Height of the lower edge of the modules above the ground	组件下边缘距地面的高度
 Height of the plinth, 0 without plinth	底座高度，0 表示无底座
 Height of the rod above the covering	接闪杆高出屋面的高度
 Height of the test joints above the ground	测试接头距地面的高度
@@ -1058,6 +1069,7 @@ Look for updates when OpenECraft starts	OpenECraft 启动时检查更新
 Looking for updates…	正在检查更新…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	在 GitHub 上查找 OpenECraft 的新版本并在后台安装
 Loop	回路
+Lower edge	下边缘
 Lowest fault current	最小故障电流
 Lowest: the highest open-circuit voltage	最低：最高开路电压
 Macro boxes	宏边框
@@ -1105,6 +1117,7 @@ Messages of this session	本次会话的消息
 Middle	中间
 Middle button	中键
 Middle of the PV array in the floor plan of the building	光伏阵列在建筑平面图中的中心
+Middle of the PV array in the plant	光伏阵列在设施中的中心
 Min. bend radius	最小弯曲半径
 Minimize the ribbon	最小化功能区
 Mirror	镜像
@@ -1115,6 +1128,7 @@ Model of a part (2D / 3D)	部件的模型 (2D / 3D)
 Modifier keys	组合键
 Module area	组件面积
 Module part; its size comes from the part	组件部件；尺寸来自部件
+Modules on top of each other on a table	一个支架上上下叠放的组件
 Motors feed the short circuit	电机馈入短路
 Mounted on	安装在
 Mounting assistant: the panel items in mounting order with their place and part	安装助手：按安装顺序列出布局元件及其位置和部件
@@ -1229,6 +1243,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	还没有机柜 – 使用“新建机柜”创建，或使用“新建房间”创建放置机柜的房间。
 No field cables: place the enclosures and field devices at nodes of the route network.	没有现场电缆：请将机柜和现场设备放置在布线网络的节点上。
 No filter fans: an air/air heat exchanger or a cooling unit	不使用过滤风扇：使用空气/空气换热器或冷却装置
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	尚无地面光伏阵列：场地上打入式立柱上的倾斜支架排。
 No gesture	无动作
 No harnesses defined.	未定义线束。
 No inverter	无逆变器
@@ -1484,7 +1499,6 @@ Plant layout	工厂布局
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	工厂布局、布线网络、现场电缆规划、等电位联结和电缆附件
 Plant segments with planned devices before the schematic	在原理图之前包含已规划设备的工厂规划段
 Plate outline, holes per diameter, cutouts	板轮廓、按直径分组的孔、开孔
-Plot	场地
 Plot boundary	场地边界
 Plot boundary drawn: {} m²	已绘制场地边界：{} m²
 Plot boundary drawn: {} m²; outside it: {}	已绘制场地边界：{} m²；其外：{}
@@ -1507,6 +1521,8 @@ Position of the cursor	光标位置
 Position of the device tag (instead of the tag block)	设备标识符的位置（代替标识符块）
 Position of the label (terminal number, address …)	标签的位置（端子号、地址 …）
 Positions are relative to the lower right corner of the symbol.	位置相对于符号的右下角。
+Post distance	立柱间距
+Posts	立柱
 Potential {}	电位 {}
 Potential: {}	电位：{}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	电网负载（电机、驱动器、加热器、电源装置、变压器）的功率和电流、每个保护设备的负载、按同时系数计算的需求以及电源装置的负载预算。
@@ -1700,6 +1716,8 @@ Rod holder	接闪杆支架
 Roof pitch	屋顶坡度
 Roof window	屋顶窗
 Roof windows	屋顶窗
+Roof {} of building {}	建筑物 {1} 的屋顶 {0}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	建筑物 {1} 的屋顶 {0}：布局属性会在单击处添加光伏阵列或屋顶窗
 Roofs	屋顶
 Room	房间
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	已在楼层 {} 添加房间：在平面图中拖动其墙壁或绘制新墙，在机柜属性中将机柜放入其中
@@ -1726,6 +1744,8 @@ Row	行
 Row distance	行距
 Row drawing	行图形
 Row labels	行标签
+Rows of tables behind each other	前后排列的支架排
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	设施中已有对象前方立柱上的倾斜支架排，朝向前方；请将其移到所需位置
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	已发布页上的行无法更改。文本中的换行写作 \\n。
 Rows per page	每页行数
 Rule libraries	规则库
@@ -2052,6 +2072,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	其生成的页保留
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	部件数据库由所有项目共享。将部件分配给设备时，部件会被复制到项目中。
 The point's coordinates in the coordinate reference system	该点在坐标参考系中的坐标
+The post; its accessories are the table beams, rails and clamps	立柱；其附件为支架横梁、导轨和夹具
 The project changed since the search.	自搜索以来项目已更改。
 The project check	项目检查
 The project database needs the desktop version: the browser cannot search folders.	项目数据库需要桌面版：浏览器无法搜索文件夹。
@@ -2192,6 +2213,7 @@ When it differs from the page	与该页不同时
 Where	位置
 Where neither wire has a termination chosen for it	两根导线都未选择端接方式时
 Where the point is in the plant; y: its height above the ground level of the plant	该点在设施中的位置；y：其高于设施地面的高度
+Where the roof was clicked in the 3D view	在 3D 视图中单击屋顶的位置
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	设备结构的来源：与符号周围结构相同的结构部分为继承，符号移入或移出结构框时随之改变；其他结构部分属于设备本身，保持不变。
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	导线的起点和终点：部件数据中的连接点、由功能模板生成的连接点，或在没有匹配的连接点时使用设备中心
 Whole building	整个建筑
@@ -2230,6 +2252,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	设备与线槽之间的接线空间
 With a user account of the server; replaces the access token	使用服务器的用户帐户；替代访问令牌
 With everything below it	包括其下的所有内容
+With its middle where the roof was clicked in the 3D view	中心位于在 3D 视图中单击屋顶的位置
 With the current pages; the approvals so far become void	使用当前页；之前的审批将失效
 With values only	仅显示有值的
 Withdraw	撤回
@@ -2484,6 +2507,7 @@ x y	x y
 {} renamed: {} pages and devices	已重命名 {}：{} 个页和设备
 {} report pages output to {}	已将 {} 个报表页输出到 {}
 {} routes frozen	已冻结 {} 条布线
+{} rows of tables of {} × {} = {}, {}	{} 排支架，{} × {} = {}，{}
 {} segments created, {} devices added, {} updated	已创建 {} 个规划段，添加 {} 个设备，更新 {} 个
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} 个站，{} 个总线系统，已分配 {} 个卡件，已更改 {} 个地址，{} 个连接，{} 根电缆
 {} structure identifiers added	已添加 {} 个结构标识符
@@ -2512,6 +2536,7 @@ x y	x y
 {} – revision {}, {}	{} – 修订 {}，{}
 {} – {} ({} pages)	{} – {}（{} 页）
 {} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
+{}, freestanding	{}，地面安装
 {}: click to show its floor plan	{}：单击以显示其平面图
 {}: crimp together with the wire to {}	{}：与通往 {} 的导线一起压接
 {}: drag to move it, R turns it, a double-click opens it	{}：拖动以移动，R 旋转，双击打开

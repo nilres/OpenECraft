@@ -557,6 +557,7 @@ Frame size	Типоразмер
 Free	Свободно
 Free air (mm)	Открытая прокладка (мм)
 Free run	Свободная прокладка
+Freestanding on posts	Наземное на стойках
 Frequency converter	Преобразователь частоты
 Frequency meter	Частотомер
 From end	От конца
@@ -938,7 +939,6 @@ No plugs	Нет разъёмов
 No report block {}	Нет блока отчёта {}
 No segment template named {}	Нет шаблона сегмента с именем {}
 No subproject {}	Нет подпроекта {}
-No such PV array	Нет такого фотоэлектрического поля
 No such object: {}	Объект не найден: {}
 No surge protective device at the supply (IEC 60364-4-44)	Нет устройства защиты от перенапряжений на вводе питания (IEC 60364-4-44)
 No terminal {}	Нет клеммы {}
@@ -2076,6 +2076,8 @@ yellow	жёлтый
 {}: the busbar {} of earth electrode {} does not exist	{}: шины {} заземлителя {} не существует
 {}: the device {} of PV array {} does not exist	{}: устройство {} фотоэлектрического поля {} не существует
 {}: the earthing busbar {} of PV array {} does not exist	{}: шины заземления {} фотоэлектрического поля {} не существует
+{}: the freestanding PV array {} stands on {}	{}: наземное фотоэлектрическое поле {} стоит на {}
+{}: the freestanding PV arrays {} and {} stand on each other	{}: наземные фотоэлектрические поля {} и {} накладываются друг на друга
 {}: the generator junction box {} of PV array {} does not exist	{}: генераторной соединительной коробки {} фотоэлектрического поля {} не существует
 {}: the lightning protection has no earth electrode	{}: у молниезащиты нет заземлителя
 {}: the lightning protection has no walls to run along: the building has no rooms or roofs	{}: у молниезащиты нет стен, вдоль которых она проходит: у здания нет помещений и крыш

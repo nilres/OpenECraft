@@ -182,6 +182,44 @@ fn is_zero(v: &u64) -> bool {
     *v == 0
 }
 
+/// Why a request failed, for the state of the connection of a session.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Failure {
+    /// The server was not reached (no connection, timeout, a proxy without server).
+    Unreachable,
+    /// The session ended on the server (`410`: expired, or the server restarted).
+    SessionEnded,
+    /// The access token or the sign-in is not valid (any more) (`401`).
+    SignedOut,
+    /// The server answered with another error (conflict, missing right, not found, …).
+    Refused,
+}
+
+impl Failure {
+    /// From the HTTP status of the answer; None: no answer.
+    pub fn of(status: Option<u16>) -> Failure {
+        match status {
+            None | Some(408 | 502 | 503 | 504) => Failure::Unreachable,
+            Some(410) => Failure::SessionEnded,
+            Some(401) => Failure::SignedOut,
+            Some(_) => Failure::Refused,
+        }
+    }
+}
+
+/// A failed request: why, and the error as shown.
+#[derive(Clone, Debug, PartialEq)]
+pub struct Failed {
+    pub why: Failure,
+    pub error: String,
+}
+
+impl std::fmt::Display for Failed {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.error)
+    }
+}
+
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
 #[serde(default)]
 pub struct LockRequest {
@@ -863,8 +901,49 @@ impl Shared {
                 self.fresh.insert(*t);
             }
         }
-        self.locks = status.locks;
+        if status.revision < self.revision {
+            // Answered before a newer state this session already took (answers out of
+            // order): its locks are out of date, only the granted ones are taken.
+            for l in status.locks.into_iter().filter(|l| granted.contains(&l.target) && l.session == self.session.session) {
+                if !self.locks.iter().any(|m| m.target == l.target) {
+                    self.locks.push(l);
+                }
+            }
+        } else {
+            self.locks = status.locks;
+        }
         newer
+    }
+
+    /// `prj` is the server's project as this session knows it: nothing to save.
+    pub fn in_sync(&self, prj: &Project) -> bool {
+        self.base.review == prj.review && changes(&self.base, prj).is_empty()
+    }
+
+    /// A new session of the project after this one ended on the server (it expired or
+    /// the server restarted), and the function that brings a local version (`prj`,
+    /// edited from `base`, and its undo steps) onto the server's current project. Local
+    /// changes stay where nobody else changed the same target meanwhile; they need their
+    /// locks again. Where another user changed it too or removed the page, the server's
+    /// version replaces them (found with [`Kept::capture`]). New objects get ids of the
+    /// new session's range.
+    pub fn reopen(&self, opened: Opened, prj: &Project) -> (Shared, impl Fn(&Project) -> Project) {
+        let first_id = opened.first_id;
+        let (shared, _) = Shared::open(&self.name, opened);
+        let theirs = changes(&self.base, &shared.base);
+        let mut owned = Owned::default();
+        for t in changes(&self.base, prj) {
+            let gone = matches!(t, Target::Page(id) if page(&shared.base, id).is_none());
+            if !gone && !theirs.contains(&t) {
+                owned.add(t);
+            }
+        }
+        let base = shared.base.clone();
+        (shared, move |mine: &Project| {
+            let mut out = merge(&base, mine, &owned);
+            out.next_id = out.next_id.max(first_id);
+            out
+        })
     }
 
     /// A lock request was refused.
@@ -880,7 +959,14 @@ impl Shared {
     /// undo steps) up to date: it keeps what this session owns or is requesting, the
     /// rest comes from the server. What it replaces of the edited project is found with
     /// [`Kept::capture`].
-    pub fn update(&mut self, mut snapshot: Snapshot) -> (Vec<Target>, impl Fn(&Project) -> Project) {
+    pub fn update(&mut self, snapshot: Snapshot) -> (Vec<Target>, impl Fn(&Project) -> Project) {
+        self.update_keeping(snapshot, &[])
+    }
+
+    /// [`Shared::update`] that also keeps the local version of `keep`: targets the save
+    /// answered by `snapshot` released, changed again while it was under way (their
+    /// lock is requested again).
+    pub fn update_keeping(&mut self, mut snapshot: Snapshot, keep: &[Target]) -> (Vec<Target>, impl Fn(&Project) -> Project) {
         snapshot.project.normalize();
         let changed = changes(&self.base, &snapshot.project);
         let lost: Vec<Target> = self.fresh.iter().copied().filter(|t| changed.contains(t)).collect();
@@ -890,7 +976,7 @@ impl Shared {
         }
         // A lock still being requested: the local change waits for the answer, unless
         // another user changed the target meanwhile.
-        for t in self.requested.iter().filter(|t| !changed.contains(t)) {
+        for t in self.requested.iter().filter(|t| !changed.contains(t)).chain(keep) {
             owned.add(*t);
         }
         self.fresh.clear();

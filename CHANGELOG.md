@@ -13,6 +13,43 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   of the standard views. The 3D previews of parts (part editor, data portal,
   installation) have a small cube without labels and glide to the view clicked.
 
+- **Shared projects recover expired sessions** (#183): the editor tells a server
+  that does not answer, an ended project session (expired, or the server restarted)
+  and an invalid sign-in apart. An ended session opens the project again with the
+  existing sign-in, without asking for the password; your unsaved changes are put
+  onto the server's current project and lock again, while changes another user
+  made meanwhile (or pages they removed) win and your version is kept in
+  *Project server › Kept changes*. After an invalid sign-in, signing in again in the
+  Project server pane continues the project. A failed save now shows the lost
+  connection at once; the pane and the status bar show the connection apart from
+  whether your changes are saved on the server, and a restored connection clears the
+  old connection error but not an unsaved failed save. *Keep working on a local
+  copy* ends the shared session and keeps the project with your changes locally.
+
+
+- **Freestanding PV arrays:** ground-mounted PV arrays on the plot, added in the
+  Buildings pane (*Freestanding PV arrays*) or clicked into the site plan: rows of
+  tilted tables with modules on top of each other, on rails over table beams on rammed
+  posts (generic `GEN.PV-POST-RAM` and `GEN.PV-TABLE-BEAM`), free of shade in winter.
+  Their modules and mounting go into the bill of materials, they have strings like the
+  arrays on the roofs, their leads run through a cable trench to the devices, and the
+  site plan and the 3D view draw them. Checked for arrays on each other, on a room and
+  outside the plot boundary. Commands `add_pv_array` / `set_pv_array` without building
+  and roof, with `stack` and `clearance`
+  ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
+- **Roofs picked in 3D:** a click on a roof in the 3D view shows it in the Layout
+  properties, where a PV array or a roof window is added at the point clicked. The
+  PV array window adds a string to the array with *+ String* beside its strings.
+- **Shared saves one at a time** (#182): a save to the project server waits for
+  the answer to the one before it (Save or Ctrl+S again sends the project as it is
+  then), and an answer marks only what its request sent as saved: edits or Undo
+  made while saving stay unsaved. Save and release keeps a page edited again
+  while saving and requests its lock again. Answers that arrive out of order no
+  longer take the project back to an older revision, a failed save sends and
+  releases nothing more, and closing or replacing a shared project ends its
+  session only after the save under way. The live project server tests run with
+  `scripts/test-project-server-live.ps1` (formerly `test-cable-rename.ps1`).
+
 - **Shared saves keep conflicting local edits** (#181): when the project server
   leaves changes out of a save (locked or changed by another user), when a lock
   is refused or lost, or when another user changed a target first, the editor

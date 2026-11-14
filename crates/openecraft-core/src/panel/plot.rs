@@ -173,7 +173,8 @@ fn in_plant(pose: SitePose, pts: &[[f32; 2]]) -> Vec<[f32; 2]> {
 }
 
 /// What stands in the plant seen from above (x, z): every room with its outer walls,
-/// every cabinet outside the rooms and every roof with its overhang.
+/// every cabinet outside the rooms, every roof with its overhang and every freestanding
+/// PV array.
 pub fn footprints(prj: &Project) -> Vec<(Standing, Vec<[f32; 2]>)> {
     let layout = &prj.layout;
     let poses = site_poses(prj);
@@ -192,16 +193,20 @@ pub fn footprints(prj: &Project) -> Vec<(Standing, Vec<[f32; 2]>)> {
             }
         }
     }
+    for (k, a) in layout.plot.solar.iter().enumerate() {
+        out.push((Standing::PvArray(k), super::solar::ground_geometry(a).outline));
+    }
     out
 }
 
-/// Something standing in the plant: a room, a cabinet (indices of enclosures) or a
-/// roof (building, roof).
+/// Something standing in the plant: a room, a cabinet (indices of enclosures), a roof
+/// (building, roof) or a freestanding PV array (its index).
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Standing {
     Room(usize),
     Cabinet(usize),
     Roof(usize, usize),
+    PvArray(usize),
 }
 
 /// What stands outside the boundary of the plot (each once); nothing without one.
@@ -220,8 +225,8 @@ pub fn outside(prj: &Project) -> Vec<Standing> {
 }
 
 /// The problems of the plot: a boundary that is no polygon, rooms and cabinets
-/// standing outside it, roofs reaching over it, a reference point with coordinates
-/// that are no numbers.
+/// standing outside it, roofs and freestanding PV arrays reaching over it, a reference
+/// point with coordinates that are no numbers.
 pub fn problems(prj: &Project) -> Vec<Issue> {
     let layout = &prj.layout;
     let plot = &layout.plot;
@@ -252,6 +257,7 @@ pub fn problems(prj: &Project) -> Vec<Issue> {
                 let b = &layout.buildings[bi];
                 crate::issue!(Severity::Warning, None, "{}: roof {} reaches over the plot boundary", b.name, b.roofs[k].name)
             }
+            Standing::PvArray(k) => crate::issue!(Severity::Warning, None, "The freestanding PV array {} stands outside the plot boundary", plot.solar[k].name),
         });
     }
     v

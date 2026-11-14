@@ -199,6 +199,16 @@ pub(super) struct SceneFace {
     pub pv: Option<u64>,
 }
 
+/// A top face of a roof for picking (see [`Scene3d::roof_picks`]): its corners in view
+/// coordinates and the same corners in the building's coordinates, the building and the
+/// roof (its id).
+pub(super) struct RoofPick {
+    pub pts: Vec<V3>,
+    pub plan: Vec<V3>,
+    pub building: usize,
+    pub roof: u64,
+}
+
 /// A wall, door or wall cutout that is painted over the equipment (translucent) when
 /// seen from the outside and behind it when seen from the inside.
 pub(super) struct SceneSide {
@@ -307,6 +317,8 @@ pub(super) struct Scene3d {
     /// Segments of the earth electrodes and the lightning protection for picking: the
     /// building and what they belong to.
     pub earthing_picks: Vec<(V3, V3, (usize, lightning::Owner))>,
+    /// The tops of the roofs for picking.
+    pub roof_picks: Vec<RoofPick>,
     /// The tubes drawn: the way of each, its radius and what it is.
     pub tube_paths: Vec<(Vec<V3>, f32, RouteRef)>,
     /// How far each of them runs straight out of its first and its last point (its
@@ -663,6 +675,8 @@ fn fingers_hit(fingers: &[(usize, std::ops::Range<usize>, (V3, V3))], ways: &[(V
 
 /// Colours of the parts of a building.
 const ROOF_TOP: Color32 = Color32::from_rgb(160, 82, 60);
+/// The top of the roof picked in the 3D view.
+const SELECTED_ROOF: Color32 = Color32::from_rgb(232, 140, 70);
 const ROOF_UNDERSIDE: Color32 = Color32::from_rgb(205, 180, 140);
 const ROOF_EDGE: Color32 = Color32::from_rgb(130, 70, 52);
 const GABLE: Color32 = Color32::from_rgb(222, 216, 204);
@@ -823,8 +837,10 @@ impl PanelUi {
             for r in &b.roofs {
                 let faces = roofs::roof_faces(b, r);
                 let mut tops: Vec<(usize, Vec<[f32; 2]>)> = Vec::new();
+                let picked = self.selected_roof.is_some_and(|t| t.building == bi && t.roof == r.id);
                 for f in &faces {
                     let base = match f.kind {
+                        RoofFaceKind::Top if picked => SELECTED_ROOF,
                         RoofFaceKind::Top => ROOF_TOP,
                         RoofFaceKind::Underside => ROOF_UNDERSIDE,
                         RoofFaceKind::Edge => ROOF_EDGE,
@@ -851,12 +867,17 @@ impl PanelUi {
                     };
                     if f.kind == RoofFaceKind::Top {
                         tops.push((side, f.pts.iter().map(|q| [q[0], q[2]]).collect()));
+                        s.roof_picks.push(RoofPick { pts: pts.clone(), plan: f.pts.iter().map(|&q| bp.local(q)).collect(), building: bi, roof: r.id });
                     }
                     add_poly(s, &pts, n, lit(base, n), 0, Some(side), window);
                 }
                 // The PV arrays on it, solid, with their cabling.
-                self.pv_arrays_3d(s, prj, &plant, b, r, r.solar.iter(), &to_view, &turn, lit);
+                self.pv_arrays_3d(s, prj, &plant, solar::Support::Roof(b, r), r.solar.iter(), &to_view, &turn, lit);
             }
+        }
+        // The freestanding PV arrays on the plot.
+        if self.whole_site() && self.level_3d().is_none() {
+            self.pv_arrays_3d(s, prj, &plant, solar::Support::Ground, layout.plot.solar.iter(), &to_view, &turn, lit);
         }
         // All of the plant: the plot boundary on the ground and the reference point as a
         // post with a cross at its foot.
@@ -934,26 +955,26 @@ fn lead_look(lead: Lead) -> (Color32, Option<Color32>) {
 }
 
 impl PanelUi {
-    /// The PV arrays `arrays` of roof `r` of building `b`: modules (left out while they
-    /// are hidden, seen through while they are see-through; the selected array's in the
-    /// colour of the selection), mounting with its earthing clamps, picked as their array,
-    /// and their cabling; `to_view` and `turn` take points and directions of the plant
-    /// into the view.
+    /// The PV arrays `arrays` standing on `on` (a roof or the plot): modules (left out
+    /// while they are hidden, seen through while they are see-through; the selected
+    /// array's in the colour of the selection), mounting with its earthing clamps, picked
+    /// as their array, and their cabling; `to_view` and `turn` take points and directions
+    /// of the plant into the view.
     #[allow(clippy::too_many_arguments)]
-    fn pv_arrays_3d<'a>(&self, s: &mut Scene3d, prj: &Project, plant: &[SitePose], b: &panel::Building, r: &panel::Roof, arrays: impl Iterator<Item = &'a panel::PvArray>, to_view: &dyn Fn(V3) -> V3, turn: &dyn Fn(V3) -> V3, lit: &dyn Fn(Color32, V3) -> Color32) {
+    fn pv_arrays_3d<'a>(&self, s: &mut Scene3d, prj: &Project, plant: &[SitePose], on: solar::Support, arrays: impl Iterator<Item = &'a panel::PvArray>, to_view: &dyn Fn(V3) -> V3, turn: &dyn Fn(V3) -> V3, lit: &dyn Fn(Color32, V3) -> Color32) {
         for a in arrays {
             let selected = self.selected_array == Some(a.id);
             let first = s.faces.len();
             // Seen through: the modules of the array as glass, the wiring under them seen.
             let glass = self.see_through_pv.then(|| {
-                let c = solar::geometry(r, a).map_or([0.0; 3], |g| {
+                let c = on.geometry(a).map_or([0.0; 3], |g| {
                     let n = g.modules.len().max(1) as f32;
                     [0, 1, 2].map(|i| g.modules.iter().flatten().map(|q| q[i]).sum::<f32>() / (4.0 * n))
                 });
-                s.sides.push(SceneSide { normal: [0.0, 1.0, 0.0], at: to_view(bld::building_pose(b).apply(c)), inside: 0, hideable: false, decal: false, glass: true });
+                s.sides.push(SceneSide { normal: [0.0, 1.0, 0.0], at: to_view(on.pose().apply(c)), inside: 0, hideable: false, decal: false, glass: true });
                 s.sides.len() - 1
             });
-            for f in solar::faces_of(b, r, std::slice::from_ref(a)) {
+            for f in solar::faces_on(on, std::slice::from_ref(a)) {
                 let base = match f.kind {
                     RoofFaceKind::Module | RoofFaceKind::ModuleFrame if self.hide_pv_modules => continue,
                     RoofFaceKind::Module if selected => Color32::from_rgb(255, 150, 40),
@@ -971,7 +992,7 @@ impl PanelUi {
             for face in &mut s.faces[first..] {
                 face.pv = Some(a.id);
             }
-            for line in solar::cabling::cabling(prj, plant, b, r, a) {
+            for line in solar::cabling::cabling(prj, plant, on, a) {
                 let (color, stripe) = lead_look(line.lead);
                 let diameter = match line.lead {
                     Lead::Earth => 8.0,
@@ -1009,7 +1030,7 @@ impl PanelUi {
             .collect();
         for r in &b.roofs {
             let over: Vec<&panel::PvArray> = r.solar.iter().filter(|a| inside_plan(&room, [a.x, a.z])).collect();
-            self.pv_arrays_3d(s, prj, &plant, b, r, over.into_iter(), &to_view, &turn, lit);
+            self.pv_arrays_3d(s, prj, &plant, solar::Support::Roof(b, r), over.into_iter(), &to_view, &turn, lit);
         }
     }
 }
@@ -1055,6 +1076,7 @@ impl PanelUi {
         (self.show_wires, self.hide_ceiling, self.open_ducts, self.door_angle.to_bits()).hash(&mut h);
         (self.whole_site(), self.level_3d(), self.show_building, self.show_zones, self.open_walls).hash(&mut h);
         (self.hide_pv_modules, self.see_through_pv, self.selected_array, self.selected_earthing).hash(&mut h);
+        self.selected_roof.map(|t| (t.building, t.roof)).hash(&mut h);
         (&self.selected_route, self.selected_object).hash(&mut h);
         unordered(self.done_items.iter()).hash(&mut h);
         unordered(self.done_wires.iter()).hash(&mut h);

@@ -170,3 +170,21 @@ fn copies_survive_storing() {
     let back: Vec<Kept> = serde_json::from_str(&text).unwrap();
     assert_eq!(back, vec![kept]);
 }
+
+#[test]
+fn a_change_of_a_page_another_user_removed_is_kept() {
+    let base = server();
+    let last = base.pages.len() - 1;
+    let mut mine = base.clone();
+    mine.pages[last].description = "mine".into();
+    let mut theirs = base.clone();
+    theirs.pages.remove(last);
+    let after = merge(&theirs, &mine, &Owned::default());
+    assert_eq!(after.pages.len(), last);
+    let kept = Kept::capture(&base, &mine, &after, KeptReason::Changed).unwrap();
+    assert_eq!(kept.targets, vec![Target::Page(mine.pages[last].id)]);
+    // A page removed locally is no lost change.
+    let mut removed = base.clone();
+    removed.pages.remove(last);
+    assert!(Kept::capture(&base, &removed, &removed, KeptReason::Changed).is_none());
+}

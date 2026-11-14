@@ -1843,7 +1843,7 @@ fn pv_arrays_are_picked_selected_and_drawn_with_their_cabling() {
         prj.devices.insert(tag.into(), d);
         prj.parts.push(openecraft_core::parts::catalog().iter().find(|p| p.number == part).unwrap().clone());
     }
-    panel::solar::strings::add_string(&mut prj, 0, 0, 0).unwrap();
+    panel::solar::strings::add_string(&mut prj, panel::solar::ArrayRef { roof: Some((0, 0)), index: 0 }).unwrap();
     prj.layout.buildings[0].roofs[0].solar[0].earthing = "=PV-PE1".into();
     let h = prj.layout.enclosures[attic].height;
     panel::place_device_on(&mut prj, attic, "=PV-T1", openecraft_core::geom::p(2000.0, h - 1600.0), Face::Wall(1)).unwrap();
@@ -2268,4 +2268,24 @@ fn the_installation_menu_keeps_its_size_on_every_tab() {
         assert!(last.x > 700.0 && last.x < 800.0 && last.y < 700.0, "tab {tab}: {sizes:?}");
         assert!(sizes[3..].iter().all(|s| (s.x - last.x).abs() < 1.0 && (s.y - last.y).abs() < 1.0), "tab {tab}: {sizes:?}");
     }
+}
+
+#[test]
+fn freestanding_arrays_and_the_roofs_to_pick_are_in_the_site_view() {
+    let (mut prj, attic) = house();
+    let id = panel::solar::add_ground_array(&mut prj, None).unwrap();
+    let an = Analysis::build(&prj);
+    let mut ui = PanelUi { in_room: true, show_site: true, ..Default::default() };
+    let shown = ui.shown_3d(&prj, attic);
+    let s = ui.scene_3d(&egui::Context::default(), &prj, &an, attic, &shown);
+    // Forty modules (ten faces each and the junction box), on posts and table beams.
+    assert_eq!(s.faces.iter().filter(|f| f.pv == Some(id)).count(), 40 * (10 + 6) + (24 + 12 + 8 + 2) * 6);
+    // The tops of the roof can be picked, its corners in the building's floor plan.
+    assert!(!s.roof_picks.is_empty() && s.roof_picks.iter().all(|r| r.building == 0 && r.roof == prj.layout.buildings[0].roofs[0].id && r.pts.len() == r.plan.len()));
+    // A click in the site plan with the tool places another one.
+    ui.choose_site_tool(SiteTool::PvArray);
+    ui.site_click(&mut prj, [0.0, -30_000.0], false);
+    assert_eq!(prj.layout.plot.solar.len(), 2);
+    assert_eq!((prj.layout.plot.solar[1].x, prj.layout.plot.solar[1].z), (0.0, -30_000.0));
+    assert_eq!(ui.selected_array, Some(prj.layout.plot.solar[1].id));
 }

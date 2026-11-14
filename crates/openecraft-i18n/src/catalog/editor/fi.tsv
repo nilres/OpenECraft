@@ -351,12 +351,15 @@ Click where four wires meet: the bridge leads the connection from one side to th
 Click where it is in the site plan	Napsauta sen kohtaa asemapiirroksessa
 Click where the air-termination rods go on the roofs in the site plan	Napsauta asemapiirroksessa kohtia, joihin ukkosenjohdatintangot tulevat katoille
 Click where the earth rods go in the site plan	Napsauta asemapiirroksessa kohtia, joihin maadoitussauvat tulevat
+Click where the middle of a freestanding PV array goes in the site plan	Napsauta asemapiirroksessa kohtaa, johon maa-asennetun aurinkopaneelikentän keskikohta tulee
+Click where the middle of a freestanding PV array goes · Esc: stop	Napsauta kohtaa, johon maa-asennetun aurinkopaneelikentän keskikohta tulee · Esc: lopeta
 Click where the reference point is	Napsauta vertailupisteen kohtaa
 Click where three wires meet: the T-junction names the device the wires start from and the order of their targets · {} turns it where no wires meet yet · Esc or right click to finish	Napsauta kohtaa, jossa kolme johdinta kohtaa: T-haara määrää laitteen, josta johtimet lähtevät, ja kohteiden järjestyksen · {} kääntää sen, missä johtimet eivät vielä kohtaa · Esc tai oikea painike lopettaa
 Click where two wires cross: the crossing connects them and leads each end of its line straight on first, then across · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta risteää: risteys yhdistää ne ja vie linjansa kumpikin pään ensin suoraan, sitten poikittain · {} kääntää sen · Esc tai oikea painike lopettaa
 Click where two wires meet at a right angle, or where connection points face each other across the corner: with Auto-connect on, wires are drawn to it · {} turns it · Esc or right click to finish	Napsauta kohtaa, jossa kaksi johdinta kohtaa suorassa kulmassa, tai jossa liitäntäpisteet ovat vastakkain kulman yli: automaattisen kytkennän ollessa päällä siihen piirretään johtimet · {} kääntää sen · Esc tai oikea painike lopettaa
 Click while moving	Napsautus siirrettäessä
 Click, or drag it into the page	Napsauta tai vedä sivulle
+Clicked at x {} mm, z {} mm in the floor plan of the building: a new roof window or PV array goes there.	Napsautettu kohdassa x {} mm, z {} mm rakennuksen pohjapiirroksessa: uusi kattoikkuna tai aurinkopaneelikenttä tulee siihen.
 Climate (IEC 60890)	Ilmastointi (IEC 60890)
 Clipboard	Leikepöytä
 Close	Sulje
@@ -782,6 +785,12 @@ Frame of all pages that do not choose one	Kaikkien niiden sivujen kehys, jotka e
 Free air	Vapaa reititys
 Free air factor	Vapaan reitityksen kerroin
 Free space in front of every device on the plate up to the door; parts add theirs (Service space)	Vapaa tila jokaisen levyllä olevan laitteen edessä oveen asti; osat lisäävät omansa (Service space)
+Freestanding	Maa-asennus
+Freestanding PV array {}	Maa-asennettu aurinkopaneelikenttä {}
+Freestanding PV array {} placed; click for the next one · Esc: stop	Maa-asennettu aurinkopaneelikenttä {} sijoitettu; napsauta seuraavaa varten · Esc: lopeta
+Freestanding PV array {}: {} modules	Maa-asennettu aurinkopaneelikenttä {}: {} moduulia
+Freestanding PV array {}: {} modules, {} kWp	Maa-asennettu aurinkopaneelikenttä {}: {} moduulia, {} kWp
+Freestanding PV arrays	Maa-asennetut aurinkopaneelikentät
 Freeze all routes	Lukitse kaikki reitit
 Freeze route	Lukitse reitti
 Frequency	Taajuus
@@ -826,6 +835,7 @@ Graphic line	Grafiikkaviiva
 Graphic rectangle	Grafiikkasuorakulmio
 Graphical form	Graafinen lomake
 Greatest distance of the conductor holders on the roof and on the walls	Johdinpidikkeiden suurin väli katolla ja seinillä
+Greatest distance of the posts along a table	Paalujen suurin väli pöytää pitkin
 Greatest distance of the roof hooks along a rail	Kattokoukkujen suurin väli kiskoa pitkin
 Grid	Ruudukko
 Grid north	Karttapohjoinen
@@ -848,6 +858,7 @@ Height above sea level	Korkeus merenpinnasta
 Height above the floor	Korkeus lattiasta
 Height above the mounting plate	Korkeus asennuslevyn yläpuolella
 Height above the plate	Korkeus levyn yläpuolella
+Height of the lower edge of the modules above the ground	Moduulien alareunan korkeus maasta
 Height of the plinth, 0 without plinth	Sokkelin korkeus, 0 ilman sokkelia
 Height of the rod above the covering	Tangon korkeus katteen yläpuolella
 Height of the test joints above the ground	Mittausliitosten korkeus maanpinnasta
@@ -1069,6 +1080,7 @@ Look for updates when OpenECraft starts	Etsi päivityksiä, kun OpenECraft käyn
 Looking for updates…	Etsitään päivityksiä…
 Looks for a new release of OpenECraft on GitHub and installs it in the background	Etsii OpenECraftin uutta versiota GitHubista ja asentaa sen taustalla
 Loop	Piiri
+Lower edge	Alareuna
 Lowest fault current	Pienin vikavirta
 Lowest: the highest open-circuit voltage	Alin: suurin tyhjäkäyntijännite
 Macro boxes	Makrolaatikot
@@ -1116,6 +1128,7 @@ Messages of this session	Tämän istunnon viestit
 Middle	Keskellä
 Middle button	Keskipainike
 Middle of the PV array in the floor plan of the building	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa
+Middle of the PV array in the plant	Aurinkopaneelikentän keskikohta laitoksessa
 Min. bend radius	Pienin taivutussäde
 Minimize the ribbon	Pienennä valintanauha
 Mirror	Peilaa
@@ -1126,6 +1139,7 @@ Model of a part (2D / 3D)	Osan malli (2D / 3D)
 Modifier keys	Muokkausnäppäimet
 Module area	Moduulien pinta-ala
 Module part; its size comes from the part	Moduulin osa; sen koko tulee osasta
+Modules on top of each other on a table	Moduulit päällekkäin pöydällä
 Motors feed the short circuit	Moottorit syöttävät oikosulkua
 Mounted on	Asennettu kohteeseen
 Mounting assistant: the panel items in mounting order with their place and part	Asennusavustaja: asennusosat asennusjärjestyksessä paikkoineen ja osineen
@@ -1242,6 +1256,7 @@ No earth electrode yet: a foundation earth electrode in the foundation slab, a r
 No enclosure yet – create one with New enclosure, or a room for cabinets with New room.	Ei vielä koteloa – luo sellainen komennolla Uusi kotelo tai tila kaapeille komennolla Uusi tila.
 No field cables: place the enclosures and field devices at nodes of the route network.	Ei kenttäkaapeleita: sijoita kotelot ja kenttälaitteet reittiverkon solmuihin.
 No filter fans: an air/air heat exchanger or a cooling unit	Ei suodatinpuhaltimia: ilma/ilma-lämmönsiirrin tai jäähdytyslaite
+No freestanding PV array yet: rows of tilted tables on rammed posts on the plot.	Ei vielä maa-asennettua aurinkopaneelikenttää: kallistettujen pöytien rivejä lyöntipaaluilla tontilla.
 No gesture	Ei elettä
 No harnesses defined.	Johtosarjoja ei ole määritetty.
 No inverter	Ei vaihtosuuntaajaa
@@ -1498,7 +1513,6 @@ Plant layout	Laitoksen sijoituskuva
 Plant layout, route network, field cable planning, equipotential bonding and cable accessories	Laitoksen sijoituskuva, reittiverkko, kenttäkaapelisuunnittelu, potentiaalintasaus ja kaapelitarvikkeet
 Plant segments with planned devices before the schematic	Laitoksen segmentit suunniteltuine laitteineen ennen piirikaaviota
 Plate outline, holes per diameter, cutouts	Levyn ääriviiva, reiät halkaisijoittain, aukot
-Plot	Tontti
 Plot boundary	Tontin raja
 Plot boundary drawn: {} m²	Tontin raja piirretty: {} m²
 Plot boundary drawn: {} m²; outside it: {}	Tontin raja piirretty: {} m²; sen ulkopuolella: {}
@@ -1521,6 +1535,8 @@ Position of the cursor	Kohdistimen sijainti
 Position of the device tag (instead of the tag block)	Laitetunnuksen paikka (tunnuslohkon sijaan)
 Position of the label (terminal number, address …)	Merkinnän paikka (riviliittimen numero, osoite …)
 Positions are relative to the lower right corner of the symbol.	Sijainnit ovat suhteessa symbolin oikeaan alakulmaan.
+Post distance	Paaluväli
+Posts	Paalut
 Potential {}	Potentiaali {}
 Potential: {}	Potentiaali: {}
 Power and current of the loads of the mains (motors, drives, heaters, power supplies, transformers), the load of each protective device, the demand with the diversity factor and the load budget of the power supplies.	Verkon kuormien (moottorit, käytöt, lämmittimet, virtalähteet, muuntajat) teho ja virta, kunkin suojalaitteen kuorma, tarve samanaikaisuuskertoimella ja virtalähteiden kuormitustase.
@@ -1717,6 +1733,8 @@ Rod holder	Tangon pidike
 Roof pitch	Katon kaltevuus
 Roof window	Kattoikkuna
 Roof windows	Kattoikkunat
+Roof {} of building {}	Katto {}, rakennus {}
+Roof {} of building {}: the layout properties add a PV array or a roof window where it was clicked	Katto {}, rakennus {}: asennuskuvan ominaisuudet lisäävät aurinkopaneelikentän tai kattoikkunan napsautettuun kohtaan
 Roofs	Katot
 Room	Tila
 Room added on level {}: drag its walls or draw new ones in the floor plan, put cabinets into it in their properties	Tila lisätty kerrokseen {}: vedä sen seiniä tai piirrä uusia pohjapiirrokseen, sijoita kaapit siihen niiden ominaisuuksissa
@@ -1743,6 +1761,8 @@ Row	Rivi
 Row distance	Riviväli
 Row drawing	Rivipiirros
 Row labels	Rivien merkinnät
+Rows of tables behind each other	Pöytärivit peräkkäin
+Rows of tilted tables on posts in front of what stands in the plant, facing the front; move it to its place	Kallistettujen pöytien rivejä paaluilla laitoksessa olevien kohteiden edessä, eteenpäin suunnattuina; siirrä se paikalleen
 Rows on released pages cannot be changed. A line break in a text is written as \\n.	Vapautettujen sivujen rivejä ei voi muuttaa. Rivinvaihto tekstissä kirjoitetaan muodossa \\n.
 Rows per page	Rivejä sivulla
 Rule libraries	Sääntökirjastot
@@ -2074,6 +2094,7 @@ The page type, plot frame, title block, structure, description and the whole con
 The pages it generated stay	Sen luomat sivut jäävät
 The parts database is shared by all projects. Parts are copied into a project when they are assigned to a device.	Osatietokanta on kaikkien projektien yhteinen. Osat kopioidaan projektiin, kun ne määritetään laitteelle.
 The point's coordinates in the coordinate reference system	Pisteen koordinaatit koordinaattijärjestelmässä
+The post; its accessories are the table beams, rails and clamps	Paalu; sen tarvikkeita ovat pöydän palkit, kiskot ja kiinnittimet
 The project changed since the search.	Projekti on muuttunut haun jälkeen.
 The project check	Projektin tarkistus
 The project database needs the desktop version: the browser cannot search folders.	Projektitietokanta vaatii työpöytäversion: selain ei voi hakea kansioista.
@@ -2216,6 +2237,7 @@ When it differs from the page	Kun se poikkeaa sivusta
 Where	Sijainti
 Where neither wire has a termination chosen for it	Kun kummallekaan johtimelle ei ole valittu päätettä
 Where the point is in the plant; y: its height above the ground level of the plant	Missä piste on laitoksessa; y: sen korkeus laitoksen maanpinnan yläpuolella
+Where the roof was clicked in the 3D view	Kohta, jossa kattoa napsautettiin 3D-näkymässä
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Mistä laitteen rakenne tulee: symbolia ympäröivää rakennetta vastaavat aspektit peritään ja ne muuttuvat, kun symboli siirretään rakennelaatikkoon tai siitä pois; muut aspektit ovat laitteen omia ja säilyvät.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
 Whole building	Koko rakennus
@@ -2254,6 +2276,7 @@ Wiring assistant: checklist of the wires with 3D view and progress (tablet: open
 Wiring space between devices and ducts	Johdotustila laitteiden ja kourujen välissä
 With a user account of the server; replaces the access token	Palvelimen käyttäjätilillä; korvaa käyttöoikeustokenin
 With everything below it	Kaikkine alla olevineen
+With its middle where the roof was clicked in the 3D view	Keskikohta siinä, missä kattoa napsautettiin 3D-näkymässä
 With the current pages; the approvals so far become void	Nykyisillä sivuilla; tähänastiset hyväksynnät mitätöityvät
 With values only	Vain arvolliset
 Withdraw	Peru
@@ -2514,6 +2537,7 @@ x y	x y
 {} renamed: {} pages and devices	{} nimetty uudelleen: {} sivua ja laitetta
 {} report pages output to {}	{} raporttisivua tulostettu kohteeseen {}
 {} routes frozen	{} reittiä lukittu
+{} rows of tables of {} × {} = {}, {}	{} pöytäriviä, {} × {} = {}, {}
 {} segments created, {} devices added, {} updated	{} segmenttiä luotiin, {} laitetta lisättiin, {} päivitettiin
 {} stations, {} bus systems, {} cards assigned, {} addresses changed, {} connections, {} cables	{} asemaa, {} väyläjärjestelmää, {} korttia määritetty, {} osoitetta muutettu, {} yhteyttä, {} kaapelia
 {} stopped with an error: {}	{} keskeytyi virheeseen: {}
@@ -2543,6 +2567,7 @@ x y	x y
 {} – revision {}, {}	{} – revisio {}, {}
 {} – {} ({} pages)	{} – {} ({} sivua)
 {} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
+{}, freestanding	{}, maa-asennus
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
 {}: crimp together with the wire to {}	{}: puristetaan yhdessä johtimen {} kanssa
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa

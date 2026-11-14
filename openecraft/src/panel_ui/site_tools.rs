@@ -29,6 +29,8 @@ pub enum SiteTool {
     EarthRod,
     /// Places air-termination rods on the roofs of a building where clicked.
     AirRod,
+    /// Places freestanding PV arrays on the plot where clicked.
+    PvArray,
 }
 
 /// A measure written out: distance, how far east and north, the direction.
@@ -71,6 +73,14 @@ impl PanelUi {
                 }
             }
             SiteTool::EarthRod | SiteTool::AirRod => self.place_rod(prj, q),
+            SiteTool::PvArray => match panel::solar::add_ground_array(prj, Some([q[0].round(), q[1].round()])) {
+                Ok(id) => {
+                    self.select_array(prj, id);
+                    let name = prj.layout.plot.solar.iter().find(|a| a.id == id).map(|a| a.name.clone()).unwrap_or_default();
+                    self.status = tr_fmt!("Freestanding PV array {} placed; click for the next one · Esc: stop", name);
+                }
+                Err(e) => self.status = e,
+            },
             SiteTool::Measure => {
                 if self.site_points.len() >= 2 {
                     self.site_points.clear();
@@ -124,6 +134,7 @@ impl PanelUi {
                     .map(|s| match s {
                         plot::Standing::Room(i) | plot::Standing::Cabinet(i) => prj.layout.enclosures[i].name.clone(),
                         plot::Standing::Roof(bi, k) => format!("{} {}", prj.layout.buildings[bi].name, prj.layout.buildings[bi].roofs[k].name),
+                        plot::Standing::PvArray(k) => prj.layout.plot.solar[k].name.clone(),
                     })
                     .collect();
                 self.status = if outside.is_empty() { tr_fmt!("Plot boundary drawn: {} m²", area) } else { tr_fmt!("Plot boundary drawn: {} m²; outside it: {}", area, outside.join(", ")) };
@@ -280,7 +291,7 @@ impl PanelUi {
         let outside = plot::outside(prj).into_iter().any(|s| match s {
             plot::Standing::Room(i) => panel::buildings::building_of(&prj.layout, i) == Some(bi),
             plot::Standing::Roof(b, _) => b == bi,
-            plot::Standing::Cabinet(_) => false,
+            plot::Standing::Cabinet(_) | plot::Standing::PvArray(_) => false,
         });
         let at = (format!("{:.2}", b.site.x / 1000.0), format!("{:.2}", b.site.z / 1000.0), format!("{:.0}", b.site.angle));
         self.status = if outside {
