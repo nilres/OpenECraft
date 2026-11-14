@@ -84,6 +84,48 @@ fn automatic_layout_avoids_nearby_symbol_and_text_bounds() {
     let first = core_labels(&prj, 0).into_iter().find(|l| l.which == CoreText::Core).unwrap();
     prj.pages[0].symbols.push(SymbolInst { id: 900, sym: "coil".into(), pos: first.bounds.center(), tag: "-K1".into(), ..Default::default() });
     prj.pages[0].texts.push(TextItem { id: 901, pos: p(94.,98.), text: "obstacle".into(), ..Default::default() });
-    let occupied = obstacles(&prj, 0);
+    let occupied = obstacles(&prj, &Index::build(&prj), 0);
     for label in core_labels(&prj, 0) { assert!(!occupied.iter().any(|r| r.overlaps(&label.bounds)), "{label:?}"); }
+}
+
+#[test]
+fn released_pages_keep_data_and_manual_positions_while_automatic_rendering_uses_the_new_layout() {
+    let mut prj = five(false, false);
+    prj.pages[0].wires[2].core_offset = Some(p(3., -6.));
+    let open = core_labels(&prj, 0);
+    prj.pages[0].locked = true;
+    let before = prj.clone();
+    let labels = core_labels_with_index(&prj, &Index::build(&prj), 0);
+    assert_eq!(labels.iter().map(|l| l.pos).collect::<Vec<_>>(), open.iter().map(|l| l.pos).collect::<Vec<_>>());
+    let w = &prj.pages[0].wires[2];
+    let manual = labels.iter().find(|l| l.wire == w.id && l.which == CoreText::Core).unwrap();
+    assert_eq!(manual.pos, wire_text_place(w, crate::cabledef::core_position(&prj.pages[0], w), true).0 + w.core_offset.unwrap());
+    assert_eq!(prj, before);
+}
+
+#[test]
+fn shared_index_lays_out_a_synthetic_hundred_page_project_without_mutating_it() {
+    let mut prj = five(true, false);
+    let template = prj.pages[0].clone();
+    for i in 1..100 {
+        let mut page = template.clone();
+        page.id = 1000 + i * 100;
+        page.name = (i + 1).to_string();
+        for w in &mut page.wires { w.id += i * 100; }
+        for d in &mut page.cable_defs { d.id += i * 100; }
+        prj.pages.push(page);
+    }
+    let original = prj.clone();
+    let idx = Index::build(&prj);
+    let start = std::time::Instant::now();
+    let mut count = 0;
+    for pi in 0..prj.pages.len() {
+        let labels = core_labels_with_index(&prj, &idx, pi);
+        assert_eq!(labels.len(), 6);
+        assert!(labels.iter().all(|l| !l.conflict));
+        count += labels.len();
+        for w in &prj.pages[pi].wires { assert!(core_text_bounds(&labels, w, CoreText::Core).is_some()); }
+    }
+    eprintln!("100 synthetic pages, {count} labels, one shared index: {:?}", start.elapsed());
+    assert_eq!(prj, original);
 }

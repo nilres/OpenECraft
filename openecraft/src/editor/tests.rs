@@ -1096,7 +1096,7 @@ fn cable_core_texts_of_a_selected_wire_are_dragged_into_place() {
     let before = prj.pages[0].wires[0].clone();
     for which in [render::CoreText::Core, render::CoreText::Cable] {
         let orig = render::core_labels(&prj, 0).into_iter().find(|l| l.wire == 7 && l.which == which).unwrap().offset;
-        let at = render::core_text_bounds(&prj, 0, &prj.pages[0].wires[0], which).unwrap().center();
+        let at = render::core_text_bounds(&render::core_labels(&prj, 0), &prj.pages[0].wires[0], which).unwrap().center();
         drag(&mut ed, &ctx, &mut prj, 0, at, at + p(6.0, 4.0));
         let w = &prj.pages[0].wires[0];
         let o = which.offset(w).expect("text placed");
@@ -1162,6 +1162,35 @@ fn cable_core_text_drag_targets_match_the_drawn_galley_at_different_scales() {
             let w=&prj.pages[0].wires[0];
             assert!(which.offset(w).is_some(),"{pixels} {which:?}");
             assert_eq!((w.a,w.b,&w.cable,&w.core),(original.a,original.b,&original.cable,&original.core));
+        }
+    }
+}
+
+#[test]
+fn cable_core_text_clicks_and_drags_use_the_same_galley_without_covering_a_nearby_symbol() {
+    for pixels in [1., 1.5, 2.] {
+        for zoom in [3., 5., 10.] {
+            let mut prj = Project::default();
+            prj.pages[0].wires.push(Wire { id: 7, a: p(100., 60.), b: p(100., 140.), ..Default::default() });
+            prj.fix_next_id();
+            cabledef::add(&mut prj, 0, p(90., 100.), p(120., 100.), "");
+            prj.pages[0].wires[0].core = "iiiiiiiiiiiiiiii".into();
+            prj.pages[0].wires[0].core_offset = Some(p(20., -10.));
+            let ctx = egui::Context::default();
+            ctx.set_pixels_per_point(pixels);
+            let mut ed = Editor { zoom, fit_pending: false, ..Default::default() };
+            ready(&mut ed, &ctx, &mut prj);
+            let label = ed.core_labels.iter().find(|l| l.which == render::CoreText::Core).unwrap();
+            let r = ed.core_label_hits.iter().find(|(_, k, _)| *k == render::CoreText::Core).unwrap().2;
+            let beside = p(label.bounds.max.x - 0.1, r.center().y);
+            assert!(!r.expand((2. / zoom).max(0.3)).contains(beside), "fixture distinguishes estimate and galley");
+            prj.pages[0].symbols.push(coil(900, beside, "-K1"));
+            ready(&mut ed, &ctx, &mut prj);
+            let idx = Index::build(&prj);
+            assert_eq!(ed.hit(&prj, 0, r.center()), Some(7));
+            assert!(matches!(ed.prop_hit(&prj, &idx, 0, r.center()), Some(PropHandle::Wire(7, render::CoreText::Core))));
+            assert_eq!(ed.hit(&prj, 0, beside), Some(900), "the estimate must not steal the symbol click at {pixels}/{zoom}");
+            assert!(!matches!(ed.prop_hit(&prj, &idx, 0, beside), Some(PropHandle::Wire(..))));
         }
     }
 }

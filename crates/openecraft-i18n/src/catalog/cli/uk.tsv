@@ -26,7 +26,6 @@ CSV file	Файл CSV
 CSV or Excel file	Файл CSV або Excel
 CSV or JSON file	Файл CSV або JSON
 CSV, JSON, BMEcat, EPLAN XML or EDZ file	Файл CSV, JSON, BMEcat, EPLAN XML або EDZ
-Cannot write {}: {}	Не вдалося записати {}: {}
 Catalog data; without id it is derived from the name	Дані каталогу; без ідентифікатора його буде утворено з назви
 Changes project properties	Змінює властивості проєкту
 Changes project properties in many project files at once (fields name, description, company, creator, date, revision or project properties)	Змінює властивості проєкту в багатьох файлах проєктів одночасно (поля name, description, company, creator, date, revision або властивості проєкту)
@@ -39,7 +38,7 @@ Comment stored in the archive	Коментар, що зберігається в
 Compares the project parts with the parts server: newer versions, phase-out, discontinued and removed parts	Порівнює вироби проєкту із сервером виробів: новіші версії, вироби, що знімаються, зняті з виробництва та вилучені
 Connector export instead: erp, pdm, plm, ecad, mcad, procurement, wiring_machine or exchange	Натомість експорт конектора: erp, pdm, plm, ecad, mcad, procurement, wiring_machine або exchange
 Connects to Autodesk Vault (Vault Data API, Vault Professional 2025.2 or newer): signs in with a Vault account or uses an access token, and shows the connection	Підключається до Autodesk Vault (Vault Data API, Vault Professional 2025.2 або новіший): входить з обліковим записом Vault або використовує маркер доступу й показує підключення
-Converts a project file or archive of an older version to the current file format	Перетворює файл або архів проєкту старішої версії на поточний формат файлу
+Converts a project to the current file format, or to another way of storing it: project file, split project (a folder for version control) or archive	Перетворює проєкт у поточний формат файлу або в іншу форму зберігання: файл проєкту, розділений проєкт (папка для системи керування версіями) або архів
 Creates a new project (optionally the demo project) and saves it if a path is given	Створює новий проєкт (за бажанням демонстраційний проєкт) і зберігає його, якщо вказано шлях
 Creates or changes a catalog on the parts server (id, name, manufacturer, version, description)	Створює або змінює каталог на сервері виробів (ідентифікатор, назва, виробник, версія, опис)
 Creates or changes a report block (report pages generated together, e.g. one terminal diagram per strip)	Створює або змінює блок звітів (сторінки звітів, що генеруються разом, напр. одна схема клем на колодку)
@@ -71,8 +70,11 @@ Field or property whose value is searched ('*' for all)	Поле або влас
 File content instead of a file	Вміст файлу замість файлу
 File id (see the attachments of parts_get)	Ідентифікатор файлу (див. attachments у parts_get)
 File name in the vault	Назва файлу у сховищі
+File of the common ancestor (%O of git)	Файл спільного предка (%O у git)
+File of the other side (%B of git)	Файл іншої сторони (%B у git)
+File of this side, replaced by the result (%A of git)	Файл цієї сторони, замінюється результатом (%A у git)
 File to embed	Файл для вбудовування
-File to save the project to (.oec)	Файл, у який зберігається проєкт (.oec)
+File to save the project to (.oec; .oecp: a split project in the folder of the file)	Файл, у який зберігається проєкт (.oec; .oecp: розділений проєкт у папці файлу)
 File to upload	Файл для передавання
 File to write	Файл для запису
 File to write (xlsx)	Файл для запису (xlsx)
@@ -133,6 +135,7 @@ Macro library file (JSON, exported by the editor)	Файл бібліотеки 
 Manufacturer (wildcards); default * (everything)	Виробник (символи узагальнення); за замовчуванням * (усе)
 Manufacturer whose parts a manufacturer user maintains	Виробник, вироби якого веде користувач-виробник
 Maximum number of hits (default 50)	Максимальна кількість результатів (за замовчуванням 50)
+Merges two versions of a file of a split project record by record (the merge driver of git): the result replaces the file of this side; where both sides differ its values stay and the command fails	Об'єднує дві версії файлу розділеного проєкту запис за записом (драйвер злиття git): результат замінює файл цієї сторони; там, де сторони відрізняються, залишаються її значення, а команда завершується з помилкою
 Name of a built-in template (list_structure_templates)	Назва вбудованого шаблону (list_structure_templates)
 Name of the knowledge vault (default Vault)	Назва сховища (за замовчуванням Vault)
 New accounts wait for the approval of an administrator (true) or sign in at once (false)	Нові облікові записи чекають схвалення адміністратора (true) або входять одразу (false)
@@ -178,12 +181,13 @@ Pass files or a folder	Укажіть файли або папку
 Password (needed for new users; empty keeps the current one)	Пароль (потрібен для нових користувачів; якщо порожньо, поточний зберігається)
 Password of the Vault user	Пароль користувача Vault
 Password of the user	Пароль користувача
+Path of the file in the project (%P of git): its name says how it is merged	Шлях до файлу в проєкті (%P у git): його ім'я визначає спосіб злиття
 Plot frame (list_frames); default: the project's	Рамка аркуша (list_frames); за замовчуванням: рамка проєкту
 Product top group: Electrical, Fluid, Mechanics or Process	Основна група продуктів: Electrical, Fluid, Mechanics або Process
 Profile whose column mapping is used	Профіль, зіставлення стовпців якого використовується
 Project database file (JSON)	Файл бази даних проєктів (JSON)
 Project database file (JSON) to update	Файл бази даних проєктів (JSON) для оновлення
-Project file (.oec) or archive (.oecz)	Файл проєкту (.oec) або архів (.oecz)
+Project file (.oec), index of a split project (.oecp) or archive (.oecz)	Файл проєкту (.oec), індекс розділеного проєкту (.oecp) або архів (.oecz)
 Project file that gets the pages	Файл проєкту, який отримує сторінки
 Project file to write (default: the file itself; archives: next to it as .oec)	Файл проєкту для запису (за замовчуванням: сам файл; для архівів: поруч як .oec)
 Project files, separated by ';'	Файли проєктів через ';'
@@ -265,6 +269,7 @@ Undoes the last change	Скасовує останню зміну
 Unexpected argument: {}	Неочікуваний аргумент: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Невідома команда: {}. Список показує openecraft-cli help.
 Unknown example {}: see list_examples	Невідомий приклад {}: див. list_examples
+Unknown format {}: give oec, oecp or oecz	Невідомий формат {}: вкажіть oec, oecp або oecz
 Unknown language: {}	Невідома мова: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Невідомий тип сторінки: {} (schematic, overview, graphic, cover або звіт із list_reports)
 Unknown part {} (parts server: {})	Невідомий виріб {} (сервер виробів: {})
@@ -279,6 +284,7 @@ User name to sign in with	Ім’я користувача для входу
 User or group name (wildcards; directory groups as directory:group)	Ім’я користувача або назва групи (символи узагальнення; групи служби каталогів у вигляді каталог:група)
 Values to set (name: value; an empty value removes a property)	Значення для встановлення (назва: значення; порожнє значення вилучає властивість)
 Vault user name (signs in)	Ім’я користувача Vault (для входу)
+What to write: oec (project file), oecp (split project in a folder of its own) or oecz (archive); default: by the extension of the output	Що записується: oec (файл проєкту), oecp (розділений проєкт у власній папці) або oecz (архів); типово: за розширенням вихідного файлу
 Width and height must be greater than 0	Ширина і висота мають бути більшими за 0
 Write the table as CSV to this file	Записати таблицю як CSV у цей файл
 Writes the check scheme of the project (checks switched off, message levels) to a file	Записує схему перевірки проєкту (вимкнені перевірки, рівні повідомлень) у файл
@@ -300,3 +306,4 @@ user or group	user або group
 {} is an archive and stays unchanged: save the project as a project file (save_project --path <file>.oec) or convert the archive (convert_project)	{} — це архів, він не змінюється: збережіть проєкт як файл проєкту (save_project --path <file>.oec) або перетворіть архів (convert_project)
 {} is an archive: pass a path to save the project as a project file	{} — це архів: вкажіть шлях, щоб зберегти проєкт як файл проєкту
 {} is not a language of the project	{} не є мовою проєкту
+{}: {} conflicts, the values of this side were kept: {}	{}: конфліктів: {}, збережено значення цієї сторони: {}

@@ -39,6 +39,13 @@ positions in a deterministic order; it does not guarantee that every crowded
 drawing has a free place. Remaining conflicts have a red outline in the editor.
 Existing manual offsets retain their original meaning and are never silently reset.
 
+This rendering change also applies to automatic labels in existing projects,
+including released pages and PDF/SVG exports. Releasing a page protects its data
+from edits; it does not freeze the renderer. Manual offsets keep their positions.
+For an unchanged record of an earlier release, keep the PDF exported at release.
+The editor calculates one page layout per frame and uses the actual drawn text
+areas for both selection and dragging. Multi-page exports reuse their project index.
+
 Hover a core text or the cable tag beside a wire to see its drag target. Drag it
 directly to move only the text, without first selecting the wire; this also works
 with a previous multiple selection. Wire ends remain separate geometry handles.

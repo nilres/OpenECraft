@@ -99,7 +99,7 @@ fn link_text(d: &mut dyn Draw, pos: P, text: &str, size: f32, h: Anchor, page: u
 }
 
 mod cable_labels;
-pub use cable_labels::{core_labels, core_text_bounds, preview_core_labels, align_core_labels, CoreLabel};
+pub use cable_labels::{core_labels, core_labels_with_index, core_text_bounds, preview_core_labels, align_core_labels, CoreLabel};
 
 mod interruption;
 pub mod jumps;
@@ -132,6 +132,12 @@ pub struct Opts {
 
 /// Draws a complete page including frame and title block.
 pub fn draw_page(d: &mut dyn Draw, prj: &Project, idx: &Index, an: &Analysis, page_i: usize, opts: &Opts) {
+    let labels = core_labels_with_index(prj, idx, page_i);
+    draw_page_with_core_labels(d, prj, idx, an, page_i, opts, &labels);
+}
+
+/// The editor shares one page layout between drawing, hit testing and dragging.
+pub fn draw_page_with_core_labels(d: &mut dyn Draw, prj: &Project, idx: &Index, an: &Analysis, page_i: usize, opts: &Opts, labels: &[CoreLabel]) {
     let page = &prj.pages[page_i];
     draw_frame(d, prj, page_i);
     crate::forms::draw_stamp(d, prj, page_i);
@@ -224,7 +230,7 @@ pub fn draw_page(d: &mut dyn Draw, prj: &Project, idx: &Index, an: &Analysis, pa
         let ink = if opts.selected.contains(&j.id) { Ink::Selected } else { Ink::Wire };
         draw_junction(d, prj, page, j, ink);
     }
-    draw_wire_labels(d, prj, an, page_i);
+    draw_wire_labels(d, prj, an, page_i, labels);
     let structured = !structure::page_structure(page).is_empty() || !page.structure_boxes.is_empty();
     for s in &page.symbols {
         let Some(def) = prj.symbol(&s.sym) else { continue };
@@ -799,7 +805,7 @@ fn cabled_wires(page: &Page) -> Vec<(&Wire, bool)> {
 
 /// Wire numbers (once per connection and page, on its longest wire) and cable cores
 /// (a stroke across the wire, the core and once per page the cable tag).
-fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usize) {
+fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usize, labels: &[CoreLabel]) {
     let page = &prj.pages[page_i];
     for w in &page.wires {
         for label in &w.labels {
@@ -843,7 +849,7 @@ fn draw_wire_labels(d: &mut dyn Draw, prj: &Project, an: &Analysis, page_i: usiz
         let q = p(w.a.x + (w.b.x - w.a.x) * t, w.a.y + (w.b.y - w.a.y) * t);
         d.line(q + p(-1.0, 0.8), q + p(1.0, -0.8), SYMBOL_W, Ink::Line, false);
     }
-    for label in core_labels(prj, page_i) {
+    for label in labels {
         d.text(label.pos, &label.text, SMALL_SIZE, label.anchor, label.v, Ink::CrossRef);
     }
 }

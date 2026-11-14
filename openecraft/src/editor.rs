@@ -585,6 +585,8 @@ pub struct Editor {
     pub core_label_preview: Vec<render::CoreLabel>,
     pub core_label_preview_page: Option<u64>,
     core_label_hits: Vec<(u64, render::CoreText, R)>,
+    core_labels: Vec<render::CoreLabel>,
+    core_label_page: Option<u64>,
     /// Device tag of the next symbols placed (navigator: place a function); ends with
     /// the Place tool.
     pub place_tag: Option<String>,
@@ -653,6 +655,8 @@ impl Default for Editor {
             core_label_preview: Vec::new(),
             core_label_preview_page: None,
             core_label_hits: Vec::new(),
+            core_labels: Vec::new(),
+            core_label_page: None,
             place_tag: None,
             place_part: None,
             read_only: false,
@@ -923,7 +927,9 @@ impl Editor {
         let page = &prj.pages[page_i];
         let tol = (8.0 / self.zoom).max(0.4);
         let usable = |layer: &str| graphics::shown(prj, layer, false) && !graphics::locked(prj, layer);
-        if let Some(label) = render::core_labels(prj, page_i).into_iter().find(|l| l.bounds.expand(0.3).contains(q)) { return Some(label.wire); }
+        if self.core_label_page == Some(page.id) {
+            if let Some((id, _, _)) = self.core_label_hits.iter().find(|(_, _, r)| r.expand((2. / self.zoom).max(0.3)).contains(q)) { return Some(*id); }
+        }
         for t in page.texts.iter().rev().filter(|t| usable(&t.layer)) {
             if render::text_bounds(prj, page_i, t).expand(tol * 0.5).contains(q) {
                 return Some(t.id);
@@ -1143,8 +1149,10 @@ impl Editor {
         let world = ptr.map(|s| self.s2w(rect, s));
         // Hit the actual galley drawn at this zoom/DPI, rather than an estimated
         // model text box. This also gives unselected texts their own drag target.
-        self.core_label_hits = render::core_labels(prj, page_i).into_iter().map(|l| {
-            let galley = ui.painter().layout_no_wrap(l.text, FontId::proportional(render::SMALL_SIZE * self.zoom * 1.25), Color32::WHITE);
+        self.core_labels = render::core_labels_with_index(prj, idx, page_i);
+        self.core_label_page = Some(prj.pages[page_i].id);
+        self.core_label_hits = self.core_labels.iter().map(|l| {
+            let galley = ui.painter().layout_no_wrap(l.text.clone(), FontId::proportional(render::SMALL_SIZE * self.zoom * 1.25), Color32::WHITE);
             let size = galley.size() / self.zoom;
             let dx = match l.anchor { Anchor::Left => 0., Anchor::Center => -size.x / 2., Anchor::Right => -size.x };
             let dy = match l.v { VAnchor::Top => 0., VAnchor::Middle => -size.y / 2., VAnchor::Bottom => -size.y };
@@ -1260,7 +1268,7 @@ impl Editor {
         }
         let origin = rect.min + self.offset;
         let mut d = EguiDraw { painter: &painter, origin, zoom: self.zoom, pal: &pal, force: None, mirror: None, textures: Some(&self.textures) };
-        render::draw_page(&mut d, prj, idx, an, page_i, &opts);
+        render::draw_page_with_core_labels(&mut d, prj, idx, an, page_i, &opts, &self.core_labels);
 
         // Previews
         if let (Tool::Markup(kind, _), Some(&a), Some(b)) = (&self.tool, self.pts.first(), world) {
@@ -1361,8 +1369,7 @@ impl Editor {
             }
         }
         if self.tool == Tool::Select && editable {
-            let labels = render::core_labels(prj, page_i);
-            for label in &labels {
+            for label in &self.core_labels {
                 let target = self.core_label_hits.iter().find(|(id,which,_)| *id == label.wire && *which == label.which).map(|(_,_,r)| *r).unwrap_or(label.bounds);
                 let hover = world.is_some_and(|q| target.expand((2. / self.zoom).max(0.3)).contains(q));
                 if hover || label.conflict {
@@ -2114,7 +2121,7 @@ impl Editor {
                         (Some(s), Handle::Intr(t)) => prj.symbol(&s.sym).map(|def| intr_place(&def, s, t).offset).unwrap_or_default(),
                         _ => P::default(),
                     },
-                    PropHandle::Wire(id, which) => render::core_labels(prj, page_i).iter().find(|l| l.wire == id && l.which == which).map(|l| l.offset).unwrap_or_default(),
+                    PropHandle::Wire(id, which) => self.core_labels.iter().find(|l| l.wire == id && l.which == which).map(|l| l.offset).unwrap_or_default(),
                 };
                 // A designation placed automatically keeps the place it has now.
                 let side = match handle {

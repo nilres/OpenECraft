@@ -23,15 +23,14 @@ fn bounds(text: &str, q: P, anchor: Anchor, v: VAnchor) -> R {
     R::from_points(p(x, y), p(x + wd, y + SMALL_SIZE * 1.2))
 }
 
-fn obstacles(prj: &Project, pi: usize) -> Vec<R> {
+fn obstacles(prj: &Project, idx: &Index, pi: usize) -> Vec<R> {
     let page = &prj.pages[pi];
     let mut result: Vec<R> = page.symbols.iter().filter_map(|s| prj.symbol(&s.sym).map(|d| s.bounds(&d))).collect();
-    let idx = Index::build(prj);
     for s in &page.symbols {
         result.extend(s.props.iter().map(|pp| prop_bounds(prj, pi, s, pp)));
         if let Some(def) = prj.symbol(&s.sym) {
-            result.extend(tag_block_bounds(prj, &idx, pi, &def, s));
-            result.extend(pin_label_places(prj, &idx, pi, &def, s).into_iter().map(|l| l.bounds));
+            result.extend(tag_block_bounds(prj, idx, pi, &def, s));
+            result.extend(pin_label_places(prj, idx, pi, &def, s).into_iter().map(|l| l.bounds));
         }
     }
     result.extend(page.texts.iter().map(|t| text_bounds(prj, pi, t)));
@@ -57,6 +56,18 @@ fn shifted(mut label: CoreLabel, delta: P) -> CoreLabel {
     label.pos = label.pos + delta;
     label.offset = label.offset + delta;
     label.bounds = R::from_points(label.bounds.min + delta, label.bounds.max + delta);
+    label
+}
+
+fn column_bounds(mut label: CoreLabel, width: f32) -> CoreLabel {
+    let x = match label.anchor { Anchor::Left => label.pos.x, Anchor::Center => label.pos.x - width / 2., Anchor::Right => label.pos.x - width };
+    label.bounds.min.x = x;
+    label.bounds.max.x = x + width;
+    label
+}
+
+fn actual_bounds(mut label: CoreLabel) -> CoreLabel {
+    label.bounds = bounds(&label.text, label.pos, label.anchor, label.v);
     label
 }
 
@@ -87,9 +98,18 @@ fn place(page: &Page, w: &Wire, label: CoreLabel, definition: Option<&CableDef>,
 
 /// Stable deterministic layout. Manual offsets keep their original meaning.
 pub fn core_labels(prj: &Project, pi: usize) -> Vec<CoreLabel> {
+    core_labels_with_index(prj, &Index::build(prj), pi)
+}
+
+/// Reuse the caller's project index, including for every page of an export.
+pub fn core_labels_with_index(prj: &Project, idx: &Index, pi: usize) -> Vec<CoreLabel> {
     let page = &prj.pages[pi];
     if !page.wires.iter().any(|w| !w.cable.is_empty() && !w.hide_labels) { return Vec::new(); }
-    let mut occupied = obstacles(prj, pi);
+    layout(prj, pi, obstacles(prj, idx, pi))
+}
+
+fn layout(prj: &Project, pi: usize, mut occupied: Vec<R>) -> Vec<CoreLabel> {
+    let page = &prj.pages[pi];
     let mut labels = Vec::new();
     let mut automatic = Vec::new();
     for (w, tagged) in cabled_wires(page) {
@@ -103,16 +123,24 @@ pub fn core_labels(prj: &Project, pi: usize) -> Vec<CoreLabel> {
             } else { automatic.push((w, label)); }
         }
     }
-    for (w, label) in automatic {
-        let label = place(page, w, label, None, true, 0.8, &occupied, true, 9);
+    let mut widths = std::collections::HashMap::<&str, f32>::new();
+    for (w, label) in &automatic {
+        if label.which == CoreText::Core {
+            let width = widths.entry(&w.cable).or_default();
+            *width = width.max(label.bounds.width());
+        }
+    }
+    for (w, mut label) in automatic {
+        if label.which == CoreText::Core { label = column_bounds(label, widths[&w.cable.as_str()]); }
+        let label = actual_bounds(place(page, w, label, None, true, 0.8, &occupied, true, 9));
         occupied.push(label.bounds);
         labels.push(label);
     }
     labels
 }
 
-pub fn core_text_bounds(prj: &Project, pi: usize, w: &Wire, which: CoreText) -> Option<R> {
-    core_labels(prj, pi).into_iter().find(|l| l.wire == w.id && l.which == which).map(|l| l.bounds)
+pub fn core_text_bounds(labels: &[CoreLabel], w: &Wire, which: CoreText) -> Option<R> {
+    labels.iter().find(|l| l.wire == w.id && l.which == which).map(|l| l.bounds)
 }
 
 /// A read-only preview for the core labels crossed by one definition on this page.
@@ -122,9 +150,10 @@ pub fn preview_core_labels(prj: &Project, pi: usize, id: u64, before: bool, gap:
     let Some(def) = page.cable_defs.iter().find(|d| d.id == id) else { return Vec::new() };
     let ids = crate::cabledef::crossed_wires(page, def.a, def.b);
     let targets = |l: &CoreLabel| l.which == CoreText::Core && ids.contains(&l.wire) && page.wires.iter().any(|w| w.id == l.wire && w.cable == def.cable);
-    let all = core_labels(prj, pi);
-    let mut occupied = obstacles(prj, pi);
+    let mut occupied = obstacles(prj, &Index::build(prj), pi);
+    let all = layout(prj, pi, occupied.clone());
     occupied.extend(all.iter().filter(|l| !targets(l)).map(|l| l.bounds));
+    let width = all.iter().filter(|l| targets(l)).map(|l| l.bounds.width()).fold(0., f32::max);
     let mut fallback = Vec::new();
     for step in 0..9 {
         let mut occupied = occupied.clone();
@@ -132,7 +161,7 @@ pub fn preview_core_labels(prj: &Project, pi: usize, id: u64, before: bool, gap:
         for wid in &ids {
             let Some(w) = page.wires.iter().find(|w| w.id == *wid && w.cable == def.cable) else { continue };
             let Some(label) = base(page, w, false, CoreText::Core) else { continue };
-            let label = place(page, w, label, Some(def), before, gap + step as f32 * 2., &occupied, false, 1);
+            let label = actual_bounds(place(page, w, column_bounds(label, width), Some(def), before, gap + step as f32 * 2., &occupied, false, 1));
             occupied.push(label.bounds);
             result.push(label);
         }
