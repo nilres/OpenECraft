@@ -131,6 +131,7 @@ All pages	Усі сторінки
 All report pages	Усі сторінки звітів
 All user symbols as library file	Усі символи користувача як файл бібліотеки
 All wires of this potential are highlighted.	Усі проводи цього потенціалу виділено.
+Also copy revisions, baselines and review records	Копіювати також ревізії, базові версії та записи перевірок
 Also the groups that do not fit the function definition	Також групи, що не відповідають визначенню функції
 Altitude	Висота встановлення
 Always	Завжди
@@ -432,6 +433,9 @@ Copy	Копіювати
 Copy / cut / paste (devices get new tags)	Копіювати / вирізати / вставити (пристрої отримують нові позначення)
 Copy as new	Копіювати як новий
 Copy built-in…	Копіювати вбудований…
+Copy of	Копія проєкту
+Copy project	Копіювати проєкт
+Copy project…	Копіювати проєкт…
 Core designations separated by blanks	Позначення жил, розділені пробілами
 Core labels placed by hand	Написи жил розміщено вручну
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Жили 1, 2, 3 … для перетнутих проводів, плюс GNYE
@@ -443,10 +447,15 @@ Covers what is behind the text	Закриває те, що позаду текс
 Create	Створити
 Create an enclosure in the panel layout first.	Спочатку створіть корпус у компонуванні шафи.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Створіть корпус або приміщення (Монтажний простір › Новий корпус, Нове приміщення), щоб почати компонування.
+Create and open	Створити й відкрити
 Create baseline	Створити базову версію
 Create bus cables	Створити шинні кабелі
 Create draft	Створити чернетку
 Create revision	Створити ревізію
+Created on the server	Створено на сервері
+Created {} as a copy of {} and opened it	{} створено як копію {} і відкрито
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Створює на сервері новий проєкт зі збереженого стану цього проєкту; спочатку ви задаєте його назву та властивості
+Creating {} as a copy of {}…	Створення {} як копії {}…
 Cross references…	Перехресні посилання…
 Crossed wires	Перетнуті проводи
 Ctrl + click on the text opens it as well	Ctrl + клацання тексту також відкриває його
@@ -1052,6 +1061,7 @@ Load reserve	Запас навантаження
 Load template…	Завантажити шаблон…
 Loading changes…	Завантаження змін…
 Loading the project access…	Завантаження доступу до проєкту…
+Loading the properties of {}…	Завантаження властивостей {}…
 Loads	Навантаження
 Local file	Локальний файл
 Local file: {}	Локальний файл: {}
@@ -1293,6 +1303,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Не змін�
 Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
 Not on a wire	Не на проводі
+Not recorded	Не записано
 Not saved, locked or changed by another user	Не збережено, заблоковано або змінено іншим користувачем
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не прийнято: сама ліва кнопка вибирає, малює та переміщує; утримуйте модифікатор або використайте іншу кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Це не спільний проєкт: зміни зберігаються локально, доки його знову не відкрито на сервері проєктів
@@ -1619,6 +1630,7 @@ Release: lock all pages	Затвердити: заблокувати всі ст
 Released page – read only	Затверджена сторінка – лише для читання
 Released pages in it keep their names	Затверджені сторінки в ньому зберігають свої імена
 Released pages keep their name.	Затверджені сторінки зберігають назву.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Затверджені ревізії, базові версії, коментарі, позначки, погодження та запити на зміни оригіналу. Без них копія починається як новий проєкт.
 Releases all locks; the project stays open as a local copy	Звільняє всі блокування; проєкт залишається відкритим як локальна копія
 Releasing…	Звільнення…
 Remove from cable	Вилучити з кабелю
@@ -1794,6 +1806,7 @@ Save to project server: {}	Зберегти на сервері проєктів
 Save to project server: {} – the connection is lost, saving tries again	Зберегти на сервері проєктів: {} – з'єднання втрачено, збереження спробує знову
 Save workspace	Зберегти робочий простір
 Save workspace…	Зберегти робочий простір…
+Saved the properties of {} (revision {})	Властивості {} збережено (ревізія {})
 Saved to	Збережено в
 Saved to the project server (revision {})	Збережено на сервері проєктів (ревізія {})
 Saved workspaces	Збережені робочі простори
@@ -1806,6 +1819,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Збер
 Saves your version of the whole project as a project file	Зберігає вашу версію всього проєкту як файл проєкту
 Saving failed: {}	Помилка збереження: {}
 Saving the project access…	Збереження доступу до проєкту…
+Saving the properties of {}…	Збереження властивостей {}…
 Saving to the project server…	Збереження на сервері проєктів…
 Schematic crosshair	Перехрестя курсора схеми
 Scheme	Схема
@@ -1839,6 +1853,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Виберіть макрос.
 Select a part. Double click adds it to the device.	Виберіть виріб. Подвійне клацання додає його до пристрою.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Виберіть схему розміщення. Схема розміщує властивості поруч із символами; символи, що її використовують, оновлюються при її зміні.
+Select a project in the list	Виберіть проєкт у списку
 Select a report block.	Виберіть блок звітів.
 Select a request.	Виберіть запит.
 Select a segment.	Виберіть сегмент.
@@ -1860,6 +1875,7 @@ Semicolon	Крапка з комою
 Separator	Сепаратор
 Server URL	URL-адреса сервера
 Server address and sign-in	Адреса сервера та вхід
+Server project properties	Властивості проєкту сервера
 Server type	Тип сервера
 Servers	Сервери
 Service space in front	Простір для обслуговування спереду
@@ -1915,6 +1931,7 @@ Shown now: {}	Зараз показується: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показується на титульній сторінці та в елементах зображення основних написів, що показують логотип проєкту
 Shows	Показує
 Shows the differences of your version to the open project; selected ones can be taken over	Показує відмінності вашої версії від відкритого проєкту; вибрані можна перейняти
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Показує властивості, збережені на сервері проєктів; ви змінюєте їх тут, якщо маєте право і ніхто не заблокував дані проєкту
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Бічні стінки, задня стінка, дах і дно ззовні: вентилятори, кабельні вводи, вирізи
 Sign in in the Project server pane; the project opens afterwards	Увійдіть на панелі «Сервер проєктів»; потім проєкт відкриється
 Sign in…	Увійти…
@@ -2058,6 +2075,7 @@ The aspect ratio is kept.	Співвідношення сторін зберіг
 The check warns about cable ducts filled above this level	Перевірка попереджає про кабельні канали, заповнені понад цей рівень
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Перевірки дотримуються відстаней між класами й дозволяють класам перекриватися, як задано в розділі «Перевірки компонування»
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Команди всіх плагінів за плагінами, з пошуком; зірочка закріплює команду на вкладці «Плагіни»
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Копія створюється зі стану, збереженого на сервері проєктів. Зміни, які інші користувачі ще не зберегли, до неї не входять. Сеанси, блокування та права доступу не копіюються; оригінал лишається як є.
 The crossed wires get free cores of the cable in order	Перетнуті проводи по черзі отримують вільні жили кабелю
 The current page belongs to option {}.	Поточна сторінка належить до опції {}.
 The devices do not fit onto the rail	Пристрої не вміщуються на рейці
@@ -2075,8 +2093,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Бібліотека макросів не містить макросів сторінок (Макроси › Зберегти сторінку як макрос…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модифікатори, з якими коліщатко зсуває вбік або масштабує, задаються в розділі «Клавіші-модифікатори».
 The modules no string takes yet in series, on the first inverter	Модулі, не зайняті жодним ланцюжком, послідовно, на першому інверторі
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Назва на сервері складається з літер, цифр, пробілів, - _ . (до 64 символів).
 The names of its pages follow	Імена його сторінок змінюються разом із ним
 The open project already has your version	Відкритий проєкт уже містить вашу версію
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	У відкритому проєкті є зміни, ще не збережені на сервері проєктів. Вас запитають, чи зберегти їх спочатку; до копії входять лише збережені зміни.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Відкритий проєкт — локальна копія відновлення цього проєкту. Його змін немає на сервері проєктів, і до копії вони не входять.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Відкритий проєкт – локальна копія відновлення. Його зміни не збережено на сервері проєктів; перед відкриттям спільного проєкту ви вирішуєте, зберегти їх локально чи відкинути.
 The page name gets the section number	Ім'я сторінки отримує номер розділу
 The page type, plot frame, title block, structure, description and the whole content are saved.	Зберігаються тип сторінки, рамка аркуша, основний напис, структура, опис і весь вміст.
@@ -2086,13 +2107,16 @@ The point's coordinates in the coordinate reference system	Координати 
 The post; its accessories are the table beams, rails and clamps	Стійка; її аксесуари — балки стола, рейки й затискачі
 The project changed since the search.	Проєкт змінився після пошуку.
 The project check	Перевірка проєкту
+The project data is locked by {}: the properties cannot be changed now.	Дані проєкту заблокував користувач {}: властивості зараз змінити не можна.
 The project database needs the desktop version: the browser cannot search folders.	Для бази даних проєктів потрібна настільна версія: браузер не може шукати в папках.
 The project server does not answer: changes are not saved on it until the connection is back	Сервер проєктів не відповідає: зміни не зберігаються на ньому, доки з'єднання не відновиться
 The project server {} could not open {}.	Сервер проєктів {} не зміг відкрити {}.
 The project's own page templates as a file	Власні шаблони сторінок проєкту як файл
 The project's own title blocks	Власні основні написи проєкту
 The project's own title blocks and report schemes	Власні основні написи та схеми звітів проєкту
+The properties of the open project; changing them locks the project data	Властивості відкритого проєкту; їх зміна блокує дані проєкту
 The properties of the selection in a window beside the page	Властивості виділеного у вікні поруч зі сторінкою
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Тим часом властивості було змінено на сервері проєктів. Перезавантаження покаже їх; введене вами буде замінено.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Рейка або монтажна основа; її приладдя — гаки, затискачі та баласт
 The recalculation keeps frozen routes as long as they are still possible	Під час перерахунку зафіксовані траси зберігаються, доки це можливо
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Стрічка з вкладкою Файл замінює меню; Ctrl+Shift+P знаходить будь-яку команду.
@@ -2137,6 +2161,7 @@ Total selectivity	Повна селективність
 Touch screen	Сенсорний екран
 Transfer project parts to database	Передати вироби проєкту до бази даних
 Translate the project texts; documentation per language	Переклад текстів проєкту; документація для кожної мови
+Try again	Повторити
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот навколо вертикалі проти годинникової стрілки, якщо дивитися згори (90 °: фронти повернуті праворуч)
 Turn the 3D view to the point	Повернути 3D-вигляд до точки
 Tutorial	Навчальний посібник
@@ -2229,6 +2254,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Де у 3D-вигляді клацнули по даху
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Звідки береться структура пристрою: аспекти, що збігаються зі структурою навколо символу, успадковуються і змінюються, коли він переміщується в рамку структури або з неї; інші аспекти належать пристрою і зберігаються.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Де провід починається й закінчується: точка підключення з даних виробу, згенерована із шаблону функцій або центр пристрою, якщо жодна точка підключення не підходить
+Who created the project on the project server and when; not the drawing author below	Хто і коли створив проєкт на сервері проєктів; це не автор креслення нижче
 Whole building	Уся будівля
 Whole words	Цілі слова
 Width / going	Ширина / проступ
@@ -2401,6 +2427,7 @@ x y	x y
 {} (no such device)	{} (немає такого пристрою)
 {} (not placed in the layout)	{} (не розміщено в компонуванні)
 {} (project server, revision {})	{} (сервер проєктів, ревізія {})
+{} (revision {})	{} (ревізія {})
 {} (spare)	{} (резерв)
 {} (subproject of {})	{} (підпроєкт {})
 {} (unused)	{} (не використовується)
@@ -2412,6 +2439,7 @@ x y	x y
 {} added to building {}	{} додано до будівлі {}
 {} addresses changed	Змінено адрес: {}
 {} air-termination rods	Блискавкоприймальних стрижнів: {}
+{} already exists on the project server.	{} уже існує на сервері проєктів.
 {} bundles, {} branch points	Пучків: {}, точок відгалуження: {}
 {} bus cables created	Створено шинних кабелів: {}
 {} bus connections	Шинних з’єднань: {}
@@ -2541,6 +2569,7 @@ x y	x y
 {} unused structure identifiers removed	Вилучено невикористаних структурних позначень: {}
 {} values taken over	Перенесено значень: {}
 {} warnings	Попереджень: {}
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	Тим часом {} було змінено на сервері проєктів. Введене вами збережено; створіть копію ще раз, щоб скопіювати поточний збережений стан.
 {} was imported into the parts database; its page no longer exists	{} імпортовано до бази даних виробів; його сторінки більше немає
 {} windows	Вікон: {}
 {} wire pieces joined	Об’єднано відрізків проводів: {}
@@ -2557,6 +2586,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} (сторінок: {})
 {} – {} here (Esc cancels)	{} – {} тут (Esc скасовує)
 {}, freestanding	{}, наземне
+{}, {} (copy of {}, revision {})	{}, {} (копія {}, ревізія {})
 {}: click to show its floor plan	{}: клацніть, щоб показати план
 {}: crimp together with the wire to {}	{}: обтиснути разом із проводом до {}
 {}: drag to move it, R turns it, a double-click opens it	{}: перетягніть, щоб перемістити, R повертає, подвійне клацання відкриває

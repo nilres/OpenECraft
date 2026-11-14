@@ -131,6 +131,7 @@ All pages	Alle sider
 All report pages	Alle rapportsider
 All user symbols as library file	Alle brugersymboler som biblioteksfil
 All wires of this potential are highlighted.	Alle ledninger med dette potentiale er fremhævet.
+Also copy revisions, baselines and review records	Kopiér også revisioner, baselines og reviewposter
 Also the groups that do not fit the function definition	Også de grupper, der ikke passer til funktionsdefinitionen
 Altitude	Opstillingshøjde
 Always	Altid
@@ -433,6 +434,9 @@ Copy	Kopiér
 Copy / cut / paste (devices get new tags)	Kopiér / klip / sæt ind (enheder får nye mærkninger)
 Copy as new	Kopiér som ny
 Copy built-in…	Kopiér indbygget…
+Copy of	Kopi af
+Copy project	Kopiér projekt
+Copy project…	Kopiér projekt…
 Core designations separated by blanks	Lederbetegnelser adskilt af mellemrum
 Core labels placed by hand	Lederbetegnelser placeret manuelt
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Ledere 1, 2, 3 … for de krydsede ledninger plus GNYE
@@ -444,10 +448,15 @@ Covers what is behind the text	Dækker det, der ligger bag teksten
 Create	Opret
 Create an enclosure in the panel layout first.	Opret først en kapsling i tavlelayoutet.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Opret en kapsling eller et rum (Monteringsrum › Ny kapsling, Nyt rum) for at begynde monteringslayoutet.
+Create and open	Opret og åbn
 Create baseline	Opret baseline
 Create bus cables	Opret buskabler
 Create draft	Opret kladde
 Create revision	Opret revision
+Created on the server	Oprettet på serveren
+Created {} as a copy of {} and opened it	{} oprettet som kopi af {} og åbnet
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Opretter et nyt projekt på serveren ud fra den gemte tilstand af dette projekt; du angiver først dets navn og egenskaber
+Creating {} as a copy of {}…	Opretter {} som kopi af {}…
 Cross references…	Krydsreferencer…
 Crossed wires	Krydsede ledninger
 Ctrl + click on the text opens it as well	Ctrl + klik på teksten åbner den også
@@ -1053,6 +1062,7 @@ Load reserve	Belastningsreserve
 Load template…	Indlæs skabelon…
 Loading changes…	Indlæser ændringer…
 Loading the project access…	Indlæser projektadgangen…
+Loading the properties of {}…	Indlæser egenskaberne for {}…
 Loads	Belastninger
 Local file	Lokal fil
 Local file: {}	Lokal fil: {}
@@ -1294,6 +1304,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ikke ændret: 
 Not found: {}	Ikke fundet: {}
 Not in the project parts – synchronize in parts management	Ikke i projektets artikler – synkroniser i artikelstyringen
 Not on a wire	Ikke på en ledning
+Not recorded	Ikke registreret
 Not saved, locked or changed by another user	Ikke gemt, låst eller ændret af en anden bruger
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ikke taget: venstre knap alene markerer, tegner og flytter; hold en modifikatortast nede eller brug en anden knap.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ikke det delte projekt: ændringer gemmes lokalt, indtil det åbnes på projektserveren igen
@@ -1620,6 +1631,7 @@ Release: lock all pages	Frigiv: Lås alle sider
 Released page – read only	Frigivet side – skrivebeskyttet
 Released pages in it keep their names	Frigivne sider i det beholder deres navne
 Released pages keep their name.	Frigivne sider beholder deres navn.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Originalens frigivne revisioner, baselines, kommentarer, markeringer, godkendelser og ændringsanmodninger. Uden dem begynder kopien som et nyt projekt.
 Releases all locks; the project stays open as a local copy	Frigiver alle låse; projektet forbliver åbent som en lokal kopi
 Releasing…	Frigiver…
 Remove from cable	Fjern fra kabel
@@ -1795,6 +1807,7 @@ Save to project server: {}	Gem på projektserveren: {}
 Save to project server: {} – the connection is lost, saving tries again	Gem på projektserveren: {} – forbindelsen er mistet, gemning prøver igen
 Save workspace	Gem arbejdsområde
 Save workspace…	Gem arbejdsområde…
+Saved the properties of {} (revision {})	Egenskaberne for {} er gemt (revision {})
 Saved to	Gemt i
 Saved to the project server (revision {})	Gemt på projektserveren (revision {})
 Saved workspaces	Gemte arbejdsområder
@@ -1807,6 +1820,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Gemmer a
 Saves your version of the whole project as a project file	Gemmer din version af hele projektet som en projektfil
 Saving failed: {}	Lagringen mislykkedes: {}
 Saving the project access…	Gemmer projektadgangen…
+Saving the properties of {}…	Gemmer egenskaberne for {}…
 Saving to the project server…	Gemmer på projektserveren…
 Schematic crosshair	Trådkors i skemaet
 Scheme	Skema
@@ -1840,6 +1854,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Vælg en makro.
 Select a part. Double click adds it to the device.	Vælg en artikel. Dobbeltklik føjer den til enheden.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Vælg et placeringsskema. Et skema placerer egenskaber ved siden af symboler; symboler, der bruger det, opdateres, når det ændres.
+Select a project in the list	Vælg et projekt på listen
 Select a report block.	Vælg en rapportblok.
 Select a request.	Vælg en anmodning.
 Select a segment.	Vælg et segment.
@@ -1861,6 +1876,7 @@ Semicolon	Semikolon
 Separator	Separator
 Server URL	Server-URL
 Server address and sign-in	Serveradresse og login
+Server project properties	Egenskaber for serverprojektet
 Server type	Servertype
 Servers	Servere
 Service space in front	Serviceområde foran
@@ -1916,6 +1932,7 @@ Shown now: {}	Vises nu: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Vises på forsiden og af billedelementerne i tegningshoveder, der viser projektets logo
 Shows	Viser
 Shows the differences of your version to the open project; selected ones can be taken over	Viser forskellene mellem din version og det åbne projekt; de valgte kan overtages
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Viser de egenskaber, der er gemt på projektserveren; du ændrer dem her, hvis du må, og ingen har låst projektdata
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sidevægge, bagvæg, tag og bund set udefra: ventilatorer, kabelforskruninger, udskæringer
 Sign in in the Project server pane; the project opens afterwards	Log ind i ruden Projektserver; derefter åbnes projektet
 Sign in…	Log ind…
@@ -2059,6 +2076,7 @@ The aspect ratio is kept.	Højde-bredde-forholdet bevares.
 The check warns about cable ducts filled above this level	Kontrollen advarer om kabelkanaler, der er fyldt over dette niveau
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Kontrollerne overholder afstandene mellem klasser og lader klasser overlappe som angivet i Layoutkontroller
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Kommandoerne fra alle plugins efter plugin, med søgning; stjernen fastgør en kommando til fanen Plugins
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopien oprettes ud fra den tilstand, der er gemt på projektserveren. Ændringer, som andre brugere endnu ikke har gemt, er ikke med. Sessioner, låse og adgangsrettigheder kopieres ikke; originalen forbliver, som den er.
 The crossed wires get free cores of the cable in order	De krydsede ledninger får kablets ledige ledere i rækkefølge
 The current page belongs to option {}.	Den aktuelle side tilhører option {}.
 The devices do not fit onto the rail	Enhederne passer ikke på skinnen
@@ -2076,8 +2094,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Makrobiblioteket har ingen sidemakroer (Makroer › Gem side som makro…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifikatortasterne, der får hjulet til at panorere sidelæns eller zoome, indstilles under Modifikatortaster.
 The modules no string takes yet in series, on the first inverter	Modulerne, som ingen streng tager endnu, i serie, på den første inverter
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Navnet på serveren består af bogstaver, cifre, mellemrum, - _ . (højst 64 tegn).
 The names of its pages follow	Navnene på dets sider følger med
 The open project already has your version	Det åbne projekt har allerede din version
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Det åbne projekt har ændringer, som endnu ikke er gemt på projektserveren. Du bliver spurgt, om de skal gemmes først; kun gemte ændringer er med i kopien.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Det åbne projekt er en lokal gendannelseskopi af dette projekt. Dets ændringer er ikke på projektserveren og er ikke med i kopien.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Det åbne projekt er en lokal gendannelseskopi. Dets ændringer er ikke gemt på projektserveren; før det delte projekt åbnes, beslutter du, om de skal gemmes lokalt eller kasseres.
 The page name gets the section number	Sidenavnet får afsnitsnummeret
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sidetype, plotramme, tegningshoved, struktur, beskrivelse og hele indholdet gemmes.
@@ -2087,13 +2108,16 @@ The point's coordinates in the coordinate reference system	Punktets koordinater 
 The post; its accessories are the table beams, rails and clamps	Stolpen; dens tilbehør er bordbjælker, skinner og klemmer
 The project changed since the search.	Projektet er ændret siden søgningen.
 The project check	Projektkontrollen
+The project data is locked by {}: the properties cannot be changed now.	Projektdata er låst af {}: Egenskaberne kan ikke ændres nu.
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kræver desktopversionen: browseren kan ikke gennemsøge mapper.
 The project server does not answer: changes are not saved on it until the connection is back	Projektserveren svarer ikke: ændringer gemmes ikke der, før forbindelsen er tilbage
 The project server {} could not open {}.	Projektserveren {} kunne ikke åbne {}.
 The project's own page templates as a file	Projektets egne sideskabeloner som fil
 The project's own title blocks	Projektets egne tegningshoveder
 The project's own title blocks and report schemes	Projektets egne tegningshoveder og rapportskemaer
+The properties of the open project; changing them locks the project data	Egenskaberne for det åbne projekt; ændring af dem låser projektdata
 The properties of the selection in a window beside the page	Markeringens egenskaber i et vindue ved siden af siden
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Egenskaberne er i mellemtiden ændret på projektserveren. Genindlæs viser dem; dine indtastninger erstattes.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Skinnen eller monteringsfoden; dens tilbehør er kroge, klemmer og ballast
 The recalculation keeps frozen routes as long as they are still possible	Genberegningen bevarer fastlåste føringer, så længe de stadig er mulige
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Båndet med fanen Filer erstatter menuerne; Ctrl+Shift+P finder enhver kommando.
@@ -2138,6 +2162,7 @@ Total selectivity	Total selektivitet
 Touch screen	Berøringsskærm
 Transfer project parts to database	Overfør projektartikler til databasen
 Translate the project texts; documentation per language	Oversæt projektteksterne; dokumentation pr. sprog
+Try again	Prøv igen
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drejning om lodret akse, mod uret set ovenfra (90 °: fronterne vender mod højre)
 Turn the 3D view to the point	Vend 3D-visningen mod punktet
 Tutorial	Selvstudium
@@ -2230,6 +2255,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Hvor der blev klikket på taget i 3D-visningen
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Hvor enhedens struktur kommer fra: aspekter, der er lig med strukturen omkring symbolet, arves og følger med, når det flyttes ind i eller ud af en strukturboks; andre aspekter er enhedens egne og bliver.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Hvor ledningen starter og slutter: et tilslutningspunkt fra artikeldataene, et genereret fra funktionsskabelonen eller enhedens midte, hvis intet tilslutningspunkt passer
+Who created the project on the project server and when; not the drawing author below	Hvem der oprettede projektet på projektserveren og hvornår; ikke tegningens forfatter nedenfor
 Whole building	Hele bygningen
 Whole words	Hele ord
 Width / going	Bredde / grund
@@ -2402,6 +2428,7 @@ x y	x y
 {} (no such device)	{} (intet sådant apparat)
 {} (not placed in the layout)	{} (ikke placeret i layoutet)
 {} (project server, revision {})	{} (projektserver, revision {})
+{} (revision {})	{} (revision {})
 {} (spare)	{} (reserve)
 {} (subproject of {})	{} (delprojekt af {})
 {} (unused)	{} (ubrugt)
@@ -2413,6 +2440,7 @@ x y	x y
 {} added to building {}	{} tilføjet til bygning {}
 {} addresses changed	{} adresser ændret
 {} air-termination rods	{} fangstænger
+{} already exists on the project server.	{} findes allerede på projektserveren.
 {} bundles, {} branch points	{} bundter, {} forgreningspunkter
 {} bus cables created	{} buskabler oprettet
 {} bus connections	{} busforbindelser
@@ -2542,6 +2570,7 @@ x y	x y
 {} unused structure identifiers removed	{} ubrugte strukturbetegnelser fjernet
 {} values taken over	{} værdier overtaget
 {} warnings	{} advarsler
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	{} er i mellemtiden ændret på projektserveren. Dine indtastninger bevares; opret kopien igen for at kopiere den aktuelt gemte tilstand.
 {} was imported into the parts database; its page no longer exists	{} blev importeret til artikeldatabasen; dens side findes ikke længere
 {} windows	{} vinduer
 {} wire pieces joined	{} ledningsstykker sammenføjet
@@ -2558,6 +2587,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} sider)
 {} – {} here (Esc cancels)	{} – {} her (Esc annullerer)
 {}, freestanding	{}, jordmonteret
+{}, {} (copy of {}, revision {})	{}, {} (kopi af {}, revision {})
 {}: click to show its floor plan	{}: klik for at vise plantegningen
 {}: crimp together with the wire to {}	{}: krymp sammen med lederen til {}
 {}: drag to move it, R turns it, a double-click opens it	{}: træk for at flytte, R drejer, dobbeltklik åbner

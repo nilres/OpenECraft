@@ -131,6 +131,7 @@ All pages	Kaikki sivut
 All report pages	Kaikki raporttisivut
 All user symbols as library file	Kaikki käyttäjän symbolit kirjastotiedostona
 All wires of this potential are highlighted.	Kaikki tämän potentiaalin johdot on korostettu.
+Also copy revisions, baselines and review records	Kopioi myös revisiot, lähtötasot ja katselmointimerkinnät
 Also the groups that do not fit the function definition	Myös ryhmät, jotka eivät sovi toimintomäärittelyyn
 Altitude	Korkeus merenpinnasta
 Always	Aina
@@ -433,6 +434,9 @@ Copy	Kopioi
 Copy / cut / paste (devices get new tags)	Kopioi / leikkaa / liitä (laitteet saavat uudet tunnukset)
 Copy as new	Kopioi uutena
 Copy built-in…	Kopioi sisäinen…
+Copy of	Kopio projektista
+Copy project	Kopioi projekti
+Copy project…	Kopioi projekti…
 Core designations separated by blanks	Johdinmerkinnät välilyönneillä erotettuina
 Core labels placed by hand	Johdinmerkinnät sijoitettu käsin
 Cores 1, 2, 3 … for the wires crossed, plus GNYE	Johtimet 1, 2, 3 … ristityille johdoille sekä GNYE
@@ -444,10 +448,15 @@ Covers what is behind the text	Peittää tekstin takana olevan
 Create	Luo
 Create an enclosure in the panel layout first.	Luo ensin kotelo kaappiasennuksessa.
 Create an enclosure or a room (Layout space › New enclosure, New room) to start the panel layout.	Aloita asennuskuva luomalla kotelo tai tila (Asennustila › Uusi kotelo, Uusi tila).
+Create and open	Luo ja avaa
 Create baseline	Luo lähtötaso
 Create bus cables	Luo väyläkaapelit
 Create draft	Luo luonnos
 Create revision	Luo revisio
+Created on the server	Luotu palvelimelle
+Created {} as a copy of {} and opened it	{} luotiin projektin {} kopiona ja avattiin
+Creates a new project on the server from the saved state of this one; you set its name and properties first	Luo palvelimelle uuden projektin tämän projektin tallennetusta tilasta; määrität ensin sen nimen ja ominaisuudet
+Creating {} as a copy of {}…	Luodaan {} projektin {} kopiona…
 Cross references…	Ristiviittaukset…
 Crossed wires	Ristityt johdot
 Ctrl + click on the text opens it as well	Ctrl + napsautus tekstiin avaa sen myös
@@ -1053,6 +1062,7 @@ Load reserve	Kuormitusvara
 Load template…	Lataa malli…
 Loading changes…	Ladataan muutoksia…
 Loading the project access…	Ladataan projektin käyttöoikeuksia…
+Loading the properties of {}…	Ladataan projektin {} ominaisuuksia…
 Loads	Kuormat
 Local file	Paikallinen tiedosto
 Local file: {}	Paikallinen tiedosto: {}
@@ -1294,6 +1304,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
+Not recorded	Ei tallennettu
 Not saved, locked or changed by another user	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ei otettu: pelkkä vasen painike valitsee, piirtää ja siirtää; pidä muokkausnäppäin painettuna tai käytä toista painiketta.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ei jaettu projekti: muutokset tallennetaan paikallisesti, kunnes se avataan uudelleen projektipalvelimella
@@ -1620,6 +1631,7 @@ Release: lock all pages	Vapauta: lukitse kaikki sivut
 Released page – read only	Vapautettu sivu – vain luku
 Released pages in it keep their names	Sen vapautetut sivut säilyttävät nimensä
 Released pages keep their name.	Vapautetut sivut säilyttävät nimensä.
+Released revisions, baselines, comments, markup, approvals and change requests of the source. Without them the copy starts as a new project.	Alkuperäisen vapautetut revisiot, lähtötasot, kommentit, merkinnät, hyväksynnät ja muutospyynnöt. Ilman niitä kopio alkaa uutena projektina.
 Releases all locks; the project stays open as a local copy	Vapauttaa kaikki lukitukset; projekti pysyy avoinna paikallisena kopiona
 Releasing…	Vapautetaan…
 Remove from cable	Poista kaapelista
@@ -1795,6 +1807,7 @@ Save to project server: {}	Tallenna projektipalvelimelle: {}
 Save to project server: {} – the connection is lost, saving tries again	Tallenna projektipalvelimelle: {} – yhteys on katkennut, tallennus yrittää uudelleen
 Save workspace	Tallenna työtila
 Save workspace…	Tallenna työtila…
+Saved the properties of {} (revision {})	Projektin {} ominaisuudet tallennettu (revisio {})
 Saved to	Tallennettu kohteeseen
 Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
 Saved workspaces	Tallennetut työtilat
@@ -1807,6 +1820,7 @@ Saves the workspace, the arrangement of the panels and the open windows	Tallenta
 Saves your version of the whole project as a project file	Tallentaa versiosi koko projektista projektitiedostoksi
 Saving failed: {}	Tallennus epäonnistui: {}
 Saving the project access…	Tallennetaan projektin käyttöoikeuksia…
+Saving the properties of {}…	Tallennetaan projektin {} ominaisuuksia…
 Saving to the project server…	Tallennetaan projektipalvelimelle…
 Schematic crosshair	Kaavion ristikkokohdistin
 Scheme	Malli
@@ -1840,6 +1854,7 @@ Select a function definition. Project definitions (bold) can be changed and are 
 Select a macro.	Valitse makro.
 Select a part. Double click adds it to the device.	Valitse osa. Kaksoisnapsautus lisää sen laitteeseen.
 Select a placement scheme. A scheme places properties beside symbols; symbols using it are updated when it changes.	Valitse sijoitteluskeema. Skeema sijoittaa ominaisuuksia symbolien viereen; sitä käyttävät symbolit päivittyvät, kun skeema muuttuu.
+Select a project in the list	Valitse projekti luettelosta
 Select a report block.	Valitse raporttilohko.
 Select a request.	Valitse pyyntö.
 Select a segment.	Valitse segmentti.
@@ -1861,6 +1876,7 @@ Semicolon	Puolipiste
 Separator	Erotin
 Server URL	Palvelimen URL
 Server address and sign-in	Palvelimen osoite ja kirjautuminen
+Server project properties	Palvelinprojektin ominaisuudet
 Server type	Palvelimen tyyppi
 Servers	Palvelimet
 Service space in front	Huoltotila edessä
@@ -1916,6 +1932,7 @@ Shown now: {}	Näytetään nyt: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Näytetään kansilehdellä ja niiden nimiöiden kuvaelementeissä, jotka näyttävät projektin logon
 Shows	Näyttää
 Shows the differences of your version to the open project; selected ones can be taken over	Näyttää versiosi erot avoimeen projektiin; valitut voidaan ottaa käyttöön
+Shows the properties saved on the project server; you change them here if you may and nobody has locked the project data	Näyttää projektipalvelimelle tallennetut ominaisuudet; muutat niitä tässä, jos sinulla on oikeus eikä kukaan ole lukinnut projektin tietoja
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Sivuseinät, takaseinä, katto ja pohja ulkoa katsottuna: tuulettimet, kaapeliläpiviennit, aukot
 Sign in in the Project server pane; the project opens afterwards	Kirjaudu sisään Projektipalvelin-ruudussa; projekti avautuu sen jälkeen
 Sign in…	Kirjaudu sisään…
@@ -2059,6 +2076,7 @@ The aspect ratio is kept.	Kuvasuhde säilytetään.
 The check warns about cable ducts filled above this level	Tarkistus varoittaa johtokouruista, joiden täyttö ylittää tämän tason
 The checks keep the distances between classes and let classes overlap as set in Layout checks	Tarkistukset pitävät luokkien väliset etäisyydet ja sallivat luokkien päällekkäisyyden kohdassa Asennustarkistukset asetetulla tavalla
 The commands of all plugins by plugin, with a search; the star pins a command to the Plugins tab	Kaikkien laajennusten komennot laajennuksittain, haulla; tähti kiinnittää komennon Laajennukset-välilehdelle
+The copy is created from the state saved on the project server. Changes other users have not saved yet are not part of it. Sessions, locks and access rights are not copied; the original stays as it is.	Kopio luodaan projektipalvelimelle tallennetusta tilasta. Muutokset, joita muut käyttäjät eivät ole vielä tallentaneet, eivät kuulu siihen. Istuntoja, lukituksia ja käyttöoikeuksia ei kopioida; alkuperäinen säilyy ennallaan.
 The crossed wires get free cores of the cable in order	Ristityt johdot saavat kaapelin vapaat johtimet järjestyksessä
 The current page belongs to option {}.	Nykyinen sivu kuuluu vaihtoehtoon {}.
 The devices do not fit onto the rail	Laitteet eivät mahdu kiskolle
@@ -2076,8 +2094,11 @@ The logos of the manufacturers' catalogs on the parts server, beside the details
 The macro library has no page macros (Macros › Save page as macro…).	Makrokirjastossa ei ole sivumakroja (Makrot › Tallenna sivu makrona…).
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Muokkausnäppäimet, joilla rulla panoroi sivuttain tai zoomaa, asetetaan kohdassa Muokkausnäppäimet.
 The modules no string takes yet in series, on the first inverter	Moduulit, joita mikään merkkijono ei vielä ota, sarjassa, ensimmäiseen vaihtosuuntaajaan
+The name on the server needs letters, digits, space, - _ . (up to 64 characters).	Nimessä palvelimella saa olla kirjaimia, numeroita, välilyöntejä, - _ . (enintään 64 merkkiä).
 The names of its pages follow	Sen sivujen nimet muuttuvat mukana
 The open project already has your version	Avoimessa projektissa on jo versiosi
+The open project has changes that are not saved on the project server yet. You are asked whether to save them first; only saved changes are part of the copy.	Avoimessa projektissa on muutoksia, joita ei ole vielä tallennettu projektipalvelimelle. Sinulta kysytään, tallennetaanko ne ensin; kopioon kuuluvat vain tallennetut muutokset.
+The open project is a local recovery copy of this project. Its changes are not on the project server and not part of the copy.	Avoin projekti on tämän projektin paikallinen palautuskopio. Sen muutokset eivät ole projektipalvelimella eivätkä kuulu kopioon.
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Avoin projekti on paikallinen palautuskopio. Sen muutoksia ei ole tallennettu projektipalvelimelle; ennen kuin jaettu projekti avautuu, päätät, tallennetaanko ne paikallisesti vai hylätäänkö ne.
 The page name gets the section number	Sivun nimi saa osion numeron
 The page type, plot frame, title block, structure, description and the whole content are saved.	Sivutyyppi, piirustuskehys, nimiö, rakenne, kuvaus ja koko sisältö tallennetaan.
@@ -2087,13 +2108,16 @@ The point's coordinates in the coordinate reference system	Pisteen koordinaatit 
 The post; its accessories are the table beams, rails and clamps	Paalu; sen tarvikkeita ovat pöydän palkit, kiskot ja kiinnittimet
 The project changed since the search.	Projekti on muuttunut haun jälkeen.
 The project check	Projektin tarkistus
+The project data is locked by {}: the properties cannot be changed now.	Projektin tiedot on lukinnut {}: ominaisuuksia ei voi nyt muuttaa.
 The project database needs the desktop version: the browser cannot search folders.	Projektitietokanta vaatii työpöytäversion: selain ei voi hakea kansioista.
 The project server does not answer: changes are not saved on it until the connection is back	Projektipalvelin ei vastaa: muutoksia ei tallenneta sinne ennen kuin yhteys palaa
 The project server {} could not open {}.	Projektipalvelin {} ei voinut avata projektia {}.
 The project's own page templates as a file	Projektin omat sivumallit tiedostona
 The project's own title blocks	Projektin omat nimiöt
 The project's own title blocks and report schemes	Projektin omat nimiöt ja raporttimallit
+The properties of the open project; changing them locks the project data	Avoimen projektin ominaisuudet; niiden muuttaminen lukitsee projektin tiedot
 The properties of the selection in a window beside the page	Valinnan ominaisuudet ikkunassa sivun vieressä
+The properties were changed on the project server meanwhile. Reload shows them; your entries are replaced.	Ominaisuuksia on sillä välin muutettu projektipalvelimella. Lataa uudelleen näyttää ne; syöttämäsi tiedot korvataan.
 The rail or mounting base; its accessories are the hooks, clamps and ballast	Kisko tai kiinnitysjalka; sen lisävarusteita ovat koukut, puristimet ja painolasti
 The recalculation keeps frozen routes as long as they are still possible	Uudelleenlaskenta säilyttää lukitut reitit niin kauan kuin ne ovat mahdollisia
 The ribbon with the File tab replaces the menus; Ctrl+Shift+P finds any command.	Valintanauha Tiedosto-välilehtineen korvaa valikot; Ctrl+Shift+P löytää minkä tahansa komennon.
@@ -2138,6 +2162,7 @@ Total selectivity	Täydellinen selektiivisyys
 Touch screen	Kosketusnäyttö
 Transfer project parts to database	Siirrä projektin osat tietokantaan
 Translate the project texts; documentation per language	Käännä projektin tekstit; dokumentaatio kielittäin
+Try again	Yritä uudelleen
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Kierto pystyakselin ympäri, ylhäältä katsottuna vastapäivään (90 °: etupuolet osoittavat oikealle)
 Turn the 3D view to the point	Käännä 3D-näkymä pisteeseen
 Tutorial	Opetusohjelma
@@ -2230,6 +2255,7 @@ Where the point is in the plant; y: its height above the ground level of the pla
 Where the roof was clicked in the 3D view	Kohta, jossa kattoa napsautettiin 3D-näkymässä
 Where the structure of the device comes from: aspects equal to the structure around the symbol are inherited and follow when it moves into or out of a structure box; other aspects are the device's own and stay.	Mistä laitteen rakenne tulee: symbolia ympäröivää rakennetta vastaavat aspektit peritään ja ne muuttuvat, kun symboli siirretään rakennelaatikkoon tai siitä pois; muut aspektit ovat laitteen omia ja säilyvät.
 Where the wire starts and ends: a connection point from the part data, one generated from the function template, or the device centre if no connection point matches	Mistä johto alkaa ja mihin se päättyy: liitäntäpiste osan tiedoista, toimintomallista luotu liitäntäpiste tai laitteen keskikohta, jos mikään liitäntäpiste ei vastaa
+Who created the project on the project server and when; not the drawing author below	Kuka loi projektin projektipalvelimelle ja milloin; ei alla oleva piirustuksen tekijä
 Whole building	Koko rakennus
 Whole words	Kokonaiset sanat
 Width / going	Leveys / etenemä
@@ -2402,6 +2428,7 @@ x y	x y
 {} (no such device)	{} (laitetta ei ole)
 {} (not placed in the layout)	{} (ei sijoitettu asennukseen)
 {} (project server, revision {})	{} (projektipalvelin, revisio {})
+{} (revision {})	{} (revisio {})
 {} (spare)	{} (vara)
 {} (subproject of {})	{} (projektin {} aliprojekti)
 {} (unused)	{} (käyttämätön)
@@ -2413,6 +2440,7 @@ x y	x y
 {} added to building {}	{} lisätty rakennukseen {}
 {} addresses changed	{} osoitetta muutettu
 {} air-termination rods	{} ukkosenjohdatintankoa
+{} already exists on the project server.	{} on jo projektipalvelimella.
 {} bundles, {} branch points	{} nippua, {} haarautumispistettä
 {} bus cables created	{} väyläkaapelia luotu
 {} bus connections	{} väyläyhteyttä
@@ -2542,6 +2570,7 @@ x y	x y
 {} unused structure identifiers removed	{} käyttämätöntä rakennetunnusta poistettu
 {} values taken over	{} arvoa otettiin käyttöön
 {} warnings	Varoituksia: {}
+{} was changed on the project server meanwhile. Your entries are kept; create the copy again to copy the current saved state.	Projektia {} on sillä välin muutettu projektipalvelimella. Syöttämäsi tiedot säilyvät; luo kopio uudelleen, jotta nykyinen tallennettu tila kopioidaan.
 {} was imported into the parts database; its page no longer exists	{} tuotiin osatietokantaan; sen sivua ei enää ole
 {} windows	{} ikkunaa
 {} wire pieces joined	{} johdonpalaa yhdistetty
@@ -2558,6 +2587,7 @@ x y	x y
 {} – {} ({} pages)	{} – {} ({} sivua)
 {} – {} here (Esc cancels)	{} – {} tässä (Esc peruuttaa)
 {}, freestanding	{}, maa-asennus
+{}, {} (copy of {}, revision {})	{}, {} (kopio projektista {}, revisio {})
 {}: click to show its floor plan	{}: napsauta näyttääksesi pohjapiirroksen
 {}: crimp together with the wire to {}	{}: puristetaan yhdessä johtimen {} kanssa
 {}: drag to move it, R turns it, a double-click opens it	{}: siirrä vetämällä, R kääntää, kaksoisnapsautus avaa
