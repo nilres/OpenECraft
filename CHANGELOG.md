@@ -5,6 +5,22 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Web page of the project server**: started with `--web` (or
+  `OPENECRAFT_PROJECT_WEB=true`, `web = true` in its configuration file), the project
+  server serves a web page with the projects the user may see and a read-only view of
+  each: the pages by section or by structure, the devices with their places and the
+  pages drawn as on paper, with the locks of the users working on them. Project
+  managers edit the permissions of their projects; administrators get an
+  administration area for the users, the access rights (access without sign-in,
+  roles, grants) and the directories (Active Directory, LDAP, with a test), and a
+  view of the open sessions (user, project, saves, locked pages) with the history of
+  the ended ones, which the server keeps in `sessions.jsonl` of its data directory. The
+  server also offers the directories over its API (`/api/v1/directories`) and tells
+  the caller's user and rights in `/api/v1/info`. The page shares its sign-in, access
+  administration and styles with the parts server's data portal (new crate
+  `openecraft-web`), and its project views with the editor's navigator (new crate
+  `openecraft-view`).
+
 - **Shared saves one at a time** (#182): a save to the project server waits for
   the answer to the one before it (Save or Ctrl+S again sends the project as it is
   then), and an answer marks only what its request sent as saved: edits or Undo

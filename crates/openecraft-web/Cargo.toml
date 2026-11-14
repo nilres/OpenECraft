@@ -1,0 +1,12 @@
+[package]
+name = "openecraft-web"
+version.workspace = true
+edition = "2021"
+description = "Web pages of the OpenECraft servers: the scripts, styles and texts the parts server and the project server share (sign-in, languages, access rights, directories)"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+openecraft-i18n = { path = "../openecraft-i18n" }
+openecraft-parts = { path = "../openecraft-parts" }
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }

@@ -1,6 +1,7 @@
 # English<TAB>Deutsch<TAB>Français<TAB>Español – texts shown by several areas. Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(alle)	(tous)	(todos)
 (no entries)	(keine Einträge)	(aucune entrée)	(sin entradas)
+(no structure)	(keine Struktur)	(sans structure)	(sin estructura)
 --json needs a JSON object	--json erwartet ein JSON-Objekt	--json attend un objet JSON	--json necesita un objeto JSON
 3D model	3D-Modell	Modèle 3D	Modelo 3D
 3D routing	3D-Verlegung	Routage 3D	Enrutado 3D
@@ -18,11 +19,13 @@ Add	Hinzufügen	Ajouter	Añadir
 Add a PDF of all pages	Ein PDF aller Seiten hinzufügen	Ajouter un PDF de toutes les pages	Añadir un PDF de todas las páginas
 Add to favorites	Zu Favoriten hinzufügen	Ajouter aux favoris	Añadir a favoritos
 Address	Adresse	Adresse	Dirección
+Administrator	Administrator	Administrateur	Administrador
 Angle	Winkel	Angle	Ángulo
 Apply	Übernehmen	Appliquer	Aplicar
 Approve	Genehmigen	Approuver	Aprobar
 Approvers	Genehmiger	Approbateurs	Aprobadores
 Automatic	Automatisch	Automatique	Automático
+Aux	Hilfs	Aux	Aux
 Below	Unterhalb	En dessous	Abajo
 Bold	Fett	Gras	Negrita
 Bottom	Boden	Fond	Fondo
@@ -129,6 +132,7 @@ Downloading {}…	{} wird heruntergeladen…	Téléchargement de {}…	Descargan
 Drag to turn the model	Ziehen, um das Modell zu drehen	Faites glisser pour tourner le modèle	Arrastre para girar el modelo
 EMC clearance	EMV-Abstand	Distance CEM	Distancia CEM
 Edit	Bearbeiten	Édition	Edición
+Editor	Bearbeiter	Éditeur	Editor
 Electro-fluid cross reference	Elektro-Fluid-Querverweise	Renvois électro-fluidiques	Referencias cruzadas electro-fluidos
 Enclosure	Gehäuse	Enveloppe	Envolvente
 Enclosures	Gehäuse	Enveloppes	Envolventes
@@ -149,6 +153,8 @@ Field wiring	Feldverdrahtung	Câblage de terrain	Cableado de campo
 File	Datei	Fichier	Archivo
 Files	Dateien	Fichiers	Archivos
 Filter	Filter	Filtre	Filtro
+Filter devices…	Betriebsmittel filtern …	Filtrer les appareils…	Filtrar dispositivos…
+Fit	Einpassen	Ajuster	Ajustar
 Fits	Passt zu	Compatible avec	Compatible con
 Fitting at the end	Verschraubung am Ende	Raccord à la fin	Racor al final
 Fitting at the start	Verschraubung am Anfang	Raccord au début	Racor al inicio
@@ -170,6 +176,7 @@ Gives up a subproject: its pages are unlocked again	Verwirft ein Teilprojekt: Se
 Gland plate	Flanschplatte	Plaque passe-câbles	Placa pasacables
 Graphics	Grafik	Graphiques	Gráficos
 Group	Gruppe	Groupe	Grupo
+Group the pages by structure	Seiten nach Struktur gruppieren	Grouper les pages par structure	Agrupar las páginas por estructura
 Groups	Gruppen	Groupes	Grupos
 Harness	Kabelbaum	Faisceau	Mazo
 Harness data	Kabelbaumdaten	Données de faisceau	Datos de mazos
@@ -218,9 +225,12 @@ Loaded circuits bunched together	Gehäufte belastete Stromkreise	Circuits charg�
 Location	Ort	Emplacement	Ubicación
 Location (+)	Einbauort (+)	Emplacement (+)	Ubicación (+)
 Location along the segment, 0 … 1	Position entlang des Segments, 0 … 1	Position le long du segment, 0 … 1	Posición a lo largo del segmento, 0 … 1
+Locked	Gesperrt	Verrouillé	Bloqueada
+Locked by {}	Gesperrt von {}	Verrouillé par {}	Bloqueado por {}
 Logo	Logo	Logo	Logotipo
 MTTFd (years)	MTTFd (Jahre)	MTTFd (ans)	MTTFd (años)
 Machine	Maschine	Machine	Máquina
+Main	Haupt	Principal	Principal
 Main earthing busbar (device) it is connected to; empty: none	Haupterdungsschiene (Gerät), an die er angeschlossen ist; leer: keine	Borne principale de terre (appareil) à laquelle elle est raccordée ; vide : aucune	Barra principal de tierra (equipo) a la que está conectado; vacío: ninguna
 Main earthing terminal	Haupterdungsschiene	Borne principale de terre	Borne principal de tierra
 Main switch	Hauptschalter	Interrupteur principal	Interruptor principal
@@ -365,9 +375,11 @@ Product subgroup	Produktuntergruppe	Sous-groupe de produits	Subgrupo de producto
 Product top group	Produkthauptgruppe	Groupe de produits principal	Grupo principal de productos
 Profile	Profil	Profil	Perfil
 Project	Projekt	Projet	Proyecto
+Project data	Projektdaten	Données de projet	Datos de proyecto
 Project languages	Projektsprachen	Langues du projet	Idiomas del proyecto
 Project logo	Projektlogo	Logo du projet	Logotipo del proyecto
 Project management	Projektverwaltung	Gestion de projets	Gestión de proyectos
+Project manager	Projektleiter	Chef de projet	Jefe de proyecto
 Project name	Projektname	Nom du projet	Nombre del proyecto
 Project properties	Projekteigenschaften	Propriétés du projet	Propiedades del proyecto
 Properties	Eigenschaften	Propriétés	Propiedades
@@ -384,6 +396,7 @@ Rated power	Bemessungsleistung	Puissance assignée	Potencia nominal
 Rear wall	Rückwand	Paroi arrière	Pared trasera
 Rectangle	Rechteck	Rectangle	Rectángulo
 Rectangular	Rechteckig	Rectangulaire	Rectangular
+Refresh	Aktualisieren	Actualiser	Actualizar
 Reject	Ablehnen	Refuser	Rechazar
 Relative humidity	Relative Luftfeuchte	Humidité relative	Humedad relativa
 Relay	Relais	Relais	Relé
@@ -399,6 +412,7 @@ Report blocks	Auswertungsblöcke	Blocs de rapports	Bloques de informes
 Report: {}	Bericht: {}	Rapport : {}	Informe: {}
 Required	Gefordert	Requis	Requerido
 Reserve	Reserve	Réserve	Reserva
+Reviewer	Prüfer	Réviseur	Revisor
 Revision	Revision	Révision	Revisión
 Revision {}	Revision {}	Révision {}	Revisión {}
 Rework	Nacharbeit	Reprise	Retrabajo
@@ -442,6 +456,7 @@ Sign in	Anmelden	Se connecter	Iniciar sesión
 Sign out	Abmelden	Se déconnecter	Cerrar sesión
 Signed in as {}	Angemeldet als {}	Connecté en tant que {}	Sesión iniciada como {}
 Signed in as {} ({})	Angemeldet als {} ({})	Connecté en tant que {} ({})	Sesión iniciada como {} ({})
+Signed out	Abgemeldet	Déconnecté	Sesión cerrada
 Signing in…	Anmeldung…	Connexion…	Iniciando sesión…
 Single-line / multi-line	Einpolig / allpolig	Unifilaire / multifilaire	Unifilar / multifilar
 Size	Größe	Taille	Tamaño
@@ -449,6 +464,7 @@ Socket side	Buchsenseite	Côté douille	Lado hembra
 Solenoid not linked	Magnetspule nicht verknüpft	Bobine non liée	Bobina no vinculada
 Sort by	Sortieren nach	Trier par	Ordenar por
 Source	Quelle	Source	Origen
+Started	Begonnen	Commencé	Iniciado
 State	Zustand	État	Estado
 Status	Status	État	Estado
 String	String	Chaîne	String
@@ -511,6 +527,7 @@ User	Benutzer	Utilisateur	Usuario
 User name	Benutzername	Nom d'utilisateur	Nombre de usuario
 Users	Benutzer	Utilisateurs	Usuarios
 Version	Version	Version	Versión
+Viewer	Betrachter	Lecteur	Lector
 Voltage	Spannung	Tension	Tensión
 Wall penetration	Wanddurchbruch	Traversée de mur	Pasamuros
 Warning	Warnung	Avertissement	Advertencia
@@ -528,6 +545,8 @@ Wired	Verdrahtet	Câblé	Cableado
 Wires	Leitungen	Fils	Hilos
 Wiring	Verdrahtung	Câblage	Cableado
 Yes	Ja	Oui	Sí
+Zoom in	Vergrößern	Zoom avant	Acercar
+Zoom out	Verkleinern	Zoom arrière	Alejar
 access denied	Zugriff verweigert	accès refusé	acceso denegado
 approved	genehmigt	approuvé	aprobado
 bonded	angeschlossen	relié	conectado
@@ -557,6 +576,7 @@ yes	ja	oui	sí
 {} is not a PNG or JPEG image	{} ist kein PNG- oder JPEG-Bild	{} n'est pas une image PNG ou JPEG	{} no es una imagen PNG o JPEG
 {} is not a room	{} ist kein Raum	{} n'est pas une salle	{} no es una sala
 {} parts	{} Artikel	{} articles	{} artículos
+{} users	{} Benutzer	{} utilisateurs	{} usuarios
 {} wires	{} Leitungen	{} fils	{} hilos
 {}, together with the wire to {}	{}, zusammen mit der Leitung nach {}	{}, avec le fil vers {}	{}, junto con el cable hacia {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} steht nicht auf dem Boden, einen bodenstehenden Artikel wählen	{} : {} ne se pose pas au sol, choisissez un article posé au sol	{}: {} no se apoya en el suelo, elija un artículo de pie sobre el suelo

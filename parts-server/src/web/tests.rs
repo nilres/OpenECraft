@@ -1,4 +1,6 @@
 use super::*;
+use openecraft_i18n::translate;
+use openecraft_parts::access::Right;
 
 #[test]
 fn texts_are_translated() {
@@ -47,33 +49,18 @@ fn names_and_titles_are_in_the_catalog() {
     assert!(missing.is_empty(), "add to crates/openecraft-i18n/src/catalog/parts/required.tsv: {missing:?}");
 }
 
-/// Every text the page shows through `t("…")` / `tf("…")` / `data-t` is in [`TEXTS`].
+/// Every text the page shows through `t("…")` / `tf("…")` / `data-t` is in [`TEXTS`]
+/// or in those of the shared scripts.
 #[test]
 fn the_page_uses_known_texts_only() {
-    let known: Vec<&str> = TEXTS.to_vec();
-    let mut missing = Vec::new();
-    for marker in ["t(\"", "tf(\"", "tp(\"", "data-t=\"", "data-tp=\""] {
-        let page = format!("{PAGE}{SCRIPT}{ADMIN_SCRIPT}{EDIT_SCRIPT}{DASHBOARD_SCRIPT}");
-        let mut rest = page.as_str();
-        while let Some(i) = rest.find(marker) {
-            let before = rest[..i].chars().last();
-            rest = &rest[i + marker.len()..];
-            if before.is_some_and(|c| c.is_alphanumeric() || c == '_' || c == '-') && !marker.starts_with("data") {
-                continue;
-            }
-            let end = rest.find('"').unwrap();
-            let text = &rest[..end];
-            if !known.contains(&text) {
-                missing.push(text.to_string());
-            }
-        }
-    }
+    let known: Vec<&str> = TEXTS.iter().chain(openecraft_web::TEXTS).copied().collect();
+    let missing = openecraft_web::unknown_texts(&[PAGE, SCRIPT, ADMIN_SCRIPT, EDIT_SCRIPT, DASHBOARD_SCRIPT], &known);
     // Titles the scripts translate from tables (facets, tabs, field labels).
     let titles = ["Product top group", "Product group", "Product subgroup", "Manufacturer", "Catalog", "Lifecycle", "Overview", "Users", "Access rights", "Catalogs", "Import parts"];
     let labels = ["Storage", "Status", "Revision", "Signed in", "Defined roles", "Grants", "Directories", "Without sign-in", "Directory", "User name", "Role", "Groups"];
     let more = ["New password", "Password", "Repeat password", "Identifier", "Name", "Version", "Description", "Install", "Install again", "Update"];
     for title in titles.into_iter().chain(labels).chain(more) {
-        assert!(known.contains(&title));
+        assert!(known.contains(&title), "{title}");
     }
     assert!(missing.is_empty(), "texts of portal.html missing in web.rs TEXTS: {missing:?}");
 }

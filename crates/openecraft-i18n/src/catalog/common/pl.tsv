@@ -1,6 +1,7 @@
 # English<TAB>Polski – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(wszystkie)
 (no entries)	(brak wpisów)
+(no structure)	(brak struktury)
 --json needs a JSON object	--json wymaga obiektu JSON
 3D model	Model 3D
 3D routing	Prowadzenie 3D
@@ -16,11 +17,13 @@ Add	Dodaj
 Add a PDF of all pages	Dodaj PDF wszystkich stron
 Add to favorites	Dodaj do ulubionych
 Address	Adres
+Administrator	Administrator
 Angle	Kąt
 Apply	Zastosuj
 Approve	Zatwierdź
 Approvers	Zatwierdzający
 Automatic	Automatycznie
+Aux	Pomocn.
 Below	Poniżej
 Bold	Pogrubienie
 Bottom	Dno
@@ -125,6 +128,7 @@ Downloading {}…	Pobieranie {}…
 Drag to turn the model	Przeciągnij, aby obrócić model
 EMC clearance	Odstęp EMC
 Edit	Edycja
+Editor	Redaktor
 Electro-fluid cross reference	Odsyłacze elektryczno-płynowe
 Enclosure	Obudowa
 Enclosures	Obudowy
@@ -144,6 +148,8 @@ Field wiring	Okablowanie obiektowe
 File	Plik
 Files	Pliki
 Filter	Filtr
+Filter devices…	Filtruj urządzenia…
+Fit	Dopasuj
 Fits	Pasuje do
 Fitting at the end	Złączka na końcu
 Fitting at the start	Złączka na początku
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Porzuca podprojekt: jego str
 Gland plate	Płyta dławicowa
 Graphics	Grafika
 Group	Grupa
+Group the pages by structure	Grupuj strony według struktury
 Groups	Grupy
 Harness	Wiązka przewodów
 Harness data	Dane wiązki
@@ -207,9 +214,12 @@ Load	Odbiornik
 Loaded circuits bunched together	Obciążone obwody ułożone wspólnie
 Location	Miejsce montażu
 Location (+)	Miejsce montażu (+)
+Locked	Zablokowana
+Locked by {}	Zablokowane przez {}
 Logo	Logo
 MTTFd (years)	MTTFd (lata)
 Machine	Maszyna
+Main	Główny
 Main earthing busbar (device) it is connected to; empty: none	Główna szyna uziemiająca (urządzenie), do której jest podłączony; puste: brak
 Main earthing terminal	Główna szyna uziemiająca
 Main switch	Wyłącznik główny
@@ -350,9 +360,11 @@ Product subgroup	Podgrupa produktów
 Product top group	Grupa główna produktów
 Profile	Profil
 Project	Projekt
+Project data	Dane projektu
 Project languages	Języki projektu
 Project logo	Logo projektu
 Project management	Zarządzanie projektami
+Project manager	Kierownik projektu
 Project name	Nazwa projektu
 Project properties	Właściwości projektu
 Properties	Właściwości
@@ -369,6 +381,7 @@ Rated power	Moc znamionowa
 Rear wall	Ściana tylna
 Rectangle	Prostokąt
 Rectangular	Prostokątny
+Refresh	Odśwież
 Reject	Odrzuć
 Relative humidity	Wilgotność względna
 Relay	Przekaźnik
@@ -384,6 +397,7 @@ Report blocks	Bloki raportów
 Report: {}	Raport: {}
 Required	Wymagany
 Reserve	Rezerwa
+Reviewer	Recenzent
 Revision	Rewizja
 Revision {}	Rewizja {}
 Rework	Poprawka
@@ -427,6 +441,7 @@ Sign in	Zaloguj się
 Sign out	Wyloguj się
 Signed in as {}	Zalogowano jako {}
 Signed in as {} ({})	Zalogowano jako {} ({})
+Signed out	Wylogowano
 Signing in…	Logowanie…
 Single-line / multi-line	Jednokreskowy / wielokreskowy
 Size	Rozmiar
@@ -434,6 +449,7 @@ Socket side	Strona gniazda
 Solenoid not linked	Cewka niepowiązana
 Sort by	Sortuj według
 Source	Źródło
+Started	Rozpoczęto
 State	Stan
 Status	Stan
 String	Łańcuch
@@ -495,6 +511,7 @@ User	Użytkownik
 User name	Nazwa użytkownika
 Users	Użytkownicy
 Version	Wersja
+Viewer	Przeglądający
 Voltage	Napięcie
 Warning	Ostrzeżenie
 Warnings	Ostrzeżenia
@@ -537,6 +554,7 @@ yes	tak
 {} exists already	{} już istnieje
 {} is not a PNG or JPEG image	{} nie jest obrazem PNG ani JPEG
 {} parts	Artykuły: {}
+{} users	Użytkownicy: {}
 {} wires	Przewody: {}
 {}, together with the wire to {}	{}, razem z przewodem do {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} nie stoi na podłodze, wybierz artykuł stojący na podłodze

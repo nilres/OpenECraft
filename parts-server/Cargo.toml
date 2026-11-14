@@ -14,6 +14,7 @@ openecraft-parts = { path = "../crates/openecraft-parts" }
 openecraft-i18n = { path = "../crates/openecraft-i18n" }
 axum = "0.8"
 openecraft-auth = { path = "../crates/openecraft-auth" }
+openecraft-web = { path = "../crates/openecraft-web" }
 rusqlite = { version = "0.37", features = ["bundled"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "signal"] }
 tower-http = { version = "0.7", features = ["cors"] }

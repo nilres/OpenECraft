@@ -18,7 +18,7 @@ pub use crate::catalog::AREAS;
 pub fn area_of_member(member: &str) -> &'static str {
     match member.trim_matches('/') {
         "openecraft" => "editor",
-        "crates/openecraft-core" => "core",
+        "crates/openecraft-core" | "crates/openecraft-view" => "core",
         "crates/openecraft-api" => "plugins",
         "cli" => "cli",
         "crates/openecraft-ui" => "ui",

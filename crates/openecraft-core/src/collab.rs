@@ -97,6 +97,13 @@ pub struct ServerInfo {
     pub name: String,
     pub version: String,
     pub projects: usize,
+    /// The signed-in user of the request (`None`: anonymous or the server token).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub user: Option<ProjectUser>,
+    /// What the caller may do.
+    pub access: Access<ProjectRight>,
+    /// The server has a web page (`--web`).
+    pub web: bool,
 }
 
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
@@ -180,6 +187,57 @@ pub struct SaveRequest {
 
 fn is_zero(v: &u64) -> bool {
     *v == 0
+}
+
+/// A session on a project as administrators see it (`GET /api/v1/sessions`): open
+/// or ended. Times are seconds since 1970 (UTC).
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct SessionRecord {
+    /// Number of the session, counted from the start of the server (the public part of
+    /// its id; the rest is the key to it and never shown).
+    pub number: u64,
+    pub user: String,
+    pub project: String,
+    pub started: u64,
+    /// Last request of the session.
+    pub last_seen: u64,
+    /// Saves to the server during the session.
+    pub saves: u32,
+    /// What the session holds locked (open sessions).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub locks: Vec<Target>,
+    /// Names of the locked pages (open sessions; filled in by the server).
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub pages: Vec<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ended: Option<u64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub end: Option<SessionEnd>,
+}
+
+/// How a session ended.
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum SessionEnd {
+    /// The project was closed.
+    Closed,
+    /// No request for [`SESSION_TIMEOUT_SECS`].
+    Expired,
+    /// The user signed out.
+    SignedOut,
+    /// The account was deleted.
+    UserDeleted,
+}
+
+/// The open sessions and the history of ended ones, newest first.
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct SessionList {
+    pub active: Vec<SessionRecord>,
+    pub history: Vec<SessionRecord>,
+    /// Ended sessions the server keeps (the oldest are dropped).
+    pub kept: usize,
 }
 
 #[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
@@ -285,13 +343,14 @@ pub enum ProjectRole {
 impl ProjectRole {
     pub const ALL: [ProjectRole; 5] = [ProjectRole::Viewer, ProjectRole::Reviewer, ProjectRole::Editor, ProjectRole::Manager, ProjectRole::Admin];
 
+    /// English title, translated where it is shown.
     pub fn title(self) -> &'static str {
         match self {
-            ProjectRole::Viewer => openecraft_i18n::tr("Viewer"),
-            ProjectRole::Reviewer => openecraft_i18n::tr("Reviewer"),
-            ProjectRole::Editor => openecraft_i18n::tr("Editor"),
-            ProjectRole::Manager => openecraft_i18n::tr("Project manager"),
-            ProjectRole::Admin => openecraft_i18n::tr("Administrator"),
+            ProjectRole::Viewer => tr_const!("Viewer"),
+            ProjectRole::Reviewer => tr_const!("Reviewer"),
+            ProjectRole::Editor => tr_const!("Editor"),
+            ProjectRole::Manager => tr_const!("Project manager"),
+            ProjectRole::Admin => tr_const!("Administrator"),
         }
     }
 

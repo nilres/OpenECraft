@@ -21,3 +21,7 @@ data = "projects"
 # Access settings (directories, roles, grants). Default: access.json in the data
 # directory.
 # access = "projects/access.json"
+
+# Serve the web page (or --web, OPENECRAFT_PROJECT_WEB=true): the projects read only
+# and the administration of users, access rights and directories. Off by default.
+# web = true

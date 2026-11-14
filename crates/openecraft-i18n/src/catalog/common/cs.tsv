@@ -1,6 +1,7 @@
 # English<TAB>Čeština – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(vše)
 (no entries)	(žádné položky)
+(no structure)	(bez struktury)
 --json needs a JSON object	--json vyžaduje objekt JSON
 3D model	3D model
 3D routing	3D vedení
@@ -16,11 +17,13 @@ Add	Přidat
 Add a PDF of all pages	Přidat PDF všech stránek
 Add to favorites	Přidat k oblíbeným
 Address	Adresa
+Administrator	Správce
 Angle	Úhel
 Apply	Použít
 Approve	Schválit
 Approvers	Schvalovatelé
 Automatic	Automaticky
+Aux	Pomocné
 Below	Pod
 Bold	Tučné
 Bottom	Dno
@@ -125,6 +128,7 @@ Downloading {}…	Stahování {}…
 Drag to turn the model	Tažením model otočíte
 EMC clearance	Odstup EMC
 Edit	Úpravy
+Editor	Editor
 Electro-fluid cross reference	Elektro-tekutinové křížové odkazy
 Enclosure	Skříň
 Enclosures	Skříně
@@ -144,6 +148,8 @@ Field wiring	Polní kabeláž
 File	Soubor
 Files	Soubory
 Filter	Filtr
+Filter devices…	Filtrovat přístroje…
+Fit	Přizpůsobit
 Fits	Hodí se k
 Fitting at the end	Šroubení na konci
 Fitting at the start	Šroubení na začátku
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Zruší podprojekt: jeho str
 Gland plate	Přírubová deska
 Graphics	Grafika
 Group	Skupina
+Group the pages by structure	Seskupit stránky podle struktury
 Groups	Skupiny
 Harness	Kabelový svazek
 Harness data	Data kabelového svazku
@@ -207,9 +214,12 @@ Load	Spotřebič
 Loaded circuits bunched together	Seskupené zatížené obvody
 Location	Umístění
 Location (+)	Umístění (+)
+Locked	Uzamčená
+Locked by {}	Uzamčeno uživatelem {}
 Logo	Logo
 MTTFd (years)	MTTFd (roky)
 Machine	Stroj
+Main	Hlavní
 Main earthing busbar (device) it is connected to; empty: none	Hlavní uzemňovací přípojnice (zařízení), ke které je připojen; prázdné: žádná
 Main earthing terminal	Hlavní uzemňovací svorka
 Main switch	Hlavní vypínač
@@ -350,9 +360,11 @@ Product subgroup	Podskupina produktů
 Product top group	Hlavní skupina produktů
 Profile	Profil
 Project	Projekt
+Project data	Data projektu
 Project languages	Jazyky projektu
 Project logo	Logo projektu
 Project management	Správa projektů
+Project manager	Vedoucí projektu
 Project name	Název projektu
 Project properties	Vlastnosti projektu
 Properties	Vlastnosti
@@ -369,6 +381,7 @@ Rated power	Jmenovitý výkon
 Rear wall	Zadní stěna
 Rectangle	Obdélník
 Rectangular	Obdélníkový
+Refresh	Obnovit
 Reject	Zamítnout
 Relative humidity	Relativní vlhkost vzduchu
 Relay	Relé
@@ -384,6 +397,7 @@ Report blocks	Bloky výkazů
 Report: {}	Výkaz: {}
 Required	Požadováno
 Reserve	Rezerva
+Reviewer	Kontrolor
 Revision	Revize
 Revision {}	Revize {}
 Rework	Přepracování
@@ -427,6 +441,7 @@ Sign in	Přihlásit se
 Sign out	Odhlásit se
 Signed in as {}	Přihlášen jako {}
 Signed in as {} ({})	Přihlášen jako {} ({})
+Signed out	Odhlášeno
 Signing in…	Přihlašování…
 Single-line / multi-line	Jednopólové / vícepólové
 Size	Velikost
@@ -434,6 +449,7 @@ Socket side	Strana zdířek
 Solenoid not linked	Cívka není propojena
 Sort by	Seřadit podle
 Source	Zdroj
+Started	Zahájeno
 State	Stav
 Status	Stav
 String	String
@@ -495,6 +511,7 @@ User	Uživatel
 User name	Uživatelské jméno
 Users	Uživatelé
 Version	Verze
+Viewer	Prohlížející
 Voltage	Napětí
 Warning	Upozornění
 Warnings	Upozornění
@@ -537,6 +554,7 @@ yes	ano
 {} exists already	{} již existuje
 {} is not a PNG or JPEG image	{} není obrázek PNG ani JPEG
 {} parts	Artikly: {}
+{} users	Uživatelé: {}
 {} wires	Vodiče: {}
 {}, together with the wire to {}	{}, společně s vodičem do {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} nestojí na podlaze, zvolte artikl stojící na podlaze

@@ -7,6 +7,7 @@ A grant needs a user or a group	付与にはユーザーまたはグループが
 A group name must not be empty or contain ':'	グループ名は空にできず、「:」を含めることもできません
 A manufacturer user needs a manufacturer	メーカーユーザーにはメーカーが必要です
 A part number must not be empty or start or end with blanks	部品番号は空にできず、空白で始めたり終えたりすることもできません
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにプロジェクトに対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	ロールは権限のセットです。付与により、ユーザーまたはグループにメーカーの部品に対するロールが与えられます (* と ? はワイルドカード、* はすべて)。拒否の付与は、ほかの付与に関係なくロールの権限を取り消します。
 A user name must not be empty or contain blanks	ユーザー名は空にできず、空白を含めることもできません
 Accept any certificate (test installations only)	すべての証明書を受け入れる（テスト環境のみ）
@@ -23,6 +24,7 @@ Administration	管理
 All manufacturers	すべてのメーカー
 All parts	すべての部品
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	すべての部品とそのデータです。表計算ソフトで使うか、別のサーバーにインポートできます。ファイルはデータベースのバックアップにのみ含まれます。
+All projects	すべてのプロジェクト
 Allowed groups	許可されたグループ
 Also groups of groups (Active Directory)	グループのグループも含める（Active Directory）
 Amplifiers, controllers	増幅器、制御器
@@ -75,6 +77,7 @@ Check flap	逆止ダンパー
 Chimney	煙突
 Choose logo…	ロゴを選択…
 Circuit breaker	遮断器
+Closed	クローズ済み
 Coil	コイル
 Complete power units	パワーユニット (完成品)
 Compressed air filters	圧縮空気フィルター
@@ -118,6 +121,7 @@ Delete group {}? The grants to it are removed.	グループ {} を削除しま�
 Delete part {} from the server? This cannot be undone.	サーバーから部品 {} を削除しますか? この操作は元に戻せません。
 Delete part {}?	部品 {} を削除しますか？
 Delete parts	部品の削除
+Delete user {}? Their open projects are closed.	ユーザー {} を削除しますか? そのユーザーが開いているプロジェクトは閉じられます。
 Delete user {}? Their sessions and favorites are removed.	ユーザー {} を削除しますか? そのユーザーのセッションとお気に入りも削除されます。
 Deleted	削除
 Digital sensor, general	デジタルセンサー (一般)
@@ -139,6 +143,7 @@ Drawings box	図面ポケット
 Dryer	乾燥機
 Dummy plate	閉止板
 Duplex switch filters	切替式複式フィルター
+Duration	継続時間
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	カタログ {} の編集
 Edit catalogs	カタログの編集
@@ -157,6 +162,8 @@ Enclosure cooling devices	盤用クーラー
 Enclosure heater	盤用ヒーター
 Encryption	暗号化
 End clamp	エンドクランプ
+Ended	終了
+Ended by	終了方法
 Ends the session and forgets the token	セッションを終了し、トークンを破棄します
 Engine	原動機
 Enter the address of an openecraft-parts-server and click Connect.	openecraft-parts-server のアドレスを入力し、「接続」をクリックしてください。
@@ -164,6 +171,7 @@ Environment variable with the password of the service account	サービスアカ
 Evaporator	蒸発器
 Everybody who may read the parts sees it.	部品を閲覧できるすべてのユーザーに表示されます。
 Exhaust valves	排気弁
+Expired	期限切れ
 Export (CSV)	エクスポート (CSV)
 Export and backup	エクスポートとバックアップ
 Export the parts, catalogs and settings, or download a backup of the whole database.	部品、カタログ、設定をエクスポートするか、データベース全体のバックアップをダウンロードします。
@@ -174,6 +182,8 @@ Female insert	メスインサート
 Field distribution device	フィールド分配器
 Files and history ({} files)	ファイルと履歴 ({} 個のファイル)
 Filter fan	フィルターファン
+Filter projects…	プロジェクトをフィルター…
+Filter sessions…	セッションをフィルター…
 Filters	フィルター
 Fixed displacement pumps	定容量ポンプ
 Flange pair	フランジ対
@@ -214,6 +224,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	画像（PNG、JPEG、GIF、WebP、SVG）
 Import / export	インポート / エクスポート
 Import parts	部品のインポート
 Imported {} parts (revision {})	{} 件の部品をインポートしました (リビジョン {})
+In use by	使用中のユーザー
+In use by {}	{} が使用中
 Inductors	インダクター
 Install	インストール
 Install again	再インストール
@@ -223,6 +235,7 @@ KNX actuator	KNX アクチュエータ
 KNX system device	KNX システム機器
 Key switch	キースイッチ
 Kneader	ニーダー
+Last activity	最終アクティビティ
 Last changes per month	最近の変更の推移
 Last sign-in	最終サインイン
 Legend plate	銘板
@@ -244,6 +257,7 @@ Logic items	ロジック素子
 Logos	ロゴ
 Looks the users up; empty: users bind with their own name (below)	ユーザーを検索します。空の場合：ユーザーが自分の名前でバインドします（下記）
 Male insert	オスインサート
+Managers of a project give rights on it themselves (Permissions on the project).	プロジェクトのマネージャーは、自分でプロジェクトに権限を付与します (プロジェクトの権限)。
 Measurement system	計測システム
 Measuring connection points	測定用接続ポイント
 Measuring couplings	測定用カップリング
@@ -269,11 +283,18 @@ New role	新しいロール
 New user	新しいユーザー
 Newer version	新しいバージョン
 Next	次へ
+No devices found	デバイスが見つかりません
+No ended sessions	終了したセッションはありません
 No grants: the rights by manufacturer apply	付与がありません：メーカー別の権限が適用されます
+No grants: the roles of the users apply	付与なし: ユーザーのロールが適用されます
 No grants: users have the rights of their role	付与なし: ユーザーにはそのロールの権限があります
 No groups	グループがありません
+No open sessions	開いているセッションはありません
+No projects found	プロジェクトが見つかりません
 No users	ユーザーがいません
+Nobody works on a project	プロジェクトで作業しているユーザーはいません
 Non-return valves	チェック弁
+None (only grants)	なし (付与のみ)
 Not mounted	取り付けなし
 Nut	ナット
 On the front	前面
@@ -286,10 +307,12 @@ Only catalogs without parts can be deleted	削除できるのは部品のない�
 Only empty catalogs can be deleted	削除できるのは空のカタログだけです
 Only local accounts	ローカルアカウントのみ
 Only their members sign in; empty: all users	メンバーのみサインインできます。空の場合：全ユーザー
+Open sessions	開いているセッション
 Open sessions: {}	開いているセッション: {}
 OpenECraft data portal	OpenECraft データポータル
 OpenECraft parts manager	OpenECraft 部品マネージャー
 OpenECraft parts server	OpenECraft 部品サーバー
+OpenECraft project server	OpenECraft プロジェクトサーバー
 Other file	その他のファイル
 Other labels	その他のラベル
 Others	その他
@@ -323,6 +346,7 @@ Password variable	パスワード変数
 Per page	1ページあたり
 Permissions	権限
 Permissions of catalog {}	カタログ {} の権限
+Permissions of project {}	プロジェクト {} の権限
 Phase-out	生産終了予定
 Pipes	配管
 Piping part	配管部品
@@ -348,6 +372,9 @@ Pressure switches	圧力スイッチ
 Pressure valves	圧力制御弁
 Previous	前へ
 Progressive feeders	プログレッシブ分配器
+Project {} not found	プロジェクト {} が見つかりません
+Projects	プロジェクト
+Projects in use	使用中のプロジェクト
 Protection devices	保護装置
 Proximity switches	近接スイッチ
 Pump brackets	ポンプブラケット
@@ -380,6 +407,7 @@ Replaced by {}	{} に置き換え済み
 Resistors	抵抗器
 Restore from a file	ファイルから復元
 Return flushing filters, all-autom.	全自動逆洗フィルター
+Revision {} on the server	サーバー上のリビジョン {}
 Ribbon cables	フラットケーブル
 Roles	ロール
 Roof hook	屋根フック
@@ -394,6 +422,7 @@ Save the catalog first	先にカタログを保存してください
 Save the part first	先に部品を保存してください
 Saved directory {}	ディレクトリ {} を保存しました
 Saved group {}	グループ {} を保存しました
+Saves	保存回数
 Screw connections	継手
 Screw pumps	スクリューポンプ
 Screw spindle compressors	スクリュー圧縮機
@@ -409,6 +438,7 @@ Sensor, switch, and pushbutton	センサー、スイッチ、押しボタン
 Sensors - pressure gauges	センサー - 圧力計
 Serial sub-plates	連結サブプレート
 Service account	サービスアカウント
+Sessions	セッション
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	サーバーの起動オプションで設定されています（--dashboard または OPENECRAFT_DASHBOARD）。
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	サーバーの起動オプションで設定されています (--registration または OPENECRAFT_REGISTRATION)。
 Short name without blanks; qualifies the groups (id:group)	空白を含まない短い名前。グループの前に付けます（id:グループ）
@@ -423,11 +453,13 @@ Sight glass	サイトグラス
 Sign in as an administrator to manage the server	サーバーを管理するには管理者としてサインインしてください
 Sign in or connect with the access token to change parts	部品を変更するには、サインインするかアクセストークンで接続してください
 Sign in to keep favorites	お気に入りを保存するにはサインインしてください
+Sign in to see the projects	プロジェクトを表示するにはサインインしてください
 Sign in with a user account	ユーザーアカウントでサインイン
 Sign in with the access token of the server	サーバーのアクセストークンでサインイン
 Sign out everywhere	すべてサインアウト
 Sign out {} on all devices?	すべてのデバイスで {} をサインアウトしますか?
 Sign-in needed to read	閲覧にはサインインが必要
+Sign-in needed to view	表示にはサインインが必要
 Signal device	表示機器
 Signal device, acoustic	信号装置 (音響)
 Signal device, optical	信号装置 (光学)
@@ -483,12 +515,17 @@ The last administrator cannot lose the right to manage users	最後の管理者�
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	会社のロゴ：PNG、JPEG、GIF、WebP または SVG、512 kB まで
 The password needs at least {} characters	パスワードは {} 文字以上必要です
 The passwords do not match	パスワードが一致しません
+The project has no devices	プロジェクトにデバイスがありません
+The project has no pages	プロジェクトにページがありません
 The project has no parts	プロジェクトに部品がありません
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	ロールを適用するプロジェクト (* と ? はワイルドカード)、カンマ区切り。空: すべて
 The registration is closed	登録は受け付けていません
 The registration is open	登録は受け付け中です
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	ここで付与したロールは、メーカーにかかわらずこのカタログとその部品に適用されます。拒否はロールの権限を取り消します。閲覧はサーバー全体の権限です。
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	ここで付与したロールはこのプロジェクトに適用されます。拒否はロールの権限を取り消します。拒否を解除できるのは管理者だけです。
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	ロール、付与、グループ、サインインなしのアクセス（サーバーのバージョン付き）。復元するとロールと付与が置き換えられ、グループが追加されます。ディレクトリはサーバーの設定のまま残ります。
 The server cannot be reached	サーバーに接続できません
+The server keeps the last {} ended sessions.	サーバーは終了したセッションを最新 {} 件まで保持します。
 The server sent no text	サーバーからテキストが送信されませんでした
 The test failed	テストに失敗しました
 The test succeeded	テストに成功しました
@@ -518,6 +555,7 @@ Uploading {} to Vault ({} %)…	{} を Vault にアップロードしていま�
 Uploading {} to Vault…	{} を Vault にアップロードしています…
 User account	ユーザーアカウント
 User bind	ユーザーバインド
+User deleted	ユーザー削除済み
 User filter	ユーザーフィルター
 User or group	ユーザーまたはグループ
 User {} exists already. Change it?	ユーザー {} は既に存在します。変更しますか?
@@ -534,6 +572,7 @@ Variable displacement pumps	可変容量ポンプ
 Vault did not continue the upload	Vault がアップロードを続行しませんでした
 Ventilation filters	エアブリーザー
 Ventilator	送風機
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	ビューアーはプロジェクトを読み取り専用で開き、レビュー担当者はレビューも保存し、編集者はプロジェクトを変更・作成し、マネージャーはさらにプロジェクトを削除して権限を付与し、管理者はサーバーを管理します。
 Voltage source	電圧源
 Voltage source and generator	電圧源と発電機
 Waiting accounts cannot sign in; approve or reject them in Users.	承認待ちのアカウントはサインインできません。「ユーザー」で承認または却下してください。
@@ -547,8 +586,10 @@ Without sign-in	サインインなし
 Wrong access token	アクセストークンが正しくありません
 Wrong user name or password	ユーザー名またはパスワードが違います
 You may not change parts of manufacturer {}	メーカー {} の部品は変更できません
+You may not see any project	表示できるプロジェクトはありません
 Your account awaits the approval of an administrator	アカウントは管理者の承認待ちです
 Your account was created. An administrator has to approve it before you can sign in.	アカウントを作成しました。サインインする前に管理者の承認が必要です。
+Your rights	あなたの権限
 access denied – check the personal access token	アクセスが拒否されました – 個人用アクセストークンを確認してください
 by file name	ファイル名で
 changed, not saved	変更済み、未保存
@@ -572,6 +613,7 @@ you	あなた
 {} has no checksum in SHA256SUMS	SHA256SUMS に {} のチェックサムがありません
 {} parts in {} catalogs, revision {}	部品 {} 個 (カタログ {} 個)、リビジョン {}
 {} parts, {} catalogs, {}	部品 {} 個、カタログ {} 個、{}
+{} projects	{} 件のプロジェクト
 {} – save to upload it	{} – 保存するとアップロードされます
 {}: a logo has at most 512 kB	{}：ロゴは 512 kB までです
 {}: the catalog is no longer open	{}：カタログはもう開かれていません

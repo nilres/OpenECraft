@@ -258,7 +258,7 @@ impl App {
                 ui.end_row();
                 if let Some(role) = self.remote.role {
                     ui.label(tr("Role"));
-                    ui.label(role.title());
+                    ui.label(tr(role.title()));
                     ui.end_row();
                 }
                 if connected && !self.remote.rights.is_empty() {

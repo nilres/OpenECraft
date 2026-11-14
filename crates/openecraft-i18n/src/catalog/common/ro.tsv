@@ -1,6 +1,7 @@
 # English<TAB>Română – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(toate)
 (no entries)	(nicio intrare)
+(no structure)	(fără structură)
 --json needs a JSON object	--json necesită un obiect JSON
 3D model	Model 3D
 3D routing	Pozare 3D
@@ -16,11 +17,13 @@ Add	Adăugare
 Add a PDF of all pages	Adăugare PDF cu toate paginile
 Add to favorites	Adăugare la favorite
 Address	Adresă
+Administrator	Administrator
 Angle	Unghi
 Apply	Aplicare
 Approve	Avizare
 Approvers	Avizatori
 Automatic	Automat
+Aux	Aux
 Below	Dedesubt
 Bold	Aldin
 Bottom	Bază
@@ -125,6 +128,7 @@ Downloading {}…	Se descarcă {}…
 Drag to turn the model	Trageți pentru a roti modelul
 EMC clearance	Distanță CEM
 Edit	Editare
+Editor	Editor
 Electro-fluid cross reference	Referințe încrucișate electro-fluid
 Enclosure	Carcasă
 Enclosures	Carcase
@@ -144,6 +148,8 @@ Field wiring	Cablare de câmp
 File	Fișier
 Files	Fișiere
 Filter	Filtru
+Filter devices…	Filtrare dispozitive…
+Fit	Încadrare
 Fits	Compatibil cu
 Fitting at the end	Racord la sfârșit
 Fitting at the start	Racord la început
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Renunță la un subproiect: 
 Gland plate	Placă pentru presetupe
 Graphics	Grafică
 Group	Grup
+Group the pages by structure	Gruparea paginilor după structură
 Groups	Grupe
 Harness	Cablaj
 Harness data	Date de cablaj
@@ -207,9 +214,12 @@ Load	Consumator
 Loaded circuits bunched together	Circuite încărcate grupate împreună
 Location	Loc de montare
 Location (+)	Loc de montare (+)
+Locked	Blocat
+Locked by {}	Blocat de {}
 Logo	Siglă
 MTTFd (years)	MTTFd (ani)
 Machine	Mașină
+Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Bara principală de împământare (aparat) la care este conectată; gol: niciuna
 Main earthing terminal	Bornă principală de împământare
 Main switch	Întrerupător principal
@@ -350,9 +360,11 @@ Product subgroup	Subgrupă de produse
 Product top group	Grupă principală de produse
 Profile	Profil
 Project	Proiect
+Project data	Date proiect
 Project languages	Limbile proiectului
 Project logo	Sigla proiectului
 Project management	Gestionarea proiectelor
+Project manager	Manager de proiect
 Project name	Nume proiect
 Project properties	Proprietăți proiect
 Properties	Proprietăți
@@ -369,6 +381,7 @@ Rated power	Putere nominală
 Rear wall	Perete din spate
 Rectangle	Dreptunghi
 Rectangular	Dreptunghiular
+Refresh	Reîmprospătare
 Reject	Respingere
 Relative humidity	Umiditate relativă
 Relay	Releu
@@ -384,6 +397,7 @@ Report blocks	Blocuri de raport
 Report: {}	Raport: {}
 Required	Necesar
 Reserve	Rezervă
+Reviewer	Examinator
 Revision	Revizie
 Revision {}	Revizia {}
 Rework	Remaniere
@@ -427,6 +441,7 @@ Sign in	Conectare
 Sign out	Deconectare
 Signed in as {}	Conectat ca {}
 Signed in as {} ({})	Conectat ca {} ({})
+Signed out	Deconectat
 Signing in…	Se conectează…
 Single-line / multi-line	Monofilar / multifilar
 Size	Dimensiune
@@ -434,6 +449,7 @@ Socket side	Partea mufei
 Solenoid not linked	Bobină nelegată
 Sort by	Sortare după
 Source	Sursă
+Started	Început
 State	Stare
 Status	Stare
 String	Șir
@@ -495,6 +511,7 @@ User	Utilizator
 User name	Nume de utilizator
 Users	Utilizatori
 Version	Versiune
+Viewer	Vizualizator
 Voltage	Tensiune
 Warning	Avertisment
 Warnings	Avertismente
@@ -537,6 +554,7 @@ yes	da
 {} exists already	{} există deja
 {} is not a PNG or JPEG image	{} nu este o imagine PNG sau JPEG
 {} parts	{} articole
+{} users	{} utilizatori
 {} wires	{} conductoare
 {}, together with the wire to {}	{}, împreună cu conductorul spre {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} nu stă pe pardoseală, alegeți un articol care stă pe pardoseală

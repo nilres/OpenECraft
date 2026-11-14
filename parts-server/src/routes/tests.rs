@@ -366,20 +366,26 @@ async fn web_page_and_texts() {
     let (status, headers, page) = send(&app, "GET", "/", None, Vec::new()).await;
     assert_eq!(status, StatusCode::OK);
     assert!(headers[header::CONTENT_TYPE].to_str().unwrap().starts_with("text/html"));
-    assert_eq!(headers[header::CONTENT_SECURITY_POLICY], web::PAGE_CSP);
+    assert_eq!(headers[header::CONTENT_SECURITY_POLICY], openecraft_web::PAGE_CSP);
     assert_eq!(headers[header::X_FRAME_OPTIONS], "DENY");
     assert!(String::from_utf8(page).unwrap().contains("<script src=\"/portal.js\"></script>"));
     let (status, headers, script) = send(&app, "GET", "/portal.js", None, Vec::new()).await;
     assert_eq!(status, StatusCode::OK);
     assert!(headers[header::CONTENT_TYPE].to_str().unwrap().starts_with("text/javascript"));
-    assert!(String::from_utf8(script).unwrap().contains("/api/v1"));
+    assert!(String::from_utf8(script).unwrap().contains("function search"));
+    for (path, kind, part) in [("/common.js", "text/javascript", "/api/v1"), ("/access.js", "text/javascript", "function adminAccess"), ("/web.css", "text/css", "--accent"), ("/logo.svg", "image/svg+xml", "<svg")] {
+        let (status, headers, body) = send(&app, "GET", path, None, Vec::new()).await;
+        assert_eq!(status, StatusCode::OK, "{path}");
+        assert!(headers[header::CONTENT_TYPE].to_str().unwrap().starts_with(kind), "{path}");
+        assert!(String::from_utf8(body).unwrap().contains(part), "{path}");
+    }
     let (status, headers, script) = send(&app, "GET", "/admin.js", None, Vec::new()).await;
     assert_eq!(status, StatusCode::OK);
     assert!(headers[header::CONTENT_TYPE].to_str().unwrap().starts_with("text/javascript"));
     assert!(String::from_utf8(script).unwrap().contains("function showAdmin"));
-    let texts: web::WebTexts = json(&app, "GET", "/api/v1/texts?lang=fr-CA", None, "").await;
+    let texts: openecraft_web::WebTexts = json(&app, "GET", "/api/v1/texts?lang=fr-CA", None, "").await;
     assert_eq!(texts.lang, "fr");
-    let texts: web::WebTexts = json(&app, "GET", "/api/v1/texts?lang=xx", None, "").await;
+    let texts: openecraft_web::WebTexts = json(&app, "GET", "/api/v1/texts?lang=xx", None, "").await;
     assert_eq!(texts.lang, "en");
 }
 
