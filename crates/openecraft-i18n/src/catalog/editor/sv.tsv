@@ -271,6 +271,9 @@ Changed message levels ({})	Ändrade meddelandenivåer ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Ändrad sedan monteringen: var vid X {} mm, Y {} mm med artikel {}
 Changed since wired: was {} · {} · {}	Ändrad sedan inkoppling: var {} · {} · {}
 Changes	Ändringar
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Ändringarna är inte sparade på projektservern ännu: avslutade ändringar sparas automatiskt inom {} s
+Changes not saved on the project server: save them when the server answers again.	Ändringarna är inte sparade på projektservern: spara dem när servern svarar igen.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Ändringarna är inte sparade på projektservern: de sparas så snart servern svarar igen.
 Changes since revision {}	Ändringar sedan revision {}
 Changes the page order; the name stays	Ändrar sidordningen; namnet består
 Changes the tag of all functions of this device	Ändrar beteckningen för alla funktioner i den här apparaten
@@ -754,6 +757,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Sök…
 Finish a wire, polyline, polygon or wall	Avsluta en ledning, polylinje, polygon eller vägg
 Finish or cancel the drawing, then back to selecting	Avsluta eller avbryt ritandet, sedan tillbaka till markering
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Avslutade ändringar i ett projekt som öppnats från projektservern sparas dit av sig själva; pågående inmatning sparas när den är avslutad. Lås behålls. Spara (Ctrl+S) sparar fortfarande direkt.
 First row	Första raden
 Fit page	Anpassa sida
 Fits {}	Passar till {}
@@ -962,6 +966,7 @@ Instead of user name and password	I stället för användarnamn och lösenord
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	Instrument i P&ID har funktionsbokstäver och slingnummer i sin etikett (TIC 101); deras apparatbeteckning länkar dem till schemat.
 Insulation	Isolering
 Interruption points refer to	Avbrottspunkter hänvisar till
+Interval	Intervall
 Introduction	Inledning
 Invalid value	Ogiltigt värde
 Invert the direction of panning by scrolling	Vänd riktningen för panorering med rullning
@@ -1001,6 +1006,7 @@ Landscape	Liggande
 Large dot	Stor punkt
 Larger texts and buttons for a touch screen at the workbench	Större texter och knappar för en pekskärm vid arbetsbänken
 Largest mesh	Största maska
+Last save confirmed by the project server: {}	Senaste sparning som projektservern har bekräftat: {}
 Latitude, longitude	Latitud, longitud
 Layer	Lager
 Layer {}	Lager {}
@@ -1058,6 +1064,7 @@ Loads	Laster
 Local file	Lokal fil
 Local file: {}	Lokal fil: {}
 Local recovery copy of server project: {}	Lokal återställningskopia av serverprojekt: {}
+Local recovery copy with these changes written: {}	Lokal återställningskopia med dessa ändringar skriven: {}
 Lock all	Lås alla
 Lock all pages	Lås alla sidor
 Lock current page	Lås aktuell sida
@@ -1254,6 +1261,7 @@ No gesture	Ingen gest
 No harnesses defined.	Inga kabelstammar definierade.
 No inverter	Ingen växelriktare
 No jump: plain crossing, connections have dots	Inget hopp: enkel korsning, förbindelser har punkter
+No local recovery copy of these changes has been written yet	Ingen lokal återställningskopia av dessa ändringar har skrivits ännu
 No longer reported	Rapporteras inte längre
 No macros yet. Select items in a schematic and save them as a macro.	Inga makron ännu. Markera objekt i ett schema och spara dem som ett makro.
 No modules: plug in PLC cards of the schematic.	Inga moduler: sätt i PLC-kort från schemat.
@@ -1295,6 +1303,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Inte ändrad: 
 Not found: {}	Hittades inte: {}
 Not in the project parts – synchronize in parts management	Inte bland projektets artiklar – synkronisera i artikelhanteringen
 Not on a wire	Inte på en ledning
+Not saved yet	Inte sparat ännu
 Not saved, locked or changed by another user	Inte sparat, låst eller ändrat av en annan användare
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Inte tagen: vänster knapp ensam markerar, ritar och flyttar; håll ned en modifieringstangent eller använd en annan knapp.
 Not the shared project: changes are saved locally until it is opened on the project server again	Inte det delade projektet: ändringar sparas lokalt tills det öppnas på projektservern igen
@@ -1449,8 +1458,10 @@ Part of the profile: generic types or parts from the parts store	Profilens artik
 Part selection from the parts database	Artikelval från artikeldatabasen
 Part selection – {}	Artikelval – {}
 Part selection…	Artikelval…
+Partly saved	Delvis sparat
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Delvis sparat (revision {}). Inte sparat, låst eller ändrat av en annan användare: {}. Din version sparas i fönstret Projektserver.
 Partly saved to the project server (revision {})	Delvis sparat på projektservern (revision {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Delvis sparat: projektservern utelämnade ändringar. Din version av dem behålls nedan; de är inte sparade på servern.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artiklar kan bara släppas på sidor som kan ändras; den här är frisläppt, låst eller genererad
 Parts management	Artikelhantering
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artiklar märkta för golvmontage (pumpar, tankar, kompressorer): välj en och klicka där den ska stå på rummets golv
@@ -1782,6 +1793,7 @@ Save asks for a file	Spara frågar efter en fil
 Save as…	Spara som…
 Save current page as template…	Spara aktuell sida som mall…
 Save current…	Spara aktuell…
+Save failed	Sparningen misslyckades
 Save file…	Spara fil…
 Save locally	Spara lokalt
 Save locally to {}	Spara lokalt i {}
@@ -1790,12 +1802,14 @@ Save page as macro…	Spara sida som makro…
 Save page as template	Spara sida som mall
 Save page as template…	Spara sida som mall…
 Save selection as macro…	Spara markering som makro…
+Save shared projects to the project server automatically	Spara delade projekt automatiskt på projektservern
 Save the box content as the macro in the library	Spara rutans innehåll som makrot i biblioteket
 Save to project server	Spara på projektservern
 Save to project server: {}	Spara på projektservern: {}
 Save to project server: {} – the connection is lost, saving tries again	Spara på projektservern: {} – anslutningen är förlorad, sparandet försöker igen
 Save workspace	Spara arbetsyta
 Save workspace…	Spara arbetsyta…
+Saved	Sparat
 Saved to	Sparat i
 Saved to the project server (revision {})	Sparat på projektservern (revision {})
 Saved workspaces	Sparade arbetsytor
@@ -1825,6 +1839,7 @@ Search below this folder	Sök under den här mappen
 Search number, description, maker	Sök nummer, beskrivning, tillverkare
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Sök på artikelservern efter katalog, produktgrupp och tekniska data, lägg till artiklar och kontrollera om databasen har uppdateringar
 Second channel	Andra kanalen
+Seconds from a change to its automatic save (10 to 600)	Sekunder från en ändring till dess automatiska sparning (10 till 600)
 Section properties	Avsnittsegenskaper
 Section properties…	Avsnittsegenskaper…
 Section {} is now section {}	Avsnitt {} är nu avsnitt {}
@@ -2070,6 +2085,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin vänstra sida mot den valdas högra sida; ledningar går mellan dem genom kabelgenomföringar
 The horizontal wire	Den vågräta ledningen
 The items are selected and moved together	Objekten markeras och flyttas tillsammans
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Den senaste sparningen misslyckades: {}. Dina ändringar är inte sparade på projektservern; den automatiska sparningen försöker igen.
+The local recovery copy is of {}: your latest changes are not in it yet	Den lokala återställningskopian är från {}: dina senaste ändringar finns inte i den ännu
 The lock was refused	Låset nekades
 The logo is fitted into this area keeping its aspect ratio	Logotypen anpassas till detta område med bibehållet bildförhållande
 The logo of the project properties, e.g. the customer's	Logotypen i projektegenskaperna, t.ex. kundens
@@ -2090,6 +2107,7 @@ The project changed since the search.	Projektet har ändrats sedan sökningen.
 The project check	Projektkontrollen
 The project database needs the desktop version: the browser cannot search folders.	Projektdatabasen kräver skrivbordsversionen: webbläsaren kan inte söka i mappar.
 The project server does not answer: changes are not saved on it until the connection is back	Projektservern svarar inte: ändringar sparas inte där förrän anslutningen är tillbaka
+The project server has confirmed no save of this session yet	Projektservern har ännu inte bekräftat någon sparning i den här sessionen
 The project server {} could not open {}.	Projektservern {} kunde inte öppna {}.
 The project's own page templates as a file	Projektets egna sidmallar som en fil
 The project's own title blocks	Projektets egna namnrutor
@@ -2102,6 +2120,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Dubbelfelet kontrolleras vid spänningen fas–jord
 The selected devices side by side on the selected rail, from its left end	De markerade apparaterna sida vid sida på den markerade skenan, från dess vänstra ände
 The side of {} is open	Sidan av {} är öppen
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Sparningens tillstånd visas i statusfältet och i panelen Projektserver: sparat, inte sparat ännu, sparar, väntar på servern, misslyckades eller delvis sparat. Den lokala återställningskopian förs dessutom; den är ingen sparning på projektservern.
 The symbol is placed in the project	Symbolen är placerad i projektet
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Plintartiklarna anger inga ändstopp eller gavelplattor (tekniska data End bracket, End plate).
 The update failed	Uppdateringen misslyckades
@@ -2210,6 +2229,7 @@ Voltage (line to line)	Spänning (huvudspänning)
 Voltage at maximum power	Spänning vid maximal effekt
 Voltage drop	Spänningsfall
 WGS 84, written into the site of IFC exports	WGS 84, skrivs in i tomten vid IFC-export
+Waiting for the server	Väntar på servern
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Vägg {}, {} m: dra för att flytta, dubbelklick visar den för att utrusta den
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Vägg {}, {} m: väggen som visas i väggvyn (markerad); dra för att flytta den
 Wall-mounted part	Väggmonterad artikel

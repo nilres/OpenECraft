@@ -271,6 +271,9 @@ Changed message levels ({})	Değiştirilen mesaj seviyeleri ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Montajdan sonra değişti: X {} mm, Y {} mm konumundaydı, parça {}
 Changed since wired: was {} · {} · {}	Kablolamadan sonra değişti: önceki {} · {} · {}
 Changes	Değişiklikler
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Değişiklikler henüz proje sunucusuna kaydedilmedi: tamamlanan değişiklikler {} sn içinde otomatik olarak kaydedilir
+Changes not saved on the project server: save them when the server answers again.	Değişiklikler proje sunucusuna kaydedilmedi: sunucu yeniden yanıt verdiğinde kaydedin.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Değişiklikler proje sunucusuna kaydedilmedi: sunucu yeniden yanıt verir vermez kaydedilir.
 Changes since revision {}	{} revizyonundan bu yana değişiklikler
 Changes the page order; the name stays	Sayfa sırasını değiştirir; ad aynı kalır
 Changes the tag of all functions of this device	Bu cihazın tüm fonksiyonlarının etiketini değiştirir
@@ -754,6 +757,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Bul…
 Finish a wire, polyline, polygon or wall	Kablo, çoklu çizgi, çokgen veya duvarı bitir
 Finish or cancel the drawing, then back to selecting	Çizimi bitir veya iptal et, sonra seçime dön
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Proje sunucusundan açılan bir projenin tamamlanan değişiklikleri kendiliğinden sunucuya kaydedilir; süren giriş tamamlanınca kaydedilir. Kilitler korunur. Kaydet (Ctrl+S) yine hemen kaydeder.
 First row	İlk satır
 Fit page	Sayfaya sığdır
 Fits {}	{} ile uyumlu
@@ -962,6 +966,7 @@ Instead of user name and password	Kullanıcı adı ve parola yerine
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID'deki enstrümanlar tanımlarında fonksiyon harflerini ve döngü numarasını taşır (TIC 101); cihaz etiketleri onları şemaya bağlar.
 Insulation	Yalıtım
 Interruption points refer to	Kesme noktalarının referansı
+Interval	Aralık
 Introduction	Giriş
 Invalid value	Geçersiz değer
 Invert the direction of panning by scrolling	Kaydırmayla görünüm kaydırma yönünü ters çevir
@@ -1001,6 +1006,7 @@ Landscape	Yatay
 Large dot	Büyük nokta
 Larger texts and buttons for a touch screen at the workbench	Tezgâhtaki dokunmatik ekran için daha büyük metinler ve düğmeler
 Largest mesh	En büyük göz
+Last save confirmed by the project server: {}	Proje sunucusunun onayladığı son kayıt: {}
 Latitude, longitude	Enlem, boylam
 Layer	Katman
 Layer {}	Katman {}
@@ -1058,6 +1064,7 @@ Loads	Yükler
 Local file	Yerel dosya
 Local file: {}	Yerel dosya: {}
 Local recovery copy of server project: {}	Sunucu projesinin yerel kurtarma kopyası: {}
+Local recovery copy with these changes written: {}	Bu değişiklikleri içeren yerel kurtarma kopyası yazıldı: {}
 Lock all	Tümünü kilitle
 Lock all pages	Tüm sayfaları kilitle
 Lock current page	Geçerli sayfayı kilitle
@@ -1254,6 +1261,7 @@ No gesture	Hareket yok
 No harnesses defined.	Tanımlı kablo demeti yok.
 No inverter	İnvertör yok
 No jump: plain crossing, connections have dots	Atlama yok: düz kesişim, bağlantılarda nokta var
+No local recovery copy of these changes has been written yet	Bu değişikliklerin yerel kurtarma kopyası henüz yazılmadı
 No longer reported	Artık bildirilmiyor
 No macros yet. Select items in a schematic and save them as a macro.	Henüz makro yok. Bir şemada öğeleri seçin ve makro olarak kaydedin.
 No modules: plug in PLC cards of the schematic.	Modül yok: şemadaki PLC kartlarını takın.
@@ -1295,6 +1303,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Değiştirilme
 Not found: {}	Bulunamadı: {}
 Not in the project parts – synchronize in parts management	Proje parçalarında yok – parça yönetiminde eşitleyin
 Not on a wire	Bir tel üzerinde değil
+Not saved yet	Henüz kaydedilmedi
 Not saved, locked or changed by another user	Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Alınmadı: tek başına sol düğme seçer, çizer ve taşır; bir değiştirici tuşu basılı tutun veya başka bir düğme kullanın.
 Not the shared project: changes are saved locally until it is opened on the project server again	Paylaşılan proje değil: proje sunucusunda yeniden açılana kadar değişiklikler yerel olarak kaydedilir
@@ -1449,8 +1458,10 @@ Part of the profile: generic types or parts from the parts store	Profilin parça
 Part selection from the parts database	Parça veritabanından parça seçimi
 Part selection – {}	Parça seçimi – {}
 Part selection…	Parça seçimi…
+Partly saved	Kısmen kaydedildi
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Kısmen kaydedildi (revizyon {}). Kaydedilmedi, başka bir kullanıcı tarafından kilitlendi veya değiştirildi: {}. Sizin sürümünüz Proje sunucusu bölmesinde saklanır.
 Partly saved to the project server (revision {})	Proje sunucusuna kısmen kaydedildi (revizyon {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Kısmen kaydedildi: proje sunucusu bazı değişiklikleri dışarıda bıraktı. Sizin sürümünüz aşağıda saklanıyor; bunlar sunucuya kaydedilmedi.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Parçalar yalnızca değiştirilebilen sayfalara bırakılabilir; bu sayfa yayınlanmış, kilitli veya oluşturulmuş
 Parts management	Parça yönetimi
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Zemine montaj için işaretlenmiş parçalar (pompalar, tanklar, kompresörler): birini seçin, ardından odanın zemininde duracağı yere tıklayın
@@ -1782,6 +1793,7 @@ Save asks for a file	Kaydet bir dosya sorar
 Save as…	Farklı kaydet…
 Save current page as template…	Geçerli sayfayı şablon olarak kaydet…
 Save current…	Geçerli olanı kaydet…
+Save failed	Kaydetme başarısız
 Save file…	Dosyayı kaydet…
 Save locally	Yerel olarak kaydet
 Save locally to {}	Yerel olarak {} dosyasına kaydet
@@ -1790,12 +1802,14 @@ Save page as macro…	Sayfayı makro olarak kaydet…
 Save page as template	Sayfayı şablon olarak kaydet
 Save page as template…	Sayfayı şablon olarak kaydet…
 Save selection as macro…	Seçimi makro olarak kaydet…
+Save shared projects to the project server automatically	Paylaşılan projeleri proje sunucusuna otomatik olarak kaydet
 Save the box content as the macro in the library	Kutu içeriğini kütüphanede makro olarak kaydet
 Save to project server	Proje sunucusuna kaydet
 Save to project server: {}	Proje sunucusuna kaydet: {}
 Save to project server: {} – the connection is lost, saving tries again	Proje sunucusuna kaydet: {} – bağlantı kesildi, kaydetme yeniden dener
 Save workspace	Çalışma alanını kaydet
 Save workspace…	Çalışma alanını kaydet…
+Saved	Kaydedildi
 Saved to	Kaydedildiği yer
 Saved to the project server (revision {})	Proje sunucusuna kaydedildi (revizyon {})
 Saved workspaces	Kaydedilmiş çalışma alanları
@@ -1825,6 +1839,7 @@ Search below this folder	Bu klasörün altında ara
 Search number, description, maker	Numara, açıklama, üretici ara
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Parça sunucusunda katalog, ürün grubu ve teknik verilere göre arayın, parça ekleyin ve veritabanında güncellemeleri kontrol edin
 Second channel	İkinci kanal
+Seconds from a change to its automatic save (10 to 600)	Bir değişiklikten otomatik kaydına kadar geçen saniye (10 ile 600 arası)
 Section properties	Bölüm özellikleri
 Section properties…	Bölüm özellikleri…
 Section {} is now section {}	{} bölümü artık {} bölümü
@@ -2070,6 +2085,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Pano sol tarafıyla seçilen panonun sağ tarafına dayanır; teller aralarında kablo geçişlerinden geçer
 The horizontal wire	Yatay tel
 The items are selected and moved together	Öğeler birlikte seçilir ve taşınır
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Son kayıt başarısız oldu: {}. Değişiklikleriniz proje sunucusuna kaydedilmedi; otomatik kayıt yeniden dener.
+The local recovery copy is of {}: your latest changes are not in it yet	Yerel kurtarma kopyası {} tarihli: son değişiklikleriniz henüz içinde değil
 The lock was refused	Kilit reddedildi
 The logo is fitted into this area keeping its aspect ratio	Logo, en boy oranı korunarak bu alana sığdırılır
 The logo of the project properties, e.g. the customer's	Proje özelliklerindeki logo, ör. müşterinin logosu
@@ -2090,6 +2107,7 @@ The project changed since the search.	Proje aramadan bu yana değişti.
 The project check	Proje kontrolü
 The project database needs the desktop version: the browser cannot search folders.	Proje veritabanı için masaüstü sürümü gerekir: tarayıcı klasörlerde arama yapamaz.
 The project server does not answer: changes are not saved on it until the connection is back	Proje sunucusu yanıt vermiyor: bağlantı geri gelene kadar değişiklikler orada kaydedilmez
+The project server has confirmed no save of this session yet	Proje sunucusu bu oturumun henüz hiçbir kaydını onaylamadı
 The project server {} could not open {}.	Proje sunucusu {} şunu açamadı: {}.
 The project's own page templates as a file	Projenin kendi sayfa şablonları dosya olarak
 The project's own title blocks	Projenin kendi antetleri
@@ -2102,6 +2120,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	İkinci arıza faz-toprak geriliminde kontrol edilir
 The selected devices side by side on the selected rail, from its left end	Seçili cihazlar seçili ray üzerinde, sol ucundan başlayarak yan yana
 The side of {} is open	{} tarafı açık
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Kaydın durumu durum çubuğunda ve Proje sunucusu bölmesinde gösterilir: kaydedildi, henüz kaydedilmedi, kaydediliyor, sunucu bekleniyor, başarısız veya kısmen kaydedildi. Yerel kurtarma kopyası ayrıca tutulur; proje sunucusuna yapılmış bir kayıt değildir.
 The symbol is placed in the project	Sembol projede kullanılıyor
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Klemens parçaları klemens stoperi veya uç kapağı belirtmiyor (End bracket, End plate teknik verileri).
 The update failed	Güncelleme başarısız oldu
@@ -2210,6 +2229,7 @@ Voltage (line to line)	Gerilim (fazlar arası)
 Voltage at maximum power	Maksimum güçteki gerilim
 Voltage drop	Gerilim düşümü
 WGS 84, written into the site of IFC exports	WGS 84, IFC dışa aktarımlarının arsasına yazılır
+Waiting for the server	Sunucu bekleniyor
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Duvar {}, {} m: taşımak için sürükleyin, donatmak için çift tıklayarak gösterin
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Duvar {}, {} m: duvar görünümünde gösterilen duvar (vurgulu); taşımak için sürükleyin
 Wall-mounted part	Duvara monte parça

@@ -268,6 +268,9 @@ Changed message levels ({})	已更改的消息级别 ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	自安装后已更改：原位于 X {} mm，Y {} mm，部件 {}
 Changed since wired: was {} · {} · {}	接线后已更改：原为 {} · {} · {}
 Changes	更改
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	更改尚未保存到项目服务器：已完成的更改会在 {} 秒内自动保存
+Changes not saved on the project server: save them when the server answers again.	更改未保存到项目服务器：请在服务器恢复响应后保存。
+Changes not saved on the project server: they are saved as soon as the server answers again.	更改未保存到项目服务器：服务器恢复响应后将立即保存。
 Changes since revision {}	自修订 {} 以来的更改
 Changes the page order; the name stays	更改页顺序；名称不变
 Changes the tag of all functions of this device	更改此设备所有功能的标识符
@@ -748,6 +751,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	查找…
 Finish a wire, polyline, polygon or wall	完成导线、多段线、多边形或墙
 Finish or cancel the drawing, then back to selecting	完成或取消绘制，然后返回选择
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	从项目服务器打开的项目，其已完成的更改会自动保存到服务器；正在进行的输入在完成后保存。锁定保持不变。保存 (Ctrl+S) 仍会立即保存。
 First row	第一行
 Fit page	适合页面
 Fits {}	适配 {}
@@ -955,6 +959,7 @@ Instead of user name and password	代替用户名和密码
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID 中的仪表在其标签中带有功能字母和回路编号 (TIC 101)；其设备标识符将其与原理图关联。
 Insulation	绝缘
 Interruption points refer to	中断点引用
+Interval	间隔
 Introduction	简介
 Invalid value	无效值
 Invert the direction of panning by scrolling	反转滚动平移的方向
@@ -993,6 +998,7 @@ Landscape	横向
 Large dot	大圆点
 Larger texts and buttons for a touch screen at the workbench	为工作台触摸屏提供更大的文字和按钮
 Largest mesh	最大网格
+Last save confirmed by the project server: {}	项目服务器确认的上次保存：{}
 Latitude, longitude	纬度、经度
 Layer	图层
 Layer {}	图层 {}
@@ -1047,6 +1053,7 @@ Loads	负载
 Local file	本地文件
 Local file: {}	本地文件：{}
 Local recovery copy of server project: {}	服务器项目的本地恢复副本：{}
+Local recovery copy with these changes written: {}	包含这些更改的本地恢复副本已写入：{}
 Lock all	全部锁定
 Lock all pages	锁定所有页
 Lock current page	锁定当前页
@@ -1241,6 +1248,7 @@ No gesture	无动作
 No harnesses defined.	未定义线束。
 No inverter	无逆变器
 No jump: plain crossing, connections have dots	无跳线：普通交叉，连接处有圆点
+No local recovery copy of these changes has been written yet	尚未写入这些更改的本地恢复副本
 No longer reported	不再报告
 No macros yet. Select items in a schematic and save them as a macro.	尚无宏。在原理图中选择元素并将其另存为宏。
 No modules: plug in PLC cards of the schematic.	没有模块：请插入原理图中的 PLC 卡件。
@@ -1282,6 +1290,7 @@ Not changed: {}. Your version is kept in the Project server pane.	未更改：{}
 Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
+Not saved yet	尚未保存
 Not saved, locked or changed by another user	未保存，已被其他用户锁定或更改
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	未采用：仅左键用于选择、绘制和移动；请按住组合键或使用其他按键。
 Not the shared project: changes are saved locally until it is opened on the project server again	不是共享项目：在项目服务器上重新打开之前，更改将保存在本地
@@ -1436,8 +1445,10 @@ Part of the profile: generic types or parts from the parts store	型材的部件
 Part selection from the parts database	从部件数据库中选择部件
 Part selection – {}	部件选择 – {}
 Part selection…	选择部件…
+Partly saved	部分保存
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	已部分保存（修订 {}）。未保存，已被其他用户锁定或更改：{}。你的版本保留在项目服务器窗格中。
 Partly saved to the project server (revision {})	已部分保存到项目服务器（修订 {}）
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	部分保存：项目服务器未保存部分更改。您的版本保留在下方；它们未保存到服务器。
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	部件只能拖放到可修改的页面上；此页面已发布、已锁定或为生成页面
 Parts management	部件管理
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	标记为落地安装的部件（泵、储罐、压缩机）：选择一个，然后在房间地面上单击放置位置
@@ -1765,6 +1776,7 @@ Save asks for a file	“保存”会询问文件
 Save as…	另存为…
 Save current page as template…	将当前页另存为模板…
 Save current…	保存当前…
+Save failed	保存失败
 Save file…	保存文件…
 Save locally	保存到本地
 Save locally to {}	保存到本地 {}
@@ -1773,12 +1785,14 @@ Save page as macro…	将页另存为宏…
 Save page as template	将页另存为模板
 Save page as template…	将页另存为模板…
 Save selection as macro…	将所选内容另存为宏…
+Save shared projects to the project server automatically	自动将共享项目保存到项目服务器
 Save the box content as the macro in the library	将边框内容另存为库中的宏
 Save to project server	保存到项目服务器
 Save to project server: {}	保存到项目服务器：{}
 Save to project server: {} – the connection is lost, saving tries again	保存到项目服务器：{} – 连接已断开，保存将重试
 Save workspace	保存工作区
 Save workspace…	保存工作区…
+Saved	已保存
 Saved to	保存位置
 Saved to the project server (revision {})	已保存到项目服务器（修订 {}）
 Saved workspaces	已保存的工作区
@@ -1805,6 +1819,7 @@ Search below this folder	在此文件夹下搜索
 Search number, description, maker	搜索编号、描述、制造商
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	按目录、产品组和技术数据搜索部件服务器，添加部件并检查数据库更新
 Second channel	第二通道
+Seconds from a change to its automatic save (10 to 600)	从更改到自动保存的秒数（10 到 600）
 Section properties	分节属性
 Section properties…	分节属性…
 Section {} is now section {}	分节 {} 现在是分节 {}
@@ -2048,6 +2063,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	该机柜的左侧紧靠所选机柜的右侧；导线通过电缆过孔在它们之间穿过
 The horizontal wire	水平导线
 The items are selected and moved together	这些元素将一起被选择和移动
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	上次保存失败：{}。您的更改未保存到项目服务器；自动保存将重试。
+The local recovery copy is of {}: your latest changes are not in it yet	本地恢复副本的时间为 {}：尚不包含您最新的更改
 The lock was refused	锁定被拒绝
 The logo is fitted into this area keeping its aspect ratio	标志按原比例缩放到此区域中
 The logo of the project properties, e.g. the customer's	项目属性中的标志，例如客户的标志
@@ -2068,6 +2085,7 @@ The project changed since the search.	自搜索以来项目已更改。
 The project check	项目检查
 The project database needs the desktop version: the browser cannot search folders.	项目数据库需要桌面版：浏览器无法搜索文件夹。
 The project server does not answer: changes are not saved on it until the connection is back	项目服务器无响应：在连接恢复之前，更改不会保存到服务器上
+The project server has confirmed no save of this session yet	项目服务器尚未确认本次会话的任何保存
 The project server {} could not open {}.	项目服务器 {} 无法打开 {}。
 The project's own page templates as a file	项目自己的页模板，作为文件
 The project's own title blocks	项目自己的标题栏
@@ -2080,6 +2098,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	二次故障按相对地电压进行检查
 The selected devices side by side on the selected rail, from its left end	将所选设备从所选导轨的左端开始并排放置
 The side of {} is open	{} 的侧面是开放的
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	保存状态显示在状态栏和“项目服务器”窗格中：已保存、尚未保存、正在保存、等待服务器、失败或部分保存。本地恢复副本另行保留；它不是保存到项目服务器。
 The symbol is placed in the project	该符号已在项目中使用
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	端子部件未指定终端固定件或终端盖板（技术数据 End bracket、End plate）。
 The update failed	更新失败
@@ -2187,6 +2206,7 @@ Voltage (line to line)	电压（线电压）
 Voltage at maximum power	最大功率点电压
 Voltage drop	电压降
 WGS 84, written into the site of IFC exports	WGS 84，写入 IFC 导出的场地
+Waiting for the server	等待服务器
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	墙 {}，{} m：拖动以移动，双击显示以进行布置
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	墙 {}，{} m：墙视图中显示的墙（突出显示）；拖动以移动
 Wall-mounted part	墙面安装部件

@@ -267,6 +267,9 @@ Changed message levels ({})	변경된 메시지 수준({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	장착 후 변경됨: 이전 위치 X {} mm, Y {} mm, 부품 {}
 Changed since wired: was {} · {} · {}	배선 후 변경됨: 이전 값 {} · {} · {}
 Changes	변경 내용
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	변경 내용이 아직 프로젝트 서버에 저장되지 않았습니다: 완료된 변경 내용은 {}초 안에 자동으로 저장됩니다
+Changes not saved on the project server: save them when the server answers again.	변경 내용이 프로젝트 서버에 저장되지 않았습니다: 서버가 다시 응답하면 저장하십시오.
+Changes not saved on the project server: they are saved as soon as the server answers again.	변경 내용이 프로젝트 서버에 저장되지 않았습니다: 서버가 다시 응답하면 바로 저장됩니다.
 Changes since revision {}	개정 {} 이후 변경 내용
 Changes the page order; the name stays	페이지 순서를 바꿉니다. 이름은 그대로입니다
 Changes the tag of all functions of this device	이 장치의 모든 기능의 태그를 변경합니다
@@ -745,6 +748,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	찾기…
 Finish a wire, polyline, polygon or wall	전선, 폴리선, 다각형 또는 벽 마치기
 Finish or cancel the drawing, then back to selecting	그리기를 끝내거나 취소한 뒤 선택으로 돌아가기
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	프로젝트 서버에서 연 프로젝트의 완료된 변경 내용은 자동으로 서버에 저장됩니다. 진행 중인 입력은 완료된 후 저장됩니다. 잠금은 유지됩니다. 저장 (Ctrl+S)은 계속 바로 저장합니다.
 First row	첫 행
 Fit page	페이지 맞춤
 Fits {}	{}에 호환
@@ -952,6 +956,7 @@ Instead of user name and password	사용자 이름 및 암호 대신
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	P&ID의 계기는 레이블에 기능 문자와 루프 번호를 포함합니다(TIC 101). 장치 태그로 회로도와 연결됩니다.
 Insulation	절연
 Interruption points refer to	중단점의 참조 대상
+Interval	간격
 Introduction	소개
 Invalid value	잘못된 값
 Invert the direction of panning by scrolling	스크롤 이동 방향 반전
@@ -990,6 +995,7 @@ Landscape	가로
 Large dot	큰 점
 Larger texts and buttons for a touch screen at the workbench	작업대 터치스크린을 위한 더 큰 글자와 버튼
 Largest mesh	최대 메시
+Last save confirmed by the project server: {}	프로젝트 서버가 확인한 마지막 저장: {}
 Latitude, longitude	위도, 경도
 Layer	레이어
 Layer {}	레이어 {}
@@ -1044,6 +1050,7 @@ Loads	부하
 Local file	로컬 파일
 Local file: {}	로컬 파일: {}
 Local recovery copy of server project: {}	서버 프로젝트의 로컬 복구 사본: {}
+Local recovery copy with these changes written: {}	이 변경 내용이 포함된 로컬 복구 사본 기록됨: {}
 Lock all	모두 잠금
 Lock all pages	모든 페이지 잠금
 Lock current page	현재 페이지 잠금
@@ -1238,6 +1245,7 @@ No gesture	제스처 없음
 No harnesses defined.	정의된 하네스가 없습니다.
 No inverter	인버터 없음
 No jump: plain crossing, connections have dots	점프 없음: 단순 교차, 연결에 점 표시
+No local recovery copy of these changes has been written yet	이 변경 내용의 로컬 복구 사본이 아직 기록되지 않았습니다
 No longer reported	더 이상 보고되지 않음
 No macros yet. Select items in a schematic and save them as a macro.	아직 매크로가 없습니다. 회로도에서 항목을 선택하고 매크로로 저장하세요.
 No modules: plug in PLC cards of the schematic.	모듈이 없습니다. 회로도의 PLC 카드를 장착하세요.
@@ -1279,6 +1287,7 @@ Not changed: {}. Your version is kept in the Project server pane.	변경되지 �
 Not found: {}	찾을 수 없음: {}
 Not in the project parts – synchronize in parts management	프로젝트 부품에 없음 – 부품 관리에서 동기화하세요
 Not on a wire	전선 위에 없음
+Not saved yet	아직 저장되지 않음
 Not saved, locked or changed by another user	다른 사용자가 잠그거나 변경하여 저장되지 않음
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	적용 안 됨: 왼쪽 단추만으로는 선택, 그리기, 이동을 합니다. 보조키를 누르거나 다른 단추를 사용하세요.
 Not the shared project: changes are saved locally until it is opened on the project server again	공유 프로젝트가 아닙니다: 프로젝트 서버에서 다시 열 때까지 변경 사항은 로컬에 저장됩니다
@@ -1433,8 +1442,10 @@ Part of the profile: generic types or parts from the parts store	프로필의 �
 Part selection from the parts database	부품 데이터베이스에서 부품 선택
 Part selection – {}	부품 선택 – {}
 Part selection…	부품 선택…
+Partly saved	일부 저장됨
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	일부 저장됨(개정 {}). 다른 사용자가 잠그거나 변경하여 저장되지 않음: {}. 내 버전은 프로젝트 서버 창에 보관됩니다.
 Partly saved to the project server (revision {})	프로젝트 서버에 일부 저장됨(개정 {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	일부 저장됨: 프로젝트 서버가 일부 변경 내용을 제외했습니다. 사용자의 버전은 아래에 보관됩니다. 서버에는 저장되지 않았습니다.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	부품은 변경할 수 있는 페이지에만 놓을 수 있습니다. 이 페이지는 릴리스되었거나 잠겨 있거나 생성된 페이지입니다
 Parts management	부품 관리
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	바닥 설치로 표시된 부품(펌프, 탱크, 압축기): 하나를 선택한 다음 방 바닥에서 설치할 위치를 클릭하십시오
@@ -1761,6 +1772,7 @@ Save asks for a file	저장 시 파일을 선택합니다
 Save as…	다른 이름으로 저장…
 Save current page as template…	현재 페이지를 템플릿으로 저장…
 Save current…	현재 작업 공간 저장…
+Save failed	저장 실패
 Save file…	파일 저장…
 Save locally	로컬에 저장
 Save locally to {}	로컬의 {}에 저장
@@ -1769,12 +1781,14 @@ Save page as macro…	페이지를 매크로로 저장…
 Save page as template	페이지를 템플릿으로 저장
 Save page as template…	페이지를 템플릿으로 저장…
 Save selection as macro…	선택 항목을 매크로로 저장…
+Save shared projects to the project server automatically	공유 프로젝트를 프로젝트 서버에 자동으로 저장
 Save the box content as the macro in the library	박스 내용을 라이브러리에 매크로로 저장
 Save to project server	프로젝트 서버에 저장
 Save to project server: {}	프로젝트 서버에 저장: {}
 Save to project server: {} – the connection is lost, saving tries again	프로젝트 서버에 저장: {} – 연결이 손실되었습니다. 저장을 다시 시도합니다
 Save workspace	작업 공간 저장
 Save workspace…	작업 공간 저장…
+Saved	저장됨
 Saved to	저장 위치
 Saved to the project server (revision {})	프로젝트 서버에 저장됨(개정 {})
 Saved workspaces	저장된 작업 공간
@@ -1802,6 +1816,7 @@ Search below this folder	이 폴더 아래에서 검색
 Search number, description, maker	번호, 설명, 제조업체 검색
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	카탈로그, 제품 그룹 및 기술 데이터로 부품 서버를 검색하고, 부품을 추가하며, 데이터베이스의 업데이트를 확인합니다
 Second channel	두 번째 채널
+Seconds from a change to its automatic save (10 to 600)	변경부터 자동 저장까지의 초 (10 ~ 600)
 Section properties	구역 속성
 Section properties…	구역 속성…
 Section {} is now section {}	구역 {}은(는) 이제 구역 {}입니다
@@ -2045,6 +2060,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	외함의 왼쪽 측면이 선택한 외함의 오른쪽 측면에 붙어 있으며, 전선은 케이블 통로를 통해 그 사이를 지나갑니다
 The horizontal wire	가로 전선
 The items are selected and moved together	항목이 함께 선택되고 이동됩니다
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	마지막 저장 실패: {}. 변경 내용이 프로젝트 서버에 저장되지 않았습니다. 자동 저장이 다시 시도합니다.
+The local recovery copy is of {}: your latest changes are not in it yet	로컬 복구 사본은 {} 시점의 것입니다: 최신 변경 내용이 아직 들어 있지 않습니다
 The lock was refused	잠금이 거부됨
 The logo is fitted into this area keeping its aspect ratio	로고는 가로세로 비율을 유지하며 이 영역에 맞춰집니다
 The logo of the project properties, e.g. the customer's	프로젝트 속성의 로고(예: 고객의 로고)
@@ -2065,6 +2082,7 @@ The project changed since the search.	검색 이후 프로젝트가 변경되었
 The project check	프로젝트 검사
 The project database needs the desktop version: the browser cannot search folders.	프로젝트 데이터베이스에는 데스크톱 버전이 필요합니다. 브라우저에서는 폴더를 검색할 수 없습니다.
 The project server does not answer: changes are not saved on it until the connection is back	프로젝트 서버가 응답하지 않습니다: 연결이 돌아올 때까지 변경 사항이 서버에 저장되지 않습니다
+The project server has confirmed no save of this session yet	프로젝트 서버가 이 세션의 저장을 아직 확인하지 않았습니다
 The project server {} could not open {}.	프로젝트 서버 {}에서 {}을(를) 열 수 없습니다.
 The project's own page templates as a file	프로젝트 고유 페이지 템플릿(파일)
 The project's own title blocks	프로젝트 고유 표제란
@@ -2077,6 +2095,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	이중 고장은 대지 전압으로 검사됩니다
 The selected devices side by side on the selected rail, from its left end	선택한 장치를 선택한 레일의 왼쪽 끝부터 나란히 배치
 The side of {} is open	{}의 측면이 개방되어 있습니다
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	저장 상태는 상태 표시줄과 프로젝트 서버 창에 표시됩니다: 저장됨, 아직 저장되지 않음, 저장 중, 서버 대기 중, 실패 또는 일부 저장됨. 로컬 복구 사본은 별도로 보관되며 프로젝트 서버에 저장한 것이 아닙니다.
 The symbol is placed in the project	심볼이 프로젝트에 배치되어 있습니다
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	단자 부품에 엔드 브래킷이나 엔드 플레이트가 지정되어 있지 않습니다(기술 데이터 End bracket, End plate).
 The update failed	업데이트에 실패했습니다
@@ -2183,6 +2202,7 @@ Voltage (line to line)	전압(선간)
 Voltage at maximum power	최대 전력 시 전압
 Voltage drop	전압 강하
 WGS 84, written into the site of IFC exports	WGS 84, IFC 내보내기의 부지에 기록됩니다
+Waiting for the server	서버 대기 중
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	벽 {}, {} m: 드래그하여 이동, 두 번 클릭하면 장착할 수 있도록 표시
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	벽 {}, {} m: 벽 보기에 표시된 벽(강조 표시), 드래그하여 이동
 Wall-mounted part	벽 설치 부품

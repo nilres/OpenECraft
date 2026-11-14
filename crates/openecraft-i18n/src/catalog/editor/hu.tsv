@@ -271,6 +271,9 @@ Changed message levels ({})	Módosított üzenetszintek ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Módosult a szerelés óta: korábban X {} mm, Y {} mm helyen volt, alkatrész: {}
 Changed since wired: was {} · {} · {}	Módosult a bekötés óta: korábban {} · {} · {}
 Changes	Változások
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	A módosítások még nincsenek mentve a projektszerverre: a befejezett módosítások {} mp-en belül automatikusan mentésre kerülnek
+Changes not saved on the project server: save them when the server answers again.	A módosítások nincsenek mentve a projektszerverre: mentse őket, amikor a szerver újra válaszol.
+Changes not saved on the project server: they are saved as soon as the server answers again.	A módosítások nincsenek mentve a projektszerverre: mentésre kerülnek, amint a szerver újra válaszol.
 Changes since revision {}	Változások a(z) {} revízió óta
 Changes the page order; the name stays	Megváltoztatja az oldalak sorrendjét; a név marad
 Changes the tag of all functions of this device	Módosítja a készülék összes funkciójának azonosítóját
@@ -754,6 +757,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Keresés…
 Finish a wire, polyline, polygon or wall	Vezeték, vonallánc, sokszög vagy fal befejezése
 Finish or cancel the drawing, then back to selecting	A rajzolás befejezése vagy megszakítása, majd vissza a kijelöléshez
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	A projektszerverről megnyitott projekt befejezett módosításai maguktól mentődnek oda; a folyamatban lévő bevitel a befejezése után mentődik. A zárolások megmaradnak. A Mentés (Ctrl+S) továbbra is azonnal ment.
 First row	Első sor
 Fit page	Oldal méretre igazítása
 Fits {}	Illeszkedik ehhez: {}
@@ -962,6 +966,7 @@ Instead of user name and password	Felhasználónév és jelszó helyett
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	A P&ID műszerei funkcióbetűket és körszámot viselnek a feliratukban (TIC 101); a készülékazonosítójuk kapcsolja össze őket a kapcsolási rajzzal.
 Insulation	Szigetelés
 Interruption points refer to	A megszakítási pontok hivatkozása
+Interval	Időköz
 Introduction	Bevezetés
 Invalid value	Érvénytelen érték
 Invert the direction of panning by scrolling	A görgetéssel való mozgatás irányának megfordítása
@@ -1001,6 +1006,7 @@ Landscape	Fekvő
 Large dot	Nagy pont
 Larger texts and buttons for a touch screen at the workbench	Nagyobb szövegek és gombok a munkapad érintőképernyőjéhez
 Largest mesh	Legnagyobb háló
+Last save confirmed by the project server: {}	A projektszerver által utoljára megerősített mentés: {}
 Latitude, longitude	Szélesség, hosszúság
 Layer	Réteg
 Layer {}	{} réteg
@@ -1058,6 +1064,7 @@ Loads	Fogyasztók
 Local file	Helyi fájl
 Local file: {}	Helyi fájl: {}
 Local recovery copy of server project: {}	A kiszolgálóprojekt helyi helyreállítási másolata: {}
+Local recovery copy with these changes written: {}	Helyi helyreállítási másolat ezekkel a módosításokkal kiírva: {}
 Lock all	Összes zárolása
 Lock all pages	Összes oldal zárolása
 Lock current page	Aktuális oldal zárolása
@@ -1254,6 +1261,7 @@ No gesture	Nincs kézmozdulat
 No harnesses defined.	Nincsenek definiált kábelkötegek.
 No inverter	Nincs inverter
 No jump: plain crossing, connections have dots	Nincs átugrás: egyszerű kereszteződés, a csatlakozásoknak pontjuk van
+No local recovery copy of these changes has been written yet	Ezekről a módosításokról még nem készült helyi helyreállítási másolat
 No longer reported	Már nem jelentett
 No macros yet. Select items in a schematic and save them as a macro.	Még nincsenek makrók. Jelöljön ki elemeket egy kapcsolási rajzon, és mentse őket makróként.
 No modules: plug in PLC cards of the schematic.	Nincsenek modulok: helyezze be a kapcsolási rajz PLC-kártyáit.
@@ -1295,6 +1303,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Nem módosult:
 Not found: {}	Nem található: {}
 Not in the project parts – synchronize in parts management	Nincs a projekt alkatrészei között – szinkronizálja az alkatrészkezelésben
 Not on a wire	Nincs vezetéken
+Not saved yet	Még nincs mentve
 Not saved, locked or changed by another user	Nincs mentve, egy másik felhasználó zárolta vagy módosította
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nincs átvéve: a bal gomb önmagában kijelöl, rajzol és mozgat; tartson nyomva egy módosítóbillentyűt, vagy használjon másik gombot.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nem a megosztott projekt: a módosítások helyben mentődnek, amíg újra meg nem nyitják a projektkiszolgálón
@@ -1449,8 +1458,10 @@ Part of the profile: generic types or parts from the parts store	A profil alkatr
 Part selection from the parts database	Alkatrész kiválasztása az alkatrész-adatbázisból
 Part selection – {}	Alkatrész kiválasztása – {}
 Part selection…	Alkatrész kiválasztása…
+Partly saved	Részben mentve
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Részben mentve ({}. revízió). Nincs mentve, egy másik felhasználó zárolta vagy módosította: {}. Az Ön változata megmarad a Projektszerver panelen.
 Partly saved to the project server (revision {})	Részben mentve a projektszerverre ({}. revízió)
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Részben mentve: a projektszerver kihagyott módosításokat. Az Ön változata lent megmarad; ezek nincsenek mentve a szerverre.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Alkatrészt csak módosítható oldalra lehet ejteni; ez az oldal kiadott, zárolt vagy generált
 Parts management	Alkatrészkezelés
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Padlóra szerelésre jelölt alkatrészek (szivattyúk, tartályok, kompresszorok): válasszon egyet, majd kattintson a helyére a helyiség padlóján
@@ -1782,6 +1793,7 @@ Save asks for a file	A Mentés fájlt kér
 Save as…	Mentés másként…
 Save current page as template…	Aktuális oldal mentése sablonként…
 Save current…	Aktuális mentése…
+Save failed	A mentés sikertelen
 Save file…	Fájl mentése…
 Save locally	Mentés helyben
 Save locally to {}	Mentés helyben ide: {}
@@ -1790,12 +1802,14 @@ Save page as macro…	Oldal mentése makróként…
 Save page as template	Oldal mentése sablonként
 Save page as template…	Oldal mentése sablonként…
 Save selection as macro…	Kijelölés mentése makróként…
+Save shared projects to the project server automatically	Megosztott projektek automatikus mentése a projektszerverre
 Save the box content as the macro in the library	A doboz tartalmának mentése makróként a könyvtárba
 Save to project server	Mentés a projektszerverre
 Save to project server: {}	Mentés a projektkiszolgálóra: {}
 Save to project server: {} – the connection is lost, saving tries again	Mentés a projektkiszolgálóra: {} – a kapcsolat megszakadt, a mentés újrapróbálkozik
 Save workspace	Munkaterület mentése
 Save workspace…	Munkaterület mentése…
+Saved	Mentve
 Saved to	Mentés helye
 Saved to the project server (revision {})	Mentve a projektszerverre ({}. revízió)
 Saved workspaces	Mentett munkaterületek
@@ -1825,6 +1839,7 @@ Search below this folder	Keresés ebben a mappában és alatta
 Search number, description, maker	Szám, leírás, gyártó keresése
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Keresés az alkatrészszerveren katalógus, termékcsoport és műszaki adatok szerint, alkatrészek hozzáadása és az adatbázis frissítéseinek ellenőrzése
 Second channel	Második csatorna
+Seconds from a change to its automatic save (10 to 600)	Másodpercek egy módosítástól az automatikus mentéséig (10 és 600 között)
 Section properties	Szakasz tulajdonságai
 Section properties…	Szakasz tulajdonságai…
 Section {} is now section {}	A(z) {} szakasz most a(z) {} szakasz
@@ -2070,6 +2085,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	A szekrény bal oldalával a kiválasztott szekrény jobb oldalához áll; a vezetékek kábelátvezetéseken át futnak közöttük
 The horizontal wire	A vízszintes vezeték
 The items are selected and moved together	Az elemek kijelölése és mozgatása együtt történik
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Az utolsó mentés sikertelen volt: {}. A módosításai nincsenek mentve a projektszerverre; az automatikus mentés újra megpróbálja.
+The local recovery copy is of {}: your latest changes are not in it yet	A helyi helyreállítási másolat {} időpontú: a legutóbbi módosításai még nincsenek benne
 The lock was refused	A zárolást elutasították
 The logo is fitted into this area keeping its aspect ratio	A logó a méretarány megtartásával illeszkedik erre a területre
 The logo of the project properties, e.g. the customer's	A projekt tulajdonságaiban megadott logó, pl. az ügyfélé
@@ -2090,6 +2107,7 @@ The project changed since the search.	A projekt a keresés óta megváltozott.
 The project check	A projekt ellenőrzése
 The project database needs the desktop version: the browser cannot search folders.	A projektadatbázishoz az asztali verzió szükséges: a böngésző nem tud mappákban keresni.
 The project server does not answer: changes are not saved on it until the connection is back	A projektkiszolgáló nem válaszol: a módosítások nem kerülnek oda mentésre, amíg a kapcsolat helyre nem áll
+The project server has confirmed no save of this session yet	A projektszerver még nem erősítette meg ennek a munkamenetnek egyetlen mentését sem
 The project server {} could not open {}.	A(z) {} projektkiszolgáló nem tudta megnyitni ezt: {}.
 The project's own page templates as a file	A projekt saját oldalsablonjai fájlként
 The project's own title blocks	A projekt saját szövegmezői
@@ -2102,6 +2120,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	A második hibát a fázis–föld feszültséggel ellenőrzi
 The selected devices side by side on the selected rail, from its left end	A kijelölt készülékek egymás mellett a kijelölt sínen, annak bal végétől
 The side of {} is open	{} oldala nyitott
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	A mentés állapota az állapotsorban és a Projektszerver panelen látható: mentve, még nincs mentve, mentés folyamatban, várakozás a szerverre, sikertelen vagy részben mentve. A helyi helyreállítási másolat emellett készül; az nem mentés a projektszerverre.
 The symbol is placed in the project	A szimbólum használatban van a projektben
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	A sorkapocs-alkatrészek nem adnak meg végbakot vagy zárófedelet (End bracket, End plate műszaki adat).
 The update failed	A frissítés nem sikerült
@@ -2210,6 +2229,7 @@ Voltage (line to line)	Feszültség (vonali)
 Voltage at maximum power	Feszültség maximális teljesítménynél
 Voltage drop	Feszültségesés
 WGS 84, written into the site of IFC exports	WGS 84, az IFC-exportok telkébe kerül
+Waiting for the server	Várakozás a szerverre
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	{}. fal, {} m: húzással mozgatható, dupla kattintással megjelenik a felszereléshez
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	{}. fal, {} m: a falnézetben látható fal (kiemelve); húzással mozgatható
 Wall-mounted part	Falra szerelhető cikk

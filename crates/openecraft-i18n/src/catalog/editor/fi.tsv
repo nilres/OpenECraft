@@ -271,6 +271,9 @@ Changed message levels ({})	Muutetut ilmoitustasot ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Muuttunut asennuksen jälkeen: oli kohdassa X {} mm, Y {} mm osalla {}
 Changed since wired: was {} · {} · {}	Muuttunut johdotuksen jälkeen: oli {} · {} · {}
 Changes	Muutokset
+Changes not saved on the project server yet: finished changes are saved automatically within {} s	Muutoksia ei ole vielä tallennettu projektipalvelimelle: valmiit muutokset tallennetaan automaattisesti {} s kuluessa
+Changes not saved on the project server: save them when the server answers again.	Muutoksia ei ole tallennettu projektipalvelimelle: tallenna ne, kun palvelin vastaa jälleen.
+Changes not saved on the project server: they are saved as soon as the server answers again.	Muutoksia ei ole tallennettu projektipalvelimelle: ne tallennetaan heti, kun palvelin vastaa jälleen.
 Changes since revision {}	Muutokset revision {} jälkeen
 Changes the page order; the name stays	Muuttaa sivujärjestystä; nimi säilyy
 Changes the tag of all functions of this device	Muuttaa tämän laitteen kaikkien toimintojen tunnuksen
@@ -754,6 +757,7 @@ Finds the Vault items of the project parts by item number or Part Number propert
 Find…	Etsi…
 Finish a wire, polyline, polygon or wall	Lopeta johdin, murtoviiva, monikulmio tai seinä
 Finish or cancel the drawing, then back to selecting	Lopeta tai peruuta piirtäminen ja palaa valintaan
+Finished changes of a project opened from the project server are saved to it by themselves; input under way is saved once it is finished. Locks are kept. Save (Ctrl+S) still saves at once.	Projektipalvelimelta avatun projektin valmiit muutokset tallentuvat sinne itsestään; kesken oleva syöttö tallennetaan, kun se on valmis. Lukitukset säilyvät. Tallenna (Ctrl+S) tallentaa edelleen heti.
 First row	Ensimmäinen rivi
 Fit page	Sovita sivu
 Fits {}	Sopii osaan {}
@@ -962,6 +966,7 @@ Instead of user name and password	Käyttäjänimen ja salasanan sijaan
 Instruments in the P&ID carry function letters and loop number in their label (TIC 101); their device tag links them with the schematic.	PI-kaavion instrumenttien merkinnässä on tunnuskirjaimet ja piirin numero (TIC 101); niiden laitetunnus yhdistää ne piirikaavioon.
 Insulation	Eristys
 Interruption points refer to	Katkoskohdat viittaavat
+Interval	Aikaväli
 Introduction	Johdanto
 Invalid value	Virheellinen arvo
 Invert the direction of panning by scrolling	Käännä vierityksellä panoroinnin suunta
@@ -1001,6 +1006,7 @@ Landscape	Vaakasuunta
 Large dot	Suuri piste
 Larger texts and buttons for a touch screen at the workbench	Suuremmat tekstit ja painikkeet työpenkin kosketusnäytölle
 Largest mesh	Suurin silmä
+Last save confirmed by the project server: {}	Viimeisin projektipalvelimen vahvistama tallennus: {}
 Latitude, longitude	Leveys, pituus
 Layer	Taso
 Layer {}	Taso {}
@@ -1058,6 +1064,7 @@ Loads	Kuormat
 Local file	Paikallinen tiedosto
 Local file: {}	Paikallinen tiedosto: {}
 Local recovery copy of server project: {}	Palvelinprojektin paikallinen palautuskopio: {}
+Local recovery copy with these changes written: {}	Paikallinen palautuskopio näillä muutoksilla kirjoitettu: {}
 Lock all	Lukitse kaikki
 Lock all pages	Lukitse kaikki sivut
 Lock current page	Lukitse nykyinen sivu
@@ -1254,6 +1261,7 @@ No gesture	Ei elettä
 No harnesses defined.	Johtosarjoja ei ole määritetty.
 No inverter	Ei vaihtosuuntaajaa
 No jump: plain crossing, connections have dots	Ei hyppyä: tavallinen risteys, liitoksissa on pisteet
+No local recovery copy of these changes has been written yet	Näistä muutoksista ei ole vielä kirjoitettu paikallista palautuskopiota
 No longer reported	Ei enää ilmoiteta
 No macros yet. Select items in a schematic and save them as a macro.	Ei vielä makroja. Valitse kohteita piirikaaviossa ja tallenna ne makrona.
 No modules: plug in PLC cards of the schematic.	Ei moduuleja: asenna piirikaavion PLC-kortteja.
@@ -1295,6 +1303,7 @@ Not changed: {}. Your version is kept in the Project server pane.	Ei muutettu: {
 Not found: {}	Ei löytynyt: {}
 Not in the project parts – synchronize in parts management	Ei projektin osissa – synkronoi osien hallinnassa
 Not on a wire	Ei johdolla
+Not saved yet	Ei vielä tallennettu
 Not saved, locked or changed by another user	Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Ei otettu: pelkkä vasen painike valitsee, piirtää ja siirtää; pidä muokkausnäppäin painettuna tai käytä toista painiketta.
 Not the shared project: changes are saved locally until it is opened on the project server again	Ei jaettu projekti: muutokset tallennetaan paikallisesti, kunnes se avataan uudelleen projektipalvelimella
@@ -1449,8 +1458,10 @@ Part of the profile: generic types or parts from the parts store	Profiilin osa: 
 Part selection from the parts database	Osan valinta osatietokannasta
 Part selection – {}	Osan valinta – {}
 Part selection…	Osan valinta…
+Partly saved	Tallennettu osittain
 Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Tallennettu osittain (revisio {}). Ei tallennettu, toinen käyttäjä on lukinnut tai muuttanut: {}. Versiosi säilyy Projektipalvelin-ruudussa.
 Partly saved to the project server (revision {})	Tallennettu osittain projektipalvelimelle (revisio {})
+Partly saved: the project server left changes out. Your version of them is kept below; they are not saved on the server.	Tallennettu osittain: projektipalvelin jätti muutoksia pois. Oma versiosi niistä säilytetään alla; niitä ei ole tallennettu palvelimelle.
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Osia voi pudottaa vain muokattaville sivuille; tämä on julkaistu, lukittu tai luotu
 Parts management	Osien hallinta
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Lattia-asennukseen merkityt osat (pumput, säiliöt, kompressorit): valitse yksi ja napsauta kohtaa huoneen lattialla
@@ -1782,6 +1793,7 @@ Save asks for a file	Tallenna kysyy tiedostoa
 Save as…	Tallenna nimellä…
 Save current page as template…	Tallenna nykyinen sivu mallina…
 Save current…	Tallenna nykyinen…
+Save failed	Tallennus epäonnistui
 Save file…	Tallenna tiedosto…
 Save locally	Tallenna paikallisesti
 Save locally to {}	Tallenna paikallisesti kohteeseen {}
@@ -1790,12 +1802,14 @@ Save page as macro…	Tallenna sivu makrona…
 Save page as template	Tallenna sivu mallina
 Save page as template…	Tallenna sivu mallina…
 Save selection as macro…	Tallenna valinta makrona…
+Save shared projects to the project server automatically	Tallenna jaetut projektit projektipalvelimelle automaattisesti
 Save the box content as the macro in the library	Tallenna laatikon sisältö makrona kirjastoon
 Save to project server	Tallenna projektipalvelimelle
 Save to project server: {}	Tallenna projektipalvelimelle: {}
 Save to project server: {} – the connection is lost, saving tries again	Tallenna projektipalvelimelle: {} – yhteys on katkennut, tallennus yrittää uudelleen
 Save workspace	Tallenna työtila
 Save workspace…	Tallenna työtila…
+Saved	Tallennettu
 Saved to	Tallennettu kohteeseen
 Saved to the project server (revision {})	Tallennettu projektipalvelimelle (revisio {})
 Saved workspaces	Tallennetut työtilat
@@ -1825,6 +1839,7 @@ Search below this folder	Hae tämän kansion alta
 Search number, description, maker	Hae numeroa, kuvausta, valmistajaa
 Search the parts server by catalog, product group and technical data, add parts and check the database for updates	Hae osapalvelimelta luettelon, tuoteryhmän ja teknisten tietojen mukaan, lisää osia ja tarkista tietokannan päivitykset
 Second channel	Toinen kanava
+Seconds from a change to its automatic save (10 to 600)	Sekunnit muutoksesta sen automaattiseen tallennukseen (10–600)
 Section properties	Osion ominaisuudet
 Section properties…	Osion ominaisuudet…
 Section {} is now section {}	Osio {} on nyt osio {}
@@ -2070,6 +2085,8 @@ The element is drawn only when this text with its placeholders is not empty, e.g
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kotelon vasen puoli on valitun kotelon oikeaa puolta vasten; johdot kulkevat niiden välillä kaapelin läpivientiaukkojen kautta
 The horizontal wire	Vaakasuora johdin
 The items are selected and moved together	Kohteet valitaan ja siirretään yhdessä
+The last save failed: {}. Your changes are not saved on the project server; the automatic save tries again.	Viimeisin tallennus epäonnistui: {}. Muutoksiasi ei ole tallennettu projektipalvelimelle; automaattinen tallennus yrittää uudelleen.
+The local recovery copy is of {}: your latest changes are not in it yet	Paikallinen palautuskopio on ajalta {}: viimeisimmät muutoksesi eivät ole vielä siinä
 The lock was refused	Lukitus evättiin
 The logo is fitted into this area keeping its aspect ratio	Logo sovitetaan tälle alueelle kuvasuhde säilyttäen
 The logo of the project properties, e.g. the customer's	Projektin ominaisuuksien logo, esim. asiakkaan
@@ -2090,6 +2107,7 @@ The project changed since the search.	Projekti on muuttunut haun jälkeen.
 The project check	Projektin tarkistus
 The project database needs the desktop version: the browser cannot search folders.	Projektitietokanta vaatii työpöytäversion: selain ei voi hakea kansioista.
 The project server does not answer: changes are not saved on it until the connection is back	Projektipalvelin ei vastaa: muutoksia ei tallenneta sinne ennen kuin yhteys palaa
+The project server has confirmed no save of this session yet	Projektipalvelin ei ole vielä vahvistanut yhtään tämän istunnon tallennusta
 The project server {} could not open {}.	Projektipalvelin {} ei voinut avata projektia {}.
 The project's own page templates as a file	Projektin omat sivumallit tiedostona
 The project's own title blocks	Projektin omat nimiöt
@@ -2102,6 +2120,7 @@ The rooms of the level side by side; click the level again for all of the plant	
 The second fault is checked at the line-to-earth voltage	Toinen vika tarkistetaan vaihe–maa-jännitteellä
 The selected devices side by side on the selected rail, from its left end	Valitut laitteet vierekkäin valitulla kiskolla sen vasemmasta päästä alkaen
 The side of {} is open	Kohteen {} puoli on avoin
+The state of the save shows in the status bar and in the Project server pane: saved, not saved yet, saving, waiting for the server, failed or partly saved. The local recovery copy is kept besides; it is no save on the project server.	Tallennuksen tila näkyy tilarivillä ja Projektipalvelin-ruudussa: tallennettu, ei vielä tallennettu, tallennetaan, odotetaan palvelinta, epäonnistui tai tallennettu osittain. Paikallista palautuskopiota pidetään lisäksi; se ei ole tallennus projektipalvelimelle.
 The symbol is placed in the project	Symbolia käytetään projektissa
 The terminal parts name no end brackets or end plates (tech data End bracket, End plate).	Riviliitinosissa ei ole mainittu päätypidikkeitä tai päätylevyjä (tekniset tiedot End bracket, End plate).
 The update failed	Päivitys epäonnistui
@@ -2210,6 +2229,7 @@ Voltage (line to line)	Jännite (pääjännite)
 Voltage at maximum power	Jännite maksimiteholla
 Voltage drop	Jännitteenalenema
 WGS 84, written into the site of IFC exports	WGS 84, kirjoitetaan IFC-vientien tonttiin
+Waiting for the server	Odotetaan palvelinta
 Wall {}, {} m: drag to move it, a double-click shows it to equip it	Seinä {}, {} m: siirrä vetämällä, kaksoisnapsautus näyttää sen varustettavaksi
 Wall {}, {} m: the wall shown in the wall view (highlighted); drag to move it	Seinä {}, {} m: seinänäkymässä näkyvä seinä (korostettu); siirrä vetämällä
 Wall-mounted part	Seinäasennettava osa
