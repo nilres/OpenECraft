@@ -12,11 +12,13 @@ Add connection point	Bağlantı noktası ekle
 Add cutout	Kesim ekle
 Add function	Fonksiyon ekle
 Add marked parts to the parts database ({})	İşaretli parçaları parça veritabanına ekle ({})
+Add restricted area	Yasak alan ekle
 Add to the parts database	Parça veritabanına ekle
 Adds the macros of the file to the macro library	Dosyadaki makroları makro kütüphanesine ekler
 All parts are up to date	Tüm parçalar güncel
 Already in the parts database	Zaten parça veritabanında
 Apply {} updates	{} güncellemeyi uygula
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Panoda cihaz (yerleştirme) ya da kesim ve delik (kesim) bulunmayan alanlar; konum ve boyut, öğelerindeki gibi yüzeyin koordinatlarında.
 Check the parts database for updates	Parça veritabanında güncellemeleri kontrol et
 Checking for part updates…	Parça güncellemeleri kontrol ediliyor…
 Clearance front	Ön mesafe
@@ -28,6 +30,7 @@ Connect to a parts server and search.	Bir parça sunucusuna bağlanın ve arayı
 Connected: {} {} – {} parts, revision {}, {}	Bağlandı: {} {} – {} parça, revizyon {}, {}
 Connection designations	Bağlantı tanımları
 Corner radius	Köşe yarıçapı
+Cut-out	Kesim
 Datasheet (URL)	Veri sayfası (URL)
 Deleted catalog {}	{} kataloğu silindi
 Deleted part {}	{} parçası silindi
@@ -83,12 +86,14 @@ Parts server: {}	Parça sunucusu: {}
 Parts this part is assembled from; the bill of materials lists them under it	Bu parçanın oluşturulduğu parçalar; malzeme listesi bunları altında listeler
 Personal access token	Kişisel erişim belirteci
 Place by clicking into the view	Görünüme tıklayarak yerleştir
+Placing	Yerleştirme
 Prices / other	Fiyatlar / diğer
 Remove all	Tümünü kaldır
 Remove picture	Resmi kaldır
 Removing the file…	Dosya kaldırılıyor…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Bağlantı noktalarını IEC kuralına göre değiştirir: tek tanımlar üstte, çift olanlar altta
 Reset filter	Filtreyi sıfırla
+Restricted areas: {}	Yasak alanlar: {}
 Rotate 90°:	90° döndür:
 Save the file	Dosyayı kaydet
 Saved part {}	{} parçası kaydedildi

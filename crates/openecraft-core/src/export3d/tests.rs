@@ -283,3 +283,24 @@ fn the_ifc_site_has_the_name_and_place_of_the_plot() {
 fn standing_out(e: &crate::panel::Enclosure) -> f32 {
     e.items.iter().filter(|i| i.kind == ItemKind::Accessory && i.face == crate::panel::Face::Bottom).map(|i| (-i.z - e.wall()).max(0.0)).fold(0.0, f32::max)
 }
+
+#[test]
+fn a_makers_enclosure_is_exported_with_its_model() {
+    use crate::parts::vec3::box_triangles;
+    // A maker's enclosure part with a model of its body (left wall) and door leaf.
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "RIT.1360000".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    let mut mesh = crate::parts::Mesh3d::default();
+    for tri in [box_triangles([0.0, 0.0, 0.0], [1.5, 600.0, 345.0]), box_triangles([25.0, 12.5, 17.5], [575.0, 587.5, 20.0]), box_triangles([2.0, 2.0, 334.0], [598.0, 598.0, 350.0])].concat() {
+        let base = mesh.vertices.len() as u32;
+        mesh.vertices.extend(tri);
+        mesh.triangles.push([base, base + 1, base + 2]);
+    }
+    part.model_3d = Some(mesh.into());
+    prj.parts.push(part);
+    let e = crate::panel::new_enclosure(&mut prj, "RIT.1360000", "+A1");
+    prj.layout.enclosures.push(e);
+    let solids = enclosure_solids(&prj, &prj.layout.enclosures[0]);
+    let names: Vec<(&str, bool, usize)> = solids.iter().map(|s| (s.name.as_str(), s.transparent, s.triangles.len())).collect();
+    assert_eq!(names, [("+A1 enclosure RIT.1360000", false, 22), ("+A1 door", true, 14)]);
+}

@@ -66,6 +66,17 @@ fn explicit_physical_frames_and_unnumbered_parts_round_trip_through_the_api() {
     assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_origin":{"x":1}})).is_err());
     let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_origin":{},"implicit_plate":true})).unwrap();
     assert!(e["mounting_origin"].is_null());assert_eq!(e["implicit_plate"],true);
+    // A plate that is not centred.
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_origin":{"x":25,"y":20,"z":20},"mounting_size":{"width":500,"height":700}})).unwrap();
+    assert_eq!(e["mounting_size"],json!([500.,700.]));
+    assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_size":{"width":0,"height":1}})).is_err());
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","mounting_size":{}})).unwrap();
+    assert!(e["mounting_size"].is_null());
+    // The door hinged on the right.
+    assert_eq!(e["door_hinge"],"left");
+    let e=run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"right"})).unwrap();
+    assert_eq!(e["door_hinge"],"right");
+    assert!(run(&mut s,"set_enclosure",json!({"enclosure":"Source body","door_hinge":"top"})).is_err());
 }
 
 #[test]

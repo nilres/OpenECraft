@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	Breddegraden ligger inden
 Lead time (days)	Leveringstid (dage)
 Leakage current	Lækstrøm
 Leakage line	Lækolieledning
-Left side	Venstre side
 Left side panel	Venstre sideplade
 Legend plate text	Skilttekst
 Length (m)	Længde (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Mærkekorttidsholdestrøm
 Rated speed	Mærkeomdrejningstal
 Rated torque	Mærkemoment
 Rated voltage	Mærkespænding
-Rear wall	Bagvæg
 Rectangular punch	Rektangulært stempel
 Rectifier / inverter AC/DC, bidirectional	Ensretter / vekselretter AC/DC, tovejs
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Revisionstab
 Revision table: date of the last revision (2: the one before …)	Revisionstabel: dato for den seneste revision (2: den før …)
 Revision table: description of the last revision (2: the one before …)	Revisionstabel: beskrivelse af den seneste revision (2: den før …)
 Revision table: index of the last revision (2: the one before …)	Revisionstabel: indeks for den seneste revision (2: den før …)
-Right side	Højre side
 Right side panel	Højre sideplade
 Ring earth electrode	Ringjord
 Ring terminal	Ringkabelsko
@@ -2008,6 +2005,7 @@ yellow	gul
 {}: cross-section {} below the {} mm² of power circuits	{}: Tværsnittet {} er under de {} mm² for kraftkredse
 {}: cross-section {} differs from the potential definition ({})	{}: Tværsnittet {} afviger fra potentialedefinitionen ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: udskæring for {} på {} er {} mm fra kanten, mindst {} mm påkrævet
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: udskæring for {} på {} ligger i et område, hvor der ikke må skæres ud
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: udskæringen for {} på {} rækker {} mm ud over dens front
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: udskæringer for {} og {} på {} er for tæt på hinanden ({} mm materiale, mindst {} mm)
 {}: designation '{}' used more than once	{}: Betegnelsen '{}' bruges mere end én gang
@@ -2017,6 +2015,7 @@ yellow	gul
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: Fejlstrømmen {} A ved {} udkobler ikke inden for {} s (kræver {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: funktionsteksterne er forskellige i enstregsdiagrammet og diagrammet
 {}: hole of {} is too close to the cutout of {} on the {}	{}: hul for {} er for tæt på udskæringen for {} på {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: hul for {} på {} ligger i et område, hvor der ikke må skæres ud
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: hul Ø{} for {} på {} er {} mm fra kanten, mindst {} mm påkrævet
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: huller for {} og {} på {} er for tæt på hinanden ({} mm materiale, mindst {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: varmepunkt på ca. {} °C ved x = {} mm, y = {} mm på monteringspladen (indvendig temperatur højst {} °C)
@@ -2111,6 +2110,7 @@ yellow	gul
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} er ikke beregnet til vægmontage, monter den på en skinne
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} er {} … {} mm over gulvet, tilladt {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg på {} overskrider dens bæreevne på {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} ligger i et område på {}, hvor intet må placeres
 {}: {} modules of PV array {} are not connected to a string	{}: {} moduler i solcelleanlæg {} er ikke tilsluttet nogen streng
 {}: {} modules, the head has {} slots	{}: {} moduler, hovedet har {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} på {} mm er længere end lagerlængden på {} mm og skal samles

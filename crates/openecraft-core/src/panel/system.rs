@@ -173,9 +173,10 @@ pub fn components(e: &Enclosure) -> Vec<Component> {
     }
     let sys = e.system();
     let modular = sys.is_some_and(|s| s.data.bayable);
+    // A maker's enclosure stays the body whatever its system.
     let body = match sys {
-        Some(s) => mechanics::body_number(s.data, w, h, d),
-        None => e.part.clone(),
+        Some(s) if is_catalog_body(&e.part) => mechanics::body_number(s.data, w, h, d),
+        _ => e.part.clone(),
     };
     let one = |role, part: String, boxes| Component { role, part, count: 1, boxes };
     let frame = if modular { frame_boxes(e, sys.map(|s| s.data.frame).unwrap_or(0.0)) } else { Vec::new() };
@@ -245,11 +246,76 @@ pub fn apply_system(e: &mut Enclosure, system: &str, size: Option<(f32, f32, f32
     sync_part(e);
 }
 
-/// Keeps the part of a system enclosure in step with its size.
+/// Keeps the part of a system enclosure in step with its size: no part or one of the
+/// built-in catalog becomes the system's body of that size; a maker's enclosure (an
+/// imported part declaring its system) stays.
 pub fn sync_part(e: &mut Enclosure) {
     if let Some(s) = e.system() {
-        e.part = mechanics::body_number(s.data, e.width, e.height, e.depth);
+        if is_catalog_body(&e.part) {
+            e.part = mechanics::body_number(s.data, e.width, e.height, e.depth);
+        }
     }
+}
+
+/// No part or one of the built-in catalog: the body of a system enclosure follows the
+/// system and size; any other part is a maker's enclosure.
+fn is_catalog_body(part: &str) -> bool {
+    part.is_empty() || crate::parts::catalog().iter().any(|p| p.number == part)
+}
+
+/// Depth of the front of a maker's enclosure that opens with the door when its model
+/// does not mark the door ([`crate::parts::DOOR_PAINT`]), mm.
+const DOOR_ZONE: f32 = 20.0;
+
+/// The maker's model of an enclosure: the 3D model of its part (imported with the
+/// enclosure packages of the Rittal configurator), when the part is no part of the
+/// built-in catalog and its model has the enclosure's width and height. Triangles in
+/// the 3D view's coordinates (x right, y up, z towards the door), each with the wall it
+/// belongs to: [`Face::Door`] for the door (painted [`crate::parts::DOOR_PAINT`],
+/// otherwise the front [`DOOR_ZONE`]), the face whose plane it lies in, `None` inside
+/// (mounting plate, gland plate, flanges).
+pub fn maker_model(prj: &crate::model::Project, e: &Enclosure) -> Option<Vec<(Option<Face>, crate::parts::vec3::Tri)>> {
+    if e.is_room() || e.is_assembly() || is_catalog_body(&e.part) {
+        return None;
+    }
+    let mesh = super::part_by_number(prj, &e.part)?.model_3d.as_ref()?;
+    let size = mesh.size();
+    let close = |a: f32, b: f32, tolerance: f32| (a - b).abs() <= tolerance.max(b * 0.02);
+    if !close(size[0], e.width, 2.0) || !close(size[1], e.height, 2.0) || !close(size[2], e.depth, e.depth * 0.1) {
+        return None;
+    }
+    let (w, h, d) = (e.width, e.height, e.depth);
+    let wall = e.wall() + 3.0;
+    // The door as the model marks it (its bodies), otherwise the front.
+    let marked = mesh.colors.len() == mesh.triangles.len() && mesh.colors.contains(&crate::parts::DOOR_PAINT);
+    let face_of = |i: usize, t: &crate::parts::vec3::Tri| {
+        let c: [f32; 3] = std::array::from_fn(|k| (t[0][k] + t[1][k] + t[2][k]) / 3.0);
+        let flat = |k: usize, at: f32| t.iter().all(|v| (v[k] - at).abs() <= wall);
+        let door = if marked { mesh.colors[i] == crate::parts::DOOR_PAINT } else { c[2] >= d - DOOR_ZONE };
+        if door {
+            Some(Face::Door)
+        } else if flat(0, 0.0) {
+            Some(Face::Left)
+        } else if flat(0, w) {
+            Some(Face::Right)
+        } else if flat(2, 0.0) {
+            Some(Face::Rear)
+        } else if flat(1, 0.0) {
+            Some(Face::Bottom)
+        } else if flat(1, h) {
+            Some(Face::Roof)
+        } else {
+            None
+        }
+    };
+    Some(
+        mesh.triangles
+            .iter()
+            .map(|t| t.map(|k| mesh.vertices[k as usize]))
+            .enumerate()
+            .map(|(i, t)| (face_of(i, &t), t))
+            .collect(),
+    )
 }
 
 /// The system of an enclosure part (part data `Enclosure system: baying`).

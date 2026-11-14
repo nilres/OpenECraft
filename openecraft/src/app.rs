@@ -338,6 +338,9 @@ pub struct App {
     /// Section whose properties are shown.
     section_props: Option<u64>,
     message: Option<(Message, f64)>,
+    /// A result the user waits for (an import), shown in a box until clicked or for a
+    /// few seconds, and the time it came.
+    popup: Option<(Message, f64)>,
     /// The messages of this session (status bar › messages).
     messages: Vec<Message>,
     title: String,
@@ -602,6 +605,7 @@ impl App {
             section_props: None,
             message: None,
             messages: Vec::new(),
+            popup: None,
             title: String::new(),
             shown_lang: openecraft_i18n::lang(),
             remote,
@@ -772,6 +776,13 @@ impl App {
     /// A failure told in a plain sentence, the technical `detail` on hover.
     fn notify_failure(&mut self, ctx: &egui::Context, msg: impl Into<String>, detail: impl Into<String>) {
         self.post(ctx, Message { text: msg.into(), detail: detail.into(), level: crate::style::Level::Error });
+    }
+
+    /// A result the user waits for (an import): a message, also shown in a box at the
+    /// bottom right until clicked or for a few seconds.
+    fn notify_popup(&mut self, ctx: &egui::Context, msg: Message) {
+        self.post(ctx, msg.clone());
+        self.popup = Some((msg, ctx.input(|i| i.time)));
     }
 
     fn post(&mut self, ctx: &egui::Context, msg: Message) {
@@ -996,6 +1007,7 @@ impl App {
         self.panel_ui.status.clear();
         self.vault.status.clear();
         self.message = None;
+        self.popup = None;
     }
 
     /// Clears the flag that asks for `pane` (the pane was closed).

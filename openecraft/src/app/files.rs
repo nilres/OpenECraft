@@ -473,14 +473,19 @@ impl App {
         }
     }
 
-    /// Imports a parts file (CSV, JSON, BMEcat, EPLAN XML or EDZ) into the database; it
-    /// is read on another thread.
+    /// Imports a parts file (CSV, JSON, BMEcat, EPLAN XML, EDZ or the ZIP package of an
+    /// enclosure configurator) into the database; it is read on another thread.
     pub(super) fn import_parts(&mut self, ctx: &egui::Context, name: &str, data: &[u8]) {
         let bytes = data.to_vec();
         let path = name.to_owned();
         let mappings: Vec<_> = self.session.prj.symbols.iter().filter(|s| s.key.starts_with("user:eplan-lib:")).cloned().collect();
         self.jobs.push(Job::start(tr("Reading the parts file").to_string(), ctx, move || {
-            Done::Parts(openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings).map(|package| package.parts))
+            let package = if openecraft_edz::package::is_zip(&bytes) {
+                openecraft_edz::package::read(&bytes, Some(openecraft_step::parse_step_without))
+            } else {
+                openecraft_edz::folder::read_with_library(std::path::Path::new(&path), &bytes, &mappings)
+            };
+            Done::Parts(package.map(|package| package.parts))
         }));
     }
 
@@ -489,26 +494,28 @@ impl App {
         match list {
             Ok(list) => {
                 let n = list.len();
+                // One part by its number and description, more by their count and numbers.
+                let (text, detail) = match &list[..] {
+                    [p] => (tr_fmt!("Imported {} into the parts database", p.number), p.description.clone()),
+                    more => {
+                        let mut numbers: Vec<&str> = more.iter().take(5).map(|p| p.number.as_str()).collect();
+                        if more.len() > 5 {
+                            numbers.push("…");
+                        }
+                        (tr_fmt!("Imported {} parts into the database", n), numbers.join(", "))
+                    }
+                };
                 for p in list {
-                    if !p.eplan_variants.is_empty() {
-                        if let Some(old) = self.session.prj.parts.iter_mut().find(|old| old.number == p.number) {
-                            old.eplan_variants = p.eplan_variants.clone();
-                            old.mounting_data.rail = p.mounting_data.rail;
-                        }
-                    }
-                    if !p.picture.is_empty() {
-                        if let Some(old) = self.session.prj.parts.iter_mut().find(|old| old.number == p.number) {
-                            old.picture.clone_from(&p.picture);
-                        }
-                    }
+                    // A part the project has already takes what the import brings.
+                    parts::refresh_in_project(&mut self.session.prj, &p);
                     self.parts_db.upsert(p);
                 }
                 self.parts_db.sort();
                 parts::link_unassigned_plc_parts(&mut self.session.prj, &self.parts_db, None);
                 self.session.prj.refresh_rail_mounts();
-                self.notify(ctx, tr_fmt!("Imported {} parts into the database", n));
+                self.notify_popup(ctx, Message { text, detail, level: crate::style::Level::Ok });
             }
-            Err(e) => self.notify_error(ctx, tr_fmt!("Parts import failed: {}", e)),
+            Err(e) => self.notify_popup(ctx, Message { text: tr_fmt!("Parts import failed: {}", e), detail: String::new(), level: crate::style::Level::Error }),
         }
     }
 

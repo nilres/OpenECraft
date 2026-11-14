@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Вертикальный заземли
 Earth rod: x of its place in the floor plan of the building, mm	Вертикальный заземлитель: x его места на плане здания, мм
 Earth rod: z of its place in the floor plan of the building, mm	Вертикальный заземлитель: z его места на плане здания, мм
 Edge length of the routing grid in mm	Длина ребра сетки прокладки в мм
+Edge the door is hinged at, seen from the front: left or right	Край, на котором навешена дверь, вид спереди: left или right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Обозначения электрических устройств через запятую или пробел (пусто = удалить связи)
 Electrical engineering	Электротехника
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Элементы (Line, Rect, Text, Image) в мм от левого верхнего угла области основной надписи в массиве items
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Середина фотоэлектрического поля на плане здания (наземное поле: в установке), z в мм
 Milling feed, mm/min	Подача при фрезеровании, мм/мин
 Mirror the symbol	Отразить символ
+Mounting plate size as width and height; empty object restores the centred plate	Размер монтажной панели как ширина и высота; пустой объект восстанавливает панель по центру
+Mounting size must contain a positive width and height	Монтажный размер должен содержать положительные ширину и высоту
 Moves an air-termination rod, changes its height, renames or removes it	Перемещает молниеприёмный стержень, изменяет его высоту, переименовывает или удаляет его
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Перемещает один конец провода: он отсоединяется от того, к чему подключён, и подключается к тому, чего касается; провод остаётся прямоугольным
 Moves symbols, wires and texts; connected wire ends follow	Перемещает символы, провода и тексты; подключённые концы проводов следуют за ними
@@ -928,6 +931,7 @@ Unknown check: {}	Неизвестная проверка: {}
 Unknown class: {}	Неизвестный класс: {}
 Unknown data type: {}	Неизвестный тип данных: {}
 Unknown direction {}: left, right, up or down	Неизвестное направление {}: left, right, up или down
+Unknown door hinge: {}	Неизвестная сторона петель: {}
 Unknown earth electrode: {}	Неизвестный заземлитель: {}
 Unknown earthing system: {}	Неизвестный тип системы заземления: {}
 Unknown face {}	Неизвестная поверхность {}

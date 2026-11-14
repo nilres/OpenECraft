@@ -44,7 +44,7 @@ fn connection_points_in_csv() {
     ];
     let csv = to_csv(std::slice::from_ref(&part));
     let header = csv.lines().next().unwrap();
-    assert!(header.contains(";Connection points;Catalog;Lifecycle;Successor;Clearance top;") && header.ends_with(";Terminal type;Wall mounting;Floor mounting;Components;Accessory;Accessory mounting;Fits"));
+    assert!(header.contains(";Connection points;Catalog;Lifecycle;Successor;Clearance top;") && header.ends_with(";Terminal type;Wall mounting;Floor mounting;Restricted areas;Components;Accessory;Accessory mounting;Fits"));
     assert!(csv.contains("A1:5.5/0/60/up|14:40/74/55.25/down"));
     assert_eq!(from_csv(&csv).unwrap()[0].connection_points, part.connection_points);
     // Files without the column (older exports) have no points.

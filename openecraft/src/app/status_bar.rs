@@ -6,9 +6,44 @@ use super::*;
 use crate::commands::Cmd;
 
 impl App {
+    /// The box of a result the user waits for ([`App::notify_popup`]) at the bottom
+    /// right, above the status bar; a click closes it.
+    fn message_popup(&mut self, ctx: &egui::Context) {
+        let Some((msg, t)) = self.popup.clone() else { return };
+        let error = msg.level == crate::style::Level::Error;
+        // Errors stay longer, as in the status bar.
+        let shown = if error { 12.0 } else { 6.0 };
+        let age = ctx.input(|i| i.time) - t;
+        if age >= shown {
+            self.popup = None;
+            return;
+        }
+        ctx.request_repaint_after(std::time::Duration::from_secs_f64(shown - age));
+        let dark = self.dark;
+        let area = egui::Area::new(egui::Id::unique("message_popup")).anchor(egui::Align2::RIGHT_BOTTOM, egui::vec2(-16.0, -36.0)).order(egui::Order::Foreground);
+        let r = area.show(ctx, |ui| {
+            egui::Frame::popup(ui.style()).show(ui, |ui| {
+                ui.set_max_width(380.0);
+                ui.horizontal(|ui| {
+                    icons::show(ui, if error { Icon::Error } else { Icon::Check }, 18.0);
+                    ui.vertical(|ui| {
+                        ui.label(RichText::new(&msg.text).strong().color(msg.level.color(dark, ui.visuals().text_color())));
+                        if !msg.detail.is_empty() {
+                            ui.label(&msg.detail);
+                        }
+                    });
+                });
+            });
+        });
+        if r.response.interact(egui::Sense::click()).clicked() {
+            self.popup = None;
+        }
+    }
+
     #[allow(clippy::too_many_lines)]
     pub(super) fn status_bar(&mut self, ui: &mut egui::Ui) {
         let ctx = ui.ctx().clone();
+        self.message_popup(&ctx);
         let on_page = self.active_doc == Pane::Page;
         let in_layout = self.active_doc == Pane::LayoutView;
         // The hint fills the space between the left and the right segments; a tool

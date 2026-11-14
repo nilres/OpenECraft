@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	Szerokość geograficzna 
 Lead time (days)	Czas dostawy (dni)
 Leakage current	Prąd upływu
 Leakage line	Przewód przecieku
-Left side	Lewa strona
 Left side panel	Lewa ściana boczna
 Legend plate text	Tekst tabliczki opisowej
 Length (m)	Długość (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Znamionowy prąd krótkotrwały wytrzymywany
 Rated speed	Prędkość znamionowa
 Rated torque	Moment znamionowy
 Rated voltage	Napięcie znamionowe
-Rear wall	Ściana tylna
 Rectangular punch	Stempel prostokątny
 Rectifier / inverter AC/DC, bidirectional	Prostownik / falownik AC/DC, dwukierunkowy
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Tabela rewiz
 Revision table: date of the last revision (2: the one before …)	Tabela rewizji: data ostatniej rewizji (2: poprzedniej …)
 Revision table: description of the last revision (2: the one before …)	Tabela rewizji: opis ostatniej rewizji (2: poprzedniej …)
 Revision table: index of the last revision (2: the one before …)	Tabela rewizji: indeks ostatniej rewizji (2: poprzedniej …)
-Right side	Prawa strona
 Right side panel	Prawa ściana boczna
 Ring earth electrode	Uziom otokowy
 Ring terminal	Końcówka oczkowa
@@ -2008,6 +2005,7 @@ yellow	żółty
 {}: cross-section {} below the {} mm² of power circuits	{}: przekrój {} poniżej {} mm² obwodów mocy
 {}: cross-section {} differs from the potential definition ({})	{}: przekrój {} różni się od definicji potencjału ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: wycięcie elementu {} na {} znajduje się {} mm od krawędzi, wymagane co najmniej {} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: wycięcie elementu {} na {} leży w obszarze zastrzeżonym dla wycięć
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: wycięcie {} na {} wystaje {} mm poza jego front
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: wycięcia elementów {} i {} na {} są zbyt blisko siebie (mostek {} mm, co najmniej {} mm)
 {}: designation '{}' used more than once	{}: oznaczenie '{}' użyte więcej niż raz
@@ -2017,6 +2015,7 @@ yellow	żółty
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: prąd zwarciowy {} A w {} nie powoduje wyłączenia w ciągu {} s (wymagane {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: teksty funkcji na schemacie jednokreskowym i schemacie elektrycznym różnią się
 {}: hole of {} is too close to the cutout of {} on the {}	{}: otwór elementu {} jest zbyt blisko wycięcia elementu {} na {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: otwór elementu {} na {} leży w obszarze zastrzeżonym dla wycięć
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: otwór Ø{} elementu {} na {} znajduje się {} mm od krawędzi, wymagane co najmniej {} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: otwory elementów {} i {} na {} są zbyt blisko siebie (mostek {} mm, co najmniej {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: gorący punkt ok. {} °C przy x = {} mm, y = {} mm płyty montażowej (temperatura wewnętrzna maks. {} °C)
@@ -2111,6 +2110,7 @@ yellow	żółty
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nie jest przeznaczony do montażu naściennego, zamontuj go na szynie
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} znajduje się {} … {} mm nad podłogą, dopuszczalne {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg na {} przekracza jej nośność {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} leży w obszarze zastrzeżonym dla montażu na {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} modułów instalacji PV {} nie jest podłączonych do łańcucha
 {}: {} modules, the head has {} slots	{}: moduły: {}, głowica ma {} gniazd
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} o długości {} mm jest dłuższy niż długość handlowa {} mm i musi być łączony

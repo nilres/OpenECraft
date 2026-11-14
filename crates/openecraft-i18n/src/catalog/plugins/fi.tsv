@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Maadoitussauva: sen pituus, mm (oletus 
 Earth rod: x of its place in the floor plan of the building, mm	Maadoitussauva: sen paikan x rakennuksen pohjapiirroksessa, mm
 Earth rod: z of its place in the floor plan of the building, mm	Maadoitussauva: sen paikan z rakennuksen pohjapiirroksessa, mm
 Edge length of the routing grid in mm	Reititysruudukon sivun pituus millimetreinä
+Edge the door is hinged at, seen from the front: left or right	Reuna, johon ovi on saranoitu, edestä katsottuna: left tai right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Sähkölaitteiden tunnukset pilkuilla tai välilyönneillä erotettuina (tyhjä = poista linkit)
 Electrical engineering	Sähkötekniikka
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementit (Line, Rect, Text, Image) millimetreinä nimiöalueen vasemmasta yläkulmasta taulukossa items
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Aurinkopaneelikentän keskikohta rakennuksen pohjapiirroksessa (maa-asennus: laitoksessa), z mm
 Milling feed, mm/min	Jyrsintäsyöttö, mm/min
 Mirror the symbol	Peilaa symboli
+Mounting plate size as width and height; empty object restores the centred plate	Asennuslevyn koko leveytenä ja korkeutena; tyhjä objekti palauttaa keskitetyn levyn
+Mounting size must contain a positive width and height	Asennuskoon on sisällettävä positiivinen leveys ja korkeus
 Moves an air-termination rod, changes its height, renames or removes it	Siirtää ukkosenjohdatintankoa, muuttaa sen korkeutta, nimeää sen uudelleen tai poistaa sen
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Siirtää johdon yhtä päätä: se irtoaa siitä, mihin se on liitetty, ja liittyy siihen, mihin se osuu; johto pysyy suorakulmaisena
 Moves symbols, wires and texts; connected wire ends follow	Siirtää symboleja, johtoja ja tekstejä; liitettyjen johtojen päät seuraavat
@@ -928,6 +931,7 @@ Unknown check: {}	Tuntematon tarkistus: {}
 Unknown class: {}	Tuntematon luokka: {}
 Unknown data type: {}	Tuntematon tietotyyppi: {}
 Unknown direction {}: left, right, up or down	Tuntematon suunta {}: left, right, up tai down
+Unknown door hinge: {}	Tuntematon saranapuoli: {}
 Unknown earth electrode: {}	Tuntematon maadoituselektrodi: {}
 Unknown earthing system: {}	Tuntematon maadoitusjärjestelmä: {}
 Unknown face {}	Tuntematon pinta {}

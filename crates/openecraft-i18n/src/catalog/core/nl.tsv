@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	De breedtegraad ligt binn
 Lead time (days)	Levertijd (dagen)
 Leakage current	Lekstroom
 Leakage line	Lekolieleiding
-Left side	Linkerzijde
 Left side panel	Linkerzijwand
 Legend plate text	Tekst naamplaatje
 Length (m)	Lengte (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Nominale kortstondig toelaatbare stroom
 Rated speed	Nominaal toerental
 Rated torque	Nominaal koppel
 Rated voltage	Nominale spanning
-Rear wall	Achterwand
 Rectangular punch	Rechthoekige stempel
 Rectifier / inverter AC/DC, bidirectional	Gelijkrichter / omvormer AC/DC, bidirectioneel
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Revisietabel
 Revision table: date of the last revision (2: the one before …)	Revisietabel: datum van de laatste revisie (2: die daarvoor …)
 Revision table: description of the last revision (2: the one before …)	Revisietabel: beschrijving van de laatste revisie (2: die daarvoor …)
 Revision table: index of the last revision (2: the one before …)	Revisietabel: index van de laatste revisie (2: die daarvoor …)
-Right side	Rechterzijde
 Right side panel	Rechterzijwand
 Ring earth electrode	Ringaarde
 Ring terminal	Ringkabelschoen
@@ -2008,6 +2005,7 @@ yellow	geel
 {}: cross-section {} below the {} mm² of power circuits	{}: doorsnede {} kleiner dan de {} mm² van hoofdstroomkringen
 {}: cross-section {} differs from the potential definition ({})	{}: doorsnede {} wijkt af van de potentiaaldefinitie ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: uitsparing van {} op {} ligt {} mm van de rand, minimaal {} mm vereist
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: uitsparing van {} op {} ligt in een verboden zone voor uitsparingen
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: uitsparing van {} op {} steekt {} mm buiten de voorkant uit
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: uitsparingen van {} en {} op {} liggen te dicht bij elkaar ({} mm brug, minimaal {} mm)
 {}: designation '{}' used more than once	{}: benaming '{}' meer dan eens gebruikt
@@ -2017,6 +2015,7 @@ yellow	geel
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: foutstroom {} A bij {} schakelt niet binnen {} s uit (vereist {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: functieteksten verschillen in het eenlijnschema en het schema
 {}: hole of {} is too close to the cutout of {} on the {}	{}: boring van {} ligt te dicht bij de uitsparing van {} op {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: gat van {} op {} ligt in een verboden zone voor uitsparingen
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: boring Ø{} van {} op {} ligt {} mm van de rand, minimaal {} mm vereist
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: boringen van {} en {} op {} liggen te dicht bij elkaar ({} mm brug, minimaal {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: hotspot van ongeveer {} °C bij x = {} mm, y = {} mm van de montageplaat (binnentemperatuur maximaal {} °C)
@@ -2111,6 +2110,7 @@ yellow	geel
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} is niet bedoeld voor wandmontage, monteer het op een rail
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} ligt {} … {} mm boven de vloer, toegestaan {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg op {} overschrijdt de draagkracht van {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} ligt in een verboden plaatsingszone op {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} modules van PV-veld {} zijn op geen string aangesloten
 {}: {} modules, the head has {} slots	{}: {} modules, de kop heeft {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} van {} mm is langer dan de voorraadlengte van {} mm en moet worden samengevoegd

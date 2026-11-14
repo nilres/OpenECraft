@@ -266,7 +266,8 @@ Change request	Požadavek na změnu
 Change requests	Požadavky na změnu
 Change requests (CSV, JSON)	Požadavky na změnu (CSV, JSON)
 Changed against the frozen routes:	Změněno oproti zmrazeným trasám:
-Changed by another user in the meantime, your change was replaced: {}	Mezitím změněno jiným uživatelem, vaše změna byla nahrazena: {}
+Changed by another user before you got the lock	Změněno jiným uživatelem dříve, než jste získali zámek
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Mezitím změněno jiným uživatelem: {}. Vaše verze zůstává v podokně Projektový server.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Změněné buňky souboru CSV nebo Excel exportovaného odsud (řádky podle jejich klíče)
 Changed message levels ({})	Změněné úrovně hlášení ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Změněno od montáže: bylo na X {} mm, Y {} mm s artiklem {}
@@ -392,6 +393,7 @@ Comments ({})	Komentáře ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Komentáře, které kontrolor vytvořil v exportu PDF projektu (Acrobat nebo jiný prohlížeč PDF)
 Comments and markup	Komentáře a značky
 Company library	Knihovna firmy
+Compare	Porovnat
 Compare and baselines	Porovnání a základní verze
 Compare with	Porovnat s
 Compare with a baseline, a revision or another project file and take differences over	Porovnat se základní verzí, revizí nebo jiným souborem projektu a převzít rozdíly
@@ -519,6 +521,7 @@ Delete the property and all its values	Odstranit vlastnost se všemi hodnotami
 Delete this workspace	Odstranit tento pracovní prostor
 Delete variant	Odstranit variantu
 Delete zone	Smazat zónu
+Deletes this copy of your changes for good	Trvale odstraní tuto kopii vašich změn
 Depth / mounted at	Hloubka / montáž na
 Depth below the ground	Hloubka pod terénem
 Depth from / to	Hloubka od / do
@@ -594,6 +597,7 @@ Door NC data (DWG)	Data NC dveří (DWG)
 Door NC data (DXF)	Data NC dveří (DXF)
 Door clearance	Volný prostor u dveří
 Door cutouts (CSV)	Výřezy ve dveřích (CSV)
+Door hinge	Závěsy dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double-click	Dvojklik
@@ -660,6 +664,7 @@ Earthing system	Soustava uzemnění
 Easting, northing	Východní, severní souřadnice
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Délka hrany rastru vedení: menší je jemnější a pomalejší
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Hrana, na které jsou dveře zavěšeny, při pohledu zepředu: 3D pohled tam dveře otevírá a vodiče dveří vedou přes ni
 Edit in table	Upravit v tabulce
 Edit in table…	Upravit v tabulce…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Režim úprav: přetáhněte budovy na jejich místa v situačním plánu a otočte je; kliknutí na místnost ji už neotevře
@@ -918,6 +923,7 @@ Import symbol library…	Importovat knihovnu symbolů…
 Import symbol table…	Importovat tabulku symbolů…
 Imported	Importováno
 Imported {} entries of the property library	Importováno {} položek knihovny vlastností
+Imported {} into the parts database	Do databáze artiklů importováno: {}
 Imported {} macros	Importováno maker: {}
 Imported {} page templates	Importováno šablon stránek: {}
 Imported {} parts into the database	Do databáze importováno artiklů: {}
@@ -985,6 +991,7 @@ Keep connections	Zachovat propojení
 Keep sub-pages (3.a, 3.1) with the page before	Ponechat podstránky (3.a, 3.1) u předchozí stránky
 Keep the degree of protection	Zachovat stupeň krytí
 Keep this route when recalculating, as long as it is still possible	Při přepočtu zachovat tuto trasu, dokud je to možné
+Kept changes	Uchované změny
 Key tips of the ribbon	Přístupové klávesy pásu karet
 Key: {}	Klíč: {}
 Keyboard shortcuts	Klávesové zkratky
@@ -1063,6 +1070,7 @@ Lock page	Uzamknout stránku
 Lock project data	Uzamknout data projektu
 Locked	Uzamčená
 Locked by other users	Uzamčeno jinými uživateli
+Locked by {}	Uzamčeno uživatelem {}
 Locked by {} on the project server – read only	Uzamčeno uživatelem {} na projektovém serveru – jen pro čtení
 Locked by {} – read only	Uzamkl {} – jen pro čtení
 Locking…	Zamykání…
@@ -1289,11 +1297,13 @@ None – editing a page or the project data locks it.	Žádné – úprava strá
 Not a page template file: {}	Nejde o soubor šablon stránek: {}
 Not a point: type x y or @dx dy	Není bod: zadejte x y nebo @dx dy
 Not a symbol library: {}	Nejde o knihovnu symbolů: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nezměněno, zámek byl odmítnut: {}. Vaše verze zůstává v podokně Projektový server.
 Not changed: {}	Nezměněno: {}
+Not changed: {}. Your version is kept in the Project server pane.	Nezměněno: {}. Vaše verze zůstává v podokně Projektový server.
 Not found: {}	Nenalezeno: {}
 Not in the project parts – synchronize in parts management	Není mezi artikly projektu – synchronizujte ve správě artiklů
 Not on a wire	Neleží na vodiči
-Not saved, locked or changed by another user: {}	Neuloženo, uzamčeno nebo změněno jiným uživatelem: {}
+Not saved, locked or changed by another user	Neuloženo, uzamčeno nebo změněno jiným uživatelem
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nepřevzato: samotné levé tlačítko vybírá, kreslí a přesouvá; podržte modifikační klávesu nebo použijte jiné tlačítko.
 Not the shared project: changes are saved locally until it is opened on the project server again	Nejde o sdílený projekt: změny se ukládají místně, dokud nebude znovu otevřen na serveru projektů
 Nothing exchanged yet.	Zatím nebylo nic vyměněno.
@@ -1447,6 +1457,8 @@ Part of the profile: generic types or parts from the parts store	Artikl profilu:
 Part selection from the parts database	Výběr artiklu z databáze artiklů
 Part selection – {}	Výběr artiklu – {}
 Part selection…	Výběr artiklu…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Částečně uloženo (revize {}). Neuloženo, uzamčeno nebo změněno jiným uživatelem: {}. Vaše verze zůstává v podokně Projektový server.
+Partly saved to the project server (revision {})	Částečně uloženo na projektový server (revize {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artikly lze pustit jen na stránky, které lze měnit; tato je uvolněná, zamčená nebo generovaná
 Parts management	Správa artiklů
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artikly označené pro montáž na podlahu (čerpadla, nádrže, kompresory): zvolte jeden a klikněte, kde stojí na podlaze místnosti
@@ -1664,11 +1676,14 @@ Replace	Nahradit
 Replace all	Nahradit vše
 Replace text	Nahradit text
 Replace with	Nahradit čím
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Nahrazeno verzí z projektového serveru: {}. Vaše verze zůstává v podokně Projektový server.
 Replaced when the configurator generates again; switch off to keep the page	Při dalším generování se nahradí; vypněte, chcete-li stránku zachovat
+Replaced while you held no lock	Nahrazeno, když jste nedrželi zámek
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Nahradí ve volných textech, textech funkcí, popisech stránek, přístrojů a kabelů; uvolněné stránky zůstanou beze změny
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Nahradí artikly GEN.* v databázi aktuálním ukázkovým katalogem (včetně modelů)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Nahradí knihovnu firmy vlastními razítky, schématy sestav a rámečky projektu (editoři serveru dílů)
 Replaces the content of the macro boxes whose macro changed in the library	Nahradí obsah rámečků maker, jejichž makro se změnilo v knihovně
+Replaces the current version with yours as a change you can undo; the next save stores it	Nahradí aktuální verzi vaší jako změnu, kterou lze vrátit; příští uložení ji uloží
 Replaces the pages of this block	Nahradí stránky tohoto bloku
 Reply	Odpovědět
 Reply…	Odpovědět…
@@ -1801,6 +1816,7 @@ Saves the placed properties as a placement scheme of the project	Uloží umíst�
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Uloží projekt bez revizí, základních verzí, komentářů a značek zapojení jako šablonu pro nové projekty
 Saves the project's own properties, function definitions and schemes for other projects	Uloží vlastní vlastnosti, definice funkcí a schémata projektu pro jiné projekty
 Saves the workspace, the arrangement of the panels and the open windows	Uloží pracovní prostor, uspořádání panelů a otevřená okna
+Saves your version of the whole project as a project file	Uloží vaši verzi celého projektu jako soubor projektu
 Saving failed: {}	Uložení se nezdařilo: {}
 Saving the project access…	Ukládání přístupu k projektu…
 Saving to the project server…	Ukládání na projektový server…
@@ -1912,6 +1928,7 @@ Shown instead of the measured value	Zobrazí se místo naměřené hodnoty
 Shown now: {}	Nyní zobrazeno: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Zobrazuje se na titulním listu a v obrázkových prvcích razítek, které zobrazují logo projektu
 Shows	Zobrazuje
+Shows the differences of your version to the open project; selected ones can be taken over	Zobrazí rozdíly vaší verze oproti otevřenému projektu; vybrané lze převzít
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Boční stěny, zadní stěna, střecha a dno při pohledu zvenku: ventilátory, kabelové vývodky, výřezy
 Sign in in the Project server pane; the project opens afterwards	Přihlaste se v podokně Server projektů; poté se projekt otevře
 Sign in…	Přihlásit se…
@@ -1930,6 +1947,7 @@ Smallest cross-section of control circuits	Nejmenší průřez řídicích obvod
 Smallest cross-section of power circuits	Nejmenší průřez silových obvodů
 Socket outlets, data and antenna outlets	Zásuvky, datové a anténní zásuvky
 Solid	Plná
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Některé vaše změny projektový server nepřevzal. Vaše verze zůstane v podokně Projektový server i po zahození.
 Some wires have no length: place their devices in the panel layout or set the field length.	Některé vodiče nemají délku: umístěte jejich přístroje v rozvržení rozváděče nebo nastavte délku pole.
 Sort by designation	Seřadit podle označení
 Sort order	Řazení
@@ -2018,6 +2036,7 @@ Tag placed by hand	Označení umístěno ručně
 Take out a subproject	Vyčlenit podprojekt
 Take out of the building	Vyjmout z budovy
 Take out {} pages…	Vyčlenit stránky ({})…
+Take over again	Znovu převzít
 Take over cut lengths	Převzít délky řezu
 Take over selected ({})	Převzít vybrané ({})
 Take over {} changes	Převzít změny ({})
@@ -2058,11 +2077,12 @@ The current page belongs to option {}.	Aktuální stránka patří k volbě {}.
 The devices do not fit onto the rail	Přístroje se na lištu nevejdou
 The dictionary is empty: collect the texts from the project.	Slovník je prázdný: shromážděte texty z projektu.
 The door seen from the front: door devices and cutouts	Dveře zepředu: přístroje ve dveřích a výřezy
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Dveře zevnitř (závěsy vpravo): kabelové kanály a zapojení za dveřmi
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Dveře zevnitř (zrcadlově): kabelové kanály a zapojení za dveřmi
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Prvek se kreslí jen tehdy, když tento text se zástupnými symboly není prázdný, např. řádky tabulky revizí
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Skříň stojí levou stranou u pravé strany zvolené skříně; vodiče mezi nimi vedou kabelovými průchodkami
 The horizontal wire	Vodorovný vodič
 The items are selected and moved together	Prvky se vybírají a přesouvají společně
+The lock was refused	Zámek byl odmítnut
 The logo is fitted into this area keeping its aspect ratio	Logo se vepíše do této oblasti se zachováním poměru stran
 The logo of the project properties, e.g. the customer's	Logo z vlastností projektu, např. logo zákazníka
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Loga katalogů výrobců na serveru artiklů, vedle podrobností artiklu
@@ -2070,6 +2090,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Knihovn
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Modifikační klávesy, se kterými kolečko posouvá do strany nebo přibližuje, se nastavují v části Modifikační klávesy.
 The modules no string takes yet in series, on the first inverter	Moduly, které ještě žádný string nebere, v sérii, na prvním střídači
 The names of its pages follow	Názvy jeho stránek se změní s ním
+The open project already has your version	Otevřený projekt již obsahuje vaši verzi
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otevřený projekt je místní obnovovací kopie. Jeho změny nejsou uloženy na serveru projektů; než se sdílený projekt otevře, rozhodnete, zda je uložit místně, nebo zahodit.
 The page name gets the section number	Název stránky dostane číslo oddílu
 The page type, plot frame, title block, structure, description and the whole content are saved.	Uloží se typ stránky, rámeček výkresu, rohové razítko, struktura, popis a celý obsah.
@@ -2280,6 +2301,9 @@ YYYY-MM-DD	RRRR-MM-DD
 You may only view this project.	Tento projekt si můžete pouze prohlížet.
 You may review this project: comments, markup and approvals, no other changes.	Tento projekt můžete kontrolovat: komentáře, značky a schválení, žádné jiné změny.
 Your unsaved changes of it are taken back	Vaše neuložené změny v něm budou vráceny
+Your version of {}	Vaše verze z {}
+Your version taken over: {}. Save to store it on the project server.	Vaše verze převzata: {}. Uložte ji na projektový server.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Vaše verze změn, které byly nahrazeny verzí z projektového serveru. Zůstanou zde, dokud je nezahodíte.
 Zoom	Lupa
 Zoom in in the 3D view (held)	Přiblížit 3D pohled (držet)
 Zoom out in the 3D view (held)	Oddálit 3D pohled (držet)
@@ -2491,6 +2515,7 @@ x y	x y
 {} of {} wires	{} z {} vodičů
 {} of {} wires assigned to cores of {}	{} z {} vodičů přiřazeno k žílám {}
 {} on released pages were left as they are	{} na uvolněných stránkách zůstalo beze změny
+{} on {}	{} na {}
 {} options switched	Přepnuto {} voleb
 {} pages generated	Vygenerováno {} stránek
 {} pages generated; page macros not found: {}	Vygenerováno {} stránek; makra stránek nenalezena: {}
@@ -2543,6 +2568,7 @@ x y	x y
 {} °C (max.)	{} °C (max.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pixelů, {}
+{} – revision {}, {}	{} – revize {}, {}
 {} – {} ({} pages)	{} – {} (stránky: {})
 {} – {} here (Esc cancels)	{} – {} zde (Esc ruší)
 {}, freestanding	{}, pozemní

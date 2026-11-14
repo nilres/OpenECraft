@@ -263,7 +263,8 @@ Change request	变更请求
 Change requests	变更请求
 Change requests (CSV, JSON)	变更请求（CSV、JSON）
 Changed against the frozen routes:	相对于冻结布线的更改：
-Changed by another user in the meantime, your change was replaced: {}	在此期间已被其他用户更改，你的更改已被替换：{}
+Changed by another user before you got the lock	在你获得锁定之前已被其他用户更改
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	在此期间已被其他用户更改：{}。你的版本保留在项目服务器窗格中。
 Changed cells of a CSV or Excel file exported here (rows by their key)	在此处导出的 CSV 或 Excel 文件中已更改的单元格（按键匹配行）
 Changed message levels ({})	已更改的消息级别 ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	自安装后已更改：原位于 X {} mm，Y {} mm，部件 {}
@@ -389,6 +390,7 @@ Comments ({})	批注（{}）
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	审阅者在项目 PDF 导出中添加的批注（Acrobat 或其他 PDF 查看器）
 Comments and markup	批注和标记
 Company library	公司库
+Compare	比较
 Compare and baselines	比较和基线
 Compare with	比较对象
 Compare with a baseline, a revision or another project file and take differences over	与基线、修订或其他项目文件进行比较，并采用差异
@@ -514,6 +516,7 @@ Delete the property and all its values	删除该属性及其所有值
 Delete this workspace	删除此工作区
 Delete variant	删除变体
 Delete zone	删除安装区
+Deletes this copy of your changes for good	永久删除你的更改的此副本
 Depth / mounted at	深度 / 安装于
 Depth below the ground	地面以下深度
 Depth from / to	深度从 / 到
@@ -589,6 +592,7 @@ Door NC data (DWG)	柜门 NC 数据 (DWG)
 Door NC data (DXF)	柜门 NC 数据 (DXF)
 Door clearance	柜门间隙
 Door cutouts (CSV)	柜门开孔 (CSV)
+Door hinge	柜门铰链
 Door: {} devices, {} cutouts	柜门：{} 个设备，{} 个开孔
 Dot	点
 Double-click	双击
@@ -655,6 +659,7 @@ Earthing system	接地系统
 Easting, northing	东坐标、北坐标
 Eaves	檐口
 Edge length of the routing grid: smaller is finer and slower	布线栅格的边长：越小越精细，但越慢
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	从正面看柜门铰链所在的边：3D 视图从此边打开柜门，柜门导线经过此边
 Edit in table	在表格中编辑
 Edit in table…	在表格中编辑…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	编辑模式：在总平面图中将建筑物拖到其位置并旋转；单击房间不再打开它
@@ -911,6 +916,7 @@ Import symbol library…	导入符号库…
 Import symbol table…	导入符号表…
 Imported	已导入
 Imported {} entries of the property library	已导入属性库的 {} 个条目
+Imported {} into the parts database	已将 {} 导入部件数据库
 Imported {} macros	已导入 {} 个宏
 Imported {} page templates	已导入 {} 个页模板
 Imported {} parts into the database	已将 {} 个部件导入数据库
@@ -977,6 +983,7 @@ Keep connections	保持连接
 Keep sub-pages (3.a, 3.1) with the page before	子页 (3.a, 3.1) 保持在前一页之下
 Keep the degree of protection	保持防护等级
 Keep this route when recalculating, as long as it is still possible	重新计算时保留此布线（只要仍然可行）
+Kept changes	保留的更改
 Key tips of the ribbon	功能区访问键
 Key: {}	键：{}
 Keyboard shortcuts	键盘快捷方式
@@ -1052,6 +1059,7 @@ Lock page	锁定页
 Lock project data	锁定项目数据
 Locked	已锁定
 Locked by other users	已被其他用户锁定
+Locked by {}	已被 {} 锁定
 Locked by {} on the project server – read only	已被 {} 在项目服务器上锁定 – 只读
 Locked by {} – read only	已被 {} 锁定 – 只读
 Locking…	正在锁定…
@@ -1276,11 +1284,13 @@ None – editing a page or the project data locks it.	无 – 编辑页或项目
 Not a page template file: {}	不是页模板文件：{}
 Not a point: type x y or @dx dy	不是点：请输入 x y 或 @dx dy
 Not a symbol library: {}	不是符号库：{}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	未更改，锁定被拒绝：{}。你的版本保留在项目服务器窗格中。
 Not changed: {}	未更改：{}
+Not changed: {}. Your version is kept in the Project server pane.	未更改：{}。你的版本保留在项目服务器窗格中。
 Not found: {}	未找到：{}
 Not in the project parts – synchronize in parts management	不在项目部件中 – 请在部件管理中同步
 Not on a wire	不在导线上
-Not saved, locked or changed by another user: {}	未保存，已被其他用户锁定或更改：{}
+Not saved, locked or changed by another user	未保存，已被其他用户锁定或更改
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	未采用：仅左键用于选择、绘制和移动；请按住组合键或使用其他按键。
 Not the shared project: changes are saved locally until it is opened on the project server again	不是共享项目：在项目服务器上重新打开之前，更改将保存在本地
 Nothing exchanged yet.	尚未进行任何交换。
@@ -1434,6 +1444,8 @@ Part of the profile: generic types or parts from the parts store	型材的部件
 Part selection from the parts database	从部件数据库中选择部件
 Part selection – {}	部件选择 – {}
 Part selection…	选择部件…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	已部分保存（修订 {}）。未保存，已被其他用户锁定或更改：{}。你的版本保留在项目服务器窗格中。
+Partly saved to the project server (revision {})	已部分保存到项目服务器（修订 {}）
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	部件只能拖放到可修改的页面上；此页面已发布、已锁定或为生成页面
 Parts management	部件管理
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	标记为落地安装的部件（泵、储罐、压缩机）：选择一个，然后在房间地面上单击放置位置
@@ -1647,11 +1659,14 @@ Replace	替换
 Replace all	全部替换
 Replace text	替换文本
 Replace with	替换为
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	已被项目服务器上的版本替换：{}。你的版本保留在项目服务器窗格中。
 Replaced when the configurator generates again; switch off to keep the page	配置器再次生成时将被替换；关闭此选项可保留该页
+Replaced while you held no lock	在你没有锁定时被替换
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	在自由文本、功能文本、页描述、设备描述和电缆描述中替换；已发布页保持不变
 Replaces the GEN.* parts in the database with the current example catalog (including models)	用当前示例目录（包括模型）替换数据库中的 GEN.* 部件
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	用项目自有的标题栏、报表方案和图框替换公司库（零件服务器的编辑者）
 Replaces the content of the macro boxes whose macro changed in the library	替换其宏在库中已更改的宏边框的内容
+Replaces the current version with yours as a change you can undo; the next save stores it	用你的版本替换当前版本（可撤销的更改）；下次保存时存储
 Replaces the pages of this block	替换此块的页
 Reply	回复
 Reply…	回复…
@@ -1782,6 +1797,7 @@ Saves the placed properties as a placement scheme of the project	将已放置的
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	将项目另存为新项目的模板，不含修订、基线、审阅和接线标记
 Saves the project's own properties, function definitions and schemes for other projects	保存项目自有的属性、功能定义和方案，供其他项目使用
 Saves the workspace, the arrangement of the panels and the open windows	保存工作区、窗口排列和打开的对话框
+Saves your version of the whole project as a project file	将你的整个项目版本保存为项目文件
 Saving failed: {}	保存失败：{}
 Saving the project access…	正在保存项目访问权限…
 Saving to the project server…	正在保存到项目服务器…
@@ -1891,6 +1907,7 @@ Shown instead of the measured value	代替测量值显示
 Shown now: {}	当前显示：{}
 Shown on the cover page and by the image elements of title blocks that show the project logo	显示在封面上以及显示项目标志的标题栏图像元素中
 Shows	显示
+Shows the differences of your version to the open project; selected ones can be taken over	显示你的版本与打开的项目之间的差异；可以接受所选的差异
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	从外部看到的侧板、后板、顶板和底板：风扇、电缆密封接头、开孔
 Sign in in the Project server pane; the project opens afterwards	在“项目服务器”窗格中登录；之后项目将打开
 Sign in…	登录…
@@ -1908,6 +1925,7 @@ Smallest cross-section of control circuits	控制电路的最小截面积
 Smallest cross-section of power circuits	主电路的最小截面积
 Socket outlets, data and antenna outlets	电源插座、数据和天线插座
 Solid	实线
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	项目服务器未接受你的部分更改。即使丢弃后，你的版本仍保留在项目服务器窗格中。
 Some wires have no length: place their devices in the panel layout or set the field length.	部分导线没有长度：请在安装板布局中放置其设备或设置字段长度。
 Sort by designation	按标识排序
 Sort order	排序顺序
@@ -1996,6 +2014,7 @@ Tag placed by hand	手动放置的标识符
 Take out a subproject	移出子项目
 Take out of the building	移出建筑物
 Take out {} pages…	移出 {} 页…
+Take over again	重新接受
 Take over cut lengths	采用下料长度
 Take over selected ({})	采用所选项（{}）
 Take over {} changes	采用 {} 处更改
@@ -2036,11 +2055,12 @@ The current page belongs to option {}.	当前页属于选项 {}。
 The devices do not fit onto the rail	设备无法放入导轨
 The dictionary is empty: collect the texts from the project.	词典为空：请从项目中收集文本。
 The door seen from the front: door devices and cutouts	从正面看柜门：柜门设备和开孔
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	从内侧看柜门（铰链在右侧）：线槽和柜门后的接线
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	从内侧看柜门（镜像）：线槽和柜门后的接线
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	仅当此文字（含占位符）不为空时才绘制该元素，例如修订表的行
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	该机柜的左侧紧靠所选机柜的右侧；导线通过电缆过孔在它们之间穿过
 The horizontal wire	水平导线
 The items are selected and moved together	这些元素将一起被选择和移动
+The lock was refused	锁定被拒绝
 The logo is fitted into this area keeping its aspect ratio	标志按原比例缩放到此区域中
 The logo of the project properties, e.g. the customer's	项目属性中的标志，例如客户的标志
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	部件服务器上制造商目录的标志，显示在部件详细信息旁边
@@ -2048,6 +2068,7 @@ The macro library has no page macros (Macros › Save page as macro…).	宏库�
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	使滚轮横向平移或缩放的组合键在“组合键”中设置。
 The modules no string takes yet in series, on the first inverter	尚未分配到组串的组件串联，接到第一台逆变器
 The names of its pages follow	其页的名称随之改变
+The open project already has your version	打开的项目已包含你的版本
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	打开的项目是本地恢复副本。其更改未保存在项目服务器上；在打开共享项目之前，由您决定将其保存到本地还是放弃。
 The page name gets the section number	页名称获得分节号
 The page type, plot frame, title block, structure, description and the whole content are saved.	将保存页类型、图框、标题栏、结构、描述和全部内容。
@@ -2256,6 +2277,9 @@ YYYY-MM-DD	YYYY-MM-DD
 You may only view this project.	您只能查看此项目。
 You may review this project: comments, markup and approvals, no other changes.	您可以审阅此项目：批注、标记和审批，不可进行其他更改。
 Your unsaved changes of it are taken back	你对其所做的未保存更改将被撤回
+Your version of {}	你在 {} 的版本
+Your version taken over: {}. Save to store it on the project server.	已接受你的版本：{}。保存以将其存储到项目服务器。
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	被项目服务器上的版本替换的更改的你的版本。在你丢弃之前它们会保留在这里。
 Zoom	缩放
 Zoom in in the 3D view (held)	放大 3D 视图（按住）
 Zoom out in the 3D view (held)	缩小 3D 视图（按住）
@@ -2462,6 +2486,7 @@ x y	x y
 {} of {} wires	{} / {} 条导线
 {} of {} wires assigned to cores of {}	已将 {} / {} 条导线分配给 {} 的芯线
 {} on released pages were left as they are	已发布页上的 {} 个保持不变
+{} on {}	{}（{}）
 {} options switched	已切换 {} 个选项
 {} pages generated	已生成 {} 页
 {} pages generated; page macros not found: {}	已生成 {} 页；未找到页宏：{}
@@ -2512,6 +2537,7 @@ x y	x y
 {} °C (max.)	{} °C（最高）
 {} × {} = {}, {}	{} × {} = {}，{}
 {} × {} pixels, {}	{} × {} 像素，{}
+{} – revision {}, {}	{} – 修订 {}，{}
 {} – {} ({} pages)	{} – {}（{} 页）
 {} – {} here (Esc cancels)	{} – 在此{}（Esc 取消）
 {}, freestanding	{}，地面安装

@@ -1162,9 +1162,21 @@ impl PanelUi {
             let e = &prj.layout.enclosures[k];
             // A room under a roof that slopes its ceiling: its walls and ceiling cut.
             let ceiling = if e.is_room() { roofs::ceiling_with(prj, &plant, k) } else { None };
+            // The door turns about its hinge edge: the left front edge, or the right one
+            // (mirrored).
+            let right = e.door_hinge == panel::DoorHinge::Right;
+            let swing_dir = |v: V3| {
+                if right {
+                    let r = swing_dir([-v[0], v[1], v[2]]);
+                    [-r[0], r[1], r[2]]
+                } else {
+                    swing_dir(v)
+                }
+            };
+            let hinge_x = if right { e.width } else { 0.0 };
             let swing = |q: V3| {
-                let r = swing_dir([q[0], q[1], q[2] - e.depth]);
-                [r[0], r[1], r[2] + e.depth]
+                let r = swing_dir([q[0] - hinge_x, q[1], q[2] - e.depth]);
+                [r[0] + hinge_x, r[1], r[2] + e.depth]
             };
             let problems = panel::problems_of(&self.findings(prj, an, k));
             #[allow(clippy::too_many_arguments)]
@@ -1211,7 +1223,51 @@ impl PanelUi {
             // (translucent), seen from the inside it is behind the door devices.
             let mut door_side = None;
             let mut ceiling_side = None;
+            // The maker's model of the enclosure takes the place of the generic body,
+            // walls, door and plates: its triangles go with the wall, door or inside
+            // they belong to.
+            let maker = panel::maker_model(prj, e);
+            if let Some(model) = &maker {
+                let [r, g, b] = openecraft_core::export3d::component_color(Role::Body);
+                let body = Color32::from_rgb(r, g, b);
+                let mut walls: Vec<(Face, Option<usize>)> = Vec::new();
+                for (face, tri) in model {
+                    let door = *face == Some(Face::Door);
+                    let q = if door { tri.map(swing) } else { *tri };
+                    let n = norm(cross(sub(q[1], q[0]), sub(q[2], q[0])));
+                    if n == [0.0; 3] {
+                        continue; // no area
+                    }
+                    let (layer, side, color) = match *face {
+                        Some(Face::Door) => {
+                            let side = *door_side.get_or_insert_with(|| {
+                                s.sides.push(SceneSide { normal: pose.turn(swing_dir([0.0, 0.0, 1.0])), at: pose.apply(swing([w / 2.0, h / 2.0, dpt + t])), inside: 3, hideable: false, decal: false, glass: false });
+                                s.sides.len() - 1
+                            });
+                            (3, Some(side), Color32::from_rgb(190, 194, 200))
+                        }
+                        Some(f) => {
+                            let side = match walls.iter().find(|(g, _)| *g == f) {
+                                Some((_, side)) => *side,
+                                None => {
+                                    let side = wall_side(&mut s, f, panel::wall_box(e, f), true, false);
+                                    walls.push((f, side));
+                                    side
+                                }
+                            };
+                            (0, side, body)
+                        }
+                        None => (1, None, body),
+                    };
+                    let normal = pose.turn(n);
+                    let p = q.map(|v| pose.apply(v));
+                    s.faces.push(SceneFace { pts: [p[0], p[1], p[2], p[2]], n: 3, normal, color: lit(color, normal), layer, side, obj: None, item: None, outline: false, decal: false, pv: None });
+                }
+            }
             for c in panel::components(e) {
+                if maker.is_some() && matches!(c.role, Role::Body | Role::Door | Role::Wall(_) | Role::GlandPlate | Role::MountingPlate) {
+                    continue;
+                }
                 let [r, g, b] = openecraft_core::export3d::component_color(c.role);
                 let color = Color32::from_rgb(r, g, b);
                 for bx in c.boxes {
@@ -1248,6 +1304,26 @@ impl PanelUi {
                         Role::Plinth | Role::BayingKit => add_box(&mut s, 0, None, None, min, max, color, None, false, false),
                     }
                 }
+            }
+            // The restricted areas of the enclosure (its maker's data), seen through: on
+            // the walls they go with the wall, on the door with the door.
+            for (kind, face, corners) in panel::restricted_quads(prj, e) {
+                let [_, _, _, inward] = panel::face_frame(e, face);
+                let pts: Vec<V3> = corners
+                    .iter()
+                    .map(|q| up([q[0] + 0.6 * inward[0], q[1] + 0.6 * inward[1], q[2] + 0.6 * inward[2]]))
+                    .map(|q| if face == Face::Door { swing(q) } else { q })
+                    .map(|q| pose.apply(q))
+                    .collect();
+                let base = if kind == openecraft_core::parts::Restriction::Placing { Color32::from_rgb(90, 140, 220) } else { Color32::from_rgb(230, 140, 40) };
+                let out = panel::outward(e, face);
+                let centre = [0, 1, 2].map(|i| pts.iter().map(|q| q[i]).sum::<f32>() / 4.0);
+                s.sides.push(SceneSide { normal: pose.turn([out[0], -out[1], out[2]]), at: centre, inside: 0, hideable: face != Face::Plate, decal: true, glass: true });
+                let side = Some(s.sides.len() - 1);
+                let n = face_normal(&pts);
+                add_poly(&mut s, &pts, n, base, 0, side, true);
+                let back: Vec<V3> = pts.iter().rev().copied().collect();
+                add_poly(&mut s, &back, [-n[0], -n[1], -n[2]], base, 0, side, true);
             }
             // The installation zones of a room, seen through.
             if self.show_zones && e.is_room() {

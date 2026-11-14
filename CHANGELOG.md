@@ -17,6 +17,17 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   ([panel layout](docs/features/panel-layout.md#buildings-levels-and-shafts)).
 - **Roofs picked in 3D:** a click on a roof in the 3D view shows it in the Layout
   properties, where a PV array or a roof window is added at the point clicked.
+- **Shared saves keep conflicting local edits** (#181): when the project server
+  leaves changes out of a save (locked or changed by another user), when a lock
+  is refused or lost, or when another user changed a target first, the editor
+  keeps your version before it shows the server's. *Project server › Kept changes*
+  lists these copies to compare with the open project, take over again as an
+  undoable edit (not while another user holds the lock), export as a project file
+  or discard; they are stored and survive closing the app or reopening the
+  project. A partial save is reported as such and never marks the project as
+  saved; the unsaved-changes question mentions the kept copies. Changes still
+  waiting for their lock are no longer replaced by a refresh.
+
 - **Cable core labels** (#172): automatic text clearance from definition lines,
   wires, nearby symbols and labels; direct text dragging without selecting the
   wire first, with a hover target. Align the crossed core labels of a definition
@@ -142,6 +153,31 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   part's catalog and the parts manager the logos of its catalogs, where they are also
   changed or removed; *Settings › Appearance › Data portal* (editor) and *Logos* (parts
   manager) hide them ([parts server](docs/parts-server.md), [access control](docs/access-control.md)).
+- **Enclosure packages of configurators** (#176): *Import parts* (editor, Parts
+  Manager, `parts_import`) reads the ZIP archive of the Rittal configurator: the parts
+  of its bill of materials, the configured enclosure with size, GTIN, configuration id,
+  the preview of its EPLAN macro as picture, the bodies of the EPLAN Pro Panel macro
+  (or else the STEP model) as 3D model, the place of its mounting plate (part data
+  `Mounting origin`, used by new enclosures of the part) and its restricted areas, and
+  the macro, EPLAN project, STEP file and PDFs as attachments
+  ([parts](docs/features/parts.md)). **Restricted areas** of enclosure parts (mounting
+  data, on the faces of the enclosure) are drawn hatched in the panel layout, which
+  reports devices in a placing area and cutouts and holes in a cut-out area
+  ([panel layout](docs/features/panel-layout.md#restricted-areas)), shown in the 3D view
+  and edited in a table of the part editor. An enclosure of a maker's part that names
+  its system keeps that part instead of the catalog's body (also in the bill of
+  materials), and the **3D view and 3D exports show the maker's model** of the
+  enclosure. Mounting plates that are not centred get their size (`Mounting size`,
+  `mounting_size`). Importing a part again refreshes the project's copy with what the
+  import brings (models, mounting data, technical data). Unpacked EDZ files and vendor
+  folders take 3D models from their 3D macros, and macros with bodies in a form not
+  read are reported. The 3D macros of EDZ files give their parts a 3D
+  model. *Import parts* tells its result in a box at the bottom right. Cabinet doors
+  can be hinged on the right (*Door hinge*, `door_hinge`, part data `Door hinge`; the
+  Rittal import finds it from the hinge blocks): the door view, the 3D view and the
+  door wiring follow it. STEP files whose arcs are given by their vertices
+  only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
+  longer fails the whole model.
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*

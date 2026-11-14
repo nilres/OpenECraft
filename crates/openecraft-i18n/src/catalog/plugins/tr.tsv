@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Topraklama kazığı: uzunluğu, mm (va
 Earth rod: x of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin x'i, mm
 Earth rod: z of its place in the floor plan of the building, mm	Topraklama kazığı: binanın planındaki yerinin z'si, mm
 Edge length of the routing grid in mm	mm cinsinden yönlendirme ızgarasının kenar uzunluğu
+Edge the door is hinged at, seen from the front: left or right	Kapının menteşeli olduğu kenar, önden bakıldığında: left veya right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Virgül veya boşlukla ayrılmış elektrik cihazı etiketleri (boş = ilişkileri kaldır)
 Electrical engineering	Elektrik mühendisliği
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Antet alanının sol üst köşesinden mm cinsinden öğeler (Line, Rect, Text, Image), items dizisinde
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	PV dizisinin bina planındaki ortası (arazi tipi: tesisteki), z, mm
 Milling feed, mm/min	Frezeleme ilerlemesi, mm/dk
 Mirror the symbol	Sembolü yansıt
+Mounting plate size as width and height; empty object restores the centred plate	Montaj plakası boyutu genişlik ve yükseklik olarak; boş nesne ortalanmış plakayı geri getirir
+Mounting size must contain a positive width and height	Montaj boyutu pozitif bir genişlik ve yükseklik içermelidir
 Moves an air-termination rod, changes its height, renames or removes it	Bir paratoner çubuğunu taşır, yüksekliğini değiştirir, yeniden adlandırır veya kaldırır
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Bir telin bir ucunu taşır: bağlı olduğu yerden ayrılır ve karşılaştığı şeye bağlanır; tel dik açılı kalır
 Moves symbols, wires and texts; connected wire ends follow	Sembolleri, telleri ve metinleri taşır; bağlı tel uçları onları izler
@@ -928,6 +931,7 @@ Unknown check: {}	Bilinmeyen kontrol: {}
 Unknown class: {}	Bilinmeyen sınıf: {}
 Unknown data type: {}	Bilinmeyen veri türü: {}
 Unknown direction {}: left, right, up or down	Bilinmeyen yön {}: left, right, up veya down
+Unknown door hinge: {}	Bilinmeyen menteşe tarafı: {}
 Unknown earth electrode: {}	Bilinmeyen topraklama elektrodu: {}
 Unknown earthing system: {}	Bilinmeyen topraklama sistemi: {}
 Unknown face {}	Bilinmeyen yüzey {}

@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Tyčový zemnič: jeho délka, mm (výc
 Earth rod: x of its place in the floor plan of the building, mm	Tyčový zemnič: x jeho místa v půdorysu budovy, mm
 Earth rod: z of its place in the floor plan of the building, mm	Tyčový zemnič: z jeho místa v půdorysu budovy, mm
 Edge length of the routing grid in mm	Délka hrany rastru vedení v mm
+Edge the door is hinged at, seen from the front: left or right	Hrana, na které jsou dveře zavěšeny, při pohledu zepředu: left nebo right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Označení elektrických přístrojů oddělená čárkami nebo mezerami (prázdné = odebrat propojení)
 Electrical engineering	Elektrotechnika
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Prvky (Line, Rect, Text, Image) v mm od levého horního rohu oblasti razítka v poli items
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Střed FV pole v půdorysu budovy (pozemní pole: v zařízení), z v mm
 Milling feed, mm/min	Posuv frézování, mm/min
 Mirror the symbol	Zrcadlit symbol
+Mounting plate size as width and height; empty object restores the centred plate	Velikost montážní desky jako šířka a výška; prázdný objekt obnoví vystředěnou desku
+Mounting size must contain a positive width and height	Montážní velikost musí obsahovat kladnou šířku a výšku
 Moves an air-termination rod, changes its height, renames or removes it	Přesune jímací tyč, změní její výšku, přejmenuje ji nebo odstraní
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Přesune jeden konec vodiče: odpojí se od toho, k čemu je připojen, a připojí se k tomu, na co narazí; vodič zůstane pravoúhlý
 Moves symbols, wires and texts; connected wire ends follow	Přesune symboly, vodiče a texty; připojené konce vodičů se posunou s nimi
@@ -928,6 +931,7 @@ Unknown check: {}	Neznámá kontrola: {}
 Unknown class: {}	Neznámá třída: {}
 Unknown data type: {}	Neznámý datový typ: {}
 Unknown direction {}: left, right, up or down	Neznámý směr {}: left, right, up nebo down
+Unknown door hinge: {}	Neznámá strana závěsů: {}
 Unknown earth electrode: {}	Neznámý zemnič: {}
 Unknown earthing system: {}	Neznámá soustava uzemnění: {}
 Unknown face {}	Neznámá plocha {}

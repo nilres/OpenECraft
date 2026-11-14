@@ -266,7 +266,8 @@ Change request	Запит на зміну
 Change requests	Запити на зміни
 Change requests (CSV, JSON)	Запити на зміни (CSV, JSON)
 Changed against the frozen routes:	Змінено відносно зафіксованих трас:
-Changed by another user in the meantime, your change was replaced: {}	Тим часом змінено іншим користувачем, вашу зміну замінено: {}
+Changed by another user before you got the lock	Змінено іншим користувачем до того, як ви отримали блокування
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	Тим часом змінено іншим користувачем: {}. Вашу версію збережено на панелі «Сервер проєктів».
 Changed cells of a CSV or Excel file exported here (rows by their key)	Змінені клітинки файлу CSV або Excel, експортованого звідси (рядки за ключем)
 Changed message levels ({})	Змінені рівні повідомлень ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Змінено після встановлення: був на X {} мм, Y {} мм з виробом {}
@@ -391,6 +392,7 @@ Comments ({})	Коментарі ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Коментарі, які рецензент зробив в експорті проєкту у PDF (Acrobat або інша програма перегляду PDF)
 Comments and markup	Коментарі та позначки
 Company library	Бібліотека компанії
+Compare	Порівняти
 Compare and baselines	Порівняння та базові версії
 Compare with	Порівняти з
 Compare with a baseline, a revision or another project file and take differences over	Порівняти з базовою версією, ревізією або іншим файлом проєкту та перенести відмінності
@@ -518,6 +520,7 @@ Delete the property and all its values	Видалити властивість �
 Delete this workspace	Видалити цей робочий простір
 Delete variant	Видалити варіант
 Delete zone	Видалити зону
+Deletes this copy of your changes for good	Остаточно видаляє цю копію ваших змін
 Depth / mounted at	Глибина / монтаж на
 Depth below the ground	Глибина під землею
 Depth from / to	Глибина від / до
@@ -593,6 +596,7 @@ Door NC data (DWG)	Дані ЧПК дверцят (DWG)
 Door NC data (DXF)	Дані ЧПК дверей (DXF)
 Door clearance	Вільний простір дверей
 Door cutouts (CSV)	Вирізи дверей (CSV)
+Door hinge	Петлі дверей
 Door: {} devices, {} cutouts	Двері: пристроїв – {}, вирізів – {}
 Dot	Точка
 Double-click	Подвійне клацання
@@ -659,6 +663,7 @@ Earthing system	Тип системи заземлення
 Easting, northing	Східна, північна координата
 Eaves	Карниз
 Edge length of the routing grid: smaller is finer and slower	Довжина ребра сітки прокладання: менше – точніше й повільніше
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Край, на якому навішені двері, вигляд спереду: 3D-вигляд відчиняє двері там, і проводи дверей проходять через нього
 Edit in table	Редагувати в таблиці
 Edit in table…	Редагувати в таблиці…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Режим редагування: перетягуйте будівлі на їхні місця на ситуаційному плані й повертайте їх; клацання по приміщенню більше не відкриває його
@@ -917,6 +922,7 @@ Import symbol library…	Імпорт бібліотеки символів…
 Import symbol table…	Імпортувати таблицю символів…
 Imported	Імпортовано
 Imported {} entries of the property library	Імпортовано записів бібліотеки властивостей: {}
+Imported {} into the parts database	Імпортовано до бази виробів: {}
 Imported {} macros	Імпортовано макросів: {}
 Imported {} page templates	Імпортовано шаблонів сторінок: {}
 Imported {} parts into the database	Імпортовано виробів до бази даних: {}
@@ -984,6 +990,7 @@ Keep connections	Зберігати з'єднання
 Keep sub-pages (3.a, 3.1) with the page before	Залишати підсторінки (3.a, 3.1) з попередньою сторінкою
 Keep the degree of protection	Зберігати ступінь захисту
 Keep this route when recalculating, as long as it is still possible	Зберігати цю трасу під час перерахунку, доки це можливо
+Kept changes	Збережені зміни
 Key tips of the ribbon	Клавіші доступу стрічки
 Key: {}	Ключ: {}
 Keyboard shortcuts	Сполучення клавіш
@@ -1062,6 +1069,7 @@ Lock page	Заблокувати сторінку
 Lock project data	Заблокувати дані проєкту
 Locked	Заблокований
 Locked by other users	Заблоковано іншими користувачами
+Locked by {}	Заблоковано: {}
 Locked by {} on the project server – read only	Заблоковано користувачем {} на сервері проєктів – лише читання
 Locked by {} – read only	Заблоковано користувачем {} – лише для читання
 Locking…	Блокування…
@@ -1288,11 +1296,13 @@ None – editing a page or the project data locks it.	Немає – редаг�
 Not a page template file: {}	Не файл шаблонів сторінок: {}
 Not a point: type x y or @dx dy	Не є точкою: введіть x y або @dx dy
 Not a symbol library: {}	Не бібліотека символів: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Не змінено, блокування відхилено: {}. Вашу версію збережено на панелі «Сервер проєктів».
 Not changed: {}	Не змінено: {}
+Not changed: {}. Your version is kept in the Project server pane.	Не змінено: {}. Вашу версію збережено на панелі «Сервер проєктів».
 Not found: {}	Не знайдено: {}
 Not in the project parts – synchronize in parts management	Немає у виробах проєкту – синхронізуйте в керуванні виробами
 Not on a wire	Не на проводі
-Not saved, locked or changed by another user: {}	Не збережено, заблоковано або змінено іншим користувачем: {}
+Not saved, locked or changed by another user	Не збережено, заблоковано або змінено іншим користувачем
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Не прийнято: сама ліва кнопка вибирає, малює та переміщує; утримуйте модифікатор або використайте іншу кнопку.
 Not the shared project: changes are saved locally until it is opened on the project server again	Це не спільний проєкт: зміни зберігаються локально, доки його знову не відкрито на сервері проєктів
 Nothing exchanged yet.	Обміну ще не було.
@@ -1446,6 +1456,8 @@ Part of the profile: generic types or parts from the parts store	Вироби п
 Part selection from the parts database	Вибір виробу з бази даних виробів
 Part selection – {}	Вибір виробу – {}
 Part selection…	Вибір виробу…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Частково збережено (ревізія {}). Не збережено, заблоковано або змінено іншим користувачем: {}. Вашу версію збережено на панелі «Сервер проєктів».
+Partly saved to the project server (revision {})	Частково збережено на сервері проєктів (ревізія {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Вироби можна перетягувати лише на сторінки, які можна змінювати; ця випущена, заблокована або згенерована
 Parts management	Керування виробами
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Вироби з позначкою монтажу на підлогу (насоси, баки, компресори): виберіть один, потім клацніть місце на підлозі приміщення
@@ -1663,11 +1675,14 @@ Replace	Замінити
 Replace all	Замінити все
 Replace text	Замінити текст
 Replace with	Замінити на
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Замінено версією із сервера проєктів: {}. Вашу версію збережено на панелі «Сервер проєктів».
 Replaced when the configurator generates again; switch off to keep the page	Замінюється під час наступного генерування конфігуратором; вимкніть, щоб зберегти сторінку
+Replaced while you held no lock	Замінено, коли у вас не було блокування
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Замінює у вільних текстах, текстах функцій, описах сторінок, пристроїв і кабелів; затверджені сторінки не змінюються
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Замінює вироби GEN.* у базі даних поточним прикладом каталогу (разом із моделями)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Замінює бібліотеку компанії власними основними написами, схемами звітів і рамками проєкту (редактори сервера виробів)
 Replaces the content of the macro boxes whose macro changed in the library	Замінює вміст рамок макросів, макрос яких змінився в бібліотеці
+Replaces the current version with yours as a change you can undo; the next save stores it	Замінює поточну версію вашою як зміну, яку можна скасувати; наступне збереження запише її
 Replaces the pages of this block	Замінює сторінки цього блоку
 Reply	Відповісти
 Reply…	Відповісти…
@@ -1800,6 +1815,7 @@ Saves the placed properties as a placement scheme of the project	Зберіга�
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Зберігає проєкт без ревізій, базових версій, рецензування та позначок монтажу проводів як шаблон для нових проєктів
 Saves the project's own properties, function definitions and schemes for other projects	Зберігає власні властивості, визначення функцій і схеми проєкту для інших проєктів
 Saves the workspace, the arrangement of the panels and the open windows	Зберігає робочий простір, розташування панелей і відкриті вікна
+Saves your version of the whole project as a project file	Зберігає вашу версію всього проєкту як файл проєкту
 Saving failed: {}	Помилка збереження: {}
 Saving the project access…	Збереження доступу до проєкту…
 Saving to the project server…	Збереження на сервері проєктів…
@@ -1911,6 +1927,7 @@ Shown instead of the measured value	Показується замість вим
 Shown now: {}	Зараз показується: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Показується на титульній сторінці та в елементах зображення основних написів, що показують логотип проєкту
 Shows	Показує
+Shows the differences of your version to the open project; selected ones can be taken over	Показує відмінності вашої версії від відкритого проєкту; вибрані можна перейняти
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Бічні стінки, задня стінка, дах і дно ззовні: вентилятори, кабельні вводи, вирізи
 Sign in in the Project server pane; the project opens afterwards	Увійдіть на панелі «Сервер проєктів»; потім проєкт відкриється
 Sign in…	Увійти…
@@ -1929,6 +1946,7 @@ Smallest cross-section of control circuits	Найменший переріз к�
 Smallest cross-section of power circuits	Найменший переріз силових кіл
 Socket outlets, data and antenna outlets	Розетки, інформаційні та антенні розетки
 Solid	Суцільна
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Сервер проєктів прийняв не всі ваші зміни. Ваша версія залишається на панелі «Сервер проєктів», навіть після відкидання.
 Some wires have no length: place their devices in the panel layout or set the field length.	Деякі проводи не мають довжини: розмістіть їхні пристрої в компонуванні шафи або задайте довжину поля.
 Sort by designation	Сортувати за позначенням
 Sort order	Порядок сортування
@@ -2017,6 +2035,7 @@ Tag placed by hand	Позначення розміщено вручну
 Take out a subproject	Винести підпроєкт
 Take out of the building	Вивести з будівлі
 Take out {} pages…	Винести сторінки ({})…
+Take over again	Перейняти знову
 Take over cut lengths	Перенести довжини відрізання
 Take over selected ({})	Перенести вибрані ({})
 Take over {} changes	Перенести зміни ({})
@@ -2057,11 +2076,12 @@ The current page belongs to option {}.	Поточна сторінка нале�
 The devices do not fit onto the rail	Пристрої не вміщуються на рейці
 The dictionary is empty: collect the texts from the project.	Словник порожній: зберіть тексти з проєкту.
 The door seen from the front: door devices and cutouts	Двері спереду: пристрої на дверях і вирізи
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Двері зсередини (петлі праворуч): кабельні канали та монтаж проводів за дверима
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Двері зсередини (дзеркально): кабельні канали та монтаж проводів за дверима
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Елемент малюється, лише якщо цей текст із заповнювачами не порожній, наприклад рядки таблиці змін
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Корпус стоїть лівою стороною впритул до правої сторони вибраного; проводи проходять між ними через кабельні проходи
 The horizontal wire	Горизонтальний провід
 The items are selected and moved together	Елементи вибираються й переміщуються разом
+The lock was refused	Блокування відхилено
 The logo is fitted into this area keeping its aspect ratio	Логотип вписується в цю область зі збереженням пропорцій
 The logo of the project properties, e.g. the customer's	Логотип із властивостей проєкту, наприклад логотип замовника
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Логотипи каталогів виробників на сервері виробів, поруч із відомостями про виріб
@@ -2069,6 +2089,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Біб�
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Модифікатори, з якими коліщатко зсуває вбік або масштабує, задаються в розділі «Клавіші-модифікатори».
 The modules no string takes yet in series, on the first inverter	Модулі, не зайняті жодним ланцюжком, послідовно, на першому інверторі
 The names of its pages follow	Імена його сторінок змінюються разом із ним
+The open project already has your version	Відкритий проєкт уже містить вашу версію
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Відкритий проєкт – локальна копія відновлення. Його зміни не збережено на сервері проєктів; перед відкриттям спільного проєкту ви вирішуєте, зберегти їх локально чи відкинути.
 The page name gets the section number	Ім'я сторінки отримує номер розділу
 The page type, plot frame, title block, structure, description and the whole content are saved.	Зберігаються тип сторінки, рамка аркуша, основний напис, структура, опис і весь вміст.
@@ -2279,6 +2300,9 @@ YYYY-MM-DD	РРРР-ММ-ДД
 You may only view this project.	Ви можете лише переглядати цей проєкт.
 You may review this project: comments, markup and approvals, no other changes.	Ви можете рецензувати цей проєкт: коментарі, позначки та затвердження, без інших змін.
 Your unsaved changes of it are taken back	Ваші незбережені зміни в ньому буде скасовано
+Your version of {}	Ваша версія від {}
+Your version taken over: {}. Save to store it on the project server.	Вашу версію перейнято: {}. Збережіть, щоб записати її на сервер проєктів.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Ваші версії змін, замінених версією із сервера проєктів. Вони залишаються тут, доки ви їх не відкинете.
 Zoom	Масштаб
 Zoom in in the 3D view (held)	Наблизити 3D-вигляд (утримувати)
 Zoom out in the 3D view (held)	Віддалити 3D-вигляд (утримувати)
@@ -2490,6 +2514,7 @@ x y	x y
 {} of {} wires	{} з {} проводів
 {} of {} wires assigned to cores of {}	{} з {} проводів призначено жилам {}
 {} on released pages were left as they are	На затверджених сторінках залишено без змін: {}
+{} on {}	{} на {}
 {} options switched	Перемкнуто опцій: {}
 {} pages generated	Згенеровано сторінок: {}
 {} pages generated; page macros not found: {}	Згенеровано сторінок: {}; не знайдено макросів сторінок: {}
@@ -2542,6 +2567,7 @@ x y	x y
 {} °C (max.)	{} °C (макс.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} пікселів, {}
+{} – revision {}, {}	{} – ревізія {}, {}
 {} – {} ({} pages)	{} – {} (сторінок: {})
 {} – {} here (Esc cancels)	{} – {} тут (Esc скасовує)
 {}, freestanding	{}, наземне

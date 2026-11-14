@@ -12,12 +12,14 @@ Add connection point	Lisää liitäntäpiste
 Add cutout	Lisää aukko
 Add function	Lisää toiminto
 Add marked parts to the parts database ({})	Lisää merkityt osat osatietokantaan ({})
+Add restricted area	Lisää kielletty alue
 Add to the parts database	Lisää osatietokantaan
 Adds the macros of the file to the macro library	Lisää tiedoston makrot makrokirjastoon
 After a successful connection test, save the token securely for OpenECraft and MCP under this Windows user.	Tallenna tunniste onnistuneen yhteystestin jälkeen turvallisesti OpenECraftille ja MCP:lle tämän Windows-käyttäjän tietoihin.
 All parts are up to date	Kaikki osat ovat ajan tasalla
 Already in the parts database	On jo osatietokannassa
 Apply {} updates	Ota käyttöön {} päivitystä
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Kotelon alueet, joilla ei saa olla laitteita (sijoittelu) tai aukkoja ja reikiä (aukko); sijainti ja koko pinnan koordinaateissa kuten sen kohteilla.
 Check the parts database for updates	Tarkista osatietokannan päivitykset
 Checking for part updates…	Tarkistetaan osien päivityksiä…
 Clearance front	Etäisyys edessä
@@ -29,6 +31,7 @@ Connect to a parts server and search.	Muodosta yhteys osapalvelimeen ja hae.
 Connected: {} {} – {} parts, revision {}, {}	Yhdistetty: {} {} – {} osaa, revisio {}, {}
 Connection designations	Yhteysmerkinnät
 Corner radius	Kulman säde
+Cut-out	Aukko
 Datasheet (URL)	Tietolehti (URL)
 Deleted catalog {}	Luettelo {} poistettiin
 Deleted part {}	Osa {} poistettu
@@ -87,6 +90,7 @@ Parts server: {}	Osapalvelin: {}
 Parts this part is assembled from; the bill of materials lists them under it	Osat, joista tämä osa on koottu; osaluettelo luettelee ne sen alla
 Personal access token	Henkilökohtainen käyttöoikeustokeni
 Place by clicking into the view	Sijoita napsauttamalla näkymää
+Placing	Sijoittelu
 Prices / other	Hinnat / muut
 Remember token on this computer	Muista tunniste tällä tietokoneella
 Remove all	Poista kaikki
@@ -94,6 +98,7 @@ Remove picture	Poista kuva
 Removing the file…	Poistetaan tiedostoa…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Korvaa liitäntäpisteet IEC-käytännön mukaan: parittomat merkinnät ylhäällä, parilliset alhaalla
 Reset filter	Nollaa suodatin
+Restricted areas: {}	Kielletyt alueet: {}
 Rotate 90°:	Kierrä 90°:
 Save the file	Tallenna tiedosto
 Saved Data Portal token removed	Tallennettu Data Portal -tunniste poistettu

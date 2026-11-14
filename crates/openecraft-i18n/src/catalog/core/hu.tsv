@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	A szélesség ±90°, a h
 Lead time (days)	Szállítási idő (nap)
 Leakage current	Szivárgási áram
 Leakage line	Szivárgóolaj-vezeték
-Left side	Bal oldal
 Left side panel	Bal oldalfal
 Legend plate text	Jelölőtábla szövege
 Length (m)	Hossz (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Névleges rövid idejű áramállóság
 Rated speed	Névleges fordulatszám
 Rated torque	Névleges nyomaték
 Rated voltage	Névleges feszültség
-Rear wall	Hátfal
 Rectangular punch	Négyszögletes lyukasztó
 Rectifier / inverter AC/DC, bidirectional	Egyenirányító / inverter AC/DC, kétirányú
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Revíziós t
 Revision table: date of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió dátuma (2: az azt megelőzőé …)
 Revision table: description of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió leírása (2: az azt megelőzőé …)
 Revision table: index of the last revision (2: the one before …)	Revíziós táblázat: az utolsó revízió indexe (2: az azt megelőzőé …)
-Right side	Jobb oldal
 Right side panel	Jobb oldalfal
 Ring earth electrode	Körföldelő
 Ring terminal	Gyűrűs saru
@@ -2008,6 +2005,7 @@ yellow	sárga
 {}: cross-section {} below the {} mm² of power circuits	{}: a(z) {} keresztmetszet kisebb az erősáramú áramkörök {} mm²-énél
 {}: cross-section {} differs from the potential definition ({})	{}: a(z) {} keresztmetszet eltér a potenciáldefiníciótól ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: {} kivágása ezen: {} {} mm-re van a széltől, legalább {} mm szükséges
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: {} kivágása ezen: {} kivágásra tiltott területen van
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: {} kivágása ezen: {} {} mm-rel túlnyúlik az előlapján
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: {} és {} kivágásai ezen: {} túl közel vannak ({} mm anyaghíd, legalább {} mm)
 {}: designation '{}' used more than once	{}: a(z) '{}' megnevezés többször szerepel
@@ -2017,6 +2015,7 @@ yellow	sárga
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a(z) {} A hibaáram a(z) {} helyen nem kapcsol le {} s-on belül ({} A szükséges)
 {}: function texts differ in the single-line diagram and the schematic	{}: a funkciószövegek eltérnek az egyvonalas rajzon és a kapcsolási rajzon
 {}: hole of {} is too close to the cutout of {} on the {}	{}: {} furata túl közel van {} kivágásához ezen: {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: {} furata ezen: {} kivágásra tiltott területen van
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2} Ø{1} furata ezen: {3} {4} mm-re van a széltől, legalább {5} mm szükséges
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: {} és {} furatai ezen: {} túl közel vannak ({} mm anyaghíd, legalább {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: kb. {} °C-os forró pont a szerelőlap x = {} mm, y = {} mm pontjában (belső hőmérséklet legfeljebb {} °C)
@@ -2111,6 +2110,7 @@ yellow	sárga
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nem falra szerelésre készült, szerelje sínre
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} {} … {} mm-rel van a padló felett, megengedett {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg ezen: {} meghaladja a(z) {} kg-os teherbírást
+{}: {} lies in a restricted placing area of the {}	{}: {} elhelyezésre tiltott területen van ezen: {}
 {}: {} modules of PV array {} are not connected to a string	{0}: a(z) {2} PV-mező {1} modulja nincs stringhez csatlakoztatva
 {}: {} modules, the head has {} slots	{}: {} modul, a fejegységnek {} slotja van
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) hosszabb a(z) {} mm-es szálhossznál, ezért toldani kell

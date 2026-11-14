@@ -12,11 +12,13 @@ Add connection point	Додати точку підключення
 Add cutout	Додати виріз
 Add function	Додати функцію
 Add marked parts to the parts database ({})	Додати позначені вироби до бази даних виробів ({})
+Add restricted area	Додати заборонену зону
 Add to the parts database	Додати до бази даних виробів
 Adds the macros of the file to the macro library	Додає макроси з файлу до бібліотеки макросів
 All parts are up to date	Усі вироби актуальні
 Already in the parts database	Уже є в базі даних виробів
 Apply {} updates	Застосувати оновлення ({})
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Зони корпусу без пристроїв (розміщення) або без вирізів і отворів (виріз); положення й розмір у координатах грані, як у її елементів.
 Check the parts database for updates	Перевірити базу даних виробів на оновлення
 Checking for part updates…	Перевірка оновлень виробів…
 Clearance front	Відстань спереду
@@ -28,6 +30,7 @@ Connect to a parts server and search.	Підключіться до сервер
 Connected: {} {} – {} parts, revision {}, {}	Підключено: {} {} – виробів: {}, ревізія {}, {}
 Connection designations	Позначення підключень
 Corner radius	Радіус кута
+Cut-out	Виріз
 Datasheet (URL)	Технічний паспорт (URL)
 Deleted catalog {}	Каталог {} видалено
 Deleted part {}	Виріб {} видалено
@@ -83,12 +86,14 @@ Parts server: {}	Сервер виробів: {}
 Parts this part is assembled from; the bill of materials lists them under it	Вироби, з яких складається цей виріб; специфікація перелічує їх під ним
 Personal access token	Персональний маркер доступу
 Place by clicking into the view	Розмістіть клацанням у вигляді
+Placing	Розміщення
 Prices / other	Ціни / інше
 Remove all	Вилучити все
 Remove picture	Вилучити зображення
 Removing the file…	Вилучення файлу…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Замінює точки підключення за правилом IEC: непарні позначення вгорі, парні внизу
 Reset filter	Скинути фільтр
+Restricted areas: {}	Заборонені зони: {}
 Rotate 90°:	Повернути на 90°:
 Save the file	Зберегти файл
 Saved part {}	Виріб {} збережено

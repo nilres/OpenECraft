@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	Latitudinea este în ±90
 Lead time (days)	Timp de livrare (zile)
 Leakage current	Curent de scurgere
 Leakage line	Conductă de scurgeri
-Left side	Partea stângă
 Left side panel	Perete lateral stânga
 Legend plate text	Text plăcuță de marcare
 Length (m)	Lungime (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Curent nominal de scurtă durată admisibil
 Rated speed	Turație nominală
 Rated torque	Cuplu nominal
 Rated voltage	Tensiune nominală
-Rear wall	Perete din spate
 Rectangular punch	Poanson dreptunghiular
 Rectifier / inverter AC/DC, bidirectional	Redresor / invertor c.a./c.c., bidirecțional
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Tabel de rev
 Revision table: date of the last revision (2: the one before …)	Tabel de revizii: data ultimei revizii (2: a celei dinainte …)
 Revision table: description of the last revision (2: the one before …)	Tabel de revizii: descrierea ultimei revizii (2: a celei dinainte …)
 Revision table: index of the last revision (2: the one before …)	Tabel de revizii: indicele ultimei revizii (2: a celei dinainte …)
-Right side	Partea dreaptă
 Right side panel	Perete lateral dreapta
 Ring earth electrode	Priză de pământ inelară
 Ring terminal	Papuc inel
@@ -2008,6 +2005,7 @@ yellow	galben
 {}: cross-section {} below the {} mm² of power circuits	{}: secțiunea {} este sub cei {} mm² ai circuitelor de putere
 {}: cross-section {} differs from the potential definition ({})	{}: secțiunea {} diferă de definiția potențialului ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: decupajul {} pe {} este la {} mm de margine, sunt necesari cel puțin {} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: decupajul {} pe {} se află într-o zonă interzisă decupajelor
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: decupajul pentru {} pe {} depășește fața sa cu {} mm
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: decupajele {} și {} pe {} sunt prea apropiate (punte de material de {} mm, cel puțin {} mm)
 {}: designation '{}' used more than once	{}: denumirea '{}' este folosită de mai multe ori
@@ -2017,6 +2015,7 @@ yellow	galben
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: curentul de defect {} A la {} nu deconectează în {} s (necesită {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: textele de funcție diferă între schema monofilară și schemă
 {}: hole of {} is too close to the cutout of {} on the {}	{}: gaura {} este prea aproape de decupajul {} pe {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: gaura {} pe {} se află într-o zonă interzisă decupajelor
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: gaura Ø{} a {} pe {} este la {} mm de margine, sunt necesari cel puțin {} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: găurile {} și {} pe {} sunt prea apropiate (punte de material de {} mm, cel puțin {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: punct fierbinte de aproximativ {} °C la x = {} mm, y = {} mm pe placa de montaj (temperatura interioară cel mult {} °C)
@@ -2111,6 +2110,7 @@ yellow	galben
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} nu este destinat montajului pe perete, montați-l pe o șină
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} este la {} … {} mm deasupra podelei, permis {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg pe {} depășesc sarcina sa de {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} se află într-o zonă interzisă amplasării pe {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} module ale câmpului fotovoltaic {} nu sunt conectate la un șir
 {}: {} modules, the head has {} slots	{}: {} module, capul are {} sloturi
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} de {} mm este mai lung decât lungimea de stoc de {} mm și trebuie îmbinat

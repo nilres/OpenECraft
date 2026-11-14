@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Jordspett: dess längd, mm (standard 30
 Earth rod: x of its place in the floor plan of the building, mm	Jordspett: x för dess plats i byggnadens planritning, mm
 Earth rod: z of its place in the floor plan of the building, mm	Jordspett: z för dess plats i byggnadens planritning, mm
 Edge length of the routing grid in mm	Kantlängd för dragningsrutnätet i mm
+Edge the door is hinged at, seen from the front: left or right	Kanten där dörren är hängd, sett framifrån: left eller right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriska apparatbeteckningar åtskilda med kommatecken eller blanksteg (tomt = ta bort länkarna)
 Electrical engineering	Elektroteknik
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Element (Line, Rect, Text, Image) i mm från namnrutans övre vänstra hörn i en matris items
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Mitten av solcellsfältet i byggnadens planritning (markmonterat: i anläggningen), z i mm
 Milling feed, mm/min	Fräsmatning, mm/min
 Mirror the symbol	Spegelvänd symbolen
+Mounting plate size as width and height; empty object restores the centred plate	Monteringsplåtens storlek som bredd och höjd; ett tomt objekt återställer den centrerade plåten
+Mounting size must contain a positive width and height	Monteringsstorleken måste innehålla en positiv bredd och höjd
 Moves an air-termination rod, changes its height, renames or removes it	Flyttar en spetsledare, ändrar dess höjd, byter namn på den eller tar bort den
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flyttar en ände av en ledning: den lämnar det den är ansluten till och ansluts till det den möter; ledningen förblir vinkelrät
 Moves symbols, wires and texts; connected wire ends follow	Flyttar symboler, ledningar och texter; anslutna ledningsändar följer med
@@ -928,6 +931,7 @@ Unknown check: {}	Okänd kontroll: {}
 Unknown class: {}	Okänd klass: {}
 Unknown data type: {}	Okänd datatyp: {}
 Unknown direction {}: left, right, up or down	Okänd riktning {}: left, right, up eller down
+Unknown door hinge: {}	Okänd gångjärnssida: {}
 Unknown earth electrode: {}	Okänt jordtag: {}
 Unknown earthing system: {}	Okänt jordningssystem: {}
 Unknown face {}	Okänd yta {}

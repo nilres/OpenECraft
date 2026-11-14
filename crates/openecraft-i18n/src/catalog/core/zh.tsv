@@ -749,7 +749,6 @@ Latitude is within ±90° and longitude within ±180°	纬度在 ±90° 以内�
 Lead time (days)	交货期（天）
 Leakage current	泄漏电流
 Leakage line	泄漏管路
-Left side	左侧
 Left side panel	左侧板
 Legend plate text	标牌文本
 Length (m)	长度 (m)
@@ -1285,7 +1284,6 @@ Rated short-time withstand current	额定短时耐受电流
 Rated speed	额定转速
 Rated torque	额定转矩
 Rated voltage	额定电压
-Rear wall	后板
 Rectangular punch	矩形冲头
 Rectifier / inverter AC/DC, bidirectional	整流器 / 逆变器 AC/DC，双向
 Redline	红线
@@ -1329,7 +1327,6 @@ Revision table: author of the last revision (2: the one before …)	修订表：
 Revision table: date of the last revision (2: the one before …)	修订表：最近一次修订的日期（2：再前一次 …）
 Revision table: description of the last revision (2: the one before …)	修订表：最近一次修订的说明（2：再前一次 …）
 Revision table: index of the last revision (2: the one before …)	修订表：最近一次修订的索引（2：再前一次 …）
-Right side	右侧
 Right side panel	右侧板
 Ring earth electrode	环形接地极
 Ring terminal	环形端子
@@ -1985,6 +1982,7 @@ yellow	黄色
 {}: cross-section {} below the {} mm² of power circuits	{}：截面积 {} 小于主电路的 {} mm²
 {}: cross-section {} differs from the potential definition ({})	{}：截面积 {} 与电位定义不同（{}）
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{0}：{2} 上 {1} 的开孔距边缘 {3} mm，至少需要 {4} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{0}：{2} 上 {1} 的开孔位于禁止开孔区域内
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}：{} 在 {} 上的开孔超出其正面 {} mm
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}：{3} 上 {1} 和 {2} 的开孔距离太近（筋宽 {4} mm，至少 {5} mm）
 {}: designation '{}' used more than once	{}：标识“{}”被多次使用
@@ -1994,6 +1992,7 @@ yellow	黄色
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}：{2} 处的故障电流 {1} A 无法在 {3} s 内切断（需要 {4} A）
 {}: function texts differ in the single-line diagram and the schematic	{}：单线图和原理图中的功能文本不同
 {}: hole of {} is too close to the cutout of {} on the {}	{0}：{1} 的孔距离 {3} 上 {2} 的开孔太近
+{}: hole of {} on the {} lies in a restricted cut-out area	{0}：{2} 上 {1} 的孔位于禁止开孔区域内
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}：{3} 上 {2} 的孔 Ø{1} 距边缘 {4} mm，至少需要 {5} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}：{3} 上 {1} 和 {2} 的孔距离太近（筋宽 {4} mm，至少 {5} mm）
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{0}：安装板 x = {2} mm、y = {3} mm 处有约 {1} °C 的热点（内部温度最高 {4} °C）
@@ -2086,6 +2085,7 @@ yellow	黄色
 {}: {} is not made for wall mounting, mount it on a rail	{}：{} 不适合墙面安装，请安装在导轨上
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}：{} 离地 {} … {} mm，允许 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{0}：{2} 上的 {1} kg 超过其承载能力 {3} kg
+{}: {} lies in a restricted placing area of the {}	{0}：{1} 位于 {2} 上的禁止放置区域内
 {}: {} modules of PV array {} are not connected to a string	{0}：光伏阵列 {2} 中有 {1} 块组件未接入组串
 {}: {} modules, the head has {} slots	{}：{} 个模块，头模块只有 {} 个插槽
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}：{} 长 {} mm，超过 {} mm 的库存长度，必须拼接

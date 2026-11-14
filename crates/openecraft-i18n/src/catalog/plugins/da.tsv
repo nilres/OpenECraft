@@ -238,6 +238,7 @@ Earth rod: its length, mm (default 3000)	Jordspyd: dets længde, mm (standard 30
 Earth rod: x of its place in the floor plan of the building, mm	Jordspyd: x for dets placering i bygningens plan, mm
 Earth rod: z of its place in the floor plan of the building, mm	Jordspyd: z for dets placering i bygningens plan, mm
 Edge length of the routing grid in mm	Kantlængde for føringsgitteret i mm
+Edge the door is hinged at, seen from the front: left or right	Kanten, døren er hængslet ved, set forfra: left eller right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Elektriske enhedsmærkninger adskilt af kommaer eller mellemrum (tom = fjern tilknytningerne)
 Electrical engineering	Elektroteknik
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementer (Line, Rect, Text, Image) i mm fra tegningshovedets øverste venstre hjørne i et array items
@@ -462,6 +463,8 @@ Middle of the PV array in the floor plan of the building (freestanding: in the p
 Middle of the PV array in the floor plan of the building (freestanding: in the plant), z in mm	Midten af solcellefeltet i bygningens plantegning (jordmonteret: i anlægget), z i mm
 Milling feed, mm/min	Fræsetilspænding, mm/min
 Mirror the symbol	Spejl symbolet
+Mounting plate size as width and height; empty object restores the centred plate	Monteringspladens størrelse som bredde og højde; et tomt objekt gendanner den centrerede plade
+Mounting size must contain a positive width and height	Monteringsstørrelsen skal indeholde en positiv bredde og højde
 Moves an air-termination rod, changes its height, renames or removes it	Flytter en fangstang, ændrer dens højde, omdøber eller fjerner den
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Flytter én ende af en ledning: den forlader det, den er tilsluttet, og forbindes med det, den møder; ledningen forbliver vinkelret
 Moves symbols, wires and texts; connected wire ends follow	Flytter symboler, ledninger og tekster; tilsluttede ledningsender følger med
@@ -928,6 +931,7 @@ Unknown check: {}	Ukendt kontrol: {}
 Unknown class: {}	Ukendt klasse: {}
 Unknown data type: {}	Ukendt datatype: {}
 Unknown direction {}: left, right, up or down	Ukendt retning {}: left, right, up eller down
+Unknown door hinge: {}	Ukendt hængselside: {}
 Unknown earth electrode: {}	Ukendt jordelektrode: {}
 Unknown earthing system: {}	Ukendt jordingssystem: {}
 Unknown face {}	Ukendt flade {}

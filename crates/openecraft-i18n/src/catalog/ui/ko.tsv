@@ -12,11 +12,13 @@ Add connection point	연결 지점 추가
 Add cutout	컷아웃 추가
 Add function	기능 추가
 Add marked parts to the parts database ({})	표시한 부품을 부품 데이터베이스에 추가({})
+Add restricted area	금지 영역 추가
 Add to the parts database	부품 데이터베이스에 추가
 Adds the macros of the file to the macro library	파일의 매크로를 매크로 라이브러리에 추가합니다
 All parts are up to date	모든 부품이 최신 상태입니다
 Already in the parts database	이미 부품 데이터베이스에 있음
 Apply {} updates	업데이트 {}개 적용
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	장치(배치) 또는 컷아웃과 구멍(컷아웃)을 두지 않는 외함 영역입니다. 위치와 크기는 해당 면의 좌표로, 면의 항목과 같습니다.
 Check the parts database for updates	부품 데이터베이스 업데이트 확인
 Checking for part updates…	부품 업데이트를 확인하는 중…
 Clearance front	앞쪽 이격 거리
@@ -28,6 +30,7 @@ Connect to a parts server and search.	부품 서버에 연결하여 검색하세
 Connected: {} {} – {} parts, revision {}, {}	연결됨: {} {} – 부품 {}개, 개정 {}, {}
 Connection designations	연결 명칭
 Corner radius	모서리 반경
+Cut-out	컷아웃
 Datasheet (URL)	데이터시트(URL)
 Deleted catalog {}	카탈로그 {}을(를) 삭제했습니다
 Deleted part {}	부품 {} 삭제됨
@@ -83,12 +86,14 @@ Parts server: {}	부품 서버: {}
 Parts this part is assembled from; the bill of materials lists them under it	이 부품을 구성하는 부품. 부품 목록에는 이 부품 아래에 나열됩니다
 Personal access token	개인 액세스 토큰
 Place by clicking into the view	보기를 클릭하여 배치
+Placing	배치
 Prices / other	가격 / 기타
 Remove all	모두 제거
 Remove picture	이미지 제거
 Removing the file…	파일을 제거하는 중…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC 규칙에 따라 연결 지점을 교체합니다: 홀수 명칭은 위쪽, 짝수 명칭은 아래쪽
 Reset filter	필터 재설정
+Restricted areas: {}	금지 영역: {}
 Rotate 90°:	90° 회전:
 Save the file	파일 저장
 Saved part {}	부품 {} 저장됨

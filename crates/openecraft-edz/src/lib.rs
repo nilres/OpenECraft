@@ -4,10 +4,14 @@
 //! and macros. The parts are read with [`openecraft_parts::from_eplan_documents`];
 //! pictures and macros are returned as files of their parts. The parts carry the
 //! decoded 2D macro representations alongside their original EMA attachments and a
-//! small copy of their picture ([`picture`]).
+//! small copy of their picture ([`picture`]). Enclosure packages of configurators (ZIP
+//! archives with a bill of materials, an EPLAN macro and a STEP model) are read by
+//! [`package`].
 
 mod archive;
 pub mod folder;
+pub mod layout;
+pub mod package;
 pub mod picture;
 
 pub use archive::{import, is_edz, read, text as decode_text, Edz, EdzFile};

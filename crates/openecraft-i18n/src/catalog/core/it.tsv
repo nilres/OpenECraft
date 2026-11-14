@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	La latitudine è entro ±
 Lead time (days)	Tempo di consegna (giorni)
 Leakage current	Corrente di dispersione
 Leakage line	Linea di drenaggio
-Left side	Lato sinistro
 Left side panel	Parete laterale sinistra
 Legend plate text	Testo della targhetta
 Length (m)	Lunghezza (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Corrente nominale ammissibile di breve durata
 Rated speed	Velocità nominale
 Rated torque	Coppia nominale
 Rated voltage	Tensione nominale
-Rear wall	Parete posteriore
 Rectangular punch	Punzone rettangolare
 Rectifier / inverter AC/DC, bidirectional	Raddrizzatore / inverter AC/DC, bidirezionale
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Tabella dell
 Revision table: date of the last revision (2: the one before …)	Tabella delle revisioni: data dell'ultima revisione (2: quella precedente …)
 Revision table: description of the last revision (2: the one before …)	Tabella delle revisioni: descrizione dell'ultima revisione (2: quella precedente …)
 Revision table: index of the last revision (2: the one before …)	Tabella delle revisioni: indice dell'ultima revisione (2: quella precedente …)
-Right side	Lato destro
 Right side panel	Parete laterale destra
 Ring earth electrode	Dispersore ad anello
 Ring terminal	Capocorda ad occhiello
@@ -2008,6 +2005,7 @@ yellow	giallo
 {}: cross-section {} below the {} mm² of power circuits	{}: sezione {} inferiore ai {} mm² dei circuiti di potenza
 {}: cross-section {} differs from the potential definition ({})	{}: la sezione {} differisce dalla definizione del potenziale ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: la foratura di {} su {} è a {} mm dal bordo, sono richiesti almeno {} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: la foratura di {} su {} si trova in un'area interdetta alle forature
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: l'apertura di {} su {} sporge di {} mm oltre il suo frontale
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: le forature di {} e {} su {} sono troppo vicine ({} mm di nervatura, almeno {} mm)
 {}: designation '{}' used more than once	{}: designazione '{}' usata più volte
@@ -2017,6 +2015,7 @@ yellow	giallo
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: la corrente di guasto {} A in {} non provoca l'interruzione entro {} s (richiesti {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: i testi di funzione differiscono tra schema unifilare e schema
 {}: hole of {} is too close to the cutout of {} on the {}	{}: il foro di {} è troppo vicino alla foratura di {} su {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: il foro di {} su {} si trova in un'area interdetta alle forature
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: il foro Ø{} di {} su {} è a {} mm dal bordo, sono richiesti almeno {} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: i fori di {} e {} su {} sono troppo vicini ({} mm di nervatura, almeno {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: punto caldo di circa {} °C a x = {} mm, y = {} mm della piastra di montaggio (temperatura interna al massimo {} °C)
@@ -2111,6 +2110,7 @@ yellow	giallo
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} non è previsto per il montaggio a parete, montarlo su una guida
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} è a {} … {} mm dal pavimento, consentiti {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg su {} superano il suo carico di {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} si trova in un'area interdetta al posizionamento su {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} moduli del campo fotovoltaico {} non sono collegati ad alcuna stringa
 {}: {} modules, the head has {} slots	{}: {} moduli, la testa ha {} slot
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} di {} mm è più lungo della lunghezza di magazzino di {} mm e deve essere giuntato

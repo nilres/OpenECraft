@@ -1007,3 +1007,71 @@ fn a_short_section_of_a_wide_busbar_system_lies_along_its_bars() {
     let plain = PanelItem { kind: ItemKind::Busbar, w: 100.0, h: 300.0, ..Default::default() };
     assert!(!bars_along_x(&prj.parts, &plain));
 }
+
+#[test]
+fn the_mounting_plate_comes_from_the_enclosure_part() {
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "RIT.1360000".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    part.tech_data = "Enclosure system: compact\nMounting origin: 25/12.5/20".into();
+    prj.parts.push(part);
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!(e.mounting_origin, Some([25.0, 12.5, 20.0]));
+    assert_eq!((e.plate_size(), e.mounting_z()), ((550.0, 575.0), 20.0));
+    // Values that are no place leave the default plate.
+    for bad in ["25/12.5", "25/x/20", "-5/0/20", "1/2/3/4"] {
+        prj.parts[0].tech_data = format!("Mounting origin: {bad}");
+        assert_eq!(new_enclosure(&mut prj, "RIT.1360000", "+CAB1").mounting_origin, None, "{bad}");
+    }
+    assert_eq!(mounting_origin(" 25 / 12.5 / 20 mm"), Some([25.0, 12.5, 20.0]));
+    // A plate that is not centred.
+    prj.parts[0].tech_data = "Mounting origin: 25/12.5/20\nMounting size: 500 x 575 mm".into();
+    let e = new_enclosure(&mut prj, "RIT.1360000", "+CAB1");
+    assert_eq!((e.mounting_size, e.plate_size()), (Some([500.0, 575.0]), (500.0, 575.0)));
+    assert_eq!(mounting_size("0 x 5"), None);
+}
+
+#[test]
+fn restricted_areas_lie_on_their_faces_in_3d() {
+    use crate::parts::{RestrictedArea, Restriction};
+    let mut prj = Project::default();
+    let mut part = crate::parts::Part { number: "ENC".into(), width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    part.mounting_data.restricted = vec![
+        RestrictedArea { kind: Restriction::Cutout, face: "door".into(), x: 10.0, y: 20.0, w: 30.0, h: 40.0 },
+        RestrictedArea { kind: Restriction::Placing, face: "left".into(), x: 0.0, y: 0.0, w: 50.0, h: 60.0 },
+    ];
+    prj.parts.push(part);
+    let e = Enclosure { part: "ENC".into(), width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    let quads = restricted_quads(&prj, &e);
+    assert_eq!(quads.len(), 2);
+    let (kind, face, door) = quads[0];
+    assert_eq!((kind, face), (Restriction::Cutout, Face::Door));
+    assert_eq!((door[0], door[2]), ([10.0, 20.0, 250.0], [40.0, 60.0, 250.0]));
+    // The left wall: face x along the depth, on its inside.
+    let (_, face, left) = quads[1];
+    assert_eq!(face, Face::Left);
+    assert!(left.iter().all(|q| (q[0] - e.wall()).abs() < 1e-4), "{left:?}");
+    assert_eq!((left[2][1], left[2][2]), (60.0, 50.0));
+}
+
+#[test]
+fn door_wires_run_over_the_hinge_side() {
+    let mut e = Enclosure { width: 600.0, height: 800.0, depth: 250.0, ..Default::default() };
+    let lamp = PanelItem { id: 1, face: Face::Door, x: 290.0, y: 100.0, w: 22.0, h: 22.0, d: 40.0, ..Default::default() };
+    let (end, _, route) = wiring_end(&e, &lamp, None);
+    assert_eq!(end.pos.x, 0.0, "the plate's left edge");
+    assert!((route.unwrap().points.last().unwrap().x - DOOR_FRAME / 2.0).abs() < 1e-3);
+    // Hinged on the right: over the right frame to the plate's right edge.
+    e.door_hinge = DoorHinge::Right;
+    let (end, _, route) = wiring_end(&e, &lamp, None);
+    assert_eq!(end.pos.x, e.plate_size().0);
+    assert!((route.unwrap().points.last().unwrap().x - (600.0 - DOOR_FRAME / 2.0)).abs() < 1e-3);
+    // From the part data of a maker's enclosure, and as a key.
+    let mut prj = Project::default();
+    prj.parts.push(crate::parts::Part { number: "RIT.1".into(), width: 600.0, height: 600.0, depth: 350.0, tech_data: "Door hinge: right".into(), ..Default::default() });
+    assert_eq!(new_enclosure(&mut prj, "RIT.1", "+A1").door_hinge, DoorHinge::Right);
+    assert_eq!((DoorHinge::from_key(" Right "), DoorHinge::from_key("top")), (Some(DoorHinge::Right), None));
+    // Saved only when not the default.
+    let json = serde_json::to_value(&e).unwrap();
+    assert_eq!(json["door_hinge"], "right");
+    assert!(serde_json::to_value(Enclosure::default()).unwrap().get("door_hinge").is_none());
+}

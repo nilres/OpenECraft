@@ -212,3 +212,22 @@ fn scaled_ema_channels_still_find_their_card() {
     link_unassigned_plc_parts(&mut prj, &PartsDb { parts: vec![card] }, None);
     assert_eq!(prj.devices["-A3"].parts[0].number, "BEC.EL3174");
 }
+
+#[test]
+fn a_part_imported_again_refreshes_the_projects_copy() {
+    let mut prj = Project::default();
+    let mut old = Part { number: "RIT.1360000".into(), description: "Old".into(), width: 600.0, height: 600.0, depth: 350.0, ..Default::default() };
+    old.model_3d = Some(Mesh3d { vertices: vec![[0.0; 3]; 3], triangles: vec![[0, 1, 2]], colors: Vec::new() }.into());
+    old.note = "kept".into();
+    prj.parts.push(old);
+    // An import with new mounting data and technical data but no model (a CSV file).
+    let mut new = Part { number: "RIT.1360000".into(), tech_data: "Mounting origin: 25/12.5/20".into(), ..Default::default() };
+    new.mounting_data.restricted = vec![crate::parts::RestrictedArea { face: "door".into(), w: 1.0, h: 1.0, ..Default::default() }];
+    assert!(refresh_in_project(&mut prj, &new));
+    let p = &prj.parts[0];
+    assert_eq!((p.description.as_str(), p.note.as_str(), p.width), ("Old", "kept", 600.0));
+    assert_eq!(p.tech_value("Mounting origin"), Some("25/12.5/20"));
+    assert_eq!(p.mounting_data.restricted.len(), 1);
+    assert!(p.model_3d.is_some(), "a missing model leaves the old one");
+    assert!(!refresh_in_project(&mut prj, &Part { number: "OTHER".into(), ..Default::default() }));
+}

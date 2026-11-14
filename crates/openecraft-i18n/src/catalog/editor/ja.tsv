@@ -263,7 +263,8 @@ Change request	変更依頼
 Change requests	変更依頼
 Change requests (CSV, JSON)	変更依頼 (CSV、JSON)
 Changed against the frozen routes:	固定されたルートからの変更:
-Changed by another user in the meantime, your change was replaced: {}	その間に別のユーザーが変更したため、あなたの変更は置き換えられました: {}
+Changed by another user before you got the lock	ロックを取得する前に別のユーザーが変更しました
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	その間に別のユーザーが変更しました: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
 Changed cells of a CSV or Excel file exported here (rows by their key)	ここからエクスポートした CSV または Excel ファイルの変更されたセル (行はキーで識別)
 Changed message levels ({})	変更したメッセージレベル ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	取付後に変更されました: 以前は X {} mm、Y {} mm、部品 {}
@@ -389,6 +390,7 @@ Comments ({})	コメント ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	レビュー担当者がプロジェクトの PDF エクスポートに付けたコメント (Acrobat またはその他の PDF ビューアー)
 Comments and markup	コメントとマークアップ
 Company library	会社ライブラリ
+Compare	比較
 Compare and baselines	比較とベースライン
 Compare with	比較対象
 Compare with a baseline, a revision or another project file and take differences over	ベースライン、リビジョン、または別のプロジェクトファイルと比較して、相違点を反映します
@@ -513,6 +515,7 @@ Delete the property and all its values	プロパティとそのすべての値�
 Delete this workspace	このワークスペースを削除
 Delete variant	バリアントを削除
 Delete zone	ゾーンを削除
+Deletes this copy of your changes for good	この変更のコピーを完全に削除します
 Depth / mounted at	奥行き / 取付位置
 Depth below the ground	地表からの深さ
 Depth from / to	奥行き 開始 / 終了
@@ -588,6 +591,7 @@ Door NC data (DWG)	扉の NC データ (DWG)
 Door NC data (DXF)	扉の NC データ (DXF)
 Door clearance	扉のクリアランス
 Door cutouts (CSV)	扉の切り欠き (CSV)
+Door hinge	扉のヒンジ
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
 Double-click	ダブルクリック
@@ -654,6 +658,7 @@ Earthing system	系統接地方式
 Easting, northing	東座標、北座標
 Eaves	軒
 Edge length of the routing grid: smaller is finer and slower	配線グリッドの辺の長さ: 小さいほど精細になり、処理は遅くなります
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	正面から見た扉のヒンジ側の端: 3D ビューはそこで扉を開き、扉の配線はそこを通ります
 Edit in table	表で編集
 Edit in table…	表で編集…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	編集モード：配置図で建物をその位置へドラッグして回転します。部屋をクリックしても開かなくなります
@@ -910,6 +915,7 @@ Import symbol library…	シンボルライブラリをインポート…
 Import symbol table…	シンボルテーブルをインポート…
 Imported	インポート済み
 Imported {} entries of the property library	プロパティライブラリのエントリを {} 件インポートしました
+Imported {} into the parts database	{} を部品データベースにインポートしました
 Imported {} macros	{} 個のマクロをインポートしました
 Imported {} page templates	{} 個のページテンプレートをインポートしました
 Imported {} parts into the database	{} 個の部品をデータベースにインポートしました
@@ -976,6 +982,7 @@ Keep connections	接続を保持
 Keep sub-pages (3.a, 3.1) with the page before	サブページ (3.a、3.1) を前のページと一緒に維持
 Keep the degree of protection	保護等級を維持
 Keep this route when recalculating, as long as it is still possible	再計算時も、可能な限りこのルートを維持します
+Kept changes	保管された変更
 Key tips of the ribbon	リボンのアクセスキー
 Key: {}	キー: {}
 Keyboard shortcuts	キーボードショートカット
@@ -1051,6 +1058,7 @@ Lock page	ページをロック
 Lock project data	プロジェクトデータをロック
 Locked	ロック
 Locked by other users	他のユーザーがロック中
+Locked by {}	{} がロック中
 Locked by {} on the project server – read only	プロジェクトサーバーで {} がロック中 – 読み取り専用
 Locked by {} – read only	{} がロック中 – 読み取り専用
 Locking…	ロックしています…
@@ -1275,11 +1283,13 @@ None – editing a page or the project data locks it.	なし – ページまた
 Not a page template file: {}	ページテンプレートファイルではありません: {}
 Not a point: type x y or @dx dy	点ではありません。x y または @dx dy を入力してください
 Not a symbol library: {}	シンボルライブラリではありません: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	ロックが拒否されたため変更されていません: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
 Not changed: {}	変更されていません: {}
+Not changed: {}. Your version is kept in the Project server pane.	変更されていません: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
 Not found: {}	見つかりません: {}
 Not in the project parts – synchronize in parts management	プロジェクト部品にありません – 部品管理で同期してください
 Not on a wire	電線上にありません
-Not saved, locked or changed by another user: {}	保存されていません。他のユーザーがロックまたは変更しています: {}
+Not saved, locked or changed by another user	他のユーザーがロックまたは変更しているため保存されていません
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	使えません：左ボタンのみは選択、描画、移動に使われます。モディファイアキーを押すか別のボタンを使ってください。
 Not the shared project: changes are saved locally until it is opened on the project server again	共有プロジェクトではありません：プロジェクトサーバーで再度開くまで変更はローカルに保存されます
 Nothing exchanged yet.	まだ何も交換されていません。
@@ -1433,6 +1443,8 @@ Part of the profile: generic types or parts from the parts store	プロファイ
 Part selection from the parts database	部品データベースからの部品選択
 Part selection – {}	部品選択 – {}
 Part selection…	部品の選択…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	一部を保存しました (リビジョン {})。他のユーザーがロックまたは変更しているため保存されていません: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
+Partly saved to the project server (revision {})	プロジェクトサーバーに一部を保存しました (リビジョン {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	部品は変更可能なページにのみドロップできます。このページはリリース済み、ロック済み、または生成ページです
 Parts management	部品管理
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	床置きとしてマークされた部品 (ポンプ、タンク、コンプレッサー): 1 つ選択し、部屋の床の設置場所をクリックします
@@ -1646,11 +1658,14 @@ Replace	置換
 Replace all	すべて置換
 Replace text	テキストを置換
 Replace with	置換後の文字列
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	プロジェクトサーバーの版に置き換えられました: {}。あなたの版はプロジェクトサーバーのペインに保管されています。
 Replaced when the configurator generates again; switch off to keep the page	コンフィギュレーターで再生成すると置き換えられます。ページを保持するにはオフにしてください
+Replaced while you held no lock	ロックを持っていない間に置き換えられました
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	フリーテキスト、機能テキスト、ページ・デバイス・ケーブルの説明を置換します。リリース済みのページは変更されません
 Replaces the GEN.* parts in the database with the current example catalog (including models)	データベース内の GEN.* 部品を現在のサンプルカタログで置換します (モデルを含む)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	会社ライブラリをプロジェクト独自の表題欄、レポートスキーム、図枠で置き換えます（部品サーバーの編集者）
 Replaces the content of the macro boxes whose macro changed in the library	ライブラリ内でマクロが変更されたマクロボックスの内容を置き換えます
+Replaces the current version with yours as a change you can undo; the next save stores it	現在の版をあなたの版に置き換えます (元に戻せる変更として)。次回の保存で保存されます
 Replaces the pages of this block	このブロックのページを置き換えます
 Reply	返信
 Reply…	返信…
@@ -1781,6 +1796,7 @@ Saves the placed properties as a placement scheme of the project	配置された
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	リビジョン、ベースライン、レビュー、配線マークを除いてプロジェクトを新規プロジェクト用のテンプレートとして保存します
 Saves the project's own properties, function definitions and schemes for other projects	プロジェクト独自のプロパティ、機能定義、スキームを他のプロジェクト用に保存します
 Saves the workspace, the arrangement of the panels and the open windows	ワークスペース、パネルの配置、開いているウィンドウを保存します
+Saves your version of the whole project as a project file	プロジェクト全体のあなたの版をプロジェクトファイルとして保存します
 Saving failed: {}	保存に失敗しました: {}
 Saving the project access…	プロジェクトへのアクセスを保存しています…
 Saving to the project server…	プロジェクトサーバーに保存しています…
@@ -1891,6 +1907,7 @@ Shown instead of the measured value	測定値の代わりに表示されます
 Shown now: {}	現在の表示: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	表紙と、プロジェクトのロゴを表示する表題欄の画像要素に表示されます
 Shows	表示
+Shows the differences of your version to the open project; selected ones can be taken over	あなたの版と開いているプロジェクトの差分を表示します。選択したものを取り込めます
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	外側から見た側板、背板、天板、底板: ファン、ケーブルグランド、切り欠き
 Sign in in the Project server pane; the project opens afterwards	「プロジェクトサーバー」ペインでサインインしてください。その後プロジェクトが開きます
 Sign in…	サインイン…
@@ -1908,6 +1925,7 @@ Smallest cross-section of control circuits	制御回路の最小断面積
 Smallest cross-section of power circuits	動力回路の最小断面積
 Socket outlets, data and antenna outlets	コンセント、データおよびアンテナコンセント
 Solid	実線
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	一部の変更はプロジェクトサーバーに取り込まれませんでした。破棄した後も、あなたの版はプロジェクトサーバーのペインに残ります。
 Some wires have no length: place their devices in the panel layout or set the field length.	一部の電線に長さがありません: 盤レイアウトでそのデバイスを配置するか、フィールド長を設定してください。
 Sort by designation	名称で並べ替え
 Sort order	並べ替え順
@@ -1996,6 +2014,7 @@ Tag placed by hand	手動で配置したタグ
 Take out a subproject	サブプロジェクトを切り出し
 Take out of the building	建物から外す
 Take out {} pages…	{} ページを切り出し…
+Take over again	再び取り込む
 Take over cut lengths	切断長を反映
 Take over selected ({})	選択した項目を反映 ({})
 Take over {} changes	{} 件の変更を反映
@@ -2036,11 +2055,12 @@ The current page belongs to option {}.	現在のページはオプション {} �
 The devices do not fit onto the rail	デバイスがレールに収まりません
 The dictionary is empty: collect the texts from the project.	辞書が空です: プロジェクトからテキストを収集してください。
 The door seen from the front: door devices and cutouts	前面から見た扉: 扉取付機器と切り欠き
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	内側から見た扉 (ヒンジは右): 配線ダクトと扉裏の配線
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	内側から見た扉 (左右反転): 配線ダクトと扉裏の配線
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	このプレースホルダー付きの文字が空でないときだけ要素を描きます（例: リビジョン表の行）
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
 The horizontal wire	水平の配線
 The items are selected and moved together	アイテムはまとめて選択、移動されます
+The lock was refused	ロックが拒否されました
 The logo is fitted into this area keeping its aspect ratio	ロゴは縦横比を保ってこの領域に収まります
 The logo of the project properties, e.g. the customer's	プロジェクトのプロパティのロゴ（例: 顧客のロゴ）
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	部品サーバーにあるメーカーのカタログのロゴを、部品の詳細の横に表示します
@@ -2048,6 +2068,7 @@ The macro library has no page macros (Macros › Save page as macro…).	マク�
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	ホイールで横にパンまたはズームするモディファイアキーは「モディファイアキー」で設定します。
 The modules no string takes yet in series, on the first inverter	まだどのストリングにも属さないモジュールを直列に、最初のインバーターへ
 The names of its pages follow	そのページの名前も変わります
+The open project already has your version	開いているプロジェクトには既にあなたの版があります
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	開いているプロジェクトはローカル復元コピーです。その変更はプロジェクトサーバーに保存されていません。共有プロジェクトを開く前に、ローカルに保存するか破棄するかを決めます。
 The page name gets the section number	ページ名にセクション番号が付きます
 The page type, plot frame, title block, structure, description and the whole content are saved.	ページタイプ、図枠、表題欄、構造、説明、すべての内容が保存されます。
@@ -2257,6 +2278,9 @@ YYYY-MM-DD	YYYY-MM-DD
 You may only view this project.	このプロジェクトは閲覧のみ可能です。
 You may review this project: comments, markup and approvals, no other changes.	このプロジェクトはレビューのみ可能です: コメント、マークアップ、承認のみで、その他の変更はできません。
 Your unsaved changes of it are taken back	未保存の変更は取り消されます
+Your version of {}	{} のあなたの版
+Your version taken over: {}. Save to store it on the project server.	あなたの版を取り込みました: {}。プロジェクトサーバーに保存してください。
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	プロジェクトサーバーの版に置き換えられた変更のあなたの版です。破棄するまでここに残ります。
 Zoom	ズーム
 Zoom in in the 3D view (held)	3D ビューを拡大（押したまま）
 Zoom out in the 3D view (held)	3D ビューを縮小（押したまま）
@@ -2463,6 +2487,7 @@ x y	x y
 {} of {} wires	{} / {} 本の電線
 {} of {} wires assigned to cores of {}	{} / {} 本の電線を {} の心線に割り当てました
 {} on released pages were left as they are	リリース済みページ上の {} 個は変更されませんでした
+{} on {}	{} ({})
 {} options switched	{} 個のオプションを切り替えました
 {} pages generated	{} ページを生成しました
 {} pages generated; page macros not found: {}	{} ページを生成しました。見つからなかったページマクロ: {}
@@ -2513,6 +2538,7 @@ x y	x y
 {} °C (max.)	{} °C (最大)
 {} × {} = {}, {}	{} × {} = {}、{}
 {} × {} pixels, {}	{} × {} ピクセル、{}
+{} – revision {}, {}	{} – リビジョン {}、{}
 {} – {} ({} pages)	{} – {} ({} ページ)
 {} – {} here (Esc cancels)	{} – ここで{}（Esc でキャンセル）
 {}, freestanding	{}、野立て

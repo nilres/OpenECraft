@@ -760,7 +760,6 @@ Latitude is within ±90° and longitude within ±180°	Leveysaste on välillä �
 Lead time (days)	Toimitusaika (päivää)
 Leakage current	Vuotovirta
 Leakage line	Vuotolinja
-Left side	Vasen puoli
 Left side panel	Vasen sivuseinä
 Legend plate text	Kilven teksti
 Length (m)	Pituus (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Mitoituslyhytaikaiskestovirta
 Rated speed	Mitoituspyörimisnopeus
 Rated torque	Mitoitusvääntömomentti
 Rated voltage	Mitoitusjännite
-Rear wall	Takaseinä
 Rectangular punch	Suorakulmainen lävistin
 Rectifier / inverter AC/DC, bidirectional	Tasa- / vaihtosuuntaaja AC/DC, kaksisuuntainen
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Revisiotaulu
 Revision table: date of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision päivämäärä (2: sitä edellisen …)
 Revision table: description of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision kuvaus (2: sitä edellisen …)
 Revision table: index of the last revision (2: the one before …)	Revisiotaulukko: viimeisimmän revision tunnus (2: sitä edellisen …)
-Right side	Oikea puoli
 Right side panel	Oikea sivuseinä
 Ring earth electrode	Rengasmaadoitus
 Ring terminal	Rengaskaapelikenkä
@@ -2008,6 +2005,7 @@ yellow	keltainen
 {}: cross-section {} below the {} mm² of power circuits	{}: poikkipinta-ala {} alle tehopiirien {} mm²
 {}: cross-section {} differs from the potential definition ({})	{}: poikkipinta-ala {} poikkeaa potentiaalin määrityksestä ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: kohteen {} aukko kohteessa {} on {} mm:n päässä reunasta, vähintään {} mm vaaditaan
+{}: cutout of {} on the {} lies in a restricted cut-out area	{0}: kohteen {1} aukko kohteessa {2} on aukoilta kielletyllä alueella
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: kohteen {} aukko kohdassa {} ulottuu {} mm etupinnan ulkopuolelle
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: kohteiden {} ja {} aukot kohteessa {} ovat liian lähellä toisiaan ({} mm:n kannas, vähintään {} mm)
 {}: designation '{}' used more than once	{}: nimitystä '{}' käytetty useammin kuin kerran
@@ -2017,6 +2015,7 @@ yellow	keltainen
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: vikavirta {} A kohdassa {} ei katkaise {} sekunnin kuluessa (tarvitaan {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: toimintotekstit eroavat yksinapaisessa kaaviossa ja piirikaaviossa
 {}: hole of {} is too close to the cutout of {} on the {}	{}: kohteen {} reikä on liian lähellä kohteen {} aukkoa kohteessa {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{0}: kohteen {1} reikä kohteessa {2} on aukoilta kielletyllä alueella
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: kohteen {2} reikä Ø{1} kohteessa {3} on {4} mm:n päässä reunasta, vähintään {5} mm vaaditaan
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: kohteiden {} ja {} reiät kohteessa {} ovat liian lähellä toisiaan ({} mm:n kannas, vähintään {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: noin {} °C:n kuuma kohta asennuslevyn kohdassa x = {} mm, y = {} mm (sisälämpötila enintään {} °C)
@@ -2111,6 +2110,7 @@ yellow	keltainen
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} ei ole tarkoitettu seinäasennukseen, asenna se kiskoon
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} on {} … {} mm lattian yläpuolella, sallittu {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg kohteessa {} ylittää sen kantavuuden {} kg
+{}: {} lies in a restricted placing area of the {}	{0}: {1} on sijoittelulta kielletyllä alueella kohteessa {2}
 {}: {} modules of PV array {} are not connected to a string	{0}: aurinkopaneelikentän {2} {1} moduulia ei ole kytketty merkkijonoon
 {}: {} modules, the head has {} slots	{}: {} moduulia, pääyksikössä on {} korttipaikkaa
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) on pidempi kuin varastopituus {} mm ja se on jatkettava

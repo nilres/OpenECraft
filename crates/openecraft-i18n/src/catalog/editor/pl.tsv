@@ -266,7 +266,8 @@ Change request	Wniosek o zmianę
 Change requests	Wnioski o zmianę
 Change requests (CSV, JSON)	Wnioski o zmianę (CSV, JSON)
 Changed against the frozen routes:	Zmienione w stosunku do zamrożonych tras:
-Changed by another user in the meantime, your change was replaced: {}	W międzyczasie zmienione przez innego użytkownika, Twoja zmiana została zastąpiona: {}
+Changed by another user before you got the lock	Zmienione przez innego użytkownika, zanim uzyskano blokadę
+Changed by another user in the meantime: {}. Your version is kept in the Project server pane.	W międzyczasie zmienione przez innego użytkownika: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Changed cells of a CSV or Excel file exported here (rows by their key)	Zmienione komórki pliku CSV lub Excel wyeksportowanego tutaj (wiersze według ich klucza)
 Changed message levels ({})	Zmienione poziomy komunikatów ({})
 Changed since mounted: was at X {} mm, Y {} mm with part {}	Zmienione od montażu: było w X {} mm, Y {} mm z artykułem {}
@@ -392,6 +393,7 @@ Comments ({})	Komentarze ({})
 Comments a reviewer made in a PDF export of the project (Acrobat or another PDF viewer)	Komentarze recenzenta w eksporcie PDF projektu (Acrobat lub inna przeglądarka PDF)
 Comments and markup	Komentarze i oznaczenia
 Company library	Biblioteka firmy
+Compare	Porównaj
 Compare and baselines	Porównanie i wersje bazowe
 Compare with	Porównaj z
 Compare with a baseline, a revision or another project file and take differences over	Porównaj z wersją bazową, rewizją lub innym plikiem projektu i przejmij różnice
@@ -519,6 +521,7 @@ Delete the property and all its values	Usuń właściwość wraz ze wszystkimi w
 Delete this workspace	Usuń ten obszar roboczy
 Delete variant	Usuń wariant
 Delete zone	Usuń strefę
+Deletes this copy of your changes for good	Trwale usuwa tę kopię Twoich zmian
 Depth / mounted at	Głębokość / montaż na
 Depth below the ground	Głębokość pod terenem
 Depth from / to	Głębokość od / do
@@ -594,6 +597,7 @@ Door NC data (DWG)	Dane NC drzwi (DWG)
 Door NC data (DXF)	Dane NC drzwi (DXF)
 Door clearance	Wolna przestrzeń drzwi
 Door cutouts (CSV)	Wycięcia w drzwiach (CSV)
+Door hinge	Zawiasy drzwi
 Door: {} devices, {} cutouts	Drzwi: urządzenia: {}, wycięcia: {}
 Dot	Punkt
 Double-click	Dwukrotne kliknięcie
@@ -660,6 +664,7 @@ Earthing system	Układ sieci
 Easting, northing	Współrzędna wschodnia, północna
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Długość krawędzi siatki prowadzenia: mniejsza oznacza dokładniej i wolniej
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Krawędź, na której zawieszone są drzwi, widziana z przodu: widok 3D otwiera tam drzwi, a przewody drzwi biegną przez nią
 Edit in table	Edytuj w tabeli
 Edit in table…	Edytuj w tabeli…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Tryb edycji: przeciągnij budynki na ich miejsca na planie sytuacyjnym i obróć je; kliknięcie pomieszczenia już go nie otwiera
@@ -918,6 +923,7 @@ Import symbol library…	Importuj bibliotekę symboli…
 Import symbol table…	Importuj tablicę symboli…
 Imported	Zaimportowane
 Imported {} entries of the property library	Zaimportowano {} wpisów biblioteki właściwości
+Imported {} into the parts database	Zaimportowano do bazy artykułów: {}
 Imported {} macros	Zaimportowano makra: {}
 Imported {} page templates	Zaimportowano szablony stron: {}
 Imported {} parts into the database	Zaimportowano artykuły do bazy danych: {}
@@ -985,6 +991,7 @@ Keep connections	Zachowaj połączenia
 Keep sub-pages (3.a, 3.1) with the page before	Zachowaj podstrony (3.a, 3.1) przy poprzedniej stronie
 Keep the degree of protection	Zachowaj stopień ochrony
 Keep this route when recalculating, as long as it is still possible	Zachowaj tę trasę przy ponownym obliczaniu, dopóki jest to możliwe
+Kept changes	Zachowane zmiany
 Key tips of the ribbon	Klawisze dostępu wstążki
 Key: {}	Klucz: {}
 Keyboard shortcuts	Skróty klawiaturowe
@@ -1063,6 +1070,7 @@ Lock page	Zablokuj stronę
 Lock project data	Zablokuj dane projektu
 Locked	Zablokowana
 Locked by other users	Zablokowane przez innych użytkowników
+Locked by {}	Zablokowane przez {}
 Locked by {} on the project server – read only	Zablokowane przez {} na serwerze projektów – tylko do odczytu
 Locked by {} – read only	Zablokowane przez {} – tylko do odczytu
 Locking…	Blokowanie…
@@ -1289,11 +1297,13 @@ None – editing a page or the project data locks it.	Brak – edycja strony lub
 Not a page template file: {}	To nie jest plik szablonów stron: {}
 Not a point: type x y or @dx dy	To nie jest punkt: wpisz x y lub @dx dy
 Not a symbol library: {}	To nie jest biblioteka symboli: {}
+Not changed, the lock was refused: {}. Your version is kept in the Project server pane.	Nie zmieniono, blokada została odrzucona: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Not changed: {}	Nie zmieniono: {}
+Not changed: {}. Your version is kept in the Project server pane.	Nie zmieniono: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Not found: {}	Nie znaleziono: {}
 Not in the project parts – synchronize in parts management	Brak wśród artykułów projektu – zsynchronizuj w zarządzaniu artykułami
 Not on a wire	Nie na przewodzie
-Not saved, locked or changed by another user: {}	Nie zapisano, zablokowane lub zmienione przez innego użytkownika: {}
+Not saved, locked or changed by another user	Nie zapisano, zablokowane lub zmienione przez innego użytkownika
 Not taken: the left button alone selects, draws and moves; hold a modifier or use another button.	Nie przyjęto: sam lewy przycisk zaznacza, rysuje i przesuwa; przytrzymaj klawisz modyfikujący lub użyj innego przycisku.
 Not the shared project: changes are saved locally until it is opened on the project server again	To nie jest wspólny projekt: zmiany są zapisywane lokalnie, dopóki nie zostanie ponownie otwarty na serwerze projektów
 Nothing exchanged yet.	Jeszcze niczego nie wymieniono.
@@ -1447,6 +1457,8 @@ Part of the profile: generic types or parts from the parts store	Artykuł profil
 Part selection from the parts database	Wybór artykułu z bazy danych artykułów
 Part selection – {}	Wybór artykułu – {}
 Part selection…	Wybór artykułu…
+Partly saved (revision {}). Not saved, locked or changed by another user: {}. Your version is kept in the Project server pane.	Częściowo zapisano (rewizja {}). Nie zapisano, zablokowane lub zmienione przez innego użytkownika: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
+Partly saved to the project server (revision {})	Częściowo zapisano na serwerze projektów (rewizja {})
 Parts can only be dropped onto pages that can be changed; this one is released, locked or generated	Artykuły można upuszczać tylko na strony, które można zmieniać; ta jest zwolniona, zablokowana lub wygenerowana
 Parts management	Zarządzanie artykułami
 Parts marked for floor mounting (pumps, tanks, compressors): choose one, then click where it stands on the floor of the room	Artykuły oznaczone do montażu na podłodze (pompy, zbiorniki, sprężarki): wybierz jeden, a następnie kliknij miejsce na podłodze pomieszczenia
@@ -1664,11 +1676,14 @@ Replace	Zastąp
 Replace all	Zamień wszystko
 Replace text	Zamień tekst
 Replace with	Zastąp przez
+Replaced by the version on the project server: {}. Your version is kept in the Project server pane.	Zastąpiono wersją z serwera projektów: {}. Twoja wersja jest przechowywana w panelu Serwer projektów.
 Replaced when the configurator generates again; switch off to keep the page	Zastępowana przy ponownym generowaniu przez konfigurator; wyłącz, aby zachować stronę
+Replaced while you held no lock	Zastąpiono, gdy nie miałeś blokady
 Replaces in free texts, function texts, page, device and cable descriptions; released pages stay	Zamienia w tekstach swobodnych, tekstach funkcji, opisach stron, urządzeń i kabli; wydane strony pozostają bez zmian
 Replaces the GEN.* parts in the database with the current example catalog (including models)	Zastępuje artykuły GEN.* w bazie danych aktualnym katalogiem przykładowym (łącznie z modelami)
 Replaces the company library with the project's own title blocks, report schemes and plot frames (editors of the parts server)	Zastępuje bibliotekę firmy własnymi tabliczkami, schematami raportów i ramkami projektu (edytorzy serwera części)
 Replaces the content of the macro boxes whose macro changed in the library	Zastępuje zawartość ramek makr, których makro zmieniło się w bibliotece
+Replaces the current version with yours as a change you can undo; the next save stores it	Zastępuje bieżącą wersję Twoją jako zmianę, którą można cofnąć; następny zapis ją zachowa
 Replaces the pages of this block	Zastępuje strony tego bloku
 Reply	Odpowiedz
 Reply…	Odpowiedz…
@@ -1801,6 +1816,7 @@ Saves the placed properties as a placement scheme of the project	Zapisuje umiesz
 Saves the project without revisions, baselines, review and wiring marks as a template for new projects	Zapisuje projekt bez rewizji, wersji bazowych, przeglądu i znaczników okablowania jako szablon dla nowych projektów
 Saves the project's own properties, function definitions and schemes for other projects	Zapisuje własne właściwości, definicje funkcji i schematy projektu dla innych projektów
 Saves the workspace, the arrangement of the panels and the open windows	Zapisuje obszar roboczy, układ paneli i otwarte okna
+Saves your version of the whole project as a project file	Zapisuje Twoją wersję całego projektu jako plik projektu
 Saving failed: {}	Zapisywanie nie powiodło się: {}
 Saving the project access…	Zapisywanie dostępu do projektu…
 Saving to the project server…	Zapisywanie na serwerze projektów…
@@ -1912,6 +1928,7 @@ Shown instead of the measured value	Wyświetlane zamiast zmierzonej wartości
 Shown now: {}	Teraz pokazywane: {}
 Shown on the cover page and by the image elements of title blocks that show the project logo	Pokazywane na stronie tytułowej i przez elementy obrazu tabliczek, które pokazują logo projektu
 Shows	Pokazuje
+Shows the differences of your version to the open project; selected ones can be taken over	Pokazuje różnice Twojej wersji względem otwartego projektu; wybrane można przejąć
 Side walls, rear wall, roof and bottom seen from the outside: fans, cable glands, cutouts	Ściany boczne, ściana tylna, dach i dno widziane z zewnątrz: wentylatory, dławiki kablowe, wycięcia
 Sign in in the Project server pane; the project opens afterwards	Zaloguj się w panelu Serwer projektów; potem projekt się otworzy
 Sign in…	Zaloguj się…
@@ -1930,6 +1947,7 @@ Smallest cross-section of control circuits	Najmniejszy przekrój obwodów sterow
 Smallest cross-section of power circuits	Najmniejszy przekrój obwodów mocy
 Socket outlets, data and antenna outlets	Gniazda wtyczkowe, gniazda danych i antenowe
 Solid	Ciągła
+Some of your changes were not taken by the project server. Your version stays in the Project server pane, also after discarding.	Serwer projektów nie przyjął części Twoich zmian. Twoja wersja pozostaje w panelu Serwer projektów, także po odrzuceniu.
 Some wires have no length: place their devices in the panel layout or set the field length.	Niektóre przewody nie mają długości: umieść ich urządzenia w zabudowie szafy lub ustaw długość pola.
 Sort by designation	Sortuj według oznaczenia
 Sort order	Kolejność sortowania
@@ -2018,6 +2036,7 @@ Tag placed by hand	Oznaczenie umieszczone ręcznie
 Take out a subproject	Wydziel podprojekt
 Take out of the building	Wyjmij z budynku
 Take out {} pages…	Wydziel strony ({})…
+Take over again	Przejmij ponownie
 Take over cut lengths	Przejmij długości cięcia
 Take over selected ({})	Przejmij zaznaczone ({})
 Take over {} changes	Przejmij zmiany ({})
@@ -2058,11 +2077,12 @@ The current page belongs to option {}.	Bieżąca strona należy do opcji {}.
 The devices do not fit onto the rail	Urządzenia nie mieszczą się na szynie
 The dictionary is empty: collect the texts from the project.	Słownik jest pusty: zbierz teksty z projektu.
 The door seen from the front: door devices and cutouts	Drzwi widziane z przodu: urządzenia na drzwiach i wycięcia
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Drzwi widziane od wewnątrz (zawiasy po prawej): kanały kablowe i okablowanie za drzwiami
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Drzwi widziane od wewnątrz (lustrzane odbicie): kanały kablowe i okablowanie za drzwiami
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Element jest rysowany tylko, gdy ten tekst z symbolami zastępczymi nie jest pusty, np. wiersze tabeli rewizji
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Obudowa przylega lewą stroną do prawej strony wybranej obudowy; przewody przechodzą między nimi przez przepusty kablowe
 The horizontal wire	Przewód poziomy
 The items are selected and moved together	Elementy są zaznaczane i przesuwane razem
+The lock was refused	Blokada została odrzucona
 The logo is fitted into this area keeping its aspect ratio	Logo jest dopasowywane do tego obszaru z zachowaniem proporcji
 The logo of the project properties, e.g. the customer's	Logo z właściwości projektu, np. logo klienta
 The logos of the manufacturers' catalogs on the parts server, beside the details of a part	Loga katalogów producentów na serwerze artykułów, obok szczegółów artykułu
@@ -2070,6 +2090,7 @@ The macro library has no page macros (Macros › Save page as macro…).	Bibliot
 The modifiers that turn the wheel sideways or make it zoom are set under Modifier keys.	Klawisze modyfikujące, które sprawiają, że kółko przesuwa w bok lub powiększa, ustawia się w sekcji Klawisze modyfikujące.
 The modules no string takes yet in series, on the first inverter	Moduły, których żaden łańcuch jeszcze nie bierze, szeregowo, na pierwszym falowniku
 The names of its pages follow	Nazwy jej stron zmieniają się wraz z nią
+The open project already has your version	Otwarty projekt ma już Twoją wersję
 The open project is a local recovery copy. Its changes are not saved on the project server; before the shared project opens, you decide whether to save them locally or discard them.	Otwarty projekt jest lokalną kopią odzyskiwania. Jego zmiany nie są zapisane na serwerze projektów; zanim otworzy się wspólny projekt, zdecydujesz, czy zapisać je lokalnie, czy odrzucić.
 The page name gets the section number	Nazwa strony otrzymuje numer sekcji
 The page type, plot frame, title block, structure, description and the whole content are saved.	Zapisywane są typ strony, ramka rysunku, tabliczka rysunkowa, struktura, opis i cała zawartość.
@@ -2280,6 +2301,9 @@ YYYY-MM-DD	RRRR-MM-DD
 You may only view this project.	Możesz tylko wyświetlać ten projekt.
 You may review this project: comments, markup and approvals, no other changes.	Możesz recenzować ten projekt: komentarze, adnotacje i zatwierdzenia, bez innych zmian.
 Your unsaved changes of it are taken back	Twoje niezapisane zmiany zostaną cofnięte
+Your version of {}	Twoja wersja z {}
+Your version taken over: {}. Save to store it on the project server.	Przejęto Twoją wersję: {}. Zapisz, aby przechować ją na serwerze projektów.
+Your versions of changes that were replaced by the version on the project server. They stay here until you discard them.	Twoje wersje zmian zastąpionych wersją z serwera projektów. Pozostają tutaj, dopóki ich nie odrzucisz.
 Zoom	Powiększenie
 Zoom in in the 3D view (held)	Powiększanie widoku 3D (przytrzymaj)
 Zoom out in the 3D view (held)	Pomniejszanie widoku 3D (przytrzymaj)
@@ -2491,6 +2515,7 @@ x y	x y
 {} of {} wires	{} z {} przewodów
 {} of {} wires assigned to cores of {}	Przypisano {} z {} przewodów do żył kabla {}
 {} on released pages were left as they are	Pozostawione bez zmian na wydanych stronach: {}
+{} on {}	{} na {}
 {} options switched	Przełączone opcje: {}
 {} pages generated	Wygenerowane strony: {}
 {} pages generated; page macros not found: {}	Wygenerowane strony: {}; nie znaleziono makr stron: {}
@@ -2543,6 +2568,7 @@ x y	x y
 {} °C (max.)	{} °C (maks.)
 {} × {} = {}, {}	{} × {} = {}, {}
 {} × {} pixels, {}	{} × {} pikseli, {}
+{} – revision {}, {}	{} – rewizja {}, {}
 {} – {} ({} pages)	{} – {} (strony: {})
 {} – {} here (Esc cancels)	{} – {} tutaj (Esc anuluje)
 {}, freestanding	{}, naziemne
