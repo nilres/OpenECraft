@@ -1,6 +1,5 @@
 # English<TAB>Polski – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(tylko serwer MCP)
-(optional)	(opcjonalnie)
 Access token for changes	Token dostępu do zmian
 Access token of a Vault session or an Autodesk account instead of user and password	Token dostępu sesji Vault lub konta Autodesk zamiast użytkownika i hasła
 Address of the Vault server, e.g. https://vault.example.com	Adres serwera Vault, np. https://vault.example.com
@@ -267,11 +266,9 @@ This format needs an output file (path)	Ten format wymaga pliku wyjściowego (pa
 Title block of the project (list_title_blocks)	Tabliczka rysunkowa projektu (list_title_blocks)
 Top edge in mm from the top of the title block area	Górna krawędź w mm od góry obszaru tabliczki
 Undoes the last change	Cofa ostatnią zmianę
-Unexpected argument: {}	Nieoczekiwany argument: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Nieznane polecenie: {}. Uruchom openecraft-cli help, aby wyświetlić listę.
 Unknown example {}: see list_examples	Nieznany przykład {}: zobacz list_examples
 Unknown format {}: give oec, oecp or oecz	Nieznany format {}: podaj oec, oecp lub oecz
-Unknown language: {}	Nieznany język: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Nieznany typ strony: {} (schematic, overview, graphic, cover lub raport z list_reports)
 Unknown part {} (parts server: {})	Nieznany artykuł {} (serwer artykułów: {})
 Unknown plugin: {}	Nieznana wtyczka: {}

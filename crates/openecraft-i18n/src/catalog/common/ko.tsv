@@ -2,9 +2,11 @@
 (all)	(모두)
 (no entries)	(항목 없음)
 (no structure)	(구조 없음)
+(optional)	(선택 사항)
 --json needs a JSON object	--json에는 JSON 개체가 필요합니다
 3D model	3D 모델
 3D routing	3D 배선 경로
+3D view	3D 보기
 A page named {} already exists	이름이 {}인 페이지가 이미 있습니다
 A page needs a name	페이지에는 이름이 필요합니다
 A routing path needs {} points at least	배선 경로에는 점이 {}개 이상 필요합니다
@@ -23,6 +25,7 @@ Apply	적용
 Approve	승인
 Approvers	승인자
 Automatic	자동
+Automation	자동화
 Aux	보조
 Below	아래
 Bold	굵게
@@ -122,6 +125,7 @@ Display	표시
 Done	완료
 Door	도어
 Door cutout	도어 컷아웃
+Download	다운로드
 Downloading {}…	{} 다운로드 중…
 Drag to turn the model	끌어서 모델 회전
 EMC clearance	EMC 이격 거리
@@ -210,6 +214,7 @@ Link	링크
 Linked	연결됨
 Load	부하
 Loaded circuits bunched together	함께 묶인 부하 회로
+Loading…	로드 중…
 Location	위치
 Location (+)	위치 (+)
 Locked	잠김
@@ -244,6 +249,8 @@ Mounting holes	장착 구멍
 Mounting layout {}	장착 레이아웃 {}
 Mounting plate	장착 플레이트
 Mounting rail	장착 레일
+NC contact	b접점
+NO contact	a접점
 Name	이름
 Name of the block	블록 이름
 Name of the plot, e.g. the cadastral parcel	부지 이름 (예: 지번)
@@ -338,6 +345,7 @@ Plot	부지
 Plot frame	플롯 프레임
 Plug	플러그
 Plug diagram	플러그 다이어그램
+Plugins	플러그인
 Plugs	플러그
 Poles	극수
 Ports	포트
@@ -381,6 +389,7 @@ Rated power	정격 전력
 Rear wall	후면벽
 Rectangle	사각형
 Rectangular	사각형
+Redo	다시 실행
 Refresh	새로 고침
 Reject	거부
 Relative humidity	상대 습도
@@ -395,6 +404,7 @@ Remove the reference point	기준점 제거
 Report	보고서
 Report blocks	보고서 블록
 Report: {}	보고서: {}
+Reports	보고서
 Required	필요
 Reserve	예비
 Reviewer	검토자
@@ -425,6 +435,7 @@ Search parts	부품 검색
 Searching…	검색 중…
 Section	구역
 Segment	구간
+Select	선택
 Select a part in the tree or create a new one.	트리에서 부품을 선택하거나 새 부품을 만드세요.
 Sensor	센서
 Sensors, switches, pushbuttons	센서, 스위치, 푸시버튼
@@ -489,9 +500,12 @@ Tools	공구
 Top	위쪽
 Total	총계
 Transformer	변압기
+Tutorial	튜토리얼
 Type	유형
 Type number	형식 번호
 Underline	밑줄
+Undo	실행 취소
+Unexpected argument: {}	예기치 않은 인수: {}
 Unit	단위
 Unknown column: {}	알 수 없는 열: {}
 Unknown connector: {}	알 수 없는 커넥터: {}
@@ -499,10 +513,12 @@ Unknown enclosure system: {}	알 수 없는 외함 시스템: {}
 Unknown face: {}	알 수 없는 면: {}
 Unknown format: {}	알 수 없는 형식: {}
 Unknown function definition: {}	알 수 없는 기능 정의: {}
+Unknown language: {}	알 수 없는 언어: {}
 Unknown option {}	알 수 없는 옵션 {}
 Unknown parameter: {}	알 수 없는 매개 변수: {}
 Unknown part: {}	알 수 없는 부품: {}
 Unknown property: {}	알 수 없는 속성: {}
+Unknown report: {}	알 수 없는 보고서: {}
 Unknown scheme: {}	알 수 없는 스키마: {}
 Unknown segment	알 수 없는 세그먼트
 Unknown symbol {}	알 수 없는 심볼 {}

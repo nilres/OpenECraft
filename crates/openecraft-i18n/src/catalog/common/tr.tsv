@@ -2,9 +2,11 @@
 (all)	(tümü)
 (no entries)	(girdi yok)
 (no structure)	(yapı yok)
+(optional)	(isteğe bağlı)
 --json needs a JSON object	--json bir JSON nesnesi gerektirir
 3D model	3D model
 3D routing	3D yönlendirme
+3D view	3B görünüm
 A page named {} already exists	{} adlı bir sayfa zaten var
 A page needs a name	Bir sayfanın adı olmalı
 A routing path needs {} points at least	Bir yönlendirme yolu en az {} nokta gerektirir
@@ -23,6 +25,7 @@ Apply	Uygula
 Approve	Onayla
 Approvers	Onaylayıcılar
 Automatic	Otomatik
+Automation	Otomasyon
 Aux	Yrd.
 Below	Altta
 Bold	Kalın
@@ -124,6 +127,7 @@ Display	Görünüm
 Done	Tamamlandı
 Door	Kapı
 Door cutout	Kapı kesimi
+Download	İndir
 Downloading {}…	{} indiriliyor…
 Drag to turn the model	Modeli döndürmek için sürükleyin
 EMC clearance	EMC mesafesi
@@ -212,6 +216,7 @@ Link	Bağlantı
 Linked	İlişkilendirilmiş
 Load	Yük
 Loaded circuits bunched together	Bir arada gruplanmış yüklü devreler
+Loading…	Yükleniyor…
 Location	Konum
 Location (+)	Konum (+)
 Locked	Kilitli
@@ -246,6 +251,8 @@ Mounting holes	Montaj delikleri
 Mounting layout {}	Montaj planı {}
 Mounting plate	Montaj plakası
 Mounting rail	Montaj rayı
+NC contact	NK kontak
+NO contact	NA kontak
 Name	Ad
 Name of the block	Bloğun adı
 Name of the plot, e.g. the cadastral parcel	Arsanın adı, ör. kadastro parseli
@@ -340,6 +347,7 @@ Plot	Arsa
 Plot frame	Çizim çerçevesi
 Plug	Fiş
 Plug diagram	Fiş şeması
+Plugins	Eklentiler
 Plugs	Fişler
 Poles	Kutuplar
 Ports	Portlar
@@ -383,6 +391,7 @@ Rated power	Anma gücü
 Rear wall	Arka duvar
 Rectangle	Dikdörtgen
 Rectangular	Dikdörtgen
+Redo	Yinele
 Refresh	Yenile
 Reject	Reddet
 Relative humidity	Bağıl nem
@@ -397,6 +406,7 @@ Remove the reference point	Referans noktasını kaldır
 Report	Rapor
 Report blocks	Rapor blokları
 Report: {}	Rapor: {}
+Reports	Raporlar
 Required	Gerekli
 Reserve	Yedek
 Reviewer	İncelemeci
@@ -427,6 +437,7 @@ Search parts	Parça ara
 Searching…	Aranıyor…
 Section	Bölüm
 Segment	Segment
+Select	Seç
 Select a part in the tree or create a new one.	Ağaçta bir parça seçin veya yeni bir parça oluşturun.
 Sensor	Sensör
 Sensors, switches, pushbuttons	Sensörler, şalterler, butonlar
@@ -491,9 +502,12 @@ Tools	Takımlar
 Top	Üst
 Total	Genel toplam
 Transformer	Transformatör
+Tutorial	Eğitim
 Type	Tip
 Type number	Tip numarası
 Underline	Altı çizili
+Undo	Geri al
+Unexpected argument: {}	Beklenmeyen bağımsız değişken: {}
 Unit	Birim
 Unknown column: {}	Bilinmeyen sütun: {}
 Unknown connector: {}	Bilinmeyen bağlayıcı: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Bilinmeyen pano sistemi: {}
 Unknown face: {}	Bilinmeyen yüzey: {}
 Unknown format: {}	Bilinmeyen biçim: {}
 Unknown function definition: {}	Bilinmeyen fonksiyon tanımı: {}
+Unknown language: {}	Bilinmeyen dil: {}
 Unknown option {}	Bilinmeyen seçenek {}
 Unknown parameter: {}	Bilinmeyen parametre: {}
 Unknown part: {}	Bilinmeyen parça: {}
 Unknown property: {}	Bilinmeyen özellik: {}
+Unknown report: {}	Bilinmeyen rapor: {}
 Unknown scheme: {}	Bilinmeyen şema: {}
 Unknown segment	Bilinmeyen segment
 Unknown symbol {}	Bilinmeyen sembol {}

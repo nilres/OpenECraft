@@ -25,7 +25,7 @@ mod nav3d;
 mod plan;
 mod routing_ui;
 mod scene3d;
-pub(crate) mod site_plan;
+pub mod site_plan;
 mod site_tools;
 mod terminations;
 pub use site_tools::SiteTool;

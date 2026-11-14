@@ -2,9 +2,11 @@
 (all)	(vše)
 (no entries)	(žádné položky)
 (no structure)	(bez struktury)
+(optional)	(volitelné)
 --json needs a JSON object	--json vyžaduje objekt JSON
 3D model	3D model
 3D routing	3D vedení
+3D view	3D pohled
 A page named {} already exists	Stránka s názvem {} již existuje
 A page needs a name	Stránka musí mít název
 A routing path needs {} points at least	Trasa vedení potřebuje alespoň {} bodů
@@ -23,6 +25,7 @@ Apply	Použít
 Approve	Schválit
 Approvers	Schvalovatelé
 Automatic	Automaticky
+Automation	Automatizace
 Aux	Pomocné
 Below	Pod
 Bold	Tučné
@@ -124,6 +127,7 @@ Display	Zobrazení
 Done	Hotovo
 Door	Dveře
 Door cutout	Výřez ve dveřích
+Download	Stáhnout
 Downloading {}…	Stahování {}…
 Drag to turn the model	Tažením model otočíte
 EMC clearance	Odstup EMC
@@ -212,6 +216,7 @@ Link	Odkaz
 Linked	Propojeno
 Load	Spotřebič
 Loaded circuits bunched together	Seskupené zatížené obvody
+Loading…	Načítání…
 Location	Umístění
 Location (+)	Umístění (+)
 Locked	Uzamčená
@@ -246,6 +251,8 @@ Mounting holes	Upevňovací otvory
 Mounting layout {}	Montážní plán {}
 Mounting plate	Montážní deska
 Mounting rail	Montážní lišta
+NC contact	Rozpínací kontakt
+NO contact	Spínací kontakt
 Name	Název
 Name of the block	Název bloku
 Name of the plot, e.g. the cadastral parcel	Název pozemku, např. katastrální parcela
@@ -340,6 +347,7 @@ Plot	Pozemek
 Plot frame	Rámeček výkresu
 Plug	Konektor
 Plug diagram	Schéma konektoru
+Plugins	Pluginy
 Plugs	Konektory
 Poles	Póly
 Ports	Porty
@@ -383,6 +391,7 @@ Rated power	Jmenovitý výkon
 Rear wall	Zadní stěna
 Rectangle	Obdélník
 Rectangular	Obdélníkový
+Redo	Znovu
 Refresh	Obnovit
 Reject	Zamítnout
 Relative humidity	Relativní vlhkost vzduchu
@@ -397,6 +406,7 @@ Remove the reference point	Odstranit referenční bod
 Report	Výkaz
 Report blocks	Bloky výkazů
 Report: {}	Výkaz: {}
+Reports	Výkazy
 Required	Požadováno
 Reserve	Rezerva
 Reviewer	Kontrolor
@@ -427,6 +437,7 @@ Search parts	Hledat artikly
 Searching…	Hledání…
 Section	Oddíl
 Segment	Úsek
+Select	Vybrat
 Select a part in the tree or create a new one.	Vyberte artikl ve stromu nebo vytvořte nový.
 Sensor	Snímač
 Sensors, switches, pushbuttons	Senzory, spínače, tlačítka
@@ -491,9 +502,12 @@ Tools	Nástroje
 Top	Nahoře
 Total	Celkem
 Transformer	Transformátor
+Tutorial	Výukový kurz
 Type	Typ
 Type number	Typové číslo
 Underline	Podtržené
+Undo	Zpět
+Unexpected argument: {}	Neočekávaný argument: {}
 Unit	Jednotka
 Unknown column: {}	Neznámý sloupec: {}
 Unknown connector: {}	Neznámý konektor: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Neznámý systém skříní: {}
 Unknown face: {}	Neznámá plocha: {}
 Unknown format: {}	Neznámý formát: {}
 Unknown function definition: {}	Neznámá definice funkce: {}
+Unknown language: {}	Neznámý jazyk: {}
 Unknown option {}	Neznámá volba {}
 Unknown parameter: {}	Neznámý parametr: {}
 Unknown part: {}	Neznámý artikl: {}
 Unknown property: {}	Neznámá vlastnost: {}
+Unknown report: {}	Neznámý výkaz: {}
 Unknown scheme: {}	Neznámé schéma: {}
 Unknown segment	Neznámý segment
 Unknown symbol {}	Neznámý symbol {}

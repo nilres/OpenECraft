@@ -85,7 +85,7 @@ fn all_workspace_crates_are_checked() {
 
 /// UI crates (the others have no user-visible texts of their own).
 fn ui_source_files() -> Vec<PathBuf> {
-    ["openecraft/src", "crates/openecraft-ui/src", "parts-manager/src"]
+    ["openecraft/src", "crates/openecraft-shell/src", "crates/openecraft-canvas/src", "crates/openecraft-ui/src", "parts-manager/src", "website/src"]
         .iter()
         .flat_map(|d| rust_files(&root().join(d)))
         .filter(|p| !is_test_file(p))

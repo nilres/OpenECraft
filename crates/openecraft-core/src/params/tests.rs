@@ -53,3 +53,25 @@ fn integers_may_be_written_with_a_zero_fraction() {
     let a = Args(&m);
     assert_eq!((a.int("rotation"), a.ids("ids")), (Some(90), vec![3, 4]));
 }
+
+#[test]
+fn command_line_words_and_pairs() {
+    let argv: Vec<String> = "rename -p a.oec --old -K1 --new=-K2 --help x --discard -h".split(' ').map(String::from).collect();
+    let pair = |n: &str, v: Option<&str>| CliWord::Pair(n.to_string(), v.map(String::from));
+    assert_eq!(
+        cli_words(&argv, &["help"], &["p"]),
+        vec![
+            CliWord::Plain("rename".into()),
+            pair("p", Some("a.oec")),
+            pair("old", Some("-K1")),
+            pair("new", Some("-K2")),
+            pair("help", None),
+            CliWord::Plain("x".into()),
+            pair("discard", Some("-h")),
+        ]
+    );
+    // A value never starts with two dashes; without `short` a single dash is a word.
+    assert_eq!(cli_words(&argv[1..3], &[], &[]), vec![CliWord::Plain("-p".into()), CliWord::Plain("a.oec".into())]);
+    let two: Vec<String> = vec!["--a".into(), "--b".into()];
+    assert_eq!(cli_words(&two, &[], &[]), vec![pair("a", None), pair("b", None)]);
+}

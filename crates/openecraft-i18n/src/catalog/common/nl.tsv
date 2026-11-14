@@ -2,9 +2,11 @@
 (all)	(alle)
 (no entries)	(geen items)
 (no structure)	(geen structuur)
+(optional)	(optioneel)
 --json needs a JSON object	--json verwacht een JSON-object
 3D model	3D-model
 3D routing	3D-routering
+3D view	3D-weergave
 A page named {} already exists	Er bestaat al een pagina met de naam {}
 A page needs a name	Een pagina heeft een naam nodig
 A routing path needs {} points at least	Een routeringspad heeft minstens {} punten nodig
@@ -23,6 +25,7 @@ Apply	Toepassen
 Approve	Goedkeuren
 Approvers	Goedkeurders
 Automatic	Automatisch
+Automation	Automatisering
 Aux	Hulp
 Below	Onder
 Bold	Vet
@@ -124,6 +127,7 @@ Display	Weergave
 Done	Gereed
 Door	Deur
 Door cutout	Deuruitsparing
+Download	Downloaden
 Downloading {}…	{} downloaden…
 Drag to turn the model	Sleep om het model te draaien
 EMC clearance	EMC-afstand
@@ -212,6 +216,7 @@ Link	Koppeling
 Linked	Gekoppeld
 Load	Belasting
 Loaded circuits bunched together	Gebundelde belaste stroomkringen
+Loading…	Laden…
 Location	Locatie
 Location (+)	Plaats (+)
 Locked	Vergrendeld
@@ -246,6 +251,8 @@ Mounting holes	Bevestigingsgaten
 Mounting layout {}	Montageplan {}
 Mounting plate	Montageplaat
 Mounting rail	Montagerail
+NC contact	Verbreekcontact
+NO contact	Maakcontact
 Name	Naam
 Name of the block	Naam van het blok
 Name of the plot, e.g. the cadastral parcel	Naam van het perceel, bijv. het kadastrale perceel
@@ -340,6 +347,7 @@ Plot	Perceel
 Plot frame	Plotkader
 Plug	Stekker
 Plug diagram	Stekkerschema
+Plugins	Plugins
 Plugs	Stekkers
 Poles	Polen
 Ports	Poorten
@@ -383,6 +391,7 @@ Rated power	Nominaal vermogen
 Rear wall	Achterwand
 Rectangle	Rechthoek
 Rectangular	Rechthoekig
+Redo	Opnieuw
 Refresh	Vernieuwen
 Reject	Afwijzen
 Relative humidity	Relatieve luchtvochtigheid
@@ -397,6 +406,7 @@ Remove the reference point	Referentiepunt verwijderen
 Report	Rapport
 Report blocks	Rapportblokken
 Report: {}	Rapport: {}
+Reports	Rapporten
 Required	Vereist
 Reserve	Reserve
 Reviewer	Reviewer
@@ -427,6 +437,7 @@ Search parts	Artikelen zoeken
 Searching…	Zoeken…
 Section	Sectie
 Segment	Segment
+Select	Selecteren
 Select a part in the tree or create a new one.	Selecteer een artikel in de structuur of maak een nieuw artikel.
 Sensor	Sensor
 Sensors, switches, pushbuttons	Sensoren, schakelaars, drukknoppen
@@ -491,9 +502,12 @@ Tools	Gereedschappen
 Top	Boven
 Total	Totaal
 Transformer	Transformator
+Tutorial	Tutorial
 Type	Type
 Type number	Typenummer
 Underline	Onderstrepen
+Undo	Ongedaan maken
+Unexpected argument: {}	Onverwacht argument: {}
 Unit	Eenheid
 Unknown column: {}	Onbekende kolom: {}
 Unknown connector: {}	Onbekende connector: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Onbekend behuizingssysteem: {}
 Unknown face: {}	Onbekend vlak: {}
 Unknown format: {}	Onbekende indeling: {}
 Unknown function definition: {}	Onbekende functiedefinitie: {}
+Unknown language: {}	Onbekende taal: {}
 Unknown option {}	Onbekende optie {}
 Unknown parameter: {}	Onbekende parameter: {}
 Unknown part: {}	Onbekend artikel: {}
 Unknown property: {}	Onbekende eigenschap: {}
+Unknown report: {}	Onbekend rapport: {}
 Unknown scheme: {}	Onbekend schema: {}
 Unknown segment	Onbekend segment
 Unknown symbol {}	Onbekend symbool {}

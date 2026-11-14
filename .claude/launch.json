@@ -26,6 +26,12 @@
       "port": 8082
     },
     {
+      "name": "website",
+      "runtimeExecutable": "trunk",
+      "runtimeArgs": ["serve", "--config", "website/Trunk.toml", "--release"],
+      "port": 8084
+    },
+    {
       "name": "parts-server",
       "runtimeExecutable": "cargo",
       "runtimeArgs": ["run", "-p", "openecraft-parts-server", "--", "--token", "local-test-token", "--data", "target/parts-db-dev.sqlite"],

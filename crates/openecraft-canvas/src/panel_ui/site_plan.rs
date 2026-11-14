@@ -18,11 +18,11 @@ const GLASS: Color32 = Color32::from_rgba_premultiplied(60, 100, 140, 120);
 const EARTH: Color32 = Color32::from_rgb(60, 150, 80);
 const LPS: Color32 = Color32::from_rgb(150, 156, 168);
 /// PV modules.
-pub(crate) const PV_MODULE: Color32 = Color32::from_rgba_premultiplied(20, 30, 70, 200);
+pub const PV_MODULE: Color32 = Color32::from_rgba_premultiplied(20, 30, 70, 200);
 
 /// What the site plan shows and how.
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub(crate) struct SitePlan {
+pub struct SitePlan {
     /// The building highlighted (index), all of them for `None`.
     pub building: Option<usize>,
     /// Its level highlighted (id), 0 for all levels.
@@ -48,7 +48,7 @@ impl Default for SitePlan {
 
 /// How the site plan maps the plant (x, z, mm) onto the screen.
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub(crate) struct Frame {
+pub struct Frame {
     pub origin: Pos2,
     /// Points per mm.
     pub scale: f32,
@@ -86,7 +86,7 @@ fn room_outlines(prj: &Project, poses: &[panel::SitePose]) -> Vec<(usize, Outlin
 
 /// The part of the plant the site plan shows: the rooms, links, shafts, roofs, the plot
 /// boundary and the reference point; 40 m round the origin when there is nothing.
-pub(crate) fn extent(prj: &Project) -> ([f32; 2], [f32; 2]) {
+pub fn extent(prj: &Project) -> ([f32; 2], [f32; 2]) {
     let layout = &prj.layout;
     let poses = panel::site_poses(prj);
     let mut all: Vec<[f32; 2]> = room_outlines(prj, &poses).into_iter().flat_map(|r| r.1).collect();
@@ -108,7 +108,7 @@ pub(crate) fn extent(prj: &Project) -> ([f32; 2], [f32; 2]) {
 }
 
 /// The frame of the site plan in `size`: its extent fitted in, zoomed and moved.
-pub(crate) fn frame(size: Rect, prj: &Project, plan: &SitePlan) -> Frame {
+pub fn frame(size: Rect, prj: &Project, plan: &SitePlan) -> Frame {
     let (lo, hi) = plan.extent.unwrap_or_else(|| extent(prj));
     let span = [(hi[0] - lo[0]).max(1000.0), (hi[1] - lo[1]).max(1000.0)];
     let inner = size.shrink(16.0);
@@ -119,7 +119,7 @@ pub(crate) fn frame(size: Rect, prj: &Project, plan: &SitePlan) -> Frame {
 /// The points the tools of the site plan snap to: the corners of the plot boundary
 /// (but `skip`), of the rooms with and without their walls, of the shafts and the
 /// reference point.
-pub(crate) fn snap_points(prj: &Project, skip: Option<usize>) -> Vec<[f32; 2]> {
+pub fn snap_points(prj: &Project, skip: Option<usize>) -> Vec<[f32; 2]> {
     let layout = &prj.layout;
     let poses = panel::site_poses(prj);
     let mut v: Vec<[f32; 2]> = layout.plot.outline.iter().enumerate().filter(|(k, _)| Some(*k) != skip).map(|(_, q)| *q).collect();
@@ -132,7 +132,7 @@ pub(crate) fn snap_points(prj: &Project, skip: Option<usize>) -> Vec<[f32; 2]> {
 
 /// The point of the plant a tool takes at `p`: a point to snap to within 8 points, or
 /// the point under it rounded to 10 mm; and whether it snapped.
-pub(crate) fn snap(points: &[[f32; 2]], frame: &Frame, p: Pos2) -> ([f32; 2], bool) {
+pub fn snap(points: &[[f32; 2]], frame: &Frame, p: Pos2) -> ([f32; 2], bool) {
     let near = points.iter().map(|&q| (q, frame.at(q).distance(p))).filter(|(_, d)| *d <= 8.0).min_by(|a, b| a.1.total_cmp(&b.1));
     match near {
         Some((q, _)) => (q, true),
@@ -141,14 +141,14 @@ pub(crate) fn snap(points: &[[f32; 2]], frame: &Frame, p: Pos2) -> ([f32; 2], bo
 }
 
 /// Metres with the sign and three decimals.
-pub(crate) fn metres(mm: f64) -> String {
+pub fn metres(mm: f64) -> String {
     format!("{:.3} m", mm / 1000.0)
 }
 
 /// The coordinates of a point of the plant written out: x and z of the plant, and with
 /// a reference point easting and northing (or east and north of the point without
 /// coordinates).
-pub(crate) fn coordinates(prj: &Project, q: [f32; 2]) -> String {
+pub fn coordinates(prj: &Project, q: [f32; 2]) -> String {
     let plant = format!("x {}  z {}", metres(f64::from(q[0])), metres(f64::from(q[1])));
     match &prj.layout.plot.reference {
         Some(r) if r.easting != 0.0 || r.northing != 0.0 => {
@@ -165,7 +165,7 @@ pub(crate) fn coordinates(prj: &Project, q: [f32; 2]) -> String {
 
 /// The building whose rooms or roofs lie under `p` in the site plan, or whose name
 /// is written there (the last one of them).
-pub(crate) fn building_at(prj: &Project, poses: &[panel::SitePose], frame: &Frame, p: Pos2) -> Option<usize> {
+pub fn building_at(prj: &Project, poses: &[panel::SitePose], frame: &Frame, p: Pos2) -> Option<usize> {
     (0..prj.layout.buildings.len()).rev().find(|&bi| {
         let b = &prj.layout.buildings[bi];
         bld::building_footprint(prj, poses, bi).iter().any(|poly| inside(&poly.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)) || frame.at([b.site.x, b.site.z]).distance(p) <= 10.0
@@ -174,7 +174,7 @@ pub(crate) fn building_at(prj: &Project, poses: &[panel::SitePose], frame: &Fram
 
 /// The earth electrode or lightning protection part drawn within 6 points of `p` in the
 /// site plan (the nearest): its building and what it is.
-pub(crate) fn earthing_at(prj: &Project, poses: &[panel::SitePose], frame: &Frame, p: Pos2) -> Option<(usize, panel::lightning::Owner)> {
+pub fn earthing_at(prj: &Project, poses: &[panel::SitePose], frame: &Frame, p: Pos2) -> Option<(usize, panel::lightning::Owner)> {
     let mut best: Option<((usize, panel::lightning::Owner), f32)> = None;
     for bi in 0..prj.layout.buildings.len() {
         for l in panel::lightning::plant_lines(prj, poses, bi) {
@@ -195,7 +195,7 @@ pub(crate) fn earthing_at(prj: &Project, poses: &[panel::SitePose], frame: &Fram
 }
 
 /// The freestanding PV array under `p` in the site plan (its id).
-pub(crate) fn ground_array_at(prj: &Project, frame: &Frame, p: Pos2) -> Option<u64> {
+pub fn ground_array_at(prj: &Project, frame: &Frame, p: Pos2) -> Option<u64> {
     prj.layout.plot.solar.iter().rev().find(|a| inside(&solar::ground_geometry(a).outline.iter().map(|&q| frame.at(q)).collect::<Vec<_>>(), p)).map(|a| a.id)
 }
 
@@ -214,7 +214,7 @@ fn inside(pts: &[Pos2], p: Pos2) -> bool {
 /// Draws the site plan into `size`; returns the highlighted room under `pointer` (the
 /// one on the highest level).
 #[allow(clippy::too_many_lines)]
-pub(crate) fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, pointer: Option<Pos2>) -> Option<usize> {
+pub fn paint(ui: &egui::Ui, size: Rect, prj: &Project, plan: &SitePlan, pointer: Option<Pos2>) -> Option<usize> {
     let layout = &prj.layout;
     let ours = |bi: usize| plan.building.is_none_or(|b| b == bi);
     let poses = panel::site_poses(prj);

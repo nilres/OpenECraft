@@ -2,9 +2,11 @@
 (all)	(все)
 (no entries)	(нет записей)
 (no structure)	(без структуры)
+(optional)	(необязательно)
 --json needs a JSON object	--json требует объект JSON
 3D model	3D-модель
 3D routing	3D-прокладка
+3D view	3D-вид
 A page named {} already exists	Лист с именем {} уже существует
 A page needs a name	Странице нужно имя
 A routing path needs {} points at least	Пути прокладки нужно не менее {} точек
@@ -23,6 +25,7 @@ Apply	Применить
 Approve	Утвердить
 Approvers	Утверждающие
 Automatic	Автоматически
+Automation	Автоматизация
 Aux	Вспом.
 Below	Снизу
 Bold	Полужирный
@@ -124,6 +127,7 @@ Display	Отображение
 Done	Выполнено
 Door	Дверь
 Door cutout	Вырез в двери
+Download	Скачать
 Downloading {}…	Скачивание {}…
 Drag to turn the model	Перетащите, чтобы повернуть модель
 EMC clearance	Зазор ЭМС
@@ -212,6 +216,7 @@ Link	Связь
 Linked	Связано
 Load	Нагрузка
 Loaded circuits bunched together	Нагруженные цепи, проложенные пучком
+Loading…	Загрузка…
 Location	Место установки
 Location (+)	Место установки (+)
 Locked	Заблокирован
@@ -246,6 +251,8 @@ Mounting holes	Крепежные отверстия
 Mounting layout {}	Монтажный план {}
 Mounting plate	Монтажная панель
 Mounting rail	Монтажная рейка
+NC contact	Размыкающий контакт
+NO contact	Замыкающий контакт
 Name	Имя
 Name of the block	Имя блока
 Name of the plot, e.g. the cadastral parcel	Название участка, напр. кадастровый участок
@@ -340,6 +347,7 @@ Plot	Участок
 Plot frame	Рамка листа
 Plug	Штекер
 Plug diagram	Схема штекеров
+Plugins	Плагины
 Plugs	Штекеры
 Poles	Полюсы
 Ports	Порты
@@ -383,6 +391,7 @@ Rated power	Номинальная мощность
 Rear wall	Задняя стенка
 Rectangle	Прямоугольник
 Rectangular	Прямоугольный
+Redo	Повторить
 Refresh	Обновить
 Reject	Отклонить
 Relative humidity	Относительная влажность
@@ -397,6 +406,7 @@ Remove the reference point	Удалить опорную точку
 Report	Отчёт
 Report blocks	Блоки отчётов
 Report: {}	Отчёт: {}
+Reports	Отчёты
 Required	Требуется
 Reserve	Резерв
 Reviewer	Рецензент
@@ -427,6 +437,7 @@ Search parts	Поиск изделий
 Searching…	Поиск…
 Section	Раздел
 Segment	Участок
+Select	Выбрать
 Select a part in the tree or create a new one.	Выберите изделие в дереве или создайте новое.
 Sensor	Датчик
 Sensors, switches, pushbuttons	Датчики, выключатели, кнопки
@@ -491,9 +502,12 @@ Tools	Инструменты
 Top	Сверху
 Total	Итого
 Transformer	Трансформатор
+Tutorial	Учебник
 Type	Тип
 Type number	Номер типа
 Underline	Подчеркнутый
+Undo	Отменить
+Unexpected argument: {}	Непредвиденный аргумент: {}
 Unit	Единица
 Unknown column: {}	Неизвестный столбец: {}
 Unknown connector: {}	Неизвестный коннектор: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Неизвестная система корпус�
 Unknown face: {}	Неизвестная поверхность: {}
 Unknown format: {}	Неизвестный формат: {}
 Unknown function definition: {}	Неизвестное определение функции: {}
+Unknown language: {}	Неизвестный язык: {}
 Unknown option {}	Неизвестный параметр {}
 Unknown parameter: {}	Неизвестный параметр: {}
 Unknown part: {}	Неизвестное изделие: {}
 Unknown property: {}	Неизвестное свойство: {}
+Unknown report: {}	Неизвестный отчёт: {}
 Unknown scheme: {}	Неизвестная схема: {}
 Unknown segment	Неизвестный сегмент
 Unknown symbol {}	Неизвестный символ {}

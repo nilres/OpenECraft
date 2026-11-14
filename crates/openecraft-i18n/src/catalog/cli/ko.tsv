@@ -1,6 +1,5 @@
 # English<TAB>한국어 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(MCP 서버 전용)
-(optional)	(선택 사항)
 Access token for changes	변경용 액세스 토큰
 Access token of a Vault session or an Autodesk account instead of user and password	사용자 및 암호 대신 사용할 Vault 세션 또는 Autodesk 계정의 액세스 토큰
 Address of the Vault server, e.g. https://vault.example.com	Vault 서버 주소(예: https://vault.example.com)
@@ -262,11 +261,9 @@ This format needs an output file (path)	이 형식에는 출력 파일(path)이 
 Title block of the project (list_title_blocks)	프로젝트의 표제란(list_title_blocks)
 Top edge in mm from the top of the title block area	위쪽 가장자리, 표제란 영역 위쪽부터 mm
 Undoes the last change	마지막 변경을 실행 취소합니다
-Unexpected argument: {}	예기치 않은 인수: {}
 Unknown command: {}. Run openecraft-cli help for a list.	알 수 없는 명령: {}. 목록을 보려면 openecraft-cli help를 실행하세요.
 Unknown example {}: see list_examples	알 수 없는 예제 {}: list_examples 참조
 Unknown format {}: give oec, oecp or oecz	알 수 없는 형식 {}: oec, oecp 또는 oecz를 지정하세요
-Unknown language: {}	알 수 없는 언어: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	알 수 없는 페이지 유형: {}(schematic, overview, graphic, cover 또는 list_reports의 보고서)
 Unknown part {} (parts server: {})	알 수 없는 부품 {}(부품 서버: {})
 Unknown plugin: {}	알 수 없는 플러그인: {}

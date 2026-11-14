@@ -26,7 +26,7 @@ where it differs from the plan below:
 
 | Package | State | Notes |
 | --- | --- | --- |
-| 0 Foundations | done | `openecraft/src/commands.rs` (about 230 commands), `openecraft/src/ribbon.rs`, `openecraft/src/style.rs` (state colours, contrast tested), `openecraft_ui::icons` (143 vector icons), UI scale; the open flags of the tools stay as requests that `App::open_requests` turns into panes instead of a separate windows struct |
+| 0 Foundations | done | `crates/openecraft-shell/src/commands.rs` (about 230 commands), `crates/openecraft-shell/src/ribbon.rs`, `crates/openecraft-shell/src/style.rs` (state colours, contrast tested), `openecraft_ui::icons` (143 vector icons), UI scale; the open flags of the tools stay as requests that `App::open_requests` turns into panes instead of a separate windows struct |
 | 1 Shell | done | Ribbon with context tabs and minimise, backstage, quick access row with undo list and page switch, status bar segments and message history, command search; the menu bar and `toolbar.rs` are gone |
 | 2 One dock | done | One `egui_tiles` tree per workspace (schematic, panel layout, wiring, mounting, review, pre-planning); panel layout and wiring are panes; page tabs; floating panes (pane menu › Float). The pane header is a helper of the app (`navigator_header`), not of `openecraft-ui`, since only the editor uses it |
 | 3 Navigators | done | 33 tool windows became panes; Edit in table from the navigators; page row context menu; the Devices navigator follows the selection; context menu on the page; Edit in table rows for cables, plug pins, PLC points, pages and parts (also for the command line and MCP). Symbols (Insert center) and unplaced functions are dragged into the page; macros and devices from parts are placed by click |
@@ -190,14 +190,14 @@ pub struct Command {
 }
 ```
 
-`openecraft/src/commands.rs` holds the table and the lookup (no UI code, unit tested);
+`crates/openecraft-shell/src/commands.rs` holds the table and the lookup (no UI code, unit tested);
 `openecraft/src/app/ribbon.rs` draws it. Plugin commands of `openecraft_api` are wrapped
 into `Command`s at start-up (and when plugins change) under the *Plugins* tab or, where
 a built-in area claims them (`drawing`, `pages`, `terminals`, …), into that area's
 group, so a function exists once. The dialogs that duplicate a plugin command keep
 their forms but call the command.
 
-Tests (`openecraft/src/commands/tests.rs` and `conventions/tests.rs`):
+Tests (`crates/openecraft-shell/src/commands/tests.rs` and `conventions/tests.rs`):
 
 - every `Command` is in exactly one ribbon group or backstage page;
 - every `open` flag of a window and every `Pane` is reached by a command;
@@ -329,7 +329,7 @@ with the one above them in separate sessions, because they touch different files
 
 | # | Package | Size | Depends on | Files (new or changed) |
 | --- | --- | --- | --- | --- |
-| 0 | **Foundations**: command registry with tests; `Windows` struct that collects the `open` flags and the pane list; icon set; app style; UI scale setting | M | – | `openecraft/src/commands.rs` (+ tests), `openecraft/src/windows_state.rs`, `crates/openecraft-ui/src/icons.rs`, `style.rs`, `app.rs` |
+| 0 | **Foundations**: command registry with tests; `Windows` struct that collects the `open` flags and the pane list; icon set; app style; UI scale setting | M | – | `crates/openecraft-shell/src/commands.rs` (+ tests), `openecraft/src/windows_state.rs`, `crates/openecraft-ui/src/icons.rs`, `style.rs`, `app.rs` |
 | 1 | **Shell**: ribbon with tabs, groups, minimise and context tabs; backstage; quick access row with undo list; status bar segments; command search; the menu bar goes | L | 0 | `app/ribbon.rs`, `app/backstage.rs`, `app/quick_access.rs`, `app/status_bar.rs`, `app/command_search.rs`; `app/menus.rs` and `app/toolbar.rs` removed |
 | 2 | **One dock for all workspaces**: the panel layout (enclosures navigator, 3D / front view, properties) and the wiring workbench become panes; workspace presets; page tabs in the page pane; pane header widget | M | 0 | `dock.rs`, `app/dock_ui.rs`, `panel_ui.rs` (split into `panel_ui/{navigator,canvas,properties,dialogs}.rs`), `wiring_ui.rs`, `mounting_ui.rs`, `workspaces.rs`, `crates/openecraft-ui/src/pane_header.rs` |
 | 3 ∥ | **Navigators**: the navigator-like windows become panes with the shared behaviour (selection sync, go to, context menu, drag to place, edit in table); context menus on the page and on page rows; Edit in table row kinds for cables, plugs, PLC, pages, parts | L | 0, 2 | `app/navigator.rs` (one file per pane under `app/navigators/`), `cables_ui.rs`, `potentials_ui.rs`, `engineering.rs` (strips, PLC, macros, revisions), `plugs_ui.rs`, `harness_ui.rs`, `requests_ui.rs`, `preplanning_ui.rs`, `editor.rs` (context menu, selection events), `crates/openecraft-core/src/tables.rs` |

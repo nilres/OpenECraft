@@ -11,7 +11,7 @@ Run these before considering a change done. All of them must pass without warnin
 ```bash
 cargo test --workspace
 cargo clippy --workspace --all-targets
-cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-unknown
+cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --target wasm32-unknown-unknown
 ```
 
 - Desktop: `cargo run --release -p openecraft`
@@ -24,6 +24,8 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
 - Parts manager: `cargo run -p openecraft-parts-manager`; web: `cd parts-manager && trunk serve` (http://127.0.0.1:8082)
 - Command line / MCP server: `cargo run -p openecraft-cli -- help`, `cargo run -p openecraft-cli -- mcp`
 - Web: `cd openecraft && trunk serve` (dev server on http://127.0.0.1:8080), `cd openecraft && trunk build --release`
+- Website: `cd website && trunk serve --release` (http://127.0.0.1:8084), `cd website && trunk build --release`
+  (`docs/website.md`); `cargo run -p openecraft-website` shows its demos in a window
 - Windows installer: `powershell -ExecutionPolicy Bypass -File installer/windows/build.ps1`
   (Inno Setup 6, script `installer/windows/openecraft.iss`, output `target/installer/`);
   installer texts are in all four languages too (`[CustomMessages]`)
@@ -33,10 +35,10 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
 - macOS disk image: `bash installer/macos/build.sh` (universal app bundles, output
   `target/installer/`)
 - Docker images of the servers and the web editor: `docker build -f
-  installer/docker/Dockerfile --target parts-server|project-server|editor-web .` (the
-  servers' settings in `installer/docker/*.toml`, the editor's nginx site in
-  `installer/docker/editor-web.conf`; CI pushes them to ghcr.io on master and for
-  release tags)
+  installer/docker/Dockerfile --target parts-server|project-server|editor-web|website .`
+  (the servers' settings in `installer/docker/*.toml`, the nginx sites of the editor and
+  the website in `installer/docker/editor-web.conf` and `website.conf`; CI pushes them
+  to ghcr.io on master and for release tags)
 - The installer scripts and `trunk build --release` need cargo-about for the third-party
   licenses (`cargo install cargo-about@0.9.3 --locked --features cli`, configuration
   `installer/about.toml`); the installer scripts take the version from
@@ -63,12 +65,16 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
 | `openecraft-auth` | `crates/openecraft-auth` | Access control of the servers: password hashes (Argon2), session tokens, throttled sign-in, JSON error answers, Active Directory / LDAP sign-in, access settings file (roles and grants: `openecraft_parts::access`), configuration files of the servers (`server_config`, TOML) |
 | `openecraft-client` | `crates/openecraft-client` | Requests to the parts and project servers and to Autodesk Vault (`vault`) and decoding of their answers (ehttp), shared by the UI client and the command line; `eplan` wraps the EPLAN Data Portal API as a read-only parts server |
 | `openecraft-ui` | `crates/openecraft-ui` | Shared egui library: part tree / editor / previews, parts server client, file dialogs, language menu |
+| `openecraft-shell` | `crates/openecraft-shell` | The shell of the editor as tables without UI code: commands, ribbon, panes (`dock`), workspaces, keys, mouse gestures, state colours; read by the editor and by the views of `openecraft-canvas` |
+| `openecraft-session` | `crates/openecraft-session` | The open project of an application (`Session`): undo history, analysis with the checks and reports of the plugins, device index, saved state; no UI |
+| `openecraft-canvas` | `crates/openecraft-canvas` | The drawing views of the editor: page editor (`editor`), panel layout in 2D and 3D (`panel_ui`), background jobs; shared by the editor and the website |
 | `openecraft-view` | `crates/openecraft-view` | Read-only views of a project shared by the editor's navigator and the project server's web page (pages by structure, devices and their places, page icons, `ProjectView`); no UI |
 | `openecraft-web` | `crates/openecraft-web` | What the web pages of both servers share: `common.js` (texts, requests, sign-in, rights), `access.js` (roles, grants, directories), `web.css`, logo, `WebTexts` |
 | `openecraft-parts-server` | `parts-server/` | Data portal server (axum; SQLite or JSON storage, users and roles, catalogs, files, history, web page) |
 | `openecraft-project-server` | `project-server/` | Project server: shared projects, page locks for several users (axum, project files) |
 | `openecraft-cli` | `cli/` | Command line and MCP server (AI agents) on top of `openecraft-core` |
 | `openecraft-parts-manager` | `parts-manager/` | Standalone parts server maintenance app (desktop + web, own `index.html` / `Trunk.toml`) |
+| `openecraft-website` | `website/` | The website of the project (`index.html`, `site.css`, `site.js`, built by trunk): live demos that run the views, checks, reports, commands and exports of the crates above in the browser (`docs/website.md`) |
 
 - `docs/architecture.md` describes the crate graph, the layers inside `openecraft-core`
   and where a new feature goes; `openecraft/src/conventions/tests.rs` enforces the layer
@@ -82,6 +88,9 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
     on egui or an application crate.
   - `openecraft-ui` holds egui widgets and platform code shared by the editor and the
     parts manager. It must not depend on an application crate.
+  - `openecraft-shell`, `openecraft-session` and `openecraft-canvas` hold what the
+    editor and the website both run: a view of the editor the website is to show
+    moves there instead of being copied. They must not depend on an application crate.
   - `openecraft-api` depends only on `openecraft-core`, `openecraft-i18n`, `serde` and
     `serde_json`: no UI, no application crate, no `cfg(target_arch)` branches.
 - API types and request paths of the parts server live in `openecraft_parts::api`, the
@@ -150,8 +159,8 @@ complex shaping (Arabic, Hebrew, Indic scripts, Thai) cannot be drawn by egui.
 - Every English text needs a line in `crates/openecraft-i18n/src/catalog/<area>/required.tsv`
   (`English<TAB>Deutsch<TAB>Français<TAB>Español`; `\n` and `\"` as in Rust source;
   `{}` placeholders must appear in every translation). The catalog is split by area,
-  the crate group that shows the text (`editor`, `core`, `plugins`, `cli`, `ui`, `parts`;
-  `common` for texts shown by several, see `openecraft_i18n::scan`), and every file is
+  the crate group that shows the text (`editor`, `core`, `plugins`, `cli`, `ui`, `parts`,
+  `website`; `common` for texts shown by several, see `openecraft_i18n::scan`), and every file is
   sorted by its English text, so that branches seldom change the same lines. Do not
   place or sort by hand: add the lines to any catalog file and run
   `cargo run -p openecraft-i18n --example tidy`, which moves each text to the file of
@@ -233,11 +242,16 @@ violations. Do not weaken or delete that test to make a change pass.
   `cli/src/tools/<area>.rs`. Help texts use `tr_const!` and need catalog entries; MCP
   clients get them in English.
 - **Editor shell:** every function of the editor is a command of
-  `openecraft/src/commands.rs` with a place in the ribbon, the backstage or View › Panes
-  (`openecraft/src/ribbon.rs`); a tool is a pane (`ToolPane` in `openecraft/src/dock.rs`)
+  `crates/openecraft-shell/src/commands.rs` with a place in the ribbon, the backstage or View › Panes
+  (`crates/openecraft-shell/src/ribbon.rs`); a tool is a pane (`ToolPane` in `crates/openecraft-shell/src/dock.rs`)
   shown by a command. The tests of both modules fail for a command without a place
   or a pane without a command. Icons are vector paths in `openecraft_ui::icons`
-  (no new glyphs); state colours come from `openecraft/src/style.rs`.
+  (no new glyphs); state colours come from `crates/openecraft-shell/src/style.rs`.
+- **Website:** the demos of `website/` run the code of the library crates; never copy
+  a view, a check or an export into it. Texts of the page are written in English in
+  `index.html` / `site.js` and listed in `website/src/texts.rs` (the tests compare
+  both); what the page shows of the project comes from `Studio::call`
+  (`website/src/studio.rs`, no UI code, unit tested).
 - **Parts manager:** keep its editing rules (drafts, renames, unsaved changes) in
   `parts-manager/src/session.rs` (no UI code, unit tested); `app.rs` only draws.
 - **Style:** match the surrounding code; keep comments as sparse as the existing ones.

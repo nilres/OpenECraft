@@ -1,4 +1,4 @@
-# English<TAB>Dansk – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Dansk – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Potentiale {}
   (built-in)	  (indbygget)
 (choose a part)	(vælg en artikel)
@@ -41,7 +41,6 @@
 3D macro	3D-makro
 3D macro {} inserted	3D-makroen {} er indsat
 3D macro {} saved	3D-makroen {} er gemt
-3D view	3D-visning
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = endnu ikke i diagrammet
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baseline gemmer hele projektet (sider, enheder, artikler, indstillinger). Når en revision frigives, gemmes en.
@@ -189,7 +188,6 @@ Automatic accessories	Automatisk tilbehør
 Automatic configuration	Automatisk konfiguration
 Automatic placement	Automatisk placering
 Automatic: {}	Automatisk: {}
-Automation	Automatisering
 Avoid:	Undgå:
 Back	Tilbage
 Back to the project (Esc)	Tilbage til projektet (Esc)
@@ -1512,7 +1510,6 @@ Plot frames	Plotrammer
 Plot, {}	Grund, {}
 Plug in card	Isæt kort
 Plugin commands	Plugin-kommandoer
-Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins tilføjer kommandoer, kontroller, rapporter og eksporter. Eksterne plugins indlæses fra mapperne i miljøvariablen {} (én undermappe med en plugin.json pr. plugin).
 Plus and minus leads from the modules to the inverter	Plus- og minusledninger fra modulerne til inverteren
 Points	Punkter
@@ -1605,7 +1602,6 @@ Recommended height of manual actuators (10.1.2)	Anbefalet højde for manuelle be
 Record	Optag
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Optag: udfør bevægelsen i feltet, der vises, eventuelt med en modifikatortast holdt nede (Esc annullerer). Tilføj beholder de eksisterende bevægelser. Højreklik i markeringsværktøjet åbner genvejsmenuen.
 Redline: to be changed · Greenline: changed as built	Redline: skal ændres · Greenline: ændret som udført
-Redo	Annuller fortryd
 Reference point	Referencepunkt
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Referencepunktet placeret ved x {} m, z {} m; indtast dets koordinater i ruden Bygninger
 Refresh example catalog parts (GEN.*)	Opdater artikler fra eksempelkataloget (GEN.*)
@@ -1682,7 +1678,6 @@ Report blocks…	Rapportblokke…
 Report forms	Rapportformularer
 Report name (page heading)	Rapportnavn (sideoverskrift)
 Report with all harness wires	Rapport med alle ledninger i ledningsnettet
-Reports	Rapporter
 Representation	Fremstilling
 Requester	Anmoder
 Reservation	Reservation
@@ -1833,7 +1828,6 @@ Segment {}	Segment {}
 Segments	Afsnit
 Segregation	Adskillelse
 Segregation factor	Adskillelsesfaktor
-Select	Vælg
 Select / move (Esc)	Markér / flyt (Esc)
 Select a file to import it	Vælg en fil for at importere den
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Vælg en funktionsdefinition. Projektdefinitioner (fed) kan ændres og gemmes i egenskabsbiblioteker.
@@ -2140,14 +2134,12 @@ Transfer project parts to database	Overfør projektartikler til databasen
 Translate the project texts; documentation per language	Oversæt projektteksterne; dokumentation pr. sprog
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drejning om lodret akse, mod uret set ovenfra (90 °: fronterne vender mod højre)
 Turn the 3D view to the point	Vend 3D-visningen mod punktet
-Tutorial	Selvstudium
 Twin ferrules where two wires share a connection point	Dobbelte terminalrør hvor to ledere deler et tilslutningspunkt
 Two fingers	To fingre
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Her skal to ledere mødes i ret vinkel. Med automatisk forbindelse slået til forbindes tilslutningspunkter over for dets arme med det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv et punkt, og tryk på Enter: x y i mm eller @dx dy i forhold til det sidste punkt; det virker som et klik med det aktuelle værktøj
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Skalering af brugerfladen
-Undo	Fortryd
 Undo brings it back.	Fortryd henter det tilbage.
 Undo list	Fortryd-liste
 Undo {} steps	Fortryd {} trin

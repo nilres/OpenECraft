@@ -1,4 +1,4 @@
-# English<TAB>日本語 – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>日本語 – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  電位 {}
   (built-in)	  (組み込み)
 (choose a part)	(部品を選択)
@@ -41,7 +41,6 @@
 3D macro	3D マクロ
 3D macro {} inserted	3D マクロ {} を挿入しました
 3D macro {} saved	3D マクロ {} を保存しました
-3D view	3D ビュー
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = まだ回路図にありません
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	ベースラインはプロジェクト全体 (ページ、デバイス、部品、設定) を保存します。リビジョンをリリースするとベースラインが 1 つ保存されます。
@@ -188,7 +187,6 @@ Automatic accessories	自動付属品
 Automatic configuration	自動構成
 Automatic placement	自動配置
 Automatic: {}	自動: {}
-Automation	自動化
 Avoid:	回避:
 Back	戻る
 Back to the project (Esc)	プロジェクトに戻る (Esc)
@@ -1497,7 +1495,6 @@ Plot frames	図枠
 Plot, {}	敷地、{}
 Plug in card	カードを装着
 Plugin commands	プラグインコマンド
-Plugins	プラグイン
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	プラグインはコマンド、チェック、レポート、エクスポートを追加します。外部プラグインは環境変数 {} のフォルダーから読み込まれます (プラグインごとに plugin.json を含むサブフォルダー 1 つ)。
 Plus and minus leads from the modules to the inverter	モジュールからインバーターへのプラスとマイナスのケーブル
 Points	点
@@ -1587,7 +1584,6 @@ Recommended height of manual actuators (10.1.2)	手動操作部の推奨高さ (
 Record	記録
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	記録：表示される領域でジェスチャーを行います。必要ならモディファイアキーを押したままにします（Esc でキャンセル）。追加は既存のジェスチャーを残します。選択ツールでの右クリックはコンテキストメニューを開きます。
 Redline: to be changed · Greenline: changed as built	レッドライン: 変更予定 · グリーンライン: 施工どおりに変更済み
-Redo	やり直し
 Reference point	基準点
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	基準点を x {} m、z {} m に配置しました。建物ペインで座標を入力してください
 Refresh example catalog parts (GEN.*)	サンプルカタログの部品 (GEN.*) を更新
@@ -1664,7 +1660,6 @@ Report blocks…	レポートブロック…
 Report forms	レポートフォーム
 Report name (page heading)	レポート名 (ページ見出し)
 Report with all harness wires	すべてのハーネス電線を含むレポート
-Reports	レポート
 Representation	表示
 Requester	依頼者
 Reservation	予約領域
@@ -1813,7 +1808,6 @@ Segment {}	セグメント {}
 Segments	区間
 Segregation	離隔
 Segregation factor	離隔係数
-Select	選択
 Select / move (Esc)	選択 / 移動 (Esc)
 Select a file to import it	インポートするファイルを選択してください
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	機能定義を選択してください。プロジェクト定義 (太字) は変更でき、プロパティライブラリに保存されます。
@@ -2118,14 +2112,12 @@ Transfer project parts to database	プロジェクト部品をデータベース
 Translate the project texts; documentation per language	プロジェクトテキストを翻訳します。言語ごとのドキュメント
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	鉛直軸まわりの回転 (上から見て反時計回り、90 °: 正面が右向き)
 Turn the 3D view to the point	3D ビューをその点に向ける
-Tutorial	チュートリアル
 Twin ferrules where two wires share a connection point	2本の電線が接続ポイントを共有する場合はツインフェルール
 Two fingers	2 本指
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	ここで2本の接続線が直角に交わる必要があります。自動接続が有効なとき、その側に向き合う接続点がここへ配線されます。
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	点を入力して Enter キーを押します: x y (mm)、または最後の点からの相対位置 @dx dy。現在のツールでのクリックと同じように動作します
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V、I {} A、{} kWp
 UI scale	UI の拡大率
-Undo	元に戻す
 Undo brings it back.	元に戻すで復元できます。
 Undo list	元に戻す一覧
 Undo {} steps	{} ステップ元に戻す

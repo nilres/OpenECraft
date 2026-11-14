@@ -1,0 +1,429 @@
+// The OpenECraft website: connects the page to the studio (the editor's code compiled
+// to WebAssembly, `src/studio.rs`). The studio answers `call(function, argument)` with
+// JSON and draws the canvases; everything else on the page is drawn here from those
+// answers. Texts are written in English and translated through `t` / data-t.
+"use strict";
+(() => {
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const meta = name => $(`meta[name="${name}"]`)?.content || "";
+    const CONSOLE_LIMIT = 6000;
+    const COMMAND_ROWS = 80;
+
+    let api = null;
+    let texts = {};
+    let state = null;
+    let stateText = "";
+    let sheetKey = "";
+    let report = "";
+    let reports = [];
+    let commands = [];
+    let exporters = [];
+    const history = [];
+    let historyAt = 0;
+
+    const t = english => texts[english] || english;
+    const fill = (text, ...values) => values.reduce((out, v) => out.replace("{}", v), text);
+
+    function call(method, arg = "") {
+        const answer = JSON.parse(api.call(method, String(arg)));
+        if (answer && answer.error) throw new Error(answer.error);
+        return answer;
+    }
+
+    function element(tag, className, text) {
+        const e = document.createElement(tag);
+        if (className) e.className = className;
+        if (text !== undefined) e.textContent = text;
+        return e;
+    }
+
+    // ---- static parts: links, texts, sections fading in -------------------------------
+
+    function links() {
+        const editor = meta("openecraft-editor");
+        for (const a of $$("[data-editor]")) {
+            a.hidden = !editor;
+            a.href = editor;
+        }
+        const repository = meta("openecraft-repository");
+        for (const a of $$("[data-repository]")) {
+            a.hidden = !repository;
+            a.href = repository + a.dataset.repository;
+            a.rel = "noopener";
+        }
+    }
+
+    function translate() {
+        for (const e of $$("[data-t]")) {
+            e.dataset.t ||= e.textContent.trim();
+            e.textContent = t(e.dataset.t);
+        }
+        for (const e of $$("[data-t-placeholder]")) e.placeholder = t(e.dataset.tPlaceholder);
+    }
+
+    function reveal() {
+        // By position, not with an observer: a section must never stay hidden because
+        // the browser did not report it (a tab in the background, printing).
+        const bands = $$(".band");
+        const look = () => {
+            for (const band of bands) if (band.getBoundingClientRect().top < innerHeight * 0.9) band.classList.add("seen");
+        };
+        for (const band of bands) band.classList.add("reveal");
+        addEventListener("scroll", look, { passive: true });
+        addEventListener("resize", look);
+        look();
+    }
+
+    // ---- the canvases --------------------------------------------------------------------
+
+    function stages() {
+        const start = new IntersectionObserver(entries => {
+            for (const entry of entries) {
+                const stage = entry.target;
+                if (!entry.isIntersecting) {
+                    stage.classList.remove("live");
+                } else if (!stage.dataset.started) {
+                    stage.dataset.started = "1";
+                    stage.classList.add("waiting");
+                    try {
+                        api.start($("canvas", stage).id, stage.dataset.view);
+                    } catch (e) {
+                        $(".veil span", stage).textContent = t("The demo could not start in this browser. It needs WebGL and WebAssembly.");
+                    }
+                    setTimeout(() => stage.classList.remove("waiting"), 1500);
+                }
+            }
+        }, { rootMargin: "200px" });
+        for (const stage of $$(".stage")) {
+            start.observe(stage);
+            $(".veil", stage).addEventListener("click", () => activate(stage));
+        }
+        // A click elsewhere gives the wheel back to the page.
+        document.addEventListener("pointerdown", e => {
+            for (const stage of $$(".stage.live")) if (!stage.parentElement.contains(e.target)) stage.classList.remove("live");
+        });
+    }
+
+    function activate(stage) {
+        stage.classList.add("live");
+        $("canvas", stage).focus({ preventScroll: true });
+    }
+
+    // ---- the state of the project ------------------------------------------------------
+
+    function poll() {
+        let next;
+        try {
+            next = call("state");
+        } catch (e) {
+            return;
+        }
+        if (!next || next.busy) return;
+        const text = JSON.stringify(next);
+        if (text === stateText) return;
+        const before = state;
+        state = next;
+        stateText = text;
+        render(before);
+    }
+
+    function render(before) {
+        const pages = $("#pages");
+        pages.replaceChildren(...state.pages.map((p, i) => {
+            const li = element("li", i === state.page ? "on" : "");
+            li.append(element("b", "", p.name), element("span", "", p.description));
+            li.addEventListener("click", () => act("page", i));
+            return li;
+        }));
+        // Keeps the page shown in view inside the list, without scrolling the document.
+        const on = $(".on", pages);
+        if (on && (on.offsetTop < pages.scrollTop || on.offsetTop + on.offsetHeight > pages.scrollTop + pages.clientHeight)) {
+            pages.scrollTop = on.offsetTop - pages.clientHeight / 2;
+        }
+
+        const issues = $("#issues");
+        const problems = state.issues.filter(i => i.severity !== "info").length;
+        const count = $("#issue-count");
+        count.textContent = state.loading ? "…" : state.issues.length;
+        count.className = "count " + (problems ? "bad" : "ok");
+        if (state.issues.length) {
+            issues.replaceChildren(...state.issues.map((issue, i) => {
+                const li = element("li", issue.severity);
+                li.append(element("span", "", issue.message));
+                li.addEventListener("click", () => act("issue", i));
+                return li;
+            }));
+        } else {
+            issues.replaceChildren(element("li", "none", state.loading ? t("Loading…") : t("No messages. The project passes the check.")));
+        }
+
+        $("#stat-devices").textContent = state.devices;
+        $("#stat-connections").textContent = state.connections;
+        $("#stat-pages").textContent = state.pages.length;
+        $("#hint").textContent = state.message || state.hint;
+        $("#undo").disabled = !state.undo;
+        $("#redo").disabled = !state.redo;
+        for (const b of $$("[data-tool]")) b.classList.toggle("on", b.dataset.tool === state.tool);
+        for (const b of $$("[data-view-mode]")) b.classList.toggle("on", b.dataset.viewMode === state.view);
+        $("#wires").classList.toggle("on", state.show_wires);
+        $("#door").classList.toggle("on", state.door);
+        for (const b of $$("[data-example]")) b.classList.toggle("on", b.dataset.example === state.example);
+
+        if (!state.loading) {
+            sheet();
+            if (report) showReport();
+            if (!before || before.lang !== state.lang) $("#language").value = state.lang;
+        }
+    }
+
+    // The sheet of the hero: the page being edited, as the SVG export draws it.
+    function sheet() {
+        const key = stateText;
+        if (key === sheetKey) return;
+        sheetKey = key;
+        try {
+            const svg = new DOMParser().parseFromString(call("svg", state.page), "image/svg+xml").documentElement;
+            if (svg.nodeName !== "svg") return;
+            svg.removeAttribute("width");
+            svg.removeAttribute("height");
+            $("#hero-sheet").replaceChildren(svg);
+        } catch (e) { /* the page went away meanwhile: the next state draws it */ }
+    }
+
+    // A function of the studio after a click, with the state drawn at once.
+    function act(method, arg = "") {
+        try {
+            call(method, arg);
+        } catch (e) {
+            print(e.message, "err");
+        }
+        poll();
+    }
+
+    // ---- examples, reports, exports, languages ---------------------------------------
+
+    function loadExamples() {
+        const examples = call("examples");
+        $("#fact-examples").textContent = examples.length;
+        const chip = example => {
+            const b = element("button", "", example.title);
+            b.dataset.example = example.key;
+            b.title = example.description;
+            b.addEventListener("click", () => act("open", example.key));
+            return b;
+        };
+        $("#examples").replaceChildren(...examples.map(chip));
+        $("#layout-examples").replaceChildren(...examples.filter(e => e.layout).map(chip));
+    }
+
+    function loadReports() {
+        reports = call("reports");
+        if (!reports.some(r => r.name === report)) report = (reports.find(r => r.name === "bom") || reports[0])?.name || "";
+        listReports();
+        if (state && !state.loading) showReport();
+    }
+
+    function listReports() {
+        const words = $("#report-filter").value.toLowerCase().split(/\s+/).filter(Boolean);
+        const shown = reports.filter(r => words.every(w => (r.title + " " + r.name).toLowerCase().includes(w)));
+        $("#report-list").replaceChildren(...shown.map(r => {
+            const li = element("li", r.name === report ? "on" : "");
+            li.append(element("span", "", r.title));
+            li.addEventListener("click", () => {
+                report = r.name;
+                listReports();
+                showReport();
+            });
+            return li;
+        }));
+    }
+
+    function showReport() {
+        let table;
+        try {
+            table = call("report", report);
+        } catch (e) {
+            $("#report-title").textContent = e.message;
+            $("#report-table").replaceChildren();
+            return;
+        }
+        if (!table || table.busy) return;
+        $("#report-title").textContent = table.title;
+        const head = element("tr");
+        head.append(...table.headers.map(h => element("th", "", h)));
+        const rows = table.rows.map(row => {
+            const tr = element("tr");
+            tr.append(...row.map(cell => element("td", "", cell)));
+            return tr;
+        });
+        $("#report-table").replaceChildren(head, ...rows);
+        $("#report-more").textContent = table.total > table.rows.length ? fill(t("The first {} of {} rows"), table.rows.length, table.total) : "";
+    }
+
+    function loadExports() {
+        exporters = call("exporters");
+        $("#exports").replaceChildren(...exporters.map(x => {
+            const b = element("button", "", `${x.title} (.${x.extension})`);
+            b.addEventListener("click", () => download(x));
+            return b;
+        }));
+    }
+
+    function download(exporter) {
+        try {
+            const url = URL.createObjectURL(new Blob([api.export(exporter.name)]));
+            const a = element("a");
+            a.href = url;
+            a.download = `${state.example}.${exporter.extension}`;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 10000);
+        } catch (e) {
+            alert(typeof e === "string" ? e : e.message);
+        }
+    }
+
+    function loadLanguages() {
+        const languages = call("languages");
+        $("#language").replaceChildren(...languages.map(l => {
+            const o = element("option", "", l.name);
+            o.value = l.code;
+            return o;
+        }));
+        $("#language-chips").replaceChildren(...languages.map(l => {
+            const b = element("button", "", l.name);
+            b.dataset.language = l.code;
+            b.addEventListener("click", () => setLanguage(l.code));
+            return b;
+        }));
+    }
+
+    function setLanguage(code) {
+        try {
+            call("language", code);
+        } catch (e) {
+            return;
+        }
+        localized(code);
+        poll();
+    }
+
+    // Everything that is written in the language of the studio.
+    function localized(code) {
+        texts = call("texts");
+        document.documentElement.lang = code;
+        $("#language").value = code;
+        for (const b of $$("[data-language]")) b.classList.toggle("on", b.dataset.language === code);
+        translate();
+        loadExamples();
+        loadReports();
+        loadExports();
+        commands = call("commands");
+        $("#fact-commands").textContent = commands.length;
+        listCommands();
+        stateText = "";
+    }
+
+    // ---- the console ---------------------------------------------------------------------
+
+    function print(text, className) {
+        const out = $("#console-out");
+        out.append(element("div", className || "", text.length > CONSOLE_LIMIT ? text.slice(0, CONSOLE_LIMIT) + "\n…" : text));
+        out.scrollTop = out.scrollHeight;
+    }
+
+    function help(name) {
+        if (!name) {
+            print(commands.map(c => c.name).join("  "), "dim");
+            print(fill(t("{} commands. Type help and a name for its parameters, for example: help rename_device"), commands.length));
+            return;
+        }
+        const command = commands.find(c => c.name === name);
+        if (!command) {
+            print(fill(t("Unknown command: {}"), name), "err");
+            return;
+        }
+        print(`${command.name}\n${command.help}`);
+        for (const p of command.params) print(`  --${p.name} ${p.hint}`.padEnd(30) + (p.required ? "" : t("(optional)") + " ") + p.help, "dim");
+    }
+
+    function run(line) {
+        line = line.trim();
+        if (!line) return;
+        history.push(line);
+        historyAt = history.length;
+        print("> " + line, "cmd");
+        const [first, second] = line.split(/\s+/);
+        if (first === "help") {
+            help(second);
+            return;
+        }
+        try {
+            print(call("run", line));
+        } catch (e) {
+            print(e.message, "err");
+        }
+        poll();
+    }
+
+    function listCommands() {
+        const words = $("#command-filter").value.toLowerCase().split(/\s+/).filter(Boolean);
+        const shown = commands.filter(c => words.every(w => (c.name + " " + c.help).toLowerCase().includes(w))).slice(0, COMMAND_ROWS);
+        $("#command-list").replaceChildren(...shown.map(c => {
+            const li = element("li");
+            li.append(element("b", "", c.name), element("span", "", c.help));
+            li.title = c.help;
+            li.addEventListener("click", () => {
+                $("#console-in").value = c.name + " ";
+                $("#console-in").focus();
+                print("> help " + c.name, "cmd");
+                help(c.name);
+            });
+            return li;
+        }));
+    }
+
+    // ---- start ---------------------------------------------------------------------------
+
+    function controls() {
+        for (const b of $$("[data-tool]")) b.addEventListener("click", () => {
+            act("tool", b.dataset.tool);
+            activate($('.stage[data-view="schematic"]'));
+        });
+        for (const b of $$("[data-view-mode]")) b.addEventListener("click", () => act("view", b.dataset.viewMode));
+        for (const b of $$("[data-call]")) b.addEventListener("click", () => act(b.dataset.call));
+        for (const b of $$("[data-line]")) b.addEventListener("click", () => run(b.dataset.line));
+        $("#language").addEventListener("change", e => setLanguage(e.target.value));
+        $("#report-filter").addEventListener("input", listReports);
+        $("#command-filter").addEventListener("input", listCommands);
+        $("#console-form").addEventListener("submit", e => {
+            e.preventDefault();
+            run($("#console-in").value);
+            $("#console-in").value = "";
+        });
+        $("#console-in").addEventListener("keydown", e => {
+            if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+            e.preventDefault();
+            historyAt = Math.max(0, Math.min(history.length, historyAt + (e.key === "ArrowUp" ? -1 : 1)));
+            e.target.value = history[historyAt] || "";
+        });
+    }
+
+    function boot() {
+        api = window.wasmBindings;
+        loadLanguages();
+        controls();
+        stages();
+        poll();
+        localized(state ? state.lang : "en");
+        print(t("These are the commands of the command line and the MCP server, run on the project of the demo above."), "dim");
+        print(t("Type help for the commands, or pick one on the right."), "dim");
+        poll();
+        setInterval(poll, 300);
+    }
+
+    links();
+    reveal();
+    if (window.wasmBindings) boot();
+    else window.addEventListener("TrunkApplicationStarted", boot, { once: true });
+})();

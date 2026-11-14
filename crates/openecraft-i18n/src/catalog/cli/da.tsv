@@ -1,6 +1,5 @@
 # English<TAB>Dansk – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(kun MCP-server)
-(optional)	(valgfri)
 Access token for changes	Adgangstoken til ændringer
 Access token of a Vault session or an Autodesk account instead of user and password	Adgangstoken for en Vault-session eller en Autodesk-konto i stedet for bruger og adgangskode
 Address of the Vault server, e.g. https://vault.example.com	Adressen på Vault-serveren, f.eks. https://vault.example.com
@@ -267,11 +266,9 @@ This format needs an output file (path)	Dette format kræver en outputfil (path)
 Title block of the project (list_title_blocks)	Tegningshoved i projektet (list_title_blocks)
 Top edge in mm from the top of the title block area	Øverste kant i mm fra tegningshovedets top
 Undoes the last change	Fortryder den seneste ændring
-Unexpected argument: {}	Uventet argument: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Ukendt kommando: {}. Kør openecraft-cli help for at få en liste.
 Unknown example {}: see list_examples	Ukendt eksempel {}: se list_examples
 Unknown format {}: give oec, oecp or oecz	Ukendt format {}: angiv oec, oecp eller oecz
-Unknown language: {}	Ukendt sprog: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Ukendt sidetype: {} (schematic, overview, graphic, cover eller en rapport fra list_reports)
 Unknown part {} (parts server: {})	Ukendt artikel {} (artikelserver: {})
 Unknown plugin: {}	Ukendt plugin: {}

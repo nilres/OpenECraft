@@ -57,7 +57,7 @@ date), and the versions of the tools are pinned. Raise them together:
 | `OpenECraft-<version>-macos.dmg` | `installer/macos/build.sh` |
 | `OpenECraft-<version>-web.zip`, `OpenECraft-Parts-Manager-<version>-web.zip` | `trunk build --release` |
 | `THIRD-PARTY-LICENSES.html`, `SHA256SUMS` | the workflow |
-| `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>`, `ghcr.io/nilres/openecraft-web:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
+| `ghcr.io/nilres/openecraft-parts-server:<version>`, `ghcr.io/nilres/openecraft-project-server:<version>`, `ghcr.io/nilres/openecraft-web:<version>`, `ghcr.io/nilres/openecraft-website:<version>` (also `<major>.<minor>` and `latest`) | `installer/docker/Dockerfile`, pushed by the job `docker` ([installation](installation.md)) |
 
 The editor updates itself from the latest published release (no drafts, no
 pre-releases): it needs `SHA256SUMS` and the file names above, so keep them when

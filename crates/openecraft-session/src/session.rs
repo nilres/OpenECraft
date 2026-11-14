@@ -72,7 +72,7 @@ struct Built {
 /// For a split project: its files as they are now. Its new objects get ids apart
 /// from those of other copies of the folder.
 fn track(prj: &mut Project, file_name: Option<&str>) -> Option<Tracked> {
-    let index = std::path::Path::new(file_name.filter(|f| crate::io::is_split(f))?);
+    let index = std::path::Path::new(file_name.filter(|f| openecraft_core::storage::folder::is_index(std::path::Path::new(f)))?);
     prj.scatter_ids();
     // The project was not read from the folder just now (it is restored, or came
     // from elsewhere): nothing is known of the files, so a save replaces none that
@@ -120,7 +120,7 @@ impl Session {
     pub fn replace(&mut self, prj: Project, file_name: Option<String>, tracked: Option<Tracked>) {
         self.prj = prj;
         self.prj.normalize();
-        let read = tracked.filter(|t| file_name.as_deref().is_some_and(|f| crate::io::is_split(f) && t.is_for(std::path::Path::new(f))));
+        let read = tracked.filter(|t| file_name.as_deref().is_some_and(|f| openecraft_core::storage::folder::is_index(std::path::Path::new(f)) && t.is_for(std::path::Path::new(f))));
         self.tracked = match read {
             Some(read) => {
                 self.prj.scatter_ids();
@@ -144,7 +144,7 @@ impl Session {
     /// Puts the files of the split project in place as an earlier run of the app
     /// read them (stored with the project that is restored at the start).
     pub fn restore_tracked(&mut self, tracked: Option<Tracked>) {
-        let index = self.file_name.as_deref().filter(|f| crate::io::is_split(f)).map(std::path::Path::new);
+        let index = self.file_name.as_deref().filter(|f| openecraft_core::storage::folder::is_index(std::path::Path::new(f))).map(std::path::Path::new);
         if let Some(tracked) = tracked.filter(|t| index.is_some_and(|index| t.is_for(index))) {
             self.tracked = Some(tracked);
         }

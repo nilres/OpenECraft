@@ -31,7 +31,7 @@ and a browser build.
 
 The gaps are therefore not in breadth but in three places:
 
-1. **Depth of the daily editing experience.** The editor (`openecraft/src/editor.rs`,
+1. **Depth of the daily editing experience.** The editor (`crates/openecraft-canvas/src/editor.rs`,
    about 1,400 lines) is thin compared with the engine behind it. Texts cannot be
    rotated, aligned or formatted; device tags are only numbered online; pages cannot
    be renumbered; connection numbering has three fixed schemes; cross-reference

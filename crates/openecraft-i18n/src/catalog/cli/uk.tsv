@@ -1,6 +1,5 @@
 # English<TAB>Українська – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(лише сервер MCP)
-(optional)	(необов’язково)
 Access token for changes	Токен доступу для змін
 Access token of a Vault session or an Autodesk account instead of user and password	Маркер доступу сеансу Vault або облікового запису Autodesk замість користувача й пароля
 Address of the Vault server, e.g. https://vault.example.com	Адреса сервера Vault, напр. https://vault.example.com
@@ -267,11 +266,9 @@ This format needs an output file (path)	Цей формат потребує в�
 Title block of the project (list_title_blocks)	Основний напис проєкту (list_title_blocks)
 Top edge in mm from the top of the title block area	Верхній край у мм від верхньої межі області основного напису
 Undoes the last change	Скасовує останню зміну
-Unexpected argument: {}	Неочікуваний аргумент: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Невідома команда: {}. Список показує openecraft-cli help.
 Unknown example {}: see list_examples	Невідомий приклад {}: див. list_examples
 Unknown format {}: give oec, oecp or oecz	Невідомий формат {}: вкажіть oec, oecp або oecz
-Unknown language: {}	Невідома мова: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Невідомий тип сторінки: {} (schematic, overview, graphic, cover або звіт із list_reports)
 Unknown part {} (parts server: {})	Невідомий виріб {} (сервер виробів: {})
 Unknown plugin: {}	Невідомий плагін: {}

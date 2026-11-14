@@ -16,12 +16,13 @@ use std::path::Path;
 /// What each area holds, for the file headers.
 const DESCRIPTIONS: [(&str, &str); AREAS.len()] = [
     ("common", "texts shown by several areas"),
-    ("editor", "the editor (openecraft/)"),
+    ("editor", "the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas)"),
     ("core", "openecraft-core: project model, checks, reports, exports"),
     ("plugins", "openecraft-api: the built-in plugins and their commands"),
     ("cli", "the command line and MCP server"),
     ("ui", "openecraft-ui: shared widgets and dialogs"),
     ("parts", "parts library, parts server, parts manager and clients"),
+    ("website", "the website (website/): the page and its demos"),
 ];
 
 /// The entry lines of a catalog file (comments and blank lines skipped); a missing

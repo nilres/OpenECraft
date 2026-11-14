@@ -2,9 +2,11 @@
 (all)	(すべて)
 (no entries)	(エントリなし)
 (no structure)	(構造なし)
+(optional)	(省略可能)
 --json needs a JSON object	--json には JSON オブジェクトが必要です
 3D model	3D モデル
 3D routing	3D 配線ルート
+3D view	3D ビュー
 A page named {} already exists	{} という名前のページは既に存在します
 A page needs a name	ページには名前が必要です
 A routing path needs {} points at least	配線経路には少なくとも {} 個の点が必要です
@@ -23,6 +25,7 @@ Apply	適用
 Approve	承認
 Approvers	承認者
 Automatic	自動
+Automation	自動化
 Aux	補助
 Below	下
 Bold	太字
@@ -122,6 +125,7 @@ Display	表示
 Done	完了
 Door	扉
 Door cutout	扉の切り欠き
+Download	ダウンロード
 Downloading {}…	{} をダウンロードしています…
 Drag to turn the model	ドラッグしてモデルを回転
 EMC clearance	EMC クリアランス
@@ -210,6 +214,7 @@ Link	リンク
 Linked	リンク済み
 Load	負荷
 Loaded circuits bunched together	束ねられた負荷回路数
+Loading…	読み込み中…
 Location	取付場所
 Location (+)	取付場所 (+)
 Locked	ロック
@@ -244,6 +249,8 @@ Mounting holes	取付穴
 Mounting layout {}	取付図 {}
 Mounting plate	取付板
 Mounting rail	取付レール
+NC contact	b接点
+NO contact	a接点
 Name	名前
 Name of the block	ブロックの名前
 Name of the plot, e.g. the cadastral parcel	敷地の名前（例：地番）
@@ -338,6 +345,7 @@ Plot	敷地
 Plot frame	図枠
 Plug	プラグ
 Plug diagram	プラグ図
+Plugins	プラグイン
 Plugs	プラグ
 Poles	極数
 Ports	ポート
@@ -381,6 +389,7 @@ Rated power	定格出力
 Rear wall	背板
 Rectangle	四角形
 Rectangular	四角形
+Redo	やり直し
 Refresh	最新の情報に更新
 Reject	却下
 Relative humidity	相対湿度
@@ -395,6 +404,7 @@ Remove the reference point	基準点を削除
 Report	レポート
 Report blocks	レポートブロック
 Report: {}	レポート: {}
+Reports	レポート
 Required	必要
 Reserve	予備
 Reviewer	レビュー担当者
@@ -425,6 +435,7 @@ Search parts	部品を検索
 Searching…	検索しています…
 Section	セクション
 Segment	区間
+Select	選択
 Select a part in the tree or create a new one.	ツリーで部品を選択するか、新しい部品を作成してください。
 Sensor	センサー
 Sensors, switches, pushbuttons	センサー、スイッチ、押しボタン
@@ -489,9 +500,12 @@ Tools	工具
 Top	上
 Total	合計
 Transformer	変圧器
+Tutorial	チュートリアル
 Type	タイプ
 Type number	型番
 Underline	下線
+Undo	元に戻す
+Unexpected argument: {}	予期しない引数: {}
 Unit	単位
 Unknown column: {}	不明な列: {}
 Unknown connector: {}	不明なコネクター: {}
@@ -499,10 +513,12 @@ Unknown enclosure system: {}	不明なエンクロージャーシステム: {}
 Unknown face: {}	不明な面: {}
 Unknown format: {}	不明な形式: {}
 Unknown function definition: {}	不明な機能定義: {}
+Unknown language: {}	不明な言語: {}
 Unknown option {}	不明なオプション {}
 Unknown parameter: {}	不明なパラメーター: {}
 Unknown part: {}	不明な部品: {}
 Unknown property: {}	不明なプロパティ: {}
+Unknown report: {}	不明なレポート: {}
 Unknown scheme: {}	不明なスキーム: {}
 Unknown segment	不明なセグメント
 Unknown symbol {}	不明なシンボル {}

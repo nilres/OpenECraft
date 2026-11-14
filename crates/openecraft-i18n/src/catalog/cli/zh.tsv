@@ -1,6 +1,5 @@
 # English<TAB>简体中文 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	（仅限 MCP 服务器）
-(optional)	（可选）
 Access token for changes	用于更改的访问令牌
 Access token of a Vault session or an Autodesk account instead of user and password	Vault 会话或 Autodesk 帐户的访问令牌，代替用户和密码
 Address of the Vault server, e.g. https://vault.example.com	Vault 服务器地址，例如 https://vault.example.com
@@ -262,11 +261,9 @@ This format needs an output file (path)	此格式需要输出文件 (path)
 Title block of the project (list_title_blocks)	项目的标题栏（list_title_blocks）
 Top edge in mm from the top of the title block area	上边缘，从标题栏区域顶部起（毫米）
 Undoes the last change	撤消上次更改
-Unexpected argument: {}	意外的参数：{}
 Unknown command: {}. Run openecraft-cli help for a list.	未知命令：{}。运行 openecraft-cli help 查看列表。
 Unknown example {}: see list_examples	未知示例 {}：请参阅 list_examples
 Unknown format {}: give oec, oecp or oecz	未知格式 {}：请指定 oec、oecp 或 oecz
-Unknown language: {}	未知语言：{}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	未知页面类型：{}（schematic、overview、graphic、cover 或 list_reports 中的报表）
 Unknown part {} (parts server: {})	未知部件 {}（部件服务器：{}）
 Unknown plugin: {}	未知插件：{}

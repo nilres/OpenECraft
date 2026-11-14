@@ -1,0 +1,11 @@
+[package]
+name = "openecraft-session"
+version.workspace = true
+edition = "2021"
+description = "The open project of an OpenECraft application: undo history, analysis with the checks and reports of the plugins, device index and saved state; no UI"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+openecraft-core = { path = "../openecraft-core" }
+openecraft-api = { path = "../openecraft-api" }
+openecraft-i18n = { path = "../openecraft-i18n" }

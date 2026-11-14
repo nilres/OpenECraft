@@ -14,12 +14,15 @@ openecraft-parts ─┼─► openecraft-jt / openecraft-xt / openecraft-step / 
                            │                 ▲
 openecraft-client ─► openecraft-ui ──────────┘ (editor, parts-manager)
 openecraft-core ─► openecraft-view (read-only project views) ─► editor, project-server
+openecraft-ui ─► openecraft-shell (commands, ribbon, panes, keys, gestures, colours) ─┐
+openecraft-api ─► openecraft-session (project, undo, analysis) ─────────────────────────┼─► editor, website
+openecraft-shell, openecraft-core, openecraft-ui ─► openecraft-canvas (page editor, panel views) ─┘
 openecraft-auth (parts) ─► parts-server (parts, i18n), project-server (core, parts)
 openecraft-web (parts, i18n; the servers' web pages) ─► parts-server, project-server
 ```
 
 - Library crates live under `crates/`; executables are `openecraft/` (editor),
-  `cli/`, `parts-server/`, `project-server/`, `parts-manager/`.
+  `cli/`, `parts-server/`, `project-server/`, `parts-manager/` and `website/`.
 - A crate depends only on crates to its left. No library depends on an executable.
   `openecraft-api` has no UI dependency and no `cfg(target_arch)` branch.
 - Platform code (`wasm32` versus native) exists only in `crates/openecraft-ui/src/io.rs`
@@ -32,6 +35,12 @@ openecraft-web (parts, i18n; the servers' web pages) ─► parts-server, projec
   session tokens, sign-in with directories (Active Directory, LDAP), the access
   settings file and reading the configuration files of the servers (`--config`,
   `server_config`). See [access-control.md](access-control.md).
+- `openecraft-shell`, `openecraft-session` and `openecraft-canvas` are the parts of the
+  editor that another application can run: the tables of the shell, the document
+  state and the drawing views (see [The editor](#the-editor)). The website
+  ([website.md](website.md)) builds its live demos from them, with the plugins of
+  `openecraft-api` for checks, reports, commands and exports; the editor binary adds
+  the windows, files, servers and settings around them.
 - `openecraft-view` holds the read-only views of a project that the editor and the
   project server's web page both show: the pages grouped by structure, the devices
   grouped by structure with their places, the icons of the page kinds and the
@@ -108,7 +117,7 @@ refer to each other (the registry kinds take an `&Analysis`).
 
 ## The editor
 
-- `openecraft/src/session.rs` holds the document state: the open project, its undo
+- `crates/openecraft-session/src/session.rs` holds the document state: the open project, its undo
   history, the analysis (rebuilt after committed changes and language changes, with the
   reports and checks of the registry), the device index, the saved revision and the
   file name. It has no UI code and is unit tested; `App` adds the windows. The
@@ -120,7 +129,7 @@ refer to each other (the registry kinds take an `&Analysis`).
   app's `openecraft_ui::io::Store` (a file per key on the desktop, IndexedDB in the
   browser) and decides when a value read back at start-up may replace the start-up
   one; once the store works, it packs and writes on another thread.
-- `openecraft/src/jobs.rs` runs work that would hold up the window on another thread
+- `crates/openecraft-canvas/src/jobs.rs` runs work that would hold up the window on another thread
   (exports with an analysis of their own from `Session::snapshot`, reading model and
   parts files); `App` applies the results when they are there. After an edit that
   changes routes the session searches the 3D routing on another thread as well
@@ -131,18 +140,18 @@ refer to each other (the registry kinds take an `&Analysis`).
   of an installation, the check against `SHA256SUMS`); `App` only shows its state
   (`app/update_ui.rs`). Nothing in the window waits for the network.
 - The shell (see `docs/ux-workplan.md`) is described by four modules without UI code,
-  each unit tested: `openecraft/src/commands.rs` is the table of every command of the
+  each unit tested: `crates/openecraft-shell/src/commands.rs` is the table of every command of the
   editor (id, title, tooltip, icon, kind, default keys, the pane it shows);
-  `openecraft/src/ribbon.rs` places the commands in the tabs and groups of the ribbon,
+  `crates/openecraft-shell/src/ribbon.rs` places the commands in the tabs and groups of the ribbon,
   the backstage pages and the quick access row, assigns key tips and holds the user's
-  customisation; `openecraft/src/dock.rs` lists the panes (page, navigators, Insert
+  customisation; `crates/openecraft-shell/src/dock.rs` lists the panes (page, navigators, Insert
   center, properties, panel layout and wiring panes, and every tool as a `ToolPane`)
   with the default arrangement of each workspace (`egui_tiles`, one tree per
-  workspace); `openecraft/src/workspaces.rs` the built-in and saved workspaces.
+  workspace); `crates/openecraft-shell/src/workspaces.rs` the built-in and saved workspaces.
   `openecraft/src/insert_center.rs` holds the search, favorites and recently used
-  entries of the Insert center, `openecraft/src/shortcuts.rs` the keys of every command,
-  `openecraft/src/gestures.rs` the mouse gestures and modifier keys of the views,
-  `openecraft/src/style.rs` the state colours (light and dark, tested for contrast).
+  entries of the Insert center, `crates/openecraft-shell/src/shortcuts.rs` the keys of every command,
+  `crates/openecraft-shell/src/gestures.rs` the mouse gestures and modifier keys of the views,
+  `crates/openecraft-shell/src/style.rs` the state colours (light and dark, tested for contrast).
   The tests check that every command has a place in the shell and every pane a
   command, so a new feature cannot be unreachable. Icons are vector paths in
   `openecraft_ui::icons`.
@@ -183,8 +192,8 @@ refer to each other (the registry kinds take an `&Analysis`).
 4. UI: a module under `openecraft/src/app/` that draws and sends actions; rules that
    change the project go to core (`ops` or the feature module) so the command line can
    use them. A new tool is a pane: a `ToolPane` variant, a command in
-   `openecraft/src/commands.rs` that shows it and a place in a group of
-   `openecraft/src/ribbon.rs` (the tests fail otherwise).
+   `crates/openecraft-shell/src/commands.rs` that shows it and a place in a group of
+   `crates/openecraft-shell/src/ribbon.rs` (the tests fail otherwise).
 5. Texts: English in the code, through `tr` / `tr_fmt!` / `tr_const!`, with catalog
    entries in the four required languages and, where possible, the further ones (see
    AGENTS.md).

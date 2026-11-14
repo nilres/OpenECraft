@@ -1,4 +1,4 @@
-# English<TAB>한국어 – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>한국어 – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  전위 {}
   (built-in)	  (기본 제공)
 (choose a part)	(부품 선택)
@@ -41,7 +41,6 @@
 3D macro	3D 매크로
 3D macro {} inserted	3D 매크로 {} 삽입됨
 3D macro {} saved	3D 매크로 {} 저장됨
-3D view	3D 보기
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = 아직 회로도에 없음
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	기준선은 전체 프로젝트(페이지, 장치, 부품, 설정)를 저장합니다. 개정을 릴리스하면 기준선이 하나 저장됩니다.
@@ -188,7 +187,6 @@ Automatic accessories	자동 부속품
 Automatic configuration	자동 구성
 Automatic placement	자동 배치
 Automatic: {}	자동: {}
-Automation	자동화
 Avoid:	회피:
 Back	뒤로
 Back to the project (Esc)	프로젝트로 돌아가기 (Esc)
@@ -1494,7 +1492,6 @@ Plot frames	플롯 프레임
 Plot, {}	부지, {}
 Plug in card	카드 장착
 Plugin commands	플러그인 명령
-Plugins	플러그인
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	플러그인은 명령, 검사, 보고서 및 내보내기를 추가합니다. 외부 플러그인은 환경 변수 {}의 폴더에서 로드됩니다(플러그인마다 plugin.json이 있는 하위 폴더 하나).
 Plus and minus leads from the modules to the inverter	모듈에서 인버터까지의 플러스 및 마이너스 케이블
 Points	점
@@ -1584,7 +1581,6 @@ Recommended height of manual actuators (10.1.2)	수동 조작부의 권장 높�
 Record	기록
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	기록: 나타나는 영역에서 제스처를 하고, 원하면 보조키를 누른 채로 합니다(Esc는 취소). 추가는 기존 제스처를 유지합니다. 선택 도구에서 마우스 오른쪽 클릭은 상황에 맞는 메뉴를 엽니다.
 Redline: to be changed · Greenline: changed as built	레드라인: 변경 예정 · 그린라인: 시공 상태대로 변경됨
-Redo	다시 실행
 Reference point	기준점
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	기준점을 x {} m, z {} m에 배치했습니다. 건물 창에서 좌표를 입력하십시오
 Refresh example catalog parts (GEN.*)	예제 카탈로그 부품(GEN.*) 새로 고침
@@ -1661,7 +1657,6 @@ Report blocks…	보고서 블록…
 Report forms	보고서 양식
 Report name (page heading)	보고서 이름(페이지 제목)
 Report with all harness wires	모든 하네스 전선이 포함된 보고서
-Reports	보고서
 Representation	표시
 Requester	요청자
 Reservation	예약
@@ -1810,7 +1805,6 @@ Segment {}	세그먼트 {}
 Segments	구간
 Segregation	분리
 Segregation factor	분리 계수
-Select	선택
 Select / move (Esc)	선택 / 이동(Esc)
 Select a file to import it	가져올 파일을 선택하세요
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	기능 정의를 선택하세요. 프로젝트 정의(굵게)는 변경할 수 있으며 속성 라이브러리에 저장됩니다.
@@ -2114,14 +2108,12 @@ Transfer project parts to database	프로젝트 부품을 데이터베이스로 
 Translate the project texts; documentation per language	프로젝트 텍스트 번역, 언어별 문서
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	수직축 기준 회전, 위에서 볼 때 시계 반대 방향(90 °: 전면이 오른쪽을 향함)
 Turn the 3D view to the point	3D 보기를 해당 점으로 돌리기
-Tutorial	튜토리얼
 Twin ferrules where two wires share a connection point	두 전선이 연결 지점을 공유하는 곳에 이중 페룰
 Two fingers	두 손가락
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	여기에서 두 연결선이 직각으로 만나야 합니다. 자동 연결이 켜져 있으면 그 가지를 마주하는 접속점이 여기에 배선됩니다.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	점을 입력하고 Enter 키를 누르세요: x y(mm) 또는 마지막 점 기준 상대 좌표 @dx dy. 현재 도구로 클릭한 것과 같이 동작합니다
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	UI 배율
-Undo	실행 취소
 Undo brings it back.	실행 취소로 되돌릴 수 있습니다.
 Undo list	실행 취소 목록
 Undo {} steps	{}단계 실행 취소

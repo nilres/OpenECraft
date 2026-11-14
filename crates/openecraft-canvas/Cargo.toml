@@ -1,0 +1,21 @@
+[package]
+name = "openecraft-canvas"
+version.workspace = true
+edition = "2021"
+description = "The drawing views of the OpenECraft editor: the page editor (schematics, forms) and the panel layout in 2D and 3D, shared by the editor and the website"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# The 3D view draws with glow (src/panel_ui/gpu3d.rs).
+eframe = { version = "0.37", default-features = false, features = ["glow"] }
+egui = { version = "0.37", features = ["monochrome_emoji_fonts"] }
+serde = { version = "1", features = ["derive", "rc"] }
+serde_json = "1"
+log = "0.4"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+openecraft-edz = { path = "../openecraft-edz" }
+openecraft-parts = { path = "../openecraft-parts" }
+openecraft-i18n = { path = "../openecraft-i18n" }
+openecraft-ui = { path = "../openecraft-ui" }
+openecraft-core = { path = "../openecraft-core" }
+openecraft-shell = { path = "../openecraft-shell" }

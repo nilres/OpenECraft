@@ -1,4 +1,4 @@
-# English<TAB>Türkçe – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Türkçe – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Potansiyel {}
   (built-in)	  (yerleşik)
 (choose a part)	(bir parça seçin)
@@ -41,7 +41,6 @@
 3D macro	3D makro
 3D macro {} inserted	3D makro {} eklendi
 3D macro {} saved	3D makro {} kaydedildi
-3D view	3B görünüm
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = henüz şemada değil
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Referans sürüm tüm projeyi (sayfalar, cihazlar, parçalar, ayarlar) saklar. Bir revizyonun yayımlanması bir referans sürüm saklar.
@@ -189,7 +188,6 @@ Automatic accessories	Otomatik aksesuarlar
 Automatic configuration	Otomatik yapılandırma
 Automatic placement	Otomatik yerleştirme
 Automatic: {}	Otomatik: {}
-Automation	Otomasyon
 Avoid:	Kaçın:
 Back	Geri
 Back to the project (Esc)	Projeye dön (Esc)
@@ -1512,7 +1510,6 @@ Plot frames	Çizim çerçeveleri
 Plot, {}	Arsa, {}
 Plug in card	Kartı tak
 Plugin commands	Eklenti komutları
-Plugins	Eklentiler
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Eklentiler komut, kontrol, rapor ve dışa aktarım ekler. Harici eklentiler {} ortam değişkenindeki klasörlerden yüklenir (eklenti başına plugin.json içeren bir alt klasör).
 Plus and minus leads from the modules to the inverter	Modüllerden invertere artı ve eksi kablolar
 Points	Noktalar
@@ -1605,7 +1602,6 @@ Recommended height of manual actuators (10.1.2)	Elle kumanda elemanlarının ön
 Record	Kaydet
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Kaydet: beliren alanda hareketi yapın, isterseniz bir değiştirici tuşu basılı tutun (Esc iptal eder). Ekle mevcut hareketleri korur. Seçim aracında sağ tıklama bağlam menüsünü açar.
 Redline: to be changed · Greenline: changed as built	Redline: değiştirilecek · Greenline: uygulandığı gibi değiştirildi
-Redo	Yinele
 Reference point	Referans noktası
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Referans noktası x {} m, z {} m konumuna yerleştirildi; koordinatlarını Binalar panelinde girin
 Refresh example catalog parts (GEN.*)	Örnek katalog parçalarını yenile (GEN.*)
@@ -1682,7 +1678,6 @@ Report blocks…	Rapor blokları…
 Report forms	Rapor formları
 Report name (page heading)	Rapor adı (sayfa başlığı)
 Report with all harness wires	Tüm kablo demeti tellerini içeren rapor
-Reports	Raporlar
 Representation	Gösterim
 Requester	Talep eden
 Reservation	Ayrılmış alan
@@ -1833,7 +1828,6 @@ Segment {}	Segment {}
 Segments	Segmentler
 Segregation	Ayırma
 Segregation factor	Ayırma faktörü
-Select	Seç
 Select / move (Esc)	Seç / taşı (Esc)
 Select a file to import it	İçe aktarmak için bir dosya seçin
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Bir fonksiyon tanımı seçin. Proje tanımları (kalın) değiştirilebilir ve özellik kütüphanelerinde saklanır.
@@ -2140,14 +2134,12 @@ Transfer project parts to database	Proje parçalarını veritabanına aktar
 Translate the project texts; documentation per language	Proje metinlerini çevir; dil başına dokümantasyon
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Dikey eksen etrafında dönüş, yukarıdan bakıldığında saat yönünün tersine (90 °: ön yüzler sağa bakar)
 Turn the 3D view to the point	3B görünümü noktaya çevir
-Tutorial	Eğitim
 Twin ferrules where two wires share a connection point	İki telin bir bağlantı noktasını paylaştığı yerlerde ikiz yüksükler
 Two fingers	İki parmak
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Burada iki tel dik açıyla birleşmeli. Otomatik bağlama açıkken kollarına bakan bağlantı noktaları ona bağlanır.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Bir nokta yazın ve Enter'a basın: mm cinsinden x y veya son noktaya göre @dx dy; geçerli aracın tıklaması gibi davranır
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Arayüz ölçeği
-Undo	Geri al
 Undo brings it back.	Geri al ile geri gelir.
 Undo list	Geri alma listesi
 Undo {} steps	{} adımı geri al

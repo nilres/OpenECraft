@@ -9,32 +9,25 @@
 mod app;
 mod autosave;
 mod shutdown;
-mod commands;
-mod dock;
 #[cfg(test)]
 mod conventions;
-mod editor;
 mod frame_stats;
-mod gestures;
 #[cfg(test)]
 mod glyphs;
 mod insert_center;
 mod io;
-mod jobs;
 mod mounting_ui;
-mod panel_ui;
 mod plugin_commands;
-mod shortcuts;
 mod startup;
-mod workspaces;
 mod parts_ui;
 mod remote;
-mod ribbon;
-mod style;
 mod vault;
-mod session;
 mod updater;
 mod wiring_ui;
+
+use openecraft_canvas::{editor, jobs, panel_ui};
+use openecraft_session::session;
+use openecraft_shell::{commands, dock, gestures, ribbon, shortcuts, style, workspaces};
 
 #[cfg(not(target_arch = "wasm32"))]
 fn main() -> eframe::Result {

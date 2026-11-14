@@ -1,4 +1,4 @@
-# English<TAB>Русский – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Русский – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Потенциал {}
   (built-in)	  (встроенный)
 (choose a part)	(выберите изделие)
@@ -41,7 +41,6 @@
 3D macro	3D-макрос
 3D macro {} inserted	3D-макрос {} вставлен
 3D macro {} saved	3D-макрос {} сохранён
-3D view	3D-вид
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = пока нет на схеме
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Базовая версия хранит весь проект (листы, устройства, изделия, настройки). При выпуске ревизии она создаётся автоматически.
@@ -189,7 +188,6 @@ Automatic accessories	Автоматические принадлежности
 Automatic configuration	Автоматическая конфигурация
 Automatic placement	Автоматическое размещение
 Automatic: {}	Автоматически: {}
-Automation	Автоматизация
 Avoid:	Избегать:
 Back	Назад
 Back to the project (Esc)	Назад к проекту (Esc)
@@ -1511,7 +1509,6 @@ Plot frames	Рамки листов
 Plot, {}	Участок, {}
 Plug in card	Установить плату
 Plugin commands	Команды плагинов
-Plugins	Плагины
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Плагины добавляют команды, проверки, отчёты и экспорты. Внешние плагины загружаются из папок, указанных в переменной среды {} (по одной вложенной папке с plugin.json на плагин).
 Plus and minus leads from the modules to the inverter	Плюсовой и минусовой кабели от модулей к инвертору
 Points	Точки
@@ -1604,7 +1601,6 @@ Recommended height of manual actuators (10.1.2)	Рекомендуемая вы�
 Record	Записать
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Записать: выполните жест в появившемся поле, при желании удерживая модификатор (Esc отменяет). «Добавить» сохраняет имеющиеся жесты. Правый щелчок в инструменте выбора открывает контекстное меню.
 Redline: to be changed · Greenline: changed as built	Красная правка: требуется изменить · Зелёная правка: изменено по факту монтажа
-Redo	Повторить
 Reference point	Опорная точка
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Опорная точка размещена в x {} м, z {} м; введите её координаты на панели Здания
 Refresh example catalog parts (GEN.*)	Обновить изделия примера каталога (GEN.*)
@@ -1681,7 +1677,6 @@ Report blocks…	Блоки отчётов…
 Report forms	Формы отчётов
 Report name (page heading)	Имя отчёта (заголовок листа)
 Report with all harness wires	Отчёт со всеми проводами жгута
-Reports	Отчёты
 Representation	Изображение
 Requester	Инициатор
 Reservation	Резервирование
@@ -1832,7 +1827,6 @@ Segment {}	Сегмент {}
 Segments	Участки
 Segregation	Разделение
 Segregation factor	Коэффициент разделения
-Select	Выбрать
 Select / move (Esc)	Выбрать / переместить (Esc)
 Select a file to import it	Выберите файл, чтобы импортировать его
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Выберите определение функции. Определения проекта (полужирные) можно изменять, они сохраняются в библиотеках свойств.
@@ -2139,14 +2133,12 @@ Transfer project parts to database	Передать изделия проект�
 Translate the project texts; documentation per language	Перевод текстов проекта; документация на каждом языке
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Поворот вокруг вертикальной оси, против часовой стрелки при виде сверху (90 °: лицевые стороны обращены вправо)
 Turn the 3D view to the point	Повернуть 3D-вид к точке
-Tutorial	Учебник
 Twin ferrules where two wires share a connection point	Двойные наконечники там, где два провода подключены к одной точке
 Two fingers	Два пальца
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Здесь должны сходиться два провода под прямым углом. При включённом автосоединении точки подключения напротив его плеч соединяются с ним.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Введите точку и нажмите Enter: x y в мм или @dx dy относительно последней точки; действует как щелчок текущим инструментом
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} В, I {} А, {} кВт пик
 UI scale	Масштаб интерфейса
-Undo	Отменить
 Undo brings it back.	Отмена вернёт его.
 Undo list	Список отмены
 Undo {} steps	Отменить шагов: {}

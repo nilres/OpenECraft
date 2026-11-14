@@ -1,4 +1,4 @@
-# English<TAB>Português – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Português – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Potencial {}
   (built-in)	  (integrado)
 (choose a part)	(escolha uma peça)
@@ -41,7 +41,6 @@
 3D macro	Macro 3D
 3D macro {} inserted	Macro 3D {} inserida
 3D macro {} saved	Macro 3D {} salva
-3D view	Vista 3D
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = ainda não está no esquema elétrico
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	Uma linha de base armazena o projeto inteiro (páginas, dispositivos, peças, configurações). A liberação de uma revisão armazena uma.
@@ -189,7 +188,6 @@ Automatic accessories	Acessórios automáticos
 Automatic configuration	Configuração automática
 Automatic placement	Posicionamento automático
 Automatic: {}	Automático: {}
-Automation	Automação
 Avoid:	Evitar:
 Back	Voltar
 Back to the project (Esc)	Voltar ao projeto (Esc)
@@ -1512,7 +1510,6 @@ Plot frames	Molduras de plotagem
 Plot, {}	Terreno, {}
 Plug in card	Inserir cartão
 Plugin commands	Comandos de plug-in
-Plugins	Plug-ins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Os plug-ins adicionam comandos, verificações, relatórios e exportações. Plug-ins externos são carregados das pastas da variável de ambiente {} (uma subpasta com um plugin.json por plug-in).
 Plus and minus leads from the modules to the inverter	Cabos positivo e negativo dos módulos ao inversor
 Points	Pontos
@@ -1605,7 +1602,6 @@ Recommended height of manual actuators (10.1.2)	Altura recomendada de atuadores 
 Record	Gravar
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Gravar: faça o gesto no campo que aparece, mantendo uma tecla modificadora se quiser (Esc cancela). Adicionar mantém os gestos existentes. O clique direito na ferramenta de seleção abre o menu de contexto.
 Redline: to be changed · Greenline: changed as built	Redline: a alterar · Greenline: alterado conforme construído
-Redo	Refazer
 Reference point	Ponto de referência
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Ponto de referência colocado em x {} m, z {} m; insira suas coordenadas no painel Edifícios
 Refresh example catalog parts (GEN.*)	Atualizar peças do catálogo de exemplo (GEN.*)
@@ -1682,7 +1678,6 @@ Report blocks…	Blocos de relatório…
 Report forms	Formulários de relatório
 Report name (page heading)	Nome do relatório (título da página)
 Report with all harness wires	Relatório com todos os fios do chicote
-Reports	Relatórios
 Representation	Representação
 Requester	Solicitante
 Reservation	Reserva
@@ -1833,7 +1828,6 @@ Segment {}	Segmento {}
 Segments	Trechos
 Segregation	Segregação
 Segregation factor	Fator de segregação
-Select	Selecionar
 Select / move (Esc)	Selecionar / mover (Esc)
 Select a file to import it	Selecione um arquivo para importá-lo
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Selecione uma definição de função. As definições de projeto (em negrito) podem ser alteradas e são mantidas em bibliotecas de propriedades.
@@ -2140,14 +2134,12 @@ Transfer project parts to database	Transferir peças do projeto para o banco de 
 Translate the project texts; documentation per language	Traduzir os textos do projeto; documentação por idioma
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Rotação em torno da vertical, no sentido anti-horário visto de cima (90 °: as frentes ficam voltadas para a direita)
 Turn the 3D view to the point	Girar a vista 3D para o ponto
-Tutorial	Tutorial
 Twin ferrules where two wires share a connection point	Terminais tubulares duplos onde dois fios compartilham um ponto de conexão
 Two fingers	Dois dedos
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Aqui devem encontrar-se dois fios em ângulo reto. Com a autoconexão ativa, os pontos de conexão voltados para os seus braços são ligados a ele.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Digite um ponto e pressione Enter: x y em mm ou @dx dy em relação ao último ponto; funciona como um clique da ferramenta atual
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Escala da interface
-Undo	Desfazer
 Undo brings it back.	Desfazer o recupera.
 Undo list	Lista de desfazer
 Undo {} steps	Desfazer {} passos

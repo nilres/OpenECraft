@@ -1,6 +1,5 @@
 # English<TAB>Deutsch<TAB>Français<TAB>Español – the command line and MCP server. Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(nur MCP-Server)	(serveur MCP uniquement)	(solo servidor MCP)
-(optional)	(optional)	(facultatif)	(opcional)
 Access token for changes	Zugangstoken für Änderungen	Jeton d'accès pour les modifications	Token de acceso para cambios
 Access token of a Vault session or an Autodesk account instead of user and password	Zugriffstoken einer Vault-Sitzung oder eines Autodesk-Kontos statt Benutzer und Passwort	Jeton d'accès d'une session Vault ou d'un compte Autodesk au lieu de l'utilisateur et du mot de passe	Token de acceso de una sesión de Vault o de una cuenta de Autodesk en lugar de usuario y contraseña
 Address of the Vault server, e.g. https://vault.example.com	Adresse des Vault-Servers, z. B. https://vault.example.com	Adresse du serveur Vault, p. ex. https://vault.example.com	Dirección del servidor de Vault, p. ej. https://vault.example.com
@@ -273,11 +272,9 @@ This format needs an output file (path)	Dieses Format braucht eine Ausgabedatei 
 Title block of the project (list_title_blocks)	Schriftfeld des Projekts (list_title_blocks)	Cartouche du projet (list_title_blocks)	Cajetín del proyecto (list_title_blocks)
 Top edge in mm from the top of the title block area	Oberer Rand in mm vom oberen Rand des Schriftfeldbereichs	Bord supérieur en mm depuis le haut de la zone du cartouche	Borde superior en mm desde la parte superior del área del cajetín
 Undoes the last change	Macht die letzte Änderung rückgängig	Annule la dernière modification	Deshace el último cambio
-Unexpected argument: {}	Unerwartetes Argument: {}	Argument inattendu : {}	Argumento inesperado: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Unbekannter Befehl: {}. openecraft-cli help zeigt eine Liste.	Commande inconnue : {}. openecraft-cli help affiche la liste.	Comando desconocido: {}. openecraft-cli help muestra la lista.
 Unknown example {}: see list_examples	Unbekanntes Beispiel {}: siehe list_examples	Exemple inconnu {} : voir list_examples	Ejemplo desconocido {}: véase list_examples
 Unknown format {}: give oec, oecp or oecz	Unbekanntes Format {}: oec, oecp oder oecz angeben	Format {} inconnu : indiquez oec, oecp ou oecz	Formato {} desconocido: indique oec, oecp u oecz
-Unknown language: {}	Unbekannte Sprache: {}	Langue inconnue : {}	Idioma desconocido: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Unbekannter Seitentyp: {} (schematic, overview, graphic, cover oder eine Auswertung aus list_reports)	Type de page inconnu : {} (schematic, overview, graphic, cover ou un rapport de list_reports)	Tipo de página desconocido: {} (schematic, overview, graphic, cover o un informe de list_reports)
 Unknown part {} (parts server: {})	Unbekannter Artikel {} (Artikelserver: {})	Article inconnu {} (serveur d'articles : {})	Artículo desconocido {} (servidor de artículos: {})
 Unknown plugin: {}	Unbekanntes Plugin: {}	Plugin inconnu : {}	Plugin desconocido: {}

@@ -17,12 +17,13 @@ pub use crate::catalog::AREAS;
 /// The area of a workspace member (its path in `[workspace] members`).
 pub fn area_of_member(member: &str) -> &'static str {
     match member.trim_matches('/') {
-        "openecraft" => "editor",
+        "openecraft" | "crates/openecraft-session" | "crates/openecraft-shell" | "crates/openecraft-canvas" => "editor",
         "crates/openecraft-core" | "crates/openecraft-view" => "core",
         "crates/openecraft-api" => "plugins",
         "cli" => "cli",
         "crates/openecraft-ui" => "ui",
         "crates/openecraft-i18n" => "common",
+        "website" => "website",
         _ => "parts",
     }
 }

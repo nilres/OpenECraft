@@ -1,4 +1,4 @@
-# English<TAB>Svenska – the editor (openecraft/) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Svenska – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas) (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Potential {}
   (built-in)	  (inbyggd)
 (choose a part)	(välj en artikel)
@@ -41,7 +41,6 @@
 3D macro	3D-makro
 3D macro {} inserted	3D-makro {} infogat
 3D macro {} saved	3D-makro {} sparat
-3D view	3D-vy
 =A1+CAB1	=A1+CAB1
 ? = not in the schematic yet	? = inte i schemat ännu
 A baseline stores the whole project (pages, devices, parts, settings). Releasing a revision stores one.	En baslinje lagrar hela projektet (sidor, apparater, artiklar, inställningar). När en revision frisläpps lagras en.
@@ -189,7 +188,6 @@ Automatic accessories	Automatiska tillbehör
 Automatic configuration	Automatisk konfiguration
 Automatic placement	Automatisk placering
 Automatic: {}	Automatiskt: {}
-Automation	Automatisering
 Avoid:	Undvik:
 Back	Tillbaka
 Back to the project (Esc)	Tillbaka till projektet (Esc)
@@ -1512,7 +1510,6 @@ Plot frames	Ritningsramar
 Plot, {}	Tomt, {}
 Plug in card	Sätt i kort
 Plugin commands	Plugin-kommandon
-Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins lägger till kommandon, kontroller, rapporter och exporter. Externa plugins läses in från mapparna i miljövariabeln {} (en undermapp med en plugin.json per plugin).
 Plus and minus leads from the modules to the inverter	Plus- och minusledare från modulerna till växelriktaren
 Points	Punkter
@@ -1605,7 +1602,6 @@ Recommended height of manual actuators (10.1.2)	Rekommenderad höjd för manuell
 Record	Spela in
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Spela in: gör gesten i fältet som visas, med en modifieringstangent nedtryckt om du vill (Esc avbryter). Lägg till behåller befintliga gester. Högerklick i markeringsverktyget öppnar snabbmenyn.
 Redline: to be changed · Greenline: changed as built	Redline: ska ändras · Greenline: ändrat enligt utförande
-Redo	Gör om
 Reference point	Referenspunkt
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Referenspunkten placerad vid x {} m, z {} m; ange dess koordinater i panelen Byggnader
 Refresh example catalog parts (GEN.*)	Uppdatera exempelkatalogens artiklar (GEN.*)
@@ -1682,7 +1678,6 @@ Report blocks…	Rapportblock…
 Report forms	Rapportformulär
 Report name (page heading)	Rapportnamn (sidrubrik)
 Report with all harness wires	Rapport med alla kabelstamsledningar
-Reports	Rapporter
 Representation	Framställning
 Requester	Beställare
 Reservation	Reservation
@@ -1833,7 +1828,6 @@ Segment {}	Segment {}
 Segments	Avsnitt
 Segregation	Separation
 Segregation factor	Separationsfaktor
-Select	Markera
 Select / move (Esc)	Markera / flytta (Esc)
 Select a file to import it	Välj en fil för att importera den
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Välj en funktionsdefinition. Projektdefinitioner (fetstil) kan ändras och sparas i egenskapsbibliotek.
@@ -2140,14 +2134,12 @@ Transfer project parts to database	Överför projektartiklar till databasen
 Translate the project texts; documentation per language	Översätt projekttexterna; dokumentation per språk
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Vridning kring lodlinjen, moturs sett ovanifrån (90 °: fronterna pekar åt höger)
 Turn the 3D view to the point	Vänd 3D-vyn mot punkten
-Tutorial	Handledning
 Twin ferrules where two wires share a connection point	Dubbla ändhylsor där två ledare delar en anslutningspunkt
 Two fingers	Två fingrar
 Two wires must meet here at a right angle. With Auto-connect on, connection points facing its arms are wired to it.	Här måste två ledare mötas i rät vinkel. Med automatisk anslutning på kopplas anslutningspunkter som är vända mot dess armar till det.
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Skriv en punkt och tryck på Retur: x y i mm, eller @dx dy relativt till den senaste punkten; det fungerar som ett klick med det aktuella verktyget
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Gränssnittets skala
-Undo	Ångra
 Undo brings it back.	Ångra tar tillbaka det.
 Undo list	Ångralista
 Undo {} steps	Ångra {} steg

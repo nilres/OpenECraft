@@ -1,4 +1,4 @@
-# English<TAB>Deutsch<TAB>Français<TAB>Español – the editor (openecraft/). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
+# English<TAB>Deutsch<TAB>Français<TAB>Español – the editor (openecraft/) and its shell, session and views (openecraft-shell, -session, -canvas). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
    |  Potential {}	   |  Potenzial {}	   |  Potentiel {}	   |  Potencial {}
   (built-in)	  (eingebaut)	  (intégré)	  (integrado)
 (choose a part)	(Artikel wählen)	(choisir un article)	(elegir un artículo)
@@ -64,7 +64,6 @@
 3D macro {} inserted	3D-Makro {} eingefügt	Macro 3D {} insérée	Macro 3D {} insertada
 3D macro {} saved	3D-Makro {} gespeichert	Macro 3D {} enregistrée	Macro 3D {} guardada
 3D topology	3D-Topologie	Topologie 3D	Topología 3D
-3D view	3D-Ansicht	Vue 3D	Vista 3D
 4. Draw wires with the wire tool ({}); they end on connection points. Potentials and interruption points name the nets across pages.	4. Verbindungen mit dem Verbindungswerkzeug ({}) zeichnen; sie enden an Anschlusspunkten. Potenziale und Unterbrechungsstellen benennen die Netze seitenübergreifend.	4. Tracez des fils avec l'outil fil ({}) ; ils se terminent sur les points de connexion. Les potentiels et les points d'interruption nomment les réseaux entre les pages.	4. Dibuje conductores con la herramienta de conductor ({}); terminan en los puntos de conexión. Los potenciales y los puntos de interrupción nombran las redes entre páginas.
 5. Assign parts in the properties (Parts tab) or with Devices › Part selection.	5. Artikel in den Eigenschaften (Registerkarte Artikel) oder mit Betriebsmittel › Artikelauswahl zuordnen.	5. Affectez des articles dans les propriétés (onglet Articles) ou avec Appareils › Sélection d'article.	5. Asigne artículos en las propiedades (pestaña Artículos) o con Dispositivos › Selección de artículo.
 6. Project data › Check: the Messages pane lists what is missing; a click shows the place.	6. Projektdaten › Prüfen: Der Bereich Meldungen listet auf, was fehlt; ein Klick zeigt die Stelle.	6. Données de projet › Vérification : le volet Messages liste ce qui manque ; un clic montre l'endroit.	6. Datos de proyecto › Comprobación: el panel Mensajes enumera lo que falta; un clic muestra el lugar.
@@ -241,7 +240,6 @@ Automatic configuration	Automatische Konfiguration	Configuration automatique	Con
 Automatic mode pans with identified trackpad input, zooms with mouse-wheel input, and uses the wheel-source policy below for unknown sources.	Der automatische Modus verschiebt bei als Trackpad erkanntem Scrollen, zoomt bei als Mausrad erkanntem Scrollen und verwendet für unbekannte Quellen die unten gewählte Regel.	En mode automatique, le défilement identifié comme provenant d'un pavé tactile déplace la vue, celui d'une molette de souris zoome, et les sources inconnues suivent la règle ci-dessous.	En modo automático, el desplazamiento identificado como panel táctil desplaza la vista, el de la rueda del ratón hace zoom y las fuentes desconocidas siguen la regla siguiente.
 Automatic placement	Automatische Platzierung	Placement automatique	Colocación automática
 Automatic: {}	Automatisch: {}	Automatique : {}	Automático: {}
-Automation	Automatisierung	Automatisation	Automatización
 Avoid:	Meiden:	Éviter :	Evitar:
 Back	Zurück	Retour	Atrás
 Back to a rectangle of the room's width and depth	Zurück zu einem Rechteck aus Breite und Tiefe des Raums	Revenir à un rectangle de la largeur et de la profondeur de la salle	Volver a un rectángulo del ancho y la profundidad de la sala
@@ -1723,7 +1721,6 @@ Plot, {}	Grundstück, {}	Terrain, {}	Parcela, {}
 Plug in card	Karte stecken	Insérer une carte	Insertar tarjeta
 Plugin commands	Plugin-Befehle	Commandes de plugin	Comandos de plugin
 Plugin folder	Plugin-Ordner	Dossier des plugins	Carpeta de plugins
-Plugins	Plugins	Plugins	Plugins
 Plugins add commands, checks, reports and exports. External plugins are loaded from the folders in the environment variable {} (one subfolder with a plugin.json per plugin).	Plugins fügen Befehle, Prüfungen, Berichte und Exporte hinzu. Externe Plugins werden aus den Ordnern der Umgebungsvariable {} geladen (ein Unterordner mit einer plugin.json je Plugin).	Les plugins ajoutent des commandes, des vérifications, des rapports et des exports. Les plugins externes sont chargés depuis les dossiers de la variable d'environnement {} (un sous-dossier avec un plugin.json par plugin).	Los plugins añaden comandos, comprobaciones, informes y exportaciones. Los plugins externos se cargan desde las carpetas de la variable de entorno {} (una subcarpeta con un plugin.json por plugin).
 Plus and minus leads from the modules to the inverter	Plus- und Minusleitung von den Modulen zum Wechselrichter	Câbles plus et moins des modules à l'onduleur	Cables positivo y negativo de los módulos al inversor
 Points	Punkte	Points	Puntos
@@ -1834,7 +1831,6 @@ Record	Aufnehmen	Enregistrer	Grabar
 Record: do the gesture in the field that appears, holding a modifier if wanted (Esc cancels). Add keeps the gestures there are. Right click in the select tool opens the context menu.	Aufnehmen: die Geste im erscheinenden Feld ausführen, auf Wunsch mit gedrückter Zusatztaste (Esc bricht ab). Hinzufügen behält die vorhandenen Gesten. Rechtsklick im Auswahlwerkzeug öffnet das Kontextmenü.	Enregistrer : faites le geste dans le champ qui apparaît, en maintenant une touche de modification si souhaité (Échap annule). Ajouter conserve les gestes existants. Le clic droit dans l'outil de sélection ouvre le menu contextuel.	Grabar: haga el gesto en el campo que aparece, con una tecla modificadora pulsada si lo desea (Esc cancela). Añadir conserva los gestos existentes. El clic derecho en la herramienta de selección abre el menú contextual.
 Record: press the new key with its modifiers (Esc cancels). Esc and copy / cut / paste stay fixed.	Aufnehmen: die neue Taste mit ihren Zusatztasten drücken (Esc bricht ab). Esc und Kopieren / Ausschneiden / Einfügen bleiben fest.	Enregistrer : appuyez sur la nouvelle touche avec ses modificateurs (Échap annule). Échap et copier / couper / coller restent fixes.	Grabar: pulse la nueva tecla con sus modificadores (Esc cancela). Esc y copiar / cortar / pegar no cambian.
 Redline: to be changed · Greenline: changed as built	Redline: zu ändern · Greenline: wie gebaut geändert	Redline : à modifier · Greenline : modifié tel que construit	Redline: a cambiar · Greenline: cambiado según construcción
-Redo	Wiederholen	Rétablir	Rehacer
 Reference artwork without pin anchors	Referenzgrafik ohne Anschlusspunkte	Dessin de référence sans points de raccordement	Dibujo de referencia sin puntos de conexión
 Reference point	Bezugspunkt	Point de référence	Punto de referencia
 Reference point placed at x {} m, z {} m; enter its coordinates in the Buildings pane	Bezugspunkt bei x {} m, z {} m gesetzt; seine Koordinaten im Bereich Gebäude eingeben	Point de référence placé en x {} m, z {} m ; saisir ses coordonnées dans le volet Bâtiments	Punto de referencia colocado en x {} m, z {} m; introduzca sus coordenadas en el panel Edificios
@@ -1918,7 +1914,6 @@ Report blocks…	Auswertungsblöcke…	Blocs de rapports…	Bloques de informes�
 Report forms	Berichtsformulare	Formulaires de rapport	Formularios de informe
 Report name (page heading)	Name der Auswertung (Seitenüberschrift)	Nom du rapport (titre de la page)	Nombre del informe (título de la página)
 Report with all harness wires	Bericht mit allen Kabelbaum-Leitungen	Rapport avec tous les fils du faisceau	Informe con todos los hilos del mazo
-Reports	Berichte	Rapports	Informes
 Representation	Darstellung	Représentation	Representación
 Representations	Darstellungsarten	Représentations	Representaciones
 Requester	Antragsteller	Demandeur	Solicitante
@@ -2084,7 +2079,6 @@ Segment {}	Segment {}	Segment {}	Segmento {}
 Segments	Abschnitte	Tronçons	Tramos
 Segregation	Trennung	Séparation	Separación
 Segregation factor	Trennungsfaktor	Facteur de séparation	Factor de separación
-Select	Auswählen	Sélectionner	Seleccionar
 Select / move (Esc)	Auswählen / Verschieben (Esc)	Sélectionner / déplacer (Échap)	Seleccionar / mover (Esc)
 Select a file to import it	Datei auswählen, um sie zu importieren	Sélectionnez un fichier pour l'importer	Seleccione un archivo para importarlo
 Select a function definition. Project definitions (bold) can be changed and are kept in property libraries.	Funktionsdefinition auswählen. Projektdefinitionen (fett) können geändert werden und werden in Eigenschaftsbibliotheken gespeichert.	Sélectionnez une définition de fonction. Les définitions de projet (en gras) sont modifiables et enregistrées dans les bibliothèques de propriétés.	Seleccione una definición de función. Las definiciones de proyecto (en negrita) se pueden modificar y se guardan en las bibliotecas de propiedades.
@@ -2438,7 +2432,6 @@ Translate the project texts; documentation per language	Projekttexte übersetzen
 Try again now	Jetzt erneut versuchen	Réessayer maintenant	Intentar de nuevo ahora
 Turn about the vertical, counter-clockwise seen from above (90 °: the fronts face to the right)	Drehung um die Senkrechte, von oben gesehen gegen den Uhrzeigersinn (90 °: die Fronten zeigen nach rechts)	Rotation autour de la verticale, dans le sens antihoraire vu d'en haut (90 ° : les façades sont tournées vers la droite)	Giro alrededor de la vertical, en sentido antihorario visto desde arriba (90 °: los frentes miran a la derecha)
 Turn the 3D view to the point	3D-Ansicht auf den Punkt ausrichten	Tourner la vue 3D vers le point	Girar la vista 3D hacia el punto
-Tutorial	Tutorial	Tutoriel	Tutorial
 Tutorial: {}	Tutorial: {}	Tutoriel : {}	Tutorial: {}
 Twin ferrules where two wires share a connection point	Zwillingsaderendhülsen, wo zwei Leitungen einen Anschlusspunkt teilen	Embouts doubles là où deux fils partagent un point de connexion	Punteras dobles donde dos cables comparten un punto de conexión
 Two fingers	Zwei Finger	Deux doigts	Dos dedos
@@ -2447,7 +2440,6 @@ Type a point	Punkt eingeben	Saisir un point	Introducir un punto
 Type a point and press Enter: x y in mm, or @dx dy relative to the last point; it acts like a click of the current tool	Punkt eingeben und Enter drücken: x y in mm oder @dx dy relativ zum letzten Punkt; wirkt wie ein Klick des aktuellen Werkzeugs	Saisir un point puis Entrée : x y en mm, ou @dx dy relatif au dernier point ; agit comme un clic de l'outil courant	Escriba un punto y pulse Intro: x y en mm, o @dx dy relativo al último punto; actúa como un clic de la herramienta actual
 U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWp	U {} / {} / {} V, I {} A, {} kWc	U {} / {} / {} V, I {} A, {} kWp
 UI scale	Skalierung der Oberfläche	Échelle de l'interface	Escala de la interfaz
-Undo	Rückgängig	Annuler	Deshacer
 Undo brings it back.	Rückgängig holt es zurück.	Annuler le rétablit.	Deshacer lo recupera.
 Undo brings the page back.	Rückgängig holt die Seite zurück.	Annuler rétablit la page.	Deshacer recupera la página.
 Undo list	Rückgängig-Liste	Liste d'annulation	Lista de deshacer

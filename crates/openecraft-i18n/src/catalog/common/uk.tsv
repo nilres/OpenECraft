@@ -2,9 +2,11 @@
 (all)	(усі)
 (no entries)	(немає записів)
 (no structure)	(без структури)
+(optional)	(необов’язково)
 --json needs a JSON object	--json потребує об’єкта JSON
 3D model	3D-модель
 3D routing	3D-прокладання
+3D view	3D-вигляд
 A page named {} already exists	Сторінка з назвою {} вже існує
 A page needs a name	Сторінці потрібна назва
 A routing path needs {} points at least	Траса прокладання потребує щонайменше {} точок
@@ -23,6 +25,7 @@ Apply	Застосувати
 Approve	Погодити
 Approvers	Погоджувачі
 Automatic	Автоматично
+Automation	Автоматизація
 Aux	Доп.
 Below	Знизу
 Bold	Жирний
@@ -124,6 +127,7 @@ Display	Відображення
 Done	Виконано
 Door	Двері
 Door cutout	Виріз у дверцятах
+Download	Завантажити
 Downloading {}…	Завантаження {}…
 Drag to turn the model	Перетягніть, щоб повернути модель
 EMC clearance	Відстань ЕМС
@@ -212,6 +216,7 @@ Link	Зв’язок
 Linked	Пов’язано
 Load	Навантаження
 Loaded circuits bunched together	Навантажені кола, прокладені разом
+Loading…	Завантаження…
 Location	Розташування
 Location (+)	Розташування (+)
 Locked	Заблокований
@@ -246,6 +251,8 @@ Mounting holes	Кріпильні отвори
 Mounting layout {}	План монтажу {}
 Mounting plate	Монтажна панель
 Mounting rail	Монтажна рейка
+NC contact	Розмикальний контакт
+NO contact	Замикальний контакт
 Name	Назва
 Name of the block	Назва блоку
 Name of the plot, e.g. the cadastral parcel	Назва ділянки, напр. кадастрова ділянка
@@ -340,6 +347,7 @@ Plot	Ділянка
 Plot frame	Рамка аркуша
 Plug	Штекер
 Plug diagram	Схема штекерів
+Plugins	Плагіни
 Plugs	Штекери
 Poles	Полюси
 Ports	Порти
@@ -383,6 +391,7 @@ Rated power	Номінальна потужність
 Rear wall	Задня стінка
 Rectangle	Прямокутник
 Rectangular	Прямокутний
+Redo	Повторити
 Refresh	Оновити
 Reject	Відхилити
 Relative humidity	Відносна вологість
@@ -397,6 +406,7 @@ Remove the reference point	Видалити опорну точку
 Report	Звіт
 Report blocks	Блоки звітів
 Report: {}	Звіт: {}
+Reports	Звіти
 Required	Потрібно
 Reserve	Резерв
 Reviewer	Рецензент
@@ -427,6 +437,7 @@ Search parts	Пошук виробів
 Searching…	Пошук…
 Section	Розділ
 Segment	Ділянка
+Select	Вибрати
 Select a part in the tree or create a new one.	Виберіть виріб у дереві або створіть новий.
 Sensor	Датчик
 Sensors, switches, pushbuttons	Датчики, перемикачі, кнопки
@@ -491,9 +502,12 @@ Tools	Інструменти
 Top	Угорі
 Total	Усього
 Transformer	Трансформатор
+Tutorial	Навчальний посібник
 Type	Тип
 Type number	Номер типу
 Underline	Підкреслений
+Undo	Скасувати
+Unexpected argument: {}	Неочікуваний аргумент: {}
 Unit	Одиниця
 Unknown column: {}	Невідомий стовпець: {}
 Unknown connector: {}	Невідомий конектор: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Невідома система корпусів: {
 Unknown face: {}	Невідома грань: {}
 Unknown format: {}	Невідомий формат: {}
 Unknown function definition: {}	Невідоме визначення функції: {}
+Unknown language: {}	Невідома мова: {}
 Unknown option {}	Невідомий параметр {}
 Unknown parameter: {}	Невідомий параметр: {}
 Unknown part: {}	Невідомий виріб: {}
 Unknown property: {}	Невідома властивість: {}
+Unknown report: {}	Невідомий звіт: {}
 Unknown scheme: {}	Невідома схема: {}
 Unknown segment	Невідомий сегмент
 Unknown symbol {}	Невідомий символ {}

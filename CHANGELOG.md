@@ -5,6 +5,16 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
 
 ## [0.1.2] - unreleased
 
+- **Website with live demos:** `website/` is a page that presents the project and
+  runs it: the schematic editor and the panel in 3D as canvases, the project check,
+  the reports, a console with the commands of the command line and the exports, all
+  on one example project in the browser, in the 20 languages of the editor. It is
+  deployed as static files (`cd website && trunk build --release`) or with the Docker
+  image `ghcr.io/nilres/openecraft-website`, which serves the web editor at `/editor/`
+  as well ([website](docs/website.md)). The demos are the editor's own code: its
+  shell tables, document state and drawing views moved into the library crates
+  `openecraft-shell`, `openecraft-session` and `openecraft-canvas`.
+
 - **View cube in the 3D views**: the 3D view of the panel layout shows a view cube
   in its top right corner and an axis triad (x red, y green, z blue) bottom left. A
   click on a face, edge or corner of the cube turns the camera to look from there

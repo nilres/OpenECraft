@@ -2,9 +2,11 @@
 (all)	(todos)
 (no entries)	(sem entradas)
 (no structure)	(sem estrutura)
+(optional)	(opcional)
 --json needs a JSON object	--json requer um objeto JSON
 3D model	Modelo 3D
 3D routing	Roteamento 3D
+3D view	Vista 3D
 A page named {} already exists	Já existe uma página chamada {}
 A page needs a name	Uma página precisa de um nome
 A routing path needs {} points at least	Um caminho de roteamento requer pelo menos {} pontos
@@ -23,6 +25,7 @@ Apply	Aplicar
 Approve	Aprovar
 Approvers	Aprovadores
 Automatic	Automático
+Automation	Automação
 Aux	Aux.
 Below	Abaixo
 Bold	Negrito
@@ -124,6 +127,7 @@ Display	Exibição
 Done	Concluído
 Door	Porta
 Door cutout	Recorte da porta
+Download	Baixar
 Downloading {}…	Baixando {}…
 Drag to turn the model	Arraste para girar o modelo
 EMC clearance	Distância EMC
@@ -212,6 +216,7 @@ Link	Vínculo
 Linked	Vinculado
 Load	Carga
 Loaded circuits bunched together	Circuitos carregados agrupados
+Loading…	Carregando…
 Location	Localização
 Location (+)	Localização (+)
 Locked	Bloqueada
@@ -246,6 +251,8 @@ Mounting holes	Furos de fixação
 Mounting layout {}	Layout de montagem {}
 Mounting plate	Placa de montagem
 Mounting rail	Trilho de montagem
+NC contact	Contato NF
+NO contact	Contato NA
 Name	Nome
 Name of the block	Nome do bloco
 Name of the plot, e.g. the cadastral parcel	Nome do terreno, p. ex. o lote cadastral
@@ -340,6 +347,7 @@ Plot	Terreno
 Plot frame	Moldura de plotagem
 Plug	Plugue
 Plug diagram	Diagrama de plugues
+Plugins	Plug-ins
 Plugs	Plugues
 Poles	Polos
 Ports	Portas
@@ -383,6 +391,7 @@ Rated power	Potência nominal
 Rear wall	Parede traseira
 Rectangle	Retângulo
 Rectangular	Retangular
+Redo	Refazer
 Refresh	Atualizar
 Reject	Rejeitar
 Relative humidity	Umidade relativa
@@ -397,6 +406,7 @@ Remove the reference point	Remover o ponto de referência
 Report	Relatório
 Report blocks	Blocos de relatório
 Report: {}	Relatório: {}
+Reports	Relatórios
 Required	Exigido
 Reserve	Reserva
 Reviewer	Revisor
@@ -427,6 +437,7 @@ Search parts	Pesquisar peças
 Searching…	Pesquisando…
 Section	Seção
 Segment	Trecho
+Select	Selecionar
 Select a part in the tree or create a new one.	Selecione uma peça na árvore ou crie uma nova.
 Sensor	Sensor
 Sensors, switches, pushbuttons	Sensores, chaves, botões
@@ -491,9 +502,12 @@ Tools	Ferramentas
 Top	Superior
 Total	Total
 Transformer	Transformador
+Tutorial	Tutorial
 Type	Tipo
 Type number	Número do tipo
 Underline	Sublinhado
+Undo	Desfazer
+Unexpected argument: {}	Argumento inesperado: {}
 Unit	Unidade
 Unknown column: {}	Coluna desconhecida: {}
 Unknown connector: {}	Conector desconhecido: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Sistema de gabinete desconhecido: {}
 Unknown face: {}	Face desconhecida: {}
 Unknown format: {}	Formato desconhecido: {}
 Unknown function definition: {}	Definição de função desconhecida: {}
+Unknown language: {}	Idioma desconhecido: {}
 Unknown option {}	Opção desconhecida {}
 Unknown parameter: {}	Parâmetro desconhecido: {}
 Unknown part: {}	Peça desconhecida: {}
 Unknown property: {}	Propriedade desconhecida: {}
+Unknown report: {}	Relatório desconhecido: {}
 Unknown scheme: {}	Esquema desconhecido: {}
 Unknown segment	Segmento desconhecido
 Unknown symbol {}	Símbolo desconhecido {}

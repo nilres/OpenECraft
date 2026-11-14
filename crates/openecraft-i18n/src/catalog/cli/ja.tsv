@@ -1,6 +1,5 @@
 # English<TAB>日本語 – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(MCP サーバーのみ)
-(optional)	(省略可能)
 Access token for changes	変更用のアクセストークン
 Access token of a Vault session or an Autodesk account instead of user and password	ユーザーとパスワードの代わりに使用する、Vault セッションまたは Autodesk アカウントのアクセストークン
 Address of the Vault server, e.g. https://vault.example.com	Vault サーバーのアドレス (例: https://vault.example.com)
@@ -262,11 +261,9 @@ This format needs an output file (path)	この形式には出力ファイル (pa
 Title block of the project (list_title_blocks)	プロジェクトの表題欄（list_title_blocks）
 Top edge in mm from the top of the title block area	上端。表題欄領域の上端からの mm
 Undoes the last change	最後の変更を元に戻します
-Unexpected argument: {}	予期しない引数: {}
 Unknown command: {}. Run openecraft-cli help for a list.	不明なコマンド: {}。一覧は openecraft-cli help で表示できます。
 Unknown example {}: see list_examples	不明なサンプル {}：list_examples を参照
 Unknown format {}: give oec, oecp or oecz	不明な形式 {}: oec、oecp、oecz のいずれかを指定してください
-Unknown language: {}	不明な言語: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	不明なページの種類: {} (schematic、overview、graphic、cover、または list_reports のレポート)
 Unknown part {} (parts server: {})	不明な部品 {} (部品サーバー: {})
 Unknown plugin: {}	不明なプラグイン: {}

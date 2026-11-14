@@ -16,11 +16,15 @@ Where the code of each feature lives. [architecture.md](architecture.md) describ
 | `crates/openecraft-ui` | Shared egui library: part editor and previews, parts server client, data portal browser, file dialogs |
 | `crates/openecraft-view` | Read-only views of a project shared by the editor's navigator and the project server's web page: pages by structure, devices and their places, page icons, `ProjectView` |
 | `crates/openecraft-web` | What the web pages of the parts server and the project server share: sign-in, texts and requests (`common.js`), the administration of roles, grants and directories (`access.js`), styles, logo, `WebTexts` |
+| `crates/openecraft-shell` | The shell of the editor as tables: commands, ribbon, panes, workspaces, keys, mouse gestures, state colours (no UI code) |
+| `crates/openecraft-session` | The open project of an application: undo history, analysis with the checks and reports of the plugins, device index, saved state |
+| `crates/openecraft-canvas` | The drawing views of the editor (page editor, panel layout in 2D and 3D), shared by the editor and the website |
 | `crates/openecraft-api` | Extension API: plugins with commands, checks, reports and exports for all front ends; external plugins over JSON |
 | `parts-server/` | `openecraft-parts-server`: data portal server (REST API, SQLite or JSON storage, users, web page) |
 | `project-server/` | `openecraft-project-server`: shared projects with page locks for several users |
 | `cli/` | `openecraft-cli`: command line and MCP server; one tool list (`src/tools/`) for both |
 | `parts-manager/` | `openecraft-parts-manager`: standalone parts server maintenance (desktop + web) |
+| `website/` | `openecraft-website`: the website of the project; `src/studio.rs` the project of its live demos and the functions the page calls, `src/views.rs` the canvases, `src/texts.rs` the texts of the page ([website.md](website.md)) |
 | `crates/openecraft-core/src/model.rs` | Project data model (pages, symbols, wires, parts) and page layout constants |
 | `crates/openecraft-core/src/symbols.rs` | Built-in symbol libraries (IEC, NFPA, GB / GOST / JIS, fluid power, P&ID, single-line, black boxes) |
 | `crates/openecraft-core/src/symlib.rs` | User symbols: registry, editing helpers, library files |
@@ -42,9 +46,9 @@ Where the code of each feature lives. [architecture.md](architecture.md) describ
 | `crates/openecraft-core/src/index.rs` | Device and cross-reference index |
 | `crates/openecraft-core/src/reports.rs` | Reports and project check |
 | `crates/openecraft-core/src/render.rs` | Backend independent page renderer (used by canvas and SVG) |
-| `openecraft/src/editor.rs` | Interactive canvas (tools, hit testing, pan/zoom) |
+| `crates/openecraft-canvas/src/editor.rs` | Interactive canvas (tools, hit testing, pan/zoom) |
 | `openecraft/src/frame_stats.rs` | Frame time and frames per second for the title bar |
-| `openecraft/src/jobs.rs` | Exports and imports on another thread, their results taken every frame |
+| `crates/openecraft-canvas/src/jobs.rs` | Exports and imports on another thread, their results taken every frame |
 | `crates/openecraft-core/src/ops.rs` | Editing operations (placement defaults, move, rotate, paste, cable cores, page structure, …) |
 | `crates/openecraft-core/src/structure.rs` | Structure identifiers: parse / complete / shorten tags (`=A1+CAB1-K1`) |
 | `crates/openecraft-core/src/potentials.rs` | Potential definitions, presets, automatic wire colour and cross-section |
@@ -92,10 +96,10 @@ Where the code of each feature lives. [architecture.md](architecture.md) describ
 | `crates/openecraft-core/src/panel/buildings.rs` | Buildings: levels and the rooms on them, shafts and the ways through them, links between buildings, their check |
 | `crates/openecraft-core/src/panel/rooms.rs` | Rooms: floor plan outline and its walls, cabinets standing in them, rails, ducts and wall-mounted devices on walls and ceiling, wall penetrations and where they lead, building entries, their checks |
 | `crates/openecraft-core/src/panel/rack.rs` | 19-inch racks: rack units, 19-inch parts snapped onto whole units, their mounting rails and checks |
-| `openecraft/src/panel_ui/plan.rs` | Floor plan of a room: drawing and moving walls, placing cabinets |
+| `crates/openecraft-canvas/src/panel_ui/plan.rs` | Floor plan of a room: drawing and moving walls, placing cabinets |
 | `crates/openecraft-core/src/routing3d.rs` | 3D routing of wires, cables and tubes: rules, routing paths and reservations, grid search, bundles, shields, frozen routes |
 | `crates/openecraft-core/src/collab.rs` | Shared projects: API types, lock targets and the merge rules of the project server |
-| `openecraft/src/panel_ui.rs` | Panel layout workspace: navigator, 2D editor, properties; `panel_ui/view3d.rs` the 3D view (`panel_ui/scene3d.rs` what it shows, kept between frames; `panel_ui/gpu3d.rs` drawn by the graphics card), `panel_ui/routing_ui.rs` the 3D routing (paths, reservations, rules, frozen routes) |
+| `crates/openecraft-canvas/src/panel_ui.rs` | Panel layout workspace: navigator, 2D editor, properties; `panel_ui/view3d.rs` the 3D view (`panel_ui/scene3d.rs` what it shows, kept between frames; `panel_ui/gpu3d.rs` drawn by the graphics card), `panel_ui/routing_ui.rs` the 3D routing (paths, reservations, rules, frozen routes) |
 | `crates/openecraft-core/src/parts.rs` | Parts database, function templates, project parts, CSV import/export |
 | `openecraft/src/parts_ui.rs` | Parts management window, part selection dialog, parts server panel, data portal window |
 | `openecraft/src/remote.rs`, `openecraft/src/app/remote_ui.rs` | Project server client, window and shared editing (locks, merging); rules in `crates/openecraft-core/src/collab.rs` |

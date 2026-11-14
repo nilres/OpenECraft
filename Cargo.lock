@@ -3517,11 +3517,14 @@ dependencies = [
  "image",
  "log",
  "openecraft-api",
+ "openecraft-canvas",
  "openecraft-client",
  "openecraft-core",
  "openecraft-edz",
  "openecraft-i18n",
  "openecraft-parts",
+ "openecraft-session",
+ "openecraft-shell",
  "openecraft-step",
  "openecraft-ui",
  "openecraft-view",
@@ -3558,6 +3561,24 @@ dependencies = [
  "sha2 0.10.9",
  "tokio",
  "toml",
+]
+
+[[package]]
+name = "openecraft-canvas"
+version = "0.1.1"
+dependencies = [
+ "eframe",
+ "egui",
+ "image",
+ "log",
+ "openecraft-core",
+ "openecraft-edz",
+ "openecraft-i18n",
+ "openecraft-parts",
+ "openecraft-shell",
+ "openecraft-ui",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]
@@ -3711,6 +3732,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "openecraft-session"
+version = "0.1.1"
+dependencies = [
+ "openecraft-api",
+ "openecraft-core",
+ "openecraft-i18n",
+]
+
+[[package]]
+name = "openecraft-shell"
+version = "0.1.1"
+dependencies = [
+ "egui",
+ "egui_tiles",
+ "openecraft-i18n",
+ "openecraft-ui",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "openecraft-step"
 version = "0.1.1"
 dependencies = [
@@ -3767,6 +3809,28 @@ dependencies = [
  "openecraft-i18n",
  "openecraft-parts",
  "serde",
+]
+
+[[package]]
+name = "openecraft-website"
+version = "0.1.1"
+dependencies = [
+ "eframe",
+ "egui",
+ "env_logger",
+ "log",
+ "openecraft-api",
+ "openecraft-canvas",
+ "openecraft-core",
+ "openecraft-i18n",
+ "openecraft-session",
+ "openecraft-shell",
+ "openecraft-ui",
+ "openecraft-view",
+ "serde_json",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]

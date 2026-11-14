@@ -183,6 +183,41 @@ pub fn from_cli(params: &[Param], json: Option<&str>, pairs: &[(String, Option<S
     Ok(out)
 }
 
+/// A word of a command line (see [`cli_words`]).
+#[derive(Clone, Debug, PartialEq)]
+pub enum CliWord {
+    Plain(String),
+    /// `--name value`, `--name=value` or `--name`: the name as written, without dashes.
+    Pair(String, Option<String>),
+}
+
+/// The words of a command line in their order: plain words and `--name value` pairs.
+/// A value may start with a single dash (device tags like -K1), not with two. The
+/// names of `flags` never take the next word as their value; the names of `short`
+/// are options with a single dash as well (`-p file`).
+pub fn cli_words(argv: &[String], flags: &[&str], short: &[&str]) -> Vec<CliWord> {
+    let mut out = Vec::new();
+    let mut i = 0;
+    while i < argv.len() {
+        let arg = &argv[i];
+        i += 1;
+        let Some(name) = arg.strip_prefix("--").or_else(|| arg.strip_prefix('-').filter(|n| short.contains(n))) else {
+            out.push(CliWord::Plain(arg.clone()));
+            continue;
+        };
+        let (name, mut value) = match name.split_once('=') {
+            Some((n, v)) => (n.to_string(), Some(v.to_string())),
+            None => (name.to_string(), None),
+        };
+        if value.is_none() && !flags.contains(&name.as_str()) && i < argv.len() && !argv[i].starts_with("--") {
+            value = Some(argv[i].clone());
+            i += 1;
+        }
+        out.push(CliWord::Pair(name, value));
+    }
+    out
+}
+
 /// Typed access to checked arguments.
 pub struct Args<'a>(pub &'a Map<String, Value>);
 

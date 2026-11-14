@@ -1,13 +1,14 @@
-# Images of the OpenECraft parts server, project server and web editor, built from the
-# repository root:
+# Images of the OpenECraft parts server, project server, web editor and website, built
+# from the repository root:
 #
 #   docker build -f installer/docker/Dockerfile --target parts-server -t openecraft-parts-server .
 #   docker build -f installer/docker/Dockerfile --target project-server -t openecraft-project-server .
 #   docker build -f installer/docker/Dockerfile --target editor-web -t openecraft-web .
+#   docker build -f installer/docker/Dockerfile --target website -t openecraft-website .
 #
 # CI builds them on every push and publishes them to ghcr.io/<owner>/openecraft-parts-server,
-# ghcr.io/<owner>/openecraft-project-server and ghcr.io/<owner>/openecraft-web on master
-# and for release tags (docs/installation.md). The Rust version is the one pinned in
+# ghcr.io/<owner>/openecraft-project-server, ghcr.io/<owner>/openecraft-web and
+# ghcr.io/<owner>/openecraft-website on master and for release tags (docs/installation.md). The Rust version is the one pinned in
 # .github/workflows/ci.yml, cargo-about and trunk the ones of the installer scripts and
 # the job `web` (docs/releasing.md).
 
@@ -79,4 +80,20 @@ RUN cargo fetch --locked \
 FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS editor-web
 COPY installer/docker/editor-web.conf /etc/nginx/conf.d/default.conf
 COPY --from=web-build /src/openecraft/dist/ /usr/share/nginx/html/
+EXPOSE 8080
+
+# The website (website/, docs/website.md): the page with its live demos, and the web
+# editor built once more with relative addresses for the folder /editor/ beside it.
+FROM web-build AS website-build
+RUN cd website \
+    && trunk build --release \
+    && cd ../openecraft \
+    && trunk build --release --public-url ./ --dist /src/target/website-editor
+
+# Static files served by nginx as an unprivileged user on port 8080: the website at /,
+# the web editor at /editor/ (the links of the page lead there).
+FROM nginxinc/nginx-unprivileged:${NGINX_VERSION}-alpine AS website
+COPY installer/docker/website.conf /etc/nginx/conf.d/default.conf
+COPY --from=website-build /src/website/dist/ /usr/share/nginx/html/
+COPY --from=website-build /src/target/website-editor/ /usr/share/nginx/html/editor/
 EXPOSE 8080

@@ -97,7 +97,7 @@ The second command serves the web version on http://127.0.0.1:8080 (it needs
 | Features | [Schematic editor](docs/features/schematic.md) · [Symbols](docs/features/symbols.md) · [Connections and numbering](docs/features/connections.md) · [Macros and configurator](docs/features/macros.md) · [Terminals, plugs, PLC](docs/features/terminals-plugs-plc.md) · [Reports and checks](docs/features/reports-and-checks.md) · [Revisions and review](docs/features/revisions-and-review.md) · [Parts](docs/features/parts.md) · [Panel layout](docs/features/panel-layout.md) · [Wiring and mounting assistants](docs/features/workshop.md) · [Calculations](docs/features/calculations.md) · [Harnesses](docs/features/harnesses.md) · [Fluid and process](docs/features/fluid-and-process.md) · [Output and data exchange](docs/features/data-exchange.md) |
 | Administrators | [Parts server and parts manager](docs/parts-server.md) · [Project server](docs/project-server.md) · [Access control](docs/access-control.md) |
 | Automation | [Command line and MCP server](docs/command-line.md) · [Plugins](docs/plugins.md) · [Harness interface](docs/harness-interface.md) |
-| Developers | [AGENTS.md](AGENTS.md) (conventions) · [Architecture](docs/architecture.md) · [Code structure](docs/code-structure.md) · [Releasing](docs/releasing.md) |
+| Developers | [AGENTS.md](AGENTS.md) (conventions) · [Architecture](docs/architecture.md) · [Code structure](docs/code-structure.md) · [Website](docs/website.md) · [Releasing](docs/releasing.md) |
 
 Before a change is done, these must pass without warnings (CI runs them with
 `-D warnings`):
@@ -105,7 +105,7 @@ Before a change is done, these must pass without warnings (CI runs them with
 ```bash
 cargo test --workspace
 cargo clippy --workspace --all-targets
-cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-unknown
+cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --target wasm32-unknown-unknown
 ```
 
 ## License

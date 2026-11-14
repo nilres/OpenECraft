@@ -17,7 +17,7 @@ pub type Entry = (&'static str, &'static str, &'static str, &'static str);
 /// [`AREAS`] is written once (the file names must be literals for `include_str!`).
 macro_rules! with_areas {
     ($m:ident $(, $arg:literal)*) => {
-        $m!($($arg,)* ["common", "editor", "core", "plugins", "cli", "ui", "parts"])
+        $m!($($arg,)* ["common", "editor", "core", "plugins", "cli", "ui", "parts", "website"])
     };
 }
 macro_rules! area_names {
@@ -55,7 +55,7 @@ const FURTHER: [(&str, [(&str, &str); AREAS.len()]); 16] = [
 
 /// The catalog areas: one folder `catalog/<area>/` each (`required.tsv` and one
 /// `<code>.tsv` per further language).
-pub const AREAS: [&str; 7] = with_areas!(area_names);
+pub const AREAS: [&str; 8] = with_areas!(area_names);
 
 /// The entry lines of a file (comments and blank lines skipped).
 pub fn lines(file: &'static str) -> impl Iterator<Item = &'static str> {

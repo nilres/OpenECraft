@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenECraft – open source electrical CAE</title>
+    <meta name="description" content="OpenECraft is an open source electrical CAE editor: schematics, reports, panel layout in 3D, a command line and an MCP server. Try it live in the browser." />
+    <!-- Where the links to the web editor lead: next to the page in the Docker image
+         (target website); another address or empty (no links) for other deployments. -->
+    <meta name="openecraft-editor" content="editor/" />
+    <meta name="openecraft-repository" content="https://github.com/nilres/OpenECraft" />
+    <link data-trunk rel="rust" href="Cargo.toml" data-bin="openecraft-website" data-wasm-opt="2" />
+    <link data-trunk rel="css" href="site.css" />
+    <link data-trunk rel="copy-file" href="site.js" />
+    <link data-trunk rel="copy-file" href="../assets/icon.svg" />
+    <link data-trunk rel="copy-dir" href="../docs/images" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <script src="site.js" defer></script>
+</head>
+<body>
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+    <a class="brand" href="#top"><img src="icon.svg" alt="" width="30" height="30" /><span>OpenECraft</span></a>
+    <nav>
+        <a href="#features" data-t>Features</a>
+        <a href="#studio" data-t>Live demo</a>
+        <a href="#layout" data-t>3D</a>
+        <a href="#reports" data-t>Reports</a>
+        <a href="#automation" data-t>Automation</a>
+        <a href="#get" data-t>Get it</a>
+    </nav>
+    <div class="nav-right">
+        <select id="language" aria-label="Language"></select>
+        <a class="button ghost" data-repository href="#" data-t>Source code</a>
+    </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+    <div class="hero-text">
+        <p class="eyebrow" data-t>Open source electrical CAE</p>
+        <h1 data-t>From the first schematic page to the panel in 3D.</h1>
+        <p class="lead" data-t>OpenECraft plans electrical systems: device-oriented schematics, live reports, panel layout with routed wiring and the documentation for the customer. One code base for Windows, Linux, macOS and the browser.</p>
+        <div class="actions">
+            <a class="button primary" href="#studio" data-t>Try the live demo</a>
+            <a class="button" data-editor href="#" data-t>Open the web editor</a>
+            <a class="button ghost" href="#get" data-t>Download</a>
+        </div>
+        <ul class="facts">
+            <li><b>20</b> <span data-t>languages</span></li>
+            <li><b id="fact-examples">16</b> <span data-t>example projects</span></li>
+            <li><b id="fact-commands">300+</b> <span data-t>commands for scripts and AI agents</span></li>
+            <li><b>MIT / Apache-2.0</b></li>
+        </ul>
+    </div>
+    <div class="hero-art">
+        <div class="sheet" id="hero-sheet"><div class="sheet-wait" data-t>The live demo is loading…</div></div>
+        <p class="sheet-note" data-t>This page is drawn right now by the editor's own code, running in your browser.</p>
+    </div>
+</section>
+
+<section id="features" class="band">
+    <h2 data-t>Everything an electrical project needs</h2>
+    <p class="sub" data-t>One project file holds the schematics, the parts, the panel and the documents. Every function is also a command, so scripts and AI agents can do what you can.</p>
+    <div class="cards">
+        <article class="card"><div class="icon i-schematic"></div><h3 data-t>Device-oriented schematics</h3><p data-t>Coils and contacts form one device with live cross references and contact images, structure identifiers after IEC 81346, macros with variants.</p></article>
+        <article class="card"><div class="icon i-symbols"></div><h3 data-t>Symbol libraries</h3><p data-t>About 330 IEC 60617 symbols, NFPA, GB, GOST and JIS sets, fluid power, P&amp;ID and installation plans, and an editor for your own symbols.</p></article>
+        <article class="card"><div class="icon i-wires"></div><h3 data-t>Wires, cables, potentials</h3><p data-t>Potentials with colours and cross-sections, cables with cores, automatic wire, device and page numbering.</p></article>
+        <article class="card"><div class="icon i-reports"></div><h3 data-t>Reports and checks</h3><p data-t>Bill of materials, terminal, cable and plug diagrams as live pages, own drawn forms and a project check that follows every change.</p></article>
+        <article class="card"><div class="icon i-panel"></div><h3 data-t>Panel layout in 3D</h3><p data-t>Devices at real size on rails and plates, virtual wiring with duct fill levels, drilling data, enclosure climate, rooms and buildings.</p></article>
+        <article class="card"><div class="icon i-plc"></div><h3 data-t>Terminals, plugs, PLC</h3><p data-t>Multi-level terminals, plugs and PLC cards with tag tables for TIA Portal, Studio 5000, TwinCAT, CODESYS and more.</p></article>
+        <article class="card"><div class="icon i-calc"></div><h3 data-t>Engineering calculations</h3><p data-t>Conductor sizing, short circuit and selectivity, load calculation, EMC and safety functions after ISO 13849-1.</p></article>
+        <article class="card"><div class="icon i-fluid"></div><h3 data-t>Fluid power and harnesses</h3><p data-t>Pneumatic and hydraulic circuits linked to the electrics, wire harnesses with KBL export and nailboards.</p></article>
+        <article class="card"><div class="icon i-parts"></div><h3 data-t>Parts and data portal</h3><p data-t>A parts database with mounting data and 3D models, imports from EDZ, BMEcat and STEP, shared through the parts server.</p></article>
+        <article class="card"><div class="icon i-team"></div><h3 data-t>Teams and revisions</h3><p data-t>Shared projects with page locks and roles, released pages, approval workflow, comments and redlining.</p></article>
+        <article class="card"><div class="icon i-exchange"></div><h3 data-t>Data exchange</h3><p data-t>PDF, DXF, DWG and SVG; the panel as glTF, STEP, IGES, IFC and JT; connectors for ERP, PDM and PLM systems.</p></article>
+        <article class="card"><div class="icon i-plugin"></div><h3 data-t>Open and extensible</h3><p data-t>A command line, an MCP server for AI agents and plugins in any language add checks, reports, exports and commands.</p></article>
+    </div>
+</section>
+
+<section id="studio" class="band">
+    <h2 data-t>Try it: the schematic editor, live</h2>
+    <p class="sub" data-t>No screenshots: this is the page editor of OpenECraft. Select and move symbols, draw wires, place a contact and watch cross references, checks and reports follow.</p>
+    <div class="examples" id="examples"></div>
+    <div class="studio">
+        <aside class="pane">
+            <h4 data-t>Pages</h4>
+            <ul class="list" id="pages"></ul>
+        </aside>
+        <div class="stage-wrap">
+            <div class="toolbar" id="tools">
+                <button data-tool="select" data-t>Select</button>
+                <button data-tool="wire" data-t>Wire</button>
+                <button data-tool="no" data-t>NO contact</button>
+                <button data-tool="nc" data-t>NC contact</button>
+                <button data-tool="coil" data-t>Coil</button>
+                <button data-tool="lamp" data-t>Lamp</button>
+                <button data-tool="pb_no" data-t>Push button</button>
+                <button data-tool="text" data-t>Text</button>
+                <span class="gap"></span>
+                <button data-call="undo" id="undo" data-t>Undo</button>
+                <button data-call="redo" id="redo" data-t>Redo</button>
+                <button data-call="fit" data-t>Fit</button>
+            </div>
+            <div class="stage" data-view="schematic">
+                <canvas id="canvas-schematic"></canvas>
+                <button class="veil"><span data-t>Click to work in the editor</span></button>
+            </div>
+            <p class="hint" id="hint"></p>
+        </div>
+        <aside class="pane">
+            <h4><span data-t>Project check</span> <span class="count" id="issue-count"></span></h4>
+            <ul class="list issues" id="issues"></ul>
+            <div class="stats">
+                <div><b id="stat-devices">–</b><span data-t>Devices</span></div>
+                <div><b id="stat-connections">–</b><span data-t>Connections</span></div>
+                <div><b id="stat-pages">–</b><span data-t>Pages</span></div>
+            </div>
+            <p class="tip" data-t>Tip: delete a wire and see the check react. Undo brings it back.</p>
+        </aside>
+    </div>
+</section>
+
+<section id="layout" class="band">
+    <h2 data-t>The panel in 3D</h2>
+    <p class="sub" data-t>The same project, seen in the workshop: enclosure, rails, ducts and devices at real size, with the wires routed through the ducts. Drag to turn, scroll to zoom.</p>
+    <div class="examples" id="layout-examples"></div>
+    <div class="stage-wrap wide">
+        <div class="toolbar">
+            <button data-view-mode="3d" data-t>3D view</button>
+            <button data-view-mode="front" data-t>Mounting plate</button>
+            <span class="gap"></span>
+            <button data-call="wires" id="wires" data-t>Wiring</button>
+            <button data-call="door" id="door" data-t>Door</button>
+            <button data-call="fit" data-t>Fit</button>
+        </div>
+        <div class="stage tall" data-view="layout">
+            <canvas id="canvas-layout"></canvas>
+            <button class="veil"><span data-t>Click to explore the panel</span></button>
+        </div>
+    </div>
+</section>
+
+<section id="reports" class="band">
+    <h2 data-t>Reports that write themselves</h2>
+    <p class="sub" data-t>Every table is generated from the project and stays current: change the schematic above and the lists below follow. Plugins add their own.</p>
+    <div class="reports">
+        <aside class="pane">
+            <input type="search" id="report-filter" data-t-placeholder="Search reports" />
+            <ul class="list" id="report-list"></ul>
+        </aside>
+        <div class="pane table-pane">
+            <h4 id="report-title"></h4>
+            <div class="table-scroll"><table id="report-table"></table></div>
+            <p class="tip" id="report-more"></p>
+        </div>
+    </div>
+    <h3 class="sub-head" data-t>Export the project you just edited</h3>
+    <p class="sub" data-t>The exports run in your browser as well. Nothing is uploaded.</p>
+    <div class="chips" id="exports"></div>
+</section>
+
+<section id="automation" class="band">
+    <h2 data-t>Built for scripts and AI agents</h2>
+    <p class="sub" data-t>Every operation on a project is a command: on the command line, for AI agents through the MCP server, and for plugins. Try some on the project above.</p>
+    <div class="automation">
+        <div class="console">
+            <div class="console-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="console-title">openecraft-cli</span></div>
+            <div class="console-out" id="console-out"></div>
+            <form id="console-form"><span class="prompt">&gt;</span><input id="console-in" autocomplete="off" spellcheck="false" data-t-placeholder="Type a command, or help" /></form>
+        </div>
+        <aside class="pane">
+            <h4 data-t>Try these</h4>
+            <div class="chips column" id="suggestions">
+                <button data-line="list_pages">list_pages</button>
+                <button data-line="list_devices">list_devices</button>
+                <button data-line="rename_device --tag -K1 --new_tag -K9">rename_device --tag -K1 --new_tag -K9</button>
+                <button data-line="list_cross_references">list_cross_references</button>
+                <button data-line="help rename_device">help rename_device</button>
+                <button data-line="help">help</button>
+            </div>
+            <input type="search" id="command-filter" data-t-placeholder="Search commands" />
+            <ul class="list small" id="command-list"></ul>
+        </aside>
+    </div>
+</section>
+
+<section id="languages" class="band">
+    <h2 data-t>Speaks 20 languages</h2>
+    <p class="sub" data-t>Switch the language while you work: menus, generated reports and check messages follow at once. Try it, this page and the demos switch too.</p>
+    <div class="chips" id="language-chips"></div>
+</section>
+
+<section id="gallery" class="band">
+    <h2 data-t>A look inside</h2>
+    <div class="gallery">
+        <figure><img loading="lazy" src="images/schematic.png" alt="" /><figcaption data-t>The schematic editor with ribbon and page navigator</figcaption></figure>
+        <figure><img loading="lazy" src="images/panel-3d.png" alt="" /><figcaption data-t>Two bayed enclosures with rails, ducts and busbars</figcaption></figure>
+        <figure><img loading="lazy" src="images/heat-map.png" alt="" /><figcaption data-t>Enclosure climate with a heat map of the mounting plate</figcaption></figure>
+        <figure><img loading="lazy" src="images/wiring-assistant.png" alt="" /><figcaption data-t>The wiring assistant shows the next wire in 3D</figcaption></figure>
+        <figure><img loading="lazy" src="images/pneumatics.png" alt="" /><figcaption data-t>Fluid power linked to the electrical schematic</figcaption></figure>
+        <figure><img loading="lazy" src="images/terminal-diagram.png" alt="" /><figcaption data-t>Graphical terminal diagram</figcaption></figure>
+    </div>
+</section>
+
+<section id="get" class="band">
+    <h2 data-t>Get OpenECraft</h2>
+    <p class="sub" data-t>Free to use, free to change. Pick what fits you.</p>
+    <div class="cards get">
+        <article class="card"><h3 data-t>In the browser</h3><p data-t>The full editor as a web application. Nothing to install, your projects stay on your computer.</p><a class="button primary" data-editor href="#" data-t>Open the web editor</a></article>
+        <article class="card"><h3 data-t>On the desktop</h3><p data-t>Installers for Windows, Linux packages and a macOS disk image, with automatic updates.</p><a class="button" data-repository="/releases/latest" href="#" data-t>Download the latest release</a></article>
+        <article class="card"><h3 data-t>For your team</h3><p data-t>Parts server, project server and the web editor as Docker images for your own network.</p><pre><code>docker run -p 8080:8080 ghcr.io/nilres/openecraft-web</code></pre><a class="button ghost" data-repository="/blob/master/docs/installation.md" href="#" data-t>Installation guide</a></article>
+        <article class="card"><h3 data-t>From source</h3><p data-t>Written in Rust. Clone the repository and run it.</p><pre><code>cargo run --release -p openecraft</code></pre><a class="button ghost" data-repository href="#" data-t>Source code</a></article>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div><img src="icon.svg" alt="" width="22" height="22" /> <b>OpenECraft</b> · <span data-t>Open source under the MIT and Apache-2.0 licenses.</span></div>
+    <div class="links">
+        <a data-repository="/blob/master/docs/tutorial.md" href="#" data-t>Tutorial</a>
+        <a data-repository="/blob/master/docs/plugins.md" href="#" data-t>Plugins</a>
+        <a data-repository="/blob/master/docs/command-line.md" href="#" data-t>Command line and MCP</a>
+        <a data-repository="/issues" href="#" data-t>Report a problem</a>
+    </div>
+    <p class="fine" data-t>EPLAN, TIA Portal and other names are trademarks of their owners. OpenECraft is an independent project.</p>
+</footer>
+
+<noscript><p class="noscript">The live demos need JavaScript and WebAssembly.</p></noscript>
+</body>
+</html>

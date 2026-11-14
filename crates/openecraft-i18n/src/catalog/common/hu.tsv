@@ -2,9 +2,11 @@
 (all)	(összes)
 (no entries)	(nincsenek bejegyzések)
 (no structure)	(nincs struktúra)
+(optional)	(nem kötelező)
 --json needs a JSON object	A --json JSON-objektumot vár
 3D model	3D-modell
 3D routing	3D nyomvonalvezetés
+3D view	3D nézet
 A page named {} already exists	Már létezik {} nevű oldal
 A page needs a name	Az oldalnak nevet kell adni
 A routing path needs {} points at least	A fektetési úthoz legalább {} pont szükséges
@@ -23,6 +25,7 @@ Apply	Alkalmaz
 Approve	Jóváhagyás
 Approvers	Jóváhagyók
 Automatic	Automatikus
+Automation	Automatizálás
 Aux	Segéd
 Below	Alul
 Bold	Félkövér
@@ -124,6 +127,7 @@ Display	Megjelenítés
 Done	Kész
 Door	Ajtó
 Door cutout	Ajtókivágás
+Download	Letöltés
 Downloading {}…	{} letöltése…
 Drag to turn the model	Húzással forgathatja a modellt
 EMC clearance	EMC-távolság
@@ -212,6 +216,7 @@ Link	Hivatkozás
 Linked	Kapcsolva
 Load	Fogyasztó
 Loaded circuits bunched together	Együtt fektetett terhelt áramkörök
+Loading…	Betöltés…
 Location	Szerelési hely
 Location (+)	Szerelési hely (+)
 Locked	Zárolt
@@ -246,6 +251,8 @@ Mounting holes	Rögzítőfuratok
 Mounting layout {}	{} szerelési terv
 Mounting plate	Szerelőlap
 Mounting rail	Szerelősín
+NC contact	Nyitóérintkező
+NO contact	Záróérintkező
 Name	Név
 Name of the block	A blokk neve
 Name of the plot, e.g. the cadastral parcel	A telek neve, pl. a helyrajzi szám
@@ -340,6 +347,7 @@ Plot	Telek
 Plot frame	Rajzkeret
 Plug	Csatlakozódugó
 Plug diagram	Csatlakozódugó-terv
+Plugins	Bővítmények
 Plugs	Csatlakozódugók
 Poles	Pólusok
 Ports	Portok
@@ -383,6 +391,7 @@ Rated power	Névleges teljesítmény
 Rear wall	Hátfal
 Rectangle	Téglalap
 Rectangular	Téglalap alakú
+Redo	Mégis
 Refresh	Frissítés
 Reject	Elutasítás
 Relative humidity	Relatív páratartalom
@@ -397,6 +406,7 @@ Remove the reference point	Referenciapont eltávolítása
 Report	Kimutatás
 Report blocks	Kimutatásblokkok
 Report: {}	Kimutatás: {}
+Reports	Kimutatások
 Required	Előírt
 Reserve	Tartalék
 Reviewer	Véleményező
@@ -427,6 +437,7 @@ Search parts	Alkatrészek keresése
 Searching…	Keresés…
 Section	Szakasz
 Segment	Szakasz
+Select	Kijelölés
 Select a part in the tree or create a new one.	Válasszon egy alkatrészt a fában, vagy hozzon létre egy újat.
 Sensor	Érzékelő
 Sensors, switches, pushbuttons	Érzékelők, kapcsolók, nyomógombok
@@ -491,9 +502,12 @@ Tools	Szerszámok
 Top	Fent
 Total	Összesen
 Transformer	Transzformátor
+Tutorial	Oktatóanyag
 Type	Típus
 Type number	Típusszám
 Underline	Aláhúzott
+Undo	Visszavonás
+Unexpected argument: {}	Váratlan argumentum: {}
 Unit	Egység
 Unknown column: {}	Ismeretlen oszlop: {}
 Unknown connector: {}	Ismeretlen összekötő: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Ismeretlen szekrényrendszer: {}
 Unknown face: {}	Ismeretlen felület: {}
 Unknown format: {}	Ismeretlen formátum: {}
 Unknown function definition: {}	Ismeretlen funkciódefiníció: {}
+Unknown language: {}	Ismeretlen nyelv: {}
 Unknown option {}	Ismeretlen opció: {}
 Unknown parameter: {}	Ismeretlen paraméter: {}
 Unknown part: {}	Ismeretlen alkatrész: {}
 Unknown property: {}	Ismeretlen tulajdonság: {}
+Unknown report: {}	Ismeretlen kimutatás: {}
 Unknown scheme: {}	Ismeretlen séma: {}
 Unknown segment	Ismeretlen szegmens
 Unknown symbol {}	Ismeretlen szimbólum: {}

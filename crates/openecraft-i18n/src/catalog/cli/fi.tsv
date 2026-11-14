@@ -1,6 +1,5 @@
 # English<TAB>Suomi – the command line and MCP server (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (MCP server only)	(vain MCP-palvelin)
-(optional)	(valinnainen)
 Access token for changes	Käyttöoikeustokeni muutoksia varten
 Access token of a Vault session or an Autodesk account instead of user and password	Vault-istunnon tai Autodesk-tilin käyttöoikeustokeni käyttäjän ja salasanan sijaan
 Address of the Vault server, e.g. https://vault.example.com	Vault-palvelimen osoite, esim. https://vault.example.com
@@ -267,11 +266,9 @@ This format needs an output file (path)	Tämä muoto vaatii tulostiedoston (path
 Title block of the project (list_title_blocks)	Projektin nimiö (list_title_blocks)
 Top edge in mm from the top of the title block area	Yläreuna millimetreinä nimiöalueen yläreunasta
 Undoes the last change	Kumoaa viimeisimmän muutoksen
-Unexpected argument: {}	Odottamaton argumentti: {}
 Unknown command: {}. Run openecraft-cli help for a list.	Tuntematon komento: {}. Saat luettelon komennolla openecraft-cli help.
 Unknown example {}: see list_examples	Tuntematon esimerkki {}: katso list_examples
 Unknown format {}: give oec, oecp or oecz	Tuntematon muoto {}: anna oec, oecp tai oecz
-Unknown language: {}	Tuntematon kieli: {}
 Unknown page type: {} (schematic, overview, graphic, cover or a report of list_reports)	Tuntematon sivutyyppi: {} (schematic, overview, graphic, cover tai list_reports-raportti)
 Unknown part {} (parts server: {})	Tuntematon osa {} (osapalvelin: {})
 Unknown plugin: {}	Tuntematon laajennus: {}

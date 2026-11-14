@@ -2,9 +2,11 @@
 (all)	(toate)
 (no entries)	(nicio intrare)
 (no structure)	(fără structură)
+(optional)	(opțional)
 --json needs a JSON object	--json necesită un obiect JSON
 3D model	Model 3D
 3D routing	Pozare 3D
+3D view	Vedere 3D
 A page named {} already exists	Există deja o pagină cu numele {}
 A page needs a name	O pagină are nevoie de un nume
 A routing path needs {} points at least	O cale de pozare necesită cel puțin {} puncte
@@ -23,6 +25,7 @@ Apply	Aplicare
 Approve	Avizare
 Approvers	Avizatori
 Automatic	Automat
+Automation	Automatizare
 Aux	Aux
 Below	Dedesubt
 Bold	Aldin
@@ -124,6 +127,7 @@ Display	Afișare
 Done	Terminat
 Door	Ușă
 Door cutout	Decupaj în ușă
+Download	Descărcare
 Downloading {}…	Se descarcă {}…
 Drag to turn the model	Trageți pentru a roti modelul
 EMC clearance	Distanță CEM
@@ -212,6 +216,7 @@ Link	Legătură
 Linked	Legat
 Load	Consumator
 Loaded circuits bunched together	Circuite încărcate grupate împreună
+Loading…	Se încarcă…
 Location	Loc de montare
 Location (+)	Loc de montare (+)
 Locked	Blocat
@@ -246,6 +251,8 @@ Mounting holes	Găuri de fixare
 Mounting layout {}	Plan de montaj {}
 Mounting plate	Placă de montaj
 Mounting rail	Șină de montaj
+NC contact	Contact normal închis
+NO contact	Contact normal deschis
 Name	Nume
 Name of the block	Numele blocului
 Name of the plot, e.g. the cadastral parcel	Numele terenului, de ex. parcela cadastrală
@@ -340,6 +347,7 @@ Plot	Teren
 Plot frame	Chenar
 Plug	Conector
 Plug diagram	Schemă de conector
+Plugins	Pluginuri
 Plugs	Conectori
 Poles	Poli
 Ports	Porturi
@@ -383,6 +391,7 @@ Rated power	Putere nominală
 Rear wall	Perete din spate
 Rectangle	Dreptunghi
 Rectangular	Dreptunghiular
+Redo	Refacere
 Refresh	Reîmprospătare
 Reject	Respingere
 Relative humidity	Umiditate relativă
@@ -397,6 +406,7 @@ Remove the reference point	Eliminați punctul de referință
 Report	Raport
 Report blocks	Blocuri de raport
 Report: {}	Raport: {}
+Reports	Rapoarte
 Required	Necesar
 Reserve	Rezervă
 Reviewer	Examinator
@@ -427,6 +437,7 @@ Search parts	Căutare articole
 Searching…	Se caută…
 Section	Secțiune
 Segment	Segment
+Select	Selectare
 Select a part in the tree or create a new one.	Selectați un articol din arbore sau creați unul nou.
 Sensor	Senzor
 Sensors, switches, pushbuttons	Senzori, comutatoare, butoane
@@ -491,9 +502,12 @@ Tools	Scule
 Top	Sus
 Total	Total
 Transformer	Transformator
+Tutorial	Tutorial
 Type	Tip
 Type number	Număr de tip
 Underline	Subliniat
+Undo	Anulare acțiune
+Unexpected argument: {}	Argument neașteptat: {}
 Unit	Unitate
 Unknown column: {}	Coloană necunoscută: {}
 Unknown connector: {}	Conector necunoscut: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Sistem de carcase necunoscut: {}
 Unknown face: {}	Față necunoscută: {}
 Unknown format: {}	Format necunoscut: {}
 Unknown function definition: {}	Definiție de funcție necunoscută: {}
+Unknown language: {}	Limbă necunoscută: {}
 Unknown option {}	Opțiune necunoscută {}
 Unknown parameter: {}	Parametru necunoscut: {}
 Unknown part: {}	Articol necunoscut: {}
 Unknown property: {}	Proprietate necunoscută: {}
+Unknown report: {}	Raport necunoscut: {}
 Unknown scheme: {}	Schemă necunoscută: {}
 Unknown segment	Segment necunoscut
 Unknown symbol {}	Simbol necunoscut {}

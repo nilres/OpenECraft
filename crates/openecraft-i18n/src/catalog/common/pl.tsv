@@ -2,9 +2,11 @@
 (all)	(wszystkie)
 (no entries)	(brak wpisów)
 (no structure)	(brak struktury)
+(optional)	(opcjonalnie)
 --json needs a JSON object	--json wymaga obiektu JSON
 3D model	Model 3D
 3D routing	Prowadzenie 3D
+3D view	Widok 3D
 A page named {} already exists	Strona o nazwie {} już istnieje
 A page needs a name	Strona musi mieć nazwę
 A routing path needs {} points at least	Ścieżka prowadzenia wymaga co najmniej {} punktów
@@ -23,6 +25,7 @@ Apply	Zastosuj
 Approve	Zatwierdź
 Approvers	Zatwierdzający
 Automatic	Automatycznie
+Automation	Automatyzacja
 Aux	Pomocn.
 Below	Poniżej
 Bold	Pogrubienie
@@ -124,6 +127,7 @@ Display	Wyświetlanie
 Done	Wykonano
 Door	Drzwi
 Door cutout	Wycięcie w drzwiach
+Download	Pobierz
 Downloading {}…	Pobieranie {}…
 Drag to turn the model	Przeciągnij, aby obrócić model
 EMC clearance	Odstęp EMC
@@ -212,6 +216,7 @@ Link	Łącze
 Linked	Powiązane
 Load	Odbiornik
 Loaded circuits bunched together	Obciążone obwody ułożone wspólnie
+Loading…	Ładowanie…
 Location	Miejsce montażu
 Location (+)	Miejsce montażu (+)
 Locked	Zablokowana
@@ -246,6 +251,8 @@ Mounting holes	Otwory montażowe
 Mounting layout {}	Plan montażu {}
 Mounting plate	Płyta montażowa
 Mounting rail	Szyna montażowa
+NC contact	Styk rozwierny
+NO contact	Styk zwierny
 Name	Nazwa
 Name of the block	Nazwa bloku
 Name of the plot, e.g. the cadastral parcel	Nazwa działki, np. działka ewidencyjna
@@ -340,6 +347,7 @@ Plot	Działka
 Plot frame	Ramka rysunku
 Plug	Wtyk
 Plug diagram	Schemat wtyku
+Plugins	Wtyczki
 Plugs	Wtyki
 Poles	Bieguny
 Ports	Porty
@@ -383,6 +391,7 @@ Rated power	Moc znamionowa
 Rear wall	Ściana tylna
 Rectangle	Prostokąt
 Rectangular	Prostokątny
+Redo	Ponów
 Refresh	Odśwież
 Reject	Odrzuć
 Relative humidity	Wilgotność względna
@@ -397,6 +406,7 @@ Remove the reference point	Usuń punkt odniesienia
 Report	Raport
 Report blocks	Bloki raportów
 Report: {}	Raport: {}
+Reports	Raporty
 Required	Wymagany
 Reserve	Rezerwa
 Reviewer	Recenzent
@@ -427,6 +437,7 @@ Search parts	Wyszukaj artykuły
 Searching…	Wyszukiwanie…
 Section	Sekcja
 Segment	Odcinek
+Select	Zaznacz
 Select a part in the tree or create a new one.	Wybierz artykuł w drzewie lub utwórz nowy.
 Sensor	Czujnik
 Sensors, switches, pushbuttons	Czujniki, łączniki, przyciski
@@ -491,9 +502,12 @@ Tools	Narzędzia
 Top	Góra
 Total	Razem
 Transformer	Transformator
+Tutorial	Samouczek
 Type	Typ
 Type number	Numer typu
 Underline	Podkreślenie
+Undo	Cofnij
+Unexpected argument: {}	Nieoczekiwany argument: {}
 Unit	Jednostka
 Unknown column: {}	Nieznana kolumna: {}
 Unknown connector: {}	Nieznany konektor: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Nieznany system obudów: {}
 Unknown face: {}	Nieznana ściana: {}
 Unknown format: {}	Nieznany format: {}
 Unknown function definition: {}	Nieznana definicja funkcji: {}
+Unknown language: {}	Nieznany język: {}
 Unknown option {}	Nieznana opcja {}
 Unknown parameter: {}	Nieznany parametr: {}
 Unknown part: {}	Nieznany artykuł: {}
 Unknown property: {}	Nieznana właściwość: {}
+Unknown report: {}	Nieznany raport: {}
 Unknown scheme: {}	Nieznany schemat: {}
 Unknown segment	Nieznany segment
 Unknown symbol {}	Nieznany symbol {}

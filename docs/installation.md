@@ -202,12 +202,19 @@ The nginx site is `installer/docker/editor-web.conf` (mount your own at
 and the WebAssembly, named after their hash, are cached for a year. Put a TLS reverse
 proxy in front of it for other machines, as for the servers.
 
+### Website
+
+The website of the project with its live demos is a web build of its own (`website/`),
+deployed by hand as static files or with the Docker image
+`ghcr.io/nilres/openecraft-website`, which brings the web editor along at `/editor/`:
+see [website.md](website.md).
+
 ## Tests
 
 ```bash
 cargo test --workspace
 cargo clippy --workspace --all-targets
-cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-unknown
+cargo clippy -p openecraft -p openecraft-parts-manager -p openecraft-website --target wasm32-unknown-unknown
 ```
 
 All three must pass without warnings (CI runs them with `-D warnings`).

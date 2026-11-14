@@ -2,9 +2,11 @@
 (all)	(alle)
 (no entries)	(ingen poster)
 (no structure)	(ingen struktur)
+(optional)	(valgfri)
 --json needs a JSON object	--json kræver et JSON-objekt
 3D model	3D-model
 3D routing	3D-føring
+3D view	3D-visning
 A page named {} already exists	Der findes allerede en side med navnet {}
 A page needs a name	En side skal have et navn
 A routing path needs {} points at least	En føringsvej kræver mindst {} punkter
@@ -23,6 +25,7 @@ Apply	Anvend
 Approve	Godkend
 Approvers	Godkendere
 Automatic	Automatisk
+Automation	Automatisering
 Aux	Hjælpe
 Below	Under
 Bold	Fed
@@ -124,6 +127,7 @@ Display	Visning
 Done	Udført
 Door	Dør
 Door cutout	Dørudskæring
+Download	Download
 Downloading {}…	Downloader {}…
 Drag to turn the model	Træk for at dreje modellen
 EMC clearance	EMC-afstand
@@ -212,6 +216,7 @@ Link	Link
 Linked	Tilknyttet
 Load	Belastning
 Loaded circuits bunched together	Belastede kredse samlet i bundt
+Loading…	Indlæser…
 Location	Placering
 Location (+)	Placering (+)
 Locked	Låst
@@ -246,6 +251,8 @@ Mounting holes	Monteringshuller
 Mounting layout {}	Monteringslayout {}
 Mounting plate	Monteringsplade
 Mounting rail	Monteringsskinne
+NC contact	Brydekontakt
+NO contact	Sluttekontakt
 Name	Navn
 Name of the block	Blokkens navn
 Name of the plot, e.g. the cadastral parcel	Grundens navn, f.eks. matriklen
@@ -340,6 +347,7 @@ Plot	Grund
 Plot frame	Plotramme
 Plug	Stik
 Plug diagram	Stikdiagram
+Plugins	Plugins
 Plugs	Stik
 Poles	Poler
 Ports	Porte
@@ -383,6 +391,7 @@ Rated power	Mærkeeffekt
 Rear wall	Bagvæg
 Rectangle	Rektangel
 Rectangular	Rektangulær
+Redo	Annuller fortryd
 Refresh	Opdater
 Reject	Afvis
 Relative humidity	Relativ luftfugtighed
@@ -397,6 +406,7 @@ Remove the reference point	Fjern referencepunktet
 Report	Rapport
 Report blocks	Rapportblokke
 Report: {}	Rapport: {}
+Reports	Rapporter
 Required	Påkrævet
 Reserve	Reserve
 Reviewer	Korrekturlæser
@@ -427,6 +437,7 @@ Search parts	Søg efter artikler
 Searching…	Søger…
 Section	Afsnit
 Segment	Afsnit
+Select	Vælg
 Select a part in the tree or create a new one.	Vælg en artikel i træet, eller opret en ny.
 Sensor	Sensor
 Sensors, switches, pushbuttons	Sensorer, afbrydere, trykknapper
@@ -491,9 +502,12 @@ Tools	Værktøjer
 Top	Øverst
 Total	I alt
 Transformer	Transformer
+Tutorial	Selvstudium
 Type	Type
 Type number	Typenummer
 Underline	Understreget
+Undo	Fortryd
+Unexpected argument: {}	Uventet argument: {}
 Unit	Enhed
 Unknown column: {}	Ukendt kolonne: {}
 Unknown connector: {}	Ukendt connector: {}
@@ -501,10 +515,12 @@ Unknown enclosure system: {}	Ukendt kapslingssystem: {}
 Unknown face: {}	Ukendt flade: {}
 Unknown format: {}	Ukendt format: {}
 Unknown function definition: {}	Ukendt funktionsdefinition: {}
+Unknown language: {}	Ukendt sprog: {}
 Unknown option {}	Ukendt indstilling {}
 Unknown parameter: {}	Ukendt parameter: {}
 Unknown part: {}	Ukendt artikel: {}
 Unknown property: {}	Ukendt egenskab: {}
+Unknown report: {}	Ukendt rapport: {}
 Unknown scheme: {}	Ukendt skema: {}
 Unknown segment	Ukendt segment
 Unknown symbol {}	Ukendt symbol {}
