@@ -7,6 +7,7 @@ A grant needs a user or a group	En tildeling kræver en bruger eller en gruppe
 A group name must not be empty or contain ':'	Et gruppenavn må ikke være tomt eller indeholde ':'
 A manufacturer user needs a manufacturer	En producentbruger skal have en producent
 A part number must not be empty or start or end with blanks	Et artikelnummer må ikke være tomt eller begynde eller slutte med mellemrum
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En rolle er et sæt rettigheder. Tildelinger giver en bruger eller gruppe en rolle for projekter (* og ? som jokertegn, * for alle); en afvisende tildeling fjerner rollens rettigheder, uanset hvad andre tildelinger giver.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	En rolle er et sæt rettigheder. Tildelinger giver en bruger eller gruppe en rolle for en producents artikler (* og ? som jokertegn, * for alle); en afvisende tildeling fjerner rollens rettigheder, uanset hvad andre tildelinger giver.
 A user name must not be empty or contain blanks	Et brugernavn må ikke være tomt eller indeholde mellemrum
 Accept any certificate (test installations only)	Accepter ethvert certifikat (kun testinstallationer)
@@ -23,6 +24,7 @@ Administration	Administration
 All manufacturers	Alle producenter
 All parts	Alle artikler
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Alle artikler med deres data, til regneark eller til import på en anden server. Deres filer findes kun i databasens sikkerhedskopi.
+All projects	Alle projekter
 Allowed groups	Tilladte grupper
 Also groups of groups (Active Directory)	Også grupper af grupper (Active Directory)
 Amplifiers, controllers	Forstærkere, regulatorer
@@ -76,6 +78,7 @@ Check flap	Kontraspjæld
 Chimney	Skorsten
 Choose logo…	Vælg logo…
 Circuit breaker	Automatsikring
+Closed	Lukket
 Coil	Spole
 Complete power units	Komplette aggregater
 Compressed air filters	Trykluftfiltre
@@ -119,6 +122,7 @@ Delete group {}? The grants to it are removed.	Slet gruppe {}? Tildelingerne til
 Delete part {} from the server? This cannot be undone.	Vil du slette artiklen {} fra serveren? Dette kan ikke fortrydes.
 Delete part {}?	Slet artikel {}?
 Delete parts	Slet artikler
+Delete user {}? Their open projects are closed.	Vil du slette brugeren {}? Brugerens åbne projekter lukkes.
 Delete user {}? Their sessions and favorites are removed.	Vil du slette brugeren {}? Brugerens sessioner og favoritter fjernes.
 Deleted	Slettet
 Digital sensor, general	Digital sensor, generelt
@@ -140,6 +144,7 @@ Drawings box	Tegningslomme
 Dryer	Tørrer
 Dummy plate	Blindskive
 Duplex switch filters	Dobbelte omskifterfiltre
+Duration	Varighed
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Redigér kataloget {}
 Edit catalogs	Redigér kataloger
@@ -158,6 +163,8 @@ Enclosure cooling devices	Tavlekøleenheder
 Enclosure heater	Tavlevarmer
 Encryption	Kryptering
 End clamp	Endestop
+Ended	Afsluttet
+Ended by	Afsluttet af
 Ends the session and forgets the token	Afslutter sessionen og glemmer tokenet
 Engine	Drivmaskine
 Enter the address of an openecraft-parts-server and click Connect.	Angiv adressen på en openecraft-parts-server, og klik på Forbind.
@@ -165,6 +172,7 @@ Environment variable with the password of the service account	Miljøvariabel med
 Evaporator	Fordamper
 Everybody who may read the parts sees it.	Alle, der må læse artiklerne, ser den.
 Exhaust valves	Udluftningsventiler
+Expired	Udløbet
 Export (CSV)	Eksport (CSV)
 Export and backup	Eksport og sikkerhedskopi
 Export the parts, catalogs and settings, or download a backup of the whole database.	Eksportér artiklerne, katalogerne og indstillingerne, eller download en sikkerhedskopi af hele databasen.
@@ -175,6 +183,8 @@ Female insert	Bøsningsindsats
 Field distribution device	Feltfordeler
 Files and history ({} files)	Filer og historik ({} filer)
 Filter fan	Filterventilator
+Filter projects…	Filtrer projekter…
+Filter sessions…	Filtrer sessioner…
 Filters	Filtre
 Fixed displacement pumps	Konstantpumper
 Flange pair	Flangepar
@@ -215,6 +225,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Billeder (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Import / eksport
 Import parts	Importér artikler
 Imported {} parts (revision {})	{} artikler importeret (revision {})
+In use by	I brug af
+In use by {}	I brug af {}
 Inductors	Induktanser
 Install	Installér
 Install again	Installér igen
@@ -224,6 +236,7 @@ KNX actuator	KNX-aktuator
 KNX system device	KNX-systemenhed
 Key switch	Nøgleafbryder
 Kneader	Ælter
+Last activity	Seneste aktivitet
 Last changes per month	Seneste ændringer pr. måned
 Last sign-in	Seneste login
 Legend plate	Skilt
@@ -245,6 +258,7 @@ Logic items	Logikkomponenter
 Logos	Logoer
 Looks the users up; empty: users bind with their own name (below)	Slår brugerne op; tomt: brugerne binder med deres eget navn (nedenfor)
 Male insert	Stiftindsats
+Managers of a project give rights on it themselves (Permissions on the project).	Projektledere giver selv rettigheder til deres projekt (Tilladelser for projektet).
 Measurement system	Målesystem
 Measuring connection points	Måletilslutninger
 Measuring couplings	Målekoblinger
@@ -270,11 +284,18 @@ New role	Ny rolle
 New user	Ny bruger
 Newer version	Nyere version
 Next	Næste
+No devices found	Ingen enheder fundet
+No ended sessions	Ingen afsluttede sessioner
 No grants: the rights by manufacturer apply	Ingen tildelinger: rettighederne pr. producent gælder
+No grants: the roles of the users apply	Ingen tildelinger: brugernes roller gælder
 No grants: users have the rights of their role	Ingen tildelinger: brugerne har deres rolles rettigheder
 No groups	Ingen grupper
+No open sessions	Ingen åbne sessioner
+No projects found	Ingen projekter fundet
 No users	Ingen brugere
+Nobody works on a project	Ingen arbejder på et projekt
 Non-return valves	Kontraventiler
+None (only grants)	Ingen (kun tildelinger)
 Not mounted	Ikke monteret
 Nut	Møtrik
 On the front	På forsiden
@@ -287,10 +308,12 @@ Only catalogs without parts can be deleted	Kun kataloger uden artikler kan slett
 Only empty catalogs can be deleted	Kun tomme kataloger kan slettes
 Only local accounts	Kun lokale konti
 Only their members sign in; empty: all users	Kun deres medlemmer logger ind; tomt: alle brugere
+Open sessions	Åbne sessioner
 Open sessions: {}	Åbne sessioner: {}
 OpenECraft data portal	OpenECraft-dataportal
 OpenECraft parts manager	OpenECraft-artikelstyring
 OpenECraft parts server	OpenECraft-artikelserver
+OpenECraft project server	OpenECraft-projektserver
 Other file	Anden fil
 Other labels	Andre skilte
 Others	Andre
@@ -324,6 +347,7 @@ Password variable	Adgangskodevariabel
 Per page	Pr. side
 Permissions	Tilladelser
 Permissions of catalog {}	Tilladelser for kataloget {}
+Permissions of project {}	Tilladelser for projekt {}
 Phase-out	Udfases
 Pipes	Rør
 Piping part	Rørdel
@@ -349,6 +373,9 @@ Pressure switches	Trykafbrydere
 Pressure valves	Trykventiler
 Previous	Forrige
 Progressive feeders	Progressive fordelere
+Project {} not found	Projektet {} blev ikke fundet
+Projects	Projekter
+Projects in use	Projekter i brug
 Protection devices	Beskyttelsesudstyr
 Proximity switches	Nærhedsafbrydere
 Pump brackets	Pumpebeslag
@@ -381,6 +408,7 @@ Replaced by {}	Erstattet af {}
 Resistors	Modstande
 Restore from a file	Gendan fra en fil
 Return flushing filters, all-autom.	Returskyllefiltre, fuldautomatiske
+Revision {} on the server	Revision {} på serveren
 Ribbon cables	Fladkabler
 Roles	Roller
 Roof hook	Tagkrog
@@ -395,6 +423,7 @@ Save the catalog first	Gem kataloget først
 Save the part first	Gem artiklen først
 Saved directory {}	Katalogtjenesten {} gemt
 Saved group {}	Gruppen {} gemt
+Saves	Gemninger
 Screw connections	Forskruninger
 Screw pumps	Skruepumper
 Screw spindle compressors	Skruekompressorer
@@ -410,6 +439,7 @@ Sensor, switch, and pushbutton	Sensorer, afbrydere og trykknapper
 Sensors - pressure gauges	Sensorer – manometre
 Serial sub-plates	Serielle tilslutningsplader
 Service account	Tjenestekonto
+Sessions	Sessioner
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Fastsat af serverens startindstillinger (--dashboard eller OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Angivet af serverens startindstillinger (--registration eller OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Kort navn uden mellemrum; kvalificerer grupperne (id:gruppe)
@@ -424,11 +454,13 @@ Sight glass	Skueglas
 Sign in as an administrator to manage the server	Log på som administrator for at administrere serveren
 Sign in or connect with the access token to change parts	Log ind, eller opret forbindelse med adgangstokenet for at ændre artikler
 Sign in to keep favorites	Log på for at gemme favoritter
+Sign in to see the projects	Log på for at se projekterne
 Sign in with a user account	Log på med en brugerkonto
 Sign in with the access token of the server	Log på med serverens adgangstoken
 Sign out everywhere	Log af overalt
 Sign out {} on all devices?	Log {} af på alle enheder?
 Sign-in needed to read	Login kræves for at læse
+Sign-in needed to view	Login kræves for at se
 Signal device	Signalenhed
 Signal device, acoustic	Signalenhed, akustisk
 Signal device, optical	Signalenhed, optisk
@@ -484,12 +516,17 @@ The last administrator cannot lose the right to manage users	Den sidste administ
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Virksomhedens logo: PNG, JPEG, GIF, WebP eller SVG, højst 512 kB
 The password needs at least {} characters	Adgangskoden skal have mindst {} tegn
 The passwords do not match	Adgangskoderne er ikke ens
+The project has no devices	Projektet har ingen enheder
+The project has no pages	Projektet har ingen sider
 The project has no parts	Projektet har ingen artikler
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Projekterne, som rollen gælder for (* og ? som jokertegn), adskilt med kommaer; tom: alle
 The registration is closed	Registreringen er lukket
 The registration is open	Registreringen er åben
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Rollerne, der gives her, gælder dette katalog og dets artikler, uanset producent; afvis fjerner rollens rettigheder. Læsning er en rettighed for hele serveren.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Rollerne, der gives her, gælder dette projekt; afvis fjerner rollens rettigheder. Kun administratorer ophæver en afvisning.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Rollerne, tildelingerne, grupperne og adgangen uden login, med serverens version. Gendannelse erstatter rollerne og tildelingerne og tilføjer grupperne; katalogtjenesterne forbliver som opsat på serveren.
 The server cannot be reached	Serveren kan ikke nås
+The server keeps the last {} ended sessions.	Serveren gemmer de seneste {} afsluttede sessioner.
 The server sent no text	Serveren sendte ingen tekst
 The test failed	Testen mislykkedes
 The test succeeded	Testen lykkedes
@@ -520,6 +557,7 @@ Uploading {} to Vault ({} %)…	Uploader {} til Vault ({} %)…
 Uploading {} to Vault…	Uploader {} til Vault…
 User account	Brugerkonto
 User bind	Brugerbinding
+User deleted	Bruger slettet
 User filter	Brugerfilter
 User or group	Bruger eller gruppe
 User {} exists already. Change it?	Brugeren {} findes allerede. Vil du ændre den?
@@ -536,6 +574,7 @@ Variable displacement pumps	Variable pumper
 Vault did not continue the upload	Vault fortsatte ikke uploaden
 Ventilation filters	Ventilationsfiltre
 Ventilator	Ventilator
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Fremvisere åbner projekter skrivebeskyttet, korrekturlæsere gemmer også gennemsyn, redaktører ændrer og opretter projekter, projektledere sletter dem også og giver rettigheder til dem, administratorer administrerer serveren.
 Voltage source	Spændingskilde
 Voltage source and generator	Spændingskilde og generator
 Waiting accounts cannot sign in; approve or reject them in Users.	Ventende konti kan ikke logge på; godkend eller afvis dem under Brugere.
@@ -549,8 +588,10 @@ Without sign-in	Uden login
 Wrong access token	Forkert adgangstoken
 Wrong user name or password	Forkert brugernavn eller adgangskode
 You may not change parts of manufacturer {}	Du må ikke ændre artikler fra producenten {}
+You may not see any project	Du må ikke se noget projekt
 Your account awaits the approval of an administrator	Din konto venter på godkendelse af en administrator
 Your account was created. An administrator has to approve it before you can sign in.	Din konto er oprettet. En administrator skal godkende den, før du kan logge på.
+Your rights	Dine rettigheder
 access denied – check the personal access token	adgang nægtet – kontrollér det personlige adgangstoken
 by file name	efter filnavn
 changed, not saved	ændret, ikke gemt
@@ -574,6 +615,7 @@ you	dig
 {} has no checksum in SHA256SUMS	{} har ingen kontrolsum i SHA256SUMS
 {} parts in {} catalogs, revision {}	{} artikler i {} kataloger, revision {}
 {} parts, {} catalogs, {}	{} artikler, {} kataloger, {}
+{} projects	{} projekter
 {} – save to upload it	{} – gem for at uploade den
 {}: a logo has at most 512 kB	{}: et logo er højst 512 kB
 {}: the catalog is no longer open	{}: kataloget er ikke længere åbent

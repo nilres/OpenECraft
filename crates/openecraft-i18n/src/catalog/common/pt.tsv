@@ -1,6 +1,7 @@
 # English<TAB>Português – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(todos)
 (no entries)	(sem entradas)
+(no structure)	(sem estrutura)
 --json needs a JSON object	--json requer um objeto JSON
 3D model	Modelo 3D
 3D routing	Roteamento 3D
@@ -16,11 +17,13 @@ Add	Adicionar
 Add a PDF of all pages	Adicionar um PDF de todas as páginas
 Add to favorites	Adicionar aos favoritos
 Address	Endereço
+Administrator	Administrador
 Angle	Ângulo
 Apply	Aplicar
 Approve	Aprovar
 Approvers	Aprovadores
 Automatic	Automático
+Aux	Aux.
 Below	Abaixo
 Bold	Negrito
 Bottom	Fundo
@@ -125,6 +128,7 @@ Downloading {}…	Baixando {}…
 Drag to turn the model	Arraste para girar o modelo
 EMC clearance	Distância EMC
 Edit	Editar
+Editor	Editor
 Electro-fluid cross reference	Referência cruzada eletrofluídica
 Enclosure	Gabinete
 Enclosures	Gabinetes
@@ -144,6 +148,8 @@ Field wiring	Fiação de campo
 File	Arquivo
 Files	Arquivos
 Filter	Filtro
+Filter devices…	Filtrar dispositivos…
+Fit	Ajustar
 Fits	Compatível com
 Fitting at the end	Engate no fim
 Fitting at the start	Engate no início
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Descarta um subprojeto: suas
 Gland plate	Placa de entrada de cabos
 Graphics	Gráficos
 Group	Grupo
+Group the pages by structure	Agrupar as páginas por estrutura
 Groups	Grupos
 Harness	Chicote
 Harness data	Dados do chicote
@@ -207,9 +214,12 @@ Load	Carga
 Loaded circuits bunched together	Circuitos carregados agrupados
 Location	Localização
 Location (+)	Localização (+)
+Locked	Bloqueada
+Locked by {}	Bloqueado por {}
 Logo	Logotipo
 MTTFd (years)	MTTFd (anos)
 Machine	Máquina
+Main	Principal
 Main earthing busbar (device) it is connected to; empty: none	Barramento de equipotencialização principal (dispositivo) ao qual está ligado; vazio: nenhum
 Main earthing terminal	Barramento de aterramento principal
 Main switch	Chave geral
@@ -352,9 +362,11 @@ Product subgroup	Subgrupo de produtos
 Product top group	Grupo principal de produtos
 Profile	Perfil
 Project	Projeto
+Project data	Dados do projeto
 Project languages	Idiomas do projeto
 Project logo	Logotipo do projeto
 Project management	Gerenciamento de projetos
+Project manager	Gerente de projeto
 Project name	Nome do projeto
 Project properties	Propriedades do projeto
 Properties	Propriedades
@@ -371,6 +383,7 @@ Rated power	Potência nominal
 Rear wall	Parede traseira
 Rectangle	Retângulo
 Rectangular	Retangular
+Refresh	Atualizar
 Reject	Rejeitar
 Relative humidity	Umidade relativa
 Relay	Relé
@@ -386,6 +399,7 @@ Report blocks	Blocos de relatório
 Report: {}	Relatório: {}
 Required	Exigido
 Reserve	Reserva
+Reviewer	Revisor
 Revision	Revisão
 Revision {}	Revisão {}
 Rework	Retrabalho
@@ -429,6 +443,7 @@ Sign in	Entrar
 Sign out	Sair
 Signed in as {}	Conectado como {}
 Signed in as {} ({})	Conectado como {} ({})
+Signed out	Desconectado
 Signing in…	Entrando…
 Single-line / multi-line	Unifilar / multifilar
 Size	Tamanho
@@ -436,6 +451,7 @@ Socket side	Lado do soquete
 Solenoid not linked	Solenoide não vinculado
 Sort by	Classificar por
 Source	Origem
+Started	Iniciado
 State	Estado
 Status	Status
 String	String
@@ -498,6 +514,7 @@ User	Usuário
 User name	Nome de usuário
 Users	Usuários
 Version	Versão
+Viewer	Visualizador
 Voltage	Tensão
 Warning	Aviso
 Warnings	Avisos
@@ -540,6 +557,7 @@ yes	sim
 {} exists already	{} já existe
 {} is not a PNG or JPEG image	{} não é uma imagem PNG ou JPEG
 {} parts	{} peças
+{} users	{} usuários
 {} wires	{} fios
 {}, together with the wire to {}	{}, junto com o fio para {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} não fica no piso, escolha uma peça apoiada no piso

@@ -220,19 +220,6 @@ pub(super) struct DragState {
 const HOLD_OPEN: f64 = 0.6;
 
 impl App {
-    /// The pages list's icon for a page kind.
-    pub(super) fn page_icon(kind: PageKind) -> &'static str {
-        match kind {
-            PageKind::Schematic => "🗋",
-            PageKind::Cover => "🏷",
-            PageKind::Report(_) => "📊",
-            PageKind::Mounting(_) => "🗄",
-            PageKind::Overview => "🗺",
-            PageKind::Graphic => "✏",
-            PageKind::Document => "📎",
-        }
-    }
-
     /// What the drop does.
     fn describe_drop(&self, dragged: Dragged, drop: Option<DropAt>) -> Outcome {
         let prj = &self.session.prj;
@@ -350,7 +337,7 @@ impl App {
         let Some(pos) = ctx.pointer_latest_pos() else { return };
         let prj = &self.session.prj;
         let title = match dragged {
-            Dragged::Page(p) => prj.pages.get(p).map(|pg| format!("{} {}   {}", Self::page_icon(pg.kind), structure::page_full_name(pg), pg.description)).unwrap_or_default(),
+            Dragged::Page(p) => prj.pages.get(p).map(|pg| format!("{} {}   {}", openecraft_view::page_icon(pg.kind), structure::page_full_name(pg), pg.description)).unwrap_or_default(),
             Dragged::Section(id) => sections::title(prj, id),
         };
         egui::Area::new(egui::Id::unique("page_drag_label")).order(egui::Order::Tooltip).fixed_pos(pos + egui::vec2(16.0, 12.0)).interactable(false).show(ctx, |ui| {

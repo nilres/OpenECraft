@@ -1,0 +1,94 @@
+/* Styles the web pages of the OpenECraft servers share (parts server, project server):
+   colours (light and dark), controls, header, tables, boxes, forms, the administration. */
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --text: #1d2330; --muted: #5d6676; --line: #dde1e8;
+  --accent: #1f6feb; --accent-text: #ffffff; --chip: #e8effc; --warn: #b26a00; --bad: #c62828; --ok: #2e7d32;
+  --viz-1: #2a78d6; --viz-2: #eb6834; --viz-3: #1baf7a; --viz-4: #eda100; --track: #eef0f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151b; --panel: #1b2029; --text: #e3e7ee; --muted: #9aa4b5; --line: #2c3441;
+    --accent: #4c8dff; --accent-text: #0b1220; --chip: #24324a; --warn: #f0b04a; --bad: #ef6b6b; --ok: #6fcf79;
+    --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; --viz-4: #c98500; --track: #232a35;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 6px 12px; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+button:disabled { opacity: .5; cursor: default; }
+input, select, textarea { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 6px 10px; }
+button.link { border-color: transparent; background: none; color: var(--accent); padding: 6px 4px; }
+button.small { padding: 2px 8px; font-size: 13px; }
+button.danger { color: var(--bad); }
+[hidden] { display: none !important; }
+header { background: var(--panel); border-bottom: 1px solid var(--line); padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; position: sticky; top: 0; z-index: 2; }
+header h1 { font-size: 18px; margin: 0 12px 0 0; white-space: nowrap; }
+header h1 a { color: var(--text); display: inline-flex; gap: 8px; align-items: center; }
+header h1 a:hover { text-decoration: none; color: var(--accent); }
+header h1 img { width: 28px; height: 28px; display: block; }
+nav { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+nav button.active { background: var(--chip); }
+#account { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+#account input { width: 130px; }
+aside, section.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+aside h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 14px 0 6px; }
+aside h3:first-child { margin-top: 0; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.toolbar label { display: inline-flex; gap: 6px; align-items: center; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; color: var(--muted); font-weight: 600; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--chip); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table-wrap { overflow-x: auto; }
+.muted { color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.box h3 { margin: 0 0 6px; font-size: 14px; color: var(--muted); }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 0; }
+dt { color: var(--muted); }
+dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.box.wide { grid-column: 1 / -1; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.status { padding: 24px; text-align: center; color: var(--muted); }
+.error { color: var(--bad); }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; }
+.tabs button { border-color: transparent; background: none; }
+.tabs button.active { background: var(--chip); font-weight: 600; }
+.admin table.plain tbody tr { cursor: default; }
+.admin table.plain tbody tr:hover { background: none; }
+.admin td { vertical-align: middle; }
+.admin td input:not([type=checkbox]), .admin td select { width: 100%; min-width: 110px; padding: 4px 8px; }
+.admin th.check, .admin td.check { text-align: center; }
+.admin td.actions { white-space: nowrap; text-align: right; }
+.admin td.actions button { margin-left: 4px; }
+.admin .toolbar input[type=search] { flex: 1 1 200px; max-width: 360px; }
+.admin h3.section { font-size: 15px; margin: 22px 0 8px; }
+.admin .box.section { margin: 0 0 16px; }
+.form { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 10px 14px; align-items: start; max-width: 680px; }
+.form > label { color: var(--muted); padding-top: 7px; }
+.form input:not([type=checkbox]), .form select, .form textarea { width: 100%; }
+.form .hint { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+.buttons.sticky { position: sticky; bottom: 0; background: var(--panel); padding: 10px 0; border-top: 1px solid var(--line); margin-top: 18px; }
+.ok { color: var(--ok); }
+label.check { display: inline-flex; gap: 8px; align-items: center; cursor: pointer; }
+.notice { background: var(--chip); border-radius: 6px; padding: 8px 12px; margin: 0 0 12px; }
+footer { text-align: center; color: var(--muted); font-size: 13px; padding: 8px 16px 20px; }
+.toolbar select { padding: 4px 8px; }
+.form .wide { grid-column: 1 / -1; }
+.form .pair { display: flex; gap: 8px; }
+.form .pair > * { flex: 1; min-width: 0; }
+.directory-test { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.directory-test input { width: 160px; }
+.badge { display: inline-block; font-size: 12px; padding: 0 8px; border-radius: 10px; border: 1px solid currentColor; white-space: nowrap; }
+@media (max-width: 800px) {
+  #account input { width: 110px; }
+  .form { grid-template-columns: 1fr; gap: 4px; }
+  .hide-narrow { display: none; }
+}

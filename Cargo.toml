@@ -1,5 +1,5 @@
 [workspace]
-members = ["openecraft", "crates/openecraft-i18n", "crates/openecraft-fonts", "crates/openecraft-core", "crates/openecraft-client", "crates/openecraft-step", "crates/openecraft-edz", "crates/openecraft-jt", "crates/openecraft-xt", "crates/openecraft-parts", "crates/openecraft-ui", "crates/openecraft-api", "crates/openecraft-auth", "parts-server", "project-server", "parts-manager", "cli"]
+members = ["openecraft", "crates/openecraft-i18n", "crates/openecraft-fonts", "crates/openecraft-core", "crates/openecraft-client", "crates/openecraft-step", "crates/openecraft-edz", "crates/openecraft-jt", "crates/openecraft-xt", "crates/openecraft-parts", "crates/openecraft-ui", "crates/openecraft-api", "crates/openecraft-auth", "crates/openecraft-view", "crates/openecraft-web", "parts-server", "project-server", "parts-manager", "cli"]
 exclude = ["vendor"]
 resolver = "2"
 

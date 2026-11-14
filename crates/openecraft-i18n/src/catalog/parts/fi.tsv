@@ -7,6 +7,7 @@ A grant needs a user or a group	Myöntö tarvitsee käyttäjän tai ryhmän
 A group name must not be empty or contain ':'	Ryhmän nimi ei saa olla tyhjä eikä sisältää merkkiä ':'
 A manufacturer user needs a manufacturer	Valmistajakäyttäjä tarvitsee valmistajan
 A part number must not be empty or start or end with blanks	Osanumero ei saa olla tyhjä eikä alkaa tai päättyä välilyöntiin
+A role is a set of rights. Grants give a user or a group a role on projects (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin projekteihin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A role is a set of rights. Grants give a user or a group a role on the parts of a manufacturer (* and ? as wildcards, * for all); a deny grant takes the rights of the role away, whatever other grants give.	Rooli on joukko oikeuksia. Myönnöt antavat käyttäjälle tai ryhmälle roolin valmistajan osiin (* ja ? jokerimerkkeinä, * kaikille); estävä myöntö poistaa roolin oikeudet riippumatta muista myönnöistä.
 A user name must not be empty or contain blanks	Käyttäjänimi ei saa olla tyhjä eikä sisältää välilyöntejä
 Accept any certificate (test installations only)	Hyväksy mikä tahansa varmenne (vain testiasennukset)
@@ -23,6 +24,7 @@ Administration	Hallinta
 All manufacturers	Kaikki valmistajat
 All parts	Kaikki osat
 All parts with their data, for spreadsheets or to import them into another server. Their files are only in the database backup.	Kaikki osat tietoineen taulukkolaskentaan tai toiselle palvelimelle tuotavaksi. Niiden tiedostot ovat vain tietokannan varmuuskopiossa.
+All projects	Kaikki projektit
 Allowed groups	Sallitut ryhmät
 Also groups of groups (Active Directory)	Myös ryhmien ryhmät (Active Directory)
 Amplifiers, controllers	Vahvistimet, säätimet
@@ -76,6 +78,7 @@ Check flap	Takaiskuläppä
 Chimney	Savupiippu
 Choose logo…	Valitse logo…
 Circuit breaker	Johdonsuojakatkaisija
+Closed	Suljettu
 Coil	Kela
 Complete power units	Täydelliset koneikot
 Compressed air filters	Paineilmasuodattimet
@@ -122,6 +125,7 @@ Delete group {}? The grants to it are removed.	Poistetaanko ryhmä {}? Sen myön
 Delete part {} from the server? This cannot be undone.	Poistetaanko osa {} palvelimelta? Tätä ei voi kumota.
 Delete part {}?	Poistetaanko osa {}?
 Delete parts	Poista osia
+Delete user {}? Their open projects are closed.	Poistetaanko käyttäjä {}? Käyttäjän avoimet projektit suljetaan.
 Delete user {}? Their sessions and favorites are removed.	Poistetaanko käyttäjä {}? Käyttäjän istunnot ja suosikit poistetaan.
 Deleted	Poistettu
 Digital sensor, general	Digitaalinen anturi, yleinen
@@ -143,6 +147,7 @@ Drawings box	Piirustustasku
 Dryer	Kuivain
 Dummy plate	Sokkolaippa
 Duplex switch filters	Kaksoisvaihtosuodattimet
+Duration	Kesto
 EPLAN Data Portal	EPLAN Data Portal
 Edit catalog {}	Muokkaa luetteloa {}
 Edit catalogs	Muokkaa luetteloita
@@ -161,6 +166,8 @@ Enclosure cooling devices	Kaapin jäähdytyslaitteet
 Enclosure heater	Kaapin lämmitin
 Encryption	Salaus
 End clamp	Päätytuki
+Ended	Päättynyt
+Ended by	Päättymistapa
 Ends the session and forgets the token	Lopettaa istunnon ja unohtaa tokenin
 Engine	Käyttökone
 Enter the address of an openecraft-parts-server and click Connect.	Kirjoita openecraft-parts-server-palvelimen osoite ja napsauta Yhdistä.
@@ -168,6 +175,7 @@ Environment variable with the password of the service account	Ympäristömuuttuj
 Evaporator	Höyrystin
 Everybody who may read the parts sees it.	Sen näkevät kaikki, jotka saavat lukea osia.
 Exhaust valves	Ilmanpoistoventtiilit
+Expired	Vanhentunut
 Export (CSV)	Vienti (CSV)
 Export and backup	Vienti ja varmuuskopio
 Export the parts, catalogs and settings, or download a backup of the whole database.	Vie osat, luettelot ja asetukset tai lataa koko tietokannan varmuuskopio.
@@ -178,6 +186,8 @@ Female insert	Holkkiosa
 Field distribution device	Kenttäjakolaite
 Files and history ({} files)	Tiedostot ja historia ({} tiedostoa)
 Filter fan	Suodatintuuletin
+Filter projects…	Suodata projekteja…
+Filter sessions…	Suodata istuntoja…
 Filters	Suodattimet
 Fixed displacement pumps	Vakiotilavuuspumput
 Flange pair	Laippapari
@@ -218,6 +228,8 @@ Images (PNG, JPEG, GIF, WebP, SVG)	Kuvat (PNG, JPEG, GIF, WebP, SVG)
 Import / export	Tuonti / vienti
 Import parts	Tuo osia
 Imported {} parts (revision {})	{} osaa tuotu (revisio {})
+In use by	Käytössä käyttäjällä
+In use by {}	Käytössä käyttäjällä {}
 Inductors	Induktanssit
 Install	Asenna
 Install again	Asenna uudelleen
@@ -227,6 +239,7 @@ KNX actuator	KNX-toimilaite
 KNX system device	KNX-järjestelmälaite
 Key switch	Avainkytkin
 Kneader	Vaivain
+Last activity	Viimeisin toiminta
 Last changes per month	Viimeisimmät muutokset kuukausittain
 Last sign-in	Viimeisin kirjautuminen
 Legend plate	Kilpi
@@ -248,6 +261,7 @@ Logic items	Logiikkaosat
 Logos	Logot
 Looks the users up; empty: users bind with their own name (below)	Hakee käyttäjät; tyhjä: käyttäjät sitoutuvat omalla nimellään (alla)
 Male insert	Nastaosa
+Managers of a project give rights on it themselves (Permissions on the project).	Projektipäälliköt antavat itse oikeuksia projektiinsa (Projektin oikeudet).
 Measurement system	Mittausjärjestelmä
 Measuring connection points	Mittausliitännät
 Measuring couplings	Mittausliittimet
@@ -273,11 +287,18 @@ New role	Uusi rooli
 New user	Uusi käyttäjä
 Newer version	Uudempi versio
 Next	Seuraava
+No devices found	Laitteita ei löytynyt
+No ended sessions	Ei päättyneitä istuntoja
 No grants: the rights by manufacturer apply	Ei myöntöjä: valmistajakohtaiset oikeudet ovat voimassa
+No grants: the roles of the users apply	Ei myöntöjä: käyttäjien roolit ovat voimassa
 No grants: users have the rights of their role	Ei myöntöjä: käyttäjillä on roolinsa oikeudet
 No groups	Ei ryhmiä
+No open sessions	Ei avoimia istuntoja
+No projects found	Projekteja ei löytynyt
 No users	Ei käyttäjiä
+Nobody works on a project	Kukaan ei työskentele minkään projektin parissa
 Non-return valves	Takaiskuventtiilit
+None (only grants)	Ei mitään (vain myönnöt)
 Not mounted	Ei asennettu
 Nut	Mutteri
 On the front	Edessä
@@ -290,10 +311,12 @@ Only catalogs without parts can be deleted	Vain luettelot, joissa ei ole osia, v
 Only empty catalogs can be deleted	Vain tyhjiä luetteloita voi poistaa
 Only local accounts	Vain paikalliset tilit
 Only their members sign in; empty: all users	Vain niiden jäsenet kirjautuvat; tyhjä: kaikki käyttäjät
+Open sessions	Avoimet istunnot
 Open sessions: {}	Avoimet istunnot: {}
 OpenECraft data portal	OpenECraft-dataportaali
 OpenECraft parts manager	OpenECraft-osien hallinta
 OpenECraft parts server	OpenECraft-osapalvelin
+OpenECraft project server	OpenECraft-projektipalvelin
 Other file	Muu tiedosto
 Other labels	Muut kilvet
 Others	Muut
@@ -327,6 +350,7 @@ Password variable	Salasanamuuttuja
 Per page	Sivulla
 Permissions	Oikeudet
 Permissions of catalog {}	Luettelon {} oikeudet
+Permissions of project {}	Projektin {} oikeudet
 Phase-out	Poistumassa
 Pipes	Putket
 Piping part	Putkiston osa
@@ -352,6 +376,9 @@ Pressure switches	Painekytkimet
 Pressure valves	Paineventtiilit
 Previous	Edellinen
 Progressive feeders	Progressiiviset jakajat
+Project {} not found	Projektia {} ei löytynyt
+Projects	Projektit
+Projects in use	Käytössä olevat projektit
 Protection devices	Suojalaitteet
 Proximity switches	Läheisyyskytkimet
 Pump brackets	Pumppukannattimet
@@ -384,6 +411,7 @@ Replaced by {}	Korvattu osalla {}
 Resistors	Vastukset
 Restore from a file	Palauta tiedostosta
 Return flushing filters, all-autom.	Huuhtelusuodattimet, täysautomaattiset
+Revision {} on the server	Revisio {} palvelimella
 Ribbon cables	Lattakaapelit
 Roles	Roolit
 Roof hook	Kattokoukku
@@ -398,6 +426,7 @@ Save the catalog first	Tallenna luettelo ensin
 Save the part first	Tallenna osa ensin
 Saved directory {}	Hakemistopalvelu {} tallennettu
 Saved group {}	Ryhmä {} tallennettu
+Saves	Tallennukset
 Screw connections	Ruuviliitokset
 Screw pumps	Ruuvipumput
 Screw spindle compressors	Ruuvikompressorit
@@ -413,6 +442,7 @@ Sensor, switch, and pushbutton	Anturit, kytkimet ja painikkeet
 Sensors - pressure gauges	Anturit – painemittarit
 Serial sub-plates	Sarjaliitäntälevyt
 Service account	Palvelutili
+Sessions	Istunnot
 Set by the start options of the server (--dashboard or OPENECRAFT_DASHBOARD).	Asetettu palvelimen käynnistysvalinnoilla (--dashboard tai OPENECRAFT_DASHBOARD).
 Set by the start options of the server (--registration or OPENECRAFT_REGISTRATION).	Asetettu palvelimen käynnistysvalinnoilla (--registration tai OPENECRAFT_REGISTRATION).
 Short name without blanks; qualifies the groups (id:group)	Lyhyt nimi ilman välilyöntejä; tarkentaa ryhmät (id:ryhmä)
@@ -427,11 +457,13 @@ Sight glass	Näkölasi
 Sign in as an administrator to manage the server	Kirjaudu sisään järjestelmänvalvojana hallitaksesi palvelinta
 Sign in or connect with the access token to change parts	Kirjaudu sisään tai yhdistä käyttöoikeustunnuksella muuttaaksesi osia
 Sign in to keep favorites	Kirjaudu sisään, jotta voit tallentaa suosikkeja
+Sign in to see the projects	Kirjaudu sisään nähdäksesi projektit
 Sign in with a user account	Kirjaudu käyttäjätilillä
 Sign in with the access token of the server	Kirjaudu palvelimen käyttöoikeustokenilla
 Sign out everywhere	Kirjaa ulos kaikkialta
 Sign out {} on all devices?	Kirjataanko {} ulos kaikilla laitteilla?
 Sign-in needed to read	Lukeminen vaatii kirjautumisen
+Sign-in needed to view	Katselu vaatii kirjautumisen
 Signal device	Merkinantolaite
 Signal device, acoustic	Merkinantolaite, akustinen
 Signal device, optical	Merkinantolaite, optinen
@@ -487,12 +519,17 @@ The last administrator cannot lose the right to manage users	Viimeinen järjeste
 The logo of the company: PNG, JPEG, GIF, WebP or SVG, at most 512 kB	Yrityksen logo: PNG, JPEG, GIF, WebP tai SVG, enintään 512 kt
 The password needs at least {} characters	Salasanassa on oltava vähintään {} merkkiä
 The passwords do not match	Salasanat eivät täsmää
+The project has no devices	Projektissa ei ole laitteita
+The project has no pages	Projektissa ei ole sivuja
 The project has no parts	Projektissa ei ole osia
+The projects the role applies to (* and ? as wildcards), separated by commas; empty: all	Projektit, joita rooli koskee (* ja ? jokerimerkkeinä), pilkuilla erotettuina; tyhjä: kaikki
 The registration is closed	Rekisteröityminen on suljettu
 The registration is open	Rekisteröityminen on avoinna
 The roles given here apply to this catalog and its parts, whatever their manufacturer; deny takes the rights of the role away. Reading is a right of the whole server.	Tässä annetut roolit koskevat tätä luetteloa ja sen osia valmistajasta riippumatta; estä poistaa roolin oikeudet. Lukeminen on koko palvelimen oikeus.
+The roles given here apply to this project; deny takes the rights of the role away. Only administrators lift a denial.	Tässä annetut roolit koskevat tätä projektia; estä poistaa roolin oikeudet. Vain järjestelmänvalvojat voivat kumota eston.
 The roles, the grants, the groups and the access without sign-in, with the version of the server. Restoring replaces the roles and grants and adds the groups; the directories stay as set up on the server.	Roolit, myönnöt, ryhmät ja käyttö ilman kirjautumista palvelimen versiolla. Palautus korvaa roolit ja myönnöt ja lisää ryhmät; hakemistopalvelut pysyvät palvelimelle määritettyinä.
 The server cannot be reached	Palvelimeen ei saada yhteyttä
+The server keeps the last {} ended sessions.	Palvelin säilyttää {} viimeisintä päättynyttä istuntoa.
 The server sent no text	Palvelin ei lähettänyt tekstiä
 The test failed	Testi epäonnistui
 The test succeeded	Testi onnistui
@@ -524,6 +561,7 @@ Uploading {} to Vault ({} %)…	Ladataan {} Vaultiin ({} %)…
 Uploading {} to Vault…	Ladataan {} Vaultiin…
 User account	Käyttäjätili
 User bind	Käyttäjän sidonta
+User deleted	Käyttäjä poistettu
 User filter	Käyttäjäsuodatin
 User or group	Käyttäjä tai ryhmä
 User {} exists already. Change it?	Käyttäjä {} on jo olemassa. Muutetaanko sitä?
@@ -540,6 +578,7 @@ Variable displacement pumps	Säätötilavuuspumput
 Vault did not continue the upload	Vault ei jatkanut latausta palvelimelle
 Ventilation filters	Tuuletussuodattimet
 Ventilator	Puhallin
+Viewers open projects read only, reviewers also save reviews, editors change and create projects, managers also delete them and give rights on them, administrators manage the server.	Katselijat avaavat projektit vain luku -tilassa, tarkastajat tallentavat myös kommentteja, muokkaajat muuttavat ja luovat projekteja, projektipäälliköt myös poistavat niitä ja antavat niihin oikeuksia, järjestelmänvalvojat hallitsevat palvelinta.
 Voltage source	Jännitelähde
 Voltage source and generator	Jännitelähde ja generaattori
 Waiting accounts cannot sign in; approve or reject them in Users.	Odottavat tilit eivät voi kirjautua; hyväksy tai hylkää ne kohdassa Käyttäjät.
@@ -553,8 +592,10 @@ Without sign-in	Ilman kirjautumista
 Wrong access token	Väärä käyttöoikeustokeni
 Wrong user name or password	Väärä käyttäjänimi tai salasana
 You may not change parts of manufacturer {}	Et saa muuttaa valmistajan {} osia
+You may not see any project	Et saa nähdä yhtään projektia
 Your account awaits the approval of an administrator	Tilisi odottaa järjestelmänvalvojan hyväksyntää
 Your account was created. An administrator has to approve it before you can sign in.	Tilisi on luotu. Järjestelmänvalvojan on hyväksyttävä se, ennen kuin voit kirjautua.
+Your rights	Oikeutesi
 access denied – check the personal access token	käyttö estetty – tarkista henkilökohtainen käyttöoikeustokeni
 by file name	tiedostonimen mukaan
 changed, not saved	muutettu, ei tallennettu
@@ -578,6 +619,7 @@ you	sinä
 {} has no checksum in SHA256SUMS	Tiedostolla {} ei ole tarkistussummaa SHA256SUMS-tiedostossa
 {} parts in {} catalogs, revision {}	{} osaa {} luettelossa, revisio {}
 {} parts, {} catalogs, {}	{} osaa, {} luetteloa, {}
+{} projects	{} projektia
 {} – save to upload it	{} – tallenna ladataksesi palvelimelle
 {}: a logo has at most 512 kB	{}: logo on enintään 512 kt
 {}: the catalog is no longer open	{}: luettelo ei ole enää auki

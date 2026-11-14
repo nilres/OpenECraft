@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenECraft project server</title>
+<link rel="icon" href="/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/web.css">
+<style>
+main { padding: 16px; max-width: 1700px; margin: 0 auto; }
+#filter { flex: 1 1 260px; max-width: 420px; }
+.rights { display: flex; flex-wrap: wrap; gap: 4px; }
+.rights .badge { color: var(--muted); }
+.badge.locked { color: var(--warn); }
+.badge.readonly { color: var(--accent); }
+.project .head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin-bottom: 10px; }
+.project .head h2 { margin: 0; font-size: 22px; }
+.project .info { margin: 0 0 12px; }
+.viewer { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 14px; min-height: 70vh; }
+.nav { border: 1px solid var(--line); border-radius: 8px; padding: 8px; overflow: auto; max-height: 82vh; }
+.nav .tabs { margin-bottom: 8px; padding-bottom: 6px; }
+.nav details { margin: 2px 0 2px 4px; }
+.nav details details { margin-left: 12px; }
+.nav summary { cursor: pointer; font-weight: 600; padding: 2px 4px; border-radius: 4px; }
+.nav summary:hover { background: var(--chip); }
+.nav .row { display: flex; gap: 6px; padding: 2px 6px; border-radius: 4px; color: var(--text); text-decoration: none; }
+.nav .row:hover { background: var(--chip); text-decoration: none; }
+.nav .row.sel { background: var(--chip); font-weight: 600; }
+.nav .row .desc { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav .row .lock { margin-left: auto; color: var(--warn); white-space: nowrap; font-size: 13px; }
+.nav .places { list-style: none; margin: 2px 0 6px 14px; padding: 0; font-size: 13px; }
+.nav .group { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 10px 4px 4px; }
+.nav input[type=search] { width: 100%; margin-bottom: 8px; }
+.sheet { border: 1px solid var(--line); border-radius: 8px; display: flex; flex-direction: column; min-width: 0; }
+.sheet .toolbar { padding: 8px 10px; margin: 0; border-bottom: 1px solid var(--line); }
+.sheet .title { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; min-width: 0; }
+.paper { flex: 1; overflow: auto; background: #8a8f98; padding: 12px; cursor: grab; max-height: 78vh; touch-action: none; }
+.paper.dragging { cursor: grabbing; }
+.paper img { display: block; margin: 0 auto; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.35); user-select: none; -webkit-user-drag: none; }
+.paper .status { color: #fff; }
+@media (max-width: 800px) {
+  main { padding: 12px 16px; }
+  .viewer { grid-template-columns: 1fr; }
+  .nav { max-height: 40vh; }
+}
+</style>
+</head>
+<body data-title="OpenECraft project server">
+<header>
+  <h1><a href="#" id="home"><img src="/logo.svg" alt=""><span data-t="OpenECraft project server">OpenECraft project server</span></a></h1>
+  <nav>
+    <button id="nav-projects" class="active" data-t="Projects">Projects</button>
+    <button id="nav-admin" data-t="Administration" hidden>Administration</button>
+    <select id="lang" aria-label="Language"></select>
+  </nav>
+  <div id="account"></div>
+</header>
+<main>
+  <section class="panel" id="content"><div class="status" data-t="Loading…">Loading…</div></section>
+</main>
+<footer id="footer"></footer>
+<script src="/common.js"></script>
+<script src="/access.js"></script>
+<script src="/admin.js"></script>
+<script src="/project.js"></script>
+</body>
+</html>

@@ -16,7 +16,8 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
 
 - Desktop: `cargo run --release -p openecraft`
 - Parts server: `cargo run -p openecraft-parts-server -- --token <secret>` (http://127.0.0.1:8090)
-- Project server: `cargo run -p openecraft-project-server -- --token <secret>` (http://127.0.0.1:8091)
+- Project server: `cargo run -p openecraft-project-server -- --token <secret>` (http://127.0.0.1:8091;
+  `--web` serves its web page: projects read only, administration)
 - Both servers also take `--config <file.toml>` with the settings of their options
   (`parts-server/parts-server.example.toml`, `project-server/project-server.example.toml`);
   a new option gets a key in the server's `settings.rs` `File` too
@@ -60,6 +61,8 @@ cargo clippy -p openecraft -p openecraft-parts-manager --target wasm32-unknown-u
 | `openecraft-auth` | `crates/openecraft-auth` | Access control of the servers: password hashes (Argon2), session tokens, throttled sign-in, JSON error answers, Active Directory / LDAP sign-in, access settings file (roles and grants: `openecraft_parts::access`), configuration files of the servers (`server_config`, TOML) |
 | `openecraft-client` | `crates/openecraft-client` | Requests to the parts and project servers and to Autodesk Vault (`vault`) and decoding of their answers (ehttp), shared by the UI client and the command line; `eplan` wraps the EPLAN Data Portal API as a read-only parts server |
 | `openecraft-ui` | `crates/openecraft-ui` | Shared egui library: part tree / editor / previews, parts server client, file dialogs, language menu |
+| `openecraft-view` | `crates/openecraft-view` | Read-only views of a project shared by the editor's navigator and the project server's web page (pages by structure, devices and their places, page icons, `ProjectView`); no UI |
+| `openecraft-web` | `crates/openecraft-web` | What the web pages of both servers share: `common.js` (texts, requests, sign-in, rights), `access.js` (roles, grants, directories), `web.css`, logo, `WebTexts` |
 | `openecraft-parts-server` | `parts-server/` | Data portal server (axum; SQLite or JSON storage, users and roles, catalogs, files, history, web page) |
 | `openecraft-project-server` | `project-server/` | Project server: shared projects, page locks for several users (axum, project files) |
 | `openecraft-cli` | `cli/` | Command line and MCP server (AI agents) on top of `openecraft-core` |

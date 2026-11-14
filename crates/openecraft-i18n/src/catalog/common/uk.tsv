@@ -1,6 +1,7 @@
 # English<TAB>Українська – texts shown by several areas (texts without a line are shown in English). Sorted by the English text: cargo run -p openecraft-i18n --example tidy
 (all)	(усі)
 (no entries)	(немає записів)
+(no structure)	(без структури)
 --json needs a JSON object	--json потребує об’єкта JSON
 3D model	3D-модель
 3D routing	3D-прокладання
@@ -16,11 +17,13 @@ Add	Додати
 Add a PDF of all pages	Додати PDF усіх сторінок
 Add to favorites	Додати до вибраного
 Address	Адреса
+Administrator	Адміністратор
 Angle	Кут
 Apply	Застосувати
 Approve	Погодити
 Approvers	Погоджувачі
 Automatic	Автоматично
+Aux	Доп.
 Below	Знизу
 Bold	Жирний
 Bottom	Дно
@@ -125,6 +128,7 @@ Downloading {}…	Завантаження {}…
 Drag to turn the model	Перетягніть, щоб повернути модель
 EMC clearance	Відстань ЕМС
 Edit	Редагувати
+Editor	Редактор
 Electro-fluid cross reference	Електро-гідропневматичні перехресні посилання
 Enclosure	Корпус
 Enclosures	Корпуси
@@ -144,6 +148,8 @@ Field wiring	Польовий монтаж
 File	Файл
 Files	Файли
 Filter	Фільтр
+Filter devices…	Фільтрувати пристрої…
+Fit	Умістити
 Fits	Підходить до
 Fitting at the end	Фітинг у кінці
 Fitting at the start	Фітинг на початку
@@ -165,6 +171,7 @@ Gives up a subproject: its pages are unlocked again	Скасовує підпр�
 Gland plate	Фланцева панель
 Graphics	Графіка
 Group	Група
+Group the pages by structure	Групувати сторінки за структурою
 Groups	Групи
 Harness	Джгут
 Harness data	Дані джгута
@@ -207,9 +214,12 @@ Load	Навантаження
 Loaded circuits bunched together	Навантажені кола, прокладені разом
 Location	Розташування
 Location (+)	Розташування (+)
+Locked	Заблокований
+Locked by {}	Заблоковано: {}
 Logo	Логотип
 MTTFd (years)	MTTFd (роки)
 Machine	Машина
+Main	Головн.
 Main earthing busbar (device) it is connected to; empty: none	Головна заземлювальна шина (пристрій), до якої він під'єднаний; порожньо: немає
 Main earthing terminal	Головна заземлювальна шина
 Main switch	Головний вимикач
@@ -352,9 +362,11 @@ Product subgroup	Підгрупа продуктів
 Product top group	Основна група продуктів
 Profile	Профіль
 Project	Проєкт
+Project data	Дані проєкту
 Project languages	Мови проєкту
 Project logo	Логотип проєкту
 Project management	Керування проєктами
+Project manager	Керівник проєкту
 Project name	Назва проєкту
 Project properties	Властивості проєкту
 Properties	Властивості
@@ -371,6 +383,7 @@ Rated power	Номінальна потужність
 Rear wall	Задня стінка
 Rectangle	Прямокутник
 Rectangular	Прямокутний
+Refresh	Оновити
 Reject	Відхилити
 Relative humidity	Відносна вологість
 Relay	Реле
@@ -386,6 +399,7 @@ Report blocks	Блоки звітів
 Report: {}	Звіт: {}
 Required	Потрібно
 Reserve	Резерв
+Reviewer	Рецензент
 Revision	Ревізія
 Revision {}	Ревізія {}
 Rework	Доопрацювання
@@ -429,6 +443,7 @@ Sign in	Увійти
 Sign out	Вийти
 Signed in as {}	Ви ввійшли як {}
 Signed in as {} ({})	Ви ввійшли як {} ({})
+Signed out	Ви вийшли
 Signing in…	Вхід…
 Single-line / multi-line	Однолінійна / багатолінійна
 Size	Розмір
@@ -436,6 +451,7 @@ Socket side	Сторона гнізд
 Solenoid not linked	Котушку не пов’язано
 Sort by	Сортувати за
 Source	Джерело
+Started	Розпочато
 State	Стан
 Status	Стан
 String	Ланцюжок
@@ -498,6 +514,7 @@ User	Користувач
 User name	Ім’я користувача
 Users	Користувачі
 Version	Версія
+Viewer	Переглядач
 Voltage	Напруга
 Warning	Попередження
 Warnings	Попередження
@@ -540,6 +557,7 @@ yes	так
 {} exists already	{} вже існує
 {} is not a PNG or JPEG image	{} не є зображенням PNG або JPEG
 {} parts	Виробів: {}
+{} users	Користувачів: {}
 {} wires	Проводів: {}
 {}, together with the wire to {}	{}, разом із проводом до {}
 {}: {} does not stand on the floor, choose a floor-standing part	{}: {} не встановлюється на підлогу, виберіть виріб, що стоїть на підлозі

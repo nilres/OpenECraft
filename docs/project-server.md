@@ -16,9 +16,29 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
 
 - Configuration file (`--config <file>` or `OPENECRAFT_PROJECT_SERVER_CONFIG`): the
   settings of the command line options in TOML (`bind`, `data`, `token`, `admin_user`,
-  `access`; see
+  `access`, `web`; see
   [`project-server/project-server.example.toml`](../project-server/project-server.example.toml)),
   as for the parts server.
+- **Web page** (optional: `--web`, `--web true`, `OPENECRAFT_PROJECT_WEB=true` or
+  `web = true` in the configuration file; off by default): `http://<server>:8091/`
+  lists the projects the user may see (with the pages, the revision, who works on them
+  and the user's rights) and shows each of them read only: the pages by section or
+  grouped by structure, the devices with the places they are shown on, and the pages
+  drawn as on paper (zoom, drag to move, arrow keys or Page up / Page down for the
+  next page). Pages locked by other users are marked with 🔒 and the user; the page
+  looks at the project every 20 s and follows new revisions. Users sign in with their
+  account or the server token; without sign-in the page shows what anonymous requests
+  may see (the access settings). Project managers edit the grants of a project
+  (*Permissions*). Administrators get an *Administration* area: an overview (projects
+  in use, open sessions, users per role, access settings), the sessions (the open ones
+  with their user, project, start, last activity, saves and locked pages, and the
+  history of the ended ones with their duration and how they ended: closed, expired,
+  signed out or user deleted), the users (role, projects, groups,
+  password), the access rights (access without sign-in, defined roles, grants) and the
+  directories (Active Directory, LDAP, with a test of the connection and of a
+  sign-in). The page is in all languages of the app; it uses the API below, so the
+  server checks every request as for the editor. Without `--web` the server answers
+  `/` with a short text and has no page routes.
 - Project names differing only in case are one name (Windows and macOS do not tell
   their files apart): requests find a project under any case of its name; Windows device names (`CON`, `NUL`, `COM1` …) and names ending
   with a dot are refused.
@@ -76,6 +96,11 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   the last 16 revisions per project in memory; a save from an older revision (or
   without `base_revision`) saves only what is locked.
 - Each session gets its own range of object ids, so users never create the same id.
+- **Session history**: every ended session (user, project, start, last activity, end,
+  saves, how it ended) is appended to `sessions.jsonl` in the data directory, one JSON
+  line each; the server keeps the last 5000 and writes the file anew when it has grown
+  to twice as many lines. The keys of the sessions are never stored or shown, only
+  their numbers.
 - Editors prefer the session-bound `POST /projects/{name}/snapshot`. On 404 or
   405 only, they use the older GET snapshot followed by the current session's
   status. Both must name the same revision before the snapshot is applied; the
@@ -99,5 +124,15 @@ As a container: `docker run -d -p 127.0.0.1:8091:8091 -e OPENECRAFT_PROJECT_TOKE
   `project`), `GET|PUT|DELETE /projects/{name}`,
   `POST /projects/{name}/open|status|lock|release|close`, `GET|PUT /projects/{name}/access`,
   `POST /login` (`user` and `password`; `name` is taken for `user`, as on the parts
-  server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`
-  (see `openecraft_core::collab`).
+  server), `POST /logout`, `GET /users`, `PUT|DELETE /users/{name}`, `GET|PUT /access`,
+  `GET /directories`, `PUT|DELETE /directories/{id}`, `POST /directories/{id}/test`
+  (administrators; the passwords of the service accounts are never sent back),
+  `GET /sessions?limit=` (administrators: the open sessions and the last ended ones,
+  `SessionList`) (see
+  `openecraft_core::collab`). `GET /info` also tells the signed-in `user` (the server
+  token signs in as `admin`), what the caller may do (`access`) and whether the web
+  page is on (`web`). With `--web` also `GET /texts?lang=de` (the page's texts),
+  `GET /projects/{name}/view?lang=de` (pages, sections, structures, devices, locks and
+  the caller's rights, from `openecraft_view`) and `GET /projects/{name}/pages/{id}/svg`
+  (a page as SVG); both need the right to view the project and are drawn from one
+  analysis per project and revision (the last 8 projects are kept).
