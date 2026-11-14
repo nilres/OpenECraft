@@ -833,7 +833,6 @@ Latitude is within ±90° and longitude within ±180°	Die Breite liegt innerhal
 Lead time (days)	Lieferzeit (Tage)	Délai de livraison (jours)	Plazo de entrega (días)
 Leakage current	Ableitstrom	Courant de fuite	Corriente de fuga
 Leakage line	Leckölleitung	Conduite de fuite	Línea de fugas
-Left side	Linke Seite	Côté gauche	Lado izquierdo
 Left side panel	Linke Seitenwand	Paroi latérale gauche	Panel lateral izquierdo
 Legend plate text	Schildtext	Texte de l'étiquette	Texto de la placa
 Length (m)	Länge (m)	Longueur (m)	Longitud (m)
@@ -1403,7 +1402,6 @@ Rated short-time withstand current	Bemessungskurzzeitstromfestigkeit	Courant ass
 Rated speed	Bemessungsdrehzahl	Vitesse assignée	Velocidad nominal
 Rated torque	Bemessungsmoment	Couple assigné	Par nominal
 Rated voltage	Bemessungsspannung	Tension assignée	Tensión nominal
-Rear wall	Rückwand	Paroi arrière	Pared trasera
 Rectangular punch	Rechteckstempel	Poinçon rectangulaire	Punzón rectangular
 Rectifier / inverter AC/DC, bidirectional	Gleich- / Wechselrichter AC/DC, bidirektional	Redresseur / onduleur AC/DC, bidirectionnel	Rectificador / inversor AC/DC, bidireccional
 Redline	Redline	Redline	Redline
@@ -1448,7 +1446,6 @@ Revision table: author of the last revision (2: the one before …)	Revisionstab
 Revision table: date of the last revision (2: the one before …)	Revisionstabelle: Datum der letzten Revision (2: die davor …)	Tableau des révisions : date de la dernière révision (2 : la précédente …)	Tabla de revisiones: fecha de la última revisión (2: la anterior …)
 Revision table: description of the last revision (2: the one before …)	Revisionstabelle: Beschreibung der letzten Revision (2: die davor …)	Tableau des révisions : description de la dernière révision (2 : la précédente …)	Tabla de revisiones: descripción de la última revisión (2: la anterior …)
 Revision table: index of the last revision (2: the one before …)	Revisionstabelle: Index der letzten Revision (2: die davor …)	Tableau des révisions : indice de la dernière révision (2 : la précédente …)	Tabla de revisiones: índice de la última revisión (2: la anterior …)
-Right side	Rechte Seite	Côté droit	Lado derecho
 Right side panel	Rechte Seitenwand	Paroi latérale droite	Panel lateral derecho
 Ring earth electrode	Ringerder	Boucle de terre	Anillo de tierra
 Ring terminal	Ringkabelschuh	Cosse à œillet	Terminal de ojal
@@ -2161,6 +2158,7 @@ yellow	gelb	jaune	amarillo
 {}: cross-section {} below the {} mm² of power circuits	{}: Querschnitt {} unter den {} mm² von Hauptstromkreisen	{} : section {} inférieure aux {} mm² des circuits de puissance	{}: sección {} inferior a los {} mm² de los circuitos de potencia
 {}: cross-section {} differs from the potential definition ({})	{}: Querschnitt {} weicht von der Potenzialdefinition ab ({})	{} : la section {} diffère de la définition du potentiel ({})	{}: la sección {} difiere de la definición del potencial ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: Ausschnitt von {} auf {} ist {} mm vom Rand entfernt, mindestens {} mm erforderlich	{} : la découpe de {} sur {} est à {} mm du bord, au moins {} mm requis	{}: el recorte de {} en {} está a {} mm del borde, se requieren al menos {} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: Ausschnitt von {} auf {} liegt in einer Sperrfläche für Ausschnitte	{} : la découpe de {} sur {} se trouve dans une zone interdite aux découpes	{}: el recorte de {} en {} está en una zona restringida para recortes
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: Ausschnitt von {} auf {} ragt {} mm über seine Front hinaus	{} : la découpe de {} sur {} dépasse sa face avant de {} mm	{}: el recorte de {} en {} sobresale {} mm de su frente
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: Ausschnitte von {} und {} auf {} liegen zu nah beieinander ({} mm Steg, mindestens {} mm)	{} : les découpes de {} et {} sur {} sont trop proches ({} mm d'âme, au moins {} mm)	{}: los recortes de {} y {} en {} están demasiado cerca ({} mm de alma, al menos {} mm)
 {}: designation '{}' used more than once	{}: Bezeichnung '{}' mehrfach verwendet	{} : désignation '{}' utilisée plusieurs fois	{}: designación '{}' usada más de una vez
@@ -2172,6 +2170,7 @@ yellow	gelb	jaune	amarillo
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: Fehlerstrom {} A an {} schaltet nicht innerhalb von {} s ab (benötigt {} A)	{} : le courant de défaut {} A à {} ne coupe pas en {} s (il faut {} A)	{}: la corriente de defecto {} A en {} no desconecta en {} s (necesita {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: Funktionstexte in Übersichtsschaltplan und Stromlaufplan unterscheiden sich	{} : les textes de fonction diffèrent entre le schéma unifilaire et le schéma développé	{}: los textos de función difieren entre el esquema unifilar y el esquema desarrollado
 {}: hole of {} is too close to the cutout of {} on the {}	{}: Bohrung von {} liegt zu nah am Ausschnitt von {} auf {}	{} : le perçage de {} est trop proche de la découpe de {} sur {}	{}: el taladro de {} está demasiado cerca del recorte de {} en {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: Bohrung von {} auf {} liegt in einer Sperrfläche für Ausschnitte	{} : le trou de {} sur {} se trouve dans une zone interdite aux découpes	{}: el agujero de {} en {} está en una zona restringida para recortes
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: Bohrung Ø{} von {} auf {} ist {} mm vom Rand entfernt, mindestens {} mm erforderlich	{} : le perçage Ø{} de {} sur {} est à {} mm du bord, au moins {} mm requis	{}: el taladro Ø{} de {} en {} está a {} mm del borde, se requieren al menos {} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: Bohrungen von {} und {} auf {} liegen zu nah beieinander ({} mm Steg, mindestens {} mm)	{} : les perçages de {} et {} sur {} sont trop proches ({} mm d'âme, au moins {} mm)	{}: los taladros de {} y {} en {} están demasiado cerca ({} mm de alma, al menos {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: Hotspot von etwa {} °C bei x = {} mm, y = {} mm der Montageplatte (Innentemperatur höchstens {} °C)	{} : point chaud d'environ {} °C à x = {} mm, y = {} mm de la plaque de montage (température intérieure au plus {} °C)	{}: punto caliente de unos {} °C en x = {} mm, y = {} mm de la placa de montaje (temperatura interior como máximo {} °C)
@@ -2279,6 +2278,7 @@ yellow	gelb	jaune	amarillo
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg auf {} überschreiten die Traglast von {} kg	{} : {} kg sur {} dépassent sa charge de {} kg	{}: {} kg en {} superan su carga de {} kg
 {}: {} leads into no room	{}: {} führt in keinen Raum	{} : {} ne mène à aucune salle	{}: {} no lleva a ninguna sala
 {}: {} lies above the sloped ceiling	{}: {} liegt über der Dachschräge	{} : {} se trouve au-dessus du plafond rampant	{}: {} queda por encima del techo inclinado
+{}: {} lies in a restricted placing area of the {}	{}: {} liegt in einer Sperrfläche für Geräte auf {}	{} : {} se trouve dans une zone interdite au placement sur {}	{}: {} está en una zona restringida para la colocación en {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} Module der PV-Anlage {} sind an keinen String angeschlossen	{} : {} modules du champ photovoltaïque {} ne sont raccordés à aucune chaîne	{}: {} módulos del campo fotovoltaico {} no están conectados a ningún string
 {}: {} modules, the head has {} slots	{}: {} Baugruppen, der Kopf hat {} Steckplätze	{} : {} modules, la tête a {} emplacements	{}: {} módulos, la cabecera tiene {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} mit {} mm ist länger als die Lagerlänge von {} mm und muss gestoßen werden	{} : {} de {} mm dépasse la longueur de stock de {} mm et doit être raboutée	{}: {} de {} mm supera la longitud de stock de {} mm y debe empalmarse

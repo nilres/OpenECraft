@@ -10,5 +10,5 @@ mod import;
 mod parasolid;
 
 pub use iges::parse_iges;
-pub use import::parse_step;
+pub use import::{parse_step, parse_step_without};
 pub use parasolid::parse_parasolid;

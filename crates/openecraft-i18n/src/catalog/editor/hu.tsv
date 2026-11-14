@@ -591,6 +591,7 @@ Door NC data (DWG)	Ajtó NC-adatai (DWG)
 Door NC data (DXF)	Ajtó NC-adatai (DXF)
 Door clearance	Ajtó szabad tere
 Door cutouts (CSV)	Ajtókivágások (CSV)
+Door hinge	Ajtózsanérok
 Door: {} devices, {} cutouts	Ajtó: {} készülék, {} kivágás
 Dot	Pont
 Double-click	Dupla kattintás
@@ -657,6 +658,7 @@ Earthing system	Földelési rendszer
 Easting, northing	Keleti, északi koordináta
 Eaves	Eresz
 Edge length of the routing grid: smaller is finer and slower	A nyomvonalrács élhossza: a kisebb finomabb és lassabb
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Az él, amelyen az ajtó zsanérjai vannak, elölről nézve: a 3D nézet ott nyitja az ajtót, és az ajtó vezetékei azon futnak át
 Edit in table	Szerkesztés táblázatban
 Edit in table…	Szerkesztés táblázatban…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Szerkesztő mód: húzza az épületeket a helyükre a helyszínrajzon, és forgassa el őket; egy helyiségre kattintás már nem nyitja meg
@@ -907,6 +909,7 @@ Import symbol library…	Szimbólumkönyvtár importálása…
 Import symbol table…	Szimbólumtábla importálása…
 Imported	Importált
 Imported {} entries of the property library	A tulajdonságkönyvtár {} bejegyzése importálva
+Imported {} into the parts database	{} importálva az alkatrész-adatbázisba
 Imported {} macros	{} makró importálva
 Imported {} page templates	{} oldalsablon importálva
 Imported {} parts into the database	{} alkatrész importálva az adatbázisba
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Az aktuális oldal a(z) {} opcióhoz tart
 The devices do not fit onto the rail	A készülékek nem férnek el a sínen
 The dictionary is empty: collect the texts from the project.	A szótár üres: gyűjtse össze a szövegeket a projektből.
 The door seen from the front: door devices and cutouts	Az ajtó elölről nézve: ajtókészülékek és kivágások
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Az ajtó belülről nézve (zsanérok jobbra): kábelcsatornák és az ajtó mögötti huzalozás
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Az ajtó belülről nézve (tükrözve): kábelcsatornák és az ajtó mögötti huzalozás
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Az elem csak akkor jelenik meg, ha ez a szöveg a helyőrzőivel nem üres, pl. egy revíziós táblázat sorai
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	A szekrény bal oldalával a kiválasztott szekrény jobb oldalához áll; a vezetékek kábelátvezetéseken át futnak közöttük
 The horizontal wire	A vízszintes vezeték

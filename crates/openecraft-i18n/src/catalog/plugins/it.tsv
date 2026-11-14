@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Picchetto: la sua lunghezza, mm (predef
 Earth rod: x of its place in the floor plan of the building, mm	Picchetto: x della sua posizione nella pianta dell'edificio, mm
 Earth rod: z of its place in the floor plan of the building, mm	Picchetto: z della sua posizione nella pianta dell'edificio, mm
 Edge length of the routing grid in mm	Lato della griglia di instradamento in mm
+Edge the door is hinged at, seen from the front: left or right	Bordo su cui è incernierata la porta, visto dal davanti: left o right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Sigle dei dispositivi elettrici separate da virgole o spazi (vuoto = rimuovi i collegamenti)
 Electrical engineering	Elettrotecnica
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementi (Line, Rect, Text, Image) in mm dall'angolo superiore sinistro dell'area del cartiglio in un array items
@@ -452,6 +453,8 @@ Measuring range or set point	Campo di misura o valore di riferimento
 Message code, e.g. wires.3f9a1c	Codice del messaggio, ad es. wires.3f9a1c
 Milling feed, mm/min	Avanzamento di fresatura, mm/min
 Mirror the symbol	Specchia il simbolo
+Mounting plate size as width and height; empty object restores the centred plate	Dimensioni della piastra di montaggio come larghezza e altezza; un oggetto vuoto ripristina la piastra centrata
+Mounting size must contain a positive width and height	Le dimensioni di montaggio devono contenere larghezza e altezza positive
 Moves an air-termination rod, changes its height, renames or removes it	Sposta un'asta di captazione, ne modifica l'altezza, la rinomina o la rimuove
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Sposta un'estremità di un conduttore: lascia ciò a cui è collegata e si collega a ciò che incontra; il conduttore resta ortogonale
 Moves symbols, wires and texts; connected wire ends follow	Sposta simboli, conduttori e testi; le estremità dei conduttori collegati li seguono
@@ -913,6 +916,7 @@ Unknown check: {}	Verifica sconosciuta: {}
 Unknown class: {}	Classe sconosciuta: {}
 Unknown data type: {}	Tipo di dati sconosciuto: {}
 Unknown direction {}: left, right, up or down	Direzione sconosciuta {}: left, right, up o down
+Unknown door hinge: {}	Lato cerniere sconosciuto: {}
 Unknown earth electrode: {}	Dispersore sconosciuto: {}
 Unknown earthing system: {}	Sistema di distribuzione sconosciuto: {}
 Unknown face {}	Faccia sconosciuta {}

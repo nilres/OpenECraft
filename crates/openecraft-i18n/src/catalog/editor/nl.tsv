@@ -591,6 +591,7 @@ Door NC data (DWG)	NC-gegevens deur (DWG)
 Door NC data (DXF)	NC-gegevens deur (DXF)
 Door clearance	Deurvrijruimte
 Door cutouts (CSV)	Deuruitsparingen (CSV)
+Door hinge	Deurscharnieren
 Door: {} devices, {} cutouts	Deur: {} apparaten, {} uitsparingen
 Dot	Punt
 Double-click	Dubbelklik
@@ -657,6 +658,7 @@ Earthing system	Aardingsstelsel
 Easting, northing	Oostwaarde, noordwaarde
 Eaves	Dakgoot
 Edge length of the routing grid: smaller is finer and slower	Randlengte van het routeringsraster: kleiner is fijner en langzamer
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Rand waaraan de deur scharniert, van voren gezien: de 3D-weergave opent de deur daar en de deurdraden lopen eroverheen
 Edit in table	Bewerken in tabel
 Edit in table…	Bewerken in tabel…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Bewerkmodus: sleep de gebouwen naar hun plaats in de situatietekening en draai ze; een klik op een ruimte opent die niet meer
@@ -907,6 +909,7 @@ Import symbol library…	Symboolbibliotheek importeren…
 Import symbol table…	Symbooltabel importeren…
 Imported	Geïmporteerd
 Imported {} entries of the property library	{} items van de eigenschappenbibliotheek geïmporteerd
+Imported {} into the parts database	{} in de artikeldatabase geïmporteerd
 Imported {} macros	{} macro's geïmporteerd
 Imported {} page templates	{} paginasjablonen geïmporteerd
 Imported {} parts into the database	{} artikelen in de database geïmporteerd
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	De huidige pagina hoort bij optie {}.
 The devices do not fit onto the rail	De apparaten passen niet op de rail
 The dictionary is empty: collect the texts from the project.	Het woordenboek is leeg: verzamel de teksten uit het project.
 The door seen from the front: door devices and cutouts	De deur gezien van voren: deurapparaten en uitsparingen
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	De deur gezien van binnen (scharnieren rechts): kabelgoten en de bedrading achter de deur
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	De deur gezien van binnen (gespiegeld): kabelgoten en de bedrading achter de deur
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Het element wordt alleen getekend als deze tekst met zijn plaatshouders niet leeg is, bijv. de rijen van een revisietabel
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	De behuizing staat met haar linkerzijde tegen de rechterzijde van de gekozen behuizing; draden lopen ertussen door kabeldoorvoeren
 The horizontal wire	De horizontale draad

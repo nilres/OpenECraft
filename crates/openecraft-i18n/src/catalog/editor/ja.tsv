@@ -585,6 +585,7 @@ Door NC data (DWG)	扉の NC データ (DWG)
 Door NC data (DXF)	扉の NC データ (DXF)
 Door clearance	扉のクリアランス
 Door cutouts (CSV)	扉の切り欠き (CSV)
+Door hinge	扉のヒンジ
 Door: {} devices, {} cutouts	扉: デバイス {} 個、切り欠き {} 個
 Dot	点
 Double-click	ダブルクリック
@@ -651,6 +652,7 @@ Earthing system	系統接地方式
 Easting, northing	東座標、北座標
 Eaves	軒
 Edge length of the routing grid: smaller is finer and slower	配線グリッドの辺の長さ: 小さいほど精細になり、処理は遅くなります
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	正面から見た扉のヒンジ側の端: 3D ビューはそこで扉を開き、扉の配線はそこを通ります
 Edit in table	表で編集
 Edit in table…	表で編集…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	編集モード：配置図で建物をその位置へドラッグして回転します。部屋をクリックしても開かなくなります
@@ -899,6 +901,7 @@ Import symbol library…	シンボルライブラリをインポート…
 Import symbol table…	シンボルテーブルをインポート…
 Imported	インポート済み
 Imported {} entries of the property library	プロパティライブラリのエントリを {} 件インポートしました
+Imported {} into the parts database	{} を部品データベースにインポートしました
 Imported {} macros	{} 個のマクロをインポートしました
 Imported {} page templates	{} 個のページテンプレートをインポートしました
 Imported {} parts into the database	{} 個の部品をデータベースにインポートしました
@@ -2016,7 +2019,7 @@ The current page belongs to option {}.	現在のページはオプション {} �
 The devices do not fit onto the rail	デバイスがレールに収まりません
 The dictionary is empty: collect the texts from the project.	辞書が空です: プロジェクトからテキストを収集してください。
 The door seen from the front: door devices and cutouts	前面から見た扉: 扉取付機器と切り欠き
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	内側から見た扉 (ヒンジは右): 配線ダクトと扉裏の配線
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	内側から見た扉 (左右反転): 配線ダクトと扉裏の配線
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	このプレースホルダー付きの文字が空でないときだけ要素を描きます（例: リビジョン表の行）
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	エンクロージャーの左側を選択したエンクロージャーの右側に接して設置します。電線はケーブル貫通口を通って両者の間を通ります
 The horizontal wire	水平の配線

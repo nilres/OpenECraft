@@ -12,11 +12,13 @@ Add connection point	接続ポイントを追加
 Add cutout	切り欠きを追加
 Add function	機能を追加
 Add marked parts to the parts database ({})	マークした部品を部品データベースに追加 ({})
+Add restricted area	禁止領域を追加
 Add to the parts database	部品データベースに追加
 Adds the macros of the file to the macro library	ファイル内のマクロをマクロライブラリに追加します
 All parts are up to date	すべての部品は最新です
 Already in the parts database	部品データベースに登録済み
 Apply {} updates	{} 件の更新を適用
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	機器（配置）または切り欠きと穴（切り欠き）を置かないエンクロージャーの領域。位置とサイズは面の座標で、その面の部品と同じです。
 Check the parts database for updates	部品データベースの更新を確認
 Checking for part updates…	部品の更新を確認しています…
 Clearance front	前のクリアランス
@@ -28,6 +30,7 @@ Connect to a parts server and search.	部品サーバーに接続して検索し
 Connected: {} {} – {} parts, revision {}, {}	接続済み: {} {} – 部品 {} 個、リビジョン {}、{}
 Connection designations	接続名称
 Corner radius	角の半径
+Cut-out	切り欠き
 Datasheet (URL)	データシート (URL)
 Deleted catalog {}	カタログ {} を削除しました
 Deleted part {}	部品 {} を削除しました
@@ -83,12 +86,14 @@ Parts server: {}	部品サーバー: {}
 Parts this part is assembled from; the bill of materials lists them under it	この部品を構成する部品。部品表ではその下に表示されます
 Personal access token	個人用アクセストークン
 Place by clicking into the view	ビュー内をクリックして配置
+Placing	配置
 Prices / other	価格 / その他
 Remove all	すべて削除
 Remove picture	画像を削除
 Removing the file…	ファイルを削除しています…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	IEC の規則で接続ポイントを置き換えます: 奇数の名称を上、偶数の名称を下に配置
 Reset filter	フィルターをリセット
+Restricted areas: {}	禁止領域: {}
 Rotate 90°:	90° 回転:
 Save the file	ファイルを保存
 Saved part {}	部品 {} を保存しました

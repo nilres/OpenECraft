@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	垂直接地极：长度，mm（默认 
 Earth rod: x of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 x，mm
 Earth rod: z of its place in the floor plan of the building, mm	垂直接地极：在建筑物平面图中位置的 z，mm
 Edge length of the routing grid in mm	布线栅格的边长 (mm)
+Edge the door is hinged at, seen from the front: left or right	从正面看柜门铰链所在的边：left 或 right
 Electrical device tags separated by commas or blanks (empty = remove the links)	电气设备标识符，以逗号或空格分隔（空 = 移除关联）
 Electrical engineering	电气工程
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	元素（Line、Rect、Text、Image），以毫米为单位，从标题栏区域左上角起，放在 items 数组中
@@ -452,6 +453,8 @@ Measuring range or set point	测量范围或设定值
 Message code, e.g. wires.3f9a1c	消息代码，例如 wires.3f9a1c
 Milling feed, mm/min	铣削进给，mm/min
 Mirror the symbol	镜像符号
+Mounting plate size as width and height; empty object restores the centred plate	安装板尺寸（宽度和高度）；空对象恢复居中的安装板
+Mounting size must contain a positive width and height	安装尺寸必须包含正的宽度和高度
 Moves an air-termination rod, changes its height, renames or removes it	移动接闪杆，更改其高度，重命名或删除
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	移动导线的一端：该端离开原来连接的对象，并连接到所接触的对象；导线保持直角
 Moves symbols, wires and texts; connected wire ends follow	移动符号、导线和文本；所连接的导线端会跟随移动
@@ -913,6 +916,7 @@ Unknown check: {}	未知检查：{}
 Unknown class: {}	未知类别：{}
 Unknown data type: {}	未知数据类型：{}
 Unknown direction {}: left, right, up or down	未知方向 {}：left、right、up 或 down
+Unknown door hinge: {}	未知的铰链侧：{}
 Unknown earth electrode: {}	未知接地极：{}
 Unknown earthing system: {}	未知接地系统：{}
 Unknown face {}	未知面 {}

@@ -12,11 +12,13 @@ Add connection point	Добавить точку подключения
 Add cutout	Добавить вырез
 Add function	Добавить функцию
 Add marked parts to the parts database ({})	Добавить отмеченные изделия в базу данных изделий ({})
+Add restricted area	Добавить запретную зону
 Add to the parts database	Добавить в базу данных изделий
 Adds the macros of the file to the macro library	Добавляет макросы файла в библиотеку макросов
 All parts are up to date	Все изделия актуальны
 Already in the parts database	Уже есть в базе данных изделий
 Apply {} updates	Применить обновления ({})
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	Зоны корпуса без устройств (размещение) или без вырезов и отверстий (вырез); положение и размер в координатах грани, как у её элементов.
 Check the parts database for updates	Проверить базу данных изделий на наличие обновлений
 Checking for part updates…	Проверка обновлений изделий…
 Clearance front	Зазор спереди
@@ -28,6 +30,7 @@ Connect to a parts server and search.	Подключитесь к серверу
 Connected: {} {} – {} parts, revision {}, {}	Подключено: {} {} – изделий: {}, ревизия {}, {}
 Connection designations	Обозначения соединений
 Corner radius	Радиус угла
+Cut-out	Вырез
 Datasheet (URL)	Технический паспорт (URL)
 Deleted catalog {}	Каталог {} удалён
 Deleted part {}	Изделие {} удалено
@@ -83,12 +86,14 @@ Parts server: {}	Сервер изделий: {}
 Parts this part is assembled from; the bill of materials lists them under it	Изделия, из которых собрано это изделие; спецификация перечисляет их под ним
 Personal access token	Персональный маркер доступа
 Place by clicking into the view	Разместите щелчком в виде
+Placing	Размещение
 Prices / other	Цены / прочее
 Remove all	Удалить все
 Remove picture	Удалить изображение
 Removing the file…	Удаление файла…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	Заменяет точки подключения по правилу IEC: нечётные обозначения сверху, чётные снизу
 Reset filter	Сбросить фильтр
+Restricted areas: {}	Запретные зоны: {}
 Rotate 90°:	Повернуть на 90°:
 Save the file	Сохранить файл
 Saved part {}	Изделие {} сохранено

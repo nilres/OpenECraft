@@ -85,7 +85,16 @@ pub fn enclosure_solids(prj: &Project, e: &Enclosure) -> Vec<Solid> {
     let mut solid = |name: &str, color: [u8; 3], transparent: bool, triangles: Vec<Tri>| {
         out.push(Solid { name: name.to_string(), color, transparent, triangles });
     };
-    for c in panel::components(e).into_iter().filter(|c| !c.boxes.is_empty()) {
+    // The maker's model of the enclosure takes the place of the generic body, walls,
+    // door and plates.
+    let maker = panel::maker_model(prj, e);
+    if let Some(model) = &maker {
+        let of = |door: bool| -> Vec<Tri> { model.iter().filter(|(f, _)| (*f == Some(panel::Face::Door)) == door).map(|(_, t)| *t).collect() };
+        solid(&format!("{} {} {}", e.name, kind_role(Role::Body), e.part), component_color(Role::Body), false, of(false));
+        solid(&format!("{} {}", e.name, kind_role(Role::Door)), component_color(Role::Door), true, of(true));
+    }
+    let generic = |role: Role| maker.is_none() || !matches!(role, Role::Body | Role::Door | Role::Wall(_) | Role::GlandPlate | Role::MountingPlate);
+    for c in panel::components(e).into_iter().filter(|c| !c.boxes.is_empty() && generic(c.role)) {
         let name = if c.part.is_empty() { format!("{} {}", e.name, kind_role(c.role)) } else { format!("{} {} {}", e.name, kind_role(c.role), c.part) };
         let tris = c.boxes.into_iter().flat_map(up_box).collect();
         solid(&name, component_color(c.role), matches!(c.role, Role::Door | Role::RoomWall(_)), tris);

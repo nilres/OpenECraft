@@ -12,11 +12,13 @@ Add connection point	添加连接点
 Add cutout	添加开孔
 Add function	添加功能
 Add marked parts to the parts database ({})	将标记的部件添加到部件数据库 ({})
+Add restricted area	添加禁止区域
 Add to the parts database	添加到部件数据库
 Adds the macros of the file to the macro library	将文件中的宏添加到宏库
 All parts are up to date	所有部件均为最新
 Already in the parts database	已在部件数据库中
 Apply {} updates	应用 {} 项更新
+Areas of the enclosure kept free of devices (placing) or of cutouts and holes (cut-out); place and size in the coordinates of the face, as its items have them.	机柜中禁止放置设备（放置）或禁止开孔和钻孔（开孔）的区域；位置和尺寸采用该面的坐标，与其上的元件相同。
 Check the parts database for updates	检查部件数据库更新
 Checking for part updates…	正在检查部件更新…
 Clearance front	前部间距
@@ -28,6 +30,7 @@ Connect to a parts server and search.	请连接到部件服务器并进行搜索
 Connected: {} {} – {} parts, revision {}, {}	已连接：{} {} – {} 个部件，修订 {}，{}
 Connection designations	连接标识
 Corner radius	圆角半径
+Cut-out	开孔
 Datasheet (URL)	数据表 (URL)
 Deleted catalog {}	已删除目录 {}
 Deleted part {}	已删除部件 {}
@@ -82,12 +85,14 @@ Parts server: {}	部件服务器：{}
 Parts this part is assembled from; the bill of materials lists them under it	组成此部件的部件；物料清单将其列在此部件下
 Personal access token	个人访问令牌
 Place by clicking into the view	在视图中单击以放置
+Placing	放置
 Prices / other	价格 / 其他
 Remove all	全部移除
 Remove picture	删除图片
 Removing the file…	正在删除文件…
 Replaces the connection points by the IEC convention: odd designations at the top, even ones at the bottom	按 IEC 惯例替换连接点：奇数标识在上，偶数标识在下
 Reset filter	重置筛选
+Restricted areas: {}	禁止区域：{}
 Rotate 90°:	旋转 90°：
 Save the file	保存文件
 Saved part {}	已保存部件 {}

@@ -129,15 +129,40 @@ the device. Floor-standing parts stand upright on the floor of a room.
   macros become project symbols. The product picture is kept with the part as a small
   JPEG (at most 192 px) and shown in the part details with its mounting data
   (mounting, holes, cutout, clearances) and the wires its connection points take.
+  A 3D macro of the part (EPLAN Pro Panel, `…_3D.ema`, `P_ARTICLE_MACRO`) gives it
+  its 3D model when it has none, also for the parts XML of an unpacked EDZ file or a
+  vendor folder; a macro whose bodies are in a form this version does not read is
+  reported in the part's EPLAN diagnostics.
   Parts Manager and `parts_import` also store the original files as attachments. The
   project and server part records carry the converted definitions and diagnostics.
   The part XML of an unpacked EDZ file (`items/partxml/…part.xml`) is read the same
   way: with the connection point and drilling pattern files next to it and the macros
   and pictures below `items/`.
+- **Enclosure packages** (ZIP archives of enclosure configurators such as the Rittal
+  configurator): the bill of materials (`bill-of-material.csv`) gives the parts, the
+  first one is the configured enclosure (manufacturer prefix and name from the EPLAN
+  macro, e.g. `RIT.1360000`, size from *WHD: 600x600x350 mm*, GTIN, configuration id
+  and compact enclosure system in its technical data) with the further lines as its
+  components. The preview of the EPLAN Pro Panel macro becomes its picture. The
+  bodies of the macro (housing, door, mounting plate, gland plate, hinges and lock)
+  become its 3D model, stood upright with the front towards +z; a macro without
+  bodies leaves it to the STEP model, without its restricted cut-out and placing areas
+  (Parts Manager and the editor; `parts_import` only attaches the STEP file). The
+  front of the mounting plate (or else the largest surface facing the front in the rear
+  half of the housing) gives the part data `Mounting origin: 25/12.5/20` and
+  `Mounting size: 550 x 575`, the side of the hinge blocks beside the door
+  `Door hinge: right`, so
+  that an enclosure of the part gets that plate (see [panel layout](panel-layout.md)).
+  The restricted areas of the macro become the part's *Restricted areas* (mounting
+  data, `placing plate 0/0 550 x 20; cutout left 10/20 30 x 40`: kind, face, place and
+  size in the face's coordinates), each on the face whose plane it lies in; those on
+  the frame around the door are left out. The panel layout draws and checks them (see
+  [panel layout](panel-layout.md#restricted-areas)). The macro, the EPLAN project
+  (`.zw1`), the STEP file and the PDF documents are stored as attachments.
 
 ### Placing an EPLAN symbol
 
-Open **Import parts** and select the EDZ or the vendor's article XML. On desktop, article XML can load a companion EMA from the same directory. Under **Insert center → Devices**, search for the part, select it, then select the variant before placing it. Each row has a preview and lists unresolved properties or library references. A loose EMA can also be opened using **Import symbol library**. Explicitly tagged multi-device windows can be placed as native macros.
+Open **Import parts** and select the EDZ or the vendor's article XML; a box at the bottom right tells the result (the part's number and description, or how many parts) and closes after a few seconds or on a click. On desktop, article XML can load a companion EMA from the same directory. Under **Insert center → Devices**, search for the part, select it, then select the variant before placing it. Each row has a preview and lists unresolved properties or library references. A loose EMA can also be opened using **Import symbol library**. Explicitly tagged multi-device windows can be placed as native macros.
 
 The decoder reads PXF window macros, embedded drawing blocks, affine transforms, basic vector graphics, text and selected property fields. Its built-in SPECIAL mappings cover PLC and device contacts 13, 17 and 20, plug and bus contact forms 34, 35 and 37, two-sided form 22 with a common designation, and overview form 40. These forms use the contact drawings in the 2007 EPLAN IEC symbol overview, pp. 1–2. Physical XYZ connection points continue to belong to the panel model.
 

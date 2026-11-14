@@ -130,6 +130,31 @@ its GitHub release ([docs/releasing.md](docs/releasing.md)).
   part's catalog and the parts manager the logos of its catalogs, where they are also
   changed or removed; *Settings › Appearance › Data portal* (editor) and *Logos* (parts
   manager) hide them ([parts server](docs/parts-server.md), [access control](docs/access-control.md)).
+- **Enclosure packages of configurators** (#176): *Import parts* (editor, Parts
+  Manager, `parts_import`) reads the ZIP archive of the Rittal configurator: the parts
+  of its bill of materials, the configured enclosure with size, GTIN, configuration id,
+  the preview of its EPLAN macro as picture, the bodies of the EPLAN Pro Panel macro
+  (or else the STEP model) as 3D model, the place of its mounting plate (part data
+  `Mounting origin`, used by new enclosures of the part) and its restricted areas, and
+  the macro, EPLAN project, STEP file and PDFs as attachments
+  ([parts](docs/features/parts.md)). **Restricted areas** of enclosure parts (mounting
+  data, on the faces of the enclosure) are drawn hatched in the panel layout, which
+  reports devices in a placing area and cutouts and holes in a cut-out area
+  ([panel layout](docs/features/panel-layout.md#restricted-areas)), shown in the 3D view
+  and edited in a table of the part editor. An enclosure of a maker's part that names
+  its system keeps that part instead of the catalog's body (also in the bill of
+  materials), and the **3D view and 3D exports show the maker's model** of the
+  enclosure. Mounting plates that are not centred get their size (`Mounting size`,
+  `mounting_size`). Importing a part again refreshes the project's copy with what the
+  import brings (models, mounting data, technical data). Unpacked EDZ files and vendor
+  folders take 3D models from their 3D macros, and macros with bodies in a form not
+  read are reported. The 3D macros of EDZ files give their parts a 3D
+  model. *Import parts* tells its result in a box at the bottom right. Cabinet doors
+  can be hinged on the right (*Door hinge*, `door_hinge`, part data `Door hinge`; the
+  Rittal import finds it from the hinge blocks): the door view, the 3D view and the
+  door wiring follow it. STEP files whose arcs are given by their vertices
+  only (as Open CASCADE writes them) are read now, and a body STEP cannot convert no
+  longer fails the whole model.
 - **Logos in title blocks** (#165): title blocks and drawn report forms get image
   elements (*➕ Image*), with a picture of their own (e.g. the company logo, kept in the
   title block and its file) or the new project logo of *Project properties › Logo*

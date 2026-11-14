@@ -750,7 +750,6 @@ Latitude is within ±90° and longitude within ±180°	緯度は ±90°、経度
 Lead time (days)	リードタイム (日)
 Leakage current	漏れ電流
 Leakage line	ドレンライン
-Left side	左側
 Left side panel	左側板
 Legend plate text	銘板テキスト
 Length (m)	長さ (m)
@@ -1287,7 +1286,6 @@ Rated short-time withstand current	定格短時間耐電流
 Rated speed	定格回転速度
 Rated torque	定格トルク
 Rated voltage	定格電圧
-Rear wall	背板
 Rectangular punch	角パンチ
 Rectifier / inverter AC/DC, bidirectional	整流器 / インバーター AC/DC (双方向)
 Redline	レッドライン
@@ -1331,7 +1329,6 @@ Revision table: author of the last revision (2: the one before …)	リビジョ
 Revision table: date of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの日付（2: その前 …）
 Revision table: description of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの説明（2: その前 …）
 Revision table: index of the last revision (2: the one before …)	リビジョン表: 最終リビジョンの記号（2: その前 …）
-Right side	右側
 Right side panel	右側板
 Ring earth electrode	環状接地極
 Ring terminal	丸形端子
@@ -1987,6 +1984,7 @@ yellow	黄
 {}: cross-section {} below the {} mm² of power circuits	{}: 断面積 {} が動力回路の {} mm² を下回っています
 {}: cross-section {} differs from the potential definition ({})	{}: 断面積 {} が電位定義 ({}) と異なります
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2} 上の {1} の切り欠きは端から {3} mm です。{4} mm 以上必要です
+{}: cutout of {} on the {} lies in a restricted cut-out area	{0}: {2} 上の {1} の切り欠きは切り欠き禁止領域にあります
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}：{} の {} 上の切り欠きが正面から {} mm はみ出しています
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} 上の {1} と {2} の切り欠きが近すぎます (残し幅 {4} mm、最小 {5} mm)
 {}: designation '{}' used more than once	{}: 名称 '{}' が複数回使用されています
@@ -1996,6 +1994,7 @@ yellow	黄
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {1} での故障電流 {2} A では {3} s 以内に遮断されません ({4} A が必要)
 {}: function texts differ in the single-line diagram and the schematic	{}: 単線結線図と回路図で機能テキストが異なります
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {3} 上で {1} の穴が {2} の切り欠きに近すぎます
+{}: hole of {} on the {} lies in a restricted cut-out area	{0}: {2} 上の {1} の穴は切り欠き禁止領域にあります
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {3} 上の {2} の穴 Ø{1} は端から {4} mm です。{5} mm 以上必要です
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3} 上の {1} と {2} の穴が近すぎます (残し幅 {4} mm、最小 {5} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{0}: 取付板の x = {2} mm、y = {3} mm に約 {1} °C のホットスポットがあります (内部温度は最大 {4} °C)
@@ -2087,6 +2086,7 @@ yellow	黄
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} は壁取付用ではありません。レールに取り付けてください
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} は床面から {} … {} mm です (許容 {} … {} mm)
 {}: {} kg on the {} exceed its load of {} kg	{0}: {2} 上の {1} kg は耐荷重 {3} kg を超えています
+{}: {} lies in a restricted placing area of the {}	{0}: {1} は {2} 上の配置禁止領域にあります
 {}: {} modules of PV array {} are not connected to a string	{0}：PVアレイ {2} の {1} 枚のモジュールはストリングに接続されていません
 {}: {} modules, the head has {} slots	{}: モジュールが {} 個ありますが、ヘッドのスロットは {} 個です
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} ({} mm) は定尺長 {} mm より長いため、継ぎ足す必要があります

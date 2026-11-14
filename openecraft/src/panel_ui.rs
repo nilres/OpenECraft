@@ -487,7 +487,7 @@ pub struct PanelUi {
     pub view: View,
     /// Face shown in the front view (mounting plate or door).
     pub face: Face,
-    /// The door is seen from the inside (mirrored, hinges on the right).
+    /// The door is seen from the inside (mirrored).
     pub door_inside: bool,
     pub selection: BTreeSet<u64>,
     /// Selected wire of the virtual wiring (from, to).
@@ -1833,6 +1833,15 @@ impl PanelUi {
             ui.label(tr("Door clearance"));
             ui.add(egui::DragValue::new(&mut e.door_clearance).speed(1.0).range(0.0..=500.0).suffix(" mm"))
                 .on_hover_text(tr("Space behind the door that devices must keep free (door-mounted devices, handles)"));
+            ui.end_row();
+            ui.label(tr("Door hinge"));
+            ui.horizontal(|ui| {
+                for (hinge, title) in [(panel::DoorHinge::Left, tr("Left")), (panel::DoorHinge::Right, tr("Right"))] {
+                    ui.selectable_value(&mut e.door_hinge, hinge, title);
+                }
+            })
+            .response
+            .on_hover_text(tr("Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it"));
             ui.end_row();
             let (pw, ph) = e.plate_size();
             ui.label(tr("Mounting plate"));

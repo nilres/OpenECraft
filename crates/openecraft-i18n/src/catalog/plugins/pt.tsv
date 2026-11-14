@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Haste de aterramento: o seu comprimento
 Earth rod: x of its place in the floor plan of the building, mm	Haste de aterramento: x do seu lugar na planta do edifício, mm
 Earth rod: z of its place in the floor plan of the building, mm	Haste de aterramento: z do seu lugar na planta do edifício, mm
 Edge length of the routing grid in mm	Comprimento da aresta da grade de roteamento em mm
+Edge the door is hinged at, seen from the front: left or right	Borda em que a porta é articulada, vista de frente: left ou right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Identificadores de dispositivo elétrico separados por vírgulas ou espaços (vazio = remover os vínculos)
 Electrical engineering	Engenharia elétrica
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementos (Line, Rect, Text, Image) em mm a partir do canto superior esquerdo da área do selo em uma matriz items
@@ -452,6 +453,8 @@ Measuring range or set point	Faixa de medição ou ponto de ajuste
 Message code, e.g. wires.3f9a1c	Código da mensagem, por exemplo, wires.3f9a1c
 Milling feed, mm/min	Avanço de fresamento, mm/min
 Mirror the symbol	Espelhar o símbolo
+Mounting plate size as width and height; empty object restores the centred plate	Tamanho da placa de montagem como largura e altura; um objeto vazio restaura a placa centralizada
+Mounting size must contain a positive width and height	O tamanho de montagem deve conter largura e altura positivas
 Moves an air-termination rod, changes its height, renames or removes it	Move um captor tipo haste, altera a sua altura, renomeia-o ou remove-o
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Move uma extremidade de um fio: ela deixa aquilo a que está conectada e se conecta ao que encontra; o fio continua ortogonal
 Moves symbols, wires and texts; connected wire ends follow	Move símbolos, fios e textos; as extremidades dos fios conectados acompanham
@@ -913,6 +916,7 @@ Unknown check: {}	Verificação desconhecida: {}
 Unknown class: {}	Classe desconhecida: {}
 Unknown data type: {}	Tipo de dado desconhecido: {}
 Unknown direction {}: left, right, up or down	Direção desconhecida {}: left, right, up ou down
+Unknown door hinge: {}	Lado de dobradiça desconhecido: {}
 Unknown earth electrode: {}	Eletrodo de aterramento desconhecido: {}
 Unknown earthing system: {}	Esquema de aterramento desconhecido: {}
 Unknown face {}	Face desconhecida {}

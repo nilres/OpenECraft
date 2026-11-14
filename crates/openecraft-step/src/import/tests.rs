@@ -74,6 +74,60 @@ fn assemblies_place_their_parts() {
 }
 
 #[test]
+fn skipped_products_are_left_out() {
+    // The second use is a keep-out body.
+    let file = assembly_file(CUBOID_MM, &[0.0, 50.0]).replacen("('1','block'", "('1','Restricted placing area'", 1);
+    let skip = |name: &str| name.starts_with("Restricted");
+    assert_size(&parse_step_without(file.as_bytes(), &skip).unwrap(), [10.0, 20.0, 30.0]);
+    assert_size(&parse_step(file.as_bytes()).unwrap(), [60.0, 20.0, 30.0]);
+    // Skipping the assembly leaves out everything below it.
+    assert!(parse_step_without(file.as_bytes(), &|name| name == "top").map_or(true, |m| m.triangles.is_empty()));
+}
+
+/// Parameter ranges of circular edges from their vertices: a unit circle about z with
+/// vertices at 0°, 90° and 180°.
+#[test]
+fn arcs_get_their_range_from_their_vertices() {
+    use cadmpeg_ir::geometry::Curve;
+    use cadmpeg_ir::ids::{CurveId, EdgeId, PointId, VertexId};
+    use cadmpeg_ir::topology::{Edge, Point, Vertex};
+    use std::f64::consts::{FRAC_PI_2, PI, TAU};
+    let mut ir = CadIr::empty(Default::default());
+    for (k, (x, y)) in [(1.0, 0.0), (0.0, 1.0), (-1.0, 0.0)].into_iter().enumerate() {
+        ir.model.points.push(Point { id: PointId(format!("p{k}")), position: IrPoint::new(x, y, 0.0), source_object: None });
+        ir.model.vertices.push(Vertex { id: VertexId(format!("v{k}")), point: PointId(format!("p{k}")), tolerance: None });
+    }
+    ir.model.curves.push(Curve {
+        id: CurveId("c".into()),
+        geometry: CurveGeometry::Circle { center: IrPoint::new(0.0, 0.0, 0.0), axis: IrVector::new(0.0, 0.0, 2.0), ref_direction: IrVector::new(3.0, 0.0, 0.0), radius: 1.0 },
+        source_object: None,
+    });
+    let edges = [(0, 1), (1, 0), (2, 2), (1, 2)];
+    for (k, (start, end)) in edges.into_iter().enumerate() {
+        let id = EdgeId(format!("e{k}"));
+        ir.model.edges.push(Edge { id, curve: Some(CurveId("c".into())), start: VertexId(format!("v{start}")), end: VertexId(format!("v{end}")), param_range: None, tolerance: None });
+    }
+    fill_arc_ranges(&mut ir);
+    let ranges: Vec<[f64; 2]> = ir.model.edges.iter().map(|e| e.param_range.unwrap()).collect();
+    // Counter-clockwise from start to end; a closed edge once round.
+    for (got, want) in ranges.iter().zip([[0.0, FRAC_PI_2], [FRAC_PI_2, TAU], [PI, PI + TAU], [FRAC_PI_2, PI]]) {
+        assert!((got[0] - want[0]).abs() < 1e-9 && (got[1] - want[1]).abs() < 1e-9, "{got:?} != {want:?}");
+    }
+}
+
+/// The STEP model of a Rittal configurator package without its restricted areas; the
+/// file is not part of the repository (`OPENECRAFT_RITTAL_STEP=<path to 3D_Step.stp>`).
+#[test]
+fn rittal_step_without_restricted_areas() {
+    let Ok(path) = std::env::var("OPENECRAFT_RITTAL_STEP") else { return };
+    let bytes = std::fs::read(path).unwrap();
+    let mesh = parse_step_without(&bytes, &|name| name.contains("Restricted")).unwrap();
+    let all = parse_step(&bytes).unwrap();
+    eprintln!("without restricted areas: {} triangles {:?}, all: {} triangles {:?}", mesh.triangles.len(), mesh.size(), all.triangles.len(), all.size());
+    assert!(mesh.triangles.len() < all.triangles.len());
+}
+
+#[test]
 fn files_without_geometry_are_refused() {
     assert!(parse_step(b"not a step file").is_err());
     let empty = "ISO-10303-21;\nHEADER;\nENDSEC;\nDATA;\nENDSEC;\nEND-ISO-10303-21;\n";

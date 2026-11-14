@@ -1,6 +1,7 @@
 //! Typed mounting and placement data of a part (EPLAN: mounting data, drilling
 //! pattern): clearances, mounting holes, cutouts (with their place, turn and corner
-//! radius, [`PlacedCutout`]), power loss, fastening and the faces accessories fit on. Older parts keep these values as `Key: value` lines in the
+//! radius, [`PlacedCutout`]), power loss, fastening, the faces accessories fit on and
+//! the restricted areas of enclosures ([`RestrictedArea`]). Older parts keep these values as `Key: value` lines in the
 //! technical data; [`Part::data_value`] reads either, [`Part::migrate_tech_data`]
 //! moves such lines into the typed fields.
 
@@ -9,7 +10,7 @@ use serde::{Deserialize, Deserializer, Serialize};
 
 /// Keys of the typed values (also the column names of the CSV export and the keys of
 /// the technical data they replace).
-pub const MOUNTING_KEYS: [&str; 18] = [
+pub const MOUNTING_KEYS: [&str; 19] = [
     "Clearance top",
     "Clearance bottom",
     "Clearance left",
@@ -28,7 +29,73 @@ pub const MOUNTING_KEYS: [&str; 18] = [
     "Terminal type",
     "Wall mounting",
     "Floor mounting",
+    "Restricted areas",
 ];
+
+/// Face keys of enclosures restricted areas lie on (the faces of the panel layout).
+pub const ENCLOSURE_FACES: [&str; 7] = ["plate", "door", "left", "right", "rear", "roof", "bottom"];
+
+/// What a restricted area of an enclosure keeps free.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Restriction {
+    /// No devices, rails or ducts are placed there.
+    #[default]
+    Placing,
+    /// No cutouts or holes are made there.
+    Cutout,
+}
+
+impl Restriction {
+    pub fn key(self) -> &'static str {
+        match self {
+            Restriction::Placing => "placing",
+            Restriction::Cutout => "cutout",
+        }
+    }
+}
+
+/// An area of an enclosure's face kept free (the restricted areas of the maker's 3D
+/// macro): the face key ([`ENCLOSURE_FACES`]) and a rectangle in the coordinates of
+/// the face's items (mm, x to the right and y down from the face's origin).
+#[derive(Clone, Debug, Default, PartialEq, Serialize, Deserialize)]
+#[serde(default)]
+pub struct RestrictedArea {
+    pub kind: Restriction,
+    pub face: String,
+    pub x: f32,
+    pub y: f32,
+    pub w: f32,
+    pub h: f32,
+}
+
+impl RestrictedArea {
+    /// `placing plate 25/12.5 550 x 20`.
+    pub fn text(&self) -> String {
+        format!("{} {} {}/{} {} x {}", self.kind.key(), self.face, fmt(self.x), fmt(self.y), fmt(self.w), fmt(self.h))
+    }
+
+    /// Reads [`RestrictedArea::text`]; `None` for an unknown kind or face, or a size
+    /// that is not positive.
+    pub fn parse(text: &str) -> Option<RestrictedArea> {
+        let mut words = text.split_whitespace();
+        let kind = match words.next()?.to_ascii_lowercase().as_str() {
+            "placing" => Restriction::Placing,
+            "cutout" => Restriction::Cutout,
+            _ => return None,
+        };
+        let face = words.next()?.to_ascii_lowercase();
+        if !ENCLOSURE_FACES.contains(&face.as_str()) {
+            return None;
+        }
+        let (x, y) = words.next()?.split_once('/')?;
+        let size: String = words.collect();
+        let (w, h) = size.to_ascii_lowercase().split_once('x').map(|(w, h)| (w.to_string(), h.to_string()))?;
+        let n = |v: &str| v.trim().trim_end_matches("mm").trim().replace(',', ".").parse::<f32>().ok().filter(|v| v.is_finite());
+        let area = RestrictedArea { kind, face, x: n(x)?, y: n(y)?, w: n(&w)?, h: n(&h)? };
+        (area.w > 0.0 && area.h > 0.0).then_some(area)
+    }
+}
 
 /// A round or rectangular cutout.
 #[derive(Clone, Copy, Debug, PartialEq, Serialize, Deserialize)]
@@ -306,6 +373,9 @@ pub struct MountingData {
     /// The part stands on the floor of a room (pumps, tanks, compressors).
     #[serde(skip_serializing_if = "std::ops::Not::not")]
     pub floor_mount: bool,
+    /// Enclosures: areas of their faces kept free of devices or of cutouts.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub restricted: Vec<RestrictedArea>,
 }
 
 /// `yes` / `no` of a flag (also `true`, `1`, `x`); `None` for other texts.
@@ -376,6 +446,7 @@ impl MountingData {
             }
             "door cutout" if !self.door_cutouts.is_empty() => Some(cutouts_text(&self.door_cutouts)),
             "cutout" if !self.cutouts.is_empty() => Some(cutouts_text(&self.cutouts)),
+            "restricted areas" if !self.restricted.is_empty() => Some(self.restricted.iter().map(RestrictedArea::text).collect::<Vec<_>>().join("; ")),
             "wall mounting" => self.wall_mount.then(|| "yes".to_string()),
             "floor mounting" => self.floor_mount.then(|| "yes".to_string()),
             _ => None,
@@ -437,6 +508,16 @@ impl MountingData {
                 let Some(list) = parse_cutouts(value) else { return false };
                 *if key == "cutout" { &mut self.cutouts } else { &mut self.door_cutouts } = list;
                 true
+            }
+            "restricted areas" => {
+                let list: Option<Vec<RestrictedArea>> = value.split(';').filter(|t| !t.trim().is_empty()).map(RestrictedArea::parse).collect();
+                match list {
+                    Some(list) => {
+                        self.restricted = list;
+                        true
+                    }
+                    None => false,
+                }
             }
             "wall mounting" | "floor mounting" => match parse_flag(value) {
                 Some(v) => {

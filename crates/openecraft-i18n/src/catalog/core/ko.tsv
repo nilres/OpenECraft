@@ -750,7 +750,6 @@ Latitude is within ±90° and longitude within ±180°	위도는 ±90°, 경도�
 Lead time (days)	리드 타임(일)
 Leakage current	누설 전류
 Leakage line	누유 라인
-Left side	왼쪽 측면
 Left side panel	왼쪽 측면 패널
 Legend plate text	명판 텍스트
 Length (m)	길이(m)
@@ -1287,7 +1286,6 @@ Rated short-time withstand current	정격 단시간 내전류
 Rated speed	정격 속도
 Rated torque	정격 토크
 Rated voltage	정격 전압
-Rear wall	후면벽
 Rectangular punch	사각 펀치
 Rectifier / inverter AC/DC, bidirectional	정류기 / 인버터 AC/DC, 양방향
 Redline	레드라인
@@ -1331,7 +1329,6 @@ Revision table: author of the last revision (2: the one before …)	개정 표: 
 Revision table: date of the last revision (2: the one before …)	개정 표: 마지막 개정의 날짜(2: 그 이전 …)
 Revision table: description of the last revision (2: the one before …)	개정 표: 마지막 개정의 설명(2: 그 이전 …)
 Revision table: index of the last revision (2: the one before …)	개정 표: 마지막 개정의 색인(2: 그 이전 …)
-Right side	오른쪽 측면
 Right side panel	오른쪽 측면 패널
 Ring earth electrode	환상 접지극
 Ring terminal	링 단자
@@ -1987,6 +1984,7 @@ yellow	노랑
 {}: cross-section {} below the {} mm² of power circuits	{0}: 단면적 {1}이(가) 전력 회로의 {2} mm²보다 작음
 {}: cross-section {} differs from the potential definition ({})	{0}: 단면적 {1}이(가) 전위 정의({2})와 다릅니다
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {2}에 있는 {1}의 컷아웃이 가장자리에서 {3} mm 떨어져 있습니다. 최소 {4} mm가 필요합니다
+{}: cutout of {} on the {} lies in a restricted cut-out area	{0}: {2}에 있는 {1}의 컷아웃이 컷아웃 금지 영역에 있습니다
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: {}의 {} 컷아웃이 앞면보다 {} mm 벗어납니다
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3}에 있는 {1}과(와) {2}의 컷아웃이 너무 가깝습니다(웹 {4} mm, 최소 {5} mm)
 {}: designation '{}' used more than once	{}: 명칭 '{}'이(가) 두 번 이상 사용됨
@@ -1996,6 +1994,7 @@ yellow	노랑
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{0}: {2}의 고장 전류 {1} A로는 {3} s 이내에 차단되지 않음({4} A 필요)
 {}: function texts differ in the single-line diagram and the schematic	{}: 단선도와 회로도의 기능 텍스트가 다릅니다
 {}: hole of {} is too close to the cutout of {} on the {}	{0}: {1}의 구멍이 {3}에 있는 {2}의 컷아웃에 너무 가깝습니다
+{}: hole of {} on the {} lies in a restricted cut-out area	{0}: {2}에 있는 {1}의 구멍이 컷아웃 금지 영역에 있습니다
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{0}: {3}에 있는 {2}의 구멍 Ø{1}이(가) 가장자리에서 {4} mm 떨어져 있습니다. 최소 {5} mm가 필요합니다
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{0}: {3}에 있는 {1}과(와) {2}의 구멍이 너무 가깝습니다(웹 {4} mm, 최소 {5} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: 약 {} °C의 핫스팟이 장착 플레이트의 x = {} mm, y = {} mm 위치에 있습니다(내부 온도 최대 {} °C)
@@ -2086,6 +2085,7 @@ yellow	노랑
 {}: {} is made for a mounting rail but sits directly on the plate	{}: {}은(는) 장착 레일용이지만 플레이트에 직접 장착되어 있습니다
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {}이(가) 바닥에서 {} … {} mm 높이에 있습니다. 허용 {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg이(가) {}의 허용 하중 {} kg을 초과합니다
+{}: {} lies in a restricted placing area of the {}	{0}: {1}이(가) {2}의 배치 금지 영역에 있습니다
 {}: {} modules of PV array {} are not connected to a string	{0}: 태양광 어레이 {2}의 모듈 {1}개가 스트링에 연결되어 있지 않습니다
 {}: {} modules, the head has {} slots	{0}: 모듈 {1}개, 헤드의 슬롯은 {2}개
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {}({} mm)이(가) 재고 길이 {} mm보다 길어 이어 붙여야 합니다

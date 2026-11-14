@@ -759,7 +759,6 @@ Latitude is within ±90° and longitude within ±180°	A latitude fica dentro de
 Lead time (days)	Prazo de entrega (dias)
 Leakage current	Corrente de fuga
 Leakage line	Linha de dreno
-Left side	Lado esquerdo
 Left side panel	Painel lateral esquerdo
 Legend plate text	Texto da placa de identificação
 Length (m)	Comprimento (m)
@@ -1299,7 +1298,6 @@ Rated short-time withstand current	Corrente suportável nominal de curta duraç�
 Rated speed	Velocidade nominal
 Rated torque	Torque nominal
 Rated voltage	Tensão nominal
-Rear wall	Parede traseira
 Rectangular punch	Punção retangular
 Rectifier / inverter AC/DC, bidirectional	Retificador / inversor CA/CC, bidirecional
 Redline	Redline
@@ -1343,7 +1341,6 @@ Revision table: author of the last revision (2: the one before …)	Tabela de re
 Revision table: date of the last revision (2: the one before …)	Tabela de revisões: data da última revisão (2: a anterior …)
 Revision table: description of the last revision (2: the one before …)	Tabela de revisões: descrição da última revisão (2: a anterior …)
 Revision table: index of the last revision (2: the one before …)	Tabela de revisões: índice da última revisão (2: a anterior …)
-Right side	Lado direito
 Right side panel	Painel lateral direito
 Ring earth electrode	Anel de aterramento
 Ring terminal	Terminal olhal
@@ -2008,6 +2005,7 @@ yellow	amarelo
 {}: cross-section {} below the {} mm² of power circuits	{}: seção transversal {} abaixo dos {} mm² dos circuitos de potência
 {}: cross-section {} differs from the potential definition ({})	{}: a seção transversal {} difere da definição do potencial ({})
 {}: cutout of {} on the {} is {} mm from the edge, at least {} mm required	{}: o recorte de {} em {} está a {} mm da borda, são necessários pelo menos {} mm
+{}: cutout of {} on the {} lies in a restricted cut-out area	{}: o recorte de {} em {} está em uma área restrita para recortes
 {}: cutout of {} on the {} reaches {} mm beyond its front	{}: o recorte de {} em {} ultrapassa sua frente em {} mm
 {}: cutouts of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: os recortes de {} e {} em {} estão muito próximos ({} mm de nervura, pelo menos {} mm)
 {}: designation '{}' used more than once	{}: designação '{}' usada mais de uma vez
@@ -2017,6 +2015,7 @@ yellow	amarelo
 {}: fault current {} A at {} does not disconnect within {} s (needs {} A)	{}: a corrente de falta {} A em {} não secciona em {} s (requer {} A)
 {}: function texts differ in the single-line diagram and the schematic	{}: os textos de função diferem entre o diagrama unifilar e o esquema elétrico
 {}: hole of {} is too close to the cutout of {} on the {}	{}: o furo de {} está muito próximo do recorte de {} em {}
+{}: hole of {} on the {} lies in a restricted cut-out area	{}: o furo de {} em {} está em uma área restrita para recortes
 {}: hole Ø{} of {} on the {} is {} mm from the edge, at least {} mm required	{}: o furo Ø{} de {} em {} está a {} mm da borda, são necessários pelo menos {} mm
 {}: holes of {} and {} on the {} are too close ({} mm web, at least {} mm)	{}: os furos de {} e {} em {} estão muito próximos ({} mm de nervura, pelo menos {} mm)
 {}: hot spot of about {} °C at x = {} mm, y = {} mm of the mounting plate (inside temperature at most {} °C)	{}: ponto quente de cerca de {} °C em x = {} mm, y = {} mm da placa de montagem (temperatura interna no máximo {} °C)
@@ -2109,6 +2108,7 @@ yellow	amarelo
 {}: {} is not made for wall mounting, mount it on a rail	{}: {} não é feito para montagem na parede, monte-o em um trilho
 {}: {} is {} … {} mm above the floor, allowed {} … {} mm	{}: {} está a {} … {} mm acima do piso, permitido {} … {} mm
 {}: {} kg on the {} exceed its load of {} kg	{}: {} kg em {} excedem sua carga de {} kg
+{}: {} lies in a restricted placing area of the {}	{}: {} está em uma área restrita para posicionamento em {}
 {}: {} modules of PV array {} are not connected to a string	{}: {} módulos do sistema fotovoltaico {} não estão ligados a nenhuma string
 {}: {} modules, the head has {} slots	{}: {} módulos, o cabeçote tem {} slots
 {}: {} of {} mm is longer than the stock length of {} mm and has to be joined	{}: {} de {} mm é mais longo que o comprimento em estoque de {} mm e precisa ser emendado

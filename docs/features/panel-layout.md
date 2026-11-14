@@ -126,6 +126,40 @@ equipment of the mounting plate; their wires are routed over the hinge; the moun
 layout page shows the plate and every face with items (door, side walls, rear wall,
 roof, bottom) side by side.
 
+The door is hinged on the left or the right (*Door hinge* in the enclosure's
+properties, `door_hinge` of `add_enclosure` / `set_enclosure`, part data
+`Door hinge: right` of a maker's enclosure part): the door view shows the hinges and
+the handle on their sides, the 3D view opens the door about that edge, and the door
+wires run along the door to that edge, over the hinge loop and into the plate's edge
+on that side.
+
+## Restricted areas
+
+An enclosure part can keep areas of its faces free (*Restricted areas* in the part's
+mounting data, imported with the enclosure packages of the Rittal configurator):
+*placing* areas take no devices, rails, ducts or busbars, *cut-out* areas no cutouts
+or holes, e.g. the hinges, the lock and the stiffening of the door, or the fixing
+points of the mounting plate. The faces show them hatched (placing areas rising,
+cut-out areas falling), in the editor and on the mounting layout pages, and the 3D
+view as translucent areas (placing blue, cut-out orange) that go with their wall or
+the door. The check reports an item lying in a placing area (*Outside*) and the
+cutouts and holes in a cut-out area (*Manufacturing*); touching an area's edge is
+allowed. The part editor lists them under *Mounting data › Restricted areas* (kind,
+face, place and size), where they are added, changed and removed.
+
+## Maker's enclosure models
+
+An enclosure whose part is a maker's part (not one of the built-in catalog) with a 3D
+model of the enclosure's width and height, as the enclosure packages of the Rittal
+configurator bring it, shows that model in the 3D view and the 3D exports instead of
+the generic body, walls, door and plates. The door and what is mounted on it (hinge
+leaves, locks, seals), as the maker's macro marks them, are translucent and open with
+the door; a model without that mark opens its front 20 mm. The other triangles go
+with the wall whose plane they lie in (hidden with it when the walls in front are
+hidden) or stay inside (mounting plate, gland plate, flanges). Plinths, baying kits
+and 19-inch rails stay generic. The door opens on its hinge side (the Rittal AX is
+hinged on the right, see [Enclosure door](#enclosure-door)).
+
 ## Drilling pattern and NC data
 
 Rails, ducts and busbar holders get tapped holes along their length, devices screwed
@@ -526,6 +560,15 @@ A manufacturer's enclosure part that comes with its plinth says so in its data
 (`Plinth: 200`): a new enclosure of it stands on the plinth, which is drawn and
 exported but is no part of its own in the bill of materials (the Hager univers
 cabinet `HAG.FR25S2`, 1850 mm + 200 mm plinth, five fields, protection class II).
+Its mounting plate is placed by `Mounting origin: 25/12.5/20` (the top left corner
+of the plate's front from the left, the top and the rear of the enclosure, mm; the
+plate keeps the same distance on the right and at the bottom), as the enclosure
+packages of the Rittal configurator give it ([parts](parts.md)). A plate that is not centred
+also gives its size (`Mounting size: 500 x 575`; `mounting_size` of `add_enclosure` /
+`set_enclosure`). A maker's enclosure
+part that names its system (`Enclosure system: compact`) gets that system's walls and
+data but stays the part of the enclosure; only enclosures of the built-in catalog
+follow their size with the system's body.
 Distribution systems build the cabinet from component modules: a module the device
 stands on is an accessory mounted *under the part* (`HAG.UE31E1B` under the NH1 fuse
 switch disconnector `HAG.LT153`, `HAG.UE31SS400` under the current transformers), so

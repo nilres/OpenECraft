@@ -105,3 +105,28 @@ fn cutouts_beyond_the_front_or_in_the_door_edge() {
     let m = messages(&prj);
     assert!(m.iter().any(|m| m.contains("from the edge, at least 20.0 mm required")), "{m:?}");
 }
+
+#[test]
+fn restricted_areas_of_the_enclosure() {
+    use crate::parts::{RestrictedArea, Restriction};
+    let mut prj = project(vec![item(1, ItemKind::Cutout, 100.0, 100.0, 50.0, 50.0), PanelItem { part: SCREWED.into(), ..item(2, ItemKind::Device, 300.0, 100.0, 40.0, 40.0) }]);
+    let mut enclosure = Part { number: "ENC".into(), ..Default::default() };
+    let area = |kind, x: f32, y: f32, w: f32, h: f32| RestrictedArea { kind, face: "plate".into(), x, y, w, h };
+    // A cut-out area under the cutout, one touching the device's edge only, a placing
+    // area under the device and areas of other faces.
+    enclosure.mounting_data.restricted = vec![
+        area(Restriction::Cutout, 120.0, 120.0, 10.0, 10.0),
+        area(Restriction::Cutout, 340.0, 0.0, 10.0, 400.0),
+        area(Restriction::Placing, 310.0, 110.0, 5.0, 5.0),
+        RestrictedArea { face: "door".into(), ..area(Restriction::Placing, 0.0, 0.0, 1000.0, 1000.0) },
+    ];
+    prj.parts.push(enclosure);
+    prj.layout.enclosures[0].part = "ENC".into();
+    let all = validate(&prj, &prj.layout.enclosures[0]);
+    let restricted: Vec<(CheckKind, Vec<u64>)> = all.iter().filter(|f| f.message.contains("restricted")).map(|f| (f.kind, f.items.clone())).collect();
+    assert_eq!(restricted, [(CheckKind::Outside, vec![2]), (CheckKind::Manufacturing, vec![1])], "{all:#?}");
+    // The device's holes (5 mm inside its corners) in a cut-out area.
+    prj.parts.last_mut().unwrap().mounting_data.restricted.push(area(Restriction::Cutout, 300.0, 100.0, 10.0, 10.0));
+    let f = findings(&prj);
+    assert!(f.iter().any(|f| f.items == vec![2] && f.message.contains("hole")), "{f:#?}");
+}

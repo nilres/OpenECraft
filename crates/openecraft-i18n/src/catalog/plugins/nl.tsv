@@ -235,6 +235,7 @@ Earth rod: its length, mm (default 3000)	Aardpen: de lengte, mm (standaard 3000)
 Earth rod: x of its place in the floor plan of the building, mm	Aardpen: x van de plaats in de plattegrond van het gebouw, mm
 Earth rod: z of its place in the floor plan of the building, mm	Aardpen: z van de plaats in de plattegrond van het gebouw, mm
 Edge length of the routing grid in mm	Randlengte van het routeringsraster in mm
+Edge the door is hinged at, seen from the front: left or right	Rand waaraan de deur scharniert, van voren gezien: left of right
 Electrical device tags separated by commas or blanks (empty = remove the links)	Aanduidingen van elektrische apparaten, gescheiden door komma's of spaties (leeg = koppelingen verwijderen)
 Electrical engineering	Elektrotechniek
 Elements (Line, Rect, Text, Image) in mm from the top left corner of the title block area in an items array	Elementen (Line, Rect, Text, Image) in mm vanaf de linkerbovenhoek van het titelblokgebied in een array items
@@ -452,6 +453,8 @@ Measuring range or set point	Meetbereik of setpoint
 Message code, e.g. wires.3f9a1c	Meldingscode, bijv. wires.3f9a1c
 Milling feed, mm/min	Freesvoeding, mm/min
 Mirror the symbol	Het symbool spiegelen
+Mounting plate size as width and height; empty object restores the centred plate	Grootte van de montageplaat als breedte en hoogte; een leeg object herstelt de gecentreerde plaat
+Mounting size must contain a positive width and height	De montagegrootte moet een positieve breedte en hoogte bevatten
 Moves an air-termination rod, changes its height, renames or removes it	Verplaatst een opvangstaaf, wijzigt de hoogte, hernoemt of verwijdert hem
 Moves one end of a wire: it leaves what it is connected to and connects to what it meets; the wire stays square	Verplaatst één uiteinde van een draad: het laat los waar het op aangesloten is en verbindt met wat het raakt; de draad blijft haaks
 Moves symbols, wires and texts; connected wire ends follow	Verplaatst symbolen, draden en teksten; aangesloten draadeinden volgen
@@ -913,6 +916,7 @@ Unknown check: {}	Onbekende controle: {}
 Unknown class: {}	Onbekende klasse: {}
 Unknown data type: {}	Onbekend gegevenstype: {}
 Unknown direction {}: left, right, up or down	Onbekende richting {}: left, right, up of down
+Unknown door hinge: {}	Onbekende scharnierzijde: {}
 Unknown earth electrode: {}	Onbekende aardelektrode: {}
 Unknown earthing system: {}	Onbekend aardingsstelsel: {}
 Unknown face {}	Onbekend vlak {}

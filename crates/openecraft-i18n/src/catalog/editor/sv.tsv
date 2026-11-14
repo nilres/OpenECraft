@@ -591,6 +591,7 @@ Door NC data (DWG)	NC-data för dörr (DWG)
 Door NC data (DXF)	NC-data för dörr (DXF)
 Door clearance	Dörrfrigång
 Door cutouts (CSV)	Dörrurtag (CSV)
+Door hinge	Dörrens gångjärn
 Door: {} devices, {} cutouts	Dörr: {} apparater, {} urtag
 Dot	Punkt
 Double-click	Dubbelklick
@@ -657,6 +658,7 @@ Earthing system	Jordningssystem
 Easting, northing	Östkoordinat, nordkoordinat
 Eaves	Takfot
 Edge length of the routing grid: smaller is finer and slower	Kantlängd för dragningsrutnätet: mindre är finare och långsammare
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Kanten där dörren är hängd, sett framifrån: 3D-vyn öppnar dörren där och dörrens ledningar går över den
 Edit in table	Redigera i tabell
 Edit in table…	Redigera i tabell…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Redigeringsläge: dra byggnaderna till sina platser i situationsplanen och vrid dem; ett klick på ett rum öppnar det inte längre
@@ -907,6 +909,7 @@ Import symbol library…	Importera symbolbibliotek…
 Import symbol table…	Importera symboltabell…
 Imported	Importerat
 Imported {} entries of the property library	{} poster i egenskapsbiblioteket importerade
+Imported {} into the parts database	{} importerad till artikeldatabasen
 Imported {} macros	{} makron importerade
 Imported {} page templates	{} sidmallar importerade
 Imported {} parts into the database	{} artiklar importerade till databasen
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Den aktuella sidan hör till alternativ {
 The devices do not fit onto the rail	Apparaterna får inte plats på skenan
 The dictionary is empty: collect the texts from the project.	Ordlistan är tom: samla in texterna från projektet.
 The door seen from the front: door devices and cutouts	Dörren sedd framifrån: dörrapparater och urtag
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Dörren sedd inifrån (gångjärn till höger): kabelkanaler och ledningarna bakom dörren
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Dörren sedd inifrån (speglad): kabelkanaler och ledningarna bakom dörren
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Elementet ritas bara när denna text med sina platshållare inte är tom, t.ex. raderna i en revisionstabell
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Kapslingen står med sin vänstra sida mot den valdas högra sida; ledningar går mellan dem genom kabelgenomföringar
 The horizontal wire	Den vågräta ledningen

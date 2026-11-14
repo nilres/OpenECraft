@@ -60,8 +60,8 @@ pub use rooms::{
     penetration_link, wall_links, WallLink, Via, MAX_WALL_THICKNESS, PENETRATION_SIZE, PENETRATION_TOP, is_outside, outside_building, through_wall,
 };
 pub(crate) use rooms::inner_footprint;
-pub use system::{apply_system, components, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
-pub use crate::model::panel::{AirRod, Building, Electrode, ElectrodeKind, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
+pub use system::{apply_system, components, maker_model, outward, sync_part, system_of_part, wall_box, Build, Component, Role, System, SYSTEMS};
+pub use crate::model::panel::{AirRod, Building, DoorHinge, Electrode, ElectrodeKind, Lightning, Material, RodBase, Enclosure, EnclosureKind, Face, GeoReference, InnerWall, ItemKind, Layout, Level, LinkKind, Opening, PanelItem, PanelRotation, Plot, PvArray, PvDesign, PvMounting, PvString, Roof, RoofShape, RoofWindow, Shaft, SiteLink, Stair, StairKind, Swing, Turn};
 
 /// Distance between enclosure wall and mounting plate edge.
 pub const PLATE_MARGIN: f32 = 25.0;
@@ -352,7 +352,9 @@ impl Default for Enclosure {
             depth: 250.0,
             no_implicit_plate:false,
             mounting_origin:None,
+            mounting_size: None,
             door_clearance: 0.0,
+            door_hinge: DoorHinge::Left,
             items: Vec::new(),
             climate: Default::default(),
             build: Default::default(),
@@ -408,6 +410,9 @@ impl Enclosure {
     }
 
     pub fn plate_size(&self) -> (f32, f32) {
+        if let Some([w, h]) = self.mounting_size.filter(|_| !self.is_assembly()) {
+            return (w.max(10.0), h.max(10.0));
+        }
         let offset=self.face_offset(Face::Plate);
         ((self.width - 2.0 * offset.x).max(10.0), (self.height - 2.0 * offset.y).max(10.0))
     }
@@ -675,8 +680,60 @@ pub fn new_enclosure(prj: &mut Project, part: &str, name: &str) -> Enclosure {
             e.build.plinth = h;
             e.build.plinth_included = true;
         }
+        // The mounting plate of the maker's enclosure (part data `Mounting origin:
+        // 25/12.5/20`: its top left front corner from the left, top and rear, mm).
+        // The door of the maker's enclosure hinged on the right (`Door hinge: right`).
+        if let Some(hinge) = pd.tech_value("Door hinge").and_then(DoorHinge::from_key) {
+            e.door_hinge = hinge;
+        }
+        if let Some(origin) = pd.tech_value("Mounting origin").and_then(mounting_origin) {
+            e.mounting_origin = Some(origin);
+            // Its size when it is not centred (`Mounting size: 550 x 575`).
+            e.mounting_size = pd.tech_value("Mounting size").and_then(mounting_size);
+        }
     }
     e
+}
+
+/// The restricted areas of `kind` of the enclosure's part on a face (its maker's
+/// data), in face coordinates.
+pub fn restricted_areas(prj: &Project, e: &Enclosure, face: Face, kind: crate::parts::Restriction) -> Vec<R> {
+    let Some(part) = part_by_number(prj, &e.part) else { return Vec::new() };
+    part.mounting_data
+        .restricted
+        .iter()
+        .filter(|a| a.kind == kind && a.face == face.key())
+        .map(|a| R::from_points(p(a.x, a.y), p(a.x + a.w, a.y + a.h)))
+        .collect()
+}
+
+/// The restricted areas of the enclosure's part as quadrilaterals on their faces'
+/// mounting surfaces, in enclosure coordinates, with their kind and face.
+pub fn restricted_quads(prj: &Project, e: &Enclosure) -> Vec<(crate::parts::Restriction, Face, [V3; 4])> {
+    let mut out = Vec::new();
+    for face in Face::ALL {
+        for kind in [crate::parts::Restriction::Placing, crate::parts::Restriction::Cutout] {
+            for r in restricted_areas(prj, e, face, kind) {
+                let corners = [(r.min.x, r.min.y), (r.max.x, r.min.y), (r.max.x, r.max.y), (r.min.x, r.max.y)].map(|(x, y)| face_point(e, face, [x, y, 0.0]));
+                out.push((kind, face, corners));
+            }
+        }
+    }
+    out
+}
+
+/// `width x height` in mm, both positive.
+fn mounting_size(text: &str) -> Option<[f32; 2]> {
+    let (w, h) = text.trim().trim_end_matches("mm").split_once(['x', 'X'])?;
+    let n = |v: &str| v.trim().parse::<f32>().ok().filter(|v| v.is_finite() && *v > 0.0);
+    Some([n(w)?, n(h)?])
+}
+
+/// `x/y/z` in mm.
+fn mounting_origin(text: &str) -> Option<[f32; 3]> {
+    let mut it = text.trim().trim_end_matches("mm").split('/').map(|v| v.trim().parse::<f32>().ok().filter(|v| v.is_finite() && *v >= 0.0));
+    let origin = [it.next()??, it.next()??, it.next()??];
+    it.next().is_none().then_some(origin)
 }
 
 /// Rail or duct between two points (orientation by the dominant direction).
@@ -2267,7 +2324,8 @@ pub fn door_path(e: &Enclosure, at: V3, route: &Route, plate: V3) -> (Vec<V3>, u
 
 /// Where a wire of a device joins the wiring on the plate, and the length from its
 /// connection point to there: down to the plate, or for door devices along the door
-/// (through its cable ducts) to the hinge (left) and across the hinge loop; door
+/// (through its cable ducts) to the hinge ([`Enclosure::door_hinge`]) and across the
+/// hinge loop, joining the plate at its edge on that side; door
 /// devices also return their route on the door. Without a connection point the wire
 /// starts at the device centre, at its front.
 pub fn wiring_end(e: &Enclosure, it: &PanelItem, point: Option<&PlacedPoint>) -> (WireEnd, f32, Option<Route>) {
@@ -2278,11 +2336,12 @@ pub fn wiring_end(e: &Enclosure, it: &PanelItem, point: Option<&PlacedPoint>) ->
     match it.face {
         Face::Plate => (WireEnd { pos: at, exit: point.map(|pt| pt.exit) }, height, None),
         Face::Door => {
-            let (_, ph) = e.plate_size();
-            let r = route_door(e, at, p(DOOR_FRAME / 2.0, at.y));
+            let (pw, ph) = e.plate_size();
+            let right = e.door_hinge == DoorHinge::Right;
+            let r = route_door(e, at, p(if right { e.width - DOOR_FRAME / 2.0 } else { DOOR_FRAME / 2.0 }, at.y));
             let hinge = r.points.last().copied().unwrap_or(at);
             let length = r.plate_length + height + DOOR_LOOP + (e.depth - PLATE_Z);
-            (WireEnd::at(p(0.0, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
+            (WireEnd::at(p(if right { pw } else { 0.0 }, (hinge.y - PLATE_MARGIN).clamp(0.0, ph))), length, Some(r))
         }
         wall => {
             // Devices on the walls (fans, lights): straight to the nearest plate edge.

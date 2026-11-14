@@ -591,6 +591,7 @@ Door NC data (DWG)	Data NC dveří (DWG)
 Door NC data (DXF)	Data NC dveří (DXF)
 Door clearance	Volný prostor u dveří
 Door cutouts (CSV)	Výřezy ve dveřích (CSV)
+Door hinge	Závěsy dveří
 Door: {} devices, {} cutouts	Dveře: přístroje: {}, výřezy: {}
 Dot	Bod
 Double-click	Dvojklik
@@ -657,6 +658,7 @@ Earthing system	Soustava uzemnění
 Easting, northing	Východní, severní souřadnice
 Eaves	Okap
 Edge length of the routing grid: smaller is finer and slower	Délka hrany rastru vedení: menší je jemnější a pomalejší
+Edge the door is hinged at, seen from the front: the 3D view opens the door there and the door wires run over it	Hrana, na které jsou dveře zavěšeny, při pohledu zepředu: 3D pohled tam dveře otevírá a vodiče dveří vedou přes ni
 Edit in table	Upravit v tabulce
 Edit in table…	Upravit v tabulce…
 Edit mode: drag the buildings to their places in the site plan and turn them; a click on a room no longer opens it	Režim úprav: přetáhněte budovy na jejich místa v situačním plánu a otočte je; kliknutí na místnost ji už neotevře
@@ -907,6 +909,7 @@ Import symbol library…	Importovat knihovnu symbolů…
 Import symbol table…	Importovat tabulku symbolů…
 Imported	Importováno
 Imported {} entries of the property library	Importováno {} položek knihovny vlastností
+Imported {} into the parts database	Do databáze artiklů importováno: {}
 Imported {} macros	Importováno maker: {}
 Imported {} page templates	Importováno šablon stránek: {}
 Imported {} parts into the database	Do databáze importováno artiklů: {}
@@ -2038,7 +2041,7 @@ The current page belongs to option {}.	Aktuální stránka patří k volbě {}.
 The devices do not fit onto the rail	Přístroje se na lištu nevejdou
 The dictionary is empty: collect the texts from the project.	Slovník je prázdný: shromážděte texty z projektu.
 The door seen from the front: door devices and cutouts	Dveře zepředu: přístroje ve dveřích a výřezy
-The door seen from the inside (hinges on the right): cable ducts and the wiring behind the door	Dveře zevnitř (závěsy vpravo): kabelové kanály a zapojení za dveřmi
+The door seen from the inside (mirrored): cable ducts and the wiring behind the door	Dveře zevnitř (zrcadlově): kabelové kanály a zapojení za dveřmi
 The element is drawn only when this text with its placeholders is not empty, e.g. the rows of a revision table	Prvek se kreslí jen tehdy, když tento text se zástupnými symboly není prázdný, např. řádky tabulky revizí
 The enclosure stands with its left side against the right side of the chosen one; wires run between them through cable passages	Skříň stojí levou stranou u pravé strany zvolené skříně; vodiče mezi nimi vedou kabelovými průchodkami
 The horizontal wire	Vodorovný vodič

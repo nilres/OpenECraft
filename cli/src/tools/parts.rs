@@ -243,7 +243,7 @@ pub static TOOLS: &[Tool] = &[
     Tool {
         name: "parts_import",
         help: tr_const!("Imports a parts file into the parts server; the pictures and macros of an EDZ file are stored with their parts"),
-        params: &[param("path", Kind::Str, tr_const!("CSV, JSON, BMEcat, EPLAN XML or EDZ file")), optional("part", Kind::Str, tr_const!("Part number to import from a vendor folder"))],
+        params: &[param("path", Kind::Str, tr_const!("CSV, JSON, BMEcat, EPLAN XML, EDZ or ZIP file")), optional("part", Kind::Str, tr_const!("Part number to import from a vendor folder"))],
         needs_project: false,
         run: import,
     },
@@ -627,11 +627,7 @@ fn import_eplan_symbols(s: &mut Session, a: &Args) -> Result<Value, String> {
         .collect();
     let numbers: Vec<_> = parts.iter().map(|p| p.number.clone()).collect();
     for part in parts {
-        if let Some(old) = project.parts.iter_mut().find(|p| p.number == part.number) {
-            old.eplan_variants = part.eplan_variants;
-            old.mounting_data.rail = part.mounting_data.rail;
-            old.eplan_macro = part.eplan_macro;
-        } else {
+        if !openecraft_core::parts::refresh_in_project(project, &part) {
             project.parts.push(part);
         }
     }
@@ -669,6 +665,10 @@ fn import(s: &mut Session, a: &Args) -> Result<Value, String> {
     if std::path::Path::new(path).extension().is_some_and(|s| s.eq_ignore_ascii_case("xml")) && openecraft_parts::is_eplan_xml(&String::from_utf8_lossy(&content)) {
         let path = std::path::absolute(path).map_err(|e| e.to_string())?;
         return import_package(s,openecraft_edz::folder::read_file(&path,&content)?);
+    }
+    if openecraft_edz::package::is_zip(&content) {
+        // The command line has no STEP reader: the model is attached as a file.
+        return import_package(s, openecraft_edz::package::read(&content, None)?);
     }
     if !openecraft_edz::is_edz(&content) {
         let result = s.server.import(content)?;

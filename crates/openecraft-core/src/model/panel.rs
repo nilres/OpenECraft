@@ -702,8 +702,15 @@ pub struct Enclosure {
     /// Mounting-face origin in the enclosure frame; absent uses the legacy plate datum.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub mounting_origin: Option<[f32;3]>,
+    /// Width and height of the mounting plate, mm; absent: the enclosure less the
+    /// mounting origin on both sides (a centred plate).
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mounting_size: Option<[f32; 2]>,
     /// Space kept free behind the door (door-mounted devices, handles), mm.
     pub door_clearance: f32,
+    /// The edge the door is hinged at, seen from the front.
+    #[serde(skip_serializing_if = "DoorHinge::is_left")]
+    pub door_hinge: DoorHinge,
     pub items: Vec<PanelItem>,
     /// Installation and temperatures for the climate calculation.
     #[serde(skip_serializing_if = "super::climate::Climate::is_default")]
@@ -953,6 +960,36 @@ pub enum Opening {
 impl Opening {
     pub fn is_cutout(&self) -> bool {
         *self == Opening::Cutout
+    }
+}
+
+/// The edge a cabinet's door is hinged at, seen from the front: the 3D view opens the
+/// door there, the door drawing shows its hinges there and door wires run over it.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum DoorHinge {
+    #[default]
+    Left,
+    Right,
+}
+
+impl DoorHinge {
+    pub const ALL: [DoorHinge; 2] = [DoorHinge::Left, DoorHinge::Right];
+
+    pub fn is_left(&self) -> bool {
+        *self == DoorHinge::Left
+    }
+
+    /// Key in files and on the command line.
+    pub fn key(self) -> &'static str {
+        match self {
+            DoorHinge::Left => "left",
+            DoorHinge::Right => "right",
+        }
+    }
+
+    pub fn from_key(key: &str) -> Option<DoorHinge> {
+        DoorHinge::ALL.into_iter().find(|h| h.key().eq_ignore_ascii_case(key.trim()))
     }
 }
 
