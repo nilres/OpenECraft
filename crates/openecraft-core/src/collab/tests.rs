@@ -185,6 +185,40 @@ fn locks_granted_on_an_old_state_are_checked_on_update() {
 }
 
 #[test]
+fn a_status_older_than_the_taken_state_keeps_the_locks() {
+    let (a, b) = ids(&project());
+    let (mut sh, _) = shared(vec![lock(Target::Page(a), "s1"), lock(Target::Project, "s2")]);
+    sh.requested.insert(Target::Page(b));
+    // Revision 2 was answered before revision 3 was taken: page A was not released.
+    let stale = vec![lock(Target::Page(b), "s1"), lock(Target::Page(a), "s2")];
+    assert!(!sh.status(Status { revision: 2, locks: stale }, &[Target::Page(b)]));
+    assert!(sh.owns(Target::Page(a)) && sh.owns(Target::Page(b)));
+    assert!(sh.holder(Target::Project).is_some() && sh.requested.is_empty());
+    assert_eq!(sh.revision, 3);
+    // An answer of the same revision is current.
+    assert!(!sh.status(Status { revision: 3, locks: Vec::new() }, &[]));
+    assert!(sh.locks.is_empty());
+}
+
+#[test]
+fn released_targets_changed_while_saving_stay_local() {
+    let (mut sh, mut prj) = shared(Vec::new());
+    let (a, b) = ids(&prj);
+    let mut saved = sh.base.clone();
+    saved.pages[0].description = "saved A".into();
+    prj.pages[0].description = "edited again A".into();
+    prj.pages[1].description = "unlocked B".into();
+    assert!(!sh.in_sync(&prj));
+    let (lost, apply) = sh.update_keeping(Snapshot { revision: 4, project: saved.clone(), ..Default::default() }, &[Target::Page(a)]);
+    assert!(lost.is_empty());
+    let out = apply(&prj);
+    assert_eq!(out.pages[0].description, "edited again A");
+    assert_eq!(out.pages[1].description, sh.base.pages[1].description);
+    assert!(!sh.owns(Target::Page(b)));
+    assert!(sh.in_sync(&apply(&saved)));
+}
+
+#[test]
 fn denied_locks_are_no_longer_requested() {
     let (mut sh, _) = shared(Vec::new());
     sh.requested.insert(Target::Project);

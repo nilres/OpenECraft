@@ -22,13 +22,23 @@ pub struct Taken {
     pub kept: Vec<String>,
 }
 
+/// A save request: what it sent, so that its answer confirms only that.
+#[derive(Clone, Debug, Default)]
+pub struct Sent {
+    pub session: String,
+    /// Server revision the project was edited from.
+    pub revision: u64,
+    pub project: Project,
+    pub release: Vec<Target>,
+}
+
 /// Answer of a request. Answers for a session that is no longer open are dropped.
 #[derive(Debug)]
 pub enum Reply {
     List(Result<Vec<ProjectSummary>, String>),
     /// Name on the server and the opened project.
     Opened(String, Result<Box<Opened>, String>),
-    Saved(String, Result<Box<Snapshot>, String>),
+    Saved(Box<Sent>, Result<Box<Snapshot>, String>),
     Snapshot(String, Result<Box<Snapshot>, String>),
     Status(String, Result<Status, String>),
     /// Requested targets and the answer.
@@ -42,7 +52,8 @@ pub enum Reply {
 impl Reply {
     fn session(&self) -> Option<&str> {
         match self {
-            Reply::Saved(s, _) | Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) => Some(s),
+            Reply::Saved(sent, _) => Some(&sent.session),
+            Reply::Snapshot(s, _) | Reply::Status(s, _) | Reply::Locked(s, _, _) | Reply::Access(s, _) => Some(s),
             Reply::List(_) | Reply::Opened(..) | Reply::Login(_) | Reply::Closed => None,
         }
     }
@@ -80,8 +91,15 @@ pub struct Remote {
     last_status: f64,
     /// History revision checked for changes without lock.
     pub checked_rev: u64,
-    /// History revision of the last save request.
-    pub saving_rev: u64,
+    /// Session of the save under way: one at a time, the next waits for its answer.
+    saving: Option<String>,
+    /// A save asked for while one was under way, with the locks to release; it sends
+    /// the project as it is when the previous save is answered.
+    queued: Option<Vec<Target>>,
+    /// Revision of a newer project announced while saving: loaded after the save.
+    refetch: Option<u64>,
+    /// Ends of sessions closed while their save was under way: sent after its answer.
+    closing: Vec<(String, ehttp::Request, String)>,
     /// Local changes replaced by the server's version (of every shared project), until
     /// the user discards them.
     pub kept: Vec<Kept>,
@@ -120,7 +138,10 @@ impl Default for Remote {
             fetching: false,
             last_status: 0.0,
             checked_rev: 0,
-            saving_rev: 0,
+            saving: None,
+            queued: None,
+            refetch: None,
+            closing: Vec::new(),
             kept: Vec::new(),
             kept_store: None,
             kept_loaded: false,
@@ -216,18 +237,41 @@ impl Remote {
         self.keep(&base, &before, prj, reason, time).iter().map(|t| Remote::describe(&before, *t)).collect()
     }
 
-    /// Takes a newer state of the server (`saved`: the answer to a save); undo steps
+    /// Takes a newer state of the server (`sent`: the save it answers); undo steps
     /// keep the changes of others. Local changes it replaces are kept, and with them
-    /// the project is not marked saved.
-    pub fn take_snapshot(&mut self, session: &mut Session, snapshot: Snapshot, saved: bool, time: String) -> Taken {
-        let complete = saved && session.history.rev == self.saving_rev;
-        let clean = !session.dirty() || complete;
+    /// the project is not marked saved. Edits made after the save request stay
+    /// unsaved; a state older than the one taken already is ignored.
+    pub fn take_snapshot(&mut self, session: &mut Session, snapshot: Snapshot, sent: Option<&Sent>, time: String) -> Taken {
+        let saved = sent.is_some();
+        // Nothing changed since the request: the answer covers the whole project.
+        let complete = sent.is_some_and(|s| s.project == session.prj);
+        // After a save the saved state is the one sent: Undo back to an older saved
+        // state while saving leaves changes.
+        let clean = if saved { complete } else { !session.dirty() };
         let left_out = saved && !snapshot.ignored.is_empty();
         let Some(sh) = &mut self.shared else { return Taken::default() };
+        if snapshot.revision < sh.revision {
+            // A save answered after a newer state that holds it: saved if nothing differs.
+            if saved && !left_out && sh.in_sync(&session.prj) && self.kept_here().is_empty() {
+                session.mark_saved();
+                self.unconfirmed = None;
+            }
+            return Taken::default();
+        }
+        // Released by the save but changed again meanwhile: still this session's change.
+        let relock: Vec<Target> = sent
+            .map(|s| {
+                let since = collab::changes(&s.project, &session.prj);
+                s.release.iter().copied().filter(|t| since.contains(t)).collect()
+            })
+            .unwrap_or_default();
         let base = sh.base.clone();
-        let (lost, apply) = sh.update(snapshot);
+        let (lost, apply) = sh.update_keeping(snapshot, &relock);
         let before = session.prj.clone();
         session.history.rebase(&mut session.prj, apply);
+        if !relock.is_empty() {
+            self.lock(relock);
+        }
         let reason = if left_out {
             KeptReason::NotSaved
         } else if !lost.is_empty() {
@@ -237,7 +281,8 @@ impl Remote {
         };
         let kept = self.keep(&base, &before, &session.prj, reason, time);
         self.checked_rev = session.history.rev;
-        if clean && kept.is_empty() {
+        let synced = saved && !left_out && self.shared.as_ref().is_some_and(|sh| sh.in_sync(&session.prj));
+        if (clean || synced) && kept.is_empty() {
             session.mark_saved();
             self.unconfirmed = None;
         } else if complete {
@@ -339,12 +384,61 @@ impl Remote {
         self.send(req, tr_fmt!("Uploading {}…", name), move |r| Reply::Opened(n, decode(r).map(Box::new)));
     }
 
-    /// Saves what this session has locked, then releases `release`.
+    /// Saves what this session has locked, then releases `release`. While a save is
+    /// under way the next one waits for its answer.
     pub fn save(&mut self, prj: &Project, release: Vec<Target>) {
+        if let Some(sent) = self.begin_save(prj, release) {
+            self.send_save(sent);
+        }
+    }
+
+    /// The save to send now, or none: queued behind the one under way.
+    fn begin_save(&mut self, prj: &Project, release: Vec<Target>) -> Option<Sent> {
+        self.shared.as_ref()?;
+        if self.saving.is_some() {
+            let queued = self.queued.get_or_insert_with(Vec::new);
+            for t in release {
+                if !queued.contains(&t) {
+                    queued.push(t);
+                }
+            }
+            return None;
+        }
+        let revision = self.shared.as_ref().map_or(0, |sh| sh.revision);
+        let sent = Sent { session: self.session_id(), revision, project: prj.clone(), release };
+        self.saving = Some(sent.session.clone());
+        Some(sent)
+    }
+
+    fn send_save(&mut self, sent: Sent) {
         let Some(sh) = &self.shared else { return };
-        let req = self.endpoint().save(&sh.name, &sh.session, prj, release, sh.revision);
-        let s = self.session_id();
-        self.send(req, tr("Saving to the project server…").into(), move |r| Reply::Saved(s, decode(r).map(Box::new)));
+        let req = self.endpoint().save(&sh.name, &sh.session, &sent.project, sent.release.clone(), sent.revision);
+        self.send(req, tr("Saving to the project server…").into(), move |r| Reply::Saved(Box::new(sent), decode(r).map(Box::new)));
+    }
+
+    /// The queued save, once the one before it is answered; none if it has nothing
+    /// left to do.
+    fn next_save(&mut self, session: &Session) -> Option<Sent> {
+        if self.saving.is_some() {
+            return None;
+        }
+        let release = self.queued.take()?;
+        if release.is_empty() && !session.dirty() {
+            return None;
+        }
+        self.begin_save(&session.prj, release)
+    }
+
+    /// Call after the answers were taken: sends the queued save, then loads a newer
+    /// project announced while saving.
+    pub fn flush(&mut self, session: &Session) {
+        if let Some(sent) = self.next_save(session) {
+            self.send_save(sent);
+        }
+        let newer = self.refetch.is_some_and(|r| self.shared.as_ref().is_some_and(|sh| r > sh.revision));
+        if self.saving.is_none() && self.refetch.take().is_some() && newer {
+            self.fetch();
+        }
     }
 
     pub fn lock(&mut self, targets: Vec<Target>) {
@@ -391,12 +485,21 @@ impl Remote {
         if !release.is_empty() { self.release(release.into_iter().collect()); }
     }
 
-    /// Ends the session (releases its locks); the project stays open locally.
+    /// Ends the session (releases its locks); the project stays open locally. A save
+    /// under way is answered first: the session ends after it.
     pub fn close(&mut self) {
         let Some(sh) = self.shared.take() else { return };
         self.lost = false;
+        self.queued = None;
+        self.refetch = None;
         let req = self.endpoint().close(&sh.name, &sh.session);
-        self.send(req, tr_fmt!("Closed {} on the project server", sh.name), |_| Reply::Closed);
+        let status = tr_fmt!("Closed {} on the project server", sh.name);
+        if self.saving.as_deref() == Some(sh.session.session.as_str()) {
+            self.saving = None;
+            self.closing.push((sh.session.session, req, status));
+            return;
+        }
+        self.send(req, status, |_| Reply::Closed);
     }
 
     fn fetch(&mut self) {
@@ -425,6 +528,19 @@ impl Remote {
             match &reply {
                 Reply::Status(..) => self.polling = false,
                 Reply::Snapshot(..) => self.fetching = false,
+                Reply::Saved(sent, result) => {
+                    if self.saving.as_ref() == Some(&sent.session) {
+                        self.saving = None;
+                        if result.is_err() {
+                            // Nothing more is sent (nor released) after a failed save.
+                            self.queued = None;
+                        }
+                    }
+                    if let Some(i) = self.closing.iter().position(|(s, _, _)| *s == sent.session) {
+                        let (_, req, status) = self.closing.remove(i);
+                        self.send(req, status, |_| Reply::Closed);
+                    }
+                }
                 _ => {}
             }
             if reply.session().is_some_and(|s| s != current) {
@@ -499,7 +615,14 @@ impl Remote {
     /// Answer to a status or lock request: loads the newer project if there is one.
     pub fn take_status(&mut self, status: Status, granted: &[Target]) {
         let Some(sh) = &mut self.shared else { return };
-        if sh.status(status, granted) {
+        let revision = status.revision;
+        if !sh.status(status, granted) {
+            return;
+        }
+        if self.saving.is_some() {
+            // The answer of the save brings it, or it is loaded after the save.
+            self.refetch = Some(self.refetch.unwrap_or_default().max(revision));
+        } else {
             self.fetch();
         }
     }
